@@ -124,7 +124,7 @@ namespace user
             return;
 
          }
-         int iControl = 0;
+         ::i32 iControl = 0;
          constructø(m_pbuttonBold);
          iControl++;
          constructø(m_pbuttonItalic);
@@ -154,20 +154,20 @@ namespace user
 
          m_pbuttonBold->create_control(this, "font_bold");
          m_pbuttonBold->LoadBitmaps("matter://fontformat/bold-text-option12.png");
-         m_pbuttonBold->m_flagNonClient.erase(::user::interaction::e_non_client_focus_rect);
-         m_pbuttonBold->m_flagNonClient.erase(::user::interaction::e_non_client_background);
+         m_pbuttonBold->m_enonclient.erase(::user::e_non_client_focus_rect);
+         m_pbuttonBold->m_enonclient.erase(::user::e_non_client_background);
          m_pbuttonBold->add_handler(this);
 
          m_pbuttonItalic->create_control(this, "font_italic");
          m_pbuttonItalic->LoadBitmaps("matter://fontformat/italicize-text12.png");
-         m_pbuttonItalic->m_flagNonClient.erase(::user::interaction::e_non_client_focus_rect);
-         m_pbuttonItalic->m_flagNonClient.erase(::user::interaction::e_non_client_background);
+         m_pbuttonItalic->m_enonclient.erase(::user::e_non_client_focus_rect);
+         m_pbuttonItalic->m_enonclient.erase(::user::e_non_client_background);
          m_pbuttonItalic->add_handler(this);
 
          m_pbuttonUnderline->create_control(this, "font_underline");
          m_pbuttonUnderline->LoadBitmaps("matter://fontformat/underline-text-option12.png");
-         m_pbuttonUnderline->m_flagNonClient.erase(::user::interaction::e_non_client_focus_rect);
-         m_pbuttonUnderline->m_flagNonClient.erase(::user::interaction::e_non_client_background);
+         m_pbuttonUnderline->m_enonclient.erase(::user::e_non_client_focus_rect);
+         m_pbuttonUnderline->m_enonclient.erase(::user::e_non_client_background);
          m_pbuttonUnderline->add_handler(this);
 
          m_pcomboFamily->create_control(this, "combo_family");
@@ -182,7 +182,7 @@ namespace user
          //pfont->m_ewritetextrendering = ::write_text::e_rendering_clear_type_grid_fit;
          //m_pcomboSize->create_color(::user::color_text, argb(255, 80, 80, 80));
          //m_pcomboSize->create_color(::user::color_background, argb(255, 255, 255, 255));
-         //::double_rectangle r(2, 2, 2, 2);
+         //::f64_rectangle r(2, 2, 2, 2);
          //create_rect(::user::rect_edit_padding, r, ::draw2d::e_unit_pixel);
          //bm_pcomboSize->m_edatamode = ::user::combo_box::data_mode_string;
          m_pcomboSize->m_bEdit = true;
@@ -213,46 +213,46 @@ namespace user
 
          m_pbuttonForeground->create_control(this, "font_foreground");
          m_pbuttonForeground->LoadBitmaps("matter://fontformat/font-foreground12.png");
-         m_pbuttonForeground->m_flagNonClient.erase(::user::interaction::e_non_client_focus_rect);
-         m_pbuttonForeground->m_flagNonClient.erase(::user::interaction::e_non_client_background);
+         m_pbuttonForeground->m_enonclient.erase(::user::e_non_client_focus_rect);
+         m_pbuttonForeground->m_enonclient.erase(::user::e_non_client_background);
          m_pbuttonForeground->add_handler(this);
 
 
          m_pbuttonBackground->create_control(this, "font_background");
          m_pbuttonBackground->LoadBitmaps("matter://fontformat/text-background12.png");
-         m_pbuttonBackground->m_flagNonClient.erase(::user::interaction::e_non_client_focus_rect);
-         m_pbuttonBackground->m_flagNonClient.erase(::user::interaction::e_non_client_background);
+         m_pbuttonBackground->m_enonclient.erase(::user::e_non_client_focus_rect);
+         m_pbuttonBackground->m_enonclient.erase(::user::e_non_client_background);
          m_pbuttonBackground->add_handler(this);
 
 
          m_pbuttonSubscript->create_control(this, "font_subscript");
          m_pbuttonSubscript->LoadBitmaps("matter://fontformat/x2-symbol-of-a-letter-and-a-number-subscript12.png");
-         m_pbuttonSubscript->m_flagNonClient.erase(::user::interaction::e_non_client_focus_rect);
-         m_pbuttonSubscript->m_flagNonClient.erase(::user::interaction::e_non_client_background);
+         m_pbuttonSubscript->m_enonclient.erase(::user::e_non_client_focus_rect);
+         m_pbuttonSubscript->m_enonclient.erase(::user::e_non_client_background);
          m_pbuttonSubscript->add_handler(this);
 
          m_pbuttonSuperscript->create_control(this, "font_superscript");
          m_pbuttonSuperscript->LoadBitmaps("matter://fontformat/superscript-text-formatting12.png");
-         m_pbuttonSuperscript->m_flagNonClient.erase(::user::interaction::e_non_client_focus_rect);
-         m_pbuttonSuperscript->m_flagNonClient.erase(::user::interaction::e_non_client_background);
+         m_pbuttonSuperscript->m_enonclient.erase(::user::e_non_client_focus_rect);
+         m_pbuttonSuperscript->m_enonclient.erase(::user::e_non_client_background);
          m_pbuttonSuperscript->add_handler(this);
 
          m_pbuttonAlignLeft->create_control(this, "e_align_left");
          m_pbuttonAlignLeft->LoadBitmaps("matter://fontformat/align-to-left12.png");
-         m_pbuttonAlignLeft->m_flagNonClient.erase(::user::interaction::e_non_client_focus_rect);
-         m_pbuttonAlignLeft->m_flagNonClient.erase(::user::interaction::e_non_client_background);
+         m_pbuttonAlignLeft->m_enonclient.erase(::user::e_non_client_focus_rect);
+         m_pbuttonAlignLeft->m_enonclient.erase(::user::e_non_client_background);
          m_pbuttonAlignLeft->add_handler(this);
 
          m_pbuttonAlignCenter->create_control(this, "e_align_center");
          m_pbuttonAlignCenter->LoadBitmaps("matter://fontformat/center-text-alignment12.png");
-         m_pbuttonAlignCenter->m_flagNonClient.erase(::user::interaction::e_non_client_focus_rect);
-         m_pbuttonAlignCenter->m_flagNonClient.erase(::user::interaction::e_non_client_background);
+         m_pbuttonAlignCenter->m_enonclient.erase(::user::e_non_client_focus_rect);
+         m_pbuttonAlignCenter->m_enonclient.erase(::user::e_non_client_background);
          m_pbuttonAlignCenter->add_handler(this);
 
          m_pbuttonAlignRight->create_control(this, "e_align_right");
          m_pbuttonAlignRight->LoadBitmaps("matter://fontformat/align-to-right12.png");
-         m_pbuttonAlignRight->m_flagNonClient.erase(::user::interaction::e_non_client_focus_rect);
-         m_pbuttonAlignRight->m_flagNonClient.erase(::user::interaction::e_non_client_background);
+         m_pbuttonAlignRight->m_enonclient.erase(::user::e_non_client_focus_rect);
+         m_pbuttonAlignRight->m_enonclient.erase(::user::e_non_client_background);
          m_pbuttonAlignRight->add_handler(this);
 
          //create_color(::user::color_background, argb(255, 200, 200, 200));
@@ -289,7 +289,7 @@ namespace user
          m_pcomboFamily->display_child(70, 5, 120, 20);
          m_pcomboSize->display_child(195, 5, 40, 20);
 
-         int x = 245;
+         ::i32 x = 245;
          //throw "create line layout";
          m_pbuttonForeground->display_child(x, 5, 20, 20);
          x += 20;
@@ -495,7 +495,7 @@ namespace user
                else if (ptopic->user_interaction()->id() == "font_foreground")
                {
 
-                  ::int_point pointShowPopup(ptopic->user_interaction()->left(), ptopic->user_interaction()->bottom());
+                  ::i32_point pointShowPopup(ptopic->user_interaction()->left(), ptopic->user_interaction()->bottom());
 
                   ptopic->user_interaction()->get_parent()->client_to_screen()(pointShowPopup);
 
@@ -653,25 +653,25 @@ namespace user
       }
 
 
-      void format_tool::set_font_size(double dFontSize)
+      void format_tool::set_font_size(::f64 dFontSize)
       {
 
          dFontSize = maximum(6.0, minimum(1440.0, dFontSize));
 
-         double dRound = dFontSize - (double)(int)dFontSize;
+         ::f64 dRound = dFontSize - (::f64)(::i32)dFontSize;
 
-         int iRound = -1;
+         ::i32 iRound = -1;
 
-         int iDouble = -1;
+         ::i32 iDouble = -1;
 
          string strEdit;
 
          if (dRound < 0.25)
          {
 
-            iRound = (int)dFontSize;
+            iRound = (::i32)dFontSize;
 
-            m_pformat->m_dFontSize = (double)iRound;
+            m_pformat->m_dFontSize = (::f64)iRound;
 
             strEdit = ::as_string(iRound);
 
@@ -679,11 +679,11 @@ namespace user
          else if (dRound >= 0.75)
          {
 
-            iRound = (int)dFontSize;
+            iRound = (::i32)dFontSize;
 
             iRound++;
 
-            m_pformat->m_dFontSize = (double)iRound;
+            m_pformat->m_dFontSize = (::f64)iRound;
 
             strEdit = ::as_string(iRound);
 
@@ -691,9 +691,9 @@ namespace user
          else
          {
 
-            iDouble = (int)((dFontSize + 0.25) * 2.0);
+            iDouble = (::i32)((dFontSize + 0.25) * 2.0);
 
-            m_pformat->m_dFontSize = ((double)iRound) / 2.0;
+            m_pformat->m_dFontSize = ((::f64)iRound) / 2.0;
 
             strEdit = ::as_string(iDouble / 2) + ".5";
 
@@ -841,7 +841,7 @@ namespace user
 
          m_pformat = pselection->get_selection_common_format();
 
-         ::int_rectangle rectangleOther;
+         ::i32_rectangle rectangleOther;
 
          puserinteraction->window_rectangle(rectangleOther);
 
@@ -853,13 +853,13 @@ namespace user
 
          add_handler(puserinteraction);
 
-         ::int_rectangle rectangle(rectangleOther.top_left() - ::int_size(0, 48), ::int_size(100, 100));
+         ::i32_rectangle rectangle(rectangleOther.top_left() - ::i32_size(0, 48), ::i32_size(100, 100));
 
-         ::int_rectangle rectangleWindow;
+         ::i32_rectangle rectangleWindow;
 
          window_rectangle(rectangleWindow);
 
-         ::int_rectangle rectangleRequest;
+         ::i32_rectangle rectangleRequest;
 
          rectangleRequest.left = rectangle.left - 32;
 

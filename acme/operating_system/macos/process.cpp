@@ -27,13 +27,13 @@
 
 }
 
-extern char ** environ;
+extern char_pointer * environ;
 
 string_array_base get_c_args_for_c(const ::scoped_string & scopedstr);
 
 string transform_to_c_arg(const ::scoped_string & scopedstr);
 
-int create_process2(const_char_pointer _cmd_line, int * pprocessId);
+::i32 create_process2(const_char_pointer _cmd_line, ::i32 * pprocessId);
 
 
 
@@ -44,10 +44,10 @@ int create_process2(const_char_pointer _cmd_line, int * pprocessId);
 //
 //   string str;
 //
-//   char * psz = str.get_buffer(1024);
+//   char_pointer psz = str.get_buffer(1024);
 //
 //
-//   unsigned int size = 1024;
+//   ::u32 size = 1024;
 //
 //   if(_NSGetExecutablePath(scopedstr, &size) == 0)
 //
@@ -83,7 +83,7 @@ int create_process2(const_char_pointer _cmd_line, int * pprocessId);
 //
 //}
 
-CLASS_DECL_ACME bool is_shared_library_busy(unsigned int processid, const string_array_base & stra)
+CLASS_DECL_ACME bool is_shared_library_busy(::u32 processid, const string_array_base & stra)
 {
 
    return false;

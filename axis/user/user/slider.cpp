@@ -42,11 +42,11 @@ namespace user
 
    }
 
-   void slider::on_timer(::timer * ptimer)
+
+   void slider::operator()(::timer * ptimer)
    {
 
-      ::user::interaction::on_timer(ptimer);
-
+      return ::user::interaction::operator()(ptimer);
 
    }
 
@@ -56,7 +56,7 @@ namespace user
 
       auto pmouse = pmessage->m_union.m_pmouse;
 
-      //::int_rectangle rectangle;
+      //::i32_rectangle rectangle;
 
       //get_slider_rect(rectangle);
 
@@ -135,10 +135,10 @@ namespace user
 
 
 
-   double slider::get_slide_rate()
+   ::f64 slider::get_slide_rate()
    {
 
-      double dScalar = m_scalar.get_rate();
+      ::f64 dScalar = m_scalar.get_rate();
 
       auto pointCursor = mouse_cursor_position();
 
@@ -149,7 +149,7 @@ namespace user
       if(rectangle.width() != 0)
       {
 
-         dScalar = (double) (pointCursor.x - rectangle.left) / (double) rectangle.width();
+         dScalar = (::f64) (pointCursor.x - rectangle.left) / (::f64) rectangle.width();
 
       }
 
@@ -168,7 +168,7 @@ namespace user
    }
 
 
-   void slider::set_rate(double dRate)
+   void slider::set_rate(::f64 dRate)
    {
 
       if(dRate < 0.0)
@@ -203,15 +203,15 @@ namespace user
 
       auto rectangleX = this->rectangle();
 
-      unsigned char bAlpha1 = (unsigned char) (128.0* get_alpha());
+      ::u8 bAlpha1 = (::u8) (128.0* get_alpha());
 
       pgraphics->fill_rectangle(rectangleX, argb(bAlpha1, 250,255,255));
 
-      ::int_rectangle rectangle;
+      ::i32_rectangle rectangle;
 
       get_slider_rect(rectangle);
 
-      unsigned char bAlpha = (unsigned char) (220.0* get_alpha());
+      ::u8 bAlpha = (::u8) (220.0* get_alpha());
 
       pgraphics->draw_inset_3d_rectangle(rectangle,argb(bAlpha / 255,108,100,210),argb(bAlpha,90,70,180), 1.0);
       rectangle.deflate(1,1);
@@ -230,17 +230,17 @@ namespace user
    }
 
 
-   void slider::get_slider_rect(::int_rectangle & rectangle)
+   void slider::get_slider_rect(::i32_rectangle & rectangle)
    {
 
       auto rectangleX = this->rectangle();
 
-      int iWidth = 16;
+      ::i32 iWidth = 16;
 
       rectangle.top = rectangleX.top;
       rectangle.bottom = rectangleX.bottom;
-      rectangle.left = (int)minimum(rectangleX.right,m_dRate * (rectangleX.width() - iWidth));
-      rectangle.right = (int)minimum(rectangleX.right,m_dRate * ((rectangleX.width() - iWidth)) + iWidth);
+      rectangle.left = (::i32)minimum(rectangleX.right,m_dRate * (rectangleX.width() - iWidth));
+      rectangle.right = (::i32)minimum(rectangleX.right,m_dRate * ((rectangleX.width() - iWidth)) + iWidth);
 
 
    }

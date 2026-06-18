@@ -126,7 +126,7 @@ namespace user
 
    //   base::set(puserinteraction,atom,wparam,lparam);
 
-   //   m_uTimer = static_cast<unsigned int>(wparam);
+   //   m_uTimer = static_cast<::u32>(wparam);
 
    //}
 

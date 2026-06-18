@@ -43,7 +43,7 @@ namespace acme
             };
             
             
-            unsigned long long m_uAcmeUserFrameInteractionFlags;
+            ::u64 m_uAcmeUserFrameInteractionFlags;
 
 
          };

@@ -13,7 +13,7 @@ struct CLASS_DECL_ACME write_text_stream_struct
 {
 
 
-   char                               m_chSeparator = ' ';
+   ::i8                               m_chSeparator = ' ';
 #ifdef WINDOWS
    const_char_pointer m_pszEolSeparator = "\r\n";
 #else
@@ -26,9 +26,9 @@ struct CLASS_DECL_ACME write_text_stream_struct
    write_text_stream_struct(write_text_stream_struct && writetextstreamstruct) = default;
 
 
-   void set_width(int width) { m_pprintingformat->m_width = width; }
+   void set_width(::i32 width) { m_pprintingformat->m_width = width; }
 
-   void set_precision(int precision) { m_pprintingformat->m_precision = precision; }
+   void set_precision(::i32 precision) { m_pprintingformat->m_precision = precision; }
 
 
 };
@@ -77,7 +77,7 @@ public:
    //void number_read(TYPE& t)
    //{
 
-   //   const char endptr = nullptr;
+   //   const ::i8 endptr = nullptr;
 
    //   auto hn = strtoull(m_str, &endptr, 10);
 
@@ -104,8 +104,8 @@ public:
 
    void print(const ::range < const ansi_character * > & str);
    void print(::ansi_character ansicharacter) { write(&ansicharacter, 1); }
-   void print(::wd16_character wd16character) { char sz[8]; write((const_char_pointer )&sz, wd16_to_ansi(sz, &wd16character, 1)); }
-   void print(::wd32_character wd32character) { char sz[8]; write((const_char_pointer )& sz, wd32_to_ansi(sz, &wd32character, 1)); }
+   void print(::wd16_character wd16character) { ::i8 sz[8]; write((const_char_pointer )&sz, wd16_to_ansi(sz, &wd16character, 1)); }
+   void print(::wd32_character wd32character) { ::i8 sz[8]; write((const_char_pointer )& sz, wd32_to_ansi(sz, &wd32character, 1)); }
 
 
    template < prototype_number NUMBER >
@@ -254,7 +254,7 @@ public:
    //    }
 
 
-   write_text_stream & operator <<(char ch);
+   write_text_stream & operator <<(::i8 ch);
    //    {
    //
    //       write(&ch, 1);
@@ -301,7 +301,7 @@ public:
    write_text_stream & operator <<(unichar wch);
    //   {
    //
-   //      char sz[10];
+   //      ::i8 sz[10];
    //
    //      wd16_to_ansi(sz, &wch, 1);
    //
@@ -383,7 +383,7 @@ public:
    //
    //    }
 
-       //write_text_stream& operator <<(int i)
+       //write_text_stream& operator <<(::i32 i)
        //{
 
        //   write_integer(i);
@@ -395,7 +395,7 @@ public:
        //}
 
 
-       //write_text_stream& operator <<(unsigned int u)
+       //write_text_stream& operator <<(::u32 u)
        //{
 
        //   write_natural(u);
@@ -407,7 +407,7 @@ public:
        //}
 
 
-       //write_text_stream& operator <<(long long i)
+       //write_text_stream& operator <<(::i64 i)
        //{
 
        //   write_integer(i);
@@ -419,7 +419,7 @@ public:
        //}
 
 
-       //write_text_stream& operator <<(unsigned long long u)
+       //write_text_stream& operator <<(::u64 u)
        //{
 
        //   write_natural(u);
@@ -464,7 +464,7 @@ public:
    //#endif
    //
    //
-   //   write_text_stream& operator <<(double d)
+   //   write_text_stream& operator <<(::f64 d)
    //   {
    //
    //      write_floating(d);
@@ -476,9 +476,9 @@ public:
    //   }
    //
 
-       // void write(const ::int_point & point) ;
-       // void write(const ::int_size & size) ;
-       // void write(const ::int_rectangle &rectangle) ;
+       // void write(const ::i32_point & point) ;
+       // void write(const ::i32_size & size) ;
+       // void write(const ::i32_rectangle &rectangle) ;
 
    write_text_stream & operator <<(const_char_pointer psz);
    //    {
@@ -527,7 +527,7 @@ public:
 
        //text_stream & operator <<(const ::atom & atom) ;
    write_text_stream & operator <<(const ::scoped_string & scopedstr);
-   //template < typename ITERATOR_TYPE2, int t_size>
+   //template < typename ITERATOR_TYPE2, ::i32 t_size>
    //write_text_stream& operator <<(const ::const_string_range_static_array < ITERATOR_TYPE2, t_size >& a)
    //{
 
@@ -637,20 +637,20 @@ public:
     //operator void* () { return this; }
 
 //   text_stream& operator >>(bool& b);
-//   text_stream& operator >>(char& ch);
+//   text_stream& operator >>(::i8& ch);
 //   text_stream& operator >>(uchar& uch);
 //#ifdef WINDOWS
 //   text_stream& operator >>(unichar& wch);
 //#endif
-//   text_stream& operator >>(char& i);
-//   text_stream& operator >>(short& sh);
-//   text_stream& operator >>(unsigned short& u);
-//   text_stream& operator >>(int& i);
-//   text_stream& operator >>(unsigned int& u);
-//   text_stream& operator >>(long long& i);
-//   text_stream& operator >>(unsigned long long& u);
-//   text_stream& operator >>(float& f);
-//   text_stream& operator >>(double& d);
+//   text_stream& operator >>(::i8& i);
+//   text_stream& operator >>(::i16& sh);
+//   text_stream& operator >>(::u16& u);
+//   text_stream& operator >>(::i32& i);
+//   text_stream& operator >>(::u32& u);
+//   text_stream& operator >>(::i64& i);
+//   text_stream& operator >>(::u64& u);
+//   text_stream& operator >>(::f32& f);
+//   text_stream& operator >>(::f64& d);
 //   text_stream& operator >>(string& str);
 //   //text_stream & operator >>(::property_set & set) ;
 //   //text_stream & operator >>(::atom & atom) ;
@@ -732,7 +732,7 @@ inline write_text_stream & write_text_stream::operator <<(FLOATING f)
 
    strFormat.formatf("%%0%d.%df", m_pprintingformat->m_width, m_pprintingformat->m_precision);
 
-   //   char szFormat[32];
+   //   ::i8 szFormat[32];
    //
    //   snprintf(szFormat, sizeof(szFormat), );
 

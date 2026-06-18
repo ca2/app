@@ -1,0 +1,123 @@
+// Copyright (C) 2010,2011,2012 GlavSoft LLC.
+// All rights reserved.
+//
+//-------------------------------------------------------------------------
+// This file is part of the T i g h t V N C software.  Please visit our Web site:
+//
+//                       http://www.t i g h t v n c.com/
+//
+// This program is free software; you can redistribute it and/or modify
+// it under the terms of the GNU General Public License as published by
+// the Free Software Foundation; either version 2 of the License, or
+// (at your option) any later version.
+//
+// This program is distributed in the hope that it will be useful,
+// but WITHOUT ANY WARRANTY; without even the implied warranty of
+// MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+// GNU General Public License for more details.
+//
+// You should have received a copy of the GNU General Public License along
+// with this program; if not, w_rite to the Free Software Foundation, Inc.,
+// 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA.
+//-------------------------------------------------------------------------
+//
+
+#pragma once
+
+
+#include "subsystem/_common_header.h"
+#include "subsystem/node/NamedPipe.h"
+///#include "subsystem/node/EmulatedAnonymousPipeFactory.h.h"
+//#include "subsystem/platform/subsystem.h"
+//#include "log_writer/LogWriter.h"
+
+namespace subsystem
+{
+   // The EmulatedAnonymousPipeFactory class generates a chanel based on named pipe.
+   // This is similar to anonymous pipe generation.
+   class EmulatedAnonymousPipeFactoryInterface :
+   virtual public ::Particle 
+   {
+   public:
+      //EmulatedAnonymousPipeFactory(::u32 bufferSize, LogWriter *plogwriter);
+      //EmulatedAnonymousPipeFactory();
+      //virtual ~EmulatedAnonymousPipeFactoryInterface() = 0 ;
+
+      virtual void initialize_emulated_anonymous_pipe_factory(::u32 bufferSize, LogWriter *plogwriter) = 0;
+
+      virtual void generatePipes(
+         ::pointer < NamedPipeInterface > & serverPipe, bool serverInheritable,
+         ::pointer < NamedPipeInterface > & clientPipe, bool clientInheritable) = 0;
+
+      //private:
+      virtual ::string getUniqPipeName() = 0;
+
+      // LogWriter *m_plogwriter;
+      // ::u32 m_bufferSize;
+   };
+
+
+   //using EmulatedAnonymousPipeFactoryInterface = ::particle_interface<EmulatedAnonymousPipeFactoryInterface>;
+
+
+   class CLASS_DECL_SUBSYSTEM EmulatedAnonymousPipeFactoryComposite :
+    virtual public Composite< EmulatedAnonymousPipeFactoryInterface >
+    {
+    public:
+
+
+       ImplementCompositeø(EmulatedAnonymousPipeFactory, emulatedanonymousepipefactory)
+
+
+       //EmulatedAnonymousPipeFactory(::u32 bufferSize, LogWriter *plogwriter);
+       //EmulatedAnonymousPipeFactory();
+        //~EmulatedAnonymousPipeFactory() override;
+
+
+          void initialize_emulated_anonymous_pipe_factory(::u32 bufferSize, LogWriter* plogwriter) override
+       {
+
+          m_pemulatedanonymousepipefactory->initialize_emulated_anonymous_pipe_factory(bufferSize, plogwriter);
+
+       }
+
+       void generatePipes(::pointer < NamedPipeInterface >& serverPipe, bool serverInheritable,
+          ::pointer < NamedPipeInterface >& clientPipe, bool clientInheritable) override
+       {
+
+          m_pemulatedanonymousepipefactory->generatePipes(serverPipe, serverInheritable, clientPipe, clientInheritable);
+
+       }
+
+       //private:
+       ::string getUniqPipeName() override
+       {
+
+          return m_pemulatedanonymousepipefactory->getUniqPipeName();
+
+       }
+
+       //LogWriter *m_plogwriter;
+       //::u32 m_bufferSize;
+    };
+
+       class CLASS_DECL_SUBSYSTEM EmulatedAnonymousPipeFactoryAggregate
+        : virtual public Aggregate<EmulatedAnonymousPipeFactoryComposite>
+    {
+    public:
+
+       ImplementBaseø(EmulatedAnonymousPipeFactory);
+    };
+
+   class CLASS_DECL_SUBSYSTEM EmulatedAnonymousPipeFactory :
+ virtual public Object < EmulatedAnonymousPipeFactoryAggregate >
+   {
+   public:
+
+   };
+
+
+
+} // namespace subsystem
+
+

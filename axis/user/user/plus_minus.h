@@ -18,10 +18,10 @@ namespace user
 
       bool                             m_bLabel;
 
-      int                              m_i;
-      int                              m_iMin;
-      int                              m_iMax;
-      int                              m_iStep;
+      ::i32                              m_i32;
+      ::i32                              m_iMin;
+      ::i32                              m_iMax;
+      ::i32                              m_iStep;
       ::pointer<::user::still>      m_pstill;
       ::pointer<::user::button>     m_pbuttonMinus;
       ::pointer<::user::button>     m_pbuttonPlus;
@@ -56,7 +56,7 @@ namespace user
 
       virtual string calc_still_label();
 
-      virtual void set_value(int iValue, const ::action_context & action_context);
+      virtual void set_value(::i32 iValue, const ::action_context & action_context);
 
       virtual void on_update();
 

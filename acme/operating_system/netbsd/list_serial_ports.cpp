@@ -54,7 +54,7 @@ namespace serial
 
       glob_t glob_results;
 
-      int glob_retval = glob(patterns[0].c_str(), 0, nullptr, &glob_results);
+      ::i32 glob_retval = glob(patterns[0].c_str(), 0, nullptr, &glob_results);
 
 
       for (auto item : patterns)
@@ -62,7 +62,7 @@ namespace serial
          glob_retval = glob(item, GLOB_APPEND, nullptr, &glob_results);
       }
 
-      for (int path_index = 0; path_index < glob_results.gl_pathc; path_index++)
+      for (::i32 path_index = 0; path_index < glob_results.gl_pathc; path_index++)
       {
          paths_found.push_back(glob_results.gl_pathv[path_index]);
       }
@@ -135,7 +135,7 @@ namespace serial
    string realpath(const string & path)
    {
 
-      char * real_path = ::realpath(path.c_str(), nullptr);
+      char_pointer real_path = ::realpath(path.c_str(), nullptr);
 
       string result;
 
@@ -156,7 +156,7 @@ namespace serial
    string usb_sysfs_friendly_name(::matter * pmatter, const string & sys_usb_path)
    {
 
-      unsigned int device_number = 0;
+      ::u32 device_number = 0;
 
       auto psystem = pmatter->system();
 
@@ -252,20 +252,20 @@ namespace serial
 
       string result;
 
-      char * buffer = (char *) malloc(buffer_size_bytes);
+      char_pointer buffer = (char_pointer ) malloc(buffer_size_bytes);
 
       if (buffer == nullptr)
          return result;
 
       bool done = false;
 
-      unsigned int loop_count = 0;
+      ::u32 loop_count = 0;
 
       while (!done)
       {
          va_start(ap, format);
 
-         int return_value = vsnprintf(buffer, buffer_size_bytes, format, ap);
+         ::i32 return_value = vsnprintf(buffer, buffer_size_bytes, format, ap);
 
          if (return_value < 0)
          {
@@ -276,7 +276,7 @@ namespace serial
 
             buffer_size_bytes = return_value + 1;
 
-            char * new_buffer_ptr = (char *) realloc(buffer, buffer_size_bytes);
+            char_pointer new_buffer_ptr = (char_pointer ) realloc(buffer, buffer_size_bytes);
 
             if (new_buffer_ptr == nullptr)
             {

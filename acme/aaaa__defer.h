@@ -42,7 +42,7 @@ namespace acme
 
          dsta.set_size(srca.get_size());
 
-         for(int i = 0; i < dsta.get_size(); i++)
+         for(::i32 i = 0; i < dsta.get_size(); i++)
          {
 
             ::copy(dsta[i], srca[i]);

@@ -40,7 +40,7 @@
 //}
 //
 ////template < typename Type, typename RawType, ::enum_type t_etypeContainer >
-////void string_base_array < Type, RawType, t_etypeContainer >::set_at(::collection::index nIndex, const char * newElement)
+////void string_base_array < Type, RawType, t_etypeContainer >::set_at(::collection::index nIndex, const_char_pointer newElement)
 ////{
 ////   if (nIndex < 0 || nIndex >= this->m_nSize)
 ////      throw ::exception(error_index_out_of_bounds);
@@ -146,13 +146,13 @@
 ////
 ////   memory mem;
 ////
-////   mem.set_size(iTotalLength * sizeof(char));
+////   mem.set_size(iTotalLength * sizeof(::i8));
 ////
-////   char * lpsz = (char *)mem.get_data();
+////   char_pointer lpsz = (char_pointer )mem.get_data();
 ////
-////   memory_set(lpsz, 0x00, iTotalLength * sizeof(char));
+////   memory_set(lpsz, 0x00, iTotalLength * sizeof(::i8));
 ////
-////   char * lpszN = lpsz;
+////   char_pointer lpszN = lpsz;
 ////
 ////   character_count iLength;
 ////
@@ -177,17 +177,17 @@
 ////      iLength = strlen(lpszN);
 ////#endif
 ////
-////      lpszN = (char *)((unsigned char *)lpszN) + iLength + sizeof(char);
+////      lpszN = (char_pointer )((::u8 *)lpszN) + iLength + sizeof(::i8);
 ////
 ////   }
 ////
 ////   if (iTotalLength == 2)
 ////   {
-////      memory_set(lpsz, 0x00, iTotalLength * sizeof(char));
+////      memory_set(lpsz, 0x00, iTotalLength * sizeof(::i8));
 ////   }
 ////   else
 ////   {
-////      memory_set(lpszN, 0x00, sizeof(char));
+////      memory_set(lpszN, 0x00, sizeof(::i8));
 ////   }
 ////
 ////   return mem;

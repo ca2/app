@@ -1887,7 +1887,7 @@
     <ClCompile Include="exception\exception_not_installed.cpp">
       <Filter>Source Files\exception</Filter>
     </ClCompile>
-    <ClCompile Include="primitive\datetime\datetime_float_time.cpp">
+    <ClCompile Include="primitive\datetime\datetime_f32_time.cpp">
       <Filter>Source Files\primitive\datetime</Filter>
     </ClCompile>
     <ClCompile Include="sockets\metrowin\sockets_link_out_socket.cpp">

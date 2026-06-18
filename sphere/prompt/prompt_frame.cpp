@@ -43,14 +43,14 @@ namespace prompt
 
 
 
-   void frame::on_timer(::timer * ptimer)
+   void frame::operator()(::timer * ptimer)
    {
 
-      simple_frame_window::on_timer(ptimer);;
+      simple_frame_window::operator()(ptimer);;
 
-      auto uEvent = ptimer->m_uTimer;
+      auto uEvent = ptimer->m_etimer;
 
-      static float theta;
+      static ::f32 theta;
 
       if(uEvent == 3)
       {
@@ -96,9 +96,9 @@ namespace prompt
       // every 100 ms approximately
       else if(uEvent == 4033)
       {
-         /*      ::int_rectangle rectangleWindow;
+         /*      ::i32_rectangle rectangleWindow;
                window_rectangle(rectangleWindow);
-               ::int_point point;
+               ::i32_point point;
                point = psession->get_cursor_position();
                if(rectangleWindow.is_empty().contains(point) && !m_bTimerHide)
                {
@@ -110,7 +110,7 @@ namespace prompt
                   m_bTimerHide = false;
                   kill_timer(1001);
                }*/
-         /*::int_point point;
+         /*::i32_point point;
          if(m_bHoverMouse && ::get_tick() > m_timeLastHover + 300)
          {
             OnHoverAction();
@@ -154,7 +154,7 @@ namespace prompt
 
    void frame::ShowControlBars(bool bShow)
    {
-      unsigned int nShow;
+      ::u32 nShow;
       if(bShow)
       {
          nShow = e_display_normal;
@@ -227,7 +227,7 @@ namespace prompt
       if(pmessage->m_bRet)
          return;
 
-      if(!datastream()->get("DockPosition", (int &) m_eposition))
+      if(!datastream()->get("DockPosition", (::i32 &) m_eposition))
       {
 
          m_eposition = e_position_left;
@@ -272,11 +272,11 @@ namespace prompt
       /*if(m_pframewindow->move_manager()->IsMoving())
       {
          oswindow oswindowDesktop = ::get_desktop_window();
-         ::int_rectangle rectangleDesktop;
+         ::i32_rectangle rectangleDesktop;
          ::window_rectangle(oswindowDesktop, rectangleDesktop);
-         ::int_rectangle rectangleWindow;
+         ::i32_rectangle rectangleWindow;
          window_rectangle(rectangleWindow);
-         double a = (double) rectangleDesktop.height() / (double) rectangleDesktop.width();
+         ::f64 a = (::f64) rectangleDesktop.height() / (::f64) rectangleDesktop.width();
          if(rectangleWindow.left < (rectangleDesktop.width() / 2))
          {
             // to the left
@@ -316,7 +316,7 @@ namespace prompt
                m_eposition = e_position_right;
             }
          }
-         datastream()->set("DockPosition", (int) m_eposition);
+         datastream()->set("DockPosition", (::i32) m_eposition);
       }*/
    }
 
@@ -335,7 +335,7 @@ namespace prompt
    void frame::ToFront()
    {
 
-      ::int_rectangle rectangleWindow;
+      ::i32_rectangle rectangleWindow;
 
       window_rectangle(rectangleWindow);
       

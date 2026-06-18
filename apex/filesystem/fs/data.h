@@ -33,7 +33,7 @@ namespace fs
       //virtual bool _enumerates(::file::listing_base & listing) override;
       virtual bool enumerate(::file::listing_base & listing) override;
       //virtual ::file::listing_base & ls_relative_name(::file::listing_base & listing);
-      virtual int is_dir(const ::file::path & path);
+      virtual ::i32 is_dir(const ::file::path & path);
       virtual ::file::e_type file_type(const ::file::path& path);
       virtual ::file::listing_base & root_ones(::file::listing_base & listing);
 

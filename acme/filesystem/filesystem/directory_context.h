@@ -70,7 +70,7 @@
       //inline bool list_recursively_directory(::file::listing_base& listing, const ::file::path& path) { listing(path); return list_recursively_dir(listing); }
 
 
-      inline bool is(const ::payload & payload) { return file_type(payload) & ::file::e_type_folder2; }
+      inline ::i32_boolean is(const ::payload & payload) { return file_type(payload) & ::file::e_type_folder2; }
 
       //virtual bool  _is(const ::file::path& pcsz);
 

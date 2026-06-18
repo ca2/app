@@ -5,7 +5,7 @@
 #include "acme/constant/timer.h"
 #include "acme/user/user/content.h"
 #include "acme/user/user/tool_item.h"
-#include "acme/platform/timer.h"
+//#include "acme/platform/timer.h"
 #include "acme/parallelization/synchronous_lock.h"
 #include "acme/filesystem/filesystem/file_context.h"
 #include "aqua/xml/document.h"
@@ -121,7 +121,7 @@ namespace user
    }
 
 
-   void toolbar::on_timer(::timer * ptimer)
+   void toolbar::operator()(::timer * ptimer)
    {
 
       if (ptimer->m_etimer == e_timer_command_probe)
@@ -213,7 +213,7 @@ namespace user
    }
 
 
-   //bool toolbar::create_interaction(::user::interaction * puiParent,unsigned int uStyle, ::atom atom)
+   //bool toolbar::create_interaction(::user::interaction * puiParent,::u32 uStyle, ::atom atom)
    //{
 
    //   return create_toolbar(puiParent, 0, uStyle, atom);
@@ -221,7 +221,7 @@ namespace user
    //}
 
 
-//   bool toolbar::create_toolbar(::user::interaction * puiParent,unsigned int dwCtrlStyle,unsigned int uStyle, atom nID)
+//   bool toolbar::create_toolbar(::user::interaction * puiParent,::u32 dwCtrlStyle,::u32 uStyle, atom nID)
 //   {
 //
 //      ASSERT_OK(puiParent);   // must have a parent
@@ -271,7 +271,7 @@ namespace user
    }
 
 
-   void toolbar::SetSizes(const ::int_size & sizeButton, const ::int_size & sizeImage)
+   void toolbar::SetSizes(const ::i32_size & sizeButton, const ::i32_size & sizeImage)
    {
 
       ASSERT_OK(this);
@@ -319,9 +319,9 @@ namespace user
          //cyHeight -= ::windows_definition::Data.cyBorder2;
          cyHeight -= 2;
 
-      m_rectangleBorder.bottom = (int)((cyHeight - m_sizeButton.cy) / 2);
+      m_rectangleBorder.bottom = (::i32)((cyHeight - m_sizeButton.cy) / 2);
       // if there is an extra pixel, m_rectangleBorder.top will get it
-      m_rectangleBorder.top = (int)(cyHeight - m_sizeButton.cy - m_rectangleBorder.bottom);
+      m_rectangleBorder.top = (::i32)(cyHeight - m_sizeButton.cy - m_rectangleBorder.bottom);
       if (m_rectangleBorder.top < 0)
       {
          informationf("Warning: toolbar::SetHeight(%d) is smaller than button.",
@@ -355,7 +355,7 @@ namespace user
    //   {
    //      bool bResult = false;
    //
-   //      // need complete bitmap int_size to determine number of images
+   //      // need complete bitmap i32_size to determine number of images
    //      /*#ifdef WINDOWS_DESKTOP
    //            BITMAP bitmap;
    //            VERIFY(::GetObject(hbmImageWell, sizeof(BITMAP), &bitmap));
@@ -365,7 +365,7 @@ namespace user
    //            {
    //               TBADDBITMAP addBitmap;
    //               addBitmap.hInst = nullptr; // makes TBADDBITMAP::nID behave a HBITMAP
-   //               addBitmap.nID = (unsigned int)hbmImageWell;
+   //               addBitmap.nID = (::u32)hbmImageWell;
    //               bResult =  default_window_procedure(TB_ADDBITMAP,
    //                  bitmap.bmWidth / m_sizeImage.cx, (LPARAM)&addBitmap) == 0;
    //            }
@@ -373,9 +373,9 @@ namespace user
    //            {
    //               TBREPLACEBITMAP replaceBitmap;
    //               replaceBitmap.hInstOld = nullptr;
-   //               replaceBitmap.nIDOld = (unsigned int)m_hbmImageWell;
+   //               replaceBitmap.nIDOld = (::u32)m_hbmImageWell;
    //               replaceBitmap.hInstNew = nullptr;
-   //               replaceBitmap.nIDNew = (unsigned int)hbmImageWell;
+   //               replaceBitmap.nIDNew = (::u32)hbmImageWell;
    //               replaceBitmap.nButtons = bitmap.bmWidth / m_sizeImage.cx;
    //               bResult = default_window_procedure(TB_REPLACEBITMAP, 0, (LPARAM)&replaceBitmap) != false;
    //            }
@@ -393,7 +393,7 @@ namespace user
    //
    //#endif
 
-   bool toolbar::SetButtons(const unsigned int * pIDArray, ::collection::index nIDCount)
+   bool toolbar::SetButtons(const ::u32 * pIDArray, ::collection::index nIDCount)
    {
 
       //#ifdef WINDOWS_DESKTOP
@@ -402,7 +402,7 @@ namespace user
       //
       //      ASSERT(nIDCount >= 1);  // must be at least one of them
       //
-      //      ASSERT(pIDArray == nullptr || is_memory_segment_ok(pIDArray, sizeof(unsigned int) * nIDCount, false));
+      //      ASSERT(pIDArray == nullptr || is_memory_segment_ok(pIDArray, sizeof(::u32) * nIDCount, false));
       //
       //      // delete all existing buttons
       //      index nCount = (index)default_window_procedure(TB_BUTTONCOUNT, 0, 0);
@@ -434,7 +434,7 @@ namespace user
       //            {
       //               // a command button with image
       //               button.fsStyle = TBSTYLE_BUTTON;
-      //               button.iBitmap = (int) iImage++;
+      //               button.iBitmap = (::i32) iImage++;
       //            }
       //            if (!default_window_procedure(TB_ADDBUTTONS, 1, (LPARAM)&button))
       //               return false;
@@ -498,7 +498,7 @@ namespace user
    ////      if (__memcmp(pButton, &button, sizeof(TBBUTTON)) != 0)
    ////      {
    ////         // don't redraw everything while setting the button
-   ////         unsigned int uStyle = GetStyle();
+   ////         ::u32 uStyle = GetStyle();
    ////         ModifyStyle(WS_VISIBLE, 0);
    ////         VERIFY(default_window_procedure(TB_DELETEBUTTON, (WPARAM) nIndex, 0));
    ////         VERIFY(default_window_procedure(TB_INSERTBUTTON, (WPARAM) nIndex, (LPARAM)pButton));
@@ -516,7 +516,7 @@ namespace user
    ////
    ////            // invalidate just the button
    ////
-   ////            ::int_rectangle rectangle;
+   ////            ::i32_rectangle rectangle;
    ////
    ////            if (default_window_procedure(TB_GETITEMRECT, (WPARAM)nIndex, (LPARAM)& rectangle))
    ////            {
@@ -533,7 +533,7 @@ namespace user
    ////
    ////#endif
    ////
-   ////   index toolbar::CommandToIndex(unsigned int nIDFind)
+   ////   index toolbar::CommandToIndex(::u32 nIDFind)
    ////   {
    ////      ASSERT_OK(this);
    ////      ASSERT(is_window());
@@ -546,7 +546,7 @@ namespace user
    ////#endif
    //   }
 
-   //   unsigned int toolbar::GetItemID(index nIndex)
+   //   ::u32 toolbar::GetItemID(index nIndex)
    //   {
    //      ASSERT_OK(this);
    //      ASSERT(is_window());
@@ -561,7 +561,7 @@ namespace user
    //      return 0;
    //   }
 
-   //   void toolbar::GetItemRect(index nIndex, ::int_rectangle * prectangle)
+   //   void toolbar::GetItemRect(index nIndex, ::i32_rectangle * prectangle)
    //
    //   {
    //      ASSERT_OK(this);
@@ -571,7 +571,7 @@ namespace user
    //      //if (m_bDelayedButtonLayout)
    //      //   ((toolbar*)this)->set_need_layout(pgraphics);
    //
-   ////      // now it is safe to get the item int_rectangle
+   ////      // now it is safe to get the item i32_rectangle
    ////#ifdef WINDOWS_DESKTOP
    ////      toolbar* pBar = (toolbar*)this;
    ////      if (!pBar->default_window_procedure(TB_GETITEMRECT, (WPARAM) nIndex, (LPARAM)prectangle))
@@ -627,7 +627,7 @@ namespace user
    //   ::collection::index toolbar::tool_item_index(const ::atom & atom) const
    //   {
    //   
-   //      auto iIndex = atom.m_i;
+   //      auto iIndex = atom.m_i32;
    //   
    //      if(!m_pitema->is_index_ok(iIndex))
    //      {
@@ -739,16 +739,16 @@ namespace user
    //#ifdef WINDOWS_DESKTOP
    //
    //
-   //   ::int_size toolbar::CalcSize(TBBUTTON * pData, ::collection::index nCount)
+   //   ::i32_size toolbar::CalcSize(TBBUTTON * pData, ::collection::index nCount)
    //   {
    //
    //      //ASSERT(pData != nullptr && nCount > 0);
    //
-   //      //int_point cur(0,0);
+   //      //i32_point cur(0,0);
    //
-   //      //::int_size sizeResult(0,0);
+   //      //::i32_size sizeResult(0,0);
    //
-   //      //unsigned int dwExtendedStyle = (unsigned int) default_window_procedure(TB_GETEXTENDEDSTYLE, 0, 0);
+   //      //::u32 dwExtendedStyle = (::u32) default_window_procedure(TB_GETEXTENDEDSTYLE, 0, 0);
    //
    //      //for (::collection::index i = 0; i < nCount; i++)
    //      //{
@@ -769,7 +769,7 @@ namespace user
    //      //   {
    //      //      // a separator represents either a height or width
    //      //      if (pData[i].fsState & TBSTATE_WRAP)
-   //      //         sizeResult.cy = (int) maximum(cur.y + m_sizeButton.cy + cySep, sizeResult.cy);
+   //      //         sizeResult.cy = (::i32) maximum(cur.y + m_sizeButton.cy + cySep, sizeResult.cy);
    //      //      else
    //      //         sizeResult.cx = maximum(cur.x + pData[i].iBitmap, sizeResult.cx);
    //      //   }
@@ -779,7 +779,7 @@ namespace user
    //      //      if ((pData[i].fsStyle & TBSTYLE_DROPDOWN) &&
    //      //            (dwExtendedStyle & TBSTYLE_EX_DRAWDDARROWS))
    //      //      {
-   //      //         // add int_size of drop down
+   //      //         // add i32_size of drop down
    //      //         cx += 2;
    //      //      }
    //      //      sizeResult.cx = maximum(cur.x + cx, sizeResult.cx);
@@ -831,8 +831,8 @@ namespace user
    //   //         Δx = m_sizeButton.cx;
    //   //         string str;
    //   //         str = utf8_to_unicode(str);
-   //   //         //         str = (const unichar *) pData[i].iString;
-   //   //         ::int_size size;
+   //   //         //         str = (const wide_character * ) pData[i].iString;
+   //   //         ::i32_size size;
    //   //         ::GetTextExtentPoint32U(
    //   //         (HDC)pgraphics->get_os_data(),
    //   //         str,
@@ -929,17 +929,17 @@ namespace user
    //   //            }
    //   //         }
    //   //      }
-   //   //      const ::int_size & size = CalcSize(pData, nCount);
+   //   //      const ::i32_size & size = CalcSize(pData, nCount);
    //   //      WrapToolBar(pData, nCount, size.cx);
    //   //   }
    //   //   else
    //   //   {
    //
-   //   //      ::int_size sizeMax;
+   //   //      ::i32_size sizeMax;
    //   //
-   //   //      ::int_size sizeMin;
+   //   //      ::i32_size sizeMin;
    //   //
-   //   //      ::int_size sizeMid;
+   //   //      ::i32_size sizeMid;
    //
    //   //      // Wrap ToolBar vertically
    //   //      WrapToolBar(pData, nCount, 0);
@@ -975,11 +975,11 @@ namespace user
    struct ___CONTROLPOS
    {
       ::collection::index nIndex, nID;
-      ::int_rectangle rectangleOldPos;
+      ::i32_rectangle rectangleOldPos;
    };
 
 
-   int_size toolbar::CalcLayout(::draw2d::graphics_pointer & pgraphics, unsigned int dwMode, ::collection::index nLength)
+   i32_size toolbar::CalcLayout(::draw2d::graphics_pointer & pgraphics, ::u32 dwMode, ::collection::index nLength)
    {
       //#ifdef WINDOWS_DESKTOP
       //      ASSERT_OK(this);
@@ -991,7 +991,7 @@ namespace user
       //
       //      TBBUTTON * pData = nullptr;
       //
-      //      ::int_size sizeResult(0,0);
+      //      ::i32_size sizeResult(0,0);
       //
       //      //BLOCK: Load Buttons
       //      {
@@ -1032,7 +1032,7 @@ namespace user
       //            else if (bDynamic && (nLength != -1))
       //            {
       //
-      //               ::int_rectangle rectangle;
+      //               ::i32_rectangle rectangle;
       //
       //               CalcInsideRect(rectangle, (dwMode & LM_HORZ) != 0);
       //
@@ -1102,7 +1102,7 @@ namespace user
       //
       //                     pControl[nControlCount].nID = pData[i].idCommand;
       //
-      //                     ::int_rectangle rectangle;
+      //                     ::i32_rectangle rectangle;
       //
       //                     GetItemRect(i, &rectangle);
       //
@@ -1145,7 +1145,7 @@ namespace user
       //
       //               buttona.dwMask = TBIF_COMMAND | TBIF_STYLE | TBIF_SIZE;
       //
-      //               unsigned int uID = GetItemID(i);
+      //               ::u32 uID = GetItemID(i);
       //
       //               GetToolBarCtrl().GetButtonInfo(uId, &buttona);
       //
@@ -1193,13 +1193,13 @@ namespace user
       //      //BLOCK: Adjust Margins
       //      {
       //
-      //         ::int_rectangle rectangle;
+      //         ::i32_rectangle rectangle;
       //
       //         CalcInsideRect(rectangle, (dwMode & LM_HORZ) != 0);
       //         sizeResult.cy -= rectangle.height();
       //         sizeResult.cx -= rectangle.width();
       //
-      //         const ::int_size & size = ::user::control_bar::CalcFixedLayout((dwMode & LM_STRETCH) != 0, (dwMode & LM_HORZ) != 0);
+      //         const ::i32_size & size = ::user::control_bar::CalcFixedLayout((dwMode & LM_STRETCH) != 0, (dwMode & LM_HORZ) != 0);
       //         sizeResult.cx = maximum(sizeResult.cx, size.cx);
       //         sizeResult.cy = maximum(sizeResult.cy, size.cy);
       //      }
@@ -1212,10 +1212,10 @@ namespace user
    }
 
 
-   int_size toolbar::CalcFixedLayout(::draw2d::graphics_pointer & pgraphics, bool bStretch, bool bHorz)
+   i32_size toolbar::CalcFixedLayout(::draw2d::graphics_pointer & pgraphics, bool bStretch, bool bHorz)
    {
 
-      unsigned int dwMode = bStretch ? LM_STRETCH : 0;
+      ::u32 dwMode = bStretch ? LM_STRETCH : 0;
 
       dwMode |= bHorz ? LM_HORZ : 0;
 
@@ -1224,7 +1224,7 @@ namespace user
    }
 
 
-   int_size toolbar::CalcDynamicLayout(::draw2d::graphics_pointer & pgraphics, int nLength, unsigned int dwMode)
+   i32_size toolbar::CalcDynamicLayout(::draw2d::graphics_pointer & pgraphics, ::i32 nLength, ::u32 dwMode)
    {
 
       if ((nLength == -1) && !(dwMode & LM_MRUWIDTH) && !(dwMode & LM_COMMIT) &&
@@ -1275,7 +1275,7 @@ namespace user
    }
 
 
-   //   void toolbar::SetButtonInfo(const ::atom & atom, unsigned int nID, unsigned int nStyle, ::collection::index iImage)
+   //   void toolbar::SetButtonInfo(const ::atom & atom, ::u32 nID, ::u32 nStyle, ::collection::index iImage)
    //   {
    //      ASSERT_OK(this);
    ////#ifdef WINDOWS_DESKTOP
@@ -1285,8 +1285,8 @@ namespace user
    ////      ::memory_copy(&save, &button, sizeof(save));
    ////      button.idCommand = nID;
    ////      button.iBitmap = iImage;
-   ////      button.fsStyle = (unsigned char)LOWORD(nStyle);
-   ////      button.fsState = (unsigned char)HIWORD(nStyle);
+   ////      button.fsStyle = (::u8)LOWORD(nStyle);
+   ////      button.fsState = (::u8)HIWORD(nStyle);
    ////      if (__memcmp(&save, &button, sizeof(save)) != 0)
    ////      {
    ////         _SetButton(nIndex, &button);
@@ -1326,7 +1326,7 @@ namespace user
 //         // add ___new string to toolbar list_base
 //         string strTemp(str);
 //         throw ::interface_only();
-//         // xxx nString = (index)default_window_procedure(TB_ADDSTRINGW, 0, (LPARAM)(const ::string &)(const unichar *)strTemp);
+//         // xxx nString = (index)default_window_procedure(TB_ADDSTRINGW, 0, (LPARAM)(const ::string &)(const wide_character * )strTemp);
 //         if (nString == -1)
 //            return false;
 //
@@ -1343,8 +1343,8 @@ namespace user
       //   TBBUTTONINFOW button;
       //   memory_set(&button, 0, sizeof(button));
       //   button.cbSize = sizeof(button);
-      //   unsigned int uID = GetItemID(nIndex);
-      //   button.pszText = (unichar *) (const unichar *) wstrText;
+      //   ::u32 uID = GetItemID(nIndex);
+      //   button.pszText = (wide_character * ) (const wide_character * ) wstrText;
       //   button.cchText = wstrText.length();
       //   button.dwMask |= TBIF_TEXT;
       //   GetToolBarCtrl().SetButtonInfo(uId, &button);
@@ -1450,7 +1450,7 @@ namespace user
 
       // calculate border space (will add to top/bottom, subtract from right/bottom)
 
-      ::int_rectangle rectangle;
+      ::i32_rectangle rectangle;
 
       bool bHorz = (m_dwStyle & CBRS_ORIENT_HORZ) != 0;
 
@@ -1474,13 +1474,13 @@ namespace user
 #endif
    }
 
-   void toolbar::OnBarStyleChange(unsigned int dwOldStyle, unsigned int dwNewStyle)
+   void toolbar::OnBarStyleChange(::u32 dwOldStyle, ::u32 dwNewStyle)
    {
       // a dynamically resizeable toolbar can not have the CBRS_FLOAT_MULTI
       ASSERT(!((dwNewStyle & CBRS_SIZE_DYNAMIC) &&
          (m_dwDockStyle & CBRS_FLOAT_MULTI)));
 
-      // a toolbar can not be both dynamic and fixed in int_size
+      // a toolbar can not be both dynamic and fixed in i32_size
       ASSERT(!((dwNewStyle & CBRS_SIZE_FIXED) &&
          (dwNewStyle & CBRS_SIZE_DYNAMIC)));
 
@@ -1509,7 +1509,7 @@ namespace user
 #ifdef WINDOWS_DESKTOP
       ::pointer<::message::window_pos>pwindowpos(pmessage);
       // not necessary to invalidate the borders
-      unsigned int uStyle = m_dwStyle;
+      ::u32 uStyle = m_dwStyle;
       m_dwStyle &= ~(CBRS_BORDER_ANY);
       //::user::control_bar::OnWindowPosChanging(pwindowpos->m_pwindowpos);
       pmessage->previous();
@@ -1609,7 +1609,7 @@ namespace user
    }
 
 
-   //   LRESULT toolbar::OnSetSizeHelper(::int_size& size, LPARAM lParam)
+   //   LRESULT toolbar::OnSetSizeHelper(::i32_size& size, LPARAM lParam)
    //   {
    //      //WINBUG: The IE4 version of COMCTL32.DLL supports a zero border, but
    //      //  only if TBSTYLE_TRANSPARENT is on during the the TB_SETBITMAPSIZE
@@ -1623,12 +1623,12 @@ namespace user
    //
    ////#ifdef WINDOWS_DESKTOP
    ////      bool bModify = false;
-   ////      unsigned int uStyle = GetStyle();
+   ////      ::u32 uStyle = GetStyle();
    ////      bModify = ModifyStyle(0, TBSTYLE_TRANSPARENT|TBSTYLE_FLAT);
    ////
    ////      lResult = default_window_procedure();
    ////      if (lResult)
-   ////         size = (unsigned int) lParam;
+   ////         size = (::u32) lParam;
    ////
    ////      if (bModify)
    ////         set_window_long(GWL_STYLE, uStyle);
@@ -1651,7 +1651,7 @@ namespace user
       //#ifdef LRESULT
       //
       //      bool bModify = false;
-      //      unsigned int uStyle = 0;
+      //      ::u32 uStyle = 0;
       //      uStyle = GetStyle();
       //      bModify = ModifyStyle(0, TBSTYLE_TRANSPARENT|TBSTYLE_FLAT);
       //
@@ -1688,7 +1688,7 @@ namespace user
       tool_command state;
       state.m_pOther = this;
 
-      state.m_iCount = (unsigned int)default_window_procedure(TB_BUTTONCOUNT, 0, 0);
+      state.m_iCount = (::u32)default_window_procedure(TB_BUTTONCOUNT, 0, 0);
       for (state.m_iIndex = 0; state.m_iIndex < state.m_iCount; state.m_iIndex++)
       {
          // get buttons state
@@ -1739,9 +1739,9 @@ namespace user
 //   {
 //      ::user::control_bar::dump(dumpcontext);
 //
-//      ////      dumpcontext << "m_hbmImageWell = " << (unsigned int)m_hbmImageWell;
-//      ////      dumpcontext << "\nm_hInstImageWell = " << (unsigned int)m_hInstImageWell;
-//      ////      dumpcontext << "\nm_hRsrcImageWell = " << (unsigned int)m_hRsrcImageWell;
+//      ////      dumpcontext << "m_hbmImageWell = " << (::u32)m_hbmImageWell;
+//      ////      dumpcontext << "\nm_hInstImageWell = " << (::u32)m_hInstImageWell;
+//      ////      dumpcontext << "\nm_hRsrcImageWell = " << (::u32)m_hRsrcImageWell;
 //      //dumpcontext << "\nm_sizeButton = " << m_sizeButton;
 //      //dumpcontext << "\nm_sizeImage = " << m_sizeImage;
 //
@@ -1778,13 +1778,13 @@ namespace user
    /////////////////////////////////////////////////////////////////////////////
 
 
-   int_size toolbar::CalcSimpleLayout(::draw2d::graphics_pointer & pgraphics)
+   i32_size toolbar::CalcSimpleLayout(::draw2d::graphics_pointer & pgraphics)
    {
 
       ASSERT_OK(this);
       ASSERT(is_window());
 
-      ::int_size sizeResult(0, 0);
+      ::i32_size sizeResult(0, 0);
 
       //#ifdef WINDOWS_DESKTOP
       //      index nCount;
@@ -1819,8 +1819,8 @@ namespace user
       //            if(pData[i].fsState & TBSTATE_WRAP)
       //               ASSERT(false);
       //         }
-      //         ::int_rectangle rectangleItem;
-      //         ::int_rectangle rectangleSize(0, 0, 0, 0);
+      //         ::i32_rectangle rectangleItem;
+      //         ::i32_rectangle rectangleSize(0, 0, 0, 0);
       //         for (i = 0; i < nCount; i++)
       //         {
       //            GetItemRect(i, rectangleItem);
@@ -1849,10 +1849,10 @@ namespace user
    }
 
 
-   int_size toolbar::SimpleLayout(::draw2d::graphics_pointer & pgraphics)
+   i32_size toolbar::SimpleLayout(::draw2d::graphics_pointer & pgraphics)
    {
 
-      const ::int_size & size = CalcSimpleLayout(pgraphics);
+      const ::i32_size & size = CalcSimpleLayout(pgraphics);
 
       /*set_window_position(
       e_zorder_top,
@@ -1868,9 +1868,9 @@ namespace user
    //{
    //   return *(toolbar_control *)this;
    //}
-   /*bool toolbar::LoadToolBar(unsigned int nIDResource)
+   /*bool toolbar::LoadToolBar(::u32 nIDResource)
       { return LoadToolBar(MAKEINTRESOURCE(nIDResource)); }
-   bool toolbar::LoadBitmap(unsigned int nIDResource)
+   bool toolbar::LoadBitmap(::u32 nIDResource)
       { return LoadBitmap(MAKEINTRESOURCE(nIDResource)); }*/
 
 
@@ -1889,7 +1889,7 @@ namespace user
    }
 
 
-   ::status < ::int_rectangle > toolbar::index_item_rectangle(::collection::index iItem)
+   ::status < ::i32_rectangle > toolbar::index_item_rectangle(::collection::index iItem)
    {
 
       if (!main_content().m_pitema->is_index_ok(iItem))
@@ -1901,7 +1901,7 @@ namespace user
 
       auto puseritem = user_item(main_content().item_at(iItem));
 
-      ::status < ::int_rectangle > statusrectangle = puseritem->m_rectangle2;
+      ::status < ::i32_rectangle > statusrectangle = puseritem->m_rectangle2;
 
       statusrectangle.m_estatus = ::success;
 
@@ -1910,7 +1910,7 @@ namespace user
    }
 
 
-   ::status < ::int_rectangle >  toolbar::index_element_rectangle(::collection::index iItem, enum_element eelement, ::user::enum_state estate)
+   ::status < ::i32_rectangle >  toolbar::index_element_rectangle(::collection::index iItem, const ::e_element & eelement, const ::user::e_state & estate)
    {
 
       return error_failed;

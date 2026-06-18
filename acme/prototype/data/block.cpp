@@ -42,7 +42,7 @@ void block::initialize_get_operation(const ::scoped_string & scopedstrPath,
    void block::byte2_exchange(byte2_stream & stream)
    {
 
-      long long llCallback = 0;
+      ::i64 llCallback = 0;
       if(stream.m_estream == ::file::e_stream_output)
       {
 

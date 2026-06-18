@@ -20,7 +20,7 @@ namespace fs_folder_sync_dropbox
       //::file::path    m_pathProtocol;
       //::file::path    m_pathLocalFolder;
 
-       int m_iLastExitCode;
+       ::i32 m_iLastExitCode;
 
 
        folder_sync();
@@ -60,7 +60,7 @@ namespace fs_folder_sync_dropbox
 
       bool fast_has_subdir(const ::file::path & path) override;
 
-      int is_dir(const ::file::path& path) override;
+      ::i32 is_dir(const ::file::path& path) override;
       ::file::listing_base& root_ones(::file::listing_base& listing) override;
 
       bool file_exists(const ::file::path & path) override;
@@ -72,7 +72,7 @@ namespace fs_folder_sync_dropbox
 
       ::string non__empty__file_as_string(const ::payload& payloadFile, const ::function < void(const ::scoped_string&) >& callbackStatus = {}) override;
 //#if defined(LINUX)
-      void wait_folder_contains_files(const ::file::path& pathTargetFolder, const ::string_array_base& straName, int iMinimumSize, const ::function < void(const ::scoped_string&) >& callbackStatus = {}) override;
+      void wait_folder_contains_files(const ::file::path& pathTargetFolder, const ::string_array_base& straName, ::i32 iMinimumSize, const ::function < void(const ::scoped_string&) >& callbackStatus = {}) override;
 //#endif
 
       void wait_up_and_running(const ::function < void(const ::scoped_string&) >& callbackStatus = {}) override;
@@ -86,11 +86,11 @@ namespace fs_folder_sync_dropbox
 
       ::file::path _cloud_ensure_files_in_file_txt_are_up_to_date_and_present(
            const ::file::path & pathCloudFile, const ::scoped_string& scopedstrFileExtension,
-           int iMinimumFileSize, const ::function < void(const ::scoped_string&) >& callbackStatus) override;
+           ::i32 iMinimumFileSize, const ::function < void(const ::scoped_string&) >& callbackStatus) override;
 
       void _cloud_ensure_files_are_up_to_date_and_present(
          const ::file::path& pathFolder, const ::string_array_base & stra,
-         int iMinimumFileSize, const ::function<void(const ::scoped_string&)>& callbackStatus) override;
+         ::i32 iMinimumFileSize, const ::function<void(const ::scoped_string&)>& callbackStatus) override;
 
 
    };

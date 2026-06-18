@@ -102,7 +102,7 @@ bool __os_init_thread()
 
 
 
-//void _on_os_htask_end(int iRet)
+//void _on_os_htask_end(::i32 iRet)
 //{
 //
 //   // allow C-runtime to cleanup, and exit the thread
@@ -119,34 +119,34 @@ bool __os_init_thread()
 //
 //}
 
-// CLASS_DECL_ACME unsigned int thread_alloc()
+// CLASS_DECL_ACME ::u32 thread_alloc()
 // {
 
-//    return (unsigned int) TlsAlloc();
+//    return (::u32) TlsAlloc();
 
 // }
 
 
-// CLASS_DECL_ACME void * thread_get_data(unsigned int uiIndex)
+// CLASS_DECL_ACME void * thread_get_data(::u32 uiIndex)
 // {
 
-//    return (void *) TlsGetValue((unsigned int) uiIndex);
+//    return (void *) TlsGetValue((::u32) uiIndex);
 
 // }
 
 
-// CLASS_DECL_ACME int thread_set_data(unsigned int uiIndex, void * pvalue)
+// CLASS_DECL_ACME ::i32 thread_set_data(::u32 uiIndex, void * pvalue)
 // {
 
-//    return TlsSetValue((unsigned int)uiIndex, (LPVOID) pvalue);
+//    return TlsSetValue((::u32)uiIndex, (LPVOID) pvalue);
 
 // }
 
 
-// CLASS_DECL_ACME int_bool thread_free(unsigned int uiIndex)
+// CLASS_DECL_ACME ::i32_bool thread_free(::u32 uiIndex)
 // {
 
-//    return TlsFree((unsigned int) uiIndex);
+//    return TlsFree((::u32) uiIndex);
 
 // }
 
@@ -165,7 +165,7 @@ bool __os_init_thread()
 // }
 
 
-// int_bool thread_data_set(thread_data_index dwIndex, void* pvalue)
+// ::i32_bool thread_data_set(thread_data_index dwIndex, void* pvalue)
 // {
 
 //    return TlsSetValue(dwIndex, pvalue);
@@ -182,7 +182,7 @@ bool __os_init_thread()
 // }
 
 
-// int_bool thread_data_free(thread_data_index dwIndex)
+// ::i32_bool thread_data_free(thread_data_index dwIndex)
 // {
 
 //    return TlsFree(dwIndex);

@@ -26,23 +26,23 @@ namespace user
 
          auto rectangle = puserinteraction->user_item_rectangle(&useritem, ::user::e_layout_design);
 
-         //::double_rectangle rectangle(useritem.m_rectangle);
+         //::f64_rectangle rectangle(useritem.m_rectangle);
 
          rectangle.rate(0.89);
 
-         double dMinimumDimension = rectangle.minimum_dimension();
+         ::f64 dMinimumDimension = rectangle.minimum_dimension();
 
-         double dDeflate = dMinimumDimension / 3.0;
+         ::f64 dDeflate = dMinimumDimension / 3.0;
 
-         //double w = rectangle.width();
+         //::f64 w = rectangle.width();
 
-         //double h = rectangle.height();
+         //::f64 h = rectangle.height();
 
          rectangle.deflate(0, dDeflate);
 
-         //double w2 = rectangle.width();
+         //::f64 w2 = rectangle.width();
 
-         //double h2 = rectangle.height();
+         //::f64 h2 = rectangle.height();
 
          ::draw2d::path_pointer ppath;
 
@@ -61,13 +61,13 @@ namespace user
       if (::is_element(puserinteraction->m_pitemHover, ::e_element_close_icon))
       {
 
-         color.m_uchOpacity = 189;
+         color.m_u8Opacity = 189;
 
       }
       else
       {
 
-         color.m_uchOpacity = 121;
+         color.m_u8Opacity = 121;
 
       }
 
@@ -99,20 +99,20 @@ namespace user
 
       auto rectangle = puserinteraction->user_item_rectangle(&useritem, ::user::e_layout_design);
 
-      //::double_rectangle rectangle(useritem.m_rectangle);
+      //::f64_rectangle rectangle(useritem.m_rectangle);
 
       auto colorPen = puserinteraction->get_color(pstyle, ::e_element_background);
 
       if (estate & ::user::e_state_hover)
       {
 
-         colorPen.m_uchOpacity = 189;
+         colorPen.m_u8Opacity = 189;
 
       }
       else
       {
 
-         colorPen.m_uchOpacity = 121;
+         colorPen.m_u8Opacity = 121;
 
       }
 
@@ -145,20 +145,20 @@ namespace user
 
       auto rectangle = puserinteraction->user_item_rectangle(&useritem, ::user::e_layout_design);
 
-      //::double_rectangle rectangle(useritem.m_rectangle);
+      //::f64_rectangle rectangle(useritem.m_rectangle);
 
       auto colorPen = puserinteraction->get_color(pstyle, ::e_element_background);
 
       if (estate & ::user::e_state_hover)
       {
 
-         colorPen.m_uchOpacity = 189;
+         colorPen.m_u8Opacity = 189;
 
       }
       else
       {
 
-         colorPen.m_uchOpacity = 121;
+         colorPen.m_u8Opacity = 121;
 
       }
 

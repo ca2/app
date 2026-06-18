@@ -27,8 +27,8 @@ namespace user
 
 #ifdef _DEBUG
 
-      long long increment_reference_count() override;
-      long long decrement_reference_count() override;
+      ::i64 increment_reference_count() override;
+      ::i64 decrement_reference_count() override;
 
 #endif
 
@@ -57,15 +57,15 @@ namespace user
 
 
       virtual bool _001OnDrawMainFrameBackground(::draw2d::graphics_pointer & pgraphics,::user::interaction * pframe);
-      virtual bool draw_check(::user::interaction * pinteraction, ::enum_check echeck, const ::int_rectangle & rectangle, ::draw2d::graphics_pointer & pgraphics);
+      virtual bool draw_check(::user::interaction * pinteraction, ::enum_check echeck, const ::i32_rectangle & rectangle, ::draw2d::graphics_pointer & pgraphics);
 
-      virtual ::int_rectangle simple_ui_focus_rect_extra_margin(::user::interaction * pinteraction);
+      virtual ::i32_rectangle simple_ui_focus_rect_extra_margin(::user::interaction * pinteraction);
       virtual bool simple_ui_draw_focus_rect(::user::interaction * pinteraction,::draw2d::graphics_pointer & pgraphics);
       virtual bool simple_ui_draw_border(::user::interaction * pinteraction, ::draw2d::graphics_pointer & pgraphics);
       //virtual bool on_ui_event(enum_happening ehappening, e_object eobject, ::user::interaction * pinteraction) = 0;
       //virtual bool _001TabOnDrawSchema01(::draw2d::graphics_pointer & pgraphics,tab * ptab) = 0;
       //virtual bool _001OnDrawMen::u32eraction(::draw2d::graphics_pointer & pgraphics, menu_interaction * ptab) = 0;
-      //virtual void _001OnTabPaneDrawTitle(::user::tab_pane & pane,::user::tab * ptab,::draw2d::graphics_pointer & pgraphics,const ::int_rectangle & rectangle,::draw2d::brush_pointer & pbrushText) = 0;
+      //virtual void _001OnTabPaneDrawTitle(::user::tab_pane & pane,::user::tab * ptab,::draw2d::graphics_pointer & pgraphics,const ::i32_rectangle & rectangle,::draw2d::brush_pointer & pbrushText) = 0;
 
       //virtual bool _001OnTabLayout(::draw2d::graphics_pointer & pgraphics, ::user::tab * ptab) = 0;
       //virtual bool _001DrawCheckBox(::draw2d::graphics_pointer & pgraphics, ::user::check_box * pcheckbox) = 0;
@@ -79,10 +79,10 @@ namespace user
       virtual enum_control_type get_control_type() const;
 
 
-      virtual ::color::color get_color(::user::interaction* pinteraction, ::enum_element eelement, ::user::enum_state estate = ::user::e_state_none);
-      virtual bool get_int(::user::interaction* pinteraction, int & i, ::user::enum_int eint, ::user::enum_state estate = ::user::e_state_none);
-      virtual bool get_double(::user::interaction* pinteraction, double & d, ::user::enum_double eint, ::user::enum_state estate = ::user::e_state_none);
-      virtual ::write_text::font_pointer get_font(::user::interaction* pinteraction, ::enum_element eelement, ::user::enum_state estate = ::user::e_state_none);
+      virtual ::color::color get_color(::user::interaction* pinteraction, const ::e_element & eelement, const ::user::e_state & estate = ::user::e_state_none);
+      virtual bool get_int(::user::interaction* pinteraction, ::i32 & i, ::user::enum_int eint, const ::user::e_state & estate = ::user::e_state_none);
+      virtual bool get_f64(::user::interaction* pinteraction, ::f64 & d, ::user::enum_f64 eint, const ::user::e_state & estate = ::user::e_state_none);
+      virtual ::write_text::font_pointer get_font(::user::interaction* pinteraction, const ::e_element & eelement, const ::user::e_state & estate = ::user::e_state_none);
 
 
    };

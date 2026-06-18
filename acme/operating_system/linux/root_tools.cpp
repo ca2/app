@@ -47,7 +47,7 @@ namespace VistaTools
 // MyShellExec is just a wrapper around a call to ShellExecuteEx,
 // to be able to specify the verb easily.
 
-   int_bool
+   ::i32_bool
    MyShellExec(   HWND hwnd,
                   const ::scoped_string & scopedstrVerb,
                   const ::file::path & path,
@@ -72,7 +72,7 @@ namespace VistaTools
 
       shex.nShow         = SW_NORMAL;
 
-      int_bool bRet = ::ShellExecuteEx( &shex );
+      ::i32_bool bRet = ::ShellExecuteEx( &shex );
 
       if ( phProcess )
          *phProcess = shex.hProcess;
@@ -80,7 +80,7 @@ namespace VistaTools
       return bRet;
    }
 
-   int_bool IsVista()
+   ::i32_bool IsVista()
    {
       OSVERSIONINFO osver;
 
@@ -96,15 +96,15 @@ namespace VistaTools
 
 #ifndef WIN64 // we need this when compiling 32-bit code only
 
-   typedef int_bool (WINAPI *LPFN_ISWOW64PROCESS) (HANDLE hProcess,PBOOL Wow64Process);
+   typedef ::i32_bool (WINAPI *LPFN_ISWOW64PROCESS) (HANDLE hProcess,PBOOL Wow64Process);
 
    LPFN_ISWOW64PROCESS fnIsWow64Process =
    (LPFN_ISWOW64PROCESS)::GetProcAddress( ::GetModuleHandle("kernel32"),"IsWow64Process");
 
-   int_bool
+   ::i32_bool
    IsWow64()
    {
-      int_bool bIsWow64 = false;
+      ::i32_bool bIsWow64 = false;
 
       if (nullptr != fnIsWow64Process)
       {
@@ -139,7 +139,7 @@ namespace VistaTools
          return hResult;
       }
 
-      unsigned int dwReturnLength = 0;
+      ::u32 dwReturnLength = 0;
 
       if ( !::GetTokenInformation(
             hToken,
@@ -162,7 +162,7 @@ namespace VistaTools
    }
 
    HRESULT
-   IsElevated( __out_opt int_bool * pbElevated ) //= nullptr )
+   IsElevated( __out_opt ::i32_bool * pbElevated ) //= nullptr )
    {
       if ( !IsVista() )
          return E_FAIL;
@@ -180,7 +180,7 @@ namespace VistaTools
       }
 
       TOKEN_ELEVATION te = { 0 };
-      unsigned int dwReturnLength = 0;
+      ::u32 dwReturnLength = 0;
 
       if ( !::GetTokenInformation(
             hToken,
@@ -210,7 +210,7 @@ namespace VistaTools
 // RunElevated simply calls ShellExecuteEx with the verb "runas" to start the elevated process.
 // I wish there was a just as easy way to start a non-elevated process, as well.
 
-   int_bool
+   ::i32_bool
    RunElevated(
    __in      HWND   hwnd,
    __in      const ::file::path & path,
@@ -241,22 +241,22 @@ namespace VistaTools
    HHOOK   hVEHook                     = nullptr;
 
    __declspec(allocate("ve_shared"))
-   unsigned int   uVEMsg                     = 0;
+   ::u32   uVEMsg                     = 0;
 
    __declspec(allocate("ve_shared"))
-   int_bool   bVESuccess                  = false;
+   ::i32_bool   bVESuccess                  = false;
 
    __declspec(allocate("ve_shared"))
-   char   szVE_Path[ MAX_PATH ]         = "";
+   ::i8   szVE_Path[ MAX_PATH ]         = "";
 
    __declspec(allocate("ve_shared"))
-   char   szVE_Parameters[ MAX_PATH ]      = "";
+   ::i8   szVE_Parameters[ MAX_PATH ]      = "";
 
    __declspec(allocate("ve_shared"))
-   char   szVE_Directory[ MAX_PATH ]      = "";
+   ::i8   szVE_Directory[ MAX_PATH ]      = "";
 
    __declspec(allocate("ve_shared"))
-   int_bool    bVE_NeedProcessHandle         = false;
+   ::i32_bool    bVE_NeedProcessHandle         = false;
 
    __declspec(allocate("ve_shared"))
    HANDLE   hVE_Process               = nullptr;
@@ -265,7 +265,7 @@ namespace VistaTools
 // the hook callback routine, it is called in the context of th shell proces
 
    LRESULT CALLBACK
-   VistaEelevator_HookProc_MsgRet( int code, WPARAM wParam, LPARAM lParam )
+   VistaEelevator_HookProc_MsgRet( ::i32 code, WPARAM wParam, LPARAM lParam )
    {
       if ( code >= 0 && lParam )
       {
@@ -294,18 +294,18 @@ namespace VistaTools
 
    typedef
    WINBASEAPI
-   int_bool
+   ::i32_bool
    (WINAPI
     *PGetModuleHandleExW)(
-    __in        unsigned int    dwFlags,
-    __in_opt    const unichar * pModuleName,
+    __in        ::u32    dwFlags,
+    __in_opt    const wide_character * pModuleName,
 
     __out HMODULE* phModule
     );
 
    static PGetModuleHandleExW pGetModuleHandleExW = nullptr;
 
-   int_bool
+   ::i32_bool
    RunNonElevated(
    __in      HWND   hwnd,
    __in      const ::file::path & path,
@@ -406,7 +406,7 @@ namespace VistaTools
 
       if ( !pGetModuleHandleExW(
             GET_MODULE_HANDLE_EX_FLAG_FROM_ADDRESS | GET_MODULE_HANDLE_EX_FLAG_UNCHANGED_REFCOUNT,
-            (const unichar *)VistaEelevator_HookProc_MsgRet,
+            (const wide_character * )VistaEelevator_HookProc_MsgRet,
             &hModule ) )
       {
          ASSERT_HERE;
@@ -466,7 +466,7 @@ namespace VistaTools
       ::SendMessage( hwndShell, uVEMsg, 0, 0 );
 
       ////////////////////////////////////////////////////////
-      // At this int_point our hook routine has been executed!
+      // At this i32_point our hook routine has been executed!
 
       if ( phProcess )
          *phProcess = hVE_Process;

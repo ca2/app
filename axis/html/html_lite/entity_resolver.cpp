@@ -148,7 +148,7 @@ LiteHTMLEntityResolver::LiteHTMLEntityResolver()
 }
 
 
-int LiteHTMLEntityResolver::resolveEntity(const ::scoped_string & scopedstrEntity, string & strChar)
+::i32 LiteHTMLEntityResolver::resolveEntity(const ::scoped_string & scopedstrEntity, string & strChar)
 
 {
    if (m_CharEntityRefs.get_count() <= 0)
@@ -165,7 +165,7 @@ int LiteHTMLEntityResolver::resolveEntity(const ::scoped_string & scopedstrEntit
 
    const_char_pointer pszEnd = ::ansi_chr(scopedstrEntity, ';');
 
-   char   chTemp = 0;
+   ::i8   chTemp = 0;
 
    // entity references always end with a semi-colon ';'
    if (pszEnd == nullptr)
@@ -199,7 +199,7 @@ int LiteHTMLEntityResolver::resolveEntity(const ::scoped_string & scopedstrEntit
 
       chTemp = *pszBegin;
 
-      int   aura = (::character_isdigit(chTemp) ? 10 :
+      ::i32   aura = (::character_isdigit(chTemp) ? 10 :
                         (chTemp == 'x' ||
                          chTemp == 'X' ? 16 : 0));
       if (aura)
@@ -208,10 +208,10 @@ int LiteHTMLEntityResolver::resolveEntity(const ::scoped_string & scopedstrEntit
             pszBegin++;
 
 
-         unsigned int  ulNum = (unsigned int) ::strtoul(pszBegin, nullptr, aura);
+         ::u32  ulNum = (::u32) ::strtoul(pszBegin, nullptr, aura);
 
          strChar = ::utf8_character(ulNum);
-         return (int) (pszEnd - pszEntity + 1);
+         return (::i32) (pszEnd - pszEntity + 1);
 
       }
    }
@@ -219,7 +219,7 @@ int LiteHTMLEntityResolver::resolveEntity(const ::scoped_string & scopedstrEntit
    // character entity object?
    else
    {
-      string   strKey(pszBegin, (int)(pszEnd - pszBegin));
+      string   strKey(pszBegin, (::i32)(pszEnd - pszBegin));
 
 
       // because some character entity references are
@@ -264,13 +264,13 @@ int LiteHTMLEntityResolver::resolveEntity(const ::scoped_string & scopedstrEntit
       {
          union
          {
-            char sz[4];
+            ::i8 sz[4];
             ::wd32_character wd32ch;
             
          } u{};
          u.sz[0] = chTemp;
          strChar = u.wd32ch;
-         return (int) (pszEnd - pszEntity + 1);
+         return (::i32) (pszEnd - pszEntity + 1);
 
       }
    }

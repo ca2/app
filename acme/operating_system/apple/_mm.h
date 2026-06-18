@@ -11,7 +11,7 @@
 
 //#include <UIKit/UIKit.h>
 
-//char * __strdup(NSString * str);
+//char_pointer __strdup(NSString * str);
 
 
 

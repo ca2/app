@@ -11,7 +11,7 @@ object::~object()
 #ifdef _DEBUG
 
 
-long long object::increment_reference_count()
+::i64 object::increment_reference_count()
 {
 
    return property_object::increment_reference_count();
@@ -19,7 +19,7 @@ long long object::increment_reference_count()
 }
 
 
-long long object::decrement_reference_count()
+::i64 object::decrement_reference_count()
 {
 
    return property_object::decrement_reference_count();
@@ -27,7 +27,7 @@ long long object::decrement_reference_count()
 }
 
 
-long long object::release()
+::i64 object::release()
 {
 
    return property_object::release();
@@ -38,7 +38,7 @@ long long object::release()
 #else
 
 
-long long object::increment_reference_count()
+::i64 object::increment_reference_count()
 {
 
    return property_object::increment_reference_count();
@@ -46,7 +46,7 @@ long long object::increment_reference_count()
 }
 
 
-long long object::decrement_reference_count()
+::i64 object::decrement_reference_count()
 {
 
    return property_object::decrement_reference_count();
@@ -54,7 +54,7 @@ long long object::decrement_reference_count()
 }
 
 
-long long object::release()
+::i64 object::release()
 {
 
    return property_object::release();
@@ -347,7 +347,7 @@ void object::process_exit_status(const ::e_status & estatus)
     }
 
 
-   //inline long long get_ref_count()
+   //inline ::i64 get_ref_count()
    //{
 
    //   return m_countReference;
@@ -376,13 +376,13 @@ void object::process_exit_status(const ::e_status & estatus)
 
 
 
-   //static unsigned int s_thread_proc(void* p);
+   //static ::u32 s_thread_proc(void* p);
 
 
    // void to_string(const string_exchange & str) const 
 
    //::image::image_pointer create_image();
-   //::image::image_pointer create_image(const ::int_size & size, ::eobject eobjectCreate = OK, int iGoodStride = -1, bool bPreserve = false);
+   //::image::image_pointer create_image(const ::i32_size & size, ::eobject eobjectCreate = OK, ::i32 iGoodStride = -1, bool bPreserve = false);
 
    //::image::image_pointer get_image(const ::payload & payloadFile, bool bCache = true, bool bSync = true);
    //::image::image_pointer matter_image(const ::scoped_string & scopedstrMatter, bool bCache = true, bool bSync = true);
@@ -830,12 +830,12 @@ void object::delete_this()
 
 
    //template < typename PRED >
-   //::image::image_pointer get_image(const ::payload & payloadFile, unsigned long long uTrait, PRED pred);
+   //::image::image_pointer get_image(const ::payload & payloadFile, ::u64 uTrait, PRED pred);
 
    // ::image::image_pointer load_image(const ::payload & payloadFile, bool bSync = true, bool bCache = true, bool bCreateHelperMaps = false);
    // ::image::image_pointer load_matter_image(const ::scoped_string & scopedstrMatter, bool bSync = true, bool bCache = true, bool bCreateHelperMaps = false);
    // ::image::image_pointer load_matter_icon(string_array_base & straMatter, const ::scoped_string & scopedstrIcon);
-   // ::image::image_pointer load_thumbnail(const ::payload & payloadFile, int w, int h);
+   // ::image::image_pointer load_thumbnail(const ::payload & payloadFile, ::i32 w, ::i32 h);
    // ::image::image_pointer load_thumbnail(const ::file::path & path);
    // ::image::image_pointer load_dib(const ::file::path & pathDib);
 
@@ -975,7 +975,7 @@ void object::delete_this()
    //template < typename PRED >
    //inline ::thread_pointer predicate_run(bool bSync, PRED pred);
 
-   //::thread_pointer object::begin(::enum_priority epriority, unsigned int nStackSize, unsigned int dwCreateFlags)
+   //::thread_pointer object::begin(::enum_priority epriority, ::u32 nStackSize, ::u32 dwCreateFlags)
    //{
 
    //   return nullptr;

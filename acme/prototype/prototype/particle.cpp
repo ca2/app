@@ -23,6 +23,7 @@
 #include "acme/user/micro/user.h"
 //#include "acme/prototype/prototype/payload.h"
 #include "acme/filesystem/filesystem/path_system.h"
+#include "acme/windowing/windowing.h"
 
 
 #if defined(__BSD__) || defined(__APPLE__)
@@ -118,6 +119,14 @@ void particle::initialize(::particle* pparticle)
 {
 
    return m_papplication;
+
+}
+
+
+enum_trace_level particle::main_trace_level() const
+{
+
+   return ::system()->get_trace_level();
 
 }
 
@@ -757,10 +766,10 @@ bool particle::_is_ok() const
 }
 
 
-bool particle::task_get_run() const
+bool particle::should_run() const
 {
 
-   return true;
+   return !has_finishing_flag();
 
 }
 
@@ -776,6 +785,14 @@ bool particle::on_command_final(const ::atom& atom, ::user::activation_token* pu
 {
 
    return false;
+
+}
+
+
+bool particle::check_pipe_node_client_executable_paths(const file::path& pathNode, const file::path& pathClient)
+{
+
+   return pathNode == pathClient;
 
 }
 
@@ -1187,7 +1204,7 @@ void particle::fatal(const scoped_string& scopedstr) const
 }
 
 
-class tracer* particle::tracer() const
+::platform::tracer * particle::tracer() const
 {
 
    auto ptask = get_task();
@@ -1522,7 +1539,7 @@ void particle::fatalf(const_char_pointer pszFormat, ...) const
 
 
 
-//particle::particle(const_char_pointer lpszName)
+//particle::particle(const_char_pointer pszName)
 //{
 //
 //   m_bOwner = true;
@@ -1533,7 +1550,7 @@ void particle::fatalf(const_char_pointer pszFormat, ...) const
 //
 //#endif
 //
-//   if (lpszName == nullptr)
+//   if (pszName == nullptr)
 //   {
 //
 //      m_pszName = nullptr;
@@ -1542,7 +1559,7 @@ void particle::fatalf(const_char_pointer pszFormat, ...) const
 //   else
 //   {
 //
-//      m_pszName = strdup(lpszName);
+//      m_pszName = strdup(pszName);
 //
 //   }
 //
@@ -1552,13 +1569,13 @@ void particle::fatalf(const_char_pointer pszFormat, ...) const
 //#ifdef WINDOWS
 //
 //
-//particle::particle(hsynchronization hsyncobject, const_char_pointer lpszName) :
+//particle::particle(hsynchronization hsyncobject, const_char_pointer pszName) :
 //   m_hsync(hsyncobject)
 //{
 //
 //   m_bOwner = false;
 //
-//   if (lpszName == nullptr)
+//   if (pszName == nullptr)
 //   {
 //
 //      m_pszName = nullptr;
@@ -1567,7 +1584,7 @@ void particle::fatalf(const_char_pointer pszFormat, ...) const
 //   else
 //   {
 //
-//      m_pszName = strdup(lpszName);
+//      m_pszName = strdup(pszName);
 //
 //   }
 //
@@ -1643,7 +1660,7 @@ void particle::fatalf(const_char_pointer pszFormat, ...) const
 //}
 
 
-//bool particle::unlock(int /* lCount */, LPLONG /* pPrevCount=nullptr */)
+//bool particle::unlock(::i32 /* lCount */, LPLONG /* pPrevCount=nullptr */)
 //
 //{
 //
@@ -1705,7 +1722,7 @@ void particle::set_finish()
 
 
 
-void particle::call_member(long long iId)
+void particle::call_member(::i64 iId)
 {
 
    //return ::success_none;
@@ -1814,7 +1831,7 @@ CLASS_DECL_ACME lresult __call_message(::particle* pparticle, ::user::enum_messa
 
 //
 //
-//void handler::call(enum_message emessage, long long iData, ::matter * pmatter)
+//void handler::call(enum_message emessage, ::i64 iData, ::matter * pmatter)
 //{
 //
 //   return __call(this, emessage, iData, pmatter);
@@ -1822,7 +1839,7 @@ CLASS_DECL_ACME lresult __call_message(::particle* pparticle, ::user::enum_messa
 //}
 //
 //
-//void handler::call(enum_id eid, long long iData, ::matter * pmatter)
+//void handler::call(enum_id eid, ::i64 iData, ::matter * pmatter)
 //{
 //
 //   return __call(this, eid, iData, pmatter);
@@ -1847,13 +1864,13 @@ lresult particle::message_call(::user::enum_message eusermessage, ::wparam wpara
 
    //   auto ptopic = create_topic(atom);
 
-   //   ptopic->payload("wparam") = (long long) wparam.m_number;
+   //   ptopic->payload("wparam") = (::i64) wparam.m_number;
 
-   //   ptopic->payload("lparam") = (long long) lparam.m_lparam;
+   //   ptopic->payload("lparam") = (::i64) lparam.m_lparam;
 
    //   handle(ptopic, nullptr);
 
-   //   return ptopic->payload("lresult").as_long_long();
+   //   return ptopic->payload("lresult").as_i64();
 
    //}
 
@@ -1923,7 +1940,7 @@ bool particle::_handle_call(::payload& payload, const ::scoped_string& scopedstr
 
 
 //
-//void handler::call(enum_id eid, long long iData, ::matter * pmatter)
+//void handler::call(enum_id eid, ::i64 iData, ::matter * pmatter)
 //{
 //
 //   return __call(this, eid, iData, pmatter);
@@ -2177,22 +2194,93 @@ bool particle::should_run_async() const
 
 }
 
-
-
-::pointer < ::message_box_payload > particle::message_box(const ::scoped_string& scopedstrMessage, const ::scoped_string& scopedstrTitle, const ::user::e_message_box& emessagebox, const ::scoped_string& scopedstrDetails, ::nano::graphics::icon* picon)
+::pointer<::message_box_payload> particle::message_box(const ::scoped_string &scopedstrMessage,
+                                                            const ::scoped_string &scopedstrTitle,
+                                                            const ::user::e_message_box &emessagebox,
+                                                            const ::scoped_string &scopedstrDetails, 
+                                                       const ::string_array_base * pstraIconUrl)
 {
 
-   return __initialize_new::message_box_payload(scopedstrMessage, scopedstrTitle, emessagebox, scopedstrDetails, picon);
+    return __initialize_new::message_box_payload(scopedstrMessage, scopedstrTitle, emessagebox, scopedstrDetails,
+    *pstraIconUrl);
+}
+
+
+::pointer<::message_box_payload>
+particle::message_box(const ::exception &exception, const ::scoped_string &scopedstrMessage,
+                           const ::scoped_string &scopedstrTitle, const ::user::e_message_box &emessagebox,
+                      const ::scoped_string &scopedstrDetails, const ::string_array_base *pstraIconUrl)
+{
+
+    return __initialize_new::message_box_payload(exception, scopedstrMessage, scopedstrTitle, emessagebox,
+    scopedstrDetails, *pstraIconUrl);
+}
+
+
+::pointer<::message_box_payload> particle::send_message_box(const ::scoped_string &scopedstrMessage,
+                                                            const ::scoped_string &scopedstrTitle,
+                                                            const ::user::e_message_box &emessagebox,
+                                                            const ::scoped_string &scopedstrDetails,
+                                                            const ::string_array_base *pstraIconUrl)
+{
+
+   auto pmessagebox = message_box(scopedstrMessage, scopedstrTitle, emessagebox, scopedstrDetails, pstraIconUrl);
+
+   main_send(pmessagebox);
+
+   return pmessagebox;
+
+   //return m_papplication->send_message_box(scopedstrMessage, scopedstrTitle, emessagebox, scopedstrDetails, picon);
+   //return __initialize_new::message_box_payload(scopedstrMessage, scopedstrTitle, emessagebox, scopedstrDetails, picon);
 
 }
 
 
-::pointer < ::message_box_payload > particle::message_box(const ::exception& exception, const ::scoped_string& scopedstrMessage, const ::scoped_string& scopedstrTitle, const ::user::e_message_box& emessagebox, const ::scoped_string& scopedstrDetails, ::nano::graphics::icon* picon)
+::pointer<::message_box_payload>
+particle::send_message_box(const ::exception &exception, const ::scoped_string &scopedstrMessage,
+                           const ::scoped_string &scopedstrTitle, const ::user::e_message_box &emessagebox,
+                           const ::scoped_string &scopedstrDetails, const ::string_array_base *pstraIconUrl)
 {
 
-   return __initialize_new::message_box_payload(exception, scopedstrMessage, scopedstrTitle, emessagebox, scopedstrDetails, picon);
+   auto pmessagebox = message_box(exception, scopedstrMessage, scopedstrTitle, emessagebox, scopedstrDetails, pstraIconUrl);
+
+   main_send(pmessagebox);
+
+   return pmessagebox;
+   //return m_papplication->send_message_box(exception,scopedstrMessage, scopedstrTitle, emessagebox, scopedstrDetails, picon);
+   //return __initialize_new::message_box_payload(exception, scopedstrMessage, scopedstrTitle, emessagebox, scopedstrDetails, picon);
 
 }
+
+
+void particle::post_message_box(const ::scoped_string &scopedstrMessage,
+                                                            const ::scoped_string &scopedstrTitle,
+                                                            const ::user::e_message_box &emessagebox,
+                                const ::function < void(::message_box_payload *) > & functionOnResult, 
+                                                            const ::scoped_string &scopedstrDetails, const ::string_array_base *pstraIconUrl)
+{
+
+
+   auto pmessagebox = message_box(scopedstrMessage, scopedstrTitle, emessagebox, scopedstrDetails, pstraIconUrl);
+
+   pmessagebox->m_functionOnMessageBoxResult = functionOnResult;
+
+   main_post(pmessagebox);
+
+   //m_papplication->post_message_box(scopedstrMessage, scopedstrTitle,
+   //   emessagebox,
+   //    functionOnResult, scopedstrDetails, picon);
+   //// return __initialize_new::message_box_payload(scopedstrMessage, scopedstrTitle, emessagebox, scopedstrDetails,
+   //// picon);
+}
+
+
+//void particle::post_message_box_payload(::message_box_payload * pmessageboxpayload)
+//{
+//
+//   m_papplication->post_message_box_payload(pmessageboxpayload);
+//
+//}
 
 
 ::pointer < particle > particle::__call__create_by_type(const ::platform::type& type, ::factory::factory* pfactory)
@@ -2553,7 +2641,29 @@ void particle::task_post(const ::procedure& procedure)
 void particle::user_send(const ::procedure& procedure)
 {
 
-   node()->user_send(procedure);
+   auto psystem = ::system();
+
+   if (::is_null(psystem))
+   {
+
+      throw ::exception(error_wrong_state);
+
+   }
+
+   auto pacmewindowing = psystem->m_pacmewindowing;
+
+   if (::is_set(pacmewindowing))
+   {
+
+      pacmewindowing->user_send(procedure);
+
+      return;
+
+   }
+
+   auto pnode = node();
+
+   pnode->user_send(procedure);
 
 }
 
@@ -2593,7 +2703,7 @@ void particle::main_post(const ::procedure& procedure)
 //}
 
 //
-//CLASS_DECL_ACME class tracer * tracer()
+//CLASS_DECL_ACME ::platform::tracer * tracer()
 //{
 //
 //   auto ptask = get_task();
@@ -3005,6 +3115,28 @@ void particle::send(const ::procedure& procedure)
    m_papplication->send(procedure);
 
 }
+
+//
+//void particle::post_message_box_payload(const ::scoped_string & scopedstrMessage,
+//                                     const ::scoped_string & scopedstrTitle,
+//                           const ::user::e_message_box & emessagebox,
+//                           const ::function<void(const ::payload &)> functionOnResult,
+//                           const ::scoped_string & scopedstrDetails,
+//                           ::nano::graphics::icon * picon)
+//{
+//
+//   m_papplication->post_message_box_payload(scopedstrMessage, scopedstrTitle, emessagebox, functionOnResult,
+//                                            scopedstrDetails, picon);       
+//
+//}
+//
+
+//void particle::post_message_box_payload(message_box_payload * pmessageboxpayload)
+//{
+//
+//   m_papplication->post_message_box_payload(pmessageboxpayload);
+//
+//}
 
 
 void particle::dispatch_procedure(enum_dispatch edispatch, const procedure& procedure)

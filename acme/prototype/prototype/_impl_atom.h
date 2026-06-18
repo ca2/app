@@ -335,7 +335,7 @@ inline atom::atom(enum_property eproperty) :
 
 inline atom::atom(enum_factory efactory) :
         m_etype(e_type_factory),
-        m_iLargest((long long)efactory) // used m_iLargest to reset 64-bit field
+        m_iLargest((::i64)efactory) // used m_iLargest to reset 64-bit field
 {
 
 }
@@ -538,15 +538,25 @@ inline atom::atom(UNSIGNED u)
 }
 
 
-template < prototype_enum ENUM >
+template < prototype_raw_enum ENUM >
 inline atom::atom(ENUM e)
 {
 
    m_etype = e_type_integer;
 
-   m_iLargest = ::as_long_long(e);
+   m_iLargest = ::as_i64(e);
 
 }
+
+
+template<prototype_enumeration ENUMERATION>
+inline atom::atom(const ENUMERATION & e) : 
+   atom(e.m_eenum)
+{
+
+
+}
+
 
 
 inline bool atom::operator == (const atom & atom) const
@@ -1163,7 +1173,7 @@ inline ::std::strong_ordering atom::operator<=>(::enum_message emessage) const
 //}
 //
 
-//inline int atom::order(::enum_topic etopic) const
+//inline ::i32 atom::order(::enum_topic etopic) const
 //{
 //
 //   return __atom_compare_square(m_etype - e_type_subject, m_etopic - etopic);
@@ -1356,7 +1366,7 @@ inline ::std::strong_ordering atom::operator <=>(::enum_happening ehappening) co
 //}
 
 
-inline long long atom::as_long_long() const
+inline ::i64 atom::as_i64() const
 {
 
    return prototype_type() == e_type_integer ? m_iLargest : 0x8000000000000000ll;
@@ -1748,7 +1758,7 @@ inline void from_string(::atom & atom, const_char_pointer psz)
 
 
 //template < typename ITERATOR_TYPE >
-//template < int t_size >
+//template < ::i32 t_size >
 //inline string_base < ITERATOR_TYPE > & string_base < ITERATOR_TYPE >::append(const const_string_range_static_array< const CHARACTER *, t_size > & a)
 //{
 //
@@ -1770,7 +1780,7 @@ inline void from_string(::atom & atom, const_char_pointer psz)
 
 
 //template < typename ITERATOR_TYPE >
-//template < other_primitive_character < typename string_base < ITERATOR_TYPE >::CHARACTER > OTHER_CHARACTER, int t_size >
+//template < other_primitive_character < typename string_base < ITERATOR_TYPE >::CHARACTER > OTHER_CHARACTER, ::i32 t_size >
 //inline string_base < ITERATOR_TYPE > & string_base < ITERATOR_TYPE >::append(const const_string_range_static_array< const OTHER_CHARACTER *, t_size >& a)
 //{
 //
@@ -1859,7 +1869,7 @@ string_base < CHAR > & string_base < CHAR >::append(const ::atom & atom)
 
 
 //template < ::collection::count c >
-//inline ::string operator +(const char(&sz)[c], const ::atom & atom)
+//inline ::string operator +(const ::i8(&sz)[c], const ::atom & atom)
 //{
 //
 //   return ::string(sz) + atom.as_string();

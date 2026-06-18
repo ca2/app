@@ -79,14 +79,14 @@ class plex_heap_alloc_array;
 
 #if OBJECT_TYPE_COUNTER
 
-extern map_base < const_char_pointer ,const_char_pointer ,long long, long long > * g_pmapObjTypCtr;
+extern map_base < const_char_pointer ,const_char_pointer ,::i64, ::i64 > * g_pmapObjTypCtr;
 
 #endif
 
 
 #if OBJECT_TYPE_COUNTER
 
-extern int g_iObjTypCtrInit;
+extern ::i32 g_iObjTypCtrInit;
 
 #endif
 
@@ -95,7 +95,7 @@ extern int g_iObjTypCtrInit;
 
 #else
 
-extern char * g_pszDemangle;
+extern char_pointer g_pszDemangle;
 
 #endif
 
@@ -113,7 +113,7 @@ extern bool g_bOutputDebugString;
 #include <mach/mach_time.h>
 
 //clock_serv_t   g_cclock;
-extern double g_machtime_conversion_factor;
+extern ::f64 g_machtime_conversion_factor;
 //   clock_get_time(cclock, &mts);
 
 #endif
@@ -140,7 +140,7 @@ extern locale_t g_localeC;
 extern ::nanosecond g_nanosecondFirst;
 
 
-extern int g_iMemoryCountersStartable;
+extern ::i32 g_iMemoryCountersStartable;
 
 
 //void initialize_memory_management();
@@ -357,14 +357,14 @@ namespace acme
 
 #if OBJECT_TYPE_COUNTER
 
-   map_base < const_char_pointer ,const_char_pointer ,long long, long long >* g_pmapObjTypCtr;
+   map_base < const_char_pointer ,const_char_pointer ,::i64, ::i64 >* g_pmapObjTypCtr;
 
 #endif
 
 
 #if OBJECT_TYPE_COUNTER
 
-   int g_iObjTypCtrInit;
+   ::i32 g_iObjTypCtrInit;
 
 #endif
 
@@ -409,7 +409,7 @@ namespace acme
 #include <mach/mach_time.h>
 
 //clock_serv_t   g_cclock;
-   double g_machtime_conversion_factor;
+   ::f64 g_machtime_conversion_factor;
    //   clock_get_time(cclock, &mts);
 
 #endif
@@ -444,7 +444,7 @@ namespace acme
 #if !defined(WINDOWS)
 
 
-   char* g_pszDemangle;
+   char_pointer g_pszDemangle;
 
 
 #endif
@@ -456,7 +456,7 @@ namespace acme
 
    //plex_heap_alloc_array * g_pplexheapallocarray;
 
-   int g_iMemoryCountersStartable;
+   ::i32 g_iMemoryCountersStartable;
    //::critical_section g_criticalsectionTrait;
    //::critical_section g_criticalsectionFactory;
 
@@ -886,7 +886,7 @@ namespace acme
 
          mach_timebase_info(&timebase);
 
-         g_machtime_conversion_factor = (double)timebase.numer / (double)timebase.denom;
+         g_machtime_conversion_factor = (::f64)timebase.numer / (::f64)timebase.denom;
 
       }
 
@@ -932,7 +932,7 @@ namespace acme
 
 #if OBJECT_TYPE_COUNTER
 
-      g_pmapObjTypCtr = memory_new map_base < const_char_pointer ,const_char_pointer ,long long, long long >;
+      g_pmapObjTypCtr = memory_new map_base < const_char_pointer ,const_char_pointer ,::i64, ::i64 >;
 
       {
 
@@ -1774,7 +1774,7 @@ namespace acme
 //
 //
 ////   acme * acme::g_p = nullptr;
-////   int g_iReference = 0;
+////   ::i32 g_iReference = 0;
 //////critical_section g_cs;
 ////
 ////   void increment_reference_count()
@@ -1970,7 +1970,7 @@ namespace acme
 //#include "acme/platform/system_setup.h"
 
 
-//int acme(int argc, char * argv[], char * envp[])
+//::i32 acme(::i32 argc, char_pointer argv[], char_pointer envp[])
 //{
 //
 //   auto papp = ::app_factory::new_app();
@@ -1985,7 +1985,7 @@ namespace acme
 //
 //#endif
 //
-//   int iExitCode = papp->main_loop();
+//   ::i32 iExitCode = papp->main_loop();
 //
 //   return iExitCode;
 //

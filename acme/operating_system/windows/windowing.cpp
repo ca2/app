@@ -8,7 +8,10 @@
 #include "acme/user/user/interaction.h"
 #include "acme/windowing/window.h"
 #include "acme/_operating_system.h"
+#include "acme/operating_system/windows/windows.h"
+#include "acme/platform/user_interaction_sink.h"
 
+BOOL CALLBACK windows_dump_child_window_hierarchy_EnumChildProc(HWND hwnd, LPARAM);
 
 
 namespace windows
@@ -92,7 +95,7 @@ namespace windows
    ::operating_system::window windowing::operating_system_window(const ::wparam &wparam)
    {
 
-      ::operating_system::windows_window windowswindow((HWND) wparam.m_number);
+      ::operating_system::windows_window windowswindow(wparam.raw_cast<HWND>());
 
       return windowswindow.as_operating_system_window();
    
@@ -102,12 +105,83 @@ namespace windows
    ::operating_system::window windowing::operating_system_window(const ::lparam &lparam)
    {
 
-      ::operating_system::windows_window windowswindow((HWND)lparam.m_lparam);
+      ::operating_system::windows_window windowswindow(lparam.raw_cast<HWND>());
 
       return windowswindow.as_operating_system_window();
 
    }
 
+
+   void windowing::run_loop2(::task* ptask)
+   {
+
+      MSG msg;
+
+      while (GetMessage(&msg, nullptr, 0, 0))
+      {
+
+         BOOL handled = ptask->msg_translator_handlers(&msg);
+
+         if (msg.message == ::user::e_message_kick_idle)
+         {
+
+            information("::user::e_message_kick_idle");
+
+        }
+
+         //m_pmainwindow->m_pclientsite->m_pinplacesite->m_pinplaceframe->m_pinplaceactiveobject->TranslateAccelerator(&msg);
+         //
+         //    handled = (hr == S_OK);
+         //
+         // }
+
+         if (!handled)
+         {
+
+            TranslateMessage(&msg);
+            DispatchMessage(&msg);
+
+         }
+         //next:
+
+         if (!PeekMessage(&msg, nullptr, 0, 0, PM_NOREMOVE))
+         {
+
+            ptask->task_iteration();
+
+         }
+
+      }
+
+
+   }
+
+
+
+
+   void _dump_child_window_hierarchy(HWND hwnd)
+   {
+
+      OutputDebugString(L"\n=== WINDOW HIERARCHY ===\n");
+
+      EnumChildWindows(
+          hwnd,
+          &::windows_dump_child_window_hierarchy_EnumChildProc,
+          0);
+
+      OutputDebugString(L"========================\n");
+
+   }
+
+
+   void dump_child_window_hierarchy(const ::operating_system::window & operatingsystemwindow)
+   {
+
+      auto hwnd = ::as_HWND(operatingsystemwindow);
+
+      _dump_child_window_hierarchy(hwnd);
+
+   }
 
 
 } // namespace windows
@@ -181,4 +255,61 @@ HWND get_main_hwnd()
 }
 
 
+
+
+CLASS_DECL_ACME enum_dialog_result simple_ui_message_box(
+   const ::user_interaction_sink& userinteractionsink,
+   const ::scoped_string& scopedstrMessage,
+   const ::scoped_string& scopedstrCaption,
+   const ::user::e_message_box& emessagebox)
+{
+
+   ::u32 uType = 0;
+   
+   uType = ::windows::message_box_to_windows_message_box(emessagebox);
+
+   auto operatingsystemwindow = userinteractionsink.best_effort_operating_system_window();
+
+   auto hwnd = ::as_HWND(operatingsystemwindow);
+
+   auto iResult = ::MessageBox(hwnd, ::wstring(scopedstrMessage), ::wstring(scopedstrCaption), uType);
+
+   auto edialogresult = ::windows::windows_message_box_result_to_dialog_result(iResult);
+
+   return edialogresult;
+
+}
+
+
+BOOL CALLBACK windows_dump_child_window_hierarchy_EnumChildProc(HWND hwnd, LPARAM)
+{
+   wchar_t className[256] = {};
+   wchar_t windowText[256] = {};
+
+   GetClassName(hwnd, className, 256);
+   GetWindowText(hwnd, windowText, 256);
+
+   RECT rc;
+   GetWindowRect(hwnd, &rc);
+
+   wchar_t buffer[1024];
+
+   swprintf_s(
+       buffer,
+       L"HWND=%p\nClass=%s\nText=%s\nRect=(%ld,%ld)-(%ld,%ld)\nVisible=%d\n\n",
+       hwnd,
+       className,
+       windowText,
+       rc.left,
+       rc.top,
+       rc.right,
+       rc.bottom,
+       IsWindowVisible(hwnd));
+
+   OutputDebugString(buffer);
+
+   ::windows::_dump_child_window_hierarchy(hwnd);
+
+   return TRUE;
+}
 

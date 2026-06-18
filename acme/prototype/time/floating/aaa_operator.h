@@ -24,8 +24,8 @@
 //{
 //
 //   return {
-//      (long long) (second.m_d / floating),
-//      (long long) (fmod(second.m_d / floating, 1.0) * 1'000'000'000.0)
+//      (::i64) (second.m_f64 / floating),
+//      (::i64) (fmod(second.m_f64 / floating, 1.0) * 1'000'000'000.0)
 //   };
 //
 //}

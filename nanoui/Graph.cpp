@@ -30,7 +30,7 @@ Graph::Graph(Widget * parent, const ::scoped_string & caption)
 }
 
 
-int_size Graph::preferred_size(::nano2d::context  *, bool bRecalcTextSize)
+i32_size Graph::preferred_size(::nano2d::context  *, bool bRecalcTextSize)
 {
 
    return {180, 45 };
@@ -42,7 +42,7 @@ void Graph::draw(::nano2d::context  * pcontext) {
    Widget::draw(pcontext);
 
    pcontext->begin_path();
-   pcontext->rectangle((float)m_pos.x, (float)m_pos.y, (float)m_size.cx, (float)m_size.cy);
+   pcontext->rectangle((::f32)m_pos.x, (::f32)m_pos.y, (::f32)m_size.cx, (::f32)m_size.cy);
    pcontext->fill_color(m_colorBackground);
    pcontext->fill();
 
@@ -50,15 +50,15 @@ void Graph::draw(::nano2d::context  * pcontext) {
       return;
 
    pcontext->begin_path();
-   pcontext->move_to((float)m_pos.x, (float)m_pos.y + m_size.cy);
+   pcontext->move_to((::f32)m_pos.x, (::f32)m_pos.y + m_size.cy);
    for (size_t i = 0; i < (size_t)m_values.size(); i++) {
-      float value = m_values[i];
-      float vx = m_pos.x + i * m_size.cx / (float)(m_values.size() - 1);
-      float vy = m_pos.y + (1 - value) * m_size.cy;
+      ::f32 value = m_values[i];
+      ::f32 vx = m_pos.x + i * m_size.cx / (::f32)(m_values.size() - 1);
+      ::f32 vy = m_pos.y + (1 - value) * m_size.cy;
       pcontext->line_to(vx, vy);
    }
 
-   pcontext->line_to((float)m_pos.x + m_size.cx, (float)m_pos.y + m_size.cy);
+   pcontext->line_to((::f32)m_pos.x + m_size.cx, (::f32)m_pos.y + m_size.cy);
    pcontext->stroke_color(m_stroke_color);
    pcontext->stroke();
    if (m_fill_color.has_opacity()) {
@@ -90,7 +90,7 @@ void Graph::draw(::nano2d::context  * pcontext) {
    }
 
    pcontext->begin_path();
-   pcontext->rectangle((float)m_pos.x, (float)m_pos.y, (float)m_size.cx, (float)m_size.cy);
+   pcontext->rectangle((::f32)m_pos.x, (::f32)m_pos.y, (::f32)m_size.cx, (::f32)m_size.cy);
    pcontext->stroke_color(::color::color(100, 255));
    pcontext->stroke();
 }

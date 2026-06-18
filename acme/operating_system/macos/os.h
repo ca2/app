@@ -6,17 +6,17 @@
 #include <wchar.h>
 
 #include "cross_win_gdi.h"
-
+#include "acme/operating_system/window.h"
 
 #define _fileno   fileno
 #define _unlink   unlink
 
 
-#define WAIT_FAILED              ((unsigned int   ) 0xFFFFFFFFL)
-#define WAIT_OBJECT_0            ((unsigned int   ) STATUS_WAIT_0 + 0)
+#define WAIT_FAILED              ((::u32   ) 0xFFFFFFFFL)
+#define WAIT_OBJECT_0            ((::u32   ) STATUS_WAIT_0 + 0)
 
-#define WAIT_ABANDONED           ((unsigned int   ) STATUS_ABANDONED_WAIT_0 + 0)
-#define WAIT_ABANDONED_0         ((unsigned int   ) STATUS_ABANDONED_WAIT_0 + 0)
+#define WAIT_ABANDONED           ((::u32   ) STATUS_ABANDONED_WAIT_0 + 0)
+#define WAIT_ABANDONED_0         ((::u32   ) STATUS_ABANDONED_WAIT_0 + 0)
 
 #define WAIT_IO_COMPLETION                   STATUS_USER_APC
 
@@ -24,33 +24,33 @@
 #define MAXIMUM_WAIT_OBJECTS      64
 
 
-oswindow get_capture();
-oswindow set_mouse_capture(oswindow window);
-int_bool release_mouse_capture();
-oswindow set_keyboard_focus(oswindow window);
-oswindow get_keyboard_focus();
-oswindow get_active_window();
-oswindow set_active_window(oswindow window);
+::operating_system::window get_capture();
+::operating_system::window set_mouse_capture(const ::operating_system::window & operatingsystemwindow);
+::i32_bool release_mouse_capture();
+::operating_system::window set_keyboard_focus(const ::operating_system::window & operatingsystemwindow);
+::operating_system::window get_keyboard_focus();
+::operating_system::window get_active_window();
+::operating_system::window set_active_window(const ::operating_system::window & operatingsystemwindow);
 
 
-::int_rectangle get_main_screen_rectangle();
+::i32_rectangle get_main_screen_rectangle();
 
 
-int GetScreenRect(::int_rectangle * prectangle, int iMonitor);
+::i32 GetScreenRect(::i32_rectangle * prectangle, ::i32 iMonitor);
 
 
-int GetScreenCount();
+::i32 GetScreenCount();
 
-int GetWorkspaceRect(::int_rectangle * prectangle, int iMonitor);
-
-
-int GetWorkspaceCount();
+::i32 GetWorkspaceRect(::i32_rectangle * prectangle, ::i32 iMonitor);
 
 
-int_bool set_foreground_window(oswindow window);
-int_bool BringWindowToTop(oswindow window);
+::i32 GetWorkspaceCount();
 
-void ns_redraw_window(oswindow window);
+
+::i32_bool set_foreground_window(const ::operating_system::window & operatingsystemwindow);
+::i32_bool BringWindowToTop(const ::operating_system::window & operatingsystemwindow);
+
+void ns_redraw_window(const ::operating_system::window & operatingsystemwindow);
 
 
 

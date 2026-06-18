@@ -18,8 +18,8 @@ namespace filemanager
 
    bool has_digit(const ::scoped_string & scopedstrName);
    string get_number_mask(const ::scoped_string & scopedstrName);
-   long long get_number_value(const ::scoped_string & scopedstrName);
-   string set_number_value(const ::scoped_string & scopedstrName, long long iValue);
+   ::i64 get_number_value(const ::scoped_string & scopedstrName);
+   string set_number_value(const ::scoped_string & scopedstrName, ::i64 iValue);
 
 
    operation::operation()
@@ -94,12 +94,12 @@ namespace filemanager
 
          ::file::path strCompare;
 
-         for(int i = 1; i < stra.get_size(); i++)
+         for(::i32 i = 1; i < stra.get_size(); i++)
          {
             
             strCompare = stra[i].folder();
 
-            for(int j = 0; j < minimum(strCompare.length(),pathBase.length()); j++)
+            for(::i32 j = 0; j < minimum(strCompare.length(),pathBase.length()); j++)
             {
 
                if(strCompare[j] != pathBase[j])
@@ -321,7 +321,7 @@ namespace filemanager
 
          m_iFile = 0;
 
-         m_pchBuffer = (char *)malloc(m_iBufferSize);
+         m_pchBuffer = (char_pointer )malloc(m_iBufferSize);
 
          ::file::path strName = m_path / m_filelisting[m_iFile].substr(m_pathBase.length());
 
@@ -352,7 +352,7 @@ namespace filemanager
 
          m_iFile = 0;
 
-         m_pchBuffer = (char *)malloc(m_iBufferSize);
+         m_pchBuffer = (char_pointer )malloc(m_iBufferSize);
 
          ::file::path strPath = m_path / m_filelisting[m_iFile].name();
 
@@ -609,7 +609,7 @@ namespace filemanager
 
       // auto pcontext = get_context();
 
-      for(int i = 0; i < m_filelisting.get_size(); i++)
+      for(::i32 i = 0; i < m_filelisting.get_size(); i++)
       {
 
          if(directory()->is(m_filelisting[i]) && !case_insensitive_string_ends(m_filelisting[i],".zip"))
@@ -636,9 +636,9 @@ namespace filemanager
             else
             {
 
-               m_dSize += varLen.as_unsigned_int();
+               m_dSize += varLen.as_u32();
 
-               m_daSize.add((double)varLen.as_unsigned_int());
+               m_daSize.add((::f64)varLen.as_u32());
 
                m_daRead.add(0.0);
 
@@ -653,15 +653,15 @@ namespace filemanager
    }
 
 
-   int operation::get_item_count()
+   ::i32 operation::get_item_count()
    {
 
-      return (int)m_filelisting.get_size();
+      return (::i32)m_filelisting.get_size();
 
    }
 
 
-   string operation::get_item_message(int iItem)
+   string operation::get_item_message(::i32 iItem)
    {
 
       string str;
@@ -673,7 +673,7 @@ namespace filemanager
    }
 
 
-   double operation::get_item_progress(int iItem)
+   ::f64 operation::get_item_progress(::i32 iItem)
    {
 
       if(m_daSize[iItem] == 0.0)
@@ -699,7 +699,7 @@ namespace filemanager
    }
 
 
-   double operation::get_item_read(int iItem)
+   ::f64 operation::get_item_read(::i32 iItem)
    {
 
       return m_daRead[iItem];
@@ -707,7 +707,7 @@ namespace filemanager
    }
 
 
-   double operation::get_item_size(int iItem)
+   ::f64 operation::get_item_size(::i32 iItem)
    {
 
       return m_daSize[iItem];
@@ -778,7 +778,7 @@ namespace filemanager
    }
 
 
-   long long get_number_value(const ::scoped_string & scopedstrName)
+   ::i64 get_number_value(const ::scoped_string & scopedstrName)
    {
 
       string strResult;
@@ -806,12 +806,12 @@ namespace filemanager
 
       }
 
-      return ansi_to_long_long(strResult);
+      return ansi_to_i64(strResult);
 
    }
 
 
-   string set_number_value(const ::scoped_string & scopedstrName, long long iValue)
+   string set_number_value(const ::scoped_string & scopedstrName, ::i64 iValue)
    {
 
       string strValue = as_string(iValue);
@@ -902,9 +902,9 @@ namespace filemanager
 
       if(has_digit(strName))
       {
-         long long iValue = get_number_value(strName);
+         ::i64 iValue = get_number_value(strName);
          string strFormat;
-         for(int i = 1; i < 1000; i++)
+         for(::i32 i = 1; i < 1000; i++)
          {
             strFormat = set_number_value(strName, iValue + i);
             str = strDir /strFormat + strExtension;
@@ -916,7 +916,7 @@ namespace filemanager
       {
 
          string strFormat;
-         for(int i = 1; i < 1000; i++)
+         for(::i32 i = 1; i < 1000; i++)
          {
             strFormat.formatf("-Copy-%03d",i);
             str = strDir /strName + strFormat + strExtension;
@@ -939,7 +939,7 @@ namespace filemanager
 
       auto papp = get_app();
 
-      for(int i = 0; i < pathaExpand.get_size(); i++)
+      for(::i32 i = 0; i < pathaExpand.get_size(); i++)
       {
 
          if(directory()->is(pathaExpand[i]) && !case_insensitive_string_ends(pathaExpand[i],".zip"))

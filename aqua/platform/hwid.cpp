@@ -73,17 +73,17 @@ static memory getUUID()
     for (::collection::index i = 0; i < res.size(); i++)
     {
 
-       ((char &) res[i]) = ::character_toupper((char)res[i]);
+       ((::i8 &) res[i]) = ::character_toupper((::i8)res[i]);
 
     }
     return res;
 }
 
-static void queryCpu(unsigned int func, unsigned int& eax, unsigned int& ebx, unsigned int& ecx, unsigned int& edx)
+static void queryCpu(::u32 func, ::u32& eax, ::u32& ebx, ::u32& ecx, ::u32& edx)
 {
 //#ifdef _WIN32
 //    //https://msdn.microsoft.com/ru-ru/library/hskdteyh.aspx
-//    int info[4];
+//    ::i32 info[4];
 //    __cpuid(info, func);
 //    eax = info[0];
 //    ebx = info[1];
@@ -97,7 +97,7 @@ static void queryCpu(unsigned int func, unsigned int& eax, unsigned int& ebx, un
 
 hwid::CPUVendorID::CPUVendorID()
 {
-    unsigned int eax;
+    ::u32 eax;
     queryCpu(0, eax, regs.ebx, regs.ecx, regs.edx);
 }
 
@@ -107,10 +107,10 @@ hwid::CPUVendorID::CPUVendorID()
     auto cpuID = id.toString();
 
 
-    unsigned int eax;
-    unsigned int ebx;
-    unsigned int ecx;
-    unsigned int edx;
+    ::u32 eax;
+    ::u32 ebx;
+    ::u32 ecx;
+    ::u32 edx;
     queryCpu(1, eax, ebx, ecx, edx);
 
     SHA256 sha256;

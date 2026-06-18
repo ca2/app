@@ -10,7 +10,7 @@ inline bool is_set(const void* p, memsize s)
 }
 
 
-inline int is_set(const void* p) { return ::is_set(p, 65536); }
+inline ::i32 is_set(const void* p) { return ::is_set(p, 65536); }
 
 
 inline bool is_null(const void* p) { return !::is_set(p); }
@@ -19,14 +19,14 @@ inline bool is_null(const void* p) { return !::is_set(p); }
 CLASS_DECL_ACME character_count safe_strlen(void* p, character_count n);
 
 
-inline int_bool address_overlaps(const void* pszDst, const void* pszSrc, character_count srclen);
+inline ::i32_bool address_overlaps(const void* pszDst, const void* pszSrc, character_count srclen);
 
 
 
 
 
 
-CLASS_DECL_ACME void* reverse_memchr(const void* l, int ch, std::size_t l_len);
+CLASS_DECL_ACME void* reverse_memchr(const void* l, ::i32 ch, std::size_t l_len);
 CLASS_DECL_ACME void* reverse_memmem(const void* l, std::size_t l_len, const void* s, std::size_t s_len);
 CLASS_DECL_ACME void* reverse_byte_not_in_block(const void* l, std::size_t l_len, const void* s, std::size_t s_len);
 

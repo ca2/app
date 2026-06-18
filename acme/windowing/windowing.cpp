@@ -15,16 +15,17 @@
 #include "window.h"
 #include "windowing.h"
 //#include "windowing_gtk4/windowing.h"
-
 #include "acme/constant/id.h"
+#include "acme/constant/windowing2.h"
 #include "acme/exception/interface_only.h"
 #include "acme/graphics/image/pixmap.h"
+#include "acme/handler/request.h"
 #include "acme/handler/topic.h"
 #include "acme/parallelization/synchronous_lock.h"
-#include "acme/platform/node.h"
+#include "acme/platform/application.h"
 #include "acme/platform/department.h"
+#include "acme/platform/node.h"
 #include "acme/platform/system.h"
-#include "acme/constant/windowing2.h"
 
 
 namespace acme
@@ -38,9 +39,10 @@ namespace acme
       windowing::windowing()
       {
 
-         m_bKeepRunningPostedProcedures = true;
+         m_bRunMainLoop = true;
          m_ewindowing = ::windowing::e_windowing_none;
          m_ewindowingbias = ::windowing::e_bias_unknown;
+         m_bApplicationActivated = false;
 
       }
 
@@ -147,7 +149,7 @@ namespace acme
       //}
 
 
-   ::particle * windowing::defer_initialize_host_window(const ::int_rectangle* lpcrect)
+   ::particle * windowing::defer_initialize_host_window(const ::i32_rectangle* lpcrect)
       {
 
          return nullptr;
@@ -270,6 +272,12 @@ namespace acme
 
       }
 
+   
+      void windowing::hide_application()
+      {
+         
+         
+      }
 
       //void windowing::clear_keyboard_focus(::user::element * pelementGainingFocusIfAny)
       //{
@@ -396,7 +404,9 @@ namespace acme
       void windowing::destroy()
       {
 
-         m_pacmedisplay.defer_destroy();
+         m_pacmedisplay.defer_destroy_and_release();
+
+         m_callbackOnApplicationActivate.release();
 
          //m_windowmap.clear();
 
@@ -411,7 +421,7 @@ namespace acme
          if (!m_pacmedisplay)
          {
 
-            system()->do_graphics_and_windowing_factory();
+            system()->do_windowing_factory();
 
             defer_constructø(m_pacmedisplay);
 
@@ -513,9 +523,130 @@ namespace acme
       }
 
 
+      void windowing::hook_operating_ambient_theme_change_callbacks()
+      {
+
+
+      }
+
+
+      void windowing::on_hold_operating_ambient_application()
+      {
+
+
+      }
+
+
+      void windowing::on_unhold_operating_ambient_application()
+      {
+
+
+      }
+
+
       void windowing::on_activate()
       {
 
+
+         fetch_system_background_color();
+
+         // if (!estatus)
+         //{
+
+         //   return estatus;
+
+         //}
+
+         // estatus =
+
+         // constructø(m_pdisplay);
+
+         // if (!estatus)
+         //{
+
+         //   return estatus;
+
+         //}
+
+         // estatus =
+
+         // m_pdisplay->initialize_display(this);
+
+         // if (!estatus)
+         //{
+
+         //   return estatus;
+
+         //}
+
+         // bool bCreateSessionWindow = initialize_system_interaction();
+         //
+         // if (!bCreateSessionWindow)
+         // {
+         //
+         //    warning() << "Could not create session window";
+         //
+         // }
+
+         // #if 000
+
+         // initialize_system_interaction();
+
+
+         // #endif
+
+         // return estatus;
+
+         // if (!system()->m_bSystemLoadedFromALibrary)
+         // {
+         //
+         //    system()->defer_start_system();
+         //    // system()->post_application_start();
+         //    //   system()->defer_post_application_start_file_open_request();
+         //    //  system()->post_application_started();
+         // }
+
+         if (!m_bIsOperatingAmbientApplicationHeld)
+         {
+
+            on_hold_operating_ambient_application();
+
+            m_bIsOperatingAmbientApplicationHeld = true;
+
+            //g_application_hold(G_APPLICATION(m_pgtkapplication));
+
+         }
+
+         if (!m_bApplicationActivated)
+         {
+
+            m_bApplicationActivated = true;
+
+            hook_operating_ambient_theme_change_callbacks();
+
+            fetch_dark_mode();
+
+            if (!m_papplication->m_bPostedCommandLineFileOpen)
+            {
+
+               auto prequestDefaultStart = create_newø<::request>();
+
+               prequestDefaultStart->m_ecommand = e_command_default_start;
+
+               prequestDefaultStart->m_strAppId = m_papplication->m_strAppId;
+
+               system()->post_request(prequestDefaultStart);
+
+
+            }
+
+//            auto prequestDefaultStart = create_newø<::request>();
+//
+//            prequestDefaultStart->m_ecommand = e_command_default_start;
+//
+//            m_papplication->pofst_request(prequestDefaultStart);
+
+         }
 
       }
 
@@ -551,6 +682,14 @@ namespace acme
       }
 
 
+      string windowing::get_version()
+      {
+
+         return {};
+
+      }
+
+
       void windowing::main_send(const ::procedure& procedure)
       {
 
@@ -567,14 +706,14 @@ namespace acme
       }
 
 
-      void windowing::display_error_trap_push(int i)
+      void windowing::display_error_trap_push(::i32 i)
       {
 
 
       }
 
 
-      void windowing::display_error_trap_pop_ignored(int i)
+      void windowing::display_error_trap_pop_ignored(::i32 i)
       {
 
 
@@ -620,21 +759,21 @@ namespace acme
       //}
 
 
-      void windowing::windowing_application_on_start()
-      {
+      //void windowing::windowing_application_on_start()
+      //{
 
 
-         system()->post_application_start();
+      //   //system()->post_application_start();
 
-         system()->defer_post_application_start_file_open_request();
+      //   system()->defer_post_application_start_file_open_request();
 
-         system()->post_application_started();
-
-
-      }
+      //   system()->post_application_started();
 
 
-      void windowing::windowing_application_main_loop()
+      //}
+
+
+      void windowing::run()
       {
 
 
@@ -816,7 +955,7 @@ namespace acme
       }
 
 
-      void windowing::application_handle(long long l, void* p)
+      void windowing::application_handle(::i64 l, void* p)
       {
 
 
@@ -915,6 +1054,53 @@ namespace acme
       }
 
 
+
+
+#ifdef WINDOWS_DESKTOP
+
+
+      windows::window_class windowing::_custom_window_class(const scoped_string &scopedstrClassName, void *pHICON_Big,
+                                                            void *pHICON_Small)
+      {
+
+         throw ::interface_only();
+
+         return {};
+
+      }
+
+
+      ::windows::window_class windowing::_default_window_class()
+      {
+
+         throw ::interface_only();
+
+         return {};
+
+      }
+
+
+      ::windows::window_class windowing::_acme_nano_window_class()
+      {
+
+         throw ::interface_only();
+
+         return {};
+
+      }
+
+
+      ::windows::window_class windowing::_com_host_window_class()
+      {
+
+         throw ::interface_only();
+
+         return {};
+
+      }
+
+#endif
+
 //      void windowing::enable_wallpaper_change_notification()
 //      {
 //
@@ -941,7 +1127,7 @@ namespace acme
 //
 //      }
 
-      double windowing::get_default_screen_dpi()
+      ::f64 windowing::get_default_screen_dpi()
       {
 
          // just a guess lol :D
@@ -950,12 +1136,56 @@ namespace acme
       }
 
 
-      float windowing::default_screen_points_to_pixels(float fPoints)
+      ::f32 windowing::default_screen_points_to_pixels(::f32 fPoints)
       {
 
-         return (float)(fPoints * (get_default_screen_dpi() / 72.0));
+         return (::f32)(fPoints * (get_default_screen_dpi() / 72.0));
 
       }
+
+
+      void windowing::on_application_activate()
+      {
+
+         ::information() << "::acme::windowing::windowing::on_application_activate";
+
+         if (m_callbackOnApplicationActivate)
+         {
+
+            m_callbackOnApplicationActivate();
+
+            return;
+
+         }
+
+         //system()->defer_post_initial_request();
+
+         //system()->post_aaa_application_start();
+         //system()->defer_post_aaa_application_start_file_open_request();
+         //system()->post_aaa_application_started();
+
+         //windowing_application_on_start();
+
+         on_activate();
+
+      }
+
+
+      void windowing::run_loop2(::task* ptask)
+      {
+
+         run_loop1(ptask);
+
+      }
+
+   
+//   void windowing::on_user_command(::uptr u, ::lightui::enum_notification enotification, ::uptr uControl)
+//   
+//   {
+//      
+//      
+//      
+//   }
 
 
    } // namespace windowing
@@ -976,3 +1206,16 @@ namespace windowing
 
 
 } // namespace windowing
+
+
+#include "acme/constant/lightui.h"
+
+//void ns_on_user_command(::uptr u, ::lightui::enum_notification enotification, ::uptr uControl)
+//{
+//   
+//   ::wparam wparam;
+//   
+//   wparam = make_u32(uControl, enotification);
+//   
+//   ::system()->acme_windowing()->on_user_command(u,enotification, wparam);
+//}

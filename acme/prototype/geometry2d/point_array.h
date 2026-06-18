@@ -13,7 +13,7 @@
 ////#include "acme/prototype/collection/comparable_array.h"
 
 
-inline bool tolerance_is_equal(double tolerance, double d1, double d2)
+inline bool tolerance_is_equal(::f64 tolerance, ::f64 d1, ::f64 d2)
 {
    return ::abs(d1 - d2) <= tolerance;
 }
@@ -49,9 +49,9 @@ public:
    void offset(UNIT_TYPE x, UNIT_TYPE y);
    void offset(::point_type < UNIT_TYPE > point) { offset(point.x, point.y); }
 
-   void rotate(double dAngle);
+   void rotate(::f64 dAngle);
 
-   void rotate(double dAngle, ::point_type < UNIT_TYPE > pointCenter);
+   void rotate(::f64 dAngle, ::point_type < UNIT_TYPE > pointCenter);
 
    void expand_bounding_box(::point_type < UNIT_TYPE > & top_left, ::point_type < UNIT_TYPE > & bottom_right) const;
 
@@ -73,7 +73,7 @@ public:
          if (tolerance_is_equal(tolerance, point.x, pointAdd.x) && tolerance_is_equal(tolerance, point.y, pointAdd.y))
          {
 
-            /// 'p' is "tolerance"-equal to an existing int_point 'p' in '*this' array,
+            /// 'p' is "tolerance"-equal to an existing i32_point 'p' in '*this' array,
             /// so don't add it.
 
             return -1;
@@ -91,7 +91,7 @@ public:
 
 
    ::collection::count add_unique_range(const ::point_type < NUMBER > & pBeg, const ::point_type < NUMBER > & pointEnd, const ::size_type < NUMBER > & s = e_unit_size);
-   //https://www.geeksforgeeks.org/area-of-a-int_polygon-with-given-n-ordered-vertexes/
+   //https://www.geeksforgeeks.org/area-of-a-i32_polygon-with-given-n-ordered-vertexes/
       // (X[i], Y[i]) are coordinates of i'th point.
 
    UNIT_TYPE polygon_area()
@@ -99,12 +99,12 @@ public:
 
       UNIT_TYPE area = (UNIT_TYPE) 0;
 
-      int n = (int) this->get_count();
+      ::i32 n = (::i32) this->get_count();
 
       // Calculate value of shoelace formula
-      int j = n - 1;
+      ::i32 j = n - 1;
 
-      for (int i = 0; i < n; i++)
+      for (::i32 i = 0; i < n; i++)
       {
 
          area += (this->element_at(j).x + this->element_at(i).x)
@@ -192,7 +192,7 @@ public:
 template < prototype_number NUMBER >
 void point_array_base < NUMBER >::offset(UNIT_TYPE x, UNIT_TYPE y)
 {
-   for (int i = 0; i < this->get_size(); i++)
+   for (::i32 i = 0; i < this->get_size(); i++)
    {
       this->element_at(i).x += x;
       this->element_at(i).y += y;
@@ -201,20 +201,20 @@ void point_array_base < NUMBER >::offset(UNIT_TYPE x, UNIT_TYPE y)
 
 
 template < prototype_number NUMBER >
-void point_array_base < NUMBER >::rotate(double dAngle)
+void point_array_base < NUMBER >::rotate(::f64 dAngle)
 {
 
    UNIT_TYPE x;
    UNIT_TYPE y;
-   double dCos = ::cos(dAngle);
-   double dSin = ::sin(dAngle);
+   ::f64 dCos = ::cos(dAngle);
+   ::f64 dSin = ::sin(dAngle);
 
-   for (int i = 0; i < this->get_count(); i++)
+   for (::i32 i = 0; i < this->get_count(); i++)
    {
       x = this->element_at(i).x;
       y = this->element_at(i).y;
-      this->element_at(i).x = (int)(x * dCos - y * dSin);
-      this->element_at(i).y = (int)(x * dSin + y * dCos);
+      this->element_at(i).x = (::i32)(x * dCos - y * dSin);
+      this->element_at(i).y = (::i32)(x * dSin + y * dCos);
    }
 
 }
@@ -234,21 +234,21 @@ void point_array_base < NUMBER >::rotate(double dAngle)
 
 
 template < prototype_number NUMBER >
-void point_array_base < NUMBER >::rotate(double dAngle, ::point_type < NUMBER > pointCenter)
+void point_array_base < NUMBER >::rotate(::f64 dAngle, ::point_type < NUMBER > pointCenter)
 {
 
    UNIT_TYPE x;
    UNIT_TYPE y;
-   double dCos = cos(dAngle);
-   double dSin = sin(dAngle);
+   ::f64 dCos = cos(dAngle);
+   ::f64 dSin = sin(dAngle);
 
-   for (int i = 0; i < this->get_count(); i++)
+   for (::i32 i = 0; i < this->get_count(); i++)
    {
       this->element_at(i) -= pointCenter;
       x = this->element_at(i).x;
       y = this->element_at(i).y;
-      this->element_at(i).x = (int)(x * dCos - y * dSin);
-      this->element_at(i).y = (int)(x * dSin + y * dCos);
+      this->element_at(i).x = (::i32)(x * dCos - y * dSin);
+      this->element_at(i).y = (::i32)(x * dSin + y * dCos);
       this->element_at(i) += pointCenter;
    }
 
@@ -263,10 +263,10 @@ void point_array_base < NUMBER >::rotate(double dAngle, ::point_type < NUMBER > 
 
 /*
 http://www.ecse.rpi.edu/Homepages/wrf/Research/Short_Notes/pnpoly.html
-https://stackoverflow.com/questions/217578/how-can-i-determine-whether-a-2d-int_point-is-within-a-int_polygon
-int pnpoly(int nvert, float * vertx, float * verty, float testx, float testy)
+https://stackoverflow.com/questions/217578/how-can-i-determine-whether-a-2d-i32_point-is-within-a-i32_polygon
+::i32 pnpoly(::i32 nvert, ::f32 * vertx, ::f32 * verty, ::f32 testx, ::f32 testy)
 {
-   int i, j, c = 0;
+   ::i32 i, j, c = 0;
    for (i = 0, j = nvert - 1; i < nvert; j = i++) {
       if (((verty[i] > testy) != (verty[j] > testy)) &&
          (testx < (vertx[j] - vertx[i]) * (testy - verty[i]) / (verty[j] - verty[i]) + vertx[i]))
@@ -278,7 +278,7 @@ int pnpoly(int nvert, float * vertx, float * verty, float testx, float testy)
 //template < typename POINT_TYPE >
 //bool polygon_contains_point(const POINT_TYPE * ppointa, ::collection::count c, const POINT_TYPE & point)
 //{
-//   int i, j, c = 0;
+//   ::i32 i, j, c = 0;
 //   for (i = 0, j = nvert - 1; i < nvert; j = i++)
 //   {
 //      if (((ppointa[i].y > point.y) != (ppointa[j].y > point.y)) &&
@@ -292,7 +292,7 @@ template < prototype_number NUMBER >
 bool point_array_base < NUMBER >::polygon_contains_winding(const ::point_type < NUMBER > & point) const
 {
 
-   return ::polygon_contains_winding( this->data(), (int)this->size(), point);
+   return ::polygon_contains_winding( this->data(), (::i32)this->size(), point);
 
 }
 
@@ -301,7 +301,7 @@ template < prototype_number NUMBER >
 bool point_array_base < NUMBER >::polygon_contains_alternate(const ::point_type < NUMBER > & point) const
 {
 
-   return ::polygon_contains_alternate(this->data(), (int)this->size(), point, true);
+   return ::polygon_contains_alternate(this->data(), (::i32)this->size(), point, true);
 
 }
 

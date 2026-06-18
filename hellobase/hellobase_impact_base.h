@@ -19,12 +19,12 @@ namespace hellobase
       };
 
 
-      int                     m_yDrawStatus;
+      ::i32                     m_yDrawStatus;
       ::write_text::font_pointer       m_pfontDrawStatus;
       color32_t                m_colorDrawStatus;
 
       ::frequency                  m_frequencyFramesPerSecond;
-      unsigned int                   m_dwRoll;
+      ::u32                   m_dwRoll;
 
       string                  m_strHoverFont;
       string                  m_strNewFont;
@@ -46,18 +46,18 @@ namespace hellobase
       render *                m_prender;
 
 
-      unsigned_int_array            m_dwaFrame;
+      u32_array            m_dwaFrame;
 
 
 
       impact_base(::particle * pparticle);
       virtual ~impact_base();
 
-      virtual long long increment_reference_count()
+      virtual ::i64 increment_reference_count()
       {
          return ::object::increment_reference_count();
       }
-      virtual long long decrement_reference_count()
+      virtual ::i64 decrement_reference_count()
       {
          return ::object::decrement_reference_count();
       }

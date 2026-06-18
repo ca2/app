@@ -241,12 +241,12 @@ namespace networking_bsd
 
       string strBoundary = "----";
 
-      for (int i = 0; i < 12; i++)
+      for (::i32 i = 0; i < 12; i++)
       {
 
-         char c = m_countHttpPostBoundary++ % 128;
+         ::i8 c = m_countHttpPostBoundary++ % 128;
 
-         while (!ansi_char_is_alnum((unsigned char)c))
+         while (!ansi_char_is_alnum((::u8)c))
          {
 
             c = m_countHttpPostBoundary++ % 128;

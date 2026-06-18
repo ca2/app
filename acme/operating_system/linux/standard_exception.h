@@ -94,7 +94,7 @@ friend class ::exception_translator;
 #ifdef WINDOWS
 //EXCEPTION_POINTERS * m_ppointers;
 #else
-int               m_iSignal;
+::i32               m_iSignal;
 void *            m_psiginfo;
 #ifndef __ANDROID__
 ucontext_t        m_ucontext;
@@ -105,11 +105,11 @@ ucontext_t        m_ucontext;
 #ifdef WINDOWS
 //EXCEPTION_POINTERS * info() const         { return m_ppointers; }
 #else
-unsigned int         code() const;
+::u32         code() const;
 void *               address() const;
 const void *    info() const;    // siginfo_t *
-const_char_pointer        name() const;
-const_char_pointer        description() const;
+const_char_pointer pszName() const;
+const_char_pointer description() const;
 #ifndef __ANDROID__
 const ::ucontext_t *   ucontext() const;
 #endif
@@ -124,7 +124,7 @@ static void siginfofree(void * psiginfo);
 
 #ifdef __ANDROID__
 
-standard_exception(int iSignal, void * psiginfo, void * pc, int iSkip = DEFAULT_SE_EXCEPTION_CALLSTACK_SKIP) :
+standard_exception(::i32 iSignal, void * psiginfo, void * pc, ::i32 iSkip = DEFAULT_SE_EXCEPTION_CALLSTACK_SKIP) :
       ::exception(error_exception, nullptr, nullptr, iSkip),
       m_iSignal(iSignal),
       m_psiginfo(siginfodup(psiginfo))
@@ -136,7 +136,7 @@ standard_exception(int iSignal, void * psiginfo, void * pc, int iSkip = DEFAULT_
 
 #else
 
-standard_exception(int iSignal, void * psiginfo, void * pc, int iSkip = -1, void * caller_address = nullptr);
+standard_exception(::i32 iSignal, void * psiginfo, void * pc, ::i32 iSkip = -1, void * caller_address = nullptr);
 
 #endif
 
@@ -161,7 +161,7 @@ virtual ~standard_exception()
 
 typedef struct _sig_ucontext
 {
-   unsigned long     uc_flags;
+   ulong     uc_flags;
    struct ucontext   *uc_link;
    stack_t           uc_stack;
    sigcontext uc_mcontext;
@@ -179,7 +179,7 @@ class standard_access_violation : public standard_exception
 public:
 
 
-   standard_access_violation (int signal, void * psiginfo, void * pc);
+   standard_access_violation (::i32 signal, void * psiginfo, void * pc);
 
 };
 
@@ -192,7 +192,7 @@ class standard_sigfpe : public standard_exception
    public:
 
 
-      standard_sigfpe(int iSignal,void * psiginfo,void * pc):
+      standard_sigfpe(::i32 iSignal,void * psiginfo,void * pc):
          standard_exception(iSignal, psiginfo, pc)
       {
 
@@ -209,7 +209,7 @@ class standard_sigfpe : public standard_exception
 class standard_sigfpe : public standard_exception
    {
    public:
-      standard_sigfpe (int iSignal, siginfo_t * psiginfo, void * pc) :
+      standard_sigfpe (::i32 iSignal, siginfo_t * psiginfo, void * pc) :
 #ifdef _LP64
 
 #if defined(__aarch64__)

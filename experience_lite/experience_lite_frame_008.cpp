@@ -52,18 +52,18 @@
             }
 
 
-            e_hittest frame_008::_001HitTest(::int_point pointCursor)
+            e_hittest frame_008::_001HitTest(::i32_point pointCursor)
             {
                e_hittest etest = ::experience::e_frame_client;
                {
                   //      m_pframewindow->GetEventWindow()->screen_to_client()(point);
-                  ::int_rectangle rectangleEvent;
+                  ::i32_rectangle rectangleEvent;
                   m_pframewindow->window_rectangle(rectangleEvent);
-                  ::int_rectangle rectangle;
-                  //int_point ptCenter = rectangleEvent.center();
-                  enum_grip egrip = m_pframewindow->size_manager()->GetGripMask();
+                  ::i32_rectangle rectangle;
+                  //i32_point ptCenter = rectangleEvent.center();
+                  auto egrip = m_pframewindow->size_manager()->GetGripMask();
 
-                  ::int_point pointHitTest = pointCursor;
+                  ::i32_point pointHitTest = pointCursor;
 
 //                  if(rectangleEvent.left < 0)
 //                     pointHitTest.x -= rectangleEvent.left;
@@ -208,7 +208,7 @@ SizingNone:
 
 
 
-            void frame_008::draw_border_side(::draw2d::graphics_pointer & pgraphics, const ::int_rectangle &lpcrectClient, enum_border eside)
+            void frame_008::draw_border_side(::draw2d::graphics_pointer & pgraphics, const ::i32_rectangle &lpcrectClient, enum_border eside)
             {
 
                auto pframewindow = m_pframewindow;
@@ -241,8 +241,8 @@ SizingNone:
 
 }
 
-               enum_dock edock = m_pframewindow->dock_manager()->GetDockState();
-               ::int_rectangle rectangleA(lpcrectClient);
+               auto edock = m_pframewindow->dock_manager()->GetDockState();
+               ::i32_rectangle rectangleA(lpcrectClient);
 
                if(m_bHollow)
                {
@@ -266,7 +266,7 @@ SizingNone:
                   //   rectangleA.deflate(1,1,1,1);
                   //   Draw3dRectSide(pgraphics,rectangleA,eside,crMoveableBorder,crMoveableBorder);
 
-                  //   ::int_rectangle rectangle;
+                  //   ::i32_rectangle rectangle;
                   //   GetBorderRectangle(lpcrectClient,rectangle,eside);
                   //   class imaging & imaging = psystem->imaging();
                   //   imaging.color_blend(pgraphics,
@@ -281,7 +281,7 @@ SizingNone:
                        || m_estyle == StyleTranslucidLightBlue
                        || m_estyle == StyleTranslucidLightGreen)
                {
-                  ::int_rectangle rectangle;
+                  ::i32_rectangle rectangle;
                   GetBorderRectangle(lpcrectClient, rectangle, eside);
 
                   pgraphics->color_blend(
@@ -291,7 +291,7 @@ SizingNone:
                }
                else
                {
-                  ::int_rectangle rectangle;
+                  ::i32_rectangle rectangle;
                   GetBorderRectangle(lpcrectClient, rectangle, eside);
 
                   pgraphics->color_blend(
@@ -299,7 +299,7 @@ SizingNone:
                                       crMoveableBorder,
                                       127);
 
-                  ::int_rectangle rectangleXB = rectangleA;
+                  ::i32_rectangle rectangleXB = rectangleA;
 
                   rectangleXB.bottom--;
                   rectangleXB.right--;
@@ -355,7 +355,7 @@ SizingNone:
                string str;
 
 
-               ::int_rectangle rectangleNClient;
+               ::i32_rectangle rectangleNClient;
 
                pframewindow->window_rectangle(rectangleNClient);
 
@@ -379,16 +379,16 @@ SizingNone:
             }
 
 
-            void frame_008::DrawBorder(::draw2d::graphics_pointer & pgraphics, const ::int_rectangle &lpcrectClient)
+            void frame_008::DrawBorder(::draw2d::graphics_pointer & pgraphics, const ::i32_rectangle &lpcrectClient)
             {
 
                auto pmovemanager = m_pframewindow->move_manager();
 
-               enum_border eborder = pmovemanager->GetBorderMask();
+               auto eborder = pmovemanager->GetBorderMask();
 
                if(m_pframewindow->layout().is_zoomed())
                {
-                  eborder = (enum_border)
+                  eborder = 
                             (eborder &
                              ~(e_border_right
                                | e_border_bottom
@@ -400,7 +400,7 @@ SizingNone:
                if(m_bHollow)
                {
                   //return;
-                  ::int_rectangle rectangleA(lpcrectClient);
+                  ::i32_rectangle rectangleA(lpcrectClient);
 
                   pgraphics->set_alpha_mode(::draw2d::e_alpha_mode_set);
 
@@ -418,7 +418,7 @@ SizingNone:
                   if (m_pframewindow->GetWndDraw()->is_active())
                   {
 
-                     ::int_rectangle rectangleA(lpcrectClient);
+                     ::i32_rectangle rectangleA(lpcrectClient);
 
                      pgraphics->set_alpha_mode(::draw2d::e_alpha_mode_blend);
 
@@ -431,7 +431,7 @@ SizingNone:
 
                         ppen->create_solid(1.0, argb((i+1) * 5, 0, 0, 0));
 
-                        pgraphics->draw_round_rect(rectangleA, pen, (int) (10 - i));
+                        pgraphics->draw_round_rect(rectangleA, pen, (::i32) (10 - i));
 
                         rectangleA.deflate(1, 1, 1, 1);
 
@@ -498,14 +498,14 @@ SizingNone:
             }
 
             void frame_008::GetBorderRectangle(
-            const ::int_rectangle &lpcrectClient,
-            ::int_rectangle * lprect,
+            const ::i32_rectangle &lpcrectClient,
+            ::i32_rectangle * lprect,
             enum_border eside)
             {
-               ::int_rectangle rectangleBig(lpcrectClient);
-               ::int_rectangle rectangleSmall;
+               ::i32_rectangle rectangleBig(lpcrectClient);
+               ::i32_rectangle rectangleSmall;
                get_window_client_rectangle(&rectangleSmall);
-               ::int_rectangle rectangle;
+               ::i32_rectangle rectangle;
                if(eside == e_border_top)
                {
                   rectangle.left = rectangleBig.left;

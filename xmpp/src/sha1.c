@@ -14,7 +14,7 @@ Still 100% Public Domain
 
 Corrected a problem which generated improper hash values on 16 bit machines
 Routine SHA1Update changed from
-	void SHA1Update(SHA1_CTX* context, unsigned char* data, unsigned int
+	void SHA1Update(SHA1_CTX* context, unsigned char* data, ::u32
 len)
 to
 	void SHA1Update(SHA1_CTX* context, unsigned char* data, unsigned
@@ -31,7 +31,7 @@ be guaranteed to generate the wrong hash (e.g. Test Vector #3, a million
 "a"s).
 
 I also changed the declaration of variables i & j in SHA1Update to 
-unsigned long from unsigned int for the same reason.
+unsigned long from ::u32 for the same reason.
 
 These changes should make no difference to any 32 bit implementations since
 an

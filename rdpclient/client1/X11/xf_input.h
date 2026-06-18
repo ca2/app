@@ -27,7 +27,7 @@
 //!!!#include <X11/extensions/XInput2.h>
 #endif
 
-int xf_input_init(xfContext* xfc, Window window);
-int xf_input_handle_event(xfContext* xfc, XEvent* happening);
+::i32 xf_input_init(xfContext* xfc, Window window);
+::i32 xf_input_handle_event(xfContext* xfc, XEvent* happening);
 
 #endif

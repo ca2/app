@@ -63,9 +63,9 @@ namespace graphics3d
       {
          circle_shape m_circleshape;
       };
-      float m_fSpeed;
+      ::f32 m_fSpeed;
 
-      floating_sequence3 get_translation(float Δt)
+      floating_sequence3 get_translation(::f32 Δt)
       {
 
          if (m_eshape == e_shape_circle)
@@ -88,7 +88,7 @@ namespace graphics3d
             if (payload["path"]["shape"] == "circle")
             {
                m_eshape = e_shape_circle;
-               m_fSpeed = payload["speed"].as_float();
+               m_fSpeed = payload["speed"].as_f32();
                m_circleshape.from(payload["path"]);
             }
          }
@@ -136,7 +136,7 @@ namespace graphics3d
 
             }
 
-            floating_sequence3 get_translation(float Δt)
+            floating_sequence3 get_translation(::f32 Δt)
             {
                if (m_eanimation == e_animation_translation)
                {
@@ -162,8 +162,8 @@ namespace graphics3d
    {
    public:
 
-      float m_fLightIntensity = 1.0f;
-      float m_fOrbitRadius = 2.0f;
+      ::f32 m_fLightIntensity = 1.0f;
+      ::f32 m_fOrbitRadius = 2.0f;
       //floating_sequence4 m_sequence4Color;
       //floating_sequence3 m_sequence3Position;
       ::pointer<animation> m_panimation;
@@ -173,7 +173,7 @@ namespace graphics3d
 
       void from(const ::payload &payload);
 
-      void defer_animate(float Δt);
+      void defer_animate(::f32 Δt);
       floating_sequence3 position()  const { return m_sequence3FinalPosition; }
       floating_sequence4 color()  const { return m_sequence4FinalColor; }
 

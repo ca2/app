@@ -6,7 +6,7 @@
 #include "mysql_database.h"
 
 
-int_bool init_data_library()
+::i32_bool init_data_library()
 {
 
    if (mysql_server_init(0, NULL, NULL))
@@ -142,7 +142,7 @@ namespace mysql
          m_strName,
          atoi(m_strPort),
          m_strSckt,
-         (unsigned long)m_uConnectionFlags) == nullptr)
+         (ulong)m_uConnectionFlags) == nullptr)
       {
 
          trace_error1("mysql_real_connect() failed\n");
@@ -179,7 +179,7 @@ namespace mysql
 
             /*
 
-            for(int i = 0; i < m_resultptra.get_count(); i++)
+            for(::i32 i = 0; i < m_resultptra.get_count(); i++)
             {
                if(m_resultptra(i)->m_bAutoDelete)
                {
@@ -340,7 +340,7 @@ namespace mysql
 
          m_cAffectedRows = mysql_affected_rows((MYSQL*)m_pmysql);
 
-         informationf("Number of rows affected: %lu\n", (unsigned int)m_cAffectedRows);
+         informationf("Number of rows affected: %lu\n", (::u32)m_cAffectedRows);
 
       }
 
@@ -367,7 +367,7 @@ namespace mysql
 
          //   presult->m_uiAffectedRows = mysql_affected_rows((MYSQL *)m_pmysql);
 
-         //   informationf("Number of rows affected: %lu\n", (unsigned int)presult->m_uiAffectedRows);
+         //   informationf("Number of rows affected: %lu\n", (::u32)presult->m_uiAffectedRows);
 
          //   return presult;
 
@@ -429,7 +429,7 @@ namespace mysql
    }
 
 
-   unsigned long* database::_mysql_fetch_lengths(MYSQL_RES* pres)
+   ulong* database::_mysql_fetch_lengths(MYSQL_RES* pres)
    {
 
       if (::is_null(pres))
@@ -439,7 +439,7 @@ namespace mysql
 
       }
 
-      unsigned long* lengths = mysql_fetch_lengths((MYSQL_RES*)pres);
+      ulong* lengths = mysql_fetch_lengths((MYSQL_RES*)pres);
 
       if (lengths == nullptr)
       {
@@ -455,7 +455,7 @@ namespace mysql
    }
 
 
-   long long database::_mysql_num_fields(MYSQL_RES* pres)
+   ::i64 database::_mysql_num_fields(MYSQL_RES* pres)
    {
 
       if (::is_null(pres))
@@ -470,7 +470,7 @@ namespace mysql
    }
 
 
-   long long database::_mysql_num_rows(MYSQL_RES* pres)
+   ::i64 database::_mysql_num_rows(MYSQL_RES* pres)
    {
 
       if (::is_null(pres))
@@ -505,9 +505,9 @@ namespace mysql
 
       auto& prowa = pset->m_prowa;
 
-      long long iNumRows = _mysql_num_rows(pres);
+      ::i64 iNumRows = _mysql_num_rows(pres);
 
-      long long iNumFields = _mysql_num_fields(pres);
+      ::i64 iNumFields = _mysql_num_fields(pres);
 
       if (iColumnCount > 0)
       {
@@ -525,7 +525,7 @@ namespace mysql
 
       prowa->set_size(iNumRows);
 
-      long long iRow = 0;
+      ::i64 iRow = 0;
 
       while ((row = _mysql_fetch_row(pres)) != nullptr)
       {
@@ -550,7 +550,7 @@ namespace mysql
 
          prow->set_size(iNumFields);
 
-         for (long long iField = 0; iField < iNumFields; iField++)
+         for (::i64 iField = 0; iField < iNumFields; iField++)
          {
 
             if (row[iField] == nullptr)
@@ -657,7 +657,7 @@ namespace mysql
       else
       {
 
-         unsigned long* pul = _mysql_fetch_lengths(pres);
+         ulong* pul = _mysql_fetch_lengths(pres);
 
          if (pul == nullptr)
          {
@@ -689,11 +689,11 @@ namespace mysql
 
       MYSQL_ROW row;
 
-      long long iNumRows = _mysql_num_rows(pres);
+      ::i64 iNumRows = _mysql_num_rows(pres);
 
       pvara->set_size(iNumRows);
 
-      long long iRow = 0;
+      ::i64 iRow = 0;
 
       while ((row = _mysql_fetch_row(pres)) != nullptr)
       {
@@ -750,11 +750,11 @@ namespace mysql
 
       }
 
-      long long iNumFields = _mysql_num_fields(pres);
+      ::i64 iNumFields = _mysql_num_fields(pres);
 
       prow->set_size(iNumFields);
 
-      for (long long iField = 0; iField < iNumFields; iField++)
+      for (::i64 iField = 0; iField < iNumFields; iField++)
       {
 
          if (row[iField] == nullptr)
@@ -850,7 +850,7 @@ namespace mysql
 
       string strEscaped;
 
-      char* pszEscaped = strEscaped.get_buffer(iLen * 2 + 1);
+      char_pointer pszEscaped = strEscaped.get_buffer(iLen * 2 + 1);
 
       if (scopedstr == nullptr)
       {
@@ -859,7 +859,7 @@ namespace mysql
 
       }
 
-      mysql_real_escape_string((MYSQL*)m_pmysql, pszEscaped, psz, (unsigned long)iLen);
+      mysql_real_escape_string((MYSQL*)m_pmysql, pszEscaped, psz, (ulong)iLen);
 
       strEscaped.release_buffer();
 
@@ -878,7 +878,7 @@ namespace mysql
 
    ::payload database::get_insert_id()
    {
-      return (unsigned long long)mysql_insert_id((MYSQL*)m_pmysql);
+      return (::u64)mysql_insert_id((MYSQL*)m_pmysql);
    }
 
 } //   namespace mysql

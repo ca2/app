@@ -1,0 +1,183 @@
+// Copyright (C) 2008,2009,2010,2011,2012 GlavSoft LLC.
+// All rights reserved.
+//
+//-------------------------------------------------------------------------
+// This file is part of the T i g h t V N C software.  Please visit our Web site:
+//
+//                       http://www.t i g h t v n c.com/
+//
+// This program is free software; you can redistribute it and/or modify
+// it under the terms of the GNU General Public License as published by
+// the Free Software Foundation; either version 2 of the License, or
+// (at your option) any later version.
+//
+// This program is distributed in the hope that it will be useful,
+// but WITHOUT ANY WARRANTY; without even the implied warranty of
+// MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+// GNU General Public License for more details.
+//
+// You should have received a copy of the GNU General Public License along
+// with this program; if not, w_rite to the Free Software Foundation, Inc.,
+// 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA.
+//-------------------------------------------------------------------------
+//
+
+//#ifndef SOCKET_ADDRESS_IPV4_H
+#pragma once
+//#define SOCKET_ADDRESS_IPV4_H
+
+#include "subsystem/_common_header.h"
+//#include "subsystem/thread/critical_section.h"
+#include "SocketException.h"
+#include "sockdefs.h"
+//#include "remoting/remoting/win_system/WsaStartup.h"
+
+
+namespace subsystem
+{
+   // // FIXME: Deprecated method, only for testing of old code.
+   // void getLocalIPAddrString(char_pointer buffer, ::i32 buflen);
+
+   class CLASS_DECL_SUBSYSTEM SocketAddressIPv4Interface :
+   virtual public ::Particle
+   {
+   public:
+
+      //virtual ~SocketAddressIPv4Interface() = 0;
+
+
+      virtual void initialize_socket_address_ipv4() = 0;
+      //virtual void initialize_socket_address_ipv4(struct sockaddr_in) = 0;
+      virtual void initialize_socket_address_ipv4(const ::scoped_string & scopedstrHost, ::u16 port) = 0;
+      virtual void initialize_socket_address_ipv4(SocketAddressIPv4Interface * psocketAddressIPv4) = 0;
+
+
+      virtual void assign(SocketAddressIPv4Interface * psocketAddressIPv4) = 0;
+
+
+      ///socklen_t getAddrLen() const = 0;
+      //struct sockaddr_in getSockAddr() const = 0;
+
+      // Converts socket address to it's string value (ip address as string).
+      virtual ::string toString() const = 0;
+
+      // Returns socket port number
+      virtual ::u16 getPort() const = 0;
+
+
+      virtual bool isLoopbackAddress() const = 0;
+
+   // //protected:
+   //    //WsaStartup m_wsaStartup;
+   //    ::u16 m_port;
+   //    struct in_addr m_addr;
+
+
+   };
+
+
+   //using SocketAddressIPv4Interface = particle_interface<SocketAddressIPv4Interface>;
+
+
+   class CLASS_DECL_SUBSYSTEM SocketAddressIPv4Composite :
+   virtual public Composite<SocketAddressIPv4Interface>
+   {
+   public:
+
+
+      ImplementCompositeø(SocketAddressIPv4, socketaddressipv4)
+
+
+
+      //SocketAddressIPv4();
+      //virtual ~SocketAddressIPv4() override;
+
+
+         virtual void initialize_socket_address_ipv4() override
+      {
+
+         m_psocketaddressipv4->initialize_socket_address_ipv4();
+
+      }
+      //virtual void initialize_socket_address_ipv4(struct sockaddr_in) = 0;
+      virtual void initialize_socket_address_ipv4(const ::scoped_string& scopedstrHost, ::u16 port) override
+      {
+
+         m_psocketaddressipv4->initialize_socket_address_ipv4(scopedstrHost, port);
+      }
+      virtual void initialize_socket_address_ipv4(SocketAddressIPv4Interface* psocketAddressIPv4) override
+      {
+
+         m_psocketaddressipv4->initialize_socket_address_ipv4(psocketAddressIPv4);
+
+      }
+
+
+      virtual void assign(SocketAddressIPv4Interface* psocketAddressIPv4) override
+      {
+
+         m_psocketaddressipv4->assign(psocketAddressIPv4);
+
+      }
+
+
+      ///socklen_t getAddrLen() const = 0;
+      //struct sockaddr_in getSockAddr() const = 0;
+
+      // Converts socket address to it's string value (ip address as string).
+      ::string toString() const override
+      {
+
+         return m_psocketaddressipv4->toString();
+
+      }
+
+      // Returns socket port number
+      ::u16 getPort() const override
+      {
+
+         return m_psocketaddressipv4->getPort();
+
+      }
+
+
+      bool isLoopbackAddress() const override
+      {
+
+         return m_psocketaddressipv4->isLoopbackAddress();
+
+      }
+      // //protected:
+      //    //WsaStartup m_wsaStartup;
+      //    ::u16 m_port;
+      //    struct in_addr m_addr;
+
+
+   };
+
+
+    class CLASS_DECL_SUBSYSTEM SocketAddressIPv4Aggregate : 
+       virtual public Aggregate<SocketAddressIPv4Composite>
+    {
+    public:
+
+        
+       ImplementBaseø(SocketAddressIPv4);
+
+
+    };
+
+
+    class CLASS_DECL_SUBSYSTEM SocketAddressIPv4 : 
+       virtual public Object<SocketAddressIPv4Aggregate>
+    {
+    public:
+
+      ImplementObjectø(SocketAddressIPv4)
+
+
+    };
+
+
+
+} // namespace subsystem

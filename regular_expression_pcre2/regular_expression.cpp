@@ -40,7 +40,7 @@ namespace regular_expression_pcre2
 
       m_str = scopedstr;
 
-      int e;
+      ::i32 e;
 
       PCRE2_SIZE eo;
 
@@ -55,7 +55,7 @@ namespace regular_expression_pcre2
 
       }
 
-      unsigned int uRangeCount = 0;
+      ::u32 uRangeCount = 0;
 
       auto iResult = pcre2_pattern_info(m_pcode, PCRE2_INFO_CAPTURECOUNT, &uRangeCount);
 //    may return:
@@ -117,7 +117,7 @@ namespace regular_expression_pcre2
 
       size_t s = maximum(256, str.length() + scopedstrPrefix.length() * 3);
 
-      int err;
+      ::i32 err;
 
       while (true)
       {

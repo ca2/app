@@ -23,7 +23,7 @@
 
 namespace nanoui
 {
-   ColorPicker::MyGridWidget::MyGridWidget(nanoui::Widget* p, int cols) :
+   ColorPicker::MyGridWidget::MyGridWidget(nanoui::Widget* p, ::i32 cols) :
       nanoui::Widget(p)
    {
       auto playout = allocateø nanoui::GridLayout(::e_orientation_horizontal, cols,
@@ -53,24 +53,24 @@ namespace nanoui
       }
 
       ::color::hsv hsv(hls);
-      m_peditRed->set_value(color.byte_red(), e_source_sync);
-      m_peditGreen->set_value(color.byte_green(), e_source_sync);
-      m_peditBlue->set_value(color.byte_blue(), e_source_sync);
-      if (bForceH || fabs(m_peditHSV_H->value() - (int)(hsv.m_dH * 360.0)) > 2.0)
+      m_peditRed->set_value(color.u8_red(), e_source_sync);
+      m_peditGreen->set_value(color.u8_green(), e_source_sync);
+      m_peditBlue->set_value(color.u8_blue(), e_source_sync);
+      if (bForceH || fabs(m_peditHSV_H->value() - (::i32)(hsv.m_dH * 360.0)) > 2.0)
       {
-         m_peditHSV_H->set_value((int) (hsv.m_dH * 360.0), e_source_sync);
+         m_peditHSV_H->set_value((::i32) (hsv.m_dH * 360.0), e_source_sync);
       }
-      if (bForceS || fabs(m_peditHSV_S->value() - (int)(hsv.m_dS * 100.0)) > 5.0)
+      if (bForceS || fabs(m_peditHSV_S->value() - (::i32)(hsv.m_dS * 100.0)) > 5.0)
       {
-         m_peditHSV_S->set_value((int) (hsv.m_dS * 100.0), e_source_sync);
+         m_peditHSV_S->set_value((::i32) (hsv.m_dS * 100.0), e_source_sync);
       }
-      if (bForceB || fabs(m_peditHSV_V->value() - (int)(hsv.m_dV * 100.0)) > 5.0)
+      if (bForceB || fabs(m_peditHSV_V->value() - (::i32)(hsv.m_dV * 100.0)) > 5.0)
       {
-         m_peditHSV_V->set_value((int)(hsv.m_dV * 100.0), e_source_sync);
+         m_peditHSV_V->set_value((::i32)(hsv.m_dV * 100.0), e_source_sync);
       }
 
       ::string strHex;
-      strHex.formatf("%02X%02X%02X", color.byte_red(), color.byte_green(),  color.byte_blue());
+      strHex.formatf("%02X%02X%02X", color.u8_red(), color.u8_green(),  color.u8_blue());
 
       m_peditHex->set_value(strHex, e_source_sync);
 
@@ -109,7 +109,7 @@ namespace nanoui
          
          allocateø nanoui::Label(m_pgridRgb, "Red", "sans", 14);
 
-         auto pedit = allocateø  nanoui::IntBox<int>(m_pgridRgb);
+         auto pedit = allocateø  nanoui::IntBox<::i32>(m_pgridRgb);
          pedit->set_editable(true);
          pedit->set_font_size(14);
          pedit->set_unit("");
@@ -127,7 +127,7 @@ namespace nanoui
 
          allocateø nanoui::Label(m_pgridRgb, "Green", "sans", 14);
 
-         auto pedit = allocateø  nanoui::IntBox<int>(m_pgridRgb);
+         auto pedit = allocateø  nanoui::IntBox<::i32>(m_pgridRgb);
          pedit->set_editable(true);
          pedit->set_font_size(14);
          pedit->set_unit("");
@@ -146,7 +146,7 @@ namespace nanoui
 
          allocateø nanoui::Label(m_pgridRgb, "Blue", "sans", 14);
 
-         auto pedit = allocateø  nanoui::IntBox<int>(m_pgridRgb);
+         auto pedit = allocateø  nanoui::IntBox<::i32>(m_pgridRgb);
          pedit->set_editable(true);
          pedit->set_font_size(14);
          pedit->set_unit("");
@@ -168,7 +168,7 @@ namespace nanoui
 
          allocateø nanoui::Label(m_pgridHSV, "Hue", "sans", 14);
 
-         auto pedit = allocateø  nanoui::IntBox<int>(m_pgridHSV);
+         auto pedit = allocateø  nanoui::IntBox<::i32>(m_pgridHSV);
          pedit->set_editable(true);
          pedit->set_font_size(14);
          pedit->set_unit("");
@@ -186,7 +186,7 @@ namespace nanoui
 
          allocateø nanoui::Label(m_pgridHSV, "Saturation", "sans", 14);
 
-         auto pedit = allocateø  nanoui::IntBox<int>(m_pgridHSV);
+         auto pedit = allocateø  nanoui::IntBox<::i32>(m_pgridHSV);
          pedit->set_editable(true);
          pedit->set_font_size(14);
          pedit->set_unit("");
@@ -206,7 +206,7 @@ namespace nanoui
 
          allocateø nanoui::Label(m_pgridHSV, "Brightness", "sans", 14);
 
-         auto pedit = allocateø  nanoui::IntBox<int>(m_pgridHSV);
+         auto pedit = allocateø  nanoui::IntBox<::i32>(m_pgridHSV);
          pedit->set_editable(true);
          pedit->set_font_size(14);
          pedit->set_unit("");
@@ -301,34 +301,34 @@ namespace nanoui
 
          });
 
-      m_peditRed->set_callback([&](int iIntensity) {
+      m_peditRed->set_callback([&](::i32 iIntensity) {
             ::color::color color = m_color_wheel->get_sel_color();
             color.set_red(iIntensity);
             sync_color(color, true, true, true);
          });
-      m_peditGreen->set_callback([&](int iIntensity) {
+      m_peditGreen->set_callback([&](::i32 iIntensity) {
             ::color::color color = m_color_wheel->get_sel_color();
             color.set_green(iIntensity);
             sync_color(color, true, true, true);
          });
-      m_peditBlue->set_callback([&](int iIntensity) {
+      m_peditBlue->set_callback([&](::i32 iIntensity) {
             ::color::color color = m_color_wheel->get_sel_color();
          color.set_blue(iIntensity);
          sync_color(color, true, true, true);
          });
-      m_peditHSV_H->set_callback([&](int iIntensity) {
+      m_peditHSV_H->set_callback([&](::i32 iIntensity) {
          auto hls = m_color_wheel->get_sel_color();
-         hls.m_dH = (double) iIntensity / 360.0;
+         hls.m_dH = (::f64) iIntensity / 360.0;
          sync_color(hls, false, true, true);
          });
-      m_peditHSV_S->set_callback([&](int iIntensity) {
+      m_peditHSV_S->set_callback([&](::i32 iIntensity) {
          ::color::hsv hsv = m_color_wheel->get_sel_color();
-         hsv.m_dS = (double)iIntensity / 100.0;
+         hsv.m_dS = (::f64)iIntensity / 100.0;
          sync_color(hsv, true, false, true);
          });
-      m_peditHSV_V->set_callback([&](int iIntensity) {
+      m_peditHSV_V->set_callback([&](::i32 iIntensity) {
          ::color::hsv hsv = m_color_wheel->get_sel_color();
-         hsv.m_dV = (double)iIntensity / 100.0;
+         hsv.m_dV = (::f64)iIntensity / 100.0;
          sync_color(hsv, true, true, false);
          });
       m_peditHex->set_callback([&](const ::scoped_string& str)->bool {

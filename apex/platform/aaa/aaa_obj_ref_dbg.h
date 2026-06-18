@@ -22,8 +22,8 @@ class reference_count_debug;
 #define REF_DBG_POINTER (::matter *)(::iptr)1
 #define REF_DBG_VAR (::matter *)(::iptr)1
 #define REF_DBG_COMMA_POINTER , REF_DBG_POINTER
-#define  ::matter * p, const char *pszObjRefDbg
-#define  ::matter * p = ((::matter*)(::iptr)1), const char *pszObjRefDbg = nullptr
+#define  ::matter * p, const_char_pointer pszObjRefDbg
+#define  ::matter * p = ((::matter*)(::iptr)1), const_char_pointer pszObjRefDbg = nullptr
 #define , 
 #define , 
 #define REFERENCING_DEBUGGING_COMMA_NOTE(note) , note

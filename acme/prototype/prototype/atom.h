@@ -19,7 +19,9 @@ enum enum_id : ::uptr;
 //class atom_space;
 
 
+class wparam;
 class lparam;
+
 
 namespace platform { class type; }
 
@@ -51,7 +53,7 @@ inline bool __atom_str_is_empty(const_char_pointer psz)
 
 
 template <typename T>
-int __atom_sgn(T x)
+::i32 __atom_sgn(T x)
 {
 
    return (((T) 0) < x) - (x < ((T) 0));
@@ -85,7 +87,7 @@ int __atom_sgn(T x)
 
 
 
-//inline int __atom_safe_strcmp(const_char_pointer a, const_char_pointer b)
+//inline ::i32 __atom_safe_strcmp(const_char_pointer a, const_char_pointer b)
 //{
 //
 //   if (__atom_str_is_empty(a))
@@ -121,7 +123,7 @@ int __atom_sgn(T x)
 //}
 //
 //
-//inline int __atom_safe_stricmp(const_char_pointer a, const_char_pointer b)
+//inline ::i32 __atom_safe_stricmp(const_char_pointer a, const_char_pointer b)
 //{
 //
 //   if (__atom_str_is_empty(a))
@@ -238,7 +240,7 @@ public:
 
    using PRIMITIVE_ATOM_TAG = PRIMITIVE_ATOM_TAG_TYPE;
 
-   enum enum_type : int
+   enum enum_type : ::i32
    {
 
       e_type_empty = -2,
@@ -324,8 +326,8 @@ public:
       domain_id                     m_domainid;
       ::string                      m_str;
       ::ansi_range                  m_range;
-      long long                     m_iLargest;
-      unsigned long long            m_uLargest;
+      ::i64                     m_iLargest;
+      ::u64            m_uLargest;
 
    };
 
@@ -343,7 +345,6 @@ public:
 
    inline atom();
    inline atom(enum_type etype);
-
    inline atom(enum_id eid);
    inline atom(enum_element eelement);
    //inline atom(::enum_id EID);
@@ -368,7 +369,7 @@ public:
    atom(const_char_pointer psz);
    atom(const inline_number_string & inlinenumberstring);
    atom(const ::platform::type & type);
-   //template <typename ITERATOR_TYPE2, int t_size >
+   //template <typename ITERATOR_TYPE2, ::i32 t_size >
    //atom(const const_string_range_static_array <ITERATOR_TYPE2, t_size >& a) : atom((const ::string&)a) {}
 
 
@@ -376,9 +377,11 @@ public:
    atom(SIGNED i);
    template < prototype_unsigned UNSIGNED >
    atom(UNSIGNED u);
-   template < prototype_enum ENUM >
+   template < prototype_raw_enum ENUM >
    atom(ENUM e);
-   atom(const ::scoped_string & scopedstr);
+   template<prototype_enumeration ENUMERATION>
+   atom(const ENUMERATION & e);
+   atom(const ::scoped_string &scopedstr);
    //atom(const const_ansi_range & range);
    //atom(const_ansi_range && range);
    //atom(const const_ansi_range && range);
@@ -621,7 +624,7 @@ public:
    // //inline bool operator >= (ENUM_MESSAGE EID) const { return operator>=((::user::enum_message)EID); }
 
 
-   //inline int order(::enum_topic etopic) const;
+   //inline ::i32 order(::enum_topic etopic) const;
    //inline bool operator == (::enum_topic etopic) const;
    //inline bool operator != (::enum_topic etopic) const;
    //inline bool operator < (::enum_topic etopic) const;
@@ -679,12 +682,12 @@ public:
    //inline operator ::iptr() const { return as_iptr(); }
    //inline operator ::user::enum_message () const { return as_emessage(); }
    
-   inline long long as_long_long() const;
+   inline ::i64 as_i64() const;
    inline ::iptr as_iptr() const;
-   inline int as_int() const { return (int) as_long_long(); }
-   inline unsigned int as_unsigned_int() const { return (unsigned int) as_long_long(); }
-   inline ::collection::index as_index() const { return (::collection::index)as_long_long(); }
-   inline unsigned int as_umessage() const { return as_unsigned_int(); }
+   inline ::i32 as_i32() const { return (::i32) as_i64(); }
+   inline ::u32 as_u32() const { return (::u32) as_i64(); }
+   inline ::collection::index as_index() const { return (::collection::index)as_i64(); }
+   inline ::u32 as_umessage() const { return as_u32(); }
    inline ::user::enum_message as_eusermessage() const;
    inline ::enum_message as_emessage1() const;
    inline ::enum_id as_eid() const;
@@ -766,12 +769,12 @@ public:
    {
 
       return { 
-         (((unsigned int)m_etype) << 24)
+         (((::u32)m_etype) << 24)
          ^
          (
             is_text() ? 
             ::as_hash32(m_str.c_str()).m_u : 
-            ((((unsigned int)m_uLargest) >> 8) & 0xffffffffu)
+            ((((::u32)m_uLargest) >> 8) & 0xffffffffu)
          ) 
       };
 
@@ -781,7 +784,7 @@ public:
 };
 
 
-//template < prototype_character CHARACTER, int t_size >
+//template < prototype_character CHARACTER, ::i32 t_size >
 //inline const_string_range_static_array < const CHARACTER*, t_size + 1 > operator + (const const_string_range_static_array < const CHARACTER*, t_size >& a, const ::atom & atom)
 //{
 //

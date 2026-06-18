@@ -23,10 +23,10 @@ namespace aura
 
 
 
-      virtual bool create_timer(uptr uEvent, unsigned int nEllapse, PFN_TIMER pfnTimer = nullptr, bool bPeriodic = true, void * pvoidData = nullptr);
+      virtual bool create_timer(uptr uEvent, ::u32 nEllapse, PFN_TIMER pfnTimer = nullptr, bool bPeriodic = true, void * pvoidData = nullptr);
       virtual bool delete_timer(uptr uEvent);
 
-      virtual bool set_timer(uptr uEvent, unsigned int nEllapse, PFN_TIMER pfnTimer = nullptr, bool bPeriodic = true, void * pvoidData = nullptr);
+      virtual bool set_timer(uptr uEvent, ::u32 nEllapse, PFN_TIMER pfnTimer = nullptr, bool bPeriodic = true, void * pvoidData = nullptr);
 
 
       virtual bool erase_timer(::timer * ptimer);
@@ -36,7 +36,7 @@ namespace aura
       virtual void delete_all_timers();
 
       virtual bool on_timer(::timer * ptimer) override;
-      virtual void on_timer(::timer * ptimer);
+      void operator()(::timer * ptimer) override;
 
       virtual bool e_timer_is_ok() override;
 

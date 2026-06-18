@@ -31,10 +31,10 @@
 //----------------------------------------------------------------------------
 
 void
-setvisualpage (int page)
+setvisualpage (::i32 page)
 {
-  int OldWritemode;
-  int Left, Top, Right, Bottom, Clip;
+  ::i32 OldWritemode;
+  ::i32 Left, Top, Right, Bottom, Clip;
   if (page == TcVisualPage)
     return;
   OldWritemode = TcWritemode;
@@ -61,7 +61,7 @@ setvisualpage (int page)
 //----------------------------------------------------------------------------
 
 void
-setactivepage (int page)
+setactivepage (::i32 page)
 {
   TcActivePage = page;
 }

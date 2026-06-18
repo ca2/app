@@ -34,7 +34,7 @@ namespace graphics3d
    }
 
 
-   void camera::initialize_camera(const ::floating_sequence3 & position, float yaw, float pitch)
+   void camera::initialize_camera(const ::floating_sequence3 & position, ::f32 yaw, ::f32 pitch)
    {
       
       m_locationPosition = position;
@@ -76,10 +76,10 @@ namespace graphics3d
    }
 
    // Mouse movement processing
-   void camera::ProcessMouseMovement(float xoffset, float yoffset, bool constrainPitch) 
+   void camera::ProcessMouseMovement(::f32 xoffset, ::f32 yoffset, bool constrainPitch) 
    {
 
-      const float sensitivity = 0.1f;  // Adjust this value to your liking
+      const ::f32 sensitivity = 0.1f;  // Adjust this value to your liking
       xoffset *= sensitivity;
       yoffset *= sensitivity;
 
@@ -98,7 +98,7 @@ namespace graphics3d
    }
 
 
-   void camera::ProcessKeyboardInput(int direction, float deltaTime) 
+   void camera::ProcessKeyboardInput(::i32 direction, ::f32 deltaTime) 
    {
 
       auto velocity = m_fMovementSpeed * deltaTime;  // Use movement speed
@@ -116,7 +116,7 @@ namespace graphics3d
 
    
    void camera::setOrthographicProjection(
-      float left, float right, float top, float bottom, float fNear, float fFar) 
+      ::f32 left, ::f32 right, ::f32 top, ::f32 bottom, ::f32 fNear, ::f32 fFar) 
    {
 
       m_matrixProjection = floating_matrix4{ 1.0f };
@@ -131,7 +131,7 @@ namespace graphics3d
 
 
    // This is the method being used below as opposed to ortho ^
-   void camera::setPerspectiveProjection(float fovy, float aspect, float fNear, float fFar) 
+   void camera::setPerspectiveProjection(::f32 fovy, ::f32 aspect, ::f32 fNear, ::f32 fFar) 
    {
 
       if (m_pengine->m_fYScale < 0.f)
@@ -147,8 +147,8 @@ namespace graphics3d
 
       }
 
-      /*assert(glm::abs(aspect - std::numeric_limits<float>::epsilon()) > 0.0f);
-      const float tanHalfFovy = tan(fovy / 2.f);
+      /*assert(glm::abs(aspect - std::numeric_limits<::f32>::epsilon()) > 0.0f);
+      const ::f32 tanHalfFovy = tan(fovy / 2.f);
       m_matrixProjection = floating_matrix4{ 0.0f };
       m_matrixProjection[0][0] = 1.f / (aspect * tanHalfFovy);
       m_matrixProjection[1][1] = 1.f / (tanHalfFovy);
@@ -240,7 +240,7 @@ namespace graphics3d
 
 
    // Get the camera's zoom (field of view)
-   float camera::GetZoom() const
+   ::f32 camera::GetZoom() const
    {
 
       return m_fZoom;
@@ -249,7 +249,7 @@ namespace graphics3d
 
 
    // Set the movement speed of the camera
-   void camera::SetMovementSpeed(float speed)
+   void camera::SetMovementSpeed(::f32 speed)
    {
 
       m_fMovementSpeed = speed;
@@ -281,17 +281,17 @@ namespace graphics3d
 
    }
 
-      void ::graphics3d::camera::Jump(float jumpHeight) {
+      void ::graphics3d::camera::Jump(::f32 jumpHeight) {
          m_locationPosition.y += jumpHeight;  // Move up by jumpHeight units
    }
 
-   void ::graphics3d::camera::TeleportDownward(float distance) {
+   void ::graphics3d::camera::TeleportDownward(::f32 distance) {
       m_locationPosition.y -= distance;  // Move down by the specified distance
    }
 
-   void ::graphics3d::camera::TeleportInDirection(int direction) 
+   void ::graphics3d::camera::TeleportInDirection(::i32 direction) 
    {
-      const float teleportDistance = 0.40f; // Set teleport distance to 50 units
+      const ::f32 teleportDistance = 0.40f; // Set teleport distance to 50 units
 
       if (direction == FORWARD) {
          m_locationPosition += m_sequence3Front * teleportDistance;
@@ -308,18 +308,18 @@ namespace graphics3d
    }
 
    // Function to update idle movement
-   void ::graphics3d::camera::UpdateIdleMovement(float deltaTime)
+   void ::graphics3d::camera::UpdateIdleMovement(::f32 deltaTime)
    {
-      static float elapsedTime = 0.0f;
+      static ::f32 elapsedTime = 0.0f;
       elapsedTime += deltaTime;
 
       // Subtle oscillation parameters
-      float amplitude = 0.1f; // Amplitude of the movement
-      float frequency = 1.0f; // Frequency of the oscillation
+      ::f32 amplitude = 0.1f; // Amplitude of the movement
+      ::f32 frequency = 1.0f; // Frequency of the oscillation
 
       // Calculate oscillation
-      float offsetX = amplitude * sin(frequency * elapsedTime);
-      float offsetY = amplitude * cos(frequency * elapsedTime);
+      ::f32 offsetX = amplitude * sin(frequency * elapsedTime);
+      ::f32 offsetY = amplitude * cos(frequency * elapsedTime);
 
       // Apply the oscillation to the camera position
       m_locationPosition.x += offsetX;

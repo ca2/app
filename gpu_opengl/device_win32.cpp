@@ -69,7 +69,7 @@ namespace gpu_opengl
       
       m_pwindow = pwindow;
       
-      m_hwnd = pwindow->_HWND();
+      m_hwnd = (HWND) pwindow->_HWND();
 
       ::gpu_opengl::device::create_main_context(pacmewindowingwindow);
 
@@ -93,7 +93,7 @@ namespace gpu_opengl
    }
 
 
-   void device_win32::initialize_gpu_device_for_off_screen(::gpu::approach* papproach, const ::int_rectangle& rectanglePlacement)
+   void device_win32::initialize_gpu_device_for_off_screen(::gpu::approach* papproach, const ::i32_rectangle& rectanglePlacement)
    {
 
       ::gpu::device::initialize_gpu_device_for_off_screen(papproach, rectanglePlacement);
@@ -102,14 +102,14 @@ namespace gpu_opengl
       m_pwindow = m_papplication->m_pacmeuserinteractionMain->window();
       m_bAddSwapChainSupport = false;
       ::cast < ::windowing_win32::window > pwin32window = m_pwindow;
-      m_hwnd = pwin32window->_HWND();
+      m_hwnd = (HWND) pwin32window->_HWND();
 
       //_create_device(rectanglePlacement.size());
 
    }
 
 
-   void device_win32::_defer_create_offscreen_window(const ::int_size& size)
+   void device_win32::_defer_create_offscreen_window(const ::i32_size& size)
    {
 
       if (::is_set(m_pwindow))
@@ -140,9 +140,9 @@ namespace gpu_opengl
 
       LPCTSTR lpClassName = L"draw2d_opengl_offscreen_buffer_window";
       LPCTSTR lpWindowName = L"draw2d_opengl_offscreen_buffer_window";
-      //unsigned int dwStyle = WS_CAPTION | WS_POPUPWINDOW; // | WS_VISIBLE
-      unsigned int dwExStyle = 0;
-      unsigned int dwStyle = WS_OVERLAPPEDWINDOW;
+      //::u32 dwStyle = WS_CAPTION | WS_POPUPWINDOW; // | WS_VISIBLE
+      ::u32 dwExStyle = 0;
+      ::u32 dwStyle = WS_OVERLAPPEDWINDOW;
       dwStyle |= WS_POPUP;
       //dwStyle |= WS_VISIBLE;
       //dwStyle |= WS_SYSMENU | WS_MINIMIZEBOX | WS_MAXIMIZEBOX;
@@ -150,10 +150,10 @@ namespace gpu_opengl
       //dwStyle = 0;
       dwStyle &= ~WS_THICKFRAME;
       dwStyle &= ~WS_BORDER;
-      int x = 0;
-      int y = 0;
-      int nWidth = size.cx;
-      int nHeight = size.cy;
+      ::i32 x = 0;
+      ::i32 y = 0;
+      ::i32 nWidth = size.cx;
+      ::i32 nHeight = size.cy;
       HWND hWndParent = nullptr;
       HMENU hMenu = nullptr;
       HINSTANCE hInstance = ::GetModuleHandleW(L"gpu_opengl.dll");
@@ -179,7 +179,7 @@ namespace gpu_opengl
 //   extern PFNWGLCHOOSEPIXELFORMATARBPROC loaded_wglChoosePixelFormatARB;
 //
 //
-//   void device_win32::_create_device(const ::int_size& size)
+//   void device_win32::_create_device(const ::i32_size& size)
 //   {
 //
 //      if (m_hdc && m_hglrc)
@@ -206,7 +206,7 @@ namespace gpu_opengl
 //
 //      //PIXELFORMATDESCRIPTOR pixformat;
 //
-//      //int chosenformat;
+//      //::i32 chosenformat;
 //
 //      //HDC hdc;
 //
@@ -351,7 +351,7 @@ namespace gpu_opengl
 //
 //HDC hdc = GetDC(m_hwnd);
 //
-////int pixelAttribs[] = {
+////::i32 pixelAttribs[] = {
 ////    WGL_DRAW_TO_WINDOW_ARB, GL_TRUE,
 ////    WGL_SUPPORT_OPENGL_ARB, GL_TRUE,
 ////    WGL_DOUBLE_BUFFER_ARB, GL_TRUE,
@@ -362,14 +362,14 @@ namespace gpu_opengl
 ////    0
 ////};
 //
-//int_array_base pixelAttribs;
+//i32_array_base pixelAttribs;
 //
 //
 //pixelAttribs.append({ WGL_DRAW_TO_WINDOW_ARB, GL_TRUE });
 //pixelAttribs.append({WGL_SUPPORT_OPENGL_ARB, GL_TRUE });
 //if(m_bAddSwapChainSupport)
 //{
-//   pixelAttribs.append({ WGL_DOUBLE_BUFFER_ARB, GL_TRUE });       // <-- double buffering
+//   pixelAttribs.append({ WGL_DOUBLE_BUFFER_ARB, GL_TRUE });       // <-- ::f64 buffering
 //}
 //pixelAttribs.append({ WGL_PIXEL_TYPE_ARB, WGL_TYPE_RGBA_ARB });
 //pixelAttribs.append({ WGL_COLOR_BITS_ARB, 32 });               // total color bits
@@ -381,14 +381,14 @@ namespace gpu_opengl
 //pixelAttribs.append({ WGL_STENCIL_BITS_ARB, 8 });            // optional, for stencil
 //pixelAttribs.add(0); // terminator
 //
-//int format = 0;
+//::i32 format = 0;
 //UINT numFormats = 0;
 //loaded_wglChoosePixelFormatARB(hdc, pixelAttribs.data(), NULL, 1, &format, &numFormats);
 //PIXELFORMATDESCRIPTOR pfd;
 //DescribePixelFormat(hdc, format, sizeof(pfd), &pfd);
 //SetPixelFormat(hdc, format, &pfd);
 //
-//int contextAttribs[] = {
+//::i32 contextAttribs[] = {
 //    WGL_CONTEXT_MAJOR_VERSION_ARB, 3,
 //    WGL_CONTEXT_MINOR_VERSION_ARB, 3,
 //    WGL_CONTEXT_PROFILE_MASK_ARB, WGL_CONTEXT_CORE_PROFILE_BIT_ARB,
@@ -495,7 +495,7 @@ namespace gpu_opengl
 
    //         //PIXELFORMATDESCRIPTOR pixformat;
 
-   //         //int chosenformat;
+   //         //::i32 chosenformat;
 
    //         HDC hdc = GetDC(m_hwnd);
 
@@ -558,7 +558,7 @@ namespace gpu_opengl
 
    //         pwindow->m_hglrcProto = hglrc;
 
-   //         //         int context_attribs[] = {
+   //         //         ::i32 context_attribs[] = {
    //         //WGL_CONTEXT_MAJOR_VERSION_ARB, 2,
    //         //WGL_CONTEXT_MINOR_VERSION_ARB, 1,
    //         //0, 0
@@ -639,7 +639,7 @@ namespace gpu_opengl
 
    //   ::GetClientRect(m_hwnd, &rectClient);
 
-   //   ::int_size sizeNew = { rectClient.right - rectClient.left,
+   //   ::i32_size sizeNew = { rectClient.right - rectClient.left,
    //rectClient.bottom - rectClient.top };
 
    //   if (m_size != sizeNew)
@@ -648,7 +648,7 @@ namespace gpu_opengl
 
    //      m_sizeHost = sizeNew;
    //      //HDC pdcDIB;                      // контекст устройства в памяти
-   //      //HBITMAP hbmpDIB;                 // и его текущий битмапvoid *pBitsDIB(NULL);            // содержимое битмапаint cxDIB(200); int cyDIB(300);  // его размеры (например для окна 200х300)
+   //      //HBITMAP hbmpDIB;                 // и его текущий битмапvoid *pBitsDIB(NULL);            // содержимое битмапаint cxDIB(200); ::i32 cyDIB(300);  // его размеры (например для окна 200х300)
    //      //auto &BIH=pwindow->m_bitmapinfoheaderProto;            // и заголовок// …// создаем DIB section// создаем структуру BITMAPINFOHEADER, описывающую наш DIBint iSize = sizeof(BITMAPINFOHEADER);  // размер
    //      //memset(&BIH, 0, sizeof(pwindow->m_bitmapinfoheaderProto));
 
@@ -683,7 +683,7 @@ namespace gpu_opengl
    //}
 
 
-   //void device_win32::_create_offscreen_buffer(const ::int_size& size)
+   //void device_win32::_create_offscreen_buffer(const ::i32_size& size)
    //{
 
    //   _create_offscreen_window(size);
@@ -716,7 +716,7 @@ namespace gpu_opengl
    //}
 
 
-   //void device_win32::resize_offscreen_buffer(const ::int_size& sizeParam)
+   //void device_win32::resize_offscreen_buffer(const ::i32_size& sizeParam)
    //{
 
    //   if (m_papplication->m_bUseSwapChainWindow)
@@ -872,7 +872,7 @@ namespace gpu_opengl
 
    //         informationf("MS WGL - wglMakeCurrent failed");
 
-   //         int iLastError = GetLastError();
+   //         ::i32 iLastError = GetLastError();
 
    //         informationf("last-error code: %d\n", iLastError);
 
@@ -907,7 +907,7 @@ namespace gpu_opengl
 
    //         informationf("MS WGL - wglMakeCurrent failed");
 
-   //         int iLastError = GetLastError();
+   //         ::i32 iLastError = GetLastError();
 
    //         informationf("last-error code: %d\n", iLastError);
 
@@ -1057,13 +1057,13 @@ namespace gpu_opengl
    //   if (iFindPrecision >= 0)
    //   {
 
-   //      stra[iFindPrecision] = "precision highp float;";
+   //      stra[iFindPrecision] = "precision highp ::f32;";
 
    //   }
    //   else
    //   {
 
-   //      stra.insert_at(1, "precision highp float;");
+   //      stra.insert_at(1, "precision highp ::f32;");
 
    //      iFindPrecision = 1;
 
@@ -1085,7 +1085,7 @@ namespace gpu_opengl
 
    //         informationf("MS WGL - wglMakeCurrent failed");
 
-   //         int iLastError = GetLastError();
+   //         ::i32 iLastError = GetLastError();
 
    //         informationf("last-error code: %d\n", iLastError);
 

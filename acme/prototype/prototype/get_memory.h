@@ -33,7 +33,7 @@ public:
    
    bool get(const block & block);
 
-   unsigned char * data() const;
+   ::u8 * data() const;
 
    memsize size() const;
 

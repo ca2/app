@@ -21,7 +21,7 @@ namespace sockets
    public:
 
       //void * m_p2;
-      int      m_iKeepAliveCount = 0;
+      ::i32      m_iKeepAliveCount = 0;
 
       
       ::networking::enum_address_type       m_eaddresstypePreferred;
@@ -80,7 +80,7 @@ namespace sockets
 //      bool                    m_bLost; ///< connection lost
 //      bool                    m_bErasedByHandler; ///< Set by handler before delete
 //      posix_time                  m_timeClose; ///< time in seconds when ordered to close
-//      int                     m_iBindPort;
+//      ::i32                     m_iBindPort;
 //      bool                    m_bDelete; ///< Delete by handler flag
       //bool                    m_bCloseAndDelete; ///< close and delete flag
       //::pointer<base_socket>          m_psocketParent; ///< Pointer to listen_socket class, valid for incoming sockets
@@ -91,7 +91,7 @@ namespace sockets
       //class ::time              m_timeStart; ///< Set by SetTimeout
       //class ::time              m_timeMaximum; ///< Defined by SetTimeout
 //      bool                    m_bNonBlocking;
-//      //    unsigned long           m_flags; ///< boolean flags, replacing old 'bool' members
+//      //    ulong           m_flags; ///< boolean flags, replacing old 'bool' members
 //
 //#if !defined(BSD_STYLE_SOCKETS)
 //      manual_reset_happening      m_happening;
@@ -103,7 +103,7 @@ namespace sockets
 //
 //      bool                    m_bIpv6; ///< This is an ipv6 base_socket if this one is true
 //
-//      int                     m_iSocketType; ///< Type of base_socket, from base_socket() call
+//      ::i32                     m_iSocketType; ///< Type of base_socket, from base_socket() call
 //      string                  m_strSocketProtocol; ///< Protocol, from base_socket() call
 //      bool                    m_bClient; ///< only client connections are pooled
 //      bool                    m_bRetain; ///< keep connection on close
@@ -122,8 +122,8 @@ namespace sockets
 //
 //      // LineProtocol
 //      bool                    m_bLineProtocol; ///< Line protocol mode flag
-//      bool                    m_skip_c; ///< Skip element2() char of CRLF or LFCR sequence in OnRead
-//      char                    m_c; ///< First char in CRLF or LFCR sequence
+//      bool                    m_skip_c; ///< Skip element2() ::i8 of CRLF or LFCR sequence in OnRead
+//      ::i8                    m_c; ///< First ::i8 in CRLF or LFCR sequence
 //      string                  m_line; ///< Current line in line protocol mode
 //
 //      ::e_status             m_estatus;
@@ -277,7 +277,7 @@ namespace sockets
       virtual bool is_end() const;
 
 
-      //virtual int close_socket(socket_id s);
+      //virtual ::i32 close_socket(socket_id s);
 
 
       virtual ::networking::port_t get_bind_port() const;
@@ -325,10 +325,10 @@ namespace sockets
 
 
       /** Outgoing traffic counter. */
-      virtual unsigned long long GetBytesSent(bool clear = false);
+      virtual ::u64 GetBytesSent(bool clear = false);
 
       /** Incoming traffic counter. */
-      virtual unsigned long long GetBytesReceived(bool clear = false);
+      virtual ::u64 GetBytesReceived(bool clear = false);
 
       // LIST_TIMEOUT
 
@@ -383,7 +383,7 @@ namespace sockets
       //virtual memsize read(void * buf, memsize c);
 
       virtual void on_read(const void * buf, memsize c);
-      virtual void OnRawData(char * buf, memsize len);
+      virtual void OnRawData(char_pointer buf, memsize len);
 
       /** Called on connect timeout (5s). */
       virtual void OnConnectFailed();
@@ -393,7 +393,7 @@ namespace sockets
       \lparam protocol Protocol number (tcp, udp, sctp, etc)
       \lparam s base_socket file descriptor
       */
-      //virtual void OnOptions(int family, int type, int protocol, SOCKET s);
+      //virtual void OnOptions(::i32 family, ::i32 type, ::i32 protocol, SOCKET s);
       /** Connection retry callback - return false to abort connection attempts */
       virtual bool OnConnectRetry();
       /** a reconnect has been made */
@@ -499,13 +499,13 @@ namespace sockets
       //@{
 
       //bool SetIpOptions(const void *point, socklen_t len);
-      virtual bool SetIpTOS(unsigned char tos);
-      virtual unsigned char IpTOS();
-      virtual bool SetIpTTL(int ttl);
-      virtual int IpTTL();
+      virtual bool SetIpTOS(::u8 tos);
+      virtual ::u8 IpTOS();
+      virtual bool SetIpTTL(::i32 ttl);
+      virtual ::i32 IpTTL();
       virtual bool SetIpHdrincl(bool x = true);
-      virtual bool SetIpMulticastTTL(int);
-      virtual int IpMulticastTTL();
+      virtual bool SetIpMulticastTTL(::i32);
+      virtual ::i32 IpMulticastTTL();
       virtual bool SetMulticastLoop(bool x = true);
       //virtual bool IpAddMembership(struct ip_mreq&);
       //virtual bool IpDropMembership(struct ip_mreq&);
@@ -532,7 +532,7 @@ namespace sockets
       virtual bool SetIpMtudiscover(bool x = true);
 //#endif
 //#ifdef IP_MTU
-      virtual int IpMtu();
+      virtual ::i32 IpMtu();
 //#endif
 //#ifdef IP_ROUTER_ALERT
       virtual bool SetIpRouterAlert(bool x = true);
@@ -552,19 +552,19 @@ namespace sockets
       virtual bool SoAcceptconn();
       virtual bool SetSoBroadcast(bool x = true);
       virtual bool SetSoDebug(bool x = true);
-      virtual int SoError();
+      virtual ::i32 SoError();
       virtual bool SetSoDontroute(bool x = true);
-      virtual bool SetSoLinger(int onoff, int linger);
+      virtual bool SetSoLinger(::i32 onoff, ::i32 linger);
       virtual bool SetSoOobinline(bool x = true);
-      virtual bool SetSoRcvlowat(int);
-      virtual bool SetSoSndlowat(int);
+      virtual bool SetSoRcvlowat(::i32);
+      virtual bool SetSoSndlowat(::i32);
       //virtual bool SetSoRcvtimeo(struct timeval&);
       //virtual bool SetSoSndtimeo(struct timeval&);
-      virtual bool SetSoRcvbuf(int);
-      virtual int SoRcvbuf();
-      virtual bool SetSoSndbuf(int);
-      virtual int SoSndbuf();
-      virtual int SoType();
+      virtual bool SetSoRcvbuf(::i32);
+      virtual ::i32 SoRcvbuf();
+      virtual bool SetSoSndbuf(::i32);
+      virtual ::i32 SoSndbuf();
+      virtual ::i32 SoType();
       virtual bool SetSoReuseaddr(bool x = true);
       virtual bool SetSoKeepalive(bool x = true);
 
@@ -581,13 +581,13 @@ namespace sockets
       //virtual bool SoPeercred(struct ::ucred & );
 //#endif
 //#ifdef SO_PRIORITY
-      virtual bool SetSoPriority(int);
+      virtual bool SetSoPriority(::i32);
 //#endif
 //#ifdef SO_RCVBUFFORCE
-     virtual bool SetSoRcvbufforce(int);
+     virtual bool SetSoRcvbufforce(::i32);
 //#endif
 //#ifdef SO_SNDBUFFORCE
-      virtual bool SetSoSndbufforce(int);
+      virtual bool SetSoSndbufforce(::i32);
 //#endif
 //#ifdef SO_TIMESTAMP
       virtual bool SetSoTimestamp(bool x = true);
@@ -663,9 +663,9 @@ namespace sockets
       /** Client = connecting tcp_socket. */
       virtual void SetIsClient();
       /** base_socket type from base_socket() call. */
-      virtual void SetSocketType(int x);
+      virtual void SetSocketType(::i32 x);
       /** base_socket type from base_socket() call. */
-      virtual int GetSocketType();
+      virtual ::i32 GetSocketType();
       /** Protocol type from base_socket() call. */
       virtual void SetSocketProtocol(const ::scoped_string & scopedstrSocketProtocol);
       /** Protocol type from base_socket() call. */
@@ -708,7 +708,7 @@ namespace sockets
 virtual      void SetSocks4Host(const ::scoped_string & scopedstr);
 ////#endif
 ////      /** Socks4 server port to use. */
-virtual      void SetSocks4Port(::networking::port_t int_point);
+virtual      void SetSocks4Port(::networking::port_t i32_point);
 ////      /** Provide a socks4 userid if required by the socks4 server. */
 virtual       void SetSocks4Userid(const string & x);
 ////      /** get the ip address/port of socks4 server to use.
@@ -727,25 +727,25 @@ virtual string GetSocks4Host();
 //      //\lparam host hostname to be resolved
 //      \lparam port port number passed along for the ride
 //      \return Resolve ID */
-//      //int Resolve(const ::scoped_string & scopedstrHost,::networking::port_t port = 0);
-//      //int Resolve6(const ::scoped_string & scopedstrHost, ::networking::port_t port = 0);
+//      //::i32 Resolve(const ::scoped_string & scopedstrHost,::networking::port_t port = 0);
+//      //::i32 Resolve6(const ::scoped_string & scopedstrHost, ::networking::port_t port = 0);
 //      /** Callback returning a resolved ::networking::address.
 //      \lparam atom Resolve ID from Resolve call
 //      \lparam a resolved ip address/port
 //      \lparam port port number passed to Resolve */
-//      //virtual void OnResolved(int atom, ::networking::address * addr);
-//      //virtual void OnResolved(int atom, in6_addr & a, ::networking::port_t port);
+//      //virtual void OnResolved(::i32 atom, ::networking::address * addr);
+//      //virtual void OnResolved(::i32 atom, in6_addr & a, ::networking::port_t port);
 //      /** Request asynchronous reverse dns find.
 //      \lparam a in_addr to be translated */
-//      //int Resolve(in_addr a);
-//      //int Resolve(in6_addr& a);
+//      //::i32 Resolve(in_addr a);
+//      //::i32 Resolve(in6_addr& a);
 //      /** Callback returning reverse resolve results.
 //      \lparam atom Resolve ID
 //      \lparam name Resolved hostname */
-//      //virtual void OnReverseResolved(int atom,const string & name);
+//      //virtual void OnReverseResolved(::i32 atom,const string & name);
 //      /** Callback indicating failed dns find.
 //      \lparam atom Resolve ID */
-//      //virtual void OnResolveFailed(int atom);
+//      //virtual void OnResolveFailed(::i32 atom);
 //      //@}
 //      /** \name Thread Support */
       //@{
@@ -792,11 +792,11 @@ virtual string GetSocks4Host();
       /** \name Triggers */
       //@{
       /** Subscribe to trigger atom. */
-      virtual void Subscribe(int atom);
+      virtual void Subscribe(::i32 atom);
       /** Unsubscribe from trigger atom. */
-      virtual void Unsubscribe(int atom);
+      virtual void Unsubscribe(::i32 atom);
       /** Trigger callback, with data passed from source to destination. */
-      //virtual void OnTrigger(int atom, const trigger_data & data);
+      //virtual void OnTrigger(::i32 atom, const trigger_data & data);
       /** Trigger cancelled because source has been deleted (as in delete). */
       //virtual void OnCancelled(socket_id atom);
       //@}
@@ -805,8 +805,8 @@ virtual string GetSocks4Host();
       virtual void run() override;
       //virtual bool step() override;
 
-      //virtual void __tracef(object * pparticle, enum_trace_level elevel, const ::scoped_string & scopedstrFunction, const ::scoped_string & scopedstrFile, int iLine, const ::scoped_string & scopedstrFormat, ...);
-      //virtual void __tracef(object * pparticle, enum_trace_level elevel, const ::scoped_string & scopedstrFunction, const ::scoped_string & scopedstrFile, int iLine, e_log elog, const ::scoped_string & scopedstrContext, int err, const ::scoped_string & scopedstrMessage);
+      //virtual void __tracef(object * pparticle, enum_trace_level elevel, const ::scoped_string & scopedstrFunction, const ::scoped_string & scopedstrFile, ::i32 iLine, const ::scoped_string & scopedstrFormat, ...);
+      //virtual void __tracef(object * pparticle, enum_trace_level elevel, const ::scoped_string & scopedstrFunction, const ::scoped_string & scopedstrFile, ::i32 iLine, e_log elog, const ::scoped_string & scopedstrContext, ::i32 err, const ::scoped_string & scopedstrMessage);
 
       virtual string get_short_description();
 

@@ -5,7 +5,7 @@
 #include "acme/platform/system_setup.h"
 
 
-int WINAPI WinMain(HINSTANCE hinstanceThis, HINSTANCE hinstancePrev, CHAR* pCmdLine, int nCmdShow)
+::i32 WINAPI WinMain(HINSTANCE hinstanceThis, HINSTANCE hinstancePrev, CHAR* pCmdLine, ::i32 nCmdShow)
 {
 
    auto papp = ::app_factory::new_app();
@@ -30,7 +30,7 @@ int WINAPI WinMain(HINSTANCE hinstanceThis, HINSTANCE hinstancePrev, CHAR* pCmdL
 
    papp->m_bConsole = false;
 
-   int iExitCode = papp->main_loop();
+   ::i32 iExitCode = papp->main_loop();
 
    return iExitCode;
 

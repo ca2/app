@@ -5,7 +5,7 @@
 
 
 #include "acme/filesystem/filesystem/file_system_cache_item.h"
-#include "acme/prototype/collection/int_map.h"
+#include "acme/prototype/collection/integer_map.h"
 #include "acme/prototype/prototype/unique_index.h"
 
 

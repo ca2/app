@@ -56,10 +56,10 @@ public:
 
    //::property* find_by_text(const ::scoped_string & scopedstr, ::collection::index iStart = 0) const;
 
-   ::collection::index index_of(const ::atom& atom, ::collection::index iStart = 0) const;// { return atom.is_text() ? find_text_key((const ::scoped_string &)atom.m_str, iStart) : find_index(atom.m_i)
+   ::collection::index index_of(const ::atom& atom, ::collection::index iStart = 0) const;// { return atom.is_text() ? find_text_key((const ::scoped_string &)atom.m_str, iStart) : find_index(atom.m_i32)
    ::collection::index index_of_name(const ::scoped_string &scopedstr, ::collection::index iStart = 0) const;
-   ::property * find(const ::atom & atom, ::collection::index iStart = 0) const;// { return atom.is_text() ? find_text_key((const ::scoped_string &)atom.m_str, iStart) : find_index(atom.m_i)
-   ::property & property(const ::atom & atom); // { return atom.is_text() ? get_text_key((const ::scoped_string &)atom.m_str, iStart) : get_index(atom.m_i); }
+   ::property * find(const ::atom & atom, ::collection::index iStart = 0) const;// { return atom.is_text() ? find_text_key((const ::scoped_string &)atom.m_str, iStart) : find_index(atom.m_i32)
+   ::property & property(const ::atom & atom); // { return atom.is_text() ? get_text_key((const ::scoped_string &)atom.m_str, iStart) : get_index(atom.m_i32); }
    const ::property& property(const ::atom& atom) const
    {
 
@@ -68,9 +68,9 @@ public:
    }
 
 
-   //::collection::index find(const ::atom_array_base& atoma) const;// { return atom.is_text() ? find_text_key((const ::scoped_string &)atom.m_str, iStart) : find_index(atom.m_i); }
-   ::property * find(const ::atom_array_base & atoma) const;// { return atom.is_text() ? find_text_key((const ::scoped_string &)atom.m_str, iStart) : find_index(atom.m_i); }
-   ::property & property(const ::atom_array_base & atoma); // { return atom.is_text() ? get_text_key((const ::scoped_string &)atom.m_str, iStart) : get_index(atom.m_i); }
+   //::collection::index find(const ::atom_array_base& atoma) const;// { return atom.is_text() ? find_text_key((const ::scoped_string &)atom.m_str, iStart) : find_index(atom.m_i32); }
+   ::property * find(const ::atom_array_base & atoma) const;// { return atom.is_text() ? find_text_key((const ::scoped_string &)atom.m_str, iStart) : find_index(atom.m_i32); }
+   ::property & property(const ::atom_array_base & atoma); // { return atom.is_text() ? get_text_key((const ::scoped_string &)atom.m_str, iStart) : get_index(atom.m_i32); }
    const ::property& property(const ::atom_array_base& atoma) const
    {
 
@@ -147,8 +147,8 @@ public:
 
 //#ifdef OS64BIT
 //
-//   inline ::property & operator[](int iIndex) { return payload(iIndex); }
-//   inline const ::property & operator[](int iIndex) const { return payload(iIndex); }
+//   inline ::property & operator[](::i32 iIndex) { return payload(iIndex); }
+//   inline const ::property & operator[](::i32 iIndex) const { return payload(iIndex); }
 //
 //#endif
 
@@ -229,17 +229,17 @@ public:
 
    const ::payload & get(const ::atom & atom) const;
 
-   ::float_array_base get(const ::atom & atom, const ::float_array_base & floata) const;
-   ::double_array_base get(const ::atom& atom, const ::double_array_base& doublea) const;
+   ::f32_array_base get(const ::atom & atom, const ::f32_array_base & f32a) const;
+   ::f64_array_base get(const ::atom& atom, const ::f64_array_base& f64a) const;
    ::string get(const ::atom& atom, const ::scoped_string & scopedstr) const;
-   int get(const ::atom& atom, const int & i) const;
-   long long get(const ::atom& atom, const long long & ll) const;
-   float get(const ::atom& atom, const float & f) const;
-   double get(const ::atom& atom, const double & d) const;
+   ::i32 get(const ::atom& atom, const ::i32 & i) const;
+   ::i64 get(const ::atom& atom, const ::i64 & ll) const;
+   ::f32 get(const ::atom& atom, const ::f32 & f) const;
+   ::f64 get(const ::atom& atom, const ::f64 & d) const;
 
    bool get_bool(const ::atom & atom, bool bDefault = false) const;
-   int get_int(const ::atom & atom, int iDefault = 0) const;
-   unsigned int get_unsigned_int(const ::atom & atom, unsigned int uDefault = 0) const;
+   ::i32 get_int(const ::atom & atom, ::i32 iDefault = 0) const;
+   ::u32 get_u32(const ::atom & atom, ::u32 uDefault = 0) const;
    ::string get_string(const ::atom & atom, const ::scoped_string & scopedstrDefault = nullptr) const;
    ::file::path get_file_path(const ::atom & atom, const ::file::path & pathDefault ={}) const;
 
@@ -468,6 +468,8 @@ public:
 
 
    void parse_environment_variable(const string_array_base & straEnvironment);
+
+   ::string id_payload_listing() const;
 
 
 };

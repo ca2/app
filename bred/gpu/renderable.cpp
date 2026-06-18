@@ -109,9 +109,9 @@ namespace gpu
       if (m_egpumodel == e_model_gltf)
       {
 
-         m_iFlags = entry["flags"].as_unsigned_int();
+         m_iFlags = entry["flags"].as_u32();
 
-         m_fScale = entry["scale"].as_float(1.0f);
+         m_fScale = entry["scale"].as_f32(1.0f);
 
       }
 

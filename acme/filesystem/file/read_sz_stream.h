@@ -36,7 +36,7 @@ public:
 
     //}
 
-    unsigned long long read_natural(int iRadix = 10);
+    ::u64 read_natural(::i32 iRadix = 10);
 //    {
 //
 //       return consume_natural(m_psz, m_pszBegin, iRadix);
@@ -44,7 +44,7 @@ public:
 //    }
 
 
-    long long read_integer(int iRadix = 10);
+    ::i64 read_integer(::i32 iRadix = 10);
 //    {
 //
 //       return consume_integer(m_psz, m_pszBegin, iRadix);
@@ -52,7 +52,7 @@ public:
 //    }
 
 
-    double read_floating();
+    ::f64 read_floating();
 //    {
 //
 //       return consume_floating(m_psz, m_pszBegin);
@@ -85,22 +85,22 @@ public:
     //void close() {}
 
 //   text_stream& operator <<(bool b);
-//   text_stream& operator <<(char ch);
+//   text_stream& operator <<(::i8 ch);
 //   text_stream& operator <<(uchar uch);
 //#ifdef WINDOWS
 //   text_stream& operator <<(unichar wch);
 //#endif
-//   text_stream& operator <<(short sh);
-//   text_stream& operator <<(unsigned short u);
-//   text_stream& operator <<(int i);
-//   text_stream& operator <<(unsigned int u);
-//   text_stream& operator <<(long long i);
-//   text_stream& operator <<(unsigned long long u);
-//   text_stream& operator <<(float f);
-//   text_stream& operator <<(double d);
-//   // void write(const ::int_point & point) ;
-//   // void write(const ::int_size & size) ;
-//   // void write(const ::int_rectangle &rectangle) ;
+//   text_stream& operator <<(::i16 sh);
+//   text_stream& operator <<(::u16 u);
+//   text_stream& operator <<(::i32 i);
+//   text_stream& operator <<(::u32 u);
+//   text_stream& operator <<(::i64 i);
+//   text_stream& operator <<(::u64 u);
+//   text_stream& operator <<(::f32 f);
+//   text_stream& operator <<(::f64 d);
+//   // void write(const ::i32_point & point) ;
+//   // void write(const ::i32_size & size) ;
+//   // void write(const ::i32_rectangle &rectangle) ;
 //
 //   text_stream& operator <<(const_char_pointer psz);
 //   //text_stream & operator <<(const ::atom & atom) ;
@@ -141,7 +141,7 @@ public:
 //
 //    }
 
-    read_sz_stream& operator >>(char& ch);
+    read_sz_stream& operator >>(::i8& ch);
 //    {
 //
 //       ch = *m_psz;
@@ -163,7 +163,7 @@ public:
     read_sz_stream& operator >>(uchar& uch);
 //    {
 //
-//       return operator >>((char&)uch);
+//       return operator >>((::i8&)uch);
 //
 //    }
 
@@ -171,7 +171,7 @@ public:
     read_sz_stream& operator >>(unichar& wch);
 //   {
 //
-//      int len = 0;
+//      ::i32 len = 0;
 //
 //      auto iIndex = unicode_index_length(m_psz, len);
 //
@@ -197,15 +197,15 @@ public:
    //}
 
 #endif
-    //read_sz_stream& operator >>(char& ch);
+    //read_sz_stream& operator >>(::i8& ch);
 //    {
 //
-//       return operator >>((char&)i);
+//       return operator >>((::i8&)i);
 //
 //    }
 
 
-    read_sz_stream& operator >>(short& sh);
+    read_sz_stream& operator >>(::i16& sh);
 //    {
 //
 //       auto iRead = read_integer();
@@ -223,14 +223,14 @@ public:
 //
 //       }
 //
-//       sh = (short)iRead;
+//       sh = (::i16)iRead;
 //
 //       return *this;
 //
 //    }
 
 
-    read_sz_stream& operator >>(unsigned short& u);
+    read_sz_stream& operator >>(::u16& u);
 //    {
 //
 //       auto uRead = read_natural();
@@ -242,14 +242,14 @@ public:
 //
 //       }
 //
-//       u = (unsigned short)uRead;
+//       u = (::u16)uRead;
 //
 //       return *this;
 //
 //    }
 
 
-    read_sz_stream& operator >>(int& i);
+    read_sz_stream& operator >>(::i32& i);
 //    {
 //
 //       auto iRead = read_integer();
@@ -267,14 +267,14 @@ public:
 //
 //       }
 //
-//       i = (int)iRead;
+//       i = (::i32)iRead;
 //
 //       return *this;
 //
 //    }
 
 
-    read_sz_stream& operator >>(unsigned int& u);
+    read_sz_stream& operator >>(::u32& u);
 //    {
 //
 //       auto uRead = read_natural();
@@ -286,14 +286,14 @@ public:
 //
 //       }
 //
-//       u = (unsigned int) uRead;
+//       u = (::u32) uRead;
 //
 //       return *this;
 //
 //    }
 
 
-    read_sz_stream& operator >>(long long& i);
+    read_sz_stream& operator >>(::i64& i);
 //    {
 //
 //       i = read_integer();
@@ -303,7 +303,7 @@ public:
 //    }
 
 
-    read_sz_stream& operator >>(unsigned long long& u);
+    read_sz_stream& operator >>(::u64& u);
 //    {
 //
 //       u = read_natural();
@@ -313,17 +313,17 @@ public:
 //    }
 
 
-    read_sz_stream& operator >>(float& f);
+    read_sz_stream& operator >>(::f32& f);
 //    {
 //
-//       f = (float) read_floating();
+//       f = (::f32) read_floating();
 //
 //       return *this;
 //
 //    }
 
 
-    read_sz_stream& operator >>(double& d);
+    read_sz_stream& operator >>(::f64& d);
 //    {
 //
 //       d = read_floating();

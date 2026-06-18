@@ -21,7 +21,7 @@ namespace image
       ::pointer<image_frame_array>        m_pframea;
       ::pointer<image_map>                m_pmap;
       ::pointer<size_image>               m_psizeimage;
-      double                              m_dSpeed;
+      ::f64                              m_dSpeed;
 
 
       image_extension();

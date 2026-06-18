@@ -97,7 +97,7 @@ namespace fs
    }
 
 
-   int link::is_dir(const ::file::path & path)
+   ::i32 link::is_dir(const ::file::path & path)
    {
 
       if(path == m_plisting->m_pathUser)

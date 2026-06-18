@@ -10,6 +10,7 @@
 #import <Cocoa/Cocoa.h>
 
 void ns_main_send(dispatch_block_t block);
+void ns_main_post(dispatch_block_t block);
 
 void ns_launch_app_at_url(NSURL * url, const char ** argv, int iFlags);
 
@@ -35,7 +36,7 @@ void ns_launch_app_at_url(NSURL * url, const char ** argv, int iFlags);
 bool is_main_thread();
 
 
-//void ns_do_main_loop(double dSeconds)
+//void ns_do_main_loop(::f64 dSeconds)
 //{
 //
 //   if(is_main_thread())
@@ -122,7 +123,7 @@ void ns_launch_bundle(const char * pszBundle, const char ** argv)
 void os_post_quit()
 {
    
-   ns_main_send(^()
+   ns_main_post(^()
    {
    
       [NSApp terminate:nil];
@@ -184,7 +185,7 @@ void ns_launch_app_at_url(NSURL * url, const char ** argv, int iFlags)
 
 
 
-//void _ns_do_tasks(double dSeconds)
+//void _ns_do_tasks(::f64 dSeconds)
 //{
 //   
 //   NSRunLoop * runLoop = [ NSRunLoop currentRunLoop ];

@@ -3,7 +3,7 @@
 
 #ifdef LINUX
 
-typedef unsigned long HCURSOR;
+typedef ulong HCURSOR;
 #define hcursor_null ((HCURSOR) 0)
 
 #else

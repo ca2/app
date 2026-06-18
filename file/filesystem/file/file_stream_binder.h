@@ -18,7 +18,7 @@ namespace file
       manual_reset_happening   _allBytesAreWritenEvent;
       manual_reset_happening   _thereAreBytesToReadEvent;
       manual_reset_happening   _readStreamIsClosedEvent;
-      unsigned char *               _data;
+      ::u8 *               _data;
       uptr            _size;
       uptr            ProcessedSize;
 

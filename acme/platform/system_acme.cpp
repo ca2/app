@@ -169,27 +169,27 @@ namespace platform
    //
    // #ifdef _DEBUG
    //       ::atom atom;
-   //       int iAtom1 = sizeof(atom);
-   //       int iAtomType = sizeof(atom.m_etype);
-   //       int iDomainId = sizeof(atom.m_domainid);
+   //       ::i32 iAtom1 = sizeof(atom);
+   //       ::i32 iAtomType = sizeof(atom.m_etype);
+   //       ::i32 iDomainId = sizeof(atom.m_domainid);
    //       ::payload payload;
    //       auto pType = &payload.m_etype;
    //       auto pAll = &payload.m_payloadall;
-   //       int iType = sizeof(payload.m_etype);
-   //       int iAll = sizeof(payload.m_payloadall);
-   //       int iThis = sizeof(payload);
-   //       int iAddUp;
+   //       ::i32 iType = sizeof(payload.m_etype);
+   //       ::i32 iAll = sizeof(payload.m_payloadall);
+   //       ::i32 iThis = sizeof(payload);
+   //       ::i32 iAddUp;
    // #if REFERENCING_DEBUGGING
    //       iAddUp += sizeof(payload.m_preferer);
    // #endif
-   //       int iComputed = (int) (((unsigned char*)pAll - (unsigned char*)pType) + iAll + iAddUp);
-   //       int iColor = sizeof(payload.m_color);
-   //       int iStr = sizeof(payload.m_str);
-   //       int iHls = sizeof(payload.m_hls);
-   //       int iTime = sizeof(payload.m_time);
-   //       int iAtom = sizeof(payload.id());
-   //       int iFileTime = sizeof(payload.m_filetime);
-   //       int iEarthTime = sizeof(payload.m_earthtime);
+   //       ::i32 iComputed = (::i32) (((::u8*)pAll - (::u8*)pType) + iAll + iAddUp);
+   //       ::i32 iColor = sizeof(payload.m_color);
+   //       ::i32 iStr = sizeof(payload.m_str);
+   //       ::i32 iHls = sizeof(payload.m_hls);
+   //       ::i32 iTime = sizeof(payload.m_time);
+   //       ::i32 iAtom = sizeof(payload.id());
+   //       ::i32 iFileTime = sizeof(payload.m_filetime);
+   //       ::i32 iEarthTime = sizeof(payload.m_earthtime);
    //       if (iThis != iComputed)
    //       {
    //
@@ -272,7 +272,7 @@ namespace platform
    //
    //       auto pathTraceLevelInformation = pathCa2ConfigSystemFolder / "trace_level_information.txt";
    //
-   //       if (this->has_argument("--log"))
+   //       if (this->has_argument("--plogwriter"))
    //       {
    //
    //          informationf("selecting informational trace\n");
@@ -319,7 +319,7 @@ namespace platform
    //
    //       }
    //
-   //       //         for (int i; i < this->get_argument_count1(); i++)
+   //       //         for (::i32 i; i < this->get_argument_count1(); i++)
    //       //         {
    //       //
    //       //            string strArg = this->get_argument1(i);
@@ -766,7 +766,7 @@ namespace platform
    //
    //          string_array_base straArguments;
    //
-   //          for (int i; i < this->get_argument_count1(); i++)
+   //          for (::i32 i; i < this->get_argument_count1(); i++)
    //          {
    //
    //             string strArgument = this->get_argument1(i);
@@ -794,14 +794,14 @@ namespace platform
    //          if (this->m_wenvp)
    //          {
    //
-   //             int iIndex;
+   //             ::i32 iIndex;
    //
    //             for (auto wenv = this->m_wenvp; *wenv != 0; wenv++, iIndex++)
    //             {
    //
    //                auto thisEnv = *wenv;
    //
-   //                int iLen = (int) wcslen(thisEnv);
+   //                ::i32 iLen = (::i32) wcslen(thisEnv);
    //
    //                /*if (iLen >= 42)
    //                {
@@ -994,7 +994,7 @@ namespace platform
    //    }
    //
    //
-   //    unsigned int system::crc32(unsigned int uCrc, const ::block& block)
+   //    ::u32 system::crc32(::u32 uCrc, const ::block& block)
    //    {
    //
    //       _synchronous_lock synchronouslock(this->synchronization(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
@@ -1044,7 +1044,7 @@ namespace platform
    //    }
    //
    //
-   //    //void acme_system_layer::system::__tracea(enum_trace_level elevel, const ::scoped_string & scopedstrFunction, const ::scoped_string & scopedstrFile, int iLine, const ::scoped_string & scopedstr) const
+   //    //void acme_system_layer::system::__tracea(enum_trace_level elevel, const ::scoped_string & scopedstrFunction, const ::scoped_string & scopedstrFile, ::i32 iLine, const ::scoped_string & scopedstr) const
    //    //{
    //
    //    //   if (!m_ptracelog)
@@ -1409,7 +1409,7 @@ namespace platform
    //
    //       }
    //
-   //       //::string strRoot = "ca2.network";
+   //       //::string strRoot = "ca2.site";
    //
    //       //::file::path pathGooglePayload = "C:\\sensitive\\sensitive\\api\\google\\account\\" + strRoot + ".network_payload";
    //
@@ -1803,7 +1803,7 @@ namespace platform
    //    }
    //
    //
-   //    //   int system::pcre_add_tokens(string_array_base& stra, const ::scoped_string & scopedstrTopic, const ::scoped_string & scopedstrRegexp, int nCount)
+   //    //   ::i32 system::pcre_add_tokens(string_array_base& stra, const ::scoped_string & scopedstrTopic, const ::scoped_string & scopedstrRegexp, ::i32 nCount)
    //    //   {
    //    //
    //    //      throw_todo();
@@ -1826,7 +1826,7 @@ namespace platform
    //    void acme_system_layer::system::get_public_internet_domain_extension_list(string_array_base& stra)
    //    {
    //
-   //       //::file::path pathPublicDomainExtensionList = "https://ca2.network/public_internet_domain_extension_list.txt";
+   //       //::file::path pathPublicDomainExtensionList = "https://ca2.site/public_internet_domain_extension_list.txt";
    //
    //       //file()->load_lines(stra, pathPublicDomainExtensionList);
    //
@@ -2148,7 +2148,7 @@ namespace platform
    //
    //             ::string_array_base straFiles;
    //
-   //             for (int iArgument; iArgument < this->m_argc; )
+   //             for (::i32 iArgument; iArgument < this->m_argc; )
    //             {
    //
    //                auto iArgumentBefore = iArgument;
@@ -2288,7 +2288,7 @@ namespace platform
    //    //}
    //
    //
-   //    //void acme_system_layer::system::system_construct(int argc, char** argv, char** envp)
+   //    //void acme_system_layer::system::system_construct(::i32 argc, char_pointer * argv, char_pointer * envp)
    //    //{
    //
    //    //   throw ::interface_only();
@@ -2296,7 +2296,7 @@ namespace platform
    //    //}
    //
    //
-   //    //void acme_system_layer::system::system_construct(int argc, wchar_t** argv, wchar_t** envp)
+   //    //void acme_system_layer::system::system_construct(::i32 argc, wchar_t** argv, wchar_t** envp)
    //    //{
    //
    //    //   throw ::interface_only();
@@ -2492,7 +2492,7 @@ namespace platform
    //    }
    //
    //
-   //    //void acme_system_layer::system::system_construct(int argc, wchar_t** argv, wchar_t** envp)
+   //    //void acme_system_layer::system::system_construct(::i32 argc, wchar_t** argv, wchar_t** envp)
    //    //{
    //
    //    //   acme_main_data::system_construct(argc, argv, envp);
@@ -2511,7 +2511,7 @@ namespace platform
    // #ifdef _DEBUG
    //
    //
-   //    long long system::increment_reference_count()
+   //    ::i64 system::increment_reference_count()
    //    {
    //
    //       return ::object::increment_reference_count();
@@ -2519,7 +2519,7 @@ namespace platform
    //    }
    //
    //
-   //    long long system::decrement_reference_count()
+   //    ::i64 system::decrement_reference_count()
    //    {
    //
    //       return ::object::decrement_reference_count();
@@ -2530,7 +2530,7 @@ namespace platform
    // #endif
    //
    //
-   //    void acme_system_layer::system::system_id_topic(int iId, long long llWparam, long long llLparam)
+   //    void acme_system_layer::system::system_id_topic(::i32 iId, ::i64 llWparam, ::i64 llLparam)
    //    {
    //
    //       call((::enum_id)iId, iPayload);
@@ -3379,7 +3379,7 @@ namespace platform
    //    }
    //
    //
-   //    void acme_system_layer::system::install_progress_add_up(int iAddUp)
+   //    void acme_system_layer::system::install_progress_add_up(::i32 iAddUp)
    //    {
    //
    //
@@ -3433,7 +3433,7 @@ namespace platform
    //    }
    //
    //
-   //    double system::luminance() const
+   //    ::f64 system::luminance() const
    //    {
    //
    //       return m_dLuminance;
@@ -3460,7 +3460,7 @@ namespace platform
    //    }
    //
    //
-   //    ::color::color system::get_simple_ui_color(::enum_element eelement, ::user::enum_state estate)
+   //    ::color::color system::get_simple_ui_color(const ::e_element & eelement, const ::user::e_state & estate)
    //    {
    //
    //       ::color::color color;
@@ -3857,26 +3857,7 @@ namespace platform
    }
 
 
-   ::particle* acme_system_layer::http_download_mutex()
-   {
-      return nullptr;
-   }
 
-
-   ::string_array_base * acme_system_layer::http_download_array()
-   {
-      
-      return nullptr;
-      
-   }
-
-
-   ::string_array_base * acme_system_layer::http_exists_array()
-   {
-      
-      return nullptr;
-      
-   }
 
 
    class ::time * acme_system_layer::file_listing_cache_time()
@@ -3930,7 +3911,14 @@ namespace platform
    }
 
 
-   void acme_system_layer::do_graphics_and_windowing_factory()
+   void acme_system_layer::do_graphics_factory()
+   {
+
+
+   }
+
+
+   void acme_system_layer::do_windowing_factory()
    {
 
 
@@ -3950,7 +3938,7 @@ namespace platform
 
    //void acme_system_layer::os_construct(){}
 
-   void acme_system_layer::initialize_matter()
+   void acme_system_layer::defer_initialize_matter()
    {
    }
 
@@ -3959,10 +3947,10 @@ namespace platform
    // #ifdef _DEBUG
    //
    //
-   //       long long increment_reference_count() override{}
+   //       ::i64 increment_reference_count() override{}
    //
    //
-   //       long long decrement_reference_count() override{}
+   //       ::i64 decrement_reference_count() override{}
    //
    //
    // #endif
@@ -4104,6 +4092,28 @@ return nullptr;
       return nullptr;
 
    }
+
+   ::platform::subsystem * acme_system_layer::MainSubsystem()
+   {
+
+      return nullptr;
+
+   }
+
+   ::platform::ProfileLogger& acme_system_layer::ProfileLogger()
+   {
+
+      return *((::platform::ProfileLogger *)nullptr);
+
+   }
+   
+
+   // ::string_table* acme_system_layer::string_table()
+   // {
+   //
+   //    return nullptr;
+   //
+   // }
 
 
    ::component * acme_system_layer::component(const ::scoped_string & scopedstrComponent)
@@ -4250,7 +4260,7 @@ return nullptr;
    // }
 
 
-   unsigned int acme_system_layer::crc32(unsigned int uCrc, const ::block& block)
+   ::u32 acme_system_layer::crc32(::u32 uCrc, const ::block& block)
    {
       return 0;
    }
@@ -4258,6 +4268,13 @@ return nullptr;
 
    void acme_system_layer::create_session(::collection::index iEdge)
    {
+   }
+
+
+   void acme_system_layer::prepare_application()
+   {
+
+
    }
 
 
@@ -4317,7 +4334,7 @@ return nullptr;
 
 #ifdef WINDOWS_DESKTOP
 
-   void acme_system_layer::system_construct(hinstance hinstanceThis, hinstance hPrevInstance, char* pCmdLine, int nCmdShow)
+   void acme_system_layer::system_construct(hinstance hinstanceThis, hinstance hPrevInstance, char_pointer pCmdLine, ::i32 nCmdShow)
    {
    }
 
@@ -4380,33 +4397,54 @@ return nullptr;
    {
    }
 
-   ::request * acme_system_layer::application_start_file_open_request()
+   //::request * acme_system_layer::application_start_file_open_request()
+   //{
+
+   //   return nullptr;
+
+   //}
+
+
+   //void acme_system_layer::defer_start_application()
+   //{
+
+
+
+   //}
+   ::accessibility::accessibility * acme_system_layer::accessibility()
    {
 
       return nullptr;
 
    }
 
-
-   void acme_system_layer::post_application_start()
-   {
-
-
-   }
-
-
-   void acme_system_layer::defer_post_application_start_file_open_request()
-   {
+   
+   // void acme_system_layer::defer_start_system()
+   // {
+   //
+   //
+   // }
 
 
-   }
+   //void acme_system_layer::post_application_start()
+   //{
 
 
-   void acme_system_layer::post_application_started()
-   {
+   //}
 
 
-   }
+   //void acme_system_layer::defer_post_application_start_file_open_request()
+   //{
+
+
+   //}
+
+
+   //void acme_system_layer::post_application_started()
+   //{
+
+
+   //}
 
 
    void acme_system_layer::canonical_system_main()
@@ -4486,7 +4524,7 @@ void acme_system_layer::open_internet_link(const ::scoped_string & scopedstrUrl,
    // }
 
 
-   //void acme_system_layer::__tracea(enum_trace_level elevel, const ::scoped_string & scopedstrFunction, const ::scoped_string & scopedstrFile, int iLine, const ::scoped_string & scopedstr) const override{}
+   //void acme_system_layer::__tracea(enum_trace_level elevel, const ::scoped_string & scopedstrFunction, const ::scoped_string & scopedstrFile, ::i32 iLine, const ::scoped_string & scopedstr) const override{}
 
 
    //void acme_system_layer::main_user_async(const ::procedure & procedure, ::enum_priority epriority = e_priority_normal){}
@@ -4523,9 +4561,9 @@ void acme_system_layer::open_internet_link(const ::scoped_string & scopedstrUrl,
    //
    //      critical_section_lock synchronouslock(&m_csEnumText){}
    //
-   //      m_mapEnumToText[::type<e>().name()][(long long)e] = psz{}
+   //      m_mapEnumToText[::type<e>().name()][(::i64)e] = psz{}
    //
-   //      m_mapTextToEnum[::type<e>().name()][psz] = (long long)e{}
+   //      m_mapTextToEnum[::type<e>().name()][psz] = (::i64)e{}
    //
    //   }
 
@@ -4536,7 +4574,7 @@ void acme_system_layer::open_internet_link(const ::scoped_string & scopedstrUrl,
    //
    //      critical_section_lock synchronouslock(&m_csEnumText){}
    //
-   //      return m_mapEnumToText[::type<e>().name()][(long long)e]{}
+   //      return m_mapEnumToText[::type<e>().name()][(::i64)e]{}
    //
    //   }
 
@@ -4547,7 +4585,7 @@ void acme_system_layer::open_internet_link(const ::scoped_string & scopedstrUrl,
    //
    //      critical_section_lock lock(&m_csEnumText){}
    //
-   //      long long iValue{}
+   //      ::i64 iValue{}
    //
    //      if (m_mapTextToEnum[::type<e>().name()].find(scopedstr, iValue))
    //      {
@@ -4580,7 +4618,7 @@ void acme_system_layer::open_internet_link(const ::scoped_string & scopedstrUrl,
    //   inline string enum_text(const base_enum < ENUM, edefault >& b)
    //   {
    //
-   //      return enum_text(b.m_evalue, (long long)(ENUM)b){}
+   //      return enum_text(b.m_evalue, (::i64)(ENUM)b){}
    //
    //   }
 
@@ -4612,7 +4650,7 @@ void acme_system_layer::open_internet_link(const ::scoped_string & scopedstrUrl,
    // }
 
 
-   // static inline ::atom atom(long long i)
+   // static inline ::atom atom(::i64 i)
    // {
    // }
    //
@@ -4641,7 +4679,7 @@ void acme_system_layer::open_internet_link(const ::scoped_string & scopedstrUrl,
    }
 
 
-   //virtual ::pointer<::regular_expression::context> create_regular_expression_context(const ::scoped_string & scopedstrStyle, int iCount){}
+   //virtual ::pointer<::regular_expression::context> create_regular_expression_context(const ::scoped_string & scopedstrStyle, ::i32 iCount){}
    ::pointer<::regular_expression::context> acme_system_layer::get_regular_expression_context(const ::scoped_string & scopedstrStyle)
    {
       return {};
@@ -4660,7 +4698,7 @@ void acme_system_layer::open_internet_link(const ::scoped_string & scopedstrUrl,
    }
 
 
-   //virtual int system::pcre_add_tokens(string_array_base& stra, const ::scoped_string & scopedstrTopic, const ::scoped_string & scopedstrRegexp, int nCount)
+   //virtual ::i32 system::pcre_add_tokens(string_array_base& stra, const ::scoped_string & scopedstrTopic, const ::scoped_string & scopedstrRegexp, ::i32 nCount)
 
    void acme_system_layer::get_public_internet_domain_extension_list(string_array_base& stra)
    {
@@ -4673,7 +4711,7 @@ void acme_system_layer::open_internet_link(const ::scoped_string & scopedstrUrl,
    }
 
 
-   ::lresult acme_system_layer::system_id_topic(int iId, long long llWparam, long long llLparam)
+   ::lresult acme_system_layer::system_id_topic(::i32 iId, ::i64 llWparam, ::i64 llLparam)
    {
       
       return 0;
@@ -4890,7 +4928,7 @@ void acme_system_layer::on_open_untitled_file()
    }
 
 
-   void acme_system_layer::install_progress_add_up(int iAddUp)
+   void acme_system_layer::install_progress_add_up(::i32 iAddUp)
    {
    }
 
@@ -4907,7 +4945,7 @@ void acme_system_layer::on_open_untitled_file()
    }
 
 
-   double acme_system_layer::luminance() const
+   ::f64 acme_system_layer::luminance() const
    {
       return 0.;
    }
@@ -4946,16 +4984,16 @@ void acme_system_layer::on_open_untitled_file()
    }
 
 
-   //      virtual int get_simple_ui_darkness(){}
+   //      virtual ::i32 get_simple_ui_darkness(){}
 
-   //      void acme_system_layer::set_simple_ui_darkness(int iWeatherDarkness){}
+   //      void acme_system_layer::set_simple_ui_darkness(::i32 iWeatherDarkness){}
 
    void acme_system_layer::set_dark_mode(bool bDark)
    {
    }
 
 
-    ::color::color acme_system_layer::get_simple_ui_color(::enum_element eelement, ::user::enum_state estate)
+    ::color::color acme_system_layer::get_simple_ui_color(const ::e_element & eelement, const ::user::e_state & estate)
    {
       return {};
    }
@@ -5057,7 +5095,7 @@ void acme_system_layer::on_open_untitled_file()
 // //}
 //
 //
-// void acme_system_layer::system_id_topic(void* pSystem, long long iSystemUserMessage, long long iParam)
+// void acme_system_layer::system_id_topic(void* pSystem, ::i64 iSystemUserMessage, ::i64 iParam)
 // {
 //
 //    auto psystem = (::platform::system *)pSystem;
@@ -5140,7 +5178,7 @@ void acme_system_layer::on_open_untitled_file()
 // //
 // //         //   //pfuture->wait(10_s);
 // //
-// //         //   int iDialogResult = pfuture->m_var;
+// //         //   ::i32 iDialogResult = pfuture->m_var;
 // //
 // //         //   informationf("result " + as_string(iDialogResult));
 // //

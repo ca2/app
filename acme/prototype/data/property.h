@@ -63,7 +63,7 @@ namespace data
          property& operator *() { return *this->operator->(); }
          property& operator *() const { return *this->operator->(); }
 
-         operator int() const { return ::is_set(m_pproperty) && ::is_set(m_ppropertyobject); }
+         operator ::i32() const { return ::is_set(m_pproperty) && ::is_set(m_ppropertyobject); }
 
          linked_property& operator=(const linked_property& linkedproperty)
          {
@@ -129,7 +129,7 @@ namespace data
    //   property& operator *() { return *this->operator->(); }
    //   property& operator *() const { return *this->operator->(); }
    //
-   //   operator int() const { return ::is_set(m_pproperty) && ::is_set(m_ppropertyobject); }
+   //   operator ::i32() const { return ::is_set(m_pproperty) && ::is_set(m_ppropertyobject); }
    //
    //   linked_property& operator=(const linked_property& linkedproperty)
    //   {

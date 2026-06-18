@@ -3,7 +3,7 @@
 #include "acme/constant/user_message.h"
 #include "acme/constant/user_key.h"
 #include "acme/constant/timer.h"
-#include "acme/platform/timer.h"
+//#include "acme/platform/timer.h"
 #include "acme/platform/hyperlink.h"
 #include "aura/windowing/windowing.h"
 #include "aura/windowing/display.h"
@@ -170,12 +170,12 @@ namespace account
    }
 
 
-   void main_window::on_timer(::timer * ptimer)
+   void main_window::operator()(::timer * ptimer)
    {
 
-      ::user::interaction::on_timer(ptimer);
+      ::user::interaction::operator()(ptimer);
 
-      if (ptimer->m_uTimer == e_timer_check_cached_credentials && !m_plogin->m_bCred)
+      if (ptimer->m_etimer == e_timer_check_cached_credentials && !m_plogin->m_bCred)
       {
 
          try
@@ -201,7 +201,7 @@ namespace account
    }
 
 
-   string main_window::do_account(const ::int_rectangle & rectangleParam)
+   string main_window::do_account(const ::i32_rectangle & rectangleParam)
    {
 
       m_pcredentials->m_iPasswordOriginalLength = -1;
@@ -210,7 +210,7 @@ namespace account
 
       ::user::interaction * puiParent = psession->payload("plugin_parent").cast < ::user::interaction >();
 
-      ::int_rectangle rectangleDesktop;
+      ::i32_rectangle rectangleDesktop;
 
       if (puiParent != nullptr)
       {
@@ -235,17 +235,17 @@ namespace account
 
       }
 
-      ::int_rectangle rectangleFontopus;
+      ::i32_rectangle rectangleFontopus;
 
-      ::int_rectangle rectangleLogin;
+      ::i32_rectangle rectangleLogin;
 
-      int stdw = 800;
+      ::i32 stdw = 800;
 
-      int stdh = 400;
+      ::i32 stdh = 400;
 
-      int w = stdw;
+      ::i32 w = stdw;
 
-      int h = stdh;
+      ::i32 h = stdh;
 
       if (w > rectangleDesktop.width())
       {
@@ -313,7 +313,7 @@ namespace account
 
       display(e_display_normal);
 
-      set_timer(2000, 300_ms, nullptr);
+      //set_timer(2000, 300_ms, nullptr);
 
       atom idResult = wait_for_dialog_result();
 
@@ -322,7 +322,7 @@ namespace account
    }
 
 
-   string main_window::get_cred(const ::int_rectangle & rectangle, string & strUsername, string & strPassword, const ::scoped_string & scopedstrToken, const ::scoped_string & scopedstrTitle)
+   string main_window::get_cred(const ::i32_rectangle & rectangle, string & strUsername, string & strPassword, const ::scoped_string & scopedstrToken, const ::scoped_string & scopedstrTitle)
    {
 
       if (scopedstrTitle == "ca2")
@@ -380,7 +380,7 @@ namespace account
 
          keep < bool > keepLayout(&m_bFontopusSimpleUiLayout,true,false,true);
 
-         ::int_rectangle rectangleX1;
+         ::i32_rectangle rectangleX1;
 
          this->rectangle(rectangleX1);
 
@@ -389,7 +389,7 @@ namespace account
          if(get_parent() != nullptr)
          {
 
-            ::int_rectangle rectangleParent;
+            ::i32_rectangle rectangleParent;
 
             get_parent()->window_rectangle(rectangleParent);
 
@@ -406,7 +406,7 @@ namespace account
          if(rectangleX1.area() < 100 * 100 || bParentChange)
          {
 
-            ::int_rectangle rectangleDesktop;
+            ::i32_rectangle rectangleDesktop;
 
             if(get_parent() != nullptr)
             {
@@ -427,17 +427,17 @@ namespace account
 
             }
 
-            ::int_rectangle rectangleFontopus;
+            ::i32_rectangle rectangleFontopus;
 
-            ::int_rectangle rectangleLogin;
+            ::i32_rectangle rectangleLogin;
 
-            int stdw = 800;
+            ::i32 stdw = 800;
 
-            int stdh = 184 + 23 + 184;
+            ::i32 stdh = 184 + 23 + 184;
 
-            int w = stdw;
+            ::i32 w = stdw;
 
-            int h = stdh;
+            ::i32 h = stdh;
 
             if(w > rectangleDesktop.width())
             {

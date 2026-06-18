@@ -2,7 +2,7 @@
 
 
 #include "acme/platform/department.h"
-#include "acme/platform/timer_array.h"
+#include "acme/platform/timer.h"
 
 
 namespace userpresence
@@ -11,7 +11,9 @@ namespace userpresence
 
    class CLASS_DECL_CORE department :
       virtual public ::platform::department,
-      virtual public ::acme::timer_array
+virtual public ::timer_callback::base
+       //,
+      //virtual public ::acme::timer_array
    {
    public:
 
@@ -37,7 +39,7 @@ namespace userpresence
 
       virtual bool is_initialized();
 
-      void on_timer(::timer * ptimer) override;
+      void operator()(::timer * ptimer) override;
 
 
       bool on_ui_mouse_message(::user::mouse * pmouse);

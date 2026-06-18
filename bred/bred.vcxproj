@@ -144,50 +144,62 @@
   <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
     <Import Project="..\..\..\operating_system\operating_system-windows\Common.props" />
+    <Import Project="..\..\..\operating_system\operating_system-windows\SharedLibraryCommon.props" />
   </ImportGroup>
   <ImportGroup Condition="'$(Configuration)|$(Platform)'=='StaticDebug|Win32'" Label="PropertySheets">
     <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
     <Import Project="..\..\..\operating_system\operating_system-windows\Common.props" />
+    <Import Project="..\..\..\operating_system\operating_system-windows\SharedLibraryCommon.props" />
   </ImportGroup>
   <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
     <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
     <Import Project="..\..\..\operating_system\operating_system-windows\Common.props" />
+    <Import Project="..\..\..\operating_system\operating_system-windows\SharedLibraryCommon.props" />
   </ImportGroup>
   <ImportGroup Condition="'$(Configuration)|$(Platform)'=='StaticRelease|Win32'" Label="PropertySheets">
     <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
     <Import Project="..\..\..\operating_system\operating_system-windows\Common.props" />
+    <Import Project="..\..\..\operating_system\operating_system-windows\SharedLibraryCommon.props" />
   </ImportGroup>
   <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
     <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
     <Import Project="..\..\..\operating_system\operating_system-windows\Common.props" />
+    <Import Project="..\..\..\operating_system\operating_system-windows\SharedLibraryCommon.props" />
   </ImportGroup>
   <ImportGroup Condition="'$(Configuration)|$(Platform)'=='Debug|ARM64'" Label="PropertySheets">
     <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
     <Import Project="..\..\..\operating_system\operating_system-windows\Common.props" />
+    <Import Project="..\..\..\operating_system\operating_system-windows\SharedLibraryCommon.props" />
   </ImportGroup>
   <ImportGroup Condition="'$(Configuration)|$(Platform)'=='StaticDebug|x64'" Label="PropertySheets">
     <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
     <Import Project="..\..\..\operating_system\operating_system-windows\Common.props" />
+    <Import Project="..\..\..\operating_system\operating_system-windows\SharedLibraryCommon.props" />
   </ImportGroup>
   <ImportGroup Condition="'$(Configuration)|$(Platform)'=='StaticDebug|ARM64'" Label="PropertySheets">
     <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
     <Import Project="..\..\..\operating_system\operating_system-windows\Common.props" />
+    <Import Project="..\..\..\operating_system\operating_system-windows\SharedLibraryCommon.props" />
   </ImportGroup>
   <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
     <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
     <Import Project="..\..\..\operating_system\operating_system-windows\Common.props" />
+    <Import Project="..\..\..\operating_system\operating_system-windows\SharedLibraryCommon.props" />
   </ImportGroup>
   <ImportGroup Condition="'$(Configuration)|$(Platform)'=='Release|ARM64'" Label="PropertySheets">
     <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
     <Import Project="..\..\..\operating_system\operating_system-windows\Common.props" />
+    <Import Project="..\..\..\operating_system\operating_system-windows\SharedLibraryCommon.props" />
   </ImportGroup>
   <ImportGroup Condition="'$(Configuration)|$(Platform)'=='StaticRelease|x64'" Label="PropertySheets">
     <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
     <Import Project="..\..\..\operating_system\operating_system-windows\Common.props" />
+    <Import Project="..\..\..\operating_system\operating_system-windows\SharedLibraryCommon.props" />
   </ImportGroup>
   <ImportGroup Condition="'$(Configuration)|$(Platform)'=='StaticRelease|ARM64'" Label="PropertySheets">
     <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
     <Import Project="..\..\..\operating_system\operating_system-windows\Common.props" />
+    <Import Project="..\..\..\operating_system\operating_system-windows\SharedLibraryCommon.props" />
   </ImportGroup>
   <PropertyGroup Label="UserMacros" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
@@ -515,6 +527,7 @@
     <ClInclude Include="gpu\frame_ephemeral.h" />
     <ClInclude Include="gpu\frame_storage.h" />
     <ClInclude Include="gpu\graphics.h" />
+    <ClInclude Include="gpu\graphics_context.h" />
     <ClInclude Include="gpu\guard.h" />
     <ClInclude Include="gpu\context_lock.h" />
     <ClInclude Include="gpu\hlsl_context.h" />
@@ -665,6 +678,7 @@
     <ClCompile Include="gpu\frame_ephemeral.cpp" />
     <ClCompile Include="gpu\frame_storage.cpp" />
     <ClCompile Include="gpu\graphics.cpp" />
+    <ClCompile Include="gpu\graphics_context.cpp" />
     <ClCompile Include="gpu\guard.cpp" />
     <ClCompile Include="gpu\context_lock.cpp" />
     <ClCompile Include="gpu\hlsl_context.cpp" />

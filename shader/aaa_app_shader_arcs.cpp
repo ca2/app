@@ -9,7 +9,7 @@ namespace simple_shader
 {
 
 
-   void render::draw_arc(::draw2d::graphics_pointer & pgraphics, int_rectangle& r, double dStart, double dAngle, bool bPath)
+   void render::draw_arc(::draw2d::graphics_pointer & pgraphics, i32_rectangle& r, ::f64 dStart, ::f64 dAngle, bool bPath)
    {
 
       auto pfont = createø < ::write_text::font > ();
@@ -46,11 +46,11 @@ namespace simple_shader
 
       pgraphics->set_alpha_mode(::draw2d::e_alpha_mode_blend);
 
-      ::int_size size;
+      ::i32_size size;
 
       size = size1.maximum(size2);
 
-      ::int_rectangle rectangleBack(r);
+      ::i32_rectangle rectangleBack(r);
 
       rectangleBack.deflate(2, 2);
 
@@ -140,9 +140,9 @@ namespace simple_shader
 
       pgraphics->set_alpha_mode(::draw2d::e_alpha_mode_blend);
 
-      double_array daStart;
+      f64_array daStart;
 
-      double_array daAngle;
+      f64_array daAngle;
 
       daStart.add(0.0);
       daAngle.add(100.0);
@@ -193,7 +193,7 @@ namespace simple_shader
       daStart.add(45.0);
       daAngle.add(-100.0);
 
-      ::int_rectangle rClient(m_rectangle);
+      ::i32_rectangle rClient(m_rectangle);
 
       if (__bool(papp->m_echeckSimple))
       {
@@ -208,9 +208,9 @@ namespace simple_shader
 
       }
 
-      int iColumnCount = 8;
+      ::i32 iColumnCount = 8;
 
-      int_rectangle r;
+      i32_rectangle r;
 
       r.top = 0;
 
@@ -218,9 +218,9 @@ namespace simple_shader
 
       r.bottom = rClient.center().y;
 
-      int i = 0;
+      ::i32 i = 0;
 
-      int iColumnWidth = rClient.width() / iColumnCount;
+      ::i32 iColumnWidth = rClient.width() / iColumnCount;
 
       for (i = 0; i < iColumnCount && i < daStart.get_size(); i++)
       {

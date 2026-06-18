@@ -57,7 +57,7 @@ condition::condition()
          semctl_arg.val = 0;
       }
 
-      semctl((int) m_hsync, 0, SETVAL, semctl_arg);
+      semctl((::i32) m_hsync, 0, SETVAL, semctl_arg);
 
    */
 
@@ -106,7 +106,7 @@ bool condition::set_happening()
    sb.sem_num = 0;
    sb.sem_flg = SEM_UNDO;
 
-   return semop((int)m_hsync, &sb, 1) == 0;
+   return semop((::i32)m_hsync, &sb, 1) == 0;
 
 #endif
 }
@@ -160,7 +160,7 @@ bool condition::pulse_happening()
    sb.sem_num = 0;
    sb.sem_flg = SEM_UNDO;
 
-   return semop((int)m_hsync, &sb, 1) == 0;
+   return semop((::i32)m_hsync, &sb, 1) == 0;
 
 #endif
 }
@@ -204,7 +204,7 @@ bool condition::pulse_happening()
    sb.sem_num = 0;
    sb.sem_flg = 0;
 
-   int iError = semop((int)m_hsync, &sb, 1);
+   ::i32 iError = semop((::i32)m_hsync, &sb, 1);
 
    if(iError != 0)
    {
@@ -231,19 +231,19 @@ bool condition::pulse_happening()
    if (!SleepConditionVariableCS(
       &(CONDITION_VARIABLE &)m_conditionvariable,
       &(CRITICAL_SECTION &)m_criticalsection,
-      ::windows::wait(timeWait)))
+      ::windows::wait_millis(timeWait)))
    {
 
-      DWORD dwLastError = ::GetLastError();
+      auto lasterror = ::windows::get_last_error();
 
-      if (dwLastError == ERROR_TIMEOUT)
+      if (lasterror == ERROR_TIMEOUT)
       {
 
          return error_wait_timeout;
 
       }
 
-      auto estatus = ::windows::last_error_status(dwLastError);
+      auto estatus = ::windows::last_error_status(lasterror);
 
       return error_failed;
 
@@ -253,7 +253,7 @@ bool condition::pulse_happening()
 
 #elif defined(__ANDROID__)
 
-   //unsigned int timeout = wait;
+   //::u32 timeout = wait;
 
    pthread_mutex_lock(&m_mutex);
 
@@ -303,7 +303,7 @@ bool condition::pulse_happening()
       sb.sem_num = 0;
       sb.sem_flg = IPC_NOWAIT;
 
-      int ret = semop((int)m_hsync, &sb, 1);
+      ::i32 ret = semop((::i32)m_hsync, &sb, 1);
 
       if (ret < 0)
       {
@@ -404,7 +404,7 @@ bool condition::is_signaled() const
 //
 //#else
 //
-//   unsigned int timeout = timeTimeout.u32_millis();
+//   ::u32 timeout = timeTimeout.u32_millis();
 //
 //   auto start = ::time::now();
 //
@@ -421,7 +421,7 @@ bool condition::is_signaled() const
 //      sb.sem_num = 0;
 //      sb.sem_flg = IPC_NOWAIT;
 //
-//      int ret = semop((int)m_hsync, &sb, 1);
+//      ::i32 ret = semop((::i32)m_hsync, &sb, 1);
 //
 //      if (ret < 0)
 //      {

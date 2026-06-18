@@ -44,7 +44,7 @@ namespace gpu_opengl
 
    }
 
-   void context_win32::_create_cpu_buffer(const ::int_size &size)
+   void context_win32::_create_cpu_buffer(const ::i32_size &size)
    {
 
        if (!m_pgpudevice)
@@ -64,7 +64,7 @@ namespace gpu_opengl
 
 
 
-      //void device_win32::_create_device(const ::int_size &size)
+      //void device_win32::_create_device(const ::i32_size &size)
       //{
 
          if (m_hdc && m_hglrc)
@@ -89,7 +89,7 @@ namespace gpu_opengl
 
          // PIXELFORMATDESCRIPTOR pixformat;
 
-         // int chosenformat;
+         // ::i32 chosenformat;
 
          // HDC hdc;
 
@@ -241,7 +241,7 @@ namespace gpu_opengl
 
          pgpuapproach->defer_init_gpu_library();
 
-         auto pszVersion = (const_char_pointer)glGetString(GL_VERSION);
+         auto pszVersion = (const_char_pointer )glGetString(GL_VERSION);
          //::e_status estatus =
 
          ::string strVersion(pszVersion);
@@ -286,7 +286,7 @@ namespace gpu_opengl
 
 //    //void context::_create_b
 //
-//   void context::_create_offscreen_window(const ::int_size &size)
+//   void context::_create_offscreen_window(const ::i32_size &size)
 //   {
 //
 ////#if defined(WINDOWS_DESKTOP)
@@ -327,9 +327,9 @@ namespace gpu_opengl
 //
 //      //   LPCTSTR lpClassName = L"draw2d_opengl_offscreen_buffer_window";
 //      //   LPCTSTR lpWindowName = L"draw2d_opengl_offscreen_buffer_window";
-//      //   //unsigned int dwStyle = WS_CAPTION | WS_POPUPWINDOW; // | WS_VISIBLE
-//      //   unsigned int dwExStyle = 0;
-//      //   unsigned int dwStyle = WS_OVERLAPPEDWINDOW;
+//      //   //::u32 dwStyle = WS_CAPTION | WS_POPUPWINDOW; // | WS_VISIBLE
+//      //   ::u32 dwExStyle = 0;
+//      //   ::u32 dwStyle = WS_OVERLAPPEDWINDOW;
 //      //   dwStyle |= WS_POPUP;
 //      //   //dwStyle |= WS_VISIBLE;
 //      //   //dwStyle |= WS_SYSMENU | WS_MINIMIZEBOX | WS_MAXIMIZEBOX;
@@ -337,10 +337,10 @@ namespace gpu_opengl
 //      //   //dwStyle = 0;
 //      //   dwStyle &= ~WS_THICKFRAME;
 //      //   dwStyle &= ~WS_BORDER;
-//      //   int x = 0;
-//      //   int y = 0;
-//      //   int nWidth = size.cx;
-//      //   int nHeight = size.cy;
+//      //   ::i32 x = 0;
+//      //   ::i32 y = 0;
+//      //   ::i32 nWidth = size.cx;
+//      //   ::i32 nHeight = size.cy;
 //      //   HWND hWndParent = nullptr;
 //      //   HMENU hMenu = nullptr;
 //      //   HINSTANCE hInstance = ::GetModuleHandleW(L"gpu_opengl.dll");
@@ -405,9 +405,9 @@ namespace gpu_opengl
       if (!::SwapBuffers(m_hdc))
       {
 
-         auto dwLastError = ::GetLastError();
+         auto lasterror = ::windows::get_last_error();
 
-         auto strMessage = ::windows::last_error_message(dwLastError);
+         auto strMessage = ::windows::last_error_message(lasterror);
 
          ::error(strMessage);
 
@@ -481,7 +481,7 @@ namespace gpu_opengl
 
          ::GetClientRect(m_hwnd, &rectClient);
 
-       //  ::int_size sizeNew = { rectClient.right - rectClient.left,
+       //  ::i32_size sizeNew = { rectClient.right - rectClient.left,
        //rectClient.bottom - rectClient.top };
 
        //  if (m_size != sizeNew)
@@ -491,7 +491,7 @@ namespace gpu_opengl
        //     m_sizeHost = sizeNew;
        //     //HDC pdcDIB;                      // контекст устройства в памяти
        //     //HBITMAP hbmpDIB;                 // и его текущий битмапvoid *pBitsDIB(NULL);            // содержимое
-       //     битмапаint cxDIB(200); int cyDIB(300);  // его размеры (например для окна 200х300)
+       //     битмапаint cxDIB(200); ::i32 cyDIB(300);  // его размеры (например для окна 200х300)
        //     //auto &BIH=pwindow->m_bitmapinfoheaderProto;            // и заголовок// …// создаем DIB section//
        //     создаем структуру BITMAPINFOHEADER, описывающую наш DIBint iSize = sizeof(BITMAPINFOHEADER);  // размер
        //     //memset(&BIH, 0, sizeof(pwindow->m_bitmapinfoheaderProto));
@@ -565,7 +565,7 @@ namespace gpu_opengl
 
       //   PIXELFORMATDESCRIPTOR pixformat;
 
-      //   int chosenformat;
+      //   ::i32 chosenformat;
 
       //   HDC hdc = GetDC(m_hwnd);
 

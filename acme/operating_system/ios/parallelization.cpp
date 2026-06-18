@@ -2,27 +2,27 @@
 #include <sys/resource.h>
 
 //
-//void thread_get_os_priority(int * piPolicy, sched_param * pparam, int nCa2Priority)
+//void thread_get_os_priority(::i32 * piPolicy, sched_param * pparam, ::i32 nCa2Priority)
 //{
 //
-//   int iOsPolicy;
+//   ::i32 iOsPolicy;
 //
-//   int iCa2Min;
+//   ::i32 iCa2Min;
 //
-//   int iCa2Max;
+//   ::i32 iCa2Max;
 //
-//   int iOsMax = sched_get_priority_max(SCHED_RR);
+//   ::i32 iOsMax = sched_get_priority_max(SCHED_RR);
 //
-//   int iOsMin = sched_get_priority_min(SCHED_RR);
+//   ::i32 iOsMin = sched_get_priority_min(SCHED_RR);
 //
 //   if(nCa2Priority == ::e_priority_normal)
 //   {
 //
 //      iOsPolicy = SCHED_RR; // iOsPolicy = SCHED_OTHER;
 //
-//      iCa2Min = (int) ::e_priority_normal;
+//      iCa2Min = (::i32) ::e_priority_normal;
 //
-//      iCa2Max = (int) ::e_priority_normal;
+//      iCa2Max = (::i32) ::e_priority_normal;
 //
 //      iOsMin = (iOsMin + iOsMax) / 2;
 //
@@ -34,7 +34,7 @@
 //
 //      iOsPolicy = SCHED_RR;
 //
-//      iCa2Min = (int) ::e_priority_normal;
+//      iCa2Min = (::i32) ::e_priority_normal;
 //
 //      iCa2Max = 99;
 //
@@ -48,14 +48,14 @@
 //
 //      iCa2Min = 0;
 //
-//      iCa2Max = (int) ::e_priority_normal;
+//      iCa2Max = (::i32) ::e_priority_normal;
 //
 //      iOsMax = (iOsMin + iOsMax) / 2;
 //
 //   }
 //
 //
-//   int iOsPriority;
+//   ::i32 iOsPriority;
 //
 //   if(iCa2Min == iCa2Max)
 //   {
@@ -74,12 +74,12 @@
 //
 //}
 
-//int thread_get_scheduling_priority(int iOsPolicy, const sched_param * pparam)
+//::i32 thread_get_scheduling_priority(::i32 iOsPolicy, const sched_param * pparam)
 //{
 //
-//   int iCa2Min;
+//   ::i32 iCa2Min;
 //
-//   int iCa2Max;
+//   ::i32 iCa2Max;
 //
 //
 ////   if(iOsPolicy == SCHED_RR)
@@ -96,28 +96,28 @@
 //
 //         iCa2Min = 0;
 //
-//         iCa2Max = (int) ::e_priority_normal;
+//         iCa2Max = (::i32) ::e_priority_normal;
 //
 //      }
 //      else
 //      {
 //
-//         iCa2Min = (int) ::e_priority_normal;
+//         iCa2Min = (::i32) ::e_priority_normal;
 //
-//         iCa2Max = (int) ::e_priority_normal;
+//         iCa2Max = (::i32) ::e_priority_normal;
 //
 //      }
 //   */
 //
-//   int iOsMax = sched_get_priority_max(iOsPolicy);
+//   ::i32 iOsMax = sched_get_priority_max(iOsPolicy);
 //
-//   int iOsMin = sched_get_priority_min(iOsPolicy);
+//   ::i32 iOsMin = sched_get_priority_min(iOsPolicy);
 //
-//   int iCa2Priority;
+//   ::i32 iCa2Priority;
 //
 //   if(iOsMax == iOsMin)
 //   {
-//      iCa2Priority = (int) ::e_priority_normal;
+//      iCa2Priority = (::i32) ::e_priority_normal;
 //   }
 //   else
 //   {
@@ -131,14 +131,14 @@
 //}
 
 
-//void process_get_os_priority(int * piPolicy, sched_param * pparam, int nCa2Priority)
+//void process_get_os_priority(::i32 * piPolicy, sched_param * pparam, ::i32 nCa2Priority)
 //{
 //
 //   throw ::exception(error_wrong_state, "not applicable in Mac OS");
 //
 //}
 
-//int process_get_scheduling_priority(int iOsPolicy, const sched_param * pparam)
+//::i32 process_get_scheduling_priority(::i32 iOsPolicy, const sched_param * pparam)
 //{
 //
 //   throw ::exception(::exception("not applicable in Mac OS"));
@@ -149,7 +149,7 @@
 
 
 
-int process_get_scheduling_priority(int iOsPriority)
+::i32 process_get_scheduling_priority(::i32 iOsPriority)
 {
 
    if(iOsPriority < -15)
@@ -176,7 +176,7 @@ int process_get_scheduling_priority(int iOsPriority)
 }
 
 
-int process_get_os_priority(int nCa2Priority);
+::i32 process_get_os_priority(::i32 nCa2Priority);
 
 
 namespace parallelization
@@ -184,10 +184,10 @@ namespace parallelization
 
 
 
-   bool set_priority_class(int iCa2Priority)
+   bool set_priority_class(::i32 iCa2Priority)
    {
 
-      int iOsPriority = process_get_os_priority(iCa2Priority);
+      ::i32 iOsPriority = process_get_os_priority(iCa2Priority);
 
       setpriority(PRIO_PROCESS, 0, iOsPriority);
 
@@ -258,7 +258,7 @@ bool __os_term_thread()
 
 
 
-void _ns_do_tasks(double dSeconds);
+void _ns_do_tasks(::f64 dSeconds);
 
 void _do_tasks()
 {

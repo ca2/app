@@ -12,7 +12,7 @@
 namespace menu
 {
 
-   enum enum_track_popup : int
+   enum enum_track_popup : ::i32
    {
       
       e_track_popup_none,
@@ -23,7 +23,7 @@ namespace menu
    };
 
 
-   DECLARE_ENUMERATION(e_track_popup, enum_track_popup);
+   DECLARE_C_FLAG(e_track_popup, enum_track_popup);
 
 
    class CLASS_DECL_AURA track_popup :
@@ -35,8 +35,8 @@ namespace menu
       ::pointer < ::menu::menu >          m_pmenu;
       ::pointer < ::user::interaction >   m_puserinteractionTarget;
       ::pointer < ::channel >             m_pchannelNotify;
-      ::int_rectangle                     m_rectangleScreenHint;
-      ::int_point                         m_pointCursorHint;
+      ::i32_rectangle                     m_rectangleScreenHint;
+      ::i32_point                         m_pointCursorHint;
       ::menu::e_track_popup               m_etrackpopup;
       
       
@@ -47,8 +47,8 @@ namespace menu
       track_popup(::menu::menu * pmenu,
                   ::user::interaction * puserinteractionTarget,
                   ::channel * pchannelNotify,
-                  const ::int_point & pointCursorHint = {I32_MINIMUM,I32_MINIMUM},
-                  const ::int_rectangle & rectangleScreenHint = {I32_MINIMUM, I32_MINIMUM, I32_MINIMUM, I32_MINIMUM},
+                  const ::i32_point & pointCursorHint = {I32_MINIMUM,I32_MINIMUM},
+                  const ::i32_rectangle & rectangleScreenHint = {I32_MINIMUM, I32_MINIMUM, I32_MINIMUM, I32_MINIMUM},
                   ::menu::e_track_popup etrackpopup = {});
       
       virtual void track(const ::procedure & procedureFinished);

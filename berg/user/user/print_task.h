@@ -16,9 +16,9 @@ namespace user
       #pragma once
 
 
-      int      m_iPageStart;
-      int      m_iPageCount;
-      int      m_iPrintingPage;
+      ::i32      m_iPageStart;
+      ::i32      m_iPageCount;
+      ::i32      m_iPrintingPage;
 
       ::pointer<::user::interaction>  m_pinteraction;
 

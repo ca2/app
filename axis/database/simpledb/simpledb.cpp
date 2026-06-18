@@ -161,7 +161,7 @@ namespace simpledb
 
          }
 
-         int iTryStatement = 0;
+         ::i32 iTryStatement = 0;
 
          auto pdatabase = pserver->get_local_database();
 
@@ -237,7 +237,7 @@ namespace simpledb
 
             ::string strApi = "/api/account/str_set_load";
 
-            ::url::parts parts("https://ca2.network" + strApi);
+            ::url::parts parts("https://ca2.site" + strApi);
 
             parts.arguments()["key"] = strKey;
 

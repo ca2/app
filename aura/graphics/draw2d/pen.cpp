@@ -49,7 +49,7 @@ namespace draw2d
    }
 
 
-   bool pen::create_solid(double dWidth, const ::color::color& color)
+   bool pen::create_solid(::f64 dWidth, const ::color::color& color)
    {
 
       if (m_epen == e_pen_solid
@@ -69,7 +69,7 @@ namespace draw2d
    }
 
 
-   bool pen::create_brush(double dWidth, ::draw2d::brush * pbrush)
+   bool pen::create_brush(::f64 dWidth, ::draw2d::brush * pbrush)
    {
 
       m_epen = e_pen_brush;

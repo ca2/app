@@ -201,7 +201,7 @@ void api::clear_profile()
 void api::ensure_authenticated()
 {
 
-   for(int iTry = 0; iTry < 3; iTry++)
+   for(::i32 iTry = 0; iTry < 3; iTry++)
    {
 
       if (m_bAuthenticated)
@@ -310,7 +310,7 @@ void api::_api_get(::string & strNetworkPayload, const ::scoped_string & scopeds
 ::payload api::api_get(const ::scoped_string & scopedstrUrl, ::property_set & set)
 {
 
-   int iTry = 0;
+   ::i32 iTry = 0;
 
    while (true)
    {
@@ -408,7 +408,7 @@ void api::_api_get(::string & strNetworkPayload, const ::scoped_string & scopeds
 
       //}
 
-      auto iHttpStatusCode = set["http_status_code"].as_int();
+      auto iHttpStatusCode = set["http_status_code"].as_i32();
 
       if (!is_http_status_ok(scopedstrUrl, scopedstr, payload, set, iHttpStatusCode))
       {
@@ -422,7 +422,7 @@ void api::_api_get(::string & strNetworkPayload, const ::scoped_string & scopeds
    }
 
 
-   bool api::is_http_status_ok(const ::scoped_string& scopedstrUrl, const ::scoped_string& scopedstr, const ::payload& payload, ::property_set & set, int iHttpStatusCode)
+   bool api::is_http_status_ok(const ::scoped_string& scopedstrUrl, const ::scoped_string& scopedstr, const ::payload& payload, ::property_set & set, ::i32 iHttpStatusCode)
    {
 
       if (iHttpStatusCode != 200)
@@ -451,7 +451,7 @@ void api::_api_get(::string & strNetworkPayload, const ::scoped_string & scopeds
    }
 
 
-   string api::randomDataBase64url(unsigned int length)
+   string api::randomDataBase64url(::u32 length)
    {
 
       memory m;

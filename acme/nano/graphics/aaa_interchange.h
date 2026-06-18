@@ -45,7 +45,7 @@ public:
    ::color::color                            m_colorWindow;
    bool                                      m_bNcActive;
 
-   int_rectangle                             m_rectangle;
+   i32_rectangle                             m_rectangle;
 
    pointer_array < ::micro::child >              m_childa;
    ::atom                                    m_atomLeftButtonDown;
@@ -60,7 +60,7 @@ public:
    bool                                      m_bCapture;
    bool                                      m_bStartCentered;
    bool                                      m_bArbitraryPositioning;
-   int                                       m_iFontSize;
+   ::i32                                       m_iFontSize;
    enum_font                                 m_efont;
 
    bool                                      m_bTopMost;
@@ -92,16 +92,16 @@ public:
 
    void message_loop() override;
 
-   void draw(::nano::graphics::device * pnanodevice) override;
+   void draw(::nano::graphics::context * pnanodevice) override;
 
-   void on_draw(::nano::graphics::device * pnanodevice) override;
+   void on_draw(::nano::graphics::context * pnanodevice) override;
 
-   void on_char(int iChar) override;
+   void on_char(::i32 iChar) override;
 
    bool is_active() override;
    void set_active() override;
 
-   void draw_children(::nano::graphics::device * pnanodevice) override;
+   void draw_children(::nano::graphics::context * pnanodevice) override;
 
    void delete_drawing_objects() override;
    bool get_dark_mode() override;
@@ -116,15 +116,15 @@ public:
 
    virtual bool defer_perform_entire_resizing_process(::experience::enum_frame eframeSizing, ::user::mouse * pmouse);
 
-   ::int_point try_absolute_mouse_position(const ::int_point & point) override;
+   ::i32_point try_absolute_mouse_position(const ::i32_point & point) override;
 
 
-   ::int_point origin() override;
+   ::i32_point origin() override;
 
 
    //::micro::child * hit_test(::user::mouse * pmouse, ::user::e_zorder ezorder) override;
    virtual ::micro::child * hit_test(::user::mouse * pmouse, ::user::e_zorder ezorder);
-   virtual ::micro::child * on_hit_test(const ::int_point & point, ::user::e_zorder ezorder);
+   virtual ::micro::child * on_hit_test(const ::i32_point & point, ::user::e_zorder ezorder);
    virtual void add_child(::micro::child * pchild);
    virtual ::micro::child * get_child_by_id(const ::atom & atom);
 
@@ -138,9 +138,9 @@ public:
    void on_right_button_up(::user::mouse * pmouse) override;
    void on_right_click(const ::payload & payload, ::user::mouse * pmouse) override;
 
-   void set_position(const ::int_point & point) override;
+   void set_position(const ::i32_point & point) override;
 
-   ::int_rectangle get_window_rectangle() override;
+   ::i32_rectangle get_window_rectangle() override;
 
    void on_create_window() override;
 
@@ -148,7 +148,7 @@ public:
 
    void redraw() override;
 
-   void get_client_rectangle(::int_rectangle & rectangle) override;
+   void get_client_rectangle(::i32_rectangle & rectangle) override;
 
    //void get_window_rectangle() override;
 
@@ -161,13 +161,13 @@ public:
    void set_cursor(enum_cursor ecursor) override;
 
 
-   void add_button(const ::scoped_string & scopedstrText, enum_dialog_result edialogresult, char chLetter);
+   void add_button(const ::scoped_string & scopedstrText, enum_dialog_result edialogresult, ::i8 chLetter);
 
 
    void display_temporary_file_with_text(const ::scoped_string & scopedstr);
 
    
-   ::pointer<::nano::graphics::device>create_device();
+   ::pointer<::nano::graphics::context>create_device();
 
    
    void _run_modal_loop() override;

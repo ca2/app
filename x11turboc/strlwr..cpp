@@ -30,10 +30,10 @@
 #include <ctype.h>
 #include "TurboC.h"
 
-char *
-strlwr (char *s)
+char_pointer 
+strlwr (char_pointer s)
 {
-  char *ss;
+  char_pointer ss;
   for (ss = s; *ss; ss++)
     *ss = tolower (*ss);
   return (s);

@@ -34,7 +34,7 @@ namespace user
 //};
 //
 
-      ::int_size                    m_sizeFull;
+      ::i32_size                    m_sizeFull;
       //string                        m_strText;
       class ::time                      m_timeShowComboList;
       ::pointer<list_box>          m_plistbox;
@@ -62,7 +62,7 @@ namespace user
       ::subparticle_pointer clone() override;
 
 
-      ::write_text::font_pointer get_font(style* pstyle, enum_element eelement = e_element_none, ::user::enum_state estate = e_state_none) override;
+      ::write_text::font_pointer get_font(style* pstyle, const ::e_element & eelement = e_element_none, const ::user::e_state & estate = e_state_none) override;
 
 
       void _000OnDraw(::draw2d::graphics_pointer & pgraphics) override;
@@ -74,7 +74,7 @@ namespace user
 
       virtual enum_input_type preferred_input_type() override;
 
-      virtual void get_simple_drop_down_open_arrow_polygon(double_point_array& pointa) override;
+      virtual void get_simple_drop_down_open_arrow_polygon(f64_point_array& pointa) override;
 
       virtual bool has_action_hover();
 
@@ -91,9 +91,9 @@ namespace user
 
       //virtual bool create_interaction(::user::interaction * pinteractionParent, const ::atom & atom) override;
 
-      bool get_element_rectangle(::int_rectangle & prectangle, enum_element eelement) override;
+      bool get_element_rectangle(::i32_rectangle & prectangle, const ::e_element & eelement) override;
 
-      ::item_pointer on_hit_test(const ::int_point & point, ::user::e_zorder ezorder) override;
+      ::item_pointer on_hit_test(const ::i32_point & point, ::user::e_zorder ezorder) override;
 
       virtual bool plain_edit_is_enabled() override;
 
@@ -157,11 +157,11 @@ namespace user
   //    LCID SetLocale(LCID nNewLocale);
       ::collection::index GetTopIndex();
       ::collection::index SetTopIndex(::collection::index nIndex);
-      ::collection::index InitStorage(::collection::count nItems, unsigned int nBytes);
-      void SetHorizontalExtent(unsigned int nExtent);
-      unsigned int GetHorizontalExtent();
-      int SetDroppedWidth(unsigned int nWidth);
-      int GetDroppedWidth();
+      ::collection::index InitStorage(::collection::count nItems, ::u32 nBytes);
+      void SetHorizontalExtent(::u32 nExtent);
+      ::u32 GetHorizontalExtent();
+      ::i32 SetDroppedWidth(::u32 nWidth);
+      ::i32 GetDroppedWidth();
 
 //#if defined(WINDOWS_DESKTOP) && (WINVER >= 0x0500)
 //      bool GetComboBoxInfo(PCOMBOBOXINFO pcbi);
@@ -177,18 +177,18 @@ namespace user
       ::collection::index SetItemData(::collection::index nIndex, uptr dwItemData);
       void * GetItemDataPtr(::collection::index nIndex);
       ::collection::index SetItemDataPtr(::collection::index nIndex, void * pData);
-      ::collection::index GetLBText(::collection::index nIndex, char * pszText);
+      ::collection::index GetLBText(::collection::index nIndex, char_pointer pszText);
 
       void GetLBText(::collection::index nIndex, string & rString);
       character_count GetLBTextLen(::collection::index nIndex);
 
-      int SetItemHeight(::collection::index nIndex, unsigned int cyItemHeight);
-      int GetItemHeight(::collection::index nIndex);
+      ::i32 SetItemHeight(::collection::index nIndex, ::u32 cyItemHeight);
+      ::i32 GetItemHeight(::collection::index nIndex);
       ::collection::index FindStringExact(::collection::index nIndexStart, const ::scoped_string & scopedstrFind);
 
-      int SetExtendedUI(bool bExtended = true);
+      ::i32 SetExtendedUI(bool bExtended = true);
       bool GetExtendedUI();
-      void GetDroppedControlRect(::int_rectangle * prectangle);
+      void GetDroppedControlRect(::i32_rectangle * prectangle);
 
       bool GetDroppedState();
 
@@ -223,7 +223,7 @@ namespace user
 //
 //      virtual void MeasureItem(LPMEASUREITEMSTRUCT pMeasureItemStruct);
 //
-//      virtual int CompareItem(LPCOMPAREITEMSTRUCT pCompareItemStruct);
+//      virtual ::i32 CompareItem(LPCOMPAREITEMSTRUCT pCompareItemStruct);
 //
 //      virtual void DeleteItem(LPDELETEITEMSTRUCT pDeleteItemStruct);
 //

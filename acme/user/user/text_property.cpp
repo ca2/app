@@ -183,7 +183,7 @@ namespace user
    //}
 
 
-   //void text_property::get_text(char * psz, character_count len)
+   //void text_property::get_text(char_pointer psz, character_count len)
    //{
 
    //   string str;
@@ -314,7 +314,7 @@ namespace user
    //}
 
 
-   //void text::get_text_composition_area(::int_rectangle& rectangle)
+   //void text::get_text_composition_area(::i32_rectangle& rectangle)
    //{
 
 

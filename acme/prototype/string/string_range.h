@@ -157,7 +157,7 @@ public:
    //    //inline bool has_character() const noexcept { return !this->is_empty(); }
    //    inline character_count get_upper_bound(character_count i = -1) const noexcept { return this->size() + i; }
    //
-   //    operator ::block() const { return {(unsigned char *) c_str(), this->length_in_bytes()}; }
+   //    operator ::block() const { return {(::u8 *) c_str(), this->length_in_bytes()}; }
    //
    //    inline CHARACTER character_at(character_count i) const { return this->data()[i]; }
 
@@ -340,7 +340,7 @@ public:
    //    //case_insensitive_collate(character_count start, character_count count, const SCOPED_STRING &range, character_count iStart2,
    //    //                         character_count iCount2) const noexcept;
    //
-   //    //inline int operator<=>(const string_range &range) const { return order(range); }
+   //    //inline ::i32 operator<=>(const string_range &range) const { return order(range); }
    //    //inline bool operator==(const string_range &range) const { return size() != range.size() ? false : !order(range); }
    //    //inline bool operator>(const string_range &range) const { return order(ansistr) > 0; }
    //    //inline bool operator<(const string_range &range) const { return order(ansistr) < 0; }
@@ -1559,7 +1559,7 @@ public:
    //    //inline ::std::strong_ordering operator<=>(const string_base & range) const { return this->order(range); }
    //    //inline ::std::strong_ordering operator<=>(const SCOPED_STRING &scopedstr) const { return this->order(scopedstr); }
    //    //inline ::std::strong_ordering operator<=>(const CHARACTER * psz) const { return *this <=> ((const SCOPED_STRING &)psz); }
-   //    //inline int operator<=>(CHARACTER ch) const;
+   //    //inline ::i32 operator<=>(CHARACTER ch) const;
    //    //inline bool operator==(CHARACTER ch) const;
    //    //inline bool operator==(CHARACTER ch) const;
    //    //inline bool operator>(const string_base &str2) const;
@@ -1748,7 +1748,7 @@ public:
    }
 
 
-   int defer_consume_digit(int iBase)
+   ::i32 defer_consume_digit(::i32 iBase)
    {
 
       CHARACTER character;
@@ -1898,6 +1898,22 @@ public:
 
    }
 
+   bool defer_consume_word(string_base<ITERATOR_TYPE >& str, const SCOPED_STRING& scopedstrCharacters = " ")
+   {
+
+      if (this->is_empty())
+      {
+
+         return false;
+
+      }
+
+      str = this->consume_token_until_any_character_in(scopedstrCharacters);
+
+      return true;
+
+   }
+
 
    bool begins_consume(const ::scoped_string & scopedstr);
    bool begins_consume(ansi_character ansich) { return (*this->m_begin == ansich) ? (static_cast<void>(this->m_begin++), true) : false; }
@@ -1910,8 +1926,8 @@ public:
    //static void consume(::const_ansi_range & range, const_char_pointer psz);
    void consume(const ::scoped_string & scopedstr);
    //void consume_spaces(::collection::count iMinimumCount = 1);
-   unsigned long long consume_natural(unsigned long long uiMax = ((unsigned long long)-1), unsigned long long uiMin = 0);
-   //unsigned long long consume_natural(string & str, unsigned long long uiMax = ((unsigned long long)-1), unsigned long long uiMin = 0);
+   ::u64 consume_natural(::u64 uiMax = ((::u64)-1), ::u64 uiMin = 0);
+   //::u64 consume_natural(string & str, ::u64 uiMax = ((::u64)-1), ::u64 uiMin = 0);
    string_range consume_hex();
    //void consume_spaces(::const_ansi_range & range, ::collection::count iMinimumCount);
    string_range consume_non_spaces();
@@ -1960,7 +1976,7 @@ public:
    /// bro      2002-10-29
    ///========================================================
 
-   void escape_skip_to_character(int ch, int escape);
+   void escape_skip_to_character(::i32 ch, ::i32 escape);
 
    ///========================================================
    /// Name   : _tcsepbrk
@@ -1971,7 +1987,7 @@ public:
    /// Coder    Date                      Desc
    /// bro      2002-10-29
    ///========================================================
-   void escape_skip_to_first_character_in(const_char_pointer chset, int escape);
+   void escape_skip_to_first_character_in(const_char_pointer chset, ::i32 escape);
 
 
    ///========================================================
@@ -1983,7 +1999,7 @@ public:
    /// Coder    Date                      Desc
    /// bro      2002-10-29
    ///========================================================
-   void escape_case_insensitive_skip_to(const ::scoped_string & scopedstr, int escape);
+   void escape_case_insensitive_skip_to(const ::scoped_string & scopedstr, ::i32 escape);
    
    THIS_RANGE& trim_left()
    {

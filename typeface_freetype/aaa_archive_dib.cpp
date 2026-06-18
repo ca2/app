@@ -38,7 +38,7 @@ namespace typeface_freetype
    }
 
 
-   void image::construct (int cx,  int cy)
+   void image::construct (::i32 cx,  ::i32 cy)
    {
       m_pcolorref    = nullptr;
       cx             = 0;
@@ -58,7 +58,7 @@ namespace typeface_freetype
       return create(size.cx, size.cy);
    }
 
-   bool image::create(int width, int height)
+   bool image::create(::i32 width, ::i32 height)
    {
 
       if(width <= 0 || height <= 0)
@@ -187,7 +187,7 @@ namespace typeface_freetype
    }
 
 
-   bool image::to(::draw2d::graphics * pgraphics, const ::int_point & point, ::size size, point ptSrc)
+   bool image::to(::draw2d::graphics * pgraphics, const ::i32_point & point, ::size size, point ptSrc)
    {
 
       return pgraphics->BitBlt(point, size, get_graphics(), ptSrc);
@@ -239,7 +239,7 @@ namespace typeface_freetype
    }
 
 
-   bool image::from(point ptDest, ::draw2d::graphics * pgraphics, const ::int_point & point, ::size sz)
+   bool image::from(point ptDest, ::draw2d::graphics * pgraphics, const ::i32_point & point, ::size sz)
    {
 
       if (m_spgraphics.is_null())
@@ -250,15 +250,15 @@ namespace typeface_freetype
    }
 
 
-   /*void image::Fill ( int R, int G, int B )
+   /*void image::Fill ( ::i32 R, ::i32 G, ::i32 B )
    {
       color32_t color=rgb ( B, G, R );
-      long long size = area();
+      ::i64 size = area();
 
       color32_t * pcr;
 
-      long long iSize32 = size / 32;
-      int i;
+      ::i64 iSize32 = size / 32;
+      ::i32 i;
       for (i=0; i < iSize32; i+=32 )
       {
          pcr = &m_pcolorref[i];
@@ -302,26 +302,26 @@ namespace typeface_freetype
       }
    }
 
-   void image::set_rgb(int R, int G, int B)
+   void image::set_rgb(::i32 R, ::i32 G, ::i32 B)
    {
-      long long size = area();
+      ::i64 size = area();
 
-      unsigned char * pbyte = (unsigned char *) m_pcolorref;
+      ::u8 * pbyte = (::u8 *) m_pcolorref;
 
-      int i;
+      ::i32 i;
       for (i=0; i<size; i++ )
       {
-         *pbyte++ = (unsigned char) R;
-         *pbyte++ = (unsigned char) G;
-         *pbyte++ = (unsigned char) B;
+         *pbyte++ = (::u8) R;
+         *pbyte++ = (::u8) G;
+         *pbyte++ = (::u8) B;
          pbyte++;
       }
    }
 
-   void image::ToAlpha(int i)
+   void image::ToAlpha(::i32 i)
    {
-      unsigned char *dst=(unsigned char*)m_pcolorref;
-      long long size = area();
+      ::u8 *dst=(::u8*)m_pcolorref;
+      ::i64 size = area();
 
       while ( size-- )
       {
@@ -332,8 +332,8 @@ namespace typeface_freetype
 
    void image::from_alpha()
    {
-      unsigned char *dst=(unsigned char*)m_pcolorref;
-      long long size = area();
+      ::u8 *dst=(::u8*)m_pcolorref;
+      ::i64 size = area();
 
       while ( size-- )
       {
@@ -395,27 +395,27 @@ namespace typeface_freetype
 
    //}
 
-   //void image::Map(int ToRgb, int FromRgb)
+   //void image::Map(::i32 ToRgb, ::i32 FromRgb)
    //{
-   //   unsigned char *dst=(unsigned char*)m_pcolorref;
-   //   long long size = area();
+   //   ::u8 *dst=(::u8*)m_pcolorref;
+   //   ::i64 size = area();
 
    //   while ( size-- )
    //   {
-   //      *dst = (unsigned char) (*dst == FromRgb ? ToRgb : *dst);
+   //      *dst = (::u8) (*dst == FromRgb ? ToRgb : *dst);
    //      dst+=4;
    //   }
    //}
 
 
-   //void image::ToAlphaAndFill(int i, color32_t color32)
+   //void image::ToAlphaAndFill(::i32 i, color32_t color32)
    //{
-   //   unsigned char *dst=(unsigned char*)m_pcolorref;
-   //   long long size = area();
+   //   ::u8 *dst=(::u8*)m_pcolorref;
+   //   ::i64 size = area();
 
-   //   unsigned char uchB = ::blue(color32);
-   //   unsigned char uchG = ::green(color32);
-   //   unsigned char uchR = ::red(color32);
+   //   ::u8 uchB = ::blue(color32);
+   //   ::u8 uchG = ::green(color32);
+   //   ::u8 uchR = ::red(color32);
 
    //   while ( size-- )
    //   {
@@ -429,29 +429,29 @@ namespace typeface_freetype
 
    //void image::GrayToARGB(color32_t color32)
    //{
-   //   unsigned char *dst=(unsigned char*)m_pcolorref;
-   //   long long size = area();
+   //   ::u8 *dst=(::u8*)m_pcolorref;
+   //   ::i64 size = area();
 
-   //   unsigned int dwB = ::blue(color32);
-   //   unsigned int dwG = ::green(color32);
-   //   unsigned int dwR = ::red(color32);
+   //   ::u32 dwB = ::blue(color32);
+   //   ::u32 dwG = ::green(color32);
+   //   ::u32 dwR = ::red(color32);
 
    //   while (size-- > 0)
    //   {
    //      dst[3] = dst[0];
-   //      dst[0] = (unsigned char)(((dwB * dst[3]) / 256) & 0xff);
-   //      dst[1] = (unsigned char)(((dwG * dst[3]) / 256) & 0xff);
-   //      dst[2] = (unsigned char)(((dwR * dst[3]) / 256) & 0xff);
+   //      dst[0] = (::u8)(((dwB * dst[3]) / 256) & 0xff);
+   //      dst[1] = (::u8)(((dwG * dst[3]) / 256) & 0xff);
+   //      dst[2] = (::u8)(((dwR * dst[3]) / 256) & 0xff);
    //      dst+=4;
    //   }
    //}
 
 
-   //void image::BitBlt(imagepimage, int op)
+   //void image::BitBlt(imagepimage, ::i32 op)
    //{
    //   if(op == 123) // zero dest rgb, invert alpha, and OR src rgb
    //   {
-   //      long long isize = area();
+   //      ::i64 isize = area();
    //      LPDWORD lpbitsSrc= (LPDWORD) pimage->get_data();
    //      LPDWORD lpbitsDest= (LPDWORD) m_pcolorref;
 
@@ -472,9 +472,9 @@ namespace typeface_freetype
 
    //void image::Invert()
    //{
-   //   long long size = area();
+   //   ::i64 size = area();
    //   LPBYTE lpb = (LPBYTE) m_pcolorref;
-   //   for ( int i=0; i<size; i++ )
+   //   for ( ::i32 i=0; i<size; i++ )
    //   {
    //      lpb[0] = 255 - lpb[0];
    //      lpb[1] = 255 - lpb[1];
@@ -485,11 +485,11 @@ namespace typeface_freetype
 
    //void image::color::e_channel_invert(color::color::color::rgba::echannel echannel)
    //{
-   //   long long size   = area();
-   //   register long long size64 = size / 64;
+   //   ::i64 size   = area();
+   //   register ::i64 size64 = size / 64;
    //   LPBYTE lpb = (LPBYTE) m_pcolorref;
-   //   lpb += ((int)echannel) % 4;
-   //   register long long i = 0;
+   //   lpb += ((::i32)echannel) % 4;
+   //   register ::i64 i = 0;
    //   for(; i < size64; i++)
    //   {
    //      lpb[4 *  0] = 255 - lpb[4 *  0];
@@ -567,47 +567,47 @@ namespace typeface_freetype
    //      lpb += 4;
    //   }
    //}
-   //void image::color::e_channel_multiply(color::color::color::rgba::echannel echannel, double dRate)
+   //void image::color::e_channel_multiply(color::color::color::rgba::echannel echannel, ::f64 dRate)
    //{
    //   if(dRate < 0)
    //      return;
-   //   register long long size = area();
+   //   register ::i64 size = area();
    //   LPBYTE lpb = (LPBYTE) get_data();
-   //   lpb += ((int)echannel) % 4;
-   //   register int iDiv = 256 * 256;
-   //   register int iMul = (int) (dRate * ((double) iDiv));
-   //   register int iRes;
-   //   for(register long long i = 0; i < size; i++)
+   //   lpb += ((::i32)echannel) % 4;
+   //   register ::i32 iDiv = 256 * 256;
+   //   register ::i32 iMul = (::i32) (dRate * ((::f64) iDiv));
+   //   register ::i32 iRes;
+   //   for(register ::i64 i = 0; i < size; i++)
    //   {
    //      iRes = *lpb * iMul / iDiv;
-   //      *lpb = (unsigned char) (iRes > 255 ? 255 : iRes);
+   //      *lpb = (::u8) (iRes > 255 ? 255 : iRes);
    //      lpb += 4;
    //   }
    //}
 
-   //void image::FillGlass ( int R, int G, int B, int A )
+   //void image::FillGlass ( ::i32 R, ::i32 G, ::i32 B, ::i32 A )
    //{
-   //   unsigned char *dst=(unsigned char*)m_pcolorref;
-   //   long long size = area();
+   //   ::u8 *dst=(::u8*)m_pcolorref;
+   //   ::i64 size = area();
    //
    //   while ( size-- )
    //   {
-   //      dst[0]=(unsigned char)(((B-dst[0])*A+(dst[0]<<8))>>8);
-   //      dst[1]=(unsigned char)(((G-dst[1])*A+(dst[1]<<8))>>8);
-   //      dst[2]=(unsigned char)(((R-dst[2])*A+(dst[2]<<8))>>8);
+   //      dst[0]=(::u8)(((B-dst[0])*A+(dst[0]<<8))>>8);
+   //      dst[1]=(::u8)(((G-dst[1])*A+(dst[1]<<8))>>8);
+   //      dst[2]=(::u8)(((R-dst[2])*A+(dst[2]<<8))>>8);
    //      dst+=4;
    //   }
    //}
 
-   //void image::FillStippledGlass ( int R, int G, int B )
+   //void image::FillStippledGlass ( ::i32 R, ::i32 G, ::i32 B )
    //{
    //   color32_t color=rgb ( B, G, R );
-   //   int w=m_size.cx;
-   //   int h=m_size.cy;
+   //   ::i32 w=m_size.cx;
+   //   ::i32 h=m_size.cy;
 
-   //   for ( int j=0; j<w; j++ )
+   //   for ( ::i32 j=0; j<w; j++ )
    //   {
-   //      for ( int i=0; i<h; i++ )
+   //      for ( ::i32 i=0; i<h; i++ )
    //      {
    //         m_pcolorref[j*w+i]=((i+j)&0x1) ? m_pcolorref[j*w+i] : color;
    //      }
@@ -633,68 +633,68 @@ namespace typeface_freetype
    //   ::memory_copy ( m_pcolorref, pimage->get_data(), (size_t) area() * sizeof(color32_t) );
    //}
 
-   //bool image::color_blend(color32_t color32, unsigned char bAlpha)
+   //bool image::color_blend(color32_t color32, ::u8 bAlpha)
    //{
 
-   //   unsigned char *dst=(unsigned char*)m_pcolorref;
-   //   long long size = area();
+   //   ::u8 *dst=(::u8*)m_pcolorref;
+   //   ::i64 size = area();
 
-   //   unsigned int dwB = ::blue(color32);
-   //   unsigned int dwG = ::green(color32);
-   //   unsigned int dwR = ::red(color32);
+   //   ::u32 dwB = ::blue(color32);
+   //   ::u32 dwG = ::green(color32);
+   //   ::u32 dwR = ::red(color32);
    //
-   //   unsigned int dwB_ = dwB << 8;
-   //   unsigned int dwG_ = dwG << 8;
-   //   unsigned int dwR_ = dwR << 8;
+   //   ::u32 dwB_ = dwB << 8;
+   //   ::u32 dwG_ = dwG << 8;
+   //   ::u32 dwR_ = dwR << 8;
    //
    //   while ( size-- )
    //   {
-   //      dst[0]=(unsigned char)(((dst[0]-dwB)*bAlpha+dwB_)>>8);
-   //      dst[1]=(unsigned char)(((dst[1]-dwG)*bAlpha+dwG_)>>8);
-   //      dst[2]=(unsigned char)(((dst[2]-dwG)*bAlpha+dwR_)>>8);
+   //      dst[0]=(::u8)(((dst[0]-dwB)*bAlpha+dwB_)>>8);
+   //      dst[1]=(::u8)(((dst[1]-dwG)*bAlpha+dwG_)>>8);
+   //      dst[2]=(::u8)(((dst[2]-dwG)*bAlpha+dwR_)>>8);
    //      dst+=4;
    //   }
    //   return true;
    //}
 
 
-   //void image::Blend (::image::image *pimage, int A )
+   //void image::Blend (::image::image *pimage, ::i32 A )
    //{
    //   if(size() != pimage->size())
    //      return;
 
-   //   unsigned char *src=(unsigned char*)pimage->get_data();
-   //   unsigned char *dst=(unsigned char*)m_pcolorref;
-   //   long long size = area();
+   //   ::u8 *src=(::u8*)pimage->get_data();
+   //   ::u8 *dst=(::u8*)m_pcolorref;
+   //   ::i64 size = area();
    //
    //   while ( size-- )
    //   {
-   //      dst[0]=(unsigned char)(((src[0]-dst[0])*A+(dst[0]<<8))>>8);
-   //      dst[1]=(unsigned char)(((src[1]-dst[1])*A+(dst[1]<<8))>>8);
-   //      dst[2]=(unsigned char)(((src[2]-dst[2])*A+(dst[2]<<8))>>8);
+   //      dst[0]=(::u8)(((src[0]-dst[0])*A+(dst[0]<<8))>>8);
+   //      dst[1]=(::u8)(((src[1]-dst[1])*A+(dst[1]<<8))>>8);
+   //      dst[2]=(::u8)(((src[2]-dst[2])*A+(dst[2]<<8))>>8);
    //      dst+=4;
    //      src+=4;
    //   }
    //}
 
-   //bool image::Blend(imagepimage, imagepimageA, int A)
+   //bool image::Blend(imagepimage, imagepimageA, ::i32 A)
    //{
    //   if(size() != pimage->size() ||
    //      size() != imageA.size())
    //      return false;
 
-   //   unsigned char *src=(unsigned char*)pimage->get_data();
-   //   unsigned char *dst=(unsigned char*)m_pcolorref;
-   //   unsigned char *alf=(unsigned char*)imageA.m_pcolorref;
-   //   long long size = area();
+   //   ::u8 *src=(::u8*)pimage->get_data();
+   //   ::u8 *dst=(::u8*)m_pcolorref;
+   //   ::u8 *alf=(::u8*)imageA.m_pcolorref;
+   //   ::i64 size = area();
 
    //   A = 2 - A;
    //
    //   while ( size-- )
    //   {
-   //      dst[0]=(unsigned char)(((src[0]-dst[0])*alf[A]+(dst[0]<<8))>>8);
-   //      dst[1]=(unsigned char)(((src[1]-dst[1])*alf[A]+(dst[1]<<8))>>8);
-   //      dst[2]=(unsigned char)(((src[2]-dst[2])*alf[A]+(dst[2]<<8))>>8);
+   //      dst[0]=(::u8)(((src[0]-dst[0])*alf[A]+(dst[0]<<8))>>8);
+   //      dst[1]=(::u8)(((src[1]-dst[1])*alf[A]+(dst[1]<<8))>>8);
+   //      dst[2]=(::u8)(((src[2]-dst[2])*alf[A]+(dst[2]<<8))>>8);
    //      dst+=4;
    //      src+=4;
    //      alf+=4;
@@ -708,15 +708,15 @@ namespace typeface_freetype
    //   if(size() != pimage->size())
    //      return;
 
-   //   unsigned char *src=(unsigned char*)pimage->get_data();
-   //   unsigned char *dst=(unsigned char*)m_pcolorref;
-   //   long long size = area();
+   //   ::u8 *src=(::u8*)pimage->get_data();
+   //   ::u8 *dst=(::u8*)m_pcolorref;
+   //   ::i64 size = area();
    //
    //   while ( size-- )
    //   {
-   //      dst[0]=(unsigned char)((src[0]<dst[0]) ? src[0] : dst[0]);
-   //      dst[1]=(unsigned char)((src[1]<dst[1]) ? src[1] : dst[1]);
-   //      dst[2]=(unsigned char)((src[2]<dst[2]) ? src[2] : dst[2]);
+   //      dst[0]=(::u8)((src[0]<dst[0]) ? src[0] : dst[0]);
+   //      dst[1]=(::u8)((src[1]<dst[1]) ? src[1] : dst[1]);
+   //      dst[2]=(::u8)((src[2]<dst[2]) ? src[2] : dst[2]);
    //      dst+=4;
    //      src+=4;
    //   }
@@ -727,19 +727,19 @@ namespace typeface_freetype
    //   if(size() != pimage->size())
    //      return;
 
-   //   unsigned char *src=(unsigned char*)pimage->get_data();
-   //   unsigned char *dst=(unsigned char*)m_pcolorref;
-   //   long long size = area();
+   //   ::u8 *src=(::u8*)pimage->get_data();
+   //   ::u8 *dst=(::u8*)m_pcolorref;
+   //   ::i64 size = area();
    //
    //   while ( size-- )
    //   {
-   //      int Difference;
+   //      ::i32 Difference;
    //      Difference=src[0]-dst[0];
-   //      dst[0]=(unsigned char)((Difference<0) ? -Difference : Difference);
+   //      dst[0]=(::u8)((Difference<0) ? -Difference : Difference);
    //      Difference=src[1]-dst[1];
-   //      dst[1]=(unsigned char)((Difference<0) ? -Difference : Difference);
+   //      dst[1]=(::u8)((Difference<0) ? -Difference : Difference);
    //      Difference=src[2]-dst[2];
-   //      dst[2]=(unsigned char)((Difference<0) ? -Difference : Difference);
+   //      dst[2]=(::u8)((Difference<0) ? -Difference : Difference);
    //      dst+=4;
    //      src+=4;
    //   }
@@ -750,15 +750,15 @@ namespace typeface_freetype
    //   if(size() != pimage->size())
    //      return;
 
-   //   unsigned char *src=(unsigned char*)pimage->get_data();
-   //   unsigned char *dst=(unsigned char*)m_pcolorref;
-   //   long long size = area();
+   //   ::u8 *src=(::u8*)pimage->get_data();
+   //   ::u8 *dst=(::u8*)m_pcolorref;
+   //   ::i64 size = area();
    //
    //   while ( size-- )
    //   {
-   //      dst[0]=(unsigned char)((src[0]>dst[0]) ? src[0] : dst[0]);
-   //      dst[1]=(unsigned char)((src[1]>dst[1]) ? src[1] : dst[1]);
-   //      dst[2]=(unsigned char)((src[2]>dst[2]) ? src[2] : dst[2]);
+   //      dst[0]=(::u8)((src[0]>dst[0]) ? src[0] : dst[0]);
+   //      dst[1]=(::u8)((src[1]>dst[1]) ? src[1] : dst[1]);
+   //      dst[2]=(::u8)((src[2]>dst[2]) ? src[2] : dst[2]);
    //      dst+=4;
    //      src+=4;
    //   }
@@ -770,15 +770,15 @@ namespace typeface_freetype
    //   if(size() != pimage->size())
    //      return;
 
-   //   unsigned char *src=(unsigned char*)pimage->get_data();
-   //   unsigned char *dst=(unsigned char*)m_pcolorref;
-   //   long long size = area();
+   //   ::u8 *src=(::u8*)pimage->get_data();
+   //   ::u8 *dst=(::u8*)m_pcolorref;
+   //   ::i64 size = area();
    //
    //   while ( size-- )
    //   {
-   //      dst[0]=(unsigned char)(((src[0])*(dst[0]))>>8);
-   //      dst[1]=(unsigned char)(((src[1])*(dst[1]))>>8);
-   //      dst[2]=(unsigned char)(((src[2])*(dst[2]))>>8);
+   //      dst[0]=(::u8)(((src[0])*(dst[0]))>>8);
+   //      dst[1]=(::u8)(((src[1])*(dst[1]))>>8);
+   //      dst[2]=(::u8)(((src[2])*(dst[2]))>>8);
    //      dst+=4;
    //      src+=4;
    //   }
@@ -789,15 +789,15 @@ namespace typeface_freetype
    //   if(size() != pimage->size())
    //      return;
 
-   //   unsigned char *src=(unsigned char*)pimage->get_data();
-   //   unsigned char *dst=(unsigned char*)m_pcolorref;
-   //   long long size = area();
+   //   ::u8 *src=(::u8*)pimage->get_data();
+   //   ::u8 *dst=(::u8*)m_pcolorref;
+   //   ::i64 size = area();
    //
    //   while ( size-- )
    //   {
-   //      dst[0]=(unsigned char)(255-(((255-src[0])*(255-dst[0]))>>8));
-   //      dst[1]=(unsigned char)(255-(((255-src[1])*(255-dst[1]))>>8));
-   //      dst[2]=(unsigned char)(255-(((255-src[2])*(255-dst[2]))>>8));
+   //      dst[0]=(::u8)(255-(((255-src[0])*(255-dst[0]))>>8));
+   //      dst[1]=(::u8)(255-(((255-src[1])*(255-dst[1]))>>8));
+   //      dst[2]=(::u8)(255-(((255-src[2])*(255-dst[2]))>>8));
    //      dst+=4;
    //      src+=4;
    //   }
@@ -807,13 +807,13 @@ namespace typeface_freetype
    //// Rectangle Functions
    ////////////////////////////////////////////////////////////////////////
 
-   //void image::copy (::image::image *pimage, int x, int y )
+   //void image::copy (::image::image *pimage, ::i32 x, ::i32 y )
    //{
    //   // Clip Rect
-   //   int px=(x>=0) ? x : 0;
-   //   int py=(y>=0) ? y : 0;
-   //   int Δx=((x+pimage->width())<m_size.cx) ? pimage.width() : m_size.cx-x;
-   //   int Δy=((y+pimage->height())<m_size.cy) ? pimage.height() : m_size.cy-y;
+   //   ::i32 px=(x>=0) ? x : 0;
+   //   ::i32 py=(y>=0) ? y : 0;
+   //   ::i32 Δx=((x+pimage->width())<m_size.cx) ? pimage.width() : m_size.cx-x;
+   //   ::i32 Δy=((y+pimage->height())<m_size.cy) ? pimage.height() : m_size.cy-y;
    //   Δx=(x>=0) ? Δx : Δx + x;
    //   Δy=(y>=0) ? Δy : Δy + y;
 
@@ -831,20 +831,20 @@ namespace typeface_freetype
    //   // Do copy
    //   while ( Δy-- )
    //   {
-   //      for ( int i=0; i<Δx; i++ )
+   //      for ( ::i32 i=0; i<Δx; i++ )
    //         dst[i]=src[i];
    //      src+=m_size.cx;
    //      dst+=pimage->width();
    //   }
    //}
 
-   //void image::PasteRect (::image::image *pimage, int x, int y )
+   //void image::PasteRect (::image::image *pimage, ::i32 x, ::i32 y )
    //{
    //   // Clip Rect
-   //   int px=(x>=0) ? x : 0;
-   //   int py=(y>=0) ? y : 0;
-   //   int Δx=((x+pimage->width())<m_size.cx) ? pimage.width() : m_size.cx-x;
-   //   int Δy=((y+pimage->height())<m_size.cy) ? pimage.height() : m_size.cy-y;
+   //   ::i32 px=(x>=0) ? x : 0;
+   //   ::i32 py=(y>=0) ? y : 0;
+   //   ::i32 Δx=((x+pimage->width())<m_size.cx) ? pimage.width() : m_size.cx-x;
+   //   ::i32 Δy=((y+pimage->height())<m_size.cy) ? pimage.height() : m_size.cy-y;
    //   Δx=(x>=0) ? Δx : Δx + x;
    //   Δy=(y>=0) ? Δy : Δy + y;
 
@@ -859,20 +859,20 @@ namespace typeface_freetype
    //   // Do Paste
    //   while ( Δy-- )
    //   {
-   //      for ( int i=0; i<Δx; i++ )
+   //      for ( ::i32 i=0; i<Δx; i++ )
    //         dst[i]=src[i];
    //      src+=pimage->width();
    //      dst+=m_size.cx;
    //   }
    //}
 
-   //void image::FillRect ( int x, int y, int w, int h, int R, int G, int B )
+   //void image::FillRect ( ::i32 x, ::i32 y, ::i32 w, ::i32 h, ::i32 R, ::i32 G, ::i32 B )
    //{
    //   // Clip Rect
-   //   int px=(x>=0) ? x : 0;
-   //   int py=(y>=0) ? y : 0;
-   //   int Δx=((x+w)<m_size.cx) ? w : m_size.cx-x;
-   //   int Δy=((y+h)<m_size.cy) ? h : m_size.cy-y;
+   //   ::i32 px=(x>=0) ? x : 0;
+   //   ::i32 py=(y>=0) ? y : 0;
+   //   ::i32 Δx=((x+w)<m_size.cx) ? w : m_size.cx-x;
+   //   ::i32 Δy=((y+h)<m_size.cy) ? h : m_size.cy-y;
    //   Δx=(x>=0) ? Δx : Δx + x;
    //   Δy=(y>=0) ? Δy : Δy + y;
 
@@ -887,7 +887,7 @@ namespace typeface_freetype
    //   // Do Fill
    //   while ( Δy-- )
    //   {
-   //      for ( int i=0; i<Δx; i++ )
+   //      for ( ::i32 i=0; i<Δx; i++ )
    //      {
    //         dst[i]=color;
    //      }
@@ -895,13 +895,13 @@ namespace typeface_freetype
    //   }
    //}
 
-   //void image::FillGlassRect ( int x, int y, int w, int h, int R, int G, int B, int A )
+   //void image::FillGlassRect ( ::i32 x, ::i32 y, ::i32 w, ::i32 h, ::i32 R, ::i32 G, ::i32 B, ::i32 A )
    //{
    //   // Clip Rect
-   //   int px=(x>=0) ? x : 0;
-   //   int py=(y>=0) ? y : 0;
-   //   int Δx=((x+w)<m_size.cx) ? w : m_size.cx-x;
-   //   int Δy=((y+h)<m_size.cy) ? h : m_size.cy-y;
+   //   ::i32 px=(x>=0) ? x : 0;
+   //   ::i32 py=(y>=0) ? y : 0;
+   //   ::i32 Δx=((x+w)<m_size.cx) ? w : m_size.cx-x;
+   //   ::i32 Δy=((y+h)<m_size.cy) ? h : m_size.cy-y;
    //   Δx=(x>=0) ? Δx : Δx + x;
    //   Δy=(y>=0) ? Δy : Δy + y;
 
@@ -910,29 +910,29 @@ namespace typeface_freetype
    //      return;
 
    //   // Prepare buffer Address
-   //   unsigned char *dst=(unsigned char *)m_pcolorref+((py*m_size.cx)+px)*4;
+   //   ::u8 *dst=(::u8 *)m_pcolorref+((py*m_size.cx)+px)*4;
 
    //   // Do FillGlass
    //   while ( Δy-- )
    //   {
-   //      for ( int i=0; i<Δx; i++ )
+   //      for ( ::i32 i=0; i<Δx; i++ )
    //      {
-   //         dst[0]=(unsigned char)(((B-dst[0])*A+(dst[0]<<8))>>8);
-   //         dst[1]=(unsigned char)(((G-dst[1])*A+(dst[1]<<8))>>8);
-   //         dst[2]=(unsigned char)(((R-dst[2])*A+(dst[2]<<8))>>8);
+   //         dst[0]=(::u8)(((B-dst[0])*A+(dst[0]<<8))>>8);
+   //         dst[1]=(::u8)(((G-dst[1])*A+(dst[1]<<8))>>8);
+   //         dst[2]=(::u8)(((R-dst[2])*A+(dst[2]<<8))>>8);
    //         dst+=4;
    //      }
    //      dst+=(m_size.cx-Δx)<<2;
    //   }
    //}
 
-   //void image::FillStippledGlassRect ( int x, int y, int w, int h, int R, int G, int B )
+   //void image::FillStippledGlassRect ( ::i32 x, ::i32 y, ::i32 w, ::i32 h, ::i32 R, ::i32 G, ::i32 B )
    //{
    //   // Clip Rect
-   //   int px=(x>=0) ? x : 0;
-   //   int py=(y>=0) ? y : 0;
-   //   int Δx=((x+w)<m_size.cx) ? w : m_size.cx-x;
-   //   int Δy=((y+h)<m_size.cy) ? h : m_size.cy-y;
+   //   ::i32 px=(x>=0) ? x : 0;
+   //   ::i32 py=(y>=0) ? y : 0;
+   //   ::i32 Δx=((x+w)<m_size.cx) ? w : m_size.cx-x;
+   //   ::i32 Δy=((y+h)<m_size.cy) ? h : m_size.cy-y;
    //   Δx=(x>=0) ? Δx : Δx + x;
    //   Δy=(y>=0) ? Δy : Δy + y;
 
@@ -945,9 +945,9 @@ namespace typeface_freetype
    //   color32_t color=rgb ( B, G, R );
 
    //   // Do FillStippledGlass
-   //   for ( int j=0; j<Δy; j++ )
+   //   for ( ::i32 j=0; j<Δy; j++ )
    //   {
-   //      for ( int i=0; i<Δx; i++ )
+   //      for ( ::i32 i=0; i<Δx; i++ )
    //      {
    //         dst[i]=((i+j)&0x1) ? dst[i] : color;
    //      }
@@ -955,13 +955,13 @@ namespace typeface_freetype
    //   }
    //}
 
-   //void image::BlendRect (::image::image *pimage, int x, int y, int A )
+   //void image::BlendRect (::image::image *pimage, ::i32 x, ::i32 y, ::i32 A )
    //{
    //   // Clip Rect
-   //   int px=(x>=0) ? x : 0;
-   //   int py=(y>=0) ? y : 0;
-   //   int Δx=((x+pimage->width())<m_size.cx) ? pimage.width() : m_size.cx-x;
-   //   int Δy=((y+pimage->height())<m_size.cy) ? pimage.height() : m_size.cy-y;
+   //   ::i32 px=(x>=0) ? x : 0;
+   //   ::i32 py=(y>=0) ? y : 0;
+   //   ::i32 Δx=((x+pimage->width())<m_size.cx) ? pimage.width() : m_size.cx-x;
+   //   ::i32 Δy=((y+pimage->height())<m_size.cy) ? pimage.height() : m_size.cy-y;
    //   Δx=(x>=0) ? Δx : Δx + x;
    //   Δy=(y>=0) ? Δy : Δy + y;
 
@@ -970,17 +970,17 @@ namespace typeface_freetype
    //      return;
 
    //   // Prepare buffer Addresses
-   //   unsigned char *src=(unsigned char *)pimage->get_data()+(((py-y)*pimage->width())+px-x)*4;
-   //   unsigned char *dst=(unsigned char *)m_pcolorref+((py*m_size.cx)+px)*4;
+   //   ::u8 *src=(::u8 *)pimage->get_data()+(((py-y)*pimage->width())+px-x)*4;
+   //   ::u8 *dst=(::u8 *)m_pcolorref+((py*m_size.cx)+px)*4;
 
    //   // Do Blend
    //   while ( Δy-- )
    //   {
-   //      for ( int i=0; i<Δx; i++ )
+   //      for ( ::i32 i=0; i<Δx; i++ )
    //      {
-   //         dst[0]=(unsigned char)(((src[0]-dst[0])*A+(dst[0]<<8))>>8);
-   //         dst[1]=(unsigned char)(((src[1]-dst[1])*A+(dst[1]<<8))>>8);
-   //         dst[2]=(unsigned char)(((src[2]-dst[2])*A+(dst[2]<<8))>>8);
+   //         dst[0]=(::u8)(((src[0]-dst[0])*A+(dst[0]<<8))>>8);
+   //         dst[1]=(::u8)(((src[1]-dst[1])*A+(dst[1]<<8))>>8);
+   //         dst[2]=(::u8)(((src[2]-dst[2])*A+(dst[2]<<8))>>8);
    //         dst+=4;
    //         src+=4;
    //      }
@@ -989,13 +989,13 @@ namespace typeface_freetype
    //   }
    //}
 
-   //void image::DarkenRect (::image::image *pimage, int x, int y )
+   //void image::DarkenRect (::image::image *pimage, ::i32 x, ::i32 y )
    //{
    //   // Clip Rect
-   //   int px=(x>=0) ? x : 0;
-   //   int py=(y>=0) ? y : 0;
-   //   int Δx=((x+pimage->cx)<cx) ? pimage->cx : cx-x;
-   //   int Δy=((y+pimage->cy)<cy) ? pimage->cy : cy-y;
+   //   ::i32 px=(x>=0) ? x : 0;
+   //   ::i32 py=(y>=0) ? y : 0;
+   //   ::i32 Δx=((x+pimage->cx)<cx) ? pimage->cx : cx-x;
+   //   ::i32 Δy=((y+pimage->cy)<cy) ? pimage->cy : cy-y;
    //   Δx=(x>=0) ? Δx : Δx + x;
    //   Δy=(y>=0) ? Δy : Δy + y;
 
@@ -1004,17 +1004,17 @@ namespace typeface_freetype
    //      return;
 
    //   // Prepare buffer Addresses
-   //   unsigned char *src=(unsigned char *)pimage->get_data()+(((py-y)*pimage->cx)+px-x)*4;
-   //   unsigned char *dst=(unsigned char *)m_pcolorref+((py*cx)+px)*4;
+   //   ::u8 *src=(::u8 *)pimage->get_data()+(((py-y)*pimage->cx)+px-x)*4;
+   //   ::u8 *dst=(::u8 *)m_pcolorref+((py*cx)+px)*4;
 
    //   // Do Darken
    //   while ( Δy-- )
    //   {
-   //      for ( int i=0; i<Δx; i++ )
+   //      for ( ::i32 i=0; i<Δx; i++ )
    //      {
-   //         dst[0]=(unsigned char)((src[0]<dst[0]) ? src[0] : dst[0]);
-   //         dst[1]=(unsigned char)((src[1]<dst[1]) ? src[1] : dst[1]);
-   //         dst[2]=(unsigned char)((src[2]<dst[2]) ? src[2] : dst[2]);
+   //         dst[0]=(::u8)((src[0]<dst[0]) ? src[0] : dst[0]);
+   //         dst[1]=(::u8)((src[1]<dst[1]) ? src[1] : dst[1]);
+   //         dst[2]=(::u8)((src[2]<dst[2]) ? src[2] : dst[2]);
    //         dst+=4;
    //         src+=4;
    //      }
@@ -1023,13 +1023,13 @@ namespace typeface_freetype
    //   }
    //}
 
-   //void image::DifferenceRect (::image::image *pimage, int x, int y )
+   //void image::DifferenceRect (::image::image *pimage, ::i32 x, ::i32 y )
    //{
    //   // Clip Rect
-   //   int px=(x>=0) ? x : 0;
-   //   int py=(y>=0) ? y : 0;
-   //   int Δx=((x+pimage->cx)<cx) ? pimage->cx : cx-x;
-   //   int Δy=((y+pimage->cy)<cy) ? pimage->cy : cy-y;
+   //   ::i32 px=(x>=0) ? x : 0;
+   //   ::i32 py=(y>=0) ? y : 0;
+   //   ::i32 Δx=((x+pimage->cx)<cx) ? pimage->cx : cx-x;
+   //   ::i32 Δy=((y+pimage->cy)<cy) ? pimage->cy : cy-y;
    //   Δx=(x>=0) ? Δx : Δx + x;
    //   Δy=(y>=0) ? Δy : Δy + y;
 
@@ -1038,21 +1038,21 @@ namespace typeface_freetype
    //      return;
 
    //   // Prepare buffer Addresses
-   //   unsigned char *src=(unsigned char *)pimage->get_data()+(((py-y)*pimage->cx)+px-x)*4;
-   //   unsigned char *dst=(unsigned char *)m_pcolorref+((py*cx)+px)*4;
+   //   ::u8 *src=(::u8 *)pimage->get_data()+(((py-y)*pimage->cx)+px-x)*4;
+   //   ::u8 *dst=(::u8 *)m_pcolorref+((py*cx)+px)*4;
 
    //   // Do Difference
    //   while ( Δy-- )
    //   {
-   //      for ( int i=0; i<Δx; i++ )
+   //      for ( ::i32 i=0; i<Δx; i++ )
    //      {
-   //         int Difference;
+   //         ::i32 Difference;
    //         Difference=src[0]-dst[0];
-   //         dst[0]=(unsigned char)((Difference<0) ? -Difference : Difference);
+   //         dst[0]=(::u8)((Difference<0) ? -Difference : Difference);
    //         Difference=src[1]-dst[1];
-   //         dst[1]=(unsigned char)((Difference<0) ? -Difference : Difference);
+   //         dst[1]=(::u8)((Difference<0) ? -Difference : Difference);
    //         Difference=src[2]-dst[2];
-   //         dst[2]=(unsigned char)((Difference<0) ? -Difference : Difference);
+   //         dst[2]=(::u8)((Difference<0) ? -Difference : Difference);
    //         dst+=4;
    //         src+=4;
    //      }
@@ -1061,13 +1061,13 @@ namespace typeface_freetype
    //   }
    //}
 
-   //void image::LightenRect (::image::image *pimage, int x, int y )
+   //void image::LightenRect (::image::image *pimage, ::i32 x, ::i32 y )
    //{
    //   // Clip Rect
-   //   int px=(x>=0) ? x : 0;
-   //   int py=(y>=0) ? y : 0;
-   //   int Δx=((x+pimage->cx)<cx) ? pimage->cx : cx-x;
-   //   int Δy=((y+pimage->cy)<cy) ? pimage->cy : cy-y;
+   //   ::i32 px=(x>=0) ? x : 0;
+   //   ::i32 py=(y>=0) ? y : 0;
+   //   ::i32 Δx=((x+pimage->cx)<cx) ? pimage->cx : cx-x;
+   //   ::i32 Δy=((y+pimage->cy)<cy) ? pimage->cy : cy-y;
    //   Δx=(x>=0) ? Δx : Δx + x;
    //   Δy=(y>=0) ? Δy : Δy + y;
 
@@ -1076,17 +1076,17 @@ namespace typeface_freetype
    //      return;
 
    //   // Prepare buffer Addresses
-   //   unsigned char *src=(unsigned char *)pimage->get_data()+(((py-y)*pimage->cx)+px-x)*4;
-   //   unsigned char *dst=(unsigned char *)m_pcolorref+((py*cx)+px)*4;
+   //   ::u8 *src=(::u8 *)pimage->get_data()+(((py-y)*pimage->cx)+px-x)*4;
+   //   ::u8 *dst=(::u8 *)m_pcolorref+((py*cx)+px)*4;
 
    //   // Do Lighten
    //   while ( Δy-- )
    //   {
-   //      for ( int i=0; i<Δx; i++ )
+   //      for ( ::i32 i=0; i<Δx; i++ )
    //      {
-   //         dst[0]=(unsigned char)((src[0]>dst[0]) ? src[0] : dst[0]);
-   //         dst[1]=(unsigned char)((src[1]>dst[1]) ? src[1] : dst[1]);
-   //         dst[2]=(unsigned char)((src[2]>dst[2]) ? src[2] : dst[2]);
+   //         dst[0]=(::u8)((src[0]>dst[0]) ? src[0] : dst[0]);
+   //         dst[1]=(::u8)((src[1]>dst[1]) ? src[1] : dst[1]);
+   //         dst[2]=(::u8)((src[2]>dst[2]) ? src[2] : dst[2]);
    //         dst+=4;
    //         src+=4;
    //      }
@@ -1095,13 +1095,13 @@ namespace typeface_freetype
    //   }
    //}
 
-   //void image::MultiplyRect (::image::image *pimage, int x, int y )
+   //void image::MultiplyRect (::image::image *pimage, ::i32 x, ::i32 y )
    //{
    //   // Clip Rect
-   //   int px=(x>=0) ? x : 0;
-   //   int py=(y>=0) ? y : 0;
-   //   int Δx=((x+pimage->cx)<cx) ? pimage->cx : cx-x;
-   //   int Δy=((y+pimage->cy)<cy) ? pimage->cy : cy-y;
+   //   ::i32 px=(x>=0) ? x : 0;
+   //   ::i32 py=(y>=0) ? y : 0;
+   //   ::i32 Δx=((x+pimage->cx)<cx) ? pimage->cx : cx-x;
+   //   ::i32 Δy=((y+pimage->cy)<cy) ? pimage->cy : cy-y;
    //   Δx=(x>=0) ? Δx : Δx + x;
    //   Δy=(y>=0) ? Δy : Δy + y;
 
@@ -1110,17 +1110,17 @@ namespace typeface_freetype
    //      return;
 
    //   // Prepare buffer Addresses
-   //   unsigned char *src=(unsigned char *)pimage->get_data()+(((py-y)*pimage->cx)+px-x)*4;
-   //   unsigned char *dst=(unsigned char *)m_pcolorref+((py*cx)+px)*4;
+   //   ::u8 *src=(::u8 *)pimage->get_data()+(((py-y)*pimage->cx)+px-x)*4;
+   //   ::u8 *dst=(::u8 *)m_pcolorref+((py*cx)+px)*4;
 
    //   // Do Multiply
    //   while ( Δy-- )
    //   {
-   //      for ( int i=0; i<Δx; i++ )
+   //      for ( ::i32 i=0; i<Δx; i++ )
    //      {
-   //         dst[0]=(unsigned char)(((src[0])*(dst[0]))>>8);
-   //         dst[1]=(unsigned char)(((src[1])*(dst[1]))>>8);
-   //         dst[2]=(unsigned char)(((src[2])*(dst[2]))>>8);
+   //         dst[0]=(::u8)(((src[0])*(dst[0]))>>8);
+   //         dst[1]=(::u8)(((src[1])*(dst[1]))>>8);
+   //         dst[2]=(::u8)(((src[2])*(dst[2]))>>8);
    //         dst+=4;
    //         src+=4;
    //      }
@@ -1129,13 +1129,13 @@ namespace typeface_freetype
    //   }
    //}
 
-   //void image::ScreenRect (::image::image *pimage, int x, int y )
+   //void image::ScreenRect (::image::image *pimage, ::i32 x, ::i32 y )
    //{
    //   // Clip Rect
-   //   int px=(x>=0) ? x : 0;
-   //   int py=(y>=0) ? y : 0;
-   //   int Δx=((x+pimage->cx)<cx) ? pimage->cx : cx-x;
-   //   int Δy=((y+pimage->cy)<cy) ? pimage->cy : cy-y;
+   //   ::i32 px=(x>=0) ? x : 0;
+   //   ::i32 py=(y>=0) ? y : 0;
+   //   ::i32 Δx=((x+pimage->cx)<cx) ? pimage->cx : cx-x;
+   //   ::i32 Δy=((y+pimage->cy)<cy) ? pimage->cy : cy-y;
    //   Δx=(x>=0) ? Δx : Δx + x;
    //   Δy=(y>=0) ? Δy : Δy + y;
 
@@ -1144,17 +1144,17 @@ namespace typeface_freetype
    //      return;
 
    //   // Prepare buffer Addresses
-   //   unsigned char *src=(unsigned char *)pimage->get_data()+(((py-y)*pimage->cx)+px-x)*4;
-   //   unsigned char *dst=(unsigned char *)m_pcolorref+((py*cx)+px)*4;
+   //   ::u8 *src=(::u8 *)pimage->get_data()+(((py-y)*pimage->cx)+px-x)*4;
+   //   ::u8 *dst=(::u8 *)m_pcolorref+((py*cx)+px)*4;
 
    //   // Do Screen
    //   while ( Δy-- )
    //   {
-   //      for ( int i=0; i<Δx; i++ )
+   //      for ( ::i32 i=0; i<Δx; i++ )
    //      {
-   //         dst[0]=(unsigned char)(255-(((255-src[0])*(255-dst[0]))>>8));
-   //         dst[1]=(unsigned char)(255-(((255-src[1])*(255-dst[1]))>>8));
-   //         dst[2]=(unsigned char)(255-(((255-src[2])*(255-dst[2]))>>8));
+   //         dst[0]=(::u8)(255-(((255-src[0])*(255-dst[0]))>>8));
+   //         dst[1]=(::u8)(255-(((255-src[1])*(255-dst[1]))>>8));
+   //         dst[2]=(::u8)(255-(((255-src[2])*(255-dst[2]))>>8));
    //         dst+=4;
    //         src+=4;
    //      }
@@ -1167,9 +1167,9 @@ namespace typeface_freetype
    // Line Functions
    //////////////////////////////////////////////////////////////////////
 
-   /*void image::Line ( int x1, int y1, int x2, int y2, int R, int G, int B )
+   /*void image::Line ( ::i32 x1, ::i32 y1, ::i32 x2, ::i32 y2, ::i32 R, ::i32 G, ::i32 B )
    {
-      int Δx, Δy, k1, k2, d, x, y;
+      ::i32 Δx, Δy, k1, k2, d, x, y;
       color32_t color=rgb ( B, G, R );
 
       Δx=x2-x1;
@@ -1198,9 +1198,9 @@ namespace typeface_freetype
       }
    }*/
 
-//   void image::Line ( int x1, int y1, int x2, int y2, int R, int G, int B )
+//   void image::Line ( ::i32 x1, ::i32 y1, ::i32 x2, ::i32 y2, ::i32 R, ::i32 G, ::i32 B )
 //   {
-//      int d, x, y, ax, ay, sx, sy, Δx, Δy;
+//      ::i32 d, x, y, ax, ay, sx, sy, Δx, Δy;
 //      color32_t color=rgb ( B, G, R );
 //
 //      Δx=x2-x1;
@@ -1244,11 +1244,11 @@ namespace typeface_freetype
 //      }
 //   }
 //
-//   void image::LineGlass ( int x1, int y1, int x2, int y2, int R, int G, int B, int A )
+//   void image::LineGlass ( ::i32 x1, ::i32 y1, ::i32 x2, ::i32 y2, ::i32 R, ::i32 G, ::i32 B, ::i32 A )
 //   {
-//      int d, x, y, ax, ay, sx, sy, Δx, Δy;
+//      ::i32 d, x, y, ax, ay, sx, sy, Δx, Δy;
 ////      color32_t color=rgb ( B, G, R );
-//      unsigned char *dst=(unsigned char *)m_pcolorref;
+//      ::u8 *dst=(::u8 *)m_pcolorref;
 //
 //      Δx=x2-x1;
 //      ax=abs ( Δx )<<1;
@@ -1264,9 +1264,9 @@ namespace typeface_freetype
 //         d=ay-(ax>>1);
 //         while ( x!=x2 )
 //         {
-//            dst[(y*cx+x)<<2]=(unsigned char)(((B-dst[(y*cx+x)<<2])*A+(dst[(y*cx+x)<<2]<<8))>>8);
-//            dst[((y*cx+x)<<2)+1]=(unsigned char)(((G-dst[((y*cx+x)<<2)+1])*A+(dst[((y*cx+x)<<2)+1]<<8))>>8);
-//            dst[((y*cx+x)<<2)+2]=(unsigned char)(((R-dst[((y*cx+x)<<2)+2])*A+(dst[((y*cx+x)<<2)+2]<<8))>>8);
+//            dst[(y*cx+x)<<2]=(::u8)(((B-dst[(y*cx+x)<<2])*A+(dst[(y*cx+x)<<2]<<8))>>8);
+//            dst[((y*cx+x)<<2)+1]=(::u8)(((G-dst[((y*cx+x)<<2)+1])*A+(dst[((y*cx+x)<<2)+1]<<8))>>8);
+//            dst[((y*cx+x)<<2)+2]=(::u8)(((R-dst[((y*cx+x)<<2)+2])*A+(dst[((y*cx+x)<<2)+2]<<8))>>8);
 //            if ( d>=0 )
 //            {
 //               y+=sy;
@@ -1281,9 +1281,9 @@ namespace typeface_freetype
 //         d=ax-(ay>>1);
 //         while ( y!=y2 )
 //         {
-//            dst[(y*cx+x)<<2]=(unsigned char)(((B-dst[(y*cx+x)<<2])*A+(dst[(y*cx+x)<<2]<<8))>>8);
-//            dst[((y*cx+x)<<2)+1]=(unsigned char)(((G-dst[((y*cx+x)<<2)+1])*A+(dst[((y*cx+x)<<2)+1]<<8))>>8);
-//            dst[((y*cx+x)<<2)+2]=(unsigned char)(((R-dst[((y*cx+x)<<2)+2])*A+(dst[((y*cx+x)<<2)+2]<<8))>>8);
+//            dst[(y*cx+x)<<2]=(::u8)(((B-dst[(y*cx+x)<<2])*A+(dst[(y*cx+x)<<2]<<8))>>8);
+//            dst[((y*cx+x)<<2)+1]=(::u8)(((G-dst[((y*cx+x)<<2)+1])*A+(dst[((y*cx+x)<<2)+1]<<8))>>8);
+//            dst[((y*cx+x)<<2)+2]=(::u8)(((R-dst[((y*cx+x)<<2)+2])*A+(dst[((y*cx+x)<<2)+2]<<8))>>8);
 //            if ( d>=0 )
 //            {
 //               x+=sx;
@@ -1301,9 +1301,9 @@ namespace typeface_freetype
    //   color32_t crSet = rgb(::blue(crInMask), ::green(crInMask), ::red(crInMask));
    //   color32_t crUnset  = rgb(::blue(crOutMask), ::green(crOutMask), ::red(crOutMask));
 
-   //   int size=cx*cy;
+   //   ::i32 size=cx*cy;
 
-   //   for ( int i=0; i<size; i++ )
+   //   for ( ::i32 i=0; i<size; i++ )
    //      if(m_pcolorref[i]== crFind)
    //         m_pcolorref[i] = crSet;
    //      else
@@ -1314,9 +1314,9 @@ namespace typeface_freetype
    //void image::transparent_color(::color::color color)
    //{
    //   color32_t crFind = color.get_rgb();
-   //   long long size = area();
+   //   ::i64 size = area();
 
-   //   for ( int i=0; i<size; i++ )
+   //   for ( ::i32 i=0; i<size; i++ )
    //      if((m_pcolorref[i] & 0x00ffffff) == crFind)
    //         ((LPBYTE)&m_pcolorref[i])[3] = 255;
    //      else
@@ -1325,11 +1325,11 @@ namespace typeface_freetype
 
    //void image::color::e_channel_mask(uchar uchFind, uchar uchSet, uchar uchUnset, color::color::color::rgba::echannel echannel)
    //{
-   //   int size = cx * cy;
-   //   uchar * puch = (uchar * ) m_pcolorref;
-   //   puch += ((int) echannel) % 4;
+   //   ::i32 size = cx * cy;
+   //   ::u8 * puch = (::u8 * ) m_pcolorref;
+   //   puch += ((::i32) echannel) % 4;
 
-   //   for(int i = 0; i < size; i++)
+   //   for(::i32 i = 0; i < size; i++)
    //   {
    //      if(*puch == uchFind)
    //         *puch = uchSet;
@@ -1339,9 +1339,9 @@ namespace typeface_freetype
    //   }
    //}
 
-   //unsigned int image::GetPixel(int x, int y)
+   //::u32 image::GetPixel(::i32 x, ::i32 y)
    //{
-   //   unsigned int dw = *(m_pcolorref + x + (cy - y - 1) * cx);
+   //   ::u32 dw = *(m_pcolorref + x + (cy - y - 1) * cx);
    //   return rgb(::blue(dw), ::green(dw), ::red(dw));
    //}
 
@@ -1350,19 +1350,19 @@ namespace typeface_freetype
    // The gradient cant have more then 256 levels of the most bright color
    // (white). So creating a radial fill of radius 256 and then using fasting
    // stretching algorithms is much faster than calculating radial fill.
-//   void image::RadialFill(unsigned char alpha, unsigned char red, unsigned char green, unsigned char blue, int xCenter, int yCenter, int iRadius)
+//   void image::RadialFill(::u8 alpha, ::u8 red, ::u8 green, ::u8 blue, ::i32 xCenter, ::i32 yCenter, ::i32 iRadius)
 //   {
 //      if (iRadius == 0)
 //         return;
 //      /*if(version == 0)
 //      {
 //
-//         int iR = iRadius - 1;
+//         ::i32 iR = iRadius - 1;
 //
-//         int xL = xCenter - iR;
-//         int xU = xCenter + iR;
-//         int yL = yCenter - iR;
-//         int yU = yCenter + iR;
+//         ::i32 xL = xCenter - iR;
+//         ::i32 xU = xCenter + iR;
+//         ::i32 yL = yCenter - iR;
+//         ::i32 yU = yCenter + iR;
 //
 //
 //         if(xL < 0) xL = 0;
@@ -1371,48 +1371,48 @@ namespace typeface_freetype
 //         if(yU >= cy) yU = cy - 1;
 //
 //
-//         unsigned char *dst = ((unsigned char*)(m_pcolorref + xL + yL * cx));
-//         unsigned int dwAdd = ((cx - 1 - xU) + xL) * 4;
-//         int size=cx*cy;
-//         double iLevel;
+//         ::u8 *dst = ((::u8*)(m_pcolorref + xL + yL * cx));
+//         ::u32 dwAdd = ((cx - 1 - xU) + xL) * 4;
+//         ::i32 size=cx*cy;
+//         ::f64 iLevel;
 //
-//         int Δx, Δy;
-//         int dx0, dy0;
-//         int dx1, dy1;
-//         int dx2, dy2;
-//         int dx3, dy3;
-//         int dx4, dy4;
-//         int dx5, dy5;
-//         int dx6, dy6;
-//         int dx7, dy7;
-//         int dx8, dy8;
-//         int dx9, dy9;
-//         int dxA, dyA;
-//         int dxB, dyB;
-//         int dxC, dyC;
-//         int dxD, dyD;
-//         int dxE, dyE;
-//         int dxF, dyF;
+//         ::i32 Δx, Δy;
+//         ::i32 dx0, dy0;
+//         ::i32 dx1, dy1;
+//         ::i32 dx2, dy2;
+//         ::i32 dx3, dy3;
+//         ::i32 dx4, dy4;
+//         ::i32 dx5, dy5;
+//         ::i32 dx6, dy6;
+//         ::i32 dx7, dy7;
+//         ::i32 dx8, dy8;
+//         ::i32 dx9, dy9;
+//         ::i32 dxA, dyA;
+//         ::i32 dxB, dyB;
+//         ::i32 dxC, dyC;
+//         ::i32 dxD, dyD;
+//         ::i32 dxE, dyE;
+//         ::i32 dxF, dyF;
 //
-//         unsigned long dr;
-//         unsigned long dq;
-//         unsigned long dr0, dq0;
-//         unsigned long dr1, dq1;
-//         unsigned long dr2, dq2;
-//         unsigned long dr3, dq3;
-//         unsigned long dr4, dq4;
-//         unsigned long dr5, dq5;
-//         unsigned long dr6, dq6;
-//         unsigned long dr7, dq7;
-//         unsigned long dr8, dq8;
-//         unsigned long dr9, dq9;
-//         unsigned long drA, dqA;
-//         unsigned long drB, dqB;
-//         unsigned long drC, dqC;
-//         unsigned long drD, dqD;
-//         unsigned long drE, dqE;
-//         unsigned long drF, dqF;
-//         int x, y;
+//         ulong dr;
+//         ulong dq;
+//         ulong dr0, dq0;
+//         ulong dr1, dq1;
+//         ulong dr2, dq2;
+//         ulong dr3, dq3;
+//         ulong dr4, dq4;
+//         ulong dr5, dq5;
+//         ulong dr6, dq6;
+//         ulong dr7, dq7;
+//         ulong dr8, dq8;
+//         ulong dr9, dq9;
+//         ulong drA, dqA;
+//         ulong drB, dqB;
+//         ulong drC, dqC;
+//         ulong drD, dqD;
+//         ulong drE, dqE;
+//         ulong drF, dqF;
+//         ::i32 x, y;
 //
 //         {
 //            for(y = yL; y <= yU; y++)
@@ -1439,37 +1439,37 @@ namespace typeface_freetype
 //      {
 //
 //         LPBYTE lpbAlloc = (LPBYTE) malloc((iRadius * iRadius) + 4);
-//         LPBYTE lpb = (LPBYTE) (((int) lpbAlloc + 3) & ~3);
+//         LPBYTE lpb = (LPBYTE) (((::i32) lpbAlloc + 3) & ~3);
 //
 //
-//         int x, y;
-//         int b;
+//         ::i32 x, y;
+//         ::i32 b;
 //
-////         int r2 = iRadius * iRadius;
+////         ::i32 r2 = iRadius * iRadius;
 //
 //         for(y = 0; y < iRadius; y++)
 //         {
 //            for(x = y; x < iRadius; x++)
 //            {
-//               b = (int) (sqrt((double) (x * x) + (y * y)) * 255 / iRadius);
+//               b = (::i32) (sqrt((::f64) (x * x) + (y * y)) * 255 / iRadius);
 //               if(b > 255)
 //                  b = 0;
 //               else
 //                  b = 255 - b;
 //
 //
-//               lpb[x + y * iRadius] = (unsigned char) b;
-//               lpb[y + x * iRadius] = (unsigned char) b;
+//               lpb[x + y * iRadius] = (::u8) b;
+//               lpb[y + x * iRadius] = (::u8) b;
 //            }
 //         }
 //
 //
-//         int iR = iRadius - 1;
+//         ::i32 iR = iRadius - 1;
 //
-//         int xL = xCenter - iR;
-//         int xU = xCenter + iR;
-//         int yL = yCenter - iR;
-//         int yU = yCenter + iR;
+//         ::i32 xL = xCenter - iR;
+//         ::i32 xU = xCenter + iR;
+//         ::i32 yL = yCenter - iR;
+//         ::i32 yU = yCenter + iR;
 //
 //
 //         if(xL < 0) xL = 0;
@@ -1478,11 +1478,11 @@ namespace typeface_freetype
 //         if(yU >= cy) yU = cy - 1;
 //
 //
-//         unsigned char *dst = ((unsigned char*)(m_pcolorref + xL + yL * cx));
-//         unsigned int dwAdd = ((cx - 1 - xU) + xL) * 4;
-////         int size=cx*cy;
+//         ::u8 *dst = ((::u8*)(m_pcolorref + xL + yL * cx));
+//         ::u32 dwAdd = ((cx - 1 - xU) + xL) * 4;
+////         ::i32 size=cx*cy;
 //
-//         int Δx, Δy;
+//         ::i32 Δx, Δy;
 //
 //         // Top Left
 //
@@ -1493,10 +1493,10 @@ namespace typeface_freetype
 //               Δx = abs(x - xCenter);
 //               Δy = abs(y - yCenter);
 //               b = lpb[Δx + Δy * iRadius];
-//               dst[0] = (unsigned char) (blue     * b / 255);
-//               dst[1] = (unsigned char) (green    * b / 255);
-//               dst[2] = (unsigned char) (red      * b / 255);
-//               dst[3] = (unsigned char) (alpha    * b / 255);
+//               dst[0] = (::u8) (blue     * b / 255);
+//               dst[1] = (::u8) (green    * b / 255);
+//               dst[2] = (::u8) (red      * b / 255);
+//               dst[3] = (::u8) (alpha    * b / 255);
 //               dst += 4;
 //            }
 //            dst += dwAdd;
@@ -1508,21 +1508,21 @@ namespace typeface_freetype
 //
 //
 //   void image::RadialFill(
-//      unsigned char alpha1, unsigned char red1, unsigned char green1, unsigned char blue1,
-//      unsigned char alpha2, unsigned char red2, unsigned char green2, unsigned char blue2,
-//      int xCenter, int yCenter, int iRadius)
+//      ::u8 alpha1, ::u8 red1, ::u8 green1, ::u8 blue1,
+//      ::u8 alpha2, ::u8 red2, ::u8 green2, ::u8 blue2,
+//      ::i32 xCenter, ::i32 yCenter, ::i32 iRadius)
 //   {
 //      if (iRadius == 0)
 //         return;
 //      /*if(version == 0)
 //      {
 //
-//         int iR = iRadius - 1;
+//         ::i32 iR = iRadius - 1;
 //
-//         int xL = xCenter - iR;
-//         int xU = xCenter + iR;
-//         int yL = yCenter - iR;
-//         int yU = yCenter + iR;
+//         ::i32 xL = xCenter - iR;
+//         ::i32 xU = xCenter + iR;
+//         ::i32 yL = yCenter - iR;
+//         ::i32 yU = yCenter + iR;
 //
 //
 //         if(xL < 0) xL = 0;
@@ -1531,48 +1531,48 @@ namespace typeface_freetype
 //         if(yU >= cy) yU = cy - 1;
 //
 //
-//         unsigned char *dst = ((unsigned char*)(m_pcolorref + xL + yL * cx));
-//         unsigned int dwAdd = ((cx - 1 - xU) + xL) * 4;
-//         int size=cx*cy;
-//         double iLevel;
+//         ::u8 *dst = ((::u8*)(m_pcolorref + xL + yL * cx));
+//         ::u32 dwAdd = ((cx - 1 - xU) + xL) * 4;
+//         ::i32 size=cx*cy;
+//         ::f64 iLevel;
 //
-//         int Δx, Δy;
-//         int dx0, dy0;
-//         int dx1, dy1;
-//         int dx2, dy2;
-//         int dx3, dy3;
-//         int dx4, dy4;
-//         int dx5, dy5;
-//         int dx6, dy6;
-//         int dx7, dy7;
-//         int dx8, dy8;
-//         int dx9, dy9;
-//         int dxA, dyA;
-//         int dxB, dyB;
-//         int dxC, dyC;
-//         int dxD, dyD;
-//         int dxE, dyE;
-//         int dxF, dyF;
+//         ::i32 Δx, Δy;
+//         ::i32 dx0, dy0;
+//         ::i32 dx1, dy1;
+//         ::i32 dx2, dy2;
+//         ::i32 dx3, dy3;
+//         ::i32 dx4, dy4;
+//         ::i32 dx5, dy5;
+//         ::i32 dx6, dy6;
+//         ::i32 dx7, dy7;
+//         ::i32 dx8, dy8;
+//         ::i32 dx9, dy9;
+//         ::i32 dxA, dyA;
+//         ::i32 dxB, dyB;
+//         ::i32 dxC, dyC;
+//         ::i32 dxD, dyD;
+//         ::i32 dxE, dyE;
+//         ::i32 dxF, dyF;
 //
-//         unsigned long dr;
-//         unsigned long dq;
-//         unsigned long dr0, dq0;
-//         unsigned long dr1, dq1;
-//         unsigned long dr2, dq2;
-//         unsigned long dr3, dq3;
-//         unsigned long dr4, dq4;
-//         unsigned long dr5, dq5;
-//         unsigned long dr6, dq6;
-//         unsigned long dr7, dq7;
-//         unsigned long dr8, dq8;
-//         unsigned long dr9, dq9;
-//         unsigned long drA, dqA;
-//         unsigned long drB, dqB;
-//         unsigned long drC, dqC;
-//         unsigned long drD, dqD;
-//         unsigned long drE, dqE;
-//         unsigned long drF, dqF;
-//         int x, y;
+//         ulong dr;
+//         ulong dq;
+//         ulong dr0, dq0;
+//         ulong dr1, dq1;
+//         ulong dr2, dq2;
+//         ulong dr3, dq3;
+//         ulong dr4, dq4;
+//         ulong dr5, dq5;
+//         ulong dr6, dq6;
+//         ulong dr7, dq7;
+//         ulong dr8, dq8;
+//         ulong dr9, dq9;
+//         ulong drA, dqA;
+//         ulong drB, dqB;
+//         ulong drC, dqC;
+//         ulong drD, dqD;
+//         ulong drE, dqE;
+//         ulong drF, dqF;
+//         ::i32 x, y;
 //
 //         {
 //            for(y = yL; y <= yU; y++)
@@ -1602,34 +1602,34 @@ namespace typeface_freetype
 //         LPBYTE lpb = (LPBYTE) (((iptr) lpbAlloc + 3) & ~3);
 //
 //
-//         int x, y;
-//         int b;
+//         ::i32 x, y;
+//         ::i32 b;
 //
-////         int r2 = iRadius * iRadius;
+////         ::i32 r2 = iRadius * iRadius;
 //
 //         for(y = 0; y < iRadius; y++)
 //         {
 //            for(x = y; x < iRadius; x++)
 //            {
-//               b = (int) (sqrt((double) (x * x) + (y * y)) * 255 / iRadius);
+//               b = (::i32) (sqrt((::f64) (x * x) + (y * y)) * 255 / iRadius);
 //               if(b > 255)
 //                  b = 0;
 //               else
 //                  b = ~b;
 //
 //
-//               lpb[x + y * iRadius] = (unsigned char) b;
-//               lpb[y + x * iRadius] = (unsigned char) b;
+//               lpb[x + y * iRadius] = (::u8) b;
+//               lpb[y + x * iRadius] = (::u8) b;
 //            }
 //         }
 //
 //
-//         int iR = iRadius - 1;
+//         ::i32 iR = iRadius - 1;
 //
-//         int xL = xCenter - iR;
-//         int xU = xCenter + iR;
-//         int yL = yCenter - iR;
-//         int yU = yCenter + iR;
+//         ::i32 xL = xCenter - iR;
+//         ::i32 xU = xCenter + iR;
+//         ::i32 yL = yCenter - iR;
+//         ::i32 yU = yCenter + iR;
 //
 //
 //         if(xL < 0) xL = 0;
@@ -1638,13 +1638,13 @@ namespace typeface_freetype
 //         if(yU >= cy) yU = cy - 1;
 //
 //
-//         unsigned char *dst = ((unsigned char*)(m_pcolorref + xL + yL * cx));
-//         unsigned int dwAdd = ((cx - 1 - xU) + xL) * 4;
-////         int size=cx*cy;
+//         ::u8 *dst = ((::u8*)(m_pcolorref + xL + yL * cx));
+//         ::u32 dwAdd = ((cx - 1 - xU) + xL) * 4;
+////         ::i32 size=cx*cy;
 //
-//         int Δx, Δy;
+//         ::i32 Δx, Δy;
 //
-//         unsigned char bComp;
+//         ::u8 bComp;
 //
 //         // Top Left
 //
@@ -1655,11 +1655,11 @@ namespace typeface_freetype
 //               Δx = abs(x - xCenter);
 //               Δy = abs(y - yCenter);
 //               b = lpb[Δx + Δy * iRadius];
-//               bComp = (unsigned char) ~b;
-//               dst[0] = (unsigned char) (((blue1  * b) + (blue2  * bComp)) / 255);
-//               dst[1] = (unsigned char) (((green1 * b) + (green2 * bComp)) / 255);
-//               dst[2] = (unsigned char) (((red1   * b) + (red2   * bComp)) / 255);
-//               dst[3] = (unsigned char) (((alpha1 * b) + (alpha2 * bComp)) / 255);
+//               bComp = (::u8) ~b;
+//               dst[0] = (::u8) (((blue1  * b) + (blue2  * bComp)) / 255);
+//               dst[1] = (::u8) (((green1 * b) + (green2 * bComp)) / 255);
+//               dst[2] = (::u8) (((red1   * b) + (red2   * bComp)) / 255);
+//               dst[3] = (::u8) (((alpha1 * b) + (alpha2 * bComp)) / 255);
 //               dst += 4;
 //            }
 //            dst += dwAdd;
@@ -1669,7 +1669,7 @@ namespace typeface_freetype
 //      }
 //   }
 
-   void image::SetIconMask(::image::icon * picon, int cx, int cy)
+   void image::SetIconMask(::image::icon * picon, ::i32 cx, ::i32 cy)
    {
       create(cx, cy);
 
@@ -1717,14 +1717,14 @@ namespace typeface_freetype
       nullptr,
       DI_MASK);
 
-      unsigned char * r1=(unsigned char*)pimage1->m_pcolorref;
-      unsigned char * r2=(unsigned char*)pimage2->get_data();
-      unsigned char * srcM=(unsigned char*)imageM.m_pcolorref;
-      unsigned char * dest=(unsigned char*)m_pcolorref;
-      int iSize = cx*cy;
+      ::u8 * r1=(::u8*)pimage1->m_pcolorref;
+      ::u8 * r2=(::u8*)pimage2->get_data();
+      ::u8 * srcM=(::u8*)imageM.m_pcolorref;
+      ::u8 * dest=(::u8*)m_pcolorref;
+      ::i32 iSize = cx*cy;
 
-      unsigned char b;
-      unsigned char bMax;
+      ::u8 b;
+      ::u8 bMax;
       while ( iSize-- > 0)
       {
          if(srcM[0] == 255)
@@ -1734,11 +1734,11 @@ namespace typeface_freetype
          else
          {
             bMax = 0;
-            b =(unsigned char)(r1[0]  - r2[0]);
+            b =(::u8)(r1[0]  - r2[0]);
             bMax = maximum(b, bMax);
-            b =(unsigned char)(r1[1]  - r2[1]);
+            b =(::u8)(r1[1]  - r2[1]);
             bMax = maximum(b, bMax);
-            b =(unsigned char)(r1[2]  - r2[2]);
+            b =(::u8)(r1[2]  - r2[2]);
             bMax = maximum(b, bMax);
             bMax = 255 - bMax;
          }
@@ -1755,40 +1755,40 @@ namespace typeface_freetype
 
    }
 
-   //void image::rotate(::image::image *pimage, double dAngle, double dScale)
+   //void image::rotate(::image::image *pimage, ::f64 dAngle, ::f64 dScale)
    //{
    //  // ::image::image pimage;
    ////   pimage->Paste(this);
 
-   //   int cx = this->cx;
-   //   int cy = this->cy;
+   //   ::i32 cx = this->cx;
+   //   ::i32 cy = this->cy;
 
-   //   int l = maximum(cx, cy);
+   //   ::i32 l = maximum(cx, cy);
 
    //
-   //   int jmax = minimum(l, cy / 2);
-   //   int jmin = - jmax;
-   //   int imax = minimum(l, cx / 2);
-   //   int imin = - imax;
+   //   ::i32 jmax = minimum(l, cy / 2);
+   //   ::i32 jmin = - jmax;
+   //   ::i32 imax = minimum(l, cx / 2);
+   //   ::i32 imin = - imax;
 
 
-   //   int joff = cy / 2;
-   //   int ioff = cx / 2;
+   //   ::i32 joff = cy / 2;
+   //   ::i32 ioff = cx / 2;
 
-   //   //int iAngle = iStep % 360;
-   //   //int iAngle = iStep;
-   //   //int iAngle = 1;
-   //   //int k = 0;
+   //   //::i32 iAngle = iStep % 360;
+   //   //::i32 iAngle = iStep;
+   //   //::i32 iAngle = 1;
+   //   //::i32 k = 0;
 
-   ///*     for ( int j=jmin; j<jmax; j++ )
+   ///*     for ( ::i32 j=jmin; j<jmax; j++ )
    //   {
-   //      for ( int i=imin; i<imax; i++ )
+   //      for ( ::i32 i=imin; i<imax; i++ )
    //      {
-   //         int x, y;
+   //         ::i32 x, y;
 
    //         // A Combination of a 2d Translation/rotation/Scale Matrix
-   //         x=int(cos10(i, iAngle) - sin10(j, iAngle)) + ioff;
-   //         y=int(sin10(i, iAngle) + cos10(j, iAngle)) + joff;
+   //         x=::i32(cos10(i, iAngle) - sin10(j, iAngle)) + ioff;
+   //         y=::i32(sin10(i, iAngle) + cos10(j, iAngle)) + joff;
    //         m_pcolorref[(j+joff)*cx+(i+ioff)]=
    //            pimage->m_pcolorref[abs(y%cy)*cx+abs(x%cx)];
    //         //k++;
@@ -1796,23 +1796,23 @@ namespace typeface_freetype
    //      (j+joff)*cx+(i+ioff)
    //   }*/
 
-   //   int k = 0;
-   //   double dCos = ::cos(dAngle * dPi / 180.0) * dScale;
-   //   double dSin = ::sin(dAngle * dPi / 180.0) * dScale;
-   //   int cx1 = cx - 1;
-   //   int cy1 = cy - 1;
-   //     for ( int j=jmin; j<jmax; j++ )
+   //   ::i32 k = 0;
+   //   ::f64 dCos = ::cos(dAngle * dPi / 180.0) * dScale;
+   //   ::f64 dSin = ::sin(dAngle * dPi / 180.0) * dScale;
+   //   ::i32 cx1 = cx - 1;
+   //   ::i32 cy1 = cy - 1;
+   //     for ( ::i32 j=jmin; j<jmax; j++ )
    //   {
-   //      for ( int i=imin; i<imax; i++ )
+   //      for ( ::i32 i=imin; i<imax; i++ )
    //      {
-   //         int x, y;
+   //         ::i32 x, y;
 
    //         // A Combination of a 2d Translation/rotation/Scale Matrix
-   //         //x=abs((int(dCos * i - dSin * j) + ioff) % cx);
-   //         //y=abs((int(dSin * i + dCos * j) + joff) % cy);
+   //         //x=abs((::i32(dCos * i - dSin * j) + ioff) % cx);
+   //         //y=abs((::i32(dSin * i + dCos * j) + joff) % cy);
 
-   //         x = (int) abs((dCos * i - dSin * j) + ioff);
-   //         y = (int) abs((dSin * i + dCos * j) + joff);
+   //         x = (::i32) abs((dCos * i - dSin * j) + ioff);
+   //         y = (::i32) abs((dSin * i + dCos * j) + joff);
 
    //         if((x / cx) % 2 == 0)
    //         {
@@ -1842,19 +1842,19 @@ namespace typeface_freetype
    //}
 
 
-   //void image::Rotate034(::image::image *pimage, double dAngle, double dScale)
+   //void image::Rotate034(::image::image *pimage, ::f64 dAngle, ::f64 dScale)
    //{
    //
-   //   int cx = this->cx;
-   //   int cy = this->cy;
+   //   ::i32 cx = this->cx;
+   //   ::i32 cy = this->cy;
 
-   //   int l = maximum(cx, cy);
+   //   ::i32 l = maximum(cx, cy);
 
    //
-   //   int jmax = minimum(l, cy / 2);
-   //   int jmin = - jmax;
-   //   int imax = minimum(l, cx / 2);
-   //   int imin = - imax;
+   //   ::i32 jmax = minimum(l, cy / 2);
+   //   ::i32 jmin = - jmax;
+   //   ::i32 imax = minimum(l, cx / 2);
+   //   ::i32 imin = - imax;
 
 
    //   if((cy % 2) == 1)
@@ -1863,27 +1863,27 @@ namespace typeface_freetype
    //   if((cx % 2) == 1)
    //      imax++;
    //
-   //   int joff = cy / 2;
-   //   int ioff = cx / 2;
+   //   ::i32 joff = cy / 2;
+   //   ::i32 ioff = cx / 2;
 
    //
-   //   int k = 0;
-   //   double dCos = ::cos(dAngle * dPi / 180.0) * dScale;
-   //   double dSin = ::sin(dAngle * dPi / 180.0) * dScale;
-   //   int cx1 = cx - 1;
-   //   int cy1 = cy - 1;
-   //     for ( int j=jmin; j<jmax; j++ )
+   //   ::i32 k = 0;
+   //   ::f64 dCos = ::cos(dAngle * dPi / 180.0) * dScale;
+   //   ::f64 dSin = ::sin(dAngle * dPi / 180.0) * dScale;
+   //   ::i32 cx1 = cx - 1;
+   //   ::i32 cy1 = cy - 1;
+   //     for ( ::i32 j=jmin; j<jmax; j++ )
    //   {
-   //      for ( int i=imin; i<imax; i++ )
+   //      for ( ::i32 i=imin; i<imax; i++ )
    //      {
-   //         int x, y;
+   //         ::i32 x, y;
 
    //         // A Combination of a 2d Translation/rotation/Scale Matrix
-   //         //x=abs((int(dCos * i - dSin * j) + ioff) % cx);
-   //         //y=abs((int(dSin * i + dCos * j) + joff) % cy);
+   //         //x=abs((::i32(dCos * i - dSin * j) + ioff) % cx);
+   //         //y=abs((::i32(dSin * i + dCos * j) + joff) % cy);
 
-   //         x = (int) abs((dCos * i - dSin * j) + ioff);
-   //         y = (int) abs((dSin * i + dCos * j) + joff);
+   //         x = (::i32) abs((dCos * i - dSin * j) + ioff);
+   //         y = (::i32) abs((dSin * i + dCos * j) + joff);
 
    //         if((x / cx) % 2 == 0)
    //         {
@@ -1914,45 +1914,45 @@ namespace typeface_freetype
 
    //void image::rotate(
    //   ::image::image *pimage,
-   //   const ::double_rectangle & rectangle,
-   //   double dAngle,
-   //   double dScale)
+   //   const ::f64_rectangle & rectangle,
+   //   ::f64 dAngle,
+   //   ::f64 dScale)
    //{
    //  // ::image::image pimage;
    ////   pimage->Paste(this);
 
 
 
-   //   ::double_rectangle rectangle(rectangle);
+   //   ::f64_rectangle rectangle(rectangle);
 
-   //   int cx = rectangle.width();
-   //   int cy = rectangle.height();
+   //   ::i32 cx = rectangle.width();
+   //   ::i32 cy = rectangle.height();
 
-   //   int l = maximum(cx, cy);
+   //   ::i32 l = maximum(cx, cy);
    //
-   //   int jmax = minimum(l, cy / 2);
-   //   int jmin = - jmax;
-   //   int imax = minimum(l, cx / 2);
-   //   int imin = - imax;
+   //   ::i32 jmax = minimum(l, cy / 2);
+   //   ::i32 jmin = - jmax;
+   //   ::i32 imax = minimum(l, cx / 2);
+   //   ::i32 imin = - imax;
 
 
-   //   int joff = cy / 2 + rectangle.left;
-   //   int ioff = cx / 2 + rectangle.top;
+   //   ::i32 joff = cy / 2 + rectangle.left;
+   //   ::i32 ioff = cx / 2 + rectangle.top;
 
-   //   //int iAngle = iStep % 360;
-   //   //int iAngle = iStep;
-   //   //int iAngle = 1;
-   //   //int k = 0;
+   //   //::i32 iAngle = iStep % 360;
+   //   //::i32 iAngle = iStep;
+   //   //::i32 iAngle = 1;
+   //   //::i32 k = 0;
 
-   ///*     for ( int j=jmin; j<jmax; j++ )
+   ///*     for ( ::i32 j=jmin; j<jmax; j++ )
    //   {
-   //      for ( int i=imin; i<imax; i++ )
+   //      for ( ::i32 i=imin; i<imax; i++ )
    //      {
-   //         int x, y;
+   //         ::i32 x, y;
 
    //         // A Combination of a 2d Translation/rotation/Scale Matrix
-   //         x=int(cos10(i, iAngle) - sin10(j, iAngle)) + ioff;
-   //         y=int(sin10(i, iAngle) + cos10(j, iAngle)) + joff;
+   //         x=::i32(cos10(i, iAngle) - sin10(j, iAngle)) + ioff;
+   //         y=::i32(sin10(i, iAngle) + cos10(j, iAngle)) + joff;
    //         m_pcolorref[(j+joff)*cx+(i+ioff)]=
    //            pimage->m_pcolorref[abs(y%cy)*cx+abs(x%cx)];
    //         //k++;
@@ -1960,23 +1960,23 @@ namespace typeface_freetype
    //      (j+joff)*cx+(i+ioff)
    //   }*/
 
-   //   int k = 0;
-   //   double dCos = ::cos(dAngle * dPi / 180.0) * dScale;
-   //   double dSin = ::sin(dAngle * dPi / 180.0) * dScale;
-   //   int cx1 = cx - 1;
-   //   int cy1 = cy - 1;
-   //     for ( int j=jmin; j<jmax; j++ )
+   //   ::i32 k = 0;
+   //   ::f64 dCos = ::cos(dAngle * dPi / 180.0) * dScale;
+   //   ::f64 dSin = ::sin(dAngle * dPi / 180.0) * dScale;
+   //   ::i32 cx1 = cx - 1;
+   //   ::i32 cy1 = cy - 1;
+   //     for ( ::i32 j=jmin; j<jmax; j++ )
    //   {
-   //      for ( int i=imin; i<imax; i++ )
+   //      for ( ::i32 i=imin; i<imax; i++ )
    //      {
-   //         int x, y;
+   //         ::i32 x, y;
 
    //         // A Combination of a 2d Translation/rotation/Scale Matrix
-   //         //x=abs((int(dCos * i - dSin * j) + ioff) % cx);
-   //         //y=abs((int(dSin * i + dCos * j) + joff) % cy);
+   //         //x=abs((::i32(dCos * i - dSin * j) + ioff) % cx);
+   //         //y=abs((::i32(dSin * i + dCos * j) + joff) % cy);
 
-   //         x = (int) abs((dCos * i - dSin * j) + ioff);
-   //         y = (int) abs((dSin * i + dCos * j) + joff);
+   //         x = (::i32) abs((dCos * i - dSin * j) + ioff);
+   //         y = (::i32) abs((dSin * i + dCos * j) + joff);
 
    //         if((x / cx) % 2 == 0)
    //         {
@@ -2005,28 +2005,28 @@ namespace typeface_freetype
    //   }
    //}
 
-   ///*int image::cos(int i, int iAngle)
+   ///*::i32 image::cos(::i32 i, ::i32 iAngle)
    //{
-   //   return (int) (((_int64) i * CosN[iAngle]) >> 32);
+   //   return (::i32) (((_int64) i * CosN[iAngle]) >> 32);
    //}
 
-   //int image::sin(int i, int iAngle)
+   //::i32 image::sin(::i32 i, ::i32 iAngle)
    //{
-   //   return (int) (((_int64) i * SinN[iAngle]) >> 32);
+   //   return (::i32) (((_int64) i * SinN[iAngle]) >> 32);
    //}*/
 
 
 
 
-   //void image::Fill (int A, int R, int G, int B )
+   //void image::Fill (::i32 A, ::i32 R, ::i32 G, ::i32 B )
    //{
    //   color32_t color = rgb ( B, G, R ) | (A << 24);
-   //   int size=cx*cy;
+   //   ::i32 size=cx*cy;
 
    //   color32_t * pcr;
 
-   //   long long iSize32 = size / 32;
-   //   int i;
+   //   ::i64 iSize32 = size / 32;
+   //   ::i32 i;
    //   for (i=0; i < iSize32; i+=32 )
    //   {
    //      pcr = &m_pcolorref[i];
@@ -2073,22 +2073,22 @@ namespace typeface_freetype
 
    //color32_t image::GetAverageColor()
    //{
-   //   double dR = 0.0;
-   //   double dG = 0.0;
-   //   double dB = 0.0;
-   //   int iRLine;
-   //   int iGLine;
-   //   int iBLine;
-   //   double dDiv = cx * cy;
+   //   ::f64 dR = 0.0;
+   //   ::f64 dG = 0.0;
+   //   ::f64 dB = 0.0;
+   //   ::i32 iRLine;
+   //   ::i32 iGLine;
+   //   ::i32 iBLine;
+   //   ::f64 dDiv = cx * cy;
    //   if(dDiv > 0)
    //   {
    //      LPBYTE lpb = (LPBYTE) m_pcolorref;
-   //      for (int y = 0; y < cy; y++)
+   //      for (::i32 y = 0; y < cy; y++)
    //      {
    //         iRLine = 0;
    //         iGLine = 0;
    //         iBLine = 0;
-   //         for (int x = 0; x < cx; x++)
+   //         for (::i32 x = 0; x < cx; x++)
    //         {
    //            iRLine += lpb[2];
    //            iGLine += lpb[1];
@@ -2099,9 +2099,9 @@ namespace typeface_freetype
    //         dG += iGLine / dDiv;
    //         dB += iBLine / dDiv;
    //      }
-   //      int iR = (int) dR;
-   //      int iG = (int) dG;
-   //      int iB = (int) dB;
+   //      ::i32 iR = (::i32) dR;
+   //      ::i32 iG = (::i32) dG;
+   //      ::i32 iB = (::i32) dB;
    //      return rgb(iR, iG, iB);
    //   }
    //   else
@@ -2119,10 +2119,10 @@ namespace typeface_freetype
    //   {
    //      return;
    //   }
-   //   int iCount = cx * cy;
+   //   ::i32 iCount = cx * cy;
    //   LPDWORD lpd1 = (LPDWORD) m_pcolorref;
    //   LPDWORD lpd2 = (LPDWORD) pimage->get_data();
-   //   for(int i = 0; i < iCount; i++)
+   //   for(::i32 i = 0; i < iCount; i++)
    //   {
    //      *lpd1 = *lpd1 ^ *lpd2;
    //      lpd1++;
@@ -2130,30 +2130,30 @@ namespace typeface_freetype
    //   }
    //}
 
-   //void image::create_frame(::size size, int iFrameCount)
+   //void image::create_frame(::size size, ::i32 iFrameCount)
    //{
-   //   int iSliceCount = (int) sqrt((double) iFrameCount);
-   //   int iFrameWidth = size.cx / iSliceCount;
-   //   int iFrameHeight = size.cy / iSliceCount;
+   //   ::i32 iSliceCount = (::i32) sqrt((::f64) iFrameCount);
+   //   ::i32 iFrameWidth = size.cx / iSliceCount;
+   //   ::i32 iFrameHeight = size.cy / iSliceCount;
    //   create(iFrameWidth, iFrameHeight);
    //}
 
-   //void image::set_frame1(void * lpdata, int iFrame, int iFrameCount)
+   //void image::set_frame1(void * lpdata, ::i32 iFrame, ::i32 iFrameCount)
    //{
-   //   int iSliceCount = (int) sqrt((double) iFrameCount);
+   //   ::i32 iSliceCount = (::i32) sqrt((::f64) iFrameCount);
    //   if(iSliceCount == 0)
    //      iSliceCount = 1;
-   //   int iFrameWidth = cx / iSliceCount;
-   //   int iFrameHeight = cy / iSliceCount;
-   //   int iX = iFrame % iSliceCount;
-   //   int iY = iFrame / iSliceCount;
+   //   ::i32 iFrameWidth = cx / iSliceCount;
+   //   ::i32 iFrameHeight = cy / iSliceCount;
+   //   ::i32 iX = iFrame % iSliceCount;
+   //   ::i32 iY = iFrame / iSliceCount;
    //   color32_t * lpDest = &m_pcolorref[iFrameWidth * iX + iY * iFrameHeight * cx];
    //   color32_t * lpSrc = (color32_t *) lpdata;
    //   color32_t * lpDestLine;
-   //   for(int y = 0; y < iFrameHeight; y++)
+   //   for(::i32 y = 0; y < iFrameHeight; y++)
    //   {
    //      lpDestLine = &lpDest[y * cx];
-   //      for(int x = 0; x < iFrameWidth; x++)
+   //      for(::i32 x = 0; x < iFrameWidth; x++)
    //      {
    //          *lpDestLine = *lpSrc;
    //          lpDestLine++;
@@ -2162,24 +2162,24 @@ namespace typeface_freetype
    //   }
    //}
 
-   //void image::set_frame2(void * lpdata, int iFrame, int iFrameCount)
+   //void image::set_frame2(void * lpdata, ::i32 iFrame, ::i32 iFrameCount)
    //{
    //   if(lpdata == nullptr)
    //      return;
-   //   int iSliceCount = (int) sqrt((double) iFrameCount);
+   //   ::i32 iSliceCount = (::i32) sqrt((::f64) iFrameCount);
    //   if(iSliceCount == 0)
    //      iSliceCount = 1;
-   //   int iFrameWidth = cx / iSliceCount;
-   //   int iFrameHeight = cy / iSliceCount;
-   //   int iX = iFrame % iSliceCount;
-   //   int iY = iFrame / iSliceCount;
+   //   ::i32 iFrameWidth = cx / iSliceCount;
+   //   ::i32 iFrameHeight = cy / iSliceCount;
+   //   ::i32 iX = iFrame % iSliceCount;
+   //   ::i32 iY = iFrame / iSliceCount;
    //   color32_t * lpDest = &m_pcolorref[iFrameWidth * iX + iY * iFrameHeight * cx];
    //   color32_t * lpSrc = (color32_t *) lpdata;
    //   color32_t * lpDestLine;
-   //   for(int y = iFrameHeight - 1; y >= 0; y--)
+   //   for(::i32 y = iFrameHeight - 1; y >= 0; y--)
    //   {
    //      lpDestLine = &lpDest[y * cx];
-   //      for(int x = 0; x < iFrameWidth; x++)
+   //      for(::i32 x = 0; x < iFrameWidth; x++)
    //      {
    //          *lpDestLine = *lpSrc;
    //          lpDestLine++;
@@ -2188,24 +2188,24 @@ namespace typeface_freetype
    //   }
    //}
 
-   //void image::xor_image_frame2(void * lpdata, int iFrame, int iFrameCount)
+   //void image::xor_image_frame2(void * lpdata, ::i32 iFrame, ::i32 iFrameCount)
    //{
    //   if(lpdata == nullptr)
    //      return;
-   //   int iSliceCount = (int) sqrt((double) iFrameCount);
+   //   ::i32 iSliceCount = (::i32) sqrt((::f64) iFrameCount);
    //   if(iSliceCount == 0)
    //      iSliceCount = 1;
-   //   int iFrameWidth = cx / iSliceCount;
-   //   int iFrameHeight = cy / iSliceCount;
-   //   int iX = iFrame % iSliceCount;
-   //   int iY = iFrame / iSliceCount;
+   //   ::i32 iFrameWidth = cx / iSliceCount;
+   //   ::i32 iFrameHeight = cy / iSliceCount;
+   //   ::i32 iX = iFrame % iSliceCount;
+   //   ::i32 iY = iFrame / iSliceCount;
    //   color32_t * lpDest = &m_pcolorref[iFrameWidth * iX + iY * iFrameHeight * cx];
    //   color32_t * lpSrc = (color32_t *) lpdata;
    //   color32_t * lpDestLine;
-   //   for(int y = iFrameHeight - 1; y >= 0; y--)
+   //   for(::i32 y = iFrameHeight - 1; y >= 0; y--)
    //   {
    //      lpDestLine = &lpDest[y * cx];
-   //      for(int x = 0; x < iFrameWidth; x++)
+   //      for(::i32 x = 0; x < iFrameWidth; x++)
    //      {
    //          *lpDestLine ^= *lpSrc;
    //          lpDestLine++;
@@ -2214,20 +2214,20 @@ namespace typeface_freetype
    //   }
    //}
 
-   //void image::get_frame(void * lpdata, int iFrame, int iFrameCount)
+   //void image::get_frame(void * lpdata, ::i32 iFrame, ::i32 iFrameCount)
    //{
-   //   int iSliceCount = (int) sqrt((double) iFrameCount);
-   //   int iFrameWidth = cx / iSliceCount;
-   //   int iFrameHeight = cy / iSliceCount;
-   //   int iX = iFrame % iSliceCount;
-   //   int iY = iFrame / iSliceCount;
+   //   ::i32 iSliceCount = (::i32) sqrt((::f64) iFrameCount);
+   //   ::i32 iFrameWidth = cx / iSliceCount;
+   //   ::i32 iFrameHeight = cy / iSliceCount;
+   //   ::i32 iX = iFrame % iSliceCount;
+   //   ::i32 iY = iFrame / iSliceCount;
    //   color32_t * lpSrc = &m_pcolorref[iFrameWidth * iX + iY * iFrameHeight *  cx];
    //   color32_t * lpDest = (color32_t *) lpdata;
    //   color32_t * lpSrcLine;
-   //   for(int y = 0; y < iFrameHeight; y++)
+   //   for(::i32 y = 0; y < iFrameHeight; y++)
    //   {
    //      lpSrcLine = &lpSrc[y * cx];
-   //      for(int x = 0; x < iFrameWidth; x++)
+   //      for(::i32 x = 0; x < iFrameWidth; x++)
    //      {
    //          *lpDest = *lpSrcLine;
    //          lpDest++;
@@ -2238,9 +2238,9 @@ namespace typeface_freetype
 
    //bool image::is_rgb_black()
    //{
-   //   int iSize = cx * cy;
+   //   ::i32 iSize = cx * cy;
    //   color32_t * lp = m_pcolorref;
-   //   for(int i = 0; i < iSize; i++)
+   //   for(::i32 i = 0; i < iSize; i++)
    //   {
    //      if((*lp & 0x00FFFFFF) != 0)
    //         return false;
@@ -2249,90 +2249,90 @@ namespace typeface_freetype
    //   return true;
    //}
 
-   //void image::DivideRGB(int iDivide)
+   //void image::DivideRGB(::i32 iDivide)
    //{
    //   if(iDivide == 0)
    //   {
    //      return;
    //   }
-   //   int iCount = cx * cy;
+   //   ::i32 iCount = cx * cy;
    //   LPBYTE lp = ((LPBYTE) m_pcolorref);
-   //   int i = 0;
-   //   int iCount1 = iCount - iCount % 8;
+   //   ::i32 i = 0;
+   //   ::i32 iCount1 = iCount - iCount % 8;
    //   for(; i < iCount1; i++)
    //   {
-   //      lp[0] /= (unsigned char) iDivide;
-   //      lp[1] /= (unsigned char) iDivide;
-   //      lp[2] /= (unsigned char) iDivide;
+   //      lp[0] /= (::u8) iDivide;
+   //      lp[1] /= (::u8) iDivide;
+   //      lp[2] /= (::u8) iDivide;
 
-   //      lp[4] /= (unsigned char) iDivide;
-   //      lp[5] /= (unsigned char) iDivide;
-   //      lp[6] /= (unsigned char) iDivide;
+   //      lp[4] /= (::u8) iDivide;
+   //      lp[5] /= (::u8) iDivide;
+   //      lp[6] /= (::u8) iDivide;
 
-   //      lp[8] /= (unsigned char) iDivide;
-   //      lp[9] /= (unsigned char) iDivide;
-   //      lp[10] /= (unsigned char) iDivide;
+   //      lp[8] /= (::u8) iDivide;
+   //      lp[9] /= (::u8) iDivide;
+   //      lp[10] /= (::u8) iDivide;
 
-   //      lp[12] /= (unsigned char) iDivide;
-   //      lp[13] /= (unsigned char) iDivide;
-   //      lp[14] /= (unsigned char) iDivide;
+   //      lp[12] /= (::u8) iDivide;
+   //      lp[13] /= (::u8) iDivide;
+   //      lp[14] /= (::u8) iDivide;
 
-   //      lp[16] /= (unsigned char) iDivide;
-   //      lp[17] /= (unsigned char) iDivide;
-   //      lp[28] /= (unsigned char) iDivide;
+   //      lp[16] /= (::u8) iDivide;
+   //      lp[17] /= (::u8) iDivide;
+   //      lp[28] /= (::u8) iDivide;
 
-   //      lp[20] /= (unsigned char) iDivide;
-   //      lp[21] /= (unsigned char) iDivide;
-   //      lp[22] /= (unsigned char) iDivide;
+   //      lp[20] /= (::u8) iDivide;
+   //      lp[21] /= (::u8) iDivide;
+   //      lp[22] /= (::u8) iDivide;
 
-   //      lp[24] /= (unsigned char) iDivide;
-   //      lp[25] /= (unsigned char) iDivide;
-   //      lp[26] /= (unsigned char) iDivide;
+   //      lp[24] /= (::u8) iDivide;
+   //      lp[25] /= (::u8) iDivide;
+   //      lp[26] /= (::u8) iDivide;
 
-   //      lp[28] /= (unsigned char) iDivide;
-   //      lp[29] /= (unsigned char) iDivide;
-   //      lp[30] /= (unsigned char) iDivide;
+   //      lp[28] /= (::u8) iDivide;
+   //      lp[29] /= (::u8) iDivide;
+   //      lp[30] /= (::u8) iDivide;
 
    //      lp += 4 * 8;
    //   }
    //   for(; i < iCount; i++)
    //   {
-   //      lp[0] /= (unsigned char) iDivide;
-   //      lp[1] /= (unsigned char) iDivide;
-   //      lp[2] /= (unsigned char) iDivide;
+   //      lp[0] /= (::u8) iDivide;
+   //      lp[1] /= (::u8) iDivide;
+   //      lp[2] /= (::u8) iDivide;
    //      lp +=4;
    //   }
    //}
 
-   //void image::DivideARGB(int iDivide)
+   //void image::DivideARGB(::i32 iDivide)
    //{
    //   if(iDivide == 0)
    //   {
    //      return;
    //   }
-   //   int iCount = cx * cy;
+   //   ::i32 iCount = cx * cy;
    //   LPBYTE lp = ((LPBYTE) m_pcolorref);
-   //   for(int i = 0; i < iCount; i++)
+   //   for(::i32 i = 0; i < iCount; i++)
    //   {
-   //      lp[0] /= (unsigned char) iDivide;
-   //      lp[1] /= (unsigned char) iDivide;
-   //      lp[2] /= (unsigned char) iDivide;
-   //      lp[3] /= (unsigned char) iDivide;
+   //      lp[0] /= (::u8) iDivide;
+   //      lp[1] /= (::u8) iDivide;
+   //      lp[2] /= (::u8) iDivide;
+   //      lp[3] /= (::u8) iDivide;
    //      lp +=4;
    //   }
    //}
 
-   //void image::DivideA(int iDivide)
+   //void image::DivideA(::i32 iDivide)
    //{
    //   if(iDivide == 0)
    //   {
    //      return;
    //   }
-   //   int iCount = cx * cy;
+   //   ::i32 iCount = cx * cy;
    //   LPBYTE lp = ((LPBYTE) m_pcolorref);
-   //   for(int i = 0; i < iCount; i++)
+   //   for(::i32 i = 0; i < iCount; i++)
    //   {
-   //      lp[3] /= (unsigned char) iDivide;
+   //      lp[3] /= (::u8) iDivide;
    //      lp +=4;
    //   }
    //}
@@ -2369,90 +2369,90 @@ namespace typeface_freetype
    }
 
 
-   // double image::pi()
+   // ::f64 image::pi()
    // {
    //    return dPi;
    // }
 
-   // void image::fill_channel(int intensity, color::color::color::rgba::echannel echannel)
+   // void image::fill_channel(::i32 intensity, color::color::color::rgba::echannel echannel)
    // {
-   //     int offset = ((int)echannel) % 4;
-   //    int size=m_size.cx*cy;
+   //     ::i32 offset = ((::i32)echannel) % 4;
+   //    ::i32 size=m_size.cx*cy;
 
-   //    unsigned char * pb;
+   //    ::u8 * pb;
 
-   //    int iSize32 = size;
-   //    int i;
+   //    ::i32 iSize32 = size;
+   //    ::i32 i;
    //    for (i=0; i < iSize32; i+=32 )
    //    {
-   //       pb = ((unsigned char * ) &m_pcolorref[i]) + offset;
-   //       pb[0 * 4] = (unsigned char) intensity;
-   //       pb[1 * 4] = (unsigned char) intensity;
-   //       pb[2 * 4] = (unsigned char) intensity;
-   //       pb[3 * 4] = (unsigned char) intensity;
-   //       pb[4 * 4] = (unsigned char) intensity;
-   //       pb[5 * 4] = (unsigned char) intensity;
-   //       pb[6 * 4] = (unsigned char) intensity;
-   //       pb[7 * 4] = (unsigned char) intensity;
-   //       pb[8 * 4] = (unsigned char) intensity;
-   //       pb[9 * 4] = (unsigned char) intensity;
-   //       pb[10 * 4] = (unsigned char) intensity;
-   //       pb[11 * 4] = (unsigned char) intensity;
-   //       pb[12 * 4] = (unsigned char) intensity;
-   //       pb[13 * 4] = (unsigned char) intensity;
-   //       pb[14 * 4] = (unsigned char) intensity;
-   //       pb[15 * 4] = (unsigned char) intensity;
-   //       pb[16 * 4] = (unsigned char) intensity;
-   //       pb[17 * 4] = (unsigned char) intensity;
-   //       pb[18 * 4] = (unsigned char) intensity;
-   //       pb[19 * 4] = (unsigned char) intensity;
-   //       pb[20 * 4] = (unsigned char) intensity;
-   //       pb[21 * 4] = (unsigned char) intensity;
-   //       pb[22 * 4] = (unsigned char) intensity;
-   //       pb[23 * 4] = (unsigned char) intensity;
-   //       pb[24 * 4] = (unsigned char) intensity;
-   //       pb[25 * 4] = (unsigned char) intensity;
-   //       pb[26 * 4] = (unsigned char) intensity;
-   //       pb[27 * 4] = (unsigned char) intensity;
-   //       pb[28 * 4] = (unsigned char) intensity;
-   //       pb[29 * 4] = (unsigned char) intensity;
-   //       pb[30 * 4] = (unsigned char) intensity;
-   //       pb[31 * 4] = (unsigned char) intensity;
+   //       pb = ((::u8 * ) &m_pcolorref[i]) + offset;
+   //       pb[0 * 4] = (::u8) intensity;
+   //       pb[1 * 4] = (::u8) intensity;
+   //       pb[2 * 4] = (::u8) intensity;
+   //       pb[3 * 4] = (::u8) intensity;
+   //       pb[4 * 4] = (::u8) intensity;
+   //       pb[5 * 4] = (::u8) intensity;
+   //       pb[6 * 4] = (::u8) intensity;
+   //       pb[7 * 4] = (::u8) intensity;
+   //       pb[8 * 4] = (::u8) intensity;
+   //       pb[9 * 4] = (::u8) intensity;
+   //       pb[10 * 4] = (::u8) intensity;
+   //       pb[11 * 4] = (::u8) intensity;
+   //       pb[12 * 4] = (::u8) intensity;
+   //       pb[13 * 4] = (::u8) intensity;
+   //       pb[14 * 4] = (::u8) intensity;
+   //       pb[15 * 4] = (::u8) intensity;
+   //       pb[16 * 4] = (::u8) intensity;
+   //       pb[17 * 4] = (::u8) intensity;
+   //       pb[18 * 4] = (::u8) intensity;
+   //       pb[19 * 4] = (::u8) intensity;
+   //       pb[20 * 4] = (::u8) intensity;
+   //       pb[21 * 4] = (::u8) intensity;
+   //       pb[22 * 4] = (::u8) intensity;
+   //       pb[23 * 4] = (::u8) intensity;
+   //       pb[24 * 4] = (::u8) intensity;
+   //       pb[25 * 4] = (::u8) intensity;
+   //       pb[26 * 4] = (::u8) intensity;
+   //       pb[27 * 4] = (::u8) intensity;
+   //       pb[28 * 4] = (::u8) intensity;
+   //       pb[29 * 4] = (::u8) intensity;
+   //       pb[30 * 4] = (::u8) intensity;
+   //       pb[31 * 4] = (::u8) intensity;
    //    }
 
    //    for (; i<size; i++ )
    //    {
-   //       *(((unsigned char * ) &m_pcolorref[i]) + offset) = (unsigned char) intensity;
+   //       *(((::u8 * ) &m_pcolorref[i]) + offset) = (::u8) intensity;
    //    }
    //}
 
 
-   // int image::cos(int i, int iAngle)
+   // ::i32 image::cos(::i32 i, ::i32 iAngle)
    // {
-   //    return (int) (((_int64) i * CosN[iAngle]) >> 31);
+   //    return (::i32) (((_int64) i * CosN[iAngle]) >> 31);
    // }
 
-   // int image::sin(int i, int iAngle)
+   // ::i32 image::sin(::i32 i, ::i32 iAngle)
    // {
-   //    return (int) (((_int64) i * SinN[iAngle]) >> 31);
+   //    return (::i32) (((_int64) i * SinN[iAngle]) >> 31);
    // }
 
-   // int image::cos10(int i, int iAngle)
+   // ::i32 image::cos10(::i32 i, ::i32 iAngle)
    // {
-   //    return (int) (((_int64) i * Cos10N[iAngle]) >> 34);
+   //    return (::i32) (((_int64) i * Cos10N[iAngle]) >> 34);
    // }
 
-   // int image::sin10(int i, int iAngle)
+   // ::i32 image::sin10(::i32 i, ::i32 iAngle)
    // {
-   //    return (int) (((_int64) i * Sin10N[iAngle]) >> 34);
+   //    return (::i32) (((_int64) i * Sin10N[iAngle]) >> 34);
    // }
 
-   /*   int image::width()
+   /*   ::i32 image::width()
       {
          return m_size.cx;
       }
 
-      int image::height()
+      ::i32 image::height()
       {
          return cy;
       }
@@ -2479,13 +2479,13 @@ namespace typeface_freetype
 ////
 ////         map();
 ////
-////         //pre_multiply_alpha((unsigned int *) get_data(),m_size.cx,m_size.cy,m_size.cx * 4);
+////         //pre_multiply_alpha((::u32 *) get_data(),m_size.cx,m_size.cy,m_size.cx * 4);
 ////
-////         unsigned char *dstR=(unsigned char*)get_data();
-////         unsigned char *dstG=dstR + 1;
-////         unsigned char *dstB=dstR + 2;
-////         unsigned char *dstA=dstR + 3;
-////         long long size = area() * 4;
+////         ::u8 *dstR=(::u8*)get_data();
+////         ::u8 *dstG=dstR + 1;
+////         ::u8 *dstB=dstR + 2;
+////         ::u8 *dstA=dstR + 3;
+////         ::i64 size = area() * 4;
 ////
 ////
 ////         // >> 8 instead of / 255 subsequent alpha_blend operations say thanks on true_blend because (255) * (1/254) + (255) * (254/255) > 255
@@ -2493,11 +2493,11 @@ namespace typeface_freetype
 //////         #pragma omp parallel num_threads(3)
 //////                  {
 //////
-//////                     unsigned char *dst = dstR + omp_get_thread_num();
+//////                     ::u8 *dst = dstR + omp_get_thread_num();
 //////      #pragma omp parallel for
 //////                     for(::collection::index i = 0; i < size; i+=4)
 //////                     {
-//////                           dst[i] = lower_byte(((int)dst[i] * (int)dstA[i]) >> 8);
+//////                           dst[i] = lower_byte(((::i32)dst[i] * (::i32)dstA[i]) >> 8);
 //////                     }
 //////                  }
 //////
@@ -2518,13 +2518,13 @@ namespace typeface_freetype
 ////////            }
 ////////            else
 ////////            {
-////////               unsigned char *dst = dstR + omp_get_thread_num();
+////////               ::u8 *dst = dstR + omp_get_thread_num();
 ////////#pragma omp parallel for
 ////////               for(::collection::index i = 0; i < size; i+=4)
 ////////               {
 ////////                  if(dstA[i] > 3)
 ////////                  {
-////////                     dst[i] = lower_byte(((int)dst[i] * (int)dstA[i]) >> 8);
+////////                     dst[i] = lower_byte(((::i32)dst[i] * (::i32)dstA[i]) >> 8);
 ////////                  }
 ////////               }
 ////////            }
@@ -2532,17 +2532,17 @@ namespace typeface_freetype
 //////#else
 //////         for(::collection::index i = 0; i < size; i+=4)
 //////         {
-//////            dstR[i] = lower_byte(((int)dstR[i] * (int)dstA[i]) >> 8);
-//////            dstG[i] = lower_byte(((int)dstG[i] * (int)dstA[i]) >> 8);
-//////            dstB[i] = lower_byte(((int)dstB[i] * (int)dstA[i]) >> 8);
+//////            dstR[i] = lower_byte(((::i32)dstR[i] * (::i32)dstA[i]) >> 8);
+//////            dstG[i] = lower_byte(((::i32)dstG[i] * (::i32)dstA[i]) >> 8);
+//////            dstB[i] = lower_byte(((::i32)dstB[i] * (::i32)dstA[i]) >> 8);
 //////         }
 //////#endif
 //////
 ////      }
 ////#endif
-//      ::double_rectangle rectangle(rectangleWindow);
+//      ::f64_rectangle rectangle(rectangleWindow);
 //
-//      // Copy the contents of the framebuffer - which in our case is our pbuffer -
+//      // Copy the contents of the pframebuffer - which in our case is our pbuffer -
 //      // to our bitmap image in local system memory. Notice that we also need
 //      // to invert the pbuffer's pixel data since OpenGL by default orients the
 //      // bitmap image bottom up. Our Windows DIB wrapper expects images to be
@@ -2563,13 +2563,13 @@ namespace typeface_freetype
 //         // separately. This is much faster than the below case where the image
 //         // width is not a multiple of 4.
 //
-//         int totalBytes = b->m_sizeOut.cx * b.m_sizeOut.cy * 4;
-//         unsigned char * p = (unsigned char*)b->m_memOut.get_data();
-//         for (int i = 0; i < totalBytes; i += 4)
+//         ::i32 totalBytes = b->m_sizeOut.cx * b.m_sizeOut.cy * 4;
+//         ::u8 * p = (::u8*)b->m_memOut.get_data();
+//         for (::i32 i = 0; i < totalBytes; i += 4)
 //         {
-//            p[0] = (unsigned char)(p[0] * p[3] / 255);
-//            p[1] = (unsigned char)(p[1] * p[3] / 255);
-//            p[2] = (unsigned char)(p[2] * p[3] / 255);
+//            p[0] = (::u8)(p[0] * p[3] / 255);
+//            p[1] = (::u8)(p[1] * p[3] / 255);
+//            p[2] = (::u8)(p[2] * p[3] / 255);
 //            p+=4;
 //         }
 //      }
@@ -2593,13 +2593,13 @@ namespace typeface_freetype
 //
 //      m_spgraphics->attach((HDC) pusermessage->m_wparam);
 //
-//      ::double_rectangle rectx;
+//      ::f64_rectangle rectx;
 //
 //      ::draw2d::bitmap * pbitmap = m_spgraphics->get_current_bitmap();
 //
 //      ::GetCurrentObject((HDC) pusermessage->m_wparam, OBJ_BITMAP);
 //
-//      //      unsigned int dw = ::get_last_error();
+//      //      ::u32 dw = ::get_last_error();
 //      ::size size = pbitmap->get_size();
 //
 //      rectx.left = 0;
@@ -2610,7 +2610,7 @@ namespace typeface_freetype
 //      try
 //      {
 //
-//         ::double_rectangle rectangleWindow;
+//         ::f64_rectangle rectangleWindow;
 //
 //         puserinteraction->window_rectangle(rectangleWindow);
 //
@@ -2624,20 +2624,20 @@ namespace typeface_freetype
 //         if(pgraphics->get_os_data() == nullptr)
 //            return false;
 //
-//         ::double_rectangle rectanglePaint;
-//         ::double_rectangle rectangleUpdate;
+//         ::f64_rectangle rectanglePaint;
+//         ::f64_rectangle rectangleUpdate;
 //         rectangleUpdate = rectangleWindow;
 //         rectanglePaint = rectangleWindow;
 //         rectanglePaint.offset(-rectanglePaint.top_left());
 //         m_spgraphics->SelectClipRgn(nullptr);
 //         puserinteraction->_001OnDeferPaintLayeredWindowBackground(pimage->get_graphics());
 //         m_spgraphics->SelectClipRgn(nullptr);
-//         m_spgraphics-> set_origin(::int_point());
+//         m_spgraphics-> set_origin(::i32_point());
 //         puserinteraction->_000OnDraw(pimage->get_graphics());
-//         m_spgraphics->set_origin(::int_point());
+//         m_spgraphics->set_origin(::i32_point());
 //         //(dynamic_cast<::win::graphics * >(pgraphics))->FillSolidRect(rectangleUpdate.left, rectangleUpdate.top, 100, 100, 255);
 //         m_spgraphics->SelectClipRgn(nullptr);
-//         m_spgraphics->set_origin(::int_point());
+//         m_spgraphics->set_origin(::i32_point());
 //
 //         m_spgraphics->SelectClipRgn( nullptr);
 //         m_spgraphics->BitBlt(rectanglePaint.left, rectanglePaint.top,

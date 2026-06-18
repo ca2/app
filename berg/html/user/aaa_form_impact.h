@@ -22,7 +22,7 @@ public:
    // void dump(dump_context & dumpcontext) const override;
 
    string GetLocationURL();
-   bool Refresh2(int i);
+   bool Refresh2(::i32 i);
    bool browse(const ::scoped_string & scopedstrUrl) override;
 
    virtual void on_document_complete(const ::scoped_string & scopedstrUrl);

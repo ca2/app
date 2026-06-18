@@ -39,10 +39,10 @@ namespace user
 
    }
 
-   void slider::on_timer(::timer * ptimer)
+   void slider::operator()(::timer * ptimer)
    {
 
-      ::user::interaction::on_timer(ptimer);
+      ::user::interaction::operator()(ptimer);
 
 
    }
@@ -53,7 +53,7 @@ namespace user
 
       auto pmouse = pmessage->m_union.m_pmouse;
 
-      //::double_rectangle rectangle;
+      //::f64_rectangle rectangle;
 
       //get_slider_rect(rectangle);
 
@@ -131,23 +131,23 @@ namespace user
 
 
 
-   double slider::get_slide_rate()
+   ::f64 slider::get_slide_rate()
    {
 
-      double dScalar = m_pscalar->get_rate();
+      ::f64 dScalar = m_pscalar->get_rate();
 
       auto point = psession->get_cursor_position();
 
       screen_to_client(point, e_layout_design);
 
-      ::double_rectangle rectangle;
+      ::f64_rectangle rectangle;
 
       this->rectangle(rectangle);
 
       if(rectangle.width() != 0)
       {
 
-         dScalar = (double) (point.x - rectangle.left) / (double) rectangle.width();
+         dScalar = (::f64) (point.x - rectangle.left) / (::f64) rectangle.width();
 
       }
 
@@ -166,7 +166,7 @@ namespace user
    }
 
 
-   void slider::set_rate(double dRate)
+   void slider::set_rate(::f64 dRate)
    {
 
       if(dRate < 0.0)
@@ -199,21 +199,21 @@ namespace user
 
       }
 
-      ::double_rectangle rectangleX;
+      ::f64_rectangle rectangleX;
 
       this->rectangle(rectangleX);
 
       class imaging & imaging = ::auraacmesystem()->imaging();
 
-      unsigned char bAlpha1 = (unsigned char) (128.0* get_alpha());
+      ::u8 bAlpha1 = (::u8) (128.0* get_alpha());
 
       imaging.color_blend(pgraphics, rectangleX, rgb(250,255,255), bAlpha1);
 
-      ::double_rectangle rectangle;
+      ::f64_rectangle rectangle;
 
       get_slider_rect(rectangle);
 
-      unsigned char bAlpha = (unsigned char) (220.0* get_alpha());
+      ::u8 bAlpha = (::u8) (220.0* get_alpha());
 
       pgraphics->draw_inset_3d_rectangle(rectangle,argb(bAlpha / 255,108,100,210),argb(bAlpha,90,70,180));
       rectangle.deflate(1,1);
@@ -232,19 +232,19 @@ namespace user
    }
 
 
-   void slider::get_slider_rect(::double_rectangle & rectangle)
+   void slider::get_slider_rect(::f64_rectangle & rectangle)
    {
 
-      ::double_rectangle rectangleX;
+      ::f64_rectangle rectangleX;
 
       this->rectangle(rectangleX);
 
-      int iWidth = 16;
+      ::i32 iWidth = 16;
 
       rectangle.top = rectangleX.top;
       rectangle.bottom = rectangleX.bottom;
-      rectangle.left = (int)minimum(rectangleX.right,m_dRate * (rectangleX.width() - iWidth));
-      rectangle.right = (int)minimum(rectangleX.right,m_dRate * ((rectangleX.width() - iWidth)) + iWidth);
+      rectangle.left = (::i32)minimum(rectangleX.right,m_dRate * (rectangleX.width() - iWidth));
+      rectangle.right = (::i32)minimum(rectangleX.right,m_dRate * ((rectangleX.width() - iWidth)) + iWidth);
 
 
    }

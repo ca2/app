@@ -3,7 +3,7 @@
 
 //#include "acme/filesystem/filesystem/path.h"
 #include "acme/parallelization/task.h"
-#include "acme/prototype/collection/int_map.h"
+#include "acme/prototype/collection/integer_map.h"
 #include "acme/platform/auto_pointer.h"
 //#include "acme/prototype/collection/numeric_array.h"
 //#include "acme/prototype/collection/string_array.h"
@@ -57,7 +57,7 @@ namespace user
          string                                 m_strShellThemePrefix;
          enumeration < enum_file_attribute >    m_eattribute;
          enumeration < enum_icon >              m_eicon;
-         int                                    m_iIcon;
+         ::i32                                    m_iIcon;
          string                                 m_strExtension;
 
 
@@ -78,9 +78,9 @@ namespace user
                as_hash32(m_strPath) +
                as_hash32(m_strShellThemePrefix) +
                as_hash32(m_strExtension) +
-               as_hash32(((int)m_eicon)) +
-               as_hash32(((int)m_eattribute)) +
-               as_hash32(((int)m_iIcon));
+               as_hash32(((::i32)m_eicon)) +
+               as_hash32(((::i32)m_eattribute)) +
+               as_hash32(((::i32)m_iIcon));
          }
 
 
@@ -91,7 +91,7 @@ namespace user
       {
 
          
-         int               m_iImage;
+         ::i32               m_iImage;
          ::file::path      m_pathProcessed;
          ::file::path      m_pathFinal;
          image_key         m_imagekey;
@@ -109,8 +109,8 @@ namespace user
 
    protected:
 
-      ::int_map < ::image::image_list_pointer  >                          m_pimagelist; // int is the int_size
-      ::int_map < ::image::image_list_pointer  >                          m_pimagelistHover; // int is the size;
+      ::i32_map < ::image::image_list_pointer  >                          m_pimagelist; // ::i32 is the i32_size
+      ::i32_map < ::image::image_list_pointer  >                          m_pimagelistHover; // ::i32 is the size;
       map_base < ::pointer < ::user::interaction >, ::string_array_base >      m_mapInterest;
 
 
@@ -147,13 +147,13 @@ namespace user
    protected:
 
 
-      ::int_array_base                                          m_iaSize;
+      ::i32_array_base                                          m_iaSize;
 
 
    public:
 
 
-      image_key_map < int >                              m_imagemap;
+      image_key_map < ::i32 >                              m_imagemap;
       image_key_map < image_key >                        m_imagekeymap;
 
       string                                             m_strShellThemePrefix;
@@ -166,7 +166,7 @@ namespace user
       ::pointer < ::mutex >                                            m_pmutexImage;
       //pointer_array < thread >                            m_threadptra;
       class ::time                                               m_timeLastMax;
-      unsigned int                                              m_bMax;
+      ::u32                                              m_bMax;
       bool                                               m_bInitialized;
 
       ::array < image_key >                              m_imagekeySchedule;
@@ -199,12 +199,12 @@ namespace user
 
       virtual void on_update_sizes_interest();
 
-      void add_size_interest(::int_array_base iaSize);
-      void set_size_interest(::int_array_base iaSize);
+      void add_size_interest(::i32_array_base iaSize);
+      void set_size_interest(::i32_array_base iaSize);
 
-      int _reserve_image(const image_key & key);
+      ::i32 _reserve_image(const image_key & key);
 
-      bool contains_image(const image_key & imagekey, int & iImage);
+      bool contains_image(const image_key & imagekey, ::i32 & iImage);
       bool reserve_image(_get_file_image_ & getfileimage);
 
 
@@ -216,14 +216,14 @@ namespace user
       
 
       virtual void get_file_extension_image(_get_file_image_ & getfileimage);
-      virtual int create_file_icon_image(const ::scoped_string & scopedstrPath, enum_file_attribute eattribute, enum_icon eicon, const ::scoped_string & scopedstrIcon, _get_file_image_ & getfileimage);
-      virtual int _create_file_icon_image(const ::scoped_string & scopedstrPath, enum_file_attribute eattribute, enum_icon eicon, const ::scoped_string & scopedstrIcon, _get_file_image_ & getfileimage);
+      virtual ::i32 create_file_icon_image(const ::scoped_string & scopedstrPath, enum_file_attribute eattribute, enum_icon eicon, const ::scoped_string & scopedstrIcon, _get_file_image_ & getfileimage);
+      virtual ::i32 _create_file_icon_image(const ::scoped_string & scopedstrPath, enum_file_attribute eattribute, enum_icon eicon, const ::scoped_string & scopedstrIcon, _get_file_image_ & getfileimage);
 
 
 
-      virtual int get_file_image(const ::file::path & path, const ::user::shell::enum_file_attribute & eattribute, ::user::shell::enum_icon eicon);
-      virtual int get_file_image(const image_key & imagekey);
-      virtual int schedule_get_file_image(const image_key & imagekey);
+      virtual ::i32 get_file_image(const ::file::path & path, const ::user::shell::enum_file_attribute & eattribute, ::user::shell::enum_icon eicon);
+      virtual ::i32 get_file_image(const image_key & imagekey);
+      virtual ::i32 schedule_get_file_image(const image_key & imagekey);
 
       virtual void warn_when_ok(const ::file::path & path, const ::user::interaction_array & userinteractionaInterested);
 
@@ -245,21 +245,21 @@ namespace user
 
 
 
-      //virtual int impl_get_file_image(const image_key & imagekey) = 0;
+      //virtual ::i32 impl_get_file_image(const image_key & imagekey) = 0;
 
 
-      ::image::image_list * GetImageList(int iSize);
-      ::image::image_list * GetImageListHover(int iSize);
+      ::image::image_list * GetImageList(::i32 iSize);
+      ::image::image_list * GetImageListHover(::i32 iSize);
 
 
       //virtual enum_folder get_folder_type(::particle * pparticle, const ::wstring & wstrPath);
       virtual enum_folder get_folder_type(::particle * pparticle, const ::scoped_string & scopedstrPath);
 
 
-//      void set_image(int iIndex, int iSize, ::image::image *pimage);
+//      void set_image(::i32 iIndex, ::i32 iSize, ::image::image *pimage);
 
-      virtual void set_image(int iIndex, int iSize, ::image::image_drawing imagedrawing);
-      virtual void set_icon(int iIndex, const ::file::path & pathIcon);
+      virtual void set_image(::i32 iIndex, ::i32 iSize, ::image::image_drawing imagedrawing);
+      virtual void set_icon(::i32 iIndex, const ::file::path & pathIcon);
 
 
       //void destroy() override;

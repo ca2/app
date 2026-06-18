@@ -97,7 +97,7 @@ release_time_for_project application::release_time() { return __RELEASE_TIME(lib
 #define __EVALUATE_MACRO(name) name
 
 
-///#define lower_byte(w)              ((unsigned char)((w) & 0xff))
+///#define lower_byte(w)              ((::u8)((w) & 0xff))
 
 
 
@@ -110,52 +110,52 @@ release_time_for_project application::release_time() { return __RELEASE_TIME(lib
 //#define __CONCAT3____(xxx, yyy, zzz) xxx ## yyy ## zzz
 
 
-// #define __unsigned_short(a, b)                                   ((unsigned short)(((unsigned char)(((::uptr)(a)) & 0xff)) | ((unsigned short)((unsigned char)(((::uptr)(b)) & 0xff))) << 8))
-// #define as_unsigned_int(a, b)                                   ((unsigned int)(((unsigned short)(((::uptr)(a)) & 0xffff)) | ((unsigned int)((unsigned short)(((::uptr)(b)) & 0xffff))) << 16))
+// #define __unsigned_short(a, b)                                   ((::u16)(((::u8)(((::uptr)(a)) & 0xff)) | ((::u16)((::u8)(((::uptr)(b)) & 0xff))) << 8))
+// #define as_u32(a, b)                                   ((::u32)(((::u16)(((::uptr)(a)) & 0xffff)) | ((::u32)((::u16)(((::uptr)(b)) & 0xffff))) << 16))
 
 
 // #ifdef __cplusplus
 
 
-// #define as_unsigned_long_long(a, b)                                   (((unsigned long long)(((unsigned int)(((unsigned long long)(a)) & 0xffffffff)) | ((unsigned long long)((unsigned int)(((unsigned long long)(b)) & 0xffffffff))) << 32)))
+// #define as_u64(a, b)                                   (((::u64)(((::u32)(((::u64)(a)) & 0xffffffff)) | ((::u64)((::u32)(((::u64)(b)) & 0xffffffff))) << 32)))
 
 
 // #else
 
-// #define __MAKE_LONG64(a, b)                              (((unsigned long long)(((unsigned int)(((unsigned long long)(a)) & 0xffffffff)) | ((unsigned long long)((unsigned int)(((unsigned long long)(b)) & 0xffffffff))) << 32)))
-// #define __unsigned_long_long(a, b)                                   (((unsigned long long)(((unsigned int)(((unsigned long long)(a)) & 0xffffffff)) | ((unsigned long long)((unsigned int)(((unsigned long long)(b)) & 0xffffffff))) << 32)))
+// #define __MAKE_LONG64(a, b)                              (((::u64)(((::u32)(((::u64)(a)) & 0xffffffff)) | ((::u64)((::u32)(((::u64)(b)) & 0xffffffff))) << 32)))
+// #define __u64(a, b)                                   (((::u64)(((::u32)(((::u64)(a)) & 0xffffffff)) | ((::u64)((::u32)(((::u64)(b)) & 0xffffffff))) << 32)))
 
 // #endif
 
-// #define lower_unsigned_short(u)                                     ((unsigned short)(((::uptr)(u)) & 0xffff))
-// #define upper_unsigned_short(u)                                     ((unsigned short)((((::uptr)(u)) >> 16) & 0xffff))
-// #define lower_unsigned_int(u)                                     ((unsigned int)(u))
-// #define upper_unsigned_int(u)                                     ((unsigned int)(((u) >> 32) & 0xffffffff))
+// #define lower_unsigned_short(u)                                     ((::u16)(((::uptr)(u)) & 0xffff))
+// #define upper_unsigned_short(u)                                     ((::u16)((((::uptr)(u)) >> 16) & 0xffff))
+// #define lower_u32(u)                                     ((::u32)(u))
+// #define upper_u32(u)                                     ((::u32)(((u) >> 32) & 0xffffffff))
 
-// #define u32_x(u)                                     ((short)lower_unsigned_short(u))
-// #define u32_y(u)                                     ((short)upper_unsigned_short(u))
+// #define u32_x(u)                                     ((::i16)lower_unsigned_short(u))
+// #define u32_y(u)                                     ((::i16)upper_unsigned_short(u))
 
 // #define __u32xy(u)                                    u32_x(u), u32_y(u)
 
-// #define u64_x(u)                                     ((int)lower_unsigned_int(u))
-// #define u64_y(u)                                     ((int)upper_unsigned_int(u))
+// #define u64_x(u)                                     ((::i32)lower_u32(u))
+// #define u64_y(u)                                     ((::i32)upper_u32(u))
 
 // #define __u64xy(u)                                    u64_x(u), u64_y(u)
 
 
-//#define GET_X_LPARAM64(lparam)                        ((int)(short)lower_unsigned_int(lparam))
-//#define GET_Y_LPARAM64(lparam)                        ((int)(short)upper_unsigned_int(lparam))
+//#define GET_X_LPARAM64(lparam)                        ((::i32)(::i16)lower_u32(lparam))
+//#define GET_Y_LPARAM64(lparam)                        ((::i32)(::i16)upper_u32(lparam))
 
 
 
 
-// #define make_int(a, b)           ((int)(((unsigned short)(((::uptr)(a)) & 0xffff)) | ((unsigned int)((unsigned short)(((::uptr)(b)) & 0xffff))) << 16))
+// #define make_int(a, b)           ((::i32)(((::u16)(((::uptr)(a)) & 0xffff)) | ((::u32)((::u16)(((::uptr)(b)) & 0xffff))) << 16))
 
-// #define __MAKE_LONG64(a, b)         ((long long)(((unsigned int)(((unsigned long long)(a)) & 0xffffffff)) | ((unsigned long long)((unsigned int)(((unsigned long long)(b)) & 0xffffffff))) << 32))
+// #define __MAKE_LONG64(a, b)         ((::i64)(((::u32)(((::u64)(a)) & 0xffffffff)) | ((::u64)((::u32)(((::u64)(b)) & 0xffffffff))) << 32))
 
-// #define make_unsigned_int(l, h)         ((::uptr)(unsigned int)make_int(l, h))
+// #define make_u32(l, h)         ((::uptr)(::u32)make_int(l, h))
 
-//#define lower_byte(w)                 ((unsigned char)(((dword_ptr)(w)) & 0xff))
+//#define lower_byte(w)                 ((::u8)(((dword_ptr)(w)) & 0xff))
 
 
 
@@ -198,12 +198,12 @@ release_time_for_project application::release_time() { return __RELEASE_TIME(lib
 
 // return - result - if not ok
 #ifndef RINOK
-#define RINOK(x) { int __result__ = (x); if (__result__ != 0) return __result__; }
+#define RINOK(x) { ::i32 __result__ = (x); if (__result__ != 0) return __result__; }
 #endif
 
 // throw ::exception( - exception - result exception - if not ok
 #ifndef TINOK
-#define TINOK(e, x) { int __result__ = (x); if (__result__ != 0) throw ::exception(e(get_app(), __result__)); }
+#define TINOK(e, x) { ::i32 __result__ = (x); if (__result__ != 0) throw ::exception(e(get_app(), __result__)); }
 #endif
 
 
@@ -366,21 +366,21 @@ type operator + (const TYPE & t) const { auto copy = *this; copy.add(t); return 
 
 
 
-// #ifndef int_x
-// #define lparam_int_x(lparam)                          ((int)(short)LOWORD(lparam))
+// #ifndef i32_x
+// #define lparam_int_x(lparam)                          ((::i32)(::i16)LOWORD(lparam))
 // #endif
 
 
-// #ifndef int_y
-// #define lparam_int_y(lparam)                          ((int)(short)HIWORD(lparam))
+// #ifndef i32_y
+// #define lparam_int_y(lparam)                          ((::i32)(::i16)HIWORD(lparam))
 // #endif
 
 
-// #ifndef lower_unsigned_int
-// #define lower_unsigned_int(l)                                    ((unsigned int)(((unsigned long long)(l)) & 0xffffffffu))
+// #ifndef lower_u32
+// #define lower_u32(l)                                    ((::u32)(((::u64)(l)) & 0xffffffffu))
 // #endif
-// #ifndef upper_unsigned_int
-// #define upper_unsigned_int(l)                                    ((unsigned int)((((unsigned long long)(l)) >> 32) & 0xffffffffu))
+// #ifndef upper_u32
+// #define upper_u32(l)                                    ((::u32)((((::u64)(l)) >> 32) & 0xffffffffu))
 // #endif
 
 
@@ -413,4 +413,35 @@ TOKEN_CONCATENATE(name, _factory)(pfactory)
 #define sizeof_in_bits(TYPE) (sizeof(TYPE) * 8)
 
 
+
+
+_STUD_API bool is_system(enum_operating_system eoperatingsystem) noexcept {
+   if (eoperatingsystem == e_operating_system_windows) {
+      return is_windows();
+   }
+   else if (eoperatingsystem == e_operating_system_linux) {
+      return is_linux();
+   }
+   else if (eoperatingsystem == e_operating_system_unix) {
+      return is_unix();
+   }
+   else if (eoperatingsystem == e_operating_system_macos) {
+      return is_macos();
+   }
+   else if (eoperatingsystem == e_operating_system_freebsd) {
+      return is_freebsd();
+   }
+   else if (eoperatingsystem == e_operating_system_android) {
+      return is_android();
+   }
+   else {
+      return false;
+   }
+}
+
+#define _STUD_MAKE_NONCOPYABLE(type) _STUD_API type(const ::platform::type &) noexcept = delete; \
+_STUD_API type& operator=(const ::platform::type &) noexcept = delete
+#define _STUD_MAKE_NONMOVEABLE(type) _STUD_API type(type&&) noexcept = delete;
+
+//_STUD_API_END
 

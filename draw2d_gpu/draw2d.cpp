@@ -4,8 +4,8 @@
 #include "acme/platform/application.h"
 #include "acme/prototype/prototype/memory.h"
 
-//int g_iDpiY = -1;
-//int get_y_dpi()
+//::i32 g_iDpiY = -1;
+//::i32 get_y_dpi()
 //{
 //   if (g_iDpiY < 0)
 //   {
@@ -70,15 +70,15 @@ namespace draw2d_gpu
    //::draw2d_gpu::face* draw2d::get_face(::write_text::font * pfont)
    //{
 
-   //   int iPixelSize = 0;
+   //   ::i32 iPixelSize = 0;
 
    //   if (pfont->m_fontsize.eunit() == e_unit_point)
    //   {
-   //      iPixelSize = points_to_pixels(pfont->m_fontsize.as_int());
+   //      iPixelSize = points_to_pixels(pfont->m_fontsize.as_i32());
    //   }
    //   else
    //   {
-   //      iPixelSize = pfont->m_fontsize.as_int();
+   //      iPixelSize = pfont->m_fontsize.as_i32();
    //   }
 
    //   ::string strFontFamilyName = pfont->m_pfontfamily->family_name(this);
@@ -239,7 +239,7 @@ namespace draw2d_gpu
 
    //      pfont->m_familya.set_size(iFamilyCount);
 
-   //      for (int iFamily = 0; iFamily < iFamilyCount; iFamily++)
+   //      for (::i32 iFamily = 0; iFamily < iFamilyCount; iFamily++)
    //      {
 
    //         if (pfont->m_familya[iFamily].GetLastStatus() != Gdiplus::Ok)
@@ -264,7 +264,7 @@ namespace draw2d_gpu
    //}
 
 
-   //int  draw2d::opengl_init()
+   //::i32  draw2d::opengl_init()
    //{
 
    //   //constructø(m_popenglcontext);
@@ -298,7 +298,7 @@ namespace draw2d_gpu
    //}
 
 
-   //void draw2d::adjust_composited_window_styles(unsigned int& nExStyle, unsigned int& nStyle)
+   //void draw2d::adjust_composited_window_styles(::u32& nExStyle, ::u32& nStyle)
    //{
 
    //   nExStyle &= ~WS_EX_LAYERED;

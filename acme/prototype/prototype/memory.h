@@ -18,8 +18,8 @@
 
 //       m_memory.m_bOwn = false;
 //       m_memory.m_preadonlymemory = this;
-//       m_memory.m_pbStorage = (unsigned char *) p;
-//       m_memory.m_pdata = (unsigned char *) p;
+//       m_memory.m_pbStorage = (::u8 *) p;
+//       m_memory.m_pdata = (::u8 *) p;
 //       m_memory.m_cbStorage = size;
 //       m_memory.m_iSize = size;
 
@@ -44,8 +44,8 @@ public:
    memory(enum_create_new, bool bAligned);
    template < prototype_integral INTEGRAL >
    memory(INTEGRAL i, bool bAligned = false) { this->m_pprimitivememory = this; this->m_bAligned = bAligned; this->set_size(i); }
-   memory(const ::std::initializer_list < int > & iaList);
-   memory(const unsigned char *, memsize size);
+   memory(const ::std::initializer_list < ::i32 > & iaList);
+   memory(const ::u8 *, memsize size);
    memory(void*, memsize size);
    memory(const void *, memsize size);
    memory(enum_copy_clone, const memory_base & memorybase);
@@ -57,21 +57,21 @@ public:
       memory((const void *)a, (memsize)(sizeof(CHARACTER) * (c - 1)))
    {
    }
-   memory(memory_container * pcontainer, memsize size = 0, unsigned int uAllocFlags = 0);
+   memory(memory_container * pcontainer, memsize size = 0, ::u32 uAllocFlags = 0);
    memory(memory_container * pcontainer, const void * pdata, memsize size);
    memory(manager * pmanager);
    memory(const memory & memory, manager * pmanager);
    memory(const memory * pmemory, manager * pmanager);
-   memory(const unsigned char * pchSrc, character_count nLength, manager * pmanager);
+   memory(const ::u8 * pchSrc, character_count nLength, manager * pmanager);
    memory(memory && memory);
    memory(const ::scoped_string & scopedstr);
    memory(const ::string & str);
    ~memory() override;
 
 
-   virtual unsigned char * impl_alloc(memsize dwAllocation) override;
-   virtual unsigned char * impl_realloc(void * pdata, memsize dwAllocation) override;
-   virtual void impl_free(unsigned char * pdata) override;
+   virtual ::u8 * impl_alloc(memsize dwAllocation) override;
+   virtual ::u8 * impl_realloc(void * pdata, memsize dwAllocation) override;
+   virtual void impl_free(::u8 * pdata) override;
 
    using memory_base::operator =;
    using memory_base::operator +=;
@@ -82,7 +82,7 @@ public:
 
    
    character_count sz_len() const override;
-   void to_sz(char * sz, character_count len) const override;
+   void to_sz(char_pointer sz, character_count len) const override;
 
 
 };
@@ -139,7 +139,7 @@ inline ::memory memory_base::right(memsize count)
 
 
 
-inline void memory_base::set_char_at_grow(character_count iChar, char ch)
+inline void memory_base::set_char_at_grow(character_count iChar, ::i8 ch)
 {
 
    if (::comparison::ge(iChar, size()))
@@ -149,7 +149,7 @@ inline void memory_base::set_char_at_grow(character_count iChar, char ch)
 
    }
 
-   ((char*)data())[iChar] = ch;
+   ((char_pointer )data())[iChar] = ch;
 
 }
 

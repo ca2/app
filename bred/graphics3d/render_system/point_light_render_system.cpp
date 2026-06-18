@@ -36,7 +36,7 @@ namespace graphics3d
    {
       floating_sequence4 position{};
       floating_sequence4 color{};
-      float radius;
+      ::f32 radius;
    };
 
 
@@ -165,7 +165,7 @@ namespace graphics3d
 
    void point_light_render_system::on_render(::gpu::context* pgpucontext, ::graphics3d::scene_base * pscene)
    {
-      //::map<float, uint32_t> sorted;
+      //::map<::f32, uint32_t> sorted;
 
       auto & pointlighta = pscene->m_pointlighta;
 
@@ -173,17 +173,17 @@ namespace graphics3d
       // {
       //    floating_sequence3 offset = pframe->camera()->getPosition() - pobject->transform().translation;
       //    // need to implement getPosition because ICamera has no defintion
-      //    float distanceSquared = glm::dot(offset, offset);
+      //    ::f32 distanceSquared = glm::dot(offset, offset);
       //    sorted[distanceSquared] = pobject->getId();
       // }
       //
       //
 
-      auto pframe = ::gpu::current_frame();
-      //auto ptexture = pframe->m_pgpucommandbuffer->m_pgpurendertarget->current_texture(pframe);
-      //pframe->m_pgpucommandbuffer->begin_render(m_pshader, ptexture);
+      auto pgpulayer = ::gpu::current_layer();
+      //auto ptexture = pgpulayer->getCurrentCommandBuffer4()->m_pgpurendertarget->current_texture(pframe);
+      //pgpulayer->getCurrentCommandBuffer4()->begin_render(m_pshader, ptexture);
 
-      pframe->m_pgpucommandbuffer->set_shader(m_pshader);
+      pgpulayer->getCurrentCommandBuffer4()->set_shader(m_pshader);
 
       // vkCmdBindDescriptorSets(
       //     frame.m_pcommandbuffer,
@@ -209,7 +209,7 @@ namespace graphics3d
             ppointlight->m_fLightIntensity);
          pushconstants.radius = ppointlight->m_sequence3Scaling.x;
 
-         m_pshader->set_push_properties(pframe->m_pgpucommandbuffer, ::as_memory_block(pushconstants));
+         m_pshader->set_push_properties(pgpulayer->getCurrentCommandBuffer4(), ::as_memory_block(pushconstants));
 
          // vkCmdPushConstants(
          //     frame.m_pcommandbuffer,
@@ -219,12 +219,12 @@ namespace graphics3d
          //     sizeof(PointLightPushConstants),
          //     &push
          // );
-         //pframe->m_pgpucommandbuffer->draw_vertexes(6);
+         //pgpulayer->getCurrentCommandBuffer4()->draw_vertexes(6);
          //vkCmdDraw(frame.m_pcommandbuffer, 6, 1, 0, 0);
-         //m_pmodelDummy->bind(pframe->m_pgpucommandbuffer);
-         //pframe->m_pgpucommandbuffer->set_model(m_pmodelDummy);
-         pframe->m_pgpucommandbuffer->draw(m_pmodelDummy);
-         //m_pmodelDummy->draw(pframe->m_pgpucommandbuffer);
+         //m_pmodelDummy->bind(pgpulayer->getCurrentCommandBuffer4());
+         //pgpulayer->getCurrentCommandBuffer4()->set_model(m_pmodelDummy);
+         pgpulayer->getCurrentCommandBuffer4()->draw(m_pmodelDummy);
+         //m_pmodelDummy->draw(pgpulayer->getCurrentCommandBuffer4());
       }
 
       pgpucontext->defer_unbind(m_pshader);
@@ -246,7 +246,7 @@ namespace graphics3d
       //auto rotateLight = floating_matrix4(1.f);
       //rotateLight.rotate(0.5f * dt, { 0.f, -1.f, 0.f });
 
-      int lightIndex = 0;
+      ::i32 lightIndex = 0;
 
       auto & pointlighta = pscene->m_pointlighta;
 
@@ -283,7 +283,7 @@ namespace graphics3d
 
       // auto rotateLight = glm::rotate(floating_matrix4(1.f), m_rotationSpeed * pframe->frameTime(), {0.f, -1.f, 0.f});
       // auto &ubo = (*ppropertiesGlobalUbo);
-      // int lightIndex = 0;
+      // ::i32 lightIndex = 0;
       // auto &sceneobjects = (*pframe->scene_objects());
       // for (auto &[id, pobject]: sceneobjects)
       // {

@@ -87,9 +87,9 @@ namespace sockets_bsd
 
       m_psslcontext = SSL_CTX_new(meth);
 
-      char buf[255];
+      ::i8 buf[255];
 
-      unsigned long err = ERR_get_error();
+      ulong err = ERR_get_error();
 
       ERR_error_string(err, buf);
 

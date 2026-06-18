@@ -14,31 +14,31 @@ struct DOUBLE_POLE
       struct
       {
 
-         double x;
-         double y;
-         double z;
+         ::f64 x;
+         ::f64 y;
+         ::f64 z;
 
       };
 
       struct
       {
 
-         double cx;
-         double cy;
-         double cz;
+         ::f64 cx;
+         ::f64 cy;
+         ::f64 cz;
 
       };
 
       struct
       {
 
-         double px;
-         double py;
-         double pz;
+         ::f64 px;
+         ::f64 py;
+         ::f64 pz;
 
       };
 
-      double da[3];
+      ::f64 da[3];
 
    };
 
@@ -195,27 +195,27 @@ inline typename POLE::POINT_TYPE & __point(POLE & pole)
 
 
 template < prototype_pole POLE >
-inline ::double_point as_double_point(const POLE & pole)
+inline ::f64_point as_f64_point(const POLE & pole)
 {
 
-   return { (double)pole.x, (double)pole.y };
+   return { (::f64)pole.x, (::f64)pole.y };
 
 }
 
 
 template < prototype_pole POLE >
-inline ::int_point as_int_point(const POLE & pole)
+inline ::i32_point as_i32_point(const POLE & pole)
 {
 
-   return {(int)pole.x, (int) pole.y };
+   return {(::i32)pole.x, (::i32) pole.y };
 
 }
 
 
-using int_pole = ::pole_type < int >;
-using long_long_pole = ::pole_type < long long>;
-using float_pole = ::pole_type < float >;
-using double_pole = ::pole_type < double >;
+using i32_pole = ::pole_type < ::i32 >;
+using i64_pole = ::pole_type < ::i64>;
+using f32_pole = ::pole_type < ::f32 >;
+using f64_pole = ::pole_type < ::f64 >;
 
 
 

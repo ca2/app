@@ -87,7 +87,7 @@ namespace hi5
          if(m_pviewAuth == nullptr)
             return "";
 
-         m_pviewAuth->set_timer(8888, 500_ms, nullptr);
+         //m_pviewAuth->set_timer(8888, 500_ms, nullptr);
          //m_ptabimpact->get_wnd()->RunModalLoop(MLF_NOIDLEMSG | MLF_NOKICKIDLE);
 
          m_ptabimpact->get_wnd()->wait_for_dialog_result();
@@ -147,7 +147,7 @@ namespace hi5
 
          string strUrl;
 
-         strUrl = "http://spaignition.api.ca2.network/query?node=install_application&atom=";
+         strUrl = "http://spaignition.api.ca2.site/query?node=install_application&atom=";
 
          string strAppName;
 
@@ -219,13 +219,13 @@ namespace hi5
       void authorization::display_main_frame()
       {
 
-         ::int_rectangle rectangleOpen;
+         ::i32_rectangle rectangleOpen;
 
          m_ptabimpact->parent_frame()->best_top_level_parent(rectangleOpen);
 
-         int iWidth = rectangleOpen.width();
+         ::i32 iWidth = rectangleOpen.width();
 
-         int iHeight = rectangleOpen.height();
+         ::i32 iHeight = rectangleOpen.height();
 
          rectangleOpen.deflate(iWidth / 5, iHeight / 50);
 

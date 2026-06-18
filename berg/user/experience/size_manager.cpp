@@ -13,10 +13,10 @@
 #include "aura/message/user.h"
 
 
-CLASS_DECL_AURA ::int_point __get_top_right();
-CLASS_DECL_AURA void __set_top_right(const ::int_point & pointTopRight);
-CLASS_DECL_AURA ::int_point __get_bottom_right();
-CLASS_DECL_AURA void __set_bottom_right(const ::int_point & pointBottomRight);
+CLASS_DECL_AURA ::i32_point __get_top_right();
+CLASS_DECL_AURA void __set_top_right(const ::i32_point & pointTopRight);
+CLASS_DECL_AURA ::i32_point __get_bottom_right();
+CLASS_DECL_AURA void __set_bottom_right(const ::i32_point & pointBottomRight);
 
 
 namespace experience
@@ -77,7 +77,7 @@ namespace experience
 
       }
 
-      ::experience::enum_frame eframeCursor = m_eframeCursor;
+      ::experience::e_frame eframeCursor = m_eframeCursor;
 
       if (eframeCursor == e_frame_none)
       {
@@ -103,17 +103,17 @@ namespace experience
 
       m_pointCursorOrigin = pointCursor;
 
-      ::int_rectangle rectangleWindow;
+      ::i32_rectangle rectangleWindow;
 
       m_pframewindow->window_rectangle(rectangleWindow);
 
       m_rectangleWindowOrigin = rectangleWindow;
 
-      ::int_rectangle rectangleEvent;
+      ::i32_rectangle rectangleEvent;
 
       m_pframewindow->window_rectangle(rectangleEvent);
 
-      //enum_frame eframe = _001HitTest(pointCursor);
+      //const e_frame & eframe = _001HitTest(pointCursor);
 
       //auto pitemCursor = m_pitemCursor;
 
@@ -124,7 +124,7 @@ namespace experience
 //
 //#ifdef WINDOWS_DESKTOP
 //
-//         unsigned int nHitTest = HTCLIENT;
+//         ::u32 nHitTest = HTCLIENT;
 //
 //         switch(eframe)
 //         {
@@ -434,7 +434,7 @@ namespace experience
    }
 
 
-   enum_cursor size_manager::experience_frame_to_cursor(enum_frame eframe)
+   enum_cursor size_manager::experience_frame_to_cursor(const e_frame & eframe)
    {
 
       if (eframe == e_frame_none)
@@ -444,7 +444,7 @@ namespace experience
 
       }
 
-      switch(eframe)
+      switch(eframe.m_cflag)
       {
       case e_frame_sizing_top_left:
          return e_cursor_size_top_left;
@@ -470,7 +470,7 @@ namespace experience
    }
 
 
-   ::int_size size_manager::GetMinSize()
+   ::i32_size size_manager::GetMinSize()
    {
 
       return m_pframewindow->m_pframe->GetMinSize();
@@ -478,7 +478,7 @@ namespace experience
    }
 
 
-   //void size_manager::SetSWPFlags(unsigned int uFlags)
+   //void size_manager::SetSWPFlags(::u32 uFlags)
    //{
 
    //   m_uiSWPFlags = uFlags;
@@ -487,18 +487,18 @@ namespace experience
    //}
 
 
-   void size_manager::size_window(::experience::enum_frame eframe, ::user::interaction * pframewindow, const ::int_point & point, bool bTracking)
+   void size_manager::size_window(const ::experience::e_frame & eframe, ::user::interaction * pframewindow, const ::i32_point & point, bool bTracking)
    {
 
       //    bool bSize = true;
 //
-      ::int_rectangle rectangleWindow;
+      ::i32_rectangle rectangleWindow;
 
-      ::int_rectangle rectangleMonitor;
+      ::i32_rectangle rectangleMonitor;
 
       pframewindow->best_monitor(&rectangleMonitor);
 
-      ::int_size sizeMin = GetMinSize();
+      ::i32_size sizeMin = GetMinSize();
 
       if (eframe == ::experience::e_frame_sizing_top_left)
       {
@@ -593,11 +593,11 @@ namespace experience
          if (m_pframewindow->m_bDerivedHeight)
          {
 
-            int iWidth = rectangleWindow.width();
+            ::i32 iWidth = rectangleWindow.width();
 
-            int iDerivedHeight = m_pframewindow->get_derived_height(iWidth);
+            ::i32 iDerivedHeight = m_pframewindow->get_derived_height(iWidth);
 
-            int iHeight = m_pframewindow->m_pframe->adjust_client_height(iDerivedHeight);
+            ::i32 iHeight = m_pframewindow->m_pframe->adjust_client_height(iDerivedHeight);
 
             if (iHeight < sizeMin.cy)
             {
@@ -638,7 +638,7 @@ namespace experience
 
          if (pframewindow->get_int("ysnap") > 1)
          {
-            int h = rectangleWindow.height();
+            ::i32 h = rectangleWindow.height();
             h -= rectangleWindow.height() % pframewindow->get_int("ysnap");
             rectangleWindow.bottom = rectangleWindow.top + h;
          }
@@ -715,7 +715,7 @@ namespace experience
    }
 
 
-   void size_manager::move_window(::user::interaction * pframewindow, const ::int_rectangle & rectangle)
+   void size_manager::move_window(::user::interaction * pframewindow, const ::i32_rectangle & rectangle)
    {
 
       pframewindow->place(rectangle);
@@ -749,7 +749,7 @@ namespace experience
    }
 
 
-   void size_manager::SetGripMask(enum_grip egrip)
+   void size_manager::SetGripMask(const e_grip & egrip)
    {
 
       m_egripMask = egrip;
@@ -757,7 +757,7 @@ namespace experience
    }
 
 
-   enum_grip size_manager::GetGripMask()
+   e_grip size_manager::GetGripMask()
    {
 
       return m_egripMask;
@@ -765,12 +765,12 @@ namespace experience
    }
 
 
-   enum_grip size_manager::experience_frame_to_experience_grip(enum_frame eframe)
+   e_grip size_manager::experience_frame_to_experience_grip(const e_frame & eframe)
    {
 
-      enum_grip egrip;
+      e_grip egrip;
 
-      //::enum_element eelement = e_element_none;
+      //const ::e_element & eelement = e_element_none;
 
       //if (eframe != e_frame_none)
       //{
@@ -804,7 +804,7 @@ namespace experience
    }
 
 
-   void size_manager::NotifyFramework(enum_frame eframe)
+   void size_manager::NotifyFramework(const e_frame & eframe)
    {
 
       __UNREFERENCED_PARAMETER(eframe);
@@ -812,7 +812,7 @@ namespace experience
    }
 
 
-   enum_frame size_manager::experience_frame_hit_test(const ::int_point & point, ::user::e_zorder ezorder)
+   enum_frame size_manager::experience_frame_hit_test(const ::i32_point & point, ::user::e_zorder ezorder)
    {
 
       auto eframe = m_pframewindow->experience_frame_hit_test(point, ::user::e_zorder_any);

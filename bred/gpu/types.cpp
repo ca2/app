@@ -22,7 +22,7 @@ BEGIN_GPU_PROPERTIES(::gpu::model_view_projection_hdriSampler)
 GPU_PROPERTY("model", ::gpu::e_type_mat4)
 GPU_PROPERTY("view", ::gpu::e_type_mat4)
 GPU_PROPERTY("projection", ::gpu::e_type_mat4)
-GPU_PROPERTY("sampler:hdri", ::gpu::e_type_int)
+GPU_PROPERTY("sampler:hdri", ::gpu::e_type_i32)
 END_GPU_PROPERTIES()
 
 
@@ -30,7 +30,7 @@ BEGIN_GPU_PROPERTIES(::gpu::model_view_projection_environmentCubeSampler)
 GPU_PROPERTY("model", ::gpu::e_type_mat4)
 GPU_PROPERTY("view", ::gpu::e_type_mat4)
 GPU_PROPERTY("projection", ::gpu::e_type_mat4)
-GPU_PROPERTY("sampler:environmentCubemap", ::gpu::e_type_int)
+GPU_PROPERTY("sampler:environmentCubemap", ::gpu::e_type_i32)
 END_GPU_PROPERTIES()
 
 

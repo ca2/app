@@ -208,7 +208,7 @@
 ///*
 // ** Convert an error code to a string
 // */
-//const char *CGLErrorString(CGLError error);
+//const_char_pointer CGLErrorString(CGLError error);
 //
 //} // extern "C"
 
@@ -247,7 +247,7 @@
 
 
 
-CLASS_DECL_GPU_OPENGL const_char_pointer opengl_error_string(int iError);
+CLASS_DECL_GPU_OPENGL const_char_pointer opengl_error_string(::i32 iError);
 
 
 
@@ -261,17 +261,17 @@ namespace opengl
    public:
 
 
-      int m_iGlError;
+      ::i32 m_iGlError;
 
 
-      exception(const ::scoped_string& scopestrMessage, int iGLError, const_char_pointer pszGlErrorMessage, const ::scoped_string & nameFile, int iLine);
+      exception(const ::scoped_string& scopestrMessage, ::i32 iGLError, const_char_pointer pszGlErrorMessage, const ::scoped_string & nameFile, ::i32 iLine);
 
       ~exception() override;
       
    };
 
 
-   [[noreturn]] CLASS_DECL_GPU_OPENGL void throw_exception(const ::scoped_string& scopestrMessage, int iGLError, const ::scoped_string& nameFile, int iLine);
+   [[noreturn]] CLASS_DECL_GPU_OPENGL void throw_exception(const ::scoped_string& scopestrMessage, ::i32 iGLError, const ::scoped_string& nameFile, ::i32 iLine);
 
 
 
@@ -280,7 +280,7 @@ namespace opengl
 
    CLASS_DECL_GPU_OPENGL GLenum as_gl_draw_mode(::gpu::enum_topology etopology);
 
-   CLASS_DECL_GPU_OPENGL const char * check_framebuffer_status_text(GLenum status);
+   CLASS_DECL_GPU_OPENGL const_char_pointer check_framebuffer_status_text(GLenum status);
 
    CLASS_DECL_GPU_OPENGL void * operating_system_current_context();
 

@@ -21,14 +21,14 @@ namespace linux
       virtual bool reboot() override;
       virtual bool shutdown(bool bPowerOff) override;
 
-      virtual void terminate_processes_by_title(const char * lpszName) override;
+      virtual void terminate_processes_by_title(const_char_pointer pszName) override;
 
 
-      virtual bool get_pid_by_path(const char * lpszName, unsigned int & dwPid) override;
-      virtual bool get_pid_by_title(const char * lpszName, unsigned int & dwPid) override;
-      virtual void get_all_processes(unsigned_int_array & dwa) override;
-      virtual ::file::path get_process_path(unsigned int dwPid) override;
-      virtual int get_pid() override;
+      virtual bool get_pid_by_path(const_char_pointer pszName, ::u32 & dwPid) override;
+      virtual bool get_pid_by_title(const_char_pointer pszName, ::u32 & dwPid) override;
+      virtual void get_all_processes(u32_array & dwa) override;
+      virtual ::file::path get_process_path(::u32 dwPid) override;
+      virtual ::i32 get_pid() override;
 
       virtual ::payload connection_settings_get_auto_detect() override;
       virtual ::payload connection_settings_get_auto_config_url() override;
@@ -57,7 +57,7 @@ namespace linux
       virtual bool start_service(::particle * pparticle);
       virtual bool stop_service(::particle * pparticle);
 
-      void raise_exception( unsigned int dwExceptionCode, unsigned int dwExceptionFlags);
+      void raise_exception( ::u32 dwExceptionCode, ::u32 dwExceptionFlags);
 
       virtual bool is_remote_session() override;
 
@@ -70,7 +70,7 @@ namespace linux
 
       virtual bool file_open(::file::path strSrc, string strParams, string strFolder) override;
 
-      virtual void list_process(::file::path_array & patha, unsigned_int_array & iaPid) override;
+      virtual void list_process(::file::path_array & patha, u32_array & iaPid) override;
 
 
    };

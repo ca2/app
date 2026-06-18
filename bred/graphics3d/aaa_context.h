@@ -70,7 +70,7 @@
 //
 //   //   // helper functions
 //   //   bool isDeviceSuitable(VkPhysicalDevice pvkcdevice);
-//   //   std::vector<const char*> getRequiredExtensions();
+//   //   std::vector<const_char_pointer > getRequiredExtensions();
 //   //   bool checkValidationLayerSupport();
 //   //   QueueFamilyIndices findQueueFamilies(VkPhysicalDevice pvkcdevice);
 //   //   void populateDebugMessengerCreateInfo(VkDebugUtilsMessengerCreateInfoEXT& createInfo);
@@ -89,8 +89,8 @@
 //   //   VkQueue m_vkqueueGraphics;
 //   //   VkQueue m_vkqueuePresent;
 //
-//   //   const std::vector<const char*> validationLayers = { "VK_LAYER_KHRONOS_validation" };
-//   //   const std::vector<const char*> deviceExtensions = { VK_KHR_SWAPCHAIN_EXTENSION_NAME };
+//   //   const std::vector<const_char_pointer > validationLayers = { "VK_LAYER_KHRONOS_validation" };
+//   //   const std::vector<const_char_pointer > deviceExtensions = { VK_KHR_SWAPCHAIN_EXTENSION_NAME };
 //
 //      virtual void clear(const ::color::color & color);
 //

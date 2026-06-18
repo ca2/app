@@ -19,7 +19,7 @@ namespace gpu_opengl
    public:
 
 
-      int instanceCount = 0;
+      ::i32 instanceCount = 0;
 
       ::pointer < ::gpu::shader > m_pshaderBlend; 
       ::pointer < ::gpu_opengl::shader > m_pshaderBlend2;
@@ -28,7 +28,7 @@ namespace gpu_opengl
 
       GLuint m_vaoQuadBlend2, m_vboQuadBlend2;
 
-      //::int_size m_sizeRenderer;
+      //::i32_size m_sizeRenderer;
 
 
 
@@ -36,35 +36,39 @@ namespace gpu_opengl
       ~renderer();
 
 
-      //void set_placement(const ::int_rectangle& rectanglePlacement);
+      //void set_placement(const ::i32_rectangle& rectanglePlacement);
 
       void on_context_resize() override;
 
-      ::pointer < ::gpu::frame > beginFrame() override;
+      //::pointer < ::gpu::frame > beginFrame() override;
+
+      void start_frame() override;
 
       //void on_new_frame() override;
 
-      void on_begin_frame() override;
+      //void on_begin_frame() override;
 
       //virtual void _ensure_renderer_framebuffer();
 
-      void _on_begin_render(::gpu::frame * pframe) override;
+      void _on_begin_render(::gpu::layer * pgpulayer) override;
 
-      void on_begin_render(::gpu::frame* pframe) override;
+      void on_begin_render(::gpu::layer * pgpulayer) override;
 
       //void Clear() const;
 
 
-      //int get_frame_count() override;
+      //::i32 get_frame_count() override;
       // Draws the skybox using the given mesh and shader
       //void DrawSkybox(const mesh *pskyboxMesh, ::gpu::shader * pshader) const;
 
-      //void DrawInstanced(const ::array<mesh*>& meshes, ::gpu::shader *pshader, unsigned int instanceCount) const;
+      //void DrawInstanced(const ::array<mesh*>& meshes, ::gpu::shader *pshader, ::u32 instanceCount) const;
       void MultiDrawIndirectCommand() {}
 
       //void DrawModel(const ::array<mesh*>& mehses, ::gpu::shader *pshader);
 
-      void endFrame() override;
+      //void endFrame() override;
+
+      void end_frame() override;
 
       //void endDraw(::user::interaction * puserinteraction) override;
 
@@ -74,10 +78,10 @@ namespace gpu_opengl
 
       //void endDraw(::draw2d_gpu::graphics * pgraphics, ::user::interaction * puserinteraction) override;
 
-      //virtual void on_layout(int cx, int cy);
+      //virtual void on_layout(::i32 cx, ::i32 cy);
 
-      //void on_start_layer(::gpu::layer* player) override;
-      //void on_end_layer(::gpu::layer* player) override;
+      //void on_start_layer(::gpu::layer * pgpulayer) override;
+      //void on_end_layer(::gpu::layer * pgpulayer) override;
 
 
 
@@ -92,7 +96,7 @@ namespace gpu_opengl
       //virtual void __blend(::gpu::texture* ptextureTarget, ::gpu::texture* ptextureSource);
 
       //void defer_update_renderer() override;
-      //void on_defer_update_renderer_allocate_render_target(::gpu::enum_output eoutput, const ::int_size& size, ::gpu::render_target* previous) override;
+      //void on_defer_update_renderer_allocate_render_target(::gpu::enum_output eoutput, const ::i32_size& size, ::gpu::render_target* previous) override;
 
       //::pointer < ::gpu::render_target > allocate_offscreen_render_target() override;
 

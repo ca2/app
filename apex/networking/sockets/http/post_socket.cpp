@@ -238,7 +238,7 @@ namespace sockets
    void http_post_socket::DoMultipartPost()
    {
 
-      unsigned long long length = 0; // calculate content-length of our post body
+      ::u64 length = 0; // calculate content-length of our post body
 
       string tmp;
 
@@ -289,7 +289,7 @@ namespace sockets
 
             string & name = pair.element1();
 
-            unsigned long long content_length = pair.element2().m_uiContentLength;
+            ::u64 content_length = pair.element2().m_uiContentLength;
 
             string filename;
 
@@ -334,7 +334,7 @@ namespace sockets
          //
          //   m_mapFiles.get_next_assoc(pos, name, filename);
          //
-         //   unsigned long long content-length = m_mapContentLength[filename];
+         //   ::u64 content-length = m_mapContentLength[filename];
 
          //   string content-type = m_mapContentType[filename];
 
@@ -375,7 +375,7 @@ namespace sockets
 
       inheader("content-type") = "multipart/form-data; boundary=" + m_boundary;
 
-      inheader("content-length") = (long long) length;
+      inheader("content-length") = (::i64) length;
 
 #ifdef WINRT_SOCKETS
 
@@ -397,7 +397,7 @@ namespace sockets
          //   tmp += "--" + m_boundary + "\r\nContent-Disposition: form-data; name=\"" + atom.to_string() + "\"\r\n\r\n";
          //   string value = payload.string();
          //   tmp += value + "\r\n";
-         //   //for(int j = 0; j < payload.get_count(); j++)
+         //   //for(::i32 j = 0; j < payload.get_count(); j++)
          //   //{
          //     // string value = payload[j].string();
          //      //tmp += value + "\r\n";
@@ -421,7 +421,7 @@ namespace sockets
 
             string & name = pair.element1();
 
-            unsigned long long content_length = pair.element2().m_uiContentLength;
+            ::u64 content_length = pair.element2().m_uiContentLength;
 
             string filename;
 
@@ -456,7 +456,7 @@ namespace sockets
 
             memory m;
 
-            m.set_size((unsigned int) (content_length));
+            m.set_size((::u32) (content_length));
 
             pair.element2().m_spfile->read(m);
 

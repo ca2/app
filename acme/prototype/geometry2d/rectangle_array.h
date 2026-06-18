@@ -102,7 +102,7 @@ template < prototype_number NUMBER >
 void rectangle_array_base < NUMBER >::offset(UNIT_TYPE cx, UNIT_TYPE cy)
 {
 
-   for (int i = 0; i < this->get_size(); i++)
+   for (::i32 i = 0; i < this->get_size(); i++)
    {
 
       ::rectangle_type < NUMBER > & rectangle = this->element_at(i);
@@ -132,7 +132,7 @@ template < prototype_number NUMBER >
 
    rectangleUnion = this->first();
 
-   for (int i = 1; i < this->get_size(); i++)
+   for (::i32 i = 1; i < this->get_size(); i++)
    {
       
       rectangleUnion.unite(rectangleUnion, this->element_at(i));
@@ -199,7 +199,7 @@ void rectangle_array_base < NUMBER >::add(UNIT_TYPE left, UNIT_TYPE top, UNIT_TY
 template < prototype_number NUMBER >
 void rectangle_array_base < NUMBER >::add_dim(UNIT_TYPE x, UNIT_TYPE y, UNIT_TYPE cx, UNIT_TYPE cy)
 {
-   add(int_rectangle_dimension(x, y, cx, cy));
+   add(i32_rectangle_dimension(x, y, cx, cy));
 }
 
 
@@ -257,7 +257,7 @@ template < prototype_number NUMBER >
 }
 
 
-CLASS_DECL_ACME int_rectangle_array_base get_top_left_oriented_damaged_areas_by_resizing(const ::int_rectangle & rectangleNew, const ::int_rectangle & rectangleOld, bool bOnlyGrowing = true);
+CLASS_DECL_ACME i32_rectangle_array_base get_top_left_oriented_damaged_areas_by_resizing(const ::i32_rectangle & rectangleNew, const ::i32_rectangle & rectangleOld, bool bOnlyGrowing = true);
 
 
 

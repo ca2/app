@@ -80,20 +80,20 @@ _timeval_diff(struct timeval *tv1, struct timeval *tv2, struct timeval *tvd)
 }
 //https://lists.openbsd.org/pipermail/openbsd-hackers/2008-July/025483.html
 void
-signal_ignore(int s, siginfo_t *si, void *ctx)
+signal_ignore(::i32 s, siginfo_t *si, void *ctx)
 {
 }
 
 
 //https://lists.openbsd.org/pipermail/openbsd-hackers/2008-July/025483.html
-int
-_semtimedop(int semid, struct sembuf *array, size_t nops, struct
+::i32
+_semtimedop(::i32 semid, struct sembuf *array, size_t nops, struct
    timespec *_timeout)
 {
    struct timeval timeout, before, after;
    struct itimerval value, ovalue;
    struct sigaction sa, osa;
-   int ret;
+   ::i32 ret;
 
    if (_timeout) {
       timeout.tv_sec = _timeout->tv_sec;
@@ -351,7 +351,7 @@ namespace platform
 } // namespace platform
 
 
-int get_processor_count()
+::i32 get_processor_count()
 {
 	// On OpenBSD HW_NCPUONLINE tells the number of processor cores that
 	// are online so it is preferred over HW_NCPU which also counts cores
@@ -359,11 +359,11 @@ int get_processor_count()
 	// often less than HW_NCPU because OpenBSD disables simultaneous
 	// multi-threading (SMT) by default.
 #	ifdef HW_NCPUONLINE
-	int name[2] = { CTL_HW, HW_NCPUONLINE };
+	::i32 name[2] = { CTL_HW, HW_NCPUONLINE };
 #	else
-	int name[2] = { CTL_HW, HW_NCPU };
+	::i32 name[2] = { CTL_HW, HW_NCPU };
 #	endif
-	int cpus;
+	::i32 cpus;
 	size_t cpus_size = sizeof(cpus);
 	if (sysctl(name, 2, &cpus, &cpus_size, NULL, 0) == -1)
 	{

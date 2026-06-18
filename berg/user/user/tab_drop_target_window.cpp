@@ -89,7 +89,7 @@ namespace user
       for (auto eposition : m_positiona)
       {
 
-         ::int_rectangle rectangle;
+         ::i32_rectangle rectangle;
 
          m_ptab->GetDragRect(rectangle, eposition);
 
@@ -119,7 +119,7 @@ namespace user
    }
 
 
-   //bool tab_drop_target_window::get_translucency(::user::enum_translucency & etranslucency, ::enum_element eelement, ::user::interaction * pinteraction)
+   //bool tab_drop_target_window::get_translucency(::user::enum_translucency & etranslucency, const ::e_element & eelement, ::user::interaction * pinteraction)
    //{
 
    //   etranslucency = e_translucency_present;

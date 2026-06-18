@@ -240,7 +240,7 @@ namespace simpledb
 
          ::payload item = pdatabase->query_item("select COUNT(*) from sqlite_master where type like 'table' and name like '" + strTable + "'");
 
-         if (item.as_int() <= 0)
+         if (item.as_i32() <= 0)
          {
 
             pdatabase->exec("create table '" + strTable + "' (id TEXT primary key, value BLOB)");
@@ -272,13 +272,13 @@ namespace simpledb
 
       }
 
-      m_pdatabaseLocal.defer_destroy();
+      m_pdatabaseLocal.defer_destroy_and_release();
 
-      m_pstorage.defer_destroy();
+      m_pstorage.defer_destroy_and_release();
 
-      m_pdatabaseUser.defer_destroy();
+      m_pdatabaseUser.defer_destroy_and_release();
 
-      m_psimpledb.defer_destroy();
+      m_psimpledb.defer_destroy_and_release();
 
       //auto estatus = 
       

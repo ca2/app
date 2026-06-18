@@ -32,12 +32,12 @@ namespace tsf
    {
       IUnknown * punkID;
       ITextStoreACPSink * pTextStoreACPSink;
-      unsigned int                   dwMask;
+      ::u32                   dwMask;
    }ADVISE_SINK, * PADVISE_SINK;
 
    typedef struct
    {
-      unsigned int   dwFlags;
+      ::u32   dwFlags;
       const TS_ATTRID * attrid;
       VARIANT varValue;
       VARIANT varDefaultValue;
@@ -53,7 +53,7 @@ namespace tsf
 
       ::user::interaction * m_puserinteraction;
 
-      unsigned int                   m_ObjRefCount;
+      ::u32                   m_ObjRefCount;
       HINSTANCE               m_hInst;
       //HWND                    m_hWnd;
       //HWND                    m_hwndParent;
@@ -67,11 +67,11 @@ namespace tsf
       TfEditCookie            m_EditCookie;
       ADVISE_SINK             m_AdviseSink;
       BOOL                    m_fLocked;
-      unsigned int                   m_dwLockType;
+      ::u32                   m_dwLockType;
       BOOL                    m_fPendingLockUpgrade;
-      unsigned int                   m_dwInternalLockType;
-      int                    m_acpStart;
-      int                    m_acpEnd;
+      ::u32                   m_dwInternalLockType;
+      ::i32                    m_acpStart;
+      ::i32                    m_acpEnd;
       BOOL                    m_fInterimChar;
       TsActiveSelEnd          m_ActiveSelEnd;
       ITextStoreACPServices * m_pServices;
@@ -101,41 +101,41 @@ namespace tsf
       void _Playback(void);
       void _OnUpdate(void);
       LRESULT _OnInitMenuPopup(WPARAM, LPARAM);
-      //void _SaveToFile(char * pszFile);
-      //void _LoadFromFile(char * pszFile);
+      //void _SaveToFile(char_pointer pszFile);
+      //void _LoadFromFile(char_pointer pszFile);
 
       //IUnknown methods
       STDMETHOD(QueryInterface)(REFIID, LPVOID *);
-      STDMETHOD_(unsigned int, AddRef)();
-      STDMETHOD_(unsigned int, Release)();
+      STDMETHOD_(::u32, AddRef)();
+      STDMETHOD_(::u32, Release)();
 
       //ITextStoreACP methods
-      STDMETHODIMP AdviseSink(REFIID riid, IUnknown * punk, unsigned int dwMask);
+      STDMETHODIMP AdviseSink(REFIID riid, IUnknown * punk, ::u32 dwMask);
       STDMETHODIMP UnadviseSink(IUnknown * punk);
-      STDMETHODIMP RequestLock(unsigned int dwLockFlags, HRESULT * phrSession);
+      STDMETHODIMP RequestLock(::u32 dwLockFlags, HRESULT * phrSession);
       STDMETHODIMP GetStatus(TS_STATUS * pdcs);
-      STDMETHODIMP QueryInsert(int acpTestStart, int acpTestEnd, ULONG cch, int * pacpResultStart, int * pacpResultEnd);
+      STDMETHODIMP QueryInsert(::i32 acpTestStart, ::i32 acpTestEnd, ULONG cch, ::i32 * pacpResultStart, ::i32 * pacpResultEnd);
       STDMETHODIMP GetSelection(ULONG ulIndex, ULONG ulCount, TS_SELECTION_ACP * pSelection, ULONG * pcFetched);
       STDMETHODIMP SetSelection(ULONG ulCount, const TS_SELECTION_ACP * pSelection);
-      STDMETHODIMP GetText(int acpStart, int acpEnd, WCHAR * pchPlain, ULONG cchPlainReq, ULONG * pcchPlainOut, TS_RUNINFO * prgRunInfo, ULONG ulRunInfoReq, ULONG * pulRunInfoOut, int * pacpNext);
-      STDMETHODIMP SetText(unsigned int dwFlags, int acpStart, int acpEnd, const WCHAR * pchText, ULONG cch, TS_TEXTCHANGE * pChange);
-      STDMETHODIMP GetFormattedText(int acpStart, int acpEnd, IDataObject ** ppDataObject);
-      STDMETHODIMP GetEmbedded(int acpPos, REFGUID rguidService, REFIID riid, IUnknown ** ppunk);
+      STDMETHODIMP GetText(::i32 acpStart, ::i32 acpEnd, WCHAR * pchPlain, ULONG cchPlainReq, ULONG * pcchPlainOut, TS_RUNINFO * prgRunInfo, ULONG ulRunInfoReq, ULONG * pulRunInfoOut, ::i32 * pacpNext);
+      STDMETHODIMP SetText(::u32 dwFlags, ::i32 acpStart, ::i32 acpEnd, const WCHAR * pchText, ULONG cch, TS_TEXTCHANGE * pChange);
+      STDMETHODIMP GetFormattedText(::i32 acpStart, ::i32 acpEnd, IDataObject ** ppDataObject);
+      STDMETHODIMP GetEmbedded(::i32 acpPos, REFGUID rguidService, REFIID riid, IUnknown ** ppunk);
       STDMETHODIMP QueryInsertEmbedded(const GUID * pguidService, const FORMATETC * pFormatEtc, BOOL * pfInsertable);
-      STDMETHODIMP InsertEmbedded(unsigned int dwFlags, int acpStart, int acpEnd, IDataObject * pDataObject, TS_TEXTCHANGE * pChange);
-      STDMETHODIMP RequestSupportedAttrs(unsigned int dwFlags, ULONG cFilterAttrs, const TS_ATTRID * paFilterAttrs);
-      STDMETHODIMP RequestAttrsAtPosition(int acpPos, ULONG cFilterAttrs, const TS_ATTRID * paFilterAttrs, unsigned int dwFlags);
-      STDMETHODIMP RequestAttrsTransitioningAtPosition(int acpPos, ULONG cFilterAttrs, const TS_ATTRID * paFilterAttrs, unsigned int dwFlags);
-      STDMETHODIMP FindNextAttrTransition(int acpStart, int acpHalt, ULONG cFilterAttrs, const TS_ATTRID * paFilterAttrs, unsigned int dwFlags, int * pacpNext, BOOL * pfFound, int * plFoundOffset);
+      STDMETHODIMP InsertEmbedded(::u32 dwFlags, ::i32 acpStart, ::i32 acpEnd, IDataObject * pDataObject, TS_TEXTCHANGE * pChange);
+      STDMETHODIMP RequestSupportedAttrs(::u32 dwFlags, ULONG cFilterAttrs, const TS_ATTRID * paFilterAttrs);
+      STDMETHODIMP RequestAttrsAtPosition(::i32 acpPos, ULONG cFilterAttrs, const TS_ATTRID * paFilterAttrs, ::u32 dwFlags);
+      STDMETHODIMP RequestAttrsTransitioningAtPosition(::i32 acpPos, ULONG cFilterAttrs, const TS_ATTRID * paFilterAttrs, ::u32 dwFlags);
+      STDMETHODIMP FindNextAttrTransition(::i32 acpStart, ::i32 acpHalt, ULONG cFilterAttrs, const TS_ATTRID * paFilterAttrs, ::u32 dwFlags, ::i32 * pacpNext, BOOL * pfFound, ::i32 * plFoundOffset);
       STDMETHODIMP RetrieveRequestedAttrs(ULONG ulCount, TS_ATTRVAL * paAttrVals, ULONG * pcFetched);
-      STDMETHODIMP GetEndACP(int * pacp);
+      STDMETHODIMP GetEndACP(::i32 * pacp);
       STDMETHODIMP get_active_impact(TsViewCookie * pvcView);
-      STDMETHODIMP GetACPFromPoint(TsViewCookie vcView, const POINT32 * pt, unsigned int dwFlags, int * pacp);
-      STDMETHODIMP GetTextExt(TsViewCookie vcView, int acpStart, int acpEnd, RECT32 * prc, BOOL * pfClipped);
+      STDMETHODIMP GetACPFromPoint(TsViewCookie vcView, const POINT32 * pt, ::u32 dwFlags, ::i32 * pacp);
+      STDMETHODIMP GetTextExt(TsViewCookie vcView, ::i32 acpStart, ::i32 acpEnd, RECT32 * prc, BOOL * pfClipped);
       STDMETHODIMP GetScreenExt(TsViewCookie vcView, RECT32 * prc);
       STDMETHODIMP GetWnd(TsViewCookie vcView, HWND * phwnd);
-      STDMETHODIMP InsertTextAtSelection(unsigned int dwFlags, const WCHAR * pchText, ULONG cch, int * pacpStart, int * pacpEnd, TS_TEXTCHANGE * pChange);
-      STDMETHODIMP InsertEmbeddedAtSelection(unsigned int dwFlags, IDataObject * pDataObject, int * pacpStart, int * pacpEnd, TS_TEXTCHANGE * pChange);
+      STDMETHODIMP InsertTextAtSelection(::u32 dwFlags, const WCHAR * pchText, ULONG cch, ::i32 * pacpStart, ::i32 * pacpEnd, TS_TEXTCHANGE * pChange);
+      STDMETHODIMP InsertEmbeddedAtSelection(::u32 dwFlags, IDataObject * pDataObject, ::i32 * pacpStart, ::i32 * pacpEnd, TS_TEXTCHANGE * pChange);
 
       //ITfContextOwnerCompositionSink methods
       STDMETHODIMP OnStartComposition(ITfCompositionView * pComposition, BOOL * pfOk);
@@ -148,11 +148,11 @@ namespace tsf
       STDMETHODIMP GetFunction(REFGUID rguid, REFIID riid, IUnknown ** ppunk);
 
       //private:
-          //static LRESULT CALLBACK _WndProc(HWND hWnd, unsigned int uMessage, WPARAM wParam, LPARAM lParam);
-      STDMETHODIMP _TestInsert(int acpTestStart, int acpTestEnd, ULONG cch, int * pacpResultStart, int * pacpResultEnd);
+          //static LRESULT CALLBACK _WndProc(HWND hWnd, ::u32 uMessage, WPARAM wParam, LPARAM lParam);
+      STDMETHODIMP _TestInsert(::i32 acpTestStart, ::i32 acpTestEnd, ULONG cch, ::i32 * pacpResultStart, ::i32 * pacpResultEnd);
       //LRESULT _OnCreate(VOID);
       LRESULT _OnDestroy(VOID);
-      //LRESULT _OnCommand(unsigned short, unsigned short, HWND);
+      //LRESULT _OnCommand(::u16, ::u16, HWND);
       //LRESULT _OnSetFocus(VOID);
       //LRESULT _OnKillFocus(VOID);
 
@@ -160,14 +160,14 @@ namespace tsf
 
       LRESULT _OnEditKillFocus(VOID);
       LRESULT _OnEditChange(void);
-      //LRESULT _OnNotify(unsigned int, LPNMHDR);
+      //LRESULT _OnNotify(::u32, LPNMHDR);
       //LRESULT _OnSize(WPARAM, LPARAM);
       HRESULT _ClearAdviseSink(PADVISE_SINK pAdviseSink);
-      BOOL _LockDocument(unsigned int dwLockFlags);
+      BOOL _LockDocument(::u32 dwLockFlags);
       void _UnlockDocument();
-      BOOL _InternalLockDocument(unsigned int dwLockFlags);
+      BOOL _InternalLockDocument(::u32 dwLockFlags);
       void _InternalUnlockDocument();
-      BOOL _IsLocked(unsigned int dwLockType);
+      BOOL _IsLocked(::u32 dwLockType);
       BOOL _GetCurrentSelection(void);
       void _UpdateStatusBar(void);
       void _ClearRequestedAttributes(void);

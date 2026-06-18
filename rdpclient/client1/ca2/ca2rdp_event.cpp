@@ -24,10 +24,10 @@
 
 #include <freerdp/locale/keyboard.h>
 
-CLASS_DECL_AXIS_RDPCLIENT void ca2rdp_send_mouse_button_event(rdpInput* input,const ::atom & atom,::int_point pt);
-CLASS_DECL_AXIS_RDPCLIENT void ca2rdp_send_keyboard_event(rdpInput* input,BOOL down,unsigned int scancode);
+CLASS_DECL_AXIS_RDPCLIENT void ca2rdp_send_mouse_button_event(rdpInput* input,const ::atom & atom,::i32_point pt);
+CLASS_DECL_AXIS_RDPCLIENT void ca2rdp_send_keyboard_event(rdpInput* input,BOOL down,::u32 scancode);
 
-CLASS_DECL_AXIS_RDPCLIENT void ca2rdp_send_event(void* vinput,int bKey,int down,unsigned int scancode,const ::atom & atom,::int_point pt)
+CLASS_DECL_AXIS_RDPCLIENT void ca2rdp_send_event(void* vinput,::i32 bKey,::i32 down,::u32 scancode,const ::atom & atom,::i32_point pt)
 {
 rdpInput * input = (rdpInput *) vinput;
    if(bKey)
@@ -39,8 +39,8 @@ rdpInput * input = (rdpInput *) vinput;
       ca2rdp_send_mouse_button_event(input,emessage, point);
    }
 }
-//static unsigned char keymap[256];
-//static unsigned char functionmap[128];
+//static ::u8 keymap[256];
+//static ::u8 functionmap[128];
 //
 //void ca2rdp_keyboard_init()
 //{
@@ -171,7 +171,7 @@ rdpInput * input = (rdpInput *) vinput;
 //
 //}
 
-void ca2rdp_send_mouse_button_event(rdpInput* input, const ::atom & atom, ::int_point pt)
+void ca2rdp_send_mouse_button_event(rdpInput* input, const ::atom & atom, ::i32_point pt)
 {
 
 	::u3216 flags = 0;
@@ -222,7 +222,7 @@ void ca2rdp_send_mouse_wheel_event(rdpInput* input, INT16 axisrel, ::u3216 x, ::
 	input->MouseEvent(input, flags, x, y);
 }
 
-void ca2rdp_send_keyboard_event(rdpInput* input,BOOL down,unsigned int scancode)
+void ca2rdp_send_keyboard_event(rdpInput* input,BOOL down,::u32 scancode)
 {
 
 		freerdp_input_send_keyboard_event_ex(input, down, scancode);
@@ -231,11 +231,11 @@ void ca2rdp_send_keyboard_event(rdpInput* input,BOOL down,unsigned int scancode)
 /*
 BOOL ca2rdp_event_process(freerdp* instance, DFBEvent* happening)
 {
-	int flags;
+	::i32 flags;
 	rdpGdi* gdi;
 	ca2rdpInfo* ca2rdpi;
-	int pointer_x;
-	int pointer_y;
+	::i32 pointer_x;
+	::i32 pointer_y;
 	DFBInputEvent* input_event;
 
 	gdi = instance->context->gdi;

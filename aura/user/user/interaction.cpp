@@ -28,8 +28,8 @@
 //#include "acme/parallelization/asynchronous.h"
 #include "acme/platform/hyperlink.h"
 #include "acme/platform/node.h"
-#include "acme/platform/timer.h"
-#include "acme/platform/timer_array.h"
+//#include "acme/platform/timer.h"
+//#include "acme/platform/timer_array.h"
 #include "acme/platform/scoped_restore.h"
 //#include "acme/prototype/geometry2d/_enhanced.h"
 //#include "acme/prototype/geometry2d/_collection_enhanced.h"
@@ -40,6 +40,7 @@
 #include "acme/user/user/_text_stream.h"
 #include "acme/user/user/content.h"
 #include "acme/user/user/drag.h"
+#include "acme/user/user/keyboard_state.h"
 #include "acme/user/user/tool.h"
 #include "apex/handler/signal.h"
 #include "apex/message/simple_command.h"
@@ -73,8 +74,8 @@
 //#define SPECIAL_DEBUG
 #if defined( WINDOWS_DESKTOP) && defined(SPECIAL_DEBUG)
 #include "acme/_operating_system.h"
-static int g_xLastAbs = -1000;
-CLASS_DECL_AURA int get_last_x_abs()
+static ::i32 g_xLastAbs = -1000;
+CLASS_DECL_AURA ::i32 get_last_x_abs()
 {
 
    return g_xLastAbs;
@@ -84,16 +85,16 @@ CLASS_DECL_AURA int get_last_x_abs()
 #define REDRAW_LOG_LEVEL 2
 
 
-CLASS_DECL_AURA::int_point __get_top_right();
-CLASS_DECL_AURA void __set_top_right(const ::int_point & pointTopRight);
-CLASS_DECL_AURA::int_point __get_bottom_right();
-CLASS_DECL_AURA void __set_bottom_right(const ::int_point & pointBottomRight);
-
+CLASS_DECL_AURA::i32_point __get_top_right();
+CLASS_DECL_AURA void __set_top_right(const ::i32_point & pointTopRight);
+CLASS_DECL_AURA::i32_point __get_bottom_right();
+CLASS_DECL_AURA void __set_bottom_right(const ::i32_point & pointBottomRight);
+///CLASS_DECL_ACME ::user::e_key_state wm_mouse_wparam_to_user_key_state(::wparam wparam);
 
 inline void make_parent_mouse_message(::user::enum_message & emessage)
 {
 
-   emessage = (::user::enum_message)((long long)emessage + (long long)(::user::e_message_parent_mouse_first - ::user::e_message_mouse_first));
+   emessage = (::user::enum_message)((::i64)emessage + (::i64)(::user::e_message_parent_mouse_first - ::user::e_message_mouse_first));
 
 }
 
@@ -113,7 +114,7 @@ public:
 #undef EXTRA_LOGGING
 
 
-CLASS_DECL_AURA::int_rectangle bounding_box(const ::user::item * pitem)
+CLASS_DECL_AURA::i32_rectangle bounding_box(const ::user::item * pitem)
 {
 
    if (::is_null(pitem))
@@ -126,7 +127,7 @@ CLASS_DECL_AURA::int_rectangle bounding_box(const ::user::item * pitem)
    if (::is_set(pitem->m_ppath))
    {
 
-      ::double_rectangle rectangleBounding;
+      ::f64_rectangle rectangleBounding;
 
       pitem->m_ppath->get_bounding_box(rectangleBounding);
 
@@ -143,10 +144,10 @@ CLASS_DECL_AURA::int_rectangle bounding_box(const ::user::item * pitem)
 }
 
 //template < typename R >
-//inline int contained_vertex_count(const R & rContains, const R & rContained)
+//inline ::i32 contained_vertex_count(const R & rContains, const R & rContained)
 //{
 //
-//   int iContainedVertexCount = 0;
+//   ::i32 iContainedVertexCount = 0;
 //
 //   if (rContains.contains(rContained.top_left()))
 //   {
@@ -201,8 +202,8 @@ CLASS_DECL_AURA::int_rectangle bounding_box(const ::user::item * pitem)
 
 #define MOUSE_MIDDLE_BUTTON_MESSAGE_HANDLING_DEBUG 0
 
-int g_iMouseHoverCount = 0;
-int g_i134 = 0;
+::i32 g_iMouseHoverCount = 0;
+::i32 g_i134 = 0;
 //#define TEST_PRINT_BUFFER
 
 #ifdef WINDOWS_DESKTOP
@@ -257,8 +258,10 @@ namespace user
 
       m_bTrackMouseLeave = false;
 
-      //m_bVisualChanged = false;
+      m_bNanoPaint = false;
 
+      //m_bVisualChanged = false;
+      m_bDefaultNcHitTest = false;
 
 #ifdef REPORT_OFFSETS
 
@@ -399,9 +402,9 @@ namespace user
 
       m_dItemHeight = -1;
 
-      m_flagNonClient.add(e_non_client_background);
+      m_enonclient.add(::user::e_non_client_background);
 
-      m_flagNonClient.add(e_non_client_focus_rect);
+      m_enonclient.add(::user::e_non_client_focus_rect);
 
       //m_bMouseHover = false;
 
@@ -414,6 +417,8 @@ namespace user
       m_bNeedPerformLayout = false;
 
       m_bNeedLayout = false;
+
+      m_bVisibilityChange = false;
 
       //m_bNeedCheckChildrenLayout = false;
 
@@ -656,13 +661,13 @@ namespace user
    }
 
 
-   //   void interaction::set_restored_rectangle(const ::int_rectangle & rectangleRestored)
+   //   void interaction::set_restored_rectangle(const ::i32_rectangle & rectangleRestored)
    //   {
    //
    //   }
 
 
-   bool interaction::set_position(const ::int_point & point, enum_layout elayout, ::draw2d::graphics * pgraphics)
+   bool interaction::set_position(const ::i32_point & point, enum_layout elayout, ::draw2d::graphics * pgraphics)
    {
 
       auto pointNew = point;
@@ -690,9 +695,9 @@ namespace user
       if (::is_null(get_parent()))
       {
 
-         int x = point.x;
+         ::i32 x = point.x;
 
-         int y = point.y;
+         ::i32 y = point.y;
 
          if (x < 100 || y < 100)
          {
@@ -709,7 +714,7 @@ namespace user
 
       // ::GetWindowRect((HWND)window()->operating_system_window(), &rWindow);
 
-      int iLastXAbs = get_last_x_abs();
+      ::i32 iLastXAbs = get_last_x_abs();
 
       if (pointNew.x< iLastXAbs - 20 && get_last_x_abs() >= 0)
       {
@@ -759,12 +764,14 @@ namespace user
 
       }
 
+      set_reposition();
+
       return true;
 
    }
 
 
-   bool interaction::set_size(const ::int_size & size, enum_layout elayout, ::draw2d::graphics * pgraphics)
+   bool interaction::set_size(const ::i32_size & size, enum_layout elayout, ::draw2d::graphics * pgraphics)
    {
 
       auto sizeNew = size;
@@ -785,9 +792,9 @@ namespace user
 
       }
 
-      ::int_rectangle rectangleAfter;
+      ::i32_rectangle rectangleAfter;
 
-      ::int_rectangle rectangleBefore;
+      ::i32_rectangle rectangleBefore;
 
       {
 
@@ -856,7 +863,7 @@ namespace user
    }
 
 
-   void interaction::_set_size(const ::int_size & size, enum_layout elayout)
+   void interaction::_set_size(const ::i32_size & size, enum_layout elayout)
    {
 
       auto & layoutstate = layout().m_statea[elayout];
@@ -866,7 +873,7 @@ namespace user
    }
 
 
-   void interaction::set_width(int width, enum_layout elayout, ::draw2d::graphics * pgraphics)
+   void interaction::set_width(::i32 width, enum_layout elayout, ::draw2d::graphics * pgraphics)
    {
 
       auto size = this->size(elayout);
@@ -896,7 +903,7 @@ namespace user
    }
 
 
-   void interaction::set_height(int height, enum_layout elayout, ::draw2d::graphics * pgraphics)
+   void interaction::set_height(::i32 height, enum_layout elayout, ::draw2d::graphics * pgraphics)
    {
 
       auto size = this->size(elayout);
@@ -926,7 +933,7 @@ namespace user
    }
 
 
-   void interaction::shift_left(int left, enum_layout elayout, ::draw2d::graphics * pgraphics)
+   void interaction::shift_left(::i32 left, enum_layout elayout, ::draw2d::graphics * pgraphics)
    {
 
       auto point = this->position(elayout);
@@ -970,7 +977,7 @@ namespace user
    }
 
 
-   void interaction::set_right(int right, enum_layout elayout, ::draw2d::graphics * pgraphics)
+   void interaction::set_right(::i32 right, enum_layout elayout, ::draw2d::graphics * pgraphics)
    {
 
       auto point = this->position(elayout);
@@ -1005,7 +1012,7 @@ namespace user
    }
 
 
-   void interaction::set_top(const int top, enum_layout elayout, ::draw2d::graphics * pgraphics)
+   void interaction::set_top(const ::i32 top, enum_layout elayout, ::draw2d::graphics * pgraphics)
    {
 
       auto point = position(elayout);
@@ -1031,7 +1038,7 @@ namespace user
    }
 
 
-   bool interaction::on_set_position(::int_point & point, enum_layout elayout)
+   bool interaction::on_set_position(::i32_point & point, enum_layout elayout)
    {
 
       if (point == const_layout().m_statea[elayout].origin())
@@ -1048,7 +1055,7 @@ namespace user
    }
 
 
-   bool interaction::on_set_size(::int_size & size, enum_layout elayout)
+   bool interaction::on_set_size(::i32_size & size, enum_layout elayout)
    {
 
       string strType = typeid(*this).name();
@@ -1131,31 +1138,31 @@ namespace user
    //}
 
 
-   double interaction::point_dpi(double d)
+   ::f64 interaction::point_dpi(::f64 d)
    {
 
       auto pwindowThis = window();
 
-      double dTransformed = pwindowThis->point_dpi((float)d);
+      ::f64 dTransformed = pwindowThis->point_dpi((::f32)d);
 
       return dTransformed;
 
    }
 
 
-   double interaction::dpiy(double d)
+   ::f64 interaction::dpiy(::f64 d)
    {
 
       auto pwindowThis = window();
 
-      double dTransformed = pwindowThis->dpiy((float)d);
+      ::f64 dTransformed = pwindowThis->dpiy((::f32)d);
 
       return dTransformed;
 
    }
 
 
-   float interaction::get_dpi_for_window()
+   ::f32 interaction::get_dpi_for_window()
    {
 
       auto pwindowThis = window();
@@ -1172,7 +1179,7 @@ namespace user
    }
 
 
-   float interaction::get_density_for_window()
+   ::f32 interaction::get_density_for_window()
    {
 
       auto pwindowThis = window();
@@ -1439,7 +1446,7 @@ namespace user
    }
 
 
-   ::write_text::font_pointer interaction::get_font(style * pstyle, enum_element eelement, ::user::enum_state estate)
+   ::write_text::font_pointer interaction::get_font(style * pstyle, const ::e_element & eelement, const ::user::e_state & estate)
    {
 
       // If get_font top call is getting null from here,
@@ -1466,10 +1473,10 @@ namespace user
    }
 
 
-   int interaction::get_int(style * pstyle, enum_int eint, ::user::enum_state estate, int iDefault)
+   ::i32 interaction::get_int(style * pstyle, enum_int eint, const ::user::e_state & estate, ::i32 iDefault)
    {
 
-      int i;
+      ::i32 i;
 
       if (::is_set(pstyle))
       {
@@ -1501,15 +1508,15 @@ namespace user
    }
 
 
-   double interaction::get_double(style * pstyle, enum_double edouble, ::user::enum_state estate, double dDefault)
+   ::f64 interaction::get_f64(style * pstyle, enum_f64 ef64, const ::user::e_state & estate, ::f64 dDefault)
    {
 
-      double d;
+      ::f64 d;
 
       if (::is_set(pstyle))
       {
 
-         if (pstyle->get_double(this, d, edouble, estate))
+         if (pstyle->get_f64(this, d, ef64, estate))
          {
 
             return d;
@@ -1524,7 +1531,7 @@ namespace user
 
       auto pstyleSession = puser->user_style();
 
-      if (pstyleSession->get_double(this, d, edouble, estate))
+      if (pstyleSession->get_f64(this, d, ef64, estate))
       {
 
          return d;
@@ -1536,7 +1543,7 @@ namespace user
    }
 
 
-   status<::double_rectangle> interaction::get_border(style * pstyle, enum_element eelement, ::user::enum_state estate)
+   status<::f64_rectangle> interaction::get_border(style * pstyle, const ::e_element & eelement, const ::user::e_state & estate)
    {
 
       return nullptr;
@@ -1544,13 +1551,13 @@ namespace user
    }
 
 
-   status<::double_rectangle> interaction::get_padding(style * pstyle, enum_element eelement, ::user::enum_state estate)
+   status<::f64_rectangle> interaction::get_padding(style * pstyle, const ::e_element & eelement, const ::user::e_state & estate)
    {
 
       if (get_control_type() == ::user::e_control_type_button)
       {
 
-         ::double_rectangle rectangleDefaultPadding(16.0, 8.0, 16.0, 8.0);
+         ::f64_rectangle rectangleDefaultPadding(16.0, 8.0, 16.0, 8.0);
 
          return rectangleDefaultPadding;
 
@@ -1558,7 +1565,7 @@ namespace user
       else if (get_control_type() == ::user::e_control_type_menu_button)
       {
 
-         ::double_rectangle rectangleDefaultPadding(16.0, 8.0, 16.0, 8.0);
+         ::f64_rectangle rectangleDefaultPadding(16.0, 8.0, 16.0, 8.0);
 
          return rectangleDefaultPadding;
 
@@ -1566,7 +1573,7 @@ namespace user
       else
       {
 
-         ::double_rectangle rectangleDefaultPadding(2.0, 2.0, 2.0, 2.0);
+         ::f64_rectangle rectangleDefaultPadding(2.0, 2.0, 2.0, 2.0);
 
          return rectangleDefaultPadding;
 
@@ -1575,29 +1582,29 @@ namespace user
    }
 
 
-   status<::double_rectangle> interaction::get_margin(style * pstyle, enum_element eelement, ::user::enum_state estate)
+   status<::f64_rectangle> interaction::get_margin(style * pstyle, const ::e_element & eelement, const ::user::e_state & estate)
    {
 
-      if (m_flagNonClient.has(e_non_client_focus_rect))
+      if (m_enonclient.has(::user::e_non_client_focus_rect))
       {
 
-         double dFocusHeightWidth = get_double(pstyle, ::user::e_double_focus_height_width, estate, 2.0);
+         ::f64 dFocusHeightWidth = get_f64(pstyle, ::user::e_f64_focus_height_width, estate, 2.0);
 
-         ::double_rectangle rectangleDefaultMargin(dFocusHeightWidth, dFocusHeightWidth, dFocusHeightWidth,
+         ::f64_rectangle rectangleDefaultMargin(dFocusHeightWidth, dFocusHeightWidth, dFocusHeightWidth,
                                                 dFocusHeightWidth);
 
          return rectangleDefaultMargin;
 
       }
 
-      ::double_rectangle rectangleDefaultMargin(0.0, 0.0, 0.0, 0.0);
+      ::f64_rectangle rectangleDefaultMargin(0.0, 0.0, 0.0, 0.0);
 
       return rectangleDefaultMargin;
 
    }
 
 
-   status<::color::color> interaction::get_color(style * pstyle, enum_element eelement, ::user::enum_state estate)
+   status<::color::color> interaction::get_color(style * pstyle, const ::e_element & eelement, const ::user::e_state & estate)
    {
 
       if (eelement == e_element_text)
@@ -1979,11 +1986,38 @@ namespace user
 
          }
 
+         pinteraction->m_bNeedLayout = true;
+
          //pinteraction->m_bNeedCheckChildrenLayout = true;
 
       }
 
       //information() << "set_need_layout : " << node()->get_callstack();
+
+   }
+
+
+   void interaction::set_visibility_change()
+   {
+
+      m_bVisibilityChange = true;
+
+      auto pinteraction = this;
+
+      while (true)
+      {
+
+         pinteraction = pinteraction->get_parent();
+
+         if (!pinteraction)
+         {
+
+            break;
+         }
+
+         pinteraction->m_bVisibilityChange = true;
+
+      }
 
    }
 
@@ -2013,7 +2047,7 @@ namespace user
 
 
    void interaction::set_need_redraw(
-      const ::int_rectangle_array_base & rectangleaNeedRedraw,
+      const ::i32_rectangle_array_base & rectangleaNeedRedraw,
       ::draw2d::graphics * pgraphics,
       function<void()> function,
       bool bAscendants)
@@ -2134,7 +2168,7 @@ namespace user
          if (!rectangle.is_null())
          {
 
-            if (m_flagNonClient.has(e_non_client_focus_rect) && keyboard_focus_is_focusable())
+            if (m_enonclient.has(::user::e_non_client_focus_rect) && keyboard_focus_is_focusable())
             {
 
                ::draw2d::graphics_pointer pgraphicsGetStyle;
@@ -2222,7 +2256,7 @@ namespace user
    }
 
 
-   bool interaction::needs_to_draw(::draw2d::graphics * pgraphics, const ::int_rectangle & rectangleNeedsToDraw)
+   bool interaction::needs_to_draw(::draw2d::graphics * pgraphics, const ::i32_rectangle & rectangleNeedsToDraw)
    {
 
       //return true;
@@ -2524,12 +2558,12 @@ namespace user
    }
 
 
-   ::user::interaction * interaction::get_user_interaction()
-   {
+//   ::user::interaction * interaction::get_user_interaction()
+//   {
 
-      return this;
+//      return this;
 
-   }
+//   }
 
 
    ::user::interaction_base * interaction::get_bind_ui()
@@ -2646,13 +2680,13 @@ namespace user
    //
    //   }
 
-   bool interaction::task_get_run() const
+   bool interaction::should_run() const
    {
 
       if (!(is_top_level() || is_root()))
       {
 
-         return ::user::interaction_base::task_get_run();
+         return ::user::interaction_base::should_run();
 
       }
 
@@ -2818,7 +2852,7 @@ namespace user
 
          string strName;
 
-         //int iStyle = get_window_long(GWL_STYLE);
+         //::i32 iStyle = get_window_long(GWL_STYLE);
 
          //iStyle |= WS_CHILD;
 
@@ -2829,7 +2863,7 @@ namespace user
 
          //}
 
-         ::int_rectangle rectangleWindow;
+         ::i32_rectangle rectangleWindow;
 
          ::pointer<::user::interaction> pparent = puserinteractionParent;
 
@@ -3444,6 +3478,13 @@ namespace user
       //
       //      }
 
+      if (edisplay == m_layout.m_statea[elayout].m_edisplay)
+      {
+
+         return;
+
+      }
+
       m_layout.m_statea[elayout].m_edisplay = edisplay;
 
       if (::platform::type(this) == "user::list_box")
@@ -3466,13 +3507,15 @@ namespace user
       else if (::platform::type(this).name().contains("main_frame"))
       {
 
-         informationf("main_frame %d %s", elayout, ::as_string(edisplay.m_eenum).c_str());
+         informationf("main_frame %d %s", elayout, ::as_string(edisplay).c_str());
 
-         auto & edisplaySketch = m_layout.m_statea[elayout].m_edisplay;
+         auto &edisplaySketch = m_layout.m_statea[elayout].m_edisplay;
 
-         informationf("main_frame %d %s", elayout, ::as_string(edisplaySketch.m_eenum).c_str());
+         informationf("main_frame %d %s", elayout, ::as_string(edisplaySketch).c_str());
 
       }
+
+      set_visibility_change();
 
    }
 
@@ -3549,7 +3592,7 @@ namespace user
       if (bWindowingHasResizing)
       {
 
-         ::int_rectangle rectangleRequest = this->screen_rectangle(::user::e_layout_sketch);
+         ::i32_rectangle rectangleRequest = this->screen_rectangle(::user::e_layout_sketch);
 
          best_workspace(nullptr, rectangleRequest, true, layout().sketch().activation(), layout().sketch().zorder());
 
@@ -4383,20 +4426,20 @@ namespace user
    }
 
 
-   void interaction::show()
-   {
-         
-      display(e_display_normal); 
-      
-   }
+   //void interaction::show()
+   //{
+   //      
+   //   display(e_display_normal); 
+   //   
+   //}
 
 
-   void interaction::hide()
-   {
+   //void interaction::hide()
+   //{
 
-      display(e_display_hide);
+   //   display(e_display_hide);
 
-   }
+   //}
 
 
    void interaction::get_text_selection(character_count & iBeg, character_count & iEnd) const
@@ -4455,7 +4498,7 @@ namespace user
    void interaction::synthesize_scroll_state_x(scroll_state & scrollstate, ::user::enum_layout elayout)
    {
 
-      ::int_size sizeTotal = get_total_size(elayout);
+      ::i32_size sizeTotal = get_total_size(elayout);
 
       auto sizePage = get_page_size(elayout);
 
@@ -4633,7 +4676,7 @@ namespace user
          try
          {
 
-            hide();
+            display(e_display_hide, {});
 
          }
          catch (...)
@@ -4645,19 +4688,7 @@ namespace user
 
       user_interaction_on_hide();
 
-      {
-
-         auto ptimerarray = m_ptimerarray;
-
-         if (ptimerarray)
-         {
-
-            ptimerarray->delete_all_timers();
-
-         }
-
-      }
-
+      erase_all_timers();
 
       fps_interest_stop();
 
@@ -5150,10 +5181,10 @@ namespace user
    }
 
 
-   ::double_point interaction::get_parent_accumulated_scroll(enum_layout elayout)
+   ::f64_point interaction::get_parent_accumulated_scroll(enum_layout elayout)
    {
 
-      ::double_point pointScroll;
+      ::f64_point pointScroll;
 
       auto puserinteraction = get_parent();
 
@@ -5187,10 +5218,10 @@ namespace user
    }
 
 
-   ::double_point interaction::get_accumulated_scroll(enum_layout elayout)
+   ::f64_point interaction::get_accumulated_scroll(enum_layout elayout)
    {
 
-      ::double_point pointScroll;
+      ::f64_point pointScroll;
 
       auto puserinteraction = this;
 
@@ -5224,10 +5255,10 @@ namespace user
    }
 
 
-   ::double_point interaction::get_scroll(enum_layout elayout)
+   ::f64_point interaction::get_scroll(enum_layout elayout)
    {
 
-      ::double_point pointScroll;
+      ::f64_point pointScroll;
 
       auto puserinteraction = this;
 
@@ -5348,7 +5379,7 @@ namespace user
          if (!m_bClipRectangle)
          {
 
-            ::int_rectangle rectangleX;
+            ::i32_rectangle rectangleX;
 
             ::collection::index i = 0;
 
@@ -5603,7 +5634,7 @@ namespace user
 
       pgraphics->m_puserinteractionDraw2dGraphics = this;
 
-      //int_point pointScroll = m_pointScroll;
+      //i32_point pointScroll = m_pointScroll;
 
       //if (!pointScroll.is_null())
       //{
@@ -5612,7 +5643,7 @@ namespace user
 
       //}
 
-      //int_point pointDragScroll = m_pointDragScroll;
+      //i32_point pointDragScroll = m_pointDragScroll;
 
       //if (!pointDragScroll.is_null())
       //{
@@ -5644,7 +5675,7 @@ namespace user
 
             _001OnClip(pgraphics);
 
-            ::int_rectangle rectangleDraw;
+            ::i32_rectangle rectangleDraw;
 
             rectangleDraw = this->rectangle();
 
@@ -5710,7 +5741,7 @@ namespace user
 
          //string strType = ::platform::type(this).name();
 
-         //         informationf("----> " + strType + "drawing took " + as_string(tickElapsedWithLock.m_i) + "!!");
+         //         informationf("----> " + strType + "drawing took " + as_string(tickElapsedWithLock.m_i32) + "!!");
          //       informationf("----> drawing took more than 3ms to complete!!");
          //     informationf("----> ");
 
@@ -5749,7 +5780,7 @@ namespace user
    void interaction::on_context_offset_layout(::draw2d::graphics_pointer & pgraphics)
    {
 
-      //::int_point pointOffset;
+      //::i32_point pointOffset;
 
       //if (m_puserinteractionParent != nullptr)
       //{
@@ -5762,7 +5793,7 @@ namespace user
 
       //auto offset = pointOffset - pointContextOffset;
 
-      //pgraphics->offset_origin((int)offset.cx, (int)offset.cy);
+      //pgraphics->offset_origin((::i32)offset.cx, (::i32)offset.cy);
 
    }
 
@@ -5772,9 +5803,9 @@ namespace user
 
       {
 
-         ::int_point pointOffset;
+         ::i32_point pointOffset;
 
-         ::int_size sizeImpact;
+         ::i32_size sizeImpact;
 
          if (m_puserinteractionParent != nullptr)
          {
@@ -5792,7 +5823,7 @@ namespace user
 
          sizeImpact = layout().layout().size();
 
-         ::double_rectangle rectangle(pointOffset, sizeImpact);
+         ::f64_rectangle rectangle(pointOffset, sizeImpact);
 
          offsetcontext += rectangle;
 
@@ -5816,7 +5847,7 @@ namespace user
    //void interaction::on_context_offset(::draw2d::graphics_pointer & pgraphics)
    //{
 
-   //   ::int_point pointOffset;
+   //   ::i32_point pointOffset;
 
    //   if (m_puserinteractionParent != nullptr)
    //   {
@@ -5836,7 +5867,7 @@ namespace user
 
    //   auto offset = pointOffset - pointContextOffset;
 
-   //   pgraphics->offset_origin((int)offset.cx, (int)offset.cy);
+   //   pgraphics->offset_origin((::i32)offset.cx, (::i32)offset.cy);
 
    //}
 
@@ -5885,7 +5916,7 @@ namespace user
    }
 
 
-   int_rectangle interaction::get_rectangle()
+   i32_rectangle interaction::get_rectangle()
    {
 
       return this->window_rectangle(e_layout_sketch);
@@ -5897,9 +5928,9 @@ namespace user
    void interaction::_001DrawChildren(::draw2d::graphics_pointer & pgraphics)
    {
 
-      //int_point pointContextOffset = get_context_offset();
+      //i32_point pointContextOffset = get_context_offset();
 
-      //int_point pointDragScroll = m_pointDragScroll;
+      //i32_point pointDragScroll = m_pointDragScroll;
 
       //bool bParentScrollX = false;
 
@@ -6048,7 +6079,7 @@ namespace user
 
                      //   ///::time d1 = t1.elapsed();
 
-                     //   //if(d1.m_i > 50)
+                     //   //if(d1.m_i32 > 50)
                      //   //{
 
                      //   //   string strType = ::platform::type(pinteraction).name();
@@ -6060,7 +6091,7 @@ namespace user
 
                      //   //   }
 
-                     //   //   CINFO(prodevian)("(more than 50ms)(D) "+strType+"::_000OnDraw took " + as_string(d1.m_i) + "::time.\n");
+                     //   //   CINFO(prodevian)("(more than 50ms)(D) "+strType+"::_000OnDraw took " + as_string(d1.m_i32) + "::time.\n");
 
                      //   //   //pinteraction->_000OnDraw(pgraphics);
 
@@ -6184,7 +6215,7 @@ namespace user
 
       return strClass;
 
-      //unsigned int uStyle = get_window_default_style();
+      //::u32 uStyle = get_window_default_style();
 
       //string strIcon = get_window_icon_matter();
 
@@ -6393,7 +6424,7 @@ namespace user
    //      //
    //      //      }
    //
-   //      ::int_point pointOffset;
+   //      ::i32_point pointOffset;
    //
    //      if (m_puserinteractionParent != nullptr)
    //      {
@@ -6442,7 +6473,7 @@ namespace user
    //
    //   auto rectangleX = this->rectangle();
    //
-   //   ::int_rectangle rectangleHint(rectangleX);
+   //   ::i32_rectangle rectangleHint(rectangleX);
    //
    //   pgraphics->SelectClipRgn(nullptr);
    //
@@ -6554,7 +6585,7 @@ namespace user
    ////
    ////      return strClass;
    ////
-   ////      //unsigned int uStyle = get_window_default_style();
+   ////      //::u32 uStyle = get_window_default_style();
    ////
    ////      //string strIcon = get_window_icon_matter();
    ////
@@ -6951,7 +6982,7 @@ namespace user
       //
       //      }
 
-      ::int_point pointOffset;
+      ::i32_point pointOffset;
 
       //if (m_puserinteractionParent != nullptr)
       //{
@@ -7297,7 +7328,7 @@ namespace user
       {
 
 
-         //double_point pointScroll = get_context_offset();
+         //::f64_point pointScroll = get_context_offset();
 
          //if (!pointScroll.is_null())
          //{
@@ -7401,7 +7432,7 @@ namespace user
                //   }
 
                //}
-               ////         ::int_point pointParentOffset = get_parent_context_offset();
+               ////         ::i32_point pointParentOffset = get_parent_context_offset();
                ////
                ////         pgraphics->offset_origin(-pointParentOffset.x, -pointParentOffset.y);
                {
@@ -7599,7 +7630,7 @@ namespace user
 
          //}
 
-         //if (colorBackground.byte_red() == 255)
+         //if (colorBackground.u8_red() == 255)
          //{
 
          //   informationf("full red");
@@ -7625,7 +7656,7 @@ namespace user
 
          auto colorBackground = get_color(pstyle, e_element_background);
 
-         //if (color32_byte_red(crBackground) != 255)
+         //if (color32_u8_red(crBackground) != 255)
          //{
 
          //   informationf("no full red");
@@ -7636,10 +7667,10 @@ namespace user
 
 
 
-//         if (colorBackground.m_uchOpacity != 127)
+//         if (colorBackground.m_u8Opacity != 127)
 //         {
 //
-//            information() << "Opacity: " << (unsigned int) colorBackground.byte_opacity();
+//            information() << "Opacity: " << (::u32) colorBackground.u8_opacity();
 //
 //         }
 
@@ -7651,9 +7682,9 @@ namespace user
 
          auto phostwindow = get_host_user_interaction();
 
-         auto & iDrawControlBackgroundCounter = phostwindow->payload("draw_control_background_counter").int_reference();
+         auto & iDrawControlBackgroundCounter = phostwindow->payload("draw_control_background_counter").i32_reference();
 
-         auto & iNcDraw0FillCounter = phostwindow->payload("nc_draw_0_fill_counter").int_reference();
+         auto & iNcDraw0FillCounter = phostwindow->payload("nc_draw_0_fill_counter").i32_reference();
 
          iDrawControlBackgroundCounter++;
 
@@ -8645,7 +8676,7 @@ if(get_parent())
       //
       //            }
       //
-      //            if (!_001IsPointInside(int_point(pdrag->point.x, pdrag->point.y)))
+      //            if (!_001IsPointInside(i32_point(pdrag->point.x, pdrag->point.y)))
       //            {
       //
       //               return;
@@ -8665,7 +8696,7 @@ if(get_parent())
       //
       //      ::pointer<::user::interaction>pinteraction = top_child();
       //
-      //      //      int iSize;
+      //      //      ::i32 iSize;
       //
       //      try
       //      {
@@ -8676,7 +8707,7 @@ if(get_parent())
       //            try
       //            {
       //
-      //               if (pinteraction->is_window_visible(e_layout_sketch) && (pdrag->id() == MESSAGE_OLE_DRAGLEAVE || pinteraction->_001IsPointInside(int_point(pdrag->point.x, pdrag->point.y))))
+      //               if (pinteraction->is_window_visible(e_layout_sketch) && (pdrag->id() == MESSAGE_OLE_DRAGLEAVE || pinteraction->_001IsPointInside(i32_point(pdrag->point.x, pdrag->point.y))))
       //               {
       //
       //                  try
@@ -8744,7 +8775,7 @@ if(get_parent())
 
    }
 
-   double interaction::get_rotate()
+   ::f64 interaction::get_rotate()
    {
 
       return 0.0;
@@ -8956,7 +8987,7 @@ if(get_parent())
 
          ::user::interaction * pinteraction = top_child();
 
-         //         int iSize;
+         //         ::i32 iSize;
 
          try
          {
@@ -9029,7 +9060,7 @@ if(get_parent())
    }
 
 
-   ::user::interaction * interaction::_001FromPoint(::int_point point, bool bTestedIfParentVisible)
+   ::user::interaction * interaction::_001FromPoint(::i32_point point, bool bTestedIfParentVisible)
    {
 
       if (bTestedIfParentVisible)
@@ -9080,7 +9111,7 @@ if(get_parent())
    }
 
 
-   bool interaction::_001IsPointInside(const ::int_point & point)
+   bool interaction::_001IsPointInside(const ::i32_point & point)
    {
 
       //if (::is_null(window()))
@@ -9097,7 +9128,7 @@ if(get_parent())
 
       }
 
-      ::int_rectangle rectangleWindow;
+      ::i32_rectangle rectangleWindow;
 
       window_rectangle(rectangleWindow, e_layout_sketch);
 
@@ -9106,7 +9137,7 @@ if(get_parent())
    }
 
 
-   ::int_rectangle interaction::client2_rectangle(enum_layout elayout)
+   ::i32_rectangle interaction::client2_rectangle(enum_layout elayout)
    {
 
       return rectangle(elayout);
@@ -9114,7 +9145,7 @@ if(get_parent())
    }
 
 
-   ::int_rectangle interaction::hosting_rectangle(enum_layout elayout)
+   ::i32_rectangle interaction::hosting_rectangle(enum_layout elayout)
    {
 
       return rectangle(elayout);
@@ -9122,7 +9153,7 @@ if(get_parent())
    }
 
 
-   int_rectangle interaction::host_rectangle(enum_layout elayout)
+   i32_rectangle interaction::host_rectangle(enum_layout elayout)
    {
 
       auto rectangle = this->rectangle(elayout);
@@ -9134,7 +9165,7 @@ if(get_parent())
    }
 
 
-   int_rectangle interaction::screen_rectangle(enum_layout elayout)
+   i32_rectangle interaction::screen_rectangle(enum_layout elayout)
    {
 
       auto rectangle = this->rectangle(elayout);
@@ -9146,7 +9177,7 @@ if(get_parent())
    }
 
 
-   bool interaction::_001IsPointInsideInline(const ::int_point & point, enum_layout elayout)
+   bool interaction::_001IsPointInsideInline(const ::i32_point & point, enum_layout elayout)
    {
 
       return host_rectangle(elayout).contains(point);
@@ -9154,7 +9185,7 @@ if(get_parent())
    }
 
 
-   bool interaction::_001IsClientPointInsideInline(const ::int_point & point)
+   bool interaction::_001IsClientPointInsideInline(const ::i32_point & point)
    {
 
       return layout().design().raw_rectangle().contains(point);
@@ -9163,7 +9194,7 @@ if(get_parent())
    }
 
 
-   bool interaction::_001IsParentClientPointInsideInline(const ::int_point & point, enum_layout elayout)
+   bool interaction::_001IsParentClientPointInsideInline(const ::i32_point & point, enum_layout elayout)
    {
 
       return parent_client_rectangle(elayout).contains(point);
@@ -9178,7 +9209,7 @@ if(get_parent())
          || m_ekeyboardmode == e_keyboard_mode_resize)
       {
 
-         ::int_size sizeOffset;
+         ::i32_size sizeOffset;
 
          if (pmessage->m_union.m_pkey->m_ekey == ::user::e_key_up)
          {
@@ -9345,11 +9376,7 @@ if(get_parent())
       if (m_pappearance)
       {
 
-         auto psession = session();
-
-         auto ekeyModifiers = psession->key_modifiers();
-
-         if (m_pappearance->on_key_down(pmessage->m_union.m_pkey->m_ekey, pmessage->m_wparam, ekeyModifiers,
+         if (m_pappearance->on_key_down(pmessage->m_union.m_pkey->m_ekey, pmessage->m_wparam,
             pmessage->m_union.m_pkey->m_strText))
          {
 
@@ -9414,11 +9441,7 @@ if(get_parent())
       if (m_pappearance)
       {
 
-         auto psession = session();
-
-         auto ekeyModifiers = psession->key_modifiers();
-
-         if (m_pappearance->on_key_up(pmessage->m_union.m_pkey->m_ekey, pmessage->m_wparam, ekeyModifiers))
+         if (m_pappearance->on_key_up(pmessage->m_union.m_pkey->m_ekey, pmessage->m_wparam))
          {
 
             pmessage->m_bRet = true;
@@ -9478,7 +9501,7 @@ if(get_parent())
    }
 
 
-   bool interaction::on_drag_start(::int_point & pointDrag, ::user::mouse * pmouse, ::item * pitem)
+   bool interaction::on_drag_start(::i32_point & pointDrag, ::user::mouse * pmouse, ::item * pitem)
    {
 
       get_wnd()->hide_software_keyboard(this);
@@ -9548,7 +9571,7 @@ if(get_parent())
    }
 
 
-   ::int_point interaction::drag_mouse_cursor_position(::item * pitem, const ::int_point & point)
+   ::i32_point interaction::drag_mouse_cursor_position(::item * pitem, const ::i32_point & point)
    {
 
       auto p = windowing()->try_absolute_mouse_position(this, point);
@@ -9566,7 +9589,7 @@ if(get_parent())
 
          auto pdrag = drag(pitem);
 
-         pdrag->m_ecursor = e_cursor_move;
+         pdrag->m_ecursorDrag = e_cursor_move;
 
          auto point = drag_point(pitem, pmouse);
 
@@ -9591,7 +9614,7 @@ if(get_parent())
 
          auto pdrag = drag(pitem);
 
-         pdrag->m_ecursor = e_cursor_size_bottom_right;
+         pdrag->m_ecursorDrag = e_cursor_size_bottom_right;
 
          auto pointBottomRight = drag_point(pitem, pmouse);
 
@@ -9626,17 +9649,17 @@ if(get_parent())
    }
 
 
-   //void interaction::on_size_change_request(const ::int_rectangle &rectanglePrevious)
+   //void interaction::on_size_change_request(const ::i32_rectangle &rectanglePrevious)
    //{
 
    //   auto rectangle = layout().sketch().raw_rectangle();
 
-   //   ::int_rectangle_array_base rectanglea;
+   //   ::i32_rectangle_array_base rectanglea;
 
    //   if (rectangle.right > rectanglePrevious.right)
    //   {
 
-   //      ::int_rectangle r;
+   //      ::i32_rectangle r;
 
    //      r.left = rectanglePrevious.right;
    //      r.right = rectangle.right;
@@ -9650,7 +9673,7 @@ if(get_parent())
    //   if (rectangle.bottom > rectanglePrevious.bottom)
    //   {
 
-   //      ::int_rectangle r;
+   //      ::i32_rectangle r;
 
    //      r.left = rectangle.left;
    //      r.right = rectangle.right;
@@ -9687,7 +9710,7 @@ if(get_parent())
 
             auto pdrag = drag(pitem);
 
-            pdrag->m_ecursor = e_cursor_arrow;
+            pdrag->m_ecursorDrag = e_cursor_arrow;
 
             return true;
 
@@ -9703,7 +9726,7 @@ if(get_parent())
 
          //information() << "drag_hover e_element_resize";
 
-         pdrag->m_ecursor = e_cursor_size_bottom_right;
+         pdrag->m_ecursorDrag = e_cursor_size_bottom_right;
 
          return true;
 
@@ -9729,7 +9752,7 @@ if(get_parent())
 
       auto pdrag = drag(pitem);
 
-      auto pcursor = pwindowing->get_cursor(pdrag->m_ecursor);
+      auto pcursor = pwindowing->get_cursor(pdrag->m_ecursorDrag);
 
       user_mouse_set_cursor(pmouse, pcursor);
 
@@ -9794,10 +9817,10 @@ if(get_parent())
       if (m_pappearance)
       {
 
-         if (pmessage->m_wparam.m_number != 0)
+         if (pmessage->m_wparam.m_wparam != 0)
          {
 
-            m_pappearance->on_character((int)pmessage->m_wparam.m_number);
+            m_pappearance->on_character((::i32)pmessage->m_wparam.m_wparam);
 
          }
 
@@ -9820,7 +9843,7 @@ if(get_parent())
    }
 
 
-   void interaction::on_timer(::timer * ptimer)
+   void interaction::operator()(::timer * ptimer)
    {
 
       if (ptimer->m_etimer == e_timer_configure_unlocked)
@@ -9829,7 +9852,10 @@ if(get_parent())
          if (window()->on_window_configure_unlocked())
          {
 
-            kill_timer(ptimer->m_etimer);
+            //kill_timer(ptimer->m_etimer);
+            ptimer->cancel();
+
+            return;
 
          }
 
@@ -9838,7 +9864,7 @@ if(get_parent())
    }
 
 
-   //void interaction::on_timer(::timer * ptimer)
+   //void interaction::operator()(::timer * ptimer)
    //{
 
    //   on_timer(ptimer);
@@ -9848,7 +9874,7 @@ if(get_parent())
    //}
 
 
-   ::user::interaction * interaction::get_child_by_name(const ::scoped_string & scopedstrName, ::collection::index iItem, int iLevel)
+   ::user::interaction * interaction::get_child_by_name(const ::scoped_string & scopedstrName, ::collection::index iItem, ::i32 iLevel)
    {
 
       ::pointer<interaction> pinteraction = top_child();
@@ -9909,7 +9935,7 @@ if(get_parent())
    }
 
 
-   ::user::interaction * interaction::get_child_by_id(const atom & atom, ::collection::index iItem, int iLevel)
+   ::user::interaction * interaction::get_child_by_id(const atom & atom, ::collection::index iItem, ::i32 iLevel)
    {
 
       auto pwindow = this->window();
@@ -9978,7 +10004,7 @@ if(get_parent())
    }
 
 
-   ::user::element * interaction::get_primitive_by_id(const atom & atom, ::collection::index iItem, int iLevel)
+   ::user::element * interaction::get_primitive_by_id(const atom & atom, ::collection::index iItem, ::i32 iLevel)
    {
 
       auto pchild = get_child_by_id(atom, iItem, iLevel);
@@ -9995,7 +10021,7 @@ if(get_parent())
    }
 
 
-   ::user::interaction * interaction::child_from_point(const ::int_point & point, int iLevel,
+   ::user::interaction * interaction::child_from_point(const ::i32_point & point, ::i32 iLevel,
                                                        const ::user::interaction_array * pinteractionaExclude)
    {
 
@@ -10080,7 +10106,7 @@ if(get_parent())
 
 
    ::user::interaction *
-      interaction::_child_from_point(const ::int_point & point, const ::user::interaction_array * pinteractionaExclude)
+      interaction::_child_from_point(const ::i32_point & point, const ::user::interaction_array * pinteractionaExclude)
    {
 
       if (::is_null(window()))
@@ -10201,7 +10227,7 @@ if(get_parent())
 
 
 
-   lresult interaction::send_message(::user::enum_message eusermessage, ::wparam wparam, ::lparam lparam, const ::int_point & point)
+   lresult interaction::send_message(::user::enum_message eusermessage, ::wparam wparam, ::lparam lparam, const ::i32_point & point)
    {
 
       //if (window() == nullptr)
@@ -10318,7 +10344,7 @@ if(get_parent())
    //   }
 
 
-   lresult interaction::message_call(::user::enum_message eusermessage, ::wparam wparam, ::lparam lparam, const ::int_point & point)
+   lresult interaction::message_call(::user::enum_message eusermessage, ::wparam wparam, ::lparam lparam, const ::i32_point & point)
    {
 
       //if (window() == nullptr)
@@ -10415,6 +10441,10 @@ if(get_parent())
       //window()->enable_window(bEnable);
 
       m_ewindowflag.set(e_window_flag_enable, bEnable);
+
+      set_need_redraw();
+
+      post_redraw();
 
    }
 
@@ -10988,11 +11018,11 @@ if(get_parent())
 
             //}
 
-            //::int_rectangle rectangle;
+            //::i32_rectangle rectangle;
 
             ////pusersystem->get_rect(rectangle);
 
-            //::int_rectangle rectangleFrame(0, 0, 0, 0);
+            //::i32_rectangle rectangleFrame(0, 0, 0, 0);
 
             //if (IsRectEmpty(&rectangle))
             //{
@@ -11531,7 +11561,7 @@ if(get_parent())
    }
 
 
-   //int interaction::get_window_long(int nIndex) const
+   //::i32 interaction::get_window_long(::i32 nIndex) const
    //{
 
    //   if (window() == nullptr)
@@ -11546,7 +11576,7 @@ if(get_parent())
    //}
 
 
-   //int interaction::set_window_long(int nIndex, int lValue)
+   //::i32 interaction::set_window_long(::i32 nIndex, ::i32 lValue)
    //{
 
    //   if (window() == nullptr)
@@ -11589,7 +11619,7 @@ if(get_parent())
    }
 
 
-   //iptr interaction::get_window_long_ptr(int nIndex) const
+   //iptr interaction::get_window_long_ptr(::i32 nIndex) const
    //{
 
    //   if (window() == nullptr)
@@ -11604,7 +11634,7 @@ if(get_parent())
    //}
 
 
-   //void interaction::set_window_long_ptr(int nIndex, iptr lValue)
+   //void interaction::set_window_long_ptr(::i32 nIndex, iptr lValue)
    //{
 
    //   if (window() == nullptr)
@@ -11619,7 +11649,7 @@ if(get_parent())
    //}
 
 
-   void interaction::RedrawWindow(const ::int_rectangle & rectangleUpdate, ::draw2d::region * prgnUpdate, unsigned int flags)
+   void interaction::RedrawWindow(const ::i32_rectangle & rectangleUpdate, ::draw2d::region * prgnUpdate, ::u32 flags)
    {
 
       //if (window() == nullptr)
@@ -11634,7 +11664,7 @@ if(get_parent())
    }
 
 
-   ::user::interaction * interaction::ChildWindowFromPoint(const ::int_point & point)
+   ::user::interaction * interaction::ChildWindowFromPoint(const ::i32_point & point)
    {
 
       //if (window() == nullptr)
@@ -11651,7 +11681,7 @@ if(get_parent())
    }
 
 
-   ::user::interaction * interaction::ChildWindowFromPoint(const ::int_point & point, unsigned int nFlags)
+   ::user::interaction * interaction::ChildWindowFromPoint(const ::i32_point & point, ::u32 nFlags)
    {
 
       //if (window() == nullptr)
@@ -11858,7 +11888,7 @@ if(get_parent())
    }
 
 
-   ::user::interaction * interaction::get_wnd(unsigned int nCmd)
+   ::user::interaction * interaction::get_wnd(::u32 nCmd)
    {
 
       //if (window() == nullptr)
@@ -11999,7 +12029,7 @@ if(get_parent())
       //}
 
 
-   int interaction::on_text_composition_message(int iMessage)
+   ::i32 interaction::on_text_composition_message(::i32 iMessage)
    {
 
       return -1;
@@ -12116,7 +12146,7 @@ if(get_parent())
    }
 
 
-   //   character_count interaction::get_window_text(char* pszStringBuf, character_count nMaxCount)
+   //   character_count interaction::get_window_text(char_pointer pszStringBuf, character_count nMaxCount)
    //   {
    //
    //      ::string strWindowText = _get_window_text();
@@ -12595,19 +12625,19 @@ if(get_parent())
       //if(m_pinteractiondraw2d)
       //{
       //if (m_pshapeaClip) m_pshapeaClip->destroy();
-      m_pdrawcontext.defer_destroy();
+      m_pdrawcontext.defer_destroy_and_release();
 
       m_pmatterCommandHandler.release();
       //}
-      m_pusersystem.defer_destroy();
+      m_pusersystem.defer_destroy_and_release();
       //      if (m_playout) m_playout->destroy();
-      m_pgraphicscalla.defer_destroy();
-      m_puserinteractionCustomWindowProc.defer_destroy();
-      m_puiLabel.defer_destroy();
+      m_pgraphicscalla.defer_destroy_and_release();
+      m_puserinteractionCustomWindowProc.defer_destroy_and_release();
+      m_puiLabel.defer_destroy_and_release();
       //if (m_puseritema) m_puseritema->destroy_all();
       // tasks should not be destroyed in destroy
       //m_pform && m_pform != this && m_pform->destroy();
-      m_palphasource.defer_destroy();
+      m_palphasource.defer_destroy_and_release();
       //if (m_pdrawableBackground) m_pdrawableBackground->destroy();
       //if (window()) window()->destroy();
       //if (windowing_window()) windowing_window()->destroy();
@@ -12624,8 +12654,8 @@ if(get_parent())
       //user_thread() && user_thread()->destroy();
       // tasks should not be destroyed in destroy
       //user_thread() && user_thread()->destroy();
-      m_ptooltip.defer_destroy();
-      m_pmenuitem.defer_destroy();
+      m_ptooltip.defer_destroy_and_release();
+      m_pmenuitem.defer_destroy_and_release();
       m_menua.clear();
 
       // ownership
@@ -12648,7 +12678,7 @@ if(get_parent())
       //window().release();
       ///windowing_window().release();
 
-      m_pinteractionScaler.defer_destroy();
+      m_pinteractionScaler.defer_destroy_and_release();
 
       {
 
@@ -12839,7 +12869,7 @@ if(get_parent())
 
 
 
-   //void interaction::CalcWindowRect(::int_rectangle * prectangle, unsigned int nAdjustType)
+   //void interaction::CalcWindowRect(::i32_rectangle * prectangle, ::u32 nAdjustType)
    //{
 
    //   if (window() == nullptr)
@@ -12874,8 +12904,8 @@ if(get_parent())
    }
 
 
-   void interaction::RepositionBars(unsigned int nIDFirst, unsigned int nIDLast, ::atom idLeft, unsigned int nFlags,
-                                    ::int_rectangle * prectParam, const ::int_rectangle & rectangleX,
+   void interaction::RepositionBars(::u32 nIDFirst, ::u32 nIDLast, ::atom idLeft, ::u32 nFlags,
+                                    ::i32_rectangle * prectParam, const ::i32_rectangle & rectangleX,
                                     bool bStretch)
    {
 
@@ -13341,7 +13371,7 @@ if(get_parent())
    //   }
 
 
-   void interaction::viewport_client_to_screen(::int_sequence2 & sequence)
+   void interaction::viewport_client_to_screen(::i32_sequence2 & sequence)
    {
 
       //window()->viewport_client_to_screen(sequence);
@@ -13357,7 +13387,7 @@ if(get_parent())
    }
 
 
-   void interaction::viewport_screen_to_client(::int_sequence2 & sequence)
+   void interaction::viewport_screen_to_client(::i32_sequence2 & sequence)
    {
 
       //if (::is_null(window()))
@@ -13367,12 +13397,12 @@ if(get_parent())
 
       //}
 
-      _raw_screen_to_client((::int_point &)sequence);
+      _raw_screen_to_client((::i32_point &)sequence);
 
    }
 
 
-   void interaction::viewport_client_to_screen(::int_rectangle & rectangle)
+   void interaction::viewport_client_to_screen(::i32_rectangle & rectangle)
    {
 
       viewport_client_to_screen(rectangle.top_left());
@@ -13382,7 +13412,7 @@ if(get_parent())
    }
 
 
-   void interaction::viewport_screen_to_client(::int_rectangle & rectangle)
+   void interaction::viewport_screen_to_client(::i32_rectangle & rectangle)
    {
 
       viewport_screen_to_client(rectangle.top_left());
@@ -13465,7 +13495,7 @@ if(get_parent())
    }
 
 
-   float interaction::preferred_dpi_x()
+   ::f32 interaction::preferred_dpi_x()
    {
 
       auto pwindowThis = window();
@@ -13482,7 +13512,7 @@ if(get_parent())
    }
 
 
-   float interaction::preferred_dpi_y()
+   ::f32 interaction::preferred_dpi_y()
    {
 
       auto pwindowThis = window();
@@ -13499,7 +13529,7 @@ if(get_parent())
    }
 
 
-   float interaction::preferred_density()
+   ::f32 interaction::preferred_density()
    {
 
       auto pwindowThis = window();
@@ -13980,7 +14010,7 @@ if(get_parent())
 
             //information() << "hiding child window";
 
-            set_display(e_display_none, e_layout_lading);
+            set_display(edisplayLading, e_layout_lading);
 
          }
          else
@@ -14069,7 +14099,7 @@ if(get_parent())
 
       m_pacmeuserinteractionaChildren = puiptraChildNew;
 
-      int iZOrder = 1024;
+      ::i32 iZOrder = 1024;
 
       auto pacmeuserinteractionaChildren = m_pacmeuserinteractionaChildren;
 
@@ -14136,11 +14166,11 @@ if(get_parent())
 
 #endif
 
-      ::int_point point = layout().lading().origin();
+      ::i32_point point = layout().lading().origin();
 
-      ::int_point pointScreen;
+      ::i32_point pointScreen;
 
-      ::int_point pointHost;
+      ::i32_point pointHost;
 
       auto type = ::platform::type(this);
 
@@ -14158,9 +14188,9 @@ if(get_parent())
       }
 
 
-      ::int_point screenOriginLadingBefore = layout().lading().origin();
+      ::i32_point screenOriginLadingBefore = layout().lading().origin();
 
-      ::int_point screenOriginLayoutBefore = layout().layout().origin();
+      ::i32_point screenOriginLayoutBefore = layout().layout().origin();
 
       bool bRepositionThis = true;
       //         layout().lading().origin() != point ||
@@ -14227,7 +14257,7 @@ if(get_parent())
    }
 
 
-   ::int_size interaction::preferred_size(::draw2d::graphics_pointer & pgraphics)
+   ::i32_size interaction::preferred_size(::draw2d::graphics_pointer & pgraphics)
    {
 
       auto pappearance = get_appearance();
@@ -14256,7 +14286,7 @@ if(get_parent())
 
       auto rectangleWindow = const_layout().design().parent_raw_rectangle();
 
-      ::int_rectangle rectangleWorkspace;
+      ::i32_rectangle rectangleWorkspace;
 
       get_best_workspace(&rectangleWorkspace, rectangleWindow);
 
@@ -14284,7 +14314,7 @@ if(get_parent())
 
       auto rectangleWindow = const_layout().design().parent_raw_rectangle();
 
-      ::int_rectangle rectangleMonitor;
+      ::i32_rectangle rectangleMonitor;
 
       get_best_monitor(&rectangleMonitor, rectangleWindow);
 
@@ -14443,7 +14473,7 @@ if(get_parent())
       //   if (m_playout->m_bFillParent)
       //   {
 
-      //      ::int_rectangle rectangleX;
+      //      ::i32_rectangle rectangleX;
 
       //      this->rectangle(rectangleX);
 
@@ -14623,7 +14653,7 @@ if(get_parent())
 
          //}
 
-         //informationf("interaction::message_handler pmessage->m_eusermessage %lld", pmessage->m_eusermessage.as_long_long());
+         //informationf("interaction::message_handler pmessage->m_eusermessage %lld", pmessage->m_eusermessage.as_i64());
 
          if (pre_message_handler(pkey, bKeyMessage, pmessage))
          {
@@ -15083,7 +15113,7 @@ if(get_parent())
    //}
 
 
-   //bool interaction::GetUpdateRect(::int_rectangle *prectangle, bool bErase)
+   //bool interaction::GetUpdateRect(::i32_rectangle *prectangle, bool bErase)
    //{
 
    //   //if (window() == nullptr)
@@ -15100,7 +15130,7 @@ if(get_parent())
    //}
 
 
-   //int interaction::GetUpdateRgn(::draw2d::region *pRgn, bool bErase)
+   //::i32 interaction::GetUpdateRgn(::draw2d::region *pRgn, bool bErase)
    //{
 
    //   if (window() == nullptr)
@@ -15130,7 +15160,7 @@ if(get_parent())
    //}
 
 
-   //void interaction::InvalidateRect(const ::int_rectangle &rectangle, bool bErase)
+   //void interaction::InvalidateRect(const ::i32_rectangle &rectangle, bool bErase)
    //{
 
    //   if (window() == nullptr)
@@ -15160,7 +15190,7 @@ if(get_parent())
    //}
 
 
-   //void interaction::ValidateRect(const ::int_rectangle &rectangle)
+   //void interaction::ValidateRect(const ::i32_rectangle &rectangle)
    //{
 
    //   if (window() == nullptr)
@@ -15239,7 +15269,7 @@ if(get_parent())
    }
 
 
-   ::double_size interaction::get_fitting_size(::draw2d::graphics_pointer & pgraphics)
+   ::f64_size interaction::get_fitting_size(::draw2d::graphics_pointer & pgraphics)
    {
 
       pgraphics->set_font(this, ::e_element_none);
@@ -15248,11 +15278,11 @@ if(get_parent())
 
       pgraphics->get_text_metrics(&metric);
 
-      ::double_size setFittingFontHeight;
+      ::f64_size setFittingFontHeight;
 
       string strWindowText = get_window_text();
 
-      ::double_size size = pgraphics->get_text_extent(strWindowText);
+      ::f64_size size = pgraphics->get_text_extent(strWindowText);
 
       setFittingFontHeight.cx = size.cx;
 
@@ -15263,16 +15293,16 @@ if(get_parent())
    }
 
 
-   ::double_size interaction::get_adjusted_fitting_size(::draw2d::graphics_pointer & pgraphics)
+   ::f64_size interaction::get_adjusted_fitting_size(::draw2d::graphics_pointer & pgraphics)
    {
 
       auto pstyle = get_style(pgraphics);
 
-      ::double_rectangle rectanglePadding = get_padding(pstyle);
+      ::f64_rectangle rectanglePadding = get_padding(pstyle);
 
       auto sizeFitting = get_fitting_size(pgraphics);
 
-      ::double_size sizePaddedFitting;
+      ::f64_size sizePaddedFitting;
 
       sizePaddedFitting.cx = rectanglePadding.left + sizeFitting.cx + rectanglePadding.right;
 
@@ -15283,7 +15313,7 @@ if(get_parent())
    }
 
 
-   ::double_size interaction::get_preferred_size(::draw2d::graphics_pointer & pgraphics)
+   ::f64_size interaction::get_preferred_size(::draw2d::graphics_pointer & pgraphics)
    {
 
       return const_layout().sketch().size();
@@ -15845,7 +15875,7 @@ if(get_parent())
    //   }
 
 
-   void interaction::_on_configure_notify_unlocked(const ::int_rectangle & rectangle)
+   void interaction::_on_configure_notify_unlocked(const ::i32_rectangle & rectangle)
    {
 
       //      if (m_bVisualChanged)
@@ -15864,8 +15894,8 @@ if(get_parent())
 
       //auto pointLparam = lparam_as_point(lparam);
 
-      //auto xPos = (int)(short)LOWORD(lparam);   // horizontal position
-      //auto yPos = (int)(short)HIWORD(lparam);   // vertical position
+      //auto xPos = (::i32)(::i16)LOWORD(lparam);   // horizontal position
+      //auto yPos = (::i32)(::i16)HIWORD(lparam);   // vertical position
       auto xPos = rectangle.left;
       auto yPos = rectangle.top;
       auto w = rectangle.width();
@@ -15878,11 +15908,11 @@ if(get_parent())
 
       }
 
-      //::int_point p(r.left, r.top);
+      //::i32_point p(r.left, r.top);
 
-      ::int_point p(xPos, yPos);
+      ::i32_point p(xPos, yPos);
 
-      ::int_size s(w, h);
+      ::i32_size s(w, h);
 
       debug() << "user::interaction::_on_configure_notify_unlocked rectangle = " << rectangle;
 
@@ -15908,7 +15938,7 @@ if(get_parent())
       //
       // //}
       //
-      // //::int_point p(x, y);
+      // //::i32_point p(x, y);
       // //
       // // if(m_pointWindow != p)
       // // {
@@ -15930,51 +15960,61 @@ if(get_parent())
 
       //auto pwindow = window();
 
-      if (layout().m_statea[::user::e_layout_sketch].m_point2 == layout().m_statea[::user::e_layout_design].m_point2)
+      if (p != layout().m_statea[::user::e_layout_sketch].m_point2)
       {
 
-         if (!is_past_reposition_request(p))
+         if (layout().m_statea[::user::e_layout_sketch].m_point2 == layout().m_statea[::user::e_layout_design].m_point2)
          {
 
-            layout().m_statea[::user::e_layout_sketch].m_point2 = p;
-            layout().m_statea[::user::e_layout_lading].m_point2 = p;
-            layout().m_statea[::user::e_layout_layout].m_point2 = p;
-            layout().m_statea[::user::e_layout_design].m_point2 = p;
-            layout().m_statea[::user::e_layout_output].m_point2 = p;
-            layout().m_statea[::user::e_layout_normal].m_point2 = p;
+            if (!is_past_reposition_request(p))
+            {
 
-            //pwindow->m_pointDesignRequest.x = INT_MIN;
-            //pwindow->m_pointDesignRequest.y = INT_MIN;
+               layout().m_statea[::user::e_layout_sketch].m_point2 = p;
+               layout().m_statea[::user::e_layout_lading].m_point2 = p;
+               layout().m_statea[::user::e_layout_layout].m_point2 = p;
+               layout().m_statea[::user::e_layout_design].m_point2 = p;
+               layout().m_statea[::user::e_layout_output].m_point2 = p;
+               layout().m_statea[::user::e_layout_normal].m_point2 = p;
 
-            on_reposition();
+               // pwindow->m_pointDesignRequest.x = INT_MIN;
+               // pwindow->m_pointDesignRequest.y = INT_MIN;
+
+               on_reposition();
+
+            }
 
          }
 
       }
 
-      if (layout().m_statea[::user::e_layout_sketch].m_size == layout().m_statea[::user::e_layout_design].m_size)
+      if (s != layout().m_statea[::user::e_layout_sketch].m_size)
       {
 
-         if (!is_past_resizing_request(s))
+         if (layout().m_statea[::user::e_layout_sketch].m_size == layout().m_statea[::user::e_layout_design].m_size)
          {
 
-            // layout().m_statea[::user::e_layout_sketch].m_size = s;
-            // layout().m_statea[::user::e_layout_lading].m_size = s;
-            // layout().m_statea[::user::e_layout_layout].m_size = s;
-            // layout().m_statea[::user::e_layout_design].m_size = s;
-            // layout().m_statea[::user::e_layout_output].m_size = s;
-            // layout().m_statea[::user::e_layout_normal].m_size = s;
-            //
-            // pwindow->m_sizeDesignRequest.cx = INT_MIN;
-            // pwindow->m_sizeDesignRequest.cy = INT_MIN;
+            if (!is_past_resizing_request(s))
+            {
 
-            set_size(s);
+               // layout().m_statea[::user::e_layout_sketch].m_size = s;
+               // layout().m_statea[::user::e_layout_lading].m_size = s;
+               // layout().m_statea[::user::e_layout_layout].m_size = s;
+               // layout().m_statea[::user::e_layout_design].m_size = s;
+               // layout().m_statea[::user::e_layout_output].m_size = s;
+               // layout().m_statea[::user::e_layout_normal].m_size = s;
+               //
+               // pwindow->m_sizeDesignRequest.cx = INT_MIN;
+               // pwindow->m_sizeDesignRequest.cy = INT_MIN;
 
-            set_need_layout();
+               set_size(s);
 
-            set_need_redraw();
+               set_need_layout();
 
-            post_redraw();
+               set_need_redraw();
+
+               post_redraw();
+
+            }
 
          }
 
@@ -15983,7 +16023,7 @@ if(get_parent())
    }
 
 
-   void interaction::_on_reposition_notify_unlocked(const ::int_point & point)
+   void interaction::_on_reposition_notify_unlocked(const ::i32_point & point)
    {
 
       //      if (m_bVisualChanged)
@@ -16207,10 +16247,10 @@ if(get_parent())
    //   void interaction::_window_show_change_visibility_unlocked()
    //   {
    //
-   //      //::enum_display edisplayOutput = layout().output().display();
-   //      ::enum_display edisplayOutput = layout().layout().display();
+   //      //::const  ::e_display & edisplayOutput = layout().output().display();
+   //      ::const  ::e_display & edisplayOutput = layout().layout().display();
    //
-   //      ::enum_display edisplayWindow = layout().window().display();
+   //      ::const  ::e_display & edisplayWindow = layout().window().display();
    //
    //      if (equivalence_sink(edisplayOutput) == e_display_normal)
    //      {
@@ -16226,9 +16266,9 @@ if(get_parent())
    //
    //      }
    //
-   //      ::enum_display edisplayOutputForOsShowWindow = edisplayOutput;
+   //      ::const  ::e_display & edisplayOutputForOsShowWindow = edisplayOutput;
    //
-   //      ::enum_display edisplayWindowForOsShowWindow = edisplayWindow;
+   //      ::const  ::e_display & edisplayWindowForOsShowWindow = edisplayWindow;
    //
    //      if (::is_docking_appearance(edisplayOutputForOsShowWindow))
    //      {
@@ -16426,10 +16466,10 @@ if(get_parent())
    }
 
 
-   void interaction::_001Emphasize(int cx, int cy)
+   void interaction::_001Emphasize(::i32 cx, ::i32 cy)
    {
 
-      ::int_rectangle rectangleMainMonitor;
+      ::i32_rectangle rectangleMainMonitor;
 
       auto pwindowing = windowing();
 
@@ -16437,9 +16477,9 @@ if(get_parent())
 
       pdisplay->get_main_monitor(rectangleMainMonitor);
 
-      int x = (rectangleMainMonitor.width() - cx) / 2;
+      ::i32 x = (rectangleMainMonitor.width() - cx) / 2;
 
-      int y = (rectangleMainMonitor.height() - cy) / 3;
+      ::i32 y = (rectangleMainMonitor.height() - cy) / 3;
 
       order(e_zorder_top);
 
@@ -16451,7 +16491,7 @@ if(get_parent())
    }
 
 
-   //atom interaction::run_modal_loop(::user::interaction * pinteraction, unsigned int dwFlags)
+   //atom interaction::run_modal_loop(::user::interaction * pinteraction, ::u32 dwFlags)
    //{
 
    //   return pinteraction->_001RunModalLoop(dwFlags);
@@ -16459,7 +16499,7 @@ if(get_parent())
    //}
 
 
-   //atom interaction::RunModalLoop(unsigned int dwFlags)
+   //atom interaction::RunModalLoop(::u32 dwFlags)
    //{
 
    //   set_need_redraw();
@@ -16471,7 +16511,7 @@ if(get_parent())
    //}
 
 
-   //atom interaction::_001RunModalLoop(unsigned int dwFlags)
+   //atom interaction::_001RunModalLoop(::u32 dwFlags)
    //{
 
    //   ASSERT(!m_bModal);
@@ -16714,19 +16754,19 @@ if(get_parent())
    //}
 
 
-   void interaction::set_timer(uptr uEvent, const class time & timeElapse, const ::procedure & procedure, bool bPeriodic)
-   {
-
-      if (has_destroying_flag())
-      {
-
-         return;
-
-      }
-
-      ::acme::user::interaction::set_timer(uEvent, timeElapse, procedure, bPeriodic);
-
-   }
+   // void interaction::set_timer(uptr uEvent, const class time & timeElapse, const ::procedure & procedure, bool bPeriodic)
+   // {
+   //
+   //    if (has_destroying_flag())
+   //    {
+   //
+   //       return;
+   //
+   //    }
+   //
+   //    ::acme::user::interaction::set_timer(uEvent, timeElapse, procedure, bPeriodic);
+   //
+   // }
 
 
    //void interaction::set_timer(uptr uEvent, const class time & timeElapse, PFN_TIMER pfnTimer, bool bPeriodic,
@@ -17341,10 +17381,10 @@ if(get_parent())
    }
 
 
-   //void interaction::defer_restore(const ::int_rectangle& rectangleRequest)
+   //void interaction::defer_restore(const ::i32_rectangle& rectangleRequest)
    //{
 
-   //   ::int_rectangle rectangleWorkspace;
+   //   ::i32_rectangle rectangleWorkspace;
 
    //   auto pwindowing = windowing();
 
@@ -17366,9 +17406,9 @@ if(get_parent())
    //   else
    //   {
 
-   //      //place(int_rectangle_dimension(10, 10, 800, 300));
+   //      //place(i32_rectangle_dimension(10, 10, 800, 300));
 
-   //      ::int_rectangle rectanglePlace(rectangleRequest);
+   //      ::i32_rectangle rectanglePlace(rectangleRequest);
 
    //      if (rectanglePlace.size().any_lt(get_window_minimum_size()))
    //      {
@@ -17386,7 +17426,7 @@ if(get_parent())
    //}
 
 
-   int interaction::get_derived_height(int iWidth)
+   ::i32 interaction::get_derived_height(::i32 iWidth)
    {
 
       return -1;
@@ -17394,7 +17434,7 @@ if(get_parent())
    }
 
 
-   int interaction::get_derived_width(int iHeight)
+   ::i32 interaction::get_derived_width(::i32 iHeight)
    {
 
       return -1;
@@ -17594,7 +17634,7 @@ if(get_parent())
    }
 
 
-   //static long long g_i_graphics_thread_update_visual = 0;
+   //static ::i64 g_i_graphics_thread_update_visual = 0;
 
    //void interaction::scroll_x_sketch_to_lading()
    //{
@@ -17687,26 +17727,26 @@ if(get_parent())
 
       bool bAppearance = layout().lading().appearance() != layout().layout().appearance();
 
-      ::int_point pointLading = layout().lading().origin();
+      ::i32_point pointLading = layout().lading().origin();
 
-      ::int_point pointLayout = layout().layout().origin();
+      ::i32_point pointLayout = layout().layout().origin();
 
       bool bPosition = pointLading != pointLayout || m_bReposition;
 
       m_bReposition = false;
 
-      ::int_size & sizeLading = layout().lading().size();
+      ::i32_size & sizeLading = layout().lading().size();
 
-      ::int_size & sizeLayout = layout().layout().size();
+      ::i32_size & sizeLayout = layout().layout().size();
 
       if (m_bDerivedHeight)
       {
 
-         int iDerivedWidth = sizeLading.cx;
+         ::i32 iDerivedWidth = sizeLading.cx;
 
-         int iDerivedHeight = get_derived_height(iDerivedWidth);
+         ::i32 iDerivedHeight = get_derived_height(iDerivedWidth);
 
-         ::int_size sizeMinimum = get_window_minimum_size();
+         ::i32_size sizeMinimum = get_window_minimum_size();
 
          if (iDerivedHeight > 0)
          {
@@ -17850,7 +17890,7 @@ if(get_parent())
             {
 
                informationf(
-                       "window visual changed: not setting pending save int_rectangle cause loading window int_rectangle");
+                       "window visual changed: not setting pending save i32_rectangle cause loading window i32_rectangle");
 
             }
             else
@@ -17866,7 +17906,7 @@ if(get_parent())
 
       bool bChildrenZorder = check_children_zorder();
 
-      auto bUpdateVisual = bDisplay || bZorder || bChildrenZorder || bSize || bActivation || m_bNeedLayout;
+      auto bUpdateVisual = bDisplay || bZorder || bChildrenZorder || bSize || bActivation || m_bNeedLayout || m_bVisibilityChange;
 
       if (!bUpdateBuffer && ::is_set(get_parent()))
       {
@@ -17916,7 +17956,7 @@ if(get_parent())
          //
          //         }
          //
-         if (bSize || m_bNeedLayout)
+         if (bSize || m_bNeedLayout || m_bVisibilityChange)
          {
 
             //::pointer<::windowing::window>pwindow = window();
@@ -18104,6 +18144,8 @@ if(get_parent())
       }
 
       m_bNeedLayout = false;
+
+      m_bVisibilityChange = false;
 
       //scroll_x_lading_to_layout();
 
@@ -18541,6 +18583,23 @@ if(get_parent())
    }
 
 
+   ::f64 interaction::get_full_hd_factor()
+   {
+
+      ::cast < ::windowing::window > pwindow = acme_windowing_window();
+
+      if(::is_null(pwindow))
+      {
+
+        return 1.0;
+
+      }
+
+      return pwindow->get_full_hd_factor();
+
+   }
+
+
    bool interaction::on_set_owner(::user::interaction_base * pprimitive)
    {
 
@@ -18605,8 +18664,46 @@ if(get_parent())
          informationf("on_mouse_message ::user::e_message_left_button_down");
 
       }
+      else if (pmouse->m_eusermessage == ::user::e_message_mouse_move)
+      {
+
+         //informationf("on_mouse_message ::user::e_message_mouse_move");
+      }
 
       user_mouse_initialize_cursor(pmouse, m_pcursorDefault);
+
+      if (::is_set(m_pacmewindowingwindow))
+      {
+
+         ::cast<::user::interaction> puserinteractionCapture =
+            m_pacmewindowingwindow->m_pacmeuserinteractionMouseCapture;
+
+         if (::is_set(puserinteractionCapture))
+         {
+
+            puserinteractionCapture->route_as_parent_mouse_message(pmouse);
+
+            if (pmouse->m_bRet)
+            {
+
+               return true;
+            }
+
+
+            puserinteractionCapture->route_message(pmouse);
+
+            //         interactionaHandled.add_interaction(puserinteraction);
+
+            if (pmouse->m_bRet)
+            {
+
+               return true;
+
+            }
+
+         }
+
+      }
 
       ::user::interaction * pchild = this;
 
@@ -18735,7 +18832,7 @@ if(get_parent())
 
 
 
-   void interaction::_raw_client_to_screen(::int_point & point)
+   void interaction::_raw_client_to_screen(::i32_point & point)
    {
 
       client_to_screen(::user::e_layout_design)(point);
@@ -18743,7 +18840,7 @@ if(get_parent())
    }
 
 
-   void interaction::_raw_screen_to_client(::int_point & point)
+   void interaction::_raw_screen_to_client(::i32_point & point)
    {
 
       screen_to_client(::user::e_layout_design)(point);
@@ -18830,13 +18927,13 @@ if(get_parent())
 
             // ::user::message::set(oswindow, pwindow, eusermessage, wparam, lparam);
 
-            pmessage->m_nChar = static_cast<unsigned int>(wparam);
+            pmessage->m_nChar = static_cast<::u32>(wparam);
 
             pmessage->m_nRepCnt = lower_unsigned_short(lparam);
 
             pmessage->m_nFlags = upper_unsigned_short(lparam);
 
-            pmessage->m_iVirtualKey = (int)wparam;
+            pmessage->m_iVirtualKey = (::i32)wparam;
 
             pmessage->m_nScanCode = ((lparam >> 16) & 0xff);
 
@@ -18853,7 +18950,7 @@ if(get_parent())
 
          _NEW_MESSAGE(::message::timer);
 
-         pmessage->m_uTimer = static_cast<unsigned int>(wparam);
+         pmessage->m_uTimer = static_cast<::u32>(wparam);
 
       }
       break;
@@ -18862,7 +18959,7 @@ if(get_parent())
          _NEW_MESSAGE(::message::show_window);
          pmessage->m_bShow = wparam != false;
 
-         pmessage->m_nStatus = static_cast<unsigned int>(lparam);
+         pmessage->m_nStatus = static_cast<::u32>(lparam);
 
       }
       break;
@@ -18874,9 +18971,7 @@ if(get_parent())
       case ::user::e_message_prototype_non_client_hit_test:
       {
          _NEW_MESSAGE(::message::nc_hit_test);
-         pmessage->m_point.x = lparam_int_x(lparam);
-
-         pmessage->m_point.y = lparam_int_y(lparam);
+         pmessage->m_point = lparam.point();
       }
       break;
       case ::user::e_message_prototype_move:
@@ -18903,9 +18998,9 @@ if(get_parent())
 
          //::user::message::set(oswindow, pwindow, eusermessage, wparam, lparam);
 
-         pmessage->m_ecommand = (enum_scroll_command)(short)lower_unsigned_short(wparam);
+         pmessage->m_ecommand = (enum_scroll_command)(::i16)lower_unsigned_short(wparam);
 
-         pmessage->m_dPosition = (double)(short)upper_unsigned_short(wparam);
+         pmessage->m_dPosition = (::f64)(::i16)upper_unsigned_short(wparam);
 
       }
       break;
@@ -18938,12 +19033,13 @@ if(get_parent())
       case ::user::e_message_prototype_mouse:
       {
          _NEW_MESSAGE(::message::mouse);
-         pmessage->m_ebuttonstate = (::user::enum_button_state)wparam.m_number;
+         pmessage->m_keystate = session()->key_state();
+         ///pmessage->m_keystate = session()->key_state_with_wm_mouse_wparam(wparam);
 
-         //         if ((pmessage->m_ebuttonstate & I32_MINIMUM) == (I32_MINIMUM))
+         //         if ((pmessage->m_ekeystate & I32_MINIMUM   ) == (I32_MINIMUM))
          //         {
          //
-         //            informationf("(m_ebuttonstate & I32_MINIMUM) == (I32_MINIMUM)");
+         //            informationf("(m_ekeystate & I32_MINIMUM) == (I32_MINIMUM)");
          //
          //         }
 
@@ -18976,7 +19072,9 @@ if(get_parent())
       {
          _NEW_MESSAGE(::message::mouse_wheel);
 
-         pmessage->m_ebuttonstate = (::user::enum_button_state)lower_unsigned_short(wparam);
+         //pmessage->m_keystate = session()->key_state_with_wm_mouse_wparam(wparam);
+
+         pmessage->m_keystate = session()->key_state();
 
          pmessage->m_pointAbsolute = lparam.point();
 
@@ -18992,9 +19090,9 @@ if(get_parent())
       {
          _NEW_MESSAGE(::message::size);
 
-         pmessage->m_nType = static_cast <unsigned int> (wparam);
+         pmessage->m_nType = static_cast <::u32> (wparam);
 
-         pmessage->m_size = ::int_size(lparam_int_x(lparam), lparam_int_y(lparam));
+         pmessage->m_size = ::i32_size(iptr_int_x(lparam), iptr_int_y(lparam));
       }
       break;
       case ::user::e_message_prototype_activate:
@@ -19277,7 +19375,7 @@ if(get_parent())
    }
 
 
-   ::int_point interaction::host_mouse_cursor_position()
+   ::i32_point interaction::host_mouse_cursor_position()
    {
 
       auto pwindowThis = window();
@@ -19296,7 +19394,7 @@ if(get_parent())
    }
 
 
-   ::int_point interaction::mouse_cursor_position()
+   ::i32_point interaction::mouse_cursor_position()
    {
 
       auto pwindowThis = window();
@@ -19317,7 +19415,7 @@ if(get_parent())
    }
 
 
-   ::int_point interaction::absolute_mouse_cursor_position()
+   ::i32_point interaction::absolute_mouse_cursor_position()
    {
 
       auto pwindowThis = window();
@@ -19345,7 +19443,7 @@ if(get_parent())
    }
 
 
-   //   void interaction::set_cursor_position(const ::int_point & pointCursor)
+   //   void interaction::set_cursor_position(const ::i32_point & pointCursor)
    //   {
    //
    //      auto pwindowThis = window();
@@ -19436,14 +19534,14 @@ if(get_parent())
    }
 
 
-   double interaction::_001GetDefaultFontHeight(::draw2d::graphics_pointer & pgraphics)
+   ::f64 interaction::_001GetDefaultFontHeight(::draw2d::graphics_pointer & pgraphics)
    {
 
       defer_graphics(pgraphics);
 
       pgraphics->set_font(this, ::e_element_none);
 
-      ::double_size size;
+      ::f64_size size;
 
       size = pgraphics->get_text_extent(unitext("Ap"));
 
@@ -19498,7 +19596,7 @@ if(get_parent())
    //}
 
 
-   //::int_point interaction::get_cursor_position() const
+   //::i32_point interaction::get_cursor_position() const
    //{
 
    //   auto puserinteraction = get_host_user_interaction();
@@ -19513,7 +19611,7 @@ if(get_parent())
    //   if (!puserinteraction)
    //   {
 
-   //      return ::int_point();
+   //      return ::i32_point();
 
    //   }
 
@@ -19963,7 +20061,7 @@ if(get_parent())
    }
 
 
-   int interaction::get_wheel_scroll_delta()
+   ::i32 interaction::get_wheel_scroll_delta()
    {
 
       return 0;
@@ -19974,7 +20072,7 @@ if(get_parent())
 
 
 
-   void interaction::get_child_rect(::int_rectangle & rectangle)
+   void interaction::get_child_rect(::i32_rectangle & rectangle)
    {
 
       rectangle = this->rectangle();
@@ -20135,10 +20233,10 @@ if(get_parent())
 
 
    // returns -1 if not descendant
-   int interaction::get_descendant_level(::user::element * pinteraction)
+   ::i32 interaction::get_descendant_level(::user::element * pinteraction)
    {
 
-      int iLevel = 0;
+      ::i32 iLevel = 0;
 
       while (pinteraction != nullptr)
       {
@@ -20301,7 +20399,7 @@ if(get_parent())
    }
 
 
-   unsigned int interaction::get_window_default_style()
+   ::u32 interaction::get_window_default_style()
    {
 
       return 0;
@@ -21036,7 +21134,7 @@ if(get_parent())
    }
 
 
-   //   void interaction::move_to(const ::int_point & point)
+   //   void interaction::move_to(const ::i32_point & point)
    //   {
    //
    //      layout().lading().origin() = point;
@@ -21044,7 +21142,7 @@ if(get_parent())
    //   }
 
 
-   //   void interaction::set_size(const ::int_size & size)
+   //   void interaction::set_size(const ::i32_size & size)
    //   {
    //
    //      layout().lading().size() = size;
@@ -21052,7 +21150,7 @@ if(get_parent())
    //   }
 
 
-   //   void interaction::move_to(int x, int y)
+   //   void interaction::move_to(::i32 x, ::i32 y)
    //   {
    //
    //      move_to({ x, y });
@@ -21060,7 +21158,7 @@ if(get_parent())
    //   }
 
 
-   //   void interaction::set_size(int cx, int cy)
+   //   void interaction::set_size(::i32 cx, ::i32 cy)
    //   {
    //
    //      set_size({ cx, cy });
@@ -21068,15 +21166,15 @@ if(get_parent())
    //   }
 
 
-   //   void interaction::set_dim(const ::int_point & point, const ::int_size & size)
+   //   void interaction::set_dim(const ::i32_point & point, const ::i32_size & size)
    //   {
    //
-   //      place(::int_rectangle(point, size));
+   //      place(::i32_rectangle(point, size));
    //
    //   }
 
 
-   void interaction::place(const ::int_rectangle & rectangle, enum_layout elayout, ::draw2d::graphics * pgraphics)
+   void interaction::place(const ::i32_rectangle & rectangle, enum_layout elayout, ::draw2d::graphics * pgraphics)
    {
 
       auto sizeNew = rectangle.size();
@@ -21109,11 +21207,11 @@ if(get_parent())
 
       }
 
-      ::int_rectangle_array_base rectangleaCertainlyDamaged;
+      ::i32_rectangle_array_base rectangleaCertainlyDamaged;
 
-      ::int_rectangle rectangleBefore;
+      ::i32_rectangle rectangleBefore;
 
-      ::int_rectangle rectangleAfter;
+      ::i32_rectangle rectangleAfter;
 
       {
 
@@ -21154,7 +21252,7 @@ if(get_parent())
 
       }
 
-      auto iLayout = (int)elayout;
+      auto iLayout = (::i32)elayout;
 
       while (iLayout >= 0)
       {
@@ -21201,7 +21299,7 @@ if(get_parent())
    }
 
 
-   void interaction::place_set_need_redraw(const ::int_rectangle & rectangleAfter, const ::int_rectangle & rectangleBefore, ::draw2d::graphics * pgraphics)
+   void interaction::place_set_need_redraw(const ::i32_rectangle & rectangleAfter, const ::i32_rectangle & rectangleBefore, ::draw2d::graphics * pgraphics)
    {
       //  if (get_parent() == nullptr)
         //{
@@ -21219,25 +21317,25 @@ if(get_parent())
    }
 
 
-   void interaction::place(int x, int y, int w, int h, enum_layout elayout, ::draw2d::graphics * pgraphics)
+   void interaction::place(::i32 x, ::i32 y, ::i32 w, ::i32 h, enum_layout elayout, ::draw2d::graphics * pgraphics)
    {
 
-      auto rectangle = ::float_rectangle_dimension(x, y, w, h);
+      auto rectangle = ::f32_rectangle_dimension(x, y, w, h);
 
       place(rectangle, elayout, pgraphics);
 
    }
 
 
-   //   void interaction::set_dim(int x, int y, int cx, int cy)
+   //   void interaction::set_dim(::i32 x, ::i32 y, ::i32 cx, ::i32 cy)
    //   {
    //
-   //      place(int_rectangle_dimension(x, y, cx, cy));
+   //      place(i32_rectangle_dimension(x, y, cx, cy));
    //
    //   }
 
 
-   interaction & interaction::operator=(const ::int_rectangle & rectangle)
+   interaction & interaction::operator=(const ::i32_rectangle & rectangle)
    {
 
       place(rectangle);
@@ -21247,10 +21345,10 @@ if(get_parent())
    }
 
 
-   void interaction::place_rate_or_size(const ::double_rectangle & rectangleRateOrSize)
+   void interaction::place_rate_or_size(const ::f64_rectangle & rectangleRateOrSize)
    {
 
-      ::int_rectangle rectangle;
+      ::i32_rectangle rectangle;
 
       calculate_window_rectangle_in_main_monitor(rectangle, rectangleRateOrSize);
 
@@ -21267,7 +21365,7 @@ if(get_parent())
    }
 
 
-   void interaction::display_child(const ::int_rectangle & rectangle, enum_layout elayout, ::draw2d::graphics * pgraphics)
+   void interaction::display_child(const ::i32_rectangle & rectangle, enum_layout elayout, ::draw2d::graphics * pgraphics)
    {
 
       place(rectangle, elayout, pgraphics);
@@ -21277,7 +21375,7 @@ if(get_parent())
    }
 
 
-   ::user::interaction * interaction::best_top_level_parent(::int_rectangle & rectangle)
+   ::user::interaction * interaction::best_top_level_parent(::i32_rectangle & rectangle)
    {
 
       auto ptoplevel = top_level();
@@ -21300,7 +21398,7 @@ if(get_parent())
    }
 
 
-   ::int_rectangle interaction::parent_client_rectangle(enum_layout elayout)
+   ::i32_rectangle interaction::parent_client_rectangle(enum_layout elayout)
    {
 
       auto rectangle = this->rectangle(elayout);
@@ -21312,38 +21410,38 @@ if(get_parent())
    }
 
 
-   ::int_point interaction::position(enum_layout elayout)
+   ::i32_point interaction::position(enum_layout elayout)
    {
       return parent_client_rectangle(elayout).top_left();
    }
 
-   ::int_size interaction::size(enum_layout elayout)
+   ::i32_size interaction::size(enum_layout elayout)
    {
       return parent_client_rectangle(elayout).size();
    }
 
-   int interaction::top(enum_layout elayout)
+   ::i32 interaction::top(enum_layout elayout)
    {
       return parent_client_rectangle(elayout).top;
    }
 
-   int interaction::left(enum_layout elayout)
+   ::i32 interaction::left(enum_layout elayout)
    {
       return parent_client_rectangle(elayout).left;
    }
 
-   int interaction::right(enum_layout elayout)
+   ::i32 interaction::right(enum_layout elayout)
    {
       return parent_client_rectangle(elayout).right;
    }
 
-   int interaction::bottom(enum_layout elayout)
+   ::i32 interaction::bottom(enum_layout elayout)
    {
       return parent_client_rectangle(elayout).bottom;
    }
 
 
-   void interaction::window_rectangle(::int_rectangle & rect, enum_layout elayout)
+   void interaction::window_rectangle(::i32_rectangle & rect, enum_layout elayout)
    {
 
       rect = this->window_rectangle(elayout);
@@ -21351,7 +21449,7 @@ if(get_parent())
    }
 
 
-   ::int_rectangle interaction::window_rectangle(enum_layout elayout)
+   ::i32_rectangle interaction::window_rectangle(enum_layout elayout)
    {
 
       auto rectangle = this->raw_rectangle(elayout);
@@ -21376,17 +21474,17 @@ if(get_parent())
    void interaction::design_window_maximize()
    {
 
-      //::int_rectangle rectangleRequest = this->screen_rectangle(e_layout_lading);
+      //::i32_rectangle rectangleRequest = this->screen_rectangle(e_layout_lading);
 
       //best_workspace(nullptr, rectangleRequest, true, layout().lading().activation(), layout().lading().zorder());
 
    }
 
 
-   void interaction::design_window_full_screen(const ::int_rectangle & rectangleHint)
+   void interaction::design_window_full_screen(const ::i32_rectangle & rectangleHint)
    {
 
-      ::int_rectangle rectangleRequest;
+      ::i32_rectangle rectangleRequest;
 
       if (!rectangleHint.is_empty())
       {
@@ -21488,7 +21586,7 @@ if(get_parent())
 
 //      bool bWindowVisible = is_window_visible();
 //
-//      double dOccludedOpaqueRate = _001GetTopLeftWeightedOccludedOpaqueRate();
+//      ::f64 dOccludedOpaqueRate = _001GetTopLeftWeightedOccludedOpaqueRate();
 //
 //      bool bIconic = layout().is_iconic();
 //
@@ -21552,7 +21650,7 @@ if(get_parent())
 
          //set_tool_window();
 
-         hide();
+         display(e_display_hide);
 
       }
       else
@@ -21570,7 +21668,7 @@ if(get_parent())
 
       bool bWindowVisible = is_window_visible() && has_graphical_output_purpose();
 
-      double dOccludedOpaqueRate = _001GetTopLeftWeightedOccludedOpaqueRate();
+      ::f64 dOccludedOpaqueRate = _001GetTopLeftWeightedOccludedOpaqueRate();
 
       bool bIconic = layout().is_iconic();
 
@@ -21622,7 +21720,7 @@ if(get_parent())
    }
 
 
-   void interaction::input_client_rectangle(::int_rectangle & rectangle, enum_layout elayout)
+   void interaction::input_client_rectangle(::i32_rectangle & rectangle, enum_layout elayout)
    {
 
       rectangle = this->rectangle(elayout);
@@ -21630,7 +21728,7 @@ if(get_parent())
    }
 
 
-   //   void interaction::raw_rectangle(::int_rectangle & rectangle, enum_layout elayout)
+   //   void interaction::raw_rectangle(::i32_rectangle & rectangle, enum_layout elayout)
    //   {
    //
    //      const_layout().state(elayout).raw_rectangle(rectangle);
@@ -21638,7 +21736,7 @@ if(get_parent())
    //   }
 
 
-   ::int_rectangle interaction::raw_rectangle(enum_layout elayout)
+   ::i32_rectangle interaction::raw_rectangle(enum_layout elayout)
    {
 
       auto r = const_layout().state(elayout).raw_rectangle();
@@ -21648,7 +21746,7 @@ if(get_parent())
    }
 
 
-   //   void interaction::this->rectangle(::int_rectangle & rectangle, enum_layout elayout)
+   //   void interaction::this->rectangle(::i32_rectangle & rectangle, enum_layout elayout)
    //   {
    //
    //      raw_rectangle(rectangle);
@@ -21658,7 +21756,7 @@ if(get_parent())
    //   }
 
 
-   ::int_rectangle interaction::rectangle(enum_layout elayout)
+   ::i32_rectangle interaction::rectangle(enum_layout elayout)
    {
 
       auto r = raw_rectangle(elayout);
@@ -21670,11 +21768,11 @@ if(get_parent())
    }
 
 
-   ::collection::index interaction::best_monitor(::int_rectangle * prectangle, const ::int_rectangle & rectangle, bool bSet,
+   ::collection::index interaction::best_monitor(::i32_rectangle * prectangle, const ::i32_rectangle & rectangle, bool bSet,
                                    const ::user::activation & useractivation, ::zorder zorderParam)
    {
 
-      ::int_rectangle rectangleSample;
+      ::i32_rectangle rectangleSample;
 
       //auto pwindowing = windowing();
 
@@ -21686,9 +21784,9 @@ if(get_parent())
          if (windowing()->display()->has_readily_gettable_absolute_pointer_position())
          {
 
-            ::int_point pointCursor = windowing()->display()->get_mouse_cursor_position();
+            ::i32_point pointCursor = windowing()->display()->get_mouse_cursor_position();
 
-            rectangleSample.set(pointCursor - ::int_size(5, 5), ::int_size(10, 10));
+            rectangleSample.set(pointCursor - ::i32_size(5, 5), ::i32_size(10, 10));
 
          }
          else
@@ -21718,7 +21816,7 @@ if(get_parent())
 
       }
 
-      ::int_rectangle rectangleNew;
+      ::i32_rectangle rectangleNew;
 
       ::collection::index iMatchingMonitor = -1;
 
@@ -21756,7 +21854,7 @@ if(get_parent())
       {
 
          information() << "interaction::bestmonitor (" << rectangleNew.left << ", " << rectangleNew.top << ", "
-            << rectangleNew.right << ", " << rectangleNew.bottom << ") activation " << (int)useractivation.m_eactivation;
+            << rectangleNew.right << ", " << rectangleNew.bottom << ") activation " << (::i32)useractivation.m_eactivation;
 
          order(zorderParam);
 
@@ -21780,7 +21878,7 @@ if(get_parent())
    }
 
 
-   ::int_rectangle interaction::outer_frame()
+   ::i32_rectangle interaction::outer_frame()
    {
 
       return this->raw_rectangle();
@@ -21788,11 +21886,11 @@ if(get_parent())
    }
 
 
-   ::collection::index interaction::best_workspace(::int_rectangle * prectangle, const ::int_rectangle & rectangle, bool bSet,
+   ::collection::index interaction::best_workspace(::i32_rectangle * prectangle, const ::i32_rectangle & rectangle, bool bSet,
                                      const ::user::activation & useractivation, ::zorder zorderParam)
    {
 
-      ::int_rectangle rectangleWindow;
+      ::i32_rectangle rectangleWindow;
 
       if (!::is_empty(rectangle))
       {
@@ -21807,7 +21905,7 @@ if(get_parent())
 
       }
 
-      ::int_rectangle rectangleZoomedWindowSite{};
+      ::i32_rectangle rectangleZoomedWindowSite{};
 
       ::collection::index iMatchingMonitor = -1;
 
@@ -21820,7 +21918,7 @@ if(get_parent())
       else
       {
 
-         ::int_rectangle rectangleMonitor;
+         ::i32_rectangle rectangleMonitor;
 
          auto psession = session();
 
@@ -21890,7 +21988,7 @@ if(get_parent())
 
 
    ::collection::index
-      interaction::get_zoneing(::int_rectangle * prectangle, const ::int_rectangle & rectangleParam, ::e_display edisplay)
+      interaction::get_zoneing(::i32_rectangle * prectangle, const ::i32_rectangle & rectangleParam, ::e_display edisplay)
    {
 
       if (!is_docking_appearance(edisplay))
@@ -21900,7 +21998,7 @@ if(get_parent())
 
       }
 
-      ::int_rectangle rectangleWorkspace;
+      ::i32_rectangle rectangleWorkspace;
 
       ::collection::index iWorkspace = get_best_workspace(&rectangleWorkspace, rectangleParam);
 
@@ -22024,7 +22122,7 @@ if(get_parent())
    }
 
 
-   ::collection::index interaction::get_preferred_restore(::int_rectangle & rectWorkspace)
+   ::collection::index interaction::get_preferred_restore(::i32_rectangle & rectWorkspace)
    {
 
       return -1;
@@ -22032,13 +22130,13 @@ if(get_parent())
    }
 
 
-   bool interaction::calculate_window_rectangle_in_main_monitor(::int_rectangle & rectangle,
-                                                               const ::double_rectangle & rectangleOptionalRateOrSize)
+   bool interaction::calculate_window_rectangle_in_main_monitor(::i32_rectangle & rectangle,
+                                                               const ::f64_rectangle & rectangleOptionalRateOrSize)
    {
 
-      ::double_rectangle rectangleRate(rectangleOptionalRateOrSize);
+      ::f64_rectangle rectangleRate(rectangleOptionalRateOrSize);
 
-      ::int_rectangle rectangleMainMonitor;
+      ::i32_rectangle rectangleMainMonitor;
 
 
 
@@ -22057,7 +22155,7 @@ if(get_parent())
 
       }
 
-      ::int_rectangle rectangleWindow;
+      ::i32_rectangle rectangleWindow;
 
 #if MOBILE_PLATFORM
 
@@ -22077,7 +22175,7 @@ if(get_parent())
                && fabs(rectangleRate.top) < 10.0)
       {
 
-         rectangleRate *= double_rectangle(rectangleMainMonitor.width(), rectangleMainMonitor.height(),
+         rectangleRate *= ::f64_rectangle(rectangleMainMonitor.width(), rectangleMainMonitor.height(),
                                         rectangleMainMonitor.width(), rectangleMainMonitor.height());
 
       }
@@ -22096,11 +22194,11 @@ if(get_parent())
 
 
    ::collection::index
-      interaction::calculate_broad_and_compact_restore(::int_rectangle * prectWorkspace, const ::int_size & sizeMinParam,
-                                                       const ::int_rectangle & rectangleHintParam)
+      interaction::calculate_broad_and_compact_restore(::i32_rectangle * prectangleWorkspace, const ::i32_size & sizeMinParam,
+                                                       const ::i32_rectangle & rectangleHintParam)
    {
 
-      ::int_rectangle rectangleHint(rectangleHintParam);
+      ::i32_rectangle rectangleHint(rectangleHintParam);
 
       if (rectangleHint.is_empty())
       {
@@ -22113,7 +22211,7 @@ if(get_parent())
 
       debug() << "calculate_broad_and_compact_restore rHint : " << rectangleHint;
 
-      ::int_size sizeMin(sizeMinParam);
+      ::i32_size sizeMin(sizeMinParam);
 
       if (sizeMin.is_empty())
       {
@@ -22126,7 +22224,7 @@ if(get_parent())
 
       debug() << "calculate_broad_and_compact_restore sizeMin : " << sizeMin;
 
-      ::int_rectangle rectangleWorkspace;
+      ::i32_rectangle rectangleWorkspace;
 
       auto pwindowing = system()->windowing();
 
@@ -22139,9 +22237,9 @@ if(get_parent())
 
          debug() << "calculate_broad_and_compact_restore found best workspace : " << iMatchingWorkspace;
 
-         ::int_size sizeNormal = sizeMin.maximum(rectangleWorkspace.size() * 3 / 5);
+         ::i32_size sizeNormal = sizeMin.maximum(rectangleWorkspace.size() * 3 / 5);
 
-         ::int_size sizeMinimumBroad = sizeMin.maximum(rectangleWorkspace.size() * 7 / 10);
+         ::i32_size sizeMinimumBroad = sizeMin.maximum(rectangleWorkspace.size() * 7 / 10);
 
          auto rectangleStoredBroad = get_window_broad_stored_rectangle();
 
@@ -22163,7 +22261,7 @@ if(get_parent())
 
          debug() << "calculate_broad_and_compact_restore restore broad : " << m_rectangleRestoreBroad;
 
-         ::int_size sizeMaximumCompact = sizeMin.maximum(rectangleWorkspace.size() * 5 / 10);
+         ::i32_size sizeMaximumCompact = sizeMin.maximum(rectangleWorkspace.size() * 5 / 10);
 
          auto rectangleStoreCompact = get_window_compact_stored_rectangle();
 
@@ -22185,12 +22283,12 @@ if(get_parent())
 
          debug() << "calculate_broad_and_compact_restore restore compact : " << m_rectangleRestoreCompact;
 
-         if (::is_set(prectWorkspace))
+         if (::is_set(prectangleWorkspace))
          {
 
-            *prectWorkspace = rectangleWorkspace;
+            *prectangleWorkspace = rectangleWorkspace;
 
-            debug() << "calculate_broad_and_compact_restore worspace : " << rectangleWorkspace;
+            debug() << "calculate_broad_and_compact_restore worspace : " << *prectangleWorkspace;
 
          }
 
@@ -22221,7 +22319,7 @@ if(get_parent())
    //}
 
 
-   ::collection::index interaction::make_zoneing(::int_rectangle * prectangle, const ::int_rectangle & rectangle, bool bSet,
+   ::collection::index interaction::make_zoneing(::i32_rectangle * prectangle, const ::i32_rectangle & rectangle, bool bSet,
                                    ::e_display * pedisplay, const ::user::activation & useractivation, ::zorder zorderParam)
    {
 
@@ -22233,7 +22331,7 @@ if(get_parent())
 
       }
 
-      ::int_rectangle rectangleWindow;
+      ::i32_rectangle rectangleWindow;
 
       if (is_empty(rectangle))
       {
@@ -22248,7 +22346,7 @@ if(get_parent())
 
       }
 
-      ::int_rectangle rectangleNew;
+      ::i32_rectangle rectangleNew;
 
       ::collection::index iMatchingMonitor = get_zoneing(&rectangleNew, rectangleWindow, *pedisplay);
 
@@ -22277,8 +22375,8 @@ if(get_parent())
    }
 
 
-   ::collection::index interaction::get_best_zoneing(::e_display & edisplay, ::int_rectangle * prectangle,
-                                       const ::int_rectangle & rectangleRequest, bool bPreserveSize)
+   ::collection::index interaction::get_best_zoneing(::e_display & edisplay, ::i32_rectangle * prectangle,
+                                       const ::i32_rectangle & rectangleRequest, bool bPreserveSize)
    {
 
       edisplay = layout().layout().display();
@@ -22303,7 +22401,7 @@ if(get_parent())
    }
 
 
-   ::collection::index interaction::get_best_workspace(::int_rectangle * prectangle, const ::int_rectangle & rectangle,
+   ::collection::index interaction::get_best_workspace(::i32_rectangle * prectangle, const ::i32_rectangle & rectangle,
                                          const ::user::activation & useractivation)
    {
 
@@ -22317,7 +22415,7 @@ if(get_parent())
 
 
    ::collection::index
-      interaction::get_best_monitor(::int_rectangle * prectangle, const ::int_rectangle & rectangle,
+      interaction::get_best_monitor(::i32_rectangle * prectangle, const ::i32_rectangle & rectangle,
                                     const ::user::activation & useractivation)
    {
 
@@ -22330,7 +22428,7 @@ if(get_parent())
    }
 
 
-   ::collection::index interaction::best_zoneing(::int_rectangle * prectangle, const ::int_rectangle & rectangle, bool bSet,
+   ::collection::index interaction::best_zoneing(::i32_rectangle * prectangle, const ::i32_rectangle & rectangle, bool bSet,
                                    ::e_display * pedisplay, const ::user::activation & useractivation, ::zorder zorderParam)
    {
 
@@ -22345,7 +22443,7 @@ if(get_parent())
 
       *pedisplay = layout().layout().display();
 
-      ::int_rectangle rectangleNew;
+      ::i32_rectangle rectangleNew;
 
       ::collection::index iMatchingMonitor;
 
@@ -22395,11 +22493,11 @@ if(get_parent())
    /// the rectangle parameter indicates to the function
    /// which monitor or monitors the window restore should
    /// be positioned at.
-   ::collection::index interaction::good_restore(::int_rectangle * prectangle, const ::int_rectangle & rectangle, bool bSet,
+   ::collection::index interaction::good_restore(::i32_rectangle * prectangle, const ::i32_rectangle & rectangle, bool bSet,
                                    const ::user::activation & useractivation, ::zorder zorderParam, ::e_display edisplay)
    {
 
-      ::int_rectangle rectangleWindow;
+      ::i32_rectangle rectangleWindow;
 
       if (!::is_empty(rectangle))
       {
@@ -22418,7 +22516,7 @@ if(get_parent())
 
       }
 
-      ::int_rectangle rectangleNew;
+      ::i32_rectangle rectangleNew;
 
       auto pwindowing = system()->windowing();
 
@@ -22727,7 +22825,7 @@ if(get_parent())
 
       //m_pdescriptor.defer_create(this);
 
-      //window()->create_message_queue(this, lpszName);
+      //window()->create_message_queue(this, pszName);
 
       //window()->create_message_queue(this, strName);
       //{
@@ -22760,11 +22858,11 @@ if(get_parent())
 
 
 
-   ::collection::index interaction::good_iconify(::int_rectangle * prectangle, const ::int_rectangle & rectangle, bool bSet,
+   ::collection::index interaction::good_iconify(::i32_rectangle * prectangle, const ::i32_rectangle & rectangle, bool bSet,
                                    const ::user::activation & useractivation, ::zorder zorderParam)
    {
 
-      ::int_rectangle rectangleWindow;
+      ::i32_rectangle rectangleWindow;
 
       if (!is_empty(rectangle))
       {
@@ -22779,7 +22877,7 @@ if(get_parent())
 
       }
 
-      ::int_rectangle rectangleNew;
+      ::i32_rectangle rectangleNew;
 
       auto pwindowing = windowing();
 
@@ -22818,11 +22916,11 @@ if(get_parent())
 
 
    ::collection::index
-      interaction::good_move(::int_rectangle * prectangle, const ::int_rectangle & rectangle, const ::user::activation & useractivation,
+      interaction::good_move(::i32_rectangle * prectangle, const ::i32_rectangle & rectangle, const ::user::activation & useractivation,
                              ::zorder zorderParam)
    {
 
-      ::int_rectangle rectangleWindow;
+      ::i32_rectangle rectangleWindow;
 
       if (!::is_empty(rectangle))
       {
@@ -22837,7 +22935,7 @@ if(get_parent())
 
       }
 
-      ::int_rectangle rectangleNew;
+      ::i32_rectangle rectangleNew;
 
       auto pwindowing = windowing();
 
@@ -22928,7 +23026,7 @@ if(get_parent())
    //#endif
 
 
-   void interaction::get_rect_normal(::int_rectangle * prectangle)
+   void interaction::get_rect_normal(::i32_rectangle * prectangle)
    {
 
       //return
@@ -22982,14 +23080,14 @@ if(get_parent())
    }
 
 
-   void interaction::set_scroll_dimension(const ::int_size & size, ::user::enum_layout elayout)
+   void interaction::set_scroll_dimension(const ::i32_size & size, ::user::enum_layout elayout)
    {
 
    }
 
 
-   //void interaction::offset_context_offset(::draw2d::graphics_pointer & pgraphics, int x, int y)
-   void interaction::offset_context_offset(const ::double_size & size, ::user::enum_layout elayout)
+   //void interaction::offset_context_offset(::draw2d::graphics_pointer & pgraphics, ::i32 x, ::i32 y)
+   void interaction::offset_context_offset(const ::f64_size & size, ::user::enum_layout elayout)
    {
 
       auto pointOffset = get_context_offset(elayout);
@@ -23001,8 +23099,8 @@ if(get_parent())
    }
 
 
-   //void interaction::offset_context_offset_x(::draw2d::graphics_pointer & pgraphics, double cx)
-   void interaction::offset_context_offset_x(double cx, ::user::enum_layout elayout)
+   //void interaction::offset_context_offset_x(::draw2d::graphics_pointer & pgraphics, ::f64 cx)
+   void interaction::offset_context_offset_x(::f64 cx, ::user::enum_layout elayout)
    {
 
       auto x = get_context_offset_x(elayout);
@@ -23014,8 +23112,8 @@ if(get_parent())
    }
 
 
-   //   void interaction::offset_context_offset_y(::draw2d::graphics_pointer & pgraphics, int y)
-   void interaction::offset_context_offset_y(double cy, ::user::enum_layout elayout)
+   //   void interaction::offset_context_offset_y(::draw2d::graphics_pointer & pgraphics, ::i32 y)
+   void interaction::offset_context_offset_y(::f64 cy, ::user::enum_layout elayout)
    {
 
       auto y = get_context_offset_y(elayout);
@@ -23028,8 +23126,8 @@ if(get_parent())
 
 
 
-   //void interaction::set_context_offset(::draw2d::graphics_pointer & pgraphics, int x, int y)
-   void interaction::set_context_offset(const ::double_point & pointOffset, ::user::enum_layout elayout)
+   //void interaction::set_context_offset(::draw2d::graphics_pointer & pgraphics, ::i32 x, ::i32 y)
+   void interaction::set_context_offset(const ::f64_point & pointOffset, ::user::enum_layout elayout)
    {
 
       //auto point = pointOffset;
@@ -23070,7 +23168,7 @@ if(get_parent())
    }
 
 
-   void interaction::constrain_context_offset(double_point & point, ::user::enum_layout elayout)
+   void interaction::constrain_context_offset(::f64_point & point, ::user::enum_layout elayout)
    {
 
       //if (point == m_pointScroll)
@@ -23085,18 +23183,18 @@ if(get_parent())
    }
 
 
-   //void interaction::set_context_offset_x(::draw2d::graphics_pointer & pgraphics, int x)
+   //void interaction::set_context_offset_x(::draw2d::graphics_pointer & pgraphics, ::i32 x)
    //{
 
-   //   set_context_offset(pgraphics, x, (int)get_context_offset().y);
+   //   set_context_offset(pgraphics, x, (::i32)get_context_offset().y);
 
    //}
 
 
-   //void interaction::set_context_offset_y(::draw2d::graphics_pointer & pgraphics, int y)
+   //void interaction::set_context_offset_y(::draw2d::graphics_pointer & pgraphics, ::i32 y)
    //{
 
-   //   set_context_offset(pgraphics, (int)get_context_offset().x, y);
+   //   set_context_offset(pgraphics, (::i32)get_context_offset().x, y);
 
    //}
 
@@ -23111,11 +23209,11 @@ if(get_parent())
    //}
 
 
-   double_point interaction::get_context_offset(::user::enum_layout elayout)
+   ::f64_point interaction::get_context_offset(::user::enum_layout elayout)
    {
 
-      //::int_point point = m_pointScroll + m_pointDragScroll;
-      //::int_point point = m_pointScroll;
+      //::i32_point point = m_pointScroll + m_pointDragScroll;
+      //::i32_point point = m_pointScroll;
 
       //return point;
 
@@ -23124,11 +23222,11 @@ if(get_parent())
    }
 
 
-   double interaction::get_context_offset_x(::user::enum_layout elayout)
+   ::f64 interaction::get_context_offset_x(::user::enum_layout elayout)
    {
 
-      //::int_point point = m_pointScroll + m_pointDragScroll;
-      //::int_point point = m_pointScroll;
+      //::i32_point point = m_pointScroll + m_pointDragScroll;
+      //::i32_point point = m_pointScroll;
 
       //return point;
 
@@ -23137,11 +23235,11 @@ if(get_parent())
    }
 
 
-   double interaction::get_context_offset_y(::user::enum_layout elayout)
+   ::f64 interaction::get_context_offset_y(::user::enum_layout elayout)
    {
 
-      //::int_point point = m_pointScroll + m_pointDragScroll;
-      //::int_point point = m_pointScroll;
+      //::i32_point point = m_pointScroll + m_pointDragScroll;
+      //::i32_point point = m_pointScroll;
 
       //return point;
 
@@ -23150,7 +23248,7 @@ if(get_parent())
    }
 
 
-   double_size interaction::get_total_size(::user::enum_layout elayout)
+   ::f64_size interaction::get_total_size(::user::enum_layout elayout)
    {
 
       auto rectangleX = this->rectangle();
@@ -23160,7 +23258,7 @@ if(get_parent())
    }
 
 
-   void interaction::set_total_size(const ::double_size & size, ::user::enum_layout elayout)
+   void interaction::set_total_size(const ::f64_size & size, ::user::enum_layout elayout)
    {
 
       throw ::interface_only();
@@ -23168,7 +23266,7 @@ if(get_parent())
    }
 
 
-   void interaction::set_page_size(const ::double_size & size, ::user::enum_layout elayout)
+   void interaction::set_page_size(const ::f64_size & size, ::user::enum_layout elayout)
    {
 
       throw ::interface_only();
@@ -23176,7 +23274,7 @@ if(get_parent())
    }
 
 
-   //void interaction::set_context_offset(const ::double_point & point, ::user::enum_layout elayout)
+   //void interaction::set_context_offset(const ::f64_point & point, ::user::enum_layout elayout)
    //{
 
    //   throw ::interface_only();
@@ -23184,7 +23282,7 @@ if(get_parent())
    //}
 
 
-   void interaction::set_scroll_tracking_x(double x, ::user::enum_layout elayout)
+   void interaction::set_scroll_tracking_x(::f64 x, ::user::enum_layout elayout)
    {
 
       throw ::interface_only();
@@ -23192,7 +23290,7 @@ if(get_parent())
    }
 
 
-   void interaction::set_scroll_tracking_y(double x, ::user::enum_layout elayout)
+   void interaction::set_scroll_tracking_y(::f64 x, ::user::enum_layout elayout)
    {
 
       throw ::interface_only();
@@ -23201,7 +23299,7 @@ if(get_parent())
 
 
 
-   void interaction::set_context_offset_x(double x, ::user::enum_layout elayout)
+   void interaction::set_context_offset_x(::f64 x, ::user::enum_layout elayout)
    {
 
       throw ::interface_only();
@@ -23209,7 +23307,7 @@ if(get_parent())
    }
 
 
-   void interaction::set_context_offset_y(double x, ::user::enum_layout elayout)
+   void interaction::set_context_offset_y(::f64 x, ::user::enum_layout elayout)
    {
 
       throw ::interface_only();
@@ -23236,7 +23334,7 @@ if(get_parent())
    //}
 
 
-   double_size interaction::get_page_size(::user::enum_layout elayout)
+   ::f64_size interaction::get_page_size(::user::enum_layout elayout)
    {
 
       auto rectangleX = this->rectangle(elayout);
@@ -23246,12 +23344,12 @@ if(get_parent())
    }
 
 
-   double_point interaction::get_ascendant_context_offset()
+   ::f64_point interaction::get_ascendant_context_offset()
    {
 
       ::pointer<::user::interaction> puser = get_parent();
 
-      double_point point;
+      ::f64_point point;
 
       while (puser.is_set())
       {
@@ -23267,7 +23365,7 @@ if(get_parent())
    }
 
 
-   void interaction::get_margin_rect(::int_rectangle * prectMargin)
+   void interaction::get_margin_rect(::i32_rectangle * prectMargin)
    {
 
       prectMargin->left = 0;
@@ -23282,7 +23380,7 @@ if(get_parent())
    }
 
 
-   int interaction::get_final_scroll_bar_x_thickness(::user::enum_layout elayout)
+   ::i32 interaction::get_final_scroll_bar_x_thickness(::user::enum_layout elayout)
    {
 
       return 0;
@@ -23290,7 +23388,7 @@ if(get_parent())
    }
 
 
-   int interaction::get_final_scroll_bar_y_thickness(::user::enum_layout elayout)
+   ::i32 interaction::get_final_scroll_bar_y_thickness(::user::enum_layout elayout)
    {
 
       return 0;
@@ -23306,7 +23404,7 @@ if(get_parent())
    }
 
 
-   double_point interaction::get_parent_context_offset()
+   ::f64_point interaction::get_parent_context_offset()
    {
 
       ::user::interaction * puser = get_parent();
@@ -23318,7 +23416,7 @@ if(get_parent())
 
       }
 
-      ::double_point pointParentAccumulated;
+      ::f64_point pointParentAccumulated;
 
       if (puser != NULL)
       {
@@ -23383,7 +23481,7 @@ if(get_parent())
             if (!pmenu->payload("dont_hide_on_owner_hiding").as_bool())
             {
 
-               pmenu->hide();
+               pmenu->display(e_display_hide);
 
                pmenu->set_need_redraw();
 
@@ -23405,7 +23503,7 @@ if(get_parent())
 
                puserinteractionOwned->m_edisplayOwnedBeforeHidden = edisplayOwnedBeforeHidden;
 
-               puserinteractionOwned->hide();
+               puserinteractionOwned->display(e_display_hide, {});
 
                puserinteractionOwned->set_need_redraw();
 
@@ -23650,7 +23748,7 @@ if(get_parent())
    }
 
 
-   int_size interaction::get_window_minimum_size()
+   i32_size interaction::get_window_minimum_size()
    {
 
       return {};
@@ -23658,7 +23756,7 @@ if(get_parent())
    }
 
 
-   ::int_rectangle interaction::get_window_normal_stored_rectangle()
+   ::i32_rectangle interaction::get_window_normal_stored_rectangle()
    {
 
       return this->raw_rectangle();
@@ -23666,7 +23764,7 @@ if(get_parent())
    }
 
 
-   ::int_rectangle interaction::get_window_broad_stored_rectangle()
+   ::i32_rectangle interaction::get_window_broad_stored_rectangle()
    {
 
       return m_rectangleRestoreBroad;
@@ -23674,7 +23772,7 @@ if(get_parent())
    }
 
 
-   ::int_rectangle interaction::get_window_compact_stored_rectangle()
+   ::i32_rectangle interaction::get_window_compact_stored_rectangle()
    {
 
       return m_rectangleRestoreCompact;
@@ -23682,7 +23780,7 @@ if(get_parent())
    }
 
 
-   void interaction::set_window_normal_stored_rectangle(const ::int_rectangle & rectangle)
+   void interaction::set_window_normal_stored_rectangle(const ::i32_rectangle & rectangle)
    {
 
 
@@ -24139,7 +24237,7 @@ if(get_parent())
    }
 
 
-   //::item_pointer interaction::stock_item(enum_element eelement)
+   //::item_pointer interaction::stock_item(const ::e_element & eelement)
    //{
 
    //   return ::user::interaction_base::stock_item(eelement);
@@ -24278,15 +24376,15 @@ if(get_parent())
 
       }
 
-      //::int_size sizeTooltip = get_tooltip()->m_size;
+      //::i32_size sizeTooltip = get_tooltip()->m_size;
 
-      //::int_rectangle rectangleThisWindow;
+      //::i32_rectangle rectangleThisWindow;
 
       //window_rectangle(rectangleThisWindow);
 
-      //::int_rectangle rectangleWindow;
+      //::i32_rectangle rectangleWindow;
 
-      //::int_rectangle rectangleMonitor;
+      //::i32_rectangle rectangleMonitor;
 
       //psession->get_best_monitor(rectangleMonitor, rectangleThisWindow);
 
@@ -24354,7 +24452,7 @@ if(get_parent())
    }
 
 
-   double interaction::get_alpha()
+   ::f64 interaction::get_alpha()
    {
 
       if (m_palphasource == nullptr)
@@ -24545,7 +24643,7 @@ if(get_parent())
    }
 
 
-   //void interaction::defer_notify_mouse_move(bool & bPointInside, int_point & pointLast)
+   //void interaction::defer_notify_mouse_move(bool & bPointInside, i32_point & pointLast)
    //{
 
    //
@@ -24557,7 +24655,7 @@ if(get_parent())
 
    //   }
 
-   //   ::int_point pointCurrent;
+   //   ::i32_point pointCurrent;
 
    //   psession->get_cursor_position(pointCurrent);
 
@@ -24673,7 +24771,7 @@ if(get_parent())
    //
    //      }
    //
-   //      ::int_point pointCurrent;
+   //      ::i32_point pointCurrent;
    //
    //      psession->get_cursor_position(pointCurrent);
    //
@@ -24920,10 +25018,10 @@ void interaction::on_control_box_zoom(){
    }
 
 
-   ::double_size interaction::get_size(enum_layout elayout)
+   ::f64_size interaction::get_size(enum_layout elayout)
    {
 
-      ::int_rectangle rectangleWindow;
+      ::i32_rectangle rectangleWindow;
 
       window_rectangle(rectangleWindow, elayout);
 
@@ -24932,7 +25030,7 @@ void interaction::on_control_box_zoom(){
    }
 
 
-   ::double_size interaction::get_client_size(enum_layout elayout)
+   ::f64_size interaction::get_client_size(enum_layout elayout)
    {
 
       auto rectangleX = this->rectangle(elayout);
@@ -24942,10 +25040,10 @@ void interaction::on_control_box_zoom(){
    }
 
 
-   int interaction::width(enum_layout elayout)
+   ::i32 interaction::width(enum_layout elayout)
    {
 
-      ::int_rectangle rectangleWindow;
+      ::i32_rectangle rectangleWindow;
 
       window_rectangle(rectangleWindow, elayout);
 
@@ -24954,10 +25052,10 @@ void interaction::on_control_box_zoom(){
    }
 
 
-   int interaction::height(enum_layout elayout)
+   ::i32 interaction::height(enum_layout elayout)
    {
 
-      ::int_rectangle rectangleWindow;
+      ::i32_rectangle rectangleWindow;
 
       window_rectangle(rectangleWindow, elayout);
 
@@ -24966,7 +25064,7 @@ void interaction::on_control_box_zoom(){
    }
 
 
-   int interaction::client_width(enum_layout elayout)
+   ::i32 interaction::client_width(enum_layout elayout)
    {
 
       auto rectangleX = this->rectangle(elayout);
@@ -24976,7 +25074,7 @@ void interaction::on_control_box_zoom(){
    }
 
 
-   int interaction::client_height(enum_layout elayout)
+   ::i32 interaction::client_height(enum_layout elayout)
    {
 
       auto rectangleX = this->rectangle(elayout);
@@ -25148,7 +25246,7 @@ void interaction::on_control_box_zoom(){
 
    //}
 
-   //::item interaction::on_hit_test(const ::int_point & point, ::user::e_zorder ezorder)
+   //::item interaction::on_hit_test(const ::i32_point & point, ::user::e_zorder ezorder)
    //{
 
    //   auto rectangle = this->rectangle(::e_element_client);
@@ -25165,7 +25263,7 @@ void interaction::on_control_box_zoom(){
    //}
 
 
-   bool interaction::scroll_bar_get_client_rect(::int_rectangle & rectangle)
+   bool interaction::scroll_bar_get_client_rect(::i32_rectangle & rectangle)
    {
 
       rectangle = this->rectangle();
@@ -25182,7 +25280,7 @@ void interaction::on_control_box_zoom(){
    //   void interaction::on_calc_size(calc_size * psize)
    //   {
    //
-   //      ::int_rectangle rectangleWindow;
+   //      ::i32_rectangle rectangleWindow;
    //
    //      window_rectangle(rectangleWindow);
    //
@@ -25290,12 +25388,12 @@ void interaction::on_control_box_zoom(){
    //#ifdef WINDOWS
    //
    //
-   //   character_count interaction::_009GetWindowText(wchar_t * pwsz, int n)
+   //   character_count interaction::_009GetWindowText(wchar_t * pwsz, ::i32 n)
    //   {
    //
    //      wstring wstr(m_strWindowText);
    //
-   //      n = (int)minimum(wstr.length() + 1, n);
+   //      n = (::i32)minimum(wstr.length() + 1, n);
    //
    //      wcsncpy(pwsz, wstr.c_str(), n);
    //
@@ -25318,7 +25416,7 @@ void interaction::on_control_box_zoom(){
    //#else
    //
    //
-   //   character_count interaction::_009GetWindowText(char * psz, int n)
+   //   character_count interaction::_009GetWindowText(char_pointer psz, ::i32 n)
    //   {
    //
    //      auto strWindowText = _get_window_text();
@@ -25394,7 +25492,7 @@ void interaction::on_control_box_zoom(){
    //   }
 
 
-   //void interaction::get_layout_rect(::int_rectangle * prectangle)
+   //void interaction::get_layout_rect(::i32_rectangle * prectangle)
 
    //{
 
@@ -25404,11 +25502,11 @@ void interaction::on_control_box_zoom(){
    //}
 
 
-   /*void interaction::set_placement(const ::int_rectangle & rectangle)
+   /*void interaction::set_placement(const ::i32_rectangle & rectangle)
 
          {
 
-            ::int_rectangle rectangleFinal(rectangle);
+            ::i32_rectangle rectangleFinal(rectangle);
 
 
             rectangleFinal.deflate(m_rectanglePadding);
@@ -25827,17 +25925,17 @@ void interaction::on_control_box_zoom(){
       //
       //            pappearance->m_pointLastCursor = pmouse->m_point;
       //
-      //            ::int_point pointClient;
+      //            ::i32_point pointClient;
       //
       //            pointClient = pmouse->m_point;
       //
       //            screen_to_client()(pointClient);
       //
-      //            auto ekeyModifiers = psession->key_modifiers();
+      //            auto & keyboardstate = psession->keyboard_state();
       //
       //            bool bDoubleClick = false;
       //
-      //            if (pappearance->on_button_down(e_key_left_button, pointClient, ekeyModifiers, bDoubleClick))
+      //            if (pappearance->on_button_down(e_key_left_button, pointClient, keyboardstate, bDoubleClick))
       //            {
       //
       //               pmouse->m_bRet = true;
@@ -26037,7 +26135,7 @@ void interaction::on_control_box_zoom(){
 
       //      bool bSameItemAsMouseDown = ::is_same_item(pwindowimpl->m_pitemLButtonDown, puseritemLeftButtonUp);
 
-      //      //informationf("interaction::on_message_left_button_up item=" << (int)pitemLeftButtonUp->m_item.m_iItem<<", SameUserInteractionAsMsDwn="<< (int) bSameUserInteractionAsMouseDown<<", SameItemAsMsDwn=" << (int) bSameItemAsMouseDown);
+      //      //informationf("interaction::on_message_left_button_up item=" << (::i32)pitemLeftButtonUp->m_item.m_iItem<<", SameUserInteractionAsMsDwn="<< (::i32) bSameUserInteractionAsMouseDown<<", SameItemAsMsDwn=" << (::i32) bSameItemAsMouseDown);
 
       //      if (bSameUserInteractionAsMouseDown && bSameItemAsMouseDown)
       //      {
@@ -26045,7 +26143,7 @@ void interaction::on_control_box_zoom(){
       //         pmessage->m_bRet = on_click_generation(pwindowimpl->m_pitemLButtonDown);
 
       //         information() << "interaction::on_message_left_button_up on_click_generation ret="
-      //            << (int)pmessage->m_bRet;
+      //            << (::i32)pmessage->m_bRet;
 
       //         if (pmessage->m_bRet)
       //         {
@@ -26086,7 +26184,7 @@ void interaction::on_control_box_zoom(){
 
       //               route(ptopic);
 
-      //               information() << "interaction::on_message_left_button_up route_btn_clked=" << (int)ptopic->m_bRet;
+      //               information() << "interaction::on_message_left_button_up route_btn_clked=" << (::i32)ptopic->m_bRet;
 
       //               pmessage->m_bRet = ptopic->m_bRet;
 
@@ -26112,7 +26210,7 @@ void interaction::on_control_box_zoom(){
 
       //               route_command(&command);
 
-      //               information() << "interaction::on_message_left_button_up route_cmd_msg=" << (int)command.m_bRet;
+      //               information() << "interaction::on_message_left_button_up route_cmd_msg=" << (::i32)command.m_bRet;
 
       //               pmessage->m_bRet = command.m_bRet;
 
@@ -26172,7 +26270,7 @@ void interaction::on_control_box_zoom(){
 
       //   pappearance->m_pointLastCursor = pmouse->m_point;
 
-      //   ::int_point pointClient;
+      //   ::i32_point pointClient;
 
       //   pointClient = pmouse->m_point;
 
@@ -26180,9 +26278,9 @@ void interaction::on_control_box_zoom(){
 
       //   auto psession = session();
 
-      //   auto ekeyModifiers = psession->key_modifiers();
+      //   auto & keyboardstate = psession->keyboard_state();
 
-      //   if (pappearance->on_button_up(e_key_left_button, pointClient, ekeyModifiers))
+      //   if (pappearance->on_button_up(e_key_left_button, pointClient, keyboardstate))
       //   {
 
       //      pmessage->m_bRet = true;
@@ -26198,6 +26296,28 @@ void interaction::on_control_box_zoom(){
 
    void interaction::on_message_parent_mouse_move(::message::message * pmessage)
    {
+      ::string strType;
+
+      strType = type(*this).name();
+
+
+
+      if (strType.contains("font_list"))
+      {
+
+         information() << "interaction::on_message_parent_mouse_move font_list (1)";
+      }
+      else if (strType.contains("simple_scroll_bar"))
+      {
+
+         information() << "interaction::on_message_parent_mouse_move simple_scroll_bar (1)";
+      }
+      else if (strType.contains("simple_application::main_frame"))
+      {
+
+         information() << "simple_application::main_frame on_message_parent_mouse_move (1)";
+      }
+
 
       if (!is_window_enabled())
       {
@@ -26217,10 +26337,6 @@ void interaction::on_control_box_zoom(){
 
       }
 
-      ::string strType;
-
-      strType = type(this).name();
-
       if (strType.contains("font_list"))
       {
 
@@ -26230,7 +26346,7 @@ void interaction::on_control_box_zoom(){
       else if (strType.contains("simple_scroll_bar"))
       {
 
-         //information() << "interaction::on_message_parent_mouse_move simple_scroll_bar";
+         information() << "interaction::on_message_parent_mouse_move simple_scroll_bar";
 
       }
       else if (strType.contains("simple_application::main_frame"))
@@ -26248,7 +26364,7 @@ void interaction::on_control_box_zoom(){
 
       //      m_bHorizontalBarDragScrollingActive = true;
 
-      //      int iOffset = m_pointBarDragScrollLeftButtonDown.x - pmouse->m_point.x;
+      //      ::i32 iOffset = m_pointBarDragScrollLeftButtonDown.x - pmouse->m_point.x;
 
       //      auto iHorizontalBarDragScroll = minimum_maximum(m_pointBarDragScrollStart.x + iOffset, 0,
       //                                                      m_pointBarDragScrollMax.x);
@@ -26275,7 +26391,7 @@ void interaction::on_control_box_zoom(){
 
       //      m_bVerticalBarDragScrollingActive = true;
 
-      //      int iOffset = m_pointBarDragScrollLeftButtonDown.y - pmouse->m_point.y;
+      //      ::i32 iOffset = m_pointBarDragScrollLeftButtonDown.y - pmouse->m_point.y;
 
       //      auto iVerticalBarDragScroll = minimum_maximum(m_pointBarDragScrollStart.y + iOffset, 0,
       //                                                    m_pointBarDragScrollMax.y);
@@ -26450,15 +26566,15 @@ void interaction::on_control_box_zoom(){
 //               //if (::is_set(pappearance))
 //               //{
 //
-//               //   ::int_point pointClient;
+//               //   ::i32_point pointClient;
 //
 //               //   _screen_to_client(pointClient, pmouse->m_point);
 //
 //               //   auto psession = session();
 //
-//               //   auto ekeyModifiers = psession->key_modifiers();
+//               //   auto & keyboardstate = psession->keyboard_state();
 //
-//               //   pappearance->on_mouse_enter(pointClient, ekeyModifiers);
+//               //   pappearance->on_mouse_enter(pointClient, keyboardstate);
 //
 //               //}
 //
@@ -26477,7 +26593,7 @@ void interaction::on_control_box_zoom(){
 
       //      pappearance->m_pointLastCursor = pmouse->m_point;
 
-      //      ::int_point pointClient;
+      //      ::i32_point pointClient;
 
       //      pointClient = pmouse->m_point;
 
@@ -26487,18 +26603,18 @@ void interaction::on_control_box_zoom(){
 
       //      auto psession = session();
 
-      //      auto ekeyModifiers = psession->key_modifiers();
+      //      auto & keyboardstate = psession->keyboard_state();
 
-      //      bool bDown = pmouse->m_ebuttonstate & e_button_state_left;
+      //      bool bDown = pmouse->m_ekeystate & e_key_state_left_button;
       //      /*{
 
-      //         bRet = pappearance->on_mouse_drag(pointClient, ekeyModifiers);
+      //         bRet = pappearance->on_mouse_drag(pointClient, keyboardstate);
 
       //      }
       //      else
       //      {*/
 
-      //      bRet = pappearance->on_mouse_move(pointClient, bDown, ekeyModifiers);
+      //      bRet = pappearance->on_mouse_move(pointClient, bDown, keyboardstate);
 
       //      if (get_wnd()->windowing_window())
       //      {
@@ -26726,19 +26842,15 @@ void interaction::on_control_box_zoom(){
 
             pappearance->m_pointLastCursor = pmouse->m_pointHost;
 
-            ::int_point pointClient;
+            ::i32_point pointClient;
 
             pointClient = pmouse->m_pointHost;
 
             host_to_client()(pointClient);
 
-            auto psession = session();
-
-            auto ekeyModifiers = psession->key_modifiers();
-
             bool bDoubleClick = false;
 
-            if (pappearance->on_button_down(e_key_left_button, pointClient, ekeyModifiers, bDoubleClick))
+            if (pappearance->on_button_down(::user::e_key_left_button, pointClient, bDoubleClick))
             {
 
                pmouse->m_bRet = true;
@@ -27026,7 +27138,7 @@ void interaction::on_control_box_zoom(){
 
             bool bSameItemAsMouseDown = ::is_same_item(pwindowimpl->m_pitemLButtonDown, puseritemLeftButtonUp);
 
-            //informationf("interaction::on_message_left_button_up item=" << (int)pitemLeftButtonUp->m_item.m_iItem<<", SameUserInteractionAsMsDwn="<< (int) bSameUserInteractionAsMouseDown<<", SameItemAsMsDwn=" << (int) bSameItemAsMouseDown);
+            //informationf("interaction::on_message_left_button_up item=" << (::i32)pitemLeftButtonUp->m_item.m_iItem<<", SameUserInteractionAsMsDwn="<< (::i32) bSameUserInteractionAsMouseDown<<", SameItemAsMsDwn=" << (::i32) bSameItemAsMouseDown);
 
             if (bSameUserInteractionAsMouseDown && bSameItemAsMouseDown)
             {
@@ -27034,7 +27146,7 @@ void interaction::on_control_box_zoom(){
                pmessage->m_bRet = on_click_generation(pwindowimpl->m_pitemLButtonDown, pmouse);
 
                information() << "interaction::on_message_left_button_up on_click_generation ret="
-                  << (int)pmessage->m_bRet;
+                  << (::i32)pmessage->m_bRet;
 
                if (pmessage->m_bRet)
                {
@@ -27077,7 +27189,7 @@ void interaction::on_control_box_zoom(){
 
                      route(ptopic);
 
-                     // information() << "interaction::on_message_left_button_up (1) route_btn_clked=" << (int)ptopic->m_bRet;
+                     // information() << "interaction::on_message_left_button_up (1) route_btn_clked=" << (::i32)ptopic->m_bRet;
 
                      pmessage->m_bRet = ptopic->m_bRet;
 
@@ -27103,7 +27215,7 @@ void interaction::on_control_box_zoom(){
 
                      route_command(pcommand);
 
-                     information() << "interaction::on_message_left_button_up route_cmd_msg=" << (int)pcommand->m_bRet;
+                     information() << "interaction::on_message_left_button_up route_cmd_msg=" << (::i32)pcommand->m_bRet;
 
                      pmessage->m_bRet = pcommand->m_bRet;
 
@@ -27166,17 +27278,13 @@ void interaction::on_control_box_zoom(){
 
          pappearance->m_pointLastCursor = pmouse->m_pointHost;
 
-         ::int_point pointClient;
+         ::i32_point pointClient;
 
          pointClient = pmouse->m_pointHost;
 
          host_to_client()(pointClient);
 
-         auto psession = session();
-
-         auto ekeyModifiers = psession->key_modifiers();
-
-         if (pappearance->on_button_up(e_key_left_button, pointClient, ekeyModifiers))
+         if (pappearance->on_button_up(::user::e_key_left_button, pointClient))
          {
 
             pmessage->m_bRet = true;
@@ -27295,7 +27403,7 @@ __check_refdbg;
 
             m_bHorizontalBarDragScrollingActive = true;
 
-            int iOffset = m_pointBarDragScrollLeftButtonDown.x - pmouse->m_pointHost.x;
+            ::i32 iOffset = m_pointBarDragScrollLeftButtonDown.x - pmouse->m_pointHost.x;
 
             auto iHorizontalBarDragScroll = minimum_maximum(m_pointBarDragScrollStart.x + iOffset, 0,
                                                             m_pointBarDragScrollMax.x);
@@ -27324,7 +27432,7 @@ __check_refdbg;
 
             m_bVerticalBarDragScrollingActive = true;
 
-            int iOffset = m_pointBarDragScrollLeftButtonDown.y - pmouse->m_pointHost.y;
+            ::i32 iOffset = m_pointBarDragScrollLeftButtonDown.y - pmouse->m_pointHost.y;
 
             auto iVerticalBarDragScroll = minimum_maximum(m_pointBarDragScrollStart.y + iOffset, 0,
                                                           m_pointBarDragScrollMax.y);
@@ -27520,15 +27628,15 @@ __check_refdbg;
             //      //if (::is_set(pappearance))
             //      //{
 
-            //      //   ::int_point pointClient;
+            //      //   ::i32_point pointClient;
 
             //      //   _screen_to_client(pointClient, pmouse->m_point);
 
             //      //   auto psession = session();
 
-            //      //   auto ekeyModifiers = psession->key_modifiers();
+            //      //   auto & keyboardstate = psession->keyboard_state();
 
-            //      //   pappearance->on_mouse_enter(pointClient, ekeyModifiers);
+            //      //   pappearance->on_mouse_enter(pointClient, keyboardstate);
 
             //      //}
 
@@ -27551,7 +27659,7 @@ __check_refdbg;
 
             pappearance->m_pointLastCursor = pmouse->m_pointHost;
 
-            ::int_point pointClient;
+            ::i32_point pointClient;
 
             pointClient = pmouse->m_pointHost;
 
@@ -27561,12 +27669,12 @@ __check_refdbg;
 
             auto psession = session();
 
-            auto ekeyModifiers = psession->key_modifiers();
+            //auto & keyboardstate = *psession;
 
-            bool bDown = pmouse->m_ebuttonstate & e_button_state_left;
+            bool bDown = pmouse->m_keystate.is_left_button_pressed();
             /*{
 
-               bRet = pappearance->on_mouse_drag(pointClient, ekeyModifiers);
+               bRet = pappearance->on_mouse_drag(pointClient, keyboardstate);
 
             }
             else
@@ -27574,7 +27682,7 @@ __check_refdbg;
 
             pappearance->m_pmessage = pmessage;
 
-            bRet = pappearance->on_mouse_move(pointClient, bDown, ekeyModifiers);
+            bRet = pappearance->on_mouse_move(pointClient);
 
             if (get_wnd()->windowing_window())
             {
@@ -27700,7 +27808,7 @@ __check_refdbg;
 
          pmessage->m_bRet = on_click_generation(pwindowimpl->m_pitemLButtonDown, pmouse);
 
-         information() << "interaction::on_message_left_button_up on_click_generation ret=" << (int)pmessage->m_bRet;
+         information() << "interaction::on_message_left_button_up on_click_generation ret=" << (::i32)pmessage->m_bRet;
 
          if (pmessage->m_bRet)
          {
@@ -27744,7 +27852,7 @@ __check_refdbg;
 
                route(ptopic);
 
-               // information() << "interaction::on_message_left_button_up (2) route_btn_clked=" << (int)ptopic->m_bRet;
+               // information() << "interaction::on_message_left_button_up (2) route_btn_clked=" << (::i32)ptopic->m_bRet;
 
                pmessage->m_bRet = ptopic->m_bRet;
 
@@ -27770,7 +27878,7 @@ __check_refdbg;
 
                route_command(pcommand);
 
-               information() << "interaction::on_message_left_button_up route_cmd_msg=" << (int)pcommand->m_bRet;
+               information() << "interaction::on_message_left_button_up route_cmd_msg=" << (::i32)pcommand->m_bRet;
 
                pmessage->m_bRet = pcommand->m_bRet;
 
@@ -27826,19 +27934,15 @@ __check_refdbg;
 
          pappearance->m_pointLastCursor = pmouse->m_pointHost;
 
-         ::int_point pointClient;
+         ::i32_point pointClient;
 
          pointClient = pmouse->m_pointHost;
 
          host_to_client()(pointClient);
 
-         auto psession = session();
-
-         auto ekeyModifiers = psession->key_modifiers();
-
          bool bDoubleClick = true;
 
-         if (pappearance->on_button_down(e_key_left_button, pointClient, ekeyModifiers, bDoubleClick))
+         if (pappearance->on_button_down(::user::e_key_left_button, pointClient, bDoubleClick))
          {
 
             pmessage->m_bRet = true;
@@ -27880,19 +27984,15 @@ __check_refdbg;
 
             pappearance->m_pointLastCursor = pmouse->m_pointHost;
 
-            ::int_point pointClient;
+            ::i32_point pointClient;
 
             pointClient = pmouse->m_pointHost;
 
             host_to_client()(pointClient);
 
-            auto psession = session();
-
-            auto ekeyModifiers = psession->key_modifiers();
-
             bool bDoubleClick = false;
 
-            if (pappearance->on_button_down(e_key_right_button, pointClient, ekeyModifiers, true))
+            if (pappearance->on_button_down(::user::e_key_right_button, pointClient, bDoubleClick))
             {
 
                pmouse->m_bRet = true;
@@ -27939,17 +28039,13 @@ __check_refdbg;
 
          pappearance->m_pointLastCursor = pmouse->m_pointHost;
 
-         ::int_point pointClient;
+         ::i32_point pointClient;
 
          pointClient = pmouse->m_pointHost;
 
          host_to_client()(pointClient);
 
-         auto psession = session();
-
-         auto ekeyModifiers = psession->key_modifiers();
-
-         if (pappearance->on_button_up(e_key_right_button, pointClient, ekeyModifiers))
+         if (pappearance->on_button_up(::user::e_key_right_button, pointClient))
          {
 
             pmessage->m_bRet = true;
@@ -28041,7 +28137,7 @@ __check_refdbg;
 
       ::pointer<::message::mouse_wheel> pwheel = pmessage;
 
-      double y = pwheel->m_Δ / 120.0;
+      ::f64 y = pwheel->m_Δ / 120.0;
 
       auto pappearance = get_appearance();
 
@@ -28050,7 +28146,7 @@ __check_refdbg;
 
          pappearance->m_pointLastCursor = pwheel->m_pointHost;
 
-         ::int_point pointClient;
+         ::i32_point pointClient;
 
          pointClient = pwheel->m_pointHost;
 
@@ -28060,7 +28156,7 @@ __check_refdbg;
 
          auto psession = session();
 
-         auto ekeyModifiers = psession->key_modifiers();
+         //auto & keyboardstate = psession->keyboard_state();
 
          bRet = pappearance->on_scroll_event(pointClient, 0., y);
 
@@ -28184,7 +28280,7 @@ __check_refdbg;
 
          }
 
-         ::int_rectangle_array_base rectanglea;
+         ::i32_rectangle_array_base rectanglea;
 
          if (::is_item_set(pitemOldHover))
          {
@@ -28228,7 +28324,7 @@ __check_refdbg;
                if (rectangleBounding.ok())
                {
 
-                  //::int_rectangle rectangleBounding = ::bounding_box(user_item(pitemHitTest));
+                  //::i32_rectangle rectangleBounding = ::bounding_box(user_item(pitemHitTest));
 
                   rectangleBounding.inflate(1);
 
@@ -28480,7 +28576,7 @@ __check_refdbg;
    ::item_pointer interaction::hit_test(::user::mouse * pmouse, e_zorder ezorder)
    {
 
-      ::int_point pointClient;
+      ::i32_point pointClient;
 
       pointClient = pmouse->m_pointHost;
 
@@ -28532,10 +28628,10 @@ __check_refdbg;
    }
 
 
-   ::item_pointer interaction::hit_test(const ::int_point & pointClient, e_zorder ezorder)
+   ::item_pointer interaction::hit_test(const ::i32_point & pointClient, e_zorder ezorder)
    {
 
-      ::int_rectangle rectangleXHitTest;
+      ::i32_rectangle rectangleXHitTest;
 
       if (get_element_rectangle(rectangleXHitTest, e_element_client_hit_test))
       {
@@ -28564,7 +28660,7 @@ __check_refdbg;
    }
 
 
-   ::item_pointer interaction::parent_client_hit_test(const ::int_point & point, e_zorder ezorder)
+   ::item_pointer interaction::parent_client_hit_test(const ::i32_point & point, e_zorder ezorder)
    {
 
       auto p = point;
@@ -28576,7 +28672,7 @@ __check_refdbg;
    }
 
 
-   ::item_pointer interaction::parent_client_on_hit_test(const ::int_point & point, e_zorder ezorder)
+   ::item_pointer interaction::parent_client_on_hit_test(const ::i32_point & point, e_zorder ezorder)
    {
 
       auto p = point;
@@ -28588,7 +28684,7 @@ __check_refdbg;
    }
 
 
-   ::item_pointer interaction::on_hit_test(const ::int_point & point, e_zorder ezorder)
+   ::item_pointer interaction::on_hit_test(const ::i32_point & point, e_zorder ezorder)
    {
 
       {
@@ -28647,7 +28743,7 @@ __check_refdbg;
    }
 
 
-   bool interaction::item_contains(::item * pitem, const ::int_point & point)
+   bool interaction::item_contains(::item * pitem, const ::i32_point & point)
    {
 
       // if(pitem->m_item.m_eelement == e_element_resize)
@@ -28715,7 +28811,7 @@ __check_refdbg;
    }
 
 
-   ::item_pointer interaction::on_items_hit_test(const ::int_point & point, e_zorder ezorder)
+   ::item_pointer interaction::on_items_hit_test(const ::i32_point & point, e_zorder ezorder)
    {
 
       for (auto [iIndex, pitemcontainer] : m_itemcontainermap)
@@ -28737,7 +28833,7 @@ __check_refdbg;
    }
 
 
-   ::item_pointer interaction::on_items_hit_test(const ::int_point & point, e_zorder ezorder, ::collection::index iIdContainer, ::item_array * pitema)
+   ::item_pointer interaction::on_items_hit_test(const ::i32_point & point, e_zorder ezorder, ::collection::index iIdContainer, ::item_array * pitema)
    {
 
       _synchronous_lock synchronouslock(this->synchronization(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
@@ -28856,7 +28952,7 @@ __check_refdbg;
    }
 
 
-   //   ::item_pointer interaction::on_client_area_hit_test(const ::int_point &point, e_zorder ezorder)
+   //   ::item_pointer interaction::on_client_area_hit_test(const ::i32_point &point, e_zorder ezorder)
    //   {
    //
    //      if (m_pitemClient)
@@ -28999,7 +29095,7 @@ __check_refdbg;
    }
 
 
-void interaction::on_keyboard_layout_change(const char *pszKeyboardLayoutId)
+void interaction::on_keyboard_layout_change(const_char_pointer pszKeyboardLayoutId)
 {
    
    
@@ -29013,11 +29109,11 @@ void interaction::on_keyboard_layout_change(const char *pszKeyboardLayoutId)
       //   if (::is_null(pparent))
       //   {
 
-      //      //::int_rectangle rectangleWindow;
+      //      //::i32_rectangle rectangleWindow;
 
       //      //window_rectangle(rectangleWindow, e_layout_design);
 
-      //      //::int_rectangle rectangle(rectangleWindow);
+      //      //::i32_rectangle rectangle(rectangleWindow);
 
       //      auto rectangle = this->rectangle();
 
@@ -29033,7 +29129,7 @@ void interaction::on_keyboard_layout_change(const char *pszKeyboardLayoutId)
       //         if (windowing_window()->is_composite())
       //         {
 
-      //            auto & iNcDraw0FillCounter = payload("nc_draw_0_fill_counter").int_reference();
+      //            auto & iNcDraw0FillCounter = payload("nc_draw_0_fill_counter").i32_reference();
 
       //            iNcDraw0FillCounter++;
 
@@ -29099,7 +29195,7 @@ void interaction::on_keyboard_layout_change(const char *pszKeyboardLayoutId)
 
       //   }
 
-      if (m_flagNonClient.has(e_non_client_background) && (!top_level() || !top_level()->frame_is_transparent()))
+      if (m_enonclient.has(::user::e_non_client_background) && (!top_level() || !top_level()->frame_is_transparent()))
       {
 
          draw_control_background(pgraphics);
@@ -29114,7 +29210,7 @@ void interaction::on_keyboard_layout_change(const char *pszKeyboardLayoutId)
 
       //return;
 
-      if (m_flagNonClient.has(e_non_client_focus_rect) && keyboard_focus_is_focusable())
+      if (m_enonclient.has(::user::e_non_client_focus_rect) && keyboard_focus_is_focusable())
       {
 
          simple_ui_draw_focus_rect(pgraphics);
@@ -29233,7 +29329,7 @@ void interaction::on_keyboard_layout_change(const char *pszKeyboardLayoutId)
 
       }
 
-      int iCount = 0;
+      ::i32 iCount = 0;
 
       for (auto & pitem : *pitema)
       {
@@ -29409,7 +29505,7 @@ void interaction::on_keyboard_layout_change(const char *pszKeyboardLayoutId)
    }
 
 
-   void interaction::get_text_composition_area(::int_rectangle & rectangle)
+   void interaction::get_text_composition_area(::i32_rectangle & rectangle)
    {
 
 
@@ -29447,7 +29543,7 @@ void interaction::on_keyboard_layout_change(const char *pszKeyboardLayoutId)
 
          string strCharacter = get_utf8_char(psz);
 
-         int iCharacter = unicode_index(strCharacter);
+         ::i32 iCharacter = unicode_index(strCharacter);
 
          if (m_pappearance)
          {
@@ -29509,7 +29605,7 @@ void interaction::on_keyboard_layout_change(const char *pszKeyboardLayoutId)
    //}
 
 
-   double interaction::_001GetTopLeftWeightedOccludedOpaqueRate()
+   ::f64 interaction::_001GetTopLeftWeightedOccludedOpaqueRate()
    {
 
       if (!window())
@@ -29524,12 +29620,12 @@ void interaction::on_keyboard_layout_change(const char *pszKeyboardLayoutId)
    }
 
 
-   int_point interaction::screen_origin(enum_layout elayout)
+   i32_point interaction::screen_origin(enum_layout elayout)
    {
 
       auto puserinteraction = this;
 
-      ::int_point point;
+      ::i32_point point;
 
       while (puserinteraction)
       {
@@ -29551,12 +29647,12 @@ void interaction::on_keyboard_layout_change(const char *pszKeyboardLayoutId)
    }
 
 
-   int_point interaction::host_origin(enum_layout elayout)
+   i32_point interaction::host_origin(enum_layout elayout)
    {
 
       auto puserinteraction = this;
 
-      ::int_point point;
+      ::i32_point point;
 
       while (puserinteraction)
       {
@@ -29752,7 +29848,7 @@ void interaction::on_keyboard_layout_change(const char *pszKeyboardLayoutId)
 
    //}
 
-   //    ::int_rectangle rectangleWindow;
+   //    ::i32_rectangle rectangleWindow;
 
    //    bool bSet = false;
 
@@ -29802,7 +29898,7 @@ void interaction::on_keyboard_layout_change(const char *pszKeyboardLayoutId)
    // }
 
 
-   // bool interaction::_001FancyInitialFramePlacement(::int_rectangle * lprect, const double_rectangle & rectangleOptionalRateOrSize)
+   // bool interaction::_001FancyInitialFramePlacement(::i32_rectangle * lprect, const ::f64_rectangle & rectangleOptionalRateOrSize)
    // {
 
    //    return calculate_window_rectangle_in_main_monitor(lprect, rectangleOptionalRateOrSize);
@@ -29911,7 +30007,7 @@ void interaction::on_keyboard_layout_change(const char *pszKeyboardLayoutId)
    }
 
 
-   bool interaction::wfi_has_up_down()
+   i32_boolean interaction::wfi_has_up_down()
    {
 
       return m_ewindowflag & e_window_flag_updown;
@@ -30060,7 +30156,7 @@ void interaction::on_keyboard_layout_change(const char *pszKeyboardLayoutId)
    //}
 
 
-   ::user::enum_state interaction::get_state()
+   ::user::e_state interaction::get_state()
    {
 
       auto psession = session();
@@ -30270,7 +30366,7 @@ void interaction::on_keyboard_layout_change(const char *pszKeyboardLayoutId)
    }
 
 
-   void control_cmd_ui::SetCheck(int nCheck)
+   void control_cmd_ui::SetCheck(::i32 nCheck)
    {
       ASSERT(nCheck >= 0 && nCheck <= 2); // 0=>off, 1=>on, 2=>indeterminate
       /*::pointer<::user::interaction>puserinteraction = (::pointer<::user::interaction>_pOther;
@@ -30278,7 +30374,7 @@ void interaction::on_keyboard_layout_change(const char *pszKeyboardLayoutId)
       ASSERT_KINDOF(simple_toolbar, pToolBar);
       ASSERT(m_nIndex < m_nIndexMax);
 
-      unsigned int nNewStyle = pToolBar->GetButtonStyle(m_nIndex) &
+      ::u32 nNewStyle = pToolBar->GetButtonStyle(m_nIndex) &
                   ~(TBBS_CHECKED | TBBS_INDETERMINATE);
       if (nCheck == 1)
           nNewStyle |= TBBS_CHECKED;
@@ -30582,7 +30678,7 @@ void interaction::on_keyboard_layout_change(const char *pszKeyboardLayoutId)
    }
 
 
-   bool interaction::get_element_rectangle(::int_rectangle & rectangle, enum_element eelement)
+   bool interaction::get_element_rectangle(::i32_rectangle & rectangle, const ::e_element & eelement)
    {
 
       if (eelement == e_element_client)
@@ -30634,14 +30730,14 @@ void interaction::on_keyboard_layout_change(const char *pszKeyboardLayoutId)
 
          auto rectangleX = this->rectangle();
 
-         //int iMargin = rectangleX.height() / 8;
-         int iMargin = 0;
+         //::i32 iMargin = rectangleX.height() / 8;
+         ::i32 iMargin = 0;
 
-         ::int_rectangle rectangleDropDown;
+         ::i32_rectangle rectangleDropDown;
 
          rectangleDropDown = rectangleX;
 
-         int iW = rectangleX.height() * 5 / 8;
+         ::i32 iW = rectangleX.height() * 5 / 8;
 
          rectangleDropDown.right -= iMargin;
          rectangleDropDown.bottom -= iMargin;
@@ -30658,15 +30754,15 @@ void interaction::on_keyboard_layout_change(const char *pszKeyboardLayoutId)
 
          auto rectangleX = this->rectangle();
 
-         ::int_rectangle rectangleDropDown;
+         ::i32_rectangle rectangleDropDown;
 
          get_element_rectangle(rectangleDropDown, e_element_drop_down);
 
-         ::int_rectangle rectangleEdit = rectangleX;
+         ::i32_rectangle rectangleEdit = rectangleX;
 
          rectangleEdit.right = rectangleDropDown.left;
 
-         //::int_rectangle rectanglePadding = _001GetRect(::user::rect_edit_padding);
+         //::i32_rectangle rectanglePadding = _001GetRect(::user::rect_edit_padding);
 
          //rectangleEdit.deflate(rectanglePadding);
 
@@ -30775,7 +30871,7 @@ void interaction::on_keyboard_layout_change(const char *pszKeyboardLayoutId)
    }
 
 
-   ::double_rectangle interaction::user_item_rectangle(::user::item * puseritem, ::user::enum_layout elayout)
+   ::f64_rectangle interaction::user_item_rectangle(::user::item * puseritem, ::user::enum_layout elayout)
    {
 
       if (puseritem->m_pitem->m_item.m_eelement == e_element_client)
@@ -30796,7 +30892,7 @@ void interaction::on_keyboard_layout_change(const char *pszKeyboardLayoutId)
    }
 
 
-   ::double_rectangle interaction::_user_item_rectangle(::user::item * puseritem, ::user::enum_layout elayout)
+   ::f64_rectangle interaction::_user_item_rectangle(::user::item * puseritem, ::user::enum_layout elayout)
    {
 
       return puseritem->m_rectangle2;
@@ -30804,7 +30900,7 @@ void interaction::on_keyboard_layout_change(const char *pszKeyboardLayoutId)
    }
 
 
-   status < int_rectangle > interaction::item_rectangle(::item * pitem, ::user::enum_layout elayout)
+   status < i32_rectangle > interaction::item_rectangle(::item * pitem, ::user::enum_layout elayout)
    {
 
       if (!::is_item_set(pitem))
@@ -30818,7 +30914,7 @@ void interaction::on_keyboard_layout_change(const char *pszKeyboardLayoutId)
 
       auto rectangle = user_item_rectangle(puseritem, elayout);
 
-      return ::int_rectangle(rectangle);
+      return ::i32_rectangle(rectangle);
 
    }
 
@@ -30840,18 +30936,18 @@ void interaction::on_keyboard_layout_change(const char *pszKeyboardLayoutId)
    }
 
 
-   void interaction::get_simple_drop_down_open_arrow_polygon(double_point_array & pointa)
+   void interaction::get_simple_drop_down_open_arrow_polygon(f64_point_array & pointa)
    {
 
-      ::int_rectangle rectangleDropDown;
+      ::i32_rectangle rectangleDropDown;
 
       get_element_rectangle(rectangleDropDown, e_element_drop_down);
 
-      int cx = rectangleDropDown.width() / 3;
+      ::i32 cx = rectangleDropDown.width() / 3;
 
-      int cy = cx * 2 / 3;
+      ::i32 cy = cx * 2 / 3;
 
-      ::int_point pointCenter = rectangleDropDown.center();
+      ::i32_point pointCenter = rectangleDropDown.center();
 
       pointa.add(pointCenter.x - cx / 2, pointCenter.y - cy / 2);
 
@@ -30918,8 +31014,8 @@ void interaction::on_keyboard_layout_change(const char *pszKeyboardLayoutId)
    //         break;
    //      };
    //      case e_type_id:
-   //      case e_type_long_long:
-   //      case e_type_int:
+   //      case e_type_i64:
+   //      case e_type_i32:
    //      {
 
    //         id() = argument.get_id();
@@ -31179,7 +31275,7 @@ void interaction::on_keyboard_layout_change(const char *pszKeyboardLayoutId)
 
       //m_strDataKey = datakey;
 
-      m_iDataValue = (int)value;
+      m_iDataValue = (::i32)value;
 
    }
 
@@ -31315,7 +31411,7 @@ void interaction::on_keyboard_layout_change(const char *pszKeyboardLayoutId)
    // }
 
 
-   bool interaction::is_past_reposition_request(const ::int_point & point)
+   bool interaction::is_past_reposition_request(const ::i32_point & point)
    {
 
       auto pwindow = window();
@@ -31352,7 +31448,7 @@ void interaction::on_keyboard_layout_change(const char *pszKeyboardLayoutId)
    }
 
 
-   bool interaction::is_past_resizing_request(const ::int_size & size)
+   bool interaction::is_past_resizing_request(const ::i32_size & size)
    {
 
       auto pwindow = window();
@@ -31389,7 +31485,7 @@ void interaction::on_keyboard_layout_change(const char *pszKeyboardLayoutId)
    }
 
 
-   double interaction::screen_scaler()
+   ::f64 interaction::screen_scaler()
    {
 
       return m_pinteractionScaler->screen_scaler();
@@ -31397,7 +31493,7 @@ void interaction::on_keyboard_layout_change(const char *pszKeyboardLayoutId)
    }
 
 
-   double interaction::font_scaler()
+   ::f64 interaction::font_scaler()
    {
 
       return m_pinteractionScaler->font_scaler();
@@ -31513,7 +31609,7 @@ void interaction::on_keyboard_layout_change(const char *pszKeyboardLayoutId)
    }
 
 
-   void interaction::set_opacity(double dOpacity)
+   void interaction::set_opacity(::f64 dOpacity)
    {
 
       //if (::is_null(window()))
@@ -31619,10 +31715,10 @@ void interaction::on_keyboard_layout_change(const char *pszKeyboardLayoutId)
 } // namespace user
 
 
-::int_point g_pointAuraTopRight;
+::i32_point g_pointAuraTopRight;
 
 
-CLASS_DECL_AURA::int_point __get_top_right()
+CLASS_DECL_AURA::i32_point __get_top_right()
 {
 
    return g_pointAuraTopRight;
@@ -31630,7 +31726,7 @@ CLASS_DECL_AURA::int_point __get_top_right()
 }
 
 
-CLASS_DECL_AURA void __set_top_right(const ::int_point & pointTopRight)
+CLASS_DECL_AURA void __set_top_right(const ::i32_point & pointTopRight)
 {
 
    g_pointAuraTopRight = pointTopRight;
@@ -31638,10 +31734,10 @@ CLASS_DECL_AURA void __set_top_right(const ::int_point & pointTopRight)
 }
 
 
-::int_point g_pointAuraBottomRight;
+::i32_point g_pointAuraBottomRight;
 
 
-CLASS_DECL_AURA::int_point __get_bottom_right()
+CLASS_DECL_AURA::i32_point __get_bottom_right()
 {
 
    return g_pointAuraBottomRight;
@@ -31649,7 +31745,7 @@ CLASS_DECL_AURA::int_point __get_bottom_right()
 }
 
 
-CLASS_DECL_AURA void __set_bottom_right(const ::int_point & pointBottomRight)
+CLASS_DECL_AURA void __set_bottom_right(const ::i32_point & pointBottomRight)
 {
 
    g_pointAuraBottomRight = pointBottomRight;

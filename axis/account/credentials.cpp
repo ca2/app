@@ -90,10 +90,10 @@ namespace account
 
       string strFormat;
 
-      for(int i = 0; i < 64; i += 2)
+      for(::i32 i = 0; i < 64; i += 2)
       {
 
-         char iDigit = mathematics()->random_char();
+         ::i8 iDigit = mathematics()->random_char();
 
          strFormat = ::hex::lower_case_padded_from<2>(iDigit);
 
@@ -272,7 +272,7 @@ namespace account
          if (bOk)
          {
 
-            auto estatus = (::e_status) ::ansi_to_long_long(strOpen);
+            auto estatus = (::e_status) ::ansi_to_i64(strOpen);
 
             if (estatus == ::success_credentials || estatus == ::success_authenticated)
             {
@@ -321,7 +321,7 @@ namespace account
    void credentials::save_status_to_storage(const ::e_status & estatus)
    {
 
-      string strStatus = ::as_string(estatus.as_long_long());
+      string strStatus = ::as_string(estatus.as_i64());
 
       set("open", strStatus);
 
@@ -364,7 +364,7 @@ namespace account
             || m_iPasswordOriginalLength <= 0)
       {
 
-         string strOpenResult = ::as_string((int) error_authentication);
+         string strOpenResult = ::as_string((::i32) error_authentication);
 
          set("open", strOpenResult);
 
@@ -476,7 +476,7 @@ namespace account
    bool credentials::check_ca2_hash()
    {
 
-      string strUrl("https://api.ca2.network/account/check_hash");
+      string strUrl("https://api.ca2.site/account/check_hash");
 
       ::property_set set;
 
@@ -496,7 +496,7 @@ namespace account
 
       set["post"]["source"] = straHash.implode(";");
 
-      for(int i = 0; i < 3; i++)
+      for(::i32 i = 0; i < 3; i++)
       {
 
          try
@@ -510,7 +510,7 @@ namespace account
          catch (const ::exception& exception)
          {
 
-            error() <<"check_ca2_hash " << exception.m_estatus.as_long_long();
+            error() <<"check_ca2_hash " << exception.m_estatus.as_i64();
 
          }
 

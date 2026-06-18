@@ -7,7 +7,7 @@ namespace kissfft
 {
 
 
-   fftd::fftd(int iSize)
+   fftd::fftd(::i32 iSize)
    {
 
       m_iSize = iSize;
@@ -22,7 +22,7 @@ namespace kissfft
       free(m_cfg);
    }
 
-   void fftd::fft(double * pIn, COMPLEXD * pOut)
+   void fftd::fft(::f64 * pIn, COMPLEXD * pOut)
    {
       kiss_fftr(m_cfg, pIn, pOut);
    }

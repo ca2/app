@@ -19,14 +19,14 @@
 //HANDLE
 //WINAPI
 //create_file(
-//            char const * pFileName,
+//            ::i8 const * pFileName,
 
-//            unsigned int dwDesiredAccess,
-//            unsigned int dwShareMode,
+//            ::u32 dwDesiredAccess,
+//            ::u32 dwShareMode,
 //            LPSECURITY_ATTRIBUTES pSecurityAttributes,
 
-//            unsigned int dwCreationDisposition,
-//            unsigned int dwFlagsAndAttributes,
+//            ::u32 dwCreationDisposition,
+//            ::u32 dwFlagsAndAttributes,
 //            HANDLE hTemplateFile
 //            )
 //{
@@ -70,14 +70,14 @@
 //
 //}
 //
-//unsigned int
+//::u32
 //WINAPI
 //SetFilePointer(
 //               HANDLE hFile,
-//               int lDistanceToMove,
+//               ::i32 lDistanceToMove,
 //               PLONG pDistanceToMoveHigh,
 
-//               unsigned int dwMoveMethod
+//               ::u32 dwMoveMethod
 //               )
 //{
 //    if(hFile == INVALID_HANDLE_VALUE)
@@ -88,13 +88,13 @@
 //}
 //
 //
-//int_bool
+//::i32_bool
 //WINAPI
 //WriteFile(
 //          HANDLE hFile,
 //          const void * pBuffer,
 
-//          unsigned int nNumberOfBytesToWrite,
+//          ::u32 nNumberOfBytesToWrite,
 //          LPDWORD pNumberOfBytesWritten,
 
 //          LPOVERLAPPED pOverlapped
@@ -109,18 +109,18 @@
 
 //    if(pNumberOfBytesWritten != nullptr)
 
-//        *pNumberOfBytesWritten = (unsigned int) sizeWritten;
+//        *pNumberOfBytesWritten = (::u32) sizeWritten;
 
 //    return true;
 //}
 //
-//int_bool
+//::i32_bool
 //WINAPI
 //ReadFile(
 //         HANDLE hFile,
 //         LPVOID pBuffer,
 
-//         unsigned int nNumberOfBytesToRead,
+//         ::u32 nNumberOfBytesToRead,
 //         LPDWORD pNumberOfBytesRead,
 
 //         LPOVERLAPPED pOverlapped
@@ -135,12 +135,12 @@
 
 //    if(pNumberOfBytesRead != nullptr)
 
-//        *pNumberOfBytesRead = (unsigned int)sizeRead;
+//        *pNumberOfBytesRead = (::u32)sizeRead;
 
 //    return true;
 //}
 //
-//int_bool
+//::i32_bool
 //WINAPI
 //FlushFileBuffers(
 //                 HANDLE hFile
@@ -153,7 +153,7 @@
 //}
 //
 //
-//int_bool
+//::i32_bool
 //WINAPI
 //__win_CloseFile(
 //            HANDLE hFile
@@ -166,7 +166,7 @@
 //    return fclose(hFile->m_file.m_pfile) != false;
 //}
 //
-//int_bool
+//::i32_bool
 //WINAPI
 //CloseHandle(
 //            HANDLE hObject
@@ -174,7 +174,7 @@
 //{
 //   if(hObject == INVALID_HANDLE_VALUE)
 //      return false;
-//   int_bool bOk = false;
+//   ::i32_bool bOk = false;
 //   switch(hObject->m_etype)
 //   {
 //      case win_handle::type_file:
@@ -190,10 +190,10 @@
 //
 //
 //
-//unsigned int
+//::u32
 //WINAPI
 //GetTempPathW(
-//    unsigned int nBufferLength,
+//    ::u32 nBufferLength,
 //    LPWSTR pBuffer
 
 //    )
@@ -212,7 +212,7 @@
 
 //   }
 //
-//   return (unsigned int) iLen;
+//   return (::u32) iLen;
 //
 //}
 
@@ -229,7 +229,7 @@
 //      return false;
 //
 //   }
-//   char * pszRealPath = ::realpath(scopedstr, NULL);
+//   char_pointer pszRealPath = ::realpath(scopedstr, NULL);
 //
 //   if (scopedstrRealPath == NULL)
 //   {

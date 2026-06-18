@@ -1,8 +1,8 @@
 #pragma once
 
 
-CLASS_DECL_ACME long long strtoi(const ::scoped_string & scopedstr);
-CLASS_DECL_ACME long long strtoi(const ::wide_character * psz);
+CLASS_DECL_ACME ::i64 strtoi(const ::scoped_string & scopedstr);
+CLASS_DECL_ACME ::i64 strtoi(const ::wide_character * psz);
 
 
 namespace file
@@ -32,7 +32,7 @@ inline T FormatArgument(T value) noexcept
 
 
 #ifdef WINDOWS
-inline unsigned int _gen_GetConversionACP()
+inline ::u32 _gen_GetConversionACP()
 {
 
    //return CP_UTF8;

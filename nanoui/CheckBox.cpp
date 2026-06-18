@@ -11,6 +11,8 @@
 #include "framework.h"
 #include "CheckBox.h"
 #include "Screen.h"
+#include "acme/constant/user_key.h"
+#include "acme/user/user/keyboard_state.h"
 #include "aura/user/user/interaction.h"
 #include "nano2d/context.h"
 
@@ -28,53 +30,46 @@ namespace nanoui
    }
 
 
-   bool CheckBox::mouse_button_event(const int_point& p, ::user::e_mouse emouse, bool down, bool bDoubleClick, const ::user::e_key& ekeyModifiers)
+   bool CheckBox::mouse_button_event(const i32_point & point, ::user::e_key euserkeyMouseButton, bool bDown, bool bDoubleClick)
    {
 
-      Widget::mouse_button_event(p, emouse, down, bDoubleClick, ekeyModifiers);
+      Widget::mouse_button_event(point, euserkeyMouseButton, bDown, bDoubleClick);
 
-      if (!m_bEnabled)
+      if (!m_bEnabled || euserkeyMouseButton != ::user::e_key_left_button)
       {
 
          return false;
 
       }
 
-      if (emouse == ::user::e_mouse_left_button) 
+      auto pscreen = screen();
+
+      if (bDown) 
       {
 
-         auto pscreen = screen();
+         pscreen->m_pwidgetMouseDown = this;
 
-         if (down) 
+      }
+      else
+      {
+
+         if (pscreen->m_pwidgetMouseDown == this)
          {
 
-            pscreen->m_pwidgetMouseDown = this;
+            bool bChecked = checked();
+
+            set_checked (!bChecked, e_source_user);
 
          }
-         else
-         {
-
-            if (pscreen->m_pwidgetMouseDown == this)
-            {
-
-               bool bChecked = checked();
-
-               set_checked (!bChecked, e_source_user);
-
-            }
-
-         }
-
-         return true;
 
       }
 
-      return false;
+      return true;
 
    }
 
 
-   int_size CheckBox::preferred_size(::nano2d::context * pcontext, bool bRecalcTextSize)
+   i32_size CheckBox::preferred_size(::nano2d::context * pcontext, bool bRecalcTextSize)
    {
 
       if (bRecalcTextSize)
@@ -90,10 +85,10 @@ namespace nanoui
          {
             pcontext->font_size(font_size());
             pcontext->font_face("sans");
-            m_sizePreferred = int_sequence2(
-               (int)(pcontext->text_bounds(0, 0, m_strCaption, nullptr) +
+            m_sizePreferred = i32_sequence2(
+               (::i32)(pcontext->text_bounds(0, 0, m_strCaption, nullptr) +
                   1.8f * font_size()),
-               (int)(font_size() * 1.3f));
+               (::i32)(font_size() * 1.3f));
          }
       }
 
@@ -192,9 +187,9 @@ namespace nanoui
          
          pcontext->text_align(::nano2d::e_align_center | ::nano2d::e_align_middle);
 
-         auto sizeIcon = ::int_size(m_size.cy, m_size.cy);
+         auto sizeIcon = ::i32_size(m_size.cy, m_size.cy);
 
-         float_point pointText = m_pos + sizeIcon / 2.f;
+         ::f32_point pointText = m_pos + sizeIcon / 2.f;
          
          pointText.x += 1.f;
          

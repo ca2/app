@@ -29,7 +29,7 @@ namespace graphics3d
 
       ::pointer < ::graphics3d::scene_base >      m_pscene;
       //::graphics3d::transform                m_transform;
-      //long long                              m_llId;
+      //::i64                              m_llId;
       //enum_render_system m_erendersystem;
       //::pointer<::graphics3d::renderable>    m_prenderable;
       //::color::color                         m_color;
@@ -39,7 +39,7 @@ namespace graphics3d
       //      ::graphics3d::point_light_component m_pointlight;
 
       //::string m_cubemapTextureName;
-      //long long m_llId;
+      //::i64 m_llId;
       //bool m_bIsSkybox = false;
       //::string m_strRenderablePath;
 
@@ -59,10 +59,10 @@ namespace graphics3d
       //virtual void set_renderable(::graphics3d::renderable * prenderable);
 
 
-      //virtual void on_update(float deltaTime);
+      //virtual void on_update(::f32 deltaTime);
 
       //virtual ::color::color color();
-      //virtual long long getId();
+      //virtual ::i64 getId();
 
 
       //virtual void translate(const ::floating_sequence3 & floating_sequence3);

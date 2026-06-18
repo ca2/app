@@ -21,7 +21,7 @@ namespace userex
       //string_array_base                   m_straPatternNames;
       ::file::file_dialog_filter       m_filedialogfilter;
       string                           m_strLinkPrefix;
-      int                              m_iForkAddDib;
+      ::i32                              m_iForkAddDib;
 
       image_list_impact();
       ~image_list_impact() override;
@@ -36,11 +36,11 @@ namespace userex
 
       bool _001GetItemText(string & str, ::collection::index iItem) override;
 #ifdef _DEBUG
-      long long increment_reference_count() override
+      ::i64 increment_reference_count() override
       {
          return ::object::increment_reference_count();
       }
-      long long decrement_reference_count() override
+      ::i64 decrement_reference_count() override
       {
          return ::object::decrement_reference_count();
       }

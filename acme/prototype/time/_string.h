@@ -4,7 +4,7 @@
 //inline ::string as_string(const ::integral_second & time)
 //{
 //
-//   return string_format("%llds", time.m_i);
+//   return string_format("%llds", time.m_i32);
 //
 //}
 //
@@ -12,7 +12,7 @@
 //inline ::string as_string(const ::integral_millisecond & time)
 //{
 //
-//   return string_format("%lldms", time.m_i);
+//   return string_format("%lldms", time.m_i32);
 //
 //}
 //

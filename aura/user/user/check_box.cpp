@@ -6,7 +6,7 @@
 #include "acme/graphics/image/image32.h"
 #include "acme/handler/topic.h"
 #include "acme/platform/application.h"
-#include "acme/platform/timer.h"
+////#include "acme/platform/timer.h"
 #include "acme/platform/keep.h"
 #include "aura/platform/draw_context2.h"
 #include "acme/prototype/mathematics/mathematics.h"
@@ -20,12 +20,12 @@
 #include "aura/message/user.h"
 
 
-void scroll_x(::int_rectangle & rectangleTarget, double dRateX, const ::int_rectangle & rectangle)
+void scroll_x(::i32_rectangle & rectangleTarget, ::f64 dRateX, const ::i32_rectangle & rectangle)
 {
 
-   int w = ::width(rectangle);
+   ::i32 w = ::width(rectangle);
 
-   rectangleTarget.left = (int) (rectangle.left + (rectangle.width() - w) * dRateX);
+   rectangleTarget.left = (::i32) (rectangle.left + (rectangle.width() - w) * dRateX);
 
    rectangleTarget.right = rectangleTarget.left + w;
 
@@ -176,13 +176,13 @@ namespace user
 
       KEEP(pgraphics->m_pdrawcontext, &drawcontext);
 
-      //::int_rectangle rectangleX;
+      //::i32_rectangle rectangleX;
 
       auto rectangleX = this->rectangle();
 
-      int w = rectangleX.width();
+      ::i32 w = rectangleX.width();
 
-      int h = rectangleX.height();
+      ::i32 h = rectangleX.height();
 
       if (w <= 0 || h <= 0)
       {
@@ -199,13 +199,13 @@ namespace user
 
       pgraphics->shift_impact_area(rectangleX);
 
-      ::int_rectangle rectangleCheckBox;
+      ::i32_rectangle rectangleCheckBox;
 
-      ::int_rectangle rectangleText;
+      ::i32_rectangle rectangleText;
 
       {
 
-         int iSize = minimum(15 * w / 15, 15 * h / 15);
+         ::i32 iSize = minimum(15 * w / 15, 15 * h / 15);
 
          rectangleCheckBox.left = 0;
          rectangleCheckBox.top = 0;
@@ -339,9 +339,9 @@ namespace user
 
       auto rectangleX = this->rectangle();
 
-      int w = rectangleX.width();
+      ::i32 w = rectangleX.width();
 
-      int h = rectangleX.height();
+      ::i32 h = rectangleX.height();
 
       w--;
 
@@ -385,17 +385,17 @@ namespace user
 
       }
 
-      ::int_rectangle rectangle(1, 1, w-2, h-2);
+      ::i32_rectangle rectangle(1, 1, w-2, h-2);
 
-      ::int_rectangle rectangleEllipse(1, 1, h-2, h-2);
+      ::i32_rectangle rectangleEllipse(1, 1, h-2, h-2);
 
-      //double dNow = ::get_millis();
+      //::f64 dNow = ::get_millis();
 
       ::draw2d::path_pointer ppath(e_create, this);
 
-      ::int_rectangle rectangleL(1, 1, h-2, h-2);
+      ::i32_rectangle rectangleL(1, 1, h-2, h-2);
 
-      auto rectangleR = int_rectangle_dimension(h-2, 1, h-2, h-2);
+      auto rectangleR = i32_rectangle_dimension(h-2, 1, h-2, h-2);
 
       ppath->add_arc(rectangleL, -90_degree, -180_degree);
 
@@ -455,7 +455,7 @@ namespace user
 
          m_dPosition = ::sin((π / 2.0) * dRate);
 
-         double dRate = m_dPosition;
+         ::f64 dRate = m_dPosition;
 
          if (bComplement)
          {
@@ -487,7 +487,7 @@ namespace user
 
          pgraphics->fill_ellipse(rectangleEllipse);
 
-         unsigned char bAlphaP1 = (unsigned char) (255.0 * (1.0 - dRate));
+         ::u8 bAlphaP1 = (::u8) (255.0 * (1.0 - dRate));
 
          ::color::color crP1 = argb(bAlphaP1, 0, 0, 0);
 
@@ -562,9 +562,9 @@ namespace user
 
       auto rectangleX = this->rectangle();
 
-      int iMinimumDimension = maximum(rectangleX.minimum_dimension() -1, 1);
+      ::i32 iMinimumDimension = maximum(rectangleX.minimum_dimension() -1, 1);
 
-      ::int_rectangle rectangleCheckBox;
+      ::i32_rectangle rectangleCheckBox;
       rectangleCheckBox.left = 1;
       rectangleCheckBox.top = 1;
       rectangleCheckBox.right = iMinimumDimension + 1;
@@ -625,10 +625,10 @@ namespace user
    }
 
 
-   void check_box::on_timer(::timer * ptimer)
+   void check_box::operator()(::timer * ptimer)
    {
 
-      if (ptimer->m_uTimer == e_timer_check_toggle_animation)
+      if (ptimer->m_etimer == e_timer_check_toggle_animation)
       {
 
          set_need_redraw();
@@ -638,12 +638,14 @@ namespace user
          if (m_timeAnimationStart.elapsed() > m_timeAnimationPeriod)
          {
 
-            kill_timer(ptimer->m_uTimer);
+            ptimer->cancel();
+
+            return;
 
          }
 
       }
-//      else if (ptimer->m_uTimer == e_timer_command_probe)
+//      else if (ptimer->m_etimer == e_timer_command_probe)
 //      {
 //
 //         ::user::menu_command command(this);
@@ -664,7 +666,7 @@ namespace user
 //
 //      }
 
-      ::user::interaction::on_timer(ptimer);
+      return ::user::interaction::operator()(ptimer);
 
    }
 

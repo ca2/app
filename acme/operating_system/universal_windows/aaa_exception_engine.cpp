@@ -29,11 +29,11 @@ namespace universal_windows
 {
 
 
-   typedef int_bool(__stdcall *PReadProcessMemoryRoutine)(
+   typedef i32_bool(__stdcall *PReadProcessMemoryRoutine)(
    HANDLE      hProcess,
    DWORD64     qwBaseAddress,
    PVOID       lpBuffer,
-   unsigned int       nSize,
+   ::u32       nSize,
    LPDWORD     lpNumberOfBytesRead,
    LPVOID      pUserData  // optional data, which was passed in "ShowCallstack"
    );
@@ -64,7 +64,7 @@ namespace universal_windows
    }
 
 
-   //char * exception_engine::xxxstack_trace(uptr uiSkip, void * caller_address, const ::scoped_string & scopedstrFormat)
+   //char_pointer exception_engine::xxxstack_trace(uptr uiSkip, void * caller_address, const ::scoped_string & scopedstrFormat)
    //{
 
    //   return nullptr;

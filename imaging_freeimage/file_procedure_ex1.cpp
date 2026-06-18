@@ -8,7 +8,7 @@
 #endif
 
 
-unsigned int _stdcall ___Ex1File__WriteProc(void * buffer, unsigned int size, unsigned int count, fi_handle handle)
+::u32 _stdcall ___Ex1File__WriteProc(void * buffer, ::u32 size, ::u32 count, fi_handle handle)
 {
 
    file_pointer  pfile = (::file::file *) handle;
@@ -31,7 +31,7 @@ unsigned int _stdcall ___Ex1File__WriteProc(void * buffer, unsigned int size, un
 }
 
 
-int _stdcall ___Ex1File__SeekProc(fi_handle handle, long offset, int origin)
+::i32 _stdcall ___Ex1File__SeekProc(fi_handle handle, long offset, ::i32 origin)
 {
 
    file_pointer  pfile = (::file::file *) handle;

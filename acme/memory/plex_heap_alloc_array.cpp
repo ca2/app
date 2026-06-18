@@ -89,7 +89,7 @@ void plex_heap_alloc_array::pre_finalize()
 
 
 
-void * plex_heap_alloc_array::alloc_debug(memsize size, memsize * psizeAllocated, int nBlockUse, const_char_pointer pszFileName, int iLine)
+void * plex_heap_alloc_array::alloc_debug(memsize size, memsize * psizeAllocated, ::i32 nBlockUse, const_char_pointer pszFileName, ::i32 iLine)
 {
 
 #if LAST_MEM_FILE_AND_LINE
@@ -121,9 +121,9 @@ void * plex_heap_alloc_array::alloc_debug(memsize size, memsize * psizeAllocated
 
    }
 
-   ansi_count_copy((char *)&psize1], str->Mid(maximum(0, str->get_length() - 124)), 124);
+   ansi_count_copy((char_pointer )&psize1], str->Mid(maximum(0, str->get_length() - 124)), 124);
 
-   return ((unsigned char *)&psize[1]) + 128;
+   return ((::u8 *)&psize[1]) + 128;
 
 #else
 
@@ -139,7 +139,7 @@ void plex_heap_alloc_array::free_debug(void * p, memsize size)
 
 #if LAST_MEM_FILE_AND_LINE
 
-   memsize * psize = &((memsize *)((unsigned char *)pvoid) - 128))[-1];
+   memsize * psize = &((memsize *)((::u8 *)pvoid) - 128))[-1];
 
    if (*psize == 0)
    {
@@ -172,7 +172,7 @@ void plex_heap_alloc_array::free_debug(void * p, memsize size)
 }
 
 
-void * plex_heap_alloc_array::realloc_debug(void * p, memsize size, memsize sizeOld, int align, int nBlockUse, const_char_pointer pszFileName, int iLine)
+void * plex_heap_alloc_array::realloc_debug(void * p, memsize size, memsize sizeOld, ::i32 align, ::i32 nBlockUse, const_char_pointer pszFileName, ::i32 iLine)
 {
 
 #if LAST_MEM_FILE_AND_LINE
@@ -181,13 +181,13 @@ void * plex_heap_alloc_array::realloc_debug(void * p, memsize size, memsize size
 
    str.formatf("%s(%d)", szFileName, iLine);
 
-   memsize * psize = (memsize *)realloc(&((memsize *)(((unsigned char *)pvoidOld) - 128))[-1], ((memsize *)(((unsigned char *)pvoidOld) - 128))[-1], size + sizeof(memsize) + 128);
+   memsize * psize = (memsize *)realloc(&((memsize *)(((::u8 *)pvoidOld) - 128))[-1], ((memsize *)(((::u8 *)pvoidOld) - 128))[-1], size + sizeof(memsize) + 128);
 
    psize[0] = size + sizeof(memsize) + 128;
 
-   ansi_count_copy((char *)&psize1], str->Mid(maximum(0, str->get_length() - 124)), 124);
+   ansi_count_copy((char_pointer )&psize1], str->Mid(maximum(0, str->get_length() - 124)), 124);
 
-   return ((unsigned char *)&psize[1]) + 128;
+   return ((::u8 *)&psize[1]) + 128;
 
 #else
 
@@ -198,19 +198,19 @@ void * plex_heap_alloc_array::realloc_debug(void * p, memsize size, memsize size
 }
 
 
-void * plex_heap_alloc_array::_realloc(void * p, memsize size, memsize sizeOld, int align)
+void * plex_heap_alloc_array::_realloc(void * p, memsize size, memsize sizeOld, ::i32 align)
 {
 
    plex_heap_alloc * pallocOld = find(sizeOld);
 
    plex_heap_alloc * pallocNew = find(size);
 
-   char * pNew = nullptr;
+   char_pointer pNew = nullptr;
 
    if (pallocOld == nullptr && pallocNew == nullptr && align == 0)
    {
 
-      pNew = (char *)m_pallocator->reallocate(p, size);
+      pNew = (char_pointer )m_pallocator->reallocate(p, size);
 
       if (size > sizeOld)
       {
@@ -225,7 +225,7 @@ void * plex_heap_alloc_array::_realloc(void * p, memsize size, memsize sizeOld, 
    else if (pallocOld != NULL && pallocOld == pallocNew)
    {
 
-      pNew = (char *)p;
+      pNew = (char_pointer )p;
 
    }
    else
@@ -234,13 +234,13 @@ void * plex_heap_alloc_array::_realloc(void * p, memsize size, memsize sizeOld, 
       if (pallocNew != nullptr)
       {
 
-         pNew = (char *)pallocNew->Alloc();
+         pNew = (char_pointer )pallocNew->Alloc();
 
       }
       else
       {
 
-         pNew = (char *)m_pallocator->allocate(size, nullptr);
+         pNew = (char_pointer )m_pallocator->allocate(size, nullptr);
 
       }
 
@@ -286,7 +286,7 @@ void * plex_heap_alloc_array::_realloc(void * p, memsize size, memsize sizeOld, 
 
 
 
-//plex_heap_alloc * plex_heap_alloc_array::new_plex_heap_alloc(memsize nAllocSize, unsigned int nBlockSize)
+//plex_heap_alloc * plex_heap_alloc_array::new_plex_heap_alloc(memsize nAllocSize, ::u32 nBlockSize)
 //{
 //
 //   auto palloc = (plex_heap_alloc*) m_pallocator->allocateø plex_heap_alloc(nAllocSize, nBlockSize);

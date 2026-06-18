@@ -1,0 +1,114 @@
+// Copyright (C) 2010,2011,2012 GlavSoft LLC.
+// All rights reserved.
+//
+//-------------------------------------------------------------------------
+// This file is part of the T i g h t V N C software.  Please visit our Web site:
+//
+//                       http://www.t i g h t v n c.com/
+//
+// This program is free software; you can redistribute it and/or modify
+// it under the terms of the GNU General Public License as published by
+// the Free Software Foundation; either version 2 of the License, or
+// (at your option) any later version.
+//
+// This program is distributed in the hope that it will be useful,
+// but WITHOUT ANY WARRANTY; without even the implied warranty of
+// MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+// GNU General Public License for more details.
+//
+// You should have received a copy of the GNU General Public License along
+// with this program; if not, w_rite to the Free Software Foundation, Inc.,
+// 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA.
+//-------------------------------------------------------------------------
+//
+#include "framework.h"
+//#include "acme/_operating_system.h"
+#include "AnonymousPipeFactory.h"
+//#include "remoting/remoting/win_system/SecurityAttributes.h"
+
+
+namespace subsystem
+ {
+
+//   
+//   //    AnonymousPipeFactory::AnonymousPipeFactory(::u32 bufferSize,
+////                                               LogWriter *plogwriter)
+////    // : m_bufferSize(bufferSize),
+////    //   m_plogwriter(plogwriter)
+////    {
+////       initialize_anonymous_pipe_factory(bufferSize, plogwriter);
+////    }
+//
+//   AnonymousPipeFactory::AnonymousPipeFactory()
+//   // : m_bufferSize(bufferSize),
+//   //   m_plogwriter(plogwriter)
+//   {
+//      //initialize_anonymous_pipe_factory(bufferSize, plogwriter);
+//   }
+//   AnonymousPipeFactory::~AnonymousPipeFactory()
+//   {
+//   }
+//
+//   void AnonymousPipeFactory::initialize_anonymous_pipe_factory(::u32 bufferSize,
+//                                           LogWriter *plogwriter)
+////: m_bufferSize(bufferSize),
+//  //m_plogwriter(plogwriter)
+//   {
+//      m_pparticleThis->initialize_anonymous_pipe_factory(bufferSize, plogwriter);
+//   }
+//
+//   void AnonymousPipeFactory::generatePipes(::pointer < AnonymousPipeInterface > &firstSide,
+//                                            bool firstSideIsInheritable,
+//                                            ::pointer < AnonymousPipeInterface > &secondSide,
+//                                            bool secondSideIsInheritable)
+//   {
+//
+//      m_pparticleThis->generatePipes(firstSide, firstSideIsInheritable, secondSide, secondSideIsInheritable);
+//      // HANDLE hFirstSideWrite = 0, hFirstSideRead = 0,
+//      //        hSecondSideWrite = 0, hSecondSideRead = 0;
+//      //
+//      // SecurityAttributes secAttr;
+//      // secAttr.setInheritable();
+//      //
+//      // try {
+//      //    if (CreatePipe(&hFirstSideRead, &hSecondSideWrite,
+//      //                   secAttr.getSecurityAttributes(), m_bufferSize) == 0) {
+//      //       SystemException("Cannot create anonymous pipe");
+//      //                   }
+//      //    if (CreatePipe(&hSecondSideRead, &hFirstSideWrite,
+//      //                   secAttr.getSecurityAttributes(), m_bufferSize) == 0) {
+//      //       SystemException("Cannot create anonymous pipe");
+//      //                   }
+//      // } catch (...) {
+//      //    CloseHandle(hFirstSideWrite);
+//      //    CloseHandle(hFirstSideRead);
+//      //    CloseHandle(hSecondSideWrite);
+//      //    CloseHandle(hSecondSideRead);
+//      //    throw;
+//      // }
+//      //
+//      // const ::scoped_string & scopedstrErrMess = "Cannot disable inheritance for anonymous pipe";
+//      // if (!firstSideIsInheritable) {
+//      //    if (SetHandleInformation(hFirstSideWrite, HANDLE_FLAG_INHERIT, 0) == 0) {
+//      //       SystemException(errMess);
+//      //    }
+//      //    if (SetHandleInformation(hFirstSideRead, HANDLE_FLAG_INHERIT, 0) == 0) {
+//      //       SystemException(errMess);
+//      //    }
+//      // }
+//      // if (!secondSideIsInheritable) {
+//      //    if (SetHandleInformation(hSecondSideWrite, HANDLE_FLAG_INHERIT, 0) == 0) {
+//      //       SystemException(errMess);
+//      //    }
+//      //    if (SetHandleInformation(hSecondSideRead, HANDLE_FLAG_INHERIT, 0) == 0) {
+//      //       SystemException(errMess);
+//      //    }
+//      // }
+//      //
+//      // *firstSide = new AnonymousPipe(hFirstSideWrite, hFirstSideRead, m_bufferSize, m_plogwriter);
+//      // *secondSide = new AnonymousPipe(hSecondSideWrite, hSecondSideRead, m_bufferSize, m_plogwriter);
+//   }
+
+
+
+} // namespace subsystem

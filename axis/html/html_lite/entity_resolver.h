@@ -51,7 +51,7 @@ public:
    
    
    class CharEntityRefs :
-      public string_map_base < char >
+      public string_map_base < ::i8 >
    {
    public:
       
@@ -76,7 +76,7 @@ public:
     * @since 1.0
     * @author Gurmeet S. Kochar
     */
-   int resolveEntity(const ::scoped_string & scopedstrEntity, string & strChar);
+   ::i32 resolveEntity(const ::scoped_string & scopedstrEntity, string & strChar);
 
 
 };

@@ -15,15 +15,15 @@ namespace kissfft
    public:
 
 
-      int                     m_iSize;
+      ::i32                     m_iSize;
       kiss_fftr_cfg           m_cfg;
 
 
-      ifftd(int iSize);
+      ifftd(::i32 iSize);
       ~ifftd() override;
 
 
-      void ifft(COMPLEXD * pIn, double * pOut);
+      void ifft(COMPLEXD * pIn, ::f64 * pOut);
 
 
    };

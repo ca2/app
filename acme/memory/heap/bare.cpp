@@ -24,7 +24,7 @@
 //}
 //
 //
-//void * bare_aligned_memory_allocate_debug(memsize size, int nBlockUse, const_char_pointer szFileName, int nLine, memsize align)
+//void * bare_aligned_memory_allocate_debug(memsize size, ::i32 nBlockUse, const_char_pointer szFileName, ::i32 nLine, memsize align)
 //{
 //
 //   return system_heap_alloc(size);
@@ -32,7 +32,7 @@
 //}
 //
 //
-//void * bare_unaligned_memory_allocate_debug(memsize size, int nBlockUse, const_char_pointer szFileName, int nLine)
+//void * bare_unaligned_memory_allocate_debug(memsize size, ::i32 nBlockUse, const_char_pointer szFileName, ::i32 nLine)
 //{
 //
 //   return system_heap_alloc(size);
@@ -64,7 +64,7 @@
 //}
 //
 //
-//void * bare_memory_allocate_debug(memsize nSize, int nBlockUse, const_char_pointer szFileName, int nLine)
+//void * bare_memory_allocate_debug(memsize nSize, ::i32 nBlockUse, const_char_pointer szFileName, ::i32 nLine)
 //{
 //
 //   return system_heap_alloc(nSize);
@@ -80,7 +80,7 @@
 //}
 //
 //
-//void * bare_memory_reallocate_debug(void * p, memsize size, int nBlockUse, const_char_pointer szFileName, int nLine)
+//void * bare_memory_reallocate_debug(void * p, memsize size, ::i32 nBlockUse, const_char_pointer szFileName, ::i32 nLine)
 //{
 //
 //   return system_heap_realloc(p, size);
@@ -112,7 +112,7 @@
 //}
 //
 //
-//void memory_free_debug(void * p, int iBlockType)
+//void memory_free_debug(void * p, ::i32 iBlockType)
 //{
 //
 //   ::system()->m_pheapmanagement->memory(::heap::e_memory_main)->free(p);
@@ -120,7 +120,7 @@
 //}
 //
 //
-//memsize memory_size_debug(void * p, int iBlockType)
+//memsize memory_size_debug(void * p, ::i32 iBlockType)
 //{
 //
 //#ifdef WINDOWS
@@ -176,7 +176,7 @@
 //}
 //
 //
-//void * _memory_allocate_debug(memsize nSize, int nBlockUse, const_char_pointer szFileName, int nLine)
+//void * _memory_allocate_debug(memsize nSize, ::i32 nBlockUse, const_char_pointer szFileName, ::i32 nLine)
 //{
 //
 //  // return unaligned_memory_allocate_debug(nSize, nBlockUse, szFileName, nLine);
@@ -194,7 +194,7 @@
 //}
 //
 //
-//void * _memory_reallocate_debug(void * pmemory, memsize size, int nBlockUse, const_char_pointer szFileName, int nLine)
+//void * _memory_reallocate_debug(void * pmemory, memsize size, ::i32 nBlockUse, const_char_pointer szFileName, ::i32 nLine)
 //{
 //
 //   if (pmemory == nullptr)
@@ -213,11 +213,11 @@
 //
 //   }
 //
-//   unsigned char blockuse = pheapmemory->m_blockuse;
+//   ::u8 blockuse = pheapmemory->m_blockuse;
 //
 //   memsize sizeOld = pheapmemory->m_size;
 //
-//   unsigned char align = pheapmemory->m_align;
+//   ::u8 align = pheapmemory->m_align;
 //
 //   void * p = heap_memory_base_get(pmemory);
 //
@@ -347,7 +347,7 @@
 //}
 //
 //
-//void _memory_free_debug(void * pmemory, int iBlockType)
+//void _memory_free_debug(void * pmemory, ::i32 iBlockType)
 //{
 //
 //   system_heap_free(pmemory);
@@ -363,7 +363,7 @@
 //}
 //
 //
-//memsize _memory_size_debug(void * pmemory, int iBlockType)
+//memsize _memory_size_debug(void * pmemory, ::i32 iBlockType)
 //{
 //
 //#ifdef WINDOWS

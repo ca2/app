@@ -185,7 +185,7 @@ CLASS_DECL_ACME void debug_debug_reference()
    informationf("-");
 
 }
-//void property_object::add_trait(long long i)
+//void property_object::add_trait(::i64 i)
 //{
 //
 //   if (!m_ptraits)
@@ -265,7 +265,7 @@ bool property_object::is_pinging() const
 //}
 
 
-//void property_object::notify(unsigned long long uId)
+//void property_object::notify(::u64 uId)
 //{
 //
 //   m_uid |= uId;
@@ -805,7 +805,7 @@ void property_object::defer_run_property(const ::atom& atom)
 //}
 //
 //
-//void property_object::to_sz(char * sz, character_count len) const
+//void property_object::to_sz(char_pointer sz, character_count len) const
 //{
 //
 //   string str;
@@ -905,7 +905,7 @@ string property_object::get_string(const ::atom & atom, const ::scoped_string & 
 }
 
 
-int property_object::get_int(const ::atom & atom, int iDefault) const
+::i32 property_object::get_int(const ::atom & atom, ::i32 iDefault) const
 {
 
    if (!m_ppropertyset)
@@ -920,7 +920,7 @@ int property_object::get_int(const ::atom & atom, int iDefault) const
 }
 
 
-unsigned int property_object::get_unsigned_int(const ::atom & atom, unsigned int uDefault) const
+::u32 property_object::get_u32(const ::atom & atom, ::u32 uDefault) const
 {
 
    if (!m_ppropertyset)
@@ -930,7 +930,7 @@ unsigned int property_object::get_unsigned_int(const ::atom & atom, unsigned int
 
    }
 
-   return m_ppropertyset->get_unsigned_int(atom, uDefault);
+   return m_ppropertyset->get_u32(atom, uDefault);
 
 }
 

@@ -41,7 +41,7 @@ namespace draw2d
          //            if(m_iTopic == 0)
          //            {
          //            m_iTopicLines++;
-         //            auto & line = pitem->shape < double_line >();
+         //            auto & line = pitem->shape < f64_line >();
          //            if(m_pointa.is_empty())
          //            {
          //

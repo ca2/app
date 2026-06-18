@@ -41,26 +41,26 @@ namespace graphics3d
 
       using shape = ::gpu::model_data < Vertex >;
       //struct shape {
-      //   ::array<float> vertexes;  // Positions, colors, texture coordinates, and normals
-      //   ::array<unsigned int> indexes;
+      //   ::array<::f32> vertexes;  // Positions, colors, texture coordinates, and normals
+      //   ::array<::u32> indexes;
       //};
 
       shape_factory();
       ~shape_factory() override;
 
       // Generate a graphics3d with position, color, texture coordinates, and normals
-      virtual ::pointer<::graphics3d::renderable> create_cube_001(::gpu::context * pgpucontext, float size);
-      virtual ::pointer<::graphics3d::renderable> create_cube_002(::gpu::context *pgpucontext, float size);
+      virtual ::pointer<::graphics3d::renderable> create_cube_001(::gpu::context * pgpucontext, ::f32 size);
+      virtual ::pointer<::graphics3d::renderable> create_cube_002(::gpu::context *pgpucontext, ::f32 size);
       // Generate a plane (XZ plane by default) with position, texture coords, and normals
-      virtual ::pointer<::graphics3d::renderable> create_plane(::gpu::context * pgpucontext, float width, float depth);
+      virtual ::pointer<::graphics3d::renderable> create_plane(::gpu::context * pgpucontext, ::f32 width, ::f32 depth);
       // Generate a wall (XY plane by default) with position, texture coords, and normals
-      virtual ::pointer<::graphics3d::renderable> create_wall(::gpu::context * pgpucontext, float width, float height);
+      virtual ::pointer<::graphics3d::renderable> create_wall(::gpu::context * pgpucontext, ::f32 width, ::f32 height);
 
-      virtual ::pointer<::graphics3d::renderable> create_sphere(::gpu::context * pgpucontext, float radius, unsigned int sectorCount,
-                                                                      unsigned int stackCount);
+      virtual ::pointer<::graphics3d::renderable> create_sphere(::gpu::context * pgpucontext, ::f32 radius, ::u32 sectorCount,
+                                                                      ::u32 stackCount);
 
       //// Generate a ray with a specified length
-      //virtual shape CreateRay(float length);
+      //virtual shape CreateRay(::f32 length);
 
          virtual ::pointer<::graphics3d::renderable> create_renderable_from_model_data(::gpu::context *pgpucontext,
                                                                             ::gpu::model_data_base *pmodeldata);

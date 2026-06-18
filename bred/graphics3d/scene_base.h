@@ -73,7 +73,7 @@ namespace graphics3d
 
 
 		virtual void on_initialize_scene();                 // load models, spawn entities
-		virtual void update(float dt);        // advance all entities
+		virtual void update(::f32 dt);        // advance all entities
       virtual void loadSceneFile(const ::scoped_string &fileName);
 
 
@@ -131,8 +131,8 @@ namespace graphics3d
 
 
 		::pointer<::graphics3d::point_light> create_point_light(
-		   float intensity = 10.f,
-		   float radius = 0.1f,
+		   ::f32 intensity = 10.f,
+		   ::f32 radius = 0.1f,
 		   const ::color::color & color = ::color::white);
 
 

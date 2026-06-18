@@ -30,7 +30,7 @@ namespace networking_bsd
          
       }
 
-      static void callback(void *p, unsigned int uIp, const_char_pointer status)
+      static void callback(void *p, ::u32 uIp, const_char_pointer status)
       {
       
          auto parpa = (arp_a *) p;
@@ -40,7 +40,7 @@ namespace networking_bsd
       }
    
       
-      void step(unsigned int uIp, const_char_pointer status)
+      void step(::u32 uIp, const_char_pointer status)
       {
          
          in_addr inaddr;

@@ -47,7 +47,7 @@ public:
    };
 
 
-   const_char_pointer                 m_pszName;
+   const_char_pointer m_pszName;
    enum_flag                     m_eflag;
    system_setup*                 m_ppropertysetupNext;
    PFN_factory                   m_pfnFactory;
@@ -64,7 +64,7 @@ public:
 
 
    inline bool should_install() { return !has_flag(flag_do_not_install); }
-   [[nodiscard]] bool has_flag(::system_setup::enum_flag eflag) { return ((int)m_eflag & (int)eflag) == (int)eflag; }
+   [[nodiscard]] bool has_flag(::system_setup::enum_flag eflag) { return ((::i32)m_eflag & (::i32)eflag) == (::i32)eflag; }
 
 
    static system_setup* get_last(::system_setup::enum_flag eflag, const_char_pointer pszName = nullptr);

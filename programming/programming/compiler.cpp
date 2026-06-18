@@ -192,7 +192,7 @@ namespace programming
 //      catch (const ::e_status & estatus)
 //      {
 //
-//         informationf("failed to setup visual studio environment " + as_string(estatus.as_long_long()));
+//         informationf("failed to setup visual studio environment " + as_string(estatus.as_i64()));
 //
 //      }
 //
@@ -291,7 +291,7 @@ namespace programming
 
 #ifdef WINDOWS_DESKTOP
 
-      unsigned int dwSize = GetEnvironmentVariableW(L"PATH", nullptr, 0);
+      ::u32 dwSize = GetEnvironmentVariableW(L"PATH", nullptr, 0);
       LPWSTR lpsz = øraw_new wchar_t[dwSize + 1];
       dwSize = GetEnvironmentVariableW(L"PATH", lpsz, dwSize + 1);
       str += lpsz;
@@ -462,8 +462,8 @@ namespace programming
       //
       //#ifdef WINDOWS_DESKTOP
       //   {
-      //      unsigned int dwSize = GetEnvironmentVariable("PATH", nullptr, 0);
-      //      char * lpsz = ___new char[dwSize + 1];
+      //      ::u32 dwSize = GetEnvironmentVariable("PATH", nullptr, 0);
+      //      char_pointer lpsz = ___new ::i8[dwSize + 1];
       //      dwSize = GetEnvironmentVariable("PATH", lpsz, dwSize + 1);
       //      delete lpsz;
       //   }
@@ -477,7 +477,7 @@ namespace programming
       //
       //   //   ::time tickStart= ::time::now();
       //
-      //   //   unsigned int dwExitCode;
+      //   //   ::u32 dwExitCode;
       //
       //   //   string strLog;
       //
@@ -506,8 +506,8 @@ namespace programming
       //   //      CProcessEnvReader::ReleaseHandle(hProcess);
       //   //   }
       //   //process->write("\n");
-      //   unsigned int dwExitCode;
-      //   unsigned int tickStart= ::time::now();
+      //   ::u32 dwExitCode;
+      //   ::u32 tickStart= ::time::now();
       //   while(::task_get_run() && task_get_run())
       //   {
       //
@@ -536,8 +536,8 @@ namespace programming
       //
       //   #ifdef WINDOWS_DESKTOP
       //   {
-      //      unsigned int dwSize = GetEnvironmentVariable("PATH", nullptr, 0);
-      //      char * lpsz = ___new char[dwSize + 1];
+      //      ::u32 dwSize = GetEnvironmentVariable("PATH", nullptr, 0);
+      //      char_pointer lpsz = ___new ::i8[dwSize + 1];
       //      dwSize = GetEnvironmentVariable("PATH", lpsz, dwSize + 1);
       //      delete lpsz;
       //   }

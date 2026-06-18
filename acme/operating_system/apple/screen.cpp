@@ -18,7 +18,7 @@
 #include <CoreGraphics/CoreGraphics.h>
 
 
-void screen_coordinates_aware_copy(CGRect & rectTarget, const ::int_rectangle & rectSource)
+void screen_coordinates_aware_copy(CGRect & rectTarget, const ::i32_rectangle & rectSource)
 {
 
    CGRect rectWorkspace = mm_get_screen_cgrect();
@@ -31,7 +31,7 @@ void screen_coordinates_aware_copy(CGRect & rectTarget, const ::int_rectangle & 
 }
 
 
-void screen_coordinates_aware_copy(::int_rectangle & rectTarget, const CGRect & rectSource)
+void screen_coordinates_aware_copy(::i32_rectangle & rectTarget, const CGRect & rectSource)
 {
 
    CGRect rectWorkspace = mm_get_screen_cgrect();
@@ -44,7 +44,30 @@ void screen_coordinates_aware_copy(::int_rectangle & rectTarget, const CGRect & 
 }
 
 
-// void copy(CGRect & rectTarget, const ::int_rectangle & rectSource)
+
+void screen_coordinates_aware_copy(CGPoint & pointTarget, const ::i32_point & pointSource)
+{
+
+   CGRect rectWorkspace = mm_get_screen_cgrect();
+
+   cast_copy(pointTarget.x, pointSource.x);
+   cast_copy(pointTarget.y, rectWorkspace.size.height - pointSource.y);
+
+}
+
+
+void screen_coordinates_aware_copy(::i32_point & pointTarget, const CGPoint & pointSource)
+{
+
+   CGRect rectWorkspace = mm_get_screen_cgrect();
+
+   cast_copy(pointTarget.x, pointSource.x);
+   cast_copy(pointTarget.y, rectWorkspace.size.height - pointSource.y);
+
+}
+
+
+// void copy(CGRect & rectTarget, const ::i32_rectangle & rectSource)
 // {
 
 //    rectTarget.origin.x       = rectSource.left;
@@ -55,7 +78,7 @@ void screen_coordinates_aware_copy(::int_rectangle & rectTarget, const CGRect & 
 // }
 
 
-// void copy(::int_rectangle & rectTarget, const CGRect & rectSource)
+// void copy(::i32_rectangle & rectTarget, const CGRect & rectSource)
 // {
 
 //    rectTarget.left        = rectSource.origin.x;

@@ -8,22 +8,22 @@
 #include <time.h>
 #include <memory.h>
 
-char * as_string(const_char_pointer pszFilename);
+char_pointer as_string(const_char_pointer pszFilename);
 
 
-char * get_line(char * str, char * & next);
-char * get_command_output(const_char_pointer pszCommand);
+char_pointer get_line(char_pointer str, char_pointer & next);
+char_pointer get_command_output(const_char_pointer pszCommand);
 
 
-char * start_temporary_file_name();
-void end_temporary_file_name(char * ptmpname);
-char * end_temporary_file_name_as_string(char * ptmpname);
+char_pointer start_temporary_file_name();
+void end_temporary_file_name(char_pointer ptmpname);
+char_pointer end_temporary_file_name_as_string(char_pointer ptmpname);
 
 
 bool wget_check_http_ok(const_char_pointer pszUrl)
 {
 
-   char szCommand[4096];
+   ::i8 szCommand[4096];
 
    auto ptmpname = start_temporary_file_name();
 

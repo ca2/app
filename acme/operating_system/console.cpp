@@ -9,8 +9,9 @@
 #include <conio.h>
 #endif
 #if defined(HAVE_TERMIOS_H) && HAVE_TERMIOS_H
-int getche();
+::i32 getche();
 #endif
+
 
 
 
@@ -40,7 +41,58 @@ namespace console
    }
 
 
-   ::int_rectangle console::get_position_rectangle(int y, int x)
+   void console::SetWindowSize(::i32 iHeight,::i32 iWidth)
+   {
+
+      throw ::interface_only();
+
+   }
+
+
+   void console::SetCursorVisibility(bool show)
+   {
+
+      throw ::interface_only();
+
+   }
+
+
+   void console::SetCursorPosition(::i32 y,::i32 x)
+   {
+
+      throw ::interface_only();
+
+   }
+
+
+   void console::SetTextColor(::i32 color)
+   {
+
+      throw ::interface_only();
+
+   }
+
+
+   void console::SetScreenColor(::enum_dos_color color,::i32 iLineStart,::i32 iLineCount)
+   {
+
+      throw ::interface_only();
+
+   }
+
+
+   void console::write(const ::scoped_string & scopedstr)
+   {
+
+      throw ::interface_only();
+
+   }
+
+
+
+
+
+   ::i32_rectangle console::get_position_rectangle(::i32 y, ::i32 x)
    {
     
       throw ::interface_only();
@@ -48,6 +100,74 @@ namespace console
       return {};
       
    }
+
+   
+
+   ::string console::prompt_line(const_char_pointer pszPrompt)
+   {
+
+      if (pszPrompt && *pszPrompt)
+      {
+
+         print_out(pszPrompt);
+      }
+
+      ::string strLine;
+
+      ::i32 iRet;
+
+      while (true)
+      {
+
+         ::string strChar;
+
+         iRet = ::current_getch_utf8(strChar);
+
+         if (iRet == EOF)
+         {
+
+            throw "cancel";
+         }
+         else if (strChar == "\n")
+         {
+
+            break;
+         }
+         else if (strChar == "\r")
+         {
+
+            // ignore carriage return (for safety)
+            continue;
+         }
+         else if (strChar[0] == 127 || strChar == "\b")
+         {
+
+            // handle backspace
+            if (strLine.has_character())
+            {
+
+               strLine.truncate(utf8_dec(strLine.begin(), strLine.end()));
+
+               // erase character visually
+               printf("\b \b");
+            }
+         }
+         else
+         {
+
+            strLine += strChar;
+
+            // echo character
+            printf("%s", strChar.c_str());
+         }
+      }
+
+      // move to next line after Enter
+      putchar('\n');
+
+      return strLine;
+   }
+
 
 
 } // namespace console
@@ -76,7 +196,7 @@ void press_any_key_to_exit(const ::scoped_string & scopedstrPrompt)
 
    printf("%s\n", strPrompt.c_str());
 
-   int iGetChar = getchar();
+   ::i32 iGetChar = getchar();
 
    if(iGetChar == EOF)
    {
@@ -88,10 +208,10 @@ void press_any_key_to_exit(const ::scoped_string & scopedstrPrompt)
 }
 
 
-int safe_get_any_char(const class time & time)
+::i32 safe_get_any_char(const class time & time)
 {
 
-   int iSafeChar = EOF;
+   ::i32 iSafeChar = EOF;
 
    class ::time timeStart;
 
@@ -117,10 +237,10 @@ int safe_get_any_char(const class time & time)
 }
 
 
-int safe_get_char(FILE * pfile, const class time & time)
+::i32 safe_get_char(FILE * pfile, const class time & time)
 {
 
-   int iSafeChar = EOF;
+   ::i32 iSafeChar = EOF;
 
    class ::time timeStart;
 
@@ -163,7 +283,7 @@ int safe_get_char(FILE * pfile, const class time & time)
 #include <termios.h>
 
 
-int getche()
+::i32 getche()
 {
 
    struct termios termiosOld = {0};
@@ -187,7 +307,7 @@ int getche()
 
    }
 
-   char ch = -1;
+   ::i8 ch = -1;
 
    auto iRead = read(0, &ch, 1);
 
@@ -201,6 +321,8 @@ int getche()
    return ch;
 
 }
+
+
 
 
 #endif // defined(HAVE_TERMIOS_H) && HAVE_TERMIOS_Hc
@@ -244,7 +366,7 @@ std_out_buffer::~std_out_buffer()
 //
 //   DWORD dw;
 //
-//   WriteFile(GetStdHandle(STD_OUTPUT_HANDLE), pdata, (unsigned int)nCount, &dw, nullptr);
+//   WriteFile(GetStdHandle(STD_OUTPUT_HANDLE), pdata, (::u32)nCount, &dw, nullptr);
 //
 //#else
 //
@@ -254,3 +376,57 @@ std_out_buffer::~std_out_buffer()
 //#endif
 //
 //}
+
+
+CLASS_DECL_ACME ::i32 current_getch_utf8(::string & strChar)
+{
+
+   strChar.empty();
+
+   ::i32 first = current_getch(); // your existing function
+
+   if (first == EOF)
+   {
+      return EOF;
+   }
+
+   ::u8 c = (::u8) first;
+
+   // 1-byte ASCII
+   if ((c & 0x80) == 0)
+   {
+      strChar += (::i8)c;
+      return 1;
+   }
+
+   // Determine UTF-8 sequence length
+   ::i32 extra = 0;
+
+   if ((c & 0xE0) == 0xC0) extra = 1;        // 2 bytes
+   else if ((c & 0xF0) == 0xE0) extra = 2;   // 3 bytes
+   else if ((c & 0xF8) == 0xF0) extra = 3;   // 4 bytes
+   else
+   {
+      throw ::exception(error_failed, "Invalid UTF-8 start byte");
+   }
+
+   strChar += (::i8)c;
+
+   for (::i32 i = 0; i < extra; i++)
+   {
+      ::i32 next = current_getch();
+
+      if (next == EOF)
+      {
+         throw ::exception(error_failed, "Unexpected EOF in UTF-8 sequence");
+      }
+
+      strChar += (::i8)next;
+   }
+
+   return 1;
+
+}
+
+
+

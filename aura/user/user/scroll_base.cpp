@@ -88,7 +88,7 @@ namespace user
    }
 
 
-   bool scroll_base::on_drag_start(::int_point & pointDrag, ::user::mouse * pmouse, ::item * pitem)
+   bool scroll_base::on_drag_start(::i32_point & pointDrag, ::user::mouse * pmouse, ::item * pitem)
    {
 
       if (pitem->m_item.m_eelement == ::e_element_drag_scroll)
@@ -105,7 +105,7 @@ namespace user
    }
 
 
-   //::int_point scroll_base::drag_mouse_cursor_position(::item * pitem, const ::int_point & point)
+   //::i32_point scroll_base::drag_mouse_cursor_position(::item * pitem, const ::i32_point & point)
    //{
 
    //   auto p = windowing()->try_absolute_mouse_position(this, point);
@@ -115,7 +115,7 @@ namespace user
    //}
 
 
-   void scroll_base::set_context_offset(const ::double_point & pointOffset, ::user::enum_layout elayout)
+   void scroll_base::set_context_offset(const ::f64_point & pointOffset, ::user::enum_layout elayout)
    {
 
       set_context_offset_x(pointOffset.x, elayout);
@@ -125,13 +125,15 @@ namespace user
    }
 
    
-   ::int_point scroll_base::drag_point(::item * pitem, ::user::mouse * pmouse)
+   ::i32_point scroll_base::drag_point(::item * pitem, ::user::mouse * pmouse)
    {
 
       if (pitem->m_item.m_eelement == ::e_element_drag_scroll)
       {
 
          auto pdrag = drag(pitem);
+
+         pdrag->m_ecursorDrag = e_cursor_arrow;
 
          //auto pointLButtonDown2 = drag_mouse_cursor_position(pitem, pdrag->m_pointLButtonDown2);
 
@@ -165,7 +167,7 @@ namespace user
 
          auto pdrag = drag(pitem);
 
-         pdrag->m_ecursor = e_cursor_move;
+         pdrag->m_ecursorDrag = e_cursor_move;
 
          auto point = drag_point(pitem, pmouse);
 
@@ -276,7 +278,7 @@ namespace user
    //}
 
 
-   ::double_point scroll_base::get_context_offset(::user::enum_layout elayout)
+   ::f64_point scroll_base::get_context_offset(::user::enum_layout elayout)
    {
 
       auto x = get_context_offset_x(elayout);
@@ -288,7 +290,7 @@ namespace user
    }
 
 
-   void scroll_base::constrain_context_offset(double_point & point, ::user::enum_layout elayout)
+   void scroll_base::constrain_context_offset(::f64_point & point, ::user::enum_layout elayout)
    {
 
       constrain_context_offset_x(point.x, elayout);
@@ -338,9 +340,9 @@ namespace user
 
       scrollstatey.m_bHasScroll = false;
 
-      scrollstatex.m_dThickness = (double)get_int(pstyle, e_int_scroll_bar_thickness);
+      scrollstatex.m_dThickness = (::f64)get_int(pstyle, e_int_scroll_bar_thickness);
 
-      scrollstatey.m_dThickness = (double)get_int(pstyle, e_int_scroll_bar_thickness);
+      scrollstatey.m_dThickness = (::f64)get_int(pstyle, e_int_scroll_bar_thickness);
 
       if (rectangleX.area() <= 0)
       {
@@ -349,17 +351,17 @@ namespace user
 
       }
 
-      int iTotalCX = (int)sizeTotal.cx;
+      ::i32 iTotalCX = (::i32)sizeTotal.cx;
 
-      int iTotalCY = (int)sizeTotal.cy;
+      ::i32 iTotalCY = (::i32)sizeTotal.cy;
 
-      int iClientCX = rectangleX.width();
+      ::i32 iClientCX = rectangleX.width();
 
-      int iClientCY = rectangleX.height();
+      ::i32 iClientCY = rectangleX.height();
 
-      int iScrollCX = iClientCX - get_int(pstyle, e_int_scroll_bar_thickness);
+      ::i32 iScrollCX = iClientCX - get_int(pstyle, e_int_scroll_bar_thickness);
 
-      int iScrollCY = iClientCY - get_int(pstyle, e_int_scroll_bar_thickness);
+      ::i32 iScrollCY = iClientCY - get_int(pstyle, e_int_scroll_bar_thickness);
 
       if (iTotalCX > iClientCX)
       {
@@ -438,7 +440,7 @@ namespace user
    }
 
 
-   ::int_rectangle scroll_base::client2_rectangle(enum_layout elayout)
+   ::i32_rectangle scroll_base::client2_rectangle(enum_layout elayout)
    {
 
       auto rectangle = this->rectangle(elayout);
@@ -450,16 +452,16 @@ namespace user
 
       rectangle.bottom -= get_final_scroll_bar_y_thickness(elayout);
 
-      //rectangle.right -= (int)(rectangle.left + minimum(::width(rectangle), sizeTotal.cx - m_pscrolllayoutX->m_scrollstatea[elayout].m_dPage - pointOffset.x));
+      //rectangle.right -= (::i32)(rectangle.left + minimum(::width(rectangle), sizeTotal.cx - m_pscrolllayoutX->m_scrollstatea[elayout].m_dPage - pointOffset.x));
 
-      //rectangle.bottom -= (int)(rectangle.top + minimum(::height(rectangle), sizeTotal.cy - m_pscrolllayoutY->m_scrollstatea[elayout].m_dPage - pointOffset.y));
+      //rectangle.bottom -= (::i32)(rectangle.top + minimum(::height(rectangle), sizeTotal.cy - m_pscrolllayoutY->m_scrollstatea[elayout].m_dPage - pointOffset.y));
 
       return rectangle;
 
    }
 
 
-   //bool scroll_base::this->rectangle(::int_rectangle * prectangle)
+   //bool scroll_base::this->rectangle(::i32_rectangle * prectangle)
    //{
 
    //   ::user::interaction::this->rectangle(prectangle);
@@ -473,7 +475,7 @@ namespace user
    //}
 
 
-   bool scroll_base::GetFocusRect(::int_rectangle & rectangle)
+   bool scroll_base::GetFocusRect(::i32_rectangle & rectangle)
    {
 
       rectangle.left = 0;
@@ -488,19 +490,19 @@ namespace user
    }
 
 
-   ::double_size scroll_base::get_total_size(::user::enum_layout elayout)
+   ::f64_size scroll_base::get_total_size(::user::enum_layout elayout)
    {
 
       auto scrollstatex = get_scroll_state_x(elayout);
 
       auto scrollstatey = get_scroll_state_y(elayout);
 
-      return ::double_size(scrollstatex.dimension(), scrollstatey.dimension());
+      return ::f64_size(scrollstatex.dimension(), scrollstatey.dimension());
 
    }
 
 
-   void scroll_base::set_total_size(const ::double_size & size, ::user::enum_layout elayout)
+   void scroll_base::set_total_size(const ::f64_size & size, ::user::enum_layout elayout)
    {
 
       set_scroll_dimension(size, elayout);
@@ -510,7 +512,7 @@ namespace user
    }
 
 
-   void scroll_base::set_scroll_dimension(const ::int_size & size, ::user::enum_layout elayout)
+   void scroll_base::set_scroll_dimension(const ::i32_size & size, ::user::enum_layout elayout)
    {
 
       scroll_base_x::set_scroll_dimension(size, elayout);
@@ -522,7 +524,7 @@ namespace user
    }
 
 
-   void scroll_base::set_page_size(const ::double_size & size, ::user::enum_layout elayout)
+   void scroll_base::set_page_size(const ::f64_size & size, ::user::enum_layout elayout)
    {
 
       on_change_scroll_state(elayout);
@@ -543,12 +545,12 @@ namespace user
 
          auto rectangleX = this->rectangle();
 
-         ::int_rectangle rectangle;
+         ::i32_rectangle rectangle;
 
          rectangle.top = rectangleX.bottom;
          rectangle.left = rectangleX.right;
-         rectangle.right = (int)(rectangle.left + m_pscrollbarY->const_layout().design().size().cx);
-         rectangle.bottom = (int)(rectangle.top + m_pscrollbarX->const_layout().design().size().cy);
+         rectangle.right = (::i32)(rectangle.left + m_pscrollbarY->const_layout().design().size().cx);
+         rectangle.bottom = (::i32)(rectangle.top + m_pscrollbarX->const_layout().design().size().cy);
 
          pgraphics->fill_rectangle(rectangle, argb(127, 127, 127, 127));
 
@@ -573,7 +575,7 @@ namespace user
    }
 
 
-   bool scroll_base::get_element_rectangle(::int_rectangle & rectangle, enum_element eelement)
+   bool scroll_base::get_element_rectangle(::i32_rectangle & rectangle, const ::e_element & eelement)
    {
       
       if (eelement == e_element_drag_scroll)
@@ -631,14 +633,14 @@ namespace user
          if (scroll_bar_x_visible())
          {
 
-            rectangle.bottom -= (int)m_pscrollbarX->scroll_bar_thickness();
+            rectangle.bottom -= (::i32)m_pscrollbarX->scroll_bar_thickness();
 
          }
 
          if (scroll_bar_y_visible())
          {
 
-            rectangle.right -= (int)m_pscrollbarY->scroll_bar_thickness();
+            rectangle.right -= (::i32)m_pscrollbarY->scroll_bar_thickness();
 
          }
 

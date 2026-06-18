@@ -34,7 +34,7 @@ namespace sandbox_game
 
 
       void onInit() override;
-      void onUpdate(float dt) override;
+      void onUpdate(::f32 dt) override;
 
 ::graphics3d::      IScene& getSceneInterface() override;
    ///private:

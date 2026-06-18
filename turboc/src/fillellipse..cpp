@@ -31,7 +31,7 @@
 //----------------------------------------------------------------------------
 
 void
-fillellipse (int x, int y, int xradius, int yradius)
+fillellipse (::i32 x, ::i32 y, ::i32 xradius, ::i32 yradius)
 {
   //// Convert to viewport coordinates.
   //x += TcViewLeft - xradius;

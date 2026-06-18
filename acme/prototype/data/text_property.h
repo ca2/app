@@ -83,7 +83,7 @@ namespace data
 
 
       //virtual character_count get_text_length();
-      //virtual void get_text(char * psz, character_count len);
+      //virtual void get_text(char_pointer psz, character_count len);
       //virtual void get_text(string & str, ::collection::index iBeg, ::collection::index iEnd);
 
 
@@ -119,7 +119,7 @@ namespace data
       //virtual bool edit_undo();
 
 
-      //virtual void get_text_composition_area(::int_rectangle& rectangle);
+      //virtual void get_text_composition_area(::i32_rectangle& rectangle);
 
       ::comparable_array < ::data::text_will_change > & text_will_change();
       ::comparable_array < ::data::text_changed > & text_changed();
@@ -146,7 +146,7 @@ namespace data
 
 
             virtual character_count get_text_length();
-            virtual void get_text(char * psz, character_count len);
+            virtual void get_text(char_pointer psz, character_count len);
             virtual void get_text(string & str, ::collection::index iBeg, ::collection::index iEnd);
 
 
@@ -182,7 +182,7 @@ namespace data
             virtual bool edit_undo();
 
 
-            //virtual void get_text_composition_area(::int_rectangle& rectangle);
+            //virtual void get_text_composition_area(::i32_rectangle& rectangle);
       */
 
       ::string as_text() const;
@@ -199,7 +199,7 @@ namespace data
 
       character_count get_text_length() const;
 
-      //void get_text(char * psz, character_count len);
+      //void get_text(char_pointer psz, character_count len);
 
 
       ::string get_text() const;
@@ -316,7 +316,7 @@ namespace data
          }
 
 
-         void text::get_text_composition_area(::int_rectangle& rectangle)
+         void text::get_text_composition_area(::i32_rectangle& rectangle)
          {
 
 

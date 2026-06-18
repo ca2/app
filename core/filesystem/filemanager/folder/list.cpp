@@ -155,7 +155,7 @@ namespace filemanager
 
       directory()->enumerate(listing);
 
-      for (int i = 0; i < listing.get_count(); i++)
+      for (::i32 i = 0; i < listing.get_count(); i++)
       {
 
          folder.m_strFolderPath = listing[i];
@@ -180,8 +180,8 @@ namespace filemanager
       //   HRESULT hr;
       if (pcolumn->m_iSubItem == 1)
       {
-         //      char szPath[MAX_PATH * 4];
-         //      unsigned int uFlags;
+         //      ::i8 szPath[MAX_PATH * 4];
+         //      ::u32 uFlags;
          if (pcolumn->m_pimagelist == nullptr)
          {
             pcolumn->m_pimagelist = allocateø ::image::image_list();
@@ -199,17 +199,17 @@ namespace filemanager
 
             string str;
             //::image::icon * hicon = nullptr;
-            //int iIndex;
+            //::i32 iIndex;
             for (auto p = m_iconmap.begin(); p; p++)
             {
                delete p->m_element1;
             }
             m_iconmap.erase_all();
-            //         int iIcon;
-            //         int iImage;
+            //         ::i32 iIcon;
+            //         ::i32 iImage;
             //         IExtractIcon * piextracticon;
 
-            for (int i = 0; i < m_foldera.GetFolderCount(); i++)
+            for (::i32 i = 0; i < m_foldera.GetFolderCount(); i++)
             {
                /*            Folder & folder = m_foldera.GetFolder(i);
                if(FAILED(m_spshellfolder->GetUIObjectOf(
@@ -301,7 +301,7 @@ namespace filemanager
 //      //Folder folder;
 //
 //
-//      //for(int i = 0; i < this->get_size(); i++)
+//      //for(::i32 i = 0; i < this->get_size(); i++)
 //      //{
 //      //Folder & folder = this->element_at(i);
 //      //}

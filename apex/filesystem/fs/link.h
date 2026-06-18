@@ -35,7 +35,7 @@ namespace fs
       virtual void defer_fill_folder(const ::scoped_string & scopedstrTitle, ::file::path pathFolder);
 
       virtual bool has_subdir(const ::file::path & path) override;
-      virtual int is_dir(const ::file::path & path) override;
+      virtual ::i32 is_dir(const ::file::path & path) override;
       virtual ::file::listing_base & root_ones(::file::listing_base & listing) override;
 
       virtual void fill_os_user();

@@ -11,7 +11,7 @@ namespace datetime
    public:
 
       string            m_strZone;
-      double            m_dZone;
+      ::f64            m_dZone;
       ::earth::time  m_time; /// time when this time zone record was last updated
 
       time_zone()

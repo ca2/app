@@ -18,12 +18,20 @@ class CLASS_DECL_ACME pen :
 public:
 
 
-   int                  m_iWidth;
+   enum_pen             m_epen;
+   enum_line_cap        m_elinecapStart;
+   enum_line_cap        m_elinecapEnd;
+   ::f64                m_fWidth;
    ::color::color       m_color;
 
 
    pen();
    ~pen() override;
+
+   virtual void create_pen(enum_pen epen, ::f64 fWidth, const ::color::color &color);
+
+   virtual void set_start_cap(enum_line_cap elinecap);
+   virtual void set_end_cap(enum_line_cap elinecap);
 
 
 };

@@ -26,9 +26,9 @@ namespace hotplugin
       bool                          m_bInitialized;
       FILE *                        m_pfile;
       bool                          m_bPreCheck;
-      int                       m_iHealingSurface;
-      unsigned int                      m_last_redraw;
-      int                       m_iEdge;
+      ::i32                       m_iHealingSurface;
+      ::u32                      m_last_redraw;
+      ::i32                       m_iEdge;
       bool                          m_bAppStarted;
       manual_reset_happening            m_happeningReady;
       bool                          m_bApp;
@@ -39,7 +39,7 @@ namespace hotplugin
       ::image::image_pointer              m_pimage;
       ::draw2d::graphics_pointer         m_pgraphics;
       file::memory_map              m_memorymapBitmap;
-      ::int_size                        m_sizeBitmap;
+      ::i32_size                        m_sizeBitmap;
 
       string                        m_strStatus;
       string                        m_strStatus2;
@@ -47,15 +47,15 @@ namespace hotplugin
       itask                      m_nCa2StarterStartThreadID;
       bool                          m_bReload;
       bool                          m_bInstalling;
-      const_char_pointer                  m_pszReloadCommandLine;
+      const_char_pointer m_pszReloadCommandLine;
 
       ::pointer< ::mutex >                       m_pmutexBitmap;
-      ::int_size                          m_sizeBitmapData;
+      ::i32_size                          m_sizeBitmapData;
       string                        m_strBitmapChannel;
-      ::int_point                         m_pointCursorPhase;
+      ::i32_point                         m_pointCursorPhase;
 
       class ::time m_timeSync;
-      int                       m_iDelta;
+      ::i32                       m_iDelta;
 
 
       plugin();
@@ -88,23 +88,23 @@ namespace hotplugin
 
       /*
       using ::user::interaction::client_to_screen;
-      virtual bool client_to_screen(::int_point * ppt) override;
+      virtual bool client_to_screen(::i32_point * ppt) override;
 
       using ::user::interaction::screen_to_client;
-      virtual bool screen_to_client(::int_point * ppt) override;
+      virtual bool screen_to_client(::i32_point * ppt) override;
 
       using ::user::interaction::window_rectangle;
-      virtual bool window_rectangle(::long_long_rectangle * prectangle) override;
+      virtual bool window_rectangle(::i64_rectangle * prectangle) override;
 
       using ::user::interaction::this->rectangle;
-      virtual bool this->rectangle(::long_long_rectangle * prectangle) override;
+      virtual bool this->rectangle(::i64_rectangle * prectangle) override;
       */
 
 
 
-      virtual void translate_mouse_message(int * px, int * py);
+      virtual void translate_mouse_message(::i32 * px, ::i32 * py);
 
-      //virtual bool display(int nCmdShow);
+      //virtual bool display(::i32 nCmdShow);
       //virtual bool destroy_window();
       //
       // call host memory
@@ -113,7 +113,7 @@ namespace hotplugin
       virtual ::collection::count get_memory_length();
       virtual ::collection::count read_memory(void * puchMemory, ::collection::count c);
       virtual void   free_memory();
-      //static  void   free_memory(unsigned char ** ppuchMemory);
+      //static  void   free_memory(::u8 ** ppuchMemory);
 
 
       virtual bool is_ok();
@@ -125,9 +125,9 @@ namespace hotplugin
 
       virtual void start_plugin();
 
-      virtual int  start_ca2_system();
+      virtual ::i32  start_ca2_system();
 
-      virtual void on_paint(::draw2d::graphics_pointer & pgraphics,const ::int_rectangle & prectangle);
+      virtual void on_paint(::draw2d::graphics_pointer & pgraphics,const ::i32_rectangle & prectangle);
 
 
       virtual void deferred_prodevian_redraw();
@@ -137,7 +137,7 @@ namespace hotplugin
 
 #if !defined(WINDOWS) && !defined(APPLEOS) && !defined(__ANDROID__)
       using ::user::interaction::message_handler;
-      virtual int x11_message_handler(void * pevent);
+      virtual ::i32 x11_message_handler(void * pevent);
 #endif
       virtual void message_handler(::user::message * pusermessage) override;
       virtual void plugin_message_handler(::user::enum_message eusermessage, ::wparam wparam, ::lparam lparam, bool bEnsureTx);
@@ -145,30 +145,30 @@ namespace hotplugin
       virtual void plugin_message_handler(MESSAGE * pmsg,bool bEnsureTx);
 
 
-      virtual void on_bare_paint(::draw2d::graphics_pointer & pgraphics,const ::int_rectangle & prectangle);
+      virtual void on_bare_paint(::draw2d::graphics_pointer & pgraphics,const ::i32_rectangle & prectangle);
 
 
-      virtual void on_bare_paint_full_screen(::draw2d::graphics_pointer & pgraphics,const ::int_rectangle & prectangle);
+      virtual void on_bare_paint_full_screen(::draw2d::graphics_pointer & pgraphics,const ::i32_rectangle & prectangle);
 
 
-      virtual void on_bare_paint_discreet(::draw2d::graphics_pointer & pgraphics,const ::int_rectangle & prectangle);
+      virtual void on_bare_paint_discreet(::draw2d::graphics_pointer & pgraphics,const ::i32_rectangle & prectangle);
 
 
-      virtual void on_bare_paint_veri_discreet(::draw2d::graphics_pointer & pgraphics,const ::int_rectangle & prectangle);
+      virtual void on_bare_paint_veri_discreet(::draw2d::graphics_pointer & pgraphics,const ::i32_rectangle & prectangle);
 
 
       virtual void start_ca2();
 
-      virtual void set_progress_rate(double dRate);
+      virtual void set_progress_rate(::f64 dRate);
 
-      virtual double get_progress_rate();
+      virtual ::f64 get_progress_rate();
 
       virtual void on_update_progress();
 
-      virtual void on_paint_progress(::draw2d::graphics_pointer & pgraphics,const ::int_rectangle & prectangle);
+      virtual void on_paint_progress(::draw2d::graphics_pointer & pgraphics,const ::i32_rectangle & prectangle);
 
 
-      virtual double extract_spa_progress_rate();
+      virtual ::f64 extract_spa_progress_rate();
 
       virtual void set_ca2_installation_ready(bool bReady = true);
 
@@ -176,11 +176,11 @@ namespace hotplugin
 
       virtual void restart_aura_ipc() override;
 
-      virtual void ensure_bitmap_data(const ::int_size & size, bool bCreateFile);
+      virtual void ensure_bitmap_data(const ::i32_size & size, bool bCreateFile);
 
       virtual bool set_host(::hotplugin::host * phost);
 
-      virtual void get_progress_color(unsigned char & uchR, unsigned char & uchG, unsigned char & uchB, double dRate, int iProfile);
+      virtual void get_progress_color(::u8 & uchR, ::u8 & uchG, ::u8 & uchB, ::f64 dRate, ::i32 iProfile);
 
       virtual void on_host_timer();
 

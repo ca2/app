@@ -29,7 +29,7 @@ namespace dynamic_source
 #ifdef _DEBUG
 
 
-   long long script_main::increment_reference_count()
+   ::i64 script_main::increment_reference_count()
    {
 
       return script_interface::increment_reference_count();
@@ -37,7 +37,7 @@ namespace dynamic_source
    }
 
 
-   long long script_main::decrement_reference_count()
+   ::i64 script_main::decrement_reference_count()
    {
 
       return script_interface::decrement_reference_count();

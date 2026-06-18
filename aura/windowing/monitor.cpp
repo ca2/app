@@ -41,6 +41,14 @@ namespace windowing
    }
 
 
+   void monitor::initialize_monitor(::windowing::display * pwindowingdisplay, int iMonitor)
+   {
+
+
+
+   }
+
+
    void monitor::update_cache()
    {
 
@@ -49,7 +57,7 @@ namespace windowing
    }
 
    
-   unsigned int monitor::monitor_color_temperature()
+   ::u32 monitor::monitor_color_temperature()
    {
 
       return 0;
@@ -57,7 +65,7 @@ namespace windowing
    }
 
 
-   bool monitor::adjust_monitor(unsigned int dwTemperature, double dBrightness, double dwGamma)
+   bool monitor::adjust_monitor(::u32 dwTemperature, ::f64 dBrightness, ::f64 dwGamma)
    {
 
       return false;
@@ -65,7 +73,7 @@ namespace windowing
    }
 
 
-   ::int_rectangle monitor::monitor_rectangle()
+   ::i32_rectangle monitor::monitor_rectangle()
    {
 
       m_pdisplay->_get_monitor_rectangle(m_iIndex, m_rectangle);
@@ -75,7 +83,7 @@ namespace windowing
    }
 
 
-   ::int_rectangle monitor::workspace_rectangle()
+   ::i32_rectangle monitor::workspace_rectangle()
    {
 
       if(m_rectangleFixedWorkspace.left != I32_MINIMUM
@@ -111,7 +119,7 @@ namespace windowing
       }
 
 
-      ::int_rectangle rectangleWorkspace = _workspace_rectangle();
+      ::i32_rectangle rectangleWorkspace = _workspace_rectangle();
 
       for(auto i = 0; i < 4; i++)
       {
@@ -130,7 +138,7 @@ namespace windowing
    }
 
 
-   ::int_rectangle monitor::_workspace_rectangle()
+   ::i32_rectangle monitor::_workspace_rectangle()
    {
 
       information() << "monitor::_workspace_rectangle";
@@ -158,7 +166,7 @@ namespace windowing
    }
 
 
-   void monitor::set_workspace_rectangle(const ::int_rectangle & rectangle)
+   void monitor::set_workspace_rectangle(const ::i32_rectangle & rectangle)
    {
 
       m_rectangleFixedWorkspace = rectangle;
@@ -166,7 +174,7 @@ namespace windowing
    }
 
 
-   void monitor::set_workspace_rectangle_left(int left)
+   void monitor::set_workspace_rectangle_left(::i32 left)
    {
 
       m_rectangleFixedWorkspace.left = left;
@@ -176,7 +184,7 @@ namespace windowing
    }
 
 
-   void monitor::set_workspace_rectangle_top(int top)
+   void monitor::set_workspace_rectangle_top(::i32 top)
    {
 
       m_rectangleFixedWorkspace.top = top;
@@ -186,7 +194,7 @@ namespace windowing
    }
 
 
-   void monitor::set_workspace_rectangle_right(int right)
+   void monitor::set_workspace_rectangle_right(::i32 right)
    {
 
       m_rectangleFixedWorkspace.right = right;
@@ -196,7 +204,7 @@ namespace windowing
    }
 
 
-   void monitor::set_workspace_rectangle_bottom(int bottom)
+   void monitor::set_workspace_rectangle_bottom(::i32 bottom)
    {
 
       m_rectangleFixedWorkspace.bottom = bottom;

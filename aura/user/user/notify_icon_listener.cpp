@@ -19,7 +19,7 @@ namespace user
    }
 
 
-   //void notify_icon_listener::OnNotifyIconMessage(unsigned int uNotifyIcon, unsigned int message)
+   //void notify_icon_listener::OnNotifyIconMessage(::u32 uNotifyIcon, ::u32 message)
    //{
 
    //   switch(message)
@@ -47,7 +47,7 @@ namespace user
    //}
 
 
-   //void notify_icon_listener::OnNotifyIconContextMenu(unsigned int uNotifyIcon)
+   //void notify_icon_listener::OnNotifyIconContextMenu(::u32 uNotifyIcon)
    //{
 
    //   __UNREFERENCED_PARAMETER(uNotifyIcon);
@@ -55,7 +55,7 @@ namespace user
    //}
 
 
-   //void notify_icon_listener::OnNotifyIconLButtonDblClk(unsigned int uNotifyIcon)
+   //void notify_icon_listener::OnNotifyIconLButtonDblClk(::u32 uNotifyIcon)
    //{
 
    //   __UNREFERENCED_PARAMETER(uNotifyIcon);
@@ -63,7 +63,7 @@ namespace user
    //}
 
 
-   //void notify_icon_listener::OnNotifyIconLButtonDown(unsigned int uNotifyIcon)
+   //void notify_icon_listener::OnNotifyIconLButtonDown(::u32 uNotifyIcon)
    //{
 
    //   __UNREFERENCED_PARAMETER(uNotifyIcon);
@@ -71,15 +71,15 @@ namespace user
    //}
 
 
-   //int notify_icon_listener::_get_notification_area_action_count()
+   //::i32 notify_icon_listener::_get_notification_area_action_count()
    //{
 
-   //   return (int) m_notifyiconitema.get_count();
+   //   return (::i32) m_notifyiconitema.get_count();
 
    //}
 
 
-   //const_char_pointer notify_icon_listener::_get_notification_area_action_name(int iItem)
+   //const_char_pointer notify_icon_listener::_get_notification_area_action_name(::i32 iItem)
    //{
 
    //   if (iItem < 0 || iItem >= m_notifyiconitema.get_count())
@@ -96,7 +96,7 @@ namespace user
    //}
 
 
-   //const_char_pointer notify_icon_listener::_get_notification_area_action_id(int iItem)
+   //const_char_pointer notify_icon_listener::_get_notification_area_action_id(::i32 iItem)
    //{
 
    //   if (iItem < 0 || iItem >= m_notifyiconitema.get_count())
@@ -113,7 +113,7 @@ namespace user
    //}
 
 
-   //const_char_pointer notify_icon_listener::_get_notification_area_action_label(int iItem)
+   //const_char_pointer notify_icon_listener::_get_notification_area_action_label(::i32 iItem)
    //{
 
    //   if (iItem < 0 || iItem >= m_notifyiconitema.get_count())
@@ -130,7 +130,7 @@ namespace user
    //}
 
 
-   //const_char_pointer notify_icon_listener::_get_notification_area_action_accelerator(int iItem)
+   //const_char_pointer notify_icon_listener::_get_notification_area_action_accelerator(::i32 iItem)
    //{
 
    //   if (iItem < 0 || iItem >= m_notifyiconitema.get_count())
@@ -147,7 +147,7 @@ namespace user
    //}
 
 
-   //const_char_pointer notify_icon_listener::_get_notification_area_action_description(int iItem)
+   //const_char_pointer notify_icon_listener::_get_notification_area_action_description(::i32 iItem)
    //{
 
    //   if (iItem < 0 || iItem >= m_notifyiconitema.get_count())

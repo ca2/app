@@ -7,9 +7,9 @@
 
 #define STATUS_RANGE 1000 // should be enough for the categorization granularity
 
-#define MKSTATUS_RANGE(previous) ((int)(previous) + (int)(STATUS_RANGE))
+#define MKSTATUS_RANGE(previous) ((::i32)(previous) + (::i32)(STATUS_RANGE))
 
-#define STATUS_RANGE_GENERAL ((int)(0))
+#define STATUS_RANGE_GENERAL ((::i32)(0))
 
 #define STATUS_RANGE_TIME_BAG MKSTATUS_RANGE(STATUS_RANGE_GENERAL)
 
@@ -31,9 +31,9 @@
 
 #define STATUS_FAILURE (I32_MINIMUM)
 
-#define INT_FAILURE_STATUS(iStatusRange) (((long long)STATUS_FAILURE + (iStatusRange)))
+#define INT_FAILURE_STATUS(iStatusRange) (((::i64)STATUS_FAILURE + (iStatusRange)))
 
-#define INT_SUCCESS_STATUS(iStatusRange) ((long long)(iStatusRange))
+#define INT_SUCCESS_STATUS(iStatusRange) ((::i64)(iStatusRange))
 
 #define FAILURE_STATUS(iStatusRange) ((::e_status    )(::enum_status)INT_FAILURE_STATUS(iStatusRange))
 
@@ -44,12 +44,12 @@
 #define DECLARE_SE_EXCEPTION_ERROR(name) IDENTIFIER_CONCATENATE(error_,name)
 
 
-enum enum_status : long long
+enum enum_status : ::i64
 {
 
    e_status_none = INT64_MIN,
 
-   e_status_process_result_negative_base = (long long)I32_MINIMUM - 1,
+   e_status_process_result_negative_base = (::i64)I32_MINIMUM - 1,
 
    error_failed = INT_FAILURE_STATUS(STATUS_RANGE_GENERAL),
    error_not_set,

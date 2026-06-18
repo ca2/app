@@ -16,7 +16,7 @@ namespace prompt
       ::user::message_queue_pointer   m_spqueue;
 
       bool                       m_bAutoHideOnOutClick;
-      int                 m_iAnimateStep;
+      ::i32                 m_iAnimateStep;
       ::image::image_list_pointer          m_pimagelist;
       bool                    m_bTimerHide;
       bool                    m_bTimerOn;
@@ -49,7 +49,7 @@ namespace prompt
 
 
       DECLARE_MESSAGE_HANDLER(on_message_create);
-      void on_timer(::timer * ptimer);
+      void operator()(::timer * ptimer) override;
 
       DECLARE_MESSAGE_HANDLER(on_message_close);
       DECLARE_MESSAGE_HANDLER(on_message_move);

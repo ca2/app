@@ -44,7 +44,7 @@ namespace graphics3d
       virtual ::graphics3d::asset_manager *asset_manager();
 
 		virtual ::pointer < ::graphics3d::scene_base > create_main_scene();
-		// virtual void onUpdate(float deltaTime);
+		// virtual void onUpdate(::f32 deltaTime);
 		// virtual void on_render(::gpu::frame & frame);
 		//virtual IScene& getSceneInterface() = 0;
 		//virtual ~IGameLayer() = default;

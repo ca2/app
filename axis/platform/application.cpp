@@ -192,7 +192,7 @@ namespace axis
 //   };
 //
 //
-//   int_bool CALLBACK enum_proc(HWND hwnd, LPARAM lparam)
+//   ::i32_bool CALLBACK enum_proc(HWND hwnd, LPARAM lparam)
 //   {
 //
 //      open_browser_enum * penum = (open_browser_enum *)lparam;
@@ -213,7 +213,7 @@ namespace axis
 //   }
 //
 //
-//   int_bool CALLBACK enum_proc_ff_topic(oswindow hwnd, lparam lparam)
+//   ::i32_bool CALLBACK enum_proc_ff_topic(oswindow hwnd, lparam lparam)
 //   {
 //
 //      open_browser_enum * penum = (open_browser_enum *)lparam;
@@ -231,7 +231,7 @@ namespace axis
 //
 //   }
 //
-//   int_bool CALLBACK enum_proc_ff_counter_topic(oswindow hwnd, lparam lparam)
+//   ::i32_bool CALLBACK enum_proc_ff_counter_topic(oswindow hwnd, lparam lparam)
 //
 //   {
 //
@@ -263,7 +263,7 @@ namespace axis
 
 
 
-   //void application::DoWaitCursor(int nCode) // 0 => restore, 1=> begin, -1=> end
+   //void application::DoWaitCursor(::i32 nCode) // 0 => restore, 1=> begin, -1=> end
    //{
 
    //   __UNREFERENCED_PARAMETER(nCode);
@@ -284,7 +284,7 @@ namespace axis
 //
 //
 
-//   string CLASS_DECL_AXIS application::get_cred(const ::scoped_string & scopedstrRequestUrl, const ::int_rectangle & rectangle, string & strUsername, string & strPassword, const ::scoped_string & scopedstrToken, const ::scoped_string & scopedstrTitle, bool bInteractive)
+//   string CLASS_DECL_AXIS application::get_cred(const ::scoped_string & scopedstrRequestUrl, const ::i32_rectangle & rectangle, string & strUsername, string & strPassword, const ::scoped_string & scopedstrToken, const ::scoped_string & scopedstrTitle, bool bInteractive)
 // {
 
 //  throw ::not_implemented();
@@ -726,7 +726,7 @@ namespace axis
    void application::process_term()
    {
 
-      m_psimpledb.defer_destroy();
+      m_psimpledb.defer_destroy_and_release();
 
       ::aura::application::process_term();
 
@@ -1056,13 +1056,15 @@ namespace axis
    void application::init3()
    {
 
-      string strFolder = m_strAppName;
+      //string strFolder = m_strAppName;
 
-      strFolder.replace_with("_", ".");
-      strFolder.replace_with("-", "::");
-      strFolder.replace_with("_", ":");
+      //strFolder.replace_with("_", ".");
+      //strFolder.replace_with("-", "::");
+      //strFolder.replace_with("_", ":");
 
-      m_strRelativeFolder = strFolder;
+      //m_strRelativeFolder = strFolder;
+
+      aura::application::init3();
 
       //if (!impl_init3())
       //{

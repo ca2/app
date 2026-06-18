@@ -30,7 +30,7 @@ namespace platform
 //
 //         ::e_status m_estatus;
 //         ::particle_pointer m_pparticle;
-//         long long m_hi;
+//         ::i64 m_hi;
 //         void * m_p;
 //
 //      };
@@ -57,7 +57,7 @@ namespace platform
 //
 //      string                              m_strProgName;
 //      string                           m_strStandalone;
-//      //int                              m_iExitCode = 0;
+//      //::i32                              m_iExitCode = 0;
 //      bool                             m_bApplicationFirstRequest;
 //      //::pointer < ::request >                         m_prequest;
 //
@@ -95,6 +95,11 @@ namespace platform
       virtual ::release_time_for_project release_time();
 
 
+
+      virtual void prepare_application();
+      virtual void on_prepare_application();
+      virtual void on_after_prepare_application();
+
       //virtual void initialize_application(::platform::platform * pplatform);
 
       virtual void initialize_application();
@@ -107,15 +112,15 @@ namespace platform
 
       virtual void _001PostTryCloseApplication();
 
-      virtual void application_on_status(::e_status estatus, ::particle * pparticle = nullptr, long long hi = 0, void * p = nullptr);
+      virtual void application_on_status(::e_status estatus, ::particle * pparticle = nullptr, ::i64 hi = 0, void * p = nullptr);
 
 
-      virtual void on_error_icloud_not_available(::particle * pparticle = nullptr, long long hi = 0, void * p = nullptr);
+      virtual void on_error_icloud_not_available(::particle * pparticle = nullptr, ::i64 hi = 0, void * p = nullptr);
 
 
       //virtual void application_main(::platform::system * psystem);
 
-      virtual int application_main();
+      virtual ::i32 application_main();
 
 
       //void on_set_platform() override;
@@ -128,8 +133,11 @@ namespace platform
 
 
       //virtual void start_application(::request* prequest);
-      
-      virtual void start_application();
+
+
+      /// This function is called after an application
+      /// finishes starting with no file open requests.
+      //virtual void on_application_default_start();
 
       //virtual void on_initialize_application();
 
@@ -174,15 +182,15 @@ namespace platform
 //
 //#else
 //
-//      void set_args(int argc, char * argv[], char * envpb[]);
+//      void set_args(::i32 argc, char_pointer argv[], char_pointer envpb[]);
 //
 //#endif
 
-      virtual int __implement();
+      virtual ::i32 __implement();
 
-      virtual int main_loop();
+      virtual ::i32 main_loop();
 
-      virtual ::enum_id key_command(::user::enum_key ekey, ::user::key_state * pkeystate);
+      virtual ::enum_id key_command(const ::user::e_key & ekey);
 
       virtual void on_before_launching();
       //virtual void os_native_bergedge_start();
@@ -259,6 +267,13 @@ namespace platform
       virtual void process_init();
       virtual void process_term();
 
+
+      /// command line options may include file open requests
+      /// so here either files maybe requested to be opened by the
+      /// application or otherwise, the application will be requested
+      /// to do a default start.
+      virtual void process_command_line_options();
+
       //virtual void pre_run();
       //virtual void application_pre_run();
 
@@ -272,7 +287,7 @@ namespace platform
       virtual ::string_array_base get_about_box_lines();
 
       virtual void show_about_box(::user::activation_token * puseractivationtoken);
-      virtual void show_lines_box(const ::string_array_base & straLines, const ::scoped_string & scopedstrIconUrl, ::user::activation_token *puseractivationtoken);
+      virtual void show_lines_box(const ::string_array_base & straLines, const ::string_array_base & straIconUrl, ::user::activation_token *puseractivationtoken);
 
       virtual ::string_array_base get_operating_system_information_lines();
 

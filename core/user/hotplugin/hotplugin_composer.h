@@ -40,7 +40,7 @@ namespace hotplugin
       bool                                   m_bTryInitWindow;
       bool                                   m_bWindowOk;
       bool                                   m_bOk;
-      ::int_rectangle                                 m_rectangle;
+      ::i32_rectangle                                 m_rectangle;
       bool                                   m_bResponsive;
       string                                 m_strEntryHallText;
       class ::time m_timeEntryHallTextStart;
@@ -92,7 +92,7 @@ namespace hotplugin
 
       virtual ::aura::system * get_composer_system();
       virtual bool defer_start_composer_system();
-      static unsigned int c_cdecl composer_system_main(LPVOID pVoid);
+      static ::u32 c_cdecl composer_system_main(LPVOID pVoid);
 
       virtual void defer_stop_composer_system();
 

@@ -7,7 +7,7 @@
 //#include "acme/prototype/collection/numeric_array.h"
 
 
-void copy_character_per_character(char * pszTarget, const_char_pointer pszSource)
+void copy_character_per_character(char_pointer pszTarget, const_char_pointer pszSource)
 {
 
    while(*pszSource)
@@ -137,11 +137,11 @@ CLASS_DECL_ACME bool solve_relative_inplace(string & str, bool & bUrl, bool & bO
 
    character_count iLen = str.length();
 
-   char * psz = str.get_buffer<true>(iLen);
+   char_pointer psz = str.get_buffer<true>(iLen);
 
    //string strAbsolute(strParam);
 
-   char * pend = psz + iLen;
+   char_pointer pend = psz + iLen;
 
    character_count iNewPosition;
 
@@ -529,7 +529,7 @@ CLASS_DECL_ACME string defer_solve_relative(const ::scoped_string & scopedstrRel
 
 
 
-//CLASS_DECL_ACME bool read_resource_as_file(const ::scoped_string & scopedstrFile,HINSTANCE hinst,unsigned int nID,LPCTSTR pcszType);
+//CLASS_DECL_ACME bool read_resource_as_file(const ::scoped_string & scopedstrFile,HINSTANCE hinst,::u32 nID,LPCTSTR pszType);
 
 //const_char_pointer string_reverse_find_first_character_in(const ::scoped_string & scopedstr, const ::scoped_string & pszBegin, const ::scoped_string & scopedstrExcluding)
 //{
@@ -1010,9 +1010,9 @@ bool file_path_normalize_inline(string & strPath, enum_path & epath)
          if (strPath.has_character())
          {
 
-            char * psz = strPath.get_buffer();
+            char_pointer psz = strPath.get_buffer();
 
-            char chSep = file_path_separator(epath);
+            ::i8 chSep = file_path_separator(epath);
 
             for (auto & iSlash: iaSlash)
             {

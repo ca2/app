@@ -15,8 +15,9 @@
 #include "acme/filesystem/filesystem/file_system.h"
 #include "acme/filesystem/filesystem/path_system.h"
 #include "acme/filesystem/filesystem/file_context.h"
-#include "acme/operating_system/application.h"
-#include "acme/operating_system/main_window.h"
+#include "acme/accessibility/accessibility.h"
+#include "acme/accessibility/application.h"
+#include "acme/accessibility/main_window.h"
 #include "acme/operating_system/process.h"
 #include "acme/filesystem/filesystem/directory_context.h"
 #include "acme/filesystem/filesystem/file_context.h"
@@ -787,7 +788,7 @@ namespace coding
 #if TORTOISE_GIT
 
 
-   //bool code_application::defer_install_main_item(enum_install einstall, int iTry)
+   //bool code_application::defer_install_main_item(enum_install einstall, ::i32 iTry)
    //{
 
    //   ::string strTitle = get_title(einstall);
@@ -803,7 +804,7 @@ namespace coding
    //   ////call_sync("msiexec.exe", "/i \"" + path + "\" /passive /norestart ADDLOCAL=ALL", path.folder(), ::e_display_default, 10_min, set);
    //   {
 
-   //      int iAttempt = 0;
+   //      ::i32 iAttempt = 0;
 
    //      while (iTry > 0)
    //      {
@@ -909,7 +910,7 @@ namespace coding
    ////   if (!file_system()->exists(pathInf))
    ////   {
 
-   ////      ::file::path pathUrl = "https://ca2.software/download/windows/git-scm.inf";
+   ////      ::file::path pathUrl = "https://ca2.site/download/windows/git-scm.inf";
 
    ////      ::property_set set;
 
@@ -919,7 +920,7 @@ namespace coding
 
    ////}
 
-   //   auto transferprogressfunction = [this](double d, filesize done, filesize total)
+   //   auto transferprogressfunction = [this](::f64 d, filesize done, filesize total)
    //      {
 
    //         if (total == 0 || total == (filesize)-1)
@@ -961,7 +962,7 @@ namespace coding
 
    //   ::property_set set;
 
-   //   int iExitCode = -1;
+   //   ::i32 iExitCode = -1;
    //
    //   node()->call_sync("msiexec", "/package \"" + path.name() + "\" /quiet /passive", path.folder(), e_display_normal, 2_hour, set, &iExitCode);
 
@@ -983,7 +984,7 @@ namespace coding
 
 #if SMART_GIT
 
-   //bool code_application::defer_install_smart_git(int iTry)
+   //bool code_application::defer_install_smart_git(::i32 iTry)
    //{
 
    //   //set_status1("Downloading TortoiseSVN");
@@ -997,7 +998,7 @@ namespace coding
    //   ////call_sync("msiexec.exe", "/i \"" + path + "\" /passive /norestart ADDLOCAL=ALL", path.folder(), ::e_display_default, 10_min, set);
    //   {
 
-   //      int iAttempt = 0;
+   //      ::i32 iAttempt = 0;
 
    //      while (iTry > 0)
    //      {
@@ -1075,7 +1076,7 @@ namespace coding
 
    //void code_application::install_smart_git()
    //{
-   //   auto transferprogressfunction = [this](double d, filesize done, filesize total)
+   //   auto transferprogressfunction = [this](::f64 d, filesize done, filesize total)
    //      {
 
    //         if (total == 0 || total == (filesize)-1)
@@ -1118,12 +1119,12 @@ namespace coding
 #endif
 
 
-#if INSTALL_GIT_SCM
+#if INSTALL_GIT_ServiceControlManager
 
-   //bool code_application::defer_install_git_scm(int iTry)
+   //bool code_application::defer_install_git_scm(::i32 iTry)
    //{
 
-   //   int iAttempt = 0;
+   //   ::i32 iAttempt = 0;
 
    //   while (iTry > 0)
    //   {
@@ -1209,7 +1210,7 @@ namespace coding
    //   if (!file_system()->exists(pathInf))
    //   {
 
-   //      ::file::path pathUrl = "https://ca2.software/download/windows/git-scm.inf";
+   //      ::file::path pathUrl = "https://ca2.site/download/windows/git-scm.inf";
 
    //      ::property_set set;
 
@@ -1219,7 +1220,7 @@ namespace coding
 
    //   }
 
-   //   auto transferprogressfunction = [this](double d, filesize done, filesize total)
+   //   auto transferprogressfunction = [this](::f64 d, filesize done, filesize total)
    //      {
 
    //         if (total == 0 || total == (filesize)-1)
@@ -1263,7 +1264,7 @@ namespace coding
 
    //   //m_pimpact->post_redraw();
 
-   //   int iExitCode = node()->command_system(path + " /verysilent /loadinf=" + pathInf, 2_hour);
+   //   ::i32 iExitCode = node()->command_system(path + " /verysilent /loadinf=" + pathInf, 2_hour);
 
    //   ::string strGitScmExit;
 
@@ -1277,7 +1278,7 @@ namespace coding
 
    //   tracefunction.m_timeTimeout = 5_min;
 
-   //   int iExitCode2 = node()->unix_shell_command("git config --global core.symlinks true", tracefunction);
+   //   ::i32 iExitCode2 = node()->unix_shell_command("git config --global core.symlinks true", tracefunction);
 
    //}
 
@@ -1321,10 +1322,10 @@ namespace coding
 
    //      set["raw_http"] = true;
 
-   //      for (int i = 0; i < 10; i++)
+   //      for (::i32 i = 0; i < 10; i++)
    //      {
 
-   //         pathUrl = http().get("https://ca2.software/code/script/windows/" + str, set);
+   //         pathUrl = http().get("https://ca2.site/code/script/windows/" + str, set);
 
    //         if (pathUrl.case_insensitive_begins("https://"))
    //         {
@@ -1522,12 +1523,12 @@ namespace coding
                if (pida.has_element())
                {
 
-                  auto papp = node()->process_identifier_application(pida.first());
+                  auto papp = ::system()->accessibility()->process_identifier_application(pida.first());
 
                   if (papp)
                   {
 
-                     auto pmainwindow = createø < ::operating_system::main_window>();
+                     auto pmainwindow = createø < ::accessibility::main_window>();
 
                      pmainwindow->from_application(papp);
 
@@ -1593,7 +1594,7 @@ namespace coding
 
                      // todo: check strPreviousLocation executable image
                      // is the same as this executable image.
-                     for (int i = 1; i <= 3; i++)
+                     for (::i32 i = 1; i <= 3; i++)
                      {
 
                         try
@@ -1672,7 +1673,7 @@ namespace coding
 
       auto psummary = node()->operating_system_summary();
 
-      strUrl.format("https://linux.ca2.store/application_build_helper_{}",
+      strUrl.format("https://linux.ca2.site/application_build_helper_{}",
                             psummary->m_strSystemArchitecture);
 
       // if (psummary->m_strSystem.case_insensitive_equals("ubuntu"))
@@ -1681,21 +1682,21 @@ namespace coding
       //    if(psummary->m_strSystemBranch.case_insensitive_equals("kde"))
       //    {
       //
-      //       strUrl.formatf("https://kubuntu.ca2.store/%s/application_build_helper",
+      //       strUrl.formatf("https://kubuntu.ca2.site/%s/application_build_helper",
       //                      psummary->m_strSystemRelease.c_str());
       //
       //    }
       //    else if(psummary->m_strSystemBranch.case_insensitive_equals("xfce"))
       //    {
       //
-      //       strUrl.formatf("https://xubuntu.ca2.store/%s/application_build_helper",
+      //       strUrl.formatf("https://xubuntu.ca2.site/%s/application_build_helper",
       //                      psummary->m_strSystemRelease.c_str());
       //
       //    }
       //    else
       //    {
       //
-      //       strUrl.formatf("https://ubuntu.ca2.store/%s/application_build_helper",
+      //       strUrl.formatf("https://ubuntu.ca2.site/%s/application_build_helper",
       //                      psummary->m_strSystemRelease.c_str());
       //
       //    }
@@ -1707,21 +1708,21 @@ namespace coding
       //    if(psummary->m_strSystemRelease.case_insensitive_equals("20"))
       //    {
       //
-      //       strUrl.formatf("https://ubuntu.ca2.store/%s/application_build_helper",
+      //       strUrl.formatf("https://ubuntu.ca2.site/%s/application_build_helper",
       //                      "20.04");
       //
       //    }
       //    else if(psummary->m_strSystemBranch.case_insensitive_equals("xfce"))
       //    {
       //
-      //       strUrl.formatf("https://ubuntu.ca2.store/%s/application_build_helper",
+      //       strUrl.formatf("https://ubuntu.ca2.site/%s/application_build_helper",
       //                      "22.04");
       //
       //    }
       //    else
       //    {
       //
-      //       strUrl.formatf("https://ubuntu.ca2.store/%s/application_build_helper",
+      //       strUrl.formatf("https://ubuntu.ca2.site/%s/application_build_helper",
       //                      "24.04");
       //
       //    }
@@ -1730,7 +1731,7 @@ namespace coding
       // else if (psummary->m_strSystemBranch.has_character())
       // {
       //
-      //    strUrl.formatf("https://%s.ca2.store/%s/%s/application_build_helper",
+      //    strUrl.formatf("https://%s.ca2.site/%s/%s/application_build_helper",
       //       psummary->m_strSystem.c_str(),
       //       psummary->m_strSystemBranch.c_str(),
       //       psummary->m_strSystemRelease.c_str());
@@ -1739,7 +1740,7 @@ namespace coding
       // else
       // {
       //
-      //    strUrl.formatf("https://%s.ca2.store/%s/application_build_helper",
+      //    strUrl.formatf("https://%s.ca2.site/%s/application_build_helper",
       //       psummary->m_strSystem.c_str(),
       //       psummary->m_strSystemRelease.c_str());
       //
@@ -1747,30 +1748,30 @@ namespace coding
 
 #elif defined(WINDOWS_DESKTOP)
 
-      strUrl = "https://windows.ca2.store/application_build_helper.exe";
+      strUrl = "https://windows.ca2.site/application_build_helper.exe";
 
 #elif defined(FREEBSD)
 
 
       auto psummary = node()->operating_system_summary();
 
-      strUrl.formatf("https://freebsd.ca2.store/%s/application_build_helper",
+      strUrl.formatf("https://freebsd.ca2.site/%s/application_build_helper",
                      psummary->m_strSystemRelease.c_str());
 
 
-      ::file::path pathUrl = strUrl;
+      //::file::path pathUrl = strUrl;
 #elif defined(MACOS)
       
       
-      strUrl = "https://macos.ca2.store/application_build_helper";
+      strUrl = "https://macos.ca2.site/application_build_helper";
 
 #endif
       ::file::path pathUrl = strUrl;
 
 
-      int iAttemptCount = 5;
+      ::i32 iAttemptCount = 5;
 
-      for (int i = 0; i < iAttemptCount; i++)
+      for (::i32 i = 0; i < iAttemptCount; i++)
       {
 
          ::property_set set;
@@ -1823,7 +1824,7 @@ namespace coding
 
          }
 
-         int iWaitSeconds = 2 * i;
+         ::i32 iWaitSeconds = 2 * i;
 
          while (iWaitSeconds > 0)
          {
@@ -2077,7 +2078,7 @@ namespace coding
 
       //path = directory_system()->home() / "simple/solution-" OPERATING_SYSTEM_NAME "/simple.sln";
 
-      for (int iTry = 0; iTry < 6; iTry++)
+      for (::i32 iTry = 0; iTry < 6; iTry++)
       {
 
          preempt(3_s);
@@ -2157,7 +2158,7 @@ namespace coding
    //   else
    //   {
 
-   //      set_status1(as_string((int)(long long)m_cPendingSource) + " Working Copies to Download...");
+   //      set_status1(as_string((::i32)(::i64)m_cPendingSource) + " Working Copies to Download...");
 
    //   }
 
@@ -2326,7 +2327,7 @@ namespace coding
    //    //
    //    //      //path = directory_system()->home() / "simple/solution-" OPERATING_SYSTEM_NAME "/simple.sln";
    //    //
-   //    //      for(int iTry = 0; iTry < 6; iTry++)
+   //    //      for(::i32 iTry = 0; iTry < 6; iTry++)
    //    //      {
    //    //
    //    //         preempt(3_s);
@@ -3345,7 +3346,7 @@ namespace coding
 //void code_debugging()
 //{
 //
-//   const char* pszFree;
+//   const_char_pointer pszFree;
 //
 //   {
 //

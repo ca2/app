@@ -15,7 +15,7 @@
 //      HINSTANCE   m_hInstance;
 //     HINSTANCE   m_hPrevInstance;
 //      string      m_strCommandLine;
-//      int         m_nCmdShow;
+//      ::i32         m_nCmdShow;
 //   };
 //
 //   class CLASS_DECL_ACME application :
@@ -57,7 +57,7 @@
 //      virtual bool init1();
 //      virtual bool init2();
 //      virtual bool init3();
-//      virtual int  term_instance() override;
+//      virtual ::i32  term_instance() override;
 //      
 //      
 //      
@@ -76,8 +76,8 @@
 //      virtual ::thread * GetThread();
 //      virtual void set_thread(::thread * pthread);
 //      
-////      virtual ::user::interaction * FindWindow(const char * lpszClassName, const char * lpszWindowName);
-////      virtual ::user::interaction * FindWindowEx(oswindow hwndParent, oswindow hwndChildAfter, const char * lpszClass, const char * lpszWindow);
+////      virtual ::user::interaction * FindWindow(const_char_pointer pszClassName, const_char_pointer pszWindowName);
+////      virtual ::user::interaction * FindWindowEx(oswindow hwndParent, oswindow hwndChildAfter, const_char_pointer pszClass, const_char_pointer pszWindow);
 //      
 //      virtual void get_time(struct timeval *p);
 //      virtual void set_env_var(const string & payload,const string & value);

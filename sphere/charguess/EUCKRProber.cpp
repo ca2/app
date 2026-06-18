@@ -28,11 +28,11 @@ void  nsEUCKRProber::Reset(void)
   //mContextAnalyser.Reset();
 }
 
-nsProbingState nsEUCKRProber::HandleData(const ::string & aBuf, PRunsigned int aLen)
+nsProbingState nsEUCKRProber::HandleData(const ::string & aBuf, PRunsigned ::i32 aLen)
 {
   nsSMState codingState;
 
-  for (PRunsigned int i = 0; i < aLen; i++)
+  for (PRunsigned ::i32 i = 0; i < aLen; i++)
   {
     codingState = mCodingSM->NextState(aBuf[i]);
     if (codingState == eError)
@@ -47,7 +47,7 @@ nsProbingState nsEUCKRProber::HandleData(const ::string & aBuf, PRunsigned int a
     }
     if (codingState == eStart)
     {
-      PRunsigned int charLen = mCodingSM->GetCurrentCharLen();
+      PRunsigned ::i32 charLen = mCodingSM->GetCurrentCharLen();
 
       if (i == 0)
       {
@@ -71,10 +71,10 @@ nsProbingState nsEUCKRProber::HandleData(const ::string & aBuf, PRunsigned int a
 }
 
 
-float nsEUCKRProber::GetConfidence(void)
+::f32 nsEUCKRProber::GetConfidence(void)
 {
-  float distribCf = mDistributionAnalyser.GetConfidence();
+  ::f32 distribCf = mDistributionAnalyser.GetConfidence();
 
-  return (float)distribCf;
+  return (::f32)distribCf;
 }
 

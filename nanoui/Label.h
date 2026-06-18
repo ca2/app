@@ -41,11 +41,11 @@ namespace nanoui
          ::string m_strCaption;
          ::string m_font;
          ::color::color m_color;
-         int_size m_sizePreferred;
+         i32_size m_sizePreferred;
          ::pointer < ::nano2d::text_box >    m_ptextbox;
 
       Label(Widget * parent, const ::scoped_string & caption,
-         const ::scoped_string & font = "sans", int font_size = -1);
+         const ::scoped_string & font = "sans", ::i32 font_size = -1);
 
       /// Get the label's text caption
       ::string caption() const { return m_strCaption; }
@@ -66,7 +66,7 @@ namespace nanoui
       virtual void set_theme(const ::pointer < Theme > & theme) override;
 
       /// Compute the size needed to fully display the label
-      virtual int_size preferred_size(::nano2d::context  * pcontext, bool bRecalcTextSize = true) override;
+      virtual i32_size preferred_size(::nano2d::context  * pcontext, bool bRecalcTextSize = true) override;
 
       /// Draw the label
       virtual void draw(::nano2d::context  * pcontext) override;

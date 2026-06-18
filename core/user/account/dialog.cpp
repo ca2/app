@@ -6,7 +6,7 @@
 #include "acme/constant/timer.h"
 #include "acme/parallelization/synchronous_lock.h"
 #include "acme/platform/hyperlink.h"
-#include "acme/platform/timer.h"
+//#include "acme/platform/timer.h"
 #include "aura/graphics/image/context.h"
 #include "aura/windowing/windowing.h"
 #include "aura/windowing/display.h"
@@ -166,12 +166,12 @@ namespace account
    }
 
 
-   void dialog::on_timer(::timer * ptimer)
+   void dialog::operator()(::timer * ptimer)
    {
 
-      ::user::interaction::on_timer(ptimer);
+      ::user::interaction::operator()(ptimer);
 
-      if(ptimer->m_uTimer == e_timer_check_cached_credentials)
+      if(ptimer->m_etimer == e_timer_check_cached_credentials)
       {
 
          try
@@ -242,7 +242,7 @@ namespace account
    }
 
 
-   void dialog::do_modal(::int_rectangle rectangle)
+   void dialog::do_modal(::i32_rectangle rectangle)
    {
 
       m_iDelay = 0;
@@ -255,7 +255,7 @@ namespace account
 
       ::user::interaction * puiParent = psession->cast < ::user::interaction > ("plugin_parent");
 
-      ::int_rectangle rectangleDesktop;
+      ::i32_rectangle rectangleDesktop;
 
       if(puiParent != nullptr)
       {
@@ -280,15 +280,15 @@ namespace account
 
       }
 
-      ::int_rectangle rectangleLogin;
+      ::i32_rectangle rectangleLogin;
 
-      int stdw = 800;
+      ::i32 stdw = 800;
 
-      int stdh = 400;
+      ::i32 stdh = 400;
 
-      int w = stdw;
+      ::i32 w = stdw;
 
-      int h = stdh;
+      ::i32 h = stdh;
 
       if(w > rectangleDesktop.width())
       {
@@ -304,7 +304,7 @@ namespace account
 
       }
 
-      ::int_rectangle rectangleFontopus;
+      ::i32_rectangle rectangleFontopus;
 
       rectangleFontopus.left = rectangleDesktop.left + (rectangleDesktop.width() - w) / 2;
 
@@ -596,7 +596,7 @@ namespace account
 
             host_to_client()(pointNow);
 
-            ::int_point point;
+            ::i32_point point;
 
             point.x = pointNow.x - m_pointLButtonDownPos.x;
 

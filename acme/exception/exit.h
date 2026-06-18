@@ -12,7 +12,7 @@ class CLASS_DECL_ACME exit_exception :
 public:
 
 
-   int                           m_iCheck;
+   ::i32                           m_iCheck;
    ::pointer<::task>             m_ptaskExit;
    ::e_status                    m_estatusSecond;
 

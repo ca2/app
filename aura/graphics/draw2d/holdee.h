@@ -5,7 +5,7 @@
 #include "path.h"
 
 //#include "acme/prototype/prototype/pointer.h"
-#include "acme/prototype/collection/int_map.h"
+#include "acme/prototype/collection/integer_map.h"
 
 
 namespace draw2d
@@ -23,7 +23,7 @@ namespace draw2d
    };
 
 
-   DECLARE_ENUMERATION(e_change, enum_change);
+   DECLARE_C_FLAG(e_change, enum_change);
 
 
    class CLASS_DECL_AURA holdee_group :

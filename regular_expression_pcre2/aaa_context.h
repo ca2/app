@@ -20,7 +20,7 @@ namespace regular_expression_pcre2
 
       //static ::pointer<pcre_context>
 
-      //create_context(int iSizeData);
+      //create_context(::i32 iSizeData);
 
       virtual ::regular_expression_pointer compile(const ::scoped_string & scopedstr) override;
 

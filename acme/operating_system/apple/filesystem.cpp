@@ -13,15 +13,15 @@ string apple_app_module_folder();
 string apple_app_module_path();
 
 
-char * ns_get_executable_path();
+char_pointer ns_get_executable_path();
 
 
 string get_exe_path()
 {
    
-   char path[8192];
+   ::i8 path[8192];
 
-   unsigned int size = sizeof(path);
+   ::u32 size = sizeof(path);
 
    if (_NSGetExecutablePath(path, &size) == 0)
    {
@@ -32,7 +32,7 @@ string get_exe_path()
    else
    {
 
-      //printf("buffer too small; need int_size %u\n", size);
+      //printf("buffer too small; need i32_size %u\n", size);
       
    }
 //                     strPath += ".app/Contents/MacOS/app";

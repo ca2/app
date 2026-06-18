@@ -88,7 +88,7 @@ namespace colorertake5
          @param region scheme region information (background)
          @param scheme Additional scheme information
          */
-         virtual void leaveScheme(index lno, const char  *line, character_count sx, character_count ex, class region *region, class scheme *scheme) = 0;
+         virtual void leaveScheme(index lno, const_char_pointer line, character_count sx, character_count ex, class region *region, class scheme *scheme) = 0;
 
    };
 

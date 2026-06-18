@@ -29,7 +29,7 @@ struct place_t {};
 #define TEMPLATE_ARG __TEMPLATE_TYPE__ t = nullptr
 
 template < class c_derived >
-inline long long increment_reference_count(c_derived * pca);
+inline ::i64 increment_reference_count(c_derived * pca);
 
 class subparticle;
 
@@ -58,6 +58,7 @@ public:
    inline pointer();
    inline pointer(no_initialize_t){}
    inline pointer( nullptr_t);
+   inline pointer(wparam& wparam);
    inline pointer(lparam& lparam);
 
    template < typename ...Args >
@@ -203,7 +204,7 @@ public:
    }
 
 
-   //inline operator int() const
+   //inline operator ::i32() const
    //{
 
    //   return is_set() ? 1 : 0;
@@ -480,11 +481,11 @@ public:
 
    //}
 
-   inline bool defer_destroy();
+   inline bool defer_destroy_and_release();
 
-   inline long long release();
+   inline ::i64 release();
 
-   //inline long long global_release();
+   //inline ::i64 global_release();
 
    inline ::pointer < T > detach() { return ::transfer(*this); }
    //inline ::subparticle * detach_particle();

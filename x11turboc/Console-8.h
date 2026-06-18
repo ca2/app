@@ -46,12 +46,12 @@
      difficult to confirm or deny its status.
      
   Format of the data:  Each record is the bit-data for a single
-  character.  The records consist of 8 bytes.  The first unsigned char is
+  character.  The records consist of 8 bytes.  The first ::u8 is
   the top row of the character.  The bits within the bytes
   represent pixels, and the most-significant bit is the leftmost pixel.  	   	   
 */
 
-const char TcConsole8Font[256][8] = {
+const ::i8 TcConsole8Font[256][8] = {
   { 0x7C, 0xC6, 0xDE, 0xDE, 0xDE, 0xC0, 0x78, 0x00 },
   { 0x7E, 0x81, 0xA5, 0x81, 0xBD, 0x99, 0x81, 0x7E },
   { 0x7E, 0xFF, 0xDB, 0xFF, 0xC3, 0xE7, 0xFF, 0x7E },

@@ -61,7 +61,8 @@ public:
 
 
    virtual void display_dialog();
-   virtual void display(::dialog * pdialog);
+   virtual void display_dialog(::dialog * pdialog);
+   virtual void show_modal(::dialog * pdialog);
 
 
    virtual void set_dialog_result(const ::payload & payloadResult);
@@ -75,6 +76,7 @@ public:
    virtual class ::time dialog_time_remaining_from_timeout() const;
    virtual class ::time dialog_timeout() const;
    virtual ::string dialog_details() const;
+   virtual ::string_array_base dialog_details_icon_urls() const;
 
 
 };
@@ -91,7 +93,7 @@ public:
    ::string                                           m_strTitle;
    ::payload                                          m_payloadResult;
    ::function<void(dialog *)>                         m_functionOnTimeOut;
-   ::function<void(const ::payload &)>                m_functionOnDialogResult;
+   ::function<void(const ::payload &)>                m_functionOnDialogResult2;
    class ::time                                       m_timeShowStart;
    class ::time                                       m_timeTimeout;
    class ::time                                       m_timeCancelledTimeout;
@@ -103,8 +105,8 @@ public:
 
    ::string dialog_title() const override;
 
-
-   void display(::dialog * pdialog) override;
+   using dialog::display_dialog;
+   void display_dialog(::dialog * pdialog) override;
    void on_dialog_result(const ::payload & payloadResult) override;
 
 
@@ -131,7 +133,7 @@ public:
 
 
    void display_dialog() override;
-   void display(::dialog * pdialog) override;
+   void display_dialog(::dialog * pdialog) override;
 
 
    void set_dialog_result(const ::payload & payloadResult) override;
@@ -160,18 +162,27 @@ public:
    string                                             m_strTitle;
    ::user::e_message_box                              m_emessagebox;
    string                                             m_strDetails;
-   ::pointer < ::nano::graphics::icon >               m_picon;
+   ::string                                           m_strDetailsTitle;
+   ::string_array                                     m_straDetailsIconUrl;
+   ::pointer < ::nano::graphics::icon >               m_picon2;
+   ::string_array                                     m_straIconUrl;
    ::pointer < ::user::activation_token >             m_puseractivationtoken;
+   ::function<void(::message_box_payload *)>          m_functionOnMessageBoxResult;
 
 
-   message_box_payload(const ::scoped_string & scopedstrMessage, const ::scoped_string & scopedstrTitle = {}, const ::user::e_message_box & emessagebox = {}, const ::scoped_string & scopedstrDetails = nullptr, ::nano::graphics::icon * picon = nullptr);
+   //message_box_payload(const ::scoped_string & scopedstrMessage, const ::scoped_string & scopedstrTitle = {}, const ::user::e_message_box & emessagebox = {}, const ::scoped_string & scopedstrDetails = nullptr, ::nano::graphics::icon * picon = nullptr);
+   message_box_payload(const ::scoped_string &scopedstrMessage, const ::scoped_string &scopedstrTitle = {},
+                       const ::user::e_message_box &emessagebox = {}, const ::scoped_string &scopedstrDetails = nullptr,
+                       const ::string_array_base &straIconUrl = {});
    message_box_payload(const ::exception & exception, const ::scoped_string & strMoreDetails);
-   message_box_payload(const ::exception & exception, const ::scoped_string & strMessage, const ::scoped_string & scopedstrTitle, const ::user::e_message_box & emessagebox = {}, const ::scoped_string & scopedstrDetails = nullptr, ::nano::graphics::icon * picon = nullptr);
+   message_box_payload(const ::exception &exception, const ::scoped_string &strMessage,
+                       const ::scoped_string &scopedstrTitle, const ::user::e_message_box &emessagebox = {},
+                       const ::scoped_string &scopedstrDetails = nullptr, const ::string_array_base &straIconUrl = {});
    ~message_box_payload() override;
 //
 //#ifdef _DEBUG
-//   long long increment_reference_count() override;
-//   long long decrement_reference_count() override;
+//   ::i64 increment_reference_count() override;
+//   ::i64 decrement_reference_count() override;
 //#endif
    
    //virtual ::string get_conversation_message();
@@ -189,6 +200,9 @@ public:
 
    ::string dialog_details() const override;
 
+   ::string_array_base dialog_details_icon_urls() const override;
+   
+
    //virtual void async();
    //virtual void sync();
 
@@ -197,8 +211,12 @@ public:
 
    /// shows the message box
    /// override in the topper implementation to display the message box (run the message box)
-   //void run() override;
-   //void complete_aggregation(sequence * psequence) override;   
+   void run() override;
+   //void complete_aggregation(sequence * psequence) override;  
+   // 
+
+   void on_dialog_result(const ::payload &payloadResult) override;
+   
 };
 
 

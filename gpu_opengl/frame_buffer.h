@@ -15,7 +15,7 @@ namespace gpu_opengl
 		GLuint m_fbo;
 		GLuint m_tex;
 		GLuint m_rbo;
-		::int_size m_size;
+		::i32_size m_size;
 		bool m_bWithDepthBuffer;
 
 
@@ -23,7 +23,7 @@ namespace gpu_opengl
 		~frame_buffer() override;
 
 
-		void create(const ::int_size& size, bool bWithDepthBuffer = false);
+		void create(const ::i32_size& size, bool bWithDepthBuffer = false);
 
 		void destroy() override;
 		void bind();

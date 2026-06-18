@@ -13,15 +13,15 @@ namespace user
    {
    public:
 
-      int                  m_iCode;
+      ::i32                  m_iCode;
       uptr                 m_nChar;
       uptr                 m_nScanCode;
-      unsigned int         m_nRepCnt;
-      unsigned int         m_nFlags;
+      ::u32         m_nRepCnt;
+      ::u32         m_nFlags;
       bool                 m_bExt;
-      int                  m_iVirtualKey;
+      ::i32                  m_iVirtualKey;
 
-      ::user::enum_key     m_ekey;
+      ::user::e_key     m_ekey;
 
       string            m_strText;
 

@@ -108,7 +108,7 @@ namespace draw2d_gdiplus
          return false;
       if (m_hdc != nullptr)
          return false;
-      int iSize = DocumentPropertiesW(nullptr, pprinter->m_hPrinter, (LPWSTR)(LPWSTR)wstring(pprinter->m_strName), nullptr, nullptr, 0);
+      ::i32 iSize = DocumentPropertiesW(nullptr, pprinter->m_hPrinter, (LPWSTR)(LPWSTR)wstring(pprinter->m_strName), nullptr, nullptr, 0);
       m_pdevmode = (DEVMODE *)malloc(iSize);
       if (!DocumentPropertiesW(nullptr, pprinter->m_hPrinter, (LPWSTR)(LPWSTR)wstring(pprinter->m_strName), m_pdevmode, nullptr, DM_OUT_BUFFER))
       {

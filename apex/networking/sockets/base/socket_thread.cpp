@@ -150,7 +150,7 @@ namespace sockets
 #ifdef _DEBUG
 
 
-   long long socket_thread::increment_reference_count()
+   ::i64 socket_thread::increment_reference_count()
    {
 
       return ::task::increment_reference_count();
@@ -158,7 +158,7 @@ namespace sockets
    }
 
 
-   long long socket_thread::decrement_reference_count()
+   ::i64 socket_thread::decrement_reference_count()
    {
 
       return ::task::decrement_reference_count();
@@ -213,6 +213,8 @@ namespace sockets
             if (m_psockethandler->get_count() <= 0)
             {
 
+               set_finish();
+
                break;
 
             }
@@ -238,7 +240,35 @@ namespace sockets
       catch (...)
       {
 
+         information() << "socket_thread::run exception";
+
       }
+
+      auto& eflagElement = m_eflagElement;
+      union u1
+      {
+         e_flag e;
+         struct s1
+         {
+            bool b0 : 1;
+            bool b1 : 1;
+            bool b2 : 1;
+            bool b3 : 1;
+            bool b4 : 1;
+            bool b5 : 1;
+            bool b6 : 1;
+            bool b7 : 1;
+            bool b8 : 1;
+            bool b9 : 1;
+            bool ba : 1;
+            bool bb : 1;
+            bool bFinishing : 1;
+         };
+         s1 m_s1;
+
+      };
+
+      u1& u = (u1&)eflagElement;
 
       destroy();
 
@@ -248,7 +278,7 @@ namespace sockets
    void socket_thread::destroy()
    {
 
-      m_psockethandler.defer_destroy();
+      m_psockethandler.defer_destroy_and_release();
 
       m_pfactorySocketHandler.release();
 

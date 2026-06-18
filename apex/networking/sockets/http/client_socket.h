@@ -35,13 +35,13 @@ namespace sockets
       ::pointer < ::mutex >                          m_pmutexData;
       ::memory_file_pointer            m_pmemoryfile;
       ::file::file *                   m_pfile;
-      long long                              m_iFinalSize;
+      ::i64                              m_iFinalSize;
       ::progress::integer              m_progressinteger;
       ::pointer < ::manual_reset_happening > m_pmanualresethappeningWebsocketStarted;
 
 
       //memory    m_memoryData; ///< Ptr to buffer where to store response
-      //memsize m_data_size; ///< Max int_size of data buffer
+      //memsize m_data_size; ///< Max i32_size of data buffer
       memsize m_iContentLength; ///< Content-length header received from remote
       string m_content; ///< Received http headers
       //bool m_data_ptr_set; ///< buffer set from outside, do not delete
@@ -82,23 +82,23 @@ namespace sockets
       /** get response headers. */
       ::string GetContent();
 
-      /** get int_size of response body. */
+      /** get i32_size of response body. */
       memsize GetContentLength();
 
       /** get content type from response header. */
       ::string GetContentType();
 
-      /** get int_size of received response body. */
+      /** get i32_size of received response body. */
       memsize GetContentPtr();
 
-      /** get int_size of received response body. */
+      /** get i32_size of received response body. */
       memsize GetPos();
 
       /** Complete response has been received. */
       bool Complete();
 
       /** get ptr to response data buffer. */
-      const unsigned char *GetDataPtr() const;
+      const ::u8 *GetDataPtr() const;
 
       /** get length of response data buffer. */
       memsize GetDataLength() const;
@@ -119,7 +119,7 @@ namespace sockets
       virtual void request_url(const ::url::url & url);
 
 
-      bool on_set_scalar(enum_scalar escalar,::number::number number,int iFlags) override;
+      bool on_set_scalar(enum_scalar escalar,::number::number number,::i32 iFlags) override;
       ::number::number get_scalar_minimum(enum_scalar escalar) override;
       ::number::number get_scalar(enum_scalar escalar) override;
       ::number::number get_scalar_maximum(enum_scalar escalar) override;

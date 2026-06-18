@@ -46,7 +46,7 @@ namespace simple_ui
          pprinttask = nullptr;*/
 
 
-      ::int_rectangle rectangleX;
+      ::i32_rectangle rectangleX;
       this->rectangle(rectangleX);
 
  /*     if(pprinttask != nullptr)
@@ -74,7 +74,7 @@ namespace simple_ui
 
       pgraphics->blur(true, 4, rectangleX);
       //class imaging & imaging = psystem->imaging();
-      //::int_rectangle rectangleX;
+      //::i32_rectangle rectangleX;
       //         window_rectangle(rectangleX);
       //       rectangleX.offset(rectangleX.top_left());
       if(rectangleX.size() != m_pimage->size())
@@ -140,7 +140,7 @@ namespace simple_ui
       //client_to_screen(rectangleX);
       rgn->create_rect(rectangleX);
 
-      double left = rectangleX.left;
+      ::f64 left = rectangleX.left;
 
       //   pgraphics->SelectClipRgn(&rgn);
 
@@ -170,15 +170,15 @@ namespace simple_ui
       rectangleX.left = m_point.x;
       rectangleX.bottom = rectangleX.top + m_size.cy;
       rectangleX.right = rectangleX.left + m_size.cx;*/
-      //      pgraphics->fill_rectangle(rectangleX, crBk);      double y = rectangleX.top;
+      //      pgraphics->fill_rectangle(rectangleX, crBk);      ::f64 y = rectangleX.top;
       get_text_selection(iSelStart,iSelEnd);
       character_count iCursor = iSelEnd;
       __sort(iSelStart,iSelEnd);
       pgraphics->set(get_font(pstyle));
-      //int_size size3;
+      //i32_size size3;
       ::write_text::text_metric metric;
        pgraphics->get_text_metrics(&metric);
-      double dLineHeight = metric.get_line_spacing();
+      ::f64 dLineHeight = metric.get_line_spacing();
 //      string_array_base & straLines = m_plines->lines;
       string_array_base & straLines = m_straLines;
       string_array_base straLineFeed;
@@ -228,18 +228,18 @@ namespace simple_ui
          pgraphics->set(pbrushText);
          pgraphics->text_out(left,y,strExtent1);
 
-         double_size size1(0.0,0.0);
-         pgraphics->get_text_extent(size1,strLine,(int)strLine.length(),(int)iStart);
-         double_size sizeb(0.0,0.0);
+         ::f64_size size1(0.0,0.0);
+         pgraphics->get_text_extent(size1,strLine,(::i32)strLine.length(),(::i32)iStart);
+         ::f64_size sizeb(0.0,0.0);
          pgraphics->get_text_extent(sizeb,strLine,iEnd);
-         double_size size2(0.0,0.0);
-         pgraphics->get_text_extent(size2,strLine,(int)strLine.length(),(int)iEnd);
+         ::f64_size size2(0.0,0.0);
+         pgraphics->get_text_extent(size2,strLine,(::i32)strLine.length(),(::i32)iEnd);
          size2.cx -= size1.cx;
 
          if(iEnd > iStart)
          {
 
-            auto rectangleFill = ::double_rectangle_dimension((int)(left + size1.cx), (int)y, (int)size2.cx, (int)size2.cy);
+            auto rectangleFill = ::f64_rectangle_dimension((::i32)(left + size1.cx), (::i32)y, (::i32)size2.cx, (::i32)size2.cy);
             pgraphics->fill_rectangle(rectangleFill,argb(255,120,240,180));
             pbrushText->create_solid(crSel);
             pgraphics->set(pbrushText);

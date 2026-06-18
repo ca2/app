@@ -48,7 +48,7 @@ namespace motif
 //
 ////#include <iostream>
 ////
-//int main(int argc, char ** argv)
+//::i32 main(::i32 argc, char_pointer * argv)
 //{
 //   g_argc = argc;
 //   g_argv = argv;

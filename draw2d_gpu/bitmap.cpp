@@ -4,7 +4,7 @@
 #include "acme/exception/interface_only.h"
 
 
-void resizeBilinear(memory & m, int w2, int h2, int * pixels, int w, int h);
+void resizeBilinear(memory & m, ::i32 w2, ::i32 h2, ::i32 * pixels, ::i32 w, ::i32 h);
 #ifdef WITH_X11
 Display * x11_get_display();
 #endif
@@ -12,22 +12,22 @@ Display * x11_get_display();
 #define WIDTH 3200
 #define HEIGHT 1800
 
-const int sbAttrib[] = { GLX_DOUBLEBUFFER, 0, GLX_RED_SIZE, 1,GLX_GREEN_SIZE, 1, GLX_BLUE_SIZE, 1,GLX_ALPHA_SIZE, 1, GLX_DEPTH_SIZE, 16,None };
-int pbAttrib[] = { GLX_PBUFFER_WIDTH, WIDTH,GLX_PBUFFER_HEIGHT, HEIGHT,GLX_PRESERVED_CONTENTS, True,None };
+const ::i32 sbAttrib[] = { GLX_DOUBLEBUFFER, 0, GLX_RED_SIZE, 1,GLX_GREEN_SIZE, 1, GLX_BLUE_SIZE, 1,GLX_ALPHA_SIZE, 1, GLX_DEPTH_SIZE, 16,None };
+::i32 pbAttrib[] = { GLX_PBUFFER_WIDTH, WIDTH,GLX_PBUFFER_HEIGHT, HEIGHT,GLX_PRESERVED_CONTENTS, True,None };
 #endif
 
 //extern CLASS_DECL_AXIS thread_int_ptr < DWORD_PTR > t_time1;
-//glglgl GLfloat LightAmbient[] = { 0.5f, 0.5f, 0.5f, 1.00f };
-//glglgl GLfloat LightDiffuse[] = { 1.0f, 1.0f, 1.0f, 1.00f };
-//glglgl GLfloat LightPosition[] = { 0.0f, 0.0f, 2.0f, 1.00f };
-//GLfloat LightPosition2[] = { -5.0f, -5.0f, 32.0f, 1.00f };
+//glglgl GLf32 LightAmbient[] = { 0.5f, 0.5f, 0.5f, 1.00f };
+//glglgl GLf32 LightDiffuse[] = { 1.0f, 1.0f, 1.0f, 1.00f };
+//glglgl GLf32 LightPosition[] = { 0.0f, 0.0f, 2.0f, 1.00f };
+//GLf32 LightPosition2[] = { -5.0f, -5.0f, 32.0f, 1.00f };
 
 //#ifdef WINDOWS
 //typedef BOOL(WINAPI * PFNWGLDESTROYPBUFFERARBPROC) (HPBUFFERARB hPbuffer);
-//typedef BOOL(WINAPI * PFNWGLQUERYPBUFFERARBPROC) (HPBUFFERARB hPbuffer, int iAttribute, int *piValue);
+//typedef BOOL(WINAPI * PFNWGLQUERYPBUFFERARBPROC) (HPBUFFERARB hPbuffer, ::i32 iAttribute, ::i32 *piValue);
 //typedef HDC(WINAPI * PFNWGLGETPBUFFERDCARBPROC) (HPBUFFERARB hPbuffer);
-//typedef HPBUFFERARB(WINAPI * PFNWGLCREATEPBUFFERARBPROC) (HDC hDC, int iPixelFormat, int iWidth, int iHeight, const int *piAttribList);
-//typedef int (WINAPI * PFNWGLRELEASEPBUFFERDCARBPROC) (HPBUFFERARB hPbuffer, HDC hDC);
+//typedef HPBUFFERARB(WINAPI * PFNWGLCREATEPBUFFERARBPROC) (HDC hDC, ::i32 iPixelFormat, ::i32 iWidth, ::i32 iHeight, const ::i32 *piAttribList);
+//typedef ::i32 (WINAPI * PFNWGLRELEASEPBUFFERDCARBPROC) (HPBUFFERARB hPbuffer, HDC hDC);
 //
 //PFNWGLDESTROYPBUFFERARBPROC                       wglDestroyPbufferARB;
 //PFNWGLQUERYPBUFFERARBPROC                         wglQueryPbufferARB;
@@ -36,9 +36,9 @@ int pbAttrib[] = { GLX_PBUFFER_WIDTH, WIDTH,GLX_PBUFFER_HEIGHT, HEIGHT,GLX_PRESE
 //PFNWGLRELEASEPBUFFERDCARBPROC                     wglReleasePbufferDCARB;
 //
 //
-//typedef BOOL(WINAPI * PFNWGLCHOOSEPIXELFORMATARBPROC) (HDC hdc, const int *piAttribIList, const FLOAT *pfAttribFList, unsigned int nMaxFormats, int *piFormats, unsigned int *nNumFormats);
-//typedef BOOL(WINAPI * PFNWGLGETPIXELFORMATATTRIBFVARBPROC) (HDC hdc, int iPixelFormat, int iLayerPlane, unsigned int nAttributes, const int *piAttributes, FLOAT *pfValues);
-//typedef BOOL(WINAPI * PFNWGLGETPIXELFORMATATTRIBIVARBPROC) (HDC hdc, int iPixelFormat, int iLayerPlane, unsigned int nAttributes, const int *piAttributes, int *piValues);
+//typedef BOOL(WINAPI * PFNWGLCHOOSEPIXELFORMATARBPROC) (HDC hdc, const ::i32 *piAttribIList, const FLOAT *pfAttribFList, ::u32 nMaxFormats, ::i32 *piFormats, ::u32 *nNumFormats);
+//typedef BOOL(WINAPI * PFNWGLGETPIXELFORMATATTRIBFVARBPROC) (HDC hdc, ::i32 iPixelFormat, ::i32 iLayerPlane, ::u32 nAttributes, const ::i32 *piAttributes, FLOAT *pfValues);
+//typedef BOOL(WINAPI * PFNWGLGETPIXELFORMATATTRIBIVARBPROC) (HDC hdc, ::i32 iPixelFormat, ::i32 iLayerPlane, ::u32 nAttributes, const ::i32 *piAttributes, ::i32 *piValues);
 //
 //PFNWGLCHOOSEPIXELFORMATARBPROC                    wglChoosePixelFormatARB;
 //PFNWGLGETPIXELFORMATATTRIBFVARBPROC               wglGetPixelFormatAttribfvARB;
@@ -83,7 +83,7 @@ namespace draw2d_gpu
 
    }
 
-   bool bitmap::CreateBitmap(::draw2d::graphics * pgraphics, int nWidth, int nHeight, unsigned int nPlanes, unsigned int nBitcount, const void * lpBits, int stride)
+   bool bitmap::CreateBitmap(::draw2d::graphics * pgraphics, ::i32 nWidth, ::i32 nHeight, ::u32 nPlanes, ::u32 nBitcount, const void * lpBits, ::i32 stride)
    {
 
       __UNREFERENCED_PARAMETER(pgraphics);
@@ -105,7 +105,7 @@ namespace draw2d_gpu
    //}
 
 
-   void bitmap::create_bitmap(::draw2d::graphics * pgraphics, const ::int_size& size, void** ppcolorref, int* piScan)
+   void bitmap::create_bitmap(::draw2d::graphics * pgraphics, const ::i32_size& size, void** ppcolorref, ::i32* piScan)
    {
 
       __UNREFERENCED_PARAMETER(pgraphics);
@@ -146,7 +146,7 @@ namespace draw2d_gpu
    }
 
 
-   void bitmap::CreateDIBitmap(::draw2d::graphics * pgraphics, int cx, int cy, unsigned int flInit, const void* pjBits, unsigned int iUsage)
+   void bitmap::CreateDIBitmap(::draw2d::graphics * pgraphics, ::i32 cx, ::i32 cy, ::u32 flInit, const void* pjBits, ::u32 iUsage)
    {
       
       // return false;
@@ -154,14 +154,14 @@ namespace draw2d_gpu
    }
 
 
-   unsigned int bitmap::SetBitmapBits(unsigned int dwCount, const void * lpBits)
+   ::u32 bitmap::SetBitmapBits(::u32 dwCount, const void * lpBits)
    {
 
       //return ::SetBitmapBits((HBITMAP)get_handle(), dwCount, lpBits);
       return 0;
 
    }
-   //unsigned int bitmap::GetBitmapBits(unsigned int dwCount, LPVOID lpBits) const
+   //::u32 bitmap::GetBitmapBits(::u32 dwCount, LPVOID lpBits) const
    //{
    //   //return ::GetBitmapBits((HBITMAP)get_handle(), dwCount, lpBits);
    //   return 0;
@@ -174,44 +174,44 @@ namespace draw2d_gpu
 
    }
 
-   int_size bitmap::SetBitmapDimension(int nWidth, int nHeight)
+   i32_size bitmap::SetBitmapDimension(::i32 nWidth, ::i32 nHeight)
    {
 
 
       throw ::interface_only();
 
-      //::int_size size;
+      //::i32_size size;
       //VERIFY(::SetBitmapDimensionEx((HBITMAP)get_handle(), nWidth, nHeight, &size));
       //return size;
-      return ::int_size(0, 0);
+      return ::i32_size(0, 0);
 
    }
 
-   int_size bitmap::GetBitmapDimension() const
+   i32_size bitmap::GetBitmapDimension() const
    {
 
       //if(m_pbitmap == nullptr)
-      //   return ::int_size(0, 0);
+      //   return ::i32_size(0, 0);
 
-      //return ::int_size(m_pbitmap->GetWidth(), m_pbitmap->GetHeight());
+      //return ::i32_size(m_pbitmap->GetWidth(), m_pbitmap->GetHeight());
 
       return m_sizeOut;
 
    }
 
-   bool bitmap::LoadBitmap(unsigned int nIDResource)
+   bool bitmap::LoadBitmap(::u32 nIDResource)
    {
       //return attach(::LoadBitmap(::aura::FindResourceHandle(MAKEINTRESOURCE(nIDResource), RT_BITMAP), MAKEINTRESOURCE(nIDResource)));
       return false;
    }
-   bool bitmap::LoadOEMBitmap(unsigned int nIDBitmap)
+   bool bitmap::LoadOEMBitmap(::u32 nIDBitmap)
    {
       //return attach(::LoadBitmap(nullptr, MAKEINTRESOURCE(nIDBitmap)));
       return false;
    }
    
    
-   void bitmap::CreateCompatibleBitmap(::draw2d::graphics * pgraphics, int nWidth, int nHeight)
+   void bitmap::CreateCompatibleBitmap(::draw2d::graphics * pgraphics, ::i32 nWidth, ::i32 nHeight)
    {
 
 //      ::acme::del(m_pbitmap);
@@ -223,7 +223,7 @@ namespace draw2d_gpu
    }
 
 
-   void bitmap::CreateDiscardableBitmap(::draw2d::graphics * pgraphics, int nWidth, int nHeight)
+   void bitmap::CreateDiscardableBitmap(::draw2d::graphics * pgraphics, ::i32 nWidth, ::i32 nHeight)
    {
 
 //      ::acme::del(m_pbitmap);
@@ -234,7 +234,7 @@ namespace draw2d_gpu
    }
 
 
-   //int bitmap::GetBitmap(BITMAP* pBitMap)
+   //::i32 bitmap::GetBitmap(BITMAP* pBitMap)
    //{
    //   //   ASSERT(get_handle() != nullptr);
    //   // return ::GetObject(get_handle(), sizeof(BITMAP), pBitMap);
@@ -354,7 +354,7 @@ namespace draw2d_gpu
 
    }
 
-   void bitmap::create_texture(int iResampleQuality)
+   void bitmap::create_texture(::i32 iResampleQuality)
    {
 
       m_sizeIn.cx = 1;
@@ -375,7 +375,7 @@ namespace draw2d_gpu
       }
 
 
-      resizeBilinear(m_memIn, m_sizeIn.cx, m_sizeIn.cy, (int*)m_memOut.data(), m_sizeOut.cx, m_sizeOut.cy);
+      resizeBilinear(m_memIn, m_sizeIn.cx, m_sizeIn.cy, (::i32*)m_memOut.data(), m_sizeOut.cx, m_sizeOut.cy);
 
       //glGenTextures(1, &m_texture);
 
@@ -416,7 +416,7 @@ namespace draw2d_gpu
    }
 
 //#ifdef WINDOWS
-//   LRESULT CALLBACK WindowProc(HWND hWnd, unsigned int msg, WPARAM wParam, LPARAM lParam)
+//   LRESULT CALLBACK WindowProc(HWND hWnd, ::u32 msg, WPARAM wParam, LPARAM lParam)
 //   {
 //      static TCHAR szBuffer[32] = { 0 };
 //
@@ -520,12 +520,12 @@ namespace draw2d_gpu
 //                        glLoadIdentity();									// Reset The Projection Matrix
 //
 //                        // Calculate The Aspect Ratio Of The Window
-//                        gluPerspective(45.0f, (GLfloat)m_sizeOut.cx / (GLfloat)m_sizeOut.cy, 0.1f, 100.0f);
+//                        gluPerspective(45.0f, (GLf32)m_sizeOut.cx / (GLf32)m_sizeOut.cy, 0.1f, 100.0f);
 //
 //                        glMatrixMode(GL_MODELVIEW);							// Select The Modelview Matrix
 //                        glLoadIdentity();									// Reset The Modelview Matrix
 //                        glTranslatef(-1.0, -1.0, 0);
-//                        glScalef(2.0/(float)m_sizeOut.cx, 2.0/(float)m_sizeOut.cy, 0);
+//                        glScalef(2.0/(::f32)m_sizeOut.cx, 2.0/(::f32)m_sizeOut.cy, 0);
 //
 //                     }
 //
@@ -576,7 +576,7 @@ namespace draw2d_gpu
 //         glReadPixels(0, 0, m_sizeOut.cx, m_sizeOut.cy, GL_BGRA_EXT, GL_UNSIGNED_BYTE, pdata);
 //         e = glGetError();
 //
-//         information("error " + ::as_string((int)e));
+//         information("error " + ::as_string((::i32)e));
 //
 //      }
 
@@ -606,7 +606,7 @@ namespace draw2d_gpu
 ////      if (!(g_hDC = GetDC(g_hWnd)))
 ////         return false;
 ////
-////      int pf = ChoosePixelFormat(g_hDC, &pfd);
+////      ::i32 pf = ChoosePixelFormat(g_hDC, &pfd);
 ////
 ////      if (!SetPixelFormat(g_hDC, pf, &pfd))
 ////         return false;
@@ -751,7 +751,7 @@ namespace draw2d_gpu
 ////      // pbuffer containing our rendered scene as a texture) we don't need to
 ////      // request for WGL_BIND_TO_TEXTURE_RGBA_ARB support in the attribute list_base.
 ////
-////      int attribList[] =
+////      ::i32 attribList[] =
 ////      {
 ////         WGL_DRAW_TO_PBUFFER_ARB, true,      // allow rendering to the pbuffer
 ////         WGL_SUPPORT_OPENGL_ARB,  true,      // associate with OpenGL
@@ -764,8 +764,8 @@ namespace draw2d_gpu
 ////         0
 ////      };
 ////
-////      int format = 0;
-////      unsigned int matchingFormats = 0;
+////      ::i32 format = 0;
+////      ::u32 matchingFormats = 0;
 ////
 ////      if (!wglChoosePixelFormatARB(g_hDC, attribList, 0, 1, &format, &matchingFormats))
 ////      {
@@ -795,9 +795,9 @@ namespace draw2d_gpu
 //   }
 //
 //
-//   //int pitch = d->m_iScan / 4;
-//   //int iScan = cxDIB * 4;
-//   //for (int i = 0; i < cyDIB; ++i)
+//   //::i32 pitch = d->m_iScan / 4;
+//   //::i32 iScan = cxDIB * 4;
+//   //for (::i32 i = 0; i < cyDIB; ++i)
 //   //{
 //   //   ::memory_copy(&d->m_pcolorref[pitch * i], &m_mem.get_data()[((cyDIB - 1) - i) * iScan], iScan);
 //   //}
@@ -854,24 +854,24 @@ namespace draw2d_gpu
 } // namespace draw2d_gpu
 
 
-void resizeBilinear(memory & m, int w2, int h2, int * pixels, int w, int h)
+void resizeBilinear(memory & m, ::i32 w2, ::i32 h2, ::i32 * pixels, ::i32 w, ::i32 h)
 {
 
    //memory m;
-   m.set_size(sizeof(int) * w2* h2);
-   //int[] temp = ___new int[w2*h2];
-   int * temp = (int *)m.data();
-   int a, b, c, d, x, y, index;
-   float x_ratio = ((float)(w - 1)) / w2;
-   float y_ratio = ((float)(h - 1)) / h2;
-   float x_diff, y_diff, blue, red, green;
-   int offset = 0;
-   for (int i = 0; i < h2; i++)
+   m.set_size(sizeof(::i32) * w2* h2);
+   //::i32[] temp = ___new ::i32[w2*h2];
+   ::i32 * temp = (::i32 *)m.data();
+   ::i32 a, b, c, d, x, y, index;
+   ::f32 x_ratio = ((::f32)(w - 1)) / w2;
+   ::f32 y_ratio = ((::f32)(h - 1)) / h2;
+   ::f32 x_diff, y_diff, blue, red, green;
+   ::i32 offset = 0;
+   for (::i32 i = 0; i < h2; i++)
    {
-      for (int j = 0; j < w2; j++)
+      for (::i32 j = 0; j < w2; j++)
       {
-         x = (int)(x_ratio * j);
-         y = (int)(y_ratio * i);
+         x = (::i32)(x_ratio * j);
+         y = (::i32)(y_ratio * i);
          x_diff = (x_ratio * j) - x;
          y_diff = (y_ratio * i) - y;
          index = (y*w + x);
@@ -897,9 +897,9 @@ void resizeBilinear(memory & m, int w2, int h2, int * pixels, int w, int h)
 
          temp[offset++] =
          0xff000000 | // hardcode alpha
-         ((((int)red) << 16) & 0xff0000) |
-         ((((int)green) << 8) & 0xff00) |
-         ((int)blue);
+         ((((::i32)red) << 16) & 0xff0000) |
+         ((((::i32)green) << 8) & 0xff00) |
+         ((::i32)blue);
 
       }
 

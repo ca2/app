@@ -4,22 +4,22 @@
 //namespace html
 //{
 //
-//   //class CLASS_DECL_CORE ::float_point
+//   //class CLASS_DECL_CORE ::f32_point
 //   //{
 //   //public:
 //
 //
-//   //   float    x;
-//   //   float    y;
+//   //   ::f32    x;
+//   //   ::f32    y;
 //
 //
-//   //   inline ::float_point();
-//   //   inline ::float_point(float x, float y);
+//   //   inline ::f32_point();
+//   //   inline ::f32_point(::f32 x, ::f32 y);
 //
 //
 //   //};
 //
-//   //inline ::float_point::float_point()
+//   //inline ::f32_point::f32_point()
 //   //{
 //
 //   //   this->x  = 0.f;
@@ -27,7 +27,7 @@
 //
 //   //}
 //
-//   //inline ::float_point::float_point(float x, float y)
+//   //inline ::f32_point::f32_point(::f32 x, ::f32 y)
 //   //{
 //
 //   //   this->x  = x;

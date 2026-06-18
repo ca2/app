@@ -9,6 +9,7 @@
 #include "acme/filesystem/filesystem/file_context.h"
 #include "acme/nano/nano.h"
 #include "acme/nano/archive/archive.h"
+#include "acme/operating_system/cpu_features.h"
 #include "acme/platform/http.h"
 #include "acme/platform/node.h"
 
@@ -40,7 +41,7 @@ namespace coding
    //    return {};
    //
    // }
-//   int application::unix_shell_command(const ::scoped_string& scopedstrCommand)
+//   ::i32 application::unix_shell_command(const ::scoped_string& scopedstrCommand)
    //   {
    //
    //      try
@@ -108,7 +109,33 @@ namespace coding
    string application::__jetbrains_clion_download_url()
    {
 
-      auto pathUrl = fetch_download_link("linux/clion");
+      //# Step 1: Get JetBrains product metadata (official API)
+      ::file::path pathMetadataUrl = "https://data.services.jetbrains.com/products/releases?code=CL&latest=true&type=release";
+
+      auto strNetworkPayload = http()->get(pathMetadataUrl);
+
+      print_line(pathMetadataUrl + " returned " + strNetworkPayload);
+
+      ::property_set set;
+
+      set.parse_network_payload(strNetworkPayload);
+
+      ::string strArch = ::operating_system::machine_architecture();
+
+      ::file::path pathUrl;
+
+      if (strArch == "aarch64")
+      {
+
+         pathUrl = set["CL"].at(0)["downloads"]["linuxARM64"]["link"];
+
+      }
+      else
+      {
+
+         pathUrl = set["CL"].at(0)["downloads"]["linux"]["link"];
+
+      }
 
       print_line("JetBrains CLion download url : " + pathUrl);
 
@@ -125,6 +152,8 @@ namespace coding
       ::file::path pathTarget = directory()->home() / "Downloads/Code!!" / pathSource.name();
 
       ::property_set set;
+
+      get_http_user_agent(set);
 
       print_line("Downloading \"" + pathSource+"\" to \""+pathTarget + "\".");
 

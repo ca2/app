@@ -1,7 +1,7 @@
 #include "framework.h"
 #include "pbr_with_ibl_render_system_base.h"
 #include "bred/gpu/context.h"
-#include "bred/gpu/frame.h"
+#include "bred/gpu/layer.h"
 #include "bred/gpu/renderer.h"
 #include "bred/graphics3d/scene_base.h"
 #include "bred/graphics3d/types.h"

@@ -63,9 +63,9 @@ void simple_still::_001OnDraw(::draw2d::graphics_pointer & pgraphics)
          
          auto minimum_dimension = this->get_client_size().minimum();
          
-         ::double_size size(minimum_dimension);
+         ::f64_size size(minimum_dimension);
 
-         double_rectangle rectangle(::double_point(), size);
+         ::f64_rectangle rectangle(::f64_point(), size);
 
          ::image::image_drawing_options imagedrawingoptions(rectangle);
 

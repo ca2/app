@@ -63,25 +63,25 @@ namespace experience
    bool dock_manager::dock_window(::message::mouse* pmouse)
    {
 
-      auto pointDock = ::int_point(pmouse->m_pointAbsolute - m_pointCursorDockOrigin + m_sizeDockRightOrigin);
+      auto pointDock = ::i32_point(pmouse->m_pointAbsolute - m_pointCursorDockOrigin + m_sizeDockRightOrigin);
 
       pointDock.x -= m_pframewindow->width();
 
-      ::int_rectangle rectangleWindow;
+      ::i32_rectangle rectangleWindow;
 
       m_pframewindow->window_rectangle(rectangleWindow);
 
-      ::int_rectangle rectangleEvent = rectangleWindow;
+      ::i32_rectangle rectangleEvent = rectangleWindow;
 
       rectangleEvent.move_to(pointDock);
 
       auto pointCursor = pmouse->m_pointAbsolute;
 
-      ::int_rectangle rectangleCursor(pointCursor.x - 1, pointCursor.y - 1, pointCursor.x + 1, pointCursor.y + 1);
+      ::i32_rectangle rectangleCursor(pointCursor.x - 1, pointCursor.y - 1, pointCursor.x + 1, pointCursor.y + 1);
 
-      ::int_rectangle screen;
+      ::i32_rectangle screen;
 
-      ::int_rectangle rectangleWorkspace;
+      ::i32_rectangle rectangleWorkspace;
 
       auto pwindow = m_pframewindow->window();
 
@@ -89,7 +89,7 @@ namespace experience
 
       auto pdisplay = pwindowing->display();
 
-      int iMonitor = (int)pdisplay->get_best_monitor(&screen, rectangleCursor);
+      ::i32 iMonitor = (::i32)pdisplay->get_best_monitor(&screen, rectangleCursor);
 
       pdisplay->get_workspace_rectangle(iMonitor, rectangleWorkspace);
 
@@ -104,15 +104,15 @@ namespace experience
 
       auto edisplayNormal = m_pframewindow->m_windowdisplayandlayout.m_edisplayLastNormal;
 
-      int cxQuarterWorkspace = rectangleWorkspace.width() / 4;
+      ::i32 cxQuarterWorkspace = rectangleWorkspace.width() / 4;
 
-      int cxThreshold = cxQuarterWorkspace / 4;
+      ::i32 cxThreshold = cxQuarterWorkspace / 4;
 
-      int cyQuarterWorkspace = rectangleWorkspace.height() / 4;
+      ::i32 cyQuarterWorkspace = rectangleWorkspace.height() / 4;
 
-      int cyThreshold = cyQuarterWorkspace / 4;
+      ::i32 cyThreshold = cyQuarterWorkspace / 4;
 
-      ::int_rectangle rectangleWorkspaceCenter;
+      ::i32_rectangle rectangleWorkspaceCenter;
 
       auto pointWorkspaceCenter = rectangleWorkspace.center();
 
@@ -212,13 +212,13 @@ namespace experience
 
       }
 
-      ::int_rectangle rectangleDock;
+      ::i32_rectangle rectangleDock;
 
-      enum_display edisplayDock = e_display_none;
+      e_display edisplayDock = e_display_none;
 
-      enum_display edisplayOld = m_pframewindow->const_layout().sketch().display();
+      auto edisplayOld = m_pframewindow->const_layout().sketch().display();
 
-//      ::int_rectangle rectangleScreenOld = m_pframewindow->screen_rect();
+//      ::i32_rectangle rectangleScreenOld = m_pframewindow->screen_rect();
 
       if (rectangleWorkspaceCenter.contains_x(pointCursor.x))
       {
@@ -234,7 +234,7 @@ namespace experience
 
             edisplayDock = ::e_display_full_top;
 
-            rectangleDock = int_rectangle_dimension(rectangleWorkspace.left, rectangleWorkspace.top, rectangleWorkspace.width(), rectangleWorkspace.height() / 2);
+            rectangleDock = i32_rectangle_dimension(rectangleWorkspace.left, rectangleWorkspace.top, rectangleWorkspace.width(), rectangleWorkspace.height() / 2);
 
          }
          else if (pointCursor.y > rectangleWorkspaceCenter.bottom)
@@ -242,7 +242,7 @@ namespace experience
 
             edisplayDock = ::e_display_full_bottom;
 
-            rectangleDock = int_rectangle_dimension(rectangleWorkspace.left, rectangleWorkspace.top + rectangleWorkspace.height() / 2, rectangleWorkspace.width(), rectangleWorkspace.height() / 2);
+            rectangleDock = i32_rectangle_dimension(rectangleWorkspace.left, rectangleWorkspace.top + rectangleWorkspace.height() / 2, rectangleWorkspace.width(), rectangleWorkspace.height() / 2);
 
          }
 
@@ -255,7 +255,7 @@ namespace experience
 
             edisplayDock = ::e_display_full_left;
 
-            rectangleDock = int_rectangle_dimension(rectangleWorkspace.left, rectangleWorkspace.top, rectangleWorkspace.width() / 2, rectangleWorkspace.height());
+            rectangleDock = i32_rectangle_dimension(rectangleWorkspace.left, rectangleWorkspace.top, rectangleWorkspace.width() / 2, rectangleWorkspace.height());
 
          }
          else if (pointCursor.x > rectangleWorkspaceCenter.right)
@@ -263,7 +263,7 @@ namespace experience
 
             edisplayDock = ::e_display_full_right;
 
-            rectangleDock = int_rectangle_dimension(rectangleWorkspace.left + rectangleWorkspace.width() / 2, rectangleWorkspace.top, rectangleWorkspace.width() / 2, rectangleWorkspace.height());
+            rectangleDock = i32_rectangle_dimension(rectangleWorkspace.left + rectangleWorkspace.width() / 2, rectangleWorkspace.top, rectangleWorkspace.width() / 2, rectangleWorkspace.height());
 
          }
 
@@ -276,7 +276,7 @@ namespace experience
 
             edisplayDock = ::e_display_top_left;
 
-            rectangleDock = int_rectangle_dimension(rectangleWorkspace.left, rectangleWorkspace.top, rectangleWorkspace.width() / 2, rectangleWorkspace.height() / 2);
+            rectangleDock = i32_rectangle_dimension(rectangleWorkspace.left, rectangleWorkspace.top, rectangleWorkspace.width() / 2, rectangleWorkspace.height() / 2);
 
          }
          else if (pointCursor.y > rectangleWorkspaceCenter.bottom)
@@ -284,7 +284,7 @@ namespace experience
 
             edisplayDock = ::e_display_bottom_left;
 
-            rectangleDock = int_rectangle_dimension(rectangleWorkspace.left, rectangleWorkspace.top + rectangleWorkspace.height() / 2, rectangleWorkspace.width() / 2, rectangleWorkspace.height() / 2);
+            rectangleDock = i32_rectangle_dimension(rectangleWorkspace.left, rectangleWorkspace.top + rectangleWorkspace.height() / 2, rectangleWorkspace.width() / 2, rectangleWorkspace.height() / 2);
 
          }
 
@@ -297,7 +297,7 @@ namespace experience
 
             edisplayDock = ::e_display_top_right;
 
-            rectangleDock = int_rectangle_dimension(rectangleWorkspace.left + rectangleWorkspace.width() / 2, rectangleWorkspace.top, rectangleWorkspace.width() / 2, rectangleWorkspace.height() / 2);
+            rectangleDock = i32_rectangle_dimension(rectangleWorkspace.left + rectangleWorkspace.width() / 2, rectangleWorkspace.top, rectangleWorkspace.width() / 2, rectangleWorkspace.height() / 2);
 
          }
          else if (pointCursor.y > rectangleWorkspaceCenter.bottom)
@@ -305,7 +305,7 @@ namespace experience
 
             edisplayDock = ::e_display_bottom_right;
 
-            rectangleDock = int_rectangle_dimension(rectangleWorkspace.left + rectangleWorkspace.width() / 2, rectangleWorkspace.top + rectangleWorkspace.height() / 2, rectangleWorkspace.width() / 2, rectangleWorkspace.height() / 2);
+            rectangleDock = i32_rectangle_dimension(rectangleWorkspace.left + rectangleWorkspace.width() / 2, rectangleWorkspace.top + rectangleWorkspace.height() / 2, rectangleWorkspace.width() / 2, rectangleWorkspace.height() / 2);
 
          }
 
@@ -327,7 +327,7 @@ namespace experience
 
          }
 
-         ::int_rectangle rectangleWindow = m_rectangleOnDockStart;
+         ::i32_rectangle rectangleWindow = m_rectangleOnDockStart;
 
          auto pointReposition =
             pmouse->m_pointAbsolute
@@ -581,10 +581,10 @@ namespace experience
    }
 
    /// Screen coordinates of center of dock button
-   ::int_size dock_manager::dock_button_right_origin()
+   ::i32_size dock_manager::dock_button_right_origin()
    {
 
-      ::int_point pointOrigin;
+      ::i32_point pointOrigin;
 
       auto pbutton = dock_button();
 
@@ -629,7 +629,7 @@ namespace experience
    }
 
 
-   bool dock_manager::on_timer(unsigned int uEvent)
+   bool dock_manager::on_timer(::u32 uEvent)
    {
 
       return false;

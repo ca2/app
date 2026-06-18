@@ -411,27 +411,27 @@ tie(TYPES&... args) noexcept
 
 
 template < typename TYPE1, typename TYPE2 >
-inline int cmp(const TYPE1 & t1,const TYPE2 & t2)
+inline ::i32 cmp(const TYPE1 & t1,const TYPE2 & t2)
 {
    return (t1 < t2) ? -1 : (t1 < t2) ? 1 : 0;
 }
 
 
 template < typename TYPE1,typename TYPE2 >
-inline int icmp(const TYPE1 & t1,const TYPE2 & t2)
+inline ::i32 icmp(const TYPE1 & t1,const TYPE2 & t2)
 {
    return cmp(t1, t2);
 }
 
 template < >
-inline int cmp(const ::scoped_string & scopedstr1, const ::scoped_string & scopedstr2)
+inline ::i32 cmp(const ::scoped_string & scopedstr1, const ::scoped_string & scopedstr2)
 {
    return str1.compare(str2);
 }
 
 
 template < >
-inline int icmp(const ::scoped_string & scopedstr1, const ::scoped_string & scopedstr2)
+inline ::i32 icmp(const ::scoped_string & scopedstr1, const ::scoped_string & scopedstr2)
 {
    return str1.case_insensitive_order(str2);
 }
@@ -439,9 +439,9 @@ inline int icmp(const ::scoped_string & scopedstr1, const ::scoped_string & scop
 template<size_t TUPLE_SIZE> struct cmp_tuple
 {
    template < typename T1, typename T2>
-   int operator()(const T1 & t1,const T2 & t2) const
+   ::i32 operator()(const T1 & t1,const T2 & t2) const
    {
-      int r = cmp_tuple<TUPLE_SIZE - 1>()(t1,t2);
+      ::i32 r = cmp_tuple<TUPLE_SIZE - 1>()(t1,t2);
       return (r != 0) ? r : cmp(get<TUPLE_SIZE - 1>(t1),get<TUPLE_SIZE - 1>(t2));
    }
 };
@@ -450,9 +450,9 @@ template<size_t TUPLE_SIZE> struct cmp_tuple
 template<size_t TUPLE_SIZE> struct icmp_tuple
 {
    template < typename T1,typename T2>
-   int operator()(const T1 & t1,const T2 & t2) const
+   ::i32 operator()(const T1 & t1,const T2 & t2) const
    {
-      int r = icmp_tuple<TUPLE_SIZE - 1>()(t1,t2);
+      ::i32 r = icmp_tuple<TUPLE_SIZE - 1>()(t1,t2);
       return (r != 0) ? r : icmp(get<TUPLE_SIZE - 1>(t1),get<TUPLE_SIZE - 1>(t2));
    }
 };
@@ -460,7 +460,7 @@ template<size_t TUPLE_SIZE> struct icmp_tuple
 template<> struct cmp_tuple<0>
 {
    template < typename T1,typename T2>
-   int operator()(const T1&,const T2&) const
+   ::i32 operator()(const T1&,const T2&) const
    {
       return 0;
    }
@@ -469,7 +469,7 @@ template<> struct cmp_tuple<0>
 template<> struct icmp_tuple<0>
 {
    template < typename T1,typename T2>
-   int operator()(const T1&,const T2&) const
+   ::i32 operator()(const T1&,const T2&) const
    {
       return 0;
    }
@@ -481,54 +481,54 @@ template<> struct icmp_tuple<0>
 
 
 template <  >
-inline int cmp(const int & i1,const int & i2)
+inline ::i32 cmp(const ::i32 & i1,const ::i32 & i2)
 {
    return i1 - i2;
 }
 
 
 template <  >
-inline  int cmp(const short & sh1,const short & sh2)
+inline  ::i32 cmp(const ::i16 & sh1,const ::i16 & sh2)
 {
    return sh1 - sh2;
 }
 
 
 template <  >
-inline int cmp(const char & ch1,const char & ch2)
+inline ::i32 cmp(const ::i8 & ch1,const ::i8 & ch2)
 {
    return ch1 - ch2;
 }
 
 template <  >
-inline int cmp(const unsigned int & i1,const unsigned int & i2)
+inline ::i32 cmp(const ::u32 & i1,const ::u32 & i2)
 {
    return i1 - i2;
 }
 
 template <  >
-inline  int cmp(const unsigned short & sh1,const short & sh2)
+inline  ::i32 cmp(const ::u16 & sh1,const ::i16 & sh2)
 {
    return sh1 - sh2;
 }
 
 
 template <  >
-inline  int cmp(const unsigned char & ch1,const unsigned char & ch2)
+inline  ::i32 cmp(const ::u8 & ch1,const ::u8 & ch2)
 {
    return ch1 - ch2;
 }
 
 
 template <  >
-inline  int cmp(const double & d1,const double & d2)
+inline  ::i32 cmp(const ::f64 & d1,const ::f64 & d2)
 {
    return ::papaya::sgn(d1 - d2);
 }
 
 
 template <  >
-inline  int cmp(const float & f1,const float & f2)
+inline  ::i32 cmp(const ::f32 & f1,const ::f32 & f2)
 {
    return ::papaya::sgn(f1 - f2);
 }
@@ -536,7 +536,7 @@ inline  int cmp(const float & f1,const float & f2)
 
 
 template < >
-inline int cmp(const int & t1,const unsigned int & t2)
+inline ::i32 cmp(const ::i32 & t1,const ::u32 & t2)
 {
-   return (t1 < 0) ? -1 : ((unsigned int) t1 < t2) ? 1 : 0;
+   return (t1 < 0) ? -1 : ((::u32) t1 < t2) ? 1 : 0;
 }

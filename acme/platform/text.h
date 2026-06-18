@@ -7,9 +7,9 @@
 //
 
 
-//CLASS_DECL_ACME int __c_get_text_length(const ::scoped_string & scopedstr);
+//CLASS_DECL_ACME ::i32 __c_get_text_length(const ::scoped_string & scopedstr);
 //
-//CLASS_DECL_ACME void __c_get_text(char * pszText, int iLen, const ::scoped_string & scopedstr);
+//CLASS_DECL_ACME void __c_get_text(char_pointer pszText, ::i32 iLen, const ::scoped_string & scopedstr);
 
 
 

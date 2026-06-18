@@ -19,11 +19,11 @@ extern "C" {
  */
 
 #ifdef FIXED_POINT
-# define kiss_fft_scalar short
+# define kiss_fft_scalar ::i16
 #else
 # ifndef kiss_fft_scalar
-/*  default is double */
-#   define kiss_fft_scalar double
+/*  default is ::f64 */
+#   define kiss_fft_scalar ::f64
 # endif
 #endif
 
@@ -49,15 +49,15 @@ typedef struct kiss_fft_state* kiss_fft_cfg;
  *
  *  The state can be placed in a ::account::user supplied buffer 'mem':
  *  If lenmem is not nullptr and mem is not nullptr and *lenmem is large enough,
- *      then the function places the cfg in mem and the int_size used in *lenmem
+ *      then the function places the cfg in mem and the i32_size used in *lenmem
  *      and returns mem.
  *
  *  If lenmem is not nullptr and ( mem is nullptr or *lenmem is not large enough),
  *      then the function returns nullptr and places the minimum cfg
- *      buffer int_size in *lenmem.
+ *      buffer i32_size in *lenmem.
  * */
 
-kiss_fft_cfg kiss_fft_alloc(int nfft,int inverse_fft,void * mem,size_t * lenmem);
+kiss_fft_cfg kiss_fft_alloc(::i32 nfft,::i32 inverse_fft,void * mem,size_t * lenmem);
 
 /*
  * kiss_fft(cfg,in_out_buf)
@@ -71,7 +71,7 @@ kiss_fft_cfg kiss_fft_alloc(int nfft,int inverse_fft,void * mem,size_t * lenmem)
  * */
 void kiss_fft(kiss_fft_cfg cfg,const kiss_fft_cpx *fin,kiss_fft_cpx *fout);
 
-void kiss_fft_stride(kiss_fft_cfg cfg,const kiss_fft_cpx *fin,kiss_fft_cpx *fout,int fin_stride);
+void kiss_fft_stride(kiss_fft_cfg cfg,const kiss_fft_cpx *fin,kiss_fft_cpx *fout,::i32 fin_stride);
 
 /* If kiss_fft_alloc allocated a buffer, it is one contiguous
    buffer and can be simply free()d when no longer needed*/

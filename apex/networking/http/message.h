@@ -29,7 +29,7 @@ namespace http
 
 
       string                           m_strVersion;
-      //::function < void(double, filesize, filesize) > m_functionProgress;
+      //::function < void(::f64, filesize, filesize) > m_functionProgress;
 
       message();
 

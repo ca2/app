@@ -14,9 +14,9 @@ using namespace NDirectory;*/
 namespace file
 {
 
-   static const unsigned int kTempBufSize = (1 << 20);
+   static const ::u32 kTempBufSize = (1 << 20);
 
-   static const char * kTempFilePrefixString = "7zt";
+   static const_char_pointer kTempFilePrefixString = "7zt";
 
    temp_io_buffer::temp_io_buffer()
    {
@@ -65,7 +65,7 @@ namespace file
          _crc = crc_update(_crc, data, cur);
          _bufPos += cur;
          size -= cur;
-         data = ((const unsigned char *)data) + cur;
+         data = ((const ::u8 *)data) + cur;
          _size += cur;
       }
       return write_to_file(data, size);
@@ -75,8 +75,8 @@ namespace file
    {
       _outFile->close();
 
-      unsigned long long size = 0;
-      unsigned int crc = CRC_INIT_VAL;
+      ::u64 size = 0;
+      ::u32 crc = CRC_INIT_VAL;
 
       if (_bufPos > 0)
       {
@@ -92,7 +92,7 @@ namespace file
             return E_FAIL;
          while (size < _size)
          {
-            unsigned int processed;
+            ::u32 processed;
             throw "should implement below ReadPart from InFile";
             /*if (!inFile.ReadPart(m_memory.get_data(), kTempBufSize, processed))
                return E_FAIL;*/

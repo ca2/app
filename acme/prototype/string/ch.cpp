@@ -5,13 +5,13 @@
 
 
 /*
-* Index into the table below with the first unsigned char of a UTF-8 sequence to
+* Index into the table below with the first ::u8 of a UTF-8 sequence to
 * get the number of trailing bytes that are supposed to follow it.
 * Note that *legal* UTF-8 values can't have 4 or 5-bytes. The table is
 * left as-is for anyone who may want to do such conversion, which was
 * allowed in earlier algorithms.
 */
-const char g_trailingBytesForUTF8[256] =
+const ::i8 g_trailingBytesForUTF8[256] =
 {
    0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0, 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
    0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0, 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
@@ -24,10 +24,10 @@ const char g_trailingBytesForUTF8[256] =
 };
 
 
-CLASS_DECL_ACME int trailingBytesForUTF8(char ch)
+CLASS_DECL_ACME ::i32 trailingBytesForUTF8(::i8 ch)
 {
 
-    return g_trailingBytesForUTF8[*(unsigned char*) &ch];
+    return g_trailingBytesForUTF8[*(::u8*) &ch];
 
 }
 
@@ -44,7 +44,7 @@ CLASS_DECL_ACME int trailingBytesForUTF8(char ch)
    //{
 
 
-      int unicode_ref_tables()
+      ::i32 unicode_ref_tables()
       {
 
          return sizeof(char_bidi_names);
@@ -52,7 +52,7 @@ CLASS_DECL_ACME int trailingBytesForUTF8(char ch)
       }
 
 
-      const_char_pointer unicode_get_category_name(int i)
+      const_char_pointer unicode_get_category_name(::i32 i)
       {
          if (!is_legal_unicode_index(i))
             return "";
@@ -65,7 +65,7 @@ CLASS_DECL_ACME int trailingBytesForUTF8(char ch)
        * This table contains as many values as there might be trailing bytes
        * in a UTF-8 sequence.
        */
-      static const unsigned int offsetsFromUTF8[6] = { 0x00000000UL, 0x00003080UL, 0x000E2080UL,
+      static const ::u32 offsetsFromUTF8[6] = { 0x00000000UL, 0x00003080UL, 0x000E2080UL,
                                                    0x03C82080UL, 0xFA082080UL, 0x82082080UL
                                                  };
 

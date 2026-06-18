@@ -1,7 +1,7 @@
 #pragma once
 
 
-enum enum_impact : long long
+enum enum_impact : ::i64
 {
 
    e_impact_none,
@@ -90,6 +90,7 @@ enum enum_impact : long long
    e_impact_rich_edit,
    e_impact_update,
    e_impact_store,
+   e_impact_blink,
    
    
    e_impact_base = BASE_IMPACT,

@@ -15,13 +15,13 @@ public:
    ~compress() override;
 
 
-   virtual void set_level(int iLevel);
+   virtual void set_level(::i32 iLevel);
 
 
    void transfer(::file::file* pfileOut, ::file::file* pfileIn, transfer_progress_function transferprogressfunction = {}) override;
 
 
-   virtual unsigned int crc32(unsigned int uCrc, const ::block& block);
+   virtual ::u32 crc32(::u32 uCrc, const ::block& block);
 
 
 };

@@ -169,11 +169,11 @@ extern QRinput *QRinput_new(void);
  * @throw ::exception( ENOMEM unable to allocate memory for input objects.
  * @throw ::exception( EINVAL invalid arguments.
  */
-extern QRinput *QRinput_new2(int version, QRecLevel level);
+extern QRinput *QRinput_new2(::i32 version, QRecLevel level);
 
 /**
  * Instantiate an input data object. Object's Micro QR Code flag is set.
- * Unlike with full-double_size QR Code, version number must be specified (>0).
+ * Unlike with full-::f64_size QR Code, version number must be specified (>0).
  * @param version version number (1--4).
  * @param level Error correction level.
  * @return an input object (initialized). On error, NULL is returned and errno
@@ -181,14 +181,14 @@ extern QRinput *QRinput_new2(int version, QRecLevel level);
  * @throw ::exception( ENOMEM unable to allocate memory for input objects.
  * @throw ::exception( EINVAL invalid arguments.
  */
-extern QRinput *QRinput_newMQR(int version, QRecLevel level);
+extern QRinput *QRinput_newMQR(::i32 version, QRecLevel level);
 
 /**
  * Append data to an input object.
  * The data is copied and appended to the input object.
  * @param input input object.
  * @param mode encoding mode.
- * @param int_size size of data (unsigned char).
+ * @param i32_size size of data (::u8).
  * @param data a pointer to the memory area of the input data.
  * @retval 0 success.
  * @retval -1 an error occurred and errno is set to indeicate the error.
@@ -197,7 +197,7 @@ extern QRinput *QRinput_newMQR(int version, QRecLevel level);
  * @throw ::exception( EINVAL input data is invalid.
  *
  */
-extern int QRinput_append(QRinput *input, QRencodeMode mode, int size, const unsigned char *data);
+extern ::i32 QRinput_append(QRinput *input, QRencodeMode mode, ::i32 size, const ::u8 *data);
 
 /**
  * Append ECI header.
@@ -210,14 +210,14 @@ extern int QRinput_append(QRinput *input, QRencodeMode mode, int size, const uns
  * @throw ::exception( EINVAL input data is invalid.
  *
  */
-extern int QRinput_appendECIheader(QRinput *input, unsigned int ecinum);
+extern ::i32 QRinput_appendECIheader(QRinput *input, ::u32 ecinum);
 
 /**
  * Get current version.
  * @param input input object.
  * @return current version.
  */
-extern int QRinput_getVersion(QRinput *input);
+extern ::i32 QRinput_getVersion(QRinput *input);
 
 /**
  * Set version of the QR code that is to be encoded.
@@ -227,7 +227,7 @@ extern int QRinput_getVersion(QRinput *input);
  * @retval 0 success.
  * @retval -1 invalid argument.
  */
-extern int QRinput_setVersion(QRinput *input, int version);
+extern ::i32 QRinput_setVersion(QRinput *input, ::i32 version);
 
 /**
  * Get current error correction level.
@@ -244,7 +244,7 @@ extern QRecLevel QRinput_getErrorCorrectionLevel(QRinput *input);
  * @retval 0 success.
  * @retval -1 invalid argument.
  */
-extern int QRinput_setErrorCorrectionLevel(QRinput *input, QRecLevel level);
+extern ::i32 QRinput_setErrorCorrectionLevel(QRinput *input, QRecLevel level);
 
 /**
  * Set version and error correction level of the QR code at once.
@@ -255,7 +255,7 @@ extern int QRinput_setErrorCorrectionLevel(QRinput *input, QRecLevel level);
  * @retval 0 success.
  * @retval -1 invalid argument.
  */
-extern int QRinput_setVersionAndErrorCorrectionLevel(QRinput *input, int version, QRecLevel level);
+extern ::i32 QRinput_setVersionAndErrorCorrectionLevel(QRinput *input, ::i32 version, QRecLevel level);
 
 /**
  * Free the input object.
@@ -267,12 +267,12 @@ extern void QRinput_free(QRinput *input);
 /**
  * Validate the input data.
  * @param mode encoding mode.
- * @param int_size size of data (unsigned char).
+ * @param i32_size size of data (::u8).
  * @param data a pointer to the memory area of the input data.
  * @retval 0 success.
  * @retval -1 invalid arguments.
  */
-extern int QRinput_check(QRencodeMode mode, int size, const unsigned char *data);
+extern ::i32 QRinput_check(QRencodeMode mode, ::i32 size, const ::u8 *data);
 
 /**
  * Set of QRinput for structured symbols.
@@ -292,7 +292,7 @@ extern QRinput_Struct *QRinput_Struct_new(void);
  * @param s structured input object.
  * @param eparity eparity of s.
  */
-extern void QRinput_Struct_setParity(QRinput_Struct *s, unsigned char eparity);
+extern void QRinput_Struct_setParity(QRinput_Struct *s, ::u8 eparity);
 
 /**
  * Append a QRinput object to the set. QRinput created by QRinput_newMQR()
@@ -305,7 +305,7 @@ extern void QRinput_Struct_setParity(QRinput_Struct *s, unsigned char eparity);
  * @throw ::exception( ENOMEM unable to allocate memory.
  * @throw ::exception( EINVAL invalid arguments.
  */
-extern int QRinput_Struct_appendInput(QRinput_Struct *s, QRinput *input);
+extern ::i32 QRinput_Struct_appendInput(QRinput_Struct *s, QRinput *input);
 
 /**
  * Free all of QRinput in the set.
@@ -337,17 +337,17 @@ extern QRinput_Struct *QRinput_splitQRinputToStruct(QRinput *input);
  * @throw ::exception( EINVAL invalid input object.
  * @throw ::exception( ENOMEM unable to allocate memory.
  */
-extern int QRinput_Struct_insertStructuredAppendHeaders(QRinput_Struct *s);
+extern ::i32 QRinput_Struct_insertStructuredAppendHeaders(QRinput_Struct *s);
 
 /**
  * Set FNC1-1st position flag.
  */
-extern int QRinput_setFNC1First(QRinput *input);
+extern ::i32 QRinput_setFNC1First(QRinput *input);
 
 /**
  * Set FNC1-2nd position flag and application identifier.
  */
-extern int QRinput_setFNC1Second(QRinput *input, unsigned char appid);
+extern ::i32 QRinput_setFNC1Second(QRinput *input, ::u8 appid);
 
 /******************************************************************************
  * QRcode output (qrencode.c)
@@ -373,9 +373,9 @@ extern int QRinput_setFNC1Second(QRinput *input, unsigned char appid);
    @endverbatim
  */
 typedef struct {
-	int version;         ///< version of the symbol
-	int width;           ///< width of the symbol
-	unsigned char *data; ///< symbol data
+	::i32 version;         ///< version of the symbol
+	::i32 width;           ///< width of the symbol
+	::u8 *data; ///< symbol data
 } QRcode;
 
 /**
@@ -423,30 +423,30 @@ extern QRcode *QRcode_encodeInput(QRinput *input);
  * @throw ::exception( ENOMEM unable to allocate memory for input objects.
  * @throw ::exception( ERANGE input data is too large.
  */
-extern QRcode *QRcode_encodeString(const ::scoped_string & scopedstring, int version, QRecLevel level, QRencodeMode hint, int casesensitive);
+extern QRcode *QRcode_encodeString(const ::scoped_string & scopedstring, ::i32 version, QRecLevel level, QRencodeMode hint, ::i32 casesensitive);
 
 /**
  * Same to QRcode_encodeString(), but encode whole data in 8-bit mode.
  * @warning This function is THREAD UNSAFE when pthread is disabled.
  */
-extern QRcode *QRcode_encodeString8bit(const ::scoped_string & scopedstring, int version, QRecLevel level);
+extern QRcode *QRcode_encodeString8bit(const ::scoped_string & scopedstring, ::i32 version, QRecLevel level);
 
 /**
  * Micro QR Code version of QRcode_encodeString().
  * @warning This function is THREAD UNSAFE when pthread is disabled.
  */
-extern QRcode *QRcode_encodeStringMQR(const ::scoped_string & scopedstring, int version, QRecLevel level, QRencodeMode hint, int casesensitive);
+extern QRcode *QRcode_encodeStringMQR(const ::scoped_string & scopedstring, ::i32 version, QRecLevel level, QRencodeMode hint, ::i32 casesensitive);
 
 /**
  * Micro QR Code version of QRcode_encodeString8bit().
  * @warning This function is THREAD UNSAFE when pthread is disabled.
  */
-extern QRcode *QRcode_encodeString8bitMQR(const ::scoped_string & scopedstring, int version, QRecLevel level);
+extern QRcode *QRcode_encodeString8bitMQR(const ::scoped_string & scopedstring, ::i32 version, QRecLevel level);
 
 /**
- * Encode unsigned char stream (may include '\0') in 8-bit mode.
+ * Encode ::u8 stream (may include '\0') in 8-bit mode.
  * @warning This function is THREAD UNSAFE when pthread is disabled.
- * @param int_size size of the input data.
+ * @param i32_size size of the input data.
  * @param data input data.
  * @param version version of the symbol. If 0, the library chooses the minimum
  *                version for the given input data.
@@ -455,13 +455,13 @@ extern QRcode *QRcode_encodeString8bitMQR(const ::scoped_string & scopedstring, 
  * @throw ::exception( ENOMEM unable to allocate memory for input objects.
  * @throw ::exception( ERANGE input data is too large.
  */
-extern QRcode *QRcode_encodeData(int size, const unsigned char *data, int version, QRecLevel level);
+extern QRcode *QRcode_encodeData(::i32 size, const ::u8 *data, ::i32 version, QRecLevel level);
 
 /**
  * Micro QR Code version of QRcode_encodeData().
  * @warning This function is THREAD UNSAFE when pthread is disabled.
  */
-extern QRcode *QRcode_encodeDataMQR(int size, const unsigned char *data, int version, QRecLevel level);
+extern QRcode *QRcode_encodeDataMQR(::i32 size, const ::u8 *data, ::i32 version, QRecLevel level);
 
 /**
  * Free the instance of QRcode class.
@@ -496,19 +496,19 @@ extern QRcode_List *QRcode_encodeInputStructured(QRinput_Struct *s);
  * @throw ::exception( EINVAL invalid input object.
  * @throw ::exception( ENOMEM unable to allocate memory for input objects.
  */
-extern QRcode_List *QRcode_encodeStringStructured(const ::scoped_string & scopedstring, int version, QRecLevel level, QRencodeMode hint, int casesensitive);
+extern QRcode_List *QRcode_encodeStringStructured(const ::scoped_string & scopedstring, ::i32 version, QRecLevel level, QRencodeMode hint, ::i32 casesensitive);
 
 /**
  * Same to QRcode_encodeStringStructured(), but encode whole data in 8-bit mode.
  * @warning This function is THREAD UNSAFE when pthread is disabled.
  */
-extern QRcode_List *QRcode_encodeString8bitStructured(const ::scoped_string & scopedstring, int version, QRecLevel level);
+extern QRcode_List *QRcode_encodeString8bitStructured(const ::scoped_string & scopedstring, ::i32 version, QRecLevel level);
 
 /**
- * Create structured symbols from unsigned char stream (may include '\0'). Wholde data
+ * Create structured symbols from ::u8 stream (may include '\0'). Wholde data
  * are encoded in 8-bit mode.
  * @warning This function is THREAD UNSAFE when pthread is disabled.
- * @param int_size size of the input data.
+ * @param i32_size size of the input data.
  * @param data input dat.
  * @param version version of the symbol.
  * @param level error correction level.
@@ -517,14 +517,14 @@ extern QRcode_List *QRcode_encodeString8bitStructured(const ::scoped_string & sc
  * @throw ::exception( EINVAL invalid input object.
  * @throw ::exception( ENOMEM unable to allocate memory for input objects.
  */
-extern QRcode_List *QRcode_encodeDataStructured(int size, const unsigned char *data, int version, QRecLevel level);
+extern QRcode_List *QRcode_encodeDataStructured(::i32 size, const ::u8 *data, ::i32 version, QRecLevel level);
 
 /**
  * Return the number of symbols included in a QRcode_List.
  * @param qrlist a head entry of a QRcode_List.
  * @return number of symbols in the list.
  */
-extern int QRcode_List_size(QRcode_List *qrlist);
+extern ::i32 QRcode_List_size(QRcode_List *qrlist);
 
 /**
  * Free the QRcode_List.
@@ -543,14 +543,14 @@ extern void QRcode_List_free(QRcode_List *qrlist);
  * @param minor_version minor version number
  * @param micro_version micro version number
  */
-extern void QRcode_APIVersion(int *major_version, int *minor_version, int *micro_version);
+extern void QRcode_APIVersion(::i32 *major_version, ::i32 *minor_version, ::i32 *micro_version);
 
 /**
  * Return a string that identifies the library version.
  * @return a string identifies the library version. The string is held by the
  * library. Do NOT free it.
  */
-extern char *QRcode_APIVersionString(void);
+extern char_pointer QRcode_APIVersionString(void);
 
 #if defined(__cplusplus)
 }

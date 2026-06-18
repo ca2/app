@@ -5,7 +5,7 @@
 #include "core/user/user/_.h"
 #include "aura/user/user/scroll.h"
 #include "aura/user/user/range.h"
-#include "acme/prototype/mathematics/int_biunique.h"
+#include "acme/prototype/mathematics/integer_biunique.h"
 
 
 namespace user
@@ -20,7 +20,7 @@ namespace user
 
    };
 
-   DECLARE_ENUMERATION(e_cache_hinting, enum_cache_hinting);
+   DECLARE_C_FLAG(e_cache_hinting, enum_cache_hinting);
 
    class CLASS_DECL_CORE mesh :
       virtual public ::user::scroll_base
@@ -30,7 +30,7 @@ namespace user
 
       /// Hovering items select them? Imply single-click open.
       bool                             m_bHoverSelect2;
-      int                              m_iTimerHoverSelect;
+      ::i32                              m_iTimerHoverSelect;
 
 
    public:
@@ -88,7 +88,7 @@ namespace user
 
 
          index_array       m_iaDisplayToStrict;
-         int               m_iWidth;
+         ::i32               m_iWidth;
 
       };
 
@@ -140,15 +140,15 @@ namespace user
 
       };
 
-      //int_size                                   m_sizeTotal;
-      ::int_size                                   m_sizePage;
+      //i32_size                                   m_sizeTotal;
+      ::i32_size                                   m_sizePage;
       ::user::list *                               m_plist; // should be set to this ::user::list if this is a list_base
 
-      int                                          m_iDefaultColumnWidth;
-      index_map_base < int >                            m_mapColumnWidth;
+      ::i32                                          m_iDefaultColumnWidth;
+      index_map_base < ::i32 >                            m_mapColumnWidth;
 
       CSortInfo                                    m_sortinfo;
-      ::int_size                                   m_sizeMaximumImage;
+      ::i32_size                                   m_sizeMaximumImage;
 
       EFilterState                                 m_efilterstate;
       index_biunique *                             m_piaFilterIcon;
@@ -177,8 +177,8 @@ namespace user
 
       ::collection::index                                        m_iClick;
       bool                                         m_bLButtonDown;
-      int_point                                    m_pointLButtonDown1;
-      int_point                                    m_pointLButtonDown2;
+      i32_point                                    m_pointLButtonDown1;
+      i32_point                                    m_pointLButtonDown2;
       class ::time                                   m_timeLButtonDownStart1;
       class ::time                                   m_timeLButtonDownStart2;
       ::collection::index                                        m_iDisplayItemLButtonDown1;
@@ -187,7 +187,7 @@ namespace user
       ::collection::index                                        m_iDisplayItemFocus;
 
       bool                                         m_bLockImpactUpdate;
-      int                                          m_iItemWidth;
+      ::i32                                          m_iItemWidth;
 
       //index                                        m_iDisplayItemHover;
       //index                                        m_iSubItemHover;
@@ -196,7 +196,8 @@ namespace user
       ::collection::index                                        m_iLastSubItemSel;
       ::collection::index                                        m_iItemEnter;
       ::collection::index                                        m_iSubItemEnter;
-      ::collection::index                                        m_iMouseFlagEnter;
+      //::collection::index                                        m_iMouseFlagEnter;
+      ::user::key_state                                           m_keystateMouseEnter;
       ::collection::index                                        m_iItemSel;
       ::collection::index                                        m_iSubItemSel;
 
@@ -204,18 +205,21 @@ namespace user
       range                                        m_rangeHighlight;
 
       ::collection::index                                        m_iShiftFirstSelection;
-      uptr                                         m_uiLButtonDownFlags;
-      uptr                                         m_uiLButtonUpFlags;
-      int_point                                    m_pointLButtonUp;
-      unsigned int                                        m_uiRButtonUpFlags;
-      int_point                                    m_pointRButtonUp;
+      //uptr                                         m_uiLButtonDownFlags;
+      ::user::key_state                                           m_keystateLButtonDown;
+      //uptr                                         m_uiLButtonUpFlags;
+      ::user::key_state                                           m_keystateLButtonUp;
+      i32_point                                    m_pointLButtonUp;
+      ::user::key_state                                           m_keystateRButtonUp;
+      //::u32                                        m_uiRButtonUpFlags;
+      i32_point                                    m_pointRButtonUp;
       ::regular_expression_pointer                 m_pregexFilter1;
-      int                                          m_iFilter1Step;
+      ::i32                                          m_iFilter1Step;
       bool                                         m_bFilter1;
 
       bool                                         m_bTopText;
       string                                       m_strTopText;
-      ::int_rectangle                              m_rectangleTopText;
+      ::i32_rectangle                              m_rectangleTopText;
       ::pointer<mesh_data>                        m_pmeshdata;
 //      ::write_text::font_pointer                 m_pfont;
       //    ::write_text::font_pointer             m_pfontHover;
@@ -243,8 +247,8 @@ namespace user
       ::image::image_list_pointer                      m_pimagelistGroupHover;
       bool                                         m_bGroup;
       bool                                         m_bLateralGroup;
-      int                                          m_iLateralGroupWidth;
-      int                                          m_iGroupMinHeight;
+      ::i32                                          m_iLateralGroupWidth;
+      ::i32                                          m_iGroupMinHeight;
       ::collection::index                                        m_iGroupHover;
 
       //draw_mesh_item *                 m_pdrawmeshitem;
@@ -261,8 +265,8 @@ namespace user
       ::pointer<simple_mesh_data>               m_psimplemeshdata;
 
 
-      int                                          m_iLeftMargin;
-      int                                          m_iTopMargin;
+      ::i32                                          m_iLeftMargin;
+      ::i32                                          m_iTopMargin;
 
       index_map_base < ::pointer<mesh_item >>          m_mapItem;
       index_map_base < ::pointer<mesh_group >>         m_mapGroup;
@@ -280,8 +284,8 @@ namespace user
 
 
 
-      //virtual int _001CalcItemWidth(::draw2d::graphics_pointer & pgraphics, ::collection::index iItem, ::collection::index iSubItem);
-      //int _001CalcItemWidth(::draw2d::graphics_pointer & pgraphics,::write_text::font * pfont, ::collection::index iItem, ::collection::index iSubItem);
+      //virtual ::i32 _001CalcItemWidth(::draw2d::graphics_pointer & pgraphics, ::collection::index iItem, ::collection::index iSubItem);
+      //::i32 _001CalcItemWidth(::draw2d::graphics_pointer & pgraphics,::write_text::font * pfont, ::collection::index iItem, ::collection::index iSubItem);
 
 
       // ::core::application* get_app();
@@ -296,7 +300,7 @@ namespace user
       //using interaction::update_hover;
       //::item_pointer update_hover(::user::mouse * pmouse, ::user::e_zorder ezorder) override;
 
-      ::item_pointer on_hit_test(const ::int_point& point, e_zorder ezorder) override;
+      ::item_pointer on_hit_test(const ::i32_point& point, e_zorder ezorder) override;
 
       //::write_text::font * _001GetFont();
       //::write_text::font * _001GetFontHover();
@@ -306,9 +310,9 @@ namespace user
       virtual void _OnDraw(::draw2d::graphics_pointer & pgraphics);
       virtual void _001MaximizeColumnWidth(::draw2d::graphics_pointer& pgraphics, ::collection::index iColumn);
       virtual void _001CalculateItemHeight(::draw2d::graphics_pointer & pgraphics);
-      virtual int _001CalcSubItemWidth(::draw2d::graphics_pointer& pgraphics, ::collection::index iItem, ::collection::index iSubItem);
-      virtual int _001CalcColumnWidth(::draw2d::graphics_pointer& pgraphics, ::collection::index iColumn);
-      virtual int _001CalcMeshWidth(::draw2d::graphics_pointer& pgraphics);
+      virtual ::i32 _001CalcSubItemWidth(::draw2d::graphics_pointer& pgraphics, ::collection::index iItem, ::collection::index iSubItem);
+      virtual ::i32 _001CalcColumnWidth(::draw2d::graphics_pointer& pgraphics, ::collection::index iColumn);
+      virtual ::i32 _001CalcMeshWidth(::draw2d::graphics_pointer& pgraphics);
       virtual void _001OnSort();
 
 
@@ -335,7 +339,7 @@ namespace user
 
 
 
-      virtual ::int_size get_item_size();
+      virtual ::i32_size get_item_size();
 
       virtual void _001OnSort(::collection::index iSubItem);
       virtual void _001OnMeshHeaderItemClick(::collection::index iHeaderItem);
@@ -346,10 +350,10 @@ namespace user
 
       virtual ::collection::index _001CalcDisplayTopIndex();
       virtual ::collection::count _001CalcDisplayItemCount();
-      virtual int _001GetGroupHeight(::collection::index iGroup);
+      virtual ::i32 _001GetGroupHeight(::collection::index iGroup);
 
 
-      virtual void FilterInclude(::int_array_base & array);
+      virtual void FilterInclude(::i32_array_base & array);
       virtual void FilterInclude(::collection::index iItem);
       virtual void FilterExcludeAll();
       virtual void FilterClose();
@@ -462,10 +466,10 @@ namespace user
       virtual void  _001GetGroupRect(draw_mesh_group * pgroup);
       virtual void  index_item_rectangle(draw_mesh_item * pitem);
       virtual void  _001GetSubItemRect(draw_mesh_subitem * psubitem);
-      virtual void  index_element_rectangle(draw_mesh_subitem * psubitem,::user::mesh::enum_element eelement);
+      virtual void  index_element_rectangle(draw_mesh_subitem * psubitem, ::user::mesh::enum_element eelement);
       virtual void  _001GetGroupElementRect(draw_mesh_group * pgroup, ::user::mesh::enum_group_element egrouplement);
 
-      virtual bool  _001SetColumnWidth(::collection::index iColumn,int iWidth);
+      virtual bool  _001SetColumnWidth(::collection::index iColumn,::i32 iWidth);
 
       //virtual void  _001GetColumnWidth(draw_mesh_item * pdrawitem);
 
@@ -486,14 +490,14 @@ namespace user
       virtual ::collection::count  _001GetGroupCount();
 
 
-      virtual bool  _001HitTest_(const ::int_point & point, ::collection::index &iItem, ::collection::index&iSubItem, ::collection::index&iListItem,::user::mesh::enum_element &eelement);
-      virtual bool  _001HitTest_(const ::int_point & point, ::collection::index&iItem, ::collection::index&iSubItem);
-      virtual bool  _001HitTest_(const ::int_point & point, ::collection::index&iItemParam);
+      virtual bool  _001HitTest_(const ::i32_point & point, ::collection::index &iItem, ::collection::index&iSubItem, ::collection::index&iListItem,::user::mesh::enum_element &eelement);
+      virtual bool  _001HitTest_(const ::i32_point & point, ::collection::index&iItem, ::collection::index&iSubItem);
+      virtual bool  _001HitTest_(const ::i32_point & point, ::collection::index&iItemParam);
 
 
-      virtual bool  _001DisplayHitTest(const ::int_point & point, ::collection::index&iItem, ::collection::index&iSubItem, ::collection::index&iListItem,::user::mesh::enum_element &eelement);
-      virtual bool  _001DisplayHitTest(const ::int_point & point, ::collection::index&iItem, ::collection::index&iSubItem);
-      virtual bool  _001DisplayHitTest(const ::int_point & point, ::collection::index&iItemParam);
+      virtual bool  _001DisplayHitTest(const ::i32_point & point, ::collection::index&iItem, ::collection::index&iSubItem, ::collection::index&iListItem,::user::mesh::enum_element &eelement);
+      virtual bool  _001DisplayHitTest(const ::i32_point & point, ::collection::index&iItem, ::collection::index&iSubItem);
+      virtual bool  _001DisplayHitTest(const ::i32_point & point, ::collection::index&iItemParam);
 
 
       virtual void  _001OnAfterSort();
@@ -524,7 +528,7 @@ namespace user
       DECLARE_MESSAGE_HANDLER(_001OnMeshImpactAutoArrange);
 
 
-      virtual void on_timer(::timer * ptimer) override;
+      void operator()(::timer * ptimer) override;
 
 
       virtual void  enable_hover_select(bool bEnable = true);
@@ -532,7 +536,8 @@ namespace user
 
 
       bool on_click(::item * pitem, ::user::mouse * pmouse) override;
-      virtual bool  _001OnRightClick(uptr uFlags,const ::int_point & point);
+      //virtual bool  _001OnRightClick(uptr uFlags,const ::i32_point & point);
+       virtual bool  _001OnRightClick(const ::i32_point & point);
 
       virtual void  get_selection(range& selection);
 
@@ -583,7 +588,7 @@ namespace user
       virtual EImpact  _001GetImpact();
 
 
-      virtual int get_wheel_scroll_delta() override;
+      virtual ::i32 get_wheel_scroll_delta() override;
 
       //virtual void on_context_offset_layout(::draw2d::graphics_pointer & pgraphics) override;
       void on_change_context_offset(::user::enum_layout elayout) override;
@@ -595,9 +600,9 @@ namespace user
 
       virtual void  defer_create_mesh_data();
 
-      ::double_point get_context_offset(::user::enum_layout elayout = ::user::e_layout_sketch) override;
+      ::f64_point get_context_offset(::user::enum_layout elayout = ::user::e_layout_sketch) override;
 
-      ::double_size get_page_size(::user::enum_layout elayout = ::user::e_layout_sketch) override;
+      ::f64_size get_page_size(::user::enum_layout elayout = ::user::e_layout_sketch) override;
 
       virtual string  _001GetItemId(::collection::index iStrictItem);
       virtual ::collection::index  _001GetItemById(const ::scoped_string & scopedstrChar);

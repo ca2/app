@@ -105,9 +105,9 @@ namespace micro
       //void _main_send(::subparticle * p) override;
       //void _main_post(::subparticle * p) override;
 
-      virtual void display_error_trap_push(int i);
+      virtual void display_error_trap_push(::i32 i);
 
-      virtual void display_error_trap_pop_ignored(int i);
+      virtual void display_error_trap_pop_ignored(::i32 i);
 
       virtual void * fetch_windowing_system_display();
 
@@ -150,6 +150,8 @@ namespace micro
       //::pointer < ::reified < ::message_box > > realize(::realizable < ::message_box > * p) override;
 
       ///virtual void display(::message_box_payload * pmessageboxpayload);
+
+      //void post_message_box_payload(::message_box_payload * pmessageboxpayload) override;
 
 
    };

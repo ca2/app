@@ -14,8 +14,8 @@ namespace simpledb
    public:
 
 
-      unsigned int                         m_dwBuildTimeWindow;
-      unsigned int                         m_dwBuildTimeRandomWindow;
+      ::u32                         m_dwBuildTimeWindow;
+      ::u32                         m_dwBuildTimeRandomWindow;
 
       string_to_string_base          m_strmapFunUserKey;
 
@@ -29,7 +29,7 @@ namespace simpledb
       ::pointer < ::mutex >                         m_pmutexTagName;
       string_to_string_base          m_tagname;
 
-      long long                       m_iDatabaseWaitTimeOut;
+      ::i64                       m_iDatabaseWaitTimeOut;
 
       ::pointer < ::mutex >                         m_pmutexSession;
       string_map_base < ::simpledb::session * >      m_mapSession;

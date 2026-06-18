@@ -28,20 +28,34 @@ pen::~pen()
 
 
 }
+void pen::create_pen(enum_pen epen, ::f64 fWidth, const ::color::color& color)
+{
+
+   throw ::interface_only();
+
+}
 
 
-   ::pointer<::nano::graphics::pen> create_pen(::particle * pparticle, int iWidth, color32_t color)
-   {
+   void pen::set_start_cap(enum_line_cap elinecap) { throw ::interface_only(); }
 
-      ::pointer<::nano::graphics::pen> ppen(e_create, pparticle, nullptr);
-
-      ppen->m_iWidth = iWidth;
-
-      ppen->m_color = color;
-
-      return ppen;
-
+   void pen::set_end_cap(enum_line_cap elinecap) {
+   
+      throw ::interface_only();
+   
    }
+
+   //::pointer<::nano::graphics::pen> create_pen(::particle * pparticle, ::i32 iWidth, color32_t color)
+   //{
+
+   //   ::pointer<::nano::graphics::pen> ppen(e_create, pparticle, nullptr);
+
+   //   ppen->m_iWidth = iWidth;
+
+   //   ppen->m_color = color;
+
+   //   return ppen;
+
+   //}
 
 
 

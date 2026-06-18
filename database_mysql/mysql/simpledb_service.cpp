@@ -47,7 +47,7 @@ namespace simpledb
 
       string_array_base stra;
       stra = psystem->m_simpledb.db().data_load(nullptr, "simpledb");
-      for(int i = 0; i < stra.get_size(); i++)
+      for(::i32 i = 0; i < stra.get_size(); i++)
       {
          m_threadptra.add(__begin_thread < socket_thread > (this));
          socket_thread * pthread = m_threadptra.last();

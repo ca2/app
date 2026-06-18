@@ -14,22 +14,22 @@
 //template < prototype_size SIZE >
 //inline constexpr auto __vert(const SIZE & size) { return size.cy; }
 //
-//inline int_point& top_left(const ::int_rectangle* prectangle) { return *(int_point*)prectangle; }
-//inline int_point& bottom_right(const ::int_rectangle* prectangle) { return *(int_point*)& prectangle->right; }
-//inline int_point& top_left(const ::int_rectangle& rectangle) { return top_left(&rectangle); }
-//inline int_point& bottom_right(const ::int_rectangle& rectangle) { return bottom_right(&rectangle); }
+//inline i32_point& top_left(const ::i32_rectangle* prectangle) { return *(i32_point*)prectangle; }
+//inline i32_point& bottom_right(const ::i32_rectangle* prectangle) { return *(i32_point*)& prectangle->right; }
+//inline i32_point& top_left(const ::i32_rectangle& rectangle) { return top_left(&rectangle); }
+//inline i32_point& bottom_right(const ::i32_rectangle& rectangle) { return bottom_right(&rectangle); }
 //
 //
-//inline long_long_point& top_left(const ::long_long_rectangle* prectangle) { return *(long_long_point*)prectangle; }
-//inline long_long_point& bottom_right(const ::long_long_rectangle* prectangle) { return *(long_long_point*)& prectangle->right; }
-//inline long_long_point& top_left(const ::long_long_rectangle& rectangle) { return top_left(&rectangle); }
-//inline long_long_point& bottom_right(const ::long_long_rectangle& rectangle) { return bottom_right(&rectangle); }
+//inline i64_point& top_left(const ::i64_rectangle* prectangle) { return *(i64_point*)prectangle; }
+//inline i64_point& bottom_right(const ::i64_rectangle* prectangle) { return *(i64_point*)& prectangle->right; }
+//inline i64_point& top_left(const ::i64_rectangle& rectangle) { return top_left(&rectangle); }
+//inline i64_point& bottom_right(const ::i64_rectangle& rectangle) { return bottom_right(&rectangle); }
 //
 //
-//inline double_point& top_left(const ::double_rectangle* prectangle) { return *(double_point*)prectangle; }
-//inline double_point& bottom_right(const ::double_rectangle* prectangle) { return *(double_point*)& prectangle->right; }
-//inline double_point& top_left(const ::double_rectangle& rectangle) { return top_left(&rectangle); }
-//inline double_point& bottom_right(const ::double_rectangle& rectangle) { return bottom_right(&rectangle); }
+//inline ::f64_point& top_left(const ::f64_rectangle* prectangle) { return *(::f64_point*)prectangle; }
+//inline ::f64_point& bottom_right(const ::f64_rectangle* prectangle) { return *(::f64_point*)& prectangle->right; }
+//inline ::f64_point& top_left(const ::f64_rectangle& rectangle) { return top_left(&rectangle); }
+//inline ::f64_point& bottom_right(const ::f64_rectangle& rectangle) { return bottom_right(&rectangle); }
 
 
 //template < typename X, typename Y >
@@ -85,7 +85,7 @@
 //
 //
 ////template < typename BASE_TYPE, typename POINT_BASE_TYPE, typename RECTANGLE_BASE_TYPE >
-////inline size_type < BASE_TYPE, POINT_BASE_TYPE, RECTANGLE_BASE_TYPE >::size_type(const POINT_TYPE & point) noexcept : size_type((size_type&)int_point) {}
+////inline size_type < BASE_TYPE, POINT_BASE_TYPE, RECTANGLE_BASE_TYPE >::size_type(const POINT_TYPE & point) noexcept : size_type((size_type&)i32_point) {}
 ////
 ////
 ////template < typename BASE_TYPE, typename POINT_BASE_TYPE, typename RECTANGLE_BASE_TYPE >
@@ -102,28 +102,28 @@
 //
 //
 //template <  >
-//inline int __conv<int>(const ::scoped_string & scopedstr)
+//inline ::i32 __conv<::i32>(const ::scoped_string & scopedstr)
 //{
 //
-//   return (int) ::atoi(str);
+//   return (::i32) ::atoi(str);
 //
 //}
 //
 //
 //template <  >
-//inline long long __conv<long long>(const ::scoped_string & scopedstr)
+//inline ::i64 __conv<::i64>(const ::scoped_string & scopedstr)
 //{
 //
-//   return (int) ::atoi(str);
+//   return (::i32) ::atoi(str);
 //
 //}
 //
 //
 //template <  >
-//inline double __conv<double>(const ::scoped_string & scopedstr)
+//inline ::f64 __conv<::f64>(const ::scoped_string & scopedstr)
 //{
 //
-//   return (int) ::atoi(str);
+//   return (::i32) ::atoi(str);
 //
 //}
 //
@@ -138,7 +138,7 @@
 //
 //
 //template < >
-//inline string __xmlpri<int>()
+//inline string __xmlpri<::i32>()
 //{
 //
 //   return "%" PRId32;
@@ -147,7 +147,7 @@
 //
 //
 //template < >
-//inline string __xmlpri<long long>()
+//inline string __xmlpri<::i64>()
 //{
 //
 //   return "%" PRId64;
@@ -156,7 +156,7 @@
 //
 //
 //template < >
-//inline string __xmlpri<double>()
+//inline string __xmlpri<::f64>()
 //{
 //
 //   return "%f";
@@ -212,7 +212,7 @@
 //   //
 //   //////////////////////////////////////////////////////////////////////
 //   template < prototype_rectangle RECTANGLE >
-//   inline void deflate(RECTANGLE* prectangle, double dLeftRate, double dRightRate, double dTopRate, double dBottomRate)
+//   inline void deflate(RECTANGLE* prectangle, ::f64 dLeftRate, ::f64 dRightRate, ::f64 dTopRate, ::f64 dBottomRate)
 //   {
 //
 //      auto rectangle = *prectangle;

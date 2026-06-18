@@ -131,7 +131,7 @@ namespace filemanager
 
                auto pmessageboxpayload = __initialize_new ::message_box_payload("Do you want to replace the existing file " + strPath + "?", nullptr, ::user::e_message_box_yes_no);
 
-               pmessageboxpayload->m_functionOnDialogResult = [this, strPath](const ::payload & payloadResult)
+               pmessageboxpayload->m_functionOnDialogResult2 = [this, strPath](const ::payload & payloadResult)
                {
 
                   if (payloadResult == e_dialog_result_yes)

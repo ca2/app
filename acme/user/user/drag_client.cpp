@@ -32,19 +32,7 @@ namespace user
 
       ::user::acme_container::destroy();
 
-      for (auto & pair : m_mapDrag)
-      {
-
-         if (::is_set(pair.payload()))
-         {
-
-            pair.payload().defer_destroy();
-
-         }
-
-      }
-
-      m_mapDrag.clear();
+      m_mapDrag.defer_destroy_and_release();
 
       m_pdragCurrent.release();
 
@@ -129,7 +117,7 @@ namespace user
       //   {
       if(::is_set(pdrag))
       {
-
+         
          information() << "::is_set(pdrag)";
 
          if (pitem->m_item.m_eelement == e_element_resize)
@@ -167,7 +155,7 @@ namespace user
       if (pdrag)
       {
 
-         ::int_point pointDrag;
+         ::i32_point pointDrag;
          
          if (on_drag_start(pointDrag, pmouse, pitem))
          {
@@ -209,7 +197,7 @@ namespace user
             //auto integral_milliseconds = integral_millisecond(now_t{});
 
             //string str;
-            //str.formatf("e_mouse_move=-=%lldms\n", integral_milliseconds.m_i);
+            //str.formatf("e_mouse_move=-=%lldms\n", integral_milliseconds.m_i32);
 
             //information(str);
 
@@ -222,9 +210,20 @@ namespace user
 
                _synchronouslock.unlock();
 
+               ::e_item eitem = e_item_none;
+               
+               if (pdrag->m_pitem)
+               {
+
+                  eitem = pdrag->m_pitem->m_eitem;
+
+               }
+
                drag_shift(pdrag->m_pitem, pmouse);
 
-               if (pdrag->m_ecursor != e_cursor_none)
+               auto ecursorDrag = pdrag->m_ecursorDrag;
+
+               if (ecursorDrag != e_cursor_none)
                {
 
                   drag_set_cursor(pdrag->m_pitem, pmouse);
@@ -276,7 +275,7 @@ namespace user
 
             bool bRet = drag_hover(pitem);
 
-            if (pdrag->m_ecursor != e_cursor_none)
+            if (pdrag->m_ecursorDrag != e_cursor_none)
             {
 
                drag_set_cursor(pitem, pmouse);
@@ -325,7 +324,7 @@ namespace user
    }
 
 
-   //bool drag_client::on_drag(::user::drag * pdrag, const ::int_point & point)
+   //bool drag_client::on_drag(::user::drag * pdrag, const ::i32_point & point)
    //{
 
    //   return false;
@@ -333,7 +332,7 @@ namespace user
    //}
 
 
-   ::int_point drag_client::drag_point(::item * pitem, ::user::mouse * pmouse)
+   ::i32_point drag_client::drag_point(::item * pitem, ::user::mouse * pmouse)
    {
 
       auto pdrag = drag(pitem);

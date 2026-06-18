@@ -43,7 +43,7 @@ template <> struct StaticAssertionFailed <true> {};
 
    E.g.: to assert the size of a data structure, static_assert(sizeof(struct_t) == 10)
 */
-#define COMPILE_TIME_ASSERT(COND,MSG) typedef char static_assertion_##MSG[(!!(COND))*2-1]
+#define COMPILE_TIME_ASSERT(COND,MSG) typedef ::i8 static_assertion_##MSG[(!!(COND))*2-1]
 /* token pasting madness: */
 #define COMPILE_TIME_ASSERT3(X,L)     COMPILE_TIME_ASSERT(X,at_line_##L)             /* add line-number to error message for better warnings, especially GCC will tell the name of the variable as well */
 #define COMPILE_TIME_ASSERT2(X,L)     COMPILE_TIME_ASSERT3(X, L)               /* expand line-number */

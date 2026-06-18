@@ -43,7 +43,7 @@ namespace nanoui
     * and forms the root element of a hierarchy of nanoui widgets.
     */
    class CLASS_DECL_NANOUI Screen :
-      public Widget,
+      virtual public Widget,
       virtual public ::appearance::appearance
       //,
       //virtual public nanoui_main_frame
@@ -61,11 +61,11 @@ namespace nanoui
       ::pointer_array<Widget>             m_focus_path;
       ::pointer < Widget >                m_pwidgetLeftButtonDown;
       ::pointer<::nano2d::font_sink>      m_pfontsink;
-      //   int_sequence2 m_fbsize;
-      float m_pixel_ratio;
+      //   i32_sequence2 m_fbsize;
+      ::f32 m_pixel_ratio;
       //::user::e_key m_mouse_state;
-      ::user::e_key m_modifiers;
-      int_sequence2 m_mouse_pos;
+      //     ::user::e_key m_modifiers;
+      i32_sequence2 m_mouse_pos;
       ::pointer < Widget >          m_pwidgetMouseDown;
 
 
@@ -87,7 +87,7 @@ namespace nanoui
       //   bool m_stencil_buffer;
       //   bool m_f_buffer;
       bool m_redraw;
-      ::function<void(int_sequence2)> m_resize_callback;
+      ::function<void(i32_sequence2)> m_resize_callback;
       //#if defined(NANOUI_USE_METAL)
       //   void * m_metal_texture = nullptr;
       //   void * m_metal_drawable = nullptr;
@@ -116,8 +116,8 @@ namespace nanoui
        *     rasterize non-convex polygons. (NanoGUI does not render such
        *     polygons, but your application might.)
        *
-       * \param float_buffer
-       *     Should NanoGUI try to allocate a floating point framebuffer? This
+       * \param f32_buffer
+       *     Should NanoGUI try to allocate a floating point pframebuffer? This
        *     is useful for HDR and wide-gamut displays.
        *
        * \param gl_major
@@ -140,15 +140,15 @@ namespace nanoui
        */
       Screen(
          ::user::interaction* puserinteraction,
-         const int_sequence2& size,
+         const i32_sequence2& size,
          const ::scoped_string& caption = "Unnamed",
          bool resizable = true,
          bool fullscreen = false,
          bool depth_buffer = true,
          bool stencil_buffer = true,
-         bool float_buffer = false,
-         unsigned int gl_major = 3,
-         unsigned int gl_minor = 2
+         bool f32_buffer = false,
+         ::u32 gl_major = 3,
+         ::u32 gl_minor = 2
       );
 
       /// Release all resources
@@ -173,16 +173,16 @@ namespace nanoui
       /// Set the pscreen's background color
       void set_background(const ::color::color& background) { m_background = background; }
 
-      ::image::image_pointer create_image(const ::int_size& size);
+      ::image::image_pointer create_image(const ::i32_size& size);
 
       //   /// Set the top-level window visibility (no effect on full-pscreen windows)
       //   void set_visible(bool visible);
       //
       //   /// Set window size
-      //   void set_size(const int_sequence2 & size);
+      //   void set_size(const i32_sequence2 & size);
       //
-      //   /// Return the framebuffer size (potentially larger than size() on high-DPI screens)
-      //   const int_sequence2 & framebuffer_size() const { return m_fbsize; }
+      //   /// Return the pframebuffer size (potentially larger than size() on high-DPI screens)
+      //   const i32_sequence2 & framebuffer_size() const { return m_fbsize; }
       //
       //   /// Send an happening that will cause the pscreen to be redrawn at the next happening loop iteration
       //   void redraw();
@@ -224,7 +224,7 @@ namespace nanoui
        * \brief Wrap up drawing of the current frame
        *
        * This involves steps such as releasing the current drawable, swapping
-       * the framebuffer, etc.
+       * the pframebuffer, etc.
        *
        * You typically won't need to call this function yourself, as it is called
        * by \::pointer draw_all(), which is executed by the run loop.
@@ -232,7 +232,7 @@ namespace nanoui
       virtual void draw_teardown(::nano2d::context * pcontext);
 
       /// Return the ratio between pixel and device coordinates (e.g. >= 2 on Mac Retina displays)
-      float pixel_ratio() const { return m_pixel_ratio; }
+      ::f32 pixel_ratio() const { return m_pixel_ratio; }
 
 
       virtual bool is_mouse_down(const Widget* pwidget) const;
@@ -245,22 +245,22 @@ namespace nanoui
       //   }
       //
          /// Default keyboard happening handler
-      virtual bool keyboard_event(::user::enum_key ekey, int scancode, int action, const ::user::e_key& ekeyModifiers, const ::scoped_string & scopedstrText) override;
+      bool keyboard_event(const ::user::e_key & ekey, ::i32 scancode, ::i32 action, const ::scoped_string & scopedstrText) override;
 
       /// Text input happening handler: codepoint is native endian UTF-32 format
-      bool keyboard_character_event(unsigned int codepoint) override;
+      bool keyboard_character_event(::u32 codepoint) override;
 
       /// Window resize happening handler
-      virtual bool resize_event(const ::int_size& size);
+      virtual bool resize_event(const ::i32_size& size);
 
       /// Set the resize callback
-      ::function<void(int_sequence2)> resize_callback() const { return m_resize_callback; }
-      void set_resize_callback(const ::function<void(int_size)>& callback) {
+      ::function<void(i32_sequence2)> resize_callback() const { return m_resize_callback; }
+      void set_resize_callback(const ::function<void(i32_size)>& callback) {
          m_resize_callback = callback;
       }
 
       /// Return the last observed mouse position value
-      int_sequence2 mouse_pos() const { return m_mouse_pos; }
+      i32_sequence2 mouse_pos() const { return m_mouse_pos; }
       //
       //   /// Return a pointer to the underlying GLFW window data structure
       //   GLFWwindow * glfw_window() const { return m_glfw_window; }
@@ -274,14 +274,14 @@ namespace nanoui
       //   /// Return the pixel format underlying the pscreen
       //   Texture::PixelFormat pixel_format() const;
       //
-      //   /// Does the framebuffer have a depth buffer
+      //   /// Does the pframebuffer have a depth buffer
       //   bool has_depth_buffer() const { return m_depth_buffer; }
       //
-      //   /// Does the framebuffer have a stencil buffer
+      //   /// Does the pframebuffer have a stencil buffer
       //   bool has_stencil_buffer() const { return m_stencil_buffer; }
       //
-      //   /// Does the framebuffer use a floating point representation
-      //   bool has_float_buffer() const { return m_f_buffer; }
+      //   /// Does the pframebuffer use a floating point representation
+      //   bool has_f32_buffer() const { return m_f_buffer; }
       //
       //#if defined(NANOUI_USE_METAL)
       //   /// Return the associated CAMetalLayer object
@@ -338,13 +338,13 @@ namespace nanoui
       virtual bool on_mouse_down(Widget* pwidget);
 
       virtual void on_close();
-      //bool on_mouse_move(const ::int_point & point) override;
-      bool mouse_button_event(const int_point& p, ::user::e_mouse emouse, bool down, bool bDoubleClick, const ::user::e_key& ekeyModifiers) override;
-      //   void key_callback_event(int key, int scancode, int action, int mods);
-      //   void char_callback_event(unsigned int codepoint);
-      //   void drop_callback_event(int count, const_char_pointer *filenames);
-      //   void scroll_callback_event(double x, double y);
-      //   void resize_callback_event(int width, int height);
+      //bool on_mouse_move(const ::i32_point & point) override;
+      bool mouse_button_event(const i32_point & point, ::user::e_key euserkeyMouseButton, bool bDown, bool bDoubleClick) override;
+      //   void key_callback_event(::i32 key, ::i32 scancode, ::i32 action, ::i32 mods);
+      //   void char_callback_event(::u32 codepoint);
+      //   void drop_callback_event(::i32 count, const_char_pointer *filenames);
+      //   void scroll_callback_event(::f64 x, ::f64 y);
+      //   void resize_callback_event(::i32 width, ::i32 height);
       //
       //   /* Internal helper functions */
       virtual void on_child_set_focus(Widget* pwidget);
@@ -355,7 +355,7 @@ namespace nanoui
       void draw(::nano2d::context * pcontext) override;
       void draw_widgets(::nano2d::context * pcontext);
 
-      void set_size(const int_size& size) override;
+      void set_size(const i32_size& size) override;
 
       using Widget::preferred_size;
       using Widget::perform_layout;
@@ -364,13 +364,13 @@ namespace nanoui
 
       // ::appearance::appearance
       void set_user_interaction(::user::interaction* puserinteraction) override;
-      ::int_size preferred_size(::draw2d::graphics_pointer& pointer) override;
+      ::i32_size preferred_size(::draw2d::graphics_pointer& pointer) override;
 
       void perform_layout(::draw2d::graphics_pointer& pointer) override;
 
       void _001OnDraw(::draw2d::graphics_pointer& pointer) override;
 
-      void on_mouse_enter(const ::int_point& point, const ::user::e_key& ekeyModifierss) override;
+      void on_mouse_enter(const ::i32_point & point, bool bEnter) override;
       void on_mouse_leave() override;
 
       virtual void set_mouse_capture(Widget* pwidgetMouseCapture);
@@ -378,18 +378,18 @@ namespace nanoui
       virtual void release_mouse_capture() override;
 
 
-      bool on_button_down(::user::e_key ekeyButton, const ::int_point& point, const ::user::e_key& ekeyModifiers, bool bDoubleClick) override;
-      bool on_button_up(::user::e_key ekeyButton, const ::int_point& point, const ::user::e_key& ekeyModifiers) override;
+      bool on_button_down(::user::e_key euserkeyMouseButton, const ::i32_point &point, bool bDoubleClick) override;
+      bool on_button_up(::user::e_key euserkeyMouseButton, const ::i32_point& point) override;
 
-      bool on_mouse_move(const ::int_point& point, bool bDown, const ::user::e_key& ekeyModifiers) override;
-      //bool on_mouse_drag(const ::int_point & point, const ::user::e_key & ekeyModifiers) override;
+      bool on_mouse_move(const ::i32_point& point) override;
+      //bool on_mouse_drag(const ::i32_point & point, const ::user::keyboard_state & keyboardstate) override;
 
-      bool on_key_down(::user::enum_key ekey, long long scancode, const ::user::e_key& ekeyModifiers, const ::scoped_string & scopedstrText) override;
-      bool on_key_up(::user::enum_key ekey, long long scancode, const ::user::e_key& ekeyModifiers) override;
+      bool on_key_down(const ::user::e_key & ekey, ::i64 scancode, const ::scoped_string & scopedstrText) override;
+      bool on_key_up(const ::user::e_key & ekey, ::i64 scancode) override;
 
-      bool on_scroll_event(const ::int_point& point, double x, double y) override;
+      bool on_scroll_event(const ::i32_point& point, ::f64 x, ::f64 y) override;
 
-      void on_character(int iCharacter) override;
+      void on_character(::i32 iCharacter) override;
 
 
    };

@@ -83,7 +83,7 @@ namespace message
    public:
 
 
-      int_point m_point;
+      i32_point m_point;
 
       reposition() { }
 
@@ -100,8 +100,8 @@ namespace message
    public:
 
 
-      unsigned int          m_nType;
-      ::int_size     m_size;
+      ::u32          m_nType;
+      ::i32_size     m_size;
 
       size() { }
 
@@ -118,7 +118,7 @@ namespace message
 
 
       enum_scroll_command    m_ecommand;
-      double                    m_dPosition;
+      ::f64                    m_dPosition;
 #ifdef WINDOWS_DESKTOP
       ::acme::windowing::window * m_pacmewindowingwindowScrollBar;
 #endif
@@ -168,7 +168,7 @@ namespace message
          return dynamic_cast <mouse *> (pmessage);
       }
 
-      virtual unsigned int get_message() override
+      virtual ::u32 get_message() override
       {
          
          return m_eusermessage;
@@ -187,15 +187,15 @@ namespace message
    {
    public:
 
-      short m_Δ;
+      ::i16 m_Δ;
 
       mouse_wheel();
 
-      unsigned int GetFlags();
+      ::u32 GetFlags();
 
-      //short GetDelta();
+      //::i16 GetDelta();
 
-      int_point GetPoint();
+      i32_point GetPoint();
 
       // using ::user::message::set;
 
@@ -211,8 +211,8 @@ namespace message
 
 
       ::user::interaction_base *                 m_pWnd;
-      unsigned int                               m_nHitTest;
-      unsigned int                               m_message;
+      ::u32                               m_nHitTest;
+      ::u32                               m_message;
       
 
 
@@ -235,9 +235,9 @@ namespace message
 
       ::user::interaction * get_desktop_window();
 
-      unsigned int GetHitTest();
+      ::u32 GetHitTest();
 
-      unsigned int get_message();
+      ::u32 get_message();
 
    };
 
@@ -249,7 +249,7 @@ namespace message
 
       context_menu();
 
-      int_point GetPoint();
+      i32_point GetPoint();
 
 
    };
@@ -262,7 +262,7 @@ namespace message
 
 
       bool m_bShow;
-      unsigned int  m_nStatus;
+      ::u32  m_nStatus;
 
 
       show_window();
@@ -330,7 +330,7 @@ namespace message
    public:
 
 
-      int_point m_point;
+      i32_point m_point;
 
       nc_hit_test() { }
 
@@ -382,7 +382,7 @@ namespace message
       notify() { }
 
 
-      int get_ctrl_id();
+      ::i32 get_ctrl_id();
 
 
    };
@@ -413,7 +413,7 @@ namespace message
 
       void * m_hbrush;
       ::draw2d::graphics * m_pdc;
-      unsigned int                      m_nCtlType;
+      ::u32                      m_nCtlType;
 
       ctl_color() { }
 
@@ -462,7 +462,7 @@ namespace message
    public:
 
 
-      int m_i;
+      ::i32 m_i32;
       void * m_LPMEASUREITEMSTRUCT;
 
       measure_item() { }
@@ -516,9 +516,9 @@ namespace message
       //#ifdef WINDOWS
       //
       //      IDataObject *  pDataObj;// [in] DragEnter, Drop
-      //      POINTL         int_point; // [in] DragEnter, DragOver, Drop
-      //      unsigned int          grfKeyState; // [in] DragEnter, DragOver, Drop
-      //      unsigned int          dwEffect; // [in][out] DragEnter, DragOver, Drop
+      //      POINTL         i32_point; // [in] DragEnter, DragOver, Drop
+      //      ::u32          grfKeyState; // [in] DragEnter, DragOver, Drop
+      //      ::u32          dwEffect; // [in][out] DragEnter, DragOver, Drop
       //
       //#endif
 

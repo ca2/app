@@ -8,14 +8,14 @@ template < prototype_integral INTEGRAL >
 inline bool fits_int(INTEGRAL i)
 {
 
-   if (::comparison::comparison2 < INTEGRAL, int >().order(i, I32_MAXIMUM) > 0)
+   if (::comparison::comparison2 < INTEGRAL, ::i32 >().order(i, I32_MAXIMUM) > 0)
    {
 
       return false;
 
    }
 
-   if (::comparison::comparison2 < INTEGRAL, int >().order(i, I32_MINIMUM) < 0)
+   if (::comparison::comparison2 < INTEGRAL, ::i32 >().order(i, I32_MINIMUM) < 0)
    {
 
       return false;

@@ -17,7 +17,7 @@ namespace nanoui
 {
 
 
-Label::Label(Widget * parent, const ::scoped_string & caption, const ::scoped_string & font, int font_size)
+Label::Label(Widget * parent, const ::scoped_string & caption, const ::scoped_string & font, ::i32 font_size)
    : Widget(parent), m_strCaption(caption), m_font(font) {
    if (m_ptheme) {
       m_font_size = m_ptheme->m_iStandardFontSize;
@@ -35,7 +35,7 @@ void Label::set_theme(const ::pointer < Theme > & theme) {
 }
 
 
-int_size Label::preferred_size(::nano2d::context  * pcontext, bool bRecalcTextSize)
+i32_size Label::preferred_size(::nano2d::context  * pcontext, bool bRecalcTextSize)
 {
    
    if (bRecalcTextSize)
@@ -51,20 +51,20 @@ int_size Label::preferred_size(::nano2d::context  * pcontext, bool bRecalcTextSi
       {
          pcontext->font_face(m_font.c_str());
          pcontext->font_size(font_size());
-         ::float_rectangle bounds;
+         ::f32_rectangle bounds;
          if (m_fixed_size.cx > 0) {
             pcontext->text_align(::nano2d::e_align_left | ::nano2d::e_align_top);
-            m_ptextbox = pcontext->text_box_layout(m_strCaption, (float)m_fixed_size.cx);
-            pcontext->text_box_bounds((float)m_pos.x, (float)m_pos.y, m_ptextbox, &bounds);
-            m_sizePreferred = int_size(m_fixed_size.cx, bounds.height());
+            m_ptextbox = pcontext->text_box_layout(m_strCaption, (::f32)m_fixed_size.cx);
+            pcontext->text_box_bounds((::f32)m_pos.x, (::f32)m_pos.y, m_ptextbox, &bounds);
+            m_sizePreferred = i32_size(m_fixed_size.cx, bounds.height());
          }
          else {
             m_ptextbox.release();
             pcontext->text_align(::nano2d::e_align_left | ::nano2d::e_align_middle);
-            float fSize = (float) pcontext->text_bounds(0.f, 0.f, m_strCaption, &bounds);
-            m_sizePreferred = int_size (
-               (int) ceilf(fSize +2.0f),
-               (int) ceilf(bounds[3] - bounds[1])
+            ::f32 fSize = (::f32) pcontext->text_bounds(0.f, 0.f, m_strCaption, &bounds);
+            m_sizePreferred = i32_size (
+               (::i32) ceilf(fSize +2.0f),
+               (::i32) ceilf(bounds[3] - bounds[1])
             );
          }
       }
@@ -92,11 +92,11 @@ void Label::draw(::nano2d::context  * pcontext)
       if (!m_ptextbox)
       {
 
-         m_ptextbox = pcontext->text_box_layout(m_strCaption, (float) m_fixed_size.cx);
+         m_ptextbox = pcontext->text_box_layout(m_strCaption, (::f32) m_fixed_size.cx);
 
       }
 
-      pcontext->text_box((float)m_pos.x, (float)m_pos.y, m_ptextbox);
+      pcontext->text_box((::f32)m_pos.x, (::f32)m_pos.y, m_ptextbox);
 
    }
    else 
@@ -106,7 +106,7 @@ void Label::draw(::nano2d::context  * pcontext)
 
       auto h = m_size.cy;
 
-      pcontext->text((float)m_pos.x, (float)m_pos.y + h * 0.5f, m_strCaption);
+      pcontext->text((::f32)m_pos.x, (::f32)m_pos.y + h * 0.5f, m_strCaption);
 
    }
 

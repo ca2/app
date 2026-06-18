@@ -32,12 +32,12 @@ namespace simpledb
 
 
 
-   int result::num_fields()
+   ::i32 result::num_fields()
    {
       return -1;
    }
 
-   long long result::num_rows()
+   ::i64 result::num_rows()
    {
       return -1;
    }

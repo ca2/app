@@ -34,7 +34,7 @@ CFDataRef get_os_cf_data(const ::memory_base & memory, memsize pos, memsize size
    {
       size = memory.size() - pos;
    }
-   return CFDataCreate(kCFAllocatorDefault, (const unsigned char *)&memory.data()[pos], (CFIndex)size);
+   return CFDataCreate(kCFAllocatorDefault, (const ::u8 *)&memory.data()[pos], (CFIndex)size);
 }
 
 

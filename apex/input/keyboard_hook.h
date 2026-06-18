@@ -16,7 +16,7 @@ namespace input
    public:
       
       
-      virtual void keyboard_proc(::user::enum_message emessage, int iVirtualKeyCode, int iScanCode) = 0;
+      virtual void keyboard_proc(::user::enum_message emessage, ::i32 iVirtualKeyCode, ::i32 iScanCode) = 0;
 
       
    };

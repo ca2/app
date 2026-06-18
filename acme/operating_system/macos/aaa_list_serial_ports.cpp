@@ -19,14 +19,14 @@ string cfstring_to_string( CFStringRef cfstring );
 string get_device_path( io_object_t& serial_port );
 string get_class_name( io_object_t& obj );
 io_registry_entry_t get_parent_iousb_device( io_object_t& serial_port );
-string get_string_property( io_object_t& device, const char* property );
-unsigned short get_int_property( io_object_t& device, const char* property );
+string get_string_property( io_object_t& device, const_char_pointer property );
+::u16 get_int_property( io_object_t& device, const_char_pointer property );
 string rtrim(const ::scoped_string & scopedstr);
 
 string
 cfstring_to_string( CFStringRef cfstring )
 {
-   char cstring[MAXPATHLEN];
+   ::i8 cstring[MAXPATHLEN];
    string result;
 
    if( cfstring )
@@ -114,7 +114,7 @@ get_parent_iousb_device( io_object_t& serial_port )
 }
 
 string
-get_string_property( io_object_t& device, const char* property )
+get_string_property( io_object_t& device, const_char_pointer property )
 {
    string property_name;
 
@@ -146,10 +146,10 @@ get_string_property( io_object_t& device, const char* property )
    return property_name;
 }
 
-unsigned short
-get_int_property( io_object_t& device, const char* property )
+::u16
+get_int_property( io_object_t& device, const_char_pointer property )
 {
-   unsigned short result = 0;
+   ::u16 result = 0;
 
    if( device )
    {
@@ -260,17 +260,17 @@ serial::list_ports(void)
          port_info.description = description;
 
       string serial_number = rtrim(get_string_property( parent, "USB serial Number" ) );
-      unsigned short vendor_id = get_int_property( parent, "idVendor" );
-      unsigned short product_id = get_int_property( parent, "idProduct" );
+      ::u16 vendor_id = get_int_property( parent, "idVendor" );
+      ::u16 product_id = get_int_property( parent, "idProduct" );
 
       if( vendor_id && product_id )
       {
-         char cstring[HARDWARE_ID_STRING_LENGTH];
+         ::i8 cstring[HARDWARE_ID_STRING_LENGTH];
 
          if(serial_number.empty())
             serial_number = "None";
 
-         int ret = snprintf( cstring, HARDWARE_ID_STRING_LENGTH, "USB VID:PID=%04x:%04x SNR=%s",
+         ::i32 ret = snprintf( cstring, HARDWARE_ID_STRING_LENGTH, "USB VID:PID=%04x:%04x SNR=%s",
                              vendor_id,
                              product_id,
                              serial_number.c_str() );

@@ -8,7 +8,7 @@
 #ifndef VASE_REN_DRAFT_H
 #define VASE_REN_DRAFT_H
 #include <math.h>
-static inline double GET_ABS(double x) {return x>0?x:-x;}
+static inline ::f64 GET_ABS(::f64 x) {return x>0?x:-x;}
 /*
  * this implementation uses only basic gl (opengl 1.0)
  *   renders in immediate mode by glBegin/ glEnd
@@ -57,15 +57,15 @@ static inline double GET_ABS(double x) {return x>0?x:-x;}
 		//more line() calls and other drawing code...
   glPopMatrix();
 */
-//void line( double x1, double y1, double x2, double y2, //coordinates of the line
-//	float w, //width/thickness of the line in pixel
-//	float Cr, float Cg, float Cb, //rgb color components
-//	float Br, float Bg, float Bb, //color of background when alphablend=false,
+//void line( ::f64 x1, ::f64 y1, ::f64 x2, ::f64 y2, //coordinates of the line
+//	::f32 w, //width/thickness of the line in pixel
+//	::f32 Cr, ::f32 Cg, ::f32 Cb, //rgb color components
+//	::f32 Br, ::f32 Bg, ::f32 Bb, //color of background when alphablend=false,
 //					//Br=alpha of color when alphablend=true
 //	bool alphablend) //use alpha blend or not
 //{
-//	double t; double R; double f=w-static_cast<int>(w);
-//	float A;
+//	::f64 t; ::f64 R; ::f64 f=w-static_cast<::i32>(w);
+//	::f32 A;
 //	
 //	if ( alphablend)
 //		A=Br;
@@ -76,14 +76,14 @@ static inline double GET_ABS(double x) {return x>0?x:-x;}
 //	/*   */if ( w>=0.0f && w<1.0f) {
 //		t=0.05f; R=0.48f+0.32f*f;
 //		if ( !alphablend) {
-//			Cr+= 0.88f*(1.0f - (float)f);
-//			Cg+= 0.88f*(1.0f - (float)f);
-//			Cb+= 0.88f*(1.0f - (float)f);
+//			Cr+= 0.88f*(1.0f - (::f32)f);
+//			Cg+= 0.88f*(1.0f - (::f32)f);
+//			Cb+= 0.88f*(1.0f - (::f32)f);
 //			if ( Cr>1.0f) Cr=1.0f;
 //			if ( Cg>1.0f) Cg=1.0f;
 //			if ( Cb>1.0f) Cb=1.0f;
 //		} else {
-//			A*=(float)f;
+//			A*=(::f32)f;
 //		}
 //	} else if ( w>=1.0 && w<2.0) {
 //		t=0.05f+f*0.33f; R=0.768f+0.312f*f;
@@ -96,18 +96,18 @@ static inline double GET_ABS(double x) {return x>0?x:-x;}
 //	} else if ( w>=5.0f && w<6.0f){
 //		t=1.9f+f*0.6f; R=1.08f;
 //	} else if ( w>=6.0f){
-//		double ff=w-6.0;
+//		::f64 ff=w-6.0;
 //		t=2.5f+ff*0.50f; R=1.08f;
 //	}
 //	//printf( "w=%f, f=%f, C=%.4f\n", w,f,C);
 //	
 //	//determine angle of the line to horizontal
-//	double tx=0,ty=0; //aura thinkness of a line
-//	double Rx=0,Ry=0; //fading edge of a line
-//	double cx=0,cy=0; //cap of a line
-//	double ALW=0.01;
-//	double Δx=x2-x1;
-//	double Δy=y2-y1;
+//	::f64 tx=0,ty=0; //aura thinkness of a line
+//	::f64 Rx=0,Ry=0; //fading edge of a line
+//	::f64 cx=0,cy=0; //cap of a line
+//	::f64 ALW=0.01;
+//	::f64 Δx=x2-x1;
+//	::f64 Δy=y2-y1;
 //	if ( GET_ABS(Δx) < ALW) {
 //		//vertical
 //		tx=t; ty=0;
@@ -124,7 +124,7 @@ static inline double GET_ABS(double x) {return x>0?x:-x;}
 //		}
 //	} else {
 //		if ( w < 3) { //approximate to make things even faster
-//			double m=Δy/Δx;
+//			::f64 m=Δy/Δx;
 //			//and calculate tx,ty,Rx,Ry
 //			if ( m>-0.4142 && m<=0.4142) {
 //				// -22.5< angle <= 22.5, approximate to 0 (degree)
@@ -149,7 +149,7 @@ static inline double GET_ABS(double x) {return x>0?x:-x;}
 //		} else { //calculate to exact
 //			Δx=y1-y2;
 //			Δy=x2-x1;
-//			double L=sqrt(Δx*Δx+Δy*Δy);
+//			::f64 L=sqrt(Δx*Δx+Δy*Δy);
 //			Δx/=L;
 //			Δy/=L;
 //			cx=-Δy; cy=Δx; //m:3
@@ -164,18 +164,18 @@ static inline double GET_ABS(double x) {return x>0?x:-x;}
 //	//draw the line by triangle strip m:1
 //glBegin(GL_TRIANGLE_STRIP);
 //	if ( !alphablend) {glColor3f( Br,Bg,Bb);} else {glColor4f( Cr,Cg,Cb, 0);}
-//	glVertex2f((float)(x1-tx-Rx-cx),(float)(y1-ty-Ry-cy)); //fading edge
-//	glVertex2f((float)(x2-tx-Rx+cx),(float)(y2-ty-Ry+cy));
+//	glVertex2f((::f32)(x1-tx-Rx-cx),(::f32)(y1-ty-Ry-cy)); //fading edge
+//	glVertex2f((::f32)(x2-tx-Rx+cx),(::f32)(y2-ty-Ry+cy));
 //	
 //	if ( !alphablend) {glColor3f( Cr,Cg,Cb);} else {glColor4f( Cr,Cg,Cb, A);}
-//	glVertex2f((float)(x1-tx-cx), (float)(y1-ty-cy)); //aura
-//	glVertex2f((float)(x2-tx+cx), (float)(y2-ty+cy));
-//	glVertex2f((float)(x1+tx-cx), (float)(y1+ty-cy));
-//	glVertex2f((float)(x2+tx+cx), (float)(y2+ty+cy));
+//	glVertex2f((::f32)(x1-tx-cx), (::f32)(y1-ty-cy)); //aura
+//	glVertex2f((::f32)(x2-tx+cx), (::f32)(y2-ty+cy));
+//	glVertex2f((::f32)(x1+tx-cx), (::f32)(y1+ty-cy));
+//	glVertex2f((::f32)(x2+tx+cx), (::f32)(y2+ty+cy));
 //	
 //	if ( !alphablend) {glColor3f( Br,Bg,Bb);} else {glColor4f( Cr,Cg,Cb, 0);}
-//	glVertex2f((float)(x1+tx+Rx-cx), (float)(y1+ty+Ry-cy)); //fading edge
-//	glVertex2f((float)(x2+tx+Rx+cx), (float)(y2+ty+Ry+cy));
+//	glVertex2f((::f32)(x1+tx+Rx-cx), (::f32)(y1+ty+Ry-cy)); //fading edge
+//	glVertex2f((::f32)(x2+tx+Rx+cx), (::f32)(y2+ty+Ry+cy));
 //   glEnd();
 //
 //	//cap
@@ -185,29 +185,29 @@ static inline double GET_ABS(double x) {return x>0?x:-x;}
 //		//draw cap
 //	glBegin(GL_TRIANGLE_STRIP);
 //		if ( !alphablend) {glColor3f( Br,Bg,Bb);} else {glColor4f( Cr,Cg,Cb, 0);}
-//		glVertex2f((float)(x1-tx-Rx-cx), (float)(y1-ty-Ry-cy));
-//		glVertex2f((float)(x1-tx-Rx), (float)(y1-ty-Ry));
+//		glVertex2f((::f32)(x1-tx-Rx-cx), (::f32)(y1-ty-Ry-cy));
+//		glVertex2f((::f32)(x1-tx-Rx), (::f32)(y1-ty-Ry));
 //		if ( !alphablend) {glColor3f( Cr,Cg,Cb);} else {glColor4f( Cr,Cg,Cb, A);}
-//		glVertex2f((float)(x1-tx-cx), (float)(y1-ty-cy));
+//		glVertex2f((::f32)(x1-tx-cx), (::f32)(y1-ty-cy));
 //		if ( !alphablend) {glColor3f( Br,Bg,Bb);} else {glColor4f( Cr,Cg,Cb, 0);}
-//		glVertex2f((float)(x1+tx+Rx), (float)(y1+ty+Ry));
+//		glVertex2f((::f32)(x1+tx+Rx), (::f32)(y1+ty+Ry));
 //		if ( !alphablend) {glColor3f( Cr,Cg,Cb);} else {glColor4f( Cr,Cg,Cb, A);}
-//		glVertex2f((float)(x1+tx-cx), (float)(y1+ty-cy));
+//		glVertex2f((::f32)(x1+tx-cx), (::f32)(y1+ty-cy));
 //		if ( !alphablend) {glColor3f( Br,Bg,Bb);} else {glColor4f( Cr,Cg,Cb, 0);}
-//		glVertex2f((float)(x1+tx+Rx-cx), (float)(y1+ty+Ry-cy));
+//		glVertex2f((::f32)(x1+tx+Rx-cx), (::f32)(y1+ty+Ry-cy));
 //	glEnd();
 //	glBegin(GL_TRIANGLE_STRIP);
 //		if ( !alphablend) {glColor3f( Br,Bg,Bb);} else {glColor4f( Cr,Cg,Cb, 0);}
-//		glVertex2f((float)(x2-tx-Rx+cx), (float)(y2-ty-Ry+cy));
-//		glVertex2f((float)(x2-tx-Rx), (float)(y2-ty-Ry));
+//		glVertex2f((::f32)(x2-tx-Rx+cx), (::f32)(y2-ty-Ry+cy));
+//		glVertex2f((::f32)(x2-tx-Rx), (::f32)(y2-ty-Ry));
 //		if ( !alphablend) {glColor3f( Cr,Cg,Cb);} else {glColor4f( Cr,Cg,Cb, A);}
-//		glVertex2f((float)(x2-tx+cx), (float)(y2-ty+cy));
+//		glVertex2f((::f32)(x2-tx+cx), (::f32)(y2-ty+cy));
 //		if ( !alphablend) {glColor3f( Br,Bg,Bb);} else {glColor4f( Cr,Cg,Cb, 0);}
-//		glVertex2f((float)(x2+tx+Rx), (float)(y2+ty+Ry));
+//		glVertex2f((::f32)(x2+tx+Rx), (::f32)(y2+ty+Ry));
 //		if ( !alphablend) {glColor3f( Cr,Cg,Cb);} else {glColor4f( Cr,Cg,Cb, A);}
-//		glVertex2f((float)(x2+tx+cx), (float)(y2+ty+cy));
+//		glVertex2f((::f32)(x2+tx+cx), (::f32)(y2+ty+cy));
 //		if ( !alphablend) {glColor3f( Br,Bg,Bb);} else {glColor4f( Cr,Cg,Cb, 0);}
-//		glVertex2f((float)(x2+tx+Rx+cx), (float)(y2 + ty + Ry + cy));
+//		glVertex2f((::f32)(x2+tx+Rx+cx), (::f32)(y2 + ty + Ry + cy));
 //	glEnd();
 //	}
 //}
@@ -217,16 +217,16 @@ static inline double GET_ABS(double x) {return x>0?x:-x;}
 // * draws near-perfectly a black "hair line" of thickness 1px
 // * when alphablend is false, it assumes drawing on a white surface
 // * when alphablend is true, it draws with alpha */
-//void hair_line( double x1, double y1, double x2, double y2, bool alphablend=0)
+//void hair_line( ::f64 x1, ::f64 y1, ::f64 x2, ::f64 y2, bool alphablend=0)
 //{
-//	double t=0.05; double R=0.768;
-//	double C=0.0;
+//	::f64 t=0.05; ::f64 R=0.768;
+//	::f64 C=0.0;
 //
 //	//determine angle of the line to horizontal
-//	double tx=0,ty=0, Rx=0,Ry=0;
-//	double ALW=0.01;
-//	double Δx=x2-x1;
-//	double Δy=y2-y1;
+//	::f64 tx=0,ty=0, Rx=0,Ry=0;
+//	::f64 ALW=0.01;
+//	::f64 Δx=x2-x1;
+//	::f64 Δy=y2-y1;
 //	if ( GET_ABS(Δx) < ALW) {
 //		//vertical
 //		tx = 0.5; ty = 0.0;
@@ -236,7 +236,7 @@ static inline double GET_ABS(double x) {return x>0?x:-x;}
 //		tx = 0.0; ty = 0.5;
 //		Rx = 0.0; Ry = 0.0;
 //	} else {
-//		double m=Δy/Δx;
+//		::f64 m=Δy/Δx;
 //		if ( m>-0.4142 && m<=0.4142) {
 //			// -22.5< angle <= 22.5, approximate to 0 (degree)
 //			tx=t*0.1; ty=t;
@@ -258,33 +258,33 @@ static inline double GET_ABS(double x) {return x>0?x:-x;}
 //	
 //	//draw the line by triangle strip
 //glBegin(GL_TRIANGLE_STRIP);
-//	if ( !alphablend) {glColor3f( 1.0f,1.0f,1.0f);} else {glColor4f((float) C, (float)C, (float)C, 0.0f);}
-//	glVertex2f((float)(x1-tx-Rx), (float)(y1-ty-Ry)); //fading edge
-//	glVertex2f((float)(x2-tx-Rx), (float)(y2-ty-Ry));
+//	if ( !alphablend) {glColor3f( 1.0f,1.0f,1.0f);} else {glColor4f((::f32) C, (::f32)C, (::f32)C, 0.0f);}
+//	glVertex2f((::f32)(x1-tx-Rx), (::f32)(y1-ty-Ry)); //fading edge
+//	glVertex2f((::f32)(x2-tx-Rx), (::f32)(y2-ty-Ry));
 //	
-//	glColor3f((float)(C), (float)(C), (float)(C));
-//	glVertex2f((float)(x1-tx), (float)(y1-ty)); //aura
-//	glVertex2f((float)(x2-tx), (float)(y2-ty));
-//	glVertex2f((float)(x1+tx), (float)(y1+ty));
-//	glVertex2f((float)(x2+tx), (float)(y2+ty));
+//	glColor3f((::f32)(C), (::f32)(C), (::f32)(C));
+//	glVertex2f((::f32)(x1-tx), (::f32)(y1-ty)); //aura
+//	glVertex2f((::f32)(x2-tx), (::f32)(y2-ty));
+//	glVertex2f((::f32)(x1+tx), (::f32)(y1+ty));
+//	glVertex2f((::f32)(x2+tx), (::f32)(y2+ty));
 //	
-//	if ( !alphablend) {glColor3f( 1.f,1.f,1.f);} else {glColor4f((float) C, (float)C, (float)C, 0.f);}
-//	glVertex2f((float)(x1+tx+Rx), (float)(y1+ty+Ry)); //fading edge
-//	glVertex2f((float)(x2+tx+Rx), (float)(y2+ty+Ry));
+//	if ( !alphablend) {glColor3f( 1.f,1.f,1.f);} else {glColor4f((::f32) C, (::f32)C, (::f32)C, 0.f);}
+//	glVertex2f((::f32)(x1+tx+Rx), (::f32)(y1+ty+Ry)); //fading edge
+//	glVertex2f((::f32)(x2+tx+Rx), (::f32)(y2+ty+Ry));
 //glEnd();
 //}
 
 ///*as a fall back of line()*/
-//void line_raw( double x1, double y1, double x2, double y2,
-//	double w,
-//	double Cr, double Cg, double Cb,
-//	double,double,double, bool)
+//void line_raw( ::f64 x1, ::f64 y1, ::f64 x2, ::f64 y2,
+//	::f64 w,
+//	::f64 Cr, ::f64 Cg, ::f64 Cb,
+//	::f64,::f64,::f64, bool)
 //{
-//	glLineWidth((float)(w));
+//	glLineWidth((::f32)(w));
 //glBegin(GL_LINES);
-//	glColor3f((float)(Cr), (float)(Cg), (float)(Cb));
-//	glVertex2f((float)(x1), (float)(y1));
-//	glVertex2f((float)(x2), (float)(y2));
+//	glColor3f((::f32)(Cr), (::f32)(Cg), (::f32)(Cb));
+//	glVertex2f((::f32)(x1), (::f32)(y1));
+//	glVertex2f((::f32)(x2), (::f32)(y2));
 //glEnd();
 //}
 

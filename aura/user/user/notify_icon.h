@@ -41,7 +41,7 @@ namespace user
 
       virtual void modify_icon(::windowing::icon * picon);
 
-      //virtual void create_notify_icon(unsigned int atom, notify_icon_listener * plistener, ::windowing::icon * picon);
+      //virtual void create_notify_icon(::u32 atom, notify_icon_listener * plistener, ::windowing::icon * picon);
 
       virtual void create_notify_icon(const ::atom & atom, ::user::interaction * puserinteractionNotify, ::windowing::icon * picon);
 
@@ -53,12 +53,12 @@ namespace user
       void on_command(::message::command * pcommand) override;
 
 
-      //virtual int _get_notification_area_action_count() override;
-      //virtual const_char_pointer _get_notification_area_action_name(int iIndex) override;
-      //virtual const_char_pointer _get_notification_area_action_id(int iIndex) override;
-      //virtual const_char_pointer _get_notification_area_action_label(int iIndex) override;
-      //virtual const_char_pointer _get_notification_area_action_accelerator(int iIndex) override;
-      //virtual const_char_pointer _get_notification_area_action_description(int iIndex) override;
+      //virtual ::i32 _get_notification_area_action_count() override;
+      //virtual const_char_pointer _get_notification_area_action_name(::i32 iIndex) override;
+      //virtual const_char_pointer _get_notification_area_action_id(::i32 iIndex) override;
+      //virtual const_char_pointer _get_notification_area_action_label(::i32 iIndex) override;
+      //virtual const_char_pointer _get_notification_area_action_accelerator(::i32 iIndex) override;
+      //virtual const_char_pointer _get_notification_area_action_description(::i32 iIndex) override;
       bool handle_command(const ::atom & atom, ::user::activation_token * puseractivationtoken) override;
 
 

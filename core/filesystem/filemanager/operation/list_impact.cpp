@@ -6,7 +6,7 @@
 #include "acme/constant/id.h"
 #include "acme/constant/user_message.h"
 #include "acme/handler/topic.h"
-#include "acme/platform/timer.h"
+//#include "acme/platform/timer.h"
 #include "core/filesystem/filemanager/file_properties_form.h"
 #include "core/user/user/list_column.h"
 #include "core/user/user/list_cache.h"
@@ -61,7 +61,7 @@ namespace filemanager
       if(psubitem->m_iSubItem == 0)
       {
 
-         psubitem->m_strText = get_document()->m_poperationthread->get_item_message((int)psubitem->m_pitem->m_iItem);
+         psubitem->m_strText = get_document()->m_poperationthread->get_item_message((::i32)psubitem->m_pitem->m_iItem);
          
          psubitem->m_bOk = true;
 
@@ -69,9 +69,9 @@ namespace filemanager
       else
       {
          
-         double d;
+         ::f64 d;
          
-         d = get_document()->m_poperationthread->get_item_progress((int)psubitem->m_pitem->m_iItem);
+         d = get_document()->m_poperationthread->get_item_progress((::i32)psubitem->m_pitem->m_iItem);
 
          psubitem->m_strText.formatf("%0.1f%%",d * 100.0);
 
@@ -119,28 +119,28 @@ namespace filemanager
 
       m_pmeshcache = m_puserlistcache;
 
-      set_timer(123,500_ms,nullptr);
+      //set_timer(123,500_ms,nullptr);
 
    }
 
 
-   void operation_list_impact::on_timer(::timer * ptimer)
+   void operation_list_impact::operator()(::timer * ptimer)
    {
-      BASE::on_timer(ptimer);
-      if(ptimer->m_uTimer == 123)
-      {
-         /*if(m_timeLastUpdate.elapsed() > 500)
-         {
-         m_timeLastUpdate= ::time::now();
-         _001OnUpdateItemCount();
-         m_cache._001Invalidate();
-         }*/
-      }
+      BASE::operator()(ptimer);
+      // if(ptimer->m_etimer == 123)
+      // {
+      //    /*if(m_timeLastUpdate.elapsed() > 500)
+      //    {
+      //    m_timeLastUpdate= ::time::now();
+      //    _001OnUpdateItemCount();
+      //    m_cache._001Invalidate();
+      //    }*/
+      // }
 
    }
 
 
-   void operation_list_impact::OnFileOperationStep(int iOperation,bool bFinal)
+   void operation_list_impact::OnFileOperationStep(::i32 iOperation,bool bFinal)
    {
 
       __UNREFERENCED_PARAMETER(iOperation);
@@ -156,7 +156,7 @@ namespace filemanager
 
          ::collection::count iItem = 0;
 
-         for(int i = 0; i < get_document()->m_poperationthread->m_iOperation; i++)
+         for(::i32 i = 0; i < get_document()->m_poperationthread->m_iOperation; i++)
          {
 
             iItem += get_document()->m_poperationthread->m_fileoperationa.get_size();

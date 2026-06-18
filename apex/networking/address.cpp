@@ -45,7 +45,7 @@ namespace networking
    }
 
 //
-//   address::address(int family, ::networking::port_t port)
+//   address::address(::i32 family, ::networking::port_t port)
 //   {
 //
 //#ifdef BSD_STYLE_SOCKETS
@@ -73,7 +73,7 @@ namespace networking
 //#ifdef BSD_STYLE_SOCKETS
 //
 //
-//   address::address(const sockaddr & sa, int iLen)
+//   address::address(const sockaddr & sa, ::i32 iLen)
 //   {
 //
 ////#ifdef UNIVERSAL_WINDOWS
@@ -129,7 +129,7 @@ namespace networking
 //   }
 //
 //
-//   address::address(const sockaddr_in6& sa, int iLen)
+//   address::address(const sockaddr_in6& sa, ::i32 iLen)
 //   {
 //
 //      ::zero(this, sizeof(u.m_sa));
@@ -603,10 +603,10 @@ namespace networking
 
 //#if defined(BSD_STYLE_SOCKETS)
 //
-//   int address::sa_len() const
+//   ::i32 address::sa_len() const
 //   {
 //
-//      int iFamilyLen = u.s.get_family_len();
+//      ::i32 iFamilyLen = u.s.get_family_len();
 //
 //      if (m_iLen <= 0)
 //      {
@@ -638,7 +638,7 @@ namespace networking
    //}
 
 
-//   address ipv4(unsigned int u, ::networking::port_t port)
+//   address ipv4(::u32 u, ::networking::port_t port)
 //   {
 //
 //      address a;

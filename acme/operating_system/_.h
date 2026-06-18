@@ -6,12 +6,17 @@
 CLASS_DECL_ACME void flush_stdin();
 
 
-namespace operating_system
+namespace accessibility
 {
-
 
    class application;
    class main_window;
+
+}
+
+namespace operating_system
+{
+
 
    class a_system_menu;
    class a_system_menu_item;
@@ -55,12 +60,10 @@ namespace operating_system
 #if defined(WIN32)
 
 
-namespace windows
-{
+#include "acme/operating_system/windows_common/last_error.h"
 
-   CLASS_DECL_ACME unsigned int last_error();
 
-} // namespace windows
+#include "acme/operating_system/windows_common/last_error_exception.h"
 
 
 #endif

@@ -59,7 +59,7 @@ enum_type set_element(::payload & payload, ::subparticle * pelement)
          payload.m_pstra = dynamic_cast <::string_array*>(pelement);
          break;
       case ::e_type_int_array:
-         payload.m_pia = dynamic_cast <::int_array*>(pelement);
+         payload.m_pia = dynamic_cast <::i32_array*>(pelement);
          break;
       case ::e_type_payload_array:
          payload.m_ppayloada = dynamic_cast <payload_array*>(pelement);
@@ -67,8 +67,8 @@ enum_type set_element(::payload & payload, ::subparticle * pelement)
       case ::e_type_property_set:
          payload.m_ppropertyset = dynamic_cast <::property_set*>(pelement);
          break;
-      case ::e_type_long_long_array:
-         payload.m_plonglonga = dynamic_cast <::long_long_array*>(pelement);
+      case ::e_type_i64_array:
+         payload.m_plonglonga = dynamic_cast <::i64_array*>(pelement);
          break;
       case ::e_type_memory:
          payload.m_pmemory = dynamic_cast <::memory*>(pelement);
@@ -164,7 +164,7 @@ void payload::_set_element(::subparticle * pelement)
 }
 
 
-long long payload::logical_release()
+::i64 payload::logical_release()
 {
 
    //if (m_etype == ::e_type_payload_pointer)
@@ -190,10 +190,10 @@ long long payload::logical_release()
 }
 
 
-long long payload::payload_release()
+::i64 payload::payload_release()
 {
 
-   long long iRelease = -1;
+   ::i64 iRelease = -1;
 
    if (m_etype == e_type_string)
    {
@@ -275,7 +275,7 @@ long long payload::payload_release()
                iRelease = ::release(m_ppropertyset);
             }
             break;
-            case e_type_long_long_array:
+            case e_type_i64_array:
             {
 #if REFERENCING_DEBUGGING
 

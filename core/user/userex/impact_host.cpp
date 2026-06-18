@@ -139,7 +139,7 @@ namespace userex
 
       }
 
-      ::int_rectangle rectangle;
+      ::i32_rectangle rectangle;
 
       rectangle = this->rectangle();
 
@@ -147,7 +147,7 @@ namespace userex
 
       pframewindow->order_front();
 
-      pframewindow->place(::int_rectangle_dimension(rectangle.width() / 4, 0, rectangle.width() / 2, rectangle.height() / 5));
+      pframewindow->place(::i32_rectangle_dimension(rectangle.width() / 4, 0, rectangle.width() / 2, rectangle.height() / 5));
 
       pframewindow->display();
 
@@ -451,7 +451,7 @@ namespace userex
                      if (ptabimpact.is_set() && ptabimpact->get_tab_count() <= 0)
                      {
 
-                        ptabimpact->parent_frame()->hide();
+                        ptabimpact->parent_frame()->display(e_display_hide, {});
 
                         ptabimpact->parent_frame()->set_need_redraw();
 
@@ -484,7 +484,7 @@ namespace userex
       if (user()->impact_system("main") != nullptr)
       {
 
-         ::int_rectangle rectangleTab;
+         ::i32_rectangle rectangleTab;
 
          ::pointer<::user::document>pdocument = user()->impact_system("main")->get_document();
 
@@ -511,7 +511,7 @@ namespace userex
                      information() << "pframewindowTab HIDE HIDE HIDE";
                      information() << "";
                      information() << "";
-                     pframewindowTab->hide();
+                     pframewindowTab->display(e_display_hide, {});
 
                   }
 
@@ -526,7 +526,7 @@ namespace userex
                   information() << "pframewindowTab VISIBLE VISIBLE VISIBLE";
                   information() << "";
                   information() << "";
-                  auto rectangleRequest = int_rectangle_dimension(20, 20, 800, 300);
+                  auto rectangleRequest = i32_rectangle_dimension(20, 20, 800, 300);
 
                   //if (!pframewindowTab->is_this_visible() || rectangleRequest != pframewindowTab->window_request_rect())
                   {
@@ -787,7 +787,7 @@ namespace userex
 
       }
 
-      pframewindow->hide();
+      pframewindow->display(e_display_hide, {});
 
       pframewindow->set_need_redraw();
 

@@ -127,11 +127,11 @@ public:
     * @since 1.0
     * @author Gurmeet S. Kochar
     */
-   unsigned short getPercentValue(unsigned short maximum = USHRT_MAX) const
+   ::u16 getPercentValue(::u16 maximum = USHRT_MAX) const
    {
       ASSERT(maximum > 0);
       if (!isPercentValue())   return (0);
-      unsigned short   percentVal = (unsigned short)((short)*this);
+      ::u16   percentVal = (::u16)((::i16)*this);
       return ((percentVal > maximum ? maximum : percentVal));
    }
 
@@ -146,9 +146,9 @@ public:
     * @author Gurmeet S. Kochar
     */
    enum LengthUnitsEnum { em, ex, px, per, in, cm, mm, point, pc };
-   short getLengthValue(LengthUnitsEnum &rUnit) const
+   ::i16 getLengthValue(LengthUnitsEnum &rUnit) const
    {
-      static const char   _szUnits[][4] =
+      static const ::i8   _szUnits[][4] =
       {
          /** relative length units */
          "em", "ex", "px", "%",
@@ -159,7 +159,7 @@ public:
       if (m_strValue.is_empty())
          return (0);
 
-      int i;
+      ::i32 i;
       for (i = 0; i < sizeof(_szUnits)/sizeof(_szUnits[0]); i++)
       {
          if (m_strValue.right(::ansi_len(_szUnits[i])). \
@@ -188,35 +188,35 @@ public:
          return (true);
       if (m_strValue.case_insensitive_equals("false"))
          return (false);
-      return (((short)*this ? true : false));
+      return (((::i16)*this ? true : false));
    }
 
    /**
-    * Converts attribute value to unsigned char (uchar)
+    * Converts attribute value to ::u8 (uchar)
     * @return the left-most character of attribute value
     * @since 1.0
     * @author Gurmeet S. Kochar
     */
-   operator unsigned char() const
-   { return ((unsigned char)(m_strValue.length() ? m_strValue[0] : 0)); }
+   operator ::u8() const
+   { return ((::u8)(m_strValue.length() ? m_strValue[0] : 0)); }
 
    /**
-    * Converts attribute value to double
+    * Converts attribute value to ::f64
     * @return 0.00 on failure, otherwise, a numeric value
     * @since 1.0
     * @author Gurmeet S. Kochar
     */
-   operator double() const
+   operator ::f64() const
    { return (::strtod(m_strValue, nullptr)); }
 
    /**
-    * Converts attribute value to signed short
+    * Converts attribute value to ::i16
     * @return 0 on failure, otherwise, an integer value
     * @since 1.0
     * @author Gurmeet S. Kochar
     */
-   operator short() const
-   { return ((short)::atoi(m_strValue)); }
+   operator ::i16() const
+   { return ((::i16)::atoi(m_strValue)); }
 
    /**
     * @return attribute value
@@ -301,7 +301,7 @@ public:
             m_parrAttrib->set_size(nElemCount);
 
             /** DEEP COPY BEGIN */
-            for (int iElem = 0; iElem < nElemCount; iElem++)
+            for (::i32 iElem = 0; iElem < nElemCount; iElem++)
             {
                if ((pItem = øraw_new LiteHTMLElemAttr(rSource[iElem])) == nullptr)
                {
@@ -354,13 +354,13 @@ public:
     * @since 1.0
     * @author Gurmeet S. Kochar
     */
-   int getIndexFromName(const ::scoped_string & scopedstrAttributeName) const
+   ::i32 getIndexFromName(const ::scoped_string & scopedstrAttributeName) const
 
    {
       ASSERT(is_string_ok(scopedstrAttributeName));
 
       LiteHTMLElemAttr   *pItem = nullptr;
-      for (int iElem = 0; iElem < getCount(); iElem++)
+      for (::i32 iElem = 0; iElem < getCount(); iElem++)
       {
          if ((pItem = (*m_parrAttrib)[iElem]) == nullptr)   // just in case
             continue;
@@ -380,7 +380,7 @@ public:
     * @since 1.0
     * @author Gurmeet S. Kochar
     */
-   LiteHTMLElemAttr operator[](int nIndex) const
+   LiteHTMLElemAttr operator[](::i32 nIndex) const
    {
       if (!(nIndex >= 0 && nIndex < getCount()))
       {
@@ -413,7 +413,7 @@ public:
     * @since 1.0
     * @author Gurmeet S. Kochar
     */
-   LiteHTMLElemAttr getAttribute(int nIndex) const
+   LiteHTMLElemAttr getAttribute(::i32 nIndex) const
    { return ((*this)[nIndex]); }
 
    /**
@@ -439,7 +439,7 @@ public:
     * @since 1.0
     * @author Gurmeet S. Kochar
     */
-   string getName(int nIndex) const
+   string getName(::i32 nIndex) const
    { return ((*this)[nIndex].m_strName); }
 
    /**
@@ -449,7 +449,7 @@ public:
     * @since 1.0
     * @author Gurmeet S. Kochar
     */
-   string getValue(int nIndex) const
+   string getValue(::i32 nIndex) const
    { return ((*this)[nIndex].m_strValue); }
 
    /**
@@ -473,12 +473,12 @@ public:
    /**
     * Adds a ___new LiteHTMLElemAttr item to the collection
     *
-    * @lparam lpszName - attribute name (serves as the key to the item)
+    * @lparam pszName - attribute name (serves as the key to the item)
 
     * @lparam pszValue - attribute value
 
     * @lparam bReplaceOld - If an item with the same name as specified
-    *        by lpszName already exists in the collection, this
+    *        by pszName already exists in the collection, this
 
     *        parameter is used to determine whether to replace the
     *        existing item or add a ___new one
@@ -493,14 +493,14 @@ public:
    /**
     * Removes an LiteHTMLElemAttr item from the collection
     *
-    * @lparam lpszName - attribute to erase
+    * @lparam pszName - attribute to erase
 
     *
     * @return true if successful, false otherwise
     * @since 1.0
     * @author Gurmeet S. Kochar
     */
-   bool eraseAttribute(int nIndex)
+   bool eraseAttribute(::i32 nIndex)
    {
       if (!(nIndex >= 0 && nIndex < getCount()))
          return (false);
@@ -519,7 +519,7 @@ public:
    bool eraseAll()
    {
       LiteHTMLElemAttr   *pItem = nullptr;
-      for (int iElem = 0; iElem < getCount(); iElem++)
+      for (::i32 iElem = 0; iElem < getCount(); iElem++)
       {
          pItem = (*m_parrAttrib)[iElem];
          ASSERT(pItem != nullptr);

@@ -9,7 +9,7 @@ namespace openssl
    void hasher_algorithm::hash(memory& memoryHash, const block& block)
    {
 
-      unsigned int digest_size = EVP_MD_get_size(m_pmd);
+      ::u32 digest_size = EVP_MD_get_size(m_pmd);
 
       memoryHash.set_size(digest_size);
 

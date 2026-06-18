@@ -2,6 +2,8 @@
 
 #include <stdio.h>
 
+#include "windowing/window.h"
+
 #undef ALOG_CONTEXT
 #define ALOG_CONTEXT ::trace_object(::trace_category_windowing)
 
@@ -44,7 +46,7 @@ void windowing_output_debug_string(const ::scoped_string & scopedstrDebugString)
 
 
 
-//CLASS_DECL_ACME void update_application_session_cursor(void * pvoidApp, const int_point & pointCursor)
+//CLASS_DECL_ACME void update_application_session_cursor(void * pvoidApp, const i32_point & pointCursor)
 //{
 //
 //   ::platform::application * papp = (::platform::application *) pvoidApp;
@@ -134,3 +136,13 @@ CLASS_DECL_ACME string message_box_result_to_string(enum_dialog_result edialogre
 //
 //
 //
+
+
+
+CLASS_DECL_ACME bool best_effort_is_same_operating_system_window(::acme::windowing::window * pacmewindowingwindow, const ::lparam & lparam)
+{
+
+   return pacmewindowingwindow->operating_system_window() == lparam;
+
+}
+

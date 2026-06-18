@@ -16,8 +16,8 @@ namespace image
 
 
       ::image::enum_format       m_eformat = ::image::e_format_none;
-      int                        m_iQuality = -1;
-      int                        m_iDpi = -1;
+      ::i32                        m_iQuality = -1;
+      ::i32                        m_iDpi = -1;
 
       encoding_options(){}
       encoding_options(const ::payload & payloadFile);

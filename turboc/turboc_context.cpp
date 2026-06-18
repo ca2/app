@@ -54,7 +54,7 @@ namespace turboc
 
    }
 
-   void context::resize(int x,int y)
+   void context::resize(::i32 x,::i32 y)
    {
 
       if(x <= 0 || y <= 0)

@@ -43,11 +43,11 @@ namespace file
    void buffered_file::translate(filesize offset, ::enum_seek eseek)
    {
 
-      unsigned long long uiBegBufPosition = m_uiBufLPos;
+      ::u64 uiBegBufPosition = m_uiBufLPos;
 
-      unsigned long long uiEndBufPosition = m_uiBufUPos;
+      ::u64 uiEndBufPosition = m_uiBufUPos;
 
-      unsigned long long uiNewPos;
+      ::u64 uiNewPos;
 
       if(eseek == ::e_seek_set)
       {
@@ -71,7 +71,7 @@ namespace file
       else if(eseek == ::e_seek_current)
       {
          
-         long long iNewPosition = m_uiPosition + offset;
+         ::i64 iNewPosition = m_uiPosition + offset;
 
          if (iNewPosition < 0)
          {
@@ -154,7 +154,7 @@ namespace file
    memsize buffered_file:: read(void * p, ::memsize s)
    {
 
-      auto data = (unsigned char *) p;
+      auto data = (::u8 *) p;
 
       if (::is_null(data) || s <= 0)
       {
@@ -276,7 +276,7 @@ namespace file
    void buffered_file::write(const void * p, ::memsize s)
    {
 
-      auto data = (const unsigned char *)p;
+      auto data = (const ::u8 *)p;
 
       memsize uiWrite = 0;
 
@@ -326,7 +326,7 @@ namespace file
    }
 
 
-   void buffered_file::put_byte_back(unsigned char uch)
+   void buffered_file::put_byte_back(::u8 uch)
    {
 
       m_uiPosition--;
@@ -338,7 +338,7 @@ namespace file
 
       }
 
-      m_storage.data()[m_uiPosition] = (unsigned char) uch;
+      m_storage.data()[m_uiPosition] = (::u8) uch;
 
    }
 

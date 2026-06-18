@@ -12,7 +12,7 @@
 #include "acme/handler/item.h"
 #include "acme/handler/topic.h"
 #include "acme/platform/node.h"
-#include "acme/platform/timer.h"
+//#include "acme/platform/timer.h"
 #include "acme/prototype/geometry2d/_binary_stream.h"
 #include "acme/prototype/string/str.h"
 #include "acme/platform/scoped_restore.h"
@@ -171,7 +171,7 @@ namespace user
          //#endif
 
 
-         set_timer(100, 100_ms, nullptr);
+         //set_timer(100, 100_ms, nullptr);
 
          set_timer(e_timer_redraw, 200_ms, nullptr); // Caret
 
@@ -195,7 +195,7 @@ namespace user
             if (is_text_editable() && m_bEditable2)
             {
 
-               set_timer(250, 500_ms, nullptr); // Caret
+               set_timer(e_timer_caret_flashing, 500_ms, nullptr); // Caret
 
             }
 
@@ -208,7 +208,7 @@ namespace user
             if (pformattool != nullptr && pformattool->is_showing_for_ui(this))
             {
 
-               pformattool->hide();
+               pformattool->display(e_display_hide, {});
 
             }
 
@@ -288,7 +288,7 @@ namespace user
 
             }
 
-            pformattool->hide();
+            pformattool->display(e_display_hide, {});
 
          }
 
@@ -424,7 +424,7 @@ namespace user
             if (pformattool->is_window_visible())
             {
 
-               pformattool->hide();
+               pformattool->display(e_display_hide, {});
 
             }
 
@@ -552,7 +552,7 @@ namespace user
       }
 
 
-      ::double_size edit_impl::get_size()
+      ::f64_size edit_impl::get_size()
       {
 
          if (is_picture_enabled())
@@ -564,7 +564,7 @@ namespace user
          else
          {
 
-            ::int_rectangle rectangle;
+            ::i32_rectangle rectangle;
 
             window_rectangle(rectangle);
 
@@ -586,7 +586,7 @@ namespace user
       }
 
 
-      bool edit_impl::get_element_rectangle(::int_rectangle * prectangle, ::collection::index i, enum_element eelement)
+      bool edit_impl::get_element_rectangle(::i32_rectangle * prectangle, ::collection::index i, const ::e_element & eelement)
       {
 
          if (eelement == ::e_element_icon)
@@ -623,7 +623,7 @@ namespace user
 
       }
 
-      bool edit_impl::get_item_rect(::int_rectangle * prectangle, ::collection::index i)
+      bool edit_impl::get_item_rect(::i32_rectangle * prectangle, ::collection::index i)
 
       {
 
@@ -650,7 +650,7 @@ namespace user
       }
 
 
-      double edit_impl::get_rotate()
+      ::f64 edit_impl::get_rotate()
       {
 
          if (is_picture_enabled())
@@ -666,7 +666,7 @@ namespace user
 
 
 
-      ::item_pointer edit_impl::on_hit_test(const ::int_point & point, ::user::e_zorder ezorder)
+      ::item_pointer edit_impl::on_hit_test(const ::i32_point & point, ::user::e_zorder ezorder)
       {
 
          auto r = this->raw_rectangle();
@@ -680,7 +680,7 @@ namespace user
 
          }
 
-         //::double_point pointHit = item.m_pointHitTest;
+         //::f64_point pointHit = item.m_pointHitTest;
 
          //if (is_picture_enabled())
          //{
@@ -743,7 +743,7 @@ namespace user
 
          //::aura::draw_context* pdrawcontext = pgraphics->::aura::simple_chain < ::aura::draw_context >::get_last();
 
-         //::int_rectangle rectangleX;
+         //::i32_rectangle rectangleX;
 
          //if (pdrawcontext != nullptr)
          //{
@@ -769,7 +769,7 @@ namespace user
 
          //   ::color::color crBackground = _001GetColor(::user::color_background, argb(128, 255, 255, 255));
 
-         //   //if (color32_byte_red(crBackground) != 255)
+         //   //if (color32_u8_red(crBackground) != 255)
          //   //{
 
          //   //   informationf("no full red");
@@ -793,7 +793,7 @@ namespace user
 
          //   ::color::color crBackground = _001GetColor(m_ecolorBackground, argb(200, 255, 255, 255));
 
-         //   //if (color32_byte_red(crBackground) != 255)
+         //   //if (color32_u8_red(crBackground) != 255)
          //   //{
 
          //   //   informationf("no full red");
@@ -827,12 +827,12 @@ namespace user
       }
 
 
-      ::double_point edit_impl::get_point_transform()
+      ::f64_point edit_impl::get_point_transform()
       {
 
          // auto pointD = m_ppictureimpl->m_rectangleDrawing.center();
 
-         auto pointD = ::double_point(m_ppictureimpl->m_rectangleDrawing.size() / 2.0);
+         auto pointD = ::f64_point(m_ppictureimpl->m_rectangleDrawing.size() / 2.0);
 
          return pointD;
 
@@ -875,7 +875,7 @@ namespace user
 
          //pgraphics->offset_origin(m_pointScroll.x, m_pointScroll.y);
 
-         //::int_rectangle r(25, 25, 150, 150);
+         //::i32_rectangle r(25, 25, 150, 150);
 
          //pgraphics->fill_solid_rectangle(r, ::color::red);
 
@@ -909,7 +909,7 @@ namespace user
 
          ////pgraphics->offset_origin(m_pointScroll.x, m_pointScroll.y);
 
-         //::int_rectangle r(25, 25, 150, 150);
+         //::i32_rectangle r(25, 25, 150, 150);
 
          //pgraphics->fill_solid_rectangle(r, ::color::red);
 
@@ -958,7 +958,7 @@ namespace user
 
                }
 
-               set_timer(250, 500_ms, nullptr); // Caret
+               set_timer(e_timer_caret_flashing, 500_ms, nullptr); // Caret
 
             }
 
@@ -978,7 +978,7 @@ namespace user
             if (pformattool != nullptr && pformattool->is_showing_for_ui(this))
             {
 
-               pformattool->hide();
+               pformattool->display(e_display_hide, {});
 
             }
 
@@ -1013,21 +1013,21 @@ namespace user
       }
 
 
-      bool edit_impl::_001IsPointInside(const ::int_point & pointParam)
+      bool edit_impl::_001IsPointInside(const ::i32_point & pointParam)
       {
 
          if (is_picture_enabled())
          {
 
-            double_point point(pointParam);
+            ::f64_point point(pointParam);
 
             screen_to_client()(point);
 
-            ::int_rectangle rWindow;
+            ::i32_rectangle rWindow;
 
             window_rectangle(rWindow);
 
-            double_rectangle rectangleWindow;
+            ::f64_rectangle rectangleWindow;
 
             rectangleWindow = rWindow;
 
@@ -1043,7 +1043,7 @@ namespace user
 
             auto rectangleX = this->rectangle();
 
-            return rectangleX.contains(::int_point(point));
+            return rectangleX.contains(::i32_point(point));
 
          }
 
@@ -1409,36 +1409,40 @@ namespace user
       }
 
 
-      void edit_impl::on_timer(::timer * ptimer)
+      void edit_impl::operator()(::timer * ptimer)
       {
 
-         ::user::interaction::on_timer(ptimer);
+         ::user::interaction::operator()(ptimer);
 
-         if (ptimer->m_uTimer >= 100 && ptimer->m_uTimer <= 200)
+         //if (ptimer->m_etimer >= 100 && ptimer->m_etimer <= 200)
+         //{
+           // if (has_keyboard_focus())
+            //{
+
+               //_001OnKeyboardFocusTimer(ptimer->m_etimer - 100);
+
+            //}
+         //}
+         //else
+         if (ptimer->m_etimer == e_timer_long_press_repeat_keys_first
+             || ptimer->m_etimer == e_timer_long_press_repeat_keys_repeat)
          {
-            if (has_keyboard_focus())
+
+            if (ptimer->m_etimer == e_timer_long_press_repeat_keys_first)
             {
 
-               //_001OnKeyboardFocusTimer(ptimer->m_uTimer - 100);
+               ///kill_timer(500);
+               ///
+               ptimer->cancel();
 
-            }
-         }
-         else if (ptimer->m_uTimer == 500 || ptimer->m_uTimer == 501)
-         {
-
-            if (ptimer->m_uTimer == 500)
-            {
-
-               kill_timer(500);
-
-               set_timer(501, 300_ms, nullptr);
+               set_timer(e_timer_long_press_repeat_keys_repeat, 300_ms);
 
             }
 
             key_to_char(m_pkeymessageLast);
 
          }
-         else if (ptimer->m_uTimer == e_timer_redraw)
+         else if (ptimer->m_etimer == e_timer_redraw)
          {
 
             // Caret
@@ -1488,19 +1492,19 @@ namespace user
 
          bool bShift = psession->is_key_pressed(::user::e_key_shift);
 
-         if (key.m_nChar < 256 && character_isalpha((char)key.m_nChar))
+         if (key.m_nChar < 256 && character_isalpha((::i8)key.m_nChar))
          {
 
             if (bShift)
             {
 
-               key.m_nChar = character_toupper((char)key.m_nChar);
+               key.m_nChar = character_toupper((::i8)key.m_nChar);
 
             }
             else
             {
 
-               key.m_nChar = character_tolower((char)key.m_nChar);
+               key.m_nChar = character_tolower((::i8)key.m_nChar);
 
             }
 
@@ -1668,10 +1672,10 @@ namespace user
 
                //on_reset_focus_start_tick();
 
-               //int x;
+               //::i32 x;
                //index iLine = SelToLineX(m_iSelEnd, x);
 
-               //::int_rectangle rectangleX;
+               //::i32_rectangle rectangleX;
 
                //GetFocusRect(rectangleX);
 
@@ -1701,11 +1705,11 @@ namespace user
 
                //on_reset_focus_start_tick();
 
-               //int x;
+               //::i32 x;
 
                //index iLine = SelToLineX(m_iSelEnd, x);
 
-               //::int_rectangle rectangleX;
+               //::i32_rectangle rectangleX;
 
                //GetFocusRect(rectangleX);
 
@@ -1811,7 +1815,7 @@ namespace user
 
                _synchronous_lock synchronouslock(prichtextdata->synchronization(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 
-               double x;
+               ::f64 x;
 
                auto plinea = m_plinea;
 
@@ -1849,7 +1853,7 @@ namespace user
 
                _synchronous_lock synchronouslock(prichtextdata->synchronization(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 
-               double x;
+               ::f64 x;
 
                auto plinea = m_plinea;
 
@@ -2102,7 +2106,7 @@ namespace user
 
                string str;
 
-               char ch = 0;
+               ::i8 ch = 0;
 
                if (pkey->m_ekey == ::user::e_key_tab)
                {
@@ -2119,7 +2123,7 @@ namespace user
                else
                {
 
-                  ch = (char)pkey->m_nChar;
+                  ch = (::i8)pkey->m_nChar;
 
                   if (ch == '\r')
                   {
@@ -2128,7 +2132,7 @@ namespace user
 
                   }
 
-                  int iChar = (int)pkey->m_nChar;
+                  ::i32 iChar = (::i32)pkey->m_nChar;
 
                   if (iChar == '\r')
                   {
@@ -2144,7 +2148,7 @@ namespace user
 
                   }
 
-                  //int iCode = pkey->m_nFlags & 0xff;
+                  //::i32 iCode = pkey->m_nFlags & 0xff;
 
                   //if (bShift)
                   //{
@@ -2229,7 +2233,7 @@ namespace user
       void edit_impl::_001GetSelLineText(string & strText)
       {
 
-         //         double x;
+         //         ::f64 x;
 
          auto prichtextdata = get_rich_text_data();
 
@@ -2285,7 +2289,7 @@ namespace user
 
       //   prichtextdata->write(stream);
 
-      //   ::int_rectangle rectangleWindow;
+      //   ::i32_rectangle rectangleWindow;
 
       //   ((edit_impl *)this)->window_rectangle(rectangleWindow);
 
@@ -2310,7 +2314,7 @@ namespace user
 
       //   prichtextdata->read(stream);
 
-      //   ::int_rectangle rectangleWindow;
+      //   ::i32_rectangle rectangleWindow;
 
       //   stream >> rectangleWindow;
 
@@ -2325,7 +2329,7 @@ namespace user
       //}
 
 
-      void edit_impl::get_text_composition_area(::int_rectangle & r)
+      void edit_impl::get_text_composition_area(::i32_rectangle & r)
       {
 
       }

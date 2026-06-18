@@ -26,12 +26,12 @@ namespace gpu_opengl
       virtual public ::particle
    {
    public:
-      Mesh(std::vector<Vertex> vertices, std::vector<unsigned int> indices, Material material);
+      Mesh(std::vector<Vertex> vertices, std::vector<::u32> indices, Material material);
       void Draw(Shader &shader);
 
    public:
       std::vector<Vertex> mVertices;
-      std::vector<unsigned int> mIndices;
+      std::vector<::u32> mIndices;
       Material mMaterial;
 
    private:
@@ -39,7 +39,7 @@ namespace gpu_opengl
 
    private:
       // OpenGL data structures
-      unsigned int mVAO, mVBO, mEBO;
+      ::u32 mVAO, mVBO, mEBO;
    };
 
 

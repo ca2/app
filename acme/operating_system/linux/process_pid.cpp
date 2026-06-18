@@ -6,12 +6,12 @@
 ::e_status fgets_string(string & str, FILE * pfile, memsize iBufferSize);
 
 
-int get_process_pid(const_char_pointer procNameParam)
+::i32 get_process_pid(const_char_pointer procNameParam)
 {
 
    string procName(procNameParam);
 
-   int pid = -1;
+   ::i32 pid = -1;
 
    // Open the /proc directory
    DIR *dp = opendir("/proc");
@@ -22,7 +22,7 @@ int get_process_pid(const_char_pointer procNameParam)
       while (pid < 0 && (dirp = readdir(dp)))
       {
          // Skip non-numeric entries
-         int atom = atoi(dirp->d_name);
+         ::i32 atom = atoi(dirp->d_name);
          if (atom > 0)
          {
             // Read contents of virtual /proc/{pid}/cmdline file

@@ -13,11 +13,11 @@
 
 
 // LPVOID thread_data_get(thread_data_index dataindex);
-// int_bool thread_data_set(thread_data_index dataindex, void* pvalue);
+// ::i32_bool thread_data_set(thread_data_index dataindex, void* pvalue);
 
 
 // thread_data_index thread_data_allocate();
-// int_bool thread_data_free(thread_data_index dataindex);
+// ::i32_bool thread_data_free(thread_data_index dataindex);
 
 
 //extern thread_local ::pointer<::property_set>t_ppropertyset;
@@ -95,7 +95,7 @@
 //            if (pparticle && pparticle->is_thread())
 //            {
 //
-//               if (pparticle->task_get_run())
+//               if (pparticle->should_run())
 //               {
 //
 //                  if (pparticle->get_tag().compare(scopedstrTag) == 0)
@@ -127,7 +127,7 @@
 //CLASS_DECL_APEX bool task_set_name(htask htask, const ::scoped_string & scopedstrName);
 
 // Use instead of PostQuitMessage in OLE server applications
-//CLASS_DECL_APEX void __post_quit_message(int nExitCode);
+//CLASS_DECL_APEX void __post_quit_message(::i32 nExitCode);
 
 //typedef void     (*__THREADPROC)(void *);
 
@@ -162,10 +162,10 @@ class thread_startup;
 //
 //   //CLASS_DECL_APEX bool set_priority(enum_priority epriority);
 //
-//   //CLASS_DECL_APEX int priority();
+//   //CLASS_DECL_APEX ::i32 priority();
 //
 //
-//   //inline int get_priority_none()
+//   //inline ::i32 get_priority_none()
 //   //{
 //
 //   //   return e_priority_none;
@@ -173,7 +173,7 @@ class thread_startup;
 //   //}
 //
 //
-//   //inline int get_priority_normal()
+//   //inline ::i32 get_priority_normal()
 //   //{
 //
 //   //   return e_priority_normal;
@@ -243,10 +243,10 @@ class thread_startup;
 
 
 
-//CLASS_DECL_APEX unsigned int random_processor_index_generator();
+//CLASS_DECL_APEX ::u32 random_processor_index_generator();
 
 
-//CLASS_DECL_APEX int_bool post_message(::windowing::window * pwindow, ::user::enum_message eusermessage, ::wparam wparam, ::lparam lparam);
+//CLASS_DECL_APEX ::i32_bool post_message(::windowing::window * pwindow, ::user::enum_message eusermessage, ::wparam wparam, ::lparam lparam);
 
 
 
@@ -285,7 +285,7 @@ CLASS_DECL_ACME string get_task_name(htask htask);
 
 
 // Use instead of PostQuitMessage in OLE server applications
-//CLASS_DECL_APEX void __post_quit_message(int nExitCode);
+//CLASS_DECL_APEX void __post_quit_message(::i32 nExitCode);
 
 
 //#if !defined(UNIVERSAL_WINDOWS)

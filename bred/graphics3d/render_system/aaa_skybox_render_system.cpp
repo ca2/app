@@ -2,7 +2,7 @@
 #include "skybox_render_system.h"
 #include "bred/gpu/command_buffer.h"
 #include "bred/gpu/device.h"
-#include "bred/gpu/frame.h"
+#include "bred/gpu/layer.h"
 #include "bred/gpu/render_target.h"
 #include "bred/gpu/texture.h"
 #include "bred/graphics3d/engine.h"
@@ -105,7 +105,7 @@ namespace graphics3d
 
    //   //// Set the vertex attribute pointer for the graphics3d vertexes
    //   //glEnableVertexAttribArray(0);
-   //   //glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, 3 * sizeof(float), (void*)0);
+   //   //glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, 3 * sizeof(::f32), (void*)0);
 
 
    //   //load_cube_map_images();
@@ -126,12 +126,12 @@ namespace graphics3d
    //   for(auto & face : m_cube)
    //   {
    //      
-   //      //         unsigned char* data = stbi_load(facesCubemap[i].c_str(), &width, &height, &nrChannels, 0);
+   //      //         ::u8* data = stbi_load(facesCubemap[i].c_str(), &width, &height, &nrChannels, 0);
    //            //   auto mem = file()->as_memory();
    //      auto pimage = image()->path_image(face.m_path.c_str());
 
    //      auto sizeSquare = pimage->size();
-   //      //unsigned char* data = stbi_load_from_memory(
+   //      //::u8* data = stbi_load_from_memory(
    //      //   (const stbi_uc*)mem.data(),
    //      //   mem.size(), &width, &height, &nrChannels, 0);
    //      if (sizeSquare.is_empty())
@@ -180,8 +180,8 @@ namespace graphics3d
    //   //glGenTextures(1, &cubemapTexture);
    //   //glBindTexture(GL_TEXTURE_CUBE_MAP, cubemapTexture);
 
-   //   //int w = 0;
-   //   //int h = 0;
+   //   //::i32 w = 0;
+   //   //::i32 h = 0;
    // 
    //   //auto pimageCubeMap = image()->create_image({ m_sizeSquare.width() * 6, m_sizeSquare.height()});
 
@@ -191,7 +191,7 @@ namespace graphics3d
 
    //   //auto scanCubeMap = pimageCubeMap->m_iScan;
 
-   //   ::int_point point;
+   //   ::i32_point point;
 
    //   ::pointer_array < ::image::image > imagea;
 
@@ -222,7 +222,7 @@ namespace graphics3d
 
    //   //m_pshader->set_int("skybox", 0);
 
-   //   //int width, height, nrChannels;
+   //   //::i32 width, height, nrChannels;
 
    //   //   if (data) {
    //   //      // Load the texture data into the cubemap
@@ -270,7 +270,7 @@ namespace graphics3d
       // Set uniforms in the shader
       auto iFrameSerial = m_pengine->gpu_context()->m_pgpudevice->m_iFrameSerial2;
 
-      auto ptextureDst = m_pengine->gpu_context()->m_pgpurenderer->current_render_target_texture(::gpu::current_frame());
+      auto ptextureDst = m_pengine->gpu_context()->m_pgpurenderer->current_render_target_texture(::gpu::current_layer());
       
       m_pshader->m_bindingCubeSampler.m_strUniform = "skybox";
 
@@ -339,7 +339,7 @@ namespace graphics3d
    void skybox_render_system::on_render(::gpu::context* pgpucontext, ::graphics3d::scene_base* pscene)
    {
 
-      auto pcommandbuffer = pgpucontext->m_pgpurenderer->getCurrentCommandBuffer2(::gpu::current_frame());
+      auto pcommandbuffer = pgpucontext->m_pgpurenderer->getCurrentCommandBuffer2(::gpu::current_layer());
 
       bind(pcommandbuffer);
       draw(pcommandbuffer);

@@ -19,7 +19,7 @@ namespace file
    class watcher;
    class listener;
 
-   //using watch_id = long long;
+   //using watch_id = ::i64;
 
 
    typedef ::pointer_array < watch> file_watch_array;

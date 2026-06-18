@@ -665,7 +665,7 @@ bool path_system::is_absolute_path(const ::scoped_string & scopedstr)
 
 
 
-   char* pszRealPath = ::pfilesystemcacheitem(scopedstr, NULL);
+   char_pointer pszRealPath = ::pfilesystemcacheitem(scopedstr, NULL);
 
    if (scopedstrRealPath == NULL)
    {
@@ -706,9 +706,9 @@ bool path_system::is_absolute_path(const ::scoped_string & scopedstr)
       
       string strLink;
 
-      char * psz = strLink.get_buffer(4096);
+      char_pointer psz = strLink.get_buffer(4096);
 
-      int count = (int) readlink(path, psz, 4096);
+      ::i32 count = (::i32) readlink(path, psz, 4096);
 
       if (count < 0)
       {
@@ -780,7 +780,7 @@ void path_system::rename(const ::file::path& pathNewName, const ::file::path& pa
 }
 
 
-::file::path path_system::get_sequence_path(const ::file::path& path, ::collection::index iSequence, int iZeroPaddingWidth)
+::file::path path_system::get_sequence_path(const ::file::path& path, ::collection::index iSequence, ::i32 iZeroPaddingWidth)
 {
 
    if (iSequence <= 0)
@@ -842,7 +842,7 @@ void path_system::rename(const ::file::path& pathNewName, const ::file::path& pa
 }
 
 
-void path_system::defer_free_name_by_renaming_to_last_in_sequence(const ::file::path& path, int iZeroPaddingWidth)
+void path_system::defer_free_name_by_renaming_to_last_in_sequence(const ::file::path& path, ::i32 iZeroPaddingWidth)
 {
 
    auto etype = get_type(path);

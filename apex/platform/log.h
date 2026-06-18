@@ -19,7 +19,7 @@ namespace apex
 
 
    class CLASS_DECL_APEX log :
-      virtual public ::log
+      virtual public ::platform::log
    {
    public:
 
@@ -27,7 +27,7 @@ namespace apex
 
 
       bool                                m_bTrace;
-      ::pointer<::trace>               m_ptrace;
+      ::pointer<::platform::trace>        m_ptrace;
       ::pointer < ::mutex >                             m_pmutexTrace;
       string_array_base                        m_straSeparator;
 //      FILE *                              m_pfile;
@@ -35,13 +35,13 @@ namespace apex
       bool                                m_bInitialized;
       string                              m_strLogPath;
       atom                                m_atomLog;
-      int                                 m_iYear;
-      int                                 m_iMonth;
-      int                                 m_iDay;
+      ::i32                                 m_iYear;
+      ::i32                                 m_iMonth;
+      ::i32                                 m_iDay;
 
 
       log();
-      virtual ~log();
+      ~log() override;
 
 
       void load_flags(const ::property_set & set);
@@ -57,7 +57,7 @@ namespace apex
 
       void process_init() override;
 
-      //virtual void __tracea(enum_trace_level elevel, const ::scoped_string & scopedstrFunction, const ::file::path & path, int iLine, const ::scoped_string & scopedstr) const override;
+      //virtual void __tracea(enum_trace_level elevel, const ::scoped_string & scopedstrFunction, const ::file::path & path, ::i32 iLine, const ::scoped_string & scopedstr) const override;
 
       void set_trace_category(enum_trace_category etracecategory, enum_trace_level etracelevelMinimum);
 
@@ -69,7 +69,7 @@ namespace apex
    };
 
 
-   CLASS_DECL_APEX int SimpleDebugReport(int, const_char_pointer ,int, const_char_pointer ,const_char_pointer pszFormat, va_list list_base);
+   CLASS_DECL_APEX ::i32 SimpleDebugReport(::i32, const_char_pointer ,::i32, const_char_pointer ,const_char_pointer pszFormat, va_list list_base);
 
 
 } // namespace apex

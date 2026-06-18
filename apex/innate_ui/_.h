@@ -11,10 +11,13 @@ namespace innate_ui
 
    class button;
    class still;
+   class text_box;
 
    class icon;
 
    class innate_ui;
+
+   class menu;
 
 
 } //  namespace innate_ui

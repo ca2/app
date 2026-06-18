@@ -29,7 +29,7 @@
 // //      ::graphics3d::point_light_component m_pointlight;
 //
 //       ::string m_cubemapTextureName;
-//       long long m_llId;
+//       ::i64 m_llId;
 //       bool m_bIsSkybox = false;
 //
 //
@@ -42,9 +42,9 @@
 //       // sandbox_game_object& operator=(sandbox_game_object&&) = default;
 //
 //
-//       void initialize_game_object(long long llId);
+//       void initialize_game_object(::i64 llId);
 //
-//       long long getId() override;
+//       ::i64 getId() override;
 //
 //       floating_sequence3 color() override;
 //

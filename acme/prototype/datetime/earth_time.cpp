@@ -13,6 +13,7 @@
 
 #include "acme/_operating_system.h"
 #include "acme/operating_system/shared_posix/time1.h"
+#include "acme/operating_system/windows/time.h"
 
 
 //#include <time.h>
@@ -72,7 +73,7 @@ namespace earth
    }
 
 
-   time::time(int nYear, int nMonth, int nDay, int nHour, int nMin, int nSec, const class ::time & timeshift)
+   time::time(::i32 nYear, ::i32 nMonth, ::i32 nDay, ::i32 nHour, ::i32 nMin, ::i32 nSec, const class ::time & timeshift)
    {
 
 
@@ -131,7 +132,7 @@ namespace earth
 #ifdef WINDOWS
 
 
-   time::time(unsigned short wDosDate, unsigned short wDosTime, int nDST)
+   time::time(::u16 wDosDate, ::u16 wDosTime, ::i32 nDST)
    {
 
       struct tm atm;
@@ -309,7 +310,7 @@ namespace earth
    }
 
 
-   int time::year(const class ::time & timeshift) const noexcept
+   ::i32 time::year(const class ::time & timeshift) const noexcept
    {
 
        ::earth::gregorian_time gregoriantime(*this, 0, timeshift);
@@ -324,7 +325,7 @@ namespace earth
    }
 
 
-   int time::month(const class ::time& timeshift) const noexcept
+   ::i32 time::month(const class ::time& timeshift) const noexcept
    {
 
        ::earth::gregorian_time gregoriantime(*this, 0, timeshift);
@@ -340,7 +341,7 @@ namespace earth
    }
 
 
-   int time::day(const class ::time& timeshift) const noexcept
+   ::i32 time::day(const class ::time& timeshift) const noexcept
    {
 
       //struct tm ttm;
@@ -357,7 +358,7 @@ namespace earth
    }
 
 
-   int time::hour(const class ::time& timeshift) const noexcept
+   ::i32 time::hour(const class ::time& timeshift) const noexcept
    {
 
        ::earth::gregorian_time gregoriantime(*this, 0, timeshift);
@@ -373,7 +374,7 @@ namespace earth
    }
 
 
-   int time::minute(const class ::time& timeshift) const noexcept
+   ::i32 time::minute(const class ::time& timeshift) const noexcept
    {
 
        ::earth::gregorian_time gregoriantime(*this, 0, timeshift);
@@ -389,7 +390,7 @@ namespace earth
    }
 
 
-   int time::second(const class ::time& timeshift) const noexcept
+   ::i32 time::second(const class ::time& timeshift) const noexcept
    {
 
        ::earth::gregorian_time gregoriantime(*this, 0, timeshift);
@@ -405,7 +406,7 @@ namespace earth
    }
 
 
-   int time::day_of_week(const class ::time & timeshift) const noexcept
+   ::i32 time::day_of_week(const class ::time & timeshift) const noexcept
    {
 
        ::earth::gregorian_time gregoriantime(*this, 0, timeshift);
@@ -421,7 +422,7 @@ namespace earth
    }
 
 
-   //int time::GetGmtYear() const noexcept
+   //::i32 time::GetGmtYear() const noexcept
    //{
 
    //   struct tm ttm;
@@ -435,7 +436,7 @@ namespace earth
    //}
 
 
-   //int time::GetGmtMonth() const noexcept
+   //::i32 time::GetGmtMonth() const noexcept
    //{
 
    //   struct tm ttm;
@@ -449,7 +450,7 @@ namespace earth
    //}
 
 
-   //int time::GetGmtDay() const noexcept
+   //::i32 time::GetGmtDay() const noexcept
    //{
 
    //   struct tm ttm;
@@ -463,7 +464,7 @@ namespace earth
    //}
 
 
-   //int time::GetGmtHour() const noexcept
+   //::i32 time::GetGmtHour() const noexcept
    //{
 
    //   struct tm ttm;
@@ -477,7 +478,7 @@ namespace earth
    //}
 
 
-   //int time::GetGmtMinute() const noexcept
+   //::i32 time::GetGmtMinute() const noexcept
    //{
 
    //   struct tm ttm;
@@ -491,7 +492,7 @@ namespace earth
    //}
 
 
-   //int time::GetGmtSecond() const noexcept
+   //::i32 time::GetGmtSecond() const noexcept
    //{
 
    //   struct tm ttm;
@@ -505,7 +506,7 @@ namespace earth
    //}
 
 
-   //int time::GetGmtDayOfWeek() const noexcept
+   //::i32 time::GetGmtDayOfWeek() const noexcept
    //{
 
    //   struct tm ttm;
@@ -561,7 +562,7 @@ namespace earth
 
 //       return gregoriantime.m_iYear;
 
-      return { posix_time_t{}, (long long)((gregoriantime.m_iHour * 3600) + (gregoriantime.m_iMinute * 60) + gregoriantime.m_iSecond) };
+      return { posix_time_t{}, (::i64)((gregoriantime.m_iHour * 3600) + (gregoriantime.m_iMinute * 60) + gregoriantime.m_iSecond) };
 
    }
 
@@ -580,7 +581,7 @@ namespace earth
    //}
 
 
-   long long time::day_sig(const class ::time& timeshift) const noexcept
+   ::i64 time::day_sig(const class ::time& timeshift) const noexcept
    {
 
        ::earth::gregorian_time gregoriantime(*this, 0, timeshift);
@@ -601,7 +602,7 @@ namespace earth
       timeUtc += timeshift.m_iSecond;
 #if _SECURE_TEMPLATE
 
-char* szBuffer = str.get_buffer(maxTimeBufferSize);
+char_pointer szBuffer = str.get_buffer(maxTimeBufferSize);
 
 struct tm ptmTemp;
 
@@ -632,7 +633,7 @@ return str;
 //
  #else
    //#if defined(LINUX) || defined(__ANDROID__) || defined(SOLARIS) || defined(__APPLE__)
-      char * szBuffer = str.get_buffer(maxTimeBufferSize);
+      char_pointer szBuffer = str.get_buffer(maxTimeBufferSize);
 //   #if OSBIT == 32
   //    const posix_time timet = (const posix_time) timeUtc;
     //  struct tm * ptmTemp = gmtime(&timet);
@@ -653,10 +654,10 @@ return str;
 //   #elif defined(__APPLE__)
 //
 //   #if __WORDSIZE != 64
-//   #pragma error "error: long should 8-unsigned char on __APPLE__"
+//   #pragma error "error: long should 8-::u8 on __APPLE__"
 //   #endif
 //
-//      char * szBuffer = str.get_buffer(maxTimeBufferSize);
+//      char_pointer szBuffer = str.get_buffer(maxTimeBufferSize);
 //
 //      struct tm * ptmTemp = gmtime((posix_time *)&time.m_posixtime);
 //
@@ -695,7 +696,7 @@ return str;
 
    //   string str;
 
-   //   char szBuffer[maxTimeBufferSize];
+   //   ::i8 szBuffer[maxTimeBufferSize];
 
    //#if defined(LINUX) || defined(__APPLE__) || defined(__ANDROID__)
 
@@ -805,7 +806,7 @@ return str;
    }
 
 
-   long long time::total_minutes(const class ::time & timeshift) const noexcept
+   ::i64 time::total_minutes(const class ::time & timeshift) const noexcept
    {
    
       return m_iSecond / 60;
@@ -821,7 +822,7 @@ return str;
 //
 //dump_context & operator <<(dump_context & dumpcontext, ::earth::time & time)
 //{
-////   char psz[32];
+////   ::i8 psz[32];
 ////   psz[0] = '\0';
 ////
 //////   posix_time tmp = time.get_time();
@@ -847,7 +848,7 @@ return str;
 ////stream & operator <<(stream & os, ::earth::time & time)
 ////{
 ////
-////   os.write((long long) time.m_posixtime);
+////   os.write((::i64) time.m_posixtime);
 ////
 ////   return os;
 ////
@@ -857,7 +858,7 @@ return str;
 
 
 
-//long long time::GetGmtDaySig() const noexcept
+//::i64 time::GetGmtDaySig() const noexcept
 //{
 
 //   struct tm ttm;
@@ -873,39 +874,17 @@ return str;
 //stream & operator >>(stream & is, ::earth::time & rtime)
 //{
 //
-//   is.read((long long &) rtime.m_posixtime);
+//   is.read((::i64 &) rtime.m_posixtime);
 //
 //   return is;
 //
 //}
 
 
-#ifdef WINDOWS
+//#ifdef WINDOWS
 
 
-CLASS_DECL_ACME SYSTEMTIME __SYSTEMTIME(const ::earth::time & time)
-{
 
-   SYSTEMTIME st = {};
-
-   struct tm ttm;
-
-   struct tm * ptm;
-
-   ptm = tm_struct(&ttm, time);
-
-   st.wDay = ptm->tm_mday;
-   st.wDayOfWeek = ptm->tm_wday;
-   st.wHour = ptm->tm_hour;
-   st.wMilliseconds = 0;
-   st.wMinute = ptm->tm_min;
-   st.wMonth = ptm->tm_mon + 1;
-   st.wSecond = ptm->tm_sec;
-   st.wYear = 1900 + ptm->tm_year;
-
-   return st;
-
-}
 
 
 //file_time __file_time(const ::earth::time & time)
@@ -924,7 +903,7 @@ CLASS_DECL_ACME SYSTEMTIME __SYSTEMTIME(const ::earth::time & time)
 //
 //#ifdef WINDOWS
 //
-//      DWORD dwLastError = ::GetLastError();
+//      auto lasterror = ::windows::get_last_error();
 //
 //#endif
 //
@@ -939,32 +918,32 @@ CLASS_DECL_ACME SYSTEMTIME __SYSTEMTIME(const ::earth::time & time)
 //}
 
 
-CLASS_DECL_ACME FILETIME & copy(FILETIME & filetime, const ::earth::time & time)
-{
-
-   SYSTEMTIME systemtime = __SYSTEMTIME(time);
-
-   if (!SystemTimeToFileTime(&systemtime, &filetime))
-   {
-
-#ifdef WINDOWS
-
-      DWORD dwLastError = ::GetLastError();
-
-#endif
-
-      //TRACELASTERROR();
-
-      ::memory_set(&filetime, 0, sizeof(filetime));
-
-   }
-
-   return filetime;
-
-}
-
-
-#endif
+//CLASS_DECL_ACME FILETIME & copy(FILETIME & filetime, const ::earth::time & time)
+//{
+//
+//   SYSTEMTIME systemtime = as_SYSTEMTIME(time);
+//
+//   if (!SystemTimeToFileTime(&systemtime, &filetime))
+//   {
+//
+//#ifdef WINDOWS
+//
+//      auto lasterror = ::windows::get_last_error();
+//
+//#endif
+//
+//      //TRACELASTERROR();
+//
+//      ::memory_set(&filetime, 0, sizeof(filetime));
+//
+//   }
+//
+//   return filetime;
+//
+//}
+//
+//
+//#endif
 
 
 

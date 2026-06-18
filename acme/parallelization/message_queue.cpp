@@ -106,7 +106,7 @@ void message_queue::post_message(const MESSAGE & message)
       
    }
 
-   if(m_eflagElement & (1ll << 36))
+   if(m_eflagElement & e_flag_debug0)
    {
       
       //printf("test123");
@@ -133,10 +133,10 @@ void message_queue::kick_idle()
 }
 
 
-::e_status message_queue::get_message(MESSAGE * pmessage, const ::operating_system::window & operatingsystemwindow, unsigned int wMsgFilterMin, unsigned int wMsgFilterMax, const class time & time)
+::e_status message_queue::get_message(MESSAGE * pmessage, const ::operating_system::window & operatingsystemwindow, ::u32 wMsgFilterMin, ::u32 wMsgFilterMax, const class time & time)
 {
 
-   long long iFilterMinimum = wMsgFilterMin;
+   ::i64 iFilterMinimum = wMsgFilterMin;
 
    if (iFilterMinimum == 0)
    {
@@ -145,7 +145,7 @@ void message_queue::kick_idle()
 
    }
 
-   long long iFilterMaximum = wMsgFilterMax;
+   ::i64 iFilterMaximum = wMsgFilterMax;
 
    if (iFilterMaximum == 0)
    {
@@ -212,7 +212,7 @@ void message_queue::kick_idle()
 
             *pmessage = message;
             
-            if(m_eflagElement & (1ll << 36))
+            if(m_eflagElement & e_flag_debug0)
             {
              
                //printf("test123");
@@ -237,7 +237,7 @@ void message_queue::kick_idle()
 
          auto bAcquired = m_phappeningNewMessage->_wait(time);
 
-         if(m_eflagElement & (1ll << 36))
+         if(m_eflagElement & e_flag_debug0)
          {
           
             //printf("test123");
@@ -259,7 +259,7 @@ void message_queue::kick_idle()
 }
 
 
-bool message_queue::peek_message(MESSAGE * pMsg, const ::operating_system::window & operatingsystemwindow,unsigned int wMsgFilterMin,unsigned int wMsgFilterMax, bool bRemoveMessage)
+bool message_queue::peek_message(MESSAGE * pMsg, const ::operating_system::window & operatingsystemwindow,::u32 wMsgFilterMin,::u32 wMsgFilterMax, bool bRemoveMessage)
 {
 
    if(wMsgFilterMax == 0)
@@ -296,7 +296,7 @@ bool message_queue::peek_message(MESSAGE * pMsg, const ::operating_system::windo
 
    ::collection::count count = m_messagea.get_count();
 
-   for(int i = 0; i < count; i++)
+   for(::i32 i = 0; i < count; i++)
    {
 
       MESSAGE & msg = m_messagea[i];
@@ -311,7 +311,7 @@ bool message_queue::peek_message(MESSAGE * pMsg, const ::operating_system::windo
          if(bRemoveMessage)
          {
 
-            if(m_eflagElement & (1ll << 36))
+            if(m_eflagElement & e_flag_debug0)
             {
              
                //printf("test123");

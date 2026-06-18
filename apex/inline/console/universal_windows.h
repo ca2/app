@@ -1,7 +1,7 @@
 
 
 ////CLASS_DECL_ACME string executable_get_app_id(hinstance hinstance);
-//CLASS_DECL_ACME hinstance get_module_handle(const platform_char* psz);
+//CLASS_DECL_ACME hinstance get_module_handle(const platform_char * psz);
 //
 //
 //class console : 
@@ -71,7 +71,7 @@
 //   }
 //
 //
-//   console(int argc, char** argv, char ** envp)
+//   console(::i32 argc, char_pointer * argv, char_pointer * envp)
 //   {
 //
 //      common_construct();
@@ -83,7 +83,7 @@
 //   }
 //
 //
-//   console(int argc, wchar_t** argv, wchar_t ** envp)
+//   console(::i32 argc, wchar_t** argv, wchar_t ** envp)
 //   {
 //
 //      common_construct();
@@ -109,7 +109,7 @@
 //   }
 //
 //
-//   int result()
+//   ::i32 result()
 //   {
 //
 //      auto estatus = system()->inline_term();
@@ -140,7 +140,7 @@
 
 
 
-//int wmain(int argc, wchar_t* argv[])
+//::i32 wmain(::i32 argc, wchar_t* argv[])
 //{
 //
 //   console console(argc, argv);

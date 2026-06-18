@@ -111,8 +111,8 @@ namespace user
       
       
 #ifdef _DEBUG
-      long long increment_reference_count() override;
-      long long decrement_reference_count() override;
+      ::i64 increment_reference_count() override;
+      ::i64 decrement_reference_count() override;
 #endif
 
       //using pointer_array < ::user::interaction >::find_first;
@@ -203,7 +203,7 @@ namespace user
       inline bool get_typed_child(CHILD *& pchild)
       {
 
-         for (int i = 0; i < this->interaction_count(); i++)
+         for (::i32 i = 0; i < this->interaction_count(); i++)
          {
 
             pchild = this->interaction_at(i).cast < CHILD >();
@@ -217,7 +217,7 @@ namespace user
 
          }
 
-         for (int i = 0; i < this->interaction_count(); i++)
+         for (::i32 i = 0; i < this->interaction_count(); i++)
          {
 
             if (this->interaction_at(i)->get_typed_child(pchild))

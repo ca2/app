@@ -17,7 +17,7 @@
 //}
 
 
-// int message_box_w(oswindow window,const unichar * pszMessage,const unichar * pszTitle,int iFlags)
+// ::i32 message_box_w(oswindow window,const wide_character * pszMessage,const wide_character * pszTitle,::i32 iFlags)
 // {
 
 
@@ -56,7 +56,7 @@
 
 
 
-VOID WINAPI sleep(unsigned int dw::times)
+VOID WINAPI sleep(::u32 dw::times)
 {
    static HANDLE singletonEvent = nullptr;
 
@@ -88,7 +88,7 @@ VOID WINAPI sleep(unsigned int dw::times)
 // typedef bool
 // (WINAPI * LPFN_ChangeWindowMessageFilter)(
 // _In_ const ::atom & atom,
-// _In_ unsigned int dwFlag);
+// _In_ ::u32 dwFlag);
 
 
 // LPFN_ChangeWindowMessageFilter g_pfnChangeWindowMessageFilter = nullptr;
@@ -100,7 +100,7 @@ LSTATUS
     HKEY hkey,
     const ::wide_character * lpSubKey,
     const ::wide_character * lpValue,
-    unsigned int dwFlags,
+    ::u32 dwFlags,
     LPDWORD pdwType,
 	 PVOID pvData,
     LPDWORD pcbData
@@ -154,7 +154,7 @@ bool os_finalize()
 */
 
 
-int_bool main_initialize()
+::i32_bool main_initialize()
 {
 
    //sleep(15 * 1000);
@@ -205,7 +205,7 @@ int_bool main_initialize()
 }
 
 
-int_bool main_finalize()
+::i32_bool main_finalize()
 {
 
 
@@ -312,7 +312,7 @@ string key_to_char(wparam wparam, lparam lparam)
 
 
 
-//unsigned int WINAPI WaitForSingleObject( _In_ HANDLE hHandle, _In_ unsigned int dw::times )
+//::u32 WINAPI WaitForSingleObject( _In_ HANDLE hHandle, _In_ ::u32 dw::times )
 //{
 //
 //   return ::WaitForSingleObjectEx(hHandle, dw::times, false);
@@ -333,7 +333,7 @@ string key_to_char(wparam wparam, lparam lparam)
 //   return CreateMutexW(lpMutexAttributes, bInitialOwner, wstring(lpName));
 //}
 
-//CLASS_DECL_ACME char* getenv (const_char_pointer name)
+//CLASS_DECL_ACME char_pointer getenv (const_char_pointer pszName)
 //{
 //   return "";
 //}
@@ -362,7 +362,7 @@ string key_to_char(wparam wparam, lparam lparam)
 
 //
 //
-//int_bool is_windows_nt()
+//::i32_bool is_windows_nt()
 //{
 //
 //#if defined(_WIN32_WINNT) && (_WIN32_WINNT >= _WIN32_WINNT_WINXP) // winxp or greater
@@ -547,7 +547,7 @@ bool __node_aura_pos_term()
 
 
 
-int_bool is_windows_7_or_lower()
+::i32_bool is_windows_7_or_lower()
 {
 
    return false; // metro is from windows 8

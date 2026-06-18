@@ -24,7 +24,7 @@ public:
    class ::time                                      m_timeLastSaveWindowRect;
    class ::time                                      m_timeLastSaveWindowRectRequest;
    ::image::image_pointer                                 m_pimageBk;
-   ::int_rectangle                                 m_FullScreenWindowRect;
+   ::i32_rectangle                                 m_FullScreenWindowRect;
    ::pointer<::image::fastblur>                   m_pfastblur;
    ::image::image_pointer                                 m_pimageBlur;
    ::user::enum_translucency                       m_etranslucencyFrame;
@@ -73,7 +73,7 @@ public:
    bool create_bars() override;
    void on_create_bars() override;
 
-   void _on_configure_notify_unlocked(const ::int_rectangle & rectangle) override;
+   void _on_configure_notify_unlocked(const ::i32_rectangle & rectangle) override;
 
    void install_message_routing(::channel * pchannel) override;
 
@@ -82,20 +82,20 @@ public:
    void on_after_set_parent() override;
 
    
-   //void raw_rectangle(::int_rectangle & rectangle, ::user::enum_layout elayout = ::user::e_layout_sketch) override;
-   ::int_rectangle rectangle(::user::enum_layout elayout = ::user::e_layout_sketch) override;
+   //void raw_rectangle(::i32_rectangle & rectangle, ::user::enum_layout elayout = ::user::e_layout_sketch) override;
+   ::i32_rectangle rectangle(::user::enum_layout elayout = ::user::e_layout_sketch) override;
 
 
    virtual bool is_application_main_window();
 
    bool GetCustomFrame();
    void SetCustomFrame(bool bCustom);
-   void SetBorderRect(const ::int_rectangle & rectangle) override;
-   void GetBorderRectangle(::int_rectangle * prectangle) override;
+   void SetBorderRect(const ::i32_rectangle & rectangle) override;
+   void GetBorderRectangle(::i32_rectangle * prectangle) override;
 
    ::color::color get_border_main_body_color() override;
 
-   void ImpactOnActivateFrame(::pointer<::user::impact>pimpact, unsigned int user, ::pointer<::user::interaction>frame);
+   void ImpactOnActivateFrame(::pointer<::user::impact>pimpact, ::u32 user, ::pointer<::user::interaction>frame);
 
    virtual void ToggleFullScreen();
    void WfiOnFullScreen() override;
@@ -127,13 +127,13 @@ public:
    using ::experience::frame_window::frame_experience;
    virtual ::pointer < ::experience::frame > frame_experience();
 
-   //virtual bool LoadFrame(const ::scoped_string & scopedstrMatter, unsigned int dwDefaultStyle = WS_OVERLAPPEDWINDOW | FWS_ADDTOTITLE, ::user::interaction * puiParent = nullptr, ::user::system * pusersystem = nullptr) override;
+   //virtual bool LoadFrame(const ::scoped_string & scopedstrMatter, ::u32 dwDefaultStyle = WS_OVERLAPPEDWINDOW | FWS_ADDTOTITLE, ::user::interaction * puiParent = nullptr, ::user::system * pusersystem = nullptr) override;
 
-   virtual bool LoadFrame(const ::scoped_string & scopedstrMatter, unsigned int dwDefaultStyle = FWS_ADDTOTITLE, ::user::interaction * puiParent = nullptr, ::user::system * pusersystem = nullptr) override;
+   virtual bool LoadFrame(const ::scoped_string & scopedstrMatter, ::u32 dwDefaultStyle = FWS_ADDTOTITLE, ::user::interaction * puiParent = nullptr, ::user::system * pusersystem = nullptr) override;
 
    void _001OnDeferPaintLayeredWindowBackground(::draw2d::graphics_pointer & pgraphics) override;
 
-   //virtual bool LoadToolBar(::platform::type sptype,atom idToolBar, const ::scoped_string & scopedstrToolBar,unsigned int dwCtrlStyle = TBSTYLE_FLAT,unsigned int uStyle = WS_CHILD | WS_VISIBLE | CBRS_ALIGN_TOP);
+   //virtual bool LoadToolBar(::platform::type sptype,atom idToolBar, const ::scoped_string & scopedstrToolBar,::u32 dwCtrlStyle = TBSTYLE_FLAT,::u32 uStyle = WS_CHILD | WS_VISIBLE | CBRS_ALIGN_TOP);
 
 
 
@@ -198,8 +198,8 @@ public:
    virtual bool updown_get_down_enable() override;
 
 
-   virtual class mini_dock_frame_window* CreateFloatingFrame(unsigned int uStyle);
-   //virtual void NotifyFloatingWindows(unsigned int dwFlags) override;
+   virtual class mini_dock_frame_window* CreateFloatingFrame(::u32 uStyle);
+   //virtual void NotifyFloatingWindows(::u32 dwFlags) override;
 
 
    virtual void design_down() override;
@@ -216,8 +216,8 @@ public:
    // void dump(dump_context & dumpcontext) const override;
 
 
-   void OnHScroll(unsigned int nSBCode, unsigned int nPos, ::user::scroll_bar* pScrollBar);
-   void OnVScroll(unsigned int nSBCode, unsigned int nPos, ::user::scroll_bar* pScrollBar);
+   void OnHScroll(::u32 nSBCode, ::u32 nPos, ::user::scroll_bar* pScrollBar);
+   void OnVScroll(::u32 nSBCode, ::u32 nPos, ::user::scroll_bar* pScrollBar);
    virtual void on_simple_command(::message::simple_command * psimplecommand) override;
 
 //#ifdef WINDOWS_DESKTOP
@@ -245,7 +245,7 @@ public:
 
    void prepare_frame(::user::document * pdocument,bool bMakeVisible) override;
 
-   virtual void on_timer(::timer * ptimer) override;
+   void operator()(::timer * ptimer) override;
 
    virtual bool frame_is_transparent() override;
 

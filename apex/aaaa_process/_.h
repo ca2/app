@@ -9,9 +9,9 @@ namespace operating_system
 //   {
 //
 //
-//      int      m_iExitCode;
-//      int      m_iExitSignal;
-//      int      m_iExitStop;
+//      ::i32      m_iExitCode;
+//      ::i32      m_iExitSignal;
+//      ::i32      m_iExitStop;
 //
 //      exit_status();
 //

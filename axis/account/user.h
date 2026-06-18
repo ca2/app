@@ -35,7 +35,7 @@ namespace account
       string                                    m_strLoginStats;
       string                                    m_strServerInfo;
       string                                    m_strAuthResponse;
-      int                                       m_iImpact;
+      ::i32                                       m_iImpact;
       string                                    m_strForm;
       bool                                      m_bDeferRegistration;
       string_array_base                              m_straSiblingServers;

@@ -25,7 +25,7 @@ namespace app_shader
       ::pointer<::gpu::context>           m_pgpucontext;
       ::pointer<::gpu::shader>            m_pgpushader;
       ::image::image_pointer                     m_pimageFromGpu;
-      //int_rectangle                       m_rectangle;
+      //i32_rectangle                       m_rectangle;
       string                              m_strFont1;
       string_map_base < ::image::image_pointer >      m_pimagemap;
       ::image::image_pointer                     m_pimage1;
@@ -49,8 +49,8 @@ namespace app_shader
       //virtual void initialize_render(::user::interaction * puserinteraction);
 
 #ifdef _DEBUG
-      virtual long long increment_reference_count() override;
-      virtual long long decrement_reference_count() override;
+      virtual ::i64 increment_reference_count() override;
+      virtual ::i64 decrement_reference_count() override;
 #endif
 
       virtual void update_shader();

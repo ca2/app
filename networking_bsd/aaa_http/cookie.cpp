@@ -97,14 +97,14 @@ namespace http
 
 
 
-   ::collection::index cookies::find_cookie(const char * name)
+   ::collection::index cookies::find_cookie(const_char_pointer pszName)
    {
 
       string strNameLow(name);
 
       strNameLow.make_lower();
 
-      for(int i = 0; i < this->get_size(); i++)
+      for(::i32 i = 0; i < this->get_size(); i++)
       {
 
          if(this->element_at(i)->m_strNameLow == strNameLow)
@@ -120,9 +120,9 @@ namespace http
 
    }
 
-   ::collection::index cookies::lowfind_cookie(const char * name)
+   ::collection::index cookies::lowfind_cookie(const_char_pointer pszName)
    {
-      for(int i = 0; i < this->get_size(); i++)
+      for(::i32 i = 0; i < this->get_size(); i++)
       {
          if(this->element_at(i)->m_strNameLow == name)
          {
@@ -132,7 +132,7 @@ namespace http
       return -1;
    }
 
-   http::cookie & cookies::cookie(const char * name)
+   http::cookie & cookies::cookie(const_char_pointer pszName)
    {
 
       auto pFind = find_cookie(name);
@@ -155,7 +155,7 @@ namespace http
    }
 
 
-   http::cookie & cookies::lowcookie(const char * name)
+   http::cookie & cookies::lowcookie(const_char_pointer pszName)
    {
 
       auto pFind = lowfind_cookie(name);
@@ -189,7 +189,7 @@ namespace http
       //string_array_base stra;
       //stra.add_tokens(scopedstr, ";", true);
       bool bRun = true;
-      int i = 0;
+      ::i32 i = 0;
       while(bRun)
       {
          const ::ansi_character * pszEnd = strchr(scopedstr, ';');
@@ -257,20 +257,20 @@ namespace http
       string strCookie;
       for(::collection::index i = 0; i < this->get_size(); i++)
       {
-         strCookie += (const char *) (this->element_at(i)->m_strName + "=" + this->element_at(i)->m_varValue.string());
+         strCookie += (const_char_pointer ) (this->element_at(i)->m_strName + "=" + this->element_at(i)->m_varValue.string());
          strCookie += ";";
       }
       return strCookie;
    }
 
 
-   character_count cookies::get_length( const char * name)
+   character_count cookies::get_length( const_char_pointer pszName)
    {
       return cookie(name).m_varValue.string().get_length();
    }
 
 
-   bool cookies::set-cookie(const char * name, const ::payload & payload, const ::duration & duration, const ::file::path & path, const char * domain, bool bSecure)
+   bool cookies::set-cookie(const_char_pointer pszName, const ::payload & payload, const ::duration & duration, const ::file::path & path, const_char_pointer domain, bool bSecure)
    {
 
       auto & cookie = this->cookie(name);
@@ -314,10 +314,10 @@ namespace http
 
 #endif
 
-      const char *days[7] = {"Sunday", "Monday",
+      const_char_pointer days[7] = {"Sunday", "Monday",
                              "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"
                             };
-      const char *months[12] = {"Jan", "Feb", "Mar", "Apr", "May",
+      const_char_pointer months[12] = {"Jan", "Feb", "Mar", "Apr", "May",
                                 "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"
                                };
       string strDateTime;
@@ -409,7 +409,7 @@ namespace http
 
    }
 
-   http::cookie & cookies::operator [](const char * name)
+   http::cookie & cookies::operator [](const_char_pointer pszName)
    {
       return cookie(name);
    }

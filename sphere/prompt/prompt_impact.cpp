@@ -119,31 +119,31 @@ namespace prompt
 
       __UNREFERENCED_PARAMETER(pmessage);
 
-      ::int_rectangle rectangleDesktop;
+      ::i32_rectangle rectangleDesktop;
 
       best_monitor(rectangleDesktop);
 
-      ::int_rectangle rectangleX = this->rectangle();
+      ::i32_rectangle rectangleX = this->rectangle();
       
       //this->rectangle(rectangleX);
       
       rectangleX.deflate(2, 2);
       
-      int iW = rectangleX.width() / 2;
+      ::i32 iW = rectangleX.width() / 2;
       
-      int iH = rectangleX.height() / 2;
+      ::i32 iH = rectangleX.height() / 2;
       
       iH = minimum(iH, 120);
       
-      double r = (double) iW / (double) iH;
-      double rScreen = (double) rectangleDesktop.width() / (double) rectangleDesktop.height();
+      ::f64 r = (::f64) iW / (::f64) iH;
+      ::f64 rScreen = (::f64) rectangleDesktop.width() / (::f64) rectangleDesktop.height();
       if(r < rScreen)
       {
-         iH = (int) (iW / rScreen);
+         iH = (::i32) (iW / rScreen);
       }
       else if(r > rScreen)
       {
-         iW = (int) (iH * rScreen);
+         iW = (::i32) (iH * rScreen);
       }
    }
 
@@ -172,13 +172,13 @@ namespace prompt
    void impact::on_message_context_menu(::message::message * pmessage)
    {
 //      ::pointer<::message::context_menu>pcontextmenu(pmessage);
-//      ::int_point point = pcontextmenu->GetPoint();
+//      ::i32_point point = pcontextmenu->GetPoint();
 
 
    }
 
 
-   void impact::_001OnTabClick(int iTab)
+   void impact::_001OnTabClick(::i32 iTab)
    {
       if(iTab == 1)
       {
@@ -236,10 +236,10 @@ namespace prompt
    }
 
 
-   void impact::on_timer(::timer * ptimer)
+   void impact::operator()(::timer * ptimer)
    {
 
-      ::user::impact::on_timer(ptimer);
+      ::user::impact::operator()(ptimer);
 
    }
 

@@ -78,7 +78,7 @@ namespace fs
 
       ::file::listing_base listingFsPath;
 
-      for(int i = 0; i < m_spafsdata.get_count(); i++)
+      for(::i32 i = 0; i < m_spafsdata.get_count(); i++)
       {
 
          listingFsPath.clear_results();
@@ -93,7 +93,7 @@ namespace fs
 
          listing.add_listing(listingFsPath);
 
-         for(int j = 0; j < listingFsPath.get_size(); j++)
+         for(::i32 j = 0; j < listingFsPath.get_size(); j++)
          {
 
             auto p = listing[j];
@@ -264,13 +264,13 @@ namespace fs
    //}
 
 
-   int set::is_dir(const ::file::path & path)
+   ::i32 set::is_dir(const ::file::path & path)
    {
 
       if (path.m_etype & ::file::e_type_exists)
       {
 
-         return path.m_etype & ::file::e_type_folder2;
+         return (::i32_boolean)( path.m_etype & ::file::e_type_folder2);
 
       }
 
@@ -444,7 +444,7 @@ namespace fs
    //}
 
 
-   //string set::eat_end_level(const ::scoped_string & scopedstr, int iLevel)
+   //string set::eat_end_level(const ::scoped_string & scopedstr, ::i32 iLevel)
    //{
 
    //   ::fs::data * pdata = path_data(scopedstr);

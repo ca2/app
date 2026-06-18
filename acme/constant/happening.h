@@ -2,7 +2,7 @@
 #pragma once
 
 
-enum enum_happening : int
+enum enum_happening : ::i32
 {
 
    e_happening_none,

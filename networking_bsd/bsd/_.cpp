@@ -5,13 +5,13 @@
 
 //#include <string.h>
 
-#include "acme/operating_system/shared_posix/c_error_number.h"
+#include "acme/operating_system/shared_posix/c_errno.h"
 
 
-int networking_last_error()
+::i32 networking_last_error()
 {
 
-   return c_error_number().m_iErrorNumber;
+   return c_errno().m_iErrNo;
 
 }
 
@@ -38,14 +38,14 @@ bool networking::defer_finalize_operating_system_networking()
 }
 
 
-string networking::_last_error_message(long long llError)
+string networking::_last_error_message(::i64 llError)
 {
 
-   return strerror((int) llError);
+   return strerror((::i32) llError);
 
 }
 
-   long long networking::last_error()
+   ::i64 networking::last_error()
    {
 
    return networking_last_error();
@@ -57,10 +57,10 @@ string networking::_last_error_message(long long llError)
 } // namespace networking_bsd
 
 
-string bsd_socket_error(int iBsdSocketError)
+string bsd_socket_error(::i32 iBsdSocketError)
 {
 
-   return c_error_number({c_error_number_t{}, iBsdSocketError}).get_error_description();
+   return c_errno({c_errno_t{}, iBsdSocketError}).get_error_description();
 
 }
 

@@ -33,14 +33,14 @@ namespace nanoui
       ::pointer<::user::box>           m_pbox;
       ::pointer_array<PopupButton>     m_popupbuttona;
       bool                             m_bPendingCentering;
-      ::float_rectangle                  m_boundsHeader;
+      ::f32_rectangle                  m_boundsHeader;
       ::string                         m_title;
       ::pointer< Widget >              m_button_panel;
       bool                             m_bModal;
       bool                             m_bDrag;
-      ::int_point                      m_pointDragStartCursor;
-      ::int_point                      m_pointDragStartPosition;
-      ::int_point                      m_pointLastDragPosition;
+      ::i32_point                      m_pointDragStartCursor;
+      ::i32_point                      m_pointDragStartPosition;
+      ::i32_point                      m_pointLastDragPosition;
       
 
       Window(Widget * parent, const ::scoped_string & title = "Untitled");
@@ -69,19 +69,19 @@ namespace nanoui
    /// Draw the window
    virtual void draw(::nano2d::context  * pcontext) override;
    /// Handle mouse enter/leave happenings
-   virtual bool mouse_enter_event(const int_point & p, bool enter, const ::user::e_key & ekeyModifiers) override;
+   virtual bool mouse_enter_event(const i32_point & point, bool bEnter) override;
    /// Handle window drag happenings
-   //virtual bool mouse_drag_event(const int_sequence2 & p, const int_sequence2 & rel, const ::user::e_key & ekeyModifiers) override;
-   virtual bool mouse_motion_event(const int_point& p, const int_size& rel, bool bDown, const ::user::e_key& ekeyModifiers) override;
+   //virtual bool mouse_drag_event(const i32_sequence2 & p, const i32_sequence2 & rel, const ::user::keyboard_state & keyboardstate) override;
+   virtual bool mouse_motion_event(const i32_point &point) override;
    /// Handle mouse happenings recursively and bring the current window to the top
-   virtual bool mouse_button_event(const int_point & p, ::user::e_mouse emouse, bool down, bool bDoubleClick, const ::user::e_key & ekeyModifiers) override;
+   virtual bool mouse_button_event(const i32_point & point, ::user::e_key euserkeyMouseButton, bool bDown, bool bDoubleClick) override;
    /// Accept scroll happenings and propagate them to the pwidget under the mouse cursor
       
       void on_begin_draw(::nano2d::context  * pcontext) override;
             
-   virtual bool scroll_event(const int_point & p, const float_size & rel) override;
+   virtual bool scroll_event(const i32_point & point, const ::f32_size & rel) override;
    /// Compute the preferred size of the pwidget
-   virtual int_size preferred_size(::nano2d::context  * pcontext, bool bRecalcTextSize = true) override;
+   virtual i32_size preferred_size(::nano2d::context  * pcontext, bool bRecalcTextSize = true) override;
    /// Invoke the associated layout generator to properly place pwidgetChild widgets, if any
    virtual void perform_layout(::nano2d::context  * pcontext, bool bRecalcTextSize = true) override;
    //protected:

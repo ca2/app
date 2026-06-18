@@ -14,7 +14,7 @@ public:
 
    itask       m_itaskHandler;
 
-   int         m_iHandlerExitCode = 0;
+   ::i32         m_iHandlerExitCode = 0;
 
 
 

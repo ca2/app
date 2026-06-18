@@ -25,18 +25,18 @@ namespace earth
 
 
       constexpr time_span() noexcept;
-      constexpr time_span(long long lDays,int nHours,int nMins,int nSecs) noexcept;
+      constexpr time_span(::i64 lDays,::i32 nHours,::i32 nMins,::i32 nSecs) noexcept;
       constexpr time_span(const posix_time & posixtime) noexcept : posix_time(posixtime) {}
       constexpr time_span(const class ::time & time) noexcept : posix_time(time) {}
 
 
-      constexpr long long days() const noexcept;
-      constexpr long long hours() const noexcept;
-      constexpr int hour() const noexcept;
-      constexpr long long minutes() const noexcept;
-      constexpr int minute() const noexcept;
-      constexpr long long seconds() const noexcept;
-      constexpr int second() const noexcept;
+      constexpr ::i64 days() const noexcept;
+      constexpr ::i64 hours() const noexcept;
+      constexpr ::i32 hour() const noexcept;
+      constexpr ::i64 minutes() const noexcept;
+      constexpr ::i32 minute() const noexcept;
+      constexpr ::i64 seconds() const noexcept;
+      constexpr ::i32 second() const noexcept;
 
       constexpr posix_time GetTimeSpan() const noexcept;
 
@@ -111,7 +111,7 @@ namespace earth
    }
 
 
-   constexpr time_span::time_span(long long lDays, int nHours, int nMins, int nSecs) noexcept
+   constexpr time_span::time_span(::i64 lDays, ::i32 nHours, ::i32 nMins, ::i32 nSecs) noexcept
    {
 
       m_iSecond = nSecs + 60 * (nMins + 60 * (nHours + 24ll * lDays));
@@ -119,7 +119,7 @@ namespace earth
    }
 
 
-   constexpr long long time_span::days() const noexcept
+   constexpr ::i64 time_span::days() const noexcept
    {
 
       return m_iSecond / (24 * 3600);
@@ -127,7 +127,7 @@ namespace earth
    }
 
 
-   constexpr  long long time_span::hours() const noexcept
+   constexpr  ::i64 time_span::hours() const noexcept
    {
 
       return m_iSecond / 3600;
@@ -135,7 +135,7 @@ namespace earth
    }
 
 
-   constexpr  int time_span::hour() const noexcept
+   constexpr  ::i32 time_span::hour() const noexcept
    {
 
       return hours() % 24;
@@ -143,7 +143,7 @@ namespace earth
    }
 
 
-   constexpr  long long time_span::minutes() const noexcept
+   constexpr  ::i64 time_span::minutes() const noexcept
    {
 
       return m_iSecond / 60;
@@ -151,7 +151,7 @@ namespace earth
    }
 
 
-   constexpr  int time_span::minute() const noexcept
+   constexpr  ::i32 time_span::minute() const noexcept
    {
 
       return minutes() % 60;
@@ -159,7 +159,7 @@ namespace earth
    }
 
 
-   constexpr  long long time_span::seconds() const noexcept
+   constexpr  ::i64 time_span::seconds() const noexcept
    {
       
       return m_iSecond;
@@ -167,7 +167,7 @@ namespace earth
    }
 
 
-   constexpr  int time_span::second() const noexcept
+   constexpr  ::i32 time_span::second() const noexcept
    {
 
       return m_iSecond % 60;

@@ -22,7 +22,7 @@ namespace write_text
    protected:
 
 
-      ::int_rectangle                           m_rectangleX;
+      ::i32_rectangle                           m_rectangleX;
       enum_font_list                            m_efontlist;
 
 
@@ -32,7 +32,7 @@ namespace write_text
       bool                                      m_bUpdatingFontList : 1;
       string                                    m_strFontFamily;
       string                                    m_strFontBranch;
-      int                                     m_iLayoutSerial;
+      ::i32                                     m_iLayoutSerial;
       ::pointer<font_enumeration>               m_pfontenumeration;
       ::pointer<font_enumeration>               m_pfontenumerationAddRedrawHandler;
       ::pointer<font_enumeration_item_array>    m_pfontenumerationitema;
@@ -45,19 +45,19 @@ namespace write_text
       ::pointer<::user::interaction>            m_puserinteractionGraphicsContext;
 
 
-      int_point                                 m_point;
-      ::int_size                                m_size;
+      i32_point                                 m_point;
+      ::i32_size                                m_size;
       string                                    m_strText;
       string                                    m_strTextLayout;
 
-      ::int_rectangle                           m_rectangleMargin;
-      int                                       m_iBaseSizeLayout;
+      ::i32_rectangle                           m_rectangleMargin;
+      ::i32                                       m_iBaseSizeLayout;
       class ::time                                    m_timeLastLayout;
       ::task_pointer                            m_pthreadLayout;
       bool                                      m_bLayoutWideStillIntersect;
-      ::int_array_base                                 m_iaSize;
+      ::i32_array_base                                 m_iaSize;
 
-      int                                       m_iSelUpdateId;
+      ::i32                                       m_iSelUpdateId;
       //::collection::index                                   m_iSel;
       //::collection::index                                   m_iHover;
       bool                                      m_bDarkMode;
@@ -81,8 +81,8 @@ namespace write_text
       virtual void update_extents(font_list_data * plistdata, font_list_item * pitem, ::draw2d::graphics_pointer & pgraphics, ::collection::index iBox);
       
       virtual void layout();
-      virtual ::int_size layout_wide();
-      virtual ::int_size layout_single_column();
+      virtual ::i32_size layout_wide();
+      virtual ::i32_size layout_single_column();
 
       virtual bool is_updating() const;
 
@@ -97,20 +97,20 @@ namespace write_text
       //virtual void ensure_sel_visible();
 
 
-      virtual ::item_pointer hit_test(const ::int_point & point, ::user::e_zorder ezorder);
-      virtual ::item_pointer hit_test_wide(const ::int_point& point);
-      virtual ::item_pointer hit_test_single_column(const ::int_point& point);
+      virtual ::item_pointer hit_test(const ::i32_point & point, ::user::e_zorder ezorder);
+      virtual ::item_pointer hit_test_wide(const ::i32_point& point);
+      virtual ::item_pointer hit_test_single_column(const ::i32_point& point);
       
 
-      virtual ::status < int_rectangle > item_rectangle(::item * pitem);
+      virtual ::status < i32_rectangle > item_rectangle(::item * pitem);
 
 
-      virtual bool get_box_rect(::int_rectangle * lprect, ::collection::index i);
-      virtual bool get_box_rect_wide(::int_rectangle * lprect, ::collection::index i);
-      virtual bool get_box_rect_single_column(::int_rectangle * lprect, ::collection::index i);
+      virtual bool get_box_rect(::i32_rectangle * lprect, ::collection::index i);
+      virtual bool get_box_rect_wide(::i32_rectangle * lprect, ::collection::index i);
+      virtual bool get_box_rect_single_column(::i32_rectangle * lprect, ::collection::index i);
 
 
-      virtual void set_client_rectangle(const ::int_rectangle &rectangle);
+      virtual void set_client_rectangle(const ::i32_rectangle &rectangle);
 
       virtual void set_font_list_type(enum_font_list efontlist);
       virtual enum_font_list get_font_list_type() const;

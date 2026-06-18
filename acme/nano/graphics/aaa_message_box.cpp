@@ -22,7 +22,7 @@
 
 
 bool is_ui_possible();
-void ns_do_main_loop(double dSeconds);
+void ns_do_main_loop(::f64 dSeconds);
 
 namespace nano
 {
@@ -52,12 +52,12 @@ message_box::~message_box()
 }
 
 
-void message_box::on_draw(::nano::graphics::device * pnanodevice)
+void message_box::on_draw(::nano::graphics::context * pnanodevice)
 {
 
 
 
-   int_rectangle rectangleText;
+   i32_rectangle rectangleText;
 
    get_client_rectangle(rectangleText);
 
@@ -148,8 +148,8 @@ void message_box::calculate_size()
 
 #if !defined(UNIVERSAL_WINDOWS) && !defined(__ANDROID__)
 
-   //int wScreen = 1280;
-   //int hScreen = 768;
+   //::i32 wScreen = 1280;
+   //::i32 hScreen = 768;
 
    auto sizeScreen = m_pwindowbase->get_main_screen_size();
 
@@ -161,10 +161,10 @@ void message_box::calculate_size()
 
    //printf("message_box::calculate_size (wScreen,hScreen)=%d,%d\n", wScreen, hScreen);
 
-   int w = wScreen / 2;
-   int h = (w / 16) * 5;
-   int x = (wScreen - w) / 2;
-   int y = (hScreen - h) / 2;
+   ::i32 w = wScreen / 2;
+   ::i32 h = (w / 16) * 5;
+   ::i32 x = (wScreen - w) / 2;
+   ::i32 y = (hScreen - h) / 2;
 
    m_rectangle.set_dimension(x, y, w, h);
 
@@ -176,7 +176,7 @@ void message_box::calculate_size()
 }
 
 
-void message_box::initialize_conversation(const ::scoped_string & scopedstrMessage, const ::scoped_string & scopedstrTitle, const ::::user::e_message_box & emessagebox, const ::scoped_string & scopedstrDetails, ::nano::graphics::icon * picon)
+void message_box::initialize_conversation(const ::scoped_string & scopedstrMessage, const ::scoped_string & scopedstrTitle, const ::user::e_message_box & emessagebox, const ::scoped_string & scopedstrDetails, ::nano::graphics::icon * picon)
 {
    
    conversation_message::initialize_conversation(strMessage, strTitle, emessagebox, strDetails, picon);
@@ -226,11 +226,11 @@ void message_box::initialize_conversation(const ::scoped_string & scopedstrMessa
    if (emessagebox & ::user::e_message_box_default_button_mask)
    {
 
-      int iDefaultButtonMask = (int)(emessagebox & ::user::e_message_box_default_button_mask);
+      ::i32 iDefaultButtonMask = (::i32)(emessagebox & ::user::e_message_box_default_button_mask);
 
-      int iDefaultButtonIndex = iDefaultButtonMask >> 8;
+      ::i32 iDefaultButtonIndex = iDefaultButtonMask >> 8;
 
-      int iDefaultButton = iDefaultButtonIndex & 7;
+      ::i32 iDefaultButton = iDefaultButtonIndex & 7;
 
       m_childa[iDefaultButton]->set_focus();
 
@@ -242,15 +242,15 @@ void message_box::initialize_conversation(const ::scoped_string & scopedstrMessa
 
    }
 
-   auto wButton = (int) (m_rectangle.width() * 0.2);
+   auto wButton = (::i32) (m_rectangle.width() * 0.2);
 
-   auto hButton = (int) (m_rectangle.height() * 0.2);
+   auto hButton = (::i32) (m_rectangle.height() * 0.2);
 
-   auto iRight = (int) (m_rectangle.width() - m_rectangle.width() * 0.025);
+   auto iRight = (::i32) (m_rectangle.width() - m_rectangle.width() * 0.025);
 
-   auto iBottom = (int) (m_rectangle.height() - m_rectangle.width() * 0.025);
+   auto iBottom = (::i32) (m_rectangle.height() - m_rectangle.width() * 0.025);
 
-   auto wSpacing = (int) (m_rectangle.width() * 0.025);
+   auto wSpacing = (::i32) (m_rectangle.width() * 0.025);
 
    for (::collection::index iButton = m_nanobuttona.get_upper_bound(); iButton >= 0; iButton--)
    {
@@ -270,7 +270,7 @@ void message_box::initialize_conversation(const ::scoped_string & scopedstrMessa
 }
 
 
-//void message_box::initialize_message_box(const ::scoped_string & scopedstrMessage, const ::scoped_string & scopedstrTitle, const ::::user::e_message_box & emessagebox, const ::scoped_string & scopedstrDetails)
+//void message_box::initialize_message_box(const ::scoped_string & scopedstrMessage, const ::scoped_string & scopedstrTitle, const ::user::e_message_box & emessagebox, const ::scoped_string & scopedstrDetails)
 //{
 //
 //   m_functionClose = [this](micro::interchange * pinterchange)
@@ -292,7 +292,7 @@ void message_box::initialize_conversation(const ::scoped_string & scopedstrMessa
 
 
 
-//void message_box::do_message_box(const ::scoped_string & scopedstrMessage, const ::scoped_string & scopedstrTitle, const ::::user::e_message_box& emessagebox, const ::scoped_string & scopedstrDetails)
+//void message_box::do_message_box(const ::scoped_string & scopedstrMessage, const ::scoped_string & scopedstrTitle, const ::user::e_message_box& emessagebox, const ::scoped_string & scopedstrDetails)
 //{
 //
 //   m_functionClose = [this](micro::interchange* pinterchange)
@@ -327,7 +327,7 @@ void message_box::_aaa_on_create_window()
 
    ::micro::elemental::_aaa_on_create_window();
 
-   int x = 25;
+   ::i32 x = 25;
 
    if(m_picon)
    {
@@ -350,7 +350,7 @@ void message_box::_aaa_on_create_window()
 }
 
 
-//pointer< ::sequence < ::conversation > > message_box::display(const ::scoped_string & scopedstrMessage, const ::scoped_string & scopedstrTitle, const ::::user::e_message_box & emessagebox)
+//pointer< ::sequence < ::conversation > > message_box::display(const ::scoped_string & scopedstrMessage, const ::scoped_string & scopedstrTitle, const ::user::e_message_box & emessagebox)
 //{
 //
 //   auto psequence = allocateø ::sequence <::conversation > ();
@@ -381,13 +381,13 @@ void message_box::_aaa_on_create_window()
 
 //CLASS_DECL_ACME ::platform::system * system();
 #ifdef WINDOWS_DESKTOP
-CLASS_DECL_ACME int message_box_to_windows_message_box(enum_message_box emessagebox);
-CLASS_DECL_ACME enum_dialog_result windows_message_box_result_to_dialog_result(int iResult);
+CLASS_DECL_ACME ::i32 message_box_to_windows_message_box(enum_message_box emessagebox);
+CLASS_DECL_ACME enum_dialog_result windows_message_box_result_to_dialog_result(::i32 iResult);
 #endif
 
 #ifdef MACOS
 
-enum_dialog_result ns_alert_box(const char * pszMessage, const char * pszTitle, enum_message_box emessagebox);
+enum_dialog_result ns_alert_box(const_char_pointer pszMessage, const_char_pointer pszTitle, enum_message_box emessagebox);
 
 #endif
 
@@ -496,7 +496,7 @@ bool message_box::is_popup_window() const
 } // namespace nano
 
 
-CLASS_DECL_ACME ::pointer < ::subparticle > message_box_sequencer(::particle * pparticle, const ::scoped_string & scopedstrMessage, const ::scoped_string & scopedstrTitle, const ::::user::e_message_box & emessagebox, const ::scoped_string & scopedstrDetails, ::nano::graphics::icon * picon)
+CLASS_DECL_ACME ::pointer < ::subparticle > message_box_sequencer(::particle * pparticle, const ::scoped_string & scopedstrMessage, const ::scoped_string & scopedstrTitle, const ::user::e_message_box & emessagebox, const ::scoped_string & scopedstrDetails, ::nano::graphics::icon * picon)
 {
 
    if (::is_null(pparticle))
@@ -611,7 +611,7 @@ CLASS_DECL_ACME ::pointer < ::subparticle > message_box_sequencer(::particle * p
 
 
 
-CLASS_DECL_ACME ::payload message_box_synchronous(::particle * pparticle, const ::scoped_string & scopedstrMessage, const ::scoped_string & scopedstrTitle, const ::::user::e_message_box & emessagebox, const ::scoped_string & scopedstrDetails, ::nano::graphics::icon * picon)
+CLASS_DECL_ACME ::payload message_box_synchronous(::particle * pparticle, const ::scoped_string & scopedstrMessage, const ::scoped_string & scopedstrTitle, const ::user::e_message_box & emessagebox, const ::scoped_string & scopedstrDetails, ::nano::graphics::icon * picon)
 {
 
    if (::is_null(pparticle))
@@ -711,7 +711,7 @@ CLASS_DECL_ACME ::payload message_box_synchronous(::particle * pparticle, const 
 
 
 
-CLASS_DECL_ACME void message_box_asynchronous(::function < void(const ::payload & payload) > function, ::particle * pparticle, const ::scoped_string & scopedstrMessage, const ::scoped_string & scopedstrTitle, const ::::user::e_message_box & emessagebox, const ::scoped_string & scopedstrDetails, ::nano::graphics::icon * picon)
+CLASS_DECL_ACME void message_box_asynchronous(::function < void(const ::payload & payload) > function, ::particle * pparticle, const ::scoped_string & scopedstrMessage, const ::scoped_string & scopedstrTitle, const ::user::e_message_box & emessagebox, const ::scoped_string & scopedstrDetails, ::nano::graphics::icon * picon)
 {
 
    auto pmessagebox = allocateø ::micro::message_box_conversation_message();

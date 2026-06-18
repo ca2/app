@@ -6,8 +6,8 @@
 #include <stdio.h>
 
 
-int safe_get_char(FILE * pfile, const class time & time);
-int safe_get_any_char(const class time & time);
+::i32 safe_get_char(FILE * pfile, const class time & time);
+::i32 safe_get_any_char(const class time & time);
 
 
 namespace console
@@ -132,7 +132,7 @@ namespace console
       if (ansi_len(pszAcceptedAnswer) > 0)
       {
 
-         int c = safe_get_char(stdin, 100_ms);
+         ::i32 c = safe_get_char(stdin, 100_ms);
 
          c = ::ansi_tolower(c);
 
@@ -171,7 +171,7 @@ namespace console
       else
       {
 
-         int iSafeChar = safe_get_any_char(100_ms);
+         ::i32 iSafeChar = safe_get_any_char(100_ms);
 
          bAnswer = true;
 

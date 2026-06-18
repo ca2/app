@@ -17,7 +17,7 @@ compress::~compress()
 }
 
 
-void compress::set_level(int iLevel)
+void compress::set_level(::i32 iLevel)
 {
 
    throw ::interface_only();
@@ -33,7 +33,7 @@ void compress::transfer(::file::file* pfileOut, ::file::file* pfileIn, transfer_
 }
 
 
-unsigned int compress::crc32(unsigned int uCrc, const ::block& block)
+::u32 compress::crc32(::u32 uCrc, const ::block& block)
 {
 
    throw ::interface_only("this function is expected to be called just from zlib compress implementation. So no need to implement it except at compress_zlib.");

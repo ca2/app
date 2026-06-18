@@ -29,7 +29,7 @@ font::~font()
 
 
 
-   ::pointer<::nano::graphics::font>create_point_font(::particle * pparticle, int iPoint, enum_font efont, bool bBold)
+   ::pointer<::nano::graphics::font>create_point_font(::particle * pparticle, ::i32 iPoint, enum_font efont, bool bBold)
    {
 
       ::pointer<::nano::graphics::font>pfont(e_create, pparticle, nullptr);

@@ -1,18 +1,18 @@
-// Created int_to_string_bases_table.dynamically_generated generator by camilo on 2023-02-02 14:38 <3ThomasBorregaardSorensen!!
+// Created i32_to_string_bases_table.dynamically_generated generator by camilo on 2023-02-02 14:38 <3ThomasBorregaardSorensen!!
 #include "framework.h"
 //#include <math.h>
 
 
-long long ceil_div(long long num, long long den)
+::i64 ceil_div(::i64 num, ::i64 den)
 {
-   long long quo = num / den;
+   ::i64 quo = num / den;
    if ((num % den) > 0)
       quo++;
    return quo;
 }
 
 
-double tri(double angle)
+::f64 tri(::f64 angle)
 {
 
    angle = fmod(angle, 3.1415 * 2.0) * 2.0 / 3.1415;
@@ -28,10 +28,10 @@ double tri(double angle)
 }
 
 
-CLASS_DECL_ACME extern const char log2_LogTable256[256] =
+CLASS_DECL_ACME extern const ::i8 log2_LogTable256[256] =
 {
 #define LT(n) n, n, n, n, n, n, n, n, n, n, n, n, n, n, n, n
-   (char)-1, 0, 1, 1, 2, 2, 2, 2, 3, 3, 3, 3, 3, 3, 3, 3,
+   (::i8)-1, 0, 1, 1, 2, 2, 2, 2, 3, 3, 3, 3, 3, 3, 3, 3,
    LT(4), LT(5), LT(5), LT(6), LT(6), LT(6), LT(6),
    LT(7), LT(7), LT(7), LT(7), LT(7), LT(7), LT(7), LT(7)
 };
@@ -40,7 +40,7 @@ CLASS_DECL_ACME extern const char log2_LogTable256[256] =
 CLASS_DECL_ACME void simple_generate_random_bytes(void* p, memsize s)
 {
 
-   unsigned char* puch = (unsigned char*)p;
+   ::u8* puch = (::u8*)p;
 
    while (s > 0)
    {
@@ -79,10 +79,10 @@ CLASS_DECL_ACME void set_generate_random_bytes(PFN_GENERATE_RANDOM_BYTES pfngene
 
 
 
-#include "int_to_string_bases_table.dynamically_generated"
+#include "integer_to_string_bases_table.dynamically_generated"
 
 
-int type_maximum_digits(enum_integer_type etype, int iBase)
+::i32 type_maximum_digits(enum_integer_type etype, ::i32 iBase)
 {
    if (iBase < 2)
    {
@@ -104,15 +104,15 @@ int type_maximum_digits(enum_integer_type etype, int iBase)
 
 }
 
-//int i8_maximum_digits(int iBase) { return type_maximum_digits(e_integer_type_char, iBase); }
-//int byte_maximum_digits(int iBase) { return type_maximum_digits(e_integer_type_unsigned_char, iBase); }
+//::i32 i8_maximum_digits(::i32 iBase) { return type_maximum_digits(e_integer_type_char, iBase); }
+//::i32 byte_maximum_digits(::i32 iBase) { return type_maximum_digits(e_integer_type_unsigned_char, iBase); }
 //
-//int i16_maximum_digits(int iBase) { return type_maximum_digits(e_integer_type_short, iBase); }
-//int u16_maximum_digits(int iBase) { return type_maximum_digits(e_integer_type_unsigned_short, iBase); }
+//::i32 i16_maximum_digits(::i32 iBase) { return type_maximum_digits(e_integer_type_short, iBase); }
+//::i32 u16_maximum_digits(::i32 iBase) { return type_maximum_digits(e_integer_type_unsigned_short, iBase); }
 //
-//int int_maximum_digits(int iBase) { return type_maximum_digits(e_integer_type_int, iBase); }
-//int u32_maximum_digits(int iBase) { return type_maximum_digits(e_integer_type_unsigned_int, iBase); }
+//::i32 i32_maximum_digits(::i32 iBase) { return type_maximum_digits(e_integer_type_int, iBase); }
+//::i32 u32_maximum_digits(::i32 iBase) { return type_maximum_digits(e_integer_type_u32, iBase); }
 //
-//int i64_maximum_digits(int iBase) { return type_maximum_digits(e_integer_type_long_long, iBase); }
-//int u64_maximum_digits(int iBase) { return type_maximum_digits(e_integer_type_unsigned_long_long, iBase); }
+//::i32 i64_maximum_digits(::i32 iBase) { return type_maximum_digits(e_integer_type_i64, iBase); }
+//::i32 u64_maximum_digits(::i32 iBase) { return type_maximum_digits(e_integer_type_u64, iBase); }
 //

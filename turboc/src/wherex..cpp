@@ -25,7 +25,7 @@
 #include "framework.h"
 //#include "conio.h"
 
-int
+::i32
 wherex (void)
 {
   if (!ConioInitialized)

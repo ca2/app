@@ -3,7 +3,7 @@
  *
  * \brief A specialization of TextBox for representing integral values.
  *
- * Template parameters should be integral types, e.g. ``int``, ``long``,
+ * Template parameters should be integral types, e.g. ``::i32``, ``long``,
  * ``uint32_t``, etc.
  */
  // From TextBox.h by camilo on 2023-05-16 14:21 <3ThomasBorregaardSorensen!!
@@ -13,6 +13,7 @@
 #include "TextBox.h"
 #include "acme/constant/timer.h"
 #include "acme/constant/user_key.h"
+#include "acme/user/user/keyboard_state.h"
 #include "aqua/platform/tinyexpr.h"
 #include "aura/user/user/interaction.h"
 
@@ -52,7 +53,7 @@ namespace nanoui
       Scalar calc_dimension(const ::scoped_string& scopedstr) const
       {
          Scalar res = 0;
-         double r = tinyexpr::te_interp(::string(scopedstr), nullptr);
+         ::f64 r = tinyexpr::te_interp(::string(scopedstr), nullptr);
          if (!std::isnan(r))
             res = ::maximum(static_cast<decltype(res)>(r), static_cast<decltype(res)>(0));
          return res;
@@ -103,25 +104,32 @@ namespace nanoui
 
       }
 
-      int m_iIncrementStep;
+      ::i32 m_iIncrementStep;
 
-      virtual bool mouse_button_event(const int_point& p, ::user::e_mouse emouse, bool down, bool bDoubleClick, const ::user::e_key& ekeyModifiers) override
+      virtual bool mouse_button_event(const i32_point & point, ::user::e_key euserkeyMouseButton, bool bDown, bool bDoubleClick) override
       {
 
-         if ((m_bEditable || m_bSpinnable) && down)
+         if (!m_bEnabled || euserkeyMouseButton != ::user::e_key_left_button)
+         {
+            
+            return false;
+
+         }
+
+         if ((m_bEditable || m_bSpinnable) && bDown)
          {
 
             m_iMouseDownValue = value();
 
          }
 
-         m_spingareaMouseDown = spin_area(p);
+         m_spingareaMouseDown = spin_area(point);
 
          //if (m_bSpinnable && area != SpinArea::None && down && !focused()) 
          if (m_bSpinnable)
          {
 
-            if (down)
+            if (bDown)
             {
 
                if (m_spingareaMouseDown != SpinArea::None)
@@ -139,14 +147,15 @@ namespace nanoui
 
                      }
 
-                     screen()->m_puserinteraction->set_timer(((uptr)this) + 10, 600_ms, [this]()
+                     screen()->set_timer(e_timer_spin_increment_start, 600_ms, [this](::timer * ptimer)
                      {
 
-                        screen()->m_puserinteraction->kill_timer(((uptr)this) + 10);
+                        //screen()->m_puserinteraction->kill_timer(((uptr)this) + 10);
+                        ptimer->cancel();
 
                         m_iIncrementStep = 0;
 
-                        screen()->m_puserinteraction->set_timer(((uptr)this) + 11, 200_ms, [this]()
+                        screen()->set_timer(e_timer_spin_increment_repeat_slower, 200_ms, [this](::timer * ptimer)
                         {
 
                            if (value() + m_iIncrementValue <= m_iMaximumValue
@@ -167,9 +176,11 @@ namespace nanoui
                               if (m_iIncrementStep > 5)
                               {
 
-                                 screen()->m_puserinteraction->kill_timer(((uptr)this) + 11);
+                                 //screen()->m_puserinteraction->kill_timer(((uptr)this) + 11);
 
-                                 screen()->m_puserinteraction->set_timer(((uptr)this) + 12, 50_ms, [this]()
+                                 ptimer->cancel();
+
+                                 screen()->set_timer(e_timer_spin_increment_repeat_slower, 50_ms, [this](::timer * ptimer)
                                  {
                                  
                                        if (value() + m_iIncrementValue <= m_iMaximumValue
@@ -191,7 +202,9 @@ namespace nanoui
                                        else
                                        {
 
-                                          screen()->m_puserinteraction->kill_timer(((uptr)this) + 12);
+                                          //screen()->m_puserinteraction->kill_timer(((uptr)this) + 12);
+
+                                          ptimer->cancel();
 
                                        }
 
@@ -204,7 +217,8 @@ namespace nanoui
                            else
                            {
                            
-                              screen()->m_puserinteraction->kill_timer(((uptr)this) + 11);
+                              //screen()->m_puserinteraction->kill_timer(((uptr)this) + 11);
+                              ptimer->cancel();
                               
                            }
 
@@ -224,12 +238,13 @@ namespace nanoui
                      m_callback(m_strValue);
 
                   }
-                  screen()->m_puserinteraction->set_timer(((uptr)this) + 20, 600_ms, [this]()
+                  screen()->set_timer(e_timer_spin_decrement_start, 600_ms, [this](::timer * ptimer)
                      {
 
-                        screen()->m_puserinteraction->kill_timer(((uptr)this) + 20);
+                        //screen()->m_puserinteraction->kill_timer(((uptr)this) + 20);
+                     ptimer->cancel();
                         m_iIncrementStep = 0;
-                        screen()->m_puserinteraction->set_timer(((uptr)this) + 21, 200_ms, [this]()
+                        screen()->set_timer(e_timer_spin_decrement_repeat_slower, 200_ms, [this](::timer * ptimer)
                            {
 
                               if (value() - m_iIncrementValue >= m_iMinimumValue
@@ -244,8 +259,11 @@ namespace nanoui
                                  if (m_iIncrementStep > 5)
                                  {
 
-                                    screen()->m_puserinteraction->kill_timer(((uptr)this) + 21);
-                                    screen()->m_puserinteraction->set_timer(((uptr)this) + 22, 50_ms, [this]()
+                                    //screen()->m_puserinteraction->kill_timer(((uptr)this) + 21);
+
+                                    ptimer->cancel();
+
+                                    screen()->m_puserinteraction->set_timer(e_timer_spin_decrement_repeat_faster, 50_ms, [this](::timer * ptimer)
                                        {
 
                                           if (value() - m_iIncrementValue >= m_iMinimumValue
@@ -260,7 +278,8 @@ namespace nanoui
                                           }
                                           else
                                           {
-                                             screen()->m_puserinteraction->kill_timer(((uptr)this) + 22);
+                                             //screen()->m_puserinteraction->kill_timer(((uptr)this) + 22);
+                                             ptimer->cancel();
                                           }
 
                                        });
@@ -270,7 +289,8 @@ namespace nanoui
                               }
                               else
                               {
-                                 screen()->m_puserinteraction->kill_timer(((uptr)this) + 21);
+                                 //screen()->m_puserinteraction->kill_timer(((uptr)this) + 21);
+                                 ptimer->cancel();
                               }
 
 
@@ -284,41 +304,44 @@ namespace nanoui
          }
 
       }
-            else if (m_spingareaMouseDown != SpinArea::None)
-            {
+         else if (m_spingareaMouseDown != SpinArea::None)
+         {
 
-               m_spingareaMouseDown = SpinArea::None;
+            m_spingareaMouseDown = SpinArea::None;
 
-               screen()->m_puserinteraction->kill_timer(((uptr)this) + 10);
-               screen()->m_puserinteraction->kill_timer(((uptr)this) + 11);
-               screen()->m_puserinteraction->kill_timer(((uptr)this) + 12);
-               screen()->m_puserinteraction->kill_timer(((uptr)this) + 20);
-               screen()->m_puserinteraction->kill_timer(((uptr)this) + 21);
-               screen()->m_puserinteraction->kill_timer(((uptr)this) + 22);
 
-               }
+
+            screen()->kill_timer(e_timer_spin_increment_start);
+            screen()->kill_timer(e_timer_spin_increment_repeat_slower);
+            screen()->kill_timer(e_timer_spin_increment_repeat_faster);
+            screen()->kill_timer(e_timer_spin_decrement_start);
+            screen()->kill_timer(e_timer_spin_decrement_repeat_slower);
+            screen()->kill_timer(e_timer_spin_decrement_repeat_faster);
+
+
+      }
 
    }
 
-   return TextBox::mouse_button_event(p, emouse, down, bDoubleClick, ekeyModifiers);
+   return TextBox::mouse_button_event(point, euserkeyMouseButton, bDown, bDoubleClick);
 
 }
 
 
-virtual bool mouse_motion_event(const int_point& p, const int_size& rel, bool bDown, const ::user::e_key& ekeyModifiers) override
+virtual bool mouse_motion_event(const i32_point &point) override
 {
 
-   if (TextBox::mouse_motion_event(p, rel, bDown, ekeyModifiers))
+   if (TextBox::mouse_motion_event(point))
    {
 
       return true;
 
    }
 
-   if (bDown && m_bSpinnable && !focused() && ekeyModifiers & ::user::e_key_right_button && is_mouse_down())
+   if (m_bSpinnable && !focused() && is_right_button_pressed())
    {
 
-      int value_delta = static_cast<int>((p.x - m_pointMouseDown.x) / float(10));
+      ::i32 value_delta = static_cast<::i32>((point.x - m_pointMouseDown.x) / ::f32(10));
 
       set_value(m_iMouseDownValue + value_delta * m_iIncrementValue, e_source_user);
 
@@ -338,10 +361,10 @@ virtual bool mouse_motion_event(const int_point& p, const int_size& rel, bool bD
 }
 
 
-virtual bool scroll_event(const int_point& p, const float_size& rel) override
+virtual bool scroll_event(const i32_point & point, const ::f32_size& rel) override
 {
 
-   if (Widget::scroll_event(p, rel))
+   if (Widget::scroll_event(point, rel))
    {
 
       return true;
@@ -351,7 +374,7 @@ virtual bool scroll_event(const int_point& p, const float_size& rel) override
    if (m_bSpinnable && !focused())
    {
 
-      int value_delta = (rel.cy > 0) ? 1 : -1;
+      ::i32 value_delta = (rel.cy > 0) ? 1 : -1;
 
       set_value(value() + value_delta * m_iIncrementValue, e_source_user);
 

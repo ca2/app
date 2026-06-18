@@ -131,7 +131,7 @@ namespace user
 
       m_sizeaText.set_size(straTitle.get_count());
 
-      for (int iTitle = 0; iTitle < straTitle.get_count(); iTitle++)
+      for (::i32 iTitle = 0; iTitle < straTitle.get_count(); iTitle++)
       {
 
          pgraphicsextension->get_text_extent(pgraphics, straTitle[iTitle], m_sizeaText[iTitle]);

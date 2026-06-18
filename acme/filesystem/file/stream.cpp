@@ -3,7 +3,7 @@
 //#include "stream.h"
 
 
-bool  stream_base::is_version(int i)
+bool  stream_base::is_version(::i32 i)
 {
 
    return i == 0;
@@ -262,7 +262,7 @@ bool  stream_base::is_version(int i)
 //void stream::close()
 //{
 //}
-//void stream::getline(char * sz, character_count n)
+//void stream::getline(char_pointer sz, character_count n)
 //{
 //
 //   if (n > 0)
@@ -326,7 +326,7 @@ bool  stream_base::is_version(int i)
 //
 //   ::file::fmtflags fmtflagsOld = m_fmtflags;
 //
-//   m_fmtflags = (::file::fmtflags) ((unsigned int)m_fmtflags | (unsigned int)flagsAdd);
+//   m_fmtflags = (::file::fmtflags) ((::u32)m_fmtflags | (::u32)flagsAdd);
 //
 //   return fmtflagsOld;
 //
@@ -338,7 +338,7 @@ bool  stream_base::is_version(int i)
 //
 //   ::file::fmtflags fmtflagsOld = m_fmtflags;
 //
-//   m_fmtflags = (::file::fmtflags) (((unsigned int)m_fmtflags | (unsigned int)flagsAdd) & (~(unsigned int)flagsRemove));
+//   m_fmtflags = (::file::fmtflags) (((::u32)m_fmtflags | (::u32)flagsAdd) & (~(::u32)flagsRemove));
 //
 //   return fmtflagsOld;
 //
@@ -352,7 +352,7 @@ bool  stream_base::is_version(int i)
 //
 //   ::atom::enum_type etype = atom.m_etype;
 //
-//   write(char(etype));
+//   write(::i8(etype));
 //
 //   if (etype == ::atom::e_type_text)
 //   {
@@ -363,7 +363,7 @@ bool  stream_base::is_version(int i)
 //   else if (etype == ::atom::e_type_integer)
 //   {
 //
-//      write(atom.m_i);
+//      write(atom.m_i32);
 //
 //   }
 //
@@ -375,7 +375,7 @@ bool  stream_base::is_version(int i)
 //
 //   enum_type etype = payload.get_type();
 //
-//   int i = etype;
+//   ::i32 i = etype;
 //
 //   *this << i;
 //
@@ -399,56 +399,56 @@ bool  stream_base::is_version(int i)
 //      write(*payload.m_pstr);
 //   }
 //   break;
-//   case e_type_char:
-//      *this << payload.m_ch;
+//   case e_type_i8:
+//      *this << payload.m_i8;
 //      break;
-//   case e_type_short:
-//      *this << payload.m_sh;
+//   case e_type_i16:
+//      *this << payload.m_i16;
 //      break;
-//   case e_type_unsigned_char:
-//      *this << payload.m_uch;
+//   case e_type_u8:
+//      *this << payload.m_u8;
 //      break;
-//   case e_type_unsigned_short:
-//      *this << payload.m_ush;
+//   case e_type_u16:
+//      *this << payload.m_u16;
 //      break;
-//   case e_type_int:
-//      *this << payload.m_i;
+//   case e_type_i32:
+//      *this << payload.m_i32;
 //      break;
-//   case e_type_long_long:
+//   case e_type_i64:
 //      *this << payload.m_hi;
 //      break;
-//   case e_type_unsigned_int:
-//      *this << payload.m_ui;
+//   case e_type_u32:
+//      *this << payload.m_u32;
 //      break;
-//   case e_type_unsigned_long_long:
+//   case e_type_u64:
 //      *this << payload.m_hn;
 //      break;
-//   case e_type_pchar:
-//      *this << *payload.m_pch;
+//   case e_type_pi8:
+//      *this << *payload.m_pi8;
 //      break;
-//   case e_type_pshort:
-//      *this << *payload.m_psh;
+//   case e_type_pi16:
+//      *this << *payload.m_pi16;
 //      break;
-//   case e_type_punsigned_char:
-//      *this << *payload.m_puch;
+//   case e_type_pu8:
+//      *this << *payload.m_pu8;
 //      break;
-//   case e_type_punsigned_short:
-//      *this << *payload.m_push;
+//   case e_type_pu16:
+//      *this << *payload.m_pu16;
 //      break;
-//   case e_type_pint:
-//      *this << *payload.m_pi;
+//   case e_type_pi32:
+//      *this << *payload.m_pi32;
 //      break;
-//   case e_type_plong_long:
+//   case e_type_pi64:
 //      *this << *payload.m_phi;
 //      break;
-//   case e_type_punsigned_int:
-//      *this << *payload.m_pui;
+//   case e_type_pu32:
+//      *this << *payload.m_pu32;
 //      break;
-//   case e_type_punsigned_long_long:
+//   case e_type_pu64:
 //      *this << *payload.m_pu64;
 //      break;
-//   case e_type_double:
-//      *this << payload.m_d;
+//   case e_type_f64:
+//      *this << payload.m_f64;
 //      break;
 //   case e_type_bool:
 //      *this << payload.m_b;
@@ -549,7 +549,7 @@ bool  stream_base::is_version(int i)
 //
 //
 //
-//void stream::put(char ch)
+//void stream::put(::i8 ch)
 //{
 //
 //   write(ch);
@@ -673,7 +673,7 @@ bool  stream_base::is_version(int i)
 //}
 //
 //
-//void stream::read(char & ch)
+//void stream::read(::i8 & ch)
 //{
 //
 //   throw ::exception(error_io);
@@ -700,7 +700,7 @@ bool  stream_base::is_version(int i)
 //
 //
 //#endif
-//void stream::read(char & i)
+//void stream::read(::i8 & i)
 //{
 //
 //   throw ::exception(error_io);
@@ -708,7 +708,7 @@ bool  stream_base::is_version(int i)
 //}
 //
 //
-//void stream::read(short & i)
+//void stream::read(::i16 & i)
 //{
 //
 //   throw ::exception(error_io);
@@ -716,7 +716,7 @@ bool  stream_base::is_version(int i)
 //}
 //
 //
-//void stream::read(unsigned short & u)
+//void stream::read(::u16 & u)
 //{
 //
 //   throw ::exception(error_io);
@@ -724,7 +724,7 @@ bool  stream_base::is_version(int i)
 //}
 //
 //
-//void stream::read(int & i)
+//void stream::read(::i32 & i)
 //{
 //
 //   throw ::exception(error_io);
@@ -732,7 +732,7 @@ bool  stream_base::is_version(int i)
 //}
 //
 //
-//void stream::read(unsigned int & u)
+//void stream::read(::u32 & u)
 //{
 //
 //   throw ::exception(error_io);
@@ -740,7 +740,7 @@ bool  stream_base::is_version(int i)
 //}
 //
 //
-//void stream::read(long long & i)
+//void stream::read(::i64 & i)
 //{
 //
 //   throw ::exception(error_io);
@@ -748,7 +748,7 @@ bool  stream_base::is_version(int i)
 //}
 //
 //
-//void stream::read(unsigned long long & u)
+//void stream::read(::u64 & u)
 //{
 //
 //   throw ::exception(error_io);
@@ -767,7 +767,7 @@ bool  stream_base::is_version(int i)
 //}
 //
 //
-//void stream::read(unsigned long & u)
+//void stream::read(ulong & u)
 //{
 //
 //   throw ::exception(error_io);
@@ -778,7 +778,7 @@ bool  stream_base::is_version(int i)
 //#endif
 //
 //
-//void stream::read(float & f)
+//void stream::read(::f32 & f)
 //{
 //
 //   throw ::exception(error_io);
@@ -786,7 +786,7 @@ bool  stream_base::is_version(int i)
 //}
 //
 //
-//void stream::read(double & d)
+//void stream::read(::f64 & d)
 //{
 //
 //   throw ::exception(error_io);
@@ -794,7 +794,7 @@ bool  stream_base::is_version(int i)
 //}
 //
 //
-////void stream::read(::int_point & point)
+////void stream::read(::i32_point & point)
 ////{
 ////
 ////   throw ::exception(error_io);
@@ -802,7 +802,7 @@ bool  stream_base::is_version(int i)
 ////}
 ////
 ////
-////void stream::read(::int_size & size)
+////void stream::read(::i32_size & size)
 ////{
 ////
 ////   throw ::exception(error_io);
@@ -810,7 +810,7 @@ bool  stream_base::is_version(int i)
 ////}
 ////
 ////
-////void stream::read(::int_rectangle & rectangle)
+////void stream::read(::i32_rectangle & rectangle)
 ////{
 ////
 ////   throw ::exception(error_io);
@@ -896,7 +896,7 @@ bool  stream_base::is_version(int i)
 //void stream::save_var_type(enum_type etype)
 //{
 //
-//   int i((int) etype);
+//   ::i32 i((::i32) etype);
 //
 //   *this << i;
 //
@@ -959,7 +959,7 @@ bool  stream_base::is_version(int i)
 //#ifdef WINDOWS
 //
 //
-//void stream::exchange(const ::atom & atom, const unichar * wch)
+//void stream::exchange(const ::atom & atom, const wide_character * wch)
 //{
 //
 //   if(is_loading())
@@ -1048,7 +1048,7 @@ bool  stream_base::is_version(int i)
 //
 
 
-//filesize stream_base::precision(char prec)
+//filesize stream_base::precision(::i8 prec)
 //{
 //
 //   return m_precision = prec;
@@ -1063,7 +1063,7 @@ bool  stream_base::is_version(int i)
 //
 //}
 //
-//filesize stream_base::width(char prec)
+//filesize stream_base::width(::i8 prec)
 //{
 //
 //   return m_width = prec;

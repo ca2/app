@@ -28,18 +28,18 @@
 struct xf_gfx_surface
 {
 	::u3216 surfaceId;
-	unsigned int width;
-	unsigned int height;
+	::u32 width;
+	::u32 height;
 	BOOL alpha;
-	unsigned char* data;
-	unsigned char* stage;
+	::u8* data;
+	::u8* stage;
 /*	XImage* pimage;
-	int scanline;
-	int stageStep;
-	unsigned int format;
+	::i32 scanline;
+	::i32 stageStep;
+	::u32 format;
 	BOOL outputMapped;
-	unsigned int outputOriginX;
-	unsigned int outputOriginY;
+	::u32 outputOriginX;
+	::u32 outputOriginY;
 	REGION16 invalidRegion;
 };
 typedef struct xf_gfx_surface xfGfxSurface;
@@ -47,16 +47,16 @@ typedef struct xf_gfx_surface xfGfxSurface;
 struct xf_gfx_cache_entry
 {
 	::u3264 cacheKey;
-	unsigned int width;
-	unsigned int height;
+	::u32 width;
+	::u32 height;
 	BOOL alpha;
-	unsigned char* data;
-	int scanline;
-	unsigned int format;
+	::u8* data;
+	::i32 scanline;
+	::u32 format;
 };
 typedef struct xf_gfx_cache_entry xfGfxCacheEntry;
 
-int xf_OutputExpose(xfContext* xfc, int x, int y, int width, int height);
+::i32 xf_OutputExpose(xfContext* xfc, ::i32 x, ::i32 y, ::i32 width, ::i32 height);
 
 void xf_graphics_pipeline_init(xfContext* xfc, RdpgfxClientContext* gfx);
 void xf_graphics_pipeline_uninit(xfContext* xfc, RdpgfxClientContext* gfx);

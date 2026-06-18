@@ -27,7 +27,7 @@ namespace berg
 
 #ifdef _DEBUG
 
-   long long session::increment_reference_count()
+   ::i64 session::increment_reference_count()
    {
 
       return ::axis::session::increment_reference_count();
@@ -35,7 +35,7 @@ namespace berg
    }
 
 
-   long long session::decrement_reference_count()
+   ::i64 session::decrement_reference_count()
    {
 
       return ::axis::session::decrement_reference_count();
@@ -60,13 +60,13 @@ namespace berg
 
       //m_puiLastLButtonDown             = nullptr;
 
-      m_pmapKeyPressed                 = nullptr;
+      //m_pmapKeyPressed                 = nullptr;
 
       //m_puiMouseMoveCapture            = nullptr;
 
-      m_bShowPlatform                  = false;
+      //m_bShowPlatform                  = false;
 
-      m_pappCurrent                    = nullptr;
+      //m_pappCurrent                    = nullptr;
 
       //m_puiMouseMoveCapture = nullptr;
 

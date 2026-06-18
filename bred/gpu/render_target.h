@@ -33,14 +33,15 @@ namespace gpu
       ::pointer < ::pointer_array < ::gpu::texture > >    m_ptextureaDepth;
 
 
-      ::int_size m_size;
+      ::i32_size m_size;
 
 
       ::pointer < renderer >  m_pgpurenderer;
 
       ::pointer<render_target> m_prendertargetOld;
 
-      ::pointer < frame > m_pgpuframe;
+      //::pointer < frame > m_pgpulayer;
+      ::pointer<layer> m_pgpulayer;
 
       
       render_target();
@@ -56,7 +57,7 @@ namespace gpu
       virtual ::gpu::texture *texture(::collection::index i);
       virtual ::gpu::texture *depth_texture(::collection::index i);
 
-      virtual void initialize_render_target(::gpu::renderer* prenderer, const ::int_size& size, ::pointer <::gpu::render_target>previous);
+      virtual void initialize_render_target(::gpu::renderer* prenderer, const ::i32_size& size, ::pointer <::gpu::render_target>previous);
 
       virtual void restart_frame_counter();
 
@@ -70,34 +71,36 @@ namespace gpu
 
       virtual void on_init();
 
-      virtual void on_resize(const ::int_size & size);
+      virtual void on_resize(const ::i32_size & size);
 
       //virtual void create_images();
 
       virtual void on_create_render_target_texture(::gpu::texture_attributes & textureattributes, ::gpu::texture_flags & textureflags);
 
 
-      virtual int get_frame_index();
-      virtual int get_frame_count();
+      virtual ::i32 get_frame_index();
+      virtual ::i32 get_frame_count();
 
-      //virtual int get_image_index() const;
-      virtual int imageCount();
-      virtual int width();
-      virtual int height();
+      //virtual ::i32 get_image_index() const;
+      virtual ::i32 imageCount();
+      virtual ::i32 width();
+      virtual ::i32 height();
 
 
       virtual void initialize_render_target_image(::gpu::texture *pgputexture);
 
 
-      virtual ::gpu::texture* current_texture(::gpu::frame* pgpuframe);
-      virtual ::gpu::texture *current_depth_texture(::gpu::frame *pgpuframe);
+      //virtual ::gpu::texture* current_texture(::gpu::layer* pgpulayer);
+      //virtual ::gpu::texture *current_depth_texture(::gpu::layer * pgpulayer);
+      virtual ::gpu::texture* current_texture(::gpu::layer* pgpulayer);
+      virtual ::gpu::texture *current_depth_texture(::gpu::layer *pgpulayer);
 
 
       virtual void on_before_begin_draw_frame(::gpu::graphics* pgraphics);
       virtual void on_after_end_draw_frame(::gpu::graphics* pgraphics);
 
 
-//      virtual void on_end_render(::gpu::frame* pgpuframe);
+//      virtual void on_end_render(::gpu::layer* pgpulayer);
 
 
    };

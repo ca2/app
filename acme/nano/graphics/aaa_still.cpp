@@ -23,7 +23,7 @@ still::~still()
 
 
 
-void still::on_draw(::nano::graphics::device * pnanodevice)
+void still::on_draw(::nano::graphics::context * pnanodevice)
 {
 
    if(m_picon)
@@ -53,7 +53,7 @@ void still::on_draw(::nano::graphics::device * pnanodevice)
 
    wstring wstrText(m_strText);
 
-   int_rectangle rectangleText(m_rectangle);
+   i32_rectangle rectangleText(m_rectangle);
 
    rectangleText.inflate(1);
 
@@ -71,7 +71,7 @@ void still::on_draw(::nano::graphics::device * pnanodevice)
 }
 
 
-void still::on_char(int iChar)
+void still::on_char(::i32 iChar)
 {
 
    if (iChar == '\r' || iChar == ' ')
@@ -153,7 +153,7 @@ void still::resize_to_fit()
 child::resize_to_fit();
 
 //
-//   auto pdevice = createø < ::nano::graphics::device >();
+//   auto pdevice = createø < ::nano::graphics::context >();
 //
 //   auto size = pdevice->get_text_extents(m_strText, m_pinterchange->m_pfont);
 //

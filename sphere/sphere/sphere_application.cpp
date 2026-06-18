@@ -94,7 +94,7 @@ namespace sphere
 
 
 
-   unsigned int application::guess_code_page(const ::scoped_string & scopedstr)
+   ::u32 application::guess_code_page(const ::scoped_string & scopedstr)
    {
 
       return charguess(str)();
@@ -131,7 +131,7 @@ namespace sphere
 
 
    //   string strId = m_strId;
-   //   char chFirst = '\0';
+   //   ::i8 chFirst = '\0';
    //   if(strId.length() > 0)
    //   {
    //      chFirst = strId[0];
@@ -207,7 +207,7 @@ namespace sphere
 
       string strId = m_strId;
 
-      char chFirst = '\0';
+      ::i8 chFirst = '\0';
 
       if(strId.length() > 0)
       {
@@ -224,7 +224,7 @@ namespace sphere
    bool application::bergedge_start()
    {
       //string strId = m_strId;
-      //char chFirst = '\0';
+      //::i8 chFirst = '\0';
       //if(strId.length() > 0)
       //{
       //   chFirst = strId[0];
@@ -253,7 +253,7 @@ namespace sphere
    bool application::on_install()
    {
       //string strId = m_strId;
-      //char chFirst = '\0';
+      //::i8 chFirst = '\0';
       //if(strId.length() > 0)
       //{
       //   chFirst = strId[0];
@@ -281,7 +281,7 @@ namespace sphere
    bool application::on_uninstall()
    {
       //string strId = m_strId;
-      //char chFirst = '\0';
+      //::i8 chFirst = '\0';
       //if(strId.length() > 0)
       //{
       //   chFirst = strId[0];
@@ -317,7 +317,7 @@ namespace sphere
       m_ptemplate_pane->do_request(pcreate);
 
       //string strId = m_strId;
-      //char chFirst = '\0';
+      //::i8 chFirst = '\0';
       //if(strId.length() > 0)
       //{
       //   chFirst = strId[0];
@@ -348,7 +348,7 @@ namespace sphere
 
       //string strId = m_strId;
 
-      //char chFirst = '\0';
+      //::i8 chFirst = '\0';
 
       //if(strId.length() > 0)
       //{
@@ -378,7 +378,7 @@ namespace sphere
    service_base * application::allocate_new_service()
    {
       //string strId = m_strId;
-      //char chFirst = '\0';
+      //::i8 chFirst = '\0';
       //if(strId.length() > 0)
       //{
       //   chFirst = strId[0];
@@ -406,7 +406,7 @@ namespace sphere
 
       //string strId = m_strId;
 
-      //char chFirst = '\0';
+      //::i8 chFirst = '\0';
 
       //if(strId.length() > 0)
       //{
@@ -589,7 +589,7 @@ namespace sphere
    void application::initialize_bergedge_application_interface()
    {
 
-      //int iCount = 32; // todo: get from bergedge profile
+      //::i32 iCount = 32; // todo: get from bergedge profile
 
       add_factory_item < ::userstack::document >();
       add_factory_item < ::userstack::impact >();
@@ -639,9 +639,9 @@ namespace sphere
             file.from_string(m_varTopicFile);
             COPYDATASTRUCT data;
             data.dwData = 2000;
-            data.cbData = (unsigned int)file.get_length();
+            data.cbData = (::u32)file.get_length();
             data.lpData = file.get_data();
-            ::::acme::windowing::window * pacmewindowingwindow = ::FindWindowA(nullptr, "::ca2::account::message_wnd::department::");
+            ::acme::windowing::window * pacmewindowingwindow = ::FindWindowA(nullptr, "::ca2::account::message_wnd::department::");
 
             ::SendMessage(oswindow, WM_COPYDATA, (WPARAM)0, (LPARAM)&data);
 

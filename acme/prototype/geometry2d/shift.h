@@ -91,7 +91,7 @@ public:
 };
 
 
-using shift_int = shift_type < int >;
+using shift_int = shift_type < ::i32 >;
 
 
 

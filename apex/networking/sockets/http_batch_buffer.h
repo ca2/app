@@ -21,7 +21,7 @@ namespace sockets
       http_batch_buffer();
 
 
-      //virtual ::extended::status open(const ::file::path & path, unsigned int nOpenFlags);
+      //virtual ::extended::status open(const ::file::path & path, ::u32 nOpenFlags);
 
       
       void open(const ::file::path& path, ::file::e_open eopen, ::pointer < ::file::exception >* pfileexception = nullptr) override;

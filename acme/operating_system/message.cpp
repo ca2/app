@@ -10,7 +10,7 @@
 #define __message_entry(wm)  { wm, #wm }
 
 
-static const int_sz g_iszaMessageName[] =
+static const i32_sz g_iszaMessageName[] =
 {
    __message_entry(::user::e_message_create),
    __message_entry(::user::e_message_destroy),
@@ -203,13 +203,13 @@ namespace user
    CLASS_DECL_ACME const_char_pointer get_message_text(::user::enum_message eusermessage)
    {
 
-      auto iFind = (int)eusermessage;
+      auto iFind = (::i32)eusermessage;
 
       auto pmessagename =
          tuple_array_find(
             g_iszaMessageName,
-            [iFind](auto ptuple) { return ptuple->m_i == iFind; }, // find_condition
-            [](auto ptuple) { return ptuple->m_i >= 0; } // continue condition
+            [iFind](auto ptuple) { return ptuple->m_i32 == iFind; }, // find_condition
+            [](auto ptuple) { return ptuple->m_i32 >= 0; } // continue condition
       );
 
       if (!pmessagename)

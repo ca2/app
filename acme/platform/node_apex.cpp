@@ -10,10 +10,10 @@ namespace platform
    // #ifdef _DEBUG
    //
    //
-   //       long long increment_reference_count() override{}
+   //       ::i64 increment_reference_count() override{}
    //
    //
-   //       long long decrement_reference_count() override{}
+   //       ::i64 decrement_reference_count() override{}
    //
    //
    // #endif
@@ -47,7 +47,7 @@ namespace platform
    //      void apex_node_layer::set_main_menu(application_menu * pmenu, ::apex::application * papp){}
 
 
-   ::file::path apex_node_layer:: get_desktop_file_path(::apex::application* papp)
+   ::file::path apex_node_layer:: get_desktop_file_path(::platform::application* papplication)
    {
 
       return {};
@@ -60,7 +60,7 @@ namespace platform
    //void start_node() override{}
 
 
-   //void application_handle(long long l, void * p) override{}
+   //void application_handle(::i64 l, void * p) override{}
 
 
    // void on_operating_system_user_theme_change() override{}
@@ -78,7 +78,7 @@ namespace platform
 
 
    void apex_node_layer::shell_create_link(::file::path pathObj, ::file::path pathLnk, const ::scoped_string & scopedstrDesc, ::file::path pathIco,
-                                  int iIcon)
+                                  ::i32 iIcon)
    {
    }
 
@@ -89,7 +89,7 @@ namespace platform
    }
 
 
-   bool apex_node_layer::shell_link_icon(::file::path& pathIcon, int& iIcon, const ::file::path& pathLnk)
+   bool apex_node_layer::shell_link_icon(::file::path& pathIcon, ::i32& iIcon, const ::file::path& pathLnk)
    {
       return false;
    }
@@ -149,9 +149,9 @@ namespace platform
    }
 
 
-   void apex_node_layer::on_start_application(::apex::application* papplication)
-   {
-   }
+   //void apex_node_layer::on_start_application(::apex::application* papplication)
+   //{
+   //}
 
 
    //DECLARE_MESSAGE_HANDLER(on_message_clear_application_data){}
@@ -188,7 +188,7 @@ namespace platform
    }
 
 
-   bool apex_node_layer::is_key_pressed(bool* pbPressed, ::user::enum_key ekey)
+   bool apex_node_layer::is_key_pressed(bool* pbPressed, const ::user::e_key & ekey)
    {
       return false;
    }

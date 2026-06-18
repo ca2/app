@@ -33,7 +33,7 @@ namespace crypto
 } // namespace crypto
 
 
-inline constexpr int hash_digest_size(enum_hash ehash) 
+inline constexpr ::i32 hash_digest_size(enum_hash ehash) 
 {
 
    switch (ehash)

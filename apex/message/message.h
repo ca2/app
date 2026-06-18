@@ -17,6 +17,8 @@ namespace message
 
    };
 
+   DECLARE_C_FLAG(e_flag, enum_flag);
+
 
    class key;
    class mouse;
@@ -35,14 +37,14 @@ namespace message
       ::message::dispatcher_array *m_pdispatchera;
       channel *m_pchannel;
       ::operating_system::window m_operatingsystemwindow;
-      enumeration<enum_flag> m_eflagMessage;
+      e_flag m_eflagMessage;
       ::collection::index m_iRouteIndex;
       ::collection::index m_iParam;
       // bool                           m_bRet;
-      unsigned int m_uiMessageFlags;
+      ::u32 m_uiMessageFlags;
       ::e_status m_estatus;
       ::action_context m_actioncontext;
-      ::int_point m_pointMessage;
+      ::i32_point m_pointMessage;
       bool m_bProbing = false;
       bool m_bCommand = false;
 
@@ -67,13 +69,13 @@ namespace message
 
       virtual void set_lresult(lresult lresult);
       // virtual void set(::acme::windowing::window * pacmewindowingwindow, ::windowing::window * pwindow, ::user::enum_message eusermessage,
-      // ::wparam wparam, ::lparam lparam, const ::int_point & point); virtual void set(::acme::windowing::window * pacmewindowingwindow,
+      // ::wparam wparam, ::lparam lparam, const ::i32_point & point); virtual void set(::acme::windowing::window * pacmewindowingwindow,
       // ::windowing::window* pwindow, ::user::enum_message eusermessage, ::wparam wparam, ::lparam lparam);
 
 
-      unsigned int GetNotifyCode() const { return __hiword(m_wparam.m_number); }
+      ::u32 GetNotifyCode() const { return m_wparam.hiword(); }
 
-      unsigned int GetId() const { return __loword(m_wparam.m_number); }
+      ::u32 GetId() const { return m_wparam.loword(); }
 
       //oswindow get_oswindow() const { return m_pacmewindowingwindow; }
 

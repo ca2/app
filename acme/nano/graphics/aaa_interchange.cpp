@@ -90,7 +90,7 @@ void interchange::on_initialize_particle()
 }
 
 
-void interchange::draw(::nano::graphics::device * pnanodevice)
+void interchange::draw(::nano::graphics::context * pnanodevice)
 {
    
    ::pointer<::nano::graphics::pen>pnanopenBorder;
@@ -108,7 +108,7 @@ void interchange::draw(::nano::graphics::device * pnanodevice)
       
    }
    
-   ::int_rectangle rectangleX;
+   ::i32_rectangle rectangleX;
    
    get_client_rectangle(rectangleX);
    
@@ -120,7 +120,7 @@ void interchange::draw(::nano::graphics::device * pnanodevice)
    
 }
 
-   ::int_rectangle interchange::get_window_rectangle()
+   ::i32_rectangle interchange::get_window_rectangle()
 {
 
 return m_rectangle;
@@ -128,7 +128,7 @@ return m_rectangle;
 }
 
 
-void interchange::draw_children(::nano::graphics::device * pnanodevice)
+void interchange::draw_children(::nano::graphics::context * pnanodevice)
 {
    
    for (auto & pchild: m_childa)
@@ -220,7 +220,7 @@ void interchange::message_loop()
 
 
 
-void interchange::on_draw(::nano::graphics::device * pnanodevice)
+void interchange::on_draw(::nano::graphics::context * pnanodevice)
 {
    
    //m_pwindowbase->draw(pnanodevice);
@@ -228,7 +228,7 @@ void interchange::on_draw(::nano::graphics::device * pnanodevice)
 }
 
 
-void interchange::on_char(int iChar)
+void interchange::on_char(::i32 iChar)
 {
    
    if (iChar == '\t' && m_childa.has_element())
@@ -332,17 +332,17 @@ void interchange::create_drawing_objects()
       
    }
    
-   m_pbrushWindow = ::nano::graphics::create_solid_brush(this, m_colorWindow);
+   m_pbrushWindow = nano()->graphics()->create_solid_brush(m_colorWindow);
    
-   m_pbrushText = ::nano::graphics::create_solid_brush(this, m_colorText);
+   m_pbrushText = nano()->graphics()->create_solid_brush(m_colorText);
    
-   m_pbrushHyperlink = ::nano::graphics::create_solid_brush(this, m_colorHyperlink);
+   m_pbrushHyperlink = nano()->graphics()->create_solid_brush(m_colorHyperlink);
    
-   m_pbrushHyperlinkHover = ::nano::graphics::create_solid_brush(this, m_colorHyperlinkHover);
+   m_pbrushHyperlinkHover = nano()->graphics()->create_solid_brush(m_colorHyperlinkHover);
    
-   m_ppenBorder = ::nano::graphics::create_pen(this, 1, m_colorText);
+   m_ppenBorder = nano()->graphics()->create_pen(1, m_colorText);
    
-   m_ppenBorderFocus = ::nano::graphics::create_pen(this, 1, m_colorFocus);
+   m_ppenBorderFocus = nano()->graphics()->create_pen(1, m_colorFocus);
    
 }
 
@@ -397,7 +397,7 @@ bool interchange::defer_perform_entire_reposition_process(::user::mouse * pmouse
    }
 
 
-::int_point interchange::try_absolute_mouse_position(const ::int_point & point)
+::i32_point interchange::try_absolute_mouse_position(const ::i32_point & point)
 {
    
    return m_pwindowbase->try_absolute_mouse_position(point);
@@ -405,7 +405,7 @@ bool interchange::defer_perform_entire_reposition_process(::user::mouse * pmouse
 }
 
 
-::int_point interchange::origin()
+::i32_point interchange::origin()
 {
    
    return m_rectangle.origin();
@@ -426,7 +426,7 @@ bool interchange::defer_perform_entire_reposition_process(::user::mouse * pmouse
 
 
 
-::micro::child * interchange::on_hit_test(const ::int_point & point, ::user::e_zorder ezorder)
+::micro::child * interchange::on_hit_test(const ::i32_point & point, ::user::e_zorder ezorder)
 {
    
    for (auto & pchild: m_childa)
@@ -456,7 +456,7 @@ void interchange::add_child(::micro::child * pchild)
 }
 
 
-void interchange::add_button(const ::scoped_string & scopedstrText, enum_dialog_result edialogresult, char chLetter)
+void interchange::add_button(const ::scoped_string & scopedstrText, enum_dialog_result edialogresult, ::i8 chLetter)
 {
    
    auto pbutton = allocateø ::micro::button();
@@ -706,7 +706,7 @@ void interchange::on_right_click(const ::payload& payload, ::user::mouse * pmous
 }
 
 
-void interchange::set_position(const ::int_point & point)
+void interchange::set_position(const ::i32_point & point)
 {
    
    m_pwindowbase->set_position(point);
@@ -722,7 +722,7 @@ void interchange::redraw()
 }
 
 
-void interchange::get_client_rectangle(::int_rectangle & rectangle)
+void interchange::get_client_rectangle(::i32_rectangle & rectangle)
 {
    
    rectangle.left = 0;
@@ -733,7 +733,7 @@ void interchange::get_client_rectangle(::int_rectangle & rectangle)
 }
 
 
-// ::int_rectangle interchange::get_window_rectangle()
+// ::i32_rectangle interchange::get_window_rectangle()
 // {
 //
 //    return m_rectangle;
@@ -793,7 +793,7 @@ void interchange::release_capture()
 }
 
 
-::pointer<::nano::graphics::device>interchange::create_device()
+::pointer<::nano::graphics::context>interchange::create_device()
 {
    
    throw interface_only();

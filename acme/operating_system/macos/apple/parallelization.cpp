@@ -28,14 +28,14 @@
 
 void ns_main_post(dispatch_block_t block);
 // /// Tags: proc_count, core_count, processor_count, cpu_count
-// int get_processor_count()
+// ::i32 get_processor_count()
 // {
 
-//    int nm[2];
+//    ::i32 nm[2];
 
 //    size_t len = 4;
 
-//    unsigned int count;
+//    ::u32 count;
 
 //    nm[0] = CTL_HW;
 
@@ -66,13 +66,13 @@ void ns_main_post(dispatch_block_t block);
 // }
 
 
-int process_get_os_priority(int nCa2Priority);
+::i32 process_get_os_priority(::i32 nCa2Priority);
 
 
 //bool set_process_priority(::enum_priority epriority)
 //{
 //
-//   int iOsPriority = process_get_os_priority(epriority);
+//   ::i32 iOsPriority = process_get_os_priority(epriority);
 //
 //   setpriority(PRIO_PROCESS, 0, iOsPriority);
 //
@@ -84,7 +84,7 @@ int process_get_os_priority(int nCa2Priority);
 bool ns_set_thread_name(const_char_pointer psz);
 
 
-char * ns_get_thread_name();
+char_pointer ns_get_thread_name();
 
 
 void task_set_name(const scoped_string & scopedstr)
@@ -118,10 +118,10 @@ namespace platform
 } // namespace acme
 
 
-int get_current_process_affinity_order()
+::i32 get_current_process_affinity_order()
 {
 
-   int numCPU = (int) (sysconf(_SC_NPROCESSORS_ONLN));
+   ::i32 numCPU = (::i32) (sysconf(_SC_NPROCESSORS_ONLN));
 
    return numCPU;
 }
@@ -144,16 +144,16 @@ void main_asynchronous(const ::procedure & procedure)
 }
 
 
-int process_get_os_priority(int nCa2Priority)
+::i32 process_get_os_priority(::i32 nCa2Priority)
 {
 
-   if(nCa2Priority <= (int) ::e_priority_none)
+   if(nCa2Priority <= (::i32) ::e_priority_none)
       return 0;
 
-   if(nCa2Priority <= (int) ::e_priority_normal)
-      return maximum(-20, minimum(0, -20 * ((int) ::e_priority_normal - nCa2Priority) / ((int) ::e_priority_normal - (int) ::e_priority_idle)));
+   if(nCa2Priority <= (::i32) ::e_priority_normal)
+      return maximum(-20, minimum(0, -20 * ((::i32) ::e_priority_normal - nCa2Priority) / ((::i32) ::e_priority_normal - (::i32) ::e_priority_idle)));
 
-   return maximum(0, minimum(20, 20 * (nCa2Priority - (int) ::e_priority_normal) / ((int) ::e_priority_time_critical - (int) ::e_priority_normal)));
+   return maximum(0, minimum(20, 20 * (nCa2Priority - (::i32) ::e_priority_normal) / ((::i32) ::e_priority_time_critical - (::i32) ::e_priority_normal)));
 
 }
 

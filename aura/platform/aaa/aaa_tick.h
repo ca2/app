@@ -11,7 +11,7 @@ class duration;
 
 class ::duration;
 
-inline double __double(const ::duration & duration);
+inline ::f64 __f64(const ::duration & duration);
 
 // ::durations
 //
@@ -22,13 +22,13 @@ class CLASS_DECL_AURA ::duration
 public:
 
 
-   long long m_i;
+   ::i64 m_i;
 
 
    ::duration() { m_i = 0; }
    ::duration(enum e_tick_now) { m_i = get_tick(); }
    ::duration(enum enum_no_init) {}
-   ::duration(long long i) { m_i = i; }
+   ::duration(::i64 i) { m_i = i; }
    ::duration(const ::duration & count) { m_i = count.m_i; }
 
    ::duration & operator = (const ::duration & duration) { m_i = ::duration.m_i; return *this; }
@@ -64,17 +64,17 @@ public:
 
    }
 
-   inline double sawtooth(const ::duration & tickPeriod)
+   inline ::f64 sawtooth(const ::duration & tickPeriod)
    {
 
-      return __double(elapsed() % tickPeriod) / __double(tickPeriod);
+      return __f64(elapsed() % tickPeriod) / __f64(tickPeriod);
 
    }
 
-   inline double period_rate(const ::duration & tickPeriod)
+   inline ::f64 period_rate(const ::duration & tickPeriod)
    {
 
-      return __double(elapsed()) / __double(tickPeriod);
+      return __f64(elapsed()) / __f64(tickPeriod);
 
    }
 
@@ -85,14 +85,14 @@ public:
 
    }
 
-   inline unsigned int unsigned int() const
+   inline ::u32 ::u32() const
    {
 
-      return (unsigned int) (m_i % 0x100000000ULL);
+      return (::u32) (m_i % 0x100000000ULL);
 
    }
 
-   inline long long seconds()const { return m_i / 1000; }
+   inline ::i64 seconds()const { return m_i / 1000; }
 
    inline void Now()
    {
@@ -110,7 +110,7 @@ public:
    }
 
 
-   inline bool on_off(const ::duration & period, double dRate) const
+   inline bool on_off(const ::duration & period, ::f64 dRate) const
    {
 
       return (elapsed().m_i % period.m_i) < period.m_i * dRate;
@@ -142,35 +142,35 @@ public:
    inline ::duration& operator += (const ::duration & duration) { m_i += ::duration.m_i; return *this; }
 
 
-   inline bool operator == (long long i) const { return m_i== i; }
-   inline bool operator != (long long i) const { return m_i != i; }
-   inline bool operator < (long long i) const { return m_i < i; }
-   inline bool operator <= (long long i) const{ return m_i <= i; }
-   inline bool operator > (long long i) const { return m_i > i; }
-   inline bool operator >= (long long i) const { return m_i >= i; }
-   inline ::duration operator - (long long i) const { return m_i - i; }
-   inline ::duration operator + (long long i) const { return m_i + i; }
-   inline ::duration& operator -= (long long i) { m_i -= i; return *this; }
-   inline ::duration& operator += (long long i) { m_i += i; return *this; }
+   inline bool operator == (::i64 i) const { return m_i== i; }
+   inline bool operator != (::i64 i) const { return m_i != i; }
+   inline bool operator < (::i64 i) const { return m_i < i; }
+   inline bool operator <= (::i64 i) const{ return m_i <= i; }
+   inline bool operator > (::i64 i) const { return m_i > i; }
+   inline bool operator >= (::i64 i) const { return m_i >= i; }
+   inline ::duration operator - (::i64 i) const { return m_i - i; }
+   inline ::duration operator + (::i64 i) const { return m_i + i; }
+   inline ::duration& operator -= (::i64 i) { m_i -= i; return *this; }
+   inline ::duration& operator += (::i64 i) { m_i += i; return *this; }
 
 
-   inline ::duration operator * (double d) const { return (long long)(m_i *d); }
-   inline ::duration& operator *= (double d) { m_i = (long long)(m_i * d); return *this; }
+   inline ::duration operator * (::f64 d) const { return (::i64)(m_i *d); }
+   inline ::duration& operator *= (::f64 d) { m_i = (::i64)(m_i * d); return *this; }
 
-   inline long long operator / (const ::duration& ::duration) const { return m_i / ::duration.m_i; }
-   inline ::duration operator / (long long i) const { return m_i / i; }
-   inline ::duration& operator /= (long long i)  { m_i /= i; return *this; }
+   inline ::i64 operator / (const ::duration& ::duration) const { return m_i / ::duration.m_i; }
+   inline ::duration operator / (::i64 i) const { return m_i / i; }
+   inline ::duration& operator /= (::i64 i)  { m_i /= i; return *this; }
    inline ::duration& operator %= (const ::duration & duration) { m_i %= ::duration.m_i; return *this; }
 
 
-   inline ::duration operator % (int i) const { return m_i % i; }
-   inline ::duration operator % (long long i) const { return m_i % i; }
+   inline ::duration operator % (::i32 i) const { return m_i % i; }
+   inline ::duration operator % (::i64 i) const { return m_i % i; }
    inline ::duration operator % (const ::duration & duration) const { return m_i % ::duration.m_i; }
 
 
 };
 
-inline ::duration operator * (double d, const ::duration & duration) { return (long long)(d * ::duration.m_i); }
+inline ::duration operator * (::f64 d, const ::duration & duration) { return (::i64)(d * ::duration.m_i); }
 
 namespace papaya
 {
@@ -184,7 +184,7 @@ namespace papaya
       inline TYPE default_value();
 
       template <  >
-      inline unsigned int default_value < unsigned int >()
+      inline ::u32 default_value < ::u32 >()
       {
 
          return 0;
@@ -210,22 +210,22 @@ namespace papaya
 
 #define __prtick "%" PRtick " ms"
 
-inline double __double(const ::duration & duration) { return (double) ::duration.m_i; }
+inline ::f64 __f64(const ::duration & duration) { return (::f64) ::duration.m_i; }
 
 inline auto __pr(const ::duration & duration) { return ::duration.m_i; }
 
-inline unsigned int __os(const ::duration & duration) { return ::duration.m_i > (long long) I32_MAXIMUM ? U32_INFINITE_TIMEOUT : ::duration.m_i < 0 ? 0 : (unsigned int) ::duration.m_i; }
+inline ::u32 __os(const ::duration & duration) { return ::duration.m_i > (::i64) I32_MAXIMUM ? U32_INFINITE_TIMEOUT : ::duration.m_i < 0 ? 0 : (::u32) ::duration.m_i; }
 
-inline int __int(const ::duration & duration) { return (int) ::duration.m_i; }
+inline ::i32 __int(const ::duration & duration) { return (::i32) ::duration.m_i; }
 
-inline long long __long_long(const ::duration & duration) { return (long long) ::duration.m_i; }
+inline ::i64 __i64(const ::duration & duration) { return (::i64) ::duration.m_i; }
 
-inline unsigned char as_byte(const ::duration & duration) { return (unsigned char) minimummax(::duration.m_i, 0, 255); }
+inline ::u8 as_byte(const ::duration & duration) { return (::u8) minimummax(::duration.m_i, 0, 255); }
 
-inline ::duration __tick(double d) { return (long long) d; }
+inline ::duration __tick(::f64 d) { return (::i64) d; }
 
 
-inline ::duration operator""_tick(unsigned long long u) { return u; }
+inline ::duration operator""_tick(::u64 u) { return u; }
 
 
 

@@ -8,14 +8,14 @@
 #include <time.h>
 #include <memory.h>
 
-char * get_line(char * str, char * & next);
-char * get_command_output(const_char_pointer pszCommand);
+char_pointer get_line(char_pointer str, char_pointer & next);
+char_pointer get_command_output(const_char_pointer pszCommand);
 
 
 bool curl_check_http_ok(const_char_pointer pszUrl)
 {
 
-   char szCommand[4096];
+   ::i8 szCommand[4096];
 
    strcpy(szCommand, "curl --http1.1 --silent -I ");
 

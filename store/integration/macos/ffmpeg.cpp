@@ -319,7 +319,7 @@ namespace console_integration
          m_papplication->m_strName /
          m_papplication->m_strRelease;
          
-         int iExitCode = 0;
+         ::i32 iExitCode = 0;
          
          ::string strParameters;
          
@@ -379,7 +379,7 @@ namespace console_integration
          m_papplication->m_strName /
          m_papplication->m_strRelease;
          
-         int iExitCode = 0;
+         ::i32 iExitCode = 0;
          
          ::string strParameters;
          
@@ -427,7 +427,7 @@ namespace console_integration
       m_papplication->m_strName /
       m_papplication->m_strRelease;
       
-      int iExitCode = 0;
+      ::i32 iExitCode = 0;
       
       ::string strParameters;
       
@@ -465,7 +465,7 @@ namespace console_integration
       m_papplication->m_strName /
       m_papplication->m_strRelease;
       
-      int iExitCode = 0;
+      ::i32 iExitCode = 0;
       
       ::string strParameters;
       

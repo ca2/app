@@ -27,8 +27,12 @@ namespace innate_ui
       void main_send(const ::procedure & procedure) override;
 
 
-      virtual ::pointer < ::innate_ui::icon > innate_ui_icon(const ::payload & payloadFile, const ::int_size & size);
+      ::pointer<::innate_ui::menu> load_menu_from_resource(::i32 iMenuResourceId);
+      ::pointer<::innate_ui::menu> create_menu();
 
+
+      virtual ::pointer < ::innate_ui::icon > innate_ui_icon(const ::payload & payloadFile, const ::i32_size & size);
+      virtual ::pointer<::innate_ui::icon> try_get_application_icon_from_main_window();
 
    };
 

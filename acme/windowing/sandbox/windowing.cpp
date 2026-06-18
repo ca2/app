@@ -173,7 +173,7 @@ void windowing::initialize(::particle * pparticle)
 }
 
 
-::particle * windowing::defer_initialize_host_window(const ::int_rectangle* lpcrect)
+::particle * windowing::defer_initialize_host_window(const ::i32_rectangle* lpcrect)
 {
    
    //      if (::is_set(m_phostinteraction))
@@ -243,7 +243,8 @@ void windowing::_will_finish_launching()
 //
 //   ::acme::windowing::windowing::_will_finish_launching();
    
-   system()->post_application_start();
+   throw "post_application_start";
+   //system()->post_application_start();
    
 }
 
@@ -427,7 +428,7 @@ bool windowing::targeted_keyboard_messages()
 //   
 //   //}
 //   
-//   //int iCursor = 0;
+//   //::i32 iCursor = 0;
 //   
 //   //if (ecursor == e_cursor_size_top_left)
 //   //{

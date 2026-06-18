@@ -59,7 +59,7 @@ namespace sockets
          \lparam eid Event ID to erase */
       void RemoveEvent(long eid);
       /** Event callback will fire when time is up. */
-      virtual void OnHappening(int) = 0;
+      virtual void OnHappening(::i32) = 0;
 
       IEventHandler& EventHandler();
       void SetHandlerInvalid(bool x = true) { m_handler_invalid = x; }

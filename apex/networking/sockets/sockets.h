@@ -19,7 +19,7 @@ namespace sockets
    public:
 
 
-      int                                          m_iErrorCode;
+      ::i32                                          m_iErrorCode;
 
       sockets();
       ~sockets() override;
@@ -32,7 +32,7 @@ namespace sockets
 //
 //      ::pointer<SSLInitializer>       m_psslinit;
 //
-//      //unsigned char                             m_baTicketKey[SSL_SESSION_TICKET_KEY_SIZE];
+//      //::u8                             m_baTicketKey[SSL_SESSION_TICKET_KEY_SIZE];
 //
 ////#if defined(BSD_STYLE_SOCKETS)
 ////      ::pointer<ssl_client_context_map>          m_pclientcontextmap;

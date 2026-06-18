@@ -5,7 +5,7 @@
 #include <sys/types.h>
 
 
-CLASS_DECL_ACME bool _istlead(int ch)
+CLASS_DECL_ACME bool _istlead(::i32 ch)
 {
 
    return false;
@@ -13,7 +13,7 @@ CLASS_DECL_ACME bool _istlead(int ch)
 }
 
 
-//void sleep(unsigned int dwMillis)
+//void sleep(::u32 dwMillis)
 //{
 //   timespec t;
 //   t.tv_sec = dwMillis / 1000;

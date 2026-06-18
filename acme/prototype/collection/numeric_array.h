@@ -23,9 +23,9 @@ template < typename ARG_TYPE >
 }
 
 //template < >
-//inline long long from_string(const ::scoped_string & scopedstr)
+//inline ::i64 from_string(const ::scoped_string & scopedstr)
 //{
-//   return to_long_long(string(scopedstr));
+//   return to_i64(string(scopedstr));
 //}
 
 
@@ -80,10 +80,10 @@ public:
    //using BASE_ARRAY = comparable_raw_array < TYPE, TYPE, ::typed::nodef < TYPE >, ::heap::typed_memory < TYPE, ::heap::e_memory_array >, t_etypeContainer >;
 
 
-   ::collection::index find_first_maximum_value();
-   TYPE & get_maximum_value();
-   ::collection::index find_first_minimum_value();
-   TYPE & get_minimum_value();
+   ::collection::index find_first_maximum_value() const;
+   const TYPE & get_maximum_value() const;
+   ::collection::index find_first_minimum_value() const;
+   const TYPE & get_minimum_value() const;
 
 
    template < prototype_integral INTEGRAL >
@@ -109,7 +109,7 @@ public:
    TYPE pop_max();
    TYPE pop_max_last_add_up(TYPE tLastAddUp);
 
-   TYPE get_sum(::collection::index first = 0, ::collection::count in_count_out_last = -1)
+   TYPE get_sum(::collection::index first = 0, ::collection::count in_count_out_last = -1) const
    {
 
       this->prepare_first_in_count_last_out(first, in_count_out_last);
@@ -166,7 +166,7 @@ public:
 
 
 
-   int compare(const numeric_array_base & a) const
+   ::i32 compare(const numeric_array_base & a) const
    {
 
       ::collection::count iCompare = this->get_size() - a.get_size();
@@ -307,7 +307,7 @@ public:
    const numeric_array_base  < TYPE > & array1,
    const numeric_array_base  < TYPE > & array2);*/
 
-   //void divide(int i);
+   //void divide(::i32 i);
 
    //void ElementDiff(
    // const numeric_array_base  < TYPE > & array1,
@@ -315,9 +315,9 @@ public:
 
    //TYPE GetMean();
 
-   //void set(const TYPE & t, int iStart = 0, int iEnd = -1);
+   //void set(const TYPE & t, ::i32 iStart = 0, ::i32 iEnd = -1);
 
-   //int Cmp(const numeric_array_base  < TYPE > & array1);
+   //::i32 Cmp(const numeric_array_base  < TYPE > & array1);
 
 
    /*virtual void quick_sort(bool bAsc = true)
@@ -546,7 +546,7 @@ numeric_array_base < TYPE, t_etypeContainer > numeric_array_base < TYPE, t_etype
 
    numeric_array_base < TYPE, t_etypeContainer > a;
 
-   for(int i = 0; i < this->get_count(); i++)
+   for(::i32 i = 0; i < this->get_count(); i++)
    {
       a.add_unique(this->element_at(i));
    }
@@ -561,7 +561,7 @@ void numeric_array_base < TYPE, t_etypeContainer >::unique()
 
    numeric_array_base < TYPE, t_etypeContainer > a;
 
-   for(int i = 0; i < this->get_count(); i++)
+   for(::i32 i = 0; i < this->get_count(); i++)
    {
       a.add_unique(this->element_at(i));
    }
@@ -661,7 +661,7 @@ const TYPE & tMax)
 
 
 template < typename TYPE, ::enum_type t_etypeContainer >
-::collection::index numeric_array_base < TYPE, t_etypeContainer >::find_first_maximum_value()
+::collection::index numeric_array_base < TYPE, t_etypeContainer >::find_first_maximum_value() const
 {
 
    TYPE tMax = this->element_at(0);
@@ -688,15 +688,15 @@ template < typename TYPE, ::enum_type t_etypeContainer >
 
 
 template < typename TYPE, ::enum_type t_etypeContainer >
-TYPE & numeric_array_base < TYPE, t_etypeContainer >::
-get_maximum_value()
+const TYPE & numeric_array_base < TYPE, t_etypeContainer >::
+get_maximum_value() const
 {
    ASSERT(this->get_size() > 0);
    return this->element_at(find_first_maximum_value());
 }
 
 template < typename TYPE, ::enum_type t_etypeContainer >
-::collection::index numeric_array_base < TYPE, t_etypeContainer >::find_first_minimum_value()
+::collection::index numeric_array_base < TYPE, t_etypeContainer >::find_first_minimum_value() const
 {
 
    TYPE tMin = this->element_at(0);
@@ -723,8 +723,8 @@ template < typename TYPE, ::enum_type t_etypeContainer >
 
 
 template < typename TYPE, ::enum_type t_etypeContainer >
-TYPE & numeric_array_base < TYPE, t_etypeContainer >::
-get_minimum_value()
+const TYPE & numeric_array_base < TYPE, t_etypeContainer >::
+get_minimum_value() const
 {
    ASSERT(this->get_size() > 0);
    return this->element_at(find_first_minimum_value());
@@ -733,16 +733,16 @@ get_minimum_value()
 template < typename INTEGER >
 inline INTEGER get_integer_mean(const INTEGER * p, ::collection::count N)
 {
-   long long x = 0;
-   long long y = 0;
+   ::i64 x = 0;
+   ::i64 y = 0;
    ::collection::count c = N;
    while (c > 0)
    {
-      long long a = *p;
+      ::i64 a = *p;
       x += a / N;
       if (a >= 0)
       {
-         int b = (int) (a % N);
+         ::i32 b = (::i32) (a % N);
          if (y >= N - b)
          {
             x++;
@@ -755,7 +755,7 @@ inline INTEGER get_integer_mean(const INTEGER * p, ::collection::count N)
       }
       else
       {
-         int b = (int) ((-a) % N);
+         ::i32 b = (::i32) ((-a) % N);
          if (y <= -N + b)
          {
             x--;
@@ -769,7 +769,7 @@ inline INTEGER get_integer_mean(const INTEGER * p, ::collection::count N)
       c--;
       p++;
    }
-   return (int) (x + y / N);
+   return (::i32) (x + y / N);
 
 }
 
@@ -778,7 +778,7 @@ template < prototype_integral INTEGRAL >
 inline INTEGRAL simple_total_mean(const INTEGRAL * p, ::collection::count N)
 {
 
-   long long i = 0;
+   ::i64 i = 0;
 
    ::collection::count c = N;
 
@@ -801,7 +801,7 @@ template < prototype_floating FLOATING >
 inline FLOATING simple_total_mean(const FLOATING * p, ::collection::count N)
 {
 
-   double d = 0.;
+   ::f64 d = 0.;
 
    ::collection::count c = N;
 
@@ -816,11 +816,11 @@ inline FLOATING simple_total_mean(const FLOATING * p, ::collection::count N)
 
    }
 
-   return (FLOATING)(d / (double) N);
+   return (FLOATING)(d / (::f64) N);
 
 }
 
-inline int get_mean(const int * A, ::collection::count N)
+inline ::i32 get_mean(const ::i32 * A, ::collection::count N)
 {
    return get_integer_mean(A, N);
 }
@@ -1339,13 +1339,13 @@ namespace acme
 //}
 
 
-// using int_2a = array < int_array_base >;
+// using i32_2a = array < i32_array_base >;
 
 
-// using f32_2a = array < float_array >;
+// using f32_2a = array < f32_array >;
 
 
-// using f64_2a = array < double_array >;
+// using f64_2a = array < f64_array >;
 
 
 
@@ -1370,7 +1370,7 @@ namespace acme
 
            }
 
-           for (int i = 0; i < a1.get_count(); i++)
+           for (::i32 i = 0; i < a1.get_count(); i++)
            {
 
               if (a1[i] != a2[i])

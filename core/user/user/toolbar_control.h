@@ -21,50 +21,50 @@ namespace user
 
       //bool LoadToolBar(const ::scoped_string & scopedstrResourceName);
 
-      //bool LoadToolBar(unsigned int nIDResource);
-      bool SetButtons(const unsigned int* pIDArray, int nIDCount);
+      //bool LoadToolBar(::u32 nIDResource);
+      bool SetButtons(const ::u32* pIDArray, ::i32 nIDCount);
 
 
 
 
       //using ::user::interaction::create_window;
-      //bool create_window(unsigned int uStyle, const ::int_rectangle & rectangle, ::user::interaction * puiParent, ::atom atom);
+      //bool create_window(::u32 uStyle, const ::i32_rectangle & rectangle, ::user::interaction * puiParent, ::atom atom);
       //bool create_child(::user::interaction * puserinteraction);
 
 
-      bool IsButtonEnabled(int nID);
-      bool IsButtonChecked(int nID);
-      bool IsButtonPressed(int nID);
-      bool IsButtonHidden(int nID);
-      bool IsButtonIndeterminate(int nID);
-      bool set_state(int nID, unsigned int nState);
-      int GetState(int nID);
+      bool IsButtonEnabled(::i32 nID);
+      bool IsButtonChecked(::i32 nID);
+      bool IsButtonPressed(::i32 nID);
+      bool IsButtonHidden(::i32 nID);
+      bool IsButtonIndeterminate(::i32 nID);
+      bool set_state(::i32 nID, ::u32 nState);
+      ::i32 GetState(::i32 nID);
 //#ifdef WINDOWS_DESKTOP
-//      bool GetButton(int nIndex, LPTBBUTTON pButton);
+//      bool GetButton(::i32 nIndex, LPTBBUTTON pButton);
 //
 //#endif
-      int GetButtonCount();
-      bool GetItemRect(int nIndex, ::int_rectangle * prectangle);
+      ::i32 GetButtonCount();
+      bool GetItemRect(::i32 nIndex, ::i32_rectangle * prectangle);
 
-      bool GetRect(int nID, ::int_rectangle * prectangle);
+      bool GetRect(::i32 nID, ::i32_rectangle * prectangle);
 
-      void SetButtonStructSize(int nSize);
-      unsigned int get_button_size();
-      bool SetButtonSize(const ::int_size & size);
-      bool SetBitmapSize(const ::int_size & size);
+      void SetButtonStructSize(::i32 nSize);
+      ::u32 get_button_size();
+      bool SetButtonSize(const ::i32_size & size);
+      bool SetBitmapSize(const ::i32_size & size);
       ::pointer<::user::interaction> set_owner(::pointer<::user::interaction>window);
-      void SetRows(int nRows, bool bLarger, ::int_rectangle * prectangle);
+      void SetRows(::i32 nRows, bool bLarger, ::i32_rectangle * prectangle);
 
-      int GetRows();
-      bool SetCmdID(int nIndex, unsigned int nID);
-      unsigned int GetBitmapFlags();
+      ::i32 GetRows();
+      bool SetCmdID(::i32 nIndex, ::u32 nID);
+      ::u32 GetBitmapFlags();
       ::image::image_list* GetDisabledImageList();
       ::image::image_list* GetHotImageList();
       ::image::image_list* GetImageList();
-      unsigned int GetStyle();
-      int GetMaxTextRows();
-      bool IsButtonHighlighted(int nID);
-      bool SetButtonWidth(int cxMin, int cxMax);
+      ::u32 GetStyle();
+      ::i32 GetMaxTextRows();
+      bool IsButtonHighlighted(::i32 nID);
+      bool SetButtonWidth(::i32 cxMin, ::i32 cxMax);
       ::image::image_list* SetDisabledImageList(::image::image_list* pImageList);
       ::image::image_list* SetHotImageList(::image::image_list* pImageList);
       ::image::image_list* SetImageList(::image::image_list* pImageList);
@@ -75,78 +75,78 @@ namespace user
 //#endif
 
 
-      bool SetIndent(int iIndent);
-      bool SetMaxTextRows(int iMaxRows);
-      void SetStyle(unsigned int dwStyle);
+      bool SetIndent(::i32 iIndent);
+      bool SetMaxTextRows(::i32 iMaxRows);
+      void SetStyle(::u32 dwStyle);
 
 
 //#ifdef WINDOWS_DESKTOP
-//      bool GetButtonInfo(int nID, TBBUTTONINFOW* ptbbi);
-//      bool SetButtonInfo(int nID, TBBUTTONINFOW* ptbbi);
+//      bool GetButtonInfo(::i32 nID, TBBUTTONINFOW* ptbbi);
+//      bool SetButtonInfo(::i32 nID, TBBUTTONINFOW* ptbbi);
 //#endif
 
 
-      unsigned int SetDrawTextFlags(unsigned int dwMask, unsigned int dwDTFlags);
+      ::u32 SetDrawTextFlags(::u32 dwMask, ::u32 dwDTFlags);
       bool GetAnchorHighlight();
       bool SetAnchorHighlight(bool fAnchor = true);
-      int GetHotItem();
-      int SetHotItem(int nHot);
+      ::i32 GetHotItem();
+      ::i32 SetHotItem(::i32 nHot);
 //#ifdef WINDOWS_DESKTOP
 //      void GetInsertMark(TBINSERTMARK* ptbim);
 //      void SetInsertMark(TBINSERTMARK* ptbim);
 //#endif
-      bool GetMaxSize(::int_size * pSize);
+      bool GetMaxSize(::i32_size * pSize);
 //#ifdef WINDOWS_DESKTOP
-//      bool InsertMarkHitTest(::int_point * ppt, LPTBINSERTMARK ptbim);
+//      bool InsertMarkHitTest(::i32_point * ppt, LPTBINSERTMARK ptbim);
 //#endif
-      unsigned int GetExtendedStyle();
-      unsigned int SetExtendedStyle(unsigned int dwExStyle);
+      ::u32 GetExtendedStyle();
+      ::u32 SetExtendedStyle(::u32 dwExStyle);
       ::color::color GetInsertMarkColor();
       ::color::color SetInsertMarkColor(::color::color clrNew);
 
    
    public:
-      bool EnableButton(int nID, bool bEnable = true);
-      bool CheckButton(int nID, bool bCheck = true);
-      bool PressButton(int nID, bool bPress = true);
-      bool HideButton(int nID, bool bHide = true);
-      bool Indeterminate(int nID, bool bIndeterminate = true);
-      //int AddBitmap(int nNumButtons, ::draw2d::bitmap* pBitmap);
+      bool EnableButton(::i32 nID, bool bEnable = true);
+      bool CheckButton(::i32 nID, bool bCheck = true);
+      bool PressButton(::i32 nID, bool bPress = true);
+      bool HideButton(::i32 nID, bool bHide = true);
+      bool Indeterminate(::i32 nID, bool bIndeterminate = true);
+      //::i32 AddBitmap(::i32 nNumButtons, ::draw2d::bitmap* pBitmap);
 
 
 //#ifdef WINDOWS_DESKTOP
 //
-//      bool AddButtons(int nNumButtons, LPTBBUTTON pButtons);
+//      bool AddButtons(::i32 nNumButtons, LPTBBUTTON pButtons);
 //
-//      bool InsertButton(int nIndex, LPTBBUTTON pButton);
+//      bool InsertButton(::i32 nIndex, LPTBBUTTON pButton);
 //
 //#endif
 //
 
-      bool DeleteButton(int nIndex);
-      unsigned int CommandToIndex(unsigned int nID);
+      bool DeleteButton(::i32 nIndex);
+      ::u32 CommandToIndex(::u32 nID);
 
 
 //#ifdef WINDOWS_DESKTOP
 //
 //      void SaveState(HKEY hKeyRoot, const ::scoped_string & scopedstrSubKey, const ::scoped_string & scopedstrValueName);
 //      void RestoreState(HKEY hKeyRoot, const ::scoped_string & scopedstrSubKey, const ::scoped_string & scopedstrValueName);
-//      void LoadImages(int iBitmapID, HINSTANCE hinst);
+//      void LoadImages(::i32 iBitmapID, HINSTANCE hinst);
 //
 //#endif
 
 
-      bool MapAccelerator(char chAccel, unsigned int* pIDBtn);
-      bool MarkButton(int nID, bool fHighlight = true);
-      bool MoveButton(unsigned int nOldPos, unsigned int nNewPos);
-      int hit_test(::int_point * ppt);
+      bool MapAccelerator(::i8 chAccel, ::u32* pIDBtn);
+      bool MarkButton(::i32 nID, bool fHighlight = true);
+      bool MoveButton(::u32 nOldPos, ::u32 nNewPos);
+      ::i32 hit_test(::i32_point * ppt);
 
       void Customize();
-      int AddStrings(const ::scoped_string & scopedstrStrings);
+      ::i32 AddStrings(const ::scoped_string & scopedstrStrings);
 
       void AutoSize();
 
-      int GetButtonText(unsigned int uID, string &str);
+      ::i32 GetButtonText(::u32 uID, string &str);
       virtual ~toolbar_control();
 
       DECLARE_MESSAGE_HANDLER(on_message_create);

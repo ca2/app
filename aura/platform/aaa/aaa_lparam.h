@@ -13,9 +13,9 @@ public:
 
    lparam(nullptr_t = nullptr) { m_lparam = 0; }
 
-   lparam(int i) { m_lparam = (LPARAM) i; }
+   lparam(::i32 i) { m_lparam = (LPARAM) i; }
 
-   lparam(long long i) { m_lparam = (LPARAM) i; }
+   lparam(::i64 i) { m_lparam = (LPARAM) i; }
 
 
    /// catching/receiving object
@@ -107,7 +107,7 @@ public:
    }
 
 
-   inline int x() const
+   inline ::i32 x() const
    {
 
       return lparam_int_x(m_lparam);
@@ -115,7 +115,7 @@ public:
    }
 
 
-   inline int y() const
+   inline ::i32 y() const
    {
 
       return lparam_int_y(m_lparam);

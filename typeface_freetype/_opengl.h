@@ -42,33 +42,33 @@ namespace opengl
 {
 
 
-   //inline void vertex2f(const ::double_rectangle & rectangle, float fZ)
+   //inline void vertex2f(const ::f64_rectangle & rectangle, ::f32 fZ)
    //{
 
-   //   glVertex3f((GLfloat)rectangle.left, (GLfloat)rectangle.top, fZ);
-   //   glVertex3f((GLfloat)rectangle.right, (GLfloat)rectangle.top, fZ);
-   //   glVertex3f((GLfloat)rectangle.right, (GLfloat)rectangle.bottom, fZ);
-   //   glVertex3f((GLfloat)rectangle.left, (GLfloat)rectangle.bottom, fZ);
+   //   glVertex3f((GLf32)rectangle.left, (GLf32)rectangle.top, fZ);
+   //   glVertex3f((GLf32)rectangle.right, (GLf32)rectangle.top, fZ);
+   //   glVertex3f((GLf32)rectangle.right, (GLf32)rectangle.bottom, fZ);
+   //   glVertex3f((GLf32)rectangle.left, (GLf32)rectangle.bottom, fZ);
 
    //}
 
   
-      //inline void vertex2f(const ::double_polygon& a, float fZ)
+      //inline void vertex2f(const ::f64_polygon& a, ::f32 fZ)
       //{
       //   for (auto& p : a)
       //   {
 
-      //      glVertex3f((GLfloat)p.x, (GLfloat)p.y, fZ);
+      //      glVertex3f((GLf32)p.x, (GLf32)p.y, fZ);
 
       //   }
 
       //}
 
-   void resize(const ::int_size & size, bool bYSwap);
+   void resize(const ::i32_size & size, bool bYSwap);
 
 
    //https://community.khronos.org/t/draw-an-arc-in-opengl/57994/2
-   void draw_arc(float cx, float cy, float r, float start_angle, float arc_angle, int num_segments);
+   void draw_arc(::f32 cx, ::f32 cy, ::f32 r, ::f32 start_angle, ::f32 arc_angle, ::i32 num_segments);
 
 } // namespace opengl
 

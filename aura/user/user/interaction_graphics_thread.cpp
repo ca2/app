@@ -105,7 +105,7 @@ namespace user
 #ifdef _DEBUG
 
 
-   long long graphics_thread::increment_reference_count()
+   ::i64 graphics_thread::increment_reference_count()
    {
 
       return ::thread::increment_reference_count();
@@ -113,7 +113,7 @@ namespace user
    }
 
 
-   long long graphics_thread::decrement_reference_count()
+   ::i64 graphics_thread::decrement_reference_count()
    {
 
       return ::thread::decrement_reference_count();
@@ -121,7 +121,7 @@ namespace user
    }
 
 
-   long long graphics_thread::release()
+   ::i64 graphics_thread::release()
    {
 
       return ::thread::release();
@@ -161,10 +161,10 @@ namespace user
          {
 
             
-            m_puserinteraction->user_thread()->post([this]()
+            m_puserinteraction->user_thread()->send([this]()
                                                      {
                
-               branch();
+               branch_synchronously();
                
             });
             
@@ -285,7 +285,7 @@ namespace user
    //}
 
 
-//   int graphics_thread::thread_index()
+//   ::i32 graphics_thread::thread_index()
 //   {
 //
 //      _synchronous_lock sl(this->synchronization(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
@@ -473,7 +473,7 @@ namespace user
 
          }
          
-         int iRedrawMessageCount = 0;
+         ::i32 iRedrawMessageCount = 0;
          
          if (m_message.m_eusermessage == ::user::e_message_redraw)
          {
@@ -676,6 +676,20 @@ namespace user
          }
 
       }
+      
+      if(!m_bFps)
+      {
+         
+         if(m_iRedrawMessageCount <= 0)
+         {
+            
+            wait_to_present();
+            
+            return true;
+            
+         }
+         
+      }
 
       try
       {
@@ -817,7 +831,7 @@ namespace user
       //m_puserinteraction->m_bUpdateBufferPending = false;
 
 
-      if (!this->task_get_run())
+      if (!this->should_run())
       {
 
          return false;
@@ -909,7 +923,7 @@ namespace user
             }
 
          }
-         //long long i2 = get_nanos();
+         //::i64 i2 = get_nanos();
 
          // calculates the next/aaa_memory_new frame atom
          //m_iFrameId = (m_timeNow + timeFrame - 1) / (timeFrame);
@@ -922,7 +936,7 @@ namespace user
 
          auto timeNow = m_timeStart.elapsed();
 
-         long long iFrame = (long long) floor(timeNow / timeFrame);
+         ::i64 iFrame = (::i64) floor(timeNow / timeFrame);
 
          m_timeThisFrame = timeFrame * iFrame;
 
@@ -986,11 +1000,11 @@ namespace user
 //                  if (timeToWaitForNextFrame >= 50_ms)
 //                  {
 //
-//                     //printf("msToWaitForNextFrame >= 50ms (%dms)\n", (int) (msToWaitForNextFrame - 1));
+//                     //printf("msToWaitForNextFrame >= 50ms (%dms)\n", (::i32) (msToWaitForNextFrame - 1));
 //
 //                     m_synchronizationa.wait(timeToWaitForNextFrame - 1_ms);
 //
-//                     //printf("Actually waited %dms\n", (int) ::time.elapsed().m_i);
+//                     //printf("Actually waited %dms\n", (::i32) ::time.elapsed().m_i32);
 //
 //                  }
 //                  else
@@ -1067,7 +1081,7 @@ namespace user
 
                //auto elapsed = time.elapsed();
 
-               //printf("msToWaitForNextFrame Waited %d\n", elapsed.m_i);
+               //printf("msToWaitForNextFrame Waited %d\n", elapsed.m_i32);
 
             }
 
@@ -1082,9 +1096,9 @@ namespace user
 
             //{
 
-            //   long long nanosDeltaPostRedraw = (long long)m_timeNextScreenUpdate - (timeFrame - m_timePostRedraw)  - (long long)get_nanos();
+            //   ::i64 nanosDeltaPostRedraw = (::i64)m_timeNextScreenUpdate - (timeFrame - m_timePostRedraw)  - (::i64)get_nanos();
 
-            //   int msDeltaPostRedraw = (int)(nanosDeltaPostRedraw / 1'000'000);
+            //   ::i32 msDeltaPostRedraw = (::i32)(nanosDeltaPostRedraw / 1'000'000);
 
             //   if (msDeltaPostRedraw >= 1)
             //   {
@@ -1102,7 +1116,7 @@ namespace user
 
 //      }
 
-      if (!this->task_get_run())
+      if (!this->should_run())
       {
 
          return false;
@@ -1144,6 +1158,11 @@ namespace user
          information() << "user::list_box graphics_thread_iteration user::list_box";
 
       }
+      else if (::platform::type(m_puserinteraction) == "user::menu")
+      {
+
+         information() << "user::menu graphics_thread_iteration user::menu";
+      }
 #ifdef MORE_LOG
       else
       {
@@ -1153,7 +1172,7 @@ namespace user
       }
 #endif
 
-      long long i1 = ::long_long_nanosecond();
+      ::i64 i1 = ::i64_nanosecond();
 
       //m_timeLastFrame = m_timeThisFrame;
 
@@ -1284,7 +1303,7 @@ namespace user
             || pwindow->has_offscreen_output_purpose())
          {
 
-            pwindow->do_graphics();
+            pwindow->draw_frame();
 
             //m_puserinteraction->windowing_window()->do_graphics(e_graphics_draw);
 
@@ -1405,7 +1424,7 @@ namespace user
 
       }
 
-      m_puserinteraction->windowing_window()->m_frequencyOutputFramesPerSecond = (double)(m_timeaFrame.get_size());
+      m_puserinteraction->windowing_window()->m_frequencyOutputFramesPerSecond = (::f64)(m_timeaFrame.get_size());
 
    }
 
@@ -1548,7 +1567,7 @@ namespace user
 //         //
 //         //         //bUpdateWindow = false;
 //         //
-//         //         long long i1 = ::long_long_nanosecond();
+//         //         ::i64 i1 = ::i64_nanosecond();
 //         //
 //         //      //   bool bTransparentDraw;
 //         //
@@ -1601,13 +1620,13 @@ namespace user
 //
 //         m_timeOutOfDrawing = m_timeBeforeDrawing - m_timeAfterDrawing;
 //
-//         long long i2 = ::long_long_nanosecond();
+//         ::i64 i2 = ::i64_nanosecond();
 //
 //#if TIME_REPORTING
 //
 //         static ::time timeLast;
 //
-//         informationf("time outside updatebuffer " + as_string(timeLast.elapsed().floating_millisecond().m_d) + "ms\n");
+//         informationf("time outside updatebuffer " + as_string(timeLast.elapsed().floating_millisecond().m_f64) + "ms\n");
 //
 //#endif
 //
@@ -1662,7 +1681,7 @@ namespace user
 ////
 ////         //bUpdateWindow = false;
 ////
-////         long long i1 = ::long_long_nanosecond();
+////         ::i64 i1 = ::i64_nanosecond();
 ////
 ////      //   bool bTransparentDraw;
 ////
@@ -1715,13 +1734,13 @@ namespace user
 //
 //         m_timeOutOfDrawing = m_timeBeforeDrawing - m_timeAfterDrawing;
 //
-//         long long i2 = ::long_long_nanosecond();
+//         ::i64 i2 = ::i64_nanosecond();
 //
 //#if TIME_REPORTING
 //
 //         static ::time timeLast;
 //
-//         informationf("time outside updatebuffer " +as_string(timeLast.elapsed().floating_millisecond().m_d) + "ms\n");
+//         informationf("time outside updatebuffer " +as_string(timeLast.elapsed().floating_millisecond().m_f64) + "ms\n");
 //
 //#endif
 //

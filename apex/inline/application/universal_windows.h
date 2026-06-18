@@ -15,7 +15,7 @@ RunBeforeMain go;
 
 
 //[MTAThread]
-//int main(Array < String ^ > ^ stra)
+//::i32 main(Array < String ^ > ^ stra)
 //{
 //
 //   //auto psystem = p(::apex::system());
@@ -49,7 +49,7 @@ RunBeforeMain go;
 //
 //   ::e_status estatus = psystem->start();
 //
-//   int iErrorStatus = estatus.error_status();
+//   ::i32 iErrorStatus = estatus.error_status();
 //
 //   return iErrorStatus;
 //
@@ -60,7 +60,7 @@ RunBeforeMain go;
 //#include "openssl/applink.c"
 
 
-//CLASS_DECL_EXPORT int unicode_main(int argc, wchar_t ** argv, const ::scoped_string & scopedstrAppId)
+//CLASS_DECL_EXPORT ::i32 unicode_main(::i32 argc, wchar_t ** argv, const ::scoped_string & scopedstrAppId)
 //{
 //
 //   string strAppId = pszAppId;
@@ -91,7 +91,7 @@ RunBeforeMain go;
 //   //   if (!estatus)
 //   //   {
 //   //    
-//   //      int iErrorStatus = estatus.error_status();
+//   //      ::i32 iErrorStatus = estatus.error_status();
 //   //
 //   //      return iErrorStatus;
 //   //
@@ -112,7 +112,7 @@ RunBeforeMain go;
 //
 //   auto estatusEnd = psystem->end();
 //
-//   int iErrorStatus = estatus.error_status();
+//   ::i32 iErrorStatus = estatus.error_status();
 //
 //   return iErrorStatus;
 //

@@ -48,7 +48,7 @@ namespace apex
 #ifdef _DEBUG
 
 
-   long long node::increment_reference_count()
+   ::i64 node::increment_reference_count()
    {
 
       return ::platform::node::increment_reference_count();
@@ -56,7 +56,7 @@ namespace apex
    }
 
 
-   long long node::decrement_reference_count()
+   ::i64 node::decrement_reference_count()
    {
 
       return ::platform::node::decrement_reference_count();
@@ -240,7 +240,7 @@ namespace apex
 
       ::file::path pathFolder;
 
-      pathFolder = "https://ca2.network/image/cc/ca2core/bkimageoftheday/common/";
+      pathFolder = "https://ca2.site/image/cc/ca2core/bkimageoftheday/common/";
 
       pfileset->m_listingAddUp.m_eflag = ::file::e_flag_file;
 
@@ -275,7 +275,7 @@ namespace apex
 //   }
 
 
-   ::file::path node::get_desktop_file_path(::apex::application * papp)
+   ::file::path node::get_desktop_file_path(::platform::application * papplication)
    {
 
       return "";
@@ -311,7 +311,7 @@ namespace apex
    }
 
 
-//   void node::application_handle(long long l, void * p)
+//   void node::application_handle(::i64 l, void * p)
 //   {
 //   
 //   }
@@ -368,7 +368,7 @@ namespace apex
    }
 
 
-   void node::shell_create_link(::file::path pathObj, ::file::path pathLnk, const ::scoped_string & scopedstrDesc, ::file::path pathIco, int iIcon)
+   void node::shell_create_link(::file::path pathObj, ::file::path pathLnk, const ::scoped_string & scopedstrDesc, ::file::path pathIco, ::i32 iIcon)
    {
 
       throw ::interface_only();
@@ -386,7 +386,7 @@ namespace apex
    }
 
 
-   bool node::shell_link_icon(::file::path& pathIcon, int& iIcon, const ::file::path& pathLnk)
+   bool node::shell_link_icon(::file::path& pathIcon, ::i32& iIcon, const ::file::path& pathLnk)
    {
 
       throw ::interface_only();
@@ -526,11 +526,11 @@ namespace apex
 //   }
 
 
-   void node::on_start_application(::apex::application *papplication)
-   {
+   //void node::on_start_application(::apex::application *papplication)
+   //{
 
 
-   }
+   //}
 
 
    void node::on_create_app_shortcut(::platform::application * papplication)
@@ -542,44 +542,49 @@ namespace apex
    void node::defer_create_app_shortcut(::platform::application* papplication)
    {
 
-information() << "defer_create_app_shortcut";
-
       auto pathShortcut = app_shortcut_path(papplication);
 
-      auto path = file_system()->module();
-
-      ::file::path pathTarget;
-
-      ::file::path pathIcon;
-
-      int iIcon = -1;
-
-      auto plink = path_system()->resolve_link(pathShortcut);
-
-      // Enough condition to create shortcut
-      bool bEnoughCondition1 = !plink;
-      bool bEnoughCondition2 = bEnoughCondition1 || !(plink->m_elink & ::file::e_link_target);
-      bool bEnoughCondition3 = bEnoughCondition2 || !path_system()->real_path_is_same(plink->m_pathTarget, path);
-      bool bEnoughCondition4 = bEnoughCondition3 || !(plink->m_elink & ::file::e_link_icon);
-      bool bEnoughCondition5 = bEnoughCondition4 || (plink->m_pathIcon.trimmed().is_empty() || !file_system()->exists(plink->m_pathIcon));
-
-      //bool bAtLeastIsPossibleHandlerForPossibleFileAssociations = true; // todo
-
-      bool bAtLeastIsPossibleHandlerForPossibleFileAssociations = false;
-
-      bool bEnoughCondition6 = bAtLeastIsPossibleHandlerForPossibleFileAssociations;
-
-      //if (!file_system()->exists(pathCreatedShortcut)
-      if (bEnoughCondition1
-         || bEnoughCondition2
-         || bEnoughCondition3
-         || bEnoughCondition4
-         || bEnoughCondition5
-         || bEnoughCondition6
-         )
+      if (!file()->exists(pathShortcut))
       {
 
-         create_app_shortcut(papplication);
+         information() << "defer_create_app_shortcut";
+
+         auto path = file_system()->module();
+
+         ::file::path pathTarget;
+
+         ::file::path pathIcon;
+
+         ::i32 iIcon = -1;
+
+         auto plink = path_system()->resolve_link(pathShortcut);
+
+         // Enough condition to create shortcut
+         bool bEnoughCondition1 = !plink;
+         bool bEnoughCondition2 = bEnoughCondition1 || !(plink->m_elink & ::file::e_link_target);
+         bool bEnoughCondition3 = bEnoughCondition2 || !path_system()->real_path_is_same(plink->m_pathTarget, path);
+         bool bEnoughCondition4 = bEnoughCondition3 || !(plink->m_elink & ::file::e_link_icon);
+         bool bEnoughCondition5 = bEnoughCondition4 || (plink->m_pathIcon.trimmed().is_empty() || !file_system()->exists(plink->m_pathIcon));
+
+         //bool bAtLeastIsPossibleHandlerForPossibleFileAssociations = true; // todo
+
+         bool bAtLeastIsPossibleHandlerForPossibleFileAssociations = false;
+
+         bool bEnoughCondition6 = bAtLeastIsPossibleHandlerForPossibleFileAssociations;
+
+         //if (!file_system()->exists(pathCreatedShortcut)
+         if (bEnoughCondition1
+            || bEnoughCondition2
+            || bEnoughCondition3
+            || bEnoughCondition4
+            || bEnoughCondition5
+            || bEnoughCondition6
+            )
+         {
+
+            create_app_shortcut(papplication);
+
+         }
 
       }
 
@@ -626,7 +631,7 @@ information() << "defer_create_app_shortcut";
       if (m_mapCharacterSetEnum.is_empty())
       {
 
-         for (int i = 0; i < e_character_set_count; i++)
+         for (::i32 i = 0; i < e_character_set_count; i++)
          {
 
             auto echaracterset = (enum_character_set)i;
@@ -670,7 +675,7 @@ information() << "defer_create_app_shortcut";
    }
 
    
-   bool node::is_key_pressed(bool * pbPressed, ::user::enum_key ekey)
+   bool node::is_key_pressed(bool * pbPressed, const ::user::e_key & ekey)
    {
 
       return false;

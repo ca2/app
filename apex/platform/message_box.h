@@ -32,7 +32,7 @@
 //
 //   }
 //
-//   payload["flags"] = (long long) emessagebox;
+//   payload["flags"] = (::i64) emessagebox;
 //
 //   return ::payload;
 //

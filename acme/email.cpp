@@ -11,11 +11,11 @@
 #define SMTP_QPENCODE_TRAILING_SOFT 2
 
 inline bool __QPDecode(
-   unsigned char * pbSrcData,
-   int nSrcLen,
-   char * szDest,
-   int * pnDestLen,
-   unsigned int uFlags = 0)
+   ::u8 * pbSrcData,
+   ::i32 nSrcLen,
+   char_pointer szDest,
+   ::i32 * pnDestLen,
+   ::u32 uFlags = 0)
 {
    
    if (!pbSrcData || !szDest || !pnDestLen)
@@ -25,9 +25,9 @@ inline bool __QPDecode(
 
    }
 
-   char * szDestEnd = szDest + *pnDestLen;
-   int nRead = 0, nWritten = 0, nLineLen = -1;
-   char ch;
+   char_pointer szDestEnd = szDest + *pnDestLen;
+   ::i32 nRead = 0, nWritten = 0, nLineLen = -1;
+   ::i8 ch;
    while (nRead <= nSrcLen)
    {
       ch = *pbSrcData++;
@@ -36,15 +36,15 @@ inline bool __QPDecode(
       if (ch == '=')
       {
          //if the next character is a digit or a character, convert
-         if ((nRead < (nSrcLen - 1)) && (__ansicharisdigit(static_cast<unsigned char>(*pbSrcData)) || __ansicharisalpha(static_cast<unsigned char>(*pbSrcData))))
+         if ((nRead < (nSrcLen - 1)) && (__ansicharisdigit(static_cast<::u8>(*pbSrcData)) || __ansicharisalpha(static_cast<::u8>(*pbSrcData))))
          {
-            char szBuf[5];
+            ::i8 szBuf[5];
             szBuf[0] = *pbSrcData++;
             szBuf[1] = *pbSrcData++;
             szBuf[2] = '\0';
-            char * tmp = nullptr;
+            char_pointer tmp = nullptr;
             ASSERT(szDest < szDestEnd);
-            *szDest++ = (unsigned char)strtoul(szBuf, &tmp, 16);
+            *szDest++ = (::u8)strtoul(szBuf, &tmp, 16);
             nWritten++;
             nRead += 2;
             continue;
@@ -88,13 +88,13 @@ inline bool __QPDecode(
 // compliant with RFC 2045
 //=======================================================================
 //
-inline int __QPEncodeGetRequiredLength(int nSrcLen)
+inline ::i32 __QPEncodeGetRequiredLength(::i32 nSrcLen)
 {
-   __int64 nRet64 = 3 * ((3 * static_cast<__int64>(nSrcLen)) / (SMTP_MAX_QP_LINE_LENGTH - 8));
-   nRet64 += 3 * static_cast<__int64>(nSrcLen);
+   ::i64 nRet64 = 3 * ((3 * static_cast<::i64>(nSrcLen)) / (SMTP_MAX_QP_LINE_LENGTH - 8));
+   nRet64 += 3 * static_cast<::i64>(nSrcLen);
    nRet64 += 3;
    ASSERT(nRet64 <= INT_MAX && nRet64 >= INT_MIN);
-   int nRet = static_cast<int>(nRet64);
+   ::i32 nRet = static_cast<::i32>(nRet64);
    
    return nRet;
 
@@ -143,20 +143,20 @@ inline int __QPEncodeGetRequiredLength(int nSrcLen)
 //#define ATL_BASE64_FLAG_NOPAD	1
 //#define ATL_BASE64_FLAG_NOCRLF  2
 //
-//	inline int Base64EncodeGetRequiredLength(
-//		_In_ int nSrcLen,
+//	inline ::i32 Base64EncodeGetRequiredLength(
+//		_In_ ::i32 nSrcLen,
 //		_In_ DWORD dwFlags = ATL_BASE64_FLAG_NONE)
 //	{
-//		__int64 nSrcLen4 = static_cast<__int64>(nSrcLen) * 4;
+//		::i64 nSrcLen4 = static_cast<::i64>(nSrcLen) * 4;
 //		ATLENSURE(nSrcLen4 <= INT_MAX);
 //
-//		int nRet = static_cast<int>(nSrcLen4 / 3);
+//		::i32 nRet = static_cast<::i32>(nSrcLen4 / 3);
 //
 //		if ((dwFlags & ATL_BASE64_FLAG_NOPAD) == 0)
 //			nRet += nSrcLen % 3;
 //
-//		int nCRLFs = nRet / 76 + 1;
-//		int nOnLastLine = nRet % 76;
+//		::i32 nCRLFs = nRet / 76 + 1;
+//		::i32 nOnLastLine = nRet % 76;
 //
 //		if (nOnLastLine)
 //		{
@@ -172,7 +172,7 @@ inline int __QPEncodeGetRequiredLength(int nSrcLen)
 //		return nRet;
 //	}
 //
-//	inline int Base64DecodeGetRequiredLength(_In_ int nSrcLen) throw()
+//	inline ::i32 Base64DecodeGetRequiredLength(_In_ ::i32 nSrcLen) throw()
 //	{
 //		return nSrcLen;
 //	}
@@ -181,12 +181,12 @@ inline int __QPEncodeGetRequiredLength(int nSrcLen)
 //		_Success_(return != FALSE)
 //		inline BOOL Base64Encode(
 //			_In_reads_(nSrcLen) const BYTE * pbSrcData,
-//			_In_ int nSrcLen,
+//			_In_ ::i32 nSrcLen,
 //			_When_(*pnDestLen > 0, _Out_writes_to_(*pnDestLen, *pnDestLen)) LPSTR szDest,
-//			_Inout_ int * pnDestLen,
+//			_Inout_ ::i32 * pnDestLen,
 //			_In_ DWORD dwFlags = ATL_BASE64_FLAG_NONE) throw()
 //	{
-//		static const char s_chBase64EncodingTable[64] = {
+//		static const ::i8 s_chBase64EncodingTable[64] = {
 //			'A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J', 'K', 'L', 'M', 'N', 'O', 'P', 'Q',
 //			'R', 'S', 'T', 'U', 'V', 'W', 'X', 'Y', 'Z', 'a', 'b', 'c', 'd', 'e', 'f', 'g',	'h',
 //			'i', 'j', 'k', 'l', 'm', 'n', 'o', 'p', 'q', 'r', 's', 't', 'u', 'v', 'w', 'x', 'y',
@@ -203,25 +203,25 @@ inline int __QPEncodeGetRequiredLength(int nSrcLen)
 //			return FALSE;
 //		}
 //
-//		int nWritten(0);
-//		int nLen1((nSrcLen / 3) * 4);
-//		int nLen2(nLen1 / 76);
-//		int nLen3(19);
+//		::i32 nWritten(0);
+//		::i32 nLen1((nSrcLen / 3) * 4);
+//		::i32 nLen2(nLen1 / 76);
+//		::i32 nLen3(19);
 //
-//		for (int i = 0; i <= nLen2; i++)
+//		for (::i32 i = 0; i <= nLen2; i++)
 //		{
 //			if (i == nLen2)
 //				nLen3 = (nLen1 % 76) / 4;
 //
-//			for (int j = 0; j < nLen3; j++)
+//			for (::i32 j = 0; j < nLen3; j++)
 //			{
 //				DWORD dwCurr(0);
-//				for (int n = 0; n < 3; n++)
+//				for (::i32 n = 0; n < 3; n++)
 //				{
 //					dwCurr |= *pbSrcData++;
 //					dwCurr <<= 8;
 //				}
-//				for (int k = 0; k < 4; k++)
+//				for (::i32 k = 0; k < 4; k++)
 //				{
 //					BYTE b = (BYTE)(dwCurr >> 26);
 //					*szDest++ = s_chBase64EncodingTable[b];
@@ -248,13 +248,13 @@ inline int __QPEncodeGetRequiredLength(int nSrcLen)
 //		if (nLen2)
 //		{
 //			DWORD dwCurr(0);
-//			for (int n = 0; n < 3; n++)
+//			for (::i32 n = 0; n < 3; n++)
 //			{
 //				if (n < (nSrcLen % 3))
 //					dwCurr |= *pbSrcData++;
 //				dwCurr <<= 8;
 //			}
-//			for (int k = 0; k < nLen2; k++)
+//			for (::i32 k = 0; k < nLen2; k++)
 //			{
 //				BYTE b = (BYTE)(dwCurr >> 26);
 //				*szDest++ = s_chBase64EncodingTable[b];
@@ -264,7 +264,7 @@ inline int __QPEncodeGetRequiredLength(int nSrcLen)
 //			if ((dwFlags & ATL_BASE64_FLAG_NOPAD) == 0)
 //			{
 //				nLen3 = nLen2 ? 4 - nLen2 : 0;
-//				for (int j = 0; j < nLen3; j++)
+//				for (::i32 j = 0; j < nLen3; j++)
 //				{
 //					*szDest++ = '=';
 //				}
@@ -277,7 +277,7 @@ inline int __QPEncodeGetRequiredLength(int nSrcLen)
 //	}
 //	ATLPREFAST_UNSUPPRESS()
 //
-//		inline int DecodeBase64Char(_In_ unsigned int ch) throw()
+//		inline ::i32 DecodeBase64Char(_In_ ::u32 ch) throw()
 //	{
 //		// returns -1 if the character is invalid
 //		// or should be skipped
@@ -298,9 +298,9 @@ inline int __QPEncodeGetRequiredLength(int nSrcLen)
 //
 //	inline BOOL Base64Decode(
 //		_In_reads_z_(nSrcLen) LPCSTR szSrc,
-//		_In_ int nSrcLen,
+//		_In_ ::i32 nSrcLen,
 //		_Out_writes_to_(*pnDestLen, *pnDestLen) BYTE * pbDest,
-//		_Inout_ int * pnDestLen) throw()
+//		_Inout_ ::i32 * pnDestLen) throw()
 //	{
 //		// walk the source buffer
 //		// each four character sequence is converted to 3 bytes
@@ -314,24 +314,24 @@ inline int __QPEncodeGetRequiredLength(int nSrcLen)
 //		}
 //
 //		LPCSTR szSrcEnd = szSrc + nSrcLen;
-//		int nWritten = 0;
+//		::i32 nWritten = 0;
 //
 //		BOOL bOverflow = (pbDest == NULL) ? TRUE : FALSE;
 //
 //		while (szSrc < szSrcEnd && (*szSrc) != 0)
 //		{
 //			DWORD dwCurr = 0;
-//			int i;
-//			int nBits = 0;
+//			::i32 i;
+//			::i32 nBits = 0;
 //			for (i = 0; i < 4; i++)
 //			{
 //				if (szSrc >= szSrcEnd)
 //					break;
-//				int nCh = DecodeBase64Char(*szSrc);
+//				::i32 nCh = DecodeBase64Char(*szSrc);
 //				szSrc++;
 //				if (nCh == -1)
 //				{
-//					// skip this char
+//					// skip this ::i8
 //					i--;
 //					continue;
 //				}
@@ -391,20 +391,20 @@ inline int __QPEncodeGetRequiredLength(int nSrcLen)
 //
 ////The the (rough) required length of the uuencoded stream based
 ////on input of length nSrcLen
-//	inline int UUEncodeGetRequiredLength(_In_ int nSrcLen)
+//	inline ::i32 UUEncodeGetRequiredLength(_In_ ::i32 nSrcLen)
 //	{
-//		__int64 nRet64 = static_cast<__int64>(nSrcLen) * 4 / 3;
+//		::i64 nRet64 = static_cast<::i64>(nSrcLen) * 4 / 3;
 //		nRet64 += 3 * (nSrcLen / ATLSMTP_MAX_UUENCODE_LINE_LENGTH);
 //		nRet64 += 12 + MAX_PATH; // "begin" statement
 //		nRet64 += 8; // "end" statement
 //		nRet64 += 1; // dot-stuffing
 //		ATLENSURE(nRet64 <= INT_MAX && nRet64 >= INT_MIN);
-//		int nRet = static_cast<int>(nRet64);
+//		::i32 nRet = static_cast<::i32>(nRet64);
 //		return nRet;
 //	}
 //
 //	//Get the decode required length
-//	inline int UUDecodeGetRequiredLength(_In_ int nSrcLen) throw()
+//	inline ::i32 UUDecodeGetRequiredLength(_In_ ::i32 nSrcLen) throw()
 //	{
 //		return nSrcLen;
 //	}
@@ -446,14 +446,14 @@ inline int __QPEncodeGetRequiredLength(int nSrcLen)
 //	ATLPREFAST_SUPPRESS(6054 6385)
 //		inline BOOL UUEncode(
 //			_In_reads_bytes_(nSrcLen) const BYTE * pbSrcData,
-//			_In_ int nSrcLen,
+//			_In_ ::i32 nSrcLen,
 //			_Out_writes_to_(*pnDestLen, *pnDestLen) LPSTR szDestBegin,
-//			_Inout_ int * pnDestLen,
+//			_Inout_ ::i32 * pnDestLen,
 //			_In_opt_z_ LPCTSTR lpszFile = _T("file"),
 //			_In_ DWORD dwFlags = 0) throw()
 //	{
 //		//The UUencode character set
-//		static const char s_chUUEncodeChars[64] = {
+//		static const ::i8 s_chUUEncodeChars[64] = {
 //			'`','!','"','#','$','%','&','\'','(',')','*','+',',',
 //			'-','.','/','0','1','2','3','4','5','6','7','8','9',
 //			':',';','<','=','>','?','@','A','B','C','D','E','F',
@@ -468,15 +468,15 @@ inline int __QPEncodeGetRequiredLength(int nSrcLen)
 //
 //		ATLASSERT(*pnDestLen >= UUEncodeGetRequiredLength(nSrcLen));
 //
-//		char * szDest = szDestBegin;
-//		char * const szDestEnd = szDestBegin + *pnDestLen;
+//		char_pointer szDest = szDestBegin;
+//		char_pointer const szDestEnd = szDestBegin + *pnDestLen;
 //
 //		using Checked::EnsureNotBeyond;
 //
 //		ATLENSURE(szDestEnd >= szDestBegin);
 //
 //		BYTE ch1 = 0, ch2 = 0, ch3 = 0;
-//		int nTotal = 0, nCurr = 0, nWritten = 0, nCnt = 0;
+//		::i32 nTotal = 0, nCurr = 0, nWritten = 0, nCnt = 0;
 //
 //		//if ATL_UUENCODE_HEADER
 //		//header
@@ -513,7 +513,7 @@ inline int __QPEncodeGetRequiredLength(int nSrcLen)
 //			//If the amount of data is greater than MAX_UUENCODE_LINE_LENGTH
 //			//cut off at MAX_UUENCODE_LINE_LENGTH
 //			nCurr = __min(nSrcLen - nTotal, ATLSMTP_MAX_UUENCODE_LINE_LENGTH);
-//			*EnsureNotBeyond(szDest, szDestEnd) = UUENCODE((unsigned char)(nCurr));
+//			*EnsureNotBeyond(szDest, szDestEnd) = UUENCODE((::u8)(nCurr));
 //			nCurr++;
 //			nCnt = 1;
 //
@@ -581,9 +581,9 @@ inline int __QPEncodeGetRequiredLength(int nSrcLen)
 //
 //		inline BOOL UUDecode(
 //			_In_reads_bytes_(nSrcLen) BYTE * pbSrcData,
-//			_In_ int nSrcLen,
+//			_In_ ::i32 nSrcLen,
 //			_Out_writes_to_(*pnDestLen, *pnDestLen) BYTE * pbDest,
-//			_Inout_ int * pnDestLen)
+//			_Inout_ ::i32 * pnDestLen)
 //	{
 //		if (!pbSrcData || !pbDest || !pnDestLen)
 //		{
@@ -591,15 +591,15 @@ inline int __QPEncodeGetRequiredLength(int nSrcLen)
 //		}
 //
 //		BYTE * pbDestEnd = pbDest + *pnDestLen;
-//		int nConvert = 0;
-//		int nScan = 0;
+//		::i32 nConvert = 0;
+//		::i32 nScan = 0;
 //
-//		int nWritten = 0;
-//		int fSkipLine = 0;
-//		int nLineLen = 0;
+//		::i32 nWritten = 0;
+//		::i32 fSkipLine = 0;
+//		::i32 nLineLen = 0;
 //
-//		char chars[4];
-//		char ch;
+//		::i8 chars[4];
+//		::i8 ch;
 //
 //		while (nSrcLen > 0)
 //		{
@@ -619,8 +619,8 @@ inline int __QPEncodeGetRequiredLength(int nSrcLen)
 //			}
 //
 //			// skip begin/end lines
-//			if ((nSrcLen >= sizeof("begin") - 1 && !_strnicmp((char *)pbSrcData, "begin", sizeof("begin") - 1)) ||
-//				(nSrcLen >= sizeof("end") - 1 && !_strnicmp((char *)pbSrcData, "end", sizeof("end") - 1)))
+//			if ((nSrcLen >= sizeof("begin") - 1 && !_strnicmp((char_pointer )pbSrcData, "begin", sizeof("begin") - 1)) ||
+//				(nSrcLen >= sizeof("end") - 1 && !_strnicmp((char_pointer )pbSrcData, "end", sizeof("end") - 1)))
 //			{
 //				fSkipLine = 1;
 //				continue;
@@ -703,17 +703,17 @@ inline int __QPEncodeGetRequiredLength(int nSrcLen)
 //	// compliant with RFC 2045
 //	//=======================================================================
 //	//
-//	inline int QPEncodeGetRequiredLength(_In_ int nSrcLen)
+//	inline ::i32 QPEncodeGetRequiredLength(_In_ ::i32 nSrcLen)
 //	{
-//		__int64 nRet64 = 3 * ((3 * static_cast<__int64>(nSrcLen)) / (ATLSMTP_MAX_QP_LINE_LENGTH - 8));
-//		nRet64 += 3 * static_cast<__int64>(nSrcLen);
+//		::i64 nRet64 = 3 * ((3 * static_cast<::i64>(nSrcLen)) / (ATLSMTP_MAX_QP_LINE_LENGTH - 8));
+//		nRet64 += 3 * static_cast<::i64>(nSrcLen);
 //		nRet64 += 3;
 //		ATLENSURE(nRet64 <= INT_MAX && nRet64 >= INT_MIN);
-//		int nRet = static_cast<int>(nRet64);
+//		::i32 nRet = static_cast<::i32>(nRet64);
 //		return nRet;
 //	}
 //
-//	inline int QPDecodeGetRequiredLength(_In_ int nSrcLen) throw()
+//	inline ::i32 QPDecodeGetRequiredLength(_In_ ::i32 nSrcLen) throw()
 //	{
 //		return nSrcLen;
 //	}
@@ -725,13 +725,13 @@ inline int __QPEncodeGetRequiredLength(int nSrcLen)
 //	_Success_(return != FALSE)
 //		inline BOOL QPEncode(
 //			_In_reads_bytes_(nSrcLen) BYTE * pbSrcData,
-//			_In_ int nSrcLen,
+//			_In_ ::i32 nSrcLen,
 //			_Out_writes_to_(*pnDestLen, *pnDestLen) CHAR * szDest,
-//			_Inout_ int * pnDestLen,
+//			_Inout_ ::i32 * pnDestLen,
 //			_In_ DWORD dwFlags = 0) throw()
 //	{
 //		//The hexadecimal character set
-//		static const char s_chHexChars[16] = { '0', '1', '2', '3', '4', '5', '6', '7', '8', '9',
+//		static const ::i8 s_chHexChars[16] = { '0', '1', '2', '3', '4', '5', '6', '7', '8', '9',
 //									'A', 'B', 'C', 'D', 'E', 'F' };
 //
 //		if (!pbSrcData || !szDest || !pnDestLen)
@@ -741,8 +741,8 @@ inline int __QPEncodeGetRequiredLength(int nSrcLen)
 //
 //		ATLASSERT(*pnDestLen >= QPEncodeGetRequiredLength(nSrcLen));
 //
-//		int nRead = 0, nWritten = 0, nLineLen = 0;
-//		char ch;
+//		::i32 nRead = 0, nWritten = 0, nLineLen = 0;
+//		::i8 ch;
 //		while (nRead < nSrcLen)
 //		{
 //			ch = *pbSrcData++;
@@ -798,9 +798,9 @@ inline int __QPEncodeGetRequiredLength(int nSrcLen)
 //	_Success_(return != FALSE)
 //		inline BOOL QPDecode(
 //			_In_reads_bytes_(nSrcLen) BYTE * pbSrcData,
-//			_In_ int nSrcLen,
+//			_In_ ::i32 nSrcLen,
 //			_When_(*pnDestLen > 0, _Out_writes_to_(*pnDestLen, *pnDestLen)) CHAR * szDest,
-//			_Inout_ int * pnDestLen,
+//			_Inout_ ::i32 * pnDestLen,
 //			_In_ DWORD dwFlags = 0)
 //	{
 //		if (!pbSrcData || !szDest || !pnDestLen)
@@ -809,8 +809,8 @@ inline int __QPEncodeGetRequiredLength(int nSrcLen)
 //		}
 //
 //		LPSTR szDestEnd = szDest + *pnDestLen;
-//		int nRead = 0, nWritten = 0, nLineLen = -1;
-//		char ch;
+//		::i32 nRead = 0, nWritten = 0, nLineLen = -1;
+//		::i8 ch;
 //		while (nRead <= nSrcLen)
 //		{
 //			ch = *pbSrcData++;
@@ -819,13 +819,13 @@ inline int __QPEncodeGetRequiredLength(int nSrcLen)
 //			if (ch == '=')
 //			{
 //				//if the next character is a digit or a character, convert
-//				if ((nRead < (nSrcLen - 1)) && (isdigit(static_cast<unsigned char>(*pbSrcData)) || isalpha(static_cast<unsigned char>(*pbSrcData))))
+//				if ((nRead < (nSrcLen - 1)) && (isdigit(static_cast<::u8>(*pbSrcData)) || isalpha(static_cast<::u8>(*pbSrcData))))
 //				{
-//					char szBuf[5];
+//					::i8 szBuf[5];
 //					szBuf[0] = *pbSrcData++;
 //					szBuf[1] = *pbSrcData++;
 //					szBuf[2] = '\0';
-//					char * tmp = nullptr;
+//					char_pointer tmp = nullptr;
 //					ATLENSURE(szDest < szDestEnd);
 //					*szDest++ = (BYTE)strtoul(szBuf, &tmp, 16);
 //					nWritten++;
@@ -865,20 +865,20 @@ inline int __QPEncodeGetRequiredLength(int nSrcLen)
 //	// compliant with RFC 2047
 //	//=======================================================================
 //
-//	inline int IsExtendedChar(_In_ char ch) throw()
+//	inline ::i32 IsExtendedChar(_In_ ::i8 ch) throw()
 //	{
 //		return ((ch > 126 || ch < 32) && ch != '\t' && ch != '\n' && ch != '\r');
 //	}
 //
-//	inline int GetExtendedChars(
+//	inline ::i32 GetExtendedChars(
 //		_In_reads_z_(nSrcLen) LPCSTR szSrc,
-//		_In_ int nSrcLen)
+//		_In_ ::i32 nSrcLen)
 //	{
 //		ATLENSURE(szSrc);
 //
-//		int nChars(0);
+//		::i32 nChars(0);
 //
-//		for (int i = 0; i < nSrcLen; i++)
+//		for (::i32 i = 0; i < nSrcLen; i++)
 //		{
 //			if (IsExtendedChar(*szSrc++))
 //				nChars++;
@@ -892,16 +892,16 @@ inline int __QPEncodeGetRequiredLength(int nSrcLen)
 //#endif
 //
 //	//Get the required length to hold this encoding based on nSrcLen
-//	inline int QEncodeGetRequiredLength(
-//		_In_ int nSrcLen,
-//		_In_ int nCharsetLen) throw()
+//	inline ::i32 QEncodeGetRequiredLength(
+//		_In_ ::i32 nSrcLen,
+//		_In_ ::i32 nCharsetLen) throw()
 //	{
 //		return QPEncodeGetRequiredLength(nSrcLen) + 7 + nCharsetLen;
 //	}
 //
 //	inline BOOL IsBufferWriteSafe(
-//		_In_ int nNumOfCharsAboutToWrite,
-//		_In_ int nBuffSize)
+//		_In_ ::i32 nNumOfCharsAboutToWrite,
+//		_In_ ::i32 nBuffSize)
 //	{
 //		if (nNumOfCharsAboutToWrite >= nBuffSize)
 //		{
@@ -914,14 +914,14 @@ inline int __QPEncodeGetRequiredLength(int nSrcLen)
 //	//QEncode pbSrcData with the charset specified by pszCharSet
 //	inline _Success_(return != FALSE) BOOL QEncode(
 //		_In_reads_bytes_(nSrcLen) BYTE * pbSrcData,
-//		_In_ int nSrcLen,
+//		_In_ ::i32 nSrcLen,
 //		_Out_writes_to_(*pnDestLen, *pnDestLen) LPSTR szDest,
-//		_Inout_ int * pnDestLen,
+//		_Inout_ ::i32 * pnDestLen,
 //		_In_z_ LPCSTR pszCharSet,
-//		_Out_opt_ int * pnNumEncoded = NULL) throw()
+//		_Out_opt_ ::i32 * pnNumEncoded = NULL) throw()
 //	{
 //		//The hexadecimal character set
-//		static const char s_chHexChars[16] = { '0', '1', '2', '3', '4', '5', '6', '7', '8', '9',
+//		static const ::i8 s_chHexChars[16] = { '0', '1', '2', '3', '4', '5', '6', '7', '8', '9',
 //									'A', 'B', 'C', 'D', 'E', 'F' };
 //
 //		if (!pbSrcData || !szDest || !pszCharSet || !pnDestLen)
@@ -935,8 +935,8 @@ inline int __QPEncodeGetRequiredLength(int nSrcLen)
 //			return FALSE;
 //		}
 //
-//		int nRead = 0, nWritten = 0, nEncCnt = 0;
-//		char ch;
+//		::i32 nRead = 0, nWritten = 0, nEncCnt = 0;
+//		::i8 ch;
 //
 //		if (!IsBufferWriteSafe(nWritten + 2, *pnDestLen))
 //		{
@@ -1008,9 +1008,9 @@ inline int __QPEncodeGetRequiredLength(int nSrcLen)
 //#define BENCODE_ADDITION_SIZE 7 // size of prefix+suffix added by the encoding.
 //
 //	//Get the required length to hold this encoding based on nSrcLen
-//	inline int BEncodeGetRequiredLength(
-//		_In_ int nSrcLen,
-//		_In_ int nCharsetLen) throw()
+//	inline ::i32 BEncodeGetRequiredLength(
+//		_In_ ::i32 nSrcLen,
+//		_In_ ::i32 nCharsetLen) throw()
 //	{
 //		return Base64EncodeGetRequiredLength(nSrcLen) + BENCODE_ADDITION_SIZE + nCharsetLen;
 //	}
@@ -1019,9 +1019,9 @@ inline int __QPEncodeGetRequiredLength(int nSrcLen)
 //	_Success_(return != FALSE)
 //		inline BOOL BEncode(
 //			_In_reads_bytes_(nSrcLen) BYTE * pbSrcData,
-//			_In_ int nSrcLen,
+//			_In_ ::i32 nSrcLen,
 //			_Out_writes_to_(*pnDestLen, *pnDestLen) LPSTR szDest,
-//			_Inout_ int * pnDestLen,
+//			_Inout_ ::i32 * pnDestLen,
 //			_In_z_ LPCSTR pszCharSet) throw()
 //	{
 //		if (!pbSrcData || !szDest || !pszCharSet || !pnDestLen)
@@ -1035,7 +1035,7 @@ inline int __QPEncodeGetRequiredLength(int nSrcLen)
 //			return FALSE;
 //		}
 //
-//		int nWritten = 0;
+//		::i32 nWritten = 0;
 //
 //		if (!IsBufferWriteSafe(nWritten + 2, *pnDestLen))
 //		{
@@ -1062,7 +1062,7 @@ inline int __QPEncodeGetRequiredLength(int nSrcLen)
 //		nWritten += 3;
 //
 //		// the buffer size is *pnDestLen - size of the header and the tail.
-//		int DataDestLen = *pnDestLen - BENCODE_ADDITION_SIZE;
+//		::i32 DataDestLen = *pnDestLen - BENCODE_ADDITION_SIZE;
 //		BOOL bRet = Base64Encode(pbSrcData, nSrcLen, szDest, &DataDestLen, ATL_BASE64_FLAG_NOCRLF);
 //		if (!bRet)
 //			return FALSE;
@@ -1096,11 +1096,11 @@ inline int __QPEncodeGetRequiredLength(int nSrcLen)
 //#define ATL_LOW_SURROGATE_END     0xdfff
 //
 //	ATL_NOINLINE inline
-//		int AtlUnicodeToUTF8(
+//		::i32 AtlUnicodeToUTF8(
 //			_In_reads_(nSrc) LPCWSTR wszSrc,
-//			_In_ int nSrc,
+//			_In_ ::i32 nSrc,
 //			_Out_writes_to_opt_(nDest, return +1) LPSTR szDest,
-//			_In_ int nDest)
+//			_In_ ::i32 nDest)
 //	{
 //		return(WideCharToMultiByte(CP_UTF8, 0, wszSrc, nSrc, szDest, nDest, NULL, NULL));
 //	}
@@ -1117,43 +1117,43 @@ inline int __QPEncodeGetRequiredLength(int nSrcLen)
 //#define ATL_ESC_FLAG_ATTR 1 // escape for attribute values
 //
 //	ATLPREFAST_SUPPRESS(6054)
-//		inline int _AtlCopyNCR(
+//		inline ::i32 _AtlCopyNCR(
 //			_In_ wchar_t wch,
 //			_Out_writes_z_(9) wchar_t * wszEsc) throw()
 //	{
 //		wchar_t szHex[9];
-//		int nRet = swprintf_s(szHex, _countof(szHex), L"&#x%04X;", wch);
+//		::i32 nRet = swprintf_s(szHex, _countof(szHex), L"&#x%04X;", wch);
 //		Checked::safe_memory_copy(wszEsc, 9 * sizeof(wchar_t), szHex, 8 * sizeof(wchar_t));
 //		return nRet;
 //	}
 //	ATLPREFAST_UNSUPPRESS()
 //
 //		ATLPREFAST_SUPPRESS(6054)
-//		inline int _AtlCopyNCRPair(
+//		inline ::i32 _AtlCopyNCRPair(
 //			_In_ DWORD dw,
 //			_Out_writes_z_(11) wchar_t * wszEsc) throw()
 //	{
 //		wchar_t szHex[11];
-//		int nRet = swprintf_s(szHex, _countof(szHex), L"&#x%06X;", dw);
+//		::i32 nRet = swprintf_s(szHex, _countof(szHex), L"&#x%06X;", dw);
 //		Checked::safe_memory_copy(wszEsc, 11 * sizeof(wchar_t), szHex, 10 * sizeof(wchar_t));
 //		return nRet;
 //	}
 //	ATLPREFAST_UNSUPPRESS()
 //
-//		// wide-char version
+//		// wide-::i8 version
 //		_Success_(return != 0)
-//		inline int EscapeXML(
+//		inline ::i32 EscapeXML(
 //			_In_reads_(nSrcLen) const wchar_t * szIn,
-//			_In_ int nSrcLen,
+//			_In_ ::i32 nSrcLen,
 //			_Out_writes_to_opt_(nDestLen, return +1) wchar_t * szEsc,
-//			_In_ int nDestLen,
+//			_In_ ::i32 nDestLen,
 //			_In_ DWORD dwFlags = ATL_ESC_FLAG_NONE)
 //	{
 //		ATLENSURE(szIn != NULL);
 //
-//		int nCnt(0);
-//		int nCurrLen(nDestLen);
-//		int nInc(0);
+//		::i32 nCnt(0);
+//		::i32 nCurrLen(nDestLen);
+//		::i32 nInc(0);
 //		wchar_t wchHighSurrogate = 0;
 //		BOOL bHandled;
 //
@@ -1309,15 +1309,15 @@ inline int __QPEncodeGetRequiredLength(int nSrcLen)
 //	//=======================================================================
 //	//
 //
-//	inline int AtlHexEncodeGetRequiredLength(_In_ int nSrcLen)
+//	inline ::i32 AtlHexEncodeGetRequiredLength(_In_ ::i32 nSrcLen)
 //	{
-//		__int64 nRet64 = 2 * static_cast<__int64>(nSrcLen) + 1;
+//		::i64 nRet64 = 2 * static_cast<::i64>(nSrcLen) + 1;
 //		ATLENSURE(nRet64 <= INT_MAX && nRet64 >= INT_MIN);
-//		int nRet = static_cast<int>(nRet64);
+//		::i32 nRet = static_cast<::i32>(nRet64);
 //		return nRet;
 //	}
 //
-//	inline int AtlHexDecodeGetRequiredLength(_In_ int nSrcLen) throw()
+//	inline ::i32 AtlHexDecodeGetRequiredLength(_In_ ::i32 nSrcLen) throw()
 //	{
 //		return nSrcLen / 2;
 //	}
@@ -1325,11 +1325,11 @@ inline int __QPEncodeGetRequiredLength(int nSrcLen)
 //	ATLPREFAST_SUPPRESS(6054)
 //		inline BOOL AtlHexEncode(
 //			_In_reads_bytes_(nSrcLen) const BYTE * pbSrcData,
-//			_In_ int nSrcLen,
+//			_In_ ::i32 nSrcLen,
 //			_Out_writes_to_(*pnDestLen, *pnDestLen) LPSTR szDest,
-//			_Inout_ int * pnDestLen) throw()
+//			_Inout_ ::i32 * pnDestLen) throw()
 //	{
-//		static const char s_chHexChars[16] = { '0', '1', '2', '3', '4', '5', '6', '7', '8', '9',
+//		static const ::i8 s_chHexChars[16] = { '0', '1', '2', '3', '4', '5', '6', '7', '8', '9',
 //											  'A', 'B', 'C', 'D', 'E', 'F' };
 //
 //		if (!pbSrcData || !szDest || !pnDestLen)
@@ -1343,8 +1343,8 @@ inline int __QPEncodeGetRequiredLength(int nSrcLen)
 //			return FALSE;
 //		}
 //
-//		int nRead = 0;
-//		int nWritten = 0;
+//		::i32 nRead = 0;
+//		::i32 nWritten = 0;
 //		BYTE ch;
 //		while (nRead < nSrcLen)
 //		{
@@ -1365,11 +1365,11 @@ inline int __QPEncodeGetRequiredLength(int nSrcLen)
 //#define ATL_HEX_INVALID CHAR_MAX
 //#else
 //		/* In pre-V8 this was always the value, which meant we didn't compile clean with /J */
-//#define ATL_HEX_INVALID ((char)(-1))
+//#define ATL_HEX_INVALID ((::i8)(-1))
 //#endif
 //
 ////Get the decimal value of a hexadecimal character
-//inline char AtlGetHexValue(_In_ char ch) throw()
+//inline ::i8 AtlGetHexValue(_In_ ::i8 ch) throw()
 //	{
 //		if (ch >= '0' && ch <= '9')
 //			return (ch - '0');
@@ -1382,9 +1382,9 @@ inline int __QPEncodeGetRequiredLength(int nSrcLen)
 //
 //	inline BOOL AtlHexDecode(
 //		_In_reads_z_(nSrcLen) LPCSTR pSrcData,
-//		_In_ int nSrcLen,
+//		_In_ ::i32 nSrcLen,
 //		_Out_writes_to_(*pnDestLen, *pnDestLen) LPBYTE pbDest,
-//		_Inout_ int * pnDestLen) throw()
+//		_Inout_ ::i32 * pnDestLen) throw()
 //	{
 //		if (!pSrcData || !pbDest || !pnDestLen)
 //		{
@@ -1397,12 +1397,12 @@ inline int __QPEncodeGetRequiredLength(int nSrcLen)
 //			return FALSE;
 //		}
 //
-//		int nRead = 0;
-//		int nWritten = 0;
+//		::i32 nRead = 0;
+//		::i32 nWritten = 0;
 //		while (nRead < nSrcLen)
 //		{
-//			char ch1 = AtlGetHexValue((char)*pSrcData++);
-//			char ch2 = AtlGetHexValue((char)*pSrcData++);
+//			::i8 ch1 = AtlGetHexValue((::i8)*pSrcData++);
+//			::i8 ch2 = AtlGetHexValue((::i8)*pSrcData++);
 //			if ((ch1 == ATL_HEX_INVALID) || (ch2 == ATL_HEX_INVALID))
 //			{
 //				return FALSE;

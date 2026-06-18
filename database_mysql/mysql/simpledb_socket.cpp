@@ -63,13 +63,13 @@ namespace simpledb
          if(strHost == "aura.am")
          {
             informationf("simpledb::socket::send_response aura.am");
-//            unsigned int dw= ::time::now();
+//            ::u32 dw= ::time::now();
             //  debug_break();
          }
          if(strScript == "songs")
          {
             informationf("simpledb::socket::send_response songs");
-            //unsigned int dw= ::time::now();
+            //::u32 dw= ::time::now();
          }
          manager().handle(this);
       }
@@ -77,7 +77,7 @@ namespace simpledb
       {
          outheader("content-type") = "text/html; charset=UTF-8";
       }
-      int iStatusCode;
+      ::i32 iStatusCode;
       string strStatus;
       if(outattr("http_status_code").is_new()
             || outattr("http_status").is_new())
@@ -131,7 +131,7 @@ namespace simpledb
          {
             strValue = "https://" + papp->m_strFontopusServer + purl->get_object(strValue);
          }
-         else if(domain.m_strName == "account.ca2.network" && purl->get_protocol(strValue) == "https")
+         else if(domain.m_strName == "account.ca2.site" && purl->get_protocol(strValue) == "https")
          {
             strValue = "https://" + papp->m_strFontopusServer + purl->get_object(strValue);
          }
@@ -151,7 +151,7 @@ namespace simpledb
 
    void socket::simple_file_server(const ::scoped_string & scopedstr, const ::scoped_string & scopedstrRelative)
    {
-      pointer_array < ::int_array_base > rangea;
+      pointer_array < ::i32_array_base > rangea;
       if(strlen(inheader("range")) > 0)
       {
          string_array_base straItem;
@@ -161,13 +161,13 @@ namespace simpledb
             string strUnit = straItem[0];
             string_array_base stra;
             stra.explode(",", straItem[1]);
-            for(int i = 0; i < stra.get_count(); i++)
+            for(::i32 i = 0; i < stra.get_count(); i++)
             {
                string_array_base straRange;
                straRange.explode("-", stra[i]);
                if(straRange.get_count() == 2)
                {
-                  rangea.add(___new ::int_array_base ());
+                  rangea.add(___new ::i32_array_base ());
                   rangea.last_pointer()->add(atoi(straRange[0]));
                   straRange[1].trim();
                   if(strlen(straRange[1]) == 0)
@@ -193,7 +193,7 @@ namespace simpledb
    }
 
 
-   bool socket::read_file(const ::scoped_string & scopedstr, pointer_array < ::int_array_base > * prangea, const ::scoped_string & scopedstrContentType)
+   bool socket::read_file(const ::scoped_string & scopedstr, pointer_array < ::i32_array_base > * prangea, const ::scoped_string & scopedstrContentType)
    {
       string strExtension = file()->extension(lpcsz);
       string str = strExtension;
@@ -252,13 +252,13 @@ namespace simpledb
       }
       else
       {
-         int iLen = file()->length(lpcsz);
+         ::i32 iLen = file()->length(lpcsz);
          if(prangea->get_count() > 1)
          {
             memsize uTotal = 0;
             memory mem;
             mem.set_size(128 * 1024 * 1024);
-            for(int i = 0; i < prangea->get_count(); i++)
+            for(::i32 i = 0; i < prangea->get_count(); i++)
             {
                memsize  iStart = prangea->element_at(i)->element_at(0);
                memsize  iEnd = prangea->element_at(i)->element_at(1);

@@ -25,8 +25,8 @@ namespace draw2d_gpu
 //#endif
 //
       // settings
-      //const unsigned int SCR_WIDTH = 800;
-      //const unsigned int SCR_HEIGHT = 600;
+      //const ::u32 SCR_WIDTH = 800;
+      //const ::u32 SCR_HEIGHT = 600;
 
       ::pointer < face > m_pface;
      
@@ -40,7 +40,7 @@ namespace draw2d_gpu
       // void dump(dump_context & dumpcontext) const override;
 
 
-      void create(::draw2d::graphics* pgraphics, char iCreate) override;
+      void create(::draw2d::graphics* pgraphics, ::i8 iCreate) override;
       void destroy() override;
 
 

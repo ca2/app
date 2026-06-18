@@ -29,7 +29,7 @@ namespace user
 
    class system;
 
-   DECLARE_ENUMERATION(e_state, enum_state);
+   DECLARE_C_FLAG(e_state, enum_state);
    CLASS_DECL_ACME string get_wallpaper(::collection::index iIndex);
 
 
@@ -62,7 +62,7 @@ namespace windowing
 } // namespace windowing
 
 
-#include "acme/constant/button_state.h"
+#include "acme/constant/key_state.h"
 
 //class property_container;
 
@@ -73,7 +73,7 @@ namespace user
    class thread;
    class graphics_thread;
 
-    DECLARE_ENUMERATION(e_button_state, enum_button_state);
+//    DECLARE_C_FLAG(e_button_state, enum_button_state);
 
 
     //using item_pointer = ::pointer < ::user::item >;
@@ -156,12 +156,4 @@ class main_frame;
 
 
 class form_document;
-
-
-CLASS_DECL_ACME bool is_docking(enum_display edisplay);
-
-
-CLASS_DECL_ACME enum_display default_equivalence_sink(enum_display edisplay);
-
-
 

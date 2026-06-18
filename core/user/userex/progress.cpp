@@ -3,7 +3,7 @@
 //#include "user.h"
 #include "acme/constant/user_message.h"
 #include "acme/constant/timer.h"
-#include "acme/platform/timer.h"
+//#include "acme/platform/timer.h"
 #include "aura/graphics/draw2d/graphics.h"
 #include "aura/message/user.h"
 #include "aura/platform/session.h"
@@ -49,10 +49,10 @@ namespace userex
 
 
 #ifdef _DEBUG
-   long long progress_control::decrement_reference_count()
+   ::i64 progress_control::decrement_reference_count()
    {
 
-      long long i = ::progress::real::decrement_reference_count();
+      ::i64 i = ::progress::real::decrement_reference_count();
 
       //if (i == 1 && m_pthread.is_set())
       //{
@@ -271,15 +271,15 @@ namespace userex
    }
 
 
-   void progress_impact::on_timer(::timer * ptimer)
+   void progress_impact::operator()(::timer * ptimer)
    {
 
-            if (ptimer->m_uTimer == e_timer_update_current_area)
+            if (ptimer->m_etimer == e_timer_update_current_area)
             {
       
-               kill_timer(ptimer->m_uTimer);
+               kill_timer(ptimer->m_etimer);
       
-               ::int_rectangle rectangle;
+               ::i32_rectangle rectangle;
       
                auto pwindowing = windowing();
       
@@ -349,10 +349,10 @@ namespace userex
 
       }
 
-      int cxBorder = rectangleX.width() / 16;
-      int h = rectangleX.height() / 4;
+      ::i32 cxBorder = rectangleX.width() / 16;
+      ::i32 h = rectangleX.height() / 4;
 
-      ::int_rectangle rectangleIndicator(rectangleX);
+      ::i32_rectangle rectangleIndicator(rectangleX);
 
       rectangleIndicator.deflate(cxBorder, h, cxBorder, h * 2);
 

@@ -46,7 +46,7 @@ namespace user
    //inline bool interaction_array::get_typed_child(CHILD*& pchild)
    //{
 
-   //   for (int i = 0; i < this->interaction_count(); i++)
+   //   for (::i32 i = 0; i < this->interaction_count(); i++)
    //   {
 
    //      pchild = this->interaction_at(i).cast < CHILD >();
@@ -60,7 +60,7 @@ namespace user
 
    //   }
 
-   //   for (int i = 0; i < this->interaction_count(); i++)
+   //   for (::i32 i = 0; i < this->interaction_count(); i++)
    //   {
 
    //      if (this->interaction_at(i)->get_typed_child(pchild))
@@ -185,7 +185,7 @@ namespace user
 //{
 //
 //
-//   inline bool graphics::set_font(::user::interaction* pinteraction, ::enum_element eelement, ::user::enum_state estate)
+//   inline bool graphics::set_font(::user::interaction* pinteraction, const ::e_element & eelement, const ::user::e_state & estate)
 //   {
 //
 //      return set(pinteraction->get_font(pinteraction->get_style(m_puserstyle), eelement, estate));

@@ -21,9 +21,9 @@ namespace app_integration
    menu::menu()
    {
 
-      m_flagNonClient.erase(e_non_client_background);
+      m_enonclient.erase(::user::e_non_client_background);
 
-      m_flagNonClient.erase(e_non_client_focus_rect);
+      m_enonclient.erase(::user::e_non_client_focus_rect);
 
    }
 
@@ -53,7 +53,7 @@ namespace app_integration
 #ifdef _DEBUG
 
 
-   long long menu::increment_reference_count()
+   ::i64 menu::increment_reference_count()
    {
 
       return  ::user::impact::increment_reference_count();
@@ -61,7 +61,7 @@ namespace app_integration
    }
 
 
-   long long menu::decrement_reference_count()
+   ::i64 menu::decrement_reference_count()
    {
 
       return  ::user::impact::decrement_reference_count();
@@ -237,7 +237,7 @@ namespace app_integration
    //   if (get_app()->application_properties().m_echeckNoClientFrame != ::e_check_checked)
    //   {
 
-   //      ::int_rectangle rectangle = this->rectangle();
+   //      ::i32_rectangle rectangle = this->rectangle();
 
    //      for (::collection::index i = 0; i < 11; i++)
    //      {

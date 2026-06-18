@@ -34,11 +34,11 @@ void  nsSJISProber::Reset(void)
   mDistributionAnalyser.Reset();
 }
 
-nsProbingState nsSJISProber::HandleData(const ::string & aBuf, PRunsigned int aLen)
+nsProbingState nsSJISProber::HandleData(const ::string & aBuf, PRunsigned ::i32 aLen)
 {
   nsSMState codingState;
 
-  for (PRunsigned int i = 0; i < aLen; i++)
+  for (PRunsigned ::i32 i = 0; i < aLen; i++)
   {
     codingState = mCodingSM->NextState(aBuf[i]);
     if (codingState == eError)
@@ -53,7 +53,7 @@ nsProbingState nsSJISProber::HandleData(const ::string & aBuf, PRunsigned int aL
     }
     if (codingState == eStart)
     {
-      PRunsigned int charLen = mCodingSM->GetCurrentCharLen();
+      PRunsigned ::i32 charLen = mCodingSM->GetCurrentCharLen();
       if (i == 0)
       {
         mLastChar[1] = aBuf[0];
@@ -77,10 +77,10 @@ nsProbingState nsSJISProber::HandleData(const ::string & aBuf, PRunsigned int aL
   return mState;
 }
 
-float nsSJISProber::GetConfidence(void)
+::f32 nsSJISProber::GetConfidence(void)
 {
-  float contxtCf = mContextAnalyser.GetConfidence();
-  float distribCf = mDistributionAnalyser.GetConfidence();
+  ::f32 contxtCf = mContextAnalyser.GetConfidence();
+  ::f32 distribCf = mDistributionAnalyser.GetConfidence();
 
   return (contxtCf > distribCf ? contxtCf : distribCf);
 }

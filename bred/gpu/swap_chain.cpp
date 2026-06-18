@@ -84,7 +84,7 @@ namespace gpu
 
       ::string strType = ::type(pwindow->m_pacmeuserinteraction).name();
 
-      const char *pszType = strType.c_str();
+      const_char_pointer pszType = strType.c_str();
 
       information("initialize_swap_chain_window {}", pszType);
 
@@ -106,14 +106,14 @@ namespace gpu
    }
 
 
-   void swap_chain::present(::gpu::texture * pgputexture)
+   void swap_chain::present(::gpu::texture * pgputexture, ::gpu::command_buffer * pgpucommandbuffer)
    {
 
 
    }
 
 
-   void swap_chain::set_present_state()
+   void swap_chain::set_present_state(::gpu::command_buffer *pgpucommandbuffer)
    {
 
 
@@ -127,7 +127,7 @@ namespace gpu
    }
 
 
-   int swap_chain::swap_chain_frame_index()
+   ::i32 swap_chain::swap_chain_frame_index()
    {
 
       return m_iCurrentSwapChainFrame;
@@ -135,10 +135,10 @@ namespace gpu
    }
 
 
-      int swap_chain::swap_chain_image_index() { return m_iCurrentSwapChainImage; }
+      ::i32 swap_chain::swap_chain_image_index() { return m_iCurrentSwapChainImage; }
 
 
-   int swap_chain::swap_chain_frame_count()
+   ::i32 swap_chain::swap_chain_frame_count()
    {
 
       return -1;
@@ -157,7 +157,7 @@ namespace gpu
 
 
 
-void swap_chain::on_gpu_context_render_frame(int w, int h)
+void swap_chain::on_gpu_context_render_frame(::i32 w, ::i32 h)
 {
    
    
@@ -258,7 +258,7 @@ swap_chain::frame_sync &swap_chain::frame(::collection::index iFrameIndex)
       throw ::exception(error_failed, "invalid frame index!");
    }
 
-   auto &framesync = m_framesynca.ø(iFrameIndex);
+   auto &framesync = m_framesynca.atø(iFrameIndex);
 
    if (!framesync.m_pgpufenceInFlight)
    {

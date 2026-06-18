@@ -32,22 +32,22 @@ public:
   nsGB18030Prober(void){mCodingSM = ___new nsCodingStateMachine(&GB18030SMModel);
                       Reset();};
   virtual ~nsGB18030Prober(void){delete mCodingSM;};
-  nsProbingState HandleData(const ::string & aBuf, PRunsigned int aLen);
+  nsProbingState HandleData(const ::string & aBuf, PRunsigned ::i32 aLen);
   const_char_pointer GetCharSetName() {return "gb18030";};
   nsProbingState GetState(void) {return mState;};
   void      Reset(void);
-  float     GetConfidence(void);
+  ::f32     GetConfidence(void);
   void      SetOpion() {};
 
 protected:
-  void      GetDistribution(PRunsigned int aCharLen, const ::string & aStr);
+  void      GetDistribution(PRunsigned ::i32 aCharLen, const ::string & aStr);
   
   nsCodingStateMachine* mCodingSM;
   nsProbingState mState;
 
   //GB2312ContextAnalysis mContextAnalyser;
   GB2312DistributionAnalysis mDistributionAnalyser;
-  char mLastChar[2];
+  ::i8 mLastChar[2];
 
 };
 

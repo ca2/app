@@ -37,7 +37,7 @@ struct quadruple_type :
 
 //   template <prototype_number T,
 //      std::enable_if_t<T::SIZE == SIZE &&
-//      std::is_same_v<typename T::COORDINATE, COORDINATE>, int> = 0>
+//      std::is_same_v<typename T::COORDINATE, COORDINATE>, ::i32> = 0>
    quadruple_type(UNIT_TYPE n)
    {
    
@@ -45,7 +45,7 @@ struct quadruple_type :
       
    }
 //   quadruple_type() {};
-//   quadruple_type(float f) { x = y = z = f; };
+//   quadruple_type(::f32 f) { x = y = z = f; };
 //   quadruple_type(const quadruple_type & v) = default;
    //quadruple_type(quadruple_type && v) = default;
    quadruple_type(UNIT_TYPE a, UNIT_TYPE b, UNIT_TYPE c = 0, UNIT_TYPE d = 0) :
@@ -118,8 +118,8 @@ struct quadruple_type :
 };
 
 
-using quadruple_float = quadruple_type < float >;
-using quadruple_double = quadruple_type < double >;
+using quadruple_f32 = quadruple_type < ::f32 >;
+using quadruple_f64 = quadruple_type < ::f64 >;
 
 
 template < prototype_number NUMBER1, prototype_number NUMBER2 >

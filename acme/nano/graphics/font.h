@@ -12,22 +12,32 @@ namespace nano
    namespace graphics
    {
       
-class CLASS_DECL_ACME font :
-   virtual public ::nano::graphics::object
-{
-public:
+
+      class CLASS_DECL_ACME font :
+         virtual public ::nano::graphics::object
+      {
+      public:
 
 
-   string      m_strFontName;
-   int         m_iFontSize;
-   bool        m_bBold;
+         ::pointer < font_family >     m_pfontfamily;
+         ::f32                         m_fFontSize;
+         bool                          m_bPixelSize;
+         bool                          m_bBold;
+         bool                          m_bItalic;
+         bool                          m_bUnderline;
 
 
-   font();
-   ~font();
+         font();
+         ~font();
 
 
-};
+         virtual void create_point_font(font_family * pfontfamily, ::f64 fPointSize, bool bBold = false, bool bItalic = false, bool bUnderline = false);
+         virtual void create_pixel_font(font_family * pfontfamily, ::f64 fPixelSize, bool bBold = false, bool bItalic = false, bool bUnderline = false);
+
+
+
+
+      };
 
 
    } // namespace graphics

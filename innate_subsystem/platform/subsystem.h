@@ -1,0 +1,90 @@
+//
+// Created by camilo on 2026-04-06 10:50 <3ThomasBorregaardSørensen!!
+//
+
+
+
+// Offloading apex(TBS)::app_core from deep stack stuff into acme(CSTBS) ::system 2022-02-22 by camilo at 07:19 <3ThomasBorregaardSorensen!!
+#pragma once
+
+
+#include "subsystem/platform/subsystem.h"
+#include "apex/user/user/key_happening.h"
+
+
+namespace innate_subsystem
+{
+
+
+   class CLASS_DECL_INNATE_SUBSYSTEM subsystem :
+      virtual public ::subsystem::subsystem
+   {
+   public:
+
+
+      static ::innate_subsystem::subsystem *            s_p;
+
+      ::pointer < ::innate_subsystem::ResourceLoader > m_presourceloader;
+      ::pointer < ::innate_subsystem::SystemMetricsInterface > m_psystemmetrics;
+      ::pointer<::innate_subsystem::KeyboardLayoutInterface> m_pkeyboardlayout;
+
+      ::map_base < ::operating_system::window, ::pointer < ::innate_subsystem::WindowInterface > > m_mapWindow;
+
+      subsystem();
+      ~subsystem() override;
+
+
+      ::innate_subsystem::ResourceLoader *ResourceLoader();
+
+      ::innate_subsystem::KeyboardLayoutInterface *keyboard_layout();
+
+      virtual ::string getKeyboardLayoutName();
+
+      ::enum_dialog_result message_box(
+         const ::user_interaction_sink & userinteractionsink,
+         const ::scoped_string & scopedstrMessage,
+         const ::scoped_string & scopedstrCaption,
+         const ::user::e_message_box & emessagebox) override;
+
+
+      virtual void initializeInnateSubsystemControls();
+
+      virtual ::innate_subsystem::SystemMetricsInterface * metrics();
+
+      virtual ::user::e_key virtual_key_code_to_user_key(::i32 iVirtualKeyCode);
+
+
+      virtual ::pointer < ::innate_subsystem::WindowInterface > getWindow(const ::operating_system::window & window);
+      virtual void setWindow(const ::operating_system::window & window, ::innate_subsystem::WindowInterface * pwindow);
+
+      
+      virtual ::pointer < ::innate_subsystem::SolidBrushInterface > createSolidBrush(const ::color::color & color);
+      
+      
+      virtual void releaseMouseCapture();
+      virtual ::operating_system::window getMouseCapture();
+      virtual void setMouseCapture(const ::operating_system::window & operatingsystemwindow);
+      virtual ::user::key_happening keyHappeningFromKeyMessage(::user::enum_message emessage, ::wparam wparam, ::lparam lparam);
+  
+   };
+
+
+
+} // namespace innate_subsystem
+
+
+
+inline ::innate_subsystem::subsystem & InnateSubsystem()
+{
+
+   if (!::innate_subsystem::subsystem::s_p)
+   {
+
+      system()->MainSubsystem();
+
+   }
+
+   return * ::innate_subsystem::subsystem::s_p;
+
+}
+

@@ -12,7 +12,7 @@
 #include "aura/graphics/image/image.h"
 #include "bred/gpu/command_buffer.h"
 #include "bred/gpu/context_lock.h"
-#include "bred/gpu/frame.h"
+#include "bred/gpu/layer.h"
 #include "bred/gpu/layer.h"
 #include "bred/gpu/texture.h"
 #include "bred/gpu/types.h"
@@ -228,11 +228,11 @@ namespace gpu_gpu
       }
       else
       {
-         int width, height, numChannels;
+         ::i32 width, height, numChannels;
          
          //stbi_set_flip_vertically_on_load(true);
 
-         unsigned char *data = stbi_load_from_memory(inputData, (int) inputSize, &width, &height, &numChannels, 0);
+         ::u8 *data = stbi_load_from_memory(inputData, (::i32) inputSize, &width, &height, &numChannels, 0);
 
          //stbi_set_flip_vertically_on_load(false);
 
@@ -282,7 +282,7 @@ namespace gpu_gpu
          ////   //}
          //}
 
-         ::int_rectangle rectangleTarget(0, 0, width, height);
+         ::i32_rectangle rectangleTarget(0, 0, width, height);
          ptexture->initialize_with_image_data(this, rectangleTarget, numChannels, bSrgb, data);
          //glGenTextures(1, &textureId);
          //glBindTexture(GL_TEXTURE_2D, textureId);

@@ -13,7 +13,7 @@ namespace numeric // (?acme or ace, when I am going to introduce ace, on in the 
 
 
    template <typename T>
-   constexpr int sign(T val)
+   constexpr ::i32 sign(T val)
    {
 
       return ((val > ::numeric_info < T >::null()) ? 1 : 0)
@@ -23,7 +23,7 @@ namespace numeric // (?acme or ace, when I am going to introduce ace, on in the 
 
 
    template <typename T>
-   int non_zero_sign(T val)
+   ::i32 non_zero_sign(T val)
    {
       // val < 0 -> -1
       // val >= 0 -> 1
@@ -101,7 +101,7 @@ namespace numeric // (?acme or ace, when I am going to introduce ace, on in the 
    }
 
 
-   inline double floor(double f)
+   inline ::f64 floor(::f64 f)
    {
 
       return ::floor(f);
@@ -109,7 +109,7 @@ namespace numeric // (?acme or ace, when I am going to introduce ace, on in the 
    }
 
 
-   inline float floor(float f)
+   inline ::f32 floor(::f32 f)
    {
 
       return ::floorf(f);
@@ -117,7 +117,7 @@ namespace numeric // (?acme or ace, when I am going to introduce ace, on in the 
    }
 
 
-   inline double ceil(double f)
+   inline ::f64 ceil(::f64 f)
    {
 
       return ::ceil(f);
@@ -125,7 +125,7 @@ namespace numeric // (?acme or ace, when I am going to introduce ace, on in the 
    }
 
 
-   inline float ceil(float f)
+   inline ::f32 ceil(::f32 f)
    {
 
       return ::ceilf(f);

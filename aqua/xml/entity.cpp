@@ -10,13 +10,13 @@ namespace xml
    {
    }
 
-   entity::entity(char chEntity, const_char_pointer pszReference)
+   entity::entity(::i8 chEntity, const_char_pointer pszReference)
    {
       m_chEntity  = chEntity;
       if(*pszReference == '&')
          pszReference++;
       m_strRef    = pszReference;
-      m_iRefLen   = (int) ansi_len(pszReference);
+      m_iRefLen   = (::i32) ansi_len(pszReference);
    }
 
    entity::entity(const entity & entity)
@@ -36,14 +36,14 @@ namespace xml
    }
 
 
-   void entities::add_entity(char chEntity, const_char_pointer pszReference)
+   void entities::add_entity(::i8 chEntity, const_char_pointer pszReference)
    {
       add(entity(chEntity, pszReference));
    }
 
-   entity * entities::get_entity( int m_chEntity )
+   entity * entities::get_entity( ::i32 m_chEntity )
    {
-      for( int i = 0 ; i < this->get_size(); i ++ )
+      for( ::i32 i = 0 ; i < this->get_size(); i ++ )
       {
          if( this->element_at(i).m_chEntity == m_chEntity )
             return (class entity *)(&this->element_at(i));
@@ -53,7 +53,7 @@ namespace xml
 
    entity * entities::get_entity(const_char_pointer pszEntity)
    {
-      for( int i = 0 ; i < this->get_size(); i ++ )
+      for( ::i32 i = 0 ; i < this->get_size(); i ++ )
       {
          const_char_pointer pszRef = this->element_at(i).m_strRef;
          const_char_pointer psz = pszEntity;
@@ -66,24 +66,24 @@ namespace xml
       return nullptr;
    }
 
-   int entities::get_entity_count( const_char_pointer str )
+   ::i32 entities::get_entity_count( const_char_pointer str )
    {
-      int nCount = 0;
-      char * ps = (char *)str;
+      ::i32 nCount = 0;
+      char_pointer ps = (char_pointer )str;
       while( ps && *ps )
          if( get_entity( *ps++ ) ) nCount ++;
       return nCount;
    }
 
 
-   int entities::ref_to_entity(const_char_pointer estr, char * str, int strlen)
+   ::i32 entities::ref_to_entity(const_char_pointer estr, char_pointer str, ::i32 strlen)
    {
 
-      char * pes = (char *)estr;
+      char_pointer pes = (char_pointer )estr;
 
-      char * ps = str;
+      char_pointer ps = str;
 
-      char * ps_end = ps+strlen;
+      char_pointer ps_end = ps+strlen;
 
       while(*pes && ps < ps_end )
       {
@@ -96,7 +96,7 @@ namespace xml
 
                pes+=2;
 
-               char * end = nullptr;
+               char_pointer end = nullptr;
 
                ::wd32_character wd32_character;
 
@@ -137,7 +137,7 @@ namespace xml
                if(ent)
                {
 
-                  // copy m_chEntity meanning char
+                  // copy m_chEntity meanning ::i8
 
                   *ps = ent->m_chEntity;
 
@@ -170,16 +170,16 @@ namespace xml
       *ps = '\0';
 
       // total copied characters
-      return (int) (ps-str);
+      return (::i32) (ps-str);
 
    }
 
 
-   int entities::entity_to_ref( const_char_pointer str, char * estr, int estrlen )
+   ::i32 entities::entity_to_ref( const_char_pointer str, char_pointer estr, ::i32 estrlen )
    {
-      char * ps = (char *)str;
-      char * pes = (char *)estr;
-      char * pes_end = pes+estrlen;
+      char_pointer ps = (char_pointer )str;
+      char_pointer pes = (char_pointer )estr;
+      char_pointer pes_end = pes+estrlen;
       while( ps && *ps && pes < pes_end )
       {
          entity * ent = get_entity( *ps );
@@ -198,7 +198,7 @@ namespace xml
       *pes = '\0';
 
       // total copied characters
-      return (int) (pes-estr);
+      return (::i32) (pes-estr);
    }
 
    string entities::ref_to_entity(const_char_pointer pszSrc)
@@ -208,9 +208,9 @@ namespace xml
       if(pszSrc != nullptr)
       {
          character_count iLen = ansi_len(pszSrc);
-         char * pszRet = strRet.get_buffer(iLen);
+         char_pointer pszRet = strRet.get_buffer(iLen);
          if(pszRet != nullptr)
-            ref_to_entity(pszSrc, pszRet, (int) iLen);
+            ref_to_entity(pszSrc, pszRet, (::i32) iLen);
          strRet.release_buffer();
       }
       return strRet;
@@ -221,13 +221,13 @@ namespace xml
       string s;
       if( str )
       {
-         int nEntityCount = get_entity_count(str);
+         ::i32 nEntityCount = get_entity_count(str);
          if( nEntityCount == 0 )
             return string(str);
          character_count len = ansi_len(str) + nEntityCount*10 ;
-         char * sbuf = s.get_buffer(len + 1);
+         char_pointer sbuf = s.get_buffer(len + 1);
          if( sbuf )
-            entity_to_ref( str, sbuf, (int) len);
+            entity_to_ref( str, sbuf, (::i32) len);
          s.release_buffer();
       }
       return s;
@@ -238,9 +238,9 @@ namespace xml
       if(pszSrc != nullptr)
       {
          character_count iLen = ansi_len(pszSrc);
-         char * pszRet = str.get_buffer(iLen);
+         char_pointer pszRet = str.get_buffer(iLen);
          if(pszRet != nullptr)
-            iLen = ref_to_entity(pszSrc,pszRet,(int)iLen);
+            iLen = ref_to_entity(pszSrc,pszRet,(::i32)iLen);
          str.release_buffer(iLen);
       }
 
@@ -250,17 +250,17 @@ namespace xml
    {
       if(str)
       {
-         int nEntityCount = get_entity_count(str);
+         ::i32 nEntityCount = get_entity_count(str);
          if(nEntityCount == 0)
          {
             s = str;
             return;
          }
          character_count len = ansi_len(str) + nEntityCount * 10 ;
-         char * sbuf = s.get_buffer(len + 1);
+         char_pointer sbuf = s.get_buffer(len + 1);
          if(sbuf)
          {
-            len = entity_to_ref(str,sbuf,(int)len);
+            len = entity_to_ref(str,sbuf,(::i32)len);
          }
          s.release_buffer(len);
       }

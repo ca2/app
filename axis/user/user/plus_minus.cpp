@@ -19,7 +19,7 @@ namespace user
 
       m_bLabel = true;
 
-      m_i = 100;
+      m_i32 = 100;
       m_iMin = 0;
       m_iMax = 100;
       m_iStep = 5;
@@ -71,10 +71,10 @@ namespace user
    }
 
 
-   void plus_minus::set_value(int iValue, const ::action_context & context)
+   void plus_minus::set_value(::i32 iValue, const ::action_context & context)
    {
 
-      m_i = iValue;
+      m_i32 = iValue;
 
       on_update();
 
@@ -92,7 +92,7 @@ namespace user
    void plus_minus::on_update()
    {
 
-      int i = m_i;
+      ::i32 i = m_i32;
 
       __sort(m_iMin, m_iMax);
 
@@ -140,7 +140,7 @@ namespace user
 
       }
 
-      m_i = i;
+      m_i32 = i;
 
       if (m_bLabel)
       {
@@ -157,7 +157,7 @@ namespace user
 
       __sort(m_iMin, m_iMax);
 
-      if (m_i >= m_iMax)
+      if (m_i32 >= m_iMax)
       {
 
          if (m_strMax.has_character())
@@ -168,7 +168,7 @@ namespace user
          }
 
       }
-      else if (m_i <= m_iMin)
+      else if (m_i32 <= m_iMin)
       {
 
          if (m_strMin.has_character())
@@ -185,7 +185,7 @@ namespace user
 
          string str;
 
-         str.formatf(m_strFormat, m_i);
+         str.formatf(m_strFormat, m_i32);
 
          return str;
 
@@ -199,13 +199,13 @@ namespace user
    void plus_minus::on_layout(::draw2d::graphics_pointer & pgraphics)
    {
 
-      int wPadding = 10;
+      ::i32 wPadding = 10;
 
       auto rectangleX = this->rectangle();
 
-      int iM = rectangleX.center().x;
+      ::i32 iM = rectangleX.center().x;
 
-      ::int_rectangle rectangleL(rectangleX);
+      ::i32_rectangle rectangleL(rectangleX);
 
       rectangleL.right = iM - wPadding / 2;
 
@@ -215,7 +215,7 @@ namespace user
       
       m_pbuttonMinus->display();
 
-      ::int_rectangle rectangleR(rectangleX);
+      ::i32_rectangle rectangleR(rectangleX);
 
       rectangleR.left = iM + wPadding / 2;
 
@@ -237,7 +237,7 @@ namespace user
          if (ptopic->user_interaction() == m_pbuttonMinus || ptopic->user_interaction() == m_pbuttonPlus)
          {
 
-            int i = m_i;
+            ::i32 i = m_i32;
 
             if (m_iStep <= 0)
             {

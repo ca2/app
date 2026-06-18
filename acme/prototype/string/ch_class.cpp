@@ -96,7 +96,7 @@ void * gen_ch_class_reference_tables()
          }
          if(ccs[pos] == '\\' && __lt(pos+1, ansi_len(ccs)))
          {
-//            int retEnd;
+//            ::i32 retEnd;
             prev_char = BAD_WCHAR;
             switch(ccs[pos+1])
             {
@@ -230,7 +230,7 @@ void * gen_ch_class_reference_tables()
 
    void ch_class::add_char(const_char_pointer pszUtf8Char)
    {
-      long long iChar = unicode_index(pszUtf8Char);
+      ::i64 iChar = unicode_index(pszUtf8Char);
       bit_array * tablePos = infoIndex[iChar >> 8];
       if (!tablePos)
       {
@@ -242,7 +242,7 @@ void * gen_ch_class_reference_tables()
 
    void ch_class::clear_char(const_char_pointer pszUtf8Char)
    {
-      long long iChar = unicode_index(pszUtf8Char);
+      ::i64 iChar = unicode_index(pszUtf8Char);
       bit_array *tablePos = infoIndex[iChar >> 8];
       if(!tablePos)
          return;
@@ -251,9 +251,9 @@ void * gen_ch_class_reference_tables()
 
    void ch_class::add_range(const_char_pointer s, const_char_pointer e)
    {
-      long long iCharStart = unicode_index(s);
-      long long iCharEnd = unicode_index(e);
-      for(long long ti = iCharStart >> 8; ti <= iCharEnd >> 8; ti++)
+      ::i64 iCharStart = unicode_index(s);
+      ::i64 iCharEnd = unicode_index(e);
+      for(::i64 ti = iCharStart >> 8; ti <= iCharEnd >> 8; ti++)
       {
          if (!infoIndex[ti])
             infoIndex[ti] = øraw_new bit_array();
@@ -265,9 +265,9 @@ void * gen_ch_class_reference_tables()
 
    void ch_class::clear_range(const_char_pointer s, const_char_pointer e)
    {
-      long long iCharStart = unicode_index(s);
-      long long iCharEnd = unicode_index(e);
-      for(long long ti = iCharStart >> 8; ti <= iCharEnd >> 8; ti++)
+      ::i64 iCharStart = unicode_index(s);
+      ::i64 iCharEnd = unicode_index(e);
+      for(::i64 ti = iCharStart >> 8; ti <= iCharEnd >> 8; ti++)
       {
          if (!infoIndex[ti])
             infoIndex[ti] = øraw_new bit_array();
@@ -281,9 +281,9 @@ void * gen_ch_class_reference_tables()
    {
       if(!cat || cat >= CHAR_CATEGORY_LAST)
          return;
-      for (int i = 0; i < 256; i++)
+      for (::i32 i = 0; i < 256; i++)
       {
-         unsigned short pos = arr_idxCharCategoryIdx[(int(cat)-1) * 256 + i];
+         ::u16 pos = arr_idxCharCategoryIdx[(::i32(cat)-1) * 256 + i];
          if(!pos)
             continue;
          bit_array *tablePos = infoIndex[i];
@@ -292,7 +292,7 @@ void * gen_ch_class_reference_tables()
             tablePos = øraw_new bit_array();
             infoIndex[i] = tablePos;
          }
-         tablePos->add_bit_array((char*)(arr_idxCharCategory+pos), 8*4);
+         tablePos->add_bit_array((char_pointer )(arr_idxCharCategory+pos), 8*4);
       }
    }
 
@@ -311,9 +311,9 @@ void * gen_ch_class_reference_tables()
    {
       if(!cat || cat >= CHAR_CATEGORY_LAST)
          return;
-      for(int i = 0; i < 256; i++)
+      for(::i32 i = 0; i < 256; i++)
       {
-         unsigned short pos = arr_idxCharCategoryIdx[(int(cat)-1) * 256 + i];
+         ::u16 pos = arr_idxCharCategoryIdx[(::i32(cat)-1) * 256 + i];
          if(!pos)
             continue;
          bit_array *tablePos = infoIndex[i];
@@ -322,7 +322,7 @@ void * gen_ch_class_reference_tables()
             tablePos = øraw_new bit_array();
             infoIndex[i] = tablePos;
          }
-         tablePos->clear_bit_array((char*)(arr_idxCharCategory+pos), 8*4);
+         tablePos->clear_bit_array((char_pointer )(arr_idxCharCategory+pos), 8*4);
       }
    }
 
@@ -330,7 +330,7 @@ void * gen_ch_class_reference_tables()
    {
       for(size_t pos = 0; pos < ARRAY_SIZE(char_category_names); pos++)
       {
-         int ci;
+         ::i32 ci;
          for(ci = 0; ci < cat.length() && cat[ci] == char_category_names[pos][ci]; ci++);
          if(ci == cat.length()) clear_category(ECharCategory(pos));
       }
@@ -338,7 +338,7 @@ void * gen_ch_class_reference_tables()
 
    void ch_class::add_class(const ch_class &cclass)
    {
-      for(int p = 0; p < 256; p++)
+      for(::i32 p = 0; p < 256; p++)
       {
          if (infoIndex[p] == nullptr)
             infoIndex[p] = øraw_new bit_array();
@@ -348,7 +348,7 @@ void * gen_ch_class_reference_tables()
 
    void ch_class::intersect_class(const ch_class &cclass)
    {
-      for(int p = 0; p < 256; p++)
+      for(::i32 p = 0; p < 256; p++)
       {
          if (infoIndex[p] != nullptr)
          {
@@ -359,7 +359,7 @@ void * gen_ch_class_reference_tables()
 
    void ch_class::clear_class(const ch_class &cclass)
    {
-      for(int p = 0; p < 256; p++)
+      for(::i32 p = 0; p < 256; p++)
       {
          if(infoIndex[p] != nullptr)
          {
@@ -370,7 +370,7 @@ void * gen_ch_class_reference_tables()
 
    void ch_class::clear()
    {
-      for(int i = 0; i < 256; i++)
+      for(::i32 i = 0; i < 256; i++)
       {
          if(infoIndex[i] != nullptr)
          {
@@ -382,7 +382,7 @@ void * gen_ch_class_reference_tables()
 
    void ch_class::fill()
    {
-      for(int i = 0; i < 256; i++)
+      for(::i32 i = 0; i < 256; i++)
       {
          if(infoIndex[i] == nullptr)
             infoIndex[i] = øraw_new bit_array();

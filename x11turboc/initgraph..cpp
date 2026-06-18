@@ -35,7 +35,7 @@
 #include <sys/types.h>
 #include <signal.h>
 static pthread_t ExposerThread;
-static int ThreadsInitialized = 0;
+static ::i32 ThreadsInitialized = 0;
 static void *ExposerFunction (void *);
 
 #include "graphics.h"
@@ -44,9 +44,9 @@ static void *ExposerFunction (void *);
 //----------------------------------------------------------------------------
 
 extern void
-setgraphmode (int mode)
+setgraphmode (::i32 mode)
 {
-  int graphdriver;
+  ::i32 graphdriver;
   graphdriver = TcDriver;
   initgraph (&graphdriver, &mode, "");
 }
@@ -61,10 +61,10 @@ setgraphmode (int mode)
 // to any "driver".
 
 extern void
-initgraph (int *graphdriver, int *graphmode, char *pathtodriver)
+initgraph (::i32 *graphdriver, ::i32 *graphmode, char_pointer pathtodriver)
 {
   XSizeHints *SizeHints;
-  int i, Xres, Yres, Pcnt, Pal;
+  ::i32 i, Xres, Yres, Pcnt, Pal;
   gulong White, Black;
   Atom wm_delete_window;
   if (!ThreadsInitialized)
@@ -232,15 +232,15 @@ initgraph (int *graphdriver, int *graphmode, char *pathtodriver)
 
 //-----------------------------------------------------------------
 
-int volatile TcShutdownGraphics = 0;
+::i32 volatile TcShutdownGraphics = 0;
 
 static void *
 ExposerFunction (void *DummyArg)
 {
   KeySym Key;
-  char Text[32];
+  ::i8 Text[32];
   XEvent Event;
-  int i, j;
+  ::i32 i, j;
   XSelectInput (TcDisplay, TcWindow,
 		ExposureMask | KeyPressMask | SubstructureNotifyMask);
   while (1)

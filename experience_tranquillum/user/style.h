@@ -22,14 +22,14 @@ namespace experience_tranquillum
       style();
       ~style() override;
 
-      //virtual long long increment_reference_count() override
+      //virtual ::i64 increment_reference_count() override
       //{
 
       //   return ::object::increment_reference_count();
 
       //}
 
-      //virtual long long decrement_reference_count() override
+      //virtual ::i64 decrement_reference_count() override
       //{
 
       //   return ::object::decrement_reference_count();
@@ -37,17 +37,17 @@ namespace experience_tranquillum
       //}
 
 
-      ::color::color get_color(::user::interaction * pinteraction, ::enum_element eelement, ::user::enum_state estate) override;
+      ::color::color get_color(::user::interaction * pinteraction, const ::e_element & eelement, const ::user::e_state & estate) override;
       
       
          //    virtual bool get_font(::write_text::font_pointer & font, ::user::e_font efont, ::user::interaction * pframewindow) override;
-         //  virtual bool get_translucency(::user::enum_translucency & etranslucency, ::enum_element eelement, ::user::interaction * pframewindow) override;
+         //  virtual bool get_translucency(::user::enum_translucency & etranslucency, const ::e_element & eelement, ::user::interaction * pframewindow) override;
 
 
          //      virtual bool on_ui_event(::enum_topic etopic, ::user::e_object eobject, ::user::interaction * pframewindow) override;
 
       bool _001TabOnDrawSchema01(::draw2d::graphics_pointer & pgraphics,::user::tab * ptab) override;
-      void _001OnTabPaneDrawTitle(::user::tab_pane & pane,::user::tab * ptab,::draw2d::graphics_pointer & pgraphics,const ::int_rectangle & rectangle,::draw2d::brush_pointer & pbrushText, const ::user::e_state & estate) override;
+      void _001OnTabPaneDrawTitle(::user::tab_pane & pane,::user::tab * ptab,::draw2d::graphics_pointer & pgraphics,const ::i32_rectangle & rectangle,::draw2d::brush_pointer & pbrushText, const ::user::e_state & estate) override;
 
       bool _001OnTabLayout(::draw2d::graphics_pointer& pgraphics, ::user::tab * ptab) override;
 
@@ -58,7 +58,7 @@ namespace experience_tranquillum
       bool _001OnDrawSplitLayout(::draw2d::graphics_pointer & pgraphics, ::user::split_layout * psplitlayout) override;
 
       //virtual bool get_font(::write_text::font_pointer & sp, ::user::e_font efont, ::user::style_context * pcontext) override;
-      //virtual bool get_double(double & d, ::user::e_double edouble, ::user::style_context * pcontext) override;
+      //virtual bool get_f64(::f64 & d, ::user::e_f64 ef64, ::user::style_context * pcontext) override;
 
 
    };

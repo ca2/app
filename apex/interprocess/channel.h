@@ -18,7 +18,7 @@ namespace interprocess
       ::pointer<::interprocess::caller>         m_pcaller;
       ::pointer<::interprocess::target>         m_ptarget;
       string                                    m_strChannel;
-      unsigned int                              m_timeTimeout;
+      ::u32                              m_timeTimeout;
 
 
       channel();
@@ -34,7 +34,7 @@ namespace interprocess
 
 
       virtual bool ensure_caller(const ::scoped_string & scopedstrUri, const class time & timeTimeout = 1_hour);
-      //virtual bool ensure_caller(int message, void * pdata, int len, const class time & timeTimeout = hour());
+      //virtual bool ensure_caller(::i32 message, void * pdata, ::i32 len, const class time & timeTimeout = hour());
 
 
       virtual bool is_channel_ok();

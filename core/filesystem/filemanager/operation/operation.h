@@ -18,18 +18,18 @@ namespace filemanager
 
       enum_operation             m_eoperation;
       ::file::listing_base            m_filelisting;
-      double_array               m_daRead;
-      double_array               m_daSize;
+      f64_array               m_daRead;
+      f64_array               m_daSize;
       ::file::path               m_path;
       ::file::path               m_pathBase;
-      double                     m_dSize;
-      double                     m_dRead;
+      ::f64                     m_dSize;
+      ::f64                     m_dRead;
       file_pointer               m_fileSrc;
       file_pointer               m_fileDst;
-      int                        m_iFile;
+      ::i32                        m_iFile;
       bool                       m_bReplaceAll;
-      char *                     m_pchBuffer;
-      int                        m_iBufferSize;
+      char_pointer m_pchBuffer;
+      ::i32                        m_iBufferSize;
       ::user::interaction *      m_oswindowCallback;
       //atom                       m_atomFileManagerOperation;
       ::user::enum_message       m_emessageFileManagerOperation;
@@ -43,14 +43,14 @@ namespace filemanager
       virtual bool set_move(::file::listing_base & stra,const ::file::path & path);
       virtual bool set_delete(::file::listing_base & stra);
 
-      //   virtual double size();
-      //   virtual double progress();
+      //   virtual ::f64 size();
+      //   virtual ::f64 progress();
 
-      int get_item_count();
-      string get_item_message(int iItem);
-      double get_item_progress(int iItem);
-      double get_item_read(int iItem);
-      double get_item_size(int iItem);
+      ::i32 get_item_count();
+      string get_item_message(::i32 iItem);
+      ::f64 get_item_progress(::i32 iItem);
+      ::f64 get_item_read(::i32 iItem);
+      ::f64 get_item_size(::i32 iItem);
 
       void expand(::file::listing_base & straExpanded,::file::path_array_base & straExpand);
 

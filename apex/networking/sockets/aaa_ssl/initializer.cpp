@@ -80,7 +80,7 @@ namespace sockets
 
 #ifdef LINUX
    // ssl_sigpipe_handle ---------------------------------------------------------
-   void ssl_sigpipe_handle(int x)
+   void ssl_sigpipe_handle(::i32 x)
    {
       /* Ignore broken pipes */
    }

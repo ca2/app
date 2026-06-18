@@ -79,7 +79,7 @@ void SHA256::processBlock(const void* data)
    uint32_t words[64];
    ::memory_copy(words, data, sizeof(uint32_t) * 16);
 
-   int i = 16;
+   ::i32 i = 16;
    if (h2n2h_helper::Endian::little)
       for (i = 0; i < 16; i++)
          words[i] = host2network(words[i]);
@@ -482,7 +482,7 @@ void SHA256::processBuffer()
    paddedLength /= 8;
 
    // only needed if additional data flows over into a second block
-   unsigned char extra[BlockSize];
+   ::u8 extra[BlockSize];
 
    // append a "1" bit, 128 => binary 10000000
    if (m_bufferSize < BlockSize)
@@ -499,21 +499,21 @@ void SHA256::processBuffer()
    // add message length in bits as 64 bit number
    uint64_t msgBits = 8 * (m_numBytes + m_bufferSize);
    // find right position
-   unsigned char* addLength;
+   ::u8* addLength;
    if (paddedLength < BlockSize)
       addLength = m_buffer + paddedLength;
    else
       addLength = extra + paddedLength - BlockSize;
 
    // must be big endian
-   *addLength++ = (unsigned char)((msgBits >> 56) & 0xFF);
-   *addLength++ = (unsigned char)((msgBits >> 48) & 0xFF);
-   *addLength++ = (unsigned char)((msgBits >> 40) & 0xFF);
-   *addLength++ = (unsigned char)((msgBits >> 32) & 0xFF);
-   *addLength++ = (unsigned char)((msgBits >> 24) & 0xFF);
-   *addLength++ = (unsigned char)((msgBits >> 16) & 0xFF);
-   *addLength++ = (unsigned char)((msgBits >> 8) & 0xFF);
-   *addLength = (unsigned char)(msgBits & 0xFF);
+   *addLength++ = (::u8)((msgBits >> 56) & 0xFF);
+   *addLength++ = (::u8)((msgBits >> 48) & 0xFF);
+   *addLength++ = (::u8)((msgBits >> 40) & 0xFF);
+   *addLength++ = (::u8)((msgBits >> 32) & 0xFF);
+   *addLength++ = (::u8)((msgBits >> 24) & 0xFF);
+   *addLength++ = (::u8)((msgBits >> 16) & 0xFF);
+   *addLength++ = (::u8)((msgBits >> 8) & 0xFF);
+   *addLength = (::u8)(msgBits & 0xFF);
 
    // process blocks
    processBlock(m_buffer);
@@ -527,7 +527,7 @@ void SHA256::processBuffer()
 ::string SHA256::getHash()
 {
    // compute hash (as raw bytes)
-   unsigned char rawHash[HashBytes];
+   ::u8 rawHash[HashBytes];
    getHash(rawHash);
 
    // convert to hex string
@@ -536,18 +536,18 @@ void SHA256::processBuffer()
 
 
 /// return latest hash as bytes
-void SHA256::getHash(unsigned char buffer[SHA256::HashBytes])
+void SHA256::getHash(::u8 buffer[SHA256::HashBytes])
 {
    // save old hash if buffer is partially filled
    uint32_t oldHash[HashValues];
-   for (int i = 0; i < HashValues; i++)
+   for (::i32 i = 0; i < HashValues; i++)
       oldHash[i] = m_hash[i];
 
    // process remaining bytes
    processBuffer();
 
-   unsigned char* current = buffer;
-   for (int i = 0; i < HashValues; i++)
+   ::u8* current = buffer;
+   for (::i32 i = 0; i < HashValues; i++)
    {
       *current++ = (m_hash[i] >> 24) & 0xFF;
       *current++ = (m_hash[i] >> 16) & 0xFF;

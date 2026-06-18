@@ -31,9 +31,9 @@
 //----------------------------------------------------------------------------
 
 void
-putpixel (int x, int y, int color)
+putpixel (::i32 x, ::i32 y, ::i32 color)
 {
-  //int OldColor;
+  //::i32 OldColor;
   //OldColor = TcForegroundColor;
   //if (color != OldColor)
   //  setcolor (color);

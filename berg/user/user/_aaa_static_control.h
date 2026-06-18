@@ -47,7 +47,7 @@
 //      //virtual bool create_interaction(::user::interaction * puiParent,atom atom);
 //
 //
-//      virtual ::write_text::font_pointer get_font(style* pstyle, enum_element eelement = e_element_none, ::user::enum_state estate = e_state_none) const override;
+//      virtual ::write_text::font_pointer get_font(style* pstyle, const ::e_element & eelement = e_element_none, const ::user::e_state & estate = e_state_none) const override;
 //
 ////#ifdef WINDOWS_DESKTOP
 ////      HENHMETAFILE SetEnhMetaFile(HENHMETAFILE hMetaFile);

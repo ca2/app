@@ -3,16 +3,16 @@
 
 
 		// TEMPLATE CLASS _Bitset_base
-template<int>
+template<::i32>
 	struct _Bitset_base
-	{	// default matter int_size
-	typedef unsigned int _Ty;
+	{	// default matter i32_size
+	typedef ::u32 _Ty;
 	};
 
 template<>
 	struct _Bitset_base <8>
-	{	// eight-unsigned char bitset
-	typedef unsigned long long _Ty;
+	{	// eight-::u8 bitset
+	typedef ::u64 _Ty;
 	};
 
 		// TEMPLATE CLASS bitset
@@ -88,8 +88,8 @@ private:
 
    enum
    {	// parameters for packing bits into words
-		_Bitsperword = (int)(CHAR_BIT * sizeof (_Ty)),	// bits in each unsigned short
-		_Words = (int)(_Bits == 0
+		_Bitsperword = (::i32)(CHAR_BIT * sizeof (_Ty)),	// bits in each ::u16
+		_Words = (::i32)(_Bits == 0
                      ? 0 : (_Bits - 1) / _Bitsperword)};	// NB: number of words - 1
 
 
@@ -139,9 +139,9 @@ public:
 		}
 
  #if _HAS_CPP0X
-	bitset(int _Ival)
-		{	// construct from bits in int
-		unsigned int _Val = (unsigned int)_Ival;
+	bitset(::i32 _Ival)
+		{	// construct from bits in ::i32
+		::u32 _Val = (::u32)_Ival;
 		_Tidy();
 		for (size_t _Pos = 0; _Val != 0 && _Pos < _Bits; _Val >>= 1, ++_Pos)
 			if (_Val & 1)
@@ -151,10 +151,10 @@ public:
 	bitset(_ULonglong _Val)
 
  #else /* _HAS_CPP0X */
-	bitset(unsigned long long _Val)
+	bitset(::u64 _Val)
  #endif /* _HAS_CPP0X */
 
-		{	// construct from bits in unsigned long long
+		{	// construct from bits in ::u64
 		_Tidy();
 		for (size_t _Pos = 0; _Val != 0 && _Pos < _Bits; _Val >>= 1, ++_Pos)
 			if (_Val & 1)
@@ -166,10 +166,10 @@ public:
 
 	explicit bitset(const string & _Str, _BITSET_SIZE_TYPE _Pos = 0)
 	{	// construct from [_Pos, ...) elements in string
-		_Construct(_Str, _Pos, -1, (char)'0', (char)'1');
+		_Construct(_Str, _Pos, -1, (::i8)'0', (::i8)'1');
 	}
 
-	explicit bitset(const string & _Str, _BITSET_SIZE_TYPE _Pos, _BITSET_SIZE_TYPE _Count, char _E0 = (char)'0', char _E1 = (char)'1')
+	explicit bitset(const string & _Str, _BITSET_SIZE_TYPE _Pos, _BITSET_SIZE_TYPE _Count, ::i8 _E0 = (::i8)'0', ::i8 _E1 = (::i8)'1')
 	{	// construct from [_Pos, _Pos + _Count) elements in string
 	_Construct(_Str, _Pos, _Count, _E0, _E1);
 	}
@@ -180,13 +180,13 @@ public:
 		_Construct(_Str, 0, _Str.size(), '0', '1');
 	}
 
-   void _Construct(const string & _Str, _BITSET_SIZE_TYPE _Pos, _BITSET_SIZE_TYPE _Count, char _E0, char _E1)
+   void _Construct(const string & _Str, _BITSET_SIZE_TYPE _Pos, _BITSET_SIZE_TYPE _Count, ::i8 _E0, ::i8 _E1)
    {	// initialize from [_Pos, _Pos + _Count) elements in string
 		character_count _Num;
 		if (_Str.size() < _Pos)
 			_Xran();	// _Pos off end
 		if (_Str.size() - _Pos < _Count)
-			_Count = _Str.size() - _Pos;	// trim _Count to int_size
+			_Count = _Str.size() - _Pos;	// trim _Count to i32_size
 		if (_Bits < _Count)
 			_Count = _Bits;	// trim _Count to length of bitset
 		_Tidy();
@@ -200,36 +200,36 @@ public:
 
 	bitset<_Bits>& operator&=(const bitset<_Bits>& _Right)
 		{	// AND in _Right
-		for (int _Wpos = _Words; 0 <= _Wpos; --_Wpos)
+		for (::i32 _Wpos = _Words; 0 <= _Wpos; --_Wpos)
 			_Array[_Wpos] &= _Right._Getword(_Wpos);
 		return (*this);
 		}
 
 	bitset<_Bits>& operator|=(const bitset<_Bits>& _Right)
 		{	// OR in _Right
-		for (int _Wpos = _Words; 0 <= _Wpos; --_Wpos)
+		for (::i32 _Wpos = _Words; 0 <= _Wpos; --_Wpos)
 			_Array[_Wpos] |= _Right._Getword(_Wpos);
 		return (*this);
 		}
 
 	bitset<_Bits>& operator^=(const bitset<_Bits>& _Right)
 		{	// XOR in _Right
-		for (int _Wpos = _Words; 0 <= _Wpos; --_Wpos)
+		for (::i32 _Wpos = _Words; 0 <= _Wpos; --_Wpos)
 			_Array[_Wpos] ^= _Right._Getword(_Wpos);
 		return (*this);
 		}
 
 	bitset<_Bits>& operator<<=(size_t _Pos)
 		{	// shift left by _Pos
-		const int _Wordshift = (int)(_Pos / _Bitsperword);
+		const ::i32 _Wordshift = (::i32)(_Pos / _Bitsperword);
 		if (_Wordshift != 0)
-			for (int _Wpos = _Words; 0 <= _Wpos; --_Wpos)	// shift by words
+			for (::i32 _Wpos = _Words; 0 <= _Wpos; --_Wpos)	// shift by words
 				_Array[_Wpos] = _Wordshift <= _Wpos
 					? _Array[_Wpos - _Wordshift] : (_Ty)0;
 
 		if ((_Pos %= _Bitsperword) != 0)
 			{	// 0 < _Pos < _Bitsperword, shift by bits
-			for (int _Wpos = _Words; 0 < _Wpos; --_Wpos)
+			for (::i32 _Wpos = _Words; 0 < _Wpos; --_Wpos)
 				_Array[_Wpos] = (_Ty)((_Array[_Wpos] << _Pos)
 					| (_Array[_Wpos - 1] >> (_Bitsperword - _Pos)));
 			_Array[0] <<= _Pos;
@@ -240,15 +240,15 @@ public:
 
 	bitset<_Bits>& operator>>=(size_t _Pos)
 		{	// shift right by _Pos
-		const int _Wordshift = (int)(_Pos / _Bitsperword);
+		const ::i32 _Wordshift = (::i32)(_Pos / _Bitsperword);
 		if (_Wordshift != 0)
-			for (int _Wpos = 0; _Wpos <= _Words; ++_Wpos)	// shift by words
+			for (::i32 _Wpos = 0; _Wpos <= _Words; ++_Wpos)	// shift by words
 				_Array[_Wpos] = _Wordshift <= _Words - _Wpos
 						? _Array[_Wpos + _Wordshift] : (_Ty)0;
 
 		if ((_Pos %= _Bitsperword) != 0)
 			{	// 0 < _Pos < _Bitsperword, shift by bits
-			for (int _Wpos = 0; _Wpos < _Words; ++_Wpos)
+			for (::i32 _Wpos = 0; _Wpos < _Words; ++_Wpos)
 				_Array[_Wpos] = (_Ty)((_Array[_Wpos] >> _Pos)
 					| (_Array[_Wpos + 1] << (_Bitsperword - _Pos)));
 			_Array[_Words] >>= _Pos;
@@ -292,7 +292,7 @@ public:
 
 	bitset<_Bits>& flip()
 		{	// flip all bits
-		for (int _Wpos = _Words; 0 <= _Wpos; --_Wpos)
+		for (::i32 _Wpos = _Words; 0 <= _Wpos; --_Wpos)
 			_Array[_Wpos] = (_Ty)~_Array[_Wpos];
 
 		_Trim();
@@ -307,34 +307,34 @@ public:
 		return (*this);
 		}
 
-	unsigned long long to_ulong() const
-   {	// convert bitset to unsigned long long
-		unsigned long long _Val = to_ullong();
-		unsigned long long _Ans = (unsigned long long)_Val;
+	::u64 to_ulong() const
+   {	// convert bitset to ::u64
+		::u64 _Val = to_ullong();
+		::u64 _Ans = (::u64)_Val;
 		if (_Ans  != _Val)
 			_Xoflo();
 		return (_Ans);
 	}
 
-	unsigned long long to_ullong() const
-	{	// convert bitset to unsigned long long long
+	::u64 to_ullong() const
+	{	// convert bitset to ::u64 long
 		enum
-			{	// cause zero divide if unsigned long long long not multiple of _Ty
+			{	// cause zero divide if ::u64 long not multiple of _Ty
 			_Assertion = 1
-				/ (int)(sizeof (unsigned long long) % sizeof (_Ty) == 0)};
+				/ (::i32)(sizeof (::u64) % sizeof (_Ty) == 0)};
 
-		int _Wpos = _Words;
-		for (; (int)(sizeof (unsigned long long) / sizeof (_Ty)) <= _Wpos; --_Wpos)
+		::i32 _Wpos = _Words;
+		for (; (::i32)(sizeof (::u64) / sizeof (_Ty)) <= _Wpos; --_Wpos)
 			if (_Array[_Wpos] != 0)
 				_Xoflo();	// fail if any high-order words are nonzero
 
-		unsigned long long _Val = _Array[_Wpos];
+		::u64 _Val = _Array[_Wpos];
 		for (; 0 <= --_Wpos; )
 			_Val = ((_Val << (_Bitsperword - 1)) << 1) | _Array[_Wpos];
    return (_Val);
 		}
 
-   string to_string(char _E0 = (char)'0', char _E1 = (char)'1') const
+   string to_string(::i8 _E0 = (::i8)'0', ::i8 _E1 = (::i8)'1') const
    {	// convert bitset to string
 		string _Str;
 		character_count _Pos;
@@ -352,16 +352,16 @@ public:
 
 	size_t count() const
 		{	// ::collection::count number of set bits
-		static char _Bitsperhex[] = "\0\1\1\2\1\2\2\3\1\2\2\3\2\3\3\4";
+		static ::i8 _Bitsperhex[] = "\0\1\1\2\1\2\2\3\1\2\2\3\2\3\3\4";
 		size_t _Val = 0;
-		for (int _Wpos = _Words; 0 <= _Wpos; --_Wpos)
+		for (::i32 _Wpos = _Words; 0 <= _Wpos; --_Wpos)
 			for (_Ty _Wordval = _Array[_Wpos]; _Wordval != 0; _Wordval >>= 4)
 				_Val += _Bitsperhex[_Wordval & 0xF];
 		return (_Val);
 		}
 
 	size_t size() const
-		{	// return int_size of bitset
+		{	// return i32_size of bitset
 		return (_Bits);
 		}
 
@@ -369,7 +369,7 @@ public:
 	size_t hash() const
 		{	// hash bits to size_t value by pseudorandomizing transform
 		size_t _Val = 2166136261U;
-		for (int _Wpos = _Words; 0 <= _Wpos; --_Wpos)
+		for (::i32 _Wpos = _Words; 0 <= _Wpos; --_Wpos)
 			_Val = 16777619U * _Val ^ _Array[_Wpos];
 		return (_Val);
 		}
@@ -377,7 +377,7 @@ public:
 
 	bool operator==(const bitset<_Bits>& _Right) const
 		{	// test for bitset equality
-		for (int _Wpos = _Words; 0 <= _Wpos; --_Wpos)
+		for (::i32 _Wpos = _Words; 0 <= _Wpos; --_Wpos)
 			if (_Array[_Wpos] != _Right._Getword(_Wpos))
 				return (false);
 		return (true);
@@ -398,7 +398,7 @@ public:
 
 	bool any() const
 		{	// test if any bits are set
-		for (int _Wpos = _Words; 0 <= _Wpos; --_Wpos)
+		for (::i32 _Wpos = _Words; 0 <= _Wpos; --_Wpos)
 			if (_Array[_Wpos] != 0)
 				return (true);
 		return (false);
@@ -425,7 +425,7 @@ public:
 		}
 
 	_Ty _Getword(size_t _Wpos) const
-		{	// get unsigned short at _Wpos
+		{	// get ::u16 at _Wpos
 		return (_Array[_Wpos]);
 		}
 
@@ -433,14 +433,14 @@ private:
 
 	void _Tidy(_Ty _Wordval = 0)
 		{	// set all words to _Wordval
-		for (int _Wpos = _Words; 0 <= _Wpos; --_Wpos)
+		for (::i32 _Wpos = _Words; 0 <= _Wpos; --_Wpos)
 			_Array[_Wpos] = _Wordval;
 		if (_Wordval != 0)
 			_Trim();
 		}
 
 	void _Trim()
-		{	// clear any trailing bits in last unsigned short
+		{	// clear any trailing bits in last ::u16
 		_Trim_if<_Bits % _Bitsperword != 0>();
 		}
 
@@ -455,7 +455,7 @@ private:
 
 	void _Xinv() const
    {	// report invalid string matter in bitset conversion
-		throw ::exception(error_bad_argument, "invalid bitset<N> char");
+		throw ::exception(error_bad_argument, "invalid bitset<N> ::i8");
 	}
 
 	void _Xoflo() const

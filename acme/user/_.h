@@ -6,6 +6,7 @@
 
 #include "acme/user/menu/_.h"
 #include "acme/user/micro/_.h"
+#include "acme/user/simple/_.h"
 #include "acme/user/user/_.h"
 
 

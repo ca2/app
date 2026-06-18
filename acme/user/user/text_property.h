@@ -71,7 +71,7 @@ namespace user
 
 
       //virtual character_count get_text_length();
-      //virtual void get_text(char * psz, character_count len);
+      //virtual void get_text(char_pointer psz, character_count len);
       //virtual void get_text(string & str, ::collection::index iBeg, ::collection::index iEnd);
 
 
@@ -107,7 +107,7 @@ namespace user
       //virtual bool edit_undo();
 
 
-      //virtual void get_text_composition_area(::int_rectangle& rectangle);
+      //virtual void get_text_composition_area(::i32_rectangle& rectangle);
 
       //::comparable_array < ::user::text_will_change > & text_will_change();
       //::comparable_array < ::user::text_changed > & text_changed();

@@ -33,9 +33,9 @@
 //----------------------------------------------------------------------------
 
 void
-bar (int x1, int y1, int x2, int y2)
+bar (::i32 x1, ::i32 y1, ::i32 x2, ::i32 y2)
 {
-  int i, j;
+  ::i32 i, j;
   if (x1 > x2)
     {
       i = x1;
@@ -73,10 +73,10 @@ bar (int x1, int y1, int x2, int y2)
 //----------------------------------------------------------------------------
 
 void
-bar3d (int x1, int y1, int x2, int y2, int depth, int topflag)
+bar3d (::i32 x1, ::i32 y1, ::i32 x2, ::i32 y2, ::i32 depth, ::i32 topflag)
 {
-  int Δx, Δy;
-  int i1, i2, j1, j2;
+  ::i32 Δx, Δy;
+  ::i32 i1, i2, j1, j2;
   // Order the coordinates correctly.
   if (x1 > x2)
     {

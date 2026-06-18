@@ -94,12 +94,12 @@ namespace sockets_bsd
 
       bool isipv6(const ::scoped_string & scopedstr);
 
-      //bool convert(struct ::in_addr& l, const ::scoped_string & scopedstr, int ai_flags = 0);
-      //bool convert(struct ::in6_addr& l, const ::scoped_string & scopedstr, int ai_flags = 0);
+      //bool convert(struct ::in_addr& l, const ::scoped_string & scopedstr, ::i32 ai_flags = 0);
+      //bool convert(struct ::in6_addr& l, const ::scoped_string & scopedstr, ::i32 ai_flags = 0);
       //bool convert(string & str, const struct ::in_addr& ip);
       //bool convert(string & str, const struct ::in6_addr& ip, bool mixed = false);
 
-      int in6_addr_compare(struct ::in6_addr a, struct ::in6_addr b);
+      ::i32 in6_addr_compare(struct ::in6_addr a, struct ::in6_addr b);
 
       //void ResolveLocal();
 
@@ -124,11 +124,11 @@ namespace sockets_bsd
       bool reverse(string & hostname, const string & number);*/
 
 
-      bool u2service(const string & name, int& service, int ai_flags);
+      bool u2service(const string & name, ::i32& service, ::i32 ai_flags);
 
-      int service_port(const ::scoped_string & scopedstr, int flags = 0);
+      ::i32 service_port(const ::scoped_string & scopedstr, ::i32 flags = 0);
 
-      //string  service_name(int iPort, int flags = 0);
+      //string  service_name(::i32 iPort, ::i32 flags = 0);
 
 
       //string canonical_name(::networking::address * address);

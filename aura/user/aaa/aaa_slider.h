@@ -13,7 +13,7 @@ namespace user
 
       scalar_base *  m_pscalar;
 
-      double         m_dRate;
+      ::f64         m_dRate;
 
       bool           m_bSlide;
 
@@ -25,20 +25,20 @@ namespace user
       void install_message_routing(::channel * pchannel) override;
 
       DECLARE_MESSAGE_HANDLER(on_message_create);
-      void on_timer(::timer * ptimer);
+      void operator()(::timer * ptimer) override;
       DECLARE_MESSAGE_HANDLER(on_message_left_button_down);
       DECLARE_MESSAGE_HANDLER(on_message_left_button_up);
       DECLARE_MESSAGE_HANDLER(on_message_mouse_move);
 
       void set_scalar(scalar_base * pscalar);
 
-      void set_rate(double dRate);
+      void set_rate(::f64 dRate);
 
-      double get_slide_rate();
+      ::f64 get_slide_rate();
 
       virtual void _001OnDraw(::draw2d::graphics_pointer & pgraphics);
 
-      void get_slider_rect(::double_rectangle & rectangle);
+      void get_slider_rect(::f64_rectangle & rectangle);
 
    };
 

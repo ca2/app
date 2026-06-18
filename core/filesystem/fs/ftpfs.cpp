@@ -191,8 +191,8 @@ bool ftpfs::enumerate(::file::listing_base & listing)
    //::file::path_array_base  straDirName;
    //::file::path_array_base  straFile;
    //::file::path_array_base  straFileName;
-   //long_long_array_base    iaFileSize;
-   //long_long_array_base    iaFolderSize;
+   //i64_array_base    iaFileSize;
+   //i64_array_base    iaFolderSize;
    //bool_array     baFileDir;
    //bool_array     baFolderDir;
 
@@ -224,7 +224,7 @@ bool ftpfs::enumerate(::file::listing_base & listing)
 
    ::ftp::client_socket * pclient = nullptr;
 
-   int iTry = 0;
+   ::i32 iTry = 0;
 
 retry:
 
@@ -423,7 +423,7 @@ file_pointer ftpfs::get_file(const ::payload& payloadFile, ::file::e_open eopen,
 
       ::ftp::client_socket * pclient = nullptr;
 
-      int iTry = 0;
+      ::i32 iTry = 0;
 
 retry:
 
@@ -537,7 +537,7 @@ void ftpfs::defer_initialize(::ftp::client_socket ** ppclient, const ::scoped_st
 
    ::pointer<::ftp::client_socket>& pclient = m_pftpnet->m_mapClient[plogon->m_strToken];
 
-   int iTry = 0;
+   ::i32 iTry = 0;
 
    auto papp = m_papplication->m_papplication;
 

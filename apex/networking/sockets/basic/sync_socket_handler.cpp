@@ -67,7 +67,7 @@ namespace sockets
    }
 
 
-   void sync_socket_handler::write(const void * pdata, int len)
+   void sync_socket_handler::write(const void * pdata, ::i32 len)
    {
 
       m_psocket->write({ pdata, len });
@@ -75,7 +75,7 @@ namespace sockets
    }
 
 
-   int sync_socket_handler::read(void * pdata, int len)
+   ::i32 sync_socket_handler::read(void * pdata, ::i32 len)
    {
 
       return -1;
@@ -87,7 +87,7 @@ namespace sockets
 
       //}
 
-      //return (int) m_pmemoryfile->erase_begin(pdata, len);
+      //return (::i32) m_pmemoryfile->erase_begin(pdata, len);
 
    }
 
@@ -103,7 +103,7 @@ namespace sockets
    string sync_socket_handler::read_line()
    {
       string str;
-      char ch;
+      ::i8 ch;
       while(m_pmemoryfile->read(&ch))
       {
          if(ch == '\0')
@@ -131,7 +131,7 @@ namespace sockets
    }
 
 
-   void sync_socket_handler::read_payload_v1(string & xml_payload, int iTimeout)
+   void sync_socket_handler::read_payload_v1(string & xml_payload, ::i32 iTimeout)
    {
 
       //if (iTimeout < 0)
@@ -141,7 +141,7 @@ namespace sockets
 
       //}
 
-      //unsigned int uLen = 0;
+      //::u32 uLen = 0;
 
       //if (read(&uLen, 4) != 4)
       //{
@@ -168,14 +168,14 @@ namespace sockets
    }
 
 
-   void sync_socket_handler::write_payload_v1(const_char_pointer xml_payload, int iTimeout)
+   void sync_socket_handler::write_payload_v1(const_char_pointer xml_payload, ::i32 iTimeout)
    {
       //if(iTimeout < 0)
       //   iTimeout = m_iDefaultTimeout;
       //character_count uLen = strlen(xml_payload);
-      //unsigned int wf_total_length = htonl((u_long) uLen);
+      //::u32 wf_total_length = htonl((u_long) uLen);
       //write(&wf_total_length, 4);
-      //write( (char *) xml_payload, (int) uLen);
+      //write( (char_pointer ) xml_payload, (::i32) uLen);
    }
 
 } // namespace sockets

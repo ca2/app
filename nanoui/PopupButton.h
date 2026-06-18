@@ -42,12 +42,12 @@ namespace nanoui
       enum_font_awesome                m_efontawesomeChevron;
 
 
-      PopupButton(Widget* parent, const ::scoped_string& caption = "Untitled", int button_icon = 0);
+      PopupButton(Widget* parent, const ::scoped_string& caption = "Untitled", ::i32 button_icon = 0);
 
       void on_destroy_window() override;
 
       void set_chevron_icon(enum_font_awesome efontawesome) { m_efontawesomeChevron = efontawesome; }
-      int chevron_icon() const { return m_efontawesomeChevron; }
+      ::i32 chevron_icon() const { return m_efontawesomeChevron; }
 
       void set_side(Popup::Side popup_side);
       Popup::Side side() const { return m_ppopup->side(); }
@@ -56,7 +56,7 @@ namespace nanoui
       const Popup* popup() const { return m_ppopup; }
 
       virtual void draw(::nano2d::context * pcontext) override;
-      virtual int_size preferred_size(::nano2d::context * pcontext, bool bRecalcTextSize = true) override;
+      virtual i32_size preferred_size(::nano2d::context * pcontext, bool bRecalcTextSize = true) override;
       virtual void perform_layout(::nano2d::context * pcontext, bool bRecalcTextSize = true) override;
 
 

@@ -38,8 +38,8 @@ namespace micro
 
 #if !defined(UNIVERSAL_WINDOWS) && !defined(__ANDROID__)
 
-      //int wScreen = 1280;
-      //int hScreen = 768;
+      //::i32 wScreen = 1280;
+      //::i32 hScreen = 768;
 
       auto sizeScreen = system()->acme_windowing()->acme_display()->get_main_screen_size();
 
@@ -49,10 +49,10 @@ namespace micro
 
       auto hScreen = sizeScreen.cy;
 
-      int w = wScreen / 2;
-      int h = (w / 8) * 5;
-      int x = (wScreen - w) / 2;
-      int y = (hScreen - h) / 2;
+      ::i32 w = wScreen / 2;
+      ::i32 h = (w / 8) * 5;
+      ::i32 x = (wScreen - w) / 2;
+      ::i32 y = (hScreen - h) / 2;
 
       m_rectangle.set_dimension(x, y, w, h);
 

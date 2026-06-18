@@ -100,7 +100,7 @@ namespace apex
 
       }
 
-      int iRetry = 0;
+      ::i32 iRetry = 0;
 
    RetryBuildNumber:
 

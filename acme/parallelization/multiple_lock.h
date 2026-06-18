@@ -11,7 +11,7 @@ public:
 
 
    synchronization_array &       m_synchronizationa;
-   bits < unsigned long long >                m_bitsLocked;
+   bits < ::u64 >                m_bitsLocked;
 
 
    multiple_lock(synchronization_array & synchronizationa, bool bInitialLock = false);
@@ -23,9 +23,9 @@ public:
    //void construct(const synchronization_array & synca,bool bInitialLock = false);
 
 
-   ::e_status lock(const class time & tickTimeout = ::time::infinity(), bool bWaitForAll = true, unsigned int dwWakeMask = 0);
+   ::e_status lock(const class time & tickTimeout = ::time::infinity(), bool bWaitForAll = true, ::u32 dwWakeMask = 0);
    void unlock();
-   void unlock(int lCount, int * lPrevCount = nullptr);
+   void unlock(::i32 lCount, ::i32 * lPrevCount = nullptr);
    bool is_locked(::collection::index iItem);
 
 

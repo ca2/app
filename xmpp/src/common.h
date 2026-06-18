@@ -54,7 +54,7 @@ struct _xmpp_ctx_t {
 void *xmpp_alloc(const xmpp_ctx_t * const ctx, const size_t size);
 void *xmpp_realloc(const xmpp_ctx_t * const ctx, void *p, 
 		   const size_t size);
-char *xmpp_strdup(const xmpp_ctx_t * const ctx, const ::string & const s);
+char_pointer xmpp_strdup(const xmpp_ctx_t * const ctx, const ::string & const s);
 
 void xmpp_log(const xmpp_ctx_t * const ctx, 
 	      const xmpp_log_level_t level,
@@ -82,13 +82,13 @@ void xmpp_debug(const xmpp_ctx_t * const ctx,
 
 /** jid */
 /* these return allocateø< strings that must be xmpp_free >()'d */
-char *xmpp_jid_new(xmpp_ctx_t *ctx, const ::string &node,
+char_pointer xmpp_jid_new(xmpp_ctx_t *ctx, const ::string &node,
                                     const_char_pointer domain,
                                     const_char_pointer resource);
-char *xmpp_jid_bare(xmpp_ctx_t *ctx, const ::string &jid);
-char *xmpp_jid_node(xmpp_ctx_t *ctx, const ::string &jid);
-char *xmpp_jid_domain(xmpp_ctx_t *ctx, const ::string &jid);
-char *xmpp_jid_resource(xmpp_ctx_t *ctx, const ::string &jid);
+char_pointer xmpp_jid_bare(xmpp_ctx_t *ctx, const ::string &jid);
+char_pointer xmpp_jid_node(xmpp_ctx_t *ctx, const ::string &jid);
+char_pointer xmpp_jid_domain(xmpp_ctx_t *ctx, const ::string &jid);
+char_pointer xmpp_jid_resource(xmpp_ctx_t *ctx, const ::string &jid);
 
 
 /** connection **/
@@ -102,7 +102,7 @@ typedef enum {
 
 typedef struct _xmpp_send_queue_t xmpp_send_queue_t;
 struct _xmpp_send_queue_t {
-    char *data;
+    char_pointer data;
     size_t len;
     size_t written;
 
@@ -112,10 +112,10 @@ struct _xmpp_send_queue_t {
 typedef struct _xmpp_handlist_t xmpp_handlist_t;
 struct _xmpp_handlist_t {
     /* common members */
-    int user_handler;
+    ::i32 user_handler;
     void *handler;
     void *userdata;
-    int enabled; /* handlers are added disabled and enabled after the
+    ::i32 enabled; /* handlers are added disabled and enabled after the
 		  * handler chain is processed to prevent stanzas from
 		  * getting processed by newly added handlers */
     xmpp_handlist_t *next;
@@ -123,18 +123,18 @@ struct _xmpp_handlist_t {
     union {
 	/* timed handlers */
 	struct {
-	    unsigned long period;
-	    unsigned long long last_stamp;
+	    ulong period;
+	    ::u64 last_stamp;
 	};
 	/* atom handlers */
 	struct {
-	    char *atom;
+	    char_pointer atom;
 	};
 	/* normal handlers */
 	struct {
-	    char *ns;
-	    char *name;
-	    char *type;
+	    char_pointer ns;
+	    char_pointer name;
+	    char_pointer type;
 	};
     };
 };
@@ -147,50 +147,50 @@ struct _xmpp_handlist_t {
 typedef void (*xmpp_open_handler)(xmpp_conn_t * const conn);
 
 struct _xmpp_conn_t {
-    unsigned int ref;
+    ::u32 ref;
     xmpp_ctx_t *ctx;
     xmpp_conn_type_t type;
 
     xmpp_conn_state_t state;
-    unsigned long long timeout_stamp;
-    int error;
+    ::u64 timeout_stamp;
+    ::i32 error;
     xmpp_stream_error_t *stream_error;
     sock_t sock;
     tls_t *tls;
 
-    int tls_support;
-    int tls_disabled;
-    int tls_failed; /* set when tls fails, so we don't try again */
-    int sasl_support; /* if true, field is a bitfield of supported 
+    ::i32 tls_support;
+    ::i32 tls_disabled;
+    ::i32 tls_failed; /* set when tls fails, so we don't try again */
+    ::i32 sasl_support; /* if true, field is a bitfield of supported 
 			 mechanisms */ 
-    int secured; /* set when stream is secured with TLS */
+    ::i32 secured; /* set when stream is secured with TLS */
 
     /* if server returns <bind/> or <session/> we must do them */
-    int bind_required;
-    int session_required;
+    ::i32 bind_required;
+    ::i32 session_required;
 
-    char *lang;
-    char *domain;
-    char *connectdomain;
-    char *connectport;
-    char *jid;
-    char *pass;
-    char *bound_jid;
-    char *stream_id;
+    char_pointer lang;
+    char_pointer domain;
+    char_pointer connectdomain;
+    char_pointer connectport;
+    char_pointer jid;
+    char_pointer pass;
+    char_pointer bound_jid;
+    char_pointer stream_id;
 
     /* send queue and parameters */
-    int blocking_send;
-    int send_queue_max;
-    int send_queue_len;
+    ::i32 blocking_send;
+    ::i32 send_queue_max;
+    ::i32 send_queue_len;
     xmpp_send_queue_t *send_queue_head;
     xmpp_send_queue_t *send_queue_tail;
 
     /* xml parser */
-    int reset_parser;
+    ::i32 reset_parser;
     parser_t *parser;
 
     /* timeouts */
-    unsigned int connect_timeout;
+    ::u32 connect_timeout;
 
     /* happening handlers */    
 
@@ -198,7 +198,7 @@ struct _xmpp_conn_t {
     xmpp_open_handler open_handler;
 
     /* user handlers only get called after authentication */
-    int authenticated;
+    ::i32 authenticated;
     
     /* connection happenings handler */
     xmpp_conn_handler conn_handler;
@@ -224,7 +224,7 @@ typedef enum {
 } xmpp_stanza_type_t;
 
 struct _xmpp_stanza_t {
-    int ref;
+    ::i32 ref;
     xmpp_ctx_t *ctx;
 
     xmpp_stanza_type_t type;
@@ -234,7 +234,7 @@ struct _xmpp_stanza_t {
     xmpp_stanza_t *children;
     xmpp_stanza_t *parent;
 
-    char *data;
+    char_pointer data;
 
     hash_t *attributes;
 };
@@ -242,11 +242,11 @@ struct _xmpp_stanza_t {
 /* handler management */
 void handler_fire_stanza(xmpp_conn_t * const conn,
 			 xmpp_stanza_t * const stanza);
-unsigned long long handler_fire_timed(xmpp_ctx_t * const ctx);
-void handler_reset_timed(xmpp_conn_t *conn, int user_only);
+::u64 handler_fire_timed(xmpp_ctx_t * const ctx);
+void handler_reset_timed(xmpp_conn_t *conn, ::i32 user_only);
 void handler_add_timed(xmpp_conn_t * const conn,
 		       xmpp_timed_handler handler,
-		       const unsigned long period,
+		       const ulong period,
 		       void * const userdata);
 void handler_add_id(xmpp_conn_t * const conn,
 		    xmpp_handler handler,
@@ -267,7 +267,7 @@ void auth_handle_open(xmpp_conn_t * const conn);
 void auth_handle_component_open(xmpp_conn_t * const conn);
 
 /* replacement snprintf and vsnprintf */
-int xmpp_snprintf (char *str, size_t count, const ::string &fmt, ...);
-int xmpp_vsnprintf (char *str, size_t count, const ::string &fmt, va_list arg);
+::i32 xmpp_snprintf (char_pointer str, size_t count, const ::string &fmt, ...);
+::i32 xmpp_vsnprintf (char_pointer str, size_t count, const ::string &fmt, va_list arg);
 
 #endif /* __LIBSTROPHE_COMMON_H__ */

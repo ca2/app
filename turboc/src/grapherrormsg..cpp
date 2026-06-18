@@ -53,10 +53,10 @@ static const_char_pointer ErrorMessages[] = {
 
 //----------------------------------------------------------------------------
 
-char *
-grapherrormsg (int errorcode)
+char_pointer 
+grapherrormsg (::i32 errorcode)
 {
-  static char ErrorMessage[61];
+  static ::i8 ErrorMessage[61];
   if (errorcode < 0 || errorcode >= NUM_MESSAGES)
     strcpy (ErrorMessage, "Unknown error");
   else

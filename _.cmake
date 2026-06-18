@@ -41,6 +41,7 @@ set(DEBIAN FALSE)
 set(ANDROID FALSE)
 set(WIN32 FALSE)
 set(UWP FALSE)
+set(ENABLE_SUBSYSTEM FALSE)
 set(HAS_NO_APPINDICATOR FALSE)
 if(!WITH_X11_OPERATING_AMBIENT)
 set(WITH_X11_OPERATING_AMBIENT FALSE)
@@ -138,6 +139,10 @@ include_directories(${WORKSPACE_FOLDER}/operating_system)
 
 message(STATUS "going to include \"operating_system/__.cmake\"")
 include(operating_system/__.cmake)
+
+
+message(STATUS "going to include \"port/__.cmake\"")
+include(port/__.cmake)
 
 
 message(STATUS "going to include \"source/_.cmake\"")

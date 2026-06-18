@@ -7,18 +7,18 @@
 #include "framework.h"
 #include <unistd.h>
 
-void process_get_os_priority(int * piOsPriority,  int nCa2Priority)
+void process_get_os_priority(::i32 * piOsPriority,  ::i32 nCa2Priority)
 {
 
-   int iOsPriority;
+   ::i32 iOsPriority;
 
-   int iCa2Min;
+   ::i32 iCa2Min;
 
-   int iCa2Max;
+   ::i32 iCa2Max;
 
-   int iOsMax = 20;
+   ::i32 iOsMax = 20;
 
-   int iOsMin = -20;
+   ::i32 iOsMin = -20;
 
    if(nCa2Priority == ::e_priority_normal)
    {
@@ -29,7 +29,7 @@ void process_get_os_priority(int * piOsPriority,  int nCa2Priority)
    else if(nCa2Priority > ::e_priority_normal)
    {
 
-      iCa2Min = (int) ::e_priority_normal;
+      iCa2Min = (::i32) ::e_priority_normal;
 
       iCa2Max = 99;
 
@@ -41,7 +41,7 @@ void process_get_os_priority(int * piOsPriority,  int nCa2Priority)
 
       iCa2Min = 0;
 
-      iCa2Max = (int) ::e_priority_normal;
+      iCa2Max = (::i32) ::e_priority_normal;
 
       iOsPriority = (iOsMin + iOsMax) / 2;
 
@@ -52,7 +52,7 @@ void process_get_os_priority(int * piOsPriority,  int nCa2Priority)
 }
 
 
-unsigned int get_current_process_id()
+::u32 get_current_process_id()
 {
 
    return getpid();

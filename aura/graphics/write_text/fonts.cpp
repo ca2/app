@@ -178,7 +178,7 @@ namespace write_text
    }
 
 
-   double fonts::font_similarity(const ::scoped_string & scopedstrSystem, const ::scoped_string & scopedstrUser)
+   ::f64 fonts::font_similarity(const ::scoped_string & scopedstrSystem, const ::scoped_string & scopedstrUser)
    {
 
       if (scopedstrSystem.is_empty() || scopedstrUser.is_empty())

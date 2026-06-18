@@ -15,7 +15,9 @@
 #include "acme/constant/user_key.h"
 #include "acme/parallelization/synchronous_lock.h"
 #include "acme/platform/application.h"
+#include "acme/platform/session.h"
 #include "aura/user/user/interaction.h"
+#include "acme/user/user/keyboard_state.h"
 #include "aura/windowing/windowing.h"
 #include "nano2d/context.h"
 
@@ -32,20 +34,20 @@ namespace nanoui
    }
 
 
-   float VScrollPanel::y_coordinate_vertical_scroll(int y)
+   ::f32 VScrollPanel::y_coordinate_vertical_scroll(::i32 y)
    {
 
-      float fTrackBarHeight = get_track_bar_height();
+      ::f32 fTrackBarHeight = get_track_bar_height();
 
-      float yMin = fTrackBarHeight / 2.f;
+      ::f32 yMin = fTrackBarHeight / 2.f;
 
-      float yMax = m_size.cy - fTrackBarHeight / 2.f;
+      ::f32 yMax = m_size.cy - fTrackBarHeight / 2.f;
 
-      float yRange = yMax - yMin;
+      ::f32 yRange = yMax - yMin;
 
-      float clippedY = ::minimum_maximum((float)y, yMin, yMax);
+      ::f32 clippedY = ::minimum_maximum((::f32)y, yMin, yMax);
 
-      float fScroll = (clippedY - yMin) / yRange;
+      ::f32 fScroll = (clippedY - yMin) / yRange;
 
       return fScroll;
 
@@ -78,21 +80,22 @@ namespace nanoui
 
       sizePanel = sizePanel.prefer_self_coordinate_if_positive(pwidgetPanel->m_size);
 
-      if (sizePanel.cx + 12 > m_size.cx)
-      {
-
-         pwidgetPanel->m_size.cx = m_size.cx - 12;
-
-      }
-
       auto size = pwidgetPanel->preferred_size(pcontext, bRecalcTextSize);
 
-      m_fTotalHeight = (float)size.cy;
+      m_fTotalHeight = (::f32)size.cy;
 
 
       pwidgetPanel->m_size.cy = size.cy;
 
-      //if (m_fTotalHeight > pwidgetPanel->m_size.cy)
+      pwidgetPanel->m_size.cx = size.cx;
+
+      if (sizePanel.cx + 12 > m_size.cx)
+      {
+
+         pwidgetPanel->m_size.cx = m_size.cx - 12;
+      }
+
+      // if (m_fTotalHeight > pwidgetPanel->m_size.cy)
       //{
 
       //   m_fScroll = ::minimum_maximum(m_fScroll, 0.f, ;
@@ -104,7 +107,7 @@ namespace nanoui
    }
 
 
-   int_size VScrollPanel::preferred_size(::nano2d::context * pcontext, bool bRecalcTextSize)
+   i32_size VScrollPanel::preferred_size(::nano2d::context * pcontext, bool bRecalcTextSize)
    {
 
       if (m_children.empty())
@@ -114,25 +117,24 @@ namespace nanoui
 
       }
 
-      return m_children[0]->preferred_size(pcontext, bRecalcTextSize) + int_size(12, 0);
+      return m_children[0]->preferred_size(pcontext, bRecalcTextSize) + i32_size(12, 0);
 
    }
 
 
-   bool VScrollPanel::mouse_motion_event(const int_point& p, const int_size& rel, bool bDown, const ::user::e_key& ekeyModifiers)
+   bool VScrollPanel::mouse_motion_event(const i32_point &point)
    {
 
-      m_pointCurrentLocalCursor = p;
+      m_pointCurrentLocalCursor = point;
 
       if (!m_children.empty()
-         && m_fTotalHeight > m_size.cy
-         && bDown
+         && m_fTotalHeight > m_size.cy && is_left_button_pressed()
          && m_bDrag)
       {
 
-         float fScroll = y_coordinate_vertical_scroll(p.y);
+         ::f32 fScroll = y_coordinate_vertical_scroll(point.y);
 
-         information("drag:point=" + ::as_string(p.y) + ",rate=" + ::as_string(fScroll) + "\n");
+         information("drag:point=" + ::as_string(point.y) + ",rate=" + ::as_string(fScroll) + "\n");
 
          if (is_different(fScroll, m_fScroll, 0.00001))
          {
@@ -151,73 +153,76 @@ namespace nanoui
 
       }
 
-      return Widget::mouse_motion_event(p, rel, bDown, ekeyModifiers);
+      return Widget::mouse_motion_event(point);
 
    }
 
 
-   bool VScrollPanel::mouse_button_event(const int_point& p, ::user::e_mouse emouse, bool down, bool bDoubleClick, const ::user::e_key& ekeyModifiers)
+   bool VScrollPanel::mouse_button_event(const i32_point & point, ::user::e_key euserkeyMouseButton, bool bDown, bool bDoubleClick)
    {
 
-      m_pointCurrentLocalCursor = p;
+      m_pointCurrentLocalCursor = point;
 
-      if (down
-         && emouse == ::user::e_mouse_left_button
-         && !m_children.empty() 
-         && m_fTotalHeight > m_size.cy 
-         && p.x > m_pos.x + m_size.cx - 13 
-         && p.x < m_pos.x + m_size.cx - 4)
+      if (m_bEnabled && euserkeyMouseButton == ::user::e_key_left_button)
       {
 
-         m_bDrag = true;
-
-         screen()->m_puserinteraction->set_mouse_capture();
-
-         synchronous_lock lock(screen()->synchronization(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
-
-         float fScroll = y_coordinate_vertical_scroll(p.y);
-
-         if (is_different(fScroll, m_fScroll, 0.00001))
+         if (bDown && !m_children.empty() && m_fTotalHeight > m_size.cy && point.x > m_pos.x + m_size.cx - 13 &&
+             point.x < m_pos.x + m_size.cx - 4)
          {
 
-            m_fScroll = fScroll;
+            m_bDrag = true;
 
-            m_update_layout = true;
+            m_keystatePress = session();
 
-            lock.unlock();
+            screen()->m_puserinteraction->set_mouse_capture();
 
-            set_need_redraw();
+            synchronous_lock lock(screen()->synchronization(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 
-            post_redraw();
+            ::f32 fScroll = y_coordinate_vertical_scroll(point.y);
+
+            if (is_different(fScroll, m_fScroll, 0.00001))
+            {
+
+               m_fScroll = fScroll;
+
+               m_update_layout = true;
+
+               lock.unlock();
+
+               set_need_redraw();
+
+               post_redraw();
+            }
+
+            return true;
+         }
+         else if (m_bDrag && !bDown)
+         {
+
+            m_keystatePress = session();
+
+            m_bDrag = false;
+
+            screen()->m_puserinteraction->defer_release_mouse_capture();
 
          }
 
-         return true;
-
-      }
-      else if (m_bDrag && !down)
-      {
-
-         m_bDrag = false;
-
-         screen()->m_puserinteraction->defer_release_mouse_capture();
-
       }
 
-      return Widget::mouse_button_event(p, emouse, down, bDoubleClick, ekeyModifiers);
+      return Widget::mouse_button_event(point, euserkeyMouseButton, bDown, bDoubleClick);
 
    }
 
 
-   bool VScrollPanel::scroll_event(const int_point& p, const float_size& rel)
+   bool VScrollPanel::scroll_event(const i32_point & point, const ::f32_size& rel)
    {
 
-      m_pointCurrentLocalCursor = p;
+      m_pointCurrentLocalCursor = point;
 
       if (!m_children.empty() && m_fTotalHeight > m_size.cy)
       {
 
-         auto pagePercent = (double)m_size.cy / m_fTotalHeight;
+         auto pagePercent = (::f64)m_size.cy / m_fTotalHeight;
 
          auto wheelScrollUnit = -1.0;
 
@@ -227,14 +232,14 @@ namespace nanoui
 
          auto addPercent = pagePercent * wheelScrollPercent * y / wheelScrollUnit;
 
-         screen()->application()->fork([this, p, addPercent]()
+         screen()->application()->fork([this, point, addPercent]()
                {
 
                   auto addUp = addPercent;
 
                   auto timeDelay = 40_ms;
 
-                  for (int i = 0; i < 4; i++)
+                  for (::i32 i = 0; i < 4; i++)
                   {
 
                      {
@@ -243,7 +248,7 @@ namespace nanoui
 
                         auto fScroll = minimum_maximum(m_fScroll + addUp, 0., 1.);
 
-                        int iRel = (int)((fScroll - m_fScroll) * (m_fTotalHeight - m_size.cy));
+                        ::i32 iRel = (::i32)((fScroll - m_fScroll) * (m_fTotalHeight - m_size.cy));
 
                         if (iRel == 0)
                         {
@@ -252,13 +257,13 @@ namespace nanoui
 
                         }
 
-                        m_fScroll = (float) fScroll;
+                        m_fScroll = (::f32) fScroll;
 
                         addUp /= 2.0;
 
                         m_update_layout = true;
 
-                        mouse_motion_event(m_pointCurrentLocalCursor, iRel, false, ::user::e_key_none);
+                        mouse_motion_event(m_pointCurrentLocalCursor);
 
                         set_need_redraw();
 
@@ -301,27 +306,27 @@ namespace nanoui
       else
       {
 
-         return Widget::scroll_event(p, rel);
+         return Widget::scroll_event(point, rel);
 
       }
 
    }
 
 
-   float VScrollPanel::get_track_bar_height() const
+   ::f32 VScrollPanel::get_track_bar_height() const
    {
 
-      float fTrackBarHeight = height() * ::minimum(1.f, height() / (float)m_fTotalHeight);
+      ::f32 fTrackBarHeight = height() * ::minimum(1.f, height() / (::f32)m_fTotalHeight);
 
       return fTrackBarHeight;
 
    }
 
 
-   int_size VScrollPanel::get_scroll_offset() const
+   i32_size VScrollPanel::get_scroll_offset() const
    {
 
-      int yOffset;
+      ::i32 yOffset;
 
       if (m_fTotalHeight <= m_size.cy)
       {
@@ -332,7 +337,7 @@ namespace nanoui
       else
       {
 
-         yOffset = (int) (- m_fScroll * (m_fTotalHeight - m_size.cy));
+         yOffset = (::i32) (- m_fScroll * (m_fTotalHeight - m_size.cy));
 
       }
 
@@ -349,11 +354,11 @@ namespace nanoui
 
       Widget* pwidgetPanel = m_children[0];
       //m_child_preferred_height = pwidgetChild->preferred_size(pcontext).y;
-      float fTrackBarHeight = get_track_bar_height();
-      //int yoffset = 0;
+      ::f32 fTrackBarHeight = get_track_bar_height();
+      //::i32 yoffset = 0;
       //if (m_child_preferred_height > m_size.cy)
-        // yoffset = (int)get_y_offset(m_scroll);
-      //pwidgetChild->set_position(int_sequence2(0, yoffset));
+        // yoffset = (::i32)get_y_offset(m_scroll);
+      //pwidgetChild->set_position(i32_sequence2(0, yoffset));
 
       if (m_update_layout)
       {
@@ -365,7 +370,7 @@ namespace nanoui
 
          auto size = pwidgetPanel->preferred_size(pcontext, false);
 
-         m_fTotalHeight = (float)size.cy;
+         m_fTotalHeight = (::f32)size.cy;
 
          pwidgetPanel->perform_layout(pcontext, false);
 
@@ -376,15 +381,15 @@ namespace nanoui
          ::nano2d::guard guard(pcontext);
          //pcontext->save();
 
-//         float y = (float)m_pos.y;
+//         ::f32 y = (::f32)m_pos.y;
 
          auto offsetScroll = get_scroll_offset();
 
-         pcontext->translate((float)offsetScroll.cx, (float)offsetScroll.cy);
+         pcontext->translate((::f32)offsetScroll.cx, (::f32)offsetScroll.cy);
 
-         pcontext->intersect_scissor((float)-offsetScroll.cx, (float)-offsetScroll.cy, (float)m_size.cx, (float)m_size.cy);
+         pcontext->intersect_scissor((::f32)-offsetScroll.cx, (::f32)-offsetScroll.cy, (::f32)m_size.cx, (::f32)m_size.cy);
 
-         //pcontext->intersect_scissor(0.f, 0.f, (float)m_size.cx, (float)m_size.cy);
+         //pcontext->intersect_scissor(0.f, 0.f, (::f32)m_size.cx, (::f32)m_size.cy);
 
          if (pwidgetPanel->visible())
          {
@@ -407,8 +412,8 @@ namespace nanoui
       }
 
       ::nano2d::paint paint = pcontext->box_gradient(
-         (float)m_pos.x + m_size.cx - 12 + 1, (float)m_pos.y + 4 + 1, 8,
-         (float)m_size.cy - 8, 3.f, 4.f, ::color::color(0, 32), ::color::color(0, 92));
+         (::f32)m_pos.x + m_size.cx - 12 + 1, (::f32)m_pos.y + 4 + 1, 8,
+         (::f32)m_size.cy - 8, 3.f, 4.f, ::color::color(0, 32), ::color::color(0, 92));
       pcontext->begin_path();
       pcontext->rounded_rectangle(m_pos.x + m_size.cx - 12.f, m_pos.y + 4.f, 8.f,
          m_size.cy - 8.f, 3.f);
@@ -417,7 +422,7 @@ namespace nanoui
 
       paint = pcontext->box_gradient(
          m_pos.x + m_size.cx - 12.f - 1.f,
-         m_pos.y + 4.f + (m_size.cy - 8.f - fTrackBarHeight) * m_fScroll - 1.f, 8.f, (float)fTrackBarHeight,
+         m_pos.y + 4.f + (m_size.cy - 8.f - fTrackBarHeight) * m_fScroll - 1.f, 8.f, (::f32)fTrackBarHeight,
          3.f, 4.f, ::color::color(220, 100), ::color::color(128, 100));
 
       pcontext->begin_path();

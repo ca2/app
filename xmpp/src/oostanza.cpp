@@ -28,7 +28,7 @@ void *Stanza::operator new(size_t size, Context *ctx)
     if (!p) return p;
 
     *reinterpret_cast<Context **>(p) = ctx;
-    p = reinterpret_cast<void *>(reinterpret_cast<char *>(p) + 
+    p = reinterpret_cast<void *>(reinterpret_cast<char_pointer >(p) + 
 				 sizeof(Context *));
 
     return p;
@@ -38,8 +38,8 @@ void Stanza::operator delete(void *p)
 {
     Context *ctx;
 
-    ctx = *reinterpret_cast<Context **>(reinterpret_cast<char *>(p) - 4);
-    ctx->free(reinterpret_cast<char *>(p) - 4);
+    ctx = *reinterpret_cast<Context **>(reinterpret_cast<char_pointer >(p) - 4);
+    ctx->free(reinterpret_cast<char_pointer >(p) - 4);
 }
 
 Stanza::Stanza(Context *ctx)

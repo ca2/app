@@ -402,7 +402,7 @@ namespace coding
    }
 
 
-   void install::start_installation(int iTryCount)
+   void install::start_installation(::i32 iTryCount)
    {
 
       if (has_download_step())
@@ -655,7 +655,7 @@ namespace coding
    // }
 
 
-   void install::download_and_gzuntar(const ::file::path& pathUrl, const ::file::path& pathFolder, int iEat)
+   void install::download_and_gzuntar(const ::file::path& pathUrl, const ::file::path& pathFolder, ::i32 iEat)
    {
 
       property_set set;
@@ -685,7 +685,7 @@ namespace coding
          ::particle* pparticle = this;
 
          set["transfer_progress_function"] = ::transfer_progress_function(
-            [this](double dRate, filesize done, filesize total)
+            [this](::f64 dRate, filesize done, filesize total)
             {
 
                if (total > 0)
@@ -744,7 +744,7 @@ namespace coding
          set_status2("Uncompressing...");
 
          auto t2 = ::transfer_progress_function(
-            [this](double dRate, filesize done, filesize total)
+            [this](::f64 dRate, filesize done, filesize total)
             {
 
                if (total > 0)
@@ -794,7 +794,7 @@ namespace coding
          ::function<void(const::scoped_string& scopedstr) > callback;
 
          character_count iLastLineLength = 0;
-         int iFilesExtracted = 0;
+         ::i32 iFilesExtracted = 0;
          callback = [this, &iLastLineLength, &iFilesExtracted](const ::scoped_string& scopedstr)
             {
 
@@ -845,7 +845,7 @@ namespace coding
       const ::file::path& pathUrl, const ::scoped_string& scopedstrName)
    {
 
-      ::transfer_progress_function transferprogressfunction = [this](double d, filesize done, filesize total)
+      ::transfer_progress_function transferprogressfunction = [this](::f64 d, filesize done, filesize total)
          {
 
             if (total == 0 || total == (filesize)-1)
@@ -903,7 +903,7 @@ namespace coding
 
       auto sizeFile = file()->length(path);
 
-      double dSizeKbytes = sizeFile/1024.0;
+      ::f64 dSizeKbytes = sizeFile/1024.0;
 
       auto strFileSize = ::format("{:.1f} kbytes", dSizeKbytes);
 
@@ -936,7 +936,7 @@ namespace coding
 
       ::string strName = "storage-" + scopedstrOs + ".zip";
 
-      auto pathUrl = "https://" + scopedstrOs + ".ca2.store/storage-" + scopedstrOs + ".zip";
+      auto pathUrl = "https://" + scopedstrOs + ".ca2.site/storage-" + scopedstrOs + ".zip";
 
       m_path = download_to_operating_system(pathUrl, strName);
 
@@ -1032,7 +1032,7 @@ namespace coding
    // }
    //
    //
-   // void install::wait_cloud_folder_contains_files(const ::file::path& path, const ::string_array& straName, int iMinimumSize)
+   // void install::wait_cloud_folder_contains_files(const ::file::path& path, const ::string_array& straName, ::i32 iMinimumSize)
    // {
    //
    //    auto callbackStatus2 = [this](const ::scoped_string& scopedstr)
@@ -1115,7 +1115,7 @@ namespace coding
    void install::install_user_fonts()
    {
 
-      for (int iTry = 0; iTry < 6; iTry++)
+      for (::i32 iTry = 0; iTry < 6; iTry++)
       {
 
          if (are_fonts_installed())
@@ -1254,7 +1254,7 @@ namespace coding
 
       character_count iLastLineLength = 0;
 
-      int iFilesExtracted = 0;
+      ::i32 iFilesExtracted = 0;
 
       callback = [this, &iLastLineLength, &iFilesExtracted](const ::scoped_string& scopedstr)->bool
       {
@@ -1285,6 +1285,8 @@ namespace coding
          iLastLineLength = s;
 
          iFilesExtracted++;
+
+         return true;
 
       };
 
@@ -1347,7 +1349,7 @@ namespace coding
    //void install::download()
    //{
 
-   //   auto transferprogressfunction = [this](double d, filesize done, filesize total)
+   //   auto transferprogressfunction = [this](::f64 d, filesize done, filesize total)
    //      {
 
    //         if (total == 0 || total == (filesize)-1)
@@ -1445,7 +1447,7 @@ namespace coding
                if (m_papp->ssh_code_mode() || m_papp->standard_code_mode())
                {
 
-                  int iExitCode = synchronous_posix_terminal(
+                  ::i32 iExitCode = synchronous_posix_terminal(
                      "eval $(ssh-agent -s); ssh-add ~/.ssh/id_auth; git clone --recurse-submodules "
                      + pathUrl + " " + pathForBash);
 
@@ -1456,7 +1458,7 @@ namespace coding
 
                      ::file::path pathCheckout = m_papp->get_repository_path(e_repository_tool_os) / "bin/checkout";
 
-                     int iExitCode2 = synchronous_posix_terminal(pathCheckout);
+                     ::i32 iExitCode2 = synchronous_posix_terminal(pathCheckout);
 
                      if (iExitCode2 == 0)
                      {
@@ -1486,7 +1488,7 @@ namespace coding
 
 #ifdef WINDOWS
 
-                  int iExitCode = synchronous_posix_terminal(
+                  ::i32 iExitCode = synchronous_posix_terminal(
                      "git clone --recurse-submodules " + pathUrl + " " + pathForBash);
 
                   if (iExitCode == 0)
@@ -1496,7 +1498,7 @@ namespace coding
 
                      ::file::path pathCheckout = m_papp->get_repository_path(e_repository_tool_os) / "bin/checkout";
 
-                     int iExitCode2 = synchronous_posix_terminal(pathCheckout);
+                     ::i32 iExitCode2 = synchronous_posix_terminal(pathCheckout);
 
                      if (iExitCode2 == 0)
                      {
@@ -1521,7 +1523,7 @@ namespace coding
 
 #else
 
-                  int iExitCode = synchronous_posix_terminal(
+                  ::i32 iExitCode = synchronous_posix_terminal(
                      "git clone " + pathUrl + " " +
                      pathForBash + " --recurse-submodules");
 
@@ -1530,7 +1532,7 @@ namespace coding
 
                      directory_system()->change_current(path);
 
-                     int iExitCode2 = synchronous_posix_terminal("checkout");
+                     ::i32 iExitCode2 = synchronous_posix_terminal("checkout");
 
                      if (iExitCode2 == 0)
                      {
@@ -1611,7 +1613,7 @@ namespace coding
             if (m_papp->ssh_code_mode() || m_papp->standard_code_mode()) 
             {
                
-               int iExitCode = synchronous_posix_terminal(
+               ::i32 iExitCode = synchronous_posix_terminal(
                                                           "eval $(ssh-agent -s); ssh-add ~/.ssh/id_auth; git clone " + pathUrl + " " +
                                                           pathForBash + " --recurse-submodules");
                
@@ -1622,7 +1624,7 @@ namespace coding
                   
                   auto pathCheckout = m_papp->tool_os_folder() / "bin/checkout";
                   
-                  int iExitCode2 = synchronous_posix_terminal(
+                  ::i32 iExitCode2 = synchronous_posix_terminal(
                                                               "eval $(ssh-agent -s); ssh-add ~/.ssh/id_auth; " + pathCheckout);
                   
                   if (iExitCode2 == 0) 
@@ -1652,7 +1654,7 @@ namespace coding
                
 #ifdef WINDOWS
                
-               int iExitCode = node()->command_system(
+               ::i32 iExitCode = node()->command_system(
                                                       "\"C:\\Program Files\\Git\\bin\\bash.exe\" -c \"git clone " + pathUrl + " " +
                                                       pathForBash + " --recurse-submodules\"",
                                                       [this](auto etracelevel, auto str, bool bCarriage)
@@ -1670,7 +1672,7 @@ namespace coding
                if (iExitCode == 0)
                {
                   
-                  int iExitCode2 = node()->command_system(
+                  ::i32 iExitCode2 = node()->command_system(
                                                           "\"C:\\Program Files\\Git\\bin\\bash.exe\" -c \"checkout\"",
                                                           [this](auto etracelevel, auto str, bool bCarriage)
                                                           {
@@ -1709,7 +1711,7 @@ namespace coding
             
 #else
             
-            int iExitCode = synchronous_posix_terminal(
+            ::i32 iExitCode = synchronous_posix_terminal(
                                                        "git clone " + pathUrl + " " +
                                                        pathForBash + " --recurse-submodules");
             
@@ -1717,7 +1719,7 @@ namespace coding
                
                directory_system()->change_current(path);
                
-               int iExitCode2 = synchronous_posix_terminal("checkout");
+               ::i32 iExitCode2 = synchronous_posix_terminal("checkout");
                
                if (iExitCode2 == 0) {
                   

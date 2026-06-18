@@ -56,11 +56,11 @@ void simple_printer_list_impact::on_message_create(::message::message * pmessage
 
 //#ifdef WINDOWS_DESKTOP
 //   PRINTER_INFO_1  * infoa = (PRINTER_INFO_1 * ) malloc(cbNeeded);
-//   ::EnumPrinters(PRINTER_ENUM_LOCAL | PRINTER_ENUM_CONNECTIONS, nullptr, 1, (unsigned char *) infoa, cbNeeded, &cbNeeded, &cbReturned);
+//   ::EnumPrinters(PRINTER_ENUM_LOCAL | PRINTER_ENUM_CONNECTIONS, nullptr, 1, (::u8 *) infoa, cbNeeded, &cbNeeded, &cbReturned);
 //
 //   string_array_base stra;
 //
-//   for(unsigned int i = 0; i < cbReturned; i++)
+//   for(::u32 i = 0; i < cbReturned; i++)
 //   {
 //
 //      stra.add(string(infoa[i].pName));

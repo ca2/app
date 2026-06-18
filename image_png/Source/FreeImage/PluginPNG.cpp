@@ -56,10 +56,10 @@ typedef struct
 //
 
 static void
-_ReadProc(png_structp png_ptr, unsigned char *data, png_size_t int_size)
+_ReadProc(png_structp png_ptr, ::u8 *data, png_size_t i32_size)
 {
    pfi_ioStructure pfio = (pfi_ioStructure)png_get_io_ptr(png_ptr);
-   unsigned n = pfio->s_io->read_proc(data, (unsigned int)int_size, 1, pfio->s_handle);
+   ::u32 n = pfio->s_io->read_proc(data, (::u32)i32_size, 1, pfio->s_handle);
    if(size && (n == 0))
    {
       throw "Read error: invalid or corrupted PNG file";
@@ -67,10 +67,10 @@ _ReadProc(png_structp png_ptr, unsigned char *data, png_size_t int_size)
 }
 
 static void
-_WriteProc(png_structp png_ptr, unsigned char *data, png_size_t int_size)
+_WriteProc(png_structp png_ptr, ::u8 *data, png_size_t i32_size)
 {
    pfi_ioStructure pfio = (pfi_ioStructure)png_get_io_ptr(png_ptr);
-   pfio->s_io->write_proc(data, (unsigned int)int_size, 1, pfio->s_handle);
+   pfio->s_io->write_proc(data, (::u32)i32_size, 1, pfio->s_handle);
 }
 
 void
@@ -97,7 +97,7 @@ warning_handler(png_structp, const ::string &warning)
 // Metadata routines
 // ==========================================================
 
-static int_bool
+static ::i32_bool
 /*ReadMetadata(png_structp png_ptr, png_infop info_ptr, FIBITMAP * pimage)
 {
    // XMP keyword
@@ -105,18 +105,18 @@ static int_bool
 
    FITAG *tag = nullptr;
    png_textp text_ptr = nullptr;
-   int num_text = 0;
+   ::i32 num_text = 0;
 
    // iTXt/tEXt/zTXt chuncks
    if(png_get_text(png_ptr, info_ptr, &text_ptr, &num_text) > 0)
    {
-      for(int i = 0; i < num_text; i++)
+      for(::i32 i = 0; i < num_text; i++)
       {
          // create a tag
          tag = FreeImage_CreateTag();
          if(!tag) return false;
 
-         unsigned int tag_length;
+         ::u32 tag_length;
 
          if(text_ptr[i].text_length & I32_MINIMUM)
          {
@@ -127,7 +127,7 @@ static int_bool
             }
             else
             {
-               tag_length = (unsigned int) text_ptr[i].itxt_length;
+               tag_length = (::u32) text_ptr[i].itxt_length;
             }
 #else
             continue;
@@ -136,13 +136,13 @@ static int_bool
 #ifdef PNG_iTXt_SUPPORTED
          else if(text_ptr[i].itxt_length & I32_MINIMUM)
          {
-            tag_length = (unsigned int) text_ptr[i].text_length;
+            tag_length = (::u32) text_ptr[i].text_length;
          }
 #endif
          else
          {
 #ifdef PNG_iTXt_SUPPORTED
-            tag_length = (unsigned int) maximum(text_ptr[i].text_length, text_ptr[i].itxt_length);
+            tag_length = (::u32) maximum(text_ptr[i].text_length, text_ptr[i].itxt_length);
 #else
             tag_length = text_ptr[i].text_length;
 #endif
@@ -180,7 +180,7 @@ static int_bool
    return true;
 }
 
-static int_bool
+static ::i32_bool
 /*WriteMetadata(png_structp png_ptr, png_infop info_ptr, FIBITMAP * pimage)
 {
    // XMP keyword
@@ -188,7 +188,7 @@ static int_bool
 
    FITAG *tag = nullptr;
    FIMETADATA *mdhandle = nullptr;
-   int_bool bResult = true;
+   ::i32_bool bResult = true;
 
    png_text text_metadata;
 
@@ -202,8 +202,8 @@ static int_bool
       {
          ::memory_set(&text_metadata, 0, sizeof(png_text));
          text_metadata.compression = 1;							// iTXt, none
-         text_metadata.key = (char*)FreeImage_GetTagKey(tag);	// keyword, 1-79 character description of "text"
-         text_metadata.text = (char*)FreeImage_GetTagValue(tag);	// comment, may be an empty string (ie "")
+         text_metadata.key = (char_pointer )FreeImage_GetTagKey(tag);	// keyword, 1-79 character description of "text"
+         text_metadata.text = (char_pointer )FreeImage_GetTagValue(tag);	// comment, may be an empty string (ie "")
          text_metadata.text_length = FreeImage_GetTagLength(tag);// length of the text string
 #ifdef PNG_iTXt_SUPPORTED
          text_metadata.itxt_length = FreeImage_GetTagLength(tag);// length of the itxt string
@@ -228,8 +228,8 @@ static int_bool
    {
       ::memory_set(&text_metadata, 0, sizeof(png_text));
       text_metadata.compression = 1;							// iTXt, none
-      text_metadata.key = (char*)g_png_xmp_keyword;					// keyword, 1-79 character description of "text"
-      text_metadata.text = (char*)FreeImage_GetTagValue(tag);	// comment, may be an empty string (ie "")
+      text_metadata.key = (char_pointer )g_png_xmp_keyword;					// keyword, 1-79 character description of "text"
+      text_metadata.text = (char_pointer )FreeImage_GetTagValue(tag);	// comment, may be an empty string (ie "")
       text_metadata.text_length = FreeImage_GetTagLength(tag);// length of the text string
 #ifdef PNG_iTXt_SUPPORTED
       text_metadata.itxt_length = FreeImage_GetTagLength(tag);// length of the itxt string
@@ -248,7 +248,7 @@ static int_bool
 // Plugin Interface
 // ==========================================================
 
-static int s_format_id;
+static ::i32 s_format_id;
 
 // ==========================================================
 // Plugin Implementation
@@ -284,19 +284,19 @@ MimeType()
    return "image/png";
 }
 
-static int_bool DLL_CALLCONV
+static ::i32_bool DLL_CALLCONV
 Validate(FreeImageIO *io, fi_handle handle)
 {
-   unsigned char png_signature[8] = { 137, 80, 78, 71, 13, 10, 26, 10 };
-   unsigned char signature[8] = { 0, 0, 0, 0, 0, 0, 0, 0 };
+   ::u8 png_signature[8] = { 137, 80, 78, 71, 13, 10, 26, 10 };
+   ::u8 signature[8] = { 0, 0, 0, 0, 0, 0, 0, 0 };
 
    io->read_proc(&signature, 1, 8, handle);
 
    return (memcmp(png_signature, signature, 8) == 0);
 }
 
-static int_bool DLL_CALLCONV
-SupportsExportDepth(int depth)
+static ::i32_bool DLL_CALLCONV
+SupportsExportDepth(::i32 depth)
 {
    return (
           (depth == 1) ||
@@ -307,7 +307,7 @@ SupportsExportDepth(int depth)
           );
 }
 
-static int_bool DLL_CALLCONV
+static ::i32_bool DLL_CALLCONV
 SupportsExportType(FREE_IMAGE_TYPE type)
 {
    return (
@@ -318,13 +318,13 @@ SupportsExportType(FREE_IMAGE_TYPE type)
           );
 }
 
-static int_bool DLL_CALLCONV
+static ::i32_bool DLL_CALLCONV
 SupportsICCProfiles()
 {
    return true;
 }
 
-static int_bool DLL_CALLCONV
+static ::i32_bool DLL_CALLCONV
 SupportsNoPixels()
 {
    return true;
@@ -333,19 +333,19 @@ SupportsNoPixels()
 // ----------------------------------------------------------
 
 static FIBITMAP * DLL_CALLCONV
-Load(FreeImageIO *io, fi_handle handle, int page, int flags, void *data)
+Load(FreeImageIO *io, fi_handle handle, ::i32 page, ::i32 flags, void *data)
 {
    png_structp png_ptr = nullptr;
    png_infop info_ptr;
    png_::u32_32 width, height;
    png_colorp png_palette = nullptr;
-   int color_type, palette_entries = 0;
-   int bit_depth, pixel_depth;		// pixel_depth = bit_depth * channels
+   ::i32 color_type, palette_entries = 0;
+   ::i32 bit_depth, pixel_depth;		// pixel_depth = bit_depth * channels
 
 /*   FIBITMAP * pimage = nullptr;
    RGBQUAD *palette = nullptr;		// pointer to image palette
    png_bytepp  row_pointers = nullptr;
-   int i;
+   ::i32 i;
 
    fi_ioStructure fio;
    fio.s_handle = handle;
@@ -353,13 +353,13 @@ Load(FreeImageIO *io, fi_handle handle, int page, int flags, void *data)
 
    if (handle)
    {
-      int_bool header_only = (flags & FIF_LOAD_NOPIXELS) == FIF_LOAD_NOPIXELS;
+      ::i32_bool header_only = (flags & FIF_LOAD_NOPIXELS) == FIF_LOAD_NOPIXELS;
 
       try
       {
          // check to see if the file is in fact a PNG file
 
-         unsigned char png_check[PNG_BYTES_TO_CHECK];
+         ::u8 png_check[PNG_BYTES_TO_CHECK];
 
          io->read_proc(png_check, PNG_BYTES_TO_CHECK, 1, handle);
 
@@ -435,7 +435,7 @@ Load(FreeImageIO *io, fi_handle handle, int page, int flags, void *data)
 #ifndef FREEIMAGE_BIGENDIAN
          if((image_type == FIT_::u3216) || (image_type == FIT_RGB16) || (image_type == FIT_RGBA16))
          {
-            // turn on 16 bit unsigned char swapping
+            // turn on 16 bit ::u8 swapping
             png_set_swap(png_ptr);
          }
 #endif
@@ -502,8 +502,8 @@ Load(FreeImageIO *io, fi_handle handle, int page, int flags, void *data)
 
          if (png_get_valid(png_ptr, info_ptr, PNG_INFO_gAMA))
          {
-            double gamma = 0;
-            double screen_gamma = 2.2;
+            ::f64 gamma = 0;
+            ::f64 screen_gamma = 2.2;
 
             if (png_get_gAMA(png_ptr, info_ptr, &gamma) && ( flags & PNG_IGNOREGAMMA ) != PNG_IGNOREGAMMA)
             {
@@ -553,7 +553,7 @@ Load(FreeImageIO *io, fi_handle handle, int page, int flags, void *data)
 
             png_get_PLTE(png_ptr,info_ptr, &png_palette, &palette_entries);
 
-/*            palette_entries = minimum((unsigned)palette_entries, FreeImage_GetColorsUsed(pimage));
+/*            palette_entries = minimum((::u32)palette_entries, FreeImage_GetColorsUsed(pimage));
 /*            palette = FreeImage_GetPalette(pimage);
 
             // store the palette
@@ -578,7 +578,7 @@ Load(FreeImageIO *io, fi_handle handle, int page, int flags, void *data)
                {
                   palette[i].rgbRed   =
                   palette[i].rgbGreen =
-                  palette[i].rgbBlue  = (unsigned char)((i * 255) / (palette_entries - 1));
+                  palette[i].rgbBlue  = (::u8)((i * 255) / (palette_entries - 1));
                }
             }
             break;
@@ -594,7 +594,7 @@ Load(FreeImageIO *io, fi_handle handle, int page, int flags, void *data)
             // array of alpha (transparency) entries for palette
             png_bytep trans_alpha = nullptr;
             // number of transparent entries
-            int num_trans = 0;
+            ::i32 num_trans = 0;
             // graylevel or color sample values of the single transparent color for non-paletted images
             png_color_16p trans_color = nullptr;
 
@@ -605,7 +605,7 @@ Load(FreeImageIO *io, fi_handle handle, int page, int flags, void *data)
                // single transparent color
                if (trans_color->gray < palette_entries)
                {
-                  unsigned char table[256];
+                  ::u8 table[256];
                   ::memory_set(table, 0xFF, palette_entries);
                   table[trans_color->gray] = 0;
 /*                  FreeImage_SetTransparencyTable(pimage, table, palette_entries);
@@ -614,7 +614,7 @@ Load(FreeImageIO *io, fi_handle handle, int page, int flags, void *data)
             else if((color_type == PNG_COLOR_TYPE_PALETTE) && trans_alpha)
             {
                // transparency table
-/*               FreeImage_SetTransparencyTable(pimage, (unsigned char *)trans_alpha, num_trans);
+/*               FreeImage_SetTransparencyTable(pimage, (::u8 *)trans_alpha, num_trans);
             }
          }
 
@@ -631,9 +631,9 @@ Load(FreeImageIO *io, fi_handle handle, int page, int flags, void *data)
 
             if (png_get_bKGD(png_ptr, info_ptr, &image_background))
             {
-               rgbBkColor.rgbRed      = (unsigned char)image_background->red;
-               rgbBkColor.rgbGreen    = (unsigned char)image_background->green;
-               rgbBkColor.rgbBlue     = (unsigned char)image_background->blue;
+               rgbBkColor.rgbRed      = (::u8)image_background->red;
+               rgbBkColor.rgbGreen    = (::u8)image_background->green;
+               rgbBkColor.rgbBlue     = (::u8)image_background->blue;
                rgbBkColor.rgbReserved = 0;
 
 /*               FreeImage_SetBackgroundColor(pimage, &rgbBkColor);
@@ -649,7 +649,7 @@ Load(FreeImageIO *io, fi_handle handle, int page, int flags, void *data)
             // we'hi overload this ::payload and use 0 to mean no phys data,
             // since if it's not in meters we can't use it anyway
 
-            int res_unit_type = PNG_RESOLUTION_UNKNOWN;
+            ::i32 res_unit_type = PNG_RESOLUTION_UNKNOWN;
 
             png_get_pHYs(png_ptr,info_ptr, &res_x, &res_y, &res_unit_type);
 
@@ -675,7 +675,7 @@ Load(FreeImageIO *io, fi_handle handle, int page, int flags, void *data)
 
             png_::u32_32 profile_length = 0;
 
-            int  compression_type;
+            ::i32  compression_type;
 
             png_get_iCCP(png_ptr, info_ptr, &profile_name, &compression_type, &profile_data, &profile_length);
 
@@ -700,7 +700,7 @@ Load(FreeImageIO *io, fi_handle handle, int page, int flags, void *data)
 /*            return pimage;
          }
 
-         // set the individual row_pointers to int_point at the correct offsets
+         // set the individual row_pointers to i32_point at the correct offsets
 
          row_pointers = (png_bytepp)malloc(height * sizeof(png_bytep));
 
@@ -784,19 +784,19 @@ Load(FreeImageIO *io, fi_handle handle, int page, int flags, void *data)
    return nullptr;
 }
 
-static int_bool DLL_CALLCONV
-/*Save(FreeImageIO *io, FIBITMAP * pimage, fi_handle handle, int page, int flags, void *data)
+static ::i32_bool DLL_CALLCONV
+/*Save(FreeImageIO *io, FIBITMAP * pimage, fi_handle handle, ::i32 page, ::i32 flags, void *data)
 {
    png_structp png_ptr;
    png_infop info_ptr;
    png_colorp palette = nullptr;
    png_::u32_32 width, height;
-   int_bool has_alpha_channel = false;
+   ::i32_bool has_alpha_channel = false;
 
    RGBQUAD *pal;					// pointer to image palette
-   int bit_depth, pixel_depth;		// pixel_depth = bit_depth * channels
-   int palette_entries;
-   int	interlace_type;
+   ::i32 bit_depth, pixel_depth;		// pixel_depth = bit_depth * channels
+   ::i32 palette_entries;
+   ::i32	interlace_type;
 
    fi_ioStructure fio;
    fio.s_handle = handle;
@@ -862,7 +862,7 @@ static int_bool DLL_CALLCONV
 /*         height = FreeImage_GetHeight(pimage);
 /*         pixel_depth = FreeImage_GetBPP(pimage);
 
-         int_bool bInterlaced = false;
+         ::i32_bool bInterlaced = false;
          if( (flags & PNG_INTERLACED) == PNG_INTERLACED)
          {
             interlace_type = PNG_INTERLACE_ADAM7;
@@ -874,7 +874,7 @@ static int_bool DLL_CALLCONV
          }
 
          // set the ZLIB compression level or default to PNG default compression level (ZLIB level = 6)
-         int zlib_level = flags & 0x0F;
+         ::i32 zlib_level = flags & 0x0F;
          if((zlib_level >= 1) && (zlib_level <= 9))
          {
             png_set_compression_level(png_ptr, zlib_level);
@@ -908,7 +908,7 @@ static int_bool DLL_CALLCONV
          }
 
          // check for transparent images
-         int_bool bIsTransparent =
+         ::i32_bool bIsTransparent =
 /*         (image_type == FIT_BITMAP) && FreeImage_IsTransparent(pimage) && (FreeImage_GetTransparencyCount(pimage) > 0) ? true : false;
 
 /*         switch (FreeImage_GetColorType(pimage))
@@ -944,7 +944,7 @@ static int_bool DLL_CALLCONV
             palette = (png_colorp)png_malloc(png_ptr, palette_entries * sizeof (png_color));
 /*            pal = FreeImage_GetPalette(pimage);
 
-            for (int i = 0; i < palette_entries; i++)
+            for (::i32 i = 0; i < palette_entries; i++)
             {
                palette[i].red   = pal[i].rgbRed;
                palette[i].green = pal[i].rgbGreen;
@@ -997,15 +997,15 @@ static int_bool DLL_CALLCONV
          // write possible ICC profile
 
 /*         FIICCPROFILE *iccProfile = FreeImage_GetICCProfile(pimage);
-         if (iccProfile->int_size && iccProfile->data)
+         if (iccProfile->i32_size && iccProfile->data)
          {
 #if defined(PNG_1_2_X)
 
-            png_set_iCCP(png_ptr, info_ptr, "Embedded Profile", 0, (png_charp)iccProfile->data, iccProfile->int_size);
+            png_set_iCCP(png_ptr, info_ptr, "Embedded Profile", 0, (png_charp)iccProfile->data, iccProfile->i32_size);
 
 #else
 
-            png_set_iCCP(png_ptr, info_ptr, "Embedded Profile", 0, (unsigned char *)iccProfile->data, iccProfile->int_size);
+            png_set_iCCP(png_ptr, info_ptr, "Embedded Profile", 0, (::u8 *)iccProfile->data, iccProfile->i32_size);
 
 #endif
 
@@ -1052,12 +1052,12 @@ static int_bool DLL_CALLCONV
 #ifndef FREEIMAGE_BIGENDIAN
          if (bit_depth == 16)
          {
-            // turn on 16 bit unsigned char swapping
+            // turn on 16 bit ::u8 swapping
             png_set_swap(png_ptr);
          }
 #endif
 
-         int number_passes = 1;
+         ::i32 number_passes = 1;
          if (bInterlaced)
          {
             number_passes = png_set_interlace_handling(png_ptr);
@@ -1065,11 +1065,11 @@ static int_bool DLL_CALLCONV
 
          if ((pixel_depth == 32) && (!has_alpha_channel))
          {
-            unsigned char *buffer = (unsigned char *)malloc(width * 3);
+            ::u8 *buffer = (::u8 *)malloc(width * 3);
 
             // transparent conversion to 24-bit
             // the number of passes is either 1 for non-interlaced images, or 7 for interlaced images
-            for (int pass = 0; pass < number_passes; pass++)
+            for (::i32 pass = 0; pass < number_passes; pass++)
             {
                for (png_::u32_32 k = 0; k < height; k++)
                {
@@ -1082,7 +1082,7 @@ static int_bool DLL_CALLCONV
          else
          {
             // the number of passes is either 1 for non-interlaced images, or 7 for interlaced images
-            for (int pass = 0; pass < number_passes; pass++)
+            for (::i32 pass = 0; pass < number_passes; pass++)
             {
                for (png_::u32_32 k = 0; k < height; k++)
                {
@@ -1121,7 +1121,7 @@ extern "C"
 // ==========================================================
 //   Init
 // ==========================================================
-   void DLL_CALLCONV FreeImage_InitPlugin_image_decode_png(Plugin *plugin,int format_id)
+   void DLL_CALLCONV FreeImage_InitPlugin_image_decode_png(Plugin *plugin,::i32 format_id)
    {
       s_format_id = format_id;
 
@@ -1146,7 +1146,7 @@ extern "C"
 
 }
 
-void DLL_CALLCONV InitPNG(Plugin *plugin, int format_id)
+void DLL_CALLCONV InitPNG(Plugin *plugin, ::i32 format_id)
 {
    FreeImage_InitPlugin_image_decode_png(plugin, format_id);
 }

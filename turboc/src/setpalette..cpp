@@ -32,10 +32,10 @@
 //----------------------------------------------------------------------------
 
 void
-setpalette (int colornum, int color)
+setpalette (::i32 colornum, ::i32 color)
 {
-  int rawcolor;
-  unsigned Scale;
+  ::i32 rawcolor;
+  ::u32 Scale;
  // XColor Color;
  // rawcolor = color;
  // if (color < 0)
@@ -99,9 +99,9 @@ setpalette (int colornum, int color)
 void
 setallpalette (struct palettetype *palette)
 {
-  int i;
+  ::i32 i;
   TcGraphResult = grOk;
-  for (i = 0; i < palette->int_size; i++)
+  for (i = 0; i < palette->i32_size; i++)
     {
       setpalette (i, palette->colors[i]);
       if (TcGraphResult != grOk)

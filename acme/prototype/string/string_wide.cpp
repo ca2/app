@@ -23,9 +23,9 @@
 //
 // }
 
-//const unichar * wstring::g_pszWindowsBBQBUNC(L"\\\\?\\UNC");
-//const unichar * wstring::g_pszWindowsBBQB(L"\\\\?\\");
-//const unichar * wstring::g_pszWindowsBB(L"\\\\");
+//const wide_character * wstring::g_pszWindowsBBQBUNC(L"\\\\?\\UNC");
+//const wide_character * wstring::g_pszWindowsBBQB(L"\\\\?\\");
+//const wide_character * wstring::g_pszWindowsBB(L"\\\\");
 //
 //
 //wstring::wstring(const ::scoped_string & scopedstr)
@@ -36,14 +36,14 @@
 //}
 //
 //
-//wstring::wstring(const unsigned char* psz)
+//wstring::wstring(const ::u8* psz)
 //{
 //
 //   operator = ((const_char_pointer )psz);
 //
 //}
 //
-//wstring::wstring(const unsigned char* psz, character_count iSize)
+//wstring::wstring(const ::u8* psz, character_count iSize)
 //{
 //
 //   operator = ((const_char_pointer )string(scopedstr, iSize));
@@ -51,7 +51,7 @@
 //}
 //
 //
-//wstring::wstring(const unichar* pwsz, character_count character_count)
+//wstring::wstring(const wide_character * pwsz, character_count character_count)
 //{
 //
 //   if (::is_null(pwsz))
@@ -90,7 +90,7 @@
 //}
 //
 //
-//wstring::wstring(const unichar* pwsz)
+//wstring::wstring(const wide_character * pwsz)
 //   : string_base(pwsz, string_safe_length(pwsz))
 //{
 //
@@ -98,7 +98,7 @@
 //}
 //
 ////
-////void wstring::assign(const unichar* pwsz)
+////void wstring::assign(const wide_character * pwsz)
 ////{
 ////
 ////   POINTER::operator=(pwsz);
@@ -121,7 +121,7 @@
 //
 //}
 //
-////unichar* wstring::alloc(::collection::count iCount)
+////wide_character * wstring::alloc(::collection::count iCount)
 ////{
 ////
 ////   if (m_psz != nullptr && iCount < me()->m_iAllocation)
@@ -133,7 +133,7 @@
 ////
 ////   wstring_data::_free(m_psz);
 ////
-////   m_psz = (unichar*)wstring_data::alloc(iCount);
+////   m_psz = (wide_character * )wstring_data::alloc(iCount);
 ////
 ////   return m_psz;
 ////
@@ -149,7 +149,7 @@
 //
 //}
 //
-//wstring& wstring::operator = (const unichar* pwsz)
+//wstring& wstring::operator = (const wide_character * pwsz)
 //{
 //
 //   assign(pwsz);
@@ -215,12 +215,12 @@
 //}
 //
 //
-//wstring operator + (const wstring& wstr, const unichar* wpsz)
+//wstring operator + (const wstring& wstr, const wide_character * wpsz)
 //{
 //   return wstr + wstring(wpsz);
 //}
 //
-//wstring operator + (const unichar* wpsz, const wstring& wstr)
+//wstring operator + (const wide_character * wpsz, const wstring& wstr)
 //{
 //   return wstring(wpsz) + wstr;
 //}
@@ -280,7 +280,7 @@
 //   }
 //
 //}
-//wstring& wstring::replace(::collection::index iStart, ::collection::count c, const unichar* psz)
+//wstring& wstring::replace(::collection::index iStart, ::collection::count c, const wide_character * psz)
 //{
 //   if (c < 0)
 //   {
@@ -318,8 +318,8 @@
 //   if (nCount < 0)
 //      return -1;
 //
-//   const unichar* psz = m_psz + iStart;
-//   for (int i = 0; i < nCount; i++)
+//   const wide_character * psz = m_psz + iStart;
+//   for (::i32 i = 0; i < nCount; i++)
 //   {
 //      if (scopedstr[i] == ch)
 //      {
@@ -329,7 +329,7 @@
 //   return -1;
 //}
 //// find the first occurrence of string 'pszSub', starting at character_count 'iStart'
-//character_count wstring::find(const unichar* pszSub, character_count iStart, character_count nCount, const unichar** pszTail) const RELEASENOTHROW
+//character_count wstring::find(const wide_character * pszSub, character_count iStart, character_count nCount, const wide_character * * pszTail) const RELEASENOTHROW
 //{
 //   // iStart is in XCHARs
 //   ASSERT(iStart >= 0);
@@ -357,11 +357,11 @@
 //   if (nCount < 0)
 //      return -1;
 //
-//   const unichar* psz = m_psz + iStart;
-//   for (int i = 0; i <= nCount; i++)
+//   const wide_character * psz = m_psz + iStart;
+//   for (::i32 i = 0; i <= nCount; i++)
 //   {
 //      bool bFound = true;
-//      int j;
+//      ::i32 j;
 //      for (j = 0; j < nLength2; j++)
 //      {
 //         if (scopedstr[j] != pszSub[j])

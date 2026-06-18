@@ -4,7 +4,7 @@
 
 
 
-CLASS_DECL_ACME bool ishexdigit(char ch);
+CLASS_DECL_ACME bool ishexdigit(::i8 ch);
 
 
 namespace hex
@@ -15,13 +15,13 @@ namespace hex
    CLASS_DECL_ACME string from_asc(const ::scoped_string & scopedstrAsc);
 
 
-   CLASS_DECL_ACME long long to_long_long(const ::scoped_string & scopedstr);
+   CLASS_DECL_ACME ::i64 to_i64(const ::scoped_string & scopedstr);
 
-   CLASS_DECL_ACME unsigned long long to_unsigned_long_long(const ::scoped_string & scopedstr);
+   CLASS_DECL_ACME ::u64 to_u64(const ::scoped_string & scopedstr);
 
-   CLASS_DECL_ACME unsigned int to_unsigned_int(const ::scoped_string & scopedstr);
+   CLASS_DECL_ACME ::u32 to_u32(const ::scoped_string & scopedstr);
 
-   inline CLASS_DECL_ACME int to_nibble(char ch)
+   inline CLASS_DECL_ACME ::i32 to_nibble(::i8 ch)
    {
 
       return (ch >= '0' && ch <= '9') ? ch - '0' :
@@ -36,7 +36,7 @@ namespace hex
    }
 
 
-   constexpr CLASS_DECL_ACME char nibble_lower_case_from(unsigned char b)
+   constexpr CLASS_DECL_ACME ::i8 nibble_lower_case_from(::u8 b)
    {
 
       if(b >= 10)
@@ -51,7 +51,7 @@ namespace hex
    }
 
 
-   constexpr CLASS_DECL_ACME char nibble_upper_case_from(unsigned char b)
+   constexpr CLASS_DECL_ACME ::i8 nibble_upper_case_from(::u8 b)
    {
 
       if(b >= 10)
@@ -66,28 +66,28 @@ namespace hex
    }
 
 
-   constexpr CLASS_DECL_ACME void lower_case_from(char * sz, unsigned char b)
+   constexpr CLASS_DECL_ACME void lower_case_from(char_pointer sz, ::u8 b)
    {
 
-      sz[0] = nibble_lower_case_from((b >> 4) & (char) 0x0f);
-      sz[1] = nibble_lower_case_from(b & (char) 0x0f);
+      sz[0] = nibble_lower_case_from((b >> 4) & (::i8) 0x0f);
+      sz[1] = nibble_lower_case_from(b & (::i8) 0x0f);
 
    }
 
    
-   constexpr CLASS_DECL_ACME void upper_case_from(char * sz, unsigned char b)
+   constexpr CLASS_DECL_ACME void upper_case_from(char_pointer sz, ::u8 b)
    {
 
-      sz[0] = nibble_upper_case_from((b >> 4) & (char) 0x0f);
-      sz[1] = nibble_upper_case_from(b & (char) 0x0f);
+      sz[0] = nibble_upper_case_from((b >> 4) & (::i8) 0x0f);
+      sz[1] = nibble_upper_case_from(b & (::i8) 0x0f);
 
    }
 
 
-   // sz buffer should have twice int_size of s (p)
-   constexpr CLASS_DECL_ACME void lower_case_from(char * sz, const void * p, memsize s)
+   // sz buffer should have twice i32_size of s (p)
+   constexpr CLASS_DECL_ACME void lower_case_from(char_pointer sz, const void * p, memsize s)
    {
-       const unsigned char * pb = (const unsigned char *) p;
+       const ::u8 * pb = (const ::u8 *) p;
        while(s)
        {
            lower_case_from(sz, *pb);
@@ -98,9 +98,9 @@ namespace hex
    }
 
    
-   constexpr CLASS_DECL_ACME void upper_case_from(char * sz, const void * p, memsize s)
+   constexpr CLASS_DECL_ACME void upper_case_from(char_pointer sz, const void * p, memsize s)
    {
-       const unsigned char * pb = (const unsigned char *) p;
+       const ::u8 * pb = (const ::u8 *) p;
        while(s)
        {
            upper_case_from(sz, *pb);
@@ -111,7 +111,7 @@ namespace hex
    }
 
 
-   // sz buffer should have twice int_size of s (p)
+   // sz buffer should have twice i32_size of s (p)
    inline string lower_case_from(const void * p, memsize s)
    {
       string str;
@@ -157,10 +157,10 @@ namespace hex
 
 
    template < character_count s_iWidth >
-   inline auto padded_from(unsigned long long u, enum_digit_case edigitcase)
+   inline auto padded_from(::u64 u, enum_digit_case edigitcase)
    {
 
-      ::inline_string < char, s_iWidth > numberstring;
+      ::inline_string < ::i8, s_iWidth > numberstring;
 
       if (u != 0)
       {
@@ -172,13 +172,13 @@ namespace hex
       while (numberstring.size() < s_iWidth)
       {
 
-         *((char * &)numberstring.m_end)++ = '0';
+         *((char_pointer &)numberstring.m_end)++ = '0';
 
       }
 
-      reverse(((char *)numberstring.m_begin), ((char *)(numberstring.m_end)));
+      reverse(((char_pointer )numberstring.m_begin), ((char_pointer )(numberstring.m_end)));
 
-      *((char *&)numberstring.m_end + 1) = '\0';
+      *((char_pointer &)numberstring.m_end + 1) = '\0';
 
       return numberstring;
 
@@ -186,7 +186,7 @@ namespace hex
 
 
    template < character_count s_iWidth >
-   inline auto lower_case_padded_from(unsigned long long u)
+   inline auto lower_case_padded_from(::u64 u)
    {
 
       return padded_from < s_iWidth >(u, e_digit_case_lower);
@@ -195,7 +195,7 @@ namespace hex
 
 
    template < character_count s_iWidth >
-   inline auto upper_case_padded_from(unsigned long long u)
+   inline auto upper_case_padded_from(::u64 u)
    {
 
       return padded_from < s_iWidth >(u, e_digit_case_upper);
@@ -203,14 +203,14 @@ namespace hex
    }
 
 
-   inline void to(unsigned int & u,const ::scoped_string & scopedstr) { u = to_unsigned_int(scopedstr); }
-   inline void to(unsigned long long & u,const ::scoped_string & scopedstr) { u = to_unsigned_long_long(scopedstr); }
+   inline void to(::u32 & u,const ::scoped_string & scopedstr) { u = to_u32(scopedstr); }
+   inline void to(::u64 & u,const ::scoped_string & scopedstr) { u = to_u64(scopedstr); }
 #ifdef __APPLE__
-   inline void to(unsigned long & u,const ::scoped_string & scopedstr) { u = to_unsigned_long_long(scopedstr); }
+   inline void to(ulong & u,const ::scoped_string & scopedstr) { u = to_u64(scopedstr); }
 #endif
    inline uptr to_uptr(const ::scoped_string & scopedstr) { uptr u; to(u,scopedstr); return u; }
 
-   unsigned short parse_u16_exc(::const_ansi_range & range);
+   ::u16 parse_u16_exc(::const_ansi_range & range);
 
 
 } // namespace hex
@@ -218,7 +218,7 @@ namespace hex
 
 
 
-inline bool ishexdigit(char ch)
+inline bool ishexdigit(::i8 ch)
 {
    return (ch >= '0' && ch <= '9')
       || (ch >= 'a' && ch <= 'f')

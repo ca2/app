@@ -20,10 +20,12 @@
 //#include "acme/user/user/interaction_base.h"
 //#include "acme/prototype/geometry2d/rectangle.h"
 //#include "acme/user/user/item.h"
-#include "acme/operating_system/window.h"
+//#include "acme/operating_system/window.h"
 
 #include "acme/user/user/element.h"
-
+#ifdef WINDOWS_DESKTOP
+#include "acme/operating_system/windows/_window_class.h"
+#endif
 
 namespace acme
 {
@@ -38,7 +40,7 @@ namespace acme
    {
    public:
       
-      virtual void on_gpu_context_render_frame(int w, int h) = 0;
+      virtual void on_gpu_context_render_frame(::i32 w, ::i32 h) = 0;
       
    };
 
@@ -51,21 +53,18 @@ namespace acme
 
          //::operating_system::window          m_operatingsystemwindow;
          ::pointer_array < ::exception >     m_exceptiona;
-::pointer < ::acme::windowing::gpu_context_render_frame >
-         m_pgpucontextrenderframe;
+         ::pointer < ::acme::windowing::gpu_context_render_frame >         m_pgpucontextrenderframe;
          //::pointer < ::acme::windowing::window >                m_pwindowOwner;
 
          //::pointer<::micro::window_implementation>     m_pnanouserwindowimplementation;
 
-
          class ::time                              m_timeHoverNoiseSuppression;
 
 
-         bool m_bMouseOn;
 
 
-         int_rectangle                             m_rectangle;
-         ::int_rectangle                           m_rectanglePointingTo;
+         i32_rectangle                             m_rectangle;
+         ::i32_rectangle                           m_rectanglePointingTo;
 
          //bool                                      m_bTopMost;
          // bool                                      m_bStartCentered;
@@ -82,11 +81,11 @@ namespace acme
          bool                                               m_bPerformingEntireResizingProcess;
          bool                                               m_bRepositioningWindowFromCenter;
          bool                                               m_bResizingWindowFromBottomRight;
-         //::int_point                                        m_pointDesignRequest;
-         //::int_size                                         m_sizeDesignRequest;
-         ::int_point                                        m_pointWindow;
-         ::int_size                                         m_sizeWindow;
-         ::int_point                                        m_pointCursor2;
+         //::i32_point                                        m_pointDesignRequest;
+         //::i32_size                                         m_sizeDesignRequest;
+         ::i32_point                                        m_pointWindow;
+         ::i32_size                                         m_sizeWindow;
+         ::i32_point                                        m_pointCursor2;
 
          ::pointer < ::operating_system::a_system_menu >    m_psystemmenu;
 
@@ -100,7 +99,7 @@ namespace acme
          ::pointer < ::acme::windowing::display >           m_pacmewindowingdisplayWindow;
 
 //         long                                               m_lX11NativeVisualId;
-//         int                                                m_lX11MapNotify = -1;
+//         ::i32                                                m_lX11MapNotify = -1;
 
 
 
@@ -125,7 +124,7 @@ namespace acme
          //virtual long __x11_Window();
          //virtual void * __x11_Display();
          //virtual void * __win32_HWND();
-         //virtual long long __CGWindowID() const;
+         //virtual ::i64 __CGWindowID() const;
          
          virtual bool should_avoid_default_swap_chain_present();
          
@@ -139,16 +138,16 @@ namespace acme
 
          bool defer_perform_entire_reposition_process(::user::mouse * pmouse) override;
 
-         bool defer_perform_entire_resizing_process(::experience::enum_frame eframeSizing, ::user::mouse * pmouse) override;
+         bool defer_perform_entire_resizing_process(const ::experience::e_frame & eframeSizing, ::user::mouse * pmouse) override;
 
 
 
 
-         virtual ::int_point origin();
+         virtual ::i32_point origin();
 
-         void set_position(const ::int_point & point) override;
+         void set_position(const ::i32_point & point) override;
 
-         ::int_rectangle get_window_rectangle() override;
+         ::i32_rectangle get_window_rectangle() override;
 
          void on_create_window() override;
 
@@ -157,9 +156,9 @@ namespace acme
          void redraw() override;
 
 
-         void set_interaction_rectangle(const ::int_rectangle & rectangle) override;
+         void set_interaction_rectangle(const ::i32_rectangle & rectangle) override;
 
-         ::int_rectangle get_rectangle() override;
+         ::i32_rectangle get_rectangle() override;
 
 
          //void get_window_rectangle() override;
@@ -184,18 +183,48 @@ namespace acme
          //virtual void erase_keyboard_focus(::acme::user::interaction * pacmeuserinteractionFocus);
 
          virtual bool is_window();
-         //virtual int_bool is_window( windowing_android_WINDOW_MEMBER );
+         //virtual ::i32_bool is_window( windowing_android_WINDOW_MEMBER );
          
          
          void set_window_text(const ::scoped_string & scopedstrString) override;
 
-         ::pointer<::nano::graphics::device>create_device();
+         ::pointer<::nano::graphics::context>create_device();
+
+
+         virtual bool on_window_mouse_move(const ::i32_point & point, const ::i32_point & pointAbsolute);
 
          virtual void on_mouse_enter();
          virtual void fore_on_mouse_move(::user::mouse * pmouse);
          virtual void back_on_mouse_move(::user::mouse * pmouse);
          virtual void on_mouse_leave();
 
+#ifdef WINDOWS_DESKTOP
+         virtual ::windows::window_class _get_window_class();
+#endif
+
+         virtual void on_window_paint(::nano::graphics::context * pgraphicscontext);
+         virtual void on_window_size();
+         virtual void on_window_set_focus();
+         virtual bool on_window_activate(::i32 iActivate, bool bMinimized, const ::operating_system::window & operatingsystemwindow);
+         virtual bool on_window_mouse_activate(::i32 & iResult, const ::operating_system::window & operatingsystemwindowTop,
+            ::i32 iHitTest, ::i32 iMessage);
+
+
+         virtual bool is_window_iconic();
+         virtual ::f32 get_window_scale();
+
+
+         virtual void show_window(::i32 iShowFlags);
+         virtual void set_window_style(::i32 iStyle);
+         ::i64 get_window_style() override;
+         void set_window_position(const ::operating_system::window & operatingsystemwindow, const ::i32_point & point, const ::i32_size & size, ::i32 iSetWindowPosFlags) override;
+         void window_invalidate_rect(const ::i32_rectangle * prectangle, bool bErase) override;
+         void update_window() override;
+         void redraw_window(const ::i32_rectangle * prectangle, void * pHRGN, ::i32 iRedrawFlags) override;
+         void window_set_focus() override;
+         ::i32_rectangle window_get_client_rect() override;
+         ::i32_rectangle get_window_rect() override;
+         void dump_operating_system_child_window_hierarchy() override;
 
          virtual ::pointer < ::user::activation_token > get_initial_frame_display_activation_token();
          //void run_modal_loop() override;
@@ -237,10 +266,10 @@ namespace acme
 
 
          virtual bool is_windowing_popup();
-         virtual ::int_point windowing_popup_origin();
-         virtual ::int_size windowing_popup_size();
+         virtual ::i32_point windowing_popup_origin();
+         virtual ::i32_size windowing_popup_size();
          virtual void _on_windowing_close_window();
-         virtual bool is_satellite_window();
+         virtual ::i32_boolean is_satellite_window();
          ::acme::user::interaction * owner_interaction();
          ::acme::windowing::window * owner_window();
          ::string get_window_text() override;
@@ -248,7 +277,7 @@ namespace acme
 
          virtual itask get_itask() const;
 
-         //virtual ::int_rectangle get_window_rectangle();
+         //virtual ::i32_rectangle get_window_rectangle();
 
          ///::pointer < ::operating_system::a_system_menu > create_system_menu(bool bContextual = true) override;
 
@@ -257,7 +286,7 @@ namespace acme
          //bool defer_perform_entire_resizing_process(::experience::enum_frame eframeSizing, ::user::mouse * pmouse) override;
 
 
-         //virtual void on_char(int iChar);
+         //virtual void on_char(::i32 iChar);
          //       //
          //       // Created by camilo on 31/01/2022 23:04 <3ThomasBorregaardSorensen!!
          //       //
@@ -291,7 +320,7 @@ namespace acme
 
          virtual ::particle * get_acme_window_bridge();
 
-         //void draw(::nano::graphics::device * pnanodevice) override;
+         //void draw(::nano::graphics::context * pnanodevice) override;
 
          //static ::pointer_array < ::micro::window_implementation > & nanowindowimplementationa();
 
@@ -319,11 +348,11 @@ namespace acme
          virtual void on_position_window();
          virtual void on_size_window();
 
-         virtual void _on_reposition(int x, int y);
-         virtual void _on_size(int cx, int cy);
+         virtual void _on_reposition(::i32 x, ::i32 y);
+         virtual void _on_size(::i32 cx, ::i32 cy);
 
-         virtual void show_window();
-         virtual void hide_window();
+         //virtual void show_window();
+         //virtual void hide_window();
 
          bool is_window_zoomed() override;
          void window_minimize() override;
@@ -349,12 +378,12 @@ namespace acme
 
          virtual bool is_active_window();
 
-         //virtual ::int_point try_absolute_mouse_position(const ::int_point & point);
+         //virtual ::i32_point try_absolute_mouse_position(const ::i32_point & point);
 
          
          virtual void exit_iconify();
          
-         virtual void full_screen(const ::int_rectangle & rect = {});
+         virtual void full_screen(const ::i32_rectangle & rect = {});
          
          virtual void exit_full_screen();
          
@@ -367,15 +396,15 @@ namespace acme
          virtual bool is_iconic();
          //virtual bool is_window_visible() override;
 //         virtual bool _configure_window_unlocked(const class ::zorder & zorder, const ::user::e_activation & useractivation, bool bNoZorder, ::e_display edisplay);
-         //virtual iptr get_window_long_ptr(int nIndex);
-         //virtual iptr set_window_long_ptr(int nIndex, iptr l);
-         virtual bool client_to_screen(::int_point* ppoint);
+         //virtual iptr get_window_long_ptr(::i32 nIndex);
+         //virtual iptr set_window_long_ptr(::i32 nIndex, iptr l);
+         virtual bool client_to_screen(::i32_point* ppoint);
          
-         virtual bool screen_to_client(::int_point* ppoint);
+         virtual bool screen_to_client(::i32_point* ppoint);
          
          
-         //virtual bool set_window_pos(class::zorder zorder, int x, int y, int cx, int cy,unsigned int nFlags);
-         //virtual bool _set_window_pos(class::zorder zorder, int x, int y, int cx, int cy,unsigned int nFlags);
+         //virtual bool set_window_pos(class::zorder zorder, ::i32 x, ::i32 y, ::i32 cx, ::i32 cy,::u32 nFlags);
+         //virtual bool _set_window_pos(class::zorder zorder, ::i32 x, ::i32 y, ::i32 cx, ::i32 cy,::u32 nFlags);
          
          
          virtual bool is_destroying();
@@ -386,7 +415,7 @@ namespace acme
          
          //virtual bool set_icon(::image::image* pimage);
          
-         //virtual int x_change_property(Atom property, Atom type, int format, int mode, const unsigned char * data, int nelements);
+         //virtual ::i32 x_change_property(Atom property, Atom type, ::i32 format, ::i32 mode, const ::u8 * data, ::i32 nelements);
          
          virtual void set_mouse_cursor(::windowing::cursor* pcursor);
 
@@ -394,7 +423,7 @@ namespace acme
          //void handle(::topic * ptopic, ::handler_context * phandlercontext) override;
 
 
-         //virtual ::int_size get_main_screen_size();
+         //virtual ::i32_size get_main_screen_size();
 
 
          void _on_window_simple_action(const_char_pointer pszActionName, ::user::activation_token * puseractivationtoken) override;
@@ -412,26 +441,26 @@ namespace acme
 
 
 
-         virtual void set_interface_client_size(const ::int_size & sizeWindow);
+         virtual void set_interface_client_size(const ::i32_size & sizeWindow);
 
 
-         void set_rectangle(const int_rectangle & rectangle) override;
-         //void set_position(const int_point & point) override;
-         void set_size(const int_size & size) override;
+         void set_rectangle(const i32_rectangle & rectangle) override;
+         //void set_position(const i32_point & point) override;
+         void set_size(const i32_size & size) override;
 
 
-         //::int_rectangle get_window_rectangle() override;
-         virtual ::int_rectangle get_window_rectangle_unlocked();
+         //::i32_rectangle get_window_rectangle() override;
+         virtual ::i32_rectangle get_window_rectangle_unlocked();
 
 
-         virtual void set_rectangle_unlocked(const int_rectangle & rectangle);
-         virtual void set_position_unlocked(const int_point & point);
-         virtual void set_size_unlocked(const int_size & size);
+         virtual void set_rectangle_unlocked(const i32_rectangle & rectangle);
+         virtual void set_position_unlocked(const i32_point & point);
+         virtual void set_size_unlocked(const i32_size & size);
 
 
          virtual void on_a_system_menu_item(::operating_system::a_system_menu_item * psystemmenuitem, ::user::activation_token * puseractivationtoken);
 
-         virtual int control_box_right_when_at_left() const;
+         virtual ::i32 control_box_right_when_at_left() const;
 
          virtual bool should_use_desktop_ambient_like_control_box() const;
          
@@ -440,9 +469,9 @@ namespace acme
          virtual void on_control_box_zoom();
 
 
-         virtual void get_os_window_handle(void *p, int iSize);
+         virtual void get_os_window_handle(void *p, ::i32 iSize);
 
-         virtual void on_gpu_context_render_frame(int w, int h);
+         virtual void on_gpu_context_render_frame(::i32 w, ::i32 h);
          
          virtual void _lock_window_gpu_context();
          virtual void _unlock_window_gpu_context();

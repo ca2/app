@@ -31,7 +31,7 @@
 //----------------------------------------------------------------------------
 
 void
-setrgbpalette (int colornum, int red, int green, int blue)
+setrgbpalette (::i32 colornum, ::i32 red, ::i32 green, ::i32 blue)
 {
   if (colornum < 0)
     {

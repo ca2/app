@@ -231,17 +231,17 @@ namespace user
    //}
 
 
-   void font_list_impact::on_timer(::timer * ptimer)
+   void font_list_impact::operator()(::timer * ptimer)
    {
 
-      ::user::show < font_list >::on_timer(ptimer);
+      ::user::show < font_list >::operator()(ptimer);
 
-   //   ::user::form_impact::on_timer(ptimer);
+   //   ::user::form_impact::operator()(ptimer);
 
    }
 
 
-   //void font_list_impact::set_context_offset(::draw2d::graphics_pointer & pgraphics, int x, int y)
+   //void font_list_impact::set_context_offset(::draw2d::graphics_pointer & pgraphics, ::i32 x, ::i32 y)
    //{
 
    //   ::user::list_impact::set_context_offset(pgraphics, x, y);
@@ -249,7 +249,7 @@ namespace user
    //}
 
 
-   //::int_point font_list_impact::get_context_offset()
+   //::i32_point font_list_impact::get_context_offset()
    //{
 
    //   return ::user::list_impact::get_context_offset();
@@ -257,7 +257,7 @@ namespace user
    //}
 
 
-   //::double_size font_list_impact::get_total_size()
+   //::f64_size font_list_impact::get_total_size()
    //{
 
    //   return ::user::list_impact::get_total_size();

@@ -51,9 +51,9 @@ public:
 
 
 private:
-    int m_ObjRefCount;
+    ::i32 m_ObjRefCount;
     TF_PERSISTENT_PROPERTY_HEADER_ACP m_hdr;
-    unsigned char *m_pb;
+    ::u8 *m_pb;
 };
 
 

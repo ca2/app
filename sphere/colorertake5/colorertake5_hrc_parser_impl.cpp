@@ -100,15 +100,15 @@ namespace colorertake5
       }
    }
 
-   file_type *HRCParserImpl::chooseFileType(const ::string &fileName, const ::string &firstLine, int typeNo)
+   file_type *HRCParserImpl::chooseFileType(const ::string &fileName, const ::string &firstLine, ::i32 typeNo)
    {
       file_type_impl *best = nullptr;
-      double max_prior = 0;
-      const double DELTA = 1e-6;
+      ::f64 max_prior = 0;
+      const ::f64 DELTA = 1e-6;
       for(character_count idx = 0; idx < fileTypeVector.get_size(); idx++)
       {
          file_type_impl *ret = fileTypeVector.element_at(idx);
-         double prior = 0.0;
+         ::f64 prior = 0.0;
          //      const ::scoped_string & scopedstr = ret->m_strSourceLocation;
          try
          {
@@ -144,7 +144,7 @@ namespace colorertake5
       return fileTypeHash[name];
    }
 
-   file_type *HRCParserImpl::enumerateFileTypes(int index)
+   file_type *HRCParserImpl::enumerateFileTypes(::i32 index)
    {
       if (index < fileTypeVector.get_size()) return fileTypeVector.element_at(index);
       return nullptr;
@@ -155,7 +155,7 @@ namespace colorertake5
       return regionNamesVector.get_size();
    }
 
-   class region *HRCParserImpl::getRegion(int atom)
+   class region *HRCParserImpl::getRegion(::i32 atom)
    {
       if (atom < 0 || atom >= regionNamesVector.get_size())
       {
@@ -320,8 +320,8 @@ namespace colorertake5
                delete matchRE;
                continue;
             };
-            int ctype = content->get_name() == "filename" ? 0 : 1;
-            double prior = content->get_name() == "filename" ? 2 : 1;
+            ::i32 ctype = content->get_name() == "filename" ? 0 : 1;
+            ::f64 prior = content->get_name() == "filename" ? 2 : 1;
             if(content->find_attr("weight") != nullptr)
             {
                prior = atof((content)->attr("weight"));
@@ -753,7 +753,7 @@ namespace colorertake5
             next->kwList = ___new KeywordList();
             for(::pointer<::xml::node>eywrd_count = tmpel->first_child(); keywrd_count; keywrd_count = keywrd_count->get_next_sibling())
             {
-               if (keywrd_count->get_name() == "unsigned short" ||
+               if (keywrd_count->get_name() == "::u16" ||
                      keywrd_count->get_name() == "symb")
                {
                   next->kwList->num++;
@@ -770,7 +770,7 @@ namespace colorertake5
             for(::pointer<::xml::node>eywrd = tmpel->first_child(); keywrd; keywrd = keywrd->get_next_sibling())
             {
                character_count type = 0;
-               if (keywrd->get_name() == "unsigned short") type = 1;
+               if (keywrd->get_name() == "::u16") type = 1;
                if (keywrd->get_name() == "symb") type = 2;
                if (!type)
                {
@@ -816,7 +816,7 @@ namespace colorertake5
 
    void HRCParserImpl::loadRegions(SchemeNode *node, ::pointer<::xml::node>l, bool st)
    {
-      static char rg_tmpl[0x10] = "region\0\0";
+      static ::i8 rg_tmpl[0x10] = "region\0\0";
 
       if(el)
       {
@@ -827,7 +827,7 @@ namespace colorertake5
 
          for(character_count i = 0; i < REGIONS_NUM; i++)
          {
-            rg_tmpl[6] = (char) ((i < 0xA ? i : i+7+32) + '0');
+            rg_tmpl[6] = (::i8) ((i < 0xA ? i : i+7+32) + '0');
 
             if(st)
             {
@@ -851,13 +851,13 @@ namespace colorertake5
    void HRCParserImpl::loadBlockRegions(SchemeNode *node, ::pointer<::xml::node>l)
    {
       character_count i;
-      static char rg_tmpl[0x10] = "region";
+      static ::i8 rg_tmpl[0x10] = "region";
 
       node->region = getNCRegion(el, string("region"));
       for (i = 0; i < REGIONS_NUM; i++)
       {
          rg_tmpl[6] = '0';
-         rg_tmpl[7] = (char) ((i<0xA?i:i+7)+'0');
+         rg_tmpl[7] = (::i8) ((i<0xA?i:i+7)+'0');
          rg_tmpl[8] = 0;
          node->regions[i] = getNCRegion(el, string(rg_tmpl));
          rg_tmpl[6] = '1';

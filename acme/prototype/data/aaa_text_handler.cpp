@@ -188,7 +188,7 @@ namespace data
    //}
 
 
-   //void text_handler::get_text(char * psz, character_count len)
+   //void text_handler::get_text(char_pointer psz, character_count len)
    //{
 
    //   string str;
@@ -319,7 +319,7 @@ namespace data
    //}
 
 
-   //void text::get_text_composition_area(::int_rectangle& rectangle)
+   //void text::get_text_composition_area(::i32_rectangle& rectangle)
    //{
 
 

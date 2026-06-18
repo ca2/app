@@ -17,7 +17,7 @@
  * libspopc functions to format pop data returned by server *
  ************************************************************/
 
-char* nextline(char* string){
+char_pointer nextline(char_pointer string){
 /* returns a pointer to the next line of given string */
 
 	while(((*string) != '\n')&&((*string) != '\0')){
@@ -29,11 +29,11 @@ char* nextline(char* string){
 	return(string+1);
 }
 
-char* retr2msg(char* data){
+char_pointer retr2msg(char_pointer data){
 /* retruns formatted mail from a pop RETR X query */
 /* should only be called on data returned by pop3_retr() */
-char* msg=nullptr;
-char* cur;
+char_pointer msg=nullptr;
+char_pointer cur;
 
 #ifdef EBUG
 	fprintf(stderr,"<retr2msg>\n");
@@ -53,7 +53,7 @@ char* cur;
 	if(( data != nullptr ) && (ansi_count_compare("+OK", data, 3) == 0)) {
 		data=nextline(data); /* skip +OK ...\n */
 	}
-	msg=data?(char*)malloc(strlen(data)):nullptr;
+	msg=data?(char_pointer )malloc(strlen(data)):nullptr;
 	if(!msg){
 #ifdef EBUG
 		fprintf(stderr,"retr2msg.malloc");
@@ -78,19 +78,19 @@ char* cur;
 	return(msg);
 }
 
-void freemsg(char* msg){
+void freemsg(char_pointer msg){
 	free(msg);
 	msg=nullptr;
 }
 
-int* list2array(char* poplist){
-/* returns an int array of sizes of messages from a LIST pop query */
+::i32* list2array(char_pointer poplist){
+/* returns an ::i32 array of sizes of messages from a LIST pop query */
 /* array[0] holds atom of the array's matter */
 /* should only be called on data received by a pop3_list() request */
-int* array=nullptr;
-int len,int_size;
-int atom=0;
-char* cur;
+::i32* array=nullptr;
+::i32 len,i32_size;
+::i32 atom=0;
+char_pointer cur;
 
 #ifdef EBUG
 	fprintf(stderr,"<list2array>\n");
@@ -101,14 +101,14 @@ char* cur;
 	if(!dotline(poplist)){/* if simple matter list_base */
 	/* you should't use this function for simple matter... */
 	/* you should better use listi2size() */
-		/* skip '+OK ': look for first mail int atom */
+		/* skip '+OK ': look for first mail ::i32 atom */
 		for(cur=poplist;(*cur<'0')||(*cur>'9');cur++);
 		/* not dot line here */
 		sscanf(cur,"%d %d\n",&atom,&size);
-		array=(int*)malloc((atom+1)*sizeof(int));
-		memory_set(array,0,(atom+1)*sizeof(int));
+		array=(::i32*)malloc((atom+1)*sizeof(::i32));
+		memory_set(array,0,(atom+1)*sizeof(::i32));
 		array[0]=atom;
-		array[atom]=int_size;
+		array[atom]=i32_size;
 		return(array);
 	}
 	/* else this is a true list_base */
@@ -120,18 +120,18 @@ char* cur;
 		sscanf(cur,"%d %d\n",&atom,&size);
 		while(atom > len){ /* fill array while atom > len */
 			len++;
-			array=(int*)realloc(array,len*sizeof(int));
+			array=(::i32*)realloc(array,len*sizeof(::i32));
 			array[len-1]=0; /* no mail */
 		}
 		len++;
-		array=(int*)realloc(array,len*sizeof(int));
-		array[atom]=int_size;
+		array=(::i32*)realloc(array,len*sizeof(::i32));
+		array[atom]=i32_size;
 		cur=nextline(cur);
 	}
 	if(atom){
 		array[0]=atom; /* last atom */
 	}else{
-		array=(int*)malloc(1*sizeof(int));
+		array=(::i32*)malloc(1*sizeof(::i32));
 		array[0]=0;
 	}
 #ifdef EBUG
@@ -141,15 +141,15 @@ char* cur;
 	return(array);
 }
 
-void freelistarray(int* array){
+void freelistarray(::i32* array){
 /* free array allocated by list2array() */
 	free(array);
 }
 
-int listi2size(char* resp){
-/* grep the given int_size (in bytes) in resp after a pop3_list(sock,ID) request */
-int i;
-int r;
+::i32 listi2size(char_pointer resp){
+/* grep the given i32_size (in bytes) in resp after a pop3_list(sock,ID) request */
+::i32 i;
+::i32 r;
 
 	if(pop3_error(resp)){
 			return(0);/* no message ! */
@@ -161,10 +161,10 @@ int r;
 	return(i);
 }
 
-int stat2last(char* resp){
+::i32 stat2last(char_pointer resp){
 /* returns the last atom of retrievable messages */
 /* should only be called just after a pop3_stat() request */
-int n,s;
+::i32 n,s;
 
 #ifdef EBUG
 	fprintf(stderr,"<stat2last>\n");
@@ -180,10 +180,10 @@ int n,s;
 	return(n);
 }
 
-int stat2bytes(char* resp){
+::i32 stat2bytes(char_pointer resp){
 /* returns the sumsize in bytes of all stored messages on server */
 /* should only be called just after a pop3_stat() request */
-int n,s;
+::i32 n,s;
 
 #ifdef EBUG
 	fprintf(stderr,"<stat2bytes>\n");
@@ -199,14 +199,14 @@ int n,s;
 	return(s);
 }
 
-char** uidl2array(char* resp){
+char_pointer * uidl2array(char_pointer resp){
 /* returns an array of unique strings for each message atom */
 /* array[0] gives array's last atom */
 /* should only be called just after a pop3_uidl() request */
-char** array=nullptr;
-int l,i=0; /* l is array lenth, i is atom of msg */
-char s[POPBUF]; /* temp signature string : sig theorically <512 chars */
-char* cur;
+char_pointer * array=nullptr;
+::i32 l,i=0; /* l is array lenth, i is atom of msg */
+::i8 s[POPBUF]; /* temp signature string : sig theorically <512 chars */
+char_pointer cur;
 
 #ifdef EBUG
         fprintf(stderr,"<uidl2array>\n");
@@ -220,13 +220,13 @@ char* cur;
 #ifdef EBUG
 		fprintf(stderr,"bad way of use of uidl2array()\n");
 #endif
-		/* skip '+OK ': look for first mail int atom */
+		/* skip '+OK ': look for first mail ::i32 atom */
 		for(cur=resp;(*cur<'0')||(*cur>'9');cur++);
 		/* no dot line here */
 		sscanf(cur,"%d %s\n",&i,s);
-		array=(char**)malloc((i+1)*sizeof(char*));
-		memory_set(array,0,(i+1)*sizeof(char*));
-		array[0]=(char*)malloc(POPBUF); /* up to 512 chars */
+		array=(char_pointer *)malloc((i+1)*sizeof(char_pointer ));
+		memory_set(array,0,(i+1)*sizeof(char_pointer ));
+		array[0]=(char_pointer )malloc(POPBUF); /* up to 512 chars */
 		snprintf(array[0],POPBUF,"%d",i);
 		array[i]=strdup(s);
 		return(array);
@@ -240,23 +240,23 @@ char* cur;
 		sscanf(cur,"%d %s\n",&i,s);
 		while(i > l){ /* fill array while atom > len */
 			l++;
-			array=(char**)realloc(array,l*sizeof(char*));
-			array[l-1]=(char*)malloc(sizeof(char));
+			array=(char_pointer *)realloc(array,l*sizeof(char_pointer ));
+			array[l-1]=(char_pointer )malloc(sizeof(::i8));
 			array[l-1]='\0'; /* no string == '\0' */
 		}
 		l++;
-		array=(char**)realloc(array,l*sizeof(char*));
-		array[i]=(char*)malloc(POPBUF); /* up to 512 chars */
+		array=(char_pointer *)realloc(array,l*sizeof(char_pointer ));
+		array[i]=(char_pointer )malloc(POPBUF); /* up to 512 chars */
 		array[i]=ansi_count_copy(array[i],s,POPBUF); 
 		cur=nextline(cur);
 	}
 	if(i){ /* i is now the last message atom met in this session */
-		array[0]=(char*)malloc(4); /* up to 9999 msg uids FIXME */
+		array[0]=(char_pointer )malloc(4); /* up to 9999 msg uids FIXME */
 		snprintf(array[0],4,"%d",i);
-		/* contains the atom of the last msg (char*) */
+		/* contains the atom of the last msg (char_pointer ) */
 	}else{
-		array=(char**)malloc(1*sizeof(char*));
-		array[0]=(char*)malloc(2*sizeof(char)); /* 2 because of '\0' */
+		array=(char_pointer *)malloc(1*sizeof(char_pointer ));
+		array[0]=(char_pointer )malloc(2*sizeof(::i8)); /* 2 because of '\0' */
 		snprintf(array[0],2,"%d",0);
 	}
 #ifdef EBUG
@@ -266,9 +266,9 @@ char* cur;
 	return(array);
 }
 
-void freeuidlarray(char** array){
+void freeuidlarray(char_pointer * array){
 /* free the array allocated by uidl2array() */
-int i,last;
+::i32 i,last;
 	last= atoi(array[0]);
 	for (i=1;i<=last;i++){
 		free(array[i]);
@@ -277,10 +277,10 @@ int i,last;
    free(array);
 }
 
-char* uidli2sig(char* resp){
+char_pointer uidli2sig(char_pointer resp){
 /* greps signature from server resp */
 /* should only be called after a pop3_uidl(sock,ID) */
-char* sig=nullptr;
+char_pointer sig=nullptr;
 
 	if(pop3_error(resp)){
 		return(nullptr);/* no message ! */

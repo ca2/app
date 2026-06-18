@@ -39,7 +39,7 @@ namespace sockets
       string         m_strTo;
       string         m_strFrom;
 
-      long long m_iFirstTime;
+      ::i64 m_iFirstTime;
 
       sip::request   m_request;
       sip::response  m_response;
@@ -55,13 +55,13 @@ namespace sockets
       size_t m_body_size_left;
       bool m_b_chunked;
       size_t m_chunk_size;
-      int m_chunk_state;
+      ::i32 m_chunk_state;
       string m_chunk_line;
 
       sip_base_client_socket();
       ~sip_base_client_socket();
 
-      void OnRawData(char *buf,size_t len);
+      void OnRawData(char_pointer buf,size_t len);
       void OnLine(const ::scoped_string & scopedstrLine);
 
       /** Callback executes when first line has been received.

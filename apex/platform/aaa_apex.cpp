@@ -24,7 +24,7 @@ namespace apex
    }
 
    
-   void apex::shell_create_link(::file::path pathObj, ::file::path pathLnk, string strDesc, ::file::path pathIco, int iIcon)
+   void apex::shell_create_link(::file::path pathObj, ::file::path pathLnk, string strDesc, ::file::path pathIco, ::i32 iIcon)
    {
 
       throw ::interface_only();

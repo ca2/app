@@ -42,22 +42,22 @@ namespace gpu
 //      //HGLRC                         m_hrc;
 //      //HDC                           m_hdc;
 //      //HWND                          m_hwnd;
-//      //::int_size                        m_sizeNew;
-//      //::int_size                        m_size;
+//      //::i32_size                        m_sizeNew;
+//      //::i32_size                        m_size;
 //      //HDC                           m_hdcGraphics;
-//      //float                         m_z;
-//      //int_point                         m_pointTranslate;
+//      //::f32                         m_z;
+//      //i32_point                         m_pointTranslate;
 //      //::pointer<::opengl::buffer>  m_pbuffer;
 //      //::pointer<::opengl::program> m_pprogram;
-//      //unsigned int                  VAO;
-//      //unsigned int                  VBO;
+//      //::u32                  VAO;
+//      //::u32                  VBO;
 
       enum_mode                              m_emode;
 
 
       //::pointer < device >       m_pgpudevice;
 
-      ::int_rectangle            m_rectangleOffscreen;
+      ::i32_rectangle            m_rectangleOffscreen;
 
 
       approach();

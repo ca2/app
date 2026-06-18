@@ -43,7 +43,7 @@
 typedef struct wf_context wfContext;
 
 #include "wf_channels.h"
-#include "wf_floatbar.h"
+#include "wf_f32bar.h"
 #include "wf_event.h"
 #include "wf_cliprdr.h"
 
@@ -60,7 +60,7 @@ struct wf_bitmap
 	HDC hdc;
 	HBITMAP bitmap;
 	HBITMAP org_bitmap;
-	unsigned char* pdata;
+	::u8* pdata;
 };
 typedef struct wf_bitmap wfBitmap;
 
@@ -76,16 +76,16 @@ struct wf_context
 	rdpContext action_context;
 	DEFINE_RDP_CLIENT_COMMON();
 
-	int offset_x;
-	int offset_y;
-	int fs_toggle;
-	int fullscreen;
-	int percentscreen;
-	char window_title[64];
-	int client_x;
-	int client_y;
-	int client_width;
-	int client_height;
+	::i32 offset_x;
+	::i32 offset_y;
+	::i32 fs_toggle;
+	::i32 fullscreen;
+	::i32 percentscreen;
+	::i8 window_title[64];
+	::i32 client_x;
+	::i32 client_y;
+	::i32 client_width;
+	::i32 client_height;
 
 	HANDLE keyboardThread;
 
@@ -97,18 +97,18 @@ struct wf_context
 	HCURSOR hDefaultCursor;
 
 	HWND hwnd;
-	::int_point diff;
+	::i32_point diff;
 
 	wfBitmap* primary;
 	wfBitmap* drawing;
 	HCURSOR cursor;
 	HBRUSH brush;
 	HBRUSH org_brush;
-	::int_rectangle update_rect;
-	::int_rectangle scale_update_rect;
+	::i32_rectangle update_rect;
+	::i32_rectangle scale_update_rect;
 
-	unsigned int mainThreadId;
-	unsigned int keyboardThreadId;
+	::u32 mainThreadId;
+	::u32 keyboardThreadId;
 
 	rdpFile* connectionRdpFile;
 
@@ -116,19 +116,19 @@ struct wf_context
 
 	BOOL updating_scrollbars;
 	BOOL xScrollVisible;
-	int xMinScroll;
-	int xCurrentScroll;
-	int xMaxScroll;
+	::i32 xMinScroll;
+	::i32 xCurrentScroll;
+	::i32 xMaxScroll;
 
 	BOOL yScrollVisible;
-	int yMinScroll;
-	int yCurrentScroll;
-	int yMaxScroll;
+	::i32 yMinScroll;
+	::i32 yCurrentScroll;
+	::i32 yMaxScroll;
 
 	void* clipboard;
 	CliprdrClientContext* cliprdr;
 
-	FloatBar* floatbar;
+	FloatBar* f32bar;
 
 	RailClientContext* rail;
 	wHashTable* railWindows;
@@ -138,11 +138,11 @@ struct wf_context
  * Client Interface
  */
 
-FREERDP_API int RdpClientEntry(RDP_CLIENT_ENTRY_POINTS* pEntryPoints);
-FREERDP_API int freerdp_client_set_window_size(wfContext* wfc, int width,
-        int height);
-FREERDP_API void wf_size_scrollbars(wfContext* wfc, unsigned int client_width,
-                                    unsigned int client_height);
+FREERDP_API ::i32 RdpClientEntry(RDP_CLIENT_ENTRY_POINTS* pEntryPoints);
+FREERDP_API ::i32 freerdp_client_set_window_size(wfContext* wfc, ::i32 width,
+        ::i32 height);
+FREERDP_API void wf_size_scrollbars(wfContext* wfc, ::u32 client_width,
+                                    ::u32 client_height);
 
 #ifdef __cplusplus
 }

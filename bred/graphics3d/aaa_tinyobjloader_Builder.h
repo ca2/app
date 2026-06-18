@@ -17,7 +17,7 @@ namespace graphics3d
       void loadModel_001(::gpu::context* pgpucontext, const ::file::path& path, bool bCounterClockwise);
       void loadModel_002(::gpu::context *pgpucontext, const ::file::path &path, bool bCounterClockwise);
       void loadModel(::gpu::context *pgpucontext, const ::file::path &path, bool bCounterClockwise);
-      bool LoadObjAndConvert( // float bmin[3], float bmax[3], //std::vector<DrawObject> *drawObjects,
+      bool LoadObjAndConvert( // ::f32 bmin[3], ::f32 bmax[3], //std::vector<DrawObject> *drawObjects,
                               //                                            std::vector<tinyobj::material_t> &materials,
                               //                                          std::map<std::string, GLuint> &textures,
          ::gpu::context *pgpucontext, 

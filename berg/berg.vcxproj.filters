@@ -90,6 +90,12 @@
     <Filter Include="Header Files\platform">
       <UniqueIdentifier>{6e6bef37-2c89-4842-a307-c57af04f938f}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Source Files\user\impact">
+      <UniqueIdentifier>{7bd02b9b-5915-40c6-8afd-6083ea3e79c6}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\user\impact">
+      <UniqueIdentifier>{f5f51b28-3672-4421-af5b-385107c0a185}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="user\user\edit_window.h">
@@ -509,6 +515,9 @@
     <ClInclude Include="user\simple\toolbar.h">
       <Filter>Header Files\user\simple</Filter>
     </ClInclude>
+    <ClInclude Include="user\impact\about_the_operating_system_impact.h">
+      <Filter>Header Files\user\impact</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="user\user\place_holder.cpp">
@@ -774,6 +783,9 @@
     </ClCompile>
     <ClCompile Include="user\user\options_impact_handler.cpp">
       <Filter>Source Files\user\user</Filter>
+    </ClCompile>
+    <ClCompile Include="user\impact\about_the_operating_system_impact.cpp">
+      <Filter>Source Files\user\impact</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

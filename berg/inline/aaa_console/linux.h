@@ -1,6 +1,6 @@
 
 
-int main(int argc, char* argv[])
+::i32 main(::i32 argc, char_pointer argv[])
 {
 
    //class aura_aura aura_aura;
@@ -42,7 +42,7 @@ int main(int argc, char* argv[])
 
    }
 
-   int iErrorStatus = estatus.error_status();
+   ::i32 iErrorStatus = estatus.error_status();
 
    psystem->inline_term();
 

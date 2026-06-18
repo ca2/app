@@ -17,7 +17,7 @@ namespace user
       string                     m_strPath;
       bool                       m_bOnEditUpdate;
       bool                       m_bOnLanguageChange;
-      unsigned int                       m_uiId;
+      ::u32                       m_uiId;
       //control_descriptor_set     m_controldescriptorset;
       bool                       m_bInitialized;
       ::file::path               m_pathDefaultDocument;
@@ -47,10 +47,10 @@ namespace user
 
 
       //using ::user::interaction::_001IsPointInside;
-      virtual bool _001IsPointInside(::user::interaction * pinteraction, const long_long_point & point);
-      virtual void control_get_window_rect(::user::interaction * pinteraction, ::int_rectangle & rectangle);
+      virtual bool _001IsPointInside(::user::interaction * pinteraction, const i64_point & point);
+      virtual void control_get_window_rect(::user::interaction * pinteraction, ::i32_rectangle & rectangle);
 
-      virtual void control_get_client_rect(::user::interaction * pinteraction, ::int_rectangle & rectangle);
+      virtual void control_get_client_rect(::user::interaction * pinteraction, ::i32_rectangle & rectangle);
 
       
       ::user::form * get_form() override;
@@ -100,13 +100,13 @@ namespace user
 
       bool OnCommand(wparam wparam,lparam lparam);
 
-      bool OnCommandButton(::user::interaction * pinteraction,unsigned int uNotificationCode,lparam lparam);
+      bool OnCommandButton(::user::interaction * pinteraction,::u32 uNotificationCode,lparam lparam);
 
-      bool OnCommandCheckBox(::user::interaction * pinteraction,unsigned int uNotificationCode,lparam lparam);
+      bool OnCommandCheckBox(::user::interaction * pinteraction,::u32 uNotificationCode,lparam lparam);
 
-      bool OnCommandComboBox(::user::interaction * pinteraction,unsigned int uNotificationCode,lparam lparam);
+      bool OnCommandComboBox(::user::interaction * pinteraction,::u32 uNotificationCode,lparam lparam);
 
-      bool OnCommandEdit(::user::interaction * pinteraction,unsigned int uNotificationCode,lparam lparam);
+      bool OnCommandEdit(::user::interaction * pinteraction,::u32 uNotificationCode,lparam lparam);
 
 
 
@@ -137,7 +137,7 @@ namespace user
       //void handle(::topic * ptopic, ::handler_context * phandlercontext) override;
       //      virtual void handle(::topic * ptopic, ::handler_context * phandlercontext);
       //      DECLARE_MESSAGE_HANDLER(on_message_create);
-      void on_timer(::timer * ptimer) override;
+      void operator()(::timer * ptimer) override;
       DECLARE_MESSAGE_HANDLER(_001OnUser123);
       //      void install_message_routing(::channel * pchannel) override;
 
@@ -146,11 +146,11 @@ namespace user
 
       //virtual ::form_property_set * get_form_property_set() override;
 
-//      virtual bool _001IsPointInside(::user::interaction * pinteraction,long_long_point point);
+//      virtual bool _001IsPointInside(::user::interaction * pinteraction,i64_point point);
 
-      //    virtual void control_get_window_rect(::user::interaction * pinteraction,::int_rectangle * prectangle);
+      //    virtual void control_get_window_rect(::user::interaction * pinteraction,::i32_rectangle * prectangle);
 
-      //  virtual void control_get_client_rect(::user::interaction * pinteraction,::int_rectangle * prectangle);
+      //  virtual void control_get_client_rect(::user::interaction * pinteraction,::i32_rectangle * prectangle);
 
 
 

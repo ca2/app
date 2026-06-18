@@ -6,14 +6,14 @@
 
 struct hthread_t
 {
-	unsigned int ui0;
-	unsigned int ui1;
-	unsigned int ui2;
-	unsigned int ui3;
-	unsigned int ui4;
-	unsigned int ui5;
-	unsigned int ui6;
-	unsigned int ui7;
+	::u32 ui0;
+	::u32 ui1;
+	::u32 ui2;
+	::u32 ui3;
+	::u32 ui4;
+	::u32 ui5;
+	::u32 ui6;
+	::u32 ui7;
 };
 
 
@@ -42,7 +42,7 @@ class message_queue;
 
 //using htask = void *;
 
-// insight by listening lastmiles (Dennis Clarke) talk about pthread_equal (it may end up not to be an int but a pointer in some implementations ?, so should use pthread_equal...)
+// insight by listening lastmiles (Dennis Clarke) talk about pthread_equal (it may end up not to be an ::i32 but a pointer in some implementations ?, so should use pthread_equal...)
 class CLASS_DECL_ACME htask
 {
 public:
@@ -88,7 +88,7 @@ public:
 
 //using itask = iptr;
 
-// insight by listening lastmiles (Dennis Clarke) talk about pthread_equal (it may end up not to be an int but a pointer in some implementations ?, so should use pthread_equal...)
+// insight by listening lastmiles (Dennis Clarke) talk about pthread_equal (it may end up not to be an ::i32 but a pointer in some implementations ?, so should use pthread_equal...)
 class CLASS_DECL_ACME itask
 {
 public:
@@ -123,6 +123,7 @@ public:
 	
 	bool operator !() const { return is_null(); }
 
+	operator ::iptr() const { return *(::iptr*)&m_i; }
 	
 };
 
@@ -133,20 +134,20 @@ public:
 //public:
 //
 //
-//	iptr	m_i;
+//	iptr	m_i32;
 //	
 //	
-//	task_index(iptr i):m_i(i) {}
+//	task_index(iptr i):m_i32(i) {}
 //
-//	task_index():m_i{} {}
+//	task_index():m_i32{} {}
 //	
-//	task_index(nullptr_t):m_i{} {}
+//	task_index(nullptr_t):m_i32{} {}
 //
-//	task_index(const task_index & i):m_i(i.m_i) {}	
+//	task_index(const task_index & i):m_i32(i.m_i32) {}	
 //	
-//	task_index & operator = (const task_index & i) {m_i = i.m_i; return *this;}
+//	task_index & operator = (const task_index & i) {m_i32 = i.m_i32; return *this;}
 //
-//	bool operator == (const task_index & i) const { return m_i == i.m_i; }
+//	bool operator == (const task_index & i) const { return m_i32 == i.m_i32; }
 //	
 //	bool is_null() const  { return operator==(nullptr); }
 //	
@@ -155,7 +156,7 @@ public:
 //	bool operator !() const { return is_null(); }
 //	
 //	
-//	operator hash32() const { return (hash32)m_i; }
+//	operator hash32() const { return (hash32)m_i32; }
 //
 //	
 //};

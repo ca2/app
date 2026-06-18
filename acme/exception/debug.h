@@ -3,15 +3,15 @@
 
 
 // returns true if it should continue...
-CLASS_DECL_ACME bool __assert_failed_line(const_char_pointer pszFileName, int iLineNumber);
+CLASS_DECL_ACME bool __assert_failed_line(const_char_pointer pszFileName, ::i32 iLineNumber);
 
-CLASS_DECL_ACME int is_debugger_attached(void);
+CLASS_DECL_ACME ::i32 is_debugger_attached(void);
 
 CLASS_DECL_ACME void debug_print(const_char_pointer pszFormat, ...);
 
 CLASS_DECL_ACME void throw_todo();
 
-CLASS_DECL_ACME int throw_assert_exception(const_char_pointer pszFileName, int iLineNumber);
+CLASS_DECL_ACME ::i32 throw_assert_exception(const_char_pointer pszFileName, ::i32 iLineNumber);
 
 //CLASS_DECL_ACME void throw_what_exclamation_exclamation(const ::scoped_string & scopedstr);
 
@@ -61,14 +61,14 @@ CLASS_DECL_ACME int throw_assert_exception(const_char_pointer pszFileName, int i
 
 
 template < prototype_container CONTAINER >
-inline void __assert_container_ok(const CONTAINER * pcontainer, const_char_pointer pszFileName, int nLine);
+inline void __assert_container_ok(const CONTAINER * pcontainer, const_char_pointer pszFileName, ::i32 nLine);
 
 
-CLASS_DECL_ACME void __assert_particle_ok(const ::particle * pparticle, const_char_pointer pszFileName, int nLine);
+CLASS_DECL_ACME void __assert_particle_ok(const ::particle * pparticle, const_char_pointer pszFileName, ::i32 nLine);
 
 
 template <prototype_container CONTAINER>
-inline void __assert_ok(const CONTAINER * p, const char * pszFile, int iLine)
+inline void __assert_ok(const CONTAINER * p, const_char_pointer pszFile, ::i32 iLine)
 {
 
    __assert_container_ok(p, pszFile, iLine);
@@ -76,7 +76,7 @@ inline void __assert_ok(const CONTAINER * p, const char * pszFile, int iLine)
 }
 
 
-inline void __assert_ok(const ::particle * p, const char * pszFile, int iLine)
+inline void __assert_ok(const ::particle * p, const_char_pointer pszFile, ::i32 iLine)
 {
 
    __assert_particle_ok(p, pszFile, iLine);

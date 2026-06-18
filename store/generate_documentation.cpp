@@ -24,7 +24,7 @@ namespace application_build_helper
       //
       //   directory_system()->change_current(path / "source/app/acme/doxygen.directory");
       //
-      //   int iExitCode = 0;
+      //   ::i32 iExitCode = 0;
       //
       //   string_array_base straOutput;
       //
@@ -240,7 +240,7 @@ namespace application_build_helper
       ////
       ////      }
       ////
-      ////      int iCreateLinuxMatterObject = string(getenv("DISTRO")) == "raspbian";
+      ////      ::i32 iCreateLinuxMatterObject = string(getenv("DISTRO")) == "raspbian";
       ////
       ////#if defined(FREEBSD) || defined(LINUX)
       ////
@@ -487,7 +487,7 @@ namespace application_build_helper
       //
       //      }
       //
-      //      int iCreateLinuxMatterObject = string(getenv("DISTRO")) == "raspbian";
+      //      ::i32 iCreateLinuxMatterObject = string(getenv("DISTRO")) == "raspbian";
       //
       //#if defined(FREEBSD) || defined(LINUX)
       //

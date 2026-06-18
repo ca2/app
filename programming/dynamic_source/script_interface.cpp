@@ -412,7 +412,7 @@ namespace dynamic_source
       catch (...)
       {
 
-         // stop int_point
+         // stop i32_point
          bOk = false;
 
       }
@@ -866,7 +866,7 @@ namespace dynamic_source
    }
 
 
-   ::pointer < ::file::listing > script_interface::folder_enumerate(int iId, const ::file::path& pathFolder, const ::function < void(::file::listing& listing) >& procedureListing)
+   ::pointer < ::file::listing > script_interface::folder_enumerate(::i32 iId, const ::file::path& pathFolder, const ::function < void(::file::listing& listing) >& procedureListing)
    {
 
       return m_pscript1->folder_enumerate(iId, pathFolder, procedureListing);

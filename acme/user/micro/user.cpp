@@ -292,14 +292,14 @@ namespace micro
       }
 
 
-      void user::display_error_trap_push(int i)
+      void user::display_error_trap_push(::i32 i)
       {
 
 
       }
 
 
-      void user::display_error_trap_pop_ignored(int i)
+      void user::display_error_trap_pop_ignored(::i32 i)
       {
 
 
@@ -563,11 +563,19 @@ namespace micro
 
          }
 
-         pdialogreifier->display(pmessageboxpayload);
+         pdialogreifier->display_dialog(pmessageboxpayload);
 
          //return pmessageboxReified;
 
       }
+
+
+      //void user::post_message_box_payload(::message_box_payload * pmessageboxpayload)
+      //{
+
+      //   micro_theme()->post_message_box_payload(pmessageboxpayload);
+
+      //}
 
    
 } // namespace micro

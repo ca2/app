@@ -12,18 +12,18 @@ namespace  sort
 
 
    //   void quick_sort(
-   //                  ::array<unsigned int, unsigned int> & array,
-   //                  int fCompare(const index, const index),
+   //                  ::array<::u32, ::u32> & array,
+   //                  ::i32 fCompare(const index, const index),
    //                  void __swap(void * pVoidSwapArg, ::collection::index iA, ::collection::index iB),
    //                  void * pVoidSwapArg);
    //
    //
-   //   void BubbleSort(int * pint, int size);
+   //   void BubbleSort(::i32 * pint, ::i32 size);
    //
 
    //   void quick_sort(
-   //      ::array<unsigned int, unsigned int> & array,
-   //      int fCompare(const index, const index),
+   //      ::array<::u32, ::u32> & array,
+   //      ::i32 fCompare(const index, const index),
    //      void __swap(void * pVoidSwapArg, ::collection::index iA, ::collection::index iB),
    //      void * pVoidSwapArg)
    //   {
@@ -34,7 +34,7 @@ namespace  sort
    //      index iUpperBound;
    //      index iLPos, iUPos, iMPos;
    //
-   //      unsigned int t;
+   //      ::u32 t;
    //
    //      if(array.get_size() >= 2)
    //      {
@@ -105,16 +105,16 @@ namespace  sort
    //
    //   }
 
-   //   void BubbleSort(int * pint, int size)
+   //   void BubbleSort(::i32 * pint, ::i32 size)
    //
    //   {
-   //      for(int i = 0; i < size; i++)
-   //         for(int j = i + 1; j < size; j++)
+   //      for(::i32 i = 0; i < size; i++)
+   //         for(::i32 j = i + 1; j < size; j++)
    //         {
    //            if(pint[i] > pint[j])
    //
    //            {
-   //               int __swap = pint[j];
+   //               ::i32 __swap = pint[j];
    //
    //               pint[j] = pint[i];
    //

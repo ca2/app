@@ -158,27 +158,27 @@ namespace platform
 
 #ifdef _DEBUG
       ::atom atom;
-      int iAtom1 = sizeof(atom);
-      int iAtomType = sizeof(atom.m_etype);
-      int iDomainId = sizeof(atom.m_domainid);
+      ::i32 iAtom1 = sizeof(atom);
+      ::i32 iAtomType = sizeof(atom.m_etype);
+      ::i32 iDomainId = sizeof(atom.m_domainid);
       ::payload payload;
       auto pType = &payload.m_etype;
       auto pAll = &payload.m_payloadall;
-      int iType = sizeof(payload.m_etype);
-      int iAll = sizeof(payload.m_payloadall);
-      int iThis = sizeof(payload);
-      int iAddUp = 0;
+      ::i32 iType = sizeof(payload.m_etype);
+      ::i32 iAll = sizeof(payload.m_payloadall);
+      ::i32 iThis = sizeof(payload);
+      ::i32 iAddUp = 0;
 #if REFERENCING_DEBUGGING
       iAddUp += sizeof(payload.m_preferer);
 #endif
-      int iComputed = (int)(((unsigned char *)pAll - (unsigned char *)pType) + iAll + iAddUp);
-      int iColor = sizeof(payload.m_color);
-      int iStr = sizeof(payload.m_str);
-      int iHls = sizeof(payload.m_hls);
-      int iTime = sizeof(payload.m_time);
-      int iAtom = sizeof(payload.id());
-      int iFileTime = sizeof(payload.m_filetime);
-      int iEarthTime = sizeof(payload.m_earthtime);
+      ::i32 iComputed = (::i32)(((::u8 *)pAll - (::u8 *)pType) + iAll + iAddUp);
+      ::i32 iColor = sizeof(payload.m_color);
+      ::i32 iStr = sizeof(payload.m_str);
+      ::i32 iHls = sizeof(payload.m_hls);
+      ::i32 iTime = sizeof(payload.m_time);
+      ::i32 iAtom = sizeof(payload.id());
+      ::i32 iFileTime = sizeof(payload.m_filetime);
+      ::i32 iEarthTime = sizeof(payload.m_earthtime);
       if (iThis != iComputed)
       {
 
@@ -315,7 +315,7 @@ namespace platform
 
       }
 
-      //         for (int i = 0; i < get_argument_count1(); i++)
+      //         for (::i32 i = 0; i < get_argument_count1(); i++)
       //         {
       //
       //            string strArg = get_argument1(i);
@@ -458,7 +458,7 @@ namespace platform
       //
       //      //papplication->is_console() = false;
       //
-      //      //int iExitCode = papplication->main_loop();
+      //      //::i32 iExitCode = papplication->main_loop();
       //
       //      //return iExitCode;
       //
@@ -1059,7 +1059,7 @@ namespace platform
 
          string_array_base straArguments;
 
-         for (int i = 0; i < ::system()->get_argument_count1(); i++)
+         for (::i32 i = 0; i < ::system()->get_argument_count1(); i++)
          {
 
             string strArgument = ::system()->get_argument1(i);
@@ -1087,14 +1087,14 @@ namespace platform
          if (::system()->m_wenvp)
          {
 
-            int iIndex = 0;
+            ::i32 iIndex = 0;
 
             for (auto wenv = ::system()->m_wenvp; *wenv != 0; wenv++, iIndex++)
             {
 
                auto thisEnv = *wenv;
 
-               int iLen = (int)wcslen(thisEnv);
+               ::i32 iLen = (::i32)wcslen(thisEnv);
 
                /*if (iLen >= 42)
                {
@@ -1287,7 +1287,7 @@ namespace platform
    }
 
 
-   unsigned int system::crc32(unsigned int uCrc, const ::block & block)
+   ::u32 system::crc32(::u32 uCrc, const ::block & block)
    {
 
       _synchronous_lock synchronouslock(this->synchronization(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
@@ -1337,7 +1337,7 @@ namespace platform
    }
 
 
-   //void system::__tracea(enum_trace_level elevel, const ::scoped_string & scopedstrFunction, const ::scoped_string & scopedstrFile, int iLine, const ::scoped_string & scopedstr) const
+   //void system::__tracea(enum_trace_level elevel, const ::scoped_string & scopedstrFunction, const ::scoped_string & scopedstrFile, ::i32 iLine, const ::scoped_string & scopedstr) const
    //{
 
    //   if (!m_ptracelog)
@@ -1711,7 +1711,7 @@ namespace platform
 
       }
 
-      //::string strRoot = "ca2.network";
+      //::string strRoot = "ca2.site";
 
       //::file::path pathGooglePayload = "C:\\sensitive\\sensitive\\api\\google\\account\\" + strRoot + ".network_payload";
 
@@ -2105,7 +2105,7 @@ namespace platform
    }
 
 
-   //   int system::pcre_add_tokens(string_array_base& stra, const ::scoped_string & scopedstrTopic, const ::scoped_string & scopedstrRegexp, int nCount)
+   //   ::i32 system::pcre_add_tokens(string_array_base& stra, const ::scoped_string & scopedstrTopic, const ::scoped_string & scopedstrRegexp, ::i32 nCount)
    //   {
    //
    //      throw_todo();
@@ -2128,7 +2128,7 @@ namespace platform
    void system::get_public_internet_domain_extension_list(string_array_base & stra)
    {
 
-      //::file::path pathPublicDomainExtensionList = "https://ca2.network/public_internet_domain_extension_list.txt";
+      //::file::path pathPublicDomainExtensionList = "https://ca2.site/public_internet_domain_extension_list.txt";
 
       //file()->load_lines(stra, pathPublicDomainExtensionList);
 
@@ -2455,7 +2455,7 @@ namespace platform
 
             ::string_array_base straFiles;
 
-            for (int iArgument = 1; iArgument < m_argc; )
+            for (::i32 iArgument = 1; iArgument < m_argc; )
             {
 
                auto iArgumentBefore = iArgument;
@@ -2597,7 +2597,7 @@ namespace platform
    //}
 
 
-   //void system::system_construct(int argc, char** argv, char** envp)
+   //void system::system_construct(::i32 argc, char_pointer * argv, char_pointer * envp)
    //{
 
    //   throw ::interface_only();
@@ -2605,7 +2605,7 @@ namespace platform
    //}
 
 
-   //void system::system_construct(int argc, wchar_t** argv, wchar_t** envp)
+   //void system::system_construct(::i32 argc, wchar_t** argv, wchar_t** envp)
    //{
 
    //   throw ::interface_only();
@@ -2805,7 +2805,7 @@ namespace platform
    }
 
 
-   //void system::system_construct(int argc, wchar_t** argv, wchar_t** envp)
+   //void system::system_construct(::i32 argc, wchar_t** argv, wchar_t** envp)
    //{
 
    //   acme_main_data::system_construct(argc, argv, envp);
@@ -2824,7 +2824,7 @@ namespace platform
 #ifdef _DEBUG
 
 
-   long long system::increment_reference_count()
+   ::i64 system::increment_reference_count()
    {
 
       return ::object::increment_reference_count();
@@ -2832,7 +2832,7 @@ namespace platform
    }
 
 
-   long long system::decrement_reference_count()
+   ::i64 system::decrement_reference_count()
    {
 
       return ::object::decrement_reference_count();
@@ -2843,7 +2843,7 @@ namespace platform
 #endif
 
 
-   void system::system_id_update(long long iId, long long iPayload)
+   void system::system_id_update(::i64 iId, ::i64 iPayload)
    {
 
       call((::enum_id)iId, iPayload);
@@ -3694,7 +3694,7 @@ namespace platform
    }
 
 
-   void system::install_progress_add_up(int iAddUp)
+   void system::install_progress_add_up(::i32 iAddUp)
    {
 
 
@@ -3748,7 +3748,7 @@ namespace platform
    }
 
 
-   double system::luminance() const
+   ::f64 system::luminance() const
    {
 
       return m_dLuminance;
@@ -3775,7 +3775,7 @@ namespace platform
    }
 
 
-   ::color::color system::get_simple_ui_color(::enum_element eelement, ::user::enum_state estate)
+   ::color::color system::get_simple_ui_color(const ::e_element & eelement, const ::user::e_state & estate)
    {
 
       ::color::color color;
@@ -4232,7 +4232,7 @@ namespace platform
 //}
 
 
-void system_id_update(void * pSystem, long long iUpdate, long long iParam)
+void system_id_update(void * pSystem, ::i64 iUpdate, ::i64 iParam)
 {
 
    auto psystem = (::platform::system *)pSystem;
@@ -4311,7 +4311,7 @@ void system_on_open_file(void * pSystem, const_char_pointer pszFile)
 //
 //         //   //pfuture->wait(10_s);
 //
-//         //   int iDialogResult = pfuture->m_var;
+//         //   ::i32 iDialogResult = pfuture->m_var;
 //
 //         //   informationf("result " + as_string(iDialogResult));
 //

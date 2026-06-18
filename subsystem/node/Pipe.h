@@ -1,0 +1,181 @@
+// Copyright (C) 2009,2010,2011,2012 GlavSoft LLC.
+// All rights reserved.
+//
+//-------------------------------------------------------------------------
+// This file is part of the T i g h t V N C software.  Please visit our Web site:
+//
+//                       http://www.t i g h t v n c.com/
+//
+// This program is free software; you can redistribute it and/or modify
+// it under the terms of the GNU General Public License as published by
+// the Free Software Foundation; either version 2 of the License, or
+// (at your option) any later version.
+//
+// This program is distributed in the hope that it will be useful,
+// but WITHOUT ANY WARRANTY; without even the implied warranty of
+// MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+// GNU General Public License for more details.
+//
+// You should have received a copy of the GNU General Public License along
+// with this program; if not, w_rite to the Free Software Foundation, Inc.,
+// 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA.
+//-------------------------------------------------------------------------
+//
+
+#pragma once
+
+
+#include "subsystem/_common_header.h"
+//#include "win-system/::happening.h"
+#include "acme/input_output/Channel.h"
+////#include "remoting/remoting/thread/LocalMutex.h"
+
+namespace subsystem
+{
+   // This class is not an interface but is a class that contain common
+   // methods/source codes for derived classes to work with pipe handles.
+   class PipeInterface :
+   virtual public ::Particle
+   {
+   public:
+
+      //protected:
+      //Pipe(::u32 maxPortionSize);
+      //Pipe();
+      //virtual ~PipeInterface() = 0 ;
+
+
+      virtual void initialize_pipe(::u32 maxPortionSize) = 0;
+
+      virtual ::u32 getMaxPortionSize() = 0;
+
+      //virtual void *_HANDLE() = 0;
+
+      // This read and write functions is common way to read and write
+      // by pipe handles asynchronously.
+
+      // The pointer uses because the functions must have access to
+      // the same variable as in a derived class to rich a thread safe
+      // handle usage.
+      virtual memsize readByFile(void *buffer, memsize len, ::subsystem::FileInterface * pfilePipe) = 0;
+      virtual memsize writeByFile(const void *buffer, memsize len, ::subsystem::FileInterface * pfilePipe) = 0;
+
+      // This mutex is to use for pipe handles that uses in the above functions.
+      // The mutex protect collision accesses to handle fields of derived classes.
+      //LocalMutex m_hPipeMutex;
+
+      //::happening m_readEvent;
+      //::happening m_writeEvent;
+
+      //private:
+      virtual void checkPipeFile(::subsystem::FileInterface * pfilePipe) = 0;
+      //
+      // ::u64 m_totalWrote;
+      // ::u64 m_totalRead;
+      // ::u32 m_maxPortionSize;
+   };
+
+   ///using PipeInterface = particle_interface<PipeInterface>;
+
+
+   // This class is not an interface but is a class that contain common
+   // methods/source codes for derived classes to work with pipe handles.
+   class CLASS_DECL_SUBSYSTEM PipeComposite :
+      virtual public Composite< PipeInterface>
+   {
+   public:
+
+
+      ImplementCompositeø(Pipe, pipe)
+
+
+      //protected:
+      //Pipe(::u32 maxPortionSize);
+      //Pipe();
+      //~Pipe() override;
+
+         void initialize_pipe(::u32 maxPortionSize) override
+      {
+
+         m_ppipe->initialize_pipe(maxPortionSize);
+
+      }
+
+
+      ::u32 getMaxPortionSize() override
+      {
+
+         return m_ppipe->getMaxPortionSize();
+
+      }
+
+      // void* _HANDLE() override
+      // {
+      //
+      //    return m_ppipe->_HANDLE();
+      //
+      // }
+
+      // This read and write functions is common way to read and write
+      // by pipe handles asynchronously.
+
+      // The pointer uses because the functions must have access to
+      // the same variable as in a derived class to rich a thread safe
+      // handle usage.
+      memsize readByFile(void* buffer, memsize len, ::subsystem::FileInterface* pfilePipe) override
+      {
+
+         return m_ppipe->readByFile(buffer, len, pfilePipe);
+
+      }
+      memsize writeByFile(const void* buffer, memsize len, ::subsystem::FileInterface* pfilePipe) override
+      {
+
+         return m_ppipe->writeByFile(buffer, len, pfilePipe);
+
+      }
+
+      // This mutex is to use for pipe handles that uses in the above functions.
+      // The mutex protect collision accesses to handle fields of derived classes.
+      //LocalMutex m_hPipeMutex;
+
+      //::happening m_readEvent;
+      //::happening m_writeEvent;
+
+      //private:
+      void checkPipeFile(::subsystem::FileInterface* pfilePipe) override
+      {
+
+         return m_ppipe->checkPipeFile(pfilePipe);
+
+      }
+
+      //::u64 m_totalWrote;
+      //::u64 m_totalRead;
+      //::u32 m_maxPortionSize;
+   };
+
+   class CLASS_DECL_SUBSYSTEM PipeAggregate :
+   virtual public Aggregate< PipeComposite>
+   {
+   public:
+
+      ImplementBaseø(Pipe)
+
+   };
+
+   class CLASS_DECL_SUBSYSTEM Pipe :
+    virtual public Object < PipeAggregate >
+   {
+   public:
+
+      ImplementObjectø(Pipe)
+
+   };
+
+
+   //// __PIPE_H__
+} // namespace subsystem
+
+
+

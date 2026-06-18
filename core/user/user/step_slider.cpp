@@ -2,7 +2,7 @@
 #include "step_slider.h"
 #include "acme/constant/user_message.h"
 #include "acme/handler/item.h"
-#include "acme/platform/timer.h"
+//#include "acme/platform/timer.h"
 #include "aura/graphics/draw2d/graphics.h"
 #include "aura/message/user.h"
 #include "aura/windowing/window.h"
@@ -50,10 +50,10 @@ namespace user
 
    }
 
-   void step_slider::on_timer(::timer * ptimer)
+   void step_slider::operator()(::timer * ptimer)
    {
-      ::user::interaction::on_timer(ptimer);;
-//      if(ptimer->m_uTimer == 1)
+      ::user::interaction::operator()(ptimer);;
+//      if(ptimer->m_etimer == e_timer_hover_update)
 //      {
 //         if(::is_set(m_pitemHover))
 //         {
@@ -100,7 +100,7 @@ namespace user
 
       __UNREFERENCED_PARAMETER(pmessage);
 
-      set_timer(1, 200_ms, nullptr);
+      //set_timer(e_timer_hover_update, 200_ms, nullptr);
 
       m_pitemHover = allocateø ::item(::e_element_client);
 
@@ -119,16 +119,16 @@ namespace user
 
       auto rectangleX = this->rectangle();
 
-      unsigned char bAlpha = (unsigned char) (128.0 * get_alpha());
+      ::u8 bAlpha = (::u8) (128.0 * get_alpha());
 
       pgraphics->fill_rectangle(rectangleX, argb(bAlpha, 150, 200, 255));
 
-      long long iMin = m_scalar.minimum().get_long_long();
-      long long iMax = m_scalar.maximum().get_long_long();
-      long long iVal = m_scalar.get().get_long_long();
+      ::i64 iMin = m_scalar.minimum().get_i64();
+      ::i64 iMax = m_scalar.maximum().get_i64();
+      ::i64 iVal = m_scalar.get().get_i64();
 
-      ::int_rectangle rectangle;
-      for(long long i = iMin; i <= iMax; i++)
+      ::i32_rectangle rectangle;
+      for(::i64 i = iMin; i <= iMax; i++)
       {
          GetStepRect(&rectangle, i, iMin, iMax, rectangleX);
          if(i == iVal)
@@ -171,7 +171,7 @@ namespace user
    }
 
 
-   void step_slider::GetStepHoverRect(::int_rectangle * prectangle, long long iStep, long long iMin, long long iMax, const ::int_rectangle & rectangleX)
+   void step_slider::GetStepHoverRect(::i32_rectangle * prectangle, ::i64 iStep, ::i64 iMin, ::i64 iMax, const ::i32_rectangle & rectangleX)
    {
 
       if((iMax - iMin) == 0)
@@ -181,18 +181,18 @@ namespace user
 
       prectangle->bottom = rectangleX.bottom;
 
-      double dWidth = ((double)rectangleX.width()) / (iMax - iMin);
+      ::f64 dWidth = ((::f64)rectangleX.width()) / (iMax - iMin);
 
-      prectangle->left = (int) (dWidth * (iStep - iMin));
+      prectangle->left = (::i32) (dWidth * (iStep - iMin));
 
-      prectangle->right = (int) (dWidth * (iStep - iMin + 1));
+      prectangle->right = (::i32) (dWidth * (iStep - iMin + 1));
 
 
 
    }
 
 
-   void step_slider::GetStepRect(::int_rectangle * prectangle, long long iStep, long long iMin, long long iMax, const ::int_rectangle & rectangleX)
+   void step_slider::GetStepRect(::i32_rectangle * prectangle, ::i64 iStep, ::i64 iMin, ::i64 iMax, const ::i32_rectangle & rectangleX)
    {
 
       if((iMax - iMin) == 0)
@@ -200,7 +200,7 @@ namespace user
 
       GetStepHoverRect(prectangle, iStep, iMin, iMax, rectangleX);
 
-      int halfm = (prectangle->right - prectangle->left - 2) / 2;
+      ::i32 halfm = (prectangle->right - prectangle->left - 2) / 2;
 
       prectangle->left +=  halfm;
 
@@ -210,7 +210,7 @@ namespace user
    }
 
 
-   ::item_pointer step_slider::on_hit_test(const ::int_point &point, ::user::e_zorder ezorder)
+   ::item_pointer step_slider::on_hit_test(const ::i32_point &point, ::user::e_zorder ezorder)
    {
 
       auto rectangleX = this->rectangle();
@@ -224,11 +224,11 @@ namespace user
 
       }
 
-      long long iMin, iMax;
+      ::i64 iMin, iMax;
 
-      iMin = m_scalar.minimum().get_long_long();
+      iMin = m_scalar.minimum().get_i64();
 
-      iMax = m_scalar.maximum().get_long_long();
+      iMax = m_scalar.maximum().get_i64();
 
       return allocateø ::item(e_element_item, (::collection::index) (iMin + (((point.x - rectangleX.left) * (iMax - iMin)) / rectangleX.width())));
 
@@ -246,7 +246,7 @@ namespace user
 //
 //      set_need_redraw();
 //
-//      ::int_rectangle rectangleX;
+//      ::i32_rectangle rectangleX;
 //
 //      this->rectangle(rectangleX);
 //

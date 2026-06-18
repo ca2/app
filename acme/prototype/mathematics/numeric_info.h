@@ -77,13 +77,13 @@ namespace numeric_info_internal
 
 
    template < >
-   class CLASS_DECL_ACME numeric_info < char > :
+   class CLASS_DECL_ACME numeric_info < ::i8 > :
       public numeric_integer_base
    {
    public:
 
-      typedef char TYPE;
-      typedef char OFFSET_TYPE;
+      typedef ::i8 TYPE;
+      typedef ::i8 OFFSET_TYPE;
 
       static consteval TYPE maximum()
       {
@@ -113,13 +113,13 @@ namespace numeric_info_internal
    };
 
    template < >
-   class CLASS_DECL_ACME numeric_info < unsigned char > :
+   class CLASS_DECL_ACME numeric_info < ::u8 > :
       public numeric_integer_base
    {
    public:
 
-      typedef unsigned char TYPE;
-      typedef char OFFSET_TYPE;
+      typedef ::u8 TYPE;
+      typedef ::i8 OFFSET_TYPE;
 
       static consteval TYPE maximum()
       {
@@ -148,13 +148,13 @@ namespace numeric_info_internal
 
    };
    template < >
-   class CLASS_DECL_ACME numeric_info < short > :
+   class CLASS_DECL_ACME numeric_info < ::i16 > :
       public numeric_integer_base
    {
    public:
 
-      typedef short TYPE;
-      typedef short OFFSET_TYPE;
+      typedef ::i16 TYPE;
+      typedef ::i16 OFFSET_TYPE;
 
       static consteval TYPE maximum()
       {
@@ -184,13 +184,13 @@ namespace numeric_info_internal
    };
 
    template < >
-   class CLASS_DECL_ACME numeric_info < unsigned short > :
+   class CLASS_DECL_ACME numeric_info < ::u16 > :
       public numeric_integer_base
    {
    public:
 
-      typedef unsigned short TYPE;
-      typedef short OFFSET_TYPE;
+      typedef ::u16 TYPE;
+      typedef ::i16 OFFSET_TYPE;
 
       static consteval TYPE maximum()
       {
@@ -220,13 +220,13 @@ namespace numeric_info_internal
    };
 
    template < >
-   class CLASS_DECL_ACME numeric_info < int > :
+   class CLASS_DECL_ACME numeric_info < ::i32 > :
       public numeric_integer_base
    {
    public:
 
-      typedef int TYPE;
-      typedef int OFFSET_TYPE;
+      typedef ::i32 TYPE;
+      typedef ::i32 OFFSET_TYPE;
 
       static consteval TYPE maximum()
       {
@@ -301,13 +301,13 @@ namespace numeric_info_internal
    };
 
    template < >
-   class CLASS_DECL_ACME numeric_info < long long > :
+   class CLASS_DECL_ACME numeric_info < ::i64 > :
       public numeric_integer_base
    {
    public:
 
-      typedef long long TYPE;
-      typedef long long OFFSET_TYPE;
+      typedef ::i64 TYPE;
+      typedef ::i64 OFFSET_TYPE;
 
       static consteval TYPE maximum()
       {
@@ -337,13 +337,13 @@ namespace numeric_info_internal
    };
 
    template < >
-class CLASS_DECL_ACME numeric_info < unsigned long long > :
+class CLASS_DECL_ACME numeric_info < ::u64 > :
    public numeric_integer_base
    {
    public:
 
-      typedef unsigned long long TYPE;
-      typedef long long OFFSET_TYPE;
+      typedef ::u64 TYPE;
+      typedef ::i64 OFFSET_TYPE;
 
       static consteval TYPE maximum()
       {
@@ -373,13 +373,13 @@ class CLASS_DECL_ACME numeric_info < unsigned long long > :
    };
 
    template < >
-   class CLASS_DECL_ACME numeric_info < unsigned int > :
+   class CLASS_DECL_ACME numeric_info < ::u32 > :
       public numeric_integer_base
    {
    public:
 
-      typedef unsigned int TYPE;
-      typedef int OFFSET_TYPE;
+      typedef ::u32 TYPE;
+      typedef ::i32 OFFSET_TYPE;
 
       static consteval TYPE maximum()
       {
@@ -410,13 +410,13 @@ class CLASS_DECL_ACME numeric_info < unsigned long long > :
 
 
    template < >
-   class CLASS_DECL_ACME numeric_info < unsigned long > :
+   class CLASS_DECL_ACME numeric_info < ulong > :
       public numeric_integer_base
    {
    public:
 
-      typedef unsigned int TYPE;
-      typedef int OFFSET_TYPE;
+      typedef ::u32 TYPE;
+      typedef ::i32 OFFSET_TYPE;
 
       static consteval TYPE maximum()
       {
@@ -454,13 +454,13 @@ class CLASS_DECL_ACME numeric_info < unsigned long long > :
    && !defined(__ANDROID__)
 
    template < >
-   class CLASS_DECL_ACME numeric_info < long long > :
+   class CLASS_DECL_ACME numeric_info < ::i64 > :
       public numeric_integer_base
    {
    public:
 
-      typedef long long TYPE;
-      typedef long long OFFSET_TYPE;
+      typedef ::i64 TYPE;
+      typedef ::i64 OFFSET_TYPE;
 
       static consteval TYPE maximum()
       {
@@ -490,13 +490,13 @@ class CLASS_DECL_ACME numeric_info < unsigned long long > :
    };
 
    template < >
-   class CLASS_DECL_ACME numeric_info < unsigned long long >:
+   class CLASS_DECL_ACME numeric_info < ::u64 >:
       public numeric_integer_base
    {
    public:
 
-      typedef unsigned long long TYPE;
-      typedef long long OFFSET_TYPE;
+      typedef ::u64 TYPE;
+      typedef ::i64 OFFSET_TYPE;
 
       static consteval TYPE maximum()
       {
@@ -530,13 +530,13 @@ class CLASS_DECL_ACME numeric_info < unsigned long long > :
 
 
    template < >
-   class CLASS_DECL_ACME numeric_info < float >:
+   class CLASS_DECL_ACME numeric_info < ::f32 >:
       public numeric_floating_base
    {
    public:
 
-      typedef float TYPE;
-      typedef float OFFSET_TYPE;
+      typedef ::f32 TYPE;
+      typedef ::f32 OFFSET_TYPE;
 
       static consteval TYPE maximum()
       {
@@ -566,13 +566,13 @@ class CLASS_DECL_ACME numeric_info < unsigned long long > :
 
 
    template < >
-   class CLASS_DECL_ACME numeric_info < double >:
+   class CLASS_DECL_ACME numeric_info < ::f64 >:
       public numeric_floating_base
    {
    public:
 
-      typedef double TYPE;
-      typedef double OFFSET_TYPE;
+      typedef ::f64 TYPE;
+      typedef ::f64 OFFSET_TYPE;
 
 
       static consteval TYPE maximum()
@@ -741,7 +741,7 @@ T & maximum(T & t)
 /// @param bit must be in the range 0 to sizeof_in_bits(N) - 1
 /// @return true if bit at index @bit is set at @n, false otherwise
 template < prototype_integral N >
-constexpr bool is_bit_set(N n, int bit)
+constexpr bool is_bit_set(N n, ::i32 bit)
 {
 
    return !(n & numeric_info < N >::unitary() << bit);
@@ -754,10 +754,10 @@ constexpr bool is_bit_set(N n, int bit)
 /// @param n an integral type payload
 /// @return the index of the most significant bit set at @n or -1 if none is found
 template < prototype_integral N >
-constexpr int most_significant_bit_index(N n)
+constexpr ::i32 most_significant_bit_index(N n)
 {
 
-   int bit = sizeof_in_bits(N);
+   ::i32 bit = sizeof_in_bits(N);
 
    do
    {

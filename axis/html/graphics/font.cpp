@@ -30,7 +30,7 @@ namespace html
 
       constructø(m_pfont);
 
-      int iWeight;
+      ::i32 iWeight;
 
       m_strWeight.trim();
 
@@ -47,7 +47,7 @@ namespace html
          iWeight = maximum(100, atoi(m_strWeight));
       }
 
-      double dSize;
+      ::f64 dSize;
 
       m_strSize.trim();
 
@@ -64,7 +64,7 @@ namespace html
 
       string_array_base stra;
       stra.add_tokens(m_strFamily,",", false);
-      for(int i = 0; i < stra.get_size(); i++)
+      for(::i32 i = 0; i < stra.get_size(); i++)
       {
          stra[i].trim();
          if(stra[i].case_insensitive_order("fixed-width") == 0)

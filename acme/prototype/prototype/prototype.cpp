@@ -23,13 +23,13 @@ namespace prototype
    }
 
 #ifdef _DEBUG
-   long long prototype::increment_reference_count()
+   ::i64 prototype::increment_reference_count()
    {
 
       return ::particle::increment_reference_count();
 
    }
-   long long prototype::decrement_reference_count()
+   ::i64 prototype::decrement_reference_count()
    {
       return ::particle::decrement_reference_count();
    }
@@ -58,8 +58,8 @@ namespace prototype
       auto iSeconds = m_pmathematics->random(d1.m_iSecond, d2.m_iSecond);
 
       class ::time time(iSeconds, m_pmathematics->random(
-         (long long)(((long long)iSeconds > d1.m_iSecond) ? 0 : d1.m_iNanosecond),
-         (long long)(((long long)iSeconds < d2.m_iSecond) ? 999'999'999 : d2.m_iNanosecond)));
+         (::i64)(((::i64)iSeconds > d1.m_iSecond) ? 0 : d1.m_iNanosecond),
+         (::i64)(((::i64)iSeconds < d2.m_iSecond) ? 999'999'999 : d2.m_iNanosecond)));
 
       return time;
 

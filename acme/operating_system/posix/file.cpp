@@ -2,7 +2,8 @@
 #include "file.h"
 #include "acme/filesystem/file/exception.h"
 #include "acme/filesystem/file/status.h"
-#include "acme/operating_system/shared_posix/c_error_number.h"
+#include "acme/filesystem/filesystem/directory_context.h"
+#include "acme/operating_system/shared_posix/c_errno.h"
 #include "acme/operating_system/shared_posix/time1.h"
 #include "acme/_operating_system.h"
 #include "acme/operating_system/console.h"
@@ -38,7 +39,7 @@ namespace unistd
 m_iFile(file.m_iFile)
    {
    }
-   file::file(int iFile):
+   file::file(::i32 iFile):
 m_iFile(iFile)
    {
    }
@@ -49,9 +50,9 @@ close();
 
    }
 
-   int file::close()
+   ::i32 file::close()
    {
-      int res = 0;
+      ::i32 res = 0;
       if(m_iFile >= 0)
       {
 
@@ -82,7 +83,7 @@ close();
 
 
 
-      int file::set_cloexec_or_close()
+      ::i32 file::set_cloexec_or_close()
       {
          long flags;
 
@@ -104,7 +105,7 @@ close();
       }
 
 
-      int file::create_tmpfile_cloexec(char * tmpname)
+      ::i32 file::create_tmpfile_cloexec(char_pointer tmpname)
       {
 
 #ifdef HAVE_MKOSTEMP
@@ -136,24 +137,26 @@ close();
        *
        * The file is suitable for buffer sharing between processes by
        * transmitting the file descriptor over Unix sockets using the
-       * SCM_RIGHTS methods.
+       * ServiceControlManager_RIGHTS methods.
        */
-      int    file::create_anonymous_file(memsize size)
+      ::i32    file::create_anonymous_file(memsize size)
       {
-         static const char pszTemplate[] = "/weston-shared-XXXXXX";
-         const_char_pointer path;
-         char * name;
+         static const ::i8 pszTemplate[] = "/weston-shared-XXXXXX";
+         char_pointer name;
+         
+         ::file::path pathBaseFolder;
 
-         path = getenv("XDG_RUNTIME_DIR");
-         if (!path)
+         pathBaseFolder = getenv("XDG_RUNTIME_DIR");
+         if (pathBaseFolder.is_empty())
          {
-            errno = ENOENT;
-            return -1;
+            
+            pathBaseFolder = system()->directory()->home() / ".config";
+            
          }
 
          ::file::path filepath;
 
-         filepath = path;
+         filepath = pathBaseFolder;
          filepath /= pszTemplate;
 
          ::string strPath = filepath;
@@ -178,7 +181,7 @@ close();
 
 }//namespace unistd
 
-char * malloc_get_current_dir_name()
+char_pointer malloc_get_current_dir_name()
 {
    
    auto size = pathconf(".", _PC_PATH_MAX);
@@ -190,7 +193,7 @@ char * malloc_get_current_dir_name()
       
    }
    
-   char * buf = (char *) malloc(size + 1);
+   char_pointer buf = (char_pointer ) malloc(size + 1);
    
    if(buf == nullptr)
    {
@@ -240,7 +243,7 @@ char * malloc_get_current_dir_name()
 ////void file_read_ex1_string_dup(FILE * hfile, ::md5::md5 * pctx, string & str);
 //
 //
-//int_bool set_file_size_fd(int fd, size_t iSize)
+//::i32_bool set_file_size_fd(::i32 fd, size_t iSize)
 //{
 //
 //   if (ftruncate(fd, iSize) == -1)
@@ -251,7 +254,7 @@ char * malloc_get_current_dir_name()
 //}
 //
 //
-//long long get_file_size(int fd)
+//::i64 get_file_size(::i32 fd)
 //{
 //
 //   struct stat st;
@@ -271,12 +274,12 @@ char * malloc_get_current_dir_name()
 //
 //
 //
-//int_bool set_file_size(const_char_pointer lpszName, size_t iSize)
+//::i32_bool set_file_size(const_char_pointer pszName, size_t iSize)
 //{
 //
-//   int fd = ::open(lpszName, O_RDONLY);
+//   ::i32 fd = ::open(pszName, O_RDONLY);
 //
-//   int_bool bSet = ::ensure_file_size_fd(fd, iSize) != -1;
+//   ::i32_bool bSet = ::ensure_file_size_fd(fd, iSize) != -1;
 //
 //   ::close(fd);
 //
@@ -285,7 +288,7 @@ char * malloc_get_current_dir_name()
 //}
 //
 //
-//int_bool file_system()->exists(const ::file::path & path1)
+//::i32_bool file_system()->exists(const ::file::path & path1)
 //{
 //
 //   // dedicaverse stat -> Sir And Arthur - Cesar Serenato
@@ -311,7 +314,7 @@ char * malloc_get_current_dir_name()
 //}
 //
 //
-//int_bool path_system()->is_file_or_dir(const ::file::path & path1, ::file::enum_type * petype)
+//::i32_bool path_system()->is_file_or_dir(const ::file::path & path1, ::file::enum_type * petype)
 //{
 //
 //   struct stat st;
@@ -353,7 +356,7 @@ char * malloc_get_current_dir_name()
 //}
 //
 //
-//int_bool file_system()->put_contents(const ::file::path & path, const_char_pointer contents, ::collection::count len)
+//::i32_bool file_system()->put_contents(const ::file::path & path, const_char_pointer contents, ::collection::count len)
 //{
 //
 //   bool bOk = false;
@@ -393,7 +396,7 @@ char * malloc_get_current_dir_name()
 //
 //      }
 //
-//      size_t dwWritten = ::fwrite(contents, 1, (unsigned int)dwWrite, file);
+//      size_t dwWritten = ::fwrite(contents, 1, (::u32)dwWrite, file);
 //
 //      bOk = dwWritten == dwWrite;
 //
@@ -424,7 +427,7 @@ char * malloc_get_current_dir_name()
 //
 //   iReadAtMostByteCount = minimum_non_negative(iSize, iReadAtMostByteCount);
 //
-//   char * psz = str.get_buffer(iReadAtMostByteCount);
+//   char_pointer psz = str.get_buffer(iReadAtMostByteCount);
 //
 //
 //   ::collection::count iRead = fread(scopedstr, 1, iReadAtMostByteCount, f);
@@ -481,12 +484,12 @@ char * malloc_get_current_dir_name()
 //
 //      mem.set_size(1024 * 16);
 //
-//      int iRead;
+//      ::i32 iRead;
 //
 //      if (iReadAtMostByteCount >= 0)
 //      {
 //
-//         while ((iRead = (int)fread(mem.get_data(), 1, minimum(iReadAtMostByteCount - memory.get_size(), mem.get_size()), f)) > 0)
+//         while ((iRead = (::i32)fread(mem.get_data(), 1, minimum(iReadAtMostByteCount - memory.get_size(), mem.get_size()), f)) > 0)
 //         {
 //
 //            memory.append(mem.get_data(), iRead);
@@ -497,7 +500,7 @@ char * malloc_get_current_dir_name()
 //      else
 //      {
 //
-//         while ((iRead = (int)fread(mem.get_data(), 1, mem.get_size(), f)) > 0)
+//         while ((iRead = (::i32)fread(mem.get_data(), 1, mem.get_size(), f)) > 0)
 //         {
 //
 //            memory.append(mem.get_data(), iRead);
@@ -576,7 +579,7 @@ char * malloc_get_current_dir_name()
 ////
 ////   ::file::path path;
 ////
-////   char * pszModule = nullptr;
+////   char_pointer pszModule = nullptr;
 ////
 ////   if((scopedstrModule = br_find_exe(nullptr)) == nullptr)
 ////   {
@@ -584,9 +587,9 @@ char * malloc_get_current_dir_name()
 ////      if (!br_init_lib(nullptr))
 ////      {
 ////
-////         char path[PATH_MAX * 4];
+////         ::i8 path[PATH_MAX * 4];
 ////
-////         char dest[PATH_MAX * 4];
+////         ::i8 dest[PATH_MAX * 4];
 ////
 ////         pid_t pid = getpid();
 ////
@@ -622,7 +625,7 @@ char * malloc_get_current_dir_name()
 ////   wstring pszModuleFilePath(MAX_PATH * 8);
 ////
 ////
-////   if (!GetModuleFileNameW(nullptr, pszModuleFilePath, (unsigned int)pszModuleFilePath.count()))
+////   if (!GetModuleFileNameW(nullptr, pszModuleFilePath, (::u32)pszModuleFilePath.count()))
 ////
 ////      return "";
 ////
@@ -637,15 +640,15 @@ char * malloc_get_current_dir_name()
 ////
 ////}
 //
-//int_bool file_copy_dup(const ::scoped_string & scopedstrNew, const ::scoped_string & scopedstrSrc, int_bool bOverwrite)
+//::i32_bool file_copy_dup(const ::scoped_string & scopedstrNew, const ::scoped_string & scopedstrSrc, ::i32_bool bOverwrite)
 //{
 //
-//   int input, output;
+//   ::i32 input, output;
 //   size_t filesize;
 //   void * source, * target;
 //
 //
-//   int flags = O_RDWR | O_CREAT | O_TRUNC;
+//   ::i32 flags = O_RDWR | O_CREAT | O_TRUNC;
 //   if (!bOverwrite)
 //      flags |= O_EXCL;
 //   if ((output = open(scopedstrNew, flags, 0666)) == -1)
@@ -694,7 +697,7 @@ char * malloc_get_current_dir_name()
 //
 //}
 //
-//int_bool file_is_equal_path_dup(const ::scoped_string & scopedstr1, const ::scoped_string & scopedstr2)
+//::i32_bool file_is_equal_path_dup(const ::scoped_string & scopedstr1, const ::scoped_string & scopedstr2)
 //{
 //   if (case_insensitive_ansi_compare(scopedstr1, psz2) == 0)
 //      return true;
@@ -716,7 +719,7 @@ char * malloc_get_current_dir_name()
 //
 //
 //
-//int_bool file_delete(const ::file::path & path)
+//::i32_bool file_delete(const ::file::path & path)
 //
 //{
 //
@@ -734,17 +737,17 @@ char * malloc_get_current_dir_name()
 //
 //}
 //
-//int_bool file_path_is_equal(const ::scoped_string & scopedstr1, const ::scoped_string & scopedstr2)
+//::i32_bool file_path_is_equal(const ::scoped_string & scopedstr1, const ::scoped_string & scopedstr2)
 //{
 //
-//   const int iBufSize = MAX_PATH * 8;
+//   const ::i32 iBufSize = MAX_PATH * 8;
 //   wstring pwsz1 = utf8_to_unicode(scopedstr1);
 //   wstring pwsz2 = utf8_to_unicode(scopedstr2);
-//   //   unichar * pwszFile1;
-//      // unichar * pwszFile2;
+//   //   wide_character * pwszFile1;
+//      // wide_character * pwszFile2;
 //   ::wide_character * pwszPath1 = ___new ::wide_character[iBufSize];
 //   ::wide_character * pwszPath2 = ___new ::wide_character[iBufSize];
-//   int iCmp = -1;
+//   ::i32 iCmp = -1;
 //   //   if(GetFullPathNameW(pwsz1,iBufSize,pwszPath1,&pwszFile1))
 //      // {
 //      //  if(GetFullPathNameW(pwsz2,iBufSize,pwszPath2,&pwszFile2))
@@ -761,14 +764,14 @@ char * malloc_get_current_dir_name()
 //}
 //
 //
-//int ansi_open(const ::scoped_string & scopedstr, int i)
+//::i32 ansi_open(const ::scoped_string & scopedstr, ::i32 i)
 //{
 //
 //   return open(scopedstr, i);
 //
 //}
 //
-//void ansi_get_errno(int * perrno)
+//void ansi_get_errno(::i32 * perrno)
 //{
 //   *perrno = errno;
 //}
@@ -781,10 +784,10 @@ char * malloc_get_current_dir_name()
 //}
 //
 //
-//int ansi_file_flag(int iFlag)
+//::i32 ansi_file_flag(::i32 iFlag)
 //{
 //
-//   int i = 0;
+//   ::i32 i = 0;
 //
 //   if (iFlag & ::file::e_open_binary)
 //   {
@@ -830,7 +833,7 @@ char * malloc_get_current_dir_name()
 //}
 //
 //
-//int_bool is_dir(const ::file::path & path1)
+//::i32_bool is_dir(const ::file::path & path1)
 //{
 //
 //   struct stat st;
@@ -872,7 +875,7 @@ char * malloc_get_current_dir_name()
 //   try
 //   {
 //
-//      int c;
+//      ::i32 c;
 //
 //      do
 //      {
@@ -883,7 +886,7 @@ char * malloc_get_current_dir_name()
 //
 //         if (c == '\r') break;
 //
-//         line += (char)c;
+//         line += (::i8)c;
 //
 //      } while (c != EOF);
 //
@@ -911,16 +914,16 @@ char * malloc_get_current_dir_name()
    if (::stat(path.c_str(), &stat))
    {
 
-      auto cerrornumber = c_error_number();
+      auto cerrno = c_errno();
 
-      if(cerrornumber.m_iErrorNumber == ENOTDIR)
+      if(cerrno == ENOTDIR)
       {
 
          return ::file::e_type_doesnt_exist;
 
       }
 
-      auto estatus = cerrornumber.estatus();
+      auto estatus = cerrno.estatus();
 
       if(estatus == error_file_not_found)
       {
@@ -958,16 +961,16 @@ char * malloc_get_current_dir_name()
    if (::stat(path.c_str(), &stat))
    {
 
-      auto cerrornumber = c_error_number();
+      auto cerrno = c_errno();
 
-      if(cerrornumber.m_iErrorNumber == ENOTDIR)
+      if(cerrno == ENOTDIR)
       {
 
          return ::file::e_type_doesnt_exist;
 
       }
 
-      auto estatus = cerrornumber.estatus();
+      auto estatus = cerrno.estatus();
 
       if(estatus == error_file_not_found)
       {
@@ -976,7 +979,7 @@ char * malloc_get_current_dir_name()
 
       }
 
-      fprintf(stderr, "::is_directory(\"%s\") errno=%d\n", path.c_str(), cerrornumber.m_iErrorNumber);
+      fprintf(stderr, "::is_directory(\"%s\") errno=%d\n", path.c_str(), cerrno.m_iErrNo);
 
       throw ::exception(estatus);
 
@@ -1005,16 +1008,16 @@ bool safe_is_directory(const ::file::path & path)
    if (::stat(path.c_str(), &stat))
    {
 
-      auto cerrornumber = c_error_number();
+      auto cerrno = c_errno();
 
-      if(cerrornumber.m_iErrorNumber == ENOTDIR)
+      if(cerrno == ENOTDIR)
       {
 
          return false;
 
       }
 
-      auto estatus = cerrornumber.estatus();
+      auto estatus = cerrno.estatus();
 
       if(estatus == error_file_not_found)
       {
@@ -1051,16 +1054,16 @@ bool is_directory(const ::file::path & path)
    if (::stat(path.c_str(), &stat))
    {
 
-      auto cerrornumber = c_error_number();
+      auto cerrno = c_errno();
 
-      if(cerrornumber.m_iErrorNumber == ENOTDIR)
+      if(cerrno == ENOTDIR)
       {
 
          return false;
 
       }
 
-      auto estatus = cerrornumber.estatus();
+      auto estatus = cerrno.estatus();
 
       if(estatus == error_file_not_found)
       {
@@ -1069,7 +1072,7 @@ bool is_directory(const ::file::path & path)
 
       }
 
-      fprintf(stderr, "::is_directory(\"%s\") errno=%d\n", path.c_str(), cerrornumber.m_iErrorNumber);
+      fprintf(stderr, "::is_directory(\"%s\") errno=%d\n", path.c_str(), cerrno.m_iErrNo);
 
       throw ::exception(estatus);
 
@@ -1095,16 +1098,16 @@ bool is_directory(const ::file::path & path)
    if (::stat(path.c_str(), &stat))
    {
 
-      auto cerrornumber = c_error_number();
+      auto cerrno = c_errno();
 
-      if(cerrornumber.m_iErrorNumber == ENOTDIR)
+      if(cerrno == ENOTDIR)
       {
 
          return ::file::e_type_doesnt_exist;
 
       }
 
-      auto estatus = cerrornumber.estatus();
+      auto estatus = cerrno.estatus();
 
       if(estatus == error_file_not_found)
       {
@@ -1137,16 +1140,16 @@ bool is_directory(const ::file::path & path)
    if (::stat(path.c_str(), &stat))
    {
 
-      auto cerrornumber = c_error_number();
+      auto cerrno = c_errno();
 
-      if(cerrornumber.m_iErrorNumber == ENOTDIR)
+      if(cerrno == ENOTDIR)
       {
 
          return ::file::e_type_doesnt_exist;
 
       }
 
-      auto estatus = cerrornumber.estatus();
+      auto estatus = cerrno.estatus();
 
       if(estatus == error_file_not_found)
       {
@@ -1155,9 +1158,9 @@ bool is_directory(const ::file::path & path)
 
       }
 
-      fprintf(stderr, "::is_directory(\"%s\") errno=%d\n", path.c_str(), cerrornumber.m_iErrorNumber);
+      fprintf(stderr, "::is_directory(\"%s\") errno=%d\n", path.c_str(), cerrno.m_iErrNo);
 
-      throw ::file::exception(estatus, cerrornumber, path, ::file::e_open_none, "file_type");
+      throw ::file::exception(estatus, cerrno, path, ::file::e_open_none, "file_type");
 
    }
 
@@ -1183,9 +1186,9 @@ bool safe_file_exists(const ::file::path & path)
    if (::stat(path, &stat))
    {
 
-      auto cerrornumber = c_error_number();
+      auto cerrno = c_errno();
 
-      auto estatus = cerrornumber.estatus();
+      auto estatus = cerrno.estatus();
 
       if(estatus == error_file_not_found)
       {
@@ -1200,7 +1203,7 @@ bool safe_file_exists(const ::file::path & path)
 
       }
 
-      //auto error_code = cerrornumber.error_code();
+      //auto error_code = cerrno.error_code();
 
       //throw ::file::exception(estatus, errorcode, path, ::file::e_open_none, "stat");
 
@@ -1230,9 +1233,9 @@ bool file_exists(const ::file::path & path)
    if (::stat(path, &stat))
    {
 
-      auto cerrornumber = c_error_number();
+      auto cerrno = c_errno();
 
-      auto estatus = cerrornumber.estatus();
+      auto estatus = cerrno.estatus();
 
       if(estatus == error_file_not_found)
       {
@@ -1247,7 +1250,7 @@ bool file_exists(const ::file::path & path)
 
       }
 
-      auto error_code = cerrornumber.error_code();
+      auto error_code = cerrno.error_code();
 
       throw ::file::exception(estatus, error_code, path, ::file::e_open_none, "stat");
 
@@ -1349,9 +1352,9 @@ void create_directory(const ::file::path & path)
    if (::mkdir(path, S_IRWXU | S_IRWXG | S_IRWXO) != 0)
    {
       
-      auto cerrornumber = c_error_number();
+      auto cerrno = c_errno();
 
-      auto estatus = cerrornumber.estatus();
+      auto estatus = cerrno.estatus();
       
       if(estatus == error_already_exists)
       {
@@ -1382,9 +1385,9 @@ void erase_directory(const ::file::path & path)
    if (::rmdir(path) != 0)
    {
 
-      auto cerrornumber = c_error_number();
+      auto cerrno = c_errno();
 
-      auto estatus =  cerrornumber.estatus();
+      auto estatus =  cerrno.estatus();
 
       throw ::exception(estatus);
 
@@ -1400,9 +1403,9 @@ void file_delete(const ::file::path & path)
    if (::unlink(path) == -1)
    {
 
-      auto cerrornumber = c_error_number();
+      auto cerrno = c_errno();
 
-      auto estatus =  cerrornumber.estatus();
+      auto estatus =  cerrno.estatus();
 
       throw ::exception(estatus);
 
@@ -1411,19 +1414,19 @@ void file_delete(const ::file::path & path)
 }
 
 
-[[noreturn]] CLASS_DECL_ACME void throw_file_errno_exception(const ::file::path & path, ::file::e_open eopen, const ::scoped_string & scopedstr, c_error_number cerrornumber)
+[[noreturn]] CLASS_DECL_ACME void throw_file_errno_exception(const ::file::path & path, ::file::e_open eopen, const ::scoped_string & scopedstr, c_errno cerrno)
 {
 
-   if(cerrornumber.m_iErrorNumber == 0)
+   if(cerrno == 0)
    {
 
-      cerrornumber.m_iErrorNumber = errno;
+      cerrno.m_iErrNo = errno;
 
    }
 
-   auto estatus =  cerrornumber.estatus();
+   auto estatus =  cerrno.estatus();
 
-   auto errorcode = cerrornumber.error_code();
+   auto errorcode = cerrno.error_code();
 
    throw ::file::exception(estatus, errorcode, path, eopen, scopedstr);
 
@@ -1483,7 +1486,7 @@ void std_out_buffer::write(const void * pdata, memsize nCount)
 //
 //   DWORD dw;
 //
-//   WriteFile(GetStdHandle(STD_OUTPUT_HANDLE), pdata, (unsigned int)nCount, &dw, nullptr);
+//   WriteFile(GetStdHandle(STD_OUTPUT_HANDLE), pdata, (::u32)nCount, &dw, nullptr);
 //
 //#else
 
@@ -1564,7 +1567,7 @@ CLASS_DECL_ACME ::file::path get_home_folder_path()
 {
 
    // 1) HOME environment variable (preferred)
-   if (const char* home = std::getenv("HOME"))
+   if (const_char_pointer home = std::getenv("HOME"))
    {
       if (*home)
          return ::file::path(home);
@@ -1592,9 +1595,9 @@ CLASS_DECL_ACME void set_modified_file_time(
    times[0].tv_nsec = UTIME_OMIT;
 
    // Convert Windows FILETIME (100ns since 1601)
-   const unsigned long long ft = filetimeModified.get_file_time();
+   const ::u64 ft = filetimeModified.get_file_time();
 
-   if (ft < file_time::EPOCH_DIFFERENCE_NANOS)
+   if (ft < file_time::EPOCH_DIFFERENCE_100NS)
    {
       // Before Unix epoch
       times[1].tv_sec  = 0;
@@ -1602,8 +1605,8 @@ CLASS_DECL_ACME void set_modified_file_time(
    }
    else
    {
-      unsigned long long unix_100ns =
-         ft - file_time::EPOCH_DIFFERENCE_NANOS;
+      ::u64 unix_100ns =
+         ft - file_time::EPOCH_DIFFERENCE_100NS;
 
       // 100ns → seconds + nanoseconds
       times[1].tv_sec =
@@ -1615,7 +1618,7 @@ CLASS_DECL_ACME void set_modified_file_time(
 
    if (utimensat(AT_FDCWD, path.c_str(), times, 0) != 0)
    {
-      c_error_number err;
+      c_errno err;
 
       throw_file_errno_exception(
          path,
@@ -1631,10 +1634,10 @@ CLASS_DECL_ACME void set_modified_file_time(
 
 
 
-int fgetch(FILE * pfile)
+::i32 fgetch(FILE * pfile)
 {
    struct termios oldt, newt;
-   int ch;
+   ::i32 ch;
 
    auto iFileNo = fileno(pfile);
 
@@ -1652,10 +1655,12 @@ int fgetch(FILE * pfile)
 }
 
 
-int current_getch()
+
+
+::i32 current_getch()
 {
 
-   int i = -1;
+   ::i32 i = -1;
 
    if (raw_stdin() == nullptr)
    {

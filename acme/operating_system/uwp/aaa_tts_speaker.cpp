@@ -77,7 +77,7 @@ namespace universal_windows
          // get all of the installed voices
          IVectorView<VoiceInformation ^> ^voices = ::winrt::Windows::Media::SpeechSynthesis::SpeechSynthesizer::AllVoices;
 
-         for (unsigned int index = 0; index < voices->Size; index++)
+         for (::u32 index = 0; index < voices->Size; index++)
          {
             // create a combo box item, and copy the voice data into that
             VoiceInformation ^voice = voices->GetAt(index);

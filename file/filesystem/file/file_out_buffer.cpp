@@ -1,4 +1,4 @@
-/*      void SetMemStream(unsigned char *buffer) { _buffer2 = buffer; }
+/*      void SetMemStream(::u8 *buffer) { _buffer2 = buffer; }
 void SetStream(writer *stream);
 void Init();
 HRESULT flush();
@@ -9,7 +9,7 @@ void ReleaseStream()
 }
 HRESULT FlushPart();
 
-void WriteByte(unsigned char b)
+void WriteByte(::u8 b)
 {
 m_memory.get_data()[_pos++] = b;
 if(_pos == _limitPos)
@@ -18,10 +18,10 @@ FlushWithCheck();
 void WriteBytes(const void *data, size_t size)
 {
 for (size_t i = 0; i < size; i++)
-WriteByte(((const unsigned char *)data)[i]);
+WriteByte(((const ::u8 *)data)[i]);
 }
 
-unsigned long long GetProcessedSize() const;*/
+::u64 GetProcessedSize() const;*/
 
 // OutBuffer.cpp
 // from 7-zip on 2012-12-23, dawn
@@ -79,9 +79,9 @@ namespace file
 #endif
    }
 
-   unsigned long long out_buffer::GetProcessedSize() const
+   ::u64 out_buffer::GetProcessedSize() const
    {
-      unsigned long long res = _processedSize + _pos - _streamPos;
+      ::u64 res = _processedSize + _pos - _streamPos;
       if (_streamPos > _pos)
          res += m_memory.get_size();
       return res;
@@ -137,7 +137,7 @@ namespace file
    }
 
 
-   void out_buffer::SetMemStream(unsigned char *buffer)
+   void out_buffer::SetMemStream(::u8 *buffer)
    {
       _buffer2 = buffer;
    }
@@ -147,7 +147,7 @@ namespace file
       // _stream.Release();
    }
 
-   void out_buffer::WriteByte(unsigned char b)
+   void out_buffer::WriteByte(::u8 b)
    {
       m_memory.get_data()[_pos++] = b;
       if(_pos == _limitPos)
@@ -157,7 +157,7 @@ namespace file
    void out_buffer::WriteBytes(const void *data, size_t size)
    {
       for (size_t i = 0; i < size; i++)
-         WriteByte(((const unsigned char *)data)[i]);
+         WriteByte(((const ::u8 *)data)[i]);
    }
 
 

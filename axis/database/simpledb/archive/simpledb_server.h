@@ -13,9 +13,9 @@ namespace simpledb
 
 
       string m_strLastError;
-      long long m_iLastUsedTime;
+      ::i64 m_iLastUsedTime;
 
-      int       m_protocol;
+      ::i32       m_protocol;
 
 
       database(::particle * pparticle);
@@ -38,9 +38,9 @@ namespace simpledb
       const ::scoped_string & scopedstrUser,
       const ::scoped_string & scopedstrPassword,
       const ::scoped_string & scopedstrDatabase,
-      int iPort = 0,
+      ::i32 iPort = 0,
       const ::scoped_string & scopedstrSocketName = nullptr,
-      unsigned int uFlags = 0);
+      ::u32 uFlags = 0);
 
       virtual bool close();
 

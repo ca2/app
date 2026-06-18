@@ -21,12 +21,12 @@ namespace install
 
       starter_start(::particle * pparticle);
 
-      unsigned int start();
+      ::u32 start();
 
    };
 
 
-   unsigned int _ca2_starter_start(void * p);
+   ::u32 _ca2_starter_start(void * p);
 
 
 } // namespace install

@@ -3,6 +3,10 @@
 // From https://github.com/ca2/motif_labs
 //
 #include "framework.h"
+
+//#include <AppKit/AppKit.h>
+
+//#include "acme/constant/"
 //#include "message_box.h"
 //
 //enum_dialog_result ns_alert_box(const_char_pointer pszMessage, const_char_pointer pszTitle, enum_message_box emessagebox);
@@ -41,3 +45,40 @@
 //
 //
 //
+
+
+
+
+//// Return values to mimic Win32 IDYES/IDNO
+//enum {
+//    MAC_IDOK = 1,
+//    MAC_IDCANCEL = 2,
+//    MAC_IDYES = 3,
+//    MAC_IDNO = 4
+//};
+//
+//::i32 ns_message_box(const_char_pointer title, const_char_pointer message, ::i32 yesNoStyle)
+//{
+//    NSAlert *alert = [[NSAlert alloc] init];
+//    
+//    [alert setMessageText:[NSString stringWithUTF8String:title]];
+//    [alert setInformativeText:[NSString stringWithUTF8String:message]];
+//    [alert setAlertStyle:NSAlertStyleInformational];
+//
+//    if (yesNoStyle) {
+//        [alert addButtonWithTitle:@"Yes"];   // Index 1000
+//        [alert addButtonWithTitle:@"No"];    // Index 1001
+//    } else {
+//        [alert addButtonWithTitle:@"OK"];     // Index 1000
+//        [alert addButtonWithTitle:@"Cancel"]; // Index 1001
+//    }
+//
+//    NSInteger result = [alert runModal];
+//
+//    // Map NSAlert returns back to our custom enum
+//    if (yesNoStyle) {
+//        return (result == NSAlertFirstButtonReturn) ? e_dialog_result_yes : e_dialog_result_no;
+//    } else {
+//        return (result == NSAlertFirstButtonReturn) ? e_dialog_result_ok :e_dialog_result_cancel;
+//    }
+//}

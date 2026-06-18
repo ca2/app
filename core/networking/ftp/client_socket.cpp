@@ -51,7 +51,7 @@
 #include "output_stream.h"
 #include "file.h"
 #include "acme/filesystem/file/memory_file.h"
-#include "acme/operating_system/shared_posix/c_error_number.h"
+#include "acme/operating_system/shared_posix/c_errno.h"
 #include "acme/parallelization/synchronous_lock.h"
 #include "apex/networking/sockets/basic/listen_socket.h"
 #include "apex/networking/sockets/transfer_socket.h"
@@ -84,7 +84,7 @@ namespace ftp
    ///                     a FTP server (for unit testing).
    /// @lparam[in] uiTimeout Timeout used for socket operation.
    /// @lparam[in] uiBufferSize Size of the buffer used for sending and receiving
-   ///                         data via sockets. The int_size have an influence on
+   ///                         data via sockets. The i32_size have an influence on
    ///                         the performance. Through empiric test i come to the
    ///                         conclusion that 2048 is a good size.
    /// @lparam[in] uiResponseWait sleep time between receive calls to socket when getting
@@ -92,7 +92,7 @@ namespace ftp
    ///                           is set. Normally not wait time is necessary.
    client_socket::client_socket(
                                 const class time & timeTimeout/*=10*/,
-                                unsigned int uiBufferSize/*=2048*/, const class time & timeResponseWait/*=0*/,
+                                ::u32 uiBufferSize/*=2048*/, const class time & timeResponseWait/*=0*/,
                                 const ::scoped_string & scopedstrRemoteDirectorySeparator/*="/"*/) :
       //::sockets::base_socket(handler),
       //::sockets::socket(handler),
@@ -175,7 +175,7 @@ namespace ftp
    /// Opens the control channel to the FTP server.
    /// @lparam[in] strServerHost IP-::networking::address or name of the server
    /// @lparam[in] iServerPort Port for channel. Usually this is port 21.
-   bool client_socket::OpenControlChannel(const ::scoped_string & scopedstrServerHost, unsigned short ushServerPort/*=DEFAULT_FTP_PORT*/)
+   bool client_socket::OpenControlChannel(const ::scoped_string & scopedstrServerHost, ::u16 ushServerPort/*=DEFAULT_FTP_PORT*/)
    {
 
       if (IsConnected() || _is_connected())
@@ -246,7 +246,7 @@ namespace ftp
    /// @retval FTP_OK    All runs perfect.
    /// @retval FTP_ERROR Something went wrong. An other response was expected.
    /// @retval NOT_OK    The command was not accepted.
-   int client_socket::SimpleErrorCheck(const reply& Reply)
+   ::i32 client_socket::SimpleErrorCheck(const reply& Reply)
    {
       if (Reply.Code().IsNegativeReply())
          return FTP_NOTOK;
@@ -288,14 +288,14 @@ namespace ftp
          NUMLOGIN = 9, ///< currently supports 9 different login sequences
       };
 
-      int iLogonSeq[NUMLOGIN][18] =
+      ::i32 iLogonSeq[NUMLOGIN][18] =
       {
          // this array stores all of the logon sequences for the various firewalls
          // in blocks of 3 nums.
          // 1st num is command to send,
-         // 2nd num is next int_point in logon sequence array if 200 series response
+         // 2nd num is next i32_point in logon sequence array if 200 series response
          //         is rec'd from server as the result of the command,
-         // 3rd num is next int_point in logon sequence if 300 series rec'd
+         // 3rd num is next i32_point in logon sequence if 300 series rec'd
          { 0,LO,3,    1,LO, 6,   2,LO,ER }, // no firewall
          { 3, 6,3,    4, 6,ER,   5,ER, 9,   0,LO,12,   1,LO,15,   2,LO,ER }, // SITE hostname
          { 3, 6,3,    4, 6,ER,   6,LO, 9,   1,LO,12,   2,LO,ER }, // USER after logon
@@ -309,7 +309,7 @@ namespace ftp
 
       // are we connecting directly to the host (logon type 0) or via a firewall? (logon type>0)
       string   strTemp;
-      unsigned short    ushPort = 0;
+      ::u16    ushPort = 0;
 
       if (_is_connected())
          Logout();
@@ -362,7 +362,7 @@ namespace ftp
       if (!GetResponse(Reply) || !Reply.Code().IsPositiveCompletionReply())
          return false;
 
-      int iLogonPoint = 0;
+      ::i32 iLogonPoint = 0;
 
       // go through appropriate logon procedure
       for (; ; )
@@ -409,7 +409,7 @@ namespace ftp
 
          }
 
-         const unsigned int uiFirstDigitOfReplyCode = ansi_to_int(Reply.Code().Value()) / 100;
+         const ::u32 uiFirstDigitOfReplyCode = ansi_to_int(Reply.Code().Value()) / 100;
          iLogonPoint = iLogonSeq[plogon->FwType().AsEnum()][iLogonPoint + uiFirstDigitOfReplyCode - 1]; //get next command from array
          switch (iLogonPoint)
          {
@@ -453,7 +453,7 @@ namespace ftp
    /// @lparam[in] strOldName Name of the file to rename.
    /// @lparam[in] strNewName The ___new name for the file.
    /// @return see return values of client_socket::SimpleErrorCheck
-   int client_socket::Rename(const ::scoped_string & scopedstrOldName, const ::scoped_string & scopedstrNewName)
+   ::i32 client_socket::Rename(const ::scoped_string & scopedstrOldName, const ::scoped_string & scopedstrNewName)
    {
       reply Reply;
       if (!SendCommand(command::RNFR(), { scopedstrOldName }, Reply))
@@ -477,7 +477,7 @@ namespace ftp
    /// @lparam[in] strFullSourceFilePath Name of the file which should be moved.
    /// @lparam[in] strFullTargetFilePath The destination where the file should be moved to (file name must be also given).
    /// @return see return values of client_socket::SimpleErrorCheck
-   int client_socket::Move(const ::scoped_string & scopedstrFullSourceFilePath, const ::scoped_string & scopedstrFullTargetFilePath)
+   ::i32 client_socket::Move(const ::scoped_string & scopedstrFullSourceFilePath, const ::scoped_string & scopedstrFullTargetFilePath)
    {
       return Rename(scopedstrFullSourceFilePath, scopedstrFullTargetFilePath);
    }
@@ -595,7 +595,7 @@ namespace ftp
       if (!file.Open(scopedstrLocalFile, (m_fResumeIfPossible ? ::file::e_open_no_truncate : ::file::e_open_create) | ::file::e_open_write
                      | ::file::e_open_binary | ::file::e_open_defer_create_directory))
       {
-         ReportError(c_error_number::s_get_error_description(), __FILE__, __LINE__);
+         ReportError(c_errno::s_get_error_description(), __FILE__, __LINE__);
          return false;
       }
       file.Seek(0, ::e_seek_from_end);
@@ -614,14 +614,14 @@ namespace ftp
       long lRemoteFileSize = 0;
       FileSize(scopedstrRemoteFile, lRemoteFileSize);
 
-      for (auto * int_point : (observer_array &)m_setObserver)
-         int_point->OnPreReceiveFile(scopedstrRemoteFile, Observer.GetLocalStreamName(), lRemoteFileSize);
+      for (auto * i32_point : (observer_array &)m_setObserver)
+         i32_point->OnPreReceiveFile(scopedstrRemoteFile, Observer.GetLocalStreamName(), lRemoteFileSize);
 
       const bool fRet = ExecuteDatachannelCommand(command::RETR(), scopedstrRemoteFile, repType, fPasv,
                         m_fResumeIfPossible ? Observer.GetLocalStreamSize() : 0, Observer);
 
-      for (auto * int_point : (observer_array &)m_setObserver)
-         int_point->OnPostReceiveFile(scopedstrRemoteFile, Observer.GetLocalStreamName(), lRemoteFileSize);
+      for (auto * i32_point : (observer_array &)m_setObserver)
+         i32_point->OnPostReceiveFile(scopedstrRemoteFile, Observer.GetLocalStreamName(), lRemoteFileSize);
 
       return fRet;
    }
@@ -654,7 +654,7 @@ namespace ftp
       ::ftp::file file;
       if (!file.Open(scopedstrLocalFile, ::file::e_open_read | ::file::e_open_binary))
       {
-         ReportError(c_error_number::s_get_error_description(), __FILE__, __LINE__);
+         ReportError(c_errno::s_get_error_description(), __FILE__, __LINE__);
          return false;
       }
 
@@ -682,15 +682,15 @@ namespace ftp
          cmd = command::STOU();
 
       const long lLocalFileSize = Observer.GetLocalStreamSize();
-      Observer.SetLocalStreamOffset((unsigned int) lRemoteFileSize);
+      Observer.SetLocalStreamOffset((::u32) lRemoteFileSize);
 
-      for (auto * int_point : (observer_array &)m_setObserver)
-         int_point->OnPreSendFile(Observer.GetLocalStreamName(), scopedstrRemoteFile, lLocalFileSize);
+      for (auto * i32_point : (observer_array &)m_setObserver)
+         i32_point->OnPreSendFile(Observer.GetLocalStreamName(), scopedstrRemoteFile, lLocalFileSize);
 
       const bool fRet = ExecuteDatachannelCommand(cmd, scopedstrRemoteFile, repType, fPasv, 0, Observer);
 
-      for (auto * int_point : (observer_array &)m_setObserver)
-         int_point->OnPostSendFile(Observer.GetLocalStreamName(), scopedstrRemoteFile, lLocalFileSize);
+      for (auto * i32_point : (observer_array &)m_setObserver)
+         i32_point->OnPostSendFile(Observer.GetLocalStreamName(), scopedstrRemoteFile, lLocalFileSize);
 
       return fRet;
    }
@@ -737,8 +737,8 @@ namespace ftp
       // set one FTP server in passive mode
       // the FTP server opens a port and tell us the socket (ip ::networking::address + port)
       // this socket is used for opening the data connection
-      unsigned int  ulIP = 0;
-      unsigned short ushSock = 0;
+      ::u32  ulIP = 0;
+      ::u16 ushSock = 0;
       if (PassiveServer.Passive(ulIP, ushSock) != FTP_OK)
       {
 
@@ -746,7 +746,7 @@ namespace ftp
 
       }
 
-      auto paddress = SourceFtpServer.::particle::system()->networking()->create_ip4_address((int)ulIP, ushSock);
+      auto paddress = SourceFtpServer.::particle::system()->networking()->create_ip4_address((::i32)ulIP, ushSock);
 
       // transmit the socket (ip ::networking::address + port) of the first FTP server to the
       // second server
@@ -782,7 +782,7 @@ namespace ftp
    /// @lparam[in] dwByteOffset Server marker at which file transfer is to be restarted.
    /// @lparam[in] Observer Object for observing the execution of the command.
    bool client_socket::ExecuteDatachannelCommand(const command& crDatachannelCmd, const ::scoped_string & scopedstrPath, const representation& representation,
-         bool fPasv, unsigned int dwByteOffset, itransfer_notification& Observer)
+         bool fPasv, ::u32 dwByteOffset, itransfer_notification& Observer)
    {
       if (!crDatachannelCmd.IsDatachannelCommand())
       {
@@ -890,9 +890,9 @@ namespace ftp
 
       }
 
-      //unsigned int tickStart= ::time::now();
+      //::u32 tickStart= ::time::now();
 
-      //unsigned int nSeconds = 10;
+      //::u32 nSeconds = 10;
 
       //if (pbasesocket.is_set() && !pbasesocket->IsDetached())
       //{
@@ -976,7 +976,7 @@ namespace ftp
    /// @lparam[in] crDatachannelCmd Command to be executeted.
    /// @lparam[in] scopedstrPath Parameter for the command usually a path.
    /// @lparam[in] dwByteOffset Server marker at which file transfer is to be restarted.
-   bool client_socket::OpenActiveDataConnection(::sockets::socket & sckDataConnectionParam, const command& crDatachannelCmd, const ::scoped_string & scopedstrPath, unsigned int dwByteOffset)
+   bool client_socket::OpenActiveDataConnection(::sockets::socket & sckDataConnectionParam, const command& crDatachannelCmd, const ::scoped_string & scopedstrPath, ::u32 dwByteOffset)
    {
       if (!crDatachannelCmd.IsDatachannelCommand())
       {
@@ -1000,7 +1000,7 @@ namespace ftp
       // INADDR_ANY = ip ::networking::address of localhost
       // second parameter "0" means that the WINSOCKAPI ask for a port
       string strIp = "127.0.0.1";
-      int iPort = 0;
+      ::i32 iPort = 0;
       if (sckDataConnection.Bind(nullptr, "tcp", 1))
       {
          string strMessage;
@@ -1012,7 +1012,7 @@ namespace ftp
 
       socket_handler()->add(&sckDataConnection);
 
-      unsigned short ushLocalSock = 0;
+      ::u16 ushLocalSock = 0;
 
       try
       {
@@ -1033,7 +1033,7 @@ namespace ftp
       }
 
       ::networking::address_pointer paddressTemp;
-      //auto paddress = system()->networking()->create_address((int)ulIP, ushSock);
+      //auto paddress = system()->networking()->create_address((::i32)ulIP, ushSock);
       //::networking::address csaAddressTemp(INADDR_ANY, 0);
       paddressTemp = sckDataConnection.get_socket_address();
       ushLocalSock = paddressTemp->get_service_number();
@@ -1076,7 +1076,7 @@ namespace ftp
    /// @lparam[in] crDatachannelCmd Command to be executeted.
    /// @lparam[in] scopedstrPath Parameter for the command usually a path.
    /// @lparam[in] dwByteOffset Server marker at which file transfer is to be restarted.
-   bool client_socket::OpenPassiveDataConnection(::sockets::socket & sckDataConnectionParam, const command& crDatachannelCmd, const ::scoped_string & scopedstrPath, unsigned int dwByteOffset)
+   bool client_socket::OpenPassiveDataConnection(::sockets::socket & sckDataConnectionParam, const command& crDatachannelCmd, const ::scoped_string & scopedstrPath, ::u32 dwByteOffset)
    {
 
       if (m_econnectiontype == connection_type_tls_implicit)
@@ -1099,8 +1099,8 @@ namespace ftp
       ::sockets::transfer_socket & sckDataConnection
          = *(dynamic_cast < ::sockets::transfer_socket * >(&sckDataConnectionParam));
 
-      unsigned int   ulRemoteHostIP = 0;
-      unsigned short  ushServerSock = 0;
+      ::u32   ulRemoteHostIP = 0;
+      ::u16  ushServerSock = 0;
 
       if (m_econnectiontype == connection_type_tls_implicit)
       {
@@ -1116,7 +1116,7 @@ namespace ftp
          return false;
 
       // establish connection
-      auto paddressTemp = networking()->create_ip4_address((int)ulRemoteHostIP, ushServerSock);
+      auto paddressTemp = networking()->create_ip4_address((::i32)ulRemoteHostIP, ushServerSock);
       try
       {
          if (!sckDataConnection.open(paddressTemp))
@@ -1160,7 +1160,7 @@ namespace ftp
 
          ((client_socket *) this)->m_fTransferInProgress = true;
 
-         int iNumWrite = 0;
+         ::i32 iNumWrite = 0;
 
          memsize bytesRead = 0;
 
@@ -1193,10 +1193,10 @@ auto tickStart = ::time::now();
             }
 
 
-            for (auto * int_point : (observer_array &)m_setObserver)
+            for (auto * i32_point : (observer_array &)m_setObserver)
             {
 
-               int_point->OnBytesSent(m_vBuffer, iNumWrite);
+               i32_point->OnBytesSent(m_vBuffer, iNumWrite);
 
             }
 
@@ -1246,10 +1246,10 @@ auto tickStart = ::time::now();
 
          ((client_socket *) this)->m_fTransferInProgress = true;
 
-         for (auto * int_point : (observer_array &)m_setObserver)
+         for (auto * i32_point : (observer_array &)m_setObserver)
          {
 
-            int_point->OnBeginReceivingData();
+            i32_point->OnBeginReceivingData();
 
          }
 
@@ -1279,7 +1279,7 @@ auto tickStart = ::time::now();
 
                synchronous_lock synchronouslock(this->synchronization(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 
-               iNumRead = sckDataConnection.m_pmemoryfile->erase_begin(m_vBuffer.data(), static_cast<int>(m_vBuffer.size()));
+               iNumRead = sckDataConnection.m_pmemoryfile->erase_begin(m_vBuffer.data(), static_cast<::i32>(m_vBuffer.size()));
 
                if (!sckDataConnection.is_valid() && iNumRead <= 0)
                {
@@ -1295,10 +1295,10 @@ auto tickStart = ::time::now();
 
                lTotalBytes += iNumRead;
 
-               for (auto * int_point : (observer_array &)m_setObserver)
+               for (auto * i32_point : (observer_array &)m_setObserver)
                {
 
-                  int_point->OnBytesReceived(m_vBuffer, (long) iNumRead);
+                  i32_point->OnBytesReceived(m_vBuffer, (long) iNumRead);
 
                }
 
@@ -1315,10 +1315,10 @@ auto tickStart = ::time::now();
 
          }
 
-         for (auto * int_point : (observer_array &)m_setObserver)
+         for (auto * i32_point : (observer_array &)m_setObserver)
          {
 
-            int_point->OnEndReceivingData((long) lTotalBytes);
+            i32_point->OnEndReceivingData((long) lTotalBytes);
 
          }
 
@@ -1366,10 +1366,10 @@ auto tickStart = ::time::now();
 
       try
       {
-         for (auto * int_point : (observer_array &)m_setObserver)
-            int_point->OnSendCommand(Command, Arguments);
+         for (auto * i32_point : (observer_array &)m_setObserver)
+            i32_point->OnSendCommand(Command, Arguments);
          const string strCommand = Command.AsString(Arguments) + "\r\n";
-         //write(strCommand, static_cast<int>(strCommand.length()), mc_uiTimeout);
+         //write(strCommand, static_cast<::i32>(strCommand.length()), mc_uiTimeout);
          write(strCommand);
       }
       catch (::sockets::transfer_socket_exception& blockingException)
@@ -1409,7 +1409,7 @@ auto tickStart = ::time::now();
       if (strResponse.length() > 3 && strResponse[3] == '-')
       {
          string strSingleLine(strResponse);
-         const int iRetCode = atoi(strResponse);
+         const ::i32 iRetCode = atoi(strResponse);
          // handle multi-line server responses
          while (!(strSingleLine.length() > 3 &&
                   strSingleLine[3] == ' ') &&
@@ -1423,8 +1423,8 @@ auto tickStart = ::time::now();
 
       bool fRet = Reply.Set(strResponse);
 
-      for (auto * int_point : (observer_array &)m_setObserver)
-         int_point->OnResponse(Reply);
+      for (auto * i32_point : (observer_array &)m_setObserver)
+         i32_point->OnResponse(Reply);
 
       return fRet;
    }
@@ -1491,17 +1491,17 @@ auto tickStart = ::time::now();
             }
 
             //// internal buffer is empty ==> get response from FTP server
-            //int iNum = 0;
+            //::i32 iNum = 0;
             //std::string strTemp;
 
             //do
             //{
-            //   iNum = receive(m_vBuffer.get_data(), static_cast<int>(m_vBuffer.size()) - 1, mc_uiTimeout);
+            //   iNum = receive(m_vBuffer.get_data(), static_cast<::i32>(m_vBuffer.size()) - 1, mc_uiTimeout);
             //   if (mc_uiResponseWait != 0)
             //      sleep(mc_uiResponseWait);
             //   ((memory &)m_vBuffer)[iNum] = '\0';
             //   strTemp += m_vBuffer.to_string();
-            //} while (iNum == static_cast<int>(m_vBuffer.size()) - 1);
+            //} while (iNum == static_cast<::i32>(m_vBuffer.size()) - 1);
 
             //// each line in response is a separate entry in the internal buffer
             //while (strTemp.length())
@@ -1561,7 +1561,7 @@ auto tickStart = ::time::now();
    /// transferring directory trees between operating systems having different
    /// syntaxes for naming the parent directory.
    /// @return see return values of client_socket::SimpleErrorCheck
-   int client_socket::ChangeToParentDirectory()
+   ::i32 client_socket::ChangeToParentDirectory()
    {
       reply Reply;
       if (!SendCommand(command::CDUP(), {}, Reply))
@@ -1580,7 +1580,7 @@ auto tickStart = ::time::now();
    /// An unexpected close on the control connection will cause the server to take
    /// the effective action of an abort (ABOR) and a logout.
    /// @return see return values of client_socket::SimpleErrorCheck
-   int client_socket::Logout()
+   ::i32 client_socket::Logout()
    {
       reply Reply;
       if (!SendCommand(command::QUIT(), {}, Reply))
@@ -1600,7 +1600,7 @@ auto tickStart = ::time::now();
    /// @lparam[out] ulIpAddress IP ::networking::address the server is listening on.
    /// @lparam[out] ushPort Port the server is listening on.
    /// @return see return values of client_socket::SimpleErrorCheck
-   int client_socket::Passive(unsigned int& ulIpAddress, unsigned short& ushPort)
+   ::i32 client_socket::Passive(::u32& ulIpAddress, ::u16& ushPort)
    {
       reply Reply;
       if (!SendCommand(command::PASV(), {}, Reply))
@@ -1622,19 +1622,19 @@ auto tickStart = ::time::now();
    /// @lparam[out] ushPort     Buffer for the port information.
    /// @retval true  Everything went ok.
    /// @retval false An error occurred (invalid format).
-   bool client_socket::GetIpAddressFromResponse(const ::scoped_string & scopedstrResponse, unsigned int& ulIpAddress, unsigned short& ushPort)
+   bool client_socket::GetIpAddressFromResponse(const ::scoped_string & scopedstrResponse, ::u32& ulIpAddress, ::u16& ushPort)
    {
       // parsing of ip-::networking::address and port implemented with a finite state machine
       // ...(192,168,1,1,3,44)...
       enum T_enState { state0, state1, state2, state3, state4 } enState = state0;
 
       string strIpAddress, strPort;
-      unsigned short ushTempPort = 0;
-      unsigned int  ulTempIpAddress = 0;
-      int iCommaCnt = 4;
+      ::u16 ushTempPort = 0;
+      ::u32  ulTempIpAddress = 0;
+      ::i32 iCommaCnt = 4;
       for (character_count i = 0; i < scopedstrResponse.length(); i++)
       {
-         char it = scopedstrResponse[i];
+         ::i8 it = scopedstrResponse[i];
          switch (enState)
          {
          case state0:
@@ -1665,7 +1665,7 @@ auto tickStart = ::time::now();
          case state2:
             if (it == ',')
             {
-               ushTempPort = static_cast<unsigned short>(atoi(strPort) << 8);
+               ushTempPort = static_cast<::u16>(atoi(strPort) << 8);
                strPort.clear();
                enState = state3;
             }
@@ -1680,7 +1680,7 @@ auto tickStart = ::time::now();
             if (it == ')')
             {
                // compiler warning if using +=operator
-               ushTempPort = ushTempPort + static_cast<unsigned short>(atoi(strPort));
+               ushTempPort = ushTempPort + static_cast<::u16>(atoi(strPort));
                enState = state4;
             }
             else
@@ -1723,7 +1723,7 @@ auto tickStart = ::time::now();
    /// service request terminated abnormally. The server then sends a 226 reply,
    /// indicating that the abort command was successfully processed.
    /// @return see return values of client_socket::SimpleErrorCheck
-   int client_socket::_abort()
+   ::i32 client_socket::_abort()
    {
       if (m_fTransferInProgress)
       {
@@ -1741,7 +1741,7 @@ auto tickStart = ::time::now();
    /// Executes the FTP command PWD (PRINT WORKING DIRECTORY)
    /// This command causes the name of the current working directory
    /// to be returned in the reply.
-   int client_socket::PrintWorkingDirectory()
+   ::i32 client_socket::PrintWorkingDirectory()
    {
       reply Reply;
       if (!SendCommand(command::PWD(), {}, Reply))
@@ -1755,7 +1755,7 @@ auto tickStart = ::time::now();
    /// current version of the Assigned Numbers document [Reynolds, Joyce, and
    /// Jon Postel, "Assigned Numbers", RFC 943, ISI, April 1985.].
    /// @return see return values of client_socket::SimpleErrorCheck
-   int client_socket::system()
+   ::i32 client_socket::system()
    {
       reply Reply;
       if (!SendCommand(command::SYST(), {}, Reply))
@@ -1767,7 +1767,7 @@ auto tickStart = ::time::now();
    /// This command does not affect any parameters or previously entered commands.
    /// It specifies no action other than that the server send an FTP_OK reply.
    /// @return see return values of client_socket::SimpleErrorCheck
-   int client_socket::Noop()
+   ::i32 client_socket::Noop()
    {
       reply Reply;
       if (!SendCommand(command::NOOP(), {}, Reply))
@@ -1784,7 +1784,7 @@ auto tickStart = ::time::now();
    /// @lparam[in] strHostIP IP-::networking::address like xxx.xxx.xxx.xxx
    /// @lparam[in] uiPort 16-bit TCP port ::networking::address.
    /// @return see return values of client_socket::SimpleErrorCheck
-   int client_socket::DataPort(const ::scoped_string & scopedstrHostIP, unsigned short ushPort)
+   ::i32 client_socket::DataPort(const ::scoped_string & scopedstrHostIP, ::u16 ushPort)
    {
       string strPortArguments;
       // convert the port number to 2 bytes + add to the local IP
@@ -1804,13 +1804,13 @@ auto tickStart = ::time::now();
    /// @lparam[in] representation see Documentation of nsFTP::representation
    /// @lparam[in] iSize Indicates Bytesize for type LocalByte.
    /// @return see return values of client_socket::SimpleErrorCheck
-   int client_socket::RepresentationType(const representation& representation, unsigned int dwSize)
+   ::i32 client_socket::RepresentationType(const representation& representation, ::u32 dwSize)
    {
       // check representation
       if (m_apCurrentRepresentation.is_set() && representation == *m_apCurrentRepresentation)
          return FTP_OK;
 
-      const int iRet = _RepresentationType(representation, dwSize);
+      const ::i32 iRet = _RepresentationType(representation, dwSize);
 
       if (iRet == FTP_OK)
       {
@@ -1830,14 +1830,14 @@ auto tickStart = ::time::now();
    /// @lparam[in] representation see Documentation of nsFTP::representation
    /// @lparam[in] dwSize Indicates Bytesize for type LocalByte.
    /// @return see return values of client_socket::SimpleErrorCheck
-   int client_socket::_RepresentationType(const representation& representation, unsigned int dwSize)
+   ::i32 client_socket::_RepresentationType(const representation& representation, ::u32 dwSize)
    {
       string_array_base Arguments({ representation.Type().AsString() });
 
       switch (representation.Type().AsEnum())
       {
       case type::tyLocalByte:
-         Arguments.add(::as_string((unsigned int) dwSize));
+         Arguments.add(::as_string((::u32) dwSize));
          break;
       case type::tyASCII:
       case type::tyEBCDIC:
@@ -1859,7 +1859,7 @@ auto tickStart = ::time::now();
    /// @lparam[in] strDirectory Pathname specifying a directory or other system
    ///                         dependent file group designator.
    /// @return see return values of client_socket::SimpleErrorCheck
-   int client_socket::ChangeWorkingDirectory(const ::scoped_string & scopedstrDirectory)
+   ::i32 client_socket::ChangeWorkingDirectory(const ::scoped_string & scopedstrDirectory)
    {
       ASSERT(scopedstrDirectory.has_character());
       reply Reply;
@@ -1874,7 +1874,7 @@ auto tickStart = ::time::now();
    /// current working directory (if the pathname is relative).
    /// @pararm[in] scopedstrDirectory Pathname specifying a directory to be created.
    /// @return see return values of client_socket::SimpleErrorCheck
-   int client_socket::make_directory(const ::scoped_string & scopedstrDirectory)
+   ::i32 client_socket::make_directory(const ::scoped_string & scopedstrDirectory)
    {
       ASSERT(scopedstrDirectory.has_character());
       reply Reply;
@@ -1891,7 +1891,7 @@ auto tickStart = ::time::now();
    /// SITE command.
    /// @lparam[in] strCmd Command to be executed.
    /// @return see return values of client_socket::SimpleErrorCheck
-   int client_socket::SiteParameters(const ::scoped_string & scopedstrCmd)
+   ::i32 client_socket::SiteParameters(const ::scoped_string & scopedstrCmd)
    {
       ASSERT(scopedstrCmd.has_character());
       reply Reply;
@@ -1910,7 +1910,7 @@ auto tickStart = ::time::now();
    /// response to HELP SITE.
    /// @lparam[in] strTopic Topic of the requested help.
    /// @return see return values of client_socket::SimpleErrorCheck
-   int client_socket::Help(const ::scoped_string & scopedstrTopic)
+   ::i32 client_socket::Help(const ::scoped_string & scopedstrTopic)
    {
       reply Reply;
       if (!SendCommand(command::HELP(), { scopedstrTopic }, Reply))
@@ -1924,7 +1924,7 @@ auto tickStart = ::time::now();
    /// "Do you really wish to delete?", it should be provided by the user-FTP process.
    /// @lparam[in] strFile Pathname of the file to delete.
    /// @return see return values of client_socket::SimpleErrorCheck
-   int client_socket::Delete(const ::scoped_string & scopedstrFile)
+   ::i32 client_socket::Delete(const ::scoped_string & scopedstrFile)
    {
       ASSERT(scopedstrFile.has_character());
       reply Reply;
@@ -1939,7 +1939,7 @@ auto tickStart = ::time::now();
    /// current working directory (if the pathname is relative).
    /// @lparam[in] strDirectory Pathname of the directory to delete.
    /// @return see return values of client_socket::SimpleErrorCheck
-   int client_socket::remove_directory(const ::scoped_string & scopedstrDirectory)
+   ::i32 client_socket::remove_directory(const ::scoped_string & scopedstrDirectory)
    {
       ASSERT(scopedstrDirectory.has_character());
       reply Reply;
@@ -1953,7 +1953,7 @@ auto tickStart = ::time::now();
    /// The default structure is File.
    /// @lparam[in] crStructure see Documentation of nsFTP::structure
    /// @return see return values of client_socket::SimpleErrorCheck
-   int client_socket::FileStructure(const structure& crStructure)
+   ::i32 client_socket::FileStructure(const structure& crStructure)
    {
       reply Reply;
       if (!SendCommand(command::STRU(), { crStructure.AsString() } , Reply))
@@ -1966,7 +1966,7 @@ auto tickStart = ::time::now();
    /// The default transfer mode is Stream.
    /// @lparam[in] crTransferMode see Documentation of nsFTP::transfer_mode
    /// @return see return values of client_socket::SimpleErrorCheck
-   int client_socket::TransferMode(const transfer_mode& crTransferMode)
+   ::i32 client_socket::TransferMode(const transfer_mode& crTransferMode)
    {
       reply Reply;
       if (!SendCommand(command::MODE(), { crTransferMode.AsString() } , Reply))
@@ -1990,7 +1990,7 @@ auto tickStart = ::time::now();
    ///                    about the server FTP process. This should include current
    ///                    values of all transfer parameters and the status of connections.
    /// @return see return values of client_socket::SimpleErrorCheck
-   int client_socket::Status(const ::scoped_string & scopedstrPath)
+   ::i32 client_socket::Status(const ::scoped_string & scopedstrPath)
    {
       reply Reply;
       if (!SendCommand(command::STAT(), { scopedstrPath } , Reply))
@@ -2002,21 +2002,21 @@ auto tickStart = ::time::now();
    /// This command may be required by some servers to reserve sufficient storage
    /// to accommodate the ___new file to be transferred.
    /// @lparam[in] iReserveBytes The argument shall be a decimal integer representing
-   ///                          the number of bytes (using the logical unsigned char int_size) of
+   ///                          the number of bytes (using the logical ::u8 i32_size) of
    ///                          storage to be reserved for the file. For files sent
    ///                          with record or page structure a maximum record or page
-   ///                          int_size (in logical bytes) might also be necessary; this
+   ///                          i32_size (in logical bytes) might also be necessary; this
    ///                          is indicated by a decimal integer in a second argument
    ///                          field of the command.
    /// @pararm[in] piMaxPageOrRecordSize This second argument is optional. This command
    ///                          shall be followed by a STORe or APPEnd command.
    ///                          The ALLO command should be treated as a NOOP (no operation)
    ///                          by those servers which do not require that the maximum
-   ///                          int_size of the file be declared beforehand, and those servers
-   ///                          interested in only the maximum record or page int_size should
+   ///                          i32_size of the file be declared beforehand, and those servers
+   ///                          interested in only the maximum record or page i32_size should
    ///                          accept a dummy value in the first argument and ignore it.
    /// @return see return values of client_socket::SimpleErrorCheck
-   int client_socket::Allocate(int iReserveBytes, const int* piMaxPageOrRecordSize/*=nullptr*/)
+   ::i32 client_socket::Allocate(::i32 iReserveBytes, const ::i32* piMaxPageOrRecordSize/*=nullptr*/)
    {
       string_array_base Arguments({ ::as_string(iReserveBytes) });
       if (piMaxPageOrRecordSize != nullptr)
@@ -2033,7 +2033,7 @@ auto tickStart = ::time::now();
 
    /// Executes the FTP command SMNT ()
    /// @return see return values of client_socket::SimpleErrorCheck
-   int client_socket::StructureMount(const ::scoped_string & scopedstrPath)
+   ::i32 client_socket::StructureMount(const ::scoped_string & scopedstrPath)
    {
       reply Reply;
       if (!SendCommand(command::SMNT(), { scopedstrPath }, Reply))
@@ -2047,7 +2047,7 @@ auto tickStart = ::time::now();
    /// are similarly unchanged.  The argument is a pathname specifying a directory
    /// or other system dependent file group designator.
    /// @return see return values of client_socket::SimpleErrorCheck
-   int client_socket::Reinitialize()
+   ::i32 client_socket::Reinitialize()
    {
       reply Reply;
       if (!SendCommand(command::REIN(), {}, Reply))
@@ -2075,10 +2075,10 @@ auto tickStart = ::time::now();
    /// @lparam[in] dwPosition Represents the server marker at which file transfer
    ///                       is to be restarted.
    /// @return see return values of client_socket::SimpleErrorCheck
-   int client_socket::Restart(unsigned int dwPosition)
+   ::i32 client_socket::Restart(::u32 dwPosition)
    {
       reply Reply;
-      if (!SendCommand(command::REST(), { ::as_string((unsigned int)dwPosition) }, Reply))
+      if (!SendCommand(command::REST(), { ::as_string((::u32)dwPosition) }, Reply))
          return FTP_ERROR;
 
       if (Reply.Code().IsPositiveIntermediateReply())
@@ -2091,13 +2091,13 @@ auto tickStart = ::time::now();
       return FTP_ERROR;
    }
 
-   /// Executes the FTP command const int_size &
-   /// Return int_size of file.
-   /// const int_size & is not specified in RFC 959.
+   /// Executes the FTP command const i32_size &
+   /// Return i32_size of file.
+   /// const i32_size & is not specified in RFC 959.
    /// @lparam[in] Pathname of a file.
    /// @lparam[out] Size of the file specified in pathname.
    /// @return see return values of client_socket::SimpleErrorCheck
-   int client_socket::FileSize(const ::scoped_string & scopedstrPath, long& lSize)
+   ::i32 client_socket::FileSize(const ::scoped_string & scopedstrPath, long& lSize)
    {
       reply Reply;
       if (!SendCommand(command::SIZE(), { scopedstrPath } , Reply))
@@ -2112,7 +2112,7 @@ auto tickStart = ::time::now();
    /// @lparam[in] scopedstrPath Pathname of a file.
    /// @lparam[out] strModificationTime Modification time of the file specified in pathname.
    /// @return see return values of client_socket::SimpleErrorCheck
-   int client_socket::FileModificationTime(const ::scoped_string & scopedstrPath, string& strModificationTime)
+   ::i32 client_socket::FileModificationTime(const ::scoped_string & scopedstrPath, string& strModificationTime)
    {
       
       strModificationTime.empty();
@@ -2146,10 +2146,10 @@ auto tickStart = ::time::now();
    /// @lparam[in] scopedstrPath Pathname of a file.
    /// @lparam[out] tmModificationTime Modification time of the file specified in pathname.
    /// @return see return values of client_socket::SimpleErrorCheck
-   int client_socket::FileModificationTime(const ::scoped_string & scopedstrPath, struct tm& tmModificationTime)
+   ::i32 client_socket::FileModificationTime(const ::scoped_string & scopedstrPath, struct tm& tmModificationTime)
    {
       string strTemp;
-      const int iRet = FileModificationTime(scopedstrPath, strTemp);
+      const ::i32 iRet = FileModificationTime(scopedstrPath, strTemp);
 
       memory_set(&tmModificationTime, 0, sizeof(tmModificationTime));
       if (iRet == FTP_OK)
@@ -2168,10 +2168,10 @@ auto tickStart = ::time::now();
    /// @lparam[in] strErrorMsg Error message which is reported to all observers.
    /// @lparam[in] Name of the sourcecode file where the error occurred.
    /// @lparam[in] Line number in th sourcecode file where the error occurred.
-   void client_socket::ReportError(const ::scoped_string & scopedstrErrorMsg, const ::scoped_string & scopedstrFile, unsigned int dwLineNr)
+   void client_socket::ReportError(const ::scoped_string & scopedstrErrorMsg, const ::scoped_string & scopedstrFile, ::u32 dwLineNr)
    {
-      for (auto * int_point : (observer_array &)m_setObserver)
-         int_point->OnInternalError(scopedstrErrorMsg, scopedstrFile, dwLineNr);
+      for (auto * i32_point : (observer_array &)m_setObserver)
+         i32_point->OnInternalError(scopedstrErrorMsg, scopedstrFile, dwLineNr);
    }
 
 

@@ -3,6 +3,7 @@
 //
 #include "framework.h"
 #include "session_apex.h"
+#include "acme/user/user/keyboard_state.h"
 #include "acme/constant/user_key.h"
 
 
@@ -29,24 +30,24 @@ namespace platform
 
    //void apex_session_layer::enum_display_monitors(){}
 
-   ////void construct(::particle * pparticle, int iPhase) override{}
+   ////void construct(::particle * pparticle, ::i32 iPhase) override{}
 
-   //virtual ::collection::index get_main_monitor(::int_rectangle* prectangle){}
+   //virtual ::collection::index get_main_monitor(::i32_rectangle* prectangle){}
 
    //virtual ::collection::count get_monitor_count(){}
-   //virtual bool  get_monitor_rectangle(::collection::index iMonitor, ::int_rectangle* prectangle){}
+   //virtual bool  get_monitor_rectangle(::collection::index iMonitor, ::i32_rectangle* prectangle){}
 
    //virtual ::collection::count get_desk_monitor_count(){}
-   //virtual bool  get_desk_monitor_rect(::collection::index iMonitor, ::int_rectangle* prectangle){}
+   //virtual bool  get_desk_monitor_rect(::collection::index iMonitor, ::i32_rectangle* prectangle){}
 
 
-   //virtual ::collection::index get_main_workspace(::int_rectangle* prectangle){}
+   //virtual ::collection::index get_main_workspace(::i32_rectangle* prectangle){}
 
    //virtual ::collection::count get_workspace_count(){}
-   //virtual bool  get_workspace_rectangle(::collection::index iWorkspace, ::int_rectangle* prectangle){}
+   //virtual bool  get_workspace_rectangle(::collection::index iWorkspace, ::i32_rectangle* prectangle){}
 
    //virtual ::collection::count get_desk_workspace_count(){}
-   //virtual bool  get_desk_workspace_rect(::collection::index iWorkspace, ::int_rectangle* prectangle){}
+   //virtual bool  get_desk_workspace_rect(::collection::index iWorkspace, ::i32_rectangle* prectangle){}
 
    //virtual ::collection::index get_ui_workspace(::user::interaction * pinteraction){}
 
@@ -83,10 +84,10 @@ namespace platform
    //inline ::sockets::sockets & sockets() { return *m_psockets{} }
 
 
-   //virtual int_size get_window_minimum_size(){}
+   //virtual i32_size get_window_minimum_size(){}
 
 
-   //virtual void  get_cursor_position(::int_point * ppoint){}
+   //virtual void  get_cursor_position(::i32_point * ppoint){}
 
    //bool apex_session_layer::on_get_task_name(string& strThreadName) override{}
 
@@ -101,8 +102,8 @@ namespace platform
    //bool apex_session_layer::file_is_read_only(const ::scoped_string & scopedstrPath){}
 
    // Long PhRESSing time
-   // time in ::times that a pressing is considered a double click
-   unsigned int apex_session_layer::get_Long_PhRESSing_time()
+   // time in ::times that a pressing is considered a ::f64 click
+   ::u32 apex_session_layer::get_Long_PhRESSing_time()
    {
 
       return 0;
@@ -231,76 +232,91 @@ namespace platform
 
    //::application * application_get(const ::scoped_string & scopedstrAppId, bool bCreate, bool bSynch, ::request * prequest) override{}
 
-   ::user::e_key apex_session_layer::key_modifiers()
-   {
 
-      return ::user::e_key_none;
+   //::user::e_key_state apex_session_layer::key_state()
+   //{
 
-   }
+   //   return ::key::e_state_none;
+
+   //}
+
+   //
+   //::user::e_key_state apex_session_layer::key_state_with_wm_mouse_wparam(::wparam wparam)
+   //{
+
+   //   return ::key::e_state_none;
+
+   //}
 
 
-   //bool apex_session_layer::is_key_pressed(::user::enum_key ekey)
+      //::user::e_button_state apex_session_layer::button_state() 
+      //{
+      //   return ::key::e_state_none;
+      //
+      //}
+
+   //bool apex_session_layer::is_key_pressed(const ::user::e_key & ekey)
    //{}
 
 
-   void apex_session_layer::set_key_pressed(::user::enum_key ekey, bool bPressed)
-   {
+   //void apex_session_layer::set_key_pressed(const ::user::e_key & ekey, bool bPressed)
+   //{
 
 
-   }
+   //}
 
 
    // apex commented
-   //void apex_session_layer::get_cursor_position(::int_point * ppoint){}
-   //inline ::int_point get_cursor_position() {::int_point point{} get_cursor_position(&point){} return point{}}
+   //void apex_session_layer::get_cursor_position(::i32_point * ppoint){}
+   //inline ::i32_point get_cursor_position() {::i32_point point{} get_cursor_position(&point){} return point{}}
 
    // apex commented
-   //void apex_session_layer::set_cursor_pos(const ::int_point & point){}
+   //void apex_session_layer::set_cursor_pos(const ::i32_point & point){}
 
-   //virtual ::collection::index get_main_monitor(::int_rectangle * prectangle){}
+   //virtual ::collection::index get_main_monitor(::i32_rectangle * prectangle){}
 
    // bool apex_session_layer::set_main_monitor(::collection::index iMonitor){}
    // //virtual ::collection::count get_monitor_count(){}
-   // //virtual bool  get_monitor_rectangle(::collection::index iMonitor, ::int_rectangle * prectangle){}
+   // //virtual bool  get_monitor_rectangle(::collection::index iMonitor, ::i32_rectangle * prectangle){}
 
-   // //virtual ::collection::index get_main_workspace(::int_rectangle * prectangle){}
+   // //virtual ::collection::index get_main_workspace(::i32_rectangle * prectangle){}
 
    // bool apex_session_layer::set_main_workspace(::collection::index iWorkspace){}
    // //virtual ::collection::count get_workspace_count(){}
-   // //virtual bool  get_workspace_rectangle(::collection::index iWorkspace, ::int_rectangle * prectangle){}
+   // //virtual bool  get_workspace_rectangle(::collection::index iWorkspace, ::i32_rectangle * prectangle){}
 
-   // bool apex_session_layer::workspace_to_monitor(::int_rectangle * prectangle, ::collection::index iMonitor, ::collection::index iWorkspace){}
+   // bool apex_session_layer::workspace_to_monitor(::i32_rectangle * prectangle, ::collection::index iMonitor, ::collection::index iWorkspace){}
 
-   // bool apex_session_layer::monitor_to_workspace(::int_rectangle * prectangle, ::collection::index iWorkspace, ::collection::index iMonitor){}
+   // bool apex_session_layer::monitor_to_workspace(::i32_rectangle * prectangle, ::collection::index iWorkspace, ::collection::index iMonitor){}
 
-   // bool apex_session_layer::workspace_to_monitor(::int_rectangle * prectangle){}
+   // bool apex_session_layer::workspace_to_monitor(::i32_rectangle * prectangle){}
 
-   // bool apex_session_layer::monitor_to_workspace(::int_rectangle * prectangle){}
+   // bool apex_session_layer::monitor_to_workspace(::i32_rectangle * prectangle){}
 
    // //virtual ::collection::count get_desk_monitor_count(){}
-   // //virtual bool  get_desk_monitor_rect(::collection::index iMonitor, ::int_rectangle * prectangle){}
+   // //virtual bool  get_desk_monitor_rect(::collection::index iMonitor, ::i32_rectangle * prectangle){}
 
-   // virtual void  get_monitor(int_rectangle_array_base & rectaMonitor, int_rectangle_array_base & rectaIntersect, const ::int_rectangle & rectangle){}
+   // virtual void  get_monitor(i32_rectangle_array_base & rectaMonitor, i32_rectangle_array_base & rectaIntersect, const ::i32_rectangle & rectangle){}
 
    // // apex commented
-   // //virtual ::collection::index initial_frame_position(::int_rectangle * prectangle, const ::int_rectangle & rectangle, bool bMove, ::user::interaction * pinteraction){}
+   // //virtual ::collection::index initial_frame_position(::i32_rectangle * prectangle, const ::i32_rectangle & rectangle, bool bMove, ::user::interaction * pinteraction){}
 
-   // virtual ::collection::index _get_best_zoneing(edisplay * pedisplay, ::int_rectangle * prectangle, const ::int_rectangle & rectangle, bool bPreserveSize = false){}
+   // virtual ::collection::index _get_best_zoneing(edisplay * pedisplay, ::i32_rectangle * prectangle, const ::i32_rectangle & rectangle, bool bPreserveSize = false){}
 
-   // virtual ::collection::index get_best_monitor(::int_rectangle * prectangle, const ::int_rectangle & rectangle, const ::user::activation & useractivation = {}){}
+   // virtual ::collection::index get_best_monitor(::i32_rectangle * prectangle, const ::i32_rectangle & rectangle, const ::user::activation & useractivation = {}){}
 
-   // virtual ::collection::index get_best_workspace(::int_rectangle * prectangle, const ::int_rectangle& rectangle, const ::user::activation & useractivation = {}){}
+   // virtual ::collection::index get_best_workspace(::i32_rectangle * prectangle, const ::i32_rectangle& rectangle, const ::user::activation & useractivation = {}){}
 
-   // virtual ::collection::index get_good_iconify(::int_rectangle * prectangle, const ::int_rectangle & rectangle){}
-
-   // apex commented
-   //virtual ::collection::index get_window_restore_1(::int_rectangle * prectangle, const ::int_rectangle & rectangle, ::user::interaction * pinteraction, edisplay edisplayRestore){}
+   // virtual ::collection::index get_good_iconify(::i32_rectangle * prectangle, const ::i32_rectangle & rectangle){}
 
    // apex commented
-   //virtual ::collection::index get_window_restore_2(::int_rectangle* prectangle, const ::int_rectangle& rectangle, ::user::interaction* pinteraction, edisplay edisplayRestore){}
+   //virtual ::collection::index get_window_restore_1(::i32_rectangle * prectangle, const ::i32_rectangle & rectangle, ::user::interaction * pinteraction, edisplay edisplayRestore){}
 
    // apex commented
-   //virtual ::collection::index get_good_move(::int_rectangle * prectangle, const ::int_rectangle & rectangle, ::user::interaction * pinteraction){}
+   //virtual ::collection::index get_window_restore_2(::i32_rectangle* prectangle, const ::i32_rectangle& rectangle, ::user::interaction* pinteraction, edisplay edisplayRestore){}
+
+   // apex commented
+   //virtual ::collection::index get_good_move(::i32_rectangle * prectangle, const ::i32_rectangle & rectangle, ::user::interaction * pinteraction){}
 
    // apex commented
    //virtual ::collection::index get_ui_workspace(::user::interaction * pinteraction){}
@@ -311,7 +327,7 @@ namespace platform
    //::pointer<::user::theme>get_user_theme(const ::scoped_string & scopedstrExperienceLibrary, ::apex::application * papp){}
 
 
-   //void apex_session_layer::_001OnDefaultTabPaneDrawTitle(::user::tab_pane & pane, ::user::tab * ptab, ::draw2d::graphics_pointer & pgraphics, const ::int_rectangle & rectangle, ::draw2d::brush_pointer & pbrushText){}
+   //void apex_session_layer::_001OnDefaultTabPaneDrawTitle(::user::tab_pane & pane, ::user::tab * ptab, ::draw2d::graphics_pointer & pgraphics, const ::i32_rectangle & rectangle, ::draw2d::brush_pointer & pbrushText){}
 
 
    // apex commented
@@ -430,7 +446,7 @@ namespace platform
    // void apex_session_layer::on_request(::request* prequest) override{}
 
 
-::particle * apex_session_layer::defer_initialize_host_window(const ::int_rectangle* lpcrect)
+::particle * apex_session_layer::defer_initialize_host_window(const ::i32_rectangle* lpcrect)
    {
    
    return nullptr;
@@ -485,4 +501,32 @@ namespace platform
    }
 
 
+   // ::user::keyboard_state & apex_session_layer::keyboard_state()
+   // {
+   //
+   //    if (!m_pkeyboardstate)
+   //    {
+   //
+   //       constructø(m_pkeyboardstate);
+   //
+   //       m_pkeyboardstate->initialize_keyboard_state(this);
+   //
+   //    }
+   //
+   //    return *m_pkeyboardstate;
+   //
+   // }
+
+
+   bool apex_session_layer::on_ui_mouse_message(::user::mouse * pmouse)
+   {
+
+      return false;
+      
+   }
+
+
 } // namespace platform
+
+
+

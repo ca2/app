@@ -14,11 +14,11 @@
 //   constexpr floating_millisecond_t(floating_millisecond millisecond = {}) : floating_millisecond(millisecond) {}
 //
 //
-//   constexpr operator integral_second() const { return { (long long)(m_d / 1'000.0) }; }
-//   constexpr operator integral_nanosecond() const { return { (long long)(fmod(m_d, 1'000.0) * 1'000'000.0) }; }
+//   constexpr operator integral_second() const { return { (::i64)(m_f64 / 1'000.0) }; }
+//   constexpr operator integral_nanosecond() const { return { (::i64)(fmod(m_f64, 1'000.0) * 1'000'000.0) }; }
 //
 //
-//   constexpr operator floating_second() const { return { m_d / 1'000.0 }; }
+//   constexpr operator floating_second() const { return { m_f64 / 1'000.0 }; }
 //
 //};
 //
@@ -26,7 +26,7 @@
 //using floating_millisecond = floating_time < floating_millisecond_t >; 
 //
 
-inline floating_millisecond get_floating_millisecond() { return floating_millisecond(get_floating_nanosecond().m_d / 1'000'000.0); }
+inline floating_millisecond get_floating_millisecond() { return floating_millisecond(get_floating_nanosecond().m_f64 / 1'000'000.0); }
 
 
 template <  >

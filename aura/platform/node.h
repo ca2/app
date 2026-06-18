@@ -62,15 +62,15 @@ namespace aura
 //#endif
 
 
-      virtual ::image::image_pointer get_file_image_by_type_identifier(int iSize, const ::scoped_string & scopedstrTypeIdentifier) override;
+      virtual ::image::image_pointer get_file_image_by_type_identifier(::i32 iSize, const ::scoped_string & scopedstrTypeIdentifier) override;
 
-      virtual ::image::image_pointer get_file_image(int iSize, const ::file::path & path) override;
+      virtual ::image::image_pointer get_file_image(::i32 iSize, const ::file::path & path) override;
       
       virtual void defer_dock_application(bool bDock) override;
 
 //      void set_application_menu(::application_menu * pmenu, ::apex::application * papp) override;
 
-//      virtual void * node_wrap_window(void * pdisplay, long long window);
+//      virtual void * node_wrap_window(void * pdisplay, ::i64 window);
 
       //using apex::node::user_fork;
 

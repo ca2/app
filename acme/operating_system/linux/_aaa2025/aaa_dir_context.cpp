@@ -10,7 +10,7 @@
 #endif
 
 
-inline bool linux_dir_myspace(char ch)
+inline bool linux_dir_myspace(::i8 ch)
 {
 
    return ch == ' ' ||
@@ -245,7 +245,7 @@ namespace linux
 
             straDir.ls_dir(listing.m_pathFinal);
 
-            for(int i = 0; i < straDir.get_count(); i++)
+            for(::i32 i = 0; i < straDir.get_count(); i++)
             {
 
                string strDir = straDir[i];
@@ -305,7 +305,7 @@ namespace linux
 
          ::dir::ls(stra, listing.m_pathFinal);
 
-         for(int i = 0; i < stra.get_count(); i++)
+         for(::i32 i = 0; i < stra.get_count(); i++)
          {
 
             auto & strPath = stra[i];
@@ -414,7 +414,7 @@ pdirectorysystem->is(path))
          return true; // assume empty string is root_ones directory
       }
 
-      if(task_flag().is_set(e_task_flag_compress_is_dir) && iLast >= 3  && !case_insensitive_ansi_count_compare(&((const char *) str)[iLast - 3], ".zip", 4))
+      if(task_flag().is_set(e_task_flag_compress_is_dir) && iLast >= 3  && !case_insensitive_ansi_count_compare(&((const_char_pointer ) str)[iLast - 3], ".zip", 4))
       {
 
          return true;
@@ -535,7 +535,7 @@ pdirectorysystem->is(path))
          if(!::dir::mkdir(stra[i]))
          {
 
-            unsigned int dwError = ::get_last_error();
+            ::u32 dwError = ::get_last_error();
 
             if(dwError == ERROR_ALREADY_EXISTS)
             {
@@ -585,7 +585,7 @@ pdirectorysystem->is(path))
 
             }
 
-            char * pszError;
+            char_pointer pszError;
 
             if(!is(stra[i]))
             {
@@ -613,7 +613,7 @@ pdirectorysystem->is(path))
 
          straPath.ls(scopedstr);
 
-         for(int i = 0; i < straPath.get_count(); i++)
+         for(::i32 i = 0; i < straPath.get_count(); i++)
          {
 
             if(is(straPath[i]))

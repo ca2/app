@@ -55,10 +55,10 @@ TcGraphDefaults (void)
 //------------------------------------------------------------------------
 // Sets the default colors for a given palette type.  Returns 0 on success.
 
-int
-TcDefaultColors (int Pal)
+::i32
+TcDefaultColors (::i32 Pal)
 {
-  int i;
+  ::i32 i;
   switch (Pal)
     {
     case TC_PAL_2:

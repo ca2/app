@@ -118,7 +118,7 @@ namespace apex
 
       }
       //else if (has_property("run"))
-      else if(prequest->m_ecommand == e_command_application_started)
+      else if (prequest->m_ecommand == e_command_default_start)
       {
 
          if (!m_pservicehandler)

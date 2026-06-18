@@ -14,7 +14,7 @@ namespace windowing
 
 
       class ::time            m_time;
-      ::int_rectangle         m_rectangle;
+      ::i32_rectangle         m_rectangle;
 
 
    };
@@ -29,10 +29,10 @@ namespace windowing
       void on_initialize_particle() override;
 
 
-      void add(const ::int_rectangle& rectangle);
-      bool has_recent(const ::int_rectangle& rectangle);
-      bool has_recent(const ::int_size & size);
-      bool has_recent(const ::int_point& point);
+      void add(const ::i32_rectangle& rectangle);
+      bool has_recent(const ::i32_rectangle& rectangle);
+      bool has_recent(const ::i32_size & size);
+      bool has_recent(const ::i32_point& point);
       void clean_recent();
 
 

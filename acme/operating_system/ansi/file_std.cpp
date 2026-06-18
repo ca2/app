@@ -3,27 +3,27 @@
 #include <stdio.h>
 
 
-FILE * FILE_open(const_char_pointer path, const_char_pointer attr, int iShare)
+FILE * FILE_open(const_char_pointer pszPath, const_char_pointer pszAttr, ::i32 iShare)
 {
 
 #if defined(WINDOWS)
 
-   wstring wstrPath(path);
+   wstring wstrPath(pszPath);
 
-   wstring wstrAttr(attr);
+   wstring wstrAttr(pszAttr);
 
    return _wfsopen(wstrPath, wstrAttr, iShare);
 
 #else
 
-   return fopen(path, attr);
+   return fopen(pszPath, pszAttr);
 
 #endif
 
 }
 
 
-int FILE_close(FILE *fp)
+::i32 FILE_close(FILE *fp)
 {
 
    return fclose(fp);
@@ -31,7 +31,7 @@ int FILE_close(FILE *fp)
 }
 
 
-int FILE_eof(FILE *fp)
+::i32 FILE_eof(FILE *fp)
 {
 
    return feof(fp);
@@ -39,7 +39,7 @@ int FILE_eof(FILE *fp)
 }
 
 
-int FILE_flush(FILE * fp)
+::i32 FILE_flush(FILE * fp)
 {
 
    return fflush(fp);
@@ -47,7 +47,7 @@ int FILE_flush(FILE * fp)
 }
 
 
-filesize FILE_seek(FILE *fp, filesize offset, int origin)
+filesize FILE_seek(FILE *fp, filesize offset, ::i32 origin)
 {
 
    return fseek(fp, (long) (offset), origin);
@@ -79,15 +79,15 @@ filesize FILE_write(const void *buffer, memsize size, memsize count, FILE *str)
 }
 
 
-char * FILE_gets(char * str, character_count n, FILE *s)
+char_pointer FILE_gets(char_pointer str, character_count n, FILE *s)
 {
 
-   return fgets(str, (int) n, s);
+   return fgets(str, (::i32) n, s);
 
 }
 
 
-int FILE_getc(FILE * s)
+::i32 FILE_getc(FILE * s)
 {
 
    return ::getc(s);
@@ -103,11 +103,11 @@ int FILE_getc(FILE * s)
 
    FILE_read(&c, 1, sizeof(uchar), s);
 
-   return (int)c;*/
+   return (::i32)c;*/
 }
 
 
-int FILE_ungetc(int c, FILE *s)
+::i32 FILE_ungetc(::i32 c, FILE *s)
 {
 
    return ::ungetc(c, s);
@@ -121,12 +121,12 @@ int FILE_ungetc(int c, FILE *s)
 
    //FILE_seek(s, -1, SEEK_CUR);
 
-   //return (int)c;
+   //return (::i32)c;
 
 }
 
 
-int FILE_error(FILE *fp)
+::i32 FILE_error(FILE *fp)
 {
 
    return ferror(fp);
@@ -192,7 +192,7 @@ filesize FILE_get_size(FILE * fp)
 #endif
 
 
-int file_touch(const ::scoped_string & scopedstr)
+::i32 file_touch(const ::scoped_string & scopedstr)
 {
 
    FILE * pfile = ::fopen(scopedstr.as_string().c_str(), "a");

@@ -6,7 +6,7 @@
 #include "acme/prototype/prototype/poolable.h"
 #include "bred/gpu/context.h"
 #include "bred/gpu/context_object.h"
-#include "bred/gpu/frame.h"
+#include "bred/gpu/layer.h"
 #include "bred/gpu/memory_buffer.h"
 #include "bred/gpu/model_data.h"
 #include "bred/graphics3d/renderable.h"
@@ -48,7 +48,7 @@ namespace gpu
       model_buffer();
       ~model_buffer();
 
-      template < typename VERTEX, typename INDEX = unsigned int >
+      template < typename VERTEX, typename INDEX = ::u32 >
       ::gpu::model_data_base & model_data()
       {
 
@@ -73,7 +73,7 @@ namespace gpu
 
 
       template < typename VERTEX >
-      void create_vertexes(int iVertexCount, bool bDynamic = false)
+      void create_vertexes(::i32 iVertexCount, bool bDynamic = false)
       {
 
          auto & modeldata = model_data<VERTEX>();
@@ -99,14 +99,14 @@ namespace gpu
 
 
       //template < typename VERTEX >
-      //void create_vertex_array(int iCount)
+      //void create_vertex_array(::i32 iCount)
       //{
 
-      //   auto pgpuframe = ::gpu::current_frame();
+      //   auto pgpulayer = ::gpu::current_layer();
 
-      //   initialize_gpu_context_object(pgpuframe->gpu_context());
+      //   initialize_gpu_context_object(pgpulayer->gpu_context());
 
-      //   auto pcommandbuffer = pgpuframe->m_pgpucommandbuffer;
+      //   auto pcommandbuffer = pgpulayer->m_pgpucommandbuffer;
 
       //   bind2(pcommandbuffer);
 
@@ -143,7 +143,7 @@ namespace gpu
 
       virtual ::gpu::command_buffer* _defer_get_loading_command_buffer();
 
-      virtual void initialize_dummy_model(::gpu::context* pcontext, int iVertexCount);
+      virtual void initialize_dummy_model(::gpu::context* pcontext, ::i32 iVertexCount);
 
 
       //virtual void static_initialize_vertexes_block(const ::block& blockvertexes);
@@ -185,7 +185,7 @@ namespace gpu
          }
 
 
-         //m_iIndexCount = (int)indexa.count();
+         //m_iIndexCount = (::i32)indexa.count();
 
          //m_iIndexTypeSize = sizeof(INDEX);
 
@@ -201,9 +201,9 @@ namespace gpu
 
                   m_pmodeldatabase2->set_indexes(indexes);
 
-      /*m_iIndexCount = (int)iIndexCount;
+      /*m_iIndexCount = (::i32)iIndexCount;
 
-         m_iIndexTypeSize = (int)iTypeSize;*/
+         m_iIndexTypeSize = (::i32)iTypeSize;*/
 
          //auto size = iIndexCount * m_iIndexTypeSize;
 
@@ -382,7 +382,7 @@ namespace gpu
       }
 
 
-      virtual void initialize_dummy_model(::gpu::renderer *pgpurenderer, int ivertexes);
+      virtual void initialize_dummy_model(::gpu::renderer *pgpurenderer, ::i32 ivertexes);
 
 
       virtual bool is_dummy() const;
@@ -395,30 +395,30 @@ namespace gpu
 
 
       void sequence3_color_set_rectangle(
-         const ::double_point points1[4],
+         const ::f64_point points1[4],
          const  ::color::color& color,
-         const ::double_size& size);
+         const ::f64_size& size);
 
       void sequence2_color_set_rectangle(
-         const ::double_point * ppoints1 /* [4]tl,tr,br,bl */,
+         const ::f64_point * ppoints1 /* [4]tl,tr,br,bl */,
          const ::color::color& color,
-         const ::double_size& size);
+         const ::f64_size& size);
 
       void sequence2_color_set_rectangle(
-         const ::double_point* ppoints1 /* [4]tl,tr,br,bl */,
+         const ::f64_point* ppoints1 /* [4]tl,tr,br,bl */,
          const ::color::color& color);
 
       void sequence3_color_set_line(
-         const ::double_point& pointA,
-         const ::double_point& pointB,
+         const ::f64_point& pointA,
+         const ::f64_point& pointB,
          const  ::color::color& color,
-         const ::double_size& size);
+         const ::f64_size& size);
 
       void sequence2_color_set_line(
-         const ::double_point& pointA,
-         const ::double_point& pointB,
+         const ::f64_point& pointA,
+         const ::f64_point& pointB,
          const  ::color::color& color,
-         const ::double_size& size);
+         const ::f64_size& size);
 
       template < typename VERTEX >
       memory_map < memory_buffer, VERTEX > map()

@@ -10,10 +10,10 @@
 #import <UniformTypeIdentifiers/UTType.h>
 #import <Cocoa/Cocoa.h>
 
-bool GetImagePixelData(unsigned int * pcr, int cx, int cy, int iScan, CGImageRef inImage);
+bool GetImagePixelData(::u32 * pcr, int cx, int cy, int iScan, CGImageRef inImage);
 
 
-bool apple_get_file_image(unsigned int * pcr, int cx, int cy, int iScan, const char * pszFilePath)
+bool apple_get_file_image(::u32 * pcr, int cx, int cy, int iScan, const char * pszFilePath)
 {
    
    NSString * strFilePath = [NSString stringWithUTF8String:pszFilePath];
@@ -50,7 +50,7 @@ bool apple_get_file_image(unsigned int * pcr, int cx, int cy, int iScan, const c
 }
 
 
-bool apple_get_file_image_by_type_identifier(unsigned int * pcr, int cx, int cy, int iScan, const char * pszTypeIdentifier)
+bool apple_get_file_image_by_type_identifier(::u32 * pcr, int cx, int cy, int iScan, const char * pszTypeIdentifier)
 {
    
    NSString * strTypeIdentifier = [NSString stringWithUTF8String:pszTypeIdentifier];
@@ -116,7 +116,7 @@ bool apple_get_file_image_by_type_identifier(unsigned int * pcr, int cx, int cy,
 }
 
 //
-//bool mm1_get_file_image(unsigned int * pcr, int cx, int cy, int iScan, const char * psz)
+//bool mm1_get_file_image(::u32 * pcr, int cx, int cy, int iScan, const char * psz)
 //{
 //   
 //   return mm2_get_file_image(pcr, cx, cy, iScan, psz);
@@ -124,7 +124,7 @@ bool apple_get_file_image_by_type_identifier(unsigned int * pcr, int cx, int cy,
 //}
 //
 //
-//bool mm1_get_file_image_by_type_identifier(unsigned int * pcr, int cx, int cy, int iScan, const char * pszTypeIdentifier)
+//bool mm1_get_file_image_by_type_identifier(::u32 * pcr, int cx, int cy, int iScan, const char * pszTypeIdentifier)
 //{
 //   
 //   return mm2_get_file_image_by_type_identifier(pcr, cx, cy, iScan, pszTypeIdentifier);

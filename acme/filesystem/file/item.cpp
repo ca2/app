@@ -57,7 +57,7 @@ namespace file
 
 
 
-   //void item::set_final_path_dir(int iDir)
+   //void item::set_final_path_dir(::i32 iDir)
    //{
 
    //   m_pathFinal.m_iDir = iDir;
@@ -186,7 +186,7 @@ namespace file
    }
 
 
-   bool item::is_folder() const
+   ::i32_boolean item::is_folder() const
    {
 
       if (m_flags & ::file::e_flag_folder_ex001_calc)
@@ -230,7 +230,7 @@ namespace file
    }
 
 
-   bool item::is_file() const
+   ::i32_boolean item::is_file() const
    {
 
       if (m_flags & ::file::e_flag_folder_ex001_calc)

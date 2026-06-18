@@ -105,7 +105,7 @@ in read operations - helps on ECOS */
 #include <sys/lparam.h>
 #endif
 
-// long long
+// ::i64
 #ifdef _WIN32
 #else
 #ifdef SOLARIS
@@ -121,7 +121,7 @@ in read operations - helps on ECOS */
 
 // all typedefs in this file will be declared outside the sockets namespace,
 // because some psystem's will already have one or more of the type defined.
-typedef int SOCKET;
+typedef ::i32 SOCKET;
 //#define Errno errno
 //#define bsd_socket_error strerror
 
@@ -137,7 +137,7 @@ namespace sockets
 #define SOCKET_ERROR -1
 
 #ifndef INADDR_NONE
-#define INADDR_NONE ((unsigned long) -1)
+#define INADDR_NONE ((ulong) -1)
 #endif // INADDR_NONE
 
 #ifdef sockets
@@ -160,7 +160,7 @@ namespace sockets
 #ifdef SOLARIS
 // ----------------------------------------
 // Solaris
-typedef unsigned short port_t;
+typedef ::u16 port_t;
 #ifdef sockets
 namespace sockets
 {
@@ -204,7 +204,7 @@ namespace sockets
 // ----------------------------------------
 // Mac App X
 #ifdef __DARWIN_UNIX03
-typedef unsigned short port_t;
+typedef ::u16 port_t;
 #else
 #include <mach/port.h>
 #endif // __DARWIN_UNIX03
@@ -236,20 +236,20 @@ namespace sockets
 
 
 #define Errno WSAGetLastError()
-CLASS_DECL_APEX const_char_pointer bsd_socket_error(int x);
+CLASS_DECL_APEX const_char_pointer bsd_socket_error(::i32 x);
 
 
 #elif defined(UNIVERSAL_WINDOWS)
 
-CLASS_DECL_APEX const_char_pointer bsd_socket_error(int x);
+CLASS_DECL_APEX const_char_pointer bsd_socket_error(::i32 x);
 
 #define Errno get_last_error()
 
 #else
 
 
-typedef unsigned int ipaddr_t;
-typedef unsigned short port_t;
+typedef ::u32 ipaddr_t;
+typedef ::u16 port_t;
 
 
 #endif

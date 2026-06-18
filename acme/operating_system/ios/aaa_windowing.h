@@ -16,15 +16,15 @@ struct UIWindow;
 UIWindow * __uiwindow(::acme::windowing::window * pacmewindowingwindow);
 
 
-int get_main_screen_rectangle(::int_rectangle * lprect);
+::i32 get_main_screen_rectangle(::i32_rectangle * lprect);
 
-int GetScreenRect(::int_rectangle * lprect, int iMonitor);
+::i32 GetScreenRect(::i32_rectangle * lprect, ::i32 iMonitor);
 
-int GetScreenCount();
+::i32 GetScreenCount();
 
-int GetWorkspaceRect(::int_rectangle * lprect, int iMonitor);
+::i32 GetWorkspaceRect(::i32_rectangle * lprect, ::i32 iMonitor);
 
-int GetWorkspaceCount();
+::i32 GetWorkspaceCount();
 
 
 //
@@ -38,17 +38,17 @@ int GetWorkspaceCount();
 
 //oswindow get_capture();
 //oswindow set_capture(oswindow window);
-//int_bool release_capture();
+//i32_bool release_capture();
 //oswindow set_focus(oswindow window);
 //oswindow get_focus();
 //oswindow get_active_window();
 //oswindow set_active_window(oswindow window);
 
 
-//void get_main_screen_rectangle(::int_rectangle * lprect);
+//void get_main_screen_rectangle(::i32_rectangle * lprect);
 
-int_bool set_foreground_window(oswindow window);
-int_bool BringWindowToTop(oswindow window);
+i32_bool set_foreground_window(oswindow window);
+i32_bool BringWindowToTop(oswindow window);
 
 void ns_redraw_window(oswindow window);
 
@@ -64,7 +64,7 @@ void ns_redraw_window(oswindow window);
 void deactivate_window(oswindow window);
 
 
-//oswindow get_window(oswindow window, int iParentHood);
+//oswindow get_window(oswindow window, ::i32 iParentHood);
 
 
 

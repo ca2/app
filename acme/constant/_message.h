@@ -1,7 +1,7 @@
 #pragma once
 
 //
-// enum ENUM_MESSAGE : int
+// enum ENUM_MESSAGE : ::i32
 // {
 //
 //    ::user::e_message_undefined = -1,

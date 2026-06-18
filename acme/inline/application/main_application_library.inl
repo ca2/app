@@ -171,6 +171,12 @@ APPLICATION_NAMESPACE_MAIN_EXPORT int APPLICATION_NAMESPACE_MAIN(main)()
 
          ::APPLICATION_NAMESPACE::application_factory(psystem->factory());
 
+#ifdef WINDOWS
+
+         psystem->m_hinstanceMain = ::windows::hinstance_from_function(APPLICATION_NAMESPACE_MAIN(main));
+
+#endif
+
          psystem->application_main();
 
          ::os_on_term_thread();

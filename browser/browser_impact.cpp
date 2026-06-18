@@ -8,7 +8,7 @@
 #include "include/wrapper/cef_closure_task.h"
 #include "include/wrapper/cef_helpers.h"
 #include "acme/constant/timer.h"
-int cef_main(HINSTANCE hInstance, HWND hwnd, ::int_rectangle int_rectangle);
+::i32 cef_main(HINSTANCE hInstance, HWND hwnd, ::i32_rectangle i32_rectangle);
 
 namespace browser
 {
@@ -26,8 +26,8 @@ namespace browser
       prop(COLORSEL_IMPACT) = true;
 
 
-      m_flagNonClient.erase(e_non_client_background);
-      m_flagNonClient.erase(e_non_client_focus_rect);
+      m_enonclient.erase(::user::e_non_client_background);
+      m_enonclient.erase(::user::e_non_client_focus_rect);
 
       m_eeffect                  = effect_none;
 
@@ -152,10 +152,10 @@ namespace browser
    }
 
 
-   void impact::on_timer(::timer * ptimer)
+   void impact::operator()(::timer * ptimer)
    {
 
-      if (ptimer->m_uTimer == ::e_timer_update_current_area)
+      if (ptimer->m_etimer == ::e_timer_update_current_area)
       {
 
          {
@@ -289,7 +289,7 @@ namespace browser
 
          auto rectangleX = this->rectangle();
 
-         pgraphics->draw(::int_rectangle(m_pimageBrowser->size()), m_pimageBrowser->g(), m_pimageBrowser->rectangle());
+         pgraphics->draw(::i32_rectangle(m_pimageBrowser->size()), m_pimageBrowser->g(), m_pimageBrowser->rectangle());
 
       }
 
@@ -321,7 +321,7 @@ namespace browser
 
       CefMouseEvent happening;
 
-      ::int_point point = pmouse->m_point;
+      ::i32_point point = pmouse->m_point;
 
       screen_to_client()(point);
 
@@ -368,7 +368,7 @@ namespace browser
          return;
 
 
-      ::int_rectangle rectangle = this->rectangle();
+      ::i32_rectangle rectangle = this->rectangle();
 
       client_to_screen(rectangle);
 
@@ -394,7 +394,7 @@ namespace browser
                            //          Call CefWindowInfo::SetAsWindowless() before passing the CefWindowInfo structure to CefBrowserHost::CreateBrowser().If no parent window is passed to SetAsWindowless some functionality like context menus may not be available.
 
                            //m_pclienthandler = ___new ClientHandler(this);
-               CreateBrowser(info, browserSettings, CefString("https://ca2.network/"));
+               CreateBrowser(info, browserSettings, CefString("https://ca2.site/"));
                //m_pthreadBrowser = fork([=]()
                //                        // main_async([=]()
                //{
@@ -409,7 +409,7 @@ namespace browser
 
                m_pbrowser->GetHost()->WasResized();
                //auto hwnd = m_pbrowser->GetHost()->GetWindowHandle();
-               //auto rectangle = ::int_rectangle{ 0 };
+               //auto rectangle = ::i32_rectangle{ 0 };
                //this->rectangle(&rectangle);
 
                //auto hwnd2 = get_handle();
@@ -688,9 +688,9 @@ namespace browser
       if (m_prender->m_bImageEnable && m_prender->m_pimageImage->is_ok())
       {
 
-         ::int_rectangle rectangleWork(0, 0, m_prender->m_pimageWork->get_size()->cx, m_prender->m_pimageWork->get_size()->cy);
+         ::i32_rectangle rectangleWork(0, 0, m_prender->m_pimageWork->get_size()->cx, m_prender->m_pimageWork->get_size()->cy);
 
-         ::int_rectangle rectangleImage(0, 0, m_prender->m_pimageImage->get_size()->cx, m_prender->m_pimageImage->get_size()->cy);
+         ::i32_rectangle rectangleImage(0, 0, m_prender->m_pimageImage->get_size()->cx, m_prender->m_pimageImage->get_size()->cy);
 
          rectangleImage.FitOnCenterOf(rectangleWork);
 
@@ -701,7 +701,7 @@ namespace browser
                || m_prender->m_bImageChanged)
          {
 
-            ::int_size size = rectangleImage.size();
+            ::i32_size size = rectangleImage.size();
 
             m_prender->m_pimageImageStretched->release();
             {
@@ -825,7 +825,7 @@ namespace browser
    {
    }
 
-   //void impact::OnSize(unsigned int nType, int cx, int cy)
+   //void impact::OnSize(::u32 nType, ::i32 cx, ::i32 cy)
    //{
    //   CImpact::OnSize(nType, cx, cy);
 
@@ -834,7 +834,7 @@ namespace browser
    //      if (m_pbrowser != nullptr)
    //      {
    //         auto hwnd = m_pbrowser->GetHost()->GetWindowHandle();
-   //         auto rectangle = ::int_rectangle{ 0 };
+   //         auto rectangle = ::i32_rectangle{ 0 };
    //         this->rectangle(&rectangle);
 
    //         ::set_window_position(hwnd, HWND_TOP, rectangle.left, rectangle.top, rectangle.right - rectangle.left, rectangle.bottom - rectangle.top, SWP_NOZORDER);
@@ -871,7 +871,7 @@ namespace browser
    bool impact::GetImpactRect(CefRefPtr<CefBrowser> browser, CefRect& rectangle)
    {
 
-      ::int_rectangle rectangleX = this->rectangle();
+      ::i32_rectangle rectangleX = this->rectangle();
 
       client_to_screen(rectangleX);
 
@@ -886,17 +886,17 @@ namespace browser
                       CefRenderHandler::PaintElementType type,
                       const CefRenderHandler::rectList& dirtyRects,
                       const void* buffer,
-                      int width,
-                      int height)
+                      ::i32 width,
+                      ::i32 height)
    {
 
       synchronous_lock synchronouslock(this->synchronization(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 
       pixmap p;
 
-      p.init(::int_size(width, height), (color32_t *) buffer, width * sizeof(color32_t));
+      p.init(::i32_size(width, height), (color32_t *) buffer, width * sizeof(color32_t));
 
-/*      m_pimageBrowser->create_image(this, ::int_size(width, height));
+/*      m_pimageBrowser->create_image(this, ::i32_size(width, height));
 
       //m_pimageBrowser->g()->fill_solid_rect_dim(0, 0, width, height, argb(155, 255, 255, 0)) ;
 

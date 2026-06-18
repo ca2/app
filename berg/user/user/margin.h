@@ -14,14 +14,14 @@ namespace user
    public:
 
 
-      ::int_rectangle      m_rectangleMargin;
+      ::i32_rectangle      m_rectangleMargin;
 
 
       margin_base();
       virtual ~margin_base();
 
 
-      virtual void get_margin_rect(::int_rectangle * prectMargin) override;
+      virtual void get_margin_rect(::i32_rectangle * prectMargin) override;
 
 
 
@@ -51,7 +51,7 @@ namespace user
 
       }
 
-//      void screen_to_client(::int_rectangle * prectangle)
+//      void screen_to_client(::i32_rectangle * prectangle)
 
       //    {
 
@@ -69,7 +69,7 @@ namespace user
 
       // }
 
-      virtual ::double_point get_context_offset(::user::enum_layout elayout = ::user::e_layout_sketch) override
+      virtual ::f64_point get_context_offset(::user::enum_layout elayout = ::user::e_layout_sketch) override
       {
 
          auto pointOffset = BASE::get_context_offset(elayout);
@@ -81,7 +81,7 @@ namespace user
       }
 
 
-      //void set_context_offset(::draw2d::graphics_pointer & pgraphics, int x,int y) override
+      //void set_context_offset(::draw2d::graphics_pointer & pgraphics, ::i32 x,::i32 y) override
       //{
 
       //   BASE::set_context_offset(pgraphics, x - m_rectangleMargin.left, y - m_rectangleMargin.top);
@@ -89,14 +89,14 @@ namespace user
       //}
 
       
-      void set_context_offset(const ::double_point & point, ::user::enum_layout elayout = e_layout_sketch) override
+      void set_context_offset(const ::f64_point & point, ::user::enum_layout elayout = e_layout_sketch) override
       {
 
          BASE::set_context_offset(point - m_rectangleMargin.top_left(), elayout);
 
       }
 
-      virtual ::double_size get_total_size(::user::enum_layout elayout = ::user::e_layout_sketch) override
+      virtual ::f64_size get_total_size(::user::enum_layout elayout = ::user::e_layout_sketch) override
       {
 
          auto s = BASE::get_total_size();

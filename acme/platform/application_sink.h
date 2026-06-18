@@ -16,10 +16,10 @@ namespace platform
       public:
 
 
-    int m_iWidth;
-    int m_iHeight;
+    ::i32 m_iWidth;
+    ::i32 m_iHeight;
 
-    long long m_lMemFreeAvailableKb;
+    ::i64 m_lMemFreeAvailableKb;
 
     bool m_bRedraw;
        bool m_bSetApplicationReady;

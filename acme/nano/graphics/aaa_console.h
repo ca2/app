@@ -17,8 +17,8 @@ virtual public ::particle
 {
   public:
 
-    map < char, ::collection::index >         m_mapCharIndex;
-    ::array < char >              m_cha1;
+    map < ::i8, ::collection::index >         m_mapCharIndex;
+    ::array < ::i8 >              m_cha1;
     ::string_array_base                m_stra;
 ::pointer < ::micro::elemental > m_pinterchange;
 

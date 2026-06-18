@@ -544,7 +544,7 @@ namespace berg
 
          pmenubutton->set_button_style(::user::button::e_style_image_and_text);
 
-         //auto eimage = (enum_image)pmenuitem->m_pmenu->payload("image_transform").as_int();
+         //auto eimage = (enum_image)pmenuitem->m_pmenu->payload("image_transform").as_i32();
 
          //::image::image_pointer pimage = *pmenuitem->m_pimage + eimage;
 
@@ -576,10 +576,10 @@ namespace berg
 #ifdef WINDOWS_DESKTOP
 
 
-   CLASS_DECL_BERG::pointer<::user::interaction>create_virtual_window(::particle * pparticle, unsigned int dwExStyle, const ::scoped_string & scopedstrClassName, const ::string & lpWindowName, unsigned int uStyle, const ::int_rectangle & rectangle, ::user::interaction * puiParent, atom atom, hinstance hInstance, void * pParam);
+   CLASS_DECL_BERG::pointer<::user::interaction>create_virtual_window(::particle * pparticle, ::u32 dwExStyle, const ::scoped_string & scopedstrClassName, const ::string & lpWindowName, ::u32 uStyle, const ::i32_rectangle & rectangle, ::user::interaction * puiParent, atom atom, hinstance hInstance, void * pParam);
 
 
-   CLASS_DECL_BERG::pointer<::user::interaction>create_virtual_window(::particle * pparticle, unsigned int dwExStyle, const ::scoped_string & scopedstrClassName, const ::scoped_string & scopedstrWindowName, unsigned int uStyle, ::user::interaction * puiParent, hinstance hInstance, void * pParam)
+   CLASS_DECL_BERG::pointer<::user::interaction>create_virtual_window(::particle * pparticle, ::u32 dwExStyle, const ::scoped_string & scopedstrClassName, const ::scoped_string & scopedstrWindowName, ::u32 uStyle, ::user::interaction * puiParent, hinstance hInstance, void * pParam)
    {
 
       __UNREFERENCED_PARAMETER(dwExStyle);
@@ -883,7 +883,7 @@ namespace berg
    //   return nullptr;
    //}
 
-   //bool session::get_monitor_rectangle(::collection::index iMonitor, ::int_rectangle * prectangle)
+   //bool session::get_monitor_rectangle(::collection::index iMonitor, ::i32_rectangle * prectangle)
 
    //{
 
@@ -1249,7 +1249,7 @@ namespace berg
    }
 
 
-   //   ::pointer<::user::menu> user::track_popup_menu(::user::interaction * pinteraction, ::application_menu * papplicationmenu, int iFlags, const ::int_point & point, const ::int_size & sizeMinimum, ::channel * pchannelNotify)
+   //   ::pointer<::user::menu> user::track_popup_menu(::user::interaction * pinteraction, ::application_menu * papplicationmenu, ::i32 iFlags, const ::i32_point & point, const ::i32_size & sizeMinimum, ::channel * pchannelNotify)
    //   {
    //
    //      ::pointer<::user::menu> pmenu = createø <  ::user::menu  >();
@@ -1261,7 +1261,7 @@ namespace berg
    //   }
 
 
-   //   ::pointer<::user::menu>user::track_popup_menu(::user::interaction * pinteraction, const ::scoped_string & scopedstrXml, int iFlags, const ::int_point & pointCursor, const ::int_size & sizeMinimum, ::channel * pchannelNotify)
+   //   ::pointer<::user::menu>user::track_popup_menu(::user::interaction * pinteraction, const ::scoped_string & scopedstrXml, ::i32 iFlags, const ::i32_point & pointCursor, const ::i32_size & sizeMinimum, ::channel * pchannelNotify)
    //   {
    //      
    //      ::string strXml;
@@ -1871,7 +1871,7 @@ namespace berg
 
          pmenubutton->set_button_style(::user::button::e_style_image_and_text);
 
-         //auto eimage = (enum_image)pmenuitem->m_pmenu->payload("image_transform").as_int();
+         //auto eimage = (enum_image)pmenuitem->m_pmenu->payload("image_transform").as_i32();
 
          //::image::image_pointer pimage = *pmenuitem->m_pimage + eimage;
 
@@ -1911,22 +1911,22 @@ namespace berg
 //}
 
 
-//CLASS_DECL_BERG int __c_get_text_length(const ::scoped_string & scopedstr)
+//CLASS_DECL_BERG ::i32 __c_get_text_length(const ::scoped_string & scopedstr)
 //{
 //
 //   string str = __get_text(scopedstr);
 //
-//   return (int)str.length();
+//   return (::i32)str.length();
 //
 //}
 
 
-//CLASS_DECL_BERG void __c_get_text(char* pszText, int iLen, const ::scoped_string & scopedstr)
+//CLASS_DECL_BERG void __c_get_text(char_pointer pszText, ::i32 iLen, const ::scoped_string & scopedstr)
 //{
 //
 //   string str = __get_text(scopedstr);
 //
-//   iLen = minimum(iLen, (int)str.length());
+//   iLen = minimum(iLen, (::i32)str.length());
 //
 //   strncpy(scopedstrText, str, iLen);
 //
@@ -1935,10 +1935,10 @@ namespace berg
 //}
 
 
-//static int g_iWeatherDarkness = 0;
+//static ::i32 g_iWeatherDarkness = 0;
 //
 //
-//CLASS_DECL_BERG int get_simple_ui_darkness()
+//CLASS_DECL_BERG ::i32 get_simple_ui_darkness()
 //{
 //
 //   return g_iWeatherDarkness;
@@ -1946,7 +1946,7 @@ namespace berg
 //}
 //
 //
-//CLASS_DECL_BERG void set_simple_ui_darkness(int iWeatherDarkness)
+//CLASS_DECL_BERG void set_simple_ui_darkness(::i32 iWeatherDarkness)
 //{
 //
 //   g_iWeatherDarkness = iWeatherDarkness;
@@ -1958,10 +1958,10 @@ namespace berg
 //::color::color argb_swap_red_blue(::color32_t color32)
 //{
 //   return argb(
-//      color32_byte_opacity(color32),
-//      color32_byte_blue(color32),
-//      color32_byte_green(color32),
-//      color32_byte_red(color32));
+//      color32_u8_opacity(color32),
+//      color32_u8_blue(color32),
+//      color32_u8_green(color32),
+//      color32_u8_red(color32));
 //}
 
 

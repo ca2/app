@@ -18,7 +18,7 @@ namespace operating_system
       
       ::operating_system::bidirectional_pipe       m_pipe;
       bool                                         m_bPiped;
-      int                                          m_iPid;
+      ::i32                                          m_iPid;
       ::operating_system::exit_status              m_exitstatus;
 
 
@@ -34,7 +34,7 @@ namespace operating_system
       virtual bool write(const ::scoped_string & scopedstr);
       virtual string read(bool bUntilExit = false);
 
-      virtual bool synch_elevated(const ::scoped_string & scopedstrCmdLine,int iShow,const class ::time & timeTimeOut,bool * pbTimeOut);
+      virtual bool synch_elevated(const ::scoped_string & scopedstrCmdLine,::i32 iShow,const class ::time & timeTimeOut,bool * pbTimeOut);
 
       virtual bool kill();
 

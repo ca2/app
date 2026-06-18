@@ -16,6 +16,6 @@
 
 //    using enumeration <void    >::enumeration;
 
-//    operator bool() { return ::succeeded(m_i); }
+//    operator bool() { return ::succeeded(m_i32); }
 
 // };

@@ -17,9 +17,9 @@ namespace user
 
       m_bOnDraw = false;
 
-      m_flagNonClient.erase(e_non_client_background);
+      m_enonclient.erase(::user::e_non_client_background);
 
-      m_flagNonClient.erase(e_non_client_focus_rect);
+      m_enonclient.erase(::user::e_non_client_focus_rect);
 
    }
 
@@ -169,13 +169,13 @@ namespace user
 
             }
 
-            ::int_point point;
+            ::i32_point point;
 
-            int iMaximumNormal = 0;
+            ::i32 iMaximumNormal = 0;
 
             bool bChanged = false;
 
-            double dMaximumAscent = 0.;
+            ::f64 dMaximumAscent = 0.;
 
             auto pstyle = get_style(pgraphics);
 
@@ -191,9 +191,9 @@ namespace user
 
                auto sizeItem = puserinteraction->size(e_layout_sketch);
 
-               int iNormalDimension = sizeItem.get_normal_dimension(m_eorientation);
+               ::i32 iNormalDimension = sizeItem.get_normal_dimension(m_eorientation);
 
-               int iNearNormalMargin;
+               ::i32 iNearNormalMargin;
 
                if (m_eorientation == e_orientation_horizontal)
                {
@@ -210,7 +210,7 @@ namespace user
 
                iNormalDimension += iNearNormalMargin;
 
-               int iFarNormalMargin;
+               ::i32 iFarNormalMargin;
 
                if (m_eorientation == e_orientation_horizontal)
                {
@@ -251,7 +251,7 @@ namespace user
 
                auto sizeItem = puserinteraction->size(e_layout_sketch);
 
-               int iNearMargin;
+               ::i32 iNearMargin;
 
                if (m_eorientation == e_orientation_horizontal)
                {
@@ -266,7 +266,7 @@ namespace user
 
                }
 
-               int iNearNormalMargin;
+               ::i32 iNearNormalMargin;
 
                if (m_eorientation == e_orientation_horizontal)
                {
@@ -290,7 +290,7 @@ namespace user
                   auto dAscent = pfont->get_ascent(pgraphics);
 
                   point.set_orthogonal_dimension(m_eorientation,
-                     (int) (dMaximumAscent - dAscent));
+                     (::i32) (dMaximumAscent - dAscent));
 
                }
                else if (m_ealignrelativeOrthogonal == e_align_relative_far)
@@ -341,7 +341,7 @@ namespace user
                   sizeItem.get_dimension(m_eorientation)
                   + m_iPadding);
 
-               int iFarMargin;
+               ::i32 iFarMargin;
 
                if (m_eorientation == e_orientation_horizontal)
                {
@@ -363,7 +363,7 @@ namespace user
 
             }
 
-            ::int_size size;
+            ::i32_size size;
 
             size.set_orthogonal_dimension(m_eorientation, iMaximumNormal);
 

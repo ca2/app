@@ -19,7 +19,7 @@ namespace filemanager
    }
 
 
-   void context_menu::GetMessageString(unsigned int nID, string &rstrMessage)
+   void context_menu::GetMessageString(::u32 nID, string &rstrMessage)
    {
 
 #ifdef WINDOWS_DESKTOP
@@ -33,7 +33,7 @@ namespace filemanager
 
       //string & str = rstrMessage;
 
-      //char * psz = str.get_buffer(1024);
+      //char_pointer psz = str.get_buffer(1024);
 
       //m_pcontextmenu->GetCommandString(
       //   nID - 0x1000,
@@ -50,7 +50,7 @@ namespace filemanager
    }
 
 
-   void context_menu::GetVerb(unsigned int nID, string & rwstrMessage)
+   void context_menu::GetVerb(::u32 nID, string & rwstrMessage)
    {
 
 #ifdef WINDOWS_DESKTOP
@@ -64,13 +64,13 @@ namespace filemanager
 
       //string & str = rwstrMessage;
 
-      //char * psz = str.get_buffer(1024);
+      //char_pointer psz = str.get_buffer(1024);
 
       //m_pcontextmenu->GetCommandString(
       //   nID - 0x1000,
       //   GCS_VERBW,
       //   nullptr,
-      //   (char *) psz,
+      //   (char_pointer ) psz,
 
       //   1024);
 
@@ -81,7 +81,7 @@ namespace filemanager
    }
 
 
-   void context_menu::OnCommand(unsigned int uId)
+   void context_menu::OnCommand(::u32 uId)
    {
 #ifdef WINDOWS_DESKTOP
       //if(m_pcontextmenu.is_null())

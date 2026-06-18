@@ -17,18 +17,18 @@ using PFN_GENERATE_RANDOM_BYTES = GENERATE_RANDOM_BYTES *;
 //CLASS_DECL_ACME void generate_random_bytes(void * p, memsize s);
 
 
-inline ::std::strong_ordering strong_order(double d1, double d2)
+inline ::std::strong_ordering strong_order(::f64 d1, ::f64 d2)
 {
 
    auto d = d1 - d2;
 
-   if(d > std::numeric_limits<double>::epsilon())
+   if(d > std::numeric_limits<::f64>::epsilon())
    {
 
       return ::std::strong_ordering::greater;
 
    }
-   else if(d < -std::numeric_limits<double>::epsilon())
+   else if(d < -std::numeric_limits<::f64>::epsilon())
    {
 
       return ::std::strong_ordering::less;
@@ -48,15 +48,15 @@ inline constexpr bool __lt(const SIGNED1 & a, const SIGNED2 & b) { return a < b;
 template < prototype_signed SIGNED1, prototype_signed SIGNED2 >
 inline constexpr bool __le(const SIGNED1 & a, const SIGNED2 & b) { return a <= b; }
 template < prototype_unsigned UNSIGNED1, prototype_signed SIGNED2 >
-inline constexpr bool __lt(const UNSIGNED1 & a, const SIGNED2 & b) { return b < 0 ? false : a < static_cast < unsigned int > (b); }
+inline constexpr bool __lt(const UNSIGNED1 & a, const SIGNED2 & b) { return b < 0 ? false : a < static_cast < ::u32 > (b); }
 template < prototype_unsigned UNSIGNED1, prototype_signed SIGNED2 >
-inline constexpr bool __le(const UNSIGNED1 & a, const SIGNED2 & b) { return b < 0 ? false : a <= static_cast <unsigned int> (b); }
+inline constexpr bool __le(const UNSIGNED1 & a, const SIGNED2 & b) { return b < 0 ? false : a <= static_cast <::u32> (b); }
 
 
 template < prototype_signed SIGNED1, prototype_unsigned UNSIGNED2 >
-inline constexpr bool __lt(const SIGNED1 & a, const UNSIGNED2 & b) { return a < 0 ? true : static_cast <unsigned int> (a) < b; }
+inline constexpr bool __lt(const SIGNED1 & a, const UNSIGNED2 & b) { return a < 0 ? true : static_cast <::u32> (a) < b; }
 template < prototype_signed SIGNED1, prototype_unsigned UNSIGNED2 >
-inline constexpr bool __le(const SIGNED1 & a, const UNSIGNED2 & b) { return a < 0 ? false : static_cast <unsigned long long> (a) <= b; }
+inline constexpr bool __le(const SIGNED1 & a, const UNSIGNED2 & b) { return a < 0 ? false : static_cast <::u64> (a) <= b; }
 
 
 template < prototype_unsigned UNSIGNED1, prototype_unsigned UNSIGNED2 >
@@ -547,10 +547,10 @@ constexpr largest_type<TYPE1, TYPE2> minimum(const TYPE1 & a, const TYPE2 & b)
 }
 
 
-CLASS_DECL_ACME long long ceil_div(long long num, long long den);
+CLASS_DECL_ACME ::i64 ceil_div(::i64 num, ::i64 den);
 
 
-CLASS_DECL_ACME double tri(double angle);
+CLASS_DECL_ACME ::f64 tri(::f64 angle);
 
 
 #ifdef __cplusplus
@@ -563,11 +563,11 @@ CLASS_DECL_ACME double tri(double angle);
 
 
 
-CLASS_DECL_ACME int ccvt_dup(char * buf,int nchar, double arg, int ndigits,int *decpt,int *sign,int eflag);
-CLASS_DECL_ACME int ecvt_dup(char * buf,int nchar, double arg, int ndigits,int *decpt,int *sign);
-CLASS_DECL_ACME int fcvt_dup(char * buf,int nchar, double arg, int ndigits,int *decpt,int *sign);
-CLASS_DECL_ACME int gcvt_dup(char * buf,int nchar, double arg, int ndigits);
-CLASS_DECL_ACME int max_cvt_dup(char *buf,int nchar,double arg,int ndigits,int *decpt,int *sign, int * pi);
+CLASS_DECL_ACME ::i32 ccvt_dup(char_pointer buf,::i32 nchar, ::f64 arg, ::i32 ndigits,::i32 *decpt,::i32 *sign,::i32 eflag);
+CLASS_DECL_ACME ::i32 ecvt_dup(char_pointer buf,::i32 nchar, ::f64 arg, ::i32 ndigits,::i32 *decpt,::i32 *sign);
+CLASS_DECL_ACME ::i32 fcvt_dup(char_pointer buf,::i32 nchar, ::f64 arg, ::i32 ndigits,::i32 *decpt,::i32 *sign);
+CLASS_DECL_ACME ::i32 gcvt_dup(char_pointer buf,::i32 nchar, ::f64 arg, ::i32 ndigits);
+CLASS_DECL_ACME ::i32 max_cvt_dup(char_pointer buf,::i32 nchar,::f64 arg,::i32 ndigits,::i32 *decpt,::i32 *sign, ::i32 * pi);
 
 
 
@@ -583,28 +583,28 @@ CLASS_DECL_ACME int max_cvt_dup(char *buf,int nchar,double arg,int ndigits,int *
 namespace degree
 {
 
-   inline CLASS_DECL_ACME double to_radian(double dAngleDegrees)
+   inline CLASS_DECL_ACME ::f64 to_radian(::f64 dAngleDegrees)
    {
 
       return dAngleDegrees * DEGREE_RADIAN;
 
    }
 
-   inline CLASS_DECL_ACME double sin(double dAngleDegrees)
+   inline CLASS_DECL_ACME ::f64 sin(::f64 dAngleDegrees)
    {
 
       return ::sin(to_radian(dAngleDegrees));
 
    }
 
-   inline CLASS_DECL_ACME double cos(double dAngleDegrees)
+   inline CLASS_DECL_ACME ::f64 cos(::f64 dAngleDegrees)
    {
 
       return ::cos(to_radian(dAngleDegrees));
 
    }
 
-   inline CLASS_DECL_ACME double tan(double dAngleDegrees)
+   inline CLASS_DECL_ACME ::f64 tan(::f64 dAngleDegrees)
    {
 
       return ::tan(to_radian(dAngleDegrees));
@@ -617,16 +617,16 @@ namespace degree
 
 
 
-inline unsigned char __byte_rate(double dRate, double dMin, double dMax)
+inline ::u8 __byte_rate(::f64 dRate, ::f64 dMin, ::f64 dMax)
 {
 
-   return (unsigned char)(dRate * (dMax - dMin) + dMin);
+   return (::u8)(dRate * (dMax - dMin) + dMin);
 
 }
 
 
 template < typename TYPE >
-inline TYPE range_rate(TYPE iMin, TYPE iMax, double dRate)
+inline TYPE range_rate(TYPE iMin, TYPE iMax, ::f64 dRate)
 {
    return (TYPE)((iMax - iMin) * dRate) + iMin;
 }
@@ -637,29 +637,35 @@ inline TYPE range_rate(TYPE iMin, TYPE iMax, double dRate)
 
 
 
-template < prototype_integral INTEGRAL >
-inline short  __loword(INTEGRAL i) {return i & 0xffff; }
+template < prototype_integral_number INTEGRAL_NUMBER >
+constexpr ::i16 __loword(INTEGRAL_NUMBER i)
+{
+   return i & 0xffff;
+}
 
 
-template < prototype_integral INTEGRAL >
-inline short  __hiword(INTEGRAL i) {return (i >> 16) & 0xffff; }
+template<prototype_integral_number INTEGRAL_NUMBER>
+constexpr ::i16 __hiword(INTEGRAL_NUMBER i)
+{
+   return (i >> 16) & 0xffff;
+}
 
 
-//inline long long as_long_long(const_char_pointer psz, int iBase = 10)
+//inline ::i64 as_i64(const_char_pointer psz, ::i32 iBase = 10)
 //{
 //
 //   const_char_pointer pszEnd = nullptr;
 //
-//   return ansi_to_long_long(scopedstr, &pszEnd, iBase);
+//   return ansi_to_i64(scopedstr, &pszEnd, iBase);
 //
 //}
 
 
-CLASS_DECL_ACME int type_maximum_digits(enum_integer_type etype, int iBase = 10);
+CLASS_DECL_ACME ::i32 type_maximum_digits(enum_integer_type etype, ::i32 iBase = 10);
 
 
 template < prototype_signed SIGNED >
-inline int maximum_digits(int iBase)
+inline ::i32 maximum_digits(::i32 iBase)
 {
 
    if constexpr (sizeof(SIGNED) == 1)
@@ -683,7 +689,7 @@ inline int maximum_digits(int iBase)
    else if constexpr (sizeof(SIGNED) == 8)
    {
 
-      return type_maximum_digits(e_integer_type_long_long, iBase);
+      return type_maximum_digits(e_integer_type_i64, iBase);
 
    }
    else
@@ -699,7 +705,7 @@ inline int maximum_digits(int iBase)
 
 
 template < prototype_unsigned UNSIGNED >
-inline int maximum_digits(int iBase)
+inline ::i32 maximum_digits(::i32 iBase)
 {
 
    if constexpr (sizeof(UNSIGNED) == 1)
@@ -717,13 +723,13 @@ inline int maximum_digits(int iBase)
    else if constexpr (sizeof(UNSIGNED) == 4)
    {
 
-      return type_maximum_digits(e_integer_type_unsigned_int, iBase);
+      return type_maximum_digits(e_integer_type_u32, iBase);
 
    }
    else if constexpr (sizeof(UNSIGNED) == 8)
    {
 
-      return type_maximum_digits(e_integer_type_unsigned_long_long, iBase);
+      return type_maximum_digits(e_integer_type_u64, iBase);
 
    }
    else
@@ -738,17 +744,17 @@ inline int maximum_digits(int iBase)
 }
 
 
-//CLASS_DECL_ACME int i8_maximum_digits(int iBase);
-//CLASS_DECL_ACME int byte_maximum_digits(int iBase);
+//CLASS_DECL_ACME ::i32 i8_maximum_digits(::i32 iBase);
+//CLASS_DECL_ACME ::i32 byte_maximum_digits(::i32 iBase);
 //
-//CLASS_DECL_ACME int i16_maximum_digits(int iBase);
-//CLASS_DECL_ACME int u16_maximum_digits(int iBase);
+//CLASS_DECL_ACME ::i32 i16_maximum_digits(::i32 iBase);
+//CLASS_DECL_ACME ::i32 u16_maximum_digits(::i32 iBase);
 //
-//CLASS_DECL_ACME int int_maximum_digits(int iBase);
-//CLASS_DECL_ACME int u32_maximum_digits(int iBase);
+//CLASS_DECL_ACME ::i32 i32_maximum_digits(::i32 iBase);
+//CLASS_DECL_ACME ::i32 u32_maximum_digits(::i32 iBase);
 //
-//CLASS_DECL_ACME int i64_maximum_digits(int iBase);
-//CLASS_DECL_ACME int u64_maximum_digits(int iBase);
+//CLASS_DECL_ACME ::i32 i64_maximum_digits(::i32 iBase);
+//CLASS_DECL_ACME ::i32 u64_maximum_digits(::i32 iBase);
 
 
 template <class T>

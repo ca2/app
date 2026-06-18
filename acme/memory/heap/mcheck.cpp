@@ -171,7 +171,7 @@
 //}
 //
 //
-//void * aligned_memory_allocate_debug(size_t size, int nBlockUse, const_char_pointer szFileName, int nLine, memsize align)
+//void * aligned_memory_allocate_debug(size_t size, ::i32 nBlockUse, const_char_pointer szFileName, ::i32 nLine, memsize align)
 //{
 //
 //   void * p;
@@ -195,7 +195,7 @@
 //   __UNREFERENCED_PARAMETER(nLine);
 //
 //   //TODO: to do the dbg version
-//   //unsigned char * p = (unsigned char *) _system_heap_alloc_debug(nSize + ALIGN_BYTE_COUNT + 32, nBlockUse, szFileName, nLine);
+//   //::u8 * p = (::u8 *) _system_heap_alloc_debug(nSize + ALIGN_BYTE_COUNT + 32, nBlockUse, szFileName, nLine);
 //   if(g_pheap == nullptr)
 //   {
 //
@@ -236,7 +236,7 @@
 //}
 //
 //
-//void * unaligned_memory_allocate_debug(size_t size, int nBlockUse, const_char_pointer szFileName, int nLine)
+//void * unaligned_memory_allocate_debug(size_t size, ::i32 nBlockUse, const_char_pointer szFileName, ::i32 nLine)
 //{
 //
 //   void * p;
@@ -263,7 +263,7 @@
 //   __UNREFERENCED_PARAMETER(nLine);
 //
 //   //TODO: to do the dbg version
-//   //unsigned char * p = (unsigned char *) _system_heap_alloc_debug(nSize + ALIGN_BYTE_COUNT + 32, nBlockUse, szFileName, nLine);
+//   //::u8 * p = (::u8 *) _system_heap_alloc_debug(nSize + ALIGN_BYTE_COUNT + 32, nBlockUse, szFileName, nLine);
 //   void * pusermessage = g_pheap->alloc_debug(heap_memory::unaligned_provision_get_size(size), nBlockUse, szFileName, nLine);
 //
 //   if (pusermessage == nullptr)
@@ -343,7 +343,7 @@
 //}
 //
 //
-//void * memory_allocate_debug(size_t nSize, int nBlockUse, const_char_pointer szFileName, int nLine)
+//void * memory_allocate_debug(size_t nSize, ::i32 nBlockUse, const_char_pointer szFileName, ::i32 nLine)
 //{
 //#ifdef MCHECK
 //   return ::system()->m_pheapmanagement->memory(::heap::e_memory_main)->allocate(nSize);
@@ -364,7 +364,7 @@
 //#endif
 //
 //
-//void * memory_reallocate_debug(void * pmemory, size_t size, int nBlockUse, const_char_pointer szFileName, int nLine)
+//void * memory_reallocate_debug(void * pmemory, size_t size, ::i32 nBlockUse, const_char_pointer szFileName, ::i32 nLine)
 //{
 //
 //#if defined(__VLD)
@@ -451,7 +451,7 @@
 //   if (pmemory == nullptr)
 //      return memory_allocate_debug(size, nBlockUse, szFileName, nLine);
 //
-//   unsigned char blockuse = heap_memory::heap_get_block_use(pmemory);
+//   ::u8 blockuse = heap_memory::heap_get_block_use(pmemory);
 //
 //   size_t sizeOld = heap_memory::heap_get_size(pmemory);
 //
@@ -543,7 +543,7 @@
 //
 //#endif
 //
-//void memory_free_debug(void * pmemory, int iBlockType)
+//void memory_free_debug(void * pmemory, ::i32 iBlockType)
 //{
 //
 //#if defined(__VLD) || defined(MCHECK) || defined(__MCRTDBG)
@@ -655,7 +655,7 @@
 //
 //}
 //
-//size_t memory_size_debug(void * pmemory, int iBlockType)
+//size_t memory_size_debug(void * pmemory, ::i32 iBlockType)
 //{
 //
 //#if defined(__VLD) || defined(__MCRTDBG)
@@ -703,14 +703,14 @@
 //}
 //
 //
-//void * aligned_memory_allocate_debug(size_t size, int nBlockUse, const_char_pointer szFileName, int nLine, memsize align)
+//void * aligned_memory_allocate_debug(size_t size, ::i32 nBlockUse, const_char_pointer szFileName, ::i32 nLine, memsize align)
 //{
 //
 //   return system_heap_alloc(size);
 //
 //}
 //
-//void * unaligned_memory_allocate_debug(size_t size, int nBlockUse, const_char_pointer szFileName, int nLine)
+//void * unaligned_memory_allocate_debug(size_t size, ::i32 nBlockUse, const_char_pointer szFileName, ::i32 nLine)
 //{
 //
 //   return system_heap_alloc(size);
@@ -732,7 +732,7 @@
 //}
 //
 //
-//void * memory_allocate_debug(size_t nSize, int nBlockUse, const_char_pointer szFileName, int nLine)
+//void * memory_allocate_debug(size_t nSize, ::i32 nBlockUse, const_char_pointer szFileName, ::i32 nLine)
 //{
 //
 //   return system_heap_alloc(nSize);
@@ -748,7 +748,7 @@
 //}
 //
 //
-//void * memory_reallocate_debug(void * p, size_t size, int nBlockUse, const_char_pointer szFileName, int nLine)
+//void * memory_reallocate_debug(void * p, size_t size, ::i32 nBlockUse, const_char_pointer szFileName, ::i32 nLine)
 //{
 //
 //
@@ -774,7 +774,7 @@
 //}
 //
 //
-//void memory_free_debug(void * p, int iBlockType)
+//void memory_free_debug(void * p, ::i32 iBlockType)
 //{
 //
 //   ::system()->m_pheapmanagement->memory(::heap::e_memory_main)->free(pvoid);
@@ -782,7 +782,7 @@
 //}
 //
 //
-//size_t memory_size_debug(void * p, int iBlockType)
+//size_t memory_size_debug(void * p, ::i32 iBlockType)
 //{
 //#ifdef WINDOWS
 //   return _msize(pvoid);
@@ -841,7 +841,7 @@
 //}
 //
 //
-//void * _memory_allocate_debug(memsize nSize, int nBlockUse, const_char_pointer szFileName, int nLine)
+//void * _memory_allocate_debug(memsize nSize, ::i32 nBlockUse, const_char_pointer szFileName, ::i32 nLine)
 //{
 //
 //  // return unaligned_memory_allocate_debug(nSize, nBlockUse, szFileName, nLine);
@@ -859,7 +859,7 @@
 //}
 //
 //
-//void * _memory_reallocate_debug(void * pmemory, memsize size, int nBlockUse, const_char_pointer szFileName, int nLine)
+//void * _memory_reallocate_debug(void * pmemory, memsize size, ::i32 nBlockUse, const_char_pointer szFileName, ::i32 nLine)
 //{
 //
 //   if (pmemory == nullptr)
@@ -878,11 +878,11 @@
 //
 //   }
 //
-//   unsigned char blockuse = pheapmemory->m_blockuse;
+//   ::u8 blockuse = pheapmemory->m_blockuse;
 //
 //   memsize sizeOld = pheapmemory->m_size;
 //
-//   unsigned char align = pheapmemory->m_align;
+//   ::u8 align = pheapmemory->m_align;
 //
 //   void * p = heap_memory_base_get(pmemory);
 //
@@ -1012,7 +1012,7 @@
 //}
 //
 //
-//void _memory_free_debug(void * pmemory, int iBlockType)
+//void _memory_free_debug(void * pmemory, ::i32 iBlockType)
 //{
 //
 //   if((iptr) pmemory < 1024)
@@ -1115,7 +1115,7 @@
 //}
 //
 //
-//memsize _memory_size_debug(void * pmemory, int iBlockType)
+//memsize _memory_size_debug(void * pmemory, ::i32 iBlockType)
 //{
 //
 //   if (pmemory == nullptr)

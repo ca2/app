@@ -20,7 +20,7 @@ public:
    line_type(const line_type& line):m_p1(line.m_p1), m_p2(line.m_p2) {}
 
 
-   bool contains(const ::point_type <NUMBER > & point, float epsilon = 0.001f)
+   bool contains(const ::point_type <NUMBER > & point, ::f32 epsilon = 0.001f)
    {
 
       return segment_contains(m_p1, m_p2, point, epsilon);

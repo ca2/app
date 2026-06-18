@@ -20,20 +20,20 @@ namespace universal_windows
 
 
          Key();
-         Key(HKEY hkey, const char * lpcszSubKey, bool bCreate);
+         Key(HKEY hkey, const_char_pointer lpcszSubKey, bool bCreate);
          virtual ~Key();
       
 
-         bool OpenKey(HKEY hkey, const char * lpcszSubKey, bool bCreate);
+         bool OpenKey(HKEY hkey, const_char_pointer lpcszSubKey, bool bCreate);
          void CloseKey();
          
-         bool QueryValue(const char * lpcszValueName, string &strVAlue);
+         bool QueryValue(const_char_pointer lpcszValueName, string &strVAlue);
 
-         bool QueryValue(const char * lpcszValueName, memory & mem);
+         bool QueryValue(const_char_pointer lpcszValueName, memory & mem);
 
-         bool SetValue(const char * lpcszValueName, const char * lpcszValue);
+         bool SetValue(const_char_pointer lpcszValueName, const_char_pointer lpcszValue);
 
-         bool DeleteValue(const char * lpcszValueName);
+         bool DeleteValue(const_char_pointer lpcszValueName);
 
          bool DeleteKey();
 
@@ -49,13 +49,13 @@ namespace universal_windows
       virtual ~registry();
       /*bool RegQueryValue(
          HKEY hKey,       // handle to key to query
-         const unichar * lpSubKey,
+         const wide_character * lpSubKey,
                       // name of subkey to query
          CWStr &str);*/
 
       bool RegQueryValue(
          HKEY hKey,       // handle to key to query
-         const char * lpSubKey,
+         const_char_pointer lpSubKey,
                       // name of subkey to query
          string &str);
 

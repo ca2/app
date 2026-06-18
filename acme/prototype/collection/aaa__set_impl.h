@@ -3,10 +3,10 @@
 
 template < typename KEY, typename ARG_KEY, typename PAYLOAD >
 void set < KEY, ARG_KEY, PAYLOAD >::InitHashTable(
-   unsigned int nHashSize, bool bAllocNow)
+   ::u32 nHashSize, bool bAllocNow)
    //
    // Used to force allocation of a hash table or to override the default
-   //   hash table int_size of (which is fairly small)
+   //   hash table i32_size of (which is fairly small)
 {
 
    ASSERT_OK(this);

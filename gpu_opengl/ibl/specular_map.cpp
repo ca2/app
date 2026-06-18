@@ -147,8 +147,8 @@ namespace gpu_opengl
 //             glViewport(0, 0, mipWidth, mipHeight);
 //             ::opengl::check_error("");
 //             // each mip level has increasing roughness
-//             float roughness = (float)iCurrentMip / (float)(mipCount - 1);
-//             m_pshaderPrefilteredEnvMap->set_float("roughness", roughness);
+//             ::f32 roughness = (::f32)iCurrentMip / (::f32)(mipCount - 1);
+//             m_pshaderPrefilteredEnvMap->set_f32("roughness", roughness);
 //
 //             // render to each side of the cubemap
 //             for (auto iFace = 0; iFace < 6; iFace++)
@@ -166,7 +166,7 @@ namespace gpu_opengl
 // //               glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 //   //             ::opengl::check_error("");
 //
-//                int iTextureId = ptextureSkybox->m_gluTextureID;
+//                ::i32 iTextureId = ptextureSkybox->m_gluTextureID;
 //
 //                glBindTexture(GL_TEXTURE_CUBE_MAP, iTextureId);
 //                ::opengl::check_error("");
@@ -202,12 +202,12 @@ namespace gpu_opengl
       }
 
 
-      // unsigned int specular_map::getPrefilteredEnvMapId()
+      // ::u32 specular_map::getPrefilteredEnvMapId()
       // {
       //
       //    ::cast <gpu_opengl::ibl::aaa_mipmap_cubemap_framebuffer> pframebuffer = m_pframebufferPrefilteredEnvMap;
       //
-      //    return pframebuffer->getCubemapTextureId();
+      //    return pframebuffer.getCubemapTextureId();
       //
       // }
 
@@ -226,7 +226,7 @@ namespace gpu_opengl
          // auto pfullscreenquad = createø<::gpu::full_screen_quad>();
          //
          // pfullscreenquad->initialize_full_screen_quad(m_pgpucontext);
-         // //m_pbrdfconvolutionframebuffer->bind();
+         // //m_pbrdfconvolutionframebuffer.bind();
          //
          // //     auto pskybox = m_pscene->current_skybox();
          //
@@ -234,8 +234,8 @@ namespace gpu_opengl
          //
          // //auto ptexture = pskybox->m_ptexture;
          //
-         // //m_pshaderBrdfConvolution->bind(m_pbrdfconvolutionframebuffer->m_ptexture, ptexture);
-         // m_pshaderBrdfConvolution->bind(nullptr, m_pbrdfconvolutionframebuffer->m_ptexture);
+         // //m_pshaderBrdfConvolution->bind(m_pbrdfconvolutionframebuffer.m_ptexture, ptexture);
+         // m_pshaderBrdfConvolution->bind(nullptr, m_pbrdfconvolutionframebuffer.m_ptexture);
          // //m_pshaderPrefilteredEnvMap->set_int("environmentCubemap", 0);
          //
          // glViewport(0, 0, m_uBrdfConvolutionMapWidth, m_uBrdfConvolutionMapHeight);
@@ -264,12 +264,12 @@ namespace gpu_opengl
       }
 
 
-      // unsigned int specular_map::getBrdfConvolutionMapId()
+      // ::u32 specular_map::getBrdfConvolutionMapId()
       // {
       //
       //    ::cast <::gpu_opengl::ibl::brdf_convolution_framebuffer> pframebuffer = m_pbrdfconvolutionframebuffer;
       //
-      //    return pframebuffer->getColorTextureId();
+      //    return pframebuffer.getColorTextureId();
       //
       // }
 

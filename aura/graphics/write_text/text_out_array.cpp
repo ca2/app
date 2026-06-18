@@ -13,6 +13,9 @@ namespace write_text
    {
 
       m_pLastOsData = nullptr;
+      m_ealignLast = e_align_none;
+      m_etextwrapLast = e_text_wrap_none;
+      m_bHasLayoutContext = false;
 
    }
 
@@ -23,7 +26,7 @@ namespace write_text
    }
 
 
-   ::collection::index text_out_array::hit_test(const ::int_point & point, ::user::e_zorder ezorder)
+   ::collection::index text_out_array::hit_test(const ::i32_point & point, ::user::e_zorder ezorder)
    {
 
       ::collection::index iFound = -1;
@@ -53,6 +56,20 @@ namespace write_text
    {
 
       return m_strLast == str && m_pLastOsData == pOsData;
+
+   }
+
+
+   bool text_out_array::is_updated(const ::scoped_string & str, void * pOsData,
+      const ::i32_rectangle & rectangle, const ::e_align & ealign,
+      const ::enum_text_wrap & etextwrap) const
+   {
+
+      return m_bHasLayoutContext
+         && is_updated(str, pOsData)
+         && m_rectangleLast == rectangle
+         && m_ealignLast == ealign
+         && m_etextwrapLast == etextwrap;
 
    }
 

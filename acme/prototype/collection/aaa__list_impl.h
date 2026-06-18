@@ -175,10 +175,10 @@ void list<TYPE, ARG_TYPE>::dump(dump_context& dumpcontext) const
 //inline stream& operator >>(stream& stream, string_list& list)
 //{
 //
-//   int iSize;
+//   ::i32 iSize;
 //   stream >> iSize;
 //   string str;
-//   for (int i = 0; i < iSize; i++)
+//   for (::i32 i = 0; i < iSize; i++)
 //   {
 //      stream >> str;
 //      list.add_tail(str);

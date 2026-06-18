@@ -67,9 +67,9 @@ namespace platform
 
          plibrary = ::LoadPackagedLibrary(wstr, 0);
 
-         DWORD dwLastError = ::GetLastError();
+         auto lasterror = ::windows::get_last_error();
 
-         string strLastError = ::windows::last_error_message(dwLastError);
+         string strLastError = ::windows::last_error_message(lasterror);
 
          informationf(strLastError);
 

@@ -1,7 +1,7 @@
 #include "aura/console_slim.h"
 
 
-int main(int argc, char * argv[])
+::i32 main(::i32 argc, char_pointer argv[])
 {
 
    ::console console(argc, argv);

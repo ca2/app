@@ -140,7 +140,7 @@ void memory_file::write(const void * p, ::memsize s)
 }
 
 
-void memory_file::put_byte_back(unsigned char uch)
+void memory_file::put_byte_back(::u8 uch)
 {
 
    if(m_position <= 0 || m_position >= size())
@@ -161,7 +161,7 @@ void memory_file::put_byte_back(unsigned char uch)
 void memory_file::write_from_hex(const ::block & block)
 {
 
-   char ch = 0;
+   ::i8 ch = 0;
 
    character_count iLen = block.size();
 
@@ -190,13 +190,13 @@ void memory_file::write_from_hex(const ::block & block)
 
    }
 
-   unsigned char * pb = full_data_begin();
+   ::u8 * pb = full_data_begin();
 
    auto nCount = block.size();
 
    ASSERT(is_memory_segment_ok(&(pb)[m_position], (uptr)nCount));
 
-   char * pch = (char *)&(pb)[m_position];
+   char_pointer pch = (char_pointer )&(pb)[m_position];
 
    const_char_pointer psz = (const_char_pointer )block.data();
 
@@ -248,19 +248,19 @@ void memory_file::write_from_hex(const ::block & block)
 }
 
 
-//void memory_file::Truncate(filesize int_size)
+//void memory_file::Truncate(filesize i32_size)
 //{
 //
-//   allocate((memsize)int_size);
+//   allocate((memsize)i32_size);
 //
-//   if (m_position > (memsize)int_size)
-//      m_position = (memsize)int_size;
+//   if (m_position > (memsize)i32_size)
+//      m_position = (memsize)i32_size;
 //
 //
 //}
 
 
-int memory_file::get_unsigned_char()
+::i32 memory_file::get_unsigned_char()
 {
 
    return _get_unsigned_char();
@@ -268,7 +268,7 @@ int memory_file::get_unsigned_char()
 }
 
 
-int memory_file::get_unsigned_short()
+::i32 memory_file::get_unsigned_short()
 {
 
    return _get_unsigned_short();
@@ -276,15 +276,15 @@ int memory_file::get_unsigned_short()
 }
 
 
-bool memory_file::get_unsigned_long_long(unsigned long long & hn)
+bool memory_file::get_u64(::u64 & hn)
 {
 
-   return _get_unsigned_long_long(hn);
+   return _get_u64(hn);
 
 }
 
 
-bool memory_file::is_end_of_file() const
+::i32_boolean memory_file::is_end_of_file() const
 {
 
    return _is_end_of_file();
@@ -306,14 +306,14 @@ bool memory_file::read_string(memory_base & memory)
 
    auto start = m_position;
 
-   const int iLookAhead = 1024;
+   const ::i32 iLookAhead = 1024;
 
    while (true)
    {
 
       auto iLeft = _get_left();
 
-      int iCount = (int) minimum(iLookAhead, _get_left());
+      ::i32 iCount = (::i32) minimum(iLookAhead, _get_left());
 
       if (iCount <= (iLookAhead -1))
       {
@@ -329,7 +329,7 @@ bool memory_file::read_string(memory_base & memory)
          else
          {
 
-            int i = 0;
+            ::i32 i = 0;
 
             for (; i < iCount; i++, m_position++)
             {
@@ -378,11 +378,11 @@ bool memory_file::read_string(memory_base & memory)
 
       // there are 258 bytes left;
 
-      auto b = (m_pbyte + m_position)[(iLookAhead -2)]; // stop searching at unsigned char 257
+      auto b = (m_pbyte + m_position)[(iLookAhead -2)]; // stop searching at ::u8 257
 
       (m_pbyte + m_position)[(iLookAhead - 2)] = '\0';
 
-      const unsigned char * p = (const unsigned char *) ansi_pbrk((const_char_pointer )(m_pbyte + m_position), "\r\n");
+      const ::u8 * p = (const ::u8 *) ansi_pbrk((const_char_pointer )(m_pbyte + m_position), "\r\n");
 
       (m_pbyte + m_position)[(iLookAhead - 2)] = b;
 
@@ -456,10 +456,10 @@ void memory_file::clear()
 }
 
 
-void memory_file::set_size(filesize int_size)
+void memory_file::set_size(filesize i32_size)
 {
 
-   ::memory_container::set_size((memsize) int_size);
+   ::memory_container::set_size((memsize) i32_size);
 
    if (m_position > size())
    {
@@ -521,7 +521,7 @@ void memory_file::translate(filesize offset, ::enum_seek eseek)
    else
    {
 
-      m_pbyte = (unsigned char*)m_pmemory->begin();
+      m_pbyte = (::u8*)m_pmemory->begin();
 
    }
 
@@ -593,7 +593,7 @@ void memory_file::translate(filesize offset, ::enum_seek eseek)
 void memory_file::load_string(string &str)
 {
 
-   char * psz = str.get_buffer((int)(this->size() + 1));
+   char_pointer psz = str.get_buffer((::i32)(this->size() + 1));
 
    ::memory_copy(psz, data_begin(), (size_t) data_size());
 
@@ -729,7 +729,7 @@ string memory_file::as_string() const
 //}
 
 
-unsigned char * memory_file::full_data_begin()
+::u8 * memory_file::full_data_begin()
 {
 
    return m_pmemory ? m_pmemory->begin() : nullptr;
@@ -737,7 +737,7 @@ unsigned char * memory_file::full_data_begin()
 }
 
 
-unsigned char * memory_file::full_data_end()
+::u8 * memory_file::full_data_end()
 {
 
    return m_pmemory ? m_pmemory->end() : nullptr;
@@ -745,7 +745,7 @@ unsigned char * memory_file::full_data_end()
 }
 
 
-const unsigned char * memory_file::full_data_begin() const
+const ::u8 * memory_file::full_data_begin() const
 {
 
    return m_pmemory ? m_pmemory->begin() : nullptr;
@@ -753,7 +753,7 @@ const unsigned char * memory_file::full_data_begin() const
 }
 
 
-const unsigned char * memory_file::full_data_end() const
+const ::u8 * memory_file::full_data_end() const
 {
 
    return m_pmemory ? m_pmemory->end() : nullptr;
@@ -762,7 +762,7 @@ const unsigned char * memory_file::full_data_end() const
 
 
 
-unsigned char * memory_file::data_begin()
+::u8 * memory_file::data_begin()
 {
 
    auto pbegin = full_data_begin();
@@ -772,7 +772,7 @@ unsigned char * memory_file::data_begin()
 }
 
 
-unsigned char * memory_file::data_end()
+::u8 * memory_file::data_end()
 {
 
    auto pend = full_data_end();
@@ -782,7 +782,7 @@ unsigned char * memory_file::data_end()
 }
 
 
-const unsigned char * memory_file::data_begin() const
+const ::u8 * memory_file::data_begin() const
 {
 
    auto pbegin = full_data_begin();
@@ -793,7 +793,7 @@ const unsigned char * memory_file::data_begin() const
 
 
 
-const unsigned char * memory_file::data_end() const
+const ::u8 * memory_file::data_end() const
 {
 
    auto pend = full_data_end();
@@ -856,9 +856,9 @@ void memory_file::write(::file::readable* preadable, memsize uiBufSize)
 //   if (pfileOut->increase_internal_data_size(uiSize) && pfileOut->get_internal_data() != nullptr)
 //   {
 //
-//      memory_transfer(((unsigned char *)pfileOut->get_internal_data()) + pfileOut->get_position() + uiSize, ((unsigned char *)pfileOut->get_internal_data()) + pfileOut->get_position(), pfileOut->get_internal_data_size() - uiSize);
+//      memory_transfer(((::u8 *)pfileOut->get_internal_data()) + pfileOut->get_position() + uiSize, ((::u8 *)pfileOut->get_internal_data()) + pfileOut->get_position(), pfileOut->get_internal_data_size() - uiSize);
 //
-//      ::memory_copy(((unsigned char *)pfileOut->get_internal_data()) + pfileOut->get_position(), get_internal_data(), uiSize);
+//      ::memory_copy(((::u8 *)pfileOut->get_internal_data()) + pfileOut->get_position(), get_internal_data(), uiSize);
 //
 //      pfileOut->position() += get_internal_data_size();
 //

@@ -38,7 +38,7 @@ namespace experience_tranquillum
    }
 
 
-   void frame::_001OnBeforeMove(const ::int_rectangle & rectangle)
+   void frame::_001OnBeforeMove(const ::i32_rectangle & rectangle)
    {
 
    }
@@ -52,16 +52,16 @@ namespace experience_tranquillum
    }
 
 
-   void frame::Glass(::draw2d::graphics_pointer & pgraphics, const int_rectangle & rectangle)
+   void frame::Glass(::draw2d::graphics_pointer & pgraphics, const i32_rectangle & rectangle)
    {
 
       //auto pframewindow = m_pframewindow;
 
       //class imaging & imaging = psystem->imaging();
 
-      ::int_rectangle rectangleX(rectangle);
+      ::i32_rectangle rectangleX(rectangle);
 
-      ::int_rectangle rectangleInflate;
+      ::i32_rectangle rectangleInflate;
 
       if (rectangleX.area() <= 0)
       {
@@ -72,14 +72,14 @@ namespace experience_tranquillum
 
       return;
 
-      //int iInflate = 5; // raio 2 pixels + centro 1 pixel
+      //::i32 iInflate = 5; // raio 2 pixels + centro 1 pixel
 
       //rectangleInflate = rectangleX;
       //rectangleInflate.inflate(iInflate, iInflate);
 
       ////::pointer<::user::interaction>puserinteractionDesktop = psystem->get_desktop_window();
 
-      //::int_rectangle rectangleScreen;
+      //::i32_rectangle rectangleScreen;
 
       //pframewindow->best_monitor(rectangleScreen);
 
@@ -90,14 +90,14 @@ namespace experience_tranquillum
       //pimage = create_image({rectangleX.width() + iInflate * 2,  rectangleX.height() + iInflate * 2});
 
       //pimage2 = create_image({rectangleX.width() + iInflate * 2,  rectangleX.height() + iInflate * 2});
-      //::int_rectangle rectangleWindow = rectangleX;
+      //::i32_rectangle rectangleWindow = rectangleX;
       //pframewindow->client_to_screen(rectangleWindow);
       ////pimage = create_image({rectangleX.width(),  rectangleX.height()});
       //bool b = pimage2->get_graphics()->BitBlt(0, 0, rectangleX.width() + iInflate * 2, rectangleX.height() + iInflate * 2, pgraphics, rectangleX.left - iInflate, rectangleX.top - iInflate);
       ////bool b = ::BitBlt(dc2, 0, 0, rectangleX.width() + iInflate * 2, rectangleX.height() + iInflate * 2, hdcScreen, rectangleX.left - iInflate, rectangleX.top - iInflate);
-      //b = imaging.blur(pimage->g(), ::int_point(),
-      //                 int_size(rectangleX.width() + iInflate * 2, rectangleX.height() + iInflate * 2),
-      //                 pimage2->get_graphics(), ::int_point(), 2);
+      //b = imaging.blur(pimage->g(), ::i32_point(),
+      //                 i32_size(rectangleX.width() + iInflate * 2, rectangleX.height() + iInflate * 2),
+      //                 pimage2->get_graphics(), ::i32_point(), 2);
 
       ////spgraphics->Draw3dRect(rectangleX, 127 << 24, 127 << 24);
       ////rectangleX.deflate(1, 1);
@@ -146,12 +146,12 @@ namespace experience_tranquillum
    //}
 
 
-   void frame::ColorGlass(::draw2d::graphics_pointer & pgraphics, const ::int_rectangle & rectangle, const ::color::color & color, const ::opacity & opacity)
+   void frame::ColorGlass(::draw2d::graphics_pointer & pgraphics, const ::i32_rectangle & rectangle, const ::color::color & color, const ::opacity & opacity)
    {
 
       /*Gdiplus::Graphics g((HDC) pgraphics->get_os_data());
       g.SetCompositingMode(Gdiplus::CompositingModeSourceOver);
-      Gdiplus::SolidBrush solidBrush(Gdiplus::Color(bAlpha, color32_byte_red(color32), color32_byte_green(color32), color32_byte_blue(color32)));
+      Gdiplus::SolidBrush solidBrush(Gdiplus::Color(bAlpha, color32_u8_red(color32), color32_u8_green(color32), color32_u8_blue(color32)));
       g.FillRectangle(&solidBrush, rectangle.left, rectangle.top, rectangle.right - rectangle.left, rectangle.bottom - rectangle.top);*/
 
 
@@ -180,10 +180,10 @@ namespace experience_tranquillum
 
 
 
-   bool frame::get_element_rectangle(::int_rectangle & rectangle, enum_element eelement)
+   bool frame::get_element_rectangle(::i32_rectangle & rectangle, const ::e_element & eelement)
    {
 
-      switch (eelement)
+      switch (eelement.m_eenum)
       {
       case e_element_top_left_icon:
 
@@ -335,7 +335,7 @@ namespace experience_tranquillum
       auto pcontrolbox = get_control_box();
 
 
-      m_minSize = int_size(144, 48);
+      m_minSize = i32_size(144, 48);
       m_minSize.cy = 48;
       if (pcontrolbox)
       {
@@ -414,15 +414,15 @@ namespace experience_tranquillum
    }
 
 
-   void frame::Draw3dRectSide(::draw2d::graphics_pointer & pgraphics, const int_rectangle & rectangleParam, enum_border eborder, const ::color::color & crTopLeft, const ::color::color & crBottomRight)
+   void frame::Draw3dRectSide(::draw2d::graphics_pointer & pgraphics, const i32_rectangle & rectangleParam, enum_border eborder, const ::color::color & crTopLeft, const ::color::color & crBottomRight)
    {
 
-      ::int_rectangle rectangle(rectangleParam);
+      ::i32_rectangle rectangle(rectangleParam);
 
-      int x = rectangle.left;
-      int y = rectangle.top;
-      int cx = rectangle.width() - 1;
-      int cy = rectangle.height() - 1;
+      ::i32 x = rectangle.left;
+      ::i32 y = rectangle.top;
+      ::i32 cx = rectangle.width() - 1;
+      ::i32 cy = rectangle.height() - 1;
 
       pgraphics->set_alpha_mode(::draw2d::e_alpha_mode_blend);
 
@@ -515,7 +515,7 @@ namespace experience_tranquillum
    void frame::_001OnDraw(::draw2d::graphics_pointer & pgraphics)
    {
 
-      //pgraphics->fill_solid_rectangle(::double_rectangle_dimension(0, 0, 16, 16), ::color::red);
+      //pgraphics->fill_solid_rectangle(::f64_rectangle_dimension(0, 0, 16, 16), ::color::red);
 
       //return;
 
@@ -545,7 +545,7 @@ namespace experience_tranquillum
 
          on_draw_frame(pgraphics);
 
-         //printf("A. frame::on_draw_frame %d\n", tick1.elapsed().m_i);
+         //printf("A. frame::on_draw_frame %d\n", tick1.elapsed().m_i32);
 
       }
 
@@ -554,7 +554,7 @@ namespace experience_tranquillum
       if (m_pframewindow->layout().is_minimal())
       {
 
-         ::int_rectangle rectangleIcon;
+         ::i32_rectangle rectangleIcon;
 
          //auto time2 = ::time::now();
 
@@ -568,7 +568,7 @@ namespace experience_tranquillum
 
                ::image::image_source imagesource(pdrawicon);
 
-               double_rectangle rectangleTarget(pdrawicon->get_smaller_size(rectangleIcon.size()));
+               ::f64_rectangle rectangleTarget(pdrawicon->get_smaller_size(rectangleIcon.size()));
 
                rectangleTarget.CenterOf(rectangleIcon);
 
@@ -582,21 +582,21 @@ namespace experience_tranquillum
 
          }
 
-         //printf("B. frame::on_draw_frame %d\n", tick2.elapsed().m_i);
+         //printf("B. frame::on_draw_frame %d\n", tick2.elapsed().m_i32);
 
          //auto time3 = ::time::now();
 
-         ::int_rectangle rectangleGrip;
+         ::i32_rectangle rectangleGrip;
 
          if (get_element_rectangle(rectangleGrip, e_element_move_grip_minimal))
          {
 
-            int i = 0;
+            ::i32 i = 0;
 
             while (i < rectangleGrip.width() - 5 + 1)
             {
 
-               auto rect3d = ::double_rectangle_dimension(rectangleGrip.left + i, rectangleGrip.top, 3, rectangleGrip.height());
+               auto rect3d = ::f64_rectangle_dimension(rectangleGrip.left + i, rectangleGrip.top, 3, rectangleGrip.height());
 
                pgraphics->draw_inset_3d_rectangle(rect3d, argb(110, 230, 230, 230), argb(110, 130, 130, 130), 1.0);
 
@@ -608,7 +608,7 @@ namespace experience_tranquillum
 
          }
 
-         //printf("C. frame::on_draw_frame %d\n", tick3.elapsed().m_i);
+         //printf("C. frame::on_draw_frame %d\n", tick3.elapsed().m_i32);
 
       }
       else if (!m_pframewindow->layout().is_full_screen() && !m_pframewindow->frame_is_transparent() && m_pframewindow->m_bShowControlBox)
@@ -695,7 +695,7 @@ namespace experience_tranquillum
 
          //auto time3 = ::time::now();
 
-         ::int_rectangle rectangleIcon;
+         ::i32_rectangle rectangleIcon;
 
          auto pframewindow = m_pframewindow;
 
@@ -734,11 +734,11 @@ namespace experience_tranquillum
 
          }
 
-         //printf("E. frame::on_draw_frame %d\n", tick3.elapsed().m_i);
+         //printf("E. frame::on_draw_frame %d\n", tick3.elapsed().m_i32);
 
          //auto time4 = ::time::now();
 
-         ::int_rectangle rectangle;
+         ::i32_rectangle rectangle;
 
          m_pframewindow->window_rectangle(rectangle);
 
@@ -754,7 +754,7 @@ namespace experience_tranquillum
 
                ::image::image_source imagesource(picon);
 
-               //double_rectangle rectangleTarget(picon->get_smaller_size(rectangleIcon.size()));
+               //::f64_rectangle rectangleTarget(picon->get_smaller_size(rectangleIcon.size()));
 
                //rectangleTarget.CenterOf(rectangleIcon);
 
@@ -768,7 +768,7 @@ namespace experience_tranquillum
 
          }
 
-         //printf("F. frame::on_draw_frame %d\n", tick4.elapsed().m_i);
+         //printf("F. frame::on_draw_frame %d\n", tick4.elapsed().m_i32);
 
          //class fonts & fonts = pdraw2d->fonts();
 
@@ -813,7 +813,7 @@ namespace experience_tranquillum
    }
 
 
-   void frame::GetFrameRect(int_rectangle & rectangle)
+   void frame::GetFrameRect(i32_rectangle & rectangle)
    {
 
       m_pframewindow->window_rectangle(rectangle);
@@ -825,27 +825,27 @@ namespace experience_tranquillum
    }
 
 
-   ::experience::enum_frame frame::experience_frame_hit_test(const ::int_point & point, ::user::e_zorder ezorder)
+   ::experience::enum_frame frame::experience_frame_hit_test(const ::i32_point & point, ::user::e_zorder ezorder)
    {
       //::item_pointer pitemHi etest = ::experience::e_frame_client;
       {
          //      m_pframewindow->GetEventWindow()->screen_to_client()(point);
-         //::int_rectangle rectangleEvent;
+         //::i32_rectangle rectangleEvent;
 
          auto rectangleEvent = m_pframewindow->window_rectangle();
 
-         ::int_rectangle rectangle;
-         //::int_point pointCenter = rectangleEvent.center();
-         enum_grip egrip = m_pframewindow->size_manager()->GetGripMask();
+         ::i32_rectangle rectangle;
+         //::i32_point pointCenter = rectangleEvent.center();
+         auto egrip = m_pframewindow->size_manager()->GetGripMask();
 
 
-         ::int_rectangle rectangleOuter(rectangleEvent);
+         ::i32_rectangle rectangleOuter(rectangleEvent);
 
-         ::int_rectangle rectangleInner(rectangleEvent);
+         ::i32_rectangle rectangleInner(rectangleEvent);
 
          rectangleInner.deflate(2);
 
-         ::int_point pointHitTest = point;
+         ::i32_point pointHitTest = point;
 
          //               if(rectangleEvent.left < 0)
          //                  pointHitTest.x -= rectangleEvent.left;
@@ -959,12 +959,12 @@ namespace experience_tranquillum
    }
 
 
-   void frame::GetBorderRectangle(const ::int_rectangle & rectangleOuter, ::int_rectangle * prectangle, enum_border eside)
+   void frame::GetBorderRectangle(const ::i32_rectangle & rectangleOuter, ::i32_rectangle * prectangle, enum_border eside)
    {
 
       auto rectangleInner = hosting_rectangle();
 
-      ::int_rectangle rectangle;
+      ::i32_rectangle rectangle;
 
       if (eside == e_border_top)
       {

@@ -32,7 +32,7 @@ namespace universal_windows
 
 
    // Initialize the DirectX resources required to run.
-   void directx_base::Initialize(CoreWindow^ window,float dpi)
+   void directx_base::Initialize(CoreWindow^ window,::f32 dpi)
    {
 
       m_window = window;
@@ -92,7 +92,7 @@ namespace universal_windows
       ::draw2d::lock draw2dlock;
 
       // Reset these member variables to ensure that SetDpi recreates all resources.
-      float dpi = m_dpi;
+      ::f32 dpi = m_dpi;
       m_dpi = -1.0f;
       m_windowBounds.Width = 0;
       m_windowBounds.Height = 0;
@@ -238,7 +238,7 @@ namespace universal_windows
 
    // Helps track the DPI in the helper class.
    // This is called in the dpiChanged happening handler in the impact class.
-   void directx_base::SetDpi(float dpi)
+   void directx_base::SetDpi(::f32 dpi)
    {
       // Only handle window size changed if there is no pending DPI change.
 
@@ -253,7 +253,7 @@ namespace universal_windows
    }
 
 
-   void directx_base::OnChangeDpi(float dpi)
+   void directx_base::OnChangeDpi(::f32 dpi)
    {
 
       ::draw2d::lock draw2dlock;
@@ -265,9 +265,9 @@ namespace universal_windows
 
          ::acmeacmesystem()->m_dpi = dpi;
 
-         m_size.cx = (int)m_window->Bounds.Width;
+         m_size.cx = (::i32)m_window->Bounds.Width;
 
-         m_size.cy = (int)m_window->Bounds.Height;
+         m_size.cy = (::i32)m_window->Bounds.Height;
 
          OnWindowSizeChange();
 
@@ -379,8 +379,8 @@ namespace universal_windows
 
       // Store the window bounds so the next time we get a SizeChanged happening we can
       // avoid rebuilding everything if the size is identical.
-      m_windowBounds.Width = (float) m_size.cx;
-      m_windowBounds.Height = (float) m_size.cy;
+      m_windowBounds.Width = (::f32) m_size.cx;
+      m_windowBounds.Height = (::f32) m_size.cy;
 
       if(m_swapChain != nullptr)
       {
@@ -450,7 +450,7 @@ namespace universal_windows
          swapChainDesc.SampleDesc.Count = 1;                          // Don't use multi-sampling.
          swapChainDesc.SampleDesc.Quality = 0;
          swapChainDesc.BufferUsage = DXGI_USAGE_RENDER_TARGET_OUTPUT;
-         swapChainDesc.BufferCount = 2;                               // Use double-buffering to minimize latency.
+         swapChainDesc.BufferCount = 2;                               // Use ::f64-buffering to minimize latency.
          swapChainDesc.Scaling = DXGI_SCALING_NONE;
          swapChainDesc.SwapEffect = DXGI_SWAP_EFFECT_FLIP_SEQUENTIAL; // All Metro style apps must use this SwapEffect.
          swapChainDesc.Flags = 0;
@@ -508,12 +508,12 @@ namespace universal_windows
          // Cache the rendertarget dimensions in our helper class for convenient use.
          D3D11_TEXTURE2D_DESC backBufferDesc = { 0 };
          backBuffer->GetDesc(&backBufferDesc);
-         m_renderTargetSize.Width = static_cast<float>(backBufferDesc.Width);
-         m_renderTargetSize.Height = static_cast<float>(backBufferDesc.Height);
+         m_renderTargetSize.Width = static_cast<::f32>(backBufferDesc.Width);
+         m_renderTargetSize.Height = static_cast<::f32>(backBufferDesc.Height);
 
          // Create a depth stencil impact for use with 3D rendering if needed.
          CD3D11_TEXTURE2D_DESC depthStencilDesc(
-         DXGI_FORMAT_D24_UNORM_S8_unsigned int,
+         DXGI_FORMAT_D24_UNORM_S8_unsigned ::i32,
          backBufferDesc.Width,
          backBufferDesc.Height,
          1,
@@ -543,8 +543,8 @@ namespace universal_windows
          CD3D11_VIEWPORT viewport(
          0.0f,
          0.0f,
-         static_cast<float>(backBufferDesc.Width),
-         static_cast<float>(backBufferDesc.Height)
+         static_cast<::f32>(backBufferDesc.Width),
+         static_cast<::f32>(backBufferDesc.Height)
          );
 
          m_d3dContext->RSSetContexts(1, &viewport);
@@ -696,7 +696,7 @@ namespace universal_windows
       //   {
 
       // A window size change has been initiated and the app has just completed presenting
-      // the first frame with the aaa_primitive_new size. Notify the resize manager so we can short
+      // the first frame with the aaa_primitive_new size. Notify the resize manager so we can ::i16
       // circuit any resize animation and prevent unnecessary delays.
       //      CoreWindowResizeManager::GetForCurrentImpact()->NotifyLayoutCompleted();
 
@@ -787,7 +787,7 @@ namespace universal_windows
 
    //   //   pimpl->_001UpdateBuffer();
 
-   //   //   ::pointer<::window_double_buffer>pbuffer = pimpl->m_spgraphics;
+   //   //   ::pointer<::window_f64_buffer>pbuffer = pimpl->m_spgraphics;
 
    //   //   if (pbuffer.is_set())
    //   //   {

@@ -193,7 +193,7 @@ namespace image
       //}
 
 
-      virtual ::int_size get_image_drawer_size() const = 0;
+      virtual ::i32_size get_image_drawer_size() const = 0;
 
 
       virtual void draw(const ::image::image_drawing & imagedrawing);
@@ -207,8 +207,8 @@ namespace image
       virtual void _draw_raw(const ::image::image_drawing & imagedrawing);
 
 
-      virtual void _draw_raw(const ::double_rectangle & rectangleTarget, ::image::image *pimage, const ::image::image_drawing_options & imagedrawingoptions, const ::double_point & pointSrc);
-      virtual void _stretch_raw(const ::double_rectangle & rectangleTarget, ::image::image *pimage, const ::image::image_drawing_options & imagedrawingoptions, const ::double_rectangle & rectangleSource);
+      virtual void _draw_raw(const ::f64_rectangle & rectangleTarget, ::image::image *pimage, const ::image::image_drawing_options & imagedrawingoptions, const ::f64_point & pointSrc);
+      virtual void _stretch_raw(const ::f64_rectangle & rectangleTarget, ::image::image *pimage, const ::image::image_drawing_options & imagedrawingoptions, const ::f64_rectangle & rectangleSource);
 
 
    };

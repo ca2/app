@@ -35,7 +35,7 @@ namespace write_text
       virtual string default_font_name();
 
 
-      virtual double font_similarity(const ::scoped_string & scopedstrSystem, const ::scoped_string & scopedstrUser);
+      virtual ::f64 font_similarity(const ::scoped_string & scopedstrSystem, const ::scoped_string & scopedstrUser);
 
 
    };

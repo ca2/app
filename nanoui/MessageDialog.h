@@ -42,10 +42,10 @@ namespace nanoui
       Label * message_label() { return m_message_label; }
       const Label * message_label() const { return m_message_label; }
 
-      ::function<void(int)> callback() const { return m_callback; }
-      void set_callback(const ::function<void(int)> & callback) { m_callback = callback; }
+      ::function<void(::i32)> callback() const { return m_callback; }
+      void set_callback(const ::function<void(::i32)> & callback) { m_callback = callback; }
    protected:
-      ::function<void(int)> m_callback;
+      ::function<void(::i32)> m_callback;
       Label * m_message_label;
 };
 

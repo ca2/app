@@ -72,7 +72,7 @@ IMPLEMENT_APPLICATION_FACTORY();
 #ifdef _DEBUG
 
 
-   long long application::increment_reference_count()
+   ::i64 application::increment_reference_count()
    {
 
       return ::object::increment_reference_count();
@@ -80,7 +80,7 @@ IMPLEMENT_APPLICATION_FACTORY();
    }
 
 
-   long long application::decrement_reference_count()
+   ::i64 application::decrement_reference_count()
    {
 
       return ::object::decrement_reference_count();

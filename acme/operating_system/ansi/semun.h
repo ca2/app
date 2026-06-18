@@ -11,7 +11,7 @@
 
 #if !defined(__ANDROID__)
 #ifndef SEMUN_H
-#define SEMUN_H                 /* Prevent accidental double inclusion */
+#define SEMUN_H                 /* Prevent accidental ::f64 inclusion */
 
 #include <sys/types.h>          /* For portability */
 #include <sys/sem.h>
@@ -24,9 +24,9 @@
 /* Some implementations already declare this union */
 
 union semun {                   /* Used in calls to semctl() */
-   int                 val;
+   ::i32                 val;
    struct semid_ds *   buf;
-   unsigned short *    array;
+   ::u16 *    array;
 #if defined(__linux__)
    struct seminfo *    __buf;
 #endif

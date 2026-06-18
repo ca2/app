@@ -99,12 +99,12 @@
 //      //}
 //
 //
-//      //int __implement()
+//      //::i32 __implement()
 ////{
 ////
 ////   auto papp = memory_new app_integration::application();
 ////
-////   int iExitCode = papp->__implement();
+////   ::i32 iExitCode = papp->__implement();
 ////
 ////   return iExitCode;
 ////
@@ -125,7 +125,7 @@
 //
 //         //         auto psubsystem = psystem->m_psubsystem;
 //
-//         //         for (int i = 0; i < psubsystem->get_argument_count1(); i++)
+//         //         for (::i32 i = 0; i < psubsystem->get_argument_count1(); i++)
 //         //         {
 //
 //         //            string strArgument = psubsystem->get_argument1(i);

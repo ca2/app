@@ -53,10 +53,10 @@ namespace acme
       }
 
 
-      void display::_on_monitor(int iIndex, const ::int_rectangle & rectangle, const ::int_rectangle & rectangleWorkspace)
+      void display::_on_monitor(::i32 iIndex, const ::i32_rectangle & rectangle, const ::i32_rectangle & rectangleWorkspace)
       {
 
-         m_rectanglea.ø(iIndex) = rectangle;
+         m_rectanglea.atø(iIndex) = rectangle;
 
       }
 
@@ -89,7 +89,7 @@ namespace acme
       }
 
 
-      long long display::_get_x11_root_window()
+      ::i64 display::_get_x11_root_window()
       {
 
          throw ::interface_only();
@@ -168,7 +168,7 @@ namespace acme
       // }
 
 
-      ::int_size display::get_main_screen_size()
+      ::i32_size display::get_main_screen_size()
       {
 
          return {800, 600};
@@ -176,7 +176,7 @@ namespace acme
       }
    
    
-   ::int_size display::get_main_screen_size_with_scaling_factor()
+   ::i32_size display::get_main_screen_size_with_scaling_factor()
    {
       
       return this->get_main_screen_size() * get_main_screen_scaling_factor();
@@ -184,7 +184,7 @@ namespace acme
    }
    
    
-   float display::get_main_screen_scaling_factor()
+   ::f32 display::get_main_screen_scaling_factor()
    {
       
       return 1.0f;

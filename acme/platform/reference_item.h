@@ -23,7 +23,7 @@ public:
 
 
    ::reference_item_array *      m_pitema;
-   int                           m_iStep;
+   ::i32                           m_iStep;
    //::collection::index           m_iSerial = ::new_reference_item_serial();
    //reference_referer *           m_preferer = ::allocator::pop_referer();
    ::collection::index           m_iSerial;

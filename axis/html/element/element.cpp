@@ -436,7 +436,7 @@ namespace html
 
          m_pimpl->implement_phase1(phtmldata, this);
 
-         for (int i = 0; i < m_elementalptra.get_size(); i++)
+         for (::i32 i = 0; i < m_elementalptra.get_size(); i++)
          {
 
             m_elementalptra[i]->implement_phase1(phtmldata);
@@ -506,7 +506,7 @@ namespace html
             && etag != tag_tr)
       {
 
-         for (int i = 0; i < m_elementalptra.get_size(); i++)
+         for (::i32 i = 0; i < m_elementalptra.get_size(); i++)
          {
 
             m_elementalptra[i]->layout_phase0(phtmldata);
@@ -535,13 +535,13 @@ namespace html
 
       }
 
-      float xMax;
+      ::f32 xMax;
 
-      float x;
+      ::f32 x;
 
-      float fLastX;
+      ::f32 fLastX;
 
-      float fLastY;
+      ::f32 fLastY;
 
       bool bLayout = m_pimpl->layout_phase1(phtmldata);
 
@@ -555,7 +555,7 @@ namespace html
 
          phtmldata->m_pcoredata->m_layoutstate1.m_cy = 0.f;
 
-         for (int i = 0; i < m_elementalptra.get_size(); i++)
+         for (::i32 i = 0; i < m_elementalptra.get_size(); i++)
          {
 
             m_elementalptra[i]->layout_phase1(phtmldata);
@@ -607,9 +607,9 @@ namespace html
 
          phtmldata->m_pcoredata->m_layoutstate1.m_cy = m_pimpl->m_box.height();
 
-         int iExtraCy;
+         ::i32 iExtraCy;
 
-         iExtraCy = (int) (m_pimpl->get_extra_content_height());
+         iExtraCy = (::i32) (m_pimpl->get_extra_content_height());
 
          if (iExtraCy > 0)
          {
@@ -672,7 +672,7 @@ namespace html
       /*      if(m_pimpl->m_cxMin > m_pimpl->get_bound_size().cx)
             {
 
-            m_pimpl->set_bound_size(phtmldata, ::float_size(m_pimpl->m_cxMin, m_pimpl->get_bound_size().cx));
+            m_pimpl->set_bound_size(phtmldata, ::f32_size(m_pimpl->m_cxMin, m_pimpl->get_bound_size().cx));
 
             }
 
@@ -690,7 +690,7 @@ namespace html
 
       m_pimpl->layout_phase2(phtmldata);
 
-      for (int i = 0; i < m_elementalptra.get_size(); i++)
+      for (::i32 i = 0; i < m_elementalptra.get_size(); i++)
       {
 
          m_elementalptra[i]->layout_phase2(phtmldata);
@@ -862,7 +862,7 @@ namespace html
       if (m_pstyle->m_edisplay == display_table)
       {
 
-         for (int i = 0; i < m_elementalptra.get_size(); i++)
+         for (::i32 i = 0; i < m_elementalptra.get_size(); i++)
          {
 
             m_elementalptra[i]->_001OnDraw(phtmldata);
@@ -887,7 +887,7 @@ namespace html
 
          }
 
-         for (int i = 0; i < m_elementalptra.get_size(); )
+         for (::i32 i = 0; i < m_elementalptra.get_size(); )
          {
 
             element * pelemental = m_elementalptra[i];
@@ -962,7 +962,7 @@ namespace html
 
          m_atomTagName = ptag->get_name();
 
-         for (int i = 0; i < ptag->attra().get_size(); i++)
+         for (::i32 i = 0; i < ptag->attra().get_size(); i++)
          {
 
             m_propertyset[ptag->attra()[i]->get_name()] = ptag->attra()[i]->get_value();
@@ -1016,7 +1016,7 @@ namespace html
 
          }
 
-         for (int i = 0; i < ptag->baseptra().get_size(); i++)
+         for (::i32 i = 0; i < ptag->baseptra().get_size(); i++)
          {
             auto pelemental  = allocateø ::html::element();
 
@@ -1102,7 +1102,7 @@ namespace html
 
       const_char_pointer pszTag = range.m_begin;
 
-      // skip valid char
+      // skip valid ::i8
       while (*range.m_begin != '\0' && !character_isspace(*range.m_begin) && *range.m_begin != '>')
       {
       
@@ -1227,7 +1227,7 @@ namespace html
 
       const_char_pointer pszCloseTag = range.m_begin;
 
-      // skip valid char
+      // skip valid ::i8
       while (*range.m_begin != '\0' && !character_isspace(*range.m_begin) && *range.m_begin != '>')
       {
 
@@ -1254,7 +1254,7 @@ namespace html
 
       __UNREFERENCED_PARAMETER(phtmldata);
 
-      char chQuote;
+      ::i8 chQuote;
 
       while (*range.m_begin != '\0' && *range.m_begin != '/' && *range.m_begin != '>')
       {
@@ -1278,7 +1278,7 @@ namespace html
 
          const_char_pointer pszKey = range.m_begin;
 
-         // skip valid char
+         // skip valid ::i8
          while (*range.m_begin != '\0' && !character_isspace(*range.m_begin) && *range.m_begin != '=' && *range.m_begin != '/' && *range.m_begin != '>')
          {
 
@@ -1297,7 +1297,7 @@ namespace html
 
          }
 
-         // skip valid char
+         // skip valid ::i8
          while (*range.m_begin != '\0' && character_isspace(*range.m_begin) && *range.m_begin != '=' && *range.m_begin != '/' && *range.m_begin != '>')
          {
 
@@ -1380,7 +1380,7 @@ namespace html
 
       element * pelemental = nullptr;
 
-      for (int i = 0; i < m_elementalptra.get_size(); i++)
+      for (::i32 i = 0; i < m_elementalptra.get_size(); i++)
       {
 
          pelemental = m_elementalptra[i]->get_element_by_name(atom);
@@ -1420,7 +1420,7 @@ namespace html
 
       element * pelemental = nullptr;
 
-      for (int i = 0; i < m_elementalptra.get_size(); i++)
+      for (::i32 i = 0; i < m_elementalptra.get_size(); i++)
       {
 
          pelemental = m_elementalptra[i]->get_element_by_id(atom);
@@ -1463,7 +1463,7 @@ namespace html
    }
 
 
-   element * element::hit_test(html_data * phtmldata, const ::float_point & point)
+   element * element::hit_test(html_data * phtmldata, const ::f32_point & point)
    {
 
       if (m_pimpl != nullptr)
@@ -1474,7 +1474,7 @@ namespace html
 
             element * pelemental;
 
-            for (int i = 0; i < m_elementalptra.get_size(); i++)
+            for (::i32 i = 0; i < m_elementalptra.get_size(); i++)
             {
 
                pelemental = m_elementalptra[i]->hit_test(phtmldata, point);
@@ -1527,30 +1527,30 @@ namespace html
    }
 
 
-   element * element::bound_hit_test(html_data * phtmldata, const ::float_point & point)
+   element * element::bound_hit_test(html_data * phtmldata, const ::f32_point & point)
    {
 
-      double dMin = -1.0;
+      ::f64 dMin = -1.0;
 
       return bound_hit_test(phtmldata, point, dMin);
 
    }
 
 
-   element * element::bound_hit_test(html_data * phtmldata, const ::float_point & point, double & dMin)
+   element * element::bound_hit_test(html_data * phtmldata, const ::f32_point & point, ::f64 & dMin)
    {
 
       if (m_pimpl != nullptr)
       {
 
-         double d = m_pimpl->bound_hit_test(phtmldata, point);
+         ::f64 d = m_pimpl->bound_hit_test(phtmldata, point);
 
          if (dMin < 0.0 || (d <= dMin && d >= 0.0))
          {
 
             dMin = d;
 
-            for (int i = 0; i < m_elementalptra.get_size(); i++)
+            for (::i32 i = 0; i < m_elementalptra.get_size(); i++)
             {
 
                element * pelemental = m_elementalptra[i]->bound_hit_test(phtmldata, point, dMin);
@@ -1714,7 +1714,7 @@ namespace html
       try
       {
 
-         for(int i = 0; i < m_elementalptra.get_size(); i++)
+         for(::i32 i = 0; i < m_elementalptra.get_size(); i++)
          {
 
             try
@@ -1844,7 +1844,7 @@ namespace html
          else
          {
 
-            for (int i = 0; i < m_elementalptra.get_size(); i++)
+            for (::i32 i = 0; i < m_elementalptra.get_size(); i++)
             {
 
                string strHtml;

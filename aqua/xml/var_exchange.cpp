@@ -53,9 +53,9 @@ namespace xml
          return;
       }
       
-      int i;
+      ::i32 i;
 
-      i = pnode->attribute("type").as_int();
+      i = pnode->attribute("type").as_i32();
       
       m_ppayload->m_etype = (::enum_type) i;
 

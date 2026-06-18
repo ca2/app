@@ -13,10 +13,10 @@ namespace colorertake5
    private:
      text_lines *textLinesStore;
      base_editor *baseEditor;
-     int encoding;
-     int background;
+     ::i32 encoding;
+     ::i32 background;
    public:
-     text_console_impacter(base_editor *be, text_lines *ts, int background, int encoding);
+     text_console_impacter(base_editor *be, text_lines *ts, ::i32 background, ::i32 encoding);
      ~text_console_impacter();
 
      void impact();

@@ -3,7 +3,7 @@
 ////#include "acme/exception/exception.h"
 
 
-CLASS_DECL_ACME int is_surrogated(unsigned int character)
+CLASS_DECL_ACME ::i32 is_surrogated(::u32 character)
 {
 
    return 0x10000 <= character && character <= 0x10FFFF;
@@ -67,7 +67,7 @@ character_count wd16_to_wd32_len(const ::wd16_character * input, character_count
 
    const ::wd16_character * const end = input + input_size;
 
-   int c = 0;
+   ::i32 c = 0;
 
    while (((input_size < 0) && *input) || ((input_size >= 0) && input < end))
    {
@@ -157,14 +157,14 @@ character_count wd16_to_wd32_len(const ::wd16_character * input, character_count
 
 
 // on Windows, wchar_t is 2 bytes, suitable for UTF-16
-//std::wstring Utf32ToUtf16(const std::vector<unsigned int> &codepoints)
+//std::wstring Utf32ToUtf16(const std::vector<::u32> &codepoints)
 //{
 //   std::wstring result;
-//   int len = 0;
+//   ::i32 len = 0;
 //
-//   for (std::vector<unsigned int>::iterator iter = codepoints.begin(); iter != codepoints.end(); ++iter)
+//   for (std::vector<::u32>::iterator iter = codepoints.begin(); iter != codepoints.end(); ++iter)
 //   {
-//      unsigned int cp = *iter;
+//      ::u32 cp = *iter;
 //      if (cp < 0x10000) {
 //         ++len;
 //      }
@@ -182,9 +182,9 @@ character_count wd16_to_wd32_len(const ::wd16_character * input, character_count
 //      result.resize(len);
 //      len = 0;
 //
-//      for (std::vector<unsigned int>::iterator iter = codepoints.begin(); iter != codepoints.end(); ++iter)
+//      for (std::vector<::u32>::iterator iter = codepoints.begin(); iter != codepoints.end(); ++iter)
 //      {
-//         unsigned int cp = *iter;
+//         ::u32 cp = *iter;
 //         if (cp < 0x10000) {
 //            result[len++] = static_cast<wchar_t>(cp);
 //         }
@@ -216,7 +216,7 @@ character_count wd16_to_wd32_len(const ::wd16_character * input, character_count
 
 //    character_count n;
 
-//    char sz[16];
+//    ::i8 sz[16];
 
 //    while (input_size != 0 && *pwsz != L'\0')
 //    {
@@ -281,7 +281,7 @@ CLASS_DECL_ACME character_count ansi_to_ansi_len(const_char_pointer psz, charact
       
       auto p = psz;
 
-      int iError = 0;
+      ::i32 iError = 0;
 
       while (*p)
       {
@@ -328,7 +328,7 @@ CLASS_DECL_ACME character_count ansi_to_ansi_len2(const_char_pointer psz, charac
 
       auto remainingSrc = srclen;
 
-      int iError = 0;
+      ::i32 iError = 0;
 
       while (countSrc < srclen && *p)
       {
@@ -361,7 +361,7 @@ CLASS_DECL_ACME character_count ansi_to_ansi(::ansi_character * psz, const_char_
       
       auto pDst = psz;
 
-      int iError = 0;
+      ::i32 iError = 0;
 
       while (*pSrc)
       {
@@ -400,7 +400,7 @@ CLASS_DECL_ACME character_count ansi_to_ansi(::ansi_character * psz, const_char_
 
       auto count = 0;
 
-      int iError = 0;
+      ::i32 iError = 0;
 
       while (count < input_size && *pSrc)
       {

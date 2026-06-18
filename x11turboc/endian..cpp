@@ -25,7 +25,7 @@
   These are functions which have no purpose for simple CPU-based programs,
   but are needed when reading data to/from a file of a pre-defined format.
   This is typical in Turbo C programs; since they ran only on x86 
-  processors, they implicitly assume a little-endian unsigned char ordering
+  processors, they implicitly assume a little-endian ::u8 ordering
   for data files.
   
   For good measure, big-endian conversion functions are also thrown in, 
@@ -36,17 +36,17 @@
 */
 
 #include "TurboC.h"
-#define na ((unsigned char *) n)
+#define na ((::u8 *) n)
 
 //----------------------------------------------------------------------------
 
 // Converts a 16-bit integer between little-endian and the natural CPU format.
 void
-FixLittle16 (unsigned short * n)
+FixLittle16 (::u16 * n)
 {
 #if BYTE_ORDER == LITTLE_ENDIAN
 #elif BYTE_ORDER == BIG_ENDIAN
-  unsigned char c;
+  ::u8 c;
   c = na[0];
   na[0] = na[1];
   na[1] = c;
@@ -57,11 +57,11 @@ FixLittle16 (unsigned short * n)
 
 // Converts a 32-bit integer between little-endian and the natural CPU format.
 void
-FixLittle32 (unsigned int * n)
+FixLittle32 (::u32 * n)
 {
 #if BYTE_ORDER == LITTLE_ENDIAN
 #elif BYTE_ORDER == BIG_ENDIAN
-  unsigned char c;
+  ::u8 c;
   c = na[0];
   na[0] = na[3];
   na[3] = c;
@@ -76,10 +76,10 @@ FixLittle32 (unsigned int * n)
 
 // Converts a 16-bit integer between big-endian and the natural CPU format.
 void
-FixBig16 (unsigned short * n)
+FixBig16 (::u16 * n)
 {
 #if BYTE_ORDER == LITTLE_ENDIAN
-  unsigned char c;
+  ::u8 c;
   c = na[0];
   na[0] = na[1];
   na[1] = c;
@@ -91,10 +91,10 @@ FixBig16 (unsigned short * n)
 
 // Converts a 32-bit integer between big-endian and the natural CPU format.
 void
-FixBig32 (unsigned int * n)
+FixBig32 (::u32 * n)
 {
 #if BYTE_ORDER == LITTLE_ENDIAN
-  unsigned char c;
+  ::u8 c;
   c = na[0];
   na[0] = na[3];
   na[3] = c;

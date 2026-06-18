@@ -211,7 +211,7 @@ namespace account
 
       auto tickAuthBeg = ::time::now();
 
-      string strAuthUrl("https://ca2.network/api/account/auth3");
+      string strAuthUrl("https://ca2.site/api/account/auth3");
 
       string strDeferRegistration;
 
@@ -297,7 +297,7 @@ namespace account
 
       puser->m_strHost = url.connect().host();
 
-      ::url::parts partsGetFontopus("https://ca2.network/get_account_login");
+      ::url::parts partsGetFontopus("https://ca2.site/get_account_login");
       
       partsGetFontopus.arguments()["lang"] = m_papplication->get_locale();
 
@@ -305,7 +305,7 @@ namespace account
 
       string strNode;
 
-      int iRetry = 2;
+      ::i32 iRetry = 2;
 
       auto timeStart = ::time::now();
 
@@ -422,7 +422,7 @@ namespace account
    }
 
 
-//string department::get_server(::file::path pathUrl, int iRetry)
+//string department::get_server(::file::path pathUrl, ::i32 iRetry)
 //{
 //
 //   string strHost(purl->get_server(scopedstrUrl));
@@ -453,7 +453,7 @@ namespace account
 //
 //   string strGetFontopus;
 //
-//   strGetFontopus = "http://ca2.network/get_account_login";
+//   strGetFontopus = "http://ca2.site/get_account_login";
 //
 //   purl->set_param(strGetFontopus,strGetFontopus,"lang",psession->get_locale());
 //
@@ -466,7 +466,7 @@ namespace account
 //   try
 //   {
 //
-//      unsigned int dwBeg= ::time::now();
+//      ::u32 dwBeg= ::time::now();
 //
 //      ::property_set set;
 //
@@ -478,7 +478,7 @@ namespace account
 //
 //      strNode = http()->get(strGetFontopus, set);
 //
-//      unsigned int tickEnd= ::time::now();
+//      ::u32 tickEnd= ::time::now();
 //
 //      informationf("get_account_login HTTP GET time = %dms",tickEnd - dwBeg);
 //
@@ -562,7 +562,7 @@ namespace account
 //
 //         m_mapFontopusServer.set_at(straSomeBrothersAndSisters[i], strFontopusServer);
 //
-//         strX.replace("-api.ca2.network", "-account.ca2.network");
+//         strX.replace("-api.ca2.site", "-account.ca2.site");
 //
 //         m_mapSomeBrothersAndSisters[strFontopusServer].add_unique(strX);
 //

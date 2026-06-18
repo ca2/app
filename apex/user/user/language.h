@@ -21,7 +21,7 @@ namespace user
       string               m_strLanguageCode;
 
 
-      int                  m_iPo;
+      ::i32                  m_iPo;
 
 
       string_to_string_base     m_stringmap;

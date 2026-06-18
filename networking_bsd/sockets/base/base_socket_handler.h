@@ -58,13 +58,13 @@ namespace sockets_bsd
 
          
          void OnRead() override;
-         void OnOptions(int, int, int, SOCKET) override;
+         void OnOptions(::i32, ::i32, ::i32, SOCKET) override;
 
 
       };
 
 
-      int                           m_iSelectErrno;
+      ::i32                           m_iSelectErrno;
       ::pointer<::apex::log>       m_plogger; ///< Registered log class, or nullptr
 
 
@@ -77,7 +77,7 @@ namespace sockets_bsd
       void set_logger(::apex::log * plog) override;
 
       /** Log error to log class for print out / storage. */
-      //virtual void log(base_socket *point,const string & user_text,int err,const string & sys_err, enum_trace_level elevel = e_trace_level_warning);
+      //virtual void log(base_socket *point,const string & user_text,::i32 err,const string & sys_err, enum_trace_level elevel = e_trace_level_warning);
 
       // -------------------------------------------------------------------------
       // socket stuff
@@ -100,11 +100,11 @@ namespace sockets_bsd
       /** Set read/write/exception file descriptor sets (fd_set). */
       //virtual void set(SOCKET s,bool bRead,bool bWrite,bool bException = true) = 0;
       /** Wait for happenings, generate callbacks. */
-      virtual int select(int sec, int usec) override = 0;
+      virtual ::i32 select(::i32 sec, ::i32 usec) override = 0;
       /** This method will not return until an happening has been detected. */
-      virtual int select() override = 0;
+      virtual ::i32 select() override = 0;
       /** Wait for happenings, generate callbacks. */
-      virtual int _select(struct timeval *tsel) = 0;
+      virtual ::i32 _select(struct timeval *tsel) = 0;
 
       /** Check that a socket really is handled by this socket handler. */
       virtual bool Valid(::sockets::base_socket *)override = 0;
@@ -114,8 +114,8 @@ namespace sockets_bsd
       virtual bool socket_get_run() const override;
 
       /** Override and return false to deny all incoming connections.
-      \lparam int_point listen_socket class pointer (use GetPort to identify which one) */
-      virtual bool OkToAccept(::sockets::base_socket *int_point) override = 0;
+      \lparam i32_point listen_socket class pointer (use GetPort to identify which one) */
+      virtual bool OkToAccept(::sockets::base_socket *i32_point) override = 0;
 
       ///** Called by socket when a socket changes state. */
       //virtual socket_id_list& socket_id_list_get(enum_list elist) = 0;
@@ -128,7 +128,7 @@ namespace sockets_bsd
       // Connection pool
       // -------------------------------------------------------------------------
       /** find available open connection (used by connection pool). */
-      virtual ::pointer<pool_socket>FindConnection(int type,const string & protocol, ::networking::address * address) = 0;
+      virtual ::pointer<pool_socket>FindConnection(::i32 type,const string & protocol, ::networking::address * address) = 0;
 
       /** enable connection pool (by default disabled). */
       virtual void EnablePool(bool = true) override = 0;
@@ -175,11 +175,11 @@ namespace sockets_bsd
       /** Queue a dns request.
       \lparam host Hostname to be resolved
       \lparam port Port number will be echoed in socket::OnResolved callback */
-      //virtual int Resolve(base_socket *,const ::scoped_string & scopedstrHost,port_t port) = 0;
-      //virtual int Resolve6(base_socket *,const ::scoped_string & scopedstrHost,port_t port) = 0;
+      //virtual ::i32 Resolve(base_socket *,const ::scoped_string & scopedstrHost,port_t port) = 0;
+      //virtual ::i32 Resolve6(base_socket *,const ::scoped_string & scopedstrHost,port_t port) = 0;
       /** Do a reverse dns find. */
-      //virtual int Resolve(base_socket *,in_addr a) = 0;
-      //virtual int Resolve(base_socket *,in6_addr& a) = 0;
+      //virtual ::i32 Resolve(base_socket *,in_addr a) = 0;
+      //virtual ::i32 Resolve(base_socket *,in6_addr& a) = 0;
       /** get listen port of asynchronous dns server. */
       //virtual port_t GetResolverPort() = 0;
       /** Resolver thread ready for queries. */
@@ -187,23 +187,23 @@ namespace sockets_bsd
       /** Returns true if socket waiting for a resolve happening. */
       //virtual bool Resolving(base_socket *) = 0;
       /** Fetch unique trigger atom. */
-      int TriggerID(::sockets::base_socket *src) override;
+      ::i32 TriggerID(::sockets::base_socket *src) override;
       /** Subscribe socket to trigger atom. */
-      bool Subscribe(int atom, ::sockets::base_socket *dst) override = 0;
+      bool Subscribe(::i32 atom, ::sockets::base_socket *dst) override = 0;
       /** Unsubscribe socket from trigger atom. */
-      bool Unsubscribe(int atom, ::sockets::base_socket *dst) override = 0;
+      bool Unsubscribe(::i32 atom, ::sockets::base_socket *dst) override = 0;
       /** Execute OnTrigger for subscribed sockets.
       \lparam atom Trigger ID
       \lparam data Data passed from source to destination
       \lparam erase Empty trigger atom source and destination maps if 'true',
       Leave them in place if 'false' - if a trigger should be called many times */
-      virtual void Trigger(int atom, base_socket::trigger_data & data, bool erase = true) = 0;
+      virtual void Trigger(::i32 atom, base_socket::trigger_data & data, bool erase = true) = 0;
       /** Indicates that the handler runs under socket_thread. */
       //virtual void SetSlave(bool x = true) = 0;
       /** Indicates that the handler runs under socket_thread. */
       //virtual bool IsSlave() = 0;
 
-      //virtual void __tracef(e_trace_category ecategory, enum_trace_level elevel, const ::scoped_string & scopedstrFunction, const ::scoped_string & scopedstrFile, int iLine, base_socket * psocket, const ::scoped_string & scopedstrContext, int err, const ::scoped_string & scopedstrMessage);
+      //virtual void __tracef(e_trace_category ecategory, enum_trace_level elevel, const ::scoped_string & scopedstrFunction, const ::scoped_string & scopedstrFile, ::i32 iLine, base_socket * psocket, const ::scoped_string & scopedstrContext, ::i32 err, const ::scoped_string & scopedstrMessage);
 
 
    };

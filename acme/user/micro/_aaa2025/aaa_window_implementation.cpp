@@ -126,7 +126,7 @@
 //    for (auto & pnanobutton : m_pinterface->m_nanobuttona)
 //    {
 //
-//       char ch = pnanobutton->m_chLetter;
+//       ::i8 ch = pnanobutton->m_chLetter;
 //
 //       m_console.m_mapCharIndex[character_tolower(ch)] = i;
 //
@@ -183,7 +183,7 @@
 //
 //       printf("):");
 //
-//       char ch;
+//       ::i8 ch;
 //
 //       auto iReturnCount = scanf("%c", &ch);
 //
@@ -225,7 +225,7 @@
 //
 //
 //
-// ::int_point window_implementation::try_absolute_mouse_position(const ::int_point & point)
+// ::i32_point window_implementation::try_absolute_mouse_position(const ::i32_point & point)
 // {
 //
 //    return window_interface::try_absolute_mouse_position(point);
@@ -264,7 +264,7 @@
 // }
 //
 //
-// ::int_size window_implementation::get_main_screen_size()
+// ::i32_size window_implementation::get_main_screen_size()
 // {
 //
 //    auto pdisplay = get_display();

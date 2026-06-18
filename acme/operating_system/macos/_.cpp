@@ -81,12 +81,12 @@ CLASS_DECL_ACME void __node_acme_pos_term()
 
 
 
-//char * mm_ca2_command_line();
+//char_pointer mm_ca2_command_line();
 //
 //string ca2_command_line()
 //{
 //
-//   char * psz = mm_ca2_command_line();
+//   char_pointer psz = mm_ca2_command_line();
 //
 //   string str(scopedstr);
 //

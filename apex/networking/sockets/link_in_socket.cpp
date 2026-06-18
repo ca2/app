@@ -40,7 +40,7 @@ namespace sockets
 
 
 
-   void link_in_socket::OnRead( char *buf, memsize n )
+   void link_in_socket::OnRead( char_pointer buf, memsize n )
    {
 
       m_out->link_write(buf, n);

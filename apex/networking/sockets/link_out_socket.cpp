@@ -32,7 +32,7 @@ namespace sockets
 
 
 
-   void link_out_socket::OnRead( char *buf, memsize n )
+   void link_out_socket::OnRead( char_pointer buf, memsize n )
    {
 
       m_plinkinsocket->link_write(buf, n);

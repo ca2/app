@@ -30,10 +30,10 @@
 #include <ctype.h>
 #include "TurboC.h"
 
-char *
-strupr (char *s)
+char_pointer 
+strupr (char_pointer s)
 {
-  char *ss;
+  char_pointer ss;
   for (ss = s; *ss; ss++)
     *ss = toupper (*ss);
   return (s);

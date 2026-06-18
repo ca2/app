@@ -33,7 +33,7 @@
 //-----------------------------------------------------------------
 
 void
-settextstyle (int font, int direction, int charsize)
+settextstyle (::i32 font, ::i32 direction, ::i32 charsize)
 {
   if (font < 0 || font >= MAX_FONT)
     return;
@@ -50,7 +50,7 @@ settextstyle (int font, int direction, int charsize)
 //----------------------------------------------------------------
 
 void
-setusercharsize (int multx, int divx, int multy, int divy)
+setusercharsize (::i32 multx, ::i32 divx, ::i32 multy, ::i32 divy)
 {
   if (multx <= 0 || multy <= 0 || divx <= 0 || divy <= 0)
     return;
@@ -64,7 +64,7 @@ setusercharsize (int multx, int divx, int multy, int divy)
 //-----------------------------------------------------------------
 
 void
-settextjustify (int horiz, int vert)
+settextjustify (::i32 horiz, ::i32 vert)
 {
   if (horiz < 0 || horiz > 2 || vert < 0 || vert > 2)
     {

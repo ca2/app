@@ -26,9 +26,9 @@ public:
 
    //virtual ::collection::count match(string_array_base & stra, const ::scoped_string & scopedstr, character_count iSize);
 
-   //virtual int matches(const ::scoped_string & scopedstr, regex_context* pcreContext = nullptr) = 0;
+   //virtual ::i32 matches(const ::scoped_string & scopedstr, regex_context* pcreContext = nullptr) = 0;
 
-   //virtual int matches(const ::scoped_string & scopedstr, character_count len, regex_context* pcreContext = nullptr) = 0;
+   //virtual ::i32 matches(const ::scoped_string & scopedstr, character_count len, regex_context* pcreContext = nullptr) = 0;
 
    //virtual void matches(strsize_array& ia, const ::scoped_string & scopedstr, regex_context* pcreContext = nullptr) = 0;
 

@@ -10,10 +10,10 @@ namespace hotplugin
    ::aura::system * g_paurasystem = nullptr;
 
 
-   int g_iSystemCount = 0;
+   ::i32 g_iSystemCount = 0;
 
 
-   unsigned int c_cdecl base_system_main(LPVOID pVoid);
+   ::u32 c_cdecl base_system_main(LPVOID pVoid);
 
 
 
@@ -102,11 +102,11 @@ pdirectorysystem->system() / "config\\plugin\\npca2_beg_sleep.txt"))
    }
 
 
-   //unsigned int c_cdecl base_system_main(LPVOID pVoid)
+   //::u32 c_cdecl base_system_main(LPVOID pVoid)
 
    //{
 
-   //   //int iReturnCode = 0;
+   //   //::i32 iReturnCode = 0;
 
    //   try
    //   {

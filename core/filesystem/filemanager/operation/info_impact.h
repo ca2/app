@@ -18,7 +18,7 @@ namespace filemanager
 
       
 
-      double m_dAnimation;
+      ::f64 m_dAnimation;
 
       operation_info_impact();
 
@@ -29,10 +29,10 @@ namespace filemanager
 
       ::pointer<operation_document>get_document();
 
-      void OnFileOperationStep(int iOperation,bool bFinal);
+      void OnFileOperationStep(::i32 iOperation,bool bFinal);
 
       DECLARE_MESSAGE_HANDLER(on_message_create);
-      void on_timer(::timer * ptimer) override;
+      void operator()(::timer * ptimer) override;
       void install_message_routing(::channel * pchannel) override;
 
    };

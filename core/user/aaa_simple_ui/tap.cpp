@@ -170,7 +170,7 @@ namespace simple_ui
    bool tap::is_hover()
    {
 
-      ::int_rectangle rectangleWindow;
+      ::i32_rectangle rectangleWindow;
 
       window_rectangle(&rectangleWindow);
 
@@ -215,7 +215,7 @@ auto pwindowing = windowing();
 
 #endif
 
-         ::int_rectangle rectangleX;
+         ::i32_rectangle rectangleX;
 
          this->rectangle(rectangleX);
 
@@ -245,7 +245,7 @@ auto pwindowing = windowing();
 
          color32_t crBorderIn;
 
-         ::int_rectangle rectangleX;
+         ::i32_rectangle rectangleX;
 
          this->rectangle(rectangleX);
 
@@ -380,17 +380,17 @@ auto pwindowing = windowing();
 
          }
 
-         int iBorderH = rectangleX.height() / 2;
+         ::i32 iBorderH = rectangleX.height() / 2;
 
          auto pbrush = createø < ::draw2d::brush > ();
 
-         pbrush->CreateLinearGradientBrush(int_point(rectangleX.left, rectangleX.top - 1), int_point(rectangleX.left, rectangleX.top + iBorderH + 2), crOut, crIn);
+         pbrush->CreateLinearGradientBrush(i32_point(rectangleX.left, rectangleX.top - 1), i32_point(rectangleX.left, rectangleX.top + iBorderH + 2), crOut, crIn);
 
-         pgraphics->fill_rectangle(::int_rectangle(rectangleX.left + 1, rectangleX.top + 1, (int)rectangleX.width(), iBorderH), br);
+         pgraphics->fill_rectangle(::i32_rectangle(rectangleX.left + 1, rectangleX.top + 1, (::i32)rectangleX.width(), iBorderH), br);
 
-         pbrush->CreateLinearGradientBrush(int_point(rectangleX.left, rectangleX.top + iBorderH - 1), int_point(rectangleX.left, rectangleX.top + iBorderH * 2 + 2), crIn, crOut);
+         pbrush->CreateLinearGradientBrush(i32_point(rectangleX.left, rectangleX.top + iBorderH - 1), i32_point(rectangleX.left, rectangleX.top + iBorderH * 2 + 2), crIn, crOut);
 
-         pgraphics->fill_rectangle(::int_rectangle(rectangleX.left + 1, rectangleX.top + iBorderH, rectangleX.left + (int)rectangleX.width(), rectangleX.top + iBorderH + iBorderH), br);
+         pgraphics->fill_rectangle(::i32_rectangle(rectangleX.left + 1, rectangleX.top + iBorderH, rectangleX.left + (::i32)rectangleX.width(), rectangleX.top + iBorderH + iBorderH), br);
 
          /*Gdiplus::Pen ppen1(crBorderOut);
 
@@ -400,7 +400,7 @@ auto pwindowing = windowing();
 
          ppen->create_solid(1.0, crBorderIn);
 
-         pgraphics->draw_rectangle(::int_rectangle(rectangleX.left + 1, rectangleX.top + 1, rectangleX.left + (int)rectangleX.width() - 2, rectangleX.top + iBorderH * 2 - 2), ppen);
+         pgraphics->draw_rectangle(::i32_rectangle(rectangleX.left + 1, rectangleX.top + 1, rectangleX.left + (::i32)rectangleX.width() - 2, rectangleX.top + iBorderH * 2 - 2), ppen);
 
       }
 
@@ -417,7 +417,7 @@ auto pwindowing = windowing();
    void tap::simple_ui_draw_text(::draw2d::graphics_pointer & pgraphics)
    {
 
-      ::int_rectangle rectangleX;
+      ::i32_rectangle rectangleX;
 
       this->rectangle(rectangleX);
 
@@ -465,15 +465,15 @@ auto pwindowing = windowing();
 
       pgraphics->set(b);
 
-      //float fMargin = (rectangleX.height() * ((1.0f - 0.7f) / 2.0f));
+      //::f32 fMargin = (rectangleX.height() * ((1.0f - 0.7f) / 2.0f));
 
-      float fMargin = (rectangleX.height() * ((1.0f - 0.84f) / 2.0f));
+      ::f32 fMargin = (rectangleX.height() * ((1.0f - 0.84f) / 2.0f));
 
-      rectangleX.deflate((int) fMargin, (int) fMargin);
+      rectangleX.deflate((::i32) fMargin, (::i32) fMargin);
 
       ::write_text::font_pointer f(e_create);
 
-      f->create_pixel_font(pnode->font_name(e_font_sans_ex), (int)rectangleX.height()* 0.7);
+      f->create_pixel_font(pnode->font_name(e_font_sans_ex), (::i32)rectangleX.height()* 0.7);
 
       pgraphics->set(f);
 
@@ -487,9 +487,9 @@ auto pwindowing = windowing();
 
       auto pkey = pmessage->m_union.m_pkey;
 
-      ::user::enum_key iKey = pkey->m_ekey;
+      auto ekey = pkey->m_ekey;
 
-      if (iKey == ::user::e_key_return || iKey == ::user::e_key_space)
+      if (ekey == ::user::e_key_return || ekey == ::user::e_key_space)
       {
 
          on_action(id());
@@ -497,7 +497,7 @@ auto pwindowing = windowing();
          pkey->m_bRet = true;
 
       }
-      else if (iKey == ::user::e_key_tab)
+      else if (ekey == ::user::e_key_tab)
       {
 
          keyboard_set_focus_next();
@@ -518,7 +518,7 @@ auto pwindowing = windowing();
    void tap::on_layout(::draw2d::graphics_pointer & pgraphics)
    {
 
-      ::int_rectangle rectangleX;
+      ::i32_rectangle rectangleX;
 
       this->rectangle(rectangleX);
 

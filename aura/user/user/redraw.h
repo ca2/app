@@ -16,7 +16,7 @@ namespace user
    public:
 
 
-      ::int_rectangle_array_base               m_rectanglea;
+      ::i32_rectangle_array_base               m_rectanglea;
       ::array < ::function <void() > >    m_functiona;
 
 
@@ -25,8 +25,8 @@ namespace user
 
 #ifdef _DEBUG
 
-      long long increment_reference_count() override;
-      long long decrement_reference_count() override;
+      ::i64 increment_reference_count() override;
+      ::i64 decrement_reference_count() override;
 
 #endif
 
@@ -40,16 +40,16 @@ namespace user
 
       bool                             m_bEnabled = true;
       ::draw2d::graphics_pointer       m_pgraphics;
-      ::int_rectangle_array_base            m_rectangleaNeedRedraw;
+      ::i32_rectangle_array_base            m_rectangleaNeedRedraw;
 
 
       void initialize(::particle * pparticle) override;
 
       void clear();
       void initialize_and_transfer(pointer_array < redraw_item > & redrawitema);
-      void set_need_redraw(const ::int_rectangle & rectangle);
-      void set_need_redraw(const ::int_rectangle_array_base & rectanglea);
-      bool needs_to_draw(const ::int_rectangle & rectangle);
+      void set_need_redraw(const ::i32_rectangle & rectangle);
+      void set_need_redraw(const ::i32_rectangle_array_base & rectanglea);
+      bool needs_to_draw(const ::i32_rectangle & rectangle);
       void apply_clip(shift_int ΔHostToClient);
 
 

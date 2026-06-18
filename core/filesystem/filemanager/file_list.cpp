@@ -4,13 +4,14 @@
 #include "document.h"
 #include "file_list.h"
 #include "acme/constant/id.h"
+#include "acme/constant/timer.h"
 #include "acme/constant/user_message.h"
 #include "acme/filesystem/file/item_array.h"
 #include "acme/filesystem/filesystem/directory_context.h"
 #include "acme/filesystem/filesystem/file_context.h"
 #include "acme/handler/item.h"
 #include "acme/handler/topic.h"
-#include "acme/platform/timer.h"
+//#include "acme/platform/timer.h"
 #include "acme/prototype/collection/_array_binary_stream.h"
 #include "acme/prototype/collection/_container.h"
 #include "apex/database/_binary_stream.h"
@@ -164,7 +165,7 @@ namespace filemanager
    }
 
 
-   void file_list::RenameFile(int iLine, string &wstrNameNew, const ::action_context & context)
+   void file_list::RenameFile(::i32 iLine, string &wstrNameNew, const ::action_context & context)
    {
 
       synchronous_lock synchronouslock(fs_list()->synchronization(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
@@ -215,7 +216,7 @@ namespace filemanager
 
             auto pointCursor = pcontextmenu->m_pointHost;
             
-            auto r = ::int_rectangle::square_with_center_and_apothem(point, 8);
+            auto r = ::i32_rectangle::square_with_center_and_apothem(point, 8);
 
 //            host_to_client()(point);
             
@@ -244,7 +245,7 @@ namespace filemanager
 
          auto pointCursor = pcontextmenu->m_pointHost;
 
-         auto r = ::int_rectangle::square_with_center_and_apothem(point, 8);
+         auto r = ::i32_rectangle::square_with_center_and_apothem(point, 8);
          
          auto pmenu = puser->menu_from_xml(this, filemanager_data()->m_strXmlPopup);
          
@@ -299,7 +300,7 @@ namespace filemanager
 
    //   DBFileSystemSizeSet * pset = pcentral->m_pfilesystemsizeset;
 
-   //   int i;
+   //   ::i32 i;
 
    //   while (::task_get_run())
    //   {
@@ -309,7 +310,7 @@ namespace filemanager
    //      while (i < fs_list()->m_pitema->get_count() || is_window_visible())
    //      {
 
-   //         long long i64Size;
+   //         ::i64 i64Size;
 
    //         bool bPendingSize;
 
@@ -359,12 +360,12 @@ namespace filemanager
    //}
 
 
-   void file_list::on_timer(::timer * ptimer)
+   void file_list::operator()(::timer * ptimer)
    {
 
-      ::userfs::list::on_timer(ptimer);
+      ::userfs::list::operator()(ptimer);
 
-      if (ptimer->m_uTimer == 888888)
+      if (ptimer->m_etimer == e_timer_update_bergedge_topic_file)
       {
 
          auto psession = session();
@@ -396,7 +397,8 @@ namespace filemanager
          }
          else
          {
-            kill_timer(888888);
+            //kill_timer(888888);
+            ptimer->cancel();
          }
       }
 
@@ -717,7 +719,7 @@ namespace filemanager
 
          string str;
 
-         for (int i = 0; i < iCount; i++)
+         for (::i32 i = 0; i < iCount; i++)
          {
 
             auto pmenuitem = create_newø < ::menu::item > ();
@@ -761,9 +763,9 @@ namespace filemanager
    void file_list::on_command_probe(::message::command * pcommand)
    {
 
-      int iPos = -1;
+      ::i32 iPos = -1;
 
-      for (int i = 0; i < m_straOpenWith.get_size(); i++)
+      for (::i32 i = 0; i < m_straOpenWith.get_size(); i++)
       {
 
          string strId = "open with" + m_straOpenWith[i];
@@ -809,9 +811,9 @@ namespace filemanager
 
       }
 
-      int iPos = -1;
+      ::i32 iPos = -1;
 
-      for (int i = 0; i < m_straOpenWith.get_size(); i++)
+      for (::i32 i = 0; i < m_straOpenWith.get_size(); i++)
       {
 
          string strId = "open with" + m_straOpenWith[i];
@@ -872,7 +874,7 @@ namespace filemanager
 
    //   string strFileList;
    //   string strFileCheck;
-   //   for (int i = 0; i < itema.get_size(); i++)
+   //   for (::i32 i = 0; i < itema.get_size(); i++)
    //   {
 
    //      if (directory()->is(itema[i]->m_filepathFinal) && strcmp(itema[i]->m_filepathFinal.name(), ".svn"))
@@ -880,7 +882,7 @@ namespace filemanager
 
    //         straSub.rls(itema[i]->m_filepathFinal);
 
-   //         for (int j = 0; j < straSub.get_size(); j++)
+   //         for (::i32 j = 0; j < straSub.get_size(); j++)
    //         {
    //            if (!directory()->is(straSub[j]) && straSub[j].find(".svn") < 0)
    //            {
@@ -947,7 +949,7 @@ namespace filemanager
 
    //   string strFileCheck;
 
-   //   for (int i = 0; i < pdata->m_pitema->get_count(); i++)
+   //   for (::i32 i = 0; i < pdata->m_pitema->get_count(); i++)
    //   {
 
    //      if (fs_data()->is_dir(pdata->item(i)->m_filepathFinal)
@@ -956,7 +958,7 @@ namespace filemanager
 
    //         straSub.rls(pdata->item(i)->m_filepathFinal);
 
-   //         for (int j = 0; j < straSub.get_size(); j++)
+   //         for (::i32 j = 0; j < straSub.get_size(); j++)
    //         {
 
    //            string strExtension = straSub[j].extension();
@@ -1088,7 +1090,7 @@ namespace filemanager
 
          fs_list()->m_pitema->erase_all();
 
-         for (int i = 0; i < stra.get_size(); i++)
+         for (::i32 i = 0; i < stra.get_size(); i++)
          {
 
             item.m_flags.clear();
@@ -1125,7 +1127,7 @@ namespace filemanager
       if (filemanager_data()->m_bSetBergedgeTopicFile)
       {
 
-         set_timer(888888, 230_ms, nullptr);
+         set_timer(e_timer_update_bergedge_topic_file, 230_ms, nullptr);
 
       }
 
@@ -1155,11 +1157,11 @@ namespace filemanager
 
       pathParentEx = filemanager_path();
 
-      //int iMaxSize;
+      //::i32 iMaxSize;
 
       //iMaxSize = 1000;
 
-      //int iSize;
+      //::i32 iSize;
 
       //iSize = 0;
 
@@ -1185,7 +1187,7 @@ namespace filemanager
 
          m_pathaStrictOrder = listingUser;
 
-         for (int i = 0; i < cItem; i++)
+         for (::i32 i = 0; i < cItem; i++)
          {
 
             auto & spitem = (*fs_list()->m_pitema)[i];
@@ -1285,7 +1287,7 @@ namespace filemanager
       ///      _001CreateImageList();
 
       //file_size_add_request(true);
-      /*   for(int i = 0; i < m_pitema->get_item_count(); i++)
+      /*   for(::i32 i = 0; i < m_pitema->get_item_count(); i++)
       {
       pset->m_table.add_request(item(i)->m_strPath);
       }*/
@@ -1335,7 +1337,7 @@ namespace filemanager
 
       }
 
-      int iCount = 0;
+      ::i32 iCount = 0;
 
       file_list_callback * pcallback = filemanager_data()->m_pfilelistcallback;
 
@@ -1458,7 +1460,7 @@ namespace filemanager
          pcolumn->m_text = pcontext->__text("file:Name");
          pcolumn->m_strDataKey = "FILE_MANAGER_ID_FILE_NAME";
          pcolumn->m_bEditOnSecondClick = true;
-         int iIconSize = get_document()->m_iIconSize;
+         ::i32 iIconSize = get_document()->m_iIconSize;
 
          auto pcontext = m_papplication;
          
@@ -1741,7 +1743,7 @@ namespace filemanager
 
          pbutton->set_button_style(::user::button::e_style_list);
 
-         pcallback->InitializeActionButton(pinteraction->id().as_int() - 1000, pbutton);
+         pcallback->InitializeActionButton(pinteraction->id().as_i32() - 1000, pbutton);
 
       }
 
@@ -1906,7 +1908,7 @@ namespace filemanager
 
    //   single_lock synchronouslock(pset->m_table.mutex(), true);
 
-   //   for (int i = 0; i < fs_list()->m_pitema->get_count(); i++)
+   //   for (::i32 i = 0; i < fs_list()->m_pitema->get_count(); i++)
    //   {
 
    //      //pset->get_cache_fs_size(iSize, item(i)->m_strPath, bPending);

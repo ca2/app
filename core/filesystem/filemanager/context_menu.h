@@ -27,16 +27,16 @@ namespace filemanager
 //      comptr < IContextMenu2 >   m_pcontextmenu2;
 //
 //#endif
-      unsigned int              m_uiMinId;
+      ::u32              m_uiMinId;
 
 
       context_menu();
       ~context_menu() override;
 
 
-      void OnCommand(unsigned int uId);
-      void GetMessageString(unsigned int nID, string & rstrMessage);
-      void GetVerb(unsigned int nID, string & rwstrMessage);
+      void OnCommand(::u32 uId);
+      void GetMessageString(::u32 nID, string & rstrMessage);
+      void GetVerb(::u32 nID, string & rwstrMessage);
 
 
    };

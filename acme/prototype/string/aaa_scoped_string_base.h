@@ -14,7 +14,7 @@
 ////       ::ansi_character    m_chaTempuStock[8];
 ////       ::wd16_character    m_shaTempoStore[4];
 ////       ::wd32_character    m_iaTempiWarehouse[2];
-////       long long               m_llTempeMart;
+////       ::i64               m_llTempeMart;
 ////
 ////   };
 //
@@ -40,7 +40,7 @@
 //   template < prototype_string STRING2 >
 //   scoped_string_base(const STRING2& str) : RANGE(no_initialize_t{}) { construct_range(str); }
 //
-//   template < typename ITERATOR_TYPE2, int t_size >
+//   template < typename ITERATOR_TYPE2, ::i32 t_size >
 //   scoped_string_base(const const_string_range_static_array<ITERATOR_TYPE2, t_size >& a) : RANGE((const STRING &) a ) { }
 //
 //   template < has_as_string HAS_AS_STRING >
@@ -159,7 +159,7 @@
 //   }
 //
 //   //template < character_count n >
-//   //scoped_string_base(const char (&cha)[n]) :m_str(e_zero_initialize), RANGE(e_zero_initialize) { _construct1(cha); }
+//   //scoped_string_base(const ::i8 (&cha)[n]) :m_str(e_zero_initialize), RANGE(e_zero_initialize) { _construct1(cha); }
 //
 //
 //   //STRING & str() { return (STRING &)*this; }
@@ -259,7 +259,7 @@
 //   const CHARACTER * c_str() const { return this->null_terminated(); }
 //
 //
-//   ::block as_block() const { return { (unsigned char *)this->begin(), this->size() * sizeof(CHARACTER) }; }
+//   ::block as_block() const { return { (::u8 *)this->begin(), this->size() * sizeof(CHARACTER) }; }
 //
 //
 //};
@@ -394,7 +394,7 @@
 //
 //
 //template<prototype_character CHARACTER>
-//inline ::hash32 _string_unsigned_int_hash(const ::scoped_string_base<const CHARACTER *> & scopedstr) 
+//inline ::hash32 _string_u32_hash(const ::scoped_string_base<const CHARACTER *> & scopedstr) 
 //{
 //
 //   if (scopedstr.is_empty()) 
@@ -404,7 +404,7 @@
 //
 //   }
 //
-//   unsigned int uHash = 0;
+//   ::u32 uHash = 0;
 //
 //   auto p = scopedstr.m_begin;
 //

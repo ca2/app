@@ -1,0 +1,40 @@
+// Created by camilo on 2026-04-22 23:33 <3ThomasBorregaardSørensen!!
+#pragma once
+
+
+#include "subsystem/_common_header.h"
+
+
+namespace subsystem
+{
+   //
+   // Class that startup and cleanup Windows Sockets subsystem.
+   //
+   class CLASS_DECL_SUBSYSTEM Sockets :
+   virtual public ::particle
+   {
+   public:
+
+      Sockets();
+
+      ~Sockets() override;
+      // Initializes Windows sockets subsystem.
+      // Throws exception if winsock already initialized or
+      // if was error during winsock startup.
+
+      virtual void startSockets(::i32 loVer = -1, ::i32 hiVer = -1);
+
+      virtual void _startSockets(::i32 loVer = -1, ::i32 hiVer = -1);
+
+      //  Deinitializes Windows sockets subsystem.
+      // Throws exception if winsock does not initialized or
+      // if was error during winsock cleanup.
+      virtual void cleanupSockets();
+      virtual void _cleanupSockets();
+
+   ///protected:
+      bool m_bIsStarted;
+   };
+
+
+} // namespace subsystem

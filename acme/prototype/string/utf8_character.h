@@ -11,17 +11,17 @@ class CLASS_DECL_ACME utf8_character :
 public:
 
 
-   mutable long long m_llIndex = -1;
+   mutable ::i64 m_llIndex = -1;
 
 
    utf8_character() {}
-   utf8_character(long long ch);
+   utf8_character(::i64 ch);
 
 
    character_count get_next(const character_range < const_char_pointer >& range, character_count charactercount);
 
 
-   long long index() const;
+   ::i64 index() const;
 
    bool operator == (ansi_character ansicharacter) const
    {
@@ -157,14 +157,14 @@ public:
 
    character_range < const_char_pointer >& m_range;
 
-   character_count m_i;
+   character_count m_i32;
 
    character_count m_iNext;
 
    utf8_character_range(const utf8_character_range& range) :
       m_range(range.m_range),
-      m_i(range.m_i),
-      m_iNext(range.m_i)
+      m_i32(range.m_i32),
+      m_iNext(range.m_i32)
    {
       this->m_begin = range.m_begin;
       this->m_end = range.m_end;
@@ -179,7 +179,7 @@ public:
       m_range(range)
    {
 
-      m_i = i;
+      m_i32 = i;
 
       this->m_llIndex = -1;
 
@@ -193,7 +193,7 @@ public:
       if (m_llIndex < 0)
       {
          
-         m_iNext = ::utf8_character::get_next(m_range, m_i);
+         m_iNext = ::utf8_character::get_next(m_range, m_i32);
          
          this->index();
 
@@ -207,7 +207,7 @@ public:
    utf8_character_range& operator++()
    {
       
-      m_i = m_iNext;
+      m_i32 = m_iNext;
 
       m_llIndex = -1;
       
@@ -218,7 +218,7 @@ public:
    }
 
 
-   utf8_character_range operator++(int)
+   utf8_character_range operator++(::i32)
    {
 
       utf8_character_range ret = *this;
@@ -252,7 +252,7 @@ public:
    utf8_character_range& ansi_add(character_count count)
    {
 
-      m_i += count;
+      m_i32 += count;
 
       m_llIndex = -1;
 

@@ -123,10 +123,10 @@ namespace acme
 //      set_os_data(nullptr);
 //
 //
-//      //int iRet = ::platform::application::term_instance();
+//      //::i32 iRet = ::platform::application::term_instance();
 //
 //
-//      int iRet = 0;
+//      ::i32 iRet = 0;
 //
 //
 //      return iRet;
@@ -153,7 +153,7 @@ namespace acme
 
 
    // Advanced: handling messages sent to message filter hook
-   bool application::ProcessMessageFilter(int code, LPMESSAGE lpMsg)
+   bool application::ProcessMessageFilter(::i32 code, LPMESSAGE lpMsg)
    {
    return  ::win::thread::ProcessMessageFilter(code, lpMsg);
    }
@@ -209,7 +209,7 @@ namespace acme
 //      if(puserinteraction != nullptr)
 //         return puserinteraction;
 //      user::interaction_ptr_array wndptra = ::acmeacmesystem()->frames();
-//      for(int i = 0; i < wndptra.get_count(); i++)
+//      for(::i32 i = 0; i < wndptra.get_count(); i++)
 //      {
 //         if(wndptra[i].get_safe_handle() == (oswindow) pdata)
 //         {
@@ -249,14 +249,14 @@ namespace acme
 //      // the memory.
 //
 //      // get path of executable
-//      /*   char szBuff[_MAX_PATH];
-//      unsigned int dwRet = ::GetModuleFileName(m_hInstance, szBuff, _MAX_PATH);
+//      /*   ::i8 szBuff[_MAX_PATH];
+//      ::u32 dwRet = ::GetModuleFileName(m_hInstance, szBuff, _MAX_PATH);
 //      ASSERT( dwRet != 0 && dwRet != _MAX_PATH );
 //      if( dwRet == 0 || dwRet == _MAX_PATH )
 //      throw ::exception(user_exception());*/
 //
 //      /*
-//       char * lpszExt = ::PathFindExtension(szBuff);
+//       char_pointer lpszExt = ::PathFindExtension(szBuff);
 //       ASSERT(lpszExt != nullptr);
 //       if( lpszExt == nullptr )
 //       throw ::exception(user_exception());
@@ -288,19 +288,19 @@ namespace acme
 //   {
 ////#if (defined(SOLARIS8) || defined(SOLARIS))
 ////      {
-////         static std::collection::map<string, char *> vmap;
+////         static std::collection::map<string, char_pointer > vmap;
 ////         if (vmap.find(payload) != vmap.end())
 ////         {
 ////            delete[] vmap[::payload];
 ////         }
-////         vmap[::payload] = aaa_primitive_new char[payload.get_length() + 1 + value.get_length() + 1];
+////         vmap[::payload] = aaa_primitive_new ::i8[payload.get_length() + 1 + value.get_length() + 1];
 ////         sprintf(vmap[::payload], "%s=%s", payload, value);
 ////         putenv( vmap[::payload] );
 ////      }
 ////#elif defined _WIN32
 ////      {
 ////         string slask = payload + "=" + value;
-////         _putenv( (const char *)slask);
+////         _putenv( (const_char_pointer )slask);
 ////      }
 ////#else
 //      setenv(payload, value, 1);

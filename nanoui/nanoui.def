@@ -1,8 +1,8 @@
-; app_simple_drawing.def
-
-LIBRARY  "app_simple_drawing"
+; nanoui.def
+;JegElskerDigThomasBorregaardSørensencamilo!! 2026-05-02 17:40
+LIBRARY  "nanoui"
 ; For Win32 DLLs, only EXPORTs really required.
 
 EXPORTS
-app_simple_drawing_get_new_library
+;app_simple_drawing_get_new_library
 

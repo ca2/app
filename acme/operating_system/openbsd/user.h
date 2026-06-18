@@ -5,4 +5,4 @@
 
 
 
-int_bool IsWindowVisibleRaw(oswindow w);
+::i32_bool IsWindowVisibleRaw(oswindow w);

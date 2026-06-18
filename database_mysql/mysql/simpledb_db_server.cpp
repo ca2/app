@@ -3,7 +3,7 @@
 #include "db_str_set.h"
 
 
-int g_idbchange;
+::i32 g_idbchange;
 
 
 db_server::db_server(::particle * pparticle) :
@@ -92,7 +92,7 @@ bool db_server::initialize()
 
    m_pstrset      = ___new db_str_set(this);
 
-   int iBufferSize = 128 * 1024;
+   ::i32 iBufferSize = 128 * 1024;
 
    ::pointer<::handler>commandthread = psystem->handler();
 
@@ -186,12 +186,12 @@ bool db_server::destroy_message_queue()
    return true;
 }
 
-void db_server::on_timer(::timer * ptimer)
+void db_server::operator()(::timer * ptimer)
 {
 
-   super::on_timer(ptimer);;
+   super::operator()(ptimer);;
 
-   if(ptimer->m_uTimer == 1258477)
+   if(ptimer->m_etimer == 1258477)
    {
 
    }

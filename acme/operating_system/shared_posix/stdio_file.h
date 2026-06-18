@@ -40,7 +40,7 @@ public:
 
 
    void open(const ::file::path & path, ::file::e_open eopen, ::pointer < ::file::exception > * pfileexception = nullptr) override;
-   virtual void open(const ::file::path & path, const ::scoped_string & scopedstrAttributes, int iShare);
+   virtual void open(const ::file::path & path, const ::scoped_string & scopedstrAttributes, ::i32 iShare);
 
    
    void translate(filesize offset, ::enum_seek eseek) override;
@@ -59,9 +59,9 @@ public:
    memsize read(void * p, ::memsize s) override;
 
 
-   int get_unsigned_char() override;
-   int peek_byte() override;
-   void put_byte_back(unsigned char b) override;
+   ::i32 get_unsigned_char() override;
+   ::i32 peek_byte() override;
+   void put_byte_back(::u8 b) override;
 
    using ::file::file::write;
    void write(const void * p, ::memsize s) override;
@@ -70,7 +70,7 @@ public:
 
    bool is_opened() const override;
 
-   class c_error_number c_error_number() const;
+   class c_errno c_errno() const;
 
    [[noreturn]] void throw_exception(const ::scoped_string & scopedstr);
 
@@ -78,7 +78,7 @@ public:
 
 
 
-CLASS_DECL_ACME ::pointer<stdio_file> stdio_open(::particle * pparticle, const ::file::path & path, const scoped_string & attrs, int iShare);
+CLASS_DECL_ACME ::pointer<stdio_file> stdio_open(::particle * pparticle, const ::file::path & path, const scoped_string & attrs, ::i32 iShare);
 
 
 ::e_status fgets_string(string & str, FILE * pfile, memsize iBufferSize = 1024);

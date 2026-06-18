@@ -77,7 +77,7 @@ namespace api_ca2
 
       m_strState = system()->mathematics()->random_alphanumeric(64);
 
-      string strUrl = ::string("http://ca2.network/account/?platform=" PLATFORM_STRING);
+      string strUrl = ::string("http://ca2.site/account/?platform=" PLATFORM_STRING);
 
       strUrl += "&applogin=" + ::url::encode(m_strAppLogin);
 
@@ -135,7 +135,7 @@ namespace api_ca2
    void api::_api_get(::string & strNetworkPayload, const ::scoped_string & scopedstrUrl, ::property_set & set)
    {
 
-      int iRetry = 0;
+      ::i32 iRetry = 0;
 
       while (iRetry < 3)
       {
@@ -158,7 +158,7 @@ namespace api_ca2
 
          http()->get(strNetworkPayload, scopedstrUrl, set);
 
-         int iStatusCode = set["http_status_code"].as_int();
+         ::i32 iStatusCode = set["http_status_code"].as_i32();
 
          if (iStatusCode >= 400 && iStatusCode <= 499)
          {
@@ -203,9 +203,9 @@ namespace api_ca2
 
             string_array_base straAllowedOrigin;
 
-            straAllowedOrigin.add("ca2.network");
-            straAllowedOrigin.add("ca2.network");
-            straAllowedOrigin.add("ca2.store");
+            straAllowedOrigin.add("ca2.site");
+            straAllowedOrigin.add("ca2.site");
+            straAllowedOrigin.add("ca2.site");
 
             bool bAllowedOrigin = false;
 
@@ -317,7 +317,7 @@ namespace api_ca2
       set["raw_http"] = true;
       set["disable_common_name_cert_check"] = true;
 
-      string strGet = "https://ca2.network/account/token";
+      string strGet = "https://ca2.site/account/token";
 
       string strResponse = http()->get(strGet, set);
 
@@ -385,7 +385,7 @@ namespace api_ca2
 #else
 
 
-      int iCurrentPort = 0;
+      ::i32 iCurrentPort = 0;
 
       auto papp = get_app();
 

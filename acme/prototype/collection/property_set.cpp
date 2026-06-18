@@ -78,10 +78,10 @@ property_set_base::~property_set_base()
 //      if(it->element1().m_etype == atom::type_integer)
 //      {
 //
-//         if(it->element1().m_i > iMax)
+//         if(it->element1().m_i32 > iMax)
 //         {
 //
-//            iMax = (index)it->element1().m_i;
+//            iMax = (index)it->element1().m_i32;
 //
 //         }
 //
@@ -704,7 +704,7 @@ void property_set_base::_008Add(const ::scoped_string & scopedstrKey, const ::sc
 
    ::property_set_base * pset = this;
 
-   int i = 0;
+   ::i32 i = 0;
 
    while (i < straKey.get_upper_bound())
    {
@@ -754,7 +754,7 @@ void property_set_base::_008Parse(bool bApp, const ::scoped_string & scopedstrCm
 
    auto straArguments = get_c_args_from_string(range);
 
-   int i = 0;
+   ::i32 i = 0;
 
    if (bApp && straArguments.get_count() > 0)
    {
@@ -782,7 +782,7 @@ void property_set_base::_008Parse(bool bApp, const ::scoped_string & scopedstrCm
 void property_set_base::_008ParseArguments(bool bApp, ::string_array_base & straArguments, ::payload & payloadFile, string & strApp)
 {
 
-   int i = 0;
+   ::i32 i = 0;
 
    if (bApp && straArguments.has_element())
    {
@@ -1352,7 +1352,7 @@ enum_network_header property_set_base::parse_network_headers(const ::string_arra
 
       tokenizer.get_word(strHttpStatusCode);
 
-      outattributes["http_status_code"] = ::as_int(strHttpStatusCode);
+      outattributes["http_status_code"] = ::as_i32(strHttpStatusCode);
 
       ::string strStatus;
 
@@ -1475,7 +1475,7 @@ string property_set_base::_001Replace(const ::scoped_string & scopedstr) const
 
    ::collection::count count = 0;
 
-   for (int i = 0; i < stra.get_count(); i++)
+   for (::i32 i = 0; i < stra.get_count(); i++)
    {
 
       count += erase_by_name(stra[i]);
@@ -1943,9 +1943,9 @@ string property_set_base::implode(const ::scoped_string & scopedstrGlue) const
 //
 //   erase_all();
 //
-//   int iCount = set.pair_set_interface_get_count();
+//   ::i32 iCount = set.pair_set_interface_get_count();
 //
-//   for (int i = 0; i < iCount; i++)
+//   for (::i32 i = 0; i < iCount; i++)
 //   {
 //
 //      string strKey = set.pair_set_interface_get_key(i);
@@ -1963,9 +1963,9 @@ string property_set_base::implode(const ::scoped_string & scopedstrGlue) const
 //
 //   erase_all();
 //
-//   int iCount = set.str_str_interface_get_count();
+//   ::i32 iCount = set.str_str_interface_get_count();
 //
-//   for (int i = 0; i < iCount; i++)
+//   for (::i32 i = 0; i < iCount; i++)
 //   {
 //
 //      string strKey = set.str_str_interface_get_key(i);
@@ -2229,7 +2229,7 @@ string & property_set_base::get_network_arguments(string & strNetworkArguments) 
 //   if (atom.is_integer())
 //   {
 //
-//      iFind = (index) (atom.long_long);
+//      iFind = (index) (atom.i64);
 //
 //      if (::is_null(pFind) || iFind >= this->get_count())
 //      {
@@ -2462,6 +2462,24 @@ void property_set_base::parse_environment_variable(const string_array_base & str
 }
 
 
+string property_set_base::id_payload_listing() const
+{
+
+   ::string strIdPayloadListing;
+
+   for (auto & pproperty : *this)
+   {
+
+      strIdPayloadListing.append_formatf("%s=\"%s\"\n", pproperty->name().as_string().c_str(), pproperty->as_string().c_str());
+
+   }
+
+   return strIdPayloadListing;
+
+
+}
+
+
 bool property_set_base::get_bool(const atom & atom, bool bDefault) const
 {
 
@@ -2486,7 +2504,7 @@ bool property_set_base::get_bool(const atom & atom, bool bDefault) const
 }
 
 
-int property_set_base::get_int(const atom & atom, int iDefault) const
+::i32 property_set_base::get_int(const atom & atom, ::i32 iDefault) const
 {
 
    auto pproperty = find(atom);
@@ -2505,12 +2523,12 @@ int property_set_base::get_int(const atom & atom, int iDefault) const
 
    }
 
-   return pproperty->as_int();
+   return pproperty->as_i32();
 
 }
 
 
-unsigned int property_set_base::get_unsigned_int(const atom & atom, unsigned int uDefault) const
+::u32 property_set_base::get_u32(const atom & atom, ::u32 uDefault) const
 {
 
    auto pproperty = find(atom);
@@ -2529,7 +2547,7 @@ unsigned int property_set_base::get_unsigned_int(const atom & atom, unsigned int
 
    }
 
-   return pproperty->as_unsigned_int();
+   return pproperty->as_u32();
 
 }
 
@@ -2742,7 +2760,7 @@ property & property_set_base::property(const ::atom_array_base & atoma)
 
    auto pset = this;
 
-   for (int i = 0; i < atoma.get_upper_bound(); i++)
+   for (::i32 i = 0; i < atoma.get_upper_bound(); i++)
    {
 
       pset = &pset->property(atoma[i]).property_set_reference();
@@ -2874,13 +2892,13 @@ property & property_set_base::property(const ::atom_array_base & atoma)
 //      if (atom.is_integer())
 //      {
 //
-//         return (iptr)(m_i + atom.m_i);
+//         return (iptr)(m_i32 + atom.m_i32);
 //
 //      }
 //      else if (atom.is_text())
 //      {
 //
-//         return as_string(m_i) + "." + string(atom.m_psz);
+//         return as_string(m_i32) + "." + string(atom.m_psz);
 //
 //      }
 //      else
@@ -2897,7 +2915,7 @@ property & property_set_base::property(const ::atom_array_base & atoma)
 //      if (is_text())
 //      {
 //
-//         return string(m_psz) + "." + as_string(atom.m_i);
+//         return string(m_psz) + "." + as_string(atom.m_i32);
 //
 //      }
 //      else
@@ -3068,9 +3086,9 @@ string property_set_base::evaluate(const ::scoped_string & scopedstrSource) cons
 
    string str(scopedstrSource);
 
-   char ch;
+   ::i8 ch;
 
-   char chNext;
+   ::i8 chNext;
 
    for (auto pPos = str.c_str(); pPos < str.end(); pPos++)
    {
@@ -3235,18 +3253,18 @@ if (iIndexOfPayloadInPropertySet < 0)                                       \
 return ::transfer(this->element_at(iIndexOfPayloadInPropertySet)->as_getter());
 
 
-::float_array_base property_set_base::get(const ::atom& atom, const ::float_array_base& floata) const
+::f32_array_base property_set_base::get(const ::atom& atom, const ::f32_array_base& f32a) const
 {
 
-   __IMPLEMENT_GET(floata, as_float_array);
+   __IMPLEMENT_GET(f32a, as_f32_array);
 
 }
 
 
-::double_array_base property_set_base::get(const ::atom& atom, const ::double_array_base& doublea) const
+::f64_array_base property_set_base::get(const ::atom& atom, const ::f64_array_base& f64a) const
 {
 
-   __IMPLEMENT_GET(doublea, as_double_array);
+   __IMPLEMENT_GET(f64a, as_f64_array);
 
 }
 
@@ -3259,34 +3277,34 @@ return ::transfer(this->element_at(iIndexOfPayloadInPropertySet)->as_getter());
 }
 
 
-int property_set_base::get(const ::atom& atom, const int& i) const
+::i32 property_set_base::get(const ::atom& atom, const ::i32& i) const
 {
 
-   __IMPLEMENT_GET(i, as_int);
+   __IMPLEMENT_GET(i, as_i32);
 
 }
 
 
-long long property_set_base::get(const ::atom& atom, const long long& ll) const
+::i64 property_set_base::get(const ::atom& atom, const ::i64& ll) const
 {
 
-   __IMPLEMENT_GET(ll, as_long_long);
+   __IMPLEMENT_GET(ll, as_i64);
 
 }
 
 
-float property_set_base::get(const ::atom& atom, const float& f) const
+::f32 property_set_base::get(const ::atom& atom, const ::f32& f) const
 {
 
-   __IMPLEMENT_GET(f, as_float);
+   __IMPLEMENT_GET(f, as_f32);
 
 }
 
 
-double property_set_base::get(const ::atom& atom, const double& d) const
+::f64 property_set_base::get(const ::atom& atom, const ::f64& d) const
 {
 
-   __IMPLEMENT_GET(d, as_double);
+   __IMPLEMENT_GET(d, as_f64);
 
 }
 

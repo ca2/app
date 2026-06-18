@@ -22,8 +22,8 @@ namespace user
    public:
 
 
-      ::double_size                          m_sizeSep;
-      int                                 m_iHeightAddUp;
+      ::f64_size                          m_sizeSep;
+      ::i32                                 m_iHeightAddUp;
       ::draw2d::pen_pointer               m_ppen;
       ::draw2d::brush_pointer             m_pbrushTextHover;
       ::draw2d::brush_pointer             m_pbrushTextSel;
@@ -35,16 +35,16 @@ namespace user
       ::draw2d::pen_pointer               m_ppenBorderSel;
       ::draw2d::pen_pointer               m_ppenBorderHover;
       bool                                m_bCreated;
-      int                                 m_iTabHeight;
-      int                                 m_iTabWidth;
+      ::i32                                 m_iTabHeight;
+      ::i32                                 m_iTabWidth;
       tab_pane_array                      m_tabpanea;
-      ::int_rectangle                     m_rectangleTab;
-      ::int_rectangle                     m_rectangleHosting;
+      ::i32_rectangle                     m_rectangleTab;
+      ::i32_rectangle                     m_rectangleHosting;
       draw2d::graphics_extension          m_dcextension;
       atom_array                          m_idaSel;
-      ::int_rectangle                     m_rectangleBorder;
-      ::int_rectangle                     m_rectangleMargin;
-      ::int_rectangle                     m_rectangleTextMargin;
+      ::i32_rectangle                     m_rectangleBorder;
+      ::i32_rectangle                     m_rectangleMargin;
+      ::i32_rectangle                     m_rectangleTextMargin;
       ::image::image_list_pointer              m_pimagelist;
       tab_callback *                      m_pcallback;
       ::collection::index                             m_iClickTab;
@@ -53,7 +53,7 @@ namespace user
       ::match::any                        m_matchanyRestore;
       bool                                m_bEnableCloseAll;
       bool                                m_bNoClient;
-      ::int_size                          m_sizeTabTotal;
+      ::i32_size                          m_sizeTabTotal;
 
 
       tab_data();

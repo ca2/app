@@ -54,7 +54,7 @@ namespace database
    }
 
 
-   void composite::connect(const ::scoped_string & scopedstrName, const ::scoped_string & scopedstrHost, const ::scoped_string & scopedstrPort, const ::scoped_string & scopedstrUser, const ::scoped_string & scopedstrPass, const ::scoped_string & scopedstrSocket, unsigned long long uConnectionFlags)
+   void composite::connect(const ::scoped_string & scopedstrName, const ::scoped_string & scopedstrHost, const ::scoped_string & scopedstrPort, const ::scoped_string & scopedstrUser, const ::scoped_string & scopedstrPass, const ::scoped_string & scopedstrSocket, ::u64 uConnectionFlags)
    {
 
 
@@ -168,7 +168,7 @@ namespace database
    }
 
 
-   void     composite::set_error_code(int iErrorCode)
+   void     composite::set_error_code(::i32 iErrorCode)
    {
 
       return m_pdatabase->set_error_code(iErrorCode);

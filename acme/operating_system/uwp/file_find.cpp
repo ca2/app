@@ -48,7 +48,7 @@ namespace universal_windows
       return;
    }
 
-   bool file_find::FindFile(const_char_pointer pstrName /* = nullptr */, unsigned int dwUnused /* = 0 */)
+   bool file_find::FindFile(const_char_pointer pstrName /* = nullptr */, ::u32 dwUnused /* = 0 */)
    {
       UNUSED_ALWAYS(dwUnused);
       close();
@@ -65,15 +65,15 @@ namespace universal_windows
 
       if (m_hContext == INVALID_HANDLE_VALUE)
       {
-         unsigned int dwTemp = ::get_last_error();
+         ::u32 dwTemp = ::get_last_error();
          close();
          ::set_last_error(dwTemp);
          return false;
       }
       wstring wstrRoot;
 
-      unichar * pstrRoot = wstrRoot.alloc(_MAX_PATH);
-      const unichar * pstr = shell::_fullpath(pstrRoot, wstrName, _MAX_PATH);
+      wide_character * pstrRoot = wstrRoot.alloc(_MAX_PATH);
+      const wide_character * pstr = shell::_fullpath(pstrRoot, wstrName, _MAX_PATH);
 
       // passed name isn't a valid path but was found by the API
       ASSERT(pstr != nullptr);
@@ -87,8 +87,8 @@ namespace universal_windows
       else
       {
          // find the last forward or backward whack
-         unichar * pstrBack  = wcsrchr(pstrRoot, '\\');
-         unichar * pstrFront = wcsrchr(pstrRoot, '/');
+         wide_character * pstrBack  = wcsrchr(pstrRoot, '\\');
+         wide_character * pstrFront = wcsrchr(pstrRoot, '/');
 
          if (pstrFront != nullptr || pstrBack != nullptr)
          {
@@ -110,7 +110,7 @@ namespace universal_windows
       return true;
    }
 
-   bool file_find::MatchesMask(unsigned int dwMask) const
+   bool file_find::MatchesMask(::u32 dwMask) const
    {
       ASSERT(m_hContext != nullptr);
       ASSERT_OK(this);
@@ -308,14 +308,14 @@ namespace universal_windows
       return ret;
    }
 
-   long long file_find::get_length() const
+   ::i64 file_find::get_length() const
    {
       ASSERT(m_hContext != nullptr);
       ASSERT_OK(this);
 
       if (m_pFoundInfo != nullptr)
          return ((LPWIN32_FIND_DATAW) m_pFoundInfo)->nFileSizeLow +
-                ((long long)(((LPWIN32_FIND_DATAW) m_pFoundInfo)->nFileSizeHigh) << 32);
+                ((::i64)(((LPWIN32_FIND_DATAW) m_pFoundInfo)->nFileSizeHigh) << 32);
       else
          return 0;
    }
@@ -324,7 +324,7 @@ namespace universal_windows
    void file_find::dump(dump_context & dumpcontext) const
    {
       ::matter::dump(dumpcontext);
-      dumpcontext << "\nm_hContext = " << (unsigned int) m_hContext;
+      dumpcontext << "\nm_hContext = " << (::u32) m_hContext;
    }
 
    void file_find::assert_ok() const

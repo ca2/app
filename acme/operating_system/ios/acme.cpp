@@ -26,7 +26,7 @@
 //
 //}
 //
-//void SetCommandLineW(const unichar * pwsz)
+//void SetCommandLineW(const wide_character * pwsz)
 //{
 //
 //   get_command_line_string()     = pwsz;
@@ -35,10 +35,10 @@
 //}
 
 //
-//char * GetCommandLineA()
+//char_pointer GetCommandLineA()
 //{
 //
-//   return (char *) (const_char_pointer )get_command_line_string();
+//   return (char_pointer ) (const_char_pointer )get_command_line_string();
 //
 //}
 //
@@ -129,11 +129,11 @@ void ui_app_terminate()
 
 }
 
-unsigned int m_sleep(unsigned int seconds);
+::u32 m_sleep(::u32 seconds);
 
 
 extern "C"
-unsigned int sleep(unsigned int seconds)
+::u32 sleep(::u32 seconds)
 {
 
    return m_sleep(seconds);
@@ -209,8 +209,8 @@ CLASS_DECL_ACME bool __node_aura_pos_term()
 
 
 
-//int _get_exe_path_len();
-//void _get_exe_path(char * pszPath, int int_size);
+//::i32 _get_exe_path_len();
+//void _get_exe_path(char_pointer pszPath, ::i32 i32_size);
 //
 //
 //string get_exe_path()
@@ -218,9 +218,9 @@ CLASS_DECL_ACME bool __node_aura_pos_term()
 //
 //   string str;
 //
-//   int len = _get_exe_path_len();
+//   ::i32 len = _get_exe_path_len();
 //
-//   char * psz = str.get_buffer(len);
+//   char_pointer psz = str.get_buffer(len);
 //
 //   _get_exe_path(scopedstr, len);
 //

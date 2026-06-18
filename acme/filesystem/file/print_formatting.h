@@ -8,8 +8,8 @@ public:
 
 
    ::file::fmtflags           m_fmtflags;
-   char                       m_width;
-   char                       m_precision;
+   ::i8                       m_width;
+   ::i8                       m_precision;
 
 
    print_formatting();
@@ -20,17 +20,17 @@ public:
 
    filesize precision() const { return m_precision; }
 
-   filesize precision(char prec) { return m_precision = prec; }
+   filesize precision(::i8 prec) { return m_precision = prec; }
 
    filesize width() const { return m_width; }
 
-   filesize width(char wide) { return m_width = wide; }
+   filesize width(::i8 wide) { return m_width = wide; }
 
 
    ::file::fmtflags setf(::file::fmtflags flagsAdd)
    {
 
-      return m_fmtflags = (::file::fmtflags)((((int)m_fmtflags)) | ((int)flagsAdd));
+      return m_fmtflags = (::file::fmtflags)((((::i32)m_fmtflags)) | ((::i32)flagsAdd));
 
    }
 
@@ -40,7 +40,7 @@ public:
 
       setf(flagsAdd);
 
-      return m_fmtflags = (::file::fmtflags)((((int)m_fmtflags)) & (~(int)flagsAdd));
+      return m_fmtflags = (::file::fmtflags)((((::i32)m_fmtflags)) & (~(::i32)flagsAdd));
 
    }
 

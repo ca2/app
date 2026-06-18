@@ -23,20 +23,20 @@ namespace draw2d
       //virtual bool CreateHalftonePalette(::draw2d::graphics_pointer & pgraphics);
 
 
-      virtual int GetEntryCount();
-      //virtual unsigned int GetPaletteEntries(unsigned int nStartIndex, unsigned int nNumEntries, LPPALETTEENTRY pPaletteColors) const;
+      virtual ::i32 GetEntryCount();
+      //virtual ::u32 GetPaletteEntries(::u32 nStartIndex, ::u32 nNumEntries, LPPALETTEENTRY pPaletteColors) const;
 
-      //virtual unsigned int SetPaletteEntries(unsigned int nStartIndex, unsigned int nNumEntries, LPPALETTEENTRY pPaletteColors);
-
-
+      //virtual ::u32 SetPaletteEntries(::u32 nStartIndex, ::u32 nNumEntries, LPPALETTEENTRY pPaletteColors);
 
 
 
 
-      //virtual void AnimatePalette(unsigned int nStartIndex, unsigned int nNumEntries, LPPALETTEENTRY pPaletteColors);
 
-      virtual unsigned int GetNearestPaletteIndex(const ::color::color & color) const;
-      //virtual bool ResizePalette(unsigned int nNumEntries);
+
+      //virtual void AnimatePalette(::u32 nStartIndex, ::u32 nNumEntries, LPPALETTEENTRY pPaletteColors);
+
+      virtual ::u32 GetNearestPaletteIndex(const ::color::color & color) const;
+      //virtual bool ResizePalette(::u32 nNumEntries);
 
 
    };

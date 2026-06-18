@@ -3,9 +3,9 @@
 //#error "not two use it"
 //#ifdef CORE_LEVEL
 //extern "C"
-//CLASS_DECL_CORE int_bool defer_core_init();
+//CLASS_DECL_CORE ::i32_bool defer_core_init();
 //extern "C"
-//CLASS_DECL_CORE int_bool defer_core_term();
+//CLASS_DECL_CORE ::i32_bool defer_core_term();
 //
 //#endif
 
@@ -40,7 +40,7 @@ extern const_char_pointer g_psz_br_init_symbol_app;
 
 //class string;
 
-char * linux_get_command_line(int argc, char ** argv); // malloc/strdup equivalent return
+char_pointer linux_get_command_line(::i32 argc, char_pointer * argv); // malloc/strdup equivalent return
 
 #endif // LINUX
 
@@ -55,7 +55,7 @@ char * linux_get_command_line(int argc, char ** argv); // malloc/strdup equivale
 
 
 [MTAThread]
-int main(Array < String ^ > ^ refstra)
+::i32 main(Array < String ^ > ^ refstra)
 {
 
    class aura_aura aura;
@@ -68,7 +68,7 @@ int main(Array < String ^ > ^ refstra)
 
 #endif
 
-   return (int)aura_aura(pmaindata);
+   return (::i32)aura_aura(pmaindata);
 
 }
 
@@ -77,18 +77,18 @@ int main(Array < String ^ > ^ refstra)
 
 
 
-int impl_main(int argc, char * argv[]);
+::i32 impl_main(::i32 argc, char_pointer argv[]);
 
-int main(int argc, char * argv[])
+::i32 main(::i32 argc, char_pointer argv[])
 {
 
-   int iResult = impl_main(argc, argv);
+   ::i32 iResult = impl_main(argc, argv);
 
    return iResult;
 
 }
 
-int aura_main(int argc, char * argv[], char * pszCommandLine, bool bConsole, bool bDraw2d);
+::i32 aura_main(::i32 argc, char_pointer argv[], char_pointer pszCommandLine, bool bConsole, bool bDraw2d);
 
 #ifdef NO_DRAW2D
 
@@ -102,9 +102,9 @@ int aura_main(int argc, char * argv[], char * pszCommandLine, bool bConsole, boo
 
 #ifdef WINDOWS
 
-int windows_main(HINSTANCE hinstance, HINSTANCE hPrevInstance, char * pCmdLine, int nCmdShow);
+::i32 windows_main(HINSTANCE hinstance, HINSTANCE hPrevInstance, char_pointer pCmdLine, ::i32 nCmdShow);
 
-int WINAPI _tWinMain(HINSTANCE hinstance, HINSTANCE hPrevInstance, char * pCmdLine, int nCmdShow)
+::i32 WINAPI _tWinMain(HINSTANCE hinstance, HINSTANCE hPrevInstance, char_pointer pCmdLine, ::i32 nCmdShow)
 {
 
    return windows_main(hinstance, hPrevInstance, pCmdLine, nCmdShow);
@@ -121,7 +121,7 @@ int WINAPI _tWinMain(HINSTANCE hinstance, HINSTANCE hPrevInstance, char * pCmdLi
 //   if(__main_deferred_run)
 //   {
 //
-//      int iExitCode = (*__main_deferred_run)(hinstance, hPrevInstance, pCmdLine, nCmdShow);
+//      ::i32 iExitCode = (*__main_deferred_run)(hinstance, hPrevInstance, pCmdLine, nCmdShow);
 //
 //
 //      if(iExitCode >= 0)
@@ -137,7 +137,7 @@ int WINAPI _tWinMain(HINSTANCE hinstance, HINSTANCE hPrevInstance, char * pCmdLi
 //   defer_core_init();
 //#endif
 //
-//   int iRet = -1;
+//   ::i32 iRet = -1;
 //
 //   {
 //
@@ -221,7 +221,7 @@ int WINAPI _tWinMain(HINSTANCE hinstance, HINSTANCE hPrevInstance, char * pCmdLi
 
 #if defined(LINUX) && !defined(LINUX_COMMAND_LINE)
 
-char * linux_get_command_line(int argc, char ** argv)
+char_pointer linux_get_command_line(::i32 argc, char_pointer * argv)
 {
 
    string str = string(argv[0]) + (" : app=" MAINAPPID);

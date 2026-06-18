@@ -7,7 +7,7 @@
 //public:
 //
 //
-//   long long                         m_iUpdateSerial;
+//   ::i64                         m_iUpdateSerial;
 //   bool                          m_bFork;
 //
 //

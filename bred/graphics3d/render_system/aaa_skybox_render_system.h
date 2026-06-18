@@ -56,7 +56,7 @@ namespace graphics3d
       //   cube(::std::initializer_list < ::file::path > list)
       //   {
 
-      //      int i = 0;
+      //      ::i32 i = 0;
 
       //      for (auto& item : list)
       //      {
@@ -76,7 +76,7 @@ namespace graphics3d
       //::pointer < ::graphics3d::skybox >              m_pskybox;
       //::pointer < ::gpu::model_buffer >               m_pmodelCube;
       //::pointer < ::gpu::texture >                    m_ptextureCubeMap;
-      //::int_size                                      m_sizeSquare;
+      //::i32_size                                      m_sizeSquare;
 
       //cube                                            m_cube;
       ////::pointer<::gpu::shader>            m_pshader;
@@ -107,8 +107,8 @@ namespace graphics3d
 
 
 
-      //unsigned int skyboxVAO, skyboxVBO, skyboxEBO;
-      //unsigned int cubemapTexture;
+      //::u32 skyboxVAO, skyboxVBO, skyboxEBO;
+      //::u32 cubemapTexture;
       //::string_array_base facesCubemap;
 
 

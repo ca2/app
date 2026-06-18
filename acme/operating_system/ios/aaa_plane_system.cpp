@@ -40,7 +40,7 @@
 //}
 
 
-//ui_window_ptr plane_system::plane_system_initialize(CGRect int_rectangle)
+//ui_window_ptr plane_system::plane_system_initialize(CGRect i32_rectangle)
 //{
 //
 //   ::user::native_window_initialize initialize;
@@ -63,7 +63,7 @@
 //   ::user::system createstruct;
 //   pusersystem->m_createstruct.dwExStyle = 0;
 //   pusersystem->m_createstruct.lpszClass = 0;
-//   pusersystem->m_createstruct.lpszName = nullptr;
+//   pusersystem->m_createstruct.pszName = nullptr;
 //   pusersystem->m_createstruct.style = 0;
 //   pusersystem->m_createstruct.x = 0;
 //   pusersystem->m_createstruct.y = 0;
@@ -113,7 +113,7 @@
 //
 //   pimpl->send_message(::user::e_message_create, 0, (LPARAM) &cs);
 //
-//   ::int_rectangle rectangleMainScreen;
+//   ::i32_rectangle rectangleMainScreen;
 //
 //   get_main_screen_rectangle(rectangleMainScreen);
 //

@@ -42,40 +42,40 @@
 
    void os_context::terminate_processes_by_title(const ::scoped_string & scopedstrName)
    {
-      __UNREFERENCED_PARAMETER(lpszName);
+      __UNREFERENCED_PARAMETER(pszName);
       throw ::interface_only("this is an interface");
    }
 
-   bool os_context::get_pid_by_path(const ::scoped_string & scopedstrName, unsigned int & dwPid)
+   bool os_context::get_pid_by_path(const ::scoped_string & scopedstrName, ::u32 & dwPid)
    {
-      __UNREFERENCED_PARAMETER(lpszName);
+      __UNREFERENCED_PARAMETER(pszName);
       __UNREFERENCED_PARAMETER(dwPid);
       throw ::interface_only("this is an interface");
       return false;
    }
 
-   bool os_context::get_pid_by_title(const ::scoped_string & scopedstrName, unsigned int & dwPid)
+   bool os_context::get_pid_by_title(const ::scoped_string & scopedstrName, ::u32 & dwPid)
    {
-      __UNREFERENCED_PARAMETER(lpszName);
+      __UNREFERENCED_PARAMETER(pszName);
       __UNREFERENCED_PARAMETER(dwPid);
       throw ::interface_only("this is an interface");
       return false;
    }
 
-   int os_context::get_pid()
+   ::i32 os_context::get_pid()
    {
       throw ::interface_only("this is an interface");
       return -1;
    }
 
-   ::file::path os_context::get_process_path(unsigned int dwPid)
+   ::file::path os_context::get_process_path(::u32 dwPid)
    {
       __UNREFERENCED_PARAMETER(dwPid);
       throw ::interface_only("this is an interface");
       return "";
    }
 
-   void os_context::get_all_processes(unsigned_int_array & dwa )
+   void os_context::get_all_processes(u32_array & dwa )
    {
       __UNREFERENCED_PARAMETER(dwa);
       throw ::interface_only("this is an interface");
@@ -359,7 +359,7 @@
 
 #ifdef WINDOWS
 
-   DECLSPEC_NO_RETURN void os_context::raise_exception(unsigned int dwExceptionCode, unsigned int dwExceptionFlags)
+   DECLSPEC_NO_RETURN void os_context::raise_exception(::u32 dwExceptionCode, ::u32 dwExceptionFlags)
    {
 
 
@@ -457,9 +457,9 @@
 
          string strLink;
 
-         char * psz = strLink.get_buffer(4096);
+         char_pointer psz = strLink.get_buffer(4096);
 
-         int count = (int) readlink(strSource, psz, 4096);
+         ::i32 count = (::i32) readlink(strSource, psz, 4096);
 
          if (count < 0)
          {
@@ -520,7 +520,7 @@
 
       ::file::path pathFolder;
 
-      pathFolder = "https://ca2.network/image/cc/ca2core/bkimageoftheday/common/";
+      pathFolder = "https://ca2.site/image/cc/ca2core/bkimageoftheday/common/";
 
       for (auto & str : stra)
       {
@@ -667,7 +667,7 @@
    }
 
 
-   void os_context::list_process(::file::path_array & patha, unsigned_int_array & uaPid)
+   void os_context::list_process(::file::path_array & patha, u32_array & uaPid)
    {
 
 
@@ -679,7 +679,7 @@
 
       ::file::path_array patha;
 
-      unsigned_int_array uaPid;
+      u32_array uaPid;
 
       list_process(patha, uaPid);
 

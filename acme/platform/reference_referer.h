@@ -21,7 +21,7 @@ CLASS_DECL_ACME void __check_refdbg
 #include "acme/prototype/string/c_string.h"
 
 
-CLASS_DECL_ACME long long new_reference_referer_serial();
+CLASS_DECL_ACME ::i64 new_reference_referer_serial();
 
 
 class CLASS_DECL_ACME reference_referer
@@ -32,13 +32,13 @@ public:
    //::subparticle *         m_psubparticleExisting;
    ::subparticle *         m_psubparticle;
    void *                  m_p;
-   long long                   m_iSerial;
+   ::i64                   m_iSerial;
    ::c::string             m_cstringType;
    ::c::string             m_cstringFunctionName;
    ::c::string             m_cstringDebug;
    //::reference_referer *   m_preferencerefererNext = nullptr;
 
-   static long long new_serial() { return new_reference_referer_serial(); }
+   static ::i64 new_serial() { return new_reference_referer_serial(); }
    reference_referer(const_char_pointer pszType = nullptr, const_char_pointer pszFunctionName = nullptr, const_char_pointer pszDebug = nullptr) :
       //m_bConstructor(true),
       //m_psubparticleExisting(nullptr),

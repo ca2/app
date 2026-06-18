@@ -49,7 +49,7 @@ namespace userex
    public:
 
 
-      ::int_size                                    m_sizeTabbedFrame;
+      ::i32_size                                    m_sizeTabbedFrame;
       string_map_base < ::pointer<::user::document >>      m_mapdoc;
       string_map_base < simple_frame_window * >      m_mapframe;
       atom_array                                  m_idaHandledImpacts;

@@ -16,12 +16,12 @@ namespace xml
    // Coder    Date                      Desc
    // bro      2002-10-29
    //========================================================
-   int _tcselen(int escape,char * srt,char * end)
+   ::i32 _tcselen(::i32 escape,char_pointer srt,char_pointer end)
    {
-      int len = 0;
-      char * pch = srt;
-      if(end == nullptr) end = (char *)sizeof(long);
-      char * prev_escape = nullptr;
+      ::i32 len = 0;
+      char_pointer pch = srt;
+      if(end == nullptr) end = (char_pointer )sizeof(long);
+      char_pointer prev_escape = nullptr;
       while(pch && *pch && pch < end)
       {
          if(escape != 0 && *pch == escape && prev_escape == nullptr)
@@ -45,10 +45,10 @@ namespace xml
    // Coder    Date                      Desc
    // bro      2002-10-29
    //========================================================
-   void _tcsecpy(char * psz,int escape, const_char_pointer srt, const_char_pointer end)
+   void _tcsecpy(char_pointer psz,::i32 escape, const_char_pointer srt, const_char_pointer end)
    {
       const_char_pointer pch = srt;
-      if(end == nullptr) end = (char *)sizeof(long);
+      if(end == nullptr) end = (char_pointer )sizeof(long);
       const_char_pointer prev_escape = nullptr;
       while(pch && *pch && pch < end)
       {
@@ -68,7 +68,7 @@ namespace xml
    }
 
 
-//   void _tcsecpy2(::ansi_range & rangeTarget, char escape, const ::const_ansi_range & rangeSource)
+//   void _tcsecpy2(::ansi_range & rangeTarget, ::i8 escape, const ::const_ansi_range & rangeSource)
 //   {
 //
 //      auto pTarget = rangeTarget.m_begin;
@@ -122,12 +122,12 @@ namespace xml
    //// Coder    Date                      Desc
    //// bro      2002-10-29
    ////========================================================
-   //int _tcsenicmp(const_char_pointer psz,const_char_pointer str,character_count len,int escape)
+   //::i32 _tcsenicmp(const_char_pointer psz,const_char_pointer str,character_count len,::i32 escape)
    //{
-   //   char * pch = (char *)psz;
-   //   char * prev_escape = nullptr;
-   //   char * des = (char *)str;
-   //   int i = 0;
+   //   char_pointer pch = (char_pointer )psz;
+   //   char_pointer prev_escape = nullptr;
+   //   char_pointer des = (char_pointer )str;
+   //   ::i32 i = 0;
 
    //   while(pch && *pch && i < len)
    //   {
@@ -160,12 +160,12 @@ namespace xml
    //// Coder    Date                      Desc
    //// bro      2002-10-29
    ////========================================================
-   //char * _tcsenistr(const_char_pointer psz,const_char_pointer str,character_count len,int escape)
+   //char_pointer _tcsenistr(const_char_pointer psz,const_char_pointer str,character_count len,::i32 escape)
    //{
-   //   char * pch = (char *)psz;
-   //   char * prev_escape = nullptr;
-   //   //char * des = (char *)str;
-   //   //int i = 0;
+   //   char_pointer pch = (char_pointer )psz;
+   //   char_pointer prev_escape = nullptr;
+   //   //char_pointer des = (char_pointer )str;
+   //   //::i32 i = 0;
 
    //   while(pch && *pch)
    //   {
@@ -175,7 +175,7 @@ namespace xml
    //      {
    //         prev_escape = nullptr;
    //         if(_tcsenicmp(pch,str,len,escape) == 0)
-   //            return (char *)pch;
+   //            return (char_pointer )pch;
    //      }
    //      pch++;
    //   }
@@ -191,7 +191,7 @@ namespace xml
    // Coder    Date                      Desc
    // bro      2002-10-29
    //========================================================
-   //char * _tcseistr(const_char_pointer psz,const_char_pointer str,int escape)
+   //char_pointer _tcseistr(const_char_pointer psz,const_char_pointer str,::i32 escape)
    //{
    //   character_count len = strlen(str);
    //   return _tcsenistr(scopedstr,str,len,escape);

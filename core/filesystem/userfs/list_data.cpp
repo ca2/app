@@ -15,7 +15,7 @@
 #include "core/platform/session.h"
 
 
-string _001FileSizeText(long long i)
+string _001FileSizeText(::i64 i)
 {
 
    string str;
@@ -27,7 +27,7 @@ string _001FileSizeText(long long i)
 
    }
 
-   double d = ((double) i) / 1024.0;
+   ::f64 d = ((::f64) i) / 1024.0;
 
    if(d < 2)
    {
@@ -416,7 +416,7 @@ namespace userfs
 
             }
 
-            return (bool) ( pitem1->m_strName.case_insensitive_order(pitem2->m_strName) < 0);
+            return (i32_boolean) ( pitem1->m_strName.case_insensitive_order(pitem2->m_strName) < 0);
 
                });
 

@@ -5,7 +5,7 @@ class CLASS_DECL_ACME microsecond_sleep
 {
 public:
 
-   char sz[16];
+   ::i8 sz[16];
 
    // should be enough to hold struct of { HANDLE }
 
@@ -13,7 +13,7 @@ public:
    
 
    ~microsecond_sleep();
-   bool sleep(unsigned long usec);
+   bool sleep(ulong usec);
 
 
 };

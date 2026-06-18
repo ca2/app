@@ -12,13 +12,13 @@ extern "C" {
 /*
  * Basic system type definitions, taken from the BSD file sys/types.h.
  */
-typedef unsigned char   u_char;
-typedef unsigned short  u_short;
-typedef unsigned int    u_int;
-typedef unsigned long   u_long;
+typedef ::u8   u_char;
+typedef ::u16  u_short;
+typedef ::u32    u_int;
+typedef ulong   u_long;
 
 #if(_WIN32_WINNT >= 0x0501)
-typedef unsigned long long u_int64;
+typedef ::u64 u_int64;
 #endif //(_WIN32_WINNT >= 0x0501)
 
 #ifdef __cplusplus
@@ -125,7 +125,7 @@ static inline ULONG __wine_ulong_swap(ULONG l)
  */
 //struct sockaddr {
 //        u_short sa_family;              /* address family */
-//        char    sa_data[14];            /* up to 14 bytes of direct address */
+//        ::i8    sa_data[14];            /* up to 14 bytes of direct address */
 //};
 
 /*
@@ -141,16 +141,16 @@ static inline ULONG __wine_ulong_swap(ULONG l)
 //
 //struct sockaddr_in
 //{
-//   short sin_family;
-//   unsigned short sin_port;
+//   ::i16 sin_family;
+//   ::u16 sin_port;
 //   struct in_addr sin_addr;
-//   char sin_zero[8];
+//   ::i8 sin_zero[8];
 //};
 //
 //
 //struct sockaddr_in6
 //{
-//  short sin6_family;
+//  ::i16 sin6_family;
 //  u_short sin6_port;
 //  u_long sin6_flowinfo;
 //  struct in6_addr sin6_addr;
@@ -160,12 +160,12 @@ static inline ULONG __wine_ulong_swap(ULONG l)
 //
 
 //typedef struct addrinfo {
-//  int             ai_flags;
-//  int             ai_family;
-//  int             ai_socktype;
-//  int             ai_protocol;
+//  ::i32             ai_flags;
+//  ::i32             ai_family;
+//  ::i32             ai_socktype;
+//  ::i32             ai_protocol;
 //  size_t          ai_addrlen;
-//  char            *ai_canonname;
+//  char_pointer ai_canonname;
 //  struct sockaddr  *ai_addr;
 //  struct addrinfo  *ai_next;
 //} ADDRINFOA, *PADDRINFOA;
@@ -177,7 +177,7 @@ static inline ULONG __wine_ulong_swap(ULONG l)
 #define NI_NUMERICSERV  0x08  /* Return numeric form of the service (port #) */
 
 
-//typedef int SOCKET;
+//typedef ::i32 SOCKET;
 
 //#define INVALID_SOCKET ((SOCKET) -1)
 

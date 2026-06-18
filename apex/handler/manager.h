@@ -22,9 +22,9 @@ public:
 #ifdef _DEBUG
 
 
-   long long increment_reference_count() override;
-   long long decrement_reference_count() override;
-   long long release() override;
+   ::i64 increment_reference_count() override;
+   ::i64 decrement_reference_count() override;
+   ::i64 release() override;
 
 #endif
 

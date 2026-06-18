@@ -37,14 +37,14 @@
 //
 //      if(INVALID_HANDLE_VALUE == hDirectory)
 //      {
-//         unsigned int dwError = ::get_last_error();
+//         ::u32 dwError = ::get_last_error();
 //         // handle error (see this FAQ)
 //         return dwError;
 //      }
 //
-//      unsigned int dwBytesReturned = 0;
-//      const unsigned int dwBuffLength = 4096;
-//      unsigned char buffer[dwBuffLength];
+//      ::u32 dwBytesReturned = 0;
+//      const ::u32 dwBuffLength = 4096;
+//      ::u8 buffer[dwBuffLength];
 //      WCHAR wchFileName[dwBuffLength];
 //
 //
@@ -54,7 +54,7 @@
 //                                    FILE_NOTIFY_CHANGE_CREATION, &dwBytesReturned,
 //                                    nullptr, nullptr))
 //      {
-//         unsigned int dwNextEntryOffset = 0;
+//         ::u32 dwNextEntryOffset = 0;
 //         PFILE_NOTIFY_INFORMATION pfni = nullptr;
 //         do
 //         {
@@ -79,7 +79,7 @@
 //#endif
 //   }
 //
-//   folder_watch::e_action folder_watch::translate_os_action(int iAction)
+//   folder_watch::e_action folder_watch::translate_os_action(::i32 iAction)
 //   {
 //      switch(iAction)
 //      {

@@ -49,7 +49,7 @@ namespace handler
          };
 
 
-         unsigned long long m_hnHandlerFlag;
+         ::u64 m_hnHandlerFlag;
 
 
       };
@@ -71,6 +71,7 @@ namespace handler
       void on_initialize_particle() override;
 
       virtual void update_new_main_loop_happening();
+      virtual void on_new_main_loop_happening_creation();
 
       void destroy() override;
 
@@ -94,8 +95,8 @@ namespace handler
 
       virtual bool on_idle();
       // ThomasBorregaardSorensen!! Like handlers
-      //virtual void call(const enum_message, long long iData = 0, ::matter * pmatter = nullptr);
-      //virtual void call(const enum_id, long long iData = 0, ::matter* pmatter = nullptr);
+      //virtual void call(const enum_message, ::i64 iData = 0, ::matter * pmatter = nullptr);
+      //virtual void call(const enum_id, ::i64 iData = 0, ::matter* pmatter = nullptr);
       ::lresult call_message(const ::user::enum_message & emessage, ::wparam wparam = {}, ::lparam lparam = {}, ::particle * pparticle = nullptr) override;
 
 

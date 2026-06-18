@@ -194,7 +194,7 @@ public:
     * @since 1.0
     * @author Gurmeet S. Kochar
     */
-   EventMaskEnum setEventMask(unsigned int dwNewEventMask);
+   EventMaskEnum setEventMask(::u32 dwNewEventMask);
 
    /**
     * Changes the current happening mask by adding and removing
@@ -207,7 +207,7 @@ public:
     * @since 1.0
     * @author Gurmeet S. Kochar
     */
-   EventMaskEnum setEventMask(unsigned int addFlags, unsigned int eraseFlags);
+   EventMaskEnum setEventMask(::u32 addFlags, ::u32 eraseFlags);
 
    /**
     * Returns a 32-bit application-specific data
@@ -230,7 +230,7 @@ public:
     * @since 1.0
     * @author Gurmeet S. Kochar
     */
-   character_count setAppData(unsigned int dwNewAppData);
+   character_count setAppData(::u32 dwNewAppData);
 
    /**
     * Returns a pointer to an happening handler registered with
@@ -314,7 +314,7 @@ public:
     * @since 1.0
     * @author Gurmeet S. Kochar
     */
-   char ReadChar()
+   ::i8 ReadChar()
    {
 
       if(m_dwBufPos >= m_strBuffer.size())
@@ -325,12 +325,12 @@ public:
    }
 
    /**
-    * Moves the buffer back by one char
+    * Moves the buffer back by one ::i8
     *
     * @since 1.0
     * @author Gurmeet S. Kochar
     */
-   char UngetChar();
+   ::i8 UngetChar();
 
    /** Other Helpers */
 
@@ -343,7 +343,7 @@ public:
     * @since 1.0
     * @author Gurmeet S. Kochar
     */
-   bool getEventNotify(unsigned int dwEvent) const ;
+   bool getEventNotify(::u32 dwEvent) const ;
 
    /**
     * Determines if the character specified by ch is
@@ -355,7 +355,7 @@ public:
     * @since 1.0
     * @author Gurmeet S. Kochar
     */
-   bool isWhiteSpace(char ch) const;
+   bool isWhiteSpace(::i8 ch) const;
 
 };
 

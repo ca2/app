@@ -44,7 +44,7 @@ namespace acme
    //}
 
 
-   //void library::initialize_library(::matter * pmatter,int iDesambig,const ::scoped_string & scopedstrRoot, const ::scoped_string & scopedstrName, const ::scoped_string & scopedstrFolder)
+   //void library::initialize_library(::matter * pmatter,::i32 iDesambig,const ::scoped_string & scopedstrRoot, const ::scoped_string & scopedstrName, const ::scoped_string & scopedstrFolder)
    //{
 
    //   auto estatus = initialize_matter(pmatter);
@@ -297,7 +297,7 @@ namespace acme
 
    //   PFN_NEW_LIBRARY pfnNewAcmeLibrary = nullptr;
 
-   //   int iPhase = 0;
+   //   ::i32 iPhase = 0;
 
    //   try
    //   {

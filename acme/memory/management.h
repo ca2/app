@@ -201,7 +201,7 @@ namespace heap
 
 
 
-      virtual void on_plex_new_block(unsigned int nAllocSize);
+      virtual void on_plex_new_block(::u32 nAllocSize);
      
    };
    
@@ -230,7 +230,7 @@ namespace heap
 //         m_p         = nullptr;
 //         m_uiSize    = 0;
 //
-//         int_size(uiSize);
+//         i32_size(uiSize);
 //
 //      }
 //
@@ -314,7 +314,7 @@ namespace heap
 //
 //      memsize count() { return size() / sizeof(T); }
 //
-//      void stralloc(::collection::count cChar) { int_size((cChar + 1) * sizeof(T)); }
+//      void stralloc(::collection::count cChar) { i32_size((cChar + 1) * sizeof(T)); }
 //
 //      string & to_string(string & str) const;
 //
@@ -325,7 +325,7 @@ namespace heap
 
 
 
-//typedef ::heap::heap < char > hstring_base;
+//typedef ::heap::heap < ::i8 > hstring_base;
 //
 //class CLASS_DECL_ACME hstring:
 //   public hstring_base

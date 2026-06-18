@@ -10,7 +10,7 @@ namespace android
    class android
    {
 
-      int function();
+      ::i32 function();
 
    };
 

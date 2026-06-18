@@ -1,7 +1,7 @@
 #pragma once
 
 
-enum enum_source : unsigned long long
+enum enum_source : ::u64
 {
 
    e_source_none = 0,
@@ -40,7 +40,7 @@ enum enum_source : unsigned long long
 };
 
 
-DECLARE_ENUMERATION(e_source, enum_source);
+DECLARE_C_FLAG(e_source, enum_source);
 
 
 

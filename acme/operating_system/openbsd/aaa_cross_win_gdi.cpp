@@ -59,7 +59,7 @@
 //// }
 //
 //
-//// int_bool ReleaseDC(oswindow hwnd, HDC hdc)
+//// i32_bool ReleaseDC(oswindow hwnd, HDC hdc)
 //// {
 //
 //
@@ -76,7 +76,7 @@
 ////    return true;
 //
 //// }
-//// int FillRect(HDC hdc, const ::int_rectangle & prc, HBRUSH hbr)
+//// ::i32 FillRect(HDC hdc, const ::i32_rectangle & prc, HBRUSH hbr)
 //
 //// {
 //
@@ -101,7 +101,7 @@
 //// }
 //
 //
-//// int_bool EndPaint(oswindow hwnd, PAINTSTRUCT * ps)
+//// i32_bool EndPaint(oswindow hwnd, PAINTSTRUCT * ps)
 //// {
 //
 ////    return ReleaseDC(hwnd, ps->hdc);

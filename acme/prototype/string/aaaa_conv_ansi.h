@@ -64,7 +64,7 @@ inline void to_string(string& str, const ::ansi_character & ansich);
 inline void to_string(string& str, const ::wide_character & widech);
 
 inline void to_string(string& str, const ::scoped_string & scopedstr);
-inline void to_string(string& str, char * const psz);
+inline void to_string(string& str, char_pointer const psz);
 
 inline void to_string(string& str, const ::wd16_character * psz);
 inline void to_string(string& str, ::wd16_character * const psz);
@@ -72,27 +72,27 @@ inline void to_string(string& str, ::wd16_character * const psz);
 inline void to_string(string& str, const ::wd32_character * psz);
 inline void to_string(string& str, ::wd32_character * const psz);
 
-inline void to_string(string& str, const signed char & ch);
+inline void to_string(string& str, const ::i8 & ch);
 
 
 inline void to_string(string& str, const ::ansi_character& ch);
 inline void to_string(string& str, const uchar& uch);
 
 
-inline void to_string(string& str, const short& i);
-inline void to_string(string& str, const unsigned short& i);
-inline void to_string(string& str, const int& i);
-inline void to_string(string& str, const unsigned int& u);
-inline void to_string(string& str, const long long& i);
-inline void to_string(string& str, const unsigned long long& u);
+inline void to_string(string& str, const ::i16& i);
+inline void to_string(string& str, const ::u16& i);
+inline void to_string(string& str, const ::i32& i);
+inline void to_string(string& str, const ::u32& u);
+inline void to_string(string& str, const ::i64& i);
+inline void to_string(string& str, const ::u64& u);
 
 
-CLASS_DECL_ACME void to_string(string& str, const float& f);
-CLASS_DECL_ACME void to_string(string& str, const double& d);
+CLASS_DECL_ACME void to_string(string& str, const ::f32& f);
+CLASS_DECL_ACME void to_string(string& str, const ::f64& d);
 
 
-CLASS_DECL_ACME void to_string(string& str, const unsigned long & ul);
-CLASS_DECL_ACME void to_string(string& str, const long int & i);
+CLASS_DECL_ACME void to_string(string& str, const ulong & ul);
+CLASS_DECL_ACME void to_string(string& str, const long ::i32 & i);
 
 
 inline void to_string(string& str, const ::scoped_string & scopedstrSrc);

@@ -18,8 +18,8 @@ namespace graphics
 
       //::pointer < ::mutex >     m_pmutex;
       //::image::image_pointer         m_pimage;
-      //int                   o  m_cx;
-      //int                     m_cy;
+      //::i32                   o  m_cx;
+      //::i32                     m_cy;
       ::function < void() >                           m_functionFallback;
       ::function < void(target *) >                   m_functionInitializationComplete;
 

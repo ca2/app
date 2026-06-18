@@ -7,12 +7,12 @@ namespace sockets
 {
 
 
-   udp_socket::udp_socket(int ibufsz, bool ipv6, int retries) :
+   udp_socket::udp_socket(::i32 ibufsz, bool ipv6, ::i32 retries) :
       //::object(&h)
       //,
       //base_socket(h)
       //,socket(h)
-      m_ibuf(øraw_new char[ibufsz])
+      m_ibuf(øraw_new ::i8[ibufsz])
       , m_ibufsz(ibufsz)
       , m_bind_ok(false)
       , m_port(0)
@@ -33,7 +33,7 @@ namespace sockets
    }
 
 
-   //int udp_socket::Bind(::networking::port_t &port, int range)
+   //::i32 udp_socket::Bind(::networking::port_t &port, ::i32 range)
    //{
    //   if (IsIpv6())
    //   {
@@ -45,7 +45,7 @@ namespace sockets
    //}
 
 
-   //int udp_socket::Bind(const ::scoped_string & scopedstrInterface, ::networking::port_t &port, int range)
+   //::i32 udp_socket::Bind(const ::scoped_string & scopedstrInterface, ::networking::port_t &port, ::i32 range)
    //{
 
    //   ::networking::address ad(intf, port);
@@ -70,21 +70,21 @@ namespace sockets
    //}
 
 
-   //int udp_socket::Bind(in_addr a, ::networking::port_t &port, int range)
+   //::i32 udp_socket::Bind(in_addr a, ::networking::port_t &port, ::i32 range)
    //{
    //   ::networking::address ad(a, port);
    //   return Bind(ad, range);
    //}
 
 
-   //int udp_socket::Bind(in6_addr a, ::networking::port_t &port, int range)
+   //::i32 udp_socket::Bind(in6_addr a, ::networking::port_t &port, ::i32 range)
    //{
    //   ::networking::address ad(a, port);
    //   return Bind(ad, range);
    //}
 
 
-   int udp_socket::Bind(::networking::address & ad, int range)
+   ::i32 udp_socket::Bind(::networking::address & ad, ::i32 range)
    {
       //if (get_socket_id() == INVALID_SOCKET)
       //{
@@ -93,8 +93,8 @@ namespace sockets
       //if (get_socket_id() != INVALID_SOCKET)
       //{
       //   SetNonblocking(true);
-      //   int n = bind(get_socket_id(), ad.sa(), ad.sa_len());
-      //   int tries = range;
+      //   ::i32 n = bind(get_socket_id(), ad.sa(), ad.sa_len());
+      //   ::i32 tries = range;
       //   while (n == -1 && tries--)
       //   {
       //      ad.set_service_number(ad.get_service_number() + 1);
@@ -195,26 +195,26 @@ namespace sockets
 
 
    ///** send to specified address */
-   //void udp_socket::SendToBuf(const ::scoped_string & scopedstrHost, ::networking::port_t p, const_char_pointer data, int len, int flags)
+   //void udp_socket::SendToBuf(const ::scoped_string & scopedstrHost, ::networking::port_t p, const_char_pointer data, ::i32 len, ::i32 flags)
    //{
    //   SendToBuf(::networking::address(h, p), data, len, flags);
    //}
 
 
    ///** send to specified address */
-   //void udp_socket::SendToBuf(const in_addr & a, ::networking::port_t p, const_char_pointer data, int len, int flags)
+   //void udp_socket::SendToBuf(const in_addr & a, ::networking::port_t p, const_char_pointer data, ::i32 len, ::i32 flags)
    //{
    //   SendToBuf(::networking::address(a, p), data, len, flags);
    //}
 
 
-   //void udp_socket::SendToBuf(const in6_addr & a, ::networking::port_t p, const_char_pointer data, int len, int flags)
+   //void udp_socket::SendToBuf(const in6_addr & a, ::networking::port_t p, const_char_pointer data, ::i32 len, ::i32 flags)
    //{
    //   SendToBuf(::networking::address(a, p), data, len, flags);
    //}
 
 
-   void udp_socket::SendToBuf(::networking::address * ad, const_char_pointer data, int len, int flags)
+   void udp_socket::SendToBuf(::networking::address * ad, const_char_pointer data, ::i32 len, ::i32 flags)
    {
       //if (get_socket_id() == INVALID_SOCKET)
       //{
@@ -223,7 +223,7 @@ namespace sockets
       //if (get_socket_id() != INVALID_SOCKET)
       //{
       //   SetNonblocking(true);
-      //   if ((m_last_size_written = sendto(get_socket_id(), data, len, flags, ad.sa(), (int) ad.sa_len())) == -1)
+      //   if ((m_last_size_written = sendto(get_socket_id(), data, len, flags, ad.sa(), (::i32) ad.sa_len())) == -1)
       //   {
 
 
@@ -239,34 +239,34 @@ namespace sockets
    }
 
 
-   //void udp_socket::SendTo(const ::scoped_string & scopedstrAddress, ::networking::port_t port, const ::scoped_string & scopedstr, int flags)
+   //void udp_socket::SendTo(const ::scoped_string & scopedstrAddress, ::networking::port_t port, const ::scoped_string & scopedstr, ::i32 flags)
    //{
    //   
-   //   SendToBuf(a, port, str, (int)str.length(), flags);
+   //   SendToBuf(a, port, str, (::i32)str.length(), flags);
 
    //}
 
 
-   //void udp_socket::SendTo(in_addr a, ::networking::port_t port, const ::scoped_string & scopedstr, int flags)
+   //void udp_socket::SendTo(in_addr a, ::networking::port_t port, const ::scoped_string & scopedstr, ::i32 flags)
    //{
 
-   //   SendToBuf(a, port, str, (int)str.length(), flags);
+   //   SendToBuf(a, port, str, (::i32)str.length(), flags);
 
    //}
 
 
-   //void udp_socket::SendTo(in6_addr a, ::networking::port_t port, const ::scoped_string & scopedstr, int flags)
+   //void udp_socket::SendTo(in6_addr a, ::networking::port_t port, const ::scoped_string & scopedstr, ::i32 flags)
    //{
    //   
-   //   SendToBuf(a, port, str, (int)str.length(), flags);
+   //   SendToBuf(a, port, str, (::i32)str.length(), flags);
 
    //}
 
 
-   void udp_socket::SendTo(::networking::address * ad, const ::scoped_string & scopedstr, int flags)
+   void udp_socket::SendTo(::networking::address * ad, const ::scoped_string & scopedstr, ::i32 flags)
    {
 
-      SendToBuf(ad, scopedstr, (int)scopedstr.size(), flags);
+      SendToBuf(ad, scopedstr, (::i32)scopedstr.size(), flags);
 
    }
 
@@ -288,7 +288,7 @@ namespace sockets
 
       }
 
-      //if ((m_last_size_written = ::send(get_socket_id(), (const_char_pointer )data, (int)len, m_iWriteFlags)) == -1)
+      //if ((m_last_size_written = ::send(get_socket_id(), (const_char_pointer )data, (::i32)len, m_iWriteFlags)) == -1)
       //{
 
 
@@ -304,7 +304,7 @@ namespace sockets
 
 
 #if defined(LINUX) || defined(MACOSX)
-   int udp_socket::ReadTS(char *ioBuf, int inBufSize, struct sockaddr *from, int fromlen, struct timeval *ts)
+   ::i32 udp_socket::ReadTS(char_pointer ioBuf, ::i32 inBufSize, struct sockaddr *from, ::i32 fromlen, struct timeval *ts)
    {
 //      struct msghdr msg;
 //      struct iovec vec[1];
@@ -315,11 +315,11 @@ namespace sockets
 //#ifdef __DARWIN_UNIX03
 //#define ALIGNBYTES __DARWIN_ALIGNBYTES
 //#endif
-//#define myALIGN(p) (((unsigned int)(p) + ALIGNBYTES) &~ ALIGNBYTES)
+//#define myALIGN(p) (((::u32)(p) + ALIGNBYTES) &~ ALIGNBYTES)
 //#define myCMSG_SPACE(l) (myALIGN(sizeof(struct cmsghdr)) + myALIGN(l))
-//         char data[ myCMSG_SPACE(sizeof(struct timeval)) ];
+//         ::i8 data[ myCMSG_SPACE(sizeof(struct timeval)) ];
 //#else
-//         char data[ CMSG_SPACE(sizeof(struct timeval)) ];
+//         ::i8 data[ CMSG_SPACE(sizeof(struct timeval)) ];
 //#endif
 //      } cmsg_un;
 //      struct cmsghdr *cmsg;
@@ -346,9 +346,9 @@ namespace sockets
 //      msg.msg_flags = 0;
 //
 //      // Original version - for object only
-//      //int n = recvfrom(get_socket_id(), m_ibuf, m_ibufsz, 0, (struct sockaddr *)&sa, &sa_len);
+//      //::i32 n = recvfrom(get_socket_id(), m_ibuf, m_ibufsz, 0, (struct sockaddr *)&sa, &sa_len);
 //
-//      int n = recvmsg(get_socket_id(), &msg, MSG_DONTWAIT);
+//      ::i32 n = recvmsg(get_socket_id(), &msg, MSG_DONTWAIT);
 //
 //      // now ioBuf will contain the data, as if we used recvfrom
 //
@@ -358,7 +358,7 @@ namespace sockets
 //         tv = 0;
 //         for (cmsg = CMSG_FIRSTHDR(&msg); cmsg != nullptr; cmsg = CMSG_NXTHDR(&msg, cmsg))
 //         {
-//            if (cmsg->cmsg_level == SOL_SOCKET && cmsg->cmsg_type == SCM_TIMESTAMP)
+//            if (cmsg->cmsg_level == SOL_SOCKET && cmsg->cmsg_type == ServiceControlManager_TIMESTAMP)
 //            {
 //               tv = (struct timeval *)CMSG_DATA(cmsg);
 //            }
@@ -392,12 +392,12 @@ return -1;
 //
 //            timeval.tv_sec = (long) time.m_iSecond;
 //
-//            timeval.tv_usec = (int) (time.m_iNanosecond / 1'000);
+//            timeval.tv_usec = (::i32) (time.m_iNanosecond / 1'000);
 //
 //#if !defined(LINUX) && !defined(MACOSX)
 //            memsize n = recvfrom(get_socket_id(), m_ibuf, m_ibufsz, 0, (struct sockaddr *)&sa, &sa_len);
 //#else
-//            int n = ReadTS(m_ibuf, m_ibufsz, (struct sockaddr *)&sa, sa_len, &timeval);
+//            ::i32 n = ReadTS(m_ibuf, m_ibufsz, (struct sockaddr *)&sa, sa_len, &timeval);
 //#endif
 //            if (n > 0)
 //            {
@@ -430,13 +430,13 @@ return -1;
 //         }
 //
 //         memsize n = recvfrom(get_socket_id(), m_ibuf, m_ibufsz, 0, (struct sockaddr *)&sa, &sa_len);
-//         int q = m_iConnectionRetryCount; // receive maximum 10 at one cycle
+//         ::i32 q = m_iConnectionRetryCount; // receive maximum 10 at one cycle
 //         while (n > 0)
 //         {
 //            if (sa_len != sizeof(sa))
 //            {
 //
-//               warning() <<"recvfrom 0 unexpected address struct int_size";
+//               warning() <<"recvfrom 0 unexpected address struct i32_size";
 //
 //            }
 //            this -> OnRawData(m_ibuf, n, (struct sockaddr *)&sa, sa_len);
@@ -474,7 +474,7 @@ return -1;
 //
 //         timeval.tv_sec = (long) time.m_iSecond;
 //
-//         timeval.tv_usec = (int) (time.m_iNanosecond / 1'000);
+//         timeval.tv_usec = (::i32) (time.m_iNanosecond / 1'000);
 //
 //#if !defined(LINUX) && !defined(MACOSX)
 //
@@ -482,7 +482,7 @@ return -1;
 //
 //#else
 //
-//         int n = ReadTS(m_ibuf, m_ibufsz, (struct sockaddr *)&sa, sa_len, &timeval);
+//         ::i32 n = ReadTS(m_ibuf, m_ibufsz, (struct sockaddr *)&sa, sa_len, &timeval);
 //
 //#endif
 //
@@ -510,13 +510,13 @@ return -1;
 //         return;
 //      }
 //      memsize n = recvfrom(get_socket_id(), m_ibuf, m_ibufsz, 0, (struct sockaddr *)&sa, &sa_len);
-//      int q = m_iConnectionRetryCount;
+//      ::i32 q = m_iConnectionRetryCount;
 //      while (n > 0)
 //      {
 //         if (sa_len != sizeof(sa))
 //         {
 //
-//            warning() <<"recvfrom 0 unexpected address struct int_size";
+//            warning() <<"recvfrom 0 unexpected address struct i32_size";
 //
 //         }
 //         this -> OnRawData(m_ibuf, n, (struct sockaddr *)&sa, sa_len);
@@ -542,13 +542,13 @@ return -1;
    }
 
 
-   void udp_socket::SetMulticastTTL(int ttl)
+   void udp_socket::SetMulticastTTL(::i32 ttl)
    {
       //if (get_socket_id() == INVALID_SOCKET)
       //{
       //   CreateConnection();
       //}
-      //if (setsockopt(get_socket_id(), SOL_IP, IP_MULTICAST_TTL, (char *)&ttl, sizeof(int)) == -1)
+      //if (setsockopt(get_socket_id(), SOL_IP, IP_MULTICAST_TTL, (char_pointer )&ttl, sizeof(::i32)) == -1)
       //{
 
       //   warning() <<"SetMulticastTTL" << Errno << ", " << bsd_socket_error(Errno);
@@ -557,16 +557,16 @@ return -1;
    }
 
 
-   int udp_socket::GetMulticastTTL()
+   ::i32 udp_socket::GetMulticastTTL()
    {
-      int ttl = 0;
-      //socklen_t size = sizeof(int);
+      ::i32 ttl = 0;
+      //socklen_t size = sizeof(::i32);
 
       //if (get_socket_id() == INVALID_SOCKET)
       //{
       //   CreateConnection();
       //}
-      //if (getsockopt(get_socket_id(), SOL_IP, IP_MULTICAST_TTL, (char *)&ttl, &size) == -1)
+      //if (getsockopt(get_socket_id(), SOL_IP, IP_MULTICAST_TTL, (char_pointer )&ttl, &size) == -1)
       //{
 
       //   warning() <<"GetMulticastTTL" << Errno << ", " << bsd_socket_error(Errno);
@@ -584,8 +584,8 @@ return -1;
       //}
       //if (IsIpv6())
       //{
-      //   int val = x ? 1 : 0;
-      //   if (setsockopt(get_socket_id(), IPPROTO_IPV6, IPV6_MULTICAST_LOOP, (char *)&val, sizeof(int)) == -1)
+      //   ::i32 val = x ? 1 : 0;
+      //   if (setsockopt(get_socket_id(), IPPROTO_IPV6, IPV6_MULTICAST_LOOP, (char_pointer )&val, sizeof(::i32)) == -1)
       //   {
 
       //      warning() <<"SetMulticastLoop" << Errno << ", " << bsd_socket_error(Errno);
@@ -593,8 +593,8 @@ return -1;
       //   }
       //   return;
       //}
-      //int val = x ? 1 : 0;
-      //if (setsockopt(get_socket_id(), SOL_IP, IP_MULTICAST_LOOP, (char *)&val, sizeof(int)) == -1)
+      //::i32 val = x ? 1 : 0;
+      //if (setsockopt(get_socket_id(), SOL_IP, IP_MULTICAST_LOOP, (char_pointer )&val, sizeof(::i32)) == -1)
       //{
 
       //   warning() <<"SetMulticastLoop" << Errno << ", " << bsd_socket_error(Errno);
@@ -612,9 +612,9 @@ return -1;
       //}
       //if (IsIpv6())
       //{
-      //   int is_loop = 0;
-      //   socklen_t size = sizeof(int);
-      //   if (getsockopt(get_socket_id(), IPPROTO_IPV6, IPV6_MULTICAST_LOOP, (char *)&is_loop, &size) == -1)
+      //   ::i32 is_loop = 0;
+      //   socklen_t size = sizeof(::i32);
+      //   if (getsockopt(get_socket_id(), IPPROTO_IPV6, IPV6_MULTICAST_LOOP, (char_pointer )&is_loop, &size) == -1)
       //   {
 
       //      warning() <<"IsMulticastLoop" << Errno << ", " << bsd_socket_error(Errno);
@@ -622,9 +622,9 @@ return -1;
       //   }
       //   return is_loop ? true : false;
       //}
-      int is_loop = 0;
-      //socklen_t size = sizeof(int);
-      //if (getsockopt(get_socket_id(), SOL_IP, IP_MULTICAST_LOOP, (char *)&is_loop, &size) == -1)
+      ::i32 is_loop = 0;
+      //socklen_t size = sizeof(::i32);
+      //if (getsockopt(get_socket_id(), SOL_IP, IP_MULTICAST_LOOP, (char_pointer )&is_loop, &size) == -1)
       //{
 
       //   warning() <<"IsMulticastLoop" << Errno << ", " << bsd_socket_error(Errno);
@@ -634,7 +634,7 @@ return -1;
    }
 
 
-   void udp_socket::AddMulticastMembership(const ::scoped_string & scopedstrGroup, const ::scoped_string & scopedstrLocalInterface, int if_index)
+   void udp_socket::AddMulticastMembership(const ::scoped_string & scopedstrGroup, const ::scoped_string & scopedstrLocalInterface, ::i32 if_index)
    {
       //if (get_socket_id() == INVALID_SOCKET)
       //{
@@ -651,7 +651,7 @@ return -1;
       //   {
       //      x.ipv6mr_multiaddr = addr;
       //      x.ipv6mr_interface = if_index;
-      //      if (setsockopt(get_socket_id(), IPPROTO_IPV6, IPV6_ADD_MEMBERSHIP, (char *)&x, sizeof(struct ipv6_mreq)) == -1)
+      //      if (setsockopt(get_socket_id(), IPPROTO_IPV6, IPV6_ADD_MEMBERSHIP, (char_pointer )&x, sizeof(struct ipv6_mreq)) == -1)
       //      {
 
       //         warning() <<"AddMulticastMembership" << Errno << ", " << bsd_socket_error(Errno);
@@ -675,7 +675,7 @@ return -1;
 
       //   ::memory_copy(&x.imr_interface.s_addr, &addr, sizeof(addr));
       //   //      x.imr_ifindex = if_index;
-      //   if (setsockopt(get_socket_id(), SOL_IP, IP_ADD_MEMBERSHIP, (char *)&x, sizeof(struct ip_mreq)) == -1)
+      //   if (setsockopt(get_socket_id(), SOL_IP, IP_ADD_MEMBERSHIP, (char_pointer )&x, sizeof(struct ip_mreq)) == -1)
       //   {
 
       //      warning() <<"AddMulticastMembership " << Errno << " , " << bsd_socket_error(Errno);
@@ -685,7 +685,7 @@ return -1;
    }
 
 
-   void udp_socket::DropMulticastMembership(const ::scoped_string & scopedstrGroup, const ::scoped_string & scopedstrLocalInterface, int if_index)
+   void udp_socket::DropMulticastMembership(const ::scoped_string & scopedstrGroup, const ::scoped_string & scopedstrLocalInterface, ::i32 if_index)
    {
       //if (get_socket_id() == INVALID_SOCKET)
       //{
@@ -702,7 +702,7 @@ return -1;
       //   {
       //      x.ipv6mr_multiaddr = addr;
       //      x.ipv6mr_interface = if_index;
-      //      if (setsockopt(get_socket_id(), IPPROTO_IPV6, IPV6_DROP_MEMBERSHIP, (char *)&x, sizeof(struct ipv6_mreq)) == -1)
+      //      if (setsockopt(get_socket_id(), IPPROTO_IPV6, IPV6_DROP_MEMBERSHIP, (char_pointer )&x, sizeof(struct ipv6_mreq)) == -1)
       //      {
 
       //         warning() <<"DropMulticastMembership " << Errno << " , " << bsd_socket_error(Errno);
@@ -723,7 +723,7 @@ return -1;
       //   paddressdepartment->convert(addr, local_if);
       //   ::memory_copy(&x.imr_interface.s_addr, &addr, sizeof(addr));
       //   //      x.imr_ifindex = if_index;
-      //   if (setsockopt(get_socket_id(), SOL_IP, IP_DROP_MEMBERSHIP, (char *)&x, sizeof(struct ip_mreq)) == -1)
+      //   if (setsockopt(get_socket_id(), SOL_IP, IP_DROP_MEMBERSHIP, (char_pointer )&x, sizeof(struct ip_mreq)) == -1)
       //   {
 
       //      warning() <<"DropMulticastMembership " << Errno << ", " << bsd_socket_error(Errno);
@@ -733,7 +733,7 @@ return -1;
    }
 
 
-   void udp_socket::SetMulticastHops(int hops)
+   void udp_socket::SetMulticastHops(::i32 hops)
    {
       //if (get_socket_id() == INVALID_SOCKET)
       //{
@@ -746,7 +746,7 @@ return -1;
 
       //   return;
       //}
-      //if (setsockopt(get_socket_id(), IPPROTO_IPV6, IPV6_MULTICAST_HOPS, (char *)&hops, sizeof(int)) == -1)
+      //if (setsockopt(get_socket_id(), IPPROTO_IPV6, IPV6_MULTICAST_HOPS, (char_pointer )&hops, sizeof(::i32)) == -1)
       //{
 
       //   warning() <<"SetMulticastHops" << Errno << ", " << bsd_socket_error(Errno);
@@ -755,7 +755,7 @@ return -1;
    }
 
 
-   int udp_socket::GetMulticastHops()
+   ::i32 udp_socket::GetMulticastHops()
    {
       //if (get_socket_id() == INVALID_SOCKET)
       //{
@@ -768,9 +768,9 @@ return -1;
 
       //   return -1;
       //}
-      int hops = 0;
-      //socklen_t size = sizeof(int);
-      //if (getsockopt(get_socket_id(), IPPROTO_IPV6, IPV6_MULTICAST_HOPS, (char *)&hops, &size) == -1)
+      ::i32 hops = 0;
+      //socklen_t size = sizeof(::i32);
+      //if (getsockopt(get_socket_id(), IPPROTO_IPV6, IPV6_MULTICAST_HOPS, (char_pointer )&hops, &size) == -1)
       //{
 
       //   warning() <<"GetMulticastHops" << Errno << ", " << bsd_socket_error(Errno);
@@ -786,7 +786,7 @@ return -1;
    }
 
 
-   //void udp_socket::OnRawData(char * buf, memsize len, struct sockaddr * sa, socklen_t sa_len)
+   //void udp_socket::OnRawData(char_pointer buf, memsize len, struct sockaddr * sa, socklen_t sa_len)
    //{
    //   __UNREFERENCED_PARAMETER(buf);
    //   __UNREFERENCED_PARAMETER(len);
@@ -795,7 +795,7 @@ return -1;
    //}
 
 
-   //void udp_socket::OnRawData(char * buf, memsize len, struct sockaddr * sa, socklen_t sa_len, struct timeval * ts)
+   //void udp_socket::OnRawData(char_pointer buf, memsize len, struct sockaddr * sa, socklen_t sa_len, struct timeval * ts)
    //{
    //   __UNREFERENCED_PARAMETER(buf);
    //   __UNREFERENCED_PARAMETER(len);

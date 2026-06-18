@@ -16,8 +16,8 @@ namespace simple_drawing
 
       m_ptopimpact = NULL;
       m_pimpact    = NULL;
-      m_flagNonClient.add(e_non_client_background);
-      m_flagNonClient.add(e_non_client_focus_rect);
+      m_enonclient.add(::user::e_non_client_background);
+      m_enonclient.add(::user::e_non_client_focus_rect);
 
 
    }
@@ -59,7 +59,7 @@ namespace simple_drawing
       if(get_pane_count() > 0)
          return;
 
-      int iPane;
+      ::i32 iPane;
 
       if (papp->m_bMultiverseChat)
       {

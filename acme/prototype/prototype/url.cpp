@@ -193,7 +193,7 @@ namespace url
    //   else
    //   {
 
-   //      m_iPort = ::as_int(strPort);
+   //      m_iPort = ::as_i32(strPort);
 
    //   }
 
@@ -202,7 +202,7 @@ namespace url
    //}
 
 
-   ::string connect_string(const ::scoped_string& scopedstrProtocol, const ::scoped_string& scopedstrHost, int iPort)
+   ::string connect_string(const ::scoped_string& scopedstrProtocol, const ::scoped_string& scopedstrHost, ::i32 iPort)
    {
 
       ::string strConnect;
@@ -268,7 +268,7 @@ namespace url
    }
 
 
-   void connect::set(const ::scoped_string& scopedstrProtocol, const ::scoped_string& scopedstrHost, int iPort, ::logic::boolean booleanSecure)
+   void connect::set(const ::scoped_string& scopedstrProtocol, const ::scoped_string& scopedstrHost, ::i32 iPort, ::logic::boolean booleanSecure)
    {
 
       ::string strConnect = connect_string(scopedstrProtocol, scopedstrHost, iPort);
@@ -650,7 +650,7 @@ namespace url
 
    //         m_rangePort.m_begin = pszPortColon + 1;
 
-   //         m_iPort = ::as_int(m_rangePort);
+   //         m_iPort = ::as_i32(m_rangePort);
 
    //         m_rangePort.m_end = url.m_str.m_end;
 
@@ -754,7 +754,7 @@ namespace url
    //}
 
 
-   int connect_range::port() const
+   ::i32 connect_range::port() const
    {
 
       if (m_iPort > 0)
@@ -1025,11 +1025,22 @@ namespace url
    void url::parse(const ::scoped_string& scopedstr)
    {
 
+      
+
       m_str = scopedstr;
 
-      m_connectrange.parse(m_str);
+      try
+      {
 
-      m_requestrange.parse(m_connectrange.request_range());
+         m_connectrange.parse(m_str);
+
+         m_requestrange.parse(m_connectrange.request_range());
+
+      }
+      catch (...)
+      {
+
+      }
 
       ///construct_connect();
 
@@ -1159,7 +1170,7 @@ namespace url
 
             m_rangePort.m_end = range.m_end;
 
-            m_iPort = ::as_int(m_rangePort);
+            m_iPort = ::as_i32(m_rangePort);
 
             m_range.m_end = m_rangePort.m_end;
 
@@ -1378,7 +1389,7 @@ namespace url
    //}
 
 
-   char* string_append_character(char* psz, ::ansi_character ch)
+   char_pointer string_append_character(char_pointer psz, ::ansi_character ch)
    {
 
       *psz = ch;
@@ -1406,7 +1417,7 @@ namespace url
 
       string strDecode;
 
-      char* pszStart = strDecode.get_buffer(sizeLen * 4);
+      char_pointer pszStart = strDecode.get_buffer(sizeLen * 4);
 
       auto pszDecode = pszStart;
 
@@ -1473,7 +1484,7 @@ namespace url
 
                }
 
-               *pszDecode = (char)(uchar)(((nibble1 << 4) & 0xf0) | (nibble2 & 0xf));
+               *pszDecode = (::i8)(uchar)(((nibble1 << 4) & 0xf0) | (nibble2 & 0xf));
 
                pszDecode++;
 
@@ -1518,7 +1529,7 @@ namespace url
       while (*pszInput != '\0')
       {
 
-         char ch = *pszInput;
+         ::i8 ch = *pszInput;
 
          if (ansi_char_isalnum(ch)
             || ch == '.'

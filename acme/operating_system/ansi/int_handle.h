@@ -7,25 +7,25 @@
 #ifdef __cplusplus
 
 
-class CLASS_DECL_ACME int_handle
+class CLASS_DECL_ACME i32_handle
 {
 public:
 
 
-   int m_i;
+   ::i32 m_i32;
 
-   int_handle(int i = -1)
+   i32_handle(::i32 i = -1)
    {
 
-      m_i = i;
+      m_i32 = i;
 
    }
 
-   ~int_handle();
+   ~i32_handle();
 
 
-   operator int() const {return m_i;}
-   operator int &() {return m_i;}
+   operator ::i32() const {return m_i32;}
+   operator ::i32 &() {return m_i32;}
 
 
 };

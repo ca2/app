@@ -9,25 +9,25 @@ class CLASS_DECL_ACME system_time
 public:
 
 
-   unsigned short wYear;
-   unsigned short wMonth;
-   unsigned short wDayOfWeek;
-   unsigned short wDay;
-   unsigned short wHour;
-   unsigned short wMinute;
-   unsigned short wSecond;
-   unsigned short wMilliseconds;
+   ::u16 wYear;
+   ::u16 wMonth;
+   ::u16 wDayOfWeek;
+   ::u16 wDay;
+   ::u16 wHour;
+   ::u16 wMinute;
+   ::u16 wSecond;
+   ::u16 wMilliseconds;
 
 
    system_time(
-unsigned short ushYear,
-unsigned short ushMonth,
-unsigned short ushDayOfWeek,
-unsigned short ushDay,
-unsigned short ushHour,
-unsigned short ushMinute,
-unsigned short ushSecond,
-unsigned short ushMilliseconds = 0
+::u16 ushYear,
+::u16 ushMonth,
+::u16 ushDayOfWeek,
+::u16 ushDay,
+::u16 ushHour,
+::u16 ushMinute,
+::u16 ushSecond,
+::u16 ushMilliseconds = 0
    )
    {
 

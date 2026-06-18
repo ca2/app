@@ -21,7 +21,7 @@ namespace typeface_freetype
 
       bool m_bFace;
       FT_Face m_face;
-      int m_iCapHeight = -1;
+      ::i32 m_iCapHeight = -1;
       ::memory m_memoryFace;
 
 

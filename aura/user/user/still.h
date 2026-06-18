@@ -16,19 +16,21 @@ namespace user
 
       ::write_text::font_pointer          m_pfont;
       ::image::image_pointer                     m_pimage;          // not pressed default bitmap
-      //::int_rectangle                   m_rectangleMargin;
-      //::int_rectangle                   m_rectangleBorder;
-      //::int_rectangle                   m_rectanglePadding;
+      //::i32_rectangle                   m_rectangleMargin;
+      //::i32_rectangle                   m_rectangleBorder;
+      //::i32_rectangle                   m_rectanglePadding;
       ::e_align                           m_ealignText;
       enum_still                          m_estill;
-      //::int_rectangle                     m_rectangleText;
+      //::i32_rectangle                     m_rectangleText;
       ::collection::index                               m_iClick;
       enum_stock_icon                     m_estockicon;
       ::image::icon_pointer              m_picon;
       ::pointer < ::write_text::text_out_array > m_ptextouta;
+      ::i32_size                          m_sizeFixed;
       //::string                            m_strTextOutArray;
-
-      ::int_rectangle                     m_rectangleCheckBox;
+      ::status<::color::color>            m_statuscolorBackground;
+      ::status<::color::color>            m_statuscolorText;
+      ::i32_rectangle                     m_rectangleCheckBox;
       string                              m_strLink;
 
       still();
@@ -43,7 +45,7 @@ namespace user
 
       //virtual bool create_interaction(::user::interaction * pinteractionParent) override;
 
-      ::write_text::font_pointer get_font(style * pstyle, enum_element eelement = e_element_none, ::user::enum_state estate = e_state_none) override;
+      ::write_text::font_pointer get_font(style * pstyle, const ::e_element & eelement = e_element_none, const ::user::e_state & estate = e_state_none) override;
 
       void resize_to_fit(::draw2d::graphics_pointer& pgraphics) override;
 
@@ -60,18 +62,18 @@ namespace user
       //virtual ::enum_check get_check() override;
        
       using ::user::interaction::get_color;
-      ::status < ::color::color > get_color(::user::style * pstyle, enum_element eelement, ::user::enum_state elayout = e_state_none) override; 
+      ::status < ::color::color > get_color(::user::style * pstyle, const ::e_element & eelement, const ::user::e_state & estate = e_state_none) override; 
 
 
       virtual void set_text_color(::status < ::color::color > statuscolor);
 
       //virtual bool is_pressed();
 
-      //virtual ::write_text::font_pointer get_font(style * pstyle, enum_element eelement, estate estate = e_state_none) const;
+      //virtual ::write_text::font_pointer get_font(style * pstyle, const ::e_element & eelement, estate estate = e_state_none) const;
 
       virtual void defer_update_text_out_array(::draw2d::graphics_pointer & pgraphics);
 
-      //virtual ::item_pointer on_hit_test(const ::int_point & point, ::user::e_zorder ezorder) override;
+      //virtual ::item_pointer on_hit_test(const ::i32_point & point, ::user::e_zorder ezorder) override;
 
       DECLARE_MESSAGE_HANDLER(on_message_key_down);
       //DECLARE_MESSAGE_HANDLER(on_message_left_button_down);
@@ -83,7 +85,7 @@ namespace user
       DECLARE_MESSAGE_HANDLER(on_message_create);
 
 
-      ::double_size get_fitting_size(::draw2d::graphics_pointer & pgraphics) override;
+      ::f64_size get_fitting_size(::draw2d::graphics_pointer & pgraphics) override;
 
 
       bool keyboard_focus_is_focusable() override;
@@ -105,14 +107,14 @@ namespace user
 
 
       virtual void BaseToolTipRelayEvent(::message::message * pmessage);
-      virtual void BaseToolTipGetRect(::int_rectangle & rectangle);
+      virtual void BaseToolTipGetRect(::i32_rectangle & rectangle);
 
-      virtual int BaseToolTipGetIndex();
+      virtual ::i32 BaseToolTipGetIndex();
 
       virtual void pre_translate_message(::message::message * pmessage) override;
 
 
-      ::item_pointer on_hit_test(const ::int_point & point, e_zorder ezorder) override;
+      ::item_pointer on_hit_test(const ::i32_point & point, e_zorder ezorder) override;
 
       void on_set_window_text() override;
       bool on_perform_layout(::draw2d::graphics_pointer & pgraphics) override;

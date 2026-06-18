@@ -8,7 +8,7 @@
 
 
 //template < >
-//inline hash32 as_hash32 < const ::int_size & >(const ::int_size & size) 
+//inline hash32 as_hash32 < const ::i32_size & >(const ::i32_size & size) 
 //{ 
 //   
 //   return (hash32)(size.cx | size.cy << 16); 
@@ -17,19 +17,19 @@
 
 
 //template < >
-//inline hash32 as_hash32 < ::int_size >(::int_size size)
+//inline hash32 as_hash32 < ::i32_size >(::i32_size size)
 //{
 //
-//   return as_hash32<const ::int_size& >((const ::int_size &) size);
+//   return as_hash32<const ::i32_size& >((const ::i32_size &) size);
 //
 //}
 
 
 //template < >
-//inline hash32 as_hash32 < const concrete < ::int_size > & >(const concrete < ::int_size > & size)
+//inline hash32 as_hash32 < const concrete < ::i32_size > & >(const concrete < ::i32_size > & size)
 //{
 //
-//   return as_hash32((const ::int_size &) size);
+//   return as_hash32((const ::i32_size &) size);
 //
 //}
 
@@ -70,13 +70,13 @@ namespace image
 
 
    class CLASS_DECL_AURA size_image_base :
-      public map_base < int_size, ::image::image_pointer >
+      public map_base < i32_size, ::image::image_pointer >
    {
    public:
 
 
-      ::image::image_pointer & operator[](const int_size & size);
-      ::image::image_pointer & get(const int_size & size, bool & bExists);
+      ::image::image_pointer & operator[](const i32_size & size);
+      ::image::image_pointer & get(const i32_size & size, bool & bExists);
 
 
    };
@@ -107,10 +107,10 @@ namespace image
       using BASE_PAIR_MAP = map_base < image_header, ::image::image_pointer >;
 
 
-      int m_iLimitCount;
+      ::i32 m_iLimitCount;
 
 
-      image_descriptor_map_base(int iLimitCount = 500)
+      image_descriptor_map_base(::i32 iLimitCount = 500)
       {
 
          m_iLimitCount = iLimitCount;

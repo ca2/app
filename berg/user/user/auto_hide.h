@@ -38,11 +38,11 @@ namespace user
 
       //virtual void calculate_tab_visibility();
 
-      virtual int auto_hide_threshold_height();
+      virtual ::i32 auto_hide_threshold_height();
 
       bool should_draw() override;
 
-      void on_timer(::timer * ptimer) override;
+      void operator()(::timer * ptimer) override;
 
       void handle(::topic * ptopic, ::handler_context * phandlercontext) override;
 

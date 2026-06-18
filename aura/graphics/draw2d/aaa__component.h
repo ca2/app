@@ -18,13 +18,13 @@ namespace draw2d
 {
 
 
-   extern float Cosines[360];
-   extern float Sines[360];
-   extern long long CosN[360]; // * 1 << 31
-   extern long long SinN[360];
-   extern long long Cos10N[10]; // until 10 degress
-   extern long long Sin10N[10]; // more precision * 1 << 34
-   extern double dPi;
+   extern ::f32 Cosines[360];
+   extern ::f32 Sines[360];
+   extern ::i64 CosN[360]; // * 1 << 31
+   extern ::i64 SinN[360];
+   extern ::i64 Cos10N[10]; // until 10 degress
+   extern ::i64 Sin10N[10]; // more precision * 1 << 34
+   extern ::f64 dPi;
 
 
 } // namespace draw2d
@@ -54,8 +54,8 @@ namespace draw2d
 //#include "object.h"
 //#include "pen.h"
 //#include "bitmap.h"
-//CLASS_DECL_AURA void draw_freetype_bitmap(::image::image *pm_p, int Δx, int Δy, void * pftbitmap, int x, int y);
-//CLASS_DECL_AURA void draw_freetype_bitmap(::image::image *pm_p, int Δx, int Δy, void * pftbitmap, int x, int y, unsigned char a, unsigned char rectangle, unsigned char g, unsigned char b);
+//CLASS_DECL_AURA void draw_freetype_bitmap(::image::image *pm_p, ::i32 Δx, ::i32 Δy, void * pftbitmap, ::i32 x, ::i32 y);
+//CLASS_DECL_AURA void draw_freetype_bitmap(::image::image *pm_p, ::i32 Δx, ::i32 Δy, void * pftbitmap, ::i32 x, ::i32 y, ::u8 a, ::u8 rectangle, ::u8 g, ::u8 b);
 //
 //
 //

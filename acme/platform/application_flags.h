@@ -58,8 +58,8 @@ struct CLASS_DECL_ACME APPLICATION_FLAGS // : public ::acme::reference
 
 //#ifdef LINUX
 //
-//extern char _binary__matter_zip_start[] __attribute__((weak_import));
-//extern char _binary__matter_zip_end[] __attribute__((weak_import));
+//extern ::i8 _binary__matter_zip_start[] __attribute__((weak_import));
+//extern ::i8 _binary__matter_zip_end[] __attribute__((weak_import));
 //
 //#endif
 

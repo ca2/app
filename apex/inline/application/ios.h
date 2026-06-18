@@ -6,7 +6,7 @@ extern "C" void ([a-z0-9_]+)_factory(::factory::factory * pfactory);
 extern "C" void ([a-z0-9_]+)_factory(::factory::factory * pfactory);
 
 
-int main(int argc, char * argv[])
+::i32 main(::i32 argc, char_pointer argv[])
 {
 
    //class apex_apex apex_apex;
@@ -39,7 +39,7 @@ int main(int argc, char * argv[])
          
      ::e_status estatus=    os_application_system_run(psystem);
    
-   int iErrorStatus = estatus.error_status();
+   ::i32 iErrorStatus = estatus.error_status();
    
    return iErrorStatus;
 

@@ -17,7 +17,7 @@ namespace acme
       history();
          
    
-      virtual bool hist(const char *psz);
+      virtual bool hist(const_char_pointer psz);
 
    };
 

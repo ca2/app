@@ -88,7 +88,7 @@ namespace tc4
       return true;
    }
 
-   int application::exit_application()
+   ::i32 application::exit_application()
    {
 
       return ::aura::application::exit_application();
@@ -155,7 +155,7 @@ namespace tc4
    }
 
 
-   unsigned int application::thread_proc_load_ai_font(void * pparam)
+   ::u32 application::thread_proc_load_ai_font(void * pparam)
    {
 
       application * pimpact = (application *)pparam;

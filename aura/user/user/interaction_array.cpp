@@ -28,7 +28,7 @@ namespace user
    ::user::interaction * interaction_ptra::find_first_typed(const ::platform::type & type)
    {
 
-      for (int i = 0; i < this->get_size(); i++)
+      for (::i32 i = 0; i < this->get_size(); i++)
       {
 
          ::user::interaction * pinteraction = this->element_at(i);
@@ -50,7 +50,7 @@ namespace user
    ::user::interaction * interaction_ptra::find_first(::acme::windowing::window * pacmewindowingwindow)
    {
 
-      for (int i = 0; i < this->get_size(); i++)
+      for (::i32 i = 0; i < this->get_size(); i++)
       {
 
          if (this->element_at(i)->m_pacmewindowingwindow.m_p == pacmewindowingwindow)
@@ -190,7 +190,7 @@ namespace user
    //::user::interaction * interaction_pointer_array::find_first_typed(const ::platform::type & type)
    //{
 
-   //   for (int i = 0; i < interaction_count(); i++)
+   //   for (::i32 i = 0; i < interaction_count(); i++)
    //   {
 
    //      auto pprimitive = interaction_at(i).m_p;
@@ -212,7 +212,7 @@ namespace user
    //::user::interaction * interaction_pointer_array::find_first(::acme::windowing::window * pacmewindowingwindow)
    //{
 
-   //   for (int i = 0; i < interaction_count(); i++)
+   //   for (::i32 i = 0; i < interaction_count(); i++)
    //   {
 
    //      ::pointer<::user::interaction>puserinteraction = interaction_at(i);
@@ -372,7 +372,7 @@ namespace user
 #ifdef _DEBUG
 
 
-   long long interaction_array::increment_reference_count()
+   ::i64 interaction_array::increment_reference_count()
    {
 
       return ::matter::increment_reference_count();
@@ -380,7 +380,7 @@ namespace user
    }
 
 
-   long long interaction_array::decrement_reference_count()
+   ::i64 interaction_array::decrement_reference_count()
    {
 
       return ::matter::decrement_reference_count();
@@ -394,7 +394,7 @@ namespace user
    ::pointer<::user::interaction>interaction_array::find_first(::acme::windowing::window * pacmewindowingwindow)
    {
 
-      for (int i = 0; i < this->interaction_count(); i++)
+      for (::i32 i = 0; i < this->interaction_count(); i++)
       {
 
          if (this->interaction_at(i)->m_pacmewindowingwindow.m_p == pacmewindowingwindow)
@@ -434,7 +434,7 @@ namespace user
    void interaction_array::send_message(::user::enum_message eusermessage, ::wparam wparam, ::lparam lparam)
    {
 
-      for (int i = 0; i < this->interaction_count(); i++)
+      for (::i32 i = 0; i < this->interaction_count(); i++)
       {
 
          try
@@ -456,7 +456,7 @@ namespace user
    void interaction_array::send_message_to_descendants(::user::enum_message eusermessage, ::wparam wparam, ::lparam lparam, bool bRecursive)
    {
 
-      for (int i = 0; i < this->interaction_count(); i++)
+      for (::i32 i = 0; i < this->interaction_count(); i++)
       {
 
          try
@@ -592,7 +592,7 @@ namespace user
 //
 //#ifdef WINDOWS_DESKTOP
 //
-//      int iOrder = 0;
+//      ::i32 iOrder = 0;
 //      ::windowing::window * pwindowOrder = ::get_desktop_window();
 //      oswindowOrder = ::GetWindow(oswindowOrder, GW_CHILD);
 //      while (oswindowOrder != nullptr

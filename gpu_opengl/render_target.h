@@ -22,7 +22,7 @@ namespace gpu_opengl
 
       //GLuint m_gluDepthStencilTex;
 
-      ::int_array_base imageAvailable;
+      ::i32_array_base imageAvailable;
 
       bool  m_bNeedRebuild;
 
@@ -30,15 +30,15 @@ namespace gpu_opengl
       ~render_target();
 
 
-      void initialize_render_target(::gpu::renderer* prenderer, const ::int_size& size, ::pointer <::gpu::render_target>previous) override;
+      void initialize_render_target(::gpu::renderer* prenderer, const ::i32_size& size, ::pointer <::gpu::render_target>previous) override;
 
-      virtual void on_before_begin_render(::gpu::frame* pframe);
+      virtual void on_before_begin_render(::gpu::layer * pgpulayer);
 
 
 
-      float extentAspectRatio() 
+      ::f32 extentAspectRatio() 
       {
-         return (float) width() / (float) height();
+         return (::f32) width() / (::f32) height();
       }
 
       void on_init() override;
@@ -50,7 +50,7 @@ namespace gpu_opengl
       virtual void createSyncObjects();
 
 
-      int get_frame_index() override;
+      ::i32 get_frame_index() override;
 
 
    };

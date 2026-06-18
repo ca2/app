@@ -52,18 +52,18 @@ namespace user
       virtual class ::application_menu * menu();
 
 
-      //virtual void OnNotifyIconMessage(unsigned int uNotifyIcon, unsigned int message);
-      //virtual void OnNotifyIconContextMenu(unsigned int uNotifyIcon);
-      //virtual void OnNotifyIconLButtonDblClk(unsigned int uNotifyIcon);
-      //virtual void OnNotifyIconLButtonDown(unsigned int uNotifyIcon);
+      //virtual void OnNotifyIconMessage(::u32 uNotifyIcon, ::u32 message);
+      //virtual void OnNotifyIconContextMenu(::u32 uNotifyIcon);
+      //virtual void OnNotifyIconLButtonDblClk(::u32 uNotifyIcon);
+      //virtual void OnNotifyIconLButtonDown(::u32 uNotifyIcon);
 
 
-      //virtual int _get_notification_area_action_count();
-      //virtual const_char_pointer _get_notification_area_action_name(int iIndex);
-      //virtual const_char_pointer _get_notification_area_action_id(int iIndex);
-      //virtual const_char_pointer _get_notification_area_action_label(int iIndex);
-      //virtual const_char_pointer _get_notification_area_action_accelerator(int iIndex);
-      //virtual const_char_pointer _get_notification_area_action_description(int iIndex);
+      //virtual ::i32 _get_notification_area_action_count();
+      //virtual const_char_pointer _get_notification_area_action_name(::i32 iIndex);
+      //virtual const_char_pointer _get_notification_area_action_id(::i32 iIndex);
+      //virtual const_char_pointer _get_notification_area_action_label(::i32 iIndex);
+      //virtual const_char_pointer _get_notification_area_action_accelerator(::i32 iIndex);
+      //virtual const_char_pointer _get_notification_area_action_description(::i32 iIndex);
       bool handle_command(const ::atom & atom, ::user::activation_token * puseractivationtoken) override;
 
 

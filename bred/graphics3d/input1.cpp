@@ -20,7 +20,7 @@ namespace graphics3d
 {
 
 
-   input::input(float sensitivity, float yaw, float pitch)
+   input::input(::f32 sensitivity, ::f32 yaw, ::f32 pitch)
    {
 
       m_dCursorX = 0.;
@@ -35,39 +35,39 @@ namespace graphics3d
       _cameraPosition = floating_sequence3(0.0f, 0.0f, 3.0f);
    }
    //void input::moveInPlaneXZ(
-   //    ::user::graphics3d * pimpact, float dt, application_object& gameObject) {
+   //    ::user::graphics3d * pimpact, ::f32 dt, application_object& gameObject) {
    //    floating_sequence3 rotate{ 0 };
-   //    if (key(e_key_lookRight) == ::user::e_key_state_pressed) rotate.y += 1.f;
-   //    if (key(e_key_lookLeft) == ::user::e_key_state_pressed) rotate.y -= 1.f;
-   //    if (key(e_key_lookUp) == ::user::e_key_state_pressed) rotate.x += 1.f;
-   //    if (key(e_key_lookDown) == ::user::e_key_state_pressed) rotate.x -= 1.f;
+   //    if (key(e_key_lookRight) == ::key::e_state_pressed) rotate.y += 1.f;
+   //    if (key(e_key_lookLeft) == ::key::e_state_pressed) rotate.y -= 1.f;
+   //    if (key(e_key_lookUp) == ::key::e_state_pressed) rotate.x += 1.f;
+   //    if (key(e_key_lookDown) == ::key::e_state_pressed) rotate.x -= 1.f;
 
-   //    if (glm::dot(rotate, rotate) > std::numeric_limits<float>::epsilon()) {
+   //    if (glm::dot(rotate, rotate) > std::numeric_limits<::f32>::epsilon()) {
    //        gameObject.transform.rotation += lookSpeed * dt * glm::normalize(rotate);
    //    }
 
    //    // limit pitch values between about +/- 85ish degrees
    //    gameObject.transform.rotation.x = glm::clamp(gameObject.transform.rotation.x, -1.5f, 1.5f);
-   //    gameObject.transform.rotation.y = glm::mod(gameObject.transform.rotation.y, glm::two_pi<float>());
+   //    gameObject.transform.rotation.y = glm::mod(gameObject.transform.rotation.y, glm::two_pi<::f32>());
 
-   //    float yaw = gameObject.transform.rotation.y;
+   //    ::f32 yaw = gameObject.transform.rotation.y;
    //    const floating_sequence3 forwardDir{ sin(yaw), 0.f, cos(yaw) };
    //    const floating_sequence3 rightDir{ forwardDir.z, 0.f, -forwardDir.x };
    //    const floating_sequence3 upDir{ 0.f, -1.f, 0.f };
 
    //    floating_sequence3 moveDir{ 0.f };
-   //    if (key(e_key_moveForward) == ::user::e_key_state_pressed) moveDir += forwardDir;
-   //    if (key(e_key_moveBackward) == ::user::e_key_state_pressed) moveDir -= forwardDir;
-   //    if (key(e_key_moveRight) == ::user::e_key_state_pressed) moveDir += rightDir;
-   //    if (key(e_key_moveLeft) == ::user::e_key_state_pressed) moveDir -= rightDir;
-   //    if (key(e_key_moveUp) == ::user::e_key_state_pressed) moveDir += upDir;
-   //    if (key(e_key_moveDown) == ::user::e_key_state_pressed) moveDir -= upDir;
+   //    if (key(e_key_moveForward) == ::key::e_state_pressed) moveDir += forwardDir;
+   //    if (key(e_key_moveBackward) == ::key::e_state_pressed) moveDir -= forwardDir;
+   //    if (key(e_key_moveRight) == ::key::e_state_pressed) moveDir += rightDir;
+   //    if (key(e_key_moveLeft) == ::key::e_state_pressed) moveDir -= rightDir;
+   //    if (key(e_key_moveUp) == ::key::e_state_pressed) moveDir += upDir;
+   //    if (key(e_key_moveDown) == ::key::e_state_pressed) moveDir -= upDir;
 
-   //    if (glm::dot(moveDir, moveDir) > std::numeric_limits<float>::epsilon()) {
+   //    if (glm::dot(moveDir, moveDir) > std::numeric_limits<::f32>::epsilon()) {
    //        gameObject.transform.translation += moveSpeed * dt * glm::normalize(moveDir);
    //    }
 
-   //    if (key(e_key_Exit) == ::user::e_key_state_pressed)
+   //    if (key(e_key_Exit) == ::key::e_state_pressed)
    //    {
    //       //glfwSetWindowShouldClose(window, GLFW_TRUE);
 
@@ -130,8 +130,8 @@ namespace graphics3d
 
    //}
 
-   //void input::processKeyboardInput(GLFWwindow* window, float deltaTime) {
-   //    float cameraSpeed = 2.5f * deltaTime; // adjust speed as necessary
+   //void input::processKeyboardInput(GLFWwindow* window, ::f32 deltaTime) {
+   //    ::f32 cameraSpeed = 2.5f * deltaTime; // adjust speed as necessary
 
    //    if (glfwGetKey(window, GLFW_KEY_W) == GLFW_PRESS) {
    //        _cameraPosition += _cameraDirection * cameraSpeed;
@@ -172,31 +172,31 @@ namespace graphics3d
          _yaw = pcamera->m_angleYaw;
          _pitch = pcamera->m_anglePitch;
 
-         if (_yaw > glm::two_pi<float>())
-            _yaw -= glm::two_pi<float>();
+         if (_yaw > glm::two_pi<::f32>())
+            _yaw -= glm::two_pi<::f32>();
          if (_yaw < 0.0f)
-            _yaw += glm::two_pi<float>();
+            _yaw += glm::two_pi<::f32>();
 
          _pitch = glm::clamp(_pitch, -1.5f, 1.5f);
 
          if (m_b_001AbsoluteMousePosition)
          {
 
-            _yaw = (float)xOffset;
-            _pitch = (float)yOffset;
+            _yaw = (::f32)xOffset;
+            _pitch = (::f32)yOffset;
          }
          else
          {
 
-            _yaw += (float)xOffset;
-            _pitch += (float)yOffset;
+            _yaw += (::f32)xOffset;
+            _pitch += (::f32)yOffset;
          }
 
          // Optional: wrap yaw
-         if (_yaw > glm::two_pi<float>())
-            _yaw -= glm::two_pi<float>();
+         if (_yaw > glm::two_pi<::f32>())
+            _yaw -= glm::two_pi<::f32>();
          if (_yaw < 0.0f)
-            _yaw += glm::two_pi<float>();
+            _yaw += glm::two_pi<::f32>();
 
          // Clamp pitch to avoid flipping
          _pitch = glm::clamp(_pitch, -1.5f, 1.5f);
@@ -244,7 +244,7 @@ namespace graphics3d
       if (pcamera)
       {
 
-         float yaw = pcamera->m_angleYaw;
+         ::f32 yaw = pcamera->m_angleYaw;
          const floating_sequence3 forwardDir{cos(yaw), 0.f, sin(yaw)};
          const floating_sequence3 rightDir{forwardDir.z, 0.f, -forwardDir.x};
          const floating_sequence3 upDir{0.f, -1.f, 0.f};
@@ -254,27 +254,27 @@ namespace graphics3d
          floating_sequence3 moveDir{0.f};
          {
             using namespace ::graphics3d;
-            if (pinput->key(e_key_moveForward) == ::user::e_key_state_pressed)
+            if (pinput->key(e_key_moveForward) == ::key::e_state_pressed)
                moveDir += forwardDir;
-            if (pinput->key(e_key_moveBackward) == ::user::e_key_state_pressed)
+            if (pinput->key(e_key_moveBackward) == ::key::e_state_pressed)
                moveDir -= forwardDir;
-            if (pinput->key(e_key_moveRight) == ::user::e_key_state_pressed)
+            if (pinput->key(e_key_moveRight) == ::key::e_state_pressed)
                moveDir += rightDir;
-            if (pinput->key(e_key_moveLeft) == ::user::e_key_state_pressed)
+            if (pinput->key(e_key_moveLeft) == ::key::e_state_pressed)
                moveDir -= rightDir;
-            if (pinput->key(e_key_moveUp) == ::user::e_key_state_pressed)
+            if (pinput->key(e_key_moveUp) == ::key::e_state_pressed)
                moveDir += upDir;
-            if (pinput->key(e_key_moveDown) == ::user::e_key_state_pressed)
+            if (pinput->key(e_key_moveDown) == ::key::e_state_pressed)
                moveDir -= upDir;
 
-            if (glm::dot(moveDir, moveDir) > std::numeric_limits<float>::epsilon())
+            if (glm::dot(moveDir, moveDir) > std::numeric_limits<::f32>::epsilon())
             {
 
                m_pengine->m_pimmersionlayer->m_pscene->m_pcameraCurrent->m_locationPosition +=
                   m_fMoveSpeed * m_pengine->dt() * glm::normalize(moveDir);
             }
 
-            if (pinput->key(e_key_Exit) == ::user::e_key_state_pressed)
+            if (pinput->key(e_key_Exit) == ::key::e_state_pressed)
             {
 
                m_pengine->gpu_context()->set_finish();
@@ -285,9 +285,9 @@ namespace graphics3d
    }
 
 
-   ::user::enum_key_state  input::get_key_state(::user::e_key ekey)
+   ::user::enum_key_state  input::get_key_state(const ::user::e_key & ekey)
    {
-      //int state = glfwGetKey(m_pimpact, key);
+      //::i32 state = glfwGetKey(m_pimpact, key);
       //return state == GLFW_PRESS || state == GLFW_REPEAT;
 
 
@@ -295,18 +295,18 @@ namespace graphics3d
       {
 
 
-         return ::user::e_key_state_pressed;
+         return ::key::e_state_pressed;
 
       }
 
-      return ::user::e_key_state_none;
+      return ::key::e_state_none;
    }
-   bool input::IsKeyPressed(::user::e_key ekey)
+   bool input::IsKeyPressed(const ::user::e_key & ekey)
    {
-      return get_key_state(ekey) & ::user::e_key_state_pressed;
+      return get_key_state(ekey) & ::key::e_state_pressed;
    }
 
-   bool input::IsKeyReleased(::user::e_key ekey)
+   bool input::IsKeyReleased(const ::user::e_key & ekey)
    {
       return !get_key_state(ekey);
    }
@@ -322,7 +322,7 @@ namespace graphics3d
    void input::process_keyboard_input_spaceExplorer()
    {
 
-      if (key(e_key_moveForward) == ::user::e_key_state_pressed)
+      if (key(e_key_moveForward) == ::key::e_state_pressed)
       {
 
          m_pengine->m_pimmersionlayer->m_pscene->m_pcameraCurrent->ProcessKeyboardInput(e_key_moveForward, m_pengine->dt());
@@ -336,7 +336,7 @@ namespace graphics3d
 
       }
 
-      if (key(e_key_moveBackward) == ::user::e_key_state_pressed)
+      if (key(e_key_moveBackward) == ::key::e_state_pressed)
       {
 
          m_pengine->m_pimmersionlayer->m_pscene->m_pcameraCurrent->ProcessKeyboardInput(e_key_moveBackward, m_pengine->dt());
@@ -350,7 +350,7 @@ namespace graphics3d
 
       }
 
-      if (key(e_key_moveLeft) == ::user::e_key_state_pressed)
+      if (key(e_key_moveLeft) == ::key::e_state_pressed)
       {
 
          m_pengine->m_pimmersionlayer->m_pscene->m_pcameraCurrent->ProcessKeyboardInput(e_key_moveLeft, m_pengine->dt());
@@ -364,7 +364,7 @@ namespace graphics3d
 
       }
 
-      if (key(e_key_moveRight) == ::user::e_key_state_pressed)
+      if (key(e_key_moveRight) == ::key::e_state_pressed)
       {
 
          m_pengine->m_pimmersionlayer->m_pscene->m_pcameraCurrent->ProcessKeyboardInput(e_key_moveRight, m_pengine->dt());
@@ -392,13 +392,13 @@ namespace graphics3d
       // Check for jump (Space key)
       if (IsKeyPressed(::user::e_key_space))
       {
-         float jumpHeight = 0.20f;  // Define how high the jump should be
+         ::f32 jumpHeight = 0.20f;  // Define how high the jump should be
          m_pengine->m_pimmersionlayer->m_pscene->m_pcameraCurrent->Jump(jumpHeight);
       }
       //// Teleport down (Left Control key)
       //if (IsKeyPressed(::user::e_key_left_shift))
       //{
-      //   float teleportDistance = 0.1081f;  // Define the downward distance
+      //   ::f32 teleportDistance = 0.1081f;  // Define the downward distance
       //   m_pengine->m_pimmersionlayer->m_pscene->m_pcameraCurrent->TeleportDownward(teleportDistance);
       //}
 
@@ -423,7 +423,7 @@ namespace graphics3d
    }
 
 
-   void input::_001OnMouseMove(const ::int_point& point)
+   void input::_001OnMouseMove(const ::i32_point& point)
    {
 
       //m_mousestate.position.x = point.x;
@@ -431,9 +431,9 @@ namespace graphics3d
 //m_mousestate.m_buttons.left = true;
 //         pmouse->m_p
 
-      double w = m_pusergraphics3d->m_iWidth;
+      ::f64 w = m_pusergraphics3d->m_iWidth;
 
-      double h = m_pusergraphics3d->m_iHeight;
+      ::f64 h = m_pusergraphics3d->m_iHeight;
 
       if (m_bLastMouse)
       {
@@ -443,8 +443,8 @@ namespace graphics3d
 
       }
 
-      double xCursor;
-      double yCursor;
+      ::f64 xCursor;
+      ::f64 yCursor;
 
       if (m_b_001AbsoluteMousePosition)
       {
@@ -470,7 +470,7 @@ namespace graphics3d
 
       m_pusergraphics3d->track_mouse_leave();
 
-      m_pusergraphics3d->m_pengine->on_mouse_move((float)xCursor, (float)yCursor);
+      m_pusergraphics3d->m_pengine->on_mouse_move((::f32)xCursor, (::f32)yCursor);
 
    }
 
@@ -478,8 +478,8 @@ namespace graphics3d
    void input::_001PrepareMouseInput()
    {
 
-      double x, y;
-      double newx, newy;
+      ::f64 x, y;
+      ::f64 newx, newy;
 
       if (m_b_001AbsoluteMousePosition)
       {
@@ -555,8 +555,8 @@ namespace graphics3d
 
             //m_Δx = x - m_dMouseLastX;
             //m_Δy = m_dMouseLastY - y;  // reversed Y
-            m_Δx = m_Δx + static_cast<float>(m_dMouseLastX -x - m_Δx) * 0.1;
-            m_Δy = m_Δy + static_cast<float>(y- m_dMouseLastY  - m_Δy) * 0.1;  // reversed Y
+            m_Δx = m_Δx + static_cast<::f32>(m_dMouseLastX -x - m_Δx) * 0.1;
+            m_Δy = m_Δy + static_cast<::f32>(y- m_dMouseLastY  - m_Δy) * 0.1;  // reversed Y
 
          }
 

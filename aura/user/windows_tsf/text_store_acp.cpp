@@ -13,7 +13,7 @@ namespace tsf
 {
 
 
-   STDMETHODIMP edit_window::AdviseSink(REFIID riid, IUnknown *pUnknown, unsigned int dwMask)
+   STDMETHODIMP edit_window::AdviseSink(REFIID riid, IUnknown *pUnknown, ::u32 dwMask)
    {
        OutputDebugString(TEXT("edit_window::AdviseSink \n"));
 
@@ -124,7 +124,7 @@ namespace tsf
 
    **************************************************************************/
 
-   STDMETHODIMP edit_window::RequestLock(unsigned int dwLockFlags, HRESULT *phrSession)
+   STDMETHODIMP edit_window::RequestLock(::u32 dwLockFlags, HRESULT *phrSession)
    {
        OutputDebugString(TEXT("edit_window::RequestLock \n"));
 
@@ -215,7 +215,7 @@ namespace tsf
        Can be zero or:
        TS_SS_DISJOINTSEL   // if set, the document supports multiple selections
        TS_SS_REGIONS       // if clear, the document will never contain multiple regions
-       TS_SS_TRANSITORY    // if set, the document is expected to have a short lifespan
+       TS_SS_TRANSITORY    // if set, the document is expected to have a ::i16 lifespan
        TS_SS_NOHIDDENTEXT  // if set, the document will never contain hidden text (for perf)
        */
        pdcs->dwStaticFlags = TS_SS_REGIONS;
@@ -229,15 +229,15 @@ namespace tsf
 
    **************************************************************************/
 
-   STDMETHODIMP edit_window::QueryInsert(  int acpTestStart,
-                                           int acpTestEnd,
+   STDMETHODIMP edit_window::QueryInsert(  ::i32 acpTestStart,
+                                           ::i32 acpTestEnd,
                                            ULONG cch, 
-                                           int *pacpResultStart,
-                                           int *pacpResultEnd)
+                                           ::i32 *pacpResultStart,
+                                           ::i32 *pacpResultEnd)
    {
        OutputDebugString(TEXT("edit_window::QueryInsert\n"));
 
-       int   lTextLength;
+       ::i32   lTextLength;
 
        //lTextLength = GetWindowTextLength(m_hwndEdit);
        lTextLength = (LONG_cast) get_text_length();
@@ -249,10 +249,10 @@ namespace tsf
            return E_INVALIDARG;
        }
 
-       //set the start int_point to the given start int_point
+       //set the start i32_point to the given start i32_point
        *pacpResultStart = acpTestStart;
 
-       //set the end int_point to the given end int_point
+       //set the end i32_point to the given end i32_point
        *pacpResultEnd = acpTestEnd;
 
        return S_OK;
@@ -269,11 +269,11 @@ namespace tsf
 
    **************************************************************************/
 
-   STDMETHODIMP edit_window::_TestInsert(  int acpTestStart,
-                                           int acpTestEnd,
+   STDMETHODIMP edit_window::_TestInsert(  ::i32 acpTestStart,
+                                           ::i32 acpTestEnd,
                                            ULONG cch, 
-                                           int *pacpResultStart,
-                                           int *pacpResultEnd)
+                                           ::i32 *pacpResultStart,
+                                           ::i32 *pacpResultEnd)
    {
        //make sure the parameters are within range of the document
        if(acpTestStart > acpTestEnd)
@@ -281,10 +281,10 @@ namespace tsf
            return E_INVALIDARG;
        }
 
-       //set the start int_point after the insertion
+       //set the start i32_point after the insertion
        *pacpResultStart = acpTestStart;
 
-       //set the end int_point after the insertion
+       //set the end i32_point after the insertion
        *pacpResultEnd = acpTestStart + cch;
     
        return S_OK;
@@ -339,9 +339,9 @@ namespace tsf
 
        _GetCurrentSelection();
     
-       //find out which end of the selection the caret (insertion int_point) is
-       ::int_point   pt;
-       int lPos = 0;
+       //find out which end of the selection the caret (insertion i32_point) is
+       ::i32_point   pt;
+       ::i32 lPos = 0;
        GetCaretPos(&pt);
        //lPos = ::SendMessage(m_hwndEdit, EM_POSFROMCHAR, m_acpStart, 0);
 
@@ -424,8 +424,8 @@ namespace tsf
        }
 
        //if the selection end is at the start of the selection, reverse the parameters
-       int    lStart = m_acpStart;
-       int    lEnd = m_acpEnd;
+       ::i32    lStart = m_acpStart;
+       ::i32    lEnd = m_acpEnd;
 
        if(TS_AE_START == m_ActiveSelEnd)
        {
@@ -450,15 +450,15 @@ namespace tsf
 
    **************************************************************************/
 
-   STDMETHODIMP edit_window::GetText(  int acpStart,
-                                       int acpEnd,
+   STDMETHODIMP edit_window::GetText(  ::i32 acpStart,
+                                       ::i32 acpEnd,
                                        WCHAR *pchPlain, 
                                        ULONG cchPlainReq, 
                                        ULONG *pcchPlainOut, 
                                        TS_RUNINFO *prgRunInfo, 
                                        ULONG ulRunInfoReq, 
                                        ULONG *pulRunInfoOut, 
-                                       int *pacpNext)
+                                       ::i32 *pacpNext)
    {
        OutputDebugString(TEXT("edit_window::GetText\n"));
 
@@ -471,7 +471,7 @@ namespace tsf
 
        BOOL    fDoText = cchPlainReq > 0;
        BOOL    fDoRunInfo = ulRunInfoReq > 0;
-       int    cchTotal;
+       ::i32    cchTotal;
        HRESULT hr = E_FAIL;
 
        if(pcchPlainOut)
@@ -613,9 +613,9 @@ namespace tsf
 
    **************************************************************************/
 
-   STDMETHODIMP edit_window::SetText(  unsigned int dwFlags,
-                                       int acpStart,
-                                       int acpEnd,
+   STDMETHODIMP edit_window::SetText(  ::u32 dwFlags,
+                                       ::i32 acpStart,
+                                       ::i32 acpEnd,
                                        const WCHAR *pchText, 
                                        ULONG cch, 
                                        TS_TEXTCHANGE *pChange)
@@ -658,8 +658,8 @@ namespace tsf
 
    **************************************************************************/
 
-   STDMETHODIMP edit_window::GetFormattedText( int acpStart,
-                                               int acpEnd,
+   STDMETHODIMP edit_window::GetFormattedText( ::i32 acpStart,
+                                               ::i32 acpEnd,
                                                IDataObject **ppDataObject)
    {
        OutputDebugString(TEXT("edit_window::GetFormattedText \n"));
@@ -739,7 +739,7 @@ namespace tsf
 
    **************************************************************************/
 
-   STDMETHODIMP edit_window::GetEmbedded(  int acpPos,
+   STDMETHODIMP edit_window::GetEmbedded(  ::i32 acpPos,
                                            REFGUID rguidService, 
                                            REFIID riid, IUnknown **ppunk)
    {
@@ -773,9 +773,9 @@ namespace tsf
 
    **************************************************************************/
 
-   STDMETHODIMP edit_window::InsertEmbedded(   unsigned int dwFlags,
-                                               int acpStart,
-                                               int acpEnd,
+   STDMETHODIMP edit_window::InsertEmbedded(   ::u32 dwFlags,
+                                               ::i32 acpStart,
+                                               ::i32 acpEnd,
                                                IDataObject *pDataObject, 
                                                TS_TEXTCHANGE *pChange)
    {
@@ -791,7 +791,7 @@ namespace tsf
 
    **************************************************************************/
 
-   STDMETHODIMP edit_window::RequestSupportedAttrs(    unsigned int dwFlags,
+   STDMETHODIMP edit_window::RequestSupportedAttrs(    ::u32 dwFlags,
                                                        ULONG cFilterAttrs, 
                                                        const TS_ATTRID *paFilterAttrs)
    {
@@ -799,7 +799,7 @@ namespace tsf
 
        _ClearRequestedAttributes();
 
-       int i;
+       ::i32 i;
 
        for(i = 0; i < NUM_SUPPORTED_ATTRS; i++)
        {
@@ -832,16 +832,16 @@ namespace tsf
 
    **************************************************************************/
 
-   STDMETHODIMP edit_window::RequestAttrsAtPosition(   int acpPos,
+   STDMETHODIMP edit_window::RequestAttrsAtPosition(   ::i32 acpPos,
                                                        ULONG cFilterAttrs, 
                                                        const TS_ATTRID *paFilterAttrs, 
-                                                       unsigned int dwFlags)
+                                                       ::u32 dwFlags)
    {
        OutputDebugString(TEXT("edit_window::RequestAttrsAtPosition \n"));
 
-       //int cch = GetWindowTextLength(m_hwndEdit);
+       //::i32 cch = GetWindowTextLength(m_hwndEdit);
 
-       int cch = (int_cast) get_text_length();
+       ::i32 cch = (i32_cast) get_text_length();
 
        if(acpPos < 0 || acpPos > cch)
        {
@@ -853,7 +853,7 @@ namespace tsf
        /*
        This app doesn't maintain per-character attributes, so just return the default attributes.
        */
-       int i;
+       ::i32 i;
 
        for(i = 0; i < NUM_SUPPORTED_ATTRS; i++)
        {
@@ -886,10 +886,10 @@ namespace tsf
 
    **************************************************************************/
 
-   STDMETHODIMP edit_window::RequestAttrsTransitioningAtPosition(  int acpPos,
+   STDMETHODIMP edit_window::RequestAttrsTransitioningAtPosition(  ::i32 acpPos,
                                                                    ULONG cFilterAttrs, 
                                                                    const TS_ATTRID *paFilterAttrs, 
-                                                                   unsigned int dwFlags)
+                                                                   ::u32 dwFlags)
    {
        OutputDebugString(TEXT("edit_window::RequestAttrsTransitioningAtPosition \n"));
 
@@ -902,14 +902,14 @@ namespace tsf
 
    **************************************************************************/
 
-   STDMETHODIMP edit_window::FindNextAttrTransition(   int acpStart,
-                                                       int acpHalt,
+   STDMETHODIMP edit_window::FindNextAttrTransition(   ::i32 acpStart,
+                                                       ::i32 acpHalt,
                                                        ULONG cFilterAttrs, 
                                                        const TS_ATTRID *paFilterAttrs, 
-                                                       unsigned int dwFlags,
-                                                       int *pacpNext,
+                                                       ::u32 dwFlags,
+                                                       ::i32 *pacpNext,
                                                        BOOL *pfFound, 
-                                                       int *plFoundOffset)
+                                                       ::i32 *plFoundOffset)
    {
        OutputDebugString(TEXT("edit_window::FindNextAttrTransition \n"));
 
@@ -929,7 +929,7 @@ namespace tsf
        OutputDebugString(TEXT("edit_window::RetrieveRequestedAttrs \n"));
 
        ULONG   uFetched = 0;
-       int     i;
+       ::i32     i;
 
        for(i = 0; i < NUM_SUPPORTED_ATTRS && ulCount; i++)
        {
@@ -973,7 +973,7 @@ namespace tsf
 
    **************************************************************************/
 
-   STDMETHODIMP edit_window::GetEndACP(int *pacp)
+   STDMETHODIMP edit_window::GetEndACP(::i32 *pacp)
    {
        OutputDebugString(TEXT("edit_window::GetEndACP \n"));
 
@@ -1019,9 +1019,9 @@ namespace tsf
    **************************************************************************/
 
    STDMETHODIMP edit_window::GetACPFromPoint(  TsImpactCookie vcImpact, 
-                                               const ::int_point *pt,
-                                               unsigned int dwFlags,
-                                               int *pacp)
+                                               const ::i32_point *pt,
+                                               ::u32 dwFlags,
+                                               ::i32 *pacp)
    {
        OutputDebugString(TEXT("edit_window::GetACPFromPoint \n"));
 
@@ -1032,15 +1032,15 @@ namespace tsf
 
        edit_window::GetTextExt()
 
-       If the text spans multiple lines, the result is the int_rectangle that 
+       If the text spans multiple lines, the result is the i32_rectangle that 
        contains all of the requested characters.
 
    **************************************************************************/
 
    STDMETHODIMP edit_window::GetTextExt(   TsImpactCookie vcImpact, 
-                                           int acpStart,
-                                           int acpEnd,
-                                           ::int_rectangle *prc,
+                                           ::i32 acpStart,
+                                           ::i32 acpEnd,
+                                           ::i32_rectangle *prc,
                                            BOOL *pfClipped)
    {
        OutputDebugString(TEXT("edit_window::GetTextExt \n"));
@@ -1051,7 +1051,7 @@ namespace tsf
        }
 
        *pfClipped = false;
-       ZeroMemory(prc, sizeof(::int_rectangle));
+       ZeroMemory(prc, sizeof(::i32_rectangle));
 
        if(EDIT_VIEW_COOKIE != vcImpact)
        {
@@ -1071,15 +1071,15 @@ namespace tsf
            return E_INVALIDARG;
        }
 
-       int        lTextLength;
-       int        lTemp;
-       //::int_rectangle        rc;
-       //unsigned int       dwStart;
-       //unsigned int       dwEnd;
+       ::i32        lTextLength;
+       ::i32        lTemp;
+       //::i32_rectangle        rc;
+       //::u32       dwStart;
+       //::u32       dwEnd;
        //HDC         hdc;
        //HFONT       hfont;
        //TEXTMETRIC  tm;
-       //int        lLineHeight;
+       //::i32        lLineHeight;
        LPWSTR      pwszText;
        HRESULT     hr;
 
@@ -1089,9 +1089,9 @@ namespace tsf
            return hr;
        }
     
-       //lTextLength = (int)SendMessage(m_hwndEdit, WM_GETTEXTLENGTH, 0, 0);
+       //lTextLength = (::i32)SendMessage(m_hwndEdit, WM_GETTEXTLENGTH, 0, 0);
 
-       lTextLength = (int)get_text_length();
+       lTextLength = (::i32)get_text_length();
 
        //are the start and end reversed?
        if(acpStart > acpEnd)
@@ -1112,7 +1112,7 @@ namespace tsf
        //hfont = (HFONT)set(hdc, hfont);
 
        ////get the position of the start character
-       //dwStart = (unsigned int)SendMessage(m_hwndEdit, EM_POSFROMCHAR, acpStart, 0);
+       //dwStart = (::u32)SendMessage(m_hwndEdit, EM_POSFROMCHAR, acpStart, 0);
        //rc.left = LOWORD(dwStart);
        //rc.top = HIWORD(dwStart);
 
@@ -1127,10 +1127,10 @@ namespace tsf
        the end character and add the width to the rectangle.
        */
        //acpEnd--;
-       //dwEnd = (unsigned int)SendMessage(m_hwndEdit, EM_POSFROMCHAR, acpEnd, 0);
+       //dwEnd = (::u32)SendMessage(m_hwndEdit, EM_POSFROMCHAR, acpEnd, 0);
        //
        ////calculate the width of the last character
-       //::int_size    size;
+       //::i32_size    size;
        //GetTextExtentPoint32W(hdc, pwszText + acpEnd, 1, &size);
        //rc.right = LOWORD(dwEnd) + size.cx;
        //rc.bottom = HIWORD(dwEnd);
@@ -1143,31 +1143,31 @@ namespace tsf
        //ReleaseDC(m_hwndEdit, hdc);
 
        ///*
-       //If the text range spans multiple lines, expand the int_rectangle to include all 
+       //If the text range spans multiple lines, expand the i32_rectangle to include all 
        //of the requested text. 
        //*/
        //if(rc.bottom > rc.top)
        //{
-       //    unsigned int   dwMargins;
-       //    ::int_rectangle    rcEdit;
+       //    ::u32   dwMargins;
+       //    ::i32_rectangle    rcEdit;
 
        //    GetClientRect(m_hwndEdit, &rcEdit);
        //    
-       //    dwMargins = (unsigned int)SendMessage(m_hwndEdit, EM_GETMARGINS, 0, 0);
+       //    dwMargins = (::u32)SendMessage(m_hwndEdit, EM_GETMARGINS, 0, 0);
        //    
-       //    //set the left int_point of the int_rectangle to the left margin of the edit control
+       //    //set the left i32_point of the i32_rectangle to the left margin of the edit control
        //    rc.left = LOWORD(dwMargins);
 
        //    //set the right member to the width of the edit control less both the right margin
        //    rc.right = rc.right - HIWORD(dwMargins);
        //}
 
-       ////add the line height to the bottom of the int_rectangle
+       ////add the line height to the bottom of the i32_rectangle
        //rc.bottom += lLineHeight;
 
        //*prc = rc;
        //
-       ////if any part of the text int_rectangle is not visible, set *pfClipped to true
+       ////if any part of the text i32_rectangle is not visible, set *pfClipped to true
        //GetClientRect(m_hwndEdit, &rc);
 
        //if( (prc->left < rc.left) ||
@@ -1178,8 +1178,8 @@ namespace tsf
        //    *pfClipped = true;
        //}
 
-       ////convert the int_rectangle to screen coordinates
-       //MapWindowPoints(m_hwndEdit, NULL, (::int_point *)prc, 2);
+       ////convert the i32_rectangle to screen coordinates
+       //MapWindowPoints(m_hwndEdit, NULL, (::i32_point *)prc, 2);
 
        //GlobalFree(pwszText);
 
@@ -1192,7 +1192,7 @@ namespace tsf
 
    **************************************************************************/
 
-   STDMETHODIMP edit_window::GetScreenExt(TsImpactCookie vcImpact, ::int_rectangle *prc)
+   STDMETHODIMP edit_window::GetScreenExt(TsImpactCookie vcImpact, ::i32_rectangle *prc)
    {
        OutputDebugString(TEXT("edit_window::GetScreenExt \n"));
 
@@ -1201,7 +1201,7 @@ namespace tsf
            return E_INVALIDARG;
        }
 
-       ZeroMemory(prc, sizeof(::int_rectangle));
+       ZeroMemory(prc, sizeof(::i32_rectangle));
 
        if(EDIT_VIEW_COOKIE != vcImpact)
        {
@@ -1211,7 +1211,7 @@ namespace tsf
        //no lock is necessary for this method.
 
        //GetClientRect(m_hwndEdit, prc);
-       //MapWindowPoints(m_hwndEdit, NULL, (::int_point *)prc, 2);
+       //MapWindowPoints(m_hwndEdit, NULL, (::i32_point *)prc, 2);
 
        window_rectangle(prc);
 
@@ -1246,16 +1246,16 @@ namespace tsf
 
    **************************************************************************/
 
-   STDMETHODIMP edit_window::InsertTextAtSelection(    unsigned int dwFlags,
+   STDMETHODIMP edit_window::InsertTextAtSelection(    ::u32 dwFlags,
                                                        const WCHAR *pwszText, 
                                                        ULONG cch, 
-                                                       int *pacpStart,
-                                                       int *pacpEnd,
+                                                       ::i32 *pacpStart,
+                                                       ::i32 *pacpEnd,
                                                        TS_TEXTCHANGE *pChange)
    {
        OutputDebugString(TEXT("edit_window::InsertTextAtSelection \n"));
 
-       int    lTemp;
+       ::i32    lTemp;
     
        //does the caller have a lock
        if(!_IsLocked(TS_LF_READWRITE))
@@ -1282,9 +1282,9 @@ namespace tsf
            pacpEnd = &lTemp;
        }
 
-       int    acpStart;
-       int    acpOldEnd;
-       int    acpNewEnd;
+       ::i32    acpStart;
+       ::i32    acpOldEnd;
+       ::i32    acpNewEnd;
     
        _GetCurrentSelection();
 
@@ -1348,10 +1348,10 @@ namespace tsf
 
    **************************************************************************/
 
-   STDMETHODIMP edit_window::InsertEmbeddedAtSelection(    unsigned int dwFlags,
+   STDMETHODIMP edit_window::InsertEmbeddedAtSelection(    ::u32 dwFlags,
                                                            IDataObject *pDataObject, 
-                                                           int *pacpStart,
-                                                           int *pacpEnd,
+                                                           ::i32 *pacpStart,
+                                                           ::i32 *pacpEnd,
                                                            TS_TEXTCHANGE *pChange)
    {
        OutputDebugString(TEXT("edit_window::InsertEmbeddedAtSelection \n"));

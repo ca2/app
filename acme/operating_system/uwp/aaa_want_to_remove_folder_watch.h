@@ -13,7 +13,7 @@
 //
 //      virtual bool watch(const ::file::path & path);
 //
-//      virtual e_action translate_os_action(int iAction);
+//      virtual e_action translate_os_action(::i32 iAction);
 //
 //      virtual void     run() override;
 //

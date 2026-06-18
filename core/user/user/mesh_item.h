@@ -3,7 +3,7 @@
 
 #include "core/user/user/_.h"
 #include "acme/exception/status.h"
-#include "acme/prototype/collection/int_map.h"
+#include "acme/prototype/collection/integer_map.h"
 //#include "acme/prototype/geometry2d/_geometry2d.h"
 #include "acme/prototype/geometry2d/rectangle.h"
 
@@ -82,9 +82,9 @@ namespace user
       status < ::color::color >                 m_colorText;
       status < ::color::color >                 m_colorTextBackground;
       status < ::color::color >                 m_colorSubItemBackground;
-      ::int_rectangle                           m_rectangleSubItem;
-      ::int_rectangle                           m_rectangleImage;
-      ::int_rectangle                           m_rectangleText;
+      ::i32_rectangle                           m_rectangleSubItem;
+      ::i32_rectangle                           m_rectangleImage;
+      ::i32_rectangle                           m_rectangleText;
 
       //index                               m_iSubItemRectItem;
       //index                               m_iSubItemRectSubItem;
@@ -130,7 +130,7 @@ namespace user
       //index                                     m_iSubItem;
       ::index_map_base < ::pointer<mesh_subitem >>  m_mapSubItem;
 //      index                                   m_iListItem;
-      int                                       m_iState;
+      ::i32                                       m_iState;
       bool                                      m_bOk;
 
       ::collection::index                                     m_iGroupTopDisplayIndex;
@@ -161,10 +161,10 @@ namespace user
 
 
       class ::time                        m_timeLastDraw;
-      // ::int_rectangle                     m_rectangleGroup;
-      ::int_rectangle                     m_rectangleItem;
-      //::int_rectangle                     m_rectangleListItem;
-      int_rectangle *                     m_prectClient;
+      // ::i32_rectangle                     m_rectangleGroup;
+      ::i32_rectangle                     m_rectangleItem;
+      //::i32_rectangle                     m_rectangleListItem;
+      i32_rectangle *                     m_prectClient;
 
       status < ::color::color >           m_colorItemBackground;
 
@@ -172,7 +172,7 @@ namespace user
 
       ::collection::index                             m_iRectangleDisplayItem;
 
-      int                                 m_iColumnWidth;
+      ::i32                                 m_iColumnWidth;
 
 
 
@@ -194,7 +194,7 @@ namespace user
       //void update_item_color();
 
 
-      ::user::enum_state get_user_state() const;
+      ::user::e_state get_user_state() const;
 
 
    };
@@ -220,7 +220,7 @@ namespace user
       //::index_map_base < ::pointer<mesh_subitem >>  m_mapSubitem;
       //      index                                   m_iListItem;
       ::collection::index                                   m_iImage;
-      int                                       m_iState;
+      ::i32                                       m_iState;
       bool                                      m_bOk;
 
       ::collection::index                                     m_iGroupTopDisplayIndex;
@@ -251,12 +251,12 @@ namespace user
 
 
       class ::time                        m_nanoLastDraw;
-       ::int_rectangle                    m_rectangleGroup;
-      //::int_rectangle                   m_rectangleItem;
-      //::int_rectangle                   m_rectangleListItem;
-      ::int_rectangle                     m_rectangleImage;
-      ::int_rectangle                     m_rectangleText;
-      int_rectangle * m_prectClient;
+       ::i32_rectangle                    m_rectangleGroup;
+      //::i32_rectangle                   m_rectangleItem;
+      //::i32_rectangle                   m_rectangleListItem;
+      ::i32_rectangle                     m_rectangleImage;
+      ::i32_rectangle                     m_rectangleText;
+      i32_rectangle * m_prectClient;
 
       ::write_text::font * m_pfont;
       ::e_align                           m_ealign;
@@ -266,7 +266,7 @@ namespace user
 
       //index                               m_iItemRectItem;
 
-      //int                                 m_iColumnWidth;
+      //::i32                                 m_iColumnWidth;
 
       //index                               m_iSubItemRectItem;
       //index                               m_iSubItemRectSubItem;

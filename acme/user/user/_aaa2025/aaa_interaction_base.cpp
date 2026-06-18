@@ -140,7 +140,7 @@
 //   }
 //
 //
-//   void interaction_base::_on_window_simple_action(const char * pszActionName)
+//   void interaction_base::_on_window_simple_action(const_char_pointer pszActionName)
 //   {
 //
 //      ::string strActionName(scopedstrActionName);
@@ -373,21 +373,21 @@
 //   }
 //
 //
-//   void interaction_base::draw(::nano::graphics::device* pnanodevice)
+//   void interaction_base::draw(::nano::graphics::context* pgraphicscontext)
 //   {
 //
 //
 //   }
 //
 //
-//   void interaction_base::on_draw(::nano::graphics::device* pnanodevice)
+//   void interaction_base::on_draw(::nano::graphics::context* pgraphicscontext)
 //   {
 //
 //
 //   }
 //
 //
-//   void interaction_base::on_char(int iChar)
+//   void interaction_base::on_char(::i32 iChar)
 //   {
 //
 //
@@ -409,7 +409,7 @@
 //   }
 //
 //
-//   void interaction_base::draw_children(::nano::graphics::device* pnanodevice)
+//   void interaction_base::draw_children(::nano::graphics::context* pgraphicscontext)
 //   {
 //
 //
@@ -445,7 +445,7 @@
 //   }
 //
 //
-//   ::int_point interaction_base::origin()
+//   ::i32_point interaction_base::origin()
 //   {
 //
 //      throw ::exception(error_wrong_state);
@@ -496,7 +496,7 @@
 //   }
 //
 //
-//   ::int_point interaction_base::try_absolute_mouse_position(const ::int_point& point)
+//   ::i32_point interaction_base::try_absolute_mouse_position(const ::i32_point& point)
 //   {
 //
 //      auto p = point;
@@ -516,7 +516,7 @@
 //   }
 //
 //
-//   bool interaction_base::on_drag_start(::int_point& point, ::item* pitem)
+//   bool interaction_base::on_drag_start(::i32_point& point, ::item* pitem)
 //   {
 //
 //      if (pitem->m_item.m_eelement == e_element_client)
@@ -542,7 +542,7 @@
 //   }
 //
 //
-//   ::int_point interaction_base::drag_mouse_cursor_position(::item* pitem, const ::int_point& point)
+//   ::i32_point interaction_base::drag_mouse_cursor_position(::item* pitem, const ::i32_point& point)
 //   {
 //
 //      auto p = try_absolute_mouse_position(point);
@@ -671,7 +671,7 @@
 //   }
 //
 //
-//   void interaction_base::set_position(const ::int_point& point)
+//   void interaction_base::set_position(const ::i32_point& point)
 //   {
 //
 //      m_pwindowbase->set_position(point);
@@ -750,14 +750,14 @@
 //   }
 //
 //
-//   void interaction_base::get_client_rectangle(::int_rectangle& rectangle)
+//   void interaction_base::get_client_rectangle(::i32_rectangle& rectangle)
 //   {
 //
 //
 //   }
 //
 //
-//   int_rectangle interaction_base::get_window_rectangle()
+//   i32_rectangle interaction_base::get_window_rectangle()
 //   {
 //
 //      return {};
@@ -930,7 +930,7 @@
 //   }
 //
 //
-//   ::collection::index interaction_base::plain_edit_sel_to_column_x(::draw2d::graphics_pointer& pgraphics, character_count iSel, int& x)
+//   ::collection::index interaction_base::plain_edit_sel_to_column_x(::draw2d::graphics_pointer& pgraphics, character_count iSel, ::i32& x)
 //   {
 //
 //      return -1;
@@ -946,7 +946,7 @@
 //   }
 //
 //
-//   ::collection::index interaction_base::plain_edit_sel_to_line_x(::draw2d::graphics_pointer& pgraphics, character_count iSel, int& x)
+//   ::collection::index interaction_base::plain_edit_sel_to_line_x(::draw2d::graphics_pointer& pgraphics, character_count iSel, ::i32& x)
 //   {
 //
 //      return -1;
@@ -962,7 +962,7 @@
 //   }
 //
 //
-//   character_count interaction_base::plain_edit_line_x_to_sel(::draw2d::graphics_pointer& pgraphics, ::collection::index iLine, int x)
+//   character_count interaction_base::plain_edit_line_x_to_sel(::draw2d::graphics_pointer& pgraphics, ::collection::index iLine, ::i32 x)
 //   {
 //
 //      return -1;

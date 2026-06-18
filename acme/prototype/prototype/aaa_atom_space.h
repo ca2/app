@@ -21,7 +21,7 @@
 //protected:
 //
 //
-//   raw_array < char *  >      m_psza;
+//   raw_array < char_pointer >      m_psza;
 //   critical_section           m_criticalsection;
 //
 //
@@ -38,11 +38,11 @@
 //   virtual ~atom_space();
 //
 //
-//   const char * get_id(const ::scoped_string & scopedstrFind);
+//   const_char_pointer get_id(const ::scoped_string & scopedstrFind);
 //
 //
 //   atom operator()(const ::scoped_string & scopedstr);
-//   atom operator()(long long i);
+//   atom operator()(::i64 i);
 //
 //   static atom_space *                            s_pidspace;
 //
@@ -59,7 +59,7 @@
 //
 //   index_array                      stackLowerBound;
 //   index_array                      stackUpperBound;
-//   raw_array < char * >             m_idptra; // ordered as added
+//   raw_array < char_pointer >             m_idptra; // ordered as added
 //   index_array                      m_iaId; // ordered by id_cmp
 //
 //

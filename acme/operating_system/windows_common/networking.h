@@ -6,9 +6,9 @@
 #include <ws2tcpip.h>
 
 
-CLASS_DECL_ACME SOCKET _open_socket(int af, int type, int protocol);
-CLASS_DECL_ACME int _close_socket(SOCKET s);
-CLASS_DECL_ACME SOCKET _accept_socket(SOCKET s, sockaddr* addr, int* addrlen);
+CLASS_DECL_ACME SOCKET _open_socket(::i32 af, ::i32 type, ::i32 protocol);
+CLASS_DECL_ACME ::i32 _close_socket(SOCKET s);
+CLASS_DECL_ACME SOCKET _accept_socket(SOCKET s, sockaddr* addr, ::i32* addrlen);
 
 
 

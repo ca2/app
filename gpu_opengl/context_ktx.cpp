@@ -12,7 +12,7 @@
 #include "bred/gpu/binding.h"
 #include "bred/gpu/command_buffer.h"
 #include "bred/gpu/context_lock.h"
-#include "bred/gpu/frame.h"
+#include "bred/gpu/layer.h"
 #include "bred/gpu/layer.h"
 #include "bred/gpu/types.h"
 #include "lock.h"
@@ -38,14 +38,14 @@
 // #include <ktxvulkan.h>     // not needed for GL, but included in libktx installs
 //
 //  // Utility: load whole file into memory
-//  std::vector<unsigned char> loadFile(const char* filename) {
+//  std::vector<::u8> loadFile(const_char_pointer pszFilename) {
 //     std::ifstream file(filename, std::ios::binary | std::ios::ate);
 //     if (!file) throw std::runtime_error("Failed to open file");
 //     std::streamsize size = file.tellg();
 //     file.seekg(0, std::ios::beg);
 //
-//     std::vector<unsigned char> buffer(size);
-//     if (!file.read(reinterpret_cast<char*>(buffer.data()), size))
+//     std::vector<::u8> buffer(size);
+//     if (!file.read(reinterpret_cast<char_pointer >(buffer.data()), size))
 //        throw std::runtime_error("Failed to read file");
 //     return buffer;
 //  }

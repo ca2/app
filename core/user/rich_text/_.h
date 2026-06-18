@@ -29,15 +29,15 @@ namespace user
 
       bool is_equal_bool(bool b1, bool b2);
 
-      bool is_similar_font_size(double d1, double d2);
+      bool is_similar_font_size(::f64 d1, ::f64 d2);
 
       void words_trailing_spaces(string_array_base & stra, const ::scoped_string & scopedstr);
 
       ::collection::index sel_line(const pointer_array < line > & linea, ::collection::index iSel);
 
-      ::collection::index sel_line_x666(pointer_array < line > & linea, ::collection::index iSel, double & x);
+      ::collection::index sel_line_x666(pointer_array < line > & linea, ::collection::index iSel, ::f64 & x);
 
-      ::collection::index line_caret_x(pointer_array < line > & linea, ::collection::index iSel, double & x);
+      ::collection::index line_caret_x(pointer_array < line > & linea, ::collection::index iSel, ::f64 & x);
 
       ::collection::index sel_char(pointer_array < line > & linea, ::collection::index iSel);
 
@@ -55,7 +55,7 @@ namespace user
 
       ::collection::index find_char_span(pointer_array < span > & spana, character_count iChar);
 
-//      void align(line * pline, const ::double_rectangle & rectangle);
+//      void align(line * pline, const ::f64_rectangle & rectangle);
 //
       box * find_box(pointer_array < line > & linea, ::collection::index iSel);
 

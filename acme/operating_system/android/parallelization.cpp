@@ -41,7 +41,7 @@ void task_set_name(const ::scoped_string & scopedstrName)
 
 
 
-int get_processor_count()
+::i32 get_processor_count()
 {
 
    return sysconf(_SC_NPROCESSORS_ONLN);

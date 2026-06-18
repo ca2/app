@@ -14,7 +14,7 @@ namespace app_net
 
       //m_bSimpleUIDefaultMouseHandling = true;
 
-      m_strUrl = "https://ca2.network/time";
+      m_strUrl = "https://ca2.site/time";
 
       m_dBreathPeriod = 60.0;
 
@@ -91,7 +91,7 @@ namespace app_net
 
          auto elapsed = m_timeStartGettingUrl.elapsed();
 
-         strGet = "Getting Url " + strDots.left((elapsed.integral_millisecond().m_i / 300) % 4);
+         strGet = "Getting Url " + strDots.left((elapsed.integral_millisecond().m_i32 / 300) % 4);
 
       }
       else

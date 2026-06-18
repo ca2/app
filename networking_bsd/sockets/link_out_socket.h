@@ -21,7 +21,7 @@ namespace networking_bsd
       virtual ~link_out_socket();
 
       using ::networking_bsd::tcp_socket::OnRead;
-      virtual void OnRead( char *buf, memsize n );
+      virtual void OnRead( char_pointer buf, memsize n );
       void link_write(void * p, memsize size);
 
 

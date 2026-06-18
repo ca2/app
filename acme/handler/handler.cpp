@@ -54,10 +54,10 @@ namespace handler
          new_main_loop_happening()->set_happening();
 
       }
-      else
+      else if(m_pmanualresethappeningMainLoop)
       {
 
-         new_main_loop_happening()->reset_happening();
+         m_pmanualresethappeningMainLoop->reset_happening();
 
       }
 
@@ -69,14 +69,7 @@ namespace handler
 
       m_requestaPosted.clear();
 
-      for (auto & r : m_requestaHistory)
-      {
-
-         r.defer_destroy();
-
-      }
-
-      m_requestaHistory.clear();
+      m_requestaHistory.defer_destroy_and_release();
 
       ::matter::destroy();
 
@@ -86,10 +79,21 @@ namespace handler
    ::manual_reset_happening * handler::new_main_loop_happening()
    {
 
-      defer_construct_newø(m_pmanualresethappeningMainLoop);
+      if (defer_construct_newø(m_pmanualresethappeningMainLoop))
+      {
+
+         on_new_main_loop_happening_creation();
+
+      }
 
       return m_pmanualresethappeningMainLoop;
 
+   }
+
+
+   void handler::on_new_main_loop_happening_creation()
+   {
+   
    }
 
 
@@ -287,7 +291,7 @@ namespace handler
    }
 
 
-   // CLASS_DECL_ACME void __call(handler* phandler, const ::atom& atom, long long wParam, long long lParam, ::matter* pmatter)
+   // CLASS_DECL_ACME void __call(handler* phandler, const ::atom& atom, ::i64 wParam, ::i64 lParam, ::matter* pmatter)
    // {
    //
    //    if (::is_null(pmatter))
@@ -341,7 +345,7 @@ namespace handler
 
 
    //
-   // void handler::call(enum_id eid, long long iData, ::matter* pmatter)
+   // void handler::call(enum_id eid, ::i64 iData, ::matter* pmatter)
    // {
    //
    //    return __call(this, eid, iData, pmatter);
@@ -349,7 +353,7 @@ namespace handler
    // }
    //
    //
-   // void handler::call(const ::atom& atom, long long wParam, long long lParam, ::matter* pmatter)
+   // void handler::call(const ::atom& atom, ::i64 wParam, ::i64 lParam, ::matter* pmatter)
    // {
    //
    //    return __call(this, eusermessage, wparam, lparam, pmatter);
@@ -466,7 +470,7 @@ namespace handler
 
 
    // //
-   // void handler::call(enum_id eid, long long iData, ::matter* pmatter)
+   // void handler::call(enum_id eid, ::i64 iData, ::matter* pmatter)
    // {
    //
    //    return __call(this, eid, iData, pmatter);

@@ -10,9 +10,9 @@ namespace hex
 {
 
 
-inline CLASS_DECL_APEX void upper_pad_from(char* sz, const void* p, memsize s)
+inline CLASS_DECL_APEX void upper_pad_from(char_pointer sz, const void* p, memsize s)
 {
-   const unsigned char* pb = (const unsigned char*)p;
+   const ::u8* pb = (const ::u8*)p;
    sz += s * 2;
    while (s)
    {
@@ -31,9 +31,9 @@ string dump_hex(::file::file* pfile)
 
    string strBuffer;
 
-   char* psz = strBuffer.get_buffer((character_count)(pfile->get_size() / 16 + 1) * 80);
+   char_pointer psz = strBuffer.get_buffer((character_count)(pfile->get_size() / 16 + 1) * 80);
 
-   unsigned char buf[16];
+   ::u8 buf[16];
 
    memsize iPos = 0;
 
@@ -57,7 +57,7 @@ string dump_hex(::file::file* pfile)
       *psz = ' ';
       psz++;
 
-      for (int i = 0; i < 16; i++)
+      for (::i32 i = 0; i < 16; i++)
       {
 
          if (i < iRead)
@@ -82,7 +82,7 @@ string dump_hex(::file::file* pfile)
 
       }
 
-      for (int i = 0; i < iRead; i++)
+      for (::i32 i = 0; i < iRead; i++)
       {
 
          if (buf[i] < 32)
@@ -95,7 +95,7 @@ string dump_hex(::file::file* pfile)
          else
          {
 
-            *psz = (char) buf[i];
+            *psz = (::i8) buf[i];
             psz++;
 
          }
@@ -373,7 +373,7 @@ namespace sockets
          string str = dump_hex(m_pfile);
          informationf("%s", m_strUrl.c_str());
          
-         for (int i = 0; i < str.length(); i+=32 * 100)
+         for (::i32 i = 0; i < str.length(); i+=32 * 100)
          {
 
             ::OutputDebugStringA(str.substr(i, 32*100));
@@ -421,10 +421,10 @@ namespace sockets
    }
 
 
-   void http_client_socket::OnData(const_char_pointer buf,memsize len)
+   void http_client_socket::OnData(const_char_pointer pszBuffer,memsize len)
    {
 
-      if(m_response.attr("http_status_code").as_int() >= 300 && m_response.attr("http_status_code").as_int() <= 399)
+      if(m_response.attr("http_status_code").as_i32() >= 300 && m_response.attr("http_status_code").as_i32() <= 399)
       {
 
          return;
@@ -470,7 +470,7 @@ namespace sockets
    }
 
 
-   void http_client_socket::OnDataArrived(const_char_pointer buf, memsize len)
+   void http_client_socket::OnDataArrived(const_char_pointer pszBuffer, memsize len)
    {
 
       __UNREFERENCED_PARAMETER(buf);
@@ -541,7 +541,7 @@ namespace sockets
    }
 
 
-   const unsigned char *http_client_socket::GetDataPtr() const
+   const ::u8 *http_client_socket::GetDataPtr() const
    {
 
       return m_memoryfile.get_data();
@@ -627,7 +627,7 @@ namespace sockets
    }
 
 
-   void http_client_socket::on_set_scalar(enum_scalar escalar,long long iValue,int iFlags)
+   void http_client_socket::on_set_scalar(enum_scalar escalar,::i64 iValue,::i32 iFlags)
    {
 
       if (escalar == scalar_download_size)
@@ -639,14 +639,14 @@ namespace sockets
       else
       {
 
-         return ::int_scalar_source::on_set_scalar(escalar, iValue, iFlags);
+         return ::i32_scalar_source::on_set_scalar(escalar, iValue, iFlags);
 
       }
 
    }
 
 
-   void http_client_socket::get_scalar_minimum(enum_scalar escalar, long long & i)
+   void http_client_socket::get_scalar_minimum(enum_scalar escalar, ::i64 & i)
    {
 
       if (escalar == scalar_download_size)
@@ -658,13 +658,13 @@ namespace sockets
       else
       {
 
-         ::int_scalar_source::get_scalar_minimum(escalar, i);
+         ::i32_scalar_source::get_scalar_minimum(escalar, i);
 
       }
 
    }
 
-   void http_client_socket::get_scalar(enum_scalar escalar, long long & i)
+   void http_client_socket::get_scalar(enum_scalar escalar, ::i64 & i)
    {
 
       if (escalar == scalar_download_size)
@@ -676,13 +676,13 @@ namespace sockets
       else
       {
 
-         ::int_scalar_source::get_scalar(escalar, i);
+         ::i32_scalar_source::get_scalar(escalar, i);
 
       }
 
    }
 
-   void http_client_socket::get_scalar_maximum(enum_scalar escalar, long long & i)
+   void http_client_socket::get_scalar_maximum(enum_scalar escalar, ::i64 & i)
    {
 
       if (escalar == scalar_download_size)
@@ -694,7 +694,7 @@ namespace sockets
       else
       {
 
-         ::int_scalar_source::get_scalar_minimum(escalar, i);
+         ::i32_scalar_source::get_scalar_minimum(escalar, i);
 
       }
 

@@ -26,17 +26,17 @@
 
 typedef LPWINDOW oswindow;
 
-typedef int int;
+typedef ::i32 ::i32;
 
 typedef struct tagRECT
 {
-   int    left;
-   int    top;
-   int    right;
-   int    bottom;
-} ::int_rectangle, *PRECT, *NPRECT, *::int_rectangle *;
+   ::i32    left;
+   ::i32    top;
+   ::i32    right;
+   ::i32    bottom;
+} ::i32_rectangle, *PRECT, *NPRECT, *::i32_rectangle *;
 
-typedef const ::int_rectangle * const ::int_rectangle *;
+typedef const ::i32_rectangle * const ::i32_rectangle *;
 
 
 
@@ -46,12 +46,12 @@ typedef const ::int_rectangle * const ::int_rectangle *;
 //CGContextRef get_nswindow_cgcontext(oswindow pnswindow);
 
 
-int_bool get_uiwindow_rect(oswindow hwnd, ::int_rectangle * lprect);
+i32_bool get_uiwindow_rect(oswindow hwnd, ::i32_rectangle * lprect);
 
 
 
 
 
-int_bool set_nswindow_frame(oswindow hwnd, const ::int_rectangle * prectangle, int iDisplay);
-int_bool size_nswindow(oswindow hwnd, int cx, int cy);
-int_bool move_nswindow(oswindow hwnd, int x, int y);
+i32_bool set_nswindow_frame(oswindow hwnd, const ::i32_rectangle * prectangle, ::i32 iDisplay);
+i32_bool size_nswindow(oswindow hwnd, ::i32 cx, ::i32 cy);
+i32_bool move_nswindow(oswindow hwnd, ::i32 x, ::i32 y);

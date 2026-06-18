@@ -59,22 +59,21 @@ CLASS_DECL_ACME void string_count_copy(::ansi_character * pchDest, size_t nDestL
 CLASS_DECL_ACME void overlapped_string_count_copy(::ansi_character * pchDest, const_char_pointer pchSrc, character_count nChars) noexcept;
 
 
-CLASS_DECL_ACME ::std::strong_ordering _string_compare(const_char_pointer pszA, const_char_pointer pszB) noexcept;
-CLASS_DECL_ACME ::std::strong_ordering case_insensitive__string_compare(const_char_pointer pszA, const_char_pointer pszB) noexcept;
-CLASS_DECL_ACME ::std::strong_ordering _string_count_compare(const_char_pointer pszA, const_char_pointer pszB, character_count len) noexcept;
-CLASS_DECL_ACME ::std::strong_ordering case_insensitive__string_count_compare(const_char_pointer pszA, const_char_pointer pszB, character_count len) noexcept;
+CLASS_DECL_ACME ::i32 _string_compare(const_char_pointer pszA, const_char_pointer pszB) noexcept;
+CLASS_DECL_ACME ::i32 case_insensitive__string_compare(const_char_pointer pszA, const_char_pointer pszB) noexcept;
+CLASS_DECL_ACME ::i32 _string_count_compare(const_char_pointer pszA, const_char_pointer pszB, character_count len) noexcept;
+CLASS_DECL_ACME ::i32 case_insensitive__string_count_compare(const_char_pointer pszA, const_char_pointer pszB, character_count len) noexcept;
 CLASS_DECL_ACME ::std::strong_ordering _string_collate(const_char_pointer pszA, const_char_pointer pszB) noexcept;
 CLASS_DECL_ACME ::std::strong_ordering _case_insensitive_string_collate(const_char_pointer pszA, const_char_pointer pszB) noexcept;
 CLASS_DECL_ACME ::std::strong_ordering _string_count_collate(const_char_pointer pszA, const_char_pointer pszB, character_count len) noexcept;
 CLASS_DECL_ACME ::std::strong_ordering _case_insensitive_string_count_collate(const_char_pointer pszA, const_char_pointer pszB, character_count len) noexcept;
 
 
-CLASS_DECL_ACME ::std::strong_ordering string_compare(const_char_pointer pszA, character_count sizeA, const_char_pointer pszB, character_count sizeB) noexcept;
-CLASS_DECL_ACME ::std::strong_ordering case_insensitive_string_order(const_char_pointer pszA, character_count sizeA, const_char_pointer pszB, character_count sizeB) noexcept;
-CLASS_DECL_ACME ::std::strong_ordering string_compare(const_char_pointer pszA, const_char_pointer pszB) noexcept;
-CLASS_DECL_ACME ::std::strong_ordering case_insensitive_string_order(const_char_pointer pszA, const_char_pointer pszB) noexcept;
-CLASS_DECL_ACME ::std::strong_ordering string_count_compare(const_char_pointer pszA, const_char_pointer pszB, character_count len) noexcept;
-CLASS_DECL_ACME ::std::strong_ordering case_insensitive_string_count_compare(const_char_pointer pszA, const_char_pointer pszB, character_count len) noexcept;
+CLASS_DECL_ACME ::i32 string_compare(const_char_pointer pszA, character_count sizeA, const_char_pointer pszB, character_count sizeB) noexcept;
+CLASS_DECL_ACME ::i32 string_compare(const_char_pointer pszA, const_char_pointer pszB) noexcept;
+CLASS_DECL_ACME ::i32 case_insensitive_string_compare(const_char_pointer pszA, const_char_pointer pszB) noexcept;
+CLASS_DECL_ACME ::i32 string_count_compare(const_char_pointer pszA, const_char_pointer pszB, character_count len) noexcept;
+CLASS_DECL_ACME ::i32 case_insensitive_string_count_compare(const_char_pointer pszA, const_char_pointer pszB, character_count len) noexcept;
 CLASS_DECL_ACME ::std::strong_ordering string_collate(const_char_pointer pszA, const_char_pointer pszB) noexcept;
 CLASS_DECL_ACME ::std::strong_ordering case_insensitive_string_collate(const_char_pointer pszA, const_char_pointer pszB) noexcept;
 CLASS_DECL_ACME ::std::strong_ordering string_count_collate(const_char_pointer pszA, const_char_pointer pszB, character_count len) noexcept;
@@ -82,12 +81,12 @@ CLASS_DECL_ACME ::std::strong_ordering case_insensitive_string_count_collate(con
 
 
 
-inline ::std::strong_ordering _string_count_compare(const ::ansi_character* pszA, const ::ansi_character* pszB, character_count len) noexcept { return strncmp(pszA, pszB, len)<=>0; }
+inline ::i32 _string_count_compare(const ::ansi_character* pszA, const ::ansi_character* pszB, character_count len) noexcept { return strncmp(pszA, pszB, len); }
 
 #if defined(__BSD__)
-inline ::std::strong_ordering _case_insensitive_string_count_compare(const ::ansi_character* pszA, const ::ansi_character* pszB, character_count len) noexcept { return strncasecmp(pszA, pszB, len)<=>0; }
+inline ::i32 _case_insensitive_string_count_compare(const ::ansi_character* pszA, const ::ansi_character* pszB, character_count len) noexcept { return strncasecmp(pszA, pszB, len); }
 #else
-inline ::std::strong_ordering _case_insensitive_string_count_compare(const ::ansi_character* pszA, const ::ansi_character* pszB, character_count len) noexcept { return strnicmp(pszA, pszB, len)<=>0; }
+inline ::i32 _case_insensitive_string_count_compare(const ::ansi_character* pszA, const ::ansi_character* pszB, character_count len) noexcept { return strnicmp(pszA, pszB, len); }
 #endif
 
 inline bool string_equals(const_char_pointer pszA, const_char_pointer pszB) noexcept{return string_compare(pszA, pszB) == 0; }
@@ -145,9 +144,9 @@ CLASS_DECL_ACME void  flood_characters(::ansi_character * psz, ::ansi_character 
 CLASS_DECL_ACME character_count unichar_count(const_char_pointer pstr);
 
 
-CLASS_DECL_ACME long long string_to_signed(const_char_pointer psz);
-CLASS_DECL_ACME unsigned long long as_unsigned_long_long(const_char_pointer psz);
-CLASS_DECL_ACME double string_to_floating(const_char_pointer psz);
+CLASS_DECL_ACME ::i64 string_to_signed(const_char_pointer psz);
+CLASS_DECL_ACME ::u64 as_u64(const_char_pointer psz);
+CLASS_DECL_ACME ::f64 string_to_floating(const_char_pointer psz);
 
 
 

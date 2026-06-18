@@ -38,7 +38,7 @@
  * Typical Distribution Ratio, 25% of IDR 
  *****************************************************************************/
 
-#define JIS_TYPICAL_DISTRIBUTION_RATIO (float) 3.0
+#define JIS_TYPICAL_DISTRIBUTION_RATIO (::f32) 3.0
 
 
 //Char to FreqOrder table , 

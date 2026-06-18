@@ -1,9 +1,10 @@
 #include "framework.h"
 #include "acme/constant/user_key.h"
-#include "acme/platform/timer.h"
+//#include "acme/platform/timer.h"
 #include "top_edit_impact.h"
 #include "top_impact.h"
 #include "acme/constant/id.h"
+#include "acme/constant/timer.h"
 #include "acme/constant/user_message.h"
 #include "acme/handler/topic.h"
 #include "aura/message/user.h"
@@ -43,7 +44,7 @@ namespace userex
    }
 
 
-   ::write_text::font_pointer top_edit_impact::get_font(::user::style* pstyle, ::enum_element eelement, ::user::enum_state estate)
+   ::write_text::font_pointer top_edit_impact::get_font(::user::style* pstyle, const ::e_element & eelement, const ::user::e_state & estate)
    {
 
       if (m_pfont)
@@ -95,7 +96,7 @@ namespace userex
 
          m_bEnterKeyPressed = true;
 
-         set_timer(5544, m_timeDelayedAfterChange, nullptr);
+         set_timer(e_timer_after_text_change_delayed, m_timeDelayedAfterChange, nullptr);
 
       }
       else
@@ -108,18 +109,18 @@ namespace userex
    }
 
 
-   void top_edit_impact::on_timer(::timer * ptimer)
+   void top_edit_impact::operator()(::timer * ptimer)
    {
 
-      ::user::show < ::user::plain_edit >::on_timer(ptimer);
+      ::user::show < ::user::plain_edit >::operator()(ptimer);
 
-      if (ptimer->m_etimer == 5544)
+      if (ptimer->m_etimer == e_timer_after_text_change_delayed)
       {
 
          if (m_timeLastChange.elapsed() > m_timeDelayedAfterChange)
          {
 
-            kill_timer(ptimer->m_uTimer);
+            kill_timer(ptimer->m_etimer);
 
             bool bEnterKeyPressed = m_bEnterKeyPressed;
 
@@ -176,7 +177,7 @@ namespace userex
 
             m_timeLastChange.Now();
 
-            set_timer(5544, m_timeDelayedAfterChange / 5, nullptr);
+            set_timer(e_timer_after_text_change_delayed, m_timeDelayedAfterChange / 5, nullptr);
 
          }
 

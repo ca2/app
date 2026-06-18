@@ -1,7 +1,7 @@
 #include "framework.h"
 
 
-CLASS_DECL_AURA int framework_is_basis()
+CLASS_DECL_AURA ::i32 framework_is_basis()
 {
 #if CA2_PLATFORM_VERSION == CA2_BASIS
    return true;
@@ -11,7 +11,7 @@ CLASS_DECL_AURA int framework_is_basis()
 }
 
 
-CLASS_DECL_AURA int framework_is_stage()
+CLASS_DECL_AURA ::i32 framework_is_stage()
 {
 #if CA2_PLATFORM_VERSION == CA2_STAGE
    return true;
@@ -25,7 +25,7 @@ namespace version
 {
 
 
-   CLASS_DECL_AURA int compare(string str1, string str2)
+   CLASS_DECL_AURA ::i32 compare(string str1, string str2)
    {
 
 
@@ -42,14 +42,14 @@ namespace version
 
       stra2.add_smallest_tokens(str2, straSep);
 
-      int iCmp = 0;
+      ::i32 iCmp = 0;
 
-      for (int i = 0; i < maximum(stra1.get_size(), stra2.get_size()); i++)
+      for (::i32 i = 0; i < maximum(stra1.get_size(), stra2.get_size()); i++)
       {
 
-         int iVersion1 = 0;
+         ::i32 iVersion1 = 0;
 
-         int iVersion2 = 0;
+         ::i32 iVersion2 = 0;
 
          if(i < stra1.get_size())
          {

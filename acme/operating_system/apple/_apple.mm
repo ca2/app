@@ -106,7 +106,7 @@ void ns_main_post(dispatch_block_t block)
 }
 
 
-unsigned int m_sleep(unsigned int seconds)
+::u32 m_sleep(::u32 seconds)
 {
 
    [NSThread sleepForTimeInterval:seconds];
@@ -126,7 +126,7 @@ char * ns_get_executable_path()
 
 
 
-void _ns_do_tasks(double dSeconds)
+void _ns_do_tasks(::f64 dSeconds)
 {
    
    NSRunLoop * runLoop = [ NSRunLoop currentRunLoop ];
@@ -162,6 +162,44 @@ void ns_log_executable_path_and_its_loaded_dynamic_library_module_paths()
        }
    }
 
+}
+
+void ns_lets_check_localizable_path()
+{
+   NSString *path = [[NSBundle mainBundle] pathForResource:@"Localizable"
+                                                    ofType:@"strings"
+                                               inDirectory:@"en.lproj"];
+
+   NSLog(@"Localizable path = %@", path);
+
+}
+
+
+char * ns_localized_strdup(const char * pszId)
+{
+   
+   if(::is_null(pszId) || ::is_empty(pszId))
+   {
+      
+      return nullptr;
+      
+   }
+   
+   NSString * strId = [[NSString alloc] initWithUTF8String:pszId];
+   
+   NSString *nsString = NSLocalizedString(strId, nil);
+   
+   if(nsString == nil)
+   {
+      
+      return nullptr;
+      
+   }
+   
+   auto p = strdup([nsString UTF8String]);
+   
+   return p;
+   
 }
 
 

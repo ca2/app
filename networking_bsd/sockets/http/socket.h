@@ -15,7 +15,7 @@ namespace sockets
 
 
       string               m_strProxy;
-      int                  m_iProxyPort;
+      ::i32                  m_iProxyPort;
 
 
       ::http::request      m_request;
@@ -31,10 +31,10 @@ namespace sockets
       bool                 m_bResponse;
       memsize               m_body_size_left;
       memsize               m_body_size_downloaded;
-      double_scalar_source m_scalarsourceDownloadedRate;
-      int_scalar_source    m_scalarsourceDownloaded;
+      f64_scalar_source m_scalarsourceDownloadedRate;
+      i32_scalar_source    m_scalarsourceDownloaded;
       memsize               m_chunk_size;
-      int                  m_chunk_state;
+      ::i32                  m_chunk_state;
       string               m_chunk_line;
 
       class ::time              m_timeFirstTime;
@@ -57,7 +57,7 @@ namespace sockets
 
       virtual void OnEndChunk();
 
-      virtual void OnRawData(char *buf,memsize len) override;
+      virtual void OnRawData(char_pointer buf,memsize len) override;
       virtual void OnLine(const ::scoped_string & scopedstrLine) override;
 
       /** Callback executes when first line has been received.
@@ -96,16 +96,16 @@ namespace sockets
       /** Transfer coding 'chunked' */
       bool IsChunked() { return m_b_chunked; }
 
-      property & inattr(const_char_pointer lpszName);
+      property & inattr(const_char_pointer pszName);
       ::property_set & inattrs();
 
-      property & inheader(const_char_pointer lpszName);
+      property & inheader(const_char_pointer pszName);
       ::property_set & inheaders();
 
-      property & outattr(const_char_pointer lpszName);
+      property & outattr(const_char_pointer pszName);
       ::property_set & outattrs();
 
-      property & outheader(const_char_pointer lpszName);
+      property & outheader(const_char_pointer pszName);
       ::property_set & outheaders();
 
       ::http::request & request();
@@ -139,10 +139,10 @@ namespace sockets
    }
 
 
-   inline property & http_socket::inattr(const_char_pointer lpszName)
+   inline property & http_socket::inattr(const_char_pointer pszName)
    {
 
-      return m_request.attr(lpszName);
+      return m_request.attr(pszName);
 
    }
 
@@ -155,10 +155,10 @@ namespace sockets
    }
 
 
-   inline property & http_socket::outattr(const_char_pointer lpszName)
+   inline property & http_socket::outattr(const_char_pointer pszName)
    {
 
-      return m_response.attr(lpszName);
+      return m_response.attr(pszName);
 
    }
 
@@ -171,10 +171,10 @@ namespace sockets
    }
 
 
-   inline property & http_socket::inheader(const_char_pointer lpszName)
+   inline property & http_socket::inheader(const_char_pointer pszName)
    {
 
-      return m_request.header(lpszName);
+      return m_request.header(pszName);
 
    }
 
@@ -187,10 +187,10 @@ namespace sockets
    }
 
 
-   inline property & http_socket::outheader(const_char_pointer lpszName)
+   inline property & http_socket::outheader(const_char_pointer pszName)
    {
 
-      return m_response.header(lpszName);
+      return m_response.header(pszName);
 
    }
 

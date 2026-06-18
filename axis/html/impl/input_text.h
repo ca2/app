@@ -20,7 +20,7 @@ namespace html
       public:
 
 
-         int m_iFont;
+         ::i32 m_iFont;
          string m_strUnit;
          string m_strType;
          ::pointer<::user::plain_edit>m_pedit;

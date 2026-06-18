@@ -183,7 +183,7 @@ namespace fs
 
       //      auto & path = listing.add_child_get(pchild->attribute("name"));
 
-      //      path.m_iSize = pchild->attribute("int_size");
+      //      path.m_iSize = pchild->attribute("i32_size");
 
       //      path.m_iDir = 0;
 
@@ -195,7 +195,7 @@ namespace fs
    }
 
 
-   int remote_native::is_dir(const ::file::path & path)
+   ::i32 remote_native::is_dir(const ::file::path & path)
    {
 
       if(path.is_empty())
@@ -374,7 +374,7 @@ namespace fs
 
       if(!m_bInitialized)
       {
-         //http()->get("http://file.ca2.network/");
+         //http()->get("http://file.ca2.site/");
          m_bInitialized = true;
       }
 

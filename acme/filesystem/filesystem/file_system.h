@@ -38,7 +38,7 @@ public:
 
    virtual void init_system();
 
-   virtual int file_system_item_slot_index(const ::scoped_string& scopedstrSlotName);
+   virtual ::i32 file_system_item_slot_index(const ::scoped_string& scopedstrSlotName);
 
 
    virtual void ensure_exists(const ::file::path & path);
@@ -81,7 +81,7 @@ public:
 
    //virtual void put_contents(const ::file::path & path, const scoped_string & contents);
    virtual filesize get_size(const ::file::path & path);
-   virtual filesize get_size_fd(int iFile);
+   virtual filesize get_size_fd(::i32 iFile);
 
 
    virtual void clear_application_data();
@@ -98,24 +98,24 @@ public:
    
    virtual ::memory get_documents_cloud_data(const ::file::path & path);
 
-   //virtual FILE * FILE_open(const ::file::path & path, const scoped_string & attrs, int iShare);
-   //virtual int FILE_printf(FILE * fp, const scoped_string & s, ...);
-   //virtual int FILE_close(FILE * fp);
-   //virtual int FILE_eof(FILE * fp);
-   //virtual filesize FILE_seek(FILE * str, filesize offset, int origin);
+   //virtual FILE * FILE_open(const ::file::path & path, const scoped_string & attrs, ::i32 iShare);
+   //virtual ::i32 FILE_printf(FILE * fp, const scoped_string & s, ...);
+   //virtual ::i32 FILE_close(FILE * fp);
+   //virtual ::i32 FILE_eof(FILE * fp);
+   //virtual filesize FILE_seek(FILE * str, filesize offset, ::i32 origin);
    //virtual filesize FILE_tell(FILE * fp);
    //virtual filesize FILE_read(void * buffer, memsize size, memsize count, FILE * str);
    //virtual filesize FILE_write(const void * buffer, memsize size, memsize count, FILE * str);
-   //virtual char * FILE_gets(char * str, character_count n, FILE * s);
-   //virtual int FILE_getc(FILE * s);
-   //virtual int FILE_ungetc(int c, FILE * s);
-   //virtual int FILE_error(FILE * s);
-   //virtual int FILE_flush(FILE * s);
+   //virtual char_pointer FILE_gets(char_pointer str, character_count n, FILE * s);
+   //virtual ::i32 FILE_getc(FILE * s);
+   //virtual ::i32 FILE_ungetc(::i32 c, FILE * s);
+   //virtual ::i32 FILE_error(FILE * s);
+   //virtual ::i32 FILE_flush(FILE * s);
 
    //#ifdef WINDOWS
-   //virtual FILE *_wfopen_dup(const unichar *path, const unichar *attrs, int iShare);
-   //virtual int fwprintf_dup(FILE *fp, const unichar *s, ...);
-   //virtual unichar *fgetws_dup(unichar *str, int n, FILE *s);
+   //virtual FILE *_wfopen_dup(const wide_character * path, const wide_character * attrs, ::i32 iShare);
+   //virtual ::i32 fwprintf_dup(FILE *fp, const wide_character * s, ...);
+   //virtual wide_character * fgetws_dup(wide_character * str, ::i32 n, FILE *s);
    //virtual wint_t fgetwc_dup(FILE *s);
    //virtual wint_t ungetwc_dup(wint_t w, FILE *s);
    //#endif
@@ -127,7 +127,7 @@ public:
 
 
    virtual void set_size(const ::file::path & pathName, filesize iSize);
-   virtual void set_size(int iFileDescriptor, filesize iSize);
+   virtual void set_size(::i32 iFileDescriptor, filesize iSize);
 
 
    virtual void transfer(const ::file::path & pathNewName, const ::file::path & pathOldName);
@@ -225,12 +225,12 @@ public:
    //virtual string file_extension_dup(const ::file::path & path);
    virtual string get_temporary_file_name(const ::scoped_string & scopedstrName, const ::scoped_string & scopedstrExtension);
 
-   virtual void get_temporary_file_name_template(char * szRet, character_count iBufferSize, const scoped_string & scopedstrName, const ::scoped_string & scopedstrExtension, const ::scoped_string & scopedstrTemplate);
+   virtual void get_temporary_file_name_template(char_pointer szRet, character_count iBufferSize, const scoped_string & scopedstrName, const ::scoped_string & scopedstrExtension, const ::scoped_string & scopedstrTemplate);
 
    //virtual string file_path_final_extension(const ::file::path & path);
    //virtual string url_dir_name_for_relative(const ::file::path & path);
    //virtual string solve_relative(const ::scoped_string & scopedstr, bool * pbUrl = nullptr);
-   //virtual bool solve_relative_inline(string & str, bool & bUrl, bool & bOnlyNativeFileSep, character_count * iaSlash, int * piSlashCount); // returns true if original string had trailing slash
+   //virtual bool solve_relative_inline(string & str, bool & bUrl, bool & bOnlyNativeFileSep, character_count * iaSlash, ::i32 * piSlashCount); // returns true if original string had trailing slash
    //virtual string defer_solve_relative(const ::scoped_string & scopedstrRelative, const ::scoped_string & scopedstrCurrent);
    virtual void append(const ::scoped_string & scopedstrFile, const block & block);
    virtual void append_wait(const ::scoped_string & scopedstrFile, const block & block, const class time & timeWait = ::time::infinity());

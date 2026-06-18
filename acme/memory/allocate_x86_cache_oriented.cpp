@@ -9,7 +9,7 @@ class CLASS_DECL_ACME x86_oriented_memory_allocator
 {
 public:
 
-   void * alloc(int iSize)
+   void * alloc(::i32 iSize)
    {
 
       return ::acme::get()->m_pheapmanagement->memory(::heap::e_memory_main)->allocate(iSize, nullptr);
@@ -33,14 +33,14 @@ private:
 
 
    void * operator new(size_t);
-   void * operator new(size_t,const_char_pointer ,int);
+   void * operator new(size_t,const_char_pointer ,::i32);
 
    void operator delete(void * p)
    {
 
    }
 
-   void operator delete(void * p,const_char_pointer ,int)
+   void operator delete(void * p,const_char_pointer ,::i32)
    {
 
    }
@@ -51,14 +51,14 @@ public:
    void *      m_p;
    iptr     m_iMaxSize;
    iptr     m_iSize;
-   int         m_iCurPos;
-   unsigned char        m_ba[1];
+   ::i32         m_iCurPos;
+   ::u8        m_ba[1];
 
 
 
 
 
-   static int calc_cache_size()
+   static ::i32 calc_cache_size()
    {
 
       return 1024 * 1024;
@@ -69,21 +69,21 @@ public:
    static x86_cache_oriented_memory_pool * new_pool()
    {
 
-      int iSize = calc_cache_size();
+      ::i32 iSize = calc_cache_size();
 
       void * p = ::acme::get()->m_pheapmanagement->memory(::heap::e_memory_main)->allocate(iSize * 2, nullptr);
 
       // TODO : better dynamically memory align
 
-      unsigned char * pb;
+      ::u8 * pb;
 
       if(((iptr)p) % iSize == 0)
       {
-         pb = (unsigned char *)p;
+         pb = (::u8 *)p;
       }
       else
       {
-         pb = (unsigned char *)(((iptr)p) % iSize + (((iptr)p) / iSize) * iSize);
+         pb = (::u8 *)(((iptr)p) % iSize + (((iptr)p) / iSize) * iSize);
       }
 
       x86_cache_oriented_memory_pool * ppool = (x86_cache_oriented_memory_pool *) pb;
@@ -104,17 +104,17 @@ public:
 
    void * alloc(::collection::count c)
    {
-      unsigned char * pb;
+      ::u8 * pb;
 
       if(m_iCurPos + c < m_iSize)
       {
          pb =  &m_ba[m_iCurPos];
 
-         m_iCurPos += (int) c;
+         m_iCurPos += (::i32) c;
       }
       else
       {
-         pb = (unsigned char *) ::acme::get()->m_pheapmanagement->memory(::heap::e_memory_main)->allocate(c, nullptr);
+         pb = (::u8 *) ::acme::get()->m_pheapmanagement->memory(::heap::e_memory_main)->allocate(c, nullptr);
 
          // can use string because messed all with cache out hot hit !!/^`}{{ **!
          //::platform::application * papp = get_app();
@@ -126,7 +126,7 @@ public:
    }
    void free(void * p)
    {
-      if((p >= m_p && p < m_ba) || (p >= &m_ba[m_iCurPos] && p < ((unsigned char *)m_p) + m_iMaxSize))
+      if((p >= m_p && p < m_ba) || (p >= &m_ba[m_iCurPos] && p < ((::u8 *)m_p) + m_iMaxSize))
       {
          // freeing memory in palace garden (not supposed to allocated memory in these places as they would cause a cache fault)
          throw_exception(error_bad_argument);
@@ -165,7 +165,7 @@ CLASS_DECL_ACME x86_cache_oriented_memory_pool * x86_cache_oriented_get_thread_m
 }
 
 
-CLASS_DECL_ACME int_bool x86_cache_oriented_set_thread_memory_pool(int iPoolIndex)
+CLASS_DECL_ACME ::i32_bool x86_cache_oriented_set_thread_memory_pool(::i32 iPoolIndex)
 {
 
    if(iPoolIndex < 0)
@@ -202,7 +202,7 @@ CLASS_DECL_ACME int_bool x86_cache_oriented_set_thread_memory_pool(int iPoolInde
 CLASS_DECL_ACME void x86_cache_oriented_destroy_all_memory_pools()
 {
 
-   for(int iPoolIndex = 0; iPoolIndex < MAX_PROC_CACHE_ORIENTED_MEM_POOL; iPoolIndex++)
+   for(::i32 iPoolIndex = 0; iPoolIndex < MAX_PROC_CACHE_ORIENTED_MEM_POOL; iPoolIndex++)
    {
 
       if(s_processororientedmemorypoola[iPoolIndex] != nullptr)

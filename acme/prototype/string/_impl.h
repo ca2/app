@@ -19,8 +19,8 @@
 #include "hex.h"
 
 
-CLASS_DECL_ACME long long strtoi(const ::scoped_string & scopedstr);
-CLASS_DECL_ACME long long strtoi(const ::wide_character * psz);
+CLASS_DECL_ACME ::i64 strtoi(const ::scoped_string & scopedstr);
+CLASS_DECL_ACME ::i64 strtoi(const ::wide_character * psz);
 
 
 namespace file
@@ -50,7 +50,7 @@ namespace file
 //
 //
 //#ifdef WINDOWS
-//inline unsigned int _gen_GetConversionACP()
+//inline ::u32 _gen_GetConversionACP()
 //{
 //
 //   //return CP_UTF8;
@@ -156,7 +156,7 @@ template < prototype_string STRING, prototype_integral INTEGRAL >
 inline STRING& copy(STRING& string, const INTEGRAL& number)
 {
 
-	string.append_formatf("%lld", (long long)number);
+	string.append_formatf("%lld", (::i64)number);
 
 	return string;
 
@@ -176,7 +176,7 @@ template < prototype_natural NATURAL, prototype_string STRING >
 inline void copy(NATURAL& n, const STRING& string)
 {
 
-	n = (NATURAL)as_unsigned_long_long(string);
+	n = (NATURAL)as_u64(string);
 
 }
 
@@ -194,7 +194,7 @@ template < prototype_string STRING, prototype_floating FLOATING >
 inline STRING& copy(STRING& string, const FLOATING& number)
 {
 
-	string.formatf("%f", (double)number);
+	string.formatf("%f", (::f64)number);
 
 	return string;
 
@@ -235,7 +235,7 @@ inline string as_string(NUMBER number, const_char_pointer pszFormat)
 
 
 template < prototype_integral INTEGRAL >
-inline inline_number_string as_string(INTEGRAL i, int radix, enum_digit_case edigitcase)
+inline inline_number_string as_string(INTEGRAL i, ::i32 radix, enum_digit_case edigitcase)
 {
 
    inline_number_string numberstring;
@@ -248,7 +248,7 @@ inline inline_number_string as_string(INTEGRAL i, int radix, enum_digit_case edi
 
 
 // template < prototype_integral SIGNED >
-// inline inline_number_string as_string(SIGNED i, int radix, enum_digit_case edigitcase)
+// inline inline_number_string as_string(SIGNED i, ::i32 radix, enum_digit_case edigitcase)
 // {
 
 //   inline_number_string numberstring;
@@ -262,7 +262,7 @@ inline inline_number_string as_string(INTEGRAL i, int radix, enum_digit_case edi
 
 //   inline_number_string numberstring;
 
-//   __long_longtoansi(i, numberstring, iRadix, edigitcase, numberstring.m_iLength);
+//   __i64toansi(i, numberstring, iRadix, edigitcase, numberstring.m_iLength);
 
 //   return numberstring;
 
@@ -286,7 +286,7 @@ inline ::string as_string(FLOATING f, const_char_pointer pszFormat)
 template < >
 inline ::hash32 as_hash32 < scoped_ansi_string >(const scoped_ansi_string & scopedstr) {
 
-   return _scoped_string_unsigned_int_hash((const ::scoped_string_base<const_char_pointer >&) scopedstr);
+   return _scoped_string_u32_hash((const ::scoped_string_base<const_char_pointer >&) scopedstr);
 
 }
 
@@ -294,7 +294,7 @@ inline ::hash32 as_hash32 < scoped_ansi_string >(const scoped_ansi_string & scop
 template < >
 inline ::hash32 as_hash32 < scoped_wd16_string >(const scoped_wd16_string & scopedstr) {
 
-   return _scoped_string_unsigned_int_hash((const ::scoped_string_base<const ::wd16_character *> &) scopedstr);
+   return _scoped_string_u32_hash((const ::scoped_string_base<const ::wd16_character *> &) scopedstr);
 
 }
 
@@ -302,7 +302,7 @@ inline ::hash32 as_hash32 < scoped_wd16_string >(const scoped_wd16_string & scop
 template < >
 inline ::hash32 as_hash32 < scoped_wd32_string >(const scoped_wd32_string & scopedstr) {
 
-   return _scoped_string_unsigned_int_hash((const ::scoped_string_base<const ::wd32_character *> &) scopedstr);
+   return _scoped_string_u32_hash((const ::scoped_string_base<const ::wd32_character *> &) scopedstr);
 
 }
 
@@ -314,7 +314,7 @@ namespace file
 
 
    //template < prototype_character_range CHARACTER_RANGE >
-   // inline path::path(const CHARACTER_RANGE & range, enum_path epath, e_type etype, bool bNormalizePath, long long iSize) :
+   // inline path::path(const CHARACTER_RANGE & range, enum_path epath, e_type etype, bool bNormalizePath, ::i64 iSize) :
    //         path(::ansi_string(range), epath, etype, bNormalizePath, iSize)
    // {
 
@@ -573,7 +573,7 @@ bool string_range < ITERATOR_TYPE > ::defer_consume_quoted_value(string_base <IT
 
    }
 
-   char quoting_character = *this->m_begin;
+   ::i8 quoting_character = *this->m_begin;
 
    this->m_begin++;
 
@@ -875,7 +875,7 @@ void string_range < ITERATOR_TYPE >::consume(const ::scoped_string & scopedstr)
 //void string_range < ITERATOR_TYPE >::consume_spaces(::collection::count iMinimumCount)
 //{
 //
-//   int i = 0;
+//   ::i32 i = 0;
 //
 //   while (unicode_is_whitespace(this->m_begin))
 //   {
@@ -896,7 +896,7 @@ void string_range < ITERATOR_TYPE >::consume(const ::scoped_string & scopedstr)
 //}
 
 
-//unsigned long long str::consume_natural(unsigned long long uMax, unsigned long long uMin)
+//::u64 str::consume_natural(::u64 uMax, ::u64 uMin)
 //{
 //
 //   auto u = consume_natural(this->m_begin, uMax, uMin);
@@ -907,7 +907,7 @@ void string_range < ITERATOR_TYPE >::consume(const ::scoped_string & scopedstr)
 
 
 template < typename ITERATOR_TYPE >
-unsigned long long string_range < ITERATOR_TYPE >::consume_natural(unsigned long long uMax, unsigned long long uMin)
+::u64 string_range < ITERATOR_TYPE >::consume_natural(::u64 uMax, ::u64 uMin)
 {
 
    if (uMax < uMin)
@@ -919,9 +919,9 @@ unsigned long long string_range < ITERATOR_TYPE >::consume_natural(unsigned long
 
    auto pszStart = this->m_begin;
 
-   int i = 0;
+   ::i32 i = 0;
 
-   unsigned long long u;
+   ::u64 u;
 
    while (unicode_is_digit(this->m_begin))
    {
@@ -939,7 +939,7 @@ unsigned long long string_range < ITERATOR_TYPE >::consume_natural(unsigned long
 
    }
 
-   u = ::as_unsigned_int({ pszStart, this->m_begin - pszStart });
+   u = ::as_u32({ pszStart, this->m_begin - pszStart });
 
    if (u < uMin)
    {
@@ -963,7 +963,7 @@ unsigned long long string_range < ITERATOR_TYPE >::consume_natural(unsigned long
 //void string_base < ITERATOR_TYPE >::consume_spaces(::collection::count iMinimumCount)
 //{
 //
-//   int i = 0;
+//   ::i32 i = 0;
 //
 //   while (unicode_is_whitespace(this->m_begin))
 //   {
@@ -1037,9 +1037,9 @@ string_range < ITERATOR_TYPE > string_range < ITERATOR_TYPE >::consume_hex()
    while (this->is_empty())
    {
 
-      int len;
+      ::i32 len;
       
-      long long i = unicode_index_length(this->m_begin, len);
+      ::i64 i = unicode_index_length(this->m_begin, len);
 
       if ((i >= '0' && i <= '9') || (i >= 'a' && i <= 'f') || (i >= 'A' && i <= 'F'))
       {
@@ -1111,15 +1111,15 @@ string_range < ITERATOR_TYPE > string_range < ITERATOR_TYPE >::consume_nc_name()
 //      throw ::parsing_exception("Quote character is required here");
 //      return "";
 //   }
-//   char strUtf8Char = utf8char.m_sz[0];
+//   ::i8 strUtf8Char = utf8char.m_sz[0];
 //   if(strUtf8Char != '\"' && strUtf8Char != '\\')
 //   {
 //      throw ::parsing_exception("Quote character is required here");
 //      return "";
 //   }
-//   int iPos = utf8char.m_chLen;
+//   ::i32 iPos = utf8char.m_chLen;
 //   string str;
-//   int iPosStart = iPos;
+//   ::i32 iPosStart = iPos;
 //   while(true)
 //   {
 //      iPos += utf8char.parse(&psz[iPos]);
@@ -1141,7 +1141,7 @@ string_range < ITERATOR_TYPE > string_range < ITERATOR_TYPE >::consume_nc_name()
 
 
 //template < typename ITERATOR_TYPE >
-// void string_base < ITERATOR_TYPE >::no_escape_consume_quoted_value(char ** ppsz, character_count & iBufferSize)
+// void string_base < ITERATOR_TYPE >::no_escape_consume_quoted_value(char_pointer * ppsz, character_count & iBufferSize)
 //{
 //
 //   const_char_pointer pszStart = this->m_begin;
@@ -1155,7 +1155,7 @@ string_range < ITERATOR_TYPE > string_range < ITERATOR_TYPE >::consume_nc_name()
 //
 //   }
 //
-//   char quoting_character = *this->m_begin;
+//   ::i8 quoting_character = *this->m_begin;
 //
 //   this->m_begin++;
 //
@@ -1182,7 +1182,7 @@ string_range < ITERATOR_TYPE > string_range < ITERATOR_TYPE >::consume_nc_name()
 //   if (iNewBufferSize > iBufferSize)
 //   {
 //
-//      *ppsz = (char *)::system()->m_pheapmanagement->memory(::heap::e_memory_main)->allocate(iNewBufferSize + 1);
+//      *ppsz = (char_pointer )::system()->m_pheapmanagement->memory(::heap::e_memory_main)->allocate(iNewBufferSize + 1);
 //
 //   }
 //
@@ -1223,7 +1223,7 @@ void string_range < ITERATOR_TYPE >::no_escape_skip_quoted_value()
 
    }
 
-   char quoting_character = *this->m_begin;
+   ::i8 quoting_character = *this->m_begin;
 
    this->m_begin++;
 
@@ -1493,7 +1493,7 @@ template < bool bWriteOutput >
 void string_range < ITERATOR_TYPE >::_consume_quoted_value_ex(string_base<ITERATOR_TYPE>* pstrOut)
 {
 
-   char quoting_character = *this->m_begin;
+   ::i8 quoting_character = *this->m_begin;
 
    if (quoting_character != '\"' && quoting_character != '\'')
    {
@@ -1607,7 +1607,7 @@ void string_range < ITERATOR_TYPE >::_consume_quoted_value_ex(string_base<ITERAT
 
             this->m_begin++;
 
-            unsigned short u16a[2];
+            ::u16 u16a[2];
 
             u16a[0] = ::hex::parse_u16_exc(*this);
 
@@ -1761,7 +1761,7 @@ string_range < ITERATOR_TYPE > string_range < ITERATOR_TYPE >::xml_consume_comme
 // bro      2002-10-29
 //========================================================
 template < typename ITERATOR_TYPE >
-void string_range < ITERATOR_TYPE >::escape_skip_to_character(int ch, int escape)
+void string_range < ITERATOR_TYPE >::escape_skip_to_character(::i32 ch, ::i32 escape)
 {
 
   while (this->has_character() && *this->m_begin)
@@ -1797,7 +1797,7 @@ void string_range < ITERATOR_TYPE >::escape_skip_to_character(int ch, int escape
   // bro      2002-10-29
   //========================================================
 template < typename ITERATOR_TYPE >
-void string_range < ITERATOR_TYPE >::escape_skip_to_first_character_in(const_char_pointer chset, int escape)
+void string_range < ITERATOR_TYPE >::escape_skip_to_first_character_in(const_char_pointer chset, ::i32 escape)
 {
   
   const_char_pointer prev_escape = nullptr;
@@ -1840,7 +1840,7 @@ void string_range < ITERATOR_TYPE >::escape_skip_to_first_character_in(const_cha
 // bro      2002-10-29
 //========================================================
 template < typename ITERATOR_TYPE >
-void string_range < ITERATOR_TYPE >::escape_case_insensitive_skip_to(const ::scoped_string & scopedstr, int escape)
+void string_range < ITERATOR_TYPE >::escape_case_insensitive_skip_to(const ::scoped_string & scopedstr, ::i32 escape)
 {
   
   const_char_pointer prev_escape = nullptr;
@@ -1887,7 +1887,7 @@ void string_range < ITERATOR_TYPE >::escape_case_insensitive_skip_to(const ::sco
 // bro      2002-10-29
 //========================================================
 template < typename ITERATOR_TYPE >
-void mutable_string_range < ITERATOR_TYPE >::escape_copy(char escape, const ::const_ansi_range & rangeSource)
+void mutable_string_range < ITERATOR_TYPE >::escape_copy(::i8 escape, const ::const_ansi_range & rangeSource)
 {
 
    auto pTarget = this->m_begin;

@@ -169,7 +169,7 @@ namespace aura
 
       //m_puiLastLButtonDown             = nullptr;
 
-      m_pmapKeyPressed                 = nullptr;
+      //m_pmapKeyPressed                 = nullptr;
 
       m_puiMouseMoveCapture            = nullptr;
 
@@ -1321,8 +1321,10 @@ class ::fs::data * session::fs() { return m_pfsdata; }
    }
 
 
-   bool session::on_ui_mouse_message(::message::mouse_base * pmouse)
+   bool session::on_ui_mouse_message(::user::mouse* pmouse)
    {
+
+      ::aqua::session::on_ui_mouse_message(pmouse);
 
       auto puser = user();
 
@@ -1351,7 +1353,7 @@ class ::fs::data * session::fs() { return m_pfsdata; }
 
    //   }
 
-   //   long long iMessage = pmouse->m_emessage;
+   //   ::i64 iMessage = pmouse->m_emessage;
 
    //   if(iMessage == ::user::e_message_left_button_down
    //    //|| iMessage == ::user::e_message_left_button_up
@@ -1410,7 +1412,7 @@ class ::fs::data * session::fs() { return m_pfsdata; }
 
 
 
-//   void session::get_cursor_position(::int_point * ppoint)
+//   void session::get_cursor_position(::i32_point * ppoint)
 //   {
 //
 //#if defined(WINDOWS_DESKTOP)
@@ -1418,7 +1420,7 @@ class ::fs::data * session::fs() { return m_pfsdata; }
 //      if (m_bSystemSynchronizedCursor)
 //      {
 //
-//         ::int_point int_point;
+//         ::i32_point i32_point;
 //
 //         ::get_cursor_position(&point);
 //
@@ -1505,7 +1507,7 @@ return m_psavings;
 
 
 
-   //index session::get_main_workspace(::int_rectangle * prectangle)
+   //index session::get_main_workspace(::i32_rectangle * prectangle)
    //{
 
    //   if (m_bSystemSynchronizedScreen)
@@ -1580,7 +1582,7 @@ return m_psavings;
    }
 
 
-//   bool session::is_key_pressed(::user::enum_key ekey)
+//   bool session::is_key_pressed(const ::user::e_key & ekey)
 //   {
 //
 //      synchronous_lock synchronouslock(this->synchronization(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
@@ -1655,7 +1657,7 @@ return m_psavings;
 //   }
 //
 //
-//   void session::set_key_pressed(::user::enum_key ekey, bool bPressed)
+//   void session::set_key_pressed(const ::user::e_key & ekey, bool bPressed)
 //   {
 //
 //      synchronous_lock synchronouslock(this->synchronization(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
@@ -1819,7 +1821,7 @@ return m_psavings;
    }
 
 
-::particle * session::defer_initialize_host_window(const ::int_rectangle * lpcrect)
+::particle * session::defer_initialize_host_window(const ::i32_rectangle * lpcrect)
    {
 
    ::particle * pparticleAcmeWindowBridge = system()->windowing()->defer_initialize_host_window(lpcrect);
@@ -1866,7 +1868,7 @@ return m_psavings;
 //
 //      }
 //
-//      int_rectangle rectangleScreen(lpcrect);
+//      i32_rectangle rectangleScreen(lpcrect);
 //
 ////      if(::is_null(lprect))
 ////      {
@@ -2055,7 +2057,7 @@ return m_psavings;
 
          }
 
-         m_puser.defer_destroy();
+         m_puser.defer_destroy_and_release();
 
       }
 
@@ -2074,7 +2076,7 @@ return m_psavings;
    }
 
 
-   unsigned int session::get_Long_PhRESSing_time()
+   ::u32 session::get_Long_PhRESSing_time()
    {
 
       return m_dwLongPhRESSingTime;
@@ -2345,35 +2347,35 @@ namespace aura
    }
 
 
-   bool session::is_mouse_button_pressed(::user::enum_mouse emouse)
-   {
+   //bool session::is_mouse_button_pressed(const ::user::keyboard_state & keyboardstate)
+   //{
 
-      if (emouse == ::user::e_mouse_left_button)
-      {
+   //   if (keyboardstate == ::user::e_key_state_left_button)
+   //   {
 
-         return is_key_pressed(::user::e_key_left_button);
+   //      return is_key_pressed(::user::e_key_left_button);
 
-      }
-      else if (emouse == ::user::e_mouse_right_button)
-      {
+   //   }
+   //   else if (keyboardstate == ::user::e_key_state_right_button)
+   //   {
 
-         return is_key_pressed(::user::e_key_right_button);
+   //      return is_key_pressed(::user::e_key_right_button);
 
-      }
-      else if (emouse == ::user::e_mouse_middle_button)
-      {
+   //   }
+   //   else if (keyboardstate == ::user::e_key_state_middle_button)
+   //   {
 
-         return is_key_pressed(::user::e_key_middle_button);
+   //      return is_key_pressed(::user::e_key_middle_button);
 
-      }
-      else
-      {
+   //   }
+   //   else
+   //   {
 
-         throw unexpected_situation(error_failed, "not expected enum_mouse value");
+   //      throw unexpected_situation(error_failed, "not expected enum_mouse value");
 
-      }
+   //   }
 
-   }
+   //}
 
 
    bool session::open_file(::filemanager::data* pdata, ::file::item_array& itema)

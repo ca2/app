@@ -22,7 +22,7 @@ namespace image
    }
 
 
-   buffer * buffer::lock(int stride, enum_copy_disposition ecopydisposition, ::pixmap* ppixmapLock)
+   buffer * buffer::lock(::i32 stride, enum_copy_disposition ecopydisposition, ::pixmap* ppixmapLock)
    {
 
       m_ppixmapLock = ppixmapLock;

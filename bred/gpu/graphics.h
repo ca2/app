@@ -48,15 +48,29 @@ namespace gpu
       void initialize(::particle* pparticle) override;
       bool _is_ok() const override;
       
-      void on_begin_draw() override;
-      void on_end_draw() override;
+      
+      void start_frame() override;
+      void end_frame() override;
+
+
+      //void start_layer(::e_graphics egraphics) override;
+      //void end_layer(::e_graphics egraphics) override;
+      void start_layer(bool bFirstLayer = false) override;
+      void end_layer(bool bClosingLayer = false) override;
+      // void on_begin_layout1() override;
+      //void on_end_layout1() override;
+      //void on_begin_draw1() override;
+      //void on_end_draw1() override;
       virtual void on_new_frame();
       void gpu_layer_on_before_end_render() override;
+
+      void on_end_draw(::acme::windowing::window *pacmewindowingwindow) override;
+
 
       void on_set_gpu_context() override;
 
 
-      void on_gpu_context_placement_change(const ::int_rectangle &rectanglePlacement,
+      void on_gpu_context_placement_change(const ::i32_rectangle &rectanglePlacement,
                                            ::acme::windowing::window *pacmewindowingwindow) override;
 
       virtual ::pool <::gpu::model_buffer >& model_buffer_pool(::draw2d::enum_model epool);
@@ -124,10 +138,10 @@ namespace gpu
       // }
 
 
-      //virtual void context_transform(::double_point & p, enum_transform_context etransformcontext);
+      //virtual void context_transform(::f64_point & p, enum_transform_context etransformcontext);
 
     
-      ::double_size total_size() override;
+      ::f64_size total_size() override;
 
       virtual ::gpu::shader* rectangle_shader();
 
@@ -135,9 +149,11 @@ namespace gpu
 
       void _set(const ::geometry2d::matrix& matrix) override;
 
-      void send_on_context(::draw2d::graphics_context * pgraphicscontext, const ::procedure& procedure) override;
+      //void send_on_context(::draw2d::graphics_context * pgraphicscontext, const ::procedure& procedure) override;
 
       //void send_on_context(::draw2d::graphics_context * pgraphicscontext, const ::procedure& procedure) override;
+
+      void send(const ::procedure &procedure) override;
 
       //template < typename TYPE >
       //void push_on_end_top_frame(::pointer_array < TYPE >& a, const ::pointer < TYPE > & p)
@@ -158,37 +174,37 @@ namespace gpu
 
       //}
  
-      ///void create_offscreen_graphics_for_swap_chain_blitting(::user::interaction* puserinteraction, const ::int_size& size = {}) override;
-      void create_for_window_draw2d(::user::interaction * puserinteraction, const ::int_size& size) override;
+      ///void create_offscreen_graphics_for_swap_chain_blitting(::user::interaction* puserinteraction, const ::i32_size& size = {}) override;
+      void create_for_window_draw2d(::user::interaction * puserinteraction, const ::i32_size& size) override;
       virtual void defer_create_swap_chain(::user::interaction* puserinteraction);
 
 
       virtual void bind_draw2d_compositor(::gpu::layer * player);
-      virtual void defer_soft_unbind_draw2d_compositor(::gpu::layer* player);
+      virtual void defer_soft_unbind_draw2d_compositor(::gpu::layer * pgpulayer);
 
 
-      void draw_rectangle(const ::double_rectangle &rectangle, ::draw2d::pen *ppen) override;
+      void draw_rectangle(const ::f64_rectangle &rectangle, ::draw2d::pen *ppen) override;
 
-      virtual void _fill_quad(const ::double_point points[4], const ::color::color& color);
+      virtual void _fill_quad(const ::f64_point points[4], const ::color::color& color);
 
-      void fill_rectangle(const ::double_rectangle& rectangle, const ::color::color& color) override;
+      void fill_rectangle(const ::f64_rectangle& rectangle, const ::color::color& color) override;
 
       using ::draw2d::graphics::line;
-      void line(double x1, double y1, double x2, double y2, ::draw2d::pen* ppen) override;
+      void line(::f64 x1, ::f64 y1, ::f64 x2, ::f64 y2, ::draw2d::pen* ppen) override;
 
       //using ::draw2d::graphics::get_text_extent;
-      double_size _get_text_extent(const ::scoped_string& scopedstr) override;
+      ::f64_size _get_text_extent(const ::scoped_string& scopedstr) override;
 
 
       using ::draw2d::graphics::get_text_metrics;
       void get_text_metrics(::write_text::text_metric* pmetrics) override;
 
 
-      void text_out(double x, double yParam, const ::scoped_string& scopedstr) override;
+      void text_out(::f64 x, ::f64 yParam, const ::scoped_string& scopedstr) override;
 
 
       virtual ::typeface::face* get_face(::write_text::font* pfont);
-      void defer_set_size(const ::int_size &size) override;
+      void defer_set_size(const ::i32_size &size) override;
 
    };
 

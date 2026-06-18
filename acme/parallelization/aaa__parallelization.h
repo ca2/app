@@ -83,7 +83,7 @@
 //            if (pparticle && pparticle->is_thread())
 //            {
 //
-//               if (pparticle->task_get_run())
+//               if (pparticle->should_run())
 //               {
 //
 //                  if (pparticle->get_tag().compare(scopedstrTag) == 0)
@@ -181,7 +181,7 @@ class synchronous_lock;
 ////#include "synch_index_iterator.h"
 //
 //
-//CLASS_DECL_ACME ::pointer<mutex>open_mutex(::matter * pmatter, const char * lpszName);
+//CLASS_DECL_ACME ::pointer<mutex>open_mutex(::matter * pmatter, const_char_pointer pszName);
 //
 //
 //#ifdef ___ENABLE_INLINES
@@ -247,7 +247,7 @@ class synchronous_lock;
 //CLASS_DECL_ACME void set_get_thread_name(LPFN_GET_THREAD_NAME);
 //string get_task_name(::thread* pthread);
 //
-//CLASS_DECL_ACME void thread_name_abbreviate(string & strName, int len);
+//CLASS_DECL_ACME void thread_name_abbreviate(string & strName, ::i32 len);
 //
 //
 //CLASS_DECL_ACME::pointer < ::mutex >& message_dispatch_mutex();
@@ -261,7 +261,7 @@ class synchronous_lock;
 //   return psync->wait(duration);
 //}
 //
-//void wait(int numberOfItems, synchronization* psync, const duration& duration = duration::infinite(), bool waitForAll = false);
+//void wait(::i32 numberOfItems, synchronization* psync, const duration& duration = duration::infinite(), bool waitForAll = false);
 //
 //#else
 //

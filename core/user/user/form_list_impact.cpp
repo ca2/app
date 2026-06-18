@@ -243,12 +243,12 @@ namespace user
    }
 
 
-   void form_list_impact::on_timer(::timer * ptimer)
+   void form_list_impact::operator()(::timer * ptimer)
    {
 
-      ::user::list_impact::on_timer(ptimer);
+      ::user::list_impact::operator()(ptimer);
 
-      ::user::form_impact::on_timer(ptimer);
+      ::user::form_impact::operator()(ptimer);
 
    }
 
@@ -261,14 +261,14 @@ namespace user
    }
 
 
-   //void form_list_impact::set_context_offset(::draw2d::graphics_pointer & pgraphics, int x, int y)
+   //void form_list_impact::set_context_offset(::draw2d::graphics_pointer & pgraphics, ::i32 x, ::i32 y)
    //{
 
    //   ::user::list_impact::set_context_offset(pgraphics, x, y);
 
    //}
 
-   void form_list_impact::set_context_offset(const ::double_point & point, ::user::enum_layout elayout)
+   void form_list_impact::set_context_offset(const ::f64_point & point, ::user::enum_layout elayout)
    {
 
       ::user::list_impact::set_context_offset(point, elayout);
@@ -276,7 +276,7 @@ namespace user
    }
 
 
-   ::double_point form_list_impact::get_context_offset(::user::enum_layout elayout)
+   ::f64_point form_list_impact::get_context_offset(::user::enum_layout elayout)
    {
 
       return ::user::list_impact::get_context_offset(elayout);
@@ -284,7 +284,7 @@ namespace user
    }
 
 
-   ::double_size form_list_impact::get_total_size(::user::enum_layout elayout)
+   ::f64_size form_list_impact::get_total_size(::user::enum_layout elayout)
    {
 
       return ::user::list_impact::get_total_size(elayout);

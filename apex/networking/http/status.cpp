@@ -24,7 +24,7 @@ namespace http
 //   }
 
 
-//   bool status_succeeded(long long i)
+//   bool status_succeeded(::i64 i)
 //   {
 //
 //      return succeeded((void    ) i);
@@ -40,7 +40,7 @@ namespace http
 //   }
 
 //
-//   bool status_failed(long long i)
+//   bool status_failed(::i64 i)
 //   {
 //
 //      return !status_succeeded(i);
@@ -50,7 +50,7 @@ namespace http
    CLASS_DECL_APEX string conn_status(::property_set & set)
    {
 
-      ::e_status      estatus = (::e_status)set["get_status"].as_int();
+      ::e_status      estatus = (::e_status)set["get_status"].as_i32();
 
       string str;
 

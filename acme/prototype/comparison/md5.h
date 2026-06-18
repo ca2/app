@@ -73,17 +73,17 @@
 //		{
 //			size_t            lo;
 //			size_t            hi;
-//			unsigned int             a;
-//			unsigned int             b;
-//			unsigned int             c;
-//			unsigned int             d;
+//			::u32             a;
+//			::u32             b;
+//			::u32             c;
+//			::u32             d;
 //			uchar             buffer[64];
-//			unsigned int             block[16];
+//			::u32             block[16];
 //		} action_context;
 //
 //
 //		action_context     m_ctx;
-//		uchar       m_uchaDigest[16];
+//		uchar       m_u8aDigest[16];
 //
 //
 //		md5();
@@ -92,10 +92,10 @@
 //		void	            initialize();
 //		void	            update(const void * pdata, size_t nInputLen);
 //		void	            destroy();
-//		const unsigned char *   
+//		const ::u8 *   
 //                        digest();
 //		string			   to_string();
-//		const void *		body(const void *data, unsigned int int_size);
+//		const void *		body(const void *data, ::u32 i32_size);
 //      void              get(memory & mem);
 //
 //

@@ -44,18 +44,18 @@ namespace graphics3d
 	public:
 
 
-		::function < void(void*, int, int, int)> m_callbackOffscreen;
+		::function < void(void*, ::i32, ::i32, ::i32)> m_callbackOffscreen;
 
-		double   m_dCursorX;
-		double   m_dCursorY;
+		::f64   m_dCursorX;
+		::f64   m_dCursorY;
 		bool		m_bFirstMouse;
 		bool		m_bLastMouse;
 
 
 		bool		m_bShouldClose;
-		int		m_iWidth;
-		int		m_iHeight;
-		bool		m_bFrameBufferResized;
+		::i32		m_iWidth;
+		::i32		m_iHeight;
+		bool		m_bFramebufferResized;
 
 		
 		container();
@@ -65,11 +65,11 @@ namespace graphics3d
 		virtual bool is_absolute_mouse_position();
 
 		virtual bool shouldClose();
-		virtual ::int_size size();
+		virtual ::i32_size size();
 		virtual bool wasWindowResized();
 		virtual void resetWindowResizedFlag();
 
-		virtual ::user::enum_key_state get_key_state(::user::e_key ekey);
+		virtual ::user::enum_key_state get_key_state(const ::user::e_key & ekey);
 
 		virtual void initWindow();
 

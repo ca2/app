@@ -2,7 +2,7 @@
 #pragma once
 
 
-//int main(int argc, platform_char** argv, platform_char** envp)
+//::i32 main(::i32 argc, platform_char ** argv, platform_char ** envp)
 //{
 //
 //   string strAppId;
@@ -29,7 +29,7 @@
 //   if (!estatus)
 //   {
 //
-//      int iErrorStatus = estatus.error_status();
+//      ::i32 iErrorStatus = estatus.error_status();
 //
 //      return iErrorStatus;
 //
@@ -40,7 +40,7 @@
 //   if (!estatus)
 //   {
 //
-//      int iErrorStatus = estatus.error_status();
+//      ::i32 iErrorStatus = estatus.error_status();
 //
 //      return iErrorStatus;
 //
@@ -50,7 +50,7 @@
 //
 //   auto estatusEnd = psystem->end();
 //
-//   int iErrorStatus = estatus.error_status();
+//   ::i32 iErrorStatus = estatus.error_status();
 //
 //   return iErrorStatus;
 //

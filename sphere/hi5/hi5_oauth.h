@@ -5,7 +5,7 @@ namespace hi5
 {
 
 
-   CLASS_DECL_SPHERE string char2hex( char dec );
+   CLASS_DECL_SPHERE string char2hex( ::i8 dec );
    CLASS_DECL_SPHERE string urlencode( const string &ca );
 
 

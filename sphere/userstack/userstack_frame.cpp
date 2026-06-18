@@ -93,14 +93,14 @@ namespace userstack
 
 
 
-   void frame::on_timer(::timer * ptimer)
+   void frame::operator()(::timer * ptimer)
    {
 
-      simple_frame_window::on_timer(ptimer);;
+      simple_frame_window::operator()(ptimer);;
 
-      auto uEvent = ptimer->m_uTimer;
+      auto uEvent = ptimer->m_etimer;
 
-      static float theta;
+      static ::f32 theta;
 
       if(uEvent == 3)
       {
@@ -121,7 +121,7 @@ namespace userstack
       }
       else if(uEvent == 4033)
       {
-         ::int_point point;
+         ::i32_point point;
          if(m_bHoverMouse && ::get_tick() > m_timeLastHover + 300)
          {
             OnHoverAction();
@@ -145,7 +145,7 @@ namespace userstack
 
    void frame::ShowControlBars(bool bShow)
    {
-      unsigned int nShow;
+      ::u32 nShow;
       if(bShow)
       {
          nShow = e_display_normal;
@@ -169,7 +169,7 @@ namespace userstack
             && m_pdocument->m_pplatformdocument->get_platform_frame() != nullptr)
             {
                auto rectangleX = this->rectangle();
-               ::int_point point = pmouse->m_point;
+               ::i32_point point = pmouse->m_point;
                screen_to_client()(point);
                if(rectangleX.contains(point))
                {
@@ -239,7 +239,7 @@ namespace userstack
       else if(pusermessage->id() == WM_COPYDATA)
       {
 #ifdef WINDOWS_DESKTOP
-         int iEdge = 0;
+         ::i32 iEdge = 0;
          COPYDATASTRUCT * pstruct = (COPYDATASTRUCT *) pusermessage->m_lparam.m_lparam;
          if(pstruct->dwData == 2000)
          {
@@ -276,9 +276,9 @@ namespace userstack
          else if(pusermessage->m_lparam == 5)
          {
 #ifdef WINDOWS_DESKTOP
-            ::int_rectangle rectangle;
+            ::i32_rectangle rectangle;
             ::GetWindowRect(::get_desktop_window(), rectangle);
-            ::int_point point = rectangle.center();
+            ::i32_point point = rectangle.center();
             if(!is_window_visible()
                   || ::WindowFromPoint(point) != get_safe_handle())
             {
@@ -314,7 +314,7 @@ namespace userstack
       {
          string str = psystem->get_local_mutex_id();
          str.case_insensitive_begins_eat("bergedge");
-         int iEdge = atoi(str);
+         ::i32 iEdge = atoi(str);
          if(iEdge == 0)
             iEdge = 77;
          else

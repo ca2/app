@@ -23,7 +23,7 @@
 #include "resource.h"
 
 #include "wf_client.h"
-#include "wf_floatbar.h"
+#include "wf_f32bar.h"
 #include "wf_gdi.h"
 
 typedef struct _Button Button;
@@ -40,7 +40,7 @@ typedef struct _Button Button;
 #define BUTTON_CLOSE        3
 #define BTN_MAX             4
 
-/* bmp int_size */
+/* bmp i32_size */
 #define BACKGROUND_W        581
 #define BACKGROUND_H        29
 #define LOCK_X              13
@@ -53,10 +53,10 @@ typedef struct _Button Button;
 #define BUTTON_HEIGHT       24
 
 struct _Button {
-	FloatBar* floatbar;
-	int type;
-	int x, y, h, w;
-	int active;
+	FloatBar* f32bar;
+	::i32 type;
+	::i32 x, y, h, w;
+	::i32 active;
 	HBITMAP bmp;
 	HBITMAP bmp_act;
 
@@ -70,9 +70,9 @@ struct _Button {
 struct _FloatBar {
 	HWND parent;
 	HWND hwnd;
-	::int_rectangle int_rectangle;
-	int width;
-	int height;
+	::i32_rectangle i32_rectangle;
+	::i32 width;
+	::i32 height;
 	wfContext* wfc;
 	Button* buttons[BTN_MAX];
 	BOOL shown;
@@ -81,14 +81,14 @@ struct _FloatBar {
 	HBITMAP background;
 };
 
-static int button_hit(Button* button)
+static ::i32 button_hit(Button* button)
 {
-	FloatBar* floatbar = button->floatbar;
+	FloatBar* f32bar = button->f32bar;
 
 	switch (button->type)
 	{
 		case BUTTON_LOCKPIN:
-			if (!floatbar->locked)
+			if (!f32bar->locked)
 			{
 				button->bmp = button->locked_bmp;
 				button->bmp_act = button->locked_bmp_act;
@@ -99,21 +99,21 @@ static int button_hit(Button* button)
 				button->bmp_act = button->unlocked_bmp_act;
 			}
 
-			floatbar->locked = ~floatbar->locked;
-			InvalidateRect(button->floatbar->hwnd, nullptr, false);
-			UpdateWindow(button->floatbar->hwnd);
+			f32bar->locked = ~f32bar->locked;
+			InvalidateRect(button->f32bar->hwnd, nullptr, false);
+			UpdateWindow(button->f32bar->hwnd);
 			break;
 
 		case BUTTON_MINIMIZE:
-			ShowWindow(floatbar->parent, SW_MINIMIZE);
+			ShowWindow(f32bar->parent, SW_MINIMIZE);
 			break;
 
 		case BUTTON_RESTORE:
-			wf_toggle_fullscreen(floatbar->wfc);
+			wf_toggle_fullscreen(f32bar->wfc);
 			break;
 
 		case BUTTON_CLOSE:
-			SendMessage(floatbar->parent, ::user::e_message_destroy, 0 , 0);
+			SendMessage(f32bar->parent, ::user::e_message_destroy, 0 , 0);
 			break;
 
 		default:
@@ -123,17 +123,17 @@ static int button_hit(Button* button)
 	return 0;
 }
 
-static int button_paint(Button* button, HDC hdc)
+static ::i32 button_paint(Button* button, HDC hdc)
 {
-	FloatBar* floatbar = button->floatbar;
+	FloatBar* f32bar = button->f32bar;
 
-	SelectObject(floatbar->hdcmem, button->active ? button->bmp_act : button->bmp);
-	StretchBlt(hdc, button->x, button->y, button->w, button->h, floatbar->hdcmem, 0, 0, button->w, button->h);
+	SelectObject(f32bar->hdcmem, button->active ? button->bmp_act : button->bmp);
+	StretchBlt(hdc, button->x, button->y, button->w, button->h, f32bar->hdcmem, 0, 0, button->w, button->h);
 
 	return 0;
 }
 
-static Button* floatbar_create_button(FloatBar* floatbar, int type, int resid, int resid_act, int x, int y, int h, int w)
+static Button* f32bar_create_button(FloatBar* f32bar, ::i32 type, ::i32 resid, ::i32 resid_act, ::i32 x, ::i32 y, ::i32 h, ::i32 w)
 {
 	Button *button;
 
@@ -142,7 +142,7 @@ static Button* floatbar_create_button(FloatBar* floatbar, int type, int resid, i
 	if (!button)
 		return nullptr;
 
-	button->floatbar = floatbar;
+	button->f32bar = f32bar;
 	button->type = type;
 	button->x = x;
 	button->y = y;
@@ -150,95 +150,95 @@ static Button* floatbar_create_button(FloatBar* floatbar, int type, int resid, i
 	button->h = h;
 	button->active = false;
 
-	button->bmp = (HBITMAP)LoadImage(floatbar->wfc->hInstance, MAKEINTRESOURCE(resid), IMAGE_BITMAP, w, h, LR_DEFAULTCOLOR);
-	button->bmp_act = (HBITMAP)LoadImage(floatbar->wfc->hInstance, MAKEINTRESOURCE(resid_act), IMAGE_BITMAP, w, h, LR_DEFAULTCOLOR);
+	button->bmp = (HBITMAP)LoadImage(f32bar->wfc->hInstance, MAKEINTRESOURCE(resid), IMAGE_BITMAP, w, h, LR_DEFAULTCOLOR);
+	button->bmp_act = (HBITMAP)LoadImage(f32bar->wfc->hInstance, MAKEINTRESOURCE(resid_act), IMAGE_BITMAP, w, h, LR_DEFAULTCOLOR);
 
 	return button;
 }
 
-static Button* floatbar_create_lock_button(FloatBar* floatbar,
-									int unlock_resid, int unlock_resid_act,
-									int lock_resid, int lock_resid_act,
-									int x, int y, int h, int w)
+static Button* f32bar_create_lock_button(FloatBar* f32bar,
+									::i32 unlock_resid, ::i32 unlock_resid_act,
+									::i32 lock_resid, ::i32 lock_resid_act,
+									::i32 x, ::i32 y, ::i32 h, ::i32 w)
 {
 	Button* button;
 
-	button = floatbar_create_button(floatbar, BUTTON_LOCKPIN, unlock_resid, unlock_resid_act, x, y, h, w);
+	button = f32bar_create_button(f32bar, BUTTON_LOCKPIN, unlock_resid, unlock_resid_act, x, y, h, w);
 
 	if (!button)
 		return nullptr;
 
 	button->unlocked_bmp = button->bmp;
 	button->unlocked_bmp_act = button->bmp_act;
-	button->locked_bmp = (HBITMAP)LoadImage(floatbar->wfc->hInstance, MAKEINTRESOURCE(lock_resid), IMAGE_BITMAP, w, h, LR_DEFAULTCOLOR);
-	button->locked_bmp_act = (HBITMAP)LoadImage(floatbar->wfc->hInstance, MAKEINTRESOURCE(lock_resid_act), IMAGE_BITMAP, w, h, LR_DEFAULTCOLOR);
+	button->locked_bmp = (HBITMAP)LoadImage(f32bar->wfc->hInstance, MAKEINTRESOURCE(lock_resid), IMAGE_BITMAP, w, h, LR_DEFAULTCOLOR);
+	button->locked_bmp_act = (HBITMAP)LoadImage(f32bar->wfc->hInstance, MAKEINTRESOURCE(lock_resid_act), IMAGE_BITMAP, w, h, LR_DEFAULTCOLOR);
 
 	return button;
 }
 
-static Button* floatbar_get_button(FloatBar* floatbar, int x, int y)
+static Button* f32bar_get_button(FloatBar* f32bar, ::i32 x, ::i32 y)
 {
-	int i;
+	::i32 i;
 
 	if (y > BUTTON_Y && y < BUTTON_Y + BUTTON_HEIGHT)
 		for (i = 0; i < BTN_MAX; i++)
-			if (x > floatbar->buttons[i]->x && x < floatbar->buttons[i]->x + floatbar->buttons[i]->w)
-				return floatbar->buttons[i];
+			if (x > f32bar->buttons[i]->x && x < f32bar->buttons[i]->x + f32bar->buttons[i]->w)
+				return f32bar->buttons[i];
 
 	return nullptr;
 }
 
-static int floatbar_paint(FloatBar* floatbar, HDC hdc)
+static ::i32 f32bar_paint(FloatBar* f32bar, HDC hdc)
 {
-	int i;
+	::i32 i;
 
 	/* paint background */
-	SelectObject(floatbar->hdcmem, floatbar->background);
-	StretchBlt(hdc, 0, 0, BACKGROUND_W, BACKGROUND_H, floatbar->hdcmem, 0, 0, BACKGROUND_W, BACKGROUND_H);
+	SelectObject(f32bar->hdcmem, f32bar->background);
+	StretchBlt(hdc, 0, 0, BACKGROUND_W, BACKGROUND_H, f32bar->hdcmem, 0, 0, BACKGROUND_W, BACKGROUND_H);
 
 	/* paint buttons */
 	for (i = 0; i < BTN_MAX; i++)
-		button_paint(floatbar->buttons[i], hdc);
+		button_paint(f32bar->buttons[i], hdc);
 
 	return 0;
 }
 
-static int floatbar_animation(FloatBar* floatbar, BOOL show)
+static ::i32 f32bar_animation(FloatBar* f32bar, BOOL show)
 {
-	set_timer(floatbar->hwnd, show ? TIMER_ANIMAT_SHOW : TIMER_ANIMAT_HIDE, 10, nullptr);
-	floatbar->shown = show;
+	set_timer(f32bar->hwnd, show ? TIMER_ANIMAT_SHOW : TIMER_ANIMAT_HIDE, 10, nullptr);
+	f32bar->shown = show;
 	return 0;
 }
 
-LRESULT CALLBACK floatbar_proc(HWND hWnd, unsigned int Msg, WPARAM wParam, LPARAM lParam)
+LRESULT CALLBACK f32bar_proc(HWND hWnd, ::u32 Msg, WPARAM wParam, LPARAM lParam)
 {
-	static int dragging = false;
-	static int lbtn_dwn = false;
-	static int btn_dwn_x = 0;
-	static FloatBar* floatbar;
+	static ::i32 dragging = false;
+	static ::i32 lbtn_dwn = false;
+	static ::i32 btn_dwn_x = 0;
+	static FloatBar* f32bar;
 	static TRACKMOUSEEVENT tme;
 
 	PAINTSTRUCT ps;
 	Button* button;
 	HDC hdc;
-	int pos_x;
-	int pos_y;
+	::i32 pos_x;
+	::i32 pos_y;
 
-	int xScreen = GetSystemMetrics(SM_CXSCREEN);
+	::i32 xScreen = GetSystemMetrics(SM_CXSCREEN);
 
 	switch(Msg)
 	{
 		case ::user::e_message_create:
-			floatbar = (FloatBar *)((CREATESTRUCT *)lParam)->lpCreateParams;
-			floatbar->hwnd = hWnd;
-			floatbar->parent = get_parent(hWnd);
+			f32bar = (FloatBar *)((CREATESTRUCT *)lParam)->lpCreateParams;
+			f32bar->hwnd = hWnd;
+			f32bar->parent = get_parent(hWnd);
 
-			window_rectangle(floatbar->hwnd, &floatbar->rectangle);
-			floatbar->width = floatbar->rectangle.right - floatbar->rectangle.left;
-			floatbar->height = floatbar->rectangle.bottom - floatbar->rectangle.top;
+			window_rectangle(f32bar->hwnd, &f32bar->rectangle);
+			f32bar->width = f32bar->rectangle.right - f32bar->rectangle.left;
+			f32bar->height = f32bar->rectangle.bottom - f32bar->rectangle.top;
 
 			hdc = GetDC(hWnd);
-			floatbar->hdcmem = create_compatible_graphics(hdc);
+			f32bar->hdcmem = create_compatible_graphics(hdc);
 			ReleaseDC(hWnd, hdc);
 
 			tme.cbSize = sizeof(TRACKMOUSEEVENT);
@@ -251,7 +251,7 @@ LRESULT CALLBACK floatbar_proc(HWND hWnd, unsigned int Msg, WPARAM wParam, LPARA
 
 		case ::user::e_message_paint:
 			hdc = BeginPaint(hWnd, &ps);
-			floatbar_paint(floatbar, hdc);
+			f32bar_paint(f32bar, hdc);
 			EndPaint(hWnd, &ps);
 			break;
 
@@ -259,7 +259,7 @@ LRESULT CALLBACK floatbar_proc(HWND hWnd, unsigned int Msg, WPARAM wParam, LPARA
 			pos_x = lParam & 0xffff;
 			pos_y = (lParam >> 16) & 0xffff;
 
-			button = floatbar_get_button(floatbar, pos_x, pos_y);
+			button = f32bar_get_button(f32bar, pos_x, pos_y);
 			if (!button)
 			{
 				SetCapture(hWnd);
@@ -280,7 +280,7 @@ LRESULT CALLBACK floatbar_proc(HWND hWnd, unsigned int Msg, WPARAM wParam, LPARA
 
 			if (lbtn_dwn)
 			{
-				button = floatbar_get_button(floatbar, pos_x, pos_y);
+				button = f32bar_get_button(f32bar, pos_x, pos_y);
 				if (button)
 					button_hit(button);
 				lbtn_dwn = false;
@@ -292,28 +292,28 @@ LRESULT CALLBACK floatbar_proc(HWND hWnd, unsigned int Msg, WPARAM wParam, LPARA
 			pos_x = lParam & 0xffff;
 			pos_y = (lParam >> 16) & 0xffff;
 
-			if (!floatbar->shown)
-				floatbar_animation(floatbar, true);
+			if (!f32bar->shown)
+				f32bar_animation(f32bar, true);
 
 			if (dragging)
 			{
-				floatbar->rectangle.left = floatbar->rectangle.left + (lParam & 0xffff) - btn_dwn_x;
+				f32bar->rectangle.left = f32bar->rectangle.left + (lParam & 0xffff) - btn_dwn_x;
 
-				if (floatbar->rectangle.left < 0)
-					floatbar->rectangle.left = 0;
-				else if (floatbar->rectangle.left > xScreen - floatbar->width)
-					floatbar->rectangle.left = xScreen - floatbar->width;
+				if (f32bar->rectangle.left < 0)
+					f32bar->rectangle.left = 0;
+				else if (f32bar->rectangle.left > xScreen - f32bar->width)
+					f32bar->rectangle.left = xScreen - f32bar->width;
 
-				MoveWindow(hWnd, floatbar->rectangle.left, floatbar->rectangle.top, floatbar->width, floatbar->height, true);
+				MoveWindow(hWnd, f32bar->rectangle.left, f32bar->rectangle.top, f32bar->width, f32bar->height, true);
 			}
 			else
 			{
-				int i;
+				::i32 i;
 
 				for (i = 0; i < BTN_MAX; i++)
-					floatbar->buttons[i]->active = false;
+					f32bar->buttons[i]->active = false;
 
-				button = floatbar_get_button(floatbar, pos_x, pos_y);
+				button = f32bar_get_button(f32bar, pos_x, pos_y);
 				if (button)
 					button->active = true;
 
@@ -330,10 +330,10 @@ LRESULT CALLBACK floatbar_proc(HWND hWnd, unsigned int Msg, WPARAM wParam, LPARA
 
 		case ::user::e_message_mouse_leave:
 		{
-			int i;
+			::i32 i;
 
 			for (i = 0; i < BTN_MAX; i++)
-				floatbar->buttons[i]->active = false;
+				f32bar->buttons[i]->active = false;
 
 			InvalidateRect(hWnd, nullptr, false);
 			UpdateWindow(hWnd);
@@ -347,16 +347,16 @@ LRESULT CALLBACK floatbar_proc(HWND hWnd, unsigned int Msg, WPARAM wParam, LPARA
 				case TIMER_HIDE:
 				{
 					kill_timer(hWnd, TIMER_HIDE);
-					if (!floatbar->locked)
-						floatbar_animation(floatbar, false);
+					if (!f32bar->locked)
+						f32bar_animation(f32bar, false);
 					break;
 				}
 				case TIMER_ANIMAT_SHOW:
 				{
-					static int y = 0;
+					static ::i32 y = 0;
 
-					MoveWindow(floatbar->hwnd, floatbar->rectangle.left, (y++ - floatbar->height), floatbar->width, floatbar->height, true);
-					if (y == floatbar->height)
+					MoveWindow(f32bar->hwnd, f32bar->rectangle.left, (y++ - f32bar->height), f32bar->width, f32bar->height, true);
+					if (y == f32bar->height)
 					{
 						y = 0;
 						kill_timer(hWnd, wParam);
@@ -365,10 +365,10 @@ LRESULT CALLBACK floatbar_proc(HWND hWnd, unsigned int Msg, WPARAM wParam, LPARA
 				}
 				case TIMER_ANIMAT_HIDE:
 				{
-					static int y = 0;
+					static ::i32 y = 0;
 
-					MoveWindow(floatbar->hwnd, floatbar->rectangle.left, -y++, floatbar->width, floatbar->height, true);
-					if (y == floatbar->height)
+					MoveWindow(f32bar->hwnd, f32bar->rectangle.left, -y++, f32bar->width, f32bar->height, true);
+					if (y == f32bar->height)
 					{
 						y = 0;
 						kill_timer(hWnd, wParam);
@@ -381,7 +381,7 @@ LRESULT CALLBACK floatbar_proc(HWND hWnd, unsigned int Msg, WPARAM wParam, LPARA
 			break;
 
 		case ::user::e_message_destroy:
-			DeleteDC(floatbar->hdcmem);
+			DeleteDC(f32bar->hdcmem);
 			PostQuitMessage(0);
 			break;
 
@@ -391,69 +391,69 @@ LRESULT CALLBACK floatbar_proc(HWND hWnd, unsigned int Msg, WPARAM wParam, LPARA
 	return 0;
 }
 
-static FloatBar* floatbar_create(wfContext* wfc)
+static FloatBar* f32bar_create(wfContext* wfc)
 {
-	FloatBar* floatbar;
+	FloatBar* f32bar;
 
-	floatbar = (FloatBar *)malloc(sizeof(FloatBar));
+	f32bar = (FloatBar *)malloc(sizeof(FloatBar));
 
-	if (!floatbar)
+	if (!f32bar)
 		return nullptr;
 
-	floatbar->locked = false;
-	floatbar->shown = true;
-	floatbar->hwnd = nullptr;
-	floatbar->parent = wfc->hwnd;
-	floatbar->wfc = wfc;
-	floatbar->hdcmem = nullptr;
+	f32bar->locked = false;
+	f32bar->shown = true;
+	f32bar->hwnd = nullptr;
+	f32bar->parent = wfc->hwnd;
+	f32bar->wfc = wfc;
+	f32bar->hdcmem = nullptr;
 
-	floatbar->background = (HBITMAP)LoadImage(wfc->hInstance, MAKEINTRESOURCE(IDB_BACKGROUND), IMAGE_BITMAP, BACKGROUND_W, BACKGROUND_H, LR_DEFAULTCOLOR);
-	floatbar->buttons[0] = floatbar_create_button(floatbar, BUTTON_MINIMIZE, IDB_MINIMIZE, IDB_MINIMIZE_ACT, MINIMIZE_X, BUTTON_Y, BUTTON_HEIGHT, BUTTON_WIDTH);
-	floatbar->buttons[1] = floatbar_create_button(floatbar, BUTTON_RESTORE, IDB_RESTORE, IDB_RESTORE_ACT, RESTORE_X, BUTTON_Y, BUTTON_HEIGHT, BUTTON_WIDTH);
-	floatbar->buttons[2] = floatbar_create_button(floatbar, BUTTON_CLOSE, IDB_CLOSE, IDB_CLOSE_ACT, CLOSE_X, BUTTON_Y, BUTTON_HEIGHT, BUTTON_WIDTH);
-	floatbar->buttons[3] = floatbar_create_lock_button(floatbar, IDB_UNLOCK, IDB_UNLOCK_ACT, IDB_LOCK, IDB_LOCK_ACT, LOCK_X, BUTTON_Y, BUTTON_HEIGHT, BUTTON_WIDTH);
+	f32bar->background = (HBITMAP)LoadImage(wfc->hInstance, MAKEINTRESOURCE(IDB_BACKGROUND), IMAGE_BITMAP, BACKGROUND_W, BACKGROUND_H, LR_DEFAULTCOLOR);
+	f32bar->buttons[0] = f32bar_create_button(f32bar, BUTTON_MINIMIZE, IDB_MINIMIZE, IDB_MINIMIZE_ACT, MINIMIZE_X, BUTTON_Y, BUTTON_HEIGHT, BUTTON_WIDTH);
+	f32bar->buttons[1] = f32bar_create_button(f32bar, BUTTON_RESTORE, IDB_RESTORE, IDB_RESTORE_ACT, RESTORE_X, BUTTON_Y, BUTTON_HEIGHT, BUTTON_WIDTH);
+	f32bar->buttons[2] = f32bar_create_button(f32bar, BUTTON_CLOSE, IDB_CLOSE, IDB_CLOSE_ACT, CLOSE_X, BUTTON_Y, BUTTON_HEIGHT, BUTTON_WIDTH);
+	f32bar->buttons[3] = f32bar_create_lock_button(f32bar, IDB_UNLOCK, IDB_UNLOCK_ACT, IDB_LOCK, IDB_LOCK_ACT, LOCK_X, BUTTON_Y, BUTTON_HEIGHT, BUTTON_WIDTH);
 
-	return floatbar;
+	return f32bar;
 }
 
-int floatbar_hide(FloatBar* floatbar)
+::i32 f32bar_hide(FloatBar* f32bar)
 {
-	kill_timer(floatbar->hwnd, TIMER_HIDE);
-	MoveWindow(floatbar->hwnd, floatbar->rectangle.left, -floatbar->height, floatbar->width, floatbar->height, true);
+	kill_timer(f32bar->hwnd, TIMER_HIDE);
+	MoveWindow(f32bar->hwnd, f32bar->rectangle.left, -f32bar->height, f32bar->width, f32bar->height, true);
 	return 0;
 }
 
-int floatbar_show(FloatBar* floatbar)
+::i32 f32bar_show(FloatBar* f32bar)
 {
-	set_timer(floatbar->hwnd, TIMER_HIDE, 3000, nullptr);
-	MoveWindow(floatbar->hwnd, floatbar->rectangle.left, floatbar->rectangle.top, floatbar->width, floatbar->height, true);
+	set_timer(f32bar->hwnd, TIMER_HIDE, 3000, nullptr);
+	MoveWindow(f32bar->hwnd, f32bar->rectangle.left, f32bar->rectangle.top, f32bar->width, f32bar->height, true);
 	return 0;
 }
 
-//void floatbar_window_create(wfContext *wfc)
+//void f32bar_window_create(wfContext *wfc)
 //{
 //	WNDCLASSEX wnd_cls;
 //	HWND barWnd;
-//	int x = (GetSystemMetrics(SM_CXSCREEN) - BACKGROUND_W) / 2;
+//	::i32 x = (GetSystemMetrics(SM_CXSCREEN) - BACKGROUND_W) / 2;
 //
 //	wnd_cls.cbSize        = sizeof(WNDCLASSEX);
 //	wnd_cls.style         = CS_HREDRAW | CS_VREDRAW | CS_OWNDC;
-//	wnd_cls.lpfnWndProc   = floatbar_proc;
+//	wnd_cls.lpfnWndProc   = f32bar_proc;
 //	wnd_cls.cbClsExtra    = 0;
 //	wnd_cls.cbWndExtra    = 0;
 //	wnd_cls.hIcon         = LoadIcon(nullptr, IDI_APPLICATION);
 //	wnd_cls.hCursor       = LoadCursor(wfc->hInstance, IDC_ARROW);
 //	wnd_cls.hbrBackground = nullptr;
 //	wnd_cls.lpszMenuName  = nullptr;
-//	wnd_cls.lpszClassName = L"floatbar";
+//	wnd_cls.lpszClassName = L"f32bar";
 //	wnd_cls.hInstance     = wfc->hInstance;
 //	wnd_cls.hIconSm       = LoadIcon(nullptr, IDI_APPLICATION);
 //
 //	RegisterClassEx(&wnd_cls);
 //
-//	wfc->floatbar = floatbar_create(wfc);
+//	wfc->f32bar = f32bar_create(wfc);
 //
-//	barWnd = CreateWindowEx(WS_EX_TOPMOST, L"floatbar", L"floatbar", WS_CHILD, x, 0, BACKGROUND_W, BACKGROUND_H, wfc->hwnd, nullptr, wfc->hInstance, wfc->floatbar);
+//	barWnd = CreateWindowEx(WS_EX_TOPMOST, L"f32bar", L"f32bar", WS_CHILD, x, 0, BACKGROUND_W, BACKGROUND_H, wfc->hwnd, nullptr, wfc->hInstance, wfc->f32bar);
 //	if (barWnd == nullptr)
 //		return;
 //	ShowWindow(barWnd, SW_SHOWNORMAL);

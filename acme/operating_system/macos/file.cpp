@@ -17,7 +17,7 @@
 
 //
 //
-//CLASS_DECL_ACME void dll_processes(unsigned_int_array & dwa, string_array_base & straProcesses, const ::scoped_string & scopedstrDll)
+//CLASS_DECL_ACME void dll_processes(u32_array & dwa, string_array_base & straProcesses, const ::scoped_string & scopedstrDll)
 //{
 //
 //
@@ -47,7 +47,7 @@
 //}
 
 //
-//char * ns_resolve_alias(const ::scoped_string & scopedstr, bool bNoUI, bool bNoMount);
+//char_pointer ns_resolve_alias(const ::scoped_string & scopedstr, bool bNoUI, bool bNoMount);
 //
 
 //#ifndef __APPLE__
@@ -55,7 +55,7 @@
 //bool context::_os_resolve_alias(::file::path & path, const ::scoped_string & scopedstr, ::user::interaction_base * pinteraction, bool bNoUI, bool bNoMount)
 //{
 //
-//   char * pszTarget = ns_resolve_alias(scopedstr, bNoUI, bNoMount);
+//   char_pointer pszTarget = ns_resolve_alias(scopedstr, bNoUI, bNoMount);
 //
 //   if(::is_null(scopedstrTarget))
 //   {
@@ -92,7 +92,7 @@
 //bool os_is_folder_alias(const ::scoped_string & scopedstr, bool bNoUI, bool bNoMount)
 //{
 //
-//   char * pszTarget = ns_resolve_alias(scopedstr, bNoUI, bNoMount);
+//   char_pointer pszTarget = ns_resolve_alias(scopedstr, bNoUI, bNoMount);
 //
 //   if(::is_null(scopedstrTarget))
 //   {

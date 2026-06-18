@@ -34,12 +34,12 @@
 //   }
 //
 //
-//   void renderer::on_begin_render(frame* pframe)
+//   void renderer::on_begin_render(::gpu::layer * pgpulayer)
 //   {
 //
 //   }
 //
-//   void renderer::on_end_render(frame* pframe)
+//   void renderer::on_end_render(::gpu::layer * pgpulayer)
 //   {
 //
 //   }

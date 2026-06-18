@@ -12,13 +12,13 @@ namespace graphics3d
    public:
 
 
-      int m_iWidth;
-      int m_iHeight;
+      ::i32 m_iWidth;
+      ::i32 m_iHeight;
 
       ::pointer < ::graphics3d::container > m_pcontainer;
 
 
-      ::function < void(void*, int, int, int)> m_callbackOffscreen;
+      ::function < void(void*, ::i32, ::i32, ::i32)> m_callbackOffscreen;
 
 
       application();
@@ -35,12 +35,12 @@ namespace graphics3d
 
       virtual void run_application();
 
-      virtual void resize(int cx, int cy);
+      virtual void resize(::i32 cx, ::i32 cy);
 
       virtual void load_game_objects();
 
 
-      virtual void handle_mouse_move(int x, int y);
+      virtual void handle_mouse_move(::i32 x, ::i32 y);
 
 
    };

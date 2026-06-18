@@ -3,6 +3,8 @@
 #include "innate_ui.h"
 #include "window.h"
 #include "acme/platform/system.h"
+#include "acme/prototype/geometry2d/size.h"
+#include "apex/platform/application.h"
 
 
 namespace innate_ui
@@ -82,21 +84,29 @@ namespace innate_ui
    }
 
 
-   void window::set_position(const ::int_point & point)
+   ::f64 window::get_scale_factor()
+   {
+
+      return 1.0;
+
+   }
+
+
+   void window::set_position(const ::i32_point & point)
    {
 
 
    }
 
 
-   void window::set_size(const ::int_size & size)
+   void window::set_size(const ::i32_size & size)
    {
 
 
    }
 
 
-   void window::adjust_for_client_size(const ::int_size & size)
+   void window::adjust_for_client_size(const ::i32_size & size)
    {
 
       set_size(size);
@@ -107,6 +117,22 @@ namespace innate_ui
    void window::set_icon(icon * picon)
    {
 
+
+   }
+
+
+   void window::set_icon_path(const scoped_string& scopedstr, const i32_size & size)
+   {
+
+      ::cast < ::apex::application > papexapplication = m_papplication;
+
+      //auto dScaleFactor = get_scale_factor();
+
+      //i32_size sizeScaled(round(size.cx * dScaleFactor), round(size.cy * dScaleFactor));
+
+      auto picon = papexapplication->innate_ui_icon(scopedstr, size);
+
+      set_icon(picon);
 
    }
 
@@ -144,6 +170,14 @@ namespace innate_ui
    }
 
 
+   void window::on_size()
+   {
+
+
+
+   }
+
+
 } // namespace innate_ui
 
 
@@ -157,14 +191,14 @@ namespace innate_ui
 //
 //// Forward declarations of functions included in this code module:
 ////ATOM                MyRegisterClass(HINSTANCE hInstance);
-////BOOL                InitInstance(HINSTANCE, int);
+////BOOL                InitInstance(HINSTANCE, ::i32);
 ////LRESULT CALLBACK    WndProc(HWND, UINT, WPARAM, LPARAM);
 ////INT_PTR CALLBACK    About(HWND, UINT, WPARAM, LPARAM);
 //
-////int APIENTRY wWinMain(_In_ HINSTANCE hInstance,
+////::i32 APIENTRY wWinMain(_In_ HINSTANCE hInstance,
 ////                     _In_opt_ HINSTANCE hPrevInstance,
 ////                     _In_ LPWSTR    lpCmdLine,
-////                     _In_ int       nCmdShow)
+////                     _In_ ::i32       nCmdShow)
 ////{
 ////   UNREFERENCED_PARAMETER(hPrevInstance);
 ////   UNREFERENCED_PARAMETER(lpCmdLine);
@@ -196,7 +230,7 @@ namespace innate_ui
 //      }
 //   }
 //
-//   return (int)msg.wParam;
+//   return (::i32)msg.wParam;
 //}
 //
 //
@@ -228,7 +262,7 @@ namespace innate_ui
 //}
 //
 ////
-////   FUNCTION: InitInstance(HINSTANCE, int)
+////   FUNCTION: InitInstance(HINSTANCE, ::i32)
 ////
 ////   PURPOSE: Saves instance handle and creates main window
 ////
@@ -237,7 +271,7 @@ namespace innate_ui
 ////        In this function, we save the instance handle in a global variable and
 ////        create and display the main program window.
 ////
-//BOOL InitInstance(HINSTANCE hInstance, int nCmdShow)
+//BOOL InitInstance(HINSTANCE hInstance, ::i32 nCmdShow)
 //{
 //   hInst = hInstance; // Store instance handle in our global variable
 //
@@ -271,7 +305,7 @@ namespace innate_ui
 //   {
 //   case WM_COMMAND:
 //   {
-//      int wmId = LOWORD(wParam);
+//      ::i32 wmId = LOWORD(wParam);
 //      // Parse the menu selections:
 //      switch (wmId)
 //      {

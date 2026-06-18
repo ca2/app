@@ -55,7 +55,7 @@ public:
    }
 
 
-   void rotate(double dAngle)
+   void rotate(::f64 dAngle)
    {
 
       point_array_base < NUMBER >::rotate(dAngle);
@@ -64,7 +64,7 @@ public:
    }
 
 
-   void rotate(double dAngle, ::point_type < UNIT_TYPE > pointCenter)
+   void rotate(::f64 dAngle, ::point_type < UNIT_TYPE > pointCenter)
    {
 
       point_array_base < NUMBER >::rotate(dAngle, pointCenter);
@@ -89,7 +89,7 @@ public:
 
    const ::rectangle_type < NUMBER > & bounding_rect() const;
 
-   bool overlaps(const polygon_base & int_polygon) const;
+   bool overlaps(const polygon_base & i32_polygon) const;
 
    polygon_base convex_intersection(const polygon_base & polygon) const;
 
@@ -112,8 +112,8 @@ public:
 
    }
 
-   polygon_base& operator = (const polygon_base& int_polygon);
-   polygon_base& operator = (polygon_base&& int_polygon);
+   polygon_base& operator = (const polygon_base& i32_polygon);
+   polygon_base& operator = (polygon_base&& i32_polygon);
 
 
 
@@ -147,7 +147,7 @@ inline bool polygon_base < NUMBER >::bounding_rectangle_contains(const ::point_t
 }
 
 
-inline double atan(const double_point & point, double x, double y)
+inline ::f64 atan(const ::f64_point & point, ::f64 x, ::f64 y)
 {
 
    return ::atan2(point.y - y, point.x - x);
@@ -218,16 +218,16 @@ polygon_base < NUMBER > & polygon_base < NUMBER >::operator = (polygon_base&& po
 }
 
 
-inline bool int_lineersection(double_point & point, const double_point & pt1, const double_point & pt2, const double_point & pt3, const double_point & pt4);
+inline bool i32_lineersection(::f64_point & point, const ::f64_point & pt1, const ::f64_point & pt2, const ::f64_point & pt3, const ::f64_point & pt4);
 
 
 //https://rbrundritt.wordpress.com/2008/10/20/approximate-points-of-intersection-of-two-line-segments/
 //latlong1 and latlong2 represent two coordinates that make up the bounded box
-//latlong3 is a int_point that we are checking to see is inside the box
-inline bool inBoundedBox(const double_point & pt1, const double_point & pt2, const double_point & pt3)
+//latlong3 is a i32_point that we are checking to see is inside the box
+inline bool inBoundedBox(const ::f64_point & pt1, const ::f64_point & pt2, const ::f64_point & pt3)
 {
 
-   double dSpan = 0.01;
+   ::f64 dSpan = 0.01;
 
    if (pt1.x < pt2.x)
    {
@@ -279,7 +279,7 @@ inline bool inBoundedBox(const double_point & pt1, const double_point & pt2, con
 
 }
 
-inline bool inBoundedBox1(const double_point & pt1, const double_point & pt2, const double_point & pt3)
+inline bool inBoundedBox1(const ::f64_point & pt1, const ::f64_point & pt2, const ::f64_point & pt3)
 {
 
    if (pt1.x < pt2.x)
@@ -334,20 +334,20 @@ inline bool inBoundedBox1(const double_point & pt1, const double_point & pt2, co
 
 
 //https://rbrundritt.wordpress.com/2008/10/20/approximate-points-of-intersection-of-two-line-segments/
-inline bool int_lineersection(double_point & point, const double_point & pt1, const double_point & pt2, const double_point & pt3, const double_point & pt4)
+inline bool i32_lineersection(::f64_point & point, const ::f64_point & pt1, const ::f64_point & pt2, const ::f64_point & pt3, const ::f64_point & pt4)
 {
 
    //Line segment 1 (point1, point2)
-   double A1 = pt2.x - pt1.x;
-   double B1 = pt1.y - pt2.y;
-   double C1 = A1 * pt1.y + B1 * pt1.x;
+   ::f64 A1 = pt2.x - pt1.x;
+   ::f64 B1 = pt1.y - pt2.y;
+   ::f64 C1 = A1 * pt1.y + B1 * pt1.x;
 
    //Line segment 2 (p3,  p4)
-   double A2 = pt4.x - pt3.x;
-   double B2 = pt3.y - pt4.y;
-   double C2 = A2 * pt3.y + B2 * pt3.x;
+   ::f64 A2 = pt4.x - pt3.x;
+   ::f64 B2 = pt3.y - pt4.y;
+   ::f64 C2 = A2 * pt3.y + B2 * pt3.x;
 
-   double determinant = A1 * B2 - A2 * B1;
+   ::f64 determinant = A1 * B2 - A2 * B1;
 
    if (determinant != 0.0)
    {
@@ -366,15 +366,15 @@ inline bool int_lineersection(double_point & point, const double_point & pt1, co
 }
 
 
-inline void get_intersection_points(double_point_array_base & pa, const double_point & point1, const double_point & point2, const double_point_array_base & paPolygon)
+inline void get_intersection_points(f64_point_array_base & pa, const ::f64_point & point1, const ::f64_point & point2, const f64_point_array_base & paPolygon)
 {
 
-   double_point point;
+   ::f64_point point;
 
    for (iptr i = 0; i < paPolygon.get_count(); i++)
    {
 
-      if (int_lineersection(point, point1, point2, i % paPolygon, (i + 1) % paPolygon))
+      if (i32_lineersection(point, point1, point2, i % paPolygon, (i + 1) % paPolygon))
       {
 
          pa.tolerance_add_unique(0.001, point);
@@ -482,7 +482,7 @@ bool polygon_base < NUMBER >::overlaps(const polygon_base & polygon) const
 
       ::collection::count c2 = polygon.get_count();
 
-      for (int i = 0; i < c1; i++)
+      for (::i32 i = 0; i < c1; i++)
       {
 
          if (polygon.contains(this->element_at(i)))
@@ -494,7 +494,7 @@ bool polygon_base < NUMBER >::overlaps(const polygon_base & polygon) const
 
       }
 
-      for (int i = 0; i < c2; i++)
+      for (::i32 i = 0; i < c2; i++)
       {
 
          if (this->contains(polygon[i]))
@@ -506,15 +506,15 @@ bool polygon_base < NUMBER >::overlaps(const polygon_base & polygon) const
 
       }
 
-      double_point point;
+      ::f64_point point;
 
-      for (int i = 0; i < c1; i++)
+      for (::i32 i = 0; i < c1; i++)
       {
 
-         for (int k = 0; k < c2; k++)
+         for (::i32 k = 0; k < c2; k++)
          {
 
-            if (int_lineersection(point, this->element_at(i), this->element_at((i + 1) % c1), polygon[k], polygon[(k + 1) % c2]))
+            if (i32_lineersection(point, this->element_at(i), this->element_at((i + 1) % c1), polygon[k], polygon[(k + 1) % c2]))
             {
 
                return true;
@@ -546,7 +546,7 @@ polygon_base < NUMBER > polygon_base < NUMBER >::convex_intersection(const polyg
    {
 
       //Add  the corners of poly1 which are inside poly2
-      for (int i = 0; i < c1; i++)
+      for (::i32 i = 0; i < c1; i++)
       {
 
          if (polygon.contains(this->element_at(i)))
@@ -558,7 +558,7 @@ polygon_base < NUMBER > polygon_base < NUMBER >::convex_intersection(const polyg
 
       }
 
-      for (int i = 0; i < c2; i++)
+      for (::i32 i = 0; i < c2; i++)
       {
 
          if (this->contains(polygon[i]))
@@ -570,7 +570,7 @@ polygon_base < NUMBER > polygon_base < NUMBER >::convex_intersection(const polyg
 
       }
 
-      for (int i = 0; i < this->get_count(); i++)
+      for (::i32 i = 0; i < this->get_count(); i++)
       {
 
          get_intersection_points(polygonResult, i % *this, (i + 1) % *this, polygon);

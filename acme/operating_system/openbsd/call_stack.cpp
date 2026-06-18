@@ -13,7 +13,7 @@
 #define DISABLE_BACKTRACE 1
 
 
-string get_callstack(::particle * pparticle,  const ::scoped_string & scopedstrFormat, int iSkip, void * caller_address, int iCount)
+string get_callstack(::particle * pparticle,  const ::scoped_string & scopedstrFormat, ::i32 iSkip, void * caller_address, ::i32 iCount)
 {
 
 #if DISABLE_BACKTRACE
@@ -49,7 +49,7 @@ string get_callstack(::particle * pparticle,  const ::scoped_string & scopedstrF
 //   }
 
 
-//   const_char_pointer callstack::get_dup(const ::scoped_string & scopedstrFormat, int iSkip, int iCount)
+//   const_char_pointer callstack::get_dup(const ::scoped_string & scopedstrFormat, ::i32 iSkip, ::i32 iCount)
 //   {
 //
 //      return nullptr;
@@ -78,7 +78,7 @@ string get_callstack(::particle * pparticle,  const ::scoped_string & scopedstrF
 
 
 
-void openbsd_backtrace_symbol_parse(::particle * pparticle, string & strSymbolName, string & strModule, string & strAddress, char * pmessage, void * address)
+void openbsd_backtrace_symbol_parse(::particle * pparticle, string & strSymbolName, string & strModule, string & strAddress, char_pointer pmessage, void * address)
 {
 
    if(ansi_str(pmessage, "EPT_"))
@@ -88,16 +88,16 @@ void openbsd_backtrace_symbol_parse(::particle * pparticle, string & strSymbolNa
 
    }
 
-   char * pszMangledName = nullptr;
+   char_pointer pszMangledName = nullptr;
 
-   char * pszModuleName = nullptr;
+   char_pointer pszModuleName = nullptr;
 
-   char * pszOffsetBegin = nullptr;
+   char_pointer pszOffsetBegin = nullptr;
 
-   char * pszOffsetEnd = nullptr;
+   char_pointer pszOffsetEnd = nullptr;
 
    // find parantheses and +address offset surrounding mangled name
-   for (char * psz = pmessage; *psz; ++psz)
+   for (char_pointer psz = pmessage; *psz; ++psz)
    {
 
       if (*psz == '<')
@@ -138,7 +138,7 @@ void openbsd_backtrace_symbol_parse(::particle * pparticle, string & strSymbolNa
 
       strModule = pszModuleName;
 
-      int status = 0;
+      ::i32 status = 0;
 
       auto psynchronization = ::system()->synchronization();
 
@@ -147,12 +147,12 @@ void openbsd_backtrace_symbol_parse(::particle * pparticle, string & strSymbolNa
       try
       {
 
-         //acme::malloc<char *> pszRealName = abi::__cxa_demangle(scopedstrMangledName, 0, 0, &status);
+         //acme::malloc<char_pointer > pszRealName = abi::__cxa_demangle(scopedstrMangledName, 0, 0, &status);
 
 //         if (status == 0)
 //         {
 //
-//            strSymbolName = (const_char_pointer )(char *) pszRealName;
+//            strSymbolName = (const_char_pointer )(char_pointer ) pszRealName;
 //
 //         }
 //         else

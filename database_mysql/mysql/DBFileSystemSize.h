@@ -19,7 +19,7 @@ public:
 
       string   m_strPath;
       bool     m_bPending;
-      long long  m_iSize;
+      ::i64  m_iSize;
       bool     m_bRet;
       oswindow     m_pacmewindowingwindow;
 
@@ -47,7 +47,7 @@ public:
       item *      m_pitemParent;
       string      m_strName;
       bool        m_bPending;
-      long long     m_iSize;
+      ::i64     m_iSize;
       ::collection::index       m_iStep;
       bool        m_bDir;
       bool        m_bPendingLs;
@@ -109,11 +109,11 @@ public:
 
 
 
-   bool get_cache_fs_size(long long & i64Size, const ::scoped_string & scopedstrPath, bool & bPending);
-   bool get_fs_size(long long & i64Size, const ::scoped_string & scopedstrPath, bool & bPending);
+   bool get_cache_fs_size(::i64 & i64Size, const ::scoped_string & scopedstrPath, bool & bPending);
+   bool get_fs_size(::i64 & i64Size, const ::scoped_string & scopedstrPath, bool & bPending);
 
 
-   bool get_fs_size(long long & i64Size, const ::scoped_string & scopedstrPath, bool & bPending, ::collection::index & iIteration);
+   bool get_fs_size(::i64 & i64Size, const ::scoped_string & scopedstrPath, bool & bPending, ::collection::index & iIteration);
 
 
 };
@@ -168,12 +168,12 @@ public:
 
 
    void ClientStartServer();
-   bool get_fs_size(long long & i64Size, const ::scoped_string & scopedstrPath, bool & bPending);
+   bool get_fs_size(::i64 & i64Size, const ::scoped_string & scopedstrPath, bool & bPending);
 
    void install_message_routing(::channel * pchannel);
 
    DECLARE_MESSAGE_HANDLER(_001OnCopyData);
-   void on_timer(::timer * ptimer);
+   void operator()(::timer * ptimer) override;
 
 
 };

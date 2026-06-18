@@ -8,7 +8,7 @@
 namespace comparison
 {
 
-constexpr int get_bool_int( bool b){return b? 1:0;}
+constexpr ::i32 get_bool_int( bool b){return b? 1:0;}
 
    template < typename TYPE >
    class comparison
@@ -217,7 +217,7 @@ inline constexpr std::partial_ordering as <::std::partial_ordering, ::std::stron
 }
 
 
-template<prototype_floating FLOATING_TYPE, int t_iDimension, enum_matrix_major t_emajor = e_matrix_major_column>
+template<prototype_floating FLOATING_TYPE, ::i32 t_iDimension, enum_matrix_major t_emajor = e_matrix_major_column>
 struct matrix_type;
 
 

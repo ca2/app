@@ -13,10 +13,10 @@
 #include <sys/wait.h>
 #include <stdio.h>
 
-int gdb_check();
+::i32 gdb_check();
 
 
-int __node_is_debugger_attached()
+::i32 __node_is_debugger_attached()
 {
 
    return gdb_check();
@@ -26,11 +26,11 @@ int __node_is_debugger_attached()
 
 
 /*
-int gdb_check()
+::i32 gdb_check()
 {
-  int pid = fork();
-  int status;
-  int res;
+  ::i32 pid = fork();
+  ::i32 status;
+  ::i32 res;
 
   if (pid == -1)
     {
@@ -40,7 +40,7 @@ int gdb_check()
 
   if (pid == 0)
     {
-      int ppid = getppid();
+      ::i32 ppid = getppid();
 
       // Child
       if (ptrace(PTRACE_ATTACH, ppid, nullptr, nullptr) == 0)
@@ -76,14 +76,14 @@ test_trace(void* ignored)
 {
 #ifdef OPENBSD
    // This is a guess
-   return (void *)(iptr)(int)ptrace(PT_TRACE_ME, 0, nullptr, 0);
+   return (void *)(iptr)(::i32)ptrace(PT_TRACE_ME, 0, nullptr, 0);
 #else
    return (void*)ptrace(PTRACE_TRACEME, 0, nullptr, nullptr);
 #endif
 }
 
 
-int
+::i32
 gdb_check(void)
 {
 
@@ -132,17 +132,17 @@ gdb_check(void)
 
 
 
-//unsigned int
+//::u32
 //WINAPI
 //FormatMessage(
-//unsigned int dwFlags,
+//::u32 dwFlags,
 //const void * pSource,
 //
-//unsigned int dwMessageId,
-//unsigned int dwLanguageId,
-//char * pBuffer,
+//::u32 dwMessageId,
+//::u32 dwLanguageId,
+//char_pointer pBuffer,
 //
-//unsigned int nSize,
+//::u32 nSize,
 //va_list *Arguments
 //)
 //{
@@ -199,11 +199,11 @@ gdb_check(void)
 //}
 
 
-//void __cdecl _null_se_translator(unsigned int uiCode, EXCEPTION_POINTERS * ppointers);
+//void __cdecl _null_se_translator(::u32 uiCode, EXCEPTION_POINTERS * ppointers);
 //
 //
 //
-//void __cdecl _null_se_translator(unsigned int uiCode, EXCEPTION_POINTERS * ppointers)
+//void __cdecl _null_se_translator(::u32 uiCode, EXCEPTION_POINTERS * ppointers)
 //{
 //   __UNREFERENCED_PARAMETER(uiCode);
 //   __UNREFERENCED_PARAMETER(ppointers);

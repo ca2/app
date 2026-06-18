@@ -32,21 +32,21 @@ namespace image
 
       }
 
-      int width() const
+      ::i32 width() const
       {
 
          return m_pbuffer->width();
 
       }
 
-      int height() const
+      ::i32 height() const
       {
 
          return m_pbuffer->height();
 
       }
 
-      int scan() const
+      ::i32 scan() const
       {
 
          return m_pbuffer->m_iScan;

@@ -27,10 +27,10 @@ void * platform::operating_system_library_touch(const ::file::path & path, strin
    
    auto strLibTitle = "lib" + strTitle;
 
-   for (int i = _dyld_image_count(); i >= 0 ; i--)
+   for (::i32 i = _dyld_image_count(); i >= 0 ; i--)
    {
 
-      const char *image_name = _dyld_get_image_name(i);
+      const_char_pointer image_name = _dyld_get_image_name(i);
 
       if(::file_path_title(image_name).case_insensitive_equals(strTitle))
       {

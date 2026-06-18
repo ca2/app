@@ -25,16 +25,16 @@ APPLICATION_NAMESPACE_MAIN_EXPORT void APPLICATION_NAMESPACE_MAIN(create_system)
 
 
 #if defined(WINDOWS)
-APPLICATION_NAMESPACE_MAIN_EXPORT void APPLICATION_NAMESPACE_MAIN(initialize_system)(HINSTANCE hinstanceThis, HINSTANCE hinstancePrev, WCHAR* pCmdLine, int nCmdShow);
-APPLICATION_NAMESPACE_MAIN_EXPORT void APPLICATION_NAMESPACE_MAIN(initialize_console_system)(int argc, char* argv[], char* envp[]);
+APPLICATION_NAMESPACE_MAIN_EXPORT void APPLICATION_NAMESPACE_MAIN(initialize_system)(HINSTANCE hinstanceThis, HINSTANCE hinstancePrev, WCHAR* pCmdLine, ::i32 nCmdShow);
+APPLICATION_NAMESPACE_MAIN_EXPORT void APPLICATION_NAMESPACE_MAIN(initialize_console_system)(::i32 argc, char_pointer argv[], char_pointer envp[]);
 #elif defined(__ANDROID__)
-APPLICATION_NAMESPACE_MAIN_EXPORT void APPLICATION_NAMESPACE_MAIN(initialize_system)(int argc, char* argv[], char* envp[], const_char_pointer p1, const_char_pointer p2);
+APPLICATION_NAMESPACE_MAIN_EXPORT void APPLICATION_NAMESPACE_MAIN(initialize_system)(::i32 argc, char_pointer argv[], char_pointer envp[], const_char_pointer p1, const_char_pointer p2);
 #else
-APPLICATION_NAMESPACE_MAIN_EXPORT void APPLICATION_NAMESPACE_MAIN(initialize_system)(int argc, char* argv[], char* envp[], const_char_pointer p1, const_char_pointer p2);
+APPLICATION_NAMESPACE_MAIN_EXPORT void APPLICATION_NAMESPACE_MAIN(initialize_system)(::i32 argc, char_pointer argv[], char_pointer envp[], const_char_pointer p1, const_char_pointer p2);
 #endif
 
 
-APPLICATION_NAMESPACE_MAIN_EXPORT int APPLICATION_NAMESPACE_MAIN(main)();
+APPLICATION_NAMESPACE_MAIN_EXPORT ::i32 APPLICATION_NAMESPACE_MAIN(main)();
 
 
 

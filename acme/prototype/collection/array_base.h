@@ -684,7 +684,7 @@ inline TYPE & array_base < TYPE, ARG_TYPE, TYPED, MEMORY, t_etypeContainer > ::a
 }
 
 //template < typename TYPE, typename ARG_TYPE, typename TYPED, typename MEMORY, ::enum_type t_etypeContainer >
-//inline TYPE & array_base < TYPE, ARG_TYPE, TYPED, MEMORY, t_etypeContainer > ::add_new_at(int iIndex)
+//inline TYPE & array_base < TYPE, ARG_TYPE, TYPED, MEMORY, t_etypeContainer > ::add_new_at(::i32 iIndex)
 //{
 //
 //   this->make_room_at(iIndex);

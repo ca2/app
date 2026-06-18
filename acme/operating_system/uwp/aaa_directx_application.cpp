@@ -5,7 +5,7 @@
 #include "buffer.h"
 
 
-extern int g_iMouse;
+extern ::i32 g_iMouse;
 
 
 #undef ::acmeacmesystem()
@@ -79,7 +79,7 @@ namespace universal_windows
    void directx_framework_impact::initialize_directx_application()
    {
 
-      int nReturnCode = 0;
+      ::i32 nReturnCode = 0;
 
       if (!system()->begin_synch())
       {
@@ -245,11 +245,11 @@ namespace universal_windows
    void directx_framework_impact::OnWindowSizeChanged(CoreWindow ^ sender, WindowSizeChangedEventArgs ^ args)
    {
 
-      m_directx->m_size.set_size((int) args->Size.Width, (int)args->Size.Height);
+      m_directx->m_size.set_size((::i32) args->Size.Width, (::i32)args->Size.Height);
 
-      m_rectangleLastWindowRect.Width = (float) m_directx->m_size.cx;
+      m_rectangleLastWindowRect.Width = (::f32) m_directx->m_size.cx;
 
-      m_rectangleLastWindowRect.Height = (float) m_directx->m_size.cy;
+      m_rectangleLastWindowRect.Height = (::f32) m_directx->m_size.cy;
 
       m_directx->OnWindowSizeChange();
 
@@ -384,7 +384,7 @@ namespace universal_windows
 
       bool bSpecialKey = false;
 
-      ::user::enum_key ekey = virtualkey_to_userkey(args->VirtualKey, bSpecialKey);
+      const ::user::e_key & ekey = virtualkey_to_userkey(args->VirtualKey, bSpecialKey);
 
       if(bSpecialKey || !bTextFocus || session()->is_key_pressed(::user::e_key_control)
          || session()->is_key_pressed(::user::e_key_alt))
@@ -439,7 +439,7 @@ namespace universal_windows
 
       bool bSpecialKey = false;
 
-      ::user::enum_key ekey = virtualkey_to_userkey(args->VirtualKey, bSpecialKey);
+      const ::user::e_key & ekey = virtualkey_to_userkey(args->VirtualKey, bSpecialKey);
 
       if (bSpecialKey || !bTextFocus)
       {
@@ -456,7 +456,7 @@ namespace universal_windows
                //if (system()->m_psimpleui != nullptr && system()->m_psimpleui->is_window_visible())
                //{
                //   string str;
-               //   str = (char)pkey->m_nChar;
+               //   str = (::i8)pkey->m_nChar;
                //   if (m_bFontopusShift)
                //   {
                //      if (pkey->m_nChar == 0xbe)
@@ -538,8 +538,8 @@ namespace universal_windows
 
       spbase = pmouse;
 
-      pmouse->m_point.x       = (int) pointerPoint->RawPosition.X;
-      pmouse->m_point.y       = (int) pointerPoint->RawPosition.Y;
+      pmouse->m_point.x       = (::i32) pointerPoint->RawPosition.X;
+      pmouse->m_point.y       = (::i32) pointerPoint->RawPosition.Y;
       pmouse->m_emessage            = ::user::e_message_mouse_move;
       pmouse->m_puserinteraction  = session()->m_puserinteractionHost;
 
@@ -574,9 +574,9 @@ namespace universal_windows
 
       spbase = pmouse;
 
-      pmouse->m_point.x = (int) pointerPoint->RawPosition.X;
+      pmouse->m_point.x = (::i32) pointerPoint->RawPosition.X;
 
-      pmouse->m_point.y = (int) pointerPoint->RawPosition.Y;
+      pmouse->m_point.y = (::i32) pointerPoint->RawPosition.Y;
 
       if(args->CurrentPoint->Properties->IsLeftButtonPressed && !m_bLeftButton)
       {
@@ -638,9 +638,9 @@ namespace universal_windows
 
       spbase = pmouse;
 
-      pmouse->m_point.x = (int) pointerPoint->RawPosition.X;
+      pmouse->m_point.x = (::i32) pointerPoint->RawPosition.X;
 
-      pmouse->m_point.y = (int) pointerPoint->RawPosition.Y;
+      pmouse->m_point.y = (::i32) pointerPoint->RawPosition.Y;
 
       if(m_bLeftButton && !args->CurrentPoint->Properties->IsLeftButtonPressed)
       {
@@ -767,12 +767,12 @@ namespace universal_windows
 
    }
 
-   ::winrt::Windows::Foundation::Point directx_framework_impact::get_cursor_position()
+   ::winrt::Windows::Foundation::i32_point directx_framework_impact::get_cursor_position()
    {
 
       single_lock synchronouslock(m_pmutex, true);
 
-      ::winrt::Windows::Foundation::Point p = m_pointLastCursor;
+      ::winrt::Windows::Foundation::i32_point p = m_pointLastCursor;
 
       /*      if(m_window == nullptr)
                return p;
@@ -787,7 +787,7 @@ namespace universal_windows
 
                   ::winrt::Windows::Foundation::Collections::IVectorView < ::winrt::Windows::Devices::Input::PointerDevice ^ > ^ deva = ::winrt::Windows::Devices::Input::PointerDevice::GetPointerDevices();
 
-                  for(unsigned int u = 0; u < deva->Size; u++)
+                  for(::u32 u = 0; u < deva->Size; u++)
                   {
 
                      ::winrt::Windows::Devices::Input::PointerDevice ^ dev = deva->GetAt(u);

@@ -37,7 +37,7 @@ namespace user
 
       e_style              m_estyle;
       class ::time                 m_timeAnimationStart;
-      double               m_dPosition;
+      ::f64               m_dPosition;
       class ::time                 m_timeAnimationPeriod;
 
 
@@ -78,7 +78,7 @@ namespace user
       DECLARE_MESSAGE_HANDLER(on_message_key_down);
       DECLARE_MESSAGE_HANDLER(on_message_key_up);
       DECLARE_MESSAGE_HANDLER(on_message_left_button_double_click);
-      virtual void on_timer(::timer * ptimer) override;
+      void operator()(::timer * ptimer) override;
 
    };
 

@@ -93,7 +93,7 @@ namespace graphics3d
 	// 	}
 	// }
 
-	void skybox_ibl_render_system::on_render(::gpu::frame * pframe)
+	void skybox_ibl_render_system::on_render(::gpu::layer * pgpulayer)
 	{
 
 		if (!m_bHasCubemap) return;

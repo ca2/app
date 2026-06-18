@@ -51,11 +51,11 @@ namespace database
       e_data_type_short,
       e_data_type_ushort,
       e_data_type_long,
-      e_data_type_long_long,
+      e_data_type_i64,
       e_data_type_ulong,
-      e_data_type_float,
-      e_data_type_double,
-      e_data_type_long_double,
+      e_data_type_f32,
+      e_data_type_f64,
+      e_data_type_long_f64,
       e_data_type_object
 
    };

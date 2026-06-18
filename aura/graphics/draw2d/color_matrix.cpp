@@ -74,7 +74,7 @@ bool color_matrix::is_identity() const
 }
 
 
-color_matrix & color_matrix::brightness(double r, double g, double b)
+color_matrix & color_matrix::brightness(::f64 r, ::f64 g, ::f64 b)
 {
 
    e1 = r;
@@ -86,7 +86,7 @@ color_matrix & color_matrix::brightness(double r, double g, double b)
 }
 
 
-color_matrix & color_matrix::saturation(double r, double g, double b, double s)
+color_matrix & color_matrix::saturation(::f64 r, ::f64 g, ::f64 b, ::f64 s)
 {
 
    a1 = (1.0 - s) * r + s;

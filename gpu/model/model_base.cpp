@@ -98,7 +98,7 @@ namespace gpu
       //void model_base::processNode(aiNode *node, const aiScene *scene)
       //{
       //   // process all of this node's meshes if it has any
-      //   for (unsigned int i = 0; i < node->mNumMeshes; i++)
+      //   for (::u32 i = 0; i < node->mNumMeshes; i++)
       //   {
       //      aiMesh *mesh = scene->mMeshes[node->mMeshes[i]];
       //      auto pmesh = processMesh(mesh, scene);
@@ -116,7 +116,7 @@ namespace gpu
       //   }
 
       //   // continue with children
-      //   for (unsigned int i = 0; i < node->mNumChildren; i++)
+      //   for (::u32 i = 0; i < node->mNumChildren; i++)
       //   {
       //      processNode(node->mChildren[i], scene);
       //   }
@@ -127,7 +127,7 @@ namespace gpu
       //::pointer<::gpu::model::mesh> model_base::processMesh(aiMesh *mesh, const aiScene *scene)
       //{
       //   ::array_base<gltf::vertex> vertices;
-      //   ::array_base<unsigned int> indices;
+      //   ::array_base<::u32> indices;
       //   ::pointer<::gpu::model::material> pmaterial;
 
       //   if (m_pmaterialOverride)
@@ -141,7 +141,7 @@ namespace gpu
       //   }
 
       //   // vertices
-      //   for (unsigned int i = 0; i < mesh->mNumVertices; i++)
+      //   for (::u32 i = 0; i < mesh->mNumVertices; i++)
       //   {
       //      ::gpu::gltf::vertex vertex;
 
@@ -216,12 +216,12 @@ namespace gpu
       //   }
 
       //   // indices
-      //   for (unsigned int i = 0; i < mesh->mNumFaces; i++)
+      //   for (::u32 i = 0; i < mesh->mNumFaces; i++)
       //   {
 
       //      aiFace face = mesh->mFaces[i];
 
-      //      for (unsigned int j = 0; j < face.mNumIndices; j++)
+      //      for (::u32 j = 0; j < face.mNumIndices; j++)
       //      {
       //         indices.add(face.mIndices[j]);
       //      }
@@ -378,17 +378,17 @@ namespace gpu
       }
 
 
-      // ::pointer < ::gpu::texture> model_base::textureFromFile(const char *fileName, ::string directory, aiTextureType
+      // ::pointer < ::gpu::texture> model_base::textureFromFile(const_char_pointer fileName, ::string directory, aiTextureType
       // type)
       // {
       //
       //    return {};
-      //    // int width, height, numChannels;
+      //    // ::i32 width, height, numChannels;
       //    //
       //    // ::string relativePath = fileName;
       //    // ::string path = directory + '/' + relativePath;
       //    //
-      //    // unsigned char *data = stbi_load(path.c_str(), &width, &height, &numChannels, 0);
+      //    // ::u8 *data = stbi_load(path.c_str(), &width, &height, &numChannels, 0);
       //    //
       //    // if (!data)
       //    // {
@@ -430,7 +430,7 @@ namespace gpu
       //    //    }
       //    // }
       //    //
-      //    // unsigned int textureId;
+      //    // ::u32 textureId;
       //    // glGenTextures(1, &textureId);
       //    // glBindTexture(GL_TEXTURE_2D, textureId);
       //    //

@@ -30,8 +30,8 @@
 // end_r_commctrl
 
 #define HDFT_ISSTRING       0x0000      // HD_ITEM.pvFilter points to a HD_TEXTFILTER
-#define HDFT_ISNUMBER       0x0001      // HD_ITEM.pvFilter points to a int
-#define HDFT_ISDATE         0x0002      // HD_ITEM.pvFilter points to a unsigned int (dos date)
+#define HDFT_ISNUMBER       0x0001      // HD_ITEM.pvFilter points to a ::i32
+#define HDFT_ISDATE         0x0002      // HD_ITEM.pvFilter points to a ::u32 (dos date)
 
 #define HDFT_HASNOVALUE     0x8000      // clear the filter, by setting this bit
 
@@ -64,46 +64,46 @@ namespace user
       public:
 
 
-         unsigned int                mask;
-         int                  cxy;
+         ::u32                mask;
+         ::i32                  cxy;
          string               m_strTextText;
          ::image::image_pointer      m_pimage;
-         int                  cchTextMax;
-         int                  fmt;
+         ::i32                  cchTextMax;
+         ::i32                  fmt;
          lparam               lParam;
-         int                  iImage;        // index of bitmap in ImageList
-         int                  iOrder;
-         unsigned int                type;           // [in] filter type (defined what pvFilter is a pointer to)
+         ::i32                  iImage;        // index of bitmap in ImageList
+         ::i32                  iOrder;
+         ::u32                type;           // [in] filter type (defined what pvFilter is a pointer to)
          void *               pvFilter;       // [in] fillter data see above
-         unsigned int                state;
+         ::u32                state;
       };
 
 
-      enum enum_element
-      {
-         e_element_item,
-         element_item_Box,
-         ElementDivider,
-      };
+      // enum enum_element
+      // {
+      //    e_element_item,
+      //    element_item_Box,
+      //    ElementDivider,
+      // };
 
-      int                           m_iImageSpacing;
+      ::i32                           m_iImageSpacing;
       //::write_text::font_pointer                 m_pfont;
       string                        m_strBuffer;
       ::pointer<draw2d::graphics_extension>   m_pgraphicsextension;
 
       bool                          m_bTrack;
       bool                          m_bHover;
-      enum_element                      m_eelementHover;
+      ::e_element                      m_eelementHover;
       ::collection::index                         m_iItemHover;
       bool                          m_bLButtonDown;
-      enum_element                      m_eelementLButtonDown;
+      ::e_element                      m_eelementLButtonDown;
       ::collection::index                         m_iItemLButtonDown;
 
       ::user::list *                        m_plist;
 
 
       list_header();
-      virtual ~list_header();
+      ~list_header() override;
 
       void install_message_routing(::channel * pchannel) override;
       void SetBaseListCtrlInterface(::user::list * pinterface);
@@ -118,31 +118,31 @@ namespace user
       virtual ::collection::index MapItemToOrder(::collection::index iItem);
       virtual ::collection::index ItemToColumnKey(::collection::index iItem);
 
-      virtual int GetDividerWidth();
+      virtual ::i32 GetDividerWidth();
 
 
-      bool GetItemRect(::int_rectangle * prectangle, enum_element eelement, ::collection::index iItem);
+      bool GetItemRect(::i32_rectangle * prectangle, const ::e_element & eelement, ::collection::index iItem);
 
 
-      bool GetItemRect(::int_rectangle * prectangle, enum_element eelementLButtonDown, ::collection::index iItemLButtonDown,
+      bool GetItemRect(::i32_rectangle * prectangle, ::e_element eelementLButtonDown, ::collection::index iItemLButtonDown,
 
-                       enum_element eelement,
+                       const ::e_element & eelement,
                        ::collection::index iItem);
 
       bool hit_test(
-      const ::int_point & point,
-      enum_element & eelement,
+      const ::i32_point & point,
+      e_element & eelement,
       ::collection::index & iItem);
 
       bool hit_test(
-      const ::int_point & point,
-      enum_element eelementLButtonDown,
+      const ::i32_point & point,
+      e_element eelementLButtonDown,
       ::collection::index iItemLButtonDown,
-      enum_element & eelement,
+      e_element & eelement,
       ::collection::index & iItem);
 
 
-      ::double_point get_parent_context_offset() override;
+      ::f64_point get_parent_context_offset() override;
 
       // Message Handlers
    protected:

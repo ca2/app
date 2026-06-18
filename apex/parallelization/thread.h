@@ -52,8 +52,10 @@ public:
    ::pointer<message_queue>                           m_pmessagequeue;
    bool                                               m_bClosedMessageQueue;
    ::pointer < ::request >                            m_prequest2;
-
-
+#ifdef WINDOWS
+   void *m_pAcceleratorTable = nullptr;
+#endif
+   
    MESSAGE                                            m_message;
    bool                                               m_bLastingThread;
    //bool                                               m_bMessageThread;
@@ -85,9 +87,9 @@ public:
 
    ::pointer<::task_pool>                            m_ptaskpool;
 
-   unsigned int                                              m_nDisablePumpCount;
+   ::u32                                              m_nDisablePumpCount;
 
-   unsigned int                                              m_dwFinishTimeout;
+   ::u32                                              m_dwFinishTimeout;
    //bool                                               m_bThreadClosed;
 
 
@@ -97,7 +99,7 @@ public:
 
    string                                             m_strDebug;
    string                                             m_strFile;
-   int                                                m_iLine;
+   ::i32                                                m_iLine;
 
    bool                                               m_bTemporary;
    ::pointer<::object>                                m_pobjectScript;
@@ -136,9 +138,9 @@ public:
    
 #ifdef _DEBUG
 
-   long long increment_reference_count() override;
-   long long decrement_reference_count() override;
-   long long release() override;
+   ::i64 increment_reference_count() override;
+   ::i64 decrement_reference_count() override;
+   ::i64 release() override;
 
 #endif
 
@@ -161,8 +163,8 @@ public:
    message_queue* get_message_queue();
    message_queue* _get_message_queue();
 
-   bool peek_message(MESSAGE * pMsg, const ::operating_system::window & operatingsystemwindow, unsigned int wMsgFilterMin, unsigned int wMsgFilterMax, bool bRemoveMessage = false);
-   void get_message(MESSAGE * pMsg, const ::operating_system::window & operatingsystemwindow, unsigned int wMsgFilterMin, unsigned int wMsgFilterMax);
+   bool peek_message(MESSAGE * pMsg, const ::operating_system::window & operatingsystemwindow, ::u32 wMsgFilterMin, ::u32 wMsgFilterMax, bool bRemoveMessage = false);
+   void get_message(MESSAGE * pMsg, const ::operating_system::window & operatingsystemwindow, ::u32 wMsgFilterMin, ::u32 wMsgFilterMax);
    void post_message(const ::operating_system::window & operatingsystemwindow, ::user::enum_message eusermessage, ::wparam wparam, ::lparam lparam);
 
 
@@ -190,8 +192,8 @@ public:
 //   virtual void branch(
 //      ::matter * pmatter,
 //      ::enum_priority epriority = e_priority_normal,
-//      unsigned int nStackSize = 0,
-//      unsigned int dwCreateFlags = 0 ARG_SEC_ATTRS_DEF) override;
+//      ::u32 nStackSize = 0,
+//      ::u32 dwCreateFlags = 0 ARG_SEC_ATTRS_DEF) override;
 
 
    virtual htask get_htask() const;
@@ -220,8 +222,8 @@ public:
    //static ::pointer<thread>start(
    //   ::matter* pmatter,
    //   ::enum_priority epriority = e_priority_normal,
-   //   unsigned int nStackSize = 0,
-   //   unsigned int dwCreateFlags = 0);
+   //   ::u32 nStackSize = 0,
+   //   ::u32 dwCreateFlags = 0);
 
 
 
@@ -233,7 +235,7 @@ public:
    virtual void on_ping() override;
    virtual bool is_pinging() const override;
 
-   virtual int get_x_window_count() const;
+   virtual ::i32 get_x_window_count() const;
 
    //virtual synchronization_result wait(const class time & time);
 
@@ -267,7 +269,7 @@ public:
 
 
    ///virtual void relay_exception(::exception_pointer e, e_thread ethreadSource = thread_none);
-   virtual int _GetMessage(MESSAGE * lpMsg, ::windowing::window * pwindow, unsigned int wMsgFilterMin, unsigned int wMsgFilterMax);
+   virtual ::i32 _GetMessage(MESSAGE * lpMsg, ::windowing::window * pwindow, ::u32 wMsgFilterMin, ::u32 wMsgFilterMax);
 
    virtual bool has_step() const;
    //virtual bool has_raw_message() const;
@@ -294,8 +296,8 @@ public:
    //virtual void process_window_message(::user::message * pusermessage);
    virtual bool process_message();     // route message
    virtual bool raw_process_message();     // route message
-   // virtual bool on_idle(int lCount); // return true if more idle processing
-   virtual void on_thread_on_idle(::thread * pthread, int lCount);
+   // virtual bool on_idle(::i32 lCount); // return true if more idle processing
+   virtual void on_thread_on_idle(::thread * pthread, ::i32 lCount);
    virtual bool is_idle_message(::message::message * pmessage);  // checks for special messages
    virtual bool is_idle_message();  // checks for special messages
 
@@ -306,22 +308,23 @@ public:
    void __task_term() override;
 
 
-   virtual void run() override;
+   void run() override;
+   void run_main_loop() override;
    //virtual void main() override;
-   virtual bool on_idle() override;
+   bool on_idle() override;
 
    //virtual void on_pos_run_thread();
    //void term_task() override;
 
    virtual void process_window_procedure_exception(const ::exception & e, ::message::message * pmessage);
 
-   virtual void process_message_filter(int code, ::message::message * pmessage);
+   virtual void process_message_filter(::i32 code, ::message::message * pmessage);
 
    // virtual void add(::user::interaction_base * pinteraction);
    //virtual void erase(::user::interaction_base * pinteraction);
    //virtual ::collection::count get_ui_count();
    //virtual ::user::interaction_base * get_ui(::collection::index iIndex);
-   //virtual void set_timer(::user::interaction_base * pinteraction, uptr uEvent, unsigned int nEllapse);
+   //virtual void set_timer(::user::interaction_base * pinteraction, uptr uEvent, ::u32 nEllapse);
    //virtual void unset_timer(::user::interaction_base * pinteraction, uptr uEvent);
    //virtual void set_auto_delete(bool bAutoDelete = true);
 //   virtual ::user::interaction_base * get_active_user_interaction_base();
@@ -367,7 +370,7 @@ public:
    //bool do_tasks() override;
    // virtual bool do_events(const time& time);
 
-   virtual bool task_get_run() const override;
+   bool should_run() const override;
    //virtual bool set_run();
    //virtual void destroy() override;
    //virtual bool is_set_finish() const;
@@ -377,7 +380,7 @@ public:
    //virtual void on_finish() override;
 
 
-   virtual bool post_quit_message(int nExitCode);
+   virtual bool post_quit_message(::i32 nExitCode);
 
 
    //virtual ::collection::index task_add(::task * ptask) override;

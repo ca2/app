@@ -7,24 +7,24 @@
 //#pragma comment(lib, "d3dcompiler.lib")
 //const_char_pointer fullscreen_vertex_shader = R"shader(// fullscreen_vs.hlsl
 //      struct VSOut {
-//         float4 pos : SV_POSITION;
-//         float2 uv : TEXCOORD0;
+//         f324 pos : SV_POSITION;
+//         f322 uv : TEXCOORD0;
 //      };
 //
 //      VSOut main(uint vid : SV_VertexID) {
-//         float2 verts[3] = {
-//             float2(-1, -1),
-//             float2(-1, +3),
-//             float2(+3, -1)
+//         f322 verts[3] = {
+//             f322(-1, -1),
+//             f322(-1, +3),
+//             f322(+3, -1)
 //         };
-//         float2 uvs[3] = {
-//             float2(0, 1),
-//             float2(0, -1),
-//             float2(2, 1)
+//         f322 uvs[3] = {
+//             f322(0, 1),
+//             f322(0, -1),
+//             f322(2, 1)
 //         };
 //
 //         VSOut o;
-//         o.pos = float4(verts[vid], 0, 1);
+//         o.pos = f324(verts[vid], 0, 1);
 //         o.uv = 0.5 * (verts[vid] + 1.0);
 //         return o;
 //      }
@@ -34,7 +34,7 @@
 //Texture2D tex : register(t0);
 //SamplerState samp : register(s0);
 //
-//float4 main(float4 pos : SV_POSITION, float2 uv : TEXCOORD0) : SV_Target {
+//f324 main(f324 pos : SV_POSITION, f322 uv : TEXCOORD0) : SV_Target {
 //    return tex.Sample(samp, uv);
 //}
 //)shader";
@@ -50,14 +50,14 @@
 //
 //	//}
 //
-//	swap_chain_render_target::swap_chain_render_target(renderer* pgpurenderer, const ::int_size & size)
+//	swap_chain_render_target::swap_chain_render_target(renderer* pgpurenderer, const ::i32_size & size)
 //		: swap_chain_render_target(pgpurenderer, size, {})
 //	{
 //		//m_bNeedRebuild = false;
 //	   //init();
 //	}
 //
-//	swap_chain_render_target::swap_chain_render_target(renderer* pgpurenderer, const ::int_size & size, ::pointer<render_target> previous)
+//	swap_chain_render_target::swap_chain_render_target(renderer* pgpurenderer, const ::i32_size & size, ::pointer<render_target> previous)
 //		: render_target(pgpurenderer, size, previous)
 //	{
 //
@@ -118,7 +118,7 @@
 //			&vsBlob, &errorBlob
 //		);
 //		if (FAILED(hr)) {
-//			if (errorBlob) OutputDebugStringA((char*)errorBlob->GetBufferPointer());
+//			if (errorBlob) OutputDebugStringA((char_pointer )errorBlob->GetBufferPointer());
 //			return;
 //		}
 //
@@ -134,7 +134,7 @@
 //			&psBlob, &errorBlob
 //		);
 //		if (FAILED(hr)) {
-//			if (errorBlob) OutputDebugStringA((char*)errorBlob->GetBufferPointer());
+//			if (errorBlob) OutputDebugStringA((char_pointer )errorBlob->GetBufferPointer());
 //			return;
 //		}
 //
@@ -180,14 +180,14 @@
 //		//	m_vkswapchain = nullptr;
 //		//}
 //
-//		//for (int i = 0; i < depthImages.size(); i++) {
+//		//for (::i32 i = 0; i < depthImages.size(); i++) {
 //		//   vkDestroyImageView(m_pgpucontext->logicalDevice(), depthImageViews[i], nullptr);
 //		//   vkDestroyImage(m_pgpucontext->logicalDevice(), depthImages[i], nullptr);
 //		//   vkFreeMemory(m_pgpucontext->logicalDevice(), depthImageMemorys[i], nullptr);
 //		//}
 //
-//		//for (auto framebuffer : m_vkswapchainFramebuffers) {
-//		//   vkDestroyFramebuffer(m_pgpucontext->logicalDevice(), framebuffer, nullptr);
+//		//for (auto pframebuffer : m_vkswapchainFramebuffers) {
+//		//   vkDestroyFramebuffer(m_pgpucontext->logicalDevice(), pframebuffer, nullptr);
 //		//}
 //
 //		//vkDestroyRenderPass(m_pgpucontext->logicalDevice(), m_vkrendertargetview, nullptr);
@@ -373,7 +373,7 @@
 //	//}
 //
 //
-//	int swap_chain_render_target::get_image_index() const
+//	::i32 swap_chain_render_target::get_image_index() const
 //	{
 //
 //		return m_uCurrentSwapChainImage;
@@ -454,7 +454,7 @@
 //
 //		//m_formatImage = surfaceFormat.format;
 //		//m_extent = extent;
-//		//m_pgpucontext->m_rectangle.set_size({ (int)extent.width, (int)extent.height });
+//		//m_pgpucontext->m_rectangle.set_size({ (::i32)extent.width, (::i32)extent.height });
 //
 //	}
 //
@@ -585,7 +585,7 @@
 //		//      &framebufferInfo,
 //		//      nullptr,
 //		//      &swapChainFramebuffers[i]) != VK_SUCCESS) {
-//		//      throw ::exception(error_failed,"failed to create framebuffer!");
+//		//      throw ::exception(error_failed,"failed to create pframebuffer!");
 //		//   }
 //		//}
 //	}
@@ -603,7 +603,7 @@
 //		//depthImageMemorys.resize(imageCount());
 //		//depthImageViews.resize(imageCount());
 //
-//		//for (int i = 0; i < depthImages.size(); i++) {
+//		//for (::i32 i = 0; i < depthImages.size(); i++) {
 //		//   VkImageCreateInfo imageInfo{};
 //		//   imageInfo.sType = VK_STRUCTURE_TYPE_IMAGE_CREATE_INFO;
 //		//   imageInfo.imageType = VK_IMAGE_TYPE_2D;
@@ -750,8 +750,8 @@
 //		D3D11_VIEWPORT vp = {};
 //		vp.TopLeftX = 0;
 //		vp.TopLeftY = 0;
-//		vp.Width = static_cast<float>(rectangle.width());
-//		vp.Height = static_cast<float>(rectangle.height());
+//		vp.Width = static_cast<::f32>(rectangle.width());
+//		vp.Height = static_cast<::f32>(rectangle.height());
 //		vp.MinDepth = 0.0f;
 //		vp.MaxDepth = 1.0f;
 //		pgpudevice->m_pd3d12devicecontext->RSSetViewports(1, &vp);

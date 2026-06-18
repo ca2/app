@@ -23,7 +23,7 @@
   		user tries to manually shutdown the program.
   Mod history:	05/21/02 RSB	Created.
 
-  The int_point of this is handling the situation in which the user manually
+  The i32_point of this is handling the situation in which the user manually
   tries to shutdown the program by closing its graphics window.  We can't
   do much about it if the text-mode window is closed manually, but in the
   case of the graphics window we can allow the programmer to decide whether
@@ -52,8 +52,8 @@
 // In some cases, TurboX may be called with a parameter of 0, and then
 // immediately called again with a parameter of 1.
 
-int
-TurboX (int Forced)
+::i32
+TurboX (::i32 Forced)
 {
   return (0);
 }

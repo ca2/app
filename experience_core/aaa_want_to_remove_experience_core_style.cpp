@@ -33,12 +33,12 @@ namespace experience_lite
    bool user_style::_001TabOnDrawSchema01(::draw2d::graphics_pointer & pgraphics,::user::tab * ptab)
    {
 
-      ::double_rectangle rectangle;
-      ::double_rectangle rectangleBorder;
-      ::double_rectangle rectangleText;
-      ::double_rectangle rectangleX;
-      ::double_rectangle rectangleIcon;
-      ::double_rectangle rectangleClose;
+      ::f64_rectangle rectangle;
+      ::f64_rectangle rectangleBorder;
+      ::f64_rectangle rectangleText;
+      ::f64_rectangle rectangleX;
+      ::f64_rectangle rectangleIcon;
+      ::f64_rectangle rectangleClose;
 
       ptab->get_data()->m_ppen->create_solid(1,rgb(32,32,32));
 
@@ -46,11 +46,11 @@ namespace experience_lite
 
       pgraphics->set_alpha_mode(::draw2d::e_alpha_mode_blend);
 
-      int iTab = -1;
+      ::i32 iTab = -1;
 
       ::draw2d::brush_pointer pbrushText;
 
-      for(int iPane = 0; iPane < ptab->get_data()->m_panea.get_size(); iPane++)
+      for(::i32 iPane = 0; iPane < ptab->get_data()->m_panea.get_size(); iPane++)
       {
 
          ::user::tab_pane & pane = ptab->get_data()->m_panea(iPane);
@@ -337,12 +337,12 @@ namespace experience_lite
       else
       {
 
-         ::double_rectangle rectangleText(lpcrect);
+         ::f64_rectangle rectangleText(lpcrect);
 
          ::write_text::font_pointer pfont;
          font = pgraphics->get_current_font();
          size sSep = ptab->get_data()->m_sizeSep;
-         ::double_rectangle rectangleEmp;
+         ::f64_rectangle rectangleEmp;
          for(::collection::index i = 0; i < straTitle.get_size(); i++)
          {
             string str = straTitle[i];
@@ -357,7 +357,7 @@ namespace experience_lite
                rectangleEmp.deflate(1,1);
                ::draw2d::enum_alpha_mode emode = pgraphics->m_ealphamode;
                pgraphics->set_alpha_mode(::draw2d::e_alpha_mode_blend);
-               if(ptab->m_eelementHover == (int)::e_element_split + i)
+               if(ptab->m_eelementHover == (::i32)::e_element_split + i)
                {
                   pgraphics->FillSolidRect(rectangleEmp,argb(128,149,184,255));
                   pgraphics->SelectObject(ptab->get_data()->m_pbrushTextHover);
@@ -388,7 +388,7 @@ namespace experience_lite
 
       {
 
-         //         unsigned int dwTime2= ::duration::now();
+         //         ::u32 dwTime2= ::duration::now();
 
          //informationf("message_handler call time0= %d ms",dwTime2 - t_time1.operator DWORD_PTR());
          //informationf("usertab::on_layout call time1= %d ms",dwTime2 - t_time1.operator DWORD_PTR());
@@ -407,11 +407,11 @@ namespace experience_lite
 
       if(ptab->get_data()->m_bVertical)
       {
-         int iTabWidth = 16;
-         int iTabHeight = 8;
-         int cx;
-         int cy;
-         for(int iPane = 0; iPane < ptab->get_data()->m_panea.get_size(); iPane++)
+         ::i32 iTabWidth = 16;
+         ::i32 iTabHeight = 8;
+         ::i32 cx;
+         ::i32 cy;
+         for(::i32 iPane = 0; iPane < ptab->get_data()->m_panea.get_size(); iPane++)
          {
 
             ::user::tab_pane & tab_pane = ptab->get_data()->m_panea(iPane);
@@ -471,7 +471,7 @@ namespace experience_lite
 
          ptab->get_data()->m_iTabHeight = iTabHeight;
 
-         ::double_rectangle rectangleX;
+         ::f64_rectangle rectangleX;
          ptab->GetClientRect(rectangleX);
 
          ptab->get_data()->m_rectangleTab.left       = rectangleX.left;
@@ -495,19 +495,19 @@ namespace experience_lite
       }
       else
       {
-         int iTabHeight = 16;
-         int cy;
+         ::i32 iTabHeight = 16;
+         ::i32 cy;
          ::draw2d::graphics_pointer graphics(this_create);
          pgraphics->create_compatible_graphics(NULL);
          ::draw2d::graphics_pointer & pgraphics = graphics;
          pgraphics->SelectObject(ptab->get_data()->m_pfontBold);
 
-         ::double_rectangle rectangleX;
+         ::f64_rectangle rectangleX;
          ptab->GetClientRect(rectangleX);
-         int x = rectangleX.left;
+         ::i32 x = rectangleX.left;
 
-         int ixAdd;
-         for(int iPane = 0; iPane < ptab->get_data()->m_panea.get_size(); iPane++)
+         ::i32 ixAdd;
+         for(::i32 iPane = 0; iPane < ptab->get_data()->m_panea.get_size(); iPane++)
          {
 
             ::user::tab_pane & tab_pane = ptab->get_data()->m_panea(iPane);
@@ -578,7 +578,7 @@ namespace experience_lite
 
          ptab->get_data()->m_iTabHeight = iTabHeight;
 
-         for(int iPane = 0; iPane < ptab->get_data()->m_panea.get_size(); iPane++)
+         for(::i32 iPane = 0; iPane < ptab->get_data()->m_panea.get_size(); iPane++)
          {
 
             ::user::tab_pane & tab_pane = ptab->get_data()->m_panea(iPane);
@@ -613,7 +613,7 @@ namespace experience_lite
          //TRACE0("rectangleHosting");
       }
 
-      for(int iPane = 0; iPane < ptab->get_data()->m_panea.get_size(); iPane++)
+      for(::i32 iPane = 0; iPane < ptab->get_data()->m_panea.get_size(); iPane++)
       {
 
          if(iPane != ptab->_001GetSel())
@@ -639,7 +639,7 @@ namespace experience_lite
 
       pbar->get_color(crBackground, ::user::color_scrollbar_background);
 
-      ::double_rectangle rectangleX;
+      ::f64_rectangle rectangleX;
 
       pbar->GetClientRect(rectangleX);
 
@@ -663,11 +663,11 @@ namespace experience_lite
 
       }
 
-      ::double_rectangle rectangleTrack;
+      ::f64_rectangle rectangleTrack;
 
       pbar->GetTrackRect(rectangleTrack);
 
-      ::double_rectangle rectangleWindow;
+      ::f64_rectangle rectangleWindow;
 
       pbar->GetWindowRect(rectangleWindow);
 
@@ -684,11 +684,11 @@ namespace experience_lite
       if (pbar->m_bTracking || (bool)pbar->prop("tracking_on"))
       {
 
-         unsigned int tickFadeIn = 490;
+         ::u32 tickFadeIn = 490;
 
-         unsigned int tickFadeOut = 490;
+         ::u32 tickFadeOut = 490;
 
-         unsigned char uchAlpha = maximum(0, minimum(255, pbar->prop("tracking_alpha").unsigned int()));
+         ::u8 uchAlpha = maximum(0, minimum(255, pbar->prop("tracking_alpha").::u32()));
 
          if (pbar->m_bTracking)
          {
@@ -697,7 +697,7 @@ namespace experience_lite
             {
 
                pbar->prop("tracking_on") = true;
-               pbar->prop("tracking_start") = (unsigned int)(::get_tick() + uchAlpha * tickFadeIn / 255);
+               pbar->prop("tracking_start") = (::u32)(::get_tick() + uchAlpha * tickFadeIn / 255);
                pbar->prop("tracking_fade_in") = true;
                pbar->prop("tracking_fade_out") = false;
                pbar->prop("tracking_simple") = random(1, 2) == 1;
@@ -710,7 +710,7 @@ namespace experience_lite
             {
                pbar->prop("tracking_fade_in") = false;
                pbar->prop("tracking_fade_out") = true;
-               pbar->prop("tracking_start") = (unsigned int)(::get_tick() + (255 - uchAlpha) * tickFadeOut / 255);
+               pbar->prop("tracking_start") = (::u32)(::get_tick() + (255 - uchAlpha) * tickFadeOut / 255);
             }
 
          }
@@ -731,10 +731,10 @@ namespace experience_lite
 
          if ((bool)pbar->prop("tracking_fade_in"))
          {
-            unsigned int dwFade = pbar->prop("tracking_start").::duration().elapsed();
+            ::u32 dwFade = pbar->prop("tracking_start").::duration().elapsed();
             if (dwFade < tickFadeIn)
             {
-               uchAlpha = (unsigned char)minimum(255, maximum(0, (dwFade * 255 / tickFadeIn)));
+               uchAlpha = (::u8)minimum(255, maximum(0, (dwFade * 255 / tickFadeIn)));
             }
             else
             {
@@ -745,10 +745,10 @@ namespace experience_lite
          }
          else if ((bool)pbar->prop("tracking_fade_out"))
          {
-            unsigned int dwFade = pbar->prop("tracking_start").::duration().elapsed();
+            ::u32 dwFade = pbar->prop("tracking_start").::duration().elapsed();
             if (dwFade < tickFadeOut)
             {
-               uchAlpha = (unsigned char)(255 - minimum(255, maximum(0, (dwFade * 255 / tickFadeOut))));
+               uchAlpha = (::u8)(255 - minimum(255, maximum(0, (dwFade * 255 / tickFadeOut))));
             }
             else
             {
@@ -763,24 +763,24 @@ namespace experience_lite
             uchAlpha = 255;
          }
 
-         ::double_rectangle rectangleMachineThumb;
+         ::f64_rectangle rectangleMachineThumb;
 
          bool bSimple = (bool)pbar->prop("tracking_simple");
 
          if (bSimple)
          {
 
-            int iSize = rectangleTrack.size().get_normal(pbar->m_eorientation) * 6 / 8;
+            ::i32 iSize = rectangleTrack.size().get_normal(pbar->m_eorientation) * 6 / 8;
 
             rectangleMachineThumb.top_left() = rectangleTrack.top_left() + pbar->m_pointTrackOffset - size(iSize / 2, iSize / 2);
 
             rectangleMachineThumb.bottom_right() = rectangleMachineThumb.top_left() + size(iSize, iSize);
 
-            ::double_rectangle rectangleIntersect;
+            ::f64_rectangle rectangleIntersect;
 
             rectangleIntersect.intersect(rectangleMachineThumb, rectangleTrack);
 
-            int iArea = (int)(maximum(1, rectangleIntersect.area()));
+            ::i32 iArea = (::i32)(maximum(1, rectangleIntersect.area()));
 
             rectangleMachineThumb.inflate(1 + iSize * (iSize * iSize) * 4 / (iArea * 5), 1 + iSize * (iSize * iSize) * 2 / (iArea * 3));
 
@@ -790,7 +790,7 @@ namespace experience_lite
          else
          {
 
-            int iSize = rectangleTrack.size().get_normal(pbar->m_eorientation);
+            ::i32 iSize = rectangleTrack.size().get_normal(pbar->m_eorientation);
 
             rectangleMachineThumb.top_left() = rectangleTrack.top_left() + pbar->m_pointTrackOffset - size(iSize / 2, iSize / 2);
 
@@ -867,7 +867,7 @@ namespace experience_lite
 
       pgraphics->Rectangle(pbar->m_rectangleB);
 
-      ::double_rectangle rectangle;
+      ::f64_rectangle rectangle;
 
       if (pbar->m_eelement == ::e_element_scrollbar_pageA || pbar->m_eelementHover == ::e_element_scrollbar_pageA)
       {
@@ -1164,7 +1164,7 @@ namespace experience_lite
       if (!bOk)
       {
 
-         informationf("----> Unknown color: code=" + as_string((int) ecolor));
+         informationf("----> Unknown color: code=" + as_string((::i32) ecolor));
 
       }
 

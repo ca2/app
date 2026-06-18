@@ -6,8 +6,10 @@
 #include "message_box.h"
 #include "still.h"
 #include "theme.h"
+#include "acme/constant/timer.h"
+#include "acme/filesystem/filesystem/file_context.h"
 #include "acme/handler/sequence.h"
-#include "acme/nano/graphics/device.h"
+#include "acme/nano/graphics/context.h"
 #include "acme/nano/graphics/icon.h"
 #include "acme/user/micro/details_window.h"
 #include "acme/user/micro/popup_button.h"
@@ -18,7 +20,7 @@
 #include "acme/platform/node.h"
 //#include "acme/handler/sequence.h"
 #include "acme/platform/system.h"
-#include "acme/platform/timer.h"
+////#include "acme/platform/timer.h"
 #include "acme/user/user/mouse.h"
 #include "acme/_operating_system.h"
 #include "acme/user/micro/user.h"
@@ -29,7 +31,7 @@
 bool is_ui_possible();
 
 
-void ns_do_main_loop(double dSeconds);
+void ns_do_main_loop(::f64 dSeconds);
 
 
 namespace micro
@@ -104,10 +106,10 @@ namespace micro
    }
 
 
-   void message_box::on_draw(::nano::graphics::device* pmicrodevice)
+   void message_box::on_draw(::nano::graphics::context * pgraphicscontext)
    {
 
-      int_rectangle rectangleText;
+      i32_rectangle rectangleText;
 
       rectangleText = get_client_rectangle();
 
@@ -118,22 +120,26 @@ namespace micro
       if (m_picon)
       {
 
-         pmicrodevice->draw(m_picon, 25, 25, 48, 48);
+         pgraphicscontext->draw_icon(25, 25, 48, 48, m_picon);
 
          rectangleText.left += 48 + 10;
 
       }
 
       ::cast < ::message_box_payload > pmessageboxpayload = m_pdialog;
+      pgraphicscontext->set_brush(micro_theme()->m_pbrushText);
+      pgraphicscontext->set_font(micro_theme()->m_pfont);
 
-      pmicrodevice->draw_text123(
+      pgraphicscontext->draw_text123(
          pmessageboxpayload->m_strMessage,
          rectangleText,
-         e_align_top_left,
-         e_draw_text_word_break,
-         micro_theme()->m_pbrushWindow,
-         micro_theme()->m_pbrushText,
-         micro_theme()->m_pfont);
+                                     e_draw_text_word_break,
+         e_align_top_left);
+      
+      //,
+        // micro_theme()->m_pbrushWindow,
+         //micro_theme()->m_pbrushText,
+         //micro_theme()->m_pfont);
 
    }
 
@@ -153,6 +159,8 @@ namespace micro
          m_pstillDetails->m_strText = m_strLabelDetails;
 
          m_pstillDetails->m_bHyperlink = true;
+
+         m_pstillDetails->m_bBorder = false;
 
          add_child(m_pstillDetails);
 
@@ -192,7 +200,7 @@ namespace micro
    }
 
 
-   void message_box::add_button(const ::scoped_string& scopedstrText, enum_dialog_result edialogresult, char chLetter)
+   void message_box::add_button(const ::scoped_string& scopedstrText, enum_dialog_result edialogresult, ::i8 chLetter)
    {
 
       ::micro::dialog::add_button(scopedstrText, edialogresult, chLetter);
@@ -200,27 +208,51 @@ namespace micro
    }
 
 
-   void message_box::display(::dialog * pdialog)
+   void message_box::display_dialog(::dialog * pdialog)
    {
 
       ::cast < ::message_box_payload > pmessageboxpayload = pdialog;
 
+      m_pdialog = pmessageboxpayload;
+
       calculate_size();
 
-      ::acme::user::message_box::display(pmessageboxpayload);
+      ::acme::user::message_box::display_dialog(pmessageboxpayload);
 
-      set_icon(pmessageboxpayload->m_picon);
+      if (pmessageboxpayload->m_strDetailsTitle.has_character())
+      {
+
+         m_strLabelDetails = pmessageboxpayload->m_strDetailsTitle;
+
+      }
 
       defer_create_details_still();
+
+//      create_window();
+
+      if (pmessageboxpayload->m_straIconUrl.has_element())
+      {
+
+         auto picon = createø<::nano::graphics::icon>();
+
+         auto pfile = file()->get_reader(pmessageboxpayload->m_straIconUrl.first());
+
+         picon->load_image_from_file(pfile);
+
+         pmessageboxpayload->m_picon2 = picon;
+
+         set_icon(picon);
+
+      }
 
       if (pmessageboxpayload->m_emessagebox & ::user::e_message_box_default_button_mask)
       {
 
-         int iDefaultButtonMask = (int)(pmessageboxpayload->m_emessagebox & ::user::e_message_box_default_button_mask);
+         ::i32 iDefaultButtonMask = (::i32)(pmessageboxpayload->m_emessagebox & ::user::e_message_box_default_button_mask);
 
-         int iDefaultButtonIndex = iDefaultButtonMask >> 8;
+         ::i32 iDefaultButtonIndex = iDefaultButtonMask >> 8;
 
-         int iDefaultButton = iDefaultButtonIndex & 7;
+         ::i32 iDefaultButton = iDefaultButtonIndex & 7;
 
          m_pacmeuserinteractionaChildren->element_at(iDefaultButton)->set_keyboard_focus();
 
@@ -232,15 +264,15 @@ namespace micro
 
       }
 
-      auto wButton = (int)(m_rectangle.width() * 0.2);
+      auto wButton = (::i32)(m_rectangle.width() * 0.2);
 
-      auto hButton = (int)(m_rectangle.height() * 0.2);
+      auto hButton = (::i32)(m_rectangle.height() * 0.2);
 
-      auto iRight = (int)(m_rectangle.width() - m_rectangle.width() * 0.025);
+      auto iRight = (::i32)(m_rectangle.width() - m_rectangle.width() * 0.025);
 
-      auto iBottom = (int)(m_rectangle.height() - m_rectangle.width() * 0.025);
+      auto iBottom = (::i32)(m_rectangle.height() - m_rectangle.width() * 0.025);
 
-      auto wSpacing = (int)(m_rectangle.width() * 0.025);
+      auto wSpacing = (::i32)(m_rectangle.width() * 0.025);
 
       auto countButton = micro_button_count();
 
@@ -256,9 +288,23 @@ namespace micro
 
          iRight = pmicrobutton->m_rectangle.left - wSpacing;
 
-         printf_line("234");
+         //printf_line("234");
 
       }
+
+      create_window();
+
+      display(e_display_normal, {});
+
+   }
+
+
+   void message_box::show_modal(::dialog * pdialog)
+   {
+
+      display_dialog(pdialog);
+
+      m_manualresethappeningDialogResult.wait();
 
    }
 
@@ -268,8 +314,8 @@ namespace micro
 
 #if !defined(UNIVERSAL_WINDOWS) && !defined(__ANDROID__)
 
-      //int wScreen = 1280;
-      //int hScreen = 768;
+      //::i32 wScreen = 1280;
+      //::i32 hScreen = 768;
 
       auto sizeScreen = system()->acme_windowing()->acme_display()->get_main_screen_size();
 
@@ -281,7 +327,7 @@ namespace micro
 
       //printf("message_box::calculate_size (wScreen,hScreen)=%d,%d\n", wScreen, hScreen);
 
-      int w = wScreen / 2;
+      ::i32 w = wScreen / 2;
 
       if (w < 200)
       {
@@ -290,7 +336,7 @@ namespace micro
 
       }
 
-      int h = (w / 16) * 5;
+      ::i32 h = (w / 16) * 5;
 
       if (wScreen < hScreen)
       {
@@ -298,8 +344,8 @@ namespace micro
          h = (w / 10) * 5;
 
       }
-      int x = (wScreen - w) / 2;
-      int y = (hScreen - h) / 2;
+      ::i32 x = (wScreen - w) / 2;
+      ::i32 y = (hScreen - h) / 2;
 
       m_rectangle.set_dimension(x, y, w, h);
 
@@ -308,10 +354,10 @@ namespace micro
    }
 
 
-   void message_box::on_timer(::timer* ptimer)
+   void message_box::operator()(::timer * ptimer)
    {
 
-      if (ptimer->m_uTimer == 1021)
+      if (ptimer->m_etimer == e_timer_dialog_timeout_update)
       {
 
          m_pstillTimeout->m_strText.formatf("%0.2fs", m_pdialog->dialog_time_remaining_from_timeout().floating_second());
@@ -319,6 +365,8 @@ namespace micro
          redraw();
 
       }
+
+//      return true;
 
    }
 
@@ -328,6 +376,8 @@ namespace micro
 
       ::dialog_reifier::set_dialog_result(payloadResult);
 
+
+      m_manualresethappeningDialogResult.set_happening();
 //      ::cast < ::message_box_payload > pmessageboxpayload = m_pdialog;
 
   //    pmessageboxpayload->m_payloadResult = payloadResult;
@@ -352,7 +402,7 @@ namespace micro
 
       ::acme::user::interaction::on_create_window();
 
-      int x = 25;
+      ::i32 x = 25;
 
       if (m_picon)
       {
@@ -366,7 +416,11 @@ namespace micro
 
          m_pstillDetails->resize_to_fit();
 
-         m_pstillDetails->m_rectangle.move_bottom_to(micro_button_at(0)->m_rectangle.bottom);
+         auto r = micro_button_at(0)->m_rectangle;
+
+         auto iBottom = r.bottom;
+
+         m_pstillDetails->m_rectangle.move_bottom_to(iBottom);
 
          m_pstillDetails->m_rectangle.move_left_to(x);
 
@@ -390,29 +444,25 @@ namespace micro
       if (m_pstillTimeout)
       {
 
-         auto iBottom = (int)(m_rectangle.height() - m_rectangle.width() * 0.025);
-         auto hButton = (int)(m_rectangle.height() * 0.2);
-         auto wButton = (int)(m_rectangle.width() * 0.2);
+         auto iBottom = (::i32)(m_rectangle.height() - m_rectangle.width() * 0.025);
+         auto hButton = (::i32)(m_rectangle.height() * 0.2);
+         auto wButton = (::i32)(m_rectangle.width() * 0.2);
 
          m_pstillTimeout->m_rectangle.bottom = iBottom;
          m_pstillTimeout->m_rectangle.top = m_pstillTimeout->m_rectangle.bottom - hButton / 2;
-         m_pstillTimeout->m_rectangle.left = (int)(m_rectangle.width() * 0.025);
+         m_pstillTimeout->m_rectangle.left = (::i32)(m_rectangle.width() * 0.025);
          m_pstillTimeout->m_rectangle.right = m_pstillTimeout->m_rectangle.left + wButton / 3;
 
-         set_timer(1021, 200_ms);
+         set_timer(e_timer_dialog_timeout_update, 200_ms);
 
       }
    }
 
 
-#ifdef WINDOWS_DESKTOP
-   CLASS_DECL_ACME int message_box_to_windows_message_box(::user::enum_message_box emessagebox);
-   CLASS_DECL_ACME ::enum_dialog_result windows_message_box_result_to_dialog_result(int iResult);
-#endif
 
 #ifdef MACOS
 
-   enum_dialog_result ns_alert_box(const_char_pointer pszMessage, const_char_pointer pszTitle, ::user::enum_message_box emessagebox);
+   enum_dialog_result ns_alert_box(const_char_pointer pszMessage, const_char_pointer pszTitle, const ::user::e_message_box & emessagebox);
 
 #endif
 
@@ -429,11 +479,13 @@ namespace micro
             m_pdialog->dialog_details(),
             m_pdialog->dialog_title() + " : Details",
             ::user::e_message_box_ok,
-            m_pdialog->dialog_details());
+            m_pdialog->dialog_details(),
+            m_pdialog->dialog_details_icon_urls());
 
          pmessageboxDetails->m_bDetails = true;
 
-         send(pmessageboxDetails);
+         //send(pmessageboxDetails);
+         main_post(pmessageboxDetails);
 
          pmouse->m_bRet = true;
 
@@ -451,7 +503,12 @@ namespace micro
 
       set_dialog_result(payload);
 
-      pmouse->m_bRet = true;
+      if (pmouse)
+      {
+
+         pmouse->m_bRet = true;
+
+      }
 
    }
 
@@ -482,7 +539,7 @@ namespace micro
 
       auto ppopupbutton = create_newø<popup_button>();
 
-      ::int_rectangle rectanglePointTo;
+      ::i32_rectangle rectanglePointTo;
 
       rectanglePointTo.left = pmouse->m_pointAbsolute.x;
       rectanglePointTo.top = pmouse->m_pointAbsolute.y;
@@ -490,6 +547,7 @@ namespace micro
       rectanglePointTo.bottom = rectanglePointTo.top + 2;
 
       ppopupbutton->acme_windowing_window()->m_rectanglePointingTo = rectanglePointTo;
+
 #ifdef APPLE_IOS
       ppopupbutton->initialize_popup_button(
          "Dump to Clipboard...",
@@ -502,28 +560,30 @@ namespace micro
          this);
 #endif
 
-
       auto pmessageboxpayload =ppopupbutton->get_message_box_payload();
 
-      pmessageboxpayload->m_functionOnDialogResult = [this,  pmessageboxpayload](const::payload & payloadResult)
+      pmessageboxpayload->m_functionOnDialogResult2= [this ](const::payload & payloadResult)
          {
 
             //auto result = ppopupbutton->m_payloadPopupButtonResult;
 
+            ::cast<::message_box_payload> pmessageboxpayloadParent = m_pdialog;
+            
             if (payloadResult == e_dialog_result_yes)
             {
 
+               ::string strBody =
+                  pmessageboxpayloadParent->m_strMessage + "\n\n" + pmessageboxpayloadParent->m_strDetails;
+
+               auto pszBody = strBody.c_str();
+
 #ifdef APPLE_IOS
 
-               system()->acme_windowing()->set_clipboard_text(
-                  pmessageboxpayload->m_strMessage + "\n\n"
-                  + pmessageboxpayload->m_strDetails);
+               system()->acme_windowing()->set_clipboard_text(strBody);
                
 #else
 
-               display_temporary_file_with_text(
-                  pmessageboxpayload->m_strMessage + "\n\n"
-                  + pmessageboxpayload->m_strDetails);
+               display_temporary_file_with_text(strBody);
 
 #endif
 

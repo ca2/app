@@ -112,7 +112,7 @@ namespace filemanager
 
             ::property_set set;
 
-//            http()->get("http://file.ca2.network/", set);
+//            http()->get("http://file.ca2.site/", set);
 
             open_folder(1000); // user ::music folder
 
@@ -124,7 +124,7 @@ namespace filemanager
 
             ::property_set set;
 
-            //          http()->get("http://file.ca2.network/", set);
+            //          http()->get("http://file.ca2.site/", set);
 
             open_folder(1); // user root folder
 
@@ -151,7 +151,7 @@ namespace filemanager
          }
 
 
-         void impact::open_folder(long long iFolder)
+         void impact::open_folder(::i64 iFolder)
          {
 
             fork([this, iFolder]()
@@ -165,7 +165,7 @@ namespace filemanager
 
                ::string strUrl;
 
-               strUrl.formatf("http://file.ca2.network/ifs/ls?atom=%I64d", iFolder);
+               strUrl.formatf("http://file.ca2.site/ifs/ls?atom=%I64d", iFolder);
 
                phttpmessage->m_url = strUrl;
 
@@ -180,7 +180,7 @@ namespace filemanager
          }
 
 
-         void impact::open_file(long long iFolder, const ::scoped_string & scopedstrFileName, const ::scoped_string & scopedstrExtension)
+         void impact::open_file(::i64 iFolder, const ::scoped_string & scopedstrFileName, const ::scoped_string & scopedstrExtension)
          {
 
             string strUrl;
@@ -191,7 +191,7 @@ namespace filemanager
             
             string strFileNameEncoded =  ::url::encode(scopedstrFileName);
 
-            strUrl.formatf("http://file.ca2.network/ifs/get?name=%s&folder=%I64d&extension=.%s",strFileNameEncoded.c_str(), iFolder, scopedstrExtension.as_string().c_str());
+            strUrl.formatf("http://file.ca2.site/ifs/get?name=%s&folder=%I64d&extension=.%s",strFileNameEncoded.c_str(), iFolder, scopedstrExtension.as_string().c_str());
 
             //if(m_prequestinterface != nullptr)
             //{

@@ -17,7 +17,7 @@ bool defer_process_x_message(htask htask, MESSAGE * lpMsg, oswindow window, bool
 
       bContinue = false;
 
-      for(int i = 0; i < ::oswindow_data::s_pdataptra->get_count() && !bRet; i++)
+      for(::i32 i = 0; i < ::oswindow_data::s_pdataptra->get_count() && !bRet; i++)
       {
 
          ::oswindow_data * pdata = ::oswindow_data::s_pdataptra->element_at(i);
@@ -60,7 +60,7 @@ bool defer_process_x_message(htask htask, MESSAGE * lpMsg, oswindow window, bool
             {
                if(e.xconfigure.window == g_oswindowDesktop->window())
                {
-                  for(int j = 0; j < ::oswindow_data::s_pdataptra->get_count(); j++)
+                  for(::i32 j = 0; j < ::oswindow_data::s_pdataptra->get_count(); j++)
                   {
                      if(j == i)
                         continue;
@@ -222,23 +222,23 @@ bool defer_process_x_message(htask htask, MESSAGE * lpMsg, oswindow window, bool
 
 
 
-void get_os_priority(int * piPolicy, sched_param * pparam, int nCa2Priority)
+void get_os_priority(::i32 * piPolicy, sched_param * pparam, ::i32 nCa2Priority)
 {
 
-   int iOsPolicy;
+   ::i32 iOsPolicy;
 
-   int iCa2Min;
+   ::i32 iCa2Min;
 
-   int iCa2Max;
+   ::i32 iCa2Max;
 
    if(nCa2Priority == ::ca2::scheduling_priority_normal)
    {
 
       iOsPolicy = SCHED_OTHER;
 
-      iCa2Min = (int) ::ca2::scheduling_priority_normal;
+      iCa2Min = (::i32) ::ca2::scheduling_priority_normal;
 
-      iCa2Max = (int) ::ca2::scheduling_priority_normal;
+      iCa2Max = (::i32) ::ca2::scheduling_priority_normal;
 
    }
    else if(nCa2Priority > ::ca2::scheduling_priority_normal)
@@ -246,7 +246,7 @@ void get_os_priority(int * piPolicy, sched_param * pparam, int nCa2Priority)
 
       iOsPolicy = SCHED_RR;
 
-      iCa2Min = (int) ::ca2::scheduling_priority_normal;
+      iCa2Min = (::i32) ::ca2::scheduling_priority_normal;
 
       iCa2Max = 99;
 
@@ -258,15 +258,15 @@ void get_os_priority(int * piPolicy, sched_param * pparam, int nCa2Priority)
 
       iCa2Min = 0;
 
-      iCa2Max = (int) ::ca2::scheduling_priority_normal;
+      iCa2Max = (::i32) ::ca2::scheduling_priority_normal;
 
    }
 
-   int iOsMax = sched_get_priority_max(iOsPolicy);
+   ::i32 iOsMax = sched_get_priority_max(iOsPolicy);
 
-   int iOsMin = sched_get_priority_min(iOsPolicy);
+   ::i32 iOsMin = sched_get_priority_min(iOsPolicy);
 
-   int iOsPriority;
+   ::i32 iOsPriority;
 
    if(iCa2Min == iCa2Max)
    {
@@ -285,18 +285,18 @@ void get_os_priority(int * piPolicy, sched_param * pparam, int nCa2Priority)
 
 }
 
-int get_scheduling_priority(int iOsPolicy, const sched_param * pparam)
+::i32 get_scheduling_priority(::i32 iOsPolicy, const sched_param * pparam)
 {
 
-   int iCa2Min;
+   ::i32 iCa2Min;
 
-   int iCa2Max;
+   ::i32 iCa2Max;
 
 
    if(iOsPolicy == SCHED_RR)
    {
 
-      iCa2Min = (int) ::ca2::scheduling_priority_normal;
+      iCa2Min = (::i32) ::ca2::scheduling_priority_normal;
 
       iCa2Max = 99;
 
@@ -306,27 +306,27 @@ int get_scheduling_priority(int iOsPolicy, const sched_param * pparam)
 
       iCa2Min = 0;
 
-      iCa2Max = (int) ::ca2::scheduling_priority_normal;
+      iCa2Max = (::i32) ::ca2::scheduling_priority_normal;
 
    }
    else
    {
 
-      iCa2Min = (int) ::ca2::scheduling_priority_normal;
+      iCa2Min = (::i32) ::ca2::scheduling_priority_normal;
 
-      iCa2Max = (int) ::ca2::scheduling_priority_normal;
+      iCa2Max = (::i32) ::ca2::scheduling_priority_normal;
 
    }
 
-   int iOsMax = sched_get_priority_max(iOsPolicy);
+   ::i32 iOsMax = sched_get_priority_max(iOsPolicy);
 
-   int iOsMin = sched_get_priority_min(iOsPolicy);
+   ::i32 iOsMin = sched_get_priority_min(iOsPolicy);
 
-   int iCa2Priority;
+   ::i32 iCa2Priority;
 
    if(iOsMax == iOsMin)
    {
-      iCa2Priority = (int) ::ca2::scheduling_priority_normal;
+      iCa2Priority = (::i32) ::ca2::scheduling_priority_normal;
    }
    else
    {
@@ -340,7 +340,7 @@ int get_scheduling_priority(int iOsPolicy, const sched_param * pparam)
 }
 
 
-void thread_get_os_priority(int * piPolicy, sched_param * pparam, int nCa2Priority)
+void thread_get_os_priority(::i32 * piPolicy, sched_param * pparam, ::i32 nCa2Priority)
 {
 
    get_os_priority(piPolicy, pparam, nCa2Priority);
@@ -348,7 +348,7 @@ void thread_get_os_priority(int * piPolicy, sched_param * pparam, int nCa2Priori
 }
 
 
-int thread_get_scheduling_priority(int iOsPolicy, const sched_param * pparam)
+::i32 thread_get_scheduling_priority(::i32 iOsPolicy, const sched_param * pparam)
 {
 
    return get_scheduling_priority(iOsPolicy, pparam);
@@ -356,7 +356,7 @@ int thread_get_scheduling_priority(int iOsPolicy, const sched_param * pparam)
 }
 
 
-void process_get_os_priority(int * piPolicy, sched_param * pparam, int nCa2Priority)
+void process_get_os_priority(::i32 * piPolicy, sched_param * pparam, ::i32 nCa2Priority)
 {
 
    get_os_priority(piPolicy, pparam, nCa2Priority);
@@ -364,7 +364,7 @@ void process_get_os_priority(int * piPolicy, sched_param * pparam, int nCa2Prior
 }
 
 
-int process_get_scheduling_priority(int iOsPolicy, const sched_param * pparam)
+::i32 process_get_scheduling_priority(::i32 iOsPolicy, const sched_param * pparam)
 {
 
    return get_scheduling_priority(iOsPolicy, pparam);
@@ -379,10 +379,10 @@ int process_get_scheduling_priority(int iOsPolicy, const sched_param * pparam)
 namespace ca2
 {
 
-   CLASS_DECL_ca bool set_priority_class(int priority)
+   CLASS_DECL_ca bool set_priority_class(::i32 priority)
 	{
 
-      int iPolicy = SCHED_OTHER;
+      ::i32 iPolicy = SCHED_OTHER;
 
       sched_param schedparam;
 

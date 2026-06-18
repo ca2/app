@@ -5,34 +5,34 @@ namespace draw2d
 {
 
 
-   float Cosines[360];
-   float Sines[360];
+   ::f32 Cosines[360];
+   ::f32 Sines[360];
 
-   long long CosN[360]; // * 1 << 31
-   long long SinN[360];
+   ::i64 CosN[360]; // * 1 << 31
+   ::i64 SinN[360];
 
-   long long Cos10N[10]; // until 10 degress
-   long long Sin10N[10]; // more precision * 1 << 34
+   ::i64 Cos10N[10]; // until 10 degress
+   ::i64 Sin10N[10]; // more precision * 1 << 34
 
-   double dPi;
+   ::f64 dPi;
 
 
    void static_initialize()
    {
 
-      double dCos;
-      double dSin;
-      double d32 = (1U << 31);
+      ::f64 dCos;
+      ::f64 dSin;
+      ::f64 d32 = (1U << 31);
       dPi = atan(1.0) * 4.0;
-      int i;
+      ::i32 i;
       for (i = 0; i < 360; i++)
       {
          dCos = ::cos(i / 180.0 * dPi);
          dSin = ::sin(i / 180.0 * dPi);
-         Cosines[i] = float(dCos);
-         Sines[i] = float(dSin);
-         CosN[i] = (long long)(dCos * d32);
-         SinN[i] = (long long)(dSin * d32);
+         Cosines[i] = ::f32(dCos);
+         Sines[i] = ::f32(dSin);
+         CosN[i] = (::i64)(dCos * d32);
+         SinN[i] = (::i64)(dSin * d32);
       }
       d32 = (1U << 31);
       d32 *= 8;
@@ -40,8 +40,8 @@ namespace draw2d
       {
          dCos = ::cos(i / 180.0 * dPi);
          dSin = ::sin(i / 180.0 * dPi);
-         Cos10N[i] = (long long)(dCos * d32);
-         Sin10N[i] = (long long)(dSin * d32);
+         Cos10N[i] = (::i64)(dCos * d32);
+         Sin10N[i] = (::i64)(dSin * d32);
       }
 
    }
@@ -127,19 +127,19 @@ namespace draw2d
    void static_start()
    {
 
-      double dCos;
-      double dSin;
-      double d32 = (1U << 31);
+      ::f64 dCos;
+      ::f64 dSin;
+      ::f64 d32 = (1U << 31);
       ::draw2d::dPi = atan(1.0) * 4.0;;
-      int i;
+      ::i32 i;
       for (i = 0; i < 360; i++)
       {
          dCos = ::cos(i / 180.0 * dPi);
          dSin = ::sin(i / 180.0 * dPi);
-         Cosines[i] = float(dCos);
-         Sines[i] = float(dSin);
-         CosN[i] = (long long)(dCos * d32);
-         SinN[i] = (long long)(dSin * d32);
+         Cosines[i] = ::f32(dCos);
+         Sines[i] = ::f32(dSin);
+         CosN[i] = (::i64)(dCos * d32);
+         SinN[i] = (::i64)(dSin * d32);
       }
       d32 = (1U << 31);
       d32 *= 8;
@@ -147,8 +147,8 @@ namespace draw2d
       {
          dCos = ::cos(i / 180.0 * dPi);
          dSin = ::sin(i / 180.0 * dPi);
-         Cos10N[i] = (long long)(dCos * d32);
-         Sin10N[i] = (long long)(dSin * d32);
+         Cos10N[i] = (::i64)(dCos * d32);
+         Sin10N[i] = (::i64)(dSin * d32);
       }
 
    }

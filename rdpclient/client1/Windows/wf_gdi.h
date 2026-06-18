@@ -30,8 +30,8 @@
 
 
 
-void wf_invalidate_region(wfContext* wfc, int x, int y, int width, int height);
-CLASS_DECL_AXIS_RDPCLIENT wfBitmap* wf_image_new(wfContext* wfc, int width, int height, int bpp, unsigned char* data);
+void wf_invalidate_region(wfContext* wfc, ::i32 x, ::i32 y, ::i32 width, ::i32 height);
+CLASS_DECL_AXIS_RDPCLIENT wfBitmap* wf_image_new(wfContext* wfc, ::i32 width, ::i32 height, ::i32 bpp, ::u8* data);
 /*void wf_image_free(wfBitmap* pimage);
 void wf_update_offset(wfContext* wfc);
 void wf_resize_window(wfContext* wfc);

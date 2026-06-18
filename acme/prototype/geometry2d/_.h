@@ -15,7 +15,7 @@ namespace geometry2d
 } // namespace geometry2d
 
 
-DECLARE_ENUMERATION(e_align, enum_align);
+DECLARE_C_FLAG(e_align, enum_align);
 
 
 #include "_struct.h"
@@ -61,122 +61,122 @@ template < prototype_number NUMBER >
 class lines_base;
 
 
-using int_point = point_type < int >;
-using long_long_point = point_type < long long >;
-using float_point = point_type < float >;
-using double_point = point_type < double >;
+using i32_point = point_type < ::i32 >;
+using i64_point = point_type < ::i64 >;
+using f32_point = point_type < ::f32 >;
+using f64_point = point_type < ::f64 >;
 
 
-using int_size = size_type < int >;
-using long_long_size = size_type < long long >;
-using float_size = size_type < float >;
-using double_size = size_type < double >;
+using i32_size = size_type < ::i32 >;
+using i64_size = size_type < ::i64 >;
+using f32_size = size_type < ::f32 >;
+using f64_size = size_type < ::f64 >;
 
 
-using int_rectangle = rectangle_type < int >;
-using long_long_rectangle = rectangle_type < long long >;
-using float_rectangle = rectangle_type < float >;
-using double_rectangle = rectangle_type < double >;
+using i32_rectangle = rectangle_type < ::i32 >;
+using i64_rectangle = rectangle_type < ::i64 >;
+using f32_rectangle = rectangle_type < ::f32 >;
+using f64_rectangle = rectangle_type < ::f64 >;
 
 
-using int_ellipse = ellipse_type < int >;
-using long_long_ellipse = ellipse_type < long long >;
-using float_ellipse = ellipse_type < float >;
-using double_ellipse = ellipse_type < double >;
+using i32_ellipse = ellipse_type < ::i32 >;
+using i64_ellipse = ellipse_type < ::i64 >;
+using f32_ellipse = ellipse_type < ::f32 >;
+using f64_ellipse = ellipse_type < ::f64 >;
 
 
-using int_line = line_type < int >;
-using long_long_line = line_type < long long >;
-using float_line = line_type < float >;
-using double_line = line_type < double >;
+using i32_line = line_type < ::i32 >;
+using i64_line = line_type < ::i64 >;
+using f32_line = line_type < ::f32 >;
+using f64_line = line_type < ::f64 >;
 
 
-using int_arc = arc_type < int >;
-using long_long_arc = arc_type < long long >;
-using float_arc = arc_type < float >;
-using double_arc = arc_type < double >;
+using i32_arc = arc_type < ::i32 >;
+using i64_arc = arc_type < ::i64 >;
+using f32_arc = arc_type < ::f32 >;
+using f64_arc = arc_type < ::f64 >;
 
 
-using int_point_array_base = point_array_base < int >;
-using long_long_point_array_base = point_array_base < long long >;
-using float_point_array_base = point_array_base < float >;
-using double_point_array_base = point_array_base < double >;
+using i32_point_array_base = point_array_base < ::i32 >;
+using i64_point_array_base = point_array_base < ::i64 >;
+using f32_point_array_base = point_array_base < ::f32 >;
+using f64_point_array_base = point_array_base < ::f64 >;
 
 
-using int_point_array = ::array_particle < int_point_array_base >;
-using long_long_point_array = ::array_particle < long_long_point_array_base >;
-using float_point_array= ::array_particle < float_point_array_base >;
-using double_point_array = ::array_particle < double_point_array_base >;
+using i32_point_array = ::array_particle < i32_point_array_base >;
+using i64_point_array = ::array_particle < i64_point_array_base >;
+using f32_point_array = ::array_particle < f32_point_array_base >;
+using f64_point_array = ::array_particle < f64_point_array_base >;
 
 
-using int_polygon_base = polygon_base < int >;
-using long_long_polygon_base = polygon_base < long long >;
-using float_polygon_base = polygon_base < float >;
-using double_polygon_base = polygon_base < double >;
+using i32_polygon_base = polygon_base < ::i32 >;
+using i64_polygon_base = polygon_base < ::i64 >;
+using f32_polygon_base = polygon_base < ::f32 >;
+using f64_polygon_base = polygon_base < ::f64 >;
 
 
-using int_polygon = ::array_particle < int_polygon_base >;
-using long_long_polygon = ::array_particle < long_long_polygon_base >;
-using float_polygon = ::array_particle < float_polygon_base >;
-using double_polygon = ::array_particle < double_polygon_base >;
+using i32_polygon = ::array_particle < i32_polygon_base >;
+using i64_polygon = ::array_particle < i64_polygon_base >;
+using f32_polygon = ::array_particle < f32_polygon_base >;
+using f64_polygon = ::array_particle < f64_polygon_base >;
 
 
-using int_poly_polygon_base = poly_polygon_base < int >;
-using long_long_poly_polygon_base = poly_polygon_base < long long >;
-using float_poly_polygon_base = poly_polygon_base < float >;
-using double_poly_polygon_base = poly_polygon_base < double >;
+using i32_poly_polygon_base = poly_polygon_base < ::i32 >;
+using i64_poly_polygon_base = poly_polygon_base < ::i64 >;
+using f32_poly_polygon_base = poly_polygon_base < ::f32 >;
+using f64_poly_polygon_base = poly_polygon_base < ::f64 >;
 
 
-using int_poly_polygon = ::array_particle < int_poly_polygon_base >;
-using long_long_poly_polygon = ::array_particle < long_long_poly_polygon_base >;
-using float_poly_polygon = ::array_particle < float_poly_polygon_base >;
-using double_poly_polygon = ::array_particle < double_poly_polygon_base >;
+using i32_poly_polygon = ::array_particle < i32_poly_polygon_base >;
+using i64_poly_polygon = ::array_particle < i64_poly_polygon_base >;
+using f32_poly_polygon = ::array_particle < f32_poly_polygon_base >;
+using f64_poly_polygon = ::array_particle < f64_poly_polygon_base >;
 
 
-using int_point_array_base = point_array_base < int >;
-using long_long_point_array_base = point_array_base < long long >;
-using float_point_array_base = point_array_base < float >;
-using double_point_array_base = point_array_base < double >;
+using i32_point_array_base = point_array_base < ::i32 >;
+using i64_point_array_base = point_array_base < ::i64 >;
+using f32_point_array_base = point_array_base < ::f32 >;
+using f64_point_array_base = point_array_base < ::f64 >;
 
 
-using int_point_array = ::array_particle < int_point_array_base >;
-using long_long_point_array = ::array_particle < long_long_point_array_base >;
-using float_point_array = ::array_particle < float_point_array_base >;
-using double_point_array = ::array_particle < double_point_array_base >;
+using i32_point_array = ::array_particle < i32_point_array_base >;
+using i64_point_array = ::array_particle < i64_point_array_base >;
+using f32_point_array = ::array_particle < f32_point_array_base >;
+using f64_point_array = ::array_particle < f64_point_array_base >;
 
 
-using int_size_array_base = size_array_base < int >;
-using long_long_size_array_base = size_array_base < long long >;
-using float_size_array_base = size_array_base < float >;
-using double_size_array_base = size_array_base < double >;
+using i32_size_array_base = size_array_base < ::i32 >;
+using i64_size_array_base = size_array_base < ::i64 >;
+using f32_size_array_base = size_array_base < ::f32 >;
+using f64_size_array_base = size_array_base < ::f64 >;
 
 
-using int_size_array = ::array_particle < int_size_array_base >;
-using long_long_size_array = ::array_particle < long_long_size_array_base >;
-using float_size_array = ::array_particle < float_size_array_base >;
-using double_size_array = ::array_particle < double_size_array_base >;
+using i32_size_array = ::array_particle < i32_size_array_base >;
+using i64_size_array = ::array_particle < i64_size_array_base >;
+using f32_size_array = ::array_particle < f32_size_array_base >;
+using f64_size_array = ::array_particle < f64_size_array_base >;
 
 
-using int_rectangle_array_base = rectangle_array_base < int >;
-using long_long_rectangle_array_base = rectangle_array_base < long long >;
-using float_rectangle_array_base = rectangle_array_base < float >;
-using double_rectangle_array_base = rectangle_array_base < double >;
+using i32_rectangle_array_base = rectangle_array_base < ::i32 >;
+using i64_rectangle_array_base = rectangle_array_base < ::i64 >;
+using f32_rectangle_array_base = rectangle_array_base < ::f32 >;
+using f64_rectangle_array_base = rectangle_array_base < ::f64 >;
 
 
-using int_rectangle_array = ::array_particle < int_rectangle_array_base >;
-using long_long_rectangle_array = ::array_particle < long_long_rectangle_array_base >;
-using float_rectangle_array = ::array_particle < float_rectangle_array_base >;
-using double_rectangle_array = ::array_particle < double_rectangle_array_base >;
+using i32_rectangle_array = ::array_particle < i32_rectangle_array_base >;
+using i64_rectangle_array = ::array_particle < i64_rectangle_array_base >;
+using f32_rectangle_array = ::array_particle < f32_rectangle_array_base >;
+using f64_rectangle_array = ::array_particle < f64_rectangle_array_base >;
 
-using int_lines_base = lines_base < int >;
-using long_long_lines_base = lines_base < long long >;
-using float_lines_base = lines_base < float >;
-using double_lines_base = lines_base < double >;
+using i32_lines_base = lines_base < ::i32 >;
+using i64_lines_base = lines_base < ::i64 >;
+using f32_lines_base = lines_base < ::f32 >;
+using f64_lines_base = lines_base < ::f64 >;
 
-using int_lines = ::array_particle < int_lines_base >;
-using long_long_lines = ::array_particle < long_long_lines_base >;
-using float_lines = ::array_particle < float_lines_base >;
-using double_lines = ::array_particle < double_lines_base >;
+using i32_lines = ::array_particle < i32_lines_base >;
+using i64_lines = ::array_particle < i64_lines_base >;
+using f32_lines = ::array_particle < f32_lines_base >;
+using f64_lines = ::array_particle < f64_lines_base >;
 
 template < struct_rectangle RECTANGLE1, prototype_rectangle RECTANGLE2 >
 inline void copy(RECTANGLE1 * prectangle1, const RECTANGLE2 * prectangle2)

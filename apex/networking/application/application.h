@@ -38,10 +38,10 @@ namespace networking
       void create_networking_application();
 
 
-      virtual int get_current_port();
+      virtual ::i32 get_current_port();
 
 
-      virtual int wait_get_current_port(const class time & time);
+      virtual ::i32 wait_get_current_port(const class time & time);
 
 
       virtual void add_handler(const ::scoped_string & scopedstrPrefix, ::networking::application_handler* phandler);

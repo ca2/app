@@ -56,7 +56,7 @@ namespace user
       void set_window_previous_display(::e_display edisplayPrevious) override;
 
 
-      void _on_configure_notify_unlocked(const ::int_rectangle & rectangle) override;
+      void _on_configure_notify_unlocked(const ::i32_rectangle & rectangle) override;
 
       //void _window_show_change_visibility_unlocked() override;
 
@@ -85,11 +85,11 @@ namespace user
       virtual void save_window_display_and_layout(const ::scoped_string & strDataKey);
 
 
-      ::int_rectangle get_window_normal_stored_rectangle() override;
-      ::int_rectangle get_window_broad_stored_rectangle() override;
-      ::int_rectangle get_window_compact_stored_rectangle() override;
+      ::i32_rectangle get_window_normal_stored_rectangle() override;
+      ::i32_rectangle get_window_broad_stored_rectangle() override;
+      ::i32_rectangle get_window_compact_stored_rectangle() override;
 
-      void set_window_normal_stored_rectangle(const ::int_rectangle & rectangle) override;
+      void set_window_normal_stored_rectangle(const ::i32_rectangle & rectangle) override;
 
       void display_normal(::e_display edisplay, const ::user::activation & useractivation) override;
       void display_full_screen(::collection::index iMonitor, const ::user::activation & useractivation) override;
@@ -105,7 +105,7 @@ namespace user
       //virtual bool parent_is_local_data();
 
 
-      //void set_restored_rectangle(const ::int_rectangle & rectangleRestored) override;
+      //void set_restored_rectangle(const ::i32_rectangle & rectangleRestored) override;
 
 
    };

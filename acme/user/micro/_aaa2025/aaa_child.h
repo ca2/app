@@ -23,12 +23,12 @@ public:
 
    string                        m_strText;
    ::atom                        id();
-   int_rectangle                 m_rectangle;
+   i32_rectangle                 m_rectangle;
    ::acme::user::interaction *     m_pinteraction;
 
 
-   virtual void on_draw(::nano::graphics::device * pnanodevice) = 0;
-   virtual void on_char(int iChar) = 0;
+   virtual void on_draw(::nano::graphics::context * pnanodevice) = 0;
+   virtual void on_char(::i32 iChar) = 0;
    virtual void set_focus();
    virtual bool is_focusable();
    virtual void on_mouse_move(::user::mouse * pmouse);

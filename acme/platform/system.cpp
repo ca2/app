@@ -13,6 +13,8 @@
 #include "hyperlink.h"
 #include "session.h"
 #include "simple_log.h"
+#include "subsystem.h"
+#include "acme/accessibility/accessibility.h"
 #include "acme/compress/compress.h"
 #include "acme/compress/uncompress.h"
 #include "acme/constant/id.h"
@@ -38,6 +40,7 @@
 #include "acme/parallelization/synchronous_lock.h"
 #include "acme/platform/debug.h"
 #include "acme/platform/node.h"
+#include "acme/platform/ProfileLogger.h"
 #include "acme/prototype/datetime/datetime.h"
 #include "acme/prototype/mathematics/mathematics.h"
 #include "acme/prototype/prototype/prototype.h"
@@ -62,10 +65,26 @@ bool debian_is_package_installed(const ::scoped_string & scopedstrPackageName);
 ::string debian_install_package_file_command_line(const ::file::path & pathPackageFile);
 ::string_array_base debian_run_operating_system_package_installation_update_command_line_array();
 
+
+bool fedora_is_package_installed(const ::scoped_string & scopedstrPackageName);
+::string_array_base fedora_not_installed_packages(const ::string_array_base & straPackageNames);
+::string fedora_install_packages_command_line(const ::string_array_base & straPackageNames);
+::string fedora_install_package_file_command_line(const ::file::path & pathPackageFile);
+::string_array_base fedora_run_operating_system_package_installation_update_command_line_array();
+
+
+bool opensuse_is_package_installed(const ::scoped_string & scopedstrPackageName);
+::string_array_base opensuse_not_installed_packages(const ::string_array_base & straPackageNames);
+::string opensuse_install_packages_command_line(const ::string_array_base & straPackageNames);
+::string opensuse_install_package_file_command_line(const ::file::path & pathPackageFile);
+::string_array_base opensuse_run_operating_system_package_installation_update_command_line_array();
+
 #endif
 
 //extern "C" void nano_dynamic_library_factory(::factory::factory * pfactory);
 
+
+//CLASS_DECL_ACME void subsystem_factory(::factory::factory * pfactory);
 
 //#elif defined(UNIVERSAL_WINDOWS)
 //
@@ -79,6 +98,8 @@ bool debian_is_package_installed(const ::scoped_string & scopedstrPackageName);
 //
 //#endif
 
+
+void operating_system_factory(::factory::factory * pfactory);
 
 CLASS_DECL_ACME::string get_operating_system_name();
 
@@ -141,10 +162,31 @@ CLASS_DECL_ACME bool is_wayland();
 }
 
 
+CLASS_DECL_ACME ::string international_date_time_with_milliseconds(const class ::time & time)
+{
+
+   ::string strTime;
+
+   ::earth::time earthtime(time);
+
+   strTime.formatf("%04d-%02d-%02d %02d:%02d:%02d %03d",
+                  earthtime.year(),
+                  earthtime.month(),
+                  earthtime.day(),
+                  earthtime.hour(),
+                  earthtime.minute(),
+                  earthtime.second(),
+                  time.millisecond());
+
+
+   return strTime;
+
+}
+
 //static ::platform::system * g_psystem = nullptr;
 
 
-//extern const char * g_pszTopLevelDomainList[];
+//extern const_char_pointer g_pszTopLevelDomainList[];
 
 
 enum_dialog_result message_box_for_console(const ::scoped_string& scopedstr, const ::scoped_string& scopedstrTitle,
@@ -166,6 +208,8 @@ namespace platform
 
    system::system()
    {
+
+      m_bAttemptedToInitializeMatter = false;
 
       if (!s_p)
       {
@@ -195,30 +239,34 @@ namespace platform
       m_etracelevelMinimum = e_trace_level_warning;
 #endif
 
+      m_bBranchMainThread = false;
+      m_bSystemLoadedFromALibrary = false;
+
+
 #ifdef _DEBUG
       ::atom atom;
-      int iAtom1 = sizeof(atom);
-      int iAtomType = sizeof(atom.m_etype);
-      int iDomainId = sizeof(atom.m_domainid);
+      ::i32 iAtom1 = sizeof(atom);
+      ::i32 iAtomType = sizeof(atom.m_etype);
+      ::i32 iDomainId = sizeof(atom.m_domainid);
       ::payload payload;
       auto pType = &payload.m_etype;
       auto pAll = &payload.m_payloadall;
-      int iType = sizeof(payload.m_etype);
-      int iAll = sizeof(payload.m_payloadall);
-      int iThis = sizeof(payload);
-      int iAddUp = 0;
+      ::i32 iType = sizeof(payload.m_etype);
+      ::i32 iAll = sizeof(payload.m_payloadall);
+      ::i32 iThis = sizeof(payload);
+      ::i32 iAddUp = 0;
 #if REFERENCING_DEBUGGING
       iAddUp += sizeof(payload.m_preferer);
 #endif
-      int iETypeSizeHere = (int)((unsigned char*)pAll - (unsigned char*)pType);
-      int iComputed = (int)(((unsigned char*)pAll - (unsigned char*)pType) + iAll + iAddUp);
-      int iColor = sizeof(payload.m_color);
-      int iStr = sizeof(payload.m_str);
-      int iHls = sizeof(payload.m_hls);
-      int iTime = sizeof(payload.m_time);
-      int iAtom = sizeof(payload.m_atomPayload);
-      int iFileTime = sizeof(payload.m_filetime);
-      int iEarthTime = sizeof(payload.m_earthtime);
+      ::i32 iETypeSizeHere = (::i32)((::u8*)pAll - (::u8*)pType);
+      ::i32 iComputed = (::i32)(((::u8*)pAll - (::u8*)pType) + iAll + iAddUp);
+      ::i32 iColor = sizeof(payload.m_color);
+      ::i32 iStr = sizeof(payload.m_str);
+      ::i32 iHls = sizeof(payload.m_hls);
+      ::i32 iTime = sizeof(payload.m_time);
+      ::i32 iAtom = sizeof(payload.m_atomPayload);
+      ::i32 iFileTime = sizeof(payload.m_filetime);
+      ::i32 iEarthTime = sizeof(payload.m_earthtime);
       if (iThis != iComputed)
       {
 
@@ -236,10 +284,16 @@ namespace platform
       m_bFinalizeIfNoSession = false;
       m_bFinalizeIfNoSessionSetting = true;
       m_bOperatingAmbientFactory = false;
-      m_bGraphicsAndWindowingFactory = false;
+      m_bGraphicsFactory = false;
+      m_bWindowingFactory = false;
 
 
-      m_bKeepRunningPostedProcedures = true;
+      m_timeProcedureTimerMinimumResolution = 10_ms;
+
+
+      m_bRunMainLoop = true;
+
+      operating_system_factory(factory());
 
       factory()->add_factory_item < ::nano::http::get>();
       factory()->add_factory_item < ::component >();
@@ -358,7 +412,7 @@ namespace platform
 
       auto pathTraceLevelInformation = pathCa2ConfigSystemFolder / "trace_level_information.txt";
 
-      if (this->has_argument("--log"))
+      if (this->has_argument("--plogwriter"))
       {
 
          informationf("selecting informational trace\n");
@@ -405,7 +459,7 @@ namespace platform
 
       }
 
-      //         for (int i = 0; i < this->get_argument_count1(); i++)
+      //         for (::i32 i = 0; i < this->get_argument_count1(); i++)
       //         {
       //
       //            string strArg = this->get_argument1(i);
@@ -430,8 +484,15 @@ namespace platform
    }
 
 
-   void system::initialize_matter()
+   void system::defer_initialize_matter()
    {
+
+      if (m_bAttemptedToInitializeMatter)
+      {
+
+         return;
+
+      }
 
       if (application()->m_bResource)
       {
@@ -493,10 +554,45 @@ namespace platform
 
          }
 
+         m_bAttemptedToInitializeMatter = true;
+
       }
 
    }
 
+
+   void system::prepare_application()
+   {
+
+      if (!is_task_set2())
+      {
+         
+         branch_synchronously();
+
+      }
+
+      auto psession = session();
+
+      if (psession == nullptr)
+      {
+
+         return;
+
+      }
+
+      auto papplication = psession->get_application(
+         m_papplication->m_strAppId, true, nullptr);
+
+      if (!papplication)
+      {
+
+         throw ::exception(error_failed, "failed to get application to be prepared");
+
+      }
+
+      papplication->prepare_application();
+
+   }
 
 
    ::task_message_queue* system::task_message_queue()
@@ -546,24 +642,33 @@ namespace platform
 
    void system::on_initialize_particle()
    {
-
       ::platform::platform::on_initialize_particle();
 
       ::task::on_initialize_particle();
 
-      //::output_debug_string("Going to create simple log\n");
+      //::output_debug_string("Going to create simple plogwriter\n");
 
       //m_plogger = create_newø < ::simple_log >();
 
       constructø(m_plogger);
 
+      {
+
+         ::trace_statement tracestatmentStartTime(this);
+
+         tracestatmentStartTime.m_etracelevel = e_trace_level_none;
+
+         tracestatmentStartTime << "Start Time: " << international_date_time_with_milliseconds(m_timeStart);
+
+      }
+
       //constructø(m_pmutexTask);
 
       //constructø(m_pmutexTaskOn);
 
-      //::output_debug_string("output_debug_string : simple log created\n");
+      //::output_debug_string("output_debug_string : simple plogwriter created\n");
 
-      //information() << "information() << output_debug_string : simple log created";
+      //information() << "information() << output_debug_string : simple plogwriter created";
 
 #ifdef PARALLELIZATION_PTHREAD
 
@@ -599,7 +704,7 @@ namespace platform
       //
       //      //papplication->is_console() = false;
       //
-      //      //int iExitCode = papplication->main_loop();
+      //      //::i32 iExitCode = papplication->main_loop();
       //
       //      //return iExitCode;
       //
@@ -627,8 +732,6 @@ namespace platform
 
       //m_bPostedInitialRequest = false;
 
-      m_bPostedCommandLineFileOpen = false;
-
       //m_bOnInitializeWindowObject = false;
 
       //m_pcleanuptask = allocateø  ::parallelization::cleanup_task();
@@ -651,6 +754,15 @@ namespace platform
 
    void system::application_main(::platform::application* papplication)
    {
+
+      if (!papplication->m_bUserApplication)
+      {
+
+         m_bMessageThread = false;
+
+         papplication->m_bMessageThread = false;
+
+      }
 
       papplication->initialize_application();
 
@@ -974,8 +1086,6 @@ namespace platform
 
       //constructø(m_pmutexTask);
 
-      constructø(m_pmutexHttpDownload);
-
       //if(!estatus)
       //{
 
@@ -1266,7 +1376,7 @@ namespace platform
 
          string_array straArguments;
 
-         for (int i = 0; i < this->get_argument_count1(); i++)
+         for (::i32 i = 0; i < this->get_argument_count1(); i++)
          {
 
             string strArgument = this->get_argument1(i);
@@ -1294,14 +1404,14 @@ namespace platform
          if (this->m_wenvp)
          {
 
-            int iIndex = 0;
+            ::i32 iIndex = 0;
 
             for (auto wenv = this->m_wenvp; *wenv != 0; wenv++, iIndex++)
             {
 
                auto thisEnv = *wenv;
 
-               int iLen = (int)wcslen(thisEnv);
+               ::i32 iLen = (::i32)wcslen(thisEnv);
 
                /*if (iLen >= 42)
                {
@@ -1311,13 +1421,13 @@ namespace platform
                if (!wcsncmp(thisEnv, L"Path=", 5))
                {
 
-                  output_debug_string("aaa");
+                  //output_debug_line("Environment Variables : Found PATH");
 
                }
                else if (!wcsncmp(thisEnv, L"VsPer", 5))
                {
 
-                  output_debug_string("aaa");
+                  //output_debug_line("Environment Variables : Found VSPER*");
 
                }
 
@@ -1783,7 +1893,7 @@ namespace platform
 
       set["raw_http"] = true;
 
-      http()->get(str, "https://ca2.network/text?path=" + scopedstrPath + "&key=" + scopedstrKey, set);
+      http()->get(str, "https://ca2.site/text?path=" + scopedstrPath + "&key=" + scopedstrKey, set);
 
       m_mapText[scopedstrPath].set_at(scopedstrKey, str);
 
@@ -1798,20 +1908,6 @@ namespace platform
    }
 
 
-   string_array_base* system::http_download_array()
-   {
-
-      return &m_straHttpDownloading;
-
-   }
-
-
-   string_array_base* system::http_exists_array()
-   {
-
-      return &m_straHttpExists;
-
-   }
 
 
    particle* system::matter_mutex()
@@ -1822,15 +1918,7 @@ namespace platform
    }
 
 
-   particle* system::http_download_mutex()
-   {
-
-      return m_pmutexHttpDownload;
-
-   }
-
-
-   unsigned int system::crc32(unsigned int uCrc, const ::block& block)
+   ::u32 system::crc32(::u32 uCrc, const ::block& block)
    {
 
       _synchronous_lock synchronouslock(this->synchronization());
@@ -1896,7 +1984,7 @@ void system::open_internet_link(const ::scoped_string & scopedstrUrl, const ::sc
    }
 
 
-   //void system::__tracea(enum_trace_level elevel, const ::scoped_string & scopedstrFunction, const ::scoped_string & scopedstrFile, int iLine, const ::scoped_string & scopedstr) const
+   //void system::__tracea(enum_trace_level elevel, const ::scoped_string & scopedstrFunction, const ::scoped_string & scopedstrFile, ::i32 iLine, const ::scoped_string & scopedstr) const
    //{
 
    //   if (!m_ptracelog)
@@ -1958,6 +2046,15 @@ void system::open_internet_link(const ::scoped_string & scopedstrUrl, const ::sc
 
    void system::term_task()
    {
+
+      if (m_pacmewindowing)
+      {
+
+         m_pacmewindowing->set_finish();
+
+         m_pacmewindowing->kick_idle();
+
+      }
 
       term_system();
 
@@ -2171,123 +2268,7 @@ void system::open_internet_link(const ::scoped_string & scopedstrUrl, const ::sc
    }
 
 
-   ::request * system::application_start_file_open_request()
-   {
-
-      if (m_bApplicationStartFileOpenRequest)
-      {
-
-         return m_prequestApplicationStartFileOpen;
-
-      }
-
-      m_bApplicationStartFileOpenRequest = true;
-
-      auto strCommandLineSystemNative = this->m_strCommandLineSystemNative;
-
-      strCommandLineSystemNative.trim();
-
-      ::payload payloadFile;
-
-      ::string strAppId = application()->m_strAppId;
-
-      ::string strApp;
-
-      ::property_set setRequest;
-
-      if (strCommandLineSystemNative.has_character())
-      {
-
-         information() << "system::defer_post_initial_request ***strCommandLineSystemNative*** : ***" << strCommandLineSystemNative << "***";
-
-         setRequest._008ParseCommandFork(strCommandLineSystemNative, payloadFile, strApp);
-      }
-      else if (this->m_argc > 0 && this->m_args)
-      {
-
-         strApp = this->m_args[0];
-
-         ::string_array_base straFiles;
-
-         for (int iArgument = 1; iArgument < this->m_argc;)
-         {
-
-            auto iArgumentBefore = iArgument;
-
-            if (node()->defer_consume_main_arguments(this->m_argc, this->m_args, iArgument) &&
-                iArgument > iArgumentBefore)
-            {
-
-               continue;
-            }
-
-            if (application()->defer_consume_main_arguments(this->m_argc, this->m_args, iArgument) &&
-                iArgument > iArgumentBefore)
-            {
-
-               continue;
-            }
-
-            ::string strArgument = this->m_args[iArgument];
-
-            if (strArgument.begins("-"))
-            {
-
-               setRequest._008AddArgument(strArgument);
-            }
-            else
-            {
-
-               straFiles.add(strArgument);
-            }
-
-            iArgument++;
-         }
-
-         if (straFiles.has_elements())
-         {
-
-            if (straFiles.size() == 1)
-            {
-
-               payloadFile = straFiles[0];
-            }
-            else
-            {
-
-               payloadFile.string_array_reference() = straFiles;
-            }
-         }
-      }
-
-      if (!payloadFile.is_empty())
-      {
-
-         auto prequest = create_newø<::request>();
-
-         prequest->m_ecommand = e_command_file_open;
-
-         prequest->m_strAppId = strAppId;
-
-         prequest->property_set().merge(setRequest);
-
-         prequest->m_payloadFile = payloadFile;
-
-         payload("command_line_arg0") = strApp;
-
-         application()->property_set().merge(prequest->property_set());
-
-         prequest->m_bPreferSync = true;
-
-         //call_request(prequest);
-
-         m_prequestApplicationStartFileOpen = prequest;
-
-      }
-
-      return m_prequestApplicationStartFileOpen;
-
-   }
+   
 
 
    ::nano::nano* system::nano()
@@ -2427,7 +2408,7 @@ void system::open_internet_link(const ::scoped_string & scopedstrUrl, const ::sc
 
       m_pparticleHttpTextSynchronization = node()->create_mutex();
 
-      initialize_matter();
+      //initialize_matter();
 
       if (application()->m_bSession)
       {
@@ -2437,7 +2418,7 @@ void system::open_internet_link(const ::scoped_string & scopedstrUrl, const ::sc
 
       }
 
-      //::string strRoot = "ca2.network";
+      //::string strRoot = "ca2.site";
 
       //::file::path pathGooglePayload = "C:\\sensitive\\sensitive\\api\\google\\account\\" + strRoot + ".network_payload";
 
@@ -2826,7 +2807,7 @@ void system::open_internet_link(const ::scoped_string & scopedstrUrl, const ::sc
    }
 
 
-   //   int system::pcre_add_tokens(string_array& stra, const ::scoped_string & scopedstrTopic, const ::scoped_string & scopedstrRegexp, int nCount)
+   //   ::i32 system::pcre_add_tokens(string_array& stra, const ::scoped_string & scopedstrTopic, const ::scoped_string & scopedstrRegexp, ::i32 nCount)
    //   {
    //
    //      throw_todo();
@@ -2849,7 +2830,7 @@ void system::open_internet_link(const ::scoped_string & scopedstrUrl, const ::sc
    void system::get_public_internet_domain_extension_list(string_array_base& stra)
    {
 
-      //::file::path pathPublicDomainExtensionList = "https://ca2.network/public_internet_domain_extension_list.txt";
+      //::file::path pathPublicDomainExtensionList = "https://ca2.site/public_internet_domain_extension_list.txt";
 
       //file()->load_lines(stra, pathPublicDomainExtensionList);
 
@@ -2912,6 +2893,14 @@ void system::open_internet_link(const ::scoped_string & scopedstrUrl, const ::sc
    }
 
 
+   void system::branch(enum_parallelization eparallelization, const create_task_attributes_t& createtaskattributes)
+   {
+
+      ::task::branch(eparallelization, createtaskattributes);
+
+   }
+
+
    void system::create_session(::collection::index iEdge)
    {
 
@@ -2948,6 +2937,13 @@ void system::open_internet_link(const ::scoped_string & scopedstrUrl, const ::sc
       øraw_construct(psession);
 
       //psession->set_platform();
+
+      if (!m_papplicationMain->m_bUserApplication)
+      {
+
+         psession->m_bMessageThread = false;
+
+      }
 
       psession->initialize(this);
 
@@ -3086,6 +3082,14 @@ void system::open_internet_link(const ::scoped_string & scopedstrUrl, const ::sc
    }
 
 
+   void system::set_finish()
+   {
+
+      ::task::set_finish();
+
+   }
+
+
    void system::on_request(::request* prequest)
    {
 
@@ -3136,21 +3140,39 @@ void system::open_internet_link(const ::scoped_string & scopedstrUrl, const ::sc
    //}
 
 
-   void system::post_application_start()
-   {
+   // void system::defer_start_system()
+   // {
+   //
+   //    auto prequest = create_newø<::request>();
+   //
+   //    prequest->m_ecommand = e_command_system_start;
+   //
+   //    ::string strAppId = m_papplication->m_strAppId;
+   //
+   //    prequest->m_strAppId = strAppId;
+   //    // prequest->m_bPreferSync = true;
+   //
+   //    post_request(prequest);
+   //
+   // }
 
-      auto prequest = create_newø<::request>();
 
-      prequest->m_ecommand = e_command_application_start;
 
-      ::string strAppId = m_papplication->m_strAppId;
+   //void system::post_application_start()
+   //{
 
-      prequest->m_strAppId = strAppId;
-      prequest->m_bPreferSync = true;
+   //   auto prequest = create_newø<::request>();
 
-      post_request(prequest);
+   //   prequest->m_ecommand = e_command_application_start;
 
-   }
+   //   ::string strAppId = m_papplication->m_strAppId;
+
+   //   prequest->m_strAppId = strAppId;
+   //   //prequest->m_bPreferSync = true;
+
+   //   post_request(prequest);
+
+   //}
 
 
    //void system::defer_post_initial_request()
@@ -3196,7 +3218,7 @@ void system::open_internet_link(const ::scoped_string & scopedstrUrl, const ::sc
 
    //         ::string_array straFiles;
 
-   //         for (int iArgument = 1; iArgument < this->m_argc;)
+   //         for (::i32 iArgument = 1; iArgument < this->m_argc;)
    //         {
 
    //            auto iArgumentBefore = iArgument;
@@ -3275,142 +3297,148 @@ void system::open_internet_link(const ::scoped_string & scopedstrUrl, const ::sc
    //}
 
 
-   void system::defer_post_application_start_file_open_request()
-   {
+   //void system::defer_post_application_start_file_open_request()
+   //{
 
-      if (!m_bPostedCommandLineFileOpen)
-      {
+   //   if (!m_bPostedCommandLineFileOpen)
+   //   {
 
-         m_bPostedCommandLineFileOpen = true;
+   //      m_bPostedCommandLineFileOpen = true;
 
-         auto prequest = create_newø<::request>();
+   //      auto prequest = m_prequestApplicationStartFileOpen;
 
-         auto strCommandLine = this->command_line();
+   //      //auto prequest = create_newø<::request>();
 
-         strCommandLine.trim();
+   //      //auto strCommandLine = this->command_line();
 
-         prequest->m_strAppId = application()->m_strAppId;
+   //      //strCommandLine.trim();
 
-         ::string strApp;
+   //      //prequest->m_strAppId = application()->m_strAppId;
 
-         if (strCommandLine.has_character())
-         {
+   //      //::string strApp;
 
-            information() << "system::defer_post_initial_request ***strCommandLine*** : ***" << strCommandLine << "***";
+   //      //if (strCommandLine.has_character())
+   //      //{
 
-            prequest->m_strCommandLine = strCommandLine;
+   //      //   information() << "system::defer_post_initial_request ***strCommandLine*** : ***" << strCommandLine << "***";
 
-            prequest->property_set()._008ParseCommandFork(
-               strCommandLine,
-               prequest->m_payloadFile,
-               strApp);
+   //      //   prequest->m_strCommandLine = strCommandLine;
 
-         }
-         else
-         {
+   //      //   prequest->property_set()._008ParseCommandFork(
+   //      //      strCommandLine,
+   //      //      prequest->m_payloadFile,
+   //      //      strApp);
 
-            strApp = this->m_args[0];
+   //      //}
+   //      //else
+   //      //{
 
-            ::string_array straFiles;
+   //      //   strApp = this->m_args[0];
 
-            for (int iArgument = 1; iArgument < this->m_argc;)
-            {
+   //      //   ::string_array straFiles;
 
-               auto iArgumentBefore = iArgument;
+   //      //   for (::i32 iArgument = 1; iArgument < this->m_argc;)
+   //      //   {
 
-               if (node()->defer_consume_main_arguments(
-                  this->m_argc,
-                  this->m_args,
-                  iArgument)
-                  && iArgument > iArgumentBefore)
-               {
+   //      //      auto iArgumentBefore = iArgument;
 
-                  continue;
+   //      //      if (node()->defer_consume_main_arguments(
+   //      //         this->m_argc,
+   //      //         this->m_args,
+   //      //         iArgument)
+   //      //         && iArgument > iArgumentBefore)
+   //      //      {
 
-               }
+   //      //         continue;
 
-               if (application()->defer_consume_main_arguments(
-                  this->m_argc,
-                  this->m_args,
-                  iArgument)
-                  && iArgument > iArgumentBefore)
-               {
+   //      //      }
 
-                  continue;
+   //      //      if (application()->defer_consume_main_arguments(
+   //      //         this->m_argc,
+   //      //         this->m_args,
+   //      //         iArgument)
+   //      //         && iArgument > iArgumentBefore)
+   //      //      {
 
-               }
+   //      //         continue;
 
-               ::string strArgument = this->m_args[iArgument];
+   //      //      }
 
-               if (strArgument.begins("-"))
-               {
+   //      //      ::string strArgument = this->m_args[iArgument];
 
-                  prequest->property_set()._008AddArgument(strArgument);
+   //      //      if (strArgument.begins("-"))
+   //      //      {
 
-               }
-               else
-               {
+   //      //         prequest->property_set()._008AddArgument(strArgument);
 
-                  straFiles.add(strArgument);
+   //      //      }
+   //      //      else
+   //      //      {
 
-               }
+   //      //         straFiles.add(strArgument);
 
-               iArgument++;
+   //      //      }
 
-            }
+   //      //      iArgument++;
 
-            if (straFiles.has_elements())
-            {
+   //      //   }
 
-               if (straFiles.size() == 1)
-               {
+   //      //   if (straFiles.has_elements())
+   //      //   {
 
-                  prequest->m_payloadFile = straFiles[0];
+   //      //      if (straFiles.size() == 1)
+   //      //      {
 
-               }
-               else
-               {
+   //      //         prequest->m_payloadFile = straFiles[0];
 
-                  prequest->m_payloadFile.string_array_reference() = straFiles;
+   //      //      }
+   //      //      else
+   //      //      {
 
-               }
+   //      //         prequest->m_payloadFile.string_array_reference() = straFiles;
 
-            }
+   //      //      }
 
-         }
+   //      //   }
 
-         if (!prequest->m_payloadFile.is_empty())
-         {
+   //      //}
 
-            prequest->m_ecommand = e_command_file_open;
+   //      if (prequest)
+   //      {
 
-            payload("command_line_arg0") = strApp;
+   //         if (!prequest->m_payloadFile.is_empty())
+   //         {
 
-            application()->property_set().merge(prequest->property_set());
+   //            prequest->m_ecommand = e_command_file_open;
 
-            prequest->m_bPreferSync = true;
+   //            //payload("command_line_arg0") = strApp;
 
-            call_request(prequest);
+   //            application()->property_set().merge(prequest->property_set());
 
-         }
+   //            /// prequest->m_bPreferSync = true;
 
-      }
+   //            post_request(prequest);
+   //         }
 
-   }
+   //      }
+
+   //   }
+
+   //}
 
 
-   void system::post_application_started()
-   {
+   //void system::post_application_started()
+   //{
 
-      auto prequest = create_newø<::request>();
-      
-      prequest->m_ecommand = e_command_application_started;
-      prequest->m_strAppId = m_papplication->m_strAppId;
-      prequest->m_bPreferSync = true;
+   //   auto prequest = create_newø<::request>();
+   //   
+   //   prequest->m_ecommand = e_command_application_started;
+   //   prequest->m_strAppId = m_papplication->m_strAppId;
+   //   //prequest->m_bPreferSync = true;
 
-      post_request(prequest);
+   //   post_request(prequest);
 
-   }
+   //}
 
 
    void system::canonical_system_main()
@@ -3475,7 +3503,7 @@ void system::open_internet_link(const ::scoped_string & scopedstrUrl, const ::sc
    //}
 
 
-   //void system::system_construct(int argc, char** argv, char** envp)
+   //void system::system_construct(::i32 argc, char_pointer * argv, char_pointer * envp)
    //{
 
    //   throw ::interface_only();
@@ -3483,7 +3511,7 @@ void system::open_internet_link(const ::scoped_string & scopedstrUrl, const ::sc
    //}
 
 
-   //void system::system_construct(int argc, wchar_t** argv, wchar_t** envp)
+   //void system::system_construct(::i32 argc, wchar_t** argv, wchar_t** envp)
    //{
 
    //   throw ::interface_only();
@@ -3681,7 +3709,7 @@ void system::open_internet_link(const ::scoped_string & scopedstrUrl, const ::sc
    }
 
 
-   //void system::system_construct(int argc, wchar_t** argv, wchar_t** envp)
+   //void system::system_construct(::i32 argc, wchar_t** argv, wchar_t** envp)
    //{
 
    //   acme_main_data::system_construct(argc, argv, envp);
@@ -3699,7 +3727,7 @@ void system::open_internet_link(const ::scoped_string & scopedstrUrl, const ::sc
 #ifdef _DEBUG
 
 
-   long long system::increment_reference_count()
+   ::i64 system::increment_reference_count()
    {
 
       return ::object::increment_reference_count();
@@ -3707,7 +3735,7 @@ void system::open_internet_link(const ::scoped_string & scopedstrUrl, const ::sc
    }
 
 
-   long long system::decrement_reference_count()
+   ::i64 system::decrement_reference_count()
    {
 
       return ::object::decrement_reference_count();
@@ -3718,7 +3746,7 @@ void system::open_internet_link(const ::scoped_string & scopedstrUrl, const ::sc
 #endif
 
 
-   ::lresult system::system_id_topic(int iId, long long llWparam, long long llLparam)
+   ::lresult system::system_id_topic(::i32 iId, ::i64 llWparam, ::i64 llLparam)
    {
 
       auto lresult = call_id_topic((::enum_id)iId, llWparam, llLparam, nullptr);
@@ -3814,7 +3842,7 @@ void system::open_internet_link(const ::scoped_string & scopedstrUrl, const ::sc
          
          ::particle * pparticle = acme_windowing()->defer_initialize_host_window(nullptr);
          
-         auto ll =  (long long) pparticle;
+         auto ll =  (::i64) pparticle;
          
          ptopic->m_lresult = ll;
          
@@ -3945,7 +3973,19 @@ void system::open_internet_link(const ::scoped_string & scopedstrUrl, const ::sc
 
    void system::on_open_untitled_file()
    {
-
+      
+      if(!m_papplication->m_bPostedApplicationDefaultStartOrFileOpenRequest)
+      {
+         
+         auto prequest = create_newø < ::request >();
+         
+         prequest->m_ecommand = ::e_command_default_start;
+         
+         m_papplication->m_bPostedApplicationDefaultStartOrFileOpenRequest = true;
+         
+         m_papplication->post_request(prequest);
+         
+      }
       //if (!m_bPostedInitialRequest)
       //{
 
@@ -4668,7 +4708,7 @@ void system::open_internet_link(const ::scoped_string & scopedstrUrl, const ::sc
    }
 
 
-   void system::install_progress_add_up(int iAddUp)
+   void system::install_progress_add_up(::i32 iAddUp)
    {
 
 
@@ -4688,6 +4728,18 @@ void system::open_internet_link(const ::scoped_string & scopedstrUrl, const ::sc
       {
 
          return debian_is_package_installed(scopedstrPackageName);
+
+      }
+      else if (strSystemFamily.case_insensitive_equals("fedora"))
+      {
+
+         return fedora_is_package_installed(scopedstrPackageName);
+
+      }
+      else if (strSystemFamily.case_insensitive_equals("opensuse"))
+      {
+
+         return opensuse_is_package_installed(scopedstrPackageName);
 
       }
 
@@ -4713,6 +4765,18 @@ void system::open_internet_link(const ::scoped_string & scopedstrUrl, const ::sc
          return ::transfer(debian_not_installed_packages(straPackageNames));
 
       }
+      else if (strSystemFamily.case_insensitive_equals("fedora"))
+      {
+
+         return ::transfer(fedora_not_installed_packages(straPackageNames));
+
+      }
+      else if (strSystemFamily.case_insensitive_equals("opensuse"))
+      {
+
+         return ::transfer(opensuse_not_installed_packages(straPackageNames));
+
+      }
 
 #endif
 
@@ -4736,6 +4800,18 @@ void system::open_internet_link(const ::scoped_string & scopedstrUrl, const ::sc
          return ::transfer(debian_install_packages_command_line(straPackageNames));
 
       }
+      else if (strSystemFamily.case_insensitive_equals("fedora"))
+      {
+
+         return ::transfer(fedora_install_packages_command_line(straPackageNames));
+
+      }
+      else if (strSystemFamily.case_insensitive_equals("opensuse"))
+      {
+
+         return ::transfer(opensuse_install_packages_command_line(straPackageNames));
+
+      }
 
 #endif
 
@@ -4757,6 +4833,18 @@ void system::open_internet_link(const ::scoped_string & scopedstrUrl, const ::sc
       {
 
          return ::transfer(debian_install_package_file_command_line(pathPackageFile));
+
+      }
+      else if (strSystemFamily.case_insensitive_equals("fedora"))
+      {
+
+         return ::transfer(fedora_install_package_file_command_line(pathPackageFile));
+
+      }
+      else if (strSystemFamily.case_insensitive_equals("opensuse"))
+      {
+
+         return ::transfer(opensuse_install_package_file_command_line(pathPackageFile));
 
       }
 
@@ -4784,7 +4872,7 @@ void system::open_internet_link(const ::scoped_string & scopedstrUrl, const ::sc
 
       defer_run_operating_system_package_installation_update_and_or_upgrade();
 
-      //int iExitCode = node()->posix_shell_command(strCommandLine, e_posix_shell_system_default, std_inline_log());
+      //::i32 iExitCode = node()->posix_shell_command(strCommandLine, e_posix_shell_system_default, std_inline_log());
 
       ::string_array_base straCommands;
 
@@ -4792,7 +4880,7 @@ void system::open_internet_link(const ::scoped_string & scopedstrUrl, const ::sc
 
       straCommands.add("exit");
 
-      int iExitCode = node()->pty2(straCommands);
+      ::i32 iExitCode = node()->pty2(straCommands);
 
       if (iExitCode != 0)
       {
@@ -4834,6 +4922,18 @@ void system::open_internet_link(const ::scoped_string & scopedstrUrl, const ::sc
          straCommandLine = debian_run_operating_system_package_installation_update_command_line_array();
 
       }
+      else if (strSystemFamily.case_insensitive_equals("fedora"))
+      {
+
+         straCommandLine = fedora_run_operating_system_package_installation_update_command_line_array();
+
+      }
+      else if (strSystemFamily.case_insensitive_equals("opensuse"))
+      {
+
+         straCommandLine = opensuse_run_operating_system_package_installation_update_command_line_array();
+
+      }
 
 #endif
 
@@ -4849,9 +4949,9 @@ void system::open_internet_link(const ::scoped_string & scopedstrUrl, const ::sc
 
          straCommandLine.add("exit");
 
-         //int iExitCode = node()->posix_shell_command(strCommandLine, e_posix_shell_system_default, std_inline_log());
+         //::i32 iExitCode = node()->posix_shell_command(strCommandLine, e_posix_shell_system_default, std_inline_log());
 
-         int iExitCode = node()->pty2(straCommandLine);
+         ::i32 iExitCode = node()->pty2(straCommandLine);
 
          if (iExitCode != 0)
          {
@@ -4914,7 +5014,7 @@ void system::open_internet_link(const ::scoped_string & scopedstrUrl, const ::sc
    }
 
 
-   double system::luminance() const
+   ::f64 system::luminance() const
    {
 
       return m_dLuminance;
@@ -4941,7 +5041,7 @@ void system::open_internet_link(const ::scoped_string & scopedstrUrl, const ::sc
    }
 
 
-   ::color::color system::get_simple_ui_color(::enum_element eelement, ::user::enum_state estate)
+   ::color::color system::get_simple_ui_color(const ::e_element & eelement, const ::user::e_state & estate)
    {
 
       ::color::color color;
@@ -5242,7 +5342,7 @@ void system::open_internet_link(const ::scoped_string & scopedstrUrl, const ::sc
       if (!m_pacmewindowing)
       {
 
-         do_graphics_and_windowing_factory();
+         do_windowing_factory();
 
          constructø(m_pacmewindowing);
 
@@ -5261,6 +5361,9 @@ void system::open_internet_link(const ::scoped_string & scopedstrUrl, const ::sc
    }
 
 
+
+
+
    void system::do_operating_ambient_factory()
    {
 
@@ -5269,6 +5372,14 @@ void system::open_internet_link(const ::scoped_string & scopedstrUrl, const ::sc
       auto& pfactory = factory("acme", strOperatingSystem);
 
       pfactory->merge_to_global_factory();
+
+   }
+
+
+   ::string system::get_subsystem_library_component_name()
+   {
+
+      return "subsystem";
 
    }
 
@@ -5455,18 +5566,54 @@ void system::open_internet_link(const ::scoped_string & scopedstrUrl, const ::sc
    }
 
 
-   void system::do_graphics_and_windowing_factory()
+   string system::get_subsystem_toolkit_id()
    {
 
-      if (!m_bGraphicsAndWindowingFactory)
+      ::string strToolkitId = get_operating_ambient();
+
+      ::string strAcmeWindowingToolkitId = strToolkitId;
+
+      return strAcmeWindowingToolkitId;
+   }
+
+
+   void system::do_graphics_factory()
+   {
+
+      if (!m_bGraphicsFactory)
       {
 
-         m_bGraphicsAndWindowingFactory = true;
+         m_bGraphicsFactory = true;
 
          //if(!is_sandboxed())
          {
 
             nano()->graphics();
+
+            // ::string strToolkit = get_acme_windowing_toolkit_id();
+            //
+            // m_pfactoryAcmeWindowing = this->factory("acme_windowing", strToolkit);
+            //
+            // m_pfactoryAcmeWindowing->merge_to_global_factory();
+
+         }
+
+      }
+
+   }
+
+   void system::do_windowing_factory()
+   {
+
+      if (!m_bWindowingFactory)
+      {
+
+         m_bWindowingFactory = true;
+
+         //if(!is_sandboxed())
+         {
+
+            //nano()->graphics();
 
             ::string strToolkit = get_acme_windowing_toolkit_id();
 
@@ -5477,6 +5624,44 @@ void system::open_internet_link(const ::scoped_string & scopedstrUrl, const ::sc
          }
 
       }
+
+   }
+
+
+   ::platform::subsystem * system::MainSubsystem()
+   {
+
+      if (!m_psubsystem)
+      {
+
+         ::string strToolkit = get_subsystem_toolkit_id();
+
+         auto strLibraryComponentName = get_subsystem_library_component_name();
+
+         auto pfactorySubsystem = this->factory(strLibraryComponentName, strToolkit);
+
+         pfactorySubsystem->merge_to_global_factory();
+
+         constructø(m_psubsystem);
+
+      }
+
+      return m_psubsystem;
+
+   }
+
+
+   ::platform::ProfileLogger& system::ProfileLogger()
+   {
+
+      if (!m_pprofilelogger)
+      {
+
+         construct_newø(m_pprofilelogger);
+
+      }
+
+      return *m_pprofilelogger;
 
    }
 
@@ -5568,6 +5753,91 @@ void system::open_internet_link(const ::scoped_string & scopedstrUrl, const ::sc
 
    //}
 
+   ::accessibility::accessibility *system::accessibility()
+   {
+
+      if (!m_paccessibility)
+      {
+
+         auto pfactoryAccessibility = factory("accessibility", OPERATING_SYSTEM_NAME);
+
+         pfactoryAccessibility->merge_to_global_factory();
+
+         constructø(m_paccessibility);
+
+      }
+
+      return m_paccessibility;
+
+   }
+   
+   
+   ::string system::operating_system_icon_url(const ::i32_size &size)
+   {
+
+      ::string strUrl;
+
+      ::string strSystem;
+
+      auto psummary = node()->operating_system_summary();
+
+      strSystem = psummary->m_strSystem;
+
+      auto strSystemRelease = psummary->m_strSystemRelease;
+
+      if (strSystem == "windows")
+      {
+
+         if (strSystemRelease == "10")
+         {
+
+            strSystem = "windows10";
+         }
+         else if (strSystemRelease == "11")
+         {
+
+            strSystem = "windows11";
+         }
+         else
+         {
+
+            strSystem = "windows" + strSystemRelease;
+         }
+      }
+
+      strUrl.format("https://ca2.site/image/operating-system/{}/{}.png", size.cx, strSystem);
+
+
+      return strUrl;
+   }
+
+
+   ::string system::operating_ambient_icon_url(const ::i32_size &size)
+   {
+
+      #if defined(WINDOWS) || defined(__APPLE__)
+
+      return {};
+
+      #else
+
+
+      ::string strUrl;
+
+      ::string strAmbient;
+
+      auto psummary = node()->operating_system_summary();
+
+      strAmbient = psummary->m_strAmbient;
+
+      strUrl.format("https://ca2.site/image/operating-ambient/{}/{}.png", size.cx, strAmbient);
+
+      return strUrl;
+
+      #endif
+   }
+
+
 
 } // namespace acme
 
@@ -5631,7 +5901,7 @@ void system::open_internet_link(const ::scoped_string & scopedstrUrl, const ::sc
 //}
 
 
-long long system_id_topic(::platform::system* psystem, int iId, long long llWparam, long long llLparam)
+::i64 system_id_topic(::platform::system* psystem, ::i32 iId, ::i64 llWparam, ::i64 llLparam)
 {
 
    auto ll = psystem->call_id_topic((::enum_id) iId, llWparam, llLparam);
@@ -5649,7 +5919,7 @@ void node_did_finish_launching(::platform::system* psystem);
 void system_on_open_untitled_file(::platform::system* psystem);
 
 
-void system_on_open_file(::platform::system* psystem, const char* pszFile);
+void system_on_open_file(::platform::system* psystem, const_char_pointer pszFile);
 
 
 void node_will_finish_launching(::platform::system* psystem)
@@ -5676,7 +5946,7 @@ void system_on_open_untitled_file(::platform::system* psystem)
 }
 
 
-void system_on_open_file(::platform::system* psystem, const char* pszFile)
+void system_on_open_file(::platform::system* psystem, const_char_pointer pszFile)
 {
 
    psystem->on_open_file(pszFile);
@@ -5717,7 +5987,7 @@ void system_on_open_file(::platform::system* psystem, const char* pszFile)
 //
 //         //   //pfuture->wait(10_s);
 //
-//         //   int iDialogResult = pfuture->m_var;
+//         //   ::i32 iDialogResult = pfuture->m_var;
 //
 //         //   informationf("result " + as_string(iDialogResult));
 //

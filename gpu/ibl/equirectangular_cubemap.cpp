@@ -92,7 +92,7 @@ namespace gpu
 
          constructø(m_ptextureCubemap);
 
-         ::gpu::texture_attributes textureattributes(::int_rectangle{API_CHANGED_ARGUMENT, m_uCubemapWidth,
+         ::gpu::texture_attributes textureattributes(::i32_rectangle{API_CHANGED_ARGUMENT, m_uCubemapWidth,
                                                                     m_uCubemapHeight});
 
          textureattributes.set_cubemap_all_mips();
@@ -199,7 +199,7 @@ namespace gpu
 
             m_pshaderHdri->push_properties(pgpucommandbuffer);
 
-            ::int_rectangle rectangleViewport;
+            ::i32_rectangle rectangleViewport;
 
             rectangleViewport.set(0, 0, m_uCubemapWidth, m_uCubemapHeight);
 
@@ -240,7 +240,7 @@ namespace gpu
 
 BEGIN_GPU_PROPERTIES(::gpu::ibl::equirectangular_cubemap::push_constants)
 GPU_PROPERTY("mvp", ::gpu::e_type_mat4)
-GPU_PROPERTY("sampler:hdri", ::gpu::e_type_int)
+GPU_PROPERTY("sampler:hdri", ::gpu::e_type_i32)
 END_GPU_PROPERTIES()
 
 

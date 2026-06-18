@@ -10,12 +10,12 @@ namespace datetime
    public:
 
 
-      int            m_iYear;
-      int            m_iMonth;
-      int            m_iDay;
-      int            m_iHour;
-      int            m_iMinute;
-      int            m_iSecond;
+      ::i32            m_iYear;
+      ::i32            m_iMonth;
+      ::i32            m_iDay;
+      ::i32            m_iHour;
+      ::i32            m_iMinute;
+      ::i32            m_iSecond;
       bool           m_bSpan;
 
 
@@ -24,13 +24,13 @@ namespace datetime
       ~result();
 
       // ano gregoriano mdio de 365,2425 dias solares
-      double get_years() const;
+      ::f64 get_years() const;
       // baseado no ano gregoriano mdio de 365,2425 dias solares * 12.0
-      double get_months() const;
-      double get_days() const;
-      double get_hours() const;
-      double get_minutes() const;
-      double get_seconds() const;
+      ::f64 get_months() const;
+      ::f64 get_days() const;
+      ::f64 get_hours() const;
+      ::f64 get_minutes() const;
+      ::f64 get_seconds() const;
 
       ::earth::time get_time() const;
       ::earth::time_span GetSpan() const;
@@ -45,8 +45,8 @@ namespace datetime
 
 CLASS_DECL_ACME datetime::result operator + (const datetime::result & result1, const datetime::result & result2);
 CLASS_DECL_ACME datetime::result operator - (const datetime::result & result1, const datetime::result & result2);
-CLASS_DECL_ACME datetime::result operator * (const datetime::result & result1, double d);
-CLASS_DECL_ACME datetime::result operator / (const datetime::result & result1, double d);
+CLASS_DECL_ACME datetime::result operator * (const datetime::result & result1, ::f64 d);
+CLASS_DECL_ACME datetime::result operator / (const datetime::result & result1, ::f64 d);
 
 
 

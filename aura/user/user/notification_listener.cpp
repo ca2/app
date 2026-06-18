@@ -26,7 +26,7 @@ notification_listener::~notification_listener()
 }
 
 
-   void notification_listener::on_keyboard_layout_change(const char * pszKeyboardLayoutId)
+   void notification_listener::on_keyboard_layout_change(const_char_pointer pszKeyboardLayoutId)
       {
       }
 

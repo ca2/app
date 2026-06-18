@@ -147,9 +147,9 @@ namespace userex
 
       //m_pbuttonMenu->create_color(::user::color_button_text, argb(255, 80, 80, 80));
       //m_pbuttonMenu->create_color(::user::color_button_background, argb(255, 255, 255, 255));
-      //m_pbuttonMenu->create_int(::user::int_button_draw_text_and_image_flags, e_align_left_center | DT_SINGLELINE);
+      //m_pbuttonMenu->create_int(::user::i32_button_draw_text_and_image_flags, e_align_left_center | DT_SINGLELINE);
 
-      m_pbuttonMenu->m_flagNonClient.erase(::user::interaction::e_non_client_focus_rect);
+      m_pbuttonMenu->m_enonclient.erase(::user::e_non_client_focus_rect);
 
    }
 
@@ -419,7 +419,7 @@ namespace userex
 
       ::user::interaction * pinteraction = m_pbuttonMenu;
 
-      ::int_rectangle rectangleWindow;
+      ::i32_rectangle rectangleWindow;
 
       pinteraction->window_rectangle(rectangleWindow);
       
@@ -441,7 +441,7 @@ namespace userex
       ptrackpopup->track([](){});
       
 
-//      m_pmenu = puser->track_popup_menu(this, strXml, 0, rectangleWindow.bottom_left(), ::int_size(width(), 0));
+//      m_pmenu = puser->track_popup_menu(this, strXml, 0, rectangleWindow.bottom_left(), ::i32_size(width(), 0));
       //m_pmenu->create_color(::user::color_button_background, argb(255, 255, 255, 255));
       //m_pmenu->create_color(::user::color_button_text, argb(255, 80, 80, 80));
 
@@ -526,13 +526,13 @@ namespace userex
 
       }
 
-      ::int_rectangle rectangleMenu(rectangleX);
+      ::i32_rectangle rectangleMenu(rectangleX);
 
       rectangleMenu.bottom = rectangleX.top + 32;
 
       m_pbuttonMenu->display_child(rectangleMenu);
 
-      ::int_rectangle rectangleList(rectangleX);
+      ::i32_rectangle rectangleList(rectangleX);
 
       rectangleList.top = rectangleX.top + 32;
 
@@ -557,7 +557,7 @@ namespace userex
          if (pgroup->m_plist.is_set() && pgroup->m_plist != plist)
          {
 
-            pgroup->m_plist->hide();
+            pgroup->m_plist->display(e_display_hide, {});
 
          }
 

@@ -112,7 +112,7 @@ namespace windows_common
       if (s == (SIZE_T)-1)
       {
 
-         informationf("os_impl_size : Failed to get memory int_size");
+         informationf("os_impl_size : Failed to get memory i32_size");
 
       }
 

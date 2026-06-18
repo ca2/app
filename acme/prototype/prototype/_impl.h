@@ -970,20 +970,20 @@ inline ::pointer < T > pointer_transfer(T* p) { return { transfer_t{}, p}; }
 ////
 //
 //#define IMPL_VAR_REF2(TYPE, VAR) IMPL_VAR_REF(TYPE, VAR, VAR)
-//IMPL_VAR_REF2(char, char);
-//IMPL_VAR_REF2(unsigned char, unsigned char);
-//IMPL_VAR_REF2(short, short);
-//IMPL_VAR_REF2(unsigned short, unsigned short);
-//IMPL_VAR_REF2(int, int);
-//IMPL_VAR_REF2(unsigned int, unsigned int);
-//IMPL_VAR_REF2(long long, long long);
-//IMPL_VAR_REF2(unsigned long long, unsigned long long);
+//IMPL_VAR_REF2(::i8, ::i8);
+//IMPL_VAR_REF2(::u8, ::u8);
+//IMPL_VAR_REF2(::i16, ::i16);
+//IMPL_VAR_REF2(::u16, ::u16);
+//IMPL_VAR_REF2(::i32, ::i32);
+//IMPL_VAR_REF2(::u32, ::u32);
+//IMPL_VAR_REF2(::i64, ::i64);
+//IMPL_VAR_REF2(::u64, ::u64);
 //#undef IMPL_VAR_REF2
 
 
 //#define IMPL_VAR_REF3(TYPE, VAR) IMPL_VAR_REF(TYPE, VAR, TYPE)
-//IMPL_VAR_REF3(float, float);
-//IMPL_VAR_REF3(double, double);
+//IMPL_VAR_REF3(::f32, ::f32);
+//IMPL_VAR_REF3(::f64, ::f64);
 //#undef IMPL_VAR_REF3
 
 
@@ -1256,8 +1256,8 @@ void reference_count_debug_release(TYPE * & p)
 #endif
 
 
-//inline bool class ::time::done(const class time & time) const { return elapsed(class ::time).m_i >= 0; }
-//inline bool class ::time::done() const { return elapsed().m_i >= 0; }
+//inline bool class ::time::done(const class time & time) const { return elapsed(class ::time).m_i32 >= 0; }
+//inline bool class ::time::done() const { return elapsed().m_i32 >= 0; }
 
 
 
@@ -1808,14 +1808,14 @@ inline bool particle::__call__defer_raw_construct_new(::pointer<TYPE>& p)
 constexpr ::e_status e_status::worst(const ::e_status & e) const
 {
 
-   return (::e_status)(::enum_status)minimum((long long)m_eenum, (long long)e.m_eenum);
+   return (::e_status)(::enum_status)minimum((::i64)m_eenum, (::i64)e.m_eenum);
 
 }
 
 
-constexpr long long posix_time::minutes() const { return m_iSecond / 60; }
-constexpr long long posix_time::hours() const { return m_iSecond / (60 * 60); }
-constexpr long long posix_time::days() const { return m_iSecond / (24 * 60 * 60); }
+constexpr ::i64 posix_time::minutes() const { return m_iSecond / 60; }
+constexpr ::i64 posix_time::hours() const { return m_iSecond / (60 * 60); }
+constexpr ::i64 posix_time::days() const { return m_iSecond / (24 * 60 * 60); }
 
 
 

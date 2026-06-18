@@ -15,11 +15,11 @@
 #endif
 
 
-// #ifndef int_x
-// #define lparam_int_x(lp)                        ((int)(short)LOWORD(lp))
+// #ifndef i32_x
+// #define lparam_int_x(lp)                        ((::i32)(::i16)LOWORD(lp))
 // #endif
-// #ifndef int_y
-// #define lparam_int_y(lp)                        ((int)(short)HIWORD(lp))
+// #ifndef i32_y
+// #define lparam_int_y(lp)                        ((::i32)(::i16)HIWORD(lp))
 // #endif
 
 
@@ -31,7 +31,7 @@
 
 #ifdef WINDOWS
 
-void simple_se_translator(unsigned int uiCode, EXCEPTION_POINTERS * ppointers)
+void simple_se_translator(::u32 uiCode, EXCEPTION_POINTERS * ppointers)
 {
    //throw ::exception(::exception("integer_exception" + as_string($1)));
 }
@@ -359,9 +359,9 @@ pdirectorysystem->system() / "config\\plugin\\version.txt");
 
                //set_ready();
 
-               ensure_tx(::hotplugin::message_set_plugin_url,(void *)(const ::string &)m_phost->m_pbasecomposer->m_strPluginUrl,(int)m_phost->m_pbasecomposer->m_strPluginUrl.length());
+               ensure_tx(::hotplugin::message_set_plugin_url,(void *)(const ::string &)m_phost->m_pbasecomposer->m_strPluginUrl,(::i32)m_phost->m_pbasecomposer->m_strPluginUrl.length());
 
-               ensure_tx(::hotplugin::message_set_ready, m_phost->m_memory.get_data(), (int)m_phost->m_memory.get_size());
+               ensure_tx(::hotplugin::message_set_ready, m_phost->m_memory.get_data(), (::i32)m_phost->m_memory.get_size());
 
             }
             catch(...)
@@ -394,7 +394,7 @@ pdirectorysystem->system() / "config\\plugin\\version.txt");
 
 
 
-   int plugin::thread_start_ca2::run()
+   ::i32 plugin::thread_start_ca2::run()
    {
 
 
@@ -461,7 +461,7 @@ pdirectorysystem->system() / "config\\plugin\\version.txt");
 
       bool bTimedOut = false;
 
-      unsigned int dwExitCode = psystem->process().synch(strPath,e_display_normal,2_s),&bTimedOut);
+      ::u32 dwExitCode = psystem->process().synch(strPath,e_display_normal,2_s),&bTimedOut);
 
       if(bTimedOut)
       {
@@ -477,7 +477,7 @@ pdirectorysystem->system() / "config\\plugin\\version.txt");
          m_bNativeLaunchFail = false;
 
       }
-      else if((int) dwExitCode >= 0)
+      else if((::i32) dwExitCode >= 0)
       {
 
          //  ::message_box(nullptr,"Successfully run : " + strPath,"Debug only message, please install.",::user::e_message_box_icon_information | ::user::e_message_box_ok);
@@ -689,7 +689,7 @@ pdirectorysystem->system() / "config\\plugin\\version.txt");
 
                set["raw_http"] = true;
 
-               for(int iAttempt = 0; iAttempt < 3; iAttempt++)
+               for(::i32 iAttempt = 0; iAttempt < 3; iAttempt++)
                {
 
                   //strPluginData = http_get_dup(strPluginUrl, false, &ms_get_dup_status_callback, (void *) &iStatusCode, false);
@@ -832,7 +832,7 @@ run_install:
 
 
 
-   void plugin::on_paint(::draw2d::graphics_pointer & pgraphics,const ::int_rectangle &lprect)
+   void plugin::on_paint(::draw2d::graphics_pointer & pgraphics,const ::i32_rectangle &lprect)
    {
 
 #ifdef UNIVERSAL_WINDOWS
@@ -841,14 +841,14 @@ run_install:
 
 #else
 
-      //unsigned int dwTime1= ::time::now();
+      //::u32 dwTime1= ::time::now();
 
 
 
       //if(!m_bLogin && (m_bLogged || m_bHasCred) && !m_bCa2Login && !m_bCa2Logout && !m_bNativeLaunch && !is_installing() && psystem->install().is_ca2_installed())
       if(!m_bLogin && !m_bCa2Login && !m_bCa2Logout && !m_bNativeLaunch && !is_installing() && psystem->install().is_ca2_installed())
       {
-         //unsigned int dwTime3= ::time::now();
+         //::u32 dwTime3= ::time::now();
 
          //informationf("eval1 %d",dwTime3 - dwTime1);
 
@@ -856,7 +856,7 @@ run_install:
          if(ensure_tx(WM_APP+WM_USER,(void *)&lprect,sizeof(lprect)))
          {
 
-            //unsigned int dwTime5= ::time::now();
+            //::u32 dwTime5= ::time::now();
 
             //informationf("ensure_tx %d",dwTime5 - dwTime3);
 
@@ -946,14 +946,14 @@ run_install:
 
             }
 
-            //unsigned int dwTime7= ::time::now();
+            //::u32 dwTime7= ::time::now();
 
             //informationf("focus_update %d",dwTime7 - dwTime5);
 
 
             m_phost->blend_bitmap(pgraphics, lprect);
 
-            //unsigned int dwTime9= ::time::now();
+            //::u32 dwTime9= ::time::now();
 
             //informationf("blend %d",dwTime9 - dwTime7);
 
@@ -985,14 +985,14 @@ run_install:
 #endif
 
 
-      ::int_rectangle int_rectangle;
+      ::i32_rectangle i32_rectangle;
 
-      ::int_rectangle rectangleWindow;
+      ::i32_rectangle rectangleWindow;
 
       window_rectangle(&rectangleWindow);
 
-      int cx = rectangleWindow.right - rectangleWindow.left;
-      int cy = rectangleWindow.bottom - rectangleWindow.top;
+      ::i32 cx = rectangleWindow.right - rectangleWindow.left;
+      ::i32 cy = rectangleWindow.bottom - rectangleWindow.top;
 
       rectangle.left         = 0;
       rectangle.top          = 0;
@@ -1048,7 +1048,7 @@ run_install:
          ::SelectObject(hdc, (HGDIOBJ) hpenOld);
          ::SelectObject(hdc, (HGDIOBJ) hbrushOld);*/
 
-         /*         ::int_rectangle int_rectangle;
+         /*         ::i32_rectangle i32_rectangle;
          rectangle.left      = 0;
          rectangle.top       = 0;
          rectangle.bottom    = cx;
@@ -1069,12 +1069,12 @@ run_install:
       //pgraphics.bit_blt(lprect->left                , lprect->top                 , lprect->right - lprect->left, lprect->bottom - lprect->top,
       //     pgraphics         , lprect->left - ::hotplugin::plugin::m_rectangle.left  , lprect.top - ::hotplugin::plugin::m_rectangle.top    );
 
-      /*string strx = ansi_string_from_long_long(lprect->left);
-      string stry = ansi_string_from_long_long(lprect->top);
+      /*string strx = ansi_string_from_i64(lprect->left);
+      string stry = ansi_string_from_i64(lprect->top);
       text_out(hdcWindow, lprect->left + 10, lprect->top + 10, strx, strx.get_length());
       text_out(hdcWindow, lprect->left + 110, lprect->top + 10, stry, stry.get_length());
-      string strx2 = ansi_string_from_long_long(m_rectangle.left);
-      string stry2 = ansi_string_from_long_long(m_rectangle.top);
+      string strx2 = ansi_string_from_i64(m_rectangle.left);
+      string stry2 = ansi_string_from_i64(m_rectangle.top);
       text_out(hdcWindow, lprect->left + 210, lprect->top + 10, strx2, strx2.get_length());
       text_out(hdcWindow, lprect->left + 310, lprect->top + 10, stry2, stry2.get_length());
       */
@@ -1170,7 +1170,7 @@ run_install:
    //}
 
 
-   void plugin::on_paint_progress(::draw2d::graphics_pointer & pgraphics,const ::int_rectangle &lprect)
+   void plugin::on_paint_progress(::draw2d::graphics_pointer & pgraphics,const ::i32_rectangle &lprect)
    {
 
       ::hotplugin::plugin::on_paint_progress(pgraphics, lprect);
@@ -1178,14 +1178,14 @@ run_install:
    }
 
 
-   double plugin::extract_spa_progress_rate()
+   ::f64 plugin::extract_spa_progress_rate()
    {
 
-      unsigned int dwRead;
+      ::u32 dwRead;
 
       HANDLE hfile = ::create_file(::path::install_log(process_platform_name()), GENERIC_READ, FILE_SHARE_READ | FILE_SHARE_WRITE, nullptr, OPEN_EXISTING, FILE_ATTRIBUTE_NORMAL, nullptr);
 
-      double dRate = 0.0;
+      ::f64 dRate = 0.0;
 
       bool bRate = false;
 
@@ -1194,12 +1194,12 @@ run_install:
       if(hfile != INVALID_HANDLE_VALUE)
       {
 
-         int iTell = ::SetFilePointer(hfile, 0, nullptr, SEEK_END);
+         ::i32 iTell = ::SetFilePointer(hfile, 0, nullptr, SEEK_END);
          iTell--;
          string strLine;
-         int iSkip = 0;
+         ::i32 iSkip = 0;
          bool bStatus2 = false;
-         char ch = '\0';
+         ::i8 ch = '\0';
          bool bFirst = true;
          while(iTell >= 0)
          {
@@ -1234,7 +1234,7 @@ run_install:
                else if(!bRate && strLine.begins_eat("|||"))
                {
                   bRate = true;
-                  dRate = ((double) ansi_to_int(strLine)) / (1000.0 * 1000.0 * 1000.0 );
+                  dRate = ((::f64) ansi_to_int(strLine)) / (1000.0 * 1000.0 * 1000.0 );
                }
                else if (!bStatus2 && strLine.begins_eat("***"))
                {
@@ -1295,7 +1295,7 @@ run_install:
 #ifndef UNIVERSAL_WINDOWS
 
 
-   void plugin::on_receive(::aura::ipc::rx * prx, int message, void * pdata, int len)
+   void plugin::on_receive(::aura::ipc::rx * prx, ::i32 message, void * pdata, ::i32 len)
    {
 
       if(prx == &m_rx)
@@ -1315,7 +1315,7 @@ run_install:
    }
 
 
-   void plugin::on_post(::aura::ipc::rx * prx, long long a, long long b)
+   void plugin::on_post(::aura::ipc::rx * prx, ::i64 a, ::i64 b)
    {
 
       if(prx == &m_rx)
@@ -1352,7 +1352,7 @@ run_install:
 
 #endif
 
-   bool plugin::set_window_position(iptr z,int x,int y,int cx,int cy,unsigned int nFlags)
+   bool plugin::set_window_position(iptr z,::i32 x,::i32 y,::i32 cx,::i32 cy,::u32 nFlags)
    {
 
       bool bOk = ::hotplugin::plugin::set_window_position(z, x, y, cx, cy, nFlags);
@@ -1406,7 +1406,7 @@ run_install:
          else
          {
 
-            int iTry = 0;
+            ::i32 iTry = 0;
 
 retry_get_prompt:
 
@@ -1529,9 +1529,9 @@ retry_get_prompt:
 
       string str;
 
-      int iAttemptStream = 0;
-      int iAttemptUrl = 0;
-      int iAttempt = 0;
+      ::i32 iAttemptStream = 0;
+      ::i32 iAttemptUrl = 0;
+      ::i32 iAttempt = 0;
 
 restart:
 
@@ -1575,13 +1575,13 @@ restart:
 
    }
 
-   void plugin::viewport_screen_to_client(::int_point * ppt)
+   void plugin::viewport_screen_to_client(::i32_point * ppt)
    {
       //::user::interaction::viewport_screen_to_client(ppt);
    }
 
 
-   void plugin::viewport_client_to_screen(::int_point * ppt)
+   void plugin::viewport_client_to_screen(::i32_point * ppt)
    {
       //::user::interaction::viewport_client_to_screen(ppt);
 
@@ -1630,7 +1630,7 @@ restart:
 #else
 
 
-         ::int_rectangle rectangle;
+         ::i32_rectangle rectangle;
 
          window_rectangle(rectangle);
 
@@ -1641,7 +1641,7 @@ restart:
 
             m_rectangleSent = rectangle;
 
-            if(!ensure_tx(::hotplugin::message_set_window,(void *)&rectangle,sizeof(::int_rectangle)))
+            if(!ensure_tx(::hotplugin::message_set_window,(void *)&rectangle,sizeof(::i32_rectangle)))
             {
 
                m_phost->m_pbasecomposer->m_bRectSent = false;

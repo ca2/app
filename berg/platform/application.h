@@ -86,13 +86,13 @@ namespace berg
 
 
       void show_about_box(::user::activation_token * puseractivationtoken) override;
-      void show_lines_box(const ::string_array_base & straLines, const ::scoped_string & scopedstrIconUrl, ::user::activation_token *puseractivationtoken) override;
+      void show_lines_box(const ::string_array_base & straLines, const ::string_array_base & straIconUrl, ::user::activation_token *puseractivationtoken) override;
 
       
       void add_impact_system(const ::atom & atom, const ::pointer<::user::impact_system> & pimpactsystem) override;
       virtual ::pointer<::user::impact_system> impact_system(const ::atom & atom) override;
 
-      int track_popup_menu(::menu::track_popup * ptrackpopup) override;
+      ::i32 track_popup_menu(::menu::track_popup * ptrackpopup) override;
 
 
    };

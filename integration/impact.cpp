@@ -21,9 +21,9 @@ namespace app_integration
    impact::impact()
    {
 
-      m_flagNonClient.erase(e_non_client_background);
+      m_enonclient.erase(::user::e_non_client_background);
 
-      m_flagNonClient.erase(e_non_client_focus_rect);
+      m_enonclient.erase(::user::e_non_client_focus_rect);
 
    }
 
@@ -53,7 +53,7 @@ namespace app_integration
 #ifdef _DEBUG
 
 
-   long long impact::increment_reference_count()
+   ::i64 impact::increment_reference_count()
    {
 
       return  ::user::impact::increment_reference_count();
@@ -61,7 +61,7 @@ namespace app_integration
    }
 
 
-   long long impact::decrement_reference_count()
+   ::i64 impact::decrement_reference_count()
    {
 
       return  ::user::impact::decrement_reference_count();
@@ -233,7 +233,7 @@ namespace app_integration
          fork([strName, pstraOutput, this]()
    {
 
-      int iExitCode = 0;
+      ::i32 iExitCode = 0;
 
          node()->command_system(*pstraOutput, iExitCode, m_pathIntegration + " " + strName);
 
@@ -315,7 +315,7 @@ namespace app_integration
       if (get_app()->application_properties().m_echeckNoClientFrame != ::e_check_checked)
       {
 
-         ::int_rectangle rectangle = this->rectangle();
+         ::i32_rectangle rectangle = this->rectangle();
 
          for (::collection::index i = 0; i < 11; i++)
          {
@@ -329,14 +329,14 @@ namespace app_integration
       }
       auto rect = this->rectangle();
 
-      int y = rect.bottom - 50;
-      for (int i = m_straaOutput.get_upper_bound(); i >= 0; i--)
+      ::i32 y = rect.bottom - 50;
+      for (::i32 i = m_straaOutput.get_upper_bound(); i >= 0; i--)
       {
-         for (int j = 0; j < minimum(3, m_straaOutput[i]->size()); j++)
+         for (::i32 j = 0; j < minimum(3, m_straaOutput[i]->size()); j++)
          {
 
 
-            pgraphics->text_out({ (double)20, (double)y }, m_straName[i] + " > " + m_straaOutput[i]->last(-j - 1));
+            pgraphics->text_out({ (::f64)20, (::f64)y }, m_straName[i] + " > " + m_straaOutput[i]->last(-j - 1));
 
             y -= 30;
 

@@ -9,7 +9,7 @@
 
 
 
-CLASS_DECL_ACME bool _istlead(int ch)
+CLASS_DECL_ACME bool _istlead(::i32 ch)
 {
 
    return false;
@@ -23,11 +23,11 @@ CLASS_DECL_ACME bool _istlead(int ch)
 
 
 
-//int_bool GetCursorPos(::int_point * ppointCursor)
+//::i32_bool GetCursorPos(::i32_point * ppointCursor)
 //
 //{
 //
-//   HIPoint int_point;
+//   HIPoint i32_point;
 //
 //   HICoordinateSpace space = kHICoordSpaceScreenPixel;
 //
@@ -49,7 +49,7 @@ CLASS_DECL_ACME bool _istlead(int ch)
 
 
 
-//char * mm_browse_folder(const_char_pointer pszStartDir, bool bCanCreateDirectories);
+//char_pointer mm_browse_folder(const_char_pointer pszStartDir, bool bCanCreateDirectories);
 
 
 //string apple_browse_folder(const_char_pointer pszStartDir, bool bCanCreateDirectories)
@@ -61,7 +61,7 @@ CLASS_DECL_ACME bool _istlead(int ch)
 //
 
 
-//char** mm_browse_file_open(const_char_pointer *pszStartDir, bool bMulti);
+//char_pointer * mm_browse_file_open(const_char_pointer *pszStartDir, bool bMulti);
 //
 //
 //

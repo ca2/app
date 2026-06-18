@@ -12,16 +12,16 @@
 
 //#if defined(__APPLE__)
 //#define ARGB_COLORREF(A, R, G, B) argb(A, R, G, B)
-//#define COLORREF_get_a_value(color32) color32_byte_opacity(color32)
-//#define COLORREF_get_r_value(color32) color32_byte_red(color32)
-//#define COLORREF_get_g_value(color32) color32_byte_green(color32)
-//#define COLORREF_get_b_value(color32) color32_byte_blue(color32)
+//#define COLORREF_get_a_value(color32) color32_u8_opacity(color32)
+//#define COLORREF_get_r_value(color32) color32_u8_red(color32)
+//#define COLORREF_get_g_value(color32) color32_u8_green(color32)
+//#define COLORREF_get_b_value(color32) color32_u8_blue(color32)
 //#else
 //#define ARGB_COLORREF(A, R, G, B) argb(A, B, G, R)
-//#define COLORREF_get_a_value(color32) color32_byte_opacity(color32)
-//#define COLORREF_get_r_value(color32) color32_byte_blue(color32)
-//#define COLORREF_get_g_value(color32) color32_byte_green(color32)
-//#define COLORREF_get_b_value(color32) color32_byte_red(color32)
+//#define COLORREF_get_a_value(color32) color32_u8_opacity(color32)
+//#define COLORREF_get_r_value(color32) color32_u8_blue(color32)
+//#define COLORREF_get_g_value(color32) color32_u8_green(color32)
+//#define COLORREF_get_b_value(color32) color32_u8_red(color32)
 //#endif
 
 
@@ -93,7 +93,7 @@ namespace userex
    void home_impact::on_message_create(::message::message * pmessage)
    {
 
-      //m_pimageBeam->create_image(this, ::int_size(32, 32));
+      //m_pimageBeam->create_image(this, ::i32_size(32, 32));
 
       //m_pimageBeam->fill(0);
 
@@ -103,7 +103,7 @@ namespace userex
 
       //m_pimageBeam->g()->set(ppen);
 
-      //m_pimageBeam->g()->DrawEllipse(int_rectangle_dimension(0, 0, 32, 32));
+      //m_pimageBeam->g()->DrawEllipse(i32_rectangle_dimension(0, 0, 32, 32));
 
 
 
@@ -158,7 +158,7 @@ namespace userex
    //}
 
 
-   void home_impact::on_mouse(const ::int_point & point)
+   void home_impact::on_mouse(const ::i32_point & point)
    {
 
 
@@ -186,7 +186,7 @@ namespace userex
 
       auto pmouse = pmessage->m_union.m_pmouse;
 
-      ::int_point point = pmouse->m_pointHost;
+      ::i32_point point = pmouse->m_pointHost;
 
       host_to_client()(point);
 
@@ -204,7 +204,7 @@ namespace userex
 
       auto pmouse = pmessage->m_union.m_pmouse;
 
-      ::int_point point = pmouse->m_pointHost;
+      ::i32_point point = pmouse->m_pointHost;
 
       host_to_client()(point);
 
@@ -249,7 +249,7 @@ namespace userex
 
       }
 
-      ::int_rectangle rectangleColors;
+      ::i32_rectangle rectangleColors;
 
       rectangleColors = this->rectangle();
 

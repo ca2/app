@@ -140,7 +140,7 @@ void directory_context::destroy()
 
 
 
-inline bool myspace(char ch)
+inline bool myspace(::i8 ch)
 {
    return ch == ' ' ||
       ch == '\t' ||
@@ -980,7 +980,7 @@ bool directory_context::fast_has_subdir(const ::file::path& path)
 
    //         bool bHasSubFolder;
 
-   //         unsigned int dwLastError;
+   //         ::u32 dwLastError;
 
             //if (!m_isdirmap.find(pcszPath, bHasSubFolder, dwLastError))
 
@@ -1446,7 +1446,7 @@ bool directory_context::name_is(const ::file::path& strPath)
       }
 
       //      zip_context zip(this);
-            //            unsigned int dwLastError;
+            //            ::u32 dwLastError;
                         //if (m_isdirmap.find(strPath, bHasSubFolder, dwLastError))
                         //   return bHasSubFolder;
         //    bHasSubFolder = zip.has_sub_folder(strPath);
@@ -1467,15 +1467,15 @@ bool directory_context::name_is(const ::file::path& strPath)
 //      }
 //
 //
-//      bool directory_context::is_dir_map::find(const ::file::path & path, bool &bIsDir, unsigned int & dwLastError)
+//      bool directory_context::is_dir_map::find(const ::file::path & path, bool &bIsDir, ::u32 & dwLastError)
 //      {
 //
-//         return find(path, bIsDir, dwLastError, (int) path.length());
+//         return find(path, bIsDir, dwLastError, (::i32) path.length());
 //
 //      }
 //
 //
-//      bool directory_context::is_dir_map::find(const ::file::path & path, bool &bIsDir, unsigned int &dwLastError, int iLastChar)
+//      bool directory_context::is_dir_map::find(const ::file::path & path, bool &bIsDir, ::u32 &dwLastError, ::i32 iLastChar)
 //      {
 //
 //         if (path.get_length() <= 0)
@@ -1514,7 +1514,7 @@ bool directory_context::name_is(const ::file::path& strPath)
 //      }
 //
 //
-//      bool directory_context::is_dir_map::lookup_dynamic(const ::file::path & path, bool &bIsDir, unsigned int & dwLastError, int iLastChar)
+//      bool directory_context::is_dir_map::lookup_dynamic(const ::file::path & path, bool &bIsDir, ::u32 & dwLastError, ::i32 iLastChar)
 //      {
 //
 //         is_dir * pdir = this;
@@ -1590,12 +1590,12 @@ bool directory_context::name_is(const ::file::path& strPath)
 //      }
 //
 //
-//      bool directory_context::is_dir_map::lookup_small(const ::file::path & path,bool &bIsDir,unsigned int &dwLastError, int iLastChar)
+//      bool directory_context::is_dir_map::lookup_small(const ::file::path & path,bool &bIsDir,::u32 &dwLastError, ::i32 iLastChar)
 //      {
 //
 //         const_char_pointer pszEnd = path.c_str() + iLastChar;
 //
-//         char sz[2048];
+//         ::i8 sz[2048];
 //
 //         is_dir_work find;
 //
@@ -1605,14 +1605,14 @@ bool directory_context::name_is(const ::file::path& strPath)
 //
 //         is_dir * pdir = this;
 //
-//         char * psz3 = find.m_psz;
+//         char_pointer psz3 = find.m_psz;
 //
 //         while (scopedstr3 != nullptr && psz3 < pszEnd)
 //         {
 //
-//            char * psz1 = strchr(find.m_psz, '/');
+//            char_pointer psz1 = strchr(find.m_psz, '/');
 //
-//            char * psz2 = strchr(find.m_psz, '\\');
+//            char_pointer psz2 = strchr(find.m_psz, '\\');
 //
 //            psz3 = min_non_null(scopedstr1, psz2);
 //
@@ -1751,7 +1751,7 @@ bool directory_context::name_is(const ::file::path& strPath)
 //      }
 //
 //
-//      void directory_context::is_dir_map::set(const ::file::path & path,bool bIsDir,unsigned int dwLastError)
+//      void directory_context::is_dir_map::set(const ::file::path & path,bool bIsDir,::u32 dwLastError)
 //      {
 //
 //         critical_section_lock synchronouslock(m_criticalsection);
@@ -2181,7 +2181,7 @@ bool directory_context::matter_enumerate(const ::file::path& path, ::file::listi
 
          //auto purl = psystem->url();
 
-         string strUrl = "https://api.ca2.network/api/matter/list_dir?dir=" + ::url::encode(strMatter);
+         string strUrl = "https://api.ca2.site/api/matter/list_dir?dir=" + ::url::encode(strMatter);
 
          strLs = http()->get(strUrl, set);
 
@@ -2389,7 +2389,7 @@ bool directory_context::matter_enumerate(const ::file::path& path, ::file::listi
          if (path.case_insensitive_begins_eat("itdoesntexist."))
          {
 
-            class ::time t = millisecond_time(::as_long_long(path));
+            class ::time t = millisecond_time(::as_i64(path));
 
             auto elapsed = t.elapsed();
 
@@ -2526,13 +2526,13 @@ bool directory_context::matter_enumerate(const ::file::path& path, ::file::listi
       //if (bDir)
       //{
 
-      strUrl = "https://ca2.network/api/matter/query?candidate=" + strParam;
+      strUrl = "https://ca2.site/api/matter/query?candidate=" + strParam;
 
       //}
       //else
       //{
 
-        // strUrl = "https://ca2.network/api/matter/query_file?candidate=" + strParam;
+        // strUrl = "https://ca2.site/api/matter/query_file?candidate=" + strParam;
 
       //}
 
@@ -2542,8 +2542,8 @@ bool directory_context::matter_enumerate(const ::file::path& path, ::file::listi
 
       bool bDir = strMatter.ends("/");
 
-      //strMatter.replace("https://ca2.network/", string(get_server_ca2_cc()));
-      strMatter.replace_with("https://ca2.network/", "https://ca2.network/");
+      //strMatter.replace("https://ca2.site/", string(get_server_ca2_cc()));
+      strMatter.replace_with("https://ca2.site/", "https://ca2.site/");
 
 
       //informationf("");
@@ -2668,7 +2668,7 @@ bool directory_context::matter_enumerate(const ::file::path& path, ::file::listi
 
    information(strLogNotFound);
 
-   path = "itdoesntexist." + ::as_string(::long_long_millisecond());
+   path = "itdoesntexist." + ::as_string(::i64_millisecond());
 
 ret:
 
@@ -3156,7 +3156,7 @@ bool directory_context::is_inside(const ::file::path & pathFolder, const ::file:
 //
 //   string strCandidate;
 //
-//   for (int i = 0; i < stra.get_count(); i++)
+//   for (::i32 i = 0; i < stra.get_count(); i++)
 //   {
 //
 //      strCandidate = stra[i] / pszTopic;

@@ -2,8 +2,8 @@
 #pragma once
 
 
-enum enum_method : int;
-enum enum_future : int;
+enum enum_method : ::i32;
+enum enum_future : ::i32;
 
 
 class CLASS_DECL_APEX object :
@@ -20,7 +20,7 @@ protected:
 public:
 
    ::object_meta* m_pmeta;
-   long long                                              m_cRun;
+   ::i64                                              m_cRun;
 
 
    object() : m_pmeta(nullptr) { }
@@ -32,17 +32,17 @@ public:
 #ifdef _DEBUG
 
 
-   virtual long long increment_reference_count() override;
-   virtual long long decrement_reference_count() override;
-   virtual long long release() override;
+   virtual ::i64 increment_reference_count() override;
+   virtual ::i64 decrement_reference_count() override;
+   virtual ::i64 release() override;
 
 
 #else
 
 
-   virtual long long increment_reference_count();
-   virtual long long decrement_reference_count();
-   virtual long long release();
+   virtual ::i64 increment_reference_count();
+   virtual ::i64 decrement_reference_count();
+   virtual ::i64 release();
 
 
 #endif
@@ -163,7 +163,7 @@ public:
    virtual void operator()() override;
 
 
-   inline long long get_ref_count()
+   inline ::i64 get_ref_count()
    {
 
       return m_countReference;
@@ -182,13 +182,13 @@ public:
 
 
 
-   //static unsigned int s_thread_proc(void* p);
+   //static ::u32 s_thread_proc(void* p);
 
 
    virtual void to_string(const string_exchange& str) const override;
 
    //::image::image_pointer create_image();
-   //::image::image_pointer create_image(const ::int_size & size, ::eobject eobjectCreate = OK, int iGoodStride = -1, bool bPreserve = false);
+   //::image::image_pointer create_image(const ::i32_size & size, ::eobject eobjectCreate = OK, ::i32 iGoodStride = -1, bool bPreserve = false);
 
    //::image::image_pointer get_image(const ::payload & payloadFile, bool bCache = true, bool bSync = true);
    //::image::image_pointer matter_image(const ::scoped_string & scopedstrMatter, bool bCache = true, bool bSync = true);
@@ -404,12 +404,12 @@ public:
    virtual string __get_text(const ::scoped_string & scopedstr);
 
    //template < typename PRED >
-   //::image::image_pointer get_image(const ::payload & payloadFile, unsigned long long uTrait, PRED pred);
+   //::image::image_pointer get_image(const ::payload & payloadFile, ::u64 uTrait, PRED pred);
 
    //virtual ::image::image_pointer load_image(const ::payload & payloadFile, bool bSync = true, bool bCache = true, bool bCreateHelperMaps = false);
    //virtual ::image::image_pointer load_matter_image(const ::scoped_string & scopedstrMatter, bool bSync = true, bool bCache = true, bool bCreateHelperMaps = false);
    //virtual ::image::image_pointer load_matter_icon(string_array_base & straMatter, const ::scoped_string & scopedstrIcon);
-   //virtual ::image::image_pointer load_thumbnail(const ::payload & payloadFile, int w, int h);
+   //virtual ::image::image_pointer load_thumbnail(const ::payload & payloadFile, ::i32 w, ::i32 h);
    //virtual ::image::image_pointer load_thumbnail(const ::file::path & path);
    //virtual ::image::image_pointer load_dib(const ::file::path & pathDib);
 
@@ -534,8 +534,8 @@ public:
 
    ::thread_pointer begin(
       ::enum_priority epriority = ::e_priority_normal,
-      unsigned int nStackSize = 0,
-      unsigned int dwCreateFlags = 0 ARG_SEC_ATTRS_DEF);
+      ::u32 nStackSize = 0,
+      ::u32 dwCreateFlags = 0 ARG_SEC_ATTRS_DEF);
 
    //::thread_pointer defer_fork(const ::scoped_string & scopedstrThread = "");
 

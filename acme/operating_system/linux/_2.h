@@ -4,7 +4,7 @@
 #include "debug.h"
 
 
-off_t tell64(int fd);
+off_t tell64(::i32 fd);
 
 
 //void aaa_os_defer_init_gtk();
@@ -17,8 +17,8 @@ off_t tell64(int fd);
 //typedef cairo_rectangle_int_t         GdkRectangle;
 //
 //
-//void copy(::int_rectangle * prectTarget, const GdkRectangle * prectSource);
-//void copy(GdkRectangle * prectTarget, const ::int_rectangle * prectSource);
+//void copy(::i32_rectangle * prectTarget, const GdkRectangle * prectSource);
+//void copy(GdkRectangle * prectTarget, const ::i32_rectangle * prectSource);
 
 
 

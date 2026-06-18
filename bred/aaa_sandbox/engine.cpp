@@ -36,10 +36,10 @@ namespace graphics3d
 
 	void graphics3d::run(::pointer<IGameLayer> game) {
 		using clock = std::chrono::high_resolution_clock;
-		using duration_t = std::chrono::duration<double>;
+		using duration_t = std::chrono::duration<::f64>;
 
-		constexpr double TARGET_FPS = 60.0;
-		constexpr double TARGET_FRAME_TIME = 1.0 / TARGET_FPS;
+		constexpr ::f64 TARGET_FPS = 60.0;
+		constexpr ::f64 TARGET_FRAME_TIME = 1.0 / TARGET_FPS;
 
 		auto lastTime = clock::now();
 
@@ -54,18 +54,18 @@ namespace graphics3d
 
 			// Compute delta time
 			auto now = clock::now();
-			double deltaTime = duration_t(now - lastTime).count();
+			::f64 deltaTime = duration_t(now - lastTime).count();
 			lastTime = now;
 
 			// Begin recording command buffer
 			ISandboxRenderer::FrameContext frame = m_renderer.beginFrame();
 			if (!frame.isValid()) break;
 
-			int idx = m_renderer.getFrameIndex();
+			::i32 idx = m_renderer.getFrameIndex();
 
 			FrameInfo info{
 			 idx,
-			 static_cast<float>(deltaTime),
+			 static_cast<::f32>(deltaTime),
 			 frame.primaryGraphicsCommandBuffer,
 			 cam,
 			 m_renderer.getGlobalDescriptorSet()[idx],
@@ -74,14 +74,14 @@ namespace graphics3d
 			};
 
 			// Update game and subsystems 
-			game->onUpdate(static_cast<float>(deltaTime));
+			game->onUpdate(static_cast<::f32>(deltaTime));
 
 			GlobalUbo ubo{};
 			ubo.projection = cam.getProjectionMatrix();
 			ubo.view = cam.getViewMatrix();
 			ubo.viewPos = floating_sequence4(cam.getPosition(), 1.0f);
 
-			m_renderer.updateSystems(info, ubo, static_cast<float>(deltaTime));
+			m_renderer.updateSystems(info, ubo, static_cast<::f32>(deltaTime));
 
 			auto& uboBuffer = m_renderer.getUboBuffers()[idx];
 			uboBuffer->writeToBuffer(&ubo);
@@ -95,9 +95,9 @@ namespace graphics3d
 
 			// Frame cap sleep
 			auto frameEnd = clock::now();
-			double frameTime = duration_t(frameEnd - now).count();
+			::f64 frameTime = duration_t(frameEnd - now).count();
 			if (frameTime < TARGET_FRAME_TIME) {
-				auto sleepDuration = std::chrono::duration<double>(TARGET_FRAME_TIME - frameTime);
+				auto sleepDuration = std::chrono::duration<::f64>(TARGET_FRAME_TIME - frameTime);
 				std::this_thread::sleep_for(sleepDuration);
 			}
 		}
@@ -111,7 +111,7 @@ namespace graphics3d
 	}
 
 	void graphics3d::setupInputCallbacks() {
-		m_windowInput->setKeyCallback([this](SandboxKey key, int scancode, KeyAction action, int mods) {
+		m_windowInput->setKeyCallback([this](SandboxKey key, ::i32 scancode, KeyAction action, ::i32 mods) {
 			if (key == SandboxKey::LEFT_ALT && action == KeyAction::PRESS) {
 				toggleCursorLock();
 			}

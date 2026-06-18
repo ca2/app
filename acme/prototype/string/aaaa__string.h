@@ -22,7 +22,7 @@
 //
 //
 ////CLASS_DECL_ACME ::string as_string(const ::scoped_string & scopedstr);
-////CLASS_DECL_ACME ::string as_string(char * const psz);
+////CLASS_DECL_ACME ::string as_string(char_pointer const psz);
 ////
 ////
 ////CLASS_DECL_ACME ::string as_string(const ::wd16_character * psz);
@@ -33,26 +33,26 @@
 ////CLASS_DECL_ACME ::string as_string(::wd32_character * const psz);
 //
 //
-////CLASS_DECL_ACME ::string as_string(const signed char & ch);
+////CLASS_DECL_ACME ::string as_string(const ::i8 & ch);
 //
 //
 ////CLASS_DECL_ACME ::string as_string(const ::ansi_character & ch);
 ////CLASS_DECL_ACME ::string as_string(const uchar & uch);
 //
 //
-////CLASS_DECL_ACME ::string as_string(const unsigned short & i);
-////CLASS_DECL_ACME ::string as_string(const int & i);
-////CLASS_DECL_ACME ::string as_string(const unsigned int & u);
-////CLASS_DECL_ACME ::string as_string(const long long & i);
-////CLASS_DECL_ACME ::string as_string(const unsigned long long & u);
+////CLASS_DECL_ACME ::string as_string(const ::u16 & i);
+////CLASS_DECL_ACME ::string as_string(const ::i32 & i);
+////CLASS_DECL_ACME ::string as_string(const ::u32 & u);
+////CLASS_DECL_ACME ::string as_string(const ::i64 & i);
+////CLASS_DECL_ACME ::string as_string(const ::u64 & u);
 ////
 ////
-////CLASS_DECL_ACME ::string as_string(const float & f);
-////CLASS_DECL_ACME ::string as_string(const double & d);
+////CLASS_DECL_ACME ::string as_string(const ::f32 & f);
+////CLASS_DECL_ACME ::string as_string(const ::f64 & d);
 ////
 ////
-////CLASS_DECL_ACME ::string as_string(const unsigned long int & ul);
-////CLASS_DECL_ACME ::string as_string(const long int & i);
+////CLASS_DECL_ACME ::string as_string(const ulong & ul);
+////CLASS_DECL_ACME ::string as_string(const long ::i32 & i);
 ////
 //////
 //////CLASS_DECL_ACME ::string as_string(const ::scoped_string & scopedstrSrc);

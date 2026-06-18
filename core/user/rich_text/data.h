@@ -28,7 +28,7 @@ namespace user
 
          //::draw2d::graphics_pointer                   m_pgraphics;
 
-         //::double_rectangle                            m_rectangle;
+         //::f64_rectangle                            m_rectangle;
          
          // storage data
          pointer_array < span >                       m_spana;

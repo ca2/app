@@ -31,25 +31,25 @@ CLASS_DECL_ACME string normalize_path(const_char_pointer lpcszPath);
 
 //CLASS_DECL_ACME oswindow get_mouse_capture();
 //CLASS_DECL_ACME oswindow set_mouse_capture(::acme::windowing::window * pacmewindowingwindow);
-//CLASS_DECL_ACME int_bool release_mouse_capture();
+//CLASS_DECL_ACME ::i32_bool release_mouse_capture();
 //
 //CLASS_DECL_ACME oswindow get_active_window();
 //CLASS_DECL_ACME oswindow set_active_window(::acme::windowing::window * pacmewindowingwindow);
 //
 //
 //
-//CLASS_DECL_ACME int_bool is_window(::acme::windowing::window * pacmewindowingwindow);
+//CLASS_DECL_ACME ::i32_bool is_window(::acme::windowing::window * pacmewindowingwindow);
 
 
 void CLASS_DECL_ACME __cdecl _ca2_purecall();
-void CLASS_DECL_ACME __cdecl _null_se_translator(unsigned int uiCode, EXCEPTION_POINTERS* ppointers);
+void CLASS_DECL_ACME __cdecl _null_se_translator(::u32 uiCode, EXCEPTION_POINTERS* ppointers);
 bool CLASS_DECL_ACME __windows_init();
 
 
-CLASS_DECL_ACME HANDLE hfile_create(const_char_pointer lpcszFileName, unsigned int dwDesiredAcces, unsigned int dwShareMode, LPSECURITY_ATTRIBUTES lpSA, unsigned int dwCreationDisposition, unsigned int dwFlagsAndAttributes, HANDLE hTemplateFile);
+CLASS_DECL_ACME HANDLE hfile_create(const_char_pointer lpcszFileName, ::u32 dwDesiredAcces, ::u32 dwShareMode, LPSECURITY_ATTRIBUTES lpSA, ::u32 dwCreationDisposition, ::u32 dwFlagsAndAttributes, HANDLE hTemplateFile);
 
 
-//CLASS_DECL_ACME int WINAPI GetSystemMetrics(int i);
+//CLASS_DECL_ACME ::i32 WINAPI GetSystemMetrics(::i32 i);
 
 namespace user
 {
@@ -96,20 +96,20 @@ namespace user
 
 //#ifndef UNIVERSAL_WINDOWS
 //
-//CLASS_DECL_ACME void WINAPI sleep(unsigned int dw::times);
+//CLASS_DECL_ACME void WINAPI sleep(::u32 dw::times);
 //
 //#endif
 
 /*#define GetAValue(rgb)      (lower_byte((rgb)>>24))
-#define argb(a, r,g,b)          ((color32_t)(((unsigned char)(r)|((unsigned short)((unsigned char)(g))<<8))|(((unsigned int)(unsigned char)(b))<<16)|(((unsigned int)(unsigned char)(a))<<24)))*/
+#define argb(a, r,g,b)          ((color32_t)(((::u8)(r)|((::u16)((::u8)(g))<<8))|(((::u32)(::u8)(b))<<16)|(((::u32)(::u8)(a))<<24)))*/
 
 
-//CLASS_DECL_ACME int_bool os_initialize();
-//CLASS_DECL_ACME int_bool os_finalize();
+//CLASS_DECL_ACME ::i32_bool os_initialize();
+//CLASS_DECL_ACME ::i32_bool os_finalize();
 
 
-CLASS_DECL_ACME int_bool main_initialize();
-CLASS_DECL_ACME int_bool main_finalize();
+CLASS_DECL_ACME ::i32_bool main_initialize();
+CLASS_DECL_ACME ::i32_bool main_finalize();
 
 
 CLASS_DECL_ACME void set_main_htask(htask htask);
@@ -120,27 +120,27 @@ CLASS_DECL_ACME itask main_itask();
 //CLASS_DECL_ACME oswindow get_focus();
 //CLASS_DECL_ACME oswindow set_keyboard_focus(::acme::windowing::window * pacmewindowingwindow);
 
-//CLASS_DECL_ACME oswindow get_window(::acme::windowing::window * pacmewindowingwindow, int iWindow);
+//CLASS_DECL_ACME oswindow get_window(::acme::windowing::window * pacmewindowingwindow, ::i32 iWindow);
 
-//CLASS_DECL_ACME void attach_thread_input_to_main_thread(int_bool bAttach);
-
-
-//CLASS_DECL_ACME unsigned int WINAPI WaitForSingleObject( _In_ HANDLE hHandle, _In_ unsigned int dw::times );
+//CLASS_DECL_ACME void attach_thread_input_to_main_thread(::i32_bool bAttach);
 
 
+//CLASS_DECL_ACME ::u32 WINAPI WaitForSingleObject( _In_ HANDLE hHandle, _In_ ::u32 dw::times );
 
 
-//CLASS_DECL_ACME char* getenv(const_char_pointer name);
+
+
+//CLASS_DECL_ACME char_pointer getenv(const_char_pointer pszName);
 //CLASS_DECL_ACME HANDLE WINAPI CreateMutex(_In_opt_ LPSECURITY_ATTRIBUTES lpMutexAttributes, _In_ BOOL bInitialOwner, _In_opt_ const_char_pointer lpName  );
 
 //CLASS_DECL_ACME HANDLE WINAPI CreateMutexW(    _In_opt_ LPSECURITY_ATTRIBUTES lpMutexAttributes,    _In_ BOOL bInitialOwner,    _In_opt_ const ::wide_character * lpName    );
 
 
 
-//inline int_bool is_nok(hfile hfile);
+//inline ::i32_bool is_nok(hfile hfile);
 
 //
-//inline int_bool is_ok(hfile hfile);
+//inline ::i32_bool is_ok(hfile hfile);
 //
 //
 //CLASS_DECL_ACME void dpi_os_initialize();

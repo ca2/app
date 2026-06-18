@@ -92,7 +92,7 @@ namespace user
 
       //throw ::exception(todo("style"));
 
-      //::double_rectangle r(2, 2, 2, 2);
+      //::f64_rectangle r(2, 2, 2, 2);
 
       //create_rect(::user::rect_edit_padding, r, ::draw2d::e_unit_pixel);
 
@@ -343,7 +343,7 @@ namespace user
 
          pbrush->create_solid(color);
 
-         ::int_rectangle rEdit;
+         ::i32_rectangle rEdit;
 
          get_element_rectangle(rEdit, e_element_combo_edit);
 
@@ -390,11 +390,11 @@ namespace user
 
       }
 
-      ::int_rectangle rectangleDropDown;
+      ::i32_rectangle rectangleDropDown;
 
       get_element_rectangle(rectangleDropDown, e_element_drop_down);
 
-      ::int_rectangle rectangleDropIn(rectangleDropDown);
+      ::i32_rectangle rectangleDropIn(rectangleDropDown);
 
       ::color::color color(get_color(pstyle, estate));
 
@@ -415,7 +415,7 @@ namespace user
 
       auto ppath = createø < ::draw2d::path > ();
 
-      double_point_array pointa;
+      f64_point_array pointa;
 
       get_simple_drop_down_open_arrow_polygon(pointa);
 

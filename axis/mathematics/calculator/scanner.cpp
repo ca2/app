@@ -107,7 +107,7 @@ namespace calculator
 
          m_ptoken->m_etype = token::type_imaginary;
 
-         char * endptr;
+         char_pointer endptr;
 
          strtod(nextinput, &endptr);
 
@@ -123,7 +123,7 @@ namespace calculator
 
          m_ptoken->m_etype = token::type_number;
 
-         char * endptr;
+         char_pointer endptr;
 
          strtod(m_range.m_begin, &endptr);
 

@@ -82,11 +82,13 @@ namespace platform
 
          ::e_status m_estatus;
          ::particle_pointer m_pparticle;
-         long long m_hi;
+         ::i64 m_hi;
          void* m_p;
 
       };
 
+      bool                                            m_bUserApplication;
+      bool m_bIsService;
       //bool                                            m_bTransferToContainer;
       //bool                                            m_bTransferredToContainer;
 #if REFERENCING_DEBUGGING
@@ -120,8 +122,9 @@ namespace platform
 
       string                              m_strProgName;
       string                           m_strStandalone;
-      //int                              m_iExitCode = 0;
-      bool                             m_bApplicationFirstRequest;
+      //::i32                              m_iExitCode = 0;
+      //bool                             m_bApplicationFirstRequest;
+      
       //::pointer < ::request >                         m_prequest;
 
 
@@ -164,7 +167,7 @@ namespace platform
       //
       //          ::e_status m_estatus;
       //          ::particle_pointer m_pparticle;
-      //          long long m_hi;
+      //          ::i64 m_hi;
       //          void * m_p;
       //
       //       };
@@ -191,7 +194,7 @@ namespace platform
       //
       //       string                              m_strProgName;
       //       string                           m_strStandalone;
-      //       int                              m_iExitCode = 0;
+      //       ::i32                              m_iExitCode = 0;
       //       bool                             m_bApplicationFirstRequest;
       //       //::pointer < ::request >                         m_prequest;
       //
@@ -221,6 +224,13 @@ namespace platform
                   //__creatable(application);
 
       void* m_pnativeapp;
+
+
+      bool m_bPostedCommandLineFileOpen;
+      bool m_bApplicationStartFileOpenRequest = false;
+      bool m_bPostedApplicationDefaultStartOrFileOpenRequest = false;
+      ::pointer<::request> m_prequestApplicationStartFileOpen;
+
 
       ::string m_strNetworkingApplicationHostname;
       //class application_impl *                     m_pappimpl;
@@ -256,7 +266,7 @@ namespace platform
       // former ::application_interface // moved on 2015-05-23 Sammstag while listening to RocketBeansTV (a German channel?) at TwitchTV
       string_array_base m_straActivationMessage;
 
-      unsigned int m_dwInstallGoodToCheckAgain;
+      ::u32 m_dwInstallGoodToCheckAgain;
 
       bool m_bAppHasInstallerProtected;
       bool m_bAppHasInstallerChangedProtected;
@@ -272,7 +282,7 @@ namespace platform
 
       bool m_bEnableAutoStartOption;
       bool m_bInterprocessCommunication;
-      ::pointer<::interprocess::communication> m_pinterprocesscommunication;
+      ::pointer<::interprocess::communication> m_pinterprocesscommunication2;
       ::pointer<::interprocess::handler> m_pinterprocesshandler;
       //::pointer<service>                         m_pservice;
 
@@ -293,15 +303,15 @@ namespace platform
 
       //::user::interaction *                      m_puiMainContainer;
 
-      string_table m_stringtable;
-      string_table m_stringtableStd;
+      ::string_table m_stringtable;
+      ::string_table m_stringtableStd;
       atom_map_base<string> m_stringmap;
 
       atom_map_base<::pointer<::channel>> m_mapNotify;
 
       string m_strLicense;
 
-      int m_iWaitCursorCount; // for wait cursor (>0 => waiting)
+      ::i32 m_iWaitCursorCount; // for wait cursor (>0 => waiting)
 
       bool m_bEnableFsRawFolderProtocols = true;
 
@@ -319,9 +329,9 @@ namespace platform
       //
       //#endif
 
-      unsigned int m_dwPromptContext; // help action_context override for message box
+      ::u32 m_dwPromptContext; // help action_context override for message box
       // LKG
-      unsigned int m_dwPolicies; // block for storing boolean system policies
+      ::u32 m_dwPolicies; // block for storing boolean system policies
 
       // Support for Shift+F1 help mode.
       // true if we're in SHIFT+F1 mode.
@@ -336,11 +346,11 @@ namespace platform
       //      ATOM                                 m_atomSystemTopic;   // for DDE open
       //#endif
 
-      unsigned int m_nNumThumbnailPages; // number of default printed pages
+      ::u32 m_nNumThumbnailPages; // number of default printed pages
 
       string m_strId;
 
-      int m_iResourceId;
+      ::i32 m_iResourceId;
 
       //::pointer<::experience::department>        m_pexperience;
       //::pointer<::apex::theme>                   m_ptheme;
@@ -362,6 +372,9 @@ namespace platform
 
 
       ::pointer<::aqua::game>                      m_paquagame;
+
+
+
       //::pointer<::networking::application>         m_p_networkingapplication;
 
 
@@ -415,7 +428,7 @@ namespace platform
       //semaphore                                       m_semCompiler;
       // former ::aura::application_interface // moved on 2015-05-23 Sammstag while listening to RocketBeansTV (a German channel?) at TwitchTV
 
-      //unsigned int                                           m_dwInstallGoodToCheckAgain;
+      //::u32                                           m_dwInstallGoodToCheckAgain;
 
       //bool                                            m_bAppHasInstallerProtected;
       //bool                                            m_bAppHasInstallerChangedProtected;
@@ -454,7 +467,7 @@ namespace platform
 
       //string                                          m_strLicense;
 
-      //int                                             m_iWaitCursorCount;         // for wait cursor (>0 => waiting)
+      //::i32                                             m_iWaitCursorCount;         // for wait cursor (>0 => waiting)
 
       //::pointer<::simpledb::server>                  m_psimpledb;
 
@@ -470,9 +483,9 @@ namespace platform
 //
 //#endif
 //
-//      unsigned int                                             m_dwPromptContext;        // help action_context override for message box
+//      ::u32                                             m_dwPromptContext;        // help action_context override for message box
 //      // LKG
-//      unsigned int                                             m_dwPolicies;            // block for storing boolean system policies
+//      ::u32                                             m_dwPolicies;            // block for storing boolean system policies
 //
 //      // Support for Shift+F1 help mode.
 //      // true if we're in SHIFT+F1 mode.
@@ -484,11 +497,11 @@ namespace platform
 //
 //      ATOM                                            m_atomApp;
 //      ATOM                                            m_atomSystemTopic;   // for DDE open
-//      unsigned int                                            m_nNumThumbnailPages; // number of default printed pages
+//      ::u32                                            m_nNumThumbnailPages; // number of default printed pages
 //
 //      string                                          m_strId;
 
-//      int                                             m_iResourceId;
+//      ::i32                                             m_iResourceId;
 
       //::pointer<::experience::department>          m_pexperience;
       ::pointer<::aura::theme>                       m_ptheme;
@@ -497,7 +510,7 @@ namespace platform
       //string_array_base                                    m_straAppInterest;
       //string_map_base < oswindow, oswindow >               m_mapAppInterest;
 
-      //int                                             m_iGcomBackgroundUpdateMillis;
+      //::i32                                             m_iGcomBackgroundUpdateMillis;
 
 
 
@@ -549,8 +562,8 @@ namespace platform
 
 #ifdef _DEBUG
 
-      long long increment_reference_count() override;
-      long long decrement_reference_count() override;
+      ::i64 increment_reference_count() override;
+      ::i64 decrement_reference_count() override;
 
 #endif
 
@@ -569,15 +582,19 @@ namespace platform
 
       virtual void _001PostTryCloseApplication() override;
 
-      virtual void application_on_status(::e_status estatus, ::particle* pparticle = nullptr, long long hi = 0, void* p = nullptr) override;
+      virtual void application_on_status(::e_status estatus, ::particle* pparticle = nullptr, ::i64 hi = 0, void* p = nullptr) override;
 
 
-      virtual void on_error_icloud_not_available(::particle* pparticle = nullptr, long long hi = 0, void* p = nullptr) override;
+      virtual void on_error_icloud_not_available(::particle* pparticle = nullptr, ::i64 hi = 0, void* p = nullptr) override;
 
+
+      virtual void prepare_application() override;
+      virtual void on_prepare_application() override;
+      virtual void on_after_prepare_application() override;
 
       //virtual void application_main(::platform::system * psystem);
 
-      virtual int application_main() override;
+      virtual ::i32 application_main() override;
 
 
       void on_set_platform() override;
@@ -593,17 +610,45 @@ namespace platform
       virtual ::gpu::approach* gpu_approach();
       virtual void create_gpu_approach();
 
+      //::pointer< ::message_box_payload > send_message_box(const ::scoped_string &scopedstrMessage, const ::scoped_string &scopedstrTitle = {},
+      //                      const ::user::e_message_box &emessagebox = {},
+      //                      const ::scoped_string &scopedstrDetails = {},
+      //                      ::nano::graphics::icon *picon = nullptr) override;
+
+      //::pointer<::message_box_payload>
+      //send_message_box(const ::exception &exception, 
+      //   const ::scoped_string &scopedstrMessage,
+      //                                                  const ::scoped_string &scopedstrTitle = {},
+      //                                                  const ::user::e_message_box &emessagebox = {},
+      //                                                  const ::scoped_string &scopedstrDetails = {},
+      //                                                  ::nano::graphics::icon *picon = nullptr) override;
+
+      //void post_message_box(const ::scoped_string &scopedstrMessage, const ::scoped_string &scopedstrTitle = {},
+      //                      const ::user::e_message_box &emessagebox = {},
+      //                      const ::function<void(::message_box_payload *)> & functionOnResult = {},
+      //                      const ::scoped_string &scopedstrDetails = {},
+      //                      ::nano::graphics::icon *picon = nullptr) override;
+
+
+      /// @brief  please now display it
+      /// @param pmessageboxpayload 
+      virtual void run_message_box(::message_box_payload *pmessageboxpayload);
+
+      //void post_message_box_payload(::message_box_payload * pmessageboxpayload) override;
+
 
       //void initialize(::particle * pparticle) override;
 
 
       //virtual void start_application(::request* prequest) override;
 
-      virtual void start_application() override;
+      //void on_application_default_start() override;
 
       //virtual void on_initialize_application();
 
       virtual class ::application_menu* application_menu() override;
+
+      virtual void on_update_application_menu();
 
       //      using ::platform::context::factory;
 
@@ -644,17 +689,17 @@ namespace platform
       //
       //#else
       //
-      //      void set_args(int argc, char * argv[], char * envpb[]);
+      //      void set_args(::i32 argc, char_pointer argv[], char_pointer envpb[]);
       //
       //#endif
 
-            //virtual int __implement();
+            //virtual ::i32 __implement();
 
-            //virtual int main_loop();
+            //virtual ::i32 main_loop();
 
       void main() override;
 
-      virtual ::enum_id key_command(::user::enum_key ekey, ::user::key_state* pkeystate) override;
+      virtual ::enum_id key_command(const ::user::e_key & ekey) override;
 
       virtual void on_before_launching() override;
       //virtual void os_native_bergedge_start() override;
@@ -671,6 +716,7 @@ namespace platform
       virtual void term2();
       virtual void term1();
 
+      void set_finish() override;
 
       virtual void do_install() override;
       virtual void do_uninstall() override;
@@ -685,6 +731,10 @@ namespace platform
 
       void init_task() override;
       void term_task() override;
+
+
+      virtual ::request * application_start_file_open_request();
+      void process_command_line_options() override;
 
 
       virtual void user_confirm_close_application();
@@ -787,6 +837,10 @@ namespace platform
       virtual string application_file_setting_by_operating_system(const ::scoped_string& scopedstrFileName);
       virtual void set_application_file_setting_by_operating_system(const ::scoped_string &scopedstrFileName,
                                                 const ::scoped_string &scopedstr);
+
+      virtual ::string get_http_user_agent();
+      virtual void get_http_user_agent(::property_set & set);
+
 
    };
 

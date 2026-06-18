@@ -8,18 +8,31 @@
 #include "framework.h"
 #include "acme/filesystem/file/text_stream.h"
 //#include "error_code.h"
-#include "shared_posix/c_error_number.h"
+#include "shared_posix/c_errno.h"
 #include "debug.h"
 #include "_api.h"
+#ifdef WINDOWS
+#include "acme/operating_system/windows/windows.h"
+#endif
 
-
-error_code::error_code(const c_error_number & error_code) :
+error_code::error_code(const c_errno & cerrno) :
    m_etype(e_error_code_type_errno),
-   m_iOsError(error_code.m_iErrorNumber)
+   m_iOsError(cerrno.m_iErrNo)
 {
 
 
 }
+
+#ifdef WINDOWS
+
+error_code::error_code(const ::windows::last_error & lasterror):
+m_etype(e_error_code_type_last_error),
+m_iOsError(lasterror.m_uLastError)
+{
+
+
+}
+#endif
 
 
 void get_message(::string & strMessage, const ::error_code & errorcode)
@@ -31,7 +44,7 @@ void get_message(::string & strMessage, const ::error_code & errorcode)
    {
       case e_error_code_type_errno:
          textstream << "errno = " << errorcode.m_iOsError << "\n";
-         textstream << ::posix::get_errno_string((int)errorcode.m_iOsError);
+         textstream << ::posix::get_errno_string((::i32)errorcode.m_iOsError);
          break;
       default:
          textstream << "(Unknown error code type :" << (iptr)errorcode.m_etype << ") (Error code :" << errorcode.m_iOsError << ")";
@@ -41,3 +54,114 @@ void get_message(::string & strMessage, const ::error_code & errorcode)
 }
 
 
+bool error_code::is_clear() const
+{
+   
+   
+   if(m_etype == e_error_code_type_none)
+   {
+      
+      return true;
+      
+   }
+   
+   if(m_iOsError == 0)
+   {
+      
+      return true;
+      
+   }
+   
+   
+   return false;
+   
+}
+
+
+bool error_code::is_set() const
+{
+
+   return !is_clear();
+   
+}
+
+
+
+::string error_code::get_error_message() const
+{
+   
+   ::string strErrorMessage;
+ 
+   if(m_etype == e_error_code_type_none)
+   {
+      
+      strErrorMessage.formatf("{%lld}", m_iOsError);
+      
+   }
+#ifdef WINDOWS
+   else if(m_etype == e_error_code_type_last_error)
+   {
+      
+      ::windows::last_error lasterror((::u32) m_iOsError);
+      
+      strErrorMessage = ::windows::last_error_message(lasterror);
+      
+   }
+#endif
+   else if(m_etype == e_error_code_type_errno)
+   {
+      
+      strErrorMessage = strerror((::i32) m_iOsError);
+      
+   }
+   else
+   {
+      
+      strErrorMessage.format("(unknown error %lld)", m_iOsError);
+      
+   }
+
+   return strErrorMessage;
+   
+}
+
+
+::e_status error_code::as_status() const
+{
+   
+   ::e_status estatus = error_failed;
+ 
+   if(m_etype == e_error_code_type_none)
+   {
+      
+      //strErrorMessage.formatf("{%lld}", m_iOsError);
+      
+   }
+#ifdef WINDOWS
+   else if(m_etype == e_error_code_type_last_error)
+   {
+      
+      
+      ::windows::last_error lasterror((::u32) m_iOsError);
+      // ERROR_CANCELLED
+      
+      estatus = lasterror.as_estatus();
+      
+   }
+#endif
+   else if(m_etype == e_error_code_type_errno)
+   {
+      
+      //strErrorMessage = strerror((::i32) m_iOsError);
+      
+   }
+   else
+   {
+      
+      //strErrorMessage.format("(unknown error %lld)", m_iOsError);
+      
+   }
+
+   return estatus;
+   
+}

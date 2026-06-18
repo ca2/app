@@ -100,7 +100,7 @@ void clock_getrealtime(struct timespec * pts)
 //CLASS_DECL_ACME::layered* get_layered_thread();
 
 
-int g_iEventSerialId = 1;
+::i32 g_iEventSerialId = 1;
 
 happening::happening(const ::scoped_string & scopedstrName, bool bInitiallyOwn, bool bManualReset, security_attributes * psecurityattributes)
 {
@@ -135,7 +135,7 @@ happening::happening(const ::scoped_string & scopedstrName, bool bInitiallyOwn, 
 
 #elif defined(UNIVERSAL_WINDOWS)
 
-   unsigned int dwFlags = 0;
+   ::u32 dwFlags = 0;
 
    if(bInitiallyOwn)
    {
@@ -181,7 +181,7 @@ happening::happening(const ::scoped_string & scopedstrName, bool bInitiallyOwn, 
       pthread_mutexattr_t  attr;
       pthread_mutexattr_init(&attr);
       pthread_mutexattr_settype(&attr, PTHREAD_MUTEX_RECURSIVE);
-      int rc;
+      ::i32 rc;
       m_pmutex = ___new pthread_mutex_t();
       if((rc = pthread_mutex_init((pthread_mutex_t *) m_pmutex,&attr)))
       {
@@ -294,7 +294,7 @@ happening::happening(const ::scoped_string & scopedstrName, bool bInitiallyOwn, 
 
       }
 
-      semctl((int) m_sem, 0, SETVAL, semctl_arg);
+      semctl((::i32) m_sem, 0, SETVAL, semctl_arg);
 
    }
 
@@ -374,19 +374,19 @@ happening::~happening()
       if(m_pmutex != nullptr && m_pcond != nullptr)
       {
 
-         int rc1 = pthread_mutex_lock((pthread_mutex_t *)m_pmutex);
+         ::i32 rc1 = pthread_mutex_lock((pthread_mutex_t *)m_pmutex);
 
          set_finishing_flag();
 
-         int rc2 = pthread_cond_broadcast((pthread_cond_t *)m_pcond);
+         ::i32 rc2 = pthread_cond_broadcast((pthread_cond_t *)m_pcond);
 
-         int rc3 = pthread_mutex_unlock((pthread_mutex_t *)m_pmutex);
+         ::i32 rc3 = pthread_mutex_unlock((pthread_mutex_t *)m_pmutex);
 
          _wait();
 
-         int rc4 = pthread_mutex_lock((pthread_mutex_t *)m_pmutex);
+         ::i32 rc4 = pthread_mutex_lock((pthread_mutex_t *)m_pmutex);
 
-         int rc5 = pthread_cond_destroy((pthread_cond_t *)m_pcond);
+         ::i32 rc5 = pthread_cond_destroy((pthread_cond_t *)m_pcond);
 
          ::free((pthread_cond_t *)m_pcond);
 
@@ -398,9 +398,9 @@ happening::~happening()
 
 #endif
 
-         int rc6 = pthread_mutex_unlock((pthread_mutex_t *)m_pmutex);
+         ::i32 rc6 = pthread_mutex_unlock((pthread_mutex_t *)m_pmutex);
 
-         int rc7 = pthread_mutex_destroy((pthread_mutex_t *)m_pmutex);
+         ::i32 rc7 = pthread_mutex_destroy((pthread_mutex_t *)m_pmutex);
 
          ::free((pthread_mutex_t *)m_pmutex);
 
@@ -416,7 +416,7 @@ happening::~happening()
       else if(m_pcond != nullptr)
       {
 
-         int rc5 = pthread_cond_destroy((pthread_cond_t *)m_pcond);
+         ::i32 rc5 = pthread_cond_destroy((pthread_cond_t *)m_pcond);
 
          ::free((pthread_cond_t *)m_pcond);
 
@@ -432,7 +432,7 @@ happening::~happening()
       else if(m_pmutex != nullptr)
       {
 
-         int rc7 = pthread_mutex_destroy((pthread_mutex_t *)m_pmutex);
+         ::i32 rc7 = pthread_mutex_destroy((pthread_mutex_t *)m_pmutex);
 
          ::free((pthread_mutex_t *)m_pmutex);
 
@@ -556,7 +556,7 @@ bool happening::set_happening()
       sb.sem_num  = 0;
       sb.sem_flg  = m_bManualEvent ? 0 : SEM_UNDO;
 
-      return semop((int) m_sem, &sb, 1) == 0;
+      return semop((::i32) m_sem, &sb, 1) == 0;
 
    }
 
@@ -585,7 +585,7 @@ bool happening::set_happening()
 //   sb.sem_num  = 0;
 //   sb.sem_flg  = SEM_UNDO;
 //
-//   return semop((int) m_hsynchronization, &sb, 1) == 0;
+//   return semop((::i32) m_hsynchronization, &sb, 1) == 0;
 //
 //#endif
 //
@@ -671,7 +671,7 @@ void happening::_wait ()
    while (true)
    {
 
-      int iResult = ::WaitForSingleObjectEx(m_handle, 300, false);
+      ::i32 iResult = ::WaitForSingleObjectEx(m_handle, 300, false);
 
       if(iResult == WAIT_OBJECT_0)
       {
@@ -708,7 +708,7 @@ void happening::_wait ()
    if(m_bManualEvent)
    {
 
-      int iSignal = m_iSignalId;
+      ::i32 iSignal = m_iSignalId;
 
       while(!has_finishing_flag() && !m_bSignaled && iSignal == m_iSignalId)
       {
@@ -747,7 +747,7 @@ void happening::_wait ()
 
       pthread_mutex_lock((pthread_mutex_t *) m_pmutex);
 
-      int iSignal = m_iSignalId;
+      ::i32 iSignal = m_iSignalId;
 
       while(!has_finishing_flag() && !m_bSignaled && iSignal == m_iSignalId)
       {
@@ -768,7 +768,7 @@ void happening::_wait ()
       sb.sem_num  = 0;
       sb.sem_flg  = 0;
 
-      semop((int) m_sem, &sb, 1);
+      semop((::i32) m_sem, &sb, 1);
 
    }
 
@@ -855,7 +855,7 @@ bool happening::_wait (const class time & timeWait)
 
       end += timeWait;
 
-      int iSignal = m_iSignalId;
+      ::i32 iSignal = m_iSignalId;
 
       while(!has_finishing_flag() && !m_bSignaled && iSignal == m_iSignalId)
       {
@@ -909,7 +909,7 @@ bool happening::_wait (const class time & timeWait)
 
 #endif
 
-         int iSignal = m_iSignalId;
+         ::i32 iSignal = m_iSignalId;
 
          //clock_gettime(CLOCK_REALTIME, &abstime);
 
@@ -918,7 +918,7 @@ bool happening::_wait (const class time & timeWait)
          while(!has_finishing_flag() && !m_bSignaled && iSignal == m_iSignalId)
          {
 
-            int error = pthread_cond_wait((pthread_cond_t *) m_pcond, (pthread_mutex_t *) m_pmutex);
+            ::i32 error = pthread_cond_wait((pthread_cond_t *) m_pcond, (pthread_mutex_t *) m_pmutex);
 
             if(error != 0)
             {
@@ -970,7 +970,7 @@ bool happening::_wait (const class time & timeWait)
 
 #endif
 
-         int iSignal = m_iSignalId;
+         ::i32 iSignal = m_iSignalId;
 
          timespec timespecNow{};
 
@@ -984,7 +984,7 @@ bool happening::_wait (const class time & timeWait)
 
          timespecFinal = timespecNow + timespecWait;
 
-         int error = 0;
+         ::i32 error = 0;
 
          //try { throw "happening::_wait(FINite) mutex locked 2"; } catch(...){}
 
@@ -1122,7 +1122,7 @@ bool happening::_wait (const class time & timeWait)
          sb.sem_num  = 0;
          sb.sem_flg  = IPC_NOWAIT;
 
-         int ret = semop((int) m_sem, &sb, 1);
+         ::i32 ret = semop((::i32) m_sem, &sb, 1);
 
          if(ret < 0)
          {
@@ -1234,7 +1234,7 @@ bool happening::is_signaled() const
       sb.sem_num  = 0;
       sb.sem_flg  = IPC_NOWAIT;
 
-      int ret = semop((int) m_sem, &sb, 1);
+      ::i32 ret = semop((::i32) m_sem, &sb, 1);
 
       if(ret < 0)
       {
@@ -1274,7 +1274,7 @@ bool happening::is_signaled() const
 //
 ////#ifdef WINDOWS
 ////
-////   unsigned int dwRet = ::WaitForSingleObjectEx((HANDLE)m_hsynchronization,timeTimeout.u32_millis(),false);
+////   ::u32 dwRet = ::WaitForSingleObjectEx((HANDLE)m_hsynchronization,timeTimeout.u32_millis(),false);
 ////
 ////   if (dwRet == WAIT_OBJECT_0 || dwRet == WAIT_ABANDONED)
 ////      return true;
@@ -1291,7 +1291,7 @@ bool happening::is_signaled() const
 ////   if(m_bManualEvent)
 ////   {
 ////
-////      int iSignal = m_iSignalId;
+////      ::i32 iSignal = m_iSignalId;
 ////
 ////      while(!m_bSignaled && iSignal == m_iSignalId)
 ////      {
@@ -1338,9 +1338,9 @@ bool happening::is_signaled() const
 ////   else
 ////   {
 ////
-////      unsigned int timeout = timeTimeout.u32_millis();
+////      ::u32 timeout = timeTimeout.u32_millis();
 ////
-////      unsigned int start= ::time::now();
+////      ::u32 start= ::time::now();
 ////
 ////      while(start.elapsed() < timeout)
 ////      {
@@ -1351,7 +1351,7 @@ bool happening::is_signaled() const
 ////         sb.sem_num  = 0;
 ////         sb.sem_flg  = IPC_NOWAIT;
 ////
-////         int ret = semop((int) m_hsynchronization, &sb, 1);
+////         ::i32 ret = semop((::i32) m_hsynchronization, &sb, 1);
 ////
 ////         if(ret < 0)
 ////         {

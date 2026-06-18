@@ -22,7 +22,7 @@ typedef struct _stack_t {
 #ifdef UNICODE
   WCHAR text[1]; // this should be the length of g_stringsize when allocating
 #else
-  char text[1];
+  ::i8 text[1];
 #endif
 } stack_t;
 
@@ -56,35 +56,35 @@ INST_LANG,      // $LANGUAGE
 __INST_LAST
 };
 
-extern unsigned int g_stringsize;
+extern ::u32 g_stringsize;
 extern stack_t **g_stacktop;
-extern char * g_variables;
+extern char_pointer g_variables;
 
 void NSISCALL pushstring(LPCTSTR str);
 void NSISCALL pushintptr(INT_PTR value);
 #define pushint(v) pushintptr((INT_PTR)(v))
-int NSISCALL popstring(char * str); // 0 on success, 1 on empty stack
-int NSISCALL popstringn(char * str, int maxlen); // with length limit, pass 0 for g_stringsize
+::i32 NSISCALL popstring(char_pointer str); // 0 on success, 1 on empty stack
+::i32 NSISCALL popstringn(char_pointer str, ::i32 maxlen); // with length limit, pass 0 for g_stringsize
 INT_PTR NSISCALL popintptr();
-#define popint() ( (int) popintptr() )
-int NSISCALL popint_or(); // with support for or'ing (2|4|8)
+#define popint() ( (::i32) popintptr() )
+::i32 NSISCALL popint_or(); // with support for or'ing (2|4|8)
 INT_PTR NSISCALL nsishelper_str_to_ptr(LPCTSTR s);
-#define myatoi(s) ( (int) nsishelper_str_to_ptr(s) ) // converts a string to an integer
-unsigned int NSISCALL myatou(LPCTSTR s); // converts a string to an unsigned integer, decimal only
-int NSISCALL myatoi_or(LPCTSTR s); // with support for or'ing (2|4|8)
-char * NSISCALL getuservariable(const int varnum);
-void NSISCALL setuservariable(const int varnum, LPCTSTR ::payload);
+#define myatoi(s) ( (::i32) nsishelper_str_to_ptr(s) ) // converts a string to an integer
+::u32 NSISCALL myatou(LPCTSTR s); // converts a string to an ::u32 integer, decimal only
+::i32 NSISCALL myatoi_or(LPCTSTR s); // with support for or'ing (2|4|8)
+char_pointer NSISCALL getuservariable(const ::i32 varnum);
+void NSISCALL setuservariable(const ::i32 varnum, LPCTSTR ::payload);
 
 #ifdef UNICODE
 #define PopStringW(x) popstring(x)
 #define PushStringW(x) pushstring(x)
 #define SetUserVariableW(x,y) setuservariable(x,y)
 
-int  NSISCALL PopStringA(char * ansiStr);
+::i32  NSISCALL PopStringA(char_pointer ansiStr);
 void NSISCALL PushStringA(const ::scoped_string & scopedstr);
-void NSISCALL GetUserVariableW(const int varnum, LPWSTR wideStr);
-void NSISCALL GetUserVariableA(const int varnum, char * ansiStr);
-void NSISCALL SetUserVariableA(const int varnum, const ::scoped_string & scopedstr);
+void NSISCALL GetUserVariableW(const ::i32 varnum, LPWSTR wideStr);
+void NSISCALL GetUserVariableA(const ::i32 varnum, char_pointer ansiStr);
+void NSISCALL SetUserVariableA(const ::i32 varnum, const ::scoped_string & scopedstr);
 
 #else
 // ANSI defs
@@ -93,11 +93,11 @@ void NSISCALL SetUserVariableA(const int varnum, const ::scoped_string & scopeds
 #define PushStringA(x) pushstring(x)
 #define SetUserVariableA(x,y) setuservariable(x,y)
 
-int  NSISCALL PopStringW(LPWSTR wideStr);
+::i32  NSISCALL PopStringW(LPWSTR wideStr);
 void NSISCALL PushStringW(LPWSTR wideStr);
-void NSISCALL GetUserVariableW(const int varnum, LPWSTR wideStr);
-void NSISCALL GetUserVariableA(const int varnum, char * ansiStr);
-void NSISCALL SetUserVariableW(const int varnum, const ::wide_character * wideStr);
+void NSISCALL GetUserVariableW(const ::i32 varnum, LPWSTR wideStr);
+void NSISCALL GetUserVariableA(const ::i32 varnum, char_pointer ansiStr);
+void NSISCALL SetUserVariableW(const ::i32 varnum, const ::wide_character * wideStr);
 
 #endif
 

@@ -81,7 +81,7 @@ void child::release_capture()
 void child::resize_to_fit()
 {
 
-   auto pdevice = createø < ::nano::graphics::device >();
+   auto pdevice = createø < ::nano::graphics::context >();
 
    auto size = pdevice->get_text_extents(m_strText, m_pinterchange->m_pfont);
 

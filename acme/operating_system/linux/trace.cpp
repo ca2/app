@@ -51,17 +51,17 @@ static void TraceDDE(const ::scoped_string & scopedstrPrefix, const MESSAGE* pMs
 
       ENSURE_THROW(pAdvise != nullptr, ::windows_definition::ThrowMemoryException() );
 
-      char szItem[80];
+      ::i8 szItem[80];
       szItem[0] = '\0';
 
       if (aItem != 0)
          ::GlobalGetAtomName(aItem, szItem, _countof(szItem));
 
-      char szFormat[80];
+      ::i8 szFormat[80];
       szFormat[0] = '\0';
-      if (((unsigned int)0xC000 <= (unsigned int)pAdvise->cfFormat) &&
+      if (((::u32)0xC000 <= (::u32)pAdvise->cfFormat) &&
 
-            ((unsigned int)pAdvise->cfFormat <= (unsigned int)0xFFFF))
+            ((::u32)pAdvise->cfFormat <= (::u32)0xFFFF))
 
       {
          ::GetClipboardFormatName(pAdvise->cfFormat,
@@ -111,7 +111,7 @@ static void TraceDDE(const ::scoped_string & scopedstrPrefix, const MESSAGE* pMs
 //
 //   const ::scoped_string & scopedstrMsgName = nullptr;
 
-//   char szBuf[80];
+//   ::i8 szBuf[80];
 //
 //   // find message name
 //   if (pusermessage->id() >= 0xC000)
@@ -149,7 +149,7 @@ static void TraceDDE(const ::scoped_string & scopedstrPrefix, const MESSAGE* pMs
 
 //   {
 //#ifdef OS64BIT
-//      //information(::ca2::trace::category_WinMsg, 4, "%s: hwnd=%point, msg = %s (%point, %int_point)\n",
+//      //information(::ca2::trace::category_WinMsg, 4, "%s: hwnd=%point, msg = %s (%point, %i32_point)\n",
 //        // pszPrefix, pusermessage->m_hwnd, pszMsgName,
 
 //         //pusermessage->m_wparam, pusermessage->m_lparam);
@@ -163,7 +163,7 @@ static void TraceDDE(const ::scoped_string & scopedstrPrefix, const MESSAGE* pMs
 //   else
 //   {
 //#ifdef OS64BIT
-////      ::information(::ca2::trace::category_WinMsg, 4, "%s: hwnd=%point, msg = 0x%04X (%point, %int_point)\n",
+////      ::information(::ca2::trace::category_WinMsg, 4, "%s: hwnd=%point, msg = 0x%04X (%point, %i32_point)\n",
 //  //       pszPrefix, pusermessage->m_hwnd, pszMsgName,
 
 //    //     pusermessage->m_wparam, pusermessage->m_lparam);
@@ -219,7 +219,7 @@ static void TraceDDE(const ::scoped_string & scopedstrPrefix, const MESSAGE* pMs
 //
 //   const ::scoped_string & scopedstrMsgName = nullptr;
 
-//   char szBuf[80];
+//   ::i8 szBuf[80];
 //
 //   // find message name
 //   if (pmsg->message >= 0xC000)
@@ -236,7 +236,7 @@ static void TraceDDE(const ::scoped_string & scopedstrPrefix, const MESSAGE* pMs
 
 //   {
 //      // User message
-//      unsigned int uiValue = pmsg->message - WM_USER;
+//      ::u32 uiValue = pmsg->message - WM_USER;
 
 //      snprintf(szBuf, sizeof(szBuf), "WM_USER+0x%04X", uiValue);
 //      pszMsgName = szBuf;
@@ -263,7 +263,7 @@ static void TraceDDE(const ::scoped_string & scopedstrPrefix, const MESSAGE* pMs
 
 //   {
 //#ifdef WIN64
-////      information(::ca2::trace::category_WinMsg, 4, "%s: hwnd=%point, msg = %hs (%point, %int_point)\n",
+////      information(::ca2::trace::category_WinMsg, 4, "%s: hwnd=%point, msg = %hs (%point, %i32_point)\n",
 //  //       pszPrefix, pMsg->hwnd, pszMsgName,
 
 //    //     pMsg->wParam, pMsg->lParam);
@@ -278,7 +278,7 @@ static void TraceDDE(const ::scoped_string & scopedstrPrefix, const MESSAGE* pMs
 //   else
 //   {
 //#ifdef WIN64
-//      //::information(::ca2::trace::category_WinMsg, 4, "%s: hwnd=%point, msg = 0x%04X (%point, %int_point)\n",
+//      //::information(::ca2::trace::category_WinMsg, 4, "%s: hwnd=%point, msg = 0x%04X (%point, %i32_point)\n",
 //        // pszPrefix, pMsg->hwnd, pszMsgName,
 
 //         //pMsg->wParam, pMsg->lParam);

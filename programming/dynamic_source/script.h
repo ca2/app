@@ -32,8 +32,8 @@ namespace dynamic_source
 
       };
 
-      ::int_map < ::string_map < ::pointer < folder_enumerate > > > m_mapFolderEnumerate;
-      ::int_map < ::pointer < particle > >               m_mapParticle;
+      ::i32_map < ::string_map < ::pointer < folder_enumerate > > > m_mapFolderEnumerate;
+      ::i32_map < ::pointer < particle > >               m_mapParticle;
       ::pointer < ::mutex >                              m_pmutexFolderEnumerate;
       ::pointer < script_manager >                       m_pscriptmanager1;
       //string                                             m_strName;
@@ -65,7 +65,7 @@ namespace dynamic_source
 
 
       template < typename TYPE >
-      TYPE& ø(int i)
+      TYPE& ø(::i32 i)
       {
 
          ::pointer < TYPE > p;
@@ -117,7 +117,7 @@ namespace dynamic_source
       virtual ::file_system_cache_item netnode_file_path(const ::scoped_string& scopedstrName, ::file_system_interface * pfilesysteminterface);
       //virtual ::file_system_cache_item _calculate_real_path(const ::scoped_string& scopedstrBase, ::f);
 
-      virtual ::pointer < ::file::listing > folder_enumerate(int iId, const ::file::path& pathFolder, const ::function < void(::file::listing & listing) > & procedureListing);
+      virtual ::pointer < ::file::listing > folder_enumerate(::i32 iId, const ::file::path& pathFolder, const ::function < void(::file::listing & listing) > & procedureListing);
 
 
    };

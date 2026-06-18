@@ -36,16 +36,16 @@
 //
 //    virtual void implementation_message_loop_step();
 //
-//    virtual void draw(::nano::graphics::device * pnanodevice);
+//    virtual void draw(::nano::graphics::context * pnanodevice);
 //
-//    virtual void on_draw(::nano::graphics::device * pnanodevice);
+//    virtual void on_draw(::nano::graphics::context * pnanodevice);
 //
-//    virtual void on_char(int iChar);
+//    virtual void on_char(::i32 iChar);
 //
 //    virtual bool is_active();
 //    virtual void set_active();
 //
-//    virtual void draw_children(::nano::graphics::device * pnanodevice);
+//    virtual void draw_children(::nano::graphics::context * pnanodevice);
 //
 //    virtual void delete_drawing_objects();
 //    virtual bool get_dark_mode();
@@ -53,7 +53,7 @@
 //    virtual void create_drawing_objects();
 //    virtual void update_drawing_objects();
 //
-//    virtual ::int_point origin();
+//    virtual ::i32_point origin();
 //
 //    //virtual bool defer_perform_entire_reposition_process();
 //
@@ -75,12 +75,12 @@
 //    virtual ::shift_int absolute_to_client();
 //    virtual ::shift_int client_to_absolute();
 //
-//    virtual ::int_point try_absolute_mouse_position(const ::int_point & point);
+//    virtual ::i32_point try_absolute_mouse_position(const ::i32_point & point);
 //
 //       // drag_client
 //    void drag_set_capture() override;
-//    bool on_drag_start(::int_point & point, ::item * pitem) override;
-//    ::int_point drag_mouse_cursor_position(::item* pitem, const ::int_point & point) override;
+//    bool on_drag_start(::i32_point & point, ::item * pitem) override;
+//    ::i32_point drag_mouse_cursor_position(::item* pitem, const ::i32_point & point) override;
 //    bool drag_shift(::item * pitem, ::user::mouse * pmouse) override;
 //    bool drag_hover(::item * pitem) override;
 //    void drag_release_capture() override;
@@ -88,7 +88,7 @@
 //
 //
 //    virtual ::micro::child * hit_test(::user::mouse * pmouse, ::user::e_zorder ezorder);
-//    virtual ::micro::child * on_hit_test(const ::int_point & point, ::user::e_zorder ezorder);
+//    virtual ::micro::child * on_hit_test(const ::i32_point & point, ::user::e_zorder ezorder);
 //    virtual void add_child(::micro::child * pchild);
 //
 //    virtual ::payload get_result();
@@ -104,14 +104,14 @@
 //
 //    //virtual LRESULT window_procedure(UINT message, WPARAM wparam, LPARAM lparam);
 //
-//    virtual void move_to(const ::int_point & point);
+//    virtual void move_to(const ::i32_point & point);
 //
 //    void destroy() override;
 //
 //    virtual void redraw();
 //
-//    virtual void get_client_rectangle(::int_rectangle & rectangle);
-//    virtual void get_window_rectangle(::int_rectangle & rectangle);
+//    virtual void get_client_rectangle(::i32_rectangle & rectangle);
+//    virtual void get_window_rectangle(::i32_rectangle & rectangle);
 //
 //    virtual void set_capture();
 //

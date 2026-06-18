@@ -22,12 +22,12 @@ namespace graphics3d
         // VkFence frameFence = VK_NULL_HANDLE;
         // uint32_t frameIndex = 0;
 
-        virtual int frame_index() const = 0;
+        virtual ::i32 frame_index() const = 0;
         virtual bool isValid() const = 0;
 
 
-        virtual int frameIndex() = 0;
-        virtual float frameTime() = 0;
+        virtual ::i32 frameIndex() = 0;
+        virtual ::f32 frameTime() = 0;
         //VkCommandBuffer commandBuffer;
         //::pointer < ::gpu::command_buffer > m_pcommandbuffer;
         virtual ::gpu::command_buffer * getCommandBuffer() = 0;

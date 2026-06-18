@@ -28,7 +28,7 @@ namespace aura
       virtual ~library();
 
       virtual void     initialize(::particle * pparticle);
-      virtual void     initialize_aura_library(::particle * pparticle, int iDesmabi, const ::scoped_string & scopedstrRoot = nullptr, const ::scoped_string & scopedstrName = nullptr, const ::scoped_string & scopedstrFolder = nullptr);
+      virtual void     initialize_aura_library(::particle * pparticle, ::i32 iDesmabi, const ::scoped_string & scopedstrRoot = nullptr, const ::scoped_string & scopedstrName = nullptr, const ::scoped_string & scopedstrFolder = nullptr);
 
       virtual bool open(const ::scoped_string & scopedstrPath,bool bAutoClose = true,bool bCa2Path = false);
 

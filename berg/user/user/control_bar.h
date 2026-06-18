@@ -32,27 +32,27 @@ public:
    BaseControlBarInfo();
 
    
-   unsigned int m_nBarID;      // ID of this bar
+   ::u32 m_nBarID;      // ID of this bar
    bool m_bVisible;    // visibility of this bar
    bool m_bFloating;   // whether floating or not
    bool m_bHorz;       // orientation of floating dockbar
    bool m_bDockBar;    // true if a dockbar
-   int_point m_pointPos;  // topleft int_point of interaction_impl
+   i32_point m_pointPos;  // topleft i32_point of interaction_impl
 
-   unsigned int m_nMRUWidth;   // MRUWidth for Dynamic Toolbars
+   ::u32 m_nMRUWidth;   // MRUWidth for Dynamic Toolbars
    bool m_bDocking;    // true if this bar has a DockContext
-   unsigned int m_uMRUDockID;  // most recent docked dockbar
-   ::int_rectangle m_rectangleMRUDockPos; // most recent docked position
-   unsigned int m_dwMRUFloatStyle; // most recent floating orientation
-   int_point m_pointMRUFloatPos; // most recent floating position
+   ::u32 m_uMRUDockID;  // most recent docked dockbar
+   ::i32_rectangle m_rectangleMRUDockPos; // most recent docked position
+   ::u32 m_dwMRUFloatStyle; // most recent floating orientation
+   i32_point m_pointMRUFloatPos; // most recent floating position
 
    void_ptra m_arrBarID;   // bar IDs for bars contained within this one
    ::user::control_bar * m_pBar;    // bar which this refers to (transient)
 
    //   void Serialize(CArchive& ar, BaseDockState* pDockState);
-   bool LoadState(const ::scoped_string & scopedstrProfileName, int nIndex, BaseDockState* pDockState);
+   bool LoadState(const ::scoped_string & scopedstrProfileName, ::i32 nIndex, BaseDockState* pDockState);
 
-   bool SaveState(const ::scoped_string & scopedstrProfileName, int nIndex);
+   bool SaveState(const ::scoped_string & scopedstrProfileName, ::i32 nIndex);
 
 };
 
@@ -68,22 +68,22 @@ namespace user
 
 
       // info about bar (for status bar and toolbar)
-//      int m_rectangleBorder.left, m_rectangleBorder.right;
-  //    int m_rectangleBorder.top, m_rectangleBorder.bottom;
-      ::int_rectangle                           m_rectangleBorder;
-      int                                       m_cxDefaultGap;         // default gap value
-      unsigned int                                     m_nMRUWidth;   // For dynamic resizing.
+//      ::i32 m_rectangleBorder.left, m_rectangleBorder.right;
+  //    ::i32 m_rectangleBorder.top, m_rectangleBorder.bottom;
+      ::i32_rectangle                           m_rectangleBorder;
+      ::i32                                       m_cxDefaultGap;         // default gap value
+      ::u32                                     m_nMRUWidth;   // For dynamic resizing.
       bool                                      m_bDockTrack;
       bool                                      m_bFullScreenBar;
 
-      unsigned int                                     m_nStateFlags;
+      ::u32                                     m_nStateFlags;
 
-      unsigned int                                       m_dwStyle;
-      unsigned int                                       m_dwDockStyle;
+      ::u32                                       m_dwStyle;
+      ::u32                                       m_dwDockStyle;
       ::pointer<::user::frame_window>    m_pframewindowDockSite;
       BaseDockBar*                              m_pDockBar;
       BaseDockContext *                         m_pDockContext; // used during dragging
-      unsigned int                                       m_dwCtrlStyle;
+      ::u32                                       m_dwCtrlStyle;
 
 
 
@@ -96,23 +96,23 @@ namespace user
 
 
       // for styles specific to ::user::control_bar
-      unsigned int GetBarStyle();
-      void SetBarStyle(unsigned int dwStyle);
+      ::u32 GetBarStyle();
+      void SetBarStyle(::u32 dwStyle);
 
       bool m_bAutoDelete;
 
       // getting and setting border space
-      void SetBorders(const ::int_rectangle & rectangle);
-      void SetBorders(int cxLeft = 0, int cyTop = 0, int cxRight = 0, int cyBottom = 0);
-      ::int_rectangle GetBorders();
+      void SetBorders(const ::i32_rectangle & rectangle);
+      void SetBorders(::i32 cxLeft = 0, ::i32 cyTop = 0, ::i32 cxRight = 0, ::i32 cyBottom = 0);
+      ::i32_rectangle GetBorders();
 
       ::pointer<::user::frame_window>GetDockingFrame();
       bool IsFloating();
-      virtual ::int_size CalcFixedLayout(::draw2d::graphics_pointer& pgraphics, bool bStretch, bool bHorz);
-      virtual ::int_size CalcDynamicLayout(::draw2d::graphics_pointer& pgraphics, int nLength, unsigned int nMode);
+      virtual ::i32_size CalcFixedLayout(::draw2d::graphics_pointer& pgraphics, bool bStretch, bool bHorz);
+      virtual ::i32_size CalcDynamicLayout(::draw2d::graphics_pointer& pgraphics, ::i32 nLength, ::u32 nMode);
 
       
-      void EnableDocking(unsigned int dwDockStyle);
+      void EnableDocking(::u32 dwDockStyle);
 
       // Overridables
       virtual void on_command_probe(::user::interaction * puserinteraction, bool bDisableIfNoHndler) = 0;
@@ -125,12 +125,12 @@ namespace user
 
       //virtual void DelayShow(bool bShow);
       virtual bool IsVisible();
-      virtual unsigned int RecalcDelayShow(void * pLayoutSIZEPARENTPARAMS);
+      virtual ::u32 RecalcDelayShow(void * pLayoutSIZEPARENTPARAMS);
 
 
       virtual bool IsDockBar();
       void destroy_window() override;
-      virtual void OnBarStyleChange(unsigned int dwOldStyle, unsigned int dwNewStyle);
+      virtual void OnBarStyleChange(::u32 dwOldStyle, ::u32 dwNewStyle);
 
 
       void pre_translate_message(::message::message * pmessage) override;
@@ -138,21 +138,21 @@ namespace user
       void destroy() override;
 
       virtual void DoPaint(::draw2d::graphics_pointer & pgraphics);
-      void DrawBorders(::draw2d::graphics_pointer & pgraphics, ::int_rectangle& rectangle);
-      void DrawGripper(::draw2d::graphics_pointer & pgraphics, const ::int_rectangle& rectangle);
+      void DrawBorders(::draw2d::graphics_pointer & pgraphics, ::i32_rectangle& rectangle);
+      void DrawGripper(::draw2d::graphics_pointer & pgraphics, const ::i32_rectangle& rectangle);
 
       // implementation helpers
-      void CalcInsideRect(::draw2d::graphics_pointer& pgraphics, ::int_rectangle& rectangle, bool bHorz) const; // adjusts borders etc
-      //bool AllocElements(int nElements, int cbElement);
-      virtual bool SetStatusText(int nHit);
-      void ResetTimer(unsigned int nEvent, const class time & time);
+      void CalcInsideRect(::draw2d::graphics_pointer& pgraphics, ::i32_rectangle& rectangle, bool bHorz) const; // adjusts borders etc
+      //bool AllocElements(::i32 nElements, ::i32 cbElement);
+      virtual bool SetStatusText(::i32 nHit);
+      void ResetTimer(enum_timer etimer, const class time & time);
       void EraseNonClient();
       void EraseNonClient(::draw2d::graphics_pointer & pgraphics);
 
       void GetBarInfo(BaseControlBarInfo* pInfo);
       void SetBarInfo(BaseControlBarInfo* pInfo, ::pointer<::user::frame_window>pFrameWnd);
 
-      void on_timer(::timer * ptimer) override;
+      void operator()(::timer * ptimer) override;
       DECLARE_MESSAGE_HANDLER(on_message_create);
       DECLARE_MESSAGE_HANDLER(on_message_destroy);
       DECLARE_MESSAGE_HANDLER(_001OnCtlColor);

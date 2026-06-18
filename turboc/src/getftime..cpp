@@ -35,11 +35,11 @@
 
 //----------------------------------------------------------------------------
 
-int
-getftime (int handle, struct ftime *ftimep)
+::i32
+getftime (::i32 handle, struct ftime *ftimep)
 {
 #if 1
-  int ReturnValue;
+  ::i32 ReturnValue;
   struct stat buf;
   struct tm *ModTime;
   ReturnValue = fstat (handle, &buf);
@@ -67,8 +67,8 @@ getftime (int handle, struct ftime *ftimep)
 //---------------------------------------------------------------------------
 
 #if 0
-int
-setftime (int handle, struct ftime *ftimep)
+::i32
+setftime (::i32 handle, struct ftime *ftimep)
 {
   return (1);
 }

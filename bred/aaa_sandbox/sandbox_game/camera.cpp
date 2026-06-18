@@ -7,7 +7,7 @@
 namespace sandbox_game
 {
 
-   // camera::camera(const ::floating_sequence3 & position, float yawDeg, float pitchDeg, float zoomDeg)
+   // camera::camera(const ::floating_sequence3 & position, ::f32 yawDeg, ::f32 pitchDeg, ::f32 zoomDeg)
    //    : m_position(position),
    //    m_worldUp(0.f, 1.f, 0.f),
    //    m_yaw(yawDeg),
@@ -40,7 +40,7 @@ namespace sandbox_game
       m_inverseViewMatrix = glm::inverse(m_viewMatrix);
    }
 
-   void camera::updateProjection(float aspect, float nearZ, float farZ) {
+   void camera::updateProjection(::f32 aspect, ::f32 nearZ, ::f32 farZ) {
       m_projMatrix = glm::perspective(glm::radians(m_zoom), aspect, nearZ, farZ);
       m_projMatrix[1][1] *= -1; // Vulkan Y-flip
    }
@@ -50,7 +50,7 @@ namespace sandbox_game
       updateView();
    }
 
-   void camera::rotate(float yawOffset, float pitchOffset) {
+   void camera::rotate(::f32 yawOffset, ::f32 pitchOffset) {
       m_yaw += yawOffset;
       m_pitch += pitchOffset;
 
@@ -59,7 +59,7 @@ namespace sandbox_game
       updateView();
    }
 
-   void camera::setZoom(float zoom) {
+   void camera::setZoom(::f32 zoom) {
       m_zoom = glm::clamp(zoom, 1.f, 120.f);
    }
 

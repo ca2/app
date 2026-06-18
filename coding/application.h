@@ -76,13 +76,18 @@ class ::time      m_timeFoldersSetupDetected;
       bool                       m_bInstallDepsCalculated = false;
       bool                       m_bAllInstallDepsInstalled = false;
 
+
+      ::file::path m_pathMkcredInstaller;
+      ::file::path m_pathFscInstaller;
+      ::file::path m_pathUserFontsInstaller;
+
       application();
       ~application() override;
 
 
       __DECLARE_APPLICATION_RELEASE_TIME();
-      virtual void preempt_message(const char * pszMessage);
-      virtual void micro_preempt(const char * pszMessage);
+      virtual void preempt_message(const_char_pointer pszMessage);
+      virtual void micro_preempt(const_char_pointer pszMessage);
 
       /////////////bool did_just_install_cloud_data_provider();
       ///
@@ -105,6 +110,10 @@ class ::time      m_timeFoldersSetupDetected;
 
       virtual void init_instance() override;
       virtual void term_application() override;
+
+
+      //virtual ::string get_http_user_agent();
+      //virtual void get_http_user_agent(::property_set & set);
 
 
       virtual void on_request(::request * prequest) override;
@@ -139,12 +148,12 @@ class ::time      m_timeFoldersSetupDetected;
 #endif
 
 #if TORTOISE_GIT
-      // bool defer_install_tortoise_git(int iTry);
+      // bool defer_install_tortoise_git(::i32 iTry);
       //void install_tortoise_git();
       virtual bool __is_tortoise_git_installed();
 #endif
 #if SMART_GIT
-      //bool defer_install_smart_git(int iTry);
+      //bool defer_install_smart_git(::i32 iTry);
       virtual void __install_smart_git();
       virtual void __download_smart_git();
       virtual ::string __smart_git_download_url();
@@ -152,6 +161,9 @@ class ::time      m_timeFoldersSetupDetected;
 #endif
 
       virtual void install_from_operating_system_package_file(const ::file::path & pathPackageFile);
+      virtual void install_from_running_command_line_as_root(const ::scoped_string & scopedstrCommandLine);
+      virtual void defer_run_installation_scripts(const ::string_array_base & straScripts);
+      virtual void defer_run_installation_script(const ::scoped_string & scopedstrScript);
       virtual void __install_browser();
       virtual void __download_google_chrome();
       virtual ::string __google_chrome_download_url();
@@ -164,25 +176,30 @@ class ::time      m_timeFoldersSetupDetected;
       virtual bool __is_git_credential_manager_installed();
       virtual bool __is_shell_patched();
          virtual bool __are_deps_installed();
+      virtual ::string_array get_install_setup_script_names();
       virtual ::string_array get_install_dep_script_names();
       virtual ::string_array get_install_dep_package_names();
       virtual ::string_array get_install_dep_install_group_names();
       virtual bool are_all_operating_system_packages_and_install_groups_installed();
+
+      virtual bool __has_install_setup_been_run();
+      virtual void __install_setup();
       virtual void __install_deps();
+      virtual void __list_deps();
          virtual bool __are_folders_setup();
 #if JETBRAINS_CLION
-         //bool defer_install_smart_git(int iTry);
+         //bool defer_install_smart_git(::i32 iTry);
          //void install_smart_git();
          virtual bool __is_jetbrains_clion_installed();
          virtual bool __is_jetbrains_toolbox_installed();
 #endif
-#if INSTALL_GIT_SCM
-      //bool defer_install_git_scm(int iTry);
+#if INSTALL_GIT_ServiceControlManager
+      //bool defer_install_git_scm(::i32 iTry);
       //void install_git_scm();
       virtual bool __is_git_scm_installed();
 #endif
 #ifdef WINDOWS_DESKTOP
-      //bool defer_install_git_scm(int iTry);
+      //bool defer_install_git_scm(::i32 iTry);
       //void install_git_scm();
       bool __is_msys2_installed();
       bool __is_strawberry_perl_installed();
@@ -192,17 +209,18 @@ class ::time      m_timeFoldersSetupDetected;
       //virtual bool _is_graphical_ide_installed();
       virtual bool __is_graphical_ide_installed();
 
-
-#ifdef LINUX
+#ifdef JETBRAINS_CLION
 
       virtual void start_install_clion();
 
       virtual void __install_jetbrains_clion();
+#ifdef LINUX
+
       virtual void __download_jetbrains_clion();
       virtual ::string __jetbrains_clion_download_url();
 
       //virtual bool is_clion_installed();
-
+#endif
 #endif
 
 
@@ -218,6 +236,33 @@ class ::time      m_timeFoldersSetupDetected;
 #endif
 
 
+      virtual bool __does_mkcred_seem_installed();
+      virtual void __install_mkcred();
+      virtual void __download_mkcred();
+      virtual ::string __mkcred_download_url();
+
+      
+      virtual bool __does_fsc_seem_installed();
+      virtual void __install_fsc();
+      virtual void __download_fsc();
+      virtual ::string __fsc_download_url();
+
+      virtual ::file::path __get_user_fonts_target_folder_path();
+      virtual bool __does_user_fonts_seem_installed();
+      virtual void __install_user_fonts();
+
+      virtual bool __does_ssh_keys_seem_installed();
+      virtual void __install_ssh_keys();
+
+      virtual void defer_ssh_agent();
+      virtual bool __is_user_git_email_ssh_agent_running();
+      virtual bool __start_ssh_agent();
+
+      virtual void _defer_parse_simple_shell_script_assignment(::string & strLeft, ::string & strRight, const ::scoped_string & scopedstrStatement);
+      virtual void _037_parse_and_setenv_from_ssh_agent_output(::string & strSshAuthSock, ::string & strSshAuthPid, const ::scoped_string & scopedstrOutput);
+      virtual void _check_ssh_agent_ambient_set();
+      virtual bool __is_ssh_agent_ambient_set();
+
       virtual ::string install_name(::coding::enum_install einstall);
       virtual ::string install_title(::coding::enum_install einstall);
       virtual ::string install_remark(::coding::enum_install einstall);
@@ -226,6 +271,13 @@ class ::time      m_timeFoldersSetupDetected;
 
       void create_install(::coding::enum_install einstall);
 
+      virtual ::string git_global_config(const ::scoped_string &scopedstr);
+      virtual void git_set_global_config(const ::scoped_string &scopedstr, const ::scoped_string &scopedstrSetting);
+      virtual bool git_has_global_config(const ::scoped_string &scopedstr);
+
+
+      virtual ::string git_user_github_account(const ::scoped_string &scopedstrPrompt = {});
+      virtual void __clone_lemon();
 
       virtual ::file::path bash_path(const ::file::path& path);
 
@@ -237,6 +289,7 @@ class ::time      m_timeFoldersSetupDetected;
 
       virtual bool __is_repository_installed(::coding::enum_repository einstall);
       virtual bool __is_storage_os_installed(const ::scoped_string& scopedstrOs);
+
 
 
       virtual ::file::path _get_repository_path(const ::scoped_string & scopedstr);

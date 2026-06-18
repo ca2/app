@@ -20,7 +20,7 @@
 #include "aura/graphics/image/image.h"
 #include "bred/gpu/command_buffer.h"
 #include "bred/gpu/context_lock.h"
-#include "bred/gpu/frame.h"
+#include "bred/gpu/layer.h"
 #include "bred/gpu/layer.h"
 #include "bred/gpu/types.h"
 
@@ -48,14 +48,14 @@
 //#include <ktxvulkan.h>     // not needed for GL, but included in libktx installs
 //
 // // Utility: load whole file into memory
-// std::vector<unsigned char> loadFile(const char* filename) {
+// std::vector<::u8> loadFile(const_char_pointer pszFilename) {
 //    std::ifstream file(filename, std::ios::binary | std::ios::ate);
 //    if (!file) throw std::runtime_error("Failed to open file");
 //    std::streamsize size = file.tellg();
 //    file.seekg(0, std::ios::beg);
 //
-//    std::vector<unsigned char> buffer(size);
-//    if (!file.read(reinterpret_cast<char*>(buffer.data()), size))
+//    std::vector<::u8> buffer(size);
+//    if (!file.read(reinterpret_cast<char_pointer >(buffer.data()), size))
 //       throw std::runtime_error("Failed to read file");
 //    return buffer;
 // }
@@ -71,18 +71,18 @@
 namespace gpu_gpu
 {
 
-   // void vertex2f(const ::double_rectangle &rectangle, float fZ);
+   // void vertex2f(const ::f64_rectangle &rectangle, ::f32 fZ);
    //
    //
-   // void vertex2f(const ::double_polygon &a, float fZ);
+   // void vertex2f(const ::f64_polygon &a, ::f32 fZ);
 
 
    context::context()
    {
 
-      //m_gluLayerFrameBuffer = 0;
+      //m_gluLayerFramebuffer = 0;
       //m_globalUBO = 0;
-      //m_gluLayFrameBufferRenderer = 0;
+      //m_gluLayFramebufferRenderer = 0;
 
       //m_fboID = 0;
       //m_texID = 0;
@@ -135,13 +135,13 @@ namespace gpu_gpu
 //
 //       }
 //       //glGenBuffers(1, &VAO);
-//       //      float vertexes[] = {
+//       //      ::f32 vertexes[] = {
 //       // positions         // colors
 //       //        0.5f, -0.5f, 0.0f,  1.0f, 0.0f, 0.0f,   // bottom right
 //       //     -0.5f, -0.5f, 0.0f,  0.0f, 1.0f, 0.0f,   // bottom left
 //       //    0.0f,  0.5f, 0.0f,  0.0f, 0.0f, 1.0f    // top
 //       //};
-//       float vertexes[] = {
+//       ::f32 vertexes[] = {
 //          // first triangle
 //          1.f, 1.f, 0.0f, // top right
 //          1.f, -1.f, 0.0f, // bottom right
@@ -179,10 +179,10 @@ namespace gpu_gpu
 //       glBufferData(GL_ARRAY_BUFFER, sizeof(vertexes), vertexes, GL_STATIC_DRAW);
 //
 //       // position attribute
-//       glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, 3 * sizeof(float), (void *)0);
+//       glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, 3 * sizeof(::f32), (void *)0);
 //       glEnableVertexAttribArray(0);
 //       // color attribute
-//       //glVertexAttribPointer(1, 3, GL_FLOAT, GL_FALSE, 6 * sizeof(float), (void*)(3 * sizeof(float)));
+//       //glVertexAttribPointer(1, 3, GL_FLOAT, GL_FALSE, 6 * sizeof(::f32), (void*)(3 * sizeof(::f32)));
 //       //glEnableVertexAttribArray(1);
 //
 //       //return ::success;
@@ -195,14 +195,14 @@ namespace gpu_gpu
 //       ::gpu::context_lock contextlock(this);
 //
 //       //glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, m_ibo_elements);
-//       //int iError16 = glGetError();
+//       //::i32 iError16 = glGetError();
 //
-//       //int size = 0;
+//       //::i32 size = 0;
 //       //glGetBufferParameteriv(GL_ELEMENT_ARRAY_BUFFER, GL_BUFFER_SIZE, &size);
-//       //int iError17 = glGetError();
+//       //::i32 iError17 = glGetError();
 //
 //       //glDrawElements(GL_TRIANGLES, size / sizeof(GLushort), GL_UNSIGNED_SHORT, 0);
-//       //int iError18 = glGetError();
+//       //::i32 iError18 = glGetError();
 //
 //
 // #if defined(WINDOWS_DESKTOP)
@@ -238,9 +238,9 @@ namespace gpu_gpu
 //       //glUseProgram(shaderProgram);
 //
 //       // update the uniform color
-//       //float timeValue = glfwGetTime();
-//       //float greenValue = sin(timeValue) / 2.0f + 0.5f;
-//       //int vertexColorLocation = glGetUniformLocation(shaderProgram, "ourColor");
+//       //::f32 timeValue = glfwGetTime();
+//       //::f32 greenValue = sin(timeValue) / 2.0f + 0.5f;
+//       //::i32 vertexColorLocation = glGetUniformLocation(shaderProgram, "ourColor");
 //       //glUniform4f(vertexColorLocation, 0.0f, greenValue, 0.0f, 1.0f);
 //
 //       //return ::success;
@@ -283,14 +283,14 @@ namespace gpu_gpu
 //       //// Initial position : on +Z
 //       //floating_sequence3 position = floating_sequence3(0, 0, 5);
 //       //// Initial horizontal angle : toward -Z
-//       //float horizontalAngle = 3.14f;
+//       //::f32 horizontalAngle = 3.14f;
 //       //// Initial vertical angle : none
-//       //float verticalAngle = 0.0f;
+//       //::f32 verticalAngle = 0.0f;
 //       //// Initial Field of View
-//       //float initialFoV = 45.0f;
+//       //::f32 initialFoV = 45.0f;
 //
-//       //float speed = 3.0f; // 3 units / second
-//       //float mouseSpeed = 0.005f;
+//       //::f32 speed = 3.0f; // 3 units / second
+//       //::f32 mouseSpeed = 0.005f;
 //
 //
 //    }
@@ -455,7 +455,7 @@ namespace gpu_gpu
 //    }
 //
 //
-//    //void context::set_topic_texture(int iIndex)
+//    //void context::set_topic_texture(::i32 iIndex)
 //    //{
 //
 //    //   ::gpu::context::set_topic_texture(iIndex);
@@ -527,7 +527,7 @@ namespace gpu_gpu
 //    //}
 //
 //
-//    void context::update_framebuffer(const ::int_size &size)
+//    void context::update_framebuffer(const ::i32_size &size)
 //    {
 //
 //       if (m_eoutput == ::gpu::e_output_swap_chain)
@@ -577,7 +577,7 @@ namespace gpu_gpu
 //       //   glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_LINEAR);
 //       //   glBindTexture(GL_TEXTURE_2D, 0);
 //
-//       //   // attach it to currently bound framebuffer object
+//       //   // attach it to currently bound pframebuffer object
 //       //   glFramebufferTexture2D(GL_FRAMEBUFFER, GL_COLOR_ATTACHMENT0, GL_TEXTURE_2D, m_texID, 0);
 //
 //       //}
@@ -631,7 +631,7 @@ namespace gpu_gpu
 //    }
 //
 //
-//    //void context::create_offscreen_buffer(const ::int_size& size)
+//    //void context::create_offscreen_buffer(const ::i32_size& size)
 //    //{
 //
 //    //   auto pgpu = application()->get_gpu();
@@ -675,7 +675,7 @@ namespace gpu_gpu
 //    //}
 //
 //
-//    //void context::_create_offscreen_buffer(const ::int_size& size)
+//    //void context::_create_offscreen_buffer(const ::i32_size& size)
 //    //{
 //
 //    //   return ::success_none;
@@ -683,7 +683,7 @@ namespace gpu_gpu
 //    //}
 //
 //
-//    //void context::resize_offscreen_buffer(const ::int_size& size)
+//    //void context::resize_offscreen_buffer(const ::i32_size& size)
 //    //{
 //
 //    //   return ::success_none;
@@ -734,17 +734,17 @@ namespace gpu_gpu
 //
 //       string strFragment =
 //          "uniform floating_sequence2 resolution;\n"
-//          "uniform float time;\n"
+//          "uniform ::f32 time;\n"
 //          "uniform floating_sequence2 mouse;\n"
 //          "uniform sampler2D backbuffer;\n"
 //          "\n"
 //          "void main(void) {\n"
-//          "float base_res = min(resolution.x, resolution.y);\n"
+//          "::f32 base_res = min(resolution.x, resolution.y);\n"
 //          "floating_sequence2 uv = (gl_FragCoord.xy * 2.0 - resolution.xy) / base_res;\n"
 //          "\n"
 //          //"gl_FragColor = floating_sequence4(uv, (uv.x * uv.x) / 2.0, ((uv.x + (base_res - uv.y)) *(uv.x + (base_res - uv.y))) / 2.0);\n"
-//          "float posx = max(0.f, uv.x);\n"
-//          "float posy = max(0.f, uv.y);\n"
+//          "::f32 posx = max(0.f, uv.x);\n"
+//          "::f32 posy = max(0.f, uv.y);\n"
 //          "gl_FragColor = floating_sequence4(uv, (posx * posx) / 4.0, ((posx + posy) * (posx + posy)) / 4.0);\n"
 //          "}\n";
 //
@@ -776,10 +776,10 @@ namespace gpu_gpu
 //    //         strFragment =
 //    //            //"#" + strVersion + "\n"
 //    //            //"\n"
-//    //            //"precision highp float;\n"
+//    //            //"precision highp ::f32;\n"
 //    //            "\n"
 //    //            "uniform floating_sequence2 iResolution;\n"
-//    //            "uniform float iTime;\n"
+//    //            "uniform ::f32 iTime;\n"
 //    //            "uniform floating_sequence2 iMouse;\n"
 //    //            "uniform sampler2D backbuffer;\n"
 //    //            "\n"
@@ -876,7 +876,7 @@ namespace gpu_gpu
 //    }
 //
 //
-//    void context::create_global_ubo(int iGlobalUboSize, int iFrameCount)
+//    void context::create_global_ubo(::i32 iGlobalUboSize, ::i32 iFrameCount)
 //    {
 //
 //       ::gpu::context_lock contextlock(this);
@@ -884,8 +884,8 @@ namespace gpu_gpu
 //       // Create the UBO
 //       glGenBuffers(1, &m_globalUBO);
 //       glBindBuffer(GL_UNIFORM_BUFFER, m_globalUBO);
-//       glBufferData(GL_UNIFORM_BUFFER, iGlobalUboSize, NULL, GL_STATIC_DRAW); // For 2 mat4s = 2 * sizeof(float) * 16
-//       unsigned int uUboBindingPoint = 0;
+//       glBufferData(GL_UNIFORM_BUFFER, iGlobalUboSize, NULL, GL_STATIC_DRAW); // For 2 mat4s = 2 * sizeof(::f32) * 16
+//       ::u32 uUboBindingPoint = 0;
 //       glBindBufferBase(GL_UNIFORM_BUFFER, uUboBindingPoint, m_globalUBO);
 //       glBindBuffer(GL_UNIFORM_BUFFER, 0);
 //
@@ -930,7 +930,7 @@ namespace gpu_gpu
 //
 //
 //    //void createFullscreenQuad(GLuint* vao, GLuint* vbo) {
-//    //   float quadVertices[] = {
+//    //   ::f32 quadVertices[] = {
 //    //      // pos     // uv
 //    //      -1, -1,    0, 0,
 //    //      +1, -1,    1, 0,
@@ -945,10 +945,10 @@ namespace gpu_gpu
 //    //   glBindBuffer(GL_ARRAY_BUFFER, *vbo);
 //    //   glBufferData(GL_ARRAY_BUFFER, sizeof(quadVertices), quadVertices, GL_STATIC_DRAW);
 //
-//    //   glVertexAttribPointer(0, 2, GL_FLOAT, GL_FALSE, 4 * sizeof(float), (void*)0); // position
+//    //   glVertexAttribPointer(0, 2, GL_FLOAT, GL_FALSE, 4 * sizeof(::f32), (void*)0); // position
 //    //   glEnableVertexAttribArray(0);
 //
-//    //   glVertexAttribPointer(1, 2, GL_FLOAT, GL_FALSE, 4 * sizeof(float), (void*)(2 * sizeof(float))); // UV
+//    //   glVertexAttribPointer(1, 2, GL_FLOAT, GL_FALSE, 4 * sizeof(::f32), (void*)(2 * sizeof(::f32))); // UV
 //    //   glEnableVertexAttribArray(1);
 //
 //    //   glBindVertexArray(0);
@@ -1002,7 +1002,7 @@ namespace gpu_gpu
 //             fragmentShaderSource);
 //       }
 //
-//       auto pmodelbufferFullScreenQuad = sequence2_uv_fullscreen_quad_model_buffer(::gpu::current_frame());
+//       auto pmodelbufferFullScreenQuad = sequence2_uv_fullscreen_quad_model_buffer(::gpu::current_layer());
 //
 //       /*  if (!m_vaoFullScreenQuad)
 //         {
@@ -1013,8 +1013,8 @@ namespace gpu_gpu
 //       glBindFramebuffer(GL_DRAW_FRAMEBUFFER, 0);
 //       //glDisable(GL_BLEND);                    // Ensure no blending
 //
-//       int cx = m_rectangle.width();
-//       int cy = m_rectangle.height();
+//       ::i32 cx = m_rectangle.width();
+//       ::i32 cy = m_rectangle.height();
 //       glViewport(0, 0, cx, cy);
 //       //glClearColor(0.1, 0.1, 0.1, 1.0);
 //       //glClear(GL_COLOR_BUFFER_BIT);
@@ -1024,7 +1024,7 @@ namespace gpu_gpu
 //
 //       m_pshaderCopy->bind_source(ptextureParam, 0);
 //
-//       auto pcommandbuffer = m_pgpurenderer->getCurrentCommandBuffer2(::gpu::current_frame());
+//       auto pcommandbuffer = m_pgpurenderer->getCurrentCommandBuffer2(::gpu::current_layer());
 //
 //       pmodelbufferFullScreenQuad->bind(pcommandbuffer);
 //
@@ -1087,7 +1087,7 @@ namespace gpu_gpu
 //
 //       ::gpu::context::on_end_layer(player);
 //
-//       //auto ptextureTarget = player->texture();
+//       //auto ptextureTarget = pgpulayer->texture();
 //
 //       //auto ptextureSource = current_target_texture();
 //
@@ -1121,7 +1121,7 @@ namespace gpu_gpu
 //          if (!m_pshaderBlend3)
 //          {
 //
-//             const char full_screen_triangle_vertex_shader[] = R"vert(
+//             const ::i8 full_screen_triangle_vertex_shader[] = R"vert(
 // #version 330 core
 //
 // out floating_sequence2 uv;
@@ -1144,7 +1144,7 @@ namespace gpu_gpu
 // }
 // )vert";
 //
-//             const char full_screen_triangle_fragment_shader[] = R"frag(
+//             const ::i8 full_screen_triangle_fragment_shader[] = R"frag(
 // #version 330 core
 //
 // uniform sampler2D uTexture;
@@ -1217,13 +1217,13 @@ namespace gpu_gpu
 //          ::cast<renderer> prenderer = m_pgpurenderer;
 //
 //          ::cast<::gpu_opengl::command_buffer> pcommandbuffer = prenderer->getCurrentCommandBuffer2(
-//             ::gpu::current_frame());
+//             ::gpu::current_layer());
 //
 //          //auto vkcommandbuffer = pcommandbuffer->m_vkcommandbuffer;
 //
 //          ::cast<::gpu_opengl::texture> ptextureDst = ptextureTarget;
 //
-//          int iH = ptextureDst->m_pgpurenderer->m_pgpucontext->m_rectangle.height();
+//          ::i32 iH = ptextureDst->m_pgpurenderer->m_pgpucontext->m_rectangle.height();
 //
 //          ptextureDst->bind_render_target();
 //
@@ -1259,7 +1259,7 @@ namespace gpu_gpu
 //          if (1)
 //          {
 //
-//             int iLayer = 0;
+//             ::i32 iLayer = 0;
 //
 //             for (auto player: *playera)
 //             {
@@ -1268,7 +1268,7 @@ namespace gpu_gpu
 //                {
 //
 //
-//                   ::cast<::gpu_opengl::texture> ptextureSrc = player->texture();
+//                   ::cast<::gpu_opengl::texture> ptextureSrc = pgpulayer->texture();
 //
 //                   //ptextureSrc->_new_state(
 //                   //   pcommandbuffer,
@@ -1281,7 +1281,7 @@ namespace gpu_gpu
 //
 //                   auto r = ptextureSrc->m_rectangleTarget;
 //
-//                   int h = r.height();
+//                   ::i32 h = r.height();
 //
 //                   r.top = iH - r.bottom;
 //
@@ -1354,8 +1354,8 @@ namespace gpu_gpu
 //                   //D3D12_VIEWPORT viewport = {};
 //                   //viewport.TopLeftX = ptextureSrc->m_rectangleTarget.left;
 //                   //viewport.TopLeftY = ptextureSrc->m_rectangleTarget.top;
-//                   //viewport.Width = static_cast<float>(ptextureSrc->m_rectangleTarget.width());
-//                   //viewport.Height = static_cast<float>(ptextureSrc->m_rectangleTarget.height());
+//                   //viewport.Width = static_cast<::f32>(ptextureSrc->m_rectangleTarget.width());
+//                   //viewport.Height = static_cast<::f32>(ptextureSrc->m_rectangleTarget.height());
 //                   //viewport.MinDepth = 0.0f;
 //                   //viewport.MaxDepth = 1.0f;
 //
@@ -1372,8 +1372,8 @@ namespace gpu_gpu
 //                   //D3D11_VIEWPORT vp = {};
 //                   //vp.TopLeftX = ptexture->rectangle().left;
 //                   //vp.TopLeftY = ptexture->rectangle().top;
-//                   //vp.Width = static_cast<float>(ptexture->rectangle().width());
-//                   //vp.Height = static_cast<float>(ptexture->rectangle().height());
+//                   //vp.Width = static_cast<::f32>(ptexture->rectangle().width());
+//                   //vp.Height = static_cast<::f32>(ptexture->rectangle().height());
 //                   //vp.MinDepth = 0.0f;
 //                   //vp.MaxDepth = 1.0f;
 //                   //m_pcontext->RSSetViewports(1, &vp);
@@ -1397,7 +1397,7 @@ namespace gpu_gpu
 //          ////::cast <texture > ptextureDst = ptextureTarget;
 //          //{
 //          //
-//          //   float clearColor2[4] = { 0.95f * 0.5f, 0.75f * 0.5f, 0.95f * 0.5f, 0.5f }; // Clear to transparent
+//          //   ::f32 clearColor2[4] = { 0.95f * 0.5f, 0.75f * 0.5f, 0.95f * 0.5f, 0.5f }; // Clear to transparent
 //          //
 //          //   D3D12_RECT r[1];
 //          //
@@ -1425,15 +1425,15 @@ namespace gpu_gpu
 //
 //       //////if()
 //
-//       //////GLuint framebuffer;
-//       //////glGenFramebuffers(1, &framebuffer);
+//       //////GLuint pframebuffer;
+//       //////glGenFramebuffers(1, &pframebuffer);
 //       //////::opengl::check_error("glGenFramebuffers");
-//       //////glBindFramebuffer(GL_DRAW_FRAMEBUFFER, framebuffer);
+//       //////glBindFramebuffer(GL_DRAW_FRAMEBUFFER, pframebuffer);
 //       //////::opengl::check_error("glBindFramebuffer");
 //
 //       //////auto gluTextureID = ptextureDst->m_gluTextureID;
 //
-//       //////// Bind the destination texture (textures[textureSrc]) as the framebuffer color attachment
+//       //////// Bind the destination texture (textures[textureSrc]) as the pframebuffer color attachment
 //       //////glFramebufferTexture2D(
 //       //////   GL_DRAW_FRAMEBUFFER, GL_COLOR_ATTACHMENT0, GL_TEXTURE_2D,
 //       //////   gluTextureID,
@@ -1442,7 +1442,7 @@ namespace gpu_gpu
 //
 //       //////if (glCheckFramebufferStatus(GL_DRAW_FRAMEBUFFER) != GL_FRAMEBUFFER_COMPLETE) {
 //       //////   printf("Framebuffer not complete!\n");
-//       //////   glDeleteFramebuffers(1, &framebuffer);
+//       //////   glDeleteFramebuffers(1, &pframebuffer);
 //       //////   return;
 //       //////}
 //
@@ -1464,14 +1464,14 @@ namespace gpu_gpu
 //
 //       ////   }
 //
-//       ////   prenderer->__blend(ptextureTarget, player->texture());
+//       ////   prenderer->__blend(ptextureTarget, pgpulayer->texture());
 //
 //       ////}
 //
-//       ////glBindFramebuffer(GL_FRAMEBUFFER, 0); // Return to default framebuffer
+//       ////glBindFramebuffer(GL_FRAMEBUFFER, 0); // Return to default pframebuffer
 //       ////::opengl::check_error("glBindFramebuffer");
 //
-//       ////glDeleteFramebuffers(1, &framebuffer);
+//       ////glDeleteFramebuffers(1, &pframebuffer);
 //       ////::opengl::check_error("glDeleteFramebuffers");
 //
 //
@@ -1511,29 +1511,29 @@ namespace gpu_gpu
 //    //   glGetIntegerv(GL_DRAW_FRAMEBUFFER_BINDING, &fbo);
 //    //   ::opengl::check_error("");
 //
-//    //   if (m_gluLayerFrameBuffer &&
-//    //      m_gluLayerFrameBuffer == fbo)
+//    //   if (m_gluLayerFramebuffer &&
+//    //      m_gluLayerFramebuffer == fbo)
 //    //   {
 //
 //    //      return; // already bound
 //
 //    //   }
 //
-//    //   if (!m_gluLayerFrameBuffer)
+//    //   if (!m_gluLayerFramebuffer)
 //    //   {
 //
 //    //      GLuint fboSrc, fboDst;
-//    //      glGenFramebuffers(1, &m_gluLayerFrameBuffer);
+//    //      glGenFramebuffers(1, &m_gluLayerFramebuffer);
 //    //      ::opengl::check_error("");
 //
 //    //   }
 //
-//    //   glBindFramebuffer(GL_FRAMEBUFFER, m_gluLayerFrameBuffer);
+//    //   glBindFramebuffer(GL_FRAMEBUFFER, m_gluLayerFramebuffer);
 //    //   ::opengl::check_error("");
 //
 //    //   ::cast < texture > ptexture = m_pgpurenderer->m_pgpurendertarget->current_texture();
 //
-//    //   int textureID = ptexture->m_gluTextureID;
+//    //   ::i32 textureID = ptexture->m_gluTextureID;
 //
 //    //   glFramebufferTexture2D(GL_DRAW_FRAMEBUFFER, GL_COLOR_ATTACHMENT0,
 //    //      GL_TEXTURE_2D, textureID, 0);
@@ -1547,9 +1547,9 @@ namespace gpu_gpu
 //    //      if (!ptexture->m_gluDepthStencilRBO)
 //    //      {
 //
-//    //         int width = pgpucontext->m_rectangle.width();
+//    //         ::i32 width = pgpucontext->m_rectangle.width();
 //
-//    //         int height = pgpucontext->m_rectangle.height();
+//    //         ::i32 height = pgpucontext->m_rectangle.height();
 //
 //    //         glGenRenderbuffers(1, &ptexture->m_gluDepthStencilRBO);
 //    //         ::opengl::check_error("");
@@ -1578,11 +1578,11 @@ namespace gpu_gpu
 //       ::cast<::gpu_opengl::texture> ptexture = ptextureParam;
 //
 //
-//       GLuint framebuffer;
-//       glGenFramebuffers(1, &framebuffer);
-//       glBindFramebuffer(GL_READ_FRAMEBUFFER, framebuffer);
+//       GLuint pframebuffer;
+//       glGenFramebuffers(1, &pframebuffer);
+//       glBindFramebuffer(GL_READ_FRAMEBUFFER, pframebuffer);
 //
-//       // Bind the destination texture (textures[textureSrc]) as the framebuffer color attachment
+//       // Bind the destination texture (textures[textureSrc]) as the pframebuffer color attachment
 //       glFramebufferTexture2D(
 //          GL_READ_FRAMEBUFFER, GL_COLOR_ATTACHMENT0, GL_TEXTURE_2D,
 //          ptexture->m_gluTextureID,
@@ -1591,14 +1591,14 @@ namespace gpu_gpu
 //       if (glCheckFramebufferStatus(GL_READ_FRAMEBUFFER) != GL_FRAMEBUFFER_COMPLETE)
 //       {
 //          printf("Framebuffer not complete!\n");
-//          glDeleteFramebuffers(1, &framebuffer);
+//          glDeleteFramebuffers(1, &pframebuffer);
 //          return;
 //       }
 //
 //
 //       //glReadBuffer(GL_COLOR_ATTACHMENT0);
 //
-//       // Bind default framebuffer as draw target
+//       // Bind default pframebuffer as draw target
 //       glBindFramebuffer(GL_DRAW_FRAMEBUFFER, 0);
 //
 //
@@ -1618,15 +1618,15 @@ namespace gpu_gpu
 //          );
 //
 //
-//       // Blit from source to default framebuffer
+//       // Blit from source to default pframebuffer
 //       glBlitFramebuffer(
 //          0, 0, ptexture->size().cx, ptexture->size().cy, // src rect
 //          0, 0, m_rectangle.width(), m_rectangle.height(), // dst rect
 //          GL_COLOR_BUFFER_BIT, GL_NEAREST);
 //
-//       glBindFramebuffer(GL_FRAMEBUFFER, 0); // Return to default framebuffer
+//       glBindFramebuffer(GL_FRAMEBUFFER, 0); // Return to default pframebuffer
 //
-//       glDeleteFramebuffers(1, &framebuffer);
+//       glDeleteFramebuffers(1, &pframebuffer);
 //
 // #ifdef SHOW_DEBUG_DRAWING
 //       {
@@ -1639,20 +1639,20 @@ namespace gpu_gpu
 //          //glBlendEquation(GL_FUNC_ADD); // default, can be omitted if unchanged
 //
 //          {
-//             float fOpacity = 0.5;
-//             float fRed = 0.5;
-//             float fGreen = 0.75;
-//             float fBlue = 0.95;
-//             auto f32Opacity = (float)fOpacity;
-//             auto f32Red = (float)(fRed * fOpacity);
-//             auto f32Green = (float)(fGreen * fOpacity);
-//             auto f32Blue = (float)(fBlue * fOpacity);
+//             ::f32 fOpacity = 0.5;
+//             ::f32 fRed = 0.5;
+//             ::f32 fGreen = 0.75;
+//             ::f32 fBlue = 0.95;
+//             auto f32Opacity = (::f32)fOpacity;
+//             auto f32Red = (::f32)(fRed * fOpacity);
+//             auto f32Green = (::f32)(fGreen * fOpacity);
+//             auto f32Blue = (::f32)(fBlue * fOpacity);
 //             ::glColor4f(f32Red, f32Green, f32Blue, f32Opacity);
 //          }
 //
-//          ::double_polygon polygon;
+//          ::f64_polygon polygon;
 //
-//          ::double_rectangle rectangle(100, 100, 200, 200);
+//          ::f64_rectangle rectangle(100, 100, 200, 200);
 //
 //          polygon = rectangle;
 //
@@ -1696,7 +1696,7 @@ namespace gpu_gpu
 //
 //
 //    void context::on_create_context(::gpu::device *pgpudevice, const ::gpu::enum_output &eoutput,
-//                                    ::windowing::window *pwindow, const ::int_size &size)
+//                                    ::windowing::window *pwindow, const ::i32_size &size)
 //    {
 //
 //       if (eoutput == ::gpu::e_output_cpu_buffer)
@@ -1723,7 +1723,7 @@ namespace gpu_gpu
 //       else
 //       {
 //
-//          auto r = ::int_rectangle(::int_point{}, size);
+//          auto r = ::i32_rectangle(::i32_point{}, size);
 //          //
 //          //       ::gpu::rear_guard guard(this);
 //
@@ -1890,20 +1890,20 @@ namespace gpu_gpu
 //          //glBlendEquation(GL_FUNC_ADD); // default, can be omitted if unchanged
 //
 //          {
-//             float fOpacity = 0.5;
-//             float fRed = 0.5;
-//             float fGreen = 0.75;
-//             float fBlue = 0.95;
-//             auto f32Opacity = (float)fOpacity;
-//             auto f32Red = (float)(fRed * fOpacity);
-//             auto f32Green = (float)(fGreen * fOpacity);
-//             auto f32Blue = (float)(fBlue * fOpacity);
+//             ::f32 fOpacity = 0.5;
+//             ::f32 fRed = 0.5;
+//             ::f32 fGreen = 0.75;
+//             ::f32 fBlue = 0.95;
+//             auto f32Opacity = (::f32)fOpacity;
+//             auto f32Red = (::f32)(fRed * fOpacity);
+//             auto f32Green = (::f32)(fGreen * fOpacity);
+//             auto f32Blue = (::f32)(fBlue * fOpacity);
 //             ::glColor4f(f32Red, f32Green, f32Blue, f32Opacity);
 //          }
 //
-//          ::double_polygon polygon;
+//          ::f64_polygon polygon;
 //
-//          ::double_rectangle rectangle(300, 300, 400, 400);
+//          ::f64_rectangle rectangle(300, 300, 400, 400);
 //
 //          polygon = rectangle;
 //
@@ -1928,7 +1928,7 @@ namespace gpu_gpu
 //    }
 //
 //
-//    void context::_create_offscreen_window(const ::int_size &size)
+//    void context::_create_offscreen_window(const ::i32_size &size)
 //    {
 //
 // #if defined(WINDOWS_DESKTOP)
@@ -1963,9 +1963,9 @@ namespace gpu_gpu
 //
 //       //   LPCTSTR lpClassName = L"draw2d_opengl_offscreen_buffer_window";
 //       //   LPCTSTR lpWindowName = L"draw2d_opengl_offscreen_buffer_window";
-//       //   //unsigned int dwStyle = WS_CAPTION | WS_POPUPWINDOW; // | WS_VISIBLE
-//       //   unsigned int dwExStyle = 0;
-//       //   unsigned int dwStyle = WS_OVERLAPPEDWINDOW;
+//       //   //::u32 dwStyle = WS_CAPTION | WS_POPUPWINDOW; // | WS_VISIBLE
+//       //   ::u32 dwExStyle = 0;
+//       //   ::u32 dwStyle = WS_OVERLAPPEDWINDOW;
 //       //   dwStyle |= WS_POPUP;
 //       //   //dwStyle |= WS_VISIBLE;
 //       //   //dwStyle |= WS_SYSMENU | WS_MINIMIZEBOX | WS_MAXIMIZEBOX;
@@ -1973,10 +1973,10 @@ namespace gpu_gpu
 //       //   //dwStyle = 0;
 //       //   dwStyle &= ~WS_THICKFRAME;
 //       //   dwStyle &= ~WS_BORDER;
-//       //   int x = 0;
-//       //   int y = 0;
-//       //   int nWidth = size.cx;
-//       //   int nHeight = size.cy;
+//       //   ::i32 x = 0;
+//       //   ::i32 y = 0;
+//       //   ::i32 nWidth = size.cx;
+//       //   ::i32 nHeight = size.cy;
 //       //   HWND hWndParent = nullptr;
 //       //   HMENU hMenu = nullptr;
 //       //   HINSTANCE hInstance = ::GetModuleHandleW(L"gpu_opengl.dll");
@@ -2036,7 +2036,7 @@ namespace gpu_gpu
 //
 //       //   PIXELFORMATDESCRIPTOR pixformat;
 //
-//       //   int chosenformat;
+//       //   ::i32 chosenformat;
 //
 //       //   HDC hdc = GetDC(m_hwnd);
 //
@@ -2206,7 +2206,7 @@ namespace gpu_gpu
 //
 //       //         //PIXELFORMATDESCRIPTOR pixformat;
 //
-//       //         //int chosenformat;
+//       //         //::i32 chosenformat;
 //
 //       //         HDC hdc = GetDC(m_hwnd);
 //
@@ -2269,7 +2269,7 @@ namespace gpu_gpu
 //
 //       //         pwindow->m_hglrcProto = hglrc;
 //
-//       //         //         int context_attribs[] = {
+//       //         //         ::i32 context_attribs[] = {
 //       //         //WGL_CONTEXT_MAJOR_VERSION_ARB, 2,
 //       //         //WGL_CONTEXT_MINOR_VERSION_ARB, 1,
 //       //         //0, 0
@@ -2350,7 +2350,7 @@ namespace gpu_gpu
 //
 //       //   ::GetClientRect(m_hwnd, &rectClient);
 //
-//       //   ::int_size sizeNew = { rectClient.right - rectClient.left,
+//       //   ::i32_size sizeNew = { rectClient.right - rectClient.left,
 //       //rectClient.bottom - rectClient.top };
 //
 //       //   if (m_size != sizeNew)
@@ -2359,7 +2359,7 @@ namespace gpu_gpu
 //
 //       //      m_sizeHost = sizeNew;
 //       //      //HDC pdcDIB;                      // контекст устройства в памяти
-//       //      //HBITMAP hbmpDIB;                 // и его текущий битмапvoid *pBitsDIB(NULL);            // содержимое битмапаint cxDIB(200); int cyDIB(300);  // его размеры (например для окна 200х300)
+//       //      //HBITMAP hbmpDIB;                 // и его текущий битмапvoid *pBitsDIB(NULL);            // содержимое битмапаint cxDIB(200); ::i32 cyDIB(300);  // его размеры (например для окна 200х300)
 //       //      //auto &BIH=pwindow->m_bitmapinfoheaderProto;            // и заголовок// …// создаем DIB section// создаем структуру BITMAPINFOHEADER, описывающую наш DIBint iSize = sizeof(BITMAPINFOHEADER);  // размер
 //       //      //memset(&BIH, 0, sizeof(pwindow->m_bitmapinfoheaderProto));
 //
@@ -2394,7 +2394,7 @@ namespace gpu_gpu
 //    }
 //
 //
-//    void context::_create_cpu_buffer(const ::int_size &size)
+//    void context::_create_cpu_buffer(const ::i32_size &size)
 //    {
 //
 //       _create_offscreen_window(size);
@@ -2427,7 +2427,7 @@ namespace gpu_gpu
 //    }
 //
 //
-//    void context::resize_cpu_buffer(const ::int_size &sizeParam)
+//    void context::resize_cpu_buffer(const ::i32_size &sizeParam)
 //    {
 //
 //       //if (m_papplication->m_bUseSwapChainWindow)
@@ -2523,7 +2523,7 @@ namespace gpu_gpu
 //    //   else if(m_eoutput == ::gpu::e_output_swap_chain)
 //    //   {
 //    //
-//    //      // If using swap chain, no need to bind framebuffer
+//    //      // If using swap chain, no need to bind pframebuffer
 //
 //    //      GLint drawFboId = 0, readFboId = 0;
 //
@@ -2595,7 +2595,7 @@ namespace gpu_gpu
 //
 // #endif
 //
-//       m_pframebuffer.release();
+//       m_pframebuffer->release();
 //
 //       //::e_status estatus = ::success;
 //
@@ -2638,13 +2638,13 @@ namespace gpu_gpu
 //       if (iFindPrecision >= 0)
 //       {
 //
-//          stra[iFindPrecision] = "precision highp float;";
+//          stra[iFindPrecision] = "precision highp ::f32;";
 //
 //       }
 //       else
 //       {
 //
-//          stra.insert_at(1, "precision highp float;");
+//          stra.insert_at(1, "precision highp ::f32;");
 //
 //          iFindPrecision = 1;
 //
@@ -2655,7 +2655,7 @@ namespace gpu_gpu
 //
 //    ::memory context::rectangle_shader_vert()
 //    {
-//       const char proto_vert[] = R"vert(
+//       const ::i8 proto_vert[] = R"vert(
 // #version 330 core
 //
 // layout(location = 0) in floating_sequence2 inPos;
@@ -2676,11 +2676,11 @@ namespace gpu_gpu
 //    ::memory context::rectangle_shader_frag()
 //    {
 //
-//       const char proto_frag[] = R"frag(
+//       const ::i8 proto_frag[] = R"frag(
 //             #version 330 core
 //
 //                in floating_sequence4 fragColor;      // Input from the vertex shader (location = 0)
-//             out floating_sequence4 outColor;      // Output to framebuffer (location = 0)
+//             out floating_sequence4 outColor;      // Output to pframebuffer (location = 0)
 //
 //             void main() {
 //                outColor = fragColor;
@@ -2721,7 +2721,7 @@ namespace gpu_gpu
 //         floating_sequence2(texcoords.z, texcoords.w)
 //     );
 //
-//     int vid = gl_VertexID;
+//     ::i32 vid = gl_VertexID;
 //     //gl_Position = projection * floating_sequence4(positions[vid], 0.0, 1.0);
 // gl_Position = floating_sequence4(positions[vid], 0.0, 1.0);
 //     TexCoords = uvs[vid];
@@ -2779,7 +2779,7 @@ namespace gpu_gpu
 //
 //
 //    void context::load_generic_texture(::pointer<::gpu::texture> &ptexture, const ::file::path &path,
-//                                       int iAssimpTextureType)
+//                                       ::i32 iAssimpTextureType)
 //    {
 //
 //       defer_constructø(ptexture);
@@ -2836,11 +2836,11 @@ namespace gpu_gpu
 //       }
 //       else
 //       {
-//          int width, height, numChannels;
+//          ::i32 width, height, numChannels;
 //
 //
 //
-//          unsigned char *data = stbi_load_from_memory(inputData, inputSize, &width, &height, &numChannels, 0);
+//          ::u8 *data = stbi_load_from_memory(inputData, inputSize, &width, &height, &numChannels, 0);
 //
 //          if (!data)
 //          {
@@ -3063,7 +3063,7 @@ m_pibldiffuseirradiancemap->initialize_diffuse_irradiance_map(m_pgpurenderer, m_
 
       }
 
-      return piblspecularmap->m_pbrdfconvolutionframebuffer->m_ptexture;
+      return piblspecularmap->m_pbrdfconvolutionframebuffer.m_ptexture;
    }
 
 

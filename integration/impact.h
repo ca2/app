@@ -26,7 +26,7 @@ namespace app_integration
       ::file::path      m_pathDownloadURL;
 
 
-      int               m_iExitCode;
+      ::i32               m_iExitCode;
       ::string_array_base    m_straOutput;
       ::file::path      m_pathIntegration;
 
@@ -40,8 +40,8 @@ namespace app_integration
 
 
 #ifdef _DEBUG
-      long long increment_reference_count() override;
-      long long decrement_reference_count() override;
+      ::i64 increment_reference_count() override;
+      ::i64 decrement_reference_count() override;
 #endif
 
 

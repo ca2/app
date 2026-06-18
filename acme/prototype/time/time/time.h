@@ -65,7 +65,7 @@ public:
 
    template < prototype_integer INTEGER >
    constexpr time(INTEGER iSecond)
-      : posix_time( {posix_time_t{}, (long long)iSecond}), nanosecond({nanosecond_t{}, 0})
+      : posix_time( {posix_time_t{}, (::i64)iSecond}), nanosecond({nanosecond_t{}, 0})
    {
       
       
@@ -81,7 +81,7 @@ public:
 
    template < prototype_integer INTEGER1, prototype_integral INTEGRAL2 >
    constexpr time(INTEGER1 iSecond, INTEGRAL2 iNanosecond) :
-      posix_time( {posix_time_t{}, (long long)iSecond}), nanosecond({nanosecond_t{}, (long long)iNanosecond})
+      posix_time( {posix_time_t{}, (::i64)iSecond}), nanosecond({nanosecond_t{}, (::i64)iNanosecond})
    { }
 
 
@@ -135,13 +135,13 @@ public:
    static constexpr time create_null();
 
 
-   void fset(long double dSeconds);
-   void fset(long double dSeconds, double dNanoseconds);
-   static time fcreate(long double dSeconds, double dNanoseconds);
+   void fset(::f128 dSeconds);
+   void fset(::f128 dSeconds, ::f64 dNanoseconds);
+   static time fcreate(::f128 dSeconds, ::f64 dNanoseconds);
 
 
-   constexpr void set(long long i, enum_unit eunit);
-   void set(long double d, enum_unit eunit);
+   constexpr void set(::i64 i, enum_unit eunit);
+   void set(::f128 d, enum_unit eunit);
 
 
    //inline bool is_infinity() const;
@@ -171,8 +171,8 @@ public:
 
    //constexpr operator bool() const;
 
-   constexpr long long total_nanoseconds() const { return m_iSecond * 1'000'000'000 + m_iNanosecond; }
-   //constexpr  double operator() ()const { return floating_second(); }
+   constexpr ::i64 total_nanoseconds() const { return m_iSecond * 1'000'000'000 + m_iNanosecond; }
+   //constexpr  ::f64 operator() ()const { return floating_second(); }
 
 
    //static inline class ::time first();
@@ -232,13 +232,13 @@ public:
 
    }
 
-   inline double period_rate(const class time & timePeriod) const { return period_rate(timePeriod, now()); }
+   inline ::f64 period_rate(const class time & timePeriod) const { return period_rate(timePeriod, now()); }
 
-   constexpr double period_rate(const class time & timePeriod, const class time & time) const { return ((time - *this) % timePeriod) / timePeriod; }
+   constexpr ::f64 period_rate(const class time & timePeriod, const class time & time) const { return ((time - *this) % timePeriod) / timePeriod; }
 
-   inline double ramp_up(const class time & timePeriod) const { return ramp_up(timePeriod, now()); }
+   inline ::f64 ramp_up(const class time & timePeriod) const { return ramp_up(timePeriod, now()); }
 
-   constexpr double ramp_up(const class time & timePeriod, const class time & time) const;
+   constexpr ::f64 ramp_up(const class time & timePeriod, const class time & time) const;
 
    //inline class ::time operator - (const class time & time) const { return { e_normalize, m_iSecond - time.m_iSecond, m_iNanosecond - time.m_iNanosecond }; }
    //inline class ::time operator + (const class time & time) const { return { e_normalize, m_iSecond + time.m_iSecond, m_iNanosecond + time.m_iNanosecond }; }
@@ -252,7 +252,7 @@ public:
 
       auto nanosecond = (m_iSecond * 1'000'000'000.0 + m_iNanosecond) / d;
 
-      return { e_raw, (long long)(nanosecond / 1'000'000'000.0), (long)fmod(nanosecond, 1'000'000'000.0) };
+      return { e_raw, (::i64)(nanosecond / 1'000'000'000.0), (long)fmod(nanosecond, 1'000'000'000.0) };
 
    }
 
@@ -263,7 +263,7 @@ public:
 
       auto nanosecond = (m_iSecond * 1'000'000'000.0 + m_iNanosecond) * d;
 
-      return { e_raw, (long long)(nanosecond / 1'000'000'000.0), (long)fmod(nanosecond, 1'000'000'000.0) };
+      return { e_raw, (::i64)(nanosecond / 1'000'000'000.0), (long)fmod(nanosecond, 1'000'000'000.0) };
 
    }
 
@@ -274,7 +274,7 @@ public:
 
       auto nanosecond = (m_iSecond * 1'000'000'000 + m_iNanosecond) / i;
 
-      return { e_raw, (long long)(nanosecond / 1'000'000'000), (long)(nanosecond % 1'000'000'000) };
+      return { e_raw, (::i64)(nanosecond / 1'000'000'000), (long)(nanosecond % 1'000'000'000) };
 
    }
 
@@ -285,7 +285,7 @@ public:
 
       auto nanosecond = (m_iSecond * 1'000'000'000 + m_iNanosecond) * i;
 
-      return { e_raw, (long long)(nanosecond / 1'000'000'000), (long)(nanosecond % 1'000'000'000) };
+      return { e_raw, (::i64)(nanosecond / 1'000'000'000), (long)(nanosecond % 1'000'000'000) };
 
    }
 
@@ -380,25 +380,25 @@ public:
 
 
 
-   constexpr long long integral_day() const { return m_iSecond / 86'400; }
-   constexpr long long integral_hour() const { return m_iSecond / 3'600; }
-   constexpr long long integral_minute() const { return m_iSecond / 60; }
-   constexpr long long integral_second() const { return m_iSecond; }
-   constexpr long long integral_millisecond() const { return m_iSecond * 1'000 + m_iNanosecond / 1'000'000; }
-   constexpr long long integral_microsecond() const { return m_iSecond * 1'000'000 + m_iNanosecond / 1'000; }
-   constexpr long long integral_nanosecond() const { return m_iSecond * 1'000'000'000 + m_iNanosecond; }
+   constexpr ::i64 integral_day() const { return m_iSecond / 86'400; }
+   constexpr ::i64 integral_hour() const { return m_iSecond / 3'600; }
+   constexpr ::i64 integral_minute() const { return m_iSecond / 60; }
+   constexpr ::i64 integral_second() const { return m_iSecond; }
+   constexpr ::i64 integral_millisecond() const { return m_iSecond * 1'000 + m_iNanosecond / 1'000'000; }
+   constexpr ::i64 integral_microsecond() const { return m_iSecond * 1'000'000 + m_iNanosecond / 1'000; }
+   constexpr ::i64 integral_nanosecond() const { return m_iSecond * 1'000'000'000 + m_iNanosecond; }
 
 
-   constexpr double floating_day() const { return floating_second() / 86'400.0; }
-   constexpr double floating_hour() const { return floating_second() / 3'600.0; }
-   constexpr double floating_minute() const { return floating_second() / 60.0; }
-   constexpr double floating_second() const { return ((double)m_iSecond) + ((double) m_iNanosecond / 1'000'000'000.0); }
-   constexpr double floating_millisecond() const { return ((double)m_iSecond * 1'000.0) + ((double)m_iNanosecond / 1'000'000.0);}
-   constexpr double floating_microsecond() const { return ((double)m_iSecond * 1'000'000.0) + ((double)m_iNanosecond / 1'000.0); }
-   constexpr double floating_nanosecond() const { return (double)integral_nanosecond(); }
+   constexpr ::f64 floating_day() const { return floating_second() / 86'400.0; }
+   constexpr ::f64 floating_hour() const { return floating_second() / 3'600.0; }
+   constexpr ::f64 floating_minute() const { return floating_second() / 60.0; }
+   constexpr ::f64 floating_second() const { return ((::f64)m_iSecond) + ((::f64) m_iNanosecond / 1'000'000'000.0); }
+   constexpr ::f64 floating_millisecond() const { return ((::f64)m_iSecond * 1'000.0) + ((::f64)m_iNanosecond / 1'000'000.0);}
+   constexpr ::f64 floating_microsecond() const { return ((::f64)m_iSecond * 1'000'000.0) + ((::f64)m_iNanosecond / 1'000.0); }
+   constexpr ::f64 floating_nanosecond() const { return (::f64)integral_nanosecond(); }
 
 
-   int millisecond() const { return (int) (m_iNanosecond / 1'000'000); }
+   ::i32 millisecond() const { return (::i32) (m_iNanosecond / 1'000'000); }
 
 
    constexpr  bool operator == (const class time & time) const { return m_iSecond == time.m_iSecond && m_iNanosecond == time.m_iNanosecond; }
@@ -429,7 +429,7 @@ public:
    }
 
    constexpr time operator %(const class time & time) const;
-   constexpr double operator /(const class time & time) const;
+   constexpr ::f64 operator /(const class time & time) const;
    constexpr time operator +(const class time & time) const { return { e_normalize, this->m_iSecond + time.m_iSecond, this->m_iNanosecond + time.m_iNanosecond }; }
    constexpr time operator -(const class time & time) const { return { e_normalize, this->m_iSecond - time.m_iSecond, this->m_iNanosecond - time.m_iNanosecond }; }
 
@@ -580,12 +580,12 @@ public:
    //inline bool operator >= (const ::floating_day & day) const { return operator >= (class ::time(day)); }
 
 
-   //inline bool operator == (const class time & time) const { return operator == (class ::time(floating_second(time.m_d))); }
-   //inline bool operator != (const class time & time) const { return operator != (class ::time(floating_second(time.m_d))); }
-   //inline bool operator < (const class time & time) const { return operator < (class ::time(floating_second(time.m_d))); }
-   //inline bool operator <= (const class time & time) const { return operator <= (class ::time(floating_second(time.m_d))); }
-   //inline bool operator > (const class time & time) const { return operator > (class ::time(floating_second(time.m_d))); }
-   //inline bool operator >= (const class time & time) const { return operator >= (class ::time(floating_second(time.m_d))); }
+   //inline bool operator == (const class time & time) const { return operator == (class ::time(floating_second(time.m_f64))); }
+   //inline bool operator != (const class time & time) const { return operator != (class ::time(floating_second(time.m_f64))); }
+   //inline bool operator < (const class time & time) const { return operator < (class ::time(floating_second(time.m_f64))); }
+   //inline bool operator <= (const class time & time) const { return operator <= (class ::time(floating_second(time.m_f64))); }
+   //inline bool operator > (const class time & time) const { return operator > (class ::time(floating_second(time.m_f64))); }
+   //inline bool operator >= (const class time & time) const { return operator >= (class ::time(floating_second(time.m_f64))); }
 
 
 
@@ -593,43 +593,43 @@ public:
 
 
    //time operator %(const ::integral_nanosecond & time) const { return operator % ((class ::time)time);}
-   //double operator /(const ::integral_nanosecond & time) const { return operator / ((class ::time)time);}
+   //::f64 operator /(const ::integral_nanosecond & time) const { return operator / ((class ::time)time);}
    //time operator +(const ::integral_nanosecond & time) const { return operator + ((class ::time)time); }
    //time operator -(const ::integral_nanosecond & time) const { return operator - ((class ::time)time); }
 
 
    //time operator %(const ::integral_microsecond & time) const { return operator % ((class ::time)time); }
-   //double operator /(const ::integral_microsecond& time) const { return operator / ((class ::time)time); }
+   //::f64 operator /(const ::integral_microsecond& time) const { return operator / ((class ::time)time); }
    //time operator +(const ::integral_microsecond& time) const { return operator + ((class ::time)time); }
    //time operator -(const ::integral_microsecond& time) const { return operator - ((class ::time)time); }
 
 
    //time operator %(const ::integral_millisecond & time) const { return operator % ((class ::time)time); }
-   //double operator /(const ::integral_millisecond& time) const { return operator / ((class ::time)time); }
+   //::f64 operator /(const ::integral_millisecond& time) const { return operator / ((class ::time)time); }
    //time operator +(const ::integral_millisecond& time) const { return operator + ((class ::time)time); }
    //time operator -(const ::integral_millisecond& time) const { return operator - ((class ::time)time); }
 
 
    //time operator %(const ::integral_second & time) const { return operator % ((class ::time)time); }
-   //double operator /(const ::integral_second& time) const { return operator / ((class ::time)time); }
+   //::f64 operator /(const ::integral_second& time) const { return operator / ((class ::time)time); }
    //time operator +(const ::integral_second& time) const { return operator + ((class ::time)time); }
    //time operator -(const ::integral_second& time) const { return operator - ((class ::time)time); }
 
 
    //time operator %(const ::integral_minute & time) const { return operator % ((class ::time)time); }
-   //double operator /(const ::integral_minute& time) const { return operator / ((class ::time)time); }
+   //::f64 operator /(const ::integral_minute& time) const { return operator / ((class ::time)time); }
    //time operator +(const ::integral_minute& time) const { return operator + ((class ::time)time); }
    //time operator -(const ::integral_minute& time) const { return operator - ((class ::time)time); }
 
 
    //time operator %(const ::integral_hour & time) const { return operator % ((class ::time)time); }
-   //double operator /(const ::integral_hour& time) const { return operator / ((class ::time)time); }
+   //::f64 operator /(const ::integral_hour& time) const { return operator / ((class ::time)time); }
    //time operator +(const ::integral_hour& time) const { return operator + ((class ::time)time); }
    //time operator -(const ::integral_hour& time) const { return operator - ((class ::time)time); }
 
 
    //time operator %(const ::integral_day & time) const { return operator % ((class ::time)time); }
-   //double operator /(const ::integral_day& time) const { return operator / ((class ::time)time); }
+   //::f64 operator /(const ::integral_day& time) const { return operator / ((class ::time)time); }
    //time operator +(const ::integral_day& time) const { return operator + ((class ::time)time); }
    //time operator -(const ::integral_day& time) const { return operator - ((class ::time)time); }
 
@@ -642,43 +642,43 @@ public:
 
 
    //time operator %(const ::floating_nanosecond & time) const { return operator % ((class ::time)time); }
-   //double operator /(const ::floating_nanosecond& time) const { return operator / ((class ::time)time); }
+   //::f64 operator /(const ::floating_nanosecond& time) const { return operator / ((class ::time)time); }
    //time operator +(const ::floating_nanosecond& time) const { return operator + ((class ::time)time); }
    //time operator -(const ::floating_nanosecond& time) const { return operator - ((class ::time)time); }
 
 
    //time operator %(const ::floating_microsecond & time) const { return operator % ((class ::time)time); }
-   //double operator /(const ::floating_microsecond& time) const { return operator / ((class ::time)time); }
+   //::f64 operator /(const ::floating_microsecond& time) const { return operator / ((class ::time)time); }
    //time operator +(const ::floating_microsecond& time) const { return operator + ((class ::time)time); }
    //time operator -(const ::floating_microsecond& time) const { return operator - ((class ::time)time); }
 
 
    //time operator %(const ::floating_millisecond & time) const { return operator % ((class ::time)time); }
-   //double operator /(const ::floating_millisecond& time) const { return operator / ((class ::time)time); }
+   //::f64 operator /(const ::floating_millisecond& time) const { return operator / ((class ::time)time); }
    //time operator +(const ::floating_millisecond& time) const { return operator + ((class ::time)time); }
    //time operator -(const ::floating_millisecond& time) const { return operator - ((class ::time)time); }
 
 
    //time operator %(const ::floating_second & time) const { return operator % ((class ::time)time); }
-   //double operator /(const ::floating_second& time) const { return operator / ((class ::time)time); }
+   //::f64 operator /(const ::floating_second& time) const { return operator / ((class ::time)time); }
    //time operator +(const ::floating_second& time) const { return operator + ((class ::time)time); }
    //time operator -(const ::floating_second& time) const { return operator - ((class ::time)time); }
 
 
    //time operator %(const ::floating_minute & time) const { return operator % ((class ::time)time); }
-   //double operator /(const ::floating_minute& time) const { return operator / ((class ::time)time); }
+   //::f64 operator /(const ::floating_minute& time) const { return operator / ((class ::time)time); }
    //time operator +(const ::floating_minute& time) const { return operator + ((class ::time)time); }
    //time operator -(const ::floating_minute& time) const { return operator - ((class ::time)time); }
 
 
    //time operator %(const ::floating_hour & time) const { return operator % ((class ::time)time); }
-   //double operator /(const ::floating_hour& time) const { return operator / ((class ::time)time); }
+   //::f64 operator /(const ::floating_hour& time) const { return operator / ((class ::time)time); }
    //time operator +(const ::floating_hour& time) const { return operator + ((class ::time)time); }
    //time operator -(const ::floating_hour& time) const { return operator - ((class ::time)time); }
 
 
    //time operator %(const ::floating_day & time) const { return operator % ((class ::time)time); }
-   //double operator /(const ::floating_day& time) const { return operator / ((class ::time)time); }
+   //::f64 operator /(const ::floating_day& time) const { return operator / ((class ::time)time); }
    //time operator +(const ::floating_day& time) const { return operator + ((class ::time)time); }
    //time operator -(const ::floating_day& time) const { return operator - ((class ::time)time); }
 
@@ -690,7 +690,7 @@ public:
 
 
    //time operator %(const class time & time) const { return *this % class ::time(time);}
-   //double operator /(const class time & time) const { return *this / class ::time(time);}
+   //::f64 operator /(const class time & time) const { return *this / class ::time(time);}
    //time operator +(const class time & time) const { return *this + class ::time(time); }
    //time operator -(const class time & time) const { return *this - class ::time(time); }
 
@@ -813,43 +813,43 @@ public:
 
 
    //time operator %(const ::integral_nanosecond& time) const { return operator % ((class ::time)time); }
-   //double operator /(const ::integral_nanosecond& time) const { return operator / ((class ::time)time); }
+   //::f64 operator /(const ::integral_nanosecond& time) const { return operator / ((class ::time)time); }
    //time operator +(const ::integral_nanosecond& time) const { return operator + ((class ::time)time); }
    //time operator -(const ::integral_nanosecond& time) const { return operator - ((class ::time)time); }
 
 
    //time operator %(const ::integral_microsecond& time) const { return operator % ((class ::time)time); }
-   //double operator /(const ::integral_microsecond& time) const { return operator / ((class ::time)time); }
+   //::f64 operator /(const ::integral_microsecond& time) const { return operator / ((class ::time)time); }
    //time operator +(const ::integral_microsecond& time) const { return operator + ((class ::time)time); }
    //time operator -(const ::integral_microsecond& time) const { return operator - ((class ::time)time); }
 
 
    //time operator %(const ::integral_millisecond& time) const { return operator % ((class ::time)time); }
-   //double operator /(const ::integral_millisecond& time) const { return operator / ((class ::time)time); }
+   //::f64 operator /(const ::integral_millisecond& time) const { return operator / ((class ::time)time); }
    //time operator +(const ::integral_millisecond& time) const { return operator + ((class ::time)time); }
    //time operator -(const ::integral_millisecond& time) const { return operator - ((class ::time)time); }
 
 
    //time operator %(const ::integral_second& time) const { return operator % ((class ::time)time); }
-   //double operator /(const ::integral_second& time) const { return operator / ((class ::time)time); }
+   //::f64 operator /(const ::integral_second& time) const { return operator / ((class ::time)time); }
    //time operator +(const ::integral_second& time) const { return operator + ((class ::time)time); }
    //time operator -(const ::integral_second& time) const { return operator - ((class ::time)time); }
 
 
    //time operator %(const ::integral_minute& time) const { return operator % ((class ::time)time); }
-   //double operator /(const ::integral_minute& time) const { return operator / ((class ::time)time); }
+   //::f64 operator /(const ::integral_minute& time) const { return operator / ((class ::time)time); }
    //time operator +(const ::integral_minute& time) const { return operator + ((class ::time)time); }
    //time operator -(const ::integral_minute& time) const { return operator - ((class ::time)time); }
 
 
    //time operator %(const ::integral_hour& time) const { return operator % ((class ::time)time); }
-   //double operator /(const ::integral_hour& time) const { return operator / ((class ::time)time); }
+   //::f64 operator /(const ::integral_hour& time) const { return operator / ((class ::time)time); }
    //time operator +(const ::integral_hour& time) const { return operator + ((class ::time)time); }
    //time operator -(const ::integral_hour& time) const { return operator - ((class ::time)time); }
 
 
    //time operator %(const ::integral_day& time) const { return operator % ((class ::time)time); }
-   //double operator /(const ::integral_day& time) const { return operator / ((class ::time)time); }
+   //::f64 operator /(const ::integral_day& time) const { return operator / ((class ::time)time); }
    //time operator +(const ::integral_day& time) const { return operator + ((class ::time)time); }
    //time operator -(const ::integral_day& time) const { return operator - ((class ::time)time); }
 
@@ -862,43 +862,43 @@ public:
 
 
    //time operator %(const ::floating_nanosecond& time) const { return operator % ((class ::time)time); }
-   //double operator /(const ::floating_nanosecond& time) const { return operator / ((class ::time)time); }
+   //::f64 operator /(const ::floating_nanosecond& time) const { return operator / ((class ::time)time); }
    //time operator +(const ::floating_nanosecond& time) const { return operator + ((class ::time)time); }
    //time operator -(const ::floating_nanosecond& time) const { return operator - ((class ::time)time); }
 
 
    //time operator %(const ::floating_microsecond& time) const { return operator % ((class ::time)time); }
-   //double operator /(const ::floating_microsecond& time) const { return operator / ((class ::time)time); }
+   //::f64 operator /(const ::floating_microsecond& time) const { return operator / ((class ::time)time); }
    //time operator +(const ::floating_microsecond& time) const { return operator + ((class ::time)time); }
    //time operator -(const ::floating_microsecond& time) const { return operator - ((class ::time)time); }
 
 
    //time operator %(const ::floating_millisecond& time) const { return operator % ((class ::time)time); }
-   //double operator /(const ::floating_millisecond& time) const { return operator / ((class ::time)time); }
+   //::f64 operator /(const ::floating_millisecond& time) const { return operator / ((class ::time)time); }
    //time operator +(const ::floating_millisecond& time) const { return operator + ((class ::time)time); }
    //time operator -(const ::floating_millisecond& time) const { return operator - ((class ::time)time); }
 
 
    //time operator %(const ::floating_second& time) const { return operator % ((class ::time)time); }
-   //double operator /(const ::floating_second& time) const { return operator / ((class ::time)time); }
+   //::f64 operator /(const ::floating_second& time) const { return operator / ((class ::time)time); }
    //time operator +(const ::floating_second& time) const { return operator + ((class ::time)time); }
    //time operator -(const ::floating_second& time) const { return operator - ((class ::time)time); }
 
 
    //time operator %(const ::floating_minute& time) const { return operator % ((class ::time)time); }
-   //double operator /(const ::floating_minute& time) const { return operator / ((class ::time)time); }
+   //::f64 operator /(const ::floating_minute& time) const { return operator / ((class ::time)time); }
    //time operator +(const ::floating_minute& time) const { return operator + ((class ::time)time); }
    //time operator -(const ::floating_minute& time) const { return operator - ((class ::time)time); }
 
 
    //time operator %(const ::floating_hour& time) const { return operator % ((class ::time)time); }
-   //double operator /(const ::floating_hour& time) const { return operator / ((class ::time)time); }
+   //::f64 operator /(const ::floating_hour& time) const { return operator / ((class ::time)time); }
    //time operator +(const ::floating_hour& time) const { return operator + ((class ::time)time); }
    //time operator -(const ::floating_hour& time) const { return operator - ((class ::time)time); }
 
 
    //time operator %(const ::floating_day& time) const { return operator % ((class ::time)time); }
-   //double operator /(const ::floating_day& time) const { return operator / ((class ::time)time); }
+   //::f64 operator /(const ::floating_day& time) const { return operator / ((class ::time)time); }
    //time operator +(const ::floating_day& time) const { return operator + ((class ::time)time); }
    //time operator -(const ::floating_day& time) const { return operator - ((class ::time)time); }
 
@@ -908,7 +908,7 @@ public:
 };
 
 
-//inline doubled floatingtime() { return ::get_floating_second(); }
+//inline f64d floatingtime() { return ::get_floating_second(); }
 
 //template < prototype_integral INTEGRAL1, prototype_integral INTEGRAL2 >
 //constexpr  time::time(enum_raw, INTEGRAL1 iSeconds, INTEGRAL2 iNanoseconds)
@@ -1045,7 +1045,7 @@ constexpr bool time::is_null() const
 constexpr  class ::time time::infinity()
 {
 
-   return {(long long)I64_MAXIMUM,(long long)0};
+   return {(::i64)I64_MAXIMUM,(::i64)0};
 
 }
 
@@ -1053,7 +1053,7 @@ constexpr  class ::time time::infinity()
 //inline class ::time time::pos_infinity()
 //{
 //
-//   return {(long long)I64_MAXIMUM, (long long)0};
+//   return {(::i64)I64_MAXIMUM, (::i64)0};
 //
 //}
 
@@ -1061,7 +1061,7 @@ constexpr  class ::time time::infinity()
 //constexpr  class ::time time::zero()
 //{
 //
-//   return {(long long)0,(long long) 0};
+//   return {(::i64)0,(::i64) 0};
 //
 //}
 
@@ -1100,7 +1100,7 @@ class time operator * (FLOATING d, const class time & time)
 
    auto nanosecond = d * (time.m_iSecond * 1'000'000'000.0 + time.m_iNanosecond);
 
-   return { e_raw, (long long)(nanosecond / 1'000'000'000.0), (long)fmod(nanosecond, 1'000'000'000.0) };
+   return { e_raw, (::i64)(nanosecond / 1'000'000'000.0), (long)fmod(nanosecond, 1'000'000'000.0) };
 
 }
 
@@ -1111,7 +1111,7 @@ class time operator * (INTEGRAL i, const class time & time)
 
    auto nanosecond = i * (time.m_iSecond * 1'000'000'000 + time.m_iNanosecond);
 
-   return { e_raw, (long long)(nanosecond / 1'000'000'000), (long)(nanosecond % 1'000'000'000) };
+   return { e_raw, (::i64)(nanosecond / 1'000'000'000), (long)(nanosecond % 1'000'000'000) };
 
 }
 
@@ -1122,7 +1122,7 @@ class time operator * (INTEGRAL i, const class time & time)
 //
 //   class time time(*this);
 //
-//   return time.integral_nanosecond().m_i;
+//   return time.integral_nanosecond().m_i32;
 //
 //}
 
@@ -1243,15 +1243,15 @@ inline class time time::remaining(const class time & time, const class time & ti
 template < prototype_integral INTEGRAL >
 constexpr class time nanosecond_time(INTEGRAL i) { return { (INTEGRAL)i / 1'000'000'000, (long)(i % 1'000'000'000) }; }
 template < prototype_floating FLOATING >
-constexpr class time nanosecond_time(FLOATING f) { return { (long long)(f / 1'000'000'000.0), (long)(fmod(f, 1'000'000'000.0)) }; }
+constexpr class time nanosecond_time(FLOATING f) { return { (::i64)(f / 1'000'000'000.0), (long)(fmod(f, 1'000'000'000.0)) }; }
 template < prototype_integral INTEGRAL >
 constexpr class time microsecond_time(INTEGRAL i) { return { i / 1'000'000, (long)((i % 1'000'000) * 1'000) }; }
 template < prototype_floating FLOATING >
-constexpr class time microsecond_time(FLOATING f) { return { (long long)(f / 1'000'000.0), (long)(fmod(f, 1'000'000.0) * 1'000.0) }; }
+constexpr class time microsecond_time(FLOATING f) { return { (::i64)(f / 1'000'000.0), (long)(fmod(f, 1'000'000.0) * 1'000.0) }; }
 template < prototype_integral INTEGRAL >
 constexpr class time millisecond_time(INTEGRAL i) { return { i / 1'000, (long)((i % 1'000) * 1'000'000) }; }
 template < prototype_floating FLOATING >
-constexpr class time millisecond_time(FLOATING f) { return { (long long)(f / 1'000.0), (long)(fmod(f, 1'000.0) * 1'000'000.0) }; }
+constexpr class time millisecond_time(FLOATING f) { return { (::i64)(f / 1'000.0), (long)(fmod(f, 1'000.0) * 1'000'000.0) }; }
 template < prototype_integral INTEGRAL >
 constexpr class time second_time(INTEGRAL i) { return { i }; }
 template < prototype_integral NUMERATOR, prototype_integral DENOMINATOR >
@@ -1259,8 +1259,8 @@ constexpr class time second_time(NUMERATOR numerator, DENOMINATOR denominator)
 {
    return  
    { 
-      (long long) (numerator / denominator),
-      (long long) muldiv64((numerator % denominator), 1'000'000'000 , denominator)
+      (::i64) (numerator / denominator),
+      (::i64) muldiv64((numerator % denominator), 1'000'000'000 , denominator)
    }; 
 }
 template < prototype_floating FLOATING >
@@ -1288,9 +1288,9 @@ constexpr void time::normalize()
 
    m_iNanosecond %= SECOND_NANOS;
 
-   int iSecondSign = ::numeric::sign(m_iSecond);
+   ::i32 iSecondSign = ::numeric::sign(m_iSecond);
 
-   int iNanosecondSign = ::numeric::sign(m_iNanosecond);
+   ::i32 iNanosecondSign = ::numeric::sign(m_iNanosecond);
 
    if (iSecondSign == -iNanosecondSign && iSecondSign != 0)
    {
@@ -1318,7 +1318,7 @@ constexpr class ::time time::half() const
 
    auto nanosecond = (m_iSecond * 1'000'000'000 + m_iNanosecond);
 
-   auto iSecond = (long long)(nanosecond / 1'000'000'000);
+   auto iSecond = (::i64)(nanosecond / 1'000'000'000);
 
    auto iNanosecond = (long)(nanosecond % 1'000'000'000);
 
@@ -1358,21 +1358,21 @@ constexpr class ::time time::operator % (const class time & time) const
 }
 
 
-constexpr double time::operator / (const class time & time) const
+constexpr ::f64 time::operator / (const class time & time) const
 {
 
    auto nanosecondThis = m_iSecond * 1'000'000'000 + m_iNanosecond;
 
    auto nanosecond = time.m_iSecond * 1'000'000'000 + time.m_iNanosecond;
 
-   return (double)nanosecondThis / (double)nanosecond;
+   return (::f64)nanosecondThis / (::f64)nanosecond;
 
 }
 
 
 
 
-constexpr void time::set(long long i, enum_unit eunit)
+constexpr void time::set(::i64 i, enum_unit eunit)
 {
 
    switch (eunit)

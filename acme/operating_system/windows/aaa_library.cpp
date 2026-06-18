@@ -29,7 +29,7 @@ namespace nano
 
       string strPath(pathParam);
 
-      unsigned int uiError;
+      ::u32 uiError;
 
       void* plibrary = nullptr;
 
@@ -241,7 +241,7 @@ namespace nano
 
       string strPath(pathParam);
 
-      unsigned int uiError;
+      ::u32 uiError;
 
       void* plibrary = nullptr;
 
@@ -497,7 +497,7 @@ namespace nano
       else
       {
 
-         unsigned int uiError = GetLastError();
+         ::u32 uiError = GetLastError();
 
          strMessage = "Failed to Load Library (2) " + string(pathParam) + " with error (" + ::as_string(uiError) +
             ")" + ::windows::last_error_message(uiError);

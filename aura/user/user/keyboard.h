@@ -2,7 +2,7 @@
 
 
 ////#include "acme/prototype/prototype/object.h"
-#include "acme/prototype/collection/int_map.h"
+#include "acme/prototype/collection/integer_map.h"
 
 
 namespace user
@@ -16,9 +16,9 @@ namespace user
    public:
 
 
-      ::int_map < ::user::enum_key >              m_mapExt;
-      ::int_map < ::user::enum_key >              m_mapScan;
-      ::int_map < ::user::enum_key >              m_mapKey;
+      ::i32_map < ::user::enum_key >              m_mapExt;
+      ::i32_map < ::user::enum_key >              m_mapScan;
+      ::i32_map < ::user::enum_key >              m_mapKey;
 
       
       keyboard();

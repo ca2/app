@@ -33,9 +33,9 @@ namespace user
 
 #ifdef _DEBUG
 
-         long long increment_reference_count() override;
-         long long decrement_reference_count() override;
-         long long release() override;
+         ::i64 increment_reference_count() override;
+         ::i64 decrement_reference_count() override;
+         ::i64 release() override;
 
 #endif
 
@@ -43,7 +43,10 @@ namespace user
       void destroy() override;
 
 
-      void on_timer(::timer * ptimer) override;
+      //void operator()(::timer * ptimer) override;
+
+
+      void operator()(::timer * ptimer) override;
 
 
       void create_message_queue(const ::scoped_string & scopedstrName) override;
@@ -65,13 +68,13 @@ namespace user
       virtual DECLARE_MESSAGE_HANDLER(_008GetWindowText);
       virtual DECLARE_MESSAGE_HANDLER(_008GetWindowTextLength);
 //#ifdef WINDOWS
-//      virtual character_count _009GetWindowText(wchar_t * pwsz, int n);
+//      virtual character_count _009GetWindowText(wchar_t * pwsz, ::i32 n);
 //#else
-//      character_count _009GetWindowText(char * psz, int n) override;
+//      character_count _009GetWindowText(char_pointer psz, ::i32 n) override;
 //#endif
 //      character_count _009GetWindowTextLength() override;
 
-      bool GetFocusRect(::int_rectangle & rectangle) override;
+      bool GetFocusRect(::i32_rectangle & rectangle) override;
 
       void defer_update_display() override;
 
@@ -112,7 +115,7 @@ namespace user
 
       bool is_place_holder() override;
 
-      double _001GetTopLeftWeightedOccludedOpaqueRate() override;
+      ::f64 _001GetTopLeftWeightedOccludedOpaqueRate() override;
 
       virtual ::windowing::cursor * get_mouse_cursor();
 
@@ -120,15 +123,15 @@ namespace user
 
       virtual void set_default_mouse_cursor(::windowing::cursor * pcursor);
 
-      //virtual ::int_point get_cursor_position() const;
+      //virtual ::i32_point get_cursor_position() const;
 
       bool _is_window() const override;
 
-      //virtual int get_window_long(int nIndex) const;
-      //virtual int set_window_long(int nIndex,int lValue);
+      //virtual ::i32 get_window_long(::i32 nIndex) const;
+      //virtual ::i32 set_window_long(::i32 nIndex,::i32 lValue);
 
-      //virtual iptr get_window_long_ptr(int nIndex) const;
-      //virtual void set_window_long_ptr(int nIndex, iptr lValue);
+      //virtual iptr get_window_long_ptr(::i32 nIndex) const;
+      //virtual void set_window_long_ptr(::i32 nIndex, iptr lValue);
 
       ::user::interaction * first_child() override;
       ::user::interaction * last_child() override;
@@ -161,9 +164,9 @@ namespace user
 
       void update_dialog_controls(channel * ptarget) override;
       void CenterWindow(::user::interaction * pAlternateOwner = nullptr)  override;
-      //atom run_modal_loop(::user::interaction * pinteraction, unsigned int dwFlags = 0) override;
-      //atom RunModalLoop(unsigned int dwFlags = 0)  override;
-      //atom _001RunModalLoop(unsigned int dwFlags = 0)  override;
+      //atom run_modal_loop(::user::interaction * pinteraction, ::u32 dwFlags = 0) override;
+      //atom RunModalLoop(::u32 dwFlags = 0)  override;
+      //atom _001RunModalLoop(::u32 dwFlags = 0)  override;
       //bool ContinueModal()  override;
       //void EndModalLoop(atom nResult)  override;
 
@@ -195,7 +198,7 @@ namespace user
 
       virtual void design_window_minimize(const ::user::activation & useractivation);
       virtual void design_window_maximize();
-      virtual void design_window_full_screen(const ::int_rectangle & rectangleHint = {});
+      virtual void design_window_full_screen(const ::i32_rectangle & rectangleHint = {});
       virtual void design_window_normal(e_display edisplay);
       virtual void design_window_dock(e_display edisplayDock);
 
@@ -236,7 +239,7 @@ namespace user
       
 
       //virtual bool create_window_ex(::pointer<::user::system>pcs, ::user::interaction * puiParent, const ::atom & atom);
-      //virtual void CalcWindowRect(::int_rectangle * pClientRect,unsigned int nAdjustType = adjustBorder);
+      //virtual void CalcWindowRect(::i32_rectangle * pClientRect,::u32 nAdjustType = adjustBorder);
 
 
       //virtual bool IsTopParentActive();
@@ -249,7 +252,7 @@ namespace user
 
 //#ifdef WINDOWS
 
-  //    virtual bool RedrawWindow(const ::int_rectangle& rectangleUpdate = nullptr, ::draw2d::region * prgnUpdate = nullptr, unsigned int flags = RDW_INVALIDATE | RDW_ERASE);
+  //    virtual bool RedrawWindow(const ::i32_rectangle& rectangleUpdate = nullptr, ::draw2d::region * prgnUpdate = nullptr, ::u32 flags = RDW_INVALIDATE | RDW_ERASE);
 
 //#else
 
@@ -259,7 +262,7 @@ namespace user
 
 //      virtual void UpdateWindow();
       //void SetRedraw(bool bRedraw = true) override;
-      //bool GetUpdateRect(::int_rectangle * prectangle,bool bErase = false) override;
+      //bool GetUpdateRect(::i32_rectangle * prectangle,bool bErase = false) override;
 
 
       void host_post(const ::procedure & procedure) override;
@@ -268,10 +271,10 @@ namespace user
 //      virtual lresult send(::message::message * pmessage);
       virtual void post_message(::message::message * pmessage);
 
-      lresult send_message(::user::enum_message eusermessage, ::wparam wparam = {}, ::lparam lparam = {}, const ::int_point & point = {}) override;
+      lresult send_message(::user::enum_message eusermessage, ::wparam wparam = {}, ::lparam lparam = {}, const ::i32_point & point = {}) override;
       lresult send_message(::message::message * pmessage) override;
 
-      lresult message_call(::user::enum_message eusermessage, ::wparam wparam = {}, ::lparam lparam = {}, const ::int_point & point = {}) override;
+      lresult message_call(::user::enum_message eusermessage, ::wparam wparam = {}, ::lparam lparam = {}, const ::i32_point & point = {}) override;
       lresult message_call(::message::message * pmessage) override;
 
       
@@ -292,8 +295,8 @@ namespace user
 
       //virtual bool user_post(::user::enum_message eusermessage, ::wparam wparam = {}, ::lparam lparam = {});
 
-      //virtual bool ModifyStyle(unsigned int dwRemove,unsigned int dwAdd,unsigned int nFlags = 0);
-      //virtual bool ModifyStyleEx(unsigned int dwRemove,unsigned int dwAdd,unsigned int nFlags = 0);
+      //virtual bool ModifyStyle(::u32 dwRemove,::u32 dwAdd,::u32 nFlags = 0);
+      //virtual bool ModifyStyleEx(::u32 dwRemove,::u32 dwAdd,::u32 nFlags = 0);
       //virtual bool _display(::e_display edisplay);
 
       //virtual void SetWindowDisplayChanged();
@@ -340,7 +343,7 @@ namespace user
       void set_window_text(const ::scoped_string & scopedstrString) override;
       void set_window_text_source(const ::a_string_function & function) override;
 
-      character_count get_window_text(char * pszStringBuf,character_count nMaxCount) override;
+      character_count get_window_text(char_pointer pszStringBuf,character_count nMaxCount) override;
 
       string get_window_text() override;
       void get_window_text(string & rString) override;
@@ -354,18 +357,18 @@ namespace user
 
 
 
-      bool _001IsPointInside(const ::int_point & point) override;
-      ::user::interaction * _001FromPoint(::int_point point,bool bTestedIfParentVisible = false) override;
+      bool _001IsPointInside(const ::i32_point & point) override;
+      ::user::interaction * _001FromPoint(::i32_point point,bool bTestedIfParentVisible = false) override;
 
       void OnLinkClick(const ::scoped_string & scopedstr,const ::scoped_string & scopedstrTarget = nullptr) override;
 
-      ::user::interaction * get_child_by_name(const ::scoped_string & scopedstrName, ::collection::index iItem = -1, int iLevel = -1) override;
-      ::user::interaction * get_child_by_id(const ::atom & atom, ::collection::index iItem = -1, int iLevel = -1) override;
-      ::user::element * get_primitive_by_id(const ::atom & atom, ::collection::index iItem = -1, int iLevel = -1) override;
+      ::user::interaction * get_child_by_name(const ::scoped_string & scopedstrName, ::collection::index iItem = -1, ::i32 iLevel = -1) override;
+      ::user::interaction * get_child_by_id(const ::atom & atom, ::collection::index iItem = -1, ::i32 iLevel = -1) override;
+      ::user::element * get_primitive_by_id(const ::atom & atom, ::collection::index iItem = -1, ::i32 iLevel = -1) override;
 
 
       ::user::interaction * get_wnd() override;
-      ::user::interaction * get_wnd(unsigned int nCmd) override;
+      ::user::interaction * get_wnd(::u32 nCmd) override;
       //virtual ::windowing::window * get_impl() const;
       ::task * get_task() override;
 
@@ -391,21 +394,21 @@ namespace user
       void pre_translate_message(::message::message * pmessage) override;
 
 
-      int get_descendant_level(::user::element * puserelement) override;
+      ::i32 get_descendant_level(::user::element * puserelement) override;
       //virtual bool is_descendant(const ::user::interaction_base * pinteraction,bool bIncludeSelf = false) const;
        ::user::interaction * get_focusable_descendant() override;
 
-      void RepositionBars(unsigned int nIDFirst, unsigned int nIDLast, ::atom idLeftOver, unsigned int nFlag = reposDefault, ::int_rectangle * prectParam = nullptr, const ::int_rectangle & rectangleX = {
+      void RepositionBars(::u32 nIDFirst, ::u32 nIDLast, ::atom idLeftOver, ::u32 nFlag = reposDefault, ::i32_rectangle * prectParam = nullptr, const ::i32_rectangle & rectangleX = {
          }, bool bStretch = true) override;
 
-      ::user::interaction * ChildWindowFromPoint(const ::int_point & point) override;
-      virtual ::user::interaction * ChildWindowFromPoint(const ::int_point & point,unsigned int nFlags) override;
+      ::user::interaction * ChildWindowFromPoint(const ::i32_point & point) override;
+      virtual ::user::interaction * ChildWindowFromPoint(const ::i32_point & point,::u32 nFlags) override;
 
 
 //#ifdef WINDOWS_DESKTOP
-  //    virtual ::user::interaction * get_next_window(unsigned int nFlag = GW_HWNDNEXT);
+  //    virtual ::user::interaction * get_next_window(::u32 nFlag = GW_HWNDNEXT);
 //#else
-      //virtual ::user::interaction * get_next_window(unsigned int nFlag = 0);
+      //virtual ::user::interaction * get_next_window(::u32 nFlag = 0);
 
       ::user::interaction * get_next_sibling_window() override;
 
@@ -432,7 +435,7 @@ namespace user
       //virtual void default_window_procedure(::message::message * pmessage);
 
 
-      //bool call_message_handler(::user::enum_message eusermessage, ::wparam wparam = {}, ::lparam lparam = {}, const ::int_point & point = {},lresult * presult = nullptr) override;
+      //bool call_message_handler(::user::enum_message eusermessage, ::wparam wparam = {}, ::lparam lparam = {}, const ::i32_point & point = {},lresult * presult = nullptr) override;
 
 
       //virtual void GuieProc(::message::message * pmessage);
@@ -445,8 +448,8 @@ namespace user
 
       ::windowing::window * window() override;
       
-      //virtual ::double_size _001CalculateFittingSize(::draw2d::graphics_pointer & pgraphics);
-      //virtual ::double_size _001CalculateAdjustedFittingSize(::draw2d::graphics_pointer & pgraphics);
+      //virtual ::f64_size _001CalculateFittingSize(::draw2d::graphics_pointer & pgraphics);
+      //virtual ::f64_size _001CalculateAdjustedFittingSize(::draw2d::graphics_pointer & pgraphics);
 
 
       //virtual bool can_merge(::user::interaction * pinteraction);
@@ -464,15 +467,15 @@ namespace user
 
       void set_context_org(::draw2d::graphics_pointer & pgraphics) override;
 
-      void viewport_screen_to_client(::int_sequence2 & sequence) override;
-      void viewport_client_to_screen(::int_sequence2 & sequence) override;
-      void viewport_client_to_screen(::int_rectangle & rectangle) override;
-      void viewport_screen_to_client(::int_rectangle & rectangle) override;
+      void viewport_screen_to_client(::i32_sequence2 & sequence) override;
+      void viewport_client_to_screen(::i32_sequence2 & sequence) override;
+      void viewport_client_to_screen(::i32_rectangle & rectangle) override;
+      void viewport_screen_to_client(::i32_rectangle & rectangle) override;
 
 
       string get_window_default_matter() override;
       string get_window_icon_matter() override;
-      unsigned int get_window_default_style() override;
+      ::u32 get_window_default_style() override;
       //virtual enum_type get_window_type() override;
 
 
@@ -583,11 +586,11 @@ namespace user
       void set_need_load_form_data() override;
       void set_need_save_form_data() override;
       void post_redraw(bool bAscendants = true) override;
-      void hide() override;
+      //void hide() override;
 
       // keyboard focus
       //virtual bool on_keyboard_focus(::user::interaction_base * pfocus);
-      void keyboard_focus_OnTimer(int iTimer) override;
+      void keyboard_focus_OnTimer(::i32 iTimer) override;
       void keyboard_focus_OnChar(::message::message * pmessage) override;
       void keyboard_focus_OnSysChar(::message::message * pmessage) override;
       void keyboard_focus_OnKeyDown(::message::message * pmessage) override;
@@ -627,7 +630,7 @@ namespace user
       bool _001CanEnterScreenSaver() override;
 
 
-      //virtual void on_timer(::timer * ptimer);
+      //void operator()(::timer * ptimer) override;
 
       void on_reset_focus_start_tick() override;
 
@@ -651,10 +654,10 @@ namespace user
 
 #endif
 
-      //virtual bool SetPlacement(const ::int_rectangle & rectangle, unsigned int nFlags = SWP_SHOWWINDOW);
+      //virtual bool SetPlacement(const ::i32_rectangle & rectangle, ::u32 nFlags = SWP_SHOWWINDOW);
 
       
-      int get_total_page_count(::handler_context * pcontext) override;
+      ::i32 get_total_page_count(::handler_context * pcontext) override;
 
 
       void edit_on_text(const ::scoped_string & scopedstr) override;
@@ -667,11 +670,11 @@ namespace user
       void on_text_composition_done() override;
       //virtual bool is_text_composition_active();
 
-      void set_input_content_rect(const int_rectangle& rectangle) override;
-      void set_input_selection_rect(const int_rectangle& rectangle) override;
+      void set_input_content_rect(const i32_rectangle& rectangle) override;
+      void set_input_selection_rect(const i32_rectangle& rectangle) override;
 
-      int_rectangle get_input_content_rect() override;
-      int_rectangle get_input_selection_rect() override;
+      i32_rectangle get_input_content_rect() override;
+      i32_rectangle get_input_selection_rect() override;
 
       //void InputConnectionBeginBatchEdit() override;
       //void InputConnectionEndBatchEdit() override;
@@ -681,18 +684,18 @@ namespace user
       //void InputConnectionSetSelection(character_count iStart, character_count iEnd) override;
       //void InputConnectionFinishComposingText() override;
 
-      //virtual void on_timer(::timer * ptimer);
+      //void operator()(::timer * ptimer) override;
 
       //virtual bool enable_window(bool bEnable );
 
       // Text Edit
       //void get_text_selection(character_count & iBeg, character_count & iEnd) const override;
       ::collection::index plain_edit_sel_to_column(::draw2d::graphics_pointer& pgraphics, character_count iSel) override;
-      ::collection::index plain_edit_sel_to_column_x(::draw2d::graphics_pointer& pgraphics, character_count iSel, int & x) override;
+      ::collection::index plain_edit_sel_to_column_x(::draw2d::graphics_pointer& pgraphics, character_count iSel, ::i32 & x) override;
       ::collection::index plain_edit_sel_to_line(::draw2d::graphics_pointer& pgraphics, character_count iSel) override;
-      ::collection::index plain_edit_sel_to_line_x(::draw2d::graphics_pointer& pgraphics, character_count iSel, int & x) override;
+      ::collection::index plain_edit_sel_to_line_x(::draw2d::graphics_pointer& pgraphics, character_count iSel, ::i32 & x) override;
       character_count plain_edit_line_column_to_sel(::draw2d::graphics_pointer& pgraphics, ::collection::index iLine, ::collection::index iColumn) override;
-      character_count plain_edit_line_x_to_sel(::draw2d::graphics_pointer& pgraphics, ::collection::index iLine, int x) override;
+      character_count plain_edit_line_x_to_sel(::draw2d::graphics_pointer& pgraphics, ::collection::index iLine, ::i32 x) override;
       ::collection::index plain_edit_char_to_line(::draw2d::graphics_pointer& pgraphics, character_count iSel) override;
 
 

@@ -2,7 +2,7 @@
 #include "framework.h"
 #include "child.h"
 #include "interaction.h"
-#include "acme/nano/graphics/device.h"
+#include "acme/nano/graphics/context.h"
 #include "../button.h"
 //#include "acme/operating_system.h"
 
@@ -81,7 +81,7 @@ void child::release_capture()
 void child::resize_to_fit()
 {
 
-   auto pdevice = createø < ::nano::graphics::device >();
+   auto pdevice = createø < ::nano::graphics::context >();
 
    auto size = pdevice->get_text_extents(m_strText, m_pinterchange->m_pfont);
 

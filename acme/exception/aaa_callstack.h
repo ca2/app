@@ -50,16 +50,16 @@
    */
 
 
-   //char                 _str[4096];
-   //char                 _strBuf[4096];
-   //char                 _strFile[4096];
-   //char                 _strSymbol[4096];
-   //char                 _strS[4 * 1024 * 1024];
+   //::i8                 _str[4096];
+   //::i8                 _strBuf[4096];
+   //::i8                 _strFile[4096];
+   //::i8                 _strSymbol[4096];
+   //::i8                 _strS[4 * 1024 * 1024];
 
 
-   /*const char *         m_pszFormat;
+   /*const_char_pointer m_pszFormat;
    string               m_strCallStack;
-   int                  m_iCount;
+   ::i32                  m_iCount;
 
    void *               m_caller_address;
 */
@@ -68,9 +68,9 @@
 
 
 //#if defined(__ANDROID__)
-//CLASS_DECL_ACME string unwind_callstack(const ::scoped_string & scopedstrFormat = callstack_default_format(), int iSkip = CALLSTACK_DEFAULT_SKIP_TRIGGER, int iCount = -1);
+//CLASS_DECL_ACME string unwind_callstack(const ::scoped_string & scopedstrFormat = callstack_default_format(), ::i32 iSkip = CALLSTACK_DEFAULT_SKIP_TRIGGER, ::i32 iCount = -1);
 //#else
-//CLASS_DECL_ACME string get_callstack(const ::scoped_string & scopedstrFormat = callstack_default_format(), int iSkip = CALLSTACK_DEFAULT_SKIP_TRIGGER, void * caller_address = nullptr, int iCount = -1);
+//CLASS_DECL_ACME string get_callstack(const ::scoped_string & scopedstrFormat = callstack_default_format(), ::i32 iSkip = CALLSTACK_DEFAULT_SKIP_TRIGGER, void * caller_address = nullptr, ::i32 iCount = -1);
 //#endif
 
 
@@ -79,11 +79,11 @@
 
 //
 //   //static void global_enable_stack_trace(bool bEnable = true);
-//   static const char* default_format() { return "%f(%l) %s\n"; }
+//   static const_char_pointer default_format() { return "%f(%l) %s\n"; }
 //
-//   //string get_dup(const ::scoped_string & scopedstrFormat = default_format(), int uiSkip = CALLSTACK_DEFAULT_SKIP_TRIGGER, int iCount = -1);
+//   //string get_dup(const ::scoped_string & scopedstrFormat = default_format(), ::i32 uiSkip = CALLSTACK_DEFAULT_SKIP_TRIGGER, ::i32 iCount = -1);
 //
-//   void trace(const ::scoped_string & scopedstrFormat = default_format(), int uiSkip = CALLSTACK_DEFAULT_SKIP_TRIGGER, int iCount = -1);
+//   void trace(const ::scoped_string & scopedstrFormat = default_format(), ::i32 uiSkip = CALLSTACK_DEFAULT_SKIP_TRIGGER, ::i32 iCount = -1);
 //
 //   //string xxxstack_trace() const;
 //

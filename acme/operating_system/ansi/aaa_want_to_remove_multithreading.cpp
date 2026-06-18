@@ -5,29 +5,29 @@
 //#include <pthread.h>
 //
 //
-//CLASS_DECL_ACME void thread_get_os_priority(int * piOsPolicy, sched_param * pparam, int iCa2Priority);
+//CLASS_DECL_ACME void thread_get_os_priority(::i32 * piOsPolicy, sched_param * pparam, ::i32 iCa2Priority);
 //
-//CLASS_DECL_ACME void process_get_os_priority(int * piOsPolicy, sched_param * pparam, int iCa2Priority);
+//CLASS_DECL_ACME void process_get_os_priority(::i32 * piOsPolicy, sched_param * pparam, ::i32 iCa2Priority);
 //
-//CLASS_DECL_ACME int thread_get_scheduling_priority(int iOsPolicy, const sched_param * pparam);
+//CLASS_DECL_ACME ::i32 thread_get_scheduling_priority(::i32 iOsPolicy, const sched_param * pparam);
 //
-//CLASS_DECL_ACME int process_get_scheduling_priority(int iOsPolicy, const sched_param * pparam);
+//CLASS_DECL_ACME ::i32 process_get_scheduling_priority(::i32 iOsPolicy, const sched_param * pparam);
 //
 //
-//unsigned int MsgWaitForMultipleObjectsEx(unsigned int dwSize, hsynchronization * pwaitableptra, unsigned int dwTimeout, unsigned int UNUSED(dwWakeMask), unsigned int dwFlags)
+//::u32 MsgWaitForMultipleObjectsEx(::u32 dwSize, hsynchronization * pwaitableptra, ::u32 dwTimeout, ::u32 UNUSED(dwWakeMask), ::u32 dwFlags)
 //{
 //
-//   unsigned int start = 0;
+//   ::u32 start = 0;
 //
-//   if(dwTimeout != (unsigned int) U32_INFINITE_TIMEOUT)
+//   if(dwTimeout != (::u32) U32_INFINITE_TIMEOUT)
 //   {
 //      start= ::duration::now();
 //   }
 //
 //
-//   int_bool bWaitForAll        = dwFlags & MWMO_WAITALL;
-////   int_bool bAlertable         = dwFlags & MWMO_ALERTABLE;
-////   int_bool bInputAvailable    =  dwFlags & MWMO_INPUTAVAILABLE;
+//   i32_bool bWaitForAll        = dwFlags & MWMO_WAITALL;
+////   i32_bool bAlertable         = dwFlags & MWMO_ALERTABLE;
+////   i32_bool bInputAvailable    =  dwFlags & MWMO_INPUTAVAILABLE;
 //
 //   timespec delay;
 //
@@ -37,12 +37,12 @@
 //   if(bWaitForAll)
 //   {
 //
-//      int i;
-//      int j;
+//      ::i32 i;
+//      ::i32 j;
 //      i = 0;
 //      for(; i < dwSize;)
 //      {
-//         if(dwTimeout != (unsigned int) U32_INFINITE_TIMEOUT && ::get_tick() - start >= dwTimeout)
+//         if(dwTimeout != (::u32) U32_INFINITE_TIMEOUT && ::get_tick() - start >= dwTimeout)
 //         {
 //            return WAIT_TIMEOUT;
 //         }
@@ -72,14 +72,14 @@
 //   else
 //   {
 //
-//      int i;
-////      int j;
+//      ::i32 i;
+////      ::i32 j;
 //      while(true)
 //      {
 //
 //         for(i = 0; i < dwSize;)
 //         {
-//            if(dwTimeout != (unsigned int) U32_INFINITE_TIMEOUT && ::get_tick() - start >= dwTimeout)
+//            if(dwTimeout != (::u32) U32_INFINITE_TIMEOUT && ::get_tick() - start >= dwTimeout)
 //            {
 //               return WAIT_TIMEOUT;
 //            }
@@ -97,7 +97,7 @@
 //
 //}
 //
-//unsigned int MsgWaitForMultipleObjects(unsigned int dwSize, hsynchronization * pwaitableptra, int_bool bWaitForAll, unsigned int dwTimeout, unsigned int dwWakeMask)
+//::u32 MsgWaitForMultipleObjects(::u32 dwSize, hsynchronization * pwaitableptra, i32_bool bWaitForAll, ::u32 dwTimeout, ::u32 dwWakeMask)
 //{
 //
 //   return MsgWaitForMultipleObjectsEx(dwSize, pwaitableptra, dwTimeout, dwWakeMask, (bWaitForAll ?  MWMO_WAITALL : 0));
@@ -105,7 +105,7 @@
 //}
 //
 //
-//unsigned int WaitForMultipleObjectsEx(unsigned int dwSize, hsynchronization * pwaitableptra, int_bool bWaitForAll, unsigned int dwTimeout, int_bool bAlertable)
+//::u32 WaitForMultipleObjectsEx(::u32 dwSize, hsynchronization * pwaitableptra, i32_bool bWaitForAll, ::u32 dwTimeout, i32_bool bAlertable)
 //{
 //
 //   return MsgWaitForMultipleObjectsEx(dwSize, pwaitableptra, dwTimeout, 0, (bWaitForAll ?  MWMO_WAITALL : 0) | (bAlertable ?  MWMO_ALERTABLE : 0));
@@ -113,7 +113,7 @@
 //}
 //
 //
-//unsigned int WaitForMultipleObjects(unsigned int dwSize, hsynchronization * pwaitableptra, int_bool bWaitForAll, unsigned int dwTimeout)
+//::u32 WaitForMultipleObjects(::u32 dwSize, hsynchronization * pwaitableptra, i32_bool bWaitForAll, ::u32 dwTimeout)
 //{
 //
 //   return WaitForMultipleObjectsEx(dwSize, pwaitableptra, bWaitForAll, dwTimeout, false);
@@ -121,7 +121,7 @@
 //}
 //
 //
-//unsigned int WaitForSingleObjectEx(hsynchronization  pwaitable, unsigned int dwTimeout, int_bool bAlertable)
+//::u32 WaitForSingleObjectEx(hsynchronization  pwaitable, ::u32 dwTimeout, i32_bool bAlertable)
 //{
 //
 //   return WaitForMultipleObjectsEx(1, &pwaitable, true, dwTimeout, bAlertable);
@@ -129,7 +129,7 @@
 //}
 //
 //
-//unsigned int WaitForSingleObject(hsynchronization  pwaitable, unsigned int dwTimeout)
+//::u32 WaitForSingleObject(hsynchronization  pwaitable, ::u32 dwTimeout)
 //{
 //
 //   return WaitForSingleObjectEx(pwaitable, dwTimeout, false);
@@ -182,18 +182,18 @@
 //
 ////
 ////thread_pointer < ThreadLocalData > currentThreadData;
-////thread_int_ptr < unsigned int > currentThreadId;
+////thread_int_ptr < ::u32 > currentThreadId;
 ////thread_pointer < htask > currentThread;
 ////thread_pointer < os_thread > t_posthread;
 //
 //
-////raw_array<unsigned int> * freeTlsIndices = NULL;
+////raw_array<::u32> * freeTlsIndices = NULL;
 ////mutex * g_pmutexTlsData = NULL;
 //
 //
 ////map < htask,htask,htask,htask > * s_pmapHthreadHthread = NULL;
-////map < unsigned int,unsigned int,htask,htask > * s_pmapDwordHthread = NULL;
-////map < htask,htask,unsigned int,unsigned int > * s_pmapHthreadDword = NULL;
+////map < ::u32,::u32,htask,htask > * s_pmapDwordHthread = NULL;
+////map < htask,htask,::u32,::u32 > * s_pmapHthreadDword = NULL;
 ////map < htask,htask,ThreadLocalData *,ThreadLocalData * > * allthreaddata = NULL;
 //
 //
@@ -202,13 +202,13 @@
 //
 //   //s_pmapHthreadHthread = aaa_primitive_new map < htask,htask,htask,htask >();
 //
-//   //s_pmapDwordHthread = aaa_primitive_new map < unsigned int,unsigned int,htask,htask >();
+//   //s_pmapDwordHthread = aaa_primitive_new map < ::u32,::u32,htask,htask >();
 //
-//   //s_pmapHthreadDword = aaa_primitive_new map < htask,htask,unsigned int,unsigned int >();
+//   //s_pmapHthreadDword = aaa_primitive_new map < htask,htask,::u32,::u32 >();
 //
 //   //allthreaddata = aaa_primitive_new map < htask,htask,ThreadLocalData *,ThreadLocalData * >();
 //
-//   //freeTlsIndices = aaa_primitive_new raw_array<unsigned int>();
+//   //freeTlsIndices = aaa_primitive_new raw_array<::u32>();
 //
 //
 //}
@@ -285,7 +285,7 @@
 ////
 ////}
 ////
-////map < unsigned int,unsigned int,htask,htask > & thread_id_handle_map()
+////map < ::u32,::u32,htask,htask > & thread_id_handle_map()
 ////{
 ////
 ////   return *s_pmapDwordHthread;
@@ -293,16 +293,16 @@
 ////}
 ////
 ////
-////map < htask,htask,unsigned int,unsigned int > & thread_id_map()
+////map < htask,htask,::u32,::u32 > & thread_id_map()
 ////{
 ////
 ////   return *s_pmapHthreadDword;
 ////
 ////}
 ////
-////unsigned int DwThreadId()
+////::u32 DwThreadId()
 ////{
-////   static unsigned int g_dw_thread_id = 0;
+////   static ::u32 g_dw_thread_id = 0;
 ////
 ////   if(g_dw_thread_id <= 0)
 ////      g_dw_thread_id = 1;
@@ -312,14 +312,14 @@
 ////
 ////
 ////
-////static unsigned int nextTlsIndex = 0;
+////static ::u32 nextTlsIndex = 0;
 //
 ////mutex * os_thread::s_pmutex = NULL;
 ////comparable_raw_array < os_thread * >::type* os_thread::s_pptra = NULL;
 //
 //
 //// Converts a Win32 thread priority to WinRT format.
-//int GetWorkItemPriority(int nPriority)
+//::i32 GetWorkItemPriority(::i32 nPriority)
 //{
 //   if(nPriority < 0)
 //      return nPriority; // WorkItemPriority::Low;
@@ -331,7 +331,7 @@
 //
 //
 //// Helper shared between CreateThread and ResumeThread.
-////thread * StartThread(LPTHREAD_START_ROUTINE pfn,LPVOID pv,htask htask,int nPriority,SIZE_T cbStack)
+////thread * StartThread(LPTHREAD_START_ROUTINE pfn,LPVOID pv,htask htask,::i32 nPriority,SIZE_T cbStack)
 ////{
 ////
 ////   os_thread * pthread = aaa_primitive_new os_thread(pfn,pv);
@@ -353,7 +353,7 @@
 ////
 ////   }
 ////
-////   int iPolicy;
+////   ::i32 iPolicy;
 ////
 ////   sched_param schedparam; // scheduling priority
 ////
@@ -373,7 +373,7 @@
 ////
 //
 //
-////htask WINAPI CreateThread(LPSECURITY_ATTRIBUTES unusedThreadAttributes,uptr cbStack,LPTHREAD_START_ROUTINE lpStartAddress,LPVOID lpParameter,unsigned int dwCreationFlags,unsigned int * lpdwThreadId)
+////htask WINAPI CreateThread(LPSECURITY_ATTRIBUTES unusedThreadAttributes,uptr cbStack,LPTHREAD_START_ROUTINE lpStartAddress,LPVOID lpParameter,::u32 dwCreationFlags,::u32 * lpdwThreadId)
 ////{
 ////   // Validate parameters.
 ////   //   assert(unusedThreadAttributes == nullptr);
@@ -472,7 +472,7 @@
 ////}
 ////
 ////
-////unsigned int WINAPI ResumeThread(htask htask)
+////::u32 WINAPI ResumeThread(htask htask)
 ////{
 ////   synchronous_lock lock(g_pmutexPendingThreadsLock, DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 ////
@@ -483,7 +483,7 @@
 ////   {
 ////      // Can only resume threads while they are in CREATE_SUSPENDED state.
 ////      //assert(false);
-////      return (unsigned int)-1;
+////      return (::u32)-1;
 ////   }
 ////
 ////   // Start the thread.
@@ -495,7 +495,7 @@
 ////   }
 ////   catch(...)
 ////   {
-////      return (unsigned int)-1;
+////      return (::u32)-1;
 ////   }
 ////
 ////   // Remove this thread from the pending list.
@@ -508,7 +508,7 @@
 
 ////
 ////
-////unsigned int WINAPI TlsAlloc()
+////::u32 WINAPI TlsAlloc()
 ////{
 ////
 ////   synchronous_lock lock(g_pmutexTlsData, DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
@@ -516,7 +516,7 @@
 ////   // Can we reuse a previously freed TLS slot?
 ////   if(freeTlsIndices->get_count() > 0)
 ////   {
-////      unsigned int result = freeTlsIndices->element_at(freeTlsIndices->get_count() - 1);
+////      ::u32 result = freeTlsIndices->element_at(freeTlsIndices->get_count() - 1);
 ////      freeTlsIndices->erase_at(freeTlsIndices->get_count() - 1);
 ////      return result;
 ////   }
@@ -526,13 +526,13 @@
 ////}
 ////
 ////
-////int_bool WINAPI TlsFree(unsigned int dwTlsIndex)
+////i32_bool WINAPI TlsFree(::u32 dwTlsIndex)
 ////{
 ////
 ////   synchronous_lock lock(g_pmutexTlsData, DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 ////
 ////   //assert(dwTlsIndex < nextTlsIndex);
-////   /*   for(int i = 0; i < freeTlsIndices.get_count(); i++)
+////   /*   for(::i32 i = 0; i < freeTlsIndices.get_count(); i++)
 ////   {
 ////   assert(freeTlsIndices.element_at(i) != dwTlsIndex);
 ////   }*/
@@ -569,7 +569,7 @@
 ////}
 ////
 ////
-////LPVOID WINAPI TlsGetValue(unsigned int dwTlsIndex)
+////LPVOID WINAPI TlsGetValue(::u32 dwTlsIndex)
 ////{
 ////   ThreadLocalData* threadData = currentThreadData;
 ////
@@ -595,7 +595,7 @@
 ////}
 ////
 ////
-////LPVOID WINAPI TlsGetValue(htask htask,unsigned int dwTlsIndex)
+////LPVOID WINAPI TlsGetValue(htask htask,::u32 dwTlsIndex)
 ////{
 ////
 ////   try
@@ -634,7 +634,7 @@
 ////}
 ////
 ////
-////int_bool WINAPI TlsSetValue(unsigned int dwTlsIndex,LPVOID lpTlsValue)
+////i32_bool WINAPI TlsSetValue(::u32 dwTlsIndex,LPVOID lpTlsValue)
 ////{
 ////
 ////   ThreadLocalData* threadData = currentThreadData;
@@ -668,7 +668,7 @@
 ////   return true;
 ////}
 ////
-////int_bool WINAPI TlsSetValue(htask htask,unsigned int dwTlsIndex,LPVOID lpTlsValue)
+////i32_bool WINAPI TlsSetValue(htask htask,::u32 dwTlsIndex,LPVOID lpTlsValue)
 ////{
 ////
 ////   synchronous_lock lock(g_pmutexTlsData, DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
@@ -758,7 +758,7 @@
 ////
 ////
 ////
-////int WINAPI GetThreadPriority(htask  htask)
+////::i32 WINAPI GetThreadPriority(htask  htask)
 ////{
 ////
 ////   synchronous_lock lock(g_pmutexPendingThreadsLock, DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
@@ -769,7 +769,7 @@
 ////   if(threadInfo == NULL)
 ////   {
 ////
-////      int iOsPolicy = SCHED_OTHER;
+////      ::i32 iOsPolicy = SCHED_OTHER;
 ////
 ////      sched_param schedparam;
 ////
@@ -789,7 +789,7 @@
 ////
 ////
 ////
-////os_thread::os_thread(unsigned int(* pfn)(void *),void * pv)
+////os_thread::os_thread(::u32(* pfn)(void *),void * pv)
 ////{
 ////
 ////   m_pfn    = pfn;
@@ -845,12 +845,12 @@
 ////
 ////}
 ////
-////void os_thread::stop_all(unsigned int millisMaxWait)
+////void os_thread::stop_all(::u32 millisMaxWait)
 ////{
 ////
 ////   millisMaxWait = millisMaxWait;
 ////
-////   unsigned int start = get_tick();
+////   ::u32 start = get_tick();
 ////
 ////   while(get_tick() - start < millisMaxWait)
 ////   {
@@ -859,7 +859,7 @@
 ////
 ////         synchronous_lock ml(&*s_pmutex);
 ////
-////         for(int i = 0; i < s_pptra->get_count(); i++)
+////         for(::i32 i = 0; i < s_pptra->get_count(); i++)
 ////         {
 ////
 ////            s_pptra->element_at(i)->m_bRun = false;
@@ -911,7 +911,7 @@
 ////
 ////}
 ////
-////unsigned int os_thread::run()
+////::u32 os_thread::run()
 ////{
 ////
 ////   synchronous_lock mlThreadHandle(g_pmutexThreadHandleLock, DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
@@ -931,7 +931,7 @@
 ////   // Run the user callback.
 ////   //attach_thread_input_to_main_thread();
 ////
-////   unsigned int dwRet = 0xffffffff;
+////   ::u32 dwRet = 0xffffffff;
 ////
 ////   try
 ////   {
@@ -957,7 +957,7 @@
 ////}
 ////
 ////
-////htask start_thread(unsigned int(WINAPI * pfn)(LPVOID),LPVOID pv,int iPriority)
+////htask start_thread(::u32(WINAPI * pfn)(LPVOID),LPVOID pv,::i32 iPriority)
 ////{
 ////
 ////   __UNREFERENCED_PARAMETER(iPriority);
@@ -966,7 +966,7 @@
 ////
 ////}
 ////
-////htask create_thread(LPSECURITY_ATTRIBUTES lpsa,uptr cbStack,LPTHREAD_START_ROUTINE pfn,LPVOID pv,unsigned int f,unsigned int * lpdwId)
+////htask create_thread(LPSECURITY_ATTRIBUTES lpsa,uptr cbStack,LPTHREAD_START_ROUTINE pfn,LPVOID pv,::u32 f,::u32 * lpdwId)
 ////{
 ////
 ////   return ::CreateThread(lpsa,cbStack,pfn,pv,f,lpdwId);
@@ -980,7 +980,7 @@
 ////
 ////
 ////static HANDLE g_hMainThread = NULL;
-////static unsigned int g_iMainThread = -1;
+////static ::u32 g_iMainThread = -1;
 ////
 ////CLASS_DECL_ACME void set_main_user_htask(htask htask)
 ////{
@@ -1014,7 +1014,7 @@
 ////   return g_hMainThread;
 ////
 ////}
-////CLASS_DECL_ACME unsigned int main_user_itask()
+////CLASS_DECL_ACME ::u32 main_user_itask()
 ////{
 ////   return g_iMainThread;
 ////}
@@ -1037,7 +1037,7 @@
 ////
 /////*
 ////
-////unsigned int WINAPI thread_layer::proc(LPVOID lp)
+////::u32 WINAPI thread_layer::proc(LPVOID lp)
 ////{
 ////
 ////   thread_layer * player   = (thread_layer *)lp;
@@ -1086,12 +1086,12 @@
 ////
 /////*
 ////
-////CLASS_DECL_ACME unsigned int WINAPI GetThreadId(htask Thread)
+////CLASS_DECL_ACME ::u32 WINAPI GetThreadId(htask Thread)
 ////{
 ////
 ////   synchronous_lock mlThreadId(g_pmutexThreadIdLock, DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 ////
-////   map < htask,htask,unsigned int,unsigned int >::pair * p = thread_id_map().plookup(Thread);
+////   map < htask,htask,::u32,::u32 >::pair * p = thread_id_map().plookup(Thread);
 ////
 ////   if(p == NULL)
 ////      return -1;
@@ -1101,12 +1101,12 @@
 ////
 ////}
 ////
-////CLASS_DECL_ACME htask  WINAPI get_thread_handle(unsigned int dw)
+////CLASS_DECL_ACME htask  WINAPI get_thread_handle(::u32 dw)
 ////{
 ////
 ////   synchronous_lock mlThreadIdHandle(g_pmutexThreadIdHandleLock, DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 ////
-////   map < unsigned int,unsigned int,htask,htask >::pair * p = thread_id_handle_map().plookup(dw);
+////   map < ::u32,::u32,htask,htask >::pair * p = thread_id_handle_map().plookup(dw);
 ////
 ////   if(p == NULL)
 ////      return NULL;
@@ -1119,7 +1119,7 @@
 ////*/
 ////
 /////*
-////CLASS_DECL_ACME int_bool WINAPI PostThreadMessageW(unsigned int idThread,unsigned int Msg,WPARAM wParam,LPARAM lParam)
+////CLASS_DECL_ACME i32_bool WINAPI PostThreadMessageW(::u32 idThread,::u32 Msg,WPARAM wParam,LPARAM lParam)
 ////{
 ////
 ////   htask h = ::get_thread_handle(idThread);
@@ -1157,7 +1157,7 @@
 ////}
 ////*/
 ////
-////CLASS_DECL_ACME int_bool WINAPI PostMessageW(::acme::windowing::window * pacmewindowingwindow,unsigned int Msg,WPARAM wParam,LPARAM lParam)
+////CLASS_DECL_ACME i32_bool WINAPI PostMessageW(::acme::windowing::window * pacmewindowingwindow,::u32 Msg,WPARAM wParam,LPARAM lParam)
 ////{
 ////
 ////   htask  h = oswindow->get_user_interaction()->m_papp->get_os_handle();
@@ -1199,7 +1199,7 @@
 ////
 ////
 ////
-////void thread_layer::wait_thread(unsigned int dwMillis)
+////void thread_layer::wait_thread(::u32 dwMillis)
 ////{
 ////
 ////   try
@@ -1227,7 +1227,7 @@
 ////}
 ////
 ////
-////int thread_layer::run()
+////::i32 thread_layer::run()
 ////{
 ////
 ////   MESSAGE msg;
@@ -1281,7 +1281,7 @@
 ////
 ////}
 ////
-////CLASS_DECL_ACME unsigned int GetCurrentThreadId()
+////CLASS_DECL_ACME ::u32 GetCurrentThreadId()
 ////{
 ////
 ////   return currentThreadId;
@@ -1337,7 +1337,7 @@ LPVOID TlsGetValue(thread_data_index dwTlsIndex)
 	return value;
 }
 
-int_bool TlsSetValue(thread_data_index dwTlsIndex, LPVOID lpTlsValue)
+i32_bool TlsSetValue(thread_data_index dwTlsIndex, LPVOID lpTlsValue)
 {
 	pthread_key_t key;
 	key = (pthread_key_t) dwTlsIndex;
@@ -1345,7 +1345,7 @@ int_bool TlsSetValue(thread_data_index dwTlsIndex, LPVOID lpTlsValue)
 	return true;
 }
 
-int_bool TlsFree(thread_data_index dwTlsIndex)
+i32_bool TlsFree(thread_data_index dwTlsIndex)
 {
 	pthread_key_t key;
 	key = (pthread_key_t) dwTlsIndex;

@@ -23,19 +23,19 @@ namespace html
          public:
 
             ::collection::index        m_iCol;
-            float        m_cxMax;
-            float        m_cxMin;
-            float        m_x;
-            float        m_cx;
+            ::f32        m_cxMax;
+            ::f32        m_cxMin;
+            ::f32        m_x;
+            ::f32        m_cx;
 
             column();
             column(::collection::index iCol);
 
          };
 
-         float                                           m_iBorder;
-         float                                           m_iCellSpacing;
-         float                                           m_iCellPadding;
+         ::f32                                           m_iBorder;
+         ::f32                                           m_iCellSpacing;
+         ::f32                                           m_iCellPadding;
 
          array_base < array_base < cell::holder > >      m_cellholdera;
          address_array_base < table_row * >              m_rowptra;
@@ -68,7 +68,7 @@ namespace html
 
 
 
-         virtual float calc_width();
+         virtual ::f32 calc_width();
 
 
       };

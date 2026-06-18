@@ -13,6 +13,13 @@ if(${LINUX} OR ${__BSD__})
 endif()
 
 
+if(${ENABLE_SUBSYSTEM})
+add_subdirectory(subsystem)
+add_subdirectory(subsystem_bsd_sockets)
+add_subdirectory(innate_subsystem)
+endif()
+
+
 add_subdirectory(networking_bsd)
 add_subdirectory(crypto_openssl)
 #add_subdirectory(compress_bzip2)

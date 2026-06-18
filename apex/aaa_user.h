@@ -34,7 +34,7 @@ namespace graphics
 //  (only for inplace frame windows)
 #define WM_SIZECHILD        0x0369  // special notify from COleResizeBar
 // wParam = ID of child interaction_impl
-// lParam = pRectNew (aaa_primitive_new position/int_size)
+// lParam = pRectNew (aaa_primitive_new position/i32_size)
 
 #define WM_KICKIDLE         0x036A  // (params unused) causes idles to kick in
 #define WM_QUERYCENTERWND   0x036B  // lParam = oswindow to use as centering parent
@@ -90,7 +90,7 @@ namespace graphics
 #define WM_RESERVED_037E    0x037E
 
 // WM_FORWARDMSG - used by apex to forward a message to another interaction_impl for processing
-//   WPARAM - unsigned int dwUserData - defined by ::account::user
+//   WPARAM - ::u32 dwUserData - defined by ::account::user
 //   LPARAM - MESSAGE * pMsg - a pointer to the MESSAGE structure
 //   return value - 0 if the message was not processed, nonzero if it was
 #define WM_FORWARDMSG      0x037F

@@ -2,8 +2,8 @@
 #define __LIBSTROPHE_TEST_H__
 
 #define TEST_MAIN \
-    int main(int argc, char **argv) {\
-    int num_failed;\
+    ::i32 main(::i32 argc, char_pointer *argv) {\
+    ::i32 num_failed;\
     Suite *s = parser_suite();\
     SRunner *sr = srunner_create(s);\
     srunner_run_all(sr, CK_NORMAL);\

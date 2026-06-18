@@ -20,7 +20,7 @@ namespace write_text
    }
 
 
-   glyph * glyph_set::GetGlyph(unsigned int user)
+   glyph * glyph_set::GetGlyph(::u32 user)
    {
 
       ::collection::index i = find_first(user);
@@ -41,7 +41,7 @@ namespace write_text
    }
 
 
-   ::collection::index glyph_set::find_first(unsigned int user)
+   ::collection::index glyph_set::find_first(::u32 user)
    {
 
       ::collection::index iLoBound = 0;
@@ -54,9 +54,9 @@ namespace write_text
             return -1;
          }
          iIndex = (iHiBound + iLoBound) / 2;
-         if(user == this->element_at(iIndex)->m_ui)
+         if(user == this->element_at(iIndex)->m_u32)
             break;
-         else if(user < this->element_at(iIndex)->m_ui)
+         else if(user < this->element_at(iIndex)->m_u32)
          {
             iHiBound = iIndex - 1;
             if(iHiBound < iLoBound)
@@ -64,7 +64,7 @@ namespace write_text
                return -1;
             }
          }
-         else if(user > this->element_at(iIndex)->m_ui)
+         else if(user > this->element_at(iIndex)->m_u32)
          {
             iLoBound = iIndex + 1;
             if(iLoBound > iHiBound)
@@ -81,7 +81,7 @@ namespace write_text
          iIndex--;
          if(iIndex < 0)
             break;
-         if(user != this->element_at(iIndex)->m_ui)
+         if(user != this->element_at(iIndex)->m_u32)
             break;
          iLastIndex = iIndex;
       }
@@ -171,7 +171,7 @@ namespace write_text
 
    ::collection::index glyph_set::add(class glyph * pglyph)
    {
-      iptr i = (int)pointer_array < class glyph >::add(pglyph);
+      iptr i = (::i32)pointer_array < class glyph >::add(pglyph);
       quick_sort();
       return i;
    }

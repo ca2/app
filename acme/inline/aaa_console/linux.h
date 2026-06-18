@@ -36,7 +36,7 @@
 ////   }
 ////
 //
-//   console(int argc, char** argv)
+//   console(::i32 argc, char_pointer * argv)
 //   {
 //
 ////      common_construct();
@@ -48,7 +48,7 @@
 //   }
 //
 //
-//   console(int argc, wchar_t** argv)
+//   console(::i32 argc, wchar_t** argv)
 //   {
 //
 //      common_construct();
@@ -68,12 +68,12 @@
 //   }
 //
 //
-//   int result()
+//   ::i32 result()
 //   {
 //
 //      m_estatus = papp->m_estatus;
 //
-//      int iErrorStatus = m_estatus.error_status();
+//      ::i32 iErrorStatus = m_estatus.error_status();
 //
 //      system()->inline_term();
 //
@@ -103,9 +103,9 @@
 //
 //
 
-//int main(int argc, char* argv[])
+//::i32 main(::i32 argc, char_pointer argv[])
 //
-//int main(int argc, char* argv[])
+//::i32 main(::i32 argc, char_pointer argv[])
 //{
 //
 //   //class acme_acme acme_acme;
@@ -147,7 +147,7 @@
 //
 //   }
 //
-//   int iErrorStatus = estatus.error_status();
+//   ::i32 iErrorStatus = estatus.error_status();
 //
 //   psystem->inline_term();
 //
@@ -159,10 +159,10 @@
 //
 
 
-static const char * s_pszBinRelocInitGetSymbol = "br_init_get_symbol";
+static const_char_pointer s_pszBinRelocInitGetSymbol = "br_init_get_symbol";
 
 
-const char * br_init_get_symbol()
+const_char_pointer br_init_get_symbol()
 {
 
    return s_pszBinRelocInitGetSymbol;

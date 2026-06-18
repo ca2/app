@@ -5,7 +5,7 @@
 #include "aura/message/user.h"
 
 
-const int simple_list_header_control::s_iDividerWidth = 4;
+const ::i32 simple_list_header_control::s_iDividerWidth = 4;
 
 simple_list_header_control::simple_list_header_control()
 {
@@ -34,13 +34,13 @@ void simple_list_header_control::install_message_routing(::channel * pchannel)
    //USER_MESSAGE_LINK(::user::e_message_mouse_move, pchannel, this, &simple_list_header_control::on_message_mouse_move);
 }
 
-/*int simple_list_header_control::GetItemWidth(int iItem)
+/*::i32 simple_list_header_control::GetItemWidth(::i32 iItem)
 {
    HDITEM hditem;
 
    hditem.mask = HDI_WIDTH | HDI_TEXT;
 
-   char pszText[1024];
+   ::i8 pszText[1024];
 
    hditem.pszText = pszText;
    hditem.cchTextMax = 1024;
@@ -122,7 +122,7 @@ void simple_list_header_control::_001OnEndDrag(::message::message * pmessage)
             string & str = m_strBuffer;
             str.load_string(plist->_001GetColumnText(pdi->iItem));
 
-            pdi->pszText = (char *) (const ::string &) str;
+            pdi->pszText = (char_pointer ) (const ::string &) str;
 
             pdi->cchTextMax = str.length();
 
@@ -137,7 +137,7 @@ void simple_list_header_control::_001OnEndDrag(::message::message * pmessage)
             string & str = m_strBuffer;
             str.load_string(plist->_001GetColumnText(pdi->lParam));
 
-            pdi->pszText = (char *) (const ::string &) str;
+            pdi->pszText = (char_pointer ) (const ::string &) str;
 
             pdi->cchTextMax = str.length();
 
@@ -147,7 +147,7 @@ void simple_list_header_control::_001OnEndDrag(::message::message * pmessage)
 
 }*/
 
-/*LPARAM simple_list_header_control::GetItemLParam(int iItem)
+/*LPARAM simple_list_header_control::GetItemLParam(::i32 iItem)
 {
    HDITEM hditem;
 
@@ -159,7 +159,7 @@ void simple_list_header_control::_001OnEndDrag(::message::message * pmessage)
 }*/
 
 
-//bool simple_list_header_control::create_window(unsigned int nStyle, ::user::interaction * puiParent, ::atom atom)
+//bool simple_list_header_control::create_window(::u32 nStyle, ::user::interaction * puiParent, ::atom atom)
 //{
 //
 //   return ::user::interaction::create_window(nullptr, nullptr, nStyle, puiParent, atom);

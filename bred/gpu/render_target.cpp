@@ -87,7 +87,7 @@ namespace gpu
 
          initialize_render_target_image(ptexture);
 
-         //::gpu::texture_attributes textureattributes(::int_rectangle{m_size});
+         //::gpu::texture_attributes textureattributes(::i32_rectangle{m_size});
 
          //::gpu::texture_flags textureflags;
 
@@ -120,7 +120,7 @@ namespace gpu
    }
 
 
-   void render_target::initialize_render_target(::gpu::renderer* pgpurenderer, const ::int_size& size, ::pointer <::gpu::render_target>previous)
+   void render_target::initialize_render_target(::gpu::renderer* pgpurenderer, const ::i32_size& size, ::pointer <::gpu::render_target>previous)
    {
 
       set_fail_flag();
@@ -198,7 +198,7 @@ namespace gpu
 
    //   auto pcontext = m_pgpurenderer->m_pgpucontext;
 
-   //   for (int i = 0; i < m_ptexturea->size(); i++)
+   //   for (::i32 i = 0; i < m_ptexturea->size(); i++)
    //   {
 
    //      auto& ptexture = m_ptexturea->element_at(i);
@@ -230,7 +230,7 @@ namespace gpu
    }
 
 
-   int render_target::get_frame_index()
+   ::i32 render_target::get_frame_index()
    {
 
       if (m_pgpurenderer->m_pgpucontext->m_iOverrideFrame >= 0)
@@ -249,16 +249,16 @@ namespace gpu
 
          auto iCurrentFrame3 = m_pgpurenderer->m_pgpucontext->m_pgpudevice->m_iCurrentFrame3;
 
-         auto estate = m_pgpurenderer->m_prenderstate->m_estate;
+         auto egpuframestate = m_pgpurenderer->m_prenderstate->m_egpuframestate;
 
          assert(
             iFrameSerial2 >= 0 
             && iCurrentFrame3 >= 0 
-            && estate != e_state_initial
+            && egpuframestate != e_gpu_frame_state_initial
             && "Cannot get frame index when frame not in progress");
 
 #endif
-         return (int)m_pgpurenderer->m_pgpucontext->m_pgpudevice->m_iCurrentFrame3;
+         return (::i32)m_pgpurenderer->m_pgpucontext->m_pgpudevice->m_iCurrentFrame3;
 
       }
       else
@@ -271,7 +271,7 @@ namespace gpu
    }
 
 
-   int render_target::get_frame_count()
+   ::i32 render_target::get_frame_count()
    {
 
       if (m_pgpurenderer->m_pgpucontext->m_eoutput ==::gpu:: e_output_swap_chain)
@@ -279,7 +279,7 @@ namespace gpu
          return m_pgpurenderer->m_pgpucontext->get_swap_chain()->swap_chain_frame_count();
       }
 
-      return (int)texturea2()->size();
+      return (::i32)texturea2()->size();
 
    }
 
@@ -295,7 +295,7 @@ namespace gpu
    }
 
 
-   void render_target::on_resize(const ::int_size& size)
+   void render_target::on_resize(const ::i32_size& size)
    {
 
       if (m_size == size)
@@ -331,7 +331,7 @@ namespace gpu
    //      if (ptexture->size() != m_size && !m_size.is_empty())
    //      {
 
-   //         ::gpu::texture_attributes textureattributes(::int_rectangle{m_size});
+   //         ::gpu::texture_attributes textureattributes(::i32_rectangle{m_size});
 
    //         ::gpu::texture_flags textureflags;
 
@@ -359,15 +359,15 @@ namespace gpu
    }
 
 
-   int render_target::imageCount() 
+   ::i32 render_target::imageCount() 
    {
       
-      return (int) m_ptexturea->size(); 
+      return (::i32) m_ptexturea->size(); 
    
    }
 
 
-   int render_target::width() 
+   ::i32 render_target::width() 
    {
       
       return m_size.cx; 
@@ -375,7 +375,7 @@ namespace gpu
    }
 
 
-   int render_target::height() 
+   ::i32 render_target::height() 
    {
       
       return m_size.cy; 
@@ -408,20 +408,13 @@ namespace gpu
    }
 
 
-   texture * render_target::current_texture(::gpu::frame* pgpuframe)
+   texture * render_target::current_texture(::gpu::layer* pgpulayer)
    {
 
-      if (::is_null(pgpuframe))
+      if (::is_set(pgpulayer))
       {
 
-         return nullptr;
-
-      }
-
-      if (pgpuframe->m_pgpulayer)
-      {
-
-         return pgpuframe->m_pgpulayer->source_texture();
+         return pgpulayer->source_texture();
 
       }
 
@@ -429,7 +422,7 @@ namespace gpu
 
       //auto etype = pgpucontext->m_etype;
 
-      int iFrameIndex = get_frame_index();
+      ::i32 iFrameIndex = get_frame_index();
       
       //auto size = m_ptexturea->size();
 
@@ -440,13 +433,13 @@ namespace gpu
    }
 
 
-   texture* render_target::current_depth_texture(::gpu::frame* pgpuframe)
+   texture* render_target::current_depth_texture(::gpu::layer * pgpulayer)
    {
 
-      if (pgpuframe->m_pgpulayer)
+      if (::is_set(pgpulayer))
       {
 
-         auto ptexture = pgpuframe->m_pgpulayer->source_texture();
+         auto ptexture = pgpulayer->source_texture();
 
          if (!ptexture)
          {
@@ -472,7 +465,7 @@ namespace gpu
 
       //auto etype = pgpucontext->m_etype;
 
-      int iFrameIndex = get_frame_index();
+      ::i32 iFrameIndex = get_frame_index();
 
       //auto size = m_ptexturea->size();
 

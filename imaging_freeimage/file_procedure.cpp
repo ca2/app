@@ -9,14 +9,14 @@
 #endif
 
 
-unsigned DLL_CALLCONV __ReadProc2(void * buffer, unsigned size, unsigned count, fi_handle handle)
+::u32 DLL_CALLCONV __ReadProc2(void * buffer, ::u32 size, ::u32 count, fi_handle handle)
 {
 
    memsize dwRead;
 
    ::file::file * pfile = (::file::file *) handle;
 
-   unsigned int dwTotal = count * size;
+   ::u32 dwTotal = count * size;
 
    dwRead = pfile->read({ buffer, dwTotal });
 
@@ -29,14 +29,14 @@ unsigned DLL_CALLCONV __ReadProc2(void * buffer, unsigned size, unsigned count, 
    else
    {
 
-      return (unsigned int)dwRead / (unsigned int)size;
+      return (::u32)dwRead / (::u32)size;
 
    }
 
 }
 
 
-unsigned DLL_CALLCONV __WriteProc2(void * buffer, unsigned size, unsigned count, fi_handle handle)
+::u32 DLL_CALLCONV __WriteProc2(void * buffer, ::u32 size, ::u32 count, fi_handle handle)
 {
 
    ::file::file * pfile = (::file::file *) handle;
@@ -59,7 +59,7 @@ unsigned DLL_CALLCONV __WriteProc2(void * buffer, unsigned size, unsigned count,
 }
 
 
-int DLL_CALLCONV __SeekProc2(fi_handle handle, long offset, int origin)
+::i32 DLL_CALLCONV __SeekProc2(fi_handle handle, long offset, ::i32 origin)
 {
 
    ::file::file * pfile = (::file::file *) handle;
@@ -112,13 +112,13 @@ long DLL_CALLCONV __TellProc2(fi_handle handle)
 
 
 
-//static unsigned int _stdcall  __ReadProc3 (void *buffer, unsigned int size, unsigned int count, fi_handle handle);
-//static unsigned int _stdcall __WriteProc3 (void *buffer, unsigned int size, unsigned int count, fi_handle handle);
-//static int _stdcall __SeekProc3 (fi_handle handle, long offset, int origin);
+//static ::u32 _stdcall  __ReadProc3 (void *buffer, ::u32 size, ::u32 count, fi_handle handle);
+//static ::u32 _stdcall __WriteProc3 (void *buffer, ::u32 size, ::u32 count, fi_handle handle);
+//static ::i32 _stdcall __SeekProc3 (fi_handle handle, long offset, ::i32 origin);
 //static long _stdcall __TellProc3 (fi_handle handle);
 
 
-unsigned int _stdcall  ___Ex1File__ReadProc(void * buffer, unsigned int size, unsigned int count, fi_handle handle)
+::u32 _stdcall  ___Ex1File__ReadProc(void * buffer, ::u32 size, ::u32 count, fi_handle handle)
 {
 
    memsize dwRead;

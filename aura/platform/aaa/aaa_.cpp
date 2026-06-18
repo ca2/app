@@ -15,10 +15,10 @@
 
 
 //extern "C"
-CLASS_DECL_AURA int_bool defer_aura_init();
+CLASS_DECL_AURA i32_bool defer_aura_init();
 
 //extern "C"
-CLASS_DECL_AURA int_bool defer_aura_term();
+CLASS_DECL_AURA i32_bool defer_aura_term();
 
 
 namespace aura
@@ -26,7 +26,7 @@ namespace aura
 
 
 
-   bool extract_sub_string(string& rString, const ::scoped_string & scopedstrFullString, int iSubString, char chSep)
+   bool extract_sub_string(string& rString, const ::scoped_string & scopedstrFullString, ::i32 iSubString, ::i8 chSep)
    {
 
       if (scopedstrFullString == nullptr)
@@ -50,15 +50,15 @@ namespace aura
 
       }
 
-      const char* pchEnd = strchr(scopedstrFullString, chSep);
+      const_char_pointer pchEnd = strchr(scopedstrFullString, chSep);
 
 
-      character_count nLen = (pchEnd == nullptr) ? strlen(scopedstrFullString) : (int)(pchEnd - pszFullString);
+      character_count nLen = (pchEnd == nullptr) ? strlen(scopedstrFullString) : (::i32)(pchEnd - pszFullString);
 
 
       ASSERT(nLen >= 0);
 
-      ::aura::safe_memory_copy(rString.get_buffer(nLen), nLen * sizeof(char), pszFullString, nLen * sizeof(char));
+      ::aura::safe_memory_copy(rString.get_buffer(nLen), nLen * sizeof(::i8), pszFullString, nLen * sizeof(::i8));
 
       rString.release_buffer();   // Need to call ReleaseBuffer after calling get_buffer
 
@@ -90,10 +90,10 @@ extern "C" const IID IID_IAxWinAmbientDispatchEx = { 0xB2D0778B,0xAC99,0x4c58,{0
 #endif
 
 
-void gen_CrtErrorCheck(int i);
+void gen_CrtErrorCheck(::i32 i);
 
 
-void gen_CrtErrorCheck(int i)
+void gen_CrtErrorCheck(::i32 i)
 {
    __UNREFERENCED_PARAMETER(i);
 }
@@ -102,11 +102,11 @@ void gen_CrtErrorCheck(int i)
 
 
 
-int g_iAuraRefCount = 0;
+::i32 g_iAuraRefCount = 0;
 
 
 //extern "C"
-//int_bool defer_aura_init()
+//i32_bool defer_aura_init()
 //{
 //
 //   g_iAuraRefCount++;
@@ -122,7 +122,7 @@ int g_iAuraRefCount = 0;
 //}
 
 //extern "C"
-//CLASS_DECL_AURA int_bool defer_aura_term()
+//CLASS_DECL_AURA i32_bool defer_aura_term()
 //{
 //
 //   g_iAuraRefCount--;
@@ -156,14 +156,14 @@ int g_iAuraRefCount = 0;
 
 
 
-CLASS_DECL_AURA int g_bAura = 0;
+CLASS_DECL_AURA ::i32 g_bAura = 0;
 
 
 
 
 
 
-CLASS_DECL_AURA unsigned int g_tickStartTime = 0;
+CLASS_DECL_AURA ::u32 g_tickStartTime = 0;
 
 
 
@@ -184,7 +184,7 @@ CLASS_DECL_AURA void debug_print(const ::scoped_string & scopedstrFormat, ...)
 
    va_start(argList, pszFormat);
 
-   char sz[4096];
+   ::i8 sz[4096];
 
    vsnprintf(sz, sizeof(sz), pszFormat, argList);
 
@@ -195,7 +195,7 @@ CLASS_DECL_AURA void debug_print(const ::scoped_string & scopedstrFormat, ...)
 }
 
 
-void __post_quit_message(int nExitCode)
+void __post_quit_message(::i32 nExitCode)
 {
 
 #ifdef WINDOWS_DESKTOP
@@ -284,7 +284,7 @@ CLASS_DECL_AURA void register_library(const ::scoped_string & scopedstr, ::acme:
 }
 
 
-CLASS_DECL_AURA int get_aura_init()
+CLASS_DECL_AURA ::i32 get_aura_init()
 {
 
    return g_iAuraRefCount;
@@ -302,7 +302,7 @@ CLASS_DECL_AURA::aura::system * aura_create_aura_system()
 
 
 ////extern "C"
-//CLASS_DECL_AURA int_bool defer_aura_init()
+//CLASS_DECL_AURA i32_bool defer_aura_init()
 //{
 //
 //   g_iAuraRefCount++;
@@ -333,7 +333,7 @@ CLASS_DECL_AURA::aura::system * aura_create_aura_system()
 
 
 //extern "C"
-//CLASS_DECL_AURA int_bool defer_aura_term()
+//CLASS_DECL_AURA i32_bool defer_aura_term()
 //{
 //
 //   g_iAuraRefCount--;
@@ -384,12 +384,12 @@ CLASS_DECL_AURA::aura::system * aura_create_aura_system()
 
 //CLASS_DECL_AURA LPFN_CREATE_SYSTEM g_pfn_create_system;
 
-//CLASS_DECL_AURA const char* g_pszCooperativeLevel;
+//CLASS_DECL_AURA const_char_pointer g_pszCooperativeLevel;
 
-//CLASS_DECL_AURA int g_iDerivedApplication = 0;
+//CLASS_DECL_AURA ::i32 g_iDerivedApplication = 0;
 
 
-string get_debug_report_type_text(int iType)
+string get_debug_report_type_text(::i32 iType)
 {
 
    string strType;
@@ -412,7 +412,7 @@ string get_debug_report_type_text(int iType)
 }
 
 
-int __cdecl debug_report(int iType, char const* psz, int iLine, char const* pszModuleName, char const* pszFormat, ...)
+::i32 __cdecl debug_report(::i32 iType, ::i8 const* psz, ::i32 iLine, ::i8 const* pszModuleName, ::i8 const* pszFormat, ...)
 {
 
    string strExtra;
@@ -439,7 +439,7 @@ int __cdecl debug_report(int iType, char const* psz, int iLine, char const* pszM
 }
 
 
-int __cdecl debug_report(int iType, wchar_t const* pszFile, int iLine, wchar_t const* pszModuleName, wchar_t const* pszFormat, ...)
+::i32 __cdecl debug_report(::i32 iType, wchar_t const* pszFile, ::i32 iLine, wchar_t const* pszModuleName, wchar_t const* pszFormat, ...)
 {
 
 
@@ -473,7 +473,7 @@ int __cdecl debug_report(int iType, wchar_t const* pszFile, int iLine, wchar_t c
 
 
 
-CLASS_DECL_AURA int is_ptr_null(const void* p, size_t s)
+CLASS_DECL_AURA ::i32 is_ptr_null(const void* p, size_t s)
 {
 
    return (((size_t)p) < s);
@@ -481,7 +481,7 @@ CLASS_DECL_AURA int is_ptr_null(const void* p, size_t s)
 }
 
 
-void c_post_system_happening(unsigned long long u, void* pparam)
+void c_post_system_happening(::u64 u, void* pparam)
 {
 
    LPARAM lparam = (LPARAM)pparam;

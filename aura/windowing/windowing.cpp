@@ -10,6 +10,7 @@
 #include "aura/platform/application.h"
 //#include "aura/user/user/interaction_impl.h"
 #include "aura/message/user.h"
+#include "aura/hardware/devices.h"
 #include "aura/user/user/interaction.h"
 #include "aura/user/user/user.h"
 #include "aura/platform/node.h"
@@ -139,9 +140,9 @@ namespace windowing
    void windowing::destroy()
    {
 
-      m_pcursormanager.defer_destroy();
+      m_pcursormanager.defer_destroy_and_release();
 
-      m_pkeyboard.defer_destroy();
+      m_pkeyboard.defer_destroy_and_release();
 
       m_pacmewindowingwindowMouseCapture.release();
 
@@ -241,7 +242,7 @@ namespace windowing
    }
 
 
-//   void windowing::set_cursor_position(const ::int_point & pointCursor)
+//   void windowing::set_cursor_position(const ::i32_point & pointCursor)
 //   {
 //
 //      m_pointCursor = pointCursor;
@@ -310,7 +311,7 @@ namespace windowing
 
 
 
-::particle * windowing::defer_initialize_host_window(const ::int_rectangle* lpcrect)
+::particle * windowing::defer_initialize_host_window(const ::i32_rectangle* lpcrect)
    {
 
       return nullptr;
@@ -430,7 +431,7 @@ namespace windowing
    }
 
 
-   ::int_point windowing::try_absolute_mouse_position(::user::interaction* puserinteraction, const ::int_point& point)
+   ::i32_point windowing::try_absolute_mouse_position(::user::interaction* puserinteraction, const ::i32_point& point)
    {
 
       auto p = point;
@@ -660,10 +661,10 @@ namespace windowing
    }
 
 
-   int_size windowing::get_window_minimum_size()
+   i32_size windowing::get_window_minimum_size()
    {
 
-      return int_size(300, 300);
+      return i32_size(300, 300);
 
    }
 
@@ -739,7 +740,7 @@ namespace windowing
    }
 
 
-   int_bool windowing::point_is_window_origin(::int_point ptHitTest, ::acme::windowing::window * pacmewindowingwindowExclude, int iMargin)
+   ::i32_bool windowing::point_is_window_origin(::i32_point ptHitTest, ::acme::windowing::window * pacmewindowingwindowExclude, ::i32 iMargin)
    {
 
       return false;
@@ -872,7 +873,7 @@ namespace windowing
    }
 
 
-   wstring windowing::_windows_calc_icon_window_class(::user::interaction* pinteraction, unsigned int dwDefaultStyle, const ::scoped_string & scopedstrMatter)
+   wstring windowing::_windows_calc_icon_window_class(::acme::user::interaction* pacmeuserinteraction, ::u32 dwDefaultStyle, const ::scoped_string & scopedstrMatter)
    {
    
       return "windows_interaction_impl";
@@ -880,10 +881,10 @@ namespace windowing
    }
 
    
-   wstring windowing::_windows_get_user_interaction_window_class(::user::interaction* pinteraction)
+   wstring windowing::_windows_get_user_interaction_window_class(::acme::user::interaction* pacmeuserinteraction)
    {
 
-      ::string strClassName = pinteraction->payload("class_name").as_string();
+      ::string strClassName = pacmeuserinteraction->payload("class_name").as_string();
 
       if(strClassName.has_character())
       {
@@ -1020,14 +1021,14 @@ namespace windowing
 
    }
 
-   void windowing::windowing_application_main_loop()
+   void windowing::run()
    {
 
 
    }
 
 
-   int windowing::system_metrics_get_cx_icon_spacing()
+   ::i32 windowing::system_metrics_get_cx_icon_spacing()
    {
 
       return 76;
@@ -1035,7 +1036,7 @@ namespace windowing
    }
 
 
-   int windowing::system_metrics_get_cy_icon_spacing()
+   ::i32 windowing::system_metrics_get_cy_icon_spacing()
    {
 
       return 98;
@@ -1043,7 +1044,7 @@ namespace windowing
    }
 
 
-   int windowing::system_metrics_get_cx_icon()
+   ::i32 windowing::system_metrics_get_cx_icon()
    {
 
       return 32;
@@ -1051,7 +1052,7 @@ namespace windowing
    }
 
 
-   int windowing::system_metrics_get_cy_icon()
+   ::i32 windowing::system_metrics_get_cy_icon()
    {
 
       return 32;
@@ -1059,7 +1060,7 @@ namespace windowing
    }
 
    
-   int windowing::system_metrics_get_cy_caption()
+   ::i32 windowing::system_metrics_get_cy_caption()
    {
 
       return 22;
@@ -1073,6 +1074,14 @@ namespace windowing
    //    return nullptr;
    //
    // }
+
+
+   void windowing::on_activate()
+   {
+   
+      ::acme::windowing::windowing::on_activate();
+   
+   }
 
 
 } // namespace windowing

@@ -18,8 +18,10 @@
 #include "acme/filesystem/filesystem/folder_dialog.h"
 #include "acme/handler/request.h"
 #include "acme/memory/counter.h"
+#include "acme/operating_system/cpu_features.h"
 #include "acme/platform/exclusive.h"
-#include "acme/operating_system/application.h"
+//#include "acme/operating_system/application.h"
+#include "acme/operating_system/summary.h"
 #include "acme/parallelization/install_mutex.h"
 #include "acme/parallelization/asynchronous.h"
 #include "acme/exception/interface_only.h"
@@ -33,15 +35,18 @@
 #include "acme/user/user/os_theme_colors.h"
 #include "acme/windowing/windowing.h"
 #include "filesystem/filesystem/listing.h"
+#include "windowing/display.h"
+
+CLASS_DECL_ACME ::string friendly_byte_count(::u64 ul, const_char_pointer pszFormat = nullptr);
 
 #ifdef WINDOWS_DESKTOP
 
-__FACTORY_EXPORT void nano_http_wininet_factory(::factory::factory * pfactory);
+//__FACTORY_EXPORT void nano_http_wininet_factory(::factory::factory * pfactory);
 __FACTORY_EXPORT void nano_compress_windows_factory(::factory::factory * pfactory);
 
 #endif
 
-::string errno_error_message(int iError);
+::string errno_error_message(::i32 iError);
 
 #if REFERENCING_DEBUGGING
 CLASS_DECL_ACME::reference_referer* refdbg_get_top_referer();
@@ -54,7 +59,7 @@ CLASS_DECL_ACME ::string as_string(::windowing::enum_toolkit etoolkit);
 
 //CLASS_DECL_ACME void operating_system_open_url(const ::scoped_string & scopedstrUrl);
 
-int get_processor_count();
+::i32 get_processor_count();
 
 
 namespace platform
@@ -134,7 +139,7 @@ namespace platform
 #ifdef _DEBUG
 
 
-   long long node::increment_reference_count()
+   ::i64 node::increment_reference_count()
    {
 
       return ::object::increment_reference_count();
@@ -142,7 +147,7 @@ namespace platform
    }
 
 
-   long long node::decrement_reference_count()
+   ::i64 node::decrement_reference_count()
    {
 
       return ::object::decrement_reference_count();
@@ -161,7 +166,7 @@ namespace platform
    }
 
 
-   void node::call_async(const ::scoped_string & scopedstrPath, const ::scoped_string & scopedstrParam, const ::scoped_string & scopedstrDir, ::e_display edisplay, bool bPrivileged, unsigned int * puiPid)
+   void node::call_async(const ::scoped_string & scopedstrPath, const ::scoped_string & scopedstrParam, const ::scoped_string & scopedstrDir, ::e_display edisplay, bool bPrivileged, ::u32 * puiPid)
    {
 
       throw ::interface_only();
@@ -171,7 +176,7 @@ namespace platform
    }
 
 
-   void node::call_sync(const ::scoped_string & scopedstrPath, const ::scoped_string & scopedstrParam, const ::scoped_string & scopedstrDir, ::e_display edisplay, const class time & timeTimeout, ::property_set & set, int * piExitCode)
+   void node::call_sync(const ::scoped_string & scopedstrPath, const ::scoped_string & scopedstrParam, const ::scoped_string & scopedstrDir, ::e_display edisplay, const class time & timeTimeout, ::property_set & set, ::i32 * piExitCode)
    {
 
       throw ::interface_only();
@@ -217,7 +222,7 @@ namespace platform
 
       string_array_base stra2;
 
-      ::int_array_base iaPid2;
+      ::i32_array_base iaPid2;
 
       auto psystem = system();
 
@@ -240,7 +245,7 @@ namespace platform
 
                string strProcessId = a[1];
 
-               int iProcessId = ansi_to_int(strProcessId);
+               ::i32 iProcessId = ansi_to_int(strProcessId);
 
                stra2.case_insensitive_add_unique(strProcessName);
 
@@ -290,7 +295,7 @@ namespace platform
    }
 
 
-   ::enum_id node::key_command(::user::enum_key ekey, ::user::key_state* pkeystate)
+   ::enum_id node::key_command(const ::user::e_key & ekey)
    {
 
       return ::id_none;
@@ -333,7 +338,7 @@ namespace platform
    }
 
 
-   void node::node_application_on_status(const_char_pointer pszStatus, void * p, long long hi)
+   void node::node_application_on_status(const_char_pointer pszStatus, void * p, ::i64 hi)
    {
       
       
@@ -443,6 +448,7 @@ namespace platform
 
       on_system_main();
 
+
    }
 
 
@@ -458,7 +464,30 @@ namespace platform
 
          system()->m_itask = nullptr;
 
-         system()->branch_synchronously({.m_ptaskhandler = system()->acme_windowing()});
+         if (system()->m_bSystemLoadedFromALibrary)
+         {
+
+            system()->call_init_task();
+
+         }
+         else
+         {
+
+            // if (system()->m_pacmewindowing)
+            // {
+            //
+            //    system()->branch_synchronously({.m_ptaskhandler = ::system()->m_pacmewindowing});
+            //
+            // }
+            // else
+            {
+
+               system()->branch_synchronously();
+
+            }
+
+         }
+
          //system()->acme_windowing()->on_start_system();
 
       }
@@ -1065,7 +1094,7 @@ namespace platform
 
       //const ::file::path & pathFile = pathFile;
 
-      information() << "node::get_last_run_application_path_file pathFile:" << pathFile;
+      debug() << "node::get_last_run_application_path_file pathFile: " << pathFile;
 
       return pathFile;
 
@@ -1091,7 +1120,7 @@ namespace platform
 
       ::file::path pathFile = get_last_run_application_path_file(scopedstrAppId);
 
-      information() << "node::set_last_run_application_path_file path:" << path;
+      debug() << "node::set_last_run_application_path path: " << path;
 
       return file_system()->put_contents(pathFile, path);
 
@@ -1115,7 +1144,7 @@ namespace platform
    }
 
 
-   int node::node_init_check(int *pi, char *** ppz)
+   ::i32 node::node_init_check(::i32 *pi, char_pointer ** ppz)
    {
 
       return -1;
@@ -1257,7 +1286,7 @@ namespace platform
    // }
 
 
-//   int node::get_simple_ui_darkness()
+//   ::i32 node::get_simple_ui_darkness()
 //   {
 //
 //      return m_iWeatherDarkness;
@@ -1265,7 +1294,7 @@ namespace platform
 //   }
 //
 //
-//   void node::set_simple_ui_darkness(int iWeatherDarkness)
+//   void node::set_simple_ui_darkness(::i32 iWeatherDarkness)
 //   {
 //
 //      m_iWeatherDarkness = iWeatherDarkness;
@@ -1304,7 +1333,7 @@ namespace platform
 
 
 
-   //double node::get_user_luminance()
+   //::f64 node::get_user_luminance()
    //{
 
    //   return m_dUserLuminance;
@@ -1312,7 +1341,7 @@ namespace platform
    //}
 
 
-   //void node::set_system_app_luminance(double dLuminance)
+   //void node::set_system_app_luminance(::f64 dLuminance)
    //{
 
    //   m_dSystemLuminance = dLuminance;
@@ -1371,7 +1400,7 @@ namespace platform
 //   }
 
 
-   string node::get_file_icon_path(const ::scoped_string & scopedstrPath, int iSize)
+   string node::get_file_icon_path(const ::scoped_string & scopedstrPath, ::i32 iSize)
    {
 
       return "";
@@ -1387,7 +1416,7 @@ namespace platform
    }
 
 
-   int node::os_launch_uri(const ::scoped_string & scopedstrUri, char * pszError, int iBufferSize)
+   ::i32 node::os_launch_uri(const ::scoped_string & scopedstrUri, char_pointer pszError, ::i32 iBufferSize)
    {
 
       return -1;
@@ -1543,7 +1572,7 @@ namespace platform
   }
 
 
-   void node::set_console_colors(unsigned int dwScreenColors, unsigned int dwPopupColors, unsigned int dwWindowAlpha)
+   void node::set_console_colors(::u32 dwScreenColors, ::u32 dwPopupColors, ::u32 dwWindowAlpha)
    {
 
 
@@ -1572,7 +1601,7 @@ namespace platform
    }
 
 
-   double node::get_time_zone()
+   ::f64 node::get_time_zone()
    {
 
       return 0.;
@@ -1596,7 +1625,7 @@ namespace platform
    //}
 
 
-   //void node::system_time_to_earth_time(posix_time * ptime, const system_time & systemtime, int nDST)
+   //void node::system_time_to_earth_time(posix_time * ptime, const system_time & systemtime, ::i32 nDST)
    //{
 
    //   throw ::interface_only();
@@ -1691,7 +1720,7 @@ namespace platform
    }
 
 
-   //string node::font_name(enum_operating_system eoperatingsystem, int iVariant, enum_font efont)
+   //string node::font_name(enum_operating_system eoperatingsystem, ::i32 iVariant, enum_font efont)
    //{
 
    //   switch (eoperatingsystem)
@@ -1737,7 +1766,7 @@ namespace platform
 //
 //#ifdef MACOS
 //      
-//   void node::ns_launch_app(const ::scoped_string & scopedstr, const ::string &* argv, int iFlags)
+//   void node::ns_launch_app(const ::scoped_string & scopedstr, const ::string &* argv, ::i32 iFlags)
 //   {
 //      
 //      
@@ -1803,7 +1832,7 @@ namespace platform
 #endif
 
 
-   void node::launch_app(const ::scoped_string & scopedstr, const_char_pointer *argv, int iFlags)
+   void node::launch_app(const ::scoped_string & scopedstr, const_char_pointer *argv, ::i32 iFlags)
    {
       
       throw ::interface_only();
@@ -2282,7 +2311,7 @@ return false;
    }
 
 
-   void node::launch_application(::particle * pparticle, const ::scoped_string & scopedstrAppId, const ::scoped_string & scopedstrParams, int iBitCount)
+   void node::launch_application(::particle * pparticle, const ::scoped_string & scopedstrAppId, const ::scoped_string & scopedstrParams, ::i32 iBitCount)
    {
 
       //throw ::interface_only();
@@ -2331,7 +2360,7 @@ void node::open_internet_link(const ::scoped_string & scopedstrUrl, const ::scop
    }
 
 
-   int node::shell_execute_sync(const ::scoped_string & scopedstrFile, const ::scoped_string & scopedstrParams, const class time & timeTimeout, const ::file::path& pathWorkingDirectory)
+   ::i32 node::shell_execute_sync(const ::scoped_string & scopedstrFile, const ::scoped_string & scopedstrParams, const class time & timeTimeout, const ::file::path& pathWorkingDirectory)
    {
 
       //throw ::interface_only();
@@ -2357,7 +2386,7 @@ void node::open_internet_link(const ::scoped_string & scopedstrUrl, const ::scop
    }
 
 
-   int node::root_execute_sync(const ::scoped_string & scopedstrFile, const ::scoped_string & scopedstrParams, const class ::time& timeTimeout, const ::file::path& pathWorkingDirectory)
+   ::i32 node::root_execute_sync(const ::scoped_string & scopedstrFile, const ::scoped_string & scopedstrParams, const class ::time& timeTimeout, const ::file::path& pathWorkingDirectory)
    {
 
       //throw ::interface_only();
@@ -2604,7 +2633,7 @@ void node::open_internet_link(const ::scoped_string & scopedstrUrl, const ::scop
    //}
 
 
-   //string node::get_callstack(const ::scoped_string & scopedstrFormat, int iSkip, void * caller_address, int iCount)
+   //string node::get_callstack(const ::scoped_string & scopedstrFormat, ::i32 iSkip, void * caller_address, ::i32 iCount)
    //{
 
    //   return {};
@@ -2628,7 +2657,7 @@ void node::open_internet_link(const ::scoped_string & scopedstrUrl, const ::scop
    }
 
 
-   int node::is_debug_build()
+   ::i32 node::is_debug_build()
    {
 
 #ifdef _DEBUG
@@ -2645,7 +2674,7 @@ void node::open_internet_link(const ::scoped_string & scopedstrUrl, const ::scop
    }
 
 
-   int node::is_release_build()
+   ::i32 node::is_release_build()
    {
 
 #ifdef _DEBUG
@@ -2858,7 +2887,7 @@ void node::open_internet_link(const ::scoped_string & scopedstrUrl, const ::scop
    }
 
 
-   int node::get_current_process_affinity_order()
+   ::i32 node::get_current_process_affinity_order()
    {
 
       return -1;
@@ -2866,7 +2895,7 @@ void node::open_internet_link(const ::scoped_string & scopedstrUrl, const ::scop
    }
 
 
-   int node::get_current_process_maximum_affinity()
+   ::i32 node::get_current_process_maximum_affinity()
    {
 
       return -1;
@@ -2874,7 +2903,7 @@ void node::open_internet_link(const ::scoped_string & scopedstrUrl, const ::scop
    }
 
 
-   unsigned long long node::translate_processor_affinity(int i)
+   ::u64 node::translate_processor_affinity(::i32 i)
    {
 
       return 0;
@@ -2882,7 +2911,7 @@ void node::open_internet_link(const ::scoped_string & scopedstrUrl, const ::scop
    }
 
 
-   int node::get_current_processor_index()
+   ::i32 node::get_current_processor_index()
    {
 
       return -1;
@@ -2902,7 +2931,7 @@ void node::open_internet_link(const ::scoped_string & scopedstrUrl, const ::scop
    }
 
 
-//   void node::command_system(string_array_base & straOutput, int & iExitCode, const ::scoped_string & scopedstr, enum_command_system ecommandsystem, const class time & timeTimeout, ::particle * pparticleSynchronization, ::file::file * pfileLines)
+//   void node::command_system(string_array_base & straOutput, ::i32 & iExitCode, const ::scoped_string & scopedstr, enum_command_system ecommandsystem, const class time & timeTimeout, ::particle * pparticleSynchronization, ::file::file * pfileLines)
 //   {
 //
 //      throw interface_only();
@@ -2912,7 +2941,7 @@ void node::open_internet_link(const ::scoped_string & scopedstrUrl, const ::scop
 
 
 
-//   int node::command_system(const ::scoped_string & scopedstr, const trace_function & tracefunction)
+//   ::i32 node::command_system(const ::scoped_string & scopedstr, const trace_function & tracefunction)
 //   {
 //
 //      return command_system(scopedstr, tracefunction);
@@ -3013,7 +3042,19 @@ void node::open_internet_link(const ::scoped_string & scopedstrUrl, const ::scop
          return "libarchive";
 
       }
-      else if(scopedstrComponentName == "nano_http")
+#if defined(WINDOWS)
+      else if (scopedstrComponentName == "nano_compress")
+      {
+
+         return "windows";
+      }
+      else if (scopedstrComponentName == "nano_idn")
+      {
+
+         return "windows_common";
+      }
+#endif
+      else if (scopedstrComponentName == "nano_http")
       {
 
 #if defined(FREEBSD)
@@ -3066,30 +3107,30 @@ bool node::defer_component_factory(const ::scoped_string & scopedstrComponent)
 
 #ifdef WINDOWS_DESKTOP
 
-   if (scopedstrComponent == "nano_http")
-   {
+   //if (scopedstrComponent == "nano_http")
+   //{
 
-      auto pfactory = allocateø::factory::factory();
+   //   auto pfactory = allocateø::factory::factory();
 
-      nano_http_wininet_factory(pfactory);
+   //   nano_http_wininet_factory(pfactory);
 
-      pfactory->merge_to_global_factory();
+   //   pfactory->merge_to_global_factory();
 
-      return true;
+   //   return true;
 
-   }
-      else if (scopedstrComponent == "nano_compress")
-      {
+   //}
+      //if (scopedstrComponent == "nano_compress")
+      //{
 
-         auto pfactory = allocateø::factory::factory();
+      //   auto pfactory = allocateø::factory::factory();
 
-         nano_compress_windows_factory(pfactory);
+      //   nano_compress_windows_factory(pfactory);
 
-         pfactory->merge_to_global_factory();
+      //   pfactory->merge_to_global_factory();
 
-         return true;
+      //   return true;
 
-      }
+      //}
 
 #endif
 
@@ -3498,52 +3539,52 @@ bool node::_is_smart_git_installed()
    //}
 
 
-   ::pointer < ::operating_system::application > node::module_path_application(const ::scoped_string & scopestr)
-   {
-
-      throw ::interface_only();
-
-      return nullptr;
-
-   }
-
-   
-   ::pointer < ::operating_system::application > node::process_identifier_application(::process_identifier processidentifier)
-   {
-      
-      auto papplication = createø < ::operating_system::application >();
-      
-      papplication->open_by_process_identifier(processidentifier);
-      
-      return papplication;
-      
-   }
-
-
-   ::pointer < ::operating_system::application > node::application_predicate(const ::function < bool(::operating_system::application * papplication) > & function)
-   {
-
-      auto processidentifiera = processes_identifiers();
-
-      for (auto & processidentifier : processidentifiera)
-      {
-
-         auto papplication = createø < ::operating_system::application >();
-
-         papplication->open_by_process_identifier(processidentifier);
-
-         if (function(papplication))
-         {
-
-            return papplication;
-
-         }
-
-      }
-
-      return nullptr;
-
-   }
+   // ::pointer < ::operating_system::application > node::module_path_application(const ::scoped_string & scopestr)
+   // {
+   //
+   //    throw ::interface_only();
+   //
+   //    return nullptr;
+   //
+   // }
+   //
+   //
+   // ::pointer < ::operating_system::application > node::process_identifier_application(::process_identifier processidentifier)
+   // {
+   //
+   //    auto papplication = createø < ::operating_system::application >();
+   //
+   //    papplication->open_by_process_identifier(processidentifier);
+   //
+   //    return papplication;
+   //
+   // }
+   //
+   //
+   // ::pointer < ::operating_system::application > node::application_predicate(const ::function < bool(::operating_system::application * papplication) > & function)
+   // {
+   //
+   //    auto processidentifiera = processes_identifiers();
+   //
+   //    for (auto & processidentifier : processidentifiera)
+   //    {
+   //
+   //       auto papplication = createø < ::operating_system::application >();
+   //
+   //       papplication->open_by_process_identifier(processidentifier);
+   //
+   //       if (function(papplication))
+   //       {
+   //
+   //          return papplication;
+   //
+   //       }
+   //
+   //    }
+   //
+   //    return nullptr;
+   //
+   // }
 
 
    ::string node::get_character_set_default_sample_text(enum_character_set echaracterset)
@@ -3594,7 +3635,7 @@ bool node::_is_smart_git_installed()
    }
 
 
-//   void node::application_handle(long long l, void * p)
+//   void node::application_handle(::i64 l, void * p)
 //   {
 //
 //      
@@ -3603,7 +3644,7 @@ bool node::_is_smart_git_installed()
 
 #if defined(__BSD__) || defined(__APPLE__)
 
-   void node::arp_a(void *p, void(*callback)(void * addr, unsigned int uIp, const_char_pointer status))
+   void node::arp_a(void *p, void(*callback)(void * addr, ::u32 uIp, const_char_pointer status))
    {
       
       
@@ -3614,10 +3655,10 @@ bool node::_is_smart_git_installed()
 
 #if !defined(ANDROID)
 
-   string node::_get_call_stack_trace(const ::scoped_string & scopedstrFormat, int iSkip, void * caller_address, int iCount)
+   string node::_get_call_stack_trace(const ::scoped_string & scopedstrFormat, ::i32 iSkip, void * caller_address, ::i32 iCount)
    {
       
-      int frame_count = get_call_stack_default_frame_count();
+      ::i32 frame_count = get_call_stack_default_frame_count();
 
       if(frame_count <= 0)
       {
@@ -3650,7 +3691,7 @@ bool node::_is_smart_git_installed()
 #if !defined(__APPLE__) && !defined(__BSD__)
 
 
-   string node::_get_call_stack_trace(void ** stack, int frame_count, const ::scoped_string& scopedstrFormat , int iSkip , void* caller_address, int iCount)
+   string node::_get_call_stack_trace(void ** stack, ::i32 frame_count, const ::scoped_string& scopedstrFormat , ::i32 iSkip , void* caller_address, ::i32 iCount)
    {
 
       ::string strCallStack = get_call_stack_trace(stack, frame_count, scopedstrFormat, iSkip);
@@ -3772,7 +3813,7 @@ bool node::are_any_shared_libraries_mapped(const ::file::path_array_base & patha
       if(errorcode.m_etype == e_error_code_type_errno)
       {
 
-         return errno_error_message((int) errorcode.m_iOsError);
+         return errno_error_message((::i32) errorcode.m_iOsError);
 
       }
 
@@ -4176,7 +4217,7 @@ bool node::are_any_shared_libraries_mapped(const ::file::path_array_base & patha
 
 //#ifdef WINDOWS
 //
-//   DECLSPEC_NO_RETURN void node::raise_exception(unsigned int dwExceptionCode, unsigned int dwExceptionFlags)
+//   DECLSPEC_NO_RETURN void node::raise_exception(::u32 dwExceptionCode, ::u32 dwExceptionFlags)
 //   {
 //
 //
@@ -4217,7 +4258,7 @@ bool node::are_any_shared_libraries_mapped(const ::file::path_array_base & patha
    //}
 
 
-   //void node::edit_link_icon(const ::file::path& path, int iIcon, const ::file::path& pathLink)
+   //void node::edit_link_icon(const ::file::path& path, ::i32 iIcon, const ::file::path& pathLink)
    //{
 
    //   throw ::exception(error_interface_only);
@@ -4299,7 +4340,7 @@ bool node::are_any_shared_libraries_mapped(const ::file::path_array_base & patha
 //         return false;
 //
 //      }
-//      char* pszRealPath = ::pfilesystemcacheitem(scopedstr, NULL);
+//      char_pointer pszRealPath = ::pfilesystemcacheitem(scopedstr, NULL);
 //
 //      if (scopedstrRealPath == NULL)
 //      {
@@ -4340,9 +4381,9 @@ bool node::are_any_shared_libraries_mapped(const ::file::path_array_base & patha
 //         
 //         string strLink;
 //
-//         char * psz = strLink.get_buffer(4096);
+//         char_pointer psz = strLink.get_buffer(4096);
 //
-//         int count = (int) readlink(path, psz, 4096);
+//         ::i32 count = (::i32) readlink(path, psz, 4096);
 //
 //         if (count < 0)
 //         {
@@ -4612,7 +4653,7 @@ bool node::are_any_shared_libraries_mapped(const ::file::path_array_base & patha
    void node::list_process(::file::path_array_base& patha, ::process_identifier_array& uaPid)
    {
 
-      ASSERT(sizeof(unsigned int) == sizeof(unsigned int));
+      ASSERT(sizeof(::u32) == sizeof(::u32));
 
       uaPid = this->processes_identifiers();
 
@@ -4806,7 +4847,7 @@ bool node::are_any_shared_libraries_mapped(const ::file::path_array_base & patha
 
 
    
-   int node::building_core_count(bool bDedicatedBuilder)
+   ::i32 node::building_core_count(bool bDedicatedBuilder)
    {
 
       if (bDedicatedBuilder)
@@ -4828,7 +4869,7 @@ bool node::are_any_shared_libraries_mapped(const ::file::path_array_base & patha
    }
 
 
-   int node::performance_core_count()
+   ::i32 node::performance_core_count()
    {
 
       return ::get_processor_count();
@@ -4836,7 +4877,7 @@ bool node::are_any_shared_libraries_mapped(const ::file::path_array_base & patha
    }
 
 
-   int node::efficiency_core_count()
+   ::i32 node::efficiency_core_count()
    {
 
       return 0;
@@ -4867,14 +4908,14 @@ bool node::are_any_shared_libraries_mapped(const ::file::path_array_base & patha
 //   }
 //
 //
-//   void node::windowing_system_display_error_trap_push(int i)
+//   void node::windowing_system_display_error_trap_push(::i32 i)
 //   {
 //
 //
 //   }
 //
 //
-//   void node::windowing_system_display_error_trap_pop_ignored(int i)
+//   void node::windowing_system_display_error_trap_pop_ignored(::i32 i)
 //   {
 //
 //
@@ -4889,7 +4930,7 @@ bool node::are_any_shared_libraries_mapped(const ::file::path_array_base & patha
    }*/
 
 
-   bool node::_get_monitor_rectangle(::collection::index iMonitor, ::int_rectangle & rectangle)
+   bool node::_get_monitor_rectangle(::collection::index iMonitor, ::i32_rectangle & rectangle)
    {
 
       return false;
@@ -4897,7 +4938,7 @@ bool node::are_any_shared_libraries_mapped(const ::file::path_array_base & patha
    }
 
 
-   bool node::_get_workspace_rectangle(::collection::index iWorkspace, ::int_rectangle & rectangle)
+   bool node::_get_workspace_rectangle(::collection::index iWorkspace, ::i32_rectangle & rectangle)
    {
 
       return false;
@@ -5061,10 +5102,151 @@ bool node::are_any_shared_libraries_mapped(const ::file::path_array_base & patha
 //   }
 //
 
+   ::string node::get_current_operating_system_name()
+   {
+
+      auto psummary = operating_system_summary();
+
+      auto strFriendlyName = psummary->m_strFriendlyName;
+
+      return strFriendlyName;
+
+   }
+
+
+   ::string node::get_more_operating_system_version_information()
+   {
+
+      auto psummary = operating_system_summary();
+
+      auto strSystemReleaseName = psummary->m_strSystemReleaseName;
+
+      return strSystemReleaseName;
+
+   }
+
+
+   ::i32_size node::get_main_monitor_size()
+   {
+
+      return system()->acme_windowing()->acme_display()->get_main_screen_size();
+
+   }
+
 
    ::string_array_base node::get_operating_system_information_lines() 
    {
-      return {}; 
+      
+      ::string_array_base stra;
+
+      auto size = get_main_monitor_size();
+
+      ::string strDisplayResolution;
+
+      if (size.cx > 0 && size.cy > 0)
+      {
+
+         ::string strDisplayResolutionOptionalHelper;
+
+         if (size.cx == 1920 && size.cy == 1080)
+         {
+
+            strDisplayResolutionOptionalHelper = " (Full HD)";
+
+         }
+         else if (size.cx == 2560 && size.cy == 1440)
+         {
+
+            strDisplayResolutionOptionalHelper = " (2k - Quad HD)";
+
+         }
+         else if (size.cx == 3840 && size.cy == 2160)
+         {
+
+            strDisplayResolutionOptionalHelper = " (4K  -Ultra HD)";
+
+         }
+         else
+         {
+         
+            strDisplayResolutionOptionalHelper.empty();
+
+         }
+
+         strDisplayResolution.format("Display Resolution: {}x{}{}", size.cx, size.cy,
+                                     strDisplayResolutionOptionalHelper);
+      }
+
+      auto psummary = this->operating_system_summary();
+
+      ::string strDesktopAmbient;
+
+#if defined(LINUX)
+
+      auto strOperatingAmbient = psummary->m_strAmbient;
+
+      if (strOperatingAmbient.has_character())
+      {
+
+         if (strOperatingAmbient.contains("gnome"))
+         {
+
+            strDesktopAmbient.format("Desktop Ambient: GNOME {}", system()->acme_windowing()->get_version());
+
+         }
+
+      }
+
+#endif
+
+      auto strMachineArchitecture = ::operating_system::machine_architecture();
+
+      if (strMachineArchitecture.has_character())
+      {
+
+         strMachineArchitecture = "Machine Architecture: " + strMachineArchitecture;
+
+      }
+
+      auto memsizeApplicationMemoryUsage = get_current_memory_usage();
+
+      ::string strApplicationMemoryUsage;
+
+      if (memsizeApplicationMemoryUsage > 0)
+      {
+         strApplicationMemoryUsage.format("Application Memory Usage: {}",
+                                          friendly_byte_count(memsizeApplicationMemoryUsage));
+      }
+
+      ::string strOperatingSystemName = get_current_operating_system_name();
+
+      if (strOperatingSystemName.has_character())
+      {
+         
+         strOperatingSystemName = "#" + strOperatingSystemName;
+
+      }
+
+      ::string strMoreOperatingSystemVersionInformation = get_more_operating_system_version_information();
+      if (strMoreOperatingSystemVersionInformation.has_character())
+      {
+
+         strMoreOperatingSystemVersionInformation = "-#" + strMoreOperatingSystemVersionInformation;
+      }
+
+      stra.add(strOperatingSystemName);
+      stra.add(strMoreOperatingSystemVersionInformation);
+      stra.add("<br />");
+      stra.add(strDesktopAmbient);
+      stra.add(strMachineArchitecture);
+      stra.add(strDisplayResolution);
+      stra.add(strApplicationMemoryUsage);
+
+      stra.trim();
+      stra.erase_empty();
+
+      return stra;
+
       
    }
 
@@ -5085,10 +5267,19 @@ bool node::are_any_shared_libraries_mapped(const ::file::path_array_base & patha
 
    }
 
+
+   void node::run_loop1(::task* ptask)
+   {
+
+      ptask->run_default_loop1();
+
+   }
+
+
 } // namespace platform
 
 
-void node_application_send_status(const_char_pointer pszStatus, void * p, long long hi)
+void node_application_send_status(const_char_pointer pszStatus, void * p, ::i64 hi)
 {
    
    system()->node()->node_application_on_status(pszStatus, p, hi);

@@ -31,7 +31,7 @@ namespace aura
    }
 
 
-   void library::initialize_aura_library(::particle * pparticle,int iDesambig, const ::scoped_string & scopedstrRoot, const ::scoped_string & scopedstrName, const ::scoped_string & scopedstrFolder)
+   void library::initialize_aura_library(::particle * pparticle,::i32 iDesambig, const ::scoped_string & scopedstrRoot, const ::scoped_string & scopedstrName, const ::scoped_string & scopedstrFolder)
    {
 
       auto estatus = initialize(pparticle);
@@ -200,7 +200,7 @@ namespace aura
 
       PFN_NEW_AURA_LIBRARY pfnNewAuraLibrary = nullptr;
 
-      int iPhase = 0;
+      ::i32 iPhase = 0;
 
       try
       {

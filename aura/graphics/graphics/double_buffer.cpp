@@ -80,7 +80,8 @@ namespace graphics
 
    }
 
-   bool double_buffer::_on_begin_draw(buffer_item * pitem)
+
+   bool double_buffer::_on_begin(buffer_item * pitem)
    {
 
       //auto pitem = get_buffer_item();
@@ -112,21 +113,21 @@ namespace graphics
 
          auto & pimage = pitem->m_pimage2;
 
-         auto sizeImage = pimage->is_ok() ? pimage->get_size() : ::int_size(0, 0);
+         auto sizeImage = pimage->is_ok() ? pimage->get_size() : ::i32_size(0, 0);
 
-         auto sizeReserved = ::int_size(1920, 1080);
+         auto sizeReserved = ::i32_size(1920, 1080);
 
-         if (pitem->m_sizeBufferItemDraw.cx > sizeImage.cx)
+         if (pitem->m_sizeBufferItem.cx > sizeImage.cx)
          {
 
-            sizeImage.cx = pitem->m_sizeBufferItemDraw.cx;
+            sizeImage.cx = pitem->m_sizeBufferItem.cx;
 
          }
 
-         if (pitem->m_sizeBufferItemDraw.cy > sizeImage.cy)
+         if (pitem->m_sizeBufferItem.cy > sizeImage.cy)
          {
 
-            sizeImage.cy = pitem->m_sizeBufferItemDraw.cy;
+            sizeImage.cy = pitem->m_sizeBufferItem.cy;
 
          }
 
@@ -166,7 +167,7 @@ namespace graphics
 
             //pitem->m_pgraphics = pgraphics;
             
-            pgraphics->resize(pitem->m_sizeBufferItemDraw);
+            pgraphics->resize(pitem->m_sizeBufferItem);
 
          }
          
@@ -292,16 +293,18 @@ namespace graphics
             if (pbufferitem->m_pimage2)
             {
 
-               if (pbufferitem->m_pimage2->m_pgraphics)
+               auto pgraphics = pbufferitem->g();
+
+               if (pgraphics)
                {
 
-                  pbufferitem->m_pimage2->m_pgraphics->on_end_draw(m_pwindow);
+                  pgraphics->on_end_draw(m_pwindow);
 
                }
 
-               pbufferitem->m_pointBufferItemWindow = pbufferitem->m_pointBufferItemDraw;
+               pbufferitem->m_pointBufferItemWindow = pbufferitem->m_pointBufferItem;
 
-               pbufferitem->m_sizeBufferItemWindow = pbufferitem->m_sizeBufferItemDraw;
+               pbufferitem->m_sizeBufferItemWindow = pbufferitem->m_sizeBufferItem;
 
             }
 
@@ -352,9 +355,9 @@ namespace graphics
 
          }
 
-         pscreenitem->m_pointBufferItemWindow = pscreenitem->m_pointBufferItemDraw;
+         pscreenitem->m_pointBufferItemWindow = pscreenitem->m_pointBufferItem;
 
-         pscreenitem->m_sizeBufferItemWindow = pscreenitem->m_sizeBufferItemDraw;
+         pscreenitem->m_sizeBufferItemWindow = pscreenitem->m_sizeBufferItem;
 
       }
 
@@ -367,7 +370,7 @@ namespace graphics
 
             //}
 
-      //      int debug = 1;
+      //      ::i32 debug = 1;
       //
       //      if (debug)
       //      {
@@ -385,15 +388,15 @@ namespace graphics
       //
       //         auto pdata = pimageScreen->get_data();
       //
-      //         unsigned char * p = (unsigned char *)pdata;
+      //         ::u8 * p = (::u8 *)pdata;
       //
-      //         unsigned char r = p[0];
+      //         ::u8 r = p[0];
       //
-      //         unsigned char g = p[1];
+      //         ::u8 g = p[1];
       //
-      //         unsigned char b = p[2];
+      //         ::u8 b = p[2];
       //
-      //         unsigned char a = p[3];
+      //         ::u8 a = p[3];
       //
       //         //informationf("argb " +as_string(r) + "," + as_string(g) + "," +as_string(b) + "," + as_string(a));
       //

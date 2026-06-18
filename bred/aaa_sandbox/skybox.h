@@ -17,7 +17,7 @@ namespace graphics3d
 
 
       ::string          m_strCubemapTextureName;
-      //long long m_llId;
+      //::i64 m_llId;
       ///bool m_bIsSkybox = false;
 
    };

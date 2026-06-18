@@ -1,18 +1,19 @@
 #include "framework.h"
 //#include "acme/node/ansios/ansios.h"
 #include "_freebsd.h"
+#include "acme/operating_system/posix/shared_memory.h"
 
 //
 //namespace linux
 //{
 //
-//   int function()
+//   ::i32 function()
 //   {
 //      return 0;
 //   }
 //
 //
-////   unsigned int GetTempPath(string & str)
+////   ::u32 GetTempPath(string & str)
 ////   {
 ////      return ::GetTempPathW(MAX_PATH * 8, wstring_adaptor(str, MAX_PATH * 8));
 ////   }
@@ -45,4 +46,12 @@ void freebsd_factory(::factory::factory * pfactory)
 
 
 
+
+
+void operating_system_factory(::factory::factory * pfactory)
+{
+
+   pfactory->add_factory_item< ::posix::shared_memory, ::shared_memory>();
+
+}
 

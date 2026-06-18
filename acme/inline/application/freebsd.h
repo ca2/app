@@ -4,8 +4,8 @@
 #include "acme/operating_system.h"
 
 
-extern char _binary__matter_zip_start[];
-extern char _binary__matter_zip_end[];
+extern ::i8 _binary__matter_zip_start[];
+extern ::i8 _binary__matter_zip_end[];
 
 
 #ifndef __APP_ID
@@ -20,7 +20,7 @@ extern char _binary__matter_zip_end[];
 const_char_pointer g_psz_br_init_symbol_app = __APP_ID;
 
 
-int main(int argc, char * argv[], char * envp[])
+::i32 main(::i32 argc, char_pointer argv[], char_pointer envp[])
 {
 
    class ::main main;
@@ -43,7 +43,7 @@ int main(int argc, char * argv[], char * envp[])
 
    auto estatus = __main(main);
 
-   int iStatus = estatus.error_status();
+   ::i32 iStatus = estatus.error_status();
 
    return iStatus;
 

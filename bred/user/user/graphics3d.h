@@ -8,6 +8,7 @@
 #include "bred/graphics3d/types.h"
 #include "apex/platform/app_consumer.h"
 #include "apex/platform/application.h"
+#include "apex/platform/session.h"
 #include "bred/platform/fps_counter.h"
 
 
@@ -22,9 +23,9 @@ namespace user
    public:
 
       //memory m_memory;
-      //int m_i;
+      //::i32 m_i32;
 
-      int m_iFrameCounter = 0;
+      ::i32 m_iFrameCounter = 0;
       ::write_text::font_pointer m_pfontThomasBS_;
       ::string_array m_straLineStats;
 
@@ -39,11 +40,11 @@ namespace user
       //::pointer < ::image::target >             m_pimagetarget;
 
       //bool		m_bShouldClose;
-      int		m_iWidth;
-      int		m_iHeight;
-      bool		m_bFrameBufferResized;
+      ::i32		m_iWidth;
+      ::i32		m_iHeight;
+      bool		m_bFramebufferResized;
 
-
+::platform::session * m_psession;
 
 
       graphics3d();
@@ -51,17 +52,20 @@ namespace user
 
 //      // void assert_ok() const override;
 //      // void dump(dump_context & dumpgpucontext) const override;
-      //::int_size size() override;
+      //::i32_size size() override;
 
       //virtual ::block global_ubo_block();
 
       void install_message_routing(::channel * pchannel) override;
 
 
-      virtual void on_mouse_move(const int_point& point);
+      virtual void on_mouse_move(const i32_point& point);
       virtual void on_mouse_out();
 
-      virtual ::user::enum_key_state get_key_state(::user::e_key ekey) ;
+      //virtual ::user::enum_key_state get_key_state(const ::user::e_key & ekey) ;
+       ::key::e_state get_key_state(const ::user::e_key & ekey) {
+           return m_psession->_key_state(ekey);
+       }
       void _001OnNcClip(::draw2d::graphics_pointer & pgraphics) override;
       void _001OnClip(::draw2d::graphics_pointer & pgraphics) override;
 
@@ -91,16 +95,16 @@ namespace user
       DECLARE_MESSAGE_HANDLER(on_message_left_button_up);
       DECLARE_MESSAGE_HANDLER(on_message_mouse_leave);
 
-      void on_timer(::timer * ptimer) override;
+      void operator()(::timer * ptimer) override;
 
       //void reset_mouse_last_position();
 
 
-      long long increment_reference_count() override
+      ::i64 increment_reference_count() override
       {
          return ::object::increment_reference_count();
       }
-      long long decrement_reference_count() override
+      ::i64 decrement_reference_count() override
       {
          return ::object::decrement_reference_count();
       }
@@ -110,16 +114,16 @@ namespace user
       //virtual bool is_absolute_mouse_position();
 
       //virtual bool shouldClose();
-      //virtual ::int_size size();
+      //virtual ::i32_size size();
       virtual bool wasWindowResized();
       virtual void resetWindowResizedFlag();
 //
-  //    virtual ::user::enum_key_state get_key_state(::user::e_key ekey);
+  //    virtual ::user::enum_key_state get_key_state(const ::user::e_key & ekey);
 
       //virtual void initWindow();
 
 
-      virtual void defer_initialize_engine(const ::int_rectangle & rectangle);
+      virtual void defer_initialize_engine(const ::i32_rectangle & rectangle);
 
       virtual ::pointer < ::prodevian::immersion > create_immersion();
 
@@ -129,7 +133,7 @@ namespace user
 
 
       virtual ::pointer < ::graphics3d::key_map > get_default_key_map();
-      virtual float getAspectRatio();
+      virtual ::f32 getAspectRatio();
 
       //virtual void prepare_mouse_input();
       //virtual void process_mouse_input();

@@ -25,14 +25,14 @@ namespace user
       enum_orientation        m_eorientation = e_orientation_none;
       enum_align_relative     m_ealignrelativeOrthogonal;
 
-      int m_iPadding = 2;
+      ::i32 m_iPadding = 2;
 
 
       line_layout();
       ~line_layout() override;
 
 
-      virtual long long increment_reference_count() override
+      virtual ::i64 increment_reference_count() override
       {
 
          return ::object::increment_reference_count();
@@ -40,7 +40,7 @@ namespace user
       }
 
 
-      virtual long long decrement_reference_count() override
+      virtual ::i64 decrement_reference_count() override
       {
 
          return ::object::decrement_reference_count();

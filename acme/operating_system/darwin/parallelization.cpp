@@ -17,14 +17,14 @@
 
 #include <unistd.h>
 /// Tags: proc_count, core_count, processor_count, cpu_count
-int get_processor_count()
+::i32 get_processor_count()
 {
 
-   int nm[2];
+   ::i32 nm[2];
 
    size_t len = 4;
 
-   unsigned int count;
+   ::u32 count;
 
    nm[0] = CTL_HW;
 

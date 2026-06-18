@@ -12,9 +12,9 @@
 #define EOF     (-1)
 
 
-int sprintf_dup(char *buffer, const char *format, ...)
+::i32 sprintf_dup(char_pointer buffer, const_char_pointer format, ...)
 {
-    int retValue;
+    ::i32 retValue;
     va_list argptr;
 
     va_start(argptr, format);
@@ -24,31 +24,31 @@ int sprintf_dup(char *buffer, const char *format, ...)
     return retValue;
 }
 
-int snprintf_dup(char *dest, size_t n, const char *fmt, ...)
+::i32 snprintf_dup(char_pointer dest, size_t n, const_char_pointer fmt, ...)
 {
 	__UNREFERENCED_PARAMETER(n);
 
 	va_list args;
 	va_start(args, fmt);
-	int retValue = vsprintf(dest, fmt, args);
+	::i32 retValue = vsprintf(dest, fmt, args);
 	va_end(args);
 	return retValue;
 }
 
-int vsnprintf_dup(char *dest, size_t n, const char *fmt, va_list args)
+::i32 vsnprintf_dup(char_pointer dest, size_t n, const_char_pointer fmt, va_list args)
 {
 	__UNREFERENCED_PARAMETER(n);
 	return vsprintf(dest, fmt, args);
 }
 
-int vsprintf_dup(char *dest, const char *fmt, va_list args)
+::i32 vsprintf_dup(char_pointer dest, const_char_pointer fmt, va_list args)
 {
    #ifdef WINDOWS_DESKTOP
-	int retValue = wvsprintfA(dest, fmt, args);
+	::i32 retValue = wvsprintfA(dest, fmt, args);
    #elif defined(UNIVERSAL_WINDOWS)
-	int retValue = vsprintf(dest, fmt, args);
+	::i32 retValue = vsprintf(dest, fmt, args);
 	#else
-	int retValue = vsprintf(dest, fmt, args);
+	::i32 retValue = vsprintf(dest, fmt, args);
 	#endif
    return retValue;
 }
@@ -65,27 +65,27 @@ int vsprintf_dup(char *dest, const char *fmt, va_list args)
 
 
 
-int swnprintf_dup(::wide_character *dest, size_t n, const ::wide_character *fmt, ...)
+::i32 swnprintf_dup(::wide_character *dest, size_t n, const ::wide_character *fmt, ...)
 {
 
 	va_list args;
 	va_start(args, fmt);
-	int retValue = vswprintf(dest, n, fmt, args);
+	::i32 retValue = vswprintf(dest, n, fmt, args);
 	va_end(args);
 	return retValue;
 
 }
 
 
-int vswprintf_dup(::wide_character *dest, size_t n, const ::wide_character *fmt, va_list args)
+::i32 vswprintf_dup(::wide_character *dest, size_t n, const ::wide_character *fmt, va_list args)
 {
 
 #ifdef WINDOWS_DESKTOP
-	int retValue = wvsprintfW(dest, fmt, args);
+	::i32 retValue = wvsprintfW(dest, fmt, args);
 #elif defined(UNIVERSAL_WINDOWS)
-   int retValue = vswprintf_s(dest, n, fmt, args);
+   ::i32 retValue = vswprintf_s(dest, n, fmt, args);
 #else
-	int retValue = vswprintf(dest, n, fmt, args);
+	::i32 retValue = vswprintf(dest, n, fmt, args);
 #endif
    return retValue;
 

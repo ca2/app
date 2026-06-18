@@ -18,7 +18,7 @@ public:
 
 //#ifdef WINDOWS
 //
-//   platform_char** windows_get_envp();
+//   platform_char ** windows_get_envp();
 //
 //#endif
 

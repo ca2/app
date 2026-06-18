@@ -9,7 +9,7 @@
 #ifndef UNIVERSAL_WINDOWS
 
 //
-//typedef char** MYSQL_ROW;		/* return data as array of strings */
+//typedef char_pointer * MYSQL_ROW;		/* return data as array of strings */
 //typedef struct st_mysql MYSQL;
 #include "axis/database/database/database_impl.h"
 
@@ -54,9 +54,9 @@ namespace mysql
       virtual MYSQL_RES* _mysql_query_result(const ::scoped_string & scopedstrSql);
       virtual bool _mysql_result_free(MYSQL_RES* pres);
       virtual MYSQL_ROW _mysql_fetch_row(MYSQL_RES* pres);
-      virtual unsigned long* _mysql_fetch_lengths(MYSQL_RES* pres);
-      virtual long long _mysql_num_fields(MYSQL_RES* pres);
-      virtual long long _mysql_num_rows(MYSQL_RES* pres);
+      virtual ulong* _mysql_fetch_lengths(MYSQL_RES* pres);
+      virtual ::i64 _mysql_num_fields(MYSQL_RES* pres);
+      virtual ::i64 _mysql_num_rows(MYSQL_RES* pres);
 
       virtual ::collection::count get_affected_rows_count() override;
 

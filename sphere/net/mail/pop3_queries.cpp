@@ -3,29 +3,29 @@
 
 #ifdef USE_SSL
 
-int pop3_recv (pop3sock_t sock, char* buf, int len){
+::i32 pop3_recv (pop3sock_t sock, char_pointer buf, ::i32 len){
 	return sock->ssl?SSL_read(sock->ssl,buf,len):recv(sock->sock,buf,len,0);
 }
 
 
-int pop3_send (pop3sock_t sock, char* buf, int len){
+::i32 pop3_send (pop3sock_t sock, char_pointer buf, ::i32 len){
 	return sock->ssl?SSL_write(sock->ssl,buf,len):send(sock->sock,buf,len,0);
 }
 
 #else
 
-int pop3_recv (pop3sock_t sock, char* buf, int len){
+::i32 pop3_recv (pop3sock_t sock, char_pointer buf, ::i32 len){
 	return recv(sock,buf,len,0);
 }
 
-int pop3_send (pop3sock_t sock, char* buf, int len){
+::i32 pop3_send (pop3sock_t sock, char_pointer buf, ::i32 len){
 	return send(sock,buf,len,0);
 }
 
 #endif
 
 /* enable timeout sockets with 'select' */
-int timedrselect(fd_set *rfds, int maximum, int time){
+::i32 timedrselect(fd_set *rfds, ::i32 maximum, ::i32 time){
 struct timeval timeout;
 timeout.tv_sec = time;
 timeout.tv_usec = 0;
@@ -38,7 +38,7 @@ timeout.tv_usec = 0;
 }
 
 /* prepare the socket to be read */
-int timedrread(pop3sock_t sock, int time) {
+::i32 timedrread(pop3sock_t sock, ::i32 time) {
 #if 0
 fd_set rfds;
 #ifdef USE_SSL
@@ -58,26 +58,26 @@ fd_set rfds;
 }
 
 /* this function is not in the API, just for libspopc internal use: */
-char* recv_rest(pop3sock_t sock, char* buf, int cs, int bs);
+char_pointer recv_rest(pop3sock_t sock, char_pointer buf, ::i32 cs, ::i32 bs);
 /* recv end of data through sock, buffer is of bs bytes, already filled by cs */
 /* end of data is assumed when data has a "\r\n.\r\n" string */
 
-char* pop3_query(pop3sock_t sock, const ::string & query){
+char_pointer pop3_query(pop3sock_t sock, const ::string & query){
 /* performs a simple pop query and returns server's <512 bytes response */
-int r;
-int bytes=0;
-char* buf;
+::i32 r;
+::i32 bytes=0;
+char_pointer buf;
 
 #ifdef EBUG
 	fprintf(stderr,"<pop3_query>\n");
 	fprintf(stderr,"send %s",query);
 #endif
-	r=pop3_send(sock,(char *)query,strlen(query));
+	r=pop3_send(sock,(char_pointer )query,strlen(query));
 	if(r==-1){
 		fprintf(stderr,"pop3_query.send");
 		return(nullptr);
 	}
-	buf=(char*)malloc(POPBUF +1); /* 512 chars + '\0' */ /* FIXME: free when ? */
+	buf=(char_pointer )malloc(POPBUF +1); /* 512 chars + '\0' */ /* FIXME: free when ? */
 	if(!buf){
 		fprintf(stderr,"pop3_query.malloc");
 		return(nullptr);
@@ -101,46 +101,46 @@ char* buf;
 	return(buf);
 }
 
-char* pop3_user(pop3sock_t sock, const ::scoped_string & scopedstrName){
+char_pointer pop3_user(pop3sock_t sock, const ::scoped_string & scopedstrName){
 /* performs "USER" pop query and returns server's <512 bytes response */
-char query[POPBUF]; /* total "USER ****your_name****\n" is < 512  */
+::i8 query[POPBUF]; /* total "USER ****your_name****\n" is < 512  */
 
 	snprintf(query,POPBUF,"USER %s\r\n",name);
 	return(pop3_query(sock,query));
 }
 
-char* pop3_pass(pop3sock_t sock, const ::scoped_string & scopedstrw){
+char_pointer pop3_pass(pop3sock_t sock, const ::scoped_string & scopedstrw){
 /* performs "PASS" pop query and return server's <512 bytes response */
-char query[POPBUF]; /* total "PASS ****your_pass****\n" is <512 */
+::i8 query[POPBUF]; /* total "PASS ****your_pass****\n" is <512 */
 
 	snprintf(query,POPBUF,"PASS %s\r\n",pw);
 	return(pop3_query(sock,query));
 }
 
-char* pop3_quit(pop3sock_t sock){
+char_pointer pop3_quit(pop3sock_t sock){
 /* performs "QUIT" pop query and returns server's <512 bytes response */
-char query[]="QUIT\r\n";
+::i8 query[]="QUIT\r\n";
 
 	return(pop3_query(sock,query));
 }
 
-char* pop3_stat(pop3sock_t sock){
+char_pointer pop3_stat(pop3sock_t sock){
 /* performs "STAT" pop query and returns server's <512 bytes response */
-char query[]="STAT\r\n";
+::i8 query[]="STAT\r\n";
 
 	return(pop3_query(sock,query));
 }
 
-char* recv_rest(pop3sock_t sock, char* buf, int cs, int bs){
-/* recv rest of data through sock, given a cs  pre-filled buffer double_size of bs.
+char_pointer recv_rest(pop3sock_t sock, char_pointer buf, ::i32 cs, ::i32 bs){
+/* recv rest of data through sock, given a cs  pre-filled buffer ::f64_size of bs.
 * end of data is assumed when data has a "\r\n.\r\n" string
 * recv() is TCPBUFLEN  bytes stepped, SUGGEST any good value...
 * Warning: after calling this function, buf must never be used again
 * -not even for a free(buf)- since it may be reallocated. use the return
 * value instead (usage example: buf=recv_rest(sock,buf,cs,bs); free(buf); */
-char* ret = nullptr;
-char* cur = nullptr; /* current position ready to receive */
-int tr;    /* total received */
+char_pointer ret = nullptr;
+char_pointer cur = nullptr; /* current position ready to receive */
+::i32 tr;    /* total received */
 #ifdef EBUG
 	fprintf(stderr,"<recv_rest>\n");
 #endif
@@ -154,7 +154,7 @@ int tr;    /* total received */
 	tr = cs;
 	cur = buf;
 	if(cs == bs){
-		ret=(char*)realloc(buf,bs+1);
+		ret=(char_pointer )realloc(buf,bs+1);
 		if(!ret){
 			fprintf(stderr,"recv_rest.realloc");
 			return buf;
@@ -170,7 +170,7 @@ int tr;    /* total received */
 #ifdef EBUG
 			fprintf(stderr,"realloc bs*2 + 1 == %d\n", bs*2 +1);
 #endif
-			ret = (char*)realloc(buf, (bs *=2) +1);
+			ret = (char_pointer )realloc(buf, (bs *=2) +1);
 		}
 		if(!ret){
 			fprintf(stderr,"recv_rest.realloc");
@@ -208,11 +208,11 @@ int tr;    /* total received */
 	return(buf);
 }
       
-char* pop3_list(pop3sock_t sock, int atom){
+char_pointer pop3_list(pop3sock_t sock, ::i32 atom){
 /* performs a "LIST" pop query and returns server's (long) response */
-int r;
-char query[POPBUF]; /* total query "LIST ID\n" string is < 512 */
-char* buf;
+::i32 r;
+::i8 query[POPBUF]; /* total query "LIST ID\n" string is < 512 */
+char_pointer buf;
 
 #ifdef EBUG
 	fprintf(stderr,"<pop3_list>\n");
@@ -230,9 +230,9 @@ char* buf;
 		fprintf(stderr,"pop3_list.send");
 		return(nullptr);
 	}
-	/* now prepare a first short 512 bytes recv() */
+	/* now prepare a first ::i16 512 bytes recv() */
 	/* it might be now enough for recv() from "LIST X" */
-	buf=(char*)malloc(POPBUF +1); /* 512 chars + '\0' */
+	buf=(char_pointer )malloc(POPBUF +1); /* 512 chars + '\0' */
 	if(!buf){
 		fprintf(stderr,"pop3_list.malloc");
 		return(nullptr);
@@ -244,10 +244,10 @@ char* buf;
       return(nullptr);
    }
    buf[r]='\0';
-	if(atom>0){/* +OK atom int_size */
+	if(atom>0){/* +OK atom i32_size */
 		return(buf); /* 512 bytes are enough as say RFC 1939 */
 	}
-	/* else : +OK X messages (YYY octets)\n atom int_size\n... */
+	/* else : +OK X messages (YYY octets)\n atom i32_size\n... */
 	if(pop3_error(buf)){
 #ifdef EBUG
 		fprintf(stderr,"%s",buf);
@@ -261,10 +261,10 @@ char* buf;
 }
 
 
-char* pop3_retr(pop3sock_t sock, int atom){
-int r;
-char query[POPBUF];
-char *buf;
+char_pointer pop3_retr(pop3sock_t sock, ::i32 atom){
+::i32 r;
+::i8 query[POPBUF];
+char_pointer buf;
 
 #ifdef EBUG
    fprintf(stderr, "<pop3_retr>\n");
@@ -275,7 +275,7 @@ char *buf;
       fprintf(stderr,"pop3_retr.send");
       return(nullptr);
    }
-   buf=(char*)malloc(POPBUF +1);/* 512 chars + '\0' */
+   buf=(char_pointer )malloc(POPBUF +1);/* 512 chars + '\0' */
    if(!buf) {
       fprintf(stderr,"pop3_retr.malloc");
       return(nullptr);
@@ -308,9 +308,9 @@ char *buf;
    }
 }
 
-char* pop3_dele(pop3sock_t sock, int atom){
+char_pointer pop3_dele(pop3sock_t sock, ::i32 atom){
 /* performs a "DELE" pop query and returns server's <512 bytes response */
-char query[POPBUF]; /* total "DELE X\n" string < 512 */
+::i8 query[POPBUF]; /* total "DELE X\n" string < 512 */
 
 	if(atom<=0){
 #ifdef EBUG
@@ -322,25 +322,25 @@ char query[POPBUF]; /* total "DELE X\n" string < 512 */
 	return(pop3_query(sock,query));
 }
 
-char* pop3_noop(pop3sock_t sock){
+char_pointer pop3_noop(pop3sock_t sock){
 /* performs a "NOOP" pop query and returns server's <512 bytes response */
-char query[]="NOOP\r\n";
+::i8 query[]="NOOP\r\n";
 	
 	return(pop3_query(sock,query));
 }
 
-char* pop3_rset(pop3sock_t sock){
+char_pointer pop3_rset(pop3sock_t sock){
 /* performs a "RSET" pop query and returns server's <512 bytes response */
-char query[]="RSET\r\n";
+::i8 query[]="RSET\r\n";
 
 	return(pop3_query(sock,query));
 }
 
-char* pop3_top(pop3sock_t sock, int atom, int lines){
+char_pointer pop3_top(pop3sock_t sock, ::i32 atom, ::i32 lines){
 /* performs a "TOP" pop query and returns server's (long) response */
-int r;
-char query[POPBUF]; /* total "TOP X Y\n" is < 512 */
-char* buf;
+::i32 r;
+::i8 query[POPBUF]; /* total "TOP X Y\n" is < 512 */
+char_pointer buf;
 
 #ifdef EBUG
 	fprintf(stderr,"<pop3_top>\n");
@@ -355,7 +355,7 @@ char* buf;
 		return(nullptr);
 	}
 	/* prepare first recv() of 512 bytes */
-	buf=(char*)malloc(POPBUF +1); /* 512 chars + '\0' */
+	buf=(char_pointer )malloc(POPBUF +1); /* 512 chars + '\0' */
 	if(!buf){
 		fprintf(stderr,"pop3_top.malloc");
 		return(nullptr);
@@ -381,11 +381,11 @@ char* buf;
 	return(recv_rest(sock,buf,r,POPBUF));
 }
 
-char* pop3_uidl(pop3sock_t sock, int atom){
+char_pointer pop3_uidl(pop3sock_t sock, ::i32 atom){
 /* performs a "UIDL" pop query and returns server's (long) response */
-int r;
-char query[POPBUF]; /* total "UIDL X\n" is < 512 */
-char* buf;
+::i32 r;
+::i8 query[POPBUF]; /* total "UIDL X\n" is < 512 */
+char_pointer buf;
 
 #ifdef EBUG
 	fprintf(stderr,"<pop3_uidl>\n");
@@ -404,8 +404,8 @@ char* buf;
 		return(nullptr);
 	}
 	/* prepare first 512 bytes for recv() */
-	/* i hope this is also enough for the 'one line' short response */
-	buf=(char*)malloc(POPBUF +1); /* 512 chars + '\0' */
+	/* i hope this is also enough for the 'one line' ::i16 response */
+	buf=(char_pointer )malloc(POPBUF +1); /* 512 chars + '\0' */
 	if(!buf){
 		fprintf(stderr,"pop3_uidl.malloc");
 		return(nullptr);
@@ -425,7 +425,7 @@ char* buf;
 			fprintf(stderr,"%s",buf);
 		}
 #endif
-		/* anyway, we return the short buf, error or not */
+		/* anyway, we return the ::i16 buf, error or not */
 		return(buf); /* 512 are enough as say RFC 1939 */
 	}
 	/* else : +OK\n atom sig\nid sig\nid sig\n... */
@@ -441,9 +441,9 @@ char* buf;
 	return(recv_rest(sock,buf,r,POPBUF));
 }
 
-char* pop3_apop(pop3sock_t sock, const ::scoped_string & scopedstrName, const ::string & digest){
+char_pointer pop3_apop(pop3sock_t sock, const ::scoped_string & scopedstrName, const ::string & digest){
 /* performs a "APOP" secure query and returns server's <512 bytes response */
-char query[POPBUF]; /* total "APOP name digest\n" is < 512 */
+::i8 query[POPBUF]; /* total "APOP name digest\n" is < 512 */
 
 	snprintf(query,POPBUF,"APOP %s %s\r\n",name,digest);
 	return(pop3_query(sock,query));

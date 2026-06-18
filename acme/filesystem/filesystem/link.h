@@ -22,7 +22,7 @@ namespace file
       ::file::path         m_pathTarget;
       ::file::path         m_pathFolder;
       ::file::path         m_pathIcon;
-      int                  m_iIcon;
+      ::i32                  m_iIcon;
 
 
       link();

@@ -70,9 +70,9 @@ reference_item_array::reference_item_array(::subparticle* psubparticle, ::subpar
 reference_item_array::~reference_item_array()
 {
 
-   int i = 1;
-   int b = 2;
-   int c = i + b;
+   ::i32 i = 1;
+   ::i32 b = 2;
+   ::i32 c = i + b;
 #if REFERENCING_DEBUGGING
 
    for (auto & preferenceitema : m_item2a)
@@ -699,7 +699,7 @@ void reference_item_array::dump_pending_releases(::string & strDump)
 
    //strDump.append_formatf("Serial: %lld, m_iLastReferenceCount=%d\n", m_iSerial, m_iLastReferenceCount);
 
-   strDump.append_formatf("Serial: %lld, refcount=%lld\n", m_iSerial, (long long )m_psubparticle->m_countReference);
+   strDump.append_formatf("Serial: %lld, refcount=%lld\n", m_iSerial, (::i64 )m_psubparticle->m_countReference);
 
    strDump += "deb:"+m_strDebug + "\n";
 

@@ -93,8 +93,8 @@ struct NSWindow;
 #if defined(_WIN32) && !defined(DOXYGEN_DOCUMENTATION_BUILD)
 #define NANOUI_FORCE_DISCRETE_GPU() \
     extern "C" { \
-        __declspec(dllexport) int AmdPowerXpressRequestHighPerformance = 1; \
-        __declspec(dllexport) int NvOptimusEnablement = 1; \
+        __declspec(dllexport) ::i32 AmdPowerXpressRequestHighPerformance = 1; \
+        __declspec(dllexport) ::i32 NvOptimusEnablement = 1; \
     }
 #else
 /**
@@ -246,7 +246,7 @@ class Window;
  *     wait for the termination of the main loop and then swap the two thread
  *     environments back into their initial configuration.
  */
-//extern NANOUI_EXPORT void mainloop(float refresh = -1.f);
+//extern NANOUI_EXPORT void mainloop(::f32 refresh = -1.f);
 //
 ///// Request the application main loop to terminate (e.g. if you detached mainloop).
 //extern NANOUI_EXPORT void leave();
@@ -291,7 +291,7 @@ NANOUI_EXPORT void ___save_image(::particle * pparticle, const ::file::path & pa
  * exceeding the standard dynamic range from 0.0-1.0.
  *
  * To leverage either of these features, you will need to create a \ref Screen
- * with <tt>float_buffer=True</tt>. Only the macOS Metal backend of NanoGUI
+ * with <tt>f32_buffer=True</tt>. Only the macOS Metal backend of NanoGUI
  * implements this function right now. All other platforms return <tt>(false,
  * false)</tt>.
  *
@@ -346,13 +346,13 @@ extern NANOUI_EXPORT ::string get_utf8_character(uint32_t c);
 
 
 ///// Load a directory of PNG images and upload them to the GPU (suitable for use with ImagePanel)
-//extern NANOUI_EXPORT ::array<::pair<int, ::string>>
+//extern NANOUI_EXPORT ::array<::pair<::i32, ::string>>
 //load_image_directory(::nano2d::context  * pcontext, const ::scoped_string & path);
 //
 ///// Convenience function for instanting a PNG icon from the application's data segment (via bin2c)
 //#define ::nano2d::ImageIcon(ctx, name) nanoui::__nanoui_get_image(ctx, #name, name##_png, name##_png_size)
 ///// Helper function used by ::nano2d::_image_icon
-//extern NANOUI_EXPORT int __nanoui_get_image(::nano2d::context  * pcontext, const ::scoped_string & name,
+//extern NANOUI_EXPORT ::i32 __nanoui_get_image(::nano2d::context  * pcontext, const ::scoped_string & name,
 //   uint8_t * data, uint32_t size);
 
 NAMESPACE_END(nanoui)

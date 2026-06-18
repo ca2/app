@@ -113,7 +113,7 @@ namespace netserver
                for (m_iCurrentPort = m_iPortMinimum; ::task_get_run() && m_iCurrentPort <= m_iPortMaximum; m_iCurrentPort++)
                {
 
-                  int iError = m_plistensocket->Bind(m_strIp, (port_t)m_iCurrentPort);
+                  ::i32 iError = m_plistensocket->Bind(m_strIp, (port_t)m_iCurrentPort);
 
 
                   if (iError == 0)

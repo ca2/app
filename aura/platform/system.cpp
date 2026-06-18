@@ -46,7 +46,7 @@ CLASS_DECL_ACME bool is_x11();
 //
 //}
 
-int get_main_screen_rectangle(::int_rectangle * lprect);
+::i32 get_main_screen_rectangle(::i32_rectangle * lprect);
 
 
 namespace draw2d
@@ -89,7 +89,7 @@ CLASS_DECL_AURA ::pointer<::user::interaction>create_system_message_window(::par
 extern string_map_base < ::pointer<::acme::library >>* g_pmapLibrary;
 
 
-CLASS_DECL_AURA void __simple_tracea(::particle * pparticle, enum_trace_level elevel, const ::scoped_string & scopedstrFunction, const ::scoped_string & scopedstrFile, int iLine, const ::scoped_string & scopedstr);
+CLASS_DECL_AURA void __simple_tracea(::particle * pparticle, enum_trace_level elevel, const ::scoped_string & scopedstrFunction, const ::scoped_string & scopedstrFile, ::i32 iLine, const ::scoped_string & scopedstr);
 
 
 #ifdef WINDOWS
@@ -117,7 +117,7 @@ void dappy(const ::scoped_string & scopedstr);
 //string get_user_name()
 //{
 //   WCHAR wsz[1024];
-//   unsigned int dwSize = sizeof(wsz) / sizeof(WCHAR);
+//   ::u32 dwSize = sizeof(wsz) / sizeof(WCHAR);
 //   ::GetUserNameW(wsz,&dwSize);
 //   return string(wsz);
 //}
@@ -514,7 +514,7 @@ namespace aura
 
    //      auto applicationa = get_applicationa();
 
-   //      for (int i = 0; i < applicationa.get_size();)
+   //      for (::i32 i = 0; i < applicationa.get_size();)
    //      {
 
    //         try
@@ -805,7 +805,7 @@ namespace aura
       //   printf("%s", "\n\nApplication Information\n");
       //   informationf("---->  Application Information\n");
 
-      //   int iPid;
+      //   ::i32 iPid;
 
       //   iPid = ::get_current_process_id();
 
@@ -857,13 +857,13 @@ namespace aura
 //            if(i > 0)
 //            {
 //
-//               int iSize = strLine.length();
+//               ::i32 iSize = strLine.length();
 //
 //               iSize *= 2;
 //
 //               iSize = maximum(iSize, 4096);
 //
-//               char * pszEnvLine = (char *) ::malloc(iSize);
+//               char_pointer pszEnvLine = (char_pointer ) ::malloc(iSize);
 //
 //               ::zero(scopedstrEnvLine, iSize);
 //
@@ -1129,16 +1129,16 @@ namespace aura
    }
 
 //
-//   void system::get_time(struct timeval * int_point)
+//   void system::get_time(struct timeval * i32_point)
 //   {
 //#ifdef _WIN32
 //      FILETIME ft; // Contains a 64-bit value representing the number of 100-nanosecond intervals since January 1, 1601 (UTC).
 //      GetSystemTimeAsFileTime(&ft);
-//      unsigned long long tt;
+//      ::u64 tt;
 //      ::memory_copy(&tt, &ft, sizeof(tt));
 //      tt /= 10; // make it usecs
-//      int_point->tv_sec = (long)tt / 1000000;
-//      int_point->tv_usec = (long)tt % 1000000;
+//      i32_point->tv_sec = (long)tt / 1000000;
+//      i32_point->tv_usec = (long)tt % 1000000;
 //#else
 //      gettimeofday(point, nullptr);
 //#endif
@@ -1149,6 +1149,12 @@ namespace aura
    {
 
       _synchronous_lock synchronouslock(this->synchronization(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
+
+      if (m_pdraw2d)
+      {
+
+         return;
+      }
 
 
       ::e_status estatus = ::success;
@@ -2085,7 +2091,7 @@ namespace aura
       //      //if (!estatus)
       //      //{
       //
-      //      //   fatal() <<"axis::application::process_init .2";
+      //      //   fatal() <<"aura::application::process_init .2";
       //
       //      //   return false;
       //
@@ -2217,7 +2223,7 @@ namespace aura
 
       //::aqua::system::term2();
 
-      //for (int i = 0; i < m_serviceptra.get_size(); i++)
+      //for (::i32 i = 0; i < m_serviceptra.get_size(); i++)
       //{
 
       //   try
@@ -2233,7 +2239,7 @@ namespace aura
 
       //}
 
-      //for (int i = 0; i < m_serviceptra.get_size(); i++)
+      //for (::i32 i = 0; i < m_serviceptra.get_size(); i++)
       //{
 
       //   try
@@ -2473,7 +2479,7 @@ namespace aura
    }
 
 
-   //unsigned int system::os_post_to_all_threads(::user::enum_message eusermessage, ::wparam wparam, ::lparam lparam)
+   //::u32 system::os_post_to_all_threads(::user::enum_message eusermessage, ::wparam wparam, ::lparam lparam)
    //{
 
    //   post_to_all_threads(eusermessage, wparam, lparam);
@@ -2492,7 +2498,7 @@ namespace aura
    //}
 
 
-   //int system::_001OnDebugReport(int i1, const ::scoped_string & scopedstr1,int i2, const ::scoped_string & scopedstr2, const ::scoped_string & scopedstr3,va_list args)
+   //::i32 system::_001OnDebugReport(::i32 i1, const ::scoped_string & scopedstr1,::i32 i2, const ::scoped_string & scopedstr2, const ::scoped_string & scopedstr3,va_list args)
    //{
 
    //   return _debug_logging_report(i1,psz1,i2,psz2,psz3,args);
@@ -2500,7 +2506,7 @@ namespace aura
    //}
 
 
-//   int system::_debug_logging_report(int iReportType, const ::scoped_string & scopedstrFileName, int iLineNumber, const ::scoped_string & scopedstrModuleName, const ::scoped_string & scopedstrFormat,va_list list_base)
+//   ::i32 system::_debug_logging_report(::i32 iReportType, const ::scoped_string & scopedstrFileName, ::i32 iLineNumber, const ::scoped_string & scopedstrModuleName, const ::scoped_string & scopedstrFormat,va_list list_base)
 //   {
 //
 //      if(!m_ptrace || !m_ptrace->m_bExtendedLog)
@@ -2588,7 +2594,7 @@ namespace aura
 
 
 
-   //bool system::assert_failed_line(const ::scoped_string & scopedstrFileName,int iLine)
+   //bool system::assert_failed_line(const ::scoped_string & scopedstrFileName,::i32 iLine)
 
    //{
    //   __UNREFERENCED_PARAMETER(scopedstrFileName);
@@ -2598,7 +2604,7 @@ namespace aura
    //}
 
 
-   //bool system::on_assert_failed_line(const ::scoped_string & scopedstrFileName,int iLine)
+   //bool system::on_assert_failed_line(const ::scoped_string & scopedstrFileName,::i32 iLine)
 
    //{
    //   __UNREFERENCED_PARAMETER(scopedstrFileName);
@@ -2717,7 +2723,7 @@ namespace aura
    //}
 
 
-   //::pointer<regex_context>system::create_regular_expression_context(const ::scoped_string & scopedstrStyle, int iCount)
+   //::pointer<regex_context>system::create_regular_expression_context(const ::scoped_string & scopedstrStyle, ::i32 iCount)
    //{
 
    //   return nullptr;
@@ -2811,7 +2817,7 @@ namespace aura
 //
 //      //retry_single_lock rsl(mutex(),::time(100),::time(100));
 //
-////      for(int i = 0; i < appptra().get_size(); i++)
+////      for(::i32 i = 0; i < appptra().get_size(); i++)
 //      //    {
 //      //     ::aura::application * papp = appptra()(i);
 //      //   papp->load_string_table();
@@ -2829,7 +2835,7 @@ namespace aura
 //
 //      sl.wait(10_s);
 //
-////      for(int i = 0; i < appptra().get_size(); i++)
+////      for(::i32 i = 0; i < appptra().get_size(); i++)
 ////     {
 //      //       ::aura::application * papp = appptra()(i);
 //      //       papp->set_locale(scopedstrLocale,context);
@@ -2847,7 +2853,7 @@ namespace aura
 //
 //      sl.wait(10_s);
 //
-////      for(int i = 0; i < appptra().get_size(); i++)
+////      for(::i32 i = 0; i < appptra().get_size(); i++)
 //      //    {
 //      //       ::aura::application * papp = appptra()(i);
 //      //       papp->set_schema(scopedstrStyle,context);
@@ -3063,7 +3069,7 @@ namespace aura
    //}
 
 
-   //void system::install_progress_add_up(int iAddUp)
+   //void system::install_progress_add_up(::i32 iAddUp)
    //{
 
    //   __UNREFERENCED_PARAMETER(iAddUp);
@@ -3277,7 +3283,7 @@ namespace aura
 ////
 ////      straTitle.ls_pattern(pathCa2Module, { "*.*" });
 ////
-////      for(int i = 0; i < straTitle.get_count(); i++)
+////      for(::i32 i = 0; i < straTitle.get_count(); i++)
 ////      {
 ////
 ////         strLibraryId = straTitle[i];
@@ -3424,7 +3430,7 @@ namespace aura
 //
 //      strRoot += "/";
 //
-//      for(int i = 0; i < stra.get_count(); i++)
+//      for(::i32 i = 0; i < stra.get_count(); i++)
 //      {
 //
 //         m_mapAppLibrary.set_at(strRoot + stra[i],pszLibrary);
@@ -3705,7 +3711,7 @@ namespace aura
    // }
 
 // #ifndef APPLE_IOS
-//    void * system::initialize_native_window2(const ::int_rectangle & rectangle)
+//    void * system::initialize_native_window2(const ::i32_rectangle & rectangle)
 
 //    {
 
@@ -3728,7 +3734,7 @@ namespace aura
 //
 //
 //
-//   CLASS_DECL_AURA bool window_rectangle(::aura::system_window ^ pwindow, ::double_rectangle * prectangle)
+//   CLASS_DECL_AURA bool window_rectangle(::aura::system_window ^ pwindow, ::f64_rectangle * prectangle)
 //
 //   {
 //
@@ -3747,12 +3753,12 @@ namespace aura
 //   }
 //
 //
-//   CLASS_DECL_AURA bool window_rectangle(::aura::system_window ^ pwindow, ::int_rectangle * prectangle)
+//   CLASS_DECL_AURA bool window_rectangle(::aura::system_window ^ pwindow, ::i32_rectangle * prectangle)
 //   {
 //
-//      ::double_rectangle rectangle;
+//      ::f64_rectangle rectangle;
 //
-//      if (!window_rectangle(pwindow, (::double_rectangle*)int_rectangle))
+//      if (!window_rectangle(pwindow, (::f64_rectangle*)i32_rectangle))
 //      {
 //
 //         return false;
@@ -3807,7 +3813,7 @@ namespace aura
    //}
 
 
-//   index system::get_main_monitor(::int_rectangle * prectangle)
+//   index system::get_main_monitor(::i32_rectangle * prectangle)
 //   {
 //
 //      index iMainMonitor = 0;
@@ -3873,7 +3879,7 @@ namespace aura
    }*/
 
 
-//   bool system::get_monitor_rectangle(::collection::index iMonitor, ::int_rectangle * prectangle)
+//   bool system::get_monitor_rectangle(::collection::index iMonitor, ::i32_rectangle * prectangle)
 //   {
 //
 //#if MOBILE_PLATFORM
@@ -3925,7 +3931,7 @@ namespace aura
 //
 //      }
 //
-//      GetScreenRect(prectangle, (int) iMonitor);
+//      GetScreenRect(prectangle, (::i32) iMonitor);
 //
 //
 //#else
@@ -3945,7 +3951,7 @@ namespace aura
 //   }
 //
 //
-//   bool system::get_desk_monitor_rect(::collection::index iMonitor, ::int_rectangle * prectangle)
+//   bool system::get_desk_monitor_rect(::collection::index iMonitor, ::i32_rectangle * prectangle)
 //
 //   {
 //
@@ -3955,7 +3961,7 @@ namespace aura
 //   }
 //
 //
-//   index system::get_main_workspace(::int_rectangle * prectangle)
+//   index system::get_main_workspace(::i32_rectangle * prectangle)
 //
 //   {
 //
@@ -4012,7 +4018,7 @@ namespace aura
 //   }
 //
 
-//   bool system::get_workspace_rectangle(::collection::index iWorkspace, ::int_rectangle * prectangle)
+//   bool system::get_workspace_rectangle(::collection::index iWorkspace, ::i32_rectangle * prectangle)
 //   {
 //
 //#ifdef WINDOWS_DESKTOP
@@ -4041,7 +4047,7 @@ namespace aura
 //
 //      }
 //
-//      GetWorkspaceRect(prectangle, (int) iWorkspace);
+//      GetWorkspaceRect(prectangle, (::i32) iWorkspace);
 //
 //
 //      //      prectangle->top += ::mac::get_system_main_menu_bar_height();
@@ -4089,7 +4095,7 @@ namespace aura
 //   }
 //
 //
-//   bool system::get_desk_workspace_rect(::collection::index iWorkspace, ::int_rectangle * prectangle)
+//   bool system::get_desk_workspace_rect(::collection::index iWorkspace, ::i32_rectangle * prectangle)
 //
 //   {
 //
@@ -4166,7 +4172,7 @@ namespace aura
    //}
 
 
-   /*void system::__tracea(enum_trace_level elevel, const ::scoped_string & scopedstrFunction, const ::scoped_string & scopedstrFile, int iLine, const ::scoped_string & scopedstr) const
+   /*void system::__tracea(enum_trace_level elevel, const ::scoped_string & scopedstrFunction, const ::scoped_string & scopedstrFile, ::i32 iLine, const ::scoped_string & scopedstr) const
    {
 
       if (m_ptrace.is_null())
@@ -4276,13 +4282,13 @@ namespace aura
 //         if (strBrowser == "firefox")
 //         {
 //
-//            //strUrl = "https://ca2.network/open_f___?url=" + ::url::encode(strUrl) + "&profile=" + ::url::encode(strProfile) + "&target=" + ::url::encode(strTarget);
+//            //strUrl = "https://ca2.site/open_f___?url=" + ::url::encode(strUrl) + "&profile=" + ::url::encode(strProfile) + "&target=" + ::url::encode(strTarget);
 //
 //         }
 //         else
 //         {
 //
-//            //strUrl = "https://ca2.network/open_tab?url=" + ::url::encode(strUrl) + "&profile=" + ::url::encode(strProfile) + "&target=" + ::url::encode(strTarget);
+//            //strUrl = "https://ca2.site/open_tab?url=" + ::url::encode(strUrl) + "&profile=" + ::url::encode(strProfile) + "&target=" + ::url::encode(strTarget);
 //
 //         }
 //
@@ -5417,7 +5423,7 @@ namespace aura
 
 //#include <HighLevelMonitorConfigurationAPI.h>
 //
-//unsigned int mc_color_kelvin(MC_COLOR_TEMPERATURE e)
+//::u32 mc_color_kelvin(MC_COLOR_TEMPERATURE e)
 //{
 //   switch (e)
 //   {
@@ -5442,7 +5448,7 @@ namespace aura
 //   }
 //}
 
-//MC_COLOR_TEMPERATURE kelvin_mc_color(unsigned int kelvin)
+//MC_COLOR_TEMPERATURE kelvin_mc_color(::u32 kelvin)
 //{
 //   if (kelvin < 4500)
 //   {
@@ -5510,7 +5516,7 @@ namespace aura
 namespace aura
 {
 
-   //CLASS_DECL_AURA void black_body(float* r, float* g, float* b, unsigned int dwTemp);
+   //CLASS_DECL_AURA void black_body(::f32* r, ::f32* g, ::f32* b, ::u32 dwTemp);
 
    /*  bool system::on_application_menu_action(const ::scoped_string & scopedstrCommand)
      {
@@ -6130,10 +6136,10 @@ if(!m_pimaging)
    //   set_enum_name(::e_type_empty     , "is_empty");
    //   set_enum_name(::e_type_string    , "string");
    //   set_enum_name(::type_int32   , "integer");
-   //   set_enum_name(::type_unsigned int     , "ulong");
+   //   set_enum_name(::type_unsigned ::i32     , "ulong");
    //   set_enum_name(::e_type_element       , "ca2");
    //   set_enum_name(::e_type_bool      , "bool");
-   //   set_enum_name(::e_type_double    , "double");*/
+   //   set_enum_name(::e_type_f64    , "::f64");*/
 
    //   //if (!::aura::application::init_application())
    //   //{
@@ -6180,7 +6186,7 @@ if(!m_pimaging)
 ////      if(f != nullptr)
 ////      {
 ////
-////         informationf("linux_g_direct_term entry int_point not found at basecore library");
+////         informationf("linux_g_direct_term entry i32_point not found at basecore library");
 ////
 ////         (*f)();
 ////
@@ -6525,7 +6531,7 @@ if(!m_pimaging)
 
    //   plibrary->get_create_impact_id_list(ida);
 
-   //   for (int i = 0; i < ida.get_count(); i++)
+   //   for (::i32 i = 0; i < ida.get_count(); i++)
    //   {
 
    //      m_idmapCreateImpactLibrary.set_at(ida[i], plibrary);
@@ -6569,7 +6575,7 @@ if(!m_pimaging)
 //#ifdef UNIVERSAL_WINDOWS
 //
 //
-//   bool system::window_rectangle(::int_rectangle* prectangle)
+//   bool system::window_rectangle(::i32_rectangle* prectangle)
 //   {
 //
 //      if (::is_null(get_session()))
@@ -6636,7 +6642,9 @@ if(!m_pimaging)
    void     system::main()
    {
 
-      return ::aqua::system::main();
+      ::aqua::system::main();
+
+      information() << "aura::system::main ended";
 
    }
 
@@ -6823,7 +6831,7 @@ if(!m_pimaging)
    These will be interpolated for the actual temperature.
    This table was provided by Ingo Thies, 2013. See
    the file README-colorramp for more information. */
-   static const float g_fa_blackbody_color[] =
+   static const ::f32 g_fa_blackbody_color[] =
    {
       1.00000000f,  0.18172716f,  0.00000000f, /* 1000K */
       1.00000000f,  0.25503671f,  0.00000000f, /* 1100K */
@@ -7070,7 +7078,7 @@ if(!m_pimaging)
    };
 
    static void
-      interpolate_color(float a, const float* c1, const float* c2, float* r, float* g, float* b)
+      interpolate_color(::f32 a, const ::f32* c1, const ::f32* c2, ::f32* r, ::f32* g, ::f32* b)
    {
 
       *r = (1.0f - a) * c1[0] + a * c2[0];
@@ -7080,10 +7088,10 @@ if(!m_pimaging)
    }
 
 
-   //CLASS_DECL_AURA void black_body(float* r, float* g, float* b, unsigned int dwTemp)
+   //CLASS_DECL_AURA void black_body(::f32* r, ::f32* g, ::f32* b, ::u32 dwTemp)
    //{
 
-   //   int temp_index = ((dwTemp - 1000) / 100) * 3;
+   //   ::i32 temp_index = ((dwTemp - 1000) / 100) * 3;
 
    //   if (temp_index < 0)
    //   {
@@ -7091,14 +7099,14 @@ if(!m_pimaging)
    //      temp_index = 0;
 
    //   }
-   //   else if (temp_index > (sizeof(g_fa_blackbody_color) / sizeof(float)) - 3)
+   //   else if (temp_index > (sizeof(g_fa_blackbody_color) / sizeof(::f32)) - 3)
    //   {
 
-   //      temp_index = (sizeof(g_fa_blackbody_color) / sizeof(float)) - 3;
+   //      temp_index = (sizeof(g_fa_blackbody_color) / sizeof(::f32)) - 3;
 
    //   }
 
-   //   float alpha = (dwTemp % 100) / 100.0f;
+   //   ::f32 alpha = (dwTemp % 100) / 100.0f;
 
    //   interpolate_color(alpha, &g_fa_blackbody_color[temp_index], &g_fa_blackbody_color[temp_index + 3], r, g, b);
 
@@ -7206,9 +7214,9 @@ if(!m_pimaging)
    void system::TermSystem()
    {
 
-      m_pdraw2d.defer_destroy();
+      m_pdraw2d.defer_destroy_and_release();
 
-      m_phardwaredevices.defer_destroy();
+      m_phardwaredevices.defer_destroy_and_release();
 
       ::aqua::system::TermSystem();
 
@@ -7290,6 +7298,8 @@ if(!m_pimaging)
       if (!m_pdraw2d)
       {
 
+         _synchronous_lock synchronouslock(this->synchronization(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
+
          initialize_draw2d();
 
       }
@@ -7341,37 +7351,37 @@ if(!m_pimaging)
    }
 
 
-   void system::do_graphics_and_windowing_factory()
+   void system::do_graphics_factory()
    {
 
-      if(!m_bGraphicsAndWindowingFactory)
+      if(!m_bGraphicsFactory)
       {
 
-         ::aqua::system::do_graphics_and_windowing_factory();
+         ::aqua::system::do_graphics_factory();
 
-         ::string strUserToolkit = this->get_user_toolkit_id();
-
-         if (strUserToolkit.has_character())
-         {
-            
-            if(strUserToolkit == "appkit")
-            {
-             
-               strUserToolkit = "macos";
-               
-            }
-            else if(strUserToolkit == "uikit")
-            {
-             
-               strUserToolkit = "ios";
-               
-            }
-
-            auto pfactory = factory("windowing", strUserToolkit);
-
-            pfactory->merge_to_global_factory();
-
-         }
+         // ::string strUserToolkit = this->get_user_toolkit_id();
+         //
+         // if (strUserToolkit.has_character())
+         // {
+         //
+         //    if(strUserToolkit == "appkit")
+         //    {
+         //
+         //       strUserToolkit = "macos";
+         //
+         //    }
+         //    else if(strUserToolkit == "uikit")
+         //    {
+         //
+         //       strUserToolkit = "ios";
+         //
+         //    }
+         //
+         //    auto pfactory = factory("windowing", strUserToolkit);
+         //
+         //    pfactory->merge_to_global_factory();
+         //
+         // }
          
 
          //user()->create_windowing();
@@ -7381,6 +7391,44 @@ if(!m_pimaging)
    }
 
 
+   void system::do_windowing_factory()
+   {
+
+      if(!m_bWindowingFactory)
+      {
+
+         ::aqua::system::do_windowing_factory();
+
+         ::string strUserToolkit = this->get_user_toolkit_id();
+
+         if (strUserToolkit.has_character())
+         {
+
+            if(strUserToolkit == "appkit")
+            {
+
+               strUserToolkit = "macos";
+
+            }
+            else if(strUserToolkit == "uikit")
+            {
+
+               strUserToolkit = "ios";
+
+            }
+
+            auto pfactory = factory("windowing", strUserToolkit);
+
+            pfactory->merge_to_global_factory();
+
+         }
+
+
+         //user()->create_windowing();
+
+      }
+
+   }
 } // namespace aura
 
 

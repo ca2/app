@@ -16,7 +16,10 @@
 #include "acme/prototype/string/scoped_string_base.h"
 //#include "acme/prototype/prototype/signal.h"
 //#include "acme/prototype/prototype/post_procedure_continuation.h"
+#include "acme/platform/auto_pointer.h"
 
+
+class user_interaction_sink;
 
 namespace platform
 {
@@ -24,14 +27,20 @@ namespace platform
    
    class platform;
 
+   class tracer;
+
 
 } // namespace platform
+
+
 class dispatch_arrayø;
+
+
 class dispatch_array2;
 
-class tracer;
 
 class extended_topic;
+
 
 class trace_statement;
 
@@ -39,7 +48,7 @@ class trace_statement;
 //CLASS_DECL_ACME ::factory::factory * get_system_factory();
 
 
-//CLASS_DECL_ACME class tracer * tracer();
+//CLASS_DECL_ACME ::platform::tracer * tracer();
 
 
 
@@ -152,7 +161,7 @@ public:
    bool _is_ok() const override;
 
 
-   virtual bool task_get_run() const;
+   virtual bool should_run() const;
 
 
    virtual void on_notify(::particle * pparticle, enum_id eid);
@@ -161,7 +170,13 @@ public:
 
 //   virtual void delete_this();
 
+   virtual bool check_pipe_node_client_executable_paths(const ::file::path & pathNode, const ::file::path & pathClient);
+
    inline ::particle * trace_this() const { return (::particle *) this; }
+
+   virtual enum_trace_level main_trace_level() const;
+
+   inline bool is_debug_trace_level() const {return this->main_trace_level() >= e_trace_level_debug;}
 
    virtual ::particle * get_context_particle();
 
@@ -353,7 +368,7 @@ public:
    //virtual void trace_log_fatal() << const_char_pointer pszFormat, ...;
 
 
-   virtual class tracer * tracer() const;
+   virtual ::platform::tracer * tracer() const;
 
 
    virtual ::trace_statement trace_statement() const;
@@ -493,8 +508,8 @@ public:
 
 
    // ThomasBorregaardSorensen!! Like handlers
-   //virtual void call(const enum_message, long long iData = 0, ::matter * pmatter = nullptr);
-   //virtual void call(const enum_id, long long iData = 0, ::matter* pmatter = nullptr);
+   //virtual void call(const enum_message, ::i64 iData = 0, ::matter * pmatter = nullptr);
+   //virtual void call(const enum_id, ::i64 iData = 0, ::matter* pmatter = nullptr);
    
    ///virtual void send_call(const ::call & call);
 
@@ -523,9 +538,9 @@ public:
    //void post_process(::topic * ptopic, ::handler_context * phandlercontext) override;
 
    // <3TBS_!! handle -> call_member <3TBS_!!
-   virtual void call_member(long long hi);
+   virtual void call_member(::i64 hi);
    // <3ThomasBS_!! handle -> handle <3ThomasBS_!!
-   //void handle(const  emessage, long long iData = 0, ::matter * pmatter = nullptr) override;
+   //void handle(const  emessage, ::i64 iData = 0, ::matter * pmatter = nullptr) override;
    //void handle(::topic * ptopic, ::handler_context * phandlercontext) override;
    //void handle(::message::message * pmessage) override;
    virtual ::lresult call_message(const ::user::enum_message & emessage, ::wparam wparam = {}, ::lparam lparam = {}, ::particle * pparticle = nullptr);
@@ -570,9 +585,33 @@ public:
    [[nodiscard]] virtual bool should_run_async() const;
 
 
-   [[nodiscard]] virtual ::pointer < ::message_box_payload > message_box(const ::scoped_string & scopedstrMessage, const ::scoped_string & scopedstrTitle = nullptr, const ::user::e_message_box & emessagebox = {}, const ::scoped_string & scopedstrDetails = nullptr, ::nano::graphics::icon * picon = nullptr);
-   [[nodiscard]] virtual ::pointer < ::message_box_payload > message_box(const ::exception & exception, const ::scoped_string & scopedstrMessage = nullptr, const ::scoped_string & scopedstrTitle = nullptr, const ::user::e_message_box & emessagebox = {}, const ::scoped_string & scopedstrDetails = nullptr, ::nano::graphics::icon * picon = nullptr);
+      [[nodiscard]] virtual ::pointer<::message_box_payload>
+   message_box(const ::scoped_string &scopedstrMessage, const ::scoped_string &scopedstrTitle = nullptr,
+                    const ::user::e_message_box &emessagebox = {}, const ::scoped_string &scopedstrDetails = nullptr,
+                                                                      const ::string_array_base * pstraIconUrl = nullptr);
+   [[nodiscard]] virtual ::pointer<::message_box_payload>
+   message_box(const ::exception &exception, const ::scoped_string &scopedstrMessage = nullptr,
+                    const ::scoped_string &scopedstrTitle = nullptr, const ::user::e_message_box &emessagebox = {},
+                  const ::scoped_string &scopedstrDetails = nullptr, const ::string_array_base * pstraIconUrl = nullptr);
+   
 
+   [[nodiscard]] virtual ::pointer<::message_box_payload>
+   send_message_box(const ::scoped_string &scopedstrMessage, const ::scoped_string &scopedstrTitle = nullptr,
+                    const ::user::e_message_box &emessagebox = {}, const ::scoped_string &scopedstrDetails = nullptr,
+                    const ::string_array_base *pstraIconUrl = nullptr);
+   [[nodiscard]] virtual ::pointer<::message_box_payload>
+   send_message_box(const ::exception &exception, const ::scoped_string &scopedstrMessage = nullptr,
+                    const ::scoped_string &scopedstrTitle = nullptr, const ::user::e_message_box &emessagebox = {},
+                    const ::scoped_string &scopedstrDetails = nullptr,
+                    const ::string_array_base *pstraIconUrl = nullptr);
+
+   virtual void post_message_box(const ::scoped_string &scopedstrMessage, const ::scoped_string &scopedstrTitle = {},
+                      const ::user::e_message_box &emessagebox = {},
+                         const ::function<void(::message_box_payload *)>  & functionOnResult = {},
+                                 const ::scoped_string &scopedstrDetails = nullptr,
+                                 const ::string_array_base * pstraIconUrl = nullptr);
+
+   //virtual void post_message_box_payload(::message_box_payload *pmessageboxpayload);
 
    //virtual ::pointer < ::message_box_payload > message_box(const ::scoped_string & scopedstrMessage, const ::scoped_string & scopedstrTitle = nullptr, const ::user::e_message_box& emessagebox = ::user::e_message_box_ok, const ::scoped_string & scopedstrDetails = nullptr, ::nano::graphics::icon * picon = nullptr);
    //virtual ::pointer < ::message_box_payload > exception_message_box(const ::exception& exception, const ::scoped_string & scopedstrMessage = nullptr, const ::scoped_string & scopedstrTitle = nullptr, const ::user::e_message_box& emessagebox = ::user::e_message_box_ok, const ::scoped_string & scopedstrDetails = nullptr, ::nano::graphics::icon * picon = nullptr);
@@ -735,6 +774,9 @@ public:
    inline dispatch_arrayø postø();
 
 
+
+
+
    virtual void handle(bool bSynchronously, const ::procedure & procedure);
 
 
@@ -817,6 +859,24 @@ public:
 
    template < typename TYPE >
    inline void __call__raw_construct(::pointer<TYPE> & p, ::factory::factory * pfactory = nullptr COMMA_REFERENCING_DEBUGGING_PARAMETERS_DECLARATION);
+
+   // template < typename T, typename ...Args >
+   // inline void __call__forward_construct(::pointer < T > &p, Args &&... args);
+
+   template < typename T, typename ...Args >
+   inline void __call__emplace_new(::pointer < T > &p, Args &&... args)
+   {
+
+      p = ::transfer(allocateø T(::std::forward<Args>(args)...));
+
+   }
+   template < typename T, typename ...Args >
+   inline void __call__emplace_new(::auto_pointer < T > &p, Args &&... args)
+   {
+
+      p = new T(::std::forward<Args>(args)...);
+
+   }
 
    template < typename BASE_TYPE >
    inline ::pointer<BASE_TYPE> __raw_create(::factory::factory * pfactory = nullptr);
@@ -941,7 +1001,7 @@ public:
 //
 
 //template < typename T >
-//inline long long release(T*& p REFERENCING_DEBUGGING_COMMA_PARAMS_DEF);
+//inline ::i64 release(T*& p REFERENCING_DEBUGGING_COMMA_PARAMS_DEF);
 //{
 //
 //   if (::is_null(p))
@@ -985,7 +1045,7 @@ public:
 
 
 template < typename T >
-inline long long global_release(T*& p);
+inline ::i64 global_release(T*& p);
 //{
 //
 //   if (::is_null(p))
@@ -1029,7 +1089,7 @@ inline long long global_release(T*& p);
 //#if !defined(_DEBUG)
 //
 //
-//long long particle::increment_reference_count()
+//::i64 particle::increment_reference_count()
 //{
 //
 //   auto c = ++m_countReference;
@@ -1045,7 +1105,7 @@ inline long long global_release(T*& p);
 //}
 //
 //
-//long long particle::decrement_reference_count()
+//::i64 particle::decrement_reference_count()
 //{
 //
 //   auto c = --m_countReference;
@@ -1066,10 +1126,10 @@ inline long long global_release(T*& p);
 //}
 //
 //
-//long long particle::release()
+//::i64 particle::release()
 //{
 //
-//   long long i = decrement_reference_count();
+//   ::i64 i = decrement_reference_count();
 //
 //   if (i == 0)
 //   {
@@ -1230,24 +1290,24 @@ inline bool is_ok(const ::particle * pparticleConst)
 
 /// @brief consumes a releaser (a referer used to decrement reference count)
 template < typename T >
-inline long long release(T *& p);
-//inline long long release(T *& p COMMA_REFERENCING_DEBUGGING_RELEASER_PARAMETERS_DECLARATION);
+inline ::i64 release(T *& p);
+//inline ::i64 release(T *& p COMMA_REFERENCING_DEBUGGING_RELEASER_PARAMETERS_DECLARATION);
 
 
 /// @brief consumes a releaser (a referer used to decrement reference count)
 template < typename T >
-inline long long global_release(T *& p);
+inline ::i64 global_release(T *& p);
 
 
 template < typename TYPE, typename T >
 void assign(::pointer<TYPE> & ptr, T * p);
 
 template < typename TYPE >
-long long release(::pointer<TYPE> & ptr);
-//long long release(::pointer<TYPE> & ptr COMMA_REFERENCING_DEBUGGING_RELEASER_PARAMETERS_DECLARATION);
+::i64 release(::pointer<TYPE> & ptr);
+//::i64 release(::pointer<TYPE> & ptr COMMA_REFERENCING_DEBUGGING_RELEASER_PARAMETERS_DECLARATION);
 
 //template < typename TYPE >
-//long long release(TYPE *& p);
+//::i64 release(TYPE *& p);
 
 
 
@@ -1434,7 +1494,7 @@ CLASS_DECL_ACME void fatalf(const ::ansi_character* pszFormat, ...);
 
 
 template < prototype_container CONTAINER >
-inline void __assert_container_ok(const CONTAINER * pcontainer, const_char_pointer pszFileName, int nLine)
+inline void __assert_container_ok(const CONTAINER * pcontainer, const_char_pointer pszFileName, ::i32 nLine)
 {
 
    if (pcontainer == nullptr)
@@ -1492,6 +1552,14 @@ inline continue_predicate_t as_continue_predicate(const ::function < bool() > & 
    return {&::function_continue_predicate, functionContinue.m_psubparticle};
 
 }
+
+
+CLASS_DECL_ACME enum_dialog_result simple_ui_message_box(
+   const ::user_interaction_sink& userinteractionsink,
+   const ::scoped_string& scopedstrMessage,
+   const ::scoped_string& scopedstrCaption,
+   const ::user::e_message_box& emessagebox);
+
 
 
 

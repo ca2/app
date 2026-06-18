@@ -27,17 +27,17 @@ public:
    //operator enum_check () const { return m_payload.echeck(); }
 
    operator bool() const { return m_payload.get_bool(); }
-   operator char ()const { return m_payload.as_char(); }
-   operator unsigned char ()const { return m_payload.as_unsigned_char(); }
-   operator short () const { return m_payload.as_short(); }
-   operator unsigned short ()const { return m_payload.as_unsigned_short(); }
-   operator int () const { return m_payload.as_int(); }
-   operator unsigned int ()const { return m_payload.as_unsigned_int(); }
-   operator long long () const { return m_payload.as_long_long(); }
-   operator unsigned long long ()const { return m_payload.as_unsigned_long_long(); }
+   operator ::i8 ()const { return m_payload.as_i8(); }
+   operator ::u8 ()const { return m_payload.as_u8(); }
+   operator ::i16 () const { return m_payload.as_i16(); }
+   operator ::u16 ()const { return m_payload.as_u16(); }
+   operator ::i32 () const { return m_payload.as_i32(); }
+   operator ::u32 ()const { return m_payload.as_u32(); }
+   operator ::i64 () const { return m_payload.as_i64(); }
+   operator ::u64 ()const { return m_payload.as_u64(); }
 
-   operator float () const { return m_payload.as_float(); }
-   operator double ()const { return m_payload.as_double(); }
+   operator ::f32 () const { return m_payload.as_f32(); }
+   operator ::f64 ()const { return m_payload.as_f64(); }
 
    operator class ::time ()const { return m_payload.as_time(); }
    operator earth::time()const { return m_payload.as_earth_time(); }
@@ -47,8 +47,8 @@ public:
    //operator property ()const { return m_payload.property(); }
 
 
-   operator ::int_array_base ()const { return m_payload.as_int_array(); }
-   operator ::long_long_array_base ()const { return m_payload.as_long_long_array(); }
+   operator ::i32_array_base ()const { return m_payload.as_int_array(); }
+   operator ::i64_array_base ()const { return m_payload.as_i64_array(); }
    operator ::string_array_base ()const { return m_payload.as_string_array(); }
    operator ::payload_array() const { return m_payload.as_payload_array(); }
    operator ::property_set() const { return m_payload.as_property_set(); }

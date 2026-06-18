@@ -5,13 +5,13 @@
 
 //#ifdef WINDOWS
 /*
-* Find the first occurrence of the unsigned char string s in unsigned char string l.
+* Find the first occurrence of the ::u8 string s in ::u8 string l.
 */
 
 const void * memory_find(const void * l, memsize l_len, const void * s, memsize s_len)
 {
-   const unsigned char* cl = (const unsigned char*)l;
-   const unsigned char* cs = (const unsigned char*)s;
+   const ::u8* cl = (const ::u8*)l;
+   const ::u8* cs = (const ::u8*)s;
 
    /* we need something to compare */
    if (l_len == 0 || s_len == 0)
@@ -23,7 +23,7 @@ const void * memory_find(const void * l, memsize l_len, const void * s, memsize 
 
    /* special case where s_len == 1 */
    if (s_len == 1) {
-       return _memory_find_unsigned_char((void *) l, (int) *cs, l_len);
+       return _memory_find_unsigned_char((void *) l, (::i32) *cs, l_len);
 
    }
 
@@ -33,10 +33,10 @@ const void * memory_find(const void * l, memsize l_len, const void * s, memsize 
 
 //#endif // #ifdef WINDOWS
 
-void * reverse_memchr(const void * l, int ch, size_t l_len)
+void * reverse_memchr(const void * l, ::i32 ch, size_t l_len)
 {
 
-   char * end;
+   char_pointer end;
 
    if (l_len <= 0)
    {
@@ -45,7 +45,7 @@ void * reverse_memchr(const void * l, int ch, size_t l_len)
 
    }
 
-   end = (char *)l + l_len - 1;
+   end = (char_pointer )l + l_len - 1;
 
    while (end >= l)
    {
@@ -65,13 +65,13 @@ void * reverse_memchr(const void * l, int ch, size_t l_len)
 
 
 /*
-* Find the last occurrence of the unsigned char string s in unsigned char string l.
+* Find the last occurrence of the ::u8 string s in ::u8 string l.
 */
 
 void * reverse_memmem(const void * l, size_t l_len, const void * s, size_t s_len)
 {
 
-   char * cur, * last;
+   char_pointer cur, last;
    const_char_pointer cl = (const_char_pointer )l;
    const_char_pointer cs = (const_char_pointer )s;
 
@@ -85,12 +85,12 @@ void * reverse_memmem(const void * l, size_t l_len, const void * s, size_t s_len
 
    /* special case where s_len == 1 */
    if (s_len == 1)
-      return (void *) _memory_find_unsigned_char((const void *)l, (int)*cs, l_len);
+      return (void *) _memory_find_unsigned_char((const void *)l, (::i32)*cs, l_len);
 
    /* the last position where its possible to find "s" in "l" */
-   last = (char *)cl + l_len - s_len;
+   last = (char_pointer )cl + l_len - s_len;
 
-   for (cur = (char *)last; cur >= cl; cur--)
+   for (cur = (char_pointer )last; cur >= cl; cur--)
    {
 
       if (cur[0] == cs[0] && _memory_order(cur, cs, s_len) == 0)
@@ -113,8 +113,8 @@ void * reverse_memmem(const void * l, size_t l_len, const void * s, size_t s_len
 void * reverse_byte_not_in_block(const void * l, size_t l_len, const void * s, size_t s_len)
 {
 
-   char * cur, * last, * curByte;
-   char * prev = nullptr;
+   char_pointer cur, last, curByte;
+   char_pointer prev = nullptr;
    const_char_pointer cl = (const_char_pointer )l;
    const_char_pointer cs = (const_char_pointer )s;
    const_char_pointer ends = (const_char_pointer )s + s_len;
@@ -124,12 +124,12 @@ void * reverse_byte_not_in_block(const void * l, size_t l_len, const void * s, s
       return nullptr;
 
    /* the last position where its possible to find "s" in "l" */
-   last = (char *)cl + l_len - 1;
+   last = (char_pointer )cl + l_len - 1;
 
-   for (cur = (char *)last; cur >= cl; cur--)
+   for (cur = (char_pointer )last; cur >= cl; cur--)
    {
 
-      for (curByte = (char *)cs; curByte < ends; curByte++)
+      for (curByte = (char_pointer )cs; curByte < ends; curByte++)
       {
 
          if (cur[0] == curByte[0])
@@ -150,10 +150,10 @@ void * reverse_byte_not_in_block(const void * l, size_t l_len, const void * s, s
 }
 
 
-CLASS_DECL_ACME unsigned int __unsigned_int_hash(const ::scoped_string & scopedstr)
+CLASS_DECL_ACME ::u32 __u32_hash(const ::scoped_string & scopedstr)
 {
 
-   unsigned int u = 0;
+   ::u32 u = 0;
 
    auto psz = scopedstr.begin();
 
@@ -266,7 +266,7 @@ CLASS_DECL_ACME void * memory_transfer(void * dst, const void * src, memsize iSi
 }
 
 
-CLASS_DECL_ACME void * memory_set(void * p, int i, memsize iSize)
+CLASS_DECL_ACME void * memory_set(void * p, ::i32 i, memsize iSize)
 {
 
    if (iSize <= 0)
@@ -291,7 +291,7 @@ CLASS_DECL_ACME void * memory_set(void * p, int i, memsize iSize)
    }
 
    return ::memset(p, i, (size_t)iSize);
-   //   uchar * puch = (uchar * ) p;
+   //   ::u8 * puch = (::u8 * ) p;
    //   while(iSize > 0)
    //   {
    //      *puch = static_cast < uchar > (i);
@@ -309,9 +309,9 @@ CLASS_DECL_ACME void * memory_and(void * p, const void * p1, const void * p2, me
    if (is_null(p1)) return nullptr;
    if (is_null(p2)) return nullptr;
 
-   unsigned char * pb = (unsigned char *)p;
-   const unsigned char * pb1 = (const unsigned char *)p1;
-   const unsigned char * pb2 = (const unsigned char *)p2;
+   ::u8 * pb = (::u8 *)p;
+   const ::u8 * pb1 = (const ::u8 *)p1;
+   const ::u8 * pb2 = (const ::u8 *)p2;
 
    while (iSize > 0)
    {
@@ -358,9 +358,9 @@ CLASS_DECL_ACME void * memory_copy(void * dst, const void * src, memsize iSize)
 
    }
 
-   uchar * puchDst = (uchar *)dst;
+   ::u8 * puchDst = (::u8 * )dst;
 
-   uchar * puchSrc = (uchar *)src;
+   ::u8 * puchSrc = (::u8 * )src;
 
    if (puchDst == puchSrc)
    {
@@ -440,7 +440,7 @@ CLASS_DECL_ACME void * reverse_memory(void * p, memsize iLen)
 
    }
 
-   auto pleft = (unsigned char *)p;
+   auto pleft = (::u8 *)p;
 
    auto pright = pleft + iLen - 1;
 
@@ -482,7 +482,7 @@ CLASS_DECL_ACME void * reverse_memory_copy(void * dst, const void * src, memsize
 
    }
 
-   char * pchDst = (char *)dst;
+   char_pointer pchDst = (char_pointer )dst;
 
    const_char_pointer pchSrc = (const_char_pointer )src;
 
@@ -521,12 +521,12 @@ CLASS_DECL_ACME void * reverse_memory_copy(void * dst, const void * src, memsize
 const void * _memory_find(const void * l, memsize l_len, const void * s, memsize s_len)
 {
 
-   const unsigned char * cur;
+   const ::u8 * cur;
 
-   const unsigned char * last;
+   const ::u8 * last;
 
-   const unsigned char * cl = (const unsigned char *)l;
-   const unsigned char * cs = (const unsigned char *)s;
+   const ::u8 * cl = (const ::u8 *)l;
+   const ::u8 * cs = (const ::u8 *)s;
 
    /* the last position where its possible to find "s" in "l" */
    last = cl + l_len - s_len;

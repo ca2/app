@@ -45,13 +45,13 @@ namespace imaging_freeimage
       }
       // The GetDIBits function clears the biClrUsed and biClrImportant BITMAPINFO members (dont't know why)
       // So we save these infos below. This is needed for palettized images only.
-      int nColors = FreeImage_GetColorsUsed(fi);
+      ::i32 nColors = FreeImage_GetColorsUsed(fi);
       //HDC hdc = ::CreateCompatibleDC(nullptr);
 
-      int iWidth;
-      int iHeight;
+      ::i32 iWidth;
+      ::i32 iHeight;
       color32_t * pimage32;
-      int iStrideDst;
+      ::i32 iStrideDst;
 
       iWidth = FreeImage_GetWidth(fi);
 
@@ -78,14 +78,14 @@ namespace imaging_freeimage
 
 #if  defined(__ANDROID__)
 
-      int iStrideSrc = pimage->scan_size();
+      ::i32 iStrideSrc = pimage->scan_size();
 
       for (::collection::index y = 0; y < pimage->height(); y++)
       {
 
-         unsigned char * pbDst = ((unsigned char *)pdst) + ((pimage->height() - y - 1) * iStrideDst);
+         ::u8 * pbDst = ((::u8 *)pdst) + ((pimage->height() - y - 1) * iStrideDst);
 
-         unsigned char * pbSrc = (unsigned char *)psrc + (y * iStrideSrc);
+         ::u8 * pbSrc = (::u8 *)psrc + (y * iStrideSrc);
 
          for (::collection::index x = 0; x < pimage->width(); x++)
          {
@@ -108,9 +108,9 @@ namespace imaging_freeimage
 
 #elif defined(APPLEOS)
 
-      unsigned char * pbDst = (unsigned char *)pdst;
+      ::u8 * pbDst = (::u8 *)pdst;
 
-      unsigned char * pbSrc = (unsigned char *)psrc;
+      ::u8 * pbSrc = (::u8 *)psrc;
 
       ::collection::count c = (count)pimage->area();
 
@@ -133,18 +133,18 @@ namespace imaging_freeimage
 
       /*
 
-      unsigned char * pbDst;
+      ::u8 * pbDst;
 
-      unsigned char * pbSrc;
+      ::u8 * pbSrc;
 
-      for(int i = 0; i < pimage->height(); i++)
+      for(::i32 i = 0; i < pimage->height(); i++)
       {
 
-      pbDst = &((unsigned char *) pimage->get_data())[pimage->scan_size() * (pimage->height() - i - 1)];
+      pbDst = &((::u8 *) pimage->get_data())[pimage->scan_size() * (pimage->height() - i - 1)];
 
-      pbSrc = &((unsigned char *) pdata)[pbi->bmiHeader.biWidth * sizeof(color32_t) * i];
+      pbSrc = &((::u8 *) pdata)[pbi->bmiHeader.biWidth * sizeof(color32_t) * i];
 
-      for(int j = 0; j < pimage->width(); j++)
+      for(::i32 j = 0; j < pimage->width(); j++)
       {
 
       pbDst[0] = pbSrc[2];
@@ -165,14 +165,14 @@ namespace imaging_freeimage
 
 #else
 
-      int iStrideSrc = pimage->scan_size();
+      ::i32 iStrideSrc = pimage->scan_size();
 
-      for (int i = 0; i < pimage->height(); i++)
+      for (::i32 i = 0; i < pimage->height(); i++)
       {
 
          ::memory_copy(
-            &((unsigned char *)pdst)[iStrideDst * (pimage->height() - i - 1)],
-            &((unsigned char *)psrc)[iStrideSrc * i],
+            &((::u8 *)pdst)[iStrideDst * (pimage->height() - i - 1)],
+            &((::u8 *)psrc)[iStrideSrc * i],
             iStrideDst);
 
       }
@@ -218,7 +218,7 @@ namespace imaging_freeimage
 
       bool b24 = false;
 
-      int iFreeImageSave = 0;
+      ::i32 iFreeImageSave = 0;
 
       FREE_IMAGE_FORMAT efreeimageformat = (FREE_IMAGE_FORMAT)0;
 
@@ -294,7 +294,7 @@ namespace imaging_freeimage
 
       bOk = FreeImage_SaveToMemory(efreeimageformat, pfi8, pfm1, iFreeImageSave) != false;
 
-      unsigned char * pbData = nullptr;
+      ::u8 * pbData = nullptr;
       DWORD dwSize = 0;
       if (bOk)
          bOk = FreeImage_AcquireMemory(pfm1, &pbData, &dwSize) != false;

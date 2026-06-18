@@ -8,14 +8,14 @@
 #define DQUOTEWCHAR  L'\"'
 
 
-CLASS_DECL_ACME void wide_parse_command_line(::wide_character *cmdstart, ::wide_character **argv, ::wide_character *args, int * numargs, int * numchars)
+CLASS_DECL_ACME void wide_parse_command_line(::wide_character *cmdstart, ::wide_character **argv, ::wide_character *args, ::i32 * numargs, ::i32 * numchars)
 {
 
    ::wide_character *p;
    ::wide_character c;
-   int inquote;                    /* 1 = inside quotes */
-   int copychar;                   /* 1 = copy char to *args */
-   unsigned int numslash;              /* num of backslashes seen */
+   ::i32 inquote;                    /* 1 = inside quotes */
+   ::i32 copychar;                   /* 1 = copy ::i8 to *args */
+   ::u32 numslash;              /* num of backslashes seen */
 
    *numchars = 0;
    *numargs = 1;                   /* the program name at least */
@@ -37,14 +37,14 @@ CLASS_DECL_ACME void wide_parse_command_line(::wide_character *cmdstart, ::wide_
 
    /* A quoted program name is handled here. The handling is much
       simpler than for other arguments. Basically, whatever lies
-      between the leading double-quote and next one, or a terminal nullptr
+      between the leading ::f64-quote and next one, or a terminal nullptr
       character is simply accepted. Fancier handling is not required
       because the program name must be a legal NTFS/HPFS file name.
-      Note that the double-quote characters are not copied, nor do they
+      Note that the ::f64-quote characters are not copied, nor do they
       contribute to numchars. */
    if ( *p == DQUOTEWCHAR ) {
-      /* scan from just past the first double-quote through the next
-         double-quote, or up to a nullptr, whichever comes first */
+      /* scan from just past the first ::f64-quote through the next
+         ::f64-quote, or up to a nullptr, whichever comes first */
       while ( (*(++p) != DQUOTEWCHAR) && (*p != NULWCHAR) ) {
 
             ++*numchars;
@@ -56,7 +56,7 @@ CLASS_DECL_ACME void wide_parse_command_line(::wide_character *cmdstart, ::wide_
       if ( args )
             *args++ = NULWCHAR;
 
-      /* if we stopped on a double-quote (usual case), skip over it */
+      /* if we stopped on a ::f64-quote (usual case), skip over it */
       if ( *p == DQUOTEWCHAR )
             p++;
    }
@@ -126,7 +126,7 @@ CLASS_DECL_ACME void wide_parse_command_line(::wide_character *cmdstart, ::wide_
                if (inquote) {
                   if (p[1] == DQUOTEWCHAR)
                         p++;    /* Double quote inside quoted string */
-                  else        /* skip first quote char and copy second */
+                  else        /* skip first quote ::i8 and copy second */
                         copychar = 0;
                } else
                   copychar = 0;       /* don't copy quote */
@@ -169,7 +169,7 @@ CLASS_DECL_ACME void wide_parse_command_line(::wide_character *cmdstart, ::wide_
 }
 
 //
-//unichar * wide_concatenate(unichar * dest, const unichar * cat)
+//wide_character * wide_concatenate(wide_character * dest, const wide_character * cat)
 //{
 //
 //   if (::is_null(dest)) return nullptr;
@@ -177,7 +177,7 @@ CLASS_DECL_ACME void wide_parse_command_line(::wide_character *cmdstart, ::wide_
 //   #ifdef WINDOWS
 //   return wcscat(dest, cat);
 //   #else
-//   unichar * destParam = dest;
+//   wide_character * destParam = dest;
 //   while(*dest != 0)
 //      dest++;
 //   while(*cat != 0)
@@ -187,7 +187,7 @@ CLASS_DECL_ACME void wide_parse_command_line(::wide_character *cmdstart, ::wide_
 //   #endif
 //}
 
-//void wide_from_u64_base(unichar * sz, unsigned int u, int iBase)
+//void wide_from_u64_base(wide_character * sz, ::u32 u, ::i32 iBase)
 //{
 //   if(u == 0)
 //   {
@@ -195,10 +195,10 @@ CLASS_DECL_ACME void wide_parse_command_line(::wide_character *cmdstart, ::wide_
 //      sz[1] = L'\0';
 //      return;
 //   }
-//   int iIndex = 0;
+//   ::i32 iIndex = 0;
 //   while(u > 0)
 //   {
-//      int iDigit = (u % iBase);
+//      ::i32 iDigit = (u % iBase);
 //      unichar wch;
 //      if(iDigit <= 9)
 //      {
@@ -218,7 +218,7 @@ CLASS_DECL_ACME void wide_parse_command_line(::wide_character *cmdstart, ::wide_
 
 
 
-//void wide_from_int_base(unichar * sz, int i, int iBase)
+//void wide_from_int_base(wide_character * sz, ::i32 i, ::i32 iBase)
 //{
 //   if(i == 0)
 //   {
@@ -232,10 +232,10 @@ CLASS_DECL_ACME void wide_parse_command_line(::wide_character *cmdstart, ::wide_
 //      i = -i;
 //      bNegative = true;
 //   }
-//   int iIndex = 0;
+//   ::i32 iIndex = 0;
 //   while(i > 0)
 //   {
-//      int iDigit = (i % iBase);
+//      ::i32 iDigit = (i % iBase);
 //      unichar wch;
 //      if(iDigit <= 9)
 //      {
@@ -261,7 +261,7 @@ CLASS_DECL_ACME void wide_parse_command_line(::wide_character *cmdstart, ::wide_
 
 
 
-//void wide_reverse(unichar * sz)
+//void wide_reverse(wide_character * sz)
 //{
 //
 //   ::collection::count iLen = wide_length(sz);
@@ -283,7 +283,7 @@ CLASS_DECL_ACME void wide_parse_command_line(::wide_character *cmdstart, ::wide_
 //
 //}
 
-//void w_zero_pad(unichar * sz, ::collection::count iPad)
+//void w_zero_pad(wide_character * sz, ::collection::count iPad)
 //{
 //
 //   ::collection::count iLen = wide_length(sz);

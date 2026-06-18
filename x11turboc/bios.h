@@ -40,11 +40,11 @@ __BEGIN_DECLS
  */
 #ifndef __DJGPP__
 #ifdef __linux__
-extern int open_printer (int port);
+extern ::i32 open_printer (::i32 port);
 #define close_printer(fd)	close(fd)
-extern ssize_t write_printer (int fd, const ::string &buf);
+extern ssize_t write_printer (::i32 fd, const ::string &buf);
 #endif // __linux__
-extern int biosprint (int cmd, int unsigned char, int port);
+extern ::i32 biosprint (::i32 cmd, ::i32 ::u8, ::i32 port);
 #endif /* __DJGPP__    */
 
 enum
@@ -56,12 +56,12 @@ enum
 
 #define PRINT_FILE	"./data/print_file.txt"
 
-extern void flush_print (char *buf, int port);
-extern void print_file (const ::string &file, int port, int lowlevel_print);
+extern void flush_print (char_pointer buf, ::i32 port);
+extern void print_file (const ::string &file, ::i32 port, ::i32 lowlevel_print);
 
 #if 0
 
-extern char *seqence_STAR_34X (int typ);
+extern char_pointer seqence_STAR_34X (::i32 typ);
 
 enum
 {

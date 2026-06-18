@@ -199,7 +199,7 @@ namespace user
 //
 //      WCHAR wsz[KL_NAMELENGTH];
 //
-//      unsigned short w;
+//      ::u16 w;
 //
 //      if(GetKeyboardLayoutNameW(wsz))
 //      {
@@ -219,7 +219,7 @@ namespace user
 //            {
 //               string str(wstring(&wsz[4],4)); // least significant four digits
 //
-//               w = (unsigned short) ::hex::to_long_long(str);
+//               w = (::u16) ::hex::to_i64(str);
 //
 //            }
 //
@@ -289,11 +289,11 @@ namespace user
 
       synchronous_lock synchronouslock(this->synchronization(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 
-      //int iCode;
+      //::i32 iCode;
 
-      //int iScan;
+      //::i32 iScan;
 
-      //::user::enum_key ekey;
+      //const ::user::e_key & ekey;
 
       //::platform::type typeinfoKey = ::type<::user::enum_key>();
 
@@ -336,7 +336,7 @@ namespace user
       //   return false;
       //}
 
-      //for(int i = 0; i < doc.root()->get_children_count(); i++)
+      //for(::i32 i = 0; i < doc.root()->get_children_count(); i++)
       //{
 
       //   ::pointer<::xml::node>pnode = doc.root()->child_at(i);
@@ -462,11 +462,11 @@ namespace user
    //   //if(m_playout == nullptr)
    //   //{
 
-   //   //   return string((char)(pkey->m_nChar & 0xff));
+   //   //   return string((::i8)(pkey->m_nChar & 0xff));
 
    //   //}
 
-   //   pkey->m_iCode = (int)(pkey->m_ekey);
+   //   pkey->m_iCode = (::i32)(pkey->m_ekey);
 
    //   if(psession->is_key_pressed(::user::e_key_shift))
    //   {
@@ -483,17 +483,17 @@ namespace user
 
    //}
 
-   //string keyboard::process_key(::user::enum_key ekey)
+   //string keyboard::process_key(const ::user::e_key & ekey)
    //{
 
    //   if(m_playout == nullptr)
    //   {
 
-   //      return string((char) ekey);
+   //      return string((::i8) ekey);
 
    //   }
 
-   //   int iCode = (int) (ekey);
+   //   ::i32 iCode = (::i32) (ekey);
 
    //   if(psession->is_key_pressed(::user::e_key_shift))
    //   {
@@ -536,7 +536,7 @@ namespace user
 //
 //      directory()->matter_ls_file("keyboard layout", patha);
 //
-//      for(int i = 0; i < patha.get_count(); i++)
+//      for(::i32 i = 0; i < patha.get_count(); i++)
 //      {
 //
 //         keyboard_layout_id layoutid;
@@ -587,7 +587,7 @@ namespace user
 //
 //      HKL hkl = ::GetKeyboardLayout(0);
 //
-//      for(int i = 0; i < layoutida.get_count(); i++)
+//      for(::i32 i = 0; i < layoutida.get_count(); i++)
 //      {
 //         if(layoutida[i].m_hkla.contains(hkl))
 //         {
@@ -595,7 +595,7 @@ namespace user
 //         }
 //      }
 //      hkl = (HKL) (((uptr) hkl) & 0xffff);
-//      for(int i = 0; i < layoutida.get_count(); i++)
+//      for(::i32 i = 0; i < layoutida.get_count(); i++)
 //      {
 //         if(layoutida[i].m_hkla.contains(hkl))
 //         {
@@ -607,7 +607,7 @@ namespace user
 //
 //      string strSymbol = x11_keyboard_get_current_group_symbol();
 //
-//      for(int i = 0; i < layoutida.get_count(); i++)
+//      for(::i32 i = 0; i < layoutida.get_count(); i++)
 //      {
 //         if(layoutida[i].m_countrycode.case_insensitive_contains(strSymbol))
 //         {
@@ -619,7 +619,7 @@ namespace user
 //
 //      string strSymbol = keyboard_input_source();
 //
-//      for(int i = 0; i < layoutida.get_count(); i++)
+//      for(::i32 i = 0; i < layoutida.get_count(); i++)
 //      {
 //         if(layoutida[i].m_keylayout.has_character() && strSymbol.contains(layoutida[i].m_keylayout))
 //         {
@@ -692,7 +692,7 @@ namespace user
 ////
 ////#ifdef WINDOWS_DESKTOP
 ////
-////      for(int i = 0; i < straHkl.get_count(); i++)
+////      for(::i32 i = 0; i < straHkl.get_count(); i++)
 ////      {
 ////         string strHkl = straHkl[i];
 ////         HKL hkl;

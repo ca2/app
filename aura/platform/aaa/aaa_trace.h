@@ -5,7 +5,7 @@
 //public:
 //
 //
-//   virtual void __tracea(::particle * pparticle, enum_trace_level elevel, const ::scoped_string & scopedstrFunction, const ::scoped_string & scopedstrFile, int iLine, const ::scoped_string & scopedstr) = 0;
+//   virtual void __tracea(::particle * pparticle, enum_trace_level elevel, const ::scoped_string & scopedstrFunction, const ::scoped_string & scopedstrFile, ::i32 iLine, const ::scoped_string & scopedstr) = 0;
 //
 //
 //};
@@ -22,14 +22,14 @@ public:
    virtual ~simple_trace();
 
 
-   virtual void __tracea(::particle * pparticle, enum_trace_level elevel, const ::scoped_string & scopedstrFunction, const ::scoped_string & scopedstrFile, int iLine, const ::scoped_string & scopedstr) override;
+   virtual void __tracea(::particle * pparticle, enum_trace_level elevel, const ::scoped_string & scopedstrFunction, const ::scoped_string & scopedstrFile, ::i32 iLine, const ::scoped_string & scopedstr) override;
 
 
 };
 
 
-extern const char * g_pszTraceLevelName[];
-extern char g_chaTraceLevel[];
+extern const_char_pointer g_pszTraceLevelName[];
+extern ::i8 g_chaTraceLevel[];
 
 
 enum e_log
@@ -46,12 +46,12 @@ public:
 
 
    ::matter *            m_pobject;
-   const char * const         m_pszFunction;
-   const char * const         m_pszFile;
-   const int                  m_iLine;
+   const_char_pointer const         m_pszFunction;
+   const_char_pointer const         m_pszFile;
+   const ::i32                  m_iLine;
 
 
-   trace_logger(const ::scoped_string & scopedstrFunction, const ::scoped_string & scopedstrFile, int iLine, ::particle * pparticle) :
+   trace_logger(const ::scoped_string & scopedstrFunction, const ::scoped_string & scopedstrFile, ::i32 iLine, ::particle * pparticle) :
       m_pszFunction(scopedstrFunction), m_pszFile(scopedstrFile), m_iLine(iLine), m_pobject(pparticle)
    {
 
@@ -94,7 +94,7 @@ public:
    }
 
 
-   inline void __cdecl operator()(e_log elog, const ::scoped_string & scopedstrContext, int iError, const ::scoped_string & scopedstrMessage) const
+   inline void __cdecl operator()(e_log elog, const ::scoped_string & scopedstrContext, ::i32 iError, const ::scoped_string & scopedstrMessage) const
    {
 
       ::__tracef(m_pobject, e_trace_level_none, m_pszFunction, m_pszFile, m_iLine, "%d %d %s", strContext.c_str(), iError, strMessage.c_str());
@@ -102,7 +102,7 @@ public:
    }
 
 
-   inline void __cdecl operator()(::particle * pparticle, const ::scoped_string & scopedstrContext, int iError, const ::scoped_string & scopedstrMessage) const
+   inline void __cdecl operator()(::particle * pparticle, const ::scoped_string & scopedstrContext, ::i32 iError, const ::scoped_string & scopedstrMessage) const
    {
 
       ::__tracef(pparticle, e_trace_level_none, m_pszFunction, m_pszFile, m_iLine, "%d %d %s", strContext.c_str(), iError, strMessage.c_str());
@@ -122,7 +122,7 @@ public:
    enum_trace_level           m_elevel;
 
 
-   trace_logger_level(const ::scoped_string & scopedstrFunction, const ::scoped_string & scopedstrFile, int iLine, ::particle * pparticle, enum_trace_level elevel) :
+   trace_logger_level(const ::scoped_string & scopedstrFunction, const ::scoped_string & scopedstrFile, ::i32 iLine, ::particle * pparticle, enum_trace_level elevel) :
       trace_logger(scopedstrFunction, pszFile, iLine, pparticle),
       m_elevel(elevel)
    {
@@ -172,7 +172,7 @@ public:
    }
 
 
-   inline void operator()(e_log elog, const ::scoped_string & scopedstrContext, int iError, const ::scoped_string & scopedstrMessage) const
+   inline void operator()(e_log elog, const ::scoped_string & scopedstrContext, ::i32 iError, const ::scoped_string & scopedstrMessage) const
    {
 
       if (iError == 0)
@@ -191,7 +191,7 @@ public:
    }
 
 
-   inline void operator()(::particle * pparticle, const ::scoped_string & scopedstrContext, int iError, const ::scoped_string & scopedstrMessage) const
+   inline void operator()(::particle * pparticle, const ::scoped_string & scopedstrContext, ::i32 iError, const ::scoped_string & scopedstrMessage) const
    {
 
       ::__tracef(pparticle, m_elevel, m_pszFunction, m_pszFile, m_iLine, "%d %d %s", strContext.c_str(), iError, strMessage.c_str());
@@ -250,7 +250,7 @@ namespace aura
 {
 
 
-   CLASS_DECL_AURA void raw_trace_v(const ::scoped_string & scopedstrFileName,int nLine,unsigned int dwCategory,unsigned int nLevel, const ::scoped_string & scopedstrFmt,va_list args);
+   CLASS_DECL_AURA void raw_trace_v(const ::scoped_string & scopedstrFileName,::i32 nLine,::u32 dwCategory,::u32 nLevel, const ::scoped_string & scopedstrFmt,va_list args);
 
 
    namespace trace
@@ -269,7 +269,7 @@ namespace aura
 
          
          e_trace_category           m_ecategory;
-         const char *               m_pszName;
+         const_char_pointer m_pszName;
          enum_trace_level              m_elevelMin;
          bool                       m_bEnabled;
 
@@ -327,7 +327,7 @@ namespace aura
 
          }
 
-         void TraceV(const ::scoped_string & scopedstrFileName,int nLine,e_trace_category ecategory, enum_trace_level elevel, const ::scoped_string & scopedstrFmt,va_list args) const;
+         void TraceV(const ::scoped_string & scopedstrFileName,::i32 nLine,e_trace_category ecategory, enum_trace_level elevel, const ::scoped_string & scopedstrFmt,va_list args) const;
 
 
          /*bool LoadSettings(const ::scoped_string & scopedstrFileName = nullptr) const
@@ -343,9 +343,9 @@ namespace aura
 
 
       //CLASS_DECL_AURA void __cdecl information(const ::scoped_string & scopedstrFormat,...);
-      //CLASS_DECL_AURA void __cdecl information(const unichar * pszFormat,...);
-      //CLASS_DECL_AURA void __cdecl information(uptr dwCategory,unsigned int nLevel, const ::scoped_string & scopedstrFormat,...);
-      //CLASS_DECL_AURA void __cdecl information(uptr dwCategory,unsigned int nLevel,const unichar * pszFormat,...);
+      //CLASS_DECL_AURA void __cdecl information(const wide_character * pszFormat,...);
+      //CLASS_DECL_AURA void __cdecl information(uptr dwCategory,::u32 nLevel, const ::scoped_string & scopedstrFormat,...);
+      //CLASS_DECL_AURA void __cdecl information(uptr dwCategory,::u32 nLevel,const wide_character * pszFormat,...);
 
    } // namespace trace
 
@@ -353,7 +353,7 @@ namespace aura
 };  // namespace aura
 
 
-CLASS_DECL_AURA const char * get_windows_message_name(unsigned int nMsg);
+CLASS_DECL_AURA const_char_pointer get_windows_message_name(::u32 nMsg);
 
 
 

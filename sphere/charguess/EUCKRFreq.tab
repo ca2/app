@@ -51,7 +51,7 @@
  * Typical Distribution Ratio  
  *****************************************************************************/
 
-#define EUCKR_TYPICAL_DISTRIBUTION_RATIO (float) 6.0
+#define EUCKR_TYPICAL_DISTRIBUTION_RATIO (::f32) 6.0
 
 #define EUCKR_TABLE_SIZE  2352
 

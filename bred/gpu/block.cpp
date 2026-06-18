@@ -66,8 +66,8 @@ namespace gpu
 
             m_pbindingslotset->m_pbindingset = pbindingset;
 
-            m_pbindingslotset->ø(0).m_pbinding = pbindingset->first();
-            m_pbindingslotset->ø(0).m_pblock = this;
+            m_pbindingslotset->atø(0).m_pbinding = pbindingset->first();
+            m_pbindingslotset->atø(0).m_pblock = this;
 
          }
 

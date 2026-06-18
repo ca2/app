@@ -20,7 +20,7 @@
 #ifdef WINDOWS_DESKTOP
 
 
-//int windows_desktop1_main(HINSTANCE hInstance, int       nCmdShow);
+//::i32 windows_desktop1_main(HINSTANCE hInstance, ::i32       nCmdShow);
 
 //
 //void verisimple_message_loop()
@@ -101,7 +101,7 @@ namespace user
 #ifdef _DEBUG
 
 
-   long long thread::increment_reference_count()
+   ::i64 thread::increment_reference_count()
    {
 
       return ::thread::increment_reference_count();
@@ -109,7 +109,7 @@ namespace user
    }
 
 
-   long long thread::decrement_reference_count()
+   ::i64 thread::decrement_reference_count()
    {
 
       return ::thread::decrement_reference_count();
@@ -117,7 +117,7 @@ namespace user
    }
 
 
-   long long thread::release()
+   ::i64 thread::release()
    {
 
       return ::thread::release();
@@ -756,7 +756,7 @@ namespace user
             //throw ::exception(todo("interaction"));
             //throw ::exception(todo("thread"));
 
-//            //short circuit for frequent messages
+//            //::i16 circuit for frequent messages
 //            if (iMessage == ::user::e_message_apply_visual)
 //            {
 //
@@ -796,7 +796,7 @@ namespace user
 
                         //   return true;
 
-                        //   long long iApp = iMessage - WM_APP;
+                        //   ::i64 iApp = iMessage - WM_APP;
 
                         //   pusermessage->m_pwindow->m_puserinteraction->message_handler(pusermessage);
 
@@ -901,7 +901,7 @@ namespace user
    //#ifdef WINDOWS_DESKTOP
    //
    //
-   //   int thread::_GetMessage(MESSAGE * lpMsg, HWND hWnd, unsigned int wMsgFilterMin, unsigned int wMsgFilterMax)
+   //   ::i32 thread::_GetMessage(MESSAGE * lpMsg, HWND hWnd, ::u32 wMsgFilterMin, ::u32 wMsgFilterMax)
    //   {
    //
    //#ifdef ENABLE_TEXT_SERVICES_FRAMEWORK
@@ -949,7 +949,7 @@ namespace user
    //
    //#endif
    //
-   //      int iRet = ::thread::_GetMessage(lpMsg, hWnd, wMsgFilterMin, wMsgFilterMax);
+   //      ::i32 iRet = ::thread::_GetMessage(lpMsg, hWnd, wMsgFilterMin, wMsgFilterMax);
    //
    //      if (iRet <= 0)
    //      {
@@ -975,10 +975,10 @@ namespace user
    //#endif
 
 
-   bool thread::task_get_run() const
+   bool thread::should_run() const
    {
 
-      return ::thread::task_get_run();
+      return ::thread::should_run();
 
    }
 
@@ -1006,7 +1006,7 @@ namespace user
 
       _synchronous_lock synchronouslock(this->synchronization(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 
-      m_pwindow.defer_destroy();
+      m_pwindow.defer_destroy_and_release();
 
       //if (m_pwindow)
       {

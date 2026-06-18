@@ -27,7 +27,7 @@
 BOOL ca2rdp_Pointer_New(rdpContext* context, rdpPointer* pointer)
 {
    ca2rdpInfo* ca2rdpi;
-//	int result;
+//	::i32 result;
    ca2rdpPointer* ca2rdp_pointer;
    //DFBSurfaceDescription dsc;
 
@@ -35,7 +35,7 @@ BOOL ca2rdp_Pointer_New(rdpContext* context, rdpPointer* pointer)
    ca2rdp_pointer = (ca2rdpPointer*) pointer;
 
 
-//	int pitch;
+//	::i32 pitch;
 
    ca2rdp_pointer->xhot = pointer->xPos;
    ca2rdp_pointer->yhot = pointer->yPos;
@@ -51,7 +51,7 @@ BOOL ca2rdp_Pointer_New(rdpContext* context, rdpPointer* pointer)
    {
 
       if (!freerdp_image_copy_from_pointer_data(
-            (unsigned char *) ::draw2d::image_get_data(dib), PIXEL_FORMAT_RGBA32,
+            (::u8 *) ::draw2d::image_get_data(dib), PIXEL_FORMAT_RGBA32,
             0, 0, 0, pointer->width, pointer->height,
             pointer->xorMaskData, pointer->lengthXorMask,
             pointer->andMaskData, pointer->lengthAndMask,
@@ -61,13 +61,13 @@ BOOL ca2rdp_Pointer_New(rdpContext* context, rdpPointer* pointer)
          //xf_unlock_x11(xfc, false);
          return false;
       }
-      //  freerdp_alpha_cursor_convert((unsigned char *) ::draw2d::image_get_data(dib),pointer->xorMaskData,pointer->andMaskData,
+      //  freerdp_alpha_cursor_convert((::u8 *) ::draw2d::image_get_data(dib),pointer->xorMaskData,pointer->andMaskData,
       //pointer->width, pointer->height, pointer->xorBpp, ca2rdpi->clrconv);
    }
 
    //if (pointer->xorBpp > 24)
    //{
-//     freerdp_image_swap_color_order((unsigned char *)::draw2d::image_get_data(dib),pointer->width,pointer->height);
+//     freerdp_image_swap_color_order((::u8 *)::draw2d::image_get_data(dib),pointer->width,pointer->height);
    //}
 
    return 1;
@@ -83,7 +83,7 @@ BOOL ca2rdp_Pointer_Set(rdpContext* context, const rdpPointer* pointer)
 {
 
    ca2rdpInfo* ca2rdpi;
-//   int result;
+//   ::i32 result;
    ca2rdpPointer* ca2rdp_pointer;
    //DFBSurfaceDescription dsc;
 

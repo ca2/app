@@ -5,7 +5,7 @@
 namespace integration
 {
 
-   enum enum_index : int
+   enum enum_index : ::i32
    {
 
       e_index_none,

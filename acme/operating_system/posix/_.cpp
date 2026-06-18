@@ -1,6 +1,6 @@
 // Created by camilo on 2023-03-16 20:08 <3ThomasBorregaardSorensen!!
 #include "framework.h"
-#include "acme/operating_system/shared_posix/c_error_number.h"
+#include "acme/operating_system/shared_posix/c_errno.h"
 
 
 #if defined(FREEBSD) || defined(OPENBSD)
@@ -8,19 +8,19 @@
 #endif
 
 
-[[noreturn]] CLASS_DECL_ACME void throw_errno_exception(const ::scoped_string & scopedstr, c_error_number cerrornumber)
+[[noreturn]] CLASS_DECL_ACME void throw_errno_exception(const ::scoped_string & scopedstr, c_errno cerrno)
 {
 
-   if (cerrornumber == 0)
+   if (cerrno == 0)
    {
 
-      cerrornumber.set_last_errno_status();
+      cerrno.set_last_errno_status();
 
    } 
 
-   auto estatus = cerrornumber.estatus();
+   auto estatus = cerrno.estatus();
 
-   auto errorcode = cerrornumber.error_code();
+   auto errorcode = cerrno.error_code();
 
    throw ::exception(estatus, { errorcode }, scopedstr);
 

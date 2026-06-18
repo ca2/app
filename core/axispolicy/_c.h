@@ -36,11 +36,11 @@
 
 
 
-CLASS_DECL_CORE int get_axis_init();
+CLASS_DECL_CORE ::i32 get_axis_init();
 extern "C"
-CLASS_DECL_CORE int_bool defer_axis_init();
+CLASS_DECL_CORE ::i32_bool defer_axis_init();
 extern "C"
-CLASS_DECL_CORE int_bool defer_axis_term();
+CLASS_DECL_CORE ::i32_bool defer_axis_term();
 
 
 

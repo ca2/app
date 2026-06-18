@@ -867,7 +867,7 @@ char *xmpp_stanza_get_text(xmpp_stanza_t * const stanza)
 /** Get the text data pointer for a text stanza.
  *  This function copies returns the raw pointer to the text data in the
  *  stanza.  This should only be used in very special cases where the 
- *  caller needs to translate the datatype as this will save a double
+ *  caller needs to translate the datatype as this will save a ::f64
  *  allocation.  The caller should not hold onto this pointer, and is
  *  responsible for allocating a copy if it needs one.
  *

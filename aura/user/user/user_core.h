@@ -50,7 +50,7 @@ namespace user
       //bool                                       m_bProgrammerMode;
 
       //bool                                       m_bSystemSynchronizedCursor;
-      //int_point                                      m_pointCursor;
+      //i32_point                                      m_pointCursor;
 
       //pointer_array < ::user::interaction >         m_uiptraToolWindow;
 
@@ -90,8 +90,8 @@ namespace user
 
 
       //bool                                                  m_bSystemSynchronizedScreen;
-      //int_rectangle_array_base                                            m_rectangleaMonitor;
-      //int_rectangle_array_base                                            m_rectangleaWorkspace;
+      //i32_rectangle_array_base                                            m_rectangleaMonitor;
+      //i32_rectangle_array_base                                            m_rectangleaWorkspace;
       //index                                                 m_iMainMonitor;
       //index                                                 m_iMainWorkspace;
 
@@ -114,7 +114,7 @@ namespace user
 
       //bool                                                  m_bMatterFromHttpCache;
 
-      //unsigned int                                                 m_dwLongPhRESSingTime;
+      //::u32                                                 m_dwLongPhRESSingTime;
 
 
       //::pointer<::userex::userex>                        m_puserex;
@@ -134,7 +134,7 @@ namespace user
       virtual void on_file_manager_open(::filemanager::data* pdata, ::file::item_array& itema);
 
       virtual bool get_fs_size(string & strSize, const ::scoped_string & scopedstrPath, bool & bPending);
-      virtual bool get_fs_size(long long & i64Size, const ::scoped_string & scopedstrPath, bool & bPending);
+      virtual bool get_fs_size(::i64 & i64Size, const ::scoped_string & scopedstrPath, bool & bPending);
 
       virtual void data_on_after_change(::message::message * pmessage);
 
@@ -167,7 +167,7 @@ namespace user
       //virtual void term_instance() override;
 
 
-      virtual void LoadStdProfileSettings(unsigned int nMaxMRU = 10);
+      virtual void LoadStdProfileSettings(::u32 nMaxMRU = 10);
 
       virtual ::collection::count get_template_count() const;
       virtual ::pointer<::user::impact_system>get_template(::collection::index index) const;
@@ -181,7 +181,7 @@ namespace user
       //virtual void initialize(::particle * pparticle) override;
 
 
-      //virtual bool do_prompt_file_name(::payload& payloadFile, const ::scoped_string & scopedstrTitle, unsigned int lFlags, bool bOpenFileDialog, ::user::impact_system* ptemplate, ::user::document* pdocument, const atom & atomFileManager = "file_manager_save");
+      //virtual bool do_prompt_file_name(::payload& payloadFile, const ::scoped_string & scopedstrTitle, ::u32 lFlags, bool bOpenFileDialog, ::user::impact_system* ptemplate, ::user::document* pdocument, const atom & atomFileManager = "file_manager_save");
 
 
       virtual void initialize_userex();

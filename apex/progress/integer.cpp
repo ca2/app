@@ -26,7 +26,7 @@ namespace progress
    }
 
 
-   void integer::trace_progress(long long iStep)
+   void integer::trace_progress(::i64 iStep)
    {
 
       m_scalar.set(iStep);
@@ -57,7 +57,7 @@ namespace progress
    }
 
 
-   bool integer::on_set_scalar(::number::scalar_source * psource, enum_scalar escalar,::number::number number, int iFlags)
+   bool integer::on_set_scalar(::number::scalar_source * psource, enum_scalar escalar,::number::number number, ::i32 iFlags)
    {
 
       if (m_scalar.m_psource == psource)

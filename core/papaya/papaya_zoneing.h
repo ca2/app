@@ -18,10 +18,10 @@ namespace papaya
 
 
       template < typename T1, typename T2 >
-      inline bool is_equal(const T1 & t1, const T2 & t2, double dMargin, bool bIn)
+      inline bool is_equal(const T1 & t1, const T2 & t2, ::f64 dMargin, bool bIn)
       {
 
-         double delta = (double)(t1 - t2);
+         ::f64 delta = (::f64)(t1 - t2);
 
          if (bIn)
          {

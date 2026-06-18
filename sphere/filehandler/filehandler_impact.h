@@ -25,9 +25,9 @@ namespace filehandler
          string         m_strApp;
          ::collection::index        m_iIndex;
 
-         ::int_rectangle         m_rectangleItem;
-         ::int_rectangle         m_rectangleStatusImage;
-         ::int_rectangle         m_rectangleName;
+         ::i32_rectangle         m_rectangleItem;
+         ::i32_rectangle         m_rectangleStatusImage;
+         ::i32_rectangle         m_rectangleName;
 
          item(::particle * pparticle);
 
@@ -42,14 +42,14 @@ namespace filehandler
       {
       public:
 
-         int m_iItemHeight;
+         ::i32 m_iItemHeight;
 
          list_base(::particle * pparticle);
 
 
          void parse(::filehandler::handler * phandler, const ::scoped_string & scopedstrTopic);
 
-         void on_layout(const ::int_rectangle * lpcrect);
+         void on_layout(const ::i32_rectangle * lpcrect);
          void draw(::pointer<impact>pimpact, ::draw2d::graphics_pointer & pgraphics);
 
       };
@@ -73,7 +73,7 @@ namespace filehandler
       virtual void refresh();
 
       DECLARE_MESSAGE_HANDLER(on_message_create);
-      void on_timer(::timer * ptimer);
+      void operator()(::timer * ptimer) override;
       DECLARE_MESSAGE_HANDLER(on_message_left_button_up);
 
       virtual void on_layout(::draw2d::graphics_pointer & pgraphics);

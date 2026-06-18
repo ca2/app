@@ -21,7 +21,7 @@ namespace platform
       virtual void initialize(::particle * pparticle) override;
 
 
-      virtual void call_member(long long iId) override;
+      virtual void call_member(::i64 iId) override;
 
 
       virtual void process_init();

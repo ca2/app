@@ -103,14 +103,14 @@ namespace http
 
 
 
-   ::collection::index cookies::find_cookie(const_char_pointer name)
+   ::collection::index cookies::find_cookie(const_char_pointer pszName)
    {
 
-      string strNameLow(name);
+      string strNameLow(pszName);
 
       strNameLow.make_lower();
 
-      for(int i = 0; i < this->get_size(); i++)
+      for(::i32 i = 0; i < this->get_size(); i++)
       {
 
          if(this->element_at(i)->m_strNameLow == strNameLow)
@@ -126,11 +126,11 @@ namespace http
 
    }
 
-   ::collection::index cookies::lowfind_cookie(const_char_pointer name)
+   ::collection::index cookies::lowfind_cookie(const_char_pointer pszName)
    {
-      for(int i = 0; i < this->get_size(); i++)
+      for(::i32 i = 0; i < this->get_size(); i++)
       {
-         if(this->element_at(i)->m_strNameLow == name)
+         if(this->element_at(i)->m_strNameLow == pszName)
          {
             return i;
          }
@@ -138,17 +138,17 @@ namespace http
       return -1;
    }
 
-   http::cookie & cookies::cookie(const_char_pointer name)
+   http::cookie & cookies::cookie(const_char_pointer pszName)
    {
 
-      auto iFind = find_cookie(name);
+      auto iFind = find_cookie(pszName);
 
       if(not_found(iFind))
       {
 
          auto pcookie = allocateø class cookie ();
 
-         pcookie->m_strName = name;
+         pcookie->m_strName = pszName;
 
          pcookie->m_strNameLow = pcookie->m_strName.lowered();
 
@@ -161,23 +161,23 @@ namespace http
    }
 
 
-   http::cookie & cookies::lowcookie(const_char_pointer name)
+   http::cookie & cookies::lowcookie(const_char_pointer pszName)
    {
 
-      auto iFind = lowfind_cookie(name);
+      auto iFind = lowfind_cookie(pszName);
 
       if(::not_found(iFind))
       {
 
          class cookie ca;
 
-         ca.m_strName = name;
+         ca.m_strName = pszName;
 
-         ca.m_strNameLow = name;
+         ca.m_strNameLow = pszName;
 
          add(allocateø class cookie (ca));
 
-         iFind = find_cookie(name);
+         iFind = find_cookie(pszName);
 
          ASSERT(::found(iFind));
 
@@ -196,7 +196,7 @@ namespace http
       //stra.add_tokens(scopedstr, ";", true);
       auto psz = scopedstr.begin();
       bool bRun = true;
-      int i = 0;
+      ::i32 i = 0;
       while(bRun)
       {
          const_char_pointer pszEnd = ansi_chr(psz, ';');
@@ -278,10 +278,10 @@ namespace http
    }
 
 
-   character_count cookies::get_length( const_char_pointer name)
+   character_count cookies::get_length( const_char_pointer pszName)
    {
 
-      return cookie(name).m_payload.as_string().length();
+      return cookie(pszName).m_payload.as_string().length();
 
    }
 
@@ -427,9 +427,9 @@ namespace http
 
    }
 
-   http::cookie & cookies::operator [](const_char_pointer name)
+   http::cookie & cookies::operator [](const_char_pointer pszName)
    {
-      return cookie(name);
+      return cookie(pszName);
    }
    cookies & cookies::operator = (const cookies & cookies)
    {

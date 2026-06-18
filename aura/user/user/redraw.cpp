@@ -28,7 +28,7 @@ namespace user
 #ifdef _DEBUG
 
 
-   long long redraw_item::increment_reference_count()
+   ::i64 redraw_item::increment_reference_count()
    {
 
       return ::particle::increment_reference_count();
@@ -36,7 +36,7 @@ namespace user
    }
 
 
-   long long redraw_item::decrement_reference_count()
+   ::i64 redraw_item::decrement_reference_count()
    {
 
       return ::particle::decrement_reference_count();
@@ -122,7 +122,7 @@ namespace user
    }
 
 
-   void redraw::set_need_redraw(const ::int_rectangle & rectangle)
+   void redraw::set_need_redraw(const ::i32_rectangle & rectangle)
    {
 
       if (m_rectangleaNeedRedraw.has_element())
@@ -135,7 +135,7 @@ namespace user
    }
 
 
-   void redraw::set_need_redraw(const ::int_rectangle_array_base & rectanglea)
+   void redraw::set_need_redraw(const ::i32_rectangle_array_base & rectanglea)
    {
 
       if (m_rectangleaNeedRedraw.has_element())
@@ -148,7 +148,7 @@ namespace user
    }
 
 
-   bool redraw::needs_to_draw(const ::int_rectangle & rectangle)
+   bool redraw::needs_to_draw(const ::i32_rectangle & rectangle)
    {
 
       bool bNeedsToDraw = false;

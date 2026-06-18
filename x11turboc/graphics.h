@@ -396,8 +396,8 @@ RgbStruct;
 
 struct arccoordstype
 {
-  int x, y;
-  int xstart, ystart, xend, yend;
+  ::i32 x, y;
+  ::i32 xstart, ystart, xend, yend;
 };
 
 struct palettetype
@@ -408,30 +408,30 @@ struct palettetype
 
 struct fillsettingstype
 {
-  int pattern;
-  int color;
+  ::i32 pattern;
+  ::i32 color;
 };
 
 struct linesettingstype
 {
-  int linestyle;
-  unsigned upattern;
-  int thickness;
+  ::i32 linestyle;
+  ::u32 upattern;
+  ::i32 thickness;
 };
 
 struct textsettingstype
 {
-  int font;
-  int direction;
-  int charsize;
-  int horiz;
-  int vert;
+  ::i32 font;
+  ::i32 direction;
+  ::i32 charsize;
+  ::i32 horiz;
+  ::i32 vert;
 };
 
 struct viewporttype
 {
-  int left, top, right, bottom;
-  int clip;
+  ::i32 left, top, right, bottom;
+  ::i32 clip;
 };
 
 /* This is the structure which holds data for the getimage/putimage
@@ -453,101 +453,101 @@ struct TcImageBuffer
 __BEGIN_DECLS
   
 //
-extern void arc (int x, int y, int stangle, int endangle, int radius);
-extern void bar (int left, int top, int right, int bottom);
-extern void bar3d (int left, int top, int right, int bottom,
-		   int depth, int topflag);
-extern void circle (int x, int y, int radius);
+extern void arc (::i32 x, ::i32 y, ::i32 stangle, ::i32 endangle, ::i32 radius);
+extern void bar (::i32 left, ::i32 top, ::i32 right, ::i32 bottom);
+extern void bar3d (::i32 left, ::i32 top, ::i32 right, ::i32 bottom,
+		   ::i32 depth, ::i32 topflag);
+extern void circle (::i32 x, ::i32 y, ::i32 radius);
 extern void cleardevice (void);
 extern void clearviewport (void);
 extern void closegraph (void);
-extern void detectgraph (int *graphdriver, int *graphmode);
-extern void drawpoly (int numpoints, int *polypoints);
-extern void ellipse (int x, int y, int stangle, int endangle,
-		     int xradius, int yradius);
-extern void fillellipse (int x, int y, int xradius, int yradius);
-extern void fillpoly (int numpoints, int *polypoints);
-extern void floodfill (int x, int y, int border);
+extern void detectgraph (::i32 *graphdriver, ::i32 *graphmode);
+extern void drawpoly (::i32 numpoints, ::i32 *polypoints);
+extern void ellipse (::i32 x, ::i32 y, ::i32 stangle, ::i32 endangle,
+		     ::i32 xradius, ::i32 yradius);
+extern void fillellipse (::i32 x, ::i32 y, ::i32 xradius, ::i32 yradius);
+extern void fillpoly (::i32 numpoints, ::i32 *polypoints);
+extern void floodfill (::i32 x, ::i32 y, ::i32 border);
 extern void getarccoords (struct arccoordstype *arccoords);
-extern void getaspectratio (int *xasp, int *yasp);
-extern int getbkcolor (void);
-extern int getcolor (void);
+extern void getaspectratio (::i32 *xasp, ::i32 *yasp);
+extern ::i32 getbkcolor (void);
+extern ::i32 getcolor (void);
 extern const struct palettetype *getdefaultpalette (void);
 extern const_char_pointer getdrivername (void);
-extern void getfillpattern (char *pattern);
+extern void getfillpattern (char_pointer pattern);
 extern void getfillsettings (struct fillsettingstype *fillinfo);
-extern int getgraphmode (void);
-/*extern void getimage (int left, int top, int right, int bottom, void *bitmap);
+extern ::i32 getgraphmode (void);
+/*extern void getimage (::i32 left, ::i32 top, ::i32 right, ::i32 bottom, void *bitmap);
 //extern void freeimage (void *bitmap);
 extern void getlinesettings (struct linesettingstype *lineinfo);
-extern int getmaxcolor (void);
-extern int getmaxmode (void);
+extern ::i32 getmaxcolor (void);
+extern ::i32 getmaxmode (void);
 #ifdef getmaxx
 #undef getmaxx
 #endif
-extern int turboc_getmaxx (void);
+extern ::i32 turboc_getmaxx (void);
 #define getmaxx() turboc_getmaxx()
 #ifdef getmaxy
 #undef getmaxy
 #endif
-extern int turboc_getmaxy (void);
+extern ::i32 turboc_getmaxy (void);
 #define getmaxy() turboc_getmaxy()
-extern char *getmodename (int mode_number);
-extern void getmoderange (int graphdriver, int *lomode, int *himode);
-extern unsigned getpixel (int x, int y);
+extern char_pointer getmodename (::i32 mode_number);
+extern void getmoderange (::i32 graphdriver, ::i32 *lomode, ::i32 *himode);
+extern ::u32 getpixel (::i32 x, ::i32 y);
 extern void getpalette (struct palettetype *palette);
-extern int getpalettesize (void);
+extern ::i32 getpalettesize (void);
 extern void gettextsettings (struct textsettingstype *texttypeinfo);
 extern void getviewsettings (struct viewporttype *viewport);
-extern int getx (void);
-extern int gety (void);
+extern ::i32 getx (void);
+extern ::i32 gety (void);
 extern void graphdefaults (void);
 extern void TcGraphDefaults (void);
-extern int TcDefaultColors (int Pal);
-extern char *grapherrormsg (int errorcode);
-extern void _graphfreemem (void *ptr, unsigned int_size);
-extern void *_graphgetmem (unsigned int_size);
-extern int graphresult (void);
-extern unsigned imagesize (int left, int top, int right, int bottom);
-extern void initgraph (int *graphdriver, int *graphmode, char *pathtodriver);
-extern int installuserdriver (char *name, int (*detect) (void));
-extern int installuserfont (char *name);
-extern void line (int x1, int y1, int x2, int y2);
-extern void linerel (int Δx, int Δy);
-extern void lineto (int x, int y);
-extern void moverel (int Δx, int Δy);
-extern void moveto (int x, int y);
-extern void outtext (char *textstring);
-extern void outtextxy (int x, int y, char *textstring);
-extern void pieslice (int x, int y, int stangle, int endangle, int radius);
-/*extern void putimage (int left, int top, void *bitmap, int op);
-extern void putpixel (int x, int y, int color);
-extern void int_rectangle (int left, int top, int right, int bottom);
-extern int registerbgidriver (void (*driver) (void));
-extern int registerbgifont (void (*font) (void));
+extern ::i32 TcDefaultColors (::i32 Pal);
+extern char_pointer grapherrormsg (::i32 errorcode);
+extern void _graphfreemem (void *ptr, ::u32 i32_size);
+extern void *_graphgetmem (::u32 i32_size);
+extern ::i32 graphresult (void);
+extern ::u32 imagesize (::i32 left, ::i32 top, ::i32 right, ::i32 bottom);
+extern void initgraph (::i32 *graphdriver, ::i32 *graphmode, char_pointer pathtodriver);
+extern ::i32 installuserdriver (char_pointer name, ::i32 (*detect) (void));
+extern ::i32 installuserfont (char_pointer name);
+extern void line (::i32 x1, ::i32 y1, ::i32 x2, ::i32 y2);
+extern void linerel (::i32 Δx, ::i32 Δy);
+extern void lineto (::i32 x, ::i32 y);
+extern void moverel (::i32 Δx, ::i32 Δy);
+extern void moveto (::i32 x, ::i32 y);
+extern void outtext (char_pointer textstring);
+extern void outtextxy (::i32 x, ::i32 y, char_pointer textstring);
+extern void pieslice (::i32 x, ::i32 y, ::i32 stangle, ::i32 endangle, ::i32 radius);
+/*extern void putimage (::i32 left, ::i32 top, void *bitmap, ::i32 op);
+extern void putpixel (::i32 x, ::i32 y, ::i32 color);
+extern void i32_rectangle (::i32 left, ::i32 top, ::i32 right, ::i32 bottom);
+extern ::i32 registerbgidriver (void (*driver) (void));
+extern ::i32 registerbgifont (void (*font) (void));
 extern void restorecrtmode (void);
-extern void sector (int X, int Y, int StAngle, int EndAngle,
-		    int XRadius, int YRadius);
-extern void setactivepage (int page);
+extern void sector (::i32 X, ::i32 Y, ::i32 StAngle, ::i32 EndAngle,
+		    ::i32 XRadius, ::i32 YRadius);
+extern void setactivepage (::i32 page);
 extern void setallpalette (struct palettetype *palette);
-extern void setaspectratio (int xasp, int yasp);
-extern void setbkcolor (int color);
-extern void setcolor (int color);
-extern void setfillpattern (char *upattern, int color);
-extern void setfillstyle (int pattern, int color);
-extern unsigned setgraphbufsize (unsigned bufsize);
-extern void setgraphmode (int mode);
-extern void setlinestyle (int linestyle, unsigned upattern, int thickness);
-extern void setpalette (int colornum, int color);
-extern void setrgbpalette (int colornum, int red, int green, int blue);
-extern void settextjustify (int horiz, int vert);
-extern void settextstyle (int font, int direction, int charsize);
-extern void setusercharsize (int multx, int divx, int multy, int divy);
-extern void setviewport (int left, int top, int right, int bottom, int clip);
-extern void setvisualpage (int page);
-extern void setwritemode (int mode);
-extern int textheight (char *textstring);
-extern int textwidth (char *textstring);
+extern void setaspectratio (::i32 xasp, ::i32 yasp);
+extern void setbkcolor (::i32 color);
+extern void setcolor (::i32 color);
+extern void setfillpattern (char_pointer upattern, ::i32 color);
+extern void setfillstyle (::i32 pattern, ::i32 color);
+extern ::u32 setgraphbufsize (::u32 bufsize);
+extern void setgraphmode (::i32 mode);
+extern void setlinestyle (::i32 linestyle, ::u32 upattern, ::i32 thickness);
+extern void setpalette (::i32 colornum, ::i32 color);
+extern void setrgbpalette (::i32 colornum, ::i32 red, ::i32 green, ::i32 blue);
+extern void settextjustify (::i32 horiz, ::i32 vert);
+extern void settextstyle (::i32 font, ::i32 direction, ::i32 charsize);
+extern void setusercharsize (::i32 multx, ::i32 divx, ::i32 multy, ::i32 divy);
+extern void setviewport (::i32 left, ::i32 top, ::i32 right, ::i32 bottom, ::i32 clip);
+extern void setvisualpage (::i32 page);
+extern void setwritemode (::i32 mode);
+extern ::i32 textheight (char_pointer textstring);
+extern ::i32 textwidth (char_pointer textstring);
 
 // Non-user-callable functions.  Really, just names for use as function
 // parameters in the registerbgidriver and registerbgifont functions.
@@ -566,16 +566,16 @@ __END_DECLS
 //--------------------------------------------------------------------------
 // Variables.
 #ifdef TURBOC_VARIABLES_C
-volatile int TcGraphicsInitialized = 0;
-int TcCurrentGraphMode, TcGraphResult = grOk;
-int TcXresolution, TcYresolution, TcPageCount, TcPaletteNum;
-int TcDriver, TcVisualPage = 0, TcActivePage = 0;
-int TcForegroundColor, TcBackgroundColor, TcDriver;
-int TcViewLeft, TcViewTop, TcViewRight, TcViewBottom, TcViewClip;
-int Tcx, Tcy, TcViewMaxx, TcViewMaxy;
-int TcLastArcX = 0, TcLastArcY = 0, TcLastStangle = 0;
-int TcLastEndangle = 0, TcLastRadius = 0;
-int TcWritemode = 0, TcTextHoriz = 0, TcTextVert = 0;
+volatile ::i32 TcGraphicsInitialized = 0;
+::i32 TcCurrentGraphMode, TcGraphResult = grOk;
+::i32 TcXresolution, TcYresolution, TcPageCount, TcPaletteNum;
+::i32 TcDriver, TcVisualPage = 0, TcActivePage = 0;
+::i32 TcForegroundColor, TcBackgroundColor, TcDriver;
+::i32 TcViewLeft, TcViewTop, TcViewRight, TcViewBottom, TcViewClip;
+::i32 Tcx, Tcy, TcViewMaxx, TcViewMaxy;
+::i32 TcLastArcX = 0, TcLastArcY = 0, TcLastStangle = 0;
+::i32 TcLastEndangle = 0, TcLastRadius = 0;
+::i32 TcWritemode = 0, TcTextHoriz = 0, TcTextVert = 0;
 struct linesettingstype TcLinestyle = { SOLID_LINE, 0xffff, NORM_WIDTH };
 RgbStruct TcColors[256];
 const RgbStruct TcColors2[2] = { XBLACK, XWHITE };
@@ -607,10 +607,10 @@ const struct palettetype TcDefaultPalette16 = {
    YELLOW, WHITE}
 };
 struct palettetype TcCurrentPalette;
-int TcTextFont, TcTextDirection, TcTextCharsize;
-int TcTextMultX, TcTextDivX, TcTextMultY, TcTextDivY;
-int TcFillStyle = SOLID_FILL, TcFillColor = 1;
-char TcUserFillPattern[8] = { 255, 255, 255, 255, 255, 255, 255, 255 };
+::i32 TcTextFont, TcTextDirection, TcTextCharsize;
+::i32 TcTextMultX, TcTextDivX, TcTextMultY, TcTextDivY;
+::i32 TcFillStyle = SOLID_FILL, TcFillColor = 1;
+::i8 TcUserFillPattern[8] = { 255, 255, 255, 255, 255, 255, 255, 255 };
 #ifdef WITH_X
 //struct TcPixmapPoolRecord TcPixmapPool[MAX_TCIMAGEBUFS] = { { 0 } };
 Display *TcDisplay;
@@ -623,16 +623,16 @@ XColor TcXforeground, TcXbackground;
 Pixmap TcTile;
 #endif // WITH_X
 #else // TURBOC_VARIABLES_C
-extern volatile int TcGraphicsInitialized;
-extern int TcCurrentGraphMode, TcGraphResult;
-extern int TcXresolution, TcYresolution, TcPageCount, TcPaletteNum;
-extern int TcDriver, TcVisualPage, TcActivePage;
-extern int TcForegroundColor, TcBackgroundColor, TcDriver;
-extern int TcViewLeft, TcViewTop, TcViewRight, TcViewBottom, TcViewClip;
-extern int Tcx, Tcy, TcViewMaxx, TcViewMaxy;
-extern int TcLastArcX, TcLastArcY, TcLastStangle;
-extern int TcLastEndangle, TcLastRadius;
-extern int TcWritemode, TcTextHoriz, TcTextVert;
+extern volatile ::i32 TcGraphicsInitialized;
+extern ::i32 TcCurrentGraphMode, TcGraphResult;
+extern ::i32 TcXresolution, TcYresolution, TcPageCount, TcPaletteNum;
+extern ::i32 TcDriver, TcVisualPage, TcActivePage;
+extern ::i32 TcForegroundColor, TcBackgroundColor, TcDriver;
+extern ::i32 TcViewLeft, TcViewTop, TcViewRight, TcViewBottom, TcViewClip;
+extern ::i32 Tcx, Tcy, TcViewMaxx, TcViewMaxy;
+extern ::i32 TcLastArcX, TcLastArcY, TcLastStangle;
+extern ::i32 TcLastEndangle, TcLastRadius;
+extern ::i32 TcWritemode, TcTextHoriz, TcTextVert;
 extern struct linesettingstype TcLinestyle;
 extern RgbStruct TcColors[256];
 extern const RgbStruct TcColors2[2];
@@ -650,10 +650,10 @@ extern const struct palettetype TcDefaultPaletteC3;
 extern const struct palettetype TcDefaultPalette4;
 extern const struct palettetype TcDefaultPalette16;
 extern struct palettetype TcCurrentPalette;
-extern int TcTextFont, TcTextDirection, TcTextCharsize;
-extern int TcTextMultX, TcTextDivX, TcTextMultY, TcTextDivY;
-extern int TcFillStyle, TcFillColor;
-extern char TcUserFillPattern[8];
+extern ::i32 TcTextFont, TcTextDirection, TcTextCharsize;
+extern ::i32 TcTextMultX, TcTextDivX, TcTextMultY, TcTextDivY;
+extern ::i32 TcFillStyle, TcFillColor;
+extern ::i8 TcUserFillPattern[8];
 #ifdef WITH_X
 //extern struct TcPixmapPoolRecord TcPixmapPool[MAX_TCIMAGEBUFS];
 extern Display *TcDisplay;

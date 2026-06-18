@@ -77,13 +77,13 @@ namespace experience_core
       if (pointBottomRight != pointLastBottomRight)
       {
 
-         auto pointInnerBottomRight = pointBottomRight - ::int_size(9, 9);
+         auto pointInnerBottomRight = pointBottomRight - ::i32_size(9, 9);
 
-         auto pointInnerLastBottomRight = pointLastBottomRight - ::int_size(9, 9);
+         auto pointInnerLastBottomRight = pointLastBottomRight - ::i32_size(9, 9);
 
          auto pointMinimumInnerBottomRight = pointInnerBottomRight.minimum(pointInnerLastBottomRight);
 
-         ::int_rectangle rectangleLeft;
+         ::i32_rectangle rectangleLeft;
 
          rectangleLeft.left = 0;
          rectangleLeft.right = pointBottomRight.x;
@@ -92,7 +92,7 @@ namespace experience_core
 
          pgraphics->user_redraw()->set_need_redraw(rectangleLeft);
 
-         ::int_rectangle rectangleTop;
+         ::i32_rectangle rectangleTop;
 
          rectangleTop.left = 0;
          rectangleTop.right = 7;
@@ -101,7 +101,7 @@ namespace experience_core
 
          pgraphics->user_redraw()->set_need_redraw(rectangleTop);
 
-         ::int_rectangle rectangleRight;
+         ::i32_rectangle rectangleRight;
 
          rectangleRight.left = pointMinimumInnerBottomRight.x;
          rectangleRight.right = pointBottomRight.x;
@@ -112,7 +112,7 @@ namespace experience_core
 
          pgraphics->user_redraw()->set_need_redraw(rectangleRight);
 
-         ::int_rectangle rectangleBottom;
+         ::i32_rectangle rectangleBottom;
 
          rectangleBottom.left = 0;
          rectangleBottom.right = pointBottomRight.x;
@@ -135,7 +135,7 @@ namespace experience_core
    }
 
 
-   void frame::Glass(::draw2d::graphics_pointer & pgraphics, const ::int_rectangle & rectangleParam)
+   void frame::Glass(::draw2d::graphics_pointer & pgraphics, const ::i32_rectangle & rectangleParam)
    {
 
       auto pframewindow = m_pframewindow;
@@ -144,9 +144,9 @@ namespace experience_core
 
       auto pimaging = psystem->imaging();
 
-      ::int_rectangle rectangleX(rectangleParam);
+      ::i32_rectangle rectangleX(rectangleParam);
 
-      ::int_rectangle rectangleInflate;
+      ::i32_rectangle rectangleInflate;
 
       if (rectangleX.is_empty())
       {
@@ -156,13 +156,13 @@ namespace experience_core
       }
 
 
-      int iInflate = 5; // raio 2 pixels + centro 1 pixel
+      ::i32 iInflate = 5; // raio 2 pixels + centro 1 pixel
 
       rectangleInflate = rectangleX;
 
       rectangleInflate.inflate(iInflate, iInflate);
 
-      ::int_rectangle rectangleScreen;
+      ::i32_rectangle rectangleScreen;
 
       pframewindow->best_monitor(&rectangleScreen);
 
@@ -174,11 +174,11 @@ namespace experience_core
 
       pimage2 = image()->create_image({ rectangleX.width() + iInflate * 2,  rectangleX.height() + iInflate * 2 });
 
-      ::int_rectangle rectangleWindow = rectangleX;
+      ::i32_rectangle rectangleWindow = rectangleX;
 
       pframewindow->client_to_screen()(rectangleWindow);
 
-      ::int_point pointInflate(iInflate, iInflate);
+      ::i32_point pointInflate(iInflate, iInflate);
 
       auto point = rectangleX.top_left();
 
@@ -188,11 +188,11 @@ namespace experience_core
 
       {
 
-         double_rectangle rectangleSource(point, pimage1->get_size());
+         ::f64_rectangle rectangleSource(point, pimage1->get_size());
 
          ::image::image_source imagesource(pgraphics, rectangleSource);
 
-         double_rectangle rectangleTarget(pimage1->get_size());
+         ::f64_rectangle rectangleTarget(pimage1->get_size());
 
          ::image::image_drawing_options imagedrawingoptions(rectangleTarget);
 
@@ -210,11 +210,11 @@ namespace experience_core
 
       {
 
-         double_rectangle rectangleSource(pointInflate, rectangleX.size());
+         ::f64_rectangle rectangleSource(pointInflate, rectangleX.size());
 
          ::image::image_source imagesource(pimage2, rectangleSource);
 
-         double_rectangle rectangleTarget(rectangleX);
+         ::f64_rectangle rectangleTarget(rectangleX);
 
          ::image::image_drawing_options imagedrawingoptions(rectangleTarget);
 
@@ -235,7 +235,7 @@ namespace experience_core
    }
 
 
-   void frame::ColorGlass(::draw2d::graphics_pointer & pgraphics, const ::int_rectangle & rectangle, const ::color::color & color32, unsigned char bAlpha)
+   void frame::ColorGlass(::draw2d::graphics_pointer & pgraphics, const ::i32_rectangle & rectangle, const ::color::color & color32, ::u8 bAlpha)
    {
 
       pgraphics->fill_rectangle(rectangle, color32 & ::opacity(bAlpha));
@@ -354,10 +354,10 @@ namespace experience_core
 
 
 
-   bool frame::get_element_rectangle(::int_rectangle & rectangle, enum_element eelement)
+   bool frame::get_element_rectangle(::i32_rectangle & rectangle, const ::e_element & eelement)
    {
 
-      switch (eelement)
+      switch (eelement.m_eenum)
       {
       case e_element_top_left_icon:
       {
@@ -407,12 +407,12 @@ namespace experience_core
    }
 
 
-   //   ::experience::enum_frame frame::experience_frame_hit_test(const ::int_point &point, ::user::e_zorder ezorder)
+   //   ::experience::enum_frame frame::experience_frame_hit_test(const ::i32_point &point, ::user::e_zorder ezorder)
    //   {
    //
    //      return ::experience::frame::experience_frame_hit_test(point, ezorder);
-   ////               ::int_rectangle rectangle;
-   ////               for(enum_element eelement = (enum_element)(::e_element_none + 1);
+   ////               ::i32_rectangle rectangle;
+   ////               for(const ::e_element & eelement = (enum_element)(::e_element_none + 1);
    ////                     eelement < ElementEnd;
    ////                     eelement++)
    ////               {
@@ -437,17 +437,17 @@ namespace experience_core
       color = colorMoveableBorder;
       color.hls_rate(0.0, 0.5, 0.0);
       m_colorMoveableBorderHilight = color;
-      m_colorMoveableBorderHilight.m_uchOpacity = 255;
+      m_colorMoveableBorderHilight.m_u8Opacity = 255;
 
       color = colorMoveableBorder;
       color.hls_rate(0.0, -0.3, 0.0);
       m_colorMoveableBorderShadow = color;
-      m_colorMoveableBorderShadow.m_uchOpacity = 255;
+      m_colorMoveableBorderShadow.m_u8Opacity = 255;
 
       color = colorMoveableBorder;
       color.hls_rate(8.0, -0.8, 0.0);
       m_colorMoveableBorderDkShadow = color;
-      m_colorMoveableBorderDkShadow.m_uchOpacity = 255;
+      m_colorMoveableBorderDkShadow.m_u8Opacity = 255;
 
       m_colorCaptionTextBk = m_colorMoveableBorderShadow;
 
@@ -522,7 +522,7 @@ namespace experience_core
 
       auto pcontrolbox = get_control_box();
 
-      m_minSize = int_size(144, 48);
+      m_minSize = i32_size(144, 48);
 
       m_minSize.cy = 48;
 
@@ -608,15 +608,15 @@ namespace experience_core
    //}
 
 
-   void frame::Draw3dRectSide(::draw2d::graphics_pointer & pgraphics, const ::int_rectangle & rectangleParam, enum_border eborder, const ::color::color & colorTopLeft, const ::color::color & colorBottomRight)
+   void frame::Draw3dRectSide(::draw2d::graphics_pointer & pgraphics, const ::i32_rectangle & rectangleParam, enum_border eborder, const ::color::color & colorTopLeft, const ::color::color & colorBottomRight)
    {
 
-      ::int_rectangle rectangle(rectangleParam);
+      ::i32_rectangle rectangle(rectangleParam);
 
-      int x = rectangle.left;
-      int y = rectangle.top;
-      int cx = rectangle.width();
-      int cy = rectangle.height();
+      ::i32 x = rectangle.left;
+      ::i32 y = rectangle.top;
+      ::i32 cx = rectangle.width();
+      ::i32 cy = rectangle.height();
 
       pgraphics->set_alpha_mode(::draw2d::e_alpha_mode_blend);
 
@@ -718,7 +718,7 @@ x + cx, y + cy);
       if (pframewindow->layout().is_minimal())
       {
 
-         ::int_rectangle rectangleIcon;
+         ::i32_rectangle rectangleIcon;
 
          if (get_element_rectangle(rectangleIcon, e_element_top_left_icon))
          {
@@ -740,17 +740,17 @@ x + cx, y + cy);
 
          }
 
-         ::int_rectangle rectangleGrip;
+         ::i32_rectangle rectangleGrip;
 
          if (get_element_rectangle(rectangleGrip, e_element_move_grip_minimal))
          {
 
-            int i = 0;
+            ::i32 i = 0;
 
             while (i < rectangleGrip.width() - 5 + 1)
             {
 
-               ::double_rectangle rectangle(rectangleGrip.left + i, rectangleGrip.top, 3, rectangleGrip.height());
+               ::f64_rectangle rectangle(rectangleGrip.left + i, rectangleGrip.top, 3, rectangleGrip.height());
 
                pgraphics->draw_inset_3d_rectangle(rectangle, argb(110, 230, 230, 230), argb(110, 130, 130, 130), 1.0);
 
@@ -777,7 +777,7 @@ x + cx, y + cy);
       //pgraphics->fill_rectangle(m_rectangleCaptionTextBk, m_colorCaptionTextBk);
       pgraphics->fill_rectangle(m_rectangleCaption, m_colorCaptionTextBk);
 
-      ::int_rectangle rectangleIcon;
+      ::i32_rectangle rectangleIcon;
 
       auto pframewindow = m_pframewindow;
 
@@ -816,7 +816,7 @@ x + cx, y + cy);
 
 #if !defined(UNIVERSAL_WINDOWS)
 
-      ::int_rectangle rectangle;
+      ::i32_rectangle rectangle;
 
       pframewindow->window_rectangle(rectangle);
 
@@ -867,7 +867,7 @@ x + cx, y + cy);
    }
 
 
-   ::experience::enum_frame frame::experience_frame_hit_test(const ::int_point & pointCursor, ::user::e_zorder ezorder)
+   ::experience::enum_frame frame::experience_frame_hit_test(const ::i32_point & pointCursor, ::user::e_zorder ezorder)
    {
 
       //::experience::enum_frame etest = ::item_t{::e_element_client;
@@ -883,11 +883,11 @@ x + cx, y + cy);
 
          }
 
-         ::int_rectangle rectangle;
-         ::int_point pointCenter = rectangleEvent.center();
-         enum_grip egrip = m_pframewindow->size_manager()->GetGripMask();
+         ::i32_rectangle rectangle;
+         ::i32_point pointCenter = rectangleEvent.center();
+         auto egrip = m_pframewindow->size_manager()->GetGripMask();
 
-         ::int_point pointHitTest = pointCursor;
+         ::i32_point pointHitTest = pointCursor;
 
          //                  if(rectangleEvent.left < 0)
          //                     pointHitTest.x -= rectangleEvent.left;
@@ -1037,20 +1037,20 @@ x + cx, y + cy);
    }
 
 
-   //::item_pointer frame::experience_frame_hit_test(const ::int_point & point, ::user::e_zorder ezorder)
+   //::item_pointer frame::experience_frame_hit_test(const ::i32_point & point, ::user::e_zorder ezorder)
    //{
 
    //   //::experience::enum_frame etest = ::item_t{::e_element_client;
 
    //   {
    //      //      m_pframewindow->screen_to_client()(point);
-   //      ::int_rectangle rectangleEvent;
+   //      ::i32_rectangle rectangleEvent;
    //      m_pframewindow->window_rectangle(rectangleEvent);
-   //      ::int_rectangle rectangle;
-   //      ::int_point pointCenter = rectangleEvent.center();
-   //      enum_grip egrip = m_pframewindow->size_manager()->GetGripMask();
+   //      ::i32_rectangle rectangle;
+   //      ::i32_point pointCenter = rectangleEvent.center();
+   //      auto egrip = m_pframewindow->size_manager()->GetGripMask();
 
-   //      ::int_point pointHitTest = point;
+   //      ::i32_point pointHitTest = point;
 
    //      //if(rectangleEvent.left < 0)
    //      // pointHitTest.x -= rectangleEvent.left;
@@ -1190,7 +1190,7 @@ x + cx, y + cy);
    //}
 
    
-   void frame::place_set_need_redraw(const ::int_rectangle & rectangleAfter, const ::int_rectangle & rectangleBefore, ::draw2d::graphics * pgraphics)
+   void frame::place_set_need_redraw(const ::i32_rectangle & rectangleAfter, const ::i32_rectangle & rectangleBefore, ::draw2d::graphics * pgraphics)
    {
 
       auto rectangle = rectangleAfter.get_union(rectangleBefore);
@@ -1200,14 +1200,14 @@ x + cx, y + cy);
    }
 
 
-   void frame::GetBorderRectangle(const ::int_rectangle & rectangleOuter, ::int_rectangle * lprect, enum_border eside)
+   void frame::GetBorderRectangle(const ::i32_rectangle & rectangleOuter, ::i32_rectangle * lprect, enum_border eside)
    {
 
-      ::int_rectangle rectangleHosting;
+      ::i32_rectangle rectangleHosting;
 
       rectangleHosting = m_pframewindow->hosting_rectangle();
 
-      ::int_rectangle rectangle;
+      ::i32_rectangle rectangle;
 
       if (eside == e_border_top)
       {
@@ -1251,12 +1251,12 @@ x + cx, y + cy);
    }
 
 
-   void frame::GetBorderRectangle(const ::int_rectangle & rectangleOuter, int iDeflate, ::int_rectangle * lprect, enum_border eside)
+   void frame::GetBorderRectangle(const ::i32_rectangle & rectangleOuter, ::i32 iDeflate, ::i32_rectangle * lprect, enum_border eside)
    {
 
-      enum_display edisplay = m_pframewindow->const_layout().design().display();
+      const ::e_display & edisplay = m_pframewindow->const_layout().design().display();
 
-      ::int_rectangle rectangleInner(rectangleOuter);
+      ::i32_rectangle rectangleInner(rectangleOuter);
 
       rectangleInner.deflate(
          edisplay & e_display_left ? 0 : 1,
@@ -1264,7 +1264,7 @@ x + cx, y + cy);
          edisplay & e_display_right ? 0 : 1,
          edisplay & e_display_bottom ? 0 : 1);
 
-      ::int_rectangle rectangle;
+      ::i32_rectangle rectangle;
 
       if (eside == e_border_top)
       {
@@ -1298,7 +1298,7 @@ x + cx, y + cy);
    }
 
 
-   ::int_rectangle frame::outer_frame()
+   ::i32_rectangle frame::outer_frame()
    {
 
       auto rectangle = m_pframewindow->raw_rectangle();

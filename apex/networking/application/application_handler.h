@@ -16,8 +16,8 @@ namespace networking
    public:
 
 
-      int                            m_iPortStart;
-      int                            m_iPortEnd;
+      ::i32                            m_iPortStart;
+      ::i32                            m_iPortEnd;
 
 
       application_handler();

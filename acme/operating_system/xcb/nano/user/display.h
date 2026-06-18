@@ -89,7 +89,7 @@ namespace nano
 
 
          virtual long _window_get_long_property(xcb_window_t window, xcb_atom_t property, xcb_atom_t type);
-         virtual ::e_status _change_window_property(xcb_window_t window, xcb_atom_t property, xcb_atom_t type, int mode, int format, int nelements, const void * data);
+         virtual ::e_status _change_window_property(xcb_window_t window, xcb_atom_t property, xcb_atom_t type, ::i32 mode, ::i32 format, ::i32 nelements, const void * data);
 
 
 
@@ -97,7 +97,7 @@ namespace nano
 
 
 
-         ::e_status _select_input(xcb_window_t window, int iInput);
+         ::e_status _select_input(xcb_window_t window, ::i32 iInput);
 
 
          //void wait_timer_or_event();
@@ -135,9 +135,9 @@ namespace nano
          virtual ::e_status _request_check(xcb_void_cookie_t cookie);
 
 
-         ::e_status _send_client_event(xcb_window_t window1, xcb_window_t window2, xcb_atom_t atom, unsigned int numArgs, ...);
+         ::e_status _send_client_event(xcb_window_t window1, xcb_window_t window2, xcb_atom_t atom, ::u32 numArgs, ...);
 
-         ::e_status _send_client_event_v(xcb_window_t window1, xcb_window_t window2, xcb_atom_t atom, unsigned int numArgs, va_list argList);
+         ::e_status _send_client_event_v(xcb_window_t window1, xcb_window_t window2, xcb_atom_t atom, ::u32 numArgs, va_list argList);
 
 
          virtual ::e_status _set_active_window(xcb_window_t window);
@@ -176,7 +176,7 @@ namespace nano
          virtual ::e_status _destroy_window(xcb_window_t window);
 
 
-         virtual ::e_status _move_window(xcb_window_t window, int x, int y);
+         virtual ::e_status _move_window(xcb_window_t window, ::i32 x, ::i32 y);
 
 
          virtual ::e_status _set_mouse_capture(xcb_window_t window);
@@ -187,13 +187,13 @@ namespace nano
          virtual ::e_status _get_window_geometry(xcb_get_geometry_reply_t * pgeometry, xcb_window_t window);
 
 
-         virtual ::e_status _set_nodecorations(xcb_window_t window, int bMap);
+         virtual ::e_status _set_nodecorations(xcb_window_t window, ::i32 bMap);
 
 
          void kick_idle() override;
 
 
-         ::int_size get_main_screen_size() override;
+         ::i32_size get_main_screen_size() override;
 
 
       };

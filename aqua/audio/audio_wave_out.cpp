@@ -40,7 +40,7 @@
 //
 //
 //
-//      WAVE_OUT_PACKET * out::out_pop_packet(char chChannel)
+//      WAVE_OUT_PACKET * out::out_pop_packet(::i8 chChannel)
 //      {
 //
 //         single_lock synchronouslock(this->synchronization());
@@ -72,7 +72,7 @@
 //}
 //
 //
-//CLASS_DECL_AURA WAVE_OUT_PACKET * out_pop_packet(char chChannel)
+//CLASS_DECL_AURA WAVE_OUT_PACKET * out_pop_packet(::i8 chChannel)
 //{
 //
 //   return system()->m_spwaveout->out_pop_packet(chChannel);
@@ -82,7 +82,7 @@
 
 
 
-//LPWAVEOUT waveout_open(int iChannel, LPAUDIOFORMAT pformat, LPWAVEOUT_CALLBACK pcallback)
+//LPWAVEOUT waveout_open(::i32 iChannel, LPAUDIOFORMAT pformat, LPWAVEOUT_CALLBACK pcallback)
 //{
 //
 //   auto paudio = system()->audio();
@@ -92,7 +92,7 @@
 //}
 
 
-CLASS_DECL_AQUA int waveout_start(LPWAVEOUT pwaveout)
+CLASS_DECL_AQUA ::i32 waveout_start(LPWAVEOUT pwaveout)
 {
 
    return (*pwaveout->waveout_start)(pwaveout->waveoutcontext);
@@ -100,7 +100,7 @@ CLASS_DECL_AQUA int waveout_start(LPWAVEOUT pwaveout)
 }
 
 
-CLASS_DECL_AQUA int waveout_write(LPWAVEOUT pwaveout, const void * pdata, unsigned int s)
+CLASS_DECL_AQUA ::i32 waveout_write(LPWAVEOUT pwaveout, const void * pdata, ::u32 s)
 {
 
    return (*pwaveout->waveout_write)(pwaveout->waveoutcontext, pdata, s);
@@ -108,7 +108,7 @@ CLASS_DECL_AQUA int waveout_write(LPWAVEOUT pwaveout, const void * pdata, unsign
 }
 
 
-CLASS_DECL_AQUA int waveout_stop(LPWAVEOUT pwaveout)
+CLASS_DECL_AQUA ::i32 waveout_stop(LPWAVEOUT pwaveout)
 {
 
    return (*pwaveout->waveout_stop)(pwaveout->waveoutcontext);
@@ -116,7 +116,7 @@ CLASS_DECL_AQUA int waveout_stop(LPWAVEOUT pwaveout)
 }
 
 
-CLASS_DECL_AQUA int waveout_close(LPWAVEOUT pwaveout)
+CLASS_DECL_AQUA ::i32 waveout_close(LPWAVEOUT pwaveout)
 {
 
    return (*pwaveout->waveout_close)(pwaveout->waveoutcontext);

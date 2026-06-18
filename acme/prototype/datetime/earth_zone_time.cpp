@@ -54,7 +54,7 @@ namespace earth
    }
 
 
-   zone_time::zone_time(int nYear, int nMonth, int nDay, int nHour, int nMin, int nSec, int iZoneOffset)
+   zone_time::zone_time(::i32 nYear, ::i32 nMonth, ::i32 nDay, ::i32 nHour, ::i32 nMin, ::i32 nSec, ::i32 iZoneOffset)
    {
 
        ::earth::gregorian_time gregoriantime;
@@ -115,7 +115,7 @@ namespace earth
 //
 //         time_t t = m_iSecond;
 //
-//         t += (int) m_timeshift;
+//         t += (::i32) m_timeshift;
 //
 //         errno_t err = _gmtime64_s(&tmTemp, &t);
 //
@@ -134,7 +134,7 @@ namespace earth
 //
 //         auto t = m_iSecond;
 //
-//         t += (long long) m_timeshift.m_d;
+//         t += (::i64) m_timeshift.m_f64;
 //
 //         ptmTemp = gmtime(&t);
 //
@@ -169,7 +169,7 @@ namespace earth
 //   }
 
 
-   int zone_time::GetZoneYear() const noexcept
+   ::i32 zone_time::GetZoneYear() const noexcept
    {
 
         auto time = get_zone_time();
@@ -179,7 +179,7 @@ namespace earth
    }
 
 
-   int zone_time::GetZoneMonth() const noexcept
+   ::i32 zone_time::GetZoneMonth() const noexcept
    {
 
        auto time = get_zone_time();
@@ -189,7 +189,7 @@ namespace earth
    }
 
 
-   int zone_time::GetZoneDay() const noexcept
+   ::i32 zone_time::GetZoneDay() const noexcept
    {
 
        {
@@ -203,7 +203,7 @@ namespace earth
    }
 
 
-   int zone_time::GetZoneHour() const noexcept
+   ::i32 zone_time::GetZoneHour() const noexcept
    {
 
        auto time = get_zone_time();
@@ -214,7 +214,7 @@ namespace earth
 
 
 
-   int zone_time::GetZoneMinute() const noexcept
+   ::i32 zone_time::GetZoneMinute() const noexcept
    {
 
        auto time = get_zone_time();
@@ -225,7 +225,7 @@ namespace earth
 
 
 
-   int zone_time::GetZoneSecond() const noexcept
+   ::i32 zone_time::GetZoneSecond() const noexcept
    {
 
        auto time = get_zone_time();
@@ -236,7 +236,7 @@ namespace earth
 
 
 
-   int zone_time::GetZoneDayOfWeek() const noexcept
+   ::i32 zone_time::GetZoneDayOfWeek() const noexcept
    {
 
        auto time = get_zone_time();
@@ -273,7 +273,7 @@ namespace earth
    }
 
 
-   long long zone_time::GetZoneDaySig() const noexcept
+   ::i64 zone_time::GetZoneDaySig() const noexcept
    {
 
        auto time = get_zone_time();
@@ -303,7 +303,7 @@ namespace earth
 //
 //dump_context & operator <<(dump_context & dumpcontext, ::earth::zone_time zone_time)
 //{
-//   //char psz[32];
+//   //::i8 psz[32];
 //   //psz[0] = '\0';
 //
 //   ////   posix_time tmp = zone_time.get_time();

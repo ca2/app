@@ -11,7 +11,7 @@ namespace file
    public:
 
 
-      int                  m_iFile;
+      ::i32                  m_iFile;
       dispatch_source_t    m_source;
       bool                 m_bKeepMonitoringFile;
 
@@ -27,7 +27,7 @@ namespace file
       //void handle_action(::file::action * paction) override;
 
 
-      void on_event(unsigned long uEventTypes);
+      void on_event(ulong uEventTypes);
       
 
    };

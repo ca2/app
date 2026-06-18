@@ -2,11 +2,10 @@
 #pragma once
 
 
-enum enum_flag : unsigned long long
+enum enum_flag : ::u64
 {
 
-
-   e_flag_none,
+   e_flag_none = 0,
    e_flag_success = 1 << 0,
    e_flag_timeout = 1 << 1,
    e_flag_failure = 1 << 2,
@@ -54,8 +53,13 @@ enum enum_flag : unsigned long long
    e_flag_synchronous = 1ll << 33,
    e_flag_shared = 1ll << 34,
    e_flag_read_only = 1ll << 35,
-   e_flag_owner = 1ll << 35,
-   e_flag_debug_mask = 1ll << 36 | 1ll << 37 | 1ll << 38 | 1ll << 39 | 1ll << 40 | 1ll << 41,
+   e_flag_debug0 = 1ll << 36,
+   e_flag_debug1 = 1ll << 37,
+   e_flag_debug2 = 1ll << 38,
+   e_flag_debug3 = 1ll << 49,
+   e_flag_debug4 = 1ll << 40,
+   e_flag_debug5 = 1ll << 41,
+   e_flag_debug_mask = e_flag_debug0 | e_flag_debug1 | e_flag_debug2 | e_flag_debug3 | e_flag_debug4 | e_flag_debug5,
    //e_flag_no_referencing_debugging = 1ll << 42,
    e_flag_carriage_return = 1ll << 43,
    //e_flag_realized = 1 << 44,
@@ -67,6 +71,8 @@ enum enum_flag : unsigned long long
 
    e_flag_proto = 1ll << 52,
    e_flag_no_stdout = 1ll << 53,
+   e_flag_owner = 1ll << 54,
+
 
 };
 

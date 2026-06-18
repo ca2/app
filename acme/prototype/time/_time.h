@@ -33,8 +33,8 @@ inline DURATION now()
 
 #define DURATION_OPERATOR_SETUP1(TYPE, type, MEMBER) \
 inline TYPE operator-(const TYPE & t) { return (TYPE)(-t.MEMBER); } \
-inline double operator /(const TYPE & t, const class time & time) { return (double)t.MEMBER / (double)time.type().MEMBER; } \
-/*integral_time operator *(const BASE_TYPE & time, const class time & time) const { return BASE_TYPE(this->m_i * time.m_i); }*/ \
+inline ::f64 operator /(const TYPE & t, const class time & time) { return (::f64)t.MEMBER / (::f64)time.type().MEMBER; } \
+/*integral_time operator *(const BASE_TYPE & time, const class time & time) const { return BASE_TYPE(this->m_i32 * time.m_i32); }*/ \
 inline TYPE operator +(const TYPE & t, const class time & time) { return TYPE(t.MEMBER + time.type().MEMBER); } \
 inline TYPE operator -(const TYPE & t, const class time & time) { return TYPE(t.MEMBER - time.type().MEMBER); }
 
@@ -45,13 +45,13 @@ inline TYPE operator -(const TYPE & t, const class time & time) { return TYPE(t.
 
 
 #define INTEGRAL_DURATION_SETUP1(TYPE, type) \
-DURATION_OPERATOR_SETUP1(TYPE, type, m_i) \
-inline TYPE operator %(const TYPE & t, const class time & time) { return TYPE(t.m_i % time.type().m_i); }
+DURATION_OPERATOR_SETUP1(TYPE, type, m_i32) \
+inline TYPE operator %(const TYPE & t, const class time & time) { return TYPE(t.m_i32 % time.type().m_i32); }
 
 
 #define FLOATING_DURATION_SETUP1(TYPE, type) \
-DURATION_OPERATOR_SETUP1(TYPE, type, m_d) \
-inline TYPE operator %(const TYPE & t, const class time & time) { return TYPE(fmod(t.m_d, time.type().m_d)); }
+DURATION_OPERATOR_SETUP1(TYPE, type, m_f64) \
+inline TYPE operator %(const TYPE & t, const class time & time) { return TYPE(fmod(t.m_f64, time.type().m_f64)); }
 
 
 //INTEGRAL_DURATION_SETUP1(integral_nanosecond    , integral_nanosecond   )
@@ -72,28 +72,28 @@ inline TYPE operator %(const TYPE & t, const class time & time) { return TYPE(fm
 //FLOATING_DURATION_SETUP1(floating_day           , floating_day          )
 
 
-//__DURATION_SETUP__(integral_nanosecond    , m_i)
-//__DURATION_SETUP__(integral_microsecond   , m_i)
-//__DURATION_SETUP__(integral_millisecond   , m_i)
-//__DURATION_SETUP__(integral_second        , m_i)
-//__DURATION_SETUP__(integral_minute        , m_i)
-//__DURATION_SETUP__(integral_hour          , m_i)
-//__DURATION_SETUP__(integral_day           , m_i)
+//__DURATION_SETUP__(integral_nanosecond    , m_i32)
+//__DURATION_SETUP__(integral_microsecond   , m_i32)
+//__DURATION_SETUP__(integral_millisecond   , m_i32)
+//__DURATION_SETUP__(integral_second        , m_i32)
+//__DURATION_SETUP__(integral_minute        , m_i32)
+//__DURATION_SETUP__(integral_hour          , m_i32)
+//__DURATION_SETUP__(integral_day           , m_i32)
 //
 
-//__DURATION_SETUP__(floating_nanosecond    , m_d)
-//__DURATION_SETUP__(floating_microsecond   , m_d)
-//__DURATION_SETUP__(floating_millisecond   , m_d)
-//__DURATION_SETUP__(floating_second        , m_d)
-//__DURATION_SETUP__(floating_minute        , m_d)
-//__DURATION_SETUP__(floating_hour          , m_d)
-//__DURATION_SETUP__(floating_day           , m_d)
+//__DURATION_SETUP__(floating_nanosecond    , m_f64)
+//__DURATION_SETUP__(floating_microsecond   , m_f64)
+//__DURATION_SETUP__(floating_millisecond   , m_f64)
+//__DURATION_SETUP__(floating_second        , m_f64)
+//__DURATION_SETUP__(floating_minute        , m_f64)
+//__DURATION_SETUP__(floating_hour          , m_f64)
+//__DURATION_SETUP__(floating_day           , m_f64)
 
 
 //inline floating_second_t::floating_second_t(const class time & time)
 //{
 //
-//   m_d = (double) time.m_iSecond + ((double) time.m_iNanosecond / 1'000'000'000.0);
+//   m_f64 = (::f64) time.m_iSecond + ((::f64) time.m_iNanosecond / 1'000'000'000.0);
 //
 //}
 
@@ -101,8 +101,8 @@ inline TYPE operator %(const TYPE & t, const class time & time) { return TYPE(fm
 //inline integral_second_t::integral_second_t(const class time & time)
 //{
 //
-//   //m_i = time.m_iSecond + (time.m_iNanosecond > 500'000'000 ? 1 : 0);
+//   //m_i32 = time.m_iSecond + (time.m_iNanosecond > 500'000'000 ? 1 : 0);
 //
-//   m_i = time.m_iSecond;
+//   m_i32 = time.m_iSecond;
 //
 //}

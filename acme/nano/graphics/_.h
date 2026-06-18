@@ -33,10 +33,32 @@ namespace nano
 namespace graphics
 {
 
+
+
+
+
+enum enum_pen
+{
+   e_pen_solid = 0, //PS_SOLID;
+   e_pen_dashed = 1, //PS_DASH;
+   e_pen_null =5, // PS_NULL;
+};
+
+
+      enum enum_line_cap
+{
+
+   e_line_cap_none,
+   e_line_cap_round,
+
+};
+
+
+
 class graphics;
 
 
-class device;
+class context;
 //class child;
 
 
@@ -56,20 +78,46 @@ class icon;
 
 class brush;
 class pen;
+class font_family;
 class font;
+class dib;
+class image;
+
+class path;
+
+   //CLASS_DECL_ACME ::pointer<brush>create_solid_brush(::particle * pparticle, color32_t color);
+   //CLASS_DECL_ACME ::pointer<font>create_point_font(::particle * pparticle, ::i32 iPoint, enum_font efont, bool bBold = false);
+   
 
 
+      //::enum_display_type get_display_type();
 
-   CLASS_DECL_ACME ::pointer<brush>create_solid_brush(::particle * pparticle, color32_t color);
-   CLASS_DECL_ACME ::pointer<font>create_point_font(::particle * pparticle, int iPoint, enum_font efont, bool bBold = false);
-   CLASS_DECL_ACME ::pointer<pen>create_pen(::particle * pparticle, int iWidth, color32_t color);
+   enum enum_blend_mode
+   {
+
+      e_blend_mode_blend,
+      e_blend_mode_copy,
+
+   };
+
+   enum enum_smoothing_mode
+   {
+
+      e_smoothing_mode_none,
+      e_smoothing_mode_high_quality,
+
+   };
+
+   enum enum_text_rendering_hint
+   {
+
+      e_text_rendering_hint_none,
+      e_text_rendering_hint_clear_type_grid_fit,
+
+   };
 
 
-   //::enum_display_type get_display_type();
-
-
-
-   } //namespace user
+   } //namespace graphics
 
 
 } // namespace nano

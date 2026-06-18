@@ -16,6 +16,9 @@ enum enum_resource
 
 };
 
+
+DECLARE_C_FLAG(e_resource, enum_resource);
+
 namespace apex
 {
 
@@ -28,8 +31,8 @@ namespace apex
    public:
 
 
-      enumeration < enum_resource > m_eresourceflagsShouldSave;
-      enumeration < enum_resource > m_eresourceflagsWarning;
+      e_resource m_eresourceflagsShouldSave;
+      e_resource m_eresourceflagsWarning;
 
 
       savings();

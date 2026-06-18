@@ -40,7 +40,7 @@ namespace user
    }
 
 
-   void interaction_layout::create_state(int iStateCount)
+   void interaction_layout::create_state(::i32 iStateCount)
    {
 
       if (iStateCount == m_iStateCount)
@@ -59,7 +59,7 @@ namespace user
 
          //m_pstate = ___new window_state[m_iStateCount];
 
-         //for (int iState = 0; iState < m_iStateCount; iState++)
+         //for (::i32 iState = 0; iState < m_iStateCount; iState++)
          //{
 
          //   m_pstate[iState].set_interaction_layout(this);
@@ -68,9 +68,9 @@ namespace user
 
       }
 
-      design() = e_display_none;
+      design().visual() = e_display_none;
 
-      sketch() = e_display_none;
+      sketch().visual() = e_display_none;
 
    }
 
@@ -103,10 +103,10 @@ namespace user
 
 
 
-   //void interaction_layout::set_placement(const ::int_rectangle & rectangleParam)
+   //void interaction_layout::set_placement(const ::i32_rectangle & rectangleParam)
    //{
 
-   //   ::int_rectangle rectangle(rectangleParam);
+   //   ::i32_rectangle rectangle(rectangleParam);
 
    //   rectangle.deflate(m_rectanglePadding);
 
@@ -115,10 +115,10 @@ namespace user
    //}
 
 
-   ::int_point interaction_layout::get_parent_accumulated_scroll(enum_layout elayout) const
+   ::i32_point interaction_layout::get_parent_accumulated_scroll(enum_layout elayout) const
    {
 
-      return ::int_point();
+      return ::i32_point();
 
    }
 
@@ -129,7 +129,7 @@ namespace user
    }
 
 
-   //void interaction_layout::move_to(int x, int y)
+   //void interaction_layout::move_to(::i32 x, ::i32 y)
    //{
    //
    //   layout().sketch().m_point.set(x, y);
@@ -139,7 +139,7 @@ namespace user
    //}
 
 
-   //void interaction_layout::move_to(const int_point & point)
+   //void interaction_layout::move_to(const i32_point & point)
    //{
 
    //   move_to(point.x, point.y);
@@ -147,7 +147,7 @@ namespace user
    //}
 
 
-   //void interaction_layout::set_size(int cx, int cy)
+   //void interaction_layout::set_size(::i32 cx, ::i32 cy)
    //{
    //
    //   layout().sketch().m_size.set(cx, cy);
@@ -157,7 +157,7 @@ namespace user
    //}
 
 
-   //void interaction_layout::set_size(const ::int_size& size)
+   //void interaction_layout::set_size(const ::i32_size& size)
    //{
 
    //   set_size(size.cx, size.cy);
@@ -165,7 +165,7 @@ namespace user
    //}
 
 
-   //void interaction_layout::set_dim(const ::int_point& point, const ::int_size& size)
+   //void interaction_layout::set_dim(const ::i32_point& point, const ::i32_size& size)
    //{
    //
    //   layout().sketch().m_point = point;
@@ -177,7 +177,7 @@ namespace user
    //}
 
 
-   //void interaction_layout::place(const ::int_rectangle& rectangle)
+   //void interaction_layout::place(const ::i32_rectangle& rectangle)
    //{
    //
    //   set_dim(rectangle.origin(), rectangle.size());
@@ -185,10 +185,10 @@ namespace user
    //}
 
 
-   //void interaction_layout::set_dim(int x, int y, int cx, int cy)
+   //void interaction_layout::set_dim(::i32 x, ::i32 y, ::i32 cx, ::i32 cy)
    //{
    //
-   //   set_dim(::int_point(x, y), ::int_size(cx, cy));
+   //   set_dim(::i32_point(x, y), ::i32_size(cx, cy));
    //
    //}
 
@@ -422,7 +422,7 @@ namespace user
    }
 
 
-   //bool interaction_layout::window_move(int x, int y)
+   //bool interaction_layout::window_move(::i32 x, ::i32 y)
    //{
 
    //   layout().sketch().m_point = {x, y};
@@ -445,10 +445,10 @@ namespace user
 
 
 
-   //void interaction_layout::window_rectangle(::int_rectangle* prectangle) const
+   //void interaction_layout::window_rectangle(::i32_rectangle* prectangle) const
    //{
 
-   //   ::set_rect_point_size(prectangle, ui_state().m_pointScreen, ui_state().m_size);
+   //   ::set_rect_poi32_size(prectangle, ui_state().m_pointScreen, ui_state().m_size);
 
    //}
 
@@ -470,7 +470,7 @@ namespace user
    //}
 
 
-   void interaction_layout::set_initial_dim(const ::int_point & p, const ::int_size & s)
+   void interaction_layout::set_initial_dim(const ::i32_point & p, const ::i32_size & s)
    {
 
       sketch().set_visual_state_origin(p);

@@ -20,7 +20,7 @@ namespace draw2d
    }
 
 
-   void graphics_extension::text_out(::draw2d::graphics_pointer & pgraphics, int x, int y, const ::scoped_string & scopedstr, double_size & s)
+   void graphics_extension::text_out(::draw2d::graphics_pointer & pgraphics, ::i32 x, ::i32 y, const ::scoped_string & scopedstr, ::f64_size & s)
    {
 
       s = pgraphics->get_text_extent(scopedstr);
@@ -33,7 +33,7 @@ namespace draw2d
    }
 
 
-   void graphics_extension::get_text_extent(::draw2d::graphics_pointer & pgraphics, const ::scoped_string & scopedstr, ::double_size_array & sizea)
+   void graphics_extension::get_text_extent(::draw2d::graphics_pointer & pgraphics, const ::scoped_string & scopedstr, ::f64_size_array & sizea)
    {
 
 
@@ -46,7 +46,7 @@ namespace draw2d
       {
          sizea[0] = 0;
       }
-      for(int i = 1; i < iLen; i++)
+      for(::i32 i = 1; i < iLen; i++)
       {
          ::GetTextExtentPoint32U(
          (HDC)pgraphics->get_os_data(),
@@ -58,7 +58,7 @@ namespace draw2d
    }
 
 
-   //void graphics_extension::get_text_extent(::draw2d::graphics_pointer& pgraphics, const ::scoped_string & scopedstr, int_size & size)
+   //void graphics_extension::get_text_extent(::draw2d::graphics_pointer& pgraphics, const ::scoped_string & scopedstr, i32_size & size)
    //{
 
    //   //synchronous_lock ml(&user_synchronization());
@@ -79,7 +79,7 @@ namespace draw2d
    //}
 
 
-   void graphics_extension::get_text_extent(::draw2d::graphics_pointer& pgraphics, const ::scoped_string & scopedstr, double_size & size)
+   void graphics_extension::get_text_extent(::draw2d::graphics_pointer& pgraphics, const ::scoped_string & scopedstr, ::f64_size & size)
    {
 
       /*::GetTextExtentPoint32U(

@@ -15,7 +15,7 @@ namespace console
       
 
       bool                       m_bAutoHideOnOutClick;
-      int                 m_iAnimateStep;
+      ::i32                 m_iAnimateStep;
       ::image::image_list_pointer          m_pimagelist;
       bool                    m_bTimerHide;
       bool                    m_bTimerOn;
@@ -53,7 +53,7 @@ namespace console
 
 
       DECLARE_MESSAGE_HANDLER(on_message_create);
-      void on_timer(::timer * ptimer) override;
+      void operator()(::timer * ptimer) override;
 
       DECLARE_MESSAGE_HANDLER(on_message_close);
       DECLARE_MESSAGE_HANDLER(on_message_move);

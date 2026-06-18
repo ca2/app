@@ -14,7 +14,7 @@ class CLASS_DECL_ACME synchronous_lock :
 public:
 
 
-   explicit synchronous_lock(particle * pparticle, const ::subparticle * psubparticleContext = nullptr, const_char_pointer pszFile = nullptr, int iLine = -1) :
+   explicit synchronous_lock(particle * pparticle, const ::subparticle * psubparticleContext = nullptr, const_char_pointer pszFile = nullptr, ::i32 iLine = -1) :
       single_lock(pparticle, true, psubparticleContext, pszFile, iLine)
    {
 
@@ -32,7 +32,7 @@ class CLASS_DECL_ACME _synchronous_lock :
 public:
 
 
-   explicit _synchronous_lock(::particle * pparticle, const ::subparticle * psubparticleContext = nullptr, const_char_pointer pszFile = nullptr, int iLine = -1) :
+   explicit _synchronous_lock(::particle * pparticle, const ::subparticle * psubparticleContext = nullptr, const_char_pointer pszFile = nullptr, ::i32 iLine = -1) :
       _single_lock(pparticle, true, psubparticleContext, pszFile, iLine)
    {
 

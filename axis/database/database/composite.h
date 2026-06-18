@@ -40,7 +40,7 @@ namespace database
 
       void init() override;
       enum_connection connection_status() override;
-      void set_error_code(int iErrorCode) override;
+      void set_error_code(::i32 iErrorCode) override;
       string get_error_message() override;
       void* get_handle() override;
 
@@ -52,7 +52,7 @@ namespace database
          const ::scoped_string & scopedstrUser = nullptr,
          const ::scoped_string & scopedstrPass = nullptr,
          const ::scoped_string & scopedstrSocket = nullptr,
-         unsigned long long uConnectionFlags = 0) override;
+         ::u64 uConnectionFlags = 0) override;
 
 
       void     _connect() override;

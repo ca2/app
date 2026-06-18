@@ -60,11 +60,11 @@ namespace draw2d_gpu
       //::opengl::check_error("");
       //glBindBuffer(GL_ARRAY_BUFFER, m_FaceVBO);
       //::opengl::check_error("");
-      //glBufferData(GL_ARRAY_BUFFER, sizeof(float) * 6 * 4, NULL, GL_DYNAMIC_DRAW);
+      //glBufferData(GL_ARRAY_BUFFER, sizeof(::f32) * 6 * 4, NULL, GL_DYNAMIC_DRAW);
       //::opengl::check_error("");
       //glEnableVertexAttribArray(0);
       //::opengl::check_error("");
-      //glVertexAttribPointer(0, 4, GL_FLOAT, GL_FALSE, 4 * sizeof(float), 0);
+      //glVertexAttribPointer(0, 4, GL_FLOAT, GL_FALSE, 4 * sizeof(::f32), 0);
       //::opengl::check_error("");
       //glBindBuffer(GL_ARRAY_BUFFER, 0);
       //::opengl::check_error("");
@@ -73,12 +73,12 @@ namespace draw2d_gpu
 
    }
 
-   void face::create_texture(::typeface::character& ch, const unsigned char* p)
+   void face::create_texture(::typeface::character& ch, const ::u8* p)
    {
 
       //glPixelStorei(GL_UNPACK_ALIGNMENT, 1);
       //// generate texture
-      //   //unsigned int texture;
+      //   //::u32 texture;
       //glGenTextures(1, &ch.TextureID);
       //glBindTexture(GL_TEXTURE_2D, ch.TextureID);
       //glTexImage2D(

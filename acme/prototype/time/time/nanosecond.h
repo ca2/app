@@ -7,7 +7,7 @@ struct nanosecond_t {};
 struct nanosecond
 {
 
-   long long    m_iNanosecond;
+   ::i64    m_iNanosecond;
 
    constexpr nanosecond() : m_iNanosecond(0) {}
    constexpr nanosecond(no_initialize_t) {}

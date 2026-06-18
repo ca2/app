@@ -6,10 +6,10 @@
 struct Q4
 {
 
-   double w;
-   double x;
-   double y;
-   double z;
+   ::f64 w;
+   ::f64 x;
+   ::f64 y;
+   ::f64 z;
 
 };
 
@@ -50,7 +50,7 @@ public:
    }
 
 
-   double sqsize()
+   ::f64 sqsize()
    {
       
       return this->w * this->w + this->x * this->x + this->y * this->y + this->z * this->z;
@@ -58,7 +58,7 @@ public:
    }
 
 
-   double size()
+   ::f64 size()
    {
 
       return sqrt(sqsize());

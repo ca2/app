@@ -11,7 +11,7 @@ struct quaternion_type
 
 
    using FLOATING = FLOATING_TYPE;
-   static constexpr int DIMENSION = 4;
+   static constexpr ::i32 DIMENSION = 4;
 
 
    union
@@ -217,18 +217,18 @@ struct quaternion_type
    //   EulerAngles angles;
 
    //   // roll (x-axis rotation)
-   //   double sinr_cosp = 2 * (q.w * q.x + q.y * q.z);
-   //   double cosr_cosp = 1 - 2 * (q.x * q.x + q.y * q.y);
+   //   ::f64 sinr_cosp = 2 * (q.w * q.x + q.y * q.z);
+   //   ::f64 cosr_cosp = 1 - 2 * (q.x * q.x + q.y * q.y);
    //   angles.roll = std::atan2(sinr_cosp, cosr_cosp);
 
    //   // pitch (y-axis rotation)
-   //   double sinp = std::sqrt(1 + 2 * (q.w * q.y - q.x * q.z));
-   //   double cosp = std::sqrt(1 - 2 * (q.w * q.y - q.x * q.z));
+   //   ::f64 sinp = std::sqrt(1 + 2 * (q.w * q.y - q.x * q.z));
+   //   ::f64 cosp = std::sqrt(1 - 2 * (q.w * q.y - q.x * q.z));
    //   angles.pitch = 2 * std::atan2(sinp, cosp) - M_PI / 2;
 
    //   // yaw (z-axis rotation)
-   //   double siny_cosp = 2 * (q.w * q.z + q.x * q.y);
-   //   double cosy_cosp = 1 - 2 * (q.y * q.y + q.z * q.z);
+   //   ::f64 siny_cosp = 2 * (q.w * q.z + q.x * q.y);
+   //   ::f64 cosy_cosp = 1 - 2 * (q.y * q.y + q.z * q.z);
    //   angles.yaw = std::atan2(siny_cosp, cosy_cosp);
 
    //   return angles;
@@ -266,12 +266,12 @@ struct quaternion_type
       FLOATING half_roll = roll.m_fAngle * FLOATING(0.5);
 
 
-   double cr = cos(half_roll);
-      double sr = sin(half_roll);
-   double cp = cos(half_pitch);
-   double sp = sin(half_pitch);
-   double cy = cos(half_yaw);
-   double sy = sin(half_yaw);
+   ::f64 cr = cos(half_roll);
+      ::f64 sr = sin(half_roll);
+   ::f64 cp = cos(half_pitch);
+   ::f64 sp = sin(half_pitch);
+   ::f64 cy = cos(half_yaw);
+   ::f64 sy = sin(half_yaw);
 
    auto & q = *this;
    q.w = cr * cp * cy + sr * sp * sy;
@@ -435,8 +435,8 @@ angle_type < FLOATING > _roll() const
 };
 
 
-using float_quaternion = quaternion_type<float>;
-using double_quaternion = quaternion_type<double>;
+using f32_quaternion = quaternion_type<::f32>;
+using f64_quaternion = quaternion_type<::f64>;
 
 
 

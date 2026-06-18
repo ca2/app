@@ -200,7 +200,7 @@ namespace dir
 //
 //      }
 //
-//      if (!GetModuleFileNameW(hmodule, wstrModuleFilePath, (unsigned int)wstrModuleFilePath.length()))
+//      if (!GetModuleFileNameW(hmodule, wstrModuleFilePath, (::u32)wstrModuleFilePath.length()))
 //      {
 //
 //         return "";
@@ -211,7 +211,7 @@ namespace dir
 //
 //      LPWSTR pszModuleFileName;
 //
-//      if (!GetFullPathNameW(wstrModuleFilePath, (unsigned int)wstrModuleFilePath.length(), wstrModuleFolder, &pszModuleFileName))
+//      if (!GetFullPathNameW(wstrModuleFilePath, (::u32)wstrModuleFilePath.length(), wstrModuleFolder, &pszModuleFileName))
 //      {
 //
 //         return "";
@@ -235,7 +235,7 @@ namespace dir
 //
 //      {
 //
-////         str = ::dir::pathfind(getenv("DYLD_LIBRARY_PATH"), "libacme.dylib", "rfs"); // readable - normal file - non zero double_size
+////         str = ::dir::pathfind(getenv("DYLD_LIBRARY_PATH"), "libacme.dylib", "rfs"); // readable - normal file - non zero ::f64_size
 ////
 ////         if(str.has_character())
 ////         {
@@ -245,7 +245,7 @@ namespace dir
 ////         }
 ////
 ////
-////         str = ::dir::pathfind(getenv("DYLD_FALLBACK_LIBRARY_PATH"), "libacme.dylib", "rfs"); // readable - normal file - non zero double_size
+////         str = ::dir::pathfind(getenv("DYLD_FALLBACK_LIBRARY_PATH"), "libacme.dylib", "rfs"); // readable - normal file - non zero ::f64_size
 ////
 ////         if(str.has_character())
 ////         {
@@ -363,7 +363,7 @@ namespace dir
 
       }
 
-      if(!GetModuleFileNameW(hmodule,wstrModuleFilePath, (unsigned int) wstrModuleFilePath.length()))
+      if(!GetModuleFileNameW(hmodule,wstrModuleFilePath, (::u32) wstrModuleFilePath.length()))
       {
 
          return "";
@@ -372,7 +372,7 @@ namespace dir
 
       LPWSTR pszModuleFileName;
 
-      if (!GetFullPathNameW(wstrModuleFilePath, (unsigned int) wstrModuleFilePath.length(), wstrModuleFolder, &pszModuleFileName))
+      if (!GetFullPathNameW(wstrModuleFilePath, (::u32) wstrModuleFilePath.length(), wstrModuleFolder, &pszModuleFileName))
       {
 
          return "";
@@ -400,7 +400,7 @@ namespace dir
    }
 
 
-// bool eat_end_level(string & str, int iLevelCount, const char * pSeparator)
+// bool eat_end_level(string & str, ::i32 iLevelCount, const_char_pointer pszSeparator)
 // {
 
 //    character_count iLast = str.length() - 1;
@@ -411,7 +411,7 @@ namespace dir
 //    while(str[iLast] == '/' || str[iLast] == '\\')
 //       iLast--;
 
-//    for(int i = 0; i < iLevelCount; i++)
+//    for(::i32 i = 0; i < iLevelCount; i++)
 //    {
 
 //       character_count iFind1 = str.rear_find('/', iLast);
@@ -460,7 +460,7 @@ namespace dir
 //
 //      GetModuleFileNameW(::GetModuleHandleA("acme.dll"), wstrModuleFilePath, MAX_PATH + 1);
 //
-//      str = (const unichar *) wstrModuleFilePath;
+//      str = (const wide_character * ) wstrModuleFilePath;
 //
 //   #elif defined(LINUX)
 //
@@ -496,7 +496,7 @@ namespace dir
 //
 //         }
 //
-//         str = ::dir::pathfind(::file::path(str).folder(), "libacme.dylib", "rfs"); // readable - normal file - non zero double_size
+//         str = ::dir::pathfind(::file::path(str).folder(), "libacme.dylib", "rfs"); // readable - normal file - non zero ::f64_size
 //
 //         if(str.has_character())
 //         {
@@ -505,7 +505,7 @@ namespace dir
 //
 //         }
 //
-//         str = ::dir::pathfind(getenv("DYLD_LIBRARY_PATH"), "libacme.dylib", "rfs"); // readable - normal file - non zero double_size
+//         str = ::dir::pathfind(getenv("DYLD_LIBRARY_PATH"), "libacme.dylib", "rfs"); // readable - normal file - non zero ::f64_size
 //
 //         if(str.has_character())
 //         {
@@ -523,7 +523,7 @@ namespace dir
 //
 //         }
 //
-//         str = ::dir::pathfind(getenv("DYLD_FALLBACK_LIBRARY_PATH"), "libacme.dylib", "rfs"); // readable - normal file - non zero double_size
+//         str = ::dir::pathfind(getenv("DYLD_FALLBACK_LIBRARY_PATH"), "libacme.dylib", "rfs"); // readable - normal file - non zero ::f64_size
 //
 //         if(str.has_character())
 //         {
@@ -691,9 +691,9 @@ namespace dir
 
    #ifdef WINDOWS_DESKTOP
 
-            char * pszError;
+            char_pointer pszError;
 
-            FormatMessage(FORMAT_MESSAGE_ALLOCATE_BUFFER | FORMAT_MESSAGE_FROM_SYSTEM, nullptr, dwError, 0, (char *)&pszError, 8, nullptr);
+            FormatMessage(FORMAT_MESSAGE_ALLOCATE_BUFFER | FORMAT_MESSAGE_FROM_SYSTEM, nullptr, dwError, 0, (char_pointer )&pszError, 8, nullptr);
 
             //informationf("         auto psystem = system();
 
@@ -797,7 +797,7 @@ pdirectorysystem->create CreateDirectoryW last error(%d)=%s", dwError, pszError)
 
       wstring path(get_buffer, MAX_PATH * 8);
 
-      if(!GetModuleFileNameW(nullptr, path, (unsigned int) path.size()))
+      if(!GetModuleFileNameW(nullptr, path, (::u32) path.size()))
       {
 
          return "";
@@ -1200,7 +1200,7 @@ pdirectorysystem->create CreateDirectoryW last error(%d)=%s", dwError, pszError)
 
       auto a = folder->GetItemsAsync().get();
 
-      for(unsigned int u = 0; u < a->Size; u++)
+      for(::u32 u = 0; u < a->Size; u++)
       {
 
          string strPath = string(begin(a->GetAt(u)->Path));
@@ -1291,7 +1291,7 @@ pdirectorysystem->create CreateDirectoryW last error(%d)=%s", dwError, pszError)
 
       ::winrt::Windows::Foundation::Collections::IVectorView < ::winrt::Windows::Storage::StorageFolder ^ > ^ a = wait(folder->GetFoldersAsync());
 
-      for(unsigned int u = 0; u < a->Size; u++)
+      for(::u32 u = 0; u < a->Size; u++)
       {
          stra.add(begin(a->GetAt(u)->Path));
       }
@@ -1373,7 +1373,7 @@ pdirectorysystem->create CreateDirectoryW last error(%d)=%s", dwError, pszError)
 
       ::winrt::Windows::Foundation::Collections::IVectorView < ::winrt::Windows::Storage::StorageFolder ^ > ^ a = wait(folder->GetFoldersAsync());
 
-      for(unsigned int u = 0; u < a->Size; u++)
+      for(::u32 u = 0; u < a->Size; u++)
       {
          stra.add(begin(a->GetAt(u)->Path));
       }
@@ -1426,7 +1426,7 @@ pdirectorysystem->create CreateDirectoryW last error(%d)=%s", dwError, pszError)
 
       string strCandidate;
 
-      for(int i = 0; i < stra.get_count(); i++)
+      for(::i32 i = 0; i < stra.get_count(); i++)
       {
 
          if(stra[i].is_empty())
@@ -1471,7 +1471,7 @@ pdirectorysystem->create CreateDirectoryW last error(%d)=%s", dwError, pszError)
 } // namespace dir
 
 
-extern "C" int make_path(const ::scoped_string & scopedstr)
+extern "C" ::i32 make_path(const ::scoped_string & scopedstr)
 {
 
    return          auto psystem = system();

@@ -10,19 +10,19 @@
 //#define _NORMAL_BLOCK 1
 //
 //
-//CLASS_DECL_AURA int DECL_C debug_report(
-//int _ReportType,
-//const char * _Filename,
-//int _LineNumber,
-//const char * _ModuleName,
-//const char * _Format,
+//CLASS_DECL_AURA ::i32 DECL_C debug_report(
+//::i32 _ReportType,
+//const_char_pointer _Filename,
+//::i32 _LineNumber,
+//const_char_pointer _ModuleName,
+//const_char_pointer _Format,
 //...);
 //
 //
-//CLASS_DECL_AURA int DECL_C debug_report(
-//int _ReportType,
+//CLASS_DECL_AURA ::i32 DECL_C debug_report(
+//::i32 _ReportType,
 //const wchar_t * _Filename,
-//int _LineNumber,
+//::i32 _LineNumber,
 //const wchar_t * _ModuleName,
 //const wchar_t * _Format,
 //...);
@@ -53,11 +53,11 @@
 //#define _DEBUG_FILE_STDERR   ((_HFILE)-5)
 //#define _DEBUG_REPORT_FILE   ((_HFILE)-6)
 //#else
-//#define _DEBUG_INVALID_HFILE ((_HFILE)(long long)-1)
-//#define _DEBUG_HFILE_ERROR   ((_HFILE)(long long)-2)
-//#define _DEBUG_FILE_STDOUT   ((_HFILE)(long long)-4)
-//#define _DEBUG_FILE_STDERR   ((_HFILE)(long long)-5)
-//#define _DEBUG_REPORT_FILE   ((_HFILE)(long long)-6)
+//#define _DEBUG_INVALID_HFILE ((_HFILE)(::i64)-1)
+//#define _DEBUG_HFILE_ERROR   ((_HFILE)(::i64)-2)
+//#define _DEBUG_FILE_STDOUT   ((_HFILE)(::i64)-4)
+//#define _DEBUG_FILE_STDERR   ((_HFILE)(::i64)-5)
+//#define _DEBUG_REPORT_FILE   ((_HFILE)(::i64)-6)
 //#endif
 //
 //#endif
@@ -134,7 +134,7 @@
 //   is left in even if __DEBUG is not defined. */
 //
 //#ifndef _STATIC_ASSERT
-//#define _STATIC_ASSERT(expr) typedef char __static_assert_t[ (expr) ]
+//#define _STATIC_ASSERT(expr) typedef ::i8 __static_assert_t[ (expr) ]
 //#endif
 //
 //#ifndef _DEBUG
@@ -207,11 +207,11 @@
 //
 //
 //
-//// CLASS_DECL_AURA int FUNCTION_DEBUGBOX(const ::scoped_string & scopedstrMessage, const ::scoped_string & scopedstrTitle, int iFlags);
+//// CLASS_DECL_AURA ::i32 FUNCTION_DEBUGBOX(const ::scoped_string & scopedstrMessage, const ::scoped_string & scopedstrTitle, ::i32 iFlags);
 //
-//// CLASS_DECL_AURA int FUNCTION_DEBUGBOXW(const WCHAR * pszMessage, const WCHAR * pszTitle, int iFlags);
+//// CLASS_DECL_AURA ::i32 FUNCTION_DEBUGBOXW(const WCHAR * pszMessage, const WCHAR * pszTitle, ::i32 iFlags);
 //
-//// inline int FUNCTION_XXDEBUGBOX(const ::scoped_string & scopedstrMessage, const ::scoped_string & scopedstrTitle, int iFlags)
+//// inline ::i32 FUNCTION_XXDEBUGBOX(const ::scoped_string & scopedstrMessage, const ::scoped_string & scopedstrTitle, ::i32 iFlags)
 //// {
 //
 ////    __UNREFERENCED_PARAMETER(scopedstrMessage);
@@ -222,7 +222,7 @@
 //
 //// }
 //
-//// inline int FUNCTION_XXDEBUGBOXW(const WCHAR * pszMessage, const WCHAR * pszTitle, int iFlags)
+//// inline ::i32 FUNCTION_XXDEBUGBOXW(const WCHAR * pszMessage, const WCHAR * pszTitle, ::i32 iFlags)
 //// {
 //
 ////    __UNREFERENCED_PARAMETER(scopedstrMessage);
@@ -244,14 +244,14 @@
 //
 //
 //
-//CLASS_DECL_AURA string FormatMessageFromSystem(unsigned int dwError);
+//CLASS_DECL_AURA string FormatMessageFromSystem(::u32 dwError);
 //
 //
 //#ifdef MEMDLEAK
 //
 //CLASS_DECL_AURA string get_mem_info_report1();
-//CLASS_DECL_AURA ::collection::count get_mem_info(int ** ppiUse, const ::string &** ppszFile, const ::string &** pszCallStack, unsigned int ** ppuiLine, size_t ** ppsize);
-//CLASS_DECL_AURA ::collection::count get_mem_info2(int ** ppiUse, const ::string &** ppszFile, DWORD64 ** ppuiStack[64], long long ** ppiStack, int ** ppiLine, long long ** ppiSize);
+//CLASS_DECL_AURA ::collection::count get_mem_info(::i32 ** ppiUse, const ::string &** ppszFile, const ::string &** pszCallStack, ::u32 ** ppuiLine, size_t ** ppsize);
+//CLASS_DECL_AURA ::collection::count get_mem_info2(::i32 ** ppiUse, const ::string &** ppszFile, DWORD64 ** ppuiStack[64], ::i64 ** ppiStack, ::i32 ** ppiLine, ::i64 ** ppiSize);
 //
 //
 //
@@ -263,8 +263,8 @@
 ////
 ////
 ////
-////   //virtual void sockets_trace(::sockets::base_socket_handler * phandler, ::sockets::base_socket * psocket, enum_trace_level elevel, const ::scoped_string & scopedstrContext, int iError, const ::scoped_string & scopedstrContext) override;
-////   //virtual void sockets_trace(::sockets::base_socket_handler * phandler, ::sockets::base_socket * psocket, enum_trace_level elevel, const ::scoped_string & scopedstrContext, int iError, const ::scoped_string & scopedstrContext) override;
+////   //virtual void sockets_trace(::sockets::base_socket_handler * phandler, ::sockets::base_socket * psocket, enum_trace_level elevel, const ::scoped_string & scopedstrContext, ::i32 iError, const ::scoped_string & scopedstrContext) override;
+////   //virtual void sockets_trace(::sockets::base_socket_handler * phandler, ::sockets::base_socket * psocket, enum_trace_level elevel, const ::scoped_string & scopedstrContext, ::i32 iError, const ::scoped_string & scopedstrContext) override;
 ////
 ////
 ////};
@@ -274,7 +274,7 @@
 //extern object * g_pobjecTracer;
 //
 //CLASS_DECL_AURA void os_trace(enum_trace_level elevel, const ::scoped_string & scopedstrTag, const ::scoped_string & scopedstrMessage);
-//CLASS_DECL_AURA void trace(enum_trace_level elevel, const ::scoped_string & scopedstrTag, const ::scoped_string & scopedstr, const ::scoped_string & scopedstrFile = nullptr, int iLine = -1);
+//CLASS_DECL_AURA void trace(enum_trace_level elevel, const ::scoped_string & scopedstrTag, const ::scoped_string & scopedstr, const ::scoped_string & scopedstrFile = nullptr, ::i32 iLine = -1);
 //
 //
 //

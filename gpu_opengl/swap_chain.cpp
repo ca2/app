@@ -12,7 +12,7 @@
 #include "bred/gpu/binding.h"
 #include "bred/gpu/context_lock.h"
 #include "bred/gpu/device.h"
-#include "bred/gpu/frame.h"
+#include "bred/gpu/layer.h"
 #include "bred/gpu/render_state.h"
 #include "aura/user/user/interaction.h"
 #include "aura/windowing/window.h"
@@ -78,7 +78,7 @@ FragColor = texture(uTexture, TexCoord);
    }
 
 
-   void swap_chain::present(::gpu::texture * pgputexture)
+   void swap_chain::present(::gpu::texture *pgputexture, ::gpu::command_buffer *pgpucommandbuffer)
    {
 
       if (!m_pgpucontext)
@@ -172,7 +172,8 @@ FragColor = texture(uTexture, TexCoord);
 //#if 0
 #if 1
 
-         auto pcommandbuffer = m_pgpucontext->m_pgpurenderer->getCurrentCommandBuffer2(::gpu::current_frame());
+         //auto pcommandbuffer = m_pgpucontext->m_pgpurenderer->getCurrentCommandBuffer2(::gpu::current_layer());
+         auto pcommandbuffer = pgpucommandbuffer;
 
          auto sizeContext = m_pgpucontext->m_rectangle.size();
          
@@ -212,7 +213,7 @@ FragColor = texture(uTexture, TexCoord);
          {
 
             auto pmodelbufferFullscreenQuad =
-               m_pgpucontext->sequence2_uv_fullscreen_quad_model_buffer(::gpu::current_frame());
+               m_pgpucontext->sequence2_uv_fullscreen_quad_model_buffer(::gpu::current_layer());
 
             //m_pshaderCopyTextureOnEndDraw->_bind(pcommandbuffer, ::gpu::e_scene_none);
 
@@ -265,7 +266,7 @@ FragColor = texture(uTexture, TexCoord);
           //   informationf("GL VERSION: %s\n", glGetString(GL_VERSION));
           //}
 
-          //// 2. Which framebuffer are we clearing?
+          //// 2. Which pframebuffer are we clearing?
           //GLint fb = -1;
           //glGetIntegerv(GL_DRAW_FRAMEBUFFER_BINDING, &fb);
           //informationf("DRAW FB = %d\n", fb);
@@ -298,7 +299,7 @@ FragColor = texture(uTexture, TexCoord);
    }
 
 
-void swap_chain::on_gpu_context_render_frame(int w, int h)
+void swap_chain::on_gpu_context_render_frame(::i32 w, ::i32 h)
 {
    
    auto pshaderRender = render_shader(w, h);
@@ -314,11 +315,11 @@ void swap_chain::on_gpu_context_render_frame(int w, int h)
    
 #if 1
    auto t = ::time::now().floating_second();
-   float fGreen = ::sin(t * 0.5  * 2.0 * 3.1415) * 0.25 + 0.5;
+   ::f32 fGreen = ::sin(t * 0.5  * 2.0 * 3.1415) * 0.25 + 0.5;
    //glEnable(GL_BLEND);
    //glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
    glViewport(0, 0, w, h);
-   float alpha = 0.69;
+   ::f32 alpha = 0.69;
    glClearColor(0.2f * alpha, fGreen * alpha, 0.5f * alpha, 1.0f * alpha);
    glClear(GL_COLOR_BUFFER_BIT);
 #endif
@@ -348,7 +349,7 @@ void swap_chain::on_gpu_context_render_frame(int w, int h)
 #if 1
 
 
-//   auto pcommandbuffer = m_pgpucontext->m_pgpurenderer->getCurrentCommandBuffer2(::gpu::current_frame());
+//   auto pcommandbuffer = m_pgpucontext->m_pgpurenderer->getCurrentCommandBuffer2(::gpu::current_layer());
 
 ///   auto sizeContext = m_pgpucontext->m_rectangle.size();
    ///
@@ -414,7 +415,7 @@ void swap_chain::on_gpu_context_render_frame(int w, int h)
    //glEnable(GL_BLEND);
    //glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
    glViewport(0, 0, w, h);
-   float alpha = 0.69;
+   ::f32 alpha = 0.69;
    glClearColor(0.2f * alpha, 0.5f * alpha, 1.0f * alpha, 1.0f * alpha);
    glClear(GL_COLOR_BUFFER_BIT);
 #endif
@@ -504,7 +505,7 @@ void swap_chain::on_gpu_context_render_frame(int w, int h)
 //      m_ptexturePresent = m_p
 //      ::gpu::texture_attributes textureattributes;
 //      
-//      textureattributes.m_rectangleTarget.top_left() = ::int_point();
+//      textureattributes.m_rectangleTarget.top_left() = ::i32_point();
 //      textureattributes.m_rectangleTarget.set_size(m_pgpucontext->m_pacmewindowingwindowWindowSurface->get_window_rectangle().size());
 //      
 //      m_ptexturePresent->initialize_texture(m_pgpucontext->m_pgpurenderer, textureattributes);
@@ -529,7 +530,7 @@ void swap_chain::on_gpu_context_render_frame(int w, int h)
 }
 
 
-void swap_chain::defer_update_swap_chain_textures(const ::int_size & size)
+void swap_chain::defer_update_swap_chain_textures(const ::i32_size & size)
 {
    
    if(::is_null(m_ptextureaSwapChain)
@@ -538,16 +539,16 @@ void swap_chain::defer_update_swap_chain_textures(const ::int_size & size)
    {
       construct_newø(m_ptextureaSwapChain);
 
-      for(int i = 0; i < 3; i++)
+      for(::i32 i = 0; i < 3; i++)
       {
-         auto & ptextureSwapChain = m_ptextureaSwapChain->ø(i);
+         auto & ptextureSwapChain = m_ptextureaSwapChain->atø(i);
          constructø(ptextureSwapChain);
          ::gpu::texture_attributes textureattributes(size);
          ptextureSwapChain->initialize_texture(m_pgpucontext, textureattributes);
 
       }
       
-//         textureattributes.m_rectangleTarget.top_left() = ::int_point();
+//         textureattributes.m_rectangleTarget.top_left() = ::i32_point();
 //         textureattributes.m_rectangleTarget.set_size(size);
       
       
@@ -601,10 +602,10 @@ void swap_chain::defer_update_swap_chain_textures(const ::int_size & size)
 }
 
 
-::gpu::shader * swap_chain::render_shader(int w, int h)
+::gpu::shader * swap_chain::render_shader(::i32 w, ::i32 h)
 {
    
-   ::int_size size(w, h);
+   ::i32_size size(w, h);
    
    if(m_pgpucontext->m_rectangle.size() != size
       || ::is_null(m_ptextureaSwapChain)

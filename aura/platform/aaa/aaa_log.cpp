@@ -236,7 +236,7 @@ pdirectorysystem->system() / "log.txt"))
 
 //   extern ::pointer<::aura::application>g_papp;
 
-   CLASS_DECL_AURA int SimpleDebugReport(int iReportType, const ::scoped_string & scopedstrFileName,int iLine, const ::string &, const ::scoped_string & scopedstrFormat, va_list list)
+   CLASS_DECL_AURA ::i32 SimpleDebugReport(::i32 iReportType, const ::scoped_string & scopedstrFileName,::i32 iLine, const ::string &, const ::scoped_string & scopedstrFormat, va_list list)
    {
 #ifdef WIN32
 
@@ -275,7 +275,7 @@ pdirectorysystem->system() / "log.txt"))
       else
       {
 
-         char buf[2048];
+         ::i8 buf[2048];
          vsnprintf_s(buf, sizeof(buf), sizeof(buf), pszFormat, list);
          information(wstring(buf));
 
@@ -306,7 +306,7 @@ pdirectorysystem->system() / "log.txt"))
    }
 
 
-   //void log::tracev(e_trace_category ecategory, enum_trace_level elevel, const ::scoped_string & scopedstrFunction, const ::scoped_string & scopedstrFile, int iLine, const ::scoped_string & scopedstrFormat, va_list args)
+   //void log::tracev(e_trace_category ecategory, enum_trace_level elevel, const ::scoped_string & scopedstrFunction, const ::scoped_string & scopedstrFile, ::i32 iLine, const ::scoped_string & scopedstrFormat, va_list args)
    //{
 
    //   string str;
@@ -318,7 +318,7 @@ pdirectorysystem->system() / "log.txt"))
    //}
 
 
-   void log::__tracea(::particle * pparticle, enum_trace_level elevel, const ::scoped_string & scopedstrFunction, const ::scoped_string & scopedstrFile, int iLine, const ::scoped_string & scopedstr)
+   void log::__tracea(::particle * pparticle, enum_trace_level elevel, const ::scoped_string & scopedstrFunction, const ::scoped_string & scopedstrFile, ::i32 iLine, const ::scoped_string & scopedstr)
    {
 
       const ::scoped_string & scopedstrTopicText = ::is_set(pparticle) ? pparticle->topic_text() : nullptr;
@@ -391,15 +391,15 @@ pdirectorysystem->system() / "log.txt"))
       time = time.get_current_time();
       time.Format(strPre, "%Y-%m-%d %H:%M:%S");
       string strTick;
-      long long uiTotalMillis= ::duration::now() - ::first_millis();
-      long long uiMillis = uiTotalMillis % 1000;
-      long long uiTotalSeconds = uiTotalMillis / 1000;
-      long long uiSeconds = uiTotalSeconds % 60;
-      long long uiTotalMinutes = uiTotalSeconds / 60;
-      long long uiMinutes = uiTotalMinutes % 60;
-      long long uiTotalHours = uiTotalMinutes / 60;
-      long long uiHours = uiTotalHours % 24;
-      long long uiTotalDays = uiTotalHours / 24;
+      ::i64 uiTotalMillis= ::duration::now() - ::first_millis();
+      ::i64 uiMillis = uiTotalMillis % 1000;
+      ::i64 uiTotalSeconds = uiTotalMillis / 1000;
+      ::i64 uiSeconds = uiTotalSeconds % 60;
+      ::i64 uiTotalMinutes = uiTotalSeconds / 60;
+      ::i64 uiMinutes = uiTotalMinutes % 60;
+      ::i64 uiTotalHours = uiTotalMinutes / 60;
+      ::i64 uiHours = uiTotalHours % 24;
+      ::i64 uiTotalDays = uiTotalHours / 24;
       // sipman LCTV learning to format hours, minutes and seconds.... (me (re) learning too)...
       if (uiTotalDays > 0)
       {
@@ -464,7 +464,7 @@ pdirectorysystem->system() / "log.txt"))
             fclose(m_pfile);
             m_pfile = nullptr;
          }
-         int iRetry = 0;
+         ::i32 iRetry = 0;
       retry:
 
          string strDatetime;
@@ -488,7 +488,7 @@ pdirectorysystem->create(::file_path_folder(m_strLogPath));
 
             if (!(m_pfile = fopen(m_strLogPath, "at")))
             {
-               int iError = errno;
+               ::i32 iError = errno;
                if (iError == ENOENT)
                {
                   goto skip_further_possible_recursive_impossible_logging_in_file;
@@ -585,7 +585,7 @@ skip_further_possible_recursive_impossible_logging_in_file:
 
       }
 
-      for(int i = 0; i < stra.get_size(); i++)
+      for(::i32 i = 0; i < stra.get_size(); i++)
       {
 
          string strLine = strPre + strTick + strCat + strMiddle + stra[i]+"\n";

@@ -40,15 +40,15 @@ namespace gpu
    ::typeface::face* draw2d::_get_face(::write_text::font* pfont)
    {
 
-      int iPixelSize = 0;
+      ::i32 iPixelSize = 0;
 
       if (pfont->m_fontsize.eunit() == e_unit_point)
       {
-         iPixelSize = (int) system()->acme_windowing()->default_screen_points_to_pixels(pfont->m_fontsize.as_float());
+         iPixelSize = (::i32) system()->acme_windowing()->default_screen_points_to_pixels(pfont->m_fontsize.as_f32());
       }
       else
       {
-         iPixelSize = pfont->m_fontsize.as_int();
+         iPixelSize = pfont->m_fontsize.as_i32();
       }
 
       ::string strFontFamilyName = pfont->m_pfontfamily->family_name(this);

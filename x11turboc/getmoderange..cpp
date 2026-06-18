@@ -31,7 +31,7 @@
 //----------------------------------------------------------------------------
 
 void
-getmoderange (int graphdriver, int *lomode, int *himode)
+getmoderange (::i32 graphdriver, ::i32 *lomode, ::i32 *himode)
 {
   // We allow *all* modes for every driver.  
   *lomode = 0;

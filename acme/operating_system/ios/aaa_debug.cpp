@@ -20,13 +20,13 @@
 #define user user_struct
 #include <sys/sysctl.h>
 
-int __node_is_debugger_attached()
+::i32 __node_is_debugger_attached()
 // Returns true if the current process is being debugged (either
 // running under the debugger or has a debugger attached post facto).
 {
    return 1;
-//   int                 junk;
-//   int                 mib[4];
+//   ::i32                 junk;
+//   ::i32                 mib[4];
 //   struct kinfo_proc   info;
 //   size_t              size;
 //
@@ -55,15 +55,15 @@ int __node_is_debugger_attached()
 }
 
 
-unsigned int
+::u32
 WINAPI
 FormatMessage(
-unsigned int dwFlags,
+::u32 dwFlags,
 const void * lpSource,
-unsigned int dwMessageId,
-unsigned int dwLanguageId,
-char * lpBuffer,
-unsigned int nSize,
+::u32 dwMessageId,
+::u32 dwLanguageId,
+char_pointer lpBuffer,
+::u32 nSize,
 va_list *Arguments
 )
 {
@@ -78,7 +78,7 @@ va_list *Arguments
 VOID
 WINAPI
 information(
-const char * lpOutputString
+const_char_pointer lpOutputString
 )
 {
 

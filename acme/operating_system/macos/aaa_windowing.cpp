@@ -19,12 +19,12 @@ oswindow_dataptra * g_poswindowdataptra = nullptr;
          
 void ns_main_async(dispatch_block_t block);
 
-//int oswindow_find(NSWindow * window)
+//::i32 oswindow_find(NSWindow * window)
 //{
 //
 //   synchronous_lock synchronouslock(g_pmutexOsWindowData, DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 //
-//   for(int i = 0; i < g_poswindowdataptra->get_count(); i++)
+//   for(::i32 i = 0; i < g_poswindowdataptra->get_count(); i++)
 //   {
 //      if(g_poswindowdataptra->element_at(i)->m_nswindow == window)
 //      {
@@ -275,7 +275,7 @@ void ns_main_async(dispatch_block_t block);
 //
 //
 //
-//bool oswindow_data::is_child(::::acme::windowing::window * pacmewindowingwindow)
+//bool oswindow_data::is_child(::acme::windowing::window * pacmewindowingwindow)
 //{
 //
 //   if (oswindow == nullptr || oswindow->m_pimpl == nullptr || oswindow->m_pimpl->m_puserinteraction == nullptr)
@@ -306,7 +306,7 @@ void ns_main_async(dispatch_block_t block);
 //   if(m_plongmap == nullptr)
 //      return 0;
 //
-//   return m_plongmap->operator[]((int) iIndex);
+//   return m_plongmap->operator[]((::i32) iIndex);
 //
 //}
 //
@@ -320,9 +320,9 @@ void ns_main_async(dispatch_block_t block);
 //   if(m_plongmap == nullptr)
 //      return 0;
 //
-//   iptr iLong = m_plongmap->operator[]((int) iIndex);
+//   iptr iLong = m_plongmap->operator[]((::i32) iIndex);
 //
-//   m_plongmap->operator[]((int) iIndex) = (int) iNewLong;
+//   m_plongmap->operator[]((::i32) iIndex) = (::i32) iNewLong;
 //
 //   return iLong;
 //
@@ -352,10 +352,10 @@ void ns_main_async(dispatch_block_t block);
 //}
 //
 //
-//int_bool release_capture()
+//i32_bool release_capture()
 //{
 //
-//   int_bool bRet = true;
+//   i32_bool bRet = true;
 //
 //   if(bRet)
 //   {
@@ -416,7 +416,7 @@ void ns_main_async(dispatch_block_t block);
 //
 //}
 //
-//int_bool session_accepts_first_responder()
+//i32_bool session_accepts_first_responder()
 //{
 //
 //   return ::acmeacmesystem()->get_session()->m_bAcceptsFirstResponder ? 1 : 0;
@@ -474,7 +474,7 @@ void ns_main_async(dispatch_block_t block);
 //}
 //
 //
-//oswindow get_window(oswindow window, int iParentHood)
+//oswindow get_window(oswindow window, ::i32 iParentHood)
 //{
 //
 //   return nullptr;
@@ -482,7 +482,7 @@ void ns_main_async(dispatch_block_t block);
 //}
 //
 //
-//void defer_dock_application(int_bool bDock)
+//void defer_dock_application(i32_bool bDock)
 //{
 //
 ////   if (bDock)
@@ -517,7 +517,7 @@ void ns_main_async(dispatch_block_t block);
 //}
 //
 //
-//int_bool destroy_window(oswindow w)
+//i32_bool destroy_window(oswindow w)
 //{
 //
 //   if(is_null(w))
@@ -586,7 +586,7 @@ void ns_main_async(dispatch_block_t block);
 //#include <CoreFoundation/CoreFoundation.h>
 //
 //
-//int_bool set_need_redraw(oswindow hWnd, const ::int_rectangle * pcrect, HRGN hrgnUpdate, unsigned int flags)
+//i32_bool set_need_redraw(oswindow hWnd, const ::i32_rectangle * pcrect, HRGN hrgnUpdate, ::u32 flags)
 //{
 //
 //   return true;
@@ -594,7 +594,7 @@ void ns_main_async(dispatch_block_t block);
 //}
 //
 //
-//const char * mm_keyboard_input_source();
+//const_char_pointer mm_keyboard_input_source();
 //
 //
 //string keyboard_input_source()
@@ -632,13 +632,13 @@ void ns_main_async(dispatch_block_t block);
 ////   return nullptr;
 ////
 ////}
-////int_bool axis_TranslateMessage(const MESSAGE * pmessage);
+////i32_bool axis_TranslateMessage(const MESSAGE * pmessage);
 //
 ////LRESULT axis_DispatchMessage(const MESSAGE * pmessage);
 //
 //void mm_init_workspace_rect();
 //
-//int_bool os_init_windowing()
+//i32_bool os_init_windowing()
 //{
 //
 ////   set_TranslateMessage(&axis_TranslateMessage);
@@ -667,20 +667,20 @@ void ns_main_async(dispatch_block_t block);
 //
 //
 //// front first
-//int_rectangle_array cg_get_window_rect_list_above(CGWindowID windowid)
+//i32_rectangle_array cg_get_window_rect_list_above(CGWindowID windowid)
 //{
 //
-//   int_rectangle_array recta;
+//   i32_rectangle_array recta;
 //
 //   CFArrayRef windowa = CGWindowListCopyWindowInfo(kCGWindowListOptionOnScreenAboveWindow, windowid);
 //
-//   ::int_rectangle rMainScreen;
+//   ::i32_rectangle rMainScreen;
 //
 //   get_main_screen_rectangle(rMainScreen);
 //
 //   long c = CFArrayGetCount(windowa);
 //
-//   for(int i = 0; i < c; i++)
+//   for(::i32 i = 0; i < c; i++)
 //   {
 //
 //      CFDictionaryRef dict = (CFDictionaryRef)CFArrayGetValueAtIndex(windowa, i);
@@ -690,7 +690,7 @@ void ns_main_async(dispatch_block_t block);
 //      if(cfnumberAlpha)
 //      {
 //
-//         float fAlpha = 0.f;
+//         ::f32 fAlpha = 0.f;
 //
 //         CFNumberGetValue(cfnumberAlpha, kCFNumberFloatType, &fAlpha);
 //
@@ -729,14 +729,14 @@ void ns_main_async(dispatch_block_t block);
 //      if(dictRect)
 //      {
 //
-//      CGRect int_rectangle= {};
+//      CGRect i32_rectangle= {};
 //
 //      CGRectMakeWithDictionaryRepresentation(dictRect, &rectangle);
 //
 //      if(rectangle.size.width > 0 && rectangle.size.height > 0)
 //      {
 //
-//         ::int_rectangle rectangleCopy;
+//         ::i32_rectangle rectangleCopy;
 //
 //         rectangleCopy.left = rectangle.origin.x;
 //         rectangleCopy.top = rMainScreen.height() - (rectangle.origin.y + rectangle.size.height);
@@ -776,7 +776,7 @@ void ns_main_async(dispatch_block_t block);
 //
 //   CFIndex maxSize = CFStringGetMaximumSizeForEncoding(length, kCFStringEncodingUTF8) + 1;
 //
-//   char *buffer = str.get_buffer(maxSize);
+//   char_pointer buffer = str.get_buffer(maxSize);
 //
 //   if (CFStringGetCString(aString, buffer, maxSize, kCFStringEncodingUTF8))
 //   {
@@ -796,7 +796,7 @@ void ns_main_async(dispatch_block_t block);
 //#undef FUNCTION_TRACE
 //
 //
-//int_rectangle_array cg_get_window_rect_list_intersect_above(CGWindowID windowid)
+//i32_rectangle_array cg_get_window_rect_list_intersect_above(CGWindowID windowid)
 //{
 //
 //   bool bFound = false;
@@ -811,13 +811,13 @@ void ns_main_async(dispatch_block_t block);
 //
 //#endif
 //
-//   int_rectangle_array recta;
+//   i32_rectangle_array recta;
 //
 //   CFArrayRef windowa = CGWindowListCopyWindowInfo(kCGWindowListOptionOnScreenOnly, kCGNullWindowID);
 //
 //   CGRect rect1 = {};
 //
-//   //int_rectangle rMainScreen;
+//   //i32_rectangle rMainScreen;
 //
 //   //get_main_screen_rectangle(rMainScreen);
 //
@@ -877,7 +877,7 @@ void ns_main_async(dispatch_block_t block);
 //
 //      if (!window_id) continue;
 //
-//      int iWindowId = -1;
+//      ::i32 iWindowId = -1;
 //
 //      CFNumberGetValue(window_id, kCFNumberSInt32Type, &iWindowId);
 //
@@ -906,7 +906,7 @@ void ns_main_async(dispatch_block_t block);
 //      if(alpha)
 //      {
 //
-//         float fAlpha = 0.f;
+//         ::f32 fAlpha = 0.f;
 //
 //         CFNumberGetValue(alpha, kCFNumberFloatType, &fAlpha);
 //
@@ -914,7 +914,7 @@ void ns_main_async(dispatch_block_t block);
 //
 //#ifdef FUNCTION_TRACE
 //
-//         int iAlpha = (int) (fAlpha * 255.f);
+//         ::i32 iAlpha = (::i32) (fAlpha * 255.f);
 //
 //         if(iAlpha == 255)
 //         {
@@ -984,7 +984,7 @@ void ns_main_async(dispatch_block_t block);
 //      if(dictRect)
 //      {
 //
-//         CGRect int_rectangle= {};
+//         CGRect i32_rectangle= {};
 //
 //         CGRectMakeWithDictionaryRepresentation(dictRect, &rectangle);
 //
@@ -1013,7 +1013,7 @@ void ns_main_async(dispatch_block_t block);
 //               if(CGRectIntersectsRect(rect1, rectangle))
 //               {
 //
-//                  ::int_rectangle rectangleCopy;
+//                  ::i32_rectangle rectangleCopy;
 //
 //                  rectangleCopy.left = rectangle.origin.x;
 //                  rectangleCopy.right = rectangle.origin.x + rectangle.size.width;
@@ -1065,7 +1065,7 @@ void ns_main_async(dispatch_block_t block);
 //#undef FUNCTION_TRACE
 //
 //
-//void cg_get_window_rect_list(int_rectangle_array & recta, array < CGWindowID > & windowida)
+//void cg_get_window_rect_list(i32_rectangle_array & recta, array < CGWindowID > & windowida)
 //{
 //
 //   bool bFound = false;
@@ -1086,7 +1086,7 @@ void ns_main_async(dispatch_block_t block);
 //
 //   CGRect rect1={};
 //
-//   //int_rectangle rMainScreen;
+//   //i32_rectangle rMainScreen;
 //
 //   string strName;
 //
@@ -1105,7 +1105,7 @@ void ns_main_async(dispatch_block_t block);
 //
 //#endif
 //
-//   for(int i = 0; i < c; i++)
+//   for(::i32 i = 0; i < c; i++)
 //   {
 //
 //#ifdef FUNCTION_TRACE
@@ -1135,7 +1135,7 @@ void ns_main_async(dispatch_block_t block);
 //
 //      if (!window_id) continue;
 //
-//      int iWindowId = -1;
+//      ::i32 iWindowId = -1;
 //
 //      CFNumberGetValue(window_id, kCFNumberSInt32Type, &iWindowId);
 //
@@ -1146,7 +1146,7 @@ void ns_main_async(dispatch_block_t block);
 //      if(alpha)
 //      {
 //
-//         float fAlpha = 0.f;
+//         ::f32 fAlpha = 0.f;
 //
 //         CFNumberGetValue(alpha, kCFNumberFloatType, &fAlpha);
 //
@@ -1154,7 +1154,7 @@ void ns_main_async(dispatch_block_t block);
 //
 //#ifdef FUNCTION_TRACE
 //
-//         int iAlpha = (int) (fAlpha * 255.f);
+//         ::i32 iAlpha = (::i32) (fAlpha * 255.f);
 //
 //         if(iAlpha == 255)
 //         {
@@ -1219,11 +1219,11 @@ void ns_main_async(dispatch_block_t block);
 //      if(dictRect)
 //      {
 //
-//         CGRect int_rectangle= {};
+//         CGRect i32_rectangle= {};
 //
 //         CGRectMakeWithDictionaryRepresentation(dictRect, &rectangle);
 //
-//         ::int_rectangle rectangleCopy;
+//         ::i32_rectangle rectangleCopy;
 //
 //         //rectangleCopy.left = rectangle.origin.x;
 //         //rectangleCopy.top = rMainScreen.height() - (rectangle.origrin.y + rectangle.size.height);
@@ -1273,7 +1273,7 @@ void ns_main_async(dispatch_block_t block);
 //
 //CGWindowID get_os_window_window_number(::acme::windowing::window * pacmewindowingwindow);
 //
-//int_bool is_window_occluded(::acme::windowing::window * pacmewindowingwindow)
+//i32_bool is_window_occluded(::acme::windowing::window * pacmewindowingwindow)
 //{
 //
 //
@@ -1286,7 +1286,7 @@ void ns_main_async(dispatch_block_t block);
 //
 //   }
 //
-//   int_rectangle_array recta = cg_get_window_rect_list_intersect_above(windowid);
+//   i32_rectangle_array recta = cg_get_window_rect_list_intersect_above(windowid);
 //
 //
 //   if(recta.is_empty())
@@ -1298,13 +1298,13 @@ void ns_main_async(dispatch_block_t block);
 //
 //   return true;
 //
-////   ::int_rectangle rectangle;
+////   ::i32_rectangle rectangle;
 ////
 ////   rectangle = oswindow->m_pimpl->m_puserinteraction->parent_client_rectangle();
 ////
-////   ::int_rectangle rectangleTest;
+////   ::i32_rectangle rectangleTest;
 ////
-////   for(int i = 0; i < recta.get_size(); i++)
+////   for(::i32 i = 0; i < recta.get_size(); i++)
 ////   {
 ////
 ////      auto rectangleAbove = recta[i];
@@ -1323,25 +1323,25 @@ void ns_main_async(dispatch_block_t block);
 //
 //}
 //
-//void cg_get_window_rect_list(int_rectangle_array & recta, array < CGWindowID > & windowida);
+//void cg_get_window_rect_list(i32_rectangle_array & recta, array < CGWindowID > & windowida);
 //
-//int_bool point_is_window_origin(::int_point pointHitTest, oswindow oswindowExclude, int iMargin)
+//i32_bool point_is_window_origin(::i32_point pointHitTest, oswindow oswindowExclude, ::i32 iMargin)
 //{
 //
 //   CGWindowID windowidExclude = get_os_window_window_number(oswindowExclude);
 //
-//   int_rectangle_array recta;
+//   i32_rectangle_array recta;
 //
 //   array < CGWindowID > windowida;
 //
 //   cg_get_window_rect_list(recta, windowida);
 //
-//   ::int_rectangle rectangleTest;
+//   ::i32_rectangle rectangleTest;
 //
 //   for(::collection::index i = 0; i < recta.get_size(); i++)
 //   {
 //
-//      int wid = windowida[i];
+//      ::i32 wid = windowida[i];
 //
 //      if(windowidExclude != 0 && wid == windowidExclude)
 //      {
@@ -1352,7 +1352,7 @@ void ns_main_async(dispatch_block_t block);
 //
 //      auto rectangle = recta[i];
 //
-//      ::int_rectangle rectangleHitTest;
+//      ::i32_rectangle rectangleHitTest;
 //
 //      rectangleHitTest.set(rectangle.origin(), ::size());
 //

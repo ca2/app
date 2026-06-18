@@ -22,8 +22,8 @@ namespace hellobase
       prop(FONTSEL_IMPACT) = true;
 
 
-      m_flagNonClient.erase(e_non_client_background);
-      m_flagNonClient.erase(e_non_client_focus_rect);
+      m_enonclient.erase(::user::e_non_client_background);
+      m_enonclient.erase(::user::e_non_client_focus_rect);
 
       m_strNewFont = pnode->font_name(e_font_sans);
 
@@ -423,8 +423,8 @@ namespace hellobase
 
          //m_bFirstDone = true;
 
-         ::int_rectangle rectangleWork(0, 0, m_prender->m_pimageWork->get_size()->cx, m_prender->m_pimageWork->get_size()->cy);
-         ::int_rectangle rectangleImage(0, 0, m_prender->m_pimageImage->get_size()->cx, m_prender->m_pimageImage->get_size()->cy);
+         ::i32_rectangle rectangleWork(0, 0, m_prender->m_pimageWork->get_size()->cx, m_prender->m_pimageWork->get_size()->cy);
+         ::i32_rectangle rectangleImage(0, 0, m_prender->m_pimageImage->get_size()->cx, m_prender->m_pimageImage->get_size()->cy);
 
          rectangleImage.FitOnCenterOf(rectangleWork);
 

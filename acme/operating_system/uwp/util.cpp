@@ -4,19 +4,19 @@
 
 
 // interesting function
-/*bool CLASS_DECL_ACME __custom_log_font(unsigned int nIDS, LOGFONT* pLogFont)
+/*bool CLASS_DECL_ACME __custom_log_font(::u32 nIDS, LOGFONT* pLogFont)
 {
    ENSURE_ARG(pLogFont != nullptr);
    ASSERT(nIDS != 0);
 
-   char szFontInfo[256];
+   ::i8 szFontInfo[256];
    if (!::ca2::LoadString(nIDS, szFontInfo,_countof(szFontInfo)))
       return false;
 
-   char * lpszSize = _tcschr(szFontInfo, '\n');
+   char_pointer lpszSize = _tcschr(szFontInfo, '\n');
    if (lpszSize != nullptr)
    {
-      // get int_point int_size and convert to pixels
+      // get i32_point i32_size and convert to pixels
       pLogFont->lfHeight = _ttoi(lpszSize+1);
       pLogFont->lfHeight =
          MulDiv(pLogFont->lfHeight, ::windows_definition::Data.cyPixelsPerInch, 72);
@@ -26,30 +26,30 @@
    return true;
 }*/
 #ifdef WINDOWS_DESKTOP
-bool CLASS_DECL_ACME __is_combo_box_control(oswindow hWnd, unsigned int nStyle)
+bool CLASS_DECL_ACME __is_combo_box_control(oswindow hWnd, ::u32 nStyle)
 {
    if (hWnd == nullptr)
       return false;
    // do cheap style compare first
-   if ((unsigned int)(::GetWindowLong(hWnd, GWL_STYLE) & 0x0F) != nStyle)
+   if ((::u32)(::GetWindowLong(hWnd, GWL_STYLE) & 0x0F) != nStyle)
       return false;
 
    // do expensive classname compare next
-   char szCompare[_countof("combobox")+1];
+   ::i8 szCompare[_countof("combobox")+1];
    ::GetClassName(hWnd, szCompare, _countof(szCompare));
    return ::__invariant_stricmp(szCompare, "combobox") == 0;
 }
 
-bool CLASS_DECL_ACME __compare_class_name(oswindow hWnd, const_char_pointer lpszClassName)
+bool CLASS_DECL_ACME __compare_class_name(oswindow hWnd, const_char_pointer pszClassName)
 {
    ASSERT(::IsWindow(hWnd));
-   char szTemp[32];
+   ::i8 szTemp[32];
    ::GetClassName(hWnd, szTemp, _countof(szTemp));
    return ::__invariant_stricmp(szTemp, lpszClassName) == 0;
 }
 
 
-oswindow CLASS_DECL_ACME __child_window_from_point(oswindow hWnd, ::int_point int_point)
+oswindow CLASS_DECL_ACME __child_window_from_point(oswindow hWnd, ::i32_point i32_point)
 {
    ASSERT(hWnd != nullptr);
 
@@ -58,11 +58,11 @@ oswindow CLASS_DECL_ACME __child_window_from_point(oswindow hWnd, ::int_point in
    oswindow hWndChild = ::GetWindow(hWnd, GW_CHILD);
    for (; hWndChild != nullptr; hWndChild = ::GetWindow(hWndChild, GW_HWNDNEXT))
    {
-      if (__get_dialog_control_id(hWndChild) != (unsigned short)0 &&
+      if (__get_dialog_control_id(hWndChild) != (::u16)0 &&
             (::GetWindowLong(hWndChild, GWL_STYLE) & WS_VISIBLE))
       {
-         // see if int_point hits the child ::windowing::window
-         ::int_rectangle rectangle;
+         // see if i32_point hits the child ::windowing::window
+         ::i32_rectangle rectangle;
          ::window_rectangle(hWndChild, rectangle);
          if (rectangle.contains(point))
             return hWndChild;
@@ -72,14 +72,14 @@ oswindow CLASS_DECL_ACME __child_window_from_point(oswindow hWnd, ::int_point in
    return nullptr;    // not found
 }
 
-void CLASS_DECL_ACME __set_window_text(::user::interaction * hWndCtrl, const_char_pointer lpszNew)
+void CLASS_DECL_ACME __set_window_text(::user::interaction * hWndCtrl, const_char_pointer pszNew)
 {
    hWndCtrl->set_window_text(lpszNew);
    /*ENSURE(hWndCtrl);
    ENSURE(lpszNew);
 
-   int nNewLen = lstrlen(lpszNew);
-   char szOld[256]="";
+   ::i32 nNewLen = lstrlen(lpszNew);
+   ::i8 szOld[256]="";
    // fast check to see if text really changes (reduces flash in controls)
    if (nNewLen > _countof(szOld) ||
       ::GetWindowText(hWndCtrl, szOld, _countof(szOld)) != nNewLen ||
@@ -112,14 +112,14 @@ void CLASS_DECL_ACME __cancel_modes(oswindow hWndRcvr)
       return;     // let input go to ::windowing::window with focus
 
    // focus is in part of a combo-box
-   if (!__is_combo_box_control(hWndCancel, (unsigned int)CBS_DROPDOWNLIST))
+   if (!__is_combo_box_control(hWndCancel, (::u32)CBS_DROPDOWNLIST))
    {
       // check as a dropdown
       hWndCancel = ::get_parent(hWndCancel);   // parent of edit is combo
       if (hWndCancel == hWndRcvr)
          return;     // let input go to part of combo
 
-      if (!__is_combo_box_control(hWndCancel, (unsigned int)CBS_DROPDOWN))
+      if (!__is_combo_box_control(hWndCancel, (::u32)CBS_DROPDOWN))
          return;     // not a combo-box that is active
    }
 
@@ -140,7 +140,7 @@ void CLASS_DECL_ACME __global_free(HGLOBAL hGlobal)
 
    // avoid bogus warning error messages from various debugging tools
    ASSERT(GlobalFlags(hGlobal) != GMEM_INVALID_HANDLE);
-   unsigned int nCount = GlobalFlags(hGlobal) & GMEM_LOCKCOUNT;
+   ::u32 nCount = GlobalFlags(hGlobal) & GMEM_LOCKCOUNT;
    while (nCount--)
       GlobalUnlock(hGlobal);
 

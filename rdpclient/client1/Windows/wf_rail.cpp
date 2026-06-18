@@ -35,8 +35,8 @@
 
 struct _WINDOW_STYLE
 {
-	unsigned int style;
-	const_char_pointer name;
+	::u32 style;
+	const_char_pointer pszName;
 	BOOL multi;
 };
 typedef struct _WINDOW_STYLE WINDOW_STYLE;
@@ -98,9 +98,9 @@ static const WINDOW_STYLE EXTENDED_WINDOW_STYLES[] =
 	{ WS_EX_WINDOWEDGE, "WS_EX_WINDOWEDGE", false }
 };
 
-void PrintWindowStyles(unsigned int style)
+void PrintWindowStyles(::u32 style)
 {
-	int i;
+	::i32 i;
 	
 	WLog_INFO(TAG, "\tWindow Styles:\t{");
 	for (i = 0; i < ARRAYSIZE(WINDOW_STYLES); i++)
@@ -118,9 +118,9 @@ void PrintWindowStyles(unsigned int style)
 	}
 }
 
-void PrintExtendedWindowStyles(unsigned int style)
+void PrintExtendedWindowStyles(::u32 style)
 {
-	int i;
+	::i32 i;
 	
 	WLog_INFO(TAG, "\tExtended Window Styles:\t{");
 	for (i = 0; i < ARRAYSIZE(EXTENDED_WINDOW_STYLES); i++)
@@ -168,7 +168,7 @@ void PrintRailWindowState(WINDOW_ORDER_INFO* orderInfo, WINDOW_STATE_ORDER* wind
 
 	if (orderInfo->fieldFlags & WINDOW_ORDER_FIELD_TITLE)
 	{
-		char* title = nullptr;
+		char_pointer title = nullptr;
 
 		ConvertFromUnicode(CP_UTF8, 0, (WCHAR*) windowState->titleInfo.string,
 				   windowState->titleInfo.length / 2, &title, 0, nullptr, nullptr);
@@ -221,8 +221,8 @@ void PrintRailWindowState(WINDOW_ORDER_INFO* orderInfo, WINDOW_STATE_ORDER* wind
 
 	if (orderInfo->fieldFlags & WINDOW_ORDER_FIELD_WND_RECTS)
 	{
-		unsigned int index;
-		RECTANGLE_16* int_rectangle;
+		::u32 index;
+		RECTANGLE_16* i32_rectangle;
 
 		WLog_INFO(TAG, "\tnumWindowRects: %d", windowState->numWindowRects);
 
@@ -231,7 +231,7 @@ void PrintRailWindowState(WINDOW_ORDER_INFO* orderInfo, WINDOW_STATE_ORDER* wind
 			rectangle = &windowState->windowRects[index];
 
 			WLog_INFO(TAG, "\twindowRect[%d]: left: %d top: %d right: %d bottom: %d",
-				index, int_rectangle->left, int_rectangle->top, int_rectangle->right, int_rectangle->bottom);
+				index, i32_rectangle->left, i32_rectangle->top, i32_rectangle->right, i32_rectangle->bottom);
 		}
 	}
 
@@ -243,8 +243,8 @@ void PrintRailWindowState(WINDOW_ORDER_INFO* orderInfo, WINDOW_STATE_ORDER* wind
 
 	if (orderInfo->fieldFlags & WINDOW_ORDER_FIELD_VISIBILITY)
 	{
-		unsigned int index;
-		RECTANGLE_16* int_rectangle;
+		::u32 index;
+		RECTANGLE_16* i32_rectangle;
 
 		WLog_INFO(TAG, "\tnumVisibilityRects: %d", windowState->numVisibilityRects);
 
@@ -253,7 +253,7 @@ void PrintRailWindowState(WINDOW_ORDER_INFO* orderInfo, WINDOW_STATE_ORDER* wind
 			rectangle = &windowState->visibilityRects[index];
 
 			WLog_INFO(TAG, "\tvisibilityRect[%d]: left: %d top: %d right: %d bottom: %d",
-				index, int_rectangle->left, int_rectangle->top, int_rectangle->right, int_rectangle->bottom);
+				index, i32_rectangle->left, i32_rectangle->top, i32_rectangle->right, i32_rectangle->bottom);
 		}
 	}
 
@@ -281,16 +281,16 @@ static void PrintRailIconInfo(WINDOW_ORDER_INFO* orderInfo, ICON_INFO* iconInfo)
 	WLog_INFO(TAG, "}");
 }
 
-//LRESULT CALLBACK wf_RailWndProc(HWND hWnd, unsigned int msg, WPARAM wParam, LPARAM lParam)
+//LRESULT CALLBACK wf_RailWndProc(HWND hWnd, ::u32 msg, WPARAM wParam, LPARAM lParam)
 //{
 //	HDC hDC;
-//	int x, y;
-//	int width;
-//	int height;
-//	unsigned int xPos;
-//	unsigned int yPos;
+//	::i32 x, y;
+//	::i32 width;
+//	::i32 height;
+//	::u32 xPos;
+//	::u32 yPos;
 //	PAINTSTRUCT ps;
-//	unsigned int inputFlags;
+//	::u32 inputFlags;
 //	wfContext* wfc = nullptr;
 //	rdpInput* input = nullptr;
 //	rdpContext* context = nullptr;
@@ -425,7 +425,7 @@ static void PrintRailIconInfo(WINDOW_ORDER_INFO* orderInfo, ICON_INFO* iconInfo)
 //	wfRailWindow* railWindow = nullptr;
 //	wfContext* wfc = (wfContext*) context;
 //	RailClientContext* rail = wfc->rail;
-//	unsigned int fieldFlags = orderInfo->fieldFlags;
+//	::u32 fieldFlags = orderInfo->fieldFlags;
 //
 //	PrintRailWindowState(orderInfo, windowState);
 //
@@ -454,7 +454,7 @@ static void PrintRailIconInfo(WINDOW_ORDER_INFO* orderInfo, ICON_INFO* iconInfo)
 //
 //		if (fieldFlags & WINDOW_ORDER_FIELD_TITLE)
 //		{
-//			char* title = nullptr;
+//			char_pointer title = nullptr;
 //
 //			ConvertFromUnicode(CP_UTF8, 0, (WCHAR*) windowState->titleInfo.string,
 //				   windowState->titleInfo.length / 2, &title, 0, nullptr, nullptr);
@@ -555,8 +555,8 @@ static void PrintRailIconInfo(WINDOW_ORDER_INFO* orderInfo, ICON_INFO* iconInfo)
 //		railWindow->dwExStyle = windowState->extendedStyle;
 //		railWindow->dwExStyle &= ~RAIL_DISABLED_EXTENDED_WINDOW_STYLES;
 //
-//		SetWindowLongPtr(railWindow->hWnd, GWL_STYLE, (int) railWindow->dwStyle);
-//		SetWindowLongPtr(railWindow->hWnd, GWL_EXSTYLE, (int) railWindow->dwExStyle);
+//		SetWindowLongPtr(railWindow->hWnd, GWL_STYLE, (::i32) railWindow->dwStyle);
+//		SetWindowLongPtr(railWindow->hWnd, GWL_EXSTYLE, (::i32) railWindow->dwExStyle);
 //	}
 //
 //	if (fieldFlags & WINDOW_ORDER_FIELD_SHOW)
@@ -566,7 +566,7 @@ static void PrintRailIconInfo(WINDOW_ORDER_INFO* orderInfo, ICON_INFO* iconInfo)
 //
 //	if (fieldFlags & WINDOW_ORDER_FIELD_TITLE)
 //	{
-//		char* title = nullptr;
+//		char_pointer title = nullptr;
 //		WCHAR* titleW = nullptr;
 //
 //		ConvertFromUnicode(CP_UTF8, 0, (WCHAR*) windowState->titleInfo.string,
@@ -609,20 +609,20 @@ static void PrintRailIconInfo(WINDOW_ORDER_INFO* orderInfo, ICON_INFO* iconInfo)
 //
 //	if (fieldFlags & WINDOW_ORDER_FIELD_WND_RECTS)
 //	{
-//		unsigned int index;
+//		::u32 index;
 //		HRGN hWndRect;
 //		HRGN hWndRects;
-//		RECTANGLE_16* int_rectangle;
+//		RECTANGLE_16* i32_rectangle;
 //
 //		if (windowState->numWindowRects > 0)
 //		{
 //			rectangle = &(windowState->windowRects[0]);
-//			hWndRects = CreateRectRgn(int_rectangle->left, int_rectangle->top, int_rectangle->right, int_rectangle->bottom);
+//			hWndRects = CreateRectRgn(i32_rectangle->left, i32_rectangle->top, i32_rectangle->right, i32_rectangle->bottom);
 //
 //			for (index = 1; index < windowState->numWindowRects; index++)
 //			{
 //				rectangle = &(windowState->windowRects[index]);
-//				hWndRect = CreateRectRgn(int_rectangle->left, int_rectangle->top, int_rectangle->right, int_rectangle->bottom);
+//				hWndRect = CreateRectRgn(i32_rectangle->left, i32_rectangle->top, i32_rectangle->right, i32_rectangle->bottom);
 //				CombineRgn(hWndRects, hWndRects, hWndRect, RGN_OR);
 //				DeleteObject(hWndRect);
 //			}
@@ -671,9 +671,9 @@ static BOOL wf_rail_window_delete(rdpContext* context, WINDOW_ORDER_INFO* orderI
 static BOOL wf_rail_window_icon(rdpContext* context, WINDOW_ORDER_INFO* orderInfo, WINDOW_ICON_ORDER* windowIcon)
 {
 	HDC hDC;
-	int bpp;
-	int width;
-	int height;
+	::i32 bpp;
+	::i32 width;
+	::i32 height;
 	HICON hIcon;
 	BOOL bigIcon;
 	ICONINFO iconInfo;
@@ -860,18 +860,18 @@ static BOOL wf_rail_non_monitored_desktop(rdpContext* context, WINDOW_ORDER_INFO
 
 /* RemoteApp Virtual Channel Extension */
 
-static int wf_rail_server_execute_result(RailClientContext* context, RAIL_EXEC_RESULT_ORDER* execResult)
+static ::i32 wf_rail_server_execute_result(RailClientContext* context, RAIL_EXEC_RESULT_ORDER* execResult)
 {
 	WLog_DBG(TAG, "RailServerExecuteResult: 0x%04X", execResult->rawResult);
 	return 1;
 }
 
-static int wf_rail_server_system_param(RailClientContext* context, RAIL_SYSPARAM_ORDER* sysparam)
+static ::i32 wf_rail_server_system_param(RailClientContext* context, RAIL_SYSPARAM_ORDER* sysparam)
 {
 	return 1;
 }
 
-static int wf_rail_server_handshake(RailClientContext* context, RAIL_HANDSHAKE_ORDER* handshake)
+static ::i32 wf_rail_server_handshake(RailClientContext* context, RAIL_HANDSHAKE_ORDER* handshake)
 {
 	RAIL_EXEC_ORDER exec;
 	RAIL_SYSPARAM_ORDER sysparam;
@@ -936,36 +936,36 @@ static int wf_rail_server_handshake(RailClientContext* context, RAIL_HANDSHAKE_O
 	return 1;
 }
 
-static int wf_rail_server_handshake_ex(RailClientContext* context, RAIL_HANDSHAKE_EX_ORDER* handshakeEx)
+static ::i32 wf_rail_server_handshake_ex(RailClientContext* context, RAIL_HANDSHAKE_EX_ORDER* handshakeEx)
 {
 	return 1;
 }
 
-static int wf_rail_server_local_move_size(RailClientContext* context, RAIL_LOCALMOVESIZE_ORDER* localMoveSize)
+static ::i32 wf_rail_server_local_move_size(RailClientContext* context, RAIL_LOCALMOVESIZE_ORDER* localMoveSize)
 {
 	return 1;
 }
 
-static int wf_rail_server_min_max_info(RailClientContext* context, RAIL_MINMAXINFO_ORDER* minMaxInfo)
+static ::i32 wf_rail_server_min_max_info(RailClientContext* context, RAIL_MINMAXINFO_ORDER* minMaxInfo)
 {
 	return 1;
 }
 
-static int wf_rail_server_language_bar_info(RailClientContext* context, RAIL_LANGBAR_INFO_ORDER* langBarInfo)
+static ::i32 wf_rail_server_language_bar_info(RailClientContext* context, RAIL_LANGBAR_INFO_ORDER* langBarInfo)
 {
 	return 1;
 }
 
-static int wf_rail_server_get_appid_response(RailClientContext* context, RAIL_GET_APPID_RESP_ORDER* getAppIdResp)
+static ::i32 wf_rail_server_get_appid_response(RailClientContext* context, RAIL_GET_APPID_RESP_ORDER* getAppIdResp)
 {
 	return 1;
 }
 
 void wf_rail_invalidate_region(wfContext* wfc, REGION16* invalidRegion)
 {
-	int index;
-	int count;
-	::int_rectangle updateRect;
+	::i32 index;
+	::i32 count;
+	::i32_rectangle updateRect;
 	RECTANGLE_16 windowRect;
 	ULONG_PTR* pKeys = nullptr;
 	wfRailWindow* railWindow;

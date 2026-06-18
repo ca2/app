@@ -21,6 +21,11 @@
 #include "_.h"
 #include "acme/handler/task_handler.h"
 #include "acme/operating_system/window.h"
+#include "acme/constant/lightui.h"
+
+#ifdef WINDOWS_DESKTOP
+#include "acme/operating_system/windows/_window_class.h"
+#endif
 
 
 namespace acme
@@ -50,6 +55,14 @@ namespace acme
 
          ::windowing::enum_bias                             m_ewindowingbias;
 
+
+         ::procedure                                        m_callbackOnApplicationActivate;
+
+         bool                                               m_bApplicationActivated;
+         bool                                               m_bIsOperatingAmbientApplicationHeld;
+
+
+
          windowing();
          ~windowing() override;
 
@@ -58,6 +71,7 @@ namespace acme
          inline ::windowing::enum_bias windowing_bias() { return m_ewindowingbias; }
 
 
+         virtual ::string get_version();
          //inline static const_char_pointer represented_component_name() { return "nano_windowing"; }
 
          //::acme::windowing::window * windowing_window() override;
@@ -78,7 +92,7 @@ namespace acme
 
          //::pointer < ::subparticle > exception_message_console(const ::exception & exception, const ::scoped_string & scopedstrMessage = nullptr, const ::scoped_string & scopedstrTitle = nullptr, const ::user::e_message_box & emessagebox = ::user::e_message_box_ok, const ::scoped_string & scopedstrDetails = nullptr, ::nano::graphics::icon * picon = nullptr);
 
-         virtual ::particle * defer_initialize_host_window(const ::int_rectangle* lpcrect);
+         virtual ::particle * defer_initialize_host_window(const ::i32_rectangle* lpcrect);
          
          virtual void _will_finish_launching();
          
@@ -98,7 +112,7 @@ namespace acme
          //virtual ::acme::windowing::window* window_from_HWND(void * pHWND);
 
          virtual void each_window(const ::function<void(::acme::windowing::window *)> &function);  
-         
+         //virtual void on_user_command(::uptr u, ::lightui::enum_notification enotification, ::uptr uControl);
          virtual void _message_handler(void* p);
          
          virtual ::acme::windowing::window * get_keyboard_focus(::thread* pthread);
@@ -111,6 +125,7 @@ namespace acme
          
          //         virtual void clear_keyboard_focus(::user::element * pelementGainingFocusIfAny = nullptr);
          
+         virtual void hide_application();
 
          
          void handle(::topic * ptopic, ::handler_context * phandlercontext) override;
@@ -136,6 +151,16 @@ namespace acme
          virtual ::pointer < ::user::activation_token > get_user_activation_token();
          //
 
+
+#ifdef WINDOWS_DESKTOP
+
+
+         virtual ::windows::window_class _custom_window_class(const ::scoped_string & scopedstrClassName, void * pHICON_Big, void * pHICON_Small);
+         virtual ::windows::window_class _default_window_class();
+         virtual ::windows::window_class _acme_nano_window_class();
+         virtual ::windows::window_class _com_host_window_class();
+
+#endif
          //windowing_base();
 
          //~windowing_base() override;
@@ -160,7 +185,7 @@ namespace acme
 
          virtual void _do_tasks();
          
-         virtual void application_handle(long long l, void * p);
+         virtual void application_handle(::i64 l, void * p);
 
          //virtual void defer_initialize_windowing();
 
@@ -180,9 +205,9 @@ namespace acme
 
          //void main_post(const ::procedure & procedure) override;
 
-         virtual void display_error_trap_push(int i);
+         virtual void display_error_trap_push(::i32 i);
 
-         virtual void display_error_trap_pop_ignored(int i);
+         virtual void display_error_trap_pop_ignored(::i32 i);
 
          //virtual void * fetch_windowing_display();
 
@@ -192,9 +217,9 @@ namespace acme
 
          virtual void windowing_application_on_system_start();
 
-         virtual void windowing_application_on_start();
+         //virtual void windowing_application_on_start();
 
-         virtual void windowing_application_main_loop();
+         void run() override;
 
          virtual void windowing_post_quit();
 
@@ -245,8 +270,22 @@ namespace acme
          //virtual bool set_wallpaper(::collection::index iScreen, const ::scoped_string & scopedstrLocalImagePath, ::acme::windowing::display * pwindowingdisplay);
 
          //virtual string get_wallpaper(::collection::index iScreen, ::acme::windowing::display * pwindowingdisplay);
-         virtual double get_default_screen_dpi();
-         virtual float default_screen_points_to_pixels(float fPoints);
+         virtual ::f64 get_default_screen_dpi();
+         virtual ::f32 default_screen_points_to_pixels(::f32 fPoints);
+
+
+
+         virtual void hook_operating_ambient_theme_change_callbacks();
+
+
+         virtual void on_hold_operating_ambient_application();
+         virtual void on_unhold_operating_ambient_application();
+
+
+         virtual void on_application_activate();
+
+
+         void run_loop2(::task *ptask) override;
 
 
       };

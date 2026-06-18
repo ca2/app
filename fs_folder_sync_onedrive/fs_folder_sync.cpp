@@ -99,7 +99,7 @@ namespace fs_folder_sync_onedrive
 
 
 
-   int folder_sync::is_dir(const ::file::path& path)
+   ::i32 folder_sync::is_dir(const ::file::path& path)
    {
 
       return ::fs::folder_sync::is_dir(path);
@@ -133,7 +133,7 @@ namespace fs_folder_sync_onedrive
    //}
 
 
-   //string folder_sync::eat_end_level(const ::file::path & path, int iCount)
+   //string folder_sync::eat_end_level(const ::file::path & path, ::i32 iCount)
    //{
 
    //   string strPath(scopedstrPath);

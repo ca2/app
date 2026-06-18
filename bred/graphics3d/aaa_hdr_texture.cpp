@@ -26,8 +26,8 @@
 //    }
 //    void hdr_texture::initialize_hdr_texture(const ::file::path & path)
 //    {
-//       //int width, height, numChannels;
-//       //float *data = stbi_loadf(path.c_str(), &width, &height, &numChannels, 0);
+//       //::i32 width, height, numChannels;
+//       //::f32 *data = stbi_loadf(path.c_str(), &width, &height, &numChannels, 0);
 //
 //       //if (!data) {
 //       //   std::cout << "Failed to load texture data" << std::endl;
@@ -48,7 +48,7 @@
 //       //stbi_image_free(data);
 //    }
 //
-//    //unsigned int
+//    //::u32
 //    //hdr_texture::getId() {
 //    //   return mId;
 //    //}

@@ -25,7 +25,7 @@ namespace database
 
 
       string      m_strName;
-      int         m_iSize;
+      ::i32         m_iSize;
       enum_type      m_etype;
 
       

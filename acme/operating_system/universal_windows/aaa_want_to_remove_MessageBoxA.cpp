@@ -13,7 +13,7 @@ public:
 
    message_box_a();
 
-   int do_modal(String ^ text, String ^ caption, unsigned int uFlags);
+   ::i32 do_modal(String ^ text, String ^ caption, ::u32 uFlags);
 
    
 };
@@ -26,12 +26,12 @@ message_box_a::message_box_a()
 #define create_a_button(atom,text) \
    msg->Commands->Append(ref aaa_primitive_new UICommand(text,nullptr,atom));
 
-int message_box_a::do_modal(String ^ text,String ^ caption,unsigned int uFlags)
+::i32 message_box_a::do_modal(String ^ text,String ^ caption,::u32 uFlags)
 {
 
    MessageDialog^ msg = ref aaa_primitive_new MessageDialog(text, caption);
 
-   unsigned int uiType = uFlags & MB_TYPEMASK;
+   ::u32 uiType = uFlags & MB_TYPEMASK;
 
    switch(uiType)
    {
@@ -77,7 +77,7 @@ int message_box_a::do_modal(String ^ text,String ^ caption,unsigned int uFlags)
    // Show the message dialog 
    IUICommand ^ cmd = ::wait(msg->ShowAsync());
 
-   int iResult = e_dialog_result_cancel;
+   ::i32 iResult = e_dialog_result_cancel;
 
    if(cmd->Id == "ok")
    {
@@ -177,14 +177,14 @@ int message_box_a::do_modal(String ^ text,String ^ caption,unsigned int uFlags)
 
 
 
-int WINAPI MessageBoxA(oswindow interaction_impl,const char * lpText,const char * lpCaption,unsigned int uFlags)
+::i32 WINAPI MessageBoxA(oswindow interaction_impl,const_char_pointer lpText,const_char_pointer lpCaption,::u32 uFlags)
 {
 
    __UNREFERENCED_PARAMETER(interaction_impl);
 
    message_box_a a;
 
-   int iResult = a.do_modal(string(lpText),string(lpCaption),uFlags);
+   ::i32 iResult = a.do_modal(string(lpText),string(lpCaption),uFlags);
 
 
    return iResult;

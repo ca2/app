@@ -149,7 +149,7 @@ void user::init(){
 //
 //
 //      factory()->add_factory_item < ::html::html >();
-//      factory()->add_factory_item < int_biunique  >();
+//      factory()->add_factory_item < i32_biunique  >();
 //      factory()->add_factory_item <::user::plain_edit >();
 //      factory()->add_factory_item <::user::place_holder >();
 //      factory()->add_factory_item <::user::combo_box >();
@@ -333,7 +333,7 @@ void user::init(){
 //      //         // current application startup won't be
 //      //         // exited by timeout.
 //      //
-//      //         int iRetry = 1;
+//      //         ::i32 iRetry = 1;
 //      //
 //      //retry_license:
 //      //
@@ -476,7 +476,7 @@ void user::destroy()
 //   }
 //
 //
-//   pointer< ::sequence < ::conversation > > user::ui_message_box(::particle * pparticle, ::user::interaction_base * puiOwner, const ::scoped_string & scopedstrMessage, const ::scoped_string & scopedstrTitle, const ::::user::e_message_box & emessagebox)
+//   pointer< ::sequence < ::conversation > > user::ui_message_box(::particle * pparticle, ::user::interaction_base * puiOwner, const ::scoped_string & scopedstrMessage, const ::scoped_string & scopedstrTitle, const ::user::e_message_box & emessagebox)
 //   {
 //
 //      return nullptr;
@@ -611,7 +611,7 @@ void user::destroy()
 //   }
 //
 //
-//   pointer< ::sequence < ::conversation > > user::ui_message_box_timeout(::particle * pparticle, ::user::interaction_base * puiOwner, const ::scoped_string & scopedstrMessage, const ::scoped_string & scopedstrTitle, const class time & timeTimeout, const ::::user::e_message_box & emessagebox)
+//   pointer< ::sequence < ::conversation > > user::ui_message_box_timeout(::particle * pparticle, ::user::interaction_base * puiOwner, const ::scoped_string & scopedstrMessage, const ::scoped_string & scopedstrTitle, const class time & timeTimeout, const ::user::e_message_box & emessagebox)
 //   {
 //
 //      //__UNREFERENCED_PARAMETER(puiOwner);
@@ -665,7 +665,7 @@ void user::destroy()
 //   }
 //
 //
-//   int user::track_popup_menu(const ::scoped_string & scopedstrMatter, const ::int_point & point, ::pointer<::user::interaction>puie)
+//   ::i32 user::track_popup_menu(const ::scoped_string & scopedstrMatter, const ::i32_point & point, ::pointer<::user::interaction>puie)
 //   {
 //
 //      //__UNREFERENCED_PARAMETER(scopedstrMatter);
@@ -680,7 +680,7 @@ void user::destroy()
 //   bool user::get_fs_size(string & strSize, const ::scoped_string & scopedstrPath, bool & bPending)
 //   {
 //
-//      long long i64Size;
+//      ::i64 i64Size;
 //
 //      if (!get_fs_size(i64Size, pszPath, bPending))
 //      {
@@ -694,7 +694,7 @@ void user::destroy()
 //      if (i64Size > 1024 * 1024 * 1024)
 //      {
 //
-//         double d = (double)i64Size / (1024.0 * 1024.0 * 1024.0);
+//         ::f64 d = (::f64)i64Size / (1024.0 * 1024.0 * 1024.0);
 //
 //         strSize.formatf("%0.2f GB", d);
 //
@@ -702,7 +702,7 @@ void user::destroy()
 //      else if (i64Size > 1024 * 1024)
 //      {
 //
-//         double d = (double)i64Size / (1024.0 * 1024.0);
+//         ::f64 d = (::f64)i64Size / (1024.0 * 1024.0);
 //
 //         strSize.formatf("%0.1f MB", d);
 //
@@ -710,7 +710,7 @@ void user::destroy()
 //      else if (i64Size > 1024)
 //      {
 //
-//         double d = (double)i64Size / (1024.0);
+//         ::f64 d = (::f64)i64Size / (1024.0);
 //
 //         strSize.formatf("%0.0f KB", d);
 //
@@ -740,7 +740,7 @@ void user::destroy()
 //   }
 //
 //
-//   bool user::get_fs_size(long long & i64Size, const ::scoped_string & scopedstrPath, bool & bPending)
+//   bool user::get_fs_size(::i64 & i64Size, const ::scoped_string & scopedstrPath, bool & bPending)
 //   {
 //
 //      //db_server * pcentral = dynamic_cast <db_server *> (psystem->m_psimpledb->db());
@@ -769,7 +769,7 @@ void user::destroy()
 //
 //         
 //
-//         CHANGE_EVENT_DATA_GET(pchange, (int &)session()->savings()->m_eresourceflagsShouldSave.m_eenum);
+//         CHANGE_EVENT_DATA_GET(pchange, (::i32 &)session()->savings()->m_eresourceflagsShouldSave.m_eenum);
 //
 //      }
 //
@@ -784,8 +784,8 @@ void user::destroy()
 //      //CHOOSECOLOR cc;
 //      //::color::color crCustColors[16];
 //
-//      //// init-int this array did not affect the mouse problem
-//      //// unsigned int idx ;
+//      //// init-::i32 this array did not affect the mouse problem
+//      //// ::u32 idx ;
 //      //// for (idx=0; idx<16; idx++) {
 //      //// crCustColors[idx] = rgb(idx, idx, idx) ;
 //      //// }
@@ -1167,9 +1167,9 @@ void user::destroy()
 //   //   wstring  wstr;
 //
 //   //   wstr.get_buffer(MAX_PATH * 8);
-//   //   //unsigned int uLen = pwsz.memsize();
+//   //   //::u32 uLen = pwsz.memsize();
 //
-//   //   if (!SystemParametersInfoW(SPI_GETDESKWALLPAPER, (unsigned int)wstr.get_storage_length(), wstr.m_pdata, 0))
+//   //   if (!SystemParametersInfoW(SPI_GETDESKWALLPAPER, (::u32)wstr.get_storage_length(), wstr.m_pdata, 0))
 //   //   {
 //   //      return "";
 //
@@ -1398,14 +1398,14 @@ void user::destroy()
 ////   bool user::impl_set_wallpaper(::collection::index iScreen, string strLocalImagePath)
 ////   {
 ////
-////      return macos_set_user_wallpaper((int)iScreen, strLocalImagePath);
+////      return macos_set_user_wallpaper((::i32)iScreen, strLocalImagePath);
 ////
 ////   }
 ////
 ////   string user::impl_get_wallpaper(::collection::index iScreen)
 ////   {
 ////
-////      return macos_get_user_wallpaper((int)iScreen);
+////      return macos_get_user_wallpaper((::i32)iScreen);
 ////
 ////   }
 ////
@@ -1466,7 +1466,7 @@ void user::destroy()
 //   //}
 //
 //
-//   //int application::sync_message_box(::user::interaction_base * puiOwner, const ::scoped_string & scopedstrMessage, unsigned int fuStyle)
+//   //::i32 application::sync_message_box(::user::interaction_base * puiOwner, const ::scoped_string & scopedstrMessage, ::u32 fuStyle)
 //   //{
 //
 //   //   informationf("---->  app_message_box: " + string(scopedstrMessage) + "\n\n");
@@ -1479,7 +1479,7 @@ void user::destroy()
 //   //}
 //
 //
-//   //int application::sync_message_box_timeout(::user::interaction_base * puserinteractionOwner, ::payload payload, ::time timeTimeOut, unsigned int fuStyle)
+//   //::i32 application::sync_message_box_timeout(::user::interaction_base * puserinteractionOwner, ::payload payload, ::time timeTimeOut, ::u32 fuStyle)
 //   //{
 //
 //   //   if (user() == nullptr)
@@ -1556,7 +1556,7 @@ void user::destroy()
 //   //void user::initialize_bergedge_application_interface()
 //   //{
 //
-//   //   //      int iCount = 32; // todo: get from bergedge profile
+//   //   //      ::i32 iCount = 32; // todo: get from bergedge profile
 //
 //   //   //m_pdocs->m_pnaturedocument = nullptr;
 //
@@ -1692,7 +1692,7 @@ void user::destroy()
 //   }
 //
 //
-//   //void application::message_box(::user::interaction_base* puiOwner, const ::scoped_string & scopedstrMessage, const ::scoped_string & scopedstrTitle, unsigned int uFlags, ::function_arg function)
+//   //void application::message_box(::user::interaction_base* puiOwner, const ::scoped_string & scopedstrMessage, const ::scoped_string & scopedstrTitle, ::u32 uFlags, ::function_arg function)
 //   //{
 //
 //   //   auto estatus = ui_message_box(puiOwner->get_safe_handle(), pszMessage, pszTitle, fuStyle, functionarg);

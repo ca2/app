@@ -20,12 +20,12 @@
 //   }
 //
 //
-//   void pixmap::initialize_gpu_pixmap(::gpu::renderer* pgpurenderer, const ::int_size& m_size)
+//   void pixmap::initialize_gpu_pixmap(::gpu::renderer* pgpurenderer, const ::i32_size& m_size)
 //   {
 //
 //      glPixelStorei(GL_UNPACK_ALIGNMENT, 1);
 //      // generate texture
-//         //unsigned int texture;
+//         //::u32 texture;
 //      glGenTextures(1, &m_gluTexture);
 //      glBindTexture(GL_TEXTURE_2D, m_gluTexture); // You must bind before setting parameters
 //
@@ -38,7 +38,7 @@
 //   }
 //
 //
-//   void pixmap::set_pixels(const void* data, int w, int h)
+//   void pixmap::set_pixels(const void* data, ::i32 w, ::i32 h)
 //   {
 //
 //      glBindTexture(GL_TEXTURE_2D, m_gluTexture);

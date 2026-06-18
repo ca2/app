@@ -7,7 +7,7 @@
 //#include "acme/node/ansios/ansios.h"
 
 
-//string get_error_message(unsigned int dwError);
+//string get_error_message(::u32 dwError);
 
 //::platform::application* win_instantiate_application(::platform::application* pappSystem, const ::scoped_string & scopedstrId);
 
@@ -30,8 +30,8 @@
 
 //#include "host_interaction.h"
 
-//CLASS_DECL_ACME void __trace_message(const_char_pointer lpszPrefix, ::message::message * pmessage);
-//CLASS_DECL_ACME void __trace_message(const_char_pointer lpszPrefix, MESSAGE * lpmsg);
+//CLASS_DECL_ACME void __trace_message(const_char_pointer pszPrefix, ::message::message * pmessage);
+//CLASS_DECL_ACME void __trace_message(const_char_pointer pszPrefix, MESSAGE * lpmsg);
 
 CLASS_DECL_ACME void __cdecl __pre_translate_message(::message::message* pmessage);
 
@@ -40,25 +40,25 @@ CLASS_DECL_ACME void __cdecl __pre_translate_message(::message::message* pmessag
 
 
 
-int_bool PeekMessage(
+::i32_bool PeekMessage(
    MESSAGE * lpMsg,
    oswindow hWnd,
-   unsigned int wMsgFilterMin,
-   unsigned int wMsgFilterMax,
-   unsigned int wRemoveMsg);
+   ::u32 wMsgFilterMin,
+   ::u32 wMsgFilterMax,
+   ::u32 wRemoveMsg);
 
-int_bool GetMessage(
+::i32_bool GetMessage(
    MESSAGE * lpMsg,
    oswindow hWnd,
-   unsigned int wMsgFilterMin,
-   unsigned int wMsgFilterMax);
+   ::u32 wMsgFilterMin,
+   ::u32 wMsgFilterMax);
 
 
 
-int CLASS_DECL_ACME __android_main(int argc, char* argv[]);
+::i32 CLASS_DECL_ACME __android_main(::i32 argc, char_pointer argv[]);
 
 
-CLASS_DECL_ACME void vfxThrowFileException(::particle * pparticle, const ::e_status & estatus, int lOsError, const_char_pointer lpszFileName = nullptr);
+CLASS_DECL_ACME void vfxThrowFileException(::particle * pparticle, const ::e_status & estatus, ::i32 lOsError, const_char_pointer pszFileName = nullptr);
 
 
 #include "internal.h"

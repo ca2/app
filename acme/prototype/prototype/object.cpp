@@ -44,7 +44,7 @@ object::~object()
 }
 
 
-long long object::increment_reference_count()
+::i64 object::increment_reference_count()
 {
 
    return ::subparticle::increment_reference_count();
@@ -61,7 +61,7 @@ long long object::increment_reference_count()
 }
 
 
-long long object::decrement_reference_count()
+::i64 object::decrement_reference_count()
 {
 
    return ::subparticle::decrement_reference_count();
@@ -83,10 +83,10 @@ long long object::decrement_reference_count()
 }
 
 
-long long object::release()
+::i64 object::release()
 {
 
-   long long i = decrement_reference_count();
+   ::i64 i = decrement_reference_count();
 
    if (i == 0)
    {
@@ -702,7 +702,7 @@ bool object::is_thread_class() const
 }
 
 
-bool object::task_get_run() const
+bool object::should_run() const
 {
 
     return !has_finishing_flag();
@@ -1310,21 +1310,28 @@ bool object::has_child_task() const
 void object::set_child_tasks_to_finish()
 {
 
-   if (::is_null(m_pparticleaChildrenTask))
-   {
+   //if (::is_null(m_pparticleaChildrenTask))
+   //{
 
-      return;
+   //   return;
 
-   }
+   //}
 
-   if (has_flag(e_flag_checking_children_task))
-   {
+   //if (has_flag(e_flag_checking_children_task))
+   //{
 
-      return;
+   //   return;
 
-   }
+   //}
 
    _synchronous_lock lock(synchronization(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
+
+    if (::is_null(m_pparticleaChildrenTask))
+   {
+
+      return;
+
+   }
 
    if (has_flag(e_flag_checking_children_task))
    {
@@ -1338,7 +1345,7 @@ void object::set_child_tasks_to_finish()
    try
    {
 
-      //for (int iChildTask = 0; iChildTask < m_pparticleaChildrenTask->get_size(); iChildTask++)
+      //for (::i32 iChildTask = 0; iChildTask < m_pparticleaChildrenTask->get_size(); iChildTask++)
       //{
 
       //   auto & ptaskChild = m_pparticleaChildrenTask->element_at(iChildTask);
@@ -1374,12 +1381,12 @@ void object::set_child_tasks_to_finish()
 
       //}
 
-      for (int iChildTask = 0; iChildTask < m_pparticleaChildrenTask->get_size(); )
+      for (::i32 iChildTask = 0; iChildTask < m_pparticleaChildrenTask->get_size(); )
       {
 
           auto ptaskChild = m_pparticleaChildrenTask->element_at(iChildTask);
 
-          if (!ptaskChild || !ptaskChild->task_get_run())
+          if (!ptaskChild || !ptaskChild->should_run())
           {
 
              m_pparticleaChildrenTask->erase_at(iChildTask);
@@ -1435,9 +1442,11 @@ void object::set_child_tasks_to_finish()
 void object::destroy_tasks()
 {
 
-   set_finishing_flag();
+   //set_finishing_flag();
 
-   while (task_get_run())
+   set_finish();
+
+   while (should_run())
    {
 
       set_child_tasks_to_finish();
@@ -1714,11 +1723,11 @@ bool object::__is_child_task(::particle * pparticleTask) const
 // "ask" to close object, not cancellable
 
 //
-// ->at simple objects (from finish int_point of impact)...
+// ->at simple objects (from finish i32_point of impact)...
 // ->for objects that doesn't have custom finalization
 // finish calls set_finish and destroy.
 //
-// ->for complex objects (from finish int_point of impact)...
+// ->for complex objects (from finish i32_point of impact)...
 // ->for objects that have custom finalization
 // finish wouldn't call *destroy*,
 // but only set_finish or custom set_finish.
@@ -2400,8 +2409,8 @@ void object::sleep(const class time & time)
 //::pointer<thread>object::start(
 //   ::particle * pparticle,
 //   ::enum_priority epriority = e_priority_normal,
-//   unsigned int nStackSize = 0,
-//   unsigned int dwCreateFlags = 0)
+//   ::u32 nStackSize = 0,
+//   ::u32 dwCreateFlags = 0)
 //{
 //
 //   auto pthread = create_newø< ::thread >();
@@ -2573,7 +2582,7 @@ struct context_object_test_struct :
 
    }
 
-   unsigned char m_ucha[1024];
+   ::u8 m_u8a[1024];
 
 };
 
@@ -2815,7 +2824,7 @@ void call_sync(const ::procedure_array& methoda)
 //#ifdef _DEBUG
 //
 //
-//long long object::increment_reference_count()
+//::i64 object::increment_reference_count()
 //{
 //
 //   return property_object::increment_reference_count();
@@ -2823,7 +2832,7 @@ void call_sync(const ::procedure_array& methoda)
 //}
 //
 //
-//long long object::decrement_reference_count()
+//::i64 object::decrement_reference_count()
 //{
 //
 //   return property_object::decrement_reference_count();
@@ -2831,7 +2840,7 @@ void call_sync(const ::procedure_array& methoda)
 //}
 //
 //
-//long long object::release()
+//::i64 object::release()
 //{
 //
 //   return property_object::release();
@@ -2842,7 +2851,7 @@ void call_sync(const ::procedure_array& methoda)
 //#else
 //
 //
-//long long object::increment_reference_count()
+//::i64 object::increment_reference_count()
 //{
 //
 //   return property_object::increment_reference_count();
@@ -2850,7 +2859,7 @@ void call_sync(const ::procedure_array& methoda)
 //}
 //
 //
-//long long object::decrement_reference_count()
+//::i64 object::decrement_reference_count()
 //{
 //
 //   return property_object::decrement_reference_count();
@@ -2858,7 +2867,7 @@ void call_sync(const ::procedure_array& methoda)
 //}
 //
 //
-//long long object::release()
+//::i64 object::release()
 //{
 //
 //   return property_object::release();
@@ -3187,7 +3196,7 @@ void object::initialize(::particle * pparticle)
 //}
 
 
-//inline long long get_ref_count()
+//inline ::i64 get_ref_count()
 //{
 
 //   return m_countReference;
@@ -3216,13 +3225,13 @@ void object::initialize(::particle * pparticle)
 
 
 
-//static unsigned int s_thread_proc(void* p);
+//static ::u32 s_thread_proc(void* p);
 
 
 // void to_string(const string_exchange & str) const 
 
 //::image::image_pointer create_image();
-//::image::image_pointer create_image(const ::int_size & size, ::eobject eobjectCreate = OK, int iGoodStride = -1, bool bPreserve = false);
+//::image::image_pointer create_image(const ::i32_size & size, ::eobject eobjectCreate = OK, ::i32 iGoodStride = -1, bool bPreserve = false);
 
 //::image::image_pointer get_image(const ::payload & payloadFile, bool bCache = true, bool bSync = true);
 //::image::image_pointer matter_image(const ::scoped_string & scopedstrMatter, bool bCache = true, bool bSync = true);
@@ -3666,12 +3675,12 @@ void object::initialize(::particle * pparticle)
 
 
 //template < typename PRED >
-//::image::image_pointer get_image(const ::payload & payloadFile, unsigned long long uTrait, PRED pred);
+//::image::image_pointer get_image(const ::payload & payloadFile, ::u64 uTrait, PRED pred);
 
 // ::image::image_pointer load_image(const ::payload & payloadFile, bool bSync = true, bool bCache = true, bool bCreateHelperMaps = false);
 // ::image::image_pointer load_matter_image(const ::scoped_string & scopedstrMatter, bool bSync = true, bool bCache = true, bool bCreateHelperMaps = false);
 // ::image::image_pointer load_matter_icon(string_array_base & straMatter, const ::scoped_string & scopedstrIcon);
-// ::image::image_pointer load_thumbnail(const ::payload & payloadFile, int w, int h);
+// ::image::image_pointer load_thumbnail(const ::payload & payloadFile, ::i32 w, ::i32 h);
 // ::image::image_pointer load_thumbnail(const ::file::path & path);
 // ::image::image_pointer load_dib(const ::file::path & pathDib);
 
@@ -3811,7 +3820,7 @@ bool object::IsSerializable() const
    //template < typename PRED >
    //inline ::thread_pointer predicate_run(bool bSync, PRED pred);
 
-   //::thread_pointer object::begin(::enum_priority epriority, unsigned int nStackSize, unsigned int dwCreateFlags)
+   //::thread_pointer object::begin(::enum_priority epriority, ::u32 nStackSize, ::u32 dwCreateFlags)
    //{
 
    //   return nullptr;

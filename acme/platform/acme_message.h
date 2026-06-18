@@ -20,8 +20,8 @@ namespace acme
       message_union m_union;
 
       class ::time m_time;
-      long long m_iTimestamp;
-      ::double_point m_pointMessage;
+      ::i64 m_iTimestamp;
+      ::f64_point m_pointMessage;
       ::user::enum_message m_eusermessage;
       wparam m_wparam;
       lparam m_lparam;
@@ -33,7 +33,7 @@ namespace acme
 
    private:
 
-      int id() { return 0; }
+      ::i32 id() { return 0; }
    };
 
 

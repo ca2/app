@@ -36,11 +36,11 @@ namespace draw2d
 
 
 
-      static double g_dEmboss;
+      static ::f64 g_dEmboss;
       void * m_pimpl;
 
-      int_map < ::pointer<memory >>m_alpha_spread__24CC_filterMap;
-      int_map < ::pointer<memory >>m_alpha_spread__32CC_filterMap;
+      i32_map < ::pointer<memory >>m_alpha_spread__24CC_filterMap;
+      i32_map < ::pointer<memory >>m_alpha_spread__32CC_filterMap;
 
 
       ::pointer<class ::draw2d::api>                           m_papi;
@@ -134,7 +134,7 @@ namespace draw2d
 
       virtual void embossed_text_out(
          ::draw2d::graphics_pointer & pgraphics,
-         const ::int_rectangle & rectangle,
+         const ::i32_rectangle & rectangle,
          const ::scoped_string & scopedstrText,
          ::image::fastblur & blur,
          ::image::image_pointer & imageBlur,
@@ -143,30 +143,30 @@ namespace draw2d
          const ::e_draw_text & edrawtext,
          const ::color::color & colorText,
          const ::color::color & colorGlow,
-         int iSpreadRadius,
-         int iBlurRadius,
-         int iBlur,
+         ::i32 iSpreadRadius,
+         ::i32 iBlurRadius,
+         ::i32 iBlur,
          bool bUpdate,
          const ::color_filter & colorfilter = nullptr);
 
 
       void emboss_predicate(
          ::draw2d::graphics_pointer & pgraphics,
-         const ::int_rectangle & rectangle,
+         const ::i32_rectangle & rectangle,
          const ::function < void(::draw2d::graphics *) > & functionDraw,
          ::image::fastblur & blur,
          ::image::image_pointer & pimageBlur,
          ::color::color crGlow,
-         int iSpreadRadius,
-         int iBlurRadius,
-         int iBlur,
+         ::i32 iSpreadRadius,
+         ::i32 iBlurRadius,
+         ::i32 iBlur,
          bool bUpdate,
                             const ::color_filter & colorfilter = nullptr);
 
 
-      virtual void alpha_spread__24CC(unsigned char * pbDest, int xDest, int yDest, int wDest, int cx, int cy, unsigned char * pbSrc, int ySrc, int xSrc, int wSrc, unsigned char bMin, int iRadius);
+      virtual void alpha_spread__24CC(::u8 * pbDest, ::i32 xDest, ::i32 yDest, ::i32 wDest, ::i32 cx, ::i32 cy, ::u8 * pbSrc, ::i32 ySrc, ::i32 xSrc, ::i32 wSrc, ::u8 bMin, ::i32 iRadius);
 
-      virtual bool channel_spread__32CC(::image::image *pimageDst, ::image::image *pimageSrc, int iChannel, int iRadius, const ::color::color & colorSpreadSetColor);
+      virtual bool channel_spread__32CC(::image::image *pimageDst, ::image::image *pimageSrc, ::i32 iChannel, ::i32 iRadius, const ::color::color & colorSpreadSetColor);
 
       //virtual void enum_draw2d_fonts(::write_text::font_enumeration_item_array& itema);
 
@@ -175,7 +175,7 @@ namespace draw2d
       virtual void unlock_device();
 
 
-      virtual void adjust_composited_window_styles(unsigned int& nExStyle, unsigned int& nStyle);
+      virtual void adjust_composited_window_styles(::u32& nExStyle, ::u32& nStyle);
 
 
    };

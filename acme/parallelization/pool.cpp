@@ -56,7 +56,7 @@ void task_pool::set_timer(enum_timer etimer, const class time & timeWait)
 }
 
 
-void task_pool::on_timer(enum_timer etimer)
+void task_pool::operator()(enum_timer etimer)
 {
 
 }
@@ -78,7 +78,7 @@ void task_pool::_timer_task(enum_timer etimer, const class time & timeWait)
       try
       {
 
-         on_timer(etimer);
+         operator()(etimer);
 
       }
       catch (...)

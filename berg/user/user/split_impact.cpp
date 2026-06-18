@@ -13,7 +13,7 @@ namespace user
    split_impact::split_impact()
    {
 
-      m_flagNonClient -= e_non_client_background;
+      m_enonclient -= ::user::e_non_client_background;
 
 
       m_bAutoCreate = true;
@@ -173,9 +173,9 @@ namespace user
       ::user::split_layout::_001OnDraw(pgraphics);
 
 
-//      int i;
+//      ::i32 i;
 
-      //::int_rectangle rectangle;
+      //::i32_rectangle rectangle;
 
       //::color32_t color32 = argb(190, 92, 92, 80);
 

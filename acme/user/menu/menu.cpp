@@ -38,7 +38,7 @@ menu::~menu()
 //   }
 //
 //
-//   void menu::update_flags(int iFlags)
+//   void menu::update_flags(::i32 iFlags)
 //   {
 //
 //      m_iFlags = iFlags;
@@ -46,7 +46,7 @@ menu::~menu()
 //   }
 //
 //
-//   void menu::update_position(const ::int_point & point)
+//   void menu::update_position(const ::i32_point & point)
 //   {
 //
 //      m_bPositionHint = true;
@@ -56,7 +56,7 @@ menu::~menu()
 //   }
 //
 //
-//   void menu::hints(int iFlags, const ::int_point & point)
+//   void menu::hints(::i32 iFlags, const ::i32_point & point)
 //   {
 //
 //      update_flags(iFlags);
@@ -324,7 +324,7 @@ menu::~menu()
 //   }
 //
 //
-//   ::menu::item * menu::GetSubMenu(int i)
+//   ::menu::item * menu::GetSubMenu(::i32 i)
 //   {
 //
 //      return get_menu_item()->m_pmenuitema->element_at(i);
@@ -477,7 +477,7 @@ menu::~menu()
 //      if (!is_window())
 //      {
 //
-//         //         int iStyleEx = 0;
+//         //         ::i32 iStyleEx = 0;
 //         //
 //         //         if (puiParent == nullptr)
 //         //         {
@@ -664,7 +664,7 @@ menu::~menu()
 //   //void menu::layout_menu(::draw2d::graphics_pointer & pgraphics)
 //   //{
 //
-//   //   ::int_point point = m_pointTrack;
+//   //   ::i32_point point = m_pointTrack;
 //
 //   //   if (get_parent() != nullptr)
 //   //   {
@@ -697,11 +697,11 @@ menu::~menu()
 //
 //   //   auto rectanglePadding = get_padding(pstyle);
 //
-//   //   //int iElementPadding = rectanglePadding.left;
+//   //   //::i32 iElementPadding = rectanglePadding.left;
 //
-//   //   int x = (int) (rectangleMargin.left + rectangleBorder.left + rectanglePadding.left);
+//   //   ::i32 x = (::i32) (rectangleMargin.left + rectangleBorder.left + rectanglePadding.left);
 //
-//   //   int y = (int) (rectangleMargin.top + rectangleBorder.top + rectanglePadding.top);
+//   //   ::i32 y = (::i32) (rectangleMargin.top + rectangleBorder.top + rectanglePadding.top);
 //
 //   //   class calc_size calcsize;
 //
@@ -721,7 +721,7 @@ menu::~menu()
 //
 //   //   }
 //
-//   //   int yClose = y;
+//   //   ::i32 yClose = y;
 //
 //   //   m_iaColumnWidth.set_size(1);
 //
@@ -733,12 +733,12 @@ menu::~menu()
 //
 //   //   index iColumn = 0;
 //
-//   //   for (int i = 0; i < pmenuitema->get_size(); i++)
+//   //   for (::i32 i = 0; i < pmenuitema->get_size(); i++)
 //   //   {
 //
 //   //      string strButtonText = pmenuitema->element_at(i)->m_puserinteraction->get_window_text();
 //
-//   //      pmenuitema->element_at(i)->m_iColumn = (int) iColumn;
+//   //      pmenuitema->element_at(i)->m_iColumn = (::i32) iColumn;
 //
 //   //      pmenuitema->element_at(i)->m_puserinteraction->on_calc_size(&calcsize);
 //
@@ -775,12 +775,12 @@ menu::~menu()
 //
 //   //   }
 //
-//   //   m_size.cx = (int) (m_iaColumnWidth.get_sum()
+//   //   m_size.cx = (::i32) (m_iaColumnWidth.get_sum()
 //   //               + rectangleMargin.left + rectangleMargin.right
 //   //               + rectangleBorder.left + rectangleBorder.right
 //   //               + rectanglePadding.left + rectanglePadding.right);
 //
-//   //   m_size.cy = (int) (m_iaColumnHeight.get_maximum_value()
+//   //   m_size.cy = (::i32) (m_iaColumnHeight.get_maximum_value()
 //   //               + rectangleMargin.top + rectangleMargin.bottom
 //   //               + rectangleBorder.top + rectangleBorder.bottom
 //   //               + rectanglePadding.top + rectanglePadding.bottom);
@@ -794,7 +794,7 @@ menu::~menu()
 //
 //   //   ::pointer<::berg::style>pbergstyle = pstyle;
 //
-//   //   for (int i = 0; i < iItemCount; i++)
+//   //   for (::i32 i = 0; i < iItemCount; i++)
 //   //   {
 //
 //   //      ::menu::item * pitem = pmenuitema->element_at(i);
@@ -822,14 +822,14 @@ menu::~menu()
 //
 //   //   }
 //
-//   //   ::int_rectangle rectangleWindow;
+//   //   ::i32_rectangle rectangleWindow;
 //
 //   //   rectangleWindow.left = point.x;
 //   //   rectangleWindow.top = point.y;
 //   //   rectangleWindow.right = rectangleWindow.left + m_size.cx;
 //   //   rectangleWindow.bottom = rectangleWindow.top + m_size.cy;
 //
-//   //   ::int_rectangle rectangleMonitor;
+//   //   ::i32_rectangle rectangleMonitor;
 //
 //   //   auto iMonitor = get_best_monitor(&rectangleMonitor, rectangleWindow);
 //   //
@@ -895,7 +895,7 @@ menu::~menu()
 //      if (crBackground.is_translucent())
 //      {
 //
-//         ::double_rectangle rectangleClip;
+//         ::f64_rectangle rectangleClip;
 //
 //         pgraphics->get_clip_box(rectangleClip);
 //
@@ -1012,7 +1012,7 @@ menu::~menu()
 //      ////
 //      ////                           m_psubmenu->m_pmenuParent = this;
 //      ////
-//      ////                           ::int_rectangle rectangle;
+//      ////                           ::i32_rectangle rectangle;
 //      ////
 //      ////                           ptopic->user_interaction()->window_rectangle(rectangle);
 //      ////
@@ -1186,7 +1186,7 @@ menu::~menu()
 //
 //      m_pmenuSubMenu = __initialize(allocateø ::user::menu(pmenuitem));
 //
-//      ::int_rectangle rectangle;
+//      ::i32_rectangle rectangle;
 //
 //      pmenuitem->m_puserinteraction->window_rectangle(rectangle);
 //
@@ -1276,10 +1276,10 @@ menu::~menu()
 //
 //
 //
-//   void menu::on_timer(::timer * ptimer)
+//   void menu::operator()(::timer * ptimer)
 //      {
 //
-//         ::user::interaction::on_timer(ptimer);
+//         ::user::interaction::operator()(ptimer);
 //
 //         ::pointer<::menu::item>pitemThis = get_menu_item();
 //
@@ -1292,7 +1292,7 @@ menu::~menu()
 //
 //         ::pointer<::menu::item_ptra>pmenuitema = pitemThis->m_pmenuitema;
 //
-//         if (ptimer->m_uTimer == e_timer_menu)
+//         if (ptimer->m_etimer == e_timer_menu)
 //         {
 //
 //            kill_timer(e_timer_menu);
@@ -1340,7 +1340,7 @@ menu::~menu()
 //
 //            //   m_psubmenu->initialize(this);
 //
-//            //   ::int_rectangle rectangle;
+//            //   ::i32_rectangle rectangle;
 //
 //            //   pmenuitema->find(m_atomTimerMenu)->m_puserinteraction->window_rectangle(rectangle);
 //
@@ -1353,7 +1353,7 @@ menu::~menu()
 //            //m_atomTimerMenu.is_empty();
 //
 //         }
-//         else if (ptimer->m_uTimer == ::e_timer_command_probe)
+//         else if (ptimer->m_etimer == ::e_timer_command_probe)
 //         {
 //
 //            {
@@ -1368,7 +1368,7 @@ menu::~menu()
 //            //{
 //            //   ::message::command commandui(this);
 //            //   commandui.m_pitema          = pmenuitema;
-//            //   for(int i = 0; i < pmenuitema->get_size(); i++)
+//            //   for(::i32 i = 0; i < pmenuitema->get_size(); i++)
 //            //   {
 //            //
 //            //      commandui.m_iIndex    = i;
@@ -1380,7 +1380,7 @@ menu::~menu()
 //            //      if(puiTarget != nullptr)
 //            //      {
 //            //         /* xxx if(puserinteractionParent->on_command(0,
-//            //          MAKELONG((int)CN_UPDATE_::message::command, ::user::e_message_command+WM_REFLECT_BASE),
+//            //          MAKELONG((::i32)CN_UPDATE_::message::command, ::user::e_message_command+WM_REFLECT_BASE),
 //            //          &commandui, nullptr))
 //            //          continue;*/
 //            //         if(puiTarget->_001SendUpdateCmdUi(&commandui))
@@ -1428,7 +1428,7 @@ menu::~menu()
 //      //       {
 //      //          ::message::command commandui(this);
 //      //          commandui.m_pitema          = pmenuitema;
-//      //          for(int i = 0; i < pmenuitema->get_size(); i++)
+//      //          for(::i32 i = 0; i < pmenuitema->get_size(); i++)
 //      //          {
 //
 //      //             commandui.m_iIndex    = i;
@@ -1440,7 +1440,7 @@ menu::~menu()
 //      //             {
 //      //                /*
 //      //                 if(puserinteractionParent->on_command(0,
-//      //                 MAKELONG((int)CN_UPDATE_::message::command, ::user::e_message_command+WM_REFLECT_BASE),
+//      //                 MAKELONG((::i32)CN_UPDATE_::message::command, ::user::e_message_command+WM_REFLECT_BASE),
 //      //                 &commandui, nullptr))
 //      //                 continue;
 //      //                 */
@@ -1530,7 +1530,7 @@ menu::~menu()
 //      }
 //
 //
-//      int_size menu::get_window_minimum_size()
+//      i32_size menu::get_window_minimum_size()
 //      {
 //
 //         return m_sizeMinimum;
@@ -1565,7 +1565,7 @@ menu::~menu()
 //         //else
 //         //{
 //
-//         //   ::int_rectangle * prectangle = (::int_rectangle *)pusermessage->m_lparam.m_lparam;
+//         //   ::i32_rectangle * prectangle = (::i32_rectangle *)pusermessage->m_lparam.m_lparam;
 //
 //         //   prectangle->left = m_pointTrack.x;
 //
@@ -1884,7 +1884,7 @@ menu::~menu()
 //
 //         }
 //
-//         ::int_point point;
+//         ::i32_point point;
 //
 //         if (get_parent() == nullptr)
 //         {
@@ -1950,17 +1950,17 @@ menu::~menu()
 //
 //         auto rectanglePadding = get_padding(pstyle);
 //
-//         //int iElementPadding = rectanglePadding.left;
+//         //::i32 iElementPadding = rectanglePadding.left;
 //
-//         int x = (int)(rectangleMargin.left + rectangleBorder.left + rectanglePadding.left);
+//         ::i32 x = (::i32)(rectangleMargin.left + rectangleBorder.left + rectanglePadding.left);
 //
-//         int y = (int)(rectangleMargin.top + rectangleBorder.top + rectanglePadding.top);
+//         ::i32 y = (::i32)(rectangleMargin.top + rectangleBorder.top + rectanglePadding.top);
 //
 //         //class calc_size calcsize;
 //
 //         //calcsize.m_pgraphics = pgraphics;
 //
-//         ::int_size size;
+//         ::i32_size size;
 //
 //         if (m_bCloseButton)
 //         {
@@ -1978,7 +1978,7 @@ menu::~menu()
 //
 //         }
 //
-//         int yClose = y;
+//         ::i32 yClose = y;
 //
 //         m_iaColumnWidth.set_size(1);
 //
@@ -1990,11 +1990,11 @@ menu::~menu()
 //
 //         ::collection::index iColumn = 0;
 //
-//         int iMaximumButtonHeight = 0;
+//         ::i32 iMaximumButtonHeight = 0;
 //
 //         // Calculate buttons sizes
 //
-//         for (int i = 0; i < pmenuitema->get_size(); i++)
+//         for (::i32 i = 0; i < pmenuitema->get_size(); i++)
 //         {
 //
 //            auto pmenuitem = pmenuitema->element_at(i);
@@ -2029,11 +2029,11 @@ menu::~menu()
 //
 //         }
 //
-//         int iSeparatorHeight = iMaximumButtonHeight / 3;
+//         ::i32 iSeparatorHeight = iMaximumButtonHeight / 3;
 //
-//         int iRow = 0;
+//         ::i32 iRow = 0;
 //
-//         for (int i = 0; i < pmenuitema->get_size(); i++)
+//         for (::i32 i = 0; i < pmenuitema->get_size(); i++)
 //         {
 //
 //            auto pmenuitem = pmenuitema->element_at(i);
@@ -2051,7 +2051,7 @@ menu::~menu()
 //
 //            }
 //
-//            pmenuitem->m_iColumn = (int) iColumn;
+//            pmenuitem->m_iColumn = (::i32) iColumn;
 //
 //            pmenuitem->m_iRow = iRow;
 //
@@ -2089,7 +2089,7 @@ menu::~menu()
 //
 //         }
 //
-//         for (int i = 0; i < pmenuitema->get_size(); i++)
+//         for (::i32 i = 0; i < pmenuitema->get_size(); i++)
 //         {
 //
 //            auto pmenuitem = pmenuitema->element_at(i);
@@ -2103,14 +2103,14 @@ menu::~menu()
 //
 //         }
 //
-//         //::int_size sizeSeparator;
+//         //::i32_size sizeSeparator;
 //
-//         //for (int i = 0; i < pmenuitema->get_size(); i++)
+//         //for (::i32 i = 0; i < pmenuitema->get_size(); i++)
 //         //{
 //
 //         //   string strButtonText = pmenuitema->element_at(i)->m_puserinteraction->get_window_text();
 //
-//         //   pmenuitema->element_at(i)->m_iColumn = (int)iColumn;
+//         //   pmenuitema->element_at(i)->m_iColumn = (::i32)iColumn;
 //
 //         //   auto puserinteraction = pmenuitema->element_at(i)->m_puserinteraction;
 //
@@ -2172,12 +2172,12 @@ menu::~menu()
 //
 //         //}
 //
-//         m_size.cx = (int)(m_iaColumnWidth.get_sum()
+//         m_size.cx = (::i32)(m_iaColumnWidth.get_sum()
 //                     + rectangleMargin.left + rectangleMargin.right
 //                     + rectangleBorder.left + rectangleBorder.right
 //                     + rectanglePadding.left + rectanglePadding.right);
 //
-//         m_size.cy = (int)(m_iaColumnHeight.get_maximum_value()
+//         m_size.cy = (::i32)(m_iaColumnHeight.get_maximum_value()
 //                     + rectangleMargin.top + rectangleMargin.bottom
 //                     + rectangleBorder.top + rectangleBorder.bottom
 //                     + rectanglePadding.top + rectanglePadding.bottom);
@@ -2190,7 +2190,7 @@ menu::~menu()
 //
 //         ::pointer<::berg::style>pbergstyle = pstyle;
 //
-//         for (int i = 0; i < iItemCount; i++)
+//         for (::i32 i = 0; i < iItemCount; i++)
 //         {
 //
 //            ::menu::item * pitem = pmenuitema->element_at(i);
@@ -2234,14 +2234,14 @@ menu::~menu()
 //         if (get_parent() == nullptr)
 //         {
 //
-//            ::int_rectangle rectangleWindow;
+//            ::i32_rectangle rectangleWindow;
 //
 //            rectangleWindow.left = point.x;
 //            rectangleWindow.top = point.y;
 //            rectangleWindow.right = rectangleWindow.left + m_size.cx;
 //            rectangleWindow.bottom = rectangleWindow.top + m_size.cy;
 //
-//            ::int_rectangle rectangleMonitor;
+//            ::i32_rectangle rectangleMonitor;
 //
 //            auto iMonitor = get_best_monitor(&rectangleMonitor, rectangleWindow);
 //

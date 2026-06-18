@@ -37,11 +37,11 @@ namespace html
 
                m_pimage->defer_realize(pgraphics);
 
-               auto pointDst = ::double_point((int)left(), (int)top());
+               auto pointDst = ::f64_point((::i32)left(), (::i32)top());
 
                auto sizeDst = m_pimage->size();
 
-               auto rectangleTarget = ::double_rectangle(pointDst, sizeDst);
+               auto rectangleTarget = ::f64_rectangle(pointDst, sizeDst);
 
                ::image::image_source imagesource(m_pimage);
 
@@ -72,27 +72,27 @@ namespace html
 
             m_pimage = pdata->get_image(strSrc);
 
-            int cx = m_pimage->width();
+            ::i32 cx = m_pimage->width();
 
-            int cy = m_pimage->height();
+            ::i32 cy = m_pimage->height();
 
             if (pelement->m_propertyset.has_property("width"))
             {
 
-               cx = pelement->m_propertyset["width"].as_int();
+               cx = pelement->m_propertyset["width"].as_i32();
 
             }
 
             if (pelement->m_propertyset.has_property("height"))
             {
                
-               cy = pelement->m_propertyset["height"].as_int();
+               cy = pelement->m_propertyset["height"].as_i32();
 
             }
 
-            m_cxMax = (float)cx;
+            m_cxMax = (::f32)cx;
 
-            m_cxMin = (float)cy;
+            m_cxMin = (::f32)cy;
 
          }
 
@@ -110,25 +110,25 @@ namespace html
             if (lockImage.lock(0_s))
             {
 
-               int cx = m_pimage->width();
+               ::i32 cx = m_pimage->width();
                
-               int cy = m_pimage->height();
+               ::i32 cy = m_pimage->height();
 
                if (m_pelemental->m_propertyset.has_property("width"))
                {
                   
-                  cx = m_pelemental->m_propertyset["width"].as_int();
+                  cx = m_pelemental->m_propertyset["width"].as_i32();
 
                }
 
                if (m_pelemental->m_propertyset.has_property("height"))
                {
                   
-                  cy = m_pelemental->m_propertyset["height"].as_int();
+                  cy = m_pelemental->m_propertyset["height"].as_i32();
 
                }
 
-               m_box.set_size((float)cx, (float)cy);
+               m_box.set_size((::f32)cx, (::f32)cy);
 
             }
             else
@@ -157,10 +157,10 @@ namespace html
 
             if (lockImage.lock(0_s))
             {
-               pdata->m_pcoredata->m_layoutstate3.m_cx = (float)m_pimage->width();
+               pdata->m_pcoredata->m_layoutstate3.m_cx = (::f32)m_pimage->width();
                if (m_pimage->height() > pdata->m_pcoredata->m_layoutstate3.m_cya.last())
                {
-                  pdata->m_pcoredata->m_layoutstate3.m_cya.last() = (float)m_pimage->height();
+                  pdata->m_pcoredata->m_layoutstate3.m_cya.last() = (::f32)m_pimage->height();
                }
             }
             else

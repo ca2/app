@@ -23,6 +23,8 @@ namespace micro
       ::pointer<::nano::graphics::pen>          m_ppenBorderHoverAndFocus;
       ::pointer<::nano::graphics::pen>          m_ppenNull;
       ::pointer<::nano::graphics::font>         m_pfont;
+      ::pointer<::nano::graphics::font>         m_pfontHyperlink;
+      ::pointer<::nano::graphics::font>         m_pfontHyperlinkHover;
       ::color::color                            m_colorText;
       ::color::color                            m_colorHyperlink;
       ::color::color                            m_colorHyperlinkHover;
@@ -30,7 +32,7 @@ namespace micro
       ::color::color                            m_colorHover;
       ::color::color                            m_colorHoverAndFocus;
       ::color::color                            m_colorWindow;
-      int                                       m_iFontSize;
+      ::i32                                       m_iFontSize;
 
 
 

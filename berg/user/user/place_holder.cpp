@@ -13,8 +13,8 @@ namespace user
    place_holder::place_holder()
    {
 
-      m_flagNonClient.erase(e_non_client_background);
-      m_flagNonClient.erase(e_non_client_focus_rect);
+      m_enonclient.erase(::user::e_non_client_background);
+      m_enonclient.erase(::user::e_non_client_focus_rect);
       m_bDefaultClickHandling = false;
       m_bLockGraphicalUpdate = true;
 
@@ -531,12 +531,12 @@ namespace user
    }
 
 
-   int place_holder_ptra::place_hold(::user::interaction * pinteraction)
+   ::i32 place_holder_ptra::place_hold(::user::interaction * pinteraction)
    {
 
-      int count = 0;
+      ::i32 count = 0;
 
-      for(int i = 0; i < this->get_count(); i++)
+      for(::i32 i = 0; i < this->get_count(); i++)
       {
 
          try
@@ -562,12 +562,12 @@ namespace user
    }
 
 
-   int place_holder_ptra::unplace(::user::interaction * pinteraction)
+   ::i32 place_holder_ptra::unplace(::user::interaction * pinteraction)
    {
 
-      int count = 0;
+      ::i32 count = 0;
 
-      for(int i = 0; i < this->get_count(); i++)
+      for(::i32 i = 0; i < this->get_count(); i++)
       {
          
          try
@@ -638,7 +638,7 @@ namespace user
    }
 
 
-   void place_holder::get_child_rect(::int_rectangle & rectangle)
+   void place_holder::get_child_rect(::i32_rectangle & rectangle)
    {
 
       get_parent()->get_child_rect(rectangle);

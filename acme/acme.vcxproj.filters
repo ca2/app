@@ -159,9 +159,6 @@
     <Filter Include="Source Files\operating_system\windows_common">
       <UniqueIdentifier>{78bb2d35-9002-45ea-bd02-3b7ffbeaafb3}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Source Files\operating_system\windows\nano">
-      <UniqueIdentifier>{7142358a-d975-4e4f-bd5f-f657a4c1e589}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Header Files\user\user">
       <UniqueIdentifier>{49fa2b40-9738-4236-84fc-258c24f0c715}</UniqueIdentifier>
     </Filter>
@@ -330,12 +327,6 @@
     <Filter Include="Header Files\operating_system\x11\nano">
       <UniqueIdentifier>{97440174-dc4e-4712-87ef-25ed72deac6d}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Source Files\operating_system\windows\nano\http">
-      <UniqueIdentifier>{fffbff41-031f-4907-9758-273f8496a08f}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Header Files\operating_system\windows\nano\http">
-      <UniqueIdentifier>{eec6c008-55ba-4bca-95a1-6d46e5547b01}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Source Files\nano">
       <UniqueIdentifier>{b022b125-ebfd-42ca-bb85-65b4526d6702}</UniqueIdentifier>
     </Filter>
@@ -400,14 +391,8 @@
     <Filter Include="Source Files\nano\account">
       <UniqueIdentifier>{132d5ce2-2ae5-4fb2-9f16-f1c4b33d8697}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Source Files\operating_system\windows_common\nano\idn">
-      <UniqueIdentifier>{52929d65-f769-479c-ba78-4c25f49bbd85}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Header Files\operating_system\windows_common\nano">
       <UniqueIdentifier>{8f3895af-1566-498f-8e4c-f9d2fb884240}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Header Files\operating_system\windows_common\nano\idn">
-      <UniqueIdentifier>{107ae780-e40d-49ba-a772-8d9c2a304677}</UniqueIdentifier>
     </Filter>
     <Filter Include="Source Files\operating_system\shared_posix">
       <UniqueIdentifier>{086d5169-6123-42a9-8673-7d8804ab61c0}</UniqueIdentifier>
@@ -466,14 +451,32 @@
     <Filter Include="Header Files\operating_system-windows">
       <UniqueIdentifier>{e79eec09-d61c-4f2d-8bf1-4d512e72d311}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Source Files\operating_system\windows_common\nano\compress">
-      <UniqueIdentifier>{355ca080-36e8-4c57-8f00-e2a514c91e24}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Source Files\operating_system\windows_common\com">
       <UniqueIdentifier>{c205b87d-5477-43d6-b6fc-2c9223af30a4}</UniqueIdentifier>
     </Filter>
     <Filter Include="Header Files\template">
       <UniqueIdentifier>{82e900b5-be5f-43c0-b831-b555d49865a3}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\user\simple">
+      <UniqueIdentifier>{92b1998d-4807-4e71-97da-95db378e5df9}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\user\simple">
+      <UniqueIdentifier>{e993135c-41f8-41df-9dec-96d6a5b348c0}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\operating_system\windows_common\com">
+      <UniqueIdentifier>{332cfa00-9ef2-4b2f-a3d5-4b3e67962ee1}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\input_output">
+      <UniqueIdentifier>{9c7ab59e-d7cb-4289-82af-0c1a0213e0e3}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\accessibility">
+      <UniqueIdentifier>{46a38eb2-5f35-4d23-b061-7806461d162e}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\accessibility">
+      <UniqueIdentifier>{c19d2c2e-4a8c-4525-9286-3505d1607ff1}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\constant">
+      <UniqueIdentifier>{2a59b37b-105a-42f2-ac4c-19d7d30f87c9}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
@@ -1122,13 +1125,13 @@
     <ClInclude Include="prototype\mathematics\number_limits.h">
       <Filter>Header Files\prototype\mathematics</Filter>
     </ClInclude>
-    <ClInclude Include="prototype\mathematics\number_integer.h">
+    <ClInclude Include="prototype\mathematics\number_i32.h">
       <Filter>Header Files\prototype\mathematics</Filter>
     </ClInclude>
-    <ClInclude Include="prototype\mathematics\number_float.h">
+    <ClInclude Include="prototype\mathematics\number_f32.h">
       <Filter>Header Files\prototype\mathematics</Filter>
     </ClInclude>
-    <ClInclude Include="prototype\mathematics\number_double.h">
+    <ClInclude Include="prototype\mathematics\number_f64.h">
       <Filter>Header Files\prototype\mathematics</Filter>
     </ClInclude>
     <ClInclude Include="prototype\mathematics\number.h">
@@ -1747,21 +1750,6 @@
       <Filter>Header Files\platform</Filter>
     </ClInclude>
     <ClInclude Include="platform\timer.h">
-      <Filter>Header Files\platform</Filter>
-    </ClInclude>
-    <ClInclude Include="platform\timer_array.h">
-      <Filter>Header Files\platform</Filter>
-    </ClInclude>
-    <ClInclude Include="platform\timer_callback.h">
-      <Filter>Header Files\platform</Filter>
-    </ClInclude>
-    <ClInclude Include="platform\timer_event.h">
-      <Filter>Header Files\platform</Filter>
-    </ClInclude>
-    <ClInclude Include="platform\timer_item.h">
-      <Filter>Header Files\platform</Filter>
-    </ClInclude>
-    <ClInclude Include="platform\timer_task.h">
       <Filter>Header Files\platform</Filter>
     </ClInclude>
     <ClInclude Include="platform\title.h">
@@ -2649,7 +2637,7 @@
     <ClInclude Include="constant\activate.h">
       <Filter>Header Files\constant</Filter>
     </ClInclude>
-    <ClInclude Include="constant\button_state.h">
+    <ClInclude Include="constant\aaa_button_state.h">
       <Filter>Header Files\constant</Filter>
     </ClInclude>
     <ClInclude Include="constant\character_set.h">
@@ -2944,12 +2932,6 @@
       <Filter>Header Files\operating_system\dos</Filter>
     </ClInclude>
     <ClInclude Include="operating_system\summary.h">
-      <Filter>Header Files\operating_system</Filter>
-    </ClInclude>
-    <ClInclude Include="operating_system\application.h">
-      <Filter>Header Files\operating_system</Filter>
-    </ClInclude>
-    <ClInclude Include="operating_system\main_window.h">
       <Filter>Header Files\operating_system</Filter>
     </ClInclude>
     <ClInclude Include="operating_system\_.h">
@@ -3297,7 +3279,7 @@
     <ClInclude Include="operating_system\shared_posix\stdio_file.h">
       <Filter>Header Files\operating_system\shared_posix</Filter>
     </ClInclude>
-    <ClInclude Include="operating_system\shared_posix\c_error_number.h">
+    <ClInclude Include="operating_system\shared_posix\c_errno.h">
       <Filter>Header Files\operating_system\shared_posix</Filter>
     </ClInclude>
     <ClInclude Include="prototype\collection\array_2d.h">
@@ -3444,7 +3426,7 @@
     <ClInclude Include="handler\source.h">
       <Filter>Header Files\handler</Filter>
     </ClInclude>
-    <ClInclude Include="user\user\key_state.h">
+    <ClInclude Include="user\user\keyboard_state.h">
       <Filter>Header Files\user\user</Filter>
     </ClInclude>
     <ClInclude Include="user\user\controller.h">
@@ -3615,30 +3597,6 @@
     <ClInclude Include="prototype\prototype\quantum.h">
       <Filter>Header Files\prototype\prototype</Filter>
     </ClInclude>
-    <ClInclude Include="operating_system\windows\nano\http\_.h">
-      <Filter>Header Files\operating_system\windows\nano\http</Filter>
-    </ClInclude>
-    <ClInclude Include="operating_system\windows\nano\http\_http.h">
-      <Filter>Header Files\operating_system\windows\nano\http</Filter>
-    </ClInclude>
-    <ClInclude Include="operating_system\windows\nano\http\hinternet.h">
-      <Filter>Header Files\operating_system\windows\nano\http</Filter>
-    </ClInclude>
-    <ClInclude Include="operating_system\windows\nano\http\http.h">
-      <Filter>Header Files\operating_system\windows\nano\http</Filter>
-    </ClInclude>
-    <ClInclude Include="operating_system\windows\nano\http\connect.h">
-      <Filter>Header Files\operating_system\windows\nano\http</Filter>
-    </ClInclude>
-    <ClInclude Include="operating_system\windows\nano\http\get.h">
-      <Filter>Header Files\operating_system\windows\nano\http</Filter>
-    </ClInclude>
-    <ClInclude Include="operating_system\windows\nano\http\request.h">
-      <Filter>Header Files\operating_system\windows\nano\http</Filter>
-    </ClInclude>
-    <ClInclude Include="operating_system\windows\nano\http\session.h">
-      <Filter>Header Files\operating_system\windows\nano\http</Filter>
-    </ClInclude>
     <ClInclude Include="nano\http\_.h">
       <Filter>Header Files\nano\http</Filter>
     </ClInclude>
@@ -3729,9 +3687,6 @@
     <ClInclude Include="nano\account\user.h">
       <Filter>Header Files\nano\account</Filter>
     </ClInclude>
-    <ClInclude Include="operating_system\windows_common\nano\idn\idn.h">
-      <Filter>Header Files\operating_system\windows_common\nano\idn</Filter>
-    </ClInclude>
     <ClInclude Include="prototype\data\text_property.h">
       <Filter>Header Files\prototype\data</Filter>
     </ClInclude>
@@ -3805,9 +3760,6 @@
       <Filter>Header Files\nano\graphics</Filter>
     </ClInclude>
     <ClInclude Include="nano\graphics\brush.h">
-      <Filter>Header Files\nano\graphics</Filter>
-    </ClInclude>
-    <ClInclude Include="nano\graphics\device.h">
       <Filter>Header Files\nano\graphics</Filter>
     </ClInclude>
     <ClInclude Include="nano\graphics\font.h">
@@ -4338,6 +4290,111 @@
     <ClInclude Include="constant\read_file.h">
       <Filter>Header Files\constant</Filter>
     </ClInclude>
+    <ClInclude Include="user\simple\_.h">
+      <Filter>Header Files\user\simple</Filter>
+    </ClInclude>
+    <ClInclude Include="user\simple\dialog_box_line.h">
+      <Filter>Header Files\user\simple</Filter>
+    </ClInclude>
+    <ClInclude Include="operating_system\windows_common\com\variant.h">
+      <Filter>Header Files\operating_system\windows_common\com</Filter>
+    </ClInclude>
+    <ClInclude Include="operating_system\windows_common\com\prop_variant.h">
+      <Filter>Header Files\operating_system\windows_common\com</Filter>
+    </ClInclude>
+    <ClInclude Include="operating_system\windows_common\com\hresult_exception.h">
+      <Filter>Header Files\operating_system\windows_common\com</Filter>
+    </ClInclude>
+    <ClInclude Include="operating_system\windows_common\com\cotaskptr.h">
+      <Filter>Header Files\operating_system\windows_common\com</Filter>
+    </ClInclude>
+    <ClInclude Include="operating_system\windows_common\com\comptr_array.h">
+      <Filter>Header Files\operating_system\windows_common\com</Filter>
+    </ClInclude>
+    <ClInclude Include="operating_system\windows_common\com\comptr.h">
+      <Filter>Header Files\operating_system\windows_common\com</Filter>
+    </ClInclude>
+    <ClInclude Include="operating_system\windows_common\com\bstring.h">
+      <Filter>Header Files\operating_system\windows_common\com</Filter>
+    </ClInclude>
+    <ClInclude Include="platform\string_table.h">
+      <Filter>Header Files\platform</Filter>
+    </ClInclude>
+    <ClInclude Include="platform\registry.h">
+      <Filter>Header Files\platform</Filter>
+    </ClInclude>
+    <ClInclude Include="platform\subsystem.h">
+      <Filter>Header Files\platform</Filter>
+    </ClInclude>
+    <ClInclude Include="platform\wparam.h">
+      <Filter>Header Files\platform</Filter>
+    </ClInclude>
+    <ClInclude Include="operating_system\windows\time.h">
+      <Filter>Header Files\operating_system\windows</Filter>
+    </ClInclude>
+    <ClInclude Include="platform\ProfileLogger.h">
+      <Filter>Header Files\platform</Filter>
+    </ClInclude>
+    <ClInclude Include="operating_system\GetCPUtime.h">
+      <Filter>Header Files\operating_system</Filter>
+    </ClInclude>
+    <ClInclude Include="operating_system\windows_common\last_error.h">
+      <Filter>Header Files\operating_system\windows_common</Filter>
+    </ClInclude>
+    <ClInclude Include="platform\guid.h">
+      <Filter>Header Files\platform</Filter>
+    </ClInclude>
+    <ClInclude Include="accessibility\main_window.h">
+      <Filter>Header Files\accessibility</Filter>
+    </ClInclude>
+    <ClInclude Include="accessibility\application.h">
+      <Filter>Header Files\accessibility</Filter>
+    </ClInclude>
+    <ClInclude Include="accessibility\accessibility.h">
+      <Filter>Header Files\accessibility</Filter>
+    </ClInclude>
+    <ClInclude Include="accessibility\_.h">
+      <Filter>Header Files\accessibility</Filter>
+    </ClInclude>
+    <ClInclude Include="operating_system\message_box.h">
+      <Filter>Header Files\operating_system</Filter>
+    </ClInclude>
+    <ClInclude Include="operating_system\windows_common\com\_.h">
+      <Filter>Header Files\operating_system\windows_common\com</Filter>
+    </ClInclude>
+    <ClInclude Include="nano\graphics\context.h">
+      <Filter>Header Files\nano\graphics</Filter>
+    </ClInclude>
+    <ClInclude Include="nano\graphics\image.h">
+      <Filter>Header Files\nano\graphics</Filter>
+    </ClInclude>
+    <ClInclude Include="nano\graphics\path.h">
+      <Filter>Header Files\nano\graphics</Filter>
+    </ClInclude>
+    <ClInclude Include="prototype\mathematics\integer_biunique.h">
+      <Filter>Header Files\prototype\mathematics</Filter>
+    </ClInclude>
+    <ClInclude Include="constant\key_state.h">
+      <Filter>Header Files\constant</Filter>
+    </ClInclude>
+    <ClInclude Include="user\user\key_state.h">
+      <Filter>Header Files\user\user</Filter>
+    </ClInclude>
+    <ClInclude Include="platform\node_acme.h">
+      <Filter>Header Files\platform</Filter>
+    </ClInclude>
+    <ClInclude Include="platform\node_apex.h">
+      <Filter>Header Files\platform</Filter>
+    </ClInclude>
+    <ClInclude Include="platform\node_aqua.h">
+      <Filter>Header Files\platform</Filter>
+    </ClInclude>
+    <ClInclude Include="platform\node_aura.h">
+      <Filter>Header Files\platform</Filter>
+    </ClInclude>
+    <ClInclude Include="nano\graphics\font_family.h">
+      <Filter>Header Files\nano\graphics</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="prototype\prototype\bit.cpp">
@@ -4631,18 +4688,6 @@
     <ClCompile Include="platform\timer.cpp">
       <Filter>Source Files\platform</Filter>
     </ClCompile>
-    <ClCompile Include="platform\timer_array.cpp">
-      <Filter>Source Files\platform</Filter>
-    </ClCompile>
-    <ClCompile Include="platform\timer_callback.cpp">
-      <Filter>Source Files\platform</Filter>
-    </ClCompile>
-    <ClCompile Include="platform\timer_event.cpp">
-      <Filter>Source Files\platform</Filter>
-    </ClCompile>
-    <ClCompile Include="platform\timer_task.cpp">
-      <Filter>Source Files\platform</Filter>
-    </ClCompile>
     <ClCompile Include="prototype\prototype\work.cpp">
       <Filter>Source Files\prototype\prototype</Filter>
     </ClCompile>
@@ -4727,7 +4772,7 @@
     <ClCompile Include="prototype\mathematics\cvt_g.cpp">
       <Filter>Source Files\prototype\mathematics</Filter>
     </ClCompile>
-    <ClCompile Include="prototype\mathematics\int_biunique.cpp">
+    <ClCompile Include="prototype\mathematics\integer_biunique.cpp">
       <Filter>Source Files\prototype\mathematics</Filter>
     </ClCompile>
     <ClCompile Include="prototype\mathematics\mkint_c.cpp">
@@ -4739,13 +4784,13 @@
     <ClCompile Include="prototype\mathematics\number.cpp">
       <Filter>Source Files\prototype\mathematics</Filter>
     </ClCompile>
-    <ClCompile Include="prototype\mathematics\number_double.cpp">
+    <ClCompile Include="prototype\mathematics\number_f64.cpp">
       <Filter>Source Files\prototype\mathematics</Filter>
     </ClCompile>
-    <ClCompile Include="prototype\mathematics\number_float.cpp">
+    <ClCompile Include="prototype\mathematics\number_f32.cpp">
       <Filter>Source Files\prototype\mathematics</Filter>
     </ClCompile>
-    <ClCompile Include="prototype\mathematics\number_integer.cpp">
+    <ClCompile Include="prototype\mathematics\number_i32.cpp">
       <Filter>Source Files\prototype\mathematics</Filter>
     </ClCompile>
     <ClCompile Include="prototype\mathematics\random_number_generator.cpp">
@@ -5315,12 +5360,6 @@
     <ClCompile Include="operating_system\summary.cpp">
       <Filter>Source Files\operating_system</Filter>
     </ClCompile>
-    <ClCompile Include="operating_system\application.cpp">
-      <Filter>Source Files\operating_system</Filter>
-    </ClCompile>
-    <ClCompile Include="operating_system\main_window.cpp">
-      <Filter>Source Files\operating_system</Filter>
-    </ClCompile>
     <ClCompile Include="operating_system\windows_common\process.cpp">
       <Filter>Source Files\operating_system\windows_common</Filter>
     </ClCompile>
@@ -5513,7 +5552,7 @@
     <ClCompile Include="handler\source.cpp">
       <Filter>Source Files\handler</Filter>
     </ClCompile>
-    <ClCompile Include="user\user\key_state.cpp">
+    <ClCompile Include="user\user\keyboard_state.cpp">
       <Filter>Source Files\user\user</Filter>
     </ClCompile>
     <ClCompile Include="user\user\controller.cpp">
@@ -5672,24 +5711,6 @@
     <ClCompile Include="prototype\prototype\quantum.cpp">
       <Filter>Source Files\prototype\prototype</Filter>
     </ClCompile>
-    <ClCompile Include="operating_system\windows\nano\http\hinternet.cpp">
-      <Filter>Source Files\operating_system\windows\nano\http</Filter>
-    </ClCompile>
-    <ClCompile Include="operating_system\windows\nano\http\http.cpp">
-      <Filter>Source Files\operating_system\windows\nano\http</Filter>
-    </ClCompile>
-    <ClCompile Include="operating_system\windows\nano\http\connect.cpp">
-      <Filter>Source Files\operating_system\windows\nano\http</Filter>
-    </ClCompile>
-    <ClCompile Include="operating_system\windows\nano\http\get.cpp">
-      <Filter>Source Files\operating_system\windows\nano\http</Filter>
-    </ClCompile>
-    <ClCompile Include="operating_system\windows\nano\http\request.cpp">
-      <Filter>Source Files\operating_system\windows\nano\http</Filter>
-    </ClCompile>
-    <ClCompile Include="operating_system\windows\nano\http\session.cpp">
-      <Filter>Source Files\operating_system\windows\nano\http</Filter>
-    </ClCompile>
     <ClCompile Include="nano\http\get.cpp">
       <Filter>Source Files\nano\http</Filter>
     </ClCompile>
@@ -5722,12 +5743,6 @@
     </ClCompile>
     <ClCompile Include="nano\account\user.cpp">
       <Filter>Source Files\nano\account</Filter>
-    </ClCompile>
-    <ClCompile Include="operating_system\windows_common\nano\idn\idn.cpp">
-      <Filter>Source Files\operating_system\windows_common\nano\idn</Filter>
-    </ClCompile>
-    <ClCompile Include="operating_system\windows_common\nano\idn\_idn.cpp">
-      <Filter>Source Files\operating_system\windows_common\nano\idn</Filter>
     </ClCompile>
     <ClCompile Include="prototype\data\text_property.cpp">
       <Filter>Source Files\prototype\data</Filter>
@@ -5771,7 +5786,7 @@
     <ClCompile Include="platform\url_context.cpp">
       <Filter>Source Files\platform</Filter>
     </ClCompile>
-    <ClCompile Include="operating_system\shared_posix\c_error_number.cpp">
+    <ClCompile Include="operating_system\shared_posix\c_errno.cpp">
       <Filter>Source Files\operating_system\shared_posix</Filter>
     </ClCompile>
     <ClCompile Include="operating_system\shared_posix\earth_time_shift.cpp">
@@ -5799,9 +5814,6 @@
       <Filter>Source Files\nano\graphics</Filter>
     </ClCompile>
     <ClCompile Include="nano\graphics\brush.cpp">
-      <Filter>Source Files\nano\graphics</Filter>
-    </ClCompile>
-    <ClCompile Include="nano\graphics\device.cpp">
       <Filter>Source Files\nano\graphics</Filter>
     </ClCompile>
     <ClCompile Include="nano\graphics\font.cpp">
@@ -6128,15 +6140,6 @@
     <ClCompile Include="prototype\prototype\pool.cpp">
       <Filter>Source Files\prototype\prototype</Filter>
     </ClCompile>
-    <ClCompile Include="operating_system\windows\nano\http\_factory.cpp">
-      <Filter>Source Files\operating_system\windows\nano\http</Filter>
-    </ClCompile>
-    <ClCompile Include="operating_system\windows_common\nano\compress\_factory.cpp">
-      <Filter>Source Files\operating_system\windows_common\nano\compress</Filter>
-    </ClCompile>
-    <ClCompile Include="operating_system\windows_common\nano\compress\compress.cpp">
-      <Filter>Source Files\operating_system\windows_common\nano\compress</Filter>
-    </ClCompile>
     <ClCompile Include="operating_system\windows_common\com\_.cpp">
       <Filter>Source Files\operating_system\windows_common\com</Filter>
     </ClCompile>
@@ -6218,6 +6221,117 @@
     <ClCompile Include="handler\dispatch_array.cpp">
       <Filter>Source Files\handler</Filter>
     </ClCompile>
+    <ClCompile Include="operating_system\windows\console.cpp">
+      <Filter>Source Files\operating_system\windows</Filter>
+    </ClCompile>
+    <ClCompile Include="user\simple\dialog_box_line.cpp">
+      <Filter>Source Files\user\simple</Filter>
+    </ClCompile>
+    <ClCompile Include="operating_system\windows\CtrlAltDelSimulator.cpp">
+      <Filter>Source Files\operating_system\windows</Filter>
+    </ClCompile>
+    <ClCompile Include="platform\user_interaction_sink.cpp">
+      <Filter>Source Files\platform</Filter>
+    </ClCompile>
+    <ClCompile Include="platform\registry.cpp">
+      <Filter>Source Files\platform</Filter>
+    </ClCompile>
+    <ClCompile Include="platform\subsystem.cpp">
+      <Filter>Source Files\platform</Filter>
+    </ClCompile>
+    <ClCompile Include="input_output\_.cpp">
+      <Filter>Source Files\input_output</Filter>
+    </ClCompile>
+    <ClCompile Include="input_output\BufferedInputStream.cpp">
+      <Filter>Source Files\input_output</Filter>
+    </ClCompile>
+    <ClCompile Include="input_output\BufferedOutputStream.cpp">
+      <Filter>Source Files\input_output</Filter>
+    </ClCompile>
+    <ClCompile Include="input_output\ByteArrayInputStream.cpp">
+      <Filter>Source Files\input_output</Filter>
+    </ClCompile>
+    <ClCompile Include="input_output\ByteArrayOutputStream.cpp">
+      <Filter>Source Files\input_output</Filter>
+    </ClCompile>
+    <ClCompile Include="input_output\Channel.cpp">
+      <Filter>Source Files\input_output</Filter>
+    </ClCompile>
+    <ClCompile Include="input_output\DataCopy.cpp">
+      <Filter>Source Files\input_output</Filter>
+    </ClCompile>
+    <ClCompile Include="input_output\DataInputStream.cpp">
+      <Filter>Source Files\input_output</Filter>
+    </ClCompile>
+    <ClCompile Include="input_output\DataOutputStream.cpp">
+      <Filter>Source Files\input_output</Filter>
+    </ClCompile>
+    <ClCompile Include="input_output\InputStream.cpp">
+      <Filter>Source Files\input_output</Filter>
+    </ClCompile>
+    <ClCompile Include="input_output\io_exception.cpp">
+      <Filter>Source Files\input_output</Filter>
+    </ClCompile>
+    <ClCompile Include="input_output\OutputStream.cpp">
+      <Filter>Source Files\input_output</Filter>
+    </ClCompile>
+    <ClCompile Include="platform\ini.cpp">
+      <Filter>Source Files\platform</Filter>
+    </ClCompile>
+    <ClCompile Include="platform\wparam.cpp">
+      <Filter>Source Files\platform</Filter>
+    </ClCompile>
+    <ClCompile Include="operating_system\GetCPUtime.cpp">
+      <Filter>Source Files\operating_system</Filter>
+    </ClCompile>
+    <ClCompile Include="platform\ProfileLogger.cpp">
+      <Filter>Source Files\platform</Filter>
+    </ClCompile>
+    <ClCompile Include="prototype\string\string_base.cpp">
+      <Filter>Source Files\prototype\string</Filter>
+    </ClCompile>
+    <ClCompile Include="operating_system\windows_common\last_error.cpp">
+      <Filter>Source Files\operating_system\windows_common</Filter>
+    </ClCompile>
+    <ClCompile Include="accessibility\accessibility.cpp">
+      <Filter>Source Files\accessibility</Filter>
+    </ClCompile>
+    <ClCompile Include="accessibility\application.cpp">
+      <Filter>Source Files\accessibility</Filter>
+    </ClCompile>
+    <ClCompile Include="accessibility\main_window.cpp">
+      <Filter>Source Files\accessibility</Filter>
+    </ClCompile>
+    <ClCompile Include="constant\user_key.cpp">
+      <Filter>Source Files\constant</Filter>
+    </ClCompile>
+    <ClCompile Include="operating_system\windows\shared_memory.cpp">
+      <Filter>Source Files\operating_system\windows</Filter>
+    </ClCompile>
+    <ClCompile Include="operating_system\shared_memory.cpp">
+      <Filter>Source Files\operating_system</Filter>
+    </ClCompile>
+    <ClCompile Include="operating_system\performance_counter.cpp">
+      <Filter>Source Files\operating_system</Filter>
+    </ClCompile>
+    <ClCompile Include="operating_system\windows_common\apartment_thread.cpp">
+      <Filter>Source Files\operating_system\windows_common</Filter>
+    </ClCompile>
+    <ClCompile Include="nano\graphics\context.cpp">
+      <Filter>Source Files\nano\graphics</Filter>
+    </ClCompile>
+    <ClCompile Include="nano\graphics\image.cpp">
+      <Filter>Source Files\nano\graphics</Filter>
+    </ClCompile>
+    <ClCompile Include="nano\graphics\path.cpp">
+      <Filter>Source Files\nano\graphics</Filter>
+    </ClCompile>
+    <ClCompile Include="user\user\key_state.cpp">
+      <Filter>Source Files\user\user</Filter>
+    </ClCompile>
+    <ClCompile Include="nano\graphics\font_family.cpp">
+      <Filter>Source Files\nano\graphics</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <None Include="prototype\string\_defer.h">
@@ -6250,7 +6364,7 @@
     <None Include="memory\_new.inl">
       <Filter>Header Files\memory</Filter>
     </None>
-    <None Include="prototype\mathematics\int_to_string_bases_table.dynamically_generated">
+    <None Include="prototype\mathematics\integer_to_string_bases_table.dynamically_generated">
       <Filter>Source Files\prototype\mathematics</Filter>
     </None>
     <None Include="constant\character_set.enum">
@@ -6264,6 +6378,9 @@
     </None>
     <None Include="inline\application\main_executable.inl">
       <Filter>Header Files</Filter>
+    </None>
+    <None Include="acme.def">
+      <Filter>Source Files</Filter>
     </None>
   </ItemGroup>
   <ItemGroup>

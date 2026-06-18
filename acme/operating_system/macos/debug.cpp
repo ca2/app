@@ -23,12 +23,12 @@
 //
 //#include "acme/operating_system/apple/ns_exception.h"
 //
-//int __node_is_debugger_attached()
+//::i32 __node_is_debugger_attached()
 //// Returns true if the current process is being debugged (either
 //// running under the debugger or has a debugger attached post facto).
 //{
-//   int                 junk;
-//   int                 mib[4];
+//   ::i32                 junk;
+//   ::i32                 mib[4];
 //   struct kinfo_proc   info;
 //   size_t              size;
 //
@@ -56,17 +56,17 @@
 //   return ( (info.kp_proc.p_flag & P_TRACED) != 0 );
 //}
 //
-//unsigned int
+//::u32
 ////WINAPI
 //FormatMessage(
-//unsigned int dwFlags,
+//::u32 dwFlags,
 //const void * pSource,
 //
-//unsigned int dwMessageId,
-//unsigned int dwLanguageId,
-//char * pBuffer,
+//::u32 dwMessageId,
+//::u32 dwLanguageId,
+//char_pointer pBuffer,
 //
-//unsigned int nSize,
+//::u32 nSize,
 //va_list *Arguments
 //)
 //{

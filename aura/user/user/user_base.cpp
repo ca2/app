@@ -119,7 +119,7 @@ return {};
 
 
    //
-   //      ::pointer<::user::menu> _track_popup_menu(::user::interaction * pinteraction, ::menu::item * pmenuitem, int iFlags, const ::int_point & point, const ::int_size & sizeMinimum = ::int_size(), ::channel * pchannelNotify){}
+   //      ::pointer<::user::menu> _track_popup_menu(::user::interaction * pinteraction, ::menu::item * pmenuitem, ::i32 iFlags, const ::i32_point & point, const ::i32_size & sizeMinimum = ::i32_size(), ::channel * pchannelNotify){}
    //
 
    void base_user_layer::popup_from_application_menu(::menu::item* pmenuitem, ::application_menu* papplicationmenu,

@@ -1,7 +1,7 @@
 #include "framework.h"
 
 
-void get_os_priority(int * piPolicy, sched_param * pparam, ::enum_priority epriority);
+void get_os_priority(::i32 * piPolicy, sched_param * pparam, ::enum_priority epriority);
 //
 //
 //namespace acme
@@ -10,14 +10,14 @@ void get_os_priority(int * piPolicy, sched_param * pparam, ::enum_priority eprio
 //   namespace android
 //   {
 //
-//void node::create_process(const_char_pointer _cmd_line, int * pprocessId, int * piErrorCode)
+//void node::create_process(const_char_pointer _cmd_line, ::i32 * pprocessId, ::i32 * piErrorCode)
 //{
 //
-//   char *   exec_path_name = nullptr;
+//   char_pointer exec_path_name = nullptr;
 //
-//   char *   cmd_line;
+//   char_pointer cmd_line;
 //
-//   cmd_line = (char *) ::system()->m_pheapmanagement->memory(::heap::e_memory_main)->allocate(strlen(_cmd_line ) + 1 );
+//   cmd_line = (char_pointer ) ::system()->m_pheapmanagement->memory(::heap::e_memory_main)->allocate(strlen(_cmd_line ) + 1 );
 //
 //   if (cmd_line == nullptr)
 //   {
@@ -32,9 +32,9 @@ void get_os_priority(int * piPolicy, sched_param * pparam, ::enum_priority eprio
 //   {
 //
 //      // child
-//      const char     *pArg, *pPtr;
-//      const char     *argv[1024 + 1];
-//      int      argc;
+//      const_char_pointer pArg, *pPtr;
+//      const_char_pointer argv[1024 + 1];
+//      ::i32      argc;
 //      if( ( pArg = ansi_find_char_reverse( exec_path_name, '/' ) ) != nullptr )
 //         pArg++;
 //      else
@@ -44,19 +44,19 @@ void get_os_priority(int * piPolicy, sched_param * pparam, ::enum_priority eprio
 //
 //      if( cmd_line != nullptr && *cmd_line != '\0' )
 //      {
-//         pArg = strtok_r(cmd_line, " ", (char **) &pPtr);
+//         pArg = strtok_r(cmd_line, " ", (char_pointer *) &pPtr);
 //         while( pArg != nullptr )
 //         {
 //            argv[argc] = pArg;
 //            argc++;
 //            if( argc >= 1024 )
 //               break;
-//            pArg = strtok_r(nullptr, " ", (char **) &pPtr);
+//            pArg = strtok_r(nullptr, " ", (char_pointer *) &pPtr);
 //         }
 //      }
 //      argv[argc] = nullptr;
 //
-//      execv(exec_path_name, (char * const *) argv);
+//      execv(exec_path_name, (char_pointer const *) argv);
 //      free(cmd_line);
 //      exit( -1 );
 //
@@ -82,13 +82,13 @@ void get_os_priority(int * piPolicy, sched_param * pparam, ::enum_priority eprio
 //
 //} // namespace acme
 //
-//CLASS_DECL_ACME int call_async(
+//CLASS_DECL_ACME ::i32 call_async(
 //const ::file::path & path,
 //const ::scoped_string & scopedstrParam,
 //const ::scoped_string & scopedstrDir,
-//::enum_display edisplay,
+//const ::e_display & edisplay,
 //bool bPrivileged,
-//unsigned int * puiPid)
+//::u32 * puiPid)
 //{
 //   string strCmdLine;
 //
@@ -99,7 +99,7 @@ void get_os_priority(int * piPolicy, sched_param * pparam, ::enum_priority eprio
 //      strCmdLine += pszParam;
 //   }
 //
-//   int processId;
+//   ::i32 processId;
 //
 //   if(!create_process(strCmdLine, &processId))
 //      return -1;
@@ -115,7 +115,7 @@ void get_os_priority(int * piPolicy, sched_param * pparam, ::enum_priority eprio
 //
 //}
 //
-//CLASS_DECL_ACME unsigned int call_sync(const ::file::path & path, const ::scoped_string & scopedstrParam, const ::scoped_string & scopedstrDir, ::e_display edisplay, const class time & timeTimeout, ::property_set & set)
+//CLASS_DECL_ACME ::u32 call_sync(const ::file::path & path, const ::scoped_string & scopedstrParam, const ::scoped_string & scopedstrDir, ::e_display edisplay, const class time & timeTimeout, ::property_set & set)
 //{
 //   string strCmdLine;
 //
@@ -126,7 +126,7 @@ void get_os_priority(int * piPolicy, sched_param * pparam, ::enum_priority eprio
 //      strCmdLine += pszParam;
 //   }
 //
-//   int processId;
+//   ::i32 processId;
 //
 //   if(!create_process(strCmdLine, &processId))
 //      return -1;
@@ -215,7 +215,7 @@ CLASS_DECL_ACME bool main_finalize()
    CLASS_DECL_ACME bool set_process_priority(::enum_priority epriority)
    {
 
-      int iPolicy = SCHED_OTHER;
+      ::i32 iPolicy = SCHED_OTHER;
 
       sched_param schedparam;
 
@@ -236,7 +236,7 @@ CLASS_DECL_ACME bool main_finalize()
 
 //wideh * g_pwszCommandLine = nullptr;
 //
-//CLASS_DECL_ACME unichar * GetCommandLineW()
+//CLASS_DECL_ACME wide_character * GetCommandLineW()
 //{
 //
 //   return g_pwszCommandLine;
@@ -260,7 +260,7 @@ CLASS_DECL_ACME bool main_finalize()
 //
 //   }
 //
-//   int processId;
+//   ::i32 processId;
 //
 //   if (!create_process(strCmdLine, &processId))
 //      return -1;

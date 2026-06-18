@@ -4,7 +4,7 @@
 
 #include "font.h"
 #include "acme/platform/department.h"
-#include "acme/prototype/collection/int_map.h"
+#include "acme/prototype/collection/integer_map.h"
 
 
 namespace write_text
@@ -24,7 +24,7 @@ namespace write_text
       //string_to_string_base                                m_mapFontFaceName;
       string_map_base < ::memory_pointer >                 m_mapFileMemory;
 
-      string_map_base < int_to_string >                    m_mapFontKeyFaceName;
+      string_map_base < i32_to_string >                    m_mapFontKeyFaceName;
 
       //::particle_pointer                        m_pparticleFontTextMapSynchronization;
       string_map_base < ::pointer<internal_font >>m_mapInternalFont;
@@ -48,14 +48,14 @@ namespace write_text
       virtual void handle_font_enumeration(::topic* ptopic);
 
       
-      virtual font_pointer font(const font_family_pointer & pfontfamily, const font_size & fontsize, int iFontWeight = e_font_weight_normal);
+      virtual font_pointer font(const font_family_pointer & pfontfamily, const font_size & fontsize, ::i32 iFontWeight = e_font_weight_normal);
 
 
       virtual font_pointer create_font();
       virtual memory_pointer get_file_memory(::platform::context * pcontext, const ::file::path & path);
 
       
-      virtual font_descriptor calculate_font_descriptor(const_char_pointer face, float size);
+      virtual font_descriptor calculate_font_descriptor(const_char_pointer face, ::f32 size);
       virtual string get_font_descriptor_face(const font_descriptor & font_descriptor);
 
       

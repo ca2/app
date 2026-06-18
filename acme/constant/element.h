@@ -4,7 +4,7 @@
 #pragma once
 
 
-enum enum_element : long long
+enum enum_element : ::i64
 {
 
    e_element_none,
@@ -125,6 +125,8 @@ enum enum_element : long long
    e_element_cancel,
    e_element_music_key,
    e_element_title_bar,
+   e_element_item_box,
+   e_element_divider,
 
 };
 

@@ -11,7 +11,7 @@
 #include <stdio.h>
 
 
-extern "C" int database_sqlite3_sqlite_callback(void * res_ptr,int ncol, char** reslt,char** cols);
+extern "C" ::i32 database_sqlite3_sqlite_callback(void * res_ptr,::i32 ncol, char_pointer * reslt,char_pointer * cols);
 
 
 namespace sqlite
@@ -77,7 +77,7 @@ namespace sqlite
    }
 
 
-   void database::set_error_code(int iErrorCode)
+   void database::set_error_code(::i32 iErrorCode)
    {
 
       switch (iErrorCode)
@@ -157,9 +157,9 @@ namespace sqlite
    bool database::exec(const ::scoped_string & scopedstrQuery)
    {
 
-      char * errmsg = nullptr;
+      char_pointer errmsg = nullptr;
 
-      int iResult = sqlite3_exec((sqlite3 *) get_handle(), scopedstrQuery, nullptr, nullptr, &errmsg);
+      ::i32 iResult = sqlite3_exec((sqlite3 *) get_handle(), scopedstrQuery, nullptr, nullptr, &errmsg);
 
       set_error_code(iResult);
 
@@ -207,7 +207,7 @@ namespace sqlite
 
       ::pointer<::database::result_set>presultset = allocateø ::database::result_set();
 
-      char * errmsg = nullptr;
+      char_pointer errmsg = nullptr;
 
       m_iLastError = sqlite3_exec((sqlite3 *) get_handle(), scopedstrQuery, &database_sqlite3_sqlite_callback, presultset.m_p, &errmsg);
 
@@ -303,7 +303,7 @@ namespace sqlite
       const ::scoped_string & scopedstrUser,
       const ::scoped_string & scopedstrPass,
       const ::scoped_string & scopedstrSckt,
-      unsigned long long uConnectionFlags)
+      ::u64 uConnectionFlags)
    {
 
       m_strHost = scopedstrHost;
@@ -378,9 +378,9 @@ namespace sqlite
       if (sqlite3_open(m_strName, (sqlite3 * *) & m_psqlite) == SQLITE_OK)
       {
          //cout << "Connected!\n";
-         char * err = nullptr;
+         char_pointer err = nullptr;
 
-         int iResult = sqlite3_exec((sqlite3 *) get_handle(), "PRAGMA empty_result_callbacks=ON", nullptr, nullptr,
+         ::i32 iResult = sqlite3_exec((sqlite3 *) get_handle(), "PRAGMA empty_result_callbacks=ON", nullptr, nullptr,
                                     &err);
 
          set_error_code(iResult);
@@ -528,11 +528,11 @@ namespace sqlite
 
    //   }
 
-   //   int atom;
+   //   ::i32 atom;
 
    //   database::result_set res;
 
-   //   char sqlcmd[512];
+   //   ::i8 sqlcmd[512];
 
    //   sprintf(sqlcmd,"select nextid from %s where seq_name = '%s'",sequence_table.c_str(), sname);
 
@@ -562,7 +562,7 @@ namespace sqlite
    //   else
    //   {
 
-   //      atom = res.m_records[0][0].as_int() + 1;
+   //      atom = res.m_records[0][0].as_i32() + 1;
 
    //      sprintf(sqlcmd,"update %s dataset nextid=%d where seq_name = '%s'",sequence_table.c_str(),atom,sname);
 
@@ -736,7 +736,7 @@ namespace sqlite
             if (m_pstmtReplace == nullptr)
             {
 
-               int iResult = sqlite3_prepare_v2(
+               ::i32 iResult = sqlite3_prepare_v2(
                   (sqlite3 *) get_handle(),
                   "REPLACE INTO blobtable (id, value) values (:id, :value);",
                   -1,
@@ -769,7 +769,7 @@ namespace sqlite
 
             character_count iLength = scopedstrKey.length();
 
-            int res = sqlite3_bind_text(m_pstmtReplace, m_iReplaceId, scopedstrKey, (int) iLength,
+            ::i32 res = sqlite3_bind_text(m_pstmtReplace, m_iReplaceId, scopedstrKey, (::i32) iLength,
                                         SQLITE_TRANSIENT);
 
             if (res != SQLITE_OK)
@@ -781,7 +781,7 @@ namespace sqlite
 
             }
 
-            res = sqlite3_bind_blob(m_pstmtReplace, m_iReplaceValue, block.data(), (int) block.size(), SQLITE_TRANSIENT);
+            res = sqlite3_bind_blob(m_pstmtReplace, m_iReplaceValue, block.data(), (::i32) block.size(), SQLITE_TRANSIENT);
 
             if (res != SQLITE_OK)
             {
@@ -815,7 +815,7 @@ namespace sqlite
       if (m_pstmtSelect == nullptr)
       {
 
-         int iResult = sqlite3_prepare_v2(
+         ::i32 iResult = sqlite3_prepare_v2(
             (sqlite3 *) get_handle(),
             "select `value` FROM `blobtable` WHERE `id` = :id;",
             -1,
@@ -857,9 +857,9 @@ namespace sqlite
 
       }
 
-      int iLength = (int) scopedstrKey.length();
+      ::i32 iLength = (::i32) scopedstrKey.length();
 
-      int res = sqlite3_bind_text(m_pstmtSelect, m_iSelectId, scopedstrKey, (int) iLength, SQLITE_TRANSIENT);
+      ::i32 res = sqlite3_bind_text(m_pstmtSelect, m_iSelectId, scopedstrKey, (::i32) iLength, SQLITE_TRANSIENT);
 
       if (res != SQLITE_OK)
       {
@@ -915,7 +915,7 @@ namespace sqlite
 
 
 extern "C"
-int database_sqlite3_sqlite_callback(void * res_ptr,int ncol, char** reslt,char** cols)
+::i32 database_sqlite3_sqlite_callback(void * res_ptr,::i32 ncol, char_pointer * reslt,char_pointer * cols)
 {
 
    database::result_set * presultset = (database::result_set*)res_ptr;//dynamic_cast<result_set*>(res_ptr);
@@ -971,7 +971,7 @@ int database_sqlite3_sqlite_callback(void * res_ptr,int ncol, char** reslt,char*
       if (iMaxRow > 0 && iCurrentLine >= iMaxRow)
       {
 
-         int iAbort = 1;
+         ::i32 iAbort = 1;
 
          return iAbort;
 
@@ -983,7 +983,7 @@ int database_sqlite3_sqlite_callback(void * res_ptr,int ncol, char** reslt,char*
 
       ::collection::count iMaxColumn = minimum_non_negative((::collection::count) ncol, presultset->m_iMaxColumnCount);
 
-      for (int i = 0; i < iMaxColumn; i++)
+      for (::i32 i = 0; i < iMaxColumn; i++)
       {
 
          if (reslt[i] == nullptr)
@@ -1005,7 +1005,7 @@ int database_sqlite3_sqlite_callback(void * res_ptr,int ncol, char** reslt,char*
 
       prowa->set_at_grow(iCurrentLine, prow);
 
-      int iAbort = iMaxRow > 0 && prowa->get_size() >= iMaxRow;
+      ::i32 iAbort = iMaxRow > 0 && prowa->get_size() >= iMaxRow;
 
       return iAbort;
 

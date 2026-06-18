@@ -32,7 +32,7 @@ namespace graphics3d
       floating_matrix4 m_matrixRotation;
       
 
-      long long m_llId;
+      ::i64 m_llId;
       enum_render_system m_erendersystem;
       ::pointer<::graphics3d::renderable> m_prenderable;
       ::color::color m_color;
@@ -42,7 +42,7 @@ namespace graphics3d
       //       ::graphics3d::point_light_component m_pointlight;
 
       //::string m_cubemapTextureName;
-      // long long m_llId;
+      // ::i64 m_llId;
       // bool m_bIsSkybox = false;
       ::string m_strRenderablePath;
 
@@ -62,10 +62,10 @@ namespace graphics3d
       virtual void set_renderable(::graphics3d::renderable *prenderable);
 
       virtual ::floating_matrix4 model_matrix();
-      virtual void on_update(float deltaTime);
+      virtual void on_update(::f32 deltaTime);
 
       virtual ::color::color color();
-      virtual long long getId();
+      virtual ::i64 getId();
 
 
       virtual void translate(const ::floating_sequence3 &floating_sequence3);

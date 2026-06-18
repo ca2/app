@@ -5,12 +5,12 @@
 //#include "implement.h"
 //
 //
-//int console_end(::e_status estatus)
+//::i32 console_end(::e_status estatus)
 //{
 //
-//   int iStatus = (int)estatus;
+//   ::i32 iStatus = (::i32)estatus;
 //
-//   int iError = 0;
+//   ::i32 iError = 0;
 //
 //   if (iStatus < 0)
 //   {

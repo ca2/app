@@ -88,7 +88,7 @@
 //      }
 //
 //
-//      bool tx::send(const ::scoped_string & scopedstrMessage,unsigned int tickTimeout)
+//      bool tx::send(const ::scoped_string & scopedstrMessage,::u32 tickTimeout)
 //      {
 //
 //         ::winrt::Windows::Storage::StorageFolder ^ folder = ::winrt::Windows::Storage::KnownFolders::DocumentsLibrary;
@@ -110,7 +110,7 @@
 //      }
 //
 //
-//      bool tx::send(int message,void * pdata,int len,unsigned int tickTimeout)
+//      bool tx::send(::i32 message,void * pdata,::i32 len,::u32 tickTimeout)
 //      {
 //
 //
@@ -254,7 +254,7 @@
 //
 //         //if(m_pacmewindowingwindow == nullptr)
 //         //{
-//         //   unsigned int dwLastError = ::get_last_error();
+//         //   ::u32 dwLastError = ::get_last_error();
 //         //   return false;
 //         //}
 //
@@ -284,11 +284,11 @@
 //      {
 //      }
 //
-//      void rx::receiver::on_receive(rx * prx,int message,void * pdata,memsize len)
+//      void rx::receiver::on_receive(rx * prx,::i32 message,void * pdata,memsize len)
 //      {
 //      }
 //
-//      void rx::receiver::on_post(rx * prx,long long int a,long long int b)
+//      void rx::receiver::on_post(rx * prx,::i64 ::i32 a,::i64 ::i32 b)
 //      {
 //      }
 //
@@ -306,7 +306,7 @@
 //
 //      }
 //
-//      void * rx::on_receive(rx * prx,int message,void * pdata,memsize len)
+//      void * rx::on_receive(rx * prx,::i32 message,void * pdata,memsize len)
 //      {
 //
 //         if(m_preceiver != nullptr)
@@ -321,7 +321,7 @@
 //      }
 //
 //
-//      void * rx::on_post(rx * prx,long long int a,long long int b)
+//      void * rx::on_post(rx * prx,::i64 ::i32 a,::i64 ::i32 b)
 //      {
 //
 //         if(m_preceiver != nullptr)
@@ -339,7 +339,7 @@
 //      //LRESULT CALLBACK rx::s_message_queue_proc(::acme::windowing::window * pacmewindowingwindow,::user::enum_message eusermessage, ::wparam wparam, ::lparam lparam)
 //      //{
 //
-//      //   //int iRet = 0;
+//      //   //::i32 iRet = 0;
 //
 //      //   //rx * pchannel = (rx *)GetWindowLongPtr(oswindow,GWLP_USERDATA);
 //
@@ -417,7 +417,7 @@
 //      //   //   else
 //      //   //   {
 //
-//      //   //      on_receive(this,(int)pcds->dwData,pcds->lpData,pcds->cbData);
+//      //   //      on_receive(this,(::i32)pcds->dwData,pcds->lpData,pcds->cbData);
 //
 //      //   //   }
 //

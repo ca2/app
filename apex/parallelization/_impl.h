@@ -3,28 +3,28 @@
 
 #ifdef inline
 
-inline int_bool semaphore::Unlock()
+inline ::i32_bool semaphore::Unlock()
 { return Unlock(1, nullptr); }
 
-inline int_bool CEvent::set_happening()
+inline ::i32_bool CEvent::set_happening()
 { ASSERT(m_hObject != nullptr); return ::SetEvent(m_hObject); }
-inline int_bool CEvent::pulse_happening()
+inline ::i32_bool CEvent::pulse_happening()
 { ASSERT(m_hObject != nullptr); return ::pulse_happening(m_hObject); }
-inline int_bool CEvent::reset_happening()
+inline ::i32_bool CEvent::reset_happening()
 { ASSERT(m_hObject != nullptr); return ::ResetEvent(m_hObject); }
 
 inline CSingleLock::~CSingleLock()
 { Unlock(); }
-inline int_bool CSingleLock::IsLocked()
+inline ::i32_bool CSingleLock::IsLocked()
 { return m_bAcquired; }
 
-inline int_bool CMultiLock::IsLocked(unsigned int dwObject)
+inline ::i32_bool CMultiLock::IsLocked(::u32 dwObject)
 {
    ASSERT(dwObject < m_dwCount);
    return m_bLockedArray[dwObject];
 }
 
-inline int_bool critical_section::Init()
+inline ::i32_bool critical_section::Init()
 {
    __try
    {
@@ -40,7 +40,7 @@ inline int_bool critical_section::Init()
 
 inline critical_sectioncritical_section() : synchronization < HANDLE > (nullptr)
 {
-   int_bool bSuccess;
+   ::i32_bool bSuccess;
 
    bSuccess = Init();
    if (!bSuccess)
@@ -51,7 +51,7 @@ inline critical_section::operator CRITICAL_SECTION*()
 { return (CRITICAL_SECTION*) &m_sect; }
 inline critical_section::~critical_section()
 { ::DeleteCriticalSection(&m_sect); }
-inline int_bool critical_section::Lock()
+inline ::i32_bool critical_section::Lock()
 {
    __try
    {
@@ -63,9 +63,9 @@ inline int_bool critical_section::Lock()
    }
    return true;
 }
-inline int_bool critical_section::Lock(unsigned int tickTimeout)
+inline ::i32_bool critical_section::Lock(::u32 tickTimeout)
 { ASSERT(tickTimeout == U32_INFINITE_TIMEOUT); (void)tickTimeout; return Lock(); }
-inline int_bool critical_section::Unlock()
+inline ::i32_bool critical_section::Unlock()
 { ::LeaveCriticalSection(&m_sect); return true; }
 
 #endif //inline
@@ -236,7 +236,7 @@ inline int_bool critical_section::Unlock()
 //
 //      class ::time tickStart = class ::time::now();
 //
-//      while(pthread.is_set() && pthread->task_get_run() && ::task_get_run())
+//      while(pthread.is_set() && pthread->should_run() && ::task_get_run())
 //      {
 //
 //         if(!do_events())
@@ -281,7 +281,7 @@ inline int_bool critical_section::Unlock()
 //
 //
 //template < typename PRED >
-//inline bool predicate_Sleep(int iTime, PRED pred)
+//inline bool predicate_Sleep(::i32 iTime, PRED pred)
 //{
 //
 //   if(iTime < 100)

@@ -16,14 +16,18 @@ time::time(const ::earth::gregorian_time & gregoriantime) :
 time::time(const ::file_time & filetime)
 {
 
-   uint64_t centimicroseconds = filetime.m_uFileTime ;
+   const std::int64_t ticks100ns =
+      static_cast<std::int64_t>(filetime.m_uFileTime) -
+      static_cast<std::int64_t>(file_time::EPOCH_DIFFERENCE_100NS);
 
-   centimicroseconds -= (file_time::EPOCH_DIFFERENCE_NANOS / 100);
+   m_iSecond = ticks100ns / 10'000'000ll;
+   m_iNanosecond = static_cast<std::int32_t>((ticks100ns % 10'000'000ll) * 100ll);
 
-   m_iSecond = centimicroseconds / 10'000'000;
-
-   m_iNanosecond = (centimicroseconds % 10'000'000) * 100;
-
+   if (m_iNanosecond < 0)
+   {
+      m_iNanosecond += 1'000'000'000;
+      --m_iSecond;
+   }
 }
 
 

@@ -54,7 +54,7 @@ CLASS_DECL_ACME void TRACELASTERROR();
 #include "acme/_operating_system.h"
 
 
-::collection::index engine_fileline(DWORD_PTR dwAddress, char* psz, int nCount, unsigned int* pline, unsigned int* pdisplacement = 0);
+::collection::index engine_fileline(DWORD_PTR dwAddress, char_pointer psz, ::i32 nCount, ::u32* pline, ::u32* pdisplacement = 0);
 
 #endif
 
@@ -218,7 +218,7 @@ void thread::thread_common_construct()
    //   m_bZipIsDir2 = get_app()->get_session()->m_bZipIsDir2;
 
    //}
-   m_bKeepRunningPostedProcedures = true;
+   m_bRunMainLoop = true;
 
 }
 
@@ -240,7 +240,7 @@ thread::~thread()
 #ifdef _DEBUG
 
 
-long long thread::increment_reference_count()
+::i64 thread::increment_reference_count()
 {
 
    return ::object::increment_reference_count();
@@ -248,7 +248,7 @@ long long thread::increment_reference_count()
 }
 
 
-long long thread::decrement_reference_count()
+::i64 thread::decrement_reference_count()
 {
 
    return ::object::decrement_reference_count();
@@ -256,7 +256,7 @@ long long thread::decrement_reference_count()
 }
 
 
-long long thread::release()
+::i64 thread::release()
 {
 
    return ::object::release();
@@ -940,7 +940,16 @@ bool thread::handle_messages()
 //
 //}
 
+
 void thread::run()
+{
+
+   ::task::run();
+
+}
+
+
+void thread::run_main_loop()
 {
 
    ASSERT_OK(this);
@@ -955,17 +964,16 @@ void thread::run()
       task_set_name(id().as_string());
 
       return m_procedure();
-
    }
 
-   //if (m_bSimpleMessageLoop)
+   // if (m_bSimpleMessageLoop)
    //{
 
    //   information() << "running thread with simple message loop";
 
    //}
 
-   ::task::run();
+   ::task::run_main_loop();
 
 }
 
@@ -1041,7 +1049,7 @@ void thread::on_message_branch(::message::message* pmessage)
 //}
 
 
-int thread::_GetMessage(MESSAGE* pmessage, ::windowing::window* pwindow, unsigned int wMsgFilterMin, unsigned int wMsgFilterMax)
+::i32 thread::_GetMessage(MESSAGE* pmessage, ::windowing::window* pwindow, ::u32 wMsgFilterMin, ::u32 wMsgFilterMax)
 {
 
    throw ::exception();
@@ -1261,7 +1269,7 @@ bool thread::get_message()
 
    MESSAGE message = {};
 
-   //int iResult = get_message(&message, NULL, 0, 0);
+   //::i32 iResult = get_message(&message, NULL, 0, 0);
 
    get_message(&message, NULL, 0, 0);
 
@@ -1487,7 +1495,7 @@ bool thread::handle_message(bool & bContinue)
          information(
             "\n\n\nthread::defer_pump_message (1) quitting (wm_quit? {PeekMessage->message : " +
             ::as_string(m_message.m_eusermessage == ::user::e_message_quit ? 1 : 0) + "!}) : " + ::platform::type(this).name() + " (" +
-            ::as_string((unsigned long long)::current_task_index()) + ")\n\n\n");
+            ::as_string((::u64)::current_task_index()) + ")\n\n\n");
          
          bContinue = false;
 
@@ -1506,7 +1514,7 @@ bool thread::handle_message(bool & bContinue)
 }
 
 
-void thread::on_thread_on_idle(thread* pimpl, int lCount)
+void thread::on_thread_on_idle(thread* pimpl, ::i32 lCount)
 {
 
    //return ::success;
@@ -1710,7 +1718,7 @@ void thread::post_quit()
 //}
 
 
-bool thread::post_quit_message(int nExitCode)
+bool thread::post_quit_message(::i32 nExitCode)
 {
 
 #ifdef WINDOWS_DESKTOP
@@ -1964,7 +1972,7 @@ void thread::destroy()
 
    m_prequest2.release();
 
-   m_pmessagequeue.defer_destroy();
+   m_pmessagequeue.defer_destroy_and_release();
 
    ::manager::destroy();
 
@@ -1996,7 +2004,7 @@ void thread::destroy()
 }
 
 
-bool thread::task_get_run() const
+bool thread::should_run() const
 {
 
    if (m_bMessageThread)
@@ -2016,7 +2024,7 @@ bool thread::task_get_run() const
 
    }
 
-   if (!::task::task_get_run())
+   if (!::task::should_run())
    {
 
       return false;
@@ -2091,7 +2099,7 @@ bool thread::is_system() const
 }
 
 
-unsigned int __thread_entry(void* p);
+::u32 __thread_entry(void* p);
 
 
 void thread::initialize(::particle* pparticle)
@@ -2175,7 +2183,7 @@ bool thread::on_idle()
 //void thread::main()
 //{
 //
-//   unsigned int u = -1;
+//   ::u32 u = -1;
 //
 //   //::e_status estatus = error_failed;
 //
@@ -2448,7 +2456,7 @@ void thread::dispatch_thread_message(::message::message* pusermessage)
 //
 //#if defined(WINDOWS)
 //
-//      unsigned int timeout = time.u32_millis();
+//      ::u32 timeout = time.u32_millis();
 //
 //      htask htask = m_htask;
 //
@@ -2652,7 +2660,7 @@ void thread::process_window_procedure_exception(const ::exception& e, ::message:
 }
 
 
-void thread::process_message_filter(int code, ::message::message* pmessage)
+void thread::process_message_filter(::i32 code, ::message::message* pmessage)
 {
 
    auto papplication = application();
@@ -2692,7 +2700,7 @@ void thread::process_message_filter(int code, ::message::message* pmessage)
 
 #ifdef WINDOWS_DESKTOP
 
-size_t engine_symbol(char* sz, int n, DWORD_PTR* pdisplacement, DWORD_PTR dwAddress);
+size_t engine_symbol(char_pointer sz, ::i32 n, DWORD_PTR* pdisplacement, DWORD_PTR dwAddress);
 
 #endif
 
@@ -2754,19 +2762,19 @@ void thread::branch(enum_parallelization eparallelization,
    //
    //      dwDisplacement = 0;
    //
-   //      unsigned int maxframes = sizeof(uia) / sizeof(uia[0]);
+   //      ::u32 maxframes = sizeof(uia) / sizeof(uia[0]);
    //
    //      ULONG BackTraceHash;
    //
-   //      int iAddressWrite = RtlCaptureStackBackTrace(0, maxframes, reinterpret_cast<PVOID*>(&uia), &BackTraceHash);
+   //      ::i32 iAddressWrite = RtlCaptureStackBackTrace(0, maxframes, reinterpret_cast<PVOID*>(&uia), &BackTraceHash);
    //
-   //      char sz[1024];
+   //      ::i8 sz[1024];
    //
    //      zero(sz);
    //
    //      engine_symbol(sz, sizeof(sz), &dwDisplacement, uia[5]);
    //
-   //      unsigned int uiLine = 0;
+   //      ::u32 uiLine = 0;
    //
    //      {
    //         critical_section_lock csl(&::exception_engine().m_criticalsection);
@@ -2853,7 +2861,7 @@ void thread::branch(enum_parallelization eparallelization,
 
 
 //
-//void thread::branch(::enum_priority epriority, unsigned int nStackSize, unsigned int uiCreateFlags ARG_SEC_ATTRS)
+//void thread::branch(::enum_priority epriority, ::u32 nStackSize, ::u32 uiCreateFlags ARG_SEC_ATTRS)
 //{
 //
 //   //auto estatus = task::branch(epriority, nStackSize, uiCreateFlags ADD_PARAM_SEC_ATTRS);
@@ -2893,7 +2901,7 @@ void thread::stop_task()
 }
 
 
-//void thread::branch(::enum_priority epriority, unsigned int nStackSize, unsigned int uiCreateFlags ARG_SEC_ATTRS)
+//void thread::branch(::enum_priority epriority, ::u32 nStackSize, ::u32 uiCreateFlags ARG_SEC_ATTRS)
 //{
 //
 //   //auto estatus = task::branch(epriority, nStackSize, uiCreateFlags ADD_PARAM_SEC_ATTRS);
@@ -3011,7 +3019,7 @@ void thread::__priority_and_affinity()
 //
 //#if defined(WINDOWS_DESKTOP) || defined(LINUX)
 //
-//      int_bool bOk = ::SetThreadAffinityMask(m_htask, (unsigned int)m_uThreadAffinityMask) != 0;
+//      ::i32_bool bOk = ::SetThreadAffinityMask(m_htask, (::u32)m_uThreadAffinityMask) != 0;
 //
 //      if (bOk)
 //      {
@@ -3066,6 +3074,8 @@ void thread::__priority_and_affinity()
 
 void thread::__task_init()
 {
+
+   auto iTaskObjectSerialId = m_iTaskObjectSerialId;
 
    ::task::__task_init();
 
@@ -3316,7 +3326,7 @@ void thread::post_message(::user::enum_message eusermessage, ::wparam wparam, ::
 
       UINT message = eusermessage;
 
-      int_bool bOk = ::PostThreadMessageW((DWORD)m_itask.m_i, message, wparam, lparam) != false;
+      ::i32_bool bOk = ::PostThreadMessageW((DWORD)m_itask.m_i, message, wparam, lparam) != false;
 
       if (!bOk)
       {
@@ -3492,7 +3502,7 @@ void thread::send_message(::user::enum_message eusermessage, ::wparam wparam, ::
 //
 //#ifdef WINDOWS_DESKTOP
 //
-//   m_uThread = (unsigned int) itask;
+//   m_uThread = (::u32) itask;
 //
 //#else
 //
@@ -3707,7 +3717,7 @@ message_queue* thread::_get_message_queue()
 }
 
 
-bool thread::peek_message(MESSAGE* pMsg, const ::operating_system::window & operatingsystemwindow, unsigned int wMsgFilterMin, unsigned int wMsgFilterMax,
+bool thread::peek_message(MESSAGE* pMsg, const ::operating_system::window & operatingsystemwindow, ::u32 wMsgFilterMin, ::u32 wMsgFilterMax,
                           bool bRemoveMessage)
 {
 
@@ -4053,7 +4063,7 @@ bool thread::peek_message(MESSAGE* pMsg, const ::operating_system::window & oper
 //}
 
 
-void thread::get_message(MESSAGE* pMsg, const ::operating_system::window & operatingsystemwindow, unsigned int wMsgFilterMin, unsigned int wMsgFilterMax)
+void thread::get_message(MESSAGE* pMsg, const ::operating_system::window & operatingsystemwindow, ::u32 wMsgFilterMin, ::u32 wMsgFilterMax)
 {
 
 #ifdef WINDOWS_DESKTOP
@@ -4100,7 +4110,7 @@ void thread::get_message(MESSAGE* pMsg, const ::operating_system::window & opera
 
       MSG msg{};
 
-      int iRet = -1;
+      ::i32 iRet = -1;
 
       if (has_finishing_flag())
       {
@@ -4294,7 +4304,7 @@ void thread::add_task(::object* pobjectTask)
 thread::operator htask() const
 {
 
-   return is_set() ? m_htask : nullptr;
+   return ::particle::is_set() ? m_htask : nullptr;
 
 }
 
@@ -4465,9 +4475,9 @@ bool thread::initialize_message_queue()
 
    //single_lock synchronouslock(&m_sptimera->m_pmutex,true);
 
-   //int iMin = 100;
+   //::i32 iMin = 100;
 
-   //for(int i = 0; i < m_sptimera->m_timera.get_count(); i++)
+   //for(::i32 i = 0; i < m_sptimera->m_timera.get_count(); i++)
    //{
 
    //   if(m_sptimera->m_timera.element_at(i)->m_uiElapse < natural(iMin))
@@ -4516,6 +4526,20 @@ bool thread::process_message()
          MSG msg;
 
          copy(msg, message);
+
+         auto haccel = (HACCEL ) m_pAcceleratorTable;
+
+         if (haccel) 
+         {
+         
+             if (TranslateAccelerator(GetActiveWindow(), haccel, &msg)) 
+             {
+                
+                 return true;
+         
+             }
+         
+         }
 
          ::TranslateMessage(&msg);
 
@@ -4800,7 +4824,7 @@ bool thread::set_thread_priority(::enum_priority epriority)
 //}
 
 
-//unsigned int thread::ResumeThread()
+//::u32 thread::ResumeThread()
 //{
 //
 //   ASSERT(m_htask != null_htask);
@@ -4818,7 +4842,7 @@ bool thread::set_thread_priority(::enum_priority epriority)
 //}
 
 
-int thread::get_x_window_count() const
+::i32 thread::get_x_window_count() const
 {
 
    return 0;
@@ -4919,7 +4943,7 @@ void thread::request(::request* prequest)
 }
 
 
-CLASS_DECL_APEX void forking_count_thread_null_end(int iOrder)
+CLASS_DECL_APEX void forking_count_thread_null_end(::i32 iOrder)
 {
 
 
@@ -4956,9 +4980,9 @@ CLASS_DECL_APEX void forking_count_thread_null_end(int iOrder)
 }
 
 
-unsigned int g_uiRandomProcessorIndexGenerator = -1;
+::u32 g_uiRandomProcessorIndexGenerator = -1;
 
-CLASS_DECL_APEX unsigned int random_processor_index_generator()
+CLASS_DECL_APEX ::u32 random_processor_index_generator()
 {
 
    g_uiRandomProcessorIndexGenerator++;
@@ -5167,8 +5191,8 @@ class ::time thread::set_file_sharing_violation_timeout(const class time& time)
 //::pointer<::task>thread::branch(
 //   ::matter * pmatter,
 //   ::enum_priority epriority,
-//   unsigned int nStackSize,
-//   unsigned int dwCreateFlags ARG_SEC_ATTRS)
+//   ::u32 nStackSize,
+//   ::u32 dwCreateFlags ARG_SEC_ATTRS)
 //{
 //
 //   return ::task::branch(pmatter, epriority, nStackSize, dwCreateFlags ADD_PARAM_SEC_ATTRS);

@@ -2,6 +2,7 @@
 #include "framework.h"
 #include "icon.h"
 #include "innate_ui.h"
+#include "menu.h"
 #include "window.h"
 #include "acme/nano/nano.h"
 #include "acme/windowing/windowing.h"
@@ -79,14 +80,63 @@ namespace innate_ui
    }
 
 
-   ::pointer < ::innate_ui::icon > innate_ui::innate_ui_icon(const ::payload & payloadFile, const ::int_size & size)
+   //void innate_ui::track_popup_menu(::i32 iMenuResourceId, const ::function<void(::i32)> &functionOnActionId)
+   //{
+
+   //   throw ::interface_only();
+
+   //}
+
+   ::pointer<::innate_ui::menu> innate_ui::load_menu_from_resource(::i32 iMenuResourceId)
+   {
+
+      auto pmenu = createø<::innate_ui::menu>();
+
+      pmenu->load_menu_from_resource(iMenuResourceId);
+
+      return pmenu;
+
+   }
+
+
+::pointer<::innate_ui::menu> innate_ui::create_menu()
+{
+
+   auto pmenu = createø<::innate_ui::menu>();
+
+   return pmenu;
+
+}
+
+
+
+   ::pointer < ::innate_ui::icon > innate_ui::innate_ui_icon(const ::payload & payloadFile, const ::i32_size & size)
    {
 
       auto picon = createø < ::innate_ui::icon >();
 
-      picon->create(payloadFile, size);
+      try
+      {
+
+         picon->create(payloadFile, size);
+
+      }
+      catch (...)
+      {
+
+         return {};
+
+      }
 
       return picon;
+
+   }
+
+
+   ::pointer<::innate_ui::icon> innate_ui::try_get_application_icon_from_main_window()
+   {
+
+      return {};
 
    }
 

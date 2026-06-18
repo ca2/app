@@ -3,6 +3,7 @@
 
 
 #include "acme/operating_system/windows_common/handle.h"
+#include "acme/filesystem/filesystem/windows_path.h"
 
 
 namespace windows
@@ -47,23 +48,23 @@ namespace windows
 
       void flush_file_buffers();
 
-      long long get_file_size() const;
+      ::i64 get_file_size() const;
 
-      void ensure_file_size(long long iSize);
+      void ensure_file_size(::i64 iSize);
 
-      void set_file_size(long long iSize);
+      void set_file_size(::i64 iSize);
 
-      void set_file_pointer_ex(long long iOffset, PLARGE_INTEGER lpNewFilePointer, DWORD dwMoveMethod);
+      void set_file_pointer_ex(::i64 iOffset, PLARGE_INTEGER lpNewFilePointer, DWORD dwMoveMethod);
 
-      void set_file_pointer(long long iOffset, DWORD dwMoveMethod);
+      void set_file_pointer(::i64 iOffset, DWORD dwMoveMethod);
 
-      long long get_file_pointer() const;
+      ::i64 get_file_pointer() const;
 
       void set_end_of_file();
 
-      void lock_file(long long iOffset, long long iCount);
+      void lock_file(::i64 iOffset, ::i64 iCount);
 
-      void unlock_file(long long iOffset, long long iCount);
+      void unlock_file(::i64 iOffset, ::i64 iCount);
 
       void set_file_time(const FILETIME * lpCreationTime, const FILETIME * lpLastAccessTime, const FILETIME * lpLastWriteTime);
 

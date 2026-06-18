@@ -47,7 +47,7 @@ void MetaControlBox::_001OnDraw(::draw2d::graphics_pointer & pgraphics)
    if(get_top_level()->frame_is_transparent())
    {
 
-      crBackground = argb(84,color32_byte_red(m_colorBackground),color32_byte_green(m_colorBackground),color32_byte_blue(m_colorBackground));
+      crBackground = argb(84,color32_u8_red(m_colorBackground),color32_u8_green(m_colorBackground),color32_u8_blue(m_colorBackground));
 
    }
    else
@@ -87,10 +87,10 @@ void MetaControlBox::on_message_left_button_up(::message::message * pmessage)
 
 
 
-void MetaControlBox::on_timer(::timer * ptimer)
+void MetaControlBox::operator()(::timer * ptimer)
 {
 
-   ::experience::control_box::on_timer(ptimer);
+   ::experience::control_box::operator()(ptimer);
 
 }
 

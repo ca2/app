@@ -21,7 +21,7 @@
 
 
 
-// pgraphics->get_text_extent("->:<-"); // oh no!! omg!! The int_size is the int_size of the alien!!
+// pgraphics->get_text_extent("->:<-"); // oh no!! omg!! The i32_size is the i32_size of the alien!!
 #define MAGIC_PALACE_TAB_SPLT "->:<-"
 #define MAGIC_PALACE_TAB_SIZE "-/-"
 #define MAGIC_PALACE_TAB_TEXT "/"
@@ -63,12 +63,12 @@ namespace experience_nanoui
    bool style::_001TabOnDrawSchema01(::draw2d::graphics_pointer & pgraphics,::user::tab * ptab)
    {
 
-      ::int_rectangle rectangle;
-      ::int_rectangle rectangleBorder;
-      ::int_rectangle rectangleText;
-      ::int_rectangle rectangleX;
-      ::int_rectangle rectangleIcon;
-      ::int_rectangle rectangleClose;
+      ::i32_rectangle rectangle;
+      ::i32_rectangle rectangleBorder;
+      ::i32_rectangle rectangleText;
+      ::i32_rectangle rectangleX;
+      ::i32_rectangle rectangleIcon;
+      ::i32_rectangle rectangleClose;
 
       //return true;
 
@@ -80,7 +80,7 @@ namespace experience_nanoui
 
       ::collection::index iTab = -1;
 
-      ::int_rectangle rcClient;
+      ::i32_rectangle rcClient;
 
       rcClient = ptab->rectangle();
 
@@ -90,13 +90,13 @@ namespace experience_nanoui
 
       auto ppenBorder = createø < ::draw2d::pen > ();
 
-      static int iCurrentTab = -1;
+      static ::i32 iCurrentTab = -1;
 
-      int iTabWidth = 0;
+      ::i32 iTabWidth = 0;
 
-      int iTabHeight = 0;
+      ::i32 iTabHeight = 0;
 
-      for(int iPane = 0; iPane < ptab->get_data()->m_tabpanea.get_size(); iPane++)
+      for(::i32 iPane = 0; iPane < ptab->get_data()->m_tabpanea.get_size(); iPane++)
       {
             
          auto ppane = ptab->get_data()->m_tabpanea[iPane].get();
@@ -455,7 +455,7 @@ namespace experience_nanoui
 
       }
 
-      ::int_rectangle rectangleScroll;
+      ::i32_rectangle rectangleScroll;
 
       bool bScroll = ptab->_001HasBarXDragScrolling() || ptab->_001HasBarYDragScrolling();
 
@@ -483,7 +483,7 @@ namespace experience_nanoui
    }
 
 
-   void style::_001OnTabPaneDrawTitle(::user::tab_pane & pane,::user::tab * ptab,::draw2d::graphics_pointer & pgraphics, const ::int_rectangle & rectangle,::draw2d::brush_pointer & pbrushText, const ::user::e_state & estate)
+   void style::_001OnTabPaneDrawTitle(::user::tab_pane & pane,::user::tab * ptab,::draw2d::graphics_pointer & pgraphics, const ::i32_rectangle & rectangle,::draw2d::brush_pointer & pbrushText, const ::user::e_state & estate)
    {
 
       string_array_base & straTitle = pane.m_straTitle;
@@ -501,22 +501,22 @@ namespace experience_nanoui
       else
       {
 
-         ::int_rectangle rectangleText(rectangle);
+         ::i32_rectangle rectangleText(rectangle);
 
          ::write_text::font_pointer pfont;
 
          pfont = pgraphics->get_current_font();
 
-         int_size sSep = ptab->get_data()->m_sizeSep;
+         i32_size sSep = ptab->get_data()->m_sizeSep;
 
-         ::int_rectangle rectangleEmp;
+         ::i32_rectangle rectangleEmp;
 
          for(::collection::index i = 0; i < straTitle.get_size(); i++)
          {
 
             string str = straTitle[i];
 
-            int_size s = pane.m_sizeaText[i];
+            i32_size s = pane.m_sizeaText[i];
 
             rectangleText.right =rectangleText.left + s.cx;
 
@@ -630,11 +630,11 @@ namespace experience_nanoui
 
       if(ptab->get_data()->m_bVertical)
       {
-         int iTabWidth = 16;
-         int iTabHeight = 8;
-         double cx;
-         double cy;
-         for(int iPane = 0; iPane < ptab->get_data()->m_tabpanea.get_size(); iPane++)
+         ::i32 iTabWidth = 16;
+         ::i32 iTabHeight = 8;
+         ::f64 cx;
+         ::f64 cy;
+         for(::i32 iPane = 0; iPane < ptab->get_data()->m_tabpanea.get_size(); iPane++)
          {
 
             auto ppane = ptab->get_data()->m_tabpanea[iPane].get();
@@ -646,7 +646,7 @@ namespace experience_nanoui
 
             ppane->do_split_layout(ptab->m_pgraphicsextension, pgraphics);
 
-            ::double_size size;
+            ::f64_size size;
 
             ptab->m_pgraphicsextension->get_text_extent(pgraphics,str, size);
 
@@ -664,12 +664,12 @@ namespace experience_nanoui
 
             if(cx > iTabWidth)
             {
-               iTabWidth =(int) cx;
+               iTabWidth =(::i32) cx;
             }
             cy = size.cy + 2;
             if(cy > iTabHeight)
             {
-               iTabHeight =(int) cy;
+               iTabHeight =(::i32) cy;
             }
          }
 
@@ -677,7 +677,7 @@ namespace experience_nanoui
          cy = 2 + 16 + 2;
          if(cy > iTabHeight)
          {
-            iTabHeight =(int) cy;
+            iTabHeight =(::i32) cy;
          }
 
          iTabWidth += ptab->get_data()->m_rectangleBorder.left + ptab->get_data()->m_rectangleBorder.right +
@@ -692,7 +692,7 @@ namespace experience_nanoui
 
          ptab->get_data()->m_iTabHeight = iTabHeight;
 
-         ::int_rectangle rectangleX = ptab->rectangle();
+         ::i32_rectangle rectangleX = ptab->rectangle();
 
          ptab->get_data()->m_rectangleTab.left       = rectangleX.left;
          ptab->get_data()->m_rectangleTab.top        = rectangleX.top;
@@ -716,18 +716,18 @@ namespace experience_nanoui
       else
       {
 
-         int iTabHeight = 16;
+         ::i32 iTabHeight = 16;
 
-         int cy;
+         ::i32 cy;
 
          pgraphics->set_font(ptab, ::e_element_none, ::user::e_state_selected);
 
-         ::int_rectangle rectangleX = ptab->rectangle();
+         ::i32_rectangle rectangleX = ptab->rectangle();
          //ptab->rectangle(rectangleX);
-         int x = rectangleX.left;
+         ::i32 x = rectangleX.left;
 
-         int ixAdd;
-         for(int iPane = 0; iPane < ptab->get_data()->m_tabpanea.get_size(); iPane++)
+         ::i32 ixAdd;
+         for(::i32 iPane = 0; iPane < ptab->get_data()->m_tabpanea.get_size(); iPane++)
          {
 
             auto ppane = ptab->get_data()->m_tabpanea[iPane].get();
@@ -743,7 +743,7 @@ namespace experience_nanoui
 
             ppane->do_split_layout(ptab->m_pgraphicsextension, pgraphics);
 
-            double_size size;
+            ::f64_size size;
 
             ptab->m_pgraphicsextension->get_text_extent(pgraphics, str, size);
 
@@ -754,7 +754,7 @@ namespace experience_nanoui
 
             }
 
-            cy = (int) ( size.cy + 2.0);
+            cy = (::i32) ( size.cy + 2.0);
 
             if(cy > iTabHeight)
             {
@@ -767,7 +767,7 @@ namespace experience_nanoui
 
             //            string str = ppane->get_title();
 
-            //            int_size size;
+            //            i32_size size;
 
             ixAdd = 5;
 
@@ -785,7 +785,7 @@ namespace experience_nanoui
 
 
 
-            ppane->m_size.cx = (int) ( size.cx + ixAdd
+            ppane->m_size.cx = (::i32) ( size.cx + ixAdd
                                  + ptab->get_data()->m_rectangleBorder.left + ptab->get_data()->m_rectangleBorder.right
                                  + ptab->get_data()->m_rectangleMargin.left + ptab->get_data()->m_rectangleMargin.right
                                  + ptab->get_data()->m_rectangleTextMargin.left + ptab->get_data()->m_rectangleTextMargin.right);
@@ -805,7 +805,7 @@ namespace experience_nanoui
 
          ptab->get_data()->m_iTabHeight = iTabHeight;
 
-         for(int iPane = 0; iPane < ptab->get_data()->m_tabpanea.get_size(); iPane++)
+         for(::i32 iPane = 0; iPane < ptab->get_data()->m_tabpanea.get_size(); iPane++)
          {
 
             auto ppane = ptab->get_data()->m_tabpanea[iPane].get();
@@ -830,7 +830,7 @@ namespace experience_nanoui
          m_rectangleTab.height(),
          0);*/
 
-         int_rectangle & rectangleHosting = ptab->get_data()->m_rectangleHosting;
+         i32_rectangle & rectangleHosting = ptab->get_data()->m_rectangleHosting;
 
          //bool bTabbedClient = ptab->m_bShowTabs && !ptab->top_level_frame()->layout().is_full_screen();
          bool bTabbedClient = ptab->m_bEffectiveVisibleControl;
@@ -844,7 +844,7 @@ namespace experience_nanoui
          //TRACE0("rectangleHosting");
       }
 
-      for(int iPane = 0; iPane < ptab->get_data()->m_tabpanea.get_size(); iPane++)
+      for(::i32 iPane = 0; iPane < ptab->get_data()->m_tabpanea.get_size(); iPane++)
       {
 
          if(iPane != ptab->get_current_tab_id())
@@ -858,14 +858,14 @@ namespace experience_nanoui
 
       ptab->layout_pane(ptab->get_current_tab_index(), ptab->is_this_visible());
 
-      ::int_rectangle rcClient;
+      ::i32_rectangle rcClient;
 
       rcClient = ptab->rectangle();
 
       if(ptab->get_data()->m_bVertical)
       {
 
-         ptab->m_iTabSize = (int) (ptab->get_data()->m_tabpanea.get_count() * ptab->get_data()->m_iTabHeight);
+         ptab->m_iTabSize = (::i32) (ptab->get_data()->m_tabpanea.get_count() * ptab->get_data()->m_iTabHeight);
 
          //ptab->m_iTabScrollMax = ptab->m_iTabSize - rcClient.height();
 
@@ -886,7 +886,7 @@ namespace experience_nanoui
    }
 
 
-   ::color::color style::get_color(::user::interaction* pinteraction, ::enum_element eelement, ::user::enum_state estate)
+   ::color::color style::get_color(::user::interaction* pinteraction, const ::e_element & eelement, const ::user::e_state & estate)
    {
 
       if (::is_set(pinteraction))
@@ -1465,7 +1465,7 @@ namespace experience_nanoui
 
       ::color::color colorBackground = pscrollbar->get_color(this, ::e_element_scrollbar);
 
-      ::int_rectangle rectangleX = pscrollbar->rectangle();
+      ::i32_rectangle rectangleX = pscrollbar->rectangle();
 
       if (colorBackground.has_opacity())
       {
@@ -1487,7 +1487,7 @@ namespace experience_nanoui
 
       auto rectangleTrack = pscrollbar->get_track_rectangle(::user::e_layout_design);
 
-      ::int_rectangle rectangleWindow;
+      ::i32_rectangle rectangleWindow;
 
       rectangleWindow = pscrollbar->window_rectangle();
 
@@ -1518,7 +1518,7 @@ namespace experience_nanoui
 
          auto periodFadeOut = 490_ms;
 
-         double dRate = maximum(0u, minimum(1.0, pbar->get_unsigned_int("tracking_alpha")/255.0));
+         ::f64 dRate = maximum(0u, minimum(1.0, pbar->get_u32("tracking_alpha")/255.0));
 
          if (pbar->m_bTracking)
          {
@@ -1549,7 +1549,7 @@ namespace experience_nanoui
 
          }
 
-         ::int_point point1 = rectangleTrack.top_left() + pbar->m_sizeTrackOffset;
+         ::i32_point point1 = rectangleTrack.top_left() + pbar->m_sizeTrackOffset;
 
          pbar->client_to_screen()(point1);
 
@@ -1567,7 +1567,7 @@ namespace experience_nanoui
 
          //    prop("tracking_window").cast < trw >()->point2 = pointCursor;
 
-         unsigned char uchAlpha;
+         ::u8 uchAlpha;
 
          if (pbar->is_true("tracking_fade_in"))
          {
@@ -1618,24 +1618,24 @@ namespace experience_nanoui
             uchAlpha = 255;
          }
 
-         ::int_rectangle rectangleMachineThumb;
+         ::i32_rectangle rectangleMachineThumb;
 
          bool bSimple = pbar->is_true("tracking_simple");
 
          if (bSimple)
          {
 
-            int iSize = (int) (rectangleTrack.size().get_normal_dimension(pbar->m_eorientation) * 6 / 8);
+            ::i32 iSize = (::i32) (rectangleTrack.size().get_normal_dimension(pbar->m_eorientation) * 6 / 8);
 
-            rectangleMachineThumb.top_left() = rectangleTrack.top_left() + pbar->m_sizeTrackOffset - ::int_size(iSize / 2, iSize / 2);
+            rectangleMachineThumb.top_left() = rectangleTrack.top_left() + pbar->m_sizeTrackOffset - ::i32_size(iSize / 2, iSize / 2);
 
-            rectangleMachineThumb.bottom_right() = rectangleMachineThumb.top_left() + ::int_size(iSize, iSize);
+            rectangleMachineThumb.bottom_right() = rectangleMachineThumb.top_left() + ::i32_size(iSize, iSize);
 
-            ::int_rectangle rectangleIntersect;
+            ::i32_rectangle rectangleIntersect;
 
             rectangleIntersect.intersect(rectangleMachineThumb, rectangleTrack);
 
-            int iArea = (int)(maximum(1, rectangleIntersect.area()));
+            ::i32 iArea = (::i32)(maximum(1, rectangleIntersect.area()));
 
             rectangleMachineThumb.inflate(1 + iSize * (iSize * iSize) * 4 / (iArea * 5), 1 + iSize * (iSize * iSize) * 2 / (iArea * 3));
 
@@ -1645,11 +1645,11 @@ namespace experience_nanoui
          else
          {
 
-            int iSize = (int) rectangleTrack.size().get_normal_dimension(pbar->m_eorientation);
+            ::i32 iSize = (::i32) rectangleTrack.size().get_normal_dimension(pbar->m_eorientation);
 
-            rectangleMachineThumb.top_left() = rectangleTrack.top_left() + pbar->m_sizeTrackOffset - ::int_size(iSize / 2, iSize / 2);
+            rectangleMachineThumb.top_left() = rectangleTrack.top_left() + pbar->m_sizeTrackOffset - ::i32_size(iSize / 2, iSize / 2);
 
-            rectangleMachineThumb.bottom_right() = rectangleMachineThumb.top_left() + ::int_size(iSize, iSize);
+            rectangleMachineThumb.bottom_right() = rectangleMachineThumb.top_left() + ::i32_size(iSize, iSize);
 
             rectangleMachineThumb.assign_normal(rectangleTrack, pbar->m_eorientation);
 
@@ -1671,7 +1671,7 @@ namespace experience_nanoui
 
       pgraphics->set(ppenGrip);
 
-      ::int_point pointCenter = rectangleTrack.center();
+      ::i32_point pointCenter = rectangleTrack.center();
 
       if (pbar->m_eorientation == e_orientation_horizontal)
       {
@@ -1728,7 +1728,7 @@ namespace experience_nanoui
 
       pgraphics->rectangle(rectangleB);
 
-      ::status < ::int_rectangle > rectangle;
+      ::status < ::i32_rectangle > rectangle;
 
       if (::is_element(pbar->main_content().m_pitemCurrent, ::e_element_scrollbar_pageA)
          || ::is_element(pbar->m_pitemHover, ::e_element_scrollbar_pageA))

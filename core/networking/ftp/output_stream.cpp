@@ -18,7 +18,7 @@ namespace ftp
    bool output_stream::implementation::GetNextLine(string& strLine)// const
    {
 
-      long long iFind = m_vBuffer.find_index(mc_strEolCharacterSequence, m_iCurrentPos);
+      ::i64 iFind = m_vBuffer.find_index(mc_strEolCharacterSequence, m_iCurrentPos);
 
       if (::not_found(iFind))
       {
@@ -36,7 +36,7 @@ namespace ftp
    }
 
 
-   void output_stream::implementation::OnPreBytesSend(unsigned char * pszBuffer, memsize bufferSize, memsize& bytesToSend)
+   void output_stream::implementation::OnPreBytesSend(::u8 * pszBuffer, memsize bufferSize, memsize& bytesToSend)
    {
 
       for (bytesToSend = 0; m_iCurrentPos < m_vBuffer.length() && bytesToSend < bufferSize; ++m_iCurrentPos, ++bytesToSend)
@@ -91,12 +91,12 @@ namespace ftp
    }
 
 
-   unsigned int output_stream::GetLocalStreamSize() const
+   ::u32 output_stream::GetLocalStreamSize() const
    {
-       return (unsigned int) m_pimpl->m_vBuffer.size();
+       return (::u32) m_pimpl->m_vBuffer.size();
    }
 
-   void output_stream::SetLocalStreamOffset(unsigned int dwOffsetFromBeginOfStream)
+   void output_stream::SetLocalStreamOffset(::u32 dwOffsetFromBeginOfStream)
    {
       m_pimpl->m_iCurrentPos = dwOffsetFromBeginOfStream;
    }
@@ -106,7 +106,7 @@ namespace ftp
       m_pimpl->m_vBuffer +=  vBuffer.get_string(0, lReceivedBytes);
    }
 
-   void output_stream::OnPreBytesSend(unsigned char * pszBuffer, memsize bufferSize, memsize& bytesToSend)
+   void output_stream::OnPreBytesSend(::u8 * pszBuffer, memsize bufferSize, memsize& bytesToSend)
    {
       m_pimpl->OnPreBytesSend(pszBuffer, bufferSize, bytesToSend);
    }

@@ -18,6 +18,7 @@
 #include "acme/constant/_font_awesome.h"
 #include "acme/constant/user_key.h"
 #include "acme/handler/item.h"
+#include "acme/platform/session.h"
 #include "aura/user/user/interaction.h"
 #include "nano2d/context.h"
 
@@ -199,12 +200,12 @@ bool TabWidgetBase::is_tab_selected(const Widget * pwidgetChild) const
       pcontext->text_align(::nano2d::e_align_left | ::nano2d::e_align_top);
 
       m_iaTabOffsets.clear();
-      int width = 0;
-      ::float_rectangle unused;
+      ::i32 width = 0;
+      ::f32_rectangle unused;
       for (auto & label : m_straTabCaptions)
       {
 
-         int label_width = (int)pcontext->text_bounds(0.f, 0.f, label.c_str(), &unused);
+         ::i32 label_width = (::i32)pcontext->text_bounds(0.f, 0.f, label.c_str(), &unused);
          m_iaTabOffsets.add(width);
          width += label_width + 2 * m_ptheme->m_iHorizontalPaddingTabButton;
          if (m_bTabsCloseable)
@@ -213,28 +214,28 @@ bool TabWidgetBase::is_tab_selected(const Widget * pwidgetChild) const
       m_iaTabOffsets.add(width);
 
       pcontext->font_face("icons");
-      m_iCloseButtonWidth = (int)
+      m_iCloseButtonWidth = (::i32)
          pcontext->text_bounds(0.f, 0.f, get_utf8_character(e_font_awesome_times_circle).data(), &unused);
    }
 
 
-   int_size TabWidgetBase::preferred_size(::nano2d::context * pcontext, bool bRecalcTextSize)
+   i32_size TabWidgetBase::preferred_size(::nano2d::context * pcontext, bool bRecalcTextSize)
    {
       pcontext->font_face(m_font.c_str());
       pcontext->font_size(font_size());
       pcontext->text_align(::nano2d::e_align_left | ::nano2d::e_align_top);
 
-      int width = 0;
+      ::i32 width = 0;
       for (auto & label : m_straTabCaptions) {
-         ::float_rectangle unused;
-         int label_width = (int)pcontext->text_bounds(0, 0, label.c_str(), &unused);
+         ::f32_rectangle unused;
+         ::i32 label_width = (::i32)pcontext->text_bounds(0, 0, label.c_str(), &unused);
          width += label_width + 2 * m_ptheme->m_iHorizontalPaddingTabButton;
          if (m_bTabsCloseable)
             width += m_iCloseButtonWidth;
       }
 
-      return int_sequence2(width + 1,
-         (int)(font_size() + 2.f * m_ptheme->m_iVerticalPaddingTabButton + 2.f * m_iPadding));
+      return i32_sequence2(width + 1,
+         (::i32)(font_size() + 2.f * m_ptheme->m_iVerticalPaddingTabButton + 2.f * m_iPadding));
    }
 
    void TabWidgetBase::draw(::nano2d::context * pcontext) {
@@ -251,52 +252,52 @@ bool TabWidgetBase::is_tab_selected(const Widget * pwidgetChild) const
       if (m_iaTabOffsets.size() != m_straTabCaptions.size() + 1)
          throw ::exception(error_failed, "Must run TabWidget::perform_layout() after adding/removing tabs!");
 
-      int tab_height = (int)(font_size() + 2.f * m_ptheme->m_iVerticalPaddingTabButton);
+      ::i32 tab_height = (::i32)(font_size() + 2.f * m_ptheme->m_iVerticalPaddingTabButton);
 
       if (m_colorBackground.has_opacity())
       {
          pcontext->fill_color(m_colorBackground);
          pcontext->begin_path();
-         pcontext->rounded_rectangle(m_pos.x + .5f, m_pos.y + .5f + tab_height, (float)m_size.cx,
-            m_size.cy - tab_height - 2.f, (float)m_ptheme->m_iButtonCornerRadius);
+         pcontext->rounded_rectangle(m_pos.x + .5f, m_pos.y + .5f + tab_height, (::f32)m_size.cx,
+            m_size.cy - tab_height - 2.f, (::f32)m_ptheme->m_iButtonCornerRadius);
          pcontext->fill();
       }
 
       Widget::draw(pcontext);
 
       ::nano2d::paint tab_background_color = pcontext->linear_gradient(
-         (float)m_pos.x, m_pos.y + 1.f, (float)m_pos.x, (float)m_pos.y + tab_height,
+         (::f32)m_pos.x, m_pos.y + 1.f, (::f32)m_pos.x, (::f32)m_pos.y + tab_height,
          m_ptheme->m_colorButtonGradientTopPushed, m_ptheme->m_colorButtonGradientBottomPushed);
 
       {
 
          ::nano2d::guard guard(pcontext);
          //pcontext->save();
-         pcontext->intersect_scissor((float)m_pos.x, (float)m_pos.y, (float)m_size.cx, (float)tab_height);
+         pcontext->intersect_scissor((::f32)m_pos.x, (::f32)m_pos.y, (::f32)m_size.cx, (::f32)tab_height);
          pcontext->font_size(font_size());
          pcontext->text_align(::nano2d::e_align_left | ::nano2d::e_align_top);
          for (::collection::index i = 0; i < m_straTabCaptions.size(); ++i) {
-            int x_pos = m_pos.x + m_iaTabOffsets[i],
+            ::i32 x_pos = m_pos.x + m_iaTabOffsets[i],
                y_pos = m_pos.y,
                width = m_iaTabOffsets[i + 1] - m_iaTabOffsets[i];
 
             if (i == (::collection::index)m_iActiveTab) {
                pcontext->begin_path();
-               pcontext->rounded_rectangle(x_pos + 0.5f, y_pos + 1.5f, (float)width,
-                  tab_height + 4.f, (float)m_ptheme->m_iButtonCornerRadius);
+               pcontext->rounded_rectangle(x_pos + 0.5f, y_pos + 1.5f, (::f32)width,
+                  tab_height + 4.f, (::f32)m_ptheme->m_iButtonCornerRadius);
                pcontext->stroke_color(m_ptheme->m_colorBorderLight);
                pcontext->stroke();
 
                pcontext->begin_path();
-               pcontext->rounded_rectangle(x_pos + 0.5f, y_pos + 0.5f, (float)width,
-                  tab_height + 4.f, (float)m_ptheme->m_iButtonCornerRadius);
+               pcontext->rounded_rectangle(x_pos + 0.5f, y_pos + 0.5f, (::f32)width,
+                  tab_height + 4.f, (::f32)m_ptheme->m_iButtonCornerRadius);
                pcontext->stroke_color(m_ptheme->m_colorBorderDark);
                pcontext->stroke();
             }
             else {
                pcontext->begin_path();
-               pcontext->rounded_rectangle(x_pos + 0.5f, y_pos + 1.5f, (float)width,
-                  tab_height + 4.f, (float)m_ptheme->m_iButtonCornerRadius);
+               pcontext->rounded_rectangle(x_pos + 0.5f, y_pos + 1.5f, (::f32)width,
+                  tab_height + 4.f, (::f32)m_ptheme->m_iButtonCornerRadius);
 
                pcontext->fill_paint(tab_background_color);
                pcontext->fill();
@@ -309,7 +310,7 @@ bool TabWidgetBase::is_tab_selected(const Widget * pwidgetChild) const
             pcontext->fill_color(m_ptheme->m_colorText);
             pcontext->font_face(m_font.c_str());
 
-            pcontext->text((float)x_pos, (float)y_pos, m_straTabCaptions[i]);
+            pcontext->text((::f32)x_pos, (::f32)y_pos, m_straTabCaptions[i]);
 
             if (m_bTabsCloseable) {
                x_pos = m_pos.x + m_iaTabOffsets[i + 1] -
@@ -317,9 +318,9 @@ bool TabWidgetBase::is_tab_selected(const Widget * pwidgetChild) const
                pcontext->font_face("icons");
                pcontext->fill_color(i == (size_t)m_iCloseIndexPushed ? m_ptheme->m_colorTextShadow
                   : m_ptheme->m_colorText);
-               bool highlight = m_iCloseIndex == (int)i;
+               bool highlight = m_iCloseIndex == (::i32)i;
                auto icon = highlight ? e_font_awesome_times_circle : e_font_awesome_times;
-               float sizeFixed = font_size() * (highlight ? 1.f : .70f),
+               ::f32 sizeFixed = font_size() * (highlight ? 1.f : .70f),
                   offset_x = highlight ? 0.f : (sizeFixed * .40f),
                   offset_y = highlight ? 0.f : (sizeFixed * .21f);
                pcontext->font_size(sizeFixed);
@@ -336,8 +337,8 @@ bool TabWidgetBase::is_tab_selected(const Widget * pwidgetChild) const
 
             pcontext->begin_path();
 
-            pcontext->rounded_rectangle(x_pos + 0.5f, m_pos.y + 1.5f, (float)(m_iTabDragMaximum - m_iTabDragMinimum),
-               tab_height + 4.f, (float)m_ptheme->m_iButtonCornerRadius);
+            pcontext->rounded_rectangle(x_pos + 0.5f, m_pos.y + 1.5f, (::f32)(m_iTabDragMaximum - m_iTabDragMinimum),
+               tab_height + 4.f, (::f32)m_ptheme->m_iButtonCornerRadius);
 
             pcontext->fill_color(::rgba(255, 255, 255, 30));
 
@@ -353,7 +354,7 @@ bool TabWidgetBase::is_tab_selected(const Widget * pwidgetChild) const
 
       auto x1 = m_iaTabOffsets[m_iaTabOffsets.size() > 1 ? m_iActiveTab + 1 : 0];
 
-      for (int i = 1; i >= 0; --i)
+      for (::i32 i = 1; i >= 0; --i)
       {
 
          /* Top border */
@@ -361,7 +362,7 @@ bool TabWidgetBase::is_tab_selected(const Widget * pwidgetChild) const
          pcontext->begin_path();
          pcontext->move_to(m_pos.x + .5f, m_pos.y + tab_height + i + .5f);
          pcontext->line_to(m_pos.x + x0 + 1.0f, m_pos.y + tab_height + i + .5f);
-         pcontext->move_to((float)(m_pos.x + x1), m_pos.y + tab_height + i + .5f);
+         pcontext->move_to((::f32)(m_pos.x + x1), m_pos.y + tab_height + i + .5f);
          pcontext->line_to(m_pos.x + m_size.cx + .5f, m_pos.y + tab_height + i + .5f);
          pcontext->stroke_width(1.0f);
          pcontext->stroke_color((i == 0) ? m_ptheme->m_colorBorderDark : m_ptheme->m_colorBorderLight);
@@ -371,10 +372,10 @@ bool TabWidgetBase::is_tab_selected(const Widget * pwidgetChild) const
          {
             ::nano2d::guard guard(pcontext);
             //pcontext->save();
-            pcontext->intersect_scissor((float)m_pos.x, (float)(m_pos.y + tab_height), (float)m_size.cx, (float)m_size.cy);
+            pcontext->intersect_scissor((::f32)m_pos.x, (::f32)(m_pos.y + tab_height), (::f32)m_size.cx, (::f32)m_size.cy);
             pcontext->begin_path();
             pcontext->rounded_rectangle(m_pos.x + .5f, m_pos.y + i + .5f, m_size.cx - 1.f,
-               m_size.cy - 2.f, (float)m_ptheme->m_iButtonCornerRadius);
+               m_size.cy - 2.f, (::f32)m_ptheme->m_iButtonCornerRadius);
             pcontext->stroke();
             //pcontext->restore();
 
@@ -385,15 +386,15 @@ bool TabWidgetBase::is_tab_selected(const Widget * pwidgetChild) const
    }
 
 
-   ::item_pointer TabWidgetBase::hit_test(const int_point& p, bool test_vertical) const 
+   ::item_pointer TabWidgetBase::hit_test(const i32_point & point, bool test_vertical) const 
    {
 
       auto pitem = allocateø ::item();
 
-      int tab_height = (int)font_size() + 2 * m_ptheme->m_iVerticalPaddingTabButton;
+      ::i32 tab_height = (::i32)font_size() + 2 * m_ptheme->m_iVerticalPaddingTabButton;
 
       //if (test_vertical && (p.y <= m_pos.y || p.y > m_pos.y + tab_height))
-      if (test_vertical && (p.y <= 0 || p.y > tab_height))
+      if (test_vertical && (point.y <= 0 || point.y > tab_height))
       {
 
          pitem->m_item.m_eelement = e_element_none;
@@ -402,7 +403,7 @@ bool TabWidgetBase::is_tab_selected(const Widget * pwidgetChild) const
 
       }
 
-      int x = p.x - m_pos.x;
+      ::i32 x = point.x - m_pos.x;
 
       for (::collection::index i = 0; i < m_iaTabOffsets.size() - 1; ++i) 
       {
@@ -410,15 +411,15 @@ bool TabWidgetBase::is_tab_selected(const Widget * pwidgetChild) const
          if (x >= m_iaTabOffsets[i] && x < m_iaTabOffsets[i + 1]) 
          {
 
-            int r = m_iaTabOffsets[i + 1] - x;
+            ::i32 r = m_iaTabOffsets[i + 1] - x;
 
             pitem->m_item.m_iItem = i;
 
             if (m_bTabsCloseable &&
                r < m_ptheme->m_iHorizontalPaddingTabButton + m_iCloseButtonWidth - 4 &&
                r > m_ptheme->m_iHorizontalPaddingTabButton - 4 &&
-               p.y - m_pos.y > m_ptheme->m_iVerticalPaddingTabButton &&
-               p.y - m_pos.y <= tab_height - m_ptheme->m_iVerticalPaddingTabButton)
+               point.y - m_pos.y > m_ptheme->m_iVerticalPaddingTabButton &&
+               point.y - m_pos.y <= tab_height - m_ptheme->m_iVerticalPaddingTabButton)
             {
 
                pitem->m_item.m_eelement = e_element_close_button;
@@ -444,10 +445,10 @@ bool TabWidgetBase::is_tab_selected(const Widget * pwidgetChild) const
    }
 
 
-   bool TabWidgetBase::mouse_button_event(const int_point& p, ::user::e_mouse emouse, bool down, bool bDoubleClick, const ::user::e_key& ekeyModifiers)
+   bool TabWidgetBase::mouse_button_event(const i32_point & point, ::user::e_key euserkeyMouseButton, bool bDown, bool bDoubleClick)
    {
       
-      auto pitem = hit_test(p);
+      auto pitem = hit_test(point);
 
       bool bHandled = false;
 
@@ -457,7 +458,7 @@ bool TabWidgetBase::is_tab_selected(const Widget * pwidgetChild) const
       {
 
          m_ppopup->mouse_button_event(
-            p - m_pos + absolute_position() - m_ppopup->absolute_position() + m_ppopup->position(), emouse, down, bDoubleClick, ekeyModifiers);
+            point - m_pos + absolute_position() - m_ppopup->absolute_position() + m_ppopup->position(), euserkeyMouseButton, bDown, bDoubleClick);
 
          pscreen->on_child_set_focus(this);
 
@@ -471,13 +472,13 @@ bool TabWidgetBase::is_tab_selected(const Widget * pwidgetChild) const
 
       bool iDragInProgressIndex = m_iTabDragIndex != -1 && m_iTabDragStart != m_iTabDragEnd;
 
-      if (m_popupcallback && emouse == ::user::e_mouse_right_button && down 
+      if (m_popupcallback && euserkeyMouseButton == ::user::e_key_right_button && bDown 
          && ::is_item_set_and_non_negative(pitem) &&
          !iDragInProgressIndex) 
       {
 
          m_ppopup = m_popupcallback(tab_id(pitem->m_item.m_iItem), pscreen);
-         m_ppopup->set_position(p + int_sequence2(8, -6));
+         m_ppopup->set_position(point + i32_sequence2(8, -6));
          m_ppopup->set_anchor_offset(8);
          m_ppopup->set_anchor_size(8);
          
@@ -506,7 +507,7 @@ bool TabWidgetBase::is_tab_selected(const Widget * pwidgetChild) const
             [this](::nano2d::context * pcontext)
          {
             
-            m_ppopup->set_size(m_ppopup->preferred_size(pcontext) + int_size(40, 0));
+            m_ppopup->set_size(m_ppopup->preferred_size(pcontext) + i32_size(40, 0));
             
             m_ppopup->perform_layout(pcontext);
 
@@ -524,7 +525,7 @@ bool TabWidgetBase::is_tab_selected(const Widget * pwidgetChild) const
 
       }
 
-      if (emouse == ::user::e_mouse_left_button && m_ppopup == nullptr)
+      if (euserkeyMouseButton == ::user::e_key_left_button && m_ppopup == nullptr)
       {
 
          if (::is_item_set_and_non_negative(pitem)) 
@@ -533,7 +534,7 @@ bool TabWidgetBase::is_tab_selected(const Widget * pwidgetChild) const
             if (pitem->m_item.m_eelement == e_element_close_button && m_iTabDragIndex == -1) 
             {
 
-               if (down) 
+               if (bDown) 
                {
 
                   m_iCloseIndexPushed = pitem->m_item.m_iItem;
@@ -544,7 +545,7 @@ bool TabWidgetBase::is_tab_selected(const Widget * pwidgetChild) const
 
                   erase_tab(tab_id(pitem->m_item.m_iItem));
 
-                  mouse_motion_event(p, {}, false, ::user::e_key_none);
+                  mouse_motion_event(point);
 
                }
 
@@ -552,7 +553,7 @@ bool TabWidgetBase::is_tab_selected(const Widget * pwidgetChild) const
             else
             {
 
-               if (down) 
+               if (bDown) 
                {
 
                   bool bTabChanged = m_iActiveTab != pitem->m_item.m_iItem;
@@ -561,7 +562,7 @@ bool TabWidgetBase::is_tab_selected(const Widget * pwidgetChild) const
 
                   m_iTabDragIndex = m_bTabsDraggable ? pitem->m_item.m_iItem : -1;
 
-                  m_iTabDragStart = m_iTabDragEnd = p.x;
+                  m_iTabDragStart = m_iTabDragEnd = point.x;
 
                   m_iTabDragMinimum = m_iaTabOffsets[pitem->m_item.m_iItem];
 
@@ -589,7 +590,9 @@ bool TabWidgetBase::is_tab_selected(const Widget * pwidgetChild) const
 
                   m_iTabDragIndex = -1;
 
-                  mouse_motion_event(p, {}, false, ::user::e_key_none);
+                  //auto & keyboardstate = session();
+
+                  mouse_motion_event(point);
 
                }
 
@@ -599,7 +602,7 @@ bool TabWidgetBase::is_tab_selected(const Widget * pwidgetChild) const
 
          }
 
-         if (!down) 
+         if (!bDown) 
          {
 
             bHandled = m_iCloseIndexPushed != -1 || m_iTabDragIndex != -1;
@@ -614,14 +617,14 @@ bool TabWidgetBase::is_tab_selected(const Widget * pwidgetChild) const
 
       }
 
-      bHandled |= Widget::mouse_button_event(p, emouse, down, bDoubleClick, ekeyModifiers);
+      bHandled |= Widget::mouse_button_event(point, euserkeyMouseButton, bDown, bDoubleClick);
 
       return bHandled;
 
    }
 
 
-   bool TabWidgetBase::mouse_enter_event(const int_point&/* p */, bool /* enter */, const ::user::e_key&)
+   bool TabWidgetBase::mouse_enter_event(const i32_point&point, bool bEnter)
    {
 
       if (m_bTabsCloseable && m_iCloseIndex >= 0)
@@ -635,15 +638,15 @@ bool TabWidgetBase::is_tab_selected(const Widget * pwidgetChild) const
    }
 
 
-   bool TabWidgetBase::mouse_motion_event(const int_point& p, const int_size& rel, bool bDown, const ::user::e_key& ekeyModifiers)
+   bool TabWidgetBase::mouse_motion_event(const i32_point &point)
    {
 
-      auto pitem = hit_test(p, false);
+      auto pitem = hit_test(point, false);
 
       if (m_iTabDragIndex != -1) 
       {
 
-         m_iTabDragEnd = p.x;
+         m_iTabDragEnd = point.x;
 
          if (::is_item_set_and_non_negative(pitem) && m_iTabDragIndex != pitem->m_item.m_iItem) 
          {
@@ -654,8 +657,8 @@ bool TabWidgetBase::is_tab_selected(const Widget * pwidgetChild) const
 
             auto mid = (m_iaTabOffsets[i0] + m_iaTabOffsets[i1 + 1]) / 2;
 
-            if ((m_iTabDragIndex < pitem->m_item.m_iItem && p.x - m_pos.y > mid) ||
-               (m_iTabDragIndex > pitem->m_item.m_iItem && p.x - m_pos.y < mid)) 
+            if ((m_iTabDragIndex < pitem->m_item.m_iItem && point.x - m_pos.y > mid) ||
+               (m_iTabDragIndex > pitem->m_item.m_iItem && point.x - m_pos.y < mid)) 
             {
             
                ::swap(m_straTabCaptions[pitem->m_item.m_iItem], m_straTabCaptions[m_iTabDragIndex]);
@@ -707,7 +710,7 @@ bool TabWidgetBase::is_tab_selected(const Widget * pwidgetChild) const
 
       }
 
-      return Widget::mouse_motion_event(p, rel, bDown, ekeyModifiers);
+      return Widget::mouse_motion_event(point);
 
    }
 
@@ -725,14 +728,14 @@ bool TabWidgetBase::is_tab_selected(const Widget * pwidgetChild) const
 
       TabWidgetBase::perform_layout(pcontext, bRecalcTextSize);
 
-      int tab_height = (int)font_size() + 2 * m_ptheme->m_iVerticalPaddingTabButton;
+      ::i32 tab_height = (::i32)font_size() + 2 * m_ptheme->m_iVerticalPaddingTabButton;
 
       for (Widget* pwidgetChild : m_children) 
       {
 
-         pwidgetChild->set_position(int_sequence2(m_iPadding, m_iPadding + tab_height + 1));
+         pwidgetChild->set_position(i32_sequence2(m_iPadding, m_iPadding + tab_height + 1));
 
-         pwidgetChild->set_size(m_size - int_sequence2(2 * m_iPadding, 2 * m_iPadding + tab_height + 1));
+         pwidgetChild->set_size(m_size - i32_sequence2(2 * m_iPadding, 2 * m_iPadding + tab_height + 1));
 
          pwidgetChild->perform_layout(pcontext, bRecalcTextSize);
 
@@ -769,12 +772,12 @@ bool TabWidgetBase::is_tab_selected(const Widget * pwidgetChild) const
    }
 
 
-   int_size TabWidget::preferred_size(::nano2d::context * pcontext, bool bRecalcTextSize)
+   i32_size TabWidget::preferred_size(::nano2d::context * pcontext, bool bRecalcTextSize)
    {
 
       auto sizeBase = TabWidgetBase::preferred_size(pcontext, bRecalcTextSize);
 
-      int_size sizeContent;
+      i32_size sizeContent;
          
       for (Widget* pwidgetChild : m_children)
       {
@@ -783,7 +786,7 @@ bool TabWidgetBase::is_tab_selected(const Widget * pwidgetChild) const
 
       }
 
-      return int_size(
+      return i32_size(
          ::maximum(sizeBase.cx, sizeContent.cx + 2 * m_iPadding),
          sizeBase.cy + sizeContent.cy + 2 * m_iPadding
       );

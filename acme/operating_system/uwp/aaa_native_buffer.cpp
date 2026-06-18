@@ -199,18 +199,18 @@ namespace universal_windows
       unicode_to_utf8(rStatus.m_strFullName, wstrFullName);
 
       WIN32_FIND_DATA findnative_bufferData;
-      HANDLE hFind = FindFirstnative_buffer((char *)pszfileName, &findnative_bufferData);
+      HANDLE hFind = FindFirstnative_buffer((char_pointer )pszfileName, &findnative_bufferData);
 
       if (hFind == INVALID_HANDLE_VALUE)
          return false;
       VERIFY(FindClose(hFind));
 
       // strip attribute of NORMAL bit, our API doesn't have a "normal" bit.
-      rStatus.m_attribute = (unsigned char)(findnative_bufferData.dwnative_bufferAttributes & ~native_buffer_ATTRIBUTE_NORMAL);
+      rStatus.m_attribute = (::u8)(findnative_bufferData.dwnative_bufferAttributes & ~native_buffer_ATTRIBUTE_NORMAL);
 
-      // get just the low unsigned int of the native_buffer int_size
+      // get just the low ::u32 of the native_buffer i32_size
       ASSERT(findnative_bufferData.nnative_bufferSizeHigh == 0);
-      rStatus.m_size = (int)findnative_bufferData.nnative_bufferSizeLow;
+      rStatus.m_size = (::i32)findnative_bufferData.nnative_bufferSizeLow;
 
       // convert times as appropriate
       rStatus.m_ctime = ::earth::time(findnative_bufferData.ftCreationTime);
@@ -345,7 +345,7 @@ pdirectorysystem->create(path.folder());
       }
 
       m_bCloseOnDelete = false;
-      //m_hnative_buffer = (unsigned int)hnative_bufferNull;
+      //m_hnative_buffer = (::u32)hnative_bufferNull;
       m_strFileName.empty();
 
       m_strFileName  = path;
@@ -356,7 +356,7 @@ pdirectorysystem->create(path.folder());
 
       // ::map read/write mode
       ASSERT((::file::e_open_read | ::file::e_open_write | ::file::e_open_read_write) == 3);
-      unsigned int dwAccess = 0;
+      ::u32 dwAccess = 0;
       switch(eopen & 3)
       {
       case ::file::e_open_read:
@@ -374,7 +374,7 @@ pdirectorysystem->create(path.folder());
       }
 
       // ::map share mode
-      //unsigned int dwShareMode = 0;
+      //::u32 dwShareMode = 0;
       //switch(nOpenFlags & 0x70)    // ::map compatibility mode to exclusive
       //{
       //default:
@@ -510,7 +510,7 @@ pdirectorysystem->create(path.folder());
 
       ::winrt::Windows::Storage::Streams::IBuffer ^ buffer = memory.get_os_buffer();
 
-      unsigned int u = ::wait(m_stream->WriteAsync(buffer));
+      ::u32 u = ::wait(m_stream->WriteAsync(buffer));
 
       if (u != nCount)
       {
@@ -581,11 +581,11 @@ pdirectorysystem->create(path.folder());
    //void native_buffer::Abort()
    //{
    //   //ASSERT_VALID(this);
-   //   //if(m_hnative_buffer != (unsigned int)hnative_bufferNull)
+   //   //if(m_hnative_buffer != (::u32)hnative_bufferNull)
    //   //{
    //   //   // close but ignore errors
    //   //   ::CloseHandle((HANDLE)m_hnative_buffer);
-   //   //   m_hnative_buffer = (unsigned int)hnative_bufferNull;
+   //   //   m_hnative_buffer = (::u32)hnative_bufferNull;
    //   //}
    //   //m_strFileName.empty();
    //}
@@ -593,30 +593,30 @@ pdirectorysystem->create(path.folder());
    void native_buffer::lock(filesize dwPos,filesize dwCount)
    {
       //ASSERT_VALID(this);
-      //ASSERT(m_hnative_buffer != (unsigned int)hnative_bufferNull);
+      //ASSERT(m_hnative_buffer != (::u32)hnative_bufferNull);
 
-      ////      if (!::Locknative_buffer((HANDLE)m_hnative_buffer, lower_unsigned_int(dwPos), upper_unsigned_int(dwPos), lower_unsigned_int(dwCount), upper_unsigned_int(dwCount)))
-      ////       WinFileException::ThrowOsError(get_app(), (int)::get_last_error());
+      ////      if (!::Locknative_buffer((HANDLE)m_hnative_buffer, lower_u32(dwPos), upper_u32(dwPos), lower_u32(dwCount), upper_u32(dwCount)))
+      ////       WinFileException::ThrowOsError(get_app(), (::i32)::get_last_error());
    }
 
    void native_buffer::unlock(filesize dwPos,filesize dwCount)
    {
       //ASSERT_VALID(this);
-      //ASSERT(m_hnative_buffer != (unsigned int)hnative_bufferNull);
+      //ASSERT(m_hnative_buffer != (::u32)hnative_bufferNull);
 
-      ////  if (!::Unlocknative_buffer((HANDLE)m_hnative_buffer,  lower_unsigned_int(dwPos), upper_unsigned_int(dwPos), lower_unsigned_int(dwCount), upper_unsigned_int(dwCount)))
-      ////   WinFileException::ThrowOsError(get_app(), (int)::get_last_error());
+      ////  if (!::Unlocknative_buffer((HANDLE)m_hnative_buffer,  lower_u32(dwPos), upper_u32(dwPos), lower_u32(dwCount), upper_u32(dwCount)))
+      ////   WinFileException::ThrowOsError(get_app(), (::i32)::get_last_error());
    }
 
    void native_buffer::set_size(filesize dwNewLen)
    {
       //ASSERT_VALID(this);
-      //ASSERT(m_hnative_buffer != (unsigned int)hnative_bufferNull);
+      //ASSERT(m_hnative_buffer != (::u32)hnative_bufferNull);
 
-      //seek((int)dwNewLen,(::enum_seek)::e_seek_set);
+      //seek((::i32)dwNewLen,(::enum_seek)::e_seek_set);
 
       //if(!::SetEndOfnative_buffer((HANDLE)m_hnative_buffer))
-      //   WinFileException::ThrowOsError(get_app(),(int)::get_last_error());
+      //   WinFileException::ThrowOsError(get_app(),(::i32)::get_last_error());
    }
 
 
@@ -631,13 +631,13 @@ pdirectorysystem->create(path.folder());
       native_buffer* pnative_buffer = (native_buffer*)this;
       dwCur = pnative_buffer->seek(0L,::e_seek_current);
       dwLen = pnative_buffer->seek_to_end();
-      VERIFY(dwCur == (unsigned long long)pnative_buffer->seek((filesize)dwCur,::e_seek_set));
+      VERIFY(dwCur == (::u64)pnative_buffer->seek((filesize)dwCur,::e_seek_set));
 
       return (filesize)dwLen;
    }
 
    //// native_buffer does not support direct buffering (CMemnative_buffer does)
-   //unsigned long long native_buffer::GetBufferPtr(unsigned int nCommand,unsigned long long /*nCount*/,
+   //::u64 native_buffer::GetBufferPtr(::u32 nCommand,::u64 /*nCount*/,
    //                                     void ** /*ppBufStart*/,void ** /*ppBufMax*/)
    //{
    //   ASSERT(nCommand == bufferCheck);
@@ -650,17 +650,17 @@ pdirectorysystem->create(path.folder());
    void native_buffer::Rename(const ::scoped_string & scopedstrOldName, const ::scoped_string & scopedstrNewName)
 
    {
-   if (!::Movenative_buffer((char *)pszOldName, (char *)pszNewName))
+   if (!::Movenative_buffer((char_pointer )pszOldName, (char_pointer )pszNewName))
 
-   WinFileException::ThrowOsError(get_app(), (int)::get_last_error());
+   WinFileException::ThrowOsError(get_app(), (::i32)::get_last_error());
    }
 
    void native_buffer::erase(const ::scoped_string & scopedstrfileName)
 
    {
-   if (!::Deletenative_buffer((char *)pszfileName))
+   if (!::Deletenative_buffer((char_pointer )pszfileName))
 
-   WinFileException::ThrowOsError(get_app(), (int)::get_last_error());
+   WinFileException::ThrowOsError(get_app(), (::i32)::get_last_error());
    }
    */
 

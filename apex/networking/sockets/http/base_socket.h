@@ -39,7 +39,7 @@ namespace sockets
    public:
 
 
-      int      m_iContentLength;
+      ::i32      m_iContentLength;
 
 
       http_base_socket();
@@ -62,9 +62,9 @@ namespace sockets
       virtual void OnResponseComplete();
 
       //string set_cookie(
-      //const_char_pointer name,
+      //const_char_pointer pszName,
       //::payload payload,
-      //int iExpire,
+      //::i32 iExpire,
       //const ::file::path & path,
       //const_char_pointer domain,
       //bool bSecure);
@@ -78,7 +78,7 @@ namespace sockets
       void Execute();
 
       
-      virtual bool read_file(const ::file::path& pcszParam, pointer_array < ::int_array >* prangea = nullptr, const ::scoped_string & scopedstrContentType = nullptr, unsigned int uEnumReadFile = e_read_file_none);
+      virtual bool read_file(const ::file::path& pcszParam, pointer_array < ::i32_array >* prangea = nullptr, const ::scoped_string & scopedstrContentType = nullptr, ::u32 uEnumReadFile = e_read_file_none);
 
 
       virtual bool read_text_file_for_linux(const ::payload & payloadFile);

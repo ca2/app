@@ -4,7 +4,7 @@
 //CLASS_DECL_ACME void set_main_user_thread();
 //
 //
-//int WINAPI _tWinMain(HINSTANCE hinstanceThis, HINSTANCE hinstancePrev, TCHAR * pCmdLine, int nCmdShow)
+//::i32 WINAPI _tWinMain(HINSTANCE hinstanceThis, HINSTANCE hinstancePrev, TCHAR * pCmdLine, ::i32 nCmdShow)
 //{
 //
 //
@@ -68,7 +68,7 @@
 //////   if (!estatus)
 //////   {
 //////    
-//////      int iErrorStatus = estatus.error_status();
+//////      ::i32 iErrorStatus = estatus.error_status();
 //////
 //////      return iErrorStatus;
 //////
@@ -93,7 +93,7 @@
 //
 //   //return iExitCode;
 //
-//   int iErrorStatus = estatus.error_status();
+//   ::i32 iErrorStatus = estatus.error_status();
 //
 //   return iErrorStatus;
 //

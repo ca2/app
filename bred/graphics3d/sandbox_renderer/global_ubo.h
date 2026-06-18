@@ -14,7 +14,7 @@ namespace graphics3d
    struct IScene;
 
    struct point_light {
-      inline static const int MAX_LIGHTS=10;
+      inline static const ::i32 MAX_LIGHTS=10;
       floating_sequence4 position{};
       floating_sequence4 color{};
    };
@@ -25,9 +25,9 @@ namespace graphics3d
       floating_sequence4 ambientLightColor{ 1.f,1.f,1.f,0.02f };
       floating_sequence4 viewPos{ 0.f };
       point_light pointLights[point_light::MAX_LIGHTS];
-      alignas(4) int numLights = 0;
+      alignas(4) ::i32 numLights = 0;
       // pad up to 16‑byte multiple:
-      alignas(16) int _pad[3]{};
+      alignas(16) ::i32 _pad[3]{};
    };
 
    //struct PointLight
@@ -39,7 +39,7 @@ namespace graphics3d
 //GPU_PROPERTY("color", ::gpu::e_type_seq4)
 //END_GPU_PROPERTIES()
 
-//GPU_PROPERTY("radius", ::gpu::e_type_float)
+//GPU_PROPERTY("radius", ::gpu::e_type_f32)
 
    // GlobalUbo :
    // floating_matrix4 projection{ 1.f };
@@ -47,7 +47,7 @@ namespace graphics3d
    // floating_matrix4 invView{ 1.f };
    // floating_sequence4 ambientLightColor{ 1.f, 1.f, 1.f, .02f };
    // PointLight pointLights[MAX_LIGHTS];
-   // int numLights;
+   // ::i32 numLights;
    // 3XINT PADDING
 
 

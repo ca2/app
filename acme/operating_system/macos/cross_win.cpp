@@ -1,10 +1,10 @@
 #include "framework.h"
 
 
-void ns_Sleep(unsigned int uiMillis);
+void ns_Sleep(::u32 uiMillis);
 
 //
-//unsigned int get_last_error()
+//::u32 get_last_error()
 //{
 //   
 //   return t_iLastError;
@@ -12,7 +12,7 @@ void ns_Sleep(unsigned int uiMillis);
 //}
 //
 //
-//void set_last_error(unsigned int dwLastError)
+//void set_last_error(::u32 dwLastError)
 //{
 //   
 //   t_iLastError = dwLastError;

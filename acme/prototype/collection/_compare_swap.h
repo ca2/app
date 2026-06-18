@@ -29,7 +29,7 @@ namespace compare_swap
       ::collection::index iUpperBound;
       ::collection::index iLPos, iUPos, iMPos;
 
-      int iCmp;
+      ::i32 iCmp;
       ::std::strong_ordering iCompare(::std::strong_ordering::equal);
 
       if (iSize >= 2)
@@ -53,7 +53,7 @@ namespace compare_swap
                   if (iMPos == iUPos)
                      break;
                   iCmp = 0;
-                  for (int i = 0; i < comparefunctiona.get_size(); i++)
+                  for (::i32 i = 0; i < comparefunctiona.get_size(); i++)
                   {
                      auto iCompare = comparefunctiona[i](comparearga[i], iMPos, iUPos);
                      if (iCompare > 0)
@@ -71,7 +71,7 @@ namespace compare_swap
                      iUPos--;
                   else
                   {
-                     for (int i = 0; i < swapfunctiona.get_size(); i++)
+                     for (::i32 i = 0; i < swapfunctiona.get_size(); i++)
                      {
                         swapfunctiona[i](swaparga[i], iMPos, iUPos);
                      }
@@ -86,7 +86,7 @@ namespace compare_swap
                   if (iMPos == iLPos)
                      break;
                   iCmp = 0;
-                  for (int i = 0; i < comparefunctiona.get_size(); i++)
+                  for (::i32 i = 0; i < comparefunctiona.get_size(); i++)
                   {
                      iCompare = comparefunctiona[i](comparearga[i], iLPos, iMPos);
                      if (iCompare > 0)
@@ -104,7 +104,7 @@ namespace compare_swap
                      iLPos++;
                   else
                   {
-                     for (int i = 0; i < swapfunctiona.get_size(); i++)
+                     for (::i32 i = 0; i < swapfunctiona.get_size(); i++)
                      {
                         swapfunctiona[i](swaparga[i], iLPos, iMPos);
                      }

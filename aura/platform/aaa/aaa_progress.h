@@ -6,36 +6,36 @@ class CLASS_DECL_AURA progress_listener :
 {
 public:
 
-   virtual void on_progress(double dRate);
+   virtual void on_progress(::f64 dRate);
 
 };
 
 
 
-class CLASS_DECL_AURA int_progress :
-   virtual public int_scalar_listener
+class CLASS_DECL_AURA i32_progress :
+   virtual public i32_scalar_listener
 {
 public:
 
 
-   double               m_dProgressStart;
-   double               m_dProgressEnd;
-   int_scalar           m_scalar;
+   ::f64               m_dProgressStart;
+   ::f64               m_dProgressEnd;
+   i32_scalar           m_scalar;
    progress_listener *  m_plistener;
 
 
-   int_progress();
-   virtual ~int_progress();
+   i32_progress();
+   virtual ~i32_progress();
 
    virtual void trace_progress();
 
-   virtual void trace_progress(long long iStep);
+   virtual void trace_progress(::i64 iStep);
 
    virtual void progress_step();
 
-   virtual void on_set_scalar(int_scalar_source * psource,e_scalar escalar,long long iValue,int iFlags);
+   virtual void on_set_scalar(i32_scalar_source * psource,e_scalar escalar,::i64 iValue,::i32 iFlags);
 
-   int_scalar & operator ()(){ return m_scalar;  }
+   i32_scalar & operator ()(){ return m_scalar;  }
 
 };
 
@@ -43,7 +43,7 @@ public:
 
 
 class CLASS_DECL_AURA progress_control :
-   virtual public double_scalar_source,
+   virtual public f64_scalar_source,
    virtual public object
 {
 public:
@@ -59,10 +59,10 @@ public:
    virtual ~progress_control();
 
 
-   virtual void on_set_scalar(e_scalar escalar, double d, int iFlags);
-   virtual void get_scalar_minimum(e_scalar escalar, double& d);
-   virtual void get_scalar(e_scalar escalar, double& d);
-   virtual void get_scalar_maximum(e_scalar escalar, double& d);
+   virtual void on_set_scalar(e_scalar escalar, ::f64 d, ::i32 iFlags);
+   virtual void get_scalar_minimum(e_scalar escalar, ::f64& d);
+   virtual void get_scalar(e_scalar escalar, ::f64& d);
+   virtual void get_scalar_maximum(e_scalar escalar, ::f64& d);
 
    virtual void format_status(const ::scoped_string & scopedstrFormat);
 
@@ -80,7 +80,7 @@ class CLASS_DECL_AURA progress :
 {
 public:
 
-   progress(::user::interaction * puiParent, const ::scoped_string & scopedstrTitle, int iStepCount);
+   progress(::user::interaction * puiParent, const ::scoped_string & scopedstrTitle, ::i32 iStepCount);
 
    ~progress()
    {

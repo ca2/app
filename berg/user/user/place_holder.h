@@ -60,7 +60,7 @@ namespace user
 
       void route_command(::message::command * pcommand, bool bRouteToKeyDescendant = false) override;
 
-      virtual void get_child_rect(::int_rectangle & rectangle) override;
+      virtual void get_child_rect(::i32_rectangle & rectangle) override;
 
 
    };
@@ -71,8 +71,8 @@ namespace user
    {
    public:
 
-      int place_hold(::user::interaction * pinteraction);
-      int unplace(::user::interaction * pinteraction);
+      ::i32 place_hold(::user::interaction * pinteraction);
+      ::i32 unplace(::user::interaction * pinteraction);
 
    };
 

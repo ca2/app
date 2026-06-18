@@ -27,14 +27,14 @@ HANDLE dup_handle(HANDLE h)
 
 //typedef struct _PROCESS_BASIC_INFORMATION64
 //{
-//   unsigned long long  Reserved1;
-//   unsigned long long  PebBaseAddress;
-//   unsigned long long  Reserved2[2];
-//   unsigned long long  UniqueProcessId;
-//   unsigned long long  Reserved3;
+//   ::u64  Reserved1;
+//   ::u64  PebBaseAddress;
+//   ::u64  Reserved2[2];
+//   ::u64  UniqueProcessId;
+//   ::u64  Reserved3;
 //} PROCESS_BASIC_INFORMATION64;
 
-//typedef NTSTATUS(NTAPI *_NtQueryInformationProcess)(HANDLE ProcessHandle, unsigned int ProcessInformationClass, PVOID ProcessInformation, unsigned int ProcessInformationLength, PDWORD ReturnLength);
+//typedef NTSTATUS(NTAPI *_NtQueryInformationProcess)(HANDLE ProcessHandle, ::u32 ProcessInformationClass, PVOID ProcessInformation, ::u32 ProcessInformationLength, PDWORD ReturnLength);
 //
 //PPEB GetPebAddress(HANDLE handleProcess);
 //
@@ -79,7 +79,7 @@ HANDLE dup_handle(HANDLE h)
 
 
 
-//string get_display_error(unsigned int NTStatusMessage);
+//string get_display_error(::u32 NTStatusMessage);
 //
 //PPEB GetPebAddress(HANDLE handleProcess)
 //{
@@ -88,7 +88,7 @@ HANDLE dup_handle(HANDLE h)
 //   memory_set(&pbi, 0, sizeof(pbi));
 //   DWORD dwInLen = sizeof(pbi);
 //   DWORD dwOutLen = 0xffffffff;
-//   unsigned int dwStatus = NtQueryInformationProcess(handleProcess, ProcessBasicInformation, &pbi, dwInLen, &dwOutLen);
+//   ::u32 dwStatus = NtQueryInformationProcess(handleProcess, ProcessBasicInformation, &pbi, dwInLen, &dwOutLen);
 //   string strError = get_display_error(dwStatus);
 //   if ((dwStatus & 3) == 3)
 //   {
@@ -256,7 +256,7 @@ bool root_execute_sync(const ::scoped_string & scopedstrFile, const ::scoped_str
 }
 
 
-void call_async(const ::file::path & path, const ::scoped_string & scopedstrParam, const ::scoped_string & scopedstrDir, ::e_display edisplay, bool bPrivileged, unsigned int *puiPid)
+void call_async(const ::file::path & path, const ::scoped_string & scopedstrParam, const ::scoped_string & scopedstrDir, ::e_display edisplay, bool bPrivileged, ::u32 *puiPid)
 {
 
    SHELLEXECUTEINFOW info = {};
@@ -297,7 +297,7 @@ void call_async(const ::file::path & path, const ::scoped_string & scopedstrPara
    }
 
 
-   int iOk = ::ShellExecuteExW(&info);
+   ::i32 iOk = ::ShellExecuteExW(&info);
 
    if (puiPid != nullptr)
    {
@@ -347,13 +347,13 @@ void call_sync(const ::file::path & path, const ::scoped_string & scopedstrParam
    if (!::ShellExecuteExW(&infoa))
    {
 
-      DWORD dwLastError = ::GetLastError();
+      auto lasterror = ::windows::get_last_error();
 
       return -1;
 
    }
 
-   set["pid"] = (unsigned int) ::GetProcessId(infoa.hProcess);
+   set["pid"] = (::u32) ::GetProcessId(infoa.hProcess);
 
    DWORD dwExitCode = (DWORD) -1;
 
@@ -395,7 +395,7 @@ void call_sync(const ::file::path & path, const ::scoped_string & scopedstrParam
          auto TerminateProcess_GetLastError = ::GetLastError();
 
          set["TerminateProcess_return"] = TerminateProcess_return;
-         set["TerminateProcess_GetLastError"] = (unsigned int) TerminateProcess_GetLastError;
+         set["TerminateProcess_GetLastError"] = (::u32) TerminateProcess_GetLastError;
 
       }
 
@@ -403,7 +403,7 @@ void call_sync(const ::file::path & path, const ::scoped_string & scopedstrParam
 
    ::CloseHandle(infoa.hProcess);
 
-   int iExitCode = dwExitCode;
+   ::i32 iExitCode = dwExitCode;
 
    if (iExitCode == 0)
    {
@@ -430,7 +430,7 @@ void call_sync(const ::file::path & path, const ::scoped_string & scopedstrParam
 
 
 
-//int get_current_processor_index()
+//::i32 get_current_processor_index()
 //{
 //
 //
@@ -439,7 +439,7 @@ void call_sync(const ::file::path & path, const ::scoped_string & scopedstrParam
 //
 //}
 //
-//int get_current_process_maximum_affinity()
+//::i32 get_current_process_maximum_affinity()
 //{
 //
 //   DWORD_PTR dwProcessAffinityMask;
@@ -448,9 +448,9 @@ void call_sync(const ::file::path & path, const ::scoped_string & scopedstrParam
 //   {
 //      return 0;
 //   }
-//   int iMax = -1;
+//   ::i32 iMax = -1;
 //   uptr dwMask = 1;
-//   for (int i = 0; i < sizeof(dwProcessAffinityMask) * 8; i++)
+//   for (::i32 i = 0; i < sizeof(dwProcessAffinityMask) * 8; i++)
 //   {
 //      if ((dwMask & dwProcessAffinityMask) != 0)
 //      {
@@ -463,7 +463,7 @@ void call_sync(const ::file::path & path, const ::scoped_string & scopedstrParam
 //
 //}
 //
-//int get_current_process_affinity_order()
+//::i32 get_current_process_affinity_order()
 //{
 //
 //
@@ -477,9 +477,9 @@ void call_sync(const ::file::path & path, const ::scoped_string & scopedstrParam
 //
 //   }
 //
-//   int iCount = 0;
+//   ::i32 iCount = 0;
 //   uptr dwMask = 1;
-//   for (int i = 0; i < sizeof(dwProcessAffinityMask) * 8; i++)
+//   for (::i32 i = 0; i < sizeof(dwProcessAffinityMask) * 8; i++)
 //   {
 //      if ((dwMask & dwProcessAffinityMask) != 0)
 //      {
@@ -494,7 +494,7 @@ void call_sync(const ::file::path & path, const ::scoped_string & scopedstrParam
 //}
 //
 //
-//CLASS_DECL_ACMEunsigned long long translate_processor_affinity(int iOrder)
+//CLASS_DECL_ACME::u64 translate_processor_affinity(::i32 iOrder)
 //{
 //
 //   DWORD_PTR dwProcessAffinityMask;
@@ -503,9 +503,9 @@ void call_sync(const ::file::path & path, const ::scoped_string & scopedstrParam
 //   {
 //      return 0;
 //   }
-//   int j = 0;
+//   ::i32 j = 0;
 //   uptr dwMask = 1;
-//   for (int i = 0; i < sizeof(dwProcessAffinityMask) * 8; i++)
+//   for (::i32 i = 0; i < sizeof(dwProcessAffinityMask) * 8; i++)
 //   {
 //      if ((dwMask & dwProcessAffinityMask) != 0)
 //      {
@@ -522,7 +522,7 @@ void call_sync(const ::file::path & path, const ::scoped_string & scopedstrParam
 //
 //}
 
-CLASS_DECL_ACME unsigned int get_current_process_id()
+CLASS_DECL_ACME ::u32 get_current_process_id()
 {
 
    return ::GetCurrentProcessId();
@@ -550,7 +550,7 @@ CLASS_DECL_ACME unsigned int get_current_process_id()
 //} // namespace process
 
 
-//CLASS_DECL_ACME_WINDOWS_COMMONunsigned int get_current_process_id()
+//CLASS_DECL_ACME_WINDOWS_COMMONunsigned ::i32 get_current_process_id()
 //{
 //
 //   return ::GetCurrentProcessId();

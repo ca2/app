@@ -3,7 +3,7 @@
 #include "aura/platform/app_core.h"
 
 
-extern const char* g_pszServerCa2Cc;
+extern const_char_pointer g_pszServerCa2Cc;
 
 
 string context::get_latest_build_number(const ::scoped_string & scopedstrConfiguration, const ::scoped_string & scopedstrAppId)
@@ -42,7 +42,7 @@ string context::get_latest_build_number(const ::scoped_string & scopedstrConfigu
 
    }
 
-   int iRetry = 0;
+   ::i32 iRetry = 0;
 
 RetryBuildNumber:
 
@@ -735,7 +735,7 @@ pdirectorysystem->system() / path;
 
 
 
-file_pointer context::friendly_get_file(::payload payloadFile, unsigned int nOpenFlags)
+file_pointer context::friendly_get_file(::payload payloadFile, ::u32 nOpenFlags)
 {
 
    try

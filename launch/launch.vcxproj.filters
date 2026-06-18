@@ -1,0 +1,163 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <Filter Include="Resource Files">
+      <UniqueIdentifier>{1ca0861d-4267-4854-8bf6-9ad0173f1893}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files">
+      <UniqueIdentifier>{64a04574-142f-4730-9ed6-f92aecc7ccc4}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files">
+      <UniqueIdentifier>{54ccd7b0-0adc-48c0-8c7d-9badfadf8965}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\application_build_helper">
+      <UniqueIdentifier>{4563ab31-1d1d-4bbf-b83c-e697490b9658}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\integration">
+      <UniqueIdentifier>{d8d42e63-967b-42cc-88fd-3f9d5c87a7ed}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\integration\windows">
+      <UniqueIdentifier>{cedc457d-b597-4ba0-a7e9-4f622d8e9fd6}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\integration\macos">
+      <UniqueIdentifier>{9de234ce-afb3-4eb4-a14d-bc9c1b48d5d7}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="application.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="launch.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="_static_factory_.inl">
+      <Filter>Source Files</Filter>
+    </None>
+    <None Include="_main.inl">
+      <Filter>Header Files</Filter>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="_.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="framework.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="_factory.cpp">
+      <Filter>Source Files</Filter>
+    </ClInclude>
+    <ClInclude Include="application.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="application_build_helper\application_build_helper.h">
+      <Filter>Header Files\application_build_helper</Filter>
+    </ClInclude>
+    <ClInclude Include="project_list.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="constant.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="file_synchronization.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="integration\windows\third.h">
+      <Filter>Header Files\integration\windows</Filter>
+    </ClInclude>
+    <ClInclude Include="integration\windows\third_winrt.h">
+      <Filter>Header Files\integration\windows</Filter>
+    </ClInclude>
+    <ClInclude Include="integration\windows\x264.h">
+      <Filter>Header Files\integration\windows</Filter>
+    </ClInclude>
+    <ClInclude Include="integration\windows\openssl.h">
+      <Filter>Header Files\integration\windows</Filter>
+    </ClInclude>
+    <ClInclude Include="integration\windows\ffmpeg.h">
+      <Filter>Header Files\integration\windows</Filter>
+    </ClInclude>
+    <ClInclude Include="integration\windows\build.h">
+      <Filter>Header Files\integration\windows</Filter>
+    </ClInclude>
+    <ClInclude Include="integration\aaa_.h">
+      <Filter>Header Files\integration</Filter>
+    </ClInclude>
+    <ClInclude Include="integration\build.h">
+      <Filter>Header Files\integration</Filter>
+    </ClInclude>
+    <ClInclude Include="integration\fdk_aac.h">
+      <Filter>Header Files\integration</Filter>
+    </ClInclude>
+    <ClInclude Include="integration\ffmpeg.h">
+      <Filter>Header Files\integration</Filter>
+    </ClInclude>
+    <ClInclude Include="integration\aaa_framework.h">
+      <Filter>Header Files\integration</Filter>
+    </ClInclude>
+    <ClInclude Include="integration\freetype.h">
+      <Filter>Header Files\integration</Filter>
+    </ClInclude>
+    <ClInclude Include="integration\integration.h">
+      <Filter>Header Files\integration</Filter>
+    </ClInclude>
+    <ClInclude Include="integration\integration1.h">
+      <Filter>Header Files\integration</Filter>
+    </ClInclude>
+    <ClInclude Include="integration\lame.h">
+      <Filter>Header Files\integration</Filter>
+    </ClInclude>
+    <ClInclude Include="integration\resource.h">
+      <Filter>Header Files\integration</Filter>
+    </ClInclude>
+    <ClInclude Include="integration\targetver.h">
+      <Filter>Header Files\integration</Filter>
+    </ClInclude>
+    <ClInclude Include="integration\macos\build.h">
+      <Filter>Header Files\integration\macos</Filter>
+    </ClInclude>
+    <ClInclude Include="integration\macos\fdk_aac.h">
+      <Filter>Header Files\integration\macos</Filter>
+    </ClInclude>
+    <ClInclude Include="integration\macos\ffmpeg.h">
+      <Filter>Header Files\integration\macos</Filter>
+    </ClInclude>
+    <ClInclude Include="integration\macos\freetype.h">
+      <Filter>Header Files\integration\macos</Filter>
+    </ClInclude>
+    <ClInclude Include="integration\macos\lame.h">
+      <Filter>Header Files\integration\macos</Filter>
+    </ClInclude>
+    <ClInclude Include="integration\macos\openssl.h">
+      <Filter>Header Files\integration\macos</Filter>
+    </ClInclude>
+    <ClInclude Include="integration\macos\x264.h">
+      <Filter>Header Files\integration\macos</Filter>
+    </ClInclude>
+    <ClInclude Include="integration\macos\x265.h">
+      <Filter>Header Files\integration\macos</Filter>
+    </ClInclude>
+    <ClInclude Include="integration\x264.h">
+      <Filter>Header Files\integration</Filter>
+    </ClInclude>
+    <ClInclude Include="integration\x265.h">
+      <Filter>Header Files\integration</Filter>
+    </ClInclude>
+    <ClInclude Include="integration\windows\x265.h">
+      <Filter>Header Files\integration\windows</Filter>
+    </ClInclude>
+    <ClInclude Include="integration\openssl.h">
+      <Filter>Header Files\integration</Filter>
+    </ClInclude>
+    <ClInclude Include="launch.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <ResourceCompile Include="deployment.rc">
+      <Filter>Resource Files</Filter>
+    </ResourceCompile>
+  </ItemGroup>
+</Project>

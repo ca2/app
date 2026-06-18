@@ -209,13 +209,13 @@ namespace parallelization
 //
 //      if(::is_null(::get_task()) || !::get_task()->is_thread()) // system threads don't have generally associated ca2 thread object
 //      {
-//         ////////// and have short life, so it is safe to keep it running
+//         ////////// and have ::i16 life, so it is safe to keep it running
 //         //return true;
-//         return psystem->task_get_run();
+//         return psystem->should_run();
 //
 //      }
 //
-//      return ::get_task()->task_get_run();
+//      return ::get_task()->should_run();
 //
 //   }
 //   catch (...)
@@ -631,7 +631,7 @@ namespace apex
    //}
    //
    //
-   //bool isvowel_dup(int i)
+   //bool isvowel_dup(::i32 i)
    //{
    //
    //   if (i == 'a')
@@ -735,7 +735,7 @@ namespace apex
    //}
 
    //
-   //string _001CompactString(const ::scoped_string & scopedstr, int iSkip, int iSkipBegin = 0)
+   //string _001CompactString(const ::scoped_string & scopedstr, ::i32 iSkip, ::i32 iSkipBegin = 0)
    //{
    //
    //   string strCompact;
@@ -761,7 +761,7 @@ namespace apex
    //}
 
 
-   //void thread_name_abbreviate(string & strName, int len)
+   //void thread_name_abbreviate(string & strName, ::i32 len)
    //{
    //
    //   if (strName.length() <= len)
@@ -889,7 +889,7 @@ namespace apex
    //}
 
 
-//   void __post_quit_message(int nExitCode)
+//   void __post_quit_message(::i32 nExitCode)
 //   {
 //
 //#ifdef WINDOWS_DESKTOP

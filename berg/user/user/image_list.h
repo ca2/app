@@ -1,7 +1,7 @@
 #pragma once
 
 
-#include "acme/platform/timer_array.h"
+//#include "acme/platform/timer_array.h"
 #include "aura/user/user/scroll_base.h"
 #include "margin.h"
 #include "show.h"
@@ -17,10 +17,10 @@ namespace user
    public:
 
 
-      int                                 m_iTextHeight;
-      int                                 m_iMargin;
+      ::i32                                 m_iTextHeight;
+      ::i32                                 m_iMargin;
       bool                                m_bLabel;
-      int                               m_iLabelHeight;
+      ::i32                               m_iLabelHeight;
       ::e_align                           m_ealign;
       string_to_string_base                    m_mapName;
 
@@ -29,17 +29,17 @@ namespace user
 
       index_array                         m_iaSel;
       //::item                            m_itemLButtonDown;
-      ::int_size                          m_size;
+      ::i32_size                          m_size;
       bool                                m_bMultiSel;
-      ::int_size                          m_sizeImage;
-      //::int_rectangle                   m_rectangleTotal;
+      ::i32_size                          m_sizeImage;
+      //::i32_rectangle                   m_rectangleTotal;
 
 
       image_list();
       ~image_list() override;
 
 
-      ::item_pointer on_hit_test(const ::int_point & point, ::user::e_zorder ezorder) override;
+      ::item_pointer on_hit_test(const ::i32_point & point, ::user::e_zorder ezorder) override;
 
       //virtual bool get_rect(::item & item) override;
 
@@ -53,11 +53,11 @@ namespace user
 
 #ifdef _DEBUG
 
-      long long increment_reference_count() override
+      ::i64 increment_reference_count() override
       {
          return ::object::increment_reference_count();
       }
-      long long decrement_reference_count() override
+      ::i64 decrement_reference_count() override
       {
          return ::object::decrement_reference_count();
       }
@@ -106,11 +106,11 @@ namespace user
 //      // void dump(dump_context & dumpcontext) const override;
 
 #ifdef _DEBUG
-      long long increment_reference_count() override
+      ::i64 increment_reference_count() override
       {
          return ::object::increment_reference_count();
       }
-      long long decrement_reference_count() override
+      ::i64 decrement_reference_count() override
       {
          return ::object::decrement_reference_count();
       }

@@ -78,7 +78,7 @@ namespace calculator
          unicode_is_digit(nextinput))
       {
          token->m_etype = token::type_imaginary;
-         char * endptr;
+         char_pointer endptr;
          strtod(nextinput, &endptr);
          token->m_str = string(nextinput, endptr - nextinput);
          input = endptr;
@@ -87,7 +87,7 @@ namespace calculator
       else if(unicode_is_digit(input))
       {
          token->m_etype = token::type_number;
-         char * endptr;
+         char_pointer endptr;
          strtod(input, &endptr);
          token->m_str = string(input, endptr - input);
          if((*endptr == 'i' || *endptr == 'j')

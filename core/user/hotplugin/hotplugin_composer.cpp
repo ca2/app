@@ -380,11 +380,11 @@ namespace hotplugin
 
          g->Attach((HDC)hdc);
 
-         ::int_rectangle rectangle;
+         ::i32_rectangle rectangle;
 
          m_paxishost->window_rectangle(rectangle);
 
-         m_paxishost->on_paint(g,int_rectangle);
+         m_paxishost->on_paint(g,i32_rectangle);
 
          g->Detach();
 
@@ -471,13 +471,13 @@ namespace hotplugin
    }
 
 
-   unsigned int c_cdecl composer::composer_system_main(LPVOID pVoid)
+   ::u32 c_cdecl composer::composer_system_main(LPVOID pVoid)
 
    {
 
       throw_todo();
 
-      ////int iReturnCode = 0;
+      ////::i32 iReturnCode = 0;
 
       //::axis::system * paxissystem = (::axis::system *) pVoid;
 

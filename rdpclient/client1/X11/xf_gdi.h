@@ -27,6 +27,6 @@
 
 void xf_gdi_register_update_callbacks(rdpUpdate* update);
 BOOL xf_gdi_bitmap_update(rdpContext* action_context, BITMAP_UPDATE* bitmapUpdate);
-unsigned int xf_convert_rdp_order_color(xfContext* xfc, unsigned int color);
+::u32 xf_convert_rdp_order_color(xfContext* xfc, ::u32 color);
 
 #endif /* __XF_GDI_H */

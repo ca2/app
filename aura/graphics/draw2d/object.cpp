@@ -96,7 +96,7 @@ namespace draw2d
    }
 
 
-//   bool object::CreateStockObject(int nIndex)
+//   bool object::CreateStockObject(::i32 nIndex)
 //   {
 //
 //      throw ::interface_only();
@@ -134,7 +134,7 @@ namespace draw2d
 }*/
 
    
-//   unsigned int object::GetObjectType() const
+//   ::u32 object::GetObjectType() const
 //   {
 //      
 //      throw ::interface_only();
@@ -168,7 +168,7 @@ namespace draw2d
 //   }
 
 
-   void object::defer_update(::draw2d::graphics* pgraphics, char i) const
+   void object::defer_update(::draw2d::graphics* pgraphics, ::i8 i) const
    {
 
       if(!is_up_to_date(i))
@@ -206,7 +206,7 @@ namespace draw2d
    }
 
 
-   void object::create(::draw2d::graphics * pgraphics, char iCreate)
+   void object::create(::draw2d::graphics * pgraphics, ::i8 iCreate)
    {
 
    }

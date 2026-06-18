@@ -192,7 +192,7 @@ bool const_string_range < ITERATOR_TYPE >::xml_is_comment() const
 // bro      2002-10-29
 //========================================================
 template < typename ITERATOR_TYPE >
-::std::strong_ordering const_string_range < ITERATOR_TYPE >::escape_case_insensitive_count_order(const ::scoped_string& scopedstr, int escape) const
+::std::strong_ordering const_string_range < ITERATOR_TYPE >::escape_case_insensitive_count_order(const ::scoped_string& scopedstr, ::i32 escape) const
 {
 
    auto rangeCompare = scopedstr();

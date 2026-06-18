@@ -5,7 +5,7 @@
 #include "apex/message/channel.h"
 #include "apex/handler/manager.h"
 #include "acme/prototype/geometry2d/rectangle_array.h"
-#include "acme/prototype/collection/int_map.h"
+#include "acme/prototype/collection/integer_map.h"
 #include "acme/platform/auto_pointer.h"
 
 
@@ -32,7 +32,7 @@ namespace user
       bool                                      m_bDrawFlagsReady;
       bool                                      m_bDestroyImplOnly;
       //bool                                    m_bDestroying;
-      int                                       m_iPendingRectMatch;
+      ::i32                                       m_iPendingRectMatch;
       ::pointer<::user::interaction>            m_puserinteraction;
       ::pointer<::user::box>                    m_puserbox;
       bool                                      m_bIgnoreSizeEvent;
@@ -41,13 +41,13 @@ namespace user
 
       ::pointer<::acme::timer_array>            m_ptimerarray;
 
-      const char *                              m_pszInteractionImplBaseDebug;
+      const_char_pointer m_pszInteractionImplBaseDebug;
 
       bool                                      m_bPendingRedraw;
-      unsigned int                                       m_uiLastRedraw;
+      ::u32                                       m_uiLastRedraw;
       bool                                      m_bUpdatingBuffer;
 
-      ::int_rectangle                           m_rectangle;
+      ::i32_rectangle                           m_rectangle;
 
 
 
@@ -113,13 +113,13 @@ namespace user
       
       //virtual void graphics_thread_update_screen();
 
-      //virtual void RepositionBars(unsigned int nIDFirst, unsigned int nIDLast, ::atom nIdLeftOver, unsigned int nFlag = reposDefault, ::int_rectangle * prectParam = nullptr, const ::int_rectangle & rectangleX = nullptr, bool bStretch = true);
+      //virtual void RepositionBars(::u32 nIDFirst, ::u32 nIDLast, ::atom nIdLeftOver, ::u32 nFlag = reposDefault, ::i32_rectangle * prectParam = nullptr, const ::i32_rectangle & rectangleX = nullptr, bool bStretch = true);
 
-      virtual void window_move(int x, int y);
+      virtual void window_move(::i32 x, ::i32 y);
 
 
-      virtual void on_configure(const ::int_rectangle & rectangle);
-      //\virtual void on_resize(const ::int_size & size);
+      virtual void on_configure(const ::i32_rectangle & rectangle);
+      //\virtual void on_resize(const ::i32_size & size);
 
 
       
@@ -183,7 +183,7 @@ namespace user
       virtual bool _is_window();
 
       
-      virtual ::lresult send_message(const ::atom& atom, ::const ::wparam & wparam = {}, ::const ::lparam & lparam = {}, const ::int_point & point = {});
+      virtual ::lresult send_message(const ::atom& atom, ::const ::wparam & wparam = {}, ::const ::lparam & lparam = {}, const ::i32_point & point = {});
 
       virtual ::lresult send_message(::message::message * pmessage);
 
@@ -201,7 +201,7 @@ namespace user
       virtual void on_set_window_text();
 
 
-      //virtual character_count get_window_text(char* pszStringBuf, character_count nMaxCount);
+      //virtual character_count get_window_text(char_pointer pszStringBuf, character_count nMaxCount);
 
 
       //virtual void get_window_text(string& rString);
@@ -220,8 +220,8 @@ namespace user
       virtual void set_mouse_cursor(::windowing::cursor* pcursor);
 
 
-      virtual ::user::interaction* ChildWindowFromPoint(const ::int_point& point);
-      virtual ::user::interaction* ChildWindowFromPoint(const ::int_point& point, unsigned int nFlags);
+      virtual ::user::interaction* ChildWindowFromPoint(const ::i32_point& point);
+      virtual ::user::interaction* ChildWindowFromPoint(const ::i32_point& point, ::u32 nFlags);
 
 
       virtual ::user::interaction* GetLastActivePopup();
@@ -273,7 +273,7 @@ namespace user
       virtual void post_redraw(bool bAscendants = true);
 
 
-      virtual double _001GetTopLeftWeightedOccludedOpaqueRate();
+      virtual ::f64 _001GetTopLeftWeightedOccludedOpaqueRate();
 
 
       //virtual ::windowing::window* get_window() const;
@@ -293,21 +293,21 @@ namespace user
       virtual void hide_software_keyboard(::user::element * pelement);
 
       
-      virtual ::user::interaction* get_child_by_id(const ::atom& atom, ::collection::index iItem = -1, int iLevel = -1);
+      virtual ::user::interaction* get_child_by_id(const ::atom& atom, ::collection::index iItem = -1, ::i32 iLevel = -1);
 
 
-      virtual void set_need_redraw(const ::int_rectangle_array & rectangleaNeedRedraw = {}, function<void()> function =     nullptr, bool bAscendants = true);
+      virtual void set_need_redraw(const ::i32_rectangle_array & rectangleaNeedRedraw = {}, function<void()> function =     nullptr, bool bAscendants = true);
 
 
-      virtual void RedrawWindow(const ::int_rectangle& rectangleUpdate = {},::draw2d::region* prgnUpdate = nullptr,unsigned int flags = 0);
+      virtual void RedrawWindow(const ::i32_rectangle& rectangleUpdate = {},::draw2d::region* prgnUpdate = nullptr,::u32 flags = 0);
 
 
-      //virtual int GetUpdateRgn(::draw2d::region* pRgn, bool bErase = false);
+      //virtual ::i32 GetUpdateRgn(::draw2d::region* pRgn, bool bErase = false);
       //virtual void Invalidate(bool bErase = true);
-      //virtual void InvalidateRect(const ::int_rectangle& rectangle, bool bErase = true);
+      //virtual void InvalidateRect(const ::i32_rectangle& rectangle, bool bErase = true);
 
       //virtual void InvalidateRgn(::draw2d::region* pRgn, bool bErase = true);
-      //virtual void ValidateRect(const ::int_rectangle& rectangle);
+      //virtual void ValidateRect(const ::i32_rectangle& rectangle);
 
       //virtual void ValidateRgn(::draw2d::region* pRgn);
       //virtual void ShowOwnedPopups(bool bShow = true);
@@ -334,22 +334,22 @@ namespace user
       virtual void set_origin(::draw2d::graphics_pointer & pgraphics);
 
 
-      virtual void viewport_screen_to_client(::int_sequence2 & sequence);
-      virtual void viewport_client_to_screen(::int_sequence2 & sequence);
-      virtual void viewport_client_to_screen(::int_rectangle & rectangle);
-      virtual void viewport_screen_to_client(::int_rectangle & rectangle);
+      virtual void viewport_screen_to_client(::i32_sequence2 & sequence);
+      virtual void viewport_client_to_screen(::i32_sequence2 & sequence);
+      virtual void viewport_client_to_screen(::i32_rectangle & rectangle);
+      virtual void viewport_screen_to_client(::i32_rectangle & rectangle);
 
 
-      //virtual unsigned int GetStyle() const;
-      //virtual unsigned int GetExStyle() const;
-      //virtual void ModifyStyle(unsigned int dwRemove,unsigned int dwAdd,unsigned int nFlags = 0);
-      //virtual void ModifyStyleEx(unsigned int dwRemove,unsigned int dwAdd,unsigned int nFlags = 0);
+      //virtual ::u32 GetStyle() const;
+      //virtual ::u32 GetExStyle() const;
+      //virtual void ModifyStyle(::u32 dwRemove,::u32 dwAdd,::u32 nFlags = 0);
+      //virtual void ModifyStyleEx(::u32 dwRemove,::u32 dwAdd,::u32 nFlags = 0);
 
-      //virtual int get_window_long(int nIndex) const;
-      //virtual int set_window_long(int nIndex,int lValue);
+      //virtual ::i32 get_window_long(::i32 nIndex) const;
+      //virtual ::i32 set_window_long(::i32 nIndex,::i32 lValue);
 
-      //virtual iptr get_window_long_ptr(int nIndex) const;
-      //virtual void set_window_long_ptr(int nIndex, iptr lValue);
+      //virtual iptr get_window_long_ptr(::i32 nIndex) const;
+      //virtual void set_window_long_ptr(::i32 nIndex, iptr lValue);
 
       virtual atom GetDlgCtrlId() const;
       virtual atom SetDlgCtrlId(::atom atom);
@@ -363,7 +363,7 @@ namespace user
       virtual ::user::interaction * under_sibling(::user::interaction * pinteraction);
 
 
-      virtual unsigned int ArrangeIconicWindows();
+      virtual ::u32 ArrangeIconicWindows();
       //virtual void BringToTop(::e_display edisplay);
       //virtual bool BringWindowToTop();
 
@@ -375,7 +375,7 @@ namespace user
 
 
 //      virtual ::user::interaction * get_wnd();
-      virtual ::user::interaction * get_wnd(unsigned int nCmd);
+      virtual ::user::interaction * get_wnd(::u32 nCmd);
 
 
       virtual ::user::frame_interaction * frame();
@@ -397,7 +397,7 @@ namespace user
       //virtual ::user::frame_interaction * EnsureParentFrame();
 
 
-      virtual lresult message_call(::enum_message emessage, ::wparam wparam, ::lparam lparam, const ::int_point & point = {});
+      virtual lresult message_call(::enum_message emessage, ::wparam wparam, ::lparam lparam, const ::i32_point & point = {});
       virtual lresult message_call(::message::message * pmessage);
 
       virtual void send_message_to_descendants(::enum_message emessage, ::wparam wparam = {}, ::lparam lparam = {},bool bDeep = true,bool bOnlyPerm = false);
@@ -420,7 +420,7 @@ namespace user
 
 
 
-      virtual void get_rect_normal(::int_rectangle * prectangle);
+      virtual void get_rect_normal(::i32_rectangle * prectangle);
 
 
       virtual void set_timer(uptr uEvent, const class ::time & millisElapse, PFN_TIMER pfnTimer = nullptr, bool bPeriodic = true, void * pdata = nullptr);
@@ -428,7 +428,7 @@ namespace user
 
 
 
-      void on_timer(::timer * ptimer);
+      void operator()(::timer * ptimer) override;
 
       virtual bool IsTopParentActive();
 
@@ -489,8 +489,8 @@ namespace user
 #endif
 
 
-      virtual void _raw_client_to_screen(::int_point & point);
-      virtual void _raw_screen_to_client(::int_point& point);
+      virtual void _raw_client_to_screen(::i32_point & point);
+      virtual void _raw_screen_to_client(::i32_point& point);
 
 
       ::trace_statement & trace_statement_prefix(::trace_statement & statement) const override;
@@ -502,7 +502,7 @@ namespace user
       void main_send(const ::procedure & procedure) override;
       void main_post(const ::procedure & procedure) override;
 
-      virtual void set_opacity(double dOpacity);
+      virtual void set_opacity(::f64 dOpacity);
 
 
    };

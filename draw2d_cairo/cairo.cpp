@@ -1,6 +1,6 @@
 #include "framework.h"
 #include "acme/parallelization/mutex.h"
-#include "acme/prototype/collection/int_map.h"
+#include "acme/prototype/collection/integer_map.h"
 #include "acme/prototype/collection/string_map.h"
 #include "acme/prototype/prototype/factory.h"
 #include "acme/prototype/geometry2d/matrix.h"
@@ -26,7 +26,7 @@
 //
 //#endif
 //
-//   g_pmapFontFace = ___new string_map_base < int_map < FT_Face> >  ();
+//   g_pmapFontFace = ___new string_map_base < i32_map < FT_Face> >  ();
 //
 //   g_pmapCairoFontFace = ___new string_map_base < cairo_font_face_t * >  ();
 //
@@ -67,7 +67,7 @@
 //#ifdef UNIVERSAL_WINDOWS
 //[Platform::MTAThread]
 //#endif
-//BOOL WINAPI DllMain(HINSTANCE hInstance,unsigned int dwReason,LPVOID lpReserved)
+//BOOL WINAPI DllMain(HINSTANCE hInstance,::u32 dwReason,LPVOID lpReserved)
 //{
 //
 //   xxdebug_box("draw2d_cairo.dll DllMain (0)","box",::user::e_message_box_ok);

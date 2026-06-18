@@ -12,7 +12,7 @@ namespace earth
 {
 
 
-   inline int32_t days_from_1jan(int year, int month, int day)
+   inline int32_t days_from_1jan(::i32 year, ::i32 month, ::i32 day)
    {
       static const int32_t days[2][12] =
       {
@@ -104,7 +104,7 @@ namespace earth
    //}
 
   
-   gregorian_time::gregorian_time(const ::posix_time & posixtime, long long iNanosecond, const class ::time & timeshift)
+   gregorian_time::gregorian_time(const ::posix_time & posixtime, ::i64 iNanosecond, const class ::time & timeshift)
    {
 
       set(posixtime, iNanosecond, timeshift);
@@ -139,9 +139,9 @@ namespace earth
    posix_time gregorian_time::make_utc_time() const
    {
 
-      int year = m_iYear;
+      ::i32 year = m_iYear;
 
-      int month = m_iMonth;
+      ::i32 month = m_iMonth;
 
       if (month > 11)
       {
@@ -150,18 +150,18 @@ namespace earth
       }
       else if (month < 0)
       {
-         int years_diff = (-month + 11) / 12;
+         ::i32 years_diff = (-month + 11) / 12;
          year -= years_diff;
          month += 12 * years_diff;
       }
       month++;
-      int day = m_iDay;
-      int day_of_year = days_from_1jan(year, month, day);
-      int days_since_epoch = days_from_1970(year) + day_of_year;
+      ::i32 day = m_iDay;
+      ::i32 day_of_year = days_from_1jan(year, month, day);
+      ::i32 days_since_epoch = days_from_1970(year) + day_of_year;
 
-      long long seconds_in_day = 3600 * 24;
+      ::i64 seconds_in_day = 3600 * 24;
 
-      long long result = seconds_in_day * days_since_epoch + 3600 * m_iHour + 60 * m_iMinute + m_iSecond;
+      ::i64 result = seconds_in_day * days_since_epoch + 3600 * m_iHour + 60 * m_iMinute + m_iSecond;
 
       return { posix_time_t{}, result };
 

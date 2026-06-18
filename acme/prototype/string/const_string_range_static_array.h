@@ -2,7 +2,7 @@
 #pragma once
 
 
-//template < typename ITERATOR_TYPE, int t_size >
+//template < typename ITERATOR_TYPE, ::i32 t_size >
 //class const_string_range_static_array;
 //
 //template < typename ITERATOR_TYPE >
@@ -15,7 +15,7 @@
 //
 //   consteval character_count size() const { return 0; }
 //
-//   ::range < ITERATOR_TYPE >& element_at(int i) const { return *((::range < ITERATOR_TYPE >*)nullptr); }
+//   ::range < ITERATOR_TYPE >& element_at(::i32 i) const { return *((::range < ITERATOR_TYPE >*)nullptr); }
 //
 //   void concatenate_to(::non_const < ITERATOR_TYPE >& p) const
 //   {
@@ -87,7 +87,7 @@
 //};
 //
 //
-//template < typename ITERATOR_TYPE, int t_size >
+//template < typename ITERATOR_TYPE, ::i32 t_size >
 //class const_string_range_static_array
 //{
 //public:
@@ -113,7 +113,7 @@
 //
 //   auto& ascendant() const { return *(ASCENDANT*)this; }
 //
-//   auto& element_at(int i) const { return (RANGE&)m_rangea[i]; }
+//   auto& element_at(::i32 i) const { return (RANGE&)m_rangea[i]; }
 //
 //   auto& top const { return element_at(t_size - 1); }
 //

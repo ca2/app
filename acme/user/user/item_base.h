@@ -15,7 +15,7 @@ namespace user
 
    };
 
-   DECLARE_ENUMERATION(e_item_state, enum_item_state);
+   DECLARE_C_FLAG(e_item_state, enum_item_state);
 
    class CLASS_DECL_ACME item_base :
       virtual public ::particle
@@ -25,7 +25,7 @@ namespace user
 
       ::pointer < ::user::item >          m_puseritem;
       //::pointer < ::item >                m_pitem;
-      unsigned long long                  m_ullUserData;
+      ::u64                  m_ullUserData;
       e_item_state                        m_eitemstate;
 
 

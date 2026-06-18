@@ -16,7 +16,7 @@ namespace user
 
 
       pointer_array < ::user::document > m_docptra;          // open documents of this type
-      unsigned int m_nUntitledCount;   // start at 0, for "Document1" title
+      ::u32 m_nUntitledCount;   // start at 0, for "Document1" title
 
 
       multiple_document_template(const ::scoped_string & scopedstrMatter, const ::platform::type & typeatomDocument, const ::platform::type & typeatomFrame, const ::platform::type & typeatomImpact, const ::platform::type & typeatomData = {});
@@ -37,12 +37,12 @@ namespace user
       // virtual void dump(dump_context &) const override;
       // void assert_ok() const override;
 
-      //virtual long long increment_reference_count() override
+      //virtual ::i64 increment_reference_count() override
       //{
       //   return ::user::impact_system::increment_reference_count();
       //}
 
-      //virtual long long decrement_reference_count() override
+      //virtual ::i64 decrement_reference_count() override
       //{
       //   return ::user::impact_system::decrement_reference_count();
       //}

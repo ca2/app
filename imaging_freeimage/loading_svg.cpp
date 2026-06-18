@@ -38,7 +38,7 @@ namespace imaging_freeimage
 //
 //      return ::image_context::load_svg(pimage, memory);
 //
-////      int ret;
+////      ::i32 ret;
 ////
 ////      RsvgDimensionData unscaled_dimensions, dimensions;
 ////      cairo_surface_t *image;
@@ -61,7 +61,7 @@ namespace imaging_freeimage
 ////      dimensions.width  = pimage->width()  ? pimage->width()  : dimensions.width;
 ////      dimensions.height = pimage->height() ? pimage->height() : dimensions.height;
 //////      if (s->keep_ar && (s->width || s->height)) {
-//////         double default_ar = unscaled_dimensions.width/(double)unscaled_dimensions.height;
+//////         ::f64 default_ar = unscaled_dimensions.width/(::f64)unscaled_dimensions.height;
 //////         if (!s->width)
 //////            dimensions.width  = lrintf(dimensions.height * default_ar);
 //////         else
@@ -76,7 +76,7 @@ namespace imaging_freeimage
 ////
 ////
 ////      image = cairo_image_surface_create_for_data(
-////         (unsigned char *) pimage->get_data(), CAIRO_FORMAT_ARGB32,
+////         (::u8 *) pimage->get_data(), CAIRO_FORMAT_ARGB32,
 ////                                                  pimage->width(), pimage->height(),
 ////                                                  pimage->scan_size());
 ////      if (cairo_surface_status(image) != CAIRO_STATUS_SUCCESS)
@@ -89,8 +89,8 @@ namespace imaging_freeimage
 ////      cairo_paint(crender);
 ////      cairo_restore(crender);
 ////
-////      cairo_scale(crender, dimensions.width / (double)unscaled_dimensions.width,
-////                  dimensions.height / (double)unscaled_dimensions.height);
+////      cairo_scale(crender, dimensions.width / (::f64)unscaled_dimensions.width,
+////                  dimensions.height / (::f64)unscaled_dimensions.height);
 ////
 ////      rsvg_handle_render_cairo(handle, crender);
 ////

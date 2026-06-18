@@ -92,8 +92,8 @@ namespace ftp
 
       e_connection_type                      m_econnectiontype;
       // data members
-      //const unsigned int                     mc_uiTimeout;               ///< timeout for socket-functions
-      //const unsigned int                     mc_uiResponseWait;          ///< sleep time between receive calls to socket when getting the response
+      //const ::u32                     mc_uiTimeout;               ///< timeout for socket-functions
+      //const ::u32                     mc_uiResponseWait;          ///< sleep time between receive calls to socket when getting the response
       class ::time                                m_timeTimeout;
       class ::time                                m_timeResponseWait;
       const string                          mc_strEolCharacterSequence; ///< end-of-line sequence of current operating system
@@ -118,7 +118,7 @@ namespace ftp
 
 
       client_socket(
-                    const class time & timeTimeout = 10_s, unsigned int uiBufferSize = 2048,
+                    const class time & timeTimeout = 10_s, ::u32 uiBufferSize = 2048,
                     const class time & timeResponseWait = 0_s, const ::scoped_string & scopedstrRemoteDirectorySeparator = "/");
       virtual ~client_socket();
 
@@ -134,7 +134,7 @@ namespace ftp
       void SetResumeMode(bool fEnable = true);
 
       bool Login(logon * plogon);
-      int  Logout();
+      ::i32  Logout();
       const logon * get_logon() const { return m_plogon; }
 
       bool List(const ::scoped_string & scopedstrPath, string_array_base& vstrFileList, bool fPasv = false);
@@ -143,9 +143,9 @@ namespace ftp
       bool List(const ::scoped_string & scopedstrPath, file_status_ptra& vFileList, bool fPasv = false);
       bool NameList(const ::scoped_string & scopedstrPath, file_status_ptra& vFileList, bool fPasv = false);
 
-      int  Delete(const ::scoped_string & scopedstrFile);
-      int  Rename(const ::scoped_string & scopedstrOldName, const ::scoped_string & scopedstrNewName);
-      int  Move(const ::scoped_string & scopedstrFullSourceFilePath, const ::scoped_string & scopedstrFullTargetFilePath);
+      ::i32  Delete(const ::scoped_string & scopedstrFile);
+      ::i32  Rename(const ::scoped_string & scopedstrOldName, const ::scoped_string & scopedstrNewName);
+      ::i32  Move(const ::scoped_string & scopedstrFullSourceFilePath, const ::scoped_string & scopedstrFullTargetFilePath);
 
       bool DownloadFile(const ::scoped_string & scopedstrRemoteFile, itransfer_notification& Observer,
                         const representation& repType = representation(type::Image()), bool fPasv = false);
@@ -167,47 +167,47 @@ namespace ftp
                                client_socket& TargetFtpServer, const ::scoped_string & scopedstrTargetFile,
                                const representation& repType = representation(type::Image()), bool fSourcePasv = false);
 
-      int remove_directory(const ::scoped_string & scopedstrDirectory);
-      int make_directory(const ::scoped_string & scopedstrDirectory);
+      ::i32 remove_directory(const ::scoped_string & scopedstrDirectory);
+      ::i32 make_directory(const ::scoped_string & scopedstrDirectory);
 
-      int PrintWorkingDirectory();
-      int ChangeToParentDirectory();
-      int ChangeWorkingDirectory(const ::scoped_string & scopedstrDirectory);
+      ::i32 PrintWorkingDirectory();
+      ::i32 ChangeToParentDirectory();
+      ::i32 ChangeWorkingDirectory(const ::scoped_string & scopedstrDirectory);
 
-      int Passive(unsigned int& ulIpAddress, unsigned short& ushPort);
-      int DataPort(const ::scoped_string & scopedstrHostIP, unsigned short ushPort);
-      int _abort();
-      int system();
-      int Noop();
-      int RepresentationType(const representation& repType, unsigned int dwSize = 0);
-      int FileStructure(const structure& crStructure);
-      int TransferMode(const transfer_mode& crTransferMode);
-      int Allocate(int iReserveBytes, const int* piMaxPageOrRecordSize = nullptr);
-      int StructureMount(const ::scoped_string & scopedstrPath);
-      int SiteParameters(const ::scoped_string & scopedstrCmd);
-      int Status(const ::scoped_string & scopedstrPath);
-      int Help(const ::scoped_string & scopedstrTopic);
+      ::i32 Passive(::u32& ulIpAddress, ::u16& ushPort);
+      ::i32 DataPort(const ::scoped_string & scopedstrHostIP, ::u16 ushPort);
+      ::i32 _abort();
+      ::i32 system();
+      ::i32 Noop();
+      ::i32 RepresentationType(const representation& repType, ::u32 dwSize = 0);
+      ::i32 FileStructure(const structure& crStructure);
+      ::i32 TransferMode(const transfer_mode& crTransferMode);
+      ::i32 Allocate(::i32 iReserveBytes, const ::i32* piMaxPageOrRecordSize = nullptr);
+      ::i32 StructureMount(const ::scoped_string & scopedstrPath);
+      ::i32 SiteParameters(const ::scoped_string & scopedstrCmd);
+      ::i32 Status(const ::scoped_string & scopedstrPath);
+      ::i32 Help(const ::scoped_string & scopedstrTopic);
 
-      int Reinitialize();
-      int Restart(unsigned int dwPosition);
+      ::i32 Reinitialize();
+      ::i32 Restart(::u32 dwPosition);
 
-      int FileSize(const ::scoped_string & scopedstrPath, long& lSize);
-      int FileModificationTime(const ::scoped_string & scopedstrPath, struct ::tm& tmModificationTime);
-      int FileModificationTime(const ::scoped_string & scopedstrPath, string& strModificationTime);
+      ::i32 FileSize(const ::scoped_string & scopedstrPath, long& lSize);
+      ::i32 FileModificationTime(const ::scoped_string & scopedstrPath, struct ::tm& tmModificationTime);
+      ::i32 FileModificationTime(const ::scoped_string & scopedstrPath, string& strModificationTime);
 
       bool ExecuteDatachannelCommand(const command& crDatachannelCmd, const ::scoped_string & scopedstrPath, const representation& representation,
-                                     bool fPasv, unsigned int dwByteOffset, itransfer_notification& Observer);
+                                     bool fPasv, ::u32 dwByteOffset, itransfer_notification& Observer);
 
       observer_array& GetObservers();
 
-      int _RepresentationType(const representation& repType, unsigned int dwSize = 0);
+      ::i32 _RepresentationType(const representation& repType, ::u32 dwSize = 0);
       bool TransferData(const command& crDatachannelCmd, itransfer_notification& Observer, ::sockets::transfer_socket & sckDataConnection);
-      bool OpenActiveDataConnection(::sockets::socket & sckDataConnection, const command& crDatachannelCmd, const ::scoped_string & scopedstrPath, unsigned int dwByteOffset);
-      bool OpenPassiveDataConnection(::sockets::socket & sckDataConnection, const command& crDatachannelCmd, const ::scoped_string & scopedstrPath, unsigned int dwByteOffset);
+      bool OpenActiveDataConnection(::sockets::socket & sckDataConnection, const command& crDatachannelCmd, const ::scoped_string & scopedstrPath, ::u32 dwByteOffset);
+      bool OpenPassiveDataConnection(::sockets::socket & sckDataConnection, const command& crDatachannelCmd, const ::scoped_string & scopedstrPath, ::u32 dwByteOffset);
       bool SendData(itransfer_notification& Observer, ::sockets::transfer_socket& sckDataConnection);
       bool ReceiveData(itransfer_notification& Observer, ::sockets::transfer_socket& sckDataConnection);
 
-      int  SimpleErrorCheck(const reply& Reply);
+      ::i32  SimpleErrorCheck(const reply& Reply);
 
       bool SendCommand(const command& Command, const string_array_base & Arguments);
       bool SendCommand(const command& Command, const string_array_base & Arguments, reply& Reply);
@@ -215,11 +215,11 @@ namespace ftp
       bool GetSingleResponseLine(string& strResponse);
       void OnLine(const ::scoped_string & scopedstrLine) override;
 
-      bool OpenControlChannel(const ::scoped_string & scopedstrServerHost, unsigned short ushServerPort = DEFAULT_FTP_PORT);
+      bool OpenControlChannel(const ::scoped_string & scopedstrServerHost, ::u16 ushServerPort = DEFAULT_FTP_PORT);
       void CloseControlChannel();
 
-      void ReportError(const ::scoped_string & scopedstrErrorMsg, const ::scoped_string & scopedstrFile, unsigned int dwLineNr);
-      bool GetIpAddressFromResponse(const ::scoped_string & scopedstrResponse, unsigned int& ulIpAddress, unsigned short& ushPort);
+      void ReportError(const ::scoped_string & scopedstrErrorMsg, const ::scoped_string & scopedstrFile, ::u32 dwLineNr);
+      bool GetIpAddressFromResponse(const ::scoped_string & scopedstrResponse, ::u32& ulIpAddress, ::u16& ushPort);
 
    };
 
@@ -232,7 +232,7 @@ namespace ftp
    {
    public:
       virtual ~notification() {}
-      virtual void OnInternalError(const string& /*strErrorMsg*/, const string& /*strFileName*/, unsigned int /*dwLineNr*/) {}
+      virtual void OnInternalError(const string& /*strErrorMsg*/, const string& /*strFileName*/, ::u32 /*dwLineNr*/) {}
 
       virtual void OnBeginReceivingData() {}
       virtual void OnEndReceivingData(long /*lReceivedBytes*/) {}
@@ -299,7 +299,7 @@ namespace ftp
 //   NLST [<SP> <pathname>] <CRLF>
 
 // non RFC-Commands
-//   const int_size & <SP> <pathname> <CRLF>
+//   const i32_size & <SP> <pathname> <CRLF>
 //   MDTM <SP> <pathname> <CRLF>
 
 /** \class nsFTP::structure
@@ -383,7 +383,7 @@ header has the following defined fields:
 
 - Header Length\n
 The number of logical bytes in the page header
-including this unsigned char.  The minimum header length is 4.
+including this ::u8.  The minimum header length is 4.
 
 - Page Index\n
 The logical page number of this section of the file.
@@ -423,8 +423,8 @@ Further header fields may be used to supply per page
 control information, for example, per page access
 control.
 
-All fields are one logical unsigned char in length.  The logical unsigned char
-int_size is specified by the TYPE command.  See Appendix I for
+All fields are one logical ::u8 in length.  The logical ::u8
+i32_size is specified by the TYPE command.  See Appendix I for
 further details and a specific case at the page structure.
 
 A note of caution about parameters:  a file must be stored and
@@ -443,7 +443,7 @@ compresses the data for efficient transfer; and one which passes
 the data with little or no processing.  In this last case the mode
 interacts with the structure attribute to determine the type of
 processing.  In the compressed mode, the representation type
-determines the filler unsigned char.
+determines the filler ::u8.
 
 All data transfers must be completed with an end-of-file (EOF)
 which may be explicitly stated or implied by the closing of the
@@ -452,7 +452,7 @@ end-of-record markers (EOR) are explicit, including the final one.
 For files transmitted in page structure a "last-page" page type is
 used.
 
-NOTE:  In the rest of this section, unsigned char means "transfer unsigned char"
+NOTE:  In the rest of this section, ::u8 means "transfer ::u8"
 except where explicitly stated otherwise.
 
 For the purpose of standardized transfer, the sending host will
@@ -461,7 +461,7 @@ into the representation prescribed by the transfer mode and file
 structure, and the receiving host will perform the inverse
 translation to its internal denotation.  An IBM Mainframe record
 count field may not be recognized at another host, so the
-end-of-record information may be transferred as a two unsigned char control
+end-of-record information may be transferred as a two ::u8 control
 code in Stream mode or as a flagged bit in a Block or Compressed
 mode descriptor.  End-of-line in an ASCII or EBCDIC file with no
 record structure should be indicated by <CRLF> or <NL>,
@@ -477,15 +477,15 @@ restriction on the representation type used; record structures
 are allowed.
 
 In a record structured file EOR and EOF will each be indicated
-by a two-unsigned char control code.  The first unsigned char of the control code
-will be all ones, the escape character.  The second unsigned char will
+by a two-::u8 control code.  The first ::u8 of the control code
+will be all ones, the escape character.  The second ::u8 will
 have the low order bit on and zeros elsewhere for EOR and the
-second low order bit on for EOF; that is, the unsigned char will have
+second low order bit on for EOF; that is, the ::u8 will have
 value 1 for EOR and value 2 for EOF.  EOR and EOF may be
-indicated together on the last unsigned char transmitted by turning both
-low order bits on (i.e., the value 3).  If a unsigned char of all ones
+indicated together on the last ::u8 transmitted by turning both
+low order bits on (i.e., the value 3).  If a ::u8 of all ones
 was intended to be sent as data, it should be repeated in the
-second unsigned char of the control code.
+second ::u8 of the control code.
 
 If the structure is a file structure, the EOF is indicated by
 the sending host closing the data connection and all bytes are
@@ -511,7 +511,7 @@ portions are suspect).  Record structures are allowed in this
 mode, and any representation type may be used.
 
 The header consists of the three bytes.  Of the 24 bits of
-header information, the 16 low order bits shall represent unsigned char
+header information, the 16 low order bits shall represent ::u8
 count, and the 8 high order bits shall represent descriptor
 codes as shown below.
 
@@ -523,9 +523,9 @@ Block Header
 +----------------+----------------+----------------+
 </PRE>
 The descriptor codes are indicated by bit flags in the
-descriptor unsigned char.  Four codes have been assigned, where each
+descriptor ::u8.  Four codes have been assigned, where each
 code number is the decimal value of the corresponding bit in
-the unsigned char.
+the ::u8.
 <PRE>
 Code     Meaning
 
@@ -566,10 +566,10 @@ would be sent:
 
 /** \fn static const transfer_mode nsFTP::transfer_mode::Compressed()
 There are three kinds of information to be sent:  regular data,
-sent in a unsigned char string; compressed data, consisting of
+sent in a ::u8 string; compressed data, consisting of
 replications or filler; and control information, sent in a
-two-unsigned char escape sequence.  If n>0 bytes (up to 127) of regular
-data are sent, these n bytes are preceded by a unsigned char with the
+two-::u8 escape sequence.  If n>0 bytes (up to 127) of regular
+data are sent, these n bytes are preceded by a ::u8 with the
 left-most bit set to 0 and the right-most 7 bits containing the
 number n.
 
@@ -586,7 +586,7 @@ of data
 String of n data bytes d(1),..., d(n)
 Count n must be positive.
 
-To compress a string of n replications of the data unsigned char d, the
+To compress a string of n replications of the data ::u8 d, the
 following 2 bytes are sent:
 
 Replicated Byte:
@@ -597,10 +597,10 @@ Replicated Byte:
 +-+-+-+-+-+-+-+-+ +-+-+-+-+-+-+-+-+
 </PRE>
 A string of n filler bytes can be compressed into a single
-unsigned char, where the filler unsigned char varies with the representation
-type.  If the type is ASCII or EBCDIC the filler unsigned char is <SP>
+::u8, where the filler ::u8 varies with the representation
+type.  If the type is ASCII or EBCDIC the filler ::u8 is <SP>
 (Space, ASCII code 32, EBCDIC code 64).  If the type is Image
-or Local unsigned char the filler is a zero unsigned char.
+or Local ::u8 the filler is a zero ::u8.
 
 Filler String:
 <PRE>
@@ -609,15 +609,15 @@ Filler String:
 |1 1|     n     |
 +-+-+-+-+-+-+-+-+
 </PRE>
-The escape sequence is a double unsigned char, the first of which is the
-escape unsigned char (all zeros) and the second of which contains
+The escape sequence is a ::f64 ::u8, the first of which is the
+escape ::u8 (all zeros) and the second of which contains
 descriptor codes as defined in Block mode.  The descriptor
 codes have the same meaning as in Block mode and apply to the
 succeeding string of bytes.
 
 Compressed mode is useful for obtaining increased bandwidth on
 very large network transmissions at a little extra CPU cost.
-It can be most effectively used to reduce the int_size of printer
+It can be most effectively used to reduce the i32_size of printer
 files such as those generated by RJE hosts.
 */
 
@@ -657,7 +657,7 @@ performed by the user directly.
 Several types take a second parameter. The first parameter is
 denoted by a single Telnet character, as is the second
 Format parameter for ASCII and EBCDIC; the second parameter
-for local unsigned char is a decimal integer to indicate Bytesize.
+for local ::u8 is a decimal integer to indicate Bytesize.
 The parameters are separated by a <SP> (Space, ASCII code
 32).
 
@@ -670,7 +670,7 @@ E - EBCDIC|    | C - Carriage Control (ASA)
 /    \
 I - Image
 
-L <unsigned char int_size> - Local unsigned char Byte int_size
+L <::u8 i32_size> - Local ::u8 Byte i32_size
 </PRE>
 The default representation type is ASCII Non-print.  If the
 Format parameter is changed, and later just the first
@@ -685,15 +685,15 @@ DATA TYPES
 
 Data representations are handled in FTP by a user specifying a
 representation type.  This type may implicitly (as in ASCII or
-EBCDIC) or explicitly (as in Local unsigned char) define a unsigned char int_size for
-interpretation which is referred to as the "logical unsigned char size."
-Note that this has nothing to do with the unsigned char int_size used for
+EBCDIC) or explicitly (as in Local ::u8) define a ::u8 i32_size for
+interpretation which is referred to as the "logical ::u8 size."
+Note that this has nothing to do with the ::u8 i32_size used for
 transmission over the data connection, called the "transfer
-unsigned char int_size", and the two should not be confused.  For example,
-NVT-ASCII has a logical unsigned char int_size of 8 bits.  If the type is
-Local unsigned char, then the TYPE command has an obligatory second
-parameter specifying the logical unsigned char size.  The transfer unsigned char
-int_size is always 8 bits.
+::u8 i32_size", and the two should not be confused.  For example,
+NVT-ASCII has a logical ::u8 i32_size of 8 bits.  If the type is
+Local ::u8, then the TYPE command has an obligatory second
+parameter specifying the logical ::u8 size.  The transfer ::u8
+i32_size is always 8 bits.
 */
 
 /** \fn static const type nsFTP::platform::type::ASCII()
@@ -742,7 +742,7 @@ are packed into the 8-bit transfer bytes.  The receiving
 site must store the data as contiguous bits.  The structure
 of the storage system might necessitate the padding of the
 file (or of each record, for a record-structured file) to
-some convenient boundary (unsigned char, word or block).  This
+some convenient boundary (::u8, word or block).  This
 padding, which must be all zeros, may occur only at the end
 of the file (or at the end of each record) and there must be
 a way of identifying the padding bits so that they may be
@@ -757,31 +757,31 @@ implementations.
 */
 
 /** \fn static const type nsFTP::platform::type::LocalByte()
-The data is transferred in logical bytes of the int_size
+The data is transferred in logical bytes of the i32_size
 specified by the obligatory second parameter, Byte size.
-The value of Byte int_size must be a decimal integer; there is
-no default value.  The logical unsigned char int_size is not necessarily
-the same as the transfer unsigned char size.  If there is a
-difference in unsigned char sizes, then the logical bytes should be
-packed contiguously, disregarding transfer unsigned char boundaries
+The value of Byte i32_size must be a decimal integer; there is
+no default value.  The logical ::u8 i32_size is not necessarily
+the same as the transfer ::u8 size.  If there is a
+difference in ::u8 sizes, then the logical bytes should be
+packed contiguously, disregarding transfer ::u8 boundaries
 and with any necessary padding at the end.
 
 When the data reaches the receiving host, it will be
-transformed in a manner dependent on the logical unsigned char int_size
+transformed in a manner dependent on the logical ::u8 i32_size
 and the particular host.  This transformation must be
 invertible (i.e., an identical file can be retrieved if the
 same parameters are used) and should be well publicized by
 the FTP implementors.
 
-For example, a user sending 36-bit floating-int_point numbers to
-a host with a 32-bit word could send that data as Local unsigned char
-with a logical unsigned char int_size of 36.  The receiving host would
+For example, a user sending 36-bit floating-i32_point numbers to
+a host with a 32-bit word could send that data as Local ::u8
+with a logical ::u8 i32_size of 36.  The receiving host would
 then be expected to store the logical bytes so that they
 could be easily manipulated; in this example putting the
-36-bit logical bytes into 64-bit double words should
+36-bit logical bytes into 64-bit ::f64 words should
 suffice.
 
-In another example, a pair of hosts with a 36-bit word int_size
+In another example, a pair of hosts with a 36-bit word i32_size
 may send data to one another in words by using TYPE L 36.
 The data would be sent in the 8-bit transmission bytes
 packed so that 9 transmission bytes carried two host words.

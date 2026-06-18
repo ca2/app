@@ -1,7 +1,7 @@
 #include "framework.h"
 
 
-CLASS_DECL_AURA enum_display equivalence_sink(enum_display edisplay)
+CLASS_DECL_AURA enum_display equivalence_sink(const ::e_display & edisplay)
 {
 
    if (edisplay == e_display_restore
@@ -18,7 +18,7 @@ CLASS_DECL_AURA enum_display equivalence_sink(enum_display edisplay)
 }
 
 
-CLASS_DECL_AURA int windows_show_window(enum_display edisplay, enum_activation useractivation)
+CLASS_DECL_AURA ::i32 windows_show_window(const ::e_display & edisplay, enum_activation useractivation)
 {
 
    auto bNoActivate = useractivation & ::user::e_activation_no_activate;
@@ -53,7 +53,7 @@ CLASS_DECL_AURA int windows_show_window(enum_display edisplay, enum_activation u
 
 
 
-CLASS_DECL_AURA enum_display windows_show_window_to_edisplay(int iShowWindow, enum_activation & useractivation)
+CLASS_DECL_AURA enum_display windows_show_window_to_edisplay(::i32 iShowWindow, enum_activation & useractivation)
 {
 
    useractivation = ::user::e_activation_default;
@@ -94,7 +94,7 @@ CLASS_DECL_AURA enum_display windows_show_window_to_edisplay(int iShowWindow, en
 
 
 
-CLASS_DECL_AURA string as_string(enum_display edisplay)
+CLASS_DECL_AURA string as_string(const ::e_display & edisplay)
 {
 
    if(is_docking_appearance(edisplay))

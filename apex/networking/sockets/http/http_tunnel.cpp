@@ -84,11 +84,11 @@ namespace sockets
 
             string str;
 
-            str.formatf("CONNECT %s:%d HTTP/1.0\r\n", GetUrlHost().c_str(), (int)GetUrlPort());
+            str.formatf("CONNECT %s:%d HTTP/1.0\r\n", GetUrlHost().c_str(), (::i32)GetUrlPort());
 
             print(str);
 
-            str.formatf("host: %s:%d\r\n", GetUrlHost().c_str(), (int)GetUrlPort());
+            str.formatf("host: %s:%d\r\n", GetUrlHost().c_str(), (::i32)GetUrlPort());
 
             print(str);
 

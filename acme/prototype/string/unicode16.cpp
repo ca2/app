@@ -111,7 +111,7 @@ character_count utf16_len(const ::wd16_character *pwsz)
 }
 
 
-character_count wd16_to_ansi(char* psz, const ::wd16_character* pwsz, character_count srclen)
+character_count wd16_to_ansi(char_pointer psz, const ::wd16_character* pwsz, character_count srclen)
 {
 
    character_count c = 0;
@@ -232,7 +232,7 @@ character_count wd16_to_ansi(char* psz, const ::wd16_character* pwsz, character_
 //   while (input_size != 0)
 //   {
 //
-//      unsigned int cp = *codepoints++;
+//      ::u32 cp = *codepoints++;
 //
 //      input_size--;
 //
@@ -276,7 +276,7 @@ character_count wd16_to_ansi(char* psz, const ::wd16_character* pwsz, character_
 //   while (input_size != 0)
 //   {
 //
-//      unsigned int cp = *codepoints++;
+//      ::u32 cp = *codepoints++;
 //
 //      input_size--;
 //
@@ -336,7 +336,7 @@ character_count wd16_to_ansi(char* psz, const ::wd16_character* pwsz, character_
 extern "C"
 {
 
-   char* c_utf8_str(const wchar_t* str)
+   char_pointer c_utf8_str(const wchar_t* str)
    {
       return strdup(unicode_to_utf8(str));
    }
@@ -371,7 +371,7 @@ extern "C"
 
 //    character_count iLen = iLen1 + iLen2 + 1;
 
-//    char* psz = (char*)::acme::get()->m_pheapmanagement->memory(::heap::e_memory_main)->allocate(iLen);
+//    char_pointer psz = (char_pointer )::acme::get()->m_pheapmanagement->memory(::heap::e_memory_main)->allocate(iLen);
 
 //    strcpy(psz, "");
 
@@ -436,12 +436,12 @@ extern "C"
 }
 
 
-//character_count utf16_to_utf16(::wd16_character* output, const unichar* input, character_count input_size)
+//character_count utf16_to_utf16(::wd16_character* output, const wide_character * input, character_count input_size)
 //{
 //
 //   ::wd16_character* start = output;
 //
-//   const unichar* const end = input + input_size;
+//   const wide_character * const end = input + input_size;
 //
 //   while (input < end)
 //   {
@@ -479,12 +479,12 @@ extern "C"
 //}
 
 
-//character_count utf16_to_utf16_len(const unichar* input, character_count input_size)
+//character_count utf16_to_utf16_len(const wide_character * input, character_count input_size)
 //{
 //
-//   const unichar* const end = input + input_size;
+//   const wide_character * const end = input + input_size;
 //
-//   int c = 0;
+//   ::i32 c = 0;
 //
 //   while (((input_size < 0) && *input) || ((input_size >= 0) && input < end))
 //   {
@@ -523,7 +523,7 @@ extern "C"
 
 
 
-//::wd16_character* utf16_to_utf16(const unichar* input, character_count input_size)
+//::wd16_character* utf16_to_utf16(const wide_character * input, character_count input_size)
 //{
 //
 //   character_count s = utf16_to_utf16_len(input, input_size);
@@ -574,14 +574,14 @@ extern "C"
 
 
 // on Windows, wchar_t is 2 bytes, suitable for UTF-16
-//std::wstring Utf32ToUtf16(const std::vector<unsigned int> &codepoints)
+//std::wstring Utf32ToUtf16(const std::vector<::u32> &codepoints)
 //{
 //   std::wstring result;
-//   int len = 0;
+//   ::i32 len = 0;
 //
-//   for (std::vector<unsigned int>::iterator iter = codepoints.begin(); iter != codepoints.end(); ++iter)
+//   for (std::vector<::u32>::iterator iter = codepoints.begin(); iter != codepoints.end(); ++iter)
 //   {
-//      unsigned int cp = *iter;
+//      ::u32 cp = *iter;
 //      if (cp < 0x10000) {
 //         ++len;
 //      }
@@ -599,9 +599,9 @@ extern "C"
 //      result.resize(len);
 //      len = 0;
 //
-//      for (std::vector<unsigned int>::iterator iter = codepoints.begin(); iter != codepoints.end(); ++iter)
+//      for (std::vector<::u32>::iterator iter = codepoints.begin(); iter != codepoints.end(); ++iter)
 //      {
-//         unsigned int cp = *iter;
+//         ::u32 cp = *iter;
 //         if (cp < 0x10000) {
 //            result[len++] = static_cast<wchar_t>(cp);
 //         }
@@ -633,7 +633,7 @@ extern "C"
 //
 //   character_count n;
 //
-//   char sz[16];
+//   ::i8 sz[16];
 //
 //   while (input_size != 0 && *pwsz != L'\0')
 //   {
@@ -677,11 +677,11 @@ extern "C"
 //}
 
 
-//character_count wd16_to_ansi(char* psz, const ::wd16_character* pwsz, character_count srclen)
+//character_count wd16_to_ansi(char_pointer psz, const ::wd16_character* pwsz, character_count srclen)
 //{
-//   //unsigned short * pwsz = (unsigned short *)pwszParam;
+//   //::u16 * pwsz = (::u16 *)pwszParam;
 //   character_count c = 0;
-//   int n;
+//   ::i32 n;
 //   if (srclen < 0)
 //   {
 //
@@ -711,7 +711,7 @@ extern "C"
 //
 //   string str;
 //
-//   char* psz = str.get_buffer(iUtf8Len);
+//   char_pointer psz = str.get_buffer(iUtf8Len);
 //
 //   wd16_to_ansi(psz, pwszUni32, iUni32Len);
 //
@@ -732,14 +732,14 @@ character_count ansi_to_wd16_len(const_char_pointer psz, character_count srclen)
    while (srclen != 0 && psz != nullptr && *psz != '\0')
    {
 
-      int len;
+      ::i32 len;
 
-      int iChar = unicode_index_length(psz, len);
+      ::i32 iChar = unicode_index_length(psz, len);
 
       if (iChar < 0)
       {
 
-         // Invalid char 0xFFFD
+         // Invalid ::i8 0xFFFD
 
          utf16len++;
          len = 1;
@@ -781,14 +781,14 @@ character_count ansi_to_wd16_len2(const_char_pointer psz, character_count & srcl
    while (count < srclen && *psz != '\0')
    {
 
-      int len;
+      ::i32 len;
 
-      int iChar = unicode_index_length(psz, len);
+      ::i32 iChar = unicode_index_length(psz, len);
 
       if (iChar < 0)
       {
 
-         // Invalid char 0xFFFD
+         // Invalid ::i8 0xFFFD
 
          utf16len++;
 
@@ -896,7 +896,7 @@ character_count utf16_to_utf16_len(const ::wd16_character* codepoints, character
    while (input_size != 0)
    {
 
-      unsigned int cp = *codepoints++;
+      ::u32 cp = *codepoints++;
 
       input_size--;
 
@@ -940,7 +940,7 @@ character_count utf16_to_utf16(::wd16_character * p, const ::wd16_character* cod
    while (input_size != 0)
    {
 
-      unsigned int cp = *codepoints++;
+      ::u32 cp = *codepoints++;
 
       input_size--;
 
@@ -988,7 +988,7 @@ character_count utf16_to_utf16(::wd16_character * p, const ::wd16_character* cod
 //
 //   wstring wstr;
 //
-//   unichar* p = wstr.get_buffer(s);
+//   wide_character * p = wstr.get_buffer(s);
 //
 //   utf16_to_utf16(p, input, s);
 //
@@ -1019,7 +1019,7 @@ character_count utf16_to_utf16(::wd16_character * p, const ::wd16_character* cod
 //
 //   string str;
 //
-//   char * psz = str.get_buffer(iUtf8Len);
+//   char_pointer psz = str.get_buffer(iUtf8Len);
 //
 //   wd16_to_ansi(psz, pwszUni32, iUni32Len);
 //
@@ -1049,7 +1049,7 @@ string wd16_to_ansi_str(const ::wd16_character * pwsz, character_count srclen)
 
    string str;
 
-   char * psz = str.get_buffer(iUtf8Len);
+   char_pointer psz = str.get_buffer(iUtf8Len);
 
    wd16_to_ansi(psz, pwsz, srclen);
 
@@ -1070,7 +1070,7 @@ CLASS_DECL_ACME character_count wd16_to_wd16_len(const wd16_character * psz, cha
 
    //   auto p = psz;
 
-   //   int iError = 0;
+   //   ::i32 iError = 0;
 
    //   while (*p)
    //   {
@@ -1112,7 +1112,7 @@ CLASS_DECL_ACME character_count wd16_to_wd16_len2(const wd16_character * psz, ch
 
    //   auto count = 0;
 
-   //   int iError = 0;
+   //   ::i32 iError = 0;
 
    //   while (count < input_size && *p)
    //   {
@@ -1159,7 +1159,7 @@ CLASS_DECL_ACME character_count wd16_to_wd16(wd16_character *psz, const wd16_cha
 
       auto pDst = psz;
 
-      int iError = 0;
+      ::i32 iError = 0;
 
       while (*pSrc)
       {
@@ -1197,7 +1197,7 @@ CLASS_DECL_ACME character_count wd16_to_wd16(wd16_character *psz, const wd16_cha
 
       auto count = 0;
 
-      int iError = 0;
+      ::i32 iError = 0;
 
       while (count < input_size && *pSrc)
       {

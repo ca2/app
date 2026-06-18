@@ -79,20 +79,20 @@ _timeval_diff(struct timeval *tv1, struct timeval *tv2, struct timeval *tvd)
 }
 //https://lists.freebsd.org/pipermail/freebsd-hackers/2008-July/025483.html
 void
-signal_ignore(int s, siginfo_t *si, void *ctx)
+signal_ignore(::i32 s, siginfo_t *si, void *ctx)
 {
 }
 
 
 //https://lists.freebsd.org/pipermail/freebsd-hackers/2008-July/025483.html
-int
-_semtimedop(int semid, struct sembuf *array, size_t nops, struct
+::i32
+_semtimedop(::i32 semid, struct sembuf *array, size_t nops, struct
    timespec *_timeout)
 {
    struct timeval timeout, before, after;
    struct itimerval value, ovalue;
    struct sigaction sa, osa;
-   int ret;
+   ::i32 ret;
 
    if (_timeout) {
       timeout.tv_sec = _timeout->tv_sec;
@@ -329,12 +329,12 @@ namespace platform
 
 // http://stackoverflow.com/questions/150355/programmatically-find-the-number-of-cores-on-a-machine
 // http://stackoverflow.com/users/1275169/l3x
-int get_proc_cpuinfo_core_count()
+::i32 get_proc_cpuinfo_core_count()
 {
 
-   char str[256];
+   ::i8 str[256];
 
-   int procCount = 0;
+   ::i32 procCount = 0;
 
    FILE *fp;
 
@@ -367,7 +367,7 @@ int get_proc_cpuinfo_core_count()
 }
 
 
-int get_processor_count()
+::i32 get_processor_count()
 {
 
    return get_proc_cpuinfo_core_count();

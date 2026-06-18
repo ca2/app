@@ -2,8 +2,6 @@
 #pragma once
 
 
-#include <acme/operating_system/summary.h>
-
 #include "acme/platform/application.h"
 
 
@@ -11,55 +9,32 @@ namespace launch
 {
 
 
-   class application :
+   class CLASS_DECL_LAUNCH application :
       virtual public ::platform::application
    {
    public:
 
+      ::string m_strLaunchAppId;
 
-      //int            m_argc;
-      //char **        m_argv;
-      //int            m_iExitCode;
+      ::pointer < launch > m_plaunch;
 
+      bool m_bRunAsLaunch = true;
 
-      ::pointer < ::operating_system::summary > m_poperatingsystemsummary;
-
-      ::string       m_strSystem;
-      ::string       m_strSystemFamily;
-      ::string       m_strBranch;
-      ::string       m_strRelease;
-      ::string       m_strArchitecture;
-
-      ::string       m_strLaunchAppId;
-
-
-      ::string       m_strAppRoot;
-      ::string       m_strAppName;
-
-
-      ::file::path   m_pathLog;
-      ::file::path   m_pathBinaryFolder;
-
-
+     
       application();
       ~application() override;
 
 
-      void calculate_distro__branch_and_release();
-
-      void parse_app_root_and_app_name();
-
+      virtual void do_launch();
 
       void run() override;
 
 
-      ::string calculate_download_url();
-
-      //bool check_http_ok(const_char_pointer pszUrl);
-
-
-      //void log_system(const_char_pointer psz);
-      void install_dependencies();
+      virtual void on_launch_main_status(const ::scoped_string& scopedstr);
+      virtual void on_launch_detail_status(const ::scoped_string& scopedstr);
+      virtual void on_launch_error_status(const ::scoped_string& scopedstr);
+      virtual void on_going_to_launch();
+      virtual void on_launched();
 
 
    };

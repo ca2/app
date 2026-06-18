@@ -21,8 +21,8 @@ namespace gpu
       ::pointer<::gpu::context>             m_pgpucontext;
       ::image::image_pointer                       m_pimageFromGpu;
       ::pointer<::gpu::shader>              m_pshader;
-      int_rectangle                         m_rectangle;
-      int_size                              m_sizeHost;
+      i32_rectangle                         m_rectangle;
+      i32_size                              m_sizeHost;
       //string                              m_strFont1;
       //string_map_base < ::image::image_pointer >      m_pimagemap;
       //::image::image_pointer                     m_pimage1;
@@ -41,8 +41,8 @@ namespace gpu
 
 
 #ifdef _DEBUG
-      long long increment_reference_count() override;
-      long long decrement_reference_count() override;
+      ::i64 increment_reference_count() override;
+      ::i64 decrement_reference_count() override;
 #endif
 
       virtual bool render_step();
@@ -69,7 +69,7 @@ namespace gpu
 
       //virtual void _001OnDrawArcs(::draw2d::graphics_pointer & pgraphics, bool bPath);
 
-      //virtual void draw_arc(::draw2d::graphics_pointer & pgraphics, int_rectangle & r, double dStart, double dAngle, bool bPath);
+      //virtual void draw_arc(::draw2d::graphics_pointer & pgraphics, i32_rectangle & r, ::f64 dStart, ::f64 dAngle, bool bPath);
 
       virtual void on_layout(::draw2d::graphics_pointer & pgraphics);
 

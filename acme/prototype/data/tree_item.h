@@ -68,7 +68,7 @@ namespace data
       //::collection::index              m_iLevel;
       ::pointer < ITEM >               m_pitem;
       //uptr                             m_dwUser;
-      //unsigned int                     m_etreeitemstate;
+      //::u32                     m_etreeitemstate;
       //uptr                             m_dwMetaData;
 
 
@@ -79,14 +79,14 @@ namespace data
 #ifdef _DEBUG
 
 
-      virtual long long increment_reference_count() override
+      virtual ::i64 increment_reference_count() override
       {
 
          return ::particle::increment_reference_count();
 
       }
 
-      virtual long long decrement_reference_count() override
+      virtual ::i64 decrement_reference_count() override
       {
 
          return ::particle::decrement_reference_count();
@@ -220,8 +220,8 @@ namespace data
       void erase_tree_item_descendants() override;
       void erase_child(tree_item * ptreeitem);
 
-      bool is_expanded() const override;
-      bool is_expandable() const override;
+      ::i32_boolean is_expanded() const override;
+      ::i32_boolean is_expandable() const override;
 
       void on_fill_children() override;
 
@@ -480,7 +480,7 @@ namespace data
 
          }
 
-         if (ptreeitem->m_dwUser == (unsigned int)iUserData)
+         if (ptreeitem->m_dwUser == (::u32)iUserData)
          {
 
             return ptreeitem;
@@ -512,7 +512,7 @@ namespace data
       if (m_ptreeitema2)
       {
 
-         m_ptreeitema2.defer_destroy();
+         m_ptreeitema2.defer_destroy_and_release();
 
       }
 
@@ -1490,7 +1490,7 @@ namespace data
    ::collection::index tree_item < ITEM >::get_proper_item_index(tree_item * pitemParam, ::collection::index * piLevel)
    {
 
-      int iIndex = 0;
+      ::i32 iIndex = 0;
 
       if (piLevel)
       {
@@ -1561,19 +1561,19 @@ namespace data
 
 
    template < prototype_item ITEM >
-   bool tree_item < ITEM >::is_expanded() const
+   ::i32_boolean tree_item < ITEM >::is_expanded() const
    {
 
-      return (m_etreeitemstate & ::data::e_tree_item_state_expanded) != 0;
+      return m_etreeitemstate & ::data::e_tree_item_state_expanded;
 
    }
 
 
    template < prototype_item ITEM >
-   bool tree_item < ITEM >::is_expandable() const
+   ::i32_boolean tree_item < ITEM >::is_expandable() const
    {
 
-      return (m_etreeitemstate & ::data::e_tree_item_state_expandable) != 0;
+      return m_etreeitemstate & ::data::e_tree_item_state_expandable;
 
    }
 

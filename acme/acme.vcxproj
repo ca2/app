@@ -351,134 +351,167 @@
   <ImportGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="PropertySheets">
     <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
     <Import Project="..\..\..\operating_system\operating_system-windows\Common.props" />
+    <Import Project="..\..\..\operating_system\operating_system-windows\SharedLibraryCommon.props" />
   </ImportGroup>
   <ImportGroup Condition="'$(Configuration)|$(Platform)'=='DebugWithInlOpt|Win32'" Label="PropertySheets">
     <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
     <Import Project="..\..\..\operating_system\operating_system-windows\Common.props" />
+    <Import Project="..\..\..\operating_system\operating_system-windows\SharedLibraryCommon.props" />
   </ImportGroup>
   <ImportGroup Condition="'$(Configuration)|$(Platform)'=='ASanDbgWithInlOpt|Win32'" Label="PropertySheets">
     <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
     <Import Project="..\..\..\operating_system\operating_system-windows\Common.props" />
+    <Import Project="..\..\..\operating_system\operating_system-windows\SharedLibraryCommon.props" />
   </ImportGroup>
   <ImportGroup Condition="'$(Configuration)|$(Platform)'=='StaticDebug|Win32'" Label="PropertySheets">
     <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
     <Import Project="..\..\..\operating_system\operating_system-windows\Common.props" />
+    <Import Project="..\..\..\operating_system\operating_system-windows\SharedLibraryCommon.props" />
   </ImportGroup>
   <ImportGroup Condition="'$(Configuration)|$(Platform)'=='ASanStaticDebug|Win32'" Label="PropertySheets">
     <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
     <Import Project="..\..\..\operating_system\operating_system-windows\Common.props" />
+    <Import Project="..\..\..\operating_system\operating_system-windows\SharedLibraryCommon.props" />
   </ImportGroup>
   <ImportGroup Condition="'$(Configuration)|$(Platform)'=='StaticMetaDebug|Win32'" Label="PropertySheets">
     <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
     <Import Project="..\..\..\operating_system\operating_system-windows\Common.props" />
+    <Import Project="..\..\..\operating_system\operating_system-windows\SharedLibraryCommon.props" />
   </ImportGroup>
   <ImportGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'" Label="PropertySheets">
     <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
     <Import Project="..\..\..\operating_system\operating_system-windows\Common.props" />
+    <Import Project="..\..\..\operating_system\operating_system-windows\SharedLibraryCommon.props" />
   </ImportGroup>
   <ImportGroup Condition="'$(Configuration)|$(Platform)'=='ReleaseDebug|Win32'" Label="PropertySheets">
     <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
     <Import Project="..\..\..\operating_system\operating_system-windows\Common.props" />
+    <Import Project="..\..\..\operating_system\operating_system-windows\SharedLibraryCommon.props" />
   </ImportGroup>
   <ImportGroup Condition="'$(Configuration)|$(Platform)'=='StaticRelease|Win32'" Label="PropertySheets">
     <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
     <Import Project="..\..\..\operating_system\operating_system-windows\Common.props" />
+    <Import Project="..\..\..\operating_system\operating_system-windows\SharedLibraryCommon.props" />
   </ImportGroup>
   <ImportGroup Condition="'$(Configuration)|$(Platform)'=='StaticReleaseWithDbgInfo|Win32'" Label="PropertySheets">
     <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
     <Import Project="..\..\..\operating_system\operating_system-windows\Common.props" />
+    <Import Project="..\..\..\operating_system\operating_system-windows\SharedLibraryCommon.props" />
   </ImportGroup>
   <ImportGroup Condition="'$(Configuration)|$(Platform)'=='StaticMetaRelease|Win32'" Label="PropertySheets">
     <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
     <Import Project="..\..\..\operating_system\operating_system-windows\Common.props" />
+    <Import Project="..\..\..\operating_system\operating_system-windows\SharedLibraryCommon.props" />
   </ImportGroup>
   <ImportGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'" Label="PropertySheets">
     <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
     <Import Project="..\..\..\operating_system\operating_system-windows\Common.props" />
+    <Import Project="..\..\..\operating_system\operating_system-windows\SharedLibraryCommon.props" />
   </ImportGroup>
   <ImportGroup Condition="'$(Configuration)|$(Platform)'=='Debug|ARM64'" Label="PropertySheets">
     <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
     <Import Project="..\..\..\operating_system\operating_system-windows\Common.props" />
+    <Import Project="..\..\..\operating_system\operating_system-windows\SharedLibraryCommon.props" />
   </ImportGroup>
   <ImportGroup Condition="'$(Configuration)|$(Platform)'=='DebugWithInlOpt|x64'" Label="PropertySheets">
     <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
     <Import Project="..\..\..\operating_system\operating_system-windows\Common.props" />
+    <Import Project="..\..\..\operating_system\operating_system-windows\SharedLibraryCommon.props" />
   </ImportGroup>
   <ImportGroup Condition="'$(Configuration)|$(Platform)'=='DebugWithInlOpt|ARM64'" Label="PropertySheets">
     <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
     <Import Project="..\..\..\operating_system\operating_system-windows\Common.props" />
+    <Import Project="..\..\..\operating_system\operating_system-windows\SharedLibraryCommon.props" />
   </ImportGroup>
   <ImportGroup Condition="'$(Configuration)|$(Platform)'=='ASanDbgWithInlOpt|x64'" Label="PropertySheets">
     <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
     <Import Project="..\..\..\operating_system\operating_system-windows\Common.props" />
+    <Import Project="..\..\..\operating_system\operating_system-windows\SharedLibraryCommon.props" />
   </ImportGroup>
   <ImportGroup Condition="'$(Configuration)|$(Platform)'=='ASanDbgWithInlOpt|ARM64'" Label="PropertySheets">
     <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
     <Import Project="..\..\..\operating_system\operating_system-windows\Common.props" />
+    <Import Project="..\..\..\operating_system\operating_system-windows\SharedLibraryCommon.props" />
   </ImportGroup>
   <ImportGroup Condition="'$(Configuration)|$(Platform)'=='StaticDebug|x64'" Label="PropertySheets">
     <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
     <Import Project="..\..\..\operating_system\operating_system-windows\Common.props" />
+    <Import Project="..\..\..\operating_system\operating_system-windows\SharedLibraryCommon.props" />
   </ImportGroup>
   <ImportGroup Condition="'$(Configuration)|$(Platform)'=='StaticDebug|ARM64'" Label="PropertySheets">
     <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
     <Import Project="..\..\..\operating_system\operating_system-windows\Common.props" />
+    <Import Project="..\..\..\operating_system\operating_system-windows\SharedLibraryCommon.props" />
   </ImportGroup>
   <ImportGroup Condition="'$(Configuration)|$(Platform)'=='ASanStaticDebug|x64'" Label="PropertySheets">
     <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
     <Import Project="..\..\..\operating_system\operating_system-windows\Common.props" />
+    <Import Project="..\..\..\operating_system\operating_system-windows\SharedLibraryCommon.props" />
   </ImportGroup>
   <ImportGroup Condition="'$(Configuration)|$(Platform)'=='ASanStaticDebug|ARM64'" Label="PropertySheets">
     <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
     <Import Project="..\..\..\operating_system\operating_system-windows\Common.props" />
+    <Import Project="..\..\..\operating_system\operating_system-windows\SharedLibraryCommon.props" />
   </ImportGroup>
   <ImportGroup Condition="'$(Configuration)|$(Platform)'=='StaticMetaDebug|x64'" Label="PropertySheets">
     <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
     <Import Project="..\..\..\operating_system\operating_system-windows\Common.props" />
+    <Import Project="..\..\..\operating_system\operating_system-windows\SharedLibraryCommon.props" />
   </ImportGroup>
   <ImportGroup Condition="'$(Configuration)|$(Platform)'=='StaticMetaDebug|ARM64'" Label="PropertySheets">
     <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
     <Import Project="..\..\..\operating_system\operating_system-windows\Common.props" />
+    <Import Project="..\..\..\operating_system\operating_system-windows\SharedLibraryCommon.props" />
   </ImportGroup>
   <ImportGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'" Label="PropertySheets">
     <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
     <Import Project="..\..\..\operating_system\operating_system-windows\Common.props" />
+    <Import Project="..\..\..\operating_system\operating_system-windows\SharedLibraryCommon.props" />
   </ImportGroup>
   <ImportGroup Condition="'$(Configuration)|$(Platform)'=='Release|ARM64'" Label="PropertySheets">
     <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
     <Import Project="..\..\..\operating_system\operating_system-windows\Common.props" />
+    <Import Project="..\..\..\operating_system\operating_system-windows\SharedLibraryCommon.props" />
   </ImportGroup>
   <ImportGroup Condition="'$(Configuration)|$(Platform)'=='ReleaseDebug|x64'" Label="PropertySheets">
     <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
     <Import Project="..\..\..\operating_system\operating_system-windows\Common.props" />
+    <Import Project="..\..\..\operating_system\operating_system-windows\SharedLibraryCommon.props" />
   </ImportGroup>
   <ImportGroup Condition="'$(Configuration)|$(Platform)'=='ReleaseDebug|ARM64'" Label="PropertySheets">
     <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
     <Import Project="..\..\..\operating_system\operating_system-windows\Common.props" />
+    <Import Project="..\..\..\operating_system\operating_system-windows\SharedLibraryCommon.props" />
   </ImportGroup>
   <ImportGroup Condition="'$(Configuration)|$(Platform)'=='StaticRelease|x64'" Label="PropertySheets">
     <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
     <Import Project="..\..\..\operating_system\operating_system-windows\Common.props" />
+    <Import Project="..\..\..\operating_system\operating_system-windows\SharedLibraryCommon.props" />
   </ImportGroup>
   <ImportGroup Condition="'$(Configuration)|$(Platform)'=='StaticRelease|ARM64'" Label="PropertySheets">
     <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
     <Import Project="..\..\..\operating_system\operating_system-windows\Common.props" />
+    <Import Project="..\..\..\operating_system\operating_system-windows\SharedLibraryCommon.props" />
   </ImportGroup>
   <ImportGroup Condition="'$(Configuration)|$(Platform)'=='StaticReleaseWithDbgInfo|x64'" Label="PropertySheets">
     <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
     <Import Project="..\..\..\operating_system\operating_system-windows\Common.props" />
+    <Import Project="..\..\..\operating_system\operating_system-windows\SharedLibraryCommon.props" />
   </ImportGroup>
   <ImportGroup Condition="'$(Configuration)|$(Platform)'=='StaticReleaseWithDbgInfo|ARM64'" Label="PropertySheets">
     <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
     <Import Project="..\..\..\operating_system\operating_system-windows\Common.props" />
+    <Import Project="..\..\..\operating_system\operating_system-windows\SharedLibraryCommon.props" />
   </ImportGroup>
   <ImportGroup Condition="'$(Configuration)|$(Platform)'=='StaticMetaRelease|x64'" Label="PropertySheets">
     <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
     <Import Project="..\..\..\operating_system\operating_system-windows\Common.props" />
+    <Import Project="..\..\..\operating_system\operating_system-windows\SharedLibraryCommon.props" />
   </ImportGroup>
   <ImportGroup Condition="'$(Configuration)|$(Platform)'=='StaticMetaRelease|ARM64'" Label="PropertySheets">
     <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
     <Import Project="..\..\..\operating_system\operating_system-windows\Common.props" />
+    <Import Project="..\..\..\operating_system\operating_system-windows\SharedLibraryCommon.props" />
   </ImportGroup>
   <PropertyGroup Label="UserMacros" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
@@ -650,13 +683,13 @@
       <CreateHotpatchableImage>false</CreateHotpatchableImage>
       <SDLCheck>true</SDLCheck>
       <Optimization>Disabled</Optimization>
-      <InlineFunctionExpansion>AnySuitable</InlineFunctionExpansion>
+      <InlineFunctionExpansion>Disabled</InlineFunctionExpansion>
       <MultiProcessorCompilation>true</MultiProcessorCompilation>
       <FunctionLevelLinking>false</FunctionLevelLinking>
       <IntrinsicFunctions>true</IntrinsicFunctions>
     </ClCompile>
     <Link>
-      <AdditionalDependencies>archive.lib;Winhttp.lib;zlib.lib;dbghelp.lib;imagehlp.lib;dwmapi.lib;Setupapi.lib;Windowscodecs.lib;Winmm.lib;ws2_32.lib;Crypt32.lib;Normaliz.lib;version.lib;Secur32.lib;gdiplus.lib;Shlwapi.lib;Imm32.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>zlib.lib;archive.lib;Winhttp.lib;zlib.lib;dbghelp.lib;imagehlp.lib;dwmapi.lib;Setupapi.lib;Windowscodecs.lib;Winmm.lib;ws2_32.lib;Crypt32.lib;Normaliz.lib;version.lib;Secur32.lib;gdiplus.lib;Shlwapi.lib;Imm32.lib;%(AdditionalDependencies)</AdditionalDependencies>
       <EntryPointSymbol>
       </EntryPointSymbol>
       <IgnoreSpecificDefaultLibraries>
@@ -710,7 +743,7 @@
       <IntrinsicFunctions>true</IntrinsicFunctions>
     </ClCompile>
     <Link>
-      <AdditionalDependencies>archive.lib;Winhttp.lib;zlib.lib;dbghelp.lib;imagehlp.lib;dwmapi.lib;Setupapi.lib;Windowscodecs.lib;Winmm.lib;ws2_32.lib;Crypt32.lib;Normaliz.lib;version.lib;Secur32.lib;gdiplus.lib;Shlwapi.lib;Imm32.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>zlib.lib;archive.lib;Winhttp.lib;zlib.lib;dbghelp.lib;imagehlp.lib;dwmapi.lib;Setupapi.lib;Windowscodecs.lib;Winmm.lib;ws2_32.lib;Crypt32.lib;Normaliz.lib;version.lib;Secur32.lib;gdiplus.lib;Shlwapi.lib;Imm32.lib;%(AdditionalDependencies)</AdditionalDependencies>
       <EntryPointSymbol>
       </EntryPointSymbol>
       <IgnoreSpecificDefaultLibraries>
@@ -764,7 +797,7 @@
       <IntrinsicFunctions>true</IntrinsicFunctions>
     </ClCompile>
     <Link>
-      <AdditionalDependencies>archive.lib;Winhttp.lib;zlib.lib;dbghelp.lib;imagehlp.lib;dwmapi.lib;Setupapi.lib;Windowscodecs.lib;Winmm.lib;ws2_32.lib;Crypt32.lib;Normaliz.lib;version.lib;Secur32.lib;gdiplus.lib;Shlwapi.lib;Imm32.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>zlib.lib;archive.lib;Winhttp.lib;zlib.lib;dbghelp.lib;imagehlp.lib;dwmapi.lib;Setupapi.lib;Windowscodecs.lib;Winmm.lib;ws2_32.lib;Crypt32.lib;Normaliz.lib;version.lib;Secur32.lib;gdiplus.lib;Shlwapi.lib;Imm32.lib;%(AdditionalDependencies)</AdditionalDependencies>
       <EntryPointSymbol>
       </EntryPointSymbol>
       <IgnoreSpecificDefaultLibraries>
@@ -976,7 +1009,7 @@
       <FunctionLevelLinking>true</FunctionLevelLinking>
     </ClCompile>
     <Link>
-      <AdditionalDependencies>archive.lib;Winhttp.lib;zlib.lib;dbghelp.lib;imagehlp.lib;dwmapi.lib;Setupapi.lib;Windowscodecs.lib;Winmm.lib;ws2_32.lib;Crypt32.lib;Normaliz.lib;version.lib;Secur32.lib;gdiplus.lib;Shlwapi.lib;Imm32.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>zlib.lib;archive.lib;Winhttp.lib;zlib.lib;dbghelp.lib;imagehlp.lib;dwmapi.lib;Setupapi.lib;Windowscodecs.lib;Winmm.lib;ws2_32.lib;Crypt32.lib;Normaliz.lib;version.lib;Secur32.lib;gdiplus.lib;Shlwapi.lib;Imm32.lib;%(AdditionalDependencies)</AdditionalDependencies>
       <IgnoreAllDefaultLibraries>
       </IgnoreAllDefaultLibraries>
       <EntryPointSymbol>
@@ -987,8 +1020,6 @@
       <MergeSections>
       </MergeSections>
       <LinkTimeCodeGeneration>UseLinkTimeCodeGeneration</LinkTimeCodeGeneration>
-      <ModuleDefinitionFile>
-      </ModuleDefinitionFile>
     </Link>
     <PreBuildEvent />
     <Manifest>
@@ -1290,13 +1321,13 @@
       <SDLCheck>true</SDLCheck>
       <MultiProcessorCompilation>true</MultiProcessorCompilation>
       <Optimization>Disabled</Optimization>
-      <InlineFunctionExpansion>AnySuitable</InlineFunctionExpansion>
+      <InlineFunctionExpansion>Disabled</InlineFunctionExpansion>
       <FunctionLevelLinking>false</FunctionLevelLinking>
       <OmitFramePointers>false</OmitFramePointers>
       <IntrinsicFunctions>true</IntrinsicFunctions>
     </ClCompile>
     <Link>
-      <AdditionalDependencies>archive.lib;Winhttp.lib;dbghelp.lib;imagehlp.lib;dwmapi.lib;Setupapi.lib;Windowscodecs.lib;Winmm.lib;ws2_32.lib;Crypt32.lib;Normaliz.lib;version.lib;Secur32.lib;gdiplus.lib;Shlwapi.lib;Imm32.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>zlib.lib;archive.lib;Winhttp.lib;dbghelp.lib;imagehlp.lib;dwmapi.lib;Setupapi.lib;Windowscodecs.lib;Winmm.lib;ws2_32.lib;Crypt32.lib;Normaliz.lib;version.lib;Secur32.lib;gdiplus.lib;Shlwapi.lib;Imm32.lib;%(AdditionalDependencies)</AdditionalDependencies>
       <IgnoreSpecificDefaultLibraries>
       </IgnoreSpecificDefaultLibraries>
       <EntryPointSymbol>
@@ -1345,13 +1376,13 @@
       <SDLCheck>true</SDLCheck>
       <MultiProcessorCompilation>true</MultiProcessorCompilation>
       <Optimization>Disabled</Optimization>
-      <InlineFunctionExpansion>AnySuitable</InlineFunctionExpansion>
+      <InlineFunctionExpansion>Disabled</InlineFunctionExpansion>
       <FunctionLevelLinking>false</FunctionLevelLinking>
       <OmitFramePointers>false</OmitFramePointers>
       <IntrinsicFunctions>true</IntrinsicFunctions>
     </ClCompile>
     <Link>
-      <AdditionalDependencies>archive.lib;Winhttp.lib;dbghelp.lib;imagehlp.lib;dwmapi.lib;Setupapi.lib;Windowscodecs.lib;Winmm.lib;ws2_32.lib;Crypt32.lib;Normaliz.lib;version.lib;Secur32.lib;gdiplus.lib;Shlwapi.lib;Imm32.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>zlib.lib;Winhttp.lib;dbghelp.lib;imagehlp.lib;dwmapi.lib;Setupapi.lib;Windowscodecs.lib;Winmm.lib;ws2_32.lib;Crypt32.lib;Normaliz.lib;version.lib;Secur32.lib;gdiplus.lib;Shlwapi.lib;Imm32.lib;%(AdditionalDependencies)</AdditionalDependencies>
       <IgnoreSpecificDefaultLibraries>
       </IgnoreSpecificDefaultLibraries>
       <EntryPointSymbol>
@@ -1406,7 +1437,7 @@
       <IntrinsicFunctions>true</IntrinsicFunctions>
     </ClCompile>
     <Link>
-      <AdditionalDependencies>archive.lib;Winhttp.lib;dbghelp.lib;imagehlp.lib;dwmapi.lib;Setupapi.lib;Windowscodecs.lib;Winmm.lib;ws2_32.lib;Crypt32.lib;Normaliz.lib;version.lib;Secur32.lib;gdiplus.lib;Shlwapi.lib;Imm32.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>zlib.lib;archive.lib;Winhttp.lib;dbghelp.lib;imagehlp.lib;dwmapi.lib;Setupapi.lib;Windowscodecs.lib;Winmm.lib;ws2_32.lib;Crypt32.lib;Normaliz.lib;version.lib;Secur32.lib;gdiplus.lib;Shlwapi.lib;Imm32.lib;%(AdditionalDependencies)</AdditionalDependencies>
       <IgnoreSpecificDefaultLibraries>
       </IgnoreSpecificDefaultLibraries>
       <EntryPointSymbol>
@@ -1461,7 +1492,7 @@
       <IntrinsicFunctions>true</IntrinsicFunctions>
     </ClCompile>
     <Link>
-      <AdditionalDependencies>archive.lib;Winhttp.lib;dbghelp.lib;imagehlp.lib;dwmapi.lib;Setupapi.lib;Windowscodecs.lib;Winmm.lib;ws2_32.lib;Crypt32.lib;Normaliz.lib;version.lib;Secur32.lib;gdiplus.lib;Shlwapi.lib;Imm32.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>zlib.lib;archive.lib;Winhttp.lib;dbghelp.lib;imagehlp.lib;dwmapi.lib;Setupapi.lib;Windowscodecs.lib;Winmm.lib;ws2_32.lib;Crypt32.lib;Normaliz.lib;version.lib;Secur32.lib;gdiplus.lib;Shlwapi.lib;Imm32.lib;%(AdditionalDependencies)</AdditionalDependencies>
       <IgnoreSpecificDefaultLibraries>
       </IgnoreSpecificDefaultLibraries>
       <EntryPointSymbol>
@@ -1516,7 +1547,7 @@
       <IntrinsicFunctions>true</IntrinsicFunctions>
     </ClCompile>
     <Link>
-      <AdditionalDependencies>archive.lib;Winhttp.lib;dbghelp.lib;imagehlp.lib;dwmapi.lib;Setupapi.lib;Windowscodecs.lib;Winmm.lib;ws2_32.lib;Crypt32.lib;Normaliz.lib;version.lib;Secur32.lib;gdiplus.lib;Shlwapi.lib;Imm32.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>zlib.lib;archive.lib;Winhttp.lib;dbghelp.lib;imagehlp.lib;dwmapi.lib;Setupapi.lib;Windowscodecs.lib;Winmm.lib;ws2_32.lib;Crypt32.lib;Normaliz.lib;version.lib;Secur32.lib;gdiplus.lib;Shlwapi.lib;Imm32.lib;%(AdditionalDependencies)</AdditionalDependencies>
       <IgnoreSpecificDefaultLibraries>
       </IgnoreSpecificDefaultLibraries>
       <EntryPointSymbol>
@@ -1571,7 +1602,7 @@
       <IntrinsicFunctions>true</IntrinsicFunctions>
     </ClCompile>
     <Link>
-      <AdditionalDependencies>archive.lib;Winhttp.lib;dbghelp.lib;imagehlp.lib;dwmapi.lib;Setupapi.lib;Windowscodecs.lib;Winmm.lib;ws2_32.lib;Crypt32.lib;Normaliz.lib;version.lib;Secur32.lib;gdiplus.lib;Shlwapi.lib;Imm32.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>zlib.lib;archive.lib;Winhttp.lib;dbghelp.lib;imagehlp.lib;dwmapi.lib;Setupapi.lib;Windowscodecs.lib;Winmm.lib;ws2_32.lib;Crypt32.lib;Normaliz.lib;version.lib;Secur32.lib;gdiplus.lib;Shlwapi.lib;Imm32.lib;%(AdditionalDependencies)</AdditionalDependencies>
       <IgnoreSpecificDefaultLibraries>
       </IgnoreSpecificDefaultLibraries>
       <EntryPointSymbol>
@@ -1889,7 +1920,7 @@
       <FunctionLevelLinking>true</FunctionLevelLinking>
     </ClCompile>
     <Link>
-      <AdditionalDependencies>archive.lib;Winhttp.lib;zlib.lib;dbghelp.lib;imagehlp.lib;dwmapi.lib;Setupapi.lib;Windowscodecs.lib;Winmm.lib;ws2_32.lib;Crypt32.lib;Normaliz.lib;version.lib;Secur32.lib;gdiplus.lib;Shlwapi.lib;Imm32.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>zlib.lib;archive.lib;Winhttp.lib;zlib.lib;dbghelp.lib;imagehlp.lib;dwmapi.lib;Setupapi.lib;Windowscodecs.lib;Winmm.lib;ws2_32.lib;Crypt32.lib;Normaliz.lib;version.lib;Secur32.lib;gdiplus.lib;Shlwapi.lib;Imm32.lib;%(AdditionalDependencies)</AdditionalDependencies>
       <IgnoreAllDefaultLibraries>
       </IgnoreAllDefaultLibraries>
       <IgnoreSpecificDefaultLibraries>
@@ -1943,7 +1974,7 @@
       <FunctionLevelLinking>true</FunctionLevelLinking>
     </ClCompile>
     <Link>
-      <AdditionalDependencies>archive.lib;Winhttp.lib;zlib.lib;dbghelp.lib;imagehlp.lib;dwmapi.lib;Setupapi.lib;Windowscodecs.lib;Winmm.lib;ws2_32.lib;Crypt32.lib;Normaliz.lib;version.lib;Secur32.lib;gdiplus.lib;Shlwapi.lib;Imm32.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>zlib.lib;Winhttp.lib;zlib.lib;dbghelp.lib;imagehlp.lib;dwmapi.lib;Setupapi.lib;Windowscodecs.lib;Winmm.lib;ws2_32.lib;Crypt32.lib;Normaliz.lib;version.lib;Secur32.lib;gdiplus.lib;Shlwapi.lib;Imm32.lib;%(AdditionalDependencies)</AdditionalDependencies>
       <IgnoreAllDefaultLibraries>
       </IgnoreAllDefaultLibraries>
       <IgnoreSpecificDefaultLibraries>
@@ -2394,12 +2425,16 @@
     </PreBuildEvent>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="accessibility\accessibility.cpp" />
+    <ClCompile Include="accessibility\application.cpp" />
+    <ClCompile Include="accessibility\main_window.cpp" />
     <ClCompile Include="compress\compress.cpp" />
     <ClCompile Include="compress\is_dir.cpp" />
     <ClCompile Include="compress\not_dir.cpp" />
     <ClCompile Include="compress\uncompress.cpp" />
     <ClCompile Include="console\dialog.cpp" />
     <ClCompile Include="console\dialog\message_box.cpp" />
+    <ClCompile Include="constant\user_key.cpp" />
     <ClCompile Include="crypto\crypto.cpp" />
     <ClCompile Include="crypto\initializer.cpp" />
     <ClCompile Include="crypto\rsa.cpp" />
@@ -2524,20 +2559,58 @@
     <ClCompile Include="handler\source.cpp" />
     <ClCompile Include="handler\task_handler.cpp" />
     <ClCompile Include="handler\topic.cpp" />
+    <ClCompile Include="input_output\BufferedInputStream.cpp" />
+    <ClCompile Include="input_output\BufferedOutputStream.cpp" />
+    <ClCompile Include="input_output\ByteArrayInputStream.cpp" />
+    <ClCompile Include="input_output\ByteArrayOutputStream.cpp" />
+    <ClCompile Include="input_output\Channel.cpp" />
+    <ClCompile Include="input_output\DataCopy.cpp" />
+    <ClCompile Include="input_output\DataInputStream.cpp" />
+    <ClCompile Include="input_output\DataOutputStream.cpp" />
+    <ClCompile Include="input_output\InputStream.cpp" />
+    <ClCompile Include="input_output\io_exception.cpp" />
+    <ClCompile Include="input_output\OutputStream.cpp" />
+    <ClCompile Include="input_output\_.cpp" />
+    <ClCompile Include="nano\graphics\context.cpp" />
+    <ClCompile Include="nano\graphics\image.cpp" />
+    <ClCompile Include="nano\graphics\font_family.cpp" />
+    <ClCompile Include="nano\graphics\path.cpp" />
     <ClCompile Include="operating_system\dos_time.cpp" />
     <ClCompile Include="operating_system\environment.cpp" />
+    <ClCompile Include="operating_system\GetCPUtime.cpp" />
+    <ClCompile Include="operating_system\performance_counter.cpp" />
+    <ClCompile Include="operating_system\shared_memory.cpp" />
+    <ClCompile Include="operating_system\windows\console.cpp" />
+    <ClCompile Include="operating_system\windows\CtrlAltDelSimulator.cpp" />
+    <ClCompile Include="operating_system\windows\shared_memory.cpp" />
+    <ClCompile Include="operating_system\windows_common\apartment_thread.cpp" />
     <ClCompile Include="operating_system\windows_common\cpu_features.cpp" />
+    <ClCompile Include="operating_system\windows_common\last_error.cpp" />
     <ClCompile Include="operating_system\windows_common\task.cpp" />
+    <ClCompile Include="platform\ini.cpp" />
+    <ClCompile Include="platform\ProfileLogger.cpp" />
+    <ClCompile Include="platform\registry.cpp" />
     <ClCompile Include="platform\remoting.cpp" />
+    <ClCompile Include="platform\subsystem.cpp" />
+    <ClCompile Include="platform\user_interaction_sink.cpp" />
+    <ClCompile Include="platform\wparam.cpp" />
+    <ClCompile Include="prototype\string\string_base.cpp" />
+    <ClCompile Include="user\simple\dialog_box_line.cpp" />
+    <ClCompile Include="user\user\key_state.cpp" />
     <ClCompile Include="_information_n.cpp" />
     <ClInclude Include="..\..\..\operating_system\operating_system-windows\operating_system\system.h" />
     <ClInclude Include="..\..\..\operating_system\operating_system-windows\operating_system\types.h" />
     <ClInclude Include="aaa_id.h" />
+    <ClInclude Include="accessibility\accessibility.h" />
+    <ClInclude Include="accessibility\application.h" />
+    <ClInclude Include="accessibility\main_window.h" />
+    <ClInclude Include="accessibility\_.h" />
     <ClInclude Include="acme.h" />
     <ClInclude Include="application.h" />
     <ClInclude Include="array2d.h" />
     <ClInclude Include="call.h" />
     <ClInclude Include="constant\call.h" />
+    <ClInclude Include="constant\key_state.h" />
     <ClInclude Include="constant\message.h" />
     <ClInclude Include="constant\read_file.h" />
     <ClInclude Include="constant\user_message.h" />
@@ -2558,16 +2631,42 @@
     <ClInclude Include="filesystem\filesystem\_format.h" />
     <ClInclude Include="filesystem\file\byte2_stream.h" />
     <ClInclude Include="filesystem\file\protocol_file.h" />
+    <ClInclude Include="nano\graphics\context.h" />
+    <ClInclude Include="nano\graphics\image.h" />
+    <ClInclude Include="nano\graphics\font_family.h" />
+    <ClInclude Include="nano\graphics\path.h" />
     <ClInclude Include="operating_system\cpu_features.h" />
     <ClInclude Include="operating_system\dos_time1.h" />
     <ClInclude Include="operating_system\environment.h" />
+    <ClInclude Include="operating_system\GetCPUtime.h" />
+    <ClInclude Include="operating_system\message_box.h" />
     <ClInclude Include="operating_system\networking.h" />
     <ClInclude Include="operating_system\shared_posix\time1.h" />
+    <ClInclude Include="operating_system\windows\time.h" />
+    <ClInclude Include="operating_system\windows_common\com\bstring.h" />
+    <ClInclude Include="operating_system\windows_common\com\comptr.h" />
+    <ClInclude Include="operating_system\windows_common\com\comptr_array.h" />
+    <ClInclude Include="operating_system\windows_common\com\cotaskptr.h" />
+    <ClInclude Include="operating_system\windows_common\com\hresult_exception.h" />
+    <ClInclude Include="operating_system\windows_common\com\prop_variant.h" />
+    <ClInclude Include="operating_system\windows_common\com\variant.h" />
+    <ClInclude Include="operating_system\windows_common\com\_.h" />
+    <ClInclude Include="operating_system\windows_common\last_error.h" />
     <ClInclude Include="operating_system\windows_common\networking.h" />
     <ClInclude Include="parallelization\_platform.h" />
     <ClInclude Include="platform\acme_message.h" />
+    <ClInclude Include="platform\guid.h" />
     <ClInclude Include="platform\http.h" />
+    <ClInclude Include="platform\node_acme.h" />
+    <ClInclude Include="platform\node_apex.h" />
+    <ClInclude Include="platform\node_aqua.h" />
+    <ClInclude Include="platform\node_aura.h" />
+    <ClInclude Include="platform\ProfileLogger.h" />
+    <ClInclude Include="platform\registry.h" />
     <ClInclude Include="platform\remoting.h" />
+    <ClInclude Include="platform\string_table.h" />
+    <ClInclude Include="platform\subsystem.h" />
+    <ClInclude Include="platform\wparam.h" />
     <ClInclude Include="prototype\collection\array_map.h" />
     <ClInclude Include="prototype\collection\base_array.h" />
     <ClInclude Include="prototype\collection\block_array.h" />
@@ -2577,6 +2676,7 @@
     <ClInclude Include="prototype\geometry\quaternion.h" />
     <ClInclude Include="prototype\geometry\_.h" />
     <ClInclude Include="prototype\geometry\_payload.h" />
+    <ClInclude Include="prototype\mathematics\integer_biunique.h" />
     <ClInclude Include="prototype\prototype\address_object.h" />
     <ClInclude Include="prototype\prototype\call.h" />
     <ClInclude Include="compress\compress.h" />
@@ -2586,7 +2686,7 @@
     <ClInclude Include="constant\aaa_topic.h" />
     <ClInclude Include="constant\activate.h" />
     <ClInclude Include="constant\application_capability.h" />
-    <ClInclude Include="constant\button_state.h" />
+    <ClInclude Include="constant\aaa_button_state.h" />
     <ClInclude Include="constant\character_set.h" />
     <ClInclude Include="constant\check.h" />
     <ClInclude Include="constant\code_page.h" />
@@ -2769,7 +2869,6 @@
     <ClInclude Include="nano\compress\compress.h" />
     <ClInclude Include="nano\compress\_.h" />
     <ClInclude Include="nano\graphics\brush.h" />
-    <ClInclude Include="nano\graphics\device.h" />
     <ClInclude Include="nano\graphics\font.h" />
     <ClInclude Include="nano\graphics\graphics.h" />
     <ClInclude Include="nano\graphics\icon.h" />
@@ -2808,18 +2907,9 @@
     <ClInclude Include="operating_system\windows\dynamic_library.h" />
     <ClInclude Include="operating_system\windows\heap_allocator.h" />
     <ClInclude Include="operating_system\windows\nano\dynamic_library\dynamic_library.h" />
-    <ClInclude Include="operating_system\windows\nano\http\hinternet.h" />
-    <ClInclude Include="operating_system\windows\nano\http\http.h" />
-    <ClInclude Include="operating_system\windows\nano\http\connect.h" />
-    <ClInclude Include="operating_system\windows\nano\http\get.h" />
-    <ClInclude Include="operating_system\windows\nano\http\request.h" />
-    <ClInclude Include="operating_system\windows\nano\http\session.h" />
-    <ClInclude Include="operating_system\windows\nano\http\_.h" />
-    <ClInclude Include="operating_system\windows\nano\http\_http.h" />
     <ClInclude Include="operating_system\windows\window.h" />
     <ClInclude Include="operating_system\windows\windowing.h" />
     <ClInclude Include="operating_system\windows\windows.h" />
-    <ClInclude Include="operating_system\windows_common\nano\idn\idn.h" />
     <ClInclude Include="operating_system\x11\display_lock.h">
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='DebugWithInlOpt|Win32'">true</ExcludedFromBuild>
@@ -3322,6 +3412,8 @@
     <ClInclude Include="user\micro\theme.h" />
     <ClInclude Include="user\micro\user.h" />
     <ClInclude Include="user\micro\_.h" />
+    <ClInclude Include="user\simple\dialog_box_line.h" />
+    <ClInclude Include="user\simple\_.h" />
     <ClInclude Include="user\user\activation.h" />
     <ClInclude Include="user\user\activation_token.h" />
     <ClInclude Include="user\user\check.h" />
@@ -3332,6 +3424,7 @@
     <ClInclude Include="user\user\interaction.h" />
     <ClInclude Include="user\user\item.h" />
     <ClInclude Include="user\user\key.h" />
+    <ClInclude Include="user\user\keyboard_state.h" />
     <ClInclude Include="user\user\key_state.h" />
     <ClInclude Include="user\user\message_box.h" />
     <ClInclude Include="user\user\property.h" />
@@ -3400,7 +3493,7 @@
     <ClInclude Include="map.h" />
     <ClInclude Include="memory\aaa_array_memory_allocate.h" />
     <ClInclude Include="operating_system\posix\time.h" />
-    <ClInclude Include="operating_system\shared_posix\c_error_number.h" />
+    <ClInclude Include="operating_system\shared_posix\c_errno.h" />
     <ClInclude Include="operating_system\shared_posix\stdio_file.h" />
     <ClInclude Include="operating_system\windows\_gdiplus.h" />
     <ClInclude Include="parallelization\retry.h" />
@@ -3436,6 +3529,7 @@
     <ClInclude Include="_stdio.h" />
     <ClInclude Include="_win32_gdi.h" />
     <ClInclude Include="λ.h" />
+    <None Include="acme.def" />
     <None Include="constant\character_set.enum" />
     <None Include="inline\application\main.inl" />
     <None Include="inline\application\main_application_library.inl" />
@@ -3692,7 +3786,6 @@
     <ClCompile Include="nano\archive\archive.cpp" />
     <ClCompile Include="nano\compress\compress.cpp" />
     <ClCompile Include="nano\graphics\brush.cpp" />
-    <ClCompile Include="nano\graphics\device.cpp" />
     <ClCompile Include="nano\graphics\font.cpp" />
     <ClCompile Include="nano\graphics\graphics.cpp" />
     <ClCompile Include="nano\graphics\icon.cpp" />
@@ -3773,7 +3866,6 @@
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='ASanDbgWithInlOpt|x64'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='ASanDbgWithInlOpt|ARM64'">true</ExcludedFromBuild>
     </ClCompile>
-    <ClCompile Include="operating_system\application.cpp" />
     <ClCompile Include="operating_system\argcargv.cpp" />
     <ClCompile Include="operating_system\a_system_menu.cpp" />
     <ClCompile Include="operating_system\bidirectional_pipe.cpp" />
@@ -3787,7 +3879,6 @@
     <ClCompile Include="operating_system\error_code.cpp" />
     <ClCompile Include="operating_system\exit_status.cpp" />
     <ClCompile Include="operating_system\file.cpp" />
-    <ClCompile Include="operating_system\main_window.cpp" />
     <ClCompile Include="operating_system\memory.cpp" />
     <ClCompile Include="operating_system\message.cpp" />
     <ClCompile Include="operating_system\message_box.cpp" />
@@ -3796,7 +3887,7 @@
     <ClCompile Include="operating_system\pipe.cpp" />
     <ClCompile Include="operating_system\process.cpp" />
     <ClCompile Include="operating_system\security_attributes.cpp" />
-    <ClCompile Include="operating_system\shared_posix\c_error_number.cpp" />
+    <ClCompile Include="operating_system\shared_posix\c_errno.cpp" />
     <ClCompile Include="operating_system\shared_posix\debug.cpp" />
     <ClCompile Include="operating_system\shared_posix\earth_time_shift.cpp" />
     <ClCompile Include="operating_system\shared_posix\errno.cpp" />
@@ -3812,21 +3903,12 @@
     <ClCompile Include="operating_system\windows\callstack.cpp" />
     <ClCompile Include="operating_system\windows\dynamic_library.cpp" />
     <ClCompile Include="operating_system\windows\file1.cpp" />
-    <ClInclude Include="operating_system\application.h" />
     <ClInclude Include="operating_system\dos\dostime.h" />
-    <ClInclude Include="operating_system\main_window.h" />
     <ClInclude Include="operating_system\aaa_operating_system_summary.h" />
     <ClInclude Include="operating_system\summary.h" />
     <ClInclude Include="operating_system\windows\find_file.h" />
     <ClCompile Include="operating_system\windows\message_box.cpp" />
     <ClCompile Include="operating_system\windows\message_loop.cpp" />
-    <ClCompile Include="operating_system\windows\nano\http\_factory.cpp" />
-    <ClCompile Include="operating_system\windows\nano\http\hinternet.cpp" />
-    <ClCompile Include="operating_system\windows\nano\http\http.cpp" />
-    <ClCompile Include="operating_system\windows\nano\http\connect.cpp" />
-    <ClCompile Include="operating_system\windows\nano\http\get.cpp" />
-    <ClCompile Include="operating_system\windows\nano\http\request.cpp" />
-    <ClCompile Include="operating_system\windows\nano\http\session.cpp" />
     <ClCompile Include="operating_system\windows\parallelization.cpp" />
     <ClCompile Include="operating_system\windows\process.cpp" />
     <ClCompile Include="operating_system\windows\thread.cpp" />
@@ -3849,10 +3931,6 @@
     <ClCompile Include="operating_system\windows_common\dll.cpp" />
     <ClCompile Include="operating_system\windows_common\file.cpp" />
     <ClCompile Include="operating_system\windows_common\memory.cpp" />
-    <ClCompile Include="operating_system\windows_common\nano\compress\compress.cpp" />
-    <ClCompile Include="operating_system\windows_common\nano\compress\_factory.cpp" />
-    <ClCompile Include="operating_system\windows_common\nano\idn\idn.cpp" />
-    <ClCompile Include="operating_system\windows_common\nano\idn\_idn.cpp" />
     <ClCompile Include="operating_system\windows_common\networking.cpp" />
     <ClCompile Include="operating_system\windows_common\parallelization.cpp" />
     <ClCompile Include="operating_system\windows_common\process.cpp" />
@@ -4370,10 +4448,6 @@
     <ClCompile Include="platform\system_setup.cpp" />
     <ClCompile Include="platform\text.cpp" />
     <ClCompile Include="platform\timer.cpp" />
-    <ClCompile Include="platform\timer_array.cpp" />
-    <ClCompile Include="platform\timer_callback.cpp" />
-    <ClCompile Include="platform\timer_event.cpp" />
-    <ClCompile Include="platform\timer_task.cpp" />
     <ClCompile Include="platform\trace.cpp" />
     <ClCompile Include="platform\tracer.cpp" />
     <ClCompile Include="platform\trace_category.cpp" />
@@ -4497,14 +4571,14 @@
     <ClCompile Include="prototype\mathematics\binary_operation.cpp" />
     <ClCompile Include="prototype\mathematics\cvt.cpp" />
     <ClCompile Include="prototype\mathematics\cvt_g.cpp" />
-    <ClCompile Include="prototype\mathematics\int_biunique.cpp" />
+    <ClCompile Include="prototype\mathematics\integer_biunique.cpp" />
     <ClCompile Include="prototype\mathematics\mathematics.cpp" />
     <ClCompile Include="prototype\mathematics\mkint_c.cpp" />
     <ClCompile Include="prototype\mathematics\natural.cpp" />
     <ClCompile Include="prototype\mathematics\number.cpp" />
-    <ClCompile Include="prototype\mathematics\number_double.cpp" />
-    <ClCompile Include="prototype\mathematics\number_float.cpp" />
-    <ClCompile Include="prototype\mathematics\number_integer.cpp" />
+    <ClCompile Include="prototype\mathematics\number_f64.cpp" />
+    <ClCompile Include="prototype\mathematics\number_f32.cpp" />
+    <ClCompile Include="prototype\mathematics\number_i32.cpp" />
     <ClCompile Include="prototype\mathematics\random_number_generator.cpp" />
     <ClCompile Include="prototype\mathematics\value.cpp" />
     <ClCompile Include="prototype\mathematics\_.cpp" />
@@ -4953,7 +5027,7 @@
     <ClCompile Include="user\user\drag_client.cpp" />
     <ClCompile Include="user\user\element.cpp" />
     <ClCompile Include="user\user\keyboard.cpp" />
-    <ClCompile Include="user\user\key_state.cpp" />
+    <ClCompile Include="user\user\keyboard_state.cpp" />
     <ClCompile Include="user\user\mouse.cpp" />
     <ClCompile Include="user\user\os_colors.cpp" />
     <ClCompile Include="user\user\os_theme_colors.cpp" />
@@ -5431,11 +5505,6 @@
     <ClInclude Include="platform\this_type.h" />
     <ClInclude Include="platform\timeout.h" />
     <ClInclude Include="platform\timer.h" />
-    <ClInclude Include="platform\timer_array.h" />
-    <ClInclude Include="platform\timer_callback.h" />
-    <ClInclude Include="platform\timer_event.h" />
-    <ClInclude Include="platform\timer_item.h" />
-    <ClInclude Include="platform\timer_task.h" />
     <ClInclude Include="platform\title.h" />
     <ClInclude Include="platform\trace.h" />
     <ClInclude Include="platform\trace_category.h" />
@@ -5515,9 +5584,9 @@
     <ClInclude Include="prototype\mathematics\mkint_c.h" />
     <ClInclude Include="prototype\mathematics\natural.h" />
     <ClInclude Include="prototype\mathematics\number.h" />
-    <ClInclude Include="prototype\mathematics\number_double.h" />
-    <ClInclude Include="prototype\mathematics\number_float.h" />
-    <ClInclude Include="prototype\mathematics\number_integer.h" />
+    <ClInclude Include="prototype\mathematics\number_f64.h" />
+    <ClInclude Include="prototype\mathematics\number_f32.h" />
+    <ClInclude Include="prototype\mathematics\number_i32.h" />
     <ClInclude Include="prototype\mathematics\number_limits.h" />
     <ClInclude Include="prototype\mathematics\numeric_info.h" />
     <ClInclude Include="prototype\mathematics\objects.h" />
@@ -5780,7 +5849,7 @@
     <None Include="memory\namespace_heap.inl" />
     <ClCompile Include="prototype\mathematics\scalar.cpp" />
     <None Include="memory\_new.inl" />
-    <None Include="prototype\mathematics\int_to_string_bases_table.dynamically_generated" />
+    <None Include="prototype\mathematics\integer_to_string_bases_table.dynamically_generated" />
     <None Include="prototype\prototype\_impl.h" />
     <None Include="prototype\string\_defer.h" />
   </ItemGroup>

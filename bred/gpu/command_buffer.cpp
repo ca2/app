@@ -3,6 +3,7 @@
 #include "command_buffer.h"
 #include "context.h"
 #include "frame.h"
+#include "layer.h"
 #include "queue.h"
 #include "renderer.h"
 #include "render_target.h"
@@ -17,22 +18,22 @@ namespace gpu
    scoped_command_buffer::scoped_command_buffer(::gpu::command_buffer* pcommandbufferIn)
    {
 
-      m_pcommandbufferOut = ::gpu::current_frame()->m_pgpucommandbuffer;
+      m_pcommandbufferOut = ::gpu::current_layer()->m_pcommandbufferScoped;
       m_pcommandbufferIn = pcommandbufferIn;
-      ::gpu::current_frame()->m_pgpucommandbuffer = m_pcommandbufferIn;
-
+      ::gpu::current_layer()->m_pcommandbufferScoped = m_pcommandbufferIn;
 
    }
+
 
    scoped_command_buffer::~scoped_command_buffer()
    {
 
-      ::gpu::current_frame()->m_pgpucommandbuffer = m_pcommandbufferOut;
+      ::gpu::current_layer()->m_pcommandbufferScoped = m_pcommandbufferOut;
 
    }
 
 
-   ::interlocked_long_long g_iGpuCommandBufferSerialSeed;
+   ::interlocked_i64 g_iGpuCommandBufferSerialSeed;
 
 
    command_buffer::command_buffer()
@@ -91,7 +92,7 @@ namespace gpu
    }
 
 
-   void command_buffer::bind_slot_set(int iSet, ::gpu::binding_slot_set * pgpubindingslotset)
+   void command_buffer::bind_slot_set(::i32 iSet, ::gpu::binding_slot_set * pgpubindingslotset)
    {
 
       auto pgpucontext = m_pgpurendertarget->m_pgpurenderer->m_pgpucontext;
@@ -230,14 +231,14 @@ namespace gpu
    }
 
 
-   void command_buffer::set_viewport(const ::int_rectangle& rectangle)
+   void command_buffer::set_viewport(const ::i32_rectangle& rectangle)
    {
 
       m_pgpurendertarget->m_pgpurenderer->m_pgpucontext->set_viewport(this, rectangle);
    }
 
 
-   void command_buffer::set_scissor(const ::int_rectangle& rectangle)
+   void command_buffer::set_scissor(const ::i32_rectangle& rectangle)
    {
 
       m_pgpurendertarget->m_pgpurenderer->m_pgpucontext->set_scissor(this, rectangle);
@@ -282,21 +283,21 @@ namespace gpu
    //}
 
 
-   void command_buffer::draw_int_a_count(int a)
+   void command_buffer::draw_int_a_count(::i32 a)
    {
 
 
    }
 
 
-   void command_buffer::draw_vertexes(int iVertexCount)
+   void command_buffer::draw_vertexes(::i32 iVertexCount)
    {
 
 
    }
 
 
-   void command_buffer::draw_indexes(int iIndexCount)
+   void command_buffer::draw_indexes(::i32 iIndexCount)
    {
 
 
@@ -357,16 +358,16 @@ namespace gpu
    CLASS_DECL_BRED::gpu::command_buffer * current_command_buffer()
    {
 
-      auto pframe = ::gpu::current_frame();
+      auto pgpulayer = ::gpu::current_layer();
 
-      if (::is_null(pframe))
+      if (::is_null(pgpulayer))
       {
 
          return nullptr;
 
       }
 
-      auto pgpucommandbuffer = pframe->m_pgpucommandbuffer;
+      auto pgpucommandbuffer = pgpulayer->getCurrentCommandBuffer4();
 
       if (::is_null(pgpucommandbuffer))
       {

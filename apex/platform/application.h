@@ -29,6 +29,8 @@ namespace apex
 
 
       ::string m_strPreferredExperience;
+      ::i32_map<string > m_mapResourceName;
+      ::string_map<::i32 > m_mapResourceId;
 
       //       //__creatable(application);
       //
@@ -68,7 +70,7 @@ namespace apex
       //       // former ::application_interface // moved on 2015-05-23 Sammstag while listening to RocketBeansTV (a German channel?) at TwitchTV
       //       string_array_base                                 m_straActivationMessage;
       //
-      //       unsigned int                                        m_dwInstallGoodToCheckAgain;
+      //       ::u32                                        m_dwInstallGoodToCheckAgain;
       //
       //       bool                                         m_bAppHasInstallerProtected;
       //       bool                                         m_bAppHasInstallerChangedProtected;
@@ -113,7 +115,7 @@ namespace apex
       //
       //       string                                       m_strLicense;
       //
-      //       int                                          m_iWaitCursorCount;         // for wait cursor (>0 => waiting)
+      //       ::i32                                          m_iWaitCursorCount;         // for wait cursor (>0 => waiting)
       //
       //       //::pointer<::simpledb::server>              m_psimpledb;
       //
@@ -129,9 +131,9 @@ namespace apex
       //       //
       //       //#endif
       //
-      //       unsigned int                                          m_dwPromptContext;        // help action_context override for message box
+      //       ::u32                                          m_dwPromptContext;        // help action_context override for message box
       //       // LKG
-      //       unsigned int                                          m_dwPolicies;            // block for storing boolean system policies
+      //       ::u32                                          m_dwPolicies;            // block for storing boolean system policies
       //
       //       // Support for Shift+F1 help mode.
       //       // true if we're in SHIFT+F1 mode.
@@ -146,11 +148,11 @@ namespace apex
       //       //      ATOM                                 m_atomSystemTopic;   // for DDE open
       //       //#endif
       //
-      //       unsigned int                                        m_nNumThumbnailPages; // number of default printed pages
+      //       ::u32                                        m_nNumThumbnailPages; // number of default printed pages
       //
       //       string                                       m_strId;
       //
-      //       int                                          m_iResourceId;
+      //       ::i32                                          m_iResourceId;
       //
       //       //::pointer<::experience::department>        m_pexperience;
       //       //::pointer<::apex::theme>                   m_ptheme;
@@ -170,8 +172,8 @@ namespace apex
 
 #ifdef _DEBUG
 
-      long long increment_reference_count() override;
-      long long decrement_reference_count() override;
+      ::i64 increment_reference_count() override;
+      ::i64 decrement_reference_count() override;
 
 #endif
       void initialize(::particle* pparticle) override;
@@ -182,7 +184,9 @@ namespace apex
 
       virtual ::file::path cloud_protocol() override;
 
-
+      ::string getResourceName(::i32 iId) override;
+      void setResourceName(::i32 iId, const ::scoped_string & scopedstr) override;
+      ::i32 getResourceId(const ::scoped_string & scopedstr) override;
       //void on_initialize_application(::main* pmain) override;
       //// void assert_ok() const override;
       //// void dump(dump_context & dumpcontext) const override;
@@ -193,6 +197,13 @@ namespace apex
 
       ::pointer<::fs::folder_sync> fs_folder_sync(const ::scoped_string& scopedstr);
 
+
+      // void on_application_system_start() override;
+      void on_prepare_application() override;
+
+
+      //       virtual bool on_start_application() override;
+      void on_after_prepare_application() override;
 
       //virtual void process_command_line(command_line* pcommandline);
 
@@ -283,7 +294,7 @@ namespace apex
       void init_instance() override;
 
 
-      virtual void defer_interprocess_communication() override;
+      ::interprocess::communication * interprocess_communication() override;
 
 
       virtual void run() override;
@@ -310,12 +321,12 @@ namespace apex
 
 
       void show_about_box(::user::activation_token * puseractivationtoken) override;
-      void show_lines_box(const ::string_array_base & straLines, const ::scoped_string & scopedstrIconUrl, ::user::activation_token *puseractivationtoken) override;
+      void show_lines_box(const ::string_array_base & straLines, const ::string_array_base & straIconUrl, ::user::activation_token *puseractivationtoken) override;
 
 
-      ::pointer<::innate_ui::icon> innate_ui_icon(const ::int_size& size) override;
+      ::pointer<::innate_ui::icon> innate_ui_icon(const ::i32_size& size) override;
       ::pointer<::innate_ui::icon>
-      innate_ui_icon(const ::scoped_string &scopedstrIconUrl, const ::int_size &size) override;
+      innate_ui_icon(const ::scoped_string &scopedstrIconUrl, const ::i32_size &size) override;
 
 
       virtual void init_fs_set(::fs::set* pfsset) override;
@@ -386,15 +397,15 @@ namespace apex
       virtual string matter_as_string(const ::scoped_string & scopedstrMatter, const ::scoped_string & scopedstrMatter2 = nullptr) override;
 
 
-      //virtual bool do_prompt_file_name(::payload & payloadFile, string nIDSTitle, unsigned int lFlags, bool bOpenFileDialog, ::user::impact_system * ptemplate, ::user::document * pdocument);
-      //virtual bool do_prompt_file_name(::payload& payloadFile, string nIDSTitle, unsigned int lFlags, bool bOpenFileDialog, ::user::impact_system* ptemplate, ::user::document* pdocument);
-      //user virtual bool do_prompt_file_name(::payload& payloadFile, string nIDSTitle, unsigned int lFlags, bool bOpenFileDialog, ::user::impact_system* ptemplate, ::user::document* pdocument);
+      //virtual bool do_prompt_file_name(::payload & payloadFile, string nIDSTitle, ::u32 lFlags, bool bOpenFileDialog, ::user::impact_system * ptemplate, ::user::document * pdocument);
+      //virtual bool do_prompt_file_name(::payload& payloadFile, string nIDSTitle, ::u32 lFlags, bool bOpenFileDialog, ::user::impact_system* ptemplate, ::user::document* pdocument);
+      //user virtual bool do_prompt_file_name(::payload& payloadFile, string nIDSTitle, ::u32 lFlags, bool bOpenFileDialog, ::user::impact_system* ptemplate, ::user::document* pdocument);
 
 
-      virtual void process_message_filter(int code, ::message::message * pmessage) override;
+      virtual void process_message_filter(::i32 code, ::message::message * pmessage) override;
 
 
-      virtual void DoWaitCursor(int nCode) override; // 0 => restore, 1=> begin, -1=> end
+      virtual void DoWaitCursor(::i32 nCode) override; // 0 => restore, 1=> begin, -1=> end
 
       void _001PostTryCloseApplication() override;
 
@@ -499,7 +510,7 @@ namespace apex
 
       //virtual void record(::create * pcommand);
 
-      //virtual void on_event(unsigned long long u, ::particle * pparticle) override;
+      //virtual void on_event(::u64 u, ::particle * pparticle) override;
       //virtual ::pointer<::thread_toolset>create_thread_toolset(::enum_task_tool etool);
 
 
@@ -551,13 +562,13 @@ namespace apex
       //virtual ::file::path defer_process_path(::file::path path);
       //virtual ::file::path full_process_path(::file::path path);
 
-      //virtual void DoWaitCursor(int nCode); // 0 => restore, 1=> begin, -1=> end
+      //virtual void DoWaitCursor(::i32 nCode); // 0 => restore, 1=> begin, -1=> end
       //virtual void show_wait_cursor(bool bShow = true);
 
 
-      //virtual void process_message_filter(int code,::message::message * pmessage) override;
+      //virtual void process_message_filter(::i32 code,::message::message * pmessage) override;
 
-      virtual void on_thread_on_idle(::thread * pthread, int lCount) override;
+      virtual void on_thread_on_idle(::thread * pthread, ::i32 lCount) override;
 
 
       virtual void app_set(const ::scoped_string & scopedstrPath, const ::scoped_string & scopedstrValue) override;
@@ -731,7 +742,7 @@ namespace apex
 
       /// return true if the external additional instance might continue execution
       /// bHandled true if some action was done in response to the external aaa_memory_new additional instance creation
-      virtual void on_additional_local_instance(bool& bHandled, const ::scoped_string & scopedstrModule, int iPid, const ::scoped_string & scopedstrCommandLine) override;
+      virtual void on_additional_local_instance(bool& bHandled, const ::scoped_string & scopedstrModule, ::i32 iPid, const ::scoped_string & scopedstrCommandLine) override;
 
 
       virtual void on_new_instance(const ::scoped_string & scopedstrModule, const ::atom& idPid) override;
@@ -758,7 +769,7 @@ namespace apex
       virtual string get_global_id_mutex_name() override;
 
 
-      virtual bool check_exclusive(::request* prequest, bool& bHandled) override;
+      virtual bool check_exclusive(bool& bHandled) override;
 
 
       virtual bool erase_exclusive(const ::scoped_string & scopedstrId) override;
@@ -773,7 +784,7 @@ namespace apex
       virtual void release_exclusive() override;
 
 
-      bool on_set_scalar(enum_scalar escalar, ::number::number number, int iFlags) override;
+      bool on_set_scalar(enum_scalar escalar, ::number::number number, ::i32 iFlags) override;
 
 
       ::number::number get_scalar_minimum(enum_scalar escalar) override;
@@ -825,7 +836,6 @@ namespace apex
       virtual bool platform_open_by_file_extension(::collection::index iEdge, ::request* prequest) override;
 
 
-      virtual bool on_start_application() override;
 
 
       //#if !defined(LINUX)
@@ -886,7 +896,7 @@ namespace apex
 
       //virtual bool compress_ungz(::file::file * pfileUncompressed, ::file::file * pfileCompressed);
 
-      //virtual bool compress_gz(::file::file * pfileCompressed, ::file::file * pfileUncompressed, int iLevel = 6);
+      //virtual bool compress_gz(::file::file * pfileCompressed, ::file::file * pfileUncompressed, ::i32 iLevel = 6);
 
       //virtual void interactive_credentials(::account::credentials * pcredentials) override;
 
@@ -911,7 +921,7 @@ namespace apex
       virtual void install_trace(const ::scoped_string & scopedstr) override;
 
 
-      virtual void install_trace(double dRate) override;
+      virtual void install_trace(::f64 dRate) override;
 
 
        virtual void register_application_as_spa_file_type_handler() override;
@@ -945,7 +955,7 @@ namespace apex
 
 
       // apex commented
-      //virtual LPWAVEOUT waveout_open(int iChannel, LPAUDIOFORMAT pformat, LPWAVEOUT_CALLBACK pcallback);
+      //virtual LPWAVEOUT waveout_open(::i32 iChannel, LPAUDIOFORMAT pformat, LPWAVEOUT_CALLBACK pcallback);
 
 
       virtual string preferred_experience() override;
@@ -1016,9 +1026,9 @@ namespace apex
       //virtual ::application * get_app() const override;
 
 
-      //virtual unsigned int guess_code_page(const ::scoped_string & scopedstr);
+      //virtual ::u32 guess_code_page(const ::scoped_string & scopedstr);
 
-      //virtual int _sync_message_box(::user::interaction_base* puiOwner, const ::scoped_string & scopedstrMessage, const ::scoped_string & scopedstrTitle, unsigned int fuStyle) override;
+      //virtual ::i32 _sync_message_box(::user::interaction_base* puiOwner, const ::scoped_string & scopedstrMessage, const ::scoped_string & scopedstrTitle, ::u32 fuStyle) override;
 
 
       virtual void pre_translate_message(::message::message* pmessage) override;
@@ -1044,7 +1054,7 @@ namespace apex
       //virtual string sync_message_box(const ::scoped_string & scopedstrMatter,::property_set & propertyset) override;
 
 
-      //virtual ::pointer<::user::interaction>uie_from_point(const ::int_point& point);
+      //virtual ::pointer<::user::interaction>uie_from_point(const ::i32_point& point);
 
       //virtual bool on_application_menu_action(const ::scoped_string & scopedstrCommand) override;
 
@@ -1067,15 +1077,15 @@ namespace apex
       //virtual void on_request(::create* pcreate) override;
 
       //for implementation
-      virtual bool on_idle(int lCount) override; // return true if more idle processing
+      virtual bool on_idle(::i32 lCount) override; // return true if more idle processing
       virtual void process_window_procedure_exception(const ::exception& e, ::message::message* pmessage) override;
 
 
       //      void EnableModelessEx(bool bEnable);
       ////#ifdef WINDOWS
-      ////      HENHMETAFILE LoadEnhMetaFile(unsigned int uResource);
+      ////      HENHMETAFILE LoadEnhMetaFile(::u32 uResource);
       ////#endif
-      //      bool GetResourceData(unsigned int nID, const ::scoped_string & scopedstrType, memory& storage);
+      //      bool GetResourceData(::u32 nID, const ::scoped_string & scopedstrType, memory& storage);
 
       //#ifdef WINDOWS
       //      virtual bool OnMessageWindowMessage(MESSAGE * pmsg);
@@ -1084,9 +1094,9 @@ namespace apex
       //      virtual bool OnX11WindowMessage(void* pev);
       //#endif
 
-      //bool CreateFileFromRawResource(unsigned int nID, const ::scoped_string & scopedstrType, const ::scoped_string & scopedstrFilePath);
+      //bool CreateFileFromRawResource(::u32 nID, const ::scoped_string & scopedstrType, const ::scoped_string & scopedstrFilePath);
 
-      //virtual LRESULT GetPaintMsgProc(int nCode, WPARAM wParam, LPARAM lParam);
+      //virtual LRESULT GetPaintMsgProc(::i32 nCode, WPARAM wParam, LPARAM lParam);
 
 
       //void OnUpdateRecentFileMenu(::message::command* pcommand);
@@ -1102,8 +1112,8 @@ namespace apex
       //void EnableHtmlHelp();
 
 
-      //virtual int sync_message_box_timeout(::user::interaction_base * puiOwner,::payload payload, const ::scoped_string & scopedstrTitle, class ::time timeTimeout,unsigned int fuStyle = ::user::e_message_box_ok) override;
-      //virtual int sync_message_box(::user::interaction_base * puiOwner,const ::scoped_string & scopedstrMessage, const ::scoped_string & scopedstrTitle, unsigned int fuStyle = ::user::e_message_box_ok) override;
+      //virtual ::i32 sync_message_box_timeout(::user::interaction_base * puiOwner,::payload payload, const ::scoped_string & scopedstrTitle, class ::time timeTimeout,::u32 fuStyle = ::user::e_message_box_ok) override;
+      //virtual ::i32 sync_message_box(::user::interaction_base * puiOwner,const ::scoped_string & scopedstrMessage, const ::scoped_string & scopedstrTitle, ::u32 fuStyle = ::user::e_message_box_ok) override;
 
 
       //bool on_exclusive_instance_conflict(bool & bHandled, enum_exclusive_instance eexclusive, const ::scoped_string & scopedstrId) override;
@@ -1128,7 +1138,7 @@ namespace apex
       // profile member functions; prevents writing to an INI spfile->
       //void SetRegistryKey(const ::scoped_string & scopedstrRegistryKey);
 
-      //void SetRegistryKey(unsigned int nIDRegistryKey);
+      //void SetRegistryKey(::u32 nIDRegistryKey);
 
 
       //void RegisterShellFileTypes(bool bCompat = false);
@@ -1169,7 +1179,7 @@ namespace apex
       //virtual void close(::apex::e_end eend) override; // close documents before exiting
 
       // Advanced: to override message boxes and other hooks
-      //virtual int DoMessageBox(const ::scoped_string & scopedstrPrompt,unsigned int nType,unsigned int nIDPrompt);
+      //virtual ::i32 DoMessageBox(const ::scoped_string & scopedstrPrompt,::u32 nType,::u32 nIDPrompt);
 
 
       // Advanced: process async DDE request
@@ -1193,7 +1203,7 @@ namespace apex
       virtual bool get_fs_size(string& strSize, const ::scoped_string & scopedstrPath, bool& bPending) override;
 
 
-      virtual bool get_fs_size(long long& i64Size, const ::scoped_string & scopedstrPath, bool& bPending) override;
+      virtual bool get_fs_size(::i64& i64Size, const ::scoped_string & scopedstrPath, bool& bPending) override;
 
 
       virtual void set_title(const ::scoped_string & scopedstrTitle) override;
@@ -1212,23 +1222,23 @@ namespace apex
                                                         ::collection::count iProgressCount) override;
 
 
-      virtual void userfs_init1() override;
+      void userfs_init1() override;
 
 
-      virtual void userfs_process_init() override;
+      void userfs_process_init() override;
 
 
       void data_on_after_change(::database::client* pclient, const ::scoped_string& scopedstr,
                                 ::topic* ptopic) override;
 
 
-      virtual void report_error(const ::exception& e, int iMessageFlags, const ::scoped_string & scopedstrTopic) override;
+      void report_error(const ::exception& e, const ::user::e_message_box & emessagebox, const ::scoped_string & scopedstrTopic) override;
 
 
-      virtual void create_impact_system() override;
+      void create_impact_system() override;
 
 
-      virtual void on_song_added(const ::scoped_string & scopedstr) override;
+      void on_song_added(const ::scoped_string & scopedstr) override;
 
 
       //string get_visual_studio_build();

@@ -22,15 +22,15 @@
 #if OPENSSL_API_COMPAT < 0x10100000L
 
 RAND_METHOD rand_meth;
-extern "C" void crypto_initializer_locking_function(int mode, int n, const char* file, int line);
-extern "C" unsigned long crypto_initializer_id_function();
+extern "C" void crypto_initializer_locking_function(::i32 mode, ::i32 n, const_char_pointer file, ::i32 line);
+extern "C" ulong crypto_initializer_id_function();
 
-extern "C" int crypto_initializer_rand_seed(const void* buf, int num);
-extern "C" int crypto_initializer_rand_bytes(uchar * buf, int num);
+extern "C" ::i32 crypto_initializer_rand_seed(const void* buf, ::i32 num);
+extern "C" ::i32 crypto_initializer_rand_bytes(::u8 * buf, ::i32 num);
 extern "C" void crypto_initializer_rand_cleanup();
-extern "C" int crypto_initializer_rand_add(const void* buf, int num, double entropy);
-extern "C" int crypto_initializer_rand_pseudorand(uchar * buf, int num);
-extern "C" int crypto_initializer_rand_status();
+extern "C" ::i32 crypto_initializer_rand_add(const void* buf, ::i32 num, ::f64 entropy);
+extern "C" ::i32 crypto_initializer_rand_pseudorand(::u8 * buf, ::i32 num);
+extern "C" ::i32 crypto_initializer_rand_status();
 
 #endif
 
@@ -41,7 +41,7 @@ namespace crypto
 #if OPENSSL_API_COMPAT < 0x10100000L
 
 
-   map < int, ::pointer < ::mutex >* >* g_pmapMutex = nullptr;
+   map < ::i32, ::pointer < ::mutex >* >* g_pmapMutex = nullptr;
 
 
    ::pointer < ::mutex >* g_pmutexMap = nullptr;
@@ -57,7 +57,7 @@ namespace crypto
 
       m_rand_size = 1024;
 
-      g_pmapMutex = aaa_primitive_new map < int, ::pointer < ::mutex >*>;
+      g_pmapMutex = aaa_primitive_new map < ::i32, ::pointer < ::mutex >*>;
 
       g_pmutexMap = aaa_primitive_new ::pointer < ::mutex >();
 
@@ -150,7 +150,7 @@ namespace crypto
 
 
 #if OPENSSL_API_COMPAT < 0x10100000L
-extern "C" void crypto_initializer_SSL_locking_function(int mode, int n, const char* file, int line)
+extern "C" void crypto_initializer_SSL_locking_function(::i32 mode, ::i32 n, const_char_pointer file, ::i32 line)
 {
 
    __UNREFERENCED_PARAMETER(file);
@@ -201,16 +201,16 @@ extern "C" void crypto_initializer_SSL_locking_function(int mode, int n, const c
 
 #endif
 
-extern "C" unsigned long crypto_initializer_SSL_id_function()
+extern "C" ulong crypto_initializer_SSL_id_function()
 {
 
    //#ifdef WIN32
 
-   return (unsigned long) ::current_itask();
+   return (ulong) ::current_itask();
 
    //#else
    //
-   //   unsigned long ul = (unsigned long)(iptr) ::pthread_self();
+   //   ulong ul = (ulong)(iptr) ::pthread_self();
    //
    //   return ul;
    //
@@ -222,7 +222,7 @@ extern "C" unsigned long crypto_initializer_SSL_id_function()
 #if OPENSSL_API_COMPAT < 0x10100000L
 
 
-extern "C" int crypto_initializer_rand_seed(const void* buf, int num)
+extern "C" ::i32 crypto_initializer_rand_seed(const void* buf, ::i32 num)
 {
    __UNREFERENCED_PARAMETER(buf);
    __UNREFERENCED_PARAMETER(num);
@@ -230,7 +230,7 @@ extern "C" int crypto_initializer_rand_seed(const void* buf, int num)
 }
 
 
-extern "C" int crypto_initializer_rand_bytes(uchar * buf, int num)
+extern "C" ::i32 crypto_initializer_rand_bytes(::u8 * buf, ::i32 num)
 {
 
    generate_random_bytes(buf, num);
@@ -246,7 +246,7 @@ extern "C" void crypto_initializer_rand_cleanup()
 }
 
 
-extern "C" int crypto_initializer_rand_add(const void* buf, int num, double entropy)
+extern "C" ::i32 crypto_initializer_rand_add(const void* buf, ::i32 num, ::f64 entropy)
 {
    __UNREFERENCED_PARAMETER(buf);
    __UNREFERENCED_PARAMETER(num);
@@ -255,7 +255,7 @@ extern "C" int crypto_initializer_rand_add(const void* buf, int num, double entr
 }
 
 
-extern "C" int crypto_initializer_rand_pseudorand(uchar * buf, int num)
+extern "C" ::i32 crypto_initializer_rand_pseudorand(::u8 * buf, ::i32 num)
 {
 
    generate_random_bytes(buf, num);
@@ -265,7 +265,7 @@ extern "C" int crypto_initializer_rand_pseudorand(uchar * buf, int num)
 }
 
 
-extern "C" int crypto_initializer_rand_status()
+extern "C" ::i32 crypto_initializer_rand_status()
 {
 
    return 1024;

@@ -19,7 +19,7 @@ namespace html
       FlagWidthExpandable,
       // the height can be expanded
       FlagHeightExpandable,
-      // the width is fixed but can grow to make space to a single long unsigned short
+      // the width is fixed but can grow to make space to a single long ::u16
       FlagWidthFixedTable,
       // the width is fixed
       FlagWidthFixed,

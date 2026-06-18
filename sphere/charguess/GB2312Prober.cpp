@@ -33,11 +33,11 @@ void  nsGB18030Prober::Reset(void)
   //mContextAnalyser.Reset();
 }
 
-nsProbingState nsGB18030Prober::HandleData(const ::string & aBuf, PRunsigned int aLen)
+nsProbingState nsGB18030Prober::HandleData(const ::string & aBuf, PRunsigned ::i32 aLen)
 {
   nsSMState codingState;
 
-  for (PRunsigned int i = 0; i < aLen; i++)
+  for (PRunsigned ::i32 i = 0; i < aLen; i++)
   {
     codingState = mCodingSM->NextState(aBuf[i]);
     if (codingState == eError)
@@ -52,7 +52,7 @@ nsProbingState nsGB18030Prober::HandleData(const ::string & aBuf, PRunsigned int
     }
     if (codingState == eStart)
     {
-      PRunsigned int charLen = mCodingSM->GetCurrentCharLen();
+      PRunsigned ::i32 charLen = mCodingSM->GetCurrentCharLen();
 
       if (i == 0)
       {
@@ -75,10 +75,10 @@ nsProbingState nsGB18030Prober::HandleData(const ::string & aBuf, PRunsigned int
   return mState;
 }
 
-float nsGB18030Prober::GetConfidence(void)
+::f32 nsGB18030Prober::GetConfidence(void)
 {
-  float distribCf = mDistributionAnalyser.GetConfidence();
+  ::f32 distribCf = mDistributionAnalyser.GetConfidence();
 
-  return (float)distribCf;
+  return (::f32)distribCf;
 }
 

@@ -23,8 +23,8 @@
 typedef struct _FloatBar FloatBar;
 typedef struct wf_context wfContext;
 
-void floatbar_window_create(wfContext* wfc);
-int floatbar_show(FloatBar* floatbar);
-int floatbar_hide(FloatBar* floatbar);
+void f32bar_window_create(wfContext* wfc);
+::i32 f32bar_show(FloatBar* f32bar);
+::i32 f32bar_hide(FloatBar* f32bar);
 
 #endif

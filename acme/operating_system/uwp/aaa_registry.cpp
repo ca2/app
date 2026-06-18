@@ -18,16 +18,16 @@ namespace universal_windows
 
    bool registry::RegQueryValue(
    HKEY hKey,
-   const char * lpSubKey,
+   const_char_pointer lpSubKey,
    string &str)
    {
-      unsigned int cbValue;
-      unsigned int dwType;
+      ::u32 cbValue;
+      ::u32 dwType;
       if(ERROR_SUCCESS != ::RegQueryValueEx(hKey, lpSubKey, nullptr, &dwType, nullptr, &cbValue))
          return false;
       if(dwType != REG_SZ)
          return false;
-      char * lpsz = str.GetBuffer(cbValue);
+      char_pointer lpsz = str.GetBuffer(cbValue);
       if(ERROR_SUCCESS != ::RegQueryValueEx(hKey, lpSubKey, nullptr, &dwType, (LPBYTE) lpsz, &cbValue))
       {
          str.ReleaseBuffer();
@@ -44,7 +44,7 @@ namespace universal_windows
       m_hkey = nullptr;
    }
 
-   registry::Key::Key(HKEY hkey, const char * lpcszSubKey, bool bCreate)
+   registry::Key::Key(HKEY hkey, const_char_pointer lpcszSubKey, bool bCreate)
    {
       m_hkey = nullptr;
       OpenKey(hkey, lpcszSubKey, bCreate);
@@ -58,7 +58,7 @@ namespace universal_windows
       }
    }
 
-   bool registry::Key::OpenKey(HKEY hkey, const char * lpcszSubKey, bool bCreate)
+   bool registry::Key::OpenKey(HKEY hkey, const_char_pointer lpcszSubKey, bool bCreate)
    {
       if(bCreate)
       {
@@ -90,16 +90,16 @@ namespace universal_windows
    }
 
    bool registry::Key::QueryValue(
-   const char * lpcszValueName,
+   const_char_pointer lpcszValueName,
    string &str)
    {
-      unsigned int cbValue;
-      unsigned int dwType;
+      ::u32 cbValue;
+      ::u32 dwType;
       if(ERROR_SUCCESS != ::RegQueryValueEx(m_hkey, lpcszValueName, nullptr, &dwType, nullptr, &cbValue))
          return false;
       if(dwType != REG_SZ)
          return false;
-      char * lpsz = str.GetBuffer(cbValue);
+      char_pointer lpsz = str.GetBuffer(cbValue);
       if(ERROR_SUCCESS != ::RegQueryValueEx(m_hkey, lpcszValueName, nullptr, &dwType, (LPBYTE) lpsz, &cbValue))
       {
          str.ReleaseBuffer();
@@ -110,10 +110,10 @@ namespace universal_windows
 
    }
 
-   bool registry::Key::QueryValue(const char * lpcszValueName, memory & mem)
+   bool registry::Key::QueryValue(const_char_pointer lpcszValueName, memory & mem)
    {
-      unsigned int cbValue;
-      unsigned int dwType;
+      ::u32 cbValue;
+      ::u32 dwType;
       if(ERROR_SUCCESS != ::RegQueryValueEx(m_hkey, lpcszValueName, nullptr, &dwType, nullptr, &cbValue))
          return false;
       if(dwType != REG_BINARY)
@@ -129,20 +129,20 @@ namespace universal_windows
    }
 
    bool registry::Key::SetValue(
-   const char * lpcszValueName,
-   const char * lpcszValue)
+   const_char_pointer lpcszValueName,
+   const_char_pointer lpcszValue)
    {
       return ERROR_SUCCESS ==
              RegSetValueEx(m_hkey, lpcszValueName, nullptr, REG_SZ,
-                           (LPBYTE)lpcszValue, (lstrlen(lpcszValue)+1)*sizeof(char));
+                           (LPBYTE)lpcszValue, (lstrlen(lpcszValue)+1)*sizeof(::i8));
    }
 
 
    bool registry::Key::DeleteValue(
-   const char * lpcszValueName)
+   const_char_pointer lpcszValueName)
    {
       return ERROR_SUCCESS ==
-             ::RegDeleteValue(m_hkey, (char *)lpcszValueName);
+             ::RegDeleteValue(m_hkey, (char_pointer )lpcszValueName);
    }
 
    bool registry::Key::DeleteKey()
@@ -157,7 +157,7 @@ namespace universal_windows
 
    ::collection::count registry::Key::EnumKey(string_array_base & stra)
    {
-      unsigned int dwMaxSubKeyLen;
+      ::u32 dwMaxSubKeyLen;
       RegQueryInfoKey(
       m_hkey,
       nullptr,
@@ -171,9 +171,9 @@ namespace universal_windows
       nullptr,
       nullptr,
       nullptr);
-      int iSize = maximum(dwMaxSubKeyLen, 1024);
-      char *buf = (char *) malloc(iSize);
-      int iKey = 0;
+      ::i32 iSize = maximum(dwMaxSubKeyLen, 1024);
+      char_pointer buf = (char_pointer ) malloc(iSize);
+      ::i32 iKey = 0;
       while(::RegEnumKey(m_hkey, iKey, buf, iSize) == ERROR_SUCCESS)
       {
          stra.add(buf);
@@ -191,11 +191,11 @@ namespace universal_windows
 
    ::collection::count registry::Key::EnumValueName(string_array_base & stra)
    {
-      unsigned int dwMaxValueNameLen = 16384;
-      char * pszBuf = (char *) malloc(dwMaxValueNameLen);
-      int l;
-      unsigned int dwIndex = 0;
-      unsigned int dwLen = dwMaxValueNameLen;
+      ::u32 dwMaxValueNameLen = 16384;
+      char_pointer pszBuf = (char_pointer ) malloc(dwMaxValueNameLen);
+      ::i32 l;
+      ::u32 dwIndex = 0;
+      ::u32 dwLen = dwMaxValueNameLen;
       while(ERROR_SUCCESS == (l = RegEnumValue(
                                   m_hkey,
                                   dwIndex,

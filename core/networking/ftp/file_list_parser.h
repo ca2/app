@@ -76,7 +76,7 @@ namespace ftp
       bool ParseMSDOSListing(file_status& ftpFileStatus, const ::scoped_string & scopedstrLine);
 
       bool CheckMonth(const ::scoped_string & scopedstr, const ::scoped_string & scopedstrMonthName) const;
-      int  GetMonth(const ::scoped_string & scopedstr) const;
+      ::i32  GetMonth(const ::scoped_string & scopedstr) const;
       bool GetLong(const ::scoped_string & scopedstrLong, long& lResult) const;
       long GetYear(posix_time time) const;
 

@@ -14,21 +14,21 @@ struct hash32
 {
 
 
-   unsigned int m_u;
+   ::u32 m_u;
 
 
    hash32() : m_u(0) {};
    template < typename T >
-   hash32(const T * p) : m_u((unsigned int)(::uptr)p) {};
+   hash32(const T * p) : m_u((::u32)(::uptr)p) {};
    template < prototype_integral INTEGRAL >
-   constexpr hash32(INTEGRAL i) : m_u((unsigned int)i) { }
+   constexpr hash32(INTEGRAL i) : m_u((::u32)i) { }
    template < prototype_enum ENUM >
-   constexpr hash32(ENUM e) : m_u((unsigned int)e) { }
+   constexpr hash32(ENUM e) : m_u((::u32)e) { }
    template < prototype_floating FLOATING >
    constexpr hash32(FLOATING f) : hash32(&f, sizeof(f)) { }
    template < typename T >
    constexpr hash32(const ::pointer < T > & t) : hash32(t.m_p) { }
-   constexpr hash32(const void * p, memsize s):m_u(0) { while (--s >= 0) m_u = (m_u << 5) ^ *((unsigned char*&)p)++; }
+   constexpr hash32(const void * p, memsize s):m_u(0) { while (--s >= 0) m_u = (m_u << 5) ^ *((::u8*&)p)++; }
 
 
    constexpr ::hash32 operator + (::hash32 u) 
@@ -57,22 +57,36 @@ inline ::hash32 as_hash32<::std::type_index>(const ::std::type_index & typeindex
 //struct hash32
 //{
 //
-//   unsigned int m_u;
+//   ::u32 m_u;
 //
 //
 //   template < typename T >
-//   hash32(const T* p) : m_u((unsigned int)(::uptr)p) {}
+//   hash32(const T* p) : m_u((::u32)(::uptr)p) {}
 //   template < prototype_integral INTEGRAL >
-//   hash32(INTEGRAL i) : m_u((unsigned int)i) {}
+//   hash32(INTEGRAL i) : m_u((::u32)i) {}
 //   template < a_enum ENUM >
-//   hash32(const ::enumeration < ENUM > & e) : m_u((unsigned int)e.m_eenum) {}
-//   hash32(float f) : m_u(*(unsigned int *)&f) {}
-//   hash32(double d) : m_u(((unsigned int*)&d)[0]| ((unsigned int*)&d)[1]) {}
+//   hash32(const ::enumeration < ENUM > & e) : m_u((::u32)e.m_eenum) {}
+//   hash32(::f32 f) : m_u(*(::u32 *)&f) {}
+//   hash32(::f64 d) : m_u(((::u32*)&d)[0]| ((::u32*)&d)[1]) {}
 //   template < typename T >
-//   hash32(const ::pointer < T >& t) : m_u((unsigned int)(::uptr)t.m_p) {}
+//   hash32(const ::pointer < T >& t) : m_u((::u32)(::uptr)t.m_p) {}
 //   hash32(const ::hash32& hash32) : m_u(hash32.m_u) {}
 //   hash32() {}
 //
 //};
+
+
+
+template < typename ENUM >
+constexpr c_flag<ENUM>::operator hash32() const
+{
+   return (::u32)m_cflag;
+}
+
+template < typename ENUM>
+constexpr enumeration<ENUM>::operator hash32() const
+{
+   return (::u32)m_eenum;
+}
 
 

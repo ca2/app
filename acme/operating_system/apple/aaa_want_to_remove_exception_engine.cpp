@@ -37,9 +37,9 @@
 // // #include <cxxabi.h>
 // // #endif
 // // #ifdef __USE_BFD
-// // bool resolve_addr_file_func_line(void *address, const char * * filename, const char ** func, unsigned & iLine);
+// // bool resolve_addr_file_func_line(void *address, const_char_pointer * filename, const_char_pointer * func, ::u32 & iLine);
 // // void init_resolve_addr_file_func_line();
-// // static int bfdinit = 0;
+// // static ::i32 bfdinit = 0;
 // // #endif
 // // #ifdef __ANDROID__
 
@@ -81,7 +81,7 @@
 // //    for(size_t idx = 0; idx < count; ++idx)
 // //    {
 // //       const void* addr = buffer[idx];
-// //       const char* symbol = "";
+// //       const_char_pointer symbol = "";
 
 // //       Dl_info info;
 
@@ -92,9 +92,9 @@
 
 // //       }
 
-// //       int status = 0;
+// //       ::i32 status = 0;
 
-// //       char * demangled = __cxxabiv1::__cxa_demangle(symbol, 0, 0, &status);
+// //       char_pointer demangled = __cxxabiv1::__cxa_demangle(symbol, 0, 0, &status);
 
 // //       //str += "  #";
 // //       if (idx < 10)
@@ -152,7 +152,7 @@
 // // #ifdef WINDOWS_DESKTOP
 
 
-// // bool engine_get_line_from_address(HANDLE hprocess, OS_DWORD uiAddress, unsigned int * puiDisplacement, OS_IMAGEHLP_LINE * pline)
+// // bool engine_get_line_from_address(HANDLE hprocess, OS_DWORD uiAddress, ::u32 * puiDisplacement, OS_IMAGEHLP_LINE * pline)
 // // {
 
 // // #ifdef WORK_AROUND_SRCLINE_BUG
@@ -161,7 +161,7 @@
 // //    // line addresses (after the first lookup) that fall exactly on
 // //    // a zero displacement. I'hi walk backward 100 bytes to
 // //    // find the line and return the proper displacement.
-// //    unsigned int dwDisplacement = 0;
+// //    ::u32 dwDisplacement = 0;
 
 // //    while (!OS_SymGetLineFromAddr(hprocess, uiAddress - dwDisplacement, puiDisplacement, pline))
 // //    {
@@ -189,7 +189,7 @@
 
 // // #else
 
-// //    return 0 != OS_SymGetLineFromAddr(hprocess, uiAddress, (unsigned int *)puiDisplacement, pline);
+// //    return 0 != OS_SymGetLineFromAddr(hprocess, uiAddress, (::u32 *)puiDisplacement, pline);
 
 // // #endif
 
@@ -198,7 +198,7 @@
 
 
 
-// // index engine_fileline(OS_DWORD dwAddress, char * psz, int nCount, unsigned int * pline, unsigned int * pdisplacement = 0)
+// // index engine_fileline(OS_DWORD dwAddress, char_pointer psz, ::i32 nCount, ::u32 * pline, ::u32 * pdisplacement = 0)
 // // {
 
 // //    OS_IMAGEHLP_LINE img_line = {};
@@ -207,7 +207,7 @@
 
 // //    HANDLE hprocess = SymGetProcessHandle();
 
-// //    unsigned int displacement = 0;
+// //    ::u32 displacement = 0;
 
 // //    if (!engine_get_line_from_address(hprocess, dwAddress, &displacement, &img_line))
 // //    {
@@ -243,10 +243,10 @@
 
 
 // // #if OSBIT == 64
-// // size_t engine_symbol(char * sz,int n,DWORD64 * pdisplacement,DWORD64 dwAddress)
+// // size_t engine_symbol(char_pointer sz,::i32 n,DWORD64 * pdisplacement,DWORD64 dwAddress)
 // // {
 
-// //    unsigned char symbol[4096];
+// //    ::u8 symbol[4096];
 // //    PIMAGEHLP_SYMBOL64 pSym = (PIMAGEHLP_SYMBOL64)&symbol;
 // //    memory_set(pSym,0,sizeof(symbol)) ;
 // //    pSym->SizeOfStruct = sizeof(IMAGEHLP_SYMBOL64) ;
@@ -254,7 +254,7 @@
 
 // //    HANDLE hprocess = SymGetProcessHandle();
 // //    DWORD64 displacement = 0;
-// //    int r = SymGetSymFromAddr64(hprocess,dwAddress,&displacement,pSym);
+// //    ::i32 r = SymGetSymFromAddr64(hprocess,dwAddress,&displacement,pSym);
 // //    if(!r) return 0;
 // //    if(pdisplacement)
 // //       *pdisplacement = displacement;
@@ -264,18 +264,18 @@
 // //    return strlen(sz);
 // // }
 // // #else
-// // size_t engine_symbol(char * sz, int n, unsigned int * pdisplacement, unsigned int dwAddress)
+// // size_t engine_symbol(char_pointer sz, ::i32 n, ::u32 * pdisplacement, ::u32 dwAddress)
 // // {
 
-// //    unsigned char symbol[4096];
+// //    ::u8 symbol[4096];
 // //    PIMAGEHLP_SYMBOL pSym = (PIMAGEHLP_SYMBOL)&symbol;
 // //    memory_set(pSym, 0, sizeof(symbol));
 // //    pSym->SizeOfStruct = sizeof(IMAGEHLP_SYMBOL);
 // //    pSym->MaxNameLength = sizeof(symbol) - sizeof(IMAGEHLP_SYMBOL);
 
 // //    HANDLE hprocess = SymGetProcessHandle();
-// //    unsigned int displacement = 0;
-// //    int r = SymGetSymFromAddr(hprocess, dwAddress, &displacement, pSym);
+// //    ::u32 displacement = 0;
+// //    ::i32 r = SymGetSymFromAddr(hprocess, dwAddress, &displacement, pSym);
 // //    if (!r) return 0;
 // //    if (pdisplacement)
 // //       *pdisplacement = displacement;
@@ -304,11 +304,11 @@
 // // ///////////////////////////////////////////////////////////////////////
 
 // // HANDLE SymGetProcessHandle();
-// // int_bool __stdcall My_ReadProcessMemory(HANDLE      hProcess,
+// // i32_bool __stdcall My_ReadProcessMemory(HANDLE      hProcess,
 // //                                         DWORD64     qwBaseAddress,
 // //                                         PVOID       pBuffer,
 
-// //                                         unsigned int       nSize,
+// //                                         ::u32       nSize,
 // //                                         LPDWORD     pNumberOfBytesRead
 
 // //                                        );
@@ -327,18 +327,18 @@
 // // _In_ DWORD64 qwBaseAddress,
 // // _Out_writes_bytes_(nSize) PVOID pBuffer,
 
-// // _In_ unsigned int nSize,
+// // _In_ ::u32 nSize,
 // // _Out_ LPDWORD pNumberOfBytesRead
 
 // // );*/
 
 
-// // int_bool __stdcall My_ReadProcessMemory (
+// // i32_bool __stdcall My_ReadProcessMemory (
 // // HANDLE      hProcess,
 // // DWORD64     qwBaseAddress,
 // // PVOID       pBuffer,
 
-// // unsigned int       nSize,
+// // ::u32       nSize,
 // // LPDWORD     pNumberOfBytesRead
 
 // // )
@@ -351,7 +351,7 @@
 // //    if(!ReadProcessMemory(hProcess, (const void *) qwBaseAddress, (LPVOID) pBuffer, nSize, &size))
 
 // //       return false;
-// //    *pNumberOfBytesRead = (unsigned int) size;
+// //    *pNumberOfBytesRead = (::u32) size;
 
 
 // //    return true;
@@ -362,7 +362,7 @@
 
 // // #ifndef FAST_STACK_TRACE
 
-// // int_bool __stdcall My_ReadProcessMemory32(HANDLE hProcess, unsigned int qwBaseAddress, PVOID pBuffer, unsigned int nSize, LPDWORD lpNumberOfBytesRead)
+// // i32_bool __stdcall My_ReadProcessMemory32(HANDLE hProcess, ::u32 qwBaseAddress, PVOID pBuffer, ::u32 nSize, LPDWORD lpNumberOfBytesRead)
 
 // // {
 
@@ -374,7 +374,7 @@
 
 // //       return false;
 // // #endif
-// //    *pNumberOfBytesRead = (unsigned int)size;
+// //    *pNumberOfBytesRead = (::u32)size;
 
 
 // //    return true;
@@ -385,7 +385,7 @@
 
 // // /*
 // // #else
-// // int_bool __stdcall My_ReadProcessMemory (HANDLE, const void * pBaseAddress, LPVOID lpBuffer, unsigned int nSize, SIZE_T * lpNumberOfBytesRead)
+// // i32_bool __stdcall My_ReadProcessMemory (HANDLE, const void * pBaseAddress, LPVOID lpBuffer, ::u32 nSize, SIZE_T * lpNumberOfBytesRead)
 
 // // {
 // // return ReadProcessMemory(GetCurrentProcess(), pBaseAddress, lpBuffer, nSize, lpNumberOfBytesRead) != false;
@@ -406,12 +406,12 @@
 // // //
 // // //   }
 
-// //    typedef int_bool (__stdcall *PReadProcessMemoryRoutine)(
+// //    typedef i32_bool (__stdcall *PReadProcessMemoryRoutine)(
 // //    HANDLE      hProcess,
 // //    DWORD64     qwBaseAddress,
 // //    PVOID       pBuffer,
 
-// //    unsigned int       nSize,
+// //    ::u32       nSize,
 // //    LPDWORD     pNumberOfBytesRead,
 
 // //    LPVOID      pUserData  // optional data, which was passed in "ShowCallstack"
@@ -457,7 +457,7 @@
 
 // // #ifdef WINDOWS_DESKTOP
 
-// //    size_t engine::module(char * psz, int nCount)
+// //    size_t engine::module(char_pointer psz, ::i32 nCount)
 // //    {
 // //       if (!check())
 // //          return 0;
@@ -472,7 +472,7 @@
 // // #ifdef WINDOWS_DESKTOP
 
 
-// //    size_t engine::symbol(char * psz, int nCount, unsigned int * pdisplacement)
+// //    size_t engine::symbol(char_pointer psz, ::i32 nCount, ::u32 * pdisplacement)
 // //    {
 
 // //       if (!check())
@@ -486,7 +486,7 @@
 
 // //    }
 
-// //    index engine::fileline (char * psz, int nCount, unsigned int * pline, unsigned int * pdisplacement)
+// //    index engine::fileline (char_pointer psz, ::i32 nCount, ::u32 * pline, ::u32 * pdisplacement)
 // //    {
 
 // //       if (!check())
@@ -528,13 +528,13 @@
 // //       m_stackframe.AddrFrame.Offset    = pcontext->Ebp;
 // //       m_stackframe.AddrFrame.Mode      = AddrModeFlat;
 // // #else
-// //       m_stackframe.AddrPC.offset       = (unsigned int)pcontext->Fir;
+// //       m_stackframe.AddrPC.offset       = (::u32)pcontext->Fir;
 // //       m_stackframe.AddrPC.Mode         = AddrModeFlat;
-// //       m_stackframe.AddrReturn.offset   = (unsigned int)pcontext->IntRa;
+// //       m_stackframe.AddrReturn.offset   = (::u32)pcontext->IntRa;
 // //       m_stackframe.AddrReturn.Mode     = AddrModeFlat;
-// //       m_stackframe.AddrStack.offset    = (unsigned int)pcontext->IntSp;
+// //       m_stackframe.AddrStack.offset    = (::u32)pcontext->IntSp;
 // //       m_stackframe.AddrStack.Mode      = AddrModeFlat;
-// //       m_stackframe.AddrFrame.offset    = (unsigned int)pcontext->IntFp;
+// //       m_stackframe.AddrFrame.offset    = (::u32)pcontext->IntFp;
 // //       m_stackframe.AddrFrame.Mode      = AddrModeFlat;
 // // #endif
 
@@ -545,13 +545,13 @@
 // //    }
 
 
-// //    void engine::xxxbacktrace(OS_DWORD *pinteraction, int &c)
+// //    void engine::xxxbacktrace(OS_DWORD *pinteraction, ::i32 &c)
 // //    {
 // //       cslock csl(&m_cs);
 
 // // #if FAST_STACK_TRACE
 
-// //       unsigned int maxframes = c;
+// //       ::u32 maxframes = c;
 // //       ULONG BackTraceHash;
 // //       c = RtlCaptureStackBackTrace(0, maxframes, reinterpret_cast<PVOID*>(pinteraction), &BackTraceHash);
 
@@ -561,7 +561,7 @@
 // //    {
 
 // // #if FAST_STACK_TRACE
-// //       unsigned int maxframes = sizeof(m_uia) / sizeof(m_uia[0]);
+// //       ::u32 maxframes = sizeof(m_uia) / sizeof(m_uia[0]);
 // //       ULONG BackTraceHash;
 // //       m_iAddressWrite = RtlCaptureStackBackTrace(0, maxframes, reinterpret_cast<PVOID*>(&m_uia), &BackTraceHash);
 // // #else
@@ -579,7 +579,7 @@
 // //          set_last_error(0);
 // //          HANDLE hprocess = SymGetProcessHandle();
 
-// //          unsigned int dwType;
+// //          ::u32 dwType;
 
 // //          bool bRetry;
 
@@ -591,7 +591,7 @@
 
 // // #if OSBIT == 64
 // //          bool r = StackWalk64(
-// //                   dwType,   // __in      unsigned int MachineType,
+// //                   dwType,   // __in      ::u32 MachineType,
 // //                   hprocess,        // __in      HANDLE hProcess,
 // //                   current_htask(),         // __in       htask,
 // //                   &m_stackframe,                       // __inout   LP STACKFRAME64 StackFrame,
@@ -604,7 +604,7 @@
 // //                   ) != false;
 // // #else
 // //          bool r = StackWalk(
-// //                   dwType,   // __in      unsigned int MachineType,
+// //                   dwType,   // __in      ::u32 MachineType,
 // //                   hprocess,        // __in      HANDLE hProcess,
 // //                   current_htask(),         // __in      htask htask,
 // //                   &m_stackframe,                       // __inout   LP STACKFRAME64 StackFrame,
@@ -643,7 +643,7 @@
 
 // //          // "Debugging Applications" John Robbins
 // //          // Before I get too carried away and start calculating
-// //          // everything, I need to double-check that the address returned
+// //          // everything, I need to ::f64-check that the address returned
 // //          // by StackWalk really exists. I've seen cases in which
 // //          // StackWalk returns true but the address doesn't belong to
 // //          // a module in the process.
@@ -687,7 +687,7 @@
 // //    }
 
 
-// //    bool engine::get_line_from_address (HANDLE hprocess, OS_DWORD uiAddress, unsigned int * puiDisplacement, OS_IMAGEHLP_LINE * pline)
+// //    bool engine::get_line_from_address (HANDLE hprocess, OS_DWORD uiAddress, ::u32 * puiDisplacement, OS_IMAGEHLP_LINE * pline)
 // //    {
 
 // //       return engine_get_line_from_address(hprocess, uiAddress, puiDisplacement, pline);
@@ -697,7 +697,7 @@
 // // //      // line addresses (after the first lookup) that fall exactly on
 // // //      // a zero displacement. I'hi walk backward 100 bytes to
 // // //      // find the line and return the proper displacement.
-// // //      unsigned int dwDisplacement = 0 ;
+// // //      ::u32 dwDisplacement = 0 ;
 // // //      while (!SymGetLineFromAddr (hprocess, uiAddress - dwDisplacement, puiDisplacement, pline))
 // // //      {
 // // //         if (100 == ++dwDisplacement)
@@ -711,11 +711,11 @@
 // // //         *puiDisplacement = dwDisplacement;
 // // //      return true;
 // // //#else
-// // //      return 0 != SymGetLineFromAddr64 (hprocess, uiAddress, (unsigned int *) puiDisplacement, pline);
+// // //      return 0 != SymGetLineFromAddr64 (hprocess, uiAddress, (::u32 *) puiDisplacement, pline);
 // // //#endif
 // //    }
 // // //#else
-// // //   bool engine::get_line_from_address(HANDLE hprocess, DWORD64 uiAddress, unsigned int * puiDisplacement, IMAGEHLP_LINE64 * pline)
+// // //   bool engine::get_line_from_address(HANDLE hprocess, DWORD64 uiAddress, ::u32 * puiDisplacement, IMAGEHLP_LINE64 * pline)
 // // //   {
 // // //
 // // //      return engine_get_line_from_address(hprocess, uiAddress, puiDisplacement, pline);
@@ -725,7 +725,7 @@
 // // //      // line addresses (after the first lookup) that fall exactly on
 // // //      // a zero displacement. I'hi walk backward 100 bytes to
 // // //      // find the line and return the proper displacement.
-// // //      unsigned int dwDisplacement = 0;
+// // //      ::u32 dwDisplacement = 0;
 // // //      while (!SymGetLineFromAddr64(hprocess, uiAddress - dwDisplacement, puiDisplacement, pline))
 // // //      {
 // // //         if (100 == ++dwDisplacement)
@@ -739,15 +739,15 @@
 // // //         *puiDisplacement = dwDisplacement;
 // // //      return true;
 // // //#else
-// // //      return 0 != SymGetLineFromAddr64(hprocess, uiAddress, (unsigned int *)puiDisplacement, pline);
+// // //      return 0 != SymGetLineFromAddr64(hprocess, uiAddress, (::u32 *)puiDisplacement, pline);
 // // //#endif
 // // //   }
 // // //#endif
 
-// //    size_t engine::get_module_name (HMODULE hmodule, char * psz, int nCount)
+// //    size_t engine::get_module_name (HMODULE hmodule, char_pointer psz, ::i32 nCount)
 // //    {
 
-// //       for (int i = 0; i < m_iMa; i++)
+// //       for (::i32 i = 0; i < m_iMa; i++)
 // //       {
 // //          if (m_ma[i] == hmodule)
 // //          {
@@ -759,7 +759,7 @@
 // //          }
 // //       }
 
-// //       char filename[MAX_PATH];
+// //       ::i8 filename[MAX_PATH];
 // //       if (!GetModuleFileNameA(hmodule, filename, MAX_PATH))
 // //       {
 // //          m_ma[m_iMa] = hmodule;
@@ -771,7 +771,7 @@
 // //       m_ma[m_iMa] = hmodule;
 // //       m_szaModule[m_iMa] = strdup(filename);
 // //       ansi_count_copy(scopedstr, m_szaModule[m_iMa++], nCount);
-// //       //unsigned int r = GetModuleFileNameA(hmodule, psz, nCount);
+// //       //::u32 r = GetModuleFileNameA(hmodule, psz, nCount);
 
 // //       //if(!r)
 // //       // return 0;
@@ -779,7 +779,7 @@
 
 
 // //       // find the last '\' mark.
-// //       //char * point = strrchr(scopedstr, '\\');
+// //       //char_pointer point = strrchr(scopedstr, '\\');
 
 // //       //if(point != nullptr)
 // //       //{
@@ -834,29 +834,29 @@
 // //       return true;
 
 // // //      HANDLE hprocess = SymGetProcessHandle();
-// // //      unsigned int  dwPid = get_current_process_id();
+// // //      ::u32  dwPid = get_current_process_id();
 // // //
 // // //      // enumerate modules
 // // //      if (is_windows_nt())
 // // //      {
-// // //         typedef bool (WINAPI *ENUMPROCESSMODULES)(HANDLE, HMODULE*, unsigned int, LPDWORD);
+// // //         typedef bool (WINAPI *ENUMPROCESSMODULES)(HANDLE, HMODULE*, ::u32, LPDWORD);
 // // //
 // // //         HINSTANCE hInst = LoadLibrary("psapi.dll");
 // // //         if (hInst)
 // // //         {
 // // //            ENUMPROCESSMODULES fnEnumProcessModules =
 // // //            (ENUMPROCESSMODULES)GetProcAddress(hInst, "EnumProcessModules");
-// // //            unsigned int cbNeeded = 0;
+// // //            ::u32 cbNeeded = 0;
 // // //            if (fnEnumProcessModules &&
 // // //                  fnEnumProcessModules(GetCurrentProcess(), 0, 0, &cbNeeded) &&
 // // //                  cbNeeded)
 // // //            {
 // // //               HMODULE * pmod = (HMODULE *)alloca(cbNeeded);
-// // //               unsigned int cb = cbNeeded;
+// // //               ::u32 cb = cbNeeded;
 // // //               if (fnEnumProcessModules(GetCurrentProcess(), pmod, cb, &cbNeeded))
 // // //               {
 // // //                  m_iRef = 0;
-// // //                  for (unsigned int i = 0; i < cb / sizeof (HMODULE); ++i)
+// // //                  for (::u32 i = 0; i < cb / sizeof (HMODULE); ++i)
 // // //                  {
 // // //                     if (!load_module(hprocess, pmod[i]))
 // // //                     {
@@ -882,7 +882,7 @@
 // // //      }
 // // //      else
 // // //      {
-// // //         typedef HANDLE (WINAPI *CREATESNAPSHOT)(unsigned int, unsigned int);
+// // //         typedef HANDLE (WINAPI *CREATESNAPSHOT)(::u32, ::u32);
 // // //         typedef bool (WINAPI *MODULEWALK)(HANDLE, LPMODULEENTRY32);
 // // //
 // // //         HMODULE hMod = GetModuleHandle("kernel32");
@@ -1041,7 +1041,7 @@
 // //       }
 
 // //       HANDLE hprocess = SymGetProcessHandle();
-// //       unsigned int  dwPid = get_current_process_id();
+// //       ::u32  dwPid = get_current_process_id();
 
 // //       // initializes
 // //       //SymSetOptions(SymGetOptions()|SYMOPT_DEFERRED_LOADS|SYMOPT_LOAD_LINES);
@@ -1049,7 +1049,7 @@
 // //       //   SymSetOptions (SYMOPT_UNDNAME|SYMOPT_LOAD_LINES);
 // //       if (!::SymInitialize(hprocess, 0, true))
 // //       {
-// //          unsigned int dw = ::GetLastError();
+// //          ::u32 dw = ::GetLastError();
 // //          informationf("Last Error = " + as_string(dw));
 // //          ASSERT(0);
 
@@ -1176,7 +1176,7 @@
 // //    bool engine::load_module(HANDLE hProcess, HMODULE hMod)
 // //    {
 
-// //       for(int i = 0; i < m_iHa; i++)
+// //       for(::i32 i = 0; i < m_iHa; i++)
 // //       {
 // //          if(m_ha[i] == hMod)
 // //             return true;
@@ -1184,7 +1184,7 @@
 
 // //       m_ha[m_iHa++] = hMod;
 
-// //       char filename[MAX_PATH];
+// //       ::i8 filename[MAX_PATH];
 // //       if (!GetModuleFileNameA(hMod, filename, MAX_PATH))
 // //       {
 
@@ -1258,10 +1258,10 @@
 //    struct current_context : CONTEXT
 //    {
 //       HANDLE   thread;
-//       volatile int signal;
+//       volatile ::i32 signal;
 //    };
 
-//    unsigned int WINAPI engine::stack_trace_ThreadProc(void * pvoidParam)
+//    ::u32 WINAPI engine::stack_trace_ThreadProc(void * pvoidParam)
 
 //    {
 
@@ -1273,8 +1273,8 @@
 //       {
 //          // Konstantin, 14.01.2002 17:21:32
 //          // must wait in spin lock until Main thread will leave a ResumeThread (must return back to ::account::user context)
-//          int iInverseAgility = 26 + 33; // former iPatienceQuota
-//          int iPatience = iInverseAgility;
+//          ::i32 iInverseAgility = 26 + 33; // former iPatienceQuota
+//          ::i32 iPatience = iInverseAgility;
 //          while(pcontext->signal && iPatience > 0)
 //          {
 //             if(!SwitchToThread())
@@ -1282,7 +1282,7 @@
 //             iPatience--;
 //          }
 
-//          //         char sz[200];
+//          //         ::i8 sz[200];
 //          //         sprintf(sz, "engine::xxxstack_trace patience near down %u%%\n", iPatience * 100 / iInverseAgility);
 //          //         ::information(sz);
 
@@ -1319,7 +1319,7 @@
 
 
 
-// //    char * engine::xxxstack_trace(iptr uiSkip, void * caller_address, const ::scoped_string & scopedstrFormat, int iCount)
+// //    char_pointer engine::xxxstack_trace(iptr uiSkip, void * caller_address, const ::scoped_string & scopedstrFormat, ::i32 iCount)
 // //    {
 
 // //       cslock csl(&m_cs);
@@ -1372,7 +1372,7 @@
 
 // //       void* buffer[maximum];
 
-// //       int iSkip = minimum(uiSkip, maximum - 1);
+// //       ::i32 iSkip = minimum(uiSkip, maximum - 1);
 
 // //       if (iSkip == maximum - 1)
 // //       {
@@ -1383,7 +1383,7 @@
 
 // //       }
 
-// //       int iCount = captureBacktrace(buffer, maximum);
+// //       ::i32 iCount = captureBacktrace(buffer, maximum);
 
 // //       ansi_count_copy(_strS, dumpBacktrace(&buffer[iSkip], iCount - iSkip), sizeof(_strS));
 
@@ -1393,7 +1393,7 @@
 
 // //       void * array[64];
 
-// //       int size = ::xxxbacktrace(array, 64);
+// //       ::i32 size = ::xxxbacktrace(array, 64);
 
 // //       if(caller_address != nullptr)
 // //       {
@@ -1432,7 +1432,7 @@
 
 //       uptr uiSkipStart = uiSkip;
 
-//       int iLine;
+//       ::i32 iLine;
 
 //       do
 //       {
@@ -1442,7 +1442,7 @@
 
 //             iLine = 0;
 
-//             char * psz = get_frame(scopedstrFormat, iLine);
+//             char_pointer psz = get_frame(scopedstrFormat, iLine);
 
 //             if (uiSkip == DEFAULT_SE_EXCEPTION_callstack_SKIP)
 //             {
@@ -1487,9 +1487,9 @@
 //    }
 
 // #if OSBIT == 32
-//    char * engine::xxxstack_trace(unsigned int * pinteraction, int c, const ::scoped_string & scopedstrFormat)
+//    char_pointer engine::xxxstack_trace(::u32 * pinteraction, ::i32 c, const ::scoped_string & scopedstrFormat)
 // #else
-//    char * engine::xxxstack_trace(DWORD64 * pinteraction, int c, const ::scoped_string & scopedstrFormat)
+//    char_pointer engine::xxxstack_trace(DWORD64 * pinteraction, ::i32 c, const ::scoped_string & scopedstrFormat)
 // #endif
 //    {
 
@@ -1501,9 +1501,9 @@
 
 //       m_iAddressWrite = c;
 //       m_iAddressRead = 0;
-//       char * psz;
+//       char_pointer psz;
 
-//       int iLine;
+//       ::i32 iLine;
 
 //       do
 //       {
@@ -1532,7 +1532,7 @@
 // #if defined(WINDOWS_DESKTOP)
 
 
-//    char * engine::get_frame(const ::scoped_string & scopedstrFormat, int & iLine)
+//    char_pointer engine::get_frame(const ::scoped_string & scopedstrFormat, ::i32 & iLine)
 //    {
 
 
@@ -1541,22 +1541,22 @@
 //       *_strFile = '\0';
 //       *_strSymbol = '\0';
 
-//       unsigned int uiLineDisplacement = 0;
-//       unsigned int uiLineNumber = 0;
+//       ::u32 uiLineDisplacement = 0;
+//       ::u32 uiLineNumber = 0;
 // #if OSBIT == 32
-//       unsigned int uiSymbolDisplacement = 0;
+//       ::u32 uiSymbolDisplacement = 0;
 // #else
 //       DWORD64 uiSymbolDisplacement = 0;
 // #endif
 
-//       char sz[2];
+//       ::i8 sz[2];
 //       sz[1] = '\0';
-//       for (char * point = (char *)pszFormat; *point; ++point)
+//       for (char_pointer point = (char_pointer )pszFormat; *point; ++point)
 //       {
 //          if (*point == '%')
 //          {
 //             ++point; // skips '%'
-//             char ca = *point;
+//             ::i8 ca = *point;
 //             switch (ca)
 //             {
 //             case 'm':
@@ -1589,13 +1589,13 @@
 //                }
 //                if (*(point + 1) == 'd')
 //                {
-//                   ansi_from_unsigned_long_long(_strBuf, uiLineDisplacement, 10);
+//                   ansi_from_u64(_strBuf, uiLineDisplacement, 10);
 //                   ansi_concatenate(_str, _strBuf);
 //                   ++point;
 //                }
 //                else
 //                {
-//                   ansi_from_unsigned_long_long(_strBuf, uiLineNumber, 10);
+//                   ansi_from_u64(_strBuf, uiLineNumber, 10);
 //                   ansi_concatenate(_str, _strBuf);
 //                }
 //                break;
@@ -1609,7 +1609,7 @@
 //                }
 //                if (*(point + 1) == 'd')
 //                {
-//                   ansi_from_unsigned_long_long(_strBuf, uiSymbolDisplacement, 10);
+//                   ansi_from_u64(_strBuf, uiSymbolDisplacement, 10);
 //                   ansi_concatenate(_str, _strBuf);
 //                   ++point;
 //                }
@@ -1652,39 +1652,39 @@
 
 // #elif defined(__APPLE__)
 
-//    void engine::backtrace(void **pinteraction, int &c)
+//    void engine::backtrace(void **pinteraction, ::i32 &c)
 //    {
 
 //       cslock csl(&m_cs);
 
-//       unsigned int maxframes = c;
+//       ::u32 maxframes = c;
 
 //       c = ::backtrace(pinteraction, maxframes);
 
 //    }
 
-//    char * engine::xxxstack_trace(void * const * pinteraction, int c, const ::scoped_string & scopedstrFormat)
+//    char_pointer engine::xxxstack_trace(void * const * pinteraction, ::i32 c, const ::scoped_string & scopedstrFormat)
 //    {
 
-//       char ** messages = backtrace_symbols(pinteraction, c);
+//       char_pointer * messages = backtrace_symbols(pinteraction, c);
 
-//       char szN[24];
+//       ::i8 szN[24];
 
 //       *_strS = '\0';
 
-//       char syscom[1024];
+//       ::i8 syscom[1024];
 
-//       const char * func;
-//       const char * file;
-//       unsigned iLine;
+//       const_char_pointer func;
+//       const_char_pointer file;
+//       ::u32 iLine;
 
-//       for (int i = 1; i < c && messages != nullptr; ++i)
+//       for (::i32 i = 1; i < c && messages != nullptr; ++i)
 //       {
 
-//          char *mangled_name = 0, *offset_begin = 0, *offset_end = 0;
+//          char_pointer mangled_name = 0, *offset_begin = 0, *offset_end = 0;
 
 //          // find parantheses and +address offset surrounding mangled name
-//          for (char *point = messages[i]; *point; ++point)
+//          for (char_pointer point = messages[i]; *point; ++point)
 //          {
 
 //             if (*point == '(')
@@ -1720,7 +1720,7 @@
 //             string real_name = get_demangle(mangled_name);
 
 //             ansi_concatenate(_strS, "[bt]: (");
-//             ansi_from_unsigned_long_long(szN, i, 10);
+//             ansi_from_u64(szN, i, 10);
 //             ansi_concatenate(_strS, szN);
 //             ansi_concatenate(_strS, ") ");
 //             ansi_concatenate(_strS, messages[i]);
@@ -1738,7 +1738,7 @@
 //          {
 
 //             ansi_concatenate(_strS, "[bt]: (");
-//             ansi_from_unsigned_long_long(szN, i, 10);
+//             ansi_from_u64(szN, i, 10);
 //             ansi_concatenate(_strS, szN);
 //             ansi_concatenate(_strS, ") ");
 //             ansi_concatenate(_strS, messages[i]);
@@ -1756,33 +1756,33 @@
 
 // #elif defined(LINUX) || defined(MACOS)
 
-//    void engine::backtrace(void ** ppui, int &c)
+//    void engine::backtrace(void ** ppui, ::i32 &c)
 //    {
 
 //       synchronous_lock synchronouslock(this->synchronization(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 
-//       unsigned int maxframes = c;
+//       ::u32 maxframes = c;
 
 //       c = ::backtrace(ppui, maxframes);
 
 //    }
 
-//    char * engine::xxxstack_trace(void * const * ppui, int c, const ::scoped_string & scopedstrFormat)
+//    char_pointer engine::xxxstack_trace(void * const * ppui, ::i32 c, const ::scoped_string & scopedstrFormat)
 //    {
 
-//       char ** messages = backtrace_symbols(ppui, c);
+//       char_pointer * messages = backtrace_symbols(ppui, c);
 
-//       char szN[24];
+//       ::i8 szN[24];
 
 //       *_strS = '\0';
 
-//       char syscom[1024];
+//       ::i8 syscom[1024];
 
-//       const char * func;
-//       const char * file;
-//       unsigned iLine;
+//       const_char_pointer func;
+//       const_char_pointer file;
+//       ::u32 iLine;
 
-//       for (int i = 1; i < c && messages != nullptr; ++i)
+//       for (::i32 i = 1; i < c && messages != nullptr; ++i)
 //       {
 // #ifdef __USE_BFD
 
@@ -1792,17 +1792,17 @@
 
 //             ansi_concatenate(_strS, file);
 //             ansi_concatenate(_strS, ":");
-//             ansi_from_unsigned_long_long(szN, iLine, 10);
+//             ansi_from_u64(szN, iLine, 10);
 //             ansi_concatenate(_strS, szN);
 //             ansi_concatenate(_strS, ":1: warning: ");
 
 //          }
 // #endif // __USE_BFD
 
-//          char *mangled_name = 0, *offset_begin = 0, *offset_end = 0;
+//          char_pointer mangled_name = 0, *offset_begin = 0, *offset_end = 0;
 
 //          // find parantheses and +address offset surrounding mangled name
-//          for (char *point = messages[i]; *point; ++point)
+//          for (char_pointer point = messages[i]; *point; ++point)
 //          {
 
 //             if (*point == '(')
@@ -1835,12 +1835,12 @@
 //             *offset_begin++ = '\0';
 //             *offset_end++ = '\0';
 
-//             int status;
+//             ::i32 status;
 
-//             char * real_name = abi::__cxa_demangle(mangled_name, 0, 0, &status);
+//             char_pointer real_name = abi::__cxa_demangle(mangled_name, 0, 0, &status);
 
 //             ansi_concatenate(_strS, "[bt]: (");
-//             ansi_from_unsigned_long_long(szN, i, 10);
+//             ansi_from_u64(szN, i, 10);
 //             ansi_concatenate(_strS, szN);
 //             ansi_concatenate(_strS, ") ");
 //             ansi_concatenate(_strS, messages[i]);
@@ -1876,7 +1876,7 @@
 //          {
 
 //             ansi_concatenate(_strS, "[bt]: (");
-//             ansi_from_unsigned_long_long(szN, i, 10);
+//             ansi_from_u64(szN, i, 10);
 //             ansi_concatenate(_strS, szN);
 //             ansi_concatenate(_strS, ") ");
 //             ansi_concatenate(_strS, messages[i]);
@@ -1911,16 +1911,16 @@
 
 
 // /* globals retained across calls to resolve. */
-// static const char * moda[]= {"/ca2/stage/x86/libaura.so", "/ca2/stage/x86/libbase.so", "/ca2/stage/x86/libcore.so", nullptr};
+// static const_char_pointer moda[]= {"/ca2/stage/x86/libaura.so", "/ca2/stage/x86/libbase.so", "/ca2/stage/x86/libcore.so", nullptr};
 // static bfd* abfda[64];
 // static asymbol **symsa[64];
 // static asection *texta[64];
-// static int bfdcount = 0;
+// static ::i32 bfdcount = 0;
 
-// int free_resolve_addr_file_func_line()
+// ::i32 free_resolve_addr_file_func_line()
 // {
 
-//    int i = 0;
+//    ::i32 i = 0;
 
 //    while(i < 64)
 //    {
@@ -1940,10 +1940,10 @@
 
 // }
 
-// bool prep_resolve_addr_file_func_line(const char * f)
+// bool prep_resolve_addr_file_func_line(const_char_pointer f)
 // {
 
-//    int i = free_resolve_addr_file_func_line();
+//    ::i32 i = free_resolve_addr_file_func_line();
 
 //    if(i < 0)
 //    {
@@ -1972,11 +1972,11 @@
 //    /* oddly, this is required for it to work... */
 //    bfd_check_format(abfd,bfd_object);
 
-//    unsigned storage_needed = bfd_get_symtab_upper_bound(abfd);
+//    ::u32 storage_needed = bfd_get_symtab_upper_bound(abfd);
 
 //    syms = (asymbol **) malloc(storage_needed);
 
-//    unsigned cSymbols = bfd_canonicalize_symtab(abfd, syms);
+//    ::u32 cSymbols = bfd_canonicalize_symtab(abfd, syms);
 
 //    text = bfd_get_section_by_name(abfd, ".text");
 
@@ -2001,9 +2001,9 @@
 
 //    bfd_init();
 
-//    char ename[1024];
+//    ::i8 ename[1024];
 
-//    int l = readlink("/proc/self/exe",ename,sizeof(ename));
+//    ::i32 l = readlink("/proc/self/exe",ename,sizeof(ename));
 
 //    if (l == -1)
 //    {
@@ -2018,7 +2018,7 @@
 
 //    prep_resolve_addr_file_func_line(ename);
 
-//    const char ** point = (const char **) moda;
+//    const_char_pointer * point = (const_char_pointer *) moda;
 
 //    while(*point)
 //    {
@@ -2035,7 +2035,7 @@
 
 // }
 
-// bool resolve_addr_file_func_line1(bfd* abfd, asymbol **syms, asection *text, void *address, const char * * filename, const char ** func, unsigned & iLine)
+// bool resolve_addr_file_func_line1(bfd* abfd, asymbol **syms, asection *text, void *address, const_char_pointer * filename, const_char_pointer * func, ::u32 & iLine)
 // {
 //    long offset = ((long)address) - text->vma;
 //    if (offset > 0)
@@ -2051,9 +2051,9 @@
 // }
 
 
-// bool resolve_addr_file_func_line(void *address, const char * * filename, const char ** func, unsigned & iLine)
+// bool resolve_addr_file_func_line(void *address, const_char_pointer * filename, const_char_pointer * func, ::u32 & iLine)
 // {
-//    int i;
+//    ::i32 i;
 //    while(i < bfdcount)
 //    {
 

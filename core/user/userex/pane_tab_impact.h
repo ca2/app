@@ -80,7 +80,7 @@ namespace userex
 
       bool on_after_create_impact_data(::user::impact_data * pimpactdata) override;
 
-      void GetTabClientRect(::int_rectangle & rectangle) override;
+      void GetTabClientRect(::i32_rectangle & rectangle) override;
 
       bool on_place_hold(::user::interaction * pinteraction, ::user::place_holder * pholder) override;
 

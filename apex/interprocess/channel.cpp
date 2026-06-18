@@ -64,7 +64,7 @@ namespace interprocess
    }
 
 
-   //bool channel::ensure_caller(int message, void * pdata, int len, time timeTimeout)
+   //bool channel::ensure_caller(::i32 message, void * pdata, ::i32 len, time timeTimeout)
    //{
 
    //   if (message == WM_APP + WM_USER)

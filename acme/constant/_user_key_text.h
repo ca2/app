@@ -4,10 +4,10 @@
 #pragma once
 
 
-CLASS_DECL_ACME ::string as_string(::user::enum_key ekey);
+CLASS_DECL_ACME ::string as_string(const ::user::e_key & ekey);
 
 
-inline ::write_text_stream & operator <<(::write_text_stream  & textstream, ::user::enum_key ekey)
+inline ::write_text_stream & operator <<(::write_text_stream  & textstream, const ::user::e_key & ekey)
 {
 
    return textstream << ::as_string(ekey);

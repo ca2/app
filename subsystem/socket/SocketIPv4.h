@@ -1,0 +1,473 @@
+// Copyright (C) 2008,2009,2010,2011,2012 GlavSoft LLC.
+// All rights reserved.
+//
+//-------------------------------------------------------------------------
+// This file is part of the T i g h t V N C software.  Please visit our Web site:
+//
+//                       http://www.t i g h t v n c.com/
+//
+// This program is free software; you can redistribute it and/or modify
+// it under the terms of the GNU General Public License as published by
+// the Free Software Foundation; either version 2 of the License, or
+// (at your option) any later version.
+//
+// This program is distributed in the hope that it will be useful,
+// but WITHOUT ANY WARRANTY; without even the implied warranty of
+// MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+// GNU General Public License for more details.
+//
+// You should have received a copy of the GNU General Public License along
+// with this program; if not, w_rite to the Free Software Foundation, Inc.,
+// 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA.
+//-------------------------------------------------------------------------
+//
+
+//#ifndef SOCKET_IPV4_H
+#pragma once
+//#define SOCKET_IPV4_H
+
+#include "sockdefs.h"
+
+#include "SocketIPv4.h"
+#include "SocketAddressIPv4.h"
+#include "SocketException.h"
+
+#include "acme/input_output/Channel.h"
+#include "acme/exception/io.h"
+///#include "remoting/remoting/win_system/WsaStartup.h"
+//#include "subsystem/thread/critical_section.h"
+
+namespace subsystem
+{
+
+   enum enum_socket_shutdown
+   {
+
+      e_socket_shutdown_receive = 0,
+      e_socket_shutdown_send = 1,
+      e_socket_shutdown_both = 2,
+
+   };
+   /**
+    * IPv4 Socket class.
+    *
+    * @fixme refactor this class to avoid usage of SocketAddressIPv4 class.
+    */
+   class SocketIPv4Interface :
+      virtual public ::Particle
+   {
+   public:
+      /**
+       * Creates new socket.
+       */
+      //SocketIPv4();
+      /**
+       * Deletes and closes socket.
+       */
+      //virtual ~SocketIPv4Interface() = 0;
+
+      /**
+       * Connects to remote host.
+       * @param scopedstrHost host to connect.
+       * @param port port to connect.
+       * @throws SocketException on fail.
+       */
+      virtual void connect(const ::scoped_string & scopedstrHost, ::u16 port) = 0;
+      /**
+       * Connects to remote host.
+       * @param paddress address to connect.
+       * @throws SocketException on fail.
+       */
+      virtual void connect(::subsystem::SocketAddressIPv4Interface * paddress) = 0;
+      /**
+       * Closes socket.
+       * @throws SocketException on fail.
+       */
+      virtual void close() = 0;
+      /**
+       * Shutdowns socket.
+       * @param esocketshutdown how to shutdown socket (SD_RECEIVE|SD_SEND|SD_BOTH).
+       * @throws SocketException on fail.
+       */
+      virtual void shutdown(enum_socket_shutdown esocketshutdown) = 0;
+      /**
+       * Binds socket to specified address.
+       * @param scopedstrBindHost host to bind.
+       * @param bindPort port to bind.
+       * @throws SocketException on fail.
+       */
+      virtual void bind(const ::scoped_string & scopedstrBindHost, ::u32 bindPort) = 0;
+      /**
+       * Binds socket to socket address.
+       * @throws SocketException on fail.
+       */
+      virtual void bind(::subsystem::SocketAddressIPv4Interface * paddress) = 0;
+      /**
+       * Checks if this socket is bound and used for server needs.
+       * @return true if socket used as server and successfully bounded, false otherwise.
+       */
+      virtual bool isBound() = 0;
+      /**
+       * Socket listen method.
+       * @param backlog max count of connections in pool.
+       * @throws SocketException on fail.
+       */
+      virtual void listen(::i32 backlog) = 0;
+
+      /**
+       * Accepts incoming connection.
+       * @throws SocketException on fail.
+       * @return newly allocated socket that contain incoming connections.
+       */
+      virtual ::pointer < SocketIPv4Interface > accept() = 0;
+
+      /**
+       * Sends data to socket.
+       *
+       * @param data buffer to send.
+       * @param size bytes to send.
+       * @param flags Optional socket flags.
+       * @return count to sent bytes.
+       * @throw ::io_exception on error.
+       */
+      virtual ::i32 send(const_char_pointer data, ::i32 size, ::i32 flags = 0) = 0;
+      /**
+       * Receives data from socket.
+       *
+       * @param buffer buffer to receive data.
+       * @param size count of bytes to read from socket.
+       * @param flags recv flags.
+       * @return count of read bytes.
+       * @throws ::io_exception on fail.
+       */
+      virtual ::i32 recv(char_pointer buffer, ::i32 size, ::i32 flags = 0) = 0;
+
+      virtual ::i32 available() = 0;
+
+      /**
+       * Returns local address of socket (for listening socket).
+       * @return output parameter that will contain socket address or null on fail.
+       */
+      virtual ::pointer < ::subsystem::SocketAddressIPv4Interface > getLocalAddr() = 0;
+      /**
+       * Returns peer address.
+       * @return output parameter that will contain socket address or null on fail.
+       */
+      virtual ::pointer < ::subsystem::SocketAddressIPv4Interface > getPeerAddr() = 0;
+
+      /* Auxiliary */
+      virtual void setSocketOptions(::i32 level, ::i32 name, void *value, ::i32 len) = 0;
+      virtual void getSocketOptions(::i32 level, ::i32 name, void *value, ::i32 *len) = 0;
+
+      virtual void setRcvTimeO(const class ::time &timeTimeout) = 0;
+      virtual void setSndTimeO(const class ::time &timeTimeout) = 0;
+
+      /* Socket options */
+      virtual void enableNaggleAlgorithm(bool enabled) = 0;
+#ifdef WINDOWS
+      virtual void setExclusiveAddrUse() = 0;
+#endif
+   // private:
+   //    //WsaStartup m_wsaStartup;
+   //
+   // protected:
+   //    // Returns a SOCKET object with performed accept operation.
+   //    // Throws SocketException on an error.
+   //    virtual SOCKET getAcceptedSocket(struct sockaddr_in *addr) = 0;
+   //
+   //    // Closes old socket and sets handler to new one
+   //    virtual void set(SOCKET socket) = 0;
+   //
+   //    /**
+   //     * Mutex for thread-safety.
+   //     */
+   //    critical_section m_mutex;
+   //
+   //    /**
+   //     * WinSock socket.
+   //     */
+   //    SOCKET m_socket;
+   //    bool m_isClosed;
+   //
+   //    SocketAddressIPv4 *m_localAddr;
+   //    SocketAddressIPv4 *m_peerAddr;
+   //
+   //    /**
+   //     * Flag determinating if socket is server or client socket.
+   //     */
+   //    bool m_isBound;
+   };
+
+
+   //using SocketIPv4Interface = particle_interface<SocketIPv4Interface>;
+///
+      /**
+    * IPv4 Socket class.
+    *
+    * @fixme refactor this class to avoid usage of SocketAddressIPv4 class.
+    */
+   class CLASS_DECL_SUBSYSTEM SocketIPv4Composite :
+      virtual public Composite<SocketIPv4Interface >
+   {
+   public:
+
+      ImplementCompositeø(SocketIPv4, socketipv4)
+
+      /**
+       * Creates new socket.
+       */
+      //SocketIPv4();
+      /**
+       * Deletes and closes socket.
+       */
+      //virtual ~SocketIPv4() override;
+
+      /**
+       * Connects to remote host.
+       * @param scopedstrHost host to connect.
+       * @param port port to connect.
+       * @throws SocketException on fail.
+       */
+      void connect(const ::scoped_string & scopedstrHost, ::u16 port)  override
+      {
+
+         m_psocketipv4->connect(scopedstrHost, port);
+
+      }
+      /**
+       * Connects to remote host.
+       * @param paddress address to connect.
+       * @throws SocketException on fail.
+       */
+      void connect(::subsystem::SocketAddressIPv4Interface * paddress)  override
+      {
+
+         m_psocketipv4->connect(paddress);
+
+      }
+      /**
+       * Closes socket.
+       * @throws SocketException on fail.
+       */
+      void close()  override
+      {
+
+         m_psocketipv4->close();
+
+      }
+      /**
+       * Shutdowns socket.
+       * @param esocketshutdown how to shutdown socket (SD_RECEIVE|SD_SEND|SD_BOTH).
+       * @throws SocketException on fail.
+       */
+      void shutdown(enum_socket_shutdown esocketshutdown)  override
+      {
+
+         m_psocketipv4->shutdown(esocketshutdown);
+
+      }
+      /**
+       * Binds socket to specified address.
+       * @param scopedstrBindHost host to bind.
+       * @param bindPort port to bind.
+       * @throws SocketException on fail.
+       */
+      void bind(const ::scoped_string & scopedstrBindHost, ::u32 bindPort) override
+      {
+
+         m_psocketipv4->bind(scopedstrBindHost, bindPort);
+
+      }
+      /**
+       * Binds socket to socket address.
+       * @throws SocketException on fail.
+       */
+      void bind(::subsystem::SocketAddressIPv4Interface * paddress) override
+      {
+
+         m_psocketipv4->bind(paddress);
+
+      }
+      /**
+       * Checks if this socket is bound and used for server needs.
+       * @return true if socket used as server and successfully bounded, false otherwise.
+       */
+      bool isBound() override
+      {
+
+         return m_psocketipv4->isBound();
+
+      }
+      /**
+       * Socket listen method.
+       * @param backlog max count of connections in pool.
+       * @throws SocketException on fail.
+       */
+      void listen(::i32 backlog) override
+      {
+
+         m_psocketipv4->listen(backlog);
+
+      }
+
+      /**
+       * Accepts incoming connection.
+       * @throws SocketException on fail.
+       * @return newly allocated socket that contain incoming connections.
+       */
+      ::pointer < ::subsystem::SocketIPv4Interface > accept() override
+      {
+
+         return m_psocketipv4->accept();
+
+      }
+
+      /**
+       * Sends data to socket.
+       *
+       * @param data buffer to send.
+       * @param size bytes to send.
+       * @param flags Optional socket flags.
+       * @return count to sent bytes.
+       * @throw ::io_exception on error.
+       */
+      ::i32 send(const_char_pointer data, ::i32 size, ::i32 flags = 0) override
+      {
+
+         return m_psocketipv4->send(data, size, flags);
+
+      }
+      /**
+       * Receives data from socket.
+       *
+       * @param buffer buffer to receive data.
+       * @param size count of bytes to read from socket.
+       * @param flags recv flags.
+       * @return count of read bytes.
+       * @throws ::io_exception on fail.
+       */
+      ::i32 recv(char_pointer buffer, ::i32 size, ::i32 flags = 0) override
+      {
+
+         return m_psocketipv4->recv(buffer, size, flags);
+
+      }
+
+      ::i32 available() override
+      {
+
+         return m_psocketipv4->available();
+
+      }
+
+      /**
+       * Returns local address of socket (for listening socket).
+       * @return addr output parameter that will contain socket address, null on fail.
+       */
+      ::pointer < ::subsystem::SocketAddressIPv4Interface > getLocalAddr() override
+      {
+
+         return m_psocketipv4->getLocalAddr();
+
+      }
+      /**
+       * Returns peer address.
+       * @return addr output parameter that will contain socket address, null on fail.
+       */
+      ::pointer < ::subsystem::SocketAddressIPv4Interface > getPeerAddr() override
+      {
+
+         return m_psocketipv4->getPeerAddr();
+
+      }
+
+      /* Auxiliary */
+      void setSocketOptions(::i32 level, ::i32 name, void *value, ::i32 len) override
+      {
+
+         m_psocketipv4->setSocketOptions(level, name, value, len);
+
+      }
+      void getSocketOptions(::i32 level, ::i32 name, void *value, ::i32 *len) override
+      {
+
+         m_psocketipv4->getSocketOptions(level, name, value, len);
+
+      }
+
+      void setRcvTimeO(const class ::time &timeTimeout) override { m_psocketipv4->setRcvTimeO(timeTimeout); }
+      void setSndTimeO(const class ::time &timeTimeout) override { m_psocketipv4->setSndTimeO(timeTimeout); }
+
+
+      /* Socket options */
+      void enableNaggleAlgorithm(bool enabled) override
+      {
+
+         m_psocketipv4->enableNaggleAlgorithm(enabled);
+
+      }
+#ifdef WINDOWS
+      void setExclusiveAddrUse() override
+      {
+
+         m_psocketipv4->setExclusiveAddrUse();
+
+      }
+#endif
+
+   // private:
+   //    //WsaStartup m_wsaStartup;
+   //
+   // protected:
+   //    // Returns a SOCKET object with performed accept operation.
+   //    // Throws SocketException on an error.
+   //    SOCKET getAcceptedSocket(struct sockaddr_in *addr) override;
+   //
+   //    // Closes old socket and sets handler to new one
+   //    void set(SOCKET socket) override;
+   //
+   //    // /**
+   //    //  * Mutex for thread-safety.
+   //    //  */
+   //    // critical_section m_mutex;
+   //    //
+   //    // /**
+   //    //  * WinSock socket.
+   //    //  */
+   //    // SOCKET m_socket;
+   //    // bool m_isClosed;
+   //    //
+   //    // SocketAddressIPv4 *m_localAddr;
+   //    // SocketAddressIPv4 *m_peerAddr;
+   //    //
+   //    // /**
+   //    //  * Flag determinating if socket is server or client socket.
+   //    //  */
+   //    // bool m_isBound;
+   };
+
+
+
+
+    class CLASS_DECL_SUBSYSTEM SocketIPv4Aggregate :
+   virtual public Aggregate<SocketIPv4Composite>
+    {
+    public:
+
+        ImplementBaseø(SocketIPv4);
+
+    };
+
+
+   class CLASS_DECL_SUBSYSTEM SocketIPv4 :
+      virtual public Object<SocketIPv4Aggregate>
+   {
+   public:
+
+      ImplementObjectø(SocketIPv4)
+
+
+   };
+
+
+} // namespace subsystem

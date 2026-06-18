@@ -3,7 +3,7 @@
 #include "_linux.h"
 
 /***
-*int _validdrive( unsigned drive ) -
+*::i32 _validdrive( ::u32 drive ) -
 *
 *Purpose: returns non zero if drive is a valid drive number.
 *
@@ -15,17 +15,17 @@
 *
 *******************************************************************************/
 /*
-int __cdecl _validdrive (
-    unsigned drive
+::i32 __cdecl _validdrive (
+    ::u32 drive
     )
 {
-        unsigned retcode;
-        char drvstr[4];
+        ::u32 retcode;
+        ::i8 drvstr[4];
 
         if ( drive == 0 )
             return 1;
 
-        drvstr[0] = (char) ('A' + drive - 1);
+        drvstr[0] = (::i8) ('A' + drive - 1);
         drvstr[1] = ':';
         drvstr[2] = '\\';
         drvstr[3] = '\0';
@@ -38,9 +38,9 @@ int __cdecl _validdrive (
 }*/
 
 /*WCHAR * __cdecl _wgetdcwd (
-        int drive,
+        ::i32 drive,
         WCHAR *pnbuf,
-        int maxlen
+        ::i32 maxlen
         );
 
         */
@@ -65,7 +65,7 @@ int __cdecl _validdrive (
 *
 *Entry:
 *       _TSCHAR *pnbuf = pointer to a buffer maintained by the ::account::user;
-*       int maxlen = length of the buffer pointed to by pnbuf;
+*       ::i32 maxlen = length of the buffer pointed to by pnbuf;
 *
 *Exit:
 *       Returns pointer to the buffer containing the c.w.d. name
@@ -78,7 +78,7 @@ int __cdecl _validdrive (
 
 /*WCHAR * __cdecl _wgetcwd (
         WCHAR *pnbuf,
-        int maxlen
+        ::i32 maxlen
         )
 {
         WCHAR *retval;
@@ -105,10 +105,10 @@ int __cdecl _validdrive (
 *       side effects: no global data is used or affected
 *
 *Entry:
-*       int drive   - number of the drive being inquired about
+*       ::i32 drive   - number of the drive being inquired about
 *                     0 = default, 1 = 'a:', 2 = 'b:', etc.
 *       _TSCHAR *pnbuf - pointer to a buffer maintained by the ::account::user;
-*       int maxlen  - length of the buffer pointed to by pnbuf;
+*       ::i32 maxlen  - length of the buffer pointed to by pnbuf;
 *
 *Exit:
 *       Returns pointer to the buffer containing the c.w.d. name
@@ -121,15 +121,15 @@ int __cdecl _validdrive (
 
 
 //WCHAR * __cdecl _wgetdcwd (
-//        int drive,
+//        ::i32 drive,
 //        WCHAR *pnbuf,
-//        int maxlen
+//        ::i32 maxlen
 //        )
 //{
 //        WCHAR *point;
 //        WCHAR dirbuf[_MAX_PATH];
 //        WCHAR drvstr[4];
-//        int len;
+//        ::i32 len;
 //        WCHAR *pname; only used as argument to GetFullPathName
 //
 //
@@ -147,7 +147,7 @@ int __cdecl _validdrive (
 //
 //                 get the current directory string on that drive and its length
 //
-//      drvstr[0] = (char) ('A' - 1 + drive);
+//      drvstr[0] = (::i8) ('A' - 1 + drive);
 //      drvstr[1] = ':';
 //      drvstr[2] = '.';
 //      drvstr[3] = '\0';
@@ -162,7 +162,7 @@ int __cdecl _validdrive (
 //        get the current directory string and its length
 //
 //            len = GetCurrentDirectory( sizeof(dirbuf) / sizeof(_TSCHAR),
-//                                       (char *)dirbuf );
+//                                       (char_pointer )dirbuf );
 //        }
 //
 //         API call failed, or buffer not large enough
@@ -200,7 +200,7 @@ int __cdecl _validdrive (
 //#ifndef WPRFLAG
 //
 //
-//int _validdrive( unsigned drive ) -
+//::i32 _validdrive( ::u32 drive ) -
 //
 //Purpose: returns non zero if drive is a valid drive number.
 //
@@ -212,12 +212,12 @@ int __cdecl _validdrive (
 //
 
 
-//int __cdecl _validdrive (
-//    unsigned drive
+//::i32 __cdecl _validdrive (
+//    ::u32 drive
 //    )
 //{
-//        unsigned retcode;
-//        char drvstr[4];
+//        ::u32 retcode;
+//        ::i8 drvstr[4];
 //
 //        if ( drive == 0 )
 //            return 1;

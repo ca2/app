@@ -21,7 +21,7 @@
 //FACTORY_DEPENDENCY(acme_windows)
 //END_FACTORY()
 #include "acme/console.h"
-int * g_pi = nullptr;
+::i32 * g_pi = nullptr;
 
 enum enum_test_increment
 {
@@ -100,11 +100,11 @@ send(pmessageboxpayload);
 ////
 ////                  post(pmessageboxpayload);
 //                  
-//                  //int * pi = nullptr;
+//                  //::i32 * pi = nullptr;
 //                  
 //                  g_pi[1024] = 1;
 //                  
-//                  //int i = 23 / (iptr)g_pi;
+//                  //::i32 i = 23 / (iptr)g_pi;
 //
 //                  //output_debug_string("this is the result %d", i);
 //                  
@@ -169,8 +169,8 @@ send(pmessageboxpayload);
 //{
 //public:
 //
-//   int x;
-//   int y;
+//   ::i32 x;
+//   ::i32 y;
 //
 //
 //   auto operator <=> (const MyPoint&p) const
@@ -200,7 +200,7 @@ string checking_string_move_002()
 
    string str;
 
-   auto p = ___new char[123];
+   auto p = ___new ::i8[123];
 
    ansi_cpy(p, "checking_string_move_002");
 
@@ -247,7 +247,7 @@ void trim_right_001()
 void test_001()
 {
 
-   int_array_base a{ 1,1,2,3,5,8,13,21,34 };
+   i32_array_base a{ 1,1,2,3,5,8,13,21,34 };
 
    auto print_elem = [](auto const e) {::platform::get()->informationf(::as_string(e) + "\n"); };
 
@@ -304,17 +304,17 @@ namespace console_hello
    }
 
 
-   ::string generatecontatenation(::particle * pparticle, char ch)
+   ::string generatecontatenation(::particle * pparticle, ::i8 ch)
    {
 
       ::string str;
 
-      int iCount = pparticle->mathematics()->random(20, 200);
+      ::i32 iCount = pparticle->mathematics()->random(20, 200);
 
-      for (int i = 0; i < iCount; i++)
+      for (::i32 i = 0; i < iCount; i++)
       {
 
-         char ch1 = (ch + (char)pparticle->mathematics()->random(0, 4));
+         ::i8 ch1 = (ch + (::i8)pparticle->mathematics()->random(0, 4));
 
          str.append(&ch1, 1);
 
@@ -324,7 +324,7 @@ namespace console_hello
 
    }
 
-   void application::test_contatenation(char ch)
+   void application::test_contatenation(::i8 ch)
    {
 
       
@@ -336,7 +336,7 @@ namespace console_hello
       ::file::path pathLast;
       ::file::path pathLast2;
 
-   for (int i = 0; i < 100'000; i++)
+   for (::i32 i = 0; i < 100'000; i++)
    {
       string strA = generatecontatenation(this, ch);
 
@@ -356,7 +356,7 @@ namespace console_hello
 
       auto path1 = path.sibling(pathLast.name());
 
-      strMillis = ::as_string(::long_long_millisecond() % 1000);
+      strMillis = ::as_string(::i64_millisecond() % 1000);
 
       str1.formatf("this is a contatenation%s and format test%s ", str.c_str(), strD.c_str());
 
@@ -392,7 +392,7 @@ namespace console_hello
 
    }
 
-   void application::test_datetime_format(char ch)
+   void application::test_datetime_format(::i8 ch)
    {
 
 
@@ -403,7 +403,7 @@ namespace console_hello
             ::earth::time timeNow;
 
 
-      for (int i = 0; i < 1'000'000; i++)
+      for (::i32 i = 0; i < 1'000'000; i++)
       {
 
          timeNow.Now();
@@ -964,7 +964,7 @@ namespace console_hello
 
       auto etestincrement = e_test_increment_none;
 
-      for (; etestincrement <= e_test_increment_last; etestincrement = (enum_test_increment)((int)etestincrement+ 1))
+      for (; etestincrement <= e_test_increment_last; etestincrement = (enum_test_increment)((::i32)etestincrement+ 1))
       {
 
          switch (etestincrement)
@@ -1086,7 +1086,7 @@ namespace console_hello
       while (true)
       {
 
-         auto pmessageboxpayload = message_box((const_char_pointer )unsigned char"Hello!!\nNo: for exception test(\u2717)!!", "Hello App!", ::user::e_message_box_yes_no_cancel | ::user::e_message_box_default_button_3, "Hello Multiverse!!");
+         auto pmessageboxpayload = message_box((const_char_pointer )::u8"Hello!!\nNo: for exception test(\u2717)!!", "Hello App!", ::user::e_message_box_yes_no_cancel | ::user::e_message_box_default_button_3, "Hello Multiverse!!");
 
          auto result = send(pmessageboxpayload);
 
@@ -1127,11 +1127,11 @@ namespace console_hello
                //
                //                  post(pmessageboxpayload);
 
-                                 //int * pi = nullptr;
+                                 //::i32 * pi = nullptr;
 
                g_pi[1024] = 1;
 
-               //int i = 23 / (iptr)g_pi;
+               //::i32 i = 23 / (iptr)g_pi;
 
                //output_debug_string("this is the result %d", i);
 
@@ -1218,9 +1218,9 @@ namespace console_hello
 
 
 ////#ifdef WINDOWS
-////int wmain(int argc, wchar_t* argv[], wchar_t* envp[])
+////::i32 wmain(::i32 argc, wchar_t* argv[], wchar_t* envp[])
 ////#else
-////int main(int argc, platform_char** argv, platform_char** envp)
+////::i32 main(::i32 argc, platform_char ** argv, platform_char ** envp)
 ////#endif
 ////{
 ////
@@ -1338,7 +1338,7 @@ namespace console_hello
 ////   //      try
 ////   //      {
 ////   //
-////   //         int iExitCode = papp->main_loop();
+////   //         ::i32 iExitCode = papp->main_loop();
 ////   //
 ////   //         return iExitCode;
 ////   //
@@ -1397,7 +1397,7 @@ namespace console_hello
 ////   ////
 ////   ////      //auto envp = psystem->node()->_get_envp(wcsdupa);
 ////   ////
-////   ////      platform_char** envp = nullptr;
+////   ////      platform_char ** envp = nullptr;
 ////   ////
 ////   ////#endif
 ////   //
@@ -1486,11 +1486,11 @@ namespace console_hello
 ////
 ////                  post(pmessageboxpayload);
 //                  
-//                  //int * pi = nullptr;
+//                  //::i32 * pi = nullptr;
 //                  
 //                  g_pi[1024] = 1;
 //                  
-//                  //int i = 23 / (iptr)g_pi;
+//                  //::i32 i = 23 / (iptr)g_pi;
 //
 //                  //output_debug_string("this is the result %d", i);
 //                  

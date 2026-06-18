@@ -39,17 +39,17 @@ public:
 #ifdef _DEBUG
 
 
-   virtual long long increment_reference_count() override;
-   virtual long long decrement_reference_count() override;
-   virtual long long release() override;
+   virtual ::i64 increment_reference_count() override;
+   virtual ::i64 decrement_reference_count() override;
+   virtual ::i64 release() override;
 
 
 #else
 
 
-   virtual long long increment_reference_count();
-   virtual long long decrement_reference_count();
-   virtual long long release();
+   virtual ::i64 increment_reference_count();
+   virtual ::i64 decrement_reference_count();
+   virtual ::i64 release();
 
 
 #endif
@@ -122,7 +122,7 @@ public:
 
 
    virtual bool is_thread_class() const override;
-   bool task_get_run() const override;
+   bool should_run() const override;
    virtual bool is_task_set2() const;
    //virtual void child_post_quit(const ::scoped_string & scopedstrTag);
    //virtual void child_post_quit_and_wait(const ::scoped_string & scopedstrTag, const time& time);

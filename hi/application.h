@@ -28,8 +28,8 @@ namespace console_hello
 
 #endif // __STD_FORMAT__
 
-      void test_datetime_format(char ch);
-      void test_contatenation(char ch);
+      void test_datetime_format(::i8 ch);
+      void test_contatenation(::i8 ch);
 
       void remove_utf8_bom_phase1();
       void remove_utf8_bom_phase2();

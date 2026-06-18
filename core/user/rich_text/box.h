@@ -22,15 +22,15 @@ namespace user
 
          ::pointer<span>      m_pspan;
 
-         double_rectangle        m_rectangleBox;
-         double_rectangle        m_rectangleDevice;
-         double_rectangle        m_rectangleHitTest;
+         ::f64_rectangle        m_rectangleBox;
+         ::f64_rectangle        m_rectangleDevice;
+         ::f64_rectangle        m_rectangleHitTest;
 
-         double_size             m_sizeBox;
+         ::f64_size             m_sizeBox;
          character_count              m_iPosBeg;
          character_count              m_iPosEnd;
 
-         double               m_dLeft;
+         ::f64               m_dLeft;
 
 
          box(span* pspan);
@@ -40,14 +40,14 @@ namespace user
          string get_text() const;
 
          // relative to box
-         double get_dev_pos_left(::collection::index iPos) const;
-         double get_dev_pos_right(::collection::index iPos) const;
-         double get_dev_pos(::collection::index iPos) const;
-         double get_pos_left(::collection::index iPos) const;
-         double get_pos_right(::collection::index iPos) const;
-         double get_pos(::collection::index iPos) const;
-         double get_pos_count() const { return (double) (m_iPosEnd - m_iPosBeg + 1); }
-         double get_last_pos() const { return get_pos(m_iPosEnd); }
+         ::f64 get_dev_pos_left(::collection::index iPos) const;
+         ::f64 get_dev_pos_right(::collection::index iPos) const;
+         ::f64 get_dev_pos(::collection::index iPos) const;
+         ::f64 get_pos_left(::collection::index iPos) const;
+         ::f64 get_pos_right(::collection::index iPos) const;
+         ::f64 get_pos(::collection::index iPos) const;
+         ::f64 get_pos_count() const { return (::f64) (m_iPosEnd - m_iPosBeg + 1); }
+         ::f64 get_last_pos() const { return get_pos(m_iPosEnd); }
 
          // box relative to span
          inline character_count get_beg() const { return m_iPosBeg - m_pspan->m_iPosBeg; }

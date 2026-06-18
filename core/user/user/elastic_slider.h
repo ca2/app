@@ -24,11 +24,11 @@ namespace user
 
       class ::time                        m_timeLastTime;
 
-      double                              m_dPosition;// 0.0 = minimum 1.0 = maximum
-      double                              m_dTensionPosition;// 0.0 = minimum 1.0 = maximum
+      ::f64                              m_dPosition;// 0.0 = minimum 1.0 = maximum
+      ::f64                              m_dTensionPosition;// 0.0 = minimum 1.0 = maximum
       bool                                m_bSlide;
       ::collection::index                 m_iScalar;
-      double_array                        m_daScalar;
+      f64_array                        m_daScalar;
 
 
       elastic_slider();
@@ -38,7 +38,7 @@ namespace user
       void install_message_routing(::channel * pchannel) override;
 
       DECLARE_MESSAGE_HANDLER(on_message_create);
-      void on_timer(::timer * ptimer) override;
+      void operator()(::timer * ptimer) override;
       DECLARE_MESSAGE_HANDLER(on_message_left_button_down);
       DECLARE_MESSAGE_HANDLER(on_message_left_button_up);
       DECLARE_MESSAGE_HANDLER(on_message_mouse_move);
@@ -53,18 +53,18 @@ namespace user
 
 
       void UpdatePosition();
-      void CalcTension(int_point & point);
-      void SetSliderPos(double dPos);
+      void CalcTension(i32_point & point);
+      void SetSliderPos(::f64 dPos);
 
-      double CalcScalar();
+      ::f64 CalcScalar();
       void CalcTension();
 
 
       virtual void _001OnDraw(::draw2d::graphics_pointer & pgraphics) override;
 
-      double GetForce();
+      ::f64 GetForce();
 
-      void GetSliderRect(::int_rectangle & rectangle);
+      void GetSliderRect(::i32_rectangle & rectangle);
 
 
    };

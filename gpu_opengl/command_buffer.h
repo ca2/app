@@ -19,17 +19,17 @@ namespace gpu_opengl
       ~command_buffer() override;
 
 
-      void set_viewport(const ::int_rectangle& rectangle) override;
+      void set_viewport(const ::i32_rectangle& rectangle) override;
 
-      void set_scissor(const ::int_rectangle& rectangle) override;
+      void set_scissor(const ::i32_rectangle& rectangle) override;
 
 
-      void draw_int_a_count(int a) override;
+      void draw_int_a_count(::i32 a) override;
 
 
       void set_render_target() override;
-      void draw_vertexes(int iVertexCount) override;
-      void draw_indexes(int iIndexCount) override;
+      void draw_vertexes(::i32 iVertexCount) override;
+      void draw_indexes(::i32 iIndexCount) override;
 
 
       void begin_render(::gpu::shader *pgpushader, ::gpu::texture *pgputextureTarget) override;

@@ -247,7 +247,7 @@ namespace allocator
 //
 //         auto s = sizeof(T);
 //
-//         char * pszAnnotation = nullptr;
+//         char_pointer pszAnnotation = nullptr;
 //
 //#if MEMORY_ANNOTATION
 //
@@ -272,7 +272,7 @@ namespace allocator
 //
 //         auto s = sElement * c;
 //
-//         char * pszAnnotation = nullptr;
+//         char_pointer pszAnnotation = nullptr;
 //
 //#if MEMORY_ANNOTATION
 //
@@ -282,7 +282,7 @@ namespace allocator
 //
 //         auto * data = pallocatorbase->allocate(s, pszAnnotation);
 //
-//         auto p = (unsigned char*)data;
+//         auto p = (::u8*)data;
 //
 //         for (::collection::index i = 0; i < c; i++)
 //         {

@@ -139,7 +139,7 @@ namespace httpd
          m_response.attr("http_status_code") = 200;
          m_response.attr("http_status") = "OK";
 
-         m_response.header("Content-length") = (long long)mem.size();
+         m_response.header("Content-length") = (::i64)mem.size();
          m_response.header("content-type") = type;
          //      m_response.header("Last-modified") = m_start;
          SendResponse();
@@ -159,8 +159,8 @@ namespace httpd
       const_char_pointer months[] = { "Jan","Feb","Mar","Apr","May","Jun",
                                "Jul","Aug","Sep","Oct","Nov","Dec"
       };
-      int i;
-      char s[40];
+      ::i32 i;
+      ::i8 s[40];
 
       /* 1997-12-16 09:50:40 */
 
@@ -208,7 +208,7 @@ namespace httpd
 
       gregoriantime.set(timeNow, ::time::local_offset());
 
-      char slask[40]; // yyyy-mm-dd hh:mm:ss
+      ::i8 slask[40]; // yyyy-mm-dd hh:mm:ss
 
       sprintf(slask, "%d-%02d-%02d %02d:%02d:%02d",
          gregoriantime.m_iYear,
@@ -230,9 +230,9 @@ namespace httpd
    }
 
 
-   //map_base < int, DH * > * g_pmapdh = nullptr;
+   //map_base < ::i32, DH * > * g_pmapdh = nullptr;
 
-   //map_base < int, DH * > * dh_map()
+   //map_base < ::i32, DH * > * dh_map()
    //{
 
    //   critical_section_lock synchronouslock(::globals_critical_section());
@@ -240,7 +240,7 @@ namespace httpd
    //   if (g_pmapdh == nullptr)
    //   {
 
-   //      g_pmapdh = ___new map_base < int, DH * > ();
+   //      g_pmapdh = ___new map_base < ::i32, DH * > ();
 
    //   }
 
@@ -249,7 +249,7 @@ namespace httpd
    //}
 
 
-   //DH * get_dh(int keylength)
+   //DH * get_dh(::i32 keylength)
    //{
 
    //   critical_section_lock synchronouslock(::globals_critical_section());
@@ -259,7 +259,7 @@ namespace httpd
    //}
 
 
-   //void set_dh(int keylength, DH * pdh)
+   //void set_dh(::i32 keylength, DH * pdh)
    //{
 
    //   critical_section_lock synchronouslock(::globals_critical_section());
@@ -269,7 +269,7 @@ namespace httpd
    //}
 
 
-   //DH * tmp_dh_callback(SSL *ssl, int is_export, int keylength)
+   //DH * tmp_dh_callback(SSL *ssl, ::i32 is_export, ::i32 keylength)
    //{
 
    //   switch(keylength)
@@ -304,7 +304,7 @@ namespace httpd
          
       }
 
-      int iStatusCode;
+      ::i32 iStatusCode;
 
       string strStatus;
 
@@ -439,7 +439,7 @@ namespace httpd
       if (key == "location" && straValue.get_count() >= 1)
       {
 
-         for (int i = 0; i < straValue.get_size(); i++)
+         for (::i32 i = 0; i < straValue.get_size(); i++)
          {
 
             ::url::url url(straValue[i]);
@@ -448,7 +448,7 @@ namespace httpd
 
             domain.create(url.connect().host());
 
-            if (domain.m_strName == "ca2.network")
+            if (domain.m_strName == "ca2.site")
             {
 
                //straValue[i] = "https://" + papp->m_strFontopusServer + purl->get_object(straValue[i]);
@@ -474,7 +474,7 @@ namespace httpd
 
 
 
-   //void socket::simple_image_server(const ::scoped_string & scopedstrPath, int iMaxWidth, int iMaxHeight)
+   //void socket::simple_image_server(const ::scoped_string & scopedstrPath, ::i32 iMaxWidth, ::i32 iMaxHeight)
    //{
 
    //   if (iMaxWidth <= 0 && iMaxHeight <= 0)
@@ -488,31 +488,31 @@ namespace httpd
 
    //      pimage->load_image(scopedstrPath);
 
-   //      double dRateW = 1.0;
+   //      ::f64 dRateW = 1.0;
 
    //      if (iMaxWidth > 0)
    //      {
    //         if (pimage->width() > iMaxWidth)
    //         {
-   //            dRateW = (double)iMaxWidth / (double)pimage->width();
+   //            dRateW = (::f64)iMaxWidth / (::f64)pimage->width();
    //         }
    //      }
 
-   //      double dRateH = 1.0;
+   //      ::f64 dRateH = 1.0;
 
    //      if (iMaxHeight > 0)
    //      {
    //         if (pimage->height() > iMaxHeight)
    //         {
-   //            dRateH = (double)iMaxHeight / (double)pimage->width();
+   //            dRateH = (::f64)iMaxHeight / (::f64)pimage->width();
    //         }
    //      }
 
-   //      double dRate = minimum(dRateW, dRateH);
+   //      ::f64 dRate = minimum(dRateW, dRateH);
 
    //      ::image::image_pointer pimage;
 
-   //      pimage = create_image({(int)(pimage->width() * dRate),  (int)(pimage->height() * dRate)});
+   //      pimage = create_image({(::i32)(pimage->width() * dRate),  (::i32)(pimage->height() * dRate)});
 
    //      pimage->stretch_image(pimage);
 
@@ -536,7 +536,7 @@ namespace httpd
    void socket::simple_file_server(const ::scoped_string & scopedstrPath, bool bMatter)
    {
 
-      pointer_array < ::int_array > rangea;
+      pointer_array < ::i32_array > rangea;
 
       if (m_request.m_url.as_string() ==
          "https://designbykyle.com/images/me1.jpg")
@@ -563,7 +563,7 @@ namespace httpd
 
             stra.explode(",", straItem[1]);
 
-            for (int i = 0; i < stra.get_count(); i++)
+            for (::i32 i = 0; i < stra.get_count(); i++)
             {
 
                string_array_base straRange;
@@ -573,7 +573,7 @@ namespace httpd
                if (straRange.get_count() == 2)
                {
 
-                  rangea.add(___new ::int_array ());
+                  rangea.add(___new ::i32_array ());
 
                   rangea.last_ptr()->add(atoi(straRange[0]));
 

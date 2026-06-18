@@ -29,7 +29,7 @@
 //
 //   ::oswindow     m_pacmewindowingwindow;
 //   hdc            m_hdc;
-//   unsigned int          m_nCtlType;
+//   ::u32          m_nCtlType;
 //
 //
 //};
@@ -244,13 +244,13 @@ namespace message
 
    //   ::user::message::set(oswindow, pwindow, eusermessage, wparam, lparam);
 
-   //   m_nChar = static_cast<unsigned int>(wparam);
+   //   m_nChar = static_cast<::u32>(wparam);
 
    //   m_nRepCnt = first_unsigned_short(lparam);
 
    //   m_nFlags = second_unsigned_short(lparam);
    //   
-   //   m_iVirtualKey = (int)wparam;
+   //   m_iVirtualKey = (::i32)wparam;
 
    //   m_nScanCode = ((lparam >> 16) & 0xff);
 
@@ -280,7 +280,7 @@ namespace message
 
    //   ::user::message::set(oswindow, pwindow, eusermessage, wparam, lparam);
 
-   //   m_point = ::int_point(lparam);
+   //   m_point = ::i32_point(lparam);
 
    //}
 
@@ -290,9 +290,9 @@ namespace message
 
    //   ::user::message::set(oswindow, pwindow, eusermessage, wparam, lparam);
 
-   //   m_nType     = static_cast < unsigned int > (wparam);
+   //   m_nType     = static_cast < ::u32 > (wparam);
 
-   //   m_size      = ::int_size(x_short(lparam), y_short(lparam));
+   //   m_size      = ::i32_size(x_short(lparam), y_short(lparam));
 
    //}
 
@@ -396,7 +396,7 @@ namespace message
 
    //   }
 
-   //   m_point    = ::int_point(lparam);
+   //   m_point    = ::i32_point(lparam);
 
 
    //}
@@ -409,7 +409,7 @@ namespace message
 
    //   m_nFlags    = wparam;
 
-   //   m_point        = ::int_point(lparam);
+   //   m_point        = ::i32_point(lparam);
 
    //}
 
@@ -441,7 +441,7 @@ namespace message
    }
 
 
-   unsigned int mouse_activate::GetHitTest()
+   ::u32 mouse_activate::GetHitTest()
    {
 
       return lower_unsigned_short(m_lparam);
@@ -449,7 +449,7 @@ namespace message
    }
 
 
-   unsigned int mouse_activate::get_message()
+   ::u32 mouse_activate::get_message()
    {
 
       return upper_unsigned_short(m_lparam);
@@ -465,7 +465,7 @@ namespace message
    }
 
 
-   int_point context_menu::GetPoint()
+   i32_point context_menu::GetPoint()
    {
 
       return m_pointMessage;
@@ -539,9 +539,9 @@ namespace message
 
    //   ::user::message::set(oswindow, pwindow, eusermessage, wparam, lparam);
 
-   //   m_ecommand = (enum_scroll_command) (short)first_unsigned_short(wparam);
+   //   m_ecommand = (enum_scroll_command) (::i16)first_unsigned_short(wparam);
 
-   //   m_nPos = (short)second_unsigned_short(wparam);
+   //   m_nPos = (::i16)second_unsigned_short(wparam);
 
    //}
 
@@ -568,7 +568,7 @@ namespace message
 
    //   m_bShow = wparam != false;
 
-   //   m_nStatus = static_cast<unsigned int>(lparam);
+   //   m_nStatus = static_cast<::u32>(lparam);
 
    //}
 
@@ -657,7 +657,7 @@ namespace message
    }
 
 
-   unsigned int mouse_wheel::GetFlags()
+   ::u32 mouse_wheel::GetFlags()
    {
 
       return lower_unsigned_short(m_wparam);
@@ -665,7 +665,7 @@ namespace message
    }
 
 
-//   short mouse_wheel::GetDelta()
+//   ::i16 mouse_wheel::GetDelta()
 //   {
 //
 //      return second_short(m_wparam);
@@ -673,18 +673,18 @@ namespace message
 //   }
 
 
-   int_point mouse_wheel::GetPoint()
+   i32_point mouse_wheel::GetPoint()
    {
 
-      return int_point(lparam_int_x(m_lparam), lparam_int_y(m_lparam));
+      return i32_point(iptr_int_x(m_lparam), iptr_int_y(m_lparam));
 
    }
 
 
-   int notify::get_ctrl_id()
+   ::i32 notify::get_ctrl_id()
    {
 
-      return (int)m_wparam;
+      return (::i32)m_wparam;
 
    }
 

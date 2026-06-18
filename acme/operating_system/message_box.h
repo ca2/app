@@ -38,3 +38,8 @@
 //
 
 
+namespace operating_system{
+
+CLASS_DECL_ACME void message_beep(const ::user::e_message_box & emessagebox);
+
+} // namespace operating_system

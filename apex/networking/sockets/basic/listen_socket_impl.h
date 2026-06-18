@@ -21,7 +21,7 @@ namespace sockets
    public:
 
 
-      int                                 m_depth;
+      ::i32                                 m_depth;
       base_socket* m_pbasesocket;
 
       ::pointer < listen_socket_impl >    m_plistensocketImpl;
@@ -73,47 +73,47 @@ namespace sockets
       /** Bind and listen to any interface.
       \lparam port Port (0 is random)
       \lparam depth Listen queue depth */
-      virtual int Bind(::networking::port_t port, int depth = 20);
+      virtual ::i32 Bind(::networking::port_t port, ::i32 depth = 20);
 
-      virtual int Bind(::networking::address* paddress, int depth);
+      virtual ::i32 Bind(::networking::address* paddress, ::i32 depth);
 
       /** Bind and listen to any interface, with optional protocol.
       \lparam port Port (0 is random)
       \lparam protocol Network protocol
       \lparam depth Listen queue depth */
-      virtual int Bind(::networking::port_t port, const string& protocol, int depth = 20);
+      virtual ::i32 Bind(::networking::port_t port, const string& protocol, ::i32 depth = 20);
 
       /** Bind and listen to specific interface.
       \lparam intf Interface hostname
       \lparam port Port (0 is random)
       \lparam depth Listen queue depth */
-      virtual int Bind(const ::scoped_string & scopedstrInterface, ::networking::port_t port, int depth = 20);
+      virtual ::i32 Bind(const ::scoped_string & scopedstrInterface, ::networking::port_t port, ::i32 depth = 20);
 
       /** Bind and listen to specific interface.
       \lparam intf Interface hostname
       \lparam port Port (0 is random)
       \lparam protocol Network protocol
       \lparam depth Listen queue depth */
-      virtual int Bind(const ::scoped_string & scopedstrInterface, ::networking::port_t port, const string& protocol, int depth = 20);
+      virtual ::i32 Bind(const ::scoped_string & scopedstrInterface, ::networking::port_t port, const string& protocol, ::i32 depth = 20);
 
       ///** Bind and listen to ipv4 interface.
       //\lparam a Ipv4 interface address
       //\lparam port Port (0 is random)
       //\lparam depth Listen queue depth */
-      //virtual int Bind(in_addr a,::networking::port_t port,int depth = 20);
+      //virtual ::i32 Bind(in_addr a,::networking::port_t port,::i32 depth = 20);
 
       ///** Bind and listen to ipv4 interface.
       //\lparam a Ipv4 interface address
       //\lparam port Port (0 is random)
       //\lparam protocol Network protocol
       //\lparam depth Listen queue depth */
-      //virtual int Bind(in_addr a,::networking::port_t port,const string & protocol,int depth);
+      //virtual ::i32 Bind(in_addr a,::networking::port_t port,const string & protocol,::i32 depth);
 
       ///** Bind and listen to ipv6 interface.
       //\lparam a Ipv6 interface address
       //\lparam port Port (0 is random)
       //\lparam depth Listen queue depth */
-      //virtual int Bind(in6_addr a,::networking::port_t port,int depth = 20);
+      //virtual ::i32 Bind(in6_addr a,::networking::port_t port,::i32 depth = 20);
 
 
       ///** Bind and listen to ipv6 interface.
@@ -121,13 +121,13 @@ namespace sockets
       //\lparam port Port (0 is random)
       //\lparam protocol Network protocol
       //\lparam depth Listen queue depth */
-      //virtual int Bind(in6_addr a,::networking::port_t port,const string & protocol,int depth);
+      //virtual ::i32 Bind(in6_addr a,::networking::port_t port,const string & protocol,::i32 depth);
 
       /** Bind and listen to network interface.
       \lparam ad Interface address
       \lparam protocol Network protocol
       \lparam depth Listen queue depth */
-      virtual int Bind(::networking::address* paddress, const string& protocol, int depth);
+      virtual ::i32 Bind(::networking::address* paddress, const string& protocol, ::i32 depth);
 
       /** Return assigned port number. */
 //         ::networking::port_t GetPort()
@@ -136,7 +136,7 @@ namespace sockets
       //   }
 
       /** Return listen queue depth. */
-      virtual int GetDepth();
+      virtual ::i32 GetDepth();
 
       /** OnRead on a listen_socket receives an incoming connection. */
       void OnRead() override;
@@ -147,7 +147,7 @@ namespace sockets
 
       virtual bool HasCreator();
 
-      //virtual void OnOptions(int,int,int,socket_id);
+      //virtual void OnOptions(::i32,::i32,::i32,socket_id);
 
 
 

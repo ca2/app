@@ -48,6 +48,7 @@ namespace networking
    networking::networking()
    {
 
+      m_bChecked_IP6_IP4_connectability = false;
       m_p2 = nullptr;
       defer_create_synchronization();
 
@@ -67,7 +68,7 @@ namespace networking
    }
 
 
-   void     networking::initialize(::particle * pparticle)
+   void networking::initialize(::particle * pparticle)
    {
 
       //if (m_bInitialized)
@@ -106,6 +107,29 @@ namespace networking
 
       }
 
+      defer_check_ip6_ip4_connectability();
+
+
+      //return estatus;
+
+   }
+
+
+   void networking::defer_check_ip6_ip4_connectability(bool bForceAsUserApplication)
+   {
+
+      if (!m_papplication->m_bUserApplication)
+      {
+
+         if (!bForceAsUserApplication)
+         {
+
+            return;
+
+         }
+
+      }
+
       if (has_ip6_internet())
       {
 
@@ -124,8 +148,6 @@ namespace networking
          m_eaddresstypePreferred = e_address_type_ipv4;
 
       }
-
-      //return estatus;
 
    }
 
@@ -166,7 +188,7 @@ namespace networking
    //}
 
 
-   string networking::last_error_message(long long llError)
+   string networking::last_error_message(::i64 llError)
    {
 
       if (llError == 0x8000000000000000ll)
@@ -181,7 +203,7 @@ namespace networking
    }
 
 
-   string networking::_last_error_message(long long llError)
+   string networking::_last_error_message(::i64 llError)
    {
 
       throw interface_only();
@@ -191,7 +213,7 @@ namespace networking
    }
 
 
-   long long networking::last_error()
+   ::i64 networking::last_error()
    {
 
       throw interface_only();
@@ -201,7 +223,7 @@ namespace networking
    }
 
 
-   ::string networking::so_error_description(long long llError)
+   ::string networking::so_error_description(::i64 llError)
    {
 
        ::string strSocketError;
@@ -288,9 +310,9 @@ namespace networking
    */
    string networking::rfc1738_encode(const string& src)
    {
-      static   char hex[] = "0123456789ABCDEF";
+      static   ::i8 hex[] = "0123456789ABCDEF";
       string dst;
-      for (int i = 0; i < src.length(); i++)
+      for (::i32 i = 0; i < src.length(); i++)
       {
          if (character_isalnum(src[i]))
          {
@@ -319,15 +341,15 @@ namespace networking
    string networking::rfc1738_decode(const string& src)
    {
       string dst;
-      for (int i = 0; i < src.length(); i++)
+      for (::i32 i = 0; i < src.length(); i++)
       {
          if (src[i] == '%' && __ansicharishexadecimal((uchar)(src[i + 1])) && __ansicharishexadecimal((uchar)(src[i + 2])))
          {
-            char c1 = src[++i];
-            char c2 = src[++i];
+            ::i8 c1 = src[++i];
+            ::i8 c2 = src[++i];
             c1 = c1 - 48 - ((c1 >= 'A') ? 7 : 0) - ((c1 >= 'a') ? 32 : 0);
             c2 = c2 - 48 - ((c2 >= 'A') ? 7 : 0) - ((c2 >= 'a') ? 32 : 0);
-            dst += (char)(c1 * 16 + c2);
+            dst += (::i8)(c1 * 16 + c2);
          }
          else if (src[i] == '+')
          {
@@ -344,9 +366,9 @@ namespace networking
 
    bool networking::is_ip4(const ::scoped_string & scopedstr)
    {
-      int dots = 0;
+      ::i32 dots = 0;
       // %! ignore :port?
-      for (int i = 0; i < scopedstr.size(); i++)
+      for (::i32 i = 0; i < scopedstr.size(); i++)
       {
          if (scopedstr[i] == '.')
             dots++;
@@ -365,7 +387,7 @@ namespace networking
          return false;
       ::collection::index qc = 0;
       ::collection::index qd = 0;
-      for (int i = 0; i < scopedstr.size(); i++)
+      for (::i32 i = 0; i < scopedstr.size(); i++)
       {
          qc += (scopedstr[i] == ':') ? 1 : 0;
          qd += (scopedstr[i] == '.') ? 1 : 0;
@@ -390,7 +412,7 @@ namespace networking
          {
             return false;
          }
-         for (int i = 0; i < tmp.length(); i++)
+         for (::i32 i = 0; i < tmp.length(); i++)
          {
             if (tmp[i] < '0' || (tmp[i] > '9' && tmp[i] < 'A') ||
                (tmp[i] > 'F' && tmp[i] < 'a') || tmp[i] > 'f')
@@ -432,7 +454,7 @@ namespace networking
    }
 
 
-   address_pointer networking::create_ip4_address(int iIp, port_t port)
+   address_pointer networking::create_ip4_address(::i32 iIp, port_t port)
    {
 
       return nullptr;
@@ -440,7 +462,7 @@ namespace networking
    }
 
 
-//   bool networking::convert(in_addr& l, const ::scoped_string & scopedstr, int ai_flags)
+//   bool networking::convert(in_addr& l, const ::scoped_string & scopedstr, ::i32 ai_flags)
 //   {
 //
 //      if (str.is_empty())
@@ -456,10 +478,10 @@ namespace networking
 //         }
 //         //         ::time tick2= ::time::now();
 //         /*informationf("Got from cache networking::u2ip " + str + " : %d.%d.%d.%d (%d ms)",
-//         (unsigned int)((unsigned char*)&pitem->m_ipaddr)[0],
-//         (unsigned int)((unsigned char*)&pitem->m_ipaddr)[1],
-//         (unsigned int)((unsigned char*)&pitem->m_ipaddr)[2],
-//         (unsigned int)((unsigned char*)&pitem->m_ipaddr)[3],
+//         (::u32)((::u8*)&pitem->m_ipaddr)[0],
+//         (::u32)((::u8*)&pitem->m_ipaddr)[1],
+//         (::u32)((::u8*)&pitem->m_ipaddr)[2],
+//         (::u32)((::u8*)&pitem->m_ipaddr)[3],
 //         (tick2 - tick1));*/
 //         return item.m_bOk;
 //      }
@@ -498,9 +520,9 @@ namespace networking
 //#else
 //      struct hostent he;
 //      struct hostent* result = nullptr;
-//      int myerrno = 0;
-//      char buf[2000];
-//      int n = gethostbyname_r(host, &he, buf, sizeof(buf), &result, &myerrno);
+//      ::i32 myerrno = 0;
+//      ::i8 buf[2000];
+//      ::i32 n = gethostbyname_r(host, &he, buf, sizeof(buf), &result, &myerrno);
 //      if (n || !result)
 //      {
 //         return false;
@@ -529,7 +551,7 @@ namespace networking
 //      if (networking::isipv4(str))
 //         hints.ai_flags |= AI_NUMERICHOST;
 //
-//      int n = getaddrinfo(str, nullptr, &hints, &res);
+//      ::i32 n = getaddrinfo(str, nullptr, &hints, &res);
 //      if (n)
 //      {
 //         string error = "getaddrinfo Error: ";
@@ -574,10 +596,10 @@ namespace networking
 //
 //      //      ::time tick2= ::time::now();
 //      //      informationf("DNS find networking::u2ip " + str + " : %d.%d.%d.%d (%d ms)",
-//         //       (unsigned int)((unsigned char*)&pitem->m_ipaddr)[0],
-//         //     (unsigned int)((unsigned char*)&pitem->m_ipaddr)[1],
-//         //   (unsigned int)((unsigned char*)&pitem->m_ipaddr)[2],
-//         // (unsigned int)((unsigned char*)&pitem->m_ipaddr)[3],
+//         //       (::u32)((::u8*)&pitem->m_ipaddr)[0],
+//         //     (::u32)((::u8*)&pitem->m_ipaddr)[1],
+//         //   (::u32)((::u8*)&pitem->m_ipaddr)[2],
+//         // (::u32)((::u8*)&pitem->m_ipaddr)[3],
 //         //(tick2 - tick1));
 //      l = item.m_ipaddr;
 //
@@ -586,7 +608,7 @@ namespace networking
 //   }
 //
 //
-//   //bool networking::convert(struct in6_addr& l, const ::scoped_string & scopedstr, int ai_flags)
+//   //bool networking::convert(struct in6_addr& l, const ::scoped_string & scopedstr, ::i32 ai_flags)
 //   //{
 //
 //
@@ -629,15 +651,15 @@ namespace networking
 //   {
 //
 //
-//      char slask[100]; // l2ip temporary
+//      ::i8 slask[100]; // l2ip temporary
 //      *slask = 0;
-//      unsigned int prev = 0;
+//      ::u32 prev = 0;
 //      bool skipped = false;
 //      bool ok_to_skip = true;
 //      if (mixed)
 //      {
-//         unsigned short x;
-//         unsigned short addr16[8];
+//         ::u16 x;
+//         ::u16 addr16[8];
 //         ::memory_copy(addr16, &ip, sizeof(addr16));
 //         for (::collection::index i = 0; i < 6; i++)
 //         {
@@ -693,7 +715,7 @@ namespace networking
 //   }
 //
 //
-//   int networking::in6_addr_compare(in6_addr a, in6_addr b)
+//   ::i32 networking::in6_addr_compare(in6_addr a, in6_addr b)
 //   {
 //      for (::collection::index i = 0; i < 16; i++)
 //      {
@@ -708,7 +730,7 @@ namespace networking
 //   void networking::ResolveLocal()
 //   {
 //
-//      char h[256];
+//      ::i8 h[256];
 //
 //      // get local hostname and translate into ip-address
 //      *h = 0;
@@ -816,7 +838,7 @@ namespace networking
          {
             struct sockaddr_in *point = (struct sockaddr_in *)sa;
             ::sockets::address_pointer addr;
-            addr(allocateø< ::sockets::ipv4_address(get_app >(), *int_point));
+            addr(allocateø< ::sockets::ipv4_address(get_app >(), *i32_point));
             return addr;
          }
          break;
@@ -825,7 +847,7 @@ namespace networking
          {
             struct sockaddr_in6 *point = (struct sockaddr_in6 *)sa;
             ::sockets::address_pointer addr;
-            addr(allocateø< ::sockets::ipv6_address(get_app >(), *int_point));
+            addr(allocateø< ::sockets::ipv6_address(get_app >(), *i32_point));
             return addr;
          }
          break;
@@ -834,7 +856,7 @@ namespace networking
    }
    */
 
-   /*   bool networking::convert(in_addr & sa, const ::scoped_string & scopedstrHost, int ai_flags)
+   /*   bool networking::convert(in_addr & sa, const ::scoped_string & scopedstrHost, ::i32 ai_flags)
       {
 
          memory_set(&sa, 0, sizeof(sa));
@@ -869,9 +891,9 @@ namespace networking
    #else
          struct hostent he;
          struct hostent *result = nullptr;
-         int myerrno = 0;
-         char buf[2000];
-         int n = gethostbyname_r(host, &he, buf, sizeof(buf), &result, &myerrno);
+         ::i32 myerrno = 0;
+         ::i8 buf[2000];
+         ::i32 n = gethostbyname_r(host, &he, buf, sizeof(buf), &result, &myerrno);
          if (n || !result)
          {
             return false;
@@ -899,7 +921,7 @@ namespace networking
          struct addrinfo *res;
          if (networking::isipv4(host))
             hints.ai_flags |= AI_NUMERICHOST;
-         int n = getaddrinfo(host, nullptr, &hints, &res);
+         ::i32 n = getaddrinfo(host, nullptr, &hints, &res);
          if (!n)
          {
             ref_array <  addrinfo > vec;
@@ -928,7 +950,7 @@ namespace networking
       }*/
 
 
-//   bool networking::convert(struct in6_addr& sa, const ::scoped_string & scopedstrHost, int ai_flags)
+//   bool networking::convert(struct in6_addr& sa, const ::scoped_string & scopedstrHost, ::i32 ai_flags)
 //   {
 //
 //      try
@@ -978,11 +1000,11 @@ namespace networking
 //               if (strstr(s, ".")) // x.x.x.x
 //               {
 //                  Parse pa(s, ".");
-//                  char slask[100]; // u2ip temporary hgenstring conversion
-//                  unsigned long b0 = static_cast<unsigned long>(pa.getvalue());
-//                  unsigned long b1 = static_cast<unsigned long>(pa.getvalue());
-//                  unsigned long b2 = static_cast<unsigned long>(pa.getvalue());
-//                  unsigned long b3 = static_cast<unsigned long>(pa.getvalue());
+//                  ::i8 slask[100]; // u2ip temporary hgenstring conversion
+//                  ulong b0 = static_cast<ulong>(pa.getvalue());
+//                  ulong b1 = static_cast<ulong>(pa.getvalue());
+//                  ulong b2 = static_cast<ulong>(pa.getvalue());
+//                  ulong b3 = static_cast<ulong>(pa.getvalue());
 //                  sprintf(slask, "%lx", b0 * 256 + b1);
 //                  vec.add(slask);
 //                  sprintf(slask, "%lx", b2 * 256 + b3);
@@ -996,9 +1018,9 @@ namespace networking
 //               x = i + 1;
 //            }
 //         }
-//         index sz = vec.get_length(); // number of unsigned char pairs
+//         index sz = vec.get_length(); // number of ::u8 pairs
 //         ::collection::index i = 0; // index in in6_addr.in6_u.u6_addr16[] ( 0 .. 7 )
-//         unsigned short addr16[8];
+//         ::u16 addr16[8];
 //         for (list_base<string>::iterator it = vec.begin(); it != vec.end(); it++)
 //         {
 //            string bytepair = *it;
@@ -1019,7 +1041,7 @@ namespace networking
 //         return true;
 //      }
 //#ifdef SOLARIS
-//      int errnum = 0;
+//      ::i32 errnum = 0;
 //      struct hostent* he = getipnodebyname(host, AF_INET6, 0, &errnum);
 //#else
 //      struct hostent* he = gethostbyname2(host, AF_INET6);
@@ -1043,15 +1065,15 @@ namespace networking
 //      struct addrinfo* res;
 //      if (networking::isipv6(host))
 //         hints.ai_flags |= AI_NUMERICHOST;
-//      int n = getaddrinfo(host, nullptr, &hints, &res);
+//      ::i32 n = getaddrinfo(host, nullptr, &hints, &res);
 //      if (!n)
 //      {
 //
 //         array <  sockaddr_in6* > addra;
 //         struct addrinfo* ai = res;
-//         int iSaSize = sizeof(sockaddr_in6);
-//         //char ipstringbuffer[46];
-//         unsigned int ipbufferlength = 46;
+//         ::i32 iSaSize = sizeof(sockaddr_in6);
+//         //::i8 ipstringbuffer[46];
+//         ::u32 ipbufferlength = 46;
 //         while (ai)
 //         {
 //            // The buffer length is changed by each call to WSAAddresstoString
@@ -1195,7 +1217,7 @@ namespace networking
 //   bool networking::reverse_sync(reverse_cache_item* pitem)
 //   {
 //
-//      int flags = NI_NUMERICHOST;
+//      ::i32 flags = NI_NUMERICHOST;
 //
 //#ifdef NO_GETADDRINFO
 //      switch (sa->sa_family)
@@ -1216,7 +1238,7 @@ namespace networking
 //            } u;
 //            struct sockaddr_in* sa_in = (struct sockaddr_in*)sa;
 //            ::memory_copy(&u.l, &sa_in->sin_addr, sizeof(u.l));
-//            char tmp[100];
+//            ::i8 tmp[100];
 //            sprintf(tmp, "%u.%u.%u.%u", u.a.b1, u.a.b2, u.a.b3, u.a.b4);
 //            hostname = tmp;
 //            return true;
@@ -1236,18 +1258,18 @@ namespace networking
 //      case AF_INET6:
 //         if (flags & NI_NUMERICHOST)
 //         {
-//            char slask[100]; // l2ip temporary
+//            ::i8 slask[100]; // l2ip temporary
 //            *slask = 0;
-//            unsigned int prev = 0;
+//            ::u32 prev = 0;
 //            bool skipped = false;
 //            bool ok_to_skip = true;
 //            {
-//               unsigned short addr16[8];
+//               ::u16 addr16[8];
 //               struct sockaddr_in6* sa_in6 = (struct sockaddr_in6*)sa;
 //               ::memory_copy(addr16, &sa_in6->sin6_addr, sizeof(addr16));
 //               for (::collection::index i = 0; i < 8; i++)
 //               {
-//                  unsigned short x = ntohs(addr16[i]);
+//                  ::u16 x = ntohs(addr16[i]);
 //                  if (*slask && (x || !ok_to_skip || prev))
 //                     ansi_concatenate(slask, ":");
 //                  if (x || !ok_to_skip)
@@ -1284,8 +1306,8 @@ namespace networking
 //      }
 //      return false;
 //#else
-//      char host[NI_MAXHOST];
-//      char serv[NI_MAXSERV];
+//      ::i8 host[NI_MAXHOST];
+//      ::i8 serv[NI_MAXSERV];
 //      // NI_NOFQDN
 //      // NI_NUMERICHOST
 //      // NI_NAMEREQD
@@ -1296,7 +1318,7 @@ namespace networking
 //
 //      auto len = pitem->m_address.m_iLen;
 //
-//      int n = getnameinfo(psa, len, host, sizeof(host), serv, sizeof(serv), flags);
+//      ::i32 n = getnameinfo(psa, len, host, sizeof(host), serv, sizeof(serv), flags);
 //      if (n)
 //      {
 //         // EAI_AGAIN
@@ -1355,7 +1377,7 @@ namespace networking
 
 
 
-   bool networking::u2service(const string& name, int& service, int ai_flags)
+   bool networking::u2service(const string& name, ::i32& service, ::i32 ai_flags)
    {
 
       return false;
@@ -1379,7 +1401,7 @@ namespace networking
 //      hints.ai_socktype = 0;
 //      hints.ai_protocol = 0;
 //      struct addrinfo* res;
-//      int n = getaddrinfo(nullptr, name, &hints, &res);
+//      ::i32 n = getaddrinfo(nullptr, name, &hints, &res);
 //      if (!n)
 //      {
 //         service = res->ai_protocol;
@@ -1392,7 +1414,7 @@ namespace networking
    }
 
 
-   int networking::service_port(const ::scoped_string & scopedstr, int flags)
+   ::i32 networking::service_port(const ::scoped_string & scopedstr, ::i32 flags)
    {
 
       if (::str::is_simple_natural(scopedstr))
@@ -1409,7 +1431,7 @@ namespace networking
       else
       {
 
-         int service = 0;
+         ::i32 service = 0;
 
          if (!u2service(scopedstr, service, 0))
             return 0;
@@ -1421,7 +1443,7 @@ namespace networking
    }
 
 
-   string  networking::service_name(int iPort, int flags)
+   string  networking::service_name(::i32 iPort, ::i32 flags)
    {
 
       switch (iPort)
@@ -1603,7 +1625,7 @@ namespace networking
 //   void networking::ResolveLocal()
 //   {
 //
-//      char h[256];
+//      ::i8 h[256];
 //
 //      // get local hostname and translate into ip-address
 //      *h = 0;
@@ -1689,7 +1711,7 @@ namespace networking
    //}
 
 
-// int networking::_select(::sockets::socket_handler * psockethandler, const class time & timeWait)
+// ::i32 networking::_select(::sockets::socket_handler * psockethandler, const class time & timeWait)
 //{
 //    return -1;
 //

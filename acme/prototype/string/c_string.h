@@ -12,7 +12,7 @@ namespace c
    {
    public:
 
-      char * m_psz;
+      char_pointer m_psz;
       string()
       {
          m_psz = nullptr;
@@ -100,10 +100,10 @@ namespace c
          return !strcmp(m_psz, psz);
       }
 
-      int size() const;
+      ::i32 size() const;
 
-      int find_replace(const_char_pointer search, const_char_pointer replace);
-      int find_replace(char search, char replace);
+      ::i32 find_replace(const_char_pointer search, const_char_pointer replace);
+      ::i32 find_replace(::i8 search, ::i8 replace);
 
       string & operator += (const_char_pointer p);
 

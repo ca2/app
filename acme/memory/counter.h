@@ -22,17 +22,17 @@ namespace heap
       public:
 
          ::string m_strDebug;
-         long long    m_i = 0;
+         ::i64    m_i32 = 0;
 
 
       };
 
       bool m_bEnabled = false;
-      //int                                 m_iMemoryCounters = -1;
+      //::i32                                 m_iMemoryCounters = -1;
 
       ::critical_section                  m_criticalsection;
 
-      //int                                 m_iMemoryCountersStartable = 0;
+      //::i32                                 m_iMemoryCountersStartable = 0;
 
       ::map_base < TYPE, item >       m_mapCounter;
 
@@ -74,7 +74,7 @@ namespace heap
       //}
 
 
-      long long get_counter(const TYPE & t)
+      ::i64 get_counter(const TYPE & t)
       {
 
          critical_section_lock lock(&m_criticalsection);
@@ -84,7 +84,7 @@ namespace heap
 
             auto & item = m_mapCounter[t];
 
-            return item.m_i;
+            return item.m_i32;
 
          }
 
@@ -104,7 +104,7 @@ namespace heap
 
             auto & item = m_mapCounter[t];
 
-            item.m_i++;
+            item.m_i32++;
 
          }
 

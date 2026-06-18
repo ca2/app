@@ -44,6 +44,8 @@ public:
 
    using ITEM = typename NODE::ITEM;
 
+   using BASE_PAYLOAD = ITEM;
+
    using ARG_ITEM = ARG_TYPE;
 
    using this_iterator = typename RANGE::this_iterator;
@@ -127,7 +129,7 @@ public:
    //   }
 
 
-   //   make_iterator operator ++ (int)
+   //   make_iterator operator ++ (::i32)
    //   {
 
    //      make_iterator iterator = this->m_pnode;
@@ -148,7 +150,7 @@ public:
    //   }
 
 
-   //   make_iterator operator -- (int)
+   //   make_iterator operator -- (::i32)
    //   {
 
    //      make_iterator iterator = this->m_pnode;
@@ -352,7 +354,7 @@ public:
 
    //inline iterator get_start() const { return m_begin; }
 
-   void erase(iterator iterator);
+   iterator erase(iterator iterator);
 
    void erase_defer_next(iterator & iterator);
 
@@ -1600,14 +1602,18 @@ void list_base<TYPE, ARG_TYPE>::erase_at(::collection::index i)
 
 
 template<class TYPE, class ARG_TYPE>
-void list_base<TYPE, ARG_TYPE>::erase(iterator pErase)
+typename list_base<TYPE, ARG_TYPE>::iterator list_base<TYPE, ARG_TYPE>::erase(iterator pErase)
 {
 
    ASSERT_OK(this);
 
    auto p = detach(pErase);
 
+   auto pRet = p.next();
+
    delete p.get();
+
+   return pRet;
 
 }
 
@@ -2478,10 +2484,10 @@ typename list_base < TYPE, ARG_TYPE >::iterator list_base < TYPE, ARG_TYPE > ::i
 //inline stream& operator >>(stream& stream, string_list_base& list_base)
 //{
 //
-//   int iSize;
+//   ::i32 iSize;
 //   stream >> iSize;
 //   string str;
-//   for (int i = 0; i < iSize; i++)
+//   for (::i32 i = 0; i < iSize; i++)
 //   {
 //      stream >> str;
 //      list_base.add_tail(str);

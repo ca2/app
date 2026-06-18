@@ -19,10 +19,10 @@ namespace draw2d
    }
 
 
-   void buffered_graphics::Prepare(const int_rectangle & rectangleParam)
+   void buffered_graphics::Prepare(const i32_rectangle & rectangleParam)
    {
 
-      ::int_rectangle rectangle(rectangleParam);
+      ::i32_rectangle rectangle(rectangleParam);
 
       m_p->place_impact_area(rectangle);
 
@@ -36,7 +36,7 @@ namespace draw2d
       nullptr,
       rectangle.width() * sizeof(::color32_t));
 
-      /*#define argb(a, rectangle,g,b)          ((::color::color)(((unsigned char)(rectangle)|((unsigned short)((unsigned char)(g))<<8))|(((unsigned int)(unsigned char)(b))<<16)|((unsigned int)(unsigned char)(a))<<24)))
+      /*#define argb(a, rectangle,g,b)          ((::color::color)(((::u8)(rectangle)|((::u16)((::u8)(g))<<8))|(((::u32)(::u8)(b))<<16)|((::u32)(::u8)(a))<<24)))
          set(m_bitmapBlend);
          fill_rectangle(rectangle, argb(0, 0, 0, 0));*/
 

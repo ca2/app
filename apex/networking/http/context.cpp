@@ -34,7 +34,7 @@
 
 
 
-#define DEBUG_LEVEL_SICK 9
+#define DEBUG_LEVEL_SICK 6
 #define DEBUG_LEVEL_NORMAL 4
 #define HTTP_DEBUG_LEVEL DEBUG_LEVEL_NORMAL
 
@@ -77,13 +77,13 @@ namespace http
 
       string strServer = url.connect().host();
 
-      if (strServer == "ca2.network")
+      if (strServer == "ca2.site")
       {
 
          set["raw_http"] = true;
 
       }
-      else if (!strServer.case_insensitive_ends("ca2.network") && strServer != "ca2.network")
+      else if (!strServer.case_insensitive_ends("ca2.site") && strServer != "ca2.site")
       {
 
          set["raw_http"] = true;
@@ -134,7 +134,7 @@ namespace http
    //string context::api_get(const ::url::url & url, ::property_set & set)
    //{
 
-   //   ::file::path url("https://api.ca2.network/");
+   //   ::file::path url("https://api.ca2.site/");
 
    //   url /= url;
 
@@ -343,7 +343,7 @@ namespace http
             else if (strCache == "no")
             {
 
-               return ::str::to_long_long(strCache);
+               return ::str::to_i64(strCache);
 
             }
 
@@ -362,7 +362,7 @@ namespace http
       else
       {
 
-         strCache = ::as_string(len.as_long_long());
+         strCache = ::as_string(len.as_i64());
 
       }
 
@@ -443,7 +443,7 @@ namespace http
 
       string str;
 
-      //      int iAttempt = 0;
+      //      ::i32 iAttempt = 0;
       //
       //      ::property_set set;
       //
@@ -540,7 +540,7 @@ namespace http
    }
 
 
-   int context::auto_config_proxy_count()
+   ::i32 context::auto_config_proxy_count()
    {
 
       return 4;
@@ -548,7 +548,7 @@ namespace http
    }
 
 
-   void context::auto_config_proxy(int i)
+   void context::auto_config_proxy(::i32 i)
    {
 
       return;
@@ -602,12 +602,12 @@ namespace http
 
       string_array_base straRequestingServer;
 
-      straRequestingServer.add("ca2.network");
+      straRequestingServer.add("ca2.site");
 
       if (!straRequestingServer.case_insensitive_contains(strHost))
       {
 
-         strHost = "ca2.network";
+         strHost = "ca2.site";
 
       }
 
@@ -923,10 +923,10 @@ namespace http
 
       //string strHost = purl->get_server(url);
 
-      //int iHostPort = purl->get_port(url);
+      //::i32 iHostPort = purl->get_port(url);
 
       //::networking::address ipHost(strHost, iHostPort);
-      //for (int iNode = 0; iNode < doc.root()->get_children_count(); iNode++)
+      //for (::i32 iNode = 0; iNode < doc.root()->get_children_count(); iNode++)
       //{
       //   ::pointer<::xml::node>pnode = doc.root()->child_at(iNode);
       //   if (pnode->get_name() == "proxy")
@@ -1107,7 +1107,7 @@ namespace http
 
       ::pointer<::apex::application>papp = set["app"].cast < ::apex::application >();
 
-      //int iPort;
+      //::i32 iPort;
 
       //if (strProtocol == "https")
       //{
@@ -1208,9 +1208,9 @@ namespace http
 //
 //      bool bSeemsOk;
 //
-//      int iTry = 0;
+//      ::i32 iTry = 0;
 //
-//      int iTryCount;
+//      ::i32 iTryCount;
 //
 //      if (set.has_property("try"))
 //      {
@@ -1285,7 +1285,7 @@ namespace http
 //
 //            }
 //
-//            informationf("opening context::request time(%d) = ", tickBeg.elapsed().integral_second().m_i);
+//            informationf("opening context::request time(%d) = ", tickBeg.elapsed().integral_second().m_i32);
 //
 //         }
 //         catch (...)
@@ -1363,16 +1363,16 @@ namespace http
 //
 //         }
 //
-//         if (set.has_property("int_scalar_source_listener"))
+//         if (set.has_property("i32_scalar_source_listener"))
 //         {
 //
-//            psession->::int_scalar_source::m_plistener = set["int_scalar_source_listener"].cast < int_scalar_source::listener >();
+//            psession->::i32_scalar_source::m_plistener = set["i32_scalar_source_listener"].cast < i32_scalar_source::listener >();
 //
 //         }
 //         else
 //         {
 //
-//            psession->::int_scalar_source::m_plistener = nullptr;
+//            psession->::i32_scalar_source::m_plistener = nullptr;
 //
 //         }
 //
@@ -1405,11 +1405,11 @@ namespace http
 //
 //         set["http_body_size_downloaded"] = &psession->m_body_size_downloaded;
 //
-//         psession->m_scalarsourceDownloadedRate.m_plistener = set["http_downloaded_rate_listener"].cast < ::double_scalar_source::listener >();
+//         psession->m_scalarsourceDownloadedRate.m_plistener = set["http_downloaded_rate_listener"].cast < ::f64_scalar_source::listener >();
 //
 //         psession->m_scalarsourceDownloadedRate.id() = set["http_downloaded_rate_id"].atom();
 //
-//         psession->m_scalarsourceDownloaded.m_plistener = set["http_downloaded_listener"].cast < ::int_scalar_source::listener >();
+//         psession->m_scalarsourceDownloaded.m_plistener = set["http_downloaded_listener"].cast < ::i32_scalar_source::listener >();
 //
 //         psession->m_scalarsourceDownloaded.id() = set["http_downloaded_id"].atom();
 //
@@ -1461,7 +1461,7 @@ namespace http
 //
 //         //psession->m_psockethandler->restart_socket(psession->get_socket_id());
 //
-//         int iIteration = 0;
+//         ::i32 iIteration = 0;
 //
 //         //::apex::live_signal keeplive;
 //
@@ -1476,7 +1476,7 @@ namespace http
 //
 //         //}
 //
-//         informationf("opening preparation context::request time(%d) = ", tickBegA.elapsed().integral_second().m_i);
+//         informationf("opening preparation context::request time(%d) = ", tickBegA.elapsed().integral_second().m_i32);
 //
 //         tick1 = payload("dw").time();
 //
@@ -1508,11 +1508,11 @@ namespace http
 //
 //            }
 //
-//            double dRateDownloaded = 0.0;
+//            ::f64 dRateDownloaded = 0.0;
 //
-//            long long iContentLength = set["http_content_length"].as_long_long();
+//            ::i64 iContentLength = set["http_content_length"].as_i64();
 //
-//            long long iBodySizeDownloaded = set["http_body_size_downloaded"].as_long_long();
+//            ::i64 iBodySizeDownloaded = set["http_body_size_downloaded"].as_i64();
 //
 //            if (iContentLength > 0)
 //            {
@@ -1520,7 +1520,7 @@ namespace http
 //               if (iBodySizeDownloaded > 0.0)
 //               {
 //
-//                  dRateDownloaded = (double)iBodySizeDownloaded / (double)iContentLength;
+//                  dRateDownloaded = (::f64)iBodySizeDownloaded / (::f64)iContentLength;
 //
 //               }
 //
@@ -1558,7 +1558,7 @@ namespace http
 //
 //         set["cookie"] = strCookie;
 //
-//         int iStatusCode;
+//         ::i32 iStatusCode;
 //
 //         psession->outattr("http_status_code").as(iStatusCode);
 //
@@ -1656,7 +1656,7 @@ namespace http
 //
 //         set["get_status"] = estatus;
 //
-//         informationf("Total time ::http::platform::context::get(\"%s\") %d ms ", strUrl.left(minimum(255, strUrl.length())).c_str(), tick1.elapsed().integral_second().m_i);
+//         informationf("Total time ::http::platform::context::get(\"%s\") %d ms ", strUrl.left(minimum(255, strUrl.length())).c_str(), tick1.elapsed().integral_second().m_i32);
 //
 //      }
 //      catch (...)
@@ -1766,7 +1766,7 @@ namespace http
 
       }
 
-      long long iHttpGetSerial = ++psystem->networking()->m_lHttpGetSerial;
+      ::i64 iHttpGetSerial = ++psystem->networking()->m_lHttpGetSerial;
 
       //informationf("");
       //informationf("");
@@ -1774,14 +1774,14 @@ namespace http
 
       //auto tickStart = ::time::now();
 
-      int iTry = 0;
+      ::i32 iTry = 0;
 
-      int iTryCount;
+      ::i32 iTryCount;
 
       if (set.has_property("try"))
       {
 
-         iTryCount = set["try"].as_int();
+         iTryCount = set["try"].as_i32();
 
          if (iTryCount > 5)
          {
@@ -1797,8 +1797,12 @@ namespace http
          iTryCount = 2;
 
       }
+      
+#if HTTP_DEBUG_LEVEL >= DEBUG_LEVEL_SICK
+
       information() << "------------------------------------------------------";
 
+#endif
       
       string strRedirect;
 //#ifdef BSD_STYLE_SOCKETS
@@ -1827,8 +1831,12 @@ namespace http
       }
       else
       {
+         
+#if HTTP_DEBUG_LEVEL >= DEBUG_LEVEL_SICK
 
          information() << "Start: http_serial:" << iHttpGetSerial << " " << url.as_string();
+         
+#endif
 
       }
 
@@ -1846,7 +1854,7 @@ namespace http
 
       ::pointer<::apex::application>pappAgent = papp;
 
-      //int iPort;
+      //::i32 iPort;
 
       //if (strProtocol == "https")
       //{
@@ -1882,7 +1890,7 @@ namespace http
 
       string strSessId;
 
-      int iRetrySession = 0;
+      ::i32 iRetrySession = 0;
 
    //retry_session:
 
@@ -2042,10 +2050,10 @@ namespace http
 
       }
 
-      //if (set.has_property("int_scalar_source_listener"))
+      //if (set.has_property("i32_scalar_source_listener"))
       //{
 
-      //   psocket->::int_scalar_manager::m_plistener = set["int_scalar_source_listener"].cast < int_scalar_source::listener >();
+      //   psocket->::i32_scalar_manager::m_plistener = set["i32_scalar_source_listener"].cast < i32_scalar_source::listener >();
 
       //}
 
@@ -2210,7 +2218,7 @@ namespace http
          if (straProxy.get_count() != 2 || !psocket->proxy_open(straProxy[0], atoi(straProxy[1])))
          {
 
-            set["get_status"] = (long long)error_http;
+            set["get_status"] = (::i64)error_http;
 
             auto tick2 = ::time::now();
 
@@ -2224,7 +2232,7 @@ namespace http
       else if (!psocket->open(bConfigProxy))
       {
 
-         set["get_status"] = (long long)error_http;
+         set["get_status"] = (::i64)error_http;
 
          information() << LOG_HTTP_PREFIX << "> Not Opened/Connected Result Total time ::http::platform::context::get(\"" << url.as_string().truncated(255) << "\") " << tick1.elapsed().integral_second();
 
@@ -2236,7 +2244,7 @@ namespace http
 
       psockethandler->add(psocket);
 
-      int iIteration = 1;
+      ::i32 iIteration = 1;
 
       //::apex::live_signal keeplive;
 
@@ -2250,7 +2258,7 @@ namespace http
       if (set.has_property("maximum_connection_retry_count"))
       {
 
-         psocket->SetMaximumConnectionRetryCount(set["maximum_connection_retry_count"].as_int());
+         psocket->SetMaximumConnectionRetryCount(set["maximum_connection_retry_count"].as_i32());
 
       }
 
@@ -2277,11 +2285,11 @@ namespace http
 
       }
 
-      long long iContentLength = -1;
+      ::i64 iContentLength = -1;
 
-      long long iBodySizeDownloaded = -1;
+      ::i64 iBodySizeDownloaded = -1;
 
-      int iEnteredLoop = 0;
+      ::i32 iEnteredLoop = 0;
 
       tick1 = ::time::now();
 
@@ -2326,13 +2334,13 @@ namespace http
 
          iContentLength = psocket->m_iContentLength;
 
-         psocket->socket_handler()->select((int)iSelectTimeoutSeconds, 0);
+         psocket->socket_handler()->select((::i32)iSelectTimeoutSeconds, 0);
 
          set["http_content_length"] = iContentLength;
 
-         double dRateDownloaded = 0.0;
+         ::f64 dRateDownloaded = 0.0;
 
-         long long iBodySizeDownloadedNow = set["http_body_size_downloaded"].as_long_long();
+         ::i64 iBodySizeDownloadedNow = set["http_body_size_downloaded"].as_i64();
 
          if (iBodySizeDownloadedNow > iBodySizeDownloaded)
          {
@@ -2363,7 +2371,7 @@ namespace http
             if (iBodySizeDownloaded > 0.0)
             {
 
-               dRateDownloaded = (double)iBodySizeDownloaded / (double)iContentLength;
+               dRateDownloaded = (::f64)iBodySizeDownloaded / (::f64)iContentLength;
 
             }
 
@@ -2396,12 +2404,17 @@ namespace http
 
          if (psocket->m_b_complete && (!psocket->m_pwebsocket || !psocket->m_pwebsocket->m_bWebSocket))
          {
+#if HTTP_DEBUG_LEVEL >= DEBUG_LEVEL_NORMAL
 
             information() << LOG_HTTP_PREFIX << "Complete! in "<< iIteration <<" steps " << tick1.elapsed().integral_second();
+            
+#endif
 
             break;
 
          }
+         
+#if HTTP_DEBUG_LEVEL >= DEBUG_LEVEL_SICK
 
          if (iContentLength >= 0)
          {
@@ -2416,13 +2429,9 @@ namespace http
 
          }
 
-
-         if (HTTP_DEBUG_LEVEL >= DEBUG_LEVEL_SICK)
-         {
-
-            information() << LOG_HTTP_PREFIX << "iSelectTimeoutSeconds=" << iSelectTimeoutSeconds;
-
-         }
+         information() << LOG_HTTP_PREFIX << "iSelectTimeoutSeconds=" << iSelectTimeoutSeconds;
+         
+#endif
 
          iIteration++;
 
@@ -2440,9 +2449,9 @@ namespace http
 
       ::e_status estatus = error_failed;
 
-      int iStatusCode;
+      ::i32 iStatusCode;
 
-      iStatusCode = psocket->outattr("http_status_code").as_int();
+      iStatusCode = psocket->outattr("http_status_code").as_i32();
 
       set["http_status_code"] = iStatusCode;
 
@@ -2468,7 +2477,15 @@ namespace http
 
       iBodySizeDownloaded = psocket->m_body_size_downloaded;
 
-      information() << LOG_HTTP_PREFIX
+      bool bSick = false;
+#if HTTP_DEBUG_LEVEL >= DEBUG_LEVEL_SICK
+      bSick = true;
+#endif
+      
+      if(!psocket->m_b_complete || bSick)
+      {
+         
+         information() << LOG_HTTP_PREFIX
          << url.as_string()
          << " HTTP Status Code : "
          << iStatusCode
@@ -2482,6 +2499,34 @@ namespace http
          << iEnteredLoop
          << ", "
          << (psocket->m_b_complete ? "Finished!" : "Incomplete!");
+         
+      }
+      else
+      {
+         
+         information()
+         << "\n"
+         << "\n"
+         << "http_get         : "
+         << iHttpGetSerial
+         << "\n"
+         << "URL              : "
+         << url.as_string()
+         << "\n"
+         << "HTTP Status Code : "
+         << iStatusCode
+         << "\n"
+         << "HTTP Status      : "
+         << strStatus
+         << "\n"
+         << (bChunked ?
+            "Chunk Size       : " :
+            "Content Length   : ")
+         << (bChunked ? (memsize)iChunkSize :(memsize)iContentLength)
+         << "\n"
+         ;
+         
+      }
          //iHttpGetSerial,
          //.c_str(),
          //,
@@ -2709,9 +2754,11 @@ namespace http
 
          ::property_set & set = pmessage->property_set();
 
-         single_lock synchronouslock(system()->m_pmutexHttpDownload, true);
+         single_lock synchronouslock(download_mutex(), true);
+         
+         auto url = pmessage->m_url;
 
-         if (!(system()->m_straHttpDownloading.contains(pmessageMessage->m_url.as_string())) && !exists(pmessageMessage->m_url.as_string(), set))
+         if (!is_downloading(url) && !is_checking_existence(url))
          {
 
             synchronouslock.unlock();
@@ -2765,7 +2812,7 @@ namespace http
       if (!http_get(psocket, pmessageMessage->m_url, set))
       {
 
-         pmessageMessage->m_estatusRet = (::e_status) set["get_status"].as_long_long();
+         pmessageMessage->m_estatusRet = (::e_status) set["get_status"].as_i64();
 
          pmessageMessage->m_bRet = false;
 
@@ -2780,13 +2827,13 @@ namespace http
 
       }
 
-      pmessageMessage->m_estatusRet = (::e_status) set["get_status"].as_long_long();
+      pmessageMessage->m_estatusRet = (::e_status) set["get_status"].as_i64();
 
       pmessageMessage->payload("out_headers") = psocket->outheaders();
 
-      int iStatusCode;
+      ::i32 iStatusCode;
 
-      iStatusCode = psocket->outattr("http_status_code").as_int();
+      iStatusCode = psocket->outattr("http_status_code").as_i32();
 
       pmessage->m_bRet = iStatusCode == 200;
 
@@ -2868,14 +2915,14 @@ namespace http
    ::file::enum_type context::get_type(const ::url::url & url, ::property_set & set)
    {
 
-      single_lock synchronouslock(system()->m_pmutexHttpDownload, true);
+      single_lock synchronouslock(download_mutex(), true);
 
-      int iStatusCode = 0;
+      ::i32 iStatusCode = 0;
 
       try
       {
 
-         while (system()->m_straHttpExists.contains(url))
+         while (is_checking_existence(url))
          {
 
             synchronouslock.unlock();
@@ -2886,7 +2933,7 @@ namespace http
 
          }
 
-         system()->m_straHttpExists.add(url.as_string());
+         m_straHttpCheckingExistence.add(url.as_string());
 
          synchronouslock.unlock();
 
@@ -2912,13 +2959,13 @@ namespace http
 
             synchronouslock.lock();
 
-            system()->m_straHttpExists.erase(url);
+            m_straHttpCheckingExistence.erase(url);
 
             return ::file::e_type_doesnt_exist;
 
          }
 
-         iStatusCode = psocket->outattr("http_status_code").as_int();
+         iStatusCode = psocket->outattr("http_status_code").as_i32();
 
          synchronouslock.lock();
 
@@ -2928,7 +2975,7 @@ namespace http
 
       }
 
-      system()->m_straHttpExists.erase(url);
+      m_straHttpCheckingExistence.erase(url);
 
       bool bExists = iStatusCode == 200;
 
@@ -2964,9 +3011,9 @@ namespace http
 
       }
 
-      int iStatusCode;
+      ::i32 iStatusCode;
 
-      iStatusCode = psocket->outattr("http_status_code").as_int();
+      iStatusCode = psocket->outattr("http_status_code").as_i32();
 
       if (iStatusCode == 200)
       {

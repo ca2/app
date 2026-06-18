@@ -3,7 +3,7 @@
 #undef CoreApplication
 
 [MTAThread]
-int main(Array<String^>^)
+::i32 main(Array<String^>^)
 {
 
    return app_core_main("m_app.exe : app=app-core/helloworld experience=rootkiller client_only");
@@ -15,7 +15,7 @@ int main(Array<String^>^)
 
 
 /*[MTAThread]
-int main(Array<String^>^)
+::i32 main(Array<String^>^)
 {
    
    // No Depends

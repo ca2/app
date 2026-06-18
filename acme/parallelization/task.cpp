@@ -29,7 +29,7 @@
 
 #ifdef LINUX
 
-int SetThreadAffinityMask(htask h, unsigned int dwThreadAffinityMask);
+::i32 SetThreadAffinityMask(htask h, ::u32 dwThreadAffinityMask);
 
 #endif
 
@@ -72,16 +72,18 @@ extern bool g_bIntermediateThreadReferencingDebugging;
 
 CLASS_DECL_ACME void exception_message_box(::particle * pparticle, ::exception & exception, const ::scoped_string & scopedstrMoreDetails);
 
+::interlocked_i64 g_iTaskObjectSerialId;
 
 task::task()
 {
-
+   m_hnTaskFlag = 0;
+   m_iTaskObjectSerialId = g_iTaskObjectSerialId++;
    m_timeSample = 1_s;
    //m_bAutoRelease = false;
 
    m_pfnImplement = nullptr;
    m_iExitCode = 0;
-   m_hnTaskFlag = 0;
+   m_bAutoStartOnTimerAdded = true;
 
    m_timeDefaultPostedProcedureTimeout = 500_ms;
 
@@ -111,7 +113,7 @@ task::task()
    m_htask = nullptr;
    m_itask = nullptr;
    m_taskindex = 0;
-   m_bKeepRunningPostedProcedures = false;
+   m_bRunMainLoop = false;
 
 }
 
@@ -134,6 +136,15 @@ task::~task()
 }
 
 
+void task::on_new_main_loop_happening_creation()
+{
+
+   m_synchronizationaMainLoop.add(m_pmanualresethappeningMainLoop);
+
+}
+
+
+
 void task::on_initialize_particle()
 {
 
@@ -143,7 +154,7 @@ void task::on_initialize_particle()
 
    ::handler::handler::on_initialize_particle();
 
-   m_synchronizationaMainLoop.add(new_main_loop_happening());
+   //m_synchronizationaMainLoop.add(new_main_loop_happening());
 
    update_new_main_loop_happening();
 
@@ -440,7 +451,7 @@ bool task::task_set_name(const ::scoped_string & scopedstrTaskName)
 }
 
 
-bool task::task_get_run() const
+bool task::should_run() const
 {
 
    if(!has_finishing_flag())
@@ -598,11 +609,97 @@ void task::set_finish()
 
 }
 
+#if defined(WINDOWS_DESKTOP)
+void task::add_msg_translator(::function<bool(MSG*)> msgtranslator)
+{
 
+   critical_section_lock criticalsectionlock(&m_criticalsectionMsgTranslator);
+
+   m_msgtranslatora.add(msgtranslator);
+
+}
+#endif
+
+       void task::on_start_timers_handling_hint() {
+
+
+    if (m_bAutoStartOnTimerAdded) {
+        if (!is_task_set2()) {
+
+           _synchronous_lock synchronouslock(this->synchronization());
+
+           if (!is_task_set2())
+           {
+
+              branch();
+           }
+
+        }
+    }
+
+}
+   void task::on_stop_timers_handling_hint() {
+
+}
+
+#if defined(WINDOWS_DESKTOP)
+
+void task::erase_msg_translator(::function<bool(MSG *)> msgtranslator)
+{
+
+   critical_section_lock criticalsectionlock(&m_criticalsectionMsgTranslator);
+
+   m_msgtranslatora.erase(msgtranslator);
+
+}
+
+
+bool task::msg_translator_handlers(MSG* pmsg)
+{
+
+    // if (m_pmainwindow->m_pclientsite->m_pinplacesite->m_pinplaceframe->m_pinplaceactiveobject)
+   // {
+   //
+   //    HRESULT hr =
+   for (::i32 i = 0; i < m_msgtranslatora.size(); i++)
+   {
+
+      critical_section_lock criticalsectionlock(&m_criticalsectionMsgTranslator);
+
+      if (i < m_msgtranslatora.size())
+      {
+
+         auto ptranslator = m_msgtranslatora[i];
+
+         criticalsectionlock.unlock();
+
+         if ((*ptranslator)(pmsg))
+         {
+
+            return true;
+         }
+      }
+   }
+
+   return false;
+
+}
+
+
+//void task::erase_msg_translator(::function<bool(MSG *)> msgtranslator)
+//{
+//   
+//   
+//   
+//}
+
+
+
+#endif
 
 
 void task::on_single_lock_lock(subparticle *psubparticleSynchronization, const subparticle *psubparticleContext,
-                         const_char_pointer pszFile, int iLine)
+                         const_char_pointer pszFile, ::i32 iLine)
 {
 
 #ifdef _DEBUG
@@ -677,7 +774,7 @@ void task::__priority_and_affinity()
 
 #if defined(WINDOWS_DESKTOP)
 
-      int_bool bOk = ::SetThreadAffinityMask((HANDLE) m_htask.m_h, (unsigned int)m_uThreadAffinityMask) != 0;
+      ::i32_bool bOk = ::SetThreadAffinityMask((HANDLE) m_htask.m_h, (::u32)m_uThreadAffinityMask) != 0;
 
       if (bOk)
       {
@@ -694,7 +791,7 @@ void task::__priority_and_affinity()
 
 #elif defined(LINUX)
 
-      int_bool bOk = ::SetThreadAffinityMask(m_htask, (unsigned int)m_uThreadAffinityMask) != 0;
+      ::i32_bool bOk = ::SetThreadAffinityMask(m_htask, (::u32)m_uThreadAffinityMask) != 0;
 
       if (bOk)
       {
@@ -938,7 +1035,18 @@ void task::set_task()
    if (bEmpty || bIsTaskName)
    {
 
-      m_strTaskName.formatf("task %" PRIdPTR, m_taskindex);
+      if (id().has_character())
+      {
+         
+         m_strTaskName = id();
+
+      }
+      else
+      {
+
+         m_strTaskName.formatf("task %" PRIdPTR, m_taskindex);
+
+      }
 
    }
 
@@ -1018,7 +1126,6 @@ void task::unset_task()
    //::set_task(nullptr);
 
 }
-
 
 
 void task::main()
@@ -1101,98 +1208,145 @@ void task::main()
 }
 
 
-void task::run_loop()
+void task::run_loop1(::task * ptask)
+{
+   
+   node()->run_loop1(ptask);
+
+}
+
+
+void task::run_loop2(::task * ptask)
 {
 
-   while (task_get_run())
+   auto pacmewindowing = system()->m_pacmewindowing;
+
+   if (::is_null(pacmewindowing))
    {
 
-      task_run(m_timeSample);
-      
-      if(m_pfinishing)
-      {
-         
-         if(has_child_task())
-         {
-            
-            if(m_pfinishing->has_finishing_timed_out(30_minute))
-            {
-               
-               break;
-               
-            }
-            
-         }
-         else
-         {
-            
-            if(m_pfinishing->has_finishing_timed_out(1_s))
-            {
-               
-               break;
-               
-            }
+      run_loop1(ptask);
 
-         }
-         
-      }
+   }
+   else
+   {
+
+      pacmewindowing->run_loop2(this);
 
    }
 
 }
 
 
+
+void task::run_loop()
+{
+
+   if (m_bMessageThread2)
+   {
+
+      run_loop2(this);
+
+   }
+   else
+   {
+
+      run_loop1(this);
+
+   }
+   
+}
+
+
+void task::run_default_loop1()
+{
+   
+   while (task_get_run())
+   {
+
+      task_run(m_timeSample);
+
+      if (m_pfinishing)
+      {
+
+         if (has_child_task())
+         {
+
+            if (m_pfinishing->has_finishing_timed_out(30_minute))
+            {
+
+               break;
+            }
+         }
+         else
+         {
+
+            if (m_pfinishing->has_finishing_timed_out(1_s))
+            {
+
+               break;
+            }
+         }
+      }
+   }
+
+}
+
+
+
 void task::run()
 {
 
-   at_end_of_scope
+   if (m_bRunMainLoop)
    {
 
-      m_eflagElement -= e_flag_running;
+      run_main_loop();
 
-   };
+   }
+
+}
+
+
+void task::run_main_loop()
+{
+
+   at_end_of_scope { m_eflagElement -= e_flag_running; };
 
    m_eflagElement += e_flag_running;
 
    try
    {
 
-      task_iteration();
+      //task_iteration();
 
-      bool b = m_bKeepRunningPostedProcedures;
+      //bool b = m_bKeepRunningPostedProcedures;
 
-      if (defer_implement(m_papplication))
-      {
+      //if (defer_implement(m_papplication))
+      //{
 
-         return;
+        // return;
+      //}
 
-      }
-
-      if (b)
-      {
+      //if (b)
+      //{
 
          run_loop();
-
-      }
-
+      //}
    }
-   catch (const ::exit_exception & e)
+   catch (const ::exit_exception &e)
    {
 
       set_finishing_flag();
 
       m_estatus = e.m_estatus;
-
    }
-   catch (::exception & exception)
+   catch (::exception &exception)
    {
 
       string strMoreDetails;
 
       strMoreDetails = "task::run";
 
-      send(__initialize_new ::message_box_payload(exception,  strMoreDetails));
-
+      send(__initialize_new ::message_box_payload(exception, strMoreDetails));
    }
 
 }
@@ -1257,6 +1411,8 @@ bool task::task_iteration()
    handle_next_posted_request();
 
    handle_posted_procedures();
+
+    handle_timers();
    
    return true;
 
@@ -1347,6 +1503,15 @@ bool task::task_wait(const class ::time & timeRemaining)
 
 bool task::handle_messages()
 {
+
+   auto pacmewindowing = system()->m_pacmewindowing;
+
+   if (pacmewindowing)
+   {
+      
+      return pacmewindowing->handle_messages();
+
+   }
 
    return true;
 
@@ -1449,6 +1614,12 @@ void task::destroy()
       m_phappeningFinished2->set_happening();
 
    }
+
+   //bool bHasFinishingFlag1 = has_finishing_flag();
+
+   //set_finish();
+
+   //bool bHasFinishingFlag2 = has_finishing_flag();
 
    ::object::destroy();
 
@@ -1559,13 +1730,13 @@ bool task::is_thread_class() const
 
 
 #ifdef WINDOWS
-unsigned int WINAPI task::s_os_task(void * p)
+::u32 WINAPI task::s_os_task(void * p)
 #else
 void * task::s_os_task(void * p)
 #endif
 {
 
-   int iExitCode = 0;
+   ::i32 iExitCode = 0;
 
    {
 
@@ -1610,7 +1781,7 @@ void * task::s_os_task(void * p)
    }
 
 #ifdef WINDOWS
-   return (unsigned int) iExitCode;
+   return (::u32) iExitCode;
 #else
    return (void *)(iptr) iExitCode;
 #endif
@@ -1795,32 +1966,46 @@ CLASS_DECL_ACME bool os_on_init_thread();
 CLASS_DECL_ACME void os_on_term_thread();
 
 
-int task::__task_main()
+::i32 task::__task_main()
 //void task::__task_main(::procedure & procedureTaskEnded)
 //void task::__task_main()
 {
 
-   int iExitCode = -1;
+   ::i32 iExitCode = -1;
 
    //::pointer < manual_reset_happening > pmanualresethappeningFinished;
    ::os_on_init_thread();
 
+   iExitCode = call_main();
+   
+   ::os_on_term_thread();
+
+   return iExitCode;
+
+}
+
+
+::i32 task::call_main()
+{
+
+   ::i32 iExitCode = -1;
+   
    try
    {
 
       __check_refdbg
 
-      //os_task_init_term ostaskinitterm;
-      
+      // os_task_init_term ostaskinitterm;
+
       __task_init();
-         
-      //__check_refdbg
-
-         //::set_task(this);
 
       //__check_refdbg
 
-         //      ptask->_os_task();
+      //::set_task(this);
+
+      //__check_refdbg
+
+      //      ptask->_os_task();
 
 #if 0
 
@@ -1828,7 +2013,10 @@ int task::__task_main()
 
 #endif
 
-      //ptask->release(REFERENCING_DEBUGGING_P_FUNCTION_LINE(ptask));
+      // ptask->release(REFERENCING_DEBUGGING_P_FUNCTION_LINE(ptask));
+
+
+      auto taskindex = m_taskindex;
 
       try
       {
@@ -1836,33 +2024,29 @@ int task::__task_main()
          main();
 
          iExitCode = m_iExitCode;
-
       }
-      catch (::exit_exception & exitexception)
+      catch (::exit_exception &exitexception)
       {
 
          error() << "Exit Exception reached task procedure (1)";
 
          exitexception.finish(this);
-
       }
-      catch (::exception & exception)
+      catch (::exception &exception)
       {
 
          error() << "Exception reached task procedure : " << exception;
          error() << "Exception call stack : " << exception.m_strCallStackTrace;
-
       }
       catch (...)
       {
 
          error() << "Exception reached task procedure (...)";
-
       }
 
-      //auto psystem = system();
+      // auto psystem = system();
 
-      //if (psystem)
+      // if (psystem)
       //{
 
       //   auto ptaskmessagequeue = psystem->m_ptaskmessagequeue;
@@ -1876,7 +2060,7 @@ int task::__task_main()
 
       //}
 
-      ///release();
+      /// release();
 
       //::task_release(REFERENCING_DEBUGGING_P_FUNCTION_FILE_LINE(ptask));
 
@@ -1889,35 +2073,29 @@ int task::__task_main()
          {
 
             check_pending_releases();
-
          }
-
       }
 
 #endif
 
-      //try
+      // try
       //{
 
       //   on_before_destroy_task();
 
       //}
-      //catch (...)
+      // catch (...)
       //{
 
       //}
 
-      //procedureTaskEnded = ::transfer(m_procedureTaskEnded);
+      // procedureTaskEnded = ::transfer(m_procedureTaskEnded);
 
       __task_term();
-
    }
    catch (...)
    {
-
    }
-   
-   ::os_on_term_thread();
 
    return iExitCode;
 
@@ -2071,7 +2249,7 @@ void task::post(const ::procedure & procedure)
 
       m_procedurea2.add(procedure);
 
-      new_main_loop_happening()->set_happening();
+      kick_idle();
 
       //update_new_main_loop_happening();
 
@@ -2383,7 +2561,7 @@ bool task::on_get_task_name(string & strTaskName)
       strTaskName = m_strTaskName;
 
    }
-   else
+   else if (::platform::type(this).name().has_character())
    {
 
       //::task_set_name(::platform::type(this).name());
@@ -2400,11 +2578,16 @@ bool task::on_get_task_name(string & strTaskName)
 void task::set_happened(e_happening ehappening)
 {
 
-   _synchronous_lock synchronouslock(this->synchronization(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
+   if (m_pmanualresethappeningMainLoop || ehappening != e_happening_finish)
+   {
 
-   m_ehappeninga.add(ehappening);
+      _synchronous_lock synchronouslock(this->synchronization(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 
-   new_main_loop_happening()->set_happening();
+      m_ehappeninga.add(ehappening);
+
+      new_main_loop_happening()->set_happening();
+
+   }
 
    //update_new_main_loop_happening();
 
@@ -2452,7 +2635,25 @@ void task::call_init_task()
 void task::init_task()
 {
 
-   #ifdef WINDOWS
+   auto iTaskObjectSerialId = m_iTaskObjectSerialId;
+
+   string strTaskName;
+
+   if (id() == "timer_handler")
+   {
+
+      information("timer_handler");
+
+   }
+
+   if (on_get_task_name(strTaskName))
+   {
+
+      task_set_name(strTaskName);
+
+   }
+
+#ifdef WINDOWS
 
    if (m_bCoInitialize)
    {
@@ -2461,16 +2662,7 @@ void task::init_task()
 
    }
 
-   #endif
-
-   string strTaskName;
-
-   if (on_get_task_name(strTaskName))
-   {
-
-      task_set_name(strTaskName);
-
-   }
+#endif
 
    if (::platform::type(this).name().contains("synth_thread"))
    {
@@ -2648,8 +2840,8 @@ bool task::has_message() const
 //void task::branch(
 //   ::particle * pparticle,
 //   ::enum_priority epriority,
-//   unsigned int nStackSize,
-//   unsigned int uCreateFlags ARG_SEC_ATTRS)
+//   ::u32 nStackSize,
+//   ::u32 uCreateFlags ARG_SEC_ATTRS)
 //{
 //
 //   m_pelement = pelement;
@@ -2729,6 +2921,17 @@ void task::branch(enum_parallelization eparallelization, const ::create_task_att
 
    }
 
+   _synchronous_lock synchronouslock(this->synchronization());
+
+   if (m_bBranchCall)
+   {
+
+      return;
+
+   }
+
+   m_bBranchCall = true;
+
    if (id().is_empty())
    {
 
@@ -2749,6 +2952,8 @@ void task::branch(enum_parallelization eparallelization, const ::create_task_att
 
    if (id().is_empty() || id() == "task" || id() == "thread")
    {
+
+      m_bBranchCall = false;
 
       throw ::exception(error_bad_argument);
 
@@ -2782,19 +2987,19 @@ void task::branch(enum_parallelization eparallelization, const ::create_task_att
 
       dwDisplacement = 0;
 
-      unsigned int maxframes = sizeof(uia) / sizeof(uia[0]);
+      ::u32 maxframes = sizeof(uia) / sizeof(uia[0]);
 
       ULONG BackTraceHash;
 
-      int iAddressWrite = RtlCaptureStackBackTrace(0, maxframes, reinterpret_cast<PVOID *>(&uia), &BackTraceHash);
+      ::i32 iAddressWrite = RtlCaptureStackBackTrace(0, maxframes, reinterpret_cast<PVOID *>(&uia), &BackTraceHash);
 
-      char sz[1024];
+      ::i8 sz[1024];
 
       zero(sz);
 
       engine_symbol(sz, sizeof(sz), &dwDisplacement, uia[5]);
 
-      unsigned int uiLine = 0;
+      ::u32 uiLine = 0;
 
       {
          critical_section_lock csl(&::exception_engine().m_criticalsection);
@@ -2930,7 +3135,7 @@ void task::branch(enum_parallelization eparallelization, const ::create_task_att
 
    }
 
-   int iError = pthread_create(
+   ::i32 iError = pthread_create(
       (pthread_t *)&m_htask,
       &taskAttr,
       &task::s_os_task,
@@ -3024,19 +3229,19 @@ void task::branch_synchronously(const ::create_task_attributes_t & createtaskatt
 //
 //      dwDisplacement = 0;
 //
-//      unsigned int maxframes = sizeof(uia) / sizeof(uia[0]);
+//      ::u32 maxframes = sizeof(uia) / sizeof(uia[0]);
 //
 //      ULONG BackTraceHash;
 //
-//      int iAddressWrite = RtlCaptureStackBackTrace(0, maxframes, reinterpret_cast<PVOID*>(&uia), &BackTraceHash);
+//      ::i32 iAddressWrite = RtlCaptureStackBackTrace(0, maxframes, reinterpret_cast<PVOID*>(&uia), &BackTraceHash);
 //
-//      char sz[1024];
+//      ::i8 sz[1024];
 //
 //      zero(sz);
 //
 //      engine_symbol(sz, sizeof(sz), &dwDisplacement, uia[5]);
 //
-//      unsigned int uiLine = 0;
+//      ::u32 uiLine = 0;
 //
 //      {
 //         critical_section_lock csl(&::exception_engine().m_criticalsection);
@@ -3193,19 +3398,19 @@ void task::branch_synchronously(const ::create_task_attributes_t & createtaskatt
    //
    //      dwDisplacement = 0;
    //
-   //      unsigned int maxframes = sizeof(uia) / sizeof(uia[0]);
+   //      ::u32 maxframes = sizeof(uia) / sizeof(uia[0]);
    //
    //      ULONG BackTraceHash;
    //
-   //      int iAddressWrite = RtlCaptureStackBackTrace(0, maxframes, reinterpret_cast<PVOID *>(&uia), &BackTraceHash);
+   //      ::i32 iAddressWrite = RtlCaptureStackBackTrace(0, maxframes, reinterpret_cast<PVOID *>(&uia), &BackTraceHash);
    //
-   //      char sz[1024];
+   //      ::i8 sz[1024];
    //
    //      zero(sz);
    //
    //      engine_symbol(sz, sizeof(sz), &dwDisplacement, uia[5]);
    //
-   //      unsigned int uiLine = 0;
+   //      ::u32 uiLine = 0;
    //
    //      {
    //         critical_section_lock csl(&::exception_engine().m_criticalsection);
@@ -3424,7 +3629,7 @@ bool task::task_sleep(const class time & timeWait)
 //}
 
 
-//void task::branch(::particle * pparticle, ::enum_priority epriority, unsigned int nStackSize, unsigned int uCreateFlags ARG_SEC_ATTRS)
+//void task::branch(::particle * pparticle, ::enum_priority epriority, ::u32 nStackSize, ::u32 uCreateFlags ARG_SEC_ATTRS)
 //{
 //
 //   auto ptask = allocateø task();
@@ -3484,7 +3689,23 @@ bool task::task_sleep(const class time & timeWait)
 void task::kick_idle()
 {
 
-   post([]() {});
+#if defined(WINDOWS_DESKTOP)
+   if (m_bMessageThread2)
+   {
+
+      ::PostThreadMessage((DWORD) m_itask, ::user::e_message_kick_idle, 0, 0);
+
+   }
+   else
+#endif
+   if (m_pmanualresethappeningMainLoop)
+   {
+
+      m_pmanualresethappeningMainLoop->set_happening();
+
+   }
+
+   //post([]() {});
 
 }
 
@@ -3543,10 +3764,10 @@ void task::synchronous_procedure(bool bAtAnotherThread, const procedure & proced
 
 
 
-CLASS_DECL_ACME bool __task_sleep(task * task)
+CLASS_DECL_ACME bool __task_sleep(task * ptask)
 {
 
-   while (task->task_get_run())
+   while (ptask->should_run())
    {
 
       preempt(100_ms);
@@ -3564,7 +3785,7 @@ CLASS_DECL_ACME bool __task_sleep(task * ptask, const class time & timeWait)
    if (timeWait < 1000_ms)
    {
 
-      if (!ptask->task_get_run())
+      if (!ptask->should_run())
       {
 
          return false;
@@ -3573,7 +3794,7 @@ CLASS_DECL_ACME bool __task_sleep(task * ptask, const class time & timeWait)
 
       preempt(timeWait);
 
-      return ptask->task_get_run();
+      return ptask->should_run();
 
    }
 
@@ -3599,7 +3820,7 @@ CLASS_DECL_ACME bool __task_sleep(task * ptask, const class time & timeWait)
 
       }
 
-      if (!ptask->task_get_run())
+      if (!ptask->should_run())
       {
 
          return false;
@@ -3608,7 +3829,7 @@ CLASS_DECL_ACME bool __task_sleep(task * ptask, const class time & timeWait)
 
       ptask->m_pevSleep->wait(timeWait);
 
-      if (!ptask->task_get_run())
+      if (!ptask->should_run())
       {
 
          return false;
@@ -3621,7 +3842,7 @@ CLASS_DECL_ACME bool __task_sleep(task * ptask, const class time & timeWait)
 
    }
 
-   return ptask->task_get_run();
+   return ptask->should_run();
 
 }
 
@@ -3632,7 +3853,7 @@ CLASS_DECL_ACME bool __task_sleep(::task * ptask, ::particle * pparticle)
    try
    {
 
-      while (ptask->task_get_run())
+      while (ptask->should_run())
       {
 
          pparticle->_wait(100_ms);
@@ -3645,7 +3866,7 @@ CLASS_DECL_ACME bool __task_sleep(::task * ptask, ::particle * pparticle)
 
    }
 
-   return ptask->task_get_run();
+   return ptask->should_run();
 
 }
 
@@ -3656,7 +3877,7 @@ CLASS_DECL_ACME bool __task_sleep(task * ptask, const class time & timeWait, ::p
    if (timeWait < 1000_ms)
    {
 
-      if (!ptask->task_get_run())
+      if (!ptask->should_run())
       {
 
          return false;
@@ -3665,11 +3886,11 @@ CLASS_DECL_ACME bool __task_sleep(task * ptask, const class time & timeWait, ::p
 
       pparticle->_wait(timeWait);
 
-      return ptask->task_get_run();
+      return ptask->should_run();
 
    }
 
-   auto iTenths = (int)(timeWait.integral_millisecond() / 100);
+   auto iTenths = (::i32)(timeWait.integral_millisecond() / 100);
 
    try
    {
@@ -3678,7 +3899,7 @@ CLASS_DECL_ACME bool __task_sleep(task * ptask, const class time & timeWait, ::p
 
          ptask->m_pevSleep->_wait(100_ms);
 
-         if (!ptask->task_get_run())
+         if (!ptask->should_run())
          {
 
             return false;
@@ -3695,7 +3916,7 @@ CLASS_DECL_ACME bool __task_sleep(task * ptask, const class time & timeWait, ::p
 
    }
 
-   return ptask->task_get_run();
+   return ptask->should_run();
 
 }
 
@@ -3996,7 +4217,7 @@ CLASS_DECL_ACME bool __simple_task_sleep()
 //CLASS_DECL_ACME itask main_user_itask();
 
 
-CLASS_DECL_ACME bool predicate_Sleep(int iTime, ::function < bool(void) > functionOkToSleep)
+CLASS_DECL_ACME bool predicate_Sleep(::i32 iTime, ::function < bool(void) > functionOkToSleep)
 {
 
    if (iTime < 100)

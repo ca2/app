@@ -20,7 +20,7 @@ namespace user
 
       string               m_str;
 
-      ::int_rectangle      m_rectangle;
+      ::i32_rectangle      m_rectangle;
 
 
       text_format_object();

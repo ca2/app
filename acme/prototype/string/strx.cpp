@@ -6,15 +6,15 @@
 /* --------------------------------------------------------------------- */
 
 /*
-* Index into the table below with the first unsigned char of a UTF-8 sequence to
+* Index into the table below with the first ::u8 of a UTF-8 sequence to
 * get the number of trailing bytes that are supposed to follow it.
 * Note that *legal* UTF-8 values can't have 4 or 5-bytes. The table is
 * left as-is for anyone who may want to do such conversion, which was
 * allowed in earlier algorithms.
 */
-//const char trailingBytesForUTF8[256] =
+//const ::i8 trailingBytesForUTF8[256] =
 //{
-//   (const char)  -1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0, 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+//   (const ::i8)  -1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0, 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
 //   0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0, 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
 //   0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0, 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
 //   0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0, 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
@@ -31,7 +31,7 @@
 * This table contains as many values as there might be trailing bytes
 * in a UTF-8 sequence.
 */
-static const unsigned int offsetsFromUTF8[6] = { 0x00000000UL, 0x00003080UL, 0x000E2080UL,
+static const ::u32 offsetsFromUTF8[6] = { 0x00000000UL, 0x00003080UL, 0x000E2080UL,
                                              0x03C82080UL, 0xFA082080UL, 0x82082080UL
                                            };
 
@@ -39,7 +39,7 @@ static const unsigned int offsetsFromUTF8[6] = { 0x00000000UL, 0x00003080UL, 0x0
 //const_char_pointer unicode_next(const ::scoped_string & psz)
 //{
 //
-//   char len =  1 + trailingBytesForUTF8(*psz);
+//   ::i8 len =  1 + trailingBytesForUTF8(*psz);
 //   if(len == 0)      return nullptr;
 //   if(*psz++ == 0)   return nullptr;
 //   if(len == 1)      return psz;
@@ -58,11 +58,11 @@ static const unsigned int offsetsFromUTF8[6] = { 0x00000000UL, 0x00003080UL, 0x0
 
 
 
-int uni_to_utf8(char * dest, int ch)
+::i32 uni_to_utf8(char_pointer dest, ::i32 ch)
 {
    if (ch < 0x80)
    {
-      dest[0] = (char)ch;
+      dest[0] = (::i8)ch;
       return 1;
    }
    if (ch < 0x800)
@@ -90,7 +90,7 @@ int uni_to_utf8(char * dest, int ch)
 
 }
 
-int uni_to_utf8_2_or_more(char * dest, int ch)
+::i32 uni_to_utf8_2_or_more(char_pointer dest, ::i32 ch)
 {
    if (ch < 0x800)
    {
@@ -122,7 +122,7 @@ CLASS_DECL_ACME ::collection::count unichar_len(const ::wide_character * psz)
 {
    if(psz == nullptr)
       return -1;
-   int count = 0;
+   ::i32 count = 0;
    while(*psz != 0)
    {
       psz++;
@@ -136,7 +136,7 @@ CLASS_DECL_ACME ::collection::count unichar_len(const ::wide_character * psz)
 {
    if(psz == nullptr)
       return -1;
-   int count = 0;
+   ::i32 count = 0;
    while((psz = unicode_next(psz)) != nullptr)
    {
       count++;
@@ -148,7 +148,7 @@ CLASS_DECL_ACME ::collection::count unichar_len(const ::wide_character * psz)
 //{
 //   if(psz == nullptr)
 //      return -1;
-//   int count = 0;
+//   ::i32 count = 0;
 //   while(srclen > 0 && (psz = unicode_next(psz)) != nullptr)
 //   {
 //      count++;
@@ -164,7 +164,7 @@ void ansi_to_wd16(::wd16_character * pwsz, const_char_pointer psz)
    while(true)
    {
 
-      int len;
+      ::i32 len;
 
       auto iWd32 = unicode_index_length(psz, len);
 
@@ -201,7 +201,7 @@ void ansi_to_wd16_len(::wd16_character * pwsz, const_char_pointer psz, character
    while(srclen > 0 && psz != nullptr && *psz != '\0')
    {
 
-      int len;
+      ::i32 len;
 
       auto iWd32 = unicode_index_length(psz, len);
 
@@ -255,7 +255,7 @@ void ansi_to_wd16_len(::wd16_character *pwsz, const_char_pointer psz, character_
    while (count < srclen && *psz != '\0')
    {
 
-      int len;
+      ::i32 len;
 
       auto iWd32 = unicode_index_length(psz, len);
 
@@ -318,13 +318,13 @@ WCHAR * ansi_to_wd16(const_char_pointer psz)
 
 }*/
 
-int utf8_len(const ::wide_character * pwsz)
+::i32 utf8_len(const ::wide_character * pwsz)
 {
    if(pwsz == nullptr)
       return -1;
-   int count = 0;
-   int n;
-   char sz[16];
+   ::i32 count = 0;
+   ::i32 n;
+   ::i8 sz[16];
    while(*pwsz != L'\0')
    {
       n = *pwsz < 0x80 ? 1: uni_to_utf8_2_or_more(sz, *pwsz);
@@ -336,13 +336,13 @@ int utf8_len(const ::wide_character * pwsz)
    return count;
 }
 
-//int utf8_len_len(const ::wide_character * pwsz, character_count srclen)
+//::i32 utf8_len_len(const ::wide_character * pwsz, character_count srclen)
 //{
 //   if(pwsz == nullptr)
 //      return -1;
-//   int count = 0;
-//   int n;
-//   char sz[16];
+//   ::i32 count = 0;
+//   ::i32 n;
+//   ::i8 sz[16];
 //   while(srclen > 0 && *pwsz != L'\0')
 //   {
 //      n = *pwsz < 0x80 ? 1: uni_to_utf8_2_or_more(sz,*pwsz);
@@ -356,7 +356,7 @@ int utf8_len(const ::wide_character * pwsz)
 //}
 
 
-int x_size_of_tables()
+::i32 x_size_of_tables()
 {
 
    return sizeof(arr_idxCharInfo)+sizeof(arr_CharInfo)+sizeof(arr_idxCharInfo2)+sizeof(arr_CharInfo2);

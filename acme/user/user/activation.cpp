@@ -15,13 +15,13 @@ namespace user
 
    }
 
-
-   activation::activation(::user::enum_activation euseractivation) :
-      m_eactivation(euseractivation)
-   {
-
-
-   }
+   //
+   // activation::activation(::user::enum_activation euseractivation) :
+   //    m_eactivation(euseractivation)
+   // {
+   //
+   //
+   // }
 
 
    activation::activation(const ::user::e_activation & euseractivation) :
@@ -146,7 +146,7 @@ namespace user
    }
 
 
-   bool activation::operator & (const ::user::e_activation & useractivation) const
+   ::i32_boolean activation::operator & (const ::user::e_activation & useractivation) const
    {
 
       return m_eactivation & useractivation;

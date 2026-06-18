@@ -177,7 +177,7 @@ CLASS_DECL_ACME ::file::path_array_base & ascendants_path(const ::file::path & p
    //   }
    //}
 
-   //for (int i = 1; i < stra.get_size(); i++)
+   //for (::i32 i = 1; i < stra.get_size(); i++)
    //{
    //   str /= stra[i];
    //   pathaFolder.add(str);
@@ -217,28 +217,6 @@ CLASS_DECL_ACME ::file::path_array_base & ascendants_path(::file::path_array_bas
 }
 
 
-CLASS_DECL_ACME ::string_array_base & ascendants_name(::string_array_base & stra, const ::file::path & pathParam)
-{
-
-   if(pathParam.has_character())
-   {
-
-      auto path = pathParam;
-
-      do
-      {
-
-         stra.add(path.name());
-
-         path = path.folder();
-
-      } while (path.has_character());
-
-   }
-
-   return stra;
-
-}
 
 
 CLASS_DECL_ACME::file::path_array_base ascendants_path(const ::file::path& pathBase)
@@ -253,16 +231,16 @@ CLASS_DECL_ACME::file::path_array_base ascendants_path(const ::file::path& pathB
 }
 
 
-CLASS_DECL_ACME::string_array_base ascendants_name(const ::file::path& pathBase)
-{
-
-   ::string_array_base stra;
-
-   ascendants_name(stra, pathBase);
-
-   return ::transfer(stra);
-
-}
+// CLASS_DECL_ACME::string_array_base ascendants_name(const ::file::path& pathBase)
+// {
+//
+//    ::string_array_base stra;
+//
+//    ascendants_name(stra, pathBase);
+//
+//    return ::transfer(stra);
+//
+// }
 
 
 

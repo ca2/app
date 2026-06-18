@@ -67,7 +67,7 @@ namespace gpu_opengl
    }
 
 
-   void context_cgl::_create_cpu_buffer(const ::int_size & size)
+   void context_cgl::_create_cpu_buffer(const ::i32_size & size)
    {
 
       auto pgpuapproach = m_papplication->get_gpu_approach();
@@ -135,9 +135,9 @@ namespace gpu_opengl
 
       ::gpu::context_lock contextlock(this);
       
-//      unsigned long target = GL_TEXTURE_2D;
+//      ulong target = GL_TEXTURE_2D;
 //////
-//      unsigned long internalFormat = GL_RGBA;
+//      ulong internalFormat = GL_RGBA;
 //////
 //      long max_level = 0;
 //
@@ -482,13 +482,13 @@ void context_cgl::_defer_update_render_frame_buffer_unlocked()
       if(iFindPrecision >= 0)
       {
 
-         stra[iFindPrecision] = "precision highp float;";
+         stra[iFindPrecision] = "precision highp ::f32;";
 
       }
       else
       {
 
-         stra.insert_at(1, "precision highp float;");
+         stra.insert_at(1, "precision highp ::f32;");
 
          iFindPrecision = 1;
 
@@ -521,7 +521,7 @@ void context_cgl::_defer_update_render_frame_buffer_unlocked()
 void context_cgl::_create_window_context(::acme::windowing::window* pacmewindowingwindow)
 {
    
-   ::int_rectangle rectangle = pacmewindowingwindow->get_window_rectangle();
+   ::i32_rectangle rectangle = pacmewindowingwindow->get_window_rectangle();
    
    m_pacmewindowingwindowWindowSurface = pacmewindowingwindow;
    

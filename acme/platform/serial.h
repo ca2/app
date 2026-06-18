@@ -108,9 +108,9 @@ namespace serial
 #ifdef maximum
 # undef maximum
 #endif
-      static unsigned int maximum()
+      static ::u32 maximum()
       {
-         return numeric_info<unsigned int>::maximum();
+         return numeric_info<::u32>::maximum();
       }
       /*!
        * Convenience function to generate timeout structs using a
@@ -130,20 +130,20 @@ namespace serial
       /*! A multiplier against the number of requested bytes to wait after
        *  method read.
        */
-      unsigned int m_uReadTimeoutMultiplier;
+      ::u32 m_uReadTimeoutMultiplier;
       /*! A constant number of ::times to wait after method write. */
       class ::time m_timeWriteTimeoutConstant;
       /*! A multiplier against the number of requested bytes to wait after
        *  method write.
        */
-      unsigned int m_uWriteTimeoutMultiplier;
+      ::u32 m_uWriteTimeoutMultiplier;
 
 
       explicit timeout (const class time & timeInterByteTimeout=0_ms,
          const class time & timeReadTimeoutConstant=0_ms,
-                        unsigned int uReadTimeoutMultiplier=0,
+                        ::u32 uReadTimeoutMultiplier=0,
          const class time & timeWriteTimeoutConstant=0_ms,
-                        unsigned int uWriteTimeoutMultiplier=0)
+                        ::u32 uWriteTimeoutMultiplier=0)
          : m_timeInterByteTimeout(timeInterByteTimeout),
            m_timeReadTimeoutConstant(timeReadTimeoutConstant),
            m_uReadTimeoutMultiplier(uReadTimeoutMultiplier),
@@ -174,12 +174,12 @@ namespace serial
        *        which would be something like 'COM1' on Windows and '/dev/ttyS0'
        *        on Linux.
        *
-       * \lparam baudrate An unsigned 32-bit integer that represents the baudrate
+       * \lparam baudrate An ::u32 32-bit integer that represents the baudrate
        *
        * \lparam timeout A serial::timeout struct that defines the timeout
        * conditions for the serial port. \see serial::timeout
        *
-       * \lparam ebytesize Size of each unsigned char in the serial transmission of data,
+       * \lparam ebytesize Size of each ::u8 in the serial transmission of data,
        * default is e_byte_size_eight, possible values are: fivebits, sixbits, sevenbits,
        * e_byte_size_eight
        *
@@ -205,7 +205,7 @@ namespace serial
 
       virtual void initialize_serial(
          const string &port = "",
-         unsigned int baudrate = 9600,
+         ::u32 baudrate = 9600,
          struct timeout timeout = nullptr,
          enum_byte_size ebytesize = e_byte_size_eight,
          enum_parity eparity = e_parity_none,
@@ -273,9 +273,9 @@ namespace serial
        *  * A timeout occurred, in this case the number of bytes read will not
        *    match the amount requested, but no exception will be thrown.  One of
        *    two possible timeouts occurred:
-       *    * The inter unsigned char timeout expired, this means that number of
+       *    * The inter ::u8 timeout expired, this means that number of
        *      ::times elapsed between receiving bytes from the serial port
-       *      exceeded the inter unsigned char timeout.
+       *      exceeded the inter ::u8 timeout.
        *    * The total timeout expired, which is calculated by multiplying the
        *      read timeout multiplier by the number of requested bytes and then
        *      added to the read timeout constant.  If that total number of
@@ -283,8 +283,8 @@ namespace serial
        *      occur.
        *  * An exception occurred, in this case an actual exception will be thrown.
        *
-       * \lparam buffer An unsigned char array of at least the requested size.
-       * \lparam int_size A size_t defining how many bytes to be read.
+       * \lparam buffer An ::u8 array of at least the requested size.
+       * \lparam i32_size A size_t defining how many bytes to be read.
        *
        * \return A size_t representing the number of bytes read as a result of the
        *         call to read.
@@ -293,12 +293,12 @@ namespace serial
        * \throw ::exception( serial::serial_exception
        */
       virtual size_t
-      read (unsigned char *buffer, size_t size);
+      read (::u8 *buffer, size_t size);
 
       /*! Read a given amount of bytes from the serial port into a give buffer.
        *
-       * \lparam buffer A matter to a vector of unsigned char.
-       * \lparam int_size A size_t defining how many bytes to be read.
+       * \lparam buffer A matter to a vector of ::u8.
+       * \lparam i32_size A size_t defining how many bytes to be read.
        *
        * \return A size_t representing the number of bytes read as a result of the
        *         call to read.
@@ -312,7 +312,7 @@ namespace serial
       /*! Read a given amount of bytes from the serial port into a give buffer.
        *
        * \lparam buffer A matter to a string.
-       * \lparam int_size A size_t defining how many bytes to be read.
+       * \lparam i32_size A size_t defining how many bytes to be read.
        *
        * \return A size_t representing the number of bytes read as a result of the
        *         call to read.
@@ -326,7 +326,7 @@ namespace serial
       /*! Read a given amount of bytes from the serial port and return a string
        *  containing the data.
        *
-       * \lparam int_size A size_t defining how many bytes to be read.
+       * \lparam i32_size A size_t defining how many bytes to be read.
        *
        * \return A string containing the data read from the port.
        *
@@ -341,7 +341,7 @@ namespace serial
        * Reads from the serial port until a single line has been read.
        *
        * \lparam buffer A string matter used to store the data.
-       * \lparam int_size A maximum length of a line, defaults to 65536 (2^16)
+       * \lparam i32_size A maximum length of a line, defaults to 65536 (2^16)
        * \lparam eol A string to match against for the EOL.
        *
        * \return A size_t representing the number of bytes read.
@@ -356,7 +356,7 @@ namespace serial
        *
        * Reads from the serial port until a single line has been read.
        *
-       * \lparam int_size A maximum length of a line, defaults to 65536 (2^16)
+       * \lparam i32_size A maximum length of a line, defaults to 65536 (2^16)
        * \lparam eol A string to match against for the EOL.
        *
        * \return A string containing the line.
@@ -372,7 +372,7 @@ namespace serial
        * This requires a timeout > 0 before it can be run. It will read until a
        * timeout occurs and return a list_base of strings.
        *
-       * \lparam int_size A maximum length of combined lines, defaults to 65536 (2^16)
+       * \lparam i32_size A maximum length of combined lines, defaults to 65536 (2^16)
        *
        * \lparam eol A string to match against for the EOL.
        *
@@ -389,7 +389,7 @@ namespace serial
        * \lparam data A const matter containing the data to be written
        * to the serial port.
        *
-       * \lparam int_size A size_t that indicates how many bytes should be written from
+       * \lparam i32_size A size_t that indicates how many bytes should be written from
        * the given data buffer.
        *
        * \return A size_t representing the number of bytes actually written to
@@ -400,7 +400,7 @@ namespace serial
        * \throw ::exception( serial::io_exception
        */
       virtual size_t
-      write (const unsigned char *data, size_t size);
+      write (const ::u8 *data, size_t size);
 
       /*! Write a string to the serial port.
        *
@@ -457,11 +457,11 @@ namespace serial
       /*! Sets the timeout for reads and writes using the timeout struct.
        *
        * There are two timeout conditions described here:
-       *  * The inter unsigned char timeout:
+       *  * The inter ::u8 timeout:
        *    * The inter_byte_timeout component of serial::timeout defines the
        *      maximum amount of time, in ::times, between receiving bytes on
        *      the serial port that can pass before a timeout occurs.  Setting this
-       *      to zero will prevent inter unsigned char timeouts from occurring.
+       *      to zero will prevent inter ::u8 timeouts from occurring.
        *  * Total time timeout:
        *    * The constant and multiplier component of this timeout condition,
        *      for both read and write, are defined in serial::timeout.  This
@@ -474,7 +474,7 @@ namespace serial
        *      you asked for then set the read_timeout_constant component of
        *      serial::timeout to 1000 and the read_timeout_multiplier to zero.
        *      This timeout condition can be used in conjunction with the inter
-       *      unsigned char timeout condition with out any problems, timeout will simply
+       *      ::u8 timeout condition with out any problems, timeout will simply
        *      occur when one of the two timeout conditions is met.  This allows
        *      users to have maximum control over the trade-off between
        *      responsiveness and efficiency.
@@ -485,7 +485,7 @@ namespace serial
        *
        * A timeout of 0 enables non-blocking mode.
        *
-       * \lparam timeout A serial::timeout struct containing the inter unsigned char
+       * \lparam timeout A serial::timeout struct containing the inter ::u8
        * timeout, and the read and write timeout constants and multipliers.
        *
        * \see serial::timeout
@@ -493,8 +493,8 @@ namespace serial
       virtual void set_timeout (const struct timeout &timeout);
       /*! Sets the timeout for reads and writes. */
       virtual void set_timeout(const class ::time & inter_byte_timeout, const class ::time & read_timeout_constant,
-                  unsigned int read_timeout_multiplier, const class ::time & write_timeout_constant,
-                  unsigned int write_timeout_multiplier)
+                  ::u32 read_timeout_multiplier, const class ::time & write_timeout_constant,
+                  ::u32 write_timeout_multiplier)
       {
          struct timeout timeout(inter_byte_timeout, read_timeout_constant,
                          read_timeout_multiplier, write_timeout_constant,
@@ -524,7 +524,7 @@ namespace serial
        * \throw ::exception( invalid_argument
        */
       virtual void
-      setBaudrate (unsigned int baudrate);
+      setBaudrate (::u32 baudrate);
 
       /*! Gets the baudrate for the serial port.
        *
@@ -534,12 +534,12 @@ namespace serial
        *
        * \throw ::exception( invalid_argument
        */
-      virtual unsigned int
+      virtual ::u32
       getBaudrate () const;
 
       /*! Sets the ebytesize for the serial port.
        *
-       * \lparam ebytesize Size of each unsigned char in the serial transmission of data,
+       * \lparam ebytesize Size of each ::u8 in the serial transmission of data,
        * default is e_byte_size_eight, possible values are: fivebits, sixbits, sevenbits,
        * e_byte_size_eight
        *
@@ -629,7 +629,7 @@ namespace serial
 
       /*! Sends the RS-232 break signal.  See tcsendbreak(3). */
       virtual void
-      sendBreak (int time);
+      sendBreak (::i32 time);
 
       /*! Set the break condition to a given level.  Defaults to true. */
       virtual void
@@ -676,10 +676,10 @@ namespace serial
       virtual bool getCD ();
 
       // Read common function
-      virtual size_t _read(unsigned char *buffer, size_t size);
+      virtual size_t _read(::u8 *buffer, size_t size);
       
       // Write common function
-      virtual size_t _write(const unsigned char *data, size_t length);
+      virtual size_t _write(const ::u8 *data, size_t length);
 
 
       virtual void _flush();
@@ -695,9 +695,9 @@ namespace serial
 
 
    //::exception exception(const string& description);
-   //::exception io_exception(string file, int line, int errnum);
-   //::exception io_exception_descripton(string file, int line, const_char_pointer description);
-   //::exception port_opened_exception_descripton(string file, int line, const_char_pointer description);
+   //::exception io_exception(string file, ::i32 line, ::i32 errnum);
+   //::exception io_exception_descripton(string file, ::i32 line, const_char_pointer description);
+   //::exception port_opened_exception_descripton(string file, ::i32 line, const_char_pointer description);
 
    class serial_exception : public ::exception
    {
@@ -729,20 +729,20 @@ namespace serial
 //      // Disable copy constructors
 //      io_exception& operator=(const io_exception&);
 //      string file_;
-//      int line_;
+//      ::i32 line_;
 //      string e_what_;
-//      int errno_;
+//      ::i32 errno_;
    public:
-      explicit io_exception(string file, int line, int errnum) :
+      explicit io_exception(string file, ::i32 line, ::i32 errnum) :
          ::exception(error_serial_io)
       {
          //: file_(file), line_(line), errno_(errnum)
 //            ::string_stream str;
 //#if defined(_WIN32) && !defined(__MINGW32__)
-//         char error_str [1024];
+//         ::i8 error_str [1024];
 //         strerror_s(error_str, 1024, errnum);
 //#else
-//         char * error_str = strerror(errnum);
+//         char_pointer error_str = strerror(errnum);
 //#endif
 //         str << "IO Exception (" << errno_ << "): " << error_str;
 //         set_file(file_);
@@ -750,7 +750,7 @@ namespace serial
 //         e_what_ = str;
       }
 
-      explicit io_exception(string file, int line, const_char_pointer description) :
+      explicit io_exception(string file, ::i32 line, const_char_pointer description) :
          ::exception(error_serial_io)
       {
 //         ::string_stream str;
@@ -762,7 +762,7 @@ namespace serial
 //      virtual ~io_exception() noexcept {}
 //      io_exception (const io_exception& other) : line_(other.line_), e_what_(other.e_what_), errno_(other.errno_) {}
 //
-//      int getErrorNumber () const
+//      ::i32 getErrorNumber () const
 //      {
 //         return errno_;
 //      }

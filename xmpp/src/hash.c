@@ -30,7 +30,7 @@ struct _hashentry_t {
 };
 
 struct _hash_t {
-    unsigned int ref;
+    ::u32 ref;
     xmpp_ctx_t *ctx;
     hash_free_func free;
     int length;
@@ -39,7 +39,7 @@ struct _hash_t {
 };
 
 struct _hash_iterator_t {
-    unsigned int ref;
+    ::u32 ref;
     hash_t *table;
     hashentry_t *entry;
     int index;

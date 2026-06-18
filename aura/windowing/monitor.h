@@ -17,9 +17,9 @@ namespace windowing
 
 
       ::collection::index                                               m_iIndex;
-      ::int_rectangle                                       m_rectangle;
-      ::int_rectangle                                       m_rectangleWorkspace;
-      ::int_rectangle                                       m_rectangleFixedWorkspace;
+      ::i32_rectangle                                       m_rectangle;
+      ::i32_rectangle                                       m_rectangleWorkspace;
+      ::i32_rectangle                                       m_rectangleFixedWorkspace;
       ::pointer<::windowing::display>                       m_pdisplay;
 
 
@@ -27,25 +27,28 @@ namespace windowing
       ~monitor() override;
 
 
+      virtual void initialize_monitor(::windowing::display * pwindowingdisplay, int iMonitor);
+
+
       virtual void update_cache();
 
 
-      virtual unsigned int monitor_color_temperature();
-      virtual bool adjust_monitor( unsigned int dwTemperature, double dBrightness, double dwGamma);
+      virtual ::u32 monitor_color_temperature();
+      virtual bool adjust_monitor( ::u32 dwTemperature, ::f64 dBrightness, ::f64 dwGamma);
 
 
-      virtual ::int_rectangle monitor_rectangle();
-      virtual ::int_rectangle workspace_rectangle();
+      virtual ::i32_rectangle monitor_rectangle();
+      virtual ::i32_rectangle workspace_rectangle();
 
-      virtual ::int_rectangle _workspace_rectangle();
+      virtual ::i32_rectangle _workspace_rectangle();
 
 
-      virtual void set_workspace_rectangle(const ::int_rectangle & rectangle);
+      virtual void set_workspace_rectangle(const ::i32_rectangle & rectangle);
 
-      virtual void set_workspace_rectangle_left(int left);
-      virtual void set_workspace_rectangle_top(int top);
-      virtual void set_workspace_rectangle_right(int right);
-      virtual void set_workspace_rectangle_bottom(int bottom);
+      virtual void set_workspace_rectangle_left(::i32 left);
+      virtual void set_workspace_rectangle_top(::i32 top);
+      virtual void set_workspace_rectangle_right(::i32 right);
+      virtual void set_workspace_rectangle_bottom(::i32 bottom);
 
 
    };

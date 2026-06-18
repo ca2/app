@@ -16,11 +16,11 @@
 #include <openssl/md5.h>
 #include <openssl/err.h>
 
-//int SHA1_Init(SHA_CTX* c);
-//int SHA1_Update(SHA_CTX* c, const void* data, size_t len);
-//int SHA1_Final(unsigned char* md, SHA_CTX* c);
-//unsigned char* SHA1(const unsigned char* d, size_t n, unsigned char* md);
-//void SHA1_Transform(SHA_CTX* c, const unsigned char* data);
+//::i32 SHA1_Init(SHA_CTX* c);
+//::i32 SHA1_Update(SHA_CTX* c, const void* data, size_t len);
+//::i32 SHA1_Final(::u8* md, SHA_CTX* c);
+//::u8* SHA1(const ::u8* d, size_t n, ::u8* md);
+//void SHA1_Transform(SHA_CTX* c, const ::u8* data);
 
 // namespace str
 // {
@@ -31,7 +31,7 @@
    CLASS_DECL_APEX ::string as_string(EVP_MD_CTX * pctx)
    {
 
-      unsigned int md_len = 0;
+      ::u32 md_len = 0;
 
       memory memory;
 
@@ -47,7 +47,7 @@
    //CLASS_DECL_APEX ::string as_string(const WHIRLPOOL_CTX & ctx)
    //{
 
-   //   unsigned char digest[WHIRLPOOL_DIGEST_LENGTH];
+   //   ::u8 digest[WHIRLPOOL_DIGEST_LENGTH];
 
    //   WHIRLPOOL_Final(digest, (WHIRLPOOL_CTX *) &ctx);
 
@@ -60,20 +60,20 @@
 
 
 
-int crypto_encrypt(memory & storageEncrypt, const memory & storageDecrypt, memory & key)
+::i32 crypto_encrypt(memory & storageEncrypt, const memory & storageDecrypt, memory & key)
 {
-   int plainlen = (int)storageDecrypt.get_size();
-   int cipherlen, tmplen;
-   unsigned char iv[8] = { 1,2,3,4,5,6,7,8 };
+   ::i32 plainlen = (::i32)storageDecrypt.get_size();
+   ::i32 cipherlen, tmplen;
+   ::u8 iv[8] = { 1,2,3,4,5,6,7,8 };
    EVP_CIPHER_CTX* pctx = EVP_CIPHER_CTX_new();
-   EVP_EncryptInit(pctx, EVP_bf_cbc(), (unsigned char*)key.get_data(), iv);
-   cipherlen = (int)(storageDecrypt.get_size() + 16 - 1); //; 16 = key int_size
+   EVP_EncryptInit(pctx, EVP_bf_cbc(), (::u8*)key.get_data(), iv);
+   cipherlen = (::i32)(storageDecrypt.get_size() + 16 - 1); //; 16 = key i32_size
    storageEncrypt.set_size(cipherlen);
-   if (!EVP_EncryptUpdate(pctx, (unsigned char*)storageEncrypt.get_data(), &cipherlen, (const unsigned char*)storageDecrypt.get_data(), plainlen))
+   if (!EVP_EncryptUpdate(pctx, (::u8*)storageEncrypt.get_data(), &cipherlen, (const ::u8*)storageDecrypt.get_data(), plainlen))
    {
       return -1;
    }
-   if (!EVP_EncryptFinal(pctx, ((unsigned char*)storageEncrypt.get_data()) + cipherlen, &tmplen))
+   if (!EVP_EncryptFinal(pctx, ((::u8*)storageEncrypt.get_data()) + cipherlen, &tmplen))
    {
       return -1;
    }
@@ -83,20 +83,20 @@ int crypto_encrypt(memory & storageEncrypt, const memory & storageDecrypt, memor
    return cipherlen;
 }
 
-int crypto_decrypt(memory& storageDecrypt, const memory& storageEncrypt, memory& key)
+::i32 crypto_decrypt(memory& storageDecrypt, const memory& storageEncrypt, memory& key)
 {
-   int cipherlen = (int)storageEncrypt.get_size();
-   int plainlen, tmplen;
-   unsigned char iv[8] = { 1,2,3,4,5,6,7,8 };
+   ::i32 cipherlen = (::i32)storageEncrypt.get_size();
+   ::i32 plainlen, tmplen;
+   ::u8 iv[8] = { 1,2,3,4,5,6,7,8 };
    EVP_CIPHER_CTX* pctx = EVP_CIPHER_CTX_new();
-   EVP_DecryptInit(pctx, EVP_bf_cbc(), (const unsigned char*)key.get_data(), iv);
-   plainlen = (int)storageEncrypt.get_size();
+   EVP_DecryptInit(pctx, EVP_bf_cbc(), (const ::u8*)key.get_data(), iv);
+   plainlen = (::i32)storageEncrypt.get_size();
    storageDecrypt.set_size(plainlen);
-   if (!EVP_DecryptUpdate(pctx, (unsigned char*)storageDecrypt.get_data(), &plainlen, (const unsigned char*)storageEncrypt.get_data(), cipherlen))
+   if (!EVP_DecryptUpdate(pctx, (::u8*)storageDecrypt.get_data(), &plainlen, (const ::u8*)storageEncrypt.get_data(), cipherlen))
    {
       return -1;
    }
-   if (!EVP_DecryptFinal(pctx, ((unsigned char*)storageDecrypt.get_data()) + plainlen, &tmplen))
+   if (!EVP_DecryptFinal(pctx, ((::u8*)storageDecrypt.get_data()) + plainlen, &tmplen))
    {
       storageDecrypt.set_size(plainlen);
       EVP_CIPHER_CTX_free(pctx);
@@ -113,11 +113,11 @@ int crypto_decrypt(memory& storageDecrypt, const memory& storageEncrypt, memory&
 
 /* Cipher mode info */
 struct php_openssl_cipher_mode {
-   int_bool is_aead;
-   int_bool is_single_run_aead;
-   int aead_get_tag_flag;
-   int aead_set_tag_flag;
-   int aead_ivlen_flag;
+   ::i32_bool is_aead;
+   ::i32_bool is_single_run_aead;
+   ::i32 aead_get_tag_flag;
+   ::i32 aead_set_tag_flag;
+   ::i32 aead_ivlen_flag;
 };
 
 static void php_openssl_load_cipher_mode(struct php_openssl_cipher_mode* mode, const EVP_CIPHER* cipher_type) /* {{{ */
@@ -147,10 +147,10 @@ static void php_openssl_load_cipher_mode(struct php_openssl_cipher_mode* mode, c
 }
 /* }}} */
 
-//static int php_openssl_validate_iv(char** piv, size_t* piv_len, size_t iv_required_len,
-//   int_bool* free_iv, EVP_CIPHER_CTX* cipher_ctx, struct php_openssl_cipher_mode* mode) /* {{{ */
+//static ::i32 php_openssl_validate_iv(char_pointer * piv, size_t* piv_len, size_t iv_required_len,
+//   ::i32_bool* free_iv, EVP_CIPHER_CTX* cipher_ctx, struct php_openssl_cipher_mode* mode) /* {{{ */
 //{
-//   char* iv_new;
+//   char_pointer iv_new;
 //
 //   /* Best case scenario, user behaved */
 //   if (*piv_len == iv_required_len) {
@@ -199,14 +199,14 @@ static void php_openssl_load_cipher_mode(struct php_openssl_cipher_mode* mode, c
 //}
 /* }}} */
 
-//static int php_openssl_cipher_init(const EVP_CIPHER* cipher_type,
+//static ::i32 php_openssl_cipher_init(const EVP_CIPHER* cipher_type,
 //   EVP_CIPHER_CTX* cipher_ctx, struct php_openssl_cipher_mode* mode,
-//   char** ppassword, size_t* ppassword_len, zend_bool* free_password,
-//   char** piv, size_t* piv_len, zend_bool* free_iv,
-//   char* tag, int tag_len, zend_long options, int enc)  /* {{{ */
+//   char_pointer * ppassword, size_t* ppassword_len, zend_bool* free_password,
+//   char_pointer * piv, size_t* piv_len, zend_bool* free_iv,
+//   char_pointer tag, ::i32 tag_len, zend_long options, ::i32 enc)  /* {{{ */
 //{
-//   unsigned char* key;
-//   int key_len, password_len;
+//   ::u8* key;
+//   ::i32 key_len, password_len;
 //   size_t max_iv_len;
 //
 //   *free_password = 0;
@@ -231,13 +231,13 @@ static void php_openssl_load_cipher_mode(struct php_openssl_cipher_mode* mode, c
 //      if (!mode->is_aead) {
 //         php_error_docref(NULL, E_WARNING, "The tag cannot be used because the cipher method does not support AEAD");
 //      }
-//      else if (!EVP_CIPHER_CTX_ctrl(cipher_ctx, mode->aead_set_tag_flag, tag_len, (unsigned char*)tag)) {
+//      else if (!EVP_CIPHER_CTX_ctrl(cipher_ctx, mode->aead_set_tag_flag, tag_len, (::u8*)tag)) {
 //         php_error_docref(NULL, E_WARNING, "Setting tag for AEAD cipher decryption failed");
 //         return FAILURE;
 //      }
 //   }
 //   /* check and set key */
-//   password_len = (int)* ppassword_len;
+//   password_len = (::i32)* ppassword_len;
 //   key_len = EVP_CIPHER_key_length(cipher_type);
 //   if (key_len > password_len) {
 //      if ((OPENSSL_DONT_ZERO_PAD_KEY & options) && !EVP_CIPHER_CTX_set_key_length(cipher_ctx, password_len)) {
@@ -248,7 +248,7 @@ static void php_openssl_load_cipher_mode(struct php_openssl_cipher_mode* mode, c
 //      key = emalloc(key_len);
 //      ::memory_set(key, 0, key_len);
 //      ::memory_copy(key, *ppassword, password_len);
-//      *ppassword = (char*)key;
+//      *ppassword = (char_pointer )key;
 //      *ppassword_len = key_len;
 //      *free_password = 1;
 //   }
@@ -256,10 +256,10 @@ static void php_openssl_load_cipher_mode(struct php_openssl_cipher_mode* mode, c
 //      if (password_len > key_len && !EVP_CIPHER_CTX_set_key_length(cipher_ctx, password_len)) {
 //         php_openssl_store_errors();
 //      }
-//      key = (unsigned char*)* ppassword;
+//      key = (::u8*)* ppassword;
 //   }
 //
-//   if (!EVP_CipherInit_ex(cipher_ctx, NULL, NULL, key, (unsigned char*)* piv, enc)) {
+//   if (!EVP_CipherInit_ex(cipher_ctx, NULL, NULL, key, (::u8*)* piv, enc)) {
 //      php_openssl_store_errors();
 //      return FAILURE;
 //   }
@@ -273,20 +273,20 @@ static void php_openssl_load_cipher_mode(struct php_openssl_cipher_mode* mode, c
 
 
 
-//int crypto_encrypt2(memory& storageEncrypt, const memory& storageDecrypt, memory& key)
+//::i32 crypto_encrypt2(memory& storageEncrypt, const memory& storageDecrypt, memory& key)
 //{
-//   int plainlen = (int)storageDecrypt.get_size();
-//   int cipherlen, tmplen;
+//   ::i32 plainlen = (::i32)storageDecrypt.get_size();
+//   ::i32 cipherlen, tmplen;
 //   const_char_pointer iv = "skdfjghsdlkfjghs";
 //   EVP_CIPHER_CTX* pctx = EVP_CIPHER_CTX_new();
-//   EVP_EncryptInit(pctx, EVP_bf_cbc(), (unsigned char*)key.get_data(), iv);
-//   cipherlen = (int)(storageDecrypt.get_size() + 16 - 1); //; 16 = key int_size
+//   EVP_EncryptInit(pctx, EVP_bf_cbc(), (::u8*)key.get_data(), iv);
+//   cipherlen = (::i32)(storageDecrypt.get_size() + 16 - 1); //; 16 = key i32_size
 //   storageEncrypt.allocate(cipherlen);
-//   if (!EVP_EncryptUpdate(pctx, (unsigned char*)storageEncrypt.get_data(), &cipherlen, (const unsigned char*)storageDecrypt.get_data(), plainlen))
+//   if (!EVP_EncryptUpdate(pctx, (::u8*)storageEncrypt.get_data(), &cipherlen, (const ::u8*)storageDecrypt.get_data(), plainlen))
 //   {
 //      return -1;
 //   }
-//   if (!EVP_EncryptFinal(pctx, ((unsigned char*)storageEncrypt.get_data()) + cipherlen, &tmplen))
+//   if (!EVP_EncryptFinal(pctx, ((::u8*)storageEncrypt.get_data()) + cipherlen, &tmplen))
 //   {
 //      return -1;
 //   }
@@ -296,7 +296,7 @@ static void php_openssl_load_cipher_mode(struct php_openssl_cipher_mode* mode, c
 //   return cipherlen;
 //}
 
-CLASS_DECL_APEX int crypto_decrypt2(memory& storageDecrypt, const memory& storageEncrypt, memory& key)
+CLASS_DECL_APEX ::i32 crypto_decrypt2(memory& storageDecrypt, const memory& storageEncrypt, memory& key)
 {
    const_char_pointer iv = "skdajhgbmvkbjghs";
    EVP_CIPHER_CTX* cipher_ctx = EVP_CIPHER_CTX_new();
@@ -308,21 +308,21 @@ CLASS_DECL_APEX int crypto_decrypt2(memory& storageDecrypt, const memory& storag
       return 0;
    }
 
-   if (!EVP_CipherInit_ex(cipher_ctx, NULL, NULL, (unsigned char*)key.get_data(), (unsigned char*)(iv), 0))
+   if (!EVP_CipherInit_ex(cipher_ctx, NULL, NULL, (::u8*)key.get_data(), (::u8*)(iv), 0))
    {
 
       return 0;
 
    }
-   storageDecrypt.set_size((int)data_len + EVP_CIPHER_block_size(cipher_type));
-   int outlen = 0;
-   if (!EVP_CipherUpdate(cipher_ctx, (unsigned char*)storageDecrypt.get_data(), &outlen, (const unsigned char*)storageEncrypt.get_data(), (int)data_len))
+   storageDecrypt.set_size((::i32)data_len + EVP_CIPHER_block_size(cipher_type));
+   ::i32 outlen = 0;
+   if (!EVP_CipherUpdate(cipher_ctx, (::u8*)storageDecrypt.get_data(), &outlen, (const ::u8*)storageEncrypt.get_data(), (::i32)data_len))
    {
       return -1;
    }
-   int i = 0;
+   ::i32 i = 0;
    {
-      if (EVP_DecryptFinal(cipher_ctx, ((unsigned char*)storageDecrypt.get_data()) + outlen, &i))
+      if (EVP_DecryptFinal(cipher_ctx, ((::u8*)storageDecrypt.get_data()) + outlen, &i))
       {
          outlen = outlen + i;
       }
@@ -338,7 +338,7 @@ CLASS_DECL_APEX int crypto_decrypt2(memory& storageDecrypt, const memory& storag
 }
 
 
-CLASS_DECL_APEX int crypto_encrypt2(memory& storageDecrypt, const memory& storageEncrypt, memory& key)
+CLASS_DECL_APEX ::i32 crypto_encrypt2(memory& storageDecrypt, const memory& storageEncrypt, memory& key)
 {
    const_char_pointer iv = "skdajhgbmvkbjghs";
    EVP_CIPHER_CTX* cipher_ctx = EVP_CIPHER_CTX_new();
@@ -350,21 +350,21 @@ CLASS_DECL_APEX int crypto_encrypt2(memory& storageDecrypt, const memory& storag
       return 0;
    }
 
-   if (!EVP_CipherInit_ex(cipher_ctx, NULL, NULL, (unsigned char*)key.get_data(), (unsigned char*)(iv), 1))
+   if (!EVP_CipherInit_ex(cipher_ctx, NULL, NULL, (::u8*)key.get_data(), (::u8*)(iv), 1))
    {
 
       return 0;
 
    }
-   storageDecrypt.set_size((int)data_len + EVP_CIPHER_block_size(cipher_type));
-   int outlen = 0;
-   if (!EVP_CipherUpdate(cipher_ctx, (unsigned char*)storageDecrypt.get_data(), &outlen, (const unsigned char*)storageEncrypt.get_data(), (int)data_len))
+   storageDecrypt.set_size((::i32)data_len + EVP_CIPHER_block_size(cipher_type));
+   ::i32 outlen = 0;
+   if (!EVP_CipherUpdate(cipher_ctx, (::u8*)storageDecrypt.get_data(), &outlen, (const ::u8*)storageEncrypt.get_data(), (::i32)data_len))
    {
       return -1;
    }
-   int i = 0;
+   ::i32 i = 0;
    {
-      if (EVP_EncryptFinal(cipher_ctx, ((unsigned char*)storageDecrypt.get_data()) + outlen, &i))
+      if (EVP_EncryptFinal(cipher_ctx, ((::u8*)storageDecrypt.get_data()) + outlen, &i))
       {
          outlen = outlen + i;
       }

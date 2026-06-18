@@ -27,12 +27,12 @@ namespace heap
       ::heap::allocator * m_pallocator;
 
 
-      //virtual void * allocate_debug(memsize size, int nBlockUse, const_char_pointer pszFile, int iLine);
+      //virtual void * allocate_debug(memsize size, ::i32 nBlockUse, const_char_pointer pszFile, ::i32 iLine);
       //virtual void * reallocate_normal(void * p, memsize size);
       //virtual memsize allocation_size(void * p);
 
 
-      //virtual void * reallocate_debug(void * p, memsize size, int nBlockUse, const_char_pointer pszFile, int iLine);
+      //virtual void * reallocate_debug(void * p, memsize size, ::i32 nBlockUse, const_char_pointer pszFile, ::i32 iLine);
 
 
       //virtual void free(void * p);
@@ -45,13 +45,13 @@ namespace heap
       //Created by camilo on 2021-07-24 01:06 BRT <3ThomasBorregaardSorensen!!
 //#include "__aligned_memory_allocate.h"
       virtual void * aligned_allocate(memsize size, memsize * psizeAllocated, memsize align = 0, const_char_pointer pszAnnotation = nullptr);
-      virtual void * aligned_allocate_debug(memsize nSize, memsize * psizeAllocated, int nBlockUse, const_char_pointer szFileName, int nLine, memsize align = 0, const_char_pointer pszAnnotation = nullptr);
+      virtual void * aligned_allocate_debug(memsize nSize, memsize * psizeAllocated, ::i32 nBlockUse, const_char_pointer szFileName, ::i32 nLine, memsize align = 0, const_char_pointer pszAnnotation = nullptr);
 
 
       //Created by camilo on 2021-07-24 01:05 BRT <3ThomasBorregaardSorensen!!
 //#include "__unaligned_memory_allocate.h"
       virtual void * unaligned_allocate(memsize size, memsize * psizeAllocated, const_char_pointer pszAnnotation = nullptr);
-      virtual void * unaligned_allocate_debug(memsize nSize, memsize * psizeAllocated, int nBlockUse, const_char_pointer szFileName, int nLine, const_char_pointer pszAnnotation = nullptr);
+      virtual void * unaligned_allocate_debug(memsize nSize, memsize * psizeAllocated, ::i32 nBlockUse, const_char_pointer szFileName, ::i32 nLine, const_char_pointer pszAnnotation = nullptr);
 
       virtual void * count_allocate(::collection::count count, memsize size, const_char_pointer pszAnnotation = nullptr);
       //Created by camilo on 2021-07-24 01:05 BRT <3ThomasBorregaardSorensen!!
@@ -70,10 +70,10 @@ namespace heap
 #endif
 
 
-      virtual void * allocate_debug(memsize nSize, int nBlockUse, const_char_pointer szFileName, int nLine, const_char_pointer pszAnnotation = nullptr);
-      virtual void * reallocate_debug(void * p, memsize nSize, int nBlockUse, const_char_pointer szFileName, int nLine, const_char_pointer pszAnnotation = nullptr);
-      virtual void      free_debug(void * p, int iBlockType);
-      virtual memsize   size_debug(void * p, int iBlockType);
+      virtual void * allocate_debug(memsize nSize, ::i32 nBlockUse, const_char_pointer szFileName, ::i32 nLine, const_char_pointer pszAnnotation = nullptr);
+      virtual void * reallocate_debug(void * p, memsize nSize, ::i32 nBlockUse, const_char_pointer szFileName, ::i32 nLine, const_char_pointer pszAnnotation = nullptr);
+      virtual void      free_debug(void * p, ::i32 iBlockType);
+      virtual memsize   size_debug(void * p, ::i32 iBlockType);
 
 
    };

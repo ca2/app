@@ -2,7 +2,7 @@
 
 #ifdef __OBJECTIVE_CPP__
 
-typedef void * int_to_int;
+typedef void * i32_to_int;
 
 #else
 
@@ -98,11 +98,11 @@ public:
    long get_state();
    bool is_iconic();
    bool is_window_visible();
-   bool show_window(enum_display edisplay);
+   bool show_window(const ::e_display & edisplay);
    iptr get_window_long_ptr(iptr nIndex);
    iptr set_window_long_ptr(iptr nIndex, iptr l);
-   bool client_to_screen(::int_point * lppoint);
-   bool screen_to_client(::int_point * lppoint);
+   bool client_to_screen(::i32_point * lppoint);
+   bool screen_to_client(::i32_point * lppoint);
 
    bool is_null() const
    {
@@ -114,7 +114,7 @@ public:
 };
 
 
-int oswindow_find(UIWindow * window);
+::i32 oswindow_find(UIWindow * window);
 oswindow_data * oswindow_get(UIWindow * window);
 bool oswindow_erase(UIWindow * window);
 

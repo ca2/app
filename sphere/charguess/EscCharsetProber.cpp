@@ -34,30 +34,30 @@ nsEscCharSetProber::nsEscCharSetProber(void)
 
 nsEscCharSetProber::~nsEscCharSetProber(void)
 {
-  for (PRunsigned int i = 0; i < NUM_OF_ESC_CHARSETS; i++)
+  for (PRunsigned ::i32 i = 0; i < NUM_OF_ESC_CHARSETS; i++)
     delete mCodingSM[i];
 }
 
 void nsEscCharSetProber::Reset(void)
 {
   mState = eDetecting;
-  for (PRunsigned int i = 0; i < NUM_OF_ESC_CHARSETS; i++)
+  for (PRunsigned ::i32 i = 0; i < NUM_OF_ESC_CHARSETS; i++)
     mCodingSM[i]->Reset();
   mActiveSM = NUM_OF_ESC_CHARSETS;
   mDetectedCharset = nsnull;
 }
 
-nsProbingState nsEscCharSetProber::HandleData(const ::string & aBuf, PRunsigned int aLen)
+nsProbingState nsEscCharSetProber::HandleData(const ::string & aBuf, PRunsigned ::i32 aLen)
 {
   nsSMState codingState;
   PRInt32 j;
-  PRunsigned int i;
+  PRunsigned ::i32 i;
 
   for ( i = 0; i < aLen && mState == eDetecting; i++)
   {
     for (j = mActiveSM-1; j>= 0; j--)
     {
-      //unsigned char is feed to all active state machine 
+      //::u8 is feed to all active state machine 
       codingState = mCodingSM[j]->NextState(aBuf[i]);
       if (codingState == eError)
       {

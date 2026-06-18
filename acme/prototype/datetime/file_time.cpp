@@ -62,14 +62,24 @@ file_time::file_time(const ::posix_time & time) :
 }
 
 
-file_time::file_time(const class ::time & time)
+file_time::file_time(const class ::time& time)
 {
 
-   auto centimicroseconds = time.m_iSecond * 10'000'000 + time.m_iNanosecond / 100;
+   const std::int64_t ticks100ns =
+      static_cast<std::int64_t>(time.m_iSecond) * 10'000'000ll +
+      static_cast<std::int64_t>(time.m_iNanosecond) / 100ll;
 
-   centimicroseconds += (EPOCH_DIFFERENCE_NANOS/100);
+   const std::int64_t filetimeTicks =
+      ticks100ns + static_cast<std::int64_t>(EPOCH_DIFFERENCE_100NS);
 
-   m_uFileTime = centimicroseconds;
+   if (filetimeTicks < 0)
+   {
+
+      throw std::out_of_range("time is before FILETIME epoch");
+
+   }
+
+   m_uFileTime = static_cast<std::uint64_t>(filetimeTicks);
 
 }
 
@@ -145,7 +155,7 @@ file_time file_time::operator-(file_time_span span) const noexcept
 file_time_span file_time::operator-(file_time ft) const noexcept
 {
 
-   return{ file_time_span_t{}, (long long) get_file_time() -(long long) ft.get_file_time() };
+   return{ file_time_span_t{}, (::i64) get_file_time() -(::i64) ft.get_file_time() };
 
 }
 
@@ -184,7 +194,7 @@ bool file_time::operator==(file_time ft) const noexcept
 //}
 
 
-unsigned long long file_time::get_file_time() const noexcept
+::u64 file_time::get_file_time() const noexcept
 {
 
    return m_uFileTime;
@@ -192,7 +202,7 @@ unsigned long long file_time::get_file_time() const noexcept
 }
 
 
-void file_time::set_file_time(unsigned long long uFileTime) noexcept
+void file_time::set_file_time(::u64 uFileTime) noexcept
 {
 
    m_uFileTime = uFileTime;
@@ -241,7 +251,7 @@ void file_time::set_file_time(unsigned long long uFileTime) noexcept
 //const file_time_t file_time::Week = Day * static_cast<file_time_t>(7);
 
 
-CLASS_DECL_ACME bool file_modified_timeout(const ::file::path & path, int iSeconds)
+CLASS_DECL_ACME bool file_modified_timeout(const ::file::path & path, ::i32 iSeconds)
 {
 
    auto file_time = ::get_file_time_set(path);
@@ -310,7 +320,7 @@ CLASS_DECL_ACME bool file_modified_timeout(const ::file::path & path, int iSecon
 //   }
 //
 //
-//   void node::file_time_to_time(posix_time * ptime, const file_time_t * pfile_time, int nDST)
+//   void node::file_time_to_time(posix_time * ptime, const file_time_t * pfile_time, ::i32 nDST)
 //   {
 //
 //      system_time systemtime;
@@ -367,9 +377,9 @@ void get_file_time_set(const ::file::path & path, file_time & file_timeCreation,
       nullptr))
    {
 
-      DWORD dwLastError = ::GetLastError();
+      auto lasterror = ::windows::get_last_error();
 
-      throw_last_error_exception(path, ::file::e_open_read, dwLastError, "get_file_time_set safe_create_file failed");
+      ::windows::throw_file_last_error_exception(path, ::file::e_open_read, lasterror, "get_file_time_set safe_create_file failed");
 
    }
 
@@ -386,9 +396,9 @@ CLASS_DECL_ACME void set_modified_file_time(const ::file::path & path, const fil
    if (!file.safe_create_file(path, GENERIC_WRITE, FILE_SHARE_READ | FILE_SHARE_WRITE | FILE_SHARE_DELETE, nullptr, OPEN_EXISTING, FILE_FLAG_BACKUP_SEMANTICS, nullptr))
    {
 
-      DWORD dwLastError = ::GetLastError();
+      auto lasterror = ::windows::get_last_error();
 
-      throw_last_error_exception(path, ::file::e_open_write, dwLastError, "set_modified_file_time safe_create_file failed");
+      ::windows::throw_file_last_error_exception(path, ::file::e_open_write, lasterror, "set_modified_file_time safe_create_file failed");
 
    }
 
@@ -433,7 +443,7 @@ void copy(payload * ppayload, const file_time * pfiletime)
 }
 
 
-bool file_time_set::modified_timeout(int iSeconds) const
+bool file_time_set::modified_timeout(::i32 iSeconds) const
 {
 
    //auto filetimeNow = now_as_file_time();

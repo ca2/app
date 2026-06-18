@@ -19,6 +19,27 @@ namespace platform
    }
 
 
+   void acme_application_layer::prepare_application()
+   {
+
+
+   }
+
+
+   void acme_application_layer::on_prepare_application()
+   {
+
+
+   }
+      
+   
+   void acme_application_layer::on_after_prepare_application()
+   {
+
+
+   }
+
+
    //void acme_application_layer::initialize_application(::platform::platform * pplatform){}
 
    void acme_application_layer::initialize_application()
@@ -39,19 +60,19 @@ namespace platform
    }
 
 
-   void acme_application_layer::application_on_status(::e_status estatus, ::particle* pparticle, long long hi, void* p)
+   void acme_application_layer::application_on_status(::e_status estatus, ::particle* pparticle, ::i64 hi, void* p)
    {
    }
 
 
-   void acme_application_layer::on_error_icloud_not_available(::particle* pparticle, long long hi, void* p)
+   void acme_application_layer::on_error_icloud_not_available(::particle* pparticle, ::i64 hi, void* p)
    {
    }
 
 
    //void acme_application_layer::application_main(){}
 
-   int acme_application_layer::application_main()
+   ::i32 acme_application_layer::application_main()
    {
       return 0;
    }
@@ -67,9 +88,9 @@ namespace platform
 
 
    //void acme_application_layer::start_application(::request* prequest)
-void acme_application_layer::start_application()
-   {
-   }
+   // void acme_application_layer::on_application_default_start()
+   // {
+   // }
 
 
    //void acme_application_layer::on_initialize_application(){}
@@ -151,25 +172,28 @@ void acme_application_layer::start_application()
    //
    //#else
    //
-   //      void set_args(int argc, char * argv[], char * envpb[]){}
+   //      void set_args(::i32 argc, char_pointer argv[], char_pointer envpb[]){}
    //
    //#endif
 
-   int acme_application_layer::__implement()
+   ::i32 acme_application_layer::__implement()
    {
       return 0;
    }
 
 
-   int acme_application_layer::main_loop()
+   ::i32 acme_application_layer::main_loop()
    {
       return 0;
    }
 
 
-   ::enum_id acme_application_layer::key_command(::user::enum_key ekey, ::user::key_state* pkeystate)
+
+   ::enum_id acme_application_layer::key_command(const ::user::e_key & ekey)
    {
+
       return id_none;
+
    }
 
 
@@ -362,6 +386,13 @@ void acme_application_layer::start_application()
    }
 
 
+   void acme_application_layer::process_command_line_options()
+   {
+
+
+   }
+
+
    //void acme_application_layer::pre_run()
    //{
    //}
@@ -405,7 +436,7 @@ void acme_application_layer::start_application()
    }
 
 
-   void acme_application_layer::show_lines_box(const ::string_array_base & straLines, const ::scoped_string &scopedstrIconUrl, ::user::activation_token *puseractivationtoken) {}
+   void acme_application_layer::show_lines_box(const ::string_array_base & straLines, const ::string_array_base & straIconUrl, ::user::activation_token *puseractivationtoken) {}
 
 
    ::string_array_base acme_application_layer::get_operating_system_information_lines()

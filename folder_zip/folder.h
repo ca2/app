@@ -34,7 +34,7 @@ namespace folder_zip
       void initialize(::particle * pparticle) override;
 
 
-      void open_for_reading(file_pointer pfile, int iBufferLevel = 2) override;
+      void open_for_reading(file_pointer pfile, ::i32 iBufferLevel = 2) override;
 
       bool locate_file(const ::file::path & path) override;
 

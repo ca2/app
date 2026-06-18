@@ -17,7 +17,7 @@ namespace html
       public:
 
          
-         int m_iFont;
+         ::i32 m_iFont;
          ::pointer<::user::button>m_pbutton;
 
 

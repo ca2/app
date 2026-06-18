@@ -3,11 +3,11 @@
 #include <string.h>
 #include <stdio.h>
 
-unsigned int
+::u32
 //WINAPI
 GetTempPathA(
-unsigned int nBufferLength,
-char * pBuffer
+::u32 nBufferLength,
+char_pointer pBuffer
 
 )
 {
@@ -18,7 +18,7 @@ char * pBuffer
    {
       ansi_count_copy(pBuffer, ptmpdir, minimum(nBufferLength, strlen(ptmpdir) + 1));
 
-      return (unsigned int) strlen(ptmpdir);
+      return (::u32) strlen(ptmpdir);
    }
    
 
@@ -28,7 +28,7 @@ char * pBuffer
    {
       ansi_count_copy(pBuffer, ptmpdir, minimum(nBufferLength, strlen(ptmpdir) + 1));
 
-      return (unsigned int) strlen(ptmpdir);
+      return (::u32) strlen(ptmpdir);
    }
 
    ansi_count_copy(pBuffer, "/tmp", minimum(nBufferLength, 5));

@@ -77,7 +77,7 @@ namespace graphics3d
    }
 
 
-   void scene::update(float dt)
+   void scene::update(::f32 dt)
    {
 
       for (auto& player : m_playera)
@@ -131,8 +131,8 @@ namespace graphics3d
 
          auto& camJson = sceneJson["camera"].property_set_reference();
 
-         auto pos = camJson.get("position", ::float_array_base{0.f, 0.f, 0.f});
-         auto rot = camJson.get("rotation", ::float_array_base{0.f, 0.f, 0.f});
+         auto pos = camJson.get("position", ::f32_array_base{0.f, 0.f, 0.f});
+         auto rot = camJson.get("rotation", ::f32_array_base{0.f, 0.f, 0.f});
 
          m_initialCameraPosition = { pos[0], pos[1], pos[2] };
          m_initialCameraRotation = {
@@ -160,8 +160,8 @@ namespace graphics3d
             auto intensity = objJson.get("intensity", 15.8f);
             const auto& colorsJson = objJson["colors"];
 
-            for (int i = 0; i < count; ++i) {
-               float angle = i * glm::two_pi<float>() / count;
+            for (::i32 i = 0; i < count; ++i) {
+               ::f32 angle = i * glm::two_pi<::f32>() / count;
                floating_sequence3 pos = {
                    radius * std::cos(angle),
                    height,
@@ -225,9 +225,9 @@ namespace graphics3d
          }
 
 
-         auto pos = objJson.get("position", ::float_array_base{0.f, 0.f, 0.f});
-         auto rot = objJson.get("rotation", ::float_array_base{0.f, 0.f, 0.f});
-         auto scl = objJson.get("scale", ::float_array_base{1.f, 1.f, 1.f});
+         auto pos = objJson.get("position", ::f32_array_base{0.f, 0.f, 0.f});
+         auto rot = objJson.get("rotation", ::f32_array_base{0.f, 0.f, 0.f});
+         auto scl = objJson.get("scale", ::f32_array_base{1.f, 1.f, 1.f});
 
          gameObject->transform().translation = { pos[0], pos[1], pos[2] };
          gameObject->transform().rotation = { rot[0], rot[1], rot[2] };
@@ -328,7 +328,7 @@ namespace graphics3d
 
 
 
-   ::pointer<::graphics3d::scene_object> immersion_layer::makePointLight(float intensity, float radius, floating_sequence3 color)
+   ::pointer<::graphics3d::scene_object> immersion_layer::makePointLight(::f32 intensity, ::f32 radius, floating_sequence3 color)
    {
       auto ppointlight = allocateø ::graphics3d::point_light_scene_object;
       this->add_scene_object(ppointlight);
@@ -354,7 +354,7 @@ namespace graphics3d
 
 
       //void init() override;                 // load models, spawn entities
-      //void update(float dt) override;        // advance all entities
+      //void update(::f32 dt) override;        // advance all entities
 
       void scene::loadSceneFile(const ::scoped_string& fileName)
    {
@@ -370,7 +370,7 @@ namespace graphics3d
    }
 
 
-      void scene::update(float deltaTime)
+      void scene::update(::f32 deltaTime)
       {
 
 

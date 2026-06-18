@@ -11,14 +11,14 @@ class CLASS_DECL_ACME error_number :
 public:
 
 
-   int m_iErrNo;
+   ::i32 m_iErrNo;
 
 
 #ifdef __ANDROID__
-   error_number(::e_status estatus, int iError, const ::scoped_string & scopedstrMessage = nullptr, const ::scoped_string & scopedstrDetails = nullptr, int iSkip = CALLSTACK_DEFAULT_SKIP_TRIGGER) :
+   error_number(::e_status estatus, ::i32 iError, const ::scoped_string & scopedstrMessage = nullptr, const ::scoped_string & scopedstrDetails = nullptr, ::i32 iSkip = CALLSTACK_DEFAULT_SKIP_TRIGGER) :
       ::exception(estatus, pszMessage, pszDetails, iSkip),
 #else
-   error_number(::e_status estatus, int iError, const ::scoped_string & scopedstrMessage = nullptr, const ::scoped_string & scopedstrDetails = nullptr, int iSkip = CALLSTACK_DEFAULT_SKIP_TRIGGER, void* caller_address = nullptr) :
+   error_number(::e_status estatus, ::i32 iError, const ::scoped_string & scopedstrMessage = nullptr, const ::scoped_string & scopedstrDetails = nullptr, ::i32 iSkip = CALLSTACK_DEFAULT_SKIP_TRIGGER, void* caller_address = nullptr) :
       ::exception(estatus, scopedstrMessage, scopedstrDetails, iSkip, caller_address),
 #endif
       m_iErrNo(iError)

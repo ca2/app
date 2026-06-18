@@ -28,6 +28,65 @@ namespace platform
    }
 
 
+   void http::initialize(::particle * pparticle)
+   {
+      
+      ::platform::department::initialize(pparticle);
+      
+      constructø(m_pmutexHttpDownload);
+
+
+      
+   }
+
+   string_array_base* http::download_array()
+   {
+
+      return &m_straHttpDownloading;
+
+   }
+
+
+   string_array_base* http::checking_existence_array()
+   {
+
+      return &m_straHttpCheckingExistence;
+
+   }
+
+   particle* http::download_mutex()
+   {
+
+      return m_pmutexHttpDownload;
+
+   }
+
+
+   bool http::is_downloading(const ::url::url & url)
+   {
+      
+      auto strUrl = url.as_string();
+      
+      _synchronous_lock synchronouslock(this->download_mutex());
+      
+      return m_straHttpDownloading.contains(strUrl);
+      
+   }
+
+
+   bool http::is_checking_existence(const ::url::url & url)
+   {
+      
+      auto strUrl = url.as_string();
+      
+      _synchronous_lock synchronouslock(this->download_mutex());
+      
+      return m_straHttpCheckingExistence.contains(strUrl);
+      
+   }
+
+
+
    bool http::exists(const ::url::url & url, ::property_set & set)
    {
 
@@ -62,15 +121,17 @@ namespace platform
    ::string http::get(const ::url::url & url, const class ::time & timeTimeout)
    {
 
-      auto defer_get = create_newø < ::nano::http::get >();
+      auto phttpget = create_newø < ::nano::http::get >();
 
-      defer_get->m_url = url;
+      phttpget->m_url = url;
 
-      defer_get->m_timeSyncTimeout = timeTimeout;
+      phttpget->m_timeSyncTimeout = timeTimeout;
 
-      defer_get->call();
+      phttpget->want_memory_response();
 
-      ::string str = defer_get->get_memory_response()->as_utf8();
+      phttpget->call();
+
+      ::string str = phttpget->get_memory_response()->as_utf8();
 
       return str;
 
@@ -116,15 +177,17 @@ namespace platform
 
       auto pfile = file_system()->get_writer(payloadFile);
 
-      auto pnanohttpget = create_newø < ::nano::http::get >();
+      auto phttpget = create_newø < ::nano::http::get >();
 
-      pnanohttpget->m_url = url;
+      phttpget->m_url = url;
 
-      pnanohttpget->m_timeSyncTimeout =  timeTimeout;
+      phttpget->want_memory_response();
 
-      pnanohttpget->call();
+      phttpget->m_timeSyncTimeout = timeTimeout;
 
-      pfile->write(*pnanohttpget->get_memory_response());
+      phttpget->call();
+
+      pfile->write(*phttpget->get_memory_response());
 
       pfile->seek_to_begin();
 

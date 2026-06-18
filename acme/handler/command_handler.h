@@ -24,12 +24,12 @@ struct command_handler :
 public:
 
 
-//   virtual int _get_notification_area_action_count() = 0;
-//   virtual const_char_pointer _get_notification_area_action_name(int iIndex) = 0;
-//   virtual const_char_pointer _get_notification_area_action_id(int iIndex) = 0;
-//   virtual const_char_pointer _get_notification_area_action_label(int iIndex) = 0;
-//   virtual const_char_pointer _get_notification_area_action_accelerator(int iIndex) = 0;
-//   virtual const_char_pointer _get_notification_area_action_description(int iIndex) = 0;
+//   virtual ::i32 _get_notification_area_action_count() = 0;
+//   virtual const_char_pointer _get_notification_area_action_name(::i32 iIndex) = 0;
+//   virtual const_char_pointer _get_notification_area_action_id(::i32 iIndex) = 0;
+//   virtual const_char_pointer _get_notification_area_action_label(::i32 iIndex) = 0;
+//   virtual const_char_pointer _get_notification_area_action_accelerator(::i32 iIndex) = 0;
+//   virtual const_char_pointer _get_notification_area_action_description(::i32 iIndex) = 0;
    virtual bool handle_command(const ::atom & atom, ::user::activation_token * puseractivationtoken) = 0;
 
 
@@ -45,12 +45,12 @@ public:
 //public:
 //
 //
-//   virtual int _get_notification_area_action_count() = 0;
-//   virtual const_char_pointer _get_notification_area_action_name(int iIndex) = 0;
-//   virtual const_char_pointer _get_notification_area_action_id(int iIndex) = 0;
-//   virtual const_char_pointer _get_notification_area_action_label(int iIndex) = 0;
-//   virtual const_char_pointer _get_notification_area_action_accelerator(int iIndex) = 0;
-//   virtual const_char_pointer _get_notification_area_action_description(int iIndex) = 0;
+//   virtual ::i32 _get_notification_area_action_count() = 0;
+//   virtual const_char_pointer _get_notification_area_action_name(::i32 iIndex) = 0;
+//   virtual const_char_pointer _get_notification_area_action_id(::i32 iIndex) = 0;
+//   virtual const_char_pointer _get_notification_area_action_label(::i32 iIndex) = 0;
+//   virtual const_char_pointer _get_notification_area_action_accelerator(::i32 iIndex) = 0;
+//   virtual const_char_pointer _get_notification_area_action_description(::i32 iIndex) = 0;
 //   virtual void call_notification_area_action(const ::scoped_string & scopedstrId) = 0;
 //
 //

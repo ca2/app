@@ -59,7 +59,7 @@ namespace app_integration
    }
 
 
-   //bool main_frame::get_translucency(::user::enum_translucency & etranslucency, ::enum_element eelement, ::user::style_context * pcontext)
+   //bool main_frame::get_translucency(::user::enum_translucency & etranslucency, const ::e_element & eelement, ::user::style_context * pcontext)
    //{
 
    //   if (m_bExplicitTranslucency)

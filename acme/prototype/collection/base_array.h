@@ -80,7 +80,7 @@ DECLARE_ARRAY_CONTAINER_OF(ARRAY, ITEM, m_ ## ITEM ## a, TYPE)
 
 #include "acme/prototype/collection/rear_iterator.h"
 
-//DECLARE_ENUMERATION(e_array, enum_array);
+//DECLARE_C_FLAG(e_array, enum_array);
 
 
 template < typename A, typename B >
@@ -652,7 +652,7 @@ public:
    //   }
 
 
-   //   make_iterator operator ++ (int)
+   //   make_iterator operator ++ (::i32)
    //   {
 
    //      auto it = *this;
@@ -951,7 +951,7 @@ public:
 
    inline void set_at_grow(::collection::index nIndex, ARG_TYPE newElement);
    inline TYPE & element_at_grow(::collection::index nIndex);
-   inline TYPE & ø(::collection::index nIndex) { return this->element_at_grow(nIndex); }
+   inline TYPE & atø(::collection::index nIndex) { return this->element_at_grow(nIndex); }
 
    inline void set_each(ARG_TYPE element, ::collection::index iStart = 0, ::collection::count c = -1);
 
@@ -1131,9 +1131,9 @@ public:
    ::collection::count append_initializer_list(const ::std::initializer_list < TYPE > & list_base);
    ::collection::count append(const TYPE * p, ::collection::count c);
    ::collection::count append_element(const TYPE & t, ::collection::count c);
-   ::collection::count append(const base_array & src); // return old int_size
+   ::collection::count append(const base_array & src); // return old i32_size
    ::collection::count rear_append(const TYPE * p, ::collection::count c);
-   ::collection::count rear_append(const base_array & src); // return old int_size
+   ::collection::count rear_append(const base_array & src); // return old i32_size
    template < typename CONTAINER >
    void copy_container(const CONTAINER & container);
    void copy_initializer_list(const ::std::initializer_list < TYPE > & list_base);
@@ -1180,7 +1180,7 @@ public:
 
       ::collection::index iEnd = c < 0 ? get_count() + c : iStart + c - 1;
 
-      int cProcessed = 0;
+      ::i32 cProcessed = 0;
 
       for (::collection::index i = iStart; i <= iEnd; i++)
       {
@@ -1389,7 +1389,7 @@ public:
    TYPE * predicate_get_first(PRED pred)
    {
 
-      for (int i = 0; i < get_count(); i++)
+      for (::i32 i = 0; i < get_count(); i++)
       {
 
          if (pred(this->m_begin[i]))
@@ -1412,7 +1412,7 @@ public:
 
       ::collection::count c = 0;
 
-      for (int i = 0; i < get_count(); i++)
+      for (::i32 i = 0; i < get_count(); i++)
       {
 
          if (pred(this->m_begin[i]))
@@ -1435,7 +1435,7 @@ public:
 
       ::collection::count cTotal = 0;
 
-      for (int i = 0; i < get_count();)
+      for (::i32 i = 0; i < get_count();)
       {
 
          if (!pred(this->m_begin[i]))
@@ -1447,9 +1447,9 @@ public:
          else
          {
 
-            int iStart = i;
+            ::i32 iStart = i;
 
-            int iCount = 1;
+            ::i32 iCount = 1;
 
             i++;
 
@@ -1550,7 +1550,7 @@ public:
 
       //}
 
-      //return i <= options()["version"].as_int();
+      //return i <= options()["version"].as_i32();
 
    }
 
@@ -2391,7 +2391,7 @@ void base_array < TYPE, ARG_TYPE, TYPED, MEMORY, t_etypeContainer >::erase_desce
 //      // inserting in the middle of the array
 //      ::collection::count nOldSize = (::collection::count) this->size();
 //
-//      set_size((::collection::count) (this->size() + nCount), -1);  // grow it to ___new int_size
+//      set_size((::collection::count) (this->size() + nCount), -1);  // grow it to ___new i32_size
 //      // destroy intial data before copying over it
 //      // shift old data up to fill gap
 //      ::safe_memory_transfer(this->m_begin + nIndex + nCount, (size_t) ((nOldSize - nIndex) * sizeof(TYPE)), this->m_begin + nIndex, (size_t) ((nOldSize - nIndex) * sizeof(TYPE)));
@@ -2513,7 +2513,7 @@ base_array < TYPE, ARG_TYPE, TYPED, MEMORY, t_etypeContainer > base_array < TYPE
 //      throw_exception(error_bad_argument);
 //
 //   if(nGrowBy >= 0)
-//      m_countAddUp = nGrowBy;  // set ___new int_size
+//      m_countAddUp = nGrowBy;  // set ___new i32_size
 //
 //   if(nNewSize == 0)
 //   {
@@ -2675,7 +2675,7 @@ base_array < TYPE, ARG_TYPE, TYPED, MEMORY, t_etypeContainer > base_array < TYPE
 //
 //      ::safe_memory_copy(pNewData,(size_t)nNewMax * sizeof(TYPE),this->m_begin,(size_t)this->size() * sizeof(TYPE));
 //
-//      ///for(int i = 0; i < nNewSize - this->size(); i++)
+//      ///for(::i32 i = 0; i < nNewSize - this->size(); i++)
 //      // get rid of old stuff (note: no destructors called)
 //      MEMORY::free(this->m_begin);
 //
@@ -3729,7 +3729,7 @@ struct default_constructor_t{};
 
 
 
-//template < typename ARRAY_BASE, int t_preallocated_array_size = 5 >
+//template < typename ARRAY_BASE, ::i32 t_preallocated_array_size = 5 >
 //class preallocated_array_base :
 //   public ARRAY_BASE
 //{

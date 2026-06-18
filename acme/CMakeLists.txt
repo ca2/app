@@ -14,7 +14,16 @@ endif()
 
 
 list(APPEND library_source
-        #compress/zip/api.cpp
+
+   accessibility/_.h
+   accessibility/accessibility.cpp
+   accessibility/accessibility.h
+   accessibility/application.cpp
+   accessibility/application.h
+   accessibility/main_window.cpp
+   accessibility/main_window.h
+
+   #compress/zip/api.cpp
         #compress/zip/file.cpp
         #compress/zip/in_file.cpp
         #compress/zip/ioapi.cpp
@@ -317,6 +326,41 @@ list(APPEND library_source
         integrate/qt/image.h
         #include/_.cpp
         #include/path.h        #prototype/collection/comparable_array.cpp
+   #input_output/_.cpp
+   #input_output/_.h
+   #input_output/_____debug.xcconfig
+   #input_output/_____release.xcconfig
+   #input_output/aaa_framework.cpp
+   #input_output/aaa_framework.h
+   #input_output/aaa_io_exception.h
+  input_output/BufferedInputStream.cpp
+  input_output/BufferedInputStream.h
+  input_output/BufferedOutputStream.cpp
+  input_output/BufferedOutputStream.h
+  input_output/ByteArrayInputStream.cpp
+  input_output/ByteArrayInputStream.h
+  input_output/ByteArrayOutputStream.cpp
+  input_output/ByteArrayOutputStream.h
+  input_output/Channel.cpp
+  input_output/Channel.h
+   #input_output/CMakeLists.txt
+  input_output/DataCopy.cpp
+  input_output/DataCopy.h
+  input_output/DataInputStream.cpp
+  input_output/DataInputStream.h
+  input_output/DataOutputStream.cpp
+  input_output/DataOutputStream.h
+  input_output/InputStream.cpp
+  input_output/InputStream.h
+  input_output/io_exception.cpp
+   #input_output/io_lib.vcproj
+   #input_output/matter.txt
+  input_output/OutputStream.cpp
+  input_output/OutputStream.h
+   #input_output/remoting_io.vcxproj
+   #input_output/remoting_io.vcxproj.filters
+   #input_output/remoting_io.vcxproj.user
+  input_output/resource.h
         #memory/alloc.cpp
         memory/_.cpp
         memory/allocate_processor_cache_oriented.cpp
@@ -374,15 +418,18 @@ list(APPEND library_source
         #nano/dynamic_library/dynamic_library.h
         nano/graphics/brush.cpp
         nano/graphics/brush.h
-        nano/graphics/device.cpp
-        nano/graphics/device.h
-        nano/graphics/device.h
+        nano/graphics/context.cpp
+        nano/graphics/context.h
         nano/graphics/font.cpp
         nano/graphics/font.h
+        nano/graphics/font_family.cpp
+        nano/graphics/font_family.h
         nano/graphics/graphics.cpp
         nano/graphics/graphics.h
         nano/graphics/object.cpp
         nano/graphics/object.h
+        nano/graphics/path.cpp
+        nano/graphics/path.h
         nano/graphics/pen.cpp
         nano/graphics/pen.h
         nano/graphics/icon.cpp
@@ -455,9 +502,8 @@ list(APPEND library_source
         #operating_system/ansi/memory.cpp
         operating_system/ansi/process.cpp
         #operating_system/ansi/user.cpp
-        operating_system/application.cpp
-        operating_system/application.h
-
+        #operating_system/application.cpp
+        #operating_system/application.h
         operating_system/argcargv.cpp
         operating_system/a_system_menu.cpp
         operating_system/a_system_menu.h
@@ -471,16 +517,20 @@ list(APPEND library_source
         operating_system/dynamic_library.h
         operating_system/file.cpp
         #operating_system/http.cpp
-        operating_system/main_window.cpp
-        operating_system/main_window.h
+        #operating_system/main_window.cpp
+        #operating_system/main_window.h
         operating_system/message.cpp
         operating_system/message.h
         operating_system/message_box.cpp
         operating_system/message_box.h
         operating_system/parallelization.cpp
+   operating_system/performance_counter.cpp
+   operating_system/performance_counter.h
         operating_system/path.cpp
         operating_system/path.h
         operating_system/process.h
+   operating_system/shared_memory.h
+   operating_system/shared_memory.cpp
         operating_system/string.cpp
         operating_system/summary.cpp
         operating_system/summary.h
@@ -550,10 +600,16 @@ list(APPEND library_source
         #platform/apex_main_data.h
         #platform/apex_main_struct.cpp
         #platform/apex_main_struct.h
+   platform/ini.cpp
+   platform/ini.h
+   platform/registry.cpp
+   platform/registry.h
         platform/system_acme.h
         platform/system_apex.h
         platform/system_aqua.h
         platform/system_aura.h
+   platform/user_interaction_sink.h
+   platform/user_interaction_sink.cpp
         platform/application_acme.h
         platform/application_acme.cpp
         platform/application_apex.h
@@ -681,6 +737,8 @@ list(APPEND library_source
         platform/procedure.cpp
         platform/procedure.h
         platform/profiler.cpp
+        platform/ProfileLogger.cpp
+        platform/ProfileLogger.h
         platform/serial.cpp
         platform/session.cpp
         platform/session.h
@@ -706,8 +764,12 @@ list(APPEND library_source
         platform/reference_referer.h
         platform/referencing_debugging.cpp
         platform/referencing_debugging.h
+   platform/registry.cpp
+   platform/registry.h
    platform/remoting.cpp
    platform/remoting.h
+   platform/subsystem.cpp
+   platform/subsystem.h
         platform/system.cpp
         platform/system_acme.cpp
         platform/system_acme.h
@@ -726,12 +788,14 @@ list(APPEND library_source
         platform/system_setup.cpp
         platform/system_setup.h
         platform/text.cpp
-        platform/timer.cpp
-        platform/timer_array.cpp
-        platform/timer_callback.cpp
-        platform/timer_event.cpp
+        #platform/timer.cpp
+        #platform/timer_array.cpp
+        #platform/timer_callback.cpp
+        #platform/timer_event.cpp
         #platform/timer_item.cpp
-        platform/timer_task.cpp
+        #platform/timer_task.cpp
+        platform/timer.cpp
+        platform/timer.h
         platform/trace.cpp
         platform/trace.h
         platform/tracer.cpp
@@ -742,6 +806,8 @@ list(APPEND library_source
         platform/url_context.cpp
         platform/url_context.h
         platform/version.cpp
+   platform/wparam.cpp
+   platform/wparam.h
         prototype/collection/__payload_array.cpp
         prototype/collection/_generic_array.h
 
@@ -759,6 +825,7 @@ list(APPEND library_source
         prototype/collection/map_test_51778915.cpp
         #prototype/collection/numeric_array.cpp
         #prototype/collection/point_array.cpp
+   prototype/collection/pointer_container.h
         prototype/collection/procedure_array.cpp
         prototype/collection/procedure_array.h
         prototype/collection/property_set.cpp
@@ -915,8 +982,8 @@ list(APPEND library_source
         prototype/mathematics/cvt_g.cpp
         prototype/mathematics/filestream.h
         #prototype/mathematics/index.h
-        prototype/mathematics/int_biunique.cpp
-        prototype/mathematics/int_biunique.h
+        prototype/mathematics/integer_biunique.cpp
+        prototype/mathematics/integer_biunique.h
         prototype/mathematics/mathematics.cpp
         prototype/mathematics/mathematics.h
         prototype/mathematics/mkint_c.cpp
@@ -925,12 +992,12 @@ list(APPEND library_source
         prototype/mathematics/natural.h
         prototype/mathematics/number.cpp
         prototype/mathematics/number.h
-        prototype/mathematics/number_double.cpp
-        prototype/mathematics/number_double.h
-        prototype/mathematics/number_float.cpp
-        prototype/mathematics/number_float.h
-        prototype/mathematics/number_integer.cpp
-        prototype/mathematics/number_integer.h
+        prototype/mathematics/number_f64.cpp
+        prototype/mathematics/number_f64.h
+        prototype/mathematics/number_f32.cpp
+        prototype/mathematics/number_f32.h
+        prototype/mathematics/number_i32.cpp
+        prototype/mathematics/number_i32.h
         prototype/mathematics/numeric_info.h
         prototype/mathematics/numeric.h
         prototype/mathematics/objects.h
@@ -1238,6 +1305,8 @@ list(APPEND library_source
         prototype/string/string.cpp
         prototype/string/string.h
         prototype/string/string_ansi.cpp
+        prototype/string/string_base.cpp
+        prototype/string/string_base.h
         #prototype/string/string_buffer.h
         prototype/string/string_inst.h
         prototype/string/string_wide.cpp
@@ -1314,6 +1383,7 @@ list(APPEND library_source
         regular_expression/regular_expression.h
         regular_expression/result.cpp
         regular_expression/result.h
+
         user/micro/_.h
         user/micro/button.cpp
         user/micro/button.h
@@ -1372,7 +1442,8 @@ list(APPEND library_source
         #   user/nano/window_implementation.h
         #   user/nano/window_interface.cpp
         #   user/nano/window_interface.h
-        user/micro/
+        user/simple/dialog_box_line.cpp
+   user/simple/dialog_box_line.h
         user/user/_string.cpp
         user/user/_string.h
         user/user/_text_stream.h
@@ -1415,6 +1486,8 @@ list(APPEND library_source
         user/user/key.h
         user/user/key_state.cpp
         user/user/key_state.h
+   user/user/keyboard_state.cpp
+   user/user/keyboard_state.h
         user/user/message_box.cpp
         user/user/message_box.h
         user/user/mouse.cpp
@@ -1858,6 +1931,8 @@ list(APPEND library_source
         operating_system/exit_status.cpp
         operating_system/exit_status.h
         operating_system/file.h
+        operating_system/GetCPUTime.cpp
+        operating_system/GetCPUTime.h
         operating_system/graphics.h
         operating_system/memory.cpp
    operating_system/networking.cpp
@@ -1875,8 +1950,8 @@ list(APPEND library_source
         operating_system/process.cpp
         operating_system/security_attributes.cpp
         operating_system/security_attributes.h
-        operating_system/shared_posix/c_error_number.cpp
-        operating_system/shared_posix/c_error_number.h
+        operating_system/shared_posix/c_errno.cpp
+        operating_system/shared_posix/c_errno.h
         operating_system/shared_posix/debug.cpp
         operating_system/shared_posix/earth_time_shift.cpp
         operating_system/shared_posix/errno.cpp
@@ -2005,12 +2080,12 @@ list(APPEND library_source
         platform/system.h
         platform/text.h
         platform/timeout.h
-        platform/timer.h
-        platform/timer_array.h
-        platform/timer_callback.h
-        platform/timer_event.h
-        platform/timer_item.h
-        platform/timer_task.h
+        #platform/timer.h
+   #platform/timer_array.h
+   #platform/timer_callback.h
+   #        platform/timer_event.h
+   #    platform/timer_item.h
+   #        platform/timer_task.h
         platform/title.h
         platform/trace_category.h
         platform/trace_statement.cpp
@@ -2047,7 +2122,7 @@ list(APPEND library_source
         prototype/collection/file_path_map.h
         prototype/collection/forward.h
         prototype/collection/insert_iterator.h
-        prototype/collection/int_map.h
+        prototype/collection/integer_map.h
         prototype/collection/iterable.h
         prototype/collection/iterator.h
         prototype/collection/list.h
@@ -2210,7 +2285,8 @@ endif ()
 if (${WIN32})
 
     list(APPEND library_source
-            #      operating_system/windows/console.cpp
+
+
             #      operating_system/windows/_factory.cpp
             #      operating_system/windows/file.cpp
             #      operating_system/windows/file_find.cpp
@@ -2262,10 +2338,14 @@ if (${WIN32})
             #operating_system/windows/base/_windows.h
             #operating_system/windows/console.h
        operating_system/windows/geometry2d.h
+       operating_system/windows/_window_class.h
             operating_system/windows/calculate_edesktop.cpp
             #operating_system/windows/calculate_etoolkit.cpp
             operating_system/windows/calculate_ewindowing.cpp
             operating_system/windows/callstack.cpp
+       operating_system/windows/console.cpp
+       operating_system/windows/device_context.cpp
+       operating_system/windows/device_context.h
             operating_system/windows/file1.cpp
             #operating_system/windows/heap_allocator.cpp
             #operating_system/windows/heap_allocator.h
@@ -2276,6 +2356,8 @@ if (${WIN32})
             operating_system/windows/message_loop.cpp
             operating_system/windows/parallelization.cpp
             operating_system/windows/process.cpp
+       operating_system/windows/shared_memory.h
+       operating_system/windows/shared_memory.cpp
             operating_system/windows/thread.cpp
             operating_system/windows/user.cpp
             operating_system/windows/window.cpp
@@ -2309,20 +2391,26 @@ if (${WIN32})
             #      operating_system/windows/nano/user/window.cpp
             #      operating_system/windows/nano/user/window.h
             #      operating_system/windows/nano/user/http/_nano_http.cpp
-            operating_system/windows/nano/http/_factory.cpp
-            operating_system/windows/nano/http/_http.h
-            operating_system/windows/nano/http/hinternet.cpp
-            operating_system/windows/nano/http/hinternet.h
-            operating_system/windows/nano/http/http.cpp
-            operating_system/windows/nano/http/http.h
-            operating_system/windows/nano/http/connect.cpp
-            operating_system/windows/nano/http/connect.h
-            operating_system/windows/nano/http/get.cpp
-            operating_system/windows/nano/http/get.h
-            operating_system/windows/nano/http/request.cpp
-            operating_system/windows/nano/http/request.h
-            operating_system/windows/nano/http/session.cpp
-            operating_system/windows/nano/http/session.h
+#            operating_system/windows/nano/http/_factory.cpp
+#            operating_system/windows/nano/http/_http.h
+#            operating_system/windows/nano/http/hinternet.cpp
+#            operating_system/windows/nano/http/hinternet.h
+#            operating_system/windows/nano/http/http.cpp
+#            operating_system/windows/nano/http/http.h
+#            operating_system/windows/nano/http/connect.cpp
+#            operating_system/windows/nano/http/connect.h
+#            operating_system/windows/nano/http/get.cpp
+#            operating_system/windows/nano/http/get.h
+#            operating_system/windows/nano/http/request.cpp
+#            operating_system/windows/nano/http/request.h
+#            operating_system/windows/nano/http/session.cpp
+#            operating_system/windows/nano/http/session.h
+
+       #operating_system/windows/subsystem/thread/_____debug.xcconfig
+       #operating_system/windows/subsystem/thread/_____release.xcconfig
+       #operating_system/windows/subsystem/thread/aaa_framework.cpp
+       #operating_system/windows/subsystem/thread/aaa_framework.h
+
     )
 else ()
 
@@ -2402,22 +2490,25 @@ if (${WIN32} OR ${UWP})
             operating_system/windows_common/com/hresult_exception.h
             operating_system/windows_common/com/prop_variant.h
             operating_system/windows_common/com/variant.h
-            operating_system/windows_common/nano/compress/_factory.cpp
-            operating_system/windows_common/nano/compress/compress.h
-            operating_system/windows_common/nano/compress/compress.cpp
-            operating_system/windows_common/nano/idn/_.h
-            operating_system/windows_common/nano/idn/_idn.cpp
-            operating_system/windows_common/nano/idn/idn.cpp
-            operating_system/windows_common/nano/idn/idn.h
-            #      operating_system/windows_common/_dll.cpp
-       operating_system/windows_common/acme.cpp
-            #      operating_system/windows_common/aura.cpp
+#            operating_system/windows_common/nano/compress/_factory.cpp
+#            operating_system/windows_common/nano/compress/compress.h
+#            operating_system/windows_common/nano/compress/compress.cpp
+#            operating_system/windows_common/nano/idn/_.h
+#            operating_system/windows_common/nano/idn/_idn.cpp
+#            operating_system/windows_common/nano/idn/idn.cpp
+#            operating_system/windows_common/nano/idn/idn.h
+            operating_system/windows_common/apartment_thread.cpp
+            operating_system/windows_common/apartment_thread.h
+             #      operating_system/windows_common/_dll.cpp
+            operating_system/windows_common/acme.cpp
+
+
+       #      operating_system/windows_common/aura.cpp
             #      operating_system/windows_common/base.cpp
             #      operating_system/windows_common/bstring.cpp
             #      operating_system/windows_common/com.cpp
-       operating_system/windows_common/cpu_features.cpp
-
-       operating_system/windows_common/debug.cpp
+            operating_system/windows_common/cpu_features.cpp
+            operating_system/windows_common/debug.cpp
             #operating_system/windows_common/desktop.cpp
             operating_system/windows_common/dll.cpp
             operating_system/windows_common/file.cpp
@@ -2430,6 +2521,7 @@ if (${WIN32} OR ${UWP})
             #operating_system/windows_common/idn.cpp
             operating_system/windows_common/heap_allocator.cpp
             operating_system/windows_common/heap_allocator.h
+            operating_system/windows_common/last_error.cpp
             operating_system/windows_common/last_error.h
             operating_system/windows_common/last_error_exception.cpp
             operating_system/windows_common/last_error_exception.h
@@ -2459,10 +2551,11 @@ endif ()
 
 if (${LINUX})
     list(APPEND library_source
-       console/console_linux.cpp
             operating_system/linux/
             operating_system/linux/_.cpp
             operating_system/linux/_.h
+
+       operating_system/linux/_linux.h
             operating_system/linux/_.h
             operating_system/linux/_c.h
             operating_system/linux/_factory.cpp
@@ -2471,6 +2564,7 @@ if (${LINUX})
             #operating_system/linux/_user.h
             operating_system/linux/application.h
             operating_system/linux/callstack.cpp
+            operating_system/linux/console.cpp
             operating_system/linux/cpu_features.cpp
             #operating_system/linux/cross_win_file.cpp
             #operating_system/linux/cross_win_file.h
@@ -2859,6 +2953,7 @@ if (${FREEBSD})
             #operating_system/freebsd/_user.h
             operating_system/freebsd/application.h
             operating_system/freebsd/call_stack.cpp
+       operating_system/freebsd/console.cpp
             operating_system/freebsd/cpu_features.cpp
             #      operating_system/freebsd/cross_win_file.cpp
             #      operating_system/freebsd/cross_win_file.h
@@ -3083,11 +3178,13 @@ if (${LINUX} OR ${__BSD__} OR ${NETBSD} OR ${OPENBSD} OR ${ANDROID})
 
 
     list(APPEND library_source
-            operating_system/posix/__edesktop_calculate.cpp
-            operating_system/posix/__edisplaytype_initialize.cpp
-            operating_system/posix/__etoolkit_calculate.cpp
+       operating_system/posix/__edesktop_calculate.cpp
+       operating_system/posix/__edisplaytype_initialize.cpp
+       operating_system/posix/__etoolkit_calculate.cpp
        operating_system/posix/networking.cpp
        operating_system/posix/networking.h
+       operating_system/posix/shared_memory.cpp
+       operating_system/posix/shared_memory.h
     )
 
 endif ()
@@ -3149,7 +3246,8 @@ if (${LINUX} OR ${__BSD__})
 endif ()
 
 
-add_library(${PROJECT_NAME} SHARED ${library_source})
+add_library(${PROJECT_NAME} SHARED ${library_source}
+   user/key/state.h)
 
 
 add_library(static_${PROJECT_NAME} STATIC ${library_source}

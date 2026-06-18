@@ -55,7 +55,7 @@ namespace apex
 
             set["raw_http"] = true;
 
-            ::url::url url = "https://windows.ca2.store/" + implementation_path(strImplementation) + ".zip";
+            ::url::url url = "https://windows.ca2.site/" + implementation_path(strImplementation) + ".zip";
 
             ::string strUrl(url.as_string());
 

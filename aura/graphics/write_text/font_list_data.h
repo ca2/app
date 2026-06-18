@@ -20,10 +20,10 @@ namespace write_text
 
       ::collection::index     m_iSerial;
       ::collection::index     m_iUpdateId;
-      int                     m_iBaseSize;
-      ::int_array_base        m_iaSize;
-      ::int_rectangle         m_rectangleX;
-      int                     m_iUpdatedCount;
+      ::i32                     m_iBaseSize;
+      ::i32_array_base        m_iaSize;
+      ::i32_rectangle         m_rectangleX;
+      ::i32                     m_iUpdatedCount;
       bool                    m_bLayoutStillIntersect;
 
 

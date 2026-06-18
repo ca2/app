@@ -8,7 +8,7 @@
 //#include "picture.h"
 
 
-//property & operator << (property & property, const ::double_rectangle & rectangle)
+//property & operator << (property & property, const ::f64_rectangle & rectangle)
 //{
 //
 //   property["left"] = rectangle.left;
@@ -20,13 +20,13 @@
 //
 //}
 //
-//property & operator >> (property & property, ::double_rectangle & rectangle)
+//property & operator >> (property & property, ::f64_rectangle & rectangle)
 //{
 //
 //   property["left"].as(rectangle.left);
-//   rectangle.top = property["top"].as_double();
-//   rectangle.right = property["right"].as_double();
-//   rectangle.bottom = property["bottom"].as_double();
+//   rectangle.top = property["top"].as_f64();
+//   rectangle.right = property["right"].as_f64();
+//   rectangle.bottom = property["bottom"].as_f64();
 //
 //   return property;
 //

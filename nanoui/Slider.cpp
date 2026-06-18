@@ -10,6 +10,9 @@
 */
 #include "framework.h"
 #include "Slider.h"
+#include "acme/constant/user_key.h"
+#include "acme/platform/session.h"
+#include "acme/user/user/keyboard_state.h"
 #include "nano2d/types.h"
 #include "nano2d/context.h"
 
@@ -25,7 +28,7 @@ namespace nanoui
    }
 
 
-   int_size Slider::preferred_size(::nano2d::context  *, bool bRecalcTextSize)
+   i32_size Slider::preferred_size(::nano2d::context  *, bool bRecalcTextSize)
    {
 
       return { 70, 16 };
@@ -33,21 +36,21 @@ namespace nanoui
    }
 
 
-   bool Slider::mouse_motion_event(const int_point & p, const int_size & /* rel */, bool bDown, const ::user::e_key & /* modifiers */)
+   bool Slider::mouse_motion_event(const i32_point &point)
    {
 
-      if (!m_bEnabled || !bDown)
+      if (!m_bEnabled || !m_keystatePress.is_left_button_pressed())
       {
 
          return false;
 
       }
 
-      const float kr = (m_size.cy * 0.4f), kshadow = 3.f;
-      const float start_x = kr + kshadow + m_pos.x - 1.f;
-      const float width_x = m_size.cx - 2.f * (kr + kshadow);
+      const ::f32 kr = (m_size.cy * 0.4f), kshadow = 3.f;
+      const ::f32 start_x = kr + kshadow + m_pos.x - 1.f;
+      const ::f32 width_x = m_size.cx - 2.f * (kr + kshadow);
 
-      float value = (p.x - start_x) / width_x, old_value = m_value;
+      ::f32 value = (point.x - start_x) / width_x, old_value = m_value;
 
       value = value * (m_range.m_element2 - m_range.m_element1) + m_range.m_element1;
 
@@ -59,6 +62,8 @@ namespace nanoui
          m_callback(m_value);
 
       }
+
+      information("Slider value: %f", m_value);
 
       set_need_redraw();
 
@@ -69,23 +74,38 @@ namespace nanoui
    }
 
 
-   bool Slider::mouse_button_event(const int_point & p, ::user::e_mouse emouse, bool down, bool bDoubleClick, const ::user::e_key & /* modifiers */)
+   bool Slider::mouse_button_event(const i32_point & point, ::user::e_key euserkeyMouseButton, bool bDown, bool bDoubleClick)
    {
 
-      if (!m_bEnabled)
+      if (!m_bEnabled || euserkeyMouseButton != ::user::e_key_left_button)
       {
 
          return false;
 
       }
 
-      const float kr = (m_size.cy * 0.4f), kshadow = 3.f;
+      if (bDown)
+      {
 
-      const float start_x = kr + kshadow + m_pos.x - 1;
+         set_mouse_capture();
 
-      const float width_x = m_size.cx - 2 * (kr + kshadow);
+      }
+      else
+      {
 
-      float value = (p.x - start_x) / width_x, old_value = m_value;
+         release_mouse_capture();
+
+      }
+
+      m_keystatePress = session();
+
+      const ::f32 kr = (m_size.cy * 0.4f), kshadow = 3.f;
+
+      const ::f32 start_x = kr + kshadow + m_pos.x - 1;
+
+      const ::f32 width_x = m_size.cx - 2 * (kr + kshadow);
+
+      ::f32 value = (point.x - start_x) / width_x, old_value = m_value;
 
       value = value * (m_range.m_element2 - m_range.m_element1) + m_range.m_element1;
 
@@ -98,7 +118,7 @@ namespace nanoui
 
       }
 
-      if (m_final_callback && !down)
+      if (m_final_callback && !bDown)
       {
 
          m_final_callback(m_value);
@@ -113,15 +133,15 @@ namespace nanoui
    void Slider::draw(::nano2d::context  * pcontext)
    {
 
-      auto center = float_point(m_pos) + float_size(m_size) * 0.5f;
+      auto center = ::f32_point(m_pos) + ::f32_size(m_size) * 0.5f;
 
-      float kr = (m_size.cy * 0.4f), kshadow = 3.f;
+      ::f32 kr = (m_size.cy * 0.4f), kshadow = 3.f;
 
-      float start_x = kr + kshadow + m_pos.x;
+      ::f32 start_x = kr + kshadow + m_pos.x;
 
-      float width_x = m_size.cx - 2 * (kr + kshadow);
+      ::f32 width_x = m_size.cx - 2 * (kr + kshadow);
 
-      float_point knob_pos(start_x + (m_value - m_range.m_element1) /
+      ::f32_point knob_pos(start_x + (m_value - m_range.m_element1) /
          (m_range.m_element2 - m_range.m_element1) * width_x,
          center.y + 0.5f);
 
@@ -164,10 +184,10 @@ namespace nanoui
       pcontext->fill();
 
       ::nano2d::paint knob = pcontext->linear_gradient(
-         (float)m_pos.x, center.y - kr, (float)m_pos.x, center.y + kr,
+         (::f32)m_pos.x, center.y - kr, (::f32)m_pos.x, center.y + kr,
          m_ptheme->m_colorBorderLight, m_ptheme->m_colorBorderMedium);
       ::nano2d::paint knob_reverse = pcontext->linear_gradient(
-         (float)m_pos.x, center.y - kr, (float)m_pos.x, center.y + kr,
+         (::f32)m_pos.x, center.y - kr, (::f32)m_pos.x, center.y + kr,
          m_ptheme->m_colorBorderMedium,
          m_ptheme->m_colorBorderLight);
 

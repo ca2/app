@@ -11,7 +11,7 @@ namespace comparison
    public:
 
 
-      int operator ()(ARG_TYPE a, ARG_TYPE b)
+      ::i32 operator ()(ARG_TYPE a, ARG_TYPE b)
       {
          if(a < b)
             return -1;
@@ -25,12 +25,12 @@ namespace comparison
    };
 
    template < >
-   class CLASS_DECL_ACME binary < int >
+   class CLASS_DECL_ACME binary < ::i32 >
    {
    public:
 
 
-      inline static iptr CompareElements(const int * pElement1, const int * pElement2)
+      inline static iptr CompareElements(const ::i32 * pElement1, const ::i32 * pElement2)
       {
          return *pElement1 - *pElement2;
       }

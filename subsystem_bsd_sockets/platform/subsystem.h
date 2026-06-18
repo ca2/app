@@ -1,0 +1,72 @@
+//
+// Created by camilo on 2026-04-05 20:14 <3ThomasBorregaardSørensen!!
+//
+
+
+// Offloading apex(TBS)::app_core from deep stack stuff into acme(CSTBS) ::system 2022-02-22 by camilo at 07:19 <3ThomasBorregaardSorensen!!
+#pragma once
+
+
+#include "subsystem/platform/subsystem.h"
+#include "subsystem_bsd_sockets/_common_header.h"
+
+
+namespace subsystem_bsd_sockets
+{
+
+
+   class CLASS_DECL_SUBSYSTEM_BSD_SOCKETS subsystem :
+      virtual public ::subsystem::subsystem
+   {
+   public:
+
+
+      static ::subsystem_bsd_sockets::subsystem *            s_p;
+
+      static critical_section s_criticalsectionResolveIp4;
+
+
+      subsystem();
+      ~subsystem() override;
+
+
+      virtual bool socket_would_block(int iError);
+      virtual bool socket_would_block();
+
+      ::i32 get_last_socket_error() override;
+
+      ::string get_socket_error_message_text(::i32 iError) override;
+
+      ::pointer < ::subsystem::SocketAddressIPv4Interface > resolve_ip4_address(const ::scoped_string & scopedstrHost, ::u16 port) override;
+
+      ::u32 internet_address4(const ::scoped_string &scopedstr) override;
+      virtual ::string internet_address4_as_string(::u32 u) override;
+      ::u32 host_to_network_long(::u32 u) override;
+      ::u32 network_to_host_long(::u32 u) override;
+
+       memsize getCurrentMemoryUsage() override;
+
+
+      //void startSockets() override;
+
+      //void cleanupSockets() override;
+
+      ::string getLocalIpAddressString() override;
+
+
+
+   };
+
+
+
+} // namespace subsystem_bsd_sockets
+
+
+
+inline ::subsystem_bsd_sockets::subsystem * bsd_sockets_subsystem()
+{
+
+   return ::subsystem_bsd_sockets::subsystem::s_p;
+
+}
+

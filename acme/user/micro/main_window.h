@@ -51,7 +51,7 @@ namespace micro
 
          //string                                    m_strText;
          ////::atom                                    id();
-         //int_rectangle                             m_rectangle;
+         //i32_rectangle                             m_rectangle;
          //enum_font                                 m_efont;
 
 
@@ -94,18 +94,18 @@ namespace micro
 
          //void message_loop() override;
 
-         //void draw(::nano::graphics::device * pnanodevice) override;
+         //void draw(::nano::graphics::context * pnanodevice) override;
 
-         //void on_draw(::nano::graphics::device * pnanodevice) override;
+         //void on_draw(::nano::graphics::context * pnanodevice) override;
 
-         //void draw(::nano::graphics::device * pnanodevice);
+         //void draw(::nano::graphics::context * pnanodevice);
 
-         //virtual void on_char(int iChar);
+         //virtual void on_char(::i32 iChar);
 
          //bool is_active() override;
          //void set_active() override;
 
-         //virtual void draw_children(::nano::graphics::device * pnanodevice);
+         //virtual void draw_children(::nano::graphics::context * pnanodevice);
 
          //void delete_drawing_objects() override;
          //bool get_dark_mode() override;
@@ -113,10 +113,10 @@ namespace micro
          //void create_drawing_objects() override;
          //void update_drawing_objects() override;
 
-         //::int_point try_absolute_mouse_position(const ::int_point & point) override;
+         //::i32_point try_absolute_mouse_position(const ::i32_point & point) override;
 
 
-         virtual ::int_point origin() override;
+         virtual ::i32_point origin() override;
 
          //virtual ::payload get_result();
 
@@ -133,17 +133,17 @@ namespace micro
 
                   //::micro::child * hit_test(::user::mouse * pmouse, ::user::e_zorder ezorder) override;
          //virtual ::acme::user::interaction * hit_test(::user::mouse * pmouse, ::user::e_zorder ezorder);
-         //virtual ::acme::user::interaction * on_hit_test(const ::int_point & point, ::user::e_zorder ezorder);
+         //virtual ::acme::user::interaction * on_hit_test(const ::i32_point & point, ::user::e_zorder ezorder);
          //virtual void add_child(::acme::user::interaction * pchild);
          //virtual ::acme::user::interaction * get_child_by_id(const ::atom & atom);
 
-         //virtual ::int_rectangle get_client_rectangle();
+         //virtual ::i32_rectangle get_client_rectangle();
 
 
          /// @brief  Child
          /// @param pnanodevice 
-         ////virtual void on_draw(::nano::graphics::device * pnanodevice);
-         ////virtual void on_char(int iChar);
+         ////virtual void on_draw(::nano::graphics::context * pnanodevice);
+         ////virtual void on_char(::i32 iChar);
          //virtual void set_keyboard_focus();
          //virtual bool is_keyboard_focusable();
          ////virtual void on_mouse_move(::user::mouse * pmouse);
@@ -265,9 +265,9 @@ namespace micro
 
          //virtual void create_window();
 
-         void show() override;
+         //void show() override;
 
-         void hide() override;
+         //void hide() override;
          
          ::shift_int client_to_host() override;
 
@@ -275,16 +275,16 @@ namespace micro
 
          virtual void implementation_message_loop_step() override;
 
-         //virtual void draw(::nano::graphics::device * pnanodevice);
+         //virtual void draw(::nano::graphics::context * pnanodevice);
 
-         //virtual void on_draw(::nano::graphics::device * pnanodevice);
+         //virtual void on_draw(::nano::graphics::context * pnanodevice);
 
-         //virtual void on_char(int iChar);
+         //virtual void on_char(::i32 iChar);
 
          //virtual bool is_active();
          //virtual void set_active();
 
-         //virtual void draw_children(::nano::graphics::device * pnanodevice);
+         //virtual void draw_children(::nano::graphics::context * pnanodevice);
 
          //virtual void delete_drawing_objects();
          //virtual bool get_dark_mode();
@@ -292,7 +292,7 @@ namespace micro
          //virtual void create_drawing_objects();
          //virtual void update_drawing_objects();
 
-         //virtual ::int_point origin();
+         //virtual ::i32_point origin();
 
          //virtual bool defer_perform_entire_reposition_process();
 
@@ -314,12 +314,12 @@ namespace micro
          //virtual ::shift_int absolute_to_client();
          //virtual ::shift_int client_to_absolute();
 
-         //virtual ::int_point try_absolute_mouse_position(const ::int_point & point);
+         //virtual ::i32_point try_absolute_mouse_position(const ::i32_point & point);
 
          // drag_client
          //void drag_set_capture() override;
-         //bool on_drag_start(::int_point & point, ::item * pitem) override;
-         //::int_point drag_mouse_cursor_position(::item * pitem, const ::int_point & point) override;
+         //bool on_drag_start(::i32_point & point, ::item * pitem) override;
+         //::i32_point drag_mouse_cursor_position(::item * pitem, const ::i32_point & point) override;
          //bool drag_shift(::item * pitem, ::user::mouse * pmouse) override;
          //bool drag_hover(::item * pitem) override;
          //void drag_release_capture() override;
@@ -327,11 +327,11 @@ namespace micro
 
 
          // virtual ::micro::child * nano_user_hit_test(::user::mouse * pmouse, ::user::e_zorder ezorder);
-         // virtual ::micro::child * nano_user_on_hit_test(const ::int_point & point, ::user::e_zorder ezorder);
+         // virtual ::micro::child * nano_user_on_hit_test(const ::i32_point & point, ::user::e_zorder ezorder);
          // virtual void nano_user_add_child(::micro::child * pchild);
 
          //virtual ::payload get_result();
-         //void add_button(const ::scoped_string & scopedstrText, enum_dialog_result edialogresult, char chLetter);
+         //void add_button(const ::scoped_string & scopedstrText, enum_dialog_result edialogresult, ::i8 chLetter);
 
 
          void display_temporary_file_with_text(const ::scoped_string & scopedstr) override;
@@ -347,14 +347,14 @@ namespace micro
 
          //virtual LRESULT window_procedure(UINT message, WPARAM wparam, LPARAM lparam);
 
-         void set_position(const ::int_point & point) override;
+         void set_position(const ::i32_point & point) override;
 
          void destroy() override;
 
          void redraw() override;
 
-         //virtual void get_client_rectangle(::int_rectangle & rectangle);
-         ::int_rectangle get_window_rectangle() override;
+         //virtual void get_client_rectangle(::i32_rectangle & rectangle);
+         ::i32_rectangle get_window_rectangle() override;
 
          //void set_mouse_capture() override;
 
@@ -375,11 +375,11 @@ namespace micro
          //void get_text_selection(character_count & iBeg, character_count & iEnd) const override;
          //virtual void get_text_selection(character_count & iBeg, character_count & iEnd, character_count & iComposingStart, character_count & iComposingEnd) const;
          //virtual ::collection::index plain_edit_sel_to_column(::draw2d::graphics_pointer & pgraphics, character_count iSel);
-         //virtual ::collection::index plain_edit_sel_to_column_x(::draw2d::graphics_pointer & pgraphics, character_count iSel, int & x);
+         //virtual ::collection::index plain_edit_sel_to_column_x(::draw2d::graphics_pointer & pgraphics, character_count iSel, ::i32 & x);
          //virtual ::collection::index plain_edit_sel_to_line(::draw2d::graphics_pointer & pgraphics, character_count iSel);
-         //virtual ::collection::index plain_edit_sel_to_line_x(::draw2d::graphics_pointer & pgraphics, character_count iSel, int & x);
+         //virtual ::collection::index plain_edit_sel_to_line_x(::draw2d::graphics_pointer & pgraphics, character_count iSel, ::i32 & x);
          //virtual character_count plain_edit_line_column_to_sel(::draw2d::graphics_pointer & pgraphics, ::collection::index iLine, ::collection::index iColumn);
-         //virtual character_count plain_edit_line_x_to_sel(::draw2d::graphics_pointer & pgraphics, ::collection::index iLine, int x);
+         //virtual character_count plain_edit_line_x_to_sel(::draw2d::graphics_pointer & pgraphics, ::collection::index iLine, ::i32 x);
          //virtual ::collection::index plain_edit_char_to_line(::draw2d::graphics_pointer & pgraphics, character_count iSel);
 
 

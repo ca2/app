@@ -13,9 +13,10 @@
 #include "configuration_selection.h"
 #include "acme/platform/_features.h"
 #include "debugbreak.h"
-#include "operating_system/platform_setup.h"
 //#include "configuration/debug.h"
+#include "operating_system/platform_setup.h"
 #include "operating_system/configuration.h"
+#include "operating_system/types.h"
 #include "include/_setup.h"
 
 
@@ -34,9 +35,7 @@
 
 #include "__standard_type.h"
 #include "acme/include/_operating_system.h"
-#include "acme/include/_macro.h"
 #include "acme/constant/memory_heap.h"
-#include "operating_system/types.h"
 #include "operating_system/system.h"
 //#ifdef	_STDIO_H_
 //#error "already included?!?! _____ (After including operating_system/system.h)"
@@ -109,7 +108,7 @@ typedef iptr strsize_storage;
 
 typedef iptr memsize;
 typedef iptr character_count;
-typedef long long filesize;
+typedef i64 filesize;
 
 
 #if WCHAR_T_SIZE == 16

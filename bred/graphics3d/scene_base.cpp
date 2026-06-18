@@ -86,7 +86,7 @@ namespace graphics3d
    //}
 
 
-   void scene_base::update(float dt)
+   void scene_base::update(::f32 dt)
    {
 
       for (auto &pprodevianactor: m_prodevianactora)
@@ -112,15 +112,15 @@ namespace graphics3d
       auto intensity = setObject.get("intensity", 15.8f);
       const auto &colorsJson = setObject["colors"];
 
-      for (int i = 0; i < count; ++i)
+      for (::i32 i = 0; i < count; ++i)
       {
 
-         float angle = i * _2πf / count;
+         ::f32 angle = i * _2πf / count;
 
          floating_sequence3 pos = {radius * std::cos(angle), height, radius * std::sin(angle)};
 
          auto colorArray = colorsJson[i % colorsJson.array_get_count()];
-         auto color = ::argb(1.0f, colorArray[0].as_float(), colorArray[1].as_float(), colorArray[2].as_float());
+         auto color = ::argb(1.0f, colorArray[0].as_f32(), colorArray[1].as_f32(), colorArray[2].as_f32());
 
          auto ppointlight = this->create_point_light(intensity, 0.1f, color);
 
@@ -282,17 +282,17 @@ namespace graphics3d
 
       pscenerenderable->set_renderable(prenderable);
 
-      auto pos = setObject.get("position", ::float_array_base{0.f, 0.f, 0.f});
-      auto rot = setObject.get("rotation", ::float_array_base{0.f, 0.f});
-      auto scl = setObject.get("scale", ::float_array_base{1.f, 1.f, 1.f});
+      auto pos = setObject.get("position", ::f32_array_base{0.f, 0.f, 0.f});
+      auto rot = setObject.get("rotation", ::f32_array_base{0.f, 0.f});
+      auto scl = setObject.get("scale", ::f32_array_base{1.f, 1.f, 1.f});
 
-      pscenerenderable->m_sequence3Translation = {pos.ø(0), pos.ø(1), pos.ø(2)};
-      pscenerenderable->m_matrixRotation = ::graphics3d::floating_rotation(::degrees(rot.ø(0)), ::degrees(rot.ø(1))).as_rotation_matrix();
-      pscenerenderable->m_sequence3Scaling = {scl.ø(0), scl.ø(1), scl.ø(2)};
+      pscenerenderable->m_sequence3Translation = {pos.atø(0), pos.atø(1), pos.atø(2)};
+      pscenerenderable->m_matrixRotation = ::graphics3d::floating_rotation(::degrees(rot.atø(0)), ::degrees(rot.atø(1))).as_rotation_matrix();
+      pscenerenderable->m_sequence3Scaling = {scl.atø(0), scl.atø(1), scl.atø(2)};
 
-      //transform.m_sequence3Position = {pos.ø(0), pos.ø(1), pos.ø(2)};
-      //transform.m_rotation = {::degrees(rot.ø(0)), ::degrees(rot.ø(1)};
-      //transform.m_sequence3Scale = {scl.ø(0), scl.ø(1), scl.ø(2)};
+      //transform.m_sequence3Position = {pos.atø(0), pos.atø(1), pos.atø(2)};
+      //transform.m_rotation = {::degrees(rot.atø(0)), ::degrees(rot.atø(1)};
+      //transform.m_sequence3Scale = {scl.atø(0), scl.atø(1), scl.atø(2)};
 
       informationf("Loaded GameObject '%s' - Pos: (%0.2f, %0.2f, %0.2f), Rot: (%0.2f, %0.2f, %0.2f), Scale: (%0.2f, "
                    "%0.2f, %0.2f)",
@@ -705,7 +705,7 @@ namespace graphics3d
    }
 
 
-   ::pointer<::graphics3d::point_light> scene_base::create_point_light(float intensity, float radius,
+   ::pointer<::graphics3d::point_light> scene_base::create_point_light(::f32 intensity, ::f32 radius,
                                                                        const ::color::color &color)
    {
       auto ppointlight = allocateø ::graphics3d::point_light;

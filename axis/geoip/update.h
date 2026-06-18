@@ -22,15 +22,15 @@ typedef enum {
    GEOIP_INVALID_SERVER_RESPONSE = -26  /* Server returned invalid response */
 } GeoIPUpdateCode;
 
-const_char_pointer GeoIP_get_error_message(int i);
+const_char_pointer GeoIP_get_error_message(::i32 i);
 
 /* Original Update Function, just for MaxMind GeoIP Country database */
-short GeoIP_update_database (char * license_key, int verbose, void (*f)( char *));
+::i16 GeoIP_update_database (char_pointer license_key, ::i32 verbose, void (*f)( char_pointer ));
 
 /* More generalized update function that works more databases */
-short GeoIP_update_database_general (char * user_id, char * license_key,char * data_axis_type, int verbose,char ** client_ipaddr, void (*f)( char *));
+::i16 GeoIP_update_database_general (char_pointer user_id, char_pointer license_key,char_pointer data_axis_type, ::i32 verbose,char_pointer * client_ipaddr, void (*f)( char_pointer ));
 
    /* experimental export */
-   int  GeoIP_fprintf(int (*f)(FILE *, char *),FILE *fp, const_char_pointer fmt, ...);
-   void GeoIP_printf(void (*f)(char *), const_char_pointer fmt, ...);
+   ::i32  GeoIP_fprintf(::i32 (*f)(FILE *, char_pointer ),FILE *fp, const_char_pointer fmt, ...);
+   void GeoIP_printf(void (*f)(char_pointer ), const_char_pointer fmt, ...);
 

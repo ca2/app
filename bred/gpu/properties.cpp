@@ -43,10 +43,10 @@ namespace gpu
    }
 
    
-   void properties_reference::_set_int(const int& i)
+   void properties_reference::_set_int(const ::i32& i)
 	{
 
-		*((int *)m_blockWithSamplers.data()) = i;
+		*((::i32 *)m_blockWithSamplers.data()) = i;
 
 	}
 

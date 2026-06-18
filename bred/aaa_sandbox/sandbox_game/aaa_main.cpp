@@ -5,7 +5,7 @@
 #include "asset_manager.h"
 
 
-int main()
+::i32 main()
 {
     SandboxEngine engine;
 

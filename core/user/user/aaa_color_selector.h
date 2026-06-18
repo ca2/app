@@ -13,7 +13,7 @@ namespace graphics
 
 
       bool                             m_bMouseColorBeam;
-      ::int_point                      m_pointMouseColorBeam;
+      ::i32_point                      m_pointMouseColorBeam;
       bool                             m_bCompact;
       bool                             m_bLButtonPressed;
       ::user::plain_edit               m_editRed;
@@ -27,7 +27,7 @@ namespace graphics
 
       ::color::hls                     m_hls;
 
-      ::int_rectangle                  m_rectangleColors;
+      ::i32_rectangle                  m_rectangleColors;
 
 
       color_selector();
@@ -51,8 +51,8 @@ namespace graphics
 
       virtual void _001OnDraw(::draw2d::graphics_pointer & pgraphics) override;
 
-      virtual void draw_beam(::draw2d::graphics_pointer & pgraphics, const ::int_point & point);
-      virtual void draw_level(::draw2d::graphics_pointer & pgraphics, const ::int_rectangle & rectangleW, int y);
+      virtual void draw_beam(::draw2d::graphics_pointer & pgraphics, const ::i32_point & point);
+      virtual void draw_level(::draw2d::graphics_pointer & pgraphics, const ::i32_rectangle & rectangleW, ::i32 y);
 
 
       //DECLARE_MESSAGE_HANDLER(on_message_create);
@@ -63,7 +63,7 @@ namespace graphics
 
       virtual void on_layout(::draw2d::graphics_pointer & pgraphics) override;
 
-      virtual void on_mouse(const ::int_point & point);
+      virtual void on_mouse(const ::i32_point & point);
       virtual void rebuild_luminance();
 
       virtual ::color::color get_color();
@@ -81,7 +81,7 @@ namespace app_core_flag
 {
 
 
-   CLASS_DECL_CORE void dk(::draw2d::graphics_pointer & pgraphics, double x, double y, double w, double h);
+   CLASS_DECL_CORE void dk(::draw2d::graphics_pointer & pgraphics, ::f64 x, ::f64 y, ::f64 w, ::f64 h);
 
 
 } // namespace flag
@@ -93,7 +93,7 @@ namespace graphics
 
    CLASS_DECL_CORE void colors_with_shades_of_grey(::image::image *pimage);
 
-   CLASS_DECL_CORE void shades_of_luminance(::image::image *pimage, double dH, double dS);
+   CLASS_DECL_CORE void shades_of_luminance(::image::image *pimage, ::f64 dH, ::f64 dS);
 
 
 } // namespace graphics

@@ -21,7 +21,7 @@ cpu_features::cpu_features()
    m_bAVX  = false;
    m_bAVX2 = false;
 
-   int value = 0;
+   ::i32 value = 0;
    size_t size = sizeof(value);
 
    // NEON (always present on ARM64, but sysctl confirms it)

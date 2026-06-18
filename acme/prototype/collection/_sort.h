@@ -31,11 +31,11 @@ namespace sort
 
    //    static iptr DWordCompare(const iptr dwA, const iptr dwB);
 
-   //   static void BubbleSort(LPINT pInt, iptr int_size);
+   //   static void BubbleSort(LPINT pInt, iptr i32_size);
 
 
    //   static void quick_sort(
-      //    array<unsigned int, unsigned int> & a,
+      //    array<::u32, ::u32> & a,
       //  iptr (*fCompare)(const iptr, const iptr),
       //void (*__swap)(void * pVoidSwapArg, iptr iA, iptr iB),
 
@@ -115,7 +115,7 @@ namespace sort
       iptr iLowerBound;
       iptr iUpperBound;
       iptr iLPos, iUPos, iMPos;
-      //   unsigned int t;
+      //   ::u32 t;
 
       if (a.get_size() >= 2)
       {
@@ -348,7 +348,7 @@ namespace sort
    //template <class TYPE, class ARG_TYPE>
    //void quick_sort(
    //   array<TYPE, ARG_TYPE> & a,
-   //   int (* fCompare)(const ARG_TYPE, const ARG_TYPE))
+   //   ::i32 (* fCompare)(const ARG_TYPE, const ARG_TYPE))
    //{
    //   index_array stackLowerBound;
    //   index_array stackUpperBound;
@@ -1684,19 +1684,19 @@ namespace sort
    //https://stackoverflow.com/questions/32937902/sorting-iptr-of-array-using-merge-sort
 
    template < typename ARRAY, typename PRED >
-   void predicate_index_merge(ARRAY & a, PRED leq, index_array & temp, index_array & perm, int lo, int mid, int hi)
+   void predicate_index_merge(ARRAY & a, PRED leq, index_array & temp, index_array & perm, ::i32 lo, ::i32 mid, ::i32 hi)
    {
 
-      int i = lo, j = mid + 1;
+      ::i32 i = lo, j = mid + 1;
 
-      for (int k = lo; k <= hi; k++)
+      for (::i32 k = lo; k <= hi; k++)
       {
 
          temp[k] = perm[k];
 
       }
 
-      for (int k = lo; k <= hi; k++)
+      for (::i32 k = lo; k <= hi; k++)
       {
 
          if (i > mid)
@@ -1729,13 +1729,13 @@ namespace sort
    }
 
    template < typename ARRAY, typename PRED >
-   void predicate_index_merge_sort(ARRAY & a, PRED leq, index_array & temp, index_array & perm, int lo, int hi)
+   void predicate_index_merge_sort(ARRAY & a, PRED leq, index_array & temp, index_array & perm, ::i32 lo, ::i32 hi)
    {
 
       if (hi <= lo)
          return;
 
-      int mid = (hi + lo) / 2;
+      ::i32 mid = (hi + lo) / 2;
 
       predicate_merge_sort(a, leq, temp, perm, lo, mid);
 
@@ -1763,12 +1763,12 @@ namespace sort
    // First subarray is arr[l..m]
    // Second subarray is arr[m+1..r]
    template < typename ARRAY, typename PRED >
-   void predicate_merge(ARRAY & a, PRED leq, int l, int m, int r)
+   void predicate_merge(ARRAY & a, PRED leq, ::i32 l, ::i32 m, ::i32 r)
    {
 
-      int i, j, k;
-      int n1 = m - l + 1;
-      int n2 = r - m;
+      ::i32 i, j, k;
+      ::i32 n1 = m - l + 1;
+      ::i32 n2 = r - m;
 
       /* create temp arrays */
       ARRAY L;
@@ -1823,7 +1823,7 @@ namespace sort
    /* l is for left iptr and r is right iptr of the
    sub-array of arr to be sorted */
    template < typename ARRAY, typename PRED >
-   void predicate_merge_sort(ARRAY & a, PRED leq, int l, int r)
+   void predicate_merge_sort(ARRAY & a, PRED leq, ::i32 l, ::i32 r)
    {
 
       if (l < r)
@@ -1831,7 +1831,7 @@ namespace sort
 
          // Same as (l+r)/2, but avoids overflow for large l and h
 
-         int m = l + (r - l) / 2;
+         ::i32 m = l + (r - l) / 2;
 
          // Sort first and second halves
 

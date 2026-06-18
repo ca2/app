@@ -18,13 +18,13 @@ namespace aura
       }
 
 
-      CLASS_DECL_AURA long long microsecond()
+      CLASS_DECL_AURA ::i64 microsecond()
       {
 
          return ::get_nanos() / 1000;
 
       }
-CLASS_DECL_AURA int profile_sleep()
+CLASS_DECL_AURA ::i32 profile_sleep()
 {
 
 #ifdef _DEBUG

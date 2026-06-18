@@ -14,12 +14,12 @@ namespace acme
  namespace solaris
  {
 
-int create_process(const_char_pointer _cmd_line, int * pprocessId)
+::i32 create_process(const_char_pointer _cmd_line, ::i32 * pprocessId)
 {
-   char *   exec_path_name;
-   char *	cmd_line;
+   char_pointer exec_path_name;
+   char_pointer cmd_line;
 
-   cmd_line = (char *) ca2_alloc(strlen(_cmd_line ) + 1 );
+   cmd_line = (char_pointer ) ca2_alloc(strlen(_cmd_line ) + 1 );
 
    if(cmd_line == nullptr)
       return 0;
@@ -29,9 +29,9 @@ int create_process(const_char_pointer _cmd_line, int * pprocessId)
    if((*pprocessId = fork()) == 0)
    {
       // child
-      char		*pArg, *pPtr;
-      char		*argv[1024 + 1];
-      int		 argc;
+      char_pointer pArg, *pPtr;
+      char_pointer argv[1024 + 1];
+      ::i32		 argc;
       if( ( pArg = ansi_find_char_reverse( exec_path_name, '/' ) ) != nullptr )
          pArg++;
       else
@@ -72,11 +72,11 @@ int create_process(const_char_pointer _cmd_line, int * pprocessId)
 
  }// namespace acme
 
-CLASS_DECL_ACME int call_async(
+CLASS_DECL_ACME ::i32 call_async(
 const ::file::path & path,
 const ::scoped_string & scopedstrParam,
 const ::scoped_string & scopedstrDir,
-int iShow)
+::i32 iShow)
 {
    vsstring strCmdLine;
 
@@ -87,7 +87,7 @@ int iShow)
       strCmdLine += pszParam;
    }
 
-   int processId;
+   ::i32 processId;
 
    if(!create_process(strCmdLine, &processId))
       return -1;
@@ -96,7 +96,7 @@ int iShow)
 
 }
 
-CLASS_DECL_ACME unsigned int call_sync(const ::file::path & path, const ::scoped_string & scopedstrParam, const ::scoped_string & scopedstrDir, ::e_display edisplay, const class time & timeTimeout, ::property_set & set)
+CLASS_DECL_ACME ::u32 call_sync(const ::file::path & path, const ::scoped_string & scopedstrParam, const ::scoped_string & scopedstrDir, ::e_display edisplay, const class time & timeTimeout, ::property_set & set)
 {
    vsstring strCmdLine;
 
@@ -107,7 +107,7 @@ CLASS_DECL_ACME unsigned int call_sync(const ::file::path & path, const ::scoped
       strCmdLine += pszParam;
    }
 
-   int processId;
+   ::i32 processId;
 
    if(!create_process(strCmdLine, &processId))
       return -1;

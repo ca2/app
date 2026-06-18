@@ -148,7 +148,7 @@ class function_common_base
 public:
 #if FUNCTION_DEBUGGING
    const_char_pointer m_pszDebug;
-   long long m_iDebug;
+   ::i64 m_iDebug;
 #endif
    class ::time m_timeTimeout;
 
@@ -237,7 +237,7 @@ public:
 //    operator ::hash32() const
 //    {
 //
-//       return { (unsigned int)(::uptr)m_pbase.m_p };
+//       return { (::u32)(::uptr)m_pbase.m_p };
 //
 //    };
 //
@@ -574,7 +574,7 @@ public:
    }
    //
    //
-   // void get_debug_title(char * sz, character_count c) override
+   // void get_debug_title(char_pointer sz, character_count c) override
    // {
    //
    //    ::string_count_copy(sz, "a procedure", c);
@@ -697,7 +697,7 @@ public:
    //operator ::hash32() const 
    //{
 
-   //   return { (unsigned int)(::uptr)m_pbase.m_p };
+   //   return { (::u32)(::uptr)m_pbase.m_p };
 
    //};
 
@@ -823,7 +823,7 @@ public:
    //    }
    //
    //
-   //    void get_debug_title(char * sz, character_count c) const override
+   //    void get_debug_title(char_pointer sz, character_count c) const override
    //    {
    //
    //       ::string_count_copy(sz, "function with argument(s) and return type", c);
@@ -900,7 +900,7 @@ public:
 
    }
 
-   function(base * pbase, const class ::time & timeTimeout) :
+   function(base *pbase, const class ::time &timeTimeout = default_run_timeout()) :
    function_common_base(timeTimeout),
    base_pointer(pbase)
    {
@@ -948,7 +948,7 @@ public:
    //operator ::hash32() const 
    //{
 
-   //   return { (unsigned int)(::uptr)m_pbase.m_p };
+   //   return { (::u32)(::uptr)m_pbase.m_p };
 
    //}
 
@@ -1138,7 +1138,7 @@ public:
 //    }
 //
 //
-//    void get_debug_title(char * sz, character_count c) const override
+//    void get_debug_title(char_pointer sz, character_count c) const override
 //    {
 //
 //       ::string_count_copy(sz, "function with argument(s) and no return type", c);
@@ -1281,7 +1281,7 @@ public:
 
    //bool operator == (const function & function) const { return m_pbase == function.m_pbase; }
 
-   //operator ::hash32() const { return { (unsigned int)(::uptr)m_pbase.m_p }; }
+   //operator ::hash32() const { return { (::u32)(::uptr)m_pbase.m_p }; }
    //
    //void set_run_timeout(const class time & timeTimeout)
    //{

@@ -107,7 +107,7 @@
 //
 //   }
 //
-//   pointer_rear_iterator operator ++(int)
+//   pointer_rear_iterator operator ++(::i32)
 //   {
 //      auto p = *this;
 //      m_p--;
@@ -115,7 +115,7 @@
 //      return p;
 //
 //   }
-//   pointer_rear_iterator operator --(int)
+//   pointer_rear_iterator operator --(::i32)
 //   {
 //      auto p = *this;
 //      m_p++;
@@ -398,7 +398,7 @@
 //   //   }
 //
 //
-//   //   make_iterator operator ++ (int)
+//   //   make_iterator operator ++ (::i32)
 //   //   {
 //
 //   //      auto it = *this;
@@ -878,7 +878,7 @@
 //   inline TYPE takeFirst(::collection::index i = 0);
 //   inline TYPE takeLast(::collection::index i = -1);
 //
-//   virtual ::collection::count append(const base_array_quantum & src); // return old int_size
+//   virtual ::collection::count append(const base_array_quantum & src); // return old i32_size
 //   virtual void copy(const base_array_quantum & src);
 //
 //
@@ -911,7 +911,7 @@
 //
 //      ::collection::index iEnd = c < 0 ? get_count() + c : iStart + c - 1;
 //
-//      int cProcessed = 0;
+//      ::i32 cProcessed = 0;
 //
 //      for (::collection::index i = iStart; i <= iEnd; i++)
 //      {
@@ -1120,7 +1120,7 @@
 //   TYPE * predicate_get_first(PRED pred)
 //   {
 //
-//      for (int i = 0; i < get_count(); i++)
+//      for (::i32 i = 0; i < get_count(); i++)
 //      {
 //
 //         if (pred(this->m_begin[i]))
@@ -1143,7 +1143,7 @@
 //
 //      ::collection::count c = 0;
 //
-//      for (int i = 0; i < get_count(); i++)
+//      for (::i32 i = 0; i < get_count(); i++)
 //      {
 //
 //         if (pred(this->m_begin[i]))
@@ -1166,7 +1166,7 @@
 //
 //      ::collection::count cTotal = 0;
 //
-//      for (int i = 0; i < get_count();)
+//      for (::i32 i = 0; i < get_count();)
 //      {
 //
 //         if (!pred(this->m_begin[i]))
@@ -1178,9 +1178,9 @@
 //         else
 //         {
 //
-//            int iStart = i;
+//            ::i32 iStart = i;
 //
-//            int iCount = 1;
+//            ::i32 iCount = 1;
 //
 //            i++;
 //
@@ -1281,7 +1281,7 @@
 //
 //      //}
 //
-//      //return i <= options()["version"].as_int();
+//      //return i <= options()["version"].as_i32();
 //
 //   }
 //
@@ -1821,7 +1821,7 @@ public:
 ////      // inserting in the middle of the array
 ////      ::collection::count nOldSize = (::collection::count) this->size();
 ////
-////      set_size((::collection::count) (this->size() + nCount), -1);  // grow it to ___new int_size
+////      set_size((::collection::count) (this->size() + nCount), -1);  // grow it to ___new i32_size
 ////      // destroy intial data before copying over it
 ////      // shift old data up to fill gap
 ////      ::safe_memory_transfer(this->m_begin + nIndex + nCount, (size_t) ((nOldSize - nIndex) * sizeof(TYPE)), this->m_begin + nIndex, (size_t) ((nOldSize - nIndex) * sizeof(TYPE)));
@@ -1936,7 +1936,7 @@ public:
 ////      throw_exception(error_bad_argument);
 ////
 ////   if(nGrowBy >= 0)
-////      m_countAddUp = nGrowBy;  // set ___new int_size
+////      m_countAddUp = nGrowBy;  // set ___new i32_size
 ////
 ////   if(nNewSize == 0)
 ////   {
@@ -2098,7 +2098,7 @@ public:
 ////
 ////      ::safe_memory_copy(pNewData,(size_t)nNewMax * sizeof(TYPE),this->m_begin,(size_t)this->size() * sizeof(TYPE));
 ////
-////      ///for(int i = 0; i < nNewSize - this->size(); i++)
+////      ///for(::i32 i = 0; i < nNewSize - this->size(); i++)
 ////      // get rid of old stuff (note: no destructors called)
 ////      MEMORY::free(this->m_begin);
 ////

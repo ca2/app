@@ -11,17 +11,17 @@
 extern "C" {
 #endif
 
-   /*! Determine the \em MSB of a value in O(log log n).
+   /*! Determine the \em MSB of a value in O(plogwriter plogwriter n).
     * \return \em MSB.
     * \author Sean Eron Anderson
     */
-   static inline unsigned int uint64_msb(uint64_t value)
+   static inline ::u32 uint64_msb(uint64_t value)
    {
-      const int MAX_LOGLOG = 6;
+      const ::i32 MAX_LOGLOG = 6;
       const uint64_t BIT_LL[MAX_LOGLOG] = { 0x2, 0xC, 0xF0, 0xFF00, 0xFFFF0000, 0xFFFFFFFF00000000LL };
-      const unsigned int EXP_LL[MAX_LOGLOG] = { 1, 2, 4, 8, 16, 32 };
-      unsigned int r = 0;
-      for (int i = MAX_LOGLOG - 1; i >= 0; i--) {
+      const ::u32 EXP_LL[MAX_LOGLOG] = { 1, 2, 4, 8, 16, 32 };
+      ::u32 r = 0;
+      for (::i32 i = MAX_LOGLOG - 1; i >= 0; i--) {
          if (value & BIT_LL[i]) {
             value >>= EXP_LL[i];
             r |= EXP_LL[i];
@@ -72,10 +72,10 @@ extern "C" {
       // if we reach this point we have full 64-bit values, i.e. a 96-bit
       // dividend. calculate an approximate result by shifting according
       // to msb set
-      int msb_nominator = uint64_msb(mod_h) + 32;
-      int msb_c = uint64_msb(c);
-      int msb = maximum(msb_nominator, msb_c);
-      int shift = msb - 63;
+      ::i32 msb_nominator = uint64_msb(mod_h) + 32;
+      ::i32 msb_c = uint64_msb(c);
+      ::i32 msb = maximum(msb_nominator, msb_c);
+      ::i32 shift = msb - 63;
       res += (mod_h << (32 - shift)) / (c >> shift);
 
       return res;

@@ -35,7 +35,7 @@ struct tm *gmtime_r(const posix_time *timep,struct tm *result)
 
 // From FreeRDP utils_pcap.c - 2015-07-24
 extern "C"
-int gettimeofday(struct timeval* tp, void* tz)
+::i32 gettimeofday(struct timeval* tp, void* tz)
 {
    struct _timeb timebuffer;
    _ftime(&timebuffer);

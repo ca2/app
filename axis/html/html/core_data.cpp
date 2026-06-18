@@ -92,7 +92,7 @@ namespace html
 
    }
 
-   //long long core_data::increment_reference_count()
+   //::i64 core_data::increment_reference_count()
    //{
 
    //   return ::object::increment_reference_count();
@@ -100,7 +100,7 @@ namespace html
    //}
 
 
-   //long long core_data::decrement_reference_count()
+   //::i64 core_data::decrement_reference_count()
    //{
 
    //   return ::object::decrement_reference_count();
@@ -111,7 +111,7 @@ namespace html
    font * core_data::get_font(::html::element * pelement)
    {
 
-      int iFont = -1;
+      ::i32 iFont = -1;
 
       if (pelement->m_pimpl->m_bHover)
       {
@@ -146,7 +146,7 @@ namespace html
    }
 
 
-   int core_data::create_font(::html::element * pelement)
+   ::i32 core_data::create_font(::html::element * pelement)
    {
 
       string strSubClass;
@@ -163,12 +163,12 @@ namespace html
          }
       }
       if (!pelement->m_pimpl->m_bHover
-         || !pelement->m_pstyle->get_text("font-int_size", "hover", this, pelement, font.m_strSize))
+         || !pelement->m_pstyle->get_text("font-i32_size", "hover", this, pelement, font.m_strSize))
       {
          if (!pelement->m_pimpl->has_link()
-            || !pelement->m_pstyle->get_text("font-float_size", "link", this, pelement, font.m_strSize))
+            || !pelement->m_pstyle->get_text("font-::f32_size", "link", this, pelement, font.m_strSize))
          {
-            pelement->m_pstyle->get_text("font-int_size", "", this, pelement, font.m_strSize);
+            pelement->m_pstyle->get_text("font-i32_size", "", this, pelement, font.m_strSize);
          }
       }
       if (!pelement->m_pimpl->m_bHover
@@ -193,7 +193,7 @@ namespace html
       font.m_strSize.trim();
       font.m_strWeight.trim();
       font.m_strTextDecoration.trim();
-      for (int i = 0; i < m_fonta.get_count(); i++)
+      for (::i32 i = 0; i < m_fonta.get_count(); i++)
       {
          if (*m_fonta[i] == font)
             return i;
@@ -201,8 +201,8 @@ namespace html
       auto pfont = allocateø class font (font);
       pfont->create(this);
       m_fonta.add(pfont);
-      pfont->m_iIndex = (int)m_fonta.get_upper_bound();
-      return (int)pfont->m_iIndex;
+      pfont->m_iIndex = (::i32)m_fonta.get_upper_bound();
+      return (::i32)pfont->m_iIndex;
    }
 
 
@@ -708,7 +708,7 @@ namespace html
    bool core_data::open_document(const ::payload & payloadFile)
    {
 
-      //int iRetry = 0;
+      //::i32 iRetry = 0;
 
       synchronous_lock lock(synchronization(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 
@@ -887,7 +887,7 @@ namespace html
    }
 
 
-   //void core_data::on_before_navigate(::payload& payloadFile, unsigned int nFlags, const ::scoped_string & scopedstrTargetFrameName, byte_array& baPostedData, const ::scoped_string & scopedstrHeaders, bool* pbCancel)
+   //void core_data::on_before_navigate(::payload& payloadFile, ::u32 nFlags, const ::scoped_string & scopedstrTargetFrameName, byte_array& baPostedData, const ::scoped_string & scopedstrHeaders, bool* pbCancel)
 
    //{
    //   if (m_pcallback != nullptr)

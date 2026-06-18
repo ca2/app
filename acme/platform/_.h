@@ -61,6 +61,15 @@ namespace platform
    class application_sink;
 
 
+   class string_table;
+
+
+   class subsystem;
+
+
+   class ProfileLogger;
+
+
 } // namespace platform
 
 
@@ -94,3 +103,13 @@ namespace acme
 
 
 class message_sink;
+
+
+template < typename APPLICATION = ::platform::application >
+inline APPLICATION* main_application();
+
+
+
+
+
+

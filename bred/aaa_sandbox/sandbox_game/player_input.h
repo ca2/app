@@ -13,20 +13,20 @@ namespace sandbox_game
    class mnk_controller
    {
    public:
-      mnk_controller(float moveSpeed = 7.f, float mouseSensitivity = 0.08f);
+      mnk_controller(::f32 moveSpeed = 7.f, ::f32 mouseSensitivity = 0.08f);
 
-      void update(float dt, ::graphics3d::IWindowInput * input, ::graphics3d::transform& transform);
+      void update(::f32 dt, ::graphics3d::IWindowInput * input, ::graphics3d::transform& transform);
       void mouseCallback(floating_sequence2 delta);
-      float getYaw() const { return m_yaw; }
-      float getPitch() const { return m_pitch; }
+      ::f32 getYaw() const { return m_yaw; }
+      ::f32 getPitch() const { return m_pitch; }
 
    private:
-      float m_moveSpeed;
-      float m_mouseSensitivity;
-      float m_yaw;
-      float m_pitch;
+      ::f32 m_moveSpeed;
+      ::f32 m_mouseSensitivity;
+      ::f32 m_yaw;
+      ::f32 m_pitch;
 
-      float m_smoothing = 15.f;
+      ::f32 m_smoothing = 15.f;
       floating_sequence2 m_rawDelta{ 0.f };
       floating_sequence2 m_smoothDelta{ 0.f };
 

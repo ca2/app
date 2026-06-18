@@ -14,7 +14,7 @@
 
 
 #include "nanoui/Widget.h"
-#include "acme/prototype/collection/int_map.h"
+#include "acme/prototype/collection/integer_map.h"
 //#include <functional>
 //#include <unordered_map>
 
@@ -38,8 +38,8 @@ namespace nanoui
       ::string                                  m_font;
       ::string_array_base                            m_straTabCaptions;
       ::index_array                             m_iaTabIds;
-      ::int_array_base                               m_iaTabOffsets;
-      int                                       m_iCloseButtonWidth = 0;
+      ::i32_array_base                               m_iaTabOffsets;
+      ::i32                                       m_iCloseButtonWidth = 0;
       ::collection::index                                 m_iActiveTab = 0;
       ::collection::index                                 m_iTabDragIndex = -1;
       ::collection::index                                 m_iTabDragMinimum = -1;
@@ -51,8 +51,8 @@ namespace nanoui
       bool                                      m_bTabsDraggable = false;
       bool                                      m_bTabsCloseable = false;
       Popup *                                   m_ppopup = nullptr;
-      int                                       m_iTabCounter = 0;
-      int                                       m_iPadding = 3;
+      ::i32                                       m_iTabCounter = 0;
+      ::i32                                       m_iPadding = 3;
       ::function<void(::collection::index)>               m_callback;
       ::function<void(::collection::index)>               m_closecallback;
       ::function<Popup* (::collection::index, Screen*)>   m_popupcallback;
@@ -109,8 +109,8 @@ namespace nanoui
       void set_tabs_draggable(bool value) { m_bTabsDraggable = value; }
 
       /// Return the padding between the tab pwidget boundary and pwidgetChild widgets
-      int padding() const { return m_iPadding; }
-      void set_padding(int value) { m_iPadding = value; }
+      ::i32 padding() const { return m_iPadding; }
+      void set_padding(::i32 value) { m_iPadding = value; }
 
       /// Set the pwidget's background color (a global property)
       void set_background_color(const ::color::color& colorBackground) {
@@ -139,15 +139,15 @@ namespace nanoui
 
       // Widget implementation
       void perform_layout(::nano2d::context * pcontext, bool bRecalcTextSize = true) override;
-      int_size preferred_size(::nano2d::context * pcontext, bool bRecalcTextSize = true) override;
+      i32_size preferred_size(::nano2d::context * pcontext, bool bRecalcTextSize = true) override;
       
       void draw(::nano2d::context * pcontext) override;
 
-      bool mouse_button_event(const int_point& p, ::user::e_mouse emouse, bool down, bool bDoubleClick, const ::user::e_key& ekeyModifiers) override;
-      bool mouse_enter_event(const int_point& p, bool enter, const ::user::e_key& ekeyModifiers) override;
-      bool mouse_motion_event(const int_point& p, const int_size& rel, bool bDown, const ::user::e_key& ekeyModifiers) override;
+      bool mouse_button_event(const i32_point & point, ::user::e_key euserkeyMouseButton, bool bDown, bool bDoubleClick) override;
+      bool mouse_enter_event(const i32_point & point, bool bEnter) override;
+      bool mouse_motion_event(const i32_point &point) override;
 
-      ::item_pointer hit_test(const int_point & p, bool test_vertical = true) const;
+      ::item_pointer hit_test(const i32_point & point, bool test_vertical = true) const;
 
       virtual void update_visibility();
 
@@ -185,7 +185,7 @@ namespace nanoui
     *       TabWidget *tab_widget = window->add<TabWidget>();
     *       // Create a tab bFirst
     *       Widget *tab = ___new Widget(tab_widget);
-    *       int tab_id = tab_widget->append_tab("Tab Name", tab);
+    *       ::i32 tab_id = tab_widget->append_tab("Tab Name", tab);
     *       // Add children to the created tabs
     *       tab->set_layout(___new GroupLayout());
     *       ___new Label(tab, "Some Label");
@@ -223,7 +223,7 @@ namespace nanoui
       void set_erase_children(bool value) { m_bEraseChildren = value; }
 
       void perform_layout(::nano2d::context * pcontext, bool bRecalcTextSize = true) override;
-      int_size preferred_size(::nano2d::context * pcontext, bool bRecalcTextSize = true) override;
+      i32_size preferred_size(::nano2d::context * pcontext, bool bRecalcTextSize = true) override;
       void update_visibility() override;
 
 

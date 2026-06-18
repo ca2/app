@@ -92,16 +92,16 @@ namespace curl
 //#include<stdlib.h>
 //#include<string.h>
 //
-//char *url = NULL;
+//char_pointer url = NULL;
 //
 //// struct for holding http response.
 //struct memory_struct{
-//   char   *buffer;
+//   char_pointer buffer;
 //   size_t size;
 //};
 //
 //
-//void http_get(char *url, struct memory_struct *mem){
+//void http_get(char_pointer url, struct memory_struct *mem){
 //   CURL *curl_handle;
 //   CURLcode res;
 //
@@ -120,7 +120,7 @@ namespace curl
 //   curl_easy_cleanup(curl_handle);
 //}
 //
-//int main(int argc, char** args){
+//::i32 main(::i32 argc, char_pointer * args){
 //   // check number of arguments.
 //   if(argc < 2){
 //      printf("need url to make http request.\n");

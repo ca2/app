@@ -1,0 +1,140 @@
+// Copyright (C) 2012 GlavSoft LLC.
+// All rights reserved.
+//
+//-------------------------------------------------------------------------
+// This file is part of the T i g h t V N C software.  Please visit our Web site:
+//
+//                       http://www.t i g h t v n c.com/
+//
+// This program is free software; you can redistribute it and/or modify
+// it under the terms of the GNU General Public License as published by
+// the Free Software Foundation; either version 2 of the License, or
+// (at your option) any later version.
+//
+// This program is distributed in the hope that it will be useful,
+// but WITHOUT ANY WARRANTY; without even the implied warranty of
+// MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+// GNU General Public License for more details.
+//
+// You should have received a copy of the GNU General Public License along
+// with this program; if not, w_rite to the Free Software Foundation, Inc.,
+// 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA.
+//-------------------------------------------------------------------------
+//
+
+#pragma once
+
+
+#include "subsystem/_common_header.h"
+
+namespace subsystem
+{
+
+
+   class SystemInformationInterface :
+      virtual public ::Particle
+   {
+   public:
+
+
+      //SystemInformation();
+      //virtual ~SystemInformationInterface() =0 ;
+
+
+      // get rectangle of all desktop area
+      virtual void getDesktopAllArea(i32_rectangle & rectangle) = 0;
+
+      // get rectangle of user desktop area
+      // without button 'Start' (only primary monitor).
+      virtual bool getDesktopArea(i32_rectangle & rectangle) = 0;
+
+      // return true if StretchBlt is used
+      // in provided device
+      //virtual bool isSupportStretchBlt(HDC hdc) = 0;
+
+      // return how many bits per pixel
+      // for provided device
+      //virtual ::i32 getBitsPixel(HDC hdc) = 0;
+
+      // get the number of monitors that plugged
+      // into video card
+      virtual ::i32 getMonitorCount() = 0;
+   };
+
+
+    //using SystemInformationInterface = particle_interface<SystemInformationInterface>;
+
+
+   class CLASS_DECL_SUBSYSTEM SystemInformationComposite :
+   virtual public Composite<SystemInformationInterface >
+   {
+   public:
+
+       ImplementCompositeø(SystemInformation, systeminformation)
+
+
+
+
+
+      //SystemInformation();
+
+      //~SystemInformation() override;
+
+      // get rectangle of all desktop area
+          void getDesktopAllArea(i32_rectangle& rectangle) override
+       {
+
+          m_psysteminformation->getDesktopAllArea(rectangle);
+
+       }
+
+      // get rectangle of user desktop area
+      // without button 'Start' (only primary monitor).
+       bool getDesktopArea(i32_rectangle& rectangle) override
+       {
+
+          return m_psysteminformation->getDesktopArea(rectangle);
+
+      }
+
+      // // return true if StretchBlt is used
+      // // in provided device
+      // bool isSupportStretchBlt(HDC hdc);
+      //
+      // // return how many bits per pixel
+      // // for provided device
+      // ::i32 getBitsPixel(HDC hdc);
+
+      // get the number of monitors that plugged
+      // into video card
+       ::i32 getMonitorCount() override
+       {
+
+          return m_psysteminformation->getMonitorCount();
+
+
+
+      }
+   };
+
+
+    class CLASS_DECL_SUBSYSTEM SystemInformationAggregate :
+    virtual public Aggregate< SystemInformationComposite >
+    {
+    public:
+
+        ImplementBaseø(SystemInformation);
+
+    };
+
+   class CLASS_DECL_SUBSYSTEM SystemInformation :
+    virtual public Object < SystemInformationAggregate >
+   {
+   public:
+
+   };
+
+
+} // namespace subsystem
+
+

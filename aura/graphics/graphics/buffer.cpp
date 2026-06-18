@@ -82,7 +82,7 @@ namespace graphics
    }
 
 
-   ::int_size buffer::buffer_size()
+   ::i32_size buffer::buffer_size()
    {
 
       return m_pimageBuffer->get_size();
@@ -98,11 +98,11 @@ namespace graphics
       try
       {
 
-         information() << "::graphics::buffer::update_buffer going to create image : " << pitem->m_sizeBufferItemDraw;
+         information() << "::graphics::buffer::update_buffer going to create image : " << pitem->m_sizeBufferItem;
 
-         m_pimageBuffer->create(pitem->m_sizeBufferItemDraw);
+         m_pimageBuffer->create(pitem->m_sizeBufferItem);
 
-         information() << "::graphics::buffer::update_buffer going after create image : " << pitem->m_sizeBufferItemDraw;
+         information() << "::graphics::buffer::update_buffer going after create image : " << pitem->m_sizeBufferItem;
 
       }
       catch (...)
@@ -150,7 +150,7 @@ namespace graphics
    //}
 
 
-   bool buffer::_on_begin_draw(::graphics::buffer_item * pitem)
+   bool buffer::_on_begin(::graphics::buffer_item * pitem)
    {
 
       //auto pitem = get_buffer_item();

@@ -4,7 +4,7 @@
 CLASS_DECL_ACME void * processor_cache_oriented_memory_alloc(size_t s);
 CLASS_DECL_ACME void processor_cache_oriented_memory_free(void * p);
 CLASS_DECL_ACME void processor_cache_oriented_memory_reset(void);
-CLASS_DECL_ACME int_bool processor_cache_oriented_set_thread_memory_pool(int iPoolIndex);
+CLASS_DECL_ACME ::i32_bool processor_cache_oriented_set_thread_memory_pool(::i32 iPoolIndex);
 CLASS_DECL_ACME void processor_cache_oriented_destroy_all_memory_pools(void);
 
 #define MAX_PROC_CACHE_ORIENTED_MEM_POOL 32

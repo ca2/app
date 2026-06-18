@@ -19,11 +19,11 @@ namespace typeface
 
       //::pointer < ::gpu::renderer > m_pgpurenderer;
 
-      int m_iPixelSize;
+      ::i32 m_iPixelSize;
       ::string m_strFontName;
       //::string_map_base<::typeface::character> m_mapCharacter;
-      ::int_map<::typeface::character> m_mapCharacter;
-//      unsigned int m_VAO, m_VBO;
+      ::i32_map<::typeface::character> m_mapCharacter;
+//      ::u32 m_VAO, m_VBO;
       //::pointer < ::gpu::model_buffer > m_pmodelbufferBox;
 
 
@@ -45,7 +45,7 @@ namespace typeface
 
       //virtual void create_draw_buffers();
 
-      virtual void create_texture(character& ch, const unsigned char* p);
+      virtual void create_texture(character& ch, const ::u8* p);
 
 
       //virtual ::gpu::model_buffer* box_model_buffer();

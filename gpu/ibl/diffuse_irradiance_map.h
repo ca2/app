@@ -36,14 +36,14 @@ namespace gpu
 
             ::floating_matrix4 mvp;
 
-            float deltaPhi;
-            float deltaTheta;
+            ::f32 deltaPhi;
+            ::f32 deltaTheta;
          };
 
-         const unsigned int m_udiffuse_irradiance_mapWidth = 32;
-         const unsigned int m_udiffuse_irradiance_mapHeight = 32;
+         const ::u32 m_udiffuse_irradiance_mapWidth = 32;
+         const ::u32 m_udiffuse_irradiance_mapHeight = 32;
 
-         //unsigned int m_uEnvironmentCubemapId;
+         //::u32 m_uEnvironmentCubemapId;
 
          //::graphics3d::renderable * m_prenderableSkybox = nullptr;
 
@@ -64,7 +64,7 @@ namespace gpu
 
          // virtual void initialize_diffuse_irradiance_map(
          //    ::gpu::renderer * pgpurenderer,
-         //    unsigned int uEnvironmentCubemapId);
+         //    ::u32 uEnvironmentCubemapId);
 
          //virtual void initialize_diffuse_irradiance_map(
          //   ::graphics3d::scene_base * pscenebase,
@@ -84,7 +84,7 @@ namespace gpu
           * Get the GL texture ID of the computed cubemap.
           * @return
           */
-         //unsigned int getCubemapId();
+         //::u32 getCubemapId();
 
       };
 

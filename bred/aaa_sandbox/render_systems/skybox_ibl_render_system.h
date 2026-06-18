@@ -51,7 +51,7 @@ namespace graphics3d
         //     size_t frameCount)override;
 
         // Call this inside your scene render loop, after global descriptors are bound
-        void on_render(::gpu::frame * pframe) override;
+        void on_render(::gpu::layer * pgpulayer) override;
 
         //
         // inline void setCubemapTexture(const VkDescriptorImageInfo& info) {

@@ -123,7 +123,7 @@ namespace helloaxis
    void render::full_render()
    {
 
-      int_size sizeNew = int_size(m_cx, m_cy);
+      i32_size sizeNew = i32_size(m_cx, m_cy);
 
       if (m_bNewLayout)
       {
@@ -197,7 +197,7 @@ namespace helloaxis
 
       }
 
-      int i = 1;
+      ::i32 i = 1;
 
       for (auto & bilbo : m_bilboa)
       {
@@ -216,7 +216,7 @@ namespace helloaxis
    }
 
 
-   int render::run()
+   ::i32 render::run()
    {
 
       ::parallelization::set_priority(::e_priority_time_critical);
@@ -225,7 +225,7 @@ namespace helloaxis
 
       ::frequency frequencyFramesPerSecond = 0.2;
 
-      double dPeriod = 1000.0 / frequencyFramesPerSecond;
+      ::f64 dPeriod = 1000.0 / frequencyFramesPerSecond;
 
       dPeriod = minimum(maximum(1.0, dPeriod), 1000.0);
 
@@ -239,7 +239,7 @@ namespace helloaxis
       //
       //#endif
 
-      double_array daFrame;
+      f64_array daFrame;
 
       ::collection::index iLastFrameId;
 
@@ -260,9 +260,9 @@ namespace helloaxis
 
             }
 
-            double dNow = ::get_millis();
+            ::f64 dNow = ::get_millis();
 
-            double dWait = dPeriod - fmod(dNow + dPeriod / 3.0, dPeriod);
+            ::f64 dWait = dPeriod - fmod(dNow + dPeriod / 3.0, dPeriod);
 
             iFrameId = (index)(dNow / dPeriod);
 
@@ -302,7 +302,7 @@ namespace helloaxis
 
             }
 
-            m_dRenderFps = double(daFrame.get_size());
+            m_dRenderFps = ::f64(daFrame.get_size());
 
             daFrame.add(dNow);
 
@@ -413,7 +413,7 @@ namespace helloaxis
 
       ::get_task()->m_bThreadToolsForIncreasedFps = true;
 
-      ::int_rectangle rectangleX;
+      ::i32_rectangle rectangleX;
 
       rectangleX.left = 0;
 
@@ -427,11 +427,11 @@ namespace helloaxis
 
       //pgraphics->FillSolidRect(rectangleX,argb(0, 0, 0, 0));
 
-      //      int iCount = 30;
+      //      ::i32 iCount = 30;
 
       auto pbrushText = createø < ::draw2d::brush > ();
 
-      double T = 2.3;
+      ::f64 T = 2.3;
 
 //      if (false)
 //      {
@@ -453,13 +453,13 @@ namespace helloaxis
 
       }
 
-      double t= ::time::now() / 1000.0;
+      ::f64 t= ::time::now() / 1000.0;
 
-      double w = 2.0 * 3.1415 / T;
+      ::f64 w = 2.0 * 3.1415 / T;
 
-      double r = (tri(w * t) + 1.0) / 2.0;
+      ::f64 r = (tri(w * t) + 1.0) / 2.0;
 
-      ::int_size size;
+      ::i32_size size;
 
       string strHelloAxis;
 
@@ -475,8 +475,8 @@ namespace helloaxis
 
       size = pgraphics->get_text_extent(strHelloAxis);
 
-      m_cxTarget = int (size.cx * 1.2);
-      m_cyTarget = int (size.cy * 1.2);
+      m_cxTarget = ::i32 (size.cx * 1.2);
+      m_cyTarget = ::i32 (size.cy * 1.2);
 
       if (!m_bFirstDone)
       {
@@ -498,7 +498,7 @@ namespace helloaxis
 
                synchronous_lock slDib(m_pmutexDib, DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 
-/*               if (m_pimage->initialize(m_cxCache1, m_cyCache1, int (m_dMaxRadius)))
+/*               if (m_pimage->initialize(m_cxCache1, m_cyCache1, ::i32 (m_dMaxRadius)))
                {
 
                   //m_pimage->defer_realize(pgraphics);
@@ -515,11 +515,11 @@ namespace helloaxis
 
 /*                  m_pimage->g()->SelectObject(pbrushText);
 
-/*                  m_pimage->g()->text_out((m_cxCache1 - int_size->cx) / 2, (m_cyCache1 - int_size->cy) / 2, strHelloAxis);
+/*                  m_pimage->g()->text_out((m_cxCache1 - i32_size->cx) / 2, (m_cyCache1 - i32_size->cy) / 2, strHelloAxis);
 
 /*                  m_pimage->map();
 
-/*                  psystem->imaging().spread(m_pimage->g(), ::int_point(), m_pimage->get_size(), m_pimage->g(), ::int_point(), int (m_dMaxRadius));
+/*                  psystem->imaging().spread(m_pimage->g(), ::i32_point(), m_pimage->get_size(), m_pimage->g(), ::i32_point(), ::i32 (m_dMaxRadius));
 
 /*                  m_pimage->blur();
 
@@ -555,26 +555,26 @@ namespace helloaxis
 //      if (false)
 //      {
 //
-//         double dPeriod = (5000) * 11;
+//         ::f64 dPeriod = (5000) * 11;
 //
-//         ca.set_hls(fmod(__double(::get_tick()), dPeriod) / dPeriod, 0.49, 0.84);
+//         ca.set_hls(fmod(__f64(::get_tick()), dPeriod) / dPeriod, 0.49, 0.84);
 //
 //      }
 //      else if (m_bAlternate)
       if(m_bAlternate)
       {
 
-         double dPeriod = (5100) * 8;
+         ::f64 dPeriod = (5100) * 8;
 
-         ca.set_hls(fmod(__double(::get_tick()), dPeriod) / dPeriod, 0.49, 0.84);
+         ca.set_hls(fmod(__f64(::get_tick()), dPeriod) / dPeriod, 0.49, 0.84);
 
       }
       else
       {
 
-         double dPeriod = (4900) * 11;
+         ::f64 dPeriod = (4900) * 11;
 
-         ca.set_hls(fmod(__double(::get_tick()), dPeriod) / dPeriod, 0.23, 0.84);
+         ca.set_hls(fmod(__f64(::get_tick()), dPeriod) / dPeriod, 0.23, 0.84);
 
       }
 
@@ -593,11 +593,11 @@ namespace helloaxis
       pgraphics->set_alpha_mode(::draw2d::e_alpha_mode_blend);
 
       psystem->imaging().bitmap_blend(pgraphics,
-                                         int_point((m_cx - m_pimageTemplate2->width()) / 2, (m_cy - m_pimageTemplate2->height()) / 2)
+                                         i32_point((m_cx - m_pimageTemplate2->width()) / 2, (m_cy - m_pimageTemplate2->height()) / 2)
                                          , m_pimageTemplate2->m_size,
-                                         m_pimageTemplate2->get_graphics(), ::int_point(), unsigned char (128 + (255 - 128) * r));
+                                         m_pimageTemplate2->get_graphics(), ::i32_point(), ::u8 (128 + (255 - 128) * r));
 
-      //pgraphics->from(rectangleX.top_left(),m_pimageTemplate, ::int_point(), rectangleX>si);
+      //pgraphics->from(rectangleX.top_left(),m_pimageTemplate, ::i32_point(), rectangleX>si);
 
       pgraphics->set_font(m_pfont);
 
@@ -662,7 +662,7 @@ namespace helloaxis
       if (m_pimageWork->area() <= 0)
          return;
 
-      ::int_rectangle rectangleX;
+      ::i32_rectangle rectangleX;
 
       rectangleX.left = 0;
 
@@ -675,11 +675,11 @@ namespace helloaxis
       if (rectangleX.area() <= 0)
          return;
 
-      //      int iCount = 30;
+      //      ::i32 iCount = 30;
 
       auto pbrushText = createø < ::draw2d::brush > ();
 
-      double T = 2.3;
+      ::f64 T = 2.3;
 
 //      if (false)
 //      {
@@ -701,22 +701,22 @@ namespace helloaxis
 
       }
 
-      double t= ::time::now() / 1000.0;
+      ::f64 t= ::time::now() / 1000.0;
 
-      double w = 2.0 * 3.1415 / T;
+      ::f64 w = 2.0 * 3.1415 / T;
 
-      double r = (tri(w * t) + 1.0) / 2.0;
+      ::f64 r = (tri(w * t) + 1.0) / 2.0;
 
-      double dBlur = m_dMinRadius + (m_dMaxRadius - m_dMinRadius) * r;
+      ::f64 dBlur = m_dMinRadius + (m_dMaxRadius - m_dMinRadius) * r;
 
       ::color::color ca;
 
 //      if (false)
 //      {
 //
-//         double dPeriod = (5000) * 11;
+//         ::f64 dPeriod = (5000) * 11;
 //
-//         ca.set_hls(fmod(__double(::get_tick()), dPeriod) / dPeriod, 0.49, 0.84);
+//         ca.set_hls(fmod(__f64(::get_tick()), dPeriod) / dPeriod, 0.49, 0.84);
 //
 //      }
 //      else
@@ -724,17 +724,17 @@ namespace helloaxis
       if (m_bAlternate)
       {
 
-         double dPeriod = (5100) * 8;
+         ::f64 dPeriod = (5100) * 8;
 
-         ca.set_hls(fmod(__double(::get_tick()), dPeriod) / dPeriod, 0.49, 0.84);
+         ca.set_hls(fmod(__f64(::get_tick()), dPeriod) / dPeriod, 0.49, 0.84);
 
       }
       else
       {
 
-         double dPeriod = (4900) * 11;
+         ::f64 dPeriod = (4900) * 11;
 
-         ca.set_hls(fmod(__double(::get_tick()), dPeriod) / dPeriod, 0.23, 0.84);
+         ca.set_hls(fmod(__f64(::get_tick()), dPeriod) / dPeriod, 0.23, 0.84);
 
       }
 
@@ -744,10 +744,10 @@ namespace helloaxis
 
       string strHelloAxis = get_helloaxis();
 
-      ::int_size size = pgraphics->get_text_extent(strHelloAxis);
+      ::i32_size size = pgraphics->get_text_extent(strHelloAxis);
 
-      m_cxTarget = int(size.cx * 1.2);
-      m_cyTarget = int(size.cy * 1.2);
+      m_cxTarget = ::i32(size.cx * 1.2);
+      m_cyTarget = ::i32(size.cy * 1.2);
 
       {
 
@@ -759,7 +759,7 @@ namespace helloaxis
             if (m_dMinRadius > 3.0)
             {
 
-/*               m_pimage->initialize(m_cxTarget, m_cyTarget, int (dBlur));
+/*               m_pimage->initialize(m_cxTarget, m_cyTarget, ::i32 (dBlur));
 
             }
             else
@@ -783,7 +783,7 @@ namespace helloaxis
 
 /*            m_pimage->g()->set_font(m_pfont);
 
-/*            m_pimage->g()->text_out((m_cx - int_size->cx) / 2, (m_cy - int_size->cy) / 2, strHelloAxis);
+/*            m_pimage->g()->text_out((m_cx - i32_size->cx) / 2, (m_cy - i32_size->cy) / 2, strHelloAxis);
 
             if (m_dMinRadius > 3.0)
             {
@@ -794,7 +794,7 @@ namespace helloaxis
             else
             {
 
-               for (int i = 0; i < dBlur * 2; i++)
+               for (::i32 i = 0; i < dBlur * 2; i++)
                {
 
 /*                  m_pimage->blur(m_cx, m_cy);
@@ -852,7 +852,7 @@ namespace helloaxis
 
       pgraphics->text_out((m_cx - size.cx) / 2, (m_cy - size.cy) / 2, strHelloAxis);
 
-      unsigned char a, R, g, b;
+      ::u8 a, R, g, b;
 
       if (m_bAlternate)
       {
@@ -877,7 +877,7 @@ namespace helloaxis
 
          FT_Face & face = (FT_Face &)papp->m_faceAi;
 
-         int error;
+         ::i32 error;
 
          error = FT_Set_Char_Size(face,        /* handle to face object */
                                   0,          /* char_width in 1/64th of points */
@@ -893,9 +893,9 @@ namespace helloaxis
             if (error == 0)
             {
 
-               long long iChar = unicode_index(unicode_to_utf8(L"Love"));
+               ::i64 iChar = unicode_index(unicode_to_utf8(L"Love"));
 
-               int glyph_index = FT_Get_Char_Index(face, (int)iChar);
+               ::i32 glyph_index = FT_Get_Char_Index(face, (::i32)iChar);
 
                error = FT_Load_Glyph(face, /* handle to face object */ glyph_index, /* glyph index */ FT_LOAD_DEFAULT); /* load flags, see below */
 
@@ -944,9 +944,9 @@ namespace helloaxis
             if (error == 0)
             {
 
-               long long iChar = unicode_index(unicode_to_utf8(L"Love"));
+               ::i64 iChar = unicode_index(unicode_to_utf8(L"Love"));
 
-               int glyph_index = FT_Get_Char_Index(face, (int)iChar);
+               ::i32 glyph_index = FT_Get_Char_Index(face, (::i32)iChar);
 
                error = FT_Load_Glyph(face, /* handle to face object */ glyph_index, /* glyph index */ FT_LOAD_DEFAULT); /* load flags, see below */
 
@@ -997,7 +997,7 @@ namespace helloaxis
    void render::_006OnDraw(::draw2d::graphics_pointer & pgraphics)
    {
 
-      ::int_rectangle rectangleX;
+      ::i32_rectangle rectangleX;
 
       rectangleX.left = 0;
       rectangleX.top = 0;
@@ -1005,9 +1005,9 @@ namespace helloaxis
       rectangleX.bottom = m_cy;
 
       pgraphics->set_alpha_mode(::draw2d::e_alpha_mode_blend);
-      int period = 5000;
-      int border = 2500;
-      int t;
+      ::i32 period = 5000;
+      ::i32 border = 2500;
+      ::i32 t;
 
       try
       {
@@ -1029,7 +1029,7 @@ auto m_tick23 = ::time::now();
 
                t = (m_tick23.elapsed());
 
-               unsigned int uiCurrent23 = (t) / period;
+               ::u32 uiCurrent23 = (t) / period;
 
                t %= period;
 
@@ -1061,7 +1061,7 @@ auto m_tick23 = ::time::now();
             if (t < border && m_strLast23 != m_strCurrent23)
             {
 
-               unsigned char uchAlpha = 255 * t / border;
+               ::u8 uchAlpha = 255 * t / border;
 
                if (m_strLast23.has_character())
                {
@@ -1075,7 +1075,7 @@ auto m_tick23 = ::time::now();
 
 /*                     pimage->defer_update();
 
-/*                     psystem->imaging().bitmap_blend(pgraphics, ::int_point(), pimage->get_size(), pimage->get_graphics(), ::int_point(), 255 - uchAlpha);
+/*                     psystem->imaging().bitmap_blend(pgraphics, ::i32_point(), pimage->get_size(), pimage->get_graphics(), ::i32_point(), 255 - uchAlpha);
 
                   }
 
@@ -1093,7 +1093,7 @@ auto m_tick23 = ::time::now();
 
 /*                     pimage->defer_update();
 
-/*                     psystem->imaging().bitmap_blend(pgraphics, ::int_point(), pimage->get_size(), pimage->get_graphics(), ::int_point(), uchAlpha);
+/*                     psystem->imaging().bitmap_blend(pgraphics, ::i32_point(), pimage->get_size(), pimage->get_graphics(), ::i32_point(), uchAlpha);
 
                   }
 
@@ -1146,7 +1146,7 @@ auto m_tick23 = ::time::now();
             if (m_bNewLayout)
             {
 
-               float fHeight = 100.0;
+               ::f32 fHeight = 100.0;
 
                auto pfont = createø < ::write_text::font > ();
 
@@ -1156,9 +1156,9 @@ auto m_tick23 = ::time::now();
 
                pgraphics->set_text_rendering_hint(::write_text::e_rendering_anti_alias);
 
-               ::int_size size = pgraphics->get_text_extent(strHelloAxis);
+               ::i32_size size = pgraphics->get_text_extent(strHelloAxis);
 
-               double ratey = fHeight * 0.84 / size.cy;
+               ::f64 ratey = fHeight * 0.84 / size.cy;
 
                pfont->create_pixel_font(pnode->font_name(e_font_sans), minimum(m_cy * ratey, m_cx * size.cy * ratey / size.cx), e_font_weight_bold);
 
@@ -1170,9 +1170,9 @@ auto m_tick23 = ::time::now();
 
             ::color::color ca;
 
-            double dPeriod = (500) * 11;
+            ::f64 dPeriod = (500) * 11;
 
-            ca.set_hls(fmod(__double(::get_tick()), dPeriod) / dPeriod, 0.49, 0.84);
+            ca.set_hls(fmod(__f64(::get_tick()), dPeriod) / dPeriod, 0.49, 0.84);
 
             auto pbrush = createø < ::draw2d::brush >();
 
@@ -1186,7 +1186,7 @@ auto m_tick23 = ::time::now();
 
             pgraphics->set_text_rendering_hint(::write_text::e_rendering_anti_alias);
 
-            ::int_size size = pgraphics->get_text_extent(strHelloAxis);
+            ::i32_size size = pgraphics->get_text_extent(strHelloAxis);
 
             pgraphics->text_out((m_cx - size.cx) / 2, (m_cy - size.cy) / 2, strHelloAxis);
 
@@ -1196,7 +1196,7 @@ auto m_tick23 = ::time::now();
 
       }
 
-      //unsigned int dw= ::time::now();
+      //::u32 dw= ::time::now();
 
       if (m_bFast || !m_bFirstDone || m_timeLastFast.elapsed() < m_timeFastAnime)
       {
@@ -1232,7 +1232,7 @@ auto m_tick23 = ::time::now();
 
          pgraphics->set_alpha_mode(::draw2d::e_alpha_mode_blend);
 
-         pgraphics->BitBlt(::int_point(), int_size(m_cx, m_cy), m_pimageFast->get_graphics());
+         pgraphics->BitBlt(::i32_point(), i32_size(m_cx, m_cy), m_pimageFast->get_graphics());
 
          //pgraphics->FillSolidRect(400,400,100,100,argb(128,0,0,128));
 
@@ -1269,19 +1269,19 @@ auto m_tick23 = ::time::now();
       if (m_timeLastOk.elapsed() < m_timeAnime)
       {
 
-         unsigned char uchAlpha;
+         ::u8 uchAlpha;
 
-         uchAlpha = unsigned char(maximum(0, minimum(255, (m_timeLastOk.elapsed()) * 255 / m_timeAnime)));
+         uchAlpha = ::u8(maximum(0, minimum(255, (m_timeLastOk.elapsed()) * 255 / m_timeAnime)));
 
-/*         psystem->imaging().bitmap_blend(pgraphics, ::int_point(), pimage->get_size(), pimage->g(), ::int_point(), uchAlpha);
+/*         psystem->imaging().bitmap_blend(pgraphics, ::i32_point(), pimage->get_size(), pimage->g(), ::i32_point(), uchAlpha);
 
-         psystem->imaging().bitmap_blend(pgraphics, ::int_point(), imageFast.get_size(), imageFast.get_graphics(), ::int_point(), 255 - uchAlpha);
+         psystem->imaging().bitmap_blend(pgraphics, ::i32_point(), imageFast.get_size(), imageFast.get_graphics(), ::i32_point(), 255 - uchAlpha);
 
       }
       else
       {
 
-/*         pgraphics->from(::int_point(), pimage->get_size(), pimage->g(), ::int_point());
+/*         pgraphics->from(::i32_point(), pimage->get_size(), pimage->g(), ::i32_point());
 
       }
 
@@ -1383,7 +1383,7 @@ auto m_tick23 = ::time::now();
 
       synchronous_lock slDraw(m_pmutexDraw, DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 
-      ::int_size sizeNew = ::int_size(m_cx, m_cy);
+      ::i32_size sizeNew = ::i32_size(m_cx, m_cy);
 
       bool bNewSize = m_pimageFast->width() != sizeNew->cx || m_pimageFast->height() != sizeNew->cy;
 
@@ -1398,7 +1398,7 @@ auto m_tick23 = ::time::now();
 
       ::draw2d::graphics_pointer & pgraphics = m_pimageFast->get_graphics();
 
-      float fHeight = 100.0;
+      ::f32 fHeight = 100.0;
 
       auto pfont = createø < ::write_text::font > ();
 
@@ -1408,9 +1408,9 @@ auto m_tick23 = ::time::now();
 
       pgraphics->set_text_rendering_hint(::write_text::e_rendering_anti_alias);
 
-      ::int_size size = pgraphics->get_text_extent(strHelloAxis);
+      ::i32_size size = pgraphics->get_text_extent(strHelloAxis);
 
-      double ratey = fHeight * 0.84 / size.cy;
+      ::f64 ratey = fHeight * 0.84 / size.cy;
 
 //      pfont->create_pixel_font(m_pimpact->m_strFont, minimum(m_cy * ratey, m_cx * size.cy * ratey / size.cx), e_font_weight_bold);
 

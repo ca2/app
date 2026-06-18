@@ -242,7 +242,7 @@ namespace hi5
 
       log_line(m_strRequest);
 
-      long long iLen = pfile->get_length();
+      ::i64 iLen = pfile->get_length();
 
       if (iLen <= 0)
       {
@@ -255,7 +255,7 @@ namespace hi5
 
       }
 
-      string strMediaId = mediaUploadInit(int (iLen), strMimeType, strCategory);
+      string strMediaId = mediaUploadInit(::i32 (iLen), strMimeType, strCategory);
 
       if (strMediaId.is_empty())
       {
@@ -278,11 +278,11 @@ namespace hi5
 
       }
 
-      long long iChunkSize = 1024 * 1024;
+      ::i64 iChunkSize = 1024 * 1024;
 
-      long long iLastChunkSize = iLen % iChunkSize;
+      ::i64 iLastChunkSize = iLen % iChunkSize;
 
-      long long iChunkCount = iLen / iChunkSize;
+      ::i64 iChunkCount = iLen / iChunkSize;
 
       if (iLastChunkSize <= 0)
       {
@@ -328,7 +328,7 @@ namespace hi5
       for (::collection::index i = 0; i < iChunkCount; i++)
       {
 
-         long long iSize;
+         ::i64 iSize;
 
          if (i >= iChunkCount - 1)
          {
@@ -347,9 +347,9 @@ namespace hi5
 
          //memsize uRead;
 
-         //long long iPos = 0;
+         //::i64 iPos = 0;
 
-         //unsigned int tickStart= ::time::now();
+         //::u32 tickStart= ::time::now();
 
          //while ((uRead = pfile->read(&mem.get_data()[iPos], mem.get_size() - iPos)) > 0)
          //{
@@ -390,7 +390,7 @@ namespace hi5
          //}
 
 
-         if (!mediaUploadAppend(strMediaId, i, pfile, int (iSize), strMimeType, boundary_is_the_bounday_the_issue_i_e_should_it_be_the_same_across_appends))
+         if (!mediaUploadAppend(strMediaId, i, pfile, ::i32 (iSize), strMimeType, boundary_is_the_bounday_the_issue_i_e_should_it_be_the_same_across_appends))
          {
 
             m_strError = "ERROR: mediaUploadAppend failed chunk=" + as_string(i) + ", " + m_strError;
@@ -478,7 +478,7 @@ namespace hi5
    }
 
 
-   string twit::mediaUploadInit(int iTotalSize, const ::scoped_string & scopedstrMimeType, const ::scoped_string & scopedstrCategory)
+   string twit::mediaUploadInit(::i32 iTotalSize, const ::scoped_string & scopedstrMimeType, const ::scoped_string & scopedstrCategory)
    {
 
       m_strRequest = "REQUEST: mediaUploadInit(" + as_string(iTotalSize) + ", \"" + strMimeType + "\", \"" + strCategory + "\")";
@@ -557,7 +557,7 @@ namespace hi5
    }
 
 
-   bool twit::mediaUploadAppend(const ::scoped_string & scopedstrMediaId, ::collection::index iIndex, file_pointer pfile, int iSize, const ::scoped_string & scopedstrMimeType, string & boundary_is_the_bounday_the_issue_i_e_should_it_be_the_same_across_appends)
+   bool twit::mediaUploadAppend(const ::scoped_string & scopedstrMediaId, ::collection::index iIndex, file_pointer pfile, ::i32 iSize, const ::scoped_string & scopedstrMimeType, string & boundary_is_the_bounday_the_issue_i_e_should_it_be_the_same_across_appends)
    {
 
       log_line("mediaUploadAppend(\"" + strMediaId + "\", " + as_string(iIndex) + ", memory(size=" + as_string(iSize) + "))");
@@ -782,7 +782,7 @@ namespace hi5
 
       string strUrl("https://api.twitter.com/1.1/statuses/update.network_payload");
 
-      int i = 0;
+      ::i32 i = 0;
 
       if (straMediaIds.has_elements())
       {
@@ -2156,7 +2156,7 @@ namespace hi5
       {
          /* Get OAuth header for request token */
          ::property_set set;
-         long long iTime = ::time(nullptr);
+         ::i64 iTime = ::time(nullptr);
          if (m_oauth.getOAuthHeader(eOAuthHttpPost, "https://twitter.com/oauth/request_token", set))
          {
             if (performPost("https://twitter.com/oauth/request_token", set))

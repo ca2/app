@@ -26,14 +26,14 @@ namespace acme
    }
 
 
-   void shell::prepare_argc_argv(int& argc, char** argv, char* cmd_line)
+   void shell::prepare_argc_argv(::i32& argc, char_pointer * argv, char_pointer cmd_line)
    {
 
-      char* pPtr = nullptr;
+      char_pointer pPtr = nullptr;
 
-      char* p;
+      char_pointer p;
 
-      char* psz = cmd_line;
+      char_pointer psz = cmd_line;
 
       enum enum_state
       {
@@ -48,7 +48,7 @@ namespace acme
 
       enum_state e = e_state_initial;
 
-      char quote = '\0';
+      ::i8 quote = '\0';
 
       while (psz != nullptr && *psz != '\0')
       {
@@ -59,7 +59,7 @@ namespace acme
             if (*psz == ' ')
             {
 
-               psz = (char *) unicode_next(psz);
+               psz = (char_pointer ) unicode_next(psz);
 
             }
             else if (*psz == '\"')
@@ -67,9 +67,9 @@ namespace acme
 
                quote = '\"';
 
-               psz = (char *) unicode_next(psz);
+               psz = (char_pointer ) unicode_next(psz);
 
-               argv[argc++] = (char*)psz;
+               argv[argc++] = (char_pointer )psz;
 
                e = state_quote;
 
@@ -79,9 +79,9 @@ namespace acme
 
                quote = '\'';
 
-               psz = (char *) unicode_next(psz);
+               psz = (char_pointer ) unicode_next(psz);
 
-               argv[argc++] = (char*)psz;
+               argv[argc++] = (char_pointer )psz;
 
                e = state_quote;
 
@@ -89,9 +89,9 @@ namespace acme
             else
             {
 
-               argv[argc++] = (char*)psz;
+               argv[argc++] = (char_pointer )psz;
 
-               psz = (char *) unicode_next(psz);
+               psz = (char_pointer ) unicode_next(psz);
 
                e = state_non_space;
 
@@ -106,13 +106,13 @@ namespace acme
 
                memory_transfer(psz, psz + 1, ansi_len(psz));
 
-               psz = (char *) unicode_next(psz);
+               psz = (char_pointer ) unicode_next(psz);
 
             }
             else if (*psz == quote)
             {
 
-               p = (char *) unicode_next(psz);
+               p = (char_pointer ) unicode_next(psz);
 
                *psz = '\0';
 
@@ -124,7 +124,7 @@ namespace acme
             else
             {
 
-               psz = (char *) unicode_next(psz);
+               psz = (char_pointer ) unicode_next(psz);
 
             }
 
@@ -135,7 +135,7 @@ namespace acme
             if (*psz == ' ')
             {
 
-               p = (char *) unicode_next(psz);
+               p = (char_pointer ) unicode_next(psz);
 
                *psz = '\0';
 
@@ -147,7 +147,7 @@ namespace acme
             else
             {
 
-               psz = (char *) unicode_next(psz);
+               psz = (char_pointer ) unicode_next(psz);
 
             }
 
@@ -160,7 +160,7 @@ namespace acme
    }
 
 
-   int shell::command_system(const ::scoped_string& scopedstr, const class ::time& timeOut, const ::file::path& pathWorkingDirectory, ::e_display edisplay)
+   ::i32 shell::command_system(const ::scoped_string& scopedstr, const class ::time& timeOut, const ::file::path& pathWorkingDirectory, ::e_display edisplay)
    {
 
       trace_function tracefunction = std_inline_log();
@@ -210,7 +210,7 @@ namespace acme
    }
 
 
-   ::string shell::get_command_output(const ::scoped_string& scopedstr, const class ::time& timeOut, ::string * pstrError, int * piExitCode)
+   ::string shell::get_command_output(const ::scoped_string& scopedstr, const class ::time& timeOut, ::string * pstrError, ::i32 * piExitCode)
    {
 
       ::string strOutput;
@@ -244,7 +244,7 @@ namespace acme
    }
 
 
-   ::memory shell::get_command_output_memory(const ::scoped_string& scopedstr, bool bInteractive, const class ::time& timeOut, ::memory * pmemoryError, int * piExitCode)
+   ::memory shell::get_command_output_memory(const ::scoped_string& scopedstr, bool bInteractive, const class ::time& timeOut, ::memory * pmemoryError, ::i32 * piExitCode)
    {
 
       ::memory memoryOutput;
@@ -278,7 +278,7 @@ namespace acme
    }
 
 
-   int shell::get_command_output(::string& strOutput, ::string & strError, const ::scoped_string& scopedstr, const class ::time& timeOut)
+   ::i32 shell::get_command_output(::string& strOutput, ::string & strError, const ::scoped_string& scopedstr, const class ::time& timeOut)
    {
 
       status_pointer <::string> pstringOutput;
@@ -320,7 +320,7 @@ namespace acme
    }
 
 
-   int shell::get_command_output_memory(::memory& memoryOutput, ::memory & memoryError, const ::scoped_string& scopedstr, bool bInteractive, const class ::time& timeOut)
+   ::i32 shell::get_command_output_memory(::memory& memoryOutput, ::memory & memoryError, const ::scoped_string& scopedstr, bool bInteractive, const class ::time& timeOut)
    {
 
       auto pmemoryOutput = ::as_pointer(&memoryOutput);
@@ -354,7 +354,7 @@ namespace acme
    }
 
 
-   ::string shell::get_posix_shell_command_output(const ::scoped_string& scopedstr, enum_posix_shell eposixshell, ::string * pstrError, int * piExitCode,  const class ::time& timeOut)
+   ::string shell::get_posix_shell_command_output(const ::scoped_string& scopedstr, enum_posix_shell eposixshell, ::string * pstrError, ::i32 * piExitCode,  const class ::time& timeOut)
    {
 
       ::string strOutput;
@@ -388,7 +388,7 @@ namespace acme
    }
 
 
-   int shell::get_posix_shell_command_output(::string& strOutput, ::string & strError, const ::scoped_string& scopedstr, enum_posix_shell eposixshell, const class ::time& timeOut)
+   ::i32 shell::get_posix_shell_command_output(::string& strOutput, ::string & strError, const ::scoped_string& scopedstr, enum_posix_shell eposixshell, const class ::time& timeOut)
    {
 
       status_pointer <::string> pstringOut;
@@ -431,7 +431,7 @@ namespace acme
    }
 
 
-   int shell::command(const ::scoped_string& scopedstr, const trace_function& tracefunction)
+   ::i32 shell::command(const ::scoped_string& scopedstr, const trace_function& tracefunction)
    {
 
       return command_system(scopedstr, tracefunction);
@@ -439,7 +439,7 @@ namespace acme
    }
 
 
-   int shell::command_memory(const ::scoped_string& scopedstr, bool bInteractive, const memory_dump_function& memorydumpfunction)
+   ::i32 shell::command_memory(const ::scoped_string& scopedstr, bool bInteractive, const memory_dump_function& memorydumpfunction)
    {
 
       return command_system_memory(scopedstr, bInteractive, memorydumpfunction);
@@ -447,7 +447,7 @@ namespace acme
    }
 
 
-   int shell::command_system(const ::scoped_string& scopedstr, const trace_function& tracefunction, const ::file::path& pathWorkingDirectory, ::e_display edisplay)
+   ::i32 shell::command_system(const ::scoped_string& scopedstr, const trace_function& tracefunction, const ::file::path& pathWorkingDirectory, ::e_display edisplay)
    {
 
       return m_pshellComposite->command_system(scopedstr, tracefunction, pathWorkingDirectory, edisplay);
@@ -455,7 +455,7 @@ namespace acme
    }
 
 
-   int shell::command_system_memory(const ::scoped_string& scopedstr, bool bInteractive, const memory_dump_function & memorydumpfunction, const ::file::path& pathWorkingDirectory, ::e_display edisplay)
+   ::i32 shell::command_system_memory(const ::scoped_string& scopedstr, bool bInteractive, const memory_dump_function & memorydumpfunction, const ::file::path& pathWorkingDirectory, ::e_display edisplay)
    {
 
       return m_pshellComposite->command_system_memory(scopedstr, bInteractive, memorydumpfunction, pathWorkingDirectory, edisplay);
@@ -463,20 +463,20 @@ namespace acme
    }
 
 
-   int shell::pty2(const ::string_array_base& straCommands)
+   ::i32 shell::pty2(const ::string_array_base& straCommands)
    {
       return m_pshellComposite->pty2(straCommands);
    }
 
 
-   // int shell::interactive_command_system(const ::scoped_string& scopedstrPrompt, const ::scoped_string& scopedstrCommand, const trace_function& tracefunction, const ::file::path& pathWorkingDirectory, ::e_display edisplay)
+   // ::i32 shell::interactive_command_system(const ::scoped_string& scopedstrPrompt, const ::scoped_string& scopedstrCommand, const trace_function& tracefunction, const ::file::path& pathWorkingDirectory, ::e_display edisplay)
    // {
    //
    //    return m_pshellComposite->interactive_command_system(scopedstrPrompt, scopedstrCommand, tracefunction, pathWorkingDirectory, edisplay);
    //
    // }
    //
-   // int shell::interactive_command_system_memory(const ::scoped_string& scopedstrPrompt, const ::scoped_string& scopedstrCommand, const memory_dump_function& memorydumpfunction, const ::file::path& pathWorkingDirectory, ::e_display edisplay)
+   // ::i32 shell::interactive_command_system_memory(const ::scoped_string& scopedstrPrompt, const ::scoped_string& scopedstrCommand, const memory_dump_function& memorydumpfunction, const ::file::path& pathWorkingDirectory, ::e_display edisplay)
    // {
    //
    //    return m_pshellComposite->interactive_command_system_memory(scopedstrPrompt, scopedstrCommand, memorydumpfunction, pathWorkingDirectory, edisplay);
@@ -579,7 +579,7 @@ namespace acme
    void shell::defer_install_posix_shell_command(const ::scoped_string& scopedstr, enum_posix_shell eposixshell, const trace_function& tracefunction)
    {
 
-      int iTry = 0;
+      ::i32 iTry = 0;
 
       ::string strOutput;
 
@@ -648,7 +648,7 @@ namespace acme
    }
 
 
-   int shell::synchronous_posix_terminal(const ::scoped_string& scopedstrCommand, enum_posix_shell eposixshell, const trace_function& tracefunction)
+   ::i32 shell::synchronous_posix_terminal(const ::scoped_string& scopedstrCommand, enum_posix_shell eposixshell, const trace_function& tracefunction)
    {
 
       throw interface_only();
@@ -658,7 +658,7 @@ namespace acme
    }
 
 
-   int shell::posix_shell_command(const ::scoped_string& scopedstrCommand, enum_posix_shell eposixshell, const trace_function& tracefunction)
+   ::i32 shell::posix_shell_command(const ::scoped_string& scopedstrCommand, enum_posix_shell eposixshell, const trace_function& tracefunction)
    {
       
       if(m_pshellComposite != this)
@@ -716,7 +716,7 @@ namespace acme
    }
 
 
-   int shell::posix_shell_command_memory(const ::scoped_string& scopedstrCommand, bool bInteractive, enum_posix_shell eposixshell, const memory_dump_function& memorydumpfunction)
+   ::i32 shell::posix_shell_command_memory(const ::scoped_string& scopedstrCommand, bool bInteractive, enum_posix_shell eposixshell, const memory_dump_function& memorydumpfunction)
    {
 
       if(m_pshellComposite != this)
@@ -774,7 +774,7 @@ namespace acme
    }
 
 
-//    int shell::interactive_posix_shell(const ::scoped_string& scopedstrCommand, enum_posix_shell eposixshell)
+//    ::i32 shell::interactive_posix_shell(const ::scoped_string& scopedstrCommand, enum_posix_shell eposixshell)
 //    {
 //
 //       if (m_pshellComposite != this)
@@ -895,7 +895,7 @@ namespace acme
    }
 
 
-   //int shell::_msys2_shell_command_output(::string& strOutput, const ::scoped_string& scopedstr, const class ::time& timeOut)
+   //::i32 shell::_msys2_shell_command_output(::string& strOutput, const ::scoped_string& scopedstr, const class ::time& timeOut)
    //{
 
    //   status_pointer <::string> pstring;

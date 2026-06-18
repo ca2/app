@@ -128,7 +128,7 @@ namespace platform
    inline const ::string &type::raw_name() const { return m_typeid.m_strRawTypeName; }
    inline const ::string &type::name() const { return m_typeid.m_strTypeName; }
    inline const ::string &type::text() const { return m_typeid.m_strTypeName.has_character() ? m_typeid.m_strTypeName : m_customid.m_strNameId; }
-   inline const char *type::c_str() const { return m_typeid.m_strTypeName.c_str(); }
+   inline const_char_pointer type::c_str() const { return m_typeid.m_strTypeName.c_str(); }
    inline bool type::is_set() const
    {
       return m_typeid.is_set() || m_customid.is_set();
@@ -236,7 +236,7 @@ m_strNameId(pszNameId)
 
 }
 
-inline type_custom_id::type_custom_id(const ::string_literal < const_char_pointer >& strliteralNameId) :
+inline type_custom_id::type_custom_id(const ::string_literal& strliteralNameId) :
    m_strNameId(strliteralNameId)
 {
 

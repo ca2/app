@@ -39,7 +39,7 @@ string_array_base get_c_args_from_string(const ::scoped_string & scopedstr)
 
    string str;
 
-   int i = 0;
+   ::i32 i = 0;
 
    while (range.has_character())
    {
@@ -131,7 +131,7 @@ string_array_base no_escape_get_c_args_from_string(const ::scoped_string & scope
 
    string str;
 
-   int i = 0;
+   ::i32 i = 0;
 
    bool bColon = false;
 
@@ -163,7 +163,7 @@ string_array_base no_escape_get_c_args_from_string(const ::scoped_string & scope
 
          const_char_pointer pszValueStart = range.m_begin;
 
-         char chQuote = '\0';
+         ::i8 chQuote = '\0';
 
          while (!unicode_is_whitespace(range.m_begin))
          {
@@ -444,10 +444,10 @@ end:
 }
 
 
-int argcargv_find_parameter(int argc, char * argv[], const ::scoped_string & scopedstrParameter)
+::i32 argcargv_find_parameter(::i32 argc, char_pointer argv[], const ::scoped_string & scopedstrParameter)
 {
 
-   for(int i = 1; i < argc; i++)
+   for(::i32 i = 1; i < argc; i++)
    {
 
       if(scopedstrParameter == argv[i])
@@ -464,7 +464,7 @@ int argcargv_find_parameter(int argc, char * argv[], const ::scoped_string & sco
 }
 
 
-bool argcargv_contains_parameter(int argc, char * argv[], const ::scoped_string & scopedstrParameter)
+bool argcargv_contains_parameter(::i32 argc, char_pointer argv[], const ::scoped_string & scopedstrParameter)
 {
 
    return argcargv_find_parameter(argc, argv, scopedstrParameter) >= 0;

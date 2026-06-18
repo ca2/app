@@ -11,14 +11,14 @@ public:
 
 
    enum_call                     m_ecall;
-   long long                     m_ll;
-   long long                     m_ll2; // here you should be able to put a pointer that has stable lifetime
+   ::i64                     m_i64;
+   ::i64                     m_ll2; // here you should be able to put a pointer that has stable lifetime
    ::subparticle *               m_psubparticle; // here there can lie a object with reference count lifetime
 
 
-   call(enum_call ecall, long long ll = 0ll, long long ll2 = 0ll) :
+   call(enum_call ecall, ::i64 ll = 0ll, ::i64 ll2 = 0ll) :
       m_ecall(ecall),
-      m_ll(ll),
+      m_i64(ll),
       m_ll2(ll2),
       m_psubparticle(nullptr)
    {
@@ -27,9 +27,9 @@ public:
    }
 
 
-   call(enum_call ecall, long long ll, long long ll2, ::subparticle* psubparticle) :
+   call(enum_call ecall, ::i64 ll, ::i64 ll2, ::subparticle* psubparticle) :
       m_ecall(ecall),
-      m_ll(ll),
+      m_i64(ll),
       m_ll2(ll2),
       m_psubparticle(psubparticle)
    {
@@ -41,7 +41,7 @@ public:
 
    call(const call& call) :
       m_ecall(call.m_ecall),
-      m_ll(call.m_ll),
+      m_i64(call.m_i64),
       m_ll2(call.m_ll2),
       m_psubparticle(call.m_psubparticle)
    {
@@ -53,7 +53,7 @@ public:
 
    call(call&& call) :
       m_ecall(call.m_ecall),
-      m_ll(call.m_ll),
+      m_i64(call.m_i64),
       m_ll2(call.m_ll2),
       m_psubparticle(call.m_psubparticle)
    {

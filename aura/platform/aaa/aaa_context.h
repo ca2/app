@@ -83,7 +83,7 @@ public:
 
 
    // get a file and if there are exceptions, should show end user friendly messages
-   virtual file_pointer friendly_get_file(::payload payloadFile, unsigned int nOpenFlags);
+   virtual file_pointer friendly_get_file(::payload payloadFile, ::u32 nOpenFlags);
 
 
    virtual bool os_resolve_alias(::file::path & path, const ::scoped_string & scopedstr, ::user::interaction_base * pinteraction, bool bNoUI = false, bool bNoMount = false);
@@ -110,7 +110,7 @@ public:
    virtual ::image::image_pointer load_image(const ::payload & payloadFile, bool bCache = true, bool bSync = true, bool bCreateHelperMaps = false) override;
    virtual ::image::image_pointer load_matter_image(const ::scoped_string & scopedstrMatter, bool bCache = true, bool bSync = true, bool bCreateHelperMaps = false);
    virtual ::image::image_pointer load_matter_icon(string_array_base & straMatter, string strIcon) override;
-   virtual ::image::image_pointer load_thumbnail(const ::payload & payloadFile, int w, int h) override;
+   virtual ::image::image_pointer load_thumbnail(const ::payload & payloadFile, ::i32 w, ::i32 h) override;
    virtual ::image::image_pointer load_thumbnail(const ::scoped_string & scopedstrPath);
    virtual ::image::image_pointer load_dib(const ::file::path & pathDib) override;
    virtual ::icon_pointer load_icon(const ::payload & payloadFile);
@@ -123,7 +123,7 @@ public:
    virtual void _load_image(::image::image *pimage, const ::payload & payloadFile, bool bSync = true, bool bCreateHelperMaps = false);
    virtual void _load_matter_image(::image::image *pimage, const ::scoped_string & scopedstrMatter, bool bSync = true, bool bCreateHelperMaps = false);
    virtual void _load_matter_icon(::image::image *pimage, string_array_base & straMatter, string strIcon);
-   virtual void _load_thumbnail(::image::image *pimage, const ::payload & payloadFile, int w, int h);
+   virtual void _load_thumbnail(::image::image *pimage, const ::payload & payloadFile, ::i32 w, ::i32 h);
    virtual void _load_thumbnail(::image::image *pimage, const ::payload & payloadFile);
    virtual void _load_dib(::image::image *pimage, const ::file::path & pathDib);
 

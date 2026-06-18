@@ -125,7 +125,7 @@
 //
 //   }
 //
-//   if (!GetModuleFileNameW(hmodule, wstrModuleFilePath, (unsigned int)wstrModuleFilePath.length()))
+//   if (!GetModuleFileNameW(hmodule, wstrModuleFilePath, (::u32)wstrModuleFilePath.length()))
 //   {
 //
 //      return "";
@@ -136,7 +136,7 @@
 //
 //   LPWSTR pszModuleFileName;
 //
-//   if (!GetFullPathNameW(wstrModuleFilePath, (unsigned int)wstrModuleFilePath.length(), wstrModuleFolder, &pszModuleFileName))
+//   if (!GetFullPathNameW(wstrModuleFilePath, (::u32)wstrModuleFilePath.length(), wstrModuleFolder, &pszModuleFileName))
 //   {
 //
 //      return "";
@@ -160,7 +160,7 @@
 //
 //   {
 //
-//      //         str = ::dir::pathfind(getenv("DYLD_LIBRARY_PATH"), "libacme.dylib", "rfs"); // readable - normal file - non zero double_size
+//      //         str = ::dir::pathfind(getenv("DYLD_LIBRARY_PATH"), "libacme.dylib", "rfs"); // readable - normal file - non zero ::f64_size
 //      //
 //      //         if(str.has_character())
 //      //         {
@@ -170,7 +170,7 @@
 //      //         }
 //      //
 //      //
-//      //         str = ::dir::pathfind(getenv("DYLD_FALLBACK_LIBRARY_PATH"), "libacme.dylib", "rfs"); // readable - normal file - non zero double_size
+//      //         str = ::dir::pathfind(getenv("DYLD_FALLBACK_LIBRARY_PATH"), "libacme.dylib", "rfs"); // readable - normal file - non zero ::f64_size
 //      //
 //      //         if(str.has_character())
 //      //         {
@@ -286,7 +286,7 @@
 //
 //   }
 //
-//   if (!GetModuleFileNameW(hmodule, wstrModuleFilePath, (unsigned int)wstrModuleFilePath.length()))
+//   if (!GetModuleFileNameW(hmodule, wstrModuleFilePath, (::u32)wstrModuleFilePath.length()))
 //   {
 //
 //      return "";
@@ -295,7 +295,7 @@
 //
 //   LPWSTR pszModuleFileName;
 //
-//   if (!GetFullPathNameW(wstrModuleFilePath, (unsigned int)wstrModuleFilePath.length(), wstrModuleFolder, &pszModuleFileName))
+//   if (!GetFullPathNameW(wstrModuleFilePath, (::u32)wstrModuleFilePath.length(), wstrModuleFolder, &pszModuleFileName))
 //   {
 //
 //      return "";

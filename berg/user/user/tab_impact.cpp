@@ -34,8 +34,8 @@ namespace user
    tab_impact::tab_impact()
    {
 
-      m_flagNonClient.erase(e_non_client_background);
-      m_flagNonClient.erase(e_non_client_focus_rect);
+      m_enonclient.erase(::user::e_non_client_background);
+      m_enonclient.erase(::user::e_non_client_focus_rect);
 
       m_pimpactdata                    = nullptr;
       m_pimpactdataOld                 = nullptr;
@@ -504,7 +504,7 @@ namespace user
 
       m_pdroptargetwindow = allocateø tab_drop_target_window();
 
-      m_pdroptargetwindow->initialize_tab_drop_target_window(this, (int)pchannel->get_data()->m_iClickTab);
+      m_pdroptargetwindow->initialize_tab_drop_target_window(this, (::i32)pchannel->get_data()->m_iClickTab);
 
       auto rectangle = pchannel->get_data()->m_rectangleHosting;
 
@@ -585,7 +585,7 @@ namespace user
 
       auto ptabdata = get_data();
 
-      //::int_rectangle rectangleHosting = ptabdata->m_rectangleHosting;
+      //::i32_rectangle rectangleHosting = ptabdata->m_rectangleHosting;
 
       //::user::impact_data * pimpactdata = get_impact_data(atom, rectangleHosting);
 
@@ -871,7 +871,7 @@ namespace user
 
          informationf("::user::e_flag_hide_on_kill_focus");
 
-         m_pimpactdataOld->m_pplaceholder->hide();
+         m_pimpactdataOld->m_pplaceholder->display(e_display_hide, {});
 
       }
 
@@ -884,7 +884,7 @@ namespace user
 
             ::user::tab_pane_array & panecompositea = get_data()->m_tabpanea;
 
-            for (int iTab = 0; iTab < panecompositea.get_count(); iTab++)
+            for (::i32 iTab = 0; iTab < panecompositea.get_count(); iTab++)
             {
 
                auto pimpactdataPane = panecompositea[iTab]->m_pimpactdata;
@@ -914,7 +914,7 @@ namespace user
 
                }
 
-               pimpactdataPane->m_pplaceholder->hide();
+               pimpactdataPane->m_pplaceholder->display(e_display_hide, {});
 
             }
 
@@ -1065,16 +1065,16 @@ namespace user
 
             auto functionHandler = [this](auto puserinteraction)
             {
-               //int width = GetSystemMetrics(SM_CXSCREEN);
-               //int height = GetSystemMetrics(SM_CYSCREEN);
+               //::i32 width = GetSystemMetrics(SM_CXSCREEN);
+               //::i32 height = GetSystemMetrics(SM_CYSCREEN);
 
                application()->create_operating_system_information_impact(OPERATING_SYSTEM_INFORMATION_IMPACT, puserinteraction);
             };
 
             phandlerimpact->call_handler(functionHandler);
          }
-         //int width = GetSystemMetrics(SM_CXSCREEN);
-         //int height = GetSystemMetrics(SM_CYSCREEN);
+         //::i32 width = GetSystemMetrics(SM_CXSCREEN);
+         //::i32 height = GetSystemMetrics(SM_CYSCREEN);
 
          //pimpactdata->m_eflag += ::user::e_flag_hide_all_others_on_show;
 
@@ -1134,7 +1134,7 @@ namespace user
             
             pmenu->m_menua.erase_all();
             
-            pmenu->m_pmenuitem.defer_destroy();
+            pmenu->m_pmenuitem.defer_destroy_and_release();
             
             pmenu->destroy_children();
 
@@ -1352,7 +1352,7 @@ namespace user
    }
 
 
-   //::user::impact_data * tab_impact::create_impact(atom atom, const ::int_rectangle & rectangleCreate, ::user::frame_window * pframewindow)
+   //::user::impact_data * tab_impact::create_impact(atom atom, const ::i32_rectangle & rectangleCreate, ::user::frame_window * pframewindow)
 
    //{
 
@@ -1549,7 +1549,7 @@ namespace user
 
       {
 
-         ::int_point pointOffset;
+         ::i32_point pointOffset;
 
          if (m_puserinteractionParent != nullptr)
          {
@@ -1746,9 +1746,9 @@ namespace user
       if (!ptabdata->m_bNoClient && m_pimpactdata)
       {
 
-         ::int_rectangle rectangleHosting = ptabdata->m_rectangleHosting;
+         ::i32_rectangle rectangleHosting = ptabdata->m_rectangleHosting;
 
-         ::int_rectangle rectangleX;
+         ::i32_rectangle rectangleX;
 
          rectangleX = m_pimpactdata->m_pplaceholder->rectangle();
 

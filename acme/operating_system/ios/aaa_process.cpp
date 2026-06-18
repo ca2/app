@@ -14,12 +14,12 @@ namespace acme
    namespace ios
    {
 
-void node::create_process(const char * _cmd_line, int * pprocessId)
+void node::create_process(const_char_pointer _cmd_line, ::i32 * pprocessId)
 {
-   char *   exec_path_name;
-   char *	cmd_line;
+   char_pointer exec_path_name;
+   char_pointer cmd_line;
 
-   cmd_line = (char *) ::system()->m_pheapmanagement->memory(::heap::e_memory_main)->allocate(strlen(_cmd_line ) + 1 );
+   cmd_line = (char_pointer ) ::system()->m_pheapmanagement->memory(::heap::e_memory_main)->allocate(strlen(_cmd_line ) + 1 );
 
    if(cmd_line == nullptr)
       return 0;
@@ -29,11 +29,11 @@ void node::create_process(const char * _cmd_line, int * pprocessId)
    if((*pprocessId = fork()) == 0)
    {
       // child
-      char		*pArg, *pPtr;
-      char		*argv[1024 + 1];
-      int		 argc;
+      char_pointer pArg, *pPtr;
+      char_pointer argv[1024 + 1];
+      ::i32		 argc;
       exec_path_name = cmd_line;
-      if( ( pArg = (char * ) ansi_find_char_reverse( exec_path_name, '/' ) ) != nullptr )
+      if( ( pArg = (char_pointer ) ansi_find_char_reverse( exec_path_name, '/' ) ) != nullptr )
          pArg++;
       else
          pArg = exec_path_name;
@@ -69,11 +69,11 @@ void node::create_process(const char * _cmd_line, int * pprocessId)
    return 1;
 }
 
-CLASS_DECL_ACME int call_async(
+CLASS_DECL_ACME ::i32 call_async(
 const ::file::path & path,
 const ::scoped_string & scopedstrParam,
 const ::scoped_string & scopedstrDir,
-int iShow)
+::i32 iShow)
 {
    string strCmdLine;
 
@@ -84,7 +84,7 @@ int iShow)
       strCmdLine += pszParam;
    }
 
-   int processId;
+   ::i32 processId;
 
    if(!create_process(strCmdLine, &processId))
       return -1;
@@ -93,13 +93,13 @@ int iShow)
 
 }
 
-CLASS_DECL_ACME int call_async(
+CLASS_DECL_ACME ::i32 call_async(
 const ::file::path & path,
 const ::scoped_string & scopedstrParam,
 const ::scoped_string & scopedstrDir,
 edisplay edisplay,
 bool bPrivileged,
-unsigned int * puiPid)
+::u32 * puiPid)
 {
 
    string strCmdLine;
@@ -111,7 +111,7 @@ unsigned int * puiPid)
       strCmdLine += pszParam;
    }
 
-   int processId;
+   ::i32 processId;
 
    if(!create_process(strCmdLine, &processId))
       return -1;
@@ -128,7 +128,7 @@ unsigned int * puiPid)
 
 }
 
-CLASS_DECL_ACME unsigned int call_sync(const ::file::path & path, const ::scoped_string & scopedstrParam, const ::scoped_string & scopedstrDir, ::e_display edisplay, const ::duration & durationTimeout, ::property_set & set)
+CLASS_DECL_ACME ::u32 call_sync(const ::file::path & path, const ::scoped_string & scopedstrParam, const ::scoped_string & scopedstrDir, ::e_display edisplay, const ::duration & durationTimeout, ::property_set & set)
 {
 
    string strCmdLine;
@@ -142,7 +142,7 @@ CLASS_DECL_ACME unsigned int call_sync(const ::file::path & path, const ::scoped
       strCmdLine += pszParam;
    }
 
-   int processId;
+   ::i32 processId;
 
    if(!create_process(strCmdLine, &processId))
       return -1;
@@ -170,10 +170,10 @@ CLASS_DECL_ACME unsigned int call_sync(const ::file::path & path, const ::scoped
 
 
 
-int get_current_process_affinity_order()
+::i32 get_current_process_affinity_order()
 {
 
-   int numCPU = (int) sysconf(_SC_NPROCESSORS_ONLN);
+   ::i32 numCPU = (::i32) sysconf(_SC_NPROCESSORS_ONLN);
 
    return numCPU;
 }
@@ -195,7 +195,7 @@ bool shell_execute_sync(const ::scoped_string & scopedstrFile, const ::scoped_st
 
 
 
-CLASS_DECL_ACME bool is_shared_library_busy(unsigned int processid, const string_array_base & stra)
+CLASS_DECL_ACME bool is_shared_library_busy(::u32 processid, const string_array_base & stra)
 {
 
    return false;

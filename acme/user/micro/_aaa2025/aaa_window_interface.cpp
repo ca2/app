@@ -65,7 +65,7 @@
 // }
 //
 //
-// void window_interface::on_char(int iChar)
+// void window_interface::on_char(::i32 iChar)
 // {
 //
 //
@@ -120,7 +120,7 @@
 // }
 //
 //
-// ::int_point window_interface::origin()
+// ::i32_point window_interface::origin()
 // {
 //
 //    throw ::exception(error_wrong_state);
@@ -180,7 +180,7 @@
 //
 //    }
 //
-//    ::int_rectangle r;
+//    ::i32_rectangle r;
 //
 //    get_window_rectangle(r);
 //
@@ -189,7 +189,7 @@
 // }
 //
 //
-// ::int_point window_interface::try_absolute_mouse_position(const ::int_point& point)
+// ::i32_point window_interface::try_absolute_mouse_position(const ::i32_point& point)
 // {
 //
 //    auto p = point;
@@ -209,7 +209,7 @@
 // }
 //
 //
-// bool window_interface::on_drag_start(::int_point & point, ::item * pitem)
+// bool window_interface::on_drag_start(::i32_point & point, ::item * pitem)
 // {
 //
 //    if (pitem->m_item.m_eelement == e_element_client)
@@ -235,7 +235,7 @@
 // }
 //
 //
-// ::int_point window_interface::drag_mouse_cursor_position(::item* pitem, const ::int_point & point)
+// ::i32_point window_interface::drag_mouse_cursor_position(::item* pitem, const ::i32_point & point)
 // {
 //
 //    auto p = try_absolute_mouse_position(point);
@@ -320,7 +320,7 @@
 // }
 //
 //
-// child * window_interface::on_hit_test(const ::int_point & point, ::user::e_zorder ezorder)
+// child * window_interface::on_hit_test(const ::i32_point & point, ::user::e_zorder ezorder)
 // {
 //
 //    return nullptr;
@@ -390,7 +390,7 @@
 // }
 //
 //
-// void window_interface::move_to(const ::int_point & point)
+// void window_interface::move_to(const ::i32_point & point)
 // {
 //
 //
@@ -411,14 +411,14 @@
 // }
 //
 //
-// void window_interface::get_client_rectangle(::int_rectangle & rectangle)
+// void window_interface::get_client_rectangle(::i32_rectangle & rectangle)
 // {
 //
 //
 // }
 //
 //
-// void window_interface::get_window_rectangle(::int_rectangle & rectangle)
+// void window_interface::get_window_rectangle(::i32_rectangle & rectangle)
 // {
 //
 //

@@ -113,7 +113,7 @@ dostime_t maximum_dos_time()
  *
  * This function returns the Unix posix_time value (GMT/UTC time) from
  * the DOS format (local) time dostime, where dostime is a four
- * unsigned char value (date in most significant word, time in least
+ * ::u8 value (date in most significant word, time in least
  * significant word), see dostime() function.
  *
  * If the input DOS time is invalid, then the function returns -1.
@@ -136,12 +136,12 @@ posix_time dos_time_unix_time(dostime_t dostime)
 
     t.tm_isdst = -1;     /* let mktime() determine if DST is in effect */
     /* Convert DOS time to UNIX posix_time format */
-    t.tm_sec  = (((int)dostime <<  1) & 0x3E);
-    t.tm_min  = (((int)dostime >>  5) & 0x3F);
-    t.tm_hour = (((int)dostime >> 11) & 0x1F);
-    t.tm_mday = (((int)dostime >> 16) & 0x1F);
-    t.tm_mon  = (((int)dostime >> 21) & 0x0F) - 1;
-    t.tm_year = (((int)dostime >> 25) & 0x7F) + 80;
+    t.tm_sec  = (((::i32)dostime <<  1) & 0x3E);
+    t.tm_min  = (((::i32)dostime >>  5) & 0x3F);
+    t.tm_hour = (((::i32)dostime >> 11) & 0x1F);
+    t.tm_mday = (((::i32)dostime >> 16) & 0x1F);
+    t.tm_mon  = (((::i32)dostime >> 21) & 0x0F) - 1;
+    t.tm_year = (((::i32)dostime >> 25) & 0x7F) + 80;
 
     if(t.tm_year < 80 || t.tm_year > 207
     || t.tm_mon  <  0 || t.tm_mon  >  11
@@ -157,13 +157,13 @@ posix_time dos_time_unix_time(dostime_t dostime)
     // as is (without worry about the current timezone) because the DOS
     // format makes use of localdate() and that's 1 to 1 compatible with
     // mktime() which expects a local date too.
-    return { posix_time_t{}, (long long)mktime(&t) };
+    return { posix_time_t{}, (::i64)mktime(&t) };
 }
 
 
 /* \brief Convert a broken up date to a DOS date.
  *
- * Convert the date y/n/d and time h:m:s to a four unsigned char DOS date and
+ * Convert the date y/n/d and time h:m:s to a four ::u8 DOS date and
  * time (date in high two bytes, time in low two bytes allowing magnitude
  * comparison).
  *
@@ -185,7 +185,7 @@ posix_time dos_time_unix_time(dostime_t dostime)
  * \return The date parameters transformed in a DOS time value or zero if the
  *         date is considered invalid.
  */
-dostime_t dos_time(int year, int month, int day, int hour, int minute, int second)
+dostime_t dos_time(::i32 year, ::i32 month, ::i32 day, ::i32 hour, ::i32 minute, ::i32 second)
 {
     if(year < 1980 || year > 2107
     || month < 1 || month > 12

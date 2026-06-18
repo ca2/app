@@ -29,12 +29,12 @@ namespace gpu
          /// @brief  model view projection
          floating_matrix4 mvp;
 
-         //int faceIndex;
-         int hdri;
+         //::i32 faceIndex;
+         ::i32 hdri;
          };
 
-         const unsigned int m_uCubemapWidth = 2048;
-         const unsigned int m_uCubemapHeight = 2048;
+         const ::u32 m_uCubemapWidth = 2048;
+         const ::u32 m_uCubemapHeight = 2048;
 
          ::pointer<::gpu::shader>            m_pshaderHdri;
          //::pointer<::gpu::ibl::hdri_cube>    m_phdricube;

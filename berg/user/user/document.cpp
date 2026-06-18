@@ -820,7 +820,7 @@ namespace user
          strPathName = payloadFile;
       }
       // store the path fully qualified
-      //char szFullPath[_MAX_PATH];
+      //::i8 szFullPath[_MAX_PATH];
       //if ( lstrlen(scopedstrPathName) >= _MAX_PATH )
 
       //{
@@ -1957,7 +1957,7 @@ namespace user
       }
 
       // now do it again counting the unique ones
-      int nFrames = 0;
+      ::i32 nFrames = 0;
 
       count = get_impact_count();
 
@@ -1989,7 +1989,7 @@ namespace user
 
       // lastly walk the frames and update titles (assume same order)
       // go through frames updating the appropriate one
-      int iFrame = 1;
+      ::i32 iFrame = 1;
 
       count = get_impact_count();
 
@@ -2149,7 +2149,7 @@ namespace user
    }
 
 
-   //void document::on_before_navigate(::form_data * pdata,::payload & payloadFile,unsigned int nFlags, const ::scoped_string & scopedstrTargetFrameName,byte_array& baPostedData, const ::scoped_string & scopedstrHeaders,bool* pbCancel)
+   //void document::on_before_navigate(::form_data * pdata,::payload & payloadFile,::u32 nFlags, const ::scoped_string & scopedstrTargetFrameName,byte_array& baPostedData, const ::scoped_string & scopedstrHeaders,bool* pbCancel)
    //{
 
    //   __UNREFERENCED_PARAMETER(pdata);

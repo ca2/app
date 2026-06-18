@@ -96,10 +96,10 @@ namespace write_text
    }
 
 
-   ::double_size drawer::get_text_extent(const ::scoped_string & scopedstr)
+   ::f64_size drawer::get_text_extent(const ::scoped_string & scopedstr)
    {
 
-      return ::double_size();
+      return ::f64_size();
 
    }
 
@@ -126,7 +126,7 @@ namespace write_text
    }
 
 
-   void drawer::TextOutRaw(double x, double y, const ::scoped_string & scopedstr)
+   void drawer::TextOutRaw(::f64 x, ::f64 y, const ::scoped_string & scopedstr)
    {
 
       throw ::interface_only();
@@ -136,7 +136,7 @@ namespace write_text
    }
 
 
-   void drawer::split_text(string_array_base & stra, double w, enum_text_wrap etextwrap)
+   void drawer::split_text(string_array_base & stra, ::f64 w, enum_text_wrap etextwrap)
    {
 
       if (etextwrap == e_text_wrap_none)
@@ -162,7 +162,7 @@ namespace write_text
    }
 
 
-   ::collection::count drawer::_split_text(string_array_base & stra, ::collection::index i, double w, enum_text_wrap etextwrap)
+   ::collection::count drawer::_split_text(string_array_base & stra, ::collection::index i, ::f64 w, enum_text_wrap etextwrap)
    {
 
       switch (etextwrap)
@@ -180,7 +180,7 @@ namespace write_text
    }
 
 
-   ::collection::count drawer::_split_text_word(string_array_base & stra, ::collection::index i, double w)
+   ::collection::count drawer::_split_text_word(string_array_base & stra, ::collection::index i, ::f64 w)
    {
 
       return _split_text_character(stra, i, w);
@@ -188,7 +188,7 @@ namespace write_text
    }
 
 
-   ::collection::count drawer::_split_text_word_then_character(string_array_base & stra, ::collection::index i, double w)
+   ::collection::count drawer::_split_text_word_then_character(string_array_base & stra, ::collection::index i, ::f64 w)
    {
 
       ::collection::count c = 0;
@@ -316,7 +316,7 @@ namespace write_text
    }
 
 
-   ::collection::count drawer::_split_text_character(string_array_base & stra, ::collection::index i, double w)
+   ::collection::count drawer::_split_text_character(string_array_base & stra, ::collection::index i, ::f64 w)
    {
 
       ::collection::count c = 0;
@@ -395,7 +395,7 @@ namespace write_text
 
 
 
-   void drawer::create_simple_multiline_layout(::write_text::text_out_array & textouta, const ::scoped_string & scopedstr, const ::int_rectangle & rectangle, ::write_text::font * pfont, const ::e_align & ealign, enum_text_wrap etextwrap)
+   void drawer::create_simple_multiline_layout(::write_text::text_out_array & textouta, const ::scoped_string & scopedstr, const ::i32_rectangle & rectangle, ::write_text::font * pfont, const ::e_align & ealign, enum_text_wrap etextwrap)
    {
 
       string_array_base stra;
@@ -406,17 +406,17 @@ namespace write_text
 
       auto textmetric = get_text_metrics();
 
-      double y = 0.;
+      ::f64 y = 0.;
 
-      double w = rectangle.width();
+      ::f64 w = rectangle.width();
       
       w++;
 
-      double h = rectangle.height();
+      ::f64 h = rectangle.height();
       
       h++;
 
-      double cx = 0.;
+      ::f64 cx = 0.;
 
       split_text(stra, w, etextwrap);
 
@@ -448,12 +448,12 @@ namespace write_text
 
       }
 
-      double cy = y;
+      ::f64 cy = y;
 
       if (ealign & (e_align_horizontal_center | e_align_right))
       {
 
-         double dRate;
+         ::f64 dRate;
 
          if (ealign & e_align_horizontal_center)
          {
@@ -480,7 +480,7 @@ namespace write_text
       if (ealign & (e_align_vertical_center | e_align_bottom))
       {
 
-         double Δy = (h - cy);
+         ::f64 Δy = (h - cy);
 
          if (ealign & e_align_vertical_center)
          {

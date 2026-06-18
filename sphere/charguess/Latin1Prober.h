@@ -29,19 +29,19 @@ class nsLatin1Prober: public nsCharSetProber {
 public:
   nsLatin1Prober(void){Reset();};
   virtual ~nsLatin1Prober(void){};
-  nsProbingState HandleData(const ::string & aBuf, PRunsigned int aLen);
+  nsProbingState HandleData(const ::string & aBuf, PRunsigned ::i32 aLen);
   const_char_pointer GetCharSetName() {return "windows-1252";};
   nsProbingState GetState(void) {return mState;};
   void      Reset(void);
-  float     GetConfidence(void);
+  ::f32     GetConfidence(void);
   void      SetOpion() {};
 
 protected:
-  PRBool FilterWithEnglishLetters(const ::string & aBuf, PRunsigned int aLen, char** newBuf, PRunsigned int& newLen);
+  PRBool FilterWithEnglishLetters(const ::string & aBuf, PRunsigned ::i32 aLen, char_pointer * newBuf, PRunsigned ::i32& newLen);
   
   nsProbingState mState;
-  char mLastCharClass;
-  PRunsigned int mFreqCounter[FREQ_CAT_NUM];
+  ::i8 mLastCharClass;
+  PRunsigned ::i32 mFreqCounter[FREQ_CAT_NUM];
 };
 
 

@@ -124,7 +124,7 @@ namespace acme
       }
 
 
-      bool tx::send(int message,void * pdata,int len,duration durationTimeout)
+      bool tx::send(::i32 message,void * pdata,::i32 len,duration durationTimeout)
       {
 
          if(message == I32_MINIMUM)
@@ -209,7 +209,7 @@ namespace acme
 
             m.set_os_cf_data(data);
 
-            p->on_ipc_receive(p,messageID, m.get_data(), (int)m.get_size());
+            p->on_ipc_receive(p,messageID, m.get_data(), (::i32)m.get_size());
 
          }
          
@@ -288,13 +288,13 @@ namespace acme
 //      }
 //
 
-//      void rx::receiver::on_ipc_receive(rx * prx, int message, void * pdata, memsize len)
+//      void rx::receiver::on_ipc_receive(rx * prx, ::i32 message, void * pdata, memsize len)
 //      {
 //
 //      }
 //
 //
-//      void rx::receiver::on_ipc_post(rx * prx, long long a, long long b)
+//      void rx::receiver::on_ipc_post(rx * prx, ::i64 a, ::i64 b)
 //      {
 //
 //      }
@@ -317,7 +317,7 @@ namespace acme
       }
 
    
-      void * rx::on_ipc_receive(rx * prx, int message, void * pdata, memsize len)
+      void * rx::on_ipc_receive(rx * prx, ::i32 message, void * pdata, memsize len)
       {
 
          if(m_preceiver != nullptr)
@@ -334,7 +334,7 @@ namespace acme
       }
 
 
-      void * rx::on_ipc_post(rx * prx,long long a,long long b)
+      void * rx::on_ipc_post(rx * prx,::i64 a,::i64 b)
       {
 
          if(m_preceiver != nullptr)

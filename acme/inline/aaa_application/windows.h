@@ -1,6 +1,6 @@
 
 
-// int WINAPI _tWinMain(HINSTANCE hinstance, HINSTANCE hPrevInstance, char * pCmdLine, int nCmdShow)
+// ::i32 WINAPI _tWinMain(HINSTANCE hinstance, HINSTANCE hPrevInstance, char_pointer pCmdLine, ::i32 nCmdShow)
 // {
 
 //    auto psystem = platform_create_system(hinstance);
@@ -15,7 +15,7 @@
 
 //    ::e_status estatus = psystem->__thread_procedure();
 
-//    int iErrorStatus = estatus.error_status();
+//    ::i32 iErrorStatus = estatus.error_status();
 
 //    return iErrorStatus;
 

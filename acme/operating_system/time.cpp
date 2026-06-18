@@ -15,7 +15,7 @@
 CLASS_DECL_ACME void __seed_srand()
 {
 
-   srand((unsigned int)(time(nullptr)));
+   srand((::u32)(time(nullptr)));
 
 }
 
@@ -23,15 +23,15 @@ CLASS_DECL_ACME void __seed_srand()
 //CLASS_DECL_ACME void sleep(const ::time& dur)
 //{
 //
-//   sleep((unsigned int)dur.total_milliseconds());
+//   sleep((::u32)dur.total_milliseconds());
 //
 //}
 
 
-CLASS_DECL_ACME void preempt_second(long long i);
-CLASS_DECL_ACME void preempt_millisecond(long long i);
-CLASS_DECL_ACME void preempt_microsecond(long long i);
-CLASS_DECL_ACME void preempt_nanosecond(long long i);
+CLASS_DECL_ACME void preempt_second(::i64 i);
+CLASS_DECL_ACME void preempt_millisecond(::i64 i);
+CLASS_DECL_ACME void preempt_microsecond(::i64 i);
+CLASS_DECL_ACME void preempt_nanosecond(::i64 i);
 
 
 CLASS_DECL_ACME void preempt(const class time & time)
@@ -85,19 +85,19 @@ CLASS_DECL_ACME void preempt(const class time & time)
 // struct tm
 // Structure containing a calendar date and time broken down into its components.
 //
-// The structure contains nine members of type int(in any order), which are :
+// The structure contains nine members of type ::i32(in any order), which are :
 //
 // C90(C++98)C99(C++11)
 // Member	Type	Meaning	Range
-// tm_sec	int	seconds after the minute	0 - 61 *
-// tm_min	int	minutes after the hour	0 - 59
-// tm_hour	int	hours since midnight	0 - 23
-// tm_mday	int	day of the month	1 - 31
-// tm_mon	int	months since January	0 - 11
-// tm_year	int	years since 1900
-// tm_wday	int	days since Sunday	0 - 6
-// tm_yday	int	days since January 1	0 - 365
-// tm_isdst	int	Daylight Saving Time flag
+// tm_sec	::i32	seconds after the minute	0 - 61 *
+// tm_min	::i32	minutes after the hour	0 - 59
+// tm_hour	::i32	hours since midnight	0 - 23
+// tm_mday	::i32	day of the month	1 - 31
+// tm_mon	::i32	months since January	0 - 11
+// tm_year	::i32	years since 1900
+// tm_wday	::i32	days since Sunday	0 - 6
+// tm_yday	::i32	days since January 1	0 - 365
+// tm_isdst	::i32	Daylight Saving Time flag
 // 
 // The Daylight Saving Time flag(tm_isdst) is greater than zero if
 // Daylight Saving Time is in effect, zero if Daylight Saving Time is not in effect,
@@ -216,7 +216,7 @@ void copy(struct tm & tmUTC, const system_time & systemtimeUTC)
 //}
 //
 //
-//::posix_time as_posix_time(const ::file_time & filetime, int nDST)
+//::posix_time as_posix_time(const ::file_time & filetime, ::i32 nDST)
 //{
 //
 //   auto systemtime = as_system_time(filetime);
@@ -254,13 +254,13 @@ void copy(tm * ptm, const system_time * psystemtime)
 void copy(system_time * psystemtime, const tm * ptm)
 {
 
-   psystemtime->wYear = (unsigned short)ptm->tm_year;
-   psystemtime->wMonth = (unsigned short)ptm->tm_mon;
-   psystemtime->wDayOfWeek = (unsigned short)ptm->tm_wday;
-   psystemtime->wDay = (unsigned short)ptm->tm_mday;
-   psystemtime->wHour = (unsigned short)ptm->tm_hour;
-   psystemtime->wMinute = (unsigned short)ptm->tm_min;
-   psystemtime->wSecond = (unsigned short)ptm->tm_sec;
+   psystemtime->wYear = (::u16)ptm->tm_year;
+   psystemtime->wMonth = (::u16)ptm->tm_mon;
+   psystemtime->wDayOfWeek = (::u16)ptm->tm_wday;
+   psystemtime->wDay = (::u16)ptm->tm_mday;
+   psystemtime->wHour = (::u16)ptm->tm_hour;
+   psystemtime->wMinute = (::u16)ptm->tm_min;
+   psystemtime->wSecond = (::u16)ptm->tm_sec;
    psystemtime->wMilliseconds = 0;
 
 }
@@ -271,7 +271,7 @@ void copy(system_time * psystemtime, const tm * ptm)
 //CLASS_DECL_ACME file_time as_file_time(const class ::time & time)
 //{
 //
-//   unsigned long long nanoseconds = time.m_iNanosecond + time.m_iSecond * 1'000'000'000;
+//   ::u64 nanoseconds = time.m_iNanosecond + time.m_iSecond * 1'000'000'000;
 //
 //   nanoseconds += EPOCH_DIFFERENCE_NANOS;
 //

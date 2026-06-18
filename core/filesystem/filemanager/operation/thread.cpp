@@ -108,16 +108,16 @@ namespace filemanager
    }
 
 
-   double operation_thread::get_item_progress(int iItem)
+   ::f64 operation_thread::get_item_progress(::i32 iItem)
    {
 
       single_lock synchronouslock(m_pmutexFileOperationA,true);
 
-      int iLowerBound = 0;
+      ::i32 iLowerBound = 0;
 
-      int iUpperBound;
+      ::i32 iUpperBound;
 
-      for(int i = 0; i < m_fileoperationa.get_size(); i++)
+      for(::i32 i = 0; i < m_fileoperationa.get_size(); i++)
       {
 
          iUpperBound = iLowerBound + m_fileoperationa[i]->get_item_count() - 1;
@@ -138,16 +138,16 @@ namespace filemanager
    }
 
 
-   string operation_thread::get_item_message(int iItem)
+   string operation_thread::get_item_message(::i32 iItem)
    {
 
       single_lock synchronouslock(m_pmutexFileOperationA,true);
 
-      int iLowerBound = 0;
+      ::i32 iLowerBound = 0;
 
-      int iUpperBound;
+      ::i32 iUpperBound;
 
-      for(int i = 0; i < m_fileoperationa.get_size(); i++)
+      for(::i32 i = 0; i < m_fileoperationa.get_size(); i++)
       {
 
          iUpperBound = iLowerBound + m_fileoperationa[i]->get_item_count() - 1;
@@ -169,14 +169,14 @@ namespace filemanager
 
 
 
-   int operation_thread::get_item_count()
+   ::i32 operation_thread::get_item_count()
    {
       
       single_lock synchronouslock(m_pmutexFileOperationA,true);
 
-      int iCount = 0;
+      ::i32 iCount = 0;
 
-      for(int i = 0; i < m_fileoperationa.get_size(); i++)
+      for(::i32 i = 0; i < m_fileoperationa.get_size(); i++)
       {
 
          iCount += m_fileoperationa[i]->get_item_count();
@@ -237,14 +237,14 @@ namespace filemanager
    void operation_thread::run()
    {
 
-      int iStepSetCount = 100;
+      ::i32 iStepSetCount = 100;
 
       auto millisStepSetSleep = 20_ms;
 
       while(task_get_run())
       {
 
-         int i = iStepSetCount;
+         ::i32 i = iStepSetCount;
 
          while(i > 0)
          {
@@ -275,23 +275,23 @@ namespace filemanager
    }
 
 
-   double operation_thread::get_progress_rate()
+   ::f64 operation_thread::get_progress_rate()
    {
 
       single_lock synchronouslock(m_pmutexFileOperationA,true);
 
-      double dTotal = 0.0;
+      ::f64 dTotal = 0.0;
 
-      for(int i = 0; i < m_fileoperationa.get_size(); i++)
+      for(::i32 i = 0; i < m_fileoperationa.get_size(); i++)
       {
 
          dTotal += m_fileoperationa[i]->m_dSize;
 
       }
 
-      double dRead = 0.0;
+      ::f64 dRead = 0.0;
 
-      for(int i = 0; i < m_fileoperationa.get_size(); i++)
+      for(::i32 i = 0; i < m_fileoperationa.get_size(); i++)
       {
 
          dRead += m_fileoperationa[i]->m_dRead;

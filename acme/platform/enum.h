@@ -17,17 +17,17 @@ public:
 
    base_enum();
    base_enum(const base_enum < EENUM, edefault> & evalue);
-   base_enum(const wparam & wparam) :m_evalue((EENUM)wparam.m_number){}
-   base_enum(long long i) :m_evalue((EENUM)i) {}
+   base_enum(const wparam & wparam) :m_evalue((EENUM)wparam.m_wparam){}
+   base_enum(::i64 i) :m_evalue((EENUM)i) {}
    base_enum(EENUM evalue);
-   base_enum(int i);
+   base_enum(::i32 i);
    virtual ~base_enum();
 
    void DefaultConstruct();
 
-   const base_enum <EENUM, edefault> & operator = (int i) { return operator =((EENUM)i); }
-   const base_enum <EENUM, edefault> & operator = (long long i) { return operator =((EENUM)i); }
-   const base_enum <EENUM, edefault> & operator = (const wparam & wparam) { return operator =((EENUM) wparam.m_number); }
+   const base_enum <EENUM, edefault> & operator = (::i32 i) { return operator =((EENUM)i); }
+   const base_enum <EENUM, edefault> & operator = (::i64 i) { return operator =((EENUM)i); }
+   const base_enum <EENUM, edefault> & operator = (const wparam & wparam) { return operator =((EENUM) wparam.m_wparam); }
 
    const base_enum <EENUM, edefault> & operator = (EENUM evalue);
    const base_enum <EENUM, edefault> & operator &= (EENUM evalue);
@@ -40,7 +40,7 @@ public:
    bool operator == (const base_enum < EENUM, edefault> & evalue) const;
    bool operator == (EENUM evalue) const;
 
-   base_enum & operator ++ (int) { m_evalue = (EENUM)(((int)m_evalue) + 1); return *this; }
+   base_enum & operator ++ (::i32) { m_evalue = (EENUM)(((::i32)m_evalue) + 1); return *this; }
 
    operator EENUM() const;
 
@@ -68,7 +68,7 @@ base_enum<EENUM, edefault>::base_enum(EENUM evalue)
 }
 
 template <class EENUM, EENUM edefault>
-base_enum<EENUM, edefault>::base_enum(int i)
+base_enum<EENUM, edefault>::base_enum(::i32 i)
 {
    m_evalue = (EENUM) i;
 }

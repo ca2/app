@@ -9,6 +9,7 @@
 #include "acme/_operating_system.h"
 #include "acme/operating_system/shared_posix/time1.h"
 #include "acme/operating_system/time.h"
+#include "acme/operating_system/windows/time.h"
 #include <time.h>
 
 
@@ -38,7 +39,7 @@ struct tm * gmtime_r(const time_t * timep, struct tm * result)
 //}
 
 
-CLASS_DECL_ACME void preempt_second(long long i)
+CLASS_DECL_ACME void preempt_second(::i64 i)
 {
 
    ::Sleep((DWORD) (i * 1'000));
@@ -46,7 +47,7 @@ CLASS_DECL_ACME void preempt_second(long long i)
 }
 
 
-CLASS_DECL_ACME void preempt_millisecond(long long i)
+CLASS_DECL_ACME void preempt_millisecond(::i64 i)
 {
 
    ::Sleep((DWORD)i);
@@ -54,7 +55,7 @@ CLASS_DECL_ACME void preempt_millisecond(long long i)
 }
 
 
-CLASS_DECL_ACME void preempt_microsecond(long long i)
+CLASS_DECL_ACME void preempt_microsecond(::i64 i)
 {
 
    ::Sleep(1);
@@ -62,7 +63,7 @@ CLASS_DECL_ACME void preempt_microsecond(long long i)
 }
 
 
-CLASS_DECL_ACME void preempt_nanosecond(long long i)
+CLASS_DECL_ACME void preempt_nanosecond(::i64 i)
 {
 
    ::Sleep(1);
@@ -89,7 +90,7 @@ CLASS_DECL_ACME void preempt_nanosecond(long long i)
 
 // From FreeRDP utils_pcap.c - 2015-07-24
 extern "C"
-int gettimeofday(struct timeval * tp, void * tz)
+::i32 gettimeofday(struct timeval * tp, void * tz)
 {
    struct _timeb timebuffer;
    _ftime(&timebuffer);
@@ -112,7 +113,7 @@ int gettimeofday(struct timeval * tp, void * tz)
 
 
 
-void system_time_to_earth_time(posix_time * ptime, const system_time & systemtime, int nDST)
+void system_time_to_earth_time(posix_time * ptime, const system_time & systemtime, ::i32 nDST)
 {
 
    struct tm tm;
@@ -178,7 +179,7 @@ void system_time_to_earth_time(posix_time * ptime, const system_time & systemtim
 
 
 //
-//CLASS_DECL_ACME int_bool get_file_time(HANDLE hFile, LPFILETIME pCreationTime, LPFILETIME lpLastAccessTime, LPFILETIME lpLastWriteTime)
+//CLASS_DECL_ACME ::i32_bool get_file_time(HANDLE hFile, LPFILETIME pCreationTime, LPFILETIME lpLastAccessTime, LPFILETIME lpLastWriteTime)
 //{
 //
 //   return GetFileTime(hFile, pCreationTime, lpLastAccessTime, lpLastWriteTime) != false;
@@ -223,7 +224,7 @@ void system_time_to_earth_time(posix_time * ptime, const system_time & systemtim
 
 
 
-CLASS_DECL_ACME int_bool get_file_time(HANDLE hFile, LPFILETIME pCreationTime, LPFILETIME lpLastAccessTime, LPFILETIME lpLastWriteTime)
+CLASS_DECL_ACME ::i32_bool get_file_time(HANDLE hFile, LPFILETIME pCreationTime, LPFILETIME lpLastAccessTime, LPFILETIME lpLastWriteTime)
 {
 
    return GetFileTime(hFile, pCreationTime, lpLastAccessTime, lpLastWriteTime) != false;
@@ -315,25 +316,25 @@ void datetime_to_filetime(::file_time * pfiletime, const ::earth::time & time)
 
    SYSTEMTIME sysTime;
 
-   sysTime.wYear = (unsigned short)time.year();
-   sysTime.wMonth = (unsigned short)time.month();
-   sysTime.wDay = (unsigned short)time.day();
-   sysTime.wHour = (unsigned short)time.hour();
-   sysTime.wMinute = (unsigned short)time.minute();
-   sysTime.wSecond = (unsigned short)time.second();
+   sysTime.wYear = (::u16)time.year();
+   sysTime.wMonth = (::u16)time.month();
+   sysTime.wDay = (::u16)time.day();
+   sysTime.wHour = (::u16)time.hour();
+   sysTime.wMinute = (::u16)time.minute();
+   sysTime.wSecond = (::u16)time.second();
    sysTime.wMilliseconds = 0;
 
    // convert system time to local file time
    FILETIME localTime;
 
-   DWORD dwLastError = ::GetLastError();
+   auto lasterror = ::windows::get_last_error();
 
    if (!SystemTimeToFileTime((LPSYSTEMTIME)&sysTime, &localTime))
    {
 
-      DWORD dwLastError = ::GetLastError();
+      auto lasterror = ::windows::get_last_error();
 
-      auto estatus = ::windows::last_error_status(dwLastError);
+      auto estatus = ::windows::last_error_status(lasterror);
 
       throw ::exception(estatus);
 
@@ -343,9 +344,9 @@ void datetime_to_filetime(::file_time * pfiletime, const ::earth::time & time)
    if (!LocalFileTimeToFileTime(&localTime, (FILETIME *)pfiletime))
    {
 
-      DWORD dwLastError = ::GetLastError();
+      auto lasterror = ::windows::get_last_error();
 
-      auto estatus = ::windows::last_error_status(dwLastError);
+      auto estatus = ::windows::last_error_status(lasterror);
 
       throw ::exception(estatus);
 

@@ -6,7 +6,7 @@
 #include "apex/filesystem/fs/data.h"
 
 
-// ifs - implementation of file system interface - file.ca2.network
+// ifs - implementation of file system interface - file.ca2.site
 
 class ftpnet;
 
@@ -47,15 +47,15 @@ public:
    string_map_base < dir_listing >       m_map;
 
 
-   //file_path_map < unsigned int >    m_mapdirTimeout;
-   //file_path_map < unsigned int >    m_mapfileTimeout;
-   //file_path_map < unsigned int >    m_maplsTimeout;
+   //file_path_map < ::u32 >    m_mapdirTimeout;
+   //file_path_map < ::u32 >    m_mapfileTimeout;
+   //file_path_map < ::u32 >    m_maplsTimeout;
    //filepathmap(::file::path_array_base)    m_mapdirFile;
    //filepathmap(::file::path_array_base)    m_mapdirFolder;
    //filepathmap(::file::path_array_base)    m_mapdirFileName;
    //filepathmap(::file::path_array_base)    m_mapdirFolderName;
-   //filepathmap(long_long_array_base)      m_mapdirFileSize;
-   //filepathmap(long_long_array_base)      m_mapdirFolderSize; // by now, always store item count?
+   //filepathmap(i64_array_base)      m_mapdirFileSize;
+   //filepathmap(i64_array_base)      m_mapdirFolderSize; // by now, always store item count?
    //filepathmap(bool_array)       m_mapdirFileDir;
    //filepathmap(bool_array)       m_mapdirFolderDir; // by now, always store item count?
 

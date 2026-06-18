@@ -37,9 +37,9 @@ namespace user
    void plain_text_tree::destroy()
    {
 
-      m_pgroupcommand.defer_destroy();
+      m_pgroupcommand.defer_destroy_and_release();
       m_pfile.release();
-      m_peditfile.defer_destroy();
+      m_peditfile.defer_destroy_and_release();
 
       ::data::tree<plain_text_command>::destroy();
 

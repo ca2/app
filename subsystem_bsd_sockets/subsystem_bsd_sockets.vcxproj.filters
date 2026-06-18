@@ -1,0 +1,106 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <ClCompile Include="_.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="_factory.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="framework.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="socket\SocketAddressIPv4.cpp">
+      <Filter>Source Files\socket</Filter>
+    </ClCompile>
+    <ClCompile Include="socket\SocketIPv4.cpp">
+      <Filter>Source Files\socket</Filter>
+    </ClCompile>
+    <ClCompile Include="socket\Sockets.cpp">
+      <Filter>Source Files\socket</Filter>
+    </ClCompile>
+    <ClCompile Include="operating_system\windows\subsystem.cpp">
+      <Filter>Source Files\operating_system\windows</Filter>
+    </ClCompile>
+    <ClCompile Include="operating_system\windows\Sockets.cpp">
+      <Filter>Source Files\operating_system\windows</Filter>
+    </ClCompile>
+    <ClCompile Include="platform\subsystem.cpp">
+      <Filter>Source Files\platform</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="framework.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="_library.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="_factory.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="_.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="_common_header.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="socket\Sockets.h">
+      <Filter>Header Files\socket</Filter>
+    </ClInclude>
+    <ClInclude Include="socket\SocketIPv4.h">
+      <Filter>Header Files\socket</Filter>
+    </ClInclude>
+    <ClInclude Include="socket\SocketAddressIPv4.h">
+      <Filter>Header Files\socket</Filter>
+    </ClInclude>
+    <ClInclude Include="platform\subsystem.h">
+      <Filter>Header Files\platform</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <Filter Include="Header Files">
+      <UniqueIdentifier>{a1736700-99f1-4dd5-9d38-32ad0d105320}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files">
+      <UniqueIdentifier>{fc4d3e16-4d8c-42e5-aeb6-94b3de76d790}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Resource Files">
+      <UniqueIdentifier>{ff373c4b-bf72-40ac-a830-e7240b3d4daa}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\socket">
+      <UniqueIdentifier>{f0728228-e25c-4b6e-8efd-9330638fee32}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\socket">
+      <UniqueIdentifier>{f58f7e3d-cced-4048-86db-3632caa05bd0}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\platform">
+      <UniqueIdentifier>{1e99b044-c491-4faf-a84b-198676f0c4e2}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\operating_system">
+      <UniqueIdentifier>{c257397a-fac9-46f1-96be-ed30fffc5122}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\operating_system\windows">
+      <UniqueIdentifier>{1118553b-f0a5-48dd-82e5-a507a92637c3}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\operating_system">
+      <UniqueIdentifier>{e06281ab-17fc-4fa3-ae31-d1c8810efac1}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\operating_system\windows">
+      <UniqueIdentifier>{e514378e-b498-4738-ada8-124734863bd3}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\platform">
+      <UniqueIdentifier>{6c578d2a-cf65-4af0-84a3-a21db011a35d}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <Text Include="deps.txt">
+      <Filter>Source Files</Filter>
+    </Text>
+  </ItemGroup>
+  <ItemGroup>
+    <ResourceCompile Include="deployment.rc">
+      <Filter>Resource Files</Filter>
+    </ResourceCompile>
+  </ItemGroup>
+</Project>

@@ -104,7 +104,7 @@ namespace filemanager
       if(m_plistview->m_bRecursive)
       {
 
-         ::int_array_base ia;
+         ::i32_array_base ia;
 
          m_plistview->add_unique(straSel, ia);
 

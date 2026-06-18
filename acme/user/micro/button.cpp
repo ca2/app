@@ -2,7 +2,7 @@
 #include "framework.h"
 #include "button.h"
 #include "popup_button.h"
-#include "acme/nano/graphics/device.h"
+#include "acme/nano/graphics/context.h"
 #include "acme/user/micro/theme.h"
 #include "acme/windowing/window.h"
 
@@ -25,9 +25,9 @@ namespace micro
    }
 
 
-   void button::on_draw(::nano::graphics::device * pmicrodevice)
+   void button::on_draw(::nano::graphics::context * pgraphicscontext)
    {
-
+      //return;
       //::SelectObject(hdc, m_pinterchange->m_hbrushWindow);
 
       ::pointer<::nano::graphics::pen>ppenBorder;
@@ -65,28 +65,37 @@ namespace micro
       auto rectangle = m_rectangle;
       
       rectangle -= rectangle.top_left();
+      
+      pgraphicscontext->set_brush(micro_theme()->m_pbrushWindow);
+      
+      pgraphicscontext->set_pen(ppenBorder);
 
-      pmicrodevice->rectangle(rectangle, micro_theme()->m_pbrushWindow, ppenBorder);
+      pgraphicscontext->rectangle(rectangle);
 
       wstring wstrText(m_strText);
 
-      int_rectangle rectangleText(rectangle);
+      i32_rectangle rectangleText(rectangle);
       
       rectangleText.deflate(4);
 
-      pmicrodevice->draw_text123(
+      
+      pgraphicscontext->set_brush(micro_theme()->m_pbrushText);
+      
+      pgraphicscontext->set_font(micro_theme()->m_pfont);
+      
+      pgraphicscontext->draw_text123(
          m_strText,
          rectangleText,
-         e_align_center,
-         e_draw_text_single_line,
-         micro_theme()->m_pbrushWindow,
-         micro_theme()->m_pbrushText,
-         micro_theme()->m_pfont);
+                                              e_draw_text_single_line,
+                                     e_align_center);
+//         micro_theme()->m_pbrushWindow,
+//         micro_theme()->m_pbrushText,
+//         micro_theme()->m_pfont);
 
    }
 
 
-   void button::on_char(int iChar)
+   void button::on_char(::i32 iChar)
    {
 
       if (iChar == '\r' || iChar == ' ')
@@ -119,7 +128,7 @@ namespace micro
    //void micro_still::resize_to_fit()
    //{
    //
-   //   auto pdevice = createø < ::nano::graphics::device >();
+   //   auto pdevice = createø < ::nano::graphics::context >();
    //
    //   auto size = pdevice->get_text_extents(m_strText, m_pinterchange->m_pfont);
    //

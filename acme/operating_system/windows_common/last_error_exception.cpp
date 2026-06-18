@@ -6,33 +6,32 @@
 #include "acme/_operating_system.h"
 
 
-last_error_exception::last_error_exception(DWORD dwLastError, const ::scoped_string & scopedstrMessage, const ::scoped_string & scopedstrDetails) :
-   exception(error_win32, scopedstrMessage, scopedstrDetails)
-{
-
-   m_errorcodea.add(::windows::last_error_error_code(dwLastError));
-
-}
-
-
 namespace windows
 {
 
+    last_error_exception::last_error_exception(const last_error & lasterror, const ::scoped_string & scopedstrMessage, const ::scoped_string & scopedstrDetails) :
+       exception(error_win32, scopedstrMessage, scopedstrDetails)
+    {
 
-   CLASS_DECL_ACME void throw_last_error(DWORD dwLastError)
+       m_errorcodea.add(::windows::last_error_error_code(lasterror));
+
+    }
+
+
+   CLASS_DECL_ACME void throw_last_error_exception(const last_error & lasterror)
    {
 
-      throw ::last_error_exception(dwLastError);
+      throw last_error_exception(lasterror);
 
    }
 
 
-   CLASS_DECL_ACME void throw_last_error()
+   CLASS_DECL_ACME void throw_last_error_exception()
    {
 
-      auto dwLastError = ::GetLastError();
+      auto lasterror = ::windows::get_last_error();
 
-      throw_last_error(dwLastError);
+      throw_last_error_exception(lasterror);
 
    }
 

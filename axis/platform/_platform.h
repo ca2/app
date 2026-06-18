@@ -36,11 +36,11 @@ namespace axis
 } // namespace axis
 
 
-CLASS_DECL_AXIS int get_core_init();
+CLASS_DECL_AXIS ::i32 get_core_init();
 //extern "C"
-//CLASS_DECL_AXIS int_bool defer_aura_init();
+//CLASS_DECL_AXIS ::i32_bool defer_aura_init();
 //extern "C"
-//CLASS_DECL_AXIS int_bool defer_aura_term();
+//CLASS_DECL_AXIS ::i32_bool defer_aura_term();
 
 
 namespace axis

@@ -21,7 +21,7 @@ icon::icon()
 
 }
 
-   ::int_size icon::size() const
+   ::i32_size icon::size() const
 {
 return{};
 

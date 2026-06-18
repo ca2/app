@@ -4,33 +4,29 @@
 
 
 
-CLASS_DECL_AURA::user::e_mouse user_key_to_user_mouse(::user::e_key ekeyButton)
+CLASS_DECL_AURA::user::e_key_state user_key_to_user_button_state(const ::user::e_key & ekey)
 {
 
-   ::user::e_mouse emouse = ::user::e_mouse_none;
-
-   if (ekeyButton & ::user::e_key_left_button)
+   if (ekey == ::user::e_key_left_button)
    {
 
-      emouse |= ::user::e_mouse_left_button;
+      return ::user::e_key_state_left_button;
+
+   }
+   else if (ekey == ::user::e_key_right_button)
+   {
+
+      return ::user::e_key_state_right_button;
+
+   }
+   else if (ekey == ::user::e_key_middle_button)
+   {
+
+      return::user::e_key_state_middle_button;
 
    }
 
-   if (ekeyButton == ::user::e_key_right_button)
-   {
-
-      emouse |= ::user::e_mouse_right_button;
-
-   }
-   
-   if (ekeyButton == ::user::e_key_middle_button)
-   {
-
-      emouse |= ::user::e_mouse_middle_button;
-
-   }
-
-   return emouse;
+   return ::user::e_key_state_none;
 
 }
 

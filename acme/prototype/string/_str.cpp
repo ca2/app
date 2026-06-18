@@ -15,22 +15,22 @@
 #ifdef LINUX
 ////#include <ctype.h>
 #endif
-//bool is_high_surrogate(unsigned short u)
+//bool is_high_surrogate(::u16 u)
 //{
 //   return u >= 0xD800 && u <= 0xDBFF;
 //
 //}
-//bool is_low_surrogate(unsigned short u)
+//bool is_low_surrogate(::u16 u)
 //{
 //   return u >= 0xDC00 && u <= 0xDFFF;
 //}
-// bool is_surrogated(unsigned int character)
+// bool is_surrogated(::u32 character)
 //{
 //   return 0x10000 <= character && character <= 0x10FFFF;
 //}
-// void str::encode_utf16_pair(unsigned int character, unsigned short *units)
+// void str::encode_utf16_pair(::u32 character, ::u16 *units)
 //{
-//   unsigned int code;
+//   ::u32 code;
 //   ASSERT(utf32_is_surrogated(character));
 //   code = (character - 0x10000);
 //   units[0] = 0xD800 | (code >> 10);
@@ -43,9 +43,9 @@
 //    enum_error g_eerror = ::str::e_error_none;
 
 
-//    const char trailingBytesForUTF8[256] =
+//    const ::i8 trailingBytesForUTF8[256] =
 //    {
-//       (const char)  -1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0, 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+//       (const ::i8)  -1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0, 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
 //       0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0, 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
 //       0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0, 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
 //       0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0, 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
@@ -55,7 +55,7 @@
 //       2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2, 3,3,3,3,3,3,3,3,4,4,4,4,5,5,5,5
 //    };
 
-   //void          make_lower(char * psz)
+   //void          make_lower(char_pointer psz)
    //{
 
    //   while (*psz)
@@ -67,7 +67,7 @@
    //}
 
 
-   //void          make_upper(char * psz)
+   //void          make_upper(char_pointer psz)
    //{
 
    //   while (*psz)
@@ -80,7 +80,7 @@
 
 
 ////template < >
-//int str::compare(const ::scoped_string & scopedstr1, const ::scoped_string & scopedstr2)
+//::i32 str::compare(const ::scoped_string & scopedstr1, const ::scoped_string & scopedstr2)
 //{
 //
 //   return strcmp(str1, str2);
@@ -89,7 +89,7 @@
 //
 //
 ////template < >
-//int str::case_insensitive_order(const ::scoped_string & scopedstr1, const ::scoped_string & scopedstr2)
+//::i32 str::case_insensitive_order(const ::scoped_string & scopedstr1, const ::scoped_string & scopedstr2)
 //{
 //
 //   return case_insensitive_ansi_compare(str1, str2);
@@ -612,7 +612,7 @@ bool str::begins_ci_iws(const ::scoped_string & scopedstr, const ::scoped_string
 
    //   string strSuffix(pcszSuffix);
 
-   //   int iLen = strSuffix.length();
+   //   ::i32 iLen = strSuffix.length();
    //   if(str.right(iLen) == pcszSuffix)
 
    //   {
@@ -745,7 +745,7 @@ bool str::begins_ci_iws(const ::scoped_string & scopedstr, const ::scoped_string
 //
 //   }
 
-   //void str::copy(string & str, const ::scoped_string & scopedstr, int iCount)
+   //void str::copy(string & str, const ::scoped_string & scopedstr, ::i32 iCount)
    //{
 
    //   string strCopy(pcsz, iCount);
@@ -1080,7 +1080,7 @@ string str::case_insensitive_replace_with(const ::scoped_string & scopedstrNew, 
 //   if(iFindLen < 256)
 //   {
 
-//      char szFind[256];
+//      ::i8 szFind[256];
 
 //      ::memory_copy(szFind, scopedstrFind, iFindLen + 1);
 
@@ -1089,7 +1089,7 @@ string str::case_insensitive_replace_with(const ::scoped_string & scopedstrNew, 
 //      if(iLen < 256)
 //      {
 
-//         char sz[256];
+//         ::i8 sz[256];
 
 //         ::memory_copy(sz, &psz[iStart], iLen + 1);
 
@@ -1171,8 +1171,8 @@ string str::case_insensitive_replace_with(const ::scoped_string & scopedstrNew, 
 
 //   }
 
-//   int len1;
-//   int len2;
+//   ::i32 len1;
+//   ::i32 len2;
 
 //   const ::scoped_string & scopedstr1 = str;
 
@@ -1243,8 +1243,8 @@ string str::case_insensitive_replace_with(const ::scoped_string & scopedstrNew, 
 //   if(iLast < 0)
 //      iLast +=iLen;
 
-//   int len1;
-//   int len2;
+//   ::i32 len1;
+//   ::i32 len2;
 
 //   const ::scoped_string & scopedstr1 = str;
 //   const ::scoped_string & scopedstr2 = pszOld;
@@ -1309,8 +1309,8 @@ string str::case_insensitive_replace_with(const ::scoped_string & scopedstrNew, 
 
    }
 
-   // for dir::name_is (check if base name of a file is a directory, checking if there is a simple ansi '.', may be very good start int_point definitive false).
-   // if there is a dot, it may still does not have a Latin dot, if the dot is inside a Multibyte UTF8 char, anyway, algo following should check it properly.
+   // for dir::name_is (check if base name of a file is a directory, checking if there is a simple ansi '.', may be very good start i32_point definitive false).
+   // if there is a dot, it may still does not have a Latin dot, if the dot is inside a Multibyte UTF8 ::i8, anyway, algo following should check it properly.
 
    ::collection::index iLen = scopedstr.length() - iStart;
 
@@ -1336,9 +1336,9 @@ string str::case_insensitive_replace_with(const ::scoped_string & scopedstrNew, 
 
    ::collection::count iFindLen = scopedstrOld.length();
 
-   int len1;
+   ::i32 len1;
 
-   int len2;
+   ::i32 len2;
 
    const_char_pointer psz1 = scopedstr;
 
@@ -1469,9 +1469,9 @@ string str::case_insensitive_replace_with(const ::scoped_string & scopedstrNew, 
 
  const_char_pointer pFin = scopedstrOld;
 
- int lenSrc;
+ ::i32 lenSrc;
 
- int lenFin;
+ ::i32 lenFin;
 
  while(*psz)
  {
@@ -1537,7 +1537,7 @@ string str::case_insensitive_replace_with(const ::scoped_string & scopedstrNew, 
 //  if(iFindLen < 256)
 //  {
 //
-//     char szFind[256];
+//     ::i8 szFind[256];
 //
 //     ::memory_copy(szFind, scopedstrOld, iFindLen + 1);
 //
@@ -1546,7 +1546,7 @@ string str::case_insensitive_replace_with(const ::scoped_string & scopedstrNew, 
 //     if(iLen < 256)
 //     {
 //
-//        char sz[256];
+//        ::i8 sz[256];
 //
 //        ::memory_copy(sz, &str[iStart], iLen + 1);
 //
@@ -2005,7 +2005,7 @@ string str::get_word(const ::scoped_string & scopedstr, const ::scoped_string & 
 //const_char_pointer str::utf8_next_add_length(character_count * paddlength, const_char_pointer psz)
 //{
 //
-//   char len = 1 + trailingBytesForUTF8(*psz);
+//   ::i8 len = 1 + trailingBytesForUTF8(*psz);
 //
 //   if (len == 0)
 //   {
@@ -2052,7 +2052,7 @@ string str::get_word(const ::scoped_string & scopedstr, const ::scoped_string & 
 //}
 
 
-//const_char_pointer str::utf8_inc_copy_slide_back(character_count * pslideback, char * pchDst, const_char_pointer pchSrc)
+//const_char_pointer str::utf8_inc_copy_slide_back(character_count * pslideback, char_pointer pchDst, const_char_pointer pchSrc)
 //{
 //
 //   character_count count = 0;
@@ -2337,7 +2337,7 @@ const_char_pointer utf8_dec(const_char_pointer pszBeg, const_char_pointer psz)
 string get_utf8_char(const_char_pointer psz)
 {
 
-   int iLength;
+   ::i32 iLength;
    
    auto iIndex = unicode_index_length(psz, iLength);
 
@@ -2400,7 +2400,7 @@ string get_utf8_char(const_char_pointer pszBeg, const_char_pointer psz, ::collec
       while (i != 0)
       {
 
-         psz = (char *) unicode_next(psz);
+         psz = (char_pointer ) unicode_next(psz);
 
          if (*psz == '\0')
          {
@@ -2464,7 +2464,7 @@ string utf8_previous_char(const_char_pointer pszBeg, const_char_pointer psz, ::c
 }
 
 
-int str::get_escaped_char(const_char_pointer psz, character_count pos, character_count & retPos)
+::i32 str::get_escaped_char(const_char_pointer psz, character_count pos, character_count & retPos)
 {
 
    retPos = pos;
@@ -2489,7 +2489,7 @@ int str::get_escaped_char(const_char_pointer psz, character_count pos, character
 
             }
 
-            long long hex = ::hex::to_long_long(val);
+            ::i64 hex = ::hex::to_i64(val);
 
             character_count val_len = val.length();
 
@@ -2502,15 +2502,15 @@ int str::get_escaped_char(const_char_pointer psz, character_count pos, character
 
             retPos += val_len + 2;
 
-            return (int)hex;
+            return (::i32)hex;
 
          }
          else
          {
 
-            long long hex = ::hex::to_long_long(string(&psz[pos + 2], 2));
+            ::i64 hex = ::hex::to_i64(string(&psz[pos + 2], 2));
 
-            if ((long long)(strlen(psz)) <= pos + 2 || hex == -1)
+            if ((::i64)(strlen(psz)) <= pos + 2 || hex == -1)
             {
 
                return BAD_WCHAR;
@@ -2519,7 +2519,7 @@ int str::get_escaped_char(const_char_pointer psz, character_count pos, character
 
             retPos += 2;
 
-            return (int)hex;
+            return (::i32)hex;
 
          }
 
@@ -2541,7 +2541,7 @@ bool str::get_curly_content(const_char_pointer psz, string & str)
 
    const_char_pointer pszChar;
 
-   for (pszChar = (char *) unicode_next(psz); pszChar != nullptr; pszChar = unicode_next(pszChar))
+   for (pszChar = (char_pointer ) unicode_next(psz); pszChar != nullptr; pszChar = unicode_next(pszChar))
    {
 
       if (*pszChar == '}')
@@ -2662,7 +2662,7 @@ public:
 
 
    character_count     m_iPos;
-   char        m_sz[m_iSize];
+   ::i8        m_sz[m_iSize];
    string      m_str;
 
 
@@ -2673,7 +2673,7 @@ public:
 
    }
 
-   void append(char ch)
+   void append(::i8 ch)
    {
 
       if (m_iPos + 1 > m_iSize)
@@ -2692,7 +2692,7 @@ public:
 
    }
 
-   void append_uni(long long w)
+   void append_uni(::i64 w)
    {
 
       if (m_iPos + 3 > m_iSize)
@@ -2707,24 +2707,24 @@ public:
       if (w < 0x0080)
       {
 
-         m_sz[m_iPos] = char(w);
+         m_sz[m_iPos] = ::i8(w);
          m_iPos++;
 
       }
       else if (w < 0x0800)
       {
-         m_sz[m_iPos] = (char)(0xc0 | ((w) >> 6));
+         m_sz[m_iPos] = (::i8)(0xc0 | ((w) >> 6));
          m_iPos++;
-         m_sz[m_iPos] = (char)(0x80 | ((w) & 0x3f));
+         m_sz[m_iPos] = (::i8)(0x80 | ((w) & 0x3f));
          m_iPos++;
       }
       else
       {
-         m_sz[m_iPos] = (char)(0xe0 | ((w) >> 12));
+         m_sz[m_iPos] = (::i8)(0xe0 | ((w) >> 12));
          m_iPos++;
-         m_sz[m_iPos] = (char)(0xc0 | (((w) >> 6) & 0x3f));
+         m_sz[m_iPos] = (::i8)(0xc0 | (((w) >> 6) & 0x3f));
          m_iPos++;
-         m_sz[m_iPos] = (char)(0x80 | ((w) & 0x3f));
+         m_sz[m_iPos] = (::i8)(0x80 | ((w) & 0x3f));
          m_iPos++;
       }
    }
@@ -2902,7 +2902,7 @@ string str::pad(const ::scoped_string & scopedstrParam, ::collection::count iLen
 
    }
 
-   int i = 0;
+   ::i32 i = 0;
 
    if (epad == e_pad_left)
    {
@@ -2984,21 +2984,21 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 /*   string l2string(long l)
    {
       string str;
-      char tmp[100];
+      ::i8 tmp[100];
       sprintf(tmp,"%ld",l);
       str = tmp;
       return str;
    }
 
 
-   string bigint2string(unsigned long long l)
+   string bigint2string(::u64 l)
    {
       string str;
-      unsigned long long tmp = l;
+      ::u64 tmp = l;
       while (tmp)
       {
-         unsigned long long a = tmp % 10;
-         str = (char)(a + 48) + str;
+         ::u64 a = tmp % 10;
+         str = (::i8)(a + 48) + str;
          tmp /= 10;
       }
       if (!str.length())
@@ -3009,7 +3009,7 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
    }*/
 
 
-int str::to_int(const ::scoped_string & scopedstr)
+::i32 str::to_int(const ::scoped_string & scopedstr)
 {
 
    return ansi_to_int(scopedstr);
@@ -3017,18 +3017,18 @@ int str::to_int(const ::scoped_string & scopedstr)
 }
 
 
-unsigned int str::to_unsigned_int(const ::scoped_string & scopedstr)
+::u32 str::to_u32(const ::scoped_string & scopedstr)
 {
 
-   return (unsigned int)ansi_to_long_long(scopedstr);
+   return (::u32)ansi_to_i64(scopedstr);
 
 }
 
 
-long long str::to_long_long(const ::scoped_string & scopedstr)
+::i64 str::to_i64(const ::scoped_string & scopedstr)
 {
 
-   int i = 0;
+   ::i32 i = 0;
 
    for (; i < scopedstr.length() && character_isspace(scopedstr[i]); i++);
 
@@ -3041,7 +3041,7 @@ long long str::to_long_long(const ::scoped_string & scopedstr)
 
    }
 
-   unsigned long long u = 0;
+   ::u64 u = 0;
 
    for (; i < scopedstr.length() && character_isdigit(scopedstr[i]); i++)
    {
@@ -3053,23 +3053,23 @@ long long str::to_long_long(const ::scoped_string & scopedstr)
    if (bNegative)
    {
 
-      return -(long long)u;
+      return -(::i64)u;
 
    }
    else
    {
 
-      return (long long)u;
+      return (::i64)u;
 
    }
 
 }
 
 
-//long long to_long_long(const ::scoped_string & scopedstr)
+//::i64 to_i64(const ::scoped_string & scopedstr)
 //{
 
-//   int i = 0;
+//   ::i32 i = 0;
 
 //   for (; *psz != '\0' && i < 30 && ansi_char_isspace(*psz); i++, psz++);
 
@@ -3078,7 +3078,7 @@ long long str::to_long_long(const ::scoped_string & scopedstr)
 //   if(bNegative)
 //      psz++;
 
-//   unsigned long long u = 0;
+//   ::u64 u = 0;
 
 //   for(; *psz != '\0' && i < 30 && ansi_char_isdigit(*psz); psz++, i++)
 //   {
@@ -3086,20 +3086,20 @@ long long str::to_long_long(const ::scoped_string & scopedstr)
 //   }
 
 //   if(bNegative)
-//      return -(long long) u;
+//      return -(::i64) u;
 //   else
-//      return (long long) u;
+//      return (::i64) u;
 
 //}
 
-unsigned long long str::to_unsigned_long_long(const ::scoped_string & scopedstr)
+::u64 str::to_u64(const ::scoped_string & scopedstr)
 {
 
-   int i = 0;
+   ::i32 i = 0;
 
    for (; i < scopedstr.length() && character_isspace(scopedstr[i]); i++);
 
-   unsigned long long u = 0;
+   ::u64 u = 0;
 
    for (; i < scopedstr.length() && character_isdigit(scopedstr[i]); i++)
    {
@@ -3110,14 +3110,14 @@ unsigned long long str::to_unsigned_long_long(const ::scoped_string & scopedstr)
 
 }
 
-//unsigned long long to_unsigned_long_long(const ::scoped_string & scopedstrParam)
+//::u64 to_u64(const ::scoped_string & scopedstrParam)
 //{
 
-//   int i = 0;
+//   ::i32 i = 0;
 
 //   for (; *psz != '\0' && i < 30 && character_isspace(*psz); i++, psz++);
 
-//   unsigned long long u = 0;
+//   ::u64 u = 0;
 
 //   for(; *psz != '\0' && i < 30 && isdigit(*psz); psz++, i++)
 //   {
@@ -3140,22 +3140,22 @@ void str::increment_digit_letter(string & str)
 
       if (str[i] >= '0' && str[i] <= '8')
       {
-         str = str.left(i) + string((char)(str[i] + 1)) + str.right(str.length() - i - 1);
+         str = str.left(i) + string((::i8)(str[i] + 1)) + str.right(str.length() - i - 1);
          break;
       }
       else if (str[i] == '9')
       {
-         str = str.left(i) + string((char)('a')) + str.right(str.length() - i - 1);
+         str = str.left(i) + string((::i8)('a')) + str.right(str.length() - i - 1);
          break;
       }
       else if (str[i] >= 'a' && str[i] <= 'y')
       {
-         str = str.left(i) + string((char)(str[i] + 1)) + str.right(str.length() - i - 1);
+         str = str.left(i) + string((::i8)(str[i] + 1)) + str.right(str.length() - i - 1);
          break;
       }
       else if (str[i] == 'z')
       {
-         str = str.left(i) + string((char)('0')) + str.right(str.length() - i - 1);
+         str = str.left(i) + string((::i8)('0')) + str.right(str.length() - i - 1);
          i--;
       }
    }
@@ -3165,7 +3165,7 @@ void str::increment_digit_letter(string & str)
 //bool str::while_begins_with_chars_eat(string & str, const_char_pointer pszChars)
 //{
 //
-//   int i = 0;
+//   ::i32 i = 0;
 //   for (i = 0; i < str.length(); i++)
 //   {
 //      if (strchr(pcszChars, str[i]) == nullptr)
@@ -3181,7 +3181,7 @@ void str::increment_digit_letter(string & str)
 //bool str::case_insensitive_while_begins_with_chars_eat(string & str, const_char_pointer pszChars) // case insensitive
 //{
 //
-//   int i = 0;
+//   ::i32 i = 0;
 //   for (i = 0; i < str.length(); i++)
 //   {
 //      if (strchr(pcszChars, tolower(str[i])) == nullptr)
@@ -3193,7 +3193,7 @@ void str::increment_digit_letter(string & str)
 //}
 
 
-//   void begin(wstring & wstr, const unichar * pcszPrefix)
+//   void begin(wstring & wstr, const wide_character * pcszPrefix)
 //   {
 //
 //      character_count iPrefixLen = wide_length(pcszPrefix);
@@ -3201,7 +3201,7 @@ void str::increment_digit_letter(string & str)
 //      if(wstr.get_storage_size_in_bytes() >= ((wstr.get_length() + iPrefixLen + 1) * __sizeof(unichar)))
 //      {
 //
-//         memory_transfer(&wstr[iPrefixLen], (const unichar *) wstr, (wstr.get_length() + 1) * sizeof(unichar));
+//         memory_transfer(&wstr[iPrefixLen], (const wide_character * ) wstr, (wstr.get_length() + 1) * sizeof(unichar));
 //
 //         memory_copy(wstr, pcszPrefix, iPrefixLen);
 //
@@ -3210,7 +3210,7 @@ void str::increment_digit_letter(string & str)
 //      {
 //         wstring wstrNew;
 //         wstrNew.get_buffer((wstr.get_length() + iPrefixLen + 1) * sizeof(unichar));
-//         memory_copy(&wstrNew[iPrefixLen], (const unichar *) wstr, (wstr.get_length() + 1) * sizeof(unichar));
+//         memory_copy(&wstrNew[iPrefixLen], (const wide_character * ) wstr, (wstr.get_length() + 1) * sizeof(unichar));
 //         memory_copy(wstrNew, pcszPrefix, iPrefixLen * sizeof(unichar));
 //
 //         wstr.attach(wstrNew.detach());
@@ -3253,7 +3253,7 @@ void str::increment_digit_letter(string & str)
 //}
 
 
-//   bool begins(const unichar * pcsz, const unichar * pcszPrefix)
+//   bool begins(const wide_character * pcsz, const wide_character * pcszPrefix)
 //
 //   {
 //      if(pcsz == nullptr || *pcsz == L'\0')
@@ -3294,14 +3294,14 @@ void str::increment_digit_letter(string & str)
 //      return false;
 //   }
 
-//   bool begins_with(const unichar * pcsz, const unichar * pcszPrefix)
+//   bool begins_with(const wide_character * pcsz, const wide_character * pcszPrefix)
 //
 //   {
 //      return begins(pcsz, pcszPrefix);
 //
 //   }
 //
-//   bool begins(const wstring & str, const unichar * pcszPrefix)
+//   bool begins(const wstring & str, const wide_character * pcszPrefix)
 //
 //   {
 //      if(str.is_empty())
@@ -3316,7 +3316,7 @@ void str::increment_digit_letter(string & str)
 //            return false;
 //         }
 //      }
-//      const unichar * pcsz = str;
+//      const wide_character * pcsz = str;
 //
 //      while(*pcsz == *pcszPrefix)
 //
@@ -3343,7 +3343,7 @@ void str::increment_digit_letter(string & str)
 //      return false;
 //   }
 
-//   bool begins_with(const wstring & str, const unichar * pcszPrefix)
+//   bool begins_with(const wstring & str, const wide_character * pcszPrefix)
 //
 //   {
 //      return begins(str, pcszPrefix);
@@ -3357,11 +3357,11 @@ void str::increment_digit_letter(string & str)
 //
 //   /// \lparam[in] pcszPrefix Candidate prefix string.
 //
-//   /// \return True if \int_point pcsz is prefixed with \int_point pcszPrefix.
+//   /// \return True if \i32_point pcsz is prefixed with \i32_point pcszPrefix.
 //
 //   /// \note Case insensitive.
 //   ///
-//   bool case_insensitive_begins(const unichar * pcsz, const unichar * pcszPrefix)
+//   bool case_insensitive_begins(const wide_character * pcsz, const wide_character * pcszPrefix)
 //
 //   {
 //      if(pcsz == nullptr || *pcsz == L'\0')
@@ -3402,15 +3402,15 @@ void str::increment_digit_letter(string & str)
 //      return false;
 //   }
 //
-//   bool case_insensitive_begins(const wstring & wstr, const unichar * pcszPrefix)
+//   bool case_insensitive_begins(const wstring & wstr, const wide_character * pcszPrefix)
 //
 //   {
-//      return begins_ci_iws((const unichar *) wstr, pcszPrefix);
+//      return begins_ci_iws((const wide_character * ) wstr, pcszPrefix);
 //
 //   }
 //
 //   // case insensitive, ignore white space - only in searched string
-//   bool begins_ci_iws(const unichar * pcsz, const unichar * pcszPrefix)
+//   bool begins_ci_iws(const wide_character * pcsz, const wide_character * pcszPrefix)
 //
 //   {
 //      if(pcsz == nullptr || *pcsz == L'\0')
@@ -3458,10 +3458,10 @@ void str::increment_digit_letter(string & str)
 //      return false;
 //   }
 //
-//   bool begins_ci_iws(const wstring & wstr, const unichar * pcszPrefix)
+//   bool begins_ci_iws(const wstring & wstr, const wide_character * pcszPrefix)
 //
 //   {
-//      return begins_ci_iws((const unichar *) wstr, pcszPrefix);
+//      return begins_ci_iws((const wide_character * ) wstr, pcszPrefix);
 //
 //   }
 //
@@ -3569,7 +3569,7 @@ bool str::trim_any_quotes(string & str)
 }
 
 
-bool str::paired_trim(string & str, char ch)
+bool str::paired_trim(string & str, ::i8 ch)
 {
 
    if (str.length() <= 1)
@@ -3606,20 +3606,20 @@ bool str::utf8_check_is_valid(const ::scoped_string & scopedstr)
    for (i = 0, ix = scopedstr.length(); i < ix; i++)
    {
 
-      c = (unsigned char)scopedstr[i];
+      c = (::u8)scopedstr[i];
 
       //if (c==0x09 || c==0x0a || c==0x0d || (0x20 <= c && c <= 0x7e) ) n = 0; // is_printable_ascii
       if (0x00 <= c && c <= 0x7f) n = 0; // 0bbbbbbb
       else if ((c & 0xE0) == 0xC0) n = 1; // 110bbbbb
-      else if (c == 0xed && i < (ix - 1) && ((unsigned char)scopedstr[i + 1] & 0xa0) == 0xa0) return false; //U+d800 to U+dfff
+      else if (c == 0xed && i < (ix - 1) && ((::u8)scopedstr[i + 1] & 0xa0) == 0xa0) return false; //U+d800 to U+dfff
       else if ((c & 0xF0) == 0xE0) n = 2; // 1110bbbb
       else if ((c & 0xF8) == 0xF0) n = 3; // 11110bbb
-      //else if (($c & 0xFC) == 0xF8) n=4; // 111110bb //unsigned char 5, unnecessary in 4 unsigned char UTF-8
-      //else if (($c & 0xFE) == 0xFC) n=5; // 1111110b //unsigned char 6, unnecessary in 4 unsigned char UTF-8
+      //else if (($c & 0xFC) == 0xF8) n=4; // 111110bb //::u8 5, unnecessary in 4 ::u8 UTF-8
+      //else if (($c & 0xFE) == 0xFC) n=5; // 1111110b //::u8 6, unnecessary in 4 ::u8 UTF-8
       else return false;
       for (j = 0; j < n && i < ix; j++)   // n bytes matching 10bbbbbb follow ?
       {
-         if ((++i == ix) || (((unsigned char)scopedstr[i] & 0xC0) != 0x80))
+         if ((++i == ix) || (((::u8)scopedstr[i] & 0xC0) != 0x80))
             return false;
 
       }
@@ -3665,7 +3665,7 @@ string str::q_valid(const ::scoped_string & scopedstr)
 }
 
 
-string str::signed_double(double d)
+string str::signed_f64(::f64 d)
 {
 
    if (d > 0.0)
@@ -3689,7 +3689,7 @@ string str::signed_double(double d)
 
 }
 
-string str::signed_int(int i)
+string str::signed_int(::i32 i)
 {
 
    if (i > 0)
@@ -3807,14 +3807,14 @@ bool str::is_true(const ::scoped_string & scopedstr)
 
 
 
-string str::block(char ch, int iSize)
+string str::block(::i8 ch, ::i32 iSize)
 {
 
    string str;
 
    auto psz = str.get_buffer(iSize);
 
-   for (int i = 0; i < iSize; i++)
+   for (::i32 i = 0; i < iSize; i++)
    {
 
       psz[i] = ch;
@@ -3828,14 +3828,14 @@ string str::block(char ch, int iSize)
 }
 
 
-void str::fill(string & str, char ch)
+void str::fill(string & str, ::i8 ch)
 {
 
    auto len = str.length();
 
    auto psz = str.get_buffer();
 
-   for (int i = 0; i < len; i++)
+   for (::i32 i = 0; i < len; i++)
    {
 
       psz[i] = ch;
@@ -3850,10 +3850,10 @@ void str::fill(string & str, char ch)
 //} // namespace str
 
 //
-//::string as_string(const float & f)
+//::string as_string(const ::f32 & f)
 //{
 //
-//   char sz[256];
+//   ::i8 sz[256];
 //
 //   sprintf(sz, "%f", f);
 //
@@ -3864,10 +3864,10 @@ void str::fill(string & str, char ch)
 //}
 //
 //
-//::string as_string(const double & d)
+//::string as_string(const ::f64 & d)
 //{
 //
-//   char sz[256];
+//   ::i8 sz[256];
 //
 //   sprintf(sz, "%f", d);
 //
@@ -4002,7 +4002,7 @@ void str::get_lines(::string & str, bool bFinal, const ::function < void(const :
 
       }
 
-      int iLess = 0;
+      ::i32 iLess = 0;
 
       if (iFindN > 0 && iFindN == iFindR + 1)
       {
@@ -4035,7 +4035,7 @@ void str::get_lines(::string & str, bool bFinal, const ::function < void(const :
 
    }
 
-   str.erase(iLimit + 1);
+   str.index_erase(iLimit + 1);
 
 }
 
@@ -4192,10 +4192,10 @@ public:
 
 };
 
-   template < > class get_char_type < const_char_pointer >{ public: using CHAR_TYPE = char; };
-   template < > class get_char_type < char * > { public: using CHAR_TYPE = char; };
-   template < int n > class get_char_type < const char[n] > { public: using CHAR_TYPE = char; };
-   template < int n > class get_char_type < char[n] > { public: using CHAR_TYPE = char; };
+   template < > class get_char_type < const_char_pointer >{ public: using CHAR_TYPE = ::i8; };
+   template < > class get_char_type < char_pointer > { public: using CHAR_TYPE = ::i8; };
+   template < ::i32 n > class get_char_type < const ::i8[n] > { public: using CHAR_TYPE = ::i8; };
+   template < ::i32 n > class get_char_type < ::i8[n] > { public: using CHAR_TYPE = ::i8; };
 
 
 //bool str::begins_eat(::payload & payload, const ::scoped_string & scopedstrPrefix)

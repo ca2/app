@@ -6,7 +6,7 @@
 #include "acme/constant/user_message.h"
 #include "acme/handler/topic.h"
 #include "acme/parallelization/synchronous_lock.h"
-#include "acme/platform/timer.h"
+//#include "acme/platform/timer.h"
 #include "acme/prototype/geometry2d/_text_stream.h"
 #include "acme/nano/nano.h"
 #include "acme/user/menu/menu.h"
@@ -98,7 +98,7 @@ namespace user
    }
 
 
-   long long menu::increment_reference_count()
+   ::i64 menu::increment_reference_count()
    {
 
 #if REFERENCING_DEBUGGING 
@@ -119,7 +119,7 @@ namespace user
    }
 
 
-   long long menu::decrement_reference_count()
+   ::i64 menu::decrement_reference_count()
    {
 
       return ::object::decrement_reference_count();
@@ -154,7 +154,7 @@ namespace user
    }
 
 
-   void menu::update_track_cursor(const ::int_point& pointCursorHint)
+   void menu::update_track_cursor(const ::i32_point& pointCursorHint)
    {
 
       if (pointCursorHint.is_all(I32_MINIMUM))
@@ -171,7 +171,7 @@ namespace user
    }
 
 
-   void menu::update_track_rectangle(const ::int_rectangle& rectangleScreenHint)
+   void menu::update_track_rectangle(const ::i32_rectangle& rectangleScreenHint)
    {
 
       if (rectangleScreenHint.is_all(I32_MINIMUM))
@@ -277,7 +277,7 @@ namespace user
             if (bErased && m_pmenuitem->m_pmenuitemParent.is_null())
             {
 
-               m_pmenuitem.defer_destroy();
+               m_pmenuitem.defer_destroy_and_release();
 
             }
 
@@ -294,7 +294,7 @@ namespace user
             if (bErased && m_pmenuitem->m_pmenuitemParent.is_null())
             {
 
-               m_pmenuitem.defer_destroy();
+               m_pmenuitem.defer_destroy_and_release();
 
             }
 
@@ -310,7 +310,7 @@ namespace user
             if (bErased && m_pmenuitem->m_pmenuitemParent.is_null())
             {
 
-               m_pmenuitem.defer_destroy();
+               m_pmenuitem.defer_destroy_and_release();
 
             }
 
@@ -476,7 +476,7 @@ namespace user
 
 
 
-   ::menu::item* menu::GetSubMenu(int i)
+   ::menu::item* menu::GetSubMenu(::i32 i)
    {
 
       return get_menu_item()->m_pmenuitema->element_at(i);
@@ -576,12 +576,13 @@ namespace user
 
       //}
 
-      m_bNeedPerformLayout = true;
+      //m_bNeedPerformLayout = true;
+      set_need_perform_layout();
 
    }
 
 
-   void menu::set_minimum_width(int iWidth)
+   void menu::set_minimum_width(::i32 iWidth)
    {
 
       m_sizeMinimum.cx = iWidth;
@@ -654,7 +655,7 @@ namespace user
       if (!is_window())
       {
 
-         //         int iStyleEx = 0;
+         //         ::i32 iStyleEx = 0;
          //
          //         if (puiParent == nullptr)
          //         {
@@ -825,7 +826,7 @@ namespace user
    //void menu::layout_menu(::draw2d::graphics_pointer & pgraphics)
    //{
 
-   //   ::int_point point = m_pointTrack;
+   //   ::i32_point point = m_pointTrack;
 
    //   if (get_parent() != nullptr)
    //   {
@@ -858,11 +859,11 @@ namespace user
 
    //   auto rectanglePadding = get_padding(pstyle);
 
-   //   //int iElementPadding = rectanglePadding.left;
+   //   //::i32 iElementPadding = rectanglePadding.left;
 
-   //   int x = (int) (rectangleMargin.left + rectangleBorder.left + rectanglePadding.left);
+   //   ::i32 x = (::i32) (rectangleMargin.left + rectangleBorder.left + rectanglePadding.left);
 
-   //   int y = (int) (rectangleMargin.top + rectangleBorder.top + rectanglePadding.top);
+   //   ::i32 y = (::i32) (rectangleMargin.top + rectangleBorder.top + rectanglePadding.top);
 
    //   class calc_size calcsize;
 
@@ -882,7 +883,7 @@ namespace user
 
    //   }
 
-   //   int yClose = y;
+   //   ::i32 yClose = y;
 
    //   m_iaColumnWidth.set_size(1);
 
@@ -894,12 +895,12 @@ namespace user
 
    //   index iColumn = 0;
 
-   //   for (int i = 0; i < pmenuitema->get_size(); i++)
+   //   for (::i32 i = 0; i < pmenuitema->get_size(); i++)
    //   {
 
    //      string strButtonText = pmenuitema->element_at(i)->m_puserinteraction->get_window_text();
 
-   //      pmenuitema->element_at(i)->m_iColumn = (int) iColumn;
+   //      pmenuitema->element_at(i)->m_iColumn = (::i32) iColumn;
 
    //      pmenuitema->element_at(i)->m_puserinteraction->on_calc_size(&calcsize);
 
@@ -936,12 +937,12 @@ namespace user
 
    //   }
 
-   //   m_size.cx = (int) (m_iaColumnWidth.get_sum()
+   //   m_size.cx = (::i32) (m_iaColumnWidth.get_sum()
    //               + rectangleMargin.left + rectangleMargin.right
    //               + rectangleBorder.left + rectangleBorder.right
    //               + rectanglePadding.left + rectanglePadding.right);
 
-   //   m_size.cy = (int) (m_iaColumnHeight.get_maximum_value()
+   //   m_size.cy = (::i32) (m_iaColumnHeight.get_maximum_value()
    //               + rectangleMargin.top + rectangleMargin.bottom
    //               + rectangleBorder.top + rectangleBorder.bottom
    //               + rectanglePadding.top + rectanglePadding.bottom);
@@ -955,7 +956,7 @@ namespace user
 
    //   ::pointer<::berg::style>pbergstyle = pstyle;
 
-   //   for (int i = 0; i < iItemCount; i++)
+   //   for (::i32 i = 0; i < iItemCount; i++)
    //   {
 
    //      ::menu::item * pitem = pmenuitema->element_at(i);
@@ -983,14 +984,14 @@ namespace user
 
    //   }
 
-   //   ::int_rectangle rectangleWindow;
+   //   ::i32_rectangle rectangleWindow;
 
    //   rectangleWindow.left = point.x;
    //   rectangleWindow.top = point.y;
    //   rectangleWindow.right = rectangleWindow.left + m_size.cx;
    //   rectangleWindow.bottom = rectangleWindow.top + m_size.cy;
 
-   //   ::int_rectangle rectangleMonitor;
+   //   ::i32_rectangle rectangleMonitor;
 
    //   auto iMonitor = get_best_monitor(&rectangleMonitor, rectangleWindow);
    //      
@@ -1056,7 +1057,7 @@ namespace user
 
          //information() << "user::frame_window::_001OnNcDraw graphics offset (2) : " << pgraphics->get_origin();
 
-   //      ::int_rectangle rectangleX;
+   //      ::i32_rectangle rectangleX;
    //
    //      this->rectangle(rectangleX);
 
@@ -1097,7 +1098,7 @@ namespace user
       //if (crBackground.is_translucent())
       //{
 
-      //   ::double_rectangle rectangleClip;
+      //   ::f64_rectangle rectangleClip;
 
       //   pgraphics->get_clip_box(rectangleClip);
 
@@ -1234,7 +1235,7 @@ namespace user
       ////
       ////                           m_psubmenu->m_pmenuParent = this;
       ////
-      ////                           ::int_rectangle rectangle;
+      ////                           ::i32_rectangle rectangle;
       ////
       ////                           ptopic->user_interaction()->window_rectangle(rectangle);
       ////
@@ -1414,7 +1415,7 @@ namespace user
 
       m_pmenuSubMenu = pusermenu;
 
-      ::int_rectangle rectangle;
+      ::i32_rectangle rectangle;
 
       pmenuitem->m_puserinteraction->window_rectangle(rectangle);
 
@@ -1511,10 +1512,10 @@ namespace user
 
 
 
-   void menu::on_timer(::timer* ptimer)
+   void menu::operator()(::timer * ptimer)
    {
 
-      ::user::interaction::on_timer(ptimer);
+      ::user::interaction::operator()(ptimer);
 
       ::pointer<::menu::item>pitemThis = get_menu_item();
 
@@ -1575,7 +1576,7 @@ namespace user
 
             //   m_psubmenu->initialize(this);
 
-            //   ::int_rectangle rectangle;
+            //   ::i32_rectangle rectangle;
 
             //   pmenuitema->find(m_atomTimerMenu)->m_puserinteraction->window_rectangle(rectangle);
 
@@ -1603,7 +1604,7 @@ namespace user
          //{
          //   ::message::command commandui(this);
          //   commandui.m_pitema          = pmenuitema;
-         //   for(int i = 0; i < pmenuitema->get_size(); i++)
+         //   for(::i32 i = 0; i < pmenuitema->get_size(); i++)
          //   {
          //
          //      commandui.m_iIndex    = i;
@@ -1615,7 +1616,7 @@ namespace user
          //      if(puiTarget != nullptr)
          //      {
          //         /* xxx if(puserinteractionParent->on_command(0,
-         //          MAKELONG((int)CN_UPDATE_::message::command, ::user::e_message_command+WM_REFLECT_BASE),
+         //          MAKELONG((::i32)CN_UPDATE_::message::command, ::user::e_message_command+WM_REFLECT_BASE),
          //          &commandui, nullptr))
          //          continue;*/
          //         if(puiTarget->_001SendUpdateCmdUi(&commandui))
@@ -1671,7 +1672,7 @@ namespace user
    //       {
    //          ::message::command commandui(this);
    //          commandui.m_pitema          = pmenuitema;
-   //          for(int i = 0; i < pmenuitema->get_size(); i++)
+   //          for(::i32 i = 0; i < pmenuitema->get_size(); i++)
    //          {
 
    //             commandui.m_iIndex    = i;
@@ -1683,7 +1684,7 @@ namespace user
    //             {
    //                /*
    //                 if(puserinteractionParent->on_command(0,
-   //                 MAKELONG((int)CN_UPDATE_::message::command, ::user::e_message_command+WM_REFLECT_BASE),
+   //                 MAKELONG((::i32)CN_UPDATE_::message::command, ::user::e_message_command+WM_REFLECT_BASE),
    //                 &commandui, nullptr))
    //                 continue;
    //                 */
@@ -1773,7 +1774,7 @@ namespace user
    }
 
 
-   int_size menu::get_window_minimum_size()
+   i32_size menu::get_window_minimum_size()
    {
 
       return m_sizeMinimum;
@@ -1808,7 +1809,7 @@ namespace user
       //else
       //{
 
-      //   ::int_rectangle * prectangle = (::int_rectangle *)pusermessage->m_lparam.m_lparam;
+      //   ::i32_rectangle * prectangle = (::i32_rectangle *)pusermessage->m_lparam.m_lparam;
 
       //   prectangle->left = m_pointTrack.x;
 
@@ -2130,9 +2131,9 @@ namespace user
 
       }
 
-      ::int_point pointCursorHint;
+      ::i32_point pointCursorHint;
 
-      ::int_rectangle rectangleScreenHint;
+      ::i32_rectangle rectangleScreenHint;
 
       if (get_parent() == nullptr)
       {
@@ -2229,17 +2230,17 @@ namespace user
 
       auto rectanglePadding = get_padding(pstyle);
 
-      //int iElementPadding = rectanglePadding.left;
+      //::i32 iElementPadding = rectanglePadding.left;
 
-      int x = (int)(rectangleMargin.left + rectangleBorder.left + rectanglePadding.left);
+      ::i32 x = (::i32)(rectangleMargin.left + rectangleBorder.left + rectanglePadding.left);
 
-      int y = (int)(rectangleMargin.top + rectangleBorder.top + rectanglePadding.top);
+      ::i32 y = (::i32)(rectangleMargin.top + rectangleBorder.top + rectanglePadding.top);
 
       //class calc_size calcsize;
 
       //calcsize.m_pgraphics = pgraphics;
 
-      ::int_size size;
+      ::i32_size size;
 
       if (m_bCloseButton)
       {
@@ -2257,7 +2258,7 @@ namespace user
 
       }
 
-      int yClose = y;
+      ::i32 yClose = y;
 
       m_iaColumnWidth.set_size(1);
 
@@ -2269,11 +2270,11 @@ namespace user
 
       ::collection::index iColumn = 0;
 
-      int iMaximumButtonHeight = 0;
+      ::i32 iMaximumButtonHeight = 0;
 
       // Calculate buttons sizes
 
-      for (int i = 0; i < pmenuitema->get_size(); i++)
+      for (::i32 i = 0; i < pmenuitema->get_size(); i++)
       {
 
          auto pmenuitem = pmenuitema->element_at(i);
@@ -2308,11 +2309,11 @@ namespace user
 
       }
 
-      int iSeparatorHeight = iMaximumButtonHeight / 3;
+      ::i32 iSeparatorHeight = iMaximumButtonHeight / 3;
 
-      int iRow = 0;
+      ::i32 iRow = 0;
 
-      for (int i = 0; i < pmenuitema->get_size(); i++)
+      for (::i32 i = 0; i < pmenuitema->get_size(); i++)
       {
 
          auto pmenuitem = pmenuitema->element_at(i);
@@ -2330,7 +2331,7 @@ namespace user
 
          }
 
-         pmenuitem->m_iColumn = (int)iColumn;
+         pmenuitem->m_iColumn = (::i32)iColumn;
 
          pmenuitem->m_iRow = iRow;
 
@@ -2368,7 +2369,7 @@ namespace user
 
       }
 
-      for (int i = 0; i < pmenuitema->get_size(); i++)
+      for (::i32 i = 0; i < pmenuitema->get_size(); i++)
       {
 
          auto pmenuitem = pmenuitema->element_at(i);
@@ -2382,14 +2383,14 @@ namespace user
 
       }
 
-      //::int_size sizeSeparator;
+      //::i32_size sizeSeparator;
 
-      //for (int i = 0; i < pmenuitema->get_size(); i++)
+      //for (::i32 i = 0; i < pmenuitema->get_size(); i++)
       //{
 
       //   string strButtonText = pmenuitema->element_at(i)->m_puserinteraction->get_window_text();
 
-      //   pmenuitema->element_at(i)->m_iColumn = (int)iColumn;
+      //   pmenuitema->element_at(i)->m_iColumn = (::i32)iColumn;
 
       //   auto puserinteraction = pmenuitema->element_at(i)->m_puserinteraction;
 
@@ -2451,12 +2452,12 @@ namespace user
 
       //}
 
-      m_size.cx = (int)(m_iaColumnWidth.get_sum()
+      m_size.cx = (::i32)(m_iaColumnWidth.get_sum()
          + rectangleMargin.left + rectangleMargin.right
          + rectangleBorder.left + rectangleBorder.right
          + rectanglePadding.left + rectanglePadding.right);
 
-      m_size.cy = (int)(m_iaColumnHeight.get_maximum_value()
+      m_size.cy = (::i32)(m_iaColumnHeight.get_maximum_value()
          + rectangleMargin.top + rectangleMargin.bottom
          + rectangleBorder.top + rectangleBorder.bottom
          + rectanglePadding.top + rectanglePadding.bottom);
@@ -2469,7 +2470,7 @@ namespace user
 
       ::pointer<::berg::style>pbergstyle = pstyle;
 
-      for (int i = 0; i < iItemCount; i++)
+      for (::i32 i = 0; i < iItemCount; i++)
       {
 
          ::menu::item* pitem = pmenuitema->element_at(i);
@@ -2513,13 +2514,13 @@ namespace user
       if (get_parent() == nullptr)
       {
 
-         ::int_rectangle rectangleMonitor;
+         ::i32_rectangle rectangleMonitor;
 
          auto rectangleMonitorHint = rectangleScreenHint;
 
          auto iMonitor = get_best_monitor(&rectangleMonitor, rectangleMonitorHint);
 
-         ::int_rectangle rectangleWindow;
+         ::i32_rectangle rectangleWindow;
 
          rectangleWindow.left = pointCursorHint.x;
 
@@ -2658,7 +2659,7 @@ namespace user
    //
    //      ::user::style_pointer pstyle;
    //
-   //      for (int iItem = 0; iItem < m_pmenuitem->m_pmenuitema->get_size(); iItem++)
+   //      for (::i32 iItem = 0; iItem < m_pmenuitem->m_pmenuitema->get_size(); iItem++)
    //      {
    //
    //         auto pitem = m_pmenuitem->m_pmenuitema->element_at(iItem);

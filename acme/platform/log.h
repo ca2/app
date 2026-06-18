@@ -32,39 +32,44 @@
 // };
 
 
-class CLASS_DECL_ACME log :
-   virtual public ::logger
+namespace platform
 {
-public:
+
+   class trace;
+
+   class CLASS_DECL_ACME log :
+      virtual public ::platform::logger
+   {
+   public:
 
 
-   bool                       m_bLog;
-   bool                       m_bExtendedLog;
-   bool                       m_bLogFileName;
-   bool                       m_bLogFunctionName;
-   bool                       m_bLogThreadName;
+      bool                       m_bLog;
+      bool                       m_bExtendedLog;
+      bool                       m_bLogFileName;
+      bool                       m_bLogFunctionName;
+      bool                       m_bLogThreadName;
 
 
-   log();
-   ~log() override;
+      log();
+      ~log() override;
 
 
-   void initialize(::particle * pparticle) override;
-   
-
-   virtual void initialize_log(enum_trace_level etracelevelMin, const ::atom& atom);
+      void initialize(::particle * pparticle) override;
 
 
-   virtual void process_init();
-
-   virtual void set_extended_log(bool bSet = true);
-   virtual bool get_extended_log();
+      virtual void initialize_log(enum_trace_level etracelevelMin, const ::atom& atom);
 
 
+      virtual void process_init();
 
-};
+      virtual void set_extended_log(bool bSet = true);
+      virtual bool get_extended_log();
 
 
 
+   };
+
+
+} // namespace platform
 
 

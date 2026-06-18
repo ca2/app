@@ -26,10 +26,10 @@
 
 //#include "conio.h"
 
-int
+::i32
 cputs (const ::scoped_string & scopedstr)
 {
-  int ReturnValue = 0;
+  ::i32 ReturnValue = 0;
   //if (!ConioInitialized)
   //  textmode (LASTMODE);
   //ConioRefreshOkay = 0;

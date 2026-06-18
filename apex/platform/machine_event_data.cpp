@@ -37,7 +37,7 @@
 //
 //   }
 //
-//   auto iRead = fread(&m_sizet, 1, (int) sizeof(m_sizet), file);
+//   auto iRead = fread(&m_sizet, 1, (::i32) sizeof(m_sizet), file);
 //
 //   if(m_sizet == 0)
 //   {
@@ -48,14 +48,14 @@
 //   else
 //   {
 //
-//      m_pchData = (char *) ::system()->m_pheapmanagement->memory(::heap::e_memory_main)->allocate(m_sizet);
+//      m_pchData = (char_pointer ) ::system()->m_pheapmanagement->memory(::heap::e_memory_main)->allocate(m_sizet);
 //
 //      size_t sRead = 0;
 //
 //      while(true)
 //      {
 //
-//         iRead  = (int) fread(&m_pchData[sRead], 1, 1024, file);
+//         iRead  = (::i32) fread(&m_pchData[sRead], 1, 1024, file);
 //
 //         if(iRead == 0)
 //            break;
@@ -93,7 +93,7 @@
 //
 //   m_sizet = scopedstr.size() + 1;
 //
-//   m_pchData = (char *) ansi_duplicate(scopedstr);
+//   m_pchData = (char_pointer ) ansi_duplicate(scopedstr);
 //
 //   return *this;
 //
@@ -119,7 +119,7 @@ void machine_event_data::read(::file::readable * preadable)
 
    }
 
-   int s = (int) m_memoryCommand.size();
+   ::i32 s = (::i32) m_memoryCommand.size();
 
    preadable->read(s);
 
@@ -142,7 +142,7 @@ void machine_event_data::write(::file::writable * pwritable)
 
    }
 
-   int s = (int) m_memoryCommand.size();
+   ::i32 s = (::i32) m_memoryCommand.size();
 
    pwritable->write(s);
 

@@ -3,7 +3,7 @@
 #include "acme/constant/user_message.h"
 #include "acme/constant/timer.h"
 #include "acme/handler/item.h"
-#include "acme/platform/timer.h"
+//#include "acme/platform/timer.h"
 #include "acme/prototype/geometry2d/ellipse.h"
 #include "acme/filesystem/filesystem/file_context.h"
 #include "aura/graphics/draw2d/graphics.h"
@@ -40,7 +40,7 @@ namespace experience
    void orto_button::_001OnDraw(::draw2d::graphics_pointer & pgraphics)
    {
 
-      ::int_rectangle rectangleX;
+      ::i32_rectangle rectangleX;
 
       rectangleX = ::user::interaction::rectangle();
 
@@ -117,7 +117,7 @@ namespace experience
 
          pgraphics->set(ppen);
 
-         ::int_rectangle rectangleIcon(rectangleX);
+         ::i32_rectangle rectangleIcon(rectangleX);
 
          rectangleIcon.deflate(rectangleIcon.width() / 6, rectangleIcon.height() / 6);
 
@@ -159,9 +159,9 @@ namespace experience
 
    //   if (wParam == ::user::e_message_mouse_move)
    //   {
-   //      ::int_point pointCursor = pmsg->pt;
+   //      ::i32_point pointCursor = pmsg->pt;
 
-   //      ::int_rectangle rectangleX;
+   //      ::i32_rectangle rectangleX;
    //      ::user::interaction::this->rectangle(rectangleX);
    //      ::user::interaction::client_to_screen(rectangleX);
 
@@ -185,16 +185,16 @@ namespace experience
    }
 
 
-   void orto_button::on_timer(::timer * ptimer)
+   void orto_button::operator()(::timer * ptimer)
    {
 
-      ::experience::button::on_timer(ptimer);
+      ::experience::button::operator()(ptimer);
       // TODO: add your message handler code here and/or call default
-      if (ptimer->m_uTimer == e_timer_check_focus)
+      if (ptimer->m_etimer == e_timer_check_focus)
       {
          /*if(m_bFocus)
          {
-         ::int_point pointCursor;
+         ::i32_point pointCursor;
          
 
          auto puser = user();
@@ -202,20 +202,20 @@ namespace experience
          auto pwindowing = system()->windowing();
 
          pointCursor = pwindowing->get_cursor_position();
-         ::int_rectangle rectangleX;
+         ::i32_rectangle rectangleX;
          ::user::interaction::this->rectangle(rectangleX);
          ::user::interaction::client_to_screen(rectangleX);
 
          if(rectangleX.is_empty().contains(pointCursor))
          {
-         kill_timer(ptimer->m_uTimer);
+         kill_timer(ptimer->m_etimer);
          m_bFocus = false;
          set_need_redraw();
          }
          }
          else
          {
-         kill_timer(ptimer->m_uTimer);
+         kill_timer(ptimer->m_etimer);
          }*/
       }
       else
@@ -224,10 +224,11 @@ namespace experience
          //      ::pointer<::user::interaction>puserinteraction = ::user::interaction::get_parent();
 
 
-         ::int_rectangle rectangle;
+         ::i32_rectangle rectangle;
          rectangle = ::user::interaction::rectangle();
       }
 
+      //return true;
 
    }
 
@@ -235,13 +236,13 @@ namespace experience
    void orto_button::UpdateWndRgn()
    {
 
-      ::int_rectangle rectangleX;
+      ::i32_rectangle rectangleX;
 
       rectangleX = ::user::interaction::rectangle();
 
       defer_constructø(m_pregion);
       
-      ::double_ellipse ellipse;
+      ::f64_ellipse ellipse;
       
       ellipse.set(rectangleX);
 
@@ -264,7 +265,7 @@ namespace experience
 
 
 
-   ::item_pointer orto_button::on_hit_test(const ::int_point &point, ::user::e_zorder ezorder)
+   ::item_pointer orto_button::on_hit_test(const ::i32_point &point, ::user::e_zorder ezorder)
    {
 
       if (m_pregion.is_null())

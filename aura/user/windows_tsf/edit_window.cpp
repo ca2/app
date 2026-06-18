@@ -321,7 +321,7 @@ namespace tsf
            }
    #endif
 
-           int i;
+           ::i32 i;
 
            for (i = 0; i < NUM_SUPPORTED_ATTRS; i++)
            {
@@ -421,7 +421,7 @@ namespace tsf
    **************************************************************************/
 
    //lresult CALLBACK edit_window::_WndProc( HWND hWnd, 
-   //                                        unsigned int uMessage,
+   //                                        ::u32 uMessage,
    //                                        wparam wParam, 
    //                                        lparam lParam)
    //{
@@ -529,7 +529,7 @@ namespace tsf
 
    **************************************************************************/
 
-   //lresult edit_window::_OnCommand(unsigned short wID, unsigned short wCmd, HWND hWnd)
+   //lresult edit_window::_OnCommand(::u16 wID, ::u16 wCmd, HWND hWnd)
    //{
    //    switch(wID)
    //    {
@@ -599,7 +599,7 @@ namespace tsf
    {
        if(m_fNotify && m_AdviseSink.pTextStoreACPSink && (m_AdviseSink.dwMask & TS_AS_TEXT_CHANGE))
        {
-           unsigned int           dwFlags;
+           ::u32           dwFlags;
            TS_TEXTCHANGE   tc;
            character_count           cch;
 
@@ -656,7 +656,7 @@ namespace tsf
 
    **************************************************************************/
 
-   //lresult edit_window::_OnNotify(unsigned int, LPNMHDR)
+   //lresult edit_window::_OnNotify(::u32, LPNMHDR)
    //{
    //    return 0;
    //}
@@ -669,10 +669,10 @@ namespace tsf
 
    //lresult edit_window::_OnSize(wparam wParam, lparam lParam)
    //{
-   //    //adjust the int_size and location of the status bar
+   //    //adjust the i32_size and location of the status bar
    //    //SendMessage(m_hwndStatus, ::user::e_message_size, wParam, lParam);
    //
-   //    ::int_rectangle    rc;
+   //    ::i32_rectangle    rc;
    //
    //    //GetWindowRect(m_hwndStatus, &rc);
    //    
@@ -694,7 +694,7 @@ namespace tsf
 
    **************************************************************************/
 
-   BOOL edit_window::_IsLocked(unsigned int dwLockType)
+   BOOL edit_window::_IsLocked(::u32 dwLockType)
    { 
        if(m_dwInternalLockType)
        {
@@ -735,7 +735,7 @@ namespace tsf
 
    **************************************************************************/
 
-   BOOL edit_window::_LockDocument(unsigned int dwLockFlags)
+   BOOL edit_window::_LockDocument(::u32 dwLockFlags)
    {
        if(m_fLocked)
        {
@@ -754,7 +754,7 @@ namespace tsf
 
    **************************************************************************/
 
-   BOOL edit_window::_InternalLockDocument(unsigned int dwLockFlags)
+   BOOL edit_window::_InternalLockDocument(::u32 dwLockFlags)
    {
        m_dwInternalLockType = dwLockFlags;
     
@@ -850,10 +850,10 @@ namespace tsf
 
    void edit_window::_UpdateStatusBar(void)
    {
-       //int     nParts[2];
+       //::i32     nParts[2];
        //HDC     hdc;
        //HFONT   hFont;
-       //::int_size    size;
+       //::i32_size    size;
        //TCHAR   szComposition[MAX_PATH];
 
        //hdc = GetDC(m_hwndStatus);
@@ -912,7 +912,7 @@ namespace tsf
 
    void edit_window::_ClearRequestedAttributes(void)
    {
-       int i;
+       ::i32 i;
 
        for (i = 0; i < NUM_SUPPORTED_ATTRS; i++)
        {
@@ -967,7 +967,7 @@ namespace tsf
 
    HRESULT edit_window::_GetText(LPWSTR *ppwsz, LPLONG pcch)
    {
-       unsigned int   cch;
+       ::u32   cch;
        LPWSTR  pwszText;
     
        *ppwsz = NULL;
@@ -1019,7 +1019,7 @@ namespace tsf
        if(SUCCEEDED(hr))
        {
            ITfRangeACP *pRangeAllText;
-           int        acpEnd;
+           ::i32        acpEnd;
 
            //get the range of the entire text
            //acpEnd = GetWindowTextLength(m_hwndEdit);
@@ -1154,7 +1154,7 @@ namespace tsf
        if(SUCCEEDED(hr))
        {
            ITfRangeACP *pRangeAllText;
-           int        acpEnd;
+           ::i32        acpEnd;
 
            //get the range of the entire text
            //acpEnd = GetWindowTextLength(m_hwndEdit);
@@ -1265,7 +1265,7 @@ namespace tsf
        if(SUCCEEDED(hr))
        {
            ITfRangeACP *pRangeAllText;
-           int        acpEnd;
+           ::i32        acpEnd;
 
            //get the range of the entire text
            //acpEnd = GetWindowTextLength(m_hwndEdit);
@@ -1374,7 +1374,7 @@ namespace tsf
        if(SUCCEEDED(hr))
        {
            comptr <ITfRangeACP>pRangeAllText;
-           int        acpEnd;
+           ::i32        acpEnd;
 
            //get the range of the entire text
            //acpEnd = GetWindowTextLength(m_hwndEdit);
@@ -1764,9 +1764,9 @@ namespace tsf
 
    **************************************************************************/
 
-   STDMETHODIMP_(unsigned int) edit_window::AddRef()
+   STDMETHODIMP_(::u32) edit_window::AddRef()
    {
-      return (unsigned int) increment_reference_count();
+      return (::u32) increment_reference_count();
    }
 
 
@@ -1776,7 +1776,7 @@ namespace tsf
 
    **************************************************************************/
 
-   STDMETHODIMP_(unsigned int) edit_window::Release()
+   STDMETHODIMP_(::u32) edit_window::Release()
    {
        //if(--m_ObjRefCount == 0)
        //{
@@ -1786,7 +1786,7 @@ namespace tsf
    
        //return m_ObjRefCount;
 
-      return (unsigned int) release();
+      return (::u32) release();
    }
 
 

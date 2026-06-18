@@ -9,15 +9,15 @@
 #include <unistd.h>
 
 
-int_handle::~int_handle()
+i32_handle::~i32_handle()
 {
 
-   if (m_i >= 0)
+   if (m_i32 >= 0)
    {
 
-      ::close(m_i);
+      ::close(m_i32);
 
-      m_i = -1;
+      m_i32 = -1;
 
    }
 

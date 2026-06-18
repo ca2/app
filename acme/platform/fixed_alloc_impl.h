@@ -8,15 +8,15 @@ inline void * fixed_alloc_sync::Alloc()
    // perfectly sequential or perfectly distributed,
    // just fair well distributed
    // but very important is extremely fast
-   int i = m_i;
+   ::i32 i = m_i32;
    if(i >= m_iShareCount)
    {
       i = 0;
-      m_i = 1;
+      m_i32 = 1;
    }
    else
    {
-      m_i++;
+      m_i32++;
    }
 
 
@@ -32,8 +32,8 @@ inline void * fixed_alloc_sync::Alloc()
    m_criticalsectiona[i].unlock();
    if(p == nullptr)
       return nullptr;
-   ((int *) p)[0] = i;
-   return &((int *)p)[1];
+   ((::i32 *) p)[0] = i;
+   return &((::i32 *)p)[1];
 }
 
 inline void fixed_alloc_sync::Free(void * p)
@@ -42,11 +42,11 @@ inline void fixed_alloc_sync::Free(void * p)
    if (p == nullptr)
       return;
 
-   int i = ((int *)p)[-1];
+   ::i32 i = ((::i32 *)p)[-1];
 
    critical_section_lock l(&m_criticalsectiona[i]);
 
-   m_allocptra.get_data()[i]->Free(&((int *)p)[-1]);
+   m_allocptra.get_data()[i]->Free(&((::i32 *)p)[-1]);
 
 }
 
@@ -59,23 +59,23 @@ inline void * fixed_alloc::Alloc()
    // perfectly sequential or perfectly distributed,
    // just fair well distributed
    // but very important is extremely fast
-   int i = m_i;
+   ::i32 i = m_i32;
    if(i >= m_iShareCount)
    {
       i = 0;
-      m_i = 1;
+      m_i32 = 1;
    }
    else
    {
-      m_i++;
+      m_i32++;
    }
 
 
    void * p  = m_allocptra.get_data()[i]->Alloc();
 
-   ((int *) p)[0] = i;
+   ((::i32 *) p)[0] = i;
 
-   return &((int *)p)[1];
+   return &((::i32 *)p)[1];
 
 }
 
@@ -85,9 +85,9 @@ inline void fixed_alloc::Free(void * p)
    if (p == nullptr)
       return;
 
-   int i = ((int *)p)[-1];
+   ::i32 i = ((::i32 *)p)[-1];
 
-   m_allocptra.get_data()[i]->Free(&((int *)p)[-1]);
+   m_allocptra.get_data()[i]->Free(&((::i32 *)p)[-1]);
 
 }
 

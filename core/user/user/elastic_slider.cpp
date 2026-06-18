@@ -2,7 +2,7 @@
 #include "elastic_slider.h"
 #include "mesh.h"
 #include "acme/constant/user_message.h"
-#include "acme/platform/timer.h"
+#include "acme/constant/timer.h"
 #include "acme/prototype/mathematics/scalar.h"
 #include "aura/graphics/draw2d/graphics.h"
 #include "aura/message/user.h"
@@ -44,20 +44,20 @@ namespace user
     
       __UNREFERENCED_PARAMETER(pmessage);
       
-      set_timer(333, 50_ms, nullptr);
+      set_timer(e_timer_update_slider, 50_ms);
 
    }
 
 
-   void elastic_slider::on_timer(::timer * ptimer)
+   void elastic_slider::operator()(::timer * ptimer)
    {
 
-      ::user::interaction::on_timer(ptimer);;
+      ::user::interaction::operator()(ptimer);;
 
-      if(ptimer->m_uTimer == 333)
+      if(ptimer->m_etimer == e_timer_update_slider)
       {
 
-         double dScalar = CalcScalar();
+         ::f64 dScalar = CalcScalar();
 
          if(m_bSlide || dScalar > 0.001)
          {
@@ -82,7 +82,7 @@ namespace user
       
       auto pmouse = pmessage->m_union.m_pmouse;
       
-      ::int_rectangle rectangle;
+      ::i32_rectangle rectangle;
       
       GetSliderRect(rectangle);
       
@@ -134,7 +134,7 @@ namespace user
    }
 
 
-   void elastic_slider::CalcTension(int_point & point)
+   void elastic_slider::CalcTension(i32_point & point)
    {
       auto rectangleX = this->rectangle();
       if (rectangleX.width() == 0)
@@ -144,7 +144,7 @@ namespace user
 
       else
       {
-         m_dTensionPosition = ((double) point.x / (double) rectangleX.width());
+         m_dTensionPosition = ((::f64) point.x / (::f64) rectangleX.width());
       }
    }
 
@@ -161,24 +161,24 @@ namespace user
    }
 
 
-   double elastic_slider::GetForce()
+   ::f64 elastic_slider::GetForce()
    {
       return m_dTensionPosition - m_dPosition;
    }
 
-   double elastic_slider::CalcScalar()
+   ::f64 elastic_slider::CalcScalar()
    {
       auto tickNow = ::time::now();
       if(tickNow - m_timeLastTime < 30_ms)
          return m_daScalar.simple_total_mean();
       CalcTension();
-      double dScalar;
+      ::f64 dScalar;
       if(m_bSlide)
       {
-         double dForce = GetForce();
+         ::f64 dForce = GetForce();
          auto dDeltaTime = (tickNow - m_timeLastTime).floating_millisecond();
-         double dFilterLastScalar = m_daScalar.simple_total_mean();
-         double dRate = 1.0 / 100.0;
+         ::f64 dFilterLastScalar = m_daScalar.simple_total_mean();
+         ::f64 dRate = 1.0 / 100.0;
          dScalar = dForce * dDeltaTime * dRate + dFilterLastScalar;
       }
       else
@@ -213,7 +213,7 @@ namespace user
    }
 
 
-   void elastic_slider::SetSliderPos(double dPos)
+   void elastic_slider::SetSliderPos(::f64 dPos)
    {
 
       if(dPos < 0.0)
@@ -230,11 +230,11 @@ namespace user
 
       auto rectangleX = this->rectangle();
 
-      unsigned char bAlpha = (unsigned char) (128.0 * get_alpha());
+      ::u8 bAlpha = (::u8) (128.0 * get_alpha());
 
       pgraphics->fill_rectangle(rectangleX, argb(bAlpha, 250, 255, 255));
 
-      ::int_rectangle rectangle;
+      ::i32_rectangle rectangle;
       
       GetSliderRect(rectangle);
 
@@ -262,20 +262,20 @@ namespace user
    }
 
 
-   void elastic_slider::GetSliderRect(::int_rectangle & rectangle)
+   void elastic_slider::GetSliderRect(::i32_rectangle & rectangle)
    {
 
       auto rectangleX = this->rectangle();
 
-      int iWidth = 16;
+      ::i32 iWidth = 16;
       
       rectangle.top = rectangleX.top;
       
       rectangle.bottom = rectangleX.bottom;
       
-      rectangle.left = (int) minimum(rectangleX.right, m_dPosition * (rectangleX.width() - iWidth));
+      rectangle.left = (::i32) minimum(rectangleX.right, m_dPosition * (rectangleX.width() - iWidth));
       
-      rectangle.right = (int) minimum(rectangleX.right, m_dPosition * ((rectangleX.width() - iWidth)) + iWidth);
+      rectangle.right = (::i32) minimum(rectangleX.right, m_dPosition * ((rectangleX.width() - iWidth)) + iWidth);
       
    }
 

@@ -110,7 +110,7 @@ namespace user
    }
 
 
-   ::write_text::font_pointer multiple_option::get_font(style * pstyle, enum_element eelement, ::user::enum_state estate)
+   ::write_text::font_pointer multiple_option::get_font(style * pstyle, const ::e_element & eelement, const ::user::e_state & estate)
    {
 
 
@@ -125,7 +125,7 @@ namespace user
 
       ::user::interaction::_001OnDraw(pgraphics);
 
-      ::int_rectangle r = client2_rectangle();
+      ::i32_rectangle r = client2_rectangle();
 
       pgraphics->draw_rectangle(r);
 
@@ -194,9 +194,11 @@ namespace user
    }
 
 
-   bool multiple_option::get_element_rectangle(::int_rectangle & rectangle, enum_element eelement)
+   bool multiple_option::get_element_rectangle(::i32_rectangle & rectangle, const ::e_element & eelementParameter)
 
    {
+
+      auto eelement = eelementParameter;
 
       if(eelement == e_element_text)
       {
@@ -210,10 +212,10 @@ namespace user
    }
 
 
-   ::item_pointer multiple_option::on_hit_test(const ::int_point& point, ::user::e_zorder ezorder)
+   ::item_pointer multiple_option::on_hit_test(const ::i32_point& point, ::user::e_zorder ezorder)
    {
 
-      //::int_rectangle rectangleElement;
+      //::i32_rectangle rectangleElement;
 
       return ::user::interaction::on_hit_test(point, ezorder);
 
@@ -299,7 +301,7 @@ namespace user
       //if (is_drop_down())
       //{
 
-      //   ::int_rectangle rectangleWindow;
+      //   ::i32_rectangle rectangleWindow;
 
       //   window_rectangle(rectangleWindow, ::user::e_layout_sketch);
 
@@ -555,17 +557,17 @@ namespace user
 
             SetFont(fontxyz);*/
 
-      ::int_rectangle r = client2_rectangle();
+      ::i32_rectangle r = client2_rectangle();
 
       pgraphics->draw_rectangle(r);
 
-      int iPad = 5;
+      ::i32 iPad = 5;
 
       r.deflate(iPad);
 
-      int iW = (int) ( r.width() / m_atomaOptions.size()) ;
+      ::i32 iW = (::i32) ( r.width() / m_atomaOptions.size()) ;
 
-      int x = iPad;
+      ::i32 x = iPad;
 
       auto iIndex = selected_index();
 
@@ -574,7 +576,7 @@ namespace user
       for (::collection::index i = 0; i < m_atomaOptions.size(); i++)
       {
 
-         ::int_rectangle rItem(r);
+         ::i32_rectangle rItem(r);
 
          rItem.left = x;
          rItem.right = rItem.left + iW;
@@ -710,7 +712,7 @@ namespace user
 //   { ASSERT(false); }
 //   void multiple_option::MeasureItem(LPMEASUREITEMSTRUCT)
 //   { ASSERT(false); }
-//   int multiple_option::CompareItem(LPCOMPAREITEMSTRUCT)
+//   ::i32 multiple_option::CompareItem(LPCOMPAREITEMSTRUCT)
 //   { ASSERT(false); return 0; }
 //   void multiple_option::DeleteItem(LPDELETEITEMSTRUCT)
 //   { /* default to nothing */ }
@@ -777,7 +779,7 @@ namespace user
 
       //ASSERT(is_window());
 
-      //return (int)send_message( CB_INSERTSTRING, nIndex, (LPARAM)pszString);
+      //return (::i32)send_message( CB_INSERTSTRING, nIndex, (LPARAM)pszString);
 
       //auto iIndex= m_plistbox->insert_item_at(nIndex, pszString);
       //return iIndex;

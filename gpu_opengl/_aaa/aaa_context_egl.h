@@ -31,11 +31,11 @@ namespace gpu_opengl
 
 
       //void create_context() override;
-      void context::on_create_context(::gpu::device* pgpudevice, const ::gpu::enum_output& eoutput, ::windowing::window* pwindow, const ::int_size& size);
+      void context::on_create_context(::gpu::device* pgpudevice, const ::gpu::enum_output& eoutput, ::windowing::window* pwindow, const ::i32_size& size);
 
 
-      void _create_offscreen_buffer(const ::int_size& size) override;
-      void resize_offscreen_buffer(const ::int_size& size) override;
+      void _create_offscreen_buffer(const ::i32_size& size) override;
+      void resize_offscreen_buffer(const ::i32_size& size) override;
       void destroy_offscreen_buffer() override;
 
       void make_current() override;

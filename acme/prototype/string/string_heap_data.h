@@ -32,7 +32,7 @@ inline STRING & string_concatenate(STRING & strResult, const typename STRING::CH
 //    inline ::character_count storage_character_count() const;
 //
 //
-//    ///// always char count (before first [and possibly final, but not necessarily final] null terminator)
+//    ///// always ::i8 count (before first [and possibly final, but not necessarily final] null terminator)
 //    //inline ::character_count character_count() const { return (::character_count) this->m_countData; }
 //    //inline ::memsize character_count_in_bytes() const;
 //    //inline ::memsize null_terminated_character_count_in_bytes() const;

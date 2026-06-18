@@ -42,7 +42,7 @@
 
 #define TAG CLIENT_TAG("axisrdpclient")
 
-//int ca2rdp_context_new(freerdp* instance, rdpContext* context)
+//::i32 ca2rdp_context_new(freerdp* instance, rdpContext* context)
 //{
 //	context->channels = freerdp_channels_new();
 //	return 0;
@@ -101,7 +101,7 @@ BOOL ca2rdp_end_paint(rdpContext* context)
    return 1;
 }
 
-BOOL ca2rdp_get_fds(freerdp* instance, void** rfds, int* rcount, void** wfds, int* wcount)
+BOOL ca2rdp_get_fds(freerdp* instance, void** rfds, ::i32* rcount, void** wfds, ::i32* wcount)
 {
    ca2rdpInfo* ca2rdpi;
 
@@ -257,9 +257,9 @@ BOOL ca2rdp_post_connect(freerdp* instance)
    return true;
 }
 
-BOOL ca2rdp_verify_certificate(freerdp* instance, char* topic, char* issuer, char* fingerprint)
+BOOL ca2rdp_verify_certificate(freerdp* instance, char_pointer topic, char_pointer issuer, char_pointer fingerprint)
 {
-   char answer;
+   ::i8 answer;
 
    printf("Certificate details:\n");
    printf("\tSubject: %s\n", topic);
@@ -287,7 +287,7 @@ BOOL ca2rdp_verify_certificate(freerdp* instance, char* topic, char* issuer, cha
    return false;
 }
 
-static int ca2rdp_receive_channel_data(freerdp* instance, int channelId, unsigned char* data, int size, int flags, int total_size)
+static ::i32 ca2rdp_receive_channel_data(freerdp* instance, ::i32 channelId, ::u8* data, ::i32 size, ::i32 flags, ::i32 total_size)
 {
    return freerdp_channels_data(instance, channelId, data, size, flags, total_size);
 }
@@ -334,13 +334,13 @@ static void ca2rdp_free(ca2rdpInfo* ca2rdpi)
    free(ca2rdpi);
 }
 
-int ca2rdpreerdp_run(freerdp* instance)
+::i32 ca2rdpreerdp_run(freerdp* instance)
 {
-   int i;
-   int fds;
-   int max_fds;
-   int rcount;
-   int wcount;
+   ::i32 i;
+   ::i32 fds;
+   ::i32 max_fds;
+   ::i32 rcount;
+   ::i32 wcount;
    void* rfds[32];
    void* wfds[32];
    fd_set rfds_set;
@@ -387,7 +387,7 @@ int ca2rdpreerdp_run(freerdp* instance)
 
       for (i = 0; i < rcount; i++)
       {
-         fds = (int)(size_t)(rfds[i]);
+         fds = (::i32)(size_t)(rfds[i]);
 
          if (fds > max_fds)
             max_fds = fds;
@@ -462,9 +462,9 @@ void* thread_func(void* param)
 */
 
 /*
-int main(int argc, char* argv[])
+::i32 main(::i32 argc, char_pointer argv[])
 {
-	int status;
+	::i32 status;
 	pthread_t thread;
 	freerdp* instance;
 	ca2rdpContext* context;
@@ -548,7 +548,7 @@ color32_t * ca2rdp_ctx_get_primary(ca2rdp_context * pcontext)
 //#endif
 }
 
-int ca2rdp_ctx_get_bitmap_size(ca2rdp_context * pcontext)
+::i32 ca2rdp_ctx_get_bitmap_size(ca2rdp_context * pcontext)
 {
    if(pcontext->gdi == nullptr)
       return 0;

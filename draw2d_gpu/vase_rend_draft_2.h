@@ -10,7 +10,7 @@
 #ifndef VASE_REN_DRAFT_H
 #define VASE_REN_DRAFT_H
 #include <math.h>
-static inline double GET_ABS(double x) {return x>0?x:-x;}
+static inline ::f64 GET_ABS(::f64 x) {return x>0?x:-x;}
 /*
  * this implementation uses vertex array (opengl 1.1)
  *   choose only 1 from vase_rend_draft_1.h and vase_rend_draft_2.h
@@ -70,15 +70,15 @@ static inline double GET_ABS(double x) {return x>0?x:-x;}
 	//other drawing code...
   glPopMatrix();
 */
-void line( double x1, double y1, double x2, double y2, //coordinates of the line
-	float w,			//width/thickness of the line in pixel
-	float Cr, float Cg, float Cb,	//rgb color components
-	float Br, float Bg, float Bb,	//color of background when alphablend=false,
+void line( ::f64 x1, ::f64 y1, ::f64 x2, ::f64 y2, //coordinates of the line
+	::f32 w,			//width/thickness of the line in pixel
+	::f32 Cr, ::f32 Cg, ::f32 Cb,	//rgb color components
+	::f32 Br, ::f32 Bg, ::f32 Bb,	//color of background when alphablend=false,
 					//  Br=alpha of color when alphablend=true
 	bool alphablend)		//use alpha blend or not
 {
-	double t; double R; double f=w-static_cast<int>(w);
-	float A;
+	::f64 t; ::f64 R; ::f64 f=w-static_cast<::i32>(w);
+	::f32 A;
 	
 	if ( alphablend)
 		A=Br;
@@ -109,18 +109,18 @@ void line( double x1, double y1, double x2, double y2, //coordinates of the line
 	} else if ( w>=5.0 && w<6.0){
 		t=1.9+f*0.6; R=1.08;
 	} else if ( w>=6.0){
-		double ff=w-6.0;
+		::f64 ff=w-6.0;
 		t=2.5+ff*0.50; R=1.08;
 	}
 	//printf( "w=%f, f=%f, C=%.4f\n", w,f,C);
 	
 	//determine angle of the line to horizontal
-	double tx=0,ty=0; //aura thinkness of a line
-	double Rx=0,Ry=0; //fading edge of a line
-	double cx=0,cy=0; //cap of a line
-	double ALW=0.01;
-	double Δx=x2-x1;
-	double Δy=y2-y1;
+	::f64 tx=0,ty=0; //aura thinkness of a line
+	::f64 Rx=0,Ry=0; //fading edge of a line
+	::f64 cx=0,cy=0; //cap of a line
+	::f64 ALW=0.01;
+	::f64 Δx=x2-x1;
+	::f64 Δy=y2-y1;
 	if ( GET_ABS(Δx) < ALW) {
 		//vertical
 		tx=t; ty=0;
@@ -137,7 +137,7 @@ void line( double x1, double y1, double x2, double y2, //coordinates of the line
 		}
 	} else {
 		if ( w < 3) { //approximate to make things even faster
-			double m=Δy/Δx;
+			::f64 m=Δy/Δx;
 			//and calculate tx,ty,Rx,Ry
 			if ( m>-0.4142 && m<=0.4142) {
 				// -22.5< angle <= 22.5, approximate to 0 (degree)
@@ -162,7 +162,7 @@ void line( double x1, double y1, double x2, double y2, //coordinates of the line
 		} else { //calculate to exact
 			Δx=y1-y2;
 			Δy=x2-x1;
-			double L=sqrt(Δx*Δx+Δy*Δy);
+			::f64 L=sqrt(Δx*Δx+Δy*Δy);
 			Δx/=L;
 			Δy/=L;
 			cx=-Δy; cy=Δx;
@@ -175,7 +175,7 @@ void line( double x1, double y1, double x2, double y2, //coordinates of the line
 	x2-=cx*0.5; y2-=cy*0.5;
 	
 	//draw the line by triangle strip
-	float line_vertex[]=
+	::f32 line_vertex[]=
 	{
 		x1-tx-Rx-cx, y1-ty-Ry-cy, //fading edge1
 		x2-tx-Rx+cx, y2-ty-Ry+cy,
@@ -190,7 +190,7 @@ void line( double x1, double y1, double x2, double y2, //coordinates of the line
 	glVertexPointer(2, GL_FLOAT, 0, line_vertex);
 	
 	if ( !alphablend) {
-		float line_color[]=
+		::f32 line_color[]=
 		{
 			Br,Bg,Bb,			
 			Br,Bg,Bb,
@@ -203,7 +203,7 @@ void line( double x1, double y1, double x2, double y2, //coordinates of the line
 		};
 		glColorPointer(3, GL_FLOAT, 0, line_color);
 	} else {
-		float line_color[]=
+		::f32 line_color[]=
 		{
 			Cr,Cg,Cb,0,
 			Cr,Cg,Cb,0,
@@ -224,7 +224,7 @@ void line( double x1, double y1, double x2, double y2, //coordinates of the line
 		//do not draw cap
 	} else {
 		//draw cap
-		float line_vertex[]=
+		::f32 line_vertex[]=
 		{
 			x1-tx-Rx-cx, y1-ty-Ry-cy, //cap1
 			x1-tx-Rx, y1-ty-Ry,
@@ -243,7 +243,7 @@ void line( double x1, double y1, double x2, double y2, //coordinates of the line
 		glVertexPointer(2, GL_FLOAT, 0, line_vertex);
 				
 		if ( !alphablend) {
-			float line_color[]=
+			::f32 line_color[]=
 			{
 				Br,Bg,Bb, //cap1
 				Br,Bg,Bb,
@@ -260,7 +260,7 @@ void line( double x1, double y1, double x2, double y2, //coordinates of the line
 			};
 			glColorPointer(3, GL_FLOAT, 0, line_color);
 		} else {
-			float line_color[]=
+			::f32 line_color[]=
 			{
 				Cr,Cg,Cb, 0, //cap1
 				Cr,Cg,Cb, 0,
@@ -288,16 +288,16 @@ void line( double x1, double y1, double x2, double y2, //coordinates of the line
  * draws near-perfectly a black "hair line" of thickness 1px
  * when alphablend is false, it assumes drawing on a white surface
  * when alphablend is true, it draws with alpha */
-void hair_line( double x1, double y1, double x2, double y2, bool alphablend=0)
+void hair_line( ::f64 x1, ::f64 y1, ::f64 x2, ::f64 y2, bool alphablend=0)
 {
-	double t=0.05; double R=0.768;
-	double C=0.0;
+	::f64 t=0.05; ::f64 R=0.768;
+	::f64 C=0.0;
 
 	//determine angle of the line to horizontal
-	double tx=0,ty=0, Rx=0,Ry=0;
-	double ALW=0.01;
-	double Δx=x2-x1;
-	double Δy=y2-y1;
+	::f64 tx=0,ty=0, Rx=0,Ry=0;
+	::f64 ALW=0.01;
+	::f64 Δx=x2-x1;
+	::f64 Δy=y2-y1;
 	if ( GET_ABS(Δx) < ALW) {
 		//vertical
 		tx = 0.5; ty = 0.0;
@@ -307,7 +307,7 @@ void hair_line( double x1, double y1, double x2, double y2, bool alphablend=0)
 		tx = 0.0; ty = 0.5;
 		Rx = 0.0; Ry = 0.0;
 	} else {
-		double m=Δy/Δx;
+		::f64 m=Δy/Δx;
 		if ( m>-0.4142 && m<=0.4142) {
 			// -22.5< angle <= 22.5, approximate to 0 (degree)
 			tx=t*0.1; ty=t;
@@ -328,7 +328,7 @@ void hair_line( double x1, double y1, double x2, double y2, bool alphablend=0)
 	}
 	
 	//draw the line by triangle strip
-	float line_vertex[]=
+	::f32 line_vertex[]=
 	{
 		x1-tx-Rx, y1-ty-Ry,	//fading edge1
 		x2-tx-Rx, y2-ty-Ry,
@@ -342,7 +342,7 @@ void hair_line( double x1, double y1, double x2, double y2, bool alphablend=0)
 	glVertexPointer(2, GL_FLOAT, 0, line_vertex);
 	
 	if ( !alphablend) {
-		float line_color[]=
+		::f32 line_color[]=
 		{	1,1,1,
 			1,1,1,
 			0,0,0,
@@ -354,7 +354,7 @@ void hair_line( double x1, double y1, double x2, double y2, bool alphablend=0)
 		};
 		glColorPointer(3, GL_FLOAT, 0, line_color);
 	} else {
-		float line_color[]=
+		::f32 line_color[]=
 		{	0,0,0,0,
 			0,0,0,0,
 			0,0,0,1,
@@ -371,18 +371,18 @@ void hair_line( double x1, double y1, double x2, double y2, bool alphablend=0)
 }
 
 /*as a fall back to line()*/
-void line_raw( double x1, double y1, double x2, double y2,
-	double w,
-	double Cr, double Cg, double Cb,
-	double,double,double, bool)
+void line_raw( ::f64 x1, ::f64 y1, ::f64 x2, ::f64 y2,
+	::f64 w,
+	::f64 Cr, ::f64 Cg, ::f64 Cb,
+	::f64,::f64,::f64, bool)
 {
 	glLineWidth(w);
-	float line_vertex[]=
+	::f32 line_vertex[]=
 	{
 		x1,y1,
 		x2,y2
 	};
-	float line_color[]=
+	::f32 line_color[]=
 	{
 		Cr,Cg,Cb,
 		Cr,Cg,Cb

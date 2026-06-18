@@ -27,7 +27,7 @@ namespace user
 
 #ifdef _DEBUG
 
-   long long style_base::increment_reference_count()
+   ::i64 style_base::increment_reference_count()
    {
 
       return ::manager::increment_reference_count();
@@ -35,7 +35,7 @@ namespace user
    }
 
 
-   long long style_base::decrement_reference_count()
+   ::i64 style_base::decrement_reference_count()
    {
 
       return ::manager::decrement_reference_count();
@@ -192,7 +192,7 @@ namespace user
    }
 
 
-   bool style_base::draw_check(::user::interaction * pinteraction, ::enum_check echeck, const ::int_rectangle & rectangle, ::draw2d::graphics_pointer & pgraphics)
+   bool style_base::draw_check(::user::interaction * pinteraction, ::enum_check echeck, const ::i32_rectangle & rectangle, ::draw2d::graphics_pointer & pgraphics)
    {
 
       return false;
@@ -200,7 +200,7 @@ namespace user
    }
 
 
-   ::int_rectangle style_base::simple_ui_focus_rect_extra_margin(::user::interaction * pinteraction)
+   ::i32_rectangle style_base::simple_ui_focus_rect_extra_margin(::user::interaction * pinteraction)
    {
 
       return {};
@@ -256,7 +256,7 @@ namespace user
    }
 
 
-   ::color::color style_base::get_color(::user::interaction* pinteraction, ::enum_element eelement, ::user::enum_state estate)
+   ::color::color style_base::get_color(::user::interaction* pinteraction, const ::e_element & eelement, const ::user::e_state & estate)
    {
 
       if (::is_set(pinteraction))
@@ -283,7 +283,7 @@ namespace user
    }
 
 
-   bool style_base::get_int(::user::interaction * pinteraction, int & i, ::user::enum_int eint, ::user::enum_state estate)
+   bool style_base::get_int(::user::interaction * pinteraction, ::i32 & i, ::user::enum_int eint, const ::user::e_state & estate)
    {
 
       return false;
@@ -291,7 +291,7 @@ namespace user
    }
 
 
-   bool style_base::get_double(::user::interaction* pinteraction, double & d, ::user::enum_double edouble, ::user::enum_state estate)
+   bool style_base::get_f64(::user::interaction* pinteraction, ::f64 & d, ::user::enum_f64 ef64, const ::user::e_state & estate)
    {
 
       return false;
@@ -299,7 +299,7 @@ namespace user
    }
 
 
-   ::write_text::font_pointer style_base::get_font(::user::interaction* pinteraction, ::enum_element eelement, ::user::enum_state estate)
+   ::write_text::font_pointer style_base::get_font(::user::interaction* pinteraction, const ::e_element & eelement, const ::user::e_state & estate)
    {
 
       return {};

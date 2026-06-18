@@ -14,6 +14,7 @@
 #include "acme/prototype/geometry2d/angle.h"
 #include "apex/database/client.h"
 #include "apex/database/stream.h"
+#include "aura/graphics/graphics/context.h"
 #include "bred/gpu/binding.h"
 #include "bred/gpu/bred_approach.h"
 #include "bred/gpu/command_buffer.h"
@@ -21,7 +22,6 @@
 #include "bred/gpu/context_lock.h"
 #include "bred/gpu/cpu_buffer.h"
 #include "bred/gpu/device.h"
-#include "bred/gpu/frame.h"
 #include "bred/gpu/layer.h"
 #include "bred/gpu/renderer.h"
 #include "bred/gpu/render_target.h"
@@ -81,7 +81,7 @@ namespace graphics3d
    }
 
 
-   void engine::on_render_frame()
+   void engine::on_render_layer()
    {
 
       if (m_rectanglePlacementNew.is_empty())
@@ -90,6 +90,12 @@ namespace graphics3d
          return;
 
       }
+//
+      //auto pgraphicscontext = m_pgpucontextCompositor2->create_graphics_context();
+
+      //pgraphicscontext->defer_start_frame();
+
+      m_pgpucontextCompositor2->start_frame();
 
       _prepare_frame();
 
@@ -101,7 +107,12 @@ namespace graphics3d
       
       ::gpu::context_lock contextlock(pgpucontext);
 
-      if (auto pframe = prenderer->beginFrame())
+      //if (auto pframe = prenderer->beginFrame())
+      
+      //prenderer->start_frame(nullptr);
+
+      pgpucontext->start_layer();
+
       {
 
          //if (m_papplication->m_gpu.m_bUseSwapChainWindow)
@@ -115,9 +126,11 @@ namespace graphics3d
 
          //}
 
-         on_begin_frame();
+         //on_begin_frame();
          
-         prenderer->on_begin_render(pframe);
+         //prenderer->on_begin_render(pframe);
+
+         //prenderer->on_begin_render(nullptr);
 
          {
 
@@ -136,7 +149,7 @@ namespace graphics3d
 
             auto pgpurendertarget = prenderer->render_target();
 
-            //int iFrameIndex = pgpurendertarget->get_image_index();
+            //::i32 iFrameIndex = pgpurendertarget->get_image_index();
 
             //if (iFrameIndex < 0)
             //{
@@ -145,7 +158,7 @@ namespace graphics3d
 
             //}
 
-            //auto pcommandbuffer = pframe->m_pgpucommandbuffer;
+            //auto pcommandbuffer = pgpulayer->getCurrentCommandBuffer4();
 
             //pcommandbuffer->m_iCommandBufferFrameIndex = iFrameIndex;
 
@@ -153,9 +166,11 @@ namespace graphics3d
 
          }
 
-         prenderer->on_end_render(pframe);
+         //prenderer->on_end_render(pframe);
 
-         on_end_frame();
+         //prenderer->on_end_render(nullptr);
+
+         //on_end_frame();
 
          //if (m_papplication->m_gpu.m_bUseSwapChainWindow)
          //{
@@ -166,7 +181,16 @@ namespace graphics3d
 
          //}
 
-         prenderer->endFrame();
+         //prenderer->endFrame();
+         //prenderer->end_frame(nullptr);
+
+         pgpucontext->end_layer();
+
+         //pgraphicscontext->end_frame();
+
+         m_pgpucontextCompositor2->end_frame();
+
+         //prenderer->end_frame(nullptr);
 
       }
 
@@ -183,7 +207,7 @@ namespace graphics3d
    //   if (iGlobalUboSize > 0)
    //   {
 
-   //      pgpucontext->create_global_ubo((int)iGlobalUboSize, pgpucontext->get_gpu_renderer()->m_pgpurendertarget->get_frame_count());
+   //      pgpucontext->create_global_ubo((::i32)iGlobalUboSize, pgpucontext->get_gpu_renderer()->m_pgpurendertarget->get_frame_count());
 
    //   }
 
@@ -212,37 +236,37 @@ namespace graphics3d
    }
 
 
-   void engine::start_gpu_layer(::gpu::frame * pframe)
-   {
+   //void engine::start_gpu_layer(::gpu::layer * pgpulayer)
+   //{
 
-      //auto pcontext = gpu_context();
+   //   //auto pcontext = gpu_context();
 
-      //auto player = pcontext->m_pgpudevice->next_layer(pcontext->m_pgpurenderer);
+   //   //auto player = pcontext->m_pgpudevice->next_layer(pcontext->m_pgpurenderer);
 
-      auto player = pframe->m_pgpulayer;
+   //   auto player = pgpulayer;
 
-      //player->m_pgpuframe = pframe;
+   //   //player = pframe;
 
-      //pframe->m_pgpulayer = player;
+   //   //pgpulayer = player;
 
-      player->layer_start();
-
-
-   }
+   //   player->layer_start();
 
 
-   ::gpu::frame* engine::end_gpu_layer(::gpu::frame * pgpuframe)
-   {
+   //}
 
-      auto pcontext = gpu_context();
 
-      auto player = pcontext->m_pgpudevice->current_layer();
+   //::gpu::frame* engine::end_gpu_layer(::gpu::layer * pgpulayer)
+   //{
 
-      player->layer_end();
+   //   auto pcontext = gpu_context();
 
-      return pgpuframe;
+   //   auto player = pcontext->m_pgpudevice->current_layer();
 
-   }
+   //   player->layer_end();
+
+   //   return pgpulayer;
+
+   //}
 
 
    //floating_sequence3 engine::camera_pole_up()
@@ -331,7 +355,7 @@ namespace graphics3d
       //if (pcameraScene)
       //{
 
-      //   float aspect = m_pusergraphics3d->getAspectRatio();
+      //   ::f32 aspect = m_pusergraphics3d->getAspectRatio();
 
       //   pcameraScene->setPerspectiveProjection(::radians(50.f), aspect, 0.1f, 100.f);
 
@@ -396,7 +420,7 @@ namespace graphics3d
          // Rotation (Euler to Quaternion to Matrix)
          //;
          //;
-         //auto quaternion = float_quaternion(rotation);
+         //auto quaternion = f32_quaternion(rotation);
          auto R = rotation.as_rotation_matrix();
 
          // Translation
@@ -412,18 +436,18 @@ namespace graphics3d
 
          //return view;
       //}
-      //const float c3 = glm::cos(transformcomponent.rotation.z);
-      //const float s3 = glm::sin(transformcomponent.rotation.z);
-      //const float c2 = glm::cos(transformcomponent.rotation.x);
-      //const float s2 = glm::sin(transformcomponent.rotation.x);
-      //const float c1 = glm::cos(transformcomponent.rotation.y);
-      //const float s1 = glm::sin(transformcomponent.rotation.y);
-      //float scalex = transformcomponent.scale.x;
-      //float scaley = transformcomponent.scale.y;
-      //float scalez = m_fYScale * transformcomponent.scale.z;
-      //float translationx = transformcomponent.translation.x;
-      //float translationy = transformcomponent.translation.y;
-      //float translationz = transformcomponent.translation.z;
+      //const ::f32 c3 = glm::cos(transformcomponent.rotation.z);
+      //const ::f32 s3 = glm::sin(transformcomponent.rotation.z);
+      //const ::f32 c2 = glm::cos(transformcomponent.rotation.x);
+      //const ::f32 s2 = glm::sin(transformcomponent.rotation.x);
+      //const ::f32 c1 = glm::cos(transformcomponent.rotation.y);
+      //const ::f32 s1 = glm::sin(transformcomponent.rotation.y);
+      //::f32 scalex = transformcomponent.scale.x;
+      //::f32 scaley = transformcomponent.scale.y;
+      //::f32 scalez = m_fYScale * transformcomponent.scale.z;
+      //::f32 translationx = transformcomponent.translation.x;
+      //::f32 translationy = transformcomponent.translation.y;
+      //::f32 translationz = transformcomponent.translation.z;
       //return floating_matrix4{
       //   {
       //      scalex * (c1 * c3 + s1 * s2 * s3),
@@ -540,7 +564,7 @@ namespace graphics3d
 
                   }
 
-                  _do_frame_step();
+                  draw_layer();
 
                }
                catch (...)
@@ -598,7 +622,7 @@ namespace graphics3d
    }
 
 
-   void engine::defer_start(::user::graphics3d* pusergraphics3d, const ::int_rectangle& rectanglePlacement)
+   void engine::defer_start(::user::graphics3d* pusergraphics3d, const ::i32_rectangle& rectanglePlacement)
    {
 
       m_pusergraphics3d = pusergraphics3d;
@@ -785,7 +809,8 @@ namespace graphics3d
    }
 
 
-   void engine::do_frame_step(::gpu::context* pcontextParam)
+   //void engine::do_frame_step(::gpu::context* pcontextParam)
+   void engine::do_draw_layer()
    {
 
       if (m_rectanglePlacementNew.is_empty())
@@ -815,7 +840,7 @@ namespace graphics3d
             try
             {
 
-               _do_frame_step();
+               draw_layer();
 
             }
             catch (...)
@@ -878,9 +903,13 @@ namespace graphics3d
       else
       {
 
-         auto pcontext = gpu_context();
+         //auto pcontext = gpu_context();
 
-         do_frame_step(pcontext);
+         //auto pgraphicscontext = create_newø<::graphics::context>();
+
+         //do_frame_step(pcontext);
+
+         do_draw_layer();
 
          on_after_done_frame_step(pgraphics);
 
@@ -974,12 +1003,12 @@ namespace graphics3d
    }
 
 
-   void engine::_do_frame_step()
+   void engine::draw_layer()
    {
 
       auto newTime = std::chrono::high_resolution_clock::now();
 
-      float frameTime = std::chrono::duration<float, std::chrono::seconds::period>(newTime - m_stdtimepoint).count();
+      ::f32 frameTime = std::chrono::duration<::f32, std::chrono::seconds::period>(newTime - m_stdtimepoint).count();
 
       m_stdtimepoint = newTime;
 
@@ -990,7 +1019,7 @@ namespace graphics3d
 
          on_update_frame();
 
-         on_render_frame();
+         on_render_layer();
 
       }
 
@@ -1039,7 +1068,7 @@ namespace graphics3d
    }
 
 
-   void engine::defer_update_engine(const ::int_rectangle &rectanglePlacement)
+   void engine::defer_update_engine(const ::i32_rectangle &rectanglePlacement)
    {
 
       //if (!m_prenderer)
@@ -1114,7 +1143,7 @@ namespace graphics3d
    }
 
 
-   void engine::on_layout(const ::int_rectangle& rectanglePlacement)
+   void engine::on_layout(const ::i32_rectangle& rectanglePlacement)
    {
 
       m_rectanglePlacementNew = rectanglePlacement;
@@ -1191,7 +1220,7 @@ namespace graphics3d
    }
 
 
-   void engine::on_mouse_move(float x, float y)
+   void engine::on_mouse_move(::f32 x, ::f32 y)
    {
 
 
@@ -1240,7 +1269,7 @@ namespace graphics3d
    // }
 
    
-   //floating_matrix4 engine::ortho(float left, float right, float bottom, float top, float zNear, float zFar)
+   //floating_matrix4 engine::ortho(::f32 left, ::f32 right, ::f32 bottom, ::f32 top, ::f32 zNear, ::f32 zFar)
    //{
 
    //   throw ::interface_only();
@@ -1250,7 +1279,7 @@ namespace graphics3d
    //}
 
 
-   floating_matrix4 engine::perspective(const float_angle & angleFovY, float aspect, float zNear, float zFar)
+   floating_matrix4 engine::perspective(const f32_angle & angleFovY, ::f32 aspect, ::f32 zNear, ::f32 zFar)
    {
 
       throw ::interface_only();

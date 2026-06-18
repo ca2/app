@@ -12,7 +12,7 @@ namespace user
    drag::drag()
    {
 
-      m_ecursor = e_cursor_none;
+      m_ecursorDrag = e_cursor_none;
 
       m_bDrag = false;
 
@@ -32,7 +32,7 @@ namespace user
    }
 
 
-   void drag::drag_start(::user::mouse * pmouse, ::user::drag_client* pdragclient, ::item * pitem, const ::int_point & pointDrag)
+   void drag::drag_start(::user::mouse * pmouse, ::user::drag_client* pdragclient, ::item * pitem, const ::i32_point & pointDrag)
    {
 
 //      m_pmouse = pmouse;

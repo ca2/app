@@ -3,7 +3,7 @@
 
 
 
-inline int utf8_o(char cExtraBytes)
+inline ::i32 utf8_o(::i8 cExtraBytes)
 {
 
    switch (cExtraBytes)
@@ -27,7 +27,7 @@ inline int utf8_o(char cExtraBytes)
 }
 
 
-inline char utf8_e(unsigned char c)
+inline ::i8 utf8_e(::u8 c)
 {
 
    if (c < 192)
@@ -61,17 +61,17 @@ inline character_count wd32_to_ansi_char_len(::wd32_character wch)
    }
    else if (wch <= 0x07FF)
    {
-      // 2-unsigned char unicode
+      // 2-::u8 unicode
       return 2;
    }
    else if (wch <= 0xFFFF)
    {
-      // 3-unsigned char unicode
+      // 3-::u8 unicode
       return 3;
    }
    else if (wch <= 0x10FFFF)
    {
-      // 4-unsigned char unicode
+      // 4-::u8 unicode
       return 4;
    }
    else
@@ -153,9 +153,9 @@ inline character_count ansi_to_wd32_char(::wd32_character * output, const_char_p
 
    ::wd32_character wd32ch = 0;
 
-   unsigned char c;
-   char extraBytesToRead = utf8_e(*input);
-   int len = extraBytesToRead + 1;
+   ::u8 c;
+   ::i8 extraBytesToRead = utf8_e(*input);
+   ::i32 len = extraBytesToRead + 1;
    if (srclen < len) return -1;
    if (*input == '\0') return -1;
    switch (extraBytesToRead)
@@ -205,7 +205,7 @@ inline character_count ansi_to_wd32_char(::wd32_character * output, const_char_p
 }
 
 
-inline long long _ansi_to_wd32_char(const_char_pointer *ppsz, character_count * psrclen)
+inline ::i64 _ansi_to_wd32_char(const_char_pointer *ppsz, character_count * psrclen)
 {
 
    ::wd32_character wd32ch = 0;
@@ -292,7 +292,7 @@ inline long long _ansi_to_wd32_char(const_char_pointer *ppsz, character_count * 
 inline character_count wd32_to_wd16_char(::wd16_character * target, ::wd32_character wd32ch)
 {
 
-   const int halfShift = 10; /* used for shifting by 10 bits */
+   const ::i32 halfShift = 10; /* used for shifting by 10 bits */
    const ::wd32_character halfBase = 0x0010000UL;
    const ::wd32_character halfMask = 0x3FFUL;
 
@@ -357,7 +357,7 @@ inline character_count wd16_to_ansi_char_len(const ::wd16_character ** ppu16a, c
 }
 
 
-inline character_count wd16_to_ansi_char(char * psz, const ::wd16_character ** ppu16a, character_count * plen)
+inline character_count wd16_to_ansi_char(char_pointer psz, const ::wd16_character ** ppu16a, character_count * plen)
 {
 
    ::wd32_character wd32ch;
@@ -443,7 +443,7 @@ inline character_count wd16_to_wd32_char_len(const ::wd16_character * input, cha
 }
 
 
-inline character_count wd32_to_ansi_char(char * psz, ::wd32_character wch)
+inline character_count wd32_to_ansi_char(char_pointer psz, ::wd32_character wch)
 {
 
    if (wch <= 0)
@@ -453,31 +453,31 @@ inline character_count wd32_to_ansi_char(char * psz, ::wd32_character wch)
    else if (wch <= 0x7F)
    {
       // Plain ASCII
-      psz[0] = (char)wch;
+      psz[0] = (::i8)wch;
       return 1;
    }
    else if (wch <= 0x07FF)
    {
-      // 2-unsigned char unicode
-      psz[0] = (char)(((wch >> 6) & 0x1F) | 0xC0);
-      psz[1] = (char)(((wch >> 0) & 0x3F) | 0x80);
+      // 2-::u8 unicode
+      psz[0] = (::i8)(((wch >> 6) & 0x1F) | 0xC0);
+      psz[1] = (::i8)(((wch >> 0) & 0x3F) | 0x80);
       return 2;
    }
    else if (wch <= 0xFFFF)
    {
-      // 3-unsigned char unicode
-      psz[0] = (char)(((wch >> 12) & 0x0F) | 0xE0);
-      psz[1] = (char)(((wch >> 6) & 0x3F) | 0x80);
-      psz[2] = (char)(((wch >> 0) & 0x3F) | 0x80);
+      // 3-::u8 unicode
+      psz[0] = (::i8)(((wch >> 12) & 0x0F) | 0xE0);
+      psz[1] = (::i8)(((wch >> 6) & 0x3F) | 0x80);
+      psz[2] = (::i8)(((wch >> 0) & 0x3F) | 0x80);
       return 3;
    }
    else if (wch <= 0x10FFFF)
    {
-      // 4-unsigned char unicode
-      psz[0] = (char)(((wch >> 18) & 0x07) | 0xF0);
-      psz[1] = (char)(((wch >> 12) & 0x3F) | 0x80);
-      psz[2] = (char)(((wch >> 6) & 0x3F) | 0x80);
-      psz[3] = (char)(((wch >> 0) & 0x3F) | 0x80);
+      // 4-::u8 unicode
+      psz[0] = (::i8)(((wch >> 18) & 0x07) | 0xF0);
+      psz[1] = (::i8)(((wch >> 12) & 0x3F) | 0x80);
+      psz[2] = (::i8)(((wch >> 6) & 0x3F) | 0x80);
+      psz[3] = (::i8)(((wch >> 0) & 0x3F) | 0x80);
       return 4;
    }
    else
@@ -498,8 +498,8 @@ inline character_count utf8_to_unichar(::wd16_character * pwsz, const_char_point
 
 inline character_count unichar_to_utf8_len(const ::wd16_character * pwsz) { return wd16_to_ansi_len(pwsz, string_safe_length(pwsz)); }
 inline character_count unichar_to_utf8_len(const ::wd16_character * pwsz, character_count srclen) { return wd16_to_ansi_len(pwsz, srclen); }
-inline character_count unichar_to_utf8(char * psz, const ::wd16_character * pwsz) { return wd16_to_ansi(psz, pwsz, string_safe_length(pwsz)); }
-inline character_count unichar_to_utf8(char * psz, const ::wd16_character * pwsz, character_count srclen) { return wd16_to_ansi(psz, pwsz, srclen); }
+inline character_count unichar_to_utf8(char_pointer psz, const ::wd16_character * pwsz) { return wd16_to_ansi(psz, pwsz, string_safe_length(pwsz)); }
+inline character_count unichar_to_utf8(char_pointer psz, const ::wd16_character * pwsz, character_count srclen) { return wd16_to_ansi(psz, pwsz, srclen); }
 
 
 #else
@@ -510,7 +510,7 @@ inline character_count utf8_to_unichar(::wd32_character * pwsz, const_char_point
 
 
 inline character_count unichar_to_utf8_len(const ::wd32_character * pwsz, character_count srclen) { return wd32_to_ansi_len(pwsz, srclen); }
-inline character_count unichar_to_utf8(char * psz, const ::wd32_character * pwsz, character_count srclen) { return wd32_to_ansi(psz, pwsz, srclen); }
+inline character_count unichar_to_utf8(char_pointer psz, const ::wd32_character * pwsz, character_count srclen) { return wd32_to_ansi(psz, pwsz, srclen); }
 
 
 #endif

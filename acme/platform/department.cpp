@@ -33,7 +33,7 @@ namespace platform
    }
 
 
-   void department::call_member(long long iId)
+   void department::call_member(::i64 iId)
    {
 
       switch (iId)

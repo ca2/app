@@ -28,12 +28,12 @@
       virtual ::file::path get_module_path(HMODULE hmodule);
 #endif
 
-      virtual bool get_pid_by_path(const ::scoped_string & scopedstrName, unsigned int & dwPid);
-      virtual bool get_pid_by_title(const ::scoped_string & scopedstrName, unsigned int & dwPid);
-      virtual void get_all_processes(unsigned_int_array & dwa);
-      virtual ::file::path get_process_path(unsigned int dwPid);
+      virtual bool get_pid_by_path(const ::scoped_string & scopedstrName, ::u32 & dwPid);
+      virtual bool get_pid_by_title(const ::scoped_string & scopedstrName, ::u32 & dwPid);
+      virtual void get_all_processes(u32_array & dwa);
+      virtual ::file::path get_process_path(::u32 dwPid);
 
-      virtual int get_pid();
+      virtual ::i32 get_pid();
 
       virtual ::payload connection_settings_get_auto_detect();
       virtual ::payload connection_settings_get_auto_config_url();
@@ -78,7 +78,7 @@
       virtual bool stop_service(const ::scoped_string & scopedstrServiceName);
 
 #ifdef WINDOWS
-      virtual DECLSPEC_NO_RETURN void raise_exception(unsigned int dwExceptionCode, unsigned int dwExceptionFlags = EXCEPTION_NONCONTINUABLE);
+      virtual DECLSPEC_NO_RETURN void raise_exception(::u32 dwExceptionCode, ::u32 dwExceptionFlags = EXCEPTION_NONCONTINUABLE);
 #endif
 
       virtual bool is_remote_session();
@@ -129,7 +129,7 @@
       virtual bool browse_file_or_folder(::user::interaction* pinteraction, ::property_set & set);
 
 
-      virtual void list_process(::file::path_array & patha, unsigned_int_array & uaPid);
+      virtual void list_process(::file::path_array & patha, u32_array & uaPid);
 
 
       ::file::path_array list_process_path();

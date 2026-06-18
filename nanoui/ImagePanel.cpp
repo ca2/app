@@ -13,6 +13,7 @@
 #include "ImagePanel.h"
 #include "VScrollPanel.h"
 #include "Screen.h"
+#include "acme/constant/user_key.h"
 #include "acme/platform/application.h"
 #include "aura/graphics/image/context.h"
 #include "aura/user/user/interaction.h"
@@ -28,7 +29,7 @@ namespace nanoui
 
 
 
-   void CLASS_DECL_NANOUI load_image_directory(::nano2d::context  * pcontext, ::array<::pair<int, ::string>> & images, const ::scoped_string & path);
+   void CLASS_DECL_NANOUI load_image_directory(::nano2d::context  * pcontext, ::array<::pair<::i32, ::string>> & images, const ::scoped_string & path);
 
 
    ImagePanel::ImagePanel(Widget * parent)
@@ -39,33 +40,33 @@ namespace nanoui
    }
 
 
-   int_size ImagePanel::grid_size() const
+   i32_size ImagePanel::grid_size() const
    {
-      int n_cols = 1 + ::maximum(0,
-         (int)((m_size.cx - 2 * m_iMargin - m_iThumbSize) /
-            (float)(m_iThumbSize + m_iSpacing)));
-      int n_rows = ((int)m_images.size() + n_cols - 1) / n_cols;
-      return int_sequence2(n_cols, n_rows);
+      ::i32 n_cols = 1 + ::maximum(0,
+         (::i32)((m_size.cx - 2 * m_iMargin - m_iThumbSize) /
+            (::f32)(m_iThumbSize + m_iSpacing)));
+      ::i32 n_rows = ((::i32)m_images.size() + n_cols - 1) / n_cols;
+      return i32_sequence2(n_cols, n_rows);
    }
 
 
-   int ImagePanel::index_for_position(const int_point & p) const
+   ::i32 ImagePanel::index_for_position(const i32_point & point) const
    {
 
       //auto pointClient = p - m_pos;
 
-      auto pointClient = p - int_size(m_iMargin, m_iMargin);
+      auto pointClient = point - i32_size(m_iMargin, m_iMargin);
 
-      float_point cursorrate = pointClient / (float)(m_iThumbSize + m_iSpacing);
+      ::f32_point cursorrate = pointClient / (::f32)(m_iThumbSize + m_iSpacing);
 
-      float icon_region = m_iThumbSize / (float)(m_iThumbSize + m_iSpacing);
+      ::f32 icon_region = m_iThumbSize / (::f32)(m_iThumbSize + m_iSpacing);
 
       bool over_image =
          fmodf(cursorrate.x, 1.f) < icon_region &&
          fmodf(cursorrate.y, 1.f) < icon_region;
 
 
-      ::int_point gridindex(cursorrate);
+      ::i32_point gridindex(cursorrate);
 
       auto gridsize = grid_size();
 
@@ -81,10 +82,10 @@ namespace nanoui
    }
 
 
-   bool ImagePanel::mouse_motion_event(const int_point & p, const int_size & /* rel */, bool bDown, const ::user::e_key & /* modifiers */)
+   bool ImagePanel::mouse_motion_event(const i32_point &point)
    {
 
-      auto iIndex = index_for_position(p);
+      auto iIndex = index_for_position(point);
 
       if (iIndex != m_iMouseIndex)
       {
@@ -103,12 +104,18 @@ namespace nanoui
    }
 
 
-   bool ImagePanel::mouse_button_event(const int_point & p, ::user::e_mouse emouse, bool down, bool bDoubleClick, const ::user::e_key & /* modifiers */)
+   bool ImagePanel::mouse_button_event(const i32_point & point, ::user::e_key euserkeyMouseButton, bool bDown, bool bDoubleClick)
    {
 
-      ::collection::index iIndex = index_for_position(p);
+      if (!m_bEnabled || euserkeyMouseButton != ::user::e_key_left_button)
+      {
 
-      if (iIndex >= 0 && iIndex < (int)m_images.size() && m_callback && down)
+         return false;
+      }
+
+      ::collection::index iIndex = index_for_position(point);
+
+      if (iIndex >= 0 && iIndex < (::i32)m_images.size() && m_callback && bDown)
       {
 
          m_callback(iIndex);
@@ -140,14 +147,14 @@ namespace nanoui
    }
 
 
-   int_size ImagePanel::preferred_size(::nano2d::context  * pcontext, bool bRecalcTextSize)
+   i32_size ImagePanel::preferred_size(::nano2d::context  * pcontext, bool bRecalcTextSize)
    {
 
       ((ImagePanel *)this)->_defer_load_image_directory(pcontext);
 
       auto gridsize = grid_size();
 
-      return int_size(
+      return i32_size(
          gridsize.cx * m_iThumbSize + (gridsize.cx - 1) * m_iSpacing + 2 * m_iMargin,
          gridsize.cy * m_iThumbSize + (gridsize.cy - 1) * m_iSpacing + 2 * m_iMargin
       );
@@ -174,27 +181,27 @@ namespace nanoui
       for (::collection::index iImageIndex = 0; iImageIndex < m_images.size(); ++iImageIndex)
       {
 
-         int_point gridindex((int)iImageIndex % gridsize.cx, (int)iImageIndex / gridsize.cx);
+         i32_point gridindex((::i32)iImageIndex % gridsize.cx, (::i32)iImageIndex / gridsize.cx);
 
-         int_point image_top_left =
+         i32_point image_top_left =
             m_pos
-            + ::int_size(m_iMargin, m_iMargin)
+            + ::i32_size(m_iMargin, m_iMargin)
             + gridindex * (m_iThumbSize + m_iSpacing);
 
          if (pvscrollpanel)
          {
 
-            ::int_rectangle rectangleViewableImagePanel(
+            ::i32_rectangle rectangleViewableImagePanel(
                pvscrollpanel->m_pos.x,
                pvscrollpanel->m_pos.y,
                pvscrollpanel->m_pos.x + pvscrollpanel->m_size.cx,
                pvscrollpanel->m_pos.y + pvscrollpanel->m_size.cy);
 
-            ::int_rectangle rectangleImageFinalPlacement(
+            ::i32_rectangle rectangleImageFinalPlacement(
                image_top_left,
-               ::int_size(m_iThumbSize, m_iThumbSize));
+               ::i32_size(m_iThumbSize, m_iThumbSize));
 
-            rectangleImageFinalPlacement.offset_y((int)pvscrollpanel->get_scroll_offset().cy);
+            rectangleImageFinalPlacement.offset_y((::i32)pvscrollpanel->get_scroll_offset().cy);
 
             if (!rectangleViewableImagePanel.intersects(rectangleImageFinalPlacement))
             {
@@ -204,28 +211,28 @@ namespace nanoui
 
          }
 
-         int imgw, imgh;
+         ::i32 imgw, imgh;
 
          pcontext->image_size(m_images[iImageIndex].m_element1, &imgw, &imgh);
 
-         float iw, ih, ix, iy;
+         ::f32 iw, ih, ix, iy;
 
          if (imgh < imgw)
          {
-            iw = (float)m_iThumbSize;
-            ih = iw * (float)imgh / (float)imgw;
+            iw = (::f32)m_iThumbSize;
+            ih = iw * (::f32)imgh / (::f32)imgw;
             ix = 0;
             iy = -(ih - m_iThumbSize) * 0.5f;
          }
          else
          {
-            ih = (float)m_iThumbSize;
-            iw = ih * (float)imgw / (float)imgh;
+            ih = (::f32)m_iThumbSize;
+            iw = ih * (::f32)imgw / (::f32)imgh;
             ix = -(iw - m_iThumbSize) * 0.5f;
             iy = 0;
          }
 
-         float opacity = m_iMouseIndex == iImageIndex ? 1.0f : 0.7f;
+         ::f32 opacity = m_iMouseIndex == iImageIndex ? 1.0f : 0.7f;
 
          ::nano2d::paint img_paint = pcontext->image_pattern_from_index(
             image_top_left.x + ix,
@@ -237,16 +244,16 @@ namespace nanoui
 
          pcontext->begin_path();
          pcontext->rounded_rectangle(
-                                     (float)image_top_left.x, (float)image_top_left.y, (float)m_iThumbSize, (float)m_iThumbSize, 5);
+                                     (::f32)image_top_left.x, (::f32)image_top_left.y, (::f32)m_iThumbSize, (::f32)m_iThumbSize, 5);
          pcontext->fill_paint(img_paint);
          pcontext->fill();
 
          ::nano2d::paint shadow_paint =
-            pcontext->box_gradient(image_top_left.x - 1.f, (float)image_top_left.y, m_iThumbSize + 2.f, m_iThumbSize + 2.f, 5.f, 3.f,
+            pcontext->box_gradient(image_top_left.x - 1.f, (::f32)image_top_left.y, m_iThumbSize + 2.f, m_iThumbSize + 2.f, 5.f, 3.f,
                ::rgba(0, 0, 0, 128), ::rgba(0, 0, 0, 0));
          pcontext->begin_path();
          pcontext->rectangle(image_top_left.x - 5.f, image_top_left.y - 5.f, m_iThumbSize + 10.f, m_iThumbSize + 10.f);
-         pcontext->rounded_rectangle((float)image_top_left.x, (float)image_top_left.y, (float)m_iThumbSize, (float)m_iThumbSize, 6.f);
+         pcontext->rounded_rectangle((::f32)image_top_left.x, (::f32)image_top_left.y, (::f32)m_iThumbSize, (::f32)m_iThumbSize, 6.f);
          pcontext->path_winding(::nano2d::e_solidity_hole);
          pcontext->fill_paint(shadow_paint);
          pcontext->fill();

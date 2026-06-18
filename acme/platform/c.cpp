@@ -7,7 +7,7 @@ namespace c
 {
 
 
-//   CLASS_DECL_ACME char * strdup(const_char_pointer psz)
+//   CLASS_DECL_ACME char_pointer strdup(const_char_pointer psz)
 //   {
 //
 //      return ::strdup(scopedstr);
@@ -15,7 +15,7 @@ namespace c
 //   }
 
 
-   CLASS_DECL_ACME char* strdup2(const_char_pointer psz1, const_char_pointer psz2)
+   CLASS_DECL_ACME char_pointer strdup2(const_char_pointer psz1, const_char_pointer psz2)
    {
 
       auto len1 = string_safe_length(psz1);
@@ -24,7 +24,7 @@ namespace c
 
       auto len = len1 + len2;
 
-      auto psz = (char*) ::malloc(len + 1);
+      auto psz = (char_pointer ) ::malloc(len + 1);
 
       if (len1 > 0)
       {

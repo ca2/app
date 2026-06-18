@@ -1,10 +1,10 @@
 
 //
 //#include "acme/inline/main_arguments.h"
-////int __main(int argc, char * argv[], char * envp[]);
+////::i32 __main(::i32 argc, char_pointer argv[], char_pointer envp[]);
 //
 //
-//int main(int argc, char * argv[], char * envp[])
+//::i32 main(::i32 argc, char_pointer argv[], char_pointer envp[])
 //{
 //
 //   main_arguments mainarguments;

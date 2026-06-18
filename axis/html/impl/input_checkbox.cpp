@@ -183,11 +183,11 @@ namespace html
 
 //         ::draw2d::graphics_pointer & pgraphics = pdata->m_pcoredata->m_pgraphics;
 
-         //::int_rectangle rectangleWindow;
+         //::i32_rectangle rectangleWindow;
          //m_pcheckbox->window_rectangle(rectangleWindow);
-  //       ::int_point pointPreviousContextOrg = pgraphics->get_origin();
+  //       ::i32_point pointPreviousContextOrg = pgraphics->get_origin();
 
-    //     pgraphics->offset_origin((int) m_box.left, (int) m_box.top);
+    //     pgraphics->offset_origin((::i32) m_box.left, (::i32) m_box.top);
 
          m_pcheckbox->_000CallOnDraw(pdata->m_pcoredata->m_pgraphics);
 

@@ -6,7 +6,7 @@
 
 // erased baseclass CObject
 // erased baseclass CException
-// erased all LPCTSTR char *
+// erased all LPCTSTR char_pointer 
 // _select only defined to avoid compiler warning in WIN32
 // make it run on linux
 
@@ -49,7 +49,7 @@ namespace sockets
    {
    public:
 
-      int     m_nError;
+      ::i32     m_nError;
 
 
 
@@ -70,10 +70,10 @@ namespace sockets
       transfer_socket();
       ~transfer_socket() override;
 
-      //int  send_datagram(const_char_pointer pch, int nSize, const SOCKADDR * psa, int nSecs);
-      //int  receive_datagram(char* pch, int nSize, SOCKADDR * psa, int nSecs);
-      bool check_readability(int nSecsPatience); // const
-      bool check_writability(int nSecsPatience); // const
+      //::i32  send_datagram(const_char_pointer pch, ::i32 nSize, const SOCKADDR * psa, ::i32 nSecs);
+      //::i32  receive_datagram(char_pointer pch, ::i32 nSize, SOCKADDR * psa, ::i32 nSecs);
+      bool check_readability(::i32 nSecsPatience); // const
+      bool check_writability(::i32 nSecsPatience); // const
 
 
    };
@@ -115,18 +115,18 @@ namespace sockets
    //{
    //public:
 
-   //   enum { nSizeRecv = 1000 }; // maximum receive buffer int_size (> hdr line length)
+   //   enum { nSizeRecv = 1000 }; // maximum receive buffer i32_size (> hdr line length)
 
 
-   //   char*  m_pReadBuf; // read buffer
-   //   int    m_nReadBuf; // number of bytes in the read buffer
+   //   char_pointer m_pReadBuf; // read buffer
+   //   ::i32    m_nReadBuf; // number of bytes in the read buffer
 
 
    //   http_transfer_socket();
    //   ~http_transfer_socket();
 
-   //   int read_http_header_line(char* pch, int nSize, int nSecs);
-   //   int read_http_response(char* pch, int nSize, int nSecs);
+   //   ::i32 read_http_header_line(char_pointer pch, ::i32 nSize, ::i32 nSecs);
+   //   ::i32 read_http_response(char_pointer pch, ::i32 nSize, ::i32 nSecs);
 
 
    //};

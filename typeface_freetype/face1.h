@@ -17,7 +17,7 @@ namespace typeface_freetype
    public:
 
       
-      //unsigned int m_FaceVAO, m_FaceVBO;
+      //::u32 m_FaceVAO, m_FaceVBO;
 
 
       face();
@@ -30,7 +30,7 @@ namespace typeface_freetype
 
       void create_draw_buffers();
 
-      void create_texture(::typeface::character& ch, const unsigned char* p);
+      void create_texture(::typeface::character& ch, const ::u8* p);
 
 
    };

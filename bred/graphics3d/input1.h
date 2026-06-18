@@ -18,28 +18,28 @@ namespace graphics3d
       //KeyMappings keys{};
       bool   m_bMouseAbsolute;
 
-      double m_dMouseLastX = 0.0;
-      double m_dMouseLastY = 0.0;
-      double m_Δx = 0.;
-      double m_Δy = 0.;
+      ::f64 m_dMouseLastX = 0.0;
+      ::f64 m_dMouseLastY = 0.0;
+      ::f64 m_Δx = 0.;
+      ::f64 m_Δy = 0.;
 
       bool m_bWasLeft = false;
 
       ::graphics3d::mouse_state                 m_mousestate;
 
 
-      double   m_dCursorX;
-      double   m_dCursorY;
+      ::f64   m_dCursorX;
+      ::f64   m_dCursorY;
       bool		m_bFirstMouse;
       bool		m_bLastMouse;
 
-      float    m_fMoveSpeed{ 3.f };
-      float    m_fLookSpeed{ 1.5f };
+      ::f32    m_fMoveSpeed{ 3.f };
+      ::f32    m_fLookSpeed{ 1.5f };
 
       bool  m_b_001AbsoluteMousePosition;
-      float m_f_001UpdateLookSensitivity;  // Sensitivity factor for mouse movement
-      float _yaw;          // Camera yaw (horizontal rotation)
-      float _pitch;        // Camera pitch (vertical rotation)
+      ::f32 m_f_001UpdateLookSensitivity;  // Sensitivity factor for mouse movement
+      ::f32 _yaw;          // Camera yaw (horizontal rotation)
+      ::f32 _pitch;        // Camera pitch (vertical rotation)
       floating_sequence3 _cameraDirection; // Camera direction vector
       floating_sequence3 _cameraPosition;
 
@@ -60,23 +60,23 @@ namespace graphics3d
 
 
 
-      input(float sensitivity = 0.001f, float yaw = glm::radians(- 90.0f), float pitch = glm::radians(0.0f));
+      input(::f32 sensitivity = 0.001f, ::f32 yaw = glm::radians(- 90.0f), ::f32 pitch = glm::radians(0.0f));
 
-      //void moveInPlaneXZ(::user::graphics3d * pimpact, float dt, application_object& gameObject);
+      //void moveInPlaneXZ(::user::graphics3d * pimpact, ::f32 dt, application_object& gameObject);
 
       void prepare_mouse_input();
       void process_mouse_input();
       void process_keyboard_input();
 
 
-      void _001OnMouseMove(const ::int_point & point);
+      void _001OnMouseMove(const ::i32_point & point);
       void _001OnMouseOut();
       void _001PrepareMouseInput();
       void process_mouse_input_updateLook();
       void _001UpdateLook();
 
-      //void processMouseMovement(float xOffset, float yOffset);
-      void processKeyboardInput(float deltaTime);
+      //void processMouseMovement(::f32 xOffset, ::f32 yOffset);
+      void processKeyboardInput(::f32 deltaTime);
       //void handleMouseInput();
 
       void process_keyboard_input_updateMovement();
@@ -100,15 +100,15 @@ namespace graphics3d
       }
 
       // from MyPlace2025@V0idsEmbrace@Twitch
-      ::user::enum_key_state  get_key_state(::user::e_key ekey);
-      bool IsKeyPressed(::user::e_key ekey); // New method for released keys
-      bool IsKeyReleased(::user::e_key ekey); // New method for released keys
+      ::user::enum_key_state  get_key_state(const ::user::e_key & ekey);
+      bool IsKeyPressed(const ::user::e_key & ekey); // New method for released keys
+      bool IsKeyReleased(const ::user::e_key & ekey); // New method for released keys
       bool IsAnyKeyPressed(); // New method to check if any keys are pressed
       // End from MyPlace2025@V0idsEmbrace@Twitch
 
       //public:
-          //double lastX = 400.0;
-          //double lastY = 300.0;
+          //::f64 lastX = 400.0;
+          //::f64 lastY = 300.0;
           //bool firstMouse = true;
 
    //public:
@@ -118,8 +118,8 @@ namespace graphics3d
       // Existing functions...
       //void handleMouseInput(GLFWwindow* window);
 
-      float getX() const { return (float) m_Δx; }
-      float getY() const { return (float) m_Δy; }
+      ::f32 getX() const { return (::f32) m_Δx; }
+      ::f32 getY() const { return (::f32) m_Δy; }
 
 
    };

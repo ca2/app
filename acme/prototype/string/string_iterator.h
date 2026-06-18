@@ -25,7 +25,7 @@ public:
 
    ::wd32_character operator *();
    unicode_iterator & operator ++();
-   unicode_iterator operator ++(int);
+   unicode_iterator operator ++(::i32);
 
    template < prototype_integral INTEGRAL >
    unicode_iterator operator +(INTEGRAL i) const

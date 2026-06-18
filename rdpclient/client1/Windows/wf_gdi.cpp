@@ -42,7 +42,7 @@
 
 #define TAG CLIENT_TAG("windows.gdi")
 
-const unsigned char wf_rop2_table[] =
+const ::u8 wf_rop2_table[] =
 {
 	R2_BLACK,       /* 0 */
 	R2_NOTMERGEPEN, /* DPon */
@@ -62,7 +62,7 @@ const unsigned char wf_rop2_table[] =
 	R2_WHITE,       /* 1 */
 };
 
-BOOL wf_set_rop2(HDC hdc, int rop2)
+BOOL wf_set_rop2(HDC hdc, ::i32 rop2)
 {
 	if ((rop2 < 0x01) || (rop2 > 0x10))
 	{
@@ -87,19 +87,19 @@ void wf_glyph_free(wfBitmap* glyph)
 	wf_image_free(glyph);
 }
 
-unsigned char* wf_glyph_convert(wfContext* wfc, int width, int height, unsigned char* data)
+::u8* wf_glyph_convert(wfContext* wfc, ::i32 width, ::i32 height, ::u8* data)
 {
-	int indexx;
-	int indexy;
-	unsigned char* src;
-	unsigned char* dst;
-	unsigned char* cdata;
-	int src_bytes_per_row;
-	int dst_bytes_per_row;
+	::i32 indexx;
+	::i32 indexy;
+	::u8* src;
+	::u8* dst;
+	::u8* cdata;
+	::i32 src_bytes_per_row;
+	::i32 dst_bytes_per_row;
 
 	src_bytes_per_row = (width + 7) / 8;
 	dst_bytes_per_row = src_bytes_per_row + (src_bytes_per_row % 2);
-	cdata = (unsigned char *) malloc(dst_bytes_per_row * height);
+	cdata = (::u8 *) malloc(dst_bytes_per_row * height);
 
 	src = data;
 	for (indexy = 0; indexy < height; indexy++)
@@ -118,13 +118,13 @@ unsigned char* wf_glyph_convert(wfContext* wfc, int width, int height, unsigned 
 	return cdata;
 }
 
-//HBRUSH wf_create_brush(wfContext* wfc, rdpBrush* brush, unsigned int color, int bpp)
+//HBRUSH wf_create_brush(wfContext* wfc, rdpBrush* brush, ::u32 color, ::i32 bpp)
 //{
-//	int i;
+//	::i32 i;
 //	HBRUSH br;
 //	LOGBRUSH lbr;
-//	unsigned char* cdata;
-//	unsigned char ipattern[8];
+//	::u8* cdata;
+//	::u8 ipattern[8];
 //	HBITMAP pattern = nullptr;
 //
 //	lbr.lbStyle = brush->style;
@@ -170,9 +170,9 @@ unsigned char* wf_glyph_convert(wfContext* wfc, int width, int height, unsigned 
 //	return br;
 //}
 
-void wf_scale_rect(wfContext* wfc, ::int_rectangle* source)
+void wf_scale_rect(wfContext* wfc, ::i32_rectangle* source)
 {
-	int ww, wh, dw, dh;
+	::i32 ww, wh, dw, dh;
 
 	if (!wfc->client_width)
 		wfc->client_width = wfc->width;
@@ -205,9 +205,9 @@ void wf_scale_rect(wfContext* wfc, ::int_rectangle* source)
 	source->right -= wfc->xCurrentScroll;
 }
 
-void wf_invalidate_region(wfContext* wfc, int x, int y, int width, int height)
+void wf_invalidate_region(wfContext* wfc, ::i32 x, ::i32 y, ::i32 width, ::i32 height)
 {
-	::int_rectangle int_rectangle;
+	::i32_rectangle i32_rectangle;
 
 	wfc->update_rect.left = x + wfc->offset_x;
 	wfc->update_rect.top = y + wfc->offset_y;
@@ -231,10 +231,10 @@ void wf_update_offset(wfContext* wfc)
 	{
 		if (wfc->instance->settings->UseMultimon)
 		{
-			int x = GetSystemMetrics(SM_XVIRTUALSCREEN);
-			int y = GetSystemMetrics(SM_YVIRTUALSCREEN);
-			int w = GetSystemMetrics(SM_CXVIRTUALSCREEN);
-			int h = GetSystemMetrics(SM_CYVIRTUALSCREEN);
+			::i32 x = GetSystemMetrics(SM_XVIRTUALSCREEN);
+			::i32 y = GetSystemMetrics(SM_YVIRTUALSCREEN);
+			::i32 w = GetSystemMetrics(SM_CXVIRTUALSCREEN);
+			::i32 h = GetSystemMetrics(SM_CYVIRTUALSCREEN);
 
 			wfc->offset_x = (w - wfc->width) / 2;
 			if (wfc->offset_x < x)
@@ -266,10 +266,10 @@ void wf_resize_window(wfContext* wfc)
 	{
 		if(wfc->instance->settings->UseMultimon)
 		{
-			int x = GetSystemMetrics(SM_XVIRTUALSCREEN);
-			int y = GetSystemMetrics(SM_YVIRTUALSCREEN);
-			int w = GetSystemMetrics(SM_CXVIRTUALSCREEN);
-			int h = GetSystemMetrics(SM_CYVIRTUALSCREEN);
+			::i32 x = GetSystemMetrics(SM_XVIRTUALSCREEN);
+			::i32 y = GetSystemMetrics(SM_YVIRTUALSCREEN);
+			::i32 w = GetSystemMetrics(SM_CXVIRTUALSCREEN);
+			::i32 h = GetSystemMetrics(SM_CYVIRTUALSCREEN);
 
 			SetWindowLongPtr(wfc->hwnd, GWL_STYLE, WS_POPUP);
 			set_window_position(wfc->hwnd, HWND_TOP, x, y, w, h, SWP_FRAMECHANGED);
@@ -284,7 +284,7 @@ void wf_resize_window(wfContext* wfc)
 	{		
 		SetWindowLongPtr(wfc->hwnd, GWL_STYLE, WS_CHILD);
 
-		/* Now resize to get full canvas int_size and room for caption and borders */
+		/* Now resize to get full canvas i32_size and room for caption and borders */
 		set_window_position(wfc->hwnd, HWND_TOP, 0, 0, wfc->width, wfc->height, SWP_FRAMECHANGED);
 
 //		wf_update_canvas_diff(wfc);
@@ -308,7 +308,7 @@ void wf_resize_window(wfContext* wfc)
 		
 //		wf_update_canvas_diff(wfc);
 
-		/* Now resize to get full canvas int_size and room for caption and borders */
+		/* Now resize to get full canvas i32_size and room for caption and borders */
 		set_window_position(wfc->hwnd, HWND_TOP, wfc->client_x, wfc->client_y, wfc->client_width + wfc->diff.x, wfc->client_height + wfc->diff.y, 0 /*SWP_FRAMECHANGED*/);
 		//wf_size_scrollbars(wfc,  wfc->client_width, wfc->client_height);
 	}
@@ -326,9 +326,9 @@ void wf_toggle_fullscreen(wfContext* wfc)
 	}
 
 	if (wfc->fullscreen)
-		floatbar_show(wfc->floatbar);
+		f32bar_show(wfc->f32bar);
 	else
-		floatbar_hide(wfc->floatbar);
+		f32bar_hide(wfc->f32bar);
 
 	SetParent(wfc->hwnd, wfc->fullscreen ? nullptr : wfc->hWndParent);
 	wf_resize_window(wfc);
@@ -345,22 +345,22 @@ void wf_toggle_fullscreen(wfContext* wfc)
 //BOOL wf_gdi_bitmap_update(rdpContext* context, BITMAP_UPDATE* bitmapUpdate)
 //{
 //	HDC hdc;
-//	int status;
-//	int nXDst;
-//	int nYDst;
-//	int nXSrc;
-//	int nYSrc;
-//	int nWidth;
-//	int nHeight;
+//	::i32 status;
+//	::i32 nXDst;
+//	::i32 nYDst;
+//	::i32 nXSrc;
+//	::i32 nYSrc;
+//	::i32 nWidth;
+//	::i32 nHeight;
 //	HBITMAP dib;
-//	unsigned int index;
-//	unsigned char* pSrcData;
-//	unsigned char* pDstData;
-//	unsigned int SrcSize;
+//	::u32 index;
+//	::u8* pSrcData;
+//	::u8* pDstData;
+//	::u32 SrcSize;
 //	BOOL compressed;
-//	unsigned int SrcFormat;
-//	unsigned int bitsPerPixel;
-//	unsigned int bytesPerPixel;
+//	::u32 SrcFormat;
+//	::u32 bitsPerPixel;
+//	::u32 bytesPerPixel;
 //	BITMAP_DATA* bitmap;
 //	rdpCodecs* codecs = context->codecs;
 //	wfContext* wfc = (wfContext*) context;
@@ -391,10 +391,10 @@ void wf_toggle_fullscreen(wfContext* wfc)
 //
 //		SrcFormat = gdi_get_pixel_format(bitsPerPixel, true);
 //
-//		if (wfc->bitmap_size < (unsigned int) (nWidth * nHeight * 4))
+//		if (wfc->bitmap_size < (::u32) (nWidth * nHeight * 4))
 //		{
 //			wfc->bitmap_size = nWidth * nHeight * 4;
-//			wfc->bitmap_buffer = (unsigned char*) _aligned_realloc(wfc->bitmap_buffer, wfc->bitmap_size, 16);
+//			wfc->bitmap_buffer = (::u8*) _aligned_realloc(wfc->bitmap_buffer, wfc->bitmap_size, 16);
 //
 //			if (!wfc->bitmap_buffer)
 //				return false;
@@ -457,7 +457,7 @@ void wf_gdi_palette_update(wfContext* wfc, PALETTE_UPDATE* palette)
 //	SelectClipRgn(wfc->drawing->hdc, nullptr);
 //}
 //
-//void wf_set_clip_rgn(wfContext* wfc, int x, int y, int width, int height)
+//void wf_set_clip_rgn(wfContext* wfc, ::i32 x, ::i32 y, ::i32 width, ::i32 height)
 //{
 //	HRGN clip;
 //	clip = CreateRectRgn(x, y, x + width, y + height);
@@ -494,9 +494,9 @@ void wf_gdi_palette_update(wfContext* wfc, PALETTE_UPDATE* palette)
 //{
 //	HBRUSH brush;
 //	HBRUSH org_brush;
-//	int org_bkmode;
-//	unsigned int fgcolor;
-//	unsigned int bgcolor;
+//	::i32 org_bkmode;
+//	::u32 fgcolor;
+//	::u32 bgcolor;
 //	color32_t org_bkcolor;
 //	color32_t org_textcolor;
 //
@@ -535,9 +535,9 @@ void wf_gdi_palette_update(wfContext* wfc, PALETTE_UPDATE* palette)
 //
 //void wf_gdi_opaque_rect(wfContext* wfc, OPAQUE_RECT_ORDER* opaque_rect)
 //{
-//	::int_rectangle int_rectangle;
+//	::i32_rectangle i32_rectangle;
 //	HBRUSH brush;
-//	unsigned int brush_color;
+//	::u32 brush_color;
 //
 //	brush_color = freerdp_color_convert_var_bgr(opaque_rect->color, wfc->srcBpp, wfc->dstBpp, wfc->clrconv);
 //
@@ -555,22 +555,22 @@ void wf_gdi_palette_update(wfContext* wfc, PALETTE_UPDATE* palette)
 //
 //void wf_gdi_multi_opaque_rect(wfContext* wfc, MULTI_OPAQUE_RECT_ORDER* multi_opaque_rect)
 //{
-//	int i;
-//	::int_rectangle int_rectangle;
+//	::i32 i;
+//	::i32_rectangle i32_rectangle;
 //	HBRUSH brush;
-//	unsigned int brush_color;
-//	DELTA_RECT* int_rectangle;
+//	::u32 brush_color;
+//	DELTA_RECT* i32_rectangle;
 //
 //	brush_color = freerdp_color_convert_var_rgb(multi_opaque_rect->color, wfc->srcBpp, wfc->dstBpp, wfc->clrconv);
 //
-//	for (i = 1; i < (int) multi_opaque_rect->numRectangles + 1; i++)
+//	for (i = 1; i < (::i32) multi_opaque_rect->numRectangles + 1; i++)
 //	{
 //		rectangle = &multi_opaque_rect->rectangles[i];
 //
-//		rectangle.left = int_rectangle->left;
-//		rectangle.top = int_rectangle->top;
-//		rectangle.right = int_rectangle->left + int_rectangle->width;
-//		rectangle.bottom = int_rectangle->top + int_rectangle->height;
+//		rectangle.left = i32_rectangle->left;
+//		rectangle.top = i32_rectangle->top;
+//		rectangle.right = i32_rectangle->left + i32_rectangle->width;
+//		rectangle.bottom = i32_rectangle->top + i32_rectangle->height;
 //		brush = CreateSolidBrush(brush_color);
 //
 //		FillRect(wfc->drawing->hdc, &rectangle, brush);
@@ -586,8 +586,8 @@ void wf_gdi_palette_update(wfContext* wfc, PALETTE_UPDATE* palette)
 //{
 //	HPEN pen;
 //	HPEN org_pen;
-//	int x, y, w, h;
-//	unsigned int pen_color;
+//	::i32 x, y, w, h;
+//	::u32 pen_color;
 //
 //	pen_color = freerdp_color_convert_var_bgr(line_to->ppenColor, wfc->srcBpp, wfc->dstBpp, wfc->clrconv);
 //
@@ -613,10 +613,10 @@ void wf_gdi_palette_update(wfContext* wfc, PALETTE_UPDATE* palette)
 //
 //void wf_gdi_polyline(wfContext* wfc, POLYLINE_ORDER* polyline)
 //{
-//	int org_rop2;
+//	::i32 org_rop2;
 //	HPEN hpen;
 //	HPEN org_hpen;
-//	unsigned int pen_color;
+//	::u32 pen_color;
 //
 //	pen_color = freerdp_color_convert_var_bgr(polyline->ppenColor, wfc->srcBpp, wfc->dstBpp, wfc->clrconv);
 //
@@ -626,17 +626,17 @@ void wf_gdi_palette_update(wfContext* wfc, PALETTE_UPDATE* palette)
 //
 //	if (polyline->numDeltaEntries > 0)
 //	{
-//		::int_point  *pts;
-//		::int_point  temp;
-//		int    numPoints;
-//		int    i;
+//		::i32_point  *pts;
+//		::i32_point  temp;
+//		::i32    numPoints;
+//		::i32    i;
 //
 //		numPoints = polyline->numDeltaEntries + 1;
-//		pts = (::int_point*) malloc(sizeof(::int_point) * numPoints);
+//		pts = (::i32_point*) malloc(sizeof(::i32_point) * numPoints);
 //		pts[0].x = temp.x = polyline->xStart;
 //		pts[0].y = temp.y = polyline->yStart;
 //
-//		for (i = 0; i < (int) polyline->numDeltaEntries; i++)
+//		for (i = 0; i < (::i32) polyline->numDeltaEntries; i++)
 //		{
 //			temp.x += polyline->points[i].x;
 //			temp.y += polyline->points[i].y;
@@ -673,8 +673,8 @@ void wf_gdi_palette_update(wfContext* wfc, PALETTE_UPDATE* palette)
 //
 //void wf_gdi_surface_bits(wfContext* wfc, SURFACE_BITS_COMMAND* surface_bits_command)
 //{
-//	int i, j;
-//	int tx, ty;
+//	::i32 i, j;
+//	::i32 tx, ty;
 //	RFX_MESSAGE* message;
 //	BITMAPINFO bitmap_info;
 //
@@ -811,8 +811,8 @@ void wf_gdi_palette_update(wfContext* wfc, PALETTE_UPDATE* palette)
 //
 //void wf_update_canvas_diff(wfContext* wfc)
 //{
-//	::int_rectangle rc_client, rc_wnd;
-//	int Δx, Δy;
+//	::i32_rectangle rc_client, rc_wnd;
+//	::i32 Δx, Δy;
 //
 //	this->rectangle(wfc->hwnd, &rc_client);
 //	window_rectangle(wfc->hwnd, &rc_wnd);

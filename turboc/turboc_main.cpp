@@ -20,7 +20,7 @@ namespace turboc
    }
 
 
-   int main::run()
+   ::i32 main::run()
    {
 
       m_iReturnCode = 0;

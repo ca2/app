@@ -23,14 +23,14 @@ namespace graphics3d
 
 
       ::graphics3d::transform       m_transform;
-      long long                           m_llId;
+      ::i64                           m_llId;
       ::pointer<::graphics3d::IModel>        m_pmodel;
       ::color::color                      m_color;
       //bool m_bIsOBJ{ false };
       //      ::graphics3d::point_light_component m_pointlight;
 
       ::string m_cubemapTextureName;
-      //long long m_llId;
+      //::i64 m_llId;
       bool m_bIsSkybox = false;
 
 
@@ -45,10 +45,10 @@ namespace graphics3d
       virtual void set_model(IModel *);
 
 
-      virtual void on_update(float deltaTime);
+      virtual void on_update(::f32 deltaTime);
 
       virtual ::color::color color();
-      virtual long long getId();
+      virtual ::i64 getId();
 
    };
 

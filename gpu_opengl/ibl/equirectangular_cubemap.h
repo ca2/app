@@ -36,7 +36,7 @@ namespace gpu_opengl
          void compute_equirectangular_cubemap(::gpu::command_buffer * pgpucommandbuffer) override;
 
 
-         //unsigned int getCubemapId();
+         //::u32 getCubemapId();
 
 
       };

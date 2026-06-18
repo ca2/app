@@ -89,7 +89,7 @@ public:
     constexpr bool is_nok() const { return !this->is_ok(); }
 
 
-    explicit constexpr operator ::hash32() const { return (unsigned int) m_eenum; }
+    explicit constexpr operator ::hash32() const { return (::u32) m_eenum; }
 
 
 };
@@ -97,7 +97,7 @@ public:
 
 #define DECLARE_DOMAIN_ENUMERATION(EENUM, ENUM, EDOMAIN) \
 using EENUM = domain_enumeration<ENUM, EDOMAIN>; \
-inline constexpr ::domain_id as_domainid(const EENUM & eenum) {return {EDOMAIN, (int) eenum.m_eenum};}
+inline constexpr ::domain_id as_domainid(const EENUM & eenum) {return {EDOMAIN, (::i32) eenum.m_eenum};}
 
 
 

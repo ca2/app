@@ -31,10 +31,10 @@ namespace openssl
       virtual ~rsa();
 
 
-      virtual int public_encrypt(memory& out, const memory& in, string& strError) override;
-      virtual int private_decrypt(memory& out, const memory& in, string& strError) override;
-      virtual int public_decrypt(memory& out, const memory& in, string& strError) override;
-      virtual int private_encrypt(memory& out, const memory& in, string& strError) override;
+      virtual ::i32 public_encrypt(memory& out, const memory& in, string& strError) override;
+      virtual ::i32 private_decrypt(memory& out, const memory& in, string& strError) override;
+      virtual ::i32 public_decrypt(memory& out, const memory& in, string& strError) override;
+      virtual ::i32 private_encrypt(memory& out, const memory& in, string& strError) override;
 
 
    };

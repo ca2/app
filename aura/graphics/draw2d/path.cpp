@@ -15,22 +15,22 @@
 //#include "acme/prototype/geometry2d/_defer_shape.h"
 
 
-double_point arc_point(double dAngle, double_size sizeRadius)
+::f64_point arc_point(::f64 dAngle, ::f64_size sizeRadius)
 {
 
-   double ab = sizeRadius.cx * sizeRadius.cy;
+   ::f64 ab = sizeRadius.cx * sizeRadius.cy;
 
-   double_point p;
+   ::f64_point p;
 
-   double cosAngle = cos(dAngle);
+   ::f64 cosAngle = cos(dAngle);
 
-   double sinAngle = sin(dAngle);
+   ::f64 sinAngle = sin(dAngle);
 
-   double m = cosAngle * sizeRadius.cy;
+   ::f64 m = cosAngle * sizeRadius.cy;
 
-   double n = sinAngle * sizeRadius.cx;
+   ::f64 n = sinAngle * sizeRadius.cx;
 
-   double q = sqrt(m * m + n * n);
+   ::f64 q = sqrt(m * m + n * n);
 
    //if (dAngle > g_dPi / 2.0 && dAngle < g_dPi * 3.0 / 2.0)
    //{
@@ -91,7 +91,7 @@ namespace draw2d
    }
 
 
-   bool path::get_bounding_box(::double_rectangle & rectangle) const
+   bool path::get_bounding_box(::f64_rectangle & rectangle) const
    {
 
       if (m_itema.is_empty())
@@ -101,7 +101,7 @@ namespace draw2d
 
       }
 
-      double_rectangle r;
+      ::f64_rectangle r;
 
       //bool bGotAny = false;
 
@@ -155,7 +155,7 @@ namespace draw2d
    }
 
 
-   double_point path::get_current_point()
+   ::f64_point path::get_current_point()
    {
 
       if(!m_bHasPoint)
@@ -185,7 +185,7 @@ namespace draw2d
    }
 
 
-   bool path::set_current_point(const ::double_point & point)
+   bool path::set_current_point(const ::f64_point & point)
    {
 
       m_pointEnd = point;
@@ -197,7 +197,7 @@ namespace draw2d
    }
 
 
-   bool path::add_rectangle(const ::double_rectangle& rectangle, const ::double_angle & angleRotationCenter)
+   bool path::add_rectangle(const ::f64_rectangle& rectangle, const ::f64_angle & angleRotationCenter)
    {
 
       if (angleRotationCenter == 0)
@@ -216,7 +216,7 @@ namespace draw2d
    }
 
 
-   bool path::add_rectangle(const ::double_rectangle& rectangle)
+   bool path::add_rectangle(const ::f64_rectangle& rectangle)
    {
 
       //if (!m_pshapea)
@@ -237,7 +237,7 @@ namespace draw2d
    }
 
 
-   bool path::add_ellipse(const ::double_ellipse & ellipse)
+   bool path::add_ellipse(const ::f64_ellipse & ellipse)
    {
 
       //if (!m_pshapea)
@@ -260,10 +260,10 @@ namespace draw2d
    }
 
 
-   bool path::add_rectangle(const ::double_rectangle& rectangle, const ::double_point& point, const ::double_angle & angleRotationCenter)
+   bool path::add_rectangle(const ::f64_rectangle& rectangle, const ::f64_point& point, const ::f64_angle & angleRotationCenter)
    {
 
-      ::double_polygon polygon;
+      ::f64_polygon polygon;
 
       polygon.set_size(4);
 
@@ -288,7 +288,7 @@ namespace draw2d
 
       //}
 
-      //m_pshapea->add_shape(int_polygon);
+      //m_pshapea->add_shape(i32_polygon);
 
       auto pitem = create_newø < ::geometry2d::polygon_item >();
 
@@ -301,7 +301,7 @@ namespace draw2d
    }
 
 
-//   bool path::varc(const ::double_point & point, double h, const ::double_angle & angle)
+//   bool path::varc(const ::f64_point & point, ::f64 h, const ::f64_angle & angle)
 //   {
 //
 //      if (fabs(angle) <= 0.00001 || fabs(h) <= 0.001)
@@ -313,19 +313,19 @@ namespace draw2d
 //
 //      //pitem->m_rectangle = rectangle;
 //
-//      //auto parc = allocateø arc_double_shape< path > ();
+//      //auto parc = allocateø arc_f64_shape< path > ();
 //
 //      auto & arc = pitem->m_item;
 //
 //      auto t = 90_degrees - angle;
 //
-//      double x = point.x;
-//      double y = point.y;
+//      ::f64 x = point.x;
+//      ::f64 y = point.y;
 //      //arc.m_pointCenter.y = point.y + h/2.0;
 //      arc.left = x;
 //      arc.top = y;
-//      double b = point.y - arc.m_pointCenter.y / sin(t);
-//      double a = sqrt((b*b*x*x) / (y*y - b *b));
+//      ::f64 b = point.y - arc.m_pointCenter.y / sin(t);
+//      ::f64 a = sqrt((b*b*x*x) / (y*y - b *b));
 //
 //      arc.m_sizeRadius.cx = a;
 //      arc.m_sizeRadius.cy = b;
@@ -362,7 +362,7 @@ namespace draw2d
 //   }
 //
 //
-//   bool path::harc(const ::double_point & point, double w, const ::double_angle & angle)
+//   bool path::harc(const ::f64_point & point, ::f64 w, const ::f64_angle & angle)
 //   {
 //
 //
@@ -379,11 +379,11 @@ namespace draw2d
 //
 //      auto t = angle + 90_degrees;
 //      arc.m_pointBegin.x = point.x + w / 2.0;
-//      double a = (point.x - arc.m_pointBegin.x) / cos(t);
-//      double x = point.x - arc.m_pointBegin.x;
-//      double b = 0;
-//      //double y = b * b  *w / (4.0* tan(dAngle));
-//      double y = 0;
+//      ::f64 a = (point.x - arc.m_pointBegin.x) / cos(t);
+//      ::f64 x = point.x - arc.m_pointBegin.x;
+//      ::f64 b = 0;
+//      //::f64 y = b * b  *w / (4.0* tan(dAngle));
+//      ::f64 y = 0;
 //      b = sqrt((a*a*y*y) / (a*a-x *x));
 //
 //      arc.m_sizeRadius.cx = a;
@@ -420,7 +420,7 @@ namespace draw2d
 //   }
 
 
-   bool path::add_arc(const ::double_rectangle & rectangle, const ::double_angle & angleBeg, const ::double_angle & angleExt)
+   bool path::add_arc(const ::f64_rectangle & rectangle, const ::f64_angle & angleBeg, const ::f64_angle & angleExt)
    {
 
       if (rectangle.width() <= 0 || rectangle.height() <= 0)
@@ -532,7 +532,7 @@ namespace draw2d
    }
 
 
-   bool path::add_text_out(const ::double_point & point, const ::scoped_string & scopedstrText,::write_text::font_pointer pfont)
+   bool path::add_text_out(const ::f64_point & point, const ::scoped_string & scopedstrText,::write_text::font_pointer pfont)
    {
 
       auto pitem = create_newø < ::geometry2d::text_out_item >();
@@ -561,7 +561,7 @@ namespace draw2d
    }
 
 
-   bool path::add_draw_text(const ::scoped_string & scopedstrText, const ::double_rectangle& rectangle, const ::e_align & ealign, const ::e_draw_text & edrawtext , ::write_text::font_pointer pfont)
+   bool path::add_draw_text(const ::scoped_string & scopedstrText, const ::f64_rectangle& rectangle, const ::e_align & ealign, const ::e_draw_text & edrawtext , ::write_text::font_pointer pfont)
    {
 
       auto pitem = create_newø < ::geometry2d::draw_text_item >();
@@ -594,7 +594,7 @@ namespace draw2d
    }
 
 
-   bool path::add_line(const double_point & p1, const double_point & p2)
+   bool path::add_line(const ::f64_point & p1, const ::f64_point & p2)
    {
 
       auto pitem = create_newø < ::geometry2d::line_item >();
@@ -616,10 +616,10 @@ namespace draw2d
    }
 
 
-   bool path::add_line(const double_point & point)
+   bool path::add_line(const ::f64_point & point)
    {
 
-      //auto pline = allocateø double_line_shape < path > ();
+      //auto pline = allocateø f64_line_shape < path > ();
 
       auto pitem = create_newø < ::geometry2d::line_item >();
 
@@ -652,7 +652,7 @@ namespace draw2d
 
 
  
-   bool path::add_polygon(const ::double_point * ppoint, ::collection::count nCount)
+   bool path::add_polygon(const ::f64_point * ppoint, ::collection::count nCount)
    {
 
       auto pitem = create_newø < ::geometry2d::polygon_item >();
@@ -679,10 +679,10 @@ namespace draw2d
    }
 
 
-   bool path::add_lines(const ::double_point * ppoint, ::collection::count nCount)
+   bool path::add_lines(const ::f64_point * ppoint, ::collection::count nCount)
    {
 
-      //auto plines = allocateø lines_double_shape < path > ();
+      //auto plines = allocateø lines_f64_shape < path > ();
 
       auto pitem = create_newø < ::geometry2d::lines_item >();
 
@@ -751,18 +751,18 @@ namespace draw2d
    //
    // get_round_rect()
    //
-   // Purpose:     Defines a Rounded int_rectangle and places it in the GraphicsPath
+   // Purpose:     Defines a Rounded i32_rectangle and places it in the GraphicsPath
    //
    // Parameters:  path.m_ppath		- [out] pointer to GraphicsPath that will recieve the
    //									path data
-   //				int_rectangle			- [in]	Rect that defines the round int_rectangle boundaries
+   //				i32_rectangle			- [in]	Rect that defines the round i32_rectangle boundaries
    //				iDiameter			- [in]	diameter of the rounded corners (2*radius)
    //
    // Returns:     None
    //
    
    
-   //bool path::do_round_rect_corner(const ::double_rectangle& rectangleCorner, const ::double_rectangle& rectangleRect, int iDiameter, const ::e_border & eborder, int iCorner, bool& bOn)
+   //bool path::do_round_rect_corner(const ::f64_rectangle& rectangleCorner, const ::f64_rectangle& rectangleRect, ::i32 iDiameter, const ::e_border & eborder, ::i32 iCorner, bool& bOn)
    //{
 
    //   switch (iCorner % 4)
@@ -775,7 +775,7 @@ namespace draw2d
    //         if ((eborder & e_border_top_left) == e_border_top_left)
    //         {
 
-   //            add_arc(::int_rectangle(rectangleCorner.top_left(), ::int_size(iDiameter, iDiameter)), 180_degrees, 90_degrees);
+   //            add_arc(::i32_rectangle(rectangleCorner.top_left(), ::i32_size(iDiameter, iDiameter)), 180_degrees, 90_degrees);
 
    //            bOn = true;
 
@@ -815,7 +815,7 @@ namespace draw2d
    //         if ((eborder & e_border_top_right) == e_border_top_right)
    //         {
 
-   //            add_arc(::int_rectangle(rectangleCorner.top_right(), ::int_size(iDiameter, iDiameter)), 270_degrees, 90_degrees);
+   //            add_arc(::i32_rectangle(rectangleCorner.top_right(), ::i32_size(iDiameter, iDiameter)), 270_degrees, 90_degrees);
 
    //            bOn = true;
 
@@ -856,7 +856,7 @@ namespace draw2d
    //         if ((eborder & e_border_bottom_right) == e_border_bottom_right)
    //         {
 
-   //            add_arc(::int_rectangle(rectangleCorner.bottom_right(), ::int_size(iDiameter, iDiameter)), 0_degrees, 90_degrees);
+   //            add_arc(::i32_rectangle(rectangleCorner.bottom_right(), ::i32_size(iDiameter, iDiameter)), 0_degrees, 90_degrees);
 
    //            bOn = true;
 
@@ -895,7 +895,7 @@ namespace draw2d
    //         if ((eborder & e_border_bottom_left) == e_border_bottom_left)
    //         {
 
-   //            add_arc(::int_rectangle(rectangleCorner.bottom_left(), ::int_size(iDiameter, iDiameter)), 90_degrees, 90_degrees);
+   //            add_arc(::i32_rectangle(rectangleCorner.bottom_left(), ::i32_size(iDiameter, iDiameter)), 90_degrees, 90_degrees);
 
    //            bOn = true;
 
@@ -941,7 +941,7 @@ namespace draw2d
    //}
 
 
-   bool path::do_round_rectangle_corner(const ::double_rectangle& rectangleCorner, const ::double_rectangle& rectangleRect, double dDiameter, const ::e_border & eborder, int iCorner, bool& bOn)
+   bool path::do_round_rectangle_corner(const ::f64_rectangle& rectangleCorner, const ::f64_rectangle& rectangleRect, ::f64 dDiameter, const ::e_border & eborder, ::i32 iCorner, bool& bOn)
    {
 
       switch (iCorner % 4)
@@ -954,7 +954,7 @@ namespace draw2d
             if ((eborder & e_border_top_left) == e_border_top_left)
             {
 
-               add_arc(::double_rectangle(rectangleCorner.top_left(), ::double_size(dDiameter, dDiameter)), 180_degrees, 90_degrees);
+               add_arc(::f64_rectangle(rectangleCorner.top_left(), ::f64_size(dDiameter, dDiameter)), 180_degrees, 90_degrees);
 
                bOn = true;
 
@@ -994,7 +994,7 @@ namespace draw2d
             if ((eborder & e_border_top_right) == e_border_top_right)
             {
 
-               add_arc(::double_rectangle(rectangleCorner.top_right(), ::double_size(dDiameter, dDiameter)), 270_degrees, 90_degrees);
+               add_arc(::f64_rectangle(rectangleCorner.top_right(), ::f64_size(dDiameter, dDiameter)), 270_degrees, 90_degrees);
 
                bOn = true;
 
@@ -1035,7 +1035,7 @@ namespace draw2d
             if ((eborder & e_border_bottom_right) == e_border_bottom_right)
             {
 
-               add_arc(::double_rectangle(rectangleCorner.bottom_right(), ::double_size(dDiameter, dDiameter)), 0_degree, 90_degree);
+               add_arc(::f64_rectangle(rectangleCorner.bottom_right(), ::f64_size(dDiameter, dDiameter)), 0_degree, 90_degree);
 
                bOn = true;
 
@@ -1074,7 +1074,7 @@ namespace draw2d
             if ((eborder & e_border_bottom_left) == e_border_bottom_left)
             {
 
-               add_arc(::double_rectangle(rectangleCorner.bottom_left(), ::double_size(dDiameter, dDiameter)), 90_degrees, 90_degrees);
+               add_arc(::f64_rectangle(rectangleCorner.bottom_left(), ::f64_size(dDiameter, dDiameter)), 90_degrees, 90_degrees);
 
                bOn = true;
 
@@ -1123,10 +1123,10 @@ namespace draw2d
    }
 
 
-   //bool path::clock_corner(const ::int_rectangle& rectangleCorner, int iRadius, const ::e_border & eborder)
+   //bool path::clock_corner(const ::i32_rectangle& rectangleCorner, ::i32 iRadius, const ::e_border & eborder)
    //{
 
-   //   int iDiameter = iRadius * 2;
+   //   ::i32 iDiameter = iRadius * 2;
 
    //   if (iDiameter == 0)
    //   {
@@ -1138,16 +1138,16 @@ namespace draw2d
    //   switch (eborder)
    //   {
    //   case e_border_top_left:
-   //      add_arc(::int_rectangle(rectangleCorner.top_left(), ::int_size(iDiameter, iDiameter)), 180_degree, 90_degree);
+   //      add_arc(::i32_rectangle(rectangleCorner.top_left(), ::i32_size(iDiameter, iDiameter)), 180_degree, 90_degree);
    //      return true;
    //   case e_border_top_right:
-   //      add_arc(::int_rectangle(rectangleCorner.top_right() - ::int_size(iDiameter, 0), ::int_size(iDiameter, iDiameter)), 270_degree, 90_degree);
+   //      add_arc(::i32_rectangle(rectangleCorner.top_right() - ::i32_size(iDiameter, 0), ::i32_size(iDiameter, iDiameter)), 270_degree, 90_degree);
    //      return true;
    //   case e_border_bottom_right:
-   //      add_arc(::int_rectangle(rectangleCorner.bottom_right() - ::int_size(iDiameter, iDiameter), ::int_size(iDiameter, iDiameter)), 0_degree, 90_degree);
+   //      add_arc(::i32_rectangle(rectangleCorner.bottom_right() - ::i32_size(iDiameter, iDiameter), ::i32_size(iDiameter, iDiameter)), 0_degree, 90_degree);
    //      return true;
    //   case e_border_bottom_left:
-   //      add_arc(::int_rectangle(rectangleCorner.bottom_left() - ::int_size(0, iDiameter), ::int_size(iDiameter, iDiameter)), 90_degree, 90_degree);
+   //      add_arc(::i32_rectangle(rectangleCorner.bottom_left() - ::i32_size(0, iDiameter), ::i32_size(iDiameter, iDiameter)), 90_degree, 90_degree);
    //      return true;
    //   default:
    //      return false;
@@ -1156,10 +1156,10 @@ namespace draw2d
    //}
 
 
-   //bool path::counter_corner(const ::int_rectangle& rectangleCorner, int iRadius, const ::e_border & eborder)
+   //bool path::counter_corner(const ::i32_rectangle& rectangleCorner, ::i32 iRadius, const ::e_border & eborder)
    //{
 
-   //   int iDiameter = iRadius * 2;
+   //   ::i32 iDiameter = iRadius * 2;
 
    //   if (iDiameter == 0)
    //   {
@@ -1171,16 +1171,16 @@ namespace draw2d
    //   switch (eborder)
    //   {
    //   case e_border_top_left:
-   //      add_arc(::int_rectangle(rectangleCorner.top_left(), ::int_size(iDiameter, iDiameter)), 270_degree, -90_degree);
+   //      add_arc(::i32_rectangle(rectangleCorner.top_left(), ::i32_size(iDiameter, iDiameter)), 270_degree, -90_degree);
    //      return true;
    //   case e_border_top_right:
-   //      add_arc(::int_rectangle(rectangleCorner.top_right() - ::int_size(iDiameter, 0), ::int_size(iDiameter, iDiameter)), 0_degree, -90_degree);
+   //      add_arc(::i32_rectangle(rectangleCorner.top_right() - ::i32_size(iDiameter, 0), ::i32_size(iDiameter, iDiameter)), 0_degree, -90_degree);
    //      return true;
    //   case e_border_bottom_right:
-   //      add_arc(::int_rectangle(rectangleCorner.bottom_right() - ::int_size(iDiameter, iDiameter), ::int_size(iDiameter, iDiameter)), 90_degree, -90_degree);
+   //      add_arc(::i32_rectangle(rectangleCorner.bottom_right() - ::i32_size(iDiameter, iDiameter), ::i32_size(iDiameter, iDiameter)), 90_degree, -90_degree);
    //      return true;
    //   case e_border_bottom_left:
-   //      add_arc(::int_rectangle(rectangleCorner.bottom_left() - ::int_size(0, iDiameter), ::int_size(iDiameter, iDiameter)), 180_degree, -90_degree);
+   //      add_arc(::i32_rectangle(rectangleCorner.bottom_left() - ::i32_size(0, iDiameter), ::i32_size(iDiameter, iDiameter)), 180_degree, -90_degree);
    //      return true;
    //   default:
    //      return false;
@@ -1231,19 +1231,19 @@ namespace draw2d
    //   case e_shape_end_figure:
    //      return _set(pgraphics, e_shape_end_figure);
    //   case e_shape_arc:
-   //      return _set(pgraphics, pshape->shape < ::double_arc>());
+   //      return _set(pgraphics, pshape->shape < ::f64_arc>());
    //   //case e_shape_line:
    //   //   return  _set(pgraphics, pshape->shape < ::line>());
    //   case e_shape_line:
-   //      return  _set(pgraphics, pshape->shape < ::double_line>());
+   //      return  _set(pgraphics, pshape->shape < ::f64_line>());
    //   case e_shape_lines:
-   //      return _set(pgraphics, pshape->shape < ::double_lines>());
+   //      return _set(pgraphics, pshape->shape < ::f64_lines>());
    //   case e_shape_rectangle:
-   //      return _set(pgraphics, pshape->shape < ::double_rectangle>());
+   //      return _set(pgraphics, pshape->shape < ::f64_rectangle>());
    //   case e_shape_ellipse:
-   //      return _set(pgraphics, pshape->shape < ::double_ellipse>());
+   //      return _set(pgraphics, pshape->shape < ::f64_ellipse>());
    //   case e_shape_polygon:
-   //      return _set(pgraphics, pshape->shape < ::double_polygon>());
+   //      return _set(pgraphics, pshape->shape < ::f64_polygon>());
    //   case e_shape_draw_text:
    //      m_estatus = success;
    //      return _set(pgraphics, pshape->shape < ::write_text::draw_text>());
@@ -1311,7 +1311,7 @@ namespace draw2d
    }
 
 
-   bool path::_set(::draw2d::graphics* pgraphics, const ::double_arc & arc)
+   bool path::_set(::draw2d::graphics* pgraphics, const ::f64_arc & arc)
    {
 
       throw ::interface_only();
@@ -1331,7 +1331,7 @@ namespace draw2d
    //}
 
 
-   bool path::_set(::draw2d::graphics* pgraphics, const ::double_line & line)
+   bool path::_set(::draw2d::graphics* pgraphics, const ::f64_line & line)
    {
 
       throw ::interface_only();
@@ -1351,7 +1351,7 @@ namespace draw2d
    //}
 
 
-   bool path::_set(::draw2d::graphics* pgraphics, const::double_lines & lines)
+   bool path::_set(::draw2d::graphics* pgraphics, const::f64_lines & lines)
    {
 
       throw ::interface_only();
@@ -1361,7 +1361,7 @@ namespace draw2d
    }
 
 
-   //bool path::_set(::draw2d::graphics* pgraphics, const ::int_rectangle & rectangle)
+   //bool path::_set(::draw2d::graphics* pgraphics, const ::i32_rectangle & rectangle)
    //{
 
    //   throw ::interface_only();
@@ -1371,7 +1371,7 @@ namespace draw2d
    //}
 
 
-   bool path::_set(::draw2d::graphics * pgraphics, const ::double_rectangle & rectangle)
+   bool path::_set(::draw2d::graphics * pgraphics, const ::f64_rectangle & rectangle)
    {
 
       throw ::interface_only();
@@ -1381,7 +1381,7 @@ namespace draw2d
    }
 
 
-   bool path::_set(::draw2d::graphics * pgraphics, const ::double_ellipse & ellipse)
+   bool path::_set(::draw2d::graphics * pgraphics, const ::f64_ellipse & ellipse)
    {
 
       throw ::interface_only();
@@ -1391,7 +1391,7 @@ namespace draw2d
    }
    
 
-   //bool path::_set(::draw2d::graphics* pgraphics, const ::int_polygon& int_polygon)
+   //bool path::_set(::draw2d::graphics* pgraphics, const ::i32_polygon& i32_polygon)
    //{
 
    //   throw ::interface_only();
@@ -1401,7 +1401,7 @@ namespace draw2d
    //}
 
 
-   bool path::_set(::draw2d::graphics* pgraphics, const ::double_polygon& polygon)
+   bool path::_set(::draw2d::graphics* pgraphics, const ::f64_polygon& polygon)
    {
 
       throw ::interface_only();
@@ -1411,7 +1411,7 @@ namespace draw2d
    }
 
 
-   bool path::_set(::draw2d::graphics * pgraphics, const ::double_poly_polygon & polypolygon)
+   bool path::_set(::draw2d::graphics * pgraphics, const ::f64_poly_polygon & polypolygon)
    {
 
       throw ::interface_only();
@@ -1441,24 +1441,24 @@ namespace draw2d
    }
 
 
-   bool path::clock_corner(const ::double_rectangle& rectangleCorner, double dRadius, const ::e_border & eborder)
+   bool path::clock_corner(const ::f64_rectangle& rectangleCorner, ::f64 dRadius, const ::e_border & eborder)
    {
 
-      double dDiameter = dRadius * 2.0;
+      ::f64 dDiameter = dRadius * 2.0;
 
-      switch (eborder)
+      switch (eborder.m_cflag)
       {
       case e_border_top_left:
-         add_arc(::double_rectangle(rectangleCorner.top_left(), ::double_size(dDiameter, dDiameter)), 180_degree, 90_degree);
+         add_arc(::f64_rectangle(rectangleCorner.top_left(), ::f64_size(dDiameter, dDiameter)), 180_degree, 90_degree);
          return true;
       case e_border_top_right:
-         add_arc(::double_rectangle(rectangleCorner.top_right() - ::double_size(dDiameter, 0), ::double_size(dDiameter, dDiameter)), 270_degree, 90_degree);
+         add_arc(::f64_rectangle(rectangleCorner.top_right() - ::f64_size(dDiameter, 0), ::f64_size(dDiameter, dDiameter)), 270_degree, 90_degree);
          return true;
       case e_border_bottom_right:
-         add_arc(::double_rectangle(rectangleCorner.bottom_right() - ::double_size(dDiameter, dDiameter), ::double_size(dDiameter, dDiameter)), 0_degree, 90_degree);
+         add_arc(::f64_rectangle(rectangleCorner.bottom_right() - ::f64_size(dDiameter, dDiameter), ::f64_size(dDiameter, dDiameter)), 0_degree, 90_degree);
          return true;
       case e_border_bottom_left:
-         add_arc(::double_rectangle(rectangleCorner.bottom_left() - ::double_size(0, dDiameter), ::double_size(dDiameter, dDiameter)), 90_degree, 90_degree);
+         add_arc(::f64_rectangle(rectangleCorner.bottom_left() - ::f64_size(0, dDiameter), ::f64_size(dDiameter, dDiameter)), 90_degree, 90_degree);
          return true;
       default:
          return false;
@@ -1467,24 +1467,24 @@ namespace draw2d
    }
 
 
-   bool path::counter_corner(const ::double_rectangle& rectangleCorner, double dRadius, const ::e_border & eborder)
+   bool path::counter_corner(const ::f64_rectangle& rectangleCorner, ::f64 dRadius, const ::e_border & eborder)
    {
 
-      double dDiameter = dRadius * 2.0;
+      ::f64 dDiameter = dRadius * 2.0;
 
-      switch (eborder)
+      switch (eborder.m_cflag)
       {
       case e_border_top_left:
-         add_arc(::double_rectangle(rectangleCorner.top_left(), ::double_size(dDiameter, dDiameter)), 270_degree, -90_degree);
+         add_arc(::f64_rectangle(rectangleCorner.top_left(), ::f64_size(dDiameter, dDiameter)), 270_degree, -90_degree);
          return true;
       case e_border_top_right:
-         add_arc(::double_rectangle(rectangleCorner.top_right() - ::double_size(dDiameter, 0), ::double_size(dDiameter, dDiameter)), 0_degree, -90_degree);
+         add_arc(::f64_rectangle(rectangleCorner.top_right() - ::f64_size(dDiameter, 0), ::f64_size(dDiameter, dDiameter)), 0_degree, -90_degree);
          return true;
       case e_border_bottom_right:
-         add_arc(::double_rectangle(rectangleCorner.bottom_right() - ::double_size(dDiameter, dDiameter), ::double_size(dDiameter, dDiameter)), 90_degree, -90_degree);
+         add_arc(::f64_rectangle(rectangleCorner.bottom_right() - ::f64_size(dDiameter, dDiameter), ::f64_size(dDiameter, dDiameter)), 90_degree, -90_degree);
          return true;
       case e_border_bottom_left:
-         add_arc(::double_rectangle(rectangleCorner.bottom_left() - ::double_size(0, dDiameter), ::double_size(dDiameter, dDiameter)), 180_degree, -90_degree);
+         add_arc(::f64_rectangle(rectangleCorner.bottom_left() - ::f64_size(0, dDiameter), ::f64_size(dDiameter, dDiameter)), 180_degree, -90_degree);
          return true;
       default:
          return false;
@@ -1493,28 +1493,28 @@ namespace draw2d
    }
 
 
-   //bool path::add_round_rect(const ::int_rectangle & rectangle, int iRadius, const ::e_border & eborder)
+   //bool path::add_round_rect(const ::i32_rectangle & rectangle, ::i32 iRadius, const ::e_border & eborder)
    //{
 
-   //   int iDiameter = iRadius * 2;
+   //   ::i32 iDiameter = iRadius * 2;
 
    //   // diameter can't exceed width or height
-   //   if (iDiameter > rectangle.width())	iDiameter = (int)rectangle.width();
-   //   if (iDiameter > rectangle.height())	iDiameter = (int)rectangle.height();
+   //   if (iDiameter > rectangle.width())	iDiameter = (::i32)rectangle.width();
+   //   if (iDiameter > rectangle.height())	iDiameter = (::i32)rectangle.height();
 
-   //   ::int_rectangle rectangleRect(rectangle);
+   //   ::i32_rectangle rectangleRect(rectangle);
 
    //   rectangleRect.deflate(0, 0, 1, 1);
 
-   //   ::int_size size(iDiameter, iDiameter);
+   //   ::i32_size size(iDiameter, iDiameter);
 
-   //   ::int_rectangle rectangleCorner(rectangleRect);
+   //   ::i32_rectangle rectangleCorner(rectangleRect);
 
    //   rectangleCorner.deflate(0, 0, iDiameter, iDiameter);
 
    //   bool bOn = false;
 
-   //   int iCount = 0;
+   //   ::i32 iCount = 0;
 
    //   if (eborder & e_border_all)
    //   {
@@ -1523,7 +1523,7 @@ namespace draw2d
 
    //      //begin_figure();
 
-   //      int iEmptyBorder;
+   //      ::i32 iEmptyBorder;
 
    //      if (!(eborder & e_border_right))
    //      {
@@ -1550,10 +1550,10 @@ namespace draw2d
 
    //      }
 
-   //      for(int iShift = 0; iShift < 4; iShift++)
+   //      for(::i32 iShift = 0; iShift < 4; iShift++)
    //      {
 
-   //         int iCorner = iEmptyBorder + iShift + 1;
+   //         ::i32 iCorner = iEmptyBorder + iShift + 1;
 
    //         do_round_rect_corner(rectangleCorner, rectangleRect, iDiameter, eborder, iCorner, bOn);
 
@@ -1572,14 +1572,14 @@ namespace draw2d
 
    //}
 
-   void path::add_round_rectangle(const ::double_rectangle& rectangle, double dRadius, const ::e_border & eborder)
+   void path::add_round_rectangle(const ::f64_rectangle& rectangle, ::f64 dRadius, const ::e_border & eborder)
    {
 
-      double dDiameter = dRadius * 2.0;
+      ::f64 dDiameter = dRadius * 2.0;
 
       // diameter can't exceed width or height
-      //if (dDiameter > rectangle.width())	dDiameter = (double)rectangle.width();
-      //if (dDiameter > rectangle.height()) dDiameter = (double)rectangle.height();
+      //if (dDiameter > rectangle.width())	dDiameter = (::f64)rectangle.width();
+      //if (dDiameter > rectangle.height()) dDiameter = (::f64)rectangle.height();
       if (dDiameter > rectangle.width() || dDiameter > rectangle.height())
       {
 
@@ -1596,19 +1596,19 @@ namespace draw2d
 
       }
 
-      ::double_rectangle rectangleRect(rectangle);
+      ::f64_rectangle rectangleRect(rectangle);
 
       rectangleRect.deflate(0, 0, 1.0, 1.0);
 
-      ::double_size size(dDiameter, dDiameter);
+      ::f64_size size(dDiameter, dDiameter);
 
-      ::double_rectangle rectangleCorner(rectangleRect);
+      ::f64_rectangle rectangleCorner(rectangleRect);
 
       rectangleCorner.deflate(0, 0, dDiameter, dDiameter);
 
       bool bOn = false;
 
-      int iCount = 0;
+      ::i32 iCount = 0;
 
       if (eborder & e_border_all)
       {
@@ -1617,7 +1617,7 @@ namespace draw2d
 
          begin_figure();
 
-         int iEmptyBorder;
+         ::i32 iEmptyBorder;
 
          if (!(eborder & e_border_right))
          {
@@ -1644,10 +1644,10 @@ namespace draw2d
 
          }
 
-         for (int iShift = 0; iShift < 4; iShift++)
+         for (::i32 iShift = 0; iShift < 4; iShift++)
          {
 
-            int iCorner = iEmptyBorder + iShift + 1;
+            ::i32 iCorner = iEmptyBorder + iShift + 1;
 
             do_round_rectangle_corner(rectangleCorner, rectangleRect, dDiameter, eborder, iCorner, bOn);
 
@@ -1664,17 +1664,17 @@ namespace draw2d
    }
 
 
-   bool path::add_round_top_left(const ::double_rectangle & rectangleParam, double iDiameter, const ::e_border & eborder)
+   bool path::add_round_top_left(const ::f64_rectangle & rectangleParam, ::f64 iDiameter, const ::e_border & eborder)
    {
 
-      ::int_rectangle rectangle(rectangleParam);
+      ::i32_rectangle rectangle(rectangleParam);
 
       // diameter can't exceed width or height
       if (iDiameter > rectangle.width())	iDiameter = rectangle.width();
       if (iDiameter > rectangle.height())	iDiameter = rectangle.height();
 
       // define a corner
-      auto rectangleCorder = double_rectangle_dimension(rectangle.left, rectangle.top, iDiameter, iDiameter);
+      auto rectangleCorder = f64_rectangle_dimension(rectangle.left, rectangle.top, iDiameter, iDiameter);
 
       // begin path
       //path.m_ppath->Reset();
@@ -1684,7 +1684,7 @@ namespace draw2d
       //   path.m_ppath->AddArc(rectangleCorder, 180, 90);
 
       // tweak needed for radius of 10 (iDiameter of 20)
-      double iDiameter2 = iDiameter;
+      ::f64 iDiameter2 = iDiameter;
       
       //if (iDiameter % 2 == 0)
       //{
@@ -1729,14 +1729,14 @@ namespace draw2d
 
 
 
-   bool path::add_round_bottom_right(const ::double_rectangle & rectangle, double iDiameter, const ::e_border & eborder)
+   bool path::add_round_bottom_right(const ::f64_rectangle & rectangle, ::f64 iDiameter, const ::e_border & eborder)
    {
       // diameter can't exceed width or height
       if (iDiameter > rectangle.width())	iDiameter = rectangle.width();
       if (iDiameter > rectangle.height())	iDiameter = rectangle.height();
 
       // define a corner
-      auto rectangleCorder = double_rectangle_dimension(rectangle.left, rectangle.top, iDiameter, iDiameter);
+      auto rectangleCorder = f64_rectangle_dimension(rectangle.left, rectangle.top, iDiameter, iDiameter);
 
       // begin path
       //path.m_ppath->Reset();
@@ -1746,7 +1746,7 @@ namespace draw2d
       //   path.m_ppath->AddArc(rectangleCorder, 180, 90);
 
       // tweak needed for radius of 10 (iDiameter of 20)
-      double iDiameter2 = iDiameter;
+      ::f64 iDiameter2 = iDiameter;
       //if (iDiameter % 2 == 0)
       //{
       //   iDiameter2++;
@@ -1793,7 +1793,7 @@ namespace draw2d
    }
 
 
-   bool path::contains(::draw2d::graphics_pointer & pgraphics, const double_point& point)
+   bool path::contains(::draw2d::graphics_pointer & pgraphics, const ::f64_point& point)
    {
 
       //if (!m_pshapea)
@@ -1803,7 +1803,7 @@ namespace draw2d
 
       //}
 
-      int iFill = 0;
+      ::i32 iFill = 0;
 
       for (auto& pitem : m_itema)
       {
@@ -1833,11 +1833,11 @@ namespace draw2d
    }
 
 
-   bool path::add_arc_label(const ::double_rectangle & rectangleParam)
+   bool path::add_arc_label(const ::f64_rectangle & rectangleParam)
    {
 
-      ::double_rectangle rectangle;
-      ::double_rectangle r2;
+      ::f64_rectangle rectangle;
+      ::f64_rectangle r2;
 
       {
 
@@ -1928,10 +1928,10 @@ namespace draw2d
    }
 
 
-   float path::nanosvg_distPtSeg(float x, float y, float px, float py, float qx, float qy)
+   ::f32 path::nanosvg_distPtSeg(::f32 x, ::f32 y, ::f32 px, ::f32 py, ::f32 qx, ::f32 qy)
    {
 
-      float pqx, pqy, Δx, Δy, d, t;
+      ::f32 pqx, pqy, Δx, Δy, d, t;
       pqx = qx - px;
       pqy = qy - py;
       Δx = x - px;
@@ -1948,12 +1948,12 @@ namespace draw2d
    }
 
 
-   void path::nanosvg_cubicBez(float x1, float y1, float x2, float y2,
-      float x3, float y3, float x4, float y4,
-      float tol, int level)
+   void path::nanosvg_cubicBez(::f32 x1, ::f32 y1, ::f32 x2, ::f32 y2,
+      ::f32 x3, ::f32 y3, ::f32 x4, ::f32 y4,
+      ::f32 tol, ::i32 level)
    {
-      float x12, y12, x23, y23, x34, y34, x123, y123, x234, y234, x1234, y1234;
-      float d;
+      ::f32 x12, y12, x23, y23, x34, y34, x123, y123, x234, y234, x1234, y1234;
+      ::f32 d;
 
       if (level > 12) return;
 
@@ -1979,26 +1979,26 @@ namespace draw2d
       else
       {
 
-         add_line(double_point(x4, y4));
+         add_line(::f64_point(x4, y4));
 
       }
 
    }
 
 
-   void path::nanosvg_drawPath(float* pts, int npts, char closed, float tol, const ::color::color& color)
+   void path::nanosvg_drawPath(::f32* pts, ::i32 npts, ::i8 closed, ::f32 tol, const ::color::color& color)
    {
 
-      int i;
+      ::i32 i;
 
       begin_figure();
 
-      //set_current_point(double_point(pts[0], pts[1]));
+      //set_current_point(::f64_point(pts[0], pts[1]));
 
       for (i = 0; i < npts - 1; i += 3)
       {
 
-         float* p = &pts[i * 2];
+         ::f32* p = &pts[i * 2];
 
          nanosvg_cubicBez(p[0], p[1], p[2], p[3], p[4], p[5], p[6], p[7], tol, 0);
 
@@ -2007,7 +2007,7 @@ namespace draw2d
       if (closed)
       {
 
-         set_current_point(double_point(pts[0], pts[1]));
+         set_current_point(::f64_point(pts[0], pts[1]));
 
       }
 
@@ -2016,10 +2016,10 @@ namespace draw2d
    }
 
 
-   void path::nanosvg_drawControlPts(float* pts, int npts)
+   void path::nanosvg_drawControlPts(::f32* pts, ::i32 npts)
    {
 
-      int i;
+      ::i32 i;
 
       // Control lines
       //glColor4ubv(lineColor);
@@ -2029,12 +2029,12 @@ namespace draw2d
       for (i = 0; i < npts - 1; i += 3)
       {
 
-         float* p = &pts[i * 2];
+         ::f32* p = &pts[i * 2];
 
-         set_current_point(::int_point((int)p[0], (int)p[1]));
-         add_line(::int_point((int)p[2], (int)p[3]));
-         add_line(::int_point((int)p[4], (int)p[5]));
-         add_line(::int_point((int)p[6], (int)p[7]));
+         set_current_point(::i32_point((::i32)p[0], (::i32)p[1]));
+         add_line(::i32_point((::i32)p[2], (::i32)p[3]));
+         add_line(::i32_point((::i32)p[4], (::i32)p[5]));
+         add_line(::i32_point((::i32)p[6], (::i32)p[7]));
 
       }
 
@@ -2047,8 +2047,8 @@ namespace draw2d
       //glBegin(GL_POINTS);
       //glVertex2f(pts[0], pts[1]);
       //for (i = 0; i < npts - 1; i += 3) {
-      // float* point = &pts[i * 2];
-      //glVertex2f(int_point[6], int_point[7]);
+      // ::f32* point = &pts[i * 2];
+      //glVertex2f(i32_point[6], i32_point[7]);
       //}
       //glEnd();
 
@@ -2059,22 +2059,22 @@ namespace draw2d
       //glColor4ubv(bgColor);
       //glVertex2f(pts[0], pts[1]);
       //for (i = 0; i < npts - 1; i += 3) {
-      //   float* point = &pts[i * 2];
+      //   ::f32* point = &pts[i * 2];
       //   glColor4ubv(lineColor);
-      //   glVertex2f(int_point[2], int_point[3]);
-      //   glVertex2f(int_point[4], int_point[5]);
+      //   glVertex2f(i32_point[2], i32_point[3]);
+      //   glVertex2f(i32_point[4], i32_point[5]);
       //   glColor4ubv(bgColor);
-      //   glVertex2f(int_point[6], int_point[7]);
+      //   glVertex2f(i32_point[6], i32_point[7]);
       //}
       //glEnd();
 
    }
 
 
-   void path::nanosvg_drawframe(NSVGimage* pnsvgimage, int x, int y, int w, int h)
+   void path::nanosvg_drawframe(NSVGimage* pnsvgimage, ::i32 x, ::i32 y, ::i32 w, ::i32 h)
    {
 
-      float impact[4], cx, cy, hw, hh, aspect, px;
+      ::f32 impact[4], cx, cy, hw, hh, aspect, px;
 
       NSVGshape* pnsvgshape;
 
@@ -2102,7 +2102,7 @@ namespace draw2d
 
       if (w / hw < h / hh)
       {
-         aspect = (float)h / (float)w;
+         aspect = (::f32)h / (::f32)w;
          impact[0] = cx - hw * 1.2f;
          impact[2] = cx + hw * 1.2f;
          impact[1] = cy - hw * 1.2f * aspect;
@@ -2110,14 +2110,14 @@ namespace draw2d
       }
       else
       {
-         aspect = (float)w / (float)h;
+         aspect = (::f32)w / (::f32)h;
          impact[0] = cx - hh * 1.2f * aspect;
          impact[2] = cx + hh * 1.2f * aspect;
          impact[1] = cy - hh * 1.2f;
          impact[3] = cy + hh * 1.2f;
       }
       // Size of one pixel.
-      px = (impact[2] - impact[1]) / (float)w;
+      px = (impact[2] - impact[1]) / (::f32)w;
 
       //glOrtho(impact[0], impact[2], impact[3], impact[1], -1, 1);
 
@@ -2163,7 +2163,7 @@ namespace draw2d
 
    }
 
-   //void graphics::nanosvg_resizecb(int width, int height)
+   //void graphics::nanosvg_resizecb(::i32 width, ::i32 height)
    //{
    //   // Update and render
    //   NSVG_NOTUSED(width);
@@ -2172,12 +2172,12 @@ namespace draw2d
    //}
 
 
-   void path::nanosvg(const ::scoped_string & scopedstr, int x, int y, int w, int h)
+   void path::nanosvg(const ::scoped_string & scopedstr, ::i32 x, ::i32 y, ::i32 w, ::i32 h)
    {
 
       struct NSVGimage* pnsvgimage;
 
-      pnsvgimage = nsvgParse((char*)(const_char_pointer )scopedstr, "px", 96);
+      pnsvgimage = nsvgParse((char_pointer )(const_char_pointer )scopedstr, "px", 96);
 
       nanosvg_drawframe(pnsvgimage, x, y, w, h);
 

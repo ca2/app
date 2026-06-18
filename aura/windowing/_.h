@@ -50,7 +50,7 @@ namespace windowing
    };
 
    
-   DECLARE_ENUMERATION(e_status, enum_status);
+   DECLARE_C_FLAG(e_status, enum_status);
 
    class menu_item;
    class menu;

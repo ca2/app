@@ -18,16 +18,16 @@ namespace file
    {
    }
 
-   bool in_buffer::Create(unsigned int bufferSize)
+   bool in_buffer::Create(::u32 bufferSize)
    {
-      const unsigned int kMinBlockSize = 1;
+      const ::u32 kMinBlockSize = 1;
       if (bufferSize < kMinBlockSize)
          bufferSize = kMinBlockSize;
       if (_bufferBase != 0 && _bufferSize == bufferSize)
          return true;
       Free();
       _bufferSize = bufferSize;
-      _bufferBase = (unsigned char *)::MidAlloc(bufferSize);
+      _bufferBase = (::u8 *)::MidAlloc(bufferSize);
       return (_bufferBase != 0);
    }
 
@@ -77,7 +77,7 @@ namespace file
       return (!_wasFinished);
    }
 
-   unsigned char in_buffer::ReadBlock2()
+   ::u8 in_buffer::ReadBlock2()
    {
       if (!ReadBlock())
       {

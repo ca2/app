@@ -22,7 +22,7 @@ namespace draw2d_gdiplus
 
       
       operator HPALETTE() const;
-      int GetEntryCount();
+      ::i32 GetEntryCount();
       UINT GetPaletteEntries(UINT nStartIndex, UINT nNumEntries,
                              LPPALETTEENTRY pPaletteColors) const;
 

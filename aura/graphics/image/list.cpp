@@ -55,7 +55,7 @@ namespace image
    }
 
 
-   bool image_list::create(int cx, int cy)
+   bool image_list::create(::i32 cx, ::i32 cy)
    {
 
       return create(cx, cy, 0, 0, 0);
@@ -63,7 +63,7 @@ namespace image
    }
 
 
-   bool image_list::create(int cx, int cy, unsigned int nFlags, int nInitial, int nGrow)
+   bool image_list::create(::i32 cx, ::i32 cy, ::u32 nFlags, ::i32 nInitial, ::i32 nGrow)
    {
 
       __UNREFERENCED_PARAMETER(nFlags);
@@ -97,7 +97,7 @@ namespace image
       if (m_iSize > 0)
       {
 
-         m_pimage->create(::int_size(m_size.cx * m_iSize, m_size.cy));
+         m_pimage->create(::i32_size(m_size.cx * m_iSize, m_size.cy));
 
       }
 
@@ -133,7 +133,7 @@ namespace image
    }
 
 
-   int image_list::get_image_count() const
+   ::i32 image_list::get_image_count() const
    {
 
       return m_iSize;
@@ -141,20 +141,20 @@ namespace image
    }
 
 
-   void image_list::draw(::draw2d::graphics * pgraphics, int iImage, const ::double_point & point, int iFlag)
+   void image_list::draw(::draw2d::graphics * pgraphics, ::i32 iImage, const ::f64_point & point, ::i32 iFlag)
    {
 
       _synchronous_lock synchronouslock(this->synchronization(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 
       __UNREFERENCED_PARAMETER(iFlag);
 
-      double_point pointSource((double)(iImage * m_size.cx), 0.);
+      ::f64_point pointSource((::f64)(iImage * m_size.cx), 0.);
 
-      double_rectangle rectangleSource(pointSource, m_size);
+      ::f64_rectangle rectangleSource(pointSource, m_size);
 
       ::image::image_source imagesource(m_pimage, rectangleSource);
 
-      double_rectangle rectangleTarget(point, m_size);
+      ::f64_rectangle rectangleTarget(point, m_size);
 
       ::image::image_drawing_options imagedrawingoptions(rectangleTarget);
 
@@ -165,7 +165,7 @@ namespace image
    }
 
 
-   void image_list::draw(::draw2d::graphics * pgraphics, int iImage, const ::double_point & point, int iFlag, const class ::opacity & opacity)
+   void image_list::draw(::draw2d::graphics * pgraphics, ::i32 iImage, const ::f64_point & point, ::i32 iFlag, const class ::opacity & opacity)
    {
 
       _synchronous_lock synchronouslock(this->synchronization(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
@@ -186,13 +186,13 @@ namespace image
 
       }
 
-      double_point pointSource((double)(iImage * m_size.cx), 0.);
+      ::f64_point pointSource((::f64)(iImage * m_size.cx), 0.);
 
-      double_rectangle rectangleSource(pointSource, m_size);
+      ::f64_rectangle rectangleSource(pointSource, m_size);
 
       ::image::image_source imagesource(m_pimage, rectangleSource);
 
-      double_rectangle rectangleTarget(point, m_size);
+      ::f64_rectangle rectangleTarget(point, m_size);
 
       ::image::image_drawing_options imagedrawingoptions(rectangleTarget);
 
@@ -220,7 +220,7 @@ namespace image
    }
 
 
-   void image_list::draw(::draw2d::graphics * pgraphics, int iImage, const ::double_point & point, ::double_size sz, const ::double_point & pointOffsetParam, int iFlag)
+   void image_list::draw(::draw2d::graphics * pgraphics, ::i32 iImage, const ::f64_point & point, ::f64_size sz, const ::f64_point & pointOffsetParam, ::i32 iFlag)
    {
 
       if (iImage < 0)
@@ -244,10 +244,10 @@ namespace image
    }
 
 
-   void image_list::_draw(::draw2d::graphics * pgraphics, int iImage, const ::double_point & point, ::double_size sz, const ::double_point & pointOffsetParam, int iFlag)
+   void image_list::_draw(::draw2d::graphics * pgraphics, ::i32 iImage, const ::f64_point & point, ::f64_size sz, const ::f64_point & pointOffsetParam, ::i32 iFlag)
    {
 
-      ::double_point pointOffset(pointOffsetParam);
+      ::f64_point pointOffset(pointOffsetParam);
 
       __UNREFERENCED_PARAMETER(iFlag);
 
@@ -256,13 +256,13 @@ namespace image
       sz.cx = maximum(0, minimum(m_size.cx - pointOffset.x, sz.cx));
       sz.cy = maximum(0, minimum(m_size.cy - pointOffset.y, sz.cy));
 
-      double_point pointSource((double)(iImage * m_size.cx), 0.);
+      ::f64_point pointSource((::f64)(iImage * m_size.cx), 0.);
 
-      double_rectangle rectangleSource(pointSource, sz);
+      ::f64_rectangle rectangleSource(pointSource, sz);
 
       ::image::image_source imagesource(m_pimage, rectangleSource);
 
-      double_rectangle rectangleTarget(point, sz);
+      ::f64_rectangle rectangleTarget(point, sz);
 
       ::image::image_drawing_options imagedrawingoptions(rectangleTarget);
 
@@ -273,7 +273,7 @@ namespace image
    }
 
 
-   //int image_list::add_icon_os_data(void * p, int iItem)
+   //::i32 image_list::add_icon_os_data(void * p, ::i32 iItem)
    //{
    //
    //   ::image::icon icon;
@@ -295,7 +295,7 @@ namespace image
    }
 
 
-   int image_list::reserve_image(int iItem)
+   ::i32 image_list::reserve_image(::i32 iItem)
    {
 
       ::draw2d::lock draw2dlock(this);
@@ -324,7 +324,7 @@ namespace image
    }
 
 
-   //int image_list::set(int iItem, ::image::icon * picon)
+   //::i32 image_list::set(::i32 iItem, ::image::icon * picon)
    //{
    //
    //   if (is_null(picon))
@@ -338,7 +338,7 @@ namespace image
    //
    //   iItem = reserve_image(iItem);
    //
-   //   auto rectangle = ::double_rectangle_dimension(iItem * m_size.cx, 0, m_size.cx, m_size.cy);
+   //   auto rectangle = ::f64_rectangle_dimension(iItem * m_size.cx, 0, m_size.cx, m_size.cy);
    //   
    //   m_pimage->g()->set_alpha_mode(::draw2d::e_alpha_mode_set);
    //
@@ -351,11 +351,11 @@ namespace image
    ////
    ////#else
    //
-   //   auto pointDst = ::double_point((iItem * m_size.cx), 0.);
+   //   auto pointDst = ::f64_point((iItem * m_size.cx), 0.);
    //
    //   auto sizeDst = m_size;
    //
-   //   auto rectangleTarget = ::double_rectangle(pointDst, sizeDst);
+   //   auto rectangleTarget = ::f64_rectangle(pointDst, sizeDst);
    //
    //   m_pimage->get_graphics()->draw(rectangleTarget, picon);
    //
@@ -366,7 +366,7 @@ namespace image
    //}
 
    //
-   //int image_list::set(int iItem, ::windowing::icon * picon)
+   //::i32 image_list::set(::i32 iItem, ::windowing::icon * picon)
    //{
    //
    //   if (is_null(picon))
@@ -380,17 +380,17 @@ namespace image
    //
    //   iItem = reserve_image(iItem);
    //
-   //   auto rectangle = ::double_rectangle_dimension(iItem * m_size.cx, 0, m_size.cx, m_size.cy);
+   //   auto rectangle = ::f64_rectangle_dimension(iItem * m_size.cx, 0, m_size.cx, m_size.cy);
    //
    //   m_pimage->g()->set_alpha_mode(::draw2d::e_alpha_mode_set);
    //
    //   m_pimage->g()->fill_rectangle(rectangle, 0);
    //
-   //   auto pointDst = ::double_point((iItem * m_size.cx), 0.);
+   //   auto pointDst = ::f64_point((iItem * m_size.cx), 0.);
    //
    //   auto sizeDst = m_size;
    //
-   //   auto rectangleTarget = ::double_rectangle(pointDst, sizeDst);
+   //   auto rectangleTarget = ::f64_rectangle(pointDst, sizeDst);
    //
    //   auto pdraw2dicon = createø < ::image::icon >();
    //
@@ -403,7 +403,7 @@ namespace image
    //}
 
 
-   //int image_list::add_icon(::payload payloadFile, int iItem)
+   //::i32 image_list::add_icon(::payload payloadFile, ::i32 iItem)
    //{
    //
    //   auto picon = createø < ::windowing::icon >();
@@ -424,7 +424,7 @@ namespace image
    //
    ////#ifdef WINDOWS_DESKTOP
    ////
-   ////   int iSize = minimum(m_size.cx, m_size.cy);
+   ////   ::i32 iSize = minimum(m_size.cx, m_size.cy);
    ////
    ////   ::file::path path = payloadFile.get_file_path();
    ////
@@ -450,7 +450,7 @@ namespace image
    //}
    //
 
-   //int image_list::add_matter_icon(const ::scoped_string & scopedstrMatter, int iItem)
+   //::i32 image_list::add_matter_icon(const ::scoped_string & scopedstrMatter, ::i32 iItem)
    //{
    //
    //   // auto pcontext = get_context();
@@ -460,7 +460,7 @@ namespace image
    //}
    //
 
-   //int image_list::add_file(::payload payloadFile, int iItem)
+   //::i32 image_list::add_file(::payload payloadFile, ::i32 iItem)
    //{
    //
    //   _synchronous_lock synchronouslock(this->synchronization(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
@@ -486,7 +486,7 @@ namespace image
    //         m_pimage->get_graphics()->set_alpha_mode(::draw2d::e_alpha_mode_set);
    //
    //         m_pimage->draw(
-   //            ::double_rectangle(::int_point(iItem * m_size.cx, 0),  m_size ),
+   //            ::f64_rectangle(::i32_point(iItem * m_size.cx, 0),  m_size ),
    //            pimage);
    //
    //      });
@@ -496,7 +496,7 @@ namespace image
    //}
 
 
-   int image_list::set(int iItem, const ::image::image_drawing & imagedrawing)
+   ::i32 image_list::set(::i32 iItem, const ::image::image_drawing & imagedrawing)
    {
 
       ::draw2d::lock draw2dlock(this);
@@ -519,7 +519,7 @@ namespace image
 
          ::image::image_drawing imagedrawingTarget(imagedrawing);
 
-         imagedrawingTarget.m_rectangleTarget.set(::double_point(iItem * m_size.cx, 0), m_size);
+         imagedrawingTarget.m_rectangleTarget.set(::f64_point(iItem * m_size.cx, 0), m_size);
 
          m_pimage->get_graphics()->draw(imagedrawingTarget);
 
@@ -534,7 +534,7 @@ namespace image
    }
 
 
-   //int image_list::set_file(int iItem, ::file::file * pfile)
+   //::i32 image_list::set_file(::i32 iItem, ::file::file * pfile)
    //{
    //
    //   auto pimagecontext = pobjectContext->image();
@@ -550,20 +550,20 @@ namespace image
    //
    //   ::image::image_source imagesource(pimage);
    //
-   //   double_rectangle rectangle(m_size);
+   //   ::f64_rectangle rectangle(m_size);
    //
    //   ::image::image_drawing_options imagedrawingoptions(rectangle);
    //
    //   ::image::image_drawing imagedrawing(imagedrawingoptions, imagesource);
    //
-   //   int iImage = this->set(iItem, imagedrawing);
+   //   ::i32 iImage = this->set(iItem, imagedrawing);
    //
    //   return iImage;
    //
    //}
    //
    //
-   //int image_list::set_icon(int iItem, ::object * pobjectContext, const ::payload & payload)
+   //::i32 image_list::set_icon(::i32 iItem, ::object * pobjectContext, const ::payload & payload)
    //{
    //
    //   auto pimagecontext = pobjectContext->image();
@@ -572,20 +572,20 @@ namespace image
    //
    //   ::image::image_source imagesource(pimage);
    //
-   //   double_rectangle rectangle(m_size);
+   //   ::f64_rectangle rectangle(m_size);
    //
    //   ::image::image_drawing_options imagedrawingoptions(rectangle);
    //
    //   ::image::image_drawing imagedrawing(imagedrawingoptions, imagesource);
    //
-   //   int iImage = this->set(iItem, imagedrawing);
+   //   ::i32 iImage = this->set(iItem, imagedrawing);
    //
    //   return iImage;
    //
    //}
 
 
-   //int image_list::add_matter(const ::scoped_string & scopedstr, ::particle * pparticle, int iItem)
+   //::i32 image_list::add_matter(const ::scoped_string & scopedstr, ::particle * pparticle, ::i32 iItem)
    //{
    //
    //   ::file::path path;
@@ -611,7 +611,7 @@ namespace image
    //
    //}
 
-   //int image_list::add_image(image_list * pil, int iImage, int iItem)
+   //::i32 image_list::add_image(image_list * pil, ::i32 iImage, ::i32 iItem)
    //{
    //
    //   _synchronous_lock synchronouslock(pil->synchronization(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
@@ -621,7 +621,7 @@ namespace image
    //}
 
 
-   ::image::image_pointer image_list::get_image(int iImage)
+   ::image::image_pointer image_list::get_image(::i32 iImage)
    {
 
       ::image::image_pointer pimage = image()->create_image(m_size);
@@ -640,7 +640,7 @@ namespace image
    }
 
 
-   //int image_list::add_std_matter(const ::scoped_string & scopedstr, int iItem)
+   //::i32 image_list::add_std_matter(const ::scoped_string & scopedstr, ::i32 iItem)
    //{
    //
    //   // auto pcontext = get_context();
@@ -650,7 +650,7 @@ namespace image
    //}
 
 
-   int image_list::_get_alloc_count()
+   ::i32 image_list::_get_alloc_count()
    {
 
       if (m_size.cx <= 0)
@@ -665,16 +665,16 @@ namespace image
    }
 
 
-   bool image_list::_grow(int iAddUpHint)
+   bool image_list::_grow(::i32 iAddUpHint)
    {
 
       _synchronous_lock synchronouslock(this->synchronization(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 
-      int cx = m_size.cx;
+      ::i32 cx = m_size.cx;
 
-      int cy = m_size.cy;
+      ::i32 cy = m_size.cy;
 
-      int iGrow = m_iGrow;
+      ::i32 iGrow = m_iGrow;
 
       if (iAddUpHint > 0)
       {
@@ -683,9 +683,9 @@ namespace image
 
       }
 
-      int iAllocSize = _get_alloc_count() + iGrow;
+      ::i32 iAllocSize = _get_alloc_count() + iGrow;
 
-      m_pimage->preserve(::int_size(cx * iAllocSize, cy));
+      m_pimage->preserve(::i32_size(cx * iAllocSize, cy));
 
       return true;
 
@@ -704,7 +704,7 @@ namespace image
    }
 
 
-   void image_list::get_image_info(int nImage, info * pinfo) const
+   void image_list::get_image_info(::i32 nImage, info * pinfo) const
    {
 
       ASSERT(pinfo != nullptr);

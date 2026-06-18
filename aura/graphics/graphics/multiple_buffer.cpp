@@ -83,7 +83,7 @@ namespace graphics
    //}
 
 
-   bool multiple_buffer::_on_begin_draw(::graphics::buffer_item * pitem)
+   bool multiple_buffer::_on_begin(::graphics::buffer_item * pitem)
    {
 
       //auto pitem = get_buffer_item();
@@ -114,7 +114,7 @@ namespace graphics
       //if (m_imageaBuffer[m_iBuffer]->size() != sizeBuffer)
       {
 
-         pitem->m_pimage2->create(pitem->m_sizeBufferItemDraw);
+         pitem->m_pimage2->create(pitem->m_sizeBufferItem);
 
          //if (!m_imageaBuffer[m_iBuffer]->create(sizeBuffer))
          //{
@@ -139,7 +139,7 @@ namespace graphics
    }
 
 
-   ::collection::index multiple_buffer::find_best_buffer(const ::int_size & size)
+   ::collection::index multiple_buffer::find_best_buffer(const ::i32_size & size)
    {
 
       synchronous_lock synchronouslock(this->synchronization(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
@@ -166,7 +166,7 @@ namespace graphics
 
          iFound = m_iDone;
 
-         ::int_size sizeBuffer = m_bufferitema[iFound]->m_pimage2->size();
+         ::i32_size sizeBuffer = m_bufferitema[iFound]->m_pimage2->size();
 
          bBigger = sizeBuffer.cx > size.cx || sizeBuffer.cy > size.cy;
 
@@ -189,7 +189,7 @@ namespace graphics
 
          }
 
-         ::int_size sizeBuffer = m_bufferitema[i]->m_pimage2->size();
+         ::i32_size sizeBuffer = m_bufferitema[i]->m_pimage2->size();
 
          if (size == sizeBuffer)
          {
@@ -237,7 +237,7 @@ namespace graphics
 
             }
 
-            ::int_size sizeBuffer = m_bufferitema[i]->m_pimage2->get_size();
+            ::i32_size sizeBuffer = m_bufferitema[i]->m_pimage2->get_size();
 
             if (sizeBuffer == size)
             {
@@ -276,7 +276,7 @@ namespace graphics
 
       }
 
-      //int iAge;
+      //::i32 iAge;
 
       //if (iGot < 0)
       //{
@@ -287,13 +287,13 @@ namespace graphics
       //else if (iGot <= m_iDone)
       //{
 
-      //   //iAge = (int)(m_iDone - iGot);
+      //   //iAge = (::i32)(m_iDone - iGot);
 
       //}
       //else
       //{
 
-      //   //iAge = (int)(m_bufferitema.size() - iGot + m_iDone);
+      //   //iAge = (::i32)(m_bufferitema.size() - iGot + m_iDone);
 
       //}
 
@@ -306,7 +306,7 @@ namespace graphics
       if (!bFoundExact)
       {
 
-         strFormat.formatf(" buffer int_size %d, %d", pimageBuffer2->width(), pimageBuffer2->height());
+         strFormat.formatf(" buffer i32_size %d, %d", pimageBuffer2->width(), pimageBuffer2->height());
 
          s_iLastExact = -1;
 

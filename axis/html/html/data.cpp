@@ -45,7 +45,7 @@ void html_data::initialize_html_data(::html_data * phtmldata)
 }
 
 
-long long html_data::increment_reference_count()
+::i64 html_data::increment_reference_count()
 {
 
    return ::object::increment_reference_count();
@@ -53,7 +53,7 @@ long long html_data::increment_reference_count()
 }
 
 
-long long html_data::decrement_reference_count()
+::i64 html_data::decrement_reference_count()
 {
 
    return ::object::decrement_reference_count();
@@ -69,7 +69,7 @@ long long html_data::decrement_reference_count()
 }
 
 
-int html_data::create_font(::html::element* pelemental)
+::i32 html_data::create_font(::html::element* pelemental)
 {
 
    return m_pcoredata->create_font(pelemental);
@@ -243,7 +243,7 @@ bool html_data::open_html(const ::scoped_string & scopedstr)
 }
 
 
-//void html_data::on_before_navigate(::payload & payloadFile, unsigned int nFlags, const ::scoped_string & scopedstrTargetFrameName, byte_array& baPostedData, const ::scoped_string & scopedstrHeaders, bool* pbCancel)
+//void html_data::on_before_navigate(::payload & payloadFile, ::u32 nFlags, const ::scoped_string & scopedstrTargetFrameName, byte_array& baPostedData, const ::scoped_string & scopedstrHeaders, bool* pbCancel)
 //{
 //
 //   m_pcoredata->on_before_navigate(payloadFile, nFlags, pszTargetFrameName, baPostedData, pszHeaders, pbCancel);

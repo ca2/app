@@ -45,7 +45,7 @@ namespace graphics3d
    //    virtual void on_load_scene(::gpu::context* pgpucontext);
    //
    //
-   //    //virtual void handle_mouse_move(int x, int y);
+   //    //virtual void handle_mouse_move(::i32 x, ::i32 y);
    //
    //    //virtual ::pointer<model> createModelFromFile(::graphics3d::context* pgpucontext, const ::file::path& path);
    //

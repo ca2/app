@@ -129,7 +129,7 @@ namespace filemanager
       }
 
 
-      bool list_impact::add_unique(const string_array_base & stra, ::int_array_base & baRecursive)
+      bool list_impact::add_unique(const string_array_base & stra, ::i32_array_base & baRecursive)
       {
 
          if (stra.get_size() == 0)

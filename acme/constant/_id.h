@@ -1,7 +1,7 @@
 #pragma once
 
 
-static const int ID_FULL = 1;
+static const ::i32 ID_FULL = 1;
 
 
 // enum ::enum_id : ::uptr

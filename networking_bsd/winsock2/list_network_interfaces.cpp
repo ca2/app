@@ -34,7 +34,7 @@ namespace networking_bsd
       DWORD dwSize = 0;
       DWORD dwRetVal = 0;
 
-      unsigned int i = 0;
+      ::u32 i = 0;
 
       // Set the flags to pass to GetAdaptersAddresses
       ULONG flags = GAA_FLAG_INCLUDE_PREFIX;
@@ -167,14 +167,14 @@ namespace networking_bsd
 
             if (pCurrAddresses->PhysicalAddressLength != 0) {
                strLog.append_formatf("\tPhysical address: ");
-               for (i = 0; i < (int)pCurrAddresses->PhysicalAddressLength;
+               for (i = 0; i < (::i32)pCurrAddresses->PhysicalAddressLength;
                     i++) {
                   if (i == (pCurrAddresses->PhysicalAddressLength - 1))
                      strLog.append_formatf("%.2X\n",
-                            (int)pCurrAddresses->PhysicalAddress[i]);
+                            (::i32)pCurrAddresses->PhysicalAddress[i]);
                   else
                      strLog.append_formatf("%.2X-",
-                            (int)pCurrAddresses->PhysicalAddress[i]);
+                            (::i32)pCurrAddresses->PhysicalAddress[i]);
                }
             }
             strLog.append_formatf("\tFlags: %ld\n", pCurrAddresses->Flags);

@@ -21,14 +21,14 @@
 #include "aura/os/macos/macos.h"
 
 
-int main(int argc, char *argv[])
+::i32 main(::i32 argc, char_pointer argv[])
 {
    
    if(!defer_core_init())
       return -1;
 
 
-   int iResult = base_main_command_line(": app=app-core/hellobase", argc, argv);
+   ::i32 iResult = base_main_command_line(": app=app-core/hellobase", argc, argv);
    
    try
    {

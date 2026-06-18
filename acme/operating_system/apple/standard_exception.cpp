@@ -5,7 +5,7 @@
 
 
 
-standard_exception::standard_exception(int iSignal, void * psiginfo, void * pc, int iSkip, void * caller_address) :
+standard_exception::standard_exception(::i32 iSignal, void * psiginfo, void * pc, ::i32 iSkip, void * caller_address) :
 ::exception(error_exception, nullptr, nullptr, iSkip, caller_address),
 m_iSignal(iSignal),
 m_psiginfo(nullptr)
@@ -20,7 +20,7 @@ m_psiginfo(nullptr)
 
 
 
-standard_access_violation::standard_access_violation (int iSignal, void * psiginfo, void * pc) :
+standard_access_violation::standard_access_violation (::i32 iSignal, void * psiginfo, void * pc) :
 standard_exception(iSignal,  psiginfo, pc, 3, nullptr)
  {
    
@@ -52,8 +52,8 @@ standard_exception(iSignal,  psiginfo, pc, 3, nullptr)
 
        void * caller_address = (void *) uc->uc_mcontext.eip; // x86 specific
 
-       str += "signal " + ansi_string_from_long_long(sig_num) +
-                 +" (" + ansi_string_from_long_long(sig_num) + "), address is "  +
+       str += "signal " + ansi_string_from_i64(sig_num) +
+                 +" (" + ansi_string_from_i64(sig_num) + "), address is "  +
                  itohex_dup(info->si_addr) + " from " + itohex_dup(caller_address) + "\n\n";*/
 
 

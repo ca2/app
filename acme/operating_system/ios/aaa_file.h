@@ -4,7 +4,7 @@
 class FileException;
 struct FileStatus;
 
-void CLASS_DECL_ACME vfxGetRoot(const unichar * lpszPath, string& wstrRoot);
+void CLASS_DECL_ACME vfxGetRoot(const wide_character * lpszPath, string& wstrRoot);
 
 namespace ios
 {
@@ -51,7 +51,7 @@ namespace ios
       zip::util *    m_pziputil;
       string         m_strFileName;
       wstring        m_wstrFileName;
-      int            m_iFile;
+      ::i32            m_iFile;
 
 
       file();
@@ -93,10 +93,10 @@ namespace ios
 //   {
 //
 //
-//      void os_error_to_exception(int lOsError);
-//      void err_no_to_exception(int nErrno);
-//      void throw_os_error(::particle * pparticle, int lOsError, const char * lpszFileName = nullptr);
-//      void throw_err_no(::particle * pparticle, int nErrno, const char * lpszFileName = nullptr);
+//      void os_error_to_exception(::i32 lOsError);
+//      void err_no_to_exception(::i32 nErrno);
+//      void throw_os_error(::particle * pparticle, ::i32 lOsError, const_char_pointer pszFileName = nullptr);
+//      void throw_err_no(::particle * pparticle, ::i32 nErrno, const_char_pointer pszFileName = nullptr);
 //
 //
 //   }  // namespace file_exception

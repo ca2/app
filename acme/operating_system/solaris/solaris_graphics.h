@@ -34,14 +34,14 @@ if you want to make a argb window using xlib/Qt here is the code i use
 
 /**code for argb draw2d*/
 /*  bool  argbVisual=false;
-  int screen = DefaultScreen ( dpy );
+  ::i32 screen = DefaultScreen ( dpy );
   Colormap colormap = 0;
   Visual *draw2d = 0;
-  int eventBase, errorBase;
+  ::i32 eventBase, errorBase;
 
   if ( XRenderQueryExtension ( dpy, &eventBase, &errorBase ) ) {
       qWarning ("You have argb support");
-      int nvi;
+      ::i32 nvi;
       XVisualInfo templ;
       templ.screen  = screen;
       templ.depth   = 32;
@@ -50,7 +50,7 @@ if you want to make a argb window using xlib/Qt here is the code i use
                                           VisualDepthMask |
                                           VisualClassMask, &templ, &nvi );
 
-      for ( int i = 0; i < nvi; ++i ) {
+      for ( ::i32 i = 0; i < nvi; ++i ) {
           XRenderPictFormat *format = XRenderFindVisualFormat ( dpy,
                                       xvi[i].draw2d );
           if ( format->type == PictTypeDirect && format->direct.alphaMask
@@ -93,14 +93,14 @@ if you want to make a argb window using xlib/Qt here is the code i use
 
 /**code for argb draw2d*/
 /*  bool  argbVisual=false;
-  int screen = DefaultScreen ( dpy );
+  ::i32 screen = DefaultScreen ( dpy );
   Colormap colormap = 0;
   Visual *draw2d = 0;
-  int eventBase, errorBase;
+  ::i32 eventBase, errorBase;
 
   if ( XRenderQueryExtension ( dpy, &eventBase, &errorBase ) ) {
       qWarning ("You have argb support");
-      int nvi;
+      ::i32 nvi;
       XVisualInfo templ;
       templ.screen  = screen;
       templ.depth   = 32;
@@ -109,7 +109,7 @@ if you want to make a argb window using xlib/Qt here is the code i use
                                           VisualDepthMask |
                                           VisualClassMask, &templ, &nvi );
 
-      for ( int i = 0; i < nvi; ++i ) {
+      for ( ::i32 i = 0; i < nvi; ++i ) {
           XRenderPictFormat *format = XRenderFindVisualFormat ( dpy,
                                       xvi[i].draw2d );
           if ( format->type == PictTypeDirect && format->direct.alphaMask

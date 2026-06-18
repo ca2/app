@@ -1,13 +1,13 @@
 #include "framework.h"
 
 
-void progress_listener::on_progress(double dRate)
+void progress_listener::on_progress(::f64 dRate)
 {
 
 }
 
 
-int_progress::int_progress()
+i32_progress::i32_progress()
 {
 
    m_plistener          = nullptr;
@@ -17,7 +17,7 @@ int_progress::int_progress()
 }
 
 
-int_progress::~int_progress()
+i32_progress::~i32_progress()
 {
 
    m_plistener          = nullptr;
@@ -25,14 +25,14 @@ int_progress::~int_progress()
 }
 
 
-void int_progress::trace_progress(long long iStep)
+void i32_progress::trace_progress(::i64 iStep)
 {
 
    m_scalar.set(iStep);
 
 }
 
-void int_progress::trace_progress()
+void i32_progress::trace_progress()
 {
 
    if (m_plistener != nullptr)
@@ -44,7 +44,7 @@ void int_progress::trace_progress()
 
 }
 
-void int_progress::progress_step()
+void i32_progress::progress_step()
 {
 
    m_scalar++;
@@ -55,7 +55,7 @@ void int_progress::progress_step()
 
 
 
-void int_progress::on_set_scalar(int_scalar_source * psource,e_scalar escalar,long long iValue,int iFlags)
+void i32_progress::on_set_scalar(i32_scalar_source * psource,e_scalar escalar,::i64 iValue,::i32 iFlags)
 {
 
    if (m_scalar.m_psource == psource)
@@ -96,13 +96,13 @@ void progress_control::close_progress()
 
 }
 
-void progress_control::on_set_scalar(e_scalar escalar, double d, int iFlags)
+void progress_control::on_set_scalar(e_scalar escalar, ::f64 d, ::i32 iFlags)
 {
 
 }
 
 
-void progress_control::get_scalar_minimum(e_scalar escalar, double & d)
+void progress_control::get_scalar_minimum(e_scalar escalar, ::f64 & d)
 {
 
    d = 0.0;
@@ -110,15 +110,15 @@ void progress_control::get_scalar_minimum(e_scalar escalar, double & d)
 }
 
 
-void progress_control::get_scalar(e_scalar escalar, double & d)
+void progress_control::get_scalar(e_scalar escalar, ::f64 & d)
 {
 
-   d = (double)m_iStep / (double)m_iStepCount;
+   d = (::f64)m_iStep / (::f64)m_iStepCount;
 
 }
 
 
-void progress_control::get_scalar_maximum(e_scalar escalar, double & d)
+void progress_control::get_scalar_maximum(e_scalar escalar, ::f64 & d)
 {
 
    d = 1.0;

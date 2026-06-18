@@ -9,10 +9,10 @@ namespace hotplugin
 {
 
 
-   void plugin::on_bare_paint_full_screen(::draw2d::graphics_pointer & pgraphics,const ::int_rectangle &lprect)
+   void plugin::on_bare_paint_full_screen(::draw2d::graphics_pointer & pgraphics,const ::i32_rectangle &lprect)
    {
 
-      double dRate = get_progress_rate();
+      ::f64 dRate = get_progress_rate();
 
       if (dRate <= 0.0)
       {
@@ -21,14 +21,14 @@ namespace hotplugin
 
       }
 
-      ::int_rectangle rectangleWindow;
+      ::i32_rectangle rectangleWindow;
 
       window_rectangle(&rectangleWindow);
 
-      int cx = rectangleWindow.right - rectangleWindow.left;
-      int cy = rectangleWindow.bottom - rectangleWindow.top;
+      ::i32 cx = rectangleWindow.right - rectangleWindow.left;
+      ::i32 cy = rectangleWindow.bottom - rectangleWindow.top;
 
-      ::int_rectangle int_rectangle;
+      ::i32_rectangle i32_rectangle;
 
       rectangle.left = 0;
       rectangle.top = 0;
@@ -49,11 +49,11 @@ namespace hotplugin
 
       {
 
-         unsigned char uchR, uchG, uchB;
-         ::int_rectangle rectangle;
+         ::u8 uchR, uchG, uchB;
+         ::i32_rectangle rectangle;
          get_progress_color(uchR, uchG, uchB, dRate, 0);
          pbrush->create_solid(argb(255, uchR, uchG, uchB));
-         r = int_rectangle_dimension(rectangle.left, rectangle.top, cx, cy);
+         r = i32_rectangle_dimension(rectangle.left, rectangle.top, cx, cy);
          pgraphics->FillRect(r, br);
 
       }
@@ -80,13 +80,13 @@ namespace hotplugin
 
       pgraphics->SelectObject(f);
 
-      pgraphics->text_out(rectangle.left + 84, (int)(rectangle.top + 133 + 49 * 0.2), strProgress);
+      pgraphics->text_out(rectangle.left + 84, (::i32)(rectangle.top + 133 + 49 * 0.2), strProgress);
 
       f->create_pixel_font(pnode->font_name(e_font_sans_fx), 23);
 
       pgraphics->SelectObject(f);
 
-      pgraphics->text_out(rectangle.left + 84, (int)(rectangle.top + 133 + 49 * 0.2 + 133 * 0.2), m_strStatus2);
+      pgraphics->text_out(rectangle.left + 84, (::i32)(rectangle.top + 133 + 49 * 0.2 + 133 * 0.2), m_strStatus2);
 
    }
 

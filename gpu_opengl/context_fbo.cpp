@@ -76,7 +76,7 @@ void context_fbo::run()
    
 }
 
-   void context_fbo::_create_cpu_buffer(const ::int_size & sizeParam)
+   void context_fbo::_create_cpu_buffer(const ::i32_size & sizeParam)
    {
       
       
@@ -143,7 +143,7 @@ void context_fbo::run()
             
          }
          
-         for(int iFormat = 0; iFormat < NumFormats; iFormat++)
+         for(::i32 iFormat = 0; iFormat < NumFormats; iFormat++)
          {
             
             informationf("----> Format " + ::as_string(iFormat) + "\n");
@@ -357,13 +357,13 @@ informationf(string(#x) + ": " + ::as_string(value) + "\n");     \
       if(iFindPrecision >= 0)
       {
 
-         stra[iFindPrecision] = "precision highp float;";
+         stra[iFindPrecision] = "precision highp ::f32;";
 
       }
       else
       {
 
-         stra.insert_at(1, "precision highp float;");
+         stra.insert_at(1, "precision highp ::f32;");
 
          iFindPrecision = 1;
 
@@ -425,7 +425,7 @@ informationf(string(#x) + ": " + ::as_string(value) + "\n");     \
    }
 
 
-   void context_fbo::resize_cpu_buffer(const ::int_size& sizeParam)
+   void context_fbo::resize_cpu_buffer(const ::i32_size& sizeParam)
    {
       
       auto size = sizeParam;

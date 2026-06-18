@@ -25,68 +25,68 @@
 
 #include <ctype.h>
 
-int
-isupperTurbo (int c)
+::i32
+isupperTurbo (::i32 c)
 {
   return (isupper (c));
 }
 
-int
-islowerTurbo (int c)
+::i32
+islowerTurbo (::i32 c)
 {
   return (islower (c));
 }
 
-int
-isalphaTurbo (int c)
+::i32
+isalphaTurbo (::i32 c)
 {
   return (isalpha (c));
 }
 
-int
-isdigitTurbo (int c)
+::i32
+isdigitTurbo (::i32 c)
 {
   return (isdigit (c));
 }
 
-int
-isxdigitTurbo (int c)
+::i32
+isxdigitTurbo (::i32 c)
 {
   return (isxdigit (c));
 }
 
-int
-isspaceTurbo (int c)
+::i32
+isspaceTurbo (::i32 c)
 {
   return (character_isspace (c));
 }
 
-int
-isprintTurbo (int c)
+::i32
+isprintTurbo (::i32 c)
 {
   return (isprint (c));
 }
 
-int
-isgraphTurbo (int c)
+::i32
+isgraphTurbo (::i32 c)
 {
   return (isgraph (c));
 }
 
-int
-iscntrlTurbo (int c)
+::i32
+iscntrlTurbo (::i32 c)
 {
   return (iscntrl (c));
 }
 
-int
-ispunctTurbo (int c)
+::i32
+ispunctTurbo (::i32 c)
 {
   return (ispunct (c));
 }
 
-int
-isalnumTurbo (int c)
+::i32
+isalnumTurbo (::i32 c)
 {
   return (isalnum (c));
 }

@@ -65,7 +65,7 @@ multiple_lock::~multiple_lock()
 }
 
 
-::e_status multiple_lock::lock(const class time & time, bool bWaitForAll, unsigned int dwWakeMask)
+::e_status multiple_lock::lock(const class time & time, bool bWaitForAll, ::u32 dwWakeMask)
 {
 
    //if (m_synchronizationa.has_no_synchronization())
@@ -83,17 +83,17 @@ multiple_lock::~multiple_lock()
    //if (dwWakeMask == 0)
    //{
 
-   //   iResult = ::WaitForMultipleObjectsEx((unsigned int) m_synchronizationa.synchronization_count(), m_synchronizationa.sync_data(), bWaitForAll, time.u32_millis(), false);
+   //   iResult = ::WaitForMultipleObjectsEx((::u32) m_synchronizationa.synchronization_count(), m_synchronizationa.sync_data(), bWaitForAll, time.u32_millis(), false);
 
    //}
    //else
    //{
 
-   //   iResult = ::MsgWaitForMultipleObjects((unsigned int)m_synchronizationa.synchronization_count(), m_synchronizationa.sync_data(), bWaitForAll, time.u32_millis(), dwWakeMask);
+   //   iResult = ::MsgWaitForMultipleObjects((::u32)m_synchronizationa.synchronization_count(), m_synchronizationa.sync_data(), bWaitForAll, time.u32_millis(), dwWakeMask);
 
    //}
 
-   //int iUpperBound = WAIT_OBJECT_0 + (int) m_synchronizationa.synchronization_count();
+   //::i32 iUpperBound = WAIT_OBJECT_0 + (::i32) m_synchronizationa.synchronization_count();
 
    //auto iSignaled = estatus.signaled_index();
 
@@ -111,7 +111,7 @@ multiple_lock::~multiple_lock()
    //   if (bWaitForAll)
    //   {
 
-   //      for (unsigned char j = 0, i = 0; j < m_synchronizationa.size(); j++)
+   //      for (::u8 j = 0, i = 0; j < m_synchronizationa.size(); j++)
    //      {
 
    //         m_bitsLocked.set(i);
@@ -159,7 +159,7 @@ void multiple_lock::unlock()
 }
 
 
-void multiple_lock::unlock(int lCount, int * pPrevCount /* =nullptr */)
+void multiple_lock::unlock(::i32 lCount, ::i32 * pPrevCount /* =nullptr */)
 {
 
    //bool bGotOne = false;

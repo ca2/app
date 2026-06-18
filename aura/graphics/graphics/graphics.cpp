@@ -14,7 +14,7 @@
 //
 // What does it mean?
 //
-// With multiple buffers (including double buffering)
+// With multiple buffers (including ::f64 buffering)
 // every pixel of the buffer should be set again.
 // This mean also that damaged areas (m_rectangleaNeedRedraw)
 // wouldn't make sense with multiple buffers, as
@@ -40,7 +40,7 @@ namespace graphics
       //if (!pgraphics->m_callbackImage32CpuBuffer)
       //{
 
-      //   pgraphics->m_callbackImage32CpuBuffer = [this](const ::image32_t * pimage32, int cx, int cy, int scan)
+      //   pgraphics->m_callbackImage32CpuBuffer = [this](const ::image32_t * pimage32, ::i32 cx, ::i32 cy, ::i32 scan)
       //      {
 
       //         //_synchronous_lock synchronouslock(this->m_pmutex, DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
@@ -74,7 +74,7 @@ namespace graphics
 
       m_pmutex.release();
 
-      m_pimage2.defer_destroy();
+      m_pimage2.defer_destroy_and_release();
 
       m_pgraphicsBufferItem.release();
 
@@ -151,25 +151,27 @@ namespace graphics
    void graphics::destroy_buffer()
    {
 
-      for (auto & i : m_bufferitema)
-      {
 
-         try
-         {
-
-            i.defer_destroy();
-
-         }
-         catch (...)
-         {
-
-
-         }
-
-      }
-
-
-      m_bufferitema.clear();
+      m_bufferitema.defer_destroy_and_release();
+      // for (auto & i : m_bufferitema)
+      // {
+      //
+      //    try
+      //    {
+      //
+      //       i.defer_destroy();
+      //
+      //    }
+      //    catch (...)
+      //    {
+      //
+      //
+      //    }
+      //
+      // }
+      //
+      //
+      // m_bufferitema.clear();
 
 
    }
@@ -216,26 +218,26 @@ namespace graphics
 
       auto pointDesign = puserinteraction->const_layout().design().origin();
 
-      if (pbufferitem->m_pointBufferItemDraw != pointDesign)
+      if (pbufferitem->m_pointBufferItem != pointDesign)
       {
 
-         pbufferitem->m_pointBufferItemDraw = pointDesign;
+         pbufferitem->m_pointBufferItem = pointDesign;
 
       }
 
       auto sizeDesign = puserinteraction->const_layout().design().size();
 
-      if (pbufferitem->m_sizeBufferItemDraw != sizeDesign)
+      if (pbufferitem->m_sizeBufferItem != sizeDesign)
       {
 
-         pbufferitem->m_sizeBufferItemDraw = sizeDesign;
+         pbufferitem->m_sizeBufferItem = sizeDesign;
 
       }
 
-      if (pbufferitem->m_sizeBufferItemDraw.is_empty())
+      if (pbufferitem->m_sizeBufferItem.is_empty())
       {
 
-         pbufferitem->m_sizeBufferItemDraw = puserinteraction->window()->get_window_rectangle().size();
+         pbufferitem->m_sizeBufferItem = puserinteraction->window()->get_window_rectangle().size();
 
       }
 
@@ -264,7 +266,23 @@ namespace graphics
    //}
 
 
-   ::graphics::buffer_item * graphics::on_begin_draw(::e_graphics egraphics)
+   ::graphics::buffer_item *graphics::on_begin_layout() 
+   {
+      
+      return on_begin(e_graphics_layout); 
+   
+   }
+
+
+   ::graphics::buffer_item *graphics::on_begin_draw()
+   {
+
+      return on_begin(e_graphics_draw);
+
+   }
+
+
+   ::graphics::buffer_item *graphics::on_begin(::e_graphics egraphics)
    {
 
       debug() << "::graphics::graphics::on_begin_draw";
@@ -279,13 +297,13 @@ namespace graphics
 
       buffer_size_and_position(pbufferitem);
 
-      if (pbufferitem->m_sizeBufferItemDraw.is_empty())
+      if (pbufferitem->m_sizeBufferItem.is_empty())
       {
 
          if (egraphics & e_graphics_layout)
          {
 
-            pbufferitem->m_sizeBufferItemDraw = { 512, 256 };
+            pbufferitem->m_sizeBufferItem = { 512, 256 };
 
          }
          else
@@ -299,7 +317,7 @@ namespace graphics
 
       }
 
-      if (!_on_begin_draw(pbufferitem))
+      if (!_on_begin(pbufferitem))
       {
 
          return nullptr;
@@ -308,14 +326,14 @@ namespace graphics
 
       if (pbufferitem->m_pgraphicsBufferItem)
       {
-         
-         if(pbufferitem->m_pgraphicsBufferItem.ok())
+
+         if (pbufferitem->m_pgraphicsBufferItem.ok())
          {
-            
+
             pbufferitem->m_pgraphicsBufferItem->__on_begin_draw();
-            
+
          }
-         
+
       }
 
       return pbufferitem;
@@ -323,7 +341,7 @@ namespace graphics
    }
 
 
-   bool graphics::_on_begin_draw(buffer_item * pbufferitem)
+   bool graphics::_on_begin(buffer_item * pbufferitem)
    {
 
       return true;
@@ -331,10 +349,31 @@ namespace graphics
    }
 
 
+   void graphics::on_end_layout()
+   {
+
+      on_end(e_graphics_layout);
+
+   }
+
+
    void graphics::on_end_draw()
    {
 
-      buffer_lock_round_swap_key_buffers();
+      on_end(e_graphics_draw);
+
+   }
+
+
+   void graphics::on_end(::e_graphics egraphics)
+   {
+
+      if (egraphics == e_graphics_draw)
+      {
+
+         buffer_lock_round_swap_key_buffers();
+
+      }
 
    }
 
@@ -436,7 +475,7 @@ namespace graphics
    }
 
 
-   long long graphics::_001GetTopLeftWeightedOpaqueArea(const ::int_rectangle & rect)
+   ::i64 graphics::_001GetTopLeftWeightedOpaqueArea(const ::i32_rectangle & rect)
    {
 
       _synchronous_lock synchronouslock(this->synchronization(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);

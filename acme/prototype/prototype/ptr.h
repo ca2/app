@@ -469,7 +469,7 @@ public:
    }
    
 
-   operator hash32() const { return { (unsigned int)(::uptr)m_p }; }
+   operator hash32() const { return { (::u32)(::uptr)m_p }; }
 
 
    inline bool is_null() const

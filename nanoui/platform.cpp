@@ -65,7 +65,7 @@
 //         ZeroMemory(&ofn, sizeof(OPENFILENAME));
 //         ofn.lStructSize = sizeof(OPENFILENAME);
 //         memory tmp1;
-//         static const int FILE_DIALOG_MAX_BUFFER = 16384;
+//         static const ::i32 FILE_DIALOG_MAX_BUFFER = 16384;
 //         tmp1.set_size(FILE_DIALOG_MAX_BUFFER);
 //         tmp1.zero();
 //         wchar_t * tmp = (wchar_t *)tmp1.data();
@@ -149,9 +149,9 @@
 //
 //         throw ::exception(todo);
 //
-////         static const int FILE_DIALOG_MAX_BUFFER = 16384;
+////         static const ::i32 FILE_DIALOG_MAX_BUFFER = 16384;
 ////
-////         char buffer[FILE_DIALOG_MAX_BUFFER];
+////         ::i8 buffer[FILE_DIALOG_MAX_BUFFER];
 ////
 ////         buffer[0] = '\0';
 ////

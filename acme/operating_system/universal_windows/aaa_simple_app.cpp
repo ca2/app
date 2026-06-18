@@ -17,7 +17,7 @@
 //   }
 //
 //
-//   int app::main()
+//   ::i32 app::main()
 //   {
 //
 //      //sleep(15 * 1000);
@@ -141,7 +141,7 @@
 //      return true;
 //   }
 //
-//   int app::refrain()
+//   ::i32 app::refrain()
 //   {
 //
 //#ifdef WINDOWS_DESKTOP
@@ -162,7 +162,7 @@
 //   }
 //
 //
-//   int app::simple_app_pre_run()
+//   ::i32 app::simple_app_pre_run()
 //   {
 //
 //      return 0;

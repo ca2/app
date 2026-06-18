@@ -702,6 +702,15 @@
     <ClCompile Include="user\user\notification_listener.cpp">
       <Filter>Source Files\user\user</Filter>
     </ClCompile>
+    <ClCompile Include="graphics\graphics\context.cpp">
+      <Filter>Source Files\graphics\graphics</Filter>
+    </ClCompile>
+    <ClCompile Include="graphics\draw2d\graphics_context.cpp">
+      <Filter>Source Files\graphics\draw2d</Filter>
+    </ClCompile>
+    <ClCompile Include="graphics\write_text\text_metric.cpp">
+      <Filter>Source Files\graphics\write_text</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="windowing\_.h">
@@ -1699,6 +1708,12 @@
     </ClInclude>
     <ClInclude Include="user\user\notification_listener.h">
       <Filter>Header Files\user\user</Filter>
+    </ClInclude>
+    <ClInclude Include="graphics\graphics\context.h">
+      <Filter>Header Files\graphics\graphics</Filter>
+    </ClInclude>
+    <ClInclude Include="graphics\draw2d\graphics_context.h">
+      <Filter>Header Files\graphics\draw2d</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

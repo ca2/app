@@ -19,7 +19,7 @@ class CLASS_DECL_APEX service_status :
 public:
 
    
-   char sz[80];
+   ::i8 sz[80];
 
 
    service_status()
@@ -41,8 +41,8 @@ class CLASS_DECL_APEX service_status
 public:
 
 
-   unsigned int       dwServiceType;
-   unsigned int       dwServiceState;
+   ::u32       dwServiceType;
+   ::u32       dwServiceState;
 
 
    service_status()

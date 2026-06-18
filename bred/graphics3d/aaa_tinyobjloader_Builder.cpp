@@ -91,7 +91,7 @@ namespace graphics3d
                   vertex.uv[1] = attrib.texcoords[2 * idx.texcoord_index + 1];
                }
                m_vertexes.add(vertex);
-               //m_indexes.add(static_cast<unsigned int>(m_indexes.size())); // Simple sequential indexing
+               //m_indexes.add(static_cast<::u32>(m_indexes.size())); // Simple sequential indexing
             }
             index_offset += fv;
          }

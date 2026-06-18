@@ -12,7 +12,7 @@
 #include "aura/windowing/windowing.h"
 
 
-inline bool is_custom_size(enum_display edisplay)
+inline bool is_custom_size(const ::e_display & edisplay)
 {
 
    return edisplay == e_display_normal
@@ -32,7 +32,7 @@ namespace user
    main_window::main_window()
    {
 
-      m_flagNonClient -= e_non_client_focus_rect;
+      m_enonclient -= ::user::e_non_client_focus_rect;
 
       m_ewindowflag += ::e_window_flag_miniaturizable;
 
@@ -178,7 +178,7 @@ namespace user
    }
 
 
-   void main_window::input_client_rectangle(::int_rectangle & rectangle, enum_layout elayout)
+   void main_window::input_client_rectangle(::i32_rectangle & rectangle, enum_layout elayout)
    {
       
       rectangle = this->rectangle(elayout);
@@ -186,7 +186,7 @@ namespace user
       if(is_top_level() && ::is_set(m_pacmewindowingwindow))
       {
          
-         rectangle.top += (int)windowing_window()->get_top_margin();
+         rectangle.top += (::i32)windowing_window()->get_top_margin();
          
       }
       
@@ -233,7 +233,7 @@ namespace user
          if(sizeFrame.cx < sizeMinimum.cx || sizeFrame.cy < sizeMinimum.cy)
          {
 
-            ::double_rectangle rectangleRateOrSize = { 0.05, 0.05, 0.4, 0.4 };
+            ::f64_rectangle rectangleRateOrSize = { 0.05, 0.05, 0.4, 0.4 };
 
             place_rate_or_size(rectangleRateOrSize);
 
@@ -246,7 +246,7 @@ namespace user
    }
 
 
-   ::collection::index main_window::get_preferred_restore(::int_rectangle & rectanglePreferredRestore)
+   ::collection::index main_window::get_preferred_restore(::i32_rectangle & rectanglePreferredRestore)
    {
 
       //return calculate_window_rectangle_in_main_monitor(prectanglePreferredRestore, m_rectangleInitialRateOrSize);
@@ -274,7 +274,7 @@ namespace user
 
       }
 
-      //::int_rectangle rectangleWindow;
+      //::i32_rectangle rectangleWindow;
 
       //bool bInitialFramePosition = _001FancyInitialFramePlacement(rectangleWindow, m_rectangleInitialRateOrSize);
 

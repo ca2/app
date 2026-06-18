@@ -38,7 +38,7 @@ namespace wallpaper_system_summary
 
       //void *                              m_punzfileinfo;
       string                              m_strFileName;
-      unsigned long long                                 m_iPosition;
+      ::u64                                 m_iPosition;
       string_array_base                        m_straPath;
       ::pointer<folder>                  m_pfolder;
       //pointer_array < ::file_container >   m_filea;
@@ -64,11 +64,11 @@ namespace wallpaper_system_summary
       bool is_in_memory_file() const override { return true; }
 
 
-      //virtual bool zip_open(const_char_pointer ,unsigned int);
+      //virtual bool zip_open(const_char_pointer ,::u32);
       //virtual bool zip_open(::zip::file * pzfile,const ::file::path & path);
 
 
-      //virtual bool unzip_open(::file::file * pfile, const string_array_base & = {}, int iBufferLevel = 2, ::file::enum_type * petype = nullptr);
+      //virtual bool unzip_open(::file::file * pfile, const string_array_base & = {}, ::i32 iBufferLevel = 2, ::file::enum_type * petype = nullptr);
       //virtual bool unzip_open(::zip::file * pzfile,const ::file::path & path);
 
       //virtual bool unzip_open(const_char_pointer ,::file::enum_type * petype = nullptr);

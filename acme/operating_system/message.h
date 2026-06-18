@@ -6,6 +6,8 @@
 #include "acme/prototype/prototype/atom.h"
 #include "acme/prototype/geometry2d/point.h"
 #include "acme/operating_system/window.h"
+#include "acme/constant/user_message.h"
+
 
 struct MESSAGE
 {
@@ -15,8 +17,8 @@ struct MESSAGE
    ::user::enum_message          m_eusermessage = ::user::e_message_null;
    wparam                        m_wparam;
    lparam                        m_lparam;
-   ::int_point                   m_point;
-   unsigned long long            m_time = 0;
+   ::i32_point                   m_point;
+   ::u64            m_time = 0;
 
 
    MESSAGE() {}

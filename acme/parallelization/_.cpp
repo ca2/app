@@ -28,7 +28,7 @@ namespace parallelization
    //   const ::subparticle *m_psubparticleContext;
    //   ::subparticle *m_psubparticleSynchronization;
    //   const_char_pointer m_pszFile;
-   //   int m_iLine;
+   //   ::i32 m_iLine;
 
    //};
 
@@ -38,7 +38,7 @@ namespace parallelization
 //
 //
 //   void on_single_lock_lock(subparticle *psubparticleSynchronization, const subparticle *psubparticleContext,
-//                                  const_char_pointer pszFile, int iLine)
+//                                  const_char_pointer pszFile, ::i32 iLine)
 //   {
 //
 //#ifdef _DEBUG
@@ -342,13 +342,13 @@ namespace parallelization
 //
 //      if(::is_null(::get_task()) || !::get_task()->is_thread()) // system threads don't have generally associated ca2 thread matter
 //      {
-//         ////////// and have short life, so it is safe to keep it running
+//         ////////// and have ::i16 life, so it is safe to keep it running
 //         //return true;
-//         return system()->task_get_run();
+//         return system()->should_run();
 //
 //      }
 //
-//      return ::get_task()->task_get_run();
+//      return ::get_task()->should_run();
 //
 //   }
 //   catch (...)
@@ -479,7 +479,7 @@ CLASS_DECL_ACME void call(const ::procedure & procedure)
 }
 
 
-bool isvowel_dup(int i)
+bool isvowel_dup(::i32 i)
 {
 
    if (i == 'a')
@@ -589,7 +589,7 @@ string _001OnlyAlnumNonVowelString(const ::scoped_string & scopedstr)
 }
 
 
-string _001CompactString(const ::scoped_string & scopedstr, int iSkip, int iSkipBegin = 0)
+string _001CompactString(const ::scoped_string & scopedstr, ::i32 iSkip, ::i32 iSkipBegin = 0)
 {
 
    string strCompact;
@@ -615,7 +615,7 @@ string _001CompactString(const ::scoped_string & scopedstr, int iSkip, int iSkip
 }
 
 
-void thread_name_abbreviate(string & strName, int len)
+void thread_name_abbreviate(string & strName, ::i32 len)
 {
 
    if (strName.length() <= len)
@@ -844,6 +844,35 @@ CLASS_DECL_ACME void set_task(task * ptask)
 }
 
 
+CLASS_DECL_ACME void predicate_preempt(const class ::time & time, const ::function < bool() > & function)
+{
+
+   auto timeStart = ::time::now();
+   
+   while(true)
+   {
+
+      preempt(100_ms);
+
+      if (!function())
+      {
+
+         return;
+
+      }
+
+      if(timeStart.elapsed() > time)
+      {
+         
+         throw ::exception(error_timeout);
+
+      }
+
+   }
+
+}
+
+
 CLASS_DECL_ACME void task_release()
 {
 
@@ -885,7 +914,7 @@ bool task_get_run()
 
    }
 
-   return ptask->task_get_run();
+   return ptask->should_run();
 
 }
 

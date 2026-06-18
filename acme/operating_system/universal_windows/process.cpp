@@ -10,11 +10,11 @@
 
 #ifdef WINDOWS_DESKTOP
 
-CLASS_DECL_BOOT int call_async(
+CLASS_DECL_BOOT ::i32 call_async(
 const ::file::path & path,
 const ::scoped_string & scopedstrParam,
 const ::scoped_string & scopedstrDir,
-int iShow)
+::i32 iShow)
 {
 
    SHELLEXECUTEINFOA infoa;
@@ -27,7 +27,7 @@ int iShow)
    infoa.lpDirectory    = pszDir;
    infoa.nShow          = iShow;
 
-   int iOk = ::ShellExecuteExA(&infoa);
+   ::i32 iOk = ::ShellExecuteExA(&infoa);
 
    return iOk;
 
@@ -36,7 +36,7 @@ int iShow)
 #endif
 
 #ifdef WINDOWS_DESKTOP
-CLASS_DECL_BOOT unsigned int call_sync(const ::file::path & path, const ::scoped_string & scopedstrParam, const ::scoped_string & scopedstrDir, ::e_display edisplay, const class time & timeTimeout, ::property_set & set)
+CLASS_DECL_BOOT ::u32 call_sync(const ::file::path & path, const ::scoped_string & scopedstrParam, const ::scoped_string & scopedstrDir, ::e_display edisplay, const class time & timeTimeout, ::property_set & set)
 {
 
    SHELLEXECUTEINFOA infoa;
@@ -54,9 +54,9 @@ CLASS_DECL_BOOT unsigned int call_sync(const ::file::path & path, const ::scoped
 
    ::ShellExecuteExA(&infoa);
 
-   unsigned int dwExitCode;
+   ::u32 dwExitCode;
 
-   int iTry = 0;
+   ::i32 iTry = 0;
 
    while(iRetry < 0 || iTry <= iRetry)
    {
@@ -80,7 +80,7 @@ CLASS_DECL_BOOT unsigned int call_sync(const ::file::path & path, const ::scoped
 #endif
 
 #ifdef WINDOWS_DESKTOP
-int get_current_processor_index()
+::i32 get_current_processor_index()
 {
 
 
@@ -94,7 +94,7 @@ int get_current_processor_index()
 
 #ifdef WINDOWS_DESKTOP
 
-int get_current_process_maximum_affinity()
+::i32 get_current_process_maximum_affinity()
 {
 
    dword_ptr dwProcessAffinityMask;
@@ -103,9 +103,9 @@ int get_current_process_maximum_affinity()
    {
       return 0;
    }
-   int iMax = -1;
+   ::i32 iMax = -1;
    dword_ptr dwMask = 1;
-   for(int i = 0; i < sizeof(dwProcessAffinityMask) * 8; i++)
+   for(::i32 i = 0; i < sizeof(dwProcessAffinityMask) * 8; i++)
    {
       if((dwMask & dwProcessAffinityMask) != 0)
       {
@@ -123,7 +123,7 @@ int get_current_process_maximum_affinity()
 
 #ifdef WINDOWS_DESKTOP
 
-int get_current_process_affinity_order()
+::i32 get_current_process_affinity_order()
 {
 
 
@@ -133,9 +133,9 @@ int get_current_process_affinity_order()
    {
       return 0;
    }
-   int iCount = 0;
+   ::i32 iCount = 0;
    dword_ptr dwMask = 1;
-   for(int i = 0; i < sizeof(dwProcessAffinityMask) * 8; i++)
+   for(::i32 i = 0; i < sizeof(dwProcessAffinityMask) * 8; i++)
    {
       if((dwMask & dwProcessAffinityMask) != 0)
       {
@@ -155,27 +155,27 @@ int get_current_process_affinity_order()
 
 #ifdef WINDOWS_DESKTOP
 
-bool process_modules(string_array_base & stra, unsigned int processID)
+bool process_modules(string_array_base & stra, ::u32 processID)
 {
 
    HANDLE hProcess;
 
-   unsigned int cbNeeded;
+   ::u32 cbNeeded;
 
-   unsigned int i;
+   ::u32 i;
 
    hProcess = OpenProcess( PROCESS_QUERY_INFORMATION | PROCESS_VM_READ, false, processID );
 
    if (nullptr == hProcess)
       return false;
 
-   const int iMaxModuleCount = 1024 * 8;
+   const ::i32 iMaxModuleCount = 1024 * 8;
 
    HMODULE * hMods = ___new HMODULE[iMaxModuleCount];
 
-   const int iImageSize = MAX_PATH * 8;
+   const ::i32 iImageSize = MAX_PATH * 8;
 
-   char * szImage = (char *) _ca_alloc(iImageSize);
+   char_pointer szImage = (char_pointer ) _ca_alloc(iImageSize);
 
    if(EnumProcessModules(hProcess, hMods, sizeof(HMODULE) * iMaxModuleCount, &cbNeeded))
    {
@@ -183,7 +183,7 @@ bool process_modules(string_array_base & stra, unsigned int processID)
       for ( i = 0; i < (cbNeeded / sizeof(HMODULE)); i++ )
       {
 
-         if(GetModuleFileNameEx( hProcess, hMods[i], szImage, iImageSize / sizeof(char)))
+         if(GetModuleFileNameEx( hProcess, hMods[i], szImage, iImageSize / sizeof(::i8)))
          {
 
             stra.add(szImage);
@@ -231,7 +231,7 @@ bool load_modules_diff(string_array_base & straOld, string_array_base & straNew,
 
    }
 
-   for(int i = 0; i < straOld.get_count(); i++)
+   for(::i32 i = 0; i < straOld.get_count(); i++)
    {
 
       bFound = false;
@@ -253,7 +253,7 @@ bool load_modules_diff(string_array_base & straOld, string_array_base & straNew,
 
       }
 
-      for(int j = 0; j < straNew.get_count(); j++)
+      for(::i32 j = 0; j < straNew.get_count(); j++)
       {
 
          if(case_insensitive_ansi_compare(straOld[i], straNew[j]) == 0)
@@ -272,7 +272,7 @@ bool load_modules_diff(string_array_base & straOld, string_array_base & straNew,
 
          hmodule = nullptr;
 
-         // double check, ensure, that the module has not been already loaded
+         // ::f64 check, ensure, that the module has not been already loaded
          // it may happen by loading a missing module that loads dependencies that satisfies straOld modules state.
 
          if(::GetModuleHandleExA(GET_MODULE_HANDLE_EX_FLAG_UNCHANGED_REFCOUNT, straOld[i], &hmodule) == false || hmodule == nullptr)
@@ -304,7 +304,7 @@ bool load_modules_diff(string_array_base & straOld, string_array_base & straNew,
 
 
 
-int get_current_process_affinity_order()
+::i32 get_current_process_affinity_order()
 {
 
    return 1;
@@ -313,7 +313,7 @@ int get_current_process_affinity_order()
 }
 
 
-unsigned long long translate_processor_affinity(int i)
+::u64 translate_processor_affinity(::i32 i)
 {
 
    return 1;
@@ -322,7 +322,7 @@ unsigned long long translate_processor_affinity(int i)
 
 //#undef ::acmeacmesystem()
 
-//CLASS_DECL_ACME int ui_open_url(const ::scoped_string & scopedstrUrl)
+//CLASS_DECL_ACME ::i32 ui_open_url(const ::scoped_string & scopedstrUrl)
 //{
 //
 //   string strUrl(scopedstrUrl);
@@ -351,7 +351,7 @@ bool shell_execute_sync(const ::scoped_string & scopedstrFile, const ::scoped_st
 
    return false;
 
-   //return call_sync(scopedstrFile, pszParams, ::file::path(scopedstrFile).folder(), 0, false, (int)timeTimeout.get_total_milliseconds());
+   //return call_sync(scopedstrFile, pszParams, ::file::path(scopedstrFile).folder(), 0, false, (::i32)timeTimeout.get_total_milliseconds());
 
 }
 

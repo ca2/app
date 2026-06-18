@@ -39,7 +39,7 @@ namespace gpu_opengl
 
 
       //void mesh::initialize_gpu_gltf_mesh(const ::array_base<::gpu::gltf::vertex> &vertexa,
-      //                             const ::unsigned_int_array &indexa, ::gpu::model::material *pmaterial)
+      //                             const ::u32_array &indexa, ::gpu::model::material *pmaterial)
       //{
 
       //   m_vertexa = vertexa;
@@ -140,7 +140,7 @@ namespace gpu_opengl
             //pshader->set_sequence3("albedo", seq3Albedo);
             //if (bAlbedo)
             //{
-            //   int iTextureIndex = ::gpu::e_gltf_texture_albedo;
+            //   ::i32 iTextureIndex = ::gpu::e_gltf_texture_albedo;
             //   GLenum textureIndex = GL_TEXTURE0 + iTextureIndex;
             //   glActiveTexture(textureIndex);
             //   pshader->set_int("textureAlbedo", iTextureIndex);
@@ -153,7 +153,7 @@ namespace gpu_opengl
             //   !prendersystem->m_bDisableMetallicRoughness && m_pmaterial->useTextureMetallicRoughness;
 
             //pshader->set_int("useTextureMetallicRoughness", bMetallicRoughness);
-            //float fMetallic = 0.0f;
+            //::f32 fMetallic = 0.0f;
             //if (prendersystem->m_bForceDefaultMetallicFactor)
             //{
 
@@ -166,7 +166,7 @@ namespace gpu_opengl
             //   fMetallic = m_pmaterial->m_fMetallic;
 
             //}
-            //float fRoughness = 0.0f;
+            //::f32 fRoughness = 0.0f;
             //if (prendersystem->m_bForceDefaultRoughnessFactor)
             //{
 
@@ -177,11 +177,11 @@ namespace gpu_opengl
 
             //   fRoughness = m_pmaterial->m_fRoughness;
             //}
-            //pshader->set_float("metallic", fMetallic);
-            //pshader->set_float("roughness", fRoughness);
+            //pshader->set_f32("metallic", fMetallic);
+            //pshader->set_f32("roughness", fRoughness);
             //if (bMetallicRoughness)
             //{
-            //   int iTextureIndex = ::gpu::e_gltf_texture_metallic_roughness;
+            //   ::i32 iTextureIndex = ::gpu::e_gltf_texture_metallic_roughness;
             //   GLenum textureIndex = GL_TEXTURE0 + iTextureIndex;
             //   glActiveTexture(textureIndex);
             //   pshader->set_int("textureMetallicRoughness", iTextureIndex);
@@ -203,7 +203,7 @@ namespace gpu_opengl
             //bool bAmbientOcclusion =
             //   !prendersystem->m_bDisableAmbientOcclusion && m_pmaterial->useTextureAmbientOcclusion;
             //pshader->set_int("useTextureAmbientOcclusion", bAmbientOcclusion);
-            //float fAmbientOcclusion = 0.0f;
+            //::f32 fAmbientOcclusion = 0.0f;
             //if (prendersystem->m_bForceDefaultAmbientOcclusionFactor)
             //{
 
@@ -214,7 +214,7 @@ namespace gpu_opengl
 
             //   fAmbientOcclusion = m_pmaterial->m_fAmbientOcclusion;
             //}
-            //pshader->set_float("ambientOcclusion", fAmbientOcclusion);
+            //pshader->set_f32("ambientOcclusion", fAmbientOcclusion);
             //if (bAmbientOcclusion)
             //{
             //   glActiveTexture(GL_TEXTURE0 + ::gpu::e_gltf_texture_ambient_occlusion);
@@ -257,7 +257,7 @@ namespace gpu_opengl
 
             //   auto alphaMaskCutoff = m_pmaterial->alphaCutoff;
 
-            //   pshader->set_float("alphaMaskCutoff", alphaMaskCutoff);
+            //   pshader->set_f32("alphaMaskCutoff", alphaMaskCutoff);
 
 
             //}
@@ -272,7 +272,7 @@ namespace gpu_opengl
             //pshader->set_sequence3("albedo", m_pmaterial->m_seq3Albedo);
             //if (bUseTextureAlbedo)
             //{
-            //   int iTextureIndex = ::gpu::e_gltf_texture_albedo;
+            //   ::i32 iTextureIndex = ::gpu::e_gltf_texture_albedo;
             //   GLenum textureIndex = GL_TEXTURE0 + iTextureIndex;
             //   glActiveTexture(textureIndex);
             //   pshader->set_int("textureAlbedo", iTextureIndex);
@@ -288,11 +288,11 @@ namespace gpu_opengl
             //}
 
             ////pshader->set_int("material.useTextureMetallicRoughness", m_pmaterial->useTextureMetallicRoughness);
-            //pshader->set_float("metallic", m_pmaterial->m_fMetallic);
-            //pshader->set_float("roughness", m_pmaterial->m_fRoughness);
+            //pshader->set_f32("metallic", m_pmaterial->m_fMetallic);
+            //pshader->set_f32("roughness", m_pmaterial->m_fRoughness);
             ////if (m_pmaterial->useTextureMetallicRoughness)
             ////{
-            ////   int iTextureIndex = ::gpu::e_gltf_texture_metallic_roughness;
+            ////   ::i32 iTextureIndex = ::gpu::e_gltf_texture_metallic_roughness;
             ////   GLenum textureIndex = GL_TEXTURE0 + iTextureIndex;
             ////   glActiveTexture(textureIndex);
             ////   pshader->set_int("material.textureMetallicRoughness", iTextureIndex);
@@ -316,7 +316,7 @@ namespace gpu_opengl
             //}
 
             ////pshader->set_int("material.useTextureAmbientOcclusion", m_pmaterial->useTextureAmbientOcclusion);
-            //pshader->set_float("ambientOcclusion", m_pmaterial->m_fAmbientOcclusion);
+            //pshader->set_f32("ambientOcclusion", m_pmaterial->m_fAmbientOcclusion);
             ////if (m_pmaterial->useTextureAmbientOcclusion)
             ////{
             ////   glActiveTexture(GL_TEXTURE0 + ::gpu::e_gltf_texture_ambient_occlusion);
@@ -377,7 +377,7 @@ namespace gpu_opengl
       //    ////              GL_STATIC_DRAW); // copy over the vertex data
       //    ////
       //    //// glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, mEBO); // use this EBO for subsequent calls
-      //    //// glBufferData(GL_ELEMENT_ARRAY_BUFFER, m_indexa.size() * sizeof(unsigned int), &m_indexa[0],
+      //    //// glBufferData(GL_ELEMENT_ARRAY_BUFFER, m_indexa.size() * sizeof(::u32), &m_indexa[0],
       //    ////              GL_STATIC_DRAW); // copy over the index data
       //    ////
       //    //// // setup the locations of vertex data
@@ -438,7 +438,7 @@ namespace gpu_opengl
       //
       //
       //    ////   glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, m_uEBO); // use this EBO for subsequent calls
-      //    ////   glBufferData(GL_ELEMENT_ARRAY_BUFFER, indexSize * sizeof(unsigned int), indexData,
+      //    ////   glBufferData(GL_ELEMENT_ARRAY_BUFFER, indexSize * sizeof(::u32), indexData,
       //    ////                GL_STATIC_DRAW); // copy over the index data
       //
       //    ////   // setup the locations of vertex data

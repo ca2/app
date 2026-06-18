@@ -2,7 +2,7 @@
 #pragma once
 
 
-#include "int_map.h"
+#include "integer_map.h"
 
 
 namespace acme
@@ -128,7 +128,7 @@ namespace acme
       //      inline ::collection::index find_first_item(::winrt::Windows::Foundation::Collections::IVectorImpact < T > ^ ivectorview, const ITEM & item)
       //      {
       //
-      //         for (unsigned int u = 0; u < ivectorview->Size; u++)
+      //         for (::u32 u = 0; u < ivectorview->Size; u++)
       //         {
       //
       //            if (ivectorview->GetAt(u) == item)
@@ -634,7 +634,7 @@ namespace acme
 
 
       inline ::collection::index add(string_array_base& stra, const ::scoped_string & scopedstr);
-      inline ::collection::index add(string_array_base& stra, const char& ch);
+      inline ::collection::index add(string_array_base& stra, const ::i8& ch);
       inline ::collection::index add(string_array_base& stra, const ansi_string& str);
       inline ::collection::index add(string_array_base& stra, const wide_string& str);
       inline ::collection::index add(string_array_base& stra, const ::file::path& path);
@@ -1058,7 +1058,7 @@ namespace acme
 
          dsta.erase_all();
 
-         for (int i = 0; i < srca.get_size(); i++)
+         for (::i32 i = 0; i < srca.get_size(); i++)
          {
 
             dsta.add((typename TDST::BASE_TYPE) srca[i]);
@@ -1167,7 +1167,7 @@ namespace acme
 
       //   dsta.set_size(c);
 
-      //   for (int i = 0; i < c; i++)
+      //   for (::i32 i = 0; i < c; i++)
       //   {
 
       //      dsta[i] = (typename TDST::BASE_TYPE) srca[i];
@@ -1186,7 +1186,7 @@ namespace acme
 
       //   dsta.set_size(c);
 
-      //   for (int i = 0; i < c; i++)
+      //   for (::i32 i = 0; i < c; i++)
       //   {
 
       //      dsta[i] = srca[i];
@@ -1224,7 +1224,7 @@ namespace acme
 
       dsta.erase_all();
 
-      for (int i = 0; i < srca.get_size(); i++)
+      for (::i32 i = 0; i < srca.get_size(); i++)
       {
          dsta.add(allocateø TSRC(srca(i)));
          ca++;
@@ -1245,7 +1245,7 @@ namespace acme
 
          dsta.erase_all();
 
-         for (int i = 0; i < srca.get_size(); i++)
+         for (::i32 i = 0; i < srca.get_size(); i++)
          {
             dsta.add(___new TSRC (srca(i)));
             ca++;
@@ -1263,7 +1263,7 @@ namespace acme
 
          dsta.erase_all();
 
-         for (int i = 0; i < srca.get_size(); i++)
+         for (::i32 i = 0; i < srca.get_size(); i++)
          {
             dsta.add(srca[i]);
             ca++;
@@ -1288,22 +1288,22 @@ namespace acme
       A elema;
       A topermut;
       A2D perm2;
-      for (int i = 0; i < count; i++)
+      for (::i32 i = 0; i < count; i++)
       {
          elema.erase_all();
          elema.add(a[i]);
          topermut.erase_all();
-         for (int j = 0; j < i; j++)
+         for (::i32 j = 0; j < i; j++)
          {
             topermut.add(a[j]);
          }
-         for (int j = i + 1; j < count; j++)
+         for (::i32 j = i + 1; j < count; j++)
          {
             topermut.add(a[j]);
          }
          perm2.erase_all();
          array_permute(perm2, topermut);
-         for (int j = 0; j < perm2.get_count(); j++)
+         for (::i32 j = 0; j < perm2.get_count(); j++)
          {
             perm.add(elema + perm2[j]);
          }
@@ -1322,22 +1322,22 @@ namespace acme
       A elema;
       A topermut;
       pointer_array < A > perm2;
-      for (int i = 0; i < count; i++)
+      for (::i32 i = 0; i < count; i++)
       {
          elema.erase_all();
          elema.add(a[i]);
          topermut.erase_all();
-         for (int j = 0; j < i; j++)
+         for (::i32 j = 0; j < i; j++)
          {
             topermut.add(a[j]);
          }
-         for (int j = i + 1; j < count; j++)
+         for (::i32 j = i + 1; j < count; j++)
          {
             topermut.add(a[j]);
          }
          perm2.erase_all();
          array_permute(perm2, topermut);
-         for (int j = 0; j < perm2.get_count(); j++)
+         for (::i32 j = 0; j < perm2.get_count(); j++)
          {
             perm.add(allocateø A(elema + perm2[j]));
          }
@@ -1366,7 +1366,7 @@ namespace acme
       ////      to array
 
       ////inline ::collection::index add(string_array_base & stra, const ::scoped_string & scopedstr) { return stra.add_item(scopedstr); }
-      ////inline ::collection::index add(string_array_base & stra, const char & ch) { return stra.add_item(ch); }
+      ////inline ::collection::index add(string_array_base & stra, const ::i8 & ch) { return stra.add_item(ch); }
       ////inline ::collection::index add(string_array_base & stra, const ansi_string & str) { return stra.add_item(str); }
       ////inline ::collection::index add(string_array_base & stra, const wd16_string & str) { return stra.add_item(str); }
       ////inline ::collection::index add(string_array_base & stra, const wd32_string & str) { return stra.add_item(str); }
@@ -1374,7 +1374,7 @@ namespace acme
 
 
       ////inline ::collection::index add(::file::path_array_base & patha, const ::scoped_string & scopedstr) { return patha.add_item(scopedstr); }
-      ////inline ::collection::index add(::file::path_array_base & patha, const char & ch) { return patha.add_item(ch); }
+      ////inline ::collection::index add(::file::path_array_base & patha, const ::i8 & ch) { return patha.add_item(ch); }
       ////inline ::collection::index add(::file::path_array_base & patha, const ansi_string & str) { return patha.add_item(str); }
       ////inline ::collection::index add(::file::path_array_base & patha, const wd16_string & str) { return patha.add_item(str); }
       ////inline ::collection::index add(::file::path_array_base & patha, const wd32_string & str) { return patha.add_item(str); }

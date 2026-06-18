@@ -36,14 +36,14 @@ public:
 
    static void free_string(BSTR bstr);
 
-   inline static unsigned int SysStringByteLen(BSTR bstr)
+   inline static ::u32 SysStringByteLen(BSTR bstr)
    {
       if (bstr == 0)
          return 0;
-      return *((unsigned int *)bstr - 1);
+      return *((::u32 *)bstr - 1);
    }
 
-   inline static unsigned int SysStringLen(BSTR bstr)
+   inline static ::u32 SysStringLen(BSTR bstr)
    {
       return SysStringByteLen(bstr) / sizeof(OLECHAR);
    }

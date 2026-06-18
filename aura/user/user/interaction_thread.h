@@ -60,9 +60,9 @@ namespace user
 #ifdef _DEBUG
 
 
-      long long increment_reference_count() override;
-      long long decrement_reference_count() override;
-      long long release() override;
+      ::i64 increment_reference_count() override;
+      ::i64 decrement_reference_count() override;
+      ::i64 release() override;
 
 
 #endif
@@ -89,7 +89,7 @@ namespace user
 
 
 //#ifdef WINDOWS_DESKTOP
-//      virtual int _GetMessage(LPMSG lpMsg, HWND hWnd, unsigned int wMsgFilterMin, unsigned int wMsgFilterMax) override;
+//      virtual ::i32 _GetMessage(LPMSG lpMsg, HWND hWnd, ::u32 wMsgFilterMin, ::u32 wMsgFilterMax) override;
 //#endif
 
       //bool task_get_run() const override;
@@ -112,7 +112,7 @@ namespace user
 
       //void destroy() override;
 
-      bool task_get_run() const override;
+      bool should_run() const override;
 
       virtual void enumerate_composite(matter_array& a);
 

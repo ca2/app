@@ -9,8 +9,8 @@
 #include "menu_shared.h"
 
 
-void free_c_string_array(char * const * ppszList, int iCount);
-char * const * alloc_c_string_array(const string_array_base & stra);
+void free_c_string_array(char_pointer const * ppszList, ::i32 iCount);
+char_pointer const * alloc_c_string_array(const string_array_base & stra);
 
  menu_shared::menu_shared()
 {
@@ -35,7 +35,7 @@ char * const * alloc_c_string_array(const string_array_base & stra);
 ::pointer<menu_shared>create_menu_shared(::particle * pparticle, const string_array_base & straParent, const string_array_base & straMenu, const string_array_base & straId)
 {
 
-   int iCount = (int) straParent.get_count();
+   ::i32 iCount = (::i32) straParent.get_count();
 
    if(iCount <= 0
       || iCount != straMenu.get_size()
@@ -53,7 +53,7 @@ char * const * alloc_c_string_array(const string_array_base & stra);
    pmenushared->m_ppszMenu = alloc_c_string_array(straMenu);
    pmenushared->m_ppszId = alloc_c_string_array(straId);
    pmenushared->m_ositema = aaa_primitive_new void *[iCount];
-   pmenushared->m_statusa = aaa_primitive_new int[iCount];
+   pmenushared->m_statusa = aaa_primitive_new ::i32[iCount];
 
    ::memory_set(pmenushared->m_ositema, 0, sizeof(void *) * iCount);
    ::memory_set(pmenushared->m_statusa, 0, sizeof(menu_shared::enum_status) * iCount);
@@ -66,7 +66,7 @@ char * const * alloc_c_string_array(const string_array_base & stra);
 void * menu_shared::find_item(const ::scoped_string & scopedstrParent, const ::scoped_string & scopedstrId)
 {
 
-   for(int i = 0; i < m_iCount; i++)
+   for(::i32 i = 0; i < m_iCount; i++)
    {
 
       if(!strcmp(scopedstrParent, m_ppszParent[i]))
@@ -92,7 +92,7 @@ void menu_shared::on_idle_update()
 {
 
 
-   for(int i = 0; i < m_iCount; i++)
+   for(::i32 i = 0; i < m_iCount; i++)
    {
 
       void * pitem = m_ositema[i];
@@ -161,9 +161,9 @@ class menu_shared_command :
 {
 public: // re-implementations only
 
-   int * m_pestatus;
+   ::i32 * m_pestatus;
 
-   menu_shared_command(int * pestatus):
+   menu_shared_command(::i32 * pestatus):
    m_pestatus(pestatus)
    {
    }
@@ -220,7 +220,7 @@ void menu_shared_idle(::user::frame_interaction * pframe)
 
    }
 
-   for(int i = 0; i < pmenushared->m_iCount; i++)
+   for(::i32 i = 0; i < pmenushared->m_iCount; i++)
    {
 
       void * pitem = pmenushared->m_ositema[i];

@@ -14,7 +14,7 @@
 //   
 //     // g_interlockedcountFilePathObject++;
 //
-//      //informationf("----::file::path_object (count=" + as_string(g_interlockedcountFilePathObject.operator long long) + ")\n");
+//      //informationf("----::file::path_object (count=" + as_string(g_interlockedcountFilePathObject.operator ::i64) + ")\n");
 //
 //   }
 //
@@ -24,7 +24,7 @@
 //
 //      //g_interlockedcountFilePathObject++;
 //
-//      //informationf("----::file::path_object (count=" + as_string(g_interlockedcountFilePathObject.operator long long) + ")\n");
+//      //informationf("----::file::path_object (count=" + as_string(g_interlockedcountFilePathObject.operator ::i64) + ")\n");
 //   
 //   }
 //
@@ -35,7 +35,7 @@
 //
 //      //g_interlockedcountFilePathObject++;
 //
-//      //informationf("----::file::path_object (count=" + as_string(g_interlockedcountFilePathObject.operator long long) + ")\n");
+//      //informationf("----::file::path_object (count=" + as_string(g_interlockedcountFilePathObject.operator ::i64) + ")\n");
 //   
 //   }
 //
@@ -46,7 +46,7 @@
 //
 //      //g_interlockedcountFilePathObject++;
 //
-//      //informationf("----::file::path_object (count=" + as_string(g_interlockedcountFilePathObject.operator long long) + ")\n");
+//      //informationf("----::file::path_object (count=" + as_string(g_interlockedcountFilePathObject.operator ::i64) + ")\n");
 //   
 //   }
 //
@@ -75,7 +75,7 @@
 //   }
 //
 //   
-//   void path_object::to_sz(char* sz, character_count len) const
+//   void path_object::to_sz(char_pointer sz, character_count len) const
 //   {
 //
 //      strncpy(sz, c_str(), len);

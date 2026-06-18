@@ -2,30 +2,30 @@
 
 //HDC GetDC(oswindow hwnd);
 // HFONT CreateFontIndirect(const LOGFONT * lf);
-// HPEN CreatePen(int iPenStyle, int iWidth, color32_t crColor);
-// HGDIOBJ GetStockObject(int iStockObject);
-// int_bool SelectObject(HDC hdc, HGDIOBJ hgdiobj);
-// int_bool Rectangle(HDC hdc, int x1, int y1, int x2, int y2);
-// int_bool DeleteObject(HGDIOBJ hgdiobj);
+// HPEN CreatePen(::i32 iPenStyle, ::i32 iWidth, color32_t crColor);
+// HGDIOBJ GetStockObject(::i32 iStockObject);
+// ::i32_bool SelectObject(HDC hdc, HGDIOBJ hgdiobj);
+// ::i32_bool Rectangle(HDC hdc, ::i32 x1, ::i32 y1, ::i32 x2, ::i32 y2);
+// ::i32_bool DeleteObject(HGDIOBJ hgdiobj);
 // HDC create_compatible_graphics(HDC hdc);
-// HBITMAP WINAPI CreateDIBSection(HDC hdc, const BITMAPINFO *pbmi, unsigned int usage, void **ppvBits, HANDLE hSection, unsigned int offset);
+// HBITMAP WINAPI CreateDIBSection(HDC hdc, const BITMAPINFO *pbmi, ::u32 usage, void **ppvBits, HANDLE hSection, ::u32 offset);
 
-// int_bool SetTextColor(HDC hdc, color32_t color32);
-// int_bool SetBkMode(HDC hdc, int iMode);
-// int_bool DeleteDC(HDC hdc);
-// int_bool AlphaBlend(HDC hdcDest, int xoriginDest, int yoriginDest, int wDest, int hDest, HDC hdcSrc, int xoriginSrc, int yoriginSrc, int wSrc, int hSrc, BLENDFUNCTION ftn);
-// int_bool GetObject(HGDIOBJ hgdiobj, int iSize, void * matter);
-// int_bool GetTextExtentPoint(HDC hdc, const ::scoped_string & scopedstrText, int iSize, ::int_size * psize);
-/*int_bool WINAPI TransparentBlt(HDC hdcDest,
-    __in int xoriginDest,
-    __in int yoriginDest,
-    __in int wDest,
-    __in int hDest,
+// ::i32_bool SetTextColor(HDC hdc, color32_t color32);
+// ::i32_bool SetBkMode(HDC hdc, ::i32 iMode);
+// ::i32_bool DeleteDC(HDC hdc);
+// ::i32_bool AlphaBlend(HDC hdcDest, ::i32 xoriginDest, ::i32 yoriginDest, ::i32 wDest, ::i32 hDest, HDC hdcSrc, ::i32 xoriginSrc, ::i32 yoriginSrc, ::i32 wSrc, ::i32 hSrc, BLENDFUNCTION ftn);
+// ::i32_bool GetObject(HGDIOBJ hgdiobj, ::i32 iSize, void * matter);
+// ::i32_bool GetTextExtentPoint(HDC hdc, const ::scoped_string & scopedstrText, ::i32 iSize, ::i32_size * psize);
+/*::i32_bool WINAPI TransparentBlt(HDC hdcDest,
+    __in ::i32 xoriginDest,
+    __in ::i32 yoriginDest,
+    __in ::i32 wDest,
+    __in ::i32 hDest,
     __in HDC hdcSrc,
-    __in int xoriginSrc,
-    __in int yoriginSrc,
-    __in int wSrc,
-    __in int hSrc,
-    __in unsigned int crTransparent);
+    __in ::i32 xoriginSrc,
+    __in ::i32 yoriginSrc,
+    __in ::i32 wSrc,
+    __in ::i32 hSrc,
+    __in ::u32 crTransparent);
 
 */

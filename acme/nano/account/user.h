@@ -23,8 +23,8 @@ namespace nano
 
          ::string       m_strName;       /* username */
          ::string       m_strPasswd;     /* user password */
-         unsigned long long          m_uUserid;       /* user ID */
-         unsigned long long          m_uGroupid;      /* group ID */
+         ::u64          m_uUserid;       /* user ID */
+         ::u64          m_uGroupid;      /* group ID */
          ::string       m_strGecos;      /* user information */
          ::string       m_strDir;        /* home directory */
          ::string       m_strShell;      /* shell program */

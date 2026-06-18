@@ -37,7 +37,7 @@ namespace nanoui
 
 //      /// Return the current reference count
 //      ::collection::count ref_count() const { return m_countReference; };
-//      //int ref_count() const { return 1; };
+//      //::i32 ref_count() const { return 1; };
 //
 //      /// Increase the object's reference count by one
 //      void inc_ref();
@@ -55,7 +55,7 @@ namespace nanoui
        */
       virtual ~Object();
    //private:
-     //mutable std::atomic<int> m_ref_count{ 0 };
+     //mutable std::atomic<::i32> m_ref_count{ 0 };
 };
 
 ///**

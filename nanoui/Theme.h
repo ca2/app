@@ -36,89 +36,89 @@ namespace nanoui
 
       /* Fonts */
       /// The standard font face (default: ``"sans"`` from ``resources/roboto_regular.ttf``).
-      //int m_font_sans_regular;
+      //::i32 m_font_sans_regular;
       /// The bold font face (default: ``"sans-bold"`` from ``resources/roboto_regular.ttf``).
-      //int m_font_sans_bold;
+      //::i32 m_font_sans_bold;
       /// The icon font face (default: ``"icons"`` from ``resources/entypo.ttf``).
-      //int m_font_icons;
+      //::i32 m_font_icons;
       /// The monospace font face (default: ``"mono"`` from ``resources/inconsolata_regular.ttf``).
-      //int m_font_mono_regular;
+      //::i32 m_font_mono_regular;
       /**
        * The amount of scaling that is applied to each icon to fit the size of
        * NanoGUI widgets.  The default value is ``0.77f``, setting to e.g. higher
        * than ``1.0f`` is generally discouraged.
        */
-      float m_fIconScale;
+      ::f32 m_fIconScale;
 
       /* Spacing-related parameters */
       /// The font size for all widgets other than buttons and textboxes (default: `` 16``).
-      int m_iStandardFontSize;
+      ::i32 m_iStandardFontSize;
       /// The font size for buttons (default: ``20``).
-      int m_iButtonFontSize;
+      ::i32 m_iButtonFontSize;
       /// The font size for text boxes (default: ``20``).
-      int m_iTextBoxFontSize;
+      ::i32 m_iTextBoxFontSize;
       /// Rounding radius for Window pwidget corners (default: ``2``).
-      int m_iWindowCorderRadius;
+      ::i32 m_iWindowCorderRadius;
       /// Default size of Window pwidget titles (default: ``30``).
-      int m_iWindowHeaderHeight;
+      ::i32 m_iWindowHeaderHeight;
       /// Size of drop shadow rendered behind the Window widgets (default: ``10``).
-      int m_iWindowDropShadowSize;
+      ::i32 m_iWindowDropShadowSize;
       /// Rounding radius for Button (and derived types) widgets (default: ``2``).
-      int m_iButtonCornerRadius;
+      ::i32 m_iButtonCornerRadius;
       /// The border width for Tab_header widgets (default: ``0.75f``).
-      float m_fTabBorderWidth;
+      ::f32 m_fTabBorderWidth;
       /// The inner margin on a Tab_header pwidget (default: ``5``).
-      int m_iTabInnerMargin;
+      ::i32 m_iTabInnerMargin;
       /// The minimum size for buttons on a Tab_header pwidget (default: ``20``).
-      int m_iTabMinimumButtonWidth;
+      ::i32 m_iTabMinimumButtonWidth;
       /// The maximum size for buttons on a Tab_header pwidget (default: ``160``).
-      int m_iTabMaximumButtonWidth;
+      ::i32 m_iTabMaximumButtonWidth;
       /// Used to help specify what lies "in bound" for a Tab_header pwidget (default: ``20``).
-      int m_iTabControlWidth;
+      ::i32 m_iTabControlWidth;
       /// The amount of horizontal padding for a Tab_header pwidget (default: ``10``).
-      int m_iHorizontalPaddingTabButton;
+      ::i32 m_iHorizontalPaddingTabButton;
       /// The amount of vertical padding for a Tab_header pwidget (default: ``2``).
-      int m_iVerticalPaddingTabButton;
+      ::i32 m_iVerticalPaddingTabButton;
 
       /* Generic colors */
       /**
        * The color::color of the drop shadow drawn behind widgets
-       * (default: intensity=``0``, alpha=``128``; see \::pointer nanoui::color::color::color::color(int,int)).
+       * (default: intensity=``0``, alpha=``128``; see \::pointer nanoui::color::color::color::color(::i32,::i32)).
        */
       color::color m_colorDropShadow;
       /**
        * The transparency color::color
-       * (default: intensity=``0``, alpha=``0``; see \::pointer nanoui::color::color::color::color(int,int)).
+       * (default: intensity=``0``, alpha=``0``; see \::pointer nanoui::color::color::color::color(::i32,::i32)).
        */
       color::color m_colorTransparent;
       /**
        * The dark border color::color
-       * (default: intensity=``29``, alpha=``255``; see \::pointer nanoui::color::color::color::color(int,int)).
+       * (default: intensity=``29``, alpha=``255``; see \::pointer nanoui::color::color::color::color(::i32,::i32)).
        */
       color::color m_colorBorderDark;
       /**
        * The light border color::color
-       * (default: intensity=``92``, alpha=``255``; see \::pointer nanoui::color::color::color::color(int,int)).
+       * (default: intensity=``92``, alpha=``255``; see \::pointer nanoui::color::color::color::color(::i32,::i32)).
        */
       color::color m_colorBorderLight;
       /**
        * The medium border color::color
-       * (default: intensity=``35``, alpha=``255``; see \::pointer nanoui::color::color::color::color(int,int)).
+       * (default: intensity=``35``, alpha=``255``; see \::pointer nanoui::color::color::color::color(::i32,::i32)).
        */
       color::color m_colorBorderMedium;
       /**
        * The text color::color
-       * (default: intensity=``255``, alpha=``160``; see \::pointer nanoui::color::color::color::color(int,int)).
+       * (default: intensity=``255``, alpha=``160``; see \::pointer nanoui::color::color::color::color(::i32,::i32)).
        */
       color::color m_colorText;
       /**
        * The disable dtext color::color
-       * (default: intensity=``255``, alpha=``80``; see \::pointer nanoui::color::color::color::color(int,int)).
+       * (default: intensity=``255``, alpha=``80``; see \::pointer nanoui::color::color::color::color(::i32,::i32)).
        */
       color::color m_colorDisableText;
       /**
        * The text shadow color::color
-       * (default: intensity=``0``, alpha=``160``; see \::pointer nanoui::color::color::color::color(int,int)).
+       * (default: intensity=``0``, alpha=``160``; see \::pointer nanoui::color::color::color::color(::i32,::i32)).
        */
       color::color m_colorTextShadow;
       /// The icon color::color (default: \::pointer nanoui::Theme::m_colorText).
@@ -127,54 +127,54 @@ namespace nanoui
       /* Button colors */
       /**
        * The top gradient color::color for buttons in focus
-       * (default: intensity=``64``, alpha=``255``; see \::pointer nanoui::color::color::color::color(int,int)).
+       * (default: intensity=``64``, alpha=``255``; see \::pointer nanoui::color::color::color::color(::i32,::i32)).
        */
       color::color m_colorButtonGradientTopFocused;
       /**
        * The bottom gradient color::color for buttons in focus
-       * (default: intensity=``48``, alpha=``255``; see \::pointer nanoui::color::color::color::color(int,int)).
+       * (default: intensity=``48``, alpha=``255``; see \::pointer nanoui::color::color::color::color(::i32,::i32)).
        */
       color::color m_colorButtonGradientBottomFocused;
       /**
        * The top gradient color::color for buttons not in focus
-       * (default: intensity=``74``, alpha=``255``; see \::pointer nanoui::color::color::color::color(int,int)).
+       * (default: intensity=``74``, alpha=``255``; see \::pointer nanoui::color::color::color::color(::i32,::i32)).
        */
       color::color m_colorButtonGradientUnfocused;
       /**
        * The bottom gradient color::color for buttons not in focus
-       * (default: intensity=``58``, alpha=``255``; see \::pointer nanoui::color::color::color::color(int,int)).
+       * (default: intensity=``58``, alpha=``255``; see \::pointer nanoui::color::color::color::color(::i32,::i32)).
        */
       color::color m_colorButtonGradientBottomUnfocused;
       /**
        * The top gradient color::color for buttons currently pushed
-       * (default: intensity=``41``, alpha=``255``; see \::pointer nanoui::color::color::color::color(int,int)).
+       * (default: intensity=``41``, alpha=``255``; see \::pointer nanoui::color::color::color::color(::i32,::i32)).
        */
       color::color m_colorButtonGradientTopPushed;
       /**
        * The bottom gradient color::color for buttons currently pushed
-       * (default: intensity=``29``, alpha=``255``; see \::pointer nanoui::color::color::color::color(int,int)).
+       * (default: intensity=``29``, alpha=``255``; see \::pointer nanoui::color::color::color::color(::i32,::i32)).
        */
       color::color m_colorButtonGradientBottomPushed;
 
       /* Window colors */
       /**
        * The fill color::color for a Window that is not in focus
-       * (default: intensity=``43``, alpha=``230``; see \::pointer nanoui::color::color::color::color(int,int)).
+       * (default: intensity=``43``, alpha=``230``; see \::pointer nanoui::color::color::color::color(::i32,::i32)).
        */
       color::color m_colorWindowFillUnfocused;
       /**
        * The fill color::color for a Window that is in focus
-       * (default: intensity=``45``, alpha=``230``; see \::pointer nanoui::color::color::color::color(int,int)).
+       * (default: intensity=``45``, alpha=``230``; see \::pointer nanoui::color::color::color::color(::i32,::i32)).
        */
       color::color m_colorWindowFillFocused;
       /**
        * The title color::color for a Window that is not in focus
-       * (default: intensity=``220``, alpha=``160``; see \::pointer nanoui::color::color::color::color(int,int)).
+       * (default: intensity=``220``, alpha=``160``; see \::pointer nanoui::color::color::color::color(::i32,::i32)).
        */
       color::color m_colorWindowTitleUnfocused;
       /**
        * The title color::color for a Window that is in focus
-       * (default: intensity=``255``, alpha=``190``; see \::pointer nanoui::color::color::color::color(int,int)).
+       * (default: intensity=``255``, alpha=``190``; see \::pointer nanoui::color::color::color::color(::i32,::i32)).
        */
       color::color m_colorWindowTitleFocused;
 
@@ -195,12 +195,12 @@ namespace nanoui
 
       /**
        * The popup window color::color
-       * (default: intensity=``50``, alpha=``255``; see \::pointer nanoui::color::color::color::color(int,int))).
+       * (default: intensity=``50``, alpha=``255``; see \::pointer nanoui::color::color::color::color(::i32,::i32))).
        */
       color::color m_colorWindowPopup;
       /**
        * The transparent popup window color::color
-       * (default: intensity=``50``, alpha=``0``; see \::pointer nanoui::color::color::color::color(int,int))).
+       * (default: intensity=``50``, alpha=``0``; see \::pointer nanoui::color::color::color::color(::i32,::i32))).
        */
       color::color m_window_popup_transparent;
 

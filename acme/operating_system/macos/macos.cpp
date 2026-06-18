@@ -1,8 +1,9 @@
 // Created by camilo on 2021-08-29 16:00 BRT <3ThomasBS_!!
 #include "framework.h"
 #include "acme/_operating_system.h"
+#include "acme/operating_system/posix/shared_memory.h"
 #include "acme/platform/system.h"
-
+#include "acme/prototype/geometry2d/rectangle.h"
 
 //::file::path dir_base_module()
 //{
@@ -58,7 +59,7 @@
 //
 //   }
 //
-//   if (!GetModuleFileNameW(hmodule, wstrModuleFilePath, (unsigned int)wstrModuleFilePath.length()))
+//   if (!GetModuleFileNameW(hmodule, wstrModuleFilePath, (::u32)wstrModuleFilePath.length()))
 //   {
 //
 //      return "";
@@ -67,7 +68,7 @@
 //
 //   LPWSTR pszModuleFileName;
 //
-//   if (!GetFullPathNameW(wstrModuleFilePath, (unsigned int)wstrModuleFilePath.length(), wstrModuleFolder, &pszModuleFileName))
+//   if (!GetFullPathNameW(wstrModuleFilePath, (::u32)wstrModuleFilePath.length(), wstrModuleFolder, &pszModuleFileName))
 //   {
 //
 //      return "";
@@ -142,3 +143,73 @@
 
 
 
+
+
+CLASS_DECL_ACME ::uptr as_u64(const ::operating_system::window & operatingsystemwindow)
+{
+
+   if (operatingsystemwindow.m_eoperatingambient == ::windowing::e_operating_ambient_none)
+   {
+
+      return 0;
+
+   }
+
+   if (operatingsystemwindow.m_eoperatingambient == ::windowing::e_operating_ambient_macos)
+   {
+
+
+      return (::u64) operatingsystemwindow.m_opaque.m_ulla[0];
+
+   }
+
+   if (operatingsystemwindow.m_eoperatingambient == ::windowing::e_operating_ambient_macos_impact_by_tag)
+   {
+
+
+      return (::u64) operatingsystemwindow.m_opaque.m_ulla[0];
+
+   }
+
+   if (operatingsystemwindow.m_eoperatingambient == ::windowing::e_operating_ambient_macos_impact2)
+   {
+
+
+      return (::u64) operatingsystemwindow.m_opaque.m_ulla[0];
+
+   }
+
+   return 0;
+
+}
+
+namespace operating_system
+{
+
+CGRect _get_console_rect();
+
+::i32_rectangle get_console_rect()
+{
+   
+   CGRect cgrect= _get_console_rect();
+   
+   ::i32_rectangle rectangle;
+   
+   copy(rectangle, cgrect);
+   
+   return rectangle;
+   
+   
+}
+
+
+} // namespace operating_system
+
+
+
+void operating_system_factory(::factory::factory * pfactory)
+{
+
+   pfactory->add_factory_item< ::posix::shared_memory, ::shared_memory>();
+
+}

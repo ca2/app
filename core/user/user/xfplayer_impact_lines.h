@@ -5,7 +5,8 @@
 
 
 class CLASS_DECL_CORE xfplayer_impact_linea :
-   virtual public ::object
+   virtual public ::object,
+virtual public ::timer_callback::base
 {
 public:
 
@@ -22,10 +23,10 @@ public:
    xfplayer_impact_linea(::user::interaction * puserinteraction);
 
 
-   void set_blend(double dBlend);
+   void set_blend(::f64 dBlend);
    ::collection::index FindLine(xfplayer_impact_line * pline);
    //void SetRenderWindow(::windowing::window * pwindow);
-   void SetEffect(int iEffect);
+   void SetEffect(::i32 iEffect);
    //void set_user_interaction(::pointer<::user::interaction>pinteraction);
    void Prepare(xfplayer_impact_line * pImpactLine);
 
@@ -36,7 +37,7 @@ public:
    void OnChildSetVisible(xfplayer_impact_line * pImpactLine, bool bVisible);
 
 
-   user::enum_line_hit hit_test(const int_point &pointCursor, character_count &iLine, character_count &iChar);
+   user::enum_line_hit hit_test(const i32_point &pointCursor, character_count &iLine, character_count &iChar);
 
    void install_message_routing(::channel * pchannel);
 
@@ -45,7 +46,7 @@ public:
    DECLARE_MESSAGE_HANDLER(OnMouseMove);
    DECLARE_MESSAGE_HANDLER(OnLButtonDown);
    DECLARE_MESSAGE_HANDLER(OnLButtonUp);
-   virtual void on_timer(::timer * ptimer);
+   void operator()(::timer * ptimer) override;
    DECLARE_MESSAGE_HANDLER(OnSetCursor);
 
    xfplayer_impact_line_selection & GetSelection();

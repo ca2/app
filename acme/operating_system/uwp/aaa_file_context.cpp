@@ -76,15 +76,15 @@ namespace universal_windows
    }
 
 
-   unsigned int file_context::GetFileName(const ::file::path & pathName, string& str)
+   ::u32 file_context::GetFileName(const ::file::path & pathName, string& str)
 
    {
-      int nMax = MAX_PATH * 8;
+      ::i32 nMax = MAX_PATH * 8;
       wstring wstrPathName;
       wstrPathName = utf8_to_unicode(scopedstrPathName);
 
       wstring wstrTitle;
-      //unsigned int user = vfxGetFileName(wstrPathName, wstrTitle.alloc(nMax), nMax);
+      //::u32 user = vfxGetFileName(wstrPathName, wstrTitle.alloc(nMax), nMax);
       str = unicode_to_utf8(wstrTitle);
       //return user;
       return 0;
@@ -112,7 +112,7 @@ namespace universal_windows
       else
       {
 
-         varRet = (unsigned int)data.nFileSizeLow;
+         varRet = (::u32)data.nFileSizeLow;
 
       }
 

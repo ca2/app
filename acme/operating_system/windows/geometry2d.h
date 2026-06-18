@@ -5,13 +5,14 @@
 
 
 #include "acme/prototype/geometry2d/rectangle.h"
+#include "acme/_operating_system.h"
 
 
 namespace windows
 {
 
 
-   inline RECT as_RECT(const ::int_rectangle & rectangle)
+   inline ::RECT as_RECT(const ::i32_rectangle & rectangle)
    {
 
       if (rectangle.is_empty())
@@ -21,7 +22,7 @@ namespace windows
 
       }
 
-      RECT r{rectangle.left, rectangle.top, rectangle.right, rectangle.bottom};
+      ::RECT r{rectangle.left, rectangle.top, rectangle.right, rectangle.bottom};
 
       return r;
 

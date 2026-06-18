@@ -14,8 +14,8 @@
 //   constexpr floating_hour_t(floating_hour hour = {}) : floating_hour(hour) {}
 //
 //
-//   integral_second integral_seconds() const { return integral_second((long long)(m_d * 3'600.0)); }
-//   integral_nanosecond integral_nanoseconds() const { return integral_nanosecond((long long)(fmod(m_d * 3'600.0, 1.0) * 1'000'000'000.0)); }
+//   integral_second integral_seconds() const { return integral_second((::i64)(m_f64 * 3'600.0)); }
+//   integral_nanosecond integral_nanoseconds() const { return integral_nanosecond((::i64)(fmod(m_f64 * 3'600.0, 1.0) * 1'000'000'000.0)); }
 //
 //
 //};
@@ -24,12 +24,12 @@
 //using floating_hour = floating_time < floating_hour_t >;
 //
 ////
-//constexpr floating_hour operator""_h(long double d) { return (floating_hour)d; }
-//constexpr floating_hour operator""_hour(long double d) { return (floating_hour)d; }
-//constexpr floating_hour operator""_hours(long double d) { return (floating_hour)d; }
+//constexpr floating_hour operator""_h(::f128 d) { return (floating_hour)d; }
+//constexpr floating_hour operator""_hour(::f128 d) { return (floating_hour)d; }
+//constexpr floating_hour operator""_hours(::f128 d) { return (floating_hour)d; }
 
 
-inline floating_hour get_floating_hour() { return floating_hour(get_floating_nanosecond().m_d / 3'600'000'000'000.0); }
+inline floating_hour get_floating_hour() { return floating_hour(get_floating_nanosecond().m_f64 / 3'600'000'000'000.0); }
 
 
 template <  >

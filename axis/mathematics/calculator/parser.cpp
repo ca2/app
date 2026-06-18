@@ -196,7 +196,7 @@ namespace calculator
          node                = new_node();
          node->m_ptoken      = m_scanner.m_ptoken;
 
-         int iCount;
+         ::i32 iCount;
 
          if(node->m_ptoken->m_str == "sqr")
          {
@@ -279,7 +279,7 @@ namespace calculator
 
          expect(token::type_open_paren);
 
-         int iElem = 1;
+         ::i32 iElem = 1;
 
          if(iCount > 0)
          {
@@ -336,10 +336,10 @@ namespace calculator
    }
 
 
-   void parser::expect(char value)
+   void parser::expect(::i8 value)
    {
 
-      char error_msg[11] = "expected ";
+      ::i8 error_msg[11] = "expected ";
 
       error_msg[9] = value;
 

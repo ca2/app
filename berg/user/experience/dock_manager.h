@@ -1,7 +1,7 @@
 #pragma once
 
 
-#include "acme/prototype/collection/int_map.h"
+#include "acme/prototype/collection/integer_map.h"
 //#include "acme/prototype/geometry2d/_geometry2d.h"
 #include "acme/prototype/geometry2d/size.h"
 #include "acme/prototype/geometry2d/rectangle.h"
@@ -21,20 +21,20 @@ namespace experience
       ::experience::frame_window *        m_pframewindow;
       e_border                            m_eborder;
       e_dock                              m_edockMask;
-      int_point                           m_pointCursorDockOrigin;
-      int_size                            m_sizeDockRightOrigin;
-      int_point                           m_pointWindowOrigin;
+      i32_point                           m_pointCursorDockOrigin;
+      i32_size                            m_sizeDockRightOrigin;
+      i32_point                           m_pointWindowOrigin;
       bool                                m_bDocking;
       ::e_display                         m_edisplayOrigin;
-      ::int_size                          m_sizeOrigin;
-      ::int_point                         m_pointMove;
-      ::int_map < int_rectangle >         m_mapWorkspaceRect;
+      ::i32_size                          m_sizeOrigin;
+      ::i32_point                         m_pointMove;
+      ::i32_map < i32_rectangle >         m_mapWorkspaceRect;
       bool                                m_bPendingCursorPos;
-      int                                 m_iDockMove;
-      int                                 m_iConsiderDockMove;
-      ::int_rectangle                     m_rectangleOnDockStart;
-      ::int_point                         m_pointLastRepositionCursorOrigin;
-      ::int_point                         m_pointLastRepositionWindowOrigin;
+      ::i32                                 m_iDockMove;
+      ::i32                                 m_iConsiderDockMove;
+      ::i32_rectangle                     m_rectangleOnDockStart;
+      ::i32_point                         m_pointLastRepositionCursorOrigin;
+      ::i32_point                         m_pointLastRepositionWindowOrigin;
 
 
       dock_manager();
@@ -49,7 +49,7 @@ namespace experience
       DECLARE_MESSAGE_HANDLER(dock_button_on_message_left_button_up);
 
 
-      bool on_timer(unsigned int uEvent);
+      bool on_timer(::u32 uEvent);
 
       bool dock_window(::message::mouse* pmouse);
 
@@ -68,7 +68,7 @@ namespace experience
       //void defer_cursor_pos();
 
       ::user::button * dock_button();
-      ::int_size dock_button_right_origin();
+      ::i32_size dock_button_right_origin();
 
 
    };

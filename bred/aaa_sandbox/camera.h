@@ -14,7 +14,7 @@ namespace graphics3d
 
         virtual void updateView() {};
 
-        virtual void updateProjection(float aspectRatio, float nearZ = 0.1f, float farZ = 100.f) = 0;
+        virtual void updateProjection(::f32 aspectRatio, ::f32 nearZ = 0.1f, ::f32 farZ = 100.f) = 0;
 
         virtual floating_matrix4 getViewMatrix() const = 0;
 

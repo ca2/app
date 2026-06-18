@@ -83,15 +83,15 @@ namespace http
       virtual ~cookies();
 
 
-      ::collection::index find_cookie(const char * name);
-      ::collection::index lowfind_cookie(const char * name);
-      ::http::cookie & cookie(const char * name);
-      ::http::cookie & lowcookie(const char * name);
+      ::collection::index find_cookie(const_char_pointer pszName);
+      ::collection::index lowfind_cookie(const_char_pointer pszName);
+      ::http::cookie & cookie(const_char_pointer pszName);
+      ::http::cookie & lowcookie(const_char_pointer pszName);
       using  pointer_array < http::cookie >::add;
       void add(const ::scoped_string & scopedstr);
       void parse_header(const ::scoped_string & scopedstr);
       string get_cookie_header();
-      character_count get_length(const char * name);
+      character_count get_length(const_char_pointer pszName);
       bool set_cookie(
          const ::scoped_string & scopedstrKey,
          const ::payload & payload,
@@ -103,7 +103,7 @@ namespace http
 
 
       using ARRAY_BASE::operator [];
-      http::cookie & operator [](const char * name);
+      http::cookie & operator [](const_char_pointer pszName);
 
 
       cookies & operator = (const cookies & cookies);

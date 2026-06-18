@@ -68,7 +68,7 @@ public:
    
    bool                             m_bNew;
    string                           m_strDescription;
-   enum_command                     m_ecommand;
+   e_command                        m_ecommand;
    bool                             m_bPreferSync = false;
    string                           m_strAppId;
    ::payload                        m_payloadFile;
@@ -96,7 +96,7 @@ public:
    bool                             m_bShowSplash;
    bool                             m_bRunEmbedded;
    bool                             m_bRunAutomated;
-   int                              m_nCmdShow;
+   ::i32                              m_nCmdShow;
    ///::interlocked_count              m_countStack;
    bool                             m_bFinishedStacking = false;
    ::pointer_array < ::request >    m_requesta;
@@ -130,8 +130,8 @@ public:
    //~command_line() override;
 
 
-   long long increment_reference_count() override;
-   long long decrement_reference_count() override;
+   ::i64 increment_reference_count() override;
+   ::i64 decrement_reference_count() override;
 
 
    void common_construct();

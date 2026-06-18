@@ -13,21 +13,21 @@
 
 
 
-int printf_dup(const ::string &format, ...)
+::i32 printf_dup(const ::string &format, ...)
 {
    va_list args;
    va_start(args, format);
-   int ret = vprintf_dup(format, args);
+   ::i32 ret = vprintf_dup(format, args);
    va_end(args);
 
    return ret;
 }
 
-int wprintf_dup(const ::wide_character *format, ...)
+::i32 wprintf_dup(const ::wide_character *format, ...)
 {
    va_list args;
    va_start(args, format);
-   int ret = vwprintf_dup(format, args);
+   ::i32 ret = vwprintf_dup(format, args);
    va_end(args);
 
    return ret;
@@ -35,7 +35,7 @@ int wprintf_dup(const ::wide_character *format, ...)
 
 
 
-int vprintf_dup(const ::string &format, va_list args)
+::i32 vprintf_dup(const ::string &format, va_list args)
 {
 
    return vprintf(format, args);
@@ -43,7 +43,7 @@ int vprintf_dup(const ::string &format, va_list args)
 }
 
 
-int vwprintf_dup(const ::wide_character *format, va_list args)
+::i32 vwprintf_dup(const ::wide_character *format, va_list args)
 {
 
    return vwprintf(format, args);
@@ -55,12 +55,12 @@ int vwprintf_dup(const ::wide_character *format, va_list args)
 
 ::pointer< ::mutex > g_pmutexCvt = nullptr;
 
-int ecvt_r(double d, int i, int *__restrict pi1, int *__restrict pi2, char * sz, size_t size) /* LEGACY */
+::i32 ecvt_r(::f64 d, ::i32 i, ::i32 *__restrict pi1, ::i32 *__restrict pi2, char_pointer sz, size_t size) /* LEGACY */
 {
 
    synchronous_lock ml(g_pmutexCvt, DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 
-   char * psz = ecvt(d, i, pi1, pi2);
+   char_pointer psz = ecvt(d, i, pi1, pi2);
 
    if(scopedstr == nullptr)
       return -1;
@@ -74,12 +74,12 @@ int ecvt_r(double d, int i, int *__restrict pi1, int *__restrict pi2, char * sz,
 
 }
 
-int fcvt_r(double d, int i, int *__restrict pi1, int *__restrict pi2, char * sz, size_t size) /* LEGACY */
+::i32 fcvt_r(::f64 d, ::i32 i, ::i32 *__restrict pi1, ::i32 *__restrict pi2, char_pointer sz, size_t size) /* LEGACY */
 {
 
    synchronous_lock ml(g_pmutexCvt, DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 
-   char * psz = fcvt(d, i, pi1, pi2);
+   char_pointer psz = fcvt(d, i, pi1, pi2);
 
    if(scopedstr == nullptr)
       return -1;

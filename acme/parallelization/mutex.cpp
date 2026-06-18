@@ -48,7 +48,7 @@
 //#endif
 //
 //
-//static int g_iMutex = 0;
+//static ::i32 g_iMutex = 0;
 //
 //
 //
@@ -67,7 +67,7 @@
 //
 //   m_hsync = ::CreateMutexExW(nullptr, nullptr, bInitiallyOwn ? CREATE_MUTEX_INITIAL_OWNER : 0, MUTEX_ALL_ACCESS);
 //
-//   DWORD dwLastError = ::GetLastError();
+//   auto lasterror = ::windows::get_last_error();
 //
 //   set_already_exists(dwLastError == ERROR_ALREADY_EXISTS);
 //
@@ -132,13 +132,13 @@
 //
 //   wstring wstrName(pstrName);
 //
-//   const unichar * pwszName = pstrName == nullptr ? nullptr : (const unichar *)wstrName;
+//   const wide_character * pwszName = pstrName == nullptr ? nullptr : (const wide_character * )wstrName;
 //
 //   auto psa = (LPSECURITY_ATTRIBUTES)PARAM_SEC_ATTRS;
 //
 //   m_hsync = ::CreateMutexExW(psa, pwszName, bInitiallyOwn ?  CREATE_MUTEX_INITIAL_OWNER : 0, MUTEX_ALL_ACCESS);
 //
-//   DWORD dwLastError = ::GetLastError();
+//   auto lasterror = ::windows::get_last_error();
 //
 //   m_bAlreadyExists = dwLastError == ERROR_ALREADY_EXISTS;
 //
@@ -215,7 +215,7 @@
 //
 //      string strTest = file_system()->as_string(strName);
 //
-//      //int isCreator = 0;
+//      //::i32 isCreator = 0;
 //
 //      if ((m_psem = sem_open(strName, O_CREAT|O_EXCL, 0644, 1)) != SEM_FAILED)
 //      {
@@ -228,7 +228,7 @@
 //      else
 //      {
 //
-//         int err = errno;
+//         ::i32 err = errno;
 //
 //         if (err != EEXIST)
 //         {
@@ -314,7 +314,7 @@
 //      if(m_iFd < 0)
 //      {
 //
-//         int iErr = errno;
+//         ::i32 iErr = errno;
 //
 //         const ::scoped_string & scopedstrError = strerror(iErr);
 //
@@ -535,13 +535,13 @@
 //#elif defined(MUTEX_NAMED_FD)
 //
 //
-//mutex::mutex(enum_create_new, const_char_pointer lpszName, int iFd, bool bOwner)
+//mutex::mutex(enum_create_new, const_char_pointer pszName, ::i32 iFd, bool bOwner)
 //{
 //#ifdef _DEBUG
 ////   m_itask = -1;
 ////#endif
 ////
-////   m_strName = lpszName;
+////   m_strName = pszName;
 ////   set_own_synchronization(bOwner);
 ////   m_iFd = iFd;
 ////
@@ -562,7 +562,7 @@
 ////
 ////#elif defined(MUTEX_NAMED_VSEM)
 ////
-////mutexmutex(e_create_new enew, const_char_pointer pstrName, key_t key, int semid, bool bOwner):
+////mutexmutex(e_create_new enew, const_char_pointer pstrName, key_t key, ::i32 semid, bool bOwner):
 ////   ::matter(pparticle),
 ////   synchronization(pstrName)
 ////{
@@ -677,7 +677,7 @@ mutex::~mutex()
 //}
 
 //      __ANDROID__
-//      int irc = pthread_mutex_lock_timeout_np(m_pmutex, time.get_total_milliseconds());
+//      ::i32 irc = pthread_mutex_lock_timeout_np(m_pmutex, time.get_total_milliseconds());
 //
 //      if (!irc)
 //      {
@@ -716,11 +716,11 @@ mutex::~mutex()
 //
 //      timespec delay;
 //
-//      delay.tv_sec = time.m_i;
+//      delay.tv_sec = time.m_i32;
 //
-//      delay.tv_nsec = time.m_i;
+//      delay.tv_nsec = time.m_i32;
 //
-//      int ret = sem_timedwait(m_psem, &delay);
+//      ::i32 ret = sem_timedwait(m_psem, &delay);
 //
 //      if(ret == 0)
 //      {
@@ -751,7 +751,7 @@ mutex::~mutex()
 //   if (m_strName.has_character())
 //   {
 //
-//      int rc = pthread_mutex_lock(m_pmutex);
+//      ::i32 rc = pthread_mutex_lock(m_pmutex);
 //
 //      if (rc < 0)
 //      {
@@ -773,7 +773,7 @@ mutex::~mutex()
 //
 //               m_count++;
 //
-//               int iError = pthread_mutex_unlock(m_pmutex);
+//               ::i32 iError = pthread_mutex_unlock(m_pmutex);
 //
 //               ASSERT(iError == 0);
 //
@@ -785,7 +785,7 @@ mutex::~mutex()
 //         else
 //         {
 //
-//            int rc = lockf(m_iFd, F_LOCK, 0);
+//            ::i32 rc = lockf(m_iFd, F_LOCK, 0);
 //
 //            if (rc == 0)
 //            {
@@ -794,7 +794,7 @@ mutex::~mutex()
 //
 //               m_thread = pthread_self();
 //
-//               int iError = pthread_mutex_unlock(m_pmutex);
+//               ::i32 iError = pthread_mutex_unlock(m_pmutex);
 //
 //               ASSERT(iError == 0);
 //
@@ -809,7 +809,7 @@ mutex::~mutex()
 //               if (rc != EAGAIN && rc != EACCES)
 //               {
 //
-//                  int iError = pthread_mutex_unlock(m_pmutex);
+//                  ::i32 iError = pthread_mutex_unlock(m_pmutex);
 //
 //                  ASSERT(iError == 0);
 //
@@ -819,7 +819,7 @@ mutex::~mutex()
 //
 //            }
 //
-//            int iError = pthread_mutex_unlock(m_pmutex);
+//            ::i32 iError = pthread_mutex_unlock(m_pmutex);
 //
 //            if (iError < 0)
 //            {
@@ -854,7 +854,7 @@ mutex::~mutex()
 //
 //      }
 //
-////      int iError = pthread_mutex_unlock(m_pmutex);
+////      ::i32 iError = pthread_mutex_unlock(m_pmutex);
 ////
 ////      ASSERT(iError == 0);
 ////
@@ -872,9 +872,9 @@ mutex::~mutex()
 //
 //      timespec timeout;
 //
-//      timeout.tv_sec = time.m_i;
+//      timeout.tv_sec = time.m_i32;
 //
-//      timeout.tv_nsec = time.m_i;
+//      timeout.tv_nsec = time.m_i32;
 //
 //      struct sembuf operation[1] ;
 //
@@ -882,7 +882,7 @@ mutex::~mutex()
 //      operation[0].sem_num = 0;
 //      operation[0].sem_flg = 0;
 //
-//      int ret = semtimedop(m_semid, operation, 1, &timeout);
+//      ::i32 ret = semtimedop(m_semid, operation, 1, &timeout);
 //
 //      if(ret == 0)
 //      {
@@ -912,7 +912,7 @@ mutex::~mutex()
 //#if defined(MUTEX_COND_TIMED)
 //   {
 //
-//      int iErrorLock = pthread_mutex_lock(m_pmutex);
+//      ::i32 iErrorLock = pthread_mutex_lock(m_pmutex);
 //
 //      if(iErrorLock != 0)
 //      {
@@ -976,9 +976,9 @@ mutex::~mutex()
 //
 //            ::time d;
 //
-//            d.m_iSecond = abs_time.tv_sec + wait.m_d;
+//            d.m_iSecond = abs_time.tv_sec + wait.m_f64;
 //
-//            d.m_iNanosecond = abs_time.tv_nsec + fmod(wait.m_d, 1.0) * 1'000'000'000;
+//            d.m_iNanosecond = abs_time.tv_nsec + fmod(wait.m_f64, 1.0) * 1'000'000'000;
 //
 //            d.normalize();
 //
@@ -992,18 +992,18 @@ mutex::~mutex()
 //
 //#ifdef __ANDROID__
 //
-//         int iErrorCondTimedWait = pthread_cond_timedwait_monotonic_np(&m_cond, m_pmutex, &abs_time);
+//         ::i32 iErrorCondTimedWait = pthread_cond_timedwait_monotonic_np(&m_cond, m_pmutex, &abs_time);
 //
 //#else
 //
-//         int iErrorCondTimedWait = pthread_cond_timedwait(&m_cond, m_pmutex, &abs_time);
+//         ::i32 iErrorCondTimedWait = pthread_cond_timedwait(&m_cond, m_pmutex, &abs_time);
 //
 //#endif
 //
 //         if(iErrorCondTimedWait == ETIMEDOUT)
 //         {
 //
-//            int iErrorUnlock1 = pthread_mutex_unlock(m_pmutex);
+//            ::i32 iErrorUnlock1 = pthread_mutex_unlock(m_pmutex);
 //
 //            if(iErrorUnlock1 != 0)
 //            {
@@ -1018,7 +1018,7 @@ mutex::~mutex()
 //         else if(iErrorCondTimedWait != 0)
 //         {
 //
-//            int iErrorUnlock2 = pthread_mutex_unlock(m_pmutex);
+//            ::i32 iErrorUnlock2 = pthread_mutex_unlock(m_pmutex);
 //
 //            ASSERT(iErrorUnlock2 == 0);
 //
@@ -1037,7 +1037,7 @@ mutex::~mutex()
 //
 //      m_count++;
 //
-//      int iErrorUnlock3 = pthread_mutex_unlock(m_pmutex);
+//      ::i32 iErrorUnlock3 = pthread_mutex_unlock(m_pmutex);
 //
 //      if(iErrorUnlock3 != 0)
 //      {
@@ -1060,9 +1060,9 @@ mutex::~mutex()
 //
 //      ::time d;
 //
-//      d.m_iSecond = abs_time.tv_sec + (long long) (wait.m_d);
+//      d.m_iSecond = abs_time.tv_sec + (::i64) (wait.m_f64);
 //
-//      d.m_iNanosecond = abs_time.tv_nsec + (fmod(wait.m_d, 1.0) * 1'000'000'000);
+//      d.m_iNanosecond = abs_time.tv_nsec + (fmod(wait.m_f64, 1.0) * 1'000'000'000);
 //
 //      d.normalize();
 //
@@ -1070,7 +1070,7 @@ mutex::~mutex()
 //
 //      abs_time.tv_nsec = d.m_iNanosecond;
 //
-//      int rc = pthread_mutex_timedlock (m_pmutex, &abs_time);
+//      ::i32 rc = pthread_mutex_timedlock (m_pmutex, &abs_time);
 //
 //      if (!rc)
 //      {
@@ -1114,7 +1114,7 @@ mutex::~mutex()
 //
 //      timespec delay;
 //
-//      int ret = sem_wait(m_psem);
+//      ::i32 ret = sem_wait(m_psem);
 //
 //      if (ret == 0)
 //      {
@@ -1144,7 +1144,7 @@ mutex::~mutex()
 //   if (m_strName.has_character())
 //   {
 //
-//      int rc = pthread_mutex_lock(m_pmutex);
+//      ::i32 rc = pthread_mutex_lock(m_pmutex);
 //
 //      if (rc < 0)
 //      {
@@ -1158,7 +1158,7 @@ mutex::~mutex()
 //
 //         m_count++;
 //
-//         int rc = pthread_mutex_unlock(m_pmutex);
+//         ::i32 rc = pthread_mutex_unlock(m_pmutex);
 //
 //         if (rc < 0)
 //         {
@@ -1182,7 +1182,7 @@ mutex::~mutex()
 //
 //               m_count++;
 //
-//               int rc = pthread_mutex_unlock(m_pmutex);
+//               ::i32 rc = pthread_mutex_unlock(m_pmutex);
 //
 //               if (rc < 0)
 //               {
@@ -1208,7 +1208,7 @@ mutex::~mutex()
 //
 //               m_thread = pthread_self();
 //
-//               int rc = pthread_mutex_unlock(m_pmutex);
+//               ::i32 rc = pthread_mutex_unlock(m_pmutex);
 //
 //               if (rc < 0)
 //               {
@@ -1228,7 +1228,7 @@ mutex::~mutex()
 //               if (rc != EAGAIN && rc != EACCES)
 //               {
 //
-//                  int rc = pthread_mutex_unlock(m_pmutex);
+//                  ::i32 rc = pthread_mutex_unlock(m_pmutex);
 //
 //                  if(rc < 0)
 //                  {
@@ -1245,7 +1245,7 @@ mutex::~mutex()
 //
 //         }
 //
-//         int rc = pthread_mutex_unlock(m_pmutex);
+//         ::i32 rc = pthread_mutex_unlock(m_pmutex);
 //
 //         if (rc < 0)
 //         {
@@ -1283,7 +1283,7 @@ mutex::~mutex()
 //      operation[0].sem_num = 0;
 //      operation[0].sem_flg = 0;
 //
-//      int ret = semop(m_semid, operation, 1);
+//      ::i32 ret = semop(m_semid, operation, 1);
 //
 //      if(ret < 0)
 //      {
@@ -1300,7 +1300,7 @@ mutex::~mutex()
 //#ifdef MUTEX_COND_TIMED
 //   {
 //
-//      int iErrorLock = pthread_mutex_lock(m_pmutex);
+//      ::i32 iErrorLock = pthread_mutex_lock(m_pmutex);
 //
 //      if(iErrorLock != 0)
 //      {
@@ -1312,12 +1312,12 @@ mutex::~mutex()
 //      while ((m_thread != 0) && !pthread_equal(m_thread, pthread_self()))
 //      {
 //
-//         int iErrorCondWait = pthread_cond_wait(&m_cond, m_pmutex);
+//         ::i32 iErrorCondWait = pthread_cond_wait(&m_cond, m_pmutex);
 //
 //         if(iErrorCondWait != 0)
 //         {
 //
-//            int iErrorUnlock1 = pthread_mutex_unlock(m_pmutex);
+//            ::i32 iErrorUnlock1 = pthread_mutex_unlock(m_pmutex);
 //
 //            throw ::exception(error_failed);
 //
@@ -1334,7 +1334,7 @@ mutex::~mutex()
 //
 //      m_count++;
 //
-//      int iErrorUnlock2 = pthread_mutex_unlock(m_pmutex);
+//      ::i32 iErrorUnlock2 = pthread_mutex_unlock(m_pmutex);
 //
 //      if(iErrorUnlock2 != 0)
 //      {
@@ -1349,7 +1349,7 @@ mutex::~mutex()
 //
 //   {
 //
-//      int irc = pthread_mutex_lock(m_pmutex);
+//      ::i32 irc = pthread_mutex_lock(m_pmutex);
 //
 //      if (irc)
 //      {
@@ -1410,7 +1410,7 @@ mutex::~mutex()
 //   if (m_strName.has_character())
 //   {
 //
-//      int rc = pthread_mutex_lock(m_pmutex);
+//      ::i32 rc = pthread_mutex_lock(m_pmutex);
 //
 //      if (rc < 0)
 //      {
@@ -1424,7 +1424,7 @@ mutex::~mutex()
 //
 //         ASSERT(false);
 //
-//         int iError = pthread_mutex_unlock(m_pmutex);
+//         ::i32 iError = pthread_mutex_unlock(m_pmutex);
 //
 //         ASSERT(iError == 0);
 //
@@ -1454,7 +1454,7 @@ mutex::~mutex()
 //
 //      }
 //
-//      int iError = pthread_mutex_unlock(m_pmutex);
+//      ::i32 iError = pthread_mutex_unlock(m_pmutex);
 //
 //      ASSERT(iError == 0);
 //
@@ -1490,7 +1490,7 @@ mutex::~mutex()
 //
 //   {
 //
-//      int iErrorLock = pthread_mutex_lock(m_pmutex);
+//      ::i32 iErrorLock = pthread_mutex_lock(m_pmutex);
 //
 //      if(iErrorLock != 0)
 //      {
@@ -1504,7 +1504,7 @@ mutex::~mutex()
 //
 //         ASSERT(false);
 //
-//         int iErrorUnlock1 = pthread_mutex_unlock(m_pmutex);
+//         ::i32 iErrorUnlock1 = pthread_mutex_unlock(m_pmutex);
 //
 //         ASSERT(iErrorUnlock1 == 0);
 //
@@ -1521,12 +1521,12 @@ mutex::~mutex()
 //      else if(m_count == 1)
 //      {
 //
-//         int iErrorSignal = pthread_cond_signal(&m_cond);
+//         ::i32 iErrorSignal = pthread_cond_signal(&m_cond);
 //
 //         if(iErrorSignal != 0)
 //         {
 //
-//            int iErrorUnlock2 = pthread_mutex_unlock(m_pmutex);
+//            ::i32 iErrorUnlock2 = pthread_mutex_unlock(m_pmutex);
 //
 //            throw ::exception(error_failed);
 //
@@ -1538,7 +1538,7 @@ mutex::~mutex()
 //
 //      }
 //
-//      int iErrorUnlock3 = pthread_mutex_unlock(m_pmutex);
+//      ::i32 iErrorUnlock3 = pthread_mutex_unlock(m_pmutex);
 //
 //      if(iErrorUnlock3 != 0)
 //      {
@@ -1553,7 +1553,7 @@ mutex::~mutex()
 //
 //   {
 //
-//      int iError = pthread_mutex_unlock(m_pmutex);
+//      ::i32 iError = pthread_mutex_unlock(m_pmutex);
 //
 //      if(iError != 0)
 //      {
@@ -1572,12 +1572,12 @@ mutex::~mutex()
 
 //
 //
-//::pointer<mutex>open_mutex(::matter * pmatter, const_char_pointer lpszName)
+//::pointer<mutex>open_mutex(::matter * pmatter, const_char_pointer pszName)
 //{
 //
 //#ifdef WINDOWS
 //
-//   HANDLE h = ::OpenMutexW(SYNCHRONIZE, false, utf8_to_unicode(lpszName));
+//   HANDLE h = ::OpenMutexW(SYNCHRONIZE, false, utf8_to_unicode(pszName));
 //
 //   if (h == nullptr || h == INVALID_HANDLE_VALUE)
 //   {
@@ -1586,7 +1586,7 @@ mutex::~mutex()
 //
 //   }
 //
-//   auto pmutex  = allocateø mutex(e_create_new, lpszName, h);
+//   auto pmutex  = allocateø mutex(e_create_new, pszName, h);
 //
 //   return pmutex;
 //
@@ -1596,7 +1596,7 @@ mutex::~mutex()
 //
 //   sem_t * psem;
 //
-//   int isCreator = 0;
+//   ::i32 isCreator = 0;
 //
 //   if ((psem = sem_open(strName, O_CREAT | O_EXCL, 0666, 1)) != SEM_FAILED)
 //   {
@@ -1625,7 +1625,7 @@ mutex::~mutex()
 //
 //#elif defined(MUTEX_NAMED_FD)
 //
-//   if (lpszName == nullptr || *lpszName == '\0')
+//   if (pszName == nullptr || *pszName == '\0')
 //   {
 //
 //      return nullptr;
@@ -1636,7 +1636,7 @@ mutex::~mutex()
 //
 //   ::file::path path;
 //
-//   if (case_insensitive_string_begins(lpszName, "Global"))
+//   if (case_insensitive_string_begins(pszName, "Global"))
 //   {
 //
 //      path = "/payload/tmp/ca2/lock/mutex/named";
@@ -1661,13 +1661,13 @@ mutex::~mutex()
 //
 //   }
 //
-//   path /= lpszName;
+//   path /= pszName;
 //
 //   auto pdirectorysystem = pmatter->directory_system();
 //
 //   pdirectorysystem->create(path.folder());
 //
-//   int iFd = open(path, O_RDWR, S_IRWXU);
+//   ::i32 iFd = open(path, O_RDWR, S_IRWXU);
 //
 //   if (iFd < 0)
 //   {
@@ -1686,7 +1686,7 @@ mutex::~mutex()
 //
 //   //pthread_mutex_init(m_pmutex, &attr);
 //
-//   auto pmutex = allocateø mutex(e_create_new, lpszName, iFd, false);
+//   auto pmutex = allocateø mutex(e_create_new, pszName, iFd, false);
 //
 //   return pmutex;
 //
@@ -1699,7 +1699,7 @@ mutex::~mutex()
 //
 //   key_t key = ftok(strName, 0); //Generate a unique key or supply a value
 //
-//   int semid = semget(
+//   ::i32 semid = semget(
 //               key, // a unique identifier to identify semaphore set
 //               1,  // number of semaphore in the semaphore set
 //               0666 // permissions (rwxrwxrwx) on the ___new
@@ -1721,7 +1721,7 @@ mutex::~mutex()
 //}
 //
 //
-//void wait_until_mutex_does_not_exist(::particle * pparticle,  const_char_pointer lpszName)
+//void wait_until_mutex_does_not_exist(::particle * pparticle,  const_char_pointer pszName)
 //{
 //
 //   ::pointer<mutex>pmutex = allocateø mutex(pparticle, false, "Global\\::ca::account::ca2_spa::7807e510-5579-11dd-ae16-0800200c7784");

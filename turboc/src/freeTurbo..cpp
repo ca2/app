@@ -27,7 +27,7 @@
 /*  in graphics.h.  The standard usage of the getimage function (and its
   friends) as envisaged by Borland's docs is this:
 
-  1.  Call "imagesize" to find out the int_size of the image buffer needed.
+  1.  Call "imagesize" to find out the i32_size of the image buffer needed.
 /*  2.  Allocate the image buffer with "calloc" or "malloc".
 /*  3.  Fill the image buffer with "getimage".
 /*  4.  Call "putimage" one or more times to write the image somewhere.
@@ -74,7 +74,7 @@ static struct PixmappedBlock *PixmappedRoot = NULL;
 // Pixmap will be freed and then the ___new one added.  Returns 0 on success,
 // non-zero if out of memory.
 
-extern int
+extern ::i32
 AssociatePixmap (void *object, Pixmap handle)
 {
    struct PixmappedBlock *Block, *LastBlock = NULL;
@@ -151,7 +151,7 @@ freeTurbo (void *object)
 }
 
 //------------------------------------------------------------------------
-// If not using X-window system, the whole int_point is moot ...
+// If not using X-window system, the whole i32_point is moot ...
 
 #else // WITH_X
 

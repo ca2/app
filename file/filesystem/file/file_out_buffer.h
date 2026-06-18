@@ -29,8 +29,8 @@ namespace file
       filesize                        _limitPos;
       filesize                        _streamPos;
       writer *                         _stream;
-      unsigned long long                           _processedSize;
-      unsigned char *                           _buffer2;
+      ::u64                           _processedSize;
+      ::u8 *                           _buffer2;
       bool                             _overDict;
 
       HRESULT ErrorCode;
@@ -41,7 +41,7 @@ namespace file
       bool create(memsize bufferSize);
       void destroy();
 
-      void SetMemStream(unsigned char *buffer);
+      void SetMemStream(::u8 *buffer);
       void SetStream(writer *stream);
       void Init();
       HRESULT flush();
@@ -49,10 +49,10 @@ namespace file
       void ReleaseStream();
       HRESULT FlushPart();
 
-      void WriteByte(unsigned char b);
+      void WriteByte(::u8 b);
       void WriteBytes(const void *data, size_t size);
 
-      unsigned long long GetProcessedSize() const;
+      ::u64 GetProcessedSize() const;
 
 
    };

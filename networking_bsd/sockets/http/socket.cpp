@@ -72,7 +72,7 @@ namespace sockets
    }
 
 
-   void http_socket::OnRawData(char * buf, memsize len)
+   void http_socket::OnRawData(char_pointer buf, memsize len)
    {
 
       if (!m_bHeader)
@@ -105,10 +105,10 @@ namespace sockets
                      {
                         memory mem;
                         mem.set_size(TCP_BUFSIZE_READ);
-                        char * tmp = (char*)mem.get_data();
+                        char_pointer tmp = (char_pointer )mem.get_data();
                         ::memory_copy(tmp,buf + ptr,len - ptr);
                         tmp[len - ptr] = 0;
-                        on_read( tmp, (int) (len - ptr ));
+                        on_read( tmp, (::i32) (len - ptr ));
                         ptr = len;
                      }
                   }
@@ -125,7 +125,7 @@ namespace sockets
 
                      string size_str = pa.getword();
 
-                     m_chunk_size = ::hex::to_unsigned_int(size_str);
+                     m_chunk_size = ::hex::to_u32(size_str);
 
                      if (!m_chunk_size)
                      {
@@ -215,7 +215,7 @@ namespace sockets
                   if (len - sizeData > 0)
                   {
 
-                     on_read(buf + sizeData, (int)(len - sizeData));
+                     on_read(buf + sizeData, (::i32)(len - sizeData));
 
                   }
 
@@ -342,12 +342,12 @@ namespace sockets
          strKey = line(0, pFind);
          strKey.trim();
          iFind++;
-         while(character_isspace((unsigned char) line[iFind]) && iFind < line.get_length())
+         while(character_isspace((::u8) line[iFind]) && iFind < line.get_length())
          {
             iFind++;
          }
          character_count iLen = line.get_length();
-         while(iLen >= iFind && character_isspace((unsigned char ) line[iLen - 1]))
+         while(iLen >= iFind && character_isspace((::u8 ) line[iLen - 1]))
          {
             iLen--;
          }
@@ -505,7 +505,7 @@ namespace sockets
 
          }
 
-         for (int j = 0; j < straValue.get_count(); j++)
+         for (::i32 j = 0; j < straValue.get_count(); j++)
          {
 
             string strValue = straValue[j];
@@ -662,7 +662,7 @@ namespace sockets
    {
       string version = "Mozilla/5.0 (Windows NT 6.1; WOW64; rv:10.0) Gecko/20100101 veriview/10.0";
 
-      //string version = "Mozilla/5.0 (Windows; U; Windows NT 6.0; int_point-BR; rv:1.9.2.13) Gecko/20101203 Firefox/3.6.13";
+      //string version = "Mozilla/5.0 (Windows; U; Windows NT 6.0; i32_point-BR; rv:1.9.2.13) Gecko/20101203 Firefox/3.6.13";
       //string version = "C++Sockets/";
 #ifdef _VERSION
       version += _VERSION;

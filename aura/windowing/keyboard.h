@@ -35,21 +35,21 @@ namespace windowing
       ::user::enum_key wparam_to_userkey(wparam wparam) override;
 
 
-      int groupCount() const;
+      ::i32 groupCount() const;
 
       string_array_base groupNames() const;
 
       string_array_base groupSymbols() const;
 
-      int currentGroupNum() const;
+      ::i32 currentGroupNum() const;
 
       string currentGroupName() const;
 
       string currentGroupSymbol() const;
 
-      bool setGroupByNum(int groupNum);
+      bool setGroupByNum(::i32 groupNum);
 
-      bool changeGroup(int increment);
+      bool changeGroup(::i32 increment);
 
 
       //friend std::ostream& operator<<(std::ostream& os, const XKeyboard& xkb);
@@ -59,24 +59,24 @@ namespace windowing
 
       bool initializeXkb();
 
-      string getSymbolNameByResNum(int groupResNum);
+      string getSymbolNameByResNum(::i32 groupResNum);
 
-      int groupNumResToXkb(int groupNumRes);
+      ::i32 groupNumResToXkb(::i32 groupNumRes);
 
-      string getGroupNameByResNum(int groupResNum);
+      string getGroupNameByResNum(::i32 groupResNum);
 
-      int groupLookup(int srcValue, string_array_base fromText, string_array_base toText, int count);
+      ::i32 groupLookup(::i32 srcValue, string_array_base fromText, string_array_base toText, ::i32 count);
 
       void accomodateGroupXkb();
 
-      int _groupCount;
+      ::i32 _groupCount;
       string_array_base _groupNames;
       string_array_base _symbolNames;
-      //int _currentGroupNum;
+      //::i32 _currentGroupNum;
 
-      //int _deviceId;
-      //int _baseEventCode;
-      //int _baseErrorCode;
+      //::i32 _deviceId;
+      //::i32 _baseEventCode;
+      //::i32 _baseErrorCode;
 
    };
 
@@ -105,7 +105,7 @@ namespace windowing
 
 // Helper functions ----------------------------------------------------
 
-   //int compareNoCase(const string &s1, const string &s2);
+   //::i32 compareNoCase(const string &s1, const string &s2);
 // std::ostream& operator<<(std::ostream& os, const XKeyboard& xkb);
 // std::ostream& operator<<(std::ostream& os, const StringVector& v);
 

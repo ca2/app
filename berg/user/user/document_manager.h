@@ -20,29 +20,29 @@ namespace user
       atom_map_base < ::pointer < ::user::impact_system > > m_mapImpactSystem;
 
 
-      static const char gen_ShellOpenFmt[];
-      static const char gen_ShellPrintFmt[];
-      static const char gen_ShellPrintToFmt[];
-      static const char gen_DefaultIconFmt[];
-      static const char gen_ShellNewFmt[];
+      static ::string_literal gen_ShellOpenFmt;
+      static ::string_literal gen_ShellPrintFmt;
+      static ::string_literal gen_ShellPrintToFmt;
+      static ::string_literal gen_DefaultIconFmt;
+      static ::string_literal gen_ShellNewFmt;
 
 #define DEFAULT_ICON_INDEX 0
 
-      static  const char gen_IconIndexFmt[];
-      static  const char gen_Command[];
-      static  const char gen_OpenArg[];
-      static  const char gen_PrintArg[];
-      static  const char gen_PrintToArg[];
-      static  const char gen_DDEArg[];
+      static ::string_literal gen_IconIndexFmt;
+      static ::string_literal gen_Command;
+      static ::string_literal gen_OpenArg;
+      static ::string_literal gen_PrintArg;
+      static ::string_literal gen_PrintToArg;
+      static ::string_literal gen_DDEArg;
 
-      static  const char gen_DDEExec[];
-      static  const char gen_DDEOpen[];
+      static ::string_literal gen_DDEExec;
+      static ::string_literal gen_DDEOpen;
 
-      static const char gen_DDEPrint[];
-      static const char gen_DDEPrintTo[];
+      static ::string_literal gen_DDEPrint;
+      static ::string_literal gen_DDEPrintTo;
 
-      static const char gen_ShellNewValueName[];
-      static const char gen_ShellNewValue[];
+      static ::string_literal gen_ShellNewValueName;
+      static ::string_literal gen_ShellNewValue;
 
 
       document_manager();
@@ -75,7 +75,7 @@ namespace user
 
       void handle(::topic * ptopic, ::handler_context * phandlercontext) override;
 
-      virtual bool do_prompt_file_name(::payload & payloadFile, string nIDSTitle, unsigned int lFlags, bool bOpenFileDialog, ::user::impact_system * ptemplate, ::user::document * pdocument);
+      virtual bool do_prompt_file_name(::payload & payloadFile, string nIDSTitle, ::u32 lFlags, bool bOpenFileDialog, ::user::impact_system * ptemplate, ::user::document * pdocument);
 
       virtual bool OnDDECommand(const ::scoped_string & scopedstrDDECommand);
 

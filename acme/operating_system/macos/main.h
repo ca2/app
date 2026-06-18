@@ -12,9 +12,9 @@
 
 struct main_param
 {
-   int argc;
-   char * *argv;
+   ::i32 argc;
+   char_pointer *argv;
    
 };
 
-unsigned int __run_system_main_param(struct main_param * int_point);
+::u32 __run_system_main_param(struct main_param * i32_point);

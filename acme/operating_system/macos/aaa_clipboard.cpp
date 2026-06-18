@@ -4,11 +4,11 @@
 
 long mm_clipboard_get_file_count();
 
-char ** mm_clipboard_get_filea(long * pc);
+char_pointer * mm_clipboard_get_filea(long * pc);
 
-void mm_clipboard_set_filea(const char ** psza, long c);
+void mm_clipboard_set_filea(const_char_pointer * psza, long c);
 
-char * mm_clipboard_get_plain_text();
+char_pointer mm_clipboard_get_plain_text();
 
 void mm_clipboard_set_plain_text(const ::scoped_string & scopedstr);
 
@@ -29,7 +29,7 @@ void macos_clipboard_get_filea(::file::path_array & patha)
    try
    {
   
-      char ** psza = mm_clipboard_get_filea(&c);
+      char_pointer * psza = mm_clipboard_get_filea(&c);
       
       patha.c_add(scopedstra, c, false);
       

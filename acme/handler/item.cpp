@@ -3,12 +3,12 @@
 #include "item.h"
 
 
-::string get_e_element_text(enum_element eelement)
+::string get_e_element_text(const e_element & eelement)
 {
 
    ::string str;
 
-   switch (eelement)
+   switch (eelement.m_eenum)
    {
    case e_element_none:
       str = "e_element_none";
@@ -17,7 +17,7 @@
       str = "e_element_item";
       break;
    default:
-      str.formatf("(enum_element=%lld)", (long long)eelement);
+      str.formatf("(enum_element=%lld)", (::i64)eelement);
       break;
    }
 
@@ -25,10 +25,10 @@
 }
 
 
-void item::get_debug_title(char * sz, character_count c) const
+void item::get_debug_title(char_pointer sz, character_count c) const
 {
 
-   char sz1[256];
+   ::i8 sz1[256];
 
    particle::get_debug_title(sz1, 256);
 
@@ -52,7 +52,7 @@ bool item::_is_set() const
 }
 
 
-item & item::operator = (enum_element eelement)
+item & item::operator = (const e_element & eelement)
 {
 
    m_item.m_eelement = eelement;
@@ -101,7 +101,7 @@ item & item::operator = (::collection::index iItem)
 }
 
 
-bool item::is_hidden() const
+i32_boolean item::is_hidden() const
 {
 
    return false;

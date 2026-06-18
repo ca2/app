@@ -25,8 +25,8 @@
 //          struct console
 //          {
 //
-//             map < char, ::collection::index >         m_mapCharIndex;
-//             ::array < char >              m_cha1;
+//             map < ::i8, ::collection::index >         m_mapCharIndex;
+//             ::array < ::i8 >              m_cha1;
 //             ::string_array_base                m_stra;
 //
 //          } m_console;
@@ -46,7 +46,7 @@
 //          virtual ::acme::windowing::display * get_display();
 //
 //
-//          //void draw(::nano::graphics::device * pnanodevice) override;
+//          //void draw(::nano::graphics::context * pnanodevice) override;
 //
 //          static ::pointer_array < ::micro::window_implementation > & nanowindowimplementationa();
 //
@@ -66,13 +66,13 @@
 //          virtual void _display_console();
 //
 //
-//          virtual ::int_point try_absolute_mouse_position(const ::int_point & point);
+//          virtual ::i32_point try_absolute_mouse_position(const ::i32_point & point);
 //
 //
 //          void handle(::topic * ptopic, ::handler_context * phandlercontext) override;
 //
 //
-//          virtual ::int_size get_main_screen_size();
+//          virtual ::i32_size get_main_screen_size();
 //
 //
 //          virtual ::payload do_synchronously(const class time & timeWait = ::time::infinity()) override;

@@ -28,17 +28,17 @@ namespace gpu_opengl
       CGLContextObj                    m_context;
       CGLContextObj                    m_contextOld;
 
-      int m_iFbo;
-      int m_iTex;
-      ::int_size m_sizeFbo;
+      ::i32 m_iFbo;
+      ::i32 m_iTex;
+      ::i32_size m_sizeFbo;
 
       
       context_cgl();
       ~context_cgl() override;
       
 
-      virtual void _create_cpu_buffer(const ::int_size& size) override;
-      //virtual void resize_offscreen_buffer(const ::int_size& size) override;
+      virtual void _create_cpu_buffer(const ::i32_size& size) override;
+      //virtual void resize_offscreen_buffer(const ::i32_size& size) override;
       virtual void destroy_cpu_buffer() override;
 
       virtual void _context_lock() override;

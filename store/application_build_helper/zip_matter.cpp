@@ -107,11 +107,11 @@ namespace application_build_helper
 
 #endif
 
-         //int iAdding = 0;
+         //::i32 iAdding = 0;
 
-         //int iDeleting = 0;
+         //::i32 iDeleting = 0;
 
-         //int iExitCode = 0;
+         //::i32 iExitCode = 0;
 
 //         auto functionTrace = [&](enum_trace_level etracelevel, const ::scoped_string& str)
 //         {

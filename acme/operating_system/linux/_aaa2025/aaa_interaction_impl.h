@@ -5,10 +5,10 @@ namespace linux
 {
 
 
-   LRESULT CALLBACK __send_message_hook(int, WPARAM, LPARAM);
+   LRESULT CALLBACK __send_message_hook(::i32, WPARAM, LPARAM);
    // void _::ca2::StandardSubclass(oswindow);
-   LRESULT CALLBACK __cbt_filter_hook(int, WPARAM, LPARAM);
-   LRESULT __call_window_procedure(::user::interaction * pWnd, oswindow hWnd, unsigned int nMsg, WPARAM wParam, LPARAM lParam);
+   LRESULT CALLBACK __cbt_filter_hook(::i32, WPARAM, LPARAM);
+   LRESULT __call_window_procedure(::user::interaction * pWnd, oswindow hWnd, ::u32 nMsg, WPARAM wParam, LPARAM lParam);
 
 
    class x11data;
@@ -21,15 +21,15 @@ namespace linux
       string                        m_strWindowText;
       ::user::interaction_base *    m_pbasewnd;
       bool                          m_bExposing;
-      int                           m_iDepth;
-      int                           m_iScreen;
+      ::i32                           m_iDepth;
+      ::i32                           m_iScreen;
       bool                          m_bEnabled;
 
       //::task_pointer                  m_pthreadDraw;
       ::rect64                      m_rectangleLastPos;
       ::duration m_durationLastPos;
 
-      ::int_point                       m_pointLastMove;
+      ::i32_point                       m_pointLastMove;
       bool                          m_bMoveEvent;
       ::size                        m_sizeLastSize;
       bool                          m_bSizeEvent;
@@ -57,10 +57,10 @@ namespace linux
       bool operator==(const ::windowing::window& wnd) const;
       bool operator!=(const ::windowing::window& wnd) const;
 
-      unsigned int GetStyle() const override;
-      unsigned int GetExStyle() const override;
-      bool ModifyStyle(unsigned int dwRemove, unsigned int dwAdd, unsigned int nFlags = 0) override;
-      bool ModifyStyleEx(unsigned int dwRemove, unsigned int dwAdd, unsigned int nFlags = 0) override;
+      ::u32 GetStyle() const override;
+      ::u32 GetExStyle() const override;
+      bool ModifyStyle(::u32 dwRemove, ::u32 dwAdd, ::u32 nFlags = 0) override;
+      bool ModifyStyleEx(::u32 dwRemove, ::u32 dwAdd, ::u32 nFlags = 0) override;
 
       //virtual ::user::interaction * get_owner();
       virtual void set_owner(::user::interaction * pOwnerWnd) override;
@@ -92,7 +92,7 @@ namespace linux
       // subclassing/unsubclassing functions
       virtual void pre_subclass_window() override;
 //      bool SubclassWindow(oswindow hWnd);
-//      //bool SubclassDlgItem(unsigned int nID, ::pointer<::interaction_impl>pParent);
+//      //bool SubclassDlgItem(::u32 nID, ::pointer<::interaction_impl>pParent);
 //      oswindow UnsubclassWindow();
 
       // handling of RT_DLGINIT resource (extension to RT_DIALOG)
@@ -100,7 +100,7 @@ namespace linux
 //
 //      bool ExecuteDlgInit(LPVOID pResource);
 
-      //virtual bool create_message_queue(::user::interaction * pinteraction, const char * lpszName) override;
+      //virtual bool create_message_queue(::user::interaction * pinteraction, const_char_pointer pszName) override;
 
 //      using ::windowing::window::create_window;
 
@@ -111,8 +111,8 @@ namespace linux
 
 //      const ::scoped_string & scopedstrWindowName,
 
-//      unsigned int dwStyle,
-//      const ::double_rectangle & rectangle,
+//      ::u32 dwStyle,
+//      const ::f64_rectangle & rectangle,
 //      ::user::interaction * pParentWnd,
 //      atom atom,
 //      ::create * pContext = nullptr) override;
@@ -140,7 +140,7 @@ namespace linux
 
       // Advanced: virtual AdjustWindowRect
 //      enum AdjustType { adjustBorder = 0, adjustOutside = 1 };
-//      virtual void CalcWindowRect(RECT32 * pClientRect, unsigned int nAdjustType = adjustBorder);
+//      virtual void CalcWindowRect(RECT32 * pClientRect, ::u32 nAdjustType = adjustBorder);
 
 
 
@@ -163,7 +163,7 @@ namespace linux
 
 #if(WINVER >= 0x0500)
 
-      ::user::interaction * GetAncestor(unsigned int gaFlags) const;
+      ::user::interaction * GetAncestor(::u32 gaFlags) const;
 
 #endif   // WINVER >= 0x0500
 
@@ -176,7 +176,7 @@ namespace linux
 //
 //      bool SendChildNotifyLastMsg(LRESULT* pResult = nullptr);
 //
-//      bool DragDetect(const ::int_point & point) const;
+//      bool DragDetect(const ::i32_point & point) const;
 
 
 
@@ -185,7 +185,7 @@ namespace linux
       // oswindow Text Functions
       void set_window_text(const ::scoped_string & scopedstrString) override;
 
-      //character_count GetWindowText(char * pszStringBuf, character_count nMaxCount);
+      //character_count GetWindowText(char_pointer pszStringBuf, character_count nMaxCount);
 
       void get_window_text(string & str) override;
       //character_count GetWindowTextLength();
@@ -197,12 +197,12 @@ namespace linux
       virtual bool node_is_iconic() override;
       //virtual bool layout().is_zoomed();
       //virtual bool layout().is_full_screen();
-      //void MoveWindow(int x, int y, int nWidth, int nHeight,
+      //void MoveWindow(::i32 x, ::i32 y, ::i32 nWidth, ::i32 nHeight,
         //              bool bRepaint = true);
-      //void MoveWindow(const ::double_rectangle & rectangle, bool bRepaint = true);
+      //void MoveWindow(const ::f64_rectangle & rectangle, bool bRepaint = true);
 
-//      int SetWindowRgn(HRGN hRgn, bool bRedraw);
-//      int GetWindowRgn(HRGN hRgn);
+//      ::i32 SetWindowRgn(HRGN hRgn, bool bRedraw);
+//      ::i32 GetWindowRgn(HRGN hRgn);
 
 
       virtual void _001OnExitIconic() override;
@@ -210,8 +210,8 @@ namespace linux
       virtual void _001OnExitZoomed() override;
 
 
-      //virtual bool set_window_position(iptr z, int x, int y, int cx, int cy, unsigned int nFlags);
-//      virtual unsigned int ArrangeIconicWindows();
+      //virtual bool set_window_position(iptr z, ::i32 x, ::i32 y, ::i32 cx, ::i32 cy, ::u32 nFlags);
+//      virtual ::u32 ArrangeIconicWindows();
       //virtual bool BringWindowToTop();
 //      virtual bool window_rectangle(RECT64 * prect);
 
@@ -224,7 +224,7 @@ namespace linux
       virtual bool has_focus() override;
       virtual bool is_active() override;
 
-      //virtual ::int_point client_screen_top_left() override;
+      //virtual ::i32_point client_screen_top_left() override;
 
 //      virtual bool client_to_screen(RECT32 * prect);
 
@@ -249,7 +249,7 @@ namespace linux
 
 
       // Coordinate Mapping Fufnctions
-//      virtual void MapWindowPoints(::user::interaction * puserinteractionTo, POINT32 * pPoint, unsigned int nCount);
+//      virtual void MapWindowPoints(::user::interaction * puserinteractionTo, POINT32 * pPoint, ::u32 nCount);
 //
 //      virtual void MapWindowPoints(::user::interaction * puserinteractionTo, RECT32 * prect);
 
@@ -258,19 +258,19 @@ namespace linux
 //      virtual ::draw2d::graphics * GetDC();
 //      virtual ::draw2d::graphics * GetWindowDC();
 //      virtual bool ReleaseDC(::image::image *pimage);
-//      virtual void Print(::draw2d::graphics_pointer & pgraphics, unsigned int dwFlags) const;
-//      virtual void PrintClient(::draw2d::graphics_pointer & pgraphics, unsigned int dwFlags) const;
+//      virtual void Print(::draw2d::graphics_pointer & pgraphics, ::u32 dwFlags) const;
+//      virtual void PrintClient(::draw2d::graphics_pointer & pgraphics, ::u32 dwFlags) const;
 
 //      virtual void UpdateWindow();
 //      virtual void SetRedraw(bool bRedraw = true);
 //      virtual bool GetUpdateRect(RECT32 * prect, bool bErase = false);
 //
-//      virtual int GetUpdateRgn(::draw2d::region* pRgn, bool bErase = false);
+//      virtual ::i32 GetUpdateRgn(::draw2d::region* pRgn, bool bErase = false);
 //      virtual void Invalidate(bool bErase = true);
-//      virtual void InvalidateRect(const ::double_rectangle & rectangle, bool bErase = true);
+//      virtual void InvalidateRect(const ::f64_rectangle & rectangle, bool bErase = true);
 //
 //      virtual void InvalidateRgn(::draw2d::region* pRgn, bool bErase = true);
-//      virtual void ValidateRect(const ::double_rectangle & rectangle);
+//      virtual void ValidateRect(const ::f64_rectangle & rectangle);
 //
 //      virtual void ValidateRgn(::draw2d::region* pRgn);
       //virtual bool display(::e_display edisplay) override;
@@ -291,38 +291,38 @@ namespace linux
       //virtual bool _is_window_visible() override;
       //virtual void ShowOwnedPopups(bool bShow = true);
 
-      //virtual ::draw2d::graphics * GetDCEx(::draw2d::region* prgnClip, unsigned int flags);
+      //virtual ::draw2d::graphics * GetDCEx(::draw2d::region* prgnClip, ::u32 flags);
       //virtual bool LockWindowUpdate();
       //virtual void UnlockWindowUpdate();
-//      virtual bool RedrawWindow(const ::double_rectangle& rectangleUpdate = nullptr,
+//      virtual bool RedrawWindow(const ::f64_rectangle& rectangleUpdate = nullptr,
 //                                ::draw2d::region* prgnUpdate = nullptr,
-//                                unsigned int flags = RDW_INVALIDATE | RDW_ERASE);
-      // xxx      virtual bool EnableScrollBar(int nSBFlags, unsigned int nArrowFlags = ESB_ENABLE_BOTH);
+//                                ::u32 flags = RDW_INVALIDATE | RDW_ERASE);
+      // xxx      virtual bool EnableScrollBar(::i32 nSBFlags, ::u32 nArrowFlags = ESB_ENABLE_BOTH);
 
       virtual void set_context_org(::draw2d::graphics_pointer & pgraphics) override;
 
 //
-//      //virtual bool DrawAnimatedRects(int idAni, const LPRECTprcFrom, const LPRECTlprcTo);
+//      //virtual bool DrawAnimatedRects(::i32 idAni, const LPRECTprcFrom, const LPRECTlprcTo);
 //
-//      virtual bool DrawCaption(::draw2d::graphics_pointer & pgraphics, const rectangle & prc, unsigned int uFlags);
+//      virtual bool DrawCaption(::draw2d::graphics_pointer & pgraphics, const rectangle & prc, ::u32 uFlags);
 //
 //
 //#if(WINVER >= 0x0500)
 //
-//      virtual bool AnimateWindow(unsigned int ::duration, unsigned int dwFlags);
+//      virtual bool AnimateWindow(::u32 ::duration, ::u32 dwFlags);
 //
 //#endif   // WINVER >= 0x0500
 //
 //#if(_WIN32_WINNT >= 0x0501)
 //
-//      virtual bool PrintWindow(::draw2d::graphics_pointer & pgraphics, unsigned int nFlags) const;
+//      virtual bool PrintWindow(::draw2d::graphics_pointer & pgraphics, ::u32 nFlags) const;
 //
 //#endif   // _WIN32_WINNT >= 0x0501
 
 
 
 //      // Timer Functions
-//      virtual bool set_timer(uptr uEvent, unsigned int nElapse, PFN_TIMER pfnTimer);
+//      virtual bool set_timer(uptr uEvent, ::u32 nElapse, PFN_TIMER pfnTimer);
 //      virtual bool kill_timer(uptr uEvent);
 
       // oswindow State Functions
@@ -368,17 +368,17 @@ namespace linux
 
       //static void get_app_wnda(user::oswindow_array & wnda);
 
-      virtual LONG_PTR get_window_long_ptr(int nIndex) const override;
-      virtual LONG_PTR set_window_long_ptr(int nIndex, LONG_PTR lValue) override;
+      virtual LONG_PTR get_window_long_ptr(::i32 nIndex) const override;
+      virtual LONG_PTR set_window_long_ptr(::i32 nIndex, LONG_PTR lValue) override;
 
       //void _001OnTriggerMouseInside();
 
 
-      //::user::interaction * get_next(bool bIgnoreChildren, int * piLevel);
+      //::user::interaction * get_next(bool bIgnoreChildren, ::i32 * piLevel);
 
       void show_task(bool bShow) override;
 
-      virtual void non_top_most_upper_window_rects(::int_rectangle_array& recta) override;
+      virtual void non_top_most_upper_window_rects(::i32_rectangle_array& recta) override;
 
    };
 

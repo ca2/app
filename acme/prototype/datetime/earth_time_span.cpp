@@ -36,7 +36,7 @@ namespace earth
 //stream & operator << (stream & os, ::earth::time_span span)
 //{
 //
-//   os.write((long long)span.m_i);
+//   os.write((::i64)span.m_i32);
 //
 //   return os;
 //
@@ -46,7 +46,7 @@ namespace earth
 //stream & operator >> (stream & is, ::earth::time_span & span)
 //{
 //
-//   is.read((long long &)span.m_i);
+//   is.read((::i64 &)span.m_i32);
 //
 //   return is;
 //
@@ -79,7 +79,7 @@ namespace earth
          // string hmsFormats [_CTIMESPANFORMATS] = {"%ca","%02ld","%d"};
          //   string dayFormats [_CTIMESPANFORMATS] = {"%ca","%I64d","%I64d"};
          //strBuffer.Preallocate(maxTimeBufferSize);
-         char ch;
+         ::i8 ch;
 
          while ((ch = *pFormat++) != '\0')
          {

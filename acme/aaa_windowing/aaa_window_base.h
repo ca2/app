@@ -27,9 +27,9 @@ namespace windowing
 
       bool                                               m_bRepositioningWindowFromCenter;
       bool                                               m_bResizingWindowFromBottomRight;
-      ::int_point                                        m_pointWindow;
-      ::int_size                                         m_sizeWindow;
-      ::int_point                                        m_pointCursor2;
+      ::i32_point                                        m_pointWindow;
+      ::i32_size                                         m_sizeWindow;
+      ::i32_point                                        m_pointCursor2;
 
       ::pointer < ::operating_system::a_system_menu >    m_psystemmenu;
 
@@ -53,8 +53,8 @@ namespace windowing
 
 
       virtual bool is_windowing_popup();
-      virtual ::int_point windowing_popup_origin();
-      virtual ::int_size windowing_popup_size();
+      virtual ::i32_point windowing_popup_origin();
+      virtual ::i32_size windowing_popup_size();
       virtual void _on_windowing_close_window();
       virtual bool is_satellite_window();
       virtual window_base * owner_window();
@@ -68,7 +68,7 @@ namespace windowing
       bool defer_perform_entire_resizing_process(::experience::enum_frame eframeSizing, ::user::mouse * pmouse) override;
 
 
-      virtual void on_char(int iChar);
+      virtual void on_char(::i32 iChar);
 //       //
 //       // Created by camilo on 31/01/2022 23:04 <3ThomasBorregaardSorensen!!
 //       //
@@ -101,7 +101,7 @@ namespace windowing
                virtual ::acme::windowing::display * get_display();
 
 
-               //void draw(::nano::graphics::device * pnanodevice) override;
+               //void draw(::nano::graphics::context * pnanodevice) override;
 
                //static ::pointer_array < ::micro::window_implementation > & nanowindowimplementationa();
 
@@ -133,16 +133,16 @@ namespace windowing
 
       virtual bool is_active_window();
 
-               virtual ::int_point try_absolute_mouse_position(const ::int_point & point);
+               virtual ::i32_point try_absolute_mouse_position(const ::i32_point & point);
 
 
                void handle(::topic * ptopic, ::handler_context * phandlercontext) override;
 
 
-               virtual ::int_size get_main_screen_size();
+               virtual ::i32_size get_main_screen_size();
 
 
-      void _on_window_simple_action(const char * pszActionName) override;
+      void _on_window_simple_action(const_char_pointer pszActionName) override;
 
 
                //virtual ::payload do_synchronously(const class time & timeWait = ::time::infinity()) override;
@@ -155,21 +155,21 @@ namespace windowing
 
 
 
-      virtual void set_interface_client_size(const ::int_size & sizeWindow);
+      virtual void set_interface_client_size(const ::i32_size & sizeWindow);
 
 
-      void set_rectangle(const int_rectangle &rectangle) override;
-      void set_position(const int_point &point) override;
-      void set_size(const int_size &size) override;
+      void set_rectangle(const i32_rectangle &rectangle) override;
+      void set_position(const i32_point &point) override;
+      void set_size(const i32_size &size) override;
 
 
-      ::int_rectangle get_window_rectangle() override;
-      virtual ::int_rectangle get_window_rectangle_unlocked();
+      ::i32_rectangle get_window_rectangle() override;
+      virtual ::i32_rectangle get_window_rectangle_unlocked();
 
 
-      virtual void set_rectangle_unlocked(const int_rectangle &rectangle);
-      virtual void set_position_unlocked(const int_point &point);
-      virtual void set_size_unlocked(const int_size &size);
+      virtual void set_rectangle_unlocked(const i32_rectangle &rectangle);
+      virtual void set_position_unlocked(const i32_point &point);
+      virtual void set_size_unlocked(const i32_size &size);
 
 
       virtual void on_a_system_menu_item(::operating_system::a_system_menu_item * psystemmenuitem);

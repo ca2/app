@@ -62,8 +62,8 @@ namespace acme
       ////
       ////
       ////    CLASS_DECL_ACME ::pointer<brush>create_solid_brush(::particle * pparticle, color32_t color);
-      ////    CLASS_DECL_ACME ::pointer<font>create_point_font(::particle * pparticle, int iPoint, enum_font efont, bool bBold = false);
-      ////    CLASS_DECL_ACME ::pointer<pen>create_pen(::particle * pparticle, int iWidth, color32_t color);
+      ////    CLASS_DECL_ACME ::pointer<font>create_point_font(::particle * pparticle, ::i32 iPoint, enum_font efont, bool bBold = false);
+      ////    CLASS_DECL_ACME ::pointer<pen>create_pen(::particle * pparticle, ::i32 iWidth, color32_t color);
 
 
    } //namespace windowing

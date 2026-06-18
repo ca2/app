@@ -41,7 +41,7 @@ namespace draw2d
 //   }
 
 
-//   unsigned int palette::GetPaletteEntries(unsigned int nStartIndex, unsigned int nNumEntries, LPPALETTEENTRY pPaletteColors) const
+//   ::u32 palette::GetPaletteEntries(::u32 nStartIndex, ::u32 nNumEntries, LPPALETTEENTRY pPaletteColors) const
 //
 //   {
 //      __UNREFERENCED_PARAMETER(nStartIndex);
@@ -52,7 +52,7 @@ namespace draw2d
 //      return 0;
 //   }
 
-//   unsigned int palette::SetPaletteEntries(unsigned int nStartIndex, unsigned int nNumEntries, LPPALETTEENTRY pPaletteColors)
+//   ::u32 palette::SetPaletteEntries(::u32 nStartIndex, ::u32 nNumEntries, LPPALETTEENTRY pPaletteColors)
 //
 //   {
 //      __UNREFERENCED_PARAMETER(nStartIndex);
@@ -64,7 +64,7 @@ namespace draw2d
 //   }
 
 
-//   void palette::AnimatePalette(unsigned int nStartIndex, unsigned int nNumEntries, LPPALETTEENTRY pPaletteColors)
+//   void palette::AnimatePalette(::u32 nStartIndex, ::u32 nNumEntries, LPPALETTEENTRY pPaletteColors)
 //   {
 //
 //      __UNREFERENCED_PARAMETER(nStartIndex);
@@ -76,7 +76,7 @@ namespace draw2d
 //   }
 
 
-   unsigned int palette::GetNearestPaletteIndex(const ::color::color & color) const
+   ::u32 palette::GetNearestPaletteIndex(const ::color::color & color) const
    {
 
       __UNREFERENCED_PARAMETER(color);
@@ -88,7 +88,7 @@ namespace draw2d
    }
 
 
-//   bool palette::ResizePalette(unsigned int nNumEntries)
+//   bool palette::ResizePalette(::u32 nNumEntries)
 //   {
 //
 //      __UNREFERENCED_PARAMETER(nNumEntries);
@@ -98,7 +98,7 @@ namespace draw2d
 //   }
 
 
-   int palette::GetEntryCount()
+   ::i32 palette::GetEntryCount()
    {
 
       throw ::interface_only();

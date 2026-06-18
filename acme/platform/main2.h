@@ -20,7 +20,7 @@
 //public:
 //
 //
-//   ///int                              m_iPathInstallFolderExeArg;
+//   ///::i32                              m_iPathInstallFolderExeArg;
 //   //LPFN_MAIN_RUNNER                 m_mainrunnera[64];
 //
 //   //string                            m_strCommandLine;
@@ -34,7 +34,7 @@
 //   ~main();
 //
 //
-//   //   main(int argc, char * argv[], char * envp[])
+//   //   main(::i32 argc, char_pointer argv[], char_pointer envp[])
 //   //   {
 //   //
 //   //
@@ -46,7 +46,7 @@
 //
 //   //inline ::collection::count _get_argc() const { return m_argc; }
 //
-//   //string _get_argv(int iArg) const;
+//   //string _get_argv(::i32 iArg) const;
 //
 //   //inline ::collection::count get_argument_count1() const { return _get_argc() - 1; }
 //
@@ -54,13 +54,13 @@
 //
 // /*  string get_executable() const;
 //
-//   string get_argument1(int iArgument) const;*/
+//   string get_argument1(::i32 iArgument) const;*/
 //
 //   //#ifdef WINDOWS
 //   //
 //   //   hinstance                        m_hinstance;
 //   //   hinstance                        m_hPrevInstance;
-//   //   int                              m_nCmdShow;
+//   //   ::i32                              m_nCmdShow;
 //   //
 //   //#endif
 //
@@ -70,15 +70,15 @@
 //      //void system_construct(const class ::main * pmain) override;
 //
 //
-//      //void system_construct(int argc, char** argv, char ** envp);
-//      //void system_construct(int argc, wchar_t** argv, wchar_t ** envp);
+//      //void system_construct(::i32 argc, char_pointer * argv, char_pointer * envp);
+//      //void system_construct(::i32 argc, wchar_t** argv, wchar_t ** envp);
 //
 //   virtual void on_system_construct();
 //
 //
 //#ifdef WINDOWS_DESKTOP
 //
-//   void system_construct(hinstance hinstanceThis, hinstance hPrevInstance, char* pCmdLine, int nCmdShow);
+//   void system_construct(hinstance hinstanceThis, hinstance hPrevInstance, char_pointer pCmdLine, ::i32 nCmdShow);
 //
 //#elif defined(UNIVERSAL_WINDOWS)
 //
@@ -101,7 +101,7 @@
 //
 //   bool on_result(const ::e_status& estatus);
 //
-//   //static unsigned int WINAPI MAIN(void * pvoid);
+//   //static ::u32 WINAPI MAIN(void * pvoid);
 //
 //   //bool system_beg();
 //
@@ -146,7 +146,7 @@
 //
 //
 //   CLASS_DECL_ACME void create_system();
-//   CLASS_DECL_ACME int run_system();
+//   CLASS_DECL_ACME ::i32 run_system();
 //
 //
 //} // namespace acme
@@ -157,10 +157,10 @@
 //public:
 //
 //
-//   embed_resource(char* start = nullptr, char* end = nullptr);
+//   embed_resource(char_pointer start = nullptr, char_pointer end = nullptr);
 //
-//   static char* get_start();
-//   static char* get_end();
+//   static char_pointer get_start();
+//   static char_pointer get_end();
 //
 //
 //};
@@ -181,14 +181,14 @@
 //
 //
 ////#define __embed_resource(app) \
-////extern char _binary__matter_zip_start[]; \
-////extern char _binary__matter_zip_end[];   \
+////extern ::i8 _binary__matter_zip_start[]; \
+////extern ::i8 _binary__matter_zip_end[];   \
 ////embed_resource g_embed_resource(app, _binary__matter_zip_start, _binary__matter_zip_end);
 //
 //
 //#define __embed_resource \
-//extern char _binary__matter_zip_start[]; \
-//extern char _binary__matter_zip_end[];   \
+//extern ::i8 _binary__matter_zip_start[]; \
+//extern ::i8 _binary__matter_zip_end[];   \
 //embed_resource g_embed_resource(_binary__matter_zip_start, _binary__matter_zip_end)
 //
 //

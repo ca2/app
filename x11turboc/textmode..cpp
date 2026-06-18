@@ -49,13 +49,13 @@
 
 #include "conio.h"
 
-char BypassResizeXterm = 0;
-static unsigned int LastMode = C80;
+::i8 BypassResizeXterm = 0;
+static ::u32 LastMode = C80;
 #define NUM_VIDEO_MODES 65
 static struct
 {
-  int Columns;
-  int Rows;
+  ::i32 Columns;
+  ::i32 Rows;
 }
 VideoModes[NUM_VIDEO_MODES] =
 {
@@ -267,7 +267,7 @@ gint TranslatedChar[256];
 static void
 InitializeTranslatedChar (void)
 {
-  int i;
+  ::i32 i;
   // Hit most of the characters first with some simple defaults.
   for (i = 0; i < 0x20; i++)
     TranslatedChar[i] = DefaultChar;
@@ -278,91 +278,91 @@ InitializeTranslatedChar (void)
   // Now fix the ones that are different from the simple defaults.
   // Many of these are not exact matches, but they're the best that can be 
   // done under the circumstances.  At least, it should be possible to 
-  // make a decent line-drawing, except that all double-lines have been
+  // make a decent line-drawing, except that all ::f64-lines have been
   // replaced by single-lines.
 #ifndef DoNotFixIntegers
-#undef short
-#undef int
-#undef unsigned
+#undef ::i16
+#undef ::i32
+#undef ::u32
 #undef long
 #endif
-  TranslatedChar[(int) '\t'] = '\t';
-  TranslatedChar[(int) '\r'] = '\r';
-  TranslatedChar[(int) '\n'] = '\n';
-  TranslatedChar[(int) 0x10] = ACS_RARROW;
-  TranslatedChar[(int) 0x11] = ACS_LARROW;
-  TranslatedChar[(int) 0x18] = ACS_UARROW;
-  TranslatedChar[(int) 0x19] = ACS_DARROW;
-  TranslatedChar[(int) 0x1a] = ACS_RARROW;
-  TranslatedChar[(int) 0x1b] = ACS_LARROW;
-  TranslatedChar[(int) 0x1e] = ACS_UARROW;
-  TranslatedChar[(int) 0x1f] = ACS_DARROW;
-  TranslatedChar[(int) 0x04] = ACS_DIAMOND;
-  TranslatedChar[(int) 0x9c] = ACS_STERLING;
-  TranslatedChar[(int) 0xb0] = ACS_CKBOARD;
-  TranslatedChar[(int) 0xb1] = ACS_CKBOARD;
-  TranslatedChar[(int) 0xb2] = ACS_CKBOARD;
-  TranslatedChar[(int) 0xb3] = ACS_VLINE;
-  TranslatedChar[(int) 0xb4] = ACS_RTEE;
-  TranslatedChar[(int) 0xb5] = ACS_RTEE;
-  TranslatedChar[(int) 0xb6] = ACS_RTEE;
-  TranslatedChar[(int) 0xb7] = ACS_URCORNER;
-  TranslatedChar[(int) 0xb8] = ACS_URCORNER;
-  TranslatedChar[(int) 0xb9] = ACS_RTEE;
-  TranslatedChar[(int) 0xba] = ACS_VLINE;
-  TranslatedChar[(int) 0xbb] = ACS_URCORNER;
-  TranslatedChar[(int) 0xbc] = ACS_LRCORNER;
-  TranslatedChar[(int) 0xbd] = ACS_LRCORNER;
-  TranslatedChar[(int) 0xbe] = ACS_LRCORNER;
-  TranslatedChar[(int) 0xbf] = ACS_URCORNER;
-  TranslatedChar[(int) 0xc0] = ACS_LLCORNER;
-  TranslatedChar[(int) 0xc1] = ACS_BTEE;
-  TranslatedChar[(int) 0xc2] = ACS_TTEE;
-  TranslatedChar[(int) 0xc3] = ACS_LTEE;
-  TranslatedChar[(int) 0xc4] = ACS_HLINE;
-  TranslatedChar[(int) 0xc5] = ACS_PLUS;
-  TranslatedChar[(int) 0xc6] = ACS_LTEE;
-  TranslatedChar[(int) 0xc7] = ACS_LTEE;
-  TranslatedChar[(int) 0xc8] = ACS_LLCORNER;
-  TranslatedChar[(int) 0xc9] = ACS_ULCORNER;
-  TranslatedChar[(int) 0xca] = ACS_BTEE;
-  TranslatedChar[(int) 0xcb] = ACS_TTEE;
-  TranslatedChar[(int) 0xcc] = ACS_LTEE;
-  TranslatedChar[(int) 0xcd] = ACS_HLINE;
-  TranslatedChar[(int) 0xce] = ACS_PLUS;
-  TranslatedChar[(int) 0xcf] = ACS_BTEE;
-  TranslatedChar[(int) 0xd0] = ACS_BTEE;
-  TranslatedChar[(int) 0xd1] = ACS_TTEE;
-  TranslatedChar[(int) 0xd2] = ACS_TTEE;
-  TranslatedChar[(int) 0xd3] = ACS_LLCORNER;
-  TranslatedChar[(int) 0xd4] = ACS_LLCORNER;
-  TranslatedChar[(int) 0xd5] = ACS_ULCORNER;
-  TranslatedChar[(int) 0xd6] = ACS_ULCORNER;
-  TranslatedChar[(int) 0xd7] = ACS_PLUS;
-  TranslatedChar[(int) 0xd8] = ACS_PLUS;
-  TranslatedChar[(int) 0xd9] = ACS_LRCORNER;
-  TranslatedChar[(int) 0xda] = ACS_ULCORNER;
-  TranslatedChar[(int) 0xdb] = ACS_CKBOARD;
-  TranslatedChar[(int) 0xe3] = ACS_PI;
-  TranslatedChar[(int) 0xf1] = ACS_PLMINUS;
-  TranslatedChar[(int) 0xf2] = ACS_GEQUAL;
-  TranslatedChar[(int) 0xf3] = ACS_LEQUAL;
-  TranslatedChar[(int) 0xf8] = ACS_DEGREE;
-  TranslatedChar[(int) 0xf9] = ACS_BULLET;
+  TranslatedChar[(::i32) '\t'] = '\t';
+  TranslatedChar[(::i32) '\r'] = '\r';
+  TranslatedChar[(::i32) '\n'] = '\n';
+  TranslatedChar[(::i32) 0x10] = ACS_RARROW;
+  TranslatedChar[(::i32) 0x11] = ACS_LARROW;
+  TranslatedChar[(::i32) 0x18] = ACS_UARROW;
+  TranslatedChar[(::i32) 0x19] = ACS_DARROW;
+  TranslatedChar[(::i32) 0x1a] = ACS_RARROW;
+  TranslatedChar[(::i32) 0x1b] = ACS_LARROW;
+  TranslatedChar[(::i32) 0x1e] = ACS_UARROW;
+  TranslatedChar[(::i32) 0x1f] = ACS_DARROW;
+  TranslatedChar[(::i32) 0x04] = ACS_DIAMOND;
+  TranslatedChar[(::i32) 0x9c] = ACS_STERLING;
+  TranslatedChar[(::i32) 0xb0] = ACS_CKBOARD;
+  TranslatedChar[(::i32) 0xb1] = ACS_CKBOARD;
+  TranslatedChar[(::i32) 0xb2] = ACS_CKBOARD;
+  TranslatedChar[(::i32) 0xb3] = ACS_VLINE;
+  TranslatedChar[(::i32) 0xb4] = ACS_RTEE;
+  TranslatedChar[(::i32) 0xb5] = ACS_RTEE;
+  TranslatedChar[(::i32) 0xb6] = ACS_RTEE;
+  TranslatedChar[(::i32) 0xb7] = ACS_URCORNER;
+  TranslatedChar[(::i32) 0xb8] = ACS_URCORNER;
+  TranslatedChar[(::i32) 0xb9] = ACS_RTEE;
+  TranslatedChar[(::i32) 0xba] = ACS_VLINE;
+  TranslatedChar[(::i32) 0xbb] = ACS_URCORNER;
+  TranslatedChar[(::i32) 0xbc] = ACS_LRCORNER;
+  TranslatedChar[(::i32) 0xbd] = ACS_LRCORNER;
+  TranslatedChar[(::i32) 0xbe] = ACS_LRCORNER;
+  TranslatedChar[(::i32) 0xbf] = ACS_URCORNER;
+  TranslatedChar[(::i32) 0xc0] = ACS_LLCORNER;
+  TranslatedChar[(::i32) 0xc1] = ACS_BTEE;
+  TranslatedChar[(::i32) 0xc2] = ACS_TTEE;
+  TranslatedChar[(::i32) 0xc3] = ACS_LTEE;
+  TranslatedChar[(::i32) 0xc4] = ACS_HLINE;
+  TranslatedChar[(::i32) 0xc5] = ACS_PLUS;
+  TranslatedChar[(::i32) 0xc6] = ACS_LTEE;
+  TranslatedChar[(::i32) 0xc7] = ACS_LTEE;
+  TranslatedChar[(::i32) 0xc8] = ACS_LLCORNER;
+  TranslatedChar[(::i32) 0xc9] = ACS_ULCORNER;
+  TranslatedChar[(::i32) 0xca] = ACS_BTEE;
+  TranslatedChar[(::i32) 0xcb] = ACS_TTEE;
+  TranslatedChar[(::i32) 0xcc] = ACS_LTEE;
+  TranslatedChar[(::i32) 0xcd] = ACS_HLINE;
+  TranslatedChar[(::i32) 0xce] = ACS_PLUS;
+  TranslatedChar[(::i32) 0xcf] = ACS_BTEE;
+  TranslatedChar[(::i32) 0xd0] = ACS_BTEE;
+  TranslatedChar[(::i32) 0xd1] = ACS_TTEE;
+  TranslatedChar[(::i32) 0xd2] = ACS_TTEE;
+  TranslatedChar[(::i32) 0xd3] = ACS_LLCORNER;
+  TranslatedChar[(::i32) 0xd4] = ACS_LLCORNER;
+  TranslatedChar[(::i32) 0xd5] = ACS_ULCORNER;
+  TranslatedChar[(::i32) 0xd6] = ACS_ULCORNER;
+  TranslatedChar[(::i32) 0xd7] = ACS_PLUS;
+  TranslatedChar[(::i32) 0xd8] = ACS_PLUS;
+  TranslatedChar[(::i32) 0xd9] = ACS_LRCORNER;
+  TranslatedChar[(::i32) 0xda] = ACS_ULCORNER;
+  TranslatedChar[(::i32) 0xdb] = ACS_CKBOARD;
+  TranslatedChar[(::i32) 0xe3] = ACS_PI;
+  TranslatedChar[(::i32) 0xf1] = ACS_PLMINUS;
+  TranslatedChar[(::i32) 0xf2] = ACS_GEQUAL;
+  TranslatedChar[(::i32) 0xf3] = ACS_LEQUAL;
+  TranslatedChar[(::i32) 0xf8] = ACS_DEGREE;
+  TranslatedChar[(::i32) 0xf9] = ACS_BULLET;
 #ifndef DoNotFixIntegers
-#define short short
-#define int short
-#define unsigned unsigned short
-#define long int
+#define ::i16 ::i16
+#define ::i32 ::i16
+#define ::u32 ::u16
+#define long ::i32
 #endif
 };
 
 //----------------------------------------------------------------------------
 
 void
-textmode (int newmode)
+textmode (::i32 newmode)
 {
-  int Rows, Columns;
+  ::i32 Rows, Columns;
   // Parse the current and desired modes.
   if (ConioInitialized)
     {
@@ -401,7 +401,7 @@ textmode (int newmode)
     BypassResizeXterm = 1;
   if (BypassResizeXterm == 0)
     {
-      char s[32];
+      ::i8 s[32];
       // The following resizes the physical console, but it only works on
       // xterm (not on KDE Konsole, for example).  If xterm is not being 
       // run it causes a fairly chunky delay until it times out.
@@ -432,7 +432,7 @@ textmode (int newmode)
   keypad (stdscr, true);
   wresize (stdscr, Rows, Columns);
   // Initialize the translation table.
-  if (TranslatedChar[(int) ' '] == 0)
+  if (TranslatedChar[(::i32) ' '] == 0)
     InitializeTranslatedChar ();
 
   // conio initialization.

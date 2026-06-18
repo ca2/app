@@ -1,6 +1,6 @@
 #include "framework.h"
 #include "acme/exception/runtime_check.h"
-#include "acme/operating_system/shared_posix/c_error_number.h"
+#include "acme/operating_system/shared_posix/c_errno.h"
 #include <errno.h>
 
 
@@ -11,17 +11,17 @@ namespace acme
 #ifdef WINDOWS
 
 
-   CLASS_DECL_ACME int get_errno()
+   CLASS_DECL_ACME ::i32 get_errno()
    {
 
-      int nErrNo;
+      ::i32 nErrNo;
 
       errno_t iErrNo = ::_get_errno(&nErrNo);
 
       if (iErrNo)
       {
 
-         throw ::runtime_check_exception(error_failed, { c_error_number(iErrNo) }, "get_errno (error getting error)");
+         throw ::runtime_check_exception(error_failed, {c_errno(c_errno_t{}, iErrNo)}, "get_errno (error getting error)");
 
       }
 
@@ -29,7 +29,7 @@ namespace acme
    }
 
 
-   CLASS_DECL_ACME void set_errno(int _Value)
+   CLASS_DECL_ACME void set_errno(::i32 _Value)
    {
 
       errno_t iErrNo = ::_set_errno(_Value);
@@ -37,7 +37,8 @@ namespace acme
       if (iErrNo)
       {
 
-         throw ::runtime_check_exception(error_failed, { c_error_number(iErrNo) }, "set_errno (error setting error)");
+         throw ::runtime_check_exception(error_failed, {c_errno(c_errno_t {} ,iErrNo)},
+                                         "set_errno (error setting error)");
 
       }
 
@@ -47,7 +48,7 @@ namespace acme
 #else
 
 
-   CLASS_DECL_ACME int get_errno()
+   CLASS_DECL_ACME ::i32 get_errno()
    {
 
       return errno;
@@ -55,7 +56,7 @@ namespace acme
    }
 
 
-   CLASS_DECL_ACME void set_errno(int _Value)
+   CLASS_DECL_ACME void set_errno(::i32 _Value)
    {
 
       errno = _Value;

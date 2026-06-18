@@ -30,17 +30,17 @@
 
 //----------------------------------------------------------------------------
 
-unsigned
-getpixel (int x, int y)
+::u32
+getpixel (::i32 x, ::i32 y)
 {
-    unsigned RetVal = 0;
+    ::u32 RetVal = 0;
    color32_t color32 = TcPixmaps[TcVisualPage]->GetPixel(x,y);
 
     gint i, maxi, ClosestS, s;
 
-    int r = color32_byte_red(color32);
-    int g = color32_byte_green(color32);
-    int b = color32_byte_blue(color32);
+    ::i32 r = color32_u8_red(color32);
+    ::i32 g = color32_u8_green(color32);
+    ::i32 b = color32_u8_blue(color32);
 
         ClosestS = 1000000;
         maxi = getmaxcolor ();
@@ -64,7 +64,7 @@ getpixel (int x, int y)
 
  // gint i, maxi, ClosestS, s;
  // XColor Color;
- // unsigned RetVal = 0;
+ // ::u32 RetVal = 0;
  // XImage *Image;
  // // Convert to viewport coordinates.
  // x += TcViewLeft;

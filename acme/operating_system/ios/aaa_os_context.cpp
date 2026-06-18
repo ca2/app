@@ -2,7 +2,7 @@
 #include "_ios.h"
 
 
-bool ns_open_file(const char * );
+bool ns_open_file(const_char_pointer );
 
 
 
@@ -110,7 +110,7 @@ namespace ios
        if (!ExitWindowsEx(EWX_REBOOT | EWX_FORCE,
        SHTDN_REASON_MAJOR_SOFTWARE | SHTDN_REASON_MINOR_INSTALLATION))
        {
-       unsigned int dwLastError = ::get_last_error();
+       ::u32 dwLastError = ::get_last_error();
        return false;
        }*/
       //reset the previlages
@@ -128,13 +128,13 @@ namespace ios
 //      throw ::not_implemented();
       return;
 
-      /*      unsigned int dwPid;
+      /*      ::u32 dwPid;
        while(get_pid_by_title(scopedstrName, dwPid))
        {
        HANDLE hProcess = OpenProcess( PROCESS_QUERY_INFORMATION |
        PROCESS_VM_READ,
        false, dwPid );
-       TerminateProcess(hProcess, (unsigned int) -1);
+       TerminateProcess(hProcess, (::u32) -1);
        CloseHandle(hProcess);
        ::EnumWindows((WNDENUMPROC)
        CKillProcessHelper::TerminateAppEnum,
@@ -155,11 +155,11 @@ namespace ios
    }
 
 
-   bool os_context::get_pid_by_path(const ::scoped_string & scopedstrName, unsigned int & dwPid)
+   bool os_context::get_pid_by_path(const ::scoped_string & scopedstrName, ::u32 & dwPid)
    {
-      unsigned_int_array dwa;
+      u32_array dwa;
       get_all_processes(dwa);
-      for(int i = 0; i < dwa.get_count(); i++)
+      for(::i32 i = 0; i < dwa.get_count(); i++)
       {
          if(get_process_path(dwa[i]).case_insensitive_order(scopedstrName) == 0)
          {
@@ -171,11 +171,11 @@ namespace ios
    }
 
 
-   bool os_context::get_pid_by_title(const ::scoped_string & scopedstrName, unsigned int & dwPid)
+   bool os_context::get_pid_by_title(const ::scoped_string & scopedstrName, ::u32 & dwPid)
    {
-      unsigned_int_array dwa;
+      u32_array dwa;
       get_all_processes(dwa);
-      for(int i = 0; i < dwa.get_count(); i++)
+      for(::i32 i = 0; i < dwa.get_count(); i++)
       {
          if(get_process_path(dwa[i]).title().case_insensitive_order(scopedstrName) == 0)
          {
@@ -187,7 +187,7 @@ namespace ios
    }
 
 
-   int os_context::get_pid()
+   ::i32 os_context::get_pid()
    {
 
       return ::getpid();
@@ -195,7 +195,7 @@ namespace ios
    }
 
 
-   ::file::path os_context::get_process_path(unsigned int dwPid)
+   ::file::path os_context::get_process_path(::u32 dwPid)
    {
       /*
        string strName = ":<unknown>";
@@ -209,7 +209,7 @@ namespace ios
        if (nullptr != hProcess )
        {
        HMODULE hMod;
-       unsigned int cbNeeded;
+       ::u32 cbNeeded;
 
        if(EnumProcessModules( hProcess, &hMod, sizeof(hMod),
        &cbNeeded) )
@@ -226,7 +226,7 @@ namespace ios
    }
 
 
-   void os_context::get_all_processes(unsigned_int_array & dwa )
+   void os_context::get_all_processes(u32_array & dwa )
    {
 
       //  throw ::not_implemented();
@@ -234,18 +234,18 @@ namespace ios
 
       /*
        dwa.set_size(0);
-       unsigned int cbNeeded = 0;
+       ::u32 cbNeeded = 0;
        while(cbNeeded == natural(dwa.get_count()))
        {
        dwa.set_size(dwa.get_count() + 1024);
        if(!EnumProcesses(
        dwa.get_data(),
-       (unsigned int) (dwa.get_count() * sizeof(unsigned int)),
+       (::u32) (dwa.get_count() * sizeof(::u32)),
        &cbNeeded))
        {
        return;
        }
-       dwa.set_size(cbNeeded / sizeof(unsigned int));
+       dwa.set_size(cbNeeded / sizeof(::u32));
        }*/
    }
 
@@ -271,7 +271,7 @@ namespace ios
 
        key1.QueryValue("DefaultConnectionSettings", mem);
 
-       bool bAutoDetect = (((unsigned char *) mem.get_data())[8] & 0x08) != 0;
+       bool bAutoDetect = (((::u8 *) mem.get_data())[8] & 0x08) != 0;
 
        return bAutoDetect;
        */
@@ -381,7 +381,7 @@ namespace ios
 
        registry::Key keyPlugin;
 
-       if(keyPlugin.OpenKey(keyPlugins, "@ca2.network/npca2", true))
+       if(keyPlugin.OpenKey(keyPlugins, "@ca2.site/npca2", true))
        {
 
        keyPlugin.SetValue("Description", "ca2 plugin for NPAPI");
@@ -604,18 +604,18 @@ namespace ios
        || !papp->is_serviceable())
        return false;
 
-       SC_HANDLE hdlSCM = OpenSCManager(0, 0, SC_MANAGER_CREATE_SERVICE);
+       SC_HANDLE hdlServiceControlManager = OpenServiceControlManageranager(0, 0, SC_MANAGER_CREATE_SERVICE);
 
        string strCalling = papp->m_strModulePath + " : app=" + papp->m_XstrAppId + " service usehostlogin";
 
-       if(hdlSCM == 0)
+       if(hdlServiceControlManager == 0)
        {
        //::get_last_error()
        return false;
        }
 
        SC_HANDLE hdlServ = ::CreateService(
-       hdlSCM,                    // SCManager database
+       hdlServiceControlManager,                    // ServiceControlManageranager database
        "acme-" + papp->m_strAppName,               // name of service
        "ccwarehouse ca2 account " + papp->m_strAppName,        // service name to display
        STANDARD_RIGHTS_REQUIRED,  // desired access
@@ -631,13 +631,13 @@ namespace ios
 
        if (!hdlServ)
        {
-       CloseServiceHandle(hdlSCM);
+       CloseServiceHandle(hdlServiceControlManager);
        //Ret = ::get_last_error();
        return false;
        }
 
        CloseServiceHandle(hdlServ);
-       CloseServiceHandle(hdlSCM);
+       CloseServiceHandle(hdlServiceControlManager);
 
        return true;
        */
@@ -656,23 +656,23 @@ namespace ios
        || !papp->is_serviceable())
        return false;
 
-       SC_HANDLE hdlSCM = OpenSCManager(0, 0, SC_MANAGER_ALL_ACCESS);
+       SC_HANDLE hdlServiceControlManager = OpenServiceControlManageranager(0, 0, SC_MANAGER_ALL_ACCESS);
 
-       if(hdlSCM == 0)
+       if(hdlServiceControlManager == 0)
        {
        //::get_last_error();
        return false;
        }
 
        SC_HANDLE hdlServ = ::OpenService(
-       hdlSCM,                    // SCManager database
+       hdlServiceControlManager,                    // ServiceControlManageranager database
        "acme-" + papp->m_strAppName,               // name of service
        DELETE);                     // no password
 
        if (!hdlServ)
        {
        // Ret = ::get_last_error();
-       CloseServiceHandle(hdlSCM);
+       CloseServiceHandle(hdlServiceControlManager);
        return false;
        }
 
@@ -680,7 +680,7 @@ namespace ios
 
        CloseServiceHandle(hdlServ);
 
-       CloseServiceHandle(hdlSCM);
+       CloseServiceHandle(hdlServiceControlManager);
 
        return false;
        */
@@ -698,23 +698,23 @@ namespace ios
        || !papp->is_serviceable())
        return false;
 
-       SC_HANDLE hdlSCM = OpenSCManager(0, 0, SC_MANAGER_ALL_ACCESS);
+       SC_HANDLE hdlServiceControlManager = OpenServiceControlManageranager(0, 0, SC_MANAGER_ALL_ACCESS);
 
-       if(hdlSCM == 0)
+       if(hdlServiceControlManager == 0)
        {
        //::get_last_error();
        return false;
        }
 
        SC_HANDLE hdlServ = ::OpenService(
-       hdlSCM,                    // SCManager database
+       hdlServiceControlManager,                    // ServiceControlManageranager database
        "acme-" + papp->m_strAppName,               // name of service
        SERVICE_START);                     // no password
 
 
        if (!hdlServ)
        {
-       CloseServiceHandle(hdlSCM);
+       CloseServiceHandle(hdlServiceControlManager);
        //Ret = ::get_last_error();
        return false;
        }
@@ -722,7 +722,7 @@ namespace ios
        bool bOk = StartService(hdlServ, 0, nullptr) != false;
 
        CloseServiceHandle(hdlServ);
-       CloseServiceHandle(hdlSCM);
+       CloseServiceHandle(hdlServiceControlManager);
 
        return bOk != false;
        */
@@ -740,23 +740,23 @@ namespace ios
        || !papp->is_serviceable())
        return false;
 
-       SC_HANDLE hdlSCM = OpenSCManager(0, 0, SC_MANAGER_ALL_ACCESS);
+       SC_HANDLE hdlServiceControlManager = OpenServiceControlManageranager(0, 0, SC_MANAGER_ALL_ACCESS);
 
-       if(hdlSCM == 0)
+       if(hdlServiceControlManager == 0)
        {
        //::get_last_error();
        return false;
        }
 
        SC_HANDLE hdlServ = ::OpenService(
-       hdlSCM,                    // SCManager database
+       hdlServiceControlManager,                    // ServiceControlManageranager database
        "acme-" + papp->m_strAppName,               // name of service
        SERVICE_STOP);                     // no password
 
        if (!hdlServ)
        {
        // Ret = ::get_last_error();
-       CloseServiceHandle(hdlSCM);
+       CloseServiceHandle(hdlServiceControlManager);
        return false;
        }
 
@@ -770,14 +770,14 @@ namespace ios
 
        CloseServiceHandle(hdlServ);
 
-       CloseServiceHandle(hdlSCM);
+       CloseServiceHandle(hdlServiceControlManager);
 
        return bOk != false;
        */
    }
 
 
-   void os_context::raise_exception( unsigned int dwExceptionCode, unsigned int dwExceptionFlags)
+   void os_context::raise_exception( ::u32 dwExceptionCode, ::u32 dwExceptionFlags)
    {
 
       throw ::not_implemented();
@@ -868,7 +868,7 @@ namespace ios
 //
 
 
-CLASS_DECL_ACME bool _istlead(int ch)
+CLASS_DECL_ACME bool _istlead(::i32 ch)
 {
 
    return false;
@@ -882,10 +882,10 @@ CLASS_DECL_ACME bool _istlead(int ch)
 
 
 
-int_bool GetCursorPos(::int_point * lppointCursor)
+i32_bool GetCursorPos(::i32_point * lppointCursor)
 {
 
-   /*   HIPoint int_point;
+   /*   HIPoint i32_point;
 
    HICoordinateSpace space = kHICoordSpaceScreenPixel;
 

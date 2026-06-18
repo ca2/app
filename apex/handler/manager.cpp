@@ -36,7 +36,7 @@ manager::~manager()
 //#error "manager::increment_reference_count is being compiled??"
 
 
-long long manager::increment_reference_count()
+::i64 manager::increment_reference_count()
 {
 
    return ::property_object::increment_reference_count();
@@ -44,7 +44,7 @@ long long manager::increment_reference_count()
 }
 
 
-long long manager::decrement_reference_count()
+::i64 manager::decrement_reference_count()
 {
 
    return ::property_object::decrement_reference_count();
@@ -52,7 +52,7 @@ long long manager::decrement_reference_count()
 }
 
 
-long long manager::release()
+::i64 manager::release()
 {
 
    return ::property_object::release();

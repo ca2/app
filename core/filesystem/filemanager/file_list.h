@@ -52,7 +52,7 @@ namespace filemanager
       void _017OpenContextMenu(const ::action_context & action_context) override;
       void _017OpenFile(const ::file::item_array & itema, const ::action_context & action_context) override;
       //void _017OpenFolder(::pointer<::file::item>pitem, const ::action_context & action_context) override;
-      virtual void RenameFile(int iLine, string & str, const ::action_context & action_context);
+      virtual void RenameFile(::i32 iLine, string & str, const ::action_context & action_context);
 
       //void FileSize();
 
@@ -98,7 +98,7 @@ namespace filemanager
       //DECLARE_MESSAGE_HANDLER(_001OnUpdateSpafy2);
 
 
-      virtual void on_timer(::timer * ptimer) override;
+      void operator()(::timer * ptimer) override;
 
 
       bool on_click(::item * pitem, ::user::mouse * pmouse) override;

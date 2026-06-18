@@ -19,7 +19,7 @@ namespace colorertake5
       @param lineRegions Linked list_base of LineRegion structures.
       Only region references are used there.
       */
-      static void tokenWrite(stream & markupWriter, stream & textWriter, string_to_string_base * docLinkHash, const char  *line, LineRegion *lineRegions);
+      static void tokenWrite(stream & markupWriter, stream & textWriter, string_to_string_base * docLinkHash, const_char_pointer line, LineRegion *lineRegions);
 
       /** write specified line of text using list_base of LineRegion's.
       This method uses text fields of LineRegion class to enwrap each line

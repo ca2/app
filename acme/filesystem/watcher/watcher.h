@@ -41,7 +41,7 @@ namespace file
       
       //void *               m_pThis;
 
-      typedef ::set < ::pointer<::file::watch >>watch_set;
+      typedef ::ø <::set<::pointer<::file::watch>>> watch_set;
 
       watch_set            m_watchset;
 

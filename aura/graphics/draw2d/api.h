@@ -26,66 +26,66 @@ namespace draw2d
 
       void draw_and_fill_beziers(
       ::draw2d::graphics_pointer &  pgraphics,
-      ::double_point *                    ppoints,
-      int                           iCount,
-      double                        dRateX,
-      ::double_point *                    ppointOffset);
+      ::f64_point *                    ppoints,
+      ::i32                           iCount,
+      ::f64                        dRateX,
+      ::f64_point *                    ppointOffset);
 
 
       void draw_beziers(
       ::draw2d::graphics_pointer &  pgraphics,
-      ::double_point *                    ppoints,
-      int                           iCount,
-      double                        dRateX,
-      ::double_point *                    ppointOffset);
+      ::f64_point *                    ppoints,
+      ::i32                           iCount,
+      ::f64                        dRateX,
+      ::f64_point *                    ppointOffset);
 
 
       void draw_and_fill_beziers(
       ::draw2d::graphics_pointer &  pgraphics,
-      array < double_point_array, double_point_array & > * pglyph,
-      double                        dRateX,
-      double_point *                      ppointOffset);
+      array < f64_point_array, f64_point_array & > * pglyph,
+      ::f64                        dRateX,
+      ::f64_point *                      ppointOffset);
 
 
       void embossed_text_out(
       ::draw2d::graphics_pointer &  pgraphics,
-      const double_rectangle &                 pcrect,
-      double                        dRateX,
-      double                        dHeight,
+      const ::f64_rectangle &                 pcrect,
+      ::f64                        dRateX,
+      ::f64                        dHeight,
       const ::scoped_string & scopedstr);
 
 
       void embossed_text_out(
       ::draw2d::graphics_pointer &  pgraphics,
-      const double_rectangle &                 pcrect,
-      double                        dRateX,
-      double                        dHeight,
-      const_char_pointer                 psz,
-      int *                         piCharsPositions,
-      int                           iCharsPositions,
-      int                           iOffset);
+      const ::f64_rectangle &                 pcrect,
+      ::f64                        dRateX,
+      ::f64                        dHeight,
+      const_char_pointer psz,
+      ::i32 *                         piCharsPositions,
+      ::i32                           iCharsPositions,
+      ::i32                           iOffset);
 
 
       void embossed_text_out(
       ::draw2d::graphics_pointer &  pgraphics,
-      const_char_pointer                 pcsz,
-      int                           iLeft,
-      int                           iTop,
-      int                           iWidth,
+      const_char_pointer pcsz,
+      ::i32                           iLeft,
+      ::i32                           iTop,
+      ::i32                           iWidth,
       ::color::color                     crText,
       ::color::color                     crOutline,
-      int                           iLen);
+      ::i32                           iLen);
 
 
       void simple_text_out(
       ::draw2d::graphics_pointer &  pgraphics,
-      const double_rectangle &                 pcrect,
-      double                        dRateX,
-      double                        dHeight,
-      const_char_pointer                 psz,
-      int *                         piCharsPositions,
-      int                           iCharsPositions,
-      int                           iOffset);
+      const ::f64_rectangle &                 pcrect,
+      ::f64                        dRateX,
+      ::f64                        dHeight,
+      const_char_pointer psz,
+      ::i32 *                         piCharsPositions,
+      ::i32                           iCharsPositions,
+      ::i32                           iOffset);
 
 
    };

@@ -183,7 +183,7 @@ void simple_frame_window::on_system_command(const ::e_system_command & esystemco
    if (has_notify_icon() && esystemcommand == e_system_command_minimize)
    {
 
-      hide();
+      display(e_display_hide, {});
 
       set_need_redraw();
 
@@ -478,10 +478,10 @@ void simple_frame_window::task_save_window_placement()
 
    auto ptask = ::get_task();
 
-   while (ptask->task_get_run())
+   while (ptask->should_run())
    {
 
-      bool bIsWindow = (m_ewindowflag & e_window_flag_is_window);
+      ::i32_boolean bIsWindow = m_ewindowflag & e_window_flag_is_window;
 
       if (!bIsWindow)
       {
@@ -1498,7 +1498,7 @@ void simple_frame_window::on_reposition()
 }
 
 
-void simple_frame_window::ImpactOnActivateFrame(::pointer<::user::impact>pimpact, unsigned int user, ::pointer<::user::interaction>frame)
+void simple_frame_window::ImpactOnActivateFrame(::pointer<::user::impact>pimpact, ::u32 user, ::pointer<::user::interaction>frame)
 {
    __UNREFERENCED_PARAMETER(pimpact);
    __UNREFERENCED_PARAMETER(user);
@@ -1558,7 +1558,7 @@ void simple_frame_window::show_control_bars(const ::e_display & edisplay, bool b
             else
             {
 
-               toolbartransport->hide();
+               toolbartransport->display(e_display_hide, {});
 
             }
 
@@ -1819,7 +1819,7 @@ void simple_frame_window::ActivateFrame(::e_display edisplay)
 }
 
 
-void simple_frame_window::GetBorderRectangle(::int_rectangle * prectangle)
+void simple_frame_window::GetBorderRectangle(::i32_rectangle * prectangle)
 {
 
    *prectangle = m_rectangleBorder;
@@ -1827,7 +1827,7 @@ void simple_frame_window::GetBorderRectangle(::int_rectangle * prectangle)
 }
 
 
-void simple_frame_window::SetBorderRect(const ::int_rectangle & rectangle)
+void simple_frame_window::SetBorderRect(const ::i32_rectangle & rectangle)
 {
 
    m_rectangleBorder = rectangle;
@@ -1920,7 +1920,7 @@ void simple_frame_window::on_message_close(::message::message * pmessage)
 
       }
 
-      hide();
+      display(e_display_hide, {});
 
       set_need_redraw();
 
@@ -2000,7 +2000,7 @@ void simple_frame_window::on_message_close(::message::message * pmessage)
       if (is_window_visible())
       {
 
-         hide();
+         display(e_display_hide, {});
 
          set_need_redraw();
 
@@ -2218,7 +2218,7 @@ void simple_frame_window::_001OnActivate(::message::message * pmessage)
 }
 
 
-bool simple_frame_window::LoadFrame(const ::scoped_string & scopedstrMatter, unsigned int dwDefaultStyle, ::user::interaction * puiParent, ::user::system * pusersystem)
+bool simple_frame_window::LoadFrame(const ::scoped_string & scopedstrMatter, ::u32 dwDefaultStyle, ::user::interaction * puiParent, ::user::system * pusersystem)
 {
 
 //   if (pusersystem->id().is_set())
@@ -2248,7 +2248,7 @@ bool simple_frame_window::LoadFrame(const ::scoped_string & scopedstrMatter, uns
 //
 //   }
 
-//   ::int_rectangle rectangleFrame;
+//   ::i32_rectangle rectangleFrame;
 //
 //   ::pointer<::user::place_holder>pholder;
 //
@@ -2339,7 +2339,7 @@ bool simple_frame_window::LoadFrame(const ::scoped_string & scopedstrMatter, uns
 //      //pusersystem->set_rect(rectangleFrame);
 //
 //      informationf("(2) simple_frame_window::LoadFrame rectangleFrame (l=%d, t=%d) (w=%d, h=%d)", rectangleFrame.left, rectangleFrame.top, rectangleFrame.width(), rectangleFrame.height());
-//      informationf("(2) simple_frame_window::LoadFrame edisplay=%s", ::string(::as_string((int)const_layout().sketch().display().eflag())).c_str());
+//      informationf("(2) simple_frame_window::LoadFrame edisplay=%s", ::string(::as_string((::i32)const_layout().sketch().display().eflag())).c_str());
 //
 //
 //   }
@@ -2428,7 +2428,7 @@ void simple_frame_window::_001OnDdeInitiate(::message::message * pmessage)
 
    //::pointer<::user::message>pusermessage(pmessage);
 
-   //pusermessage->set_lresult(default_window_procedure((unsigned int)pusermessage->m_wparam, pusermessage->m_lparam, pusermessage->get_lresult()));
+   //pusermessage->set_lresult(default_window_procedure((::u32)pusermessage->m_wparam, pusermessage->m_lparam, pusermessage->get_lresult()));
 
 }
 
@@ -2665,7 +2665,7 @@ void simple_frame_window::_000OnDraw(::draw2d::graphics_pointer & pgraphicsParam
 
 //   ::draw2d::save_context savecontext(pgraphicsParam);
 //
-//   int_point pointScroll = m_pointScroll;
+//   i32_point pointScroll = m_pointScroll;
 //
 //   if (!pointScroll.is_null())
 //   {
@@ -2741,13 +2741,13 @@ void simple_frame_window::_000OnDraw(::draw2d::graphics_pointer & pgraphicsParam
 //
 //   windowing_output_debug_string("\nsimple_frame_window::_001OnDraw B");
 //
-//   ::int_rectangle rectangleX;
+//   ::i32_rectangle rectangleX;
 //
 //   this->rectangle(rectangleX);
 //
 //   bool bDib = false;
 //
-//   double dAlpha = get_alpha();
+//   ::f64 dAlpha = get_alpha();
 //
 //   ::draw2d::graphics_pointer& pgraphics = pgraphicsParam;
 //
@@ -2803,7 +2803,7 @@ void simple_frame_window::_000OnDraw(::draw2d::graphics_pointer & pgraphicsParam
 //
 //         //bool bBlurBackground = get_draw_flags(pstyle).has(::user::e_flag_blur_background);
 //
-//         int iDrawingOrder = DRAWING_ORDER_CLIENT_OVER;
+//         ::i32 iDrawingOrder = DRAWING_ORDER_CLIENT_OVER;
 //
 //         //if (!bBlurBackground)
 //         //{
@@ -2942,7 +2942,7 @@ void simple_frame_window::_001OnDraw(::draw2d::graphics_pointer & pgraphics)
 
    pgraphics->set_alpha_mode(::draw2d::e_alpha_mode_blend);
 
-   //pgraphics->fill_solid_rectangle(::double_rectangle_dimension(10, 10, 200, 200), ::argb(127, 0, 0, 255));
+   //pgraphics->fill_solid_rectangle(::f64_rectangle_dimension(10, 10, 200, 200), ::argb(127, 0, 0, 255));
 
    //return;
 
@@ -3001,7 +3001,7 @@ void simple_frame_window::_001OnDraw(::draw2d::graphics_pointer & pgraphics)
          if (m_pimageBlur->is_ok())
          {
 
-            ::double_rectangle rectangleTarget(rectangleX.size());
+            ::f64_rectangle rectangleTarget(rectangleX.size());
 
             {
 
@@ -3055,7 +3055,7 @@ void simple_frame_window::_001OnDraw(::draw2d::graphics_pointer & pgraphics)
 
    //printf("simplefrmwnd : " + ::platform::type(this).name() + " : draw_frame");
 
-//   pgraphics->fill_solid_rectangle(::double_rectangle_dimension(100, 100, 200, 200), ::argb(127, 0, 255, 0));
+//   pgraphics->fill_solid_rectangle(::f64_rectangle_dimension(100, 100, 200, 200), ::argb(127, 0, 255, 0));
 
    //return;
 
@@ -3132,7 +3132,7 @@ void simple_frame_window::on_after_set_parent()
 }
 
 
-::int_rectangle simple_frame_window::rectangle(::user::enum_layout elayout)
+::i32_rectangle simple_frame_window::rectangle(::user::enum_layout elayout)
 {
 
    return ::experience::frame_window::rectangle(elayout);
@@ -3309,7 +3309,7 @@ void simple_frame_window::WfiToggleShow()
    if (is_window_visible())
    {
 
-      hide();
+      display(e_display_hide, {});
 
    }
    else
@@ -3352,7 +3352,7 @@ void simple_frame_window::design_up()
 }
 
 
-//bool simple_frame_window::create_interaction(const ::scoped_string & scopedstrClassName, const ::scoped_string & scopedstrWindowName, unsigned int uStyle, const ::int_rectangle & rectangle, ::user::interaction * puiParent, const ::scoped_string & scopedstrMenuName, unsigned int dwExStyle, ::request * prequest)
+//bool simple_frame_window::create_interaction(const ::scoped_string & scopedstrClassName, const ::scoped_string & scopedstrWindowName, ::u32 uStyle, const ::i32_rectangle & rectangle, ::user::interaction * puiParent, const ::scoped_string & scopedstrMenuName, ::u32 dwExStyle, ::request * prequest)
 //{
 //
 //   return ::user::frame_window::create_interaction(scopedstrClassName, pszWindowName, uStyle, rectangle, puiParent, pszMenuName, dwExStyle, pcreate);
@@ -3375,13 +3375,13 @@ void simple_frame_window::route_command(::message::command * pcommand, bool bRou
 //{
 //
 //   set_active_window();      // activate us first !
-//   unsigned int nFiles = ::DragQueryFile(hDropInfo, (unsigned int)-1, nullptr, 0);
+//   ::u32 nFiles = ::DragQueryFile(hDropInfo, (::u32)-1, nullptr, 0);
 //
 //   ::file::path_array_base patha;
 //
 //   natural_wstring pwszFileName(char_count, _MAX_PATH);
 //
-//   for (unsigned int iFile = 0; iFile < nFiles; iFile++)
+//   for (::u32 iFile = 0; iFile < nFiles; iFile++)
 //   {
 //
 //      if (::DragQueryFileW(hDropInfo, iFile, pwszFileName, _MAX_PATH))
@@ -3502,7 +3502,7 @@ void simple_frame_window::route_command(::message::command * pcommand, bool bRou
 //   ::PostMessage((oswindow)wParam, WM_DDE_ACK, (WPARAM)get_handle(),
 //                 //IA64: Assume DDE LPARAMs are still 32-bit
 //                 ReuseDDElParam(lParam, WM_DDE_EXECUTE, WM_DDE_ACK,
-//                                (unsigned int)0x8000, (uptr)hData));
+//                                (::u32)0x8000, (uptr)hData));
 //
 //   // don't execute the command when the u is disabled
 //   if (!is_window_enabled())
@@ -3549,7 +3549,7 @@ void simple_frame_window::route_command(::message::command * pcommand, bool bRou
 //}
 //
 //
-//void simple_frame_window::NotifyFloatingWindows(unsigned int dwFlags)
+//void simple_frame_window::NotifyFloatingWindows(::u32 dwFlags)
 //{
 //   ASSERT_OK(this);
 //   // trans   ASSERT(get_handle() != nullptr);
@@ -3651,11 +3651,11 @@ void simple_frame_window::handle(::topic * ptopic, ::handler_context * phandlerc
 
          auto pointCursor = windowing()->display()->get_mouse_cursor_position();
          
-         auto squareHint = int_rectangle::square_with_center_and_apothem(pointCursor, 8);
+         auto squareHint = i32_rectangle::square_with_center_and_apothem(pointCursor, 8);
 
          pointCursor -= squareHint.top_left();
 
-         pointCursor += ::int_size(16, 16);
+         pointCursor += ::i32_size(16, 16);
 
          auto pmenu = m_pnotifyicon->menu();
 
@@ -3675,7 +3675,7 @@ void simple_frame_window::handle(::topic * ptopic, ::handler_context * phandlerc
 
          ptrackpopup->track([](){});
          
-//         puser->track_popup_menu(this, pmenu, 0, pointCursor, int_size(), m_pnotifyicon);
+//         puser->track_popup_menu(this, pmenu, 0, pointCursor, i32_size(), m_pnotifyicon);
 
       }
       else if (ptopic->id() == ::id_left_button_double_click)
@@ -4206,7 +4206,7 @@ void simple_frame_window::on_simple_command(::message::simple_command * psimplec
 }
 
 
-class ::mini_dock_frame_window * simple_frame_window::CreateFloatingFrame(unsigned int uStyle)
+class ::mini_dock_frame_window * simple_frame_window::CreateFloatingFrame(::u32 uStyle)
 {
 
    __UNREFERENCED_PARAMETER(uStyle);
@@ -4333,17 +4333,17 @@ void simple_frame_window::prepare_frame(::user::document * pdocument, bool bMake
 }
 
 
-void simple_frame_window::on_timer(::timer * ptimer)
+void simple_frame_window::operator()(::timer * ptimer)
 {
 
-   ::user::frame_window::on_timer(ptimer);
+   ::user::frame_window::operator()(ptimer);
 
-   ::experience::frame_window::on_timer(ptimer);
+   ::experience::frame_window::operator()(ptimer);
 
 }
 
 
-//void simple_frame_window::OnNotifyIconContextMenu(unsigned int uNotifyIcon)
+//void simple_frame_window::OnNotifyIconContextMenu(::u32 uNotifyIcon)
 //{
 //
 //}
@@ -4351,7 +4351,7 @@ void simple_frame_window::on_timer(::timer * ptimer)
 
 
 //
-//void simple_frame_window::OnNotifyIconLButtonDblClk(unsigned int uNotifyIcon)
+//void simple_frame_window::OnNotifyIconLButtonDblClk(::u32 uNotifyIcon)
 //{
 //
 //   __UNREFERENCED_PARAMETER(uNotifyIcon);
@@ -4359,7 +4359,7 @@ void simple_frame_window::on_timer(::timer * ptimer)
 //}
 //
 //
-//void simple_frame_window::OnNotifyIconLButtonDown(unsigned int uNotifyIcon)
+//void simple_frame_window::OnNotifyIconLButtonDown(::u32 uNotifyIcon)
 //{
 //
 //   default_notify_icon_topic();
@@ -4638,7 +4638,7 @@ void simple_frame_window::notification_area_action(const ::atom & atom, ::user::
 //}
 
 
-void simple_frame_window::_on_configure_notify_unlocked(const ::int_rectangle & rectangle)
+void simple_frame_window::_on_configure_notify_unlocked(const ::i32_rectangle & rectangle)
 {
 
    ::experience::frame_window::_on_configure_notify_unlocked(rectangle);

@@ -15,14 +15,14 @@ namespace draw2d
    public:
  
 
-      unsigned int                         CtlType;
-      unsigned int                         CtlID;
-      unsigned int                         itemID;
-      unsigned int                         itemAction;
-      int                           itemState;
+      ::u32                         CtlType;
+      ::u32                         CtlID;
+      ::u32                         itemID;
+      ::u32                         itemAction;
+      ::i32                           itemState;
       ::acme::windowing::window * m_pacmewindowingwindowItem;
       ::draw2d::graphics_pointer    m_pgraphics;
-      ::int_rectangle               rcItem;
+      ::i32_rectangle               rcItem;
       uptr                          itemData;
       
 

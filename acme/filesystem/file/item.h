@@ -22,7 +22,7 @@ namespace file
    public:
 
 
-      enumeration < enum_flag >     m_flags;
+      e_flag                        m_flags;
       string                        m_strName;
 
 
@@ -67,7 +67,7 @@ namespace file
       }
       
 
-      item(const ::file::path & pathUser, const ::file::path & pathFinal, const enumeration < enum_flag > & flags) :
+      item(const ::file::path & pathUser, const ::file::path & pathFinal, const e_flag & flags) :
          m_pathUser(pathUser),
          m_pathFinal(pathFinal),
          m_flags(flags),
@@ -107,16 +107,16 @@ namespace file
       virtual void set_final_path(const ::file::path & pathFinal) { ASSERT(pathFinal.flags() & e_flag_final_path); m_pathFinal = pathFinal; m_flags += e_flag_final_path; }
 
 
-      virtual enum_type get_final_path_type() const { return m_pathFinal.m_etype; }
-      virtual void set_final_path_type(enum_type etype) { m_pathFinal.m_etype = etype; }
+      virtual e_type get_final_path_type() const { return m_pathFinal.m_etype; }
+      virtual void set_final_path_type(const e_type & etype) { m_pathFinal.m_etype = etype; }
 
 
       inline bool has_final_path() const { return m_flags.has(e_flag_final_path); }
 
       virtual void truncate();
-      virtual bool is_folder() const;
+      virtual ::i32_boolean is_folder() const;
       virtual bool exists() const;
-      virtual bool is_file() const;
+      virtual ::i32_boolean is_file() const;
 
       virtual void erase();
       virtual void create_folder();

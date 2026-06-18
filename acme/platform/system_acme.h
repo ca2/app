@@ -18,6 +18,11 @@
 #include "acme/parallelization/_types.h"
 #include "acme/prototype/collection/map.h"
 #include "acme/prototype/prototype/factory.h"
+namespace accessibility
+{
+   class accessibility;
+} // namespace accessibility
+
 
 
 namespace platform
@@ -49,8 +54,6 @@ namespace platform
 
       ::map_base < ::task_index, ::thread_storage >  m_mapThreadStorage;
 
-      bool m_bApplicationStartFileOpenRequest = false;
-      ::pointer<::request> m_prequestApplicationStartFileOpen;
       ::critical_section                              m_criticalsectionThreadStorage;
 
       ::pointer < ::task_message_queue >              m_ptaskmessagequeue;
@@ -59,27 +62,29 @@ namespace platform
       ::pointer < ::platform::session >               m_psession;
       bool                                            m_bFinalizeIfNoSessionSetting;
       bool                                            m_bFinalizeIfNoSession;
-
+      bool m_bBranchMainThread;       
+      bool m_bSystemLoadedFromALibrary;
       ::pointer < ::mathematics::mathematics >        m_pmathematics;
       // FROM MAIN (Now APPLICATION_FLAGS : merged on other classes?)
 
-
+      ::pointer<ProfileLogger>                        m_pprofilelogger;
       bool                                            m_bOperatingAmbientFactory;
-      bool                                            m_bGraphicsAndWindowingFactory;
-
+      bool                                            m_bGraphicsFactory;
+      bool                                            m_bWindowingFactory;
+      class ::time                                    m_timeProcedureTimerMinimumResolution;     
 
       ::pointer < manual_reset_happening >                m_pmanualresethappeningSystemTaskFinished;
       //::pointer < manual_reset_happening >                m_pmanualresethappeningMainLoopEnd;
 
-      ::int_sz *                                      m_pintstringLanguageResourceMap;
-      int                                             m_iMatterFromHttpCache;
+      ::i32_sz *                                      m_pintstringLanguageResourceMap;
+      ::i32                                             m_iMatterFromHttpCache;
 
       const_char_pointer m_pszMain;
 
       bool                                                  m_bAcmeSystemDarkMode;
       class ::time                                          m_timeDarkMode;
       ::color::color                                        m_colorBackground;
-      double                                                m_dLuminance;
+      ::f64                                                m_dLuminance;
       ::pointer < ::innate_ui::innate_ui >                  m_pinnateui;
 
       ::pointer < ::micro::user >                           m_pmicrouser;
@@ -94,25 +99,33 @@ namespace platform
       //class ::time                                  m_timeStart;
       class ::time                                    m_timeAfterApplicationFirstRequest;
 
-      //int                                           m_iExitCode = 0;
+      //::i32                                           m_iExitCode = 0;
       enum_trace_level                                m_etracelevelMinimum;
       ::pointer < ::platform::system_factory >        m_psystemfactory;
       // END FROM ::main (Now main2)
 
-
+      ::pointer < ::platform::subsystem >             m_psubsystem;
+      //::pointer < ::subsystem::string_table > m_pstringtable;
+      //::pointer < ::subsystem::resource_loader > m_presourceloader;
       //::pointer<::platform::application>     application();
       // ::pointer<::platform::application>     application();
 
+      ::pointer<::accessibility::accessibility> m_paccessibility;
 
       //::pointer<main_hold_base>                                             m_pmainholdbase;
       //::pointer<system_impl> *                                              m_psystemimpl;
+#if defined(WINDOWS)
+      hinstance m_hinstanceMain = nullptr;
+#endif 
+
+
 #if !defined(WINDOWS)
       ::pointer<::exception_translator>                                       m_pexceptiontranslator;
+      
 #endif
       ::pointer<::factory::factory>                                           m_pfactoryFolder;
 
       //      bool                                                                    m_bPostedInitialRequest;
-      bool                                                                    m_bPostedCommandLineFileOpen;
 
 
       ::pointer<::apex::system>                                               m_psystemParent;
@@ -148,9 +161,10 @@ namespace platform
       class ::time                                                            m_timeFileListingCache;
       //critical_section                                                      m_csEnumText;
       //string_map_base < i64_map < string > >                                     m_mapEnumToText;
-      //string_map_base < string_map_base < long long > >                                     m_mapTextToEnum;
+      //string_map_base < string_map_base < ::i64 > >                                     m_mapTextToEnum;
+      bool                                                                    m_bAttemptedToInitializeMatter;
 
-      ::string_map_base < ::pointer < ::component > >                              m_mapComponent;
+      ::string_map_base < ::pointer < ::component > >                         m_mapComponent;
       ::pointer<::internet::internet>                                         m_pinternet;
       ::pointer<::url::url_context>                                           m_purlcontext;
 
@@ -181,9 +195,6 @@ namespace platform
 
       ::pointer < ::mutex >                                                   m_pmutexMatter;
 
-      ::pointer < ::mutex >                                                   m_pmutexHttpDownload;
-      string_array_base                                                            m_straHttpDownloading;
-      string_array_base                                                            m_straHttpExists;
          //::pointer < ::windowing::windowing_base > m_pwindowingbase;
 //#if defined(WITH_X11) || defined(WITH_XCB)
   //    ::particle_pointer                                 m_pmutexXlib;
@@ -202,10 +213,6 @@ namespace platform
 
 
       virtual ::particle * matter_mutex();
-      virtual ::particle * http_download_mutex();
-
-      virtual ::string_array_base * http_download_array();
-      virtual ::string_array_base * http_exists_array();
 
       virtual class ::time * file_listing_cache_time();
 
@@ -226,8 +233,9 @@ namespace platform
 
       virtual void do_operating_ambient_factory();
 
+      virtual void do_graphics_factory();
 
-      virtual void do_graphics_and_windowing_factory();
+      virtual void do_windowing_factory();
 
 
       void initialize_layer();
@@ -235,15 +243,15 @@ namespace platform
       virtual enum_trace_level get_trace_level();
       //void os_construct();
 
-      virtual void initialize_matter();
+      virtual void defer_initialize_matter();
 //
 // #ifdef _DEBUG
 //
 //
-//       long long increment_reference_count() override;
+//       ::i64 increment_reference_count() override;
 //
 //
-//       long long decrement_reference_count() override;
+//       ::i64 decrement_reference_count() override;
 //
 //
 // #endif
@@ -291,6 +299,9 @@ namespace platform
       virtual ::acme::windowing::windowing * acme_windowing();
       virtual ::windowing::windowing * windowing();
 
+      virtual ::platform::subsystem * MainSubsystem();
+//         virtual ::subsystem::resource_loader* resource_loader();
+      virtual ::platform::ProfileLogger &ProfileLogger();
 
       virtual ::component * component(const ::scoped_string & scopedstrComponent);
       virtual ::string component_path(const ::scoped_string & scopedstrComponent);
@@ -311,6 +322,8 @@ namespace platform
 
       virtual ::draw2d::draw2d * draw2d();
       virtual ::write_text::write_text * write_text();
+         virtual ::accessibility::accessibility * accessibility();
+
 
       //virtual ::windowing::windowing_base * windowing_base();
 
@@ -369,8 +382,9 @@ namespace platform
       // }
 
 
-      virtual unsigned int crc32(unsigned int uCrc, const ::block & block);
+      virtual ::u32 crc32(::u32 uCrc, const ::block & block);
 
+      virtual void prepare_application();
 
       virtual void create_session(::collection::index iEdge = 0);
 
@@ -403,7 +417,7 @@ namespace platform
 
 #ifdef WINDOWS_DESKTOP
 
-      void system_construct(hinstance hinstanceThis, hinstance hPrevInstance, char * pCmdLine, int nCmdShow);
+      void system_construct(hinstance hinstanceThis, hinstance hPrevInstance, char_pointer pCmdLine, ::i32 nCmdShow);
 
 #elif defined(UNIVERSAL_WINDOWS)
 
@@ -439,12 +453,15 @@ namespace platform
       virtual void on_start_system();
 
 
-      virtual ::request * application_start_file_open_request();
+      //virtual ::request * application_start_file_open_request();
 
 
-      virtual void post_application_start();
-      virtual void defer_post_application_start_file_open_request();
-      virtual void post_application_started();
+      //virtual void defer_start_system();
+
+
+      //virtual void post_application_start();
+      //virtual void defer_post_application_start_file_open_request();
+      //virtual void post_application_started();
 
 
       virtual void canonical_system_main();
@@ -491,7 +508,7 @@ namespace platform
       //virtual void open_url(const ::scoped_string & scopedstrUrl, const ::scoped_string & scopedstrProfile, const ::scoped_string & scopedstrTarget);
 
 
-      //void __tracea(enum_trace_level elevel, const ::scoped_string & scopedstrFunction, const ::scoped_string & scopedstrFile, int iLine, const ::scoped_string & scopedstr) const override;
+      //void __tracea(enum_trace_level elevel, const ::scoped_string & scopedstrFunction, const ::scoped_string & scopedstrFile, ::i32 iLine, const ::scoped_string & scopedstr) const override;
 
 
       //virtual void main_user_async(const ::procedure & procedure, ::enum_priority epriority = e_priority_normal);
@@ -527,9 +544,9 @@ namespace platform
 //
 //      critical_section_lock synchronouslock(&m_csEnumText);
 //
-//      m_mapEnumToText[::type<e>().name()][(long long)e] = psz;
+//      m_mapEnumToText[::type<e>().name()][(::i64)e] = psz;
 //
-//      m_mapTextToEnum[::type<e>().name()][psz] = (long long)e;
+//      m_mapTextToEnum[::type<e>().name()][psz] = (::i64)e;
 //
 //   }
 
@@ -540,7 +557,7 @@ namespace platform
 //
 //      critical_section_lock synchronouslock(&m_csEnumText);
 //
-//      return m_mapEnumToText[::type<e>().name()][(long long)e];
+//      return m_mapEnumToText[::type<e>().name()][(::i64)e];
 //
 //   }
 
@@ -551,7 +568,7 @@ namespace platform
 //
 //      critical_section_lock lock(&m_csEnumText);
 //
-//      long long iValue;
+//      ::i64 iValue;
 //
 //      if (m_mapTextToEnum[::type<e>().name()].find(scopedstr, iValue))
 //      {
@@ -584,7 +601,7 @@ namespace platform
 //   inline string enum_text(const base_enum < ENUM, edefault >& b)
 //   {
 //
-//      return enum_text(b.m_evalue, (long long)(ENUM)b);
+//      return enum_text(b.m_evalue, (::i64)(ENUM)b);
 //
 //   }
 
@@ -598,7 +615,7 @@ namespace platform
       static inline ::atom atom(const ::std::type_info & info);
       static inline ::atom atom(const ::scoped_string & scopedstr);
       static inline ::atom atom(const ::string & str);
-      static inline ::atom atom(long long i);
+      static inline ::atom atom(::i64 i);
       //static inline ::atom_space & atom();
       inline ::atom atom(const ::payload & payload);
       inline ::atom atom(const property & prop);
@@ -606,17 +623,17 @@ namespace platform
       virtual void check_exit();
 
       virtual ::regular_expression_pointer create_regular_expression(const ::scoped_string & scopedstrStyle, const ::scoped_string & scopedstr);
-      //virtual ::pointer<::regular_expression::context> create_regular_expression_context(const ::scoped_string & scopedstrStyle, int iCount);
+      //virtual ::pointer<::regular_expression::context> create_regular_expression_context(const ::scoped_string & scopedstrStyle, ::i32 iCount);
       virtual ::pointer<::regular_expression::context> get_regular_expression_context(const ::scoped_string & scopedstrStyle);
 
       virtual ::regular_expression_pointer compile_pcre(const ::scoped_string & scopedstr);
       virtual ::pointer<::regular_expression::context> get_pcre_context();
-      //virtual int system::pcre_add_tokens(string_array_base& stra, const ::scoped_string & scopedstrTopic, const ::scoped_string & scopedstrRegexp, int nCount)
+      //virtual ::i32 system::pcre_add_tokens(string_array_base& stra, const ::scoped_string & scopedstrTopic, const ::scoped_string & scopedstrRegexp, ::i32 nCount)
 
       virtual void get_public_internet_domain_extension_list(string_array_base & stra);
       virtual ::string fetch_public_internet_domain_extension_list_text();
 
-      virtual ::lresult system_id_topic(int iId, long long llWparam, long long llLparam);
+      virtual ::lresult system_id_topic(::i32 iId, ::i64 llWparam, ::i64 llLparam);
 
       //void handle(::topic * ptopic, ::handler_context * phandlercontext) override;
 
@@ -728,7 +745,7 @@ namespace platform
       virtual ::file::path local_get_matter_path();
       virtual ::file::path local_get_matter_path(const ::scoped_string & scopedstrMatter);
 
-      virtual void install_progress_add_up(int iAddUp = 1);
+      virtual void install_progress_add_up(::i32 iAddUp = 1);
 
 
       virtual ::string get_application_server_name();
@@ -736,7 +753,7 @@ namespace platform
 
       virtual ::color::color background_color() const;
 
-      virtual double luminance() const;
+      virtual ::f64 luminance() const;
 
       virtual void set_background_color(const ::color::color & color);
 
@@ -746,13 +763,13 @@ namespace platform
       virtual void set_dark_mode_time(const class ::time & time);
       virtual void on_application_dark_mode_change();
 
-      //      virtual int get_simple_ui_darkness();
+      //      virtual ::i32 get_simple_ui_darkness();
 
-      //      virtual void set_simple_ui_darkness(int iWeatherDarkness);
+      //      virtual void set_simple_ui_darkness(::i32 iWeatherDarkness);
 
       virtual void set_dark_mode(bool bDark);
 
-      virtual ::color::color get_simple_ui_color(::enum_element eelement, ::user::enum_state estate = ::user::e_state_none);
+      virtual ::color::color get_simple_ui_color(const ::e_element & eelement, const ::user::e_state & estate = ::user::e_state_none);
 
       virtual ::color::color get_default_color(::color::color color);
 

@@ -32,7 +32,7 @@
 #include "acme/filesystem/filesystem/directory_system.h"
 #include "acme/filesystem/filesystem/file_system.h"
 #include "acme/handler/topic.h"
-#include "acme/nano/graphics/device.h"
+#include "acme/nano/graphics/context.h"
 #include "acme/nano/nano.h"
 #include "acme/user/micro/theme.h"
 #include "acme/windowing/window.h"
@@ -132,30 +132,30 @@ namespace micro
    }
 
 
-   void main_window::show()
-   {
+   //void main_window::show()
+   //{
 
-      if (!m_pacmeuserinteractionParent)
-      {
+   //   if (!m_pacmeuserinteractionParent)
+   //   {
 
-         acme_windowing_window()->show_window();
+   //      acme_windowing_window()->show_window();
 
-      }
+   //   }
 
-   }
+   //}
 
 
-   void main_window::hide()
-   {
+   //void main_window::hide()
+   //{
 
-      if (!m_pacmeuserinteractionParent)
-      {
+   //   if (!m_pacmeuserinteractionParent)
+   //   {
 
-         acme_windowing_window()->hide_window();
+   //      acme_windowing_window()->hide_window();
 
-      }
+   //   }
 
-   }
+   //}
 
 
    void main_window::implementation_message_loop_step()
@@ -176,7 +176,7 @@ namespace micro
 
 
 
-   ::int_point main_window::origin()
+   ::i32_point main_window::origin()
    {
       auto r = get_window_rectangle();
 
@@ -186,7 +186,7 @@ namespace micro
 
 
 
-   void main_window::set_position(const ::int_point & point)
+   void main_window::set_position(const ::i32_point & point)
    {
 
       m_pacmewindowingwindow->set_position(point);
@@ -228,7 +228,7 @@ namespace micro
    }
 
 
-   int_rectangle main_window::get_window_rectangle()
+   i32_rectangle main_window::get_window_rectangle()
    {
 
       return acme_windowing_window()->get_window_rectangle();
@@ -321,7 +321,7 @@ namespace micro
    void main_window::run()
    {
 
-      show();
+      display(e_display_normal, {});
 
    }
 

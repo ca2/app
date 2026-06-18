@@ -135,7 +135,7 @@ namespace userstack
       m_straImagePath.m_pprovider = get_app();
       m_straImagePath.rls(strImageDir);
 
-      for(int i = 0; i < m_straImagePath.get_size();)
+      for(::i32 i = 0; i < m_straImagePath.get_size();)
       {
          if(directory()->is(m_straImagePath[i]))
          {
@@ -174,11 +174,11 @@ namespace userstack
    void impact::on_message_context_menu(::message::message * pmessage)
    {
 //      ::pointer<::message::context_menu>pcontextmenu(pmessage);
-//      ::int_point point = pcontextmenu->GetPoint();
+//      ::i32_point point = pcontextmenu->GetPoint();
 
    }
 
-   void impact::_001OnTabClick(int iTab)
+   void impact::_001OnTabClick(::i32 iTab)
    {
       if(iTab == 1)
       {
@@ -211,12 +211,12 @@ namespace userstack
    }
 
 
-   void impact::on_timer(::timer * ptimer)
+   void impact::operator()(::timer * ptimer)
    {
 
-      BASE::on_timer(ptimer);
+      BASE::operator()(ptimer);
 
-      switch(ptimer->m_uTimer)
+      switch(ptimer->m_etimer)
       {
       case e_timer_backimpact:
       {
@@ -225,11 +225,11 @@ namespace userstack
       break;
       }
 
-      if(ptimer->m_uTimer == 21977)
+      if(ptimer->m_etimer == 21977)
       {
          check_apps();
       }
-      else if(ptimer->m_uTimer == 888888)
+      else if(ptimer->m_etimer == 888888)
       {
          psession->check_topic_file_change();
       }
@@ -237,10 +237,10 @@ namespace userstack
    }
 
 
-   void impact::GetAreaThumbRect(::int_rectangle * lprect, int iArea)
+   void impact::GetAreaThumbRect(::i32_rectangle * lprect, ::i32 iArea)
    {
       
-      ::int_rectangle rectangleX = this->rectangle();
+      ::i32_rectangle rectangleX = this->rectangle();
       
       if(iArea == m_iV)
       {
@@ -300,10 +300,10 @@ namespace userstack
    }
 
 
-   ::item_pointer impact::on_hit_test(const ::int_point &point, ::user::e_zorder ezorder)
+   ::item_pointer impact::on_hit_test(const ::i32_point &point, ::user::e_zorder ezorder)
    {
       
-      ::int_rectangle rectangleArea;
+      ::i32_rectangle rectangleArea;
       
       GetAreaThumbRect(rectangleArea, m_iV);
 
@@ -343,14 +343,14 @@ namespace userstack
    }
 
 
-   unsigned int c_cdecl impact::ThreadProcShowWindow(LPVOID lpparam)
+   ::u32 c_cdecl impact::ThreadProcShowWindow(LPVOID lpparam)
    {
       __UNREFERENCED_PARAMETER(lpparam);
       return 0;
    }
 
 
-   void impact::mt_show_window(::acme::windowing::window * pacmewindowingwindow, int iShow)
+   void impact::mt_show_window(::acme::windowing::window * pacmewindowingwindow, ::i32 iShow)
    {
       __UNREFERENCED_PARAMETER(oswindow);
       __UNREFERENCED_PARAMETER(iShow);

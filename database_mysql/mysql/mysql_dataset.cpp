@@ -77,9 +77,9 @@
 //   }
 //
 //
-//   unsigned long * dataset::fetch_lengths()
+//   ulong * dataset::fetch_lengths()
 //   {
-//      unsigned long * lengths;
+//      ulong * lengths;
 //      if(m_pres == nullptr)
 //         return nullptr;
 //      lengths = mysql_fetch_lengths((MYSQL_RES *) m_pres);
@@ -88,12 +88,12 @@
 //      return lengths;
 //   }
 //
-//   int dataset::num_fields()
+//   ::i32 dataset::num_fields()
 //   {
 //      return mysql_num_fields((MYSQL_RES *) m_pres);
 //   }
 //
-//   long long dataset::num_rows()
+//   ::i64 dataset::num_rows()
 //   {
 //      return mysql_num_rows ((MYSQL_RES *) m_pres);
 //   }

@@ -33,10 +33,10 @@
 // Secondary FIFO, for keyboard stuff from graphics window.
 
 // Add to graphics keyboard buffer, returning 0 on success.
-int
-TcAddKeybuf (char c)
+::i32
+TcAddKeybuf (::i8 c)
 {
-  int RetVal = 1, i;
+  ::i32 RetVal = 1, i;
   pthread_mutex_lock (&TcMutex);
   if (TcKeybufSize < TC_KEYBUF_SIZE)
     {
@@ -52,10 +52,10 @@ TcAddKeybuf (char c)
 }
 
 // Extract a character from the keyboard buffer, returning 0 on success.
-int
-TcExtractKeybuf (char *c)
+::i32
+TcExtractKeybuf (char_pointer c)
 {
-  int RetVal = 1;
+  ::i32 RetVal = 1;
   pthread_mutex_lock (&TcMutex);
   if (TcKeybufSize > 0)
     {
@@ -71,7 +71,7 @@ TcExtractKeybuf (char *c)
 }
 
 //-----------------------------------------------------------------------
-int
+::i32
 kbhit (void)
 {
   if (TcGraphicsInitialized)
@@ -81,7 +81,7 @@ kbhit (void)
     }
   if (ConioInitialized)
     {
-      int KeyCode;
+      ::i32 KeyCode;
       KeyCode = getchNcurses ();
       if (KeyCode != ERR)
 	{

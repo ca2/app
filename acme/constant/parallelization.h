@@ -27,7 +27,7 @@ enum enum_parallelization
 
 //
 //enum e_task_flag :
-//   long long
+//   ::i64
 //{
 //
 //   task_flag_fast_path = 1 << 0,
@@ -41,7 +41,7 @@ enum enum_parallelization
 
 
 
-enum enum_task_op :long long
+enum enum_task_op : ::i64
 {
 
    e_task_op_none,

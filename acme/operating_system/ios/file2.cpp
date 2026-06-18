@@ -8,9 +8,9 @@
 
 #include "framework.h"
 
-char * ns_get_executable_path();
+char_pointer ns_get_executable_path();
 
-CLASS_DECL_ACME void dll_processes(unsigned_int_array & dwa, string_array_base & straProcesses, const ::scoped_string & scopedstrDll)
+CLASS_DECL_ACME void dll_processes(u32_array & dwa, string_array_base & straProcesses, const ::scoped_string & scopedstrDll)
 {
    
    
@@ -49,7 +49,7 @@ CLASS_DECL_ACME void dll_processes(unsigned_int_array & dwa, string_array_base &
 //   
 //}
 
-char * _ios_app_document_folder();
+char_pointer _ios_app_document_folder();
 
 ::file::path ios_app_document_folder_path()
 {

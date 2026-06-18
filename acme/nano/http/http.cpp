@@ -107,9 +107,9 @@ namespace nano
 
          ::string strUrl(url.as_string());
 
-         int iRedirectLimit = 30;
+         ::i32 iRedirectLimit = 30;
 
-         for(int iRedirect = 0; iRedirect < iRedirectLimit; iRedirect++)
+         for(::i32 iRedirect = 0; iRedirect < iRedirectLimit; iRedirect++)
          {
 
             auto pnanohttpget = create_newø < ::nano::http::get>();
@@ -167,7 +167,7 @@ namespace nano
 
          send(pnanohttpget);
 
-         auto iHttpStatusCode = pnanohttpget->payload("out_attributes")["http_status_code"].as_int();
+         auto iHttpStatusCode = pnanohttpget->payload("out_attributes")["http_status_code"].as_i32();
 
          return iHttpStatusCode == 200;
 
@@ -203,7 +203,7 @@ namespace nano
 
          send(pnanohttpget);
 
-         auto iHttpStatusCode = pnanohttpget->payload("out_attributes")["http_status_code"].as_int();
+         auto iHttpStatusCode = pnanohttpget->payload("out_attributes")["http_status_code"].as_i32();
 
          return *pnanohttpget->get_memory_response();
 
@@ -236,9 +236,11 @@ namespace nano
       void http::download(const ::file::path & path, const ::url::url & url, ::property_set & set)
       {
 
-         auto urlEffective = get_effective_url(url, set);
+         ::property_set setEffectiveUrl(set);
 
-         auto pnanohttpget = create_newø < ::nano::http::get>();
+         auto urlEffective = get_effective_url(url, setEffectiveUrl);
+
+         auto pnanohttpget = createø < ::nano::http::get>();
 
          pnanohttpget->m_url = urlEffective;
 
@@ -246,9 +248,11 @@ namespace nano
 
          pnanohttpget->m_timeSyncTimeout = 2_hour;
 
+         pnanohttpget->want_memory_response();
+
          send(pnanohttpget);
 
-         auto iHttpStatusCode = pnanohttpget->payload("out_attributes")["http_status_code"].as_int();
+         auto iHttpStatusCode = pnanohttpget->payload("out_attributes")["http_status_code"].as_i32();
 
          file_system()->put_block(path, *pnanohttpget->get_memory_response());
 

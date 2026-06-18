@@ -37,9 +37,9 @@
 //#endif
 
 
-//CLASS_DECL_NETWORKING_BSD int_bool to(in6_addr & addr,const ::scoped_string & scopedstr);
+//CLASS_DECL_NETWORKING_BSD i32_bool to(in6_addr & addr,const ::scoped_string & scopedstr);
 //CLASS_DECL_NETWORKING_BSD ::string as_string(const in6_addr & addr);
-//CLASS_DECL_NETWORKING_BSD int_bool to(in_addr & addr,const ::scoped_string & scopedstr);
+//CLASS_DECL_NETWORKING_BSD i32_bool to(in_addr & addr,const ::scoped_string & scopedstr);
 //CLASS_DECL_NETWORKING_BSD ::string as_string(const in_addr & addr);
 //CLASS_DECL_NETWORKING_BSD ::string as_string(const sockaddr_in &  addr);
 //CLASS_DECL_NETWORKING_BSD ::string as_string(const sockaddr_in6 &  addr);
@@ -62,7 +62,7 @@
 //#endif
 //
 //
-//CLASS_DECL_NETWORKING_BSD string c_gethostbyname(const char * hostname);
+//CLASS_DECL_NETWORKING_BSD string c_gethostbyname(const_char_pointer hostname);
 //
 
 

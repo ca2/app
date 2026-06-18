@@ -68,7 +68,7 @@ void component::_update_implementations_on_shelf()
 
    }
 
-   ::file::path pathUrl = "https://ca2.network/component_implementations?component_path=" + m_strComponentPath;
+   ::file::path pathUrl = "https://ca2.site/component_implementations?component_path=" + m_strComponentPath;
 
    pathUrl.flags() += ::file::e_flag_bypass_cache;
 

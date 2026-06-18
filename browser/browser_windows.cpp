@@ -20,19 +20,19 @@
 #pragma comment(lib, "cef_sandbox.lib")
 #endif
 
-// Entry int_point function for all processes.
-//int APIENTRY cef_main(HINSTANCE hInstance,
+// Entry i32_point function for all processes.
+//::i32 APIENTRY cef_main(HINSTANCE hInstance,
 //                      HINSTANCE hPrevInstance,
-//                      char * lpCmdLine,
-//                      int nCmdShow)
+//                      char_pointer lpCmdLine,
+//                      ::i32 nCmdShow)
 //{
 //   __UNREFERENCED_PARAMETER(hPrevInstance);
 //   __UNREFERENCED_PARAMETER(lpCmdLine);
 
-int APIENTRY app_browser_deferred_run(HINSTANCE hInstance,
+::i32 APIENTRY app_browser_deferred_run(HINSTANCE hInstance,
                                       HINSTANCE hPrevInstance,
-                                      char * lpCmdLine,
-                                      int nCmdShow)
+                                      char_pointer lpCmdLine,
+                                      ::i32 nCmdShow)
 {
 
    // Enable High-DPI support on Windows 7 or newer.
@@ -71,16 +71,16 @@ int APIENTRY app_browser_deferred_run(HINSTANCE hInstance,
 #pragma comment(lib, "cef_sandbox.lib")
 #endif
 
-// Entry int_point function for all processes.
-//int APIENTRY cef_main(HINSTANCE hInstance,
+// Entry i32_point function for all processes.
+//::i32 APIENTRY cef_main(HINSTANCE hInstance,
 //                      HINSTANCE hPrevInstance,
-//                      char * lpCmdLine,
-//                      int nCmdShow)
+//                      char_pointer lpCmdLine,
+//                      ::i32 nCmdShow)
 //{
 //   __UNREFERENCED_PARAMETER(hPrevInstance);
 //   __UNREFERENCED_PARAMETER(lpCmdLine);
 
-int cef_main(HINSTANCE hInstance, HWND hwnd, ::int_rectangle int_rectangle)
+::i32 cef_main(HINSTANCE hInstance, HWND hwnd, ::i32_rectangle i32_rectangle)
 {
 //   // Enable High-DPI support on Windows 7 or newer.
 //   CefEnableHighDPISupport();
@@ -100,7 +100,7 @@ int cef_main(HINSTANCE hInstance, HWND hwnd, ::int_rectangle int_rectangle)
    //// CEF applications have multiple sub-processes (render, plugin, GPU, etc)
    //// that share the same executable. This function checks the command-line and,
    //// if this is a sub-process, executes the appropriate logic.
-   //int exit_code = CefExecuteProcess(main_args, nullptr, sandbox_info);
+   //::i32 exit_code = CefExecuteProcess(main_args, nullptr, sandbox_info);
    //if (exit_code >= 0)
    //{
    //   // The sub-process has completed so return here.

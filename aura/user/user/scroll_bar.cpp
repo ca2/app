@@ -35,7 +35,7 @@ namespace user
 
 
 
-   ::double_point scroll_bar::get_parent_accumulated_scroll(enum_layout elayout)
+   ::f64_point scroll_bar::get_parent_accumulated_scroll(enum_layout elayout)
    {
 
       //auto pparent = get_parent();
@@ -61,7 +61,7 @@ namespace user
    }
 
 
-   void scroll_bar::post_scroll_message(enum_scroll_command ecommand, double dPosition)
+   void scroll_bar::post_scroll_message(enum_scroll_command ecommand, ::f64 dPosition)
    {
 
       auto pscroll = allocateø ::message::scroll();
@@ -113,7 +113,7 @@ namespace user
    //}
 
 
-   double_point scroll_bar::get_ascendant_context_offset()
+   ::f64_point scroll_bar::get_ascendant_context_offset()
    {
 
       if (::is_null(get_parent()))
@@ -128,7 +128,7 @@ namespace user
    }
 
 
-   double_point scroll_bar::get_parent_context_offset()
+   ::f64_point scroll_bar::get_parent_context_offset()
    {
 
       return {};
@@ -136,7 +136,7 @@ namespace user
    }
 
 
-   ::status < ::double_rectangle > scroll_bar::get_track_rectangle(::user::enum_layout elayout)
+   ::status < ::f64_rectangle > scroll_bar::get_track_rectangle(::user::enum_layout elayout)
    {
 
       return error_interface_only;
@@ -144,7 +144,7 @@ namespace user
    }
 
 
-   ::color::color scroll_bar::scrollbar_color_strong(::user::style* pstyle, ::enum_element eelement)
+   ::color::color scroll_bar::scrollbar_color_strong(::user::style* pstyle, const ::e_element & eelement)
    {
 
       if ((main_content().m_pitemCurrent && main_content().m_pitemCurrent->m_item.m_eelement == eelement) ||
@@ -164,7 +164,7 @@ namespace user
    }
 
 
-   ::color::color scroll_bar::scrollbar_color(::user::style * pstyle, ::enum_element eelement)
+   ::color::color scroll_bar::scrollbar_color(::user::style * pstyle, const ::e_element & eelement)
    {
 
       if ((main_content().m_pitemCurrent && main_content().m_pitemCurrent->m_item.m_eelement == eelement) ||
@@ -184,7 +184,7 @@ namespace user
    }
 
 
-   ::color::color scroll_bar::scrollbar_border_color(::user::style* pstyle, ::enum_element eelement)
+   ::color::color scroll_bar::scrollbar_border_color(::user::style* pstyle, const ::e_element & eelement)
    {
 
       if ((main_content().m_pitemCurrent && main_content().m_pitemCurrent->m_item.m_eelement == eelement) ||
@@ -204,7 +204,7 @@ namespace user
    }
 
 
-   ::color::color scroll_bar::scrollbar_lite_border_color(::user::style* pstyle, ::enum_element eelement)
+   ::color::color scroll_bar::scrollbar_lite_border_color(::user::style* pstyle, const ::e_element & eelement)
    {
 
       if ((main_content().m_pitemCurrent && main_content().m_pitemCurrent->m_item.m_eelement == eelement) ||
@@ -224,7 +224,7 @@ namespace user
    }
 
 
-   ::color::color scroll_bar::scrollbar_draw_color(::user::style* pstyle, ::enum_element eelement)
+   ::color::color scroll_bar::scrollbar_draw_color(::user::style* pstyle, const ::e_element & eelement)
    {
 
       if ((main_content().m_pitemCurrent && main_content().m_pitemCurrent->m_item.m_eelement == eelement) ||
@@ -244,7 +244,7 @@ namespace user
    }
 
 
-   double scroll_bar::scroll_bar_thickness(::user::enum_layout elayout)
+   ::f64 scroll_bar::scroll_bar_thickness(::user::enum_layout elayout)
    {
 
       return m_pscrolllayout->m_scrollstatea[elayout].m_dThickness;
@@ -265,7 +265,7 @@ namespace user
       //   if (!m_bClipRectangle)
       //   {
 
-      //      ::int_rectangle rectangleX;
+      //      ::i32_rectangle rectangleX;
 
       //      ::collection::index i = 0;
 

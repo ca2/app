@@ -20,7 +20,7 @@ namespace core
 
 
          //bool                             m_bMouseColorBeam;
-         ::int_point                      m_pointMouseColorBeam;
+         ::i32_point                      m_pointMouseColorBeam;
          bool                             m_bCompact;
          bool                             m_bLButtonPressedOnHue;
          bool                             m_bLButtonPressedOnLuminance;
@@ -31,17 +31,17 @@ namespace core
          //::user::plain_edit               m_editBlue;
          //::user::plain_edit               m_editHex;
 
-         ::int_rectangle                  m_rectangleTarget;
+         ::i32_rectangle                  m_rectangleTarget;
 
          ::image::image_pointer                  m_pimageTemplate;
          ::image::image_pointer                  m_pimage;
          ::image::image_pointer                  m_pimageLuminance;
 
-         ::int_rectangle                  m_rectangleColors;
+         ::i32_rectangle                  m_rectangleColors;
 
 
-         double m_dLastLuminanceH;
-         double m_dLastLuminanceS;
+         ::f64 m_dLastLuminanceH;
+         ::f64 m_dLastLuminanceS;
 
 
          //::color::hls                     m_hls;
@@ -73,8 +73,8 @@ namespace core
 
          virtual void _001OnDraw(::draw2d::graphics_pointer & pgraphics);
 
-         virtual void draw_beam(::draw2d::graphics_pointer & pgraphics, const ::int_point & point);
-         virtual void draw_level(::draw2d::graphics_pointer & pgraphics, const ::int_rectangle & rectangleW, int y);
+         virtual void draw_beam(::draw2d::graphics_pointer & pgraphics, const ::i32_point & point);
+         virtual void draw_level(::draw2d::graphics_pointer & pgraphics, const ::i32_rectangle & rectangleW, ::i32 y);
 
 
          //DECLARE_MESSAGE_HANDLER(on_message_create);
@@ -83,12 +83,12 @@ namespace core
          //DECLARE_MESSAGE_HANDLER(on_message_left_button_down);
          //DECLARE_MESSAGE_HANDLER(on_message_left_button_up);
          void on_color_change() override;
-         virtual void layout_color_selector(const ::int_rectangle & rectangle);
+         virtual void layout_color_selector(const ::i32_rectangle & rectangle);
 
-         virtual bool on_mouse_down(const ::int_point & point);
-         virtual bool on_mouse_motion(const ::int_point & point);
-         virtual bool on_mouse_up(const ::int_point & point);
-         virtual bool is_ok_target(const ::int_point & point);
+         virtual bool on_mouse_down(const ::i32_point & point);
+         virtual bool on_mouse_motion(const ::i32_point & point);
+         virtual bool on_mouse_up(const ::i32_point & point);
+         virtual bool is_ok_target(const ::i32_point & point);
          virtual void rebuild_luminance();
 
          //virtual ::color::color color_selector_get_color();
@@ -111,7 +111,7 @@ namespace app_core_flag
 {
 
 
-   CLASS_DECL_CORE void dk(::draw2d::graphics_pointer & pgraphics, double x, double y, double w, double h);
+   CLASS_DECL_CORE void dk(::draw2d::graphics_pointer & pgraphics, ::f64 x, ::f64 y, ::f64 w, ::f64 h);
 
 
 } // namespace flag
@@ -123,7 +123,7 @@ namespace graphics
 
    CLASS_DECL_CORE void colors_with_shades_of_grey(::image::image *pimage);
 
-   CLASS_DECL_CORE void shades_of_luminance(::image::image *pimage, double dH, double dS);
+   CLASS_DECL_CORE void shades_of_luminance(::image::image *pimage, ::f64 dH, ::f64 dS);
 
 
 } // namespace graphics

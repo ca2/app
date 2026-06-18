@@ -93,10 +93,10 @@ namespace experience_nanoui
    }
 
 
-   void control_box::on_timer(::timer * ptimer)
+   void control_box::operator()(::timer * ptimer)
    {
 
-      ::experience::control_box::on_timer(ptimer);
+      ::experience::control_box::operator()(ptimer);
 
    }
 
@@ -113,7 +113,7 @@ namespace experience_nanoui
    }
 
 
-   int control_box::calculate_button_size(::draw2d::graphics_pointer & pgraphics)
+   ::i32 control_box::calculate_button_size(::draw2d::graphics_pointer & pgraphics)
    {
 
       return 26;
@@ -121,17 +121,17 @@ namespace experience_nanoui
    }
 
 
-   ::int_rectangle control_box::get_button_margin(::experience::enum_button ebutton)
+   ::i32_rectangle control_box::get_button_margin(::experience::enum_button ebutton)
    {
 
       if (::experience::e_button_close == ebutton)
       {
 
-         return ::int_rectangle(1, 4, 4, 4);
+         return ::i32_rectangle(1, 4, 4, 4);
 
       }
 
-      return ::int_rectangle(1, 4, 2, 4);
+      return ::i32_rectangle(1, 4, 2, 4);
 
    }
 

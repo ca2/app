@@ -139,7 +139,7 @@ string html_impact::GetLocationURL()
 }
 
 
-bool html_impact::Refresh2(int i)
+bool html_impact::Refresh2(::i32 i)
 {
 
    __UNREFERENCED_PARAMETER(i);

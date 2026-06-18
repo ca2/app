@@ -45,7 +45,7 @@ namespace gpu
       floating_matrix4 model;
       floating_matrix4 view;
       floating_matrix4 projection;
-      int hdri;
+      ::i32 hdri;
    };
 
    struct model_view_projection_environmentCubeSampler
@@ -53,7 +53,7 @@ namespace gpu
       floating_matrix4 model;
       floating_matrix4 view;
       floating_matrix4 projection;
-      int environmentCubemap;
+      ::i32 environmentCubemap;
    };
 
    struct model_normal
@@ -67,7 +67,7 @@ namespace gpu
       floating_sequence3 position;
 
       position3() {}
-      position3(float x, float y, float z) : position(x, y, z) {}
+      position3(::f32 x, ::f32 y, ::f32 z) : position(x, y, z) {}
    };
 
    struct position2_uv

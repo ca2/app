@@ -12,7 +12,7 @@ namespace universal_windows
 
       close();
 
-      int iOpen;
+      ::i32 iOpen;
 
       if (m_bCreate)
       {

@@ -45,7 +45,7 @@ namespace graphics3d
 //
 //#else
 //#if defined(__unix__) || defined(__APPLE__)
-//      typedef unsigned long int time_t;
+//      typedef ulong time_t;
 //
 //      void start() { gettimeofday(tv + 0, &tz); }
 //      void end() { gettimeofday(tv + 1, &tz); }
@@ -91,22 +91,22 @@ namespace graphics3d
    //typedef struct
    //{
    //   GLuint vb_id; // vertex buffer id
-   //   int numTriangles;
+   //   ::i32 numTriangles;
    //   size_t material_id;
    //} DrawObject;
 
    //std::vector<DrawObject> gDrawObjects;
 
-   //int width = 768;
-   //int height = 768;
+   //::i32 width = 768;
+   //::i32 height = 768;
 
-   //double prevMouseX, prevMouseY;
+   //::f64 prevMouseX, prevMouseY;
    //bool mouseLeftPressed;
    //bool mouseMiddlePressed;
    //bool mouseRightPressed;
-   //float curr_quat[4];
-   //float prev_quat[4];
-   //float eye[3], lookat[3], up[3];
+   //::f32 curr_quat[4];
+   //::f32 prev_quat[4];
+   //::f32 eye[3], lookat[3], up[3];
    //bool g_show_wire = true;
    //bool g_cull_face = false;
 
@@ -146,14 +146,14 @@ namespace graphics3d
    //   }
    //}
 
-   static void CalcNormal(float N[3], float v0[3], float v1[3], float v2[3])
+   static void CalcNormal(::f32 N[3], ::f32 v0[3], ::f32 v1[3], ::f32 v2[3])
    {
-      float v10[3];
+      ::f32 v10[3];
       v10[0] = v1[0] - v0[0];
       v10[1] = v1[1] - v0[1];
       v10[2] = v1[2] - v0[2];
 
-      float v20[3];
+      ::f32 v20[3];
       v20[0] = v2[0] - v0[0];
       v20[1] = v2[1] - v0[1];
       v20[2] = v2[2] - v0[2];
@@ -162,10 +162,10 @@ namespace graphics3d
       N[1] = v10[2] * v20[0] - v10[0] * v20[2];
       N[2] = v10[0] * v20[1] - v10[1] * v20[0];
 
-      float len2 = N[0] * N[0] + N[1] * N[1] + N[2] * N[2];
+      ::f32 len2 = N[0] * N[0] + N[1] * N[1] + N[2] * N[2];
       if (len2 > 0.0f)
       {
-         float len = sqrtf(len2);
+         ::f32 len = sqrtf(len2);
 
          N[0] /= len;
          N[1] /= len;
@@ -177,7 +177,7 @@ namespace graphics3d
    //{
       struct vec3
       {
-         float v[3];
+         ::f32 v[3];
          vec3()
          {
             v[0] = 0.0f;
@@ -188,10 +188,10 @@ namespace graphics3d
 
       void normalizeVector(vec3 &v)
       {
-         float len2 = v.v[0] * v.v[0] + v.v[1] * v.v[1] + v.v[2] * v.v[2];
+         ::f32 len2 = v.v[0] * v.v[0] + v.v[1] * v.v[1] + v.v[2] * v.v[2];
          if (len2 > 0.0f)
          {
-            float len = sqrtf(len2);
+            ::f32 len = sqrtf(len2);
 
             v.v[0] /= len;
             v.v[1] /= len;
@@ -238,10 +238,10 @@ namespace graphics3d
       }
 
       void computeSmoothingNormals(const tinyobj::attrib_t &attrib, const tinyobj::shape_t &shape,
-                                   std::map<int, vec3> &smoothVertexNormals)
+                                   std::map<::i32, vec3> &smoothVertexNormals)
       {
          smoothVertexNormals.clear();
-         std::map<int, vec3>::iterator iter;
+         std::map<::i32, vec3>::iterator iter;
 
          for (size_t f = 0; f < shape.mesh.indices.size() / 3; f++)
          {
@@ -251,10 +251,10 @@ namespace graphics3d
             tinyobj::index_t idx2 = shape.mesh.indices[3 * f + 2];
 
             // Get the three vertex indexes and coordinates
-            int vi[3]; // indexes
-            float v[3][3]; // coordinates
+            ::i32 vi[3]; // indexes
+            ::f32 v[3][3]; // coordinates
 
-            for (int k = 0; k < 3; k++)
+            for (::i32 k = 0; k < 3; k++)
             {
                vi[0] = idx0.vertex_index;
                vi[1] = idx1.vertex_index;
@@ -269,7 +269,7 @@ namespace graphics3d
             }
 
             // Compute the normal of the face
-            float normal[3];
+            ::f32 normal[3];
             CalcNormal(normal, v[0], v[1], v[2]);
 
             // Add the normal to the three vertexes
@@ -312,7 +312,7 @@ namespace graphics3d
 
             for (size_t f = 0, flen = facecount; f < flen; ++f)
             {
-               for (unsigned int v = 0; v < 3; ++v)
+               for (::u32 v = 0; v < 3; ++v)
                {
                   tinyobj::index_t idx = shape.mesh.indices[3 * f + v];
                   ASSERT(idx.vertex_index != -1);
@@ -322,15 +322,15 @@ namespace graphics3d
                }
 
                // cross(p[1] - p[0], p[2] - p[0])
-               float nx =
+               ::f32 nx =
                   (p[1].v[1] - p[0].v[1]) * (p[2].v[2] - p[0].v[2]) - (p[1].v[2] - p[0].v[2]) * (p[2].v[1] - p[0].v[1]);
-               float ny =
+               ::f32 ny =
                   (p[1].v[2] - p[0].v[2]) * (p[2].v[0] - p[0].v[0]) - (p[1].v[0] - p[0].v[0]) * (p[2].v[2] - p[0].v[2]);
-               float nz =
+               ::f32 nz =
                   (p[1].v[0] - p[0].v[0]) * (p[2].v[1] - p[0].v[1]) - (p[1].v[1] - p[0].v[1]) * (p[2].v[0] - p[0].v[0]);
 
                // Don't normalize here.
-               for (unsigned int v = 0; v < 3; ++v)
+               for (::u32 v = 0; v < 3; ++v)
                {
                   tinyobj::index_t idx = shape.mesh.indices[3 * f + v];
                   attrib.normals[3 * idx.normal_index] += nx;
@@ -355,11 +355,11 @@ namespace graphics3d
       }
 
       static void computeSmoothingShape(tinyobj::attrib_t &inattrib, tinyobj::shape_t &inshape,
-                                        std::vector<std::pair<unsigned int, unsigned int>> &sortedids,
-                                        unsigned int idbegin, unsigned int idend,
+                                        std::vector<std::pair<::u32, ::u32>> &sortedids,
+                                        ::u32 idbegin, ::u32 idend,
                                         std::vector<tinyobj::shape_t> &outshapes, tinyobj::attrib_t &outattrib)
       {
-         unsigned int sgroupid = sortedids[idbegin].first;
+         ::u32 sgroupid = sortedids[idbegin].first;
          bool hasmaterials = inshape.mesh.material_ids.size();
          // Make a new shape from the set of faces in the range [idbegin, idend).
          outshapes.emplace_back();
@@ -367,10 +367,10 @@ namespace graphics3d
          outshape.name = inshape.name;
          // Skip lines and points.
 
-         ::map_base < unsigned int, unsigned int > remap;
-         for (unsigned int id = idbegin; id < idend; ++id)
+         ::map_base < ::u32, ::u32 > remap;
+         for (::u32 id = idbegin; id < idend; ++id)
          {
-            unsigned int face = sortedids[id].second;
+            ::u32 face = sortedids[id].second;
 
             outshape.mesh.num_face_vertices.push_back(3); // always triangles
             if (hasmaterials)
@@ -378,7 +378,7 @@ namespace graphics3d
             outshape.mesh.smoothing_group_ids.push_back(sgroupid);
             // Skip tags.
 
-            for (unsigned int v = 0; v < 3; ++v)
+            for (::u32 v = 0; v < 3; ++v)
             {
                tinyobj::index_t inidx = inshape.mesh.indices[3 * face + v], outidx;
                ASSERT(inidx.vertex_index != -1);
@@ -393,7 +393,7 @@ namespace graphics3d
                else
                {
                   ASSERT(outattrib.vertices.size() % 3 == 0);
-                  unsigned int offset = static_cast<unsigned int>(outattrib.vertices.size() / 3);
+                  ::u32 offset = static_cast<::u32>(outattrib.vertices.size() / 3);
                   outidx.vertex_index = outidx.normal_index = offset;
                   outidx.texcoord_index = (inidx.texcoord_index == -1) ? -1 : offset;
                   outattrib.vertices.push_back(inattrib.vertices[3 * inidx.vertex_index]);
@@ -421,15 +421,15 @@ namespace graphics3d
          {
             tinyobj::shape_t &inshape = inshapes[s];
 
-            unsigned int numfaces = static_cast<unsigned int>(inshape.mesh.smoothing_group_ids.size());
+            ::u32 numfaces = static_cast<::u32>(inshape.mesh.smoothing_group_ids.size());
             ASSERT(numfaces);
-            std::vector<std::pair<unsigned int, unsigned int>> sortedids(numfaces);
-            for (unsigned int i = 0; i < numfaces; ++i)
+            std::vector<std::pair<::u32, ::u32>> sortedids(numfaces);
+            for (::u32 i = 0; i < numfaces; ++i)
                sortedids[i] = std::make_pair(inshape.mesh.smoothing_group_ids[i], i);
             sort(sortedids.begin(), sortedids.end());
 
-            unsigned int activeid = sortedids[0].first;
-            unsigned int id = activeid, idbegin = 0, idend = 0;
+            ::u32 activeid = sortedids[0].first;
+            ::u32 id = activeid, idbegin = 0, idend = 0;
             // Faces are now bundled by smoothing group id, create shapes from these.
             while (idbegin < numfaces)
             {
@@ -461,8 +461,8 @@ namespace graphics3d
    //            if (textures.find(mp->diffuse_texname) == textures.end())
    //            {
    //               GLuint texture_id;
-   //               int w, h;
-   //               int comp;
+   //               ::i32 w, h;
+   //               ::i32 comp;
 
    //               std::string texture_filename = mp->diffuse_texname;
    //               if (!FileExists(texture_filename))
@@ -476,7 +476,7 @@ namespace graphics3d
    //                  }
    //               }
 
-   //               unsigned char *image = stbi_load(texture_filename.c_str(), &w, &h, &comp, STBI_default);
+   //               ::u8 *image = stbi_load(texture_filename.c_str(), &w, &h, &comp, STBI_default);
    //               if (!image)
    //               {
    //                  std::cerr << "Unable to load texture: " << texture_filename << std::endl;
@@ -517,7 +517,7 @@ namespace graphics3d
    //      for (size_t i = 0; i < shape.mesh.indices.size(); i += 3)
    //      {
    //         std::array<uint32_t, 3> tri;
-   //         for (int k = 0; k < 3; ++k)
+   //         for (::i32 k = 0; k < 3; ++k)
    //         {
    //            const auto &idx = shape.mesh.indices[i + k];
    //            Vertex v{};
@@ -541,15 +541,15 @@ namespace graphics3d
       //// recompute normals after building m_vertexes and m_indexes
       //recompute_normals(m_vertexes, m_indexes);
 
-   //bool tinyobjloader_Builder::LoadObjAndConvert(float bmin[3], float bmax[3],
+   //bool tinyobjloader_Builder::LoadObjAndConvert(::f32 bmin[3], ::f32 bmax[3],
      //                                                   std::vector<DrawObject> *drawObjects,
        //                          std::vector<tinyobj::material_t> &materials, std::map<std::string, GLuint> &textures,
    bool tinyobjloader_Builder::LoadObjAndConvert(::gpu::context *pgpucontext, const ::file::path &path, bool bCounterClockwise)
    {
       //tinyobj::attrib_t inattrib;
       //std::vector<tinyobj::shape_t> inshapes;
-      float bmin[3];
-      float bmax[3];
+      ::f32 bmin[3];
+      ::f32 bmax[3];
       //timerutil tm;
       ::map_base<graphics3d::Vertex, uint32_t> uniquevertexes;
       //tm.start();
@@ -607,27 +607,27 @@ namespace graphics3d
       //   return false;
       //}
 
-      //printf("Parsing time: %d [ms]\n", (int)tm.msec());
+      //printf("Parsing time: %d [ms]\n", (::i32)tm.msec());
 
-      information("# of vertices  = {}", (int)(inattrib.vertices.size()) / 3);
-      information("# of normals   = {}", (int)(inattrib.normals.size()) / 3);
-      information("# of texcoords = {}", (int)(inattrib.texcoords.size()) / 2);
-      information("# of materials = {}", (int)materials.size());
-      information("# of shapes    = {}", (int)inshapes.size());
+      information("# of vertices  = {}", (::i32)(inattrib.vertices.size()) / 3);
+      information("# of normals   = {}", (::i32)(inattrib.normals.size()) / 3);
+      information("# of texcoords = {}", (::i32)(inattrib.texcoords.size()) / 2);
+      information("# of materials = {}", (::i32)materials.size());
+      information("# of shapes    = {}", (::i32)inshapes.size());
 
       // Append `default` material
       materials.push_back(tinyobj::material_t());
 
       for (size_t i = 0; i < materials.size(); i++)
       {
-         information("material[%d].diffuse_texname = {}", int(i), materials[i].diffuse_texname.c_str());
+         information("material[%d].diffuse_texname = {}", ::i32(i), materials[i].diffuse_texname.c_str());
       }
       uint32_t tri[3];
 
       //load_textures(materials, textures);
 
-      bmin[0] = bmin[1] = bmin[2] = std::numeric_limits<float>::max();
-      bmax[0] = bmax[1] = bmax[2] = -std::numeric_limits<float>::max();
+      bmin[0] = bmin[1] = bmin[2] = std::numeric_limits<::f32>::max();
+      bmax[0] = bmax[1] = bmax[2] = -std::numeric_limits<::f32>::max();
 
       bool regen_all_normals = inattrib.normals.size() == 0;
       tinyobj::attrib_t outattrib;
@@ -645,10 +645,10 @@ namespace graphics3d
          for (size_t s = 0; s < shapes.size(); s++)
          {
             //DrawObject o;
-            std::vector<float> buffer; // pos(3float), normal(3float), color(3float)
+            std::vector<::f32> buffer; // pos(3f32), normal(3f32), color(3f32)
 
             // Check for smoothing group and compute smoothing normals
-            std::map<int, vec3> smoothVertexNormals;
+            std::map<::i32, vec3> smoothVertexNormals;
             if (!regen_all_normals && (hasSmoothingGroup(shapes[s]) > 0))
             {
                information() << "Compute smoothingNormal for shape [" << s << "]"; //      << std::endl;
@@ -661,9 +661,9 @@ namespace graphics3d
                tinyobj::index_t idx1 = shapes[s].mesh.indices[3 * f + 1];
                tinyobj::index_t idx2 = shapes[s].mesh.indices[3 * f + 2];
 
-               int current_material_id = shapes[s].mesh.material_ids[f];
+               ::i32 current_material_id = shapes[s].mesh.material_ids[f];
 
-               if ((current_material_id < 0) || (current_material_id >= static_cast<int>(materials.size())))
+               if ((current_material_id < 0) || (current_material_id >= static_cast<::i32>(materials.size())))
                {
                   // Invaid material ID. Use default material.
                   current_material_id =
@@ -674,7 +674,7 @@ namespace graphics3d
                //    std::endl;
                //}
                //
-               float diffuse[3];
+               ::f32 diffuse[3];
                if (0)
                {
                   for (size_t i = 0; i < 3; i++)
@@ -682,7 +682,7 @@ namespace graphics3d
                      diffuse[i] = materials[current_material_id].diffuse[i];
                   }
                }
-               float tc[3][2];
+               ::f32 tc[3][2];
                if (attrib.texcoords.size() > 0)
                {
                   if ((idx0.texcoord_index < 0) || (idx1.texcoord_index < 0) || (idx2.texcoord_index < 0))
@@ -720,12 +720,12 @@ namespace graphics3d
                   tc[2][1] = 0.0f;
                }
 
-               float v[3][3];
-               for (int k = 0; k < 3; k++)
+               ::f32 v[3][3];
+               for (::i32 k = 0; k < 3; k++)
                {
-                  int f0 = idx0.vertex_index;
-                  int f1 = idx1.vertex_index;
-                  int f2 = idx2.vertex_index;
+                  ::i32 f0 = idx0.vertex_index;
+                  ::i32 f1 = idx1.vertex_index;
+                  ::i32 f2 = idx2.vertex_index;
                   ASSERT(f0 >= 0);
                   ASSERT(f1 >= 0);
                   ASSERT(f2 >= 0);
@@ -743,14 +743,14 @@ namespace graphics3d
 
           
 
-               float n[3][3];
+               ::f32 n[3][3];
                {
                   bool invalid_normal_index = false;
                   if (attrib.normals.size() > 0)
                   {
-                     int nf0 = idx0.normal_index;
-                     int nf1 = idx1.normal_index;
-                     int nf2 = idx2.normal_index;
+                     ::i32 nf0 = idx0.normal_index;
+                     ::i32 nf1 = idx1.normal_index;
+                     ::i32 nf2 = idx2.normal_index;
 
                      if ((nf0 < 0) || (nf1 < 0) || (nf2 < 0))
                      {
@@ -759,7 +759,7 @@ namespace graphics3d
                      }
                      else
                      {
-                        for (int k = 0; k < 3; k++)
+                        for (::i32 k = 0; k < 3; k++)
                         {
                            ASSERT(size_t(3 * nf0 + k) < attrib.normals.size());
                            ASSERT(size_t(3 * nf1 + k) < attrib.normals.size());
@@ -778,9 +778,9 @@ namespace graphics3d
                   if (invalid_normal_index && !smoothVertexNormals.empty())
                   {
                      // Use smoothing normals
-                     int f0 = idx0.vertex_index;
-                     int f1 = idx1.vertex_index;
-                     int f2 = idx2.vertex_index;
+                     ::i32 f0 = idx0.vertex_index;
+                     ::i32 f1 = idx1.vertex_index;
+                     ::i32 f2 = idx2.vertex_index;
 
                      if (f0 >= 0 && f1 >= 0 && f2 >= 0)
                      {
@@ -815,12 +815,12 @@ namespace graphics3d
                tri[0] = 0;
                tri[1] = 0;
                tri[2] = 0;
-               for (int k = 0; k < 3; k++)
+               for (::i32 k = 0; k < 3; k++)
                {
                   Vertex vertex;
-                  int f0 = idx0.vertex_index;
-                  int f1 = idx1.vertex_index;
-                  int f2 = idx2.vertex_index;
+                  ::i32 f0 = idx0.vertex_index;
+                  ::i32 f1 = idx1.vertex_index;
+                  ::i32 f2 = idx2.vertex_index;
 
                   //buffer.push_back(v[k][0]);
                   //buffer.push_back(v[k][1]);
@@ -845,15 +845,15 @@ namespace graphics3d
                   {
 
                      // Combine normal and diffuse to get color.
-                     float normal_factor = 0.2;
-                     float diffuse_factor = 1 - normal_factor;
-                     float c[3] = {n[k][0] * normal_factor + diffuse[0] * diffuse_factor,
+                     ::f32 normal_factor = 0.2;
+                     ::f32 diffuse_factor = 1 - normal_factor;
+                     ::f32 c[3] = {n[k][0] * normal_factor + diffuse[0] * diffuse_factor,
                                    n[k][1] * normal_factor + diffuse[1] * diffuse_factor,
                                    n[k][2] * normal_factor + diffuse[2] * diffuse_factor};
-                     float len2 = c[0] * c[0] + c[1] * c[1] + c[2] * c[2];
+                     ::f32 len2 = c[0] * c[0] + c[1] * c[1] + c[2] * c[2];
                      if (len2 > 0.0f)
                      {
-                        float len = sqrtf(len2);
+                        ::f32 len = sqrtf(len2);
 
                         c[0] /= len;
                         c[1] /= len;
@@ -888,14 +888,14 @@ namespace graphics3d
 
 
                   //m_vertexes.add(vertex);
-                  //m_indexes.add((unsigned int)m_indexes.get_size());
+                  //m_indexes.add((::u32)m_indexes.get_size());
                }
 
 //                //for (const auto &shape: shapes)
 //               //{
 //                 // for (size_t i = 0; i < shape.mesh.indices.size(); i += 3)
 //  //                {
-//                     for (int k = 0; k < 3; ++k)
+//                     for (::i32 k = 0; k < 3; ++k)
 //                     {
 ////                        const auto &idx = shape.mesh.indices[i + k];
 //                        Vertex &v = m_vertexes[m_vertexes.get_size() - 3 + k ];
@@ -945,16 +945,16 @@ namespace graphics3d
             //{
             //   o.material_id = materials.size() - 1; // = ID for default material.
             //}
-            //printf("shape[%d] material_id %d\n", int(s), int(o.material_id));
+            //printf("shape[%d] material_id %d\n", ::i32(s), ::i32(o.material_id));
 
             //if (buffer.size() > 0)
             //{
             //   glGenBuffers(1, &o.vb_id);
             //   glBindBuffer(GL_ARRAY_BUFFER, o.vb_id);
-            //   glBufferData(GL_ARRAY_BUFFER, buffer.size() * sizeof(float), &buffer.at(0), GL_STATIC_DRAW);
+            //   glBufferData(GL_ARRAY_BUFFER, buffer.size() * sizeof(::f32), &buffer.at(0), GL_STATIC_DRAW);
             //   o.numTriangles = buffer.size() / (3 + 3 + 3 + 2) / 3; // 3:vtx, 3:normal, 3:col, 2:texcoord
 
-            //   printf("shape[%d] # of triangles = %d\n", static_cast<int>(s), o.numTriangles);
+            //   printf("shape[%d] # of triangles = %d\n", static_cast<::i32>(s), o.numTriangles);
             //}
 
             //drawObjects->push_back(o);

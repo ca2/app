@@ -27,11 +27,11 @@
 
 #ifdef WINDOWS
 
-#define atomic_assign64(pi, i) _interlockedexchange64((long long *) (pi), i)
+#define atomic_assign64(pi, i) _interlockedexchange64((::i64 *) (pi), i)
 
 #else
 
-inline long long atomic_assign64(long long * pi, long long i)
+inline ::i64 atomic_assign64(::i64 * pi, ::i64 i)
 {
 
 
@@ -53,11 +53,11 @@ inline long long atomic_assign64(long long * pi, long long i)
 
 #ifdef WINDOWS
 
-#define atomic_increment64(pi) _interlockedincrement64((long long *) (pi))
+#define atomic_increment64(pi) _interlockedincrement64((::i64 *) (pi))
   
 #else
 
-inline long long atomic_increment64(long long * pi)
+inline ::i64 atomic_increment64(::i64 * pi)
 {
 
 
@@ -83,7 +83,7 @@ inline long long atomic_increment64(long long * pi)
 
 #else
    
-inline int atomic_assign32(int* pi, int i)
+inline ::i32 atomic_assign32(::i32* pi, ::i32 i)
 {
 
 #if defined(RASPBERRYPIOS) && defined(OS32BIT)
@@ -107,7 +107,7 @@ inline int atomic_assign32(int* pi, int i)
 
 #else
    
-inline int atomic_increment32(int* pi)
+inline ::i32 atomic_increment32(::i32* pi)
 {
 
 #if defined(RASPBERRYPIOS) && defined(OS32BIT)
@@ -128,11 +128,11 @@ inline int atomic_increment32(int* pi)
 
 #ifdef WINDOWS
 
-   #define atomic_decrement64(pi) _interlockeddecrement64((long long *)(pi))
+   #define atomic_decrement64(pi) _interlockeddecrement64((::i64 *)(pi))
   
 #else
    
-   inline long long atomic_decrement64(long long * pi)
+   inline ::i64 atomic_decrement64(::i64 * pi)
    {
    
 #if defined(RASPBERRYPIOS) && defined(OS32BIT)
@@ -156,7 +156,7 @@ inline int atomic_increment32(int* pi)
 
 #else
    
-   inline int atomic_decrement32(int * pi)
+   inline ::i32 atomic_decrement32(::i32 * pi)
    {
 
 #if defined(RASPBERRYPIOS) && defined(OS32BIT)
@@ -177,11 +177,11 @@ inline int atomic_increment32(int* pi)
 
 #ifdef WINDOWS
 
-   #define atomic_add64(pi, i) _interlockedadd64((long long *)(pi),(long long) (i))
+   #define atomic_add64(pi, i) _interlockedadd64((::i64 *)(pi),(::i64) (i))
 
 #else
    
-inline long long atomic_add64(long long* pi, long long i)
+inline ::i64 atomic_add64(::i64* pi, ::i64 i)
 {
 
 #if defined(RASPBERRYPIOS) && defined(OS32BIT)
@@ -206,7 +206,7 @@ inline long long atomic_add64(long long* pi, long long i)
 
 #else
 
-inline int atomic_add32(int* pi, int i)
+inline ::i32 atomic_add32(::i32* pi, ::i32 i)
 {
 
 #if defined(RASPBERRYPIOS) && defined(OS32BIT)
@@ -227,11 +227,11 @@ inline int atomic_add32(int* pi, int i)
 
 #ifdef WINDOWS
 
-#define atomic_subtract64(pi, i) _interlockedadd64((long long *)(pi), (long long) (-(i)))
+#define atomic_subtract64(pi, i) _interlockedadd64((::i64 *)(pi), (::i64) (-(i)))
 
 #else
    
-   inline long long atomic_subtract64(long long* pi, long long i)
+   inline ::i64 atomic_subtract64(::i64* pi, ::i64 i)
    {
 
 #if defined(RASPBERRYPIOS) && defined(OS32BIT)
@@ -256,7 +256,7 @@ inline int atomic_add32(int* pi, int i)
 
 #else
 
-inline int atomic_subtract32(int* pi, int i)
+inline ::i32 atomic_subtract32(::i32* pi, ::i32 i)
 {
 
 #if defined(RASPBERRYPIOS) && defined(OS32BIT)

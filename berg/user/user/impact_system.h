@@ -65,8 +65,8 @@ namespace user
 
       //::file::path                  m_strMatter;                 // IDR_ for frame/menu/accel as well
       //string                m_strServerMatter;           // IDR_ for OLE inplace frame/menu/accel
-      //unsigned int                  m_nIDEmbeddingResource;        // IDR_ for OLE open frame/menu/accel
-      //unsigned int                  m_nIDContainerResource;        // IDR_ for container frame/menu/accel
+      //::u32                  m_nIDEmbeddingResource;        // IDR_ for OLE open frame/menu/accel
+      //::u32                  m_nIDContainerResource;        // IDR_ for container frame/menu/accel
 
       ::platform::type     m_typeDocument;         // class for creating ___new documents
       ::platform::type     m_typeFrame;       // class for creating ___new frames
@@ -110,7 +110,7 @@ namespace user
 
       virtual ::pointer<::user::document>create_new_document(::request * prequest);
       virtual ::pointer<::user::frame_window>create_new_frame(::user::document * pDoc, ::pointer<::user::frame_window>Other, ::request * prequest);
-      virtual void prepare_frame(::user::frame_window * pframe, ::user::document * pdocument, bool bMakeVisible = true);
+      virtual void prepare_frame(::user::frame_window * pframe, ::user::document * pdocument, ::i32_boolean bMakeVisible = true);
       virtual bool save_all_modified();     // for all documents
       virtual void pre_close_all_documents();
       virtual void close_all_documents(bool bEndSession);

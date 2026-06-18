@@ -26,7 +26,7 @@ public:
    ~lines_base();
 
 
-   bool contains(const ::point_type <NUMBER > & point, float epsilon = 0.001f)
+   bool contains(const ::point_type <NUMBER > & point, ::f32 epsilon = 0.001f)
    {
 
       if (this->is_empty())

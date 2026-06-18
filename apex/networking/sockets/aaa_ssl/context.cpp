@@ -62,7 +62,7 @@ namespace sockets
 //
 //                //pthread_t thread;
 //                  sigset_t set;
-//                  int s;
+//                  ::i32 s;
 //         */
 //         /* Block SIGQUIT and SIGUSR1; other threads created by main()
 //            will inherit a copy of the signal mask. */

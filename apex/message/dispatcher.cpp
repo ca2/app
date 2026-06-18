@@ -27,7 +27,7 @@ namespace message
    //
    //   //auto s = sizeof(pfn);
    //
-   //   auto ptrptr = (unsigned char*)&pfn;
+   //   auto ptrptr = (::u8*)&pfn;
    //
    //   m_chunkMemberFunction.assign(ptrptr + get_member_function_offset(), get_member_function_size());
    //
@@ -113,7 +113,7 @@ namespace message
 } // namespace message
 
 
-CLASS_DECL_APEX int get_member_function_size()
+CLASS_DECL_APEX ::i32 get_member_function_size()
 {
 
    return sizeof(void*);
@@ -122,7 +122,7 @@ CLASS_DECL_APEX int get_member_function_size()
 
 
 
-CLASS_DECL_APEX int get_member_function_offset()
+CLASS_DECL_APEX ::i32 get_member_function_offset()
 {
 
    return 0;

@@ -34,7 +34,7 @@ namespace sandbox_game
       m_pscene->init();
    }
 
-   void immersion_layer::onUpdate(float dt)
+   void immersion_layer::onUpdate(::f32 dt)
    {
       m_pscene->update(dt);
    }

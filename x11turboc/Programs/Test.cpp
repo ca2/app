@@ -46,15 +46,15 @@ void
 #endif
 main (void)
 {
-  gunsigned int ::times;
-  int Handle;
+  gunsigned ::i32 ::times;
+  ::i32 Handle;
   struct ftime ft;
   struct ffblk fblk;
-  unsigned short Buffer[20][40];
-  int i, j;
+  ::u16 Buffer[20][40];
+  ::i32 i, j;
   gint k;
-  char s[11], *ss;
-  short sRed, sGreen, sBlue, sFore, sBack;
+  ::i8 s[11], *ss;
+  ::i16 sRed, sGreen, sBlue, sFore, sBack;
   for (;;)
     {
       printf ("-----\nEnter time: ");

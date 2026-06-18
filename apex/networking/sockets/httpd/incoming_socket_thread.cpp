@@ -122,7 +122,7 @@ namespace httpd
                for (m_iCurrentPort = m_iPortMinimum; ::task_get_run() && m_iCurrentPort <= m_iPortMaximum; )
                {
 
-                  int iError = m_pincomingsocket->Bind(m_strIp, (::networking::port_t)m_iCurrentPort);
+                  ::i32 iError = m_pincomingsocket->Bind(m_strIp, (::networking::port_t)m_iCurrentPort);
 
                   if (iError == 0)
                   {
@@ -235,11 +235,11 @@ namespace httpd
    void incoming_socket_thread::destroy()
    {
 
-      m_psockethandlerIncoming.defer_destroy();
+      m_psockethandlerIncoming.defer_destroy_and_release();
 
-      m_pincomingsocket.defer_destroy();
+      m_pincomingsocket.defer_destroy_and_release();
 
-      m_pfactoryIncomingSocket.defer_destroy();
+      m_pfactoryIncomingSocket.defer_destroy_and_release();
 
       ::thread::destroy();
 

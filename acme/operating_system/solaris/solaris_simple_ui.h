@@ -17,22 +17,22 @@ namespace os
       string                     m_strTitle;
       string                     m_strWindowClass;
 
-      int                        m_w;
-      int                        m_h;
+      ::i32                        m_w;
+      ::i32                        m_h;
 /*      ::image::image_pointer           m_pimage;
-      ::int_size                       m_size;
-      ::int_point                      m_point;
+      ::i32_size                       m_size;
+      ::i32_point                      m_point;
       window_xlib                m_xlib;
 
 
       oswindow                   m_window;
       bool                       m_bShiftKey;
-      ::int_rectangle                     m_rectangleDesktop;
+      ::i32_rectangle                     m_rectangleDesktop;
 
       XWindowAttributes          m_attr;
-      int                    m_iDepth;
+      ::i32                    m_iDepth;
       XVisualInfo                m_visualinfo;
-      int                        m_iScreen;
+      ::i32                        m_iScreen;
 
 
       window_graphics *          m_pgraphics;
@@ -45,7 +45,7 @@ namespace os
 
       bool                       m_bRunLoop;
 
-      ::int_rectangle                     m_rectangleWindow;
+      ::i32_rectangle                     m_rectangleWindow;
 
       bool                       m_bNoDecorations;
 
@@ -54,19 +54,19 @@ namespace os
 
       virtual ~simple_ui();
 
-      virtual bool create_window(const ::int_rectangle * lprect);
+      virtual bool create_window(const ::i32_rectangle * lprect);
 
-      virtual bool prepare_window(const ::int_rectangle * lprect);
+      virtual bool prepare_window(const ::i32_rectangle * lprect);
 
 
       using ::user::interaction::client_to_screen;
-      virtual void client_to_screen(::int_point * ppt);
+      virtual void client_to_screen(::i32_point * ppt);
 
       using ::user::interaction::screen_to_client;
-      virtual void screen_to_client(::int_point * ppt);
+      virtual void screen_to_client(::i32_point * ppt);
 
-      virtual void window_rectangle(::int_rectangle * prectangle);
-      virtual void this->rectangle(::int_rectangle * prectangle);
+      virtual void window_rectangle(::i32_rectangle * prectangle);
+      virtual void this->rectangle(::i32_rectangle * prectangle);
 
 
       virtual bool show_window(bool bShow = true);
@@ -74,12 +74,12 @@ namespace os
       virtual bool destroy_window();
 
 
-      virtual bool on_key_down(unsigned int uiKey);
-      virtual bool on_key_up(unsigned int uiKey);
+      virtual bool on_key_down(::u32 uiKey);
+      virtual bool on_key_up(::u32 uiKey);
 
 
-      virtual bool on_move(int x, int y);
-      virtual bool on_size(int cx, int cy);
+      virtual bool on_move(::i32 x, ::i32 y);
+      virtual bool on_size(::i32 cx, ::i32 cy);
 
 
       virtual void run_loop();
@@ -90,8 +90,8 @@ namespace os
       virtual void set_mouse_capture();
       virtual void release_mouse_capture();
 
-      virtual bool move_window(int x, int y);
-      virtual bool set_window_position(int x, int y, int cx, int cy, bool bShow);
+      virtual bool move_window(::i32 x, ::i32 y);
+      virtual bool set_window_position(::i32 x, ::i32 y, ::i32 cx, ::i32 cy, bool bShow);
 
    };
 
@@ -102,7 +102,7 @@ namespace os
 
 
 
-CLASS_DECL_ACME void wm_nodecorations(oswindow w, int map_base);
+CLASS_DECL_ACME void wm_nodecorations(oswindow w, ::i32 map_base);
 
 
 

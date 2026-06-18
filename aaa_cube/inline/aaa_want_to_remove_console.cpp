@@ -5,10 +5,10 @@
 #include "aura/os/binreloc.h"
 
 
-const char * br_init_get_symbol();
+const_char_pointer br_init_get_symbol();
 
 
-console::console(int argc, wchar_t* argv[])
+console::console(::i32 argc, wchar_t* argv[])
 {
 
    m_bConsole = true;
@@ -17,23 +17,23 @@ console::console(int argc, wchar_t* argv[])
    m_bUserEx = false;
    m_bShowApplicationInformation = false;
 
-   int iResult = 0;
+   ::i32 iResult = 0;
 
 #ifdef GET_COMMAND_LINE
 
-   char* pszCommandLine = GET_COMMAND_LINE(argc, argv);
+   char_pointer pszCommandLine = GET_COMMAND_LINE(argc, argv);
 
 #elif defined(MAIN_STRING)
 
-   char* pszCommandLine = strdup(MAIN_STRING);
+   char_pointer pszCommandLine = strdup(MAIN_STRING);
 
 #elif defined (_WIN32)
 
-   char* pszCommandLine = _strdup("");
+   char_pointer pszCommandLine = _strdup("");
 
 #else
 
-   char* pszCommandLine = strdup("");
+   char_pointer pszCommandLine = strdup("");
 
 #endif
 
@@ -87,7 +87,7 @@ console::console(int argc, wchar_t* argv[])
 
 }
 
-console::console(int argc, char * argv[])
+console::console(::i32 argc, char_pointer argv[])
 {
 
    m_bConsole = true;
@@ -96,23 +96,23 @@ console::console(int argc, char * argv[])
    m_bUserEx = false;
    m_bShowApplicationInformation = false;
 
-   int iResult = 0;
+   ::i32 iResult = 0;
 
 #ifdef GET_COMMAND_LINE
 
-   char* pszCommandLine = GET_COMMAND_LINE(argc, argv);
+   char_pointer pszCommandLine = GET_COMMAND_LINE(argc, argv);
 
 #elif defined(MAIN_STRING)
 
-   char* pszCommandLine = strdup(MAIN_STRING);
+   char_pointer pszCommandLine = strdup(MAIN_STRING);
 
 #elif defined (_WIN32)
 
-   char* pszCommandLine = _strdup("");
+   char_pointer pszCommandLine = _strdup("");
 
 #else
 
-   char* pszCommandLine = strdup("");
+   char_pointer pszCommandLine = strdup("");
 
 #endif
 

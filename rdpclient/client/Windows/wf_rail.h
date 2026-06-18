@@ -31,14 +31,14 @@ struct wf_rail_window
 
 	HWND hWnd;
 
-	unsigned int dwStyle;
-	unsigned int dwExStyle;
+	::u32 dwStyle;
+	::u32 dwExStyle;
 
-	int x;
-	int y;
-	int width;
-	int height;
-	char* title;
+	::i32 x;
+	::i32 y;
+	::i32 width;
+	::i32 height;
+	char_pointer title;
 };
 
 BOOL wf_rail_init(wfContext* wfc, RailClientContext* rail);

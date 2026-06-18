@@ -78,46 +78,46 @@ namespace sockets
       {
          
          
-         int _b;
-         int _t;
-         int _q;
-         char * _buf;
+         ::i32 _b;
+         ::i32 _t;
+         ::i32 _q;
+         char_pointer _buf;
          memory m_memory;
-         int m_iTcpOuputCapacity;
+         ::i32 m_iTcpOuputCapacity;
 
 
-         output(int iTcpOutputCapacity) :
+         output(::i32 iTcpOutputCapacity) :
             m_iTcpOuputCapacity(iTcpOutputCapacity),
             _b(0), _t(0), _q(0)
          {
             m_memory.set_size(m_iTcpOuputCapacity);
-            _buf = (char*) m_memory.data();
+            _buf = (char_pointer ) m_memory.data();
          }
 
-         output(int iTcpOutputCapacity, const_char_pointer buf, int len) :
+         output(::i32 iTcpOutputCapacity, const_char_pointer pszBuffer, ::i32 len) :
             m_iTcpOuputCapacity(iTcpOutputCapacity), 
             _b(0), _t(len), _q(len)
          {
             m_memory.set_size(m_iTcpOuputCapacity);
-            _buf = (char *) m_memory.data();
-            ::memory_copy(_buf, buf, len);
+            _buf = (char_pointer ) m_memory.data();
+            ::memory_copy(_buf, pszBuffer, len);
          }
 
          virtual ~output()
          {
          }
 
-         int Space()
+         ::i32 Space()
          {
             return m_iTcpOuputCapacity - _t;
          }
-         void add(const_char_pointer buf, int len)
+         void add(const_char_pointer pszBuffer, ::i32 len)
          {
-            ::memory_copy(_buf + _t, buf, len);
+            ::memory_copy(_buf + _t, pszBuffer, len);
             _t += len;
             _q += len;
          }
-         int erase(int len)
+         ::i32 erase(::i32 len)
          {
             _b += len;
             _q -= len;
@@ -127,7 +127,7 @@ namespace sockets
          {
             return _buf + _b;
          }
-         int Len()
+         ::i32 Len()
          {
             return _q;
          }
@@ -139,8 +139,8 @@ namespace sockets
       //::pointer< ::mutex >        m_pmutexSslCtx;
       ////
       //bool m_b_input_buffer_disabled;
-      //unsigned long long m_bytes_sent;
-      //unsigned long long m_bytes_received;
+      //::u64 m_bytes_sent;
+      //::u64 m_bytes_received;
       //memory         m_memRead;
       //output_list m_obuf; ///< output buffer
       //::pointer<output>m_obuf_top; ///< output buffer on top
@@ -148,16 +148,16 @@ namespace sockets
       //memsize m_output_length;
 
       //bool     m_bReuseSession;
-      //int m_socks4_state; ///< socks4 support
-      //char m_socks4_vn; ///< socks4 support, temporary ::payload
-      //char m_socks4_cd; ///< socks4 support, temporary ::payload
-      //unsigned short m_socks4_dstport; ///< socks4 support
-      //unsigned int m_socks4_dstip; ///< socks4 support
+      //::i32 m_socks4_state; ///< socks4 support
+      //::i8 m_socks4_vn; ///< socks4 support, temporary ::payload
+      //::i8 m_socks4_cd; ///< socks4 support, temporary ::payload
+      //::u16 m_socks4_dstport; ///< socks4 support
+      //::u32 m_socks4_dstip; ///< socks4 support
 
       //string m_strConnectHost;
       //::networking::port_t m_iConnectPort;
 
-      //int m_resolver_id; ///< Resolver atom (if any) for current open call
+      //::i32 m_resolver_id; ///< Resolver atom (if any) for current open call
 
       //bool m_bReconnect; ///< Reconnect on lost connection flag
       //bool m_bTryingReconnect; ///< Trying to reconnect
@@ -174,14 +174,14 @@ namespace sockets
       tcp_socket();
       /** Constructor with custom values for i/o buffer.
       \lparam h base_socket_handler object
-      \lparam isize Input buffer int_size
-      \lparam osize Output buffer int_size */
+      \lparam isize Input buffer i32_size
+      \lparam osize Output buffer i32_size */
       //tcp_socket(memsize isize,memsize osize);
       ~tcp_socket() override;
 
-      //virtual int flush_memory_file_buffer();
-      virtual int try_write(const void* buf, int len);
-      virtual int _try_write(const void* buf, int len);
+      //virtual ::i32 flush_memory_file_buffer();
+      virtual ::i32 try_write(const void* buf, ::i32 len);
+      virtual ::i32 _try_write(const void* buf, ::i32 len);
 
       void initialize(::particle * pparticle) override;
 
@@ -254,7 +254,7 @@ namespace sockets
       /** This callback is executed after a successful read from the socket.
       \lparam buf Pointer to the data
       \lparam len Length of the data */
-      virtual void OnRawData(char *buf, memsize len) override;
+      virtual void OnRawData(char_pointer buf, memsize len) override;
 
       /** Called when output buffer has been sent.
       Note: Will only be called IF the output buffer has been used.
@@ -270,9 +270,9 @@ namespace sockets
       \lparam line Line read */
       void OnLine(const ::scoped_string & scopedstrLine) override;
       /** get counter of number of bytes received. */
-      unsigned long long GetBytesReceived(bool clear = false) override;
+      ::u64 GetBytesReceived(bool clear = false) override;
       /** get counter of number of bytes sent. */
-      unsigned long long GetBytesSent(bool clear = false) override;
+      ::u64 GetBytesSent(bool clear = false) override;
 
 
       virtual output * top_output_buffer();
@@ -288,7 +288,7 @@ namespace sockets
 //#endif
 
       /** Callback executed when resolver thread has finished a resolve request. */
-      //void OnResolved(int atom, ::networking::address * addr) override;
+      //void OnResolved(::i32 atom, ::networking::address * addr) override;
       /** Callback for 'New' ssl support - replaces SSLSocket. Internal use. */
       void OnSSLConnect() override;
       /** Callback for 'New' ssl support - replaces SSLSocket. Internal use. */
@@ -316,7 +316,7 @@ namespace sockets
 
       virtual void DisableInputBuffer(bool = true);
 
-      //void OnOptions(int,int,int,SOCKET) override;
+      //void OnOptions(::i32,::i32,::i32,SOCKET) override;
 
       void SetLineProtocol(bool = true) override;
 
@@ -326,7 +326,7 @@ namespace sockets
       virtual string get_connect_host();
       virtual ::networking::port_t get_connect_port();
 
-      int protocol() override;
+      ::i32 protocol() override;
 
       /** Trigger limit for callback OnTransferLimit. */
       virtual void SetTransferLimit(memsize sz);
@@ -338,8 +338,8 @@ namespace sockets
       void OnRead() override;
       //using ::file::file::read;
       //using ::object::read;
-      virtual int read(void * buf, int n);
-      virtual int recv(void * buf, int n);
+      virtual ::i32 read(void * buf, ::i32 n);
+      virtual ::i32 recv(void * buf, ::i32 n);
       void on_read(const void * buf, memsize n ) override;
       void OnWrite() override;
 
@@ -378,9 +378,9 @@ namespace sockets
 
 
       /** the actual send() */
-      //int try_write(const void * buf, int len);
+      //::i32 try_write(const void * buf, ::i32 len);
       /** add data to output buffer top */
-      virtual void buffer(const void * buf, int len);
+      virtual void buffer(const void * buf, ::i32 len);
 
       virtual void InitializeContextTLSClientMethod();
 
@@ -389,7 +389,7 @@ namespace sockets
    };
 
    extern "C"
-   int tcp_socket_SSL_password_cb(char *buf,int num,int rwflag,void *userdata);
+   ::i32 tcp_socket_SSL_password_cb(char_pointer buf,::i32 num,::i32 rwflag,void *userdata);
 
 
 } // namespace sockets

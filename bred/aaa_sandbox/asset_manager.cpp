@@ -149,7 +149,7 @@ namespace graphics3d
             else if (type == "gltf")
             {
                uint32_t flags = entry.get("flags", 0); // Optional flags
-               float scale = entry.get("scale", 1.0f); // Optional scale
+               ::f32 scale = entry.get("scale", 1.0f); // Optional scale
                auto pmodel = loadGLTFmodel(name, path, flags, scale);
                if (entry.get("usage", "") == "skybox" || name == "cube")
                {
@@ -308,7 +308,7 @@ namespace graphics3d
       const ::scoped_string &name,
       const ::scoped_string &filepath,
       uint32_t gltfFlags,
-      float scale
+      ::f32 scale
       )
    {
       if (auto it = m_mapGltfModel.find(name); it != m_mapGltfModel.end())

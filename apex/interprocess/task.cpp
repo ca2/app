@@ -11,7 +11,7 @@ namespace interprocess
 {
 
 
-   task::task(::interprocess::call * pcall, const ::atom & idPid, long long iTask) :
+   task::task(::interprocess::call * pcall, const ::atom & idPid, ::i64 iTask) :
       //::object(pcall),
       m_pcall(pcall),
       m_atomPid(idPid),

@@ -36,10 +36,10 @@ namespace gpu_opengl
       public:
 
          // OpenGL data structures
-         //unsigned int m_uVAO, m_uVBO, m_uEBO;
+         //::u32 m_uVAO, m_uVBO, m_uEBO;
 
          //array_base<gltf::vertex> m_vertexa;
-         // unsigned_int_array m_indexa;
+         // u32_array m_indexa;
          // ::pointer<gltf_material> m_pmaterial;
          //
 
@@ -48,7 +48,7 @@ namespace gpu_opengl
 
 
          //void initialize_gpu_gltf_mesh(const ::array_base<::gpu::gltf::vertex> &vertexa,
-         //                          const ::unsigned_int_array &indexa, ::gpu::model::material *pmaterial) override;
+         //                          const ::u32_array &indexa, ::gpu::model::material *pmaterial) override;
 
 
          //virtual void on_initialize_gpu_mesh() override;
@@ -56,7 +56,7 @@ namespace gpu_opengl
          void draw2(::gpu::command_buffer *pcommandbuffer) override;
          // private:
          //    // OpenGL data structures
-         //    unsigned int mVAO, mVBO, mEBO;
+         //    ::u32 mVAO, mVBO, mEBO;
       };
 
 

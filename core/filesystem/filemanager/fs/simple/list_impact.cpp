@@ -1,11 +1,12 @@
 #include "framework.h"
 #include "impact.h"
 #include "list_impact.h"
+#include "acme/constant/timer.h"
 #include "acme/handler/item.h"
 #include "acme/constant/user_message.h"
 #include "aura/graphics/image/list.h"
 #include "aura/graphics/image/drawing.h"
-#include "acme/platform/timer.h"
+//#include "acme/platform/timer.h"
 #include "aqua/xml/document.h"
 #include "core/user/user/list_cache.h"
 #include "core/user/user/list_column.h"
@@ -371,7 +372,7 @@ namespace filemanager
             {
                strSql += " order by ";
 
-               for(int i = 0; i < m_sortinfo.m_itema.get_size(); i++)
+               for(::i32 i = 0; i < m_sortinfo.m_itema.get_size(); i++)
                {
                   CSortInfoItem & item = m_sortinfo.m_itema[i];
                   switch(item.m_iSubItem)
@@ -438,7 +439,7 @@ namespace filemanager
             MediaLibraryDoc * pdocument = pobjectTask->m_pimpact->get_document();
             ::pointer<::sqlite::dataset>pds = pdocument->m_pdsAlbum;
 
-            int iFind;
+            ::i32 iFind;
             if((iFind = pdocument->m_fileinfo.m_wstraAdd.FindFirst(wstrPath)) >= 0)
             {
             mediamanager::GetMediaManager()->album_build().add(wstrPath, pdocument->m_fileinfo.m_timeaAdd[iFind]);
@@ -469,12 +470,13 @@ namespace filemanager
 //            return 0;
          }
 
-         void list_impact::on_timer(::timer * ptimer)
+         void list_impact::operator()(::timer * ptimer)
          {
-            simple_list_impact::on_timer(ptimer);
-            if(ptimer->m_uTimer == 123654)
+            simple_list_impact::operator()(ptimer);
+            if(ptimer->m_etimer == e_timer_short_kick_activation)
             {
-               kill_timer(123654);
+               //kill_timer(123654);
+               ptimer->cancel();
                m_bKickActive = false;
 
             }
@@ -489,20 +491,20 @@ namespace filemanager
             else
             {
             kill_timer(1124);
-            int iTopIndex = _001GetTopIndex();
+            ::i32 iTopIndex = _001GetTopIndex();
             if(m_buildhelper.m_iTopIndex != iTopIndex)
             {
             m_buildhelper.m_iTopIndex = iTopIndex;
             m_buildhelper.m_iStep = 0;
             }
-            int iItem;
+            ::i32 iItem;
 
 
             ::pointer<::sqlite::dataset>pds = pdocument->m_pdsAlbum;
 
-            int iRemove = maximum(30, m_buildhelper.m_iDisplayItemCount);
+            ::i32 iRemove = maximum(30, m_buildhelper.m_iDisplayItemCount);
 
-            ::int_array_base iaRemove;
+            ::i32_array_base iaRemove;
             while(true)
             {
             iItem = m_buildhelper.m_iStep + m_buildhelper.m_iTopIndex;
@@ -522,7 +524,7 @@ namespace filemanager
             string wstrPath;
             wstrPath = pds->fv("filepath").get_asString();
 
-            int iFind;
+            ::i32 iFind;
             if((iFind = pdocument->m_fileinfo.m_wstraAdd.FindFirst(wstrPath)) >= 0)
             {
             PostFillTask(wstrPath, uEvent);
@@ -555,9 +557,9 @@ namespace filemanager
             MediaLibraryDoc * pdocument = get_document();
             ::pointer<::sqlite::dataset>pds = pdocument->m_pdsAlbum;
 
-            int iRemove = maximum(30, m_buildhelper.m_iDisplayItemCount);
+            ::i32 iRemove = maximum(30, m_buildhelper.m_iDisplayItemCount);
 
-            ::int_array_base iaRemove;
+            ::i32_array_base iaRemove;
             auto pFind = 0;
             sqlite::CFieldValue fv;
             while(true)
@@ -691,7 +693,7 @@ namespace filemanager
 
          }
 
-         void list_impact::start_build(int iItem)
+         void list_impact::start_build(::i32 iItem)
          {
             __UNREFERENCED_PARAMETER(iItem);
             auto iTopIndex = m_iTopDisplayIndex;
@@ -708,7 +710,7 @@ namespace filemanager
             m_bKickActive = true;
 
 
-            set_timer(123654, 700_ms, nullptr);
+            set_timer(e_timer_short_kick_activation, 700_ms, nullptr);
 
          }
 
@@ -718,7 +720,7 @@ namespace filemanager
 
             ::pointer<::message::context_menu>pcontextmenu(pmessage);
 
-            ::int_point point = pcontextmenu->GetPoint();
+            ::i32_point point = pcontextmenu->GetPoint();
 
             screen_to_client()(point);
 
@@ -761,7 +763,7 @@ namespace filemanager
 
             pxmldocument->load(scopedstrXml);
 
-            m_iParentFolder = pxmldocument->root()->attribute("id").as_int();
+            m_iParentFolder = pxmldocument->root()->attribute("id").as_i32();
 
             auto pnodeFolder = pxmldocument->root()->get_child("folder");
 
@@ -772,7 +774,7 @@ namespace filemanager
             // method 3: Selected Childs with GetChilds()
             // Result: Person, Person, Person
             ::collection::index iNode = 0;
-            for(int i = 0 ; i < pnodeFolder->get_children_count(); i++)
+            for(::i32 i = 0 ; i < pnodeFolder->get_children_count(); i++)
             {
 
                auto pnodeItem = pnodeFolder->child_at(i);
@@ -819,7 +821,7 @@ namespace filemanager
 
             auto pnodeFile = pxmldocument->get_child("file");
 
-            for(int i = 0; i < pnodeFile->get_children_count(); i++)
+            for(::i32 i = 0; i < pnodeFile->get_children_count(); i++)
             {
                auto pnodeItem = pnodeFile->child_at(i);
                if(pnodeItem->get_name() == "file")
@@ -848,10 +850,10 @@ namespace filemanager
          }
 
 
-         /*int ItemArray::FindAbsolute(const ::scoped_string & scopedstrId)
+         /*::i32 ItemArray::FindAbsolute(const ::scoped_string & scopedstrId)
 
          {
-            for(int i = 0; i < this->get_size(); i++)
+            for(::i32 i = 0; i < this->get_size(); i++)
             {
                if(this->element_at(i).id() == pszId)
 

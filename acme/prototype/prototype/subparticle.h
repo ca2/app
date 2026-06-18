@@ -147,13 +147,13 @@ public:
    
 ///   virtual bool should_create_sequence_on_synchronicity();
 
-   virtual bool defer_consume_main_arguments(int argc, char ** argv, int & iArgument);
+   virtual bool defer_consume_main_arguments(::i32 argc, char_pointer * argv, ::i32 & iArgument);
 
    virtual void call();
 
-   virtual void get_debug_title(char * sz, character_count c) const;
+   virtual void get_debug_title(char_pointer sz, character_count c) const;
 
-   virtual ::string get_short_debug_text(int i) const;
+   virtual ::string get_short_debug_text(::i32 i) const;
 
    virtual void operator()();
    virtual void run();
@@ -169,19 +169,19 @@ public:
 #ifdef _DEBUG
 
 
-   virtual long long increment_reference_count();
-   virtual long long decrement_reference_count();
-   virtual long long replace_reference();
-   virtual long long release();
+   virtual ::i64 increment_reference_count();
+   virtual ::i64 decrement_reference_count();
+   virtual ::i64 replace_reference();
+   virtual ::i64 release();
 
 
 #else
 
 
-   inline long long increment_reference_count();
-   inline long long decrement_reference_count();
-   inline long long replace_reference();
-   inline long long release();
+   inline ::i64 increment_reference_count();
+   inline ::i64 decrement_reference_count();
+   inline ::i64 replace_reference();
+   inline ::i64 release();
 
 
 #endif
@@ -226,9 +226,9 @@ public:
       return
          ::is_set(this->m_pType)
          && this->m_sType >= sizeof(::subparticle)
-         && ((unsigned char *)psubparticle >= this->m_pType
-         && (((unsigned char *)psubparticle) + psubparticle->m_sType)
-         <= (((unsigned char *)this->m_pType) + this->m_sType));
+         && ((::u8 *)psubparticle >= this->m_pType
+         && (((::u8 *)psubparticle) + psubparticle->m_sType)
+         <= (((::u8 *)this->m_pType) + this->m_sType));
 
    }
 
@@ -325,7 +325,7 @@ public:
    virtual bool is_locked() const;
 
    virtual void unlock();
-   virtual void unlock(int lCount, int* pPrevCount=nullptr);
+   virtual void unlock(::i32 lCount, ::i32* pPrevCount=nullptr);
 
 
    virtual void init_wait();
@@ -337,7 +337,7 @@ public:
 
 
    [[nodiscard]] virtual character_count sz_len() const;
-   virtual void to_sz(char * sz, character_count len) const;
+   virtual void to_sz(char_pointer sz, character_count len) const;
 
 
    virtual void on_timed_out();
@@ -363,12 +363,12 @@ public:
 // {
 // public:
 //
-//    int flag = 0;
+//    ::i32 flag = 0;
 //
 // };
 //
 //
-// template < typename TYPE, int t_iFlag >
+// template < typename TYPE, ::i32 t_iFlag >
 // class make_particle :
 // public TYPE,
 // virtual public ::particle

@@ -21,7 +21,7 @@ namespace helloaxis
 
       /*
 
-               double                           m_dRenderFps;
+               ::f64                           m_dRenderFps;
                bool                             m_bDib1;
 
                bool                             m_bAlternate;
@@ -38,12 +38,12 @@ namespace helloaxis
 
                bool                             m_bNewLayout;
                bool                             m_bHelloRender;
-               int                              m_cx;
-               int                              m_cy;
-               int                              m_cxCache1;
-               int                              m_cyCache1;
-               int                              m_cxTarget;
-               int                              m_cyTarget;
+               ::i32                              m_cx;
+               ::i32                              m_cy;
+               ::i32                              m_cxCache1;
+               ::i32                              m_cyCache1;
+               ::i32                              m_cxTarget;
+               ::i32                              m_cyTarget;
 
                ::image::fastblur               m_pimageImage;
                ::image::image_pointer                 m_pimageOut;
@@ -60,30 +60,30 @@ namespace helloaxis
 
                ::write_text::font_pointer                m_pfont;
 
-               double                           m_dMinRadius;
-               double                           m_dMaxRadius;
+               ::f64                           m_dMinRadius;
+               ::f64                           m_dMaxRadius;
 
                string                           m_strHelloAxis;
 
-               ::int_rectangle                           m_rectangleX;
+               ::i32_rectangle                           m_rectangleX;
 
 
                ::pointer< ::mutex >                          m_pmutexText;
 
                class ::time                            m_timeAnime;
                class ::time m_timeLastFast;
-               unsigned int                            m_timeFastAnime;
+               ::u32                            m_timeFastAnime;
                ::image::image_pointer                 m_pimageFast;
 
 
                string_array_base                          m_stra23;
                string_map_base < ::image::image_pointer >    m_mapDib23;
                bool                             m_b23;
-               unsigned int                         m_uiCurrent23;
+               ::u32                         m_uiCurrent23;
                string                           m_strCurrent23;
                string                           m_strLast23;
                bool                             m_bFirst23;
-               unsigned int                            m_dw23;
+               ::u32                            m_dw23;
 
                array < bilbo >                  m_bilboa;
                class ::time m_timeLastOk;

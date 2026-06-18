@@ -48,7 +48,7 @@ namespace graphics3d
    //}
 
 
-   long long scene_renderable::getId() 
+   ::i64 scene_renderable::getId() 
    {
       
       return m_llId; 
@@ -72,7 +72,7 @@ namespace graphics3d
    }
 
 
-   void scene_renderable::on_update(float deltaTime)
+   void scene_renderable::on_update(::f32 deltaTime)
    {
    
    

@@ -31,7 +31,7 @@ void blob::read(FILE * file)
 
    }
 
-   auto iRead = fread(&m_sizet, 1, (int) sizeof(m_sizet), file);
+   auto iRead = fread(&m_sizet, 1, (::i32) sizeof(m_sizet), file);
 
    if(m_sizet == 0)
    {
@@ -42,14 +42,14 @@ void blob::read(FILE * file)
    else
    {
 
-      m_pchData = (char *) ::system()->m_pheapmanagement->memory(::heap::e_memory_main)->allocate(m_sizet);
+      m_pchData = (char_pointer ) ::system()->m_pheapmanagement->memory(::heap::e_memory_main)->allocate(m_sizet);
 
       size_t sRead = 0;
 
       while(true)
       {
 
-         iRead  = (int) fread(&m_pchData[sRead], 1, 1024, file);
+         iRead  = (::i32) fread(&m_pchData[sRead], 1, 1024, file);
 
          if(iRead == 0)
             break;
@@ -85,7 +85,7 @@ void blob::write(FILE * file)
 blob & blob::operator = (const ::scoped_string & scopedstr)
 {
    m_sizet = ansi_length(scopedstr) + 1;
-   m_pchData = (char *) ansi_duplicate(scopedstr);
+   m_pchData = (char_pointer ) ansi_duplicate(scopedstr);
    return *this;
 }
 

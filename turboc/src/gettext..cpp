@@ -41,23 +41,23 @@
 
 //#include "conio.h"
 
-extern const int ForegroundColors[16];
-extern const int ForegroundFlags[16];
-extern const int BackgroundColors[8];
-extern const int BackgroundFlags[16];
+extern const ::i32 ForegroundColors[16];
+extern const ::i32 ForegroundFlags[16];
+extern const ::i32 BackgroundColors[8];
+extern const ::i32 BackgroundFlags[16];
 
 //------------------------------------------------------------------------
 
-int
-gettextTurboC (int left, int top, int right, int bottom, void *dest)
+::i32
+gettextTurboC (::i32 left, ::i32 top, ::i32 right, ::i32 bottom, void *dest)
 {
-//  unsigned char *TurboData;
-//  unsigned short dFore, dBack;
-//  int Row, Col, i, j, k;
+//  ::u8 *TurboData;
+//  ::u16 dFore, dBack;
+//  ::i32 Row, Col, i, j, k;
 //  chtype ch;
 //  gint Char, Color, Flag;
-//  int ReturnValue = 0;
-//  int sminrow, smincol, height_1, width_1;
+//  ::i32 ReturnValue = 0;
+//  ::i32 sminrow, smincol, height_1, width_1;
 //  WINDOW *TempWin = NULL;
 //  if (!ConioInitialized)
 //    textmode (LASTMODE);
@@ -90,14 +90,14 @@ gettextTurboC (int left, int top, int right, int bottom, void *dest)
 //    goto Error;
 //  // Now we have all of the data, but we must translate it from the 
 //  // form provided by ncurses to the form needed in Turbo C.  
-//  TurboData = (char *) dest;
+//  TurboData = (char_pointer ) dest;
 //  for (Row = top, i = 0; Row <= bottom; Row++, i++)
 //    for (Col = left, j = 0; Col <= right; Col++, j++)
 //      {
 //	extern gint TranslatedChar[256];
 //	// What ncurses character/color/attribute is at this position?
 //	// The following line worked every time I tried it up to
-//	// SuSE 8.0, at which int_point it wouldn't compile any longer.
+//	// SuSE 8.0, at which i32_point it wouldn't compile any longer.
 //	// So, I've replaced it.
 //	//ch = TempWin->_line[i].text[j];
 //	mvwinchnstr (TempWin, i, j, &ch, 1);

@@ -384,134 +384,167 @@
   <ImportGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="PropertySheets">
     <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
     <Import Project="..\..\..\operating_system\operating_system-windows\Common.props" />
+    <Import Project="..\..\..\operating_system\operating_system-windows\SharedLibraryCommon.props" />
   </ImportGroup>
   <ImportGroup Condition="'$(Configuration)|$(Platform)'=='DebugWithInlOpt|Win32'" Label="PropertySheets">
     <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
     <Import Project="..\..\..\operating_system\operating_system-windows\Common.props" />
+    <Import Project="..\..\..\operating_system\operating_system-windows\SharedLibraryCommon.props" />
   </ImportGroup>
   <ImportGroup Condition="'$(Configuration)|$(Platform)'=='ASanDbgWithInlOpt|Win32'" Label="PropertySheets">
     <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
     <Import Project="..\..\..\operating_system\operating_system-windows\Common.props" />
+    <Import Project="..\..\..\operating_system\operating_system-windows\SharedLibraryCommon.props" />
   </ImportGroup>
   <ImportGroup Condition="'$(Configuration)|$(Platform)'=='StaticDebug|Win32'" Label="PropertySheets">
     <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
     <Import Project="..\..\..\operating_system\operating_system-windows\Common.props" />
+    <Import Project="..\..\..\operating_system\operating_system-windows\SharedLibraryCommon.props" />
   </ImportGroup>
   <ImportGroup Condition="'$(Configuration)|$(Platform)'=='StaticMetaDebug|Win32'" Label="PropertySheets">
     <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
     <Import Project="..\..\..\operating_system\operating_system-windows\Common.props" />
+    <Import Project="..\..\..\operating_system\operating_system-windows\SharedLibraryCommon.props" />
   </ImportGroup>
   <ImportGroup Condition="'$(Configuration)|$(Platform)'=='ASanStaticDebug|Win32'" Label="PropertySheets">
     <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
     <Import Project="..\..\..\operating_system\operating_system-windows\Common.props" />
+    <Import Project="..\..\..\operating_system\operating_system-windows\SharedLibraryCommon.props" />
   </ImportGroup>
   <ImportGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'" Label="PropertySheets">
     <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
     <Import Project="..\..\..\operating_system\operating_system-windows\Common.props" />
+    <Import Project="..\..\..\operating_system\operating_system-windows\SharedLibraryCommon.props" />
   </ImportGroup>
   <ImportGroup Condition="'$(Configuration)|$(Platform)'=='ReleaseDebug|Win32'" Label="PropertySheets">
     <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
     <Import Project="..\..\..\operating_system\operating_system-windows\Common.props" />
+    <Import Project="..\..\..\operating_system\operating_system-windows\SharedLibraryCommon.props" />
   </ImportGroup>
   <ImportGroup Condition="'$(Configuration)|$(Platform)'=='StaticRelease|Win32'" Label="PropertySheets">
     <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
     <Import Project="..\..\..\operating_system\operating_system-windows\Common.props" />
+    <Import Project="..\..\..\operating_system\operating_system-windows\SharedLibraryCommon.props" />
   </ImportGroup>
   <ImportGroup Condition="'$(Configuration)|$(Platform)'=='StaticMetaRelease|Win32'" Label="PropertySheets">
     <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
     <Import Project="..\..\..\operating_system\operating_system-windows\Common.props" />
+    <Import Project="..\..\..\operating_system\operating_system-windows\SharedLibraryCommon.props" />
   </ImportGroup>
   <ImportGroup Condition="'$(Configuration)|$(Platform)'=='StaticReleaseWithDbgInfo|Win32'" Label="PropertySheets">
     <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
     <Import Project="..\..\..\operating_system\operating_system-windows\Common.props" />
+    <Import Project="..\..\..\operating_system\operating_system-windows\SharedLibraryCommon.props" />
   </ImportGroup>
   <ImportGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'" Label="PropertySheets">
     <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
     <Import Project="..\..\..\operating_system\operating_system-windows\Common.props" />
+    <Import Project="..\..\..\operating_system\operating_system-windows\SharedLibraryCommon.props" />
   </ImportGroup>
   <ImportGroup Condition="'$(Configuration)|$(Platform)'=='Debug|ARM64'" Label="PropertySheets">
     <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
     <Import Project="..\..\..\operating_system\operating_system-windows\Common.props" />
+    <Import Project="..\..\..\operating_system\operating_system-windows\SharedLibraryCommon.props" />
   </ImportGroup>
   <ImportGroup Condition="'$(Configuration)|$(Platform)'=='DebugWithInlOpt|x64'" Label="PropertySheets">
     <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
     <Import Project="..\..\..\operating_system\operating_system-windows\Common.props" />
+    <Import Project="..\..\..\operating_system\operating_system-windows\SharedLibraryCommon.props" />
   </ImportGroup>
   <ImportGroup Condition="'$(Configuration)|$(Platform)'=='DebugWithInlOpt|ARM64'" Label="PropertySheets">
     <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
     <Import Project="..\..\..\operating_system\operating_system-windows\Common.props" />
+    <Import Project="..\..\..\operating_system\operating_system-windows\SharedLibraryCommon.props" />
   </ImportGroup>
   <ImportGroup Condition="'$(Configuration)|$(Platform)'=='ASanDbgWithInlOpt|x64'" Label="PropertySheets">
     <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
     <Import Project="..\..\..\operating_system\operating_system-windows\Common.props" />
+    <Import Project="..\..\..\operating_system\operating_system-windows\SharedLibraryCommon.props" />
   </ImportGroup>
   <ImportGroup Condition="'$(Configuration)|$(Platform)'=='ASanDbgWithInlOpt|ARM64'" Label="PropertySheets">
     <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
     <Import Project="..\..\..\operating_system\operating_system-windows\Common.props" />
+    <Import Project="..\..\..\operating_system\operating_system-windows\SharedLibraryCommon.props" />
   </ImportGroup>
   <ImportGroup Condition="'$(Configuration)|$(Platform)'=='StaticDebug|x64'" Label="PropertySheets">
     <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
     <Import Project="..\..\..\operating_system\operating_system-windows\Common.props" />
+    <Import Project="..\..\..\operating_system\operating_system-windows\SharedLibraryCommon.props" />
   </ImportGroup>
   <ImportGroup Condition="'$(Configuration)|$(Platform)'=='StaticMetaDebug|x64'" Label="PropertySheets">
     <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
     <Import Project="..\..\..\operating_system\operating_system-windows\Common.props" />
+    <Import Project="..\..\..\operating_system\operating_system-windows\SharedLibraryCommon.props" />
   </ImportGroup>
   <ImportGroup Condition="'$(Configuration)|$(Platform)'=='StaticDebug|ARM64'" Label="PropertySheets">
     <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
     <Import Project="..\..\..\operating_system\operating_system-windows\Common.props" />
+    <Import Project="..\..\..\operating_system\operating_system-windows\SharedLibraryCommon.props" />
   </ImportGroup>
   <ImportGroup Condition="'$(Configuration)|$(Platform)'=='StaticMetaDebug|ARM64'" Label="PropertySheets">
     <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
     <Import Project="..\..\..\operating_system\operating_system-windows\Common.props" />
+    <Import Project="..\..\..\operating_system\operating_system-windows\SharedLibraryCommon.props" />
   </ImportGroup>
   <ImportGroup Condition="'$(Configuration)|$(Platform)'=='ASanStaticDebug|x64'" Label="PropertySheets">
     <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
     <Import Project="..\..\..\operating_system\operating_system-windows\Common.props" />
+    <Import Project="..\..\..\operating_system\operating_system-windows\SharedLibraryCommon.props" />
   </ImportGroup>
   <ImportGroup Condition="'$(Configuration)|$(Platform)'=='ASanStaticDebug|ARM64'" Label="PropertySheets">
     <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
     <Import Project="..\..\..\operating_system\operating_system-windows\Common.props" />
+    <Import Project="..\..\..\operating_system\operating_system-windows\SharedLibraryCommon.props" />
   </ImportGroup>
   <ImportGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'" Label="PropertySheets">
     <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
     <Import Project="..\..\..\operating_system\operating_system-windows\Common.props" />
+    <Import Project="..\..\..\operating_system\operating_system-windows\SharedLibraryCommon.props" />
   </ImportGroup>
   <ImportGroup Condition="'$(Configuration)|$(Platform)'=='Release|ARM64'" Label="PropertySheets">
     <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
     <Import Project="..\..\..\operating_system\operating_system-windows\Common.props" />
+    <Import Project="..\..\..\operating_system\operating_system-windows\SharedLibraryCommon.props" />
   </ImportGroup>
   <ImportGroup Condition="'$(Configuration)|$(Platform)'=='ReleaseDebug|x64'" Label="PropertySheets">
     <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
     <Import Project="..\..\..\operating_system\operating_system-windows\Common.props" />
+    <Import Project="..\..\..\operating_system\operating_system-windows\SharedLibraryCommon.props" />
   </ImportGroup>
   <ImportGroup Condition="'$(Configuration)|$(Platform)'=='ReleaseDebug|ARM64'" Label="PropertySheets">
     <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
     <Import Project="..\..\..\operating_system\operating_system-windows\Common.props" />
+    <Import Project="..\..\..\operating_system\operating_system-windows\SharedLibraryCommon.props" />
   </ImportGroup>
   <ImportGroup Condition="'$(Configuration)|$(Platform)'=='StaticRelease|x64'" Label="PropertySheets">
     <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
     <Import Project="..\..\..\operating_system\operating_system-windows\Common.props" />
+    <Import Project="..\..\..\operating_system\operating_system-windows\SharedLibraryCommon.props" />
   </ImportGroup>
   <ImportGroup Condition="'$(Configuration)|$(Platform)'=='StaticMetaRelease|x64'" Label="PropertySheets">
     <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
     <Import Project="..\..\..\operating_system\operating_system-windows\Common.props" />
+    <Import Project="..\..\..\operating_system\operating_system-windows\SharedLibraryCommon.props" />
   </ImportGroup>
   <ImportGroup Condition="'$(Configuration)|$(Platform)'=='StaticRelease|ARM64'" Label="PropertySheets">
     <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
     <Import Project="..\..\..\operating_system\operating_system-windows\Common.props" />
+    <Import Project="..\..\..\operating_system\operating_system-windows\SharedLibraryCommon.props" />
   </ImportGroup>
   <ImportGroup Condition="'$(Configuration)|$(Platform)'=='StaticMetaRelease|ARM64'" Label="PropertySheets">
     <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
     <Import Project="..\..\..\operating_system\operating_system-windows\Common.props" />
+    <Import Project="..\..\..\operating_system\operating_system-windows\SharedLibraryCommon.props" />
   </ImportGroup>
   <ImportGroup Condition="'$(Configuration)|$(Platform)'=='StaticReleaseWithDbgInfo|x64'" Label="PropertySheets">
     <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
     <Import Project="..\..\..\operating_system\operating_system-windows\Common.props" />
+    <Import Project="..\..\..\operating_system\operating_system-windows\SharedLibraryCommon.props" />
   </ImportGroup>
   <ImportGroup Condition="'$(Configuration)|$(Platform)'=='StaticReleaseWithDbgInfo|ARM64'" Label="PropertySheets">
     <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
     <Import Project="..\..\..\operating_system\operating_system-windows\Common.props" />
+    <Import Project="..\..\..\operating_system\operating_system-windows\SharedLibraryCommon.props" />
   </ImportGroup>
   <PropertyGroup Label="UserMacros" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
@@ -689,7 +722,7 @@
       <IntrinsicFunctions>true</IntrinsicFunctions>
     </ClCompile>
     <Link>
-      <AdditionalDependencies>archive.lib;Credui.lib;zlib.lib;dbghelp.lib;imagehlp.lib;dwmapi.lib;Setupapi.lib;Windowscodecs.lib;Winmm.lib;Crypt32.lib;Normaliz.lib;version.lib;Secur32.lib;Shlwapi.lib;Imm32.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>Credui.lib;zlib.lib;dbghelp.lib;imagehlp.lib;dwmapi.lib;Setupapi.lib;Windowscodecs.lib;Winmm.lib;Crypt32.lib;Normaliz.lib;version.lib;Secur32.lib;Shlwapi.lib;Imm32.lib;%(AdditionalDependencies)</AdditionalDependencies>
       <EntryPointSymbol>
       </EntryPointSymbol>
       <IgnoreSpecificDefaultLibraries>
@@ -743,7 +776,7 @@
       <IntrinsicFunctions>true</IntrinsicFunctions>
     </ClCompile>
     <Link>
-      <AdditionalDependencies>archive.lib;Credui.lib;zlib.lib;dbghelp.lib;imagehlp.lib;dwmapi.lib;Setupapi.lib;Windowscodecs.lib;Winmm.lib;Crypt32.lib;Normaliz.lib;version.lib;Secur32.lib;Shlwapi.lib;Imm32.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>Credui.lib;zlib.lib;dbghelp.lib;imagehlp.lib;dwmapi.lib;Setupapi.lib;Windowscodecs.lib;Winmm.lib;Crypt32.lib;Normaliz.lib;version.lib;Secur32.lib;Shlwapi.lib;Imm32.lib;%(AdditionalDependencies)</AdditionalDependencies>
       <EntryPointSymbol>
       </EntryPointSymbol>
       <IgnoreSpecificDefaultLibraries>
@@ -797,7 +830,7 @@
       <IntrinsicFunctions>true</IntrinsicFunctions>
     </ClCompile>
     <Link>
-      <AdditionalDependencies>archive.lib;Credui.lib;zlib.lib;dbghelp.lib;imagehlp.lib;dwmapi.lib;Setupapi.lib;Windowscodecs.lib;Winmm.lib;Crypt32.lib;Normaliz.lib;version.lib;Secur32.lib;Shlwapi.lib;Imm32.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>Credui.lib;zlib.lib;dbghelp.lib;imagehlp.lib;dwmapi.lib;Setupapi.lib;Windowscodecs.lib;Winmm.lib;Crypt32.lib;Normaliz.lib;version.lib;Secur32.lib;Shlwapi.lib;Imm32.lib;%(AdditionalDependencies)</AdditionalDependencies>
       <EntryPointSymbol>
       </EntryPointSymbol>
       <IgnoreSpecificDefaultLibraries>
@@ -998,7 +1031,7 @@
     </ClCompile>
     <Link>
       <GenerateDebugInformation>DebugFull</GenerateDebugInformation>
-      <AdditionalDependencies>archive.lib;Credui.lib;zlib.lib;dbghelp.lib;imagehlp.lib;dwmapi.lib;Setupapi.lib;Windowscodecs.lib;Winmm.lib;Crypt32.lib;Normaliz.lib;version.lib;Secur32.lib;Shlwapi.lib;Imm32.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>Credui.lib;zlib.lib;dbghelp.lib;imagehlp.lib;dwmapi.lib;Setupapi.lib;Windowscodecs.lib;Winmm.lib;Crypt32.lib;Normaliz.lib;version.lib;Secur32.lib;Shlwapi.lib;Imm32.lib;%(AdditionalDependencies)</AdditionalDependencies>
       <IgnoreAllDefaultLibraries>
       </IgnoreAllDefaultLibraries>
       <EntryPointSymbol>
@@ -1058,7 +1091,7 @@
     </ClCompile>
     <Link>
       <GenerateDebugInformation>DebugFull</GenerateDebugInformation>
-      <AdditionalDependencies>archive.lib;Credui.lib;zlib.lib;dbghelp.lib;imagehlp.lib;dwmapi.lib;Setupapi.lib;Windowscodecs.lib;Winmm.lib;Crypt32.lib;Normaliz.lib;version.lib;Secur32.lib;Shlwapi.lib;Imm32.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>Credui.lib;zlib.lib;dbghelp.lib;imagehlp.lib;dwmapi.lib;Setupapi.lib;Windowscodecs.lib;Winmm.lib;Crypt32.lib;Normaliz.lib;version.lib;Secur32.lib;Shlwapi.lib;Imm32.lib;%(AdditionalDependencies)</AdditionalDependencies>
       <IgnoreAllDefaultLibraries>
       </IgnoreAllDefaultLibraries>
       <EntryPointSymbol>
@@ -1296,7 +1329,7 @@
       <IntrinsicFunctions>true</IntrinsicFunctions>
     </ClCompile>
     <Link>
-      <AdditionalDependencies>archive.lib;Credui.lib;zlib.lib;dbghelp.lib;imagehlp.lib;dwmapi.lib;Setupapi.lib;Windowscodecs.lib;Winmm.lib;Crypt32.lib;Normaliz.lib;version.lib;Secur32.lib;Shlwapi.lib;Imm32.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>Credui.lib;zlib.lib;dbghelp.lib;imagehlp.lib;dwmapi.lib;Setupapi.lib;Windowscodecs.lib;Winmm.lib;Crypt32.lib;Normaliz.lib;version.lib;Secur32.lib;Shlwapi.lib;Imm32.lib;%(AdditionalDependencies)</AdditionalDependencies>
       <IgnoreSpecificDefaultLibraries>
       </IgnoreSpecificDefaultLibraries>
       <EntryPointSymbol>
@@ -1350,7 +1383,7 @@
       <IntrinsicFunctions>true</IntrinsicFunctions>
     </ClCompile>
     <Link>
-      <AdditionalDependencies>archive.lib;Credui.lib;zlib.lib;dbghelp.lib;imagehlp.lib;dwmapi.lib;Setupapi.lib;Windowscodecs.lib;Winmm.lib;Crypt32.lib;Normaliz.lib;version.lib;Secur32.lib;Shlwapi.lib;Imm32.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>Credui.lib;zlib.lib;dbghelp.lib;imagehlp.lib;dwmapi.lib;Setupapi.lib;Windowscodecs.lib;Winmm.lib;Crypt32.lib;Normaliz.lib;version.lib;Secur32.lib;Shlwapi.lib;Imm32.lib;%(AdditionalDependencies)</AdditionalDependencies>
       <IgnoreSpecificDefaultLibraries>
       </IgnoreSpecificDefaultLibraries>
       <EntryPointSymbol>
@@ -1404,7 +1437,7 @@
       <IntrinsicFunctions>true</IntrinsicFunctions>
     </ClCompile>
     <Link>
-      <AdditionalDependencies>archive.lib;Credui.lib;zlib.lib;dbghelp.lib;imagehlp.lib;dwmapi.lib;Setupapi.lib;Windowscodecs.lib;Winmm.lib;Crypt32.lib;Normaliz.lib;version.lib;Secur32.lib;Shlwapi.lib;Imm32.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>Credui.lib;zlib.lib;dbghelp.lib;imagehlp.lib;dwmapi.lib;Setupapi.lib;Windowscodecs.lib;Winmm.lib;Crypt32.lib;Normaliz.lib;version.lib;Secur32.lib;Shlwapi.lib;Imm32.lib;%(AdditionalDependencies)</AdditionalDependencies>
       <IgnoreSpecificDefaultLibraries>
       </IgnoreSpecificDefaultLibraries>
       <EntryPointSymbol>
@@ -1458,7 +1491,7 @@
       <IntrinsicFunctions>true</IntrinsicFunctions>
     </ClCompile>
     <Link>
-      <AdditionalDependencies>archive.lib;Credui.lib;zlib.lib;dbghelp.lib;imagehlp.lib;dwmapi.lib;Setupapi.lib;Windowscodecs.lib;Winmm.lib;Crypt32.lib;Normaliz.lib;version.lib;Secur32.lib;Shlwapi.lib;Imm32.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>Credui.lib;zlib.lib;dbghelp.lib;imagehlp.lib;dwmapi.lib;Setupapi.lib;Windowscodecs.lib;Winmm.lib;Crypt32.lib;Normaliz.lib;version.lib;Secur32.lib;Shlwapi.lib;Imm32.lib;%(AdditionalDependencies)</AdditionalDependencies>
       <IgnoreSpecificDefaultLibraries>
       </IgnoreSpecificDefaultLibraries>
       <EntryPointSymbol>
@@ -1512,7 +1545,7 @@
       <IntrinsicFunctions>true</IntrinsicFunctions>
     </ClCompile>
     <Link>
-      <AdditionalDependencies>archive.lib;Credui.lib;zlib.lib;dbghelp.lib;imagehlp.lib;dwmapi.lib;Setupapi.lib;Windowscodecs.lib;Winmm.lib;Crypt32.lib;Normaliz.lib;version.lib;Secur32.lib;Shlwapi.lib;Imm32.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>Credui.lib;zlib.lib;dbghelp.lib;imagehlp.lib;dwmapi.lib;Setupapi.lib;Windowscodecs.lib;Winmm.lib;Crypt32.lib;Normaliz.lib;version.lib;Secur32.lib;Shlwapi.lib;Imm32.lib;%(AdditionalDependencies)</AdditionalDependencies>
       <IgnoreSpecificDefaultLibraries>
       </IgnoreSpecificDefaultLibraries>
       <EntryPointSymbol>
@@ -1566,7 +1599,7 @@
       <IntrinsicFunctions>true</IntrinsicFunctions>
     </ClCompile>
     <Link>
-      <AdditionalDependencies>archive.lib;Credui.lib;zlib.lib;dbghelp.lib;imagehlp.lib;dwmapi.lib;Setupapi.lib;Windowscodecs.lib;Winmm.lib;Crypt32.lib;Normaliz.lib;version.lib;Secur32.lib;Shlwapi.lib;Imm32.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>Credui.lib;zlib.lib;dbghelp.lib;imagehlp.lib;dwmapi.lib;Setupapi.lib;Windowscodecs.lib;Winmm.lib;Crypt32.lib;Normaliz.lib;version.lib;Secur32.lib;Shlwapi.lib;Imm32.lib;%(AdditionalDependencies)</AdditionalDependencies>
       <IgnoreSpecificDefaultLibraries>
       </IgnoreSpecificDefaultLibraries>
       <EntryPointSymbol>
@@ -1865,7 +1898,7 @@
     </ClCompile>
     <Link>
       <GenerateDebugInformation>DebugFull</GenerateDebugInformation>
-      <AdditionalDependencies>archive.lib;Credui.lib;zlib.lib;dbghelp.lib;imagehlp.lib;dwmapi.lib;Setupapi.lib;Windowscodecs.lib;Winmm.lib;Crypt32.lib;Normaliz.lib;version.lib;Secur32.lib;Shlwapi.lib;Imm32.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>Credui.lib;zlib.lib;dbghelp.lib;imagehlp.lib;dwmapi.lib;Setupapi.lib;Windowscodecs.lib;Winmm.lib;Crypt32.lib;Normaliz.lib;version.lib;Secur32.lib;Shlwapi.lib;Imm32.lib;%(AdditionalDependencies)</AdditionalDependencies>
       <IgnoreAllDefaultLibraries>
       </IgnoreAllDefaultLibraries>
       <IgnoreSpecificDefaultLibraries>
@@ -1920,7 +1953,7 @@
     </ClCompile>
     <Link>
       <GenerateDebugInformation>DebugFull</GenerateDebugInformation>
-      <AdditionalDependencies>archive.lib;Credui.lib;zlib.lib;dbghelp.lib;imagehlp.lib;dwmapi.lib;Setupapi.lib;Windowscodecs.lib;Winmm.lib;Crypt32.lib;Normaliz.lib;version.lib;Secur32.lib;Shlwapi.lib;Imm32.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>Credui.lib;zlib.lib;dbghelp.lib;imagehlp.lib;dwmapi.lib;Setupapi.lib;Windowscodecs.lib;Winmm.lib;Crypt32.lib;Normaliz.lib;version.lib;Secur32.lib;Shlwapi.lib;Imm32.lib;%(AdditionalDependencies)</AdditionalDependencies>
       <IgnoreAllDefaultLibraries>
       </IgnoreAllDefaultLibraries>
       <IgnoreSpecificDefaultLibraries>
@@ -1975,7 +2008,7 @@
     </ClCompile>
     <Link>
       <GenerateDebugInformation>DebugFull</GenerateDebugInformation>
-      <AdditionalDependencies>archive.lib;Credui.lib;zlib.lib;dbghelp.lib;imagehlp.lib;dwmapi.lib;Setupapi.lib;Windowscodecs.lib;Winmm.lib;Crypt32.lib;Normaliz.lib;version.lib;Secur32.lib;Shlwapi.lib;Imm32.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>Credui.lib;zlib.lib;dbghelp.lib;imagehlp.lib;dwmapi.lib;Setupapi.lib;Windowscodecs.lib;Winmm.lib;Crypt32.lib;Normaliz.lib;version.lib;Secur32.lib;Shlwapi.lib;Imm32.lib;%(AdditionalDependencies)</AdditionalDependencies>
       <IgnoreAllDefaultLibraries>
       </IgnoreAllDefaultLibraries>
       <IgnoreSpecificDefaultLibraries>
@@ -2030,7 +2063,7 @@
     </ClCompile>
     <Link>
       <GenerateDebugInformation>DebugFull</GenerateDebugInformation>
-      <AdditionalDependencies>archive.lib;Credui.lib;zlib.lib;dbghelp.lib;imagehlp.lib;dwmapi.lib;Setupapi.lib;Windowscodecs.lib;Winmm.lib;Crypt32.lib;Normaliz.lib;version.lib;Secur32.lib;Shlwapi.lib;Imm32.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>Credui.lib;zlib.lib;dbghelp.lib;imagehlp.lib;dwmapi.lib;Setupapi.lib;Windowscodecs.lib;Winmm.lib;Crypt32.lib;Normaliz.lib;version.lib;Secur32.lib;Shlwapi.lib;Imm32.lib;%(AdditionalDependencies)</AdditionalDependencies>
       <IgnoreAllDefaultLibraries>
       </IgnoreAllDefaultLibraries>
       <IgnoreSpecificDefaultLibraries>
@@ -2398,6 +2431,7 @@
     <ClCompile Include="innate_ui\dialog.cpp" />
     <ClCompile Include="innate_ui\icon.cpp" />
     <ClCompile Include="innate_ui\innate_ui.cpp" />
+    <ClCompile Include="innate_ui\menu.cpp" />
     <ClCompile Include="innate_ui\still.cpp" />
     <ClCompile Include="innate_ui\window.cpp" />
     <ClCompile Include="input\input.cpp" />
@@ -2593,6 +2627,7 @@
     <ClInclude Include="innate_ui\dialog.h" />
     <ClInclude Include="innate_ui\icon.h" />
     <ClInclude Include="innate_ui\innate_ui.h" />
+    <ClInclude Include="innate_ui\menu.h" />
     <ClInclude Include="innate_ui\still.h" />
     <ClInclude Include="innate_ui\window.h" />
     <ClInclude Include="innate_ui\_.h" />

@@ -33,7 +33,7 @@ namespace nano
             ~archive() override;
 
 
-            virtual void untar(const ::file::path & pathFolder, const ::payload & payloadTar, int iStripComponent, ::function<void(const::scoped_string& scopedstr) > functionCallback);
+            virtual void untar(const ::file::path & pathFolder, const ::payload & payloadTar, ::i32 iStripComponent, ::function<void(const::scoped_string& scopedstr) > functionCallback);
 
 
         };

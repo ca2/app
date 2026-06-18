@@ -50,7 +50,7 @@ namespace graphics3d
       // VkQueue m_presentQueue;
 
 
-      // const ::array_base<const char*> m_deviceExtensions = {
+      // const ::array_base<const_char_pointer > m_deviceExtensions = {
       //     VK_KHR_SWAPCHAIN_EXTENSION_NAME,
       //     VK_EXT_DESCRIPTOR_INDEXING_EXTENSION_NAME,
       //     VK_KHR_MAINTENANCE1_EXTENSION_NAME,

@@ -47,24 +47,24 @@ namespace graphics
          e_hit_test_client_area = 4
       };
 
-      ::float_rectangle m_rectangle;
+      ::f32_rectangle m_rectangle;
 
       /// The current hue in the HSV color::color model.
-      //float m_hue;
+      //::f32 m_hue;
 
       /**
        * The 'V' (value) component of the HSV color::color model.  See implementation \::pointer
        * nanoui::ColorWheel::color::color for its usage.  Valid values are in the range
        * ``[0, 1]``.
        */
-      //float m_white;
+      //::f32 m_white;
 
       /**
        * The 'S' (satration) component of the HSV color::color model.  See implementation
        * \::pointer nanoui::ColorWheel::color::color for its usage.  Valid values are in the
        * range ``[0, 1]``.
        */
-      //float m_black;
+      //::f32 m_black;
 
       /// The current region the mouse is interacting with.
       enum_hit_test m_ehittestDrag;
@@ -90,7 +90,7 @@ namespace graphics
 
 
       /// The preferred size of this ColorWheel.
-      //int_size preferred_size(::nano2d::context  * pcontext, bool bRecalcTextSize = true) override;
+      //i32_size preferred_size(::nano2d::context  * pcontext, bool bRecalcTextSize = true) override;
 
       /// Draws the ColorWheel.
       virtual void on_draw(::draw2d::graphics * pgraphics);
@@ -99,17 +99,17 @@ namespace graphics
       //virtual void _on_draw(::nano2d::context  * pcontext);
 
       /// Handles mouse button click happenings for the ColorWheel.
-      virtual bool on_mouse_down(const int_point & p);
-      virtual bool on_mouse_up(const int_point & p);
-      virtual bool on_mouse_motion(const int_point & p);
+      virtual bool on_mouse_down(const i32_point & point);
+      virtual bool on_mouse_up(const i32_point & point);
+      virtual bool on_mouse_motion(const i32_point & point);
       /// Handles mouse drag happenings for the ColorWheel.
-      //bool mouse_drag_event(const int_sequence2 & p, const int_sequence2 & rel, const ::user::e_key & ekeyModifiers) override;
+      //bool mouse_drag_event(const i32_sequence2 & p, const i32_sequence2 & rel, const ::user::keyboard_state & keyboardstate) override;
 
       // Converts a specified hue (with saturation = value = 1) to RGB space.
-      //color::color hue2rgb(float h) const;
+      //color::color hue2rgb(::f32 h) const;
 
       // Manipulates the positioning of the different regions of the ColorWheel.
-      enum_hit_test adjust_position_and_hit_test(const int_point & p);
+      enum_hit_test adjust_position_and_hit_test(const i32_point & point);
 
    };
 

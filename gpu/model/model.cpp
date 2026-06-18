@@ -145,7 +145,7 @@ namespace gpu
 //
 //                         So triangulation was partial,
 //               not complete.
-            unsigned int nFlags = 0;
+            ::u32 nFlags = 0;
 
 
             //nFlags = aiProcess_Triangulate | aiProcess_SortByPType | aiProcess_JoinIdenticalVertices;
@@ -235,16 +235,16 @@ namespace gpu
 
 
 
-      // ::pointer < ::gpu::texture> model::textureFromFile(const char *fileName, ::string directory, aiTextureType type)
+      // ::pointer < ::gpu::texture> model::textureFromFile(const_char_pointer fileName, ::string directory, aiTextureType type)
       // {
       //
       //    return {};
-      //    // int width, height, numChannels;
+      //    // ::i32 width, height, numChannels;
       //    //
       //    // ::string relativePath = fileName;
       //    // ::string path = directory + '/' + relativePath;
       //    //
-      //    // unsigned char *data = stbi_load(path.c_str(), &width, &height, &numChannels, 0);
+      //    // ::u8 *data = stbi_load(path.c_str(), &width, &height, &numChannels, 0);
       //    //
       //    // if (!data)
       //    // {
@@ -286,7 +286,7 @@ namespace gpu
       //    //    }
       //    // }
       //    //
-      //    // unsigned int textureId;
+      //    // ::u32 textureId;
       //    // glGenTextures(1, &textureId);
       //    // glBindTexture(GL_TEXTURE_2D, textureId);
       //    //

@@ -38,7 +38,7 @@ namespace gpu_opengl
       //    ::cast < gpu_opengl::texture>ptexture = m_ptexture;
       //
       //
-      //    // framebuffer
+      //    // pframebuffer
       //    glGenFramebuffers(1, &ptexture->m_gluFbo);
       //    ::opengl::check_error("");
       //    glBindFramebuffer(GL_FRAMEBUFFER, ptexture->m_gluFbo);
@@ -104,7 +104,7 @@ namespace gpu_opengl
       }
 
 
-      unsigned int brdf_convolution_framebuffer::getColorTextureId()
+      ::u32 brdf_convolution_framebuffer::getColorTextureId()
       {::cast < gpu_opengl::texture>ptexture = m_ptexture;
          return ptexture->m_gluTextureID;
       }

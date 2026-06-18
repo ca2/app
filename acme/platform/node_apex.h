@@ -27,10 +27,10 @@ namespace platform
 // #ifdef _DEBUG
 //
 //
-//       long long increment_reference_count() override;
+//       ::i64 increment_reference_count() override;
 //
 //
-//       long long decrement_reference_count() override;
+//       ::i64 decrement_reference_count() override;
 //
 //
 // #endif
@@ -53,7 +53,7 @@ namespace platform
 //      virtual void set_main_menu(application_menu * pmenu, ::apex::application * papp);
 
 
-      virtual ::file::path get_desktop_file_path(::apex::application * papp);
+      virtual ::file::path get_desktop_file_path(::platform::application * papplication);
 
 
       //virtual void defer_notify_startup_complete();
@@ -62,7 +62,7 @@ namespace platform
       //void start_node() override;
 
 
-      //void application_handle(long long l, void * p) override;
+      //void application_handle(::i64 l, void * p) override;
 
 
       // void on_operating_system_user_theme_change() override;
@@ -77,10 +77,10 @@ namespace platform
       virtual void defer_innate_ui();
 
 
-      virtual void shell_create_link(::file::path pathObj, ::file::path pathLnk, const ::scoped_string & scopedstrDesc, ::file::path pathIco = "", int iIcon = -1);
+      virtual void shell_create_link(::file::path pathObj, ::file::path pathLnk, const ::scoped_string & scopedstrDesc, ::file::path pathIco = "", ::i32 iIcon = -1);
 
       virtual bool shell_link_target(::file::path & pathTarget, const ::file::path & pathLnk);
-      virtual bool shell_link_icon(::file::path & pathIcon, int & iIcon, const ::file::path& pathLnk);
+      virtual bool shell_link_icon(::file::path & pathIcon, ::i32 & iIcon, const ::file::path& pathLnk);
 
 
       //virtual void parallelization_initialize();
@@ -113,7 +113,7 @@ namespace platform
       virtual void get_firefox_installation_info(string& strPathToExe, string& strInstallDirectory);
 
 
-      virtual void on_start_application(::apex::application * papplication);
+      //virtual void on_start_application(::apex::application * papplication);
 
 
       //DECLARE_MESSAGE_HANDLER(on_message_clear_application_data);
@@ -135,7 +135,7 @@ namespace platform
       virtual ::pointer < ::input::input > create_input();
 
 
-      virtual bool is_key_pressed(bool * pbPressed, ::user::enum_key ekey);
+      virtual bool is_key_pressed(bool * pbPressed, const ::user::e_key & ekey);
 
 
       virtual void root_ones(::file::listing_base & listing);

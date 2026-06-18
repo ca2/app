@@ -4,12 +4,12 @@
 #include <sys/stat.h>
 
 
-//int_bool file_exists_raw(const ::file::path & path1)
+//i32_bool file_exists_raw(const ::file::path & path1)
 //{
 //
 //#ifdef WINDOWS
 //
-//   unsigned int dwFileAttributes = GetFileAttributesA(path1);
+//   ::u32 dwFileAttributes = GetFileAttributesA(path1);
 //
 //   if (dwFileAttributes == INVALID_FILE_ATTRIBUTES || (dwFileAttributes & FILE_ATTRIBUTE_DIRECTORY) != 0)
 //      return false;
@@ -83,7 +83,7 @@ void file_beg_contents_raw(const ::file::path & path, const ::scoped_string & sc
 
    long lSize = 1024 * 1024;
 
-   char * buf = (char *) malloc(lSize);
+   char_pointer buf = (char_pointer ) malloc(lSize);
 
    long lRemain = lEnd - lLen;
 
@@ -120,7 +120,7 @@ void file_beg_contents_raw(const ::file::path & path, const ::scoped_string & sc
 }
 
 
-unsigned long long file_length_raw(const ::file::path & path)
+::u64 file_length_raw(const ::file::path & path)
 {
 
 #ifdef WINDOWS
@@ -150,17 +150,17 @@ string file_system()->line(const ::file::path & path, ::collection::index iLine)
    if (file == nullptr)
    {
 
-      unsigned int dw = ::get_last_error();
+      ::u32 dw = ::get_last_error();
 
       return "";
 
    }
 
-   int iChar;
+   ::i32 iChar;
 
    string strLine;
 
-   int iLastChar = -1;
+   ::i32 iLastChar = -1;
 
    while (iLine >= 0)
    {
@@ -194,7 +194,7 @@ string file_system()->line(const ::file::path & path, ::collection::index iLine)
       else if (iLine == 0)
       {
 
-         str += (char)iChar;
+         str += (::i8)iChar;
 
       }
 
@@ -232,17 +232,17 @@ pdirectorysystem->create(path.folder());
    if (file == nullptr)
    {
 
-      unsigned int dw = ::get_last_error();
+      ::u32 dw = ::get_last_error();
 
       return false;
 
    }
 
-   int iChar;
+   ::i32 iChar;
 
    string strLine;
 
-   int iLastChar = -1;
+   ::i32 iLastChar = -1;
 
    ::collection::index iPosStart = -1;
 

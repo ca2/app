@@ -168,7 +168,7 @@ namespace user
    {
    public:
 
-      ::int_rectangle   m_rectangle;
+      ::i32_rectangle   m_rectangle;
 
    };
 
@@ -364,10 +364,10 @@ class cregexp;
 
 CLASS_DECL_AURA ::user::interaction_base* __user_prototype(::windowing::window * pwindow);
 
-inline wparam __scroll_message_wparam(enum_scroll_command ecommand, int iPosition)
+inline wparam __scroll_message_wparam(enum_scroll_command ecommand, ::i32 iPosition)
 {
 
-   return ((((int)ecommand) & 0xffff) | ((iPosition << 16) & 0xffff0000));
+   return ((((::i32)ecommand) & 0xffff) | ((iPosition << 16) & 0xffff0000));
 
 }
 
@@ -416,7 +416,7 @@ class thumbnail_dc;               // Virtual DC for print thumbnail
 class mini_dock_frame_window;
 
 
-CLASS_DECL_AURA ::user::e_mouse user_key_to_user_mouse(::user::e_key ekeyButton);
+CLASS_DECL_AURA ::user::e_key_state user_key_to_user_key_state_state(const ::user::e_key & ekey);
 
 
 struct size_parent_layout;

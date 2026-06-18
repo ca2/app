@@ -47,14 +47,14 @@ struct df_pointer
 {
 	rdpPointer pointer;
 	IDirectFBSurface* surface;
-	unsigned int xhot;
-	unsigned int yhot;
+	::u32 xhot;
+	::u32 yhot;
 };
 typedef struct df_pointer dfPointer;
 
 struct df_info
 {
-	int read_fds;
+	::i32 read_fds;
 	DFBResult err;
 	IDirectFB* dfb;
 	DFBEvent happening;

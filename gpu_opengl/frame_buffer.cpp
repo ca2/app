@@ -27,13 +27,13 @@ namespace gpu_opengl
    }
 
 
-   void frame_buffer::create(const ::int_size& sizeNew, bool bWithDepthBuffer)
+   void frame_buffer::create(const ::i32_size& sizeNew, bool bWithDepthBuffer)
    {
 
       if (sizeNew.is_empty())
       {
 
-         throw ::exception(::error_bad_argument, "framebuffer");
+         throw ::exception(::error_bad_argument, "pframebuffer");
 
       }
 
@@ -57,7 +57,7 @@ namespace gpu_opengl
       if (!m_tex)
       {
          glGenTextures(1, &m_tex);
-         int iGlError = glGetError();
+         ::i32 iGlError = glGetError();
          if (iGlError != 0)
          {
 

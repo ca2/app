@@ -1,11 +1,11 @@
 #include "framework.h"
 
 
-unsigned int
+::u32
 WINAPI
 GetTempPathA(
-unsigned int nBufferLength,
-char * lpBuffer
+::u32 nBufferLength,
+char_pointer lpBuffer
 )
 {
 

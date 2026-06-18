@@ -4,12 +4,13 @@
 #include "data.h"
 #include "context_menu.h"
 #include "acme/constant/id.h"
+#include "acme/constant/timer.h"
 #include "acme/constant/user_message.h"
 #include "acme/handler/topic.h"
 #include "acme/platform/application.h"
 #include "acme/platform/session.h"
 #include "acme/platform/system.h"
-#include "acme/platform/timer.h"
+//#include "acme/platform/timer.h"
 #include "acme/filesystem/filesystem/directory_context.h"
 #include "acme/filesystem/filesystem/file_context.h"
 #include "apex/filesystem/fs/set.h"
@@ -157,7 +158,7 @@ namespace filemanager
 #ifdef _DEBUG
 
 
-   long long tree_data::increment_reference_count()
+   ::i64 tree_data::increment_reference_count()
    {
 
       return ::object::increment_reference_count();
@@ -165,7 +166,7 @@ namespace filemanager
    }
 
 
-   long long tree_data::decrement_reference_count()
+   ::i64 tree_data::decrement_reference_count()
    {
 
       return ::object::decrement_reference_count();
@@ -173,7 +174,7 @@ namespace filemanager
    }
 
 
-   long long tree_data::release()
+   ::i64 tree_data::release()
    {
 
       return ::object::release();
@@ -1173,7 +1174,7 @@ return;
 
       get_selection(itemptraSelected);
 
-      for(int i = 0; i < itemptraSelected.get_size(); i++)
+      for(::i32 i = 0; i < itemptraSelected.get_size(); i++)
       {
 
          stra.add(((itemptraSelected[0]->m_pitem.cast < ::userfs::item > ()))->user_path());
@@ -1198,11 +1199,11 @@ return;
             
          puserinteraction->set_need_redraw();
 
-         puserinteraction->kill_timer(123);
+         puserinteraction->kill_timer(e_timer_redraw);
 
          /*
-         ::int_rectangle rectangle;
-         int iArrange = (int) lparam;
+         ::i32_rectangle rectangle;
+         ::i32 iArrange = (::i32) lparam;
 
          if(_001IsItemVisible(iArrange))
          {
@@ -1240,7 +1241,7 @@ return;
       
       m_iAnimate = 1;
       
-      m_usertreea[0]->set_timer(1234567, 50_ms, nullptr);
+      m_usertreea[0]->set_timer(e_timer_animation, 50_ms, nullptr);
 
    }
 
@@ -1264,7 +1265,7 @@ return;
 //      }
 //      else
 //      {
-//         int iCSIDL = MapToCSIDL(efolder);
+//         ::i32 iCSIDL = MapToCSIDL(efolder);
 //
 //         ASSERT(iCSIDL >= 0);
 //
@@ -1304,7 +1305,7 @@ return;
 //
 //   }
 
-   //int tree_data::MapToCSIDL(EFolder efolder)
+   //::i32 tree_data::MapToCSIDL(EFolder efolder)
    //{
    //   switch(efolder)
    //   {
@@ -1373,12 +1374,12 @@ return;
    //}
 
 
-   void tree_data::on_timer(::timer * ptimer)
+   void tree_data::operator()(::timer * ptimer)
    {
 
-      ::userfs::tree_data::on_timer(ptimer);
+      ::userfs::tree_data::operator()(ptimer);
 
-      if (ptimer->m_uTimer == 1234567)
+      if (ptimer->m_etimer == e_timer_animation)
       {
 
          m_iAnimate += 2;
@@ -1388,14 +1389,14 @@ return;
 
             m_iAnimate = 0;
 
-            ptimer->m_ptimercallback->erase_timer(ptimer);
+            ptimer->cancel();
 
          }
 
-         ptimer->m_ptimercallback->get_user_interaction()->set_need_redraw();
+         //ptimer->m_ptimercallback->get_user_interaction()->set_need_redraw();
 
       }
-      else if (ptimer->m_uTimer == 123)
+      else if (ptimer->m_etimer == e_timer_redraw)
       {
 
          m_usertreea.predicate_each([](auto & ptree)
@@ -1405,9 +1406,10 @@ return;
 
             });
 
-         m_bTimer123 = false;
+         m_bTimerRedraw = false;
 
-         ptimer->m_ptimercallback->get_user_interaction()->kill_timer(123);
+         //ptimer->m_ptimercallback->get_user_interaction()->kill_timer(123);
+         ptimer->cancel();
 
       }
 

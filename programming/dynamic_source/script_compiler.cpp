@@ -43,7 +43,7 @@
 #include <ctype.h>
 #endif
 
-//unsigned int RunSilent(const ::scoped_string & scopedstrFunct, const ::scoped_string & scopedstrstrParams);
+//::u32 RunSilent(const ::scoped_string & scopedstrFunct, const ::scoped_string & scopedstrstrParams);
 
 
 
@@ -113,14 +113,7 @@ namespace dynamic_source
    void script_compiler::destroy()
    {
 
-      for (auto& plibrary : m_mapLib.payloads())
-      {
-
-         plibrary.defer_destroy();
-
-      }
-
-      m_mapLib.clear();
+      m_mapLib.defer_destroy_and_release();
 
       ::programming::compiler::destroy();
 
@@ -206,7 +199,7 @@ namespace dynamic_source
       //      catch (const ::e_status & estatus)
       //      {
       //
-      //         informationf("failed to setup visual studio environment " + as_string((long long)estatus.m_estatus));
+      //         informationf("failed to setup visual studio environment " + as_string((::i64)estatus.m_estatus));
       //
       //      }
       //
@@ -303,7 +296,7 @@ namespace dynamic_source
 
 #ifdef WINDOWS_DESKTOP
 
-      unsigned int dwSize = GetEnvironmentVariableW(L"PATH", nullptr, 0);
+      ::u32 dwSize = GetEnvironmentVariableW(L"PATH", nullptr, 0);
       LPWSTR lpsz = øraw_new wchar_t[dwSize + 1];
       dwSize = GetEnvironmentVariableW(L"PATH", lpsz, dwSize + 1);
       str += lpsz;
@@ -421,7 +414,7 @@ namespace dynamic_source
 
       string strMillis;
 
-      strMillis = ::as_string(::long_long_millisecond() % 1000);
+      strMillis = ::as_string(::i64_millisecond() % 1000);
 
       auto pszBufferMillis = strMillis.get_buffer(3);
 
@@ -955,7 +948,7 @@ namespace dynamic_source
 
          }
 
-         int iObjFileMinimumByteCount = 1024;
+         ::i32 iObjFileMinimumByteCount = 1024;
 
          if (process->m_exitstatus.m_iExitCode != 0 || file()->length(pathObjFile) < iObjFileMinimumByteCount)
          {
@@ -967,7 +960,7 @@ namespace dynamic_source
             //straLog.add_lines(strLog);
             //for(auto & strLine : straLog)
             //{
-            //   int iColCount = 80;
+            //   ::i32 iColCount = 80;
             //   for (::collection::index i = 0; i < strLine.length(); i += iColCount)
             //   {
             //      if (strLine.length() < i + iColCount + 10)
@@ -1211,7 +1204,7 @@ namespace dynamic_source
 
       string strSource;
 
-      int iTry = 0;
+      ::i32 iTry = 0;
 
       while ((strSource = file()->as_string(pscript->m_strSourcePath)).trimmed().is_empty() && ::task_get_run())
       {
@@ -1243,7 +1236,7 @@ namespace dynamic_source
       strDest = "";
       strDest += "#include \"netnode_dynamic_source_script_framework.h\"\r\n";
       //strDest += "#include \"11ca2_account.h\"\r\n";
-      //for(int i = 0; i < m_straLibIncludePath.get_count(); i++)
+      //for(::i32 i = 0; i < m_straLibIncludePath.get_count(); i++)
       //{
       //   string str;
       //   str = m_straLibIncludePath[i].relative();
@@ -1345,7 +1338,7 @@ namespace dynamic_source
          if (iLastEnd < 0)
             break;
          iLastEnd += 2;
-         int iShift = 0;
+         ::i32 iShift = 0;
          if (strSource.substr(iPos, 5).case_insensitive_order("<?php") == 0)
             iShift = 3;
          strDest += cppize2(strSource.substr(iPos + 2 + iShift, iLastEnd - iPos - 4 - iShift), true, straId);
@@ -1358,7 +1351,7 @@ namespace dynamic_source
       strDest += "}\r\n";
 
       //string strId;
-      //for(int i = 0; i < straId.get_size(); i++)
+      //for(::i32 i = 0; i < straId.get_size(); i++)
       //{
       //   strId += "static ::atom lscript_id" + ::as_string(i) + "(\"" + straId[i] + "\");\r\n";
       //}
@@ -1371,8 +1364,8 @@ namespace dynamic_source
       strCppPath.find_replace("\\", "\\\\");
 
       //      strDest += " \r\n \
-      //         extern \"C\" int APIENTRY \r\n \
-      //         DllMain(HINSTANCE hInstance,unsigned int dwReason,LPVOID lpReserved) \r\n \
+      //         extern \"C\" ::i32 APIENTRY \r\n \
+      //         DllMain(HINSTANCE hInstance,::u32 dwReason,LPVOID lpReserved) \r\n \
       //      { \r\n \
       //\r\n  \
       // \r\n \r\n \
@@ -1423,7 +1416,7 @@ namespace dynamic_source
 
       if (m_straSync.get_count() > 1)
       {
-         for (int i = 1; i < m_straSync.get_count(); i++)
+         for (::i32 i = 1; i < m_straSync.get_count(); i++)
          {
 
             ::property_set set;
@@ -1451,6 +1444,8 @@ namespace dynamic_source
       }
       else
       {
+
+         auto pathReal = m_pscriptmanager2->real_path(path);
 
          m_pscriptmanager2->m_pcache->set_out_of_date(path);
 
@@ -1520,7 +1515,7 @@ namespace dynamic_source
 
       directory()->enumerate(l.m_straLibSourcePath);
 
-      for (int i = 0; i < l.m_straLibSourcePath.get_size();)
+      for (::i32 i = 0; i < l.m_straLibSourcePath.get_size();)
       {
          if (l.m_straLibSourcePath[i].final_extension() != "ds" && l.m_straLibSourcePath[i].final_extension() != "cpp")
          {
@@ -1533,7 +1528,7 @@ namespace dynamic_source
       }
       l.m_straLibCppPath.erase_all();
       ::file::path strLibRel = ::file::path("dynamic_source/library") / strName;
-      for (int i = 0; i < l.m_straLibSourcePath.get_size(); i++)
+      for (::i32 i = 0; i < l.m_straLibSourcePath.get_size(); i++)
       {
          string str = l.m_straLibSourcePath[i].relative();
          str.case_insensitive_ends_eat(".ds");
@@ -1544,7 +1539,7 @@ namespace dynamic_source
       l.m_straLibIncludePath.clear_results();
       l.m_straLibIncludePath.set_listing(m_pscriptmanager2->m_pathNetseedDsCa2Path / "library" / strName, e_depth_recursively);
       directory()->enumerate(l.m_straLibIncludePath);
-      for (int i = 0; i < l.m_straLibIncludePath.get_size();)
+      for (::i32 i = 0; i < l.m_straLibIncludePath.get_size();)
       {
          if (l.m_straLibIncludePath[i].final_extension() != "h"
             || ::str::case_insensitive_find(l.m_straLibIncludePath[i], "\\.svn\\") >= 0
@@ -1558,7 +1553,7 @@ namespace dynamic_source
          }
       }
       l.m_straLibHppPath.erase_all();
-      for (int i = 0; i < l.m_straLibIncludePath.get_size(); i++)
+      for (::i32 i = 0; i < l.m_straLibIncludePath.get_size(); i++)
       {
          string str = l.m_straLibIncludePath[i].relative();
          str.case_insensitive_ends_eat(".ds");
@@ -1582,7 +1577,7 @@ namespace dynamic_source
       directory()->create(l.m_strLibraryPath.folder());
       directory()->create(m_pathTime / "intermediate" / m_pintegrationcontext->m_strPlatform / m_strDynamicSourceConfiguration / m_pscriptmanager2->m_strRepos / m_pscriptmanager2->m_strNamespace + "_dynamic_source_library/library");
 
-      for (int i = 0; i < l.m_straLibIncludePath.get_size(); i++)
+      for (::i32 i = 0; i < l.m_straLibIncludePath.get_size(); i++)
       {
          cppize(l.m_straLibIncludePath[i], l.m_straLibHppPath[i], cpptype_include);
       }
@@ -1620,7 +1615,7 @@ namespace dynamic_source
 
 #endif
 
-      for (int i = 0; i < l.m_straLibSourcePath.get_size(); i++)
+      for (::i32 i = 0; i < l.m_straLibSourcePath.get_size(); i++)
       {
          if (l.m_straLibSourcePath[i].final_extension() == "cpp")
          {
@@ -1701,7 +1696,7 @@ namespace dynamic_source
 
          auto tickStart = ::time::now();
 
-         //unsigned int dwExitCode;
+         //::u32 dwExitCode;
 
          string strLog;
 
@@ -1786,7 +1781,7 @@ namespace dynamic_source
       }
 
       string strObjs;
-      for (int i = 0; i < l.m_straLibSourcePath.get_size(); i++)
+      for (::i32 i = 0; i < l.m_straLibSourcePath.get_size(); i++)
       {
          strObjs += " ";
          ::file::path strRel = l.m_straLibSourcePath[i].relative();
@@ -1949,7 +1944,7 @@ namespace dynamic_source
       {
          strDest += "#include \"netnode_dynamic_source_script.h\"\r\n";
          //strDest += "#include \"11ca2_account.h\"\r\n";
-         //for(int i = 0; i < m_straLibIncludePath.get_count(); i++)
+         //for(::i32 i = 0; i < m_straLibIncludePath.get_count(); i++)
          //{
          //   string str;
          //   str = m_straLibIncludePath[i].relative();
@@ -1978,7 +1973,7 @@ namespace dynamic_source
          if (iLastEnd < 0)
             break;
          iLastEnd += 2;
-         int iShift = 0;
+         ::i32 iShift = 0;
          if (strSource.substr(iPos, 5).case_insensitive_order("<?php") == 0)
             iShift = 3;
          bCode = true;
@@ -1992,7 +1987,7 @@ namespace dynamic_source
       strDest += "}\r\n";*/
 
       //string strId;
-      //for(int i = 0; i < straId.get_size(); i++)
+      //for(::i32 i = 0; i < straId.get_size(); i++)
       //{
       //   strId += "static ::atom lscript_id" + ::as_string(i) + "(\"" + straId[i] + "\");\r\n";
       //}
@@ -2061,14 +2056,14 @@ namespace dynamic_source
       bool bInserted = false;
       bool bNewLine = true;
       bool bLow = false;
-      while (ch2.m_i < iLen)
+      while (ch2.m_i32 < iLen)
       {
          bInserted = false;
          //iNext2 = i2;
          //iNext3 = iNext2;
-         //ch2.next().m_i = ch2.m_iNext;
+         //ch2.next().m_i32 = ch2.m_iNext;
          //ch2.next().get();
-         if (string_begins(str.substr(ch2.m_i), "bk_filter_active1"))
+         if (string_begins(str.substr(ch2.m_i32), "bk_filter_active1"))
          {
             //debug_break();
          }
@@ -2157,7 +2152,7 @@ namespace dynamic_source
                bServer = false;
                add_var_id(strResult, iServer, straId);
                strResult += "]";
-               while (ch2.m_i < iLen)
+               while (ch2.m_i32 < iLen)
                {
                   if (ch2.is_ansi_space())
                      ch2++;
@@ -2261,7 +2256,7 @@ namespace dynamic_source
             {
                if (bLow)
                {
-                  strResult += (char)ch2.ansi_lower();
+                  strResult += (::i8)ch2.ansi_lower();
                }
                else
                {
@@ -2305,7 +2300,7 @@ namespace dynamic_source
                }
                else
                {
-                  while (ch2.is_ansi_space() && ch2.m_i < iLen)
+                  while (ch2.is_ansi_space() && ch2.m_i32 < iLen)
                   {
                      ch2++;
                   }
@@ -2320,7 +2315,7 @@ namespace dynamic_source
                   else if (ch2 == '-' && ch2.next() == '>')
                   {
                      ch2.ansi_add(2);
-                     while (ch2.is_ansi_space() && ch2.m_i < iLen)
+                     while (ch2.is_ansi_space() && ch2.m_i32 < iLen)
                      {
                         ch2++;
                      }
@@ -2456,15 +2451,15 @@ namespace dynamic_source
          {
             iArroba = strResult.length();
          }
-         else if (ch2 == '_' && ch2.next() == '_' && is_id(&str[ch2.m_i], str.length() - ch2.m_i, "__ch", 4, iIdLen))
+         else if (ch2 == '_' && ch2.next() == '_' && is_id(&str[ch2.m_i32], str.length() - ch2.m_i32, "__ch", 4, iIdLen))
          {
             strResult += "'";
             bInVar = false;
             ch2.ansi_add(iIdLen);
-            while (ch2 != '(' && ch2.m_i < iLen)
+            while (ch2 != '(' && ch2.m_i32 < iLen)
                ch2++;
             ch2++;
-            while (ch2 != ')' && ch2.m_i < iLen)
+            while (ch2 != ')' && ch2.m_i32 < iLen)
             {
                strResult += ch2;
                ch2++;
@@ -2501,35 +2496,35 @@ namespace dynamic_source
                }
                else
                {
-                  if (is_id(&str[ch2.m_i + 1], str.length() - ch2.m_i - 1, "_GET", 4, iIdLen))
+                  if (is_id(&str[ch2.m_i32 + 1], str.length() - ch2.m_i32 - 1, "_GET", 4, iIdLen))
                   {
                      strResult += "geta()[";
                      bInVar = false;
                      bServer = true;
                      ch2.ansi_add(iIdLen + 1);
                   }
-                  else if (is_id(&str[ch2.m_i + 1], str.length() - ch2.m_i - 1, "_POST", 5, iIdLen))
+                  else if (is_id(&str[ch2.m_i32 + 1], str.length() - ch2.m_i32 - 1, "_POST", 5, iIdLen))
                   {
                      strResult += "posta()[";
                      bInVar = false;
                      bServer = true;
                      ch2.ansi_add(iIdLen + 1);
                   }
-                  else if (is_id(&str[ch2.m_i + 1], str.length() - ch2.m_i - 1, "_REQUEST", 8, iIdLen))
+                  else if (is_id(&str[ch2.m_i32 + 1], str.length() - ch2.m_i32 - 1, "_REQUEST", 8, iIdLen))
                   {
                      strResult += "requesta()[";
                      bInVar = false;
                      bServer = true;
                      ch2.ansi_add(iIdLen + 1);
                   }
-                  else if (is_id(&str[ch2.m_i + 1], str.length() - ch2.m_i - 1, "_SERVER", 7, iIdLen))
+                  else if (is_id(&str[ch2.m_i32 + 1], str.length() - ch2.m_i32 - 1, "_SERVER", 7, iIdLen))
                   {
                      strResult += "inattra()[";
                      bInVar = false;
                      bServer = true;
                      ch2 += iIdLen + 1;
                   }
-                  else if (is_id(&str[ch2.m_i + 1], str.length() - ch2.m_i - 1, "_COOKIE", 7, iIdLen))
+                  else if (is_id(&str[ch2.m_i32 + 1], str.length() - ch2.m_i32 - 1, "_COOKIE", 7, iIdLen))
                   {
                      strResult += "cookies()[";
                      bInVar = false;
@@ -2589,7 +2584,7 @@ namespace dynamic_source
             {
                strResult += ch2;
                ch2++;
-               while (ch2.m_i < iLen)
+               while (ch2.m_i32 < iLen)
                {
                   //ch = str[i];
                   strResult += ch2;
@@ -2604,34 +2599,34 @@ namespace dynamic_source
          else
          {
          ch_else:
-            if (bScript && str[ch2.m_i - 1] != '_' && is_id(&str[ch2.m_i], str.length() - ch2.m_i, "return", 6, iIdLen) && next_nonspace(str.substr(ch2.m_i + iIdLen))[0] != ';')
+            if (bScript && str[ch2.m_i32 - 1] != '_' && is_id(&str[ch2.m_i32], str.length() - ch2.m_i32, "return", 6, iIdLen) && next_nonspace(str.substr(ch2.m_i32 + iIdLen))[0] != ';')
             {
                bInRet = true;
                strResult += "\r\n{\r\nm_varRet = ";
                ch2.ansi_add(iIdLen - 1);
             }
-            else if (is_id(&str[ch2.m_i], str.length() - ch2.m_i, "include", 7, iIdLen))
+            else if (is_id(&str[ch2.m_i32], str.length() - ch2.m_i32, "include", 7, iIdLen))
             {
                bInSpec1 = true;
                strSpec1 = "include";
                strSpec1Macro = "ds_include";
                ch2.ansi_add(iIdLen - 1);
             }
-            else if (is_id(&str[ch2.m_i], str.length() - ch2.m_i, "print", 5, iIdLen))
+            else if (is_id(&str[ch2.m_i32], str.length() - ch2.m_i32, "print", 5, iIdLen))
             {
                bInSpec1 = true;
                strSpec1 = "print";
                strSpec1Macro = "";
                ch2.ansi_add(iIdLen - 1);
             }
-            else if (is_id(&str[ch2.m_i], str.length() - ch2.m_i, "echo", 4, iIdLen))
+            else if (is_id(&str[ch2.m_i32], str.length() - ch2.m_i32, "echo", 4, iIdLen))
             {
                bInSpec1 = true;
                strSpec1 = "echo";
                strSpec1Macro = "";
                ch2.ansi_add(iIdLen - 1);
             }
-            else if (str.substr(ch2.m_i, 2) == "[]")
+            else if (str.substr(ch2.m_i32, 2) == "[]")
             {
                bInSpec2 = true;
                ch2.ansi_add(2 - 1);
@@ -2659,7 +2654,7 @@ namespace dynamic_source
                }
                if (bLow)
                {
-                  strResult += (char) ch2.ansi_lower();
+                  strResult += (::i8) ch2.ansi_lower();
                }
                else
                {
@@ -2741,7 +2736,7 @@ namespace dynamic_source
       strBody += "// folder and subfolders!\r\n";
       strBody += "\r\n";
       strBody += "?>\r\n\r\n\r\n";
-      for (int i = 0; i < stra.get_size(); i++)
+      for (::i32 i = 0; i < stra.get_size(); i++)
       {
          string str = stra[i];
          if (case_insensitive_string_begins(str, m_pscriptmanager2->m_pathNetseedDsCa2Path / "core/persistent")
@@ -2889,7 +2884,7 @@ namespace dynamic_source
 
    //   single_lock slLibrary(m_pmutexLibrary, true);
 
-   //   for(int i = 0; i < m_straLibSourcePath.get_size(); i++)
+   //   for(::i32 i = 0; i < m_straLibSourcePath.get_size(); i++)
    //   {
 
    //      //FILETIME ftCreation;
@@ -2937,7 +2932,7 @@ namespace dynamic_source
       m_ftaLibAccess.set_size(m_straLibSourcePath.get_size());
       m_ftaLibModified.set_size(m_straLibSourcePath.get_size());
 
-      for (int i = 0; i < m_straLibSourcePath.get_size(); i++)
+      for (::i32 i = 0; i < m_straLibSourcePath.get_size(); i++)
       {
 
          struct stat st;
@@ -3024,7 +3019,7 @@ namespace dynamic_source
 
       }
 
-      for (int i = 0; i < straFile.get_count(); i++)
+      for (::i32 i = 0; i < straFile.get_count(); i++)
       {
          string strFile = straFile[i];
          if (::str::case_insensitive_find(".svn", strFile) >= 0 || !case_insensitive_string_ends(strFile, ".txt"))
@@ -3033,7 +3028,7 @@ namespace dynamic_source
          string_array_base straLine;
          straLine.explode("\r\n", strFile);
          string strExtra;
-         for (int j = 0; j < straLine.get_count(); j++)
+         for (::i32 j = 0; j < straLine.get_count(); j++)
          {
             string strLine = straLine[j];
             auto range = strLine();

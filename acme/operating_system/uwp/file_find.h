@@ -16,7 +16,7 @@ namespace universal_windows
       HANDLE m_hContext;
       bool m_bGotLast;
       string m_strRoot;
-      char m_chDirSeparator;     // not '\\' for Internet classes
+      ::i8 m_chDirSeparator;     // not '\\' for Internet classes
 
 
       file_find();
@@ -26,7 +26,7 @@ namespace universal_windows
       void assert_ok() const;
 
 
-      long long get_length() const;
+      ::i64 get_length() const;
       virtual string GetFileName() const;
       virtual string GetFilePath() const;
       virtual string GetFileTitle() const;
@@ -40,7 +40,7 @@ namespace universal_windows
       virtual bool GetLastAccessTime(::earth::time& refTime) const;
       virtual bool GetCreationTime(::earth::time& refTime) const;
 
-      virtual bool MatchesMask(unsigned int dwMask) const;
+      virtual bool MatchesMask(::u32 dwMask) const;
 
       virtual bool IsDots() const;
       // these aren't virtual because they all use MatchesMask(), which is
@@ -55,7 +55,7 @@ namespace universal_windows
 
       
       void close();
-      virtual bool FindFile(const_char_pointer pstrName = nullptr, unsigned int dwUnused = 0);
+      virtual bool FindFile(const_char_pointer pstrName = nullptr, ::u32 dwUnused = 0);
       virtual bool FindNextFile();
 
       virtual void CloseContext();

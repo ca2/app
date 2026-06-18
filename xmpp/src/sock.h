@@ -19,7 +19,7 @@
 #include <stdio.h>
 
 #ifndef _WIN32
-typedef int sock_t;
+typedef ::i32 sock_t;
 #else
 #include <winsock2.h>
 typedef SOCKET sock_t;
@@ -28,21 +28,21 @@ typedef SOCKET sock_t;
 void sock_initialize(void);
 void sock_shutdown(void);
 
-int sock_error(void);
+::i32 sock_error(void);
 
-sock_t sock_connect(const ::string & const host, const unsigned int port);
-int sock_close(const sock_t sock);
+sock_t sock_connect(const ::string & const host, const ::u32 port);
+::i32 sock_close(const sock_t sock);
 
-int sock_set_blocking(const sock_t sock);
-int sock_set_nonblocking(const sock_t sock);
-int sock_read(const sock_t sock, void * const buff, const size_t len);
-int sock_write(const sock_t sock, const void * const buff, const size_t len);
-int sock_is_recoverable(const int error);
+::i32 sock_set_blocking(const sock_t sock);
+::i32 sock_set_nonblocking(const sock_t sock);
+::i32 sock_read(const sock_t sock, void * const buff, const size_t len);
+::i32 sock_write(const sock_t sock, const void * const buff, const size_t len);
+::i32 sock_is_recoverable(const ::i32 error);
 /* checks for an error after connect, return 0 if connect successful */
-int sock_connect_error(const sock_t sock);
+::i32 sock_connect_error(const sock_t sock);
 
-int sock_srv_lookup(const ::string &service, const ::string &proto,
-		     const_char_pointer domain, char *resulttarget,
-		     int resulttargetlength, int *resultport);
+::i32 sock_srv_lookup(const ::string &service, const ::string &proto,
+		     const_char_pointer domain, char_pointer resulttarget,
+		     ::i32 resulttargetlength, ::i32 *resultport);
 
 #endif /* __LIBSTROPHE_SOCK_H__ */

@@ -57,7 +57,7 @@ namespace windows
    }
 
 
-   void * heap_allocator::allocate(memsize s, const char * pszAnnotation)
+   void * heap_allocator::allocate(memsize s, const_char_pointer pszAnnotation)
    {
 
       raw_critical_section_lock criticalsectionlock(&m_criticalsection);
@@ -67,7 +67,7 @@ namespace windows
    }
 
 
-   void * heap_allocator::reallocate(void * p, memsize s, const char * pszAnnotation)
+   void * heap_allocator::reallocate(void * p, memsize s, const_char_pointer pszAnnotation)
    {
 
       raw_critical_section_lock criticalsectionlock(&m_criticalsection);
@@ -103,7 +103,7 @@ namespace windows
       if (s == (SIZE_T)-1)
       {
 
-         informationf("os_impl_size : Failed to get memory int_size");
+         informationf("os_impl_size : Failed to get memory i32_size");
 
       }
 

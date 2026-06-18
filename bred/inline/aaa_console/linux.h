@@ -37,7 +37,7 @@
 //       }
 
 
-//       console(int argc, char** argv)
+//       console(::i32 argc, char_pointer * argv)
 //       {
 
 //          common_construct();
@@ -49,7 +49,7 @@
 //       }
 
 
-//       console(int argc, wchar_t** argv)
+//       console(::i32 argc, wchar_t** argv)
 //       {
 
 //          common_construct();
@@ -69,12 +69,12 @@
 //       }
 
 
-//       int result()
+//       ::i32 result()
 //       {
 
 //          m_estatus = papp->m_estatus;
 
-//          int iErrorStatus = m_estatus.error_status();
+//          ::i32 iErrorStatus = m_estatus.error_status();
 
 //          system()->inline_term();
 
@@ -110,10 +110,10 @@
 
 
 
-// static const char * s_pszBinRelocInitGetSymbol = "br_init_get_symbol";
+// static const_char_pointer s_pszBinRelocInitGetSymbol = "br_init_get_symbol";
 
 
-// const char * br_init_get_symbol()
+// const_char_pointer br_init_get_symbol()
 // {
 
 //    return s_pszBinRelocInitGetSymbol;

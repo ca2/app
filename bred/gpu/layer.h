@@ -12,15 +12,17 @@ namespace gpu
    {
    public:
 
-      int m_iFrameIndex = -1;
-      int m_iLayerIndex = -1;
+      ::i32 m_iFrameIndex = -1;
+      ::i32 m_iLayerIndex = -1;
+      bool m_bFirstLayer;
+      bool m_bClosingLayer;
       ::pointer < ::gpu::renderer >        m_pgpurenderer;
       bool m_bRenderTargetFramebufferInitialized;
       //::pointer < renderer >        m_pgpurendererTarget;
-      //::int_rectangle m_rectangleTarget;
+      //::i32_rectangle m_rectangleTarget;
       ::pointer_array <::gpu::texture >    m_texturea;
       ::pointer_array <::gpu::texture >    m_textureaSource;
-      ::pointer < ::gpu::frame > m_pgpuframe;
+      //::pointer < ::gpu::frame > m_pgpulayer;
       ::pointer < ::gpu::fence > m_pgpufence;
       ::pointer < ::gpu::semaphore > m_pgpusemaphoreSignal;
       //::comptr < ID3D12Resource > m_presource;
@@ -28,6 +30,7 @@ namespace gpu
       ::pointer < ::manual_reset_happening > m_pmanualresethappeningFinished;
 
       ::pointer_array<command_buffer>	 m_commandbufferaLayer;
+      ::pointer<::gpu::command_buffer> m_pcommandbufferScoped;
       class ::time m_timeStart;
       class ::time m_timeEnd;
       class ::time m_timeDuration;
@@ -43,7 +46,7 @@ namespace gpu
       virtual ::gpu::command_buffer* getCurrentCommandBuffer4();
 
 
-      virtual void initialize_gpu_layer(::gpu::renderer * pgpurenderer, int iFrameIndex, int iLayerIndex);
+      virtual void initialize_gpu_layer(::gpu::renderer * pgpurenderer, ::i32 iFrameIndex, ::i32 iLayerIndex);
 
 
       virtual void create_command_buffers();
@@ -62,6 +65,10 @@ namespace gpu
 
    };
    
+
+   CLASS_DECL_BRED void set_current_layer(::gpu::layer *pgpulayer);
+   CLASS_DECL_BRED ::gpu::layer *current_layer();
+
 
 } // namespace gpu
 

@@ -45,10 +45,10 @@ namespace gpu
    }
 
 
-   ::gpu::binding *binding_set::binding(int iSlot)
+   ::gpu::binding *binding_set::binding(::i32 iSlot)
    {
 
-      auto &pbinding = this->ø(iSlot);
+      auto &pbinding = this->atø(iSlot);
 
       if (!pbinding)
       {
@@ -156,10 +156,10 @@ namespace gpu
 
    }
 
-   ::gpu::binding_slot *binding_slot_set::binding_slot(int iSlot)
+   ::gpu::binding_slot *binding_slot_set::binding_slot(::i32 iSlot)
    {
 
-      auto &bindingslot = this->ø(iSlot);
+      auto &bindingslot = this->atø(iSlot);
 
       bindingslot.m_iSlot = iSlot;
 
@@ -168,7 +168,7 @@ namespace gpu
 
 
    
-   void binding_slot_set::update_binding_slots(int iSet)
+   void binding_slot_set::update_binding_slots(::i32 iSet)
    {
 
       if (::is_null(m_pbindingset))
@@ -182,7 +182,7 @@ namespace gpu
 
       this->set_size(this->m_pbindingset->size());
 
-      int iSlot = -1;
+      ::i32 iSlot = -1;
 
       for (auto &pbinding: *this->m_pbindingset)
       {
@@ -214,7 +214,7 @@ namespace gpu
       for (::collection::index iSlot = 0; iSlot < m_pbindingset->size(); iSlot++)
       {
 
-         auto pbindingslot = binding_slot((int) iSlot);
+         auto pbindingslot = binding_slot((::i32) iSlot);
 
          auto &pgputextureSource = ppgputexture[iSlot];
 
@@ -279,7 +279,7 @@ namespace gpu
 
       this->set_size(this->m_pbindingseta->size());
 
-      int iSet = -1;
+      ::i32 iSet = -1;
 
       for (auto &pbindingset: *this->m_pbindingseta)
       {

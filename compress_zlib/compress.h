@@ -30,15 +30,15 @@
      #include "GZipHelper.h"
     void main()
     {
-        char plainText[]="Plain text here";
+        ::i8 plainText[]="Plain text here";
       CA2GZIP gzip(plainText,strlen(plainText));  // do compressing here;
       LPGZIP pgzip=gzip.pgzip;  // pgzip is zipped data pointer, you can use it directly
-      int len=gzip.Length;      // Length is length of zipped data;
+      ::i32 len=gzip.Length;      // Length is length of zipped data;
 
       CGZIP2A plain(pgzip,len);  // do decompressing here
 
-      char *pplain=plain.psz;    // psz is plain data pointer
-      int  aLen=plain.Length;    // Length is length of unzipped data.
+      char_pointer pplain=plain.psz;    // psz is plain data pointer
+      ::i32  aLen=plain.Length;    // Length is length of unzipped data.
     }
 //////////////////////////////////////////////////////////////////////////////
 */
@@ -60,20 +60,20 @@ namespace compress_zlib
    public:
 
 
-      int      m_iLevel;
+      ::i32      m_iLevel;
 
 
       compress();
       ~compress() override;
 
 
-      void set_level(int iLevel) override;
+      void set_level(::i32 iLevel) override;
 
 
       void transfer(::file::file* pfileOut, ::file::file* pfileIn, transfer_progress_function transferprogressfunction) override;
 
 
-      unsigned int crc32(unsigned int uCrc, const ::block& block) override;
+      ::u32 crc32(::u32 uCrc, const ::block& block) override;
 
 
    };

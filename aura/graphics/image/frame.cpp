@@ -21,7 +21,7 @@ namespace image
    }
 
 
-   void image_frame::gif_set_disposal(int iDisposal)
+   void image_frame::gif_set_disposal(::i32 iDisposal)
    {
 
       switch (iDisposal)
@@ -48,9 +48,9 @@ namespace image
    void image_frame::_001Process(::image::image *pimageCompose, ::image::image *pimageFrame, image_frame_array * pframea)
    {
 
-      ::int_point point = m_rectangle.top_left();
+      ::i32_point point = m_rectangle.top_left();
 
-      ::int_size size = m_rectangle.size();
+      ::i32_size size = m_rectangle.size();
 
       if (m_edisposal == ::draw2d::e_disposal_background
          || m_edisposal == ::draw2d::e_disposal_undefined
@@ -63,7 +63,7 @@ namespace image
 
          //::color::color crBack = pframea->m_colorBack;
 
-         //unsigned char bAlpha = color32_byte_opacity(crBack);
+         //::u8 bAlpha = color32_u8_opacity(crBack);
 
          //if (bAlpha == 0)
          //{
@@ -78,7 +78,7 @@ namespace image
 
          //}
 
-         //::int_rectangle rectangle = pframea->element_at(m_iFrame - 1)->m_rectangle;
+         //::i32_rectangle rectangle = pframea->element_at(m_iFrame - 1)->m_rectangle;
 
          //pimageCompose->g()->fill_rectangle(rectangle, crBack);
 
@@ -138,8 +138,8 @@ namespace image
    void image_frame::create(::image::image_frame * pframeSource, const ::image::image_drawing & imagedrawing, ::image::image_frame_array * pframea)
    {
 
-      auto dx = (double) imagedrawing.m_rectangleTarget.width() / (double) imagedrawing.image()->width();
-      auto dy = (double)imagedrawing.m_rectangleTarget.height() / (double)imagedrawing.image()->height();
+      auto dx = (::f64) imagedrawing.m_rectangleTarget.width() / (::f64) imagedrawing.image()->width();
+      auto dy = (::f64)imagedrawing.m_rectangleTarget.height() / (::f64)imagedrawing.image()->height();
 
       m_rectangle.left = (decay<decltype(m_rectangle.left)>)(pframeSource->m_rectangle.left * dx);
       m_rectangle.top = (decay<decltype(m_rectangle.top)>)(pframeSource->m_rectangle.top * dy);
@@ -148,15 +148,15 @@ namespace image
 
       constructø(m_pimage);
 
-      ::double_size size = pframea->m_size;
+      ::f64_size size = pframea->m_size;
 
       m_pimage->create(size);
 
-      ::double_rectangle r1(pframeSource->m_rectangle.size());
+      ::f64_rectangle r1(pframeSource->m_rectangle.size());
 
       ::image::image_source imagesourceFrame(pframeSource->m_pimage);
 
-      ::double_rectangle r(size);
+      ::f64_rectangle r(size);
 
       ::image::image_drawing_options imagedrawingoptionsFrame(r);
 

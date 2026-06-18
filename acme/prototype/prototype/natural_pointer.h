@@ -70,7 +70,7 @@ public:
    static base_data * base_data_from_data(const DATA * pdata) { return &((base_data *) pdata)[-1]; }
 
 
-   int base_data_defer_release()
+   ::i32 base_data_defer_release()
    {
 
       auto i = base_data_decrement_reference_count();
@@ -185,7 +185,7 @@ public:
 //    using BASE_DATA         = typename BASE_DATA_BASE::BASE_DATA_BASE;
 //    using DATA              = typename BASE_DATA_BASE::DATA;
 //
-//    unsigned char            m_data[sizeof(DATA)] = {};
+//    ::u8            m_data[sizeof(DATA)] = {};
 //
 //
 //    base_data() {}
@@ -679,14 +679,14 @@ inline void base_data_defer_add_reference(::base_data < DATA >* pbasedata)
 
 
 template < typename DATA >
-int base_data_defer_release(::base_data < DATA > * & pbasedata)
+::i32 base_data_defer_release(::base_data < DATA > * & pbasedata)
 {
 
    auto p = pbasedata;
 
    pbasedata = nullptr;
 
-   int i = -1;
+   ::i32 i = -1;
 
    if (::is_set(p))
    {

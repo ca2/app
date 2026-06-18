@@ -3,7 +3,7 @@
 
 ////#include "acme/exception/exception.h"
 #include "acme/constant/gpu.h"
-#include "acme/prototype/collection/int_map.h"
+#include "acme/prototype/collection/integer_map.h"
 #include "acme/prototype/geometry2d/size.h"
 #include "acme/prototype/prototype/memory.h"
 #include "acme/prototype/prototype/pool.h"
@@ -29,11 +29,11 @@ namespace gpu
 
       ::memory       m_memory;
 
-      int m_iWidth;
-      int m_iHeight;
+      ::i32 m_iWidth;
+      ::i32 m_iHeight;
 
-      int width() const { return m_iWidth; }
-      int height() const { return m_iHeight; }
+      ::i32 width() const { return m_iWidth; }
+      ::i32 height() const { return m_iHeight; }
       const void * data() const { return m_memory.data(); }
       void * data() { return m_memory.data(); }
 
@@ -82,11 +82,11 @@ namespace gpu
       };
 
 
-      //int                                    m_iTopicTexture = -1;
+      //::i32                                    m_iTopicTexture = -1;
       //bool                                   m_bCullFace = false;
       ::gpu::enum_cull_mode                  m_ecullmode;
       //bool m_bOffscreen = true;
-      int                                    m_iOverrideFrame = -1;
+      ::i32                                    m_iOverrideFrame = -1;
       enum_type                              m_etype;
       enum_output                            m_eoutput;
       ::gpu::enum_scene                      m_escene;
@@ -94,10 +94,10 @@ namespace gpu
       //enum_output m_eoutputContextEngine = e_output_gpu_buffer;
       ::gpu::compositor *                    m_pgpucompositor;
       ::pointer<::gpu::device>               m_pgpudevice;
-      //::int_rectangle                        m_rectangleNew;
-      ::int_rectangle                        m_rectangle;
-      float                                  m_z;
-      int_point                              m_pointTranslate;
+      //::i32_rectangle                        m_rectangleNew;
+      ::i32_rectangle                        m_rectangle;
+      ::f32                                  m_z;
+      i32_point                              m_pointTranslate;
       ::pointer<::gpu::cpu_buffer>           m_pcpubuffer;
       ::pointer<::gpu::shader>               m_pshader;
       ::pointer<::gpu::shader>               m_pshaderBound;
@@ -118,12 +118,12 @@ namespace gpu
       ::pointer < ::gpu::command_buffer >    m_pcommandbufferUpload;
       ::pointer < ::gpu::model_buffer >      m_pmodelbufferFullscreenQuad;
       // size memory buffer
-      ::int_map < ::pool <::gpu::memory_buffer > > m_mapPoolMemoryBuffer;
+      ::i32_map < ::pool <::gpu::memory_buffer > > m_mapPoolMemoryBuffer;
       //::image32_callback                     m_callbackImage32CpuBuffer;
       ::pointer_array < ::gpu::texture >        m_textureaAtlas;
       //::pointer < ::mutex >                  m_pmutexOffscreen;
-      //::int_size                             m_sizeOffscreen;
-      //int                                    m_iScanOffscreen;
+      //::i32_size                             m_sizeOffscreen;
+      //::i32                                    m_iScanOffscreen;
       //::memory                               m_memoryOffscreen;
       ::pointer < ::gpu::swap_chain >          m_pgpuswapchain;
       ::pointer_array < ::gpu::shader >         m_shaderaRetire;
@@ -139,11 +139,11 @@ namespace gpu
 
       virtual void manage_retired_objects();
 
-      virtual ::pointer < ::gpu::pixmap > create_gpu_pixmap(const ::int_size& size);
+      virtual ::pointer < ::gpu::pixmap > create_gpu_pixmap(const ::i32_size& size);
 
       virtual ::gpu::swap_chain* get_swap_chain();
 
-      virtual ::gpu::texture* current_target_texture(::gpu::frame* pgpuframe);
+      virtual ::gpu::texture* current_target_texture(::gpu::layer* pgpulayer);
 
       void _send(const ::procedure& procedure) override;
       //void _post(const ::procedure& procedure) override;
@@ -155,8 +155,8 @@ namespace gpu
       virtual ::gpu::texture* texture(const ::file::path& path);
 
       /// loads different types of image
-      virtual ::gpu::texture* generic_texture(const ::file::path & path, int iAssimpTextureType);
-      virtual void load_generic_texture(::pointer < ::gpu::texture > & ptexture, const ::file::path & path, int iAssimpTextureType);
+      virtual ::gpu::texture* generic_texture(const ::file::path & path, ::i32 iAssimpTextureType);
+      virtual void load_generic_texture(::pointer < ::gpu::texture > & ptexture, const ::file::path & path, ::i32 iAssimpTextureType);
 
 
 
@@ -199,7 +199,7 @@ namespace gpu
 
       virtual void create_window_context(::gpu::device* pgpudevice, ::windowing::window * pwindow);
 
-      virtual void create_gpu_context(::gpu::device* pgpudevice, const ::gpu::enum_output& eoutput, const ::gpu::enum_scene & escene, const ::int_size& size);
+      virtual void create_gpu_context(::gpu::device* pgpudevice, const ::gpu::enum_output& eoutput, const ::gpu::enum_scene & escene, const ::i32_size& size);
 
       /// <summary>
       ///  a draw2d context is a offscreen context that is used for drawing 2d graphics
@@ -207,11 +207,11 @@ namespace gpu
       /// <param name="pgpudevice"></param>
       /// <param name="eoutput"></param>
       /// <param name="size"></param>
-      virtual void create_draw2d_context(::gpu::device* pgpudevice, const enum_output& eoutput, const ::int_size& size);
+      virtual void create_draw2d_context(::gpu::device* pgpudevice, const enum_output& eoutput, const ::i32_size& size);
 
-      virtual void initialize_gpu_context(::gpu::device* pgpudevice, const ::gpu::enum_output& eoutput, ::windowing::window* pwindow, const ::int_size & size);
+      virtual void initialize_gpu_context(::gpu::device* pgpudevice, const ::gpu::enum_output& eoutput, ::windowing::window* pwindow, const ::i32_size & size);
 
-      virtual void on_create_context(::gpu::device * pgpudevice, const ::gpu::enum_output & eoutput, ::windowing::window* pwindow, const ::int_size & size);
+      virtual void on_create_context(::gpu::device * pgpudevice, const ::gpu::enum_output & eoutput, ::windowing::window* pwindow, const ::i32_size & size);
 
       virtual void engine_on_frame_context_initialization();
 
@@ -246,7 +246,7 @@ namespace gpu
       virtual void send_on_context(const ::procedure & procedure);
       virtual void top_send_on_context(::gpu::context * pcontextInnerStart, bool bForDrawing, const ::procedure& procedure);
       
-      virtual bool create_offscreen_graphics_for_swap_chain_blitting(::gpu::graphics * pgraphics, const ::int_size& size = {});
+      virtual bool create_offscreen_graphics_for_swap_chain_blitting(::gpu::graphics * pgraphics, const ::i32_size& size = {});
 
 
       virtual ::gpu::renderer* get_gpu_renderer();
@@ -255,12 +255,12 @@ namespace gpu
       //virtual ::gpu::renderer* graphics3d_renderer();
 
       //virtual ::gpu::renderer* new_draw2d_renderer();
-      //virtual void set_topic_texture(int iIndex);
+      //virtual void set_topic_texture(::i32 iIndex);
       virtual void set_cull_face(::gpu::enum_cull_mode ecullmode);
 
-      virtual ::int_rectangle rectangle();
-      virtual void set_placement(const ::int_rectangle & rectanglePlacement);
-      virtual void on_resize(const ::int_size& size);
+      virtual ::i32_rectangle rectangle();
+      virtual void set_placement(const ::i32_rectangle & rectanglePlacement);
+      virtual void on_resize(const ::i32_size& size);
 
       virtual string _001GetIntroProjection();
       virtual string _001GetIntroFragment();
@@ -287,9 +287,9 @@ namespace gpu
       virtual void _create_window_buffer(::windowing::window* pwindow);
 
 
-      virtual void create_cpu_buffer(const ::int_size& size);
-      virtual void _create_cpu_buffer(const ::int_size& size);
-      virtual void resize_cpu_buffer(const ::int_size& size);
+      virtual void create_cpu_buffer(const ::i32_size& size);
+      virtual void _create_cpu_buffer(const ::i32_size& size);
+      virtual void resize_cpu_buffer(const ::i32_size& size);
       virtual void destroy_cpu_buffer();
 
 
@@ -320,15 +320,15 @@ namespace gpu
       virtual void clear(::gpu::texture * ptexture, const ::color::color& color);
 
 
-      virtual void create_global_ubo(int iSize, int iFrameCount);
+      virtual void create_global_ubo(::i32 iSize, ::i32 iFrameCount);
       virtual void update_global_ubo(const ::block& block);
 
       virtual void copy(::gpu::texture* ptexture);
       virtual void copy(::gpu::texture* ptextureTarget, ::gpu::texture* ptextureSource);
       virtual void merge_layers(::gpu::texture* ptextureTarget, ::pointer_array < ::gpu::layer >* playera);
 
-      virtual void on_start_layer(::gpu::layer* player);
-      virtual void on_end_layer(::gpu::layer* player);
+      virtual void on_start_layer(::gpu::layer * pgpulayer);
+      virtual void on_end_layer(::gpu::layer * pgpulayer);
 
 
 
@@ -338,8 +338,8 @@ namespace gpu
       virtual void frame_prefix();
       virtual void frame_suffix();
 
-      //virtual void on_begin_draw_attach(::gpu::graphics* pgpugraphics, const ::int_rectangle& rectangle);
-      //virtual void draw2d_on_begin_draw(::gpu::graphics* pgpugraphics, const ::int_rectangle & rectangle);
+      //virtual void on_begin_draw_attach(::gpu::graphics* pgpugraphics, const ::i32_rectangle& rectangle);
+      //virtual void draw2d_on_begin_draw(::gpu::graphics* pgpugraphics, const ::i32_rectangle & rectangle);
       virtual void on_begin_draw_attach(::gpu::graphics* pgpugraphics);
       virtual void draw2d_on_begin_draw(::gpu::graphics* pgpugraphics);
 
@@ -370,7 +370,7 @@ namespace gpu
       virtual void initialize_rectangle_shader(::gpu::shader* pshader);
 
 
-      virtual ::gpu::model_buffer* sequence2_uv_fullscreen_quad_model_buffer(::gpu::frame* pgpuframe);
+      virtual ::gpu::model_buffer* sequence2_uv_fullscreen_quad_model_buffer(::gpu::layer* pgpulayer);
 
 
       //::pointer<::graphics3d::renderable> load_model();
@@ -389,7 +389,7 @@ namespace gpu
       // //    const ::scoped_string &name,
       // //    const ::scoped_string &filepath,
       // //    uint32_t gltfFlags,
-      // //    float scale);
+      // //    ::f32 scale);
       //
       //
       // ::pointer<::graphics3d::renderable> loadObjModel(
@@ -403,7 +403,7 @@ namespace gpu
       //    const ::scoped_string &name,
       //    const ::scoped_string &filepath,
       //    uint32_t gltfFlags,
-      //    float scale
+      //    ::f32 scale
       //    );
 
       virtual ::pointer<::graphics3d::renderable> load_wavefront_obj_renderable(const ::gpu::renderable_t & model);
@@ -413,7 +413,7 @@ namespace gpu
       virtual ::pointer<::graphics3d::renderable> load_gltf_model(const ::gpu::renderable_t & model);
 
       virtual ::pointer<::graphics3d::renderable> _load_gltf_model(const ::gpu::renderable_t & model);
-      virtual void set_viewport(::gpu::command_buffer *pgpucommandbuffer, const ::int_rectangle &rectangle);
+      virtual void set_viewport(::gpu::command_buffer *pgpucommandbuffer, const ::i32_rectangle &rectangle);
 
 //      /// @brief generatePrefilteredEnvMap
 //      /// @param environmentCubeExisting 
@@ -457,10 +457,10 @@ namespace gpu
       // 
       // 
       
-      //virtual floating_matrix4 ortho(float left, float right, float bottom, float top, float zNear = -1.0f,
-      //                               float zFar = 1.0f);
+      //virtual floating_matrix4 ortho(::f32 left, ::f32 right, ::f32 bottom, ::f32 top, ::f32 zNear = -1.0f,
+      //                               ::f32 zFar = 1.0f);
      
-      //virtual floating_matrix4 perspective(float fovyRadians, float aspect, float zNear, float zFar);
+      //virtual floating_matrix4 perspective(::f32 fovyRadians, ::f32 aspect, ::f32 zNear, ::f32 zFar);
 
       // 
       // ------------------------------
@@ -470,8 +470,8 @@ namespace gpu
       //virtual floating_matrix4 rotateFromAxes(const floating_sequence3 &right, const floating_sequence3 &up,
         //                              const floating_sequence3 &forward);  // OpenGL forward = -f
 
-      //virtual floating_matrix4 lookAt(const float_sequence3 &eye, const float_sequence3 &center,
-        //                              const float_sequence3 &up);
+      //virtual floating_matrix4 lookAt(const f32_sequence3 &eye, const f32_sequence3 &center,
+        //                              const f32_sequence3 &up);
 
    };
 

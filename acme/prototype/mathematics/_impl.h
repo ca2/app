@@ -15,28 +15,28 @@
 
 
 
-//inline long long random(long long i1, long long i2)
+//inline ::i64 random(::i64 i1, ::i64 i2)
 //{
 //   return __random_int(i1, i2);
 //}
 
 
-//inline int random(int i1, int i2)
+//inline ::i32 random(::i32 i1, ::i32 i2)
 //{
 //   return __random_int(i1, i2);
 //}
 
 
 
-//inline long long random(int i1, long long i2)
+//inline ::i64 random(::i32 i1, ::i64 i2)
 //{
-//   return __random_int((long long) i1, i2);
+//   return __random_int((::i64) i1, i2);
 //}
 
 
-//inline long long random(long long i1, int i2)
+//inline ::i64 random(::i64 i1, ::i32 i2)
 //{
-//   return __random_int(i1, (long long)i2);
+//   return __random_int(i1, (::i64)i2);
 //}
 
 

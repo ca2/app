@@ -14,27 +14,27 @@ CLASS_DECL_ACME void string_count_copy(::wd32_character * pchDest, size_t nDestL
 CLASS_DECL_ACME void overlapped_string_count_copy(::wd32_character * pchDest, const ::wd32_character * pchSrc, character_count nChars) noexcept;
 
 
-CLASS_DECL_ACME ::std::strong_ordering _string_compare(const ::wd32_character * pszA, const ::wd32_character * pszB) noexcept;
-CLASS_DECL_ACME ::std::strong_ordering case_insensitive__string_compare(const ::wd32_character * pszA, const ::wd32_character * pszB) noexcept;
-CLASS_DECL_ACME ::std::strong_ordering _string_count_compare(const ::wd32_character * pszA, const ::wd32_character * pszB, character_count len) noexcept;
-CLASS_DECL_ACME ::std::strong_ordering case_insensitive__string_count_compare(const ::wd32_character * pszA, const ::wd32_character * pszB, character_count len) noexcept;
+CLASS_DECL_ACME ::i32 _string_compare(const ::wd32_character * pszA, const ::wd32_character * pszB) noexcept;
+CLASS_DECL_ACME ::i32 case_insensitive__string_compare(const ::wd32_character * pszA, const ::wd32_character * pszB) noexcept;
+CLASS_DECL_ACME ::i32 _string_count_compare(const ::wd32_character * pszA, const ::wd32_character * pszB, character_count len) noexcept;
+CLASS_DECL_ACME ::i32 case_insensitive__string_count_compare(const ::wd32_character * pszA, const ::wd32_character * pszB, character_count len) noexcept;
 CLASS_DECL_ACME ::std::strong_ordering _string_collate(const ::wd32_character * pszA, const ::wd32_character * pszB) noexcept;
 CLASS_DECL_ACME ::std::strong_ordering _case_insensitive_string_collate(const ::wd32_character * pszA, const ::wd32_character * pszB) noexcept;
 CLASS_DECL_ACME ::std::strong_ordering _string_count_collate(const ::wd32_character * pszA, const ::wd32_character * pszB, character_count len) noexcept;
 CLASS_DECL_ACME ::std::strong_ordering _case_insensitive_string_count_collate(const ::wd32_character * pszA, const ::wd32_character * pszB, character_count len) noexcept;
 
 
-CLASS_DECL_ACME ::std::strong_ordering string_compare(const ::wd32_character * pszA, const ::wd32_character * pszB) noexcept;
-CLASS_DECL_ACME ::std::strong_ordering case_insensitive_string_order(const ::wd32_character * pszA, const ::wd32_character * pszB) noexcept;
-CLASS_DECL_ACME ::std::strong_ordering string_count_compare(const ::wd32_character * pszA, const ::wd32_character * pszB, character_count len) noexcept;
-CLASS_DECL_ACME ::std::strong_ordering case_insensitive_string_count_compare(const ::wd32_character * pszA, const ::wd32_character * pszB, character_count len) noexcept;
+CLASS_DECL_ACME ::i32 string_compare(const ::wd32_character * pszA, const ::wd32_character * pszB) noexcept;
+CLASS_DECL_ACME ::i32 case_insensitive_string_compare(const ::wd32_character * pszA, const ::wd32_character * pszB) noexcept;
+CLASS_DECL_ACME ::i32 string_count_compare(const ::wd32_character * pszA, const ::wd32_character * pszB, character_count len) noexcept;
+CLASS_DECL_ACME ::i32 case_insensitive_string_count_compare(const ::wd32_character * pszA, const ::wd32_character * pszB, character_count len) noexcept;
 CLASS_DECL_ACME ::std::strong_ordering string_collate(const ::wd32_character * pszA, const ::wd32_character * pszB) noexcept;
 CLASS_DECL_ACME ::std::strong_ordering case_insensitive_string_collate(const ::wd32_character * pszA, const ::wd32_character * pszB) noexcept;
 CLASS_DECL_ACME ::std::strong_ordering string_count_collate(const ::wd32_character * pszA, const ::wd32_character * pszB, character_count len) noexcept;
 CLASS_DECL_ACME ::std::strong_ordering case_insensitive_string_count_collate(const ::wd32_character * pszA, const ::wd32_character * pszB, character_count len) noexcept;
 
-inline ::std::strong_ordering _string_count_compare(const ::wd32_character* pszA, const ::wd32_character* pszB, character_count len) noexcept { return string_count_compare(pszA, pszB, len); }
-inline ::std::strong_ordering _case_insensitive_string_count_compare(const ::wd32_character* pszA, const ::wd32_character* pszB, character_count len) noexcept { return case_insensitive_string_count_compare(pszA, pszB, len); }
+inline ::i32 _string_count_compare(const ::wd32_character* pszA, const ::wd32_character* pszB, character_count len) noexcept { return string_count_compare(pszA, pszB, len); }
+inline ::i32 _case_insensitive_string_count_compare(const ::wd32_character* pszA, const ::wd32_character* pszB, character_count len) noexcept { return case_insensitive_string_count_compare(pszA, pszB, len); }
 
 CLASS_DECL_ACME character_count string_get_length(const ::wd32_character * psz) noexcept;
 CLASS_DECL_ACME character_count string_get_length2(const ::wd32_character* psz, character_count sizeMaximumInterest) noexcept;
@@ -83,9 +83,9 @@ CLASS_DECL_ACME character_count unichar_count(const ::wd32_character * pstr);
 
 
 
-CLASS_DECL_ACME long long string_to_signed(const ::wd32_character * psz);
-CLASS_DECL_ACME unsigned long long as_unsigned_long_long(const ::wd32_character * psz);
-CLASS_DECL_ACME double string_to_floating(const ::wd32_character * psz);
+CLASS_DECL_ACME ::i64 string_to_signed(const ::wd32_character * psz);
+CLASS_DECL_ACME ::u64 as_u64(const ::wd32_character * psz);
+CLASS_DECL_ACME ::f64 string_to_floating(const ::wd32_character * psz);
 
 
 

@@ -11,7 +11,7 @@
 namespace gpu_opengl
 {
 
-   Mesh::Mesh(std::vector<Vertex> vertices, std::vector<unsigned int> indices, Material material) :
+   Mesh::Mesh(std::vector<Vertex> vertices, std::vector<::u32> indices, Material material) :
        mVertices(vertices), mIndices(indices), mMaterial(material)
    {
       init();
@@ -88,7 +88,7 @@ namespace gpu_opengl
                    GL_STATIC_DRAW); // copy over the vertex data
 
       glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, mEBO); // use this EBO for subsequent calls
-      glBufferData(GL_ELEMENT_ARRAY_BUFFER, mIndices.size() * sizeof(unsigned int), &mIndices[0],
+      glBufferData(GL_ELEMENT_ARRAY_BUFFER, mIndices.size() * sizeof(::u32), &mIndices[0],
                    GL_STATIC_DRAW); // copy over the index data
 
       // setup the locations of vertex data

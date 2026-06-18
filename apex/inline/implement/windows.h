@@ -14,10 +14,10 @@
 //void acme_system_term();
 //
 //
-//CLASS_DECL_ACME void process_set_args(int argc, platform_char** argv);
+//CLASS_DECL_ACME void process_set_args(::i32 argc, platform_char ** argv);
 //
 //
-////int wmain(int argc, wchar_t* argv[], wchar_t* envp[])
+////::i32 wmain(::i32 argc, wchar_t* argv[], wchar_t* envp[])
 ////{
 ////
 ////   main mainarguments;
@@ -30,7 +30,7 @@
 ////
 ////   auto estatus = __main(mainarguments);
 ////
-////   int iStatus = estatus.error_status();
+////   ::i32 iStatus = estatus.error_status();
 ////
 ////   return iStatus;
 ////
@@ -73,7 +73,7 @@
 //////
 //////      //auto envp = psystem->node()->_get_envp(wcsdupa);
 //////
-//////      // wchar** envp = nullptr;
+//////      // wchar_pointer * envp = nullptr;
 //////
 //////      psystem->system_construct(argc, argv, envp);
 //////

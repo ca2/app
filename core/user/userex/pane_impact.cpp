@@ -21,7 +21,7 @@ namespace userex
    void pane_impact::on_command_probe(::message::command * pcommand)
    {
 
-      for(int i = 0; i < m_menua.get_size(); i++)
+      for(::i32 i = 0; i < m_menua.get_size(); i++)
       {
 
          if(pcommand->command_id() == m_menua[i]->m_atomMenu)
@@ -45,7 +45,7 @@ namespace userex
    void pane_impact::on_command(::message::command * pcommand)
    {
 
-      for(int i = 0; i < m_menua.get_size(); i++)
+      for(::i32 i = 0; i < m_menua.get_size(); i++)
       {
 
          if(pcommand->command_id() == m_menua[i]->m_atomMenu.compounded(::atom::e_type_command))
@@ -69,7 +69,7 @@ namespace userex
    void pane_impact::on_create_impact(::user::impact_data * pimpactdata)
    {
       
-      for(int i = 0; i < m_menua.get_size(); i++)
+      for(::i32 i = 0; i < m_menua.get_size(); i++)
       {
          
          if(pimpactdata->id() == m_menua[i]->m_atomMenu)
@@ -115,7 +115,7 @@ namespace userex
 
       ::pointer<menu>pmenu;
 
-      for(int i = 0; i < m_menua.get_size(); i++)
+      for(::i32 i = 0; i < m_menua.get_size(); i++)
       {
 
          if(m_menua[i]->m_atomMenu == atom)

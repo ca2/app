@@ -2,7 +2,7 @@
 
 
 
-CLASS_DECL_ACME void * memory_set(void * p, int i, memsize iSize);
+CLASS_DECL_ACME void * memory_set(void * p, ::i32 i, memsize iSize);
 CLASS_DECL_ACME void * memory_and(void * p, const void * point1, const void * point2, memsize iSize);
 CLASS_DECL_ACME void * memory_copy(void * dst, const void * src, memsize iSize);
 CLASS_DECL_ACME void * memory_transfer(void * dst, const void * src, memsize iSize);
@@ -26,7 +26,7 @@ inline void * zero(void * p, memsize size) { memory_set(p, 0, size); return p; }
 inline bool is_zero(const void * p, memsize iSize)
 {
 
-   unsigned char * pb = (unsigned char *) p;
+   ::u8 * pb = (::u8 *) p;
 
    while(*pb == '\0' && iSize > 0)
    {

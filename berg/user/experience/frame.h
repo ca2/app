@@ -38,14 +38,14 @@ namespace experience
       bool                                   m_bHollow;
       string                                 m_strExperience;
       string                                 m_strFrameSchema;
-      ::int_rectangle                        m_rectangleCaption;
-      ::int_rectangle                        m_rectangleWindowText;
-      int                                    m_iControlBoxPosition;
-      //::int_rectangle                      m_rectangleControlBoxFullScreen;
-      //::int_rectangle                      m_rectangleControlBoxZoomed;
-      //::int_rectangle                      m_rectangleControlBoxNormal;
-      int_point                              m_pointWindowIcon;
-      ///int_point                           m_pointMoveGripMinimal;
+      ::i32_rectangle                        m_rectangleCaption;
+      ::i32_rectangle                        m_rectangleWindowText;
+      ::i32                                    m_iControlBoxPosition;
+      //::i32_rectangle                      m_rectangleControlBoxFullScreen;
+      //::i32_rectangle                      m_rectangleControlBoxZoomed;
+      //::i32_rectangle                      m_rectangleControlBoxNormal;
+      i32_point                              m_pointWindowIcon;
+      ///i32_point                           m_pointMoveGripMinimal;
 
       status < ::color::color >              m_colorMoveableBorder;
       status < ::color::color >              m_colorMoveableBorderShadow;
@@ -56,25 +56,25 @@ namespace experience
 
       ::pointer<control_box>              m_pcontrolbox;
 
-      int                                    m_iCaptionHeight;
-      int                                    m_iTitleBottom;
+      ::i32                                    m_iCaptionHeight;
+      ::i32                                    m_iTitleBottom;
 
-      ::int_rectangle                        m_rectangleMarginFullScreen;
-      ::int_rectangle                        m_rectangleMarginZoomed;
-      ::int_rectangle                        m_rectangleMarginNormal;
-      ::int_rectangle                        m_rectangleMarginDock;
+      ::i32_rectangle                        m_rectangleMarginFullScreen;
+      ::i32_rectangle                        m_rectangleMarginZoomed;
+      ::i32_rectangle                        m_rectangleMarginNormal;
+      ::i32_rectangle                        m_rectangleMarginDock;
 
-      ::int_rectangle                        m_rectangleCaptionTextPadding;
+      ::i32_rectangle                        m_rectangleCaptionTextPadding;
 
 
-      //::int_rectangle                        m_rectangleX;
-      ::int_rectangle                        m_rectangleWindow;
+      //::i32_rectangle                        m_rectangleX;
+      ::i32_rectangle                        m_rectangleWindow;
 
       bool                                   m_bFirstLayoutDone;
       bool                                   m_bControlBoxAlignRight;
       bool                                   m_bInitialControlBoxPosition;
       bool                                   m_bPendingStyleChange;
-      //int                                    m_iCaptionHeight;
+      //::i32                                    m_iCaptionHeight;
 
 
 
@@ -85,8 +85,8 @@ namespace experience
 
 #ifdef _DEBUG
 
-      long long increment_reference_count() override;
-      long long decrement_reference_count() override;
+      ::i64 increment_reference_count() override;
+      ::i64 decrement_reference_count() override;
 
 #endif
 
@@ -99,8 +99,8 @@ namespace experience
       // ::berg::user * user();
 
 
-      virtual int adjust_client_height(int iHeight);
-      virtual int adjust_client_width(int iWidth);
+      virtual ::i32 adjust_client_height(::i32 iHeight);
+      virtual ::i32 adjust_client_width(::i32 iWidth);
 
       //virtual void set_style(const ::scoped_string & scopedstrStyle);
       virtual void on_initialize_experience_frame();
@@ -115,7 +115,7 @@ namespace experience
 
       //virtual void update_drawing_objects();
       virtual void update_window_client_rect();
-      //virtual void update_window_region(const ::int_rectangle & rectangleWindow);
+      //virtual void update_window_region(const ::i32_rectangle & rectangleWindow);
 
       //virtual void update_window();
       //virtual void update_window_style();
@@ -129,30 +129,30 @@ namespace experience
       virtual void set_moveable_border_color(const ::color::color & color);
 
 
-      virtual ::int_rectangle outer_frame();
+      virtual ::i32_rectangle outer_frame();
       
-      //virtual bool calculate_hosting_rectangle(::int_rectangle * prectangle, ::user::enum_layout elayout = ::user::e_layout_design);
+      //virtual bool calculate_hosting_rectangle(::i32_rectangle * prectangle, ::user::enum_layout elayout = ::user::e_layout_design);
 
-      virtual bool calculate_hosting_rectangle(::int_rectangle * prectangle, ::draw2d::graphics_pointer & pgraphics);
+      virtual bool calculate_hosting_rectangle(::i32_rectangle * prectangle, ::draw2d::graphics_pointer & pgraphics);
 
-      virtual ::int_rectangle hosting_rectangle();
+      virtual ::i32_rectangle hosting_rectangle();
 
-      //virtual ::int_rectangle rectangle(::user::enum_layout elayout = ::user::e_layout_design);
+      //virtual ::i32_rectangle rectangle(::user::enum_layout elayout = ::user::e_layout_design);
 
-      //virtual bool get_draw_client_rectangle(::int_rectangle * prectangle, ::user::enum_layout elayout = ::user::e_layout_design);
-
-
-      //virtual void calc_window_client_rect(::int_rectangle * prectangle, const int_rectangle & lprectWindow);
+      //virtual bool get_draw_client_rectangle(::i32_rectangle * prectangle, ::user::enum_layout elayout = ::user::e_layout_design);
 
 
-      virtual bool get_element_rectangle(::int_rectangle & rectangle, ::enum_element eelement);
+      //virtual void calc_window_client_rect(::i32_rectangle * prectangle, const i32_rectangle & lprectWindow);
 
 
-      virtual void get_parent_rectangle(::int_rectangle & rectangle);
+      virtual bool get_element_rectangle(::i32_rectangle & rectangle, const ::e_element & eelement);
 
-      virtual int_rectangle get_margin_rectangle();
-      virtual int_rectangle get_caption_text_padding();
-      virtual int get_caption_height();
+
+      virtual void get_parent_rectangle(::i32_rectangle & rectangle);
+
+      virtual i32_rectangle get_margin_rectangle();
+      virtual i32_rectangle get_caption_text_padding();
+      virtual ::i32 get_caption_height();
       virtual void calculate_caption_height(::draw2d::graphics_pointer & pgraphics);
 
       virtual void title_bar_layout(::draw2d::graphics_pointer & pgraphics);
@@ -176,16 +176,16 @@ namespace experience
 
       virtual void _001OnDraw(::draw2d::graphics_pointer & pgraphics);
 
-      virtual int_size GetMinSize();
+      virtual i32_size GetMinSize();
 
       virtual void OnActivate();
-      virtual void OnNcCalcSize(::int_rectangle * prectangle);
+      virtual void OnNcCalcSize(::i32_rectangle * prectangle);
 
-      //virtual void _001OnBeforeSize(const ::int_rectangle & rectangleWindow);
+      //virtual void _001OnBeforeSize(const ::i32_rectangle & rectangleWindow);
 
-      virtual ::experience::enum_frame experience_frame_hit_test(const ::int_point & point, ::user::e_zorder ezorder);
+      virtual ::experience::enum_frame experience_frame_hit_test(const ::i32_point & point, ::user::e_zorder ezorder);
 
-      //virtual ::experience::enum_frame experience_frame_hit_test(const ::int_point & point, ::user::e_zorder ezorder);
+      //virtual ::experience::enum_frame experience_frame_hit_test(const ::i32_point & point, ::user::e_zorder ezorder);
 
 
       virtual status < ::color::color > get_border_main_body_color();
@@ -201,10 +201,10 @@ namespace experience
       virtual bool _001OnNcLButtonDown(::message::mouse * pmouse);
       virtual bool _001OnNcLButtonUp(::message::mouse * pmouse);
       virtual bool _001OnNcMouseMove(::message::mouse * pmouse);
-      virtual bool _001OnNcHitTest(const ::int_point & point, enum_hit_test & ehittest);
-      virtual bool on_timer(unsigned int uEvent);
-      //virtual bool on_message_size(unsigned int nType, int cx, int cy);
-      //virtual bool on_message_move(int x, int y);
+      virtual bool _001OnNcHitTest(const ::i32_point & point, enum_hit_test & ehittest);
+      virtual bool on_timer(::u32 uEvent);
+      //virtual bool on_message_size(::u32 nType, ::i32 cx, ::i32 cy);
+      //virtual bool on_message_move(::i32 x, ::i32 y);
       //virtual bool _001OnCommand(wparam wparam, lparam lparam, lresult & lresult);
 
 
@@ -214,12 +214,12 @@ namespace experience
 
       virtual bool is_control_box_moveable();
 
-      virtual void GetFrameRect(int_rectangle & rectangle);
+      virtual void GetFrameRect(i32_rectangle & rectangle);
 
 
 
       //virtual void nextstyle(::user::style_context * pcontext) override;
-      virtual void place_set_need_redraw(const ::int_rectangle & rectangleAfter, const ::int_rectangle & rectangleBefore, ::draw2d::graphics * pgraphics);
+      virtual void place_set_need_redraw(const ::i32_rectangle & rectangleAfter, const ::i32_rectangle & rectangleBefore, ::draw2d::graphics * pgraphics);
 
    };
 

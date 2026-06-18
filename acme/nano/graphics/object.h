@@ -4,35 +4,38 @@
 #pragma once
 
 
-namespace nano{namespace graphics{
-
-
-class CLASS_DECL_ACME object :
-   virtual public ::particle
+namespace nano
 {
-public:
 
 
-   bool              m_bModified;
-   void *            m_pthis;
+   namespace graphics
+   {
 
 
-   object();
-   ~object();
+      class CLASS_DECL_ACME object :
+         virtual public ::particle
+      {
+      public:
 
 
-   virtual void destroy();
+         //bool              m_bModified;
+         //void *            m_pthis;
 
 
-   virtual void * operating_system_data();
+         object();
+         ~object();
 
 
-   virtual void update(::nano::graphics::device * pnanodevice);
+         virtual void destroy();
 
 
-};
+         //virtual void * operating_system_data();
 
 
+         //virtual void update(::nano::graphics::context * pnanodevice);
+
+
+      };
 
 
 

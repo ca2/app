@@ -9,7 +9,7 @@ namespace filemanager
 {
 
 
-   int get_manager_id_byte_len()
+   ::i32 get_manager_id_byte_len()
    {
 
       return 16;
@@ -17,7 +17,7 @@ namespace filemanager
    }
 
 
-   int get_manager_id_len()
+   ::i32 get_manager_id_len()
    {
 
       return get_manager_id_byte_len() * 2;
@@ -819,7 +819,7 @@ pdirectorysystem->localconfig() / "user.component";
 
 //   document * pdocument;
 
-//   if (atom.long_long < -1 || atom.long_long == m_pimpactsystemProject->get_document_count())
+//   if (atom.i64 < -1 || atom.i64 == m_pimpactsystemProject->get_document_count())
 //   {
 
 //      pcreate->prop("component::template") = this;
@@ -849,7 +849,7 @@ pdirectorysystem->localconfig() / "user.component";
 //      }
 
 //   }
-//   else if (atom.long_long < m_pimpactsystemProject->get_document_count())
+//   else if (atom.i64 < m_pimpactsystemProject->get_document_count())
 //   {
 
 //      pdocument = m_pimpactsystemProject->get_document((index)atom);
@@ -950,7 +950,7 @@ pdirectorysystem->localconfig() / "user.component";
 
 //   document * pdocument;
 
-//   if (atom.long_long < -1 || atom.long_long == m_pimpactsystem->get_document_count())
+//   if (atom.i64 < -1 || atom.i64 == m_pimpactsystem->get_document_count())
 //   {
 
 //      pcreate->prop("component::template") = this;
@@ -980,7 +980,7 @@ pdirectorysystem->localconfig() / "user.component";
 //      }
 
 //   }
-//   else if (atom.long_long < m_pimpactsystem->get_document_count())
+//   else if (atom.i64 < m_pimpactsystem->get_document_count())
 //   {
 
 //      pdocument = m_pimpactsystem->get_document((index)atom);

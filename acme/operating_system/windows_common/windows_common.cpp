@@ -8,7 +8,7 @@
 #include "acme/operating_system/windows_common/handle.h"
 
 
-int __node_is_debugger_attached()
+::i32 __node_is_debugger_attached()
 {
 
    return ::IsDebuggerPresent();
@@ -23,7 +23,7 @@ extern LARGE_INTEGER g_largeintegerFrequency;
 #endif
 
 
-CLASS_DECL_ACME long long long_long_nanosecond()
+CLASS_DECL_ACME ::i64 i64_nanosecond()
 {
 
    return ::time::now().integral_nanosecond();
@@ -105,7 +105,7 @@ void ansi_output_debug_line(const ::scoped_string& str)
       if (len < 16_KiB - 3)
       {
 
-         char sz[16_KiB];
+         ::i8 sz[16_KiB];
 
          memcpy(sz, str.m_begin, len);
 
@@ -167,16 +167,16 @@ CLASS_DECL_ACME itask as_itask(htask htask)
 CLASS_DECL_ACME void TRACELASTERROR()
 {
 
-   auto dwLastError = ::GetLastError();
+   auto lasterror = ::windows::get_last_error();
 
-   if (!dwLastError)
+   if (lasterror == 0)
    {
 
       return;
 
    }
 
-   string strErrorMessage = ::windows::last_error_message(dwLastError);
+   string strErrorMessage = ::windows::last_error_message(lasterror);
 
    string strError;
 
@@ -199,7 +199,7 @@ void CLASS_DECL_ACME __cdecl _ca2_purecall()
 //{
 //
 //
-//   unsigned int color::u32_COLORREF() const
+//   ::u32 color::u32_COLORREF() const
 //   {
 //
 //      return RGB(red, green, blue);
@@ -233,14 +233,14 @@ namespace windows
    }
 
 
-   // string last_error_message(unsigned int dwError)
+   // string last_error_message(::u32 dwError)
    // {
    //
    //    wstring wstr;
    //
-   //    unichar* p = nullptr;
+   //    wide_character * p = nullptr;
    //
-   //    unsigned int dw = FormatMessageW(
+   //    ::u32 dw = FormatMessageW(
    //       FORMAT_MESSAGE_FROM_SYSTEM
    //       | FORMAT_MESSAGE_ALLOCATE_BUFFER,
    //       nullptr,
@@ -261,10 +261,10 @@ namespace windows
    // }
 
 
-   CLASS_DECL_ACME error_code last_error_error_code(DWORD dwLastError)
+   CLASS_DECL_ACME error_code last_error_error_code(const last_error & lasterror)
    {
 
-      return { e_error_code_type_last_error, dwLastError };
+      return { e_error_code_type_last_error, lasterror.m_uLastError };
 
    }
 
@@ -272,18 +272,18 @@ namespace windows
    CLASS_DECL_ACME error_code last_error_error_code()
    {
 
-      return last_error_error_code(::GetLastError());
+      return last_error_error_code(get_last_error());
 
    }
 
 
-   CLASS_DECL_ACME::e_status wait_result_status(int iResult, int nCount)
+   CLASS_DECL_ACME::e_status wait_result_status(::i32 iResult, ::i32 nCount)
    {
 
       if (iResult >= WAIT_ABANDONED_0 && iResult < (WAIT_ABANDONED_0 + MAXIMUM_WAIT_OBJECTS))
       {
 
-         return (::e_status)(::enum_status)((long long)abandoned_base + (iResult - WAIT_ABANDONED_0));
+         return (::e_status)(::enum_status)((::i64)abandoned_base + (iResult - WAIT_ABANDONED_0));
 
       }
       else if (iResult == WAIT_IO_COMPLETION)
@@ -313,7 +313,7 @@ namespace windows
       else if (iResult >= WAIT_OBJECT_0 && iResult < (WAIT_OBJECT_0 + MAXIMUM_WAIT_OBJECTS))
       {
 
-         return (::e_status)(::enum_status)((long long)signaled_base + (iResult - WAIT_OBJECT_0));
+         return (::e_status)(::enum_status)((::i64)signaled_base + (iResult - WAIT_OBJECT_0));
 
       }
       else
@@ -347,5 +347,21 @@ namespace windows
 //
 // }
 //
+
+
+namespace operating_system
+{
+
+
+   CLASS_DECL_ACME ::error_code last_error_code()
+   {
+   
+      return { e_error_code_type_last_error, (::i64) ::GetLastError() };
+   
+   }
+
+
+} // namespace operating_system
+
 
 

@@ -35,7 +35,7 @@ public:
    using BASE_ARRAY::operator +=;
    using BASE_ARRAY::operator -=;
 
-   comparable_array_base(const RAW_BASE_ARRAY& a) : BASE_ARRAY(a) { }
+   //comparable_array_base(const RAW_BASE_ARRAY& a) : BASE_ARRAY(a) { }
    using iterator = typename BASE_ARRAY::iterator;
    using const_iterator = typename BASE_ARRAY::const_iterator;
 

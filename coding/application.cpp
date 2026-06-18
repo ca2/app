@@ -31,6 +31,7 @@
 //#include "apex/filesystem/fs/folder_sync.h"
 //#include "berg/user/user/single_document_template.h"
 //#include "berg/user/simple/tab_document.h"
+#include "acme/operating_system/cpu_features.h"
 #include "dropbox/_.h"
 #include "dropbox/dropbox.h"
 
@@ -105,7 +106,7 @@ namespace coding
    }
 
 
-   void application::micro_preempt(const char * pszMessage)
+   void application::micro_preempt(const_char_pointer pszMessage)
    {
 
       print_line(pszMessage);
@@ -113,7 +114,7 @@ namespace coding
 
    }
 
-   void application::preempt_message(const char * pszMessage)
+   void application::preempt_message(const_char_pointer pszMessage)
    {
 
       print_line("");
@@ -596,7 +597,7 @@ namespace coding
    bool application::__is_graphical_ide_installed()
    {
 
-#if defined(LINUX)
+#if defined(LINUX) || defined(FREEBSD)
 
       return __is_jetbrains_clion_installed();
 
@@ -744,7 +745,7 @@ namespace coding
 
    //   //::property_set set;
 
-   //   //int iResult = call_sync(m_pathSvn, "--version", dir::home(), ::e_display_none, 15_s, set);
+   //   //::i32 iResult = call_sync(m_pathSvn, "--version", dir::home(), ::e_display_none, 15_s, set);
 
    //   //if (iResult != 0)
    //   //{
@@ -878,8 +879,36 @@ namespace coding
    }
 
 
-      ::string_array application::get_install_dep_script_names()
+   ::string_array application::get_install_setup_script_names()
    {
+
+      auto psummary = node()->operating_system_summary();
+
+      if (psummary->m_strSystem == "ubuntu")
+      {
+         return {"____install_setup_for_ubuntu"};
+      }
+      else if (psummary->m_strSystem == "linuxmint")
+      {
+         return {"____install_setup_for_linuxmint"};
+      }
+      else if (psummary->m_strSystem == "debian")
+      {
+         return {"____install_setup_for_debian"};
+      }
+      else if (psummary->m_strSystem == "fedora")
+      {
+         return {"____install_setup_for_fedora"};
+      }
+
+      return {};
+
+   }
+
+
+   ::string_array application::get_install_dep_script_names()
+   {
+
       auto psummary = node()->operating_system_summary();
 
       if (psummary->m_strSystem == "ubuntu")
@@ -890,7 +919,7 @@ namespace coding
          }
          else if (psummary->m_strSystemBranch == "kde")
          {
-            return {"kubuntudeps"};
+            return {"ubuntuk6deps"};
          }
          else
          {
@@ -927,11 +956,11 @@ namespace coding
        {
            if (psummary->m_strSystemBranch == "xfce")
            {
-               return {"fedora_setup", "xfedoradeps"};
+               return {"fedorag3deps"};
            }
            else if (psummary->m_strSystemBranch == "kde")
            {
-               return {"fedora_setup", "kfedoradeps"};
+               return {"fedorak6deps"};
            }
            else
            {
@@ -941,7 +970,7 @@ namespace coding
                //}
                //else
                //{
-                   return {"fedora_setup", "fedoradeps"};
+                   return {"fedorag4deps"};
                //}
            }
        }
@@ -955,16 +984,52 @@ namespace coding
 
       auto depsa = get_install_dep_script_names();
 
+      if (depsa.is_empty())
+      {
+
+         print_line("get_install_dep_script_names returned empty list");
+
+         return {};
+
+      }
+
       ::string_array straPackageNames;
 
       for (auto& deps : depsa)
       {
 
+         if (deps.begins("____"))
+         {
+
+            continue;
+
+         }
+
          ::file::path path = directory_system()->home() / "code/operating_system/tool/install_deps" / (deps + ".package_names");
 
-         auto lines = file()->lines(path);
+         if (file()->exists(path))
+         {
 
-         straPackageNames.append_unique(lines);
+            ::string strArgument1 = ::system()->get_argument1(0);
+
+            if (strArgument1 == "--list-deps")
+            {
+
+               print_line(" - Found \"" + path + "\"");
+
+            }
+
+            auto lines = file()->lines(path);
+
+            straPackageNames.append_unique(lines);
+
+         }
+         else
+         {
+
+            print_line("File not found : \"" + path + "\".");
+
+         }
 
       }
 
@@ -982,6 +1047,13 @@ namespace coding
 
       for (auto& deps : depsa)
       {
+
+         if (deps.begins("____"))
+         {
+
+            continue;
+
+         }
 
          ::file::path path = directory_system()->home() / "code/operating_system/tool/install_deps" / (deps + ".install_group_names");
 
@@ -1060,6 +1132,33 @@ namespace coding
    }
 
 
+   bool application::__has_install_setup_been_run()
+   {
+
+      auto pathInstallSetupSeemsInstalled = directory_system()->home() /".config/.____install_setup";
+
+      bool bInstalled = file()->exists(pathInstallSetupSeemsInstalled);
+
+      return bInstalled;
+
+   }
+
+
+
+   void application::__install_setup()
+   {
+
+      auto depsa = get_install_setup_script_names();
+
+      defer_run_installation_scripts(depsa);
+
+      auto pathInstallSetupSeemsInstalled = directory_system()->home() /".config/.____install_setup";
+
+      file()->put_text(pathInstallSetupSeemsInstalled, "");
+
+   }
+
+
    void application::__install_deps()
    {
 
@@ -1069,6 +1168,21 @@ namespace coding
 
    }
 
+
+
+   void application::__list_deps()
+   {
+
+      auto depsa = get_install_dep_package_names();
+
+      for (auto & dep : depsa)
+      {
+
+         micro_preempt(dep);
+
+      }
+
+   }
 
 
    bool application::__are_deps_installed()
@@ -1099,7 +1213,7 @@ namespace coding
 
       auto bFirstFolderSetupDetection = m_bFirstFolderSetupDetection;
 
-      m_bApplicationFirstRequest = false;
+      //m_bApplicationFirstRequest = false;
 
       auto path1 = directory_system()->home() / ".ssh/id_auth";
 
@@ -1148,9 +1262,13 @@ namespace coding
    bool application::__is_jetbrains_clion_installed()
    {
 
-      bool bInstalled = node()->_is_jetbrains_clion_installed();
+      bool bInstalled1 = node()->_is_jetbrains_clion_installed();
 
-      return bInstalled;
+      auto pathClion = directory_system()->home() / "application_opt/clion";
+
+      bool bInstalled2 = directory_system()->is(pathClion);
+
+      return bInstalled1 && bInstalled2;
 
    }
 
@@ -1255,11 +1373,11 @@ namespace coding
 
       pathCodeOperatingSystemToolBin = pathCodeOperatingSystemTool / "bin";
 
-      ::string strGitRepository = "https://github.com/ca2/tool-linux";
+      ::string strGitRepository = "git@github.com:ca2/tool-linux";
 
       ::string strCommandLine;
 
-      strCommandLine.format("git clone {} \"{}\"", strGitRepository, pathCodeOperatingSystemTool);
+      strCommandLine.format("git clone --recurse-submodules {} \"{}\"", strGitRepository, pathCodeOperatingSystemTool);
 
       print_line(strCommandLine);
 
@@ -1269,7 +1387,48 @@ namespace coding
 
       straCommands.add("exit");
 
-      int iExitCode = node()->pty2(straCommands);
+      ::i32 iExitCode = node()->pty2(straCommands);
+
+      if (iExitCode != 0)
+      {
+
+         throw ::exception(error_failed);
+
+      }
+
+   }
+
+
+   void application::__clone_lemon()
+   {
+
+      ::file::path pathCodeOperatingSystem;
+
+      pathCodeOperatingSystem = directory()->home() / "code/operating_system";
+
+      ::file::path pathCodeOperatingSystemTool;
+
+      pathCodeOperatingSystemTool = pathCodeOperatingSystem / "lemon";
+
+      ::file::path pathCodeOperatingSystemToolBin;
+
+      pathCodeOperatingSystemToolBin = pathCodeOperatingSystemTool / "bin";
+
+      ::string strGitRepository = "git@github.com:"+git_user_github_account()+"/" OPERATING_SYSTEM_NAME "-lemon";
+
+      ::string strCommandLine;
+
+      strCommandLine.format("git clone --recurse-submodules {} \"{}\"", strGitRepository, pathCodeOperatingSystemTool);
+
+      print_line(strCommandLine);
+
+      ::string_array_base straCommands;
+
+      straCommands.add(strCommandLine);
+
+      straCommands.add("exit");
+
+      ::i32 iExitCode = node()->pty2(straCommands);
 
       if (iExitCode != 0)
       {
@@ -1402,6 +1561,7 @@ namespace coding
 
    }
 
+
    string application::__visual_studio_code_download_url()
    {
 
@@ -1409,20 +1569,42 @@ namespace coding
 
       auto psummary = node()->operating_system_summary();
 
+      ::string strArch = ::operating_system::machine_architecture();
+
       if (psummary->m_strSystemFamily.case_insensitive_contains("debian"))
       {
 
-         pathUrl = "https://code.visualstudio.com/sha/download?build=stable&os=linux-deb-x64";
+         if (strArch == "x86_64")
+         {
+            pathUrl = "https://code.visualstudio.com/sha/download?build=stable&os=linux-deb-x64";
+         }
+         else if (strArch == "aarch64")
+         {
+            pathUrl = "https://code.visualstudio.com/sha/download?build=stable&os=linux-deb-arm64";
+         }
+         else
+         {
+
+
+         }
 
       }
       else if (psummary->m_strSystem == "fedora" || psummary->m_strSystem == "opensuse")
       {
 
-         ::string strRedirectingUrl = "https://code.visualstudio.com/sha/download?build=stable&os=linux-deb-x64";
+         if (strArch == "x86_64")
+         {
+            pathUrl = "https://code.visualstudio.com/sha/download?build=stable&os=linux-rpm-x64";
+         }
+         else if (strArch == "aarch64")
+         {
+            pathUrl = "https://code.visualstudio.com/sha/download?build=stable&os=linux-rpm-arm64";
+         }
+         else
+         {
 
-         ::property_set set;
 
-         pathUrl = http()->get_effective_url(strRedirectingUrl, set).as_string();
+         }
 
       }
 
@@ -1431,6 +1613,39 @@ namespace coding
    }
 
 
+//    ::string application::get_http_user_agent()
+//    {
+//
+//       ::string strUserAgent;
+//
+// #if defined(WINDOWS)
+//       strUserAgent = "Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:140.0) Gecko/20100101 Firefox/140.0";
+// #elif defined(MACOS)
+//       strUserAgent = "Mozilla/5.0 (Macintosh; Intel Mac OS X 15.7; rv:140.0) Gecko/20100101 Firefox/140.0.";
+// #elif defined(ANDROID)
+//       strUserAgent = "Mozilla/5.0 (Android 16; Mobile; rv:150.0) Gecko/150.0 Firefox/150.0";
+// #else
+//       strUserAgent= "Mozilla/5.0 (X11; Linux x86_64; rv:140.0) Gecko/20100101 Firefox/140.0";
+// #endif
+//
+//       return strUserAgent;
+//
+//    }
+//
+//
+//    void application::get_http_user_agent(::property_set & set)
+//    {
+//
+//       ::string strUserAgent;
+//
+//       strUserAgent = get_http_user_agent();
+//
+//       set["in_headers"]["user-agent"] = strUserAgent;
+//
+//    }
+//
+//
+//
    void application::__download_visual_studio_code()
    {
 
@@ -1440,13 +1655,21 @@ namespace coding
 
       ::property_set set1;
 
+      get_http_user_agent(set1);
+
       print_line("Going to calculate effective url...");
 
-      ::file::path pathSource = http()->get_effective_url(pathSource1, set1).as_string();
+      ::string strEffectiveUrl =  http()->get_effective_url(pathSource1, set1).as_string();
+
+      strEffectiveUrl.trim();
+
+      ::file::path pathSource = strEffectiveUrl;
 
       ::file::path pathTarget = directory()->home() / "Downloads/Code!!" / pathSource.name();
 
       ::property_set set;
+
+      get_http_user_agent(set);
 
       print_line("Downloading \"" + pathSource+"\" to \""+pathTarget + "\".");
 
@@ -1470,8 +1693,28 @@ namespace coding
          install_from_operating_system_package_file(m_pathVisualStudioCode);
 
       }
+      else if (psummary->m_strSystemFamily.case_insensitive_contains("fedora"))
+      {
+
+         __download_visual_studio_code();
+
+         install_from_operating_system_package_file(m_pathVisualStudioCode);
+
+      }
+      else if (psummary->m_strSystemFamily.case_insensitive_contains("opensuse"))
+      {
+
+         __download_visual_studio_code();
+
+         install_from_operating_system_package_file(m_pathVisualStudioCode);
+
+      }
       else
       {
+
+         print_line("Installation of Visual Studio not implemented for this distro family \"" +
+            psummary->m_strSystemFamily + "\" or distro \"" + psummary->m_strSystem + "\"");
+
       }
 
    }
@@ -1488,7 +1731,52 @@ namespace coding
 
       straCommands.add("exit");
 
-      int iExitCode = node()->pty2(straCommands);
+      ::i32 iExitCode = node()->pty2(straCommands);
+
+      if (iExitCode != 0)
+      {
+
+         throw ::exception(error_failed);
+
+      }
+
+
+   }
+
+
+
+   void application::defer_run_installation_scripts(const ::string_array_base & straScripts)
+   {
+
+      for (auto & strScript : straScripts)
+      {
+
+         micro_preempt("Going to run script: " + strScript);
+
+         defer_run_installation_script(strScript);
+
+      }
+
+   }
+
+
+
+   void application::defer_run_installation_script(const ::scoped_string & scopedstrScript)
+   {
+
+      auto strCommandLine =directory_system()->home() / "code/operating_system/tool/bin" / scopedstrScript;
+
+      strCommandLine.find_replace("!", "\\!");
+
+      micro_preempt("Going to run script at: " + strCommandLine);
+
+      ::string_array_base straCommands;
+
+      straCommands.add(strCommandLine);
+
+      straCommands.add("exit");
+
+      ::i32 iExitCode = node()->pty2(straCommands);
 
       if (iExitCode != 0)
       {
@@ -1499,6 +1787,29 @@ namespace coding
 
    }
 
+   void application::install_from_running_command_line_as_root(const ::scoped_string & scopedstrCommandLine)
+   {
+
+      auto strCommandLine = "sudo bash -c \"" + scopedstrCommandLine + "\"";
+
+      strCommandLine.find_replace("!", "\\!");
+
+      ::string_array_base straCommands;
+
+      straCommands.add(strCommandLine);
+
+      straCommands.add("exit");
+
+      ::i32 iExitCode = node()->pty2(straCommands);
+
+      if (iExitCode != 0)
+      {
+
+         throw ::exception(error_failed);
+
+      }
+
+   }
 
 
 
@@ -1536,6 +1847,571 @@ namespace coding
    }
 
 
+
+   bool application::__does_mkcred_seem_installed()
+   {
+
+      auto pathMkcredSeemsInstalled = directory_system()->home() /".mkcred";
+
+      bool bInstalled = file()->exists(pathMkcredSeemsInstalled);
+
+      return bInstalled;
+
+   }
+
+
+   void application::__install_mkcred()
+   {
+
+      __download_mkcred();
+
+      install_from_running_command_line_as_root(m_pathMkcredInstaller);
+
+      auto pathMkcredSeemsInstalled = directory_system()->home() /".mkcred";
+
+      file()->put_text(pathMkcredSeemsInstalled, "");
+
+
+   }
+
+
+   void application::__download_mkcred()
+   {
+
+      ::file::path pathSource = __mkcred_download_url();
+
+      ::file::path pathTarget = directory()->home() / "Downloads/Code!!" / pathSource.name();
+
+      ::property_set set;
+
+      print_line("Downloading \"" + pathSource+"\" to \""+pathTarget + "\".");
+
+      http()->download(pathTarget, pathSource, set);
+
+      m_pathMkcredInstaller = pathTarget;
+
+   }
+
+
+   string application::__mkcred_download_url()
+   {
+
+      ::file::path pathUrl;
+
+      pathUrl = "https://posix.ca2.site/mkcred";
+
+      return pathUrl;
+
+   }
+
+   
+   bool application::__does_fsc_seem_installed()
+   {
+
+      auto pathFscSeemsInstalled = directory_system()->home() /".fsc";
+
+      bool bInstalled = file()->exists(pathFscSeemsInstalled);
+
+      return bInstalled;
+
+   }
+
+
+   void application::__install_fsc()
+   {
+
+      __download_fsc();
+
+      install_from_running_command_line_as_root(m_pathFscInstaller);
+
+      ::system("ln -s /c/Dropbox " + (directory_system()->home()/"dropbox"));
+      ::system("ln -s ~/dropbox/store " + (directory_system()->home()/"store"));
+
+      auto pathFscSeemsInstalled = directory_system()->home() /".fsc";
+
+      file()->put_text(pathFscSeemsInstalled, "");
+
+
+   }
+
+
+   void application::__download_fsc()
+   {
+
+      ::file::path pathSource = __fsc_download_url();
+
+      ::file::path pathTarget = directory()->home() / "Downloads/Code!!" / pathSource.name();
+
+      ::property_set set;
+
+      print_line("Downloading \"" + pathSource+"\" to \""+pathTarget + "\".");
+
+      http()->download(pathTarget, pathSource, set);
+
+      m_pathFscInstaller = pathTarget;
+
+   }
+
+
+   string application::__fsc_download_url()
+   {
+
+      ::file::path pathUrl;
+
+      pathUrl = "https://posix.ca2.site/install_fsc";
+
+      return pathUrl;
+
+   }
+
+
+   bool application::__does_user_fonts_seem_installed()
+   {
+
+      auto pathUserFontsInstalled = directory_system()->home() /".config/.user_fonts";
+
+      bool bInstalled = file()->exists(pathUserFontsInstalled);
+
+      return bInstalled;
+
+   }
+
+
+   ::file::path application::__get_user_fonts_target_folder_path()
+   {
+      ::file::path pathFolder = "/usr/share/fonts/_fonts";
+
+      auto psummary = node()->operating_system_summary();
+
+      if (psummary->m_strSystem == "ubuntu")
+      {
+         if (psummary->m_strSystemBranch == "xfce")
+         {
+            pathFolder = "/usr/share/fonts/truetype/_fonts";
+         }
+         else if (psummary->m_strSystemBranch == "kde")
+         {
+            pathFolder = "/usr/share/fonts/truetype/_fonts";
+         }
+         else
+         {
+            if (atoi(psummary->m_strSystemRelease) >= 24)
+            {
+               pathFolder = "/usr/share/fonts/truetype/_fonts";
+            }
+            else
+            {
+               pathFolder = "/usr/share/fonts/truetype/_fonts";
+            }
+         }
+      }
+      else if (psummary->m_strSystem == "linuxmint")
+      {
+         pathFolder = "/usr/share/fonts/truetype/_fonts";
+      }
+      else if (psummary->m_strSystem == "debian")
+      {
+         if (psummary->m_strSystemBranch == "xfce")
+         {
+            pathFolder = "/usr/share/fonts/truetype/_fonts";
+         }
+         else if (psummary->m_strSystemBranch == "kde")
+         {
+            pathFolder = "/usr/share/fonts/truetype/_fonts";
+         }
+         else
+         {
+            pathFolder = "/usr/share/fonts/truetype/_fonts";
+         }
+      }
+      else if (psummary->m_strSystem == "fedora")
+      {
+         if (psummary->m_strSystemBranch == "xfce")
+         {
+            pathFolder = "/usr/share/fonts/_fonts";
+         }
+         else if (psummary->m_strSystemBranch == "kde")
+         {
+            pathFolder = "/usr/share/fonts/_fonts";
+         }
+         else
+         {
+            //if (atoi(psummary->m_strDistroRelease) >= 24)
+            //{
+            //  return {"ubuntug4deps"};
+            //}
+            //else
+            //{
+            pathFolder = "/usr/share/fonts/_fonts";
+            //}
+         }
+
+
+      }
+
+      return pathFolder;
+
+
+   }
+
+
+   void application::__install_user_fonts()
+   {
+
+      ::file::path pathFolder = __get_user_fonts_target_folder_path();
+
+      ::string strCommand;
+
+      strCommand.format("sudo mkdir \"{}\"; cp \"/c/Dropbox/box/_fonts/*.ttf\" \"{}\"", pathFolder, pathFolder);
+
+      install_from_running_command_line_as_root(strCommand);
+
+      ::system("fc-cache -v");
+
+      auto pathUserFontsInstalled = directory_system()->home() /".config/.user_fonts";
+
+      file()->put_text(pathUserFontsInstalled, "");
+
+
+   }
+
+
+
+   bool application::__does_ssh_keys_seem_installed()
+   {
+
+      auto pathIdAuthInstalled = directory_system()->home() /".ssh/id_auth";
+
+      bool bInstalled1 = file()->exists(pathIdAuthInstalled);
+
+      auto pathIdSignInstalled = directory_system()->home() /".ssh/id_sign";
+
+      bool bInstalled2 = file()->exists(pathIdSignInstalled);
+
+      return bInstalled1 && bInstalled2;
+
+   }
+
+
+   void application::__install_ssh_keys()
+   {
+
+      ::system("mkdir -p ~/.ssh");
+      ::system("cp ~/dropbox/box/.ssh/* ~/.ssh/");
+      ::system("chmod 600 ~/.ssh/id_auth");
+      ::system("chmod 600 ~/.ssh/id_sign");
+
+   }
+
+
+   void application::defer_ssh_agent()
+   {
+
+      if (!__is_user_git_email_ssh_agent_running())
+      {
+
+         micro_preempt("ssh-agent isn't running with user's git email address");
+
+         if (__start_ssh_agent())
+         {
+
+            preempt_message("ssh-agent successfully started!");
+
+         }
+         else
+         {
+
+            preempt_message("Failed to start ssh-agent");
+
+            throw ::exception(error_failed);
+
+         }
+      }
+      else
+      {
+
+         preempt_message("ssh-agent already running");
+
+      }
+
+   }
+
+
+   bool application::__is_user_git_email_ssh_agent_running()
+   {
+
+      ::string strCommand;
+
+      strCommand = "ssh-add -l";
+
+      ::string strError;
+
+      ::i32 iExitCode = -1;
+
+      micro_preempt("Checking if ssh-agent is running with user's git email address");
+
+      micro_preempt("Running>" + strCommand);
+
+      ::string strOutput = node()->get_posix_shell_command_output(
+         strCommand,
+         e_posix_shell_system_default,
+         &strError,
+         &iExitCode);
+
+      if (iExitCode != 0)
+      {
+
+         strOutput.clear();
+
+         //         throw ::exception(error_failed, strError);
+
+      }
+
+      micro_preempt("Output: " + strOutput);
+      micro_preempt("Error: " + strError);
+      micro_preempt("Exit Code: " + ::as_string(iExitCode));
+
+      ::string strUserGitEmail = git_global_config("user.email");
+
+      micro_preempt("User git email address: \"" + strUserGitEmail + "\"");
+
+      if (!strOutput.contains(strUserGitEmail))
+      {
+
+         micro_preempt("No ssh agent is running with user git email address \"" + strUserGitEmail + "\"");
+
+         return false;
+
+      }
+
+      micro_preempt("Found ssh agent running with user git email address \"" + strUserGitEmail + "\"");
+
+      return true;
+
+   }
+
+
+   void application::_defer_parse_simple_shell_script_assignment(::string & strLeft, ::string & strRight, const ::scoped_string & scopedstrStatement)
+   {
+
+      ::string str(scopedstrStatement);
+
+      strLeft = str.get_word("=");
+
+      strLeft.trim();
+
+      strRight = str.get_word(";");
+
+      strRight.trim();
+
+   }
+
+   void application::_037_parse_and_setenv_from_ssh_agent_output(::string & strSshAuthSock, ::string & strSshAgentPid, const ::scoped_string & scopedstrOutput)
+   {
+
+      strSshAuthSock.clear();
+
+      strSshAgentPid.clear();
+
+      ::string_array_base straLines;
+
+      straLines.add_lines(scopedstrOutput);
+
+      for (auto & strLine : straLines)
+      {
+         ::string strLeft;
+         ::string strRight;
+
+         _defer_parse_simple_shell_script_assignment(strLeft, strRight, strLine);
+
+         if (strLeft == "SSH_AUTH_SOCK")
+         {
+
+            strSshAuthSock = strRight;
+
+            micro_preempt("Found SSH_AUTH_SOCK as \"" + strSshAuthSock + "\"");
+            micro_preempt("Going to set SSH_AUTH_SOCK as \"" + strSshAuthSock + "\" in current process");
+            setenv("SSH_AUTH_SOCK", strSshAuthSock, 1);
+
+         }
+         else if (strLeft == "SSH_AGENT_PID")
+         {
+
+            strSshAgentPid = strRight;
+
+            micro_preempt("Found SSH_AGENT_PID as \"" + strSshAgentPid + "\"");
+            micro_preempt("Going to set SSH_AGENT_PID as \"" + strSshAgentPid + "\" in current process");
+            setenv("SSH_AGENT_PID", strSshAgentPid, 1);
+
+
+
+         }
+
+         if (strSshAuthSock.has_character() && strSshAgentPid.has_character())
+         {
+
+            break;
+
+         }
+
+      }
+
+   }
+
+
+   bool application::__is_ssh_agent_ambient_set()
+   {
+
+      ::string strSshAuthSock = node()->get_environment_variable("SSH_AUTH_SOCK");
+
+      if (strSshAuthSock.is_empty())
+      {
+
+         return false;
+
+      }
+
+      micro_preempt("SSH_AUTH_SOCK is set in current process as \"" + strSshAuthSock + "\"");
+
+      ::string strSshAgentPid = node()->get_environment_variable("SSH_AGENT_PID");
+
+      if (strSshAgentPid.is_empty())
+      {
+
+         return false;
+
+      }
+
+      micro_preempt("SSH_AGENT_PID is set in current process as \"" + strSshAgentPid + "\"");
+
+      return true;
+
+   }
+
+   void application::_check_ssh_agent_ambient_set()
+   {
+      micro_preempt("Checking that ssh agent ambient is set");
+
+
+      if (__is_ssh_agent_ambient_set())
+      {
+
+         micro_preempt("Looks like ssh agent ambient is set");
+
+      }
+      else
+      {
+
+         micro_preempt("It seems ssh agent ambient isn't set");
+
+      }
+
+   }
+
+   bool application::__start_ssh_agent()
+   {
+
+      ::string strCommand1;
+
+      strCommand1 = "ssh-agent -s";
+
+      micro_preempt("Going to start ssh-agent");
+
+      micro_preempt("Running>" + strCommand1);
+
+      ::string strError1;
+
+      ::i32 iExitCode1 = -1;
+
+      ::string strOutput1 = node()->get_posix_shell_command_output(
+         strCommand1,
+         e_posix_shell_system_default,
+         &strError1,
+         &iExitCode1);
+
+      micro_preempt("\n");
+      micro_preempt("Output: \n" + strOutput1);
+      micro_preempt("\n");
+      micro_preempt("\n");
+      micro_preempt("Error: " + strError1);
+      micro_preempt("Exit Code: " + ::as_string(iExitCode1));
+
+
+
+      if (iExitCode1 != 0)
+      {
+
+         micro_preempt("It seems that ssh-agent failed to start");
+
+         throw ::exception(error_failed);
+
+      }
+
+      ::string strSshAuthSock;
+      ::string strSshAgentPid;
+
+      _037_parse_and_setenv_from_ssh_agent_output(strSshAuthSock, strSshAgentPid, strOutput1);
+
+      _check_ssh_agent_ambient_set();
+
+      micro_preempt("Looks like ssh-agent started successfully");
+
+      ::string strCommand2;
+
+      strCommand2 = "ssh-add ~/.ssh/id_auth";
+
+      micro_preempt("Going to add user key to ssh-agent");
+
+      micro_preempt("Running>" + strCommand2);
+
+      ::string strError2;
+
+      ::i32 iExitCode2 = -1;
+
+      ::string strOutput2 = node()->get_posix_shell_command_output(
+         strCommand2,
+         e_posix_shell_system_default,
+         &strError2,
+         &iExitCode2);
+
+      if (iExitCode2 != 0)
+      {
+
+         strOutput2.clear();
+
+         //         throw ::exception(error_failed, strError);
+
+      }
+
+      ::string strConcatenatedOutput2(strOutput2);
+      strConcatenatedOutput2 += "\n";
+      strConcatenatedOutput2 += strError2;
+
+      micro_preempt("Output: " + strOutput2);
+      micro_preempt("Error: " + strError2);
+      micro_preempt("Exit Code: " + ::as_string(iExitCode2));
+
+      ::string strUserGitEmail = git_global_config("user.email");
+
+      micro_preempt("User git email address: \"" + strUserGitEmail + "\"");
+
+      if (!strConcatenatedOutput2.contains(strUserGitEmail))
+      {
+
+         micro_preempt("ssh-agent didn't start with user git email address \"" + strUserGitEmail + "\"");
+
+         return false;
+
+      }
+
+      micro_preempt("Looks like ssh-agent is running with user git email address \"" + strUserGitEmail + "\"");
+
+      return true;
+
+   }
+
+
+
    string application::fetch_download_link(const ::scoped_string & scopedstrId)
    {
 
@@ -1546,6 +2422,8 @@ namespace coding
       set["disable_ca2_sessid"] = true;
 
       set["raw_http"] = true;
+
+      get_http_user_agent(set);
 
       ::string strUrl;
 
@@ -1577,7 +2455,9 @@ namespace coding
 #else
          return directory_system()->home() / "code" / "simple";
 #endif
-      default:
+         case e_repository_lemon:
+            return directory_system()->home() / "code/operating_system/lemon";
+         default:
          throw ::exception(error_failed);
 
       }
@@ -1596,7 +2476,9 @@ namespace coding
          return "ca2/tool-" OPERATING_SYSTEM_NAME;
       case e_repository_simple:
          return "ca2/" OPERATING_SYSTEM_NAME "-simple-" OPERATING_SYSTEM_WORKSPACE_DEFAULT_NAME;
-      default:
+      case e_repository_lemon:
+         return git_user_github_account() + "/lemon-" OPERATING_SYSTEM_NAME;
+         default:
          throw ::exception(error_failed);
       }
 
@@ -2329,6 +3211,133 @@ namespace coding
 
    }
 
+
+   ::string application::git_global_config(const ::scoped_string &scopedstr)
+   {
+
+      ::string strCommand;
+
+      strCommand.format("git config --global {}", scopedstr);
+
+      ::string strError;
+
+      ::i32 iExitCode = -1;
+
+      ::string strConfig = node()->get_posix_shell_command_output(
+         strCommand,
+         e_posix_shell_system_default,
+         &strError,
+         &iExitCode);
+
+      if (iExitCode != 0)
+      {
+
+         strConfig.empty();
+
+//         throw ::exception(error_failed, strError);
+
+      }
+
+      strConfig.trim();
+
+      return strConfig;
+
+   }
+
+
+   void application::git_set_global_config(const ::scoped_string &scopedstr, const ::scoped_string &scopedstrSetting)
+   {
+
+      ::string strCommand;
+
+      strCommand.format("git config --global {} \"{}\"", scopedstr, scopedstrSetting);
+
+      ::string strError;
+
+      ::i32 iExitCode = -1;
+
+      ::string strOutput = node()->get_posix_shell_command_output(
+         strCommand,
+         e_posix_shell_system_default,
+         &strError,
+         &iExitCode);
+
+      if (iExitCode != 0)
+      {
+
+         throw ::exception(error_failed, strError);
+
+      }
+
+      print_line(strOutput);
+
+   }
+
+
+   bool application::git_has_global_config(const ::scoped_string &scopedstr)
+   {
+
+      ::string strConfig = git_global_config(scopedstr);
+
+      bool bHasConfig = strConfig.has_character();
+
+      return bHasConfig;
+
+   }
+
+
+   ::string application::git_user_github_account(const ::scoped_string &scopedstrPrompt)
+   {
+      throw interface_only();
+
+      return {};
+   }
+
+   //    auto strUserGithubAccountName = _git_user_github_account();
+   //
+   //    if (strUserGithubAccountName.has_character())
+   //    {
+   //
+   //       return strUserGithubAccountName;
+   //
+   //    }
+   //
+   //    if (scopedstrPrompt.is_empty())
+   //    {
+   //       preempt_message("Your Github Account User Name is not set. Do you want to set it type? (Y/n)");
+   //    }
+   //    else
+   //    {
+   //
+   //       preempt_message(scopedstrPrompt);
+   //
+   //    }
+   //
+   //    if (yes_no)
+   //
+   // }
+   //
+   //
+   // ::string application::_git_user_github_account()
+   // {
+   //
+   //    ::file::path pathGitHubAccount = directory_system()->home() / ".config/.github_account";
+   //
+   //    ::string strUserGithubAccountName = file()->as_string(pathGitHubAccount);
+   //
+   //    return strUserGithubAccountName;
+   //
+   // }
+   //
+   //
+   // void application::_git_user_github_account(const ::scoped_string & scopedstrUserGithubAccountName)
+   // {
+   //
+   //    ::file::path pathGitHubAccount = directory_system()->home() / ".config/.github_account";
+   //
+   //    file()->put_text(pathGitHubAccount, scopedstrUserGithubAccountName);
+   //
+   // }
 
 
 // void application::defer_task_groups(::coding::integration* pintegration)

@@ -8,6 +8,7 @@
 #include "framework.h"
 #include "message_box.h"
 #include "acme/handler/sequence.h"
+#include "acme/platform/application.h"
 #include "acme/platform/node.h"
 //#include "acme/handler/sequence.h"
 #include "acme/nano/graphics/icon.h"
@@ -94,7 +95,15 @@ void dialog::display_dialog()
 }
 
 
-void dialog::display(::dialog * pdialog)
+void dialog::display_dialog(::dialog * pdialog)
+{
+
+   throw ::interface_only();
+
+}
+
+
+void dialog::show_modal(::dialog * pdialog)
 {
 
    throw ::interface_only();
@@ -157,6 +166,16 @@ class time dialog::dialog_timeout() const
 }
 
 
+::string_array_base dialog::dialog_details_icon_urls() const
+{
+
+   throw ::interface_only();
+
+   return {};
+
+}
+
+
 dialog_payload::dialog_payload()
 {
 
@@ -181,7 +200,7 @@ dialog_payload::~dialog_payload()
 
 
 
-void dialog_payload::display(::dialog * pdialog)
+void dialog_payload::display_dialog(::dialog * pdialog)
 {
 
    throw ::interface_only();
@@ -192,7 +211,10 @@ void dialog_payload::display(::dialog * pdialog)
 void dialog_payload::on_dialog_result(const ::payload & payloadResult)
 {
 
-   m_functionOnDialogResult(payloadResult);
+   if (m_functionOnDialogResult2)
+   {
+      m_functionOnDialogResult2(payloadResult);
+   }
 
 }
 
@@ -229,7 +251,30 @@ class ::time dialog_payload::dialog_timeout() const
 }
 
 
+void message_box_payload::run()
+{
 
+   m_papplication->run_message_box(this);
+
+}
+
+
+void message_box_payload::on_dialog_result(const ::payload &payloadResult) 
+{
+
+   m_payloadResult = payloadResult;
+
+   if (m_functionOnMessageBoxResult)
+   {
+
+      m_functionOnMessageBoxResult(this);
+
+   }
+   else if (m_functionOnDialogResult2)
+   {
+      m_functionOnDialogResult2(payloadResult);
+   }
+}
 
 
 dialog_reifier::dialog_reifier()
@@ -263,7 +308,7 @@ void dialog_reifier::display_dialog()
 }
 
 
-void dialog_reifier::display(::dialog * pdialog)
+void dialog_reifier::display_dialog(::dialog * pdialog)
 {
 
    m_pdialog = pdialog;
@@ -277,13 +322,17 @@ void dialog_reifier::display(::dialog * pdialog)
 void dialog_reifier::set_dialog_result(const ::payload & payloadResult)
 {
 
+   auto pdialog = m_pdialog;
+
+   on_dialog_result(payloadResult);
+
    try
    {
 
-      if (m_pdialog)
+      if (pdialog)
       {
 
-         m_pdialog->on_dialog_result(payloadResult);
+         pdialog->on_dialog_result(payloadResult);
 
       }
 
@@ -293,8 +342,6 @@ void dialog_reifier::set_dialog_result(const ::payload & payloadResult)
 
 
    }
-
-   on_dialog_result(payloadResult);
 
 }
 
@@ -325,7 +372,11 @@ message_box_payload *dialog_reifier::get_message_box_payload()
 }
 
 
-message_box_payload::message_box_payload(const ::scoped_string & scopedstrMessage, const ::scoped_string & scopedstrTitle, const ::user::e_message_box & emessagebox, const ::scoped_string & scopedstrDetails, ::nano::graphics::icon * picon)
+//message_box_payload::message_box_payload(const ::scoped_string & scopedstrMessage, const ::scoped_string & scopedstrTitle, const ::user::e_message_box & emessagebox, const ::scoped_string & scopedstrDetails, ::nano::graphics::icon * picon)
+message_box_payload::message_box_payload(const ::scoped_string &scopedstrMessage, const ::scoped_string &scopedstrTitle,
+                                         const ::user::e_message_box &emessagebox,
+                                         const ::scoped_string &scopedstrDetails,
+                                         const ::string_array_base &straIconUrl)
 {
 
    m_strMessage = scopedstrMessage;
@@ -336,7 +387,11 @@ message_box_payload::message_box_payload(const ::scoped_string & scopedstrMessag
 
    m_strDetails = scopedstrDetails;
 
-   m_picon = picon;
+   if (::is_set(&straIconUrl))
+   {
+
+      m_straIconUrl = straIconUrl;
+   }
 
 }
 
@@ -387,7 +442,12 @@ message_box_payload::message_box_payload(const ::exception & exception, const ::
 
 
 
-message_box_payload::message_box_payload(const ::exception & exception, const ::scoped_string & strMessage, const ::scoped_string & scopedstrTitle, const ::user::e_message_box & emessagebox, const ::scoped_string & scopedstrDetails, ::nano::graphics::icon * picon)
+//message_box_payload::message_box_payload(const ::exception & exception, const ::scoped_string & strMessage, const ::scoped_string & scopedstrTitle, const ::user::e_message_box & emessagebox, const ::scoped_string & scopedstrDetails, ::nano::graphics::icon * picon)
+message_box_payload::message_box_payload(const ::exception &exception, const ::scoped_string &strMessage,
+                                         const ::scoped_string &scopedstrTitle,
+                                         const ::user::e_message_box &emessagebox,
+                                         const ::scoped_string &scopedstrDetails,
+                                         const ::string_array_base &straIconUrl)
 {
 
    m_strMessage = exception.m_strMessage;
@@ -404,7 +464,18 @@ message_box_payload::message_box_payload(const ::exception & exception, const ::
 
    m_strDetails.concatenate_with_separator("\n\nCallstack:\n", exception.m_strCallStackTrace);
 
-   m_picon = picon;
+   //m_picon2 = picon;
+
+   m_straIconUrl = straIconUrl;
+
+
+  /*       auto picon = createø<::nano::graphics::icon>();
+
+   auto pfile = file()->get("matter://main/icon.png");
+
+   picon->load_image_from_file(pfile);*/
+
+
 
 }
 
@@ -431,7 +502,7 @@ message_box_payload *message_box_payload::get_message_box_payload()
 //#ifdef _DEBUG
 //
 //
-//long long message_box_payload::increment_reference_count()
+//::i64 message_box_payload::increment_reference_count()
 //{
 //
 //   return ::particle::increment_reference_count();
@@ -439,7 +510,7 @@ message_box_payload *message_box_payload::get_message_box_payload()
 //}
 //
 //
-//long long message_box_payload::decrement_reference_count()
+//::i64 message_box_payload::decrement_reference_count()
 //{
 //
 //   return ::particle::decrement_reference_count();
@@ -526,6 +597,14 @@ void message_box_payload::on_timed_out()
 {
 
    return m_strDetails;
+
+}
+
+
+::string_array_base message_box_payload::dialog_details_icon_urls() const
+{
+
+   return m_straDetailsIconUrl;
 
 }
 

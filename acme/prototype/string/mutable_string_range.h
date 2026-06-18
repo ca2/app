@@ -92,7 +92,7 @@ public:
    /// Return :
    /// Coder    Date                      Desc
    /// bro      2002-10-29
-   void escape_copy(char escape, const ::const_ansi_range & rangeSource);
+   void escape_copy(::i8 escape, const ::const_ansi_range & rangeSource);
 
    
 };
@@ -126,9 +126,9 @@ _unicode_find_first_character_in(const ::range<CHARACTER> &block, const ::range<
 
    auto pBlockEnd = pBlock + blockBlock.size();
 
-   int len1;
+   ::i32 len1;
 
-   int len2;
+   ::i32 len2;
 
    while (p < pEnd) {
 
@@ -186,9 +186,9 @@ _unicode_rear_find_first_character_in(const ::range<CHARACTER> &block, const ::r
 
    auto pBlockEnd = pBlock + blockBlock.size();
 
-   //int len1;
+   //::i32 len1;
 
-   int len2;
+   ::i32 len2;
 
    while (pEnd < p) {
 
@@ -242,7 +242,7 @@ using wd32_range = ::string_range< const ::wd32_character * >;
 
 
 template<prototype_character CHARACTER>
-inline ::hash32 _string_range_unsigned_int_hash(::string_range<const CHARACTER *> range) {
+inline ::hash32 _string_range_u32_hash(::string_range<const CHARACTER *> range) {
 
    if (range.is_empty()) {
 
@@ -250,7 +250,7 @@ inline ::hash32 _string_range_unsigned_int_hash(::string_range<const CHARACTER *
 
    }
 
-   unsigned int uHash = 0;
+   ::u32 uHash = 0;
 
    while (range.m_begin < range.m_end) uHash = (uHash << 5) + *(range.m_begin++);
 
@@ -262,7 +262,7 @@ inline ::hash32 _string_range_unsigned_int_hash(::string_range<const CHARACTER *
 //inline ::hash32 as_hash32(const_ansi_range range)
 //{
 //
-//   return _string_range_unsigned_int_hash((::string_range<const_char_pointer >) range);
+//   return _string_range_u32_hash((::string_range<const_char_pointer >) range);
 //
 //}
 //
@@ -270,7 +270,7 @@ inline ::hash32 _string_range_unsigned_int_hash(::string_range<const CHARACTER *
 //inline ::hash32 as_hash32(const_wd16_range range)
 //{
 //
-//   return _string_range_unsigned_int_hash((::string_range<const ::wd16_character *>) range);
+//   return _string_range_u32_hash((::string_range<const ::wd16_character *>) range);
 //
 //}
 //
@@ -278,7 +278,7 @@ inline ::hash32 _string_range_unsigned_int_hash(::string_range<const CHARACTER *
 //inline ::hash32 as_hash32(const_wd32_range range)
 //{
 //
-//   return _string_range_unsigned_int_hash<::wd32_character>((::string_range<const ::wd32_character *>) range);
+//   return _string_range_u32_hash<::wd32_character>((::string_range<const ::wd32_character *>) range);
 //
 //}
 

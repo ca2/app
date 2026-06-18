@@ -15,9 +15,9 @@
 //#include <unistd.h>
 //#include "node.h"
 //
-//int create_process6(const_char_pointer _cmd_line, int * pprocessId);
+//::i32 create_process6(const_char_pointer _cmd_line, ::i32 * pprocessId);
 //
-//CLASS_DECL_ACME void dll_processes(unsigned_int_array & dwa, string_array_base & straProcesses, const ::scoped_string & scopedstrDll)
+//CLASS_DECL_ACME void dll_processes(u32_array & dwa, string_array_base & straProcesses, const ::scoped_string & scopedstrDll)
 //{
 //
 //   __UNREFERENCED_PARAMETER(dwa);
@@ -25,19 +25,19 @@
 //   __UNREFERENCED_PARAMETER(scopedstrDll);
 //
 //}
-//int create_process(const ::scoped_string & scopedstrCommandLine, int * pprocessId)
+//::i32 create_process(const ::scoped_string & scopedstrCommandLine, ::i32 * pprocessId)
 //{
 //
 //   string_array_base stra;
 //
 //   stra = get_c_args_for_c(scopedstrCommandLine);
 //
-//   address_array < char * > argv;
+//   address_array < char_pointer > argv;
 //
 //   for(auto & str : stra)
 //   {
 //
-//      argv.add((char *) str.c_str());
+//      argv.add((char_pointer ) str.c_str());
 //
 //   }
 //
@@ -47,7 +47,7 @@
 //
 //   string strExe = argv[0];
 //
-//   int status = posix_spawn(&pid, argv[0], nullptr, nullptr, argv.get_data(), environ);
+//   ::i32 status = posix_spawn(&pid, argv[0], nullptr, nullptr, argv.get_data(), environ);
 //
 //   if (status == 0)
 //   {
@@ -86,14 +86,14 @@
 //}
 //
 //
-//int create_process3(const_char_pointer _cmd_line, int * pprocessId)
+//::i32 create_process3(const_char_pointer _cmd_line, ::i32 * pprocessId)
 //{
 //
-//   char *   exec_path_name;
+//   char_pointer exec_path_name;
 //
-//   char *	cmd_line;
+//   char_pointer cmd_line;
 //
-//   char *	cmd_line2;
+//   char_pointer cmd_line2;
 //
 //   cmd_line = strdup(_cmd_line);
 //
@@ -104,15 +104,15 @@
 //
 //   }
 //
-//   char *      argv[1024 + 1];
+//   char_pointer argv[1024 + 1];
 //
-//   int		argc = 0;
+//   ::i32		argc = 0;
 //
 //   prepare_argc_argv(argc, argv, cmd_line);
 //
 //   pid_t pid;
 //
-//   int status;
+//   ::i32 status;
 //
 //   status = posix_spawn(&pid, argv[0], nullptr, nullptr, argv, environ);
 //
@@ -134,21 +134,21 @@
 //}
 //
 //
-//int daemonize_process(const ::scoped_string & scopedstrCommandLine, int * pprocessId)
+//::i32 daemonize_process(const ::scoped_string & scopedstrCommandLine, ::i32 * pprocessId)
 //{
 //
 //   string_array_base stra;
 //
 //   stra = get_c_args_for_c(scopedstrCommandLine);
 //
-//   char ** argv = (char **) malloc(sizeof(char *) * (stra.get_size() + 1));
+//   char_pointer * argv = (char_pointer *) malloc(sizeof(char_pointer ) * (stra.get_size() + 1));
 //
-//   int argc = 0;
+//   ::i32 argc = 0;
 //
 //   for(auto & str : stra)
 //   {
 //
-//      argv[argc] = strdup((char *) str.c_str());
+//      argv[argc] = strdup((char_pointer ) str.c_str());
 //
 //      argc++;
 //
@@ -165,7 +165,7 @@
 //
 //      printf("fork error\n");
 //
-//      char ** pargv = argv;
+//      char_pointer * pargv = argv;
 //
 //      while(*pargv != nullptr)
 //      {
@@ -194,7 +194,7 @@
 ////
 ////   umask(0);
 ////
-////   int sid = setsid();
+////   ::i32 sid = setsid();
 ////
 ////   if (sid < 0)
 ////   {
@@ -217,9 +217,9 @@
 ////   freopen( "/dev/null", "w", stdout);
 ////   freopen( "/dev/null", "w", stderr);
 //
-//   int iExitCode = execv(argv[0], argv);
+//   ::i32 iExitCode = execv(argv[0], argv);
 //
-//   char ** pargv = argv;
+//   char_pointer * pargv = argv;
 //
 //   while(*pargv != nullptr)
 //   {
@@ -240,21 +240,21 @@
 //}
 //
 //
-//int create_process4(const ::scoped_string & scopedstrCommandLine, int * pprocessId)
+//::i32 create_process4(const ::scoped_string & scopedstrCommandLine, ::i32 * pprocessId)
 //{
 //
 //   string_array_base stra;
 //
 //   stra = get_c_args_for_c(scopedstrCommandLine);
 //
-//   char ** argv = (char **) malloc(sizeof(char *) * (stra.get_size() + 1));
+//   char_pointer * argv = (char_pointer *) malloc(sizeof(char_pointer ) * (stra.get_size() + 1));
 //
-//   int argc = 0;
+//   ::i32 argc = 0;
 //
 //   for(auto & str : stra)
 //   {
 //
-//      argv[argc] = strdup((char *) str.c_str());
+//      argv[argc] = strdup((char_pointer ) str.c_str());
 //
 //      argc++;
 //
@@ -267,11 +267,11 @@
 //
 //      execv(argv[0], argv);
 //
-//      int status = 0;
+//      ::i32 status = 0;
 //
 //      wait(&status);
 //
-//      char ** pargv = argv;
+//      char_pointer * pargv = argv;
 //
 //      while(*pargv != nullptr)
 //      {
@@ -292,7 +292,7 @@
 //
 //      *pprocessId = 0;
 //
-//      char ** pargv = argv;
+//      char_pointer * pargv = argv;
 //
 //      while(*pargv != nullptr)
 //      {
@@ -314,7 +314,7 @@
 //}
 //
 //
-//CLASS_DECL_ACME void call_async(const ::file::path & path, const ::scoped_string & scopedstrParam, const ::scoped_string & scopedstrDir, ::e_display edisplay, bool bPrivileged, unsigned int * puiPid)
+//CLASS_DECL_ACME void call_async(const ::file::path & path, const ::scoped_string & scopedstrParam, const ::scoped_string & scopedstrDir, ::e_display edisplay, bool bPrivileged, ::u32 * puiPid)
 //{
 //
 //   string strCmdLine;
@@ -330,7 +330,7 @@
 //
 //   }
 //
-//   int processId;
+//   ::i32 processId;
 //
 //   if(!create_process(strCmdLine, &processId))
 //   {
@@ -374,7 +374,7 @@
 //
 //   }
 //
-//   int processId;
+//   ::i32 processId;
 //
 //   if(!create_process(strCmdLine, &processId))
 //   {
@@ -407,12 +407,12 @@
 //}
 //
 //
-//string module_path_from_pid(unsigned int iPid)
+//string module_path_from_pid(::u32 iPid)
 //{
 //
 //   struct stat sb;
 //
-//   int iSize;
+//   ::i32 iSize;
 //
 //   string str;
 //
@@ -449,7 +449,7 @@
 //#endif
 //   mem.set_size(iSize);
 //
-//   s = readlink (str, (char *) mem.get_data(), iSize);
+//   s = readlink (str, (char_pointer ) mem.get_data(), iSize);
 //
 //   if(s > sb.st_size)
 //   {
@@ -476,10 +476,10 @@
 //}
 //
 //
-//::int_array_base module_path_get_pid(const ::file::path & path)
+//::i32_array_base module_path_get_pid(const ::file::path & path)
 //{
 //
-//   ::int_array_base ia;
+//   ::i32_array_base ia;
 //
 //   ::file::path_array_base stra;
 //
@@ -488,7 +488,7 @@
 //   for(auto & strPid : stra)
 //   {
 //
-//      int iPid = atoi(strPid.title());
+//      ::i32 iPid = atoi(strPid.title());
 //
 //      if(iPid > 0)
 //      {
@@ -546,7 +546,7 @@
 //         for (auto & strPid : stra)
 //         {
 //
-//            int iPid = atoi(strPid.title());
+//            ::i32 iPid = atoi(strPid.title());
 //
 //            if (iPid > 0)
 //            {
@@ -601,7 +601,7 @@
 //      }
 //
 //
-//      string node::command_line_from_pid(unsigned int iPid)
+//      string node::command_line_from_pid(::u32 iPid)
 //      {
 //
 //         string_array_base stra;
@@ -614,12 +614,12 @@
 //
 //         string strArg;
 //
-//         char ch;
+//         ::i8 ch;
 //
-//         for (int i = 0; i < mem.get_size(); i++)
+//         for (::i32 i = 0; i < mem.get_size(); i++)
 //         {
 //
-//            ch = (char) mem.get_data()[i];
+//            ch = (::i8) mem.get_data()[i];
 //
 //            if (ch == '\0')
 //            {
@@ -662,7 +662,7 @@
 //      }
 //
 //
-//      bool node::is_shared_library_busy(unsigned int processid, const string_array_base & stra)
+//      bool node::is_shared_library_busy(::u32 processid, const string_array_base & stra)
 //      {
 //
 //         return false;
@@ -694,25 +694,25 @@
 //}
 //
 //
-//CLASS_DECL_ACME int ca2_main();
+//CLASS_DECL_ACME ::i32 ca2_main();
 //
 //
 //
-//int create_process2(const ::scoped_string & scopedstrCommandLine, int * pprocessId)
+//::i32 create_process2(const ::scoped_string & scopedstrCommandLine, ::i32 * pprocessId)
 //{
 //
 //   string_array_base stra;
 //
 //   stra = get_c_args_for_c(scopedstrCommandLine);
 //
-//   char ** argv = (char **) malloc(sizeof(char *) * (stra.get_size() + 1));
+//   char_pointer * argv = (char_pointer *) malloc(sizeof(char_pointer ) * (stra.get_size() + 1));
 //
-//   int argc = 0;
+//   ::i32 argc = 0;
 //
 //   for(auto & str : stra)
 //   {
 //
-//      argv[argc] = strdup((char *) str.c_str());
+//      argv[argc] = strdup((char_pointer ) str.c_str());
 //
 //      argc++;
 //
@@ -725,9 +725,9 @@
 //   if((pid = fork()) == 0) // child
 //   {
 //
-//      int iExitCode = execv(argv[0], argv);
+//      ::i32 iExitCode = execv(argv[0], argv);
 //
-//      char ** pargv = argv;
+//      char_pointer * pargv = argv;
 //
 //      while(*pargv != nullptr)
 //      {
@@ -746,7 +746,7 @@
 //   else if(pid == -1) // in parent, but error
 //   {
 //
-//      char ** pargv = argv;
+//      char_pointer * pargv = argv;
 //
 //      while(*pargv != nullptr)
 //      {
@@ -787,7 +787,7 @@
 //
 
 
-unsigned int get_current_process_id()
+::u32 get_current_process_id()
 {
 
    return getpid();
@@ -808,3 +808,38 @@ void install_operating_system_default_signal_handlers()
 
 
 
+
+
+/*
+ * Measures the current (and peak) resident and virtual memories
+ * usage of your linux C process, in kB
+ */
+void get_proc_self_status_memory(
+    ::i32* currRealMem, ::i32* peakRealMem,
+    ::i32* currVirtMem, ::i32* peakVirtMem)
+{
+
+   // stores each word in status file
+   ::i8 buffer[1024] = "";
+
+   // linux file contains this-process info
+   FILE* file = fopen("/proc/self/status", "r");
+
+   // read the entire file
+   while (fscanf(file, " %1023s", buffer) == 1) {
+
+      if (currRealMem && strcmp(buffer, "VmRSS:") == 0) {
+         fscanf(file, " %d", currRealMem);
+      }
+      if (peakRealMem && strcmp(buffer, "VmHWM:") == 0) {
+         fscanf(file, " %d", peakRealMem);
+      }
+      if (currVirtMem && strcmp(buffer, "VmSize:") == 0) {
+         fscanf(file, " %d", currVirtMem);
+      }
+      if (peakVirtMem && strcmp(buffer, "VmPeak:") == 0) {
+         fscanf(file, " %d", peakVirtMem);
+      }
+   }
+   fclose(file);
+}

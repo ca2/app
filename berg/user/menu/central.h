@@ -2,7 +2,7 @@
 
 
 #include "acme/platform/department.h"
-#include "acme/prototype/collection/int_map.h"
+#include "acme/prototype/collection/integer_map.h"
 
 
 namespace user
@@ -15,8 +15,8 @@ namespace user
    public:
 
 
-      atom_map_base < int >          m_mapCommandImage;
-      ::int_map < atom >        m_mapImageCommand;
+      atom_map_base < ::i32 >          m_mapCommandImage;
+      ::i32_map < atom >        m_mapImageCommand;
 
       ::image::image_list_pointer      m_pimagelist;
       ::image::image_list_pointer      m_pimagelistHue;
@@ -41,8 +41,8 @@ namespace user
       bool MenuV033AddImageMap(::particle * pparticle, ::xml::node * pnode);
       
 
-      int command_image(atom atom);
-      atom image_command(int iImage);
+      ::i32 command_image(atom atom);
+      atom image_command(::i32 iImage);
 
 
       ::write_text::font * MenuV033GetFont();

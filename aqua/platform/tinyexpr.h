@@ -32,44 +32,44 @@ namespace tinyexpr
 {
 
 union te_function{
-   double (*m_fn0)();
-   double (*m_fn1)(double d);
-   double (*m_fn2)(double d, double d2);
-   double (*m_fn3)(double d, double d2, double d3);
-   double (*m_fn4)(double d, double d2, double d3, double d4);
-   double (*m_fn5)(double d, double d2, double d3, double d4, double d5);
-   double (*m_fn6)(double d, double d2, double d3, double d4, double d5, double d6);
-   double (*m_fn7)(double d, double d2, double d3, double d4, double d5, double d6, double d7);
-   double (*m_clj0)(void *);
-   double (*m_clj1)(void *, double d);
-   double (*m_clj2)(void *, double d, double d2);
-   double (*m_clj3)(void *, double d, double d2, double d3);
-   double (*m_clj4)(void *, double d, double d2, double d3, double d4);
-   double (*m_clj5)(void *, double d, double d2, double d3, double d4, double d5);
-   double (*m_clj6)(void *, double d, double d2, double d3, double d4, double d5, double d6);
-   double (*m_clj7)(void *, double d, double d2, double d3, double d4, double d5, double d6, double d7);
+   ::f64 (*m_fn0)();
+   ::f64 (*m_fn1)(::f64 d);
+   ::f64 (*m_fn2)(::f64 d, ::f64 d2);
+   ::f64 (*m_fn3)(::f64 d, ::f64 d2, ::f64 d3);
+   ::f64 (*m_fn4)(::f64 d, ::f64 d2, ::f64 d3, ::f64 d4);
+   ::f64 (*m_fn5)(::f64 d, ::f64 d2, ::f64 d3, ::f64 d4, ::f64 d5);
+   ::f64 (*m_fn6)(::f64 d, ::f64 d2, ::f64 d3, ::f64 d4, ::f64 d5, ::f64 d6);
+   ::f64 (*m_fn7)(::f64 d, ::f64 d2, ::f64 d3, ::f64 d4, ::f64 d5, ::f64 d6, ::f64 d7);
+   ::f64 (*m_clj0)(void *);
+   ::f64 (*m_clj1)(void *, ::f64 d);
+   ::f64 (*m_clj2)(void *, ::f64 d, ::f64 d2);
+   ::f64 (*m_clj3)(void *, ::f64 d, ::f64 d2, ::f64 d3);
+   ::f64 (*m_clj4)(void *, ::f64 d, ::f64 d2, ::f64 d3, ::f64 d4);
+   ::f64 (*m_clj5)(void *, ::f64 d, ::f64 d2, ::f64 d3, ::f64 d4, ::f64 d5);
+   ::f64 (*m_clj6)(void *, ::f64 d, ::f64 d2, ::f64 d3, ::f64 d4, ::f64 d5, ::f64 d6);
+   ::f64 (*m_clj7)(void *, ::f64 d, ::f64 d2, ::f64 d3, ::f64 d4, ::f64 d5, ::f64 d6, ::f64 d7);
    te_function(nullptr_t){m_fn1= nullptr;}
-   te_function(double (*fn0)()):m_fn0(fn0){}
-   te_function(double (*fn1)(double d)):m_fn1(fn1){}
-   te_function(double (*fn2)(double d, double d2)):m_fn2(fn2){}
-   te_function(double (*fn3)(double d, double d2, double d3)):m_fn3(fn3){}
-   te_function(double (*fn4)(double d, double d2, double d3, double d4)):m_fn4(fn4){}
-   te_function(double (*fn5)(double d, double d2, double d3, double d4, double d5)):m_fn5(fn5){}
-   te_function(double (*fn6)(double d, double d2, double d3, double d4, double d5, double d6)):m_fn6(fn6){}
-   te_function(double (*fn7)(double d, double d2, double d3, double d4, double d5, double d6, double d7)):m_fn7(fn7){}
-   te_function(double (*clj0)(void *)):m_clj0(clj0){}
-   te_function(double (*clj1)(void *, double d)):m_clj1(clj1){}
-   te_function(double (*clj2)(void *, double d, double d2)):m_clj2(clj2){}
-   te_function(double (*clj3)(void *, double d, double d2, double d3)):m_clj3(clj3){}
-   te_function(double (*clj4)(void *, double d, double d2, double d3, double d4)):m_clj4(clj4){}
-   te_function(double (*clj5)(void *, double d, double d2, double d3, double d4, double d5)):m_clj5(clj5){}
-   te_function(double (*clj6)(void *, double d, double d2, double d3, double d4, double d5, double d6)):m_clj6(clj6){}
-   te_function(double (*clj7)(void *, double d, double d2, double d3, double d4, double d5, double d6, double d7)):m_clj7(clj7){}
+   te_function(::f64 (*fn0)()):m_fn0(fn0){}
+   te_function(::f64 (*fn1)(::f64 d)):m_fn1(fn1){}
+   te_function(::f64 (*fn2)(::f64 d, ::f64 d2)):m_fn2(fn2){}
+   te_function(::f64 (*fn3)(::f64 d, ::f64 d2, ::f64 d3)):m_fn3(fn3){}
+   te_function(::f64 (*fn4)(::f64 d, ::f64 d2, ::f64 d3, ::f64 d4)):m_fn4(fn4){}
+   te_function(::f64 (*fn5)(::f64 d, ::f64 d2, ::f64 d3, ::f64 d4, ::f64 d5)):m_fn5(fn5){}
+   te_function(::f64 (*fn6)(::f64 d, ::f64 d2, ::f64 d3, ::f64 d4, ::f64 d5, ::f64 d6)):m_fn6(fn6){}
+   te_function(::f64 (*fn7)(::f64 d, ::f64 d2, ::f64 d3, ::f64 d4, ::f64 d5, ::f64 d6, ::f64 d7)):m_fn7(fn7){}
+   te_function(::f64 (*clj0)(void *)):m_clj0(clj0){}
+   te_function(::f64 (*clj1)(void *, ::f64 d)):m_clj1(clj1){}
+   te_function(::f64 (*clj2)(void *, ::f64 d, ::f64 d2)):m_clj2(clj2){}
+   te_function(::f64 (*clj3)(void *, ::f64 d, ::f64 d2, ::f64 d3)):m_clj3(clj3){}
+   te_function(::f64 (*clj4)(void *, ::f64 d, ::f64 d2, ::f64 d3, ::f64 d4)):m_clj4(clj4){}
+   te_function(::f64 (*clj5)(void *, ::f64 d, ::f64 d2, ::f64 d3, ::f64 d4, ::f64 d5)):m_clj5(clj5){}
+   te_function(::f64 (*clj6)(void *, ::f64 d, ::f64 d2, ::f64 d3, ::f64 d4, ::f64 d5, ::f64 d6)):m_clj6(clj6){}
+   te_function(::f64 (*clj7)(void *, ::f64 d, ::f64 d2, ::f64 d3, ::f64 d4, ::f64 d5, ::f64 d6, ::f64 d7)):m_clj7(clj7){}
 };
 
 typedef struct te_expr {
-   int type;
-   union {double value; const double * bound; te_function function;};
+   ::i32 type;
+   union {::f64 value; const ::f64 * bound; te_function function;};
    te_expr * parameters[1];
 } te_expr;
 
@@ -86,20 +86,20 @@ enum {
    TE_FLAG_PURE = 32
 };
 union bound_or_function{
-   const double * bound;
+   const ::f64 * bound;
    te_function function;
    
    bound_or_function(nullptr_t){bound= nullptr;}
-   bound_or_function(const double * p):bound(p){}
-   bound_or_function(double (*fn0)()):function(fn0){}
-   bound_or_function(double (*fn1)(double d)):function(fn1){}
-   bound_or_function(double (*fn2)(double d, double d2)):function(fn2){}
+   bound_or_function(const ::f64 * p):bound(p){}
+   bound_or_function(::f64 (*fn0)()):function(fn0){}
+   bound_or_function(::f64 (*fn1)(::f64 d)):function(fn1){}
+   bound_or_function(::f64 (*fn2)(::f64 d, ::f64 d2)):function(fn2){}
 };
 
 typedef struct te_variable {
-   const_char_pointer name;
+   const_char_pointer pszName;
    bound_or_function address;
-   int type;
+   ::i32 type;
    te_expr *context;
 } te_variable;
 
@@ -107,14 +107,14 @@ typedef struct te_variable {
 
 /* Parses the input expression, evaluates it, and frees it. */
 /* Returns NaN on error. */
-double CLASS_DECL_AQUA  te_interp(const_char_pointer expression, int *error);
+::f64 CLASS_DECL_AQUA  te_interp(const_char_pointer expression, ::i32 *error);
 
 /* Parses the input expression and binds variables. */
 /* Returns NULL on error. */
-CLASS_DECL_AQUA te_expr * te_compile(const_char_pointer expression, const te_variable *variables, int var_count, int *error);
+CLASS_DECL_AQUA te_expr * te_compile(const_char_pointer expression, const te_variable *variables, ::i32 var_count, ::i32 *error);
 
 /* Evaluates the expression. */
-double CLASS_DECL_AQUA te_eval(const te_expr *n);
+::f64 CLASS_DECL_AQUA te_eval(const te_expr *n);
 
 /* Prints debugging information on the syntax tree. */
 void CLASS_DECL_AQUA te_print(const te_expr *n);

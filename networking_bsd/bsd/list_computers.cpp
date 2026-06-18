@@ -32,9 +32,9 @@
 struct arp_req{
    struct nlmsghdr n;
    struct ndmsg ndm;
-   char buf[1024];
+   ::i8 buf[1024];
 };
-static int parse_rtattr(struct rtattr *tb[], int max, struct rtattr *rta, int len) {
+static ::i32 parse_rtattr(struct rtattr *tb[], ::i32 max, struct rtattr *rta, ::i32 len) {
    /* loop over all rtattributes */
    while (RTA_OK(rta, len) && max--) {
       tb[rta->rta_type] = rta; /* store attribute ptr to the tb array */
@@ -44,12 +44,12 @@ static int parse_rtattr(struct rtattr *tb[], int max, struct rtattr *rta, int le
 }
 
 template < typename PREDICATE >
-int kernel_arp(PREDICATE pred) {
-   int status;
-   unsigned char *p; //just a ptr
+::i32 kernel_arp(PREDICATE pred) {
+   ::i32 status;
+   ::u8 *p; //just a ptr
 
    /* open socket */
-   int sd = socket(PF_NETLINK, SOCK_DGRAM, NETLINK_ROUTE);
+   ::i32 sd = socket(PF_NETLINK, SOCK_DGRAM, NETLINK_ROUTE);
 
    arp_req req;
 
@@ -63,22 +63,22 @@ int kernel_arp(PREDICATE pred) {
    status = send(sd, &req, req.n.nlmsg_len, 0);
 
    /* this is buffer to store an answer */
-   char buf[16384] = {0};
+   ::i8 buf[16384] = {0};
 
    /* get an answer */
    status = recv(sd, buf, sizeof(buf), 0);
-   int buf_size = status; /* recv will return answer size */
-   p = (unsigned char *) buf; /* set p to start of an answer */
+   ::i32 buf_size = status; /* recv will return answer size */
+   p = (::u8 *) buf; /* set p to start of an answer */
 
    while (buf_size > 0) { /* loop while buffer size is more than 0 */
       struct nlmsghdr *answer = (struct nlmsghdr *) p; /* netlink header structure */
 
-      int len = answer->nlmsg_len; /* netlink message length including header */
+      ::i32 len = answer->nlmsg_len; /* netlink message length including header */
       struct ndmsg *msg = (struct ndmsg *) NLMSG_DATA(answer); /* macro to get a ptr right after header */
       /* Given the payload length, len, this macro returns the aligned
        * length to store in the nlmsg_len field of the nlmsghdr.
        * */
-      int msg_len = NLMSG_LENGTH(sizeof(*msg));
+      ::i32 msg_len = NLMSG_LENGTH(sizeof(*msg));
       len -= msg_len; /* count message length left */
       p += msg_len; /* move ptr forward */
 
@@ -90,13 +90,13 @@ int kernel_arp(PREDICATE pred) {
       ::memory_set(tb, 0, sizeof(tb)); /* clear attribute buffer */
       parse_rtattr(tb, NDA_MAX, rta, len); /* fill tb attribute buffer */
       if (tb[NDA_DST]) { /* this is destination address */
-         char ip[INET6_ADDRSTRLEN] = {0};
+         ::i8 ip[INET6_ADDRSTRLEN] = {0};
          inet_ntop(msg->ndm_family, RTA_DATA(tb[NDA_DST]), ip, INET6_ADDRSTRLEN);
          fprintf(stderr, "%s ", ip);
          pred(ip);
       }
       if (tb[NDA_LLADDR]) { /* this is hardware mac address */
-         const unsigned char *addr = (const unsigned char *) RTA_DATA(tb[NDA_LLADDR]);
+         const ::u8 *addr = (const ::u8 *) RTA_DATA(tb[NDA_LLADDR]);
          fprintf(stderr, "lladdr: %02X:%02X:%02X:%02X:%02X:%02X\n",
                  addr[0], addr[1], addr[2], addr[3], addr[4], addr[5]);
       } else {
@@ -121,13 +121,13 @@ namespace networking_bsd
 //
 //      defer_construct_newø(pitema);
 //
-//      char line[500]; // Read with fgets().
-//      char ip_address[500]; // Obviously more space than necessary, just illustrating here.
-//      int hw_type;
-//      int flags;
-//      char mac_address[500];
-//      char mask[500];
-//      char device[500];
+//      ::i8 line[500]; // Read with fgets().
+//      ::i8 ip_address[500]; // Obviously more space than necessary, just illustrating here.
+//      ::i32 hw_type;
+//      ::i32 flags;
+//      ::i8 mac_address[500];
+//      ::i8 mask[500];
+//      ::i8 device[500];
 //
 //      auto lines = file()->lines("/proc/net/arp");
 //
@@ -171,13 +171,13 @@ namespace networking_bsd
 
       defer_construct_newø(pitema);
 
-//      char line[500]; // Read with fgets().
-//      char ip_address[500]; // Obviously more space than necessary, just illustrating here.
-//      int hw_type;
-//      int flags;
-//      char mac_address[500];
-//      char mask[500];
-//      char device[500];
+//      ::i8 line[500]; // Read with fgets().
+//      ::i8 ip_address[500]; // Obviously more space than necessary, just illustrating here.
+//      ::i32 hw_type;
+//      ::i32 flags;
+//      ::i8 mac_address[500];
+//      ::i8 mask[500];
+//      ::i8 device[500];
 
       //auto lines = file()->lines("/proc/net/arp");
 

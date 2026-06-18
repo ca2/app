@@ -19,7 +19,7 @@ namespace console
 
       character_count              m_iCursor;
 
-      ::int_size               m_sizeChar;
+      ::i32_size               m_sizeChar;
 
       string               m_strCommand;
 
@@ -39,8 +39,8 @@ namespace console
       void install_message_routing(::channel * pchannel) override;
 
 
-      virtual int getch();
-      virtual int ungetch(int c);
+      virtual ::i32 getch();
+      virtual ::i32 ungetch(::i32 c);
       virtual void clear();
 
       void simple_ui_draw_focus_rect(::draw2d::graphics_pointer & pgraphics);

@@ -25,18 +25,18 @@ public:
    // bool                    m_bLog;
    string                     m_strLink;
    string                     m_strFile;
-   int                        m_iLine;
+   ::i32                        m_iLine;
    array < error_code >       m_errorcodea;
    static bool                s_bEnableCallStackBackTrace;
 
 
    exception();
    //#ifdef __ANDROID__
-   //   exception(const ::e_status & estatus, const ::scoped_string & scopedstrMessage = nullptr, const ::scoped_string & scopedstrDetails = nullptr, int iSkip = CALLSTACK_DEFAULT_SKIP_TRIGGER);
+   //   exception(const ::e_status & estatus, const ::scoped_string & scopedstrMessage = nullptr, const ::scoped_string & scopedstrDetails = nullptr, ::i32 iSkip = CALLSTACK_DEFAULT_SKIP_TRIGGER);
    //#else
-   exception(const ::e_status & estatus, const char * pszMessage = nullptr, const char * pszDetails = nullptr, int iSkip = CALLSTACK_DEFAULT_SKIP_TRIGGER, void * caller_address = nullptr);
+   exception(const ::e_status & estatus, const_char_pointer pszMessage = nullptr, const_char_pointer pszDetails = nullptr, ::i32 iSkip = CALLSTACK_DEFAULT_SKIP_TRIGGER, void * caller_address = nullptr);
    //#endif
-   exception(const ::e_status & estatus, const ::array < error_code > & errorcodea, const char * pszMessage = nullptr, const char * pszDetails = nullptr, int iSkip = CALLSTACK_DEFAULT_SKIP_TRIGGER, void * caller_address = nullptr);
+   exception(const ::e_status & estatus, const ::array < error_code > & errorcodea, const_char_pointer pszMessage = nullptr, const_char_pointer pszDetails = nullptr, ::i32 iSkip = CALLSTACK_DEFAULT_SKIP_TRIGGER, void * caller_address = nullptr);
    virtual ~exception();
 
 

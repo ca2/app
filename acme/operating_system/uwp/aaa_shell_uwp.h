@@ -18,14 +18,14 @@ namespace universal_windows
       virtual ~shell();
 
 
-      virtual ::user::shell::e_folder get_folder_type(::particle * pparticle, const unichar * lpcszPath) override;
-      virtual ::user::shell::e_folder get_folder_type(::particle * pparticle, const char * lpcszPath) override;
+      virtual ::user::shell::e_folder get_folder_type(::particle * pparticle, const wide_character * lpcszPath) override;
+      virtual ::user::shell::e_folder get_folder_type(::particle * pparticle, const_char_pointer lpcszPath) override;
 
 
-      virtual int impl_get_file_image(const image_key & imagekey) override;
+      virtual ::i32 impl_get_file_image(const image_key & imagekey) override;
 
 
-      int get_image_by_extension(const image_key & key, color32_t crBk);
+      ::i32 get_image_by_extension(const image_key & key, color32_t crBk);
 
 
       virtual void do_initialize() override;

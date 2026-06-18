@@ -28,8 +28,8 @@ public:
    virtual ::payload & options();
 
 
-   //void write_buffer_length(unsigned long long u);
-   //unsigned long long read_buffer_length();
+   //void write_buffer_length(::u64 u);
+   //::u64 read_buffer_length();
 
 
 
@@ -163,38 +163,38 @@ public:
    // This number represents a following stream of data with this length.
    // So the extra bytes representing the variable length quantity are
    // neglectable and worth due the very fast variable length encoding.
-   inline void write_length(unsigned long long u)
+   inline void write_length(::u64 u)
    {
 
       if (u < 255)
       {
 
-         operator <<((unsigned char)u);
+         operator <<((::u8)u);
 
       }
       else if (u < 65535)
       {
 
-         operator <<((unsigned char)255);
-         operator <<((unsigned short)u);
+         operator <<((::u8)255);
+         operator <<((::u16)u);
 
       }
       else
       {
 
-         operator <<((unsigned char)255);
-         operator <<((unsigned short)65535);
-         operator <<((unsigned long long)u);
+         operator <<((::u8)255);
+         operator <<((::u16)65535);
+         operator <<((::u64)u);
 
       }
 
    }
 
 
-   inline void read_length(unsigned long long & u)
+   inline void read_length(::u64 & u)
    {
 
-      unsigned char uRead;
+      ::u8 uRead;
 
       operator >>(uRead);
 
@@ -210,7 +210,7 @@ public:
       else
       {
 
-         unsigned short uRead;
+         ::u16 uRead;
 
          operator >>(uRead);
 
@@ -239,33 +239,33 @@ public:
    }
 
 
-   binary_stream & operator <<(char ch) { raw_write(ch); return *this; }
-   binary_stream & operator <<(unsigned char uch) { raw_write(uch);  return *this; }
-   binary_stream & operator <<(short sh) { raw_write(sh);  return *this; }
-   binary_stream & operator <<(unsigned short ush) { raw_write(ush); return *this; }
+   binary_stream & operator <<(::i8 ch) { raw_write(ch); return *this; }
+   binary_stream & operator <<(::u8 uch) { raw_write(uch);  return *this; }
+   binary_stream & operator <<(::i16 sh) { raw_write(sh);  return *this; }
+   binary_stream & operator <<(::u16 ush) { raw_write(ush); return *this; }
 #ifdef WINDOWS
    binary_stream & operator <<(unichar wch) {
       raw_write(wch);  return *this;
    }
 #endif
-   binary_stream & operator <<(bool b) { return operator <<((unsigned char)b ? 1 : 0); }
-   binary_stream & operator <<(int i) { raw_write(i); return *this; }
-   binary_stream & operator <<(unsigned int ui) { raw_write(ui); return *this; }
-   binary_stream & operator <<(long long hi) { raw_write(hi); return *this; }
-   binary_stream & operator <<(unsigned long long hn) { raw_write(hn); return *this; }
+   binary_stream & operator <<(bool b) { return operator <<((::u8)b ? 1 : 0); }
+   binary_stream & operator <<(::i32 i) { raw_write(i); return *this; }
+   binary_stream & operator <<(::u32 ui) { raw_write(ui); return *this; }
+   binary_stream & operator <<(::i64 hi) { raw_write(hi); return *this; }
+   binary_stream & operator <<(::u64 hn) { raw_write(hn); return *this; }
 #if defined(__APPLE__) || defined(__ANDROID__) || defined(RASPBERRYPIOS)
-   binary_stream & operator <<(unsigned long u) { raw_write(u); return *this; }
+   binary_stream & operator <<(ulong u) { raw_write(u); return *this; }
    binary_stream & operator <<(long l) { raw_write(l);  return *this; }
 #endif
-   binary_stream & operator <<(float f) { raw_write(f); return *this; }
-   binary_stream & operator <<(double d) { raw_write(d); return *this; }
-   // void write(const ::int_point & point) { raw_write(point); }
-   // void write(const ::int_size & size) { raw_write(size); }
-   // void write(const ::int_rectangle &crect) { raw_write(crect); }
+   binary_stream & operator <<(::f32 f) { raw_write(f); return *this; }
+   binary_stream & operator <<(::f64 d) { raw_write(d); return *this; }
+   // void write(const ::i32_point & point) { raw_write(point); }
+   // void write(const ::i32_size & size) { raw_write(size); }
+   // void write(const ::i32_rectangle &crect) { raw_write(crect); }
    //binary_stream & operator <<(const ::scoped_string & scopedstr);
 #ifdef WINDOWS
-   binary_stream & operator <<(const unichar * wch) {
-      operator <<(string(wch)); return *this;
+   binary_stream & operator <<(const wide_character * pwsz) {
+      operator <<(string(pwsz)); return *this;
    }
 #endif
    //binary_stream & operator <<(const atom & atom);
@@ -281,14 +281,14 @@ public:
    /*::filesize tellp();
     void seekp(filesize position);
     void seekp(filesize offset, ::enum_seek eseek);*/
-    //void put(char ch);
+    //void put(::i8 ch);
 
 
 
 
-   binary_stream & operator >>(bool & b) { unsigned char uch; raw_read(uch); b = uch ? true : false; return *this; }
-   //binary_stream & operator >>(char & ch) { raw_read(ch); return *this; }
-   //binary_stream & operator >>(unsigned char & uch) { raw_read(uch); return *this; }
+   binary_stream & operator >>(bool & b) { ::u8 uch; raw_read(uch); b = uch ? true : false; return *this; }
+   //binary_stream & operator >>(::i8 & ch) { raw_read(ch); return *this; }
+   //binary_stream & operator >>(::u8 & uch) { raw_read(uch); return *this; }
 #ifdef WINDOWS
    binary_stream & operator >>(unichar & wch) { raw_read(wch); return *this; }
 #endif
@@ -300,25 +300,25 @@ public:
 #undef NUMBER_TYPE_OPERATION
 
 
-   //binary_stream & operator >>(short & sh) { raw_read(sh); return *this; }
-   //binary_stream & operator >>(unsigned short & ush) { raw_read(ush); return *this; }
-   //binary_stream & operator >>(int & i) { raw_read(i); return *this; }
-   //binary_stream & operator >>(unsigned int & ui) {raw_read(ui); return *this; }
-   //binary_stream & operator >>(long long & hi) { raw_read(hi); return *this; }
-   //binary_stream & operator >>(unsigned long long & hn) { raw_read(unsigned long long); return *this; }
+   //binary_stream & operator >>(::i16 & sh) { raw_read(sh); return *this; }
+   //binary_stream & operator >>(::u16 & ush) { raw_read(ush); return *this; }
+   //binary_stream & operator >>(::i32 & i) { raw_read(i); return *this; }
+   //binary_stream & operator >>(::u32 & ui) {raw_read(ui); return *this; }
+   //binary_stream & operator >>(::i64 & hi) { raw_read(hi); return *this; }
+   //binary_stream & operator >>(::u64 & hn) { raw_read(::u64); return *this; }
 //#if defined(__APPLE__) || defined(__ANDROID__) || defined(RASPBERRYPIOS)
-//   binary_stream & operator >>(unsigned long & u) {
+//   binary_stream & operator >>(ulong & u) {
 //      raw_read(u); return *this;
 //   }
 //   binary_stream & operator >>(long & l) {
 //      raw_read(l); return *this;
 //   }
 //#endif
-   //binary_stream & operator >>(float & f) { raw_read(f); return *this; }
-   //binary_stream & operator >>(double & d) { raw_read(d); return *this; }
-   // void read(::int_point & point) { raw_read(point); }
-   //// void read(::int_size & size) { raw_read(size); }
-   //// void read(::int_rectangle & rectangle) { raw_read(rectangle); }
+   //binary_stream & operator >>(::f32 & f) { raw_read(f); return *this; }
+   //binary_stream & operator >>(::f64 & d) { raw_read(d); return *this; }
+   // void read(::i32_point & point) { raw_read(point); }
+   //// void read(::i32_size & size) { raw_read(size); }
+   //// void read(::i32_rectangle & rectangle) { raw_read(rectangle); }
    //binary_stream & operator >>(atom & atom);
    //binary_stream & operator >>(::payload & payload);
    // void read_var_type(enum_type & etype);
@@ -333,9 +333,9 @@ public:
 
    // void save_var_type(::enum_type etype);
 
-   /* void getline(char * sz, character_count n);
-   unsigned char get_byte();
-   unsigned char peek_byte();*/
+   /* void getline(char_pointer sz, character_count n);
+   ::u8 get_byte();
+   ::u8 peek_byte();*/
 
    // filesize get_position();
    // filesize seek_from_begin(filesize position);
@@ -474,38 +474,38 @@ public:
    // This number represents a following stream of data with this length.
    // So the extra bytes representing the variable length quantity are
    // neglectable and worth due the very fast variable length encoding.
-   void write_buffer_length(unsigned long long u)
+   void write_buffer_length(::u64 u)
    {
 
       if (u < 255)
       {
 
-         operator <<((unsigned char)u);
+         operator <<((::u8)u);
 
       }
       else if (u < 65535)
       {
 
-         operator <<((unsigned char)255);
-         operator <<((unsigned short)u);
+         operator <<((::u8)255);
+         operator <<((::u16)u);
 
       }
       else
       {
 
-         operator <<((unsigned char)255);
-         operator <<((unsigned short)65535);
-         operator <<((unsigned long long)u);
+         operator <<((::u8)255);
+         operator <<((::u16)65535);
+         operator <<((::u64)u);
 
       }
 
    }
 
    
-   inline unsigned long long read_buffer_length_unbounded_part2()
+   inline ::u64 read_buffer_length_unbounded_part2()
    {
 
-      unsigned short ush;
+      ::u16 ush;
 
       ush = m_pfile->get_u16_unbounded();
 
@@ -518,7 +518,7 @@ public:
       else
       {
 
-         unsigned long long ull;
+         ::u64 ull;
 
          ull = m_pfile->get_u64_unbounded();
 
@@ -529,17 +529,17 @@ public:
    }
 
 
-   inline unsigned long long read_buffer_length_unbounded()
+   inline ::u64 read_buffer_length_unbounded()
    {
 
-      unsigned char uch = m_pfile->get_byte_unbounded();
+      ::u8 uch = m_pfile->get_byte_unbounded();
 
       return uch < 255 ? uch : read_buffer_length_unbounded_part2();
 
    }
 
 
-   virtual unsigned long long read_buffer_length();
+   virtual ::u64 read_buffer_length();
 
 
    virtual string type_to_text(const ::platform::type & type);
@@ -716,7 +716,7 @@ public:
    //}
 
 
-   void put(char ch)
+   void put(::i8 ch)
    {
 
       operator <<(ch);
@@ -1135,9 +1135,9 @@ public:
    //}
 
 
-   unsigned char get_byte()
+   ::u8 get_byte()
    {
-      unsigned char b = 0;
+      ::u8 b = 0;
       if (m_pfile->read(&b, 1) != 1)
       {
 
@@ -1148,7 +1148,7 @@ public:
    }
 
 
-   unsigned char peek_byte()
+   ::u8 peek_byte()
    {
 
       return m_pfile->peek_byte();
@@ -1156,7 +1156,7 @@ public:
    }
 
 
-   virtual void getline(char * sz, character_count n);
+   virtual void getline(char_pointer sz, character_count n);
 
 
 

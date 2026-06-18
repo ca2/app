@@ -4,7 +4,7 @@
 
 
 
-//#define make_int(a, b)      ((int)(((unsigned short)(((dword_ptr)(a)) & 0xffff)) | ((unsigned int)((unsigned short)(((dword_ptr)(b)) & 0xffff))) << 16))
+//#define make_int(a, b)      ((::i32)(((::u16)(((dword_ptr)(a)) & 0xffff)) | ((::u32)((::u16)(((dword_ptr)(b)) & 0xffff))) << 16))
 
 
 
@@ -68,6 +68,7 @@ namespace user
       e_state_hover = 1 << 1,
       e_state_disabled = 1 << 2,
       e_state_pressed = 1 << 3,
+      e_state_mask1 = e_state_selected | e_state_hover | e_state_disabled | e_service_status_running,
       e_state_new_input = 1 << 4,
       e_state_focused = 1 << 5,
       e_state_checked = 1 << 6,
@@ -294,16 +295,16 @@ namespace user
 
    //      // Use Good Variable Names instead of the following
 
-   enum enum_double
+   enum enum_f64
    {
 
-      e_double_none,
-      e_double_default_one_min,
-      e_double_width_rate,
-      e_double_list_item_height_rate,
-      e_double_tree_item_height_rate,
-      e_double_default_one_max,
-      e_double_focus_height_width,
+      e_f64_none,
+      e_f64_default_one_min,
+      e_f64_width_rate,
+      e_f64_list_item_height_rate,
+      e_f64_tree_item_height_rate,
+      e_f64_default_one_max,
+      e_f64_focus_height_width,
 
    };
 
@@ -342,15 +343,15 @@ namespace user
    };
 
 
-   enum enum_mouse
-   {
-
-      e_mouse_none = 0,
-      e_mouse_left_button = 1,
-      e_mouse_right_button = 2,
-      e_mouse_middle_button = 4,
-
-   };
+//   enum enum_mouse
+//   {
+//
+//      e_mouse_none = 0,
+//      e_mouse_left_button = 1,
+//      e_mouse_right_button = 2,
+//      e_mouse_middle_button = 4,
+//
+//   };
 
    enum enum_line_hit
    {
@@ -526,7 +527,7 @@ namespace user
 
    };
 
-   enum enum_interaction : long long
+   enum enum_interaction : ::i64
    {
 
       e_interaction_none = 0,
@@ -568,7 +569,7 @@ namespace user
 #pragma once
 
 
-enum enum_tool_item_state : long long
+enum enum_tool_item_state : ::i64
 {
 
    e_tool_item_state_none,
@@ -585,7 +586,7 @@ enum enum_tool_item_state : long long
 };
 
 
-enum enum_tool_item_style : long long
+enum enum_tool_item_style : ::i64
 {
 
    e_tool_item_style_none = e_toolbar_style_none,

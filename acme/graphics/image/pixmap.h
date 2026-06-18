@@ -29,18 +29,18 @@ struct pixmap
    struct image_header           m_header;
 #endif
 
-   int                           m_iRedLower;
-   int                           m_iScan;
+   ::i32                           m_iRedLower;
+   ::i32                           m_iScan;
    ::image32_t * m_pimage32;
-   ::int_point                   m_point;
+   ::i32_point                   m_point;
    ::image32_t * m_pimage32Raw;
-   ::int_size                    m_sizeRaw;
+   ::i32_size                    m_sizeRaw;
    ::color_indexes               m_colorindexes = common_system_image_color_indexes();
    mutable bool                  m_bTrans; // optionally used by implementation
    mutable bool                  m_bMapped; // optionally used by implementation
    bool                          m_bReduced; // optionally used by implementation
 
-   static int                    g_iRedLowerDefault;
+   static ::i32                    g_iRedLowerDefault;
 
 #ifdef __cplusplus
 
@@ -69,7 +69,7 @@ struct pixmap
    }
 
 
-   void initialize(const ::int_size & size, ::image32_t * pimage32, int iScan)
+   void initialize(const ::i32_size & size, ::image32_t * pimage32, ::i32 iScan)
    {
 
       m_size = size;
@@ -80,7 +80,7 @@ struct pixmap
 
       m_iScan = iScan;
 
-      m_point.Null();
+      m_point.clear();
 
       map();
 
@@ -88,7 +88,7 @@ struct pixmap
 
 
 
-   int scan_size() const { return m_iScan; }
+   ::i32 scan_size() const { return m_iScan; }
 
    inline ::image32_t * image32() { return m_pimage32; }
    inline ::image32_t * image32() const { return m_pimage32; }
@@ -106,58 +106,58 @@ struct pixmap
 
    inline bool nok() const { return !is_ok(); }
 
-   bool create(::memory& memory, const ::int_size& size, int stride = -1);
+   bool create(::memory& memory, const ::i32_size& size, ::i32 stride = -1);
 
-   inline ::int_rectangle rectangle() const { return ::int_rectangle(m_point, m_size); }
+   inline ::i32_rectangle rectangle() const { return ::i32_rectangle(m_point, m_size); }
 
-   inline ::int_rectangle rectangle(const ::int_point & point) const { return ::int_rectangle(point, m_size); }
+   inline ::i32_rectangle rectangle(const ::i32_point & point) const { return ::i32_rectangle(point, m_size); }
 
-   inline ::int_point top_left() const noexcept { return m_point; }
-   inline ::int_point origin() const noexcept { return top_left(); }
-   //inline concrete < ::int_size > size() const noexcept { return m_size; }
-   inline ::int_size size() const noexcept { return m_size; }
-   inline int width() const noexcept { return m_size.cx; }
-   inline int height() const noexcept { return m_size.cy; }
-   inline int area() const noexcept { return m_size.area(); }
-   inline int scan_area() const noexcept { return height() * scan_size(); }
+   inline ::i32_point top_left() const noexcept { return m_point; }
+   inline ::i32_point origin() const noexcept { return top_left(); }
+   //inline concrete < ::i32_size > size() const noexcept { return m_size; }
+   inline ::i32_size size() const noexcept { return m_size; }
+   inline ::i32 width() const noexcept { return m_size.cx; }
+   inline ::i32 height() const noexcept { return m_size.cy; }
+   inline ::i32 area() const noexcept { return m_size.area(); }
+   inline ::i32 scan_area() const noexcept { return height() * scan_size(); }
 
 
-   inline ::color::color get_pixel(int x, int y) const
+   inline ::color::color get_pixel(::i32 x, ::i32 y) const
    {
 
       return ::image32_get_pixel(image32(), m_colorindexes, scan_size(), height(), x, y);
 
    }
 
-   inline void set_pixel(int x, int y, ::color::color color) 
+   inline void set_pixel(::i32 x, ::i32 y, ::color::color color) 
    {
 
       return ::image32_set_pixel(image32(), m_colorindexes, scan_size(), height(), x, y, color);
 
    }
 
-   inline ::color::color raw_pixel(int x, int y) const
+   inline ::color::color raw_pixel(::i32 x, ::i32 y) const
    {
 
       return ::image32_raw_pixel(image32(), m_colorindexes, scan_size(), height(), x, y);
 
    }
 
-   inline void set_raw_pixel(int x, int y, ::color::color color)
+   inline void set_raw_pixel(::i32 x, ::i32 y, ::color::color color)
    {
 
       return ::image32_set_raw_pixel(image32(), m_colorindexes, scan_size(), height(), x, y, color);
 
    }
 
-   inline ::color::color get_pixel(const ::int_point & point) const { return get_pixel(point.x, point.y); }
+   inline ::color::color get_pixel(const ::i32_point & point) const { return get_pixel(point.x, point.y); }
 
    inline pixmap & operator =(const pixmap & pixmap);
-   inline pixmap & operator =(const ::int_rectangle & rectangle) { map(rectangle);  return *this; }
+   inline pixmap & operator =(const ::i32_rectangle & rectangle) { map(rectangle);  return *this; }
 
    void reference(const pixmap& pixmap);
 
-   void map(const ::int_rectangle & rectangle)
+   void map(const ::i32_rectangle & rectangle)
    {
 
       m_point = rectangle.origin();
@@ -194,9 +194,9 @@ struct pixmap
    void vertical_swap();
 
 
-   void copy(const ::int_size & size, const ::pixmap * ppixmapSrc);
+   void copy(const ::i32_size & size, const ::pixmap * ppixmapSrc);
 
-   void y_swap_copy(const ::int_size& size, const ::pixmap* ppixmapSrc);
+   void y_swap_copy(const ::i32_size& size, const ::pixmap* ppixmapSrc);
 
    void copy(const ::pixmap * ppixmapSrc);
 
@@ -216,7 +216,7 @@ struct pixmap
 
 
 
-inline void image32_t::copy(const ::int_size & size, int iStrideDst, const ::pixmap * ppixmapSrc)
+inline void image32_t::copy(const ::i32_size & size, ::i32 iStrideDst, const ::pixmap * ppixmapSrc)
 {
    
    copy(size.minimum(ppixmapSrc->size()), iStrideDst, ppixmapSrc->m_pimage32, ppixmapSrc->m_iScan);
@@ -227,5 +227,5 @@ inline void image32_t::copy(const ::int_size & size, int iStrideDst, const ::pix
 
 inline void image32_t::copy(const ::pixmap* p)
 {
-   copy(::int_point(), p->size(), p->width() * 4, p->image32(), p->m_iScan);
+   copy(::i32_point(), p->size(), p->width() * 4, p->image32(), p->m_iScan);
 }

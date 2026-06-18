@@ -19,15 +19,16 @@ struct sequence_size_t
 
 
 struct pointer_type_t{};
+struct c_flag_type_t {};
 struct enum_type_t {};
 struct raw_type_t {};
 
 
-struct int_sz
+struct i32_sz
 {
 
-   int                m_i;
-   const_char_pointer        m_psz;
+   ::i32                m_i32;
+   const_char_pointer m_psz;
 
 };
 

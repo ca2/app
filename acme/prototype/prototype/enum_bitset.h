@@ -2,13 +2,13 @@
 #pragma once
 
 
-template < typename ENUM, int m_iBitCount >
+template < typename ENUM, ::i32 m_iBitCount >
 class enum_bitset
 {
 public:
 
 
-   unsigned long long m_array[((m_iBitCount - 1) >> 6) + 1];
+   ::u64 m_array[((m_iBitCount - 1) >> 6) + 1];
 
 
    void set(ENUM e) { m_array[e >> 6] |= (1ull << (e & 63)); }

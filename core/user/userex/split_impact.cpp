@@ -84,7 +84,7 @@ namespace userex
    }
 
 
-   bool split_impact::create_pane(int iPane, bool bFixedSize, ::atom atom)
+   bool split_impact::create_pane(::i32 iPane, bool bFixedSize, ::atom atom)
    {
 
       ASSERT(iPane >= 0);
@@ -97,7 +97,7 @@ namespace userex
 
       ppane->id() = atom;
 
-      ::int_rectangle rectangle;
+      ::i32_rectangle rectangle;
 
       rectangle = ppane->m_pplaceholder->rectangle();
 

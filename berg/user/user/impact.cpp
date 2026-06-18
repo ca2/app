@@ -262,7 +262,7 @@ namespace user
    }
 
 
-   //void impact::CalcWindowRect(::int_rectangle * pClientRect, unsigned int nAdjustType)
+   //void impact::CalcWindowRect(::i32_rectangle * pClientRect, ::u32 nAdjustType)
 
    //{
    //   /* trans   ENSURE_ARG(pClientRect != nullptr);
@@ -274,10 +274,10 @@ namespace user
 
 
    //   // default behavior for in-place editing handles scrollbars
-   //   unsigned int uStyle = GetStyle();
+   //   ::u32 uStyle = GetStyle();
    //   if (uStyle & WS_VSCROLL)
    //   {
-   //   int nAdjust = ::windows_definition::Data.cxVScroll;
+   //   ::i32 nAdjust = ::windows_definition::Data.cxVScroll;
    //   if (uStyle & WS_BORDER)
    //   nAdjust -= CX_BORDER;
    //   pClientRect->right += nAdjust;
@@ -285,7 +285,7 @@ namespace user
    //   }
    //   if (uStyle & WS_HSCROLL)
    //   {
-   //   int nAdjust = ::windows_definition::Data.cyHScroll;
+   //   ::i32 nAdjust = ::windows_definition::Data.cyHScroll;
    //   if (uStyle & WS_BORDER)
    //   nAdjust -= CY_BORDER;
    //   pClientRect->bottom += nAdjust;
@@ -294,7 +294,7 @@ namespace user
    //   return;
    //   }*/
 
-   //   // call default to place borders outside of client int_rectangle
+   //   // call default to place borders outside of client i32_rectangle
    //   ::user::interaction::CalcWindowRect(pClientRect, nAdjustType);
 
    //}
@@ -590,9 +590,9 @@ namespace user
 
 
    /* trans
-   int impact::OnMouseActivate(::windowing::window * pDesktopWnd, unsigned int nHitTest, const ::atom & atom)
+   ::i32 impact::OnMouseActivate(::windowing::window * pDesktopWnd, ::u32 nHitTest, const ::atom & atom)
    {
-   int nResult = ::user::interaction::OnMouseActivate(pDesktopWnd, nHitTest, message);
+   ::i32 nResult = ::user::interaction::OnMouseActivate(pDesktopWnd, nHitTest, message);
    if (nResult == MA_NOACTIVATE || nResult == MA_NOACTIVATEANDEAT)
    return nResult;   // frame does not want to activate
 
@@ -624,7 +624,7 @@ namespace user
    /////////////////////////////////////////////////////////////////////////////
    // ::user::impact scrolling support
 
-   bool impact::OnScroll(unsigned int /*nScrollCode*/, unsigned int /*nPos*/, bool /*bDoScroll*/)
+   bool impact::OnScroll(::u32 /*nScrollCode*/, ::u32 /*nPos*/, bool /*bDoScroll*/)
    {
       return false;
    }
@@ -637,7 +637,7 @@ namespace user
    /////////////////////////////////////////////////////////////////////////////
    // ::user::impact drag/drop support
 
-   ///*DROPEFFECT impact::OnDragScroll(unsigned int /*dwKeyState*/, int_point /*int_point*/)
+   ///*DROPEFFECT impact::OnDragScroll(::u32 /*dwKeyState*/, i32_point /*i32_point*/)
    //{
    //#ifndef ___NO_OLE_SUPPORT
    // return DROPEFFECT_SCROLL; // this means do the default
@@ -647,25 +647,25 @@ namespace user
    //}
 
    //DROPEFFECT impact::OnDragEnter(COleDataObject* /*pDataObject*/,
-   // unsigned int /*dwKeyState*/, int_point /*int_point*/)
+   // ::u32 /*dwKeyState*/, i32_point /*i32_point*/)
    //{
    // return 0;   // DROPEFFECT_NONE
    //}
 
    //DROPEFFECT impact::OnDragOver(COleDataObject* /*pDataObject*/,
-   //unsigned int /*dwKeyState*/, int_point /*int_point*/)
+   //::u32 /*dwKeyState*/, i32_point /*i32_point*/)
    //{
    //return 0;   // DROPEFFECT_NONE
    //}
 
    //bool impact::OnDrop(COleDataObject* /*pDataObject*/,
-   //DROPEFFECT /*dropEffect*/, int_point /*int_point*/)
+   //DROPEFFECT /*dropEffect*/, i32_point /*i32_point*/)
    //{
    // return false;
    //}
 
    //DROPEFFECT impact::OnDropEx(COleDataObject* /*pDataObject*/,
-   // DROPEFFECT /*dropEffect*/, DROPEFFECT /*dropEffectList*/, int_point /*int_point*/)
+   // DROPEFFECT /*dropEffect*/, DROPEFFECT /*dropEffectList*/, i32_point /*i32_point*/)
    //{
    // return (DROPEFFECT)-1;  // not implemented
    //}
@@ -678,7 +678,7 @@ namespace user
    // ::user::impact splitting commands
 
 
-   /*   CScrollBar* impact::GetScrollBarCtrl(int nBar) const
+   /*   CScrollBar* impact::GetScrollBarCtrl(::i32 nBar) const
       {
 
          ///ASSERT(nBar == SB_HORZ || nBar == SB_VERT);
@@ -726,7 +726,7 @@ namespace user
       pCmdUI->enable(pSplitter != nullptr && !pSplitter->IsTracking());*/
    }
 
-   bool impact::OnSplitCmd(unsigned int)
+   bool impact::OnSplitCmd(::u32)
    {
       /*   CSplitterWnd* pSplitter = GetParentSplitter(this, false);
       if (pSplitter == nullptr)
@@ -747,7 +747,7 @@ namespace user
       pSplitter->CanActivateNext(pCmdUI->m_nID == ID_PREV_PANE));*/
    }
 
-   bool impact::OnNextPaneCmd(unsigned int nID)
+   bool impact::OnNextPaneCmd(::u32 nID)
    {
       __UNREFERENCED_PARAMETER(nID);
       /*   CSplitterWnd* pSplitter = GetParentSplitter(this, false);
@@ -1120,7 +1120,7 @@ namespace user
    //}
 
 
-   int impact::get_total_page_count(::handler_context * pcontext)
+   ::i32 impact::get_total_page_count(::handler_context * pcontext)
    {
 
       return 1;
@@ -1179,7 +1179,7 @@ namespace user
 
    //   on_draw_impact_nc(pgraphics);
 
-   //   int iTry = 0;
+   //   ::i32 iTry = 0;
 
    //   bool bOk;
 
@@ -1206,7 +1206,7 @@ namespace user
    /////////////////////////////////////////////////////////////////////////////
    // ::user::impact second phase construction - bind to document
 
-   //const char _vfxWndFrameOrImpact[] = __WNDFRAMEORVIEW;
+   //const ::i8 _vfxWndFrameOrImpact[] = __WNDFRAMEORVIEW;
 
 
 
@@ -1241,7 +1241,7 @@ namespace user
    {
       ::pointer<::message::mouse_activate>pmouseactivate(pmessage);
       pmessage->previous();
-      //int nResult = pmouseactivate->get_lresult();
+      //::i32 nResult = pmouseactivate->get_lresult();
 
       if (pmouseactivate->get_message() == e_mouse_activate
             || pmouseactivate->get_message() == e_mouse_activate_no_activate_and_eat)
@@ -1366,7 +1366,7 @@ namespace user
 //   /////////////////////////////////////////////////////////////////////////////
 //   // ::user::impact drag/drop support
 //
-//   DROPEFFECT impact::OnDragScroll(unsigned int /*dwKeyState*/, int_point /*int_point*/)
+//   DROPEFFECT impact::OnDragScroll(::u32 /*dwKeyState*/, i32_point /*i32_point*/)
 //   {
 //#if !defined(___NO_OLE_SUPPORT) && !defined(UNIVERSAL_WINDOWS) && !defined(LINUX) && !defined(__APPLE__) && !defined(__ANDROID__) && !defined(SOLARIS)
 //      return DROPEFFECT_SCROLL; // this means do the default
@@ -1376,25 +1376,25 @@ namespace user
 //   }
 //
 //   DROPEFFECT impact::OnDragEnter(COleDataObject* /*pDataObject*/,
-//      unsigned int /*dwKeyState*/, int_point /*int_point*/)
+//      ::u32 /*dwKeyState*/, i32_point /*i32_point*/)
 //   {
 //      return 0;   // DROPEFFECT_NONE
 //   }
 //
 //   DROPEFFECT impact::OnDragOver(COleDataObject* /*pDataObject*/,
-//      unsigned int /*dwKeyState*/, int_point /*int_point*/)
+//      ::u32 /*dwKeyState*/, i32_point /*i32_point*/)
 //   {
 //      return 0;   // DROPEFFECT_NONE
 //   }
 //
 //   bool impact::OnDrop(COleDataObject* /*pDataObject*/,
-//      DROPEFFECT /*dropEffect*/, int_point /*int_point*/)
+//      DROPEFFECT /*dropEffect*/, i32_point /*i32_point*/)
 //   {
 //      return false;
 //   }
 //
 //   DROPEFFECT impact::OnDropEx(COleDataObject* /*pDataObject*/,
-//      DROPEFFECT /*dropEffect*/, DROPEFFECT /*dropEffectList*/, int_point /*int_point*/)
+//      DROPEFFECT /*dropEffect*/, DROPEFFECT /*dropEffectList*/, i32_point /*i32_point*/)
 //   {
 //      return (DROPEFFECT)-1;  // not implemented
 //   }
@@ -1455,7 +1455,7 @@ namespace user
 
 
    /*
-   ::pointer<::user::interaction>impact::CreateImpact(::pointer<::create>Context, unsigned int nID)
+   ::pointer<::user::interaction>impact::CreateImpact(::pointer<::create>Context, ::u32 nID)
    {
    ASSERT(is_window());
    ASSERT(pContext != nullptr);
@@ -1473,7 +1473,7 @@ namespace user
 
    // views are always created with a border!
    if (!pimpact->create(nullptr, nullptr, __WS_DEFAULT_VIEW,
-   int_rectangle(0,0,0,0), this, nID, (::pointer<::create> pContext))
+   i32_rectangle(0,0,0,0), this, nID, (::pointer<::create> pContext))
    {
    TRACE0("Warning: could not create ::user::impact for frame.\n");
    return nullptr;        // can't continue without a ::user::impact
@@ -1492,7 +1492,7 @@ namespace user
    }*/
 
 
-   /*::pointer<::user::interaction>impact::CreateImpact(::pointer<::create>Context, unsigned int nID, ::user::interaction  * puserinteractionParent)
+   /*::pointer<::user::interaction>impact::CreateImpact(::pointer<::create>Context, ::u32 nID, ::user::interaction  * puserinteractionParent)
    {
    ASSERT(puserinteractionParent->is_window());
    ASSERT(pContext != nullptr);
@@ -1510,7 +1510,7 @@ namespace user
 
    // views are always created with a border!
    if (!pimpact->create(nullptr, nullptr, __WS_DEFAULT_VIEW,
-   int_rectangle(0,0,0,0), puserinteractionParent, nID, (::pointer<::create> pContext))
+   i32_rectangle(0,0,0,0), puserinteractionParent, nID, (::pointer<::create> pContext))
    {
    TRACE0("Warning: could not create ::user::impact for frame.\n");
    return nullptr;        // can't continue without a ::user::impact

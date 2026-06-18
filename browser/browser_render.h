@@ -19,7 +19,7 @@ namespace browser
    public:
 
 
-      double                           m_dRenderFps;
+      ::f64                           m_dRenderFps;
       bool                             m_bDib1;
 
       class ::time m_timeSlidePeriod;
@@ -38,12 +38,12 @@ namespace browser
 
       bool                             m_bNewLayout;
       bool                             m_bHelloRender;
-      int                              m_cx;
-      int                              m_cy;
-      int                              m_cxCache1;
-      int                              m_cyCache1;
-      int                              m_cxTarget;
-      int                              m_cyTarget;
+      ::i32                              m_cx;
+      ::i32                              m_cy;
+      ::i32                              m_cxCache1;
+      ::i32                              m_cyCache1;
+      ::i32                              m_cxTarget;
+      ::i32                              m_cyTarget;
 
       bool                             m_bImageChanged;
 
@@ -68,12 +68,12 @@ namespace browser
 
       ::write_text::font_pointer                m_pfont;
 
-      double                           m_dMinRadius;
-      double                           m_dMaxRadius;
+      ::f64                           m_dMinRadius;
+      ::f64                           m_dMaxRadius;
 
       string                           m_strHelloBrowser;
 
-      ::int_rectangle                           m_rectangleX;
+      ::i32_rectangle                           m_rectangleX;
 
 
       ::pointer < ::mutex >                            m_pmutexText;
@@ -83,7 +83,7 @@ namespace browser
 
       class ::time                            m_timeAnime;
       class ::time m_timeLastFast;
-      unsigned int                            m_timeFastAnime;
+      ::u32                            m_timeFastAnime;
       ::image::image_pointer                            m_pimageFast;
 
 
@@ -105,7 +105,7 @@ namespace browser
       virtual ~render();
 
 
-      virtual double get_frames_per_second();
+      virtual ::f64 get_frames_per_second();
 
       ::gcom::slide_show & slideshow();
 

@@ -29,6 +29,7 @@ namespace micro
          //::pointer<::micro::still>               m_pstillIcon;
          ::pointer<::nano::graphics::icon>         m_picon;
          //::pointer < ::message_box_payload >               m_pmessagebox;
+         ::manual_reset_happening                  m_manualresethappeningDialogResult;
 
 
          message_box();
@@ -43,14 +44,17 @@ namespace micro
          //void on_sequence() override;
          //virtual void set(::message_box_payload * pmessageboxpayload);
 
-         void display(::dialog * pdialog) override;
+         void display_dialog(::dialog * pdialog) override;
+
+
+         void show_modal(::dialog * pdialog) override;
          
          
          void on_context_menu(::user::mouse * pmouse) override;
 
 
          //virtual void create_message_box(conversation * pconversation);
-         void add_button(const ::scoped_string & scopedstrText, enum_dialog_result edialogresult, char chLetter) override;
+         void add_button(const ::scoped_string & scopedstrText, enum_dialog_result edialogresult, ::i8 chLetter) override;
          
          ::string get_title() override;
 
@@ -65,7 +69,9 @@ namespace micro
          ::payload get_dialog_result() override;
 
 
-         void on_timer(::timer * ptimer) override;
+         //void operator()(::timer * ptimer) override;
+
+         void operator()(::timer * ptimer);
 
          //void initialize_conversation(const ::scoped_string & scopedstrMessage, const ::scoped_string & scopedstrTitle, const ::user::e_message_box & emessagebox, const ::scoped_string & scopedstrDetails = nullptr, ::nano::graphics::icon * picon = nullptr) override;
 
@@ -73,7 +79,7 @@ namespace micro
 
          //void do_message_box(const ::scoped_string & scopedstrMessage, const ::scoped_string & scopedstrTitle, const ::user::e_message_box & emessagebox, const ::scoped_string & scopedstrDetails) override;
 
-         void on_draw(::nano::graphics::device * pnanodevice) override;
+         void on_draw(::nano::graphics::context * pnanodevice) override;
 
          void on_click(const ::payload & payload, ::user::mouse * pmouse) override;
 

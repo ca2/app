@@ -33,7 +33,7 @@ namespace simple_ui
 //      }
 //      else if (langid == MAKELANGID(LANG_PORTUGUESE, SUBLANG_PORTUGUESE_BRAZILIAN))
 //      {
-//         strLocale = "int_point-br";
+//         strLocale = "i32_point-br";
 //      }
 //      else if (PRIMARYLANGID(langid) == SPR_DEUTSCH)
 //      {
@@ -87,7 +87,7 @@ namespace simple_ui
 
       string str;
 
-      int iAttempt = 0;
+      ::i32 iAttempt = 0;
 
    restart:
 

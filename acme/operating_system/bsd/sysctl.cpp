@@ -19,7 +19,7 @@
 	
 #if !defined(OPENBSD)
 
-   int mib[4]{0};
+   ::i32 mib[4]{0};
    
    size_t size;
   
@@ -31,7 +31,7 @@
    
    mib[3] = -1;
    
-   int result = sysctl(mib, 4, nullptr, &size, nullptr, 0);
+   ::i32 result = sysctl(mib, 4, nullptr, &size, nullptr, 0);
    
    if (-1 == result)
    {

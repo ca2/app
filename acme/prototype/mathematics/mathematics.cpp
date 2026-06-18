@@ -18,9 +18,9 @@ namespace mathematics
 {
 
 
-   double mathematics::s_π = atan(1.0) * 4.0;
+   ::f64 mathematics::s_π = atan(1.0) * 4.0;
 
-   float mathematics::s_fπ = atanf(1.0f) * 4.0f;
+   ::f32 mathematics::s_fπ = atanf(1.0f) * 4.0f;
 
 
    struct math_os_data :
@@ -28,8 +28,8 @@ namespace mathematics
    {
 
 
-      int                              m_i;
-      int                              m_iRngReSeedCountDown;
+      ::i32                              m_i32;
+      ::i32                              m_iRngReSeedCountDown;
       ::critical_section               m_criticalsection;
       random_number_generator          m_randomnumbergenerator;
 
@@ -128,11 +128,11 @@ namespace mathematics
 //         // set additional parameters on the original key.
 //         // First, set the cipher mode.
 //
-//         unsigned int dwMode = CRYPT_MODE_ECB;
+//         ::u32 dwMode = CRYPT_MODE_ECB;
 //         if (CryptSetKeyParam(
 //            m_hOriginalKey,
 //            KP_MODE,
-//            (unsigned char*)& dwMode,
+//            (::u8*)& dwMode,
 //            0))
 //         {
 //            //debug_print("Key Parameters set. \n");
@@ -151,7 +151,7 @@ namespace mathematics
 //         // Generate a random initialization vector.
 //         if (CryptGenRandom(
 //            m_hCryptProv,
-//            (unsigned int)m.get_size(),
+//            (::u32)m.get_size(),
 //            m.get_data()))
 //         {
 //            //debug_print("Random sequence generated. \n");
@@ -179,19 +179,19 @@ namespace mathematics
 
          //{
 
-         //   //int c = prime100k_count();
+         //   //::i32 c = prime100k_count();
 
          //   ::earth::time time = ::earth::time::now();
 
-         //   int l = get_nanos() % c;
+         //   ::i32 l = get_nanos() % c;
 
-         //   int m = (l + time.GetDay()) % c;
+         //   ::i32 m = (l + time.GetDay()) % c;
 
-         //   int n = (m + time.GetMonth()) % c;
+         //   ::i32 n = (m + time.GetMonth()) % c;
 
-         //   int o = (n + time.GetMinute()) % c;
+         //   ::i32 o = (n + time.GetMinute()) % c;
 
-         //   int p = (o + time.GetSecond()) % c;
+         //   ::i32 p = (o + time.GetSecond()) % c;
 
          //   m_iRngReSeedCountDown = random_context_entropy(3);
 
@@ -210,14 +210,14 @@ namespace mathematics
 
          critical_section_lock lock(&m_criticalsection);
 
-         unsigned int * pu = (unsigned int *) block.data();
+         ::u32 * pu = (::u32 *) block.data();
 
          auto s = block.size();
 
          while(s > 4)
          {
 
-            *pu = m_randomnumbergenerator.get_unsigned_int();
+            *pu = m_randomnumbergenerator.get_u32();
 
             s-=4;
 
@@ -225,7 +225,7 @@ namespace mathematics
 
          }
 
-         char * pc = (char *)pu;
+         char_pointer pc = (char_pointer )pu;
 
          while(s > 0)
          {
@@ -246,7 +246,7 @@ namespace mathematics
 //         critical_section_lock lock(&m_criticalsection);
 //
 //
-//         ::CryptGenRandom(m_hCryptProv, (unsigned int)s, (unsigned char*)p);
+//         ::CryptGenRandom(m_hCryptProv, (::u32)s, (::u8*)p);
 //
 //      }
 //
@@ -326,14 +326,14 @@ namespace mathematics
    }
 
 
-   unsigned long long mathematics::random_unsigned_long_long()
+   ::u64 mathematics::random_u64()
    {
 //#if defined(UNIVERSAL_WINDOWS)
-//      unsigned long long uiLo = ::winrt::Windows::Security::Cryptography::CryptographicBuffer::GenerateRandomNumber();
-//      unsigned long long uiHi = ::winrt::Windows::Security::Cryptography::CryptographicBuffer::GenerateRandomNumber();
+//      ::u64 uiLo = ::winrt::Windows::Security::Cryptography::CryptographicBuffer::GenerateRandomNumber();
+//      ::u64 uiHi = ::winrt::Windows::Security::Cryptography::CryptographicBuffer::GenerateRandomNumber();
 //      return uiLo | (uiHi << 32);
 //#else
-      unsigned long long u = 0;
+      ::u64 u = 0;
          random({ e_as_block,u });
          
       return u;
@@ -341,30 +341,30 @@ namespace mathematics
 //
    }
 
-   char mathematics::random_char()
+   ::i8 mathematics::random_char()
    {
       //#if defined(UNIVERSAL_WINDOWS)
-      //      unsigned long long uiLo = ::winrt::Windows::Security::Cryptography::CryptographicBuffer::GenerateRandomNumber();
-      //      unsigned long long uiHi = ::winrt::Windows::Security::Cryptography::CryptographicBuffer::GenerateRandomNumber();
+      //      ::u64 uiLo = ::winrt::Windows::Security::Cryptography::CryptographicBuffer::GenerateRandomNumber();
+      //      ::u64 uiHi = ::winrt::Windows::Security::Cryptography::CryptographicBuffer::GenerateRandomNumber();
       //      return uiLo | (uiHi << 32);
       //#else
-//      char ch = 0;
+//      ::i8 ch = 0;
 //      random({ e_as_block,ch });
 //
-      return random_uch();
+      return random_u8();
       //#endif
       //
    }
 
 
-   unsigned char mathematics::random_uch()
+   ::u8 mathematics::random_u8()
    {
       //#if defined(UNIVERSAL_WINDOWS)
-      //      unsigned long long uiLo = ::winrt::Windows::Security::Cryptography::CryptographicBuffer::GenerateRandomNumber();
-      //      unsigned long long uiHi = ::winrt::Windows::Security::Cryptography::CryptographicBuffer::GenerateRandomNumber();
+      //      ::u64 uiLo = ::winrt::Windows::Security::Cryptography::CryptographicBuffer::GenerateRandomNumber();
+      //      ::u64 uiHi = ::winrt::Windows::Security::Cryptography::CryptographicBuffer::GenerateRandomNumber();
       //      return uiLo | (uiHi << 32);
       //#else
-      //unsigned char u = 0;
+      //::u8 u = 0;
       //random({ e_as_block,u });
 
       return m_posdata->m_randomnumbergenerator.get_unsigned_char();
@@ -373,29 +373,29 @@ namespace mathematics
    }
 
 
-   unsigned int mathematics::random_ui()
+   ::u32 mathematics::random_ui()
    {
       //#if defined(UNIVERSAL_WINDOWS)
-      //      unsigned long long uiLo = ::winrt::Windows::Security::Cryptography::CryptographicBuffer::GenerateRandomNumber();
-      //      unsigned long long uiHi = ::winrt::Windows::Security::Cryptography::CryptographicBuffer::GenerateRandomNumber();
+      //      ::u64 uiLo = ::winrt::Windows::Security::Cryptography::CryptographicBuffer::GenerateRandomNumber();
+      //      ::u64 uiHi = ::winrt::Windows::Security::Cryptography::CryptographicBuffer::GenerateRandomNumber();
       //      return uiLo | (uiHi << 32);
       //#else
-      //unsigned int u = 0;
+      //::u32 u = 0;
       //random({ e_as_block,u });
 
-      return m_posdata->m_randomnumbergenerator.get_unsigned_int();
+      return m_posdata->m_randomnumbergenerator.get_u32();
       //#endif
       //
    }
 
-//   unsigned long long mathematics::gen_rand()
+//   ::u64 mathematics::gen_rand()
 //   {
 ////#if defined(UNIVERSAL_WINDOWS)
-////      unsigned long long uiLo = ::winrt::Windows::Security::Cryptography::CryptographicBuffer::GenerateRandomNumber();
-////      unsigned long long uiHi = ::winrt::Windows::Security::Cryptography::CryptographicBuffer::GenerateRandomNumber();
+////      ::u64 uiLo = ::winrt::Windows::Security::Cryptography::CryptographicBuffer::GenerateRandomNumber();
+////      ::u64 uiHi = ::winrt::Windows::Security::Cryptography::CryptographicBuffer::GenerateRandomNumber();
 ////      return uiLo | (uiHi << 32);
 ////#else
-//      unsigned long long u = 0;
+//      ::u64 u = 0;
 //      gen_rand(&u, sizeof(u));
 //      return u;
 ////#endif
@@ -446,7 +446,7 @@ namespace mathematics
 
    //   string str;
 
-   //   char * psz = str.get_buffer(s);
+   //   char_pointer psz = str.get_buffer(s);
 
    //   gen_rand_alnum(scopedstr, s);
 
@@ -457,7 +457,7 @@ namespace mathematics
    //}
 
 
-   //void mathematics::gen_rand_alnum(char * buf, memsize dwLen)
+   //void mathematics::gen_rand_alnum(char_pointer buf, memsize dwLen)
    //{
 
    //   generate_random_alphanumeric(buf, dwLen);
@@ -467,7 +467,7 @@ namespace mathematics
 
 
 
-   int mathematics::rand_max()
+   ::i32 mathematics::rand_max()
    {
 
       return 0xffffff;
@@ -479,19 +479,19 @@ namespace mathematics
 
 
 
-   //double mathematics::get_pi()
+   //::f64 mathematics::get_pi()
    //{
    //   return dPi;
    //}
 
 
-   //float mathematics::get_pi_f()
+   //::f32 mathematics::get_pi_f()
    //{
    //   return fPi;
    //}
 
 
-   bool mathematics::IsPowerOfTwo(unsigned long long uiValue)
+   bool mathematics::IsPowerOfTwo(::u64 uiValue)
    {
 
       if (uiValue == 0)
@@ -512,9 +512,9 @@ namespace mathematics
 
    }
 
-   unsigned int mathematics::ReverseBits(unsigned int index, unsigned int NumBits)
+   ::u32 mathematics::ReverseBits(::u32 index, ::u32 NumBits)
    {
-      unsigned int i, rev;
+      ::u32 i, rev;
 
       for (i = rev = 0; i < NumBits; i++)
       {
@@ -525,110 +525,110 @@ namespace mathematics
       return rev;
    }
 
-   /*      int mathematics::RandRange(int i1, int i2)
+   /*      ::i32 mathematics::RandRange(::i32 i1, ::i32 i2)
    {
    // dRandRange == 0.0 is impossible happening due this next statement;
    if(i1 == i2)
    return i1;
-   int iMin = minimum(i1, i2);
-   int iMax = maximum(i1, i2);
-   double dRand = 0.0;
-   double dRange = (double) (iMax - iMin);
-   double dRandRange = 1.0;
-   int i = 1;
+   ::i32 iMin = minimum(i1, i2);
+   ::i32 iMax = maximum(i1, i2);
+   ::f64 dRand = 0.0;
+   ::f64 dRange = (::f64) (iMax - iMin);
+   ::f64 dRandRange = 1.0;
+   ::i32 i = 1;
    while((dRandRange - 1.0) < dRange)
    {
    dRand += dRandRange * gen_rand();
-   dRandRange = pow((double) rand_max() + 1, (double) i);
+   dRandRange = pow((::f64) rand_max() + 1, (::f64) i);
    i++;
    }
    dRandRange -= 1.0;
-   dRand *= (dRange) / (double) dRandRange;
-   dRand += (double) iMin;
+   dRand *= (dRange) / (::f64) dRandRange;
+   dRand += (::f64) iMin;
    dRand += 0.5;
-   return (int) dRand;
+   return (::i32) dRand;
    }
 
-   unsigned int mathematics::RandRange(unsigned int ui1, unsigned int ui2)
+   ::u32 mathematics::RandRange(::u32 ui1, ::u32 ui2)
    {
    // dRandRange == 0.0 is impossible happening due this next statement;
    if(ui1 == ui2)
    return ui1;
-   int iMin = minimum(ui1, ui2);
-   int iMax = maximum(ui1, ui2);
-   double dRand = 0.0;
-   double dRange = (double) (iMax - iMin);
-   double dRandRange = 1.0;
-   int i = 1;
+   ::i32 iMin = minimum(ui1, ui2);
+   ::i32 iMax = maximum(ui1, ui2);
+   ::f64 dRand = 0.0;
+   ::f64 dRange = (::f64) (iMax - iMin);
+   ::f64 dRandRange = 1.0;
+   ::i32 i = 1;
    while((dRandRange - 1.0) < dRange)
    {
    dRand += dRandRange * gen_rand();
-   dRandRange = pow((double) rand_max() + 1, (double) i);
+   dRandRange = pow((::f64) rand_max() + 1, (::f64) i);
    i++;
    }
    dRandRange -= 1.0;
-   dRand *= (dRange) / (double) dRandRange;
-   dRand += (double) iMin;
+   dRand *= (dRange) / (::f64) dRandRange;
+   dRand += (::f64) iMin;
    dRand += 0.5;
-   return (int) dRand;
+   return (::i32) dRand;
    }*/
 
 
-   //double mathematics::frand_range(double d1, double d2)
+   //::f64 mathematics::frand_range(::f64 d1, ::f64 d2)
    //{
    //   // dRandRange == 0.0 is impossible happening due this next statement;
    //   if (d1 == d2)
    //      return d1;
-   //   double dMin = minimum(d1, d2);
-   //   double dMax = maximum(d1, d2);
-   //   double dRange = dMax - dMin;
-   //   return (((double)(gen_rand() % (1000000000 + 1)) / 1000000000.0) * dRange) + dMin;
+   //   ::f64 dMin = minimum(d1, d2);
+   //   ::f64 dMax = maximum(d1, d2);
+   //   ::f64 dRange = dMax - dMin;
+   //   return (((::f64)(gen_rand() % (1000000000 + 1)) / 1000000000.0) * dRange) + dMin;
    //}
 
    /*
 
-   unsigned long long mathematics::RandRange(unsigned long long ui1, unsigned long long ui2)
+   ::u64 mathematics::RandRange(::u64 ui1, ::u64 ui2)
    {
    // dRandRange == 0.0 is impossible happening due this next statement;
    if(ui1 == ui2)
    return ui1;
-   unsigned long long uiMin = minimum(ui1, ui2);
-   unsigned long long uiMax = maximum(ui1, ui2);
-   double dRand = 0.0;
-   double dRange = (double) (uiMax - uiMin);
-   double dRandRange = 1.0;
-   int i = 1;
+   ::u64 uiMin = minimum(ui1, ui2);
+   ::u64 uiMax = maximum(ui1, ui2);
+   ::f64 dRand = 0.0;
+   ::f64 dRange = (::f64) (uiMax - uiMin);
+   ::f64 dRandRange = 1.0;
+   ::i32 i = 1;
    while((dRandRange - 1.0) < dRange)
    {
    dRand += dRandRange * gen_rand();
-   dRandRange = pow((double) rand_max() + 1, (double) i);
+   dRandRange = pow((::f64) rand_max() + 1, (::f64) i);
    i++;
    }
    dRandRange -= 1.0;
-   dRand *= (dRange) / (double) dRandRange;
-   dRand += (double) uiMin;
+   dRand *= (dRange) / (::f64) dRandRange;
+   dRand += (::f64) uiMin;
    dRand += 0.5;
-   return (int) dRand;
+   return (::i32) dRand;
    }
 
 
    */
 
-   int mathematics::LinearMap(int iMin, int iMax, int iValue, int iValueMin, int iValueMax)
+   ::i32 mathematics::LinearMap(::i32 iMin, ::i32 iMax, ::i32 iValue, ::i32 iValueMin, ::i32 iValueMax)
    {
-      double d = iValue - iValueMin;
-      d *= (iMax - iMin) / (double)(iValueMax - iValueMin);
+      ::f64 d = iValue - iValueMin;
+      d *= (iMax - iMin) / (::f64)(iValueMax - iValueMin);
       d += iMin;
       d += 0.5;
-      return (int)d;
+      return (::i32)d;
    }
 
-   double mathematics::LinearMap(double dMin, double dMax, double dValue, double dValueMin, double dValueMax)
+   ::f64 mathematics::LinearMap(::f64 dMin, ::f64 dMax, ::f64 dValue, ::f64 dValueMin, ::f64 dValueMax)
    {
       
-      double d = dValue - dValueMin;
+      ::f64 d = dValue - dValueMin;
 
-      d *= (dMax - dMin) / (double)(dValueMax - dValueMin);
+      d *= (dMax - dMin) / (::f64)(dValueMax - dValueMin);
 
       d += dMin;
 
@@ -637,10 +637,10 @@ namespace mathematics
    }
 
 
-   int mathematics::RangeRate(int iMin, int iMax, double dRate)
+   ::i32 mathematics::RangeRate(::i32 iMin, ::i32 iMax, ::f64 dRate)
    {
       
-      return (int)((iMax - iMin) * dRate) + iMin;
+      return (::i32)((iMax - iMin) * dRate) + iMin;
 
    }
 
@@ -688,7 +688,7 @@ namespace mathematics
 
 
 
-   void mathematics::random_alphanumeric(char * p, memsize s)
+   void mathematics::random_alphanumeric(char_pointer p, memsize s)
    {
 
       random({ p, s });
@@ -701,12 +701,12 @@ namespace mathematics
    void mathematics::transform_alphanumeric(void * p, memsize s)
    {
 
-      unsigned char * pchar = (unsigned char *)p;
+      ::u8 * pchar = (::u8 *)p;
 
       while (s > 0)
       {
 
-         char ch = *pchar % 62;
+         ::i8 ch = *pchar % 62;
 
          if (ch <= 9)
          {
@@ -747,28 +747,28 @@ namespace apex
    namespace acme
    {
 
-      int CLASS_DECL_ACME time_seed();
+      ::i32 CLASS_DECL_ACME time_seed();
 
       void CLASS_DECL_ACME srand();
 
-      int CLASS_DECL_ACME time_seed()
+      ::i32 CLASS_DECL_ACME time_seed()
       {
 
-         return (time(nullptr) % 5000 + (::long_long_millisecond() / 100) % 5000) % 1000;
+         return (time(nullptr) % 5000 + (::i64_millisecond() / 100) % 5000) % 1000;
 
       }
 
 
       void CLASS_DECL_ACME srand()
       {
-         int iSeed = time_seed();
+         ::i32 iSeed = time_seed();
          ::srand(iSeed);
          iSeed %= 64;
-         for (int i = 0; i < iSeed; i++)
+         for (::i32 i = 0; i < iSeed; i++)
          {
             ::srand(rand());
          }
-         for (int i = 0; i < iSeed; i++)
+         for (::i32 i = 0; i < iSeed; i++)
          {
             rand();
          }

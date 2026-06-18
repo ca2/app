@@ -44,7 +44,7 @@ public:
 
    }
 
-   pointer_rear_iterator operator ++(int)
+   pointer_rear_iterator operator ++(::i32)
    {
       auto p = *this;
       m_p--;
@@ -52,7 +52,7 @@ public:
       return p;
 
    }
-   pointer_rear_iterator operator --(int)
+   pointer_rear_iterator operator --(::i32)
    {
       auto p = *this;
       m_p++;

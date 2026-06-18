@@ -12,17 +12,18 @@
 namespace coding
 {
 
-   enum enum_repository: int
+   enum enum_repository: ::i32
    {
 
       e_repository_none,
       e_repository_tool_os,
       e_repository_simple,
+      e_repository_lemon,
 
    };
 
 
-   enum enum_integrate_group : int
+   enum enum_integrate_group : ::i32
    {
 
       e_integrate_group_operating_system,
@@ -33,7 +34,7 @@ namespace coding
    };
 
 
-   enum enum_integrate : long long
+   enum enum_integrate : ::i64
    {
 
 
@@ -122,9 +123,9 @@ namespace coding
    };
 
 
-   DECLARE_ENUMERATION(e_integrate, enum_integrate);
+   DECLARE_C_FLAG(e_integrate, enum_integrate);
 
-   enum enum_task : int
+   enum enum_task : ::i32
    {
 
       e_task_none,

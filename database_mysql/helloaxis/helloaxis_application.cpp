@@ -1,6 +1,6 @@
 #include "framework.h"
 
-int my_main(::particle * pparticle);
+::i32 my_main(::particle * pparticle);
 
 namespace helloaxis
 {
@@ -78,7 +78,7 @@ namespace helloaxis
    }
 
 
-   int application::exit_application()
+   ::i32 application::exit_application()
    {
 
       return ::axis::application::exit_application();
@@ -123,14 +123,14 @@ namespace helloaxis
 
 
 
-   long long application::increment_reference_count()
+   ::i64 application::increment_reference_count()
    {
 
       return ::object::increment_reference_count();
 
    }
 
-   long long application::decrement_reference_count()
+   ::i64 application::decrement_reference_count()
    {
 
       return ::object::decrement_reference_count();
@@ -149,7 +149,7 @@ namespace helloaxis
 
    void application::paint(HWND hwnd, ::draw2d::graphics_pointer & pgraphics)
    {
-      ::int_rectangle rcClient;
+      ::i32_rectangle rcClient;
       ::this->rectangle(hwnd, rcClient);
       auto pbrush = createø < ::draw2d::brush > ();
 

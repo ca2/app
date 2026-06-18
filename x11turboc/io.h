@@ -41,12 +41,12 @@
 
 struct ftime
 {
-  unsigned ft_tsec:5;
-  unsigned ft_min:6;
-  unsigned ft_hour:5;
-  unsigned ft_day:5;
-  unsigned ft_month:4;
-  unsigned ft_year:7;
+  ::u32 ft_tsec:5;
+  ::u32 ft_min:6;
+  ::u32 ft_hour:5;
+  ::u32 ft_day:5;
+  ::u32 ft_month:4;
+  ::u32 ft_year:7;
 };
 
 //----------------------------------------------------------------------------
@@ -55,8 +55,8 @@ struct ftime
 __BEGIN_DECLS
 
 //
-extern int getftime (int handle, struct ftime *ftimep);
-extern int setftime (int handle, struct ftime *ftimep);
+extern ::i32 getftime (::i32 handle, struct ftime *ftimep);
+extern ::i32 setftime (::i32 handle, struct ftime *ftimep);
 
 __END_DECLS
 //--------------------------------------------------------------------------

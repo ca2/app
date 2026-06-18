@@ -15,8 +15,9 @@ namespace innate_ui
    public:
 
 
-      ::memory       m_memory;
-      ::int_size     m_size;
+      ::memory                m_memory;
+      ::i32_size              m_size;
+      ::image::image_pointer  m_pimage;
 
 
       icon();
@@ -24,7 +25,7 @@ namespace innate_ui
 
 
       virtual void _create();
-      virtual void create(const ::payload & payloadFile, const ::int_size & size);
+      virtual void create(const ::payload & payloadFile, const ::i32_size & size);
 
 
    };

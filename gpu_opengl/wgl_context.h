@@ -42,7 +42,7 @@ namespace gpu_opengl
 
       void create_dummy_wgl_context();
 
-      void _create_wgl_context(int * contextAttribs);
+      void _create_wgl_context(::i32 * contextAttribs);
 
       void select();
       void unselect();

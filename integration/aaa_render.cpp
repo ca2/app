@@ -36,7 +36,7 @@ namespace app_integration
 #ifdef _DEBUG
 
 
-   long long render::increment_reference_count()
+   ::i64 render::increment_reference_count()
    {
 
       return ::particle::increment_reference_count();
@@ -44,7 +44,7 @@ namespace app_integration
    }
 
 
-   long long render::decrement_reference_count()
+   ::i64 render::decrement_reference_count()
    {
 
       return ::particle::decrement_reference_count();
@@ -62,7 +62,7 @@ namespace app_integration
    }
 
 
-   void render::initialize_simple_drawing(int iDrawing)
+   void render::initialize_simple_drawing(::i32 iDrawing)
    {
 
       m_iDrawing = iDrawing;
@@ -117,7 +117,7 @@ namespace app_integration
       if (get_app()->application_properties().m_echeckNoClientFrame != ::e_check_checked)
       {
 
-         ::int_rectangle rectangle(m_rectangle);
+         ::i32_rectangle rectangle(m_rectangle);
 
          pgraphics->set_alpha_mode(::draw2d::e_alpha_mode_blend);
 
@@ -239,9 +239,9 @@ namespace app_integration
    {
       //Text
 
-      int_rectangle rectangle;
+      i32_rectangle rectangle;
 
-      int iSize = minimum(m_rectangle.width(), m_rectangle.height());
+      ::i32 iSize = minimum(m_rectangle.width(), m_rectangle.height());
 
       iSize = iSize * 3 / 4;
 
@@ -254,7 +254,7 @@ namespace app_integration
 
       rectangle.offset_x(iSize / 5 * m_iDrawing);
 
-      ::double_size size(0., 0.);
+      ::f64_size size(0., 0.);
 
       bool bDrawText = true;
 
@@ -295,14 +295,14 @@ namespace app_integration
          if (!size.is_empty())
          {
 
-            int iHeight = rectangle.height();
+            ::i32 iHeight = rectangle.height();
 
-            double dMaxDimension = size.get_maximum_dimension();
+            ::f64 dMaxDimension = size.get_maximum_dimension();
 
             if (m_iDrawing == 1)
             {
 
-               float fSize = (float) (iHeight * 80.0 / dMaxDimension);
+               ::f32 fSize = (::f32) (iHeight * 80.0 / dMaxDimension);
 
                pfont2->create_pixel_font(strFontFamily, fSize, 800);
 
@@ -310,7 +310,7 @@ namespace app_integration
             else
             {
 
-               float fSize = (float) (iHeight * 160.0 / dMaxDimension);
+               ::f32 fSize = (::f32) (iHeight * 160.0 / dMaxDimension);
 
                pfont2->create_pixel_font(strFontFamily, fSize, 800);
 
@@ -322,7 +322,7 @@ namespace app_integration
 
          size = pgraphics->get_text_extent(strTitle);
 
-         ::int_rectangle rectangleText;
+         ::i32_rectangle rectangleText;
 
          rectangleText.set_size(size);
 

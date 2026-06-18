@@ -7,7 +7,7 @@ namespace progress
 {
 
 
-   void listener::on_progress(double dRate)
+   void listener::on_progress(::f64 dRate)
    {
 
    }

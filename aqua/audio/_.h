@@ -5,18 +5,18 @@
 //struct WAVE_OUT_PACKET
 //{
 //
-//   char        m_chChannel;
+//   ::i8        m_chChannel;
 //   void *      m_pdata;
-//   int         m_iChannelCount;
-//   int         m_iSamplesPerSec;
+//   ::i32         m_iChannelCount;
+//   ::i32         m_iSamplesPerSec;
 //
 //};
 //
 
-//static void CALLBACK rdpsnd_audio_callback_function(HWAVEOUT hwo, unsigned int uMsg, DWORD_PTR dwInstance, DWORD_PTR dwParam1, DWORD_PTR dwParam2)
+//static void CALLBACK rdpsnd_audio_callback_function(HWAVEOUT hwo, ::u32 uMsg, DWORD_PTR dwInstance, DWORD_PTR dwParam1, DWORD_PTR dwParam2)
 //
-//CLASS_DECL_AURA int out_push_packet(WAVE_OUT_PACKET * ppacket);
-//CLASS_DECL_AURA WAVE_OUT_PACKET * out_pop_packet(char chChannel);
+//CLASS_DECL_AURA ::i32 out_push_packet(WAVE_OUT_PACKET * ppacket);
+//CLASS_DECL_AURA WAVE_OUT_PACKET * out_pop_packet(::i8 chChannel);
 
 
 //using out_packet_array = ref_array < WAVEOUT_PACKET >;
@@ -70,19 +70,19 @@ namespace aqua
 //////#include "acme/operating_system/cross/windows/windows_mmeapi.h"
 //////#include "acme/operating_system/cross/windows/windows_defs.h"
 //typedef struct _GUID {
-//   unsigned long  Data1;
-//   unsigned short Data2;
-//   unsigned short Data3;
-//   unsigned char  Data4[ 8 ];
+//   ulong  Data1;
+//   ::u16 Data2;
+//   ::u16 Data3;
+//   ::u8  Data4[ 8 ];
 //} GUID;
 //typedef struct {
-//   unsigned short  wFormatTag;
-//   unsigned short  nChannels;
-//   unsigned int nSamplesPerSec;
-//   unsigned int nAvgBytesPerSec;
-//   unsigned short  nBlockAlign;
-//   unsigned short  wBitsPerSample;
-//   unsigned short  cbSize;
+//   ::u16  wFormatTag;
+//   ::u16  nChannels;
+//   ::u32 nSamplesPerSec;
+//   ::u32 nAvgBytesPerSec;
+//   ::u16  nBlockAlign;
+//   ::u16  wBitsPerSample;
+//   ::u16  cbSize;
 //} WAVEFORMATEX;
 //
 //
@@ -91,11 +91,11 @@ namespace aqua
 //   WAVEFORMATEX Format;
 //   union
 //   {
-//      unsigned short wValidBitsPerSample;
-//      unsigned short wSamplesPerBlock;
-//      unsigned short wReserved;
+//      ::u16 wValidBitsPerSample;
+//      ::u16 wSamplesPerBlock;
+//      ::u16 wReserved;
 //   } Samples;
-//   unsigned int        dwChannelMask;
+//   ::u32        dwChannelMask;
 //   GUID         SubFormat;
 //} WAVEFORMATEXTENSIBLE, *PWAVEFORMATEXTENSIBLE;
 //

@@ -52,23 +52,23 @@ namespace windowing
 
 
 
-   string keyboard::getSymbolNameByResNum(int groupResNum)
+   string keyboard::getSymbolNameByResNum(::i32 groupResNum)
    {
       return _symbolNames[groupNumResToXkb(groupResNum)];
    }
 
-   string keyboard::getGroupNameByResNum(int groupResNum)
+   string keyboard::getGroupNameByResNum(::i32 groupResNum)
    {
       return _groupNames[groupNumResToXkb(groupResNum)];
    }
 
-   int keyboard::groupNumResToXkb(int groupResNum)
+   ::i32 keyboard::groupNumResToXkb(::i32 groupResNum)
    {
       return groupLookup(groupResNum, _groupNames, _symbolNames, _groupCount);
    }
 
 
-   int keyboard::groupLookup(int srcValue, string_array_base fromText, string_array_base toText, int count)
+   ::i32 keyboard::groupLookup(::i32 srcValue, string_array_base fromText, string_array_base toText, ::i32 count)
    {
 
       const string srcText = fromText[srcValue];
@@ -78,7 +78,7 @@ namespace windowing
 
          string targetText;
 
-         for (int i = 0; i < count; i++)
+         for (::i32 i = 0; i < count; i++)
          {
             targetText = toText[i];
 
@@ -109,7 +109,7 @@ namespace windowing
    {
    }
 
-   int keyboard::groupCount() const
+   ::i32 keyboard::groupCount() const
    {
       return _groupCount;
    }
@@ -131,7 +131,7 @@ namespace windowing
    }
 
 
-   int keyboard::currentGroupNum() const
+   ::i32 keyboard::currentGroupNum() const
    {
 
        return -1;
@@ -149,7 +149,7 @@ namespace windowing
       return _symbolNames[currentGroupNum()];
    }
 
-   bool keyboard::setGroupByNum(int groupNum)
+   bool keyboard::setGroupByNum(::i32 groupNum)
    {
       if (_groupCount <= 1)
       {
@@ -159,7 +159,7 @@ namespace windowing
       return true;
    }
 
-   bool keyboard::changeGroup(int increment)
+   bool keyboard::changeGroup(::i32 increment)
    {
       return true;
    }
@@ -184,9 +184,9 @@ namespace windowing
 //      bool inSymbol = false;
 //      string curSymbol;
 //
-//      for (int i = 0; i < symbols.size(); i++)
+//      for (::i32 i = 0; i < symbols.size(); i++)
 //      {
-//         char ch = symbols[i];
+//         ::i8 ch = symbols[i];
 //         if (ch == '+')
 //         {
 //            if (inSymbol)
@@ -202,7 +202,7 @@ namespace windowing
 //               inSymbol = true;
 //            }
 //         }
-//         else if (inSymbol && (isalpha(static_cast<int>(ch)) || ch == '_'))
+//         else if (inSymbol && (isalpha(static_cast<::i32>(ch)) || ch == '_'))
 //         {
 //            curSymbol.append(1, ch);
 //         }
@@ -234,7 +234,7 @@ namespace windowing
 //
 //// Helper functions ----------------------------------------------------
 
-//   int compareNoCase(const string &s1, const string &s2)
+//   ::i32 compareNoCase(const string &s1, const string &s2)
 //   {
 //      index it1 = 0;
 //      index it2 = 0;
@@ -276,15 +276,15 @@ namespace windowing
 
 // std::ostream& operator<<(std::ostream& os, const StringVector& sv)
 // {
-//     for (int i = 0; i < sv.size(); i++) {
+//     for (::i32 i = 0; i < sv.size(); i++) {
 //      os << (i == 0 ? "" : ", ") << sv[i];
 //     }
 //     return os;
 // }
 
-// Main entry int_point (test) ---------------------------------------------
+// Main entry i32_point (test) ---------------------------------------------
 
-// int main(int argc, char** argv)
+// ::i32 main(::i32 argc, char_pointer * argv)
 // {
 //     keyboard xkb;
 //     std::cout << xkb << std::endl;

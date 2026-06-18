@@ -27,26 +27,26 @@
 #if defined(__APPLE__)
 #define DISABLE_BACKTRACE 0
 
-void apple_backtrace_symbol_parse(string & strSymbolName, string & strAddress, char * pmessage, void * address);
+void apple_backtrace_symbol_parse(string & strSymbolName, string & strAddress, char_pointer pmessage, void * address);
 
 #elif defined(FREEBSD)
 #define DISABLE_BACKTRACE 0
-void freebsd_backtrace_symbol_parse(::particle * pparticle, string & strSymbolName, string & strModule, string & strAddress, char * pmessage, void * address);
+void freebsd_backtrace_symbol_parse(::particle * pparticle, string & strSymbolName, string & strModule, string & strAddress, char_pointer pmessage, void * address);
 
 #elif defined(OPENBSD)
 #define DISABLE_BACKTRACE 1
-void openbsd_backtrace_symbol_parse(::particle * pparticle, string & strSymbolName, string & strModule, string & strAddress, char * pmessage, void * address);
+void openbsd_backtrace_symbol_parse(::particle * pparticle, string & strSymbolName, string & strModule, string & strAddress, char_pointer pmessage, void * address);
 
 #else
 #define DISABLE_BACKTRACE 0
-void backtrace_symbol_parse(string &strSymbolName, string &strAddress, char *pmessage, void *address);
+void backtrace_symbol_parse(string &strSymbolName, string &strAddress, char_pointer pmessage, void *address);
 
 #endif
 
 
 #if !defined(__ANDROID__)
 
-string _ansi_stack_trace(::particle * pparticle, void *const *ppui, int frames, const_char_pointer pszFormat, int iSkip)
+string _ansi_stack_trace(::particle * pparticle, void *const *ppui, ::i32 frames, const_char_pointer pszFormat, ::i32 iSkip)
 {
 
 #if DISABLE_BACKTRACE
@@ -57,21 +57,21 @@ string _ansi_stack_trace(::particle * pparticle, void *const *ppui, int frames, 
 
    ::string strCallstack;
 
-   ::acme::malloc<char **> messages(::backtrace_symbols(ppui, frames));
+   ::acme::malloc<char_pointer *> messages(::backtrace_symbols(ppui, frames));
 
-   //char szN[24];
+   //::i8 szN[24];
 
    //*_strS = '\0';
 
-   //char syscom[1024];
+   //::i8 syscom[1024];
 
    //const_char_pointer func;
    //const_char_pointer file;
-   //unsigned iLine;
+   //::u32 iLine;
 
    auto ppMessages = messages.get();
 
-   int i = 0;
+   ::i32 i = 0;
 
    for (; i < frames && *ppMessages != nullptr; ++i, ppMessages++)
    {
@@ -92,7 +92,7 @@ string _ansi_stack_trace(::particle * pparticle, void *const *ppui, int frames, 
 
                ansi_concatenate(_strS, file);
                ansi_concatenate(_strS, ":");
-               ansi_from_unsigned_long_long(szN, iLine, 10);
+               ansi_from_u64(szN, iLine, 10);
                ansi_concatenate(_strS, szN);
                ansi_concatenate(_strS, ":1: warning: ");
 
@@ -168,7 +168,7 @@ namespace platform
 
 #if !defined(__ANDROID__)
 
-   void node::get_call_stack_frames(void ** stack, int & frame_count)
+   void node::get_call_stack_frames(void ** stack, ::i32 & frame_count)
    {
 
 #if DISABLE_BACKTRACE
@@ -176,12 +176,12 @@ namespace platform
 #else
 
 #if defined(FREEBSD) || defined(OPENBSD)
-      const int iMaximumFramesToCapture = 32;
+      const ::i32 iMaximumFramesToCapture = 32;
 #else
-      const int iMaximumFramesToCapture = 96;
+      const ::i32 iMaximumFramesToCapture = 96;
 #endif
       
-      int iFrameCount = minimum(frame_count, iMaximumFramesToCapture);
+      ::i32 iFrameCount = minimum(frame_count, iMaximumFramesToCapture);
 
       auto frames = ::backtrace(stack, iFrameCount);
       
@@ -192,13 +192,13 @@ namespace platform
 
 #endif
 
-   int node::get_call_stack_default_frame_count()
+   ::i32 node::get_call_stack_default_frame_count()
    {
       
    #if defined(FREEBSD) || defined(OPENBSD)
-         const int iMaximumFramesToCapture = 32;
+         const ::i32 iMaximumFramesToCapture = 32;
    #else
-         const int iMaximumFramesToCapture = 96;
+         const ::i32 iMaximumFramesToCapture = 96;
    #endif
       
       return iMaximumFramesToCapture;
@@ -206,7 +206,7 @@ namespace platform
    }
 
 
-   string node::get_call_stack_trace(const ::scoped_string & scopedstrFormat, int iSkip, void * caller_address, int iCount)
+   string node::get_call_stack_trace(const ::scoped_string & scopedstrFormat, ::i32 iSkip, void * caller_address, ::i32 iCount)
    {
       
       return _get_call_stack_trace(scopedstrFormat, iSkip, caller_address, iCount);
@@ -214,7 +214,7 @@ namespace platform
    }
 
 
-   string node::get_call_stack_trace(void ** stack, int frame_count, const ::scoped_string &scopedstrFormat, int iSkip, void *caller_address, int iCount)
+   string node::get_call_stack_trace(void ** stack, ::i32 frame_count, const ::scoped_string &scopedstrFormat, ::i32 iSkip, void *caller_address, ::i32 iCount)
    {
 
       return _get_call_stack_trace(stack, iCount, scopedstrFormat, iSkip, caller_address);
@@ -227,7 +227,7 @@ namespace platform
     critical_section g_criticalsectionCallStack;
 
 
-    string node::_get_call_stack_trace(void ** stack, int frame_count, const ::scoped_string & strFormat, int iSkip, void *caller_address, int iCount)
+    string node::_get_call_stack_trace(void ** stack, ::i32 frame_count, const ::scoped_string & strFormat, ::i32 iSkip, void *caller_address, ::i32 iCount)
     {
 
        //auto psynchronization = ::system()->synchronization();
@@ -237,9 +237,9 @@ namespace platform
        critical_section_lock criticalsectionlock(&g_criticalsectionCallStack);
 
 #if defined(FREEBSD) || defined(OPENBSD)
-       const int iMaximumFramesToCapture = 32;
+       const ::i32 iMaximumFramesToCapture = 32;
 #else
-       const int iMaximumFramesToCapture = 96;
+       const ::i32 iMaximumFramesToCapture = 96;
 #endif
 
        string str = _ansi_stack_trace(this, stack, minimum_non_negative(frame_count, iMaximumFramesToCapture), strFormat, maximum(iSkip, 0));

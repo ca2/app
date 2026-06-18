@@ -49,7 +49,7 @@ namespace appearance
    }
 
 
-   ::int_size appearance::preferred_size(::draw2d::graphics_pointer & pgraphics)
+   ::i32_size appearance::preferred_size(::draw2d::graphics_pointer & pgraphics)
    {
 
       return {};
@@ -71,7 +71,7 @@ namespace appearance
    }
 
 
-   void appearance::on_mouse_enter(const ::int_point & point, const ::user::e_key & ekeyModifiers)
+   void appearance::on_mouse_enter(const ::i32_point & point, bool bEnter)
    {
 
 
@@ -85,7 +85,7 @@ namespace appearance
    }
 
    
-   bool appearance::on_button_down(::user::e_key ekeyButton, const ::int_point & point, const ::user::e_key & ekeyModifiers, bool bDoubleClick)
+   bool appearance::on_button_down(::user::e_key euserkeyMouseButton, const ::i32_point &point, bool bDoubleClick)
    {
 
       return false;
@@ -93,7 +93,7 @@ namespace appearance
    }
 
 
-   bool appearance::on_button_up(::user::e_key ekeyButton, const ::int_point & point, const ::user::e_key & ekeyModifiers)
+   bool appearance::on_button_up(::user::e_key euserkeyMouseButton, const ::i32_point &point)
    {
 
       return false;
@@ -101,7 +101,7 @@ namespace appearance
    }
 
 
-   bool appearance::on_mouse_move(const ::int_point & point, bool bDown, const ::user::e_key & ekeyModifiers)
+   bool appearance::on_mouse_move(const ::i32_point & point)
    {
 
       return false;
@@ -109,7 +109,7 @@ namespace appearance
    }
 
 
-   //bool appearance::on_mouse_drag(const ::int_point & point, const ::user::e_key & ekeyModifiers)
+   //bool appearance::on_mouse_drag(const ::i32_point & point, const ::user::keyboard_state & keyboardstate)
    //{
 
    //   return false;
@@ -117,7 +117,7 @@ namespace appearance
    //}
 
 
-   bool appearance::on_scroll_event(const ::int_point & point, double x, double y)
+   bool appearance::on_scroll_event(const ::i32_point & point, ::f64 x, ::f64 y)
    {
 
       return false;
@@ -125,7 +125,7 @@ namespace appearance
    }
 
    
-   bool appearance::on_key_down(::user::enum_key ekey, long long scancode, const ::user::e_key & ekeyModifiers, const ::scoped_string & scopedstrText)
+   bool appearance::on_key_down(const ::user::e_key & ekey, ::i64 scancode, const ::scoped_string & scopedstrText)
    {
 
       return false;
@@ -133,7 +133,7 @@ namespace appearance
    }
 
 
-   bool appearance::on_key_up(::user::enum_key ekey, long long scancode, const ::user::e_key & ekeyModifiers)
+   bool appearance::on_key_up(const ::user::e_key & ekey, ::i64 scancode)
    {
 
       return false;
@@ -141,7 +141,7 @@ namespace appearance
    }
 
 
-   void appearance::on_character(int iCharacter)
+   void appearance::on_character(::i32 iCharacter)
    {
 
    }

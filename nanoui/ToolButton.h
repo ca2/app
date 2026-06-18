@@ -26,11 +26,11 @@ namespace nanoui
  */
    class ToolButton : public Button {
    public:
-      ToolButton(Widget * parent, int icon,
+      ToolButton(Widget * parent, ::i32 icon,
          const ::scoped_string & caption = "")
          : Button(parent, caption, icon) {
          set_flags(Flags::RadioButton | Flags::ToggleButton);
-         set_fixed_size(int_sequence2(25, 25));
+         set_fixed_size(i32_sequence2(25, 25));
       }
 };
 

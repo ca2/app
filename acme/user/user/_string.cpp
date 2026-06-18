@@ -5,10 +5,10 @@
 #include "_string.h"
 
 
-CLASS_DECL_ACME ::string as_string(::enum_display edisplay)
+CLASS_DECL_ACME ::string as_string(const ::e_display & edisplay)
 {
 
-   switch(edisplay)
+   switch(edisplay.m_cflag)
    {
       case e_display_undefined:
          return "e_display_undefined";

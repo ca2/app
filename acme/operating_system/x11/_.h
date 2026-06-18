@@ -15,7 +15,7 @@ namespace x11
    };
 
 
-   using window_t = long long;
+   using window_t = ::i64;
 
 
    struct visual_t

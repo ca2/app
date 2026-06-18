@@ -74,16 +74,16 @@ namespace sockets
       
       strHost = m_request.header("host");
 
-      if (strHost.case_insensitive_ends_eat(".test.ca2.network"))
+      if (strHost.case_insensitive_ends_eat(".test.ca2.site"))
       {
 
-         m_request.header("host") = strHost + ".ca2.network";
+         m_request.header("host") = strHost + ".ca2.site";
 
       }
-      else if (strHost == "test.ca2.network")
+      else if (strHost == "test.ca2.site")
       {
 
-         m_request.header("host") = "ca2.network";
+         m_request.header("host") = "ca2.site";
 
       }
 
@@ -95,7 +95,7 @@ namespace sockets
 
       string strTest(strHost);
 
-      if (strTest.case_insensitive_ends_eat(".ca2.network"))
+      if (strTest.case_insensitive_ends_eat(".ca2.site"))
       {
 
          if (strTest.find('.') > 0)
@@ -146,7 +146,7 @@ namespace sockets
    }
 
 
-   void http_base_socket::OnData(const_char_pointer buf,memsize sz)
+   void http_base_socket::OnData(const_char_pointer pszBuffer,memsize sz)
    {
 
       m_request.write( buf, sz );
@@ -214,11 +214,11 @@ namespace sockets
       else
       {
 
-         m_response.m_propertysetHeader.set_at("content-length", (long long)m_response.file()->get_size());
+         m_response.m_propertysetHeader.set_at("content-length", (::i64)m_response.file()->get_size());
 
       }
 
-      //for(int i = 0; i < m_response.cookies().get_size(); i++)
+      //for(::i32 i = 0; i < m_response.cookies().get_size(); i++)
       //{
 
       //   m_response.m_propertysetHeader.set_at("set-cookie", m_response.cookies().element_at(i)->get_cookie_string());
@@ -256,7 +256,7 @@ namespace sockets
       //Debug deb("http_base_socket::OnTransferLimit");
       //informationf("");
       //informationf("http_base_socket::OnTransferLimit");
-      //   char msg[32768];
+      //   ::i8 msg[32768];
       OnResponseComplete();
       if (!m_b_keepalive)
       {
@@ -297,9 +297,9 @@ namespace sockets
 
 
    //string http_base_socket::set-cookie(
-   //const_char_pointer name,
+   //const_char_pointer pszName,
    //::payload payload,
-   //int iExpire,
+   //::i32 iExpire,
    //const ::file::path & path,
    //const_char_pointer domain,
    //bool bSecure)
@@ -361,7 +361,7 @@ namespace sockets
    }
 
 
-   bool http_base_socket::read_file(const ::file::path& pcszParam, pointer_array < ::int_array_base >* prangea, const ::scoped_string & scopedstrContentType)
+   bool http_base_socket::read_file(const ::file::path& pcszParam, pointer_array < ::i32_array_base >* prangea, const ::scoped_string & scopedstrContentType)
    {
 
       ::file::path pcsz(pcszParam);
@@ -409,8 +409,8 @@ namespace sockets
 
       string_array_base straAllowedOrigin;
 
-      straAllowedOrigin.add("ca2.network");
-      straAllowedOrigin.add("ca2.network");
+      straAllowedOrigin.add("ca2.site");
+      straAllowedOrigin.add("ca2.site");
 
       bool bAllowedOrigin = false;
 
@@ -577,7 +577,7 @@ namespace sockets
             
             mem.set_size(128 * 1024 * 1024);
 
-            for (int i = 0; i < prangea->get_count(); i++)
+            for (::i32 i = 0; i < prangea->get_count(); i++)
             {
                
                memsize iStart = prangea->element_at(i)->element_at(0);

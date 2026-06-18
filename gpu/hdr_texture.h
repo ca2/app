@@ -16,7 +16,7 @@
 //    public:
 //
 //
-//       //unsigned int mId;
+//       //::u32 mId;
 //
 //
 //       hdr_texture();
@@ -28,7 +28,7 @@
 //       virtual void initialize_hdr_texture(const ::file::path & path);
 //
 //
-//       //unsigned int getId();
+//       //::u32 getId();
 //
 //    };
 //

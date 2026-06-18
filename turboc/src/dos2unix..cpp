@@ -48,11 +48,11 @@
 // fail if TurboC's automatic integer-type translation is used.
 //#include <sys/ioctl.h>
 //#include <linux/ppdev.h>
-int pprstatus = PPRSTATUS;
-int pprelease = PPRELEASE;
-int ppclaim = PPCLAIM;
-int ppwdata = PPWDATA;
-int ppfcontrol = PPFCONTROL;
+::i32 pprstatus = PPRSTATUS;
+::i32 pprelease = PPRELEASE;
+::i32 ppclaim = PPCLAIM;
+::i32 ppwdata = PPWDATA;
+::i32 ppfcontrol = PPFCONTROL;
 #endif // __linux__
 //#include "io.h"
 //#include "dos.h"
@@ -82,17 +82,17 @@ struct date date_null = { 0, 0, 0 };
 struct time time_null = { 0, 0, 0, 0 };
 
 #if 0
-char *month[] =
+char_pointer month[] =
   { "---", "Led", "Uno", "Bre", "Dub", "Kve", "Cer", "Cec", "Srp", "Zar",
   "Rij", "Lis", "Pr",
 };
-char *month_l[] =
+char_pointer month_l[] =
   { "---", "Leden", "Unor", "Brezen", "Duben", "Kveten", "Cerven",
   "Cervenec", "Srpen", "Zari", "Rijen", "Listopad", "Prosinec",
 };
 
-char *day[] = { "Ned", "Pon", "Ute", "Str", "Ctv", "Pat", "Sob", };
-char *day_l[] =
+char_pointer day[] = { "Ned", "Pon", "Ute", "Str", "Ctv", "Pat", "Sob", };
+char_pointer day_l[] =
   { "Nedele", "Pondeli", "Utery", "Streda", "Ctvrtek", "Patek", "Sobota", };
 #endif // 0
 
@@ -170,11 +170,11 @@ gettime_d (struct time *t)
  * cmd
  */
 #ifdef __linux__
-int
-open_printer (int port)
+::i32
+open_printer (::i32 port)
 {
-  int fd, mode = IEEE1284_MODE_COMPAT;
-  char pom[50];
+  ::i32 fd, mode = IEEE1284_MODE_COMPAT;
+  ::i8 pom[50];
 
   switch (port)
     {
@@ -210,12 +210,12 @@ open_printer (int port)
 
 
 ssize_t
-write_printer (int fd, const ::string &buf)
+write_printer (::i32 fd, const ::string &buf)
 {
   ssize_t wrote = 0;
-  int len = strlen (buf);
+  ::i32 len = strlen (buf);
 
-//write(fd, buf, sizeof(char) + strlen(buf));
+//write(fd, buf, sizeof(::i8) + strlen(buf));
 
   while (wrote < len)
     {
@@ -268,14 +268,14 @@ write_printer (int fd, const ::string &buf)
 }
 #endif
 
-int
-biosprint (int cmd, int unsigned char, int port)
+::i32
+biosprint (::i32 cmd, ::i32 ::u8, ::i32 port)
 {
-  int ret = 144;
+  ::i32 ret = 144;
 
 #ifdef __linux__
-  int fd;
-  char pom[10];
+  ::i32 fd;
+  ::i8 pom[10];
   guchar status;
 
   switch (cmd)
@@ -285,18 +285,18 @@ biosprint (int cmd, int unsigned char, int port)
     case 2:
       fd = open_printer (port);
       ioctl (fd, pprstatus, &status);
-      ret = (int) status;
+      ret = (::i32) status;
       close_printer (fd);
       ret = 144;
       break;
     default:
       fd = open_printer (port);
-      sprintf (pom, "%c%c", unsigned char, N_C);
+      sprintf (pom, "%c%c", ::u8, N_C);
       write_printer (fd, pom);
-//      write (fd, &uch, sizeof(int) );
+//      write (fd, &uch, sizeof(::i32) );
       close_printer (fd);
 /*	  f = fopen (PRINT_FILE, "a+t");
-	  fprintf (f, "%c", unsigned char);
+	  fprintf (f, "%c", ::u8);
 	  fclose (f);
 */ break;
     }
@@ -308,7 +308,7 @@ biosprint (int cmd, int unsigned char, int port)
   if (cmd != 0)
     return (ret);
   f = fopen (PRINT_FILE, "a+t");
-  fprintf (f, "%c", unsigned char);
+  fprintf (f, "%c", ::u8);
   fclose (f);
 
 #endif /* __CYGWIN__   */
@@ -316,9 +316,9 @@ biosprint (int cmd, int unsigned char, int port)
 }
 
 void
-flush_print (char *buf, int port)
+flush_print (char_pointer buf, ::i32 port)
 {
-  gunsigned int i;
+  gunsigned ::i32 i;
   FILE *f;
 
   if (port == TO_FILE)
@@ -335,11 +335,11 @@ flush_print (char *buf, int port)
 }
 
 void
-print_file (const ::string &file, int port, int lowlevel_print)
+print_file (const ::string &file, ::i32 port, ::i32 lowlevel_print)
 {
-/*  int ch;*/
+/*  ::i32 ch;*/
   FILE *f;
-  char *text, pom[1024 + 1];
+  char_pointer text, pom[1024 + 1];
 
   if (lowlevel_print == true)
     {
@@ -347,7 +347,7 @@ print_file (const ::string &file, int port, int lowlevel_print)
       if ((f = fopen (file, "rt")) == NULL)
 	return;
 
-      if ((text = (char *) malloc (20 + 1)) == NULL)
+      if ((text = (char_pointer ) malloc (20 + 1)) == NULL)
 	return;
 
 /*  while ((ch = fgetc (f)) != EOF)
@@ -374,10 +374,10 @@ print_file (const ::string &file, int port, int lowlevel_print)
 
 #if 0
 
-char *
-seqence_STAR_34X (int typ)
+char_pointer 
+seqence_STAR_34X (::i32 typ)
 {
-  static char put[15];
+  static ::i8 put[15];
 
   memory_set (put, N_C, sizeof (put));
 

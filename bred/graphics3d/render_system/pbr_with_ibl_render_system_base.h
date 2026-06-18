@@ -46,9 +46,9 @@ namespace graphics3d
       bool m_bForceDefaultAmbientOcclusionFactor = false;
       bool m_bForceDefaultAlbedo = false;
       bool m_bForceDefaultEmission = false;
-      float m_fDefaultMetallicFactor = 0.0f;
-      float m_fDefaultRoughnessFactor = 0.0f;
-      float m_fDefaultAmbientOcclusionFactor = 0.0f;
+      ::f32 m_fDefaultMetallicFactor = 0.0f;
+      ::f32 m_fDefaultRoughnessFactor = 0.0f;
+      ::f32 m_fDefaultAmbientOcclusionFactor = 0.0f;
       floating_sequence3 m_seq3DefaultAlbedo={};
       floating_sequence3 m_seq3DefaultEmission = {};
       ::pointer<::gpu::shader> m_pshader;

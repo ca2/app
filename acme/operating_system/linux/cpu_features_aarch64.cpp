@@ -13,8 +13,8 @@
 
 cpu_features::cpu_features()
 {
-   const unsigned long hwcap  = getauxval(AT_HWCAP);
-   const unsigned long hwcap2 = getauxval(AT_HWCAP2);
+   const ulong hwcap  = getauxval(AT_HWCAP);
+   const ulong hwcap2 = getauxval(AT_HWCAP2);
 
    // ---- SIMD / FP ----
    m_bNEON  = (hwcap & HWCAP_ASIMD) != 0;   // ARMv8 NEON (ASIMD)

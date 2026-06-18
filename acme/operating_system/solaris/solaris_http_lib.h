@@ -60,9 +60,9 @@ public:
 
 
    string    m_strHttpServer;
-   int         m_iHttpPort;
+   ::i32         m_iHttpPort;
    string    m_strProxyServer;
-   int           m_iHttpProxyPort;
+   ::i32           m_iHttpProxyPort;
    string            m_strUserAgent;
    ::file::path      m_strFileName;
 
@@ -71,16 +71,16 @@ public:
    tiny_http();
    ~tiny_http();
 
-   http_retcode t_put(const_char_pointer data, int length, int overwrite, void (*callback)(void *, int, dword_ptr) = nullptr, void * callback_param = nullptr);
-   http_retcode t_get(char ** pdata, int * plength, void (*callback)(void *, int, dword_ptr) = nullptr, void * callback_param = nullptr);
+   http_retcode t_put(const_char_pointer data, ::i32 length, ::i32 overwrite, void (*callback)(void *, ::i32, dword_ptr) = nullptr, void * callback_param = nullptr);
+   http_retcode t_get(char_pointer * pdata, ::i32 * plength, void (*callback)(void *, ::i32, dword_ptr) = nullptr, void * callback_param = nullptr);
    http_retcode t_delete() ;
-   http_retcode t_head(int *plength);
+   http_retcode t_head(::i32 *plength);
    http_retcode t_parse_url(const_char_pointer url);
 
-   int t_read_line (int fd,char *buffer, int maximum) ;
-   int t_read_buffer (int fd,char *buffer, int maximum, void (*callback)(void *, int, dword_ptr) = nullptr, void * callback_param = nullptr) ;
+   ::i32 t_read_line (::i32 fd,char_pointer buffer, ::i32 maximum) ;
+   ::i32 t_read_buffer (::i32 fd,char_pointer buffer, ::i32 maximum, void (*callback)(void *, ::i32, dword_ptr) = nullptr, void * callback_param = nullptr) ;
 
-   http_retcode t_query(const_char_pointer command, const_char_pointer url, const_char_pointer additional_header, querymode mode, char* data, int length, int *pfd);
+   http_retcode t_query(const_char_pointer command, const_char_pointer url, const_char_pointer additional_header, querymode mode, char_pointer data, ::i32 length, ::i32 *pfd);
 };
 
 

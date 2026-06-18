@@ -4,6 +4,7 @@
 
 
 #include "acme/constant/user_key.h"
+#include "acme/user/key/state.h"
 #include "bred/graphics3d/types.h"
 
 
@@ -31,12 +32,12 @@ namespace graphics3d
    struct key_map_t
    {
 
-      ::user::e_key m_ekeya[e_key_count];
+      ::user::enum_key m_ekeya[e_key_count];
 
-      void map(::graphics3d::enum_key ekeyCube, ::user::e_key ekey)
+      void map(::graphics3d::enum_key ekeyCube, const ::user::e_key & ekey)
       {
 
-         m_ekeya[ekeyCube] = ekey;
+         m_ekeya[ekeyCube] = ekey.m_eenum;
       }
       //::user::e_key moveRight;
       //::user::e_key moveForward;
@@ -60,7 +61,7 @@ namespace graphics3d
       ::pointer < ::user::graphics3d > m_pimpact;
 
 
-      ::user::enum_key_state key(::graphics3d::enum_key ekey);
+      ::key::e_state key_state(::graphics3d::enum_key ekey);
 
 
 

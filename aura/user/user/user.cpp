@@ -14,13 +14,14 @@
 #include "acme/constant/user_message.h"
 #include "acme/constant/simple_command.h"
 #include "acme/exception/interface_only.h"
+#include "acme/handler/request.h"
 #include "acme/parallelization/synchronous_lock.h"
 #include "acme/platform/acme.h"
 #include "acme/platform/keep.h"
 #include "acme/platform/system_setup.h"
 #include "acme/prototype/collection/_container.h"
+#include "acme/user/user/keyboard_state.h"
 #include "apex/message/simple_command.h"
-#include "acme/handler/request.h"
 #include "aura/windowing/windowing.h"
 #include "aura/windowing/window.h"
 #include "aura/windowing/desktop_environment.h"
@@ -619,7 +620,7 @@ namespace user
    void user::destroy()
    {
 
-      m_puserstyle.defer_destroy();
+      m_puserstyle.defer_destroy_and_release();
 
       for (auto & pstyle : m_mapUserStyle.payloads())
       {
@@ -627,7 +628,7 @@ namespace user
          try
          {
 
-            pstyle.defer_destroy();
+            pstyle.defer_destroy_and_release();
 
          }
          catch (...)
@@ -975,10 +976,10 @@ namespace user
 //   }
 
 
-   //CLASS_DECL_AURA ::pointer<::user::interaction>create_virtual_window(::particle * pparticle, unsigned int dwExStyle, const ::scoped_string & scopedstrClassName, const ::string & lpWindowName, unsigned int uStyle, const ::int_rectangle & rectangle, ::user::interaction * puiParent, atom atom, HINSTANCE hInstance, LPVOID pParam);
+   //CLASS_DECL_AURA ::pointer<::user::interaction>create_virtual_window(::particle * pparticle, ::u32 dwExStyle, const ::scoped_string & scopedstrClassName, const ::string & lpWindowName, ::u32 uStyle, const ::i32_rectangle & rectangle, ::user::interaction * puiParent, atom atom, HINSTANCE hInstance, LPVOID pParam);
 
 
-   //CLASS_DECL_AURA ::pointer<::user::interaction>create_virtual_window(::particle * pparticle, unsigned int dwExStyle, const ::scoped_string & scopedstrClassName, const ::scoped_string & scopedstrWindowName, unsigned int uStyle, ::user::interaction * puiParent, atom atom, HINSTANCE hInstance, LPVOID pParam)
+   //CLASS_DECL_AURA ::pointer<::user::interaction>create_virtual_window(::particle * pparticle, ::u32 dwExStyle, const ::scoped_string & scopedstrClassName, const ::scoped_string & scopedstrWindowName, ::u32 uStyle, ::user::interaction * puiParent, atom atom, HINSTANCE hInstance, LPVOID pParam)
    CLASS_DECL_AURA ::pointer<::user::interaction>create_virtual_window(::particle * pparticle, ::user::interaction * pinteractionParent)
    {
 
@@ -1265,7 +1266,7 @@ namespace aura
    //   return nullptr;
    //}
 
-   //bool session::get_monitor_rectangle(::collection::index iMonitor, ::int_rectangle * prectangle)
+   //bool session::get_monitor_rectangle(::collection::index iMonitor, ::i32_rectangle * prectangle)
 
    //{
 
@@ -1502,7 +1503,7 @@ namespace user
    }
 
 
-   bool user::on_ui_mouse_message(::message::mouse_base * pmouse)
+   bool user::on_ui_mouse_message(::user::mouse * pmouse)
    {
 
       if (pmouse->m_pointAbsolute == pmouse->m_pointDesired)
@@ -1515,6 +1516,8 @@ namespace user
       }
 
       auto emessage = pmouse->m_eusermessage;
+
+  
 
       if(emessage == ::user::e_message_left_button_down
        //|| emessage == ::user::e_message_left_button_up
@@ -1538,23 +1541,26 @@ namespace user
 
             }
 
-            auto puserinteraction = pmouse->m_pwindow->user_interaction();
+            ::cast<::message::mouse_base> pmousebase = pmouse;
 
-            for (auto & pinteraction : uiptraToolWindow)
+            if (pmousebase)
             {
 
-               if (pinteraction != puserinteraction)
+               auto puserinteraction = pmousebase->m_pwindow->user_interaction();
+
+               for (auto &pinteraction: uiptraToolWindow)
                {
 
-                  if (pinteraction->m_ewindowflag & e_window_flag_focus)
+                  if (pinteraction != puserinteraction)
                   {
 
-                     pinteraction->post_message(::user::e_message_kill_focus);
+                     if (pinteraction->m_ewindowflag & e_window_flag_focus)
+                     {
 
+                        pinteraction->post_message(::user::e_message_kill_focus);
+                     }
                   }
-
                }
-
             }
 
          }

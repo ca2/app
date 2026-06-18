@@ -17,11 +17,11 @@ namespace sqlite
       void *                                             m_psqlite;
 
       sqlite3_stmt *                                     m_pstmtSelect;
-      int                                                m_iSelectId;
+      ::i32                                                m_iSelectId;
 
       sqlite3_stmt *                                     m_pstmtReplace;
-      int                                                m_iReplaceId;
-      int                                                m_iReplaceValue;
+      ::i32                                                m_iReplaceId;
+      ::i32                                                m_iReplaceValue;
 
 
       database();
@@ -40,7 +40,7 @@ namespace sqlite
       //virtual ::pointer<::database::dataset>dataset() override;
       ::database::enum_connection connection_status() override;
 
-      void set_error_code(int iErrorCode) override;
+      void set_error_code(::i32 iErrorCode) override;
 
       void * get_handle() override;
       string get_error_message() override;
@@ -69,7 +69,7 @@ namespace sqlite
          const ::scoped_string & scopedstrUser = nullptr,
          const ::scoped_string & scopedstrPass = nullptr,
          const ::scoped_string & scopedstrSocket = nullptr,
-         unsigned long long uConnectionFlags = 0) override;
+         ::u64 uConnectionFlags = 0) override;
 
 
       void reset() override;

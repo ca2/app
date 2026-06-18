@@ -17,9 +17,9 @@ namespace nanoui
 
       
       ::pointer < Widget >    m_pwidget;
-      int                     m_iClickCount;
+      ::i32                     m_iClickCount;
       bool                    m_bEdit;
-      ::float_rectangle         m_rectangleInternal;
+      ::f32_rectangle         m_rectangleInternal;
       Widget *                m_pwidgetParent;
 
 
@@ -41,8 +41,8 @@ namespace nanoui
       virtual void set_edit_payload(const ::payload& payload);
       virtual ::string get_name_for_editing() const;
 
-      virtual ::float_rectangle get_outer_rectangle(in_place_edit_mapper* pmapper);
-      virtual ::float_rectangle get_edit_rectangle(in_place_edit_mapper* pmapper);
+      virtual ::f32_rectangle get_outer_rectangle(in_place_edit_mapper* pmapper);
+      virtual ::f32_rectangle get_edit_rectangle(in_place_edit_mapper* pmapper);
 
 
    };

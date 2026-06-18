@@ -162,7 +162,7 @@ namespace aqua
    }
 
 
-   LPWAVEOUT audio::waveout_open(int iChannel, LPAUDIOFORMAT pformat, LPWAVEOUT_CALLBACK pcallback)
+   LPWAVEOUT audio::waveout_open(::i32 iChannel, LPAUDIOFORMAT pformat, LPWAVEOUT_CALLBACK pcallback)
    {
 
       throw ::interface_only();

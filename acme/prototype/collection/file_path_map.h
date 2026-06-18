@@ -6,7 +6,7 @@ using file_path_map = map_base < ::file::path, PAYLOAD, argument_of < ::file::pa
 
 using file_path_to_intptr = file_path_map < iptr, iptr > ;
 
-using file_path_to_int = file_path_map < int > ;
+using file_path_to_int = file_path_map < ::i32 > ;
 
 using file_path_to_ptr = file_path_map < void * > ;
 

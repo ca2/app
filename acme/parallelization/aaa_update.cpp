@@ -49,7 +49,7 @@ void update::run()
       }
 
       // fetch updated polling time
-      int iPollMillis = poll_millis();
+      ::i32 iPollMillis = poll_millis();
 
       if(!should_poll(iPollMillis))
       {
@@ -97,7 +97,7 @@ void update::notify()
 }
 
 
-::pointer<update>& update::task(long long iUpdate)
+::pointer<update>& update::task(::i64 iUpdate)
 {
 
    cslock synchronouslock(g_pcs);
@@ -146,7 +146,7 @@ void update::erase(::matter * pmatter)
 }
 
 
-void update::_erase(long long iUpdate, ::matter * pmatter)
+void update::_erase(::i64 iUpdate, ::matter * pmatter)
 {
 
    cslock synchronouslock(g_pcs);
@@ -174,7 +174,7 @@ void update::_erase(::matter* pmatter)
 }
 
 
-void update::set_modified(long long iUpdate)
+void update::set_modified(::i64 iUpdate)
 {
 
    cslock synchronouslock(::update::g_pcs);
@@ -217,7 +217,7 @@ void update::post_destroy_all()
 }
 
 
-void update::_add(long long iUpdate, ::matter * pmatter)
+void update::_add(::i64 iUpdate, ::matter * pmatter)
 {
 
    cslock synchronouslock(g_pcs);

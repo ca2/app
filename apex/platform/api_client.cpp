@@ -127,9 +127,9 @@ void api_client::defer_api()
 //void api_client::_api_get(::string & str, const ::scoped_string & scopedstrUrl, ::property_set & set)
 //{
 //
-//   int iTryCount = 3;
+//   ::i32 iTryCount = 3;
 //
-//   for (int iTry = 0; iTry < iTryCount; iTry++)
+//   for (::i32 iTry = 0; iTry < iTryCount; iTry++)
 //   {
 //
 //      defer_api();
@@ -143,7 +143,7 @@ void api_client::defer_api()
 //
 //      m_papi->_api_get(str, strUrl, set);
 //
-//      int iHttpStatusCode = set["http_status_code"];
+//      ::i32 iHttpStatusCode = set["http_status_code"];
 //
 //      ::string strStatus = set["http_status"];
 //

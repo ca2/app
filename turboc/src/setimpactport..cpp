@@ -31,7 +31,7 @@
 //----------------------------------------------------------------------------
 
 void
-setviewport (int left, int top, int right, int bottom, int clip)
+setviewport (::i32 left, ::i32 top, ::i32 right, ::i32 bottom, ::i32 clip)
 {
   //XRectangle Rectangle;
   //if (left < 0 || right > TcXresolution - 1 || left >= right ||

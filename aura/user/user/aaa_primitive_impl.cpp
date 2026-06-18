@@ -12,7 +12,7 @@
 #include "acme/platform/session.h"
 #include "acme/platform/application.h"
 #include "acme/platform/system.h"
-#include "acme/platform/timer_array.h"
+//#include "acme/platform/timer_array.h"
 #include "aura/platform/session.h"
 #include "aura/message/timer.h"
 #include "aura/message/user.h"
@@ -215,7 +215,7 @@ namespace user
 //   }
 
 
-   //void prototype_impl::RepositionBars(unsigned int nIDFirst, unsigned int nIDLast, atom idLeft, unsigned int nFlags, ::int_rectangle * prectParam, const int_rectangle & rectangleX, bool bStretch)
+   //void prototype_impl::RepositionBars(::u32 nIDFirst, ::u32 nIDLast, atom idLeft, ::u32 nFlags, ::i32_rectangle * prectParam, const i32_rectangle & rectangleX, bool bStretch)
    //{
 
    //   if (!_is_window())
@@ -347,7 +347,7 @@ namespace user
    //}
 
 
-   void prototype_impl::window_move(int x, int y)
+   void prototype_impl::window_move(::i32 x, ::i32 y)
    {
 
       //return true;
@@ -355,14 +355,14 @@ namespace user
    }
 
 
-   void prototype_impl::on_configure(const ::int_rectangle & rectangle)
+   void prototype_impl::on_configure(const ::i32_rectangle & rectangle)
    {
 
 
    }
 
 
-//   void prototype_impl::on_resize(const ::int_size & size)
+//   void prototype_impl::on_resize(const ::i32_size & size)
 //   {
 //
 //
@@ -491,7 +491,7 @@ namespace user
    }
 
 
-   void prototype_impl::viewport_client_to_screen(::int_sequence2 & sequence)
+   void prototype_impl::viewport_client_to_screen(::i32_sequence2 & sequence)
    {
 
       if (m_puserinteraction)
@@ -504,7 +504,7 @@ namespace user
    }
 
 
-   void prototype_impl::viewport_screen_to_client(::int_sequence2 & sequence)
+   void prototype_impl::viewport_screen_to_client(::i32_sequence2 & sequence)
    {
 
       if (m_puserinteraction)
@@ -517,7 +517,7 @@ namespace user
    }
 
 
-   void prototype_impl::viewport_client_to_screen(::int_rectangle & rectangle)
+   void prototype_impl::viewport_client_to_screen(::i32_rectangle & rectangle)
    {
 
       viewport_client_to_screen(rectangle.top_left());
@@ -527,11 +527,11 @@ namespace user
    }
 
 
-   void prototype_impl::viewport_screen_to_client(::int_rectangle & rectangle)
+   void prototype_impl::viewport_screen_to_client(::i32_rectangle & rectangle)
    {
 
-      viewport_screen_to_client((::int_point &)rectangle.left);
-      viewport_screen_to_client((::int_point &)rectangle.right);
+      viewport_screen_to_client((::i32_point &)rectangle.left);
+      viewport_screen_to_client((::i32_point &)rectangle.right);
 
    }
 
@@ -770,7 +770,7 @@ namespace user
    }
 
 
-   lresult prototype_impl::send_message(::enum_message emessage, ::wparam wparam, ::lparam lparam, const ::int_point& point)
+   lresult prototype_impl::send_message(::enum_message emessage, ::wparam wparam, ::lparam lparam, const ::i32_point& point)
    {
 
       return message_call(emessage, wparam, lparam, point);
@@ -863,13 +863,13 @@ namespace user
 
             // ::user::message::set(oswindow, pwindow, emessage, wparam, lparam);
 
-            pmessage->m_nChar = static_cast<unsigned int>(wparam);
+            pmessage->m_nChar = static_cast<::u32>(wparam);
 
             pmessage->m_nRepCnt = lower_unsigned_short(lparam);
 
             pmessage->m_nFlags = upper_unsigned_short(lparam);
 
-            pmessage->m_iVirtualKey = (int)wparam;
+            pmessage->m_iVirtualKey = (::i32)wparam;
 
             pmessage->m_nScanCode = ((lparam >> 16) & 0xff);
 
@@ -886,7 +886,7 @@ namespace user
 
          _NEW_MESSAGE(::message::timer);
 
-         pmessage->m_uTimer = static_cast<unsigned int>(wparam);
+         pmessage->m_uTimer = static_cast<::u32>(wparam);
 
       }
       break;
@@ -895,7 +895,7 @@ namespace user
          _NEW_MESSAGE(::message::show_window);
          pmessage->m_bShow = wparam != false;
 
-         pmessage->m_nStatus = static_cast<unsigned int>(lparam);
+         pmessage->m_nStatus = static_cast<::u32>(lparam);
 
       }
       break;
@@ -934,9 +934,9 @@ namespace user
 
          //::user::message::set(oswindow, pwindow, emessage, wparam, lparam);
 
-         pmessage->m_ecommand = (enum_scroll_command)(short)lower_unsigned_short(wparam);
+         pmessage->m_ecommand = (enum_scroll_command)(::i16)lower_unsigned_short(wparam);
 
-         pmessage->m_dPosition = (double) (short)upper_unsigned_short(wparam);
+         pmessage->m_dPosition = (::f64) (::i16)upper_unsigned_short(wparam);
 
       }
       break;
@@ -969,12 +969,12 @@ namespace user
       case ::message::e_prototype_mouse:
       {
          _NEW_MESSAGE(::message::mouse);
-         pmessage->m_ebuttonstate = (::user::enum_button_state ) wparam.m_number;
+         pmessage->m_ekeystate = (::user::enum_button_state ) wparam.m_number;
 
-//         if ((pmessage->m_ebuttonstate & I32_MINIMUM) == (I32_MINIMUM))
+//         if ((pmessage->m_ekeystate & I32_MINIMUM) == (I32_MINIMUM))
 //         {
 //
-//            informationf("(m_ebuttonstate & I32_MINIMUM) == (I32_MINIMUM)");
+//            informationf("(m_ekeystate & I32_MINIMUM) == (I32_MINIMUM)");
 //
 //         }
 
@@ -1007,7 +1007,7 @@ namespace user
       {
          _NEW_MESSAGE(::message::mouse_wheel);
 
-         pmessage->m_ebuttonstate = (::user::enum_button_state) lower_unsigned_short(wparam);
+         pmessage->m_ekeystate = (::user::enum_button_state) lower_unsigned_short(wparam);
 
          pmessage->m_pointAbsolute = lparam.point();
 
@@ -1023,9 +1023,9 @@ namespace user
       {
          _NEW_MESSAGE(::message::size);
 
-         pmessage->m_nType = static_cast <unsigned int> (wparam);
+         pmessage->m_nType = static_cast <::u32> (wparam);
 
-         pmessage->m_size = ::int_size(lparam_int_x(lparam), lparam_int_y(lparam));
+         pmessage->m_size = ::i32_size(lparam_int_x(lparam), lparam_int_y(lparam));
       }
       break;
       case ::message::e_prototype_activate:
@@ -1126,7 +1126,7 @@ namespace user
 
    }
 
-//   character_count prototype_impl::get_window_text(char* pszStringBuf, character_count nMaxCount)
+//   character_count prototype_impl::get_window_text(char_pointer pszStringBuf, character_count nMaxCount)
 //   {
 //
 //      return 0;
@@ -1177,7 +1177,7 @@ namespace user
    }
 
 
-   ::user::interaction* prototype_impl::ChildWindowFromPoint(const ::int_point& point)
+   ::user::interaction* prototype_impl::ChildWindowFromPoint(const ::i32_point& point)
    {
 
       return nullptr;
@@ -1185,7 +1185,7 @@ namespace user
    }
 
 
-   ::user::interaction* prototype_impl::ChildWindowFromPoint(const ::int_point& point, unsigned int nFlags)
+   ::user::interaction* prototype_impl::ChildWindowFromPoint(const ::i32_point& point, ::u32 nFlags)
    {
 
       return nullptr;
@@ -1337,7 +1337,7 @@ namespace user
    }
 
 
-   double prototype_impl::_001GetTopLeftWeightedOccludedOpaqueRate()
+   ::f64 prototype_impl::_001GetTopLeftWeightedOccludedOpaqueRate()
    {
 
       return 0.;
@@ -1399,7 +1399,7 @@ namespace user
    }
 
 
-   ::user::interaction* prototype_impl::get_child_by_id(const ::atom& atom, ::collection::index iItem, int iLevel)
+   ::user::interaction* prototype_impl::get_child_by_id(const ::atom& atom, ::collection::index iItem, ::i32 iLevel)
    {
 
       return nullptr;
@@ -1407,14 +1407,14 @@ namespace user
    }
 
 
-   void prototype_impl::set_need_redraw(const ::int_rectangle_array & rectangleaNeedRedraw, function<void()> function, bool bAscendants)
+   void prototype_impl::set_need_redraw(const ::i32_rectangle_array & rectangleaNeedRedraw, function<void()> function, bool bAscendants)
    {
 
 
    }
 
 
-   void prototype_impl::RedrawWindow(const ::int_rectangle & rectangleUpdate, ::draw2d::region * prgnUpdate, unsigned int flags)
+   void prototype_impl::RedrawWindow(const ::i32_rectangle & rectangleUpdate, ::draw2d::region * prgnUpdate, ::u32 flags)
    {
 
       if (!m_puserinteraction)
@@ -1431,7 +1431,7 @@ namespace user
    }
 
 
-   //unsigned int prototype_impl::GetStyle() const
+   //::u32 prototype_impl::GetStyle() const
    //{
 
    //   return get_window_long(GWL_STYLE);
@@ -1439,7 +1439,7 @@ namespace user
    //}
 
 
-   //unsigned int prototype_impl::GetExStyle() const
+   //::u32 prototype_impl::GetExStyle() const
    //{
 
    //   return get_window_long(GWL_EXSTYLE);
@@ -1447,14 +1447,14 @@ namespace user
    //}
 
 
-   //void prototype_impl::ModifyStyle(unsigned int dwRemove, unsigned int dwAdd, unsigned int nFlags)
+   //void prototype_impl::ModifyStyle(::u32 dwRemove, ::u32 dwAdd, ::u32 nFlags)
    //{
 
-   //   int l = GetStyle();
+   //   ::i32 l = GetStyle();
 
    //   l |= dwAdd;
 
-   //   int lRemove = ~dwRemove;
+   //   ::i32 lRemove = ~dwRemove;
 
    //   l &= lRemove;
 
@@ -1465,7 +1465,7 @@ namespace user
    //}
 
 
-   //void prototype_impl::ModifyStyleEx(unsigned int dwRemove, unsigned int dwAdd, unsigned int nFlags)
+   //void prototype_impl::ModifyStyleEx(::u32 dwRemove, ::u32 dwAdd, ::u32 nFlags)
    //{
 
    //   set_window_long(GWL_EXSTYLE, (GetExStyle() | dwAdd) & ~dwRemove);
@@ -1475,23 +1475,23 @@ namespace user
    //}
 
 
-//   int prototype_impl::get_window_long(int nIndex) const
+//   ::i32 prototype_impl::get_window_long(::i32 nIndex) const
 //   {
 //
-//      return (int)get_window_long_ptr(nIndex);
+//      return (::i32)get_window_long_ptr(nIndex);
 //
 //   }
 //
 //
-//   int prototype_impl::set_window_long(int nIndex, int lValue)
+//   ::i32 prototype_impl::set_window_long(::i32 nIndex, ::i32 lValue)
 //   {
 //
-//      return (int)set_window_long_ptr(nIndex, lValue);
+//      return (::i32)set_window_long_ptr(nIndex, lValue);
 //
 //   }
 //
 //
-//   iptr prototype_impl::get_window_long_ptr(int nIndex) const
+//   iptr prototype_impl::get_window_long_ptr(::i32 nIndex) const
 //   {
 //
 ////      return 0;
@@ -1518,7 +1518,7 @@ namespace user
 //   }
 //
 //
-//   void prototype_impl::set_window_long_ptr(int nIndex, iptr lValue)
+//   void prototype_impl::set_window_long_ptr(::i32 nIndex, iptr lValue)
 //   {
 //
 ////      if (nIndex == GWL_STYLE)
@@ -1668,7 +1668,7 @@ namespace user
    }
 
 
-   unsigned int prototype_impl::ArrangeIconicWindows()
+   ::u32 prototype_impl::ArrangeIconicWindows()
    {
 
       //      return m_puserinteraction->ArrangeIconicWindows();
@@ -1783,7 +1783,7 @@ namespace user
    }
 
 
-   ::user::interaction * prototype_impl::get_wnd(unsigned int nCmd)
+   ::user::interaction * prototype_impl::get_wnd(::u32 nCmd)
    {
 
       if (!m_puserinteraction)
@@ -1990,7 +1990,7 @@ namespace user
    }
 
 
-   lresult prototype_impl::message_call(::enum_message emessage, ::wparam wparam, ::lparam lparam, const ::int_point& point)
+   lresult prototype_impl::message_call(::enum_message emessage, ::wparam wparam, ::lparam lparam, const ::i32_point& point)
    {
 
       ::pointer<::message::message>pmessage;
@@ -2126,7 +2126,7 @@ namespace user
    //}
 
 
-   void prototype_impl::get_rect_normal(::int_rectangle * prectangle)
+   void prototype_impl::get_rect_normal(::i32_rectangle * prectangle)
    {
 
       *prectangle = m_puserinteraction->screen_rectangle();
@@ -2179,7 +2179,7 @@ namespace user
    }
 
 
-   void prototype_impl::on_timer(::timer * ptimer)
+   void prototype_impl::operator()(::timer * ptimer)
    {
 
       if (m_puserinteraction == nullptr)
@@ -2908,7 +2908,7 @@ namespace user
    }
 
 
-   //int prototype_impl::GetUpdateRgn(class draw2d::region *,bool)
+   //::i32 prototype_impl::GetUpdateRgn(class draw2d::region *,bool)
    //{
 
    //   return 0;
@@ -2923,7 +2923,7 @@ namespace user
    //}
 
 
-   //void prototype_impl::InvalidateRect(::int_rectangle const &,bool)
+   //void prototype_impl::InvalidateRect(::i32_rectangle const &,bool)
    //{
 
 
@@ -2937,7 +2937,7 @@ namespace user
    //}
 
 
-   //void prototype_impl::ValidateRect(::int_rectangle const &)
+   //void prototype_impl::ValidateRect(::i32_rectangle const &)
    //{
 
 
@@ -3058,14 +3058,14 @@ namespace user
 
    //}
 
-   void prototype_impl::_raw_client_to_screen(::int_point & point)
+   void prototype_impl::_raw_client_to_screen(::i32_point & point)
    {
 
       m_puserinteraction->client_to_screen(e_layout_design)(point);
 
    }
 
-   void prototype_impl::_raw_screen_to_client(::int_point& point)
+   void prototype_impl::_raw_screen_to_client(::i32_point& point)
    {
 
       m_puserinteraction->screen_to_client(e_layout_design)(point);
@@ -3157,7 +3157,7 @@ namespace user
     }
 
 
-   void prototype_impl::set_opacity(double dOpacity)
+   void prototype_impl::set_opacity(::f64 dOpacity)
    {
 
 

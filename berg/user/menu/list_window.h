@@ -30,13 +30,13 @@ namespace user
       DECLARE_MESSAGE_HANDLER(on_message_destroy);
       DECLARE_MESSAGE_HANDLER(on_message_close);
       
-      void on_timer(::timer * ptimer) override;
+      void operator()(::timer * ptimer) override;
 
       void _001OnDraw(::draw2d::graphics_pointer & pgraphics) override;
 
-      virtual void calc_size(::menu::item * pitemParent, ::draw2d::graphics_pointer & pgraphics, int & iMaxWidth, int & iMaxHeight);
+      virtual void calc_size(::menu::item * pitemParent, ::draw2d::graphics_pointer & pgraphics, ::i32 & iMaxWidth, ::i32 & iMaxHeight);
 
-      virtual void layout_buttons(::menu::item * pitemParent, int iMaxWidth, ::int_rectangle * prectangle, const ::int_rectangle & lpcrectBound);
+      virtual void layout_buttons(::menu::item * pitemParent, ::i32 iMaxWidth, ::i32_rectangle * prectangle, const ::i32_rectangle & lpcrectBound);
 
       void on_perform_top_down_layout(::draw2d::graphics_pointer & pgraphics) override;
 

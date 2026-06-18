@@ -17,7 +17,7 @@ public:
    filesize             m_iFilePosition;
    ::string             m_strCurrent;
    ::file::enum_type    m_etypeCurrent;
-   int                  m_iConsumeFromPathBeginningWhenExtracting;
+   ::i32                  m_iConsumeFromPathBeginningWhenExtracting;
 
 
    folder();
@@ -30,7 +30,7 @@ public:
    virtual bool is_reading() const;
 
 
-   virtual void open_for_reading(file_pointer pfile, int iBufferLevel = 2);
+   virtual void open_for_reading(file_pointer pfile, ::i32 iBufferLevel = 2);
 
 
    virtual bool locate_file(const ::file::path & path);

@@ -35,7 +35,7 @@
 #include "programming/heating_up_exception.h"
 
 
-int get_processor_count();
+::i32 get_processor_count();
 
 
 namespace dynamic_source
@@ -228,9 +228,9 @@ namespace dynamic_source
    void script_manager::destroy()
    {
 
-      m_pcache.defer_destroy();
+      m_pcache.defer_destroy_and_release();
 
-      m_pcompiler.defer_destroy();
+      m_pcompiler.defer_destroy_and_release();
 
       ::channel::destroy();
 
@@ -281,6 +281,8 @@ namespace dynamic_source
          //   return estatus;
 
          //}
+
+         file_watcher()->add_watch(m_pathNetseedDsCa2Path, m_pcompiler, true);
 
       }
 
@@ -990,9 +992,9 @@ namespace dynamic_source
 
    void script_manager::LoadEnv()
    {
-      /*char * buf;
-      unsigned int dwSize = GetDllDirectory(nullptr, nullptr);
-      buf = ___new char[dwSize + 1024];
+      /*char_pointer buf;
+      ::u32 dwSize = GetDllDirectory(nullptr, nullptr);
+      buf = ___new ::i8[dwSize + 1024];
       GetDllDirectory(dwSize + 1024, buf);
       information(buf);
       //SetDllDirectory(buf);
@@ -1017,7 +1019,7 @@ namespace dynamic_source
 
       string strNew;
 #ifdef WINDOWS_DESKTOP
-      unsigned int dwSize = GetEnvironmentVariableW(L"PATH", nullptr, 0);
+      ::u32 dwSize = GetEnvironmentVariableW(L"PATH", nullptr, 0);
       LPWSTR lpsz = øraw_new wchar_t[dwSize + 1024];
       dwSize = GetEnvironmentVariableW(L"PATH", lpsz, dwSize + 1024);
       strNew = lpsz;
@@ -1325,7 +1327,7 @@ namespace dynamic_source
    }
 
 
-   //   unsigned int ThreadProcRsa(LPVOID lp)
+   //   ::u32 ThreadProcRsa(LPVOID lp)
    //   {
    //      script_manager * pmanager = (script_manager *) lp;
    //      pmanager->calc_rsa_key();
@@ -1577,14 +1579,14 @@ namespace dynamic_source
    }
 
 
-   int_size script_manager::get_image_size(const ::file::path& strFile)
+   i32_size script_manager::get_image_size(const ::file::path& strFile)
    {
 
       _single_lock synchronouslock(m_pmutexImageSize);
 
       synchronouslock._lock();
 
-      ::int_size size;
+      ::i32_size size;
 
       if (m_mapImageSize.find(strFile, size))
          return size;
@@ -1611,7 +1613,7 @@ namespace dynamic_source
    }
 
 
-   bool script_manager::extract_image_size(const ::file::path& strFile, ::int_size* psize)
+   bool script_manager::extract_image_size(const ::file::path& strFile, ::i32_size* psize)
    {
 
       // auto pcontext = get_context();
@@ -1643,7 +1645,7 @@ namespace dynamic_source
       // reading PNG dimensions requires the first 24 bytes of the file
       // reading JPEG dimensions requires scanning through jpeg chunks
       // In all formats, the file is at least 24 bytes big, so we'hi read that always
-      unsigned char buf[24];
+      ::u8 buf[24];
 
       if (pfile->read({ buf, 24 }) < 24)
       {
@@ -1653,8 +1655,8 @@ namespace dynamic_source
       // http://www.64lines.com/jpeg-width-height
       if (buf[0] == 0xFF && buf[1] == 0xD8 && buf[2] == 0xFF && buf[3] == 0xE0 && buf[6] == 'J' && buf[7] == 'F' && buf[8] == 'I' && buf[9] == 'F' && buf[10] == '\0')
       {
-         unsigned short block_length = buf[4] * 256 + buf[5];
-         int i = 4;
+         ::u16 block_length = buf[4] * 256 + buf[5];
+         ::i32 i = 4;
          while (i < len)
          {
 
@@ -1673,7 +1675,7 @@ namespace dynamic_source
 
             if (buf[i + 1] == 0xC0)
             {
-               //0xFFC0 is the "Start of frame" marker which contains the file int_size
+               //0xFFC0 is the "Start of frame" marker which contains the file i32_size
                //The structure of the 0xFFC0 block is quite simple [0xFFC0][ushort length][uchar precision][ushort x][ushort y]
 
                if (pfile->read({ buf, 5 }) < 5)

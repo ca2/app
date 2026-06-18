@@ -2,19 +2,19 @@
 
 
 // interesting function
-/*int_bool CLASS_DECL_lnx ::windows_definition::CustomLogFont(unsigned int nIDS, LOGFONT* pLogFont)
+/*::i32_bool CLASS_DECL_lnx ::windows_definition::CustomLogFont(::u32 nIDS, LOGFONT* pLogFont)
 {
    ENSURE_ARG(pLogFont != nullptr);
    ASSERT(nIDS != 0);
 
-   char szFontInfo[256];
+   ::i8 szFontInfo[256];
    if (!::windows_definition::LoadString(nIDS, szFontInfo,_countof(szFontInfo)))
       return false;
 
-   char * lpszSize = _tcschr(szFontInfo, '\n');
+   char_pointer lpszSize = _tcschr(szFontInfo, '\n');
    if (lpszSize != nullptr)
    {
-      // get int_point int_size and convert to pixels
+      // get i32_point i32_size and convert to pixels
       pLogFont->lfHeight = _ttoi(lpszSize+1);
       pLogFont->lfHeight =
          MulDiv(pLogFont->lfHeight, ::windows_definition::Data.cyPixelsPerInch, 72);
@@ -25,29 +25,29 @@
 }*/
 
 /*
-int_bool CLASS_DECL_lnx _::windows_definition::IsComboBoxControl(oswindow hWnd, unsigned int nStyle)
+::i32_bool CLASS_DECL_lnx _::windows_definition::IsComboBoxControl(oswindow hWnd, ::u32 nStyle)
 {
    if (hWnd == nullptr)
       return false;
    // do cheap style compare first
-   if ((unsigned int)(::GetWindowLong(hWnd, GWL_STYLE) & 0x0F) != nStyle)
+   if ((::u32)(::GetWindowLong(hWnd, GWL_STYLE) & 0x0F) != nStyle)
       return false;
 
    // do expensive classname compare next
-   char szCompare[_countof("combobox")+1];
+   ::i8 szCompare[_countof("combobox")+1];
    ::GetClassName(hWnd, szCompare, _countof(szCompare));
    return ::windows_definition::InvariantStrICmp(szCompare, "combobox") == 0;
 }
 
-int_bool CLASS_DECL_lnx _::windows_definition::CompareClassName(oswindow hWnd, const_char_pointer lpszClassName)
+::i32_bool CLASS_DECL_lnx _::windows_definition::CompareClassName(oswindow hWnd, const_char_pointer pszClassName)
 {
    ASSERT(::IsWindow(hWnd));
-   char szTemp[32];
+   ::i8 szTemp[32];
    ::GetClassName(hWnd, szTemp, _countof(szTemp));
    return ::windows_definition::InvariantStrICmp(szTemp, lpszClassName) == 0;
 }
 
-oswindow CLASS_DECL_lnx _::windows_definition::ChildWindowFromPoint(oswindow hWnd, ::int_point pt)
+oswindow CLASS_DECL_lnx _::windows_definition::ChildWindowFromPoint(oswindow hWnd, ::i32_point pt)
 {
    ASSERT(hWnd != nullptr);
 
@@ -56,11 +56,11 @@ oswindow CLASS_DECL_lnx _::windows_definition::ChildWindowFromPoint(oswindow hWn
    oswindow hWndChild = ::GetWindow(hWnd, GW_CHILD);
    for (; hWndChild != nullptr; hWndChild = ::GetWindow(hWndChild, GW_HWNDNEXT))
    {
-      if (_::windows_definition::GetDlgCtrlID(hWndChild) != (unsigned short)0 &&
+      if (_::windows_definition::GetDlgCtrlID(hWndChild) != (::u16)0 &&
          (::GetWindowLong(hWndChild, GWL_STYLE) & WS_VISIBLE))
       {
-         // see if int_point hits the child ::interaction_impl
-         ::int_rectangle rectangle;
+         // see if i32_point hits the child ::interaction_impl
+         ::i32_rectangle rectangle;
          ::window_rectangle(hWndChild, rectangle);
          if (rectangle.contains(point))
             return hWndChild;
@@ -96,14 +96,14 @@ void CLASS_DECL_lnx ::windows_definition::cancelModes(oswindow hWndRcvr)
       return;     // let input go to ::interaction_impl with focus
 
    // focus is in part of a combo-box
-   if (!_::windows_definition::IsComboBoxControl(hWndcancel, (unsigned int)CBS_DROPDOWNLIST))
+   if (!_::windows_definition::IsComboBoxControl(hWndcancel, (::u32)CBS_DROPDOWNLIST))
    {
       // check as a dropdown
       hWndcancel = ::get_parent(hWndcancel);   // parent of edit is combo
       if (hWndcancel == hWndRcvr)
          return;     // let input go to part of combo
 
-      if (!_::windows_definition::IsComboBoxControl(hWndcancel, (unsigned int)CBS_DROPDOWN))
+      if (!_::windows_definition::IsComboBoxControl(hWndcancel, (::u32)CBS_DROPDOWN))
          return;     // not a combo-box that is active
    }
 
@@ -125,7 +125,7 @@ void CLASS_DECL_lnx ::windows_definition::GlobalFree(HGLOBAL hGlobal)
 
    // avoid bogus warning error messages from various debugging tools
    ASSERT(GlobalFlags(hGlobal) != GMEM_INVALID_HANDLE);
-   unsigned int nCount = GlobalFlags(hGlobal) & GMEM_LOCKCOUNT;
+   ::u32 nCount = GlobalFlags(hGlobal) & GMEM_LOCKCOUNT;
    while (nCount--)
       GlobalUnlock(hGlobal);
 

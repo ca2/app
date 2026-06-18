@@ -77,7 +77,7 @@ CTSFMainWnd::~CTSFMainWnd()
 
 **************************************************************************/
 
-BOOL CTSFMainWnd::Initialize(int nCmdShow)
+BOOL CTSFMainWnd::Initialize(::i32 nCmdShow)
 {
     HRESULT hr;
 #if 1
@@ -171,7 +171,7 @@ void CTSFMainWnd::_CleanupEditWnd(BOOL fNuke)
 **************************************************************************/
 
 LRESULT CALLBACK CTSFMainWnd::_WndProc( HWND hWnd, 
-                                        unsigned int uMessage,
+                                        ::u32 uMessage,
                                         WPARAM wParam, 
                                         LPARAM lParam)
 {
@@ -276,7 +276,7 @@ LRESULT CTSFMainWnd::_OnDestroy(VOID)
 
 **************************************************************************/
 
-LRESULT CTSFMainWnd::_OnCommand(unsigned short wID, unsigned short wCmd, HWND hWnd)
+LRESULT CTSFMainWnd::_OnCommand(::u16 wID, ::u16 wCmd, HWND hWnd)
 {
     switch(wID)
     {
@@ -380,7 +380,7 @@ LRESULT CTSFMainWnd::_OnKillFocus(VOID)
 
 **************************************************************************/
 
-LRESULT CTSFMainWnd::_OnNotify(unsigned int, LPNMHDR)
+LRESULT CTSFMainWnd::_OnNotify(::u32, LPNMHDR)
 {
     return 0;
 }
@@ -391,7 +391,7 @@ LRESULT CTSFMainWnd::_OnNotify(unsigned int, LPNMHDR)
 
 **************************************************************************/
 
-LRESULT CTSFMainWnd::_OnSize(unsigned short wWidth, unsigned short wHeight)
+LRESULT CTSFMainWnd::_OnSize(::u16 wWidth, ::u16 wHeight)
 {
     //position the edit window to fill the client area
     MoveWindow(m_pTSFEditWnd->_GetWindow(), 0, 0, wWidth, wHeight, true);
@@ -428,7 +428,7 @@ LRESULT CTSFMainWnd::_OnInitMenuPopup(WPARAM wParam, LPARAM lParam)
 
 **************************************************************************/
 
-BOOL CTSFMainWnd::_GetFileName(HWND hwndOwner, char * lpszFile, ULONG uChars, BOOL fOpen)
+BOOL CTSFMainWnd::_GetFileName(HWND hwndOwner, char_pointer lpszFile, ULONG uChars, BOOL fOpen)
 {
     OPENFILENAME    ofn;
     BOOL            fReturn = false;

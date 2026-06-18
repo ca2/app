@@ -24,14 +24,14 @@ public:
 
 
 
-   void calculate_size_and_position(int x = INT_MIN, int y = INT_MIN);
+   void calculate_size_and_position(::i32 x = INT_MIN, ::i32 y = INT_MIN);
 
 
-   virtual void initialize_popup_button(const ::scoped_string & scopedstrText, int x, int y);
+   virtual void initialize_popup_button(const ::scoped_string & scopedstrText, ::i32 x, ::i32 y);
 
    void on_click(const ::payload& payload, ::user::mouse * pmouse) override;
 
-   void on_draw(::nano::graphics::device * pnanodevice) override;
+   void on_draw(::nano::graphics::context * pnanodevice) override;
 
 
 };

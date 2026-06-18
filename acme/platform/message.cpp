@@ -26,8 +26,8 @@ namespace platform
    }
 
 
-   void message::initialize_message(enum_message emessage, long long llWparam,
-                                                long long llLparam, const ::block &block)
+   void message::initialize_message(enum_message emessage, ::i64 llWparam,
+                                                ::i64 llLparam, const ::block &block)
    {
 
       m_emessage = emessage;

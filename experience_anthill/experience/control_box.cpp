@@ -96,10 +96,10 @@ namespace experience_anthill
    }
 
 
-   void control_box::on_timer(::timer * ptimer)
+   void control_box::operator()(::timer * ptimer)
    {
 
-      ::experience::control_box::on_timer(ptimer);
+      ::experience::control_box::operator()(ptimer);
 
    }
 
@@ -121,7 +121,7 @@ namespace experience_anthill
 
       }
 
-      ::int_rectangle rectangleX = this->rectangle();
+      ::i32_rectangle rectangleX = this->rectangle();
 
       if (rectangleX.is_empty())
       {

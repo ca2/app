@@ -14,7 +14,7 @@ namespace graphics
    public:
 
 
-      int                           m_iGoodStride;
+      ::i32                           m_iGoodStride;
       //::image::image_pointer               m_imageaBuffer[2];
       //::pointer_array < ::mutex >   m_mutexa;
       //bool                          m_bSingleBufferMode;
@@ -23,7 +23,7 @@ namespace graphics
       bool                          m_bDibIsHostingBuffer;
 
 
-      int                           m_iCurrentBuffer;
+      ::i32                           m_iCurrentBuffer;
 
 
       double_buffer();
@@ -61,7 +61,7 @@ namespace graphics
       virtual void _on_configure_window(buffer_item *pbufferitem);
 
       //::particle * get_draw_lock() override;
-      bool _on_begin_draw(buffer_item * pbufferitem) override;
+      bool _on_begin(buffer_item * pbufferitem) override;
 
 
       void destroy_buffer() override;

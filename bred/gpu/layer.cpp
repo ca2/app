@@ -16,6 +16,8 @@ namespace gpu
    layer::layer()
    {
 
+      m_bFirstLayer = false;
+      m_bClosingLayer = false;
       //m_bFinished = false;
 
    }
@@ -45,6 +47,13 @@ namespace gpu
 
    ::gpu::command_buffer* layer::getCurrentCommandBuffer4()
    {
+
+      if (m_pcommandbufferScoped)
+      {
+
+         return m_pcommandbufferScoped;
+
+      }
 
       if (m_commandbufferaLayer.is_empty())
       {
@@ -90,7 +99,7 @@ namespace gpu
    }
 
 
-   void layer::initialize_gpu_layer(::gpu::renderer * pgpurenderer, int iFrameIndex, int iLayerIndex)
+   void layer::initialize_gpu_layer(::gpu::renderer * pgpurenderer, ::i32 iFrameIndex, ::i32 iLayerIndex)
    {
 
       m_pgpurenderer = pgpurenderer;
@@ -126,6 +135,8 @@ namespace gpu
 
       m_bRenderTargetFramebufferInitialized = false;
 
+      ::gpu::set_current_layer(this);
+
       //m_bFinished = false;
       finished_manual_reset_happening()->reset_happening();
 
@@ -139,7 +150,7 @@ namespace gpu
 
       m_commandbufferaLayer.set_size(m_pgpurenderer->m_iDefaultFrameCount);
 
-      int iImageIndex = -1;
+      ::i32 iImageIndex = -1;
 
       for (auto& pcommandbufferLayer : m_commandbufferaLayer)
       {
@@ -226,7 +237,7 @@ namespace gpu
    ::pointer < texture >& layer::texture()
    {
 
-      int iFrameIndex = m_pgpurenderer->m_pgpucontext->m_pgpudevice->get_frame_index3();
+      ::i32 iFrameIndex = m_pgpurenderer->m_pgpucontext->m_pgpudevice->get_frame_index3();
 
       auto & ptexture = m_texturea.element_at_grow(iFrameIndex);
 
@@ -252,7 +263,7 @@ namespace gpu
    ::pointer < texture >& layer::source_texture()
    {
 
-      int iFrameIndex = m_pgpurenderer->m_pgpucontext->m_pgpudevice->get_frame_index3();
+      ::i32 iFrameIndex = m_pgpurenderer->m_pgpucontext->m_pgpudevice->get_frame_index3();
 
       auto& ptextureSource = m_textureaSource.element_at_grow(iFrameIndex);
 
@@ -271,7 +282,7 @@ namespace gpu
    //::pointer < texture >& layer::target_texture()
    //{
    //   
-   //   int iTargetFrameIndex = m_pgpurendererTarget->_get_frame_index();
+   //   ::i32 iTargetFrameIndex = m_pgpurendererTarget->_get_frame_index();
    //   
    //   auto & ptextureTarget = m_gputextureaTarget[iTargetFrameIndex];
 
@@ -284,6 +295,13 @@ namespace gpu
    //   return ptextureTarget;
 
    //}
+
+   
+   thread_local ::gpu::layer *t_pgpulayer;
+
+
+   void set_current_layer(::gpu::layer *pgpulayer) { t_pgpulayer = pgpulayer; }
+   ::gpu::layer *current_layer() { return t_pgpulayer; }
 
 
 } // namespace gpu

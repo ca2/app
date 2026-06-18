@@ -109,10 +109,10 @@ typedef struct _PropMotifWmHints PropMotifWmHints;
  * Post an event from the client to the X server
  */
 void xf_SendClientEvent(xfContext* xfc, Window window, Atom atom,
-                        unsigned int numArgs, ...)
+                        ::u32 numArgs, ...)
 {
    XEvent xevent;
-   unsigned int i;
+   ::u32 i;
    va_list argp;
    va_start(argp, numArgs);
    ZeroMemory(&xevent, sizeof(XEvent));
@@ -130,7 +130,7 @@ void xf_SendClientEvent(xfContext* xfc, Window window, Atom atom,
    }
 
    DEBUG_X11("Send ClientMessage Event: wnd=0x%04X",
-             (unsigned int) xevent.xclient.window);
+             (::u32) xevent.xclient.window);
    XSendEvent(xfc->display, RootWindowOfScreen(xfc->screen), False,
               SubstructureRedirectMask | SubstructureNotifyMask, &xevent);
    XSync(xfc->display, False);

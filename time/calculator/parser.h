@@ -40,15 +40,15 @@ namespace datetime
 
       void error(const ::scoped_string & scopedstrMessage);
       void syntax_error(const ::scoped_string & scopedstrMessage);
-      void expect(char ch);
+      void expect(::i8 ch);
 
 
       ::datetime::element *new_node();
       int32_t precedence(enum_token next, enum_token current);
       ::datetime::result parse(::datetime::element *current_node);
-      ::datetime::result node_traverse(::datetime::element *current_node, double value);
-      ::datetime::result apply_traverse_operator(::datetime::element *current_node, double total);
-      ::datetime::result apply_operator(::datetime::element *current_node, double total, double m_etype);
+      ::datetime::result node_traverse(::datetime::element *current_node, ::f64 value);
+      ::datetime::result apply_traverse_operator(::datetime::element *current_node, ::f64 total);
+      ::datetime::result apply_operator(::datetime::element *current_node, ::f64 total, ::f64 m_etype);
 
       
    };

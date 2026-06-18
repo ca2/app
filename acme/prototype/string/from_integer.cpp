@@ -1,10 +1,10 @@
 #include "framework.h"
 #include "from_integer.h"
 
-string i64toa_dup(long long i, int iBase)
+string i64toa_dup(::i64 i, ::i32 iBase)
 {
 
-   char sz[128 + 64];
+   ::i8 sz[128 + 64];
 
    if(i == 0)
    {
@@ -18,11 +18,11 @@ string i64toa_dup(long long i, int iBase)
       i = -i;
       bNegative = true;
    }
-   int iIndex = 0;
+   ::i32 iIndex = 0;
    while(i > 0)
    {
-      int iDigit = (i % iBase);
-      char ch;
+      ::i32 iDigit = (i % iBase);
+      ::i8 ch;
       if(iDigit <= 9)
       {
          ch = iDigit + '0';
@@ -48,7 +48,7 @@ string i64toa_dup(long long i, int iBase)
 }
 
 
- string i64toa_dup(long long i)
+ string i64toa_dup(::i64 i)
 {
 
    return i64toa_dup(i, 10);
@@ -57,10 +57,10 @@ string i64toa_dup(long long i, int iBase)
 
 
 
- string ui64toa_dup(long long i, int iBase)
+ string ui64toa_dup(::i64 i, ::i32 iBase)
 {
 
-   char sz[128 + 64];
+   ::i8 sz[128 + 64];
 
    if(i == 0)
    {
@@ -68,11 +68,11 @@ string i64toa_dup(long long i, int iBase)
       sz[1] = '\0';
       return sz;
    }
-   int iIndex = 0;
+   ::i32 iIndex = 0;
    while(i > 0)
    {
-      int iDigit = (i % iBase);
-      char ch;
+      ::i32 iDigit = (i % iBase);
+      ::i8 ch;
       if(iDigit <= 9)
       {
          ch = iDigit + '0';
@@ -93,7 +93,7 @@ string i64toa_dup(long long i, int iBase)
 }
 
 
- string ui64toa_dup(long long i)
+ string ui64toa_dup(::i64 i)
 {
 
    return ui64toa_dup(i, 10);
@@ -104,7 +104,7 @@ string i64toa_dup(long long i, int iBase)
 
 
 
-// void ansi_from_unsigned_long_long(char * sz, unsigned long long u, int iBase)
+// void ansi_from_u64(char_pointer sz, ::u64 u, ::i32 iBase)
 //{
 //   if(u == 0)
 //   {
@@ -112,11 +112,11 @@ string i64toa_dup(long long i, int iBase)
 //      sz[1] = '\0';
 //      return;
 //   }
-//   int iIndex = 0;
+//   ::i32 iIndex = 0;
 //   while(u > 0)
 //   {
-//      int iDigit = (u % iBase);
-//      char ch;
+//      ::i32 iDigit = (u % iBase);
+//      ::i8 ch;
 //      if(iDigit <= 9)
 //      {
 //         ch = iDigit + '0';
@@ -135,7 +135,7 @@ string i64toa_dup(long long i, int iBase)
 //
 //
 //
-//void ansi_from_long_long(char * sz, long long i, int iBase)
+//void ansi_from_i64(char_pointer sz, ::i64 i, ::i32 iBase)
 //{
 //   if(i == 0)
 //   {
@@ -149,11 +149,11 @@ string i64toa_dup(long long i, int iBase)
 //      i = -i;
 //      bNegative = true;
 //   }
-//   int iIndex = 0;
+//   ::i32 iIndex = 0;
 //   while(i > 0)
 //   {
-//      int iDigit = (i % iBase);
-//      char ch;
+//      ::i32 iDigit = (i % iBase);
+//      ::i8 ch;
 //      if(iDigit <= 9)
 //      {
 //         ch = iDigit + '0';
@@ -201,7 +201,7 @@ string i64toa_dup(long long i, int iBase)
 
 
 
-//void wide_from_u64_base(unichar * sz, unsigned long long u, int iBase)
+//void wide_from_u64_base(wide_character * sz, ::u64 u, ::i32 iBase)
 //{
 //   if(u == 0)
 //   {
@@ -209,10 +209,10 @@ string i64toa_dup(long long i, int iBase)
 //      sz[1] = L'\0';
 //      return;
 //   }
-//   int iIndex = 0;
+//   ::i32 iIndex = 0;
 //   while(u > 0)
 //   {
-//      int iDigit = (u % iBase);
+//      ::i32 iDigit = (u % iBase);
 //      unichar wch;
 //      if(iDigit <= 9)
 //      {
@@ -232,7 +232,7 @@ string i64toa_dup(long long i, int iBase)
 //
 //
 //
-//void wide_from_long_long_base(unichar * sz, long long i, int iBase)
+//void wide_from_i64_base(wide_character * sz, ::i64 i, ::i32 iBase)
 //{
 //   if(i == 0)
 //   {
@@ -246,10 +246,10 @@ string i64toa_dup(long long i, int iBase)
 //      i = -i;
 //      bNegative = true;
 //   }
-//   int iIndex = 0;
+//   ::i32 iIndex = 0;
 //   while(i > 0)
 //   {
-//      int iDigit = (i % iBase);
+//      ::i32 iDigit = (i % iBase);
 //      unichar wch;
 //      if(iDigit <= 9)
 //      {

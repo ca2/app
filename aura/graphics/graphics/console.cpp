@@ -18,7 +18,7 @@ namespace graphics
 {
 
 
-   int next_char(char & ch, const_char_pointer &psz, int & x, int & y, int cx, int cy)
+   ::i32 next_char(::i8 & ch, const_char_pointer &psz, ::i32 & x, ::i32 & y, ::i32 cx, ::i32 cy)
    {
 
       if (!*psz)
@@ -28,7 +28,7 @@ namespace graphics
 
       }
 
-      int iAdvance = 0;
+      ::i32 iAdvance = 0;
 
       if (*psz == '\n')
       {
@@ -134,7 +134,7 @@ namespace graphics
    }
 
 
-   console::console(::user::interaction * puserinteraction, ::int_size sizeTile) :
+   console::console(::user::interaction * puserinteraction, ::i32_size sizeTile) :
       m_puserinteraction(puserinteraction),
       m_sizeTile(sizeTile),
       ::console::console(this)
@@ -178,7 +178,7 @@ namespace graphics
 
 
 
-   void console::SetWindowSize(int iHeight, int iWidth)
+   void console::SetWindowSize(::i32 iHeight, ::i32 iWidth)
    {
 
       _synchronous_lock synchronouslock(this->synchronization(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
@@ -187,7 +187,7 @@ namespace graphics
 
       m_sizeWindow.cy = iHeight;
 
-      ::int_size sizeImage(m_sizeTile.cx * m_sizeWindow.cx + m_iBorder * 2, m_sizeTile.cy * m_sizeWindow.cy + m_iBorder * 2);
+      ::i32_size sizeImage(m_sizeTile.cx * m_sizeWindow.cx + m_iBorder * 2, m_sizeTile.cy * m_sizeWindow.cy + m_iBorder * 2);
 
       m_pimage = image()->create_image(sizeImage);
 
@@ -206,7 +206,7 @@ namespace graphics
    {
    }
 
-   void console::SetCursorPosition(int y, int x)
+   void console::SetCursorPosition(::i32 y, ::i32 x)
    {
 
       m_x = x;
@@ -214,7 +214,7 @@ namespace graphics
 
    }
 
-   void console::SetTextColor(int color)
+   void console::SetTextColor(::i32 color)
    {
       m_iColor = color;
       m_iTextColor = color;
@@ -222,7 +222,7 @@ namespace graphics
    }
 
 
-   void console::SetScreenColor(::enum_dos_color color, int iLineStart, int iLineCount)
+   void console::SetScreenColor(::enum_dos_color color, ::i32 iLineStart, ::i32 iLineCount)
    {
 
       m_edoscolor = color;
@@ -242,10 +242,10 @@ namespace graphics
       ::string strParam(scopedstrParam);
       auto psz = strParam.c_str();
       string str;
-      //int i2 = 2;
+      //::i32 i2 = 2;
       while (*psz)
       {
-         char ch = *psz;
+         ::i8 ch = *psz;
          while (m_stra.element_at_grow(m_y).length() < m_x + 1)
          {
             m_stra.element_at_grow(m_y) += ' ';
@@ -270,7 +270,7 @@ namespace graphics
    void console::write(const void * p, ::memsize s)
    {
 
-      auto data = (unsigned char *)p;
+      auto data = (::u8 *)p;
 
       string str((const_char_pointer )data, minimum(ansi_nlen((const_char_pointer )data, (size_t)s), s));
 
@@ -295,12 +295,12 @@ namespace graphics
 
       m_pimage->clear(crScreen);
 
-      for (int y = 0; y < m_stra.get_count(); y++)
+      for (::i32 y = 0; y < m_stra.get_count(); y++)
       {
 
          string & str = m_stra[y];
 
-         for (int x = 0; x < str.length(); x++)
+         for (::i32 x = 0; x < str.length(); x++)
          {
 
             draw_write(str[x], x, y, (enum_dos_color) m_i2aColor[y][x]);
@@ -312,7 +312,7 @@ namespace graphics
    }
 
 
-   bool console::defer_write(char ch, const ::int_rectangle & r, int edoscolor)
+   bool console::defer_write(::i8 ch, const ::i32_rectangle & r, ::i32 edoscolor)
    {
 
       return false;
@@ -357,10 +357,10 @@ namespace graphics
    }
 
 
-   ::int_rectangle console::_get_position_rectangle(int y, int x)
+   ::i32_rectangle console::_get_position_rectangle(::i32 y, ::i32 x)
    {
    
-      ::int_rectangle r;
+      ::i32_rectangle r;
       
       
       r.left = x * m_sizeTile.cx;
@@ -376,10 +376,10 @@ namespace graphics
    }
 
 
-   ::int_rectangle console::get_position_rectangle(int y, int x)
+   ::i32_rectangle console::get_position_rectangle(::i32 y, ::i32 x)
    {
 
-      ::int_rectangle r;
+      ::i32_rectangle r;
       
       r = _get_position_rectangle(y, x);
       
@@ -390,7 +390,7 @@ namespace graphics
    }
 
 
-   void console::draw_write(char ch, int x, int y, enum_dos_color edoscolor)
+   void console::draw_write(::i8 ch, ::i32 x, ::i32 y, enum_dos_color edoscolor)
    {
 
       if (ch == ' ')
@@ -402,7 +402,7 @@ namespace graphics
 
       string str;
 
-      int i2 = 2;
+      ::i32 i2 = 2;
       
       auto r = get_position_rectangle(y, x);
 
@@ -411,7 +411,7 @@ namespace graphics
 
          m_pimage->g()->set_smooth_mode(::draw2d::e_smooth_mode_none);
 
-         if (ch == (char)209)// horizontal double / down simple
+         if (ch == (::i8)209)// horizontal ::f64 / down simple
          {
 
             ::draw2d::pen_pointer & ppen2 = get_pen2(edoscolor);
@@ -421,18 +421,18 @@ namespace graphics
             m_pimage->g()->set(ppen2);
 
             m_pimage->g()->line(
-               ::int_point(m_iBorder + x * m_sizeTile.cx,
+               ::i32_point(m_iBorder + x * m_sizeTile.cx,
                   m_iBorder + y * m_sizeTile.cy + m_sizeTile.cy / 2),
-               ::int_point(m_iBorder + x * m_sizeTile.cx + m_sizeTile.cx + 1,
+               ::i32_point(m_iBorder + x * m_sizeTile.cx + m_sizeTile.cx + 1,
                   m_iBorder + y * m_sizeTile.cy + m_sizeTile.cy / 2)
             );
 
             m_pimage->g()->set(ppen1);
 
             m_pimage->g()->line(
-               ::int_point(m_iBorder + x * m_sizeTile.cx + m_sizeTile.cx / 2,
+               ::i32_point(m_iBorder + x * m_sizeTile.cx + m_sizeTile.cx / 2,
                   m_iBorder + y * m_sizeTile.cy + m_sizeTile.cy / 2),
-               ::int_point(m_iBorder + x * m_sizeTile.cx + m_sizeTile.cx / 2,
+               ::i32_point(m_iBorder + x * m_sizeTile.cx + m_sizeTile.cx / 2,
                   m_iBorder + y * m_sizeTile.cy + m_sizeTile.cy + 1)
             );
 
@@ -440,7 +440,7 @@ namespace graphics
             m_iLastPen = 1;
 
          }
-         else if (ch == (char)205)// horizontal double
+         else if (ch == (::i8)205)// horizontal ::f64
          {
 
             if (m_iLastPen != 2 || m_iLastPenColor != edoscolor)
@@ -453,9 +453,9 @@ namespace graphics
             }
 
             m_pimage->g()->line(
-               int_point(m_iBorder + x * m_sizeTile.cx,
+               i32_point(m_iBorder + x * m_sizeTile.cx,
                   m_iBorder + y * m_sizeTile.cy + m_sizeTile.cy / 2),
-               int_point(m_iBorder + x * m_sizeTile.cx + m_sizeTile.cx + 1,
+               i32_point(m_iBorder + x * m_sizeTile.cx + m_sizeTile.cx + 1,
                   m_iBorder + y * m_sizeTile.cy + m_sizeTile.cy / 2)
             );
 
@@ -463,7 +463,7 @@ namespace graphics
             m_iLastPen = 2;
 
          }
-         else if (ch == (char)196) // horizontal simple
+         else if (ch == (::i8)196) // horizontal simple
          {
 
             if (m_iLastPen != 1 || m_iLastPenColor != edoscolor)
@@ -476,9 +476,9 @@ namespace graphics
             }
 
             m_pimage->g()->line(
-               int_point(m_iBorder + x * m_sizeTile.cx,
+               i32_point(m_iBorder + x * m_sizeTile.cx,
                   m_iBorder + y * m_sizeTile.cy + m_sizeTile.cy / 2),
-               int_point(m_iBorder + x * m_sizeTile.cx + m_sizeTile.cx + 1,
+               i32_point(m_iBorder + x * m_sizeTile.cx + m_sizeTile.cx + 1,
                   m_iBorder + y * m_sizeTile.cy + m_sizeTile.cy / 2)
             );
 
@@ -486,7 +486,7 @@ namespace graphics
             m_iLastPen = 1;
 
          }
-         else if (ch == (char)186) // vertical double
+         else if (ch == (::i8)186) // vertical ::f64
          {
 
             if (m_iLastPen != 2 || m_iLastPenColor != edoscolor)
@@ -499,9 +499,9 @@ namespace graphics
             }
 
             m_pimage->g()->line(
-               int_point(m_iBorder + x * m_sizeTile.cx + m_sizeTile.cx / 2,
+               i32_point(m_iBorder + x * m_sizeTile.cx + m_sizeTile.cx / 2,
                   m_iBorder + y * m_sizeTile.cy),
-               int_point(m_iBorder + x * m_sizeTile.cx + m_sizeTile.cx / 2,
+               i32_point(m_iBorder + x * m_sizeTile.cx + m_sizeTile.cx / 2,
                   m_iBorder + y * m_sizeTile.cy + m_sizeTile.cy + 1)
             );
 
@@ -509,24 +509,24 @@ namespace graphics
             m_iLastPen = 2;
 
          }
-         else if (ch == (char)199) // vertical double / right simple
+         else if (ch == (::i8)199) // vertical ::f64 / right simple
          {
             ::draw2d::pen_pointer & ppen2 = get_pen2(edoscolor);
             ::draw2d::pen_pointer & ppen1 = get_pen1(edoscolor);
             m_pimage->g()->set(ppen2);
 
            m_pimage->g()->line(
-              ::double_point( m_iBorder + x * m_sizeTile.cx + m_sizeTile.cx / 2,
+              ::f64_point( m_iBorder + x * m_sizeTile.cx + m_sizeTile.cx / 2,
                m_iBorder + y * m_sizeTile.cy ),
-              ::double_point( m_iBorder + x * m_sizeTile.cx + m_sizeTile.cx / 2,
+              ::f64_point( m_iBorder + x * m_sizeTile.cx + m_sizeTile.cx / 2,
               m_iBorder + y * m_sizeTile.cy + m_sizeTile.cy + 1 )
             );
             m_pimage->g()->set(ppen1);
 
             m_pimage->g()->line(
-               ::double_point(m_iBorder + x * m_sizeTile.cx + m_sizeTile.cx / 2,
+               ::f64_point(m_iBorder + x * m_sizeTile.cx + m_sizeTile.cx / 2,
                m_iBorder + y * m_sizeTile.cy + m_sizeTile.cy / 2),
-               ::double_point(m_iBorder + x * m_sizeTile.cx + m_sizeTile.cx + 1,
+               ::f64_point(m_iBorder + x * m_sizeTile.cx + m_sizeTile.cx + 1,
                   m_iBorder + y * m_sizeTile.cy + m_sizeTile.cy / 2)
             );
 
@@ -534,24 +534,24 @@ namespace graphics
             m_iLastPen = 1;
 
          }
-         else if (ch == (char)182) // vertical double / left simple
+         else if (ch == (::i8)182) // vertical ::f64 / left simple
          {
             ::draw2d::pen_pointer & ppen2 = get_pen2(edoscolor);
             ::draw2d::pen_pointer & ppen1 = get_pen1(edoscolor);
             m_pimage->g()->set(ppen2);
 
             m_pimage->g()->line(
-               ::double_point(m_iBorder + x * m_sizeTile.cx + m_sizeTile.cx / 2,
+               ::f64_point(m_iBorder + x * m_sizeTile.cx + m_sizeTile.cx / 2,
                m_iBorder + y * m_sizeTile.cy),
-               ::double_point(m_iBorder + x * m_sizeTile.cx + m_sizeTile.cx / 2, 
+               ::f64_point(m_iBorder + x * m_sizeTile.cx + m_sizeTile.cx / 2, 
                   m_iBorder + y * m_sizeTile.cy + m_sizeTile.cy + 1)
             );
             m_pimage->g()->set(ppen1);
 
             m_pimage->g()->line(
-               ::double_point(m_iBorder + x * m_sizeTile.cx,
+               ::f64_point(m_iBorder + x * m_sizeTile.cx,
                m_iBorder + y * m_sizeTile.cy + m_sizeTile.cy / 2),
-               ::double_point(m_iBorder + x * m_sizeTile.cx + m_sizeTile.cx / 2,
+               ::f64_point(m_iBorder + x * m_sizeTile.cx + m_sizeTile.cx / 2,
                   m_iBorder + y * m_sizeTile.cy + m_sizeTile.cy / 2)
             );
 
@@ -559,7 +559,7 @@ namespace graphics
             m_iLastPen = 1;
 
          }
-         else if (ch == (char)179) // vertical simple
+         else if (ch == (::i8)179) // vertical simple
          {
 
             if (m_iLastPen != 1 || m_iLastPenColor != edoscolor)
@@ -572,9 +572,9 @@ namespace graphics
             }
 
             m_pimage->g()->line(
-               ::double_point(m_iBorder + x * m_sizeTile.cx + m_sizeTile.cx / 2,
+               ::f64_point(m_iBorder + x * m_sizeTile.cx + m_sizeTile.cx / 2,
                m_iBorder + y * m_sizeTile.cy),
-               ::double_point(m_iBorder + x * m_sizeTile.cx + m_sizeTile.cx / 2, 
+               ::f64_point(m_iBorder + x * m_sizeTile.cx + m_sizeTile.cx / 2, 
                   m_iBorder + y * m_sizeTile.cy + m_sizeTile.cy + 1)
             );
 
@@ -582,7 +582,7 @@ namespace graphics
             m_iLastPen = 1;
 
          }
-         else if (ch == (char)218) // top-left simple
+         else if (ch == (::i8)218) // top-left simple
          {
 
             if (m_iLastPen != 1 || m_iLastPenColor != edoscolor)
@@ -595,9 +595,9 @@ namespace graphics
             }
 
             m_pimage->g()->line(
-               ::double_point(m_iBorder + x * m_sizeTile.cx + m_sizeTile.cx / 2,
+               ::f64_point(m_iBorder + x * m_sizeTile.cx + m_sizeTile.cx / 2,
                m_iBorder + y * m_sizeTile.cy + m_sizeTile.cy / 2),
-               ::double_point(m_iBorder + x * m_sizeTile.cx + m_sizeTile.cx + 1, 
+               ::f64_point(m_iBorder + x * m_sizeTile.cx + m_sizeTile.cx + 1, 
                   m_iBorder + y * m_sizeTile.cy + m_sizeTile.cy / 2)
             );
             m_pimage->g()->line(
@@ -610,7 +610,7 @@ namespace graphics
             m_iLastPen = 1;
 
          }
-         else if (ch == (char)201) // top-left double
+         else if (ch == (::i8)201) // top-left ::f64
          {
 
             if (m_iLastPen != 2 || m_iLastPenColor != edoscolor)
@@ -637,7 +637,7 @@ namespace graphics
             m_iLastPen = 2;
 
          }
-         else if (ch == (char)200) // bottom-left double
+         else if (ch == (::i8)200) // bottom-left ::f64
          {
 
             if (m_iLastPen != 2 || m_iLastPenColor != edoscolor)
@@ -664,7 +664,7 @@ namespace graphics
             m_iLastPen = 2;
 
          }
-         else if (ch == (char)192) // bottom-left simple
+         else if (ch == (::i8)192) // bottom-left simple
          {
 
             if (m_iLastPen != 1 || m_iLastPenColor != edoscolor)
@@ -691,7 +691,7 @@ namespace graphics
             m_iLastPen = 1;
 
          }
-         else if (ch == (char)188) // bottom-right double
+         else if (ch == (::i8)188) // bottom-right ::f64
          {
 
             if (m_iLastPen != 2 || m_iLastPenColor != edoscolor)
@@ -718,7 +718,7 @@ namespace graphics
             m_iLastPen = 2;
 
          }
-         else if (ch == (char)217) // bottom-right simple
+         else if (ch == (::i8)217) // bottom-right simple
          {
 
             if (m_iLastPen != 1 || m_iLastPenColor != edoscolor)
@@ -745,7 +745,7 @@ namespace graphics
             m_iLastPen = 1;
 
          }
-         else if (ch == (char)187) // top-right double
+         else if (ch == (::i8)187) // top-right ::f64
          {
 
             if (m_iLastPen != 2 || m_iLastPenColor != edoscolor)
@@ -772,7 +772,7 @@ namespace graphics
             m_iLastPen = 2;
 
          }
-         else if (ch == (char)191) // top-right simple
+         else if (ch == (::i8)191) // top-right simple
          {
 
             if (m_iLastPen != 1 || m_iLastPenColor != edoscolor)
@@ -810,7 +810,7 @@ namespace graphics
 
             m_pimage->g()->set_text_color(console_dos_color(edoscolor));
 
-           m_pimage->g()->draw_text(str, int_rectangle(m_iBorder + x * m_sizeTile.cx, m_iBorder + y * m_sizeTile.cy,
+           m_pimage->g()->draw_text(str, i32_rectangle(m_iBorder + x * m_sizeTile.cx, m_iBorder + y * m_sizeTile.cy,
                m_iBorder + x * m_sizeTile.cx + m_sizeTile.cx, m_iBorder + y * m_sizeTile.cy + m_sizeTile.cy), e_align_center);
 
          }

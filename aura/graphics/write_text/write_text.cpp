@@ -148,7 +148,7 @@ namespace write_text
    }
 
 
-   font_pointer write_text::font(const font_family_pointer & pfontfamily, const font_size & fontsize, int iFontWeight)
+   font_pointer write_text::font(const font_family_pointer & pfontfamily, const font_size & fontsize, ::i32 iFontWeight)
    {
 
       auto pfont = createø < class font >();
@@ -189,14 +189,14 @@ namespace write_text
    }
 
 
-   font_descriptor write_text::calculate_font_descriptor(const_char_pointer face, float size)
+   font_descriptor write_text::calculate_font_descriptor(const_char_pointer face, ::f32 size)
    {
       
       font_descriptor fontdescriptor;
       
       fontdescriptor.m_strFace = face;
 
-      fontdescriptor.m_iSize = (int) ceilf(size * 1000.0f);
+      fontdescriptor.m_iSize = (::i32) ceilf(size * 1000.0f);
       
       return fontdescriptor;
       
@@ -218,7 +218,7 @@ namespace write_text
 
    //   ::pointer<::write_text::font_enumeration_item>pitem;
 
-   //   double dAndroid = 4.4;
+   //   ::f64 dAndroid = 4.4;
 
    //   string strSystemFonts = file()->as_string("/system/etc/system_fonts.xml");
 

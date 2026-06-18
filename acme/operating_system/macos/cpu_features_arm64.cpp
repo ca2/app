@@ -10,11 +10,11 @@
 
 #if defined(__APPLE__) && defined(__aarch64__)
 
-static bool sysctl_bool(const char* name)
+static bool sysctl_bool(const_char_pointer pszName)
 {
-   int value = 0;
+   ::i32 value = 0;
    size_t size = sizeof(value);
-   if (sysctlbyname(name, &value, &size, nullptr, 0) != 0)
+   if (sysctlbyname(pszName, &value, &size, nullptr, 0) != 0)
       return false;
    return value != 0;
 }

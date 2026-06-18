@@ -7,7 +7,7 @@
 #include "_string.h"
 
 
-inline ::write_text_stream & operator <<(::write_text_stream  & textstream, ::enum_display edisplay)
+inline ::write_text_stream & operator <<(::write_text_stream  & textstream, const ::e_display & edisplay)
 {
 
    return textstream << ::as_string(edisplay);

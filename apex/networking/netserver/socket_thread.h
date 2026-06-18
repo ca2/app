@@ -15,11 +15,11 @@ namespace netserver
 
 
       //string                                       m_strIp;
-      //int                                          m_iSsl;
-      //int                                          m_iCurrentPort;
-      //int                                          m_iPortMinimum;
-      //int                                          m_iPortMaximum;
-      //int                                          m_iConnectPort;
+      //::i32                                          m_iSsl;
+      //::i32                                          m_iCurrentPort;
+      //::i32                                          m_iPortMinimum;
+      //::i32                                          m_iPortMaximum;
+      //::i32                                          m_iConnectPort;
 
       //string                                       m_strCat;
       //string                                       m_strCipherList;

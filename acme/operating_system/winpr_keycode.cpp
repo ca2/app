@@ -20,7 +20,7 @@
  * Mac OS X
  */
 
-unsigned int KEYCODE_TO_VKCODE_APPLE[256] =
+::u32 KEYCODE_TO_VKCODE_APPLE[256] =
 {
    0, /* 0 */
    0, /* 1 */
@@ -289,7 +289,7 @@ unsigned int KEYCODE_TO_VKCODE_APPLE[256] =
 
 /* TODO: Finish Japanese Keyboard */
 
-unsigned int KEYCODE_TO_VKCODE_EVDEV[256] =
+::u32 KEYCODE_TO_VKCODE_EVDEV[256] =
 {
    0, /* 0 */
    0, /* 1 */
@@ -565,9 +565,9 @@ unsigned int KEYCODE_TO_VKCODE_EVDEV[256] =
 };
 
 extern "C"
-unsigned int GetVirtualKeyCodeFromKeycode(unsigned int keycode, unsigned int dwFlags)
+::u32 GetVirtualKeyCodeFromKeycode(::u32 keycode, ::u32 dwFlags)
 {
-   unsigned int vkcode;
+   ::u32 vkcode;
    
    vkcode = VK_NONE;
    
@@ -589,10 +589,10 @@ unsigned int GetVirtualKeyCodeFromKeycode(unsigned int keycode, unsigned int dwF
 }
 
 extern "C"
-unsigned int GetKeycodeFromVirtualKeyCode(unsigned int vkcode, unsigned int dwFlags)
+::u32 GetKeycodeFromVirtualKeyCode(::u32 vkcode, ::u32 dwFlags)
 {
-   int index;
-   unsigned int keycode = 0;
+   ::i32 index;
+   ::u32 keycode = 0;
    
    if (dwFlags & KEYCODE_TYPE_APPLE)
    {

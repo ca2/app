@@ -13,15 +13,15 @@
 #define DQUOTECHAR  '\"'
 
 
-void ansi_parse_command_line(char * cmdstart, char ** argv, char * args, int * numargs, int * numchars)
+void ansi_parse_command_line(char_pointer cmdstart, char_pointer * argv, char_pointer args, ::i32 * numargs, ::i32 * numchars)
 {
 
 
-   char * p;
-   char c;
-   int inquote;                    /* 1 = inside quotes */
-   int copychar;                   /* 1 = copy char to *args */
-   unsigned int numslash;              /* num of backslashes seen */
+   char_pointer p;
+   ::i8 c;
+   ::i32 inquote;                    /* 1 = inside quotes */
+   ::i32 copychar;                   /* 1 = copy ::i8 to *args */
+   ::u32 numslash;              /* num of backslashes seen */
 
    *numchars = 0;
    *numargs = 1;                   /* the program name at least */
@@ -43,15 +43,15 @@ void ansi_parse_command_line(char * cmdstart, char ** argv, char * args, int * n
 
    /* A quoted program name is handled here. The handling is much
       simpler than for other arguments. Basically, whatever lies
-      between the leading double-quote and next one, or a terminal nullptr
+      between the leading ::f64-quote and next one, or a terminal nullptr
       character is simply accepted. Fancier handling is not required
       because the program name must be a legal NTFS/HPFS file name.
-      Note that the double-quote characters are not copied, nor do they
+      Note that the ::f64-quote characters are not copied, nor do they
       contribute to numchars. */
    if (*p == DQUOTECHAR)
    {
-      /* scan from just past the first double-quote through the next
-         double-quote, or up to a nullptr, whichever comes first */
+      /* scan from just past the first ::f64-quote through the next
+         ::f64-quote, or up to a nullptr, whichever comes first */
       while ((*(++p) != DQUOTECHAR) && (*p != NULCHAR))
       {
 
@@ -64,7 +64,7 @@ void ansi_parse_command_line(char * cmdstart, char ** argv, char * args, int * n
       if (args)
          *args++ = NULCHAR;
 
-      /* if we stopped on a double-quote (usual case), skip over it */
+      /* if we stopped on a ::f64-quote (usual case), skip over it */
       if (*p == DQUOTECHAR)
          p++;
    }
@@ -77,7 +77,7 @@ void ansi_parse_command_line(char * cmdstart, char ** argv, char * args, int * n
          if (args)
             *args++ = *p;
 
-         c = (char)*p++;
+         c = (::i8)*p++;
 
 
       } while (c != SPACECHAR && c != NULCHAR && c != TABCHAR);
@@ -147,7 +147,7 @@ void ansi_parse_command_line(char * cmdstart, char ** argv, char * args, int * n
                {
                   if (p[1] == DQUOTECHAR)
                      p++;    /* Double quote inside quoted string */
-                  else        /* skip first quote char and copy second */
+                  else        /* skip first quote ::i8 and copy second */
                      copychar = 0;
                }
                else
@@ -522,7 +522,7 @@ bool get_command_line_parameter(string & wstrValue,const ::scoped_string & scope
 //
 //   string str;
 //
-//   int i = 0;
+//   ::i32 i = 0;
 //
 //   bool bColon = false;
 //
@@ -644,7 +644,7 @@ string_array_base get_c_args_from_c(const ::scoped_string & scopedstr)
 
    string str;
 
-   int i = 0;
+   ::i32 i = 0;
 
    bool bColon = false;
 
@@ -679,7 +679,7 @@ string_array_base get_c_args_from_c(const ::scoped_string & scopedstr)
          while (!unicode_is_whitespace(range.m_begin))
          {
 
-            range.m_begin = (char *) unicode_next(range.m_begin);
+            range.m_begin = (char_pointer ) unicode_next(range.m_begin);
 
             if (range.is_empty())
             {
@@ -824,7 +824,7 @@ string_array_base get_c_args_for_c(const ::scoped_string & scopedstr)
 }
 
 
-string_array_base get_c_args(int argc, char** argv)
+string_array_base get_c_args(::i32 argc, char_pointer * argv)
 {
 
    string_array_base straBeforeColon;
@@ -840,7 +840,7 @@ string_array_base get_c_args(int argc, char** argv)
 
    bool bColon = false;
 
-   for (int i = 1; i < argc; i++)
+   for (::i32 i = 1; i < argc; i++)
    {
 
       if (ansi_cmp(argv[i], ":") == 0)
@@ -884,7 +884,7 @@ string_array_base get_c_args(int argc, char** argv)
 }
 
 
-typedef size_t FN_GET_STRING(char* psz, size_t s);
+typedef size_t FN_GET_STRING(char_pointer psz, size_t s);
 
 
 typedef FN_GET_STRING* PFN_GET_STRING;
@@ -903,7 +903,7 @@ string transform_to_c_arg(const ::scoped_string & scopedstr)
 
    const_char_pointer pszParse = psz;
 
-   char chQuote = '\0';
+   ::i8 chQuote = '\0';
 
    while (*pszParse)
    {
@@ -1077,7 +1077,7 @@ string merge_colon_args(const array < string_array_base >& straa)
 #if !defined(WINDOWS_DESKTOP)
 
 
-CLASS_DECL_ACME int get_current_processor_index()
+CLASS_DECL_ACME ::i32 get_current_processor_index()
 {
 
    return 0;
@@ -1085,7 +1085,7 @@ CLASS_DECL_ACME int get_current_processor_index()
 }
 
 
-CLASS_DECL_ACME int get_current_process_maximum_affinity()
+CLASS_DECL_ACME ::i32 get_current_process_maximum_affinity()
 {
 
    return 0;
@@ -1096,7 +1096,7 @@ CLASS_DECL_ACME int get_current_process_maximum_affinity()
 //#if !defined(__APPLE__) && !defined(WINDOWS)
 //
 //
-//CLASS_DECL_ACME int get_current_process_affinity_order()
+//CLASS_DECL_ACME ::i32 get_current_process_affinity_order()
 //{
 //
 //   return 1;

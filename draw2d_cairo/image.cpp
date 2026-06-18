@@ -68,7 +68,7 @@ namespace draw2d_cairo
    //}
 
 
-//   void    image::construct (int cx,  int cy)
+//   void    image::construct (::i32 cx,  ::i32 cy)
 //   {
 //
 //      m_pcolorrefMap    = nullptr;
@@ -88,15 +88,15 @@ namespace draw2d_cairo
    }
 
 
-//   bool image::create(int width, int height, const ::uid & uidCreateImage, int iGoodStride)
+//   bool image::create(::i32 width, ::i32 height, const ::uid & uidCreateImage, ::i32 iGoodStride)
 //   {
 //
-//      return create(::int_size(width, height), uidCreateImage, iGoodStride);
+//      return create(::i32_size(width, height), uidCreateImage, iGoodStride);
 //
 //   }
 
 
-   void image::create(const ::int_size & size, ::enum_flag eflagCreate, int iGoodStride, bool bPreserve)
+   void image::create(const ::i32_size & size, ::enum_flag eflagCreate, ::i32 iGoodStride, bool bPreserve)
    {
 
       debug() << "draw2d_cairo::image::image::create : " << size;
@@ -145,7 +145,7 @@ namespace draw2d_cairo
 
       image32_t * pimage32Raw = nullptr;
 
-      int iScan = iGoodStride;
+      ::i32 iScan = iGoodStride;
 
 #ifdef MORE_LOG
 
@@ -237,7 +237,7 @@ namespace draw2d_cairo
 
       //}
 
-      ::int_size size = pbitmap->get_size();
+      ::i32_size size = pbitmap->get_size();
 
       create(size);
 
@@ -250,7 +250,7 @@ namespace draw2d_cairo
 
       ::image::image_source imagesource(pgraphics);
 
-      double_rectangle rectangle(size);
+      ::f64_rectangle rectangle(size);
 
       ::image::image_drawing_options imagedrawingoptions(rectangle);
 
@@ -277,7 +277,7 @@ namespace draw2d_cairo
    }
 
 
-//   bool image::to(::draw2d::graphics * pgraphics, const ::int_point & point, const ::int_size & size, const ::int_point & ptSrc)
+//   bool image::to(::draw2d::graphics * pgraphics, const ::i32_point & point, const ::i32_size & size, const ::i32_point & ptSrc)
 //   {
 //
 //      return pgraphics->BitBlt(point, size.cx, size.cy, get_graphics(), ptSrc.x, ptSrc.y) != false;
@@ -293,12 +293,12 @@ namespace draw2d_cairo
 //   }
 
    
-   void image::_draw_raw(const ::int_rectangle & rectangleTarget, ::image::image *pimage, const ::int_point & pointSrc)
+   void image::_draw_raw(const ::i32_rectangle & rectangleTarget, ::image::image *pimage, const ::i32_point & pointSrc)
    {
 
-      double_rectangle rectangle(rectangleTarget);
+      ::f64_rectangle rectangle(rectangleTarget);
 
-      ::image::image_source imagesource(pimage, ::double_rectangle(pointSrc, rectangle.size()));
+      ::image::image_source imagesource(pimage, ::f64_rectangle(pointSrc, rectangle.size()));
 
       ::image::image_drawing_options imagedrawingoptions(rectangle);
 
@@ -310,7 +310,7 @@ namespace draw2d_cairo
 //      auto estatus = pgraphics->set(bitmap);
 //      if(!estatus)
 //         return false;
-//      ::int_size size = bitmap->get_size();
+//      ::i32_size size = bitmap->get_size();
 //      if(!create(size))
 //      {
 //         pgraphics->set(bitmap);
@@ -323,7 +323,7 @@ namespace draw2d_cairo
    }
 
 
-//   bool image::from(const ::int_point & pointDest, ::draw2d::graphics * pgraphics, const ::int_point & point, const ::int_size & size)
+//   bool image::from(const ::i32_point & pointDest, ::draw2d::graphics * pgraphics, const ::i32_point & point, const ::i32_size & size)
 //   {
 //
 //      return m_spgraphics->BitBlt(pointDest.x, pointDest.y, sz.cx, sz.cy, pgraphics, point.x, point.y);
@@ -331,15 +331,15 @@ namespace draw2d_cairo
 //   }
 
 
-   //void image::Fill ( int R, int G, int B )
+   //void image::Fill ( ::i32 R, ::i32 G, ::i32 B )
    //{
    //   color32_t color=rgb ( B, G, R );
-   //   int size=cx*cy;
+   //   ::i32 size=cx*cy;
 
    //   color32_t * pcr;
 
-   //   int iSize32 = size / 32;
-   //   int i;
+   //   ::i32 iSize32 = size / 32;
+   //   ::i32 i;
    //   for (i=0; i < iSize32; i+=32 )
    //   {
    //      pcr = &m_pcolorrefMap[i];
@@ -377,41 +377,41 @@ namespace draw2d_cairo
    //      pcr[31] = color;
    //   }
 
-   //   for (i=0; i<int_size; i++ )
+   //   for (i=0; i<i32_size; i++ )
    //   {
    //      m_pcolorrefMap[i]=color;
    //   }
    //}
 
-   //void image::set_rgb(int R, int G, int B)
+   //void image::set_rgb(::i32 R, ::i32 G, ::i32 B)
    //{
 
    //   map();
 
-   //   int size = scan*cy;
+   //   ::i32 size = scan*cy;
 
-   //   unsigned char * pbyte = (unsigned char *) m_pcolorrefMap;
+   //   ::u8 * pbyte = (::u8 *) m_pcolorrefMap;
 
-   //   int i;
-   //   int j;
-   //   int rectangle = scan - cx * sizeof(color32_t);
+   //   ::i32 i;
+   //   ::i32 j;
+   //   ::i32 rectangle = scan - cx * sizeof(color32_t);
    //   for (i=0; i<cy; i++ )
    //   {
    //      for (j=0; j<cx; j++ )
    //      {
-   //         *pbyte++ = (unsigned char) R * pbyte[3] / 255;
-   //         *pbyte++ = (unsigned char) G * pbyte[2] / 255;
-   //         *pbyte++ = (unsigned char) B * pbyte[1] / 255;
+   //         *pbyte++ = (::u8) R * pbyte[3] / 255;
+   //         *pbyte++ = (::u8) G * pbyte[2] / 255;
+   //         *pbyte++ = (::u8) B * pbyte[1] / 255;
    //         pbyte++;
    //      }
    //      j+= rectangle;
    //   }
    //}
 
-   //void image::ToAlpha(int i)
+   //void image::ToAlpha(::i32 i)
    //{
-   //   unsigned char *dst=(unsigned char*)m_pcolorrefMap;
-   //   int size=cx*cy;
+   //   ::u8 *dst=(::u8*)m_pcolorrefMap;
+   //   ::i32 size=cx*cy;
 
    //   while ( size-- )
    //   {
@@ -422,8 +422,8 @@ namespace draw2d_cairo
 
    //void image::from_alpha()
    //{
-   //   unsigned char *dst=(unsigned char*)m_pcolorrefMap;
-   //   long long size = cx * cy;
+   //   ::u8 *dst=(::u8*)m_pcolorrefMap;
+   //   ::i64 size = cx * cy;
 
    //   while ( size-- )
    //   {
@@ -523,23 +523,23 @@ namespace draw2d_cairo
 
       cairo_surface_flush (surface);
 
-      unsigned char  * pdata = (unsigned char *) cairo_image_surface_get_data(surface);
+      ::u8  * pdata = (::u8 *) cairo_image_surface_get_data(surface);
 
       m_pimage32Raw = (image32_t * ) pdata;
 
-//      if(pdata != (unsigned char *) m_pimage32Raw && pdata != nullptr)
+//      if(pdata != (::u8 *) m_pimage32Raw && pdata != nullptr)
 //      {
 //
 //         ::memory_copy(m_pimage32Raw, pdata, m_sizeRaw.cy * m_iScan);
 //
 //      }
 
-      //pdata = (unsigned char *) m_pimage32Raw;
+      //pdata = (::u8 *) m_pimage32Raw;
 
 //      if(!bApplyAlphaTransform)
 //      {
 //
-//         int size = m_iScan * m_sizeRaw.cy / sizeof(color32_t);
+//         ::i32 size = m_iScan * m_sizeRaw.cy / sizeof(color32_t);
 //
 //         while(size > 0)
 //         {
@@ -611,13 +611,13 @@ namespace draw2d_cairo
 
       }
 
-//      unsigned char * pdata =  (unsigned char *) m_pimage32Raw;
+//      ::u8 * pdata =  (::u8 *) m_pimage32Raw;
 //
-//      int size = m_iScan * m_sizeRaw.cy / sizeof(color32_t);
+//      ::i32 size = m_iScan * m_sizeRaw.cy / sizeof(color32_t);
 //
-//      pdata =  (unsigned char *) cairo_image_surface_get_data(surface);
+//      pdata =  (::u8 *) cairo_image_surface_get_data(surface);
 //
-//      if(pdata != (unsigned char *)m_pimage32Raw && pdata != nullptr)
+//      if(pdata != (::u8 *)m_pimage32Raw && pdata != nullptr)
 //      {
 //
 //         ::memory_copy(pdata, m_pimage32Raw, m_sizeRaw.cy * m_iScan);
@@ -638,7 +638,7 @@ namespace draw2d_cairo
    }
 
 
-   void image::SetIconMask(::image::icon * picon, int cx, int cy)
+   void image::SetIconMask(::image::icon * picon, ::i32 cx, ::i32 cy)
    {
 
       throw ::exception(todo);
@@ -671,7 +671,7 @@ namespace draw2d_cairo
 //
 //      pimage1->set_rgb(255, 255, 255);
 //
-//      pimage1->g()->stretch(::int_size(cx, cy), picon);
+//      pimage1->g()->stretch(::i32_size(cx, cy), picon);
 //
 //      // Black blend image_impl
 //      auto pimage2 = create_image({cx, cy});
@@ -685,7 +685,7 @@ namespace draw2d_cairo
 //
 //      pimage2->fill(0, 0, 0, 0);
 //
-//      pimage2->g()->stretch(::int_size(cx, cy), picon);
+//      pimage2->g()->stretch(::i32_size(cx, cy), picon);
 //
 //      // Mask image_impl
 //      auto pimageM = create_image({cx, cy});
@@ -697,16 +697,16 @@ namespace draw2d_cairo
 //
 //      }
 //
-//      pimageM->g()->stretch(::int_size(cx, cy), picon);
+//      pimageM->g()->stretch(::i32_size(cx, cy), picon);
 //
-//      unsigned char * r1=(unsigned char*)pimage1->colorref();
-//      unsigned char * r2=(unsigned char*)pimage2->get_data();
-//      unsigned char * srcM=(unsigned char*)pimageM->colorref();
-//      unsigned char * dest=(unsigned char*)m_pimage32;
-//      int iSize = cx*cy;
+//      ::u8 * r1=(::u8*)pimage1->colorref();
+//      ::u8 * r2=(::u8*)pimage2->get_data();
+//      ::u8 * srcM=(::u8*)pimageM->colorref();
+//      ::u8 * dest=(::u8*)m_pimage32;
+//      ::i32 iSize = cx*cy;
 //
-//      unsigned char b;
-//      unsigned char bMax;
+//      ::u8 b;
+//      ::u8 bMax;
 //      while ( iSize-- > 0)
 //      {
 //         if(srcM[0] == 255)
@@ -716,11 +716,11 @@ namespace draw2d_cairo
 //         else
 //         {
 //            bMax = 0;
-//            b =(unsigned char)(r1[0]  - r2[0]);
+//            b =(::u8)(r1[0]  - r2[0]);
 //            bMax = maximum(b, bMax);
-//            b =(unsigned char)(r1[1]  - r2[1]);
+//            b =(::u8)(r1[1]  - r2[1]);
 //            bMax = maximum(b, bMax);
-//            b =(unsigned char)(r1[2]  - r2[2]);
+//            b =(::u8)(r1[2]  - r2[2]);
 //            bMax = maximum(b, bMax);
 //            bMax = 255 - bMax;
 //         }
@@ -767,7 +767,7 @@ namespace draw2d_cairo
 //   bool image::update_window(::aura::draw_interface * puserinteraction,::message::message * pmessage,bool bTransferBuffer)
 //   {
 //
-//      long_long_rectangle rectangleWindow;
+//      i64_rectangle rectangleWindow;
 //
 //      puserinteraction->window_rectangle(rectangleWindow);
 //
@@ -775,7 +775,7 @@ namespace draw2d_cairo
 //
 //      map_base(true);
 //
-//      ::int_rectangle rectangle(rectangleWindow);
+//      ::i32_rectangle rectangle(rectangleWindow);
 //
 //      //papp->window_graphics_update_window(puserinteraction->get_window_graphics(), puserinteraction->get_handle(), m_pcolorrefMap, rectangle,m_size.cx, m_size.cy, m_iScan);
 //
@@ -794,14 +794,14 @@ namespace draw2d_cairo
 //
 //      m_spgraphics->attach((HDC) pusermessage->m_wparam);
 //
-//      ::int_rectangle rectx;
+//      ::i32_rectangle rectx;
 //
 //      ::draw2d::bitmap * pbitmap = m_spgraphics->get_current_bitmap();
 //
 //      ::GetCurrentObject((HDC) pusermessage->m_wparam, OBJ_BITMAP);
 //
-//      //      unsigned int dw = ::get_last_error();
-//      ::int_size size = pbitmap->get_size();
+//      //      ::u32 dw = ::get_last_error();
+//      ::i32_size size = pbitmap->get_size();
 //
 //      rectx.left = 0;
 //      rectx.top = 0;
@@ -811,7 +811,7 @@ namespace draw2d_cairo
 //      try
 //      {
 //
-//         ::int_rectangle rectangleWindow;
+//         ::i32_rectangle rectangleWindow;
 //
 //         puserinteraction->window_rectangle(rectangleWindow);
 //
@@ -833,20 +833,20 @@ namespace draw2d_cairo
 //
 //         }
 //
-//         ::int_rectangle rectanglePaint;
-//         ::int_rectangle rectangleUpdate;
+//         ::i32_rectangle rectanglePaint;
+//         ::i32_rectangle rectangleUpdate;
 //         rectangleUpdate = rectangleWindow;
 //         rectanglePaint = rectangleWindow;
 //         rectanglePaint.offset(-rectanglePaint.top_left());
 //         m_spgraphics->SelectClipRgn(nullptr);
 //         puserinteraction->_001OnDeferPaintLayeredWindowBackground(pimage1->g());
 //         m_spgraphics->SelectClipRgn(nullptr);
-//         m_spgraphics-> set_origin(::int_point());
+//         m_spgraphics-> set_origin(::i32_point());
 //         puserinteraction->_000OnDraw(pimage1->g());
-//         m_spgraphics->set_origin(::int_point());
+//         m_spgraphics->set_origin(::i32_point());
 //         //(dynamic_cast<::win::graphics * >(pgraphics))->FillSolidRect(rectangleUpdate.left, rectangleUpdate.top, 100, 100, 255);
 //         m_spgraphics->SelectClipRgn(nullptr);
-//         m_spgraphics->set_origin(::int_point());
+//         m_spgraphics->set_origin(::i32_point());
 //
 //         m_spgraphics->SelectClipRgn( nullptr);
 //         m_spgraphics->BitBlt(rectanglePaint.left, rectanglePaint.top,
@@ -880,7 +880,7 @@ namespace draw2d_cairo
 ////   {
 ////
 ////
-////      long_long_rectangle rectangleWindow;
+////      i64_rectangle rectangleWindow;
 ////
 ////      puserinteraction->window_rectangle(rectangleWindow);
 ////
@@ -888,7 +888,7 @@ namespace draw2d_cairo
 ////
 ////      map_base(true);
 ////
-////      ::int_rectangle rectangle(rectangleWindow);
+////      ::i32_rectangle rectangle(rectangleWindow);
 ////
 //////      papp->window_graphics_update_window(puserinteraction->get_window_graphics(), puserinteraction->get_handle(), m_pcolorrefMap, rectangle, m_size.cx, m_size.cy, m_iScan, bTransferBuffer);
 ////
@@ -913,7 +913,7 @@ namespace draw2d_cairo
 //   {
 //
 //
-//      long_long_rectangle rectangleWindow;
+//      i64_rectangle rectangleWindow;
 //
 //      puserinteraction->window_rectangle(rectangleWindow);
 //
@@ -921,7 +921,7 @@ namespace draw2d_cairo
 //
 //      map_base(false);
 //
-//      ::int_rectangle rectangle(rectangleWindow);
+//      ::i32_rectangle rectangle(rectangleWindow);
 //
 //      //papp->window_graphics_update_window(puserinteraction->get_window_graphics(), puserinteraction->get_handle(), m_pcolorrefMap, rectangle, m_size.cx, m_size.cy, m_iScan, bTransferBuffer);
 //
@@ -934,7 +934,7 @@ namespace draw2d_cairo
 //#endif
 
 
-   void image::blend(const ::int_point & pointDstParam, ::image::image *pimplSrc,  const ::int_point & pointSrcParam, const ::int_size & sizeParam, unsigned char bA)
+   void image::blend(const ::i32_point & pointDstParam, ::image::image *pimplSrc,  const ::i32_point & pointSrcParam, const ::i32_size & sizeParam, ::u8 bA)
    {
 
       auto size = sizeParam;
@@ -989,9 +989,9 @@ namespace draw2d_cairo
 
       }
 
-      int xEnd = minimum(size.cx, minimum(pimplSrc->width() - pointSrc.x, pimplDst->width() - pointDst.x));
+      ::i32 xEnd = minimum(size.cx, minimum(pimplSrc->width() - pointSrc.x, pimplDst->width() - pointDst.x));
 
-      int yEnd = minimum(size.cy, minimum(pimplSrc->height() - pointSrc.y, pimplDst->height() - pointDst.y));
+      ::i32 yEnd = minimum(size.cy, minimum(pimplSrc->height() - pointSrc.y, pimplDst->height() - pointDst.y));
 
       if (xEnd < 0)
       {
@@ -1007,24 +1007,24 @@ namespace draw2d_cairo
 
       }
 
-      int scanDst = pimplDst->scan_size();
+      ::i32 scanDst = pimplDst->scan_size();
 
-      int scanSrc = pimplSrc->scan_size();
+      ::i32 scanSrc = pimplSrc->scan_size();
 
-      unsigned char * pdst2;
+      ::u8 * pdst2;
 
-      unsigned char * psrc2;
+      ::u8 * psrc2;
 
 #ifdef APPLEOS
-      unsigned char * pdst = &((unsigned char *)imageDst.m_pcolorrefMap)[scanDst * (imageDst.height() - ptDst.y - yEnd) + ptDst.x * sizeof(color32_t)];
+      ::u8 * pdst = &((::u8 *)imageDst.m_pcolorrefMap)[scanDst * (imageDst.height() - ptDst.y - yEnd) + ptDst.x * sizeof(color32_t)];
 
-      unsigned char * psrc = &((unsigned char *)imageSrc.m_pcolorrefMap)[scanSrc * (imageSrc.height() - ptSrc.y - yEnd) + ptSrc.x * sizeof(color32_t)];
+      ::u8 * psrc = &((::u8 *)imageSrc.m_pcolorrefMap)[scanSrc * (imageSrc.height() - ptSrc.y - yEnd) + ptSrc.x * sizeof(color32_t)];
 
 #else
 
-      unsigned char * pdst = &((unsigned char *)pimplDst->m_pimage32)[scanDst * pointDst.y + pointDst.x * sizeof(color32_t)];
+      ::u8 * pdst = &((::u8 *)pimplDst->m_pimage32)[scanDst * pointDst.y + pointDst.x * sizeof(color32_t)];
 
-      unsigned char * psrc = &((unsigned char *)pimplSrc->m_pimage32)[scanSrc *  pointSrc.y + pointSrc.x * sizeof(color32_t)];
+      ::u8 * psrc = &((::u8 *)pimplSrc->m_pimage32)[scanSrc *  pointSrc.y + pointSrc.x * sizeof(color32_t)];
 
 #endif
 
@@ -1040,7 +1040,7 @@ namespace draw2d_cairo
 //         else if (bA == 255)
 //         {
 //
-//            for (int y = 0; y < yEnd; y++)
+//            for (::i32 y = 0; y < yEnd; y++)
 //            {
 //
 //               pdst2 = &pdst[scanDst * y];
@@ -1048,7 +1048,7 @@ namespace draw2d_cairo
 //               psrc2 = &psrc[scanSrc * y];
 //
 //               //::memory_copy(pdst2, psrc2, xEnd * 4);
-//               for (int x = 0; x < xEnd; x++)
+//               for (::i32 x = 0; x < xEnd; x++)
 //               {
 //
 //                  //*pdst2 = *psrc2;
@@ -1057,7 +1057,7 @@ namespace draw2d_cairo
 //                  //pdst2[1] = (psrc2[1] + (pdst2[1] * (255 - psrc2[3])) / 255);
 //                  //pdst2[2] = (psrc2[2] + (pdst2[2] * (255 - psrc2[3])) / 255);
 //                  //pdst2[3] = (psrc2[3] + (pdst2[3] * (255 - psrc2[3])) / 255);
-//                  unsigned char acomplement = ~psrc2[3];
+//                  ::u8 acomplement = ~psrc2[3];
 //                  pdst2[0] = psrc2[0] + ((pdst2[0] * (acomplement)) >> 8);
 //                  pdst2[1] = psrc2[1] + ((pdst2[1] * (acomplement)) >> 8);
 //                  pdst2[2] = psrc2[2] + ((pdst2[2] * (acomplement)) >> 8);
@@ -1077,7 +1077,7 @@ namespace draw2d_cairo
 //         }
 //         else
 //         {
-//            for (int y = 0; y < yEnd; y++)
+//            for (::i32 y = 0; y < yEnd; y++)
 //            {
 //
 //               pdst2 = &pdst[scanDst * y];
@@ -1085,7 +1085,7 @@ namespace draw2d_cairo
 //               psrc2 = &psrc[scanSrc * y];
 //
 //               //::memory_copy(pdst2, psrc2, xEnd * 4);
-//               for (int x = 0; x < xEnd; x++)
+//               for (::i32 x = 0; x < xEnd; x++)
 //               {
 //
 //                  //*pdst2 = *psrc2;
@@ -1094,12 +1094,12 @@ namespace draw2d_cairo
 //                  //pdst2[1] = (psrc2[1] + (pdst2[1] * (255 - psrc2[3])) / 255);
 //                  //pdst2[2] = (psrc2[2] + (pdst2[2] * (255 - psrc2[3])) / 255);
 //                  //pdst2[3] = (psrc2[3] + (pdst2[3] * (255 - psrc2[3])) / 255);
-//                  //unsigned char acomplement = (~psrc2[3] * bA) >> 8;
+//                  //::u8 acomplement = (~psrc2[3] * bA) >> 8;
 //                  //pdst2[0] = psrc2[0] + ((pdst2[0] * (acomplement)) >> 8);
 //                  //pdst2[1] = psrc2[1] + ((pdst2[1] * (acomplement)) >> 8);
 //                  //pdst2[2] = psrc2[2] + ((pdst2[2] * (acomplement)) >> 8);
 //                  //pdst2[3] = psrc2[3] + ((pdst2[3] * (acomplement)) >> 8);
-//                  unsigned char acomplement = (~psrc2[3] * bA) >> 8;
+//                  ::u8 acomplement = (~psrc2[3] * bA) >> 8;
 //                  pdst2[0] = clip_byte(((psrc2[0] * bA) + (pdst2[0] * acomplement)) >> 8);
 //                  pdst2[1] = clip_byte(((psrc2[1] * bA) + (pdst2[1] * acomplement)) >> 8);
 //                  pdst2[2] = clip_byte(((psrc2[2] * bA) + (pdst2[2] * acomplement)) >> 8);
@@ -1135,7 +1135,7 @@ namespace draw2d_cairo
          else if (bA == 255)
          {
 
-            for (int y = 0; y < yEnd; y++)
+            for (::i32 y = 0; y < yEnd; y++)
             {
 
                pdst2 = &pdst[scanDst * y];
@@ -1143,7 +1143,7 @@ namespace draw2d_cairo
                psrc2 = &psrc[scanSrc * y];
 
                //::memory_copy(pdst2, psrc2, xEnd * 4);
-               for (int x = 0; x < xEnd; x++)
+               for (::i32 x = 0; x < xEnd; x++)
                {
 
                   //*pdst2 = *psrc2;
@@ -1152,8 +1152,8 @@ namespace draw2d_cairo
                   //pdst2[1] = (psrc2[1] + (pdst2[1] * (255 - psrc2[3])) / 255);
                   //pdst2[2] = (psrc2[2] + (pdst2[2] * (255 - psrc2[3])) / 255);
                   //pdst2[3] = (psrc2[3] + (pdst2[3] * (255 - psrc2[3])) / 255);
-                  unsigned char a = pdst2[3];
-                  unsigned char alpha = psrc2[3];
+                  ::u8 a = pdst2[3];
+                  ::u8 alpha = psrc2[3];
                   if (a == 0)
                   {
 
@@ -1167,13 +1167,13 @@ namespace draw2d_cairo
                   else
                   {
 
-                     //int d0 = pdst2[0] * 255 / a;
-                     //int d1 = pdst2[1] * 255 / a;
-                     //int d2 = pdst2[2] * 255 / a;
+                     //::i32 d0 = pdst2[0] * 255 / a;
+                     //::i32 d1 = pdst2[1] * 255 / a;
+                     //::i32 d2 = pdst2[2] * 255 / a;
 
-                     //int s0 = psrc2[0] * 255 / alpha;
-                     //int s1 = psrc2[1] * 255 / alpha;
-                     //int s2 = psrc2[2] * 255 / alpha;
+                     //::i32 s0 = psrc2[0] * 255 / alpha;
+                     //::i32 s1 = psrc2[1] * 255 / alpha;
+                     //::i32 s2 = psrc2[2] * 255 / alpha;
 
                      //d0 = ((s0 * a) + (d0 * alpha)) >> 8;
                      //d1 = ((s1 * a) + (d1 * alpha)) >> 8;
@@ -1209,7 +1209,7 @@ namespace draw2d_cairo
          }
          else
          {
-            for (int y = 0; y < yEnd; y++)
+            for (::i32 y = 0; y < yEnd; y++)
             {
 
                pdst2 = &pdst[scanDst * y];
@@ -1217,7 +1217,7 @@ namespace draw2d_cairo
                psrc2 = &psrc[scanSrc * y];
 
                //::memory_copy(pdst2, psrc2, xEnd * 4);
-               for (int x = 0; x < xEnd; x++)
+               for (::i32 x = 0; x < xEnd; x++)
                {
 
                   //*pdst2 = *psrc2;
@@ -1226,13 +1226,13 @@ namespace draw2d_cairo
                   //pdst2[1] = (psrc2[1] + (pdst2[1] * (255 - psrc2[3])) / 255);
                   //pdst2[2] = (psrc2[2] + (pdst2[2] * (255 - psrc2[3])) / 255);
                   //pdst2[3] = (psrc2[3] + (pdst2[3] * (255 - psrc2[3])) / 255);
-                  //unsigned char acomplement = (~psrc2[3] * bA) >> 8;
+                  //::u8 acomplement = (~psrc2[3] * bA) >> 8;
                   //pdst2[0] = psrc2[0] + ((pdst2[0] * (acomplement)) >> 8);
                   //pdst2[1] = psrc2[1] + ((pdst2[1] * (acomplement)) >> 8);
                   //pdst2[2] = psrc2[2] + ((pdst2[2] * (acomplement)) >> 8);
                   //pdst2[3] = psrc2[3] + ((pdst2[3] * (acomplement)) >> 8);
 
-                  unsigned char acomplement = (~psrc2[3] * bA) >> 8;
+                  ::u8 acomplement = (~psrc2[3] * bA) >> 8;
 
                   pdst2[0] = byte_clip(((psrc2[0] * bA) + (pdst2[0] * acomplement)) >> 8);
                   pdst2[1] = byte_clip(((psrc2[1] * bA) + (pdst2[1] * acomplement)) >> 8);
@@ -1258,7 +1258,7 @@ namespace draw2d_cairo
    }
 
 
-//   void image::blend2(const ::int_point& pointDstParam, ::image::image* pimageSrc, const ::int_point& pointSrcParam, const ::int_size& sizeParam, unsigned char bA)
+//   void image::blend2(const ::i32_point& pointDstParam, ::image::image* pimageSrc, const ::i32_point& pointSrcParam, const ::i32_size& sizeParam, ::u8 bA)
 //   {
 //
 //      ::image::image* pimageDst = this;
@@ -1267,11 +1267,11 @@ namespace draw2d_cairo
 //
 //      pimageSrc->map();
 //
-//      ::int_point pointDst(pointDstParam);
+//      ::i32_point pointDst(pointDstParam);
 //
-//      ::int_point pointSrc(pointSrcParam);
+//      ::i32_point pointSrc(pointSrcParam);
 //
-//      ::int_size size(sizeParam);
+//      ::i32_size size(sizeParam);
 //
 //      pointDst += m_point;
 //
@@ -1314,9 +1314,9 @@ namespace draw2d_cairo
 //         return;
 //      }
 //
-//      int xEnd = minimum(size.cx, minimum(pimageSrc->width() - pointSrc.x, pimageDst->width() - pointDst.x));
+//      ::i32 xEnd = minimum(size.cx, minimum(pimageSrc->width() - pointSrc.x, pimageDst->width() - pointDst.x));
 //
-//      int yEnd = minimum(size.cy, minimum(pimageSrc->height() - pointSrc.y, pimageDst->height() - pointDst.y));
+//      ::i32 yEnd = minimum(size.cy, minimum(pimageSrc->height() - pointSrc.y, pimageDst->height() - pointDst.y));
 //
 //      if (xEnd < 0)
 //      {
@@ -1332,17 +1332,17 @@ namespace draw2d_cairo
 //
 //      }
 //
-//      int scanDst = pimageDst->m_iScan;
+//      ::i32 scanDst = pimageDst->m_iScan;
 //
-//      int scanSrc = pimageSrc->m_iScan;
+//      ::i32 scanSrc = pimageSrc->m_iScan;
 //
-//      unsigned char * pdst = ((unsigned char *) pimageDst->colorref()) + (scanDst * pointDst.y) + (pointDst.x * sizeof(color32_t));
+//      ::u8 * pdst = ((::u8 *) pimageDst->colorref()) + (scanDst * pointDst.y) + (pointDst.x * sizeof(color32_t));
 //
-//      unsigned char * psrc = ((unsigned char *) pimageSrc->colorref()) + (scanSrc * pointSrc.y) + (pointSrc.x * sizeof(color32_t));
+//      ::u8 * psrc = ((::u8 *) pimageSrc->colorref()) + (scanSrc * pointSrc.y) + (pointSrc.x * sizeof(color32_t));
 //
-//      unsigned char * pdst2;
+//      ::u8 * pdst2;
 //
-//      unsigned char * psrc2;
+//      ::u8 * psrc2;
 //
 //      if (bA == 0)
 //      {
@@ -1351,19 +1351,19 @@ namespace draw2d_cairo
 //      else if (bA == 255)
 //      {
 //
-//         for (int y = 0; y < yEnd; y++)
+//         for (::i32 y = 0; y < yEnd; y++)
 //         {
 //
 //            pdst2 = pdst + scanDst * y;
 //
 //            psrc2 = psrc + scanSrc * y;
 //
-//            for (int x = 0; x < xEnd; x++)
+//            for (::i32 x = 0; x < xEnd; x++)
 //            {
 //
-//               int aDst = pdst2[3];
+//               ::i32 aDst = pdst2[3];
 //
-//               int aSrc = psrc2[3];
+//               ::i32 aSrc = psrc2[3];
 //
 //               if (aDst == 0)
 //               {
@@ -1378,11 +1378,11 @@ namespace draw2d_cairo
 //               else
 //               {
 //
-////                  int r = (pdst2[0] * 255) / aDst;
-////                  int g = (pdst2[1] * 255) / aDst;
-////                  int b = (pdst2[2] * 255) / aDst;
+////                  ::i32 r = (pdst2[0] * 255) / aDst;
+////                  ::i32 g = (pdst2[1] * 255) / aDst;
+////                  ::i32 b = (pdst2[2] * 255) / aDst;
 //
-//                  //int a = (aSrc * aDst) / 255;
+//                  //::i32 a = (aSrc * aDst) / 255;
 //
 //                  pdst2[0] = pdst2[0] * aSrc / 255;
 //                  pdst2[1] = pdst2[1] * aSrc / 255;
@@ -1404,7 +1404,7 @@ namespace draw2d_cairo
 //      else
 //      {
 //
-//         for (int y = 0; y < yEnd; y++)
+//         for (::i32 y = 0; y < yEnd; y++)
 //         {
 //
 //            pdst2 = &pdst[scanDst * y];
@@ -1412,7 +1412,7 @@ namespace draw2d_cairo
 //            psrc2 = &psrc[scanSrc * y];
 //
 //            //::memory_copy(pdst2, psrc2, xEnd * 4);
-//            for (int x = 0; x < xEnd; x++)
+//            for (::i32 x = 0; x < xEnd; x++)
 //            {
 //
 //               //*pdst2 = *psrc2;
@@ -1421,12 +1421,12 @@ namespace draw2d_cairo
 //               //pdst2[1] = (psrc2[1] + (pdst2[1] * (255 - psrc2[3])) / 255);
 //               //pdst2[2] = (psrc2[2] + (pdst2[2] * (255 - psrc2[3])) / 255);
 //               //pdst2[3] = (psrc2[3] + (pdst2[3] * (255 - psrc2[3])) / 255);
-//               //unsigned char acomplement = (~psrc2[3] * bA) >> 8;
+//               //::u8 acomplement = (~psrc2[3] * bA) >> 8;
 //               //pdst2[0] = psrc2[0] + ((pdst2[0] * (acomplement)) >> 8);
 //               //pdst2[1] = psrc2[1] + ((pdst2[1] * (acomplement)) >> 8);
 //               //pdst2[2] = psrc2[2] + ((pdst2[2] * (acomplement)) >> 8);
 //               //pdst2[3] = psrc2[3] + ((pdst2[3] * (acomplement)) >> 8);
-//               unsigned char acomplement = (~psrc2[3] * bA) >> 8;
+//               ::u8 acomplement = (~psrc2[3] * bA) >> 8;
 //               pdst2[0] = byte_clip(((psrc2[0] * bA) + (pdst2[0] * acomplement)) >> 8);
 //               pdst2[1] = byte_clip(((psrc2[1] * bA) + (pdst2[1] * acomplement)) >> 8);
 //               pdst2[2] = byte_clip(((psrc2[2] * bA) + (pdst2[2] * acomplement)) >> 8);
@@ -1449,7 +1449,7 @@ namespace draw2d_cairo
 //   }
 
 
-//   void image::blend2(const ::int_point & pointDstParam, ::image::image *pimplSrc,  const ::int_point & pointSrcParam, const ::int_size & sizeParam, unsigned char bA)
+//   void image::blend2(const ::i32_point & pointDstParam, ::image::image *pimplSrc,  const ::i32_point & pointSrcParam, const ::i32_size & sizeParam, ::u8 bA)
 //   {
 //
 //      auto size = sizeParam;
@@ -1504,9 +1504,9 @@ namespace draw2d_cairo
 //
 //      }
 //
-//      int xEnd = minimum(size.cx, minimum(pimplSrc->width() - pointSrc.x, pimplDst->width() - pointDst.x));
+//      ::i32 xEnd = minimum(size.cx, minimum(pimplSrc->width() - pointSrc.x, pimplDst->width() - pointDst.x));
 //
-//      int yEnd = minimum(size.cy, minimum(pimplSrc->height() - pointSrc.y, pimplDst->height() - pointDst.y));
+//      ::i32 yEnd = minimum(size.cy, minimum(pimplSrc->height() - pointSrc.y, pimplDst->height() - pointDst.y));
 //
 //      if (xEnd < 0)
 //      {
@@ -1522,24 +1522,24 @@ namespace draw2d_cairo
 //
 //      }
 //
-//      int scanDst = pimplDst->scan_size();
+//      ::i32 scanDst = pimplDst->scan_size();
 //
-//      int scanSrc = pimplSrc->scan_size();
+//      ::i32 scanSrc = pimplSrc->scan_size();
 //
-//      unsigned char * pdst2;
+//      ::u8 * pdst2;
 //
-//      unsigned char * psrc2;
+//      ::u8 * psrc2;
 //
 //#ifdef APPLEOS
-//      unsigned char * pdst = &((unsigned char *)imageDst.m_pcolorrefMap)[scanDst * (imageDst.height() - ptDst.y - yEnd) + ptDst.x * sizeof(color32_t)];
+//      ::u8 * pdst = &((::u8 *)imageDst.m_pcolorrefMap)[scanDst * (imageDst.height() - ptDst.y - yEnd) + ptDst.x * sizeof(color32_t)];
 //
-//      unsigned char * psrc = &((unsigned char *)imageSrc.m_pcolorrefMap)[scanSrc * (imageSrc.height() - ptSrc.y - yEnd) + ptSrc.x * sizeof(color32_t)];
+//      ::u8 * psrc = &((::u8 *)imageSrc.m_pcolorrefMap)[scanSrc * (imageSrc.height() - ptSrc.y - yEnd) + ptSrc.x * sizeof(color32_t)];
 //
 //#else
 //
-//      unsigned char * pdst = &((unsigned char *)pimplDst->m_pimage32)[scanDst * pointDst.y + pointDst.x * sizeof(color32_t)];
+//      ::u8 * pdst = &((::u8 *)pimplDst->m_pimage32)[scanDst * pointDst.y + pointDst.x * sizeof(color32_t)];
 //
-//      unsigned char * psrc = &((unsigned char *)pimplSrc->m_pimage32)[scanSrc *  pointSrc.y + pointSrc.x * sizeof(color32_t)];
+//      ::u8 * psrc = &((::u8 *)pimplSrc->m_pimage32)[scanSrc *  pointSrc.y + pointSrc.x * sizeof(color32_t)];
 //
 //#endif
 //
@@ -1555,7 +1555,7 @@ namespace draw2d_cairo
 ////         else if (bA == 255)
 ////         {
 ////
-////            for (int y = 0; y < yEnd; y++)
+////            for (::i32 y = 0; y < yEnd; y++)
 ////            {
 ////
 ////               pdst2 = &pdst[scanDst * y];
@@ -1563,7 +1563,7 @@ namespace draw2d_cairo
 ////               psrc2 = &psrc[scanSrc * y];
 ////
 ////               //::memory_copy(pdst2, psrc2, xEnd * 4);
-////               for (int x = 0; x < xEnd; x++)
+////               for (::i32 x = 0; x < xEnd; x++)
 ////               {
 ////
 ////                  //*pdst2 = *psrc2;
@@ -1572,7 +1572,7 @@ namespace draw2d_cairo
 ////                  //pdst2[1] = (psrc2[1] + (pdst2[1] * (255 - psrc2[3])) / 255);
 ////                  //pdst2[2] = (psrc2[2] + (pdst2[2] * (255 - psrc2[3])) / 255);
 ////                  //pdst2[3] = (psrc2[3] + (pdst2[3] * (255 - psrc2[3])) / 255);
-////                  unsigned char acomplement = ~psrc2[3];
+////                  ::u8 acomplement = ~psrc2[3];
 ////                  pdst2[0] = psrc2[0] + ((pdst2[0] * (acomplement)) >> 8);
 ////                  pdst2[1] = psrc2[1] + ((pdst2[1] * (acomplement)) >> 8);
 ////                  pdst2[2] = psrc2[2] + ((pdst2[2] * (acomplement)) >> 8);
@@ -1592,7 +1592,7 @@ namespace draw2d_cairo
 ////         }
 ////         else
 ////         {
-////            for (int y = 0; y < yEnd; y++)
+////            for (::i32 y = 0; y < yEnd; y++)
 ////            {
 ////
 ////               pdst2 = &pdst[scanDst * y];
@@ -1600,7 +1600,7 @@ namespace draw2d_cairo
 ////               psrc2 = &psrc[scanSrc * y];
 ////
 ////               //::memory_copy(pdst2, psrc2, xEnd * 4);
-////               for (int x = 0; x < xEnd; x++)
+////               for (::i32 x = 0; x < xEnd; x++)
 ////               {
 ////
 ////                  //*pdst2 = *psrc2;
@@ -1609,12 +1609,12 @@ namespace draw2d_cairo
 ////                  //pdst2[1] = (psrc2[1] + (pdst2[1] * (255 - psrc2[3])) / 255);
 ////                  //pdst2[2] = (psrc2[2] + (pdst2[2] * (255 - psrc2[3])) / 255);
 ////                  //pdst2[3] = (psrc2[3] + (pdst2[3] * (255 - psrc2[3])) / 255);
-////                  //unsigned char acomplement = (~psrc2[3] * bA) >> 8;
+////                  //::u8 acomplement = (~psrc2[3] * bA) >> 8;
 ////                  //pdst2[0] = psrc2[0] + ((pdst2[0] * (acomplement)) >> 8);
 ////                  //pdst2[1] = psrc2[1] + ((pdst2[1] * (acomplement)) >> 8);
 ////                  //pdst2[2] = psrc2[2] + ((pdst2[2] * (acomplement)) >> 8);
 ////                  //pdst2[3] = psrc2[3] + ((pdst2[3] * (acomplement)) >> 8);
-////                  unsigned char acomplement = (~psrc2[3] * bA) >> 8;
+////                  ::u8 acomplement = (~psrc2[3] * bA) >> 8;
 ////                  pdst2[0] = clip_byte(((psrc2[0] * bA) + (pdst2[0] * acomplement)) >> 8);
 ////                  pdst2[1] = clip_byte(((psrc2[1] * bA) + (pdst2[1] * acomplement)) >> 8);
 ////                  pdst2[2] = clip_byte(((psrc2[2] * bA) + (pdst2[2] * acomplement)) >> 8);
@@ -1650,7 +1650,7 @@ namespace draw2d_cairo
 //         else if (bA == 255)
 //         {
 //
-//            for (int y = 0; y < yEnd; y++)
+//            for (::i32 y = 0; y < yEnd; y++)
 //            {
 //
 //               pdst2 = &pdst[scanDst * y];
@@ -1658,7 +1658,7 @@ namespace draw2d_cairo
 //               psrc2 = &psrc[scanSrc * y];
 //
 //               //::memory_copy(pdst2, psrc2, xEnd * 4);
-//               for (int x = 0; x < xEnd; x++)
+//               for (::i32 x = 0; x < xEnd; x++)
 //               {
 //
 //                  //*pdst2 = *psrc2;
@@ -1667,8 +1667,8 @@ namespace draw2d_cairo
 //                  //pdst2[1] = (psrc2[1] + (pdst2[1] * (255 - psrc2[3])) / 255);
 //                  //pdst2[2] = (psrc2[2] + (pdst2[2] * (255 - psrc2[3])) / 255);
 //                  //pdst2[3] = (psrc2[3] + (pdst2[3] * (255 - psrc2[3])) / 255);
-//                  unsigned char a = pdst2[3];
-//                  unsigned char alpha = psrc2[3];
+//                  ::u8 a = pdst2[3];
+//                  ::u8 alpha = psrc2[3];
 //                  if (a == 0)
 //                  {
 //
@@ -1682,13 +1682,13 @@ namespace draw2d_cairo
 //                  else
 //                  {
 //
-//                     //int d0 = pdst2[0] * 255 / a;
-//                     //int d1 = pdst2[1] * 255 / a;
-//                     //int d2 = pdst2[2] * 255 / a;
+//                     //::i32 d0 = pdst2[0] * 255 / a;
+//                     //::i32 d1 = pdst2[1] * 255 / a;
+//                     //::i32 d2 = pdst2[2] * 255 / a;
 //
-//                     //int s0 = psrc2[0] * 255 / alpha;
-//                     //int s1 = psrc2[1] * 255 / alpha;
-//                     //int s2 = psrc2[2] * 255 / alpha;
+//                     //::i32 s0 = psrc2[0] * 255 / alpha;
+//                     //::i32 s1 = psrc2[1] * 255 / alpha;
+//                     //::i32 s2 = psrc2[2] * 255 / alpha;
 //
 //                     //d0 = ((s0 * a) + (d0 * alpha)) >> 8;
 //                     //d1 = ((s1 * a) + (d1 * alpha)) >> 8;
@@ -1704,7 +1704,7 @@ namespace draw2d_cairo
 //                     //pdst2[2] = psrc2[2] + ((pdst2[2] * (acomplement)) >> 8);
 //                     //pdst2[3] = psrc2[3] + ((pdst2[3] * (acomplement)) >> 8);
 //
-//                     int alpha2 = alpha * a;
+//                     ::i32 alpha2 = alpha * a;
 //
 //                     pdst2[0] = (pdst2[0] * alpha2) >> 8;
 //                     pdst2[1] = (pdst2[1] * alpha2) >> 8;
@@ -1726,7 +1726,7 @@ namespace draw2d_cairo
 //         }
 //         else
 //         {
-//            for (int y = 0; y < yEnd; y++)
+//            for (::i32 y = 0; y < yEnd; y++)
 //            {
 //
 //               pdst2 = &pdst[scanDst * y];
@@ -1734,7 +1734,7 @@ namespace draw2d_cairo
 //               psrc2 = &psrc[scanSrc * y];
 //
 //               //::memory_copy(pdst2, psrc2, xEnd * 4);
-//               for (int x = 0; x < xEnd; x++)
+//               for (::i32 x = 0; x < xEnd; x++)
 //               {
 //
 //                  //*pdst2 = *psrc2;
@@ -1743,13 +1743,13 @@ namespace draw2d_cairo
 //                  //pdst2[1] = (psrc2[1] + (pdst2[1] * (255 - psrc2[3])) / 255);
 //                  //pdst2[2] = (psrc2[2] + (pdst2[2] * (255 - psrc2[3])) / 255);
 //                  //pdst2[3] = (psrc2[3] + (pdst2[3] * (255 - psrc2[3])) / 255);
-//                  //unsigned char acomplement = (~psrc2[3] * bA) >> 8;
+//                  //::u8 acomplement = (~psrc2[3] * bA) >> 8;
 //                  //pdst2[0] = psrc2[0] + ((pdst2[0] * (acomplement)) >> 8);
 //                  //pdst2[1] = psrc2[1] + ((pdst2[1] * (acomplement)) >> 8);
 //                  //pdst2[2] = psrc2[2] + ((pdst2[2] * (acomplement)) >> 8);
 //                  //pdst2[3] = psrc2[3] + ((pdst2[3] * (acomplement)) >> 8);
 //
-//                  unsigned char acomplement = (~psrc2[3] * bA) >> 8;
+//                  ::u8 acomplement = (~psrc2[3] * bA) >> 8;
 //
 //                  pdst2[0] = byte_clip(((psrc2[0] * bA) + (pdst2[0] * acomplement)) >> 8);
 //                  pdst2[1] = byte_clip(((psrc2[1] * bA) + (pdst2[1] * acomplement)) >> 8);

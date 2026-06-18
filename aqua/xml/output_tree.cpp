@@ -99,7 +99,7 @@ namespace xml
    }
 
 
-   //void output_tree::set_attr(const ::scoped_string & scopedstrName, long long iValue, bool bOptional)
+   //void output_tree::set_attr(const ::scoped_string & scopedstrName, ::i64 iValue, bool bOptional)
 
    //{
    //   if (iValue == 0 && bOptional)
@@ -119,7 +119,7 @@ namespace xml
 
    //}
 
-   //void output_tree::set_double_attr(const ::scoped_string & scopedstrName, double dValue)
+   //void output_tree::set_f64_attr(const ::scoped_string & scopedstrName, ::f64 dValue)
 
    //{
    //   m_pnode->set_attr(pcszName, as_string(dValue));

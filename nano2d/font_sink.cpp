@@ -14,12 +14,12 @@ namespace nano2d
 {
 
 
-   ::write_text::font_pointer font_sink::get_shared_font(const_char_pointer face, float size)
+   ::write_text::font_pointer font_sink::get_shared_font(const_char_pointer face, ::f32 size)
    {
                                                  
        auto fontdescriptor = system()->draw2d()->write_text()->calculate_font_descriptor(face, size);
 
-       float fSize = (float) fontdescriptor.m_iSize;
+       ::f32 fSize = (::f32) fontdescriptor.m_iSize;
        
        auto & pfontShared = m_mapSharedFont[fontdescriptor.m_strFace][fSize];
        
@@ -40,7 +40,7 @@ namespace nano2d
           
           __font_face(pfontShared, face);
           
-          __font_size(pfontShared, (float) fontdescriptor.m_iSize / 1000.0f);
+          __font_size(pfontShared, (::f32) fontdescriptor.m_iSize / 1000.0f);
           
           pfontShared->set_modified();
              

@@ -18,7 +18,7 @@
 //      ::comptr<ID3D11Texture2D> m_ptextureShared;
 //      //VkSwapchainKHR       m_vkswapchain;
 //      uint32_t             m_uCurrentSwapChainImage;
-//      //::int_size m_size;
+//      //::i32_size m_size;
 //
 //      ::comptr<ID3D11VertexShader> m_pvertexshaderFullscreen;
 //      ::comptr<ID3D11PixelShader> m_ppixelshaderFullscreen;
@@ -26,33 +26,33 @@
 //      ::comptr<ID3D11ShaderResourceView> m_pshaderresourceviewShader;
 //
 //
-//      static constexpr int MAX_FRAMES_IN_FLIGHT = 2;
+//      static constexpr ::i32 MAX_FRAMES_IN_FLIGHT = 2;
 //
 //      //swap_chain_render_target();
-//      swap_chain_render_target(renderer* pgpurenderer, const ::int_size & size);
-//      swap_chain_render_target(renderer * pgpurenderer, const ::int_size& size, ::pointer <render_target>previous);
+//      swap_chain_render_target(renderer* pgpurenderer, const ::i32_size & size);
+//      swap_chain_render_target(renderer * pgpurenderer, const ::i32_size& size, ::pointer <render_target>previous);
 //      ~swap_chain_render_target();
 //
 //      //swap_chain_render_target(const swap_chain_render_target&) = delete;
 //      //swap_chain_render_target& operator=(const swap_chain_render_target&) = delete;
 //
-//      //VkFramebuffer getFrameBuffer(int index) { return swapChainFramebuffers[index]; }
+//      //VkFramebuffer getFramebuffer(::i32 index) { return swapChainFramebuffers[index]; }
 //      //VkRenderPass getRenderPass() { return m_vkrendertargetview; }
-//      //VkImageView getImageView(int index) { return swapChainImageViews[index]; }
+//      //VkImageView getImageView(::i32 index) { return swapChainImageViews[index]; }
 //      //size_t imageCount() { return swapChainImages.size(); }
 //      //VkFormat getSwapChainImageFormat() { return swapChainImageFormat; }
 //      //VkExtent2D getSwapChainExtent() { return m_extent; }
 //      //uint32_t width() { return m_extent.width; }
 //      //uint32_t height() { return m_extent.height; }
 //
-//      //float extentAspectRatio() {
-//      //   return static_cast<float>(m_extent.width) / static_cast<float>(m_extent.height);
+//      //::f32 extentAspectRatio() {
+//      //   return static_cast<::f32>(m_extent.width) / static_cast<::f32>(m_extent.height);
 //      //}
 //  //    VkFormat findDepthFormat();
 //
 //      HRESULT acquireNextImage() override;
 ////      HRESULT submitCommandBuffers(const VkCommandBuffer* buffers) override;
-//      int get_image_index() const override;
+//      ::i32 get_image_index() const override;
 //      //bool compareSwapFormats(const swap_chain_render_target& m_swapchain) const {
 //      //   return m_swapchain.swapChainDepthFormat == swapChainDepthFormat &&
 //      //      m_swapchain.swapChainImageFormat == swapChainImageFormat;

@@ -1,0 +1,155 @@
+// Copyright (C) 2009,2010,2011,2012 GlavSoft LLC.
+// All rights reserved.
+//
+//-------------------------------------------------------------------------
+// This file is part of the T i g h t V N C software.  Please visit our Web site:
+//
+//                       http://www.t i g h t v n c.com/
+//
+// This program is free software; you can redistribute it and/or modify
+// it under the terms of the GNU General Public License as published by
+// the Free Software Foundation; either version 2 of the License, or
+// (at your option) any later version.
+//
+// This program is distributed in the hope that it will be useful,
+// but WITHOUT ANY WARRANTY; without even the implied warranty of
+// MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+// GNU General Public License for more details.
+//
+// You should have received a copy of the GNU General Public License along
+// with this program; if not, w_rite to the Free Software Foundation, Inc.,
+// 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA.
+//-------------------------------------------------------------------------
+//
+#include "framework.h"
+#include "ByteArrayOutputStream.h"
+
+// #include aaa_<string.h>
+
+
+//namespace subsystem
+//{
+
+// ByteArrayOutputStream::ByteArrayOutputStream(memsize max)
+// : m_size(0), m_max(max), m_ownMemory(true)
+// {
+//    m_buffer = new ::i8[m_max];
+// }
+//
+//    ByteArrayOutputStream::ByteArrayOutputStream(memsize max)
+//    : m_size(0), m_max(max), m_ownMemory(true)
+//    {
+//       m_buffer = new ::i8[m_max];
+//    }
+   //
+   // ByteArrayOutputStream::ByteArrayOutputStream()
+   // : m_size(0), m_buffer(0), m_max(DEFAULT_INNER_BUFFER_CAPACITY), m_ownMemory(true)
+   // {
+   //    m_buffer = new ::i8[m_max];
+   // }
+ByteArrayOutputStream::ByteArrayOutputStream()
+: m_size(0), m_buffer(0), m_max(0), m_bOwnMemory(false)
+   {
+      //m_buffer = nu
+   }
+ByteArrayOutputStream::ByteArrayOutputStream(::particle * pparticle, memsize max)
+: ByteArrayOutputStream()
+{
+   _initialize_byte_array_output_stream(pparticle, max);
+   //m_buffer = nu
+}
+ByteArrayOutputStream::ByteArrayOutputStream(::particle * pparticle, void *alienMemory, memsize size)
+: ByteArrayOutputStream()
+{
+   _initialize_byte_array_output_stream(pparticle, alienMemory, size);
+   //m_buffer = nu
+}
+
+   // ByteArrayOutputStream::ByteArrayOutputStream(void *alienMemory)
+   // : m_size(0), m_buffer((char_pointer )alienMemory), m_max(0xFFFFFF), m_ownMemory(false)
+   // {
+   // }
+ByteArrayOutputStream::~ByteArrayOutputStream()
+{
+   if ((m_buffer != 0) && (m_bOwnMemory)) {
+      delete[] m_buffer;
+   }
+}
+
+void ByteArrayOutputStream::_initialize_byte_array_output_stream(::particle * pparticle, memsize max)
+
+{
+initialize(pparticle);
+      if (max < 0)
+      {
+
+         max = DEFAULT_INNER_BUFFER_CAPACITY;
+      }
+   m_size = 0;
+   m_max = max;
+   m_bOwnMemory = true;
+   m_buffer = new ::i8[m_max];
+}
+
+
+void ByteArrayOutputStream::_initialize_byte_array_output_stream(::particle * pparticle, void *alienMemory, memsize size)
+{
+   initialize(pparticle);
+   m_size = 0;
+   m_max = size;
+   m_bOwnMemory = false;
+   m_buffer = (char_pointer ) alienMemory;
+
+}
+
+
+
+
+   memsize ByteArrayOutputStream::defer_write(const void *buffer, memsize len)
+   {
+      bool allocateNewBuffer = (m_size + len) > m_max;
+
+      if (allocateNewBuffer)
+         {
+         if (m_bOwnMemory)
+         {
+            memsize reserve = DEFAULT_INNER_BUFFER_CAPACITY;
+            // Create new buffer with some reserve
+            char_pointer newBuffer = new ::i8[m_size + len + reserve];
+            // Copy old buffer content to new
+            memcpy(newBuffer, m_buffer, m_size);
+            // Cleanup
+            delete[] m_buffer;
+            // Set new buffer
+            m_buffer = newBuffer;
+            // Set new max buffer size
+            m_max = m_size + len + reserve;
+         }
+         else
+         {
+
+            throw ::exception(error_would_reach_buffer_limit);
+
+         }
+      }
+
+      //
+      // Write data to buffer
+      //
+
+      memcpy(&m_buffer[m_size], (const_char_pointer )buffer, len);
+      m_size += len;
+
+      return len;
+   }
+
+   memsize ByteArrayOutputStream::size() const
+   {
+      return m_size;
+   }
+
+   const_char_pointer ByteArrayOutputStream::toByteArray() const
+   {
+      return m_buffer;
+   }
+//}//namespace subsystem

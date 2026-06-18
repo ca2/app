@@ -122,11 +122,11 @@ namespace aura
 ////
 ////#ifdef WINDOWS_DESKTOP
 ////
-////typedef int WINAPI __MAIN_DEFERRED_RUN(HINSTANCE hinstance, HINSTANCE hPrevInstance, char * pCmdLine, int nCmdShow);
+////typedef ::i32 WINAPI __MAIN_DEFERRED_RUN(HINSTANCE hinstance, HINSTANCE hPrevInstance, char_pointer pCmdLine, ::i32 nCmdShow);
 ////
 ////#else
 ////
-////typedef int __MAIN_DEFERRED_RUN(int argc, char ** argv);
+////typedef ::i32 __MAIN_DEFERRED_RUN(::i32 argc, char_pointer * argv);
 ////
 ////#endif
 ////
@@ -212,10 +212,10 @@ namespace aura
 ////} // namespace opengl
 ////
 ////
-////struct ::int_sz
+////struct ::i32_sz
 ////{
 ////
-////   int            m_i;
+////   ::i32            m_i32;
 ////   const_char_pointer m_psz;
 ////
 ////};
@@ -228,13 +228,13 @@ namespace aura
 //////CLASS_DECL_AURA void set_last_status(const ::e_status & estatus);
 //////CLASS_DECL_AURA void windowing_output_debug_string(const ::scoped_string & scopedstrDebugString);
 //////CLASS_DECL_AURA void c_function_call(void * p);
-//////extern CLASS_DECL_AURA int g_bAura;
-//////CLASS_DECL_AURA int __assert_failed_line(const ::scoped_string & scopedstrFileName,int iLineNumber);
-//////CLASS_DECL_AURA int is_debugger_attached(void);
+//////extern CLASS_DECL_AURA ::i32 g_bAura;
+//////CLASS_DECL_AURA ::i32 __assert_failed_line(const ::scoped_string & scopedstrFileName,::i32 iLineNumber);
+//////CLASS_DECL_AURA ::i32 is_debugger_attached(void);
 //////CLASS_DECL_AURA void debug_print(const ::scoped_string & scopedstr,...);
 //////
 //////
-//////CLASS_DECL_AURA int throw_assert_exception(const ::scoped_string & scopedstrFileName,int iLineNumber);
+//////CLASS_DECL_AURA ::i32 throw_assert_exception(const ::scoped_string & scopedstrFileName,::i32 iLineNumber);
 //////CLASS_DECL_AURA void throw_what_exclamation_exclamation(const ::scoped_string & scopedstr);
 //////
 ////
@@ -276,7 +276,7 @@ namespace aura
 ////#endif
 ////
 ////
-////#define lower_byte(w)              ((unsigned char)((w) & 0xff))
+////#define lower_byte(w)              ((::u8)((w) & 0xff))
 ////
 ////
 ////#if defined(WINDOWS) || defined(LINUX) || defined(__i386__)
@@ -288,7 +288,7 @@ namespace aura
 ////#define IMAGE_B_BYTE_INDEX 0
 ////
 ////
-////#define IMAGE_ARGB(a, r, g, b)         ((::color::color)((lower_byte(b)|((unsigned short)(lower_byte(g))<<8))|(((unsigned int)lower_byte(r))<<16)|(((unsigned int)lower_byte(a))<<24)))
+////#define IMAGE_ARGB(a, r, g, b)         ((::color::color)((lower_byte(b)|((::u16)(lower_byte(g))<<8))|(((::u32)lower_byte(r))<<16)|(((::u32)lower_byte(a))<<24)))
 ////
 ////
 ////#define image_r_value(rgb)    (lower_byte((rgb)>>16))
@@ -306,7 +306,7 @@ namespace aura
 ////#define IMAGE_B_BYTE_INDEX 2
 ////
 ////
-////#define IMAGE_ARGB(a, r, g, b)         ((::color::color)((lower_byte(r)|((unsigned short)(lower_byte(g))<<8))|(((unsigned int)lower_byte(b))<<16)|(((unsigned int)lower_byte(a))<<24)))
+////#define IMAGE_ARGB(a, r, g, b)         ((::color::color)((lower_byte(r)|((::u16)(lower_byte(g))<<8))|(((::u32)lower_byte(b))<<16)|(((::u32)lower_byte(a))<<24)))
 ////
 ////
 ////#define image_r_value(rgb)    (lower_byte((rgb)))
@@ -321,35 +321,35 @@ namespace aura
 ////#define __CONCATENATE3(xxx, yyy, zzz) xxx ## yyy ## zzz
 ////
 ////
-////#define color32_byte_red(rgb)    (lower_byte(rgb))
-////#define color32_byte_green(rgb)    (lower_byte((rgb)>>8))
-////#define color32_byte_blue(rgb)    (lower_byte((rgb)>>16))
-////#define color32_byte_opacity(rgb)    (lower_byte((rgb)>>24))
-////#define RGBA(r, g, b, a)         ((::color::color)((lower_byte(r)|((unsigned short)(lower_byte(g))<<8))|(((unsigned int)lower_byte(b))<<16)|(((unsigned int)lower_byte(a))<<24)))
+////#define color32_u8_red(rgb)    (lower_byte(rgb))
+////#define color32_u8_green(rgb)    (lower_byte((rgb)>>8))
+////#define color32_u8_blue(rgb)    (lower_byte((rgb)>>16))
+////#define color32_u8_opacity(rgb)    (lower_byte((rgb)>>24))
+////#define RGBA(r, g, b, a)         ((::color::color)((lower_byte(r)|((::u16)(lower_byte(g))<<8))|(((::u32)lower_byte(b))<<16)|(((::u32)lower_byte(a))<<24)))
 ////#define argb(a, r, g, b)      RGBA(r, g, b, a)
 ////
 ////
 ////#define ::color::color(a, r, g, b)      ::color::color(r, g, b, a)
 ////
 ////
-////inline int trailingBytesForUTF8(char ch);
+////inline ::i32 trailingBytesForUTF8(::i8 ch);
 ////
 ////
-////extern CLASS_DECL_AURA const char g_trailingBytesForUTF8[256];
+////extern CLASS_DECL_AURA const ::i8 g_trailingBytesForUTF8[256];
 ////
 ////
-////inline int trailingBytesForUTF8(char ch)
+////inline ::i32 trailingBytesForUTF8(::i8 ch)
 ////{
 ////
-////   return ::g_trailingBytesForUTF8[(unsigned char)ch];
+////   return ::g_trailingBytesForUTF8[(::u8)ch];
 ////
 ////}
 ////
 ////
-////CLASS_DECL_AURA int is_ptr_null(const void * p, size_t s);
+////CLASS_DECL_AURA ::i32 is_ptr_null(const void * p, size_t s);
 ////
 ////
-////inline CLASS_DECL_AURA int c_is_null(const void * p)
+////inline CLASS_DECL_AURA ::i32 c_is_null(const void * p)
 ////{
 ////   return ((uptr)p) < 65536;
 ////
@@ -407,70 +407,70 @@ namespace aura
 ////#include <intsafe.h>
 ////#else
 ////
-////#ifndef lower_unsigned_int
-////#define lower_unsigned_int(l)                                    ((unsigned int)(((unsigned long long)(l)) & 0xffffffff))
+////#ifndef lower_u32
+////#define lower_u32(l)                                    ((::u32)(((::u64)(l)) & 0xffffffff))
 ////#endif
-////#ifndef upper_unsigned_int
-////#define upper_unsigned_int(l)                                    ((unsigned int)((((unsigned long long)(l)) >> 32) & 0xffffffff))
-////#endif
-////
+////#ifndef upper_u32
+////#define upper_u32(l)                                    ((::u32)((((::u64)(l)) >> 32) & 0xffffffff))
 ////#endif
 ////
+////#endif
 ////
 ////
 ////
-////#define __unsigned_short(a, b)                                   ((unsigned short)(((unsigned char)(((::uptr)(a)) & 0xff)) | ((unsigned short)((unsigned char)(((::uptr)(b)) & 0xff))) << 8))
-////#define as_unsigned_int(a, b)                                   ((unsigned int)(((unsigned short)(((::uptr)(a)) & 0xffff)) | ((unsigned int)((unsigned short)(((::uptr)(b)) & 0xffff))) << 16))
+////
+////#define __unsigned_short(a, b)                                   ((::u16)(((::u8)(((::uptr)(a)) & 0xff)) | ((::u16)((::u8)(((::uptr)(b)) & 0xff))) << 8))
+////#define as_u32(a, b)                                   ((::u32)(((::u16)(((::uptr)(a)) & 0xffff)) | ((::u32)((::u16)(((::uptr)(b)) & 0xffff))) << 16))
 ////
 ////
 ////#ifdef __cplusplus
 ////
-////#define __MAKE_LONG64(a, b)                              (((unsigned long long)(((unsigned int)(((unsigned long long)(a)) & 0xffffffff)) | ((unsigned long long)((unsigned int)(((unsigned long long)(b)) & 0xffffffff))) << 32)))
-////#define as_unsigned_long_long(a, b)                                   (((unsigned long long)(((unsigned int)(((unsigned long long)(a)) & 0xffffffff)) | ((unsigned long long)((unsigned int)(((unsigned long long)(b)) & 0xffffffff))) << 32)))
+////#define __MAKE_LONG64(a, b)                              (((::u64)(((::u32)(((::u64)(a)) & 0xffffffff)) | ((::u64)((::u32)(((::u64)(b)) & 0xffffffff))) << 32)))
+////#define as_u64(a, b)                                   (((::u64)(((::u32)(((::u64)(a)) & 0xffffffff)) | ((::u64)((::u32)(((::u64)(b)) & 0xffffffff))) << 32)))
 ////
 ////#else
 ////
-////#define __MAKE_LONG64(a, b)                              (((unsigned long long)(((unsigned int)(((unsigned long long)(a)) & 0xffffffff)) | ((unsigned long long)((unsigned int)(((unsigned long long)(b)) & 0xffffffff))) << 32)))
-////#define as_unsigned_long_long(a, b)                                   (((unsigned long long)(((unsigned int)(((unsigned long long)(a)) & 0xffffffff)) | ((unsigned long long)((unsigned int)(((unsigned long long)(b)) & 0xffffffff))) << 32)))
+////#define __MAKE_LONG64(a, b)                              (((::u64)(((::u32)(((::u64)(a)) & 0xffffffff)) | ((::u64)((::u32)(((::u64)(b)) & 0xffffffff))) << 32)))
+////#define as_u64(a, b)                                   (((::u64)(((::u32)(((::u64)(a)) & 0xffffffff)) | ((::u64)((::u32)(((::u64)(b)) & 0xffffffff))) << 32)))
 ////
 ////#endif
 ////
-////#define lower_unsigned_short(u)                                     ((unsigned short)(((::uptr)(u)) & 0xffff))
-////#define upper_unsigned_short(u)                                     ((unsigned short)((((::uptr)(u)) >> 16) & 0xffff))
-////#define lower_unsigned_int(u)                                     ((unsigned int)(u))
-////#define upper_unsigned_int(u)                                     ((unsigned int)(((u) >> 32) & 0xffffffff))
+////#define lower_unsigned_short(u)                                     ((::u16)(((::uptr)(u)) & 0xffff))
+////#define upper_unsigned_short(u)                                     ((::u16)((((::uptr)(u)) >> 16) & 0xffff))
+////#define lower_u32(u)                                     ((::u32)(u))
+////#define upper_u32(u)                                     ((::u32)(((u) >> 32) & 0xffffffff))
 ////
-////#define u32_x(u)                                     ((short)lower_unsigned_short(u))
-////#define u32_y(u)                                     ((short)upper_unsigned_short(u))
+////#define u32_x(u)                                     ((::i16)lower_unsigned_short(u))
+////#define u32_y(u)                                     ((::i16)upper_unsigned_short(u))
 ////
 ////#define __u32xy(u)                                    u32_x(u), u32_y(u)
 ////
-////#define u64_x(u)                                     ((int)lower_unsigned_int(u))
-////#define u64_y(u)                                     ((int)upper_unsigned_int(u))
+////#define u64_x(u)                                     ((::i32)lower_u32(u))
+////#define u64_y(u)                                     ((::i32)upper_u32(u))
 ////
 ////#define __u64xy(u)                                    u64_x(u), u64_y(u)
 ////
 ////
-////#ifndef int_x
-////#define lparam_int_x(lparam)                          ((int)(short)LOWORD(lparam))
+////#ifndef i32_x
+////#define lparam_int_x(lparam)                          ((::i32)(::i16)LOWORD(lparam))
 ////#endif
 ////
 ////
-////#ifndef int_y
-////#define lparam_int_y(lparam)                          ((int)(short)HIWORD(lparam))
+////#ifndef i32_y
+////#define lparam_int_y(lparam)                          ((::i32)(::i16)HIWORD(lparam))
 ////#endif
 ////
-////#define GET_X_LPARAM64(lparam)                        ((int)(short)lower_unsigned_int(lparam))
-////#define GET_Y_LPARAM64(lparam)                        ((int)(short)upper_unsigned_int(lparam))
+////#define GET_X_LPARAM64(lparam)                        ((::i32)(::i16)lower_u32(lparam))
+////#define GET_Y_LPARAM64(lparam)                        ((::i32)(::i16)upper_u32(lparam))
 ////
 ////
-//////CLASS_DECL_AURA int get_aura_init();
-////
-//////extern "C"
-//////CLASS_DECL_AURA int_bool defer_aura_init();
+//////CLASS_DECL_AURA ::i32 get_aura_init();
 ////
 //////extern "C"
-//////CLASS_DECL_AURA int_bool defer_aura_term();
+//////CLASS_DECL_AURA ::i32_bool defer_aura_init();
+////
+//////extern "C"
+//////CLASS_DECL_AURA ::i32_bool defer_aura_term();
 ////
 ////
 ////
@@ -478,7 +478,7 @@ namespace aura
 ////typedef struct rdp_freerdp freerdp;
 ////
 ////
-////CLASS_DECL_AURA int_bool freerdp_authenticate(void * instance, char** username,char** password,char** domain, const ::scoped_string & scopedstrServerName, int bInteractive);
+////CLASS_DECL_AURA ::i32_bool freerdp_authenticate(void * instance, char_pointer * username,char_pointer * password,char_pointer * domain, const ::scoped_string & scopedstrServerName, ::i32 bInteractive);
 ////
 ////
 ////#if !defined(O_BINARY) && !defined(WINDOWS)
@@ -486,20 +486,20 @@ namespace aura
 ////#endif
 ////
 ////
-////CLASS_DECL_AURA int     ansi_open(const ::scoped_string & scopedstr,int i);
+////CLASS_DECL_AURA ::i32     ansi_open(const ::scoped_string & scopedstr,::i32 i);
 ////CLASS_DECL_AURA FILE *  ansi_fopen(const ::scoped_string & scopedstr, const ::scoped_string & scopedstrMode);
-////CLASS_DECL_AURA int     ansi_file_flag(int iFlag);
-////CLASS_DECL_AURA void    ansi_get_errno(int * perrno);
+////CLASS_DECL_AURA ::i32     ansi_file_flag(::i32 iFlag);
+////CLASS_DECL_AURA void    ansi_get_errno(::i32 * perrno);
 ////CLASS_DECL_AURA void    ansi_unlink(const ::scoped_string & scopedstr);
 ////
 ////
-////CLASS_DECL_AURA unsigned int get_last_error();
-////CLASS_DECL_AURA void set_last_error(unsigned int dw);
+////CLASS_DECL_AURA ::u32 get_last_error();
+////CLASS_DECL_AURA void set_last_error(::u32 dw);
 ////
-////typedef char ::ansi_character;
+////typedef ::i8 ::ansi_character;
 ////
-////int CLASS_DECL_AURA MultiByteToWideChar2(unsigned int CodePage, unsigned int dwFlags, const_char_pointer pMultByteStr, int cbMultiByte, ::wide_character * pWideCharStr, int cchWideChar);
-////int CLASS_DECL_AURA WideCharToMultiByte2(unsigned int CodePage, unsigned int dwFlags, const ::wide_character * pWideCharStr, int cchWideChar, ::ansi_character * pMultByteStr, int cbMultiByte, const ::scoped_string & scopedstrDefaultChar, int_bool * pUsedDefaultChar);
+////::i32 CLASS_DECL_AURA MultiByteToWideChar2(::u32 CodePage, ::u32 dwFlags, const_char_pointer pMultByteStr, ::i32 cbMultiByte, ::wide_character * pWideCharStr, ::i32 cchWideChar);
+////::i32 CLASS_DECL_AURA WideCharToMultiByte2(::u32 CodePage, ::u32 dwFlags, const ::wide_character * pWideCharStr, ::i32 cchWideChar, ::ansi_character * pMultByteStr, ::i32 cbMultiByte, const ::scoped_string & scopedstrDefaultChar, ::i32_bool * pUsedDefaultChar);
 ////
 ////
 ////enum e_image_type
@@ -530,15 +530,15 @@ namespace aura
 ////
 ////#if !defined(__APPLE__) && !defined(LINUX) && !defined(__ANDROID__)
 ////
-////int ftruncate(int file, filesize len);
+////::i32 ftruncate(::i32 file, filesize len);
 ////
 ////#endif
 ////
 ////
-////CLASS_DECL_AURA int get_os_thread_priority(::enum_priority epriority);
-////CLASS_DECL_AURA int get_os_priority_class(::enum_priority epriority);
-////CLASS_DECL_AURA ::enum_priority get_os_thread_scheduling_priority(int iCa2Priority);
-////CLASS_DECL_AURA ::enum_priority get_os_class_scheduling_priority(int iCa2Priority);
+////CLASS_DECL_AURA ::i32 get_os_thread_priority(::enum_priority epriority);
+////CLASS_DECL_AURA ::i32 get_os_priority_class(::enum_priority epriority);
+////CLASS_DECL_AURA ::enum_priority get_os_thread_scheduling_priority(::i32 iCa2Priority);
+////CLASS_DECL_AURA ::enum_priority get_os_class_scheduling_priority(::i32 iCa2Priority);
 ////
 ////
 ////
@@ -568,7 +568,7 @@ namespace aura
 ////}
 ////
 ////
-////CLASS_DECL_AURA extern unsigned int g_tickStartTime;
+////CLASS_DECL_AURA extern ::u32 g_tickStartTime;
 ////
 ////#define ALOG_CONTEXT context_trace_object()
 ////
@@ -578,14 +578,14 @@ namespace aura
 ////
 ////CLASS_DECL_AURA ::matter * general_trace_object();
 ////
-////CLASS_DECL_AURA int_bool c_enable_trace_category(e_trace_category ecategory, int_bool iEnable);
+////CLASS_DECL_AURA ::i32_bool c_enable_trace_category(e_trace_category ecategory, ::i32_bool iEnable);
 ////
 ////inline ::matter * context_trace_object() { return general_trace_object(); }
 ////
 ////
-////CLASS_DECL_AURA void __tracea(::particle * pparticle, enum_trace_level elevel, const ::scoped_string & scopedstrFunction, const ::scoped_string & scopedstrFile, int iLine, const ::scoped_string & scopedstr);
-////CLASS_DECL_AURA void __tracef(::particle * pparticle, enum_trace_level elevel, const ::scoped_string & scopedstrFunction, const ::scoped_string & scopedstrFile, int iLine, const ::scoped_string & scopedstr, ...);
-////CLASS_DECL_AURA void __tracev(::particle * pparticle, enum_trace_level elevel, const ::scoped_string & scopedstrFunction, const ::scoped_string & scopedstrFile, int iLine, const ::scoped_string & scopedstr, va_list vargs);
+////CLASS_DECL_AURA void __tracea(::particle * pparticle, enum_trace_level elevel, const ::scoped_string & scopedstrFunction, const ::scoped_string & scopedstrFile, ::i32 iLine, const ::scoped_string & scopedstr);
+////CLASS_DECL_AURA void __tracef(::particle * pparticle, enum_trace_level elevel, const ::scoped_string & scopedstrFunction, const ::scoped_string & scopedstrFile, ::i32 iLine, const ::scoped_string & scopedstr, ...);
+////CLASS_DECL_AURA void __tracev(::particle * pparticle, enum_trace_level elevel, const ::scoped_string & scopedstrFunction, const ::scoped_string & scopedstrFile, ::i32 iLine, const ::scoped_string & scopedstr, va_list vargs);
 ////CLASS_DECL_AURA const_char_pointer trace_category_name(e_trace_category ecategory);
 ////
 ////
@@ -669,11 +669,11 @@ namespace aura
 ////
 ////class eimpact;
 ////
-////enum e_simple_command : long long;
-////enum e_message : long long;
-////enum enum_impact : long long;
-////enum ::enum_id : unsigned long long;
-////enum enum_check: int;
+////enum e_simple_command : ::i64;
+////enum e_message : ::i64;
+////enum enum_impact : ::i64;
+////enum ::enum_id : ::u64;
+////enum enum_check: ::i32;
 ////
 ////template <typename TYPE>
 ////struct erase_const_struct { // erase top-level const qualifier
@@ -863,7 +863,7 @@ namespace aura
 ////class synchronization;
 ////
 ////
-//////CLASS_DECL_AURA int aura_run_system(::aura::system* psystem);
+//////CLASS_DECL_AURA ::i32 aura_run_system(::aura::system* psystem);
 ////
 ////
 //////CLASS_DECL_AURA void aura_run_system_init(::aura::system * psystem);
@@ -883,13 +883,13 @@ namespace aura
 ////
 ////};
 ////
-//////// very short name ([{c}])ontext (switchers, as it as action_context) enums
+//////// very ::i16 name ([{c}])ontext (switchers, as it as action_context) enums
 //////enum nullptr_t
 //////{
 //////   nullptr
 //////};
 ////
-////// very short name ([{c}])ontext (switchers, as it as action_context) enums
+////// very ::i16 name ([{c}])ontext (switchers, as it as action_context) enums
 ////enum e_context_switcher_empty
 ////{
 ////   cempty
@@ -1114,8 +1114,8 @@ namespace aura
 //////   using eflag = flags < enum_flag >;
 //////   //using flag_map = map_base < enum_flag, enum_flag, bool, bool >;
 //////   //using rect_map = ::map_base < e_rect, e_rect, style_rect >;
-//////   //using int_map = ::map_base < e_int, e_int, int, int >;
-//////   //using double_map = ::map_base < e_double, e_double, double, double >;
+//////   //using i32_map = ::map_base < e_int, e_int, ::i32, ::i32 >;
+//////   //using f64_map = ::map_base < e_f64, e_f64, ::f64, ::f64 >;
 //////   //using color_map = map_base < e_color, e_color, ::color::color, ::color::color >;
 //////   //using eelement = base_enum < enum_element >;
 //////   //using translucency_map = ::map_base < enum_element, enum_element, enum_translucency, enum_translucency >;
@@ -1241,7 +1241,7 @@ namespace aura
 ////
 //////CLASS_DECL_AURA extern LPFN_CREATE_SYSTEM g_pfn_create_system;
 //////CLASS_DECL_AURA extern const_char_pointer g_pszCooperativeLevel;
-//////CLASS_DECL_AURA extern int g_iDerivedApplication; // one-based-index of derived application, zero if Main application
+//////CLASS_DECL_AURA extern ::i32 g_iDerivedApplication; // one-based-index of derived application, zero if Main application
 ////
 ////
 ////namespace data
@@ -1635,7 +1635,7 @@ namespace aura
 ////template < typename BASE_TYPE, typename POINT_BASE_TYPE, typename RECTANGLE_BASE_TYPE >
 ////class size_type;
 ////
-////using size = size_type < ::int_size, ::int_point, ::int_rectangle >;
+////using size = size_type < ::i32_size, ::i32_point, ::i32_rectangle >;
 ////
 ////
 ////#include "aura/prototype/math/cast.h"
@@ -1651,7 +1651,7 @@ namespace aura
 ////{
 ////
 ////
-////   //DECLARE_ENUMERATION(enum_state, enum_state);
+////   //DECLARE_C_FLAG(enum_state, enum_state);
 ////   using eelement = enumeration < enum_element >;
 ////
 ////

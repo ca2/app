@@ -2,16 +2,16 @@
 #include <string.h>
 
 
-CLASS_DECL_ACME ::ansi_character __ansicharlowered(int i) { return i >= 'A' && i <='Z' ? i - 'A' + 'a' : i; }
-CLASS_DECL_ACME ::ansi_character __ansicharuppered(int i) { return i >= 'a' && i <='z' ? i - 'a' + 'A' : i; }
-CLASS_DECL_ACME int __ansicharisdigit(int i) { return i >= L'0' && i <= L'9'; }
-CLASS_DECL_ACME int __ansicharisalpha(int i) { return (i >= 'a' && i <= 'z') || (i >= 'A' && i <= 'Z'); }
-CLASS_DECL_ACME int __ansicharisalnum(int i) { return ansi_char_isalpha(i) || ansi_char_isdigit(i); }
-CLASS_DECL_ACME int __ansicharisspace(int ch) { return ch == '\r' || ch == '\n' || ch == '\t' || ch == ' '; }
-CLASS_DECL_ACME int __ansicharisxdigit(int i) { return ansi_char_isdigit(i) || (i >= 'a' && i <= 'f') || (i >= 'A' && i <= 'F'); }
+CLASS_DECL_ACME ::ansi_character __ansicharlowered(::i32 i) { return i >= 'A' && i <='Z' ? i - 'A' + 'a' : i; }
+CLASS_DECL_ACME ::ansi_character __ansicharuppered(::i32 i) { return i >= 'a' && i <='z' ? i - 'a' + 'A' : i; }
+CLASS_DECL_ACME ::i32 __ansicharisdigit(::i32 i) { return i >= L'0' && i <= L'9'; }
+CLASS_DECL_ACME ::i32 __ansicharisalpha(::i32 i) { return (i >= 'a' && i <= 'z') || (i >= 'A' && i <= 'Z'); }
+CLASS_DECL_ACME ::i32 __ansicharisalnum(::i32 i) { return ansi_char_isalpha(i) || ansi_char_isdigit(i); }
+CLASS_DECL_ACME ::i32 __ansicharisspace(::i32 ch) { return ch == '\r' || ch == '\n' || ch == '\t' || ch == ' '; }
+CLASS_DECL_ACME ::i32 __ansicharisxdigit(::i32 i) { return ansi_char_isdigit(i) || (i >= 'a' && i <= 'f') || (i >= 'A' && i <= 'F'); }
 
 
-CLASS_DECL_ACME int __ansicharishexadecimal(int i) { return __ansicharisxdigit(i); }
+CLASS_DECL_ACME ::i32 __ansicharishexadecimal(::i32 i) { return __ansicharisxdigit(i); }
 
 
 CLASS_DECL_ACME ::ansi_character * overlap_safe_ansincpy(::ansi_character * pszDst, const_char_pointer pszSrc, character_count len)
@@ -171,10 +171,10 @@ CLASS_DECL_ACME const_char_pointer __ansirchr(const_char_pointer psz, ::ansi_cha
 
 
 
-CLASS_DECL_ACME int __ansicmp(const_char_pointer psz1, const_char_pointer psz2)
+CLASS_DECL_ACME ::i32 __ansicmp(const_char_pointer psz1, const_char_pointer psz2)
 {
 
-   int iCompare = 0;
+   ::i32 iCompare = 0;
 
    while (*psz1 && *psz2)
    {
@@ -193,10 +193,10 @@ CLASS_DECL_ACME int __ansicmp(const_char_pointer psz1, const_char_pointer psz2)
 
 
 
-CLASS_DECL_ACME int __ansincmp(const_char_pointer psz1, const_char_pointer psz2, character_count s)
+CLASS_DECL_ACME ::i32 __ansincmp(const_char_pointer psz1, const_char_pointer psz2, character_count s)
 {
 
-   int iCompare = 0;
+   ::i32 iCompare = 0;
 
    while (*psz1 && *psz2 && s > 0)
    {
@@ -394,10 +394,10 @@ CLASS_DECL_ACME const_char_pointer __ansiichr(const_char_pointer psz, ::ansi_cha
 
 
 
-CLASS_DECL_ACME int __ansiicmp(const_char_pointer psz1, const_char_pointer psz2)
+CLASS_DECL_ACME ::i32 __ansiicmp(const_char_pointer psz1, const_char_pointer psz2)
 {
 
-   int iCompare = 0;
+   ::i32 iCompare = 0;
 
    while (*psz1 && *psz2)
    {
@@ -415,10 +415,10 @@ CLASS_DECL_ACME int __ansiicmp(const_char_pointer psz1, const_char_pointer psz2)
 }
 
 
-CLASS_DECL_ACME int __ansiincmp(const_char_pointer psz1, const_char_pointer psz2, character_count s)
+CLASS_DECL_ACME ::i32 __ansiincmp(const_char_pointer psz1, const_char_pointer psz2, character_count s)
 {
 
-   int iCompare = 0;
+   ::i32 iCompare = 0;
 
    while (*psz1 && *psz2 && s > 0)
    {
@@ -482,13 +482,13 @@ CLASS_DECL_ACME const_char_pointer __ansiistr(const_char_pointer psz, const_char
 }
 
 
-CLASS_DECL_ACME int __ansicoll(const_char_pointer psz1, const_char_pointer psz2) { return __ansicmp(psz1, psz2); }
+CLASS_DECL_ACME ::i32 __ansicoll(const_char_pointer psz1, const_char_pointer psz2) { return __ansicmp(psz1, psz2); }
 
-CLASS_DECL_ACME int __ansincoll(const_char_pointer psz1, const_char_pointer psz2, character_count s) { return __ansincmp(psz1, psz2, s); }
+CLASS_DECL_ACME ::i32 __ansincoll(const_char_pointer psz1, const_char_pointer psz2, character_count s) { return __ansincmp(psz1, psz2, s); }
 
-CLASS_DECL_ACME int __ansiicoll(const_char_pointer psz1, const_char_pointer psz2) { return __ansiicmp(psz1, psz2); }
+CLASS_DECL_ACME ::i32 __ansiicoll(const_char_pointer psz1, const_char_pointer psz2) { return __ansiicmp(psz1, psz2); }
 
-CLASS_DECL_ACME int __ansinicoll(const_char_pointer psz1, const_char_pointer psz2, character_count s) { return __ansiincmp(psz1, psz2, s); }
+CLASS_DECL_ACME ::i32 __ansinicoll(const_char_pointer psz1, const_char_pointer psz2, character_count s) { return __ansiincmp(psz1, psz2, s); }
 
 CLASS_DECL_ACME character_count __ansispn(const_char_pointer psz1, const_char_pointer psz2)
 {
@@ -570,7 +570,7 @@ CLASS_DECL_ACME character_count __ansicspn(const_char_pointer psz1, const_char_p
 }
 
 
-CLASS_DECL_ACME  ::ansi_character lower_char(int ch)
+CLASS_DECL_ACME  ::ansi_character lower_char(::i32 ch)
 {
    if (ch >= 'A' && ch <= 'Z')
    {
@@ -580,7 +580,7 @@ CLASS_DECL_ACME  ::ansi_character lower_char(int ch)
 }
 
 
-CLASS_DECL_ACME ::ansi_character upper_char(int ch)
+CLASS_DECL_ACME ::ansi_character upper_char(::i32 ch)
 {
    if (ch >= 'a' && ch <= 'z')
    {

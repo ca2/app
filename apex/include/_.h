@@ -158,7 +158,7 @@ class api;
 class api_client;
 
 
-extern CLASS_DECL_APEX int g_bApex;
+extern CLASS_DECL_APEX ::i32 g_bApex;
 
 
 // C-includes
@@ -183,50 +183,50 @@ extern CLASS_DECL_APEX int g_bApex;
 
 
 //
-//#define __unsigned_short(a, b)                                   ((unsigned short)(((unsigned char)(((::uptr)(a)) & 0xff)) | ((unsigned short)((unsigned char)(((::uptr)(b)) & 0xff))) << 8))
-//#define as_unsigned_int(a, b)                                   ((unsigned int)(((unsigned short)(((::uptr)(a)) & 0xffff)) | ((unsigned int)((unsigned short)(((::uptr)(b)) & 0xffff))) << 16))
+//#define __unsigned_short(a, b)                                   ((::u16)(((::u8)(((::uptr)(a)) & 0xff)) | ((::u16)((::u8)(((::uptr)(b)) & 0xff))) << 8))
+//#define as_u32(a, b)                                   ((::u32)(((::u16)(((::uptr)(a)) & 0xffff)) | ((::u32)((::u16)(((::uptr)(b)) & 0xffff))) << 16))
 //
 //
 //#ifdef __cplusplus
 //
 //
-//#define as_unsigned_long_long(a, b)                                   (((unsigned long long)(((unsigned int)(((unsigned long long)(a)) & 0xffffffff)) | ((unsigned long long)((unsigned int)(((unsigned long long)(b)) & 0xffffffff))) << 32)))
+//#define as_u64(a, b)                                   (((::u64)(((::u32)(((::u64)(a)) & 0xffffffff)) | ((::u64)((::u32)(((::u64)(b)) & 0xffffffff))) << 32)))
 //
 //
 //#else
 //
-//#define __MAKE_LONG64(a, b)                              (((unsigned long long)(((unsigned int)(((unsigned long long)(a)) & 0xffffffff)) | ((unsigned long long)((unsigned int)(((unsigned long long)(b)) & 0xffffffff))) << 32)))
-//#define as_unsigned_long_long(a, b)                                   (((unsigned long long)(((unsigned int)(((unsigned long long)(a)) & 0xffffffff)) | ((unsigned long long)((unsigned int)(((unsigned long long)(b)) & 0xffffffff))) << 32)))
+//#define __MAKE_LONG64(a, b)                              (((::u64)(((::u32)(((::u64)(a)) & 0xffffffff)) | ((::u64)((::u32)(((::u64)(b)) & 0xffffffff))) << 32)))
+//#define as_u64(a, b)                                   (((::u64)(((::u32)(((::u64)(a)) & 0xffffffff)) | ((::u64)((::u32)(((::u64)(b)) & 0xffffffff))) << 32)))
 //
 //#endif
 //
-//#define lower_unsigned_short(u)                                     ((unsigned short)(((::uptr)(u)) & 0xffff))
-//#define upper_unsigned_short(u)                                     ((unsigned short)((((::uptr)(u)) >> 16) & 0xffff))
-//#define lower_unsigned_int(u)                                     ((unsigned int)(u))
-//#define upper_unsigned_int(u)                                     ((unsigned int)(((u) >> 32) & 0xffffffff))
+//#define lower_unsigned_short(u)                                     ((::u16)(((::uptr)(u)) & 0xffff))
+//#define upper_unsigned_short(u)                                     ((::u16)((((::uptr)(u)) >> 16) & 0xffff))
+//#define lower_u32(u)                                     ((::u32)(u))
+//#define upper_u32(u)                                     ((::u32)(((u) >> 32) & 0xffffffff))
 //
-//#define u32_x(u)                                     ((short)lower_unsigned_short(u))
-//#define u32_y(u)                                     ((short)upper_unsigned_short(u))
+//#define u32_x(u)                                     ((::i16)lower_unsigned_short(u))
+//#define u32_y(u)                                     ((::i16)upper_unsigned_short(u))
 //
 //#define __u32xy(u)                                    u32_x(u), u32_y(u)
 //
-//#define u64_x(u)                                     ((int)lower_unsigned_int(u))
-//#define u64_y(u)                                     ((int)upper_unsigned_int(u))
+//#define u64_x(u)                                     ((::i32)lower_u32(u))
+//#define u64_y(u)                                     ((::i32)upper_u32(u))
 //
 //#define __u64xy(u)                                    u64_x(u), u64_y(u)
 //
 //
-//#ifndef int_x
-//#define lparam_int_x(lparam)                          ((int)(short)LOWORD(lparam))
+//#ifndef i32_x
+//#define lparam_int_x(lparam)                          ((::i32)(::i16)LOWORD(lparam))
 //#endif
 //
 //
-//#ifndef int_y
-//#define lparam_int_y(lparam)                          ((int)(short)HIWORD(lparam))
+//#ifndef i32_y
+//#define lparam_int_y(lparam)                          ((::i32)(::i16)HIWORD(lparam))
 //#endif
 //
-//#define GET_X_LPARAM64(lparam)                        ((int)(short)lower_unsigned_int(lparam))
-//#define GET_Y_LPARAM64(lparam)                        ((int)(short)upper_unsigned_int(lparam))
+//#define GET_X_LPARAM64(lparam)                        ((::i32)(::i16)lower_u32(lparam))
+//#define GET_Y_LPARAM64(lparam)                        ((::i32)(::i16)upper_u32(lparam))
 //
 //
 //
@@ -335,11 +335,11 @@ namespace core
 
 //class eimpact;
 //
-//enum e_simple_command : long long;
-//enum e_message : long long;
-//enum enum_impact : long long;
-//enum ::enum_id : unsigned long long;
-//enum enum_check: int;
+//enum e_simple_command : ::i64;
+//enum e_message : ::i64;
+//enum enum_impact : ::i64;
+//enum ::enum_id : ::u64;
+//enum enum_check: ::i32;
 
 
 //template < typename CHAR_TYPE >
@@ -617,12 +617,12 @@ namespace html
 
 // return - result - if not ok
 #ifndef RINOK
-#define RINOK(x) { int __result__ = (x); if (__result__ != 0) return __result__; }
+#define RINOK(x) { ::i32 __result__ = (x); if (__result__ != 0) return __result__; }
 #endif
 
 // throw ::exception( - exception - result exception - if not ok
 #ifndef TINOK
-#define TINOK(e, x) { int __result__ = (x); if (__result__ != 0) throw ::exception(e(get_app(), __result__)); }
+#define TINOK(e, x) { ::i32 __result__ = (x); if (__result__ != 0) throw ::exception(e(get_app(), __result__)); }
 #endif
 
 
@@ -831,6 +831,9 @@ namespace core
 //#include "app/acme/platform/trace.h"
 
 #include "apex/platform/display.h"
+
+
+#include "innate_subsystem/_.h"
 
 
 //#include "apex/platform/library_object_allocator.h"

@@ -104,7 +104,7 @@ namespace universal_windows
       /*if (!ExitWindowsEx(EWX_REBOOT | EWX_FORCE,
       SHTDN_REASON_MAJOR_SOFTWARE | SHTDN_REASON_MINOR_INSTALLATION))
       {
-      unsigned int dwLastError = ::get_last_error();
+      ::u32 dwLastError = ::get_last_error();
       return false;
       }*/
       //reset the previlages
@@ -119,13 +119,13 @@ namespace universal_windows
    void os_context::terminate_processes_by_title(const ::scoped_string & scopedstrName)
    {
 #ifdef WINDOWS_DESKTOP
-      unsigned int dwPid;
+      ::u32 dwPid;
       while(get_pid_by_title(scopedstrName, dwPid))
       {
          HANDLE hProcess = OpenProcess( PROCESS_QUERY_INFORMATION |
                                         PROCESS_VM_READ,
                                         false, dwPid );
-         TerminateProcess(hProcess, (unsigned int) -1);
+         TerminateProcess(hProcess, (::u32) -1);
          CloseHandle(hProcess);
          /*::EnumWindows((WNDENUMPROC)
          CKillProcessHelper::TerminateAppEnum,
@@ -148,11 +148,11 @@ namespace universal_windows
 #endif
    }
 
-   bool os_context::get_pid_by_path(const ::scoped_string & scopedstrName, unsigned int & dwPid)
+   bool os_context::get_pid_by_path(const ::scoped_string & scopedstrName, ::u32 & dwPid)
    {
-      unsigned_int_array dwa;
+      u32_array dwa;
       get_all_processes(dwa);
-      for(int i = 0; i < dwa.get_count(); i++)
+      for(::i32 i = 0; i < dwa.get_count(); i++)
       {
          if(get_process_path(dwa[i]).case_insensitive_order(scopedstrName) == 0)
          {
@@ -164,11 +164,11 @@ namespace universal_windows
    }
 
 
-   bool os_context::get_pid_by_title(const ::scoped_string & scopedstrName, unsigned int & dwPid)
+   bool os_context::get_pid_by_title(const ::scoped_string & scopedstrName, ::u32 & dwPid)
    {
-      unsigned_int_array dwa;
+      u32_array dwa;
       get_all_processes(dwa);
-      for(int i = 0; i < dwa.get_count(); i++)
+      for(::i32 i = 0; i < dwa.get_count(); i++)
       {
          if(get_process_path(dwa[i]).title().case_insensitive_order(scopedstrName) == 0)
          {
@@ -180,7 +180,7 @@ namespace universal_windows
    }
 
 
-   ::file::path os_context::get_process_path(unsigned int dwPid)
+   ::file::path os_context::get_process_path(::u32 dwPid)
    {
 
       string strName;
@@ -196,7 +196,7 @@ namespace universal_windows
       if (nullptr != hProcess )
       {
          HMODULE hMod;
-         unsigned int cbNeeded;
+         ::u32 cbNeeded;
 
          if(EnumProcessModules( hProcess, &hMod, sizeof(hMod),
                                 &cbNeeded) )
@@ -214,22 +214,22 @@ namespace universal_windows
       return strName;
    }
 
-   void os_context::get_all_processes(unsigned_int_array & dwa )
+   void os_context::get_all_processes(u32_array & dwa )
    {
 #ifdef WINDOWS_DESKTOP
       dwa.set_size(0);
-      unsigned int cbNeeded = 0;
+      ::u32 cbNeeded = 0;
       while(cbNeeded == natural(dwa.get_count()))
       {
          dwa.set_size(dwa.get_count() + 1024);
          if(!EnumProcesses(
                dwa.get_data(),
-               (unsigned int) (dwa.get_count() * sizeof(unsigned int)),
+               (::u32) (dwa.get_count() * sizeof(::u32)),
                &cbNeeded))
          {
             return;
          }
-         dwa.set_size(cbNeeded / sizeof(unsigned int));
+         dwa.set_size(cbNeeded / sizeof(::u32));
       }
 #elif defined(UNIVERSAL_WINDOWS)
 
@@ -246,7 +246,7 @@ namespace universal_windows
 
 #ifdef WINDOWS_DESKTOP
 
-      unsigned int dwSize = 1;
+      ::u32 dwSize = 1;
 
       while(natural(strPath.length() + 1) == dwSize)
       {
@@ -280,7 +280,7 @@ namespace universal_windows
 
       key1.QueryValue("DefaultConnectionSettings", mem);
 
-      bAutoDetect = (((unsigned char *) mem.get_data())[8] & 0x08) != 0;
+      bAutoDetect = (((::u8 *) mem.get_data())[8] & 0x08) != 0;
 
 #else
 
@@ -407,7 +407,7 @@ namespace universal_windows
 
          registry::Key keyPlugin;
 
-         if(keyPlugin.OpenKey(keyPlugins, "@ca2.network/npca2", true))
+         if(keyPlugin.OpenKey(keyPlugins, "@ca2.site/npca2", true))
          {
 
             keyPlugin.SetValue("Description", "ca2 plugin for NPAPI");
@@ -655,7 +655,7 @@ namespace universal_windows
 
    }
 
-   bool os_context::native_modern_web_browser(const char* pcsz)
+   bool os_context::native_modern_web_browser(const_char_pointer pcsz)
    {
 
 #ifdef WINDOWS_DESKTOP
@@ -719,18 +719,18 @@ namespace universal_windows
             || !papp->is_serviceable())
          return false;
 
-      SC_HANDLE hdlSCM = OpenSCManager(0, 0, SC_MANAGER_CREATE_SERVICE);
+      SC_HANDLE hdlServiceControlManager = OpenServiceControlManageranager(0, 0, SC_MANAGER_CREATE_SERVICE);
 
       string strCalling = papp->m_strModulePath + " : app=" + papp->m_strAppId + " service usehostlogin";
 
-      if(hdlSCM == 0)
+      if(hdlServiceControlManager == 0)
       {
          //::get_last_error()
          return false;
       }
 
       SC_HANDLE hdlServ = ::CreateService(
-                          hdlSCM,                    // SCManager database
+                          hdlServiceControlManager,                    // ServiceControlManageranager database
                           "acme-" + papp->m_strAppName,               // name of service
                           "ccwarehouse ca2 account " + papp->m_strAppName,        // service name to display
                           STANDARD_RIGHTS_REQUIRED,  // desired access
@@ -746,13 +746,13 @@ namespace universal_windows
 
       if (!hdlServ)
       {
-         CloseServiceHandle(hdlSCM);
+         CloseServiceHandle(hdlServiceControlManager);
          //Ret = ::get_last_error();
          return false;
       }
 
       CloseServiceHandle(hdlServ);
-      CloseServiceHandle(hdlSCM);
+      CloseServiceHandle(hdlServiceControlManager);
 
 #else
 
@@ -775,23 +775,23 @@ namespace universal_windows
             || !papp->is_serviceable())
          return false;
 
-      SC_HANDLE hdlSCM = OpenSCManager(0, 0, SC_MANAGER_ALL_ACCESS);
+      SC_HANDLE hdlServiceControlManager = OpenServiceControlManageranager(0, 0, SC_MANAGER_ALL_ACCESS);
 
-      if(hdlSCM == 0)
+      if(hdlServiceControlManager == 0)
       {
          //::get_last_error();
          return false;
       }
 
       SC_HANDLE hdlServ = ::OpenService(
-                          hdlSCM,                    // SCManager database
+                          hdlServiceControlManager,                    // ServiceControlManageranager database
                           "acme-" + papp->m_strAppName,               // name of service
                           DELETE);                     // no password
 
       if (!hdlServ)
       {
          // Ret = ::get_last_error();
-         CloseServiceHandle(hdlSCM);
+         CloseServiceHandle(hdlServiceControlManager);
          return false;
       }
 
@@ -799,7 +799,7 @@ namespace universal_windows
 
       CloseServiceHandle(hdlServ);
 
-      CloseServiceHandle(hdlSCM);
+      CloseServiceHandle(hdlServiceControlManager);
 
 #else
 
@@ -824,23 +824,23 @@ namespace universal_windows
             || !papp->is_serviceable())
          return false;
 
-      SC_HANDLE hdlSCM = OpenSCManager(0, 0, SC_MANAGER_ALL_ACCESS);
+      SC_HANDLE hdlServiceControlManager = OpenServiceControlManageranager(0, 0, SC_MANAGER_ALL_ACCESS);
 
-      if(hdlSCM == 0)
+      if(hdlServiceControlManager == 0)
       {
          //::get_last_error();
          return false;
       }
 
       SC_HANDLE hdlServ = ::OpenService(
-                          hdlSCM,                    // SCManager database
+                          hdlServiceControlManager,                    // ServiceControlManageranager database
                           "acme-" + papp->m_strAppName,               // name of service
                           SERVICE_START);                     // no password
 
 
       if (!hdlServ)
       {
-         CloseServiceHandle(hdlSCM);
+         CloseServiceHandle(hdlServiceControlManager);
          //Ret = ::get_last_error();
          return false;
       }
@@ -848,7 +848,7 @@ namespace universal_windows
       bOk = StartService(hdlServ, 0, nullptr) != false;
 
       CloseServiceHandle(hdlServ);
-      CloseServiceHandle(hdlSCM);
+      CloseServiceHandle(hdlServiceControlManager);
 
 #else
 
@@ -872,23 +872,23 @@ namespace universal_windows
             || !papp->is_serviceable())
          return false;
 
-      SC_HANDLE hdlSCM = OpenSCManager(0, 0, SC_MANAGER_ALL_ACCESS);
+      SC_HANDLE hdlServiceControlManager = OpenServiceControlManageranager(0, 0, SC_MANAGER_ALL_ACCESS);
 
-      if(hdlSCM == 0)
+      if(hdlServiceControlManager == 0)
       {
          //::get_last_error();
          return false;
       }
 
       SC_HANDLE hdlServ = ::OpenService(
-                          hdlSCM,                    // SCManager database
+                          hdlServiceControlManager,                    // ServiceControlManageranager database
                           "acme-" + papp->m_strAppName,               // name of service
                           SERVICE_STOP);                     // no password
 
       if (!hdlServ)
       {
          // Ret = ::get_last_error();
-         CloseServiceHandle(hdlSCM);
+         CloseServiceHandle(hdlServiceControlManager);
          return false;
       }
 
@@ -902,7 +902,7 @@ namespace universal_windows
 
       CloseServiceHandle(hdlServ);
 
-      CloseServiceHandle(hdlSCM);
+      CloseServiceHandle(hdlServiceControlManager);
 
 #else
 
@@ -924,7 +924,7 @@ namespace universal_windows
    }
 
 
-   DECLSPEC_NO_RETURN void os_context::raise_exception(unsigned int dwExceptionCode, unsigned int dwExceptionFlags)
+   DECLSPEC_NO_RETURN void os_context::raise_exception(::u32 dwExceptionCode, ::u32 dwExceptionFlags)
    {
 
       RaiseException( dwExceptionCode, dwExceptionFlags, 0, nullptr );
@@ -954,7 +954,7 @@ namespace universal_windows
 
    //}
 
-   int os_context::get_pid()
+   ::i32 os_context::get_pid()
    {
 
       return 1;

@@ -3,14 +3,21 @@
 #include "acme/filesystem/filesystem/path.h"
 #include "acme/platform/debug.h"
 #include "acme/windowing/window.h"
-
-
+#include "acme/nano/nano.h"
 #include "acme/_operating_system.h"
 #include "acme/operating_system/windows/windows.h"
 
 
 #include <Shlobj.h>
 #include <Shellapi.h>
+
+#include "shared_memory.h"
+
+   //#include <windows.h>
+#include <winternl.h>
+
+#pragma comment(lib, "ntdll.lib")
+
 
 
 CLASS_DECL_ACME ::uptr duplicate_handle(const ::uptr & u)
@@ -23,6 +30,256 @@ CLASS_DECL_ACME ::uptr duplicate_handle(const ::uptr & u)
    return (::uptr) h;
 
 }
+
+
+CLASS_DECL_ACME HMODULE GetModuleFromFunction(void* pFunc);
+
+
+namespace windows
+{
+
+
+   CLASS_DECL_ACME hinstance hinstance_from_function(void *pVoid)
+   {
+
+      HMODULE hmodule = ::GetModuleFromFunction(pVoid);
+
+      HINSTANCE hInstance = (HINSTANCE)hmodule;
+
+      ::hinstance hinstance;
+
+      hinstance = hInstance;
+
+      return hinstance;
+
+   }
+
+
+   CLASS_DECL_ACME bool get_window_rect(const ::operating_system::window & operatingsystemwindow, ::i32_rectangle & rectangle)
+   {
+
+      RECT _winRectø{};
+
+      if (!::GetWindowRect(::as_HWND(operatingsystemwindow), &_winRectø))
+      {
+
+         return false;
+
+      }
+
+      rectangle = _winRectø;
+
+      return true;
+
+   }
+
+
+   CLASS_DECL_ACME ::i32_rectangle get_window_rect(const ::operating_system::window & operatingsystemwindow)
+   {
+
+      ::i32_rectangle rectangle;
+
+      if (!get_window_rect(operatingsystemwindow, rectangle))
+      {
+
+         throw_last_error_exception("GetWindowRect failed");
+
+      }
+
+      return rectangle;
+
+   }
+
+
+   CLASS_DECL_ACME ::operating_system::window get_window(const ::operating_system::window & operatingsystemwindowCommand, ::i32 iGetWindowCommand)
+   {
+
+      auto hwndCmd = ::as_HWND(operatingsystemwindowCommand);
+
+      auto hwnd = ::GetWindow(hwndCmd, iGetWindowCommand);
+
+      auto operatingsystemwindow = ::as_operating_system_window(hwnd);
+
+      return operatingsystemwindow;
+
+   }
+
+
+   CLASS_DECL_ACME ::iptr get_window_long(const ::operating_system::window & operatingsystemwindow, ::i32 iGetWindowLong)
+   {
+
+      auto hwnd = ::as_HWND(operatingsystemwindow);
+
+      ::iptr i = ::GetWindowLongPtrW(hwnd, iGetWindowLong);
+
+      return i;
+
+   }
+
+
+   CLASS_DECL_ACME ::itask get_window_thread_id(const ::operating_system::window & operatingsystemwindow)
+   {
+
+      auto hwnd = ::as_HWND(operatingsystemwindow);
+
+      DWORD dwThreadID = ::GetWindowThreadProcessId(hwnd, nullptr);
+
+      return dwThreadID;
+
+   }
+
+
+   CLASS_DECL_ACME ::itask get_window_thread_process_id(const ::operating_system::window & operatingsystemwindow, ::process_identifier & processidentifier)
+   {
+
+      auto hwnd = ::as_HWND(operatingsystemwindow);
+
+      DWORD dwProcessID = 0;
+
+      DWORD dwThreadID = ::GetWindowThreadProcessId(hwnd, &dwProcessID);
+
+      if (dwThreadID)
+      {
+
+         processidentifier = dwProcessID;
+
+      }
+
+      return dwThreadID;
+
+   }
+
+
+   CLASS_DECL_ACME ::process_identifier get_window_process_id(const ::operating_system::window & operatingsystemwindow)
+   {
+
+      auto hwnd = ::as_HWND(operatingsystemwindow);
+
+      DWORD dwProcessID = 0;
+
+      DWORD dwThreadID = ::GetWindowThreadProcessId(hwnd, &dwProcessID);
+
+      ::process_identifier processidentifier{};
+
+      if (dwThreadID)
+      {
+
+         processidentifier = dwProcessID;
+
+      }
+
+      return processidentifier;
+
+   }
+
+
+   CLASS_DECL_ACME ::operating_system::window get_foreground_window()
+   {
+
+      auto hwnd = ::GetForegroundWindow();
+
+      auto operatingsystemwindow = ::as_operating_system_window(hwnd);
+
+      return operatingsystemwindow;
+
+   }
+
+   //protected:
+
+   static BOOL CALLBACK findWindowsByClassFunc(HWND hwnd, LPARAM lparam);
+   static BOOL CALLBACK findWindowsByNameFunc(HWND hwnd, LPARAM lparam);
+
+
+      struct WindowsParam
+   {
+      ::comparable_array_base<::operating_system::window> *hwndVector;
+      const ::string_array_base *classNames;
+   };
+
+   BOOL CALLBACK findWindowsByClassFunc(HWND hwnd, LPARAM lparam)
+   {
+      if (IsWindowVisible(hwnd) != 0) {
+         WindowsParam *windowsParam = (WindowsParam *)lparam;
+         //::sStringVector::iterator classNameIter;
+
+         const size_t maxTcharCount = 256;
+         TCHAR winName[maxTcharCount];
+         if (GetClassName(hwnd, winName, maxTcharCount) != 0) {
+            ::string nextWinName(winName);
+
+            if (nextWinName.has_character() && hwnd != 0)
+               {
+               for (auto & str : *windowsParam->classNames)
+               {
+                  if (str == nextWinName)
+                  {
+                     windowsParam->hwndVector->add(::as_operating_system_window(hwnd));
+                  }
+               }
+
+            }
+
+            // Recursion
+            EnumChildWindows(hwnd, findWindowsByClassFunc, (::lparam) windowsParam);
+         }
+      }
+      return TRUE;
+   }
+
+   ::comparable_array_base<::operating_system::window> findWindowsByClass(const ::string_array_base & straClassNames)
+   {
+      ::comparable_array_base<::operating_system::window> hwnda;
+      if (straClassNames.empty()) {
+         return hwnda;
+      }
+      WindowsParam windowsParam;
+      windowsParam.classNames = &straClassNames;
+      windowsParam.hwndVector = &hwnda;
+      EnumWindows(findWindowsByClassFunc, (LPARAM)&windowsParam);
+      return hwnda;
+   }
+
+   BOOL CALLBACK findWindowsByNameFunc(HWND hwnd, LPARAM lparam)
+   {
+      if (IsWindowVisible(hwnd) != 0) {
+         const size_t maxTcharCount = 256;
+         TCHAR nameChars[maxTcharCount];
+         if (GetWindowText(hwnd, nameChars, maxTcharCount) != 0) {
+            ::string winName(nameChars);
+            winName.make_lower();
+
+            if (winName.has_character() && hwnd != 0) {
+               WindowsParam *winParams = (WindowsParam *)lparam;
+               auto substr = winParams->classNames->first();
+               if (winName.contains( substr)) {
+                  winParams->hwndVector->add(::as_operating_system_window(hwnd));
+                  return FALSE;
+               }
+            }
+         }
+      }
+      return TRUE;
+   }
+
+   ::operating_system::window findFirstWindowByName(const ::scoped_string & scopedstrWindowNamePart)
+   {
+      ::comparable_array_base<::operating_system::window> hwnda;
+      ::string_array_base winNameVector;
+      winNameVector.add(scopedstrWindowNamePart);
+      winNameVector[0].make_lower();
+      WindowsParam winParams = { &hwnda, &winNameVector };
+
+      EnumWindows(findWindowsByNameFunc, (::lparam)&winParams);
+      if (hwnda.has_element()) {
+         return hwnda.first();
+      } else {
+         return 0;
+      }
+   }
+
+
+
+} // namespace windows
 
 
 
@@ -167,7 +424,7 @@ CLASS_DECL_ACME ::uptr duplicate_handle(const ::uptr & u)
 
    auto pFolder = wstrModuleFolder.get_buffer(MAX_PATH * 8);
 
-   if (!GetFullPathNameW(wstrModuleFilePath, (unsigned int)wstrModuleFilePath.length(), pFolder, &pszModuleFileName))
+   if (!GetFullPathNameW(wstrModuleFilePath, (::u32)wstrModuleFilePath.length(), pFolder, &pszModuleFileName))
    {
 
       return "";
@@ -191,7 +448,7 @@ CLASS_DECL_ACME ::uptr duplicate_handle(const ::uptr & u)
 
    {
 
-//         str = ::dir::pathfind(getenv("DYLD_LIBRARY_PATH"), "libacme.dylib", "rfs"); // readable - normal file - non zero double_size
+//         str = ::dir::pathfind(getenv("DYLD_LIBRARY_PATH"), "libacme.dylib", "rfs"); // readable - normal file - non zero f64_size
 //
 //         if(str.has_character())
 //         {
@@ -201,7 +458,7 @@ CLASS_DECL_ACME ::uptr duplicate_handle(const ::uptr & u)
 //         }
 //
 //
-//         str = ::dir::pathfind(getenv("DYLD_FALLBACK_LIBRARY_PATH"), "libacme.dylib", "rfs"); // readable - normal file - non zero double_size
+//         str = ::dir::pathfind(getenv("DYLD_FALLBACK_LIBRARY_PATH"), "libacme.dylib", "rfs"); // readable - normal file - non zero f64_size
 //
 //         if(str.has_character())
 //         {
@@ -340,7 +597,7 @@ found:
 //
 //   auto pFolder = wstrModuleFolder.get_buffer(MAX_PATH *8);
 //
-//   if (!GetFullPathNameW(wstrModuleFilePath, (unsigned int)wstrModuleFilePath.length(), pFolder, &pszModuleFileName))
+//   if (!GetFullPathNameW(wstrModuleFilePath, (::u32)wstrModuleFilePath.length(), pFolder, &pszModuleFileName))
 //   {
 //
 //      return "";
@@ -396,7 +653,7 @@ void __node_acme_pos_term()
 }
 
 
-string read_resource_as_string(hinstance hinst, unsigned int nID, const ::scoped_string & scopedstrType, character_count iReadAtMostByteCount = -1)
+string read_resource_as_string(hinstance hinst, ::u32 nID, const ::scoped_string & scopedstrType, character_count iReadAtMostByteCount = -1)
 {
 
    HRSRC hrsrc = ::FindResourceW((HINSTANCE)hinst, MAKEINTRESOURCEW(nID), wstring(scopedstrType));
@@ -417,16 +674,16 @@ string read_resource_as_string(hinstance hinst, unsigned int nID, const ::scoped
 
    }
 
-   unsigned int dwResSize = ::SizeofResource((HINSTANCE)hinst, hrsrc);
+   ::u32 dwResSize = ::SizeofResource((HINSTANCE)hinst, hrsrc);
 
    string str;
 
-   char * psz = nullptr;
+   char_pointer psz = nullptr;
 
    if (hres != nullptr)
    {
 
-      unsigned int * pnRes = (unsigned int *)::LockResource(hres);
+      ::u32 * pnRes = (::u32 *)::LockResource(hres);
 
       iReadAtMostByteCount = iReadAtMostByteCount < 0 ? dwResSize : minimum(iReadAtMostByteCount, (character_count)dwResSize);
 
@@ -454,7 +711,7 @@ CLASS_DECL_ACME string executable_get_app_id(hinstance hinstance)
 
 
 // Get the horizontal and vertical screen sizes in pixel
-void operating_system_get_main_screen_size(int& cx, int& cy)
+void operating_system_get_main_screen_size(::i32& cx, ::i32& cy)
 {
    
    const HWND hwndDesktop = GetDesktopWindow();
@@ -481,7 +738,7 @@ void operating_system_get_main_screen_size(int& cx, int& cy)
 
 //
 //
-//CLASS_DECL_ACME string get_error_string(long long iError)
+//CLASS_DECL_ACME string get_error_string(::i64 iError)
 //{
 //
 //
@@ -713,13 +970,285 @@ CLASS_DECL_ACME void copy(MSG& msg, const MESSAGE& message)
 
 }
 
-
-CLASS_DECL_ACME HINSTANCE hinstance_from_function(void * pFunc)
+CLASS_DECL_ACME void copy(MESSAGE& message, const MSG& msg)
 {
 
-   return (HINSTANCE) GetModuleFromFunction(pFunc);
+   message.m_operatingsystemwindow = ::as_operating_system_window(msg.hwnd);
+   message.m_eusermessage = (::user::enum_message)msg.message;
+   message.m_wparam = msg.wParam;
+   message.m_lparam = msg.lParam;
+   message.m_point.x = msg.pt.x;
+   message.m_point.y = msg.pt.y;
+   message.m_time = (::u64) msg.time;
 
 }
 
+// CLASS_DECL_ACME HINSTANCE hinstance_from_function(void * pFunc)
+// {
+//
+//    return (HINSTANCE) GetModuleFromFunction(pFunc);
+//
+// }
+//
 
+
+
+namespace windows
+{
+
+   
+   typedef LONG(WINAPI *RtlGetVersionProc)(PRTL_OSVERSIONINFOW);
+
+   CLASS_DECL_ACME ::u32 get_windows_build_number()
+   {
+      HMODULE hNtDll = GetModuleHandleW(L"ntdll.dll");
+
+      if (!hNtDll)
+         return 0;
+
+      auto pRtlGetVersion = (RtlGetVersionProc)GetProcAddress(hNtDll, "RtlGetVersion");
+
+      if (!pRtlGetVersion)
+         return 0;
+
+      RTL_OSVERSIONINFOW vi{};
+      vi.dwOSVersionInfoSize = sizeof(vi);
+
+      if (pRtlGetVersion(&vi) != 0)
+         return 0;
+
+      return vi.dwBuildNumber;
+   }
+
+
+   CLASS_DECL_ACME bool is_windows_11()
+   {
+
+      auto uBuildNumber = get_windows_build_number();
+
+      if (uBuildNumber >= 22000)
+      {
+
+         return true;
+
+      }
+
+      return false;
+
+      //RTL_OSVERSIONINFOW vi{};
+      //vi.dwOSVersionInfoSize = sizeof(vi);
+
+      //if (::RtlGetVersion(&vi) != 0)
+      //{
+      //   return false;
+      //}
+
+      //return vi.dwMajorVersion == 10 && vi.dwBuildNumber >= 22000;
+   }
+
+   CLASS_DECL_ACME bool is_windows_10()
+   {
+
+      auto uBuildNumber = get_windows_build_number();
+
+      if (uBuildNumber < 22000)
+      {
+
+         return true;
+      }
+
+      return false;
+
+      //RTL_OSVERSIONINFOW vi{};
+      //vi.dwOSVersionInfoSize = sizeof(vi);
+
+      //if (::RtlGetVersion(&vi) != 0)
+      //{
+      //   return false;
+      //}
+
+      //return vi.dwMajorVersion == 10 && vi.dwBuildNumber < 22000;
+   }
+
+
+   CLASS_DECL_ACME ::i32 message_box_to_windows_message_box(const ::user::e_message_box & emessagebox)
+   {
+
+      ::i32 iMessageBox = 0;
+
+      iMessageBox |= message_box_to_windows_message_box_type(emessagebox);
+
+      iMessageBox |= message_box_to_windows_message_box_icon(emessagebox);
+
+      iMessageBox |= message_box_to_windows_message_box_default_button(emessagebox);
+
+      return iMessageBox;
+
+   }
+
+   CLASS_DECL_ACME ::i32 message_box_to_windows_message_box_type(const ::user::e_message_box & emessagebox)
+   {
+
+      auto emessageboxType = emessagebox & ::user::e_message_box_type_mask;
+
+      switch (emessageboxType)
+      {
+      case ::user::e_message_box_ok:
+         return MB_OK;
+      case ::user::e_message_box_ok_cancel:
+         return MB_OKCANCEL;
+      case ::user::e_message_box_abort_retry_ignore:
+         return MB_ABORTRETRYIGNORE;
+      case ::user::e_message_box_yes_no_cancel:
+         return MB_YESNOCANCEL;
+      case ::user::e_message_box_yes_no:
+         return MB_YESNO;
+      case ::user::e_message_box_retry_cancel:
+         return MB_RETRYCANCEL;
+      case ::user::e_message_box_cancel_try_continue:
+         return MB_CANCELTRYCONTINUE;
+      default:
+         return 0;
+      }
+
+   }
+
+
+   CLASS_DECL_ACME ::i32 message_box_to_windows_message_box_icon(const ::user::e_message_box & emessagebox)
+   {
+
+      auto emessageboxIcon = emessagebox & ::user::e_message_box_icon_mask;
+
+      switch (emessageboxIcon)
+      {
+      case ::user::e_message_box_icon_error:
+         return MB_ICONERROR;
+      case ::user::e_message_box_icon_exclamation:
+         return MB_ICONEXCLAMATION;
+      case ::user::e_message_box_icon_question:
+         return MB_ICONQUESTION;
+      case ::user::e_message_box_icon_asterisk:
+         return MB_ICONASTERISK;
+      default:
+         return 0;
+      }
+
+   }
+
+
+   CLASS_DECL_ACME ::i32 message_box_to_windows_message_box_default_button(const ::user::e_message_box & emessagebox)
+   {
+
+      auto emessageboxDefaultButton = emessagebox & ::user::e_message_box_default_button_mask;
+
+      switch (emessageboxDefaultButton)
+      {
+      case ::user::e_message_box_default_button_1:
+         return MB_DEFBUTTON1;
+      case ::user::e_message_box_default_button_2:
+         return MB_DEFBUTTON1;
+      case ::user::e_message_box_default_button_3:
+         return MB_DEFBUTTON3;
+      case ::user::e_message_box_default_button_4:
+         return MB_DEFBUTTON4;
+      default:
+         return 0;
+      }
+
+   }
+
+
+
+
+
+   CLASS_DECL_ACME enum_dialog_result windows_message_box_result_to_dialog_result(::i32 iResult)
+   {
+
+      switch (iResult)
+      {
+      case IDOK:
+         return e_dialog_result_ok;
+      case IDCANCEL:
+         return e_dialog_result_cancel;
+      case IDABORT:
+         return e_dialog_result_abort;
+      case IDRETRY:
+         return e_dialog_result_retry;
+      case IDIGNORE:
+         return e_dialog_result_ignore;
+      case IDYES:
+         return e_dialog_result_yes;
+      case IDNO:
+         return e_dialog_result_no;
+      case IDCLOSE:
+         return e_dialog_result_close;
+      case IDHELP:
+         return e_dialog_result_help;
+      case IDTRYAGAIN:
+         return e_dialog_result_retry;
+      case IDCONTINUE:
+         return e_dialog_result_continue;
+      case IDTIMEOUT:
+         return e_dialog_result_timeout;
+      default:
+         return e_dialog_result_none;
+      }
+
+   }
+
+
+
+::i32 message_box(
+                HWND hwnd,
+                const ::scoped_string & scopedstrMessage,
+                const ::scoped_string & scopedstrCaption,
+                UINT uType)
+{
+   
+   auto iResult = ::MessageBox(hwnd, ::wstring(scopedstrMessage), ::wstring(scopedstrCaption), uType);
+   
+   return iResult;
+   
+}
+
+
+
+} 
+
+namespace operating_system
+{
+
+CLASS_DECL_ACME ::i32_rectangle get_console_rect()
+{
+   
+   auto hwnd = ::GetForegroundWindow();
+   
+   const WCHAR consoleClassName[] = L"ConsoleWindowClass";
+   
+   const character_count nameLength = sizeof(consoleClassName) / sizeof(WCHAR) + 1;
+   WCHAR className[nameLength];
+   GetClassNameW(hwnd, className, nameLength);
+   ::i32_rectangle rectangle;
+   if (wcscmp(consoleClassName, className) == 0)
+   {
+      RECT rect;
+      GetWindowRect(hwnd, &rect);
+      rectangle = rect;
+   }
+   return rectangle;
+   
+   
+   
+}
+
+
+} // namespace operating_system
+
+
+void operating_system_factory(::factory::factory * pfactory)
+{
+
+   pfactory->add_factory_item< ::windows::shared_memory, ::shared_memory>();
+
+}
 

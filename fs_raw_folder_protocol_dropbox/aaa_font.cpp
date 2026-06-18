@@ -86,7 +86,7 @@ namespace draw2d_gdiplus
    }
 
 
-   bool font::create(::draw2d::graphics * pgraphics, char iCreate)
+   bool font::create(::draw2d::graphics * pgraphics, ::i8 iCreate)
    {
 
       if (m_pfont != nullptr)
@@ -96,26 +96,26 @@ namespace draw2d_gdiplus
 
       }
 
-      int iStyle = 0;
+      ::i32 iStyle = 0;
 
       if(m_iFontWeight >= 600)
       {
-         iStyle |= (int) Gdiplus::FontStyleBold;
+         iStyle |= (::i32) Gdiplus::FontStyleBold;
       }
 
       if(m_bItalic)
       {
-         iStyle |= (int) Gdiplus::FontStyleItalic;
+         iStyle |= (::i32) Gdiplus::FontStyleItalic;
       }
 
       if(m_bUnderline)
       {
-         iStyle |= (int) Gdiplus::FontStyleUnderline;
+         iStyle |= (::i32) Gdiplus::FontStyleUnderline;
       }
 
       if(m_bStrikeout)
       {
-         iStyle |= (int) Gdiplus::FontStyleStrikeout;
+         iStyle |= (::i32) Gdiplus::FontStyleStrikeout;
       }
 
       Gdiplus::Unit unit;
@@ -155,7 +155,7 @@ namespace draw2d_gdiplus
       //   Hide   Copy Code
       //   // When painting the text
       //   FontFamily pfontFamily;
-      //int nNumFound = 0;
+      //::i32 nNumFound = 0;
       //m_fontcollection.GetFamilies(1, &pfontFamily, &nNumFound);
 
       //if (nNumFound > 0)

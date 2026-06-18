@@ -3,8 +3,8 @@
 
 //
 //
-//CLASS_DECL_APEX unsigned int get_last_error();
-//CLASS_DECL_APEX void set_last_error(unsigned int dw);
+//CLASS_DECL_APEX ::u32 get_last_error();
+//CLASS_DECL_APEX void set_last_error(::u32 dw);
 
 
 
@@ -14,14 +14,14 @@
 //{
 //public:
 //
-//   inline static unsigned int get_last_error()
+//   inline static ::u32 get_last_error()
 //   {
 //
 //      return errno;
 //
 //   }
 //
-//   inline static string GetErrorDescription(int iErrorCode = get_last_error())
+//   inline static string GetErrorDescription(::i32 iErrorCode = get_last_error())
 //   {
 //
 //      return strerror(iErrorCode);
@@ -37,21 +37,21 @@
 //{
 //public:
 //
-//   static unsigned int get_last_error() { return ::get_last_error(); }
+//   static ::u32 get_last_error() { return ::get_last_error(); }
 //
-//   static string GetErrorDescription(int iErrorCode = get_last_error())
+//   static string GetErrorDescription(::i32 iErrorCode = get_last_error())
 //   {
 //      LPVOID pMsgBuf = nullptr;
 //
 //      format_message(FORMAT_MESSAGE_ALLOCATE_BUFFER | FORMAT_MESSAGE_FROM_SYSTEM | FORMAT_MESSAGE_IGNORE_INSERTS,
 //                    nullptr, iErrorCode, MAKELANGID(LANG_NEUTRAL, SUBLANG_DEFAULT), // Default language
-//                    reinterpret_cast<char *>(&pMsgBuf), 0, nullptr);
+//                    reinterpret_cast<char_pointer >(&pMsgBuf), 0, nullptr);
 //
 //      string strErrorDescription;
 //      if (pMsgBuf)
 //
 //      {
-//         strErrorDescription = reinterpret_cast<char *>(pMsgBuf);
+//         strErrorDescription = reinterpret_cast<char_pointer >(pMsgBuf);
 //
 //         LocalFree(pMsgBuf);
 //

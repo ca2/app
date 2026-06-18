@@ -4,7 +4,7 @@
 #include "acme/constant/id.h"
 #include "acme/constant/timer.h"
 #include "acme/handler/topic.h"
-#include "acme/platform/timer.h"
+//#include "acme/platform/timer.h"
 #include "aura/user/user/frame_interaction.h"
 #include "aura/message/user.h"
 
@@ -138,7 +138,7 @@ namespace user
       //   if(top_level_frame()!= nullptr && top_level_frame()->is_full_screen())
       //   {
 
-      //      ::int_rectangle rectangleTab(get_data()->m_rectangleTab);
+      //      ::i32_rectangle rectangleTab(get_data()->m_rectangleTab);
 
       //      rectangleTab+=client_to_screen();
 
@@ -176,7 +176,7 @@ namespace user
       //   else if(::is_set(get_app()) && ::is_set(get_app()->get_session()))
       //   {
 
-      //      ::int_rectangle rectangleWindow;
+      //      ::i32_rectangle rectangleWindow;
 
       //      window_rectangle(rectangleWindow);
 
@@ -267,7 +267,7 @@ namespace user
    }
 
 
-   int auto_hide::auto_hide_threshold_height()
+   ::i32 auto_hide::auto_hide_threshold_height()
    {
 
       return this->height();
@@ -307,7 +307,7 @@ namespace user
 
       //auto ptabdata = get_data();
 
-      int iAutoHideThresholdHeight = auto_hide_threshold_height();
+      ::i32 iAutoHideThresholdHeight = auto_hide_threshold_height();
 
       if (m_bEffectiveVisibleControl
          && m_bControlVisibilityChanging
@@ -392,10 +392,10 @@ namespace user
    }
 
 
-   void auto_hide::on_timer(::timer * ptimer)
+   void auto_hide::operator()(::timer * ptimer)
    {
 
-      if (ptimer->m_uTimer == e_timer_defer_handle_auto_hide_tabs)
+      if (ptimer->m_etimer == e_timer_defer_handle_auto_hide_tabs)
       {
 
          auto_hide_calculate_control_visibility();
@@ -414,6 +414,8 @@ namespace user
          }
 
       }
+
+      //return true;
 
    }
 

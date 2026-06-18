@@ -15,7 +15,7 @@ system_setup::system_setup(::system_setup::enum_flag eflag, const ::scoped_strin
 }
 
 //system_setup::system_setup(const ::scoped_string & scopedstrName, PFN_NEW_AURA_APPLICATION pfnNewAuraApplication) :
-//   m_pszName(lpszName),
+//   m_pszName(pszName),
 //   m_pfnNewAuraApplication(pfnNewAuraApplication),
 //   m_pfnNewAuraLibrary(nullptr),
 //   m_eflag(flag_application)
@@ -27,7 +27,7 @@ system_setup::system_setup(::system_setup::enum_flag eflag, const ::scoped_strin
 //
 //
 //system_setup::system_setup(const ::scoped_string & scopedstrName, PFN_NEW_AURA_LIBRARY pfnNewLibrary):
-//   m_pszName(lpszName),
+//   m_pszName(pszName),
 //   m_pfnNewAuraApplication(nullptr),
 //   m_pfnNewAuraLibrary(pfnNewLibrary),
 //   m_eflag(flag_library)
@@ -56,7 +56,7 @@ system_setup* system_setup::get_first(::system_setup::enum_flag eflag, const ::s
    while (psetup != nullptr)
    {
 
-      if ((int)(psetup->m_eflag & eflag) == (int)eflag
+      if ((::i32)(psetup->m_eflag & eflag) == (::i32)eflag
          && (string(scopedstrName).is_empty() || (!stricmp(scopedstrName, psetup->m_pszName))))
       {
 
@@ -85,7 +85,7 @@ system_setup* system_setup::get_first(::system_setup::enum_flag eflag, const ::s
 //
 //   system_setup * papp = s_papp;
 //
-//   if (papp != nullptr && !ansi_cmp(lpszName, "acid"))
+//   if (papp != nullptr && !ansi_cmp(pszName, "acid"))
 //   {
 //
 //      return papp;
@@ -95,7 +95,7 @@ system_setup* system_setup::get_first(::system_setup::enum_flag eflag, const ::s
 //   while(papp != nullptr)
 //   {
 //
-//      if(!case_insensitive_ansi_compare(papp->m_pszName, lpszName))
+//      if(!case_insensitive_ansi_compare(papp->m_pszName, pszName))
 //      {
 //
 //         return papp;
@@ -119,7 +119,7 @@ system_setup* system_setup::get_first(::system_setup::enum_flag eflag, const ::s
 //   while (psetup != nullptr)
 //   {
 //
-//      if ((int)(psetup->m_eflag & eflag) == (int) eflag)
+//      if ((::i32)(psetup->m_eflag & eflag) == (::i32) eflag)
 //      {
 //
 //         return true;

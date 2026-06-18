@@ -7,7 +7,7 @@
 #include "acme/prototype/comparison/compare.h"
 
 
-enum enum_range : int
+enum enum_range : ::i32
 {
 
    e_range_none = 0,
@@ -17,8 +17,8 @@ enum enum_range : int
    /// it is very difficult and possibly not
    /// much portable to determine a string
    /// literal.
-   /// A simple char sz[20]= "stackstring"
-   /// matches template<> const char (&s)[n];
+   /// A simple ::i8 sz[20]= "stackstring"
+   /// matches template<> const ::i8 (&s)[n];
    e_range_string_literal = 4,
    ///// scoped ownership seems also not usable
    ///// once a ownership is done, reference
@@ -92,7 +92,7 @@ auto & get(const TYPE * p)
 }
 
 
-DECLARE_ENUMERATION(e_range, enum_range);
+DECLARE_C_FLAG(e_range, enum_range);
 
 
 template < prototype_range RANGE >
@@ -559,7 +559,7 @@ public:
    }
 
 
-   static consteval memsize item_size()
+   static constexpr memsize item_size()
    {
       return sizeof(ITEM);
    }

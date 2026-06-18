@@ -60,9 +60,9 @@ namespace simple_shader
 
       //}
 
-      //int_rectangle rectangle;
+      //i32_rectangle rectangle;
 
-      //int iSize = minimum(m_rectangle.width(), m_rectangle.height());
+      //::i32 iSize = minimum(m_rectangle.width(), m_rectangle.height());
 
       //iSize = iSize * 3 / 4;
 
@@ -74,7 +74,7 @@ namespace simple_shader
 
       //rectangle.offset_x(iSize / 5 * m_iDrawing);
       //
-      //::double_size size(0., 0.);
+      //::f64_size size(0., 0.);
       //
       //bool bDrawText = true;
       //
@@ -160,7 +160,7 @@ namespace simple_shader
 
       //pgraphics->ellipse(rectangle);
 
-      //::int_rectangle rectangleText;
+      //::i32_rectangle rectangleText;
 
       //rectangleText.set_size(size);
 

@@ -68,7 +68,7 @@ void trace_category_static_init(::platform::system * psystem)
    };
 
 
-   int iCategory = 0;
+   ::i32 iCategory = 0;
 
    auto p = psza;
 
@@ -157,7 +157,7 @@ CLASS_DECL_ACME bool enable_trace_category(enum_trace_category etracecategory, b
 }
 
 
-CLASS_DECL_ACME int_bool c_enable_trace_category(enum_trace_category etracecategory, int_bool iEnable)
+CLASS_DECL_ACME ::i32_bool c_enable_trace_category(enum_trace_category etracecategory, ::i32_bool iEnable)
 {
 
    if (!enable_trace_category(etracecategory, iEnable != false))
@@ -196,12 +196,12 @@ const_char_pointer g_pszTraceLevelName[] =
    "warning",
    "error",
    "fatal",
-   "undefined log level"
+   "undefined plogwriter level"
 
 };
 
 
-char g_chaTraceLevel[] =
+::i8 g_chaTraceLevel[] =
 {
 
    ' ',

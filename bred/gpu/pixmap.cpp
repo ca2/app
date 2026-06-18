@@ -30,7 +30,7 @@ namespace gpu
    }
 
 
-   void pixmap::initialize_gpu_pixmap(::gpu::texture* pgputexture, const ::int_rectangle& rectangle)
+   void pixmap::initialize_gpu_pixmap(::gpu::texture* pgputexture, const ::i32_rectangle& rectangle)
    {
 
       m_pgputexture = pgputexture;
@@ -50,7 +50,7 @@ namespace gpu
    }
 
 
-   ::int_size pixmap::size()
+   ::i32_size pixmap::size()
    {
 
       return m_rectangle.size();
@@ -106,7 +106,7 @@ namespace gpu
    //}
 
 
-   //void pixmap::blend(::gpu::layer* player)
+   //void pixmap::blend(::gpu::layer * pgpulayer)
    //{
 
    //   blend(player->pixmap());

@@ -23,7 +23,7 @@ public:
 };
 
 
-constexpr integral_byte operator ""_KiB(long double d)
+constexpr integral_byte operator ""_KiB(::f128 d)
 {
 
    return (memsize)(1024.0 * d);
@@ -31,7 +31,7 @@ constexpr integral_byte operator ""_KiB(long double d)
 }
 
 
-constexpr integral_byte operator ""_KiB(unsigned long long i)
+constexpr integral_byte operator ""_KiB(::u64 i)
 {
 
    return (memsize)(i << 10);
@@ -39,7 +39,7 @@ constexpr integral_byte operator ""_KiB(unsigned long long i)
 }
 
 
-constexpr integral_byte operator ""_MiB(long double d)
+constexpr integral_byte operator ""_MiB(::f128 d)
 {
 
    return (memsize)(1024.0 * 1024.0 * d);
@@ -47,7 +47,7 @@ constexpr integral_byte operator ""_MiB(long double d)
 }
 
 
-constexpr integral_byte operator ""_MiB(unsigned long long i)
+constexpr integral_byte operator ""_MiB(::u64 i)
 {
 
    return (memsize)(i << 20);
@@ -55,7 +55,7 @@ constexpr integral_byte operator ""_MiB(unsigned long long i)
 }
 
 
-constexpr integral_byte operator ""_GiB(long double d)
+constexpr integral_byte operator ""_GiB(::f128 d)
 {
 
    return (memsize)(1'024.0 * 1'024.0 * 1'024.0 * d);
@@ -63,7 +63,7 @@ constexpr integral_byte operator ""_GiB(long double d)
 }
 
 
-constexpr integral_byte operator ""_GiB(unsigned long long i)
+constexpr integral_byte operator ""_GiB(::u64 i)
 {
 
    return (memsize)(i << 30);

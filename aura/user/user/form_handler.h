@@ -22,14 +22,23 @@ namespace user
       form_handler();
       ~form_handler() override;
 
-
-      template < typename LABEL = ::user::still>
-      ::pointer < LABEL >create_label(::user::interaction* puserinteractionParent)
+      template<typename LABEL = ::user::still>
+      ::pointer<LABEL> _allocate_label()
       {
 
          auto plabel = create_newø<LABEL>();
 
+         return plabel;
+
+      }
+
+
+      void _initialize_label(::user::still * plabel, ::user::interaction *puserinteractionParent, bool bClickable)
+      {
+
          plabel->m_bAutoResize = true;
+
+         plabel->m_bDefaultClickHandling = bClickable;
 
          plabel->create_child(puserinteractionParent);
 
@@ -37,8 +46,64 @@ namespace user
 
          plabel->set_need_layout();
 
+      }
+
+
+
+            void _initialize_icon_label(::user::still *plabel, ::user::interaction *puserinteractionParent, bool bClickable)
+      {
+
+         plabel->m_bAutoResize = true;
+
+         plabel->m_bDefaultClickHandling = bClickable;
+
+         plabel->create_child(puserinteractionParent);
+
+         plabel->display();
+
+         plabel->set_need_layout();
+      }
+
+
+
+      template<typename LABEL = ::user::still>
+      ::pointer<LABEL> _create_label(::user::interaction *puserinteractionParent, bool bClickable)
+      {
+
+         auto plabel = _allocate_label<LABEL>();
+
+         _initialize_label(plabel, puserinteractionParent, bClickable);
+
          return plabel;
 
+      }
+
+      template<typename LABEL = ::user::still>
+      ::pointer<LABEL> _create_icon_label(::user::interaction *puserinteractionParent, bool bClickable)
+      {
+
+         auto plabel = _allocate_label<LABEL>();
+
+         _initialize_icon_label(plabel, puserinteractionParent, bClickable);
+
+         return plabel;
+      }
+
+
+
+      template < typename LABEL = ::user::still>
+      ::pointer < LABEL >create_label(::user::interaction* puserinteractionParent)
+      {
+
+         return _create_label<LABEL>(puserinteractionParent, false);
+
+      }
+
+            template<typename LABEL = ::user::still>
+      ::pointer<LABEL> create_icon_label(::user::interaction *puserinteractionParent)
+      {
+
+         return _create_icon_label<LABEL>(puserinteractionParent, false);
       }
 
       template < typename LABEL =::user::still>
@@ -66,6 +131,17 @@ namespace user
 
       }
 
+
+      template<typename LABEL = ::user::still>
+      ::pointer<LABEL> create_clickable_label(::user::interaction *puserinteractionParent, const ::scoped_string &scopedstrLabel)
+      {
+
+         auto plabel = _create_label<LABEL>(puserinteractionParent, true);
+
+         plabel->set_window_text(scopedstrLabel);
+
+         return plabel;
+      }
 
       ::write_text::font_pointer get_title1_font();
 

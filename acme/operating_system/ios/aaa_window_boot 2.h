@@ -27,12 +27,12 @@ bool m_bDirty;
    
    
    virtual void boot_window_draw(CGContextRef cgc) = 0;
-   virtual void boot_window_mouse_down(double x, double y) = 0;
-   virtual void boot_window_mouse_up(double x, double y) = 0;
-   virtual void boot_window_mouse_moved(double x, double y) = 0;
-   virtual void boot_window_mouse_dragged(double x, double y) = 0;
-   virtual bool boot_window_key_down(::user::enum_key ekey, const char * characters) = 0;
-   virtual bool boot_window_key_up(::user::enum_key ekey, const char * characters) = 0;
+   virtual void boot_window_mouse_down(::f64 x, ::f64 y) = 0;
+   virtual void boot_window_mouse_up(::f64 x, ::f64 y) = 0;
+   virtual void boot_window_mouse_moved(::f64 x, ::f64 y) = 0;
+   virtual void boot_window_mouse_dragged(::f64 x, ::f64 y) = 0;
+   virtual bool boot_window_key_down(const ::user::e_key & ekey, const_char_pointer characters) = 0;
+   virtual bool boot_window_key_up(const ::user::e_key & ekey, const_char_pointer characters) = 0;
    
    
    virtual void boot_window_invalidate();
@@ -48,6 +48,6 @@ bool m_bDirty;
 };
 
 
-UIWindow * new_boot_window(boot_window * pwindow, CGRect int_rectangle);
+UIWindow * new_boot_window(boot_window * pwindow, CGRect i32_rectangle);
 void ios_application_main();
-int ios_app_run(int argc, char * argv[]);
+::i32 ios_app_run(::i32 argc, char_pointer argv[]);

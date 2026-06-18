@@ -30,7 +30,7 @@ namespace aura
 
 
       e_application_message             m_esignal;
-      int                          m_iRet;
+      ::i32                          m_iRet;
       bool                             m_bOk;
 
 

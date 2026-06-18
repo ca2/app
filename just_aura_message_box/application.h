@@ -32,8 +32,8 @@ namespace app_just_aura_message_box
 //
 //#ifdef _DEBUG
 //
-//      virtual long long increment_reference_count() override;
-//      virtual long long decrement_reference_count() override;
+//      virtual ::i64 increment_reference_count() override;
+//      virtual ::i64 decrement_reference_count() override;
 //
 //#endif
 

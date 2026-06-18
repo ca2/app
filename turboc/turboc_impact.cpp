@@ -181,7 +181,7 @@ namespace turboc
 /*   void impact::_006OnDraw(::image::image *pimage)
    {
 
-      ::int_rectangle rectangleX;
+      ::i32_rectangle rectangleX;
 
       GetClientRect(rectangleX);
 
@@ -196,7 +196,7 @@ namespace turboc
          if(m_bNewLayout)
          {
 
-            float fHeight = 100.0;
+            ::f32 fHeight = 100.0;
 
 
 
@@ -207,9 +207,9 @@ namespace turboc
 
             pgraphics->set_text_rendering_hint(::write_text::e_rendering_anti_alias);
 
-            ::int_size size = pgraphics->get_text_extent(strHelloMultiverse);
+            ::i32_size size = pgraphics->get_text_extent(strHelloMultiverse);
 
-            double ratey = fHeight * 0.84 / size.cy;
+            ::f64 ratey = fHeight * 0.84 / size.cy;
 
             m_pfont->create_pixel_font(pnode->font_name(e_font_sans),minimum(m_cy * ratey,m_cx * size.cy * ratey / size.cx),e_font_weight_bold);
 
@@ -244,7 +244,7 @@ namespace turboc
 
          ::color::color ca;
 
-         double dPeriod = (500) * 11;
+         ::f64 dPeriod = (500) * 11;
 
          ca.set_hls(fmod(::get_tick(),dPeriod) / dPeriod,0.49,0.84);
 
@@ -260,7 +260,7 @@ namespace turboc
 
          pgraphics->set_text_rendering_hint(::write_text::e_rendering_anti_alias);
 
-         ::int_size size = pgraphics->get_text_extent(strHelloMultiverse);
+         ::i32_size size = pgraphics->get_text_extent(strHelloMultiverse);
 
          pgraphics->text_out((m_cx - size.cx) / 2,(m_cy - size.cy) / 2,strHelloMultiverse);
 
@@ -291,7 +291,7 @@ namespace turboc
 
          }
 
-         pgraphics->BitBlt(::int_point(),int_size(m_cx,m_cy),m_pimageFast->get_graphics());
+         pgraphics->BitBlt(::i32_point(),i32_size(m_cx,m_cy),m_pimageFast->get_graphics());
 
          //pgraphics->FillSolidRect(400,400,100,100,argb(128,0,0,128));
 
@@ -343,17 +343,17 @@ namespace turboc
       if(m_timeLastOk.elapsed() < m_timeAnime)
       {
 
-         unsigned char uchAlpha = maximum(0,minimum(255,(m_timeLastOk.elapsed()) * 255 / m_timeAnime));
+         ::u8 uchAlpha = maximum(0,minimum(255,(m_timeLastOk.elapsed()) * 255 / m_timeAnime));
 
-         ::int_rectangle rectangleX;
+         ::i32_rectangle rectangleX;
 
          GetClientRect(rectangleX);
 
          //pgraphics->FillSolidRect(rectangleX,0);
 
-/*         pdraw2d->imaging().bitmap_blend(pgraphics,::int_point(),pimage->get_size(),pimage->g(),::int_point(),uchAlpha);
+/*         pdraw2d->imaging().bitmap_blend(pgraphics,::i32_point(),pimage->get_size(),pimage->g(),::i32_point(),uchAlpha);
 
-         pdraw2d->imaging().bitmap_blend(pgraphics,::int_point(),imageFast.m_size,imageFast.get_graphics(),::int_point(),255 - uchAlpha);
+         pdraw2d->imaging().bitmap_blend(pgraphics,::i32_point(),imageFast.m_size,imageFast.get_graphics(),::i32_point(),255 - uchAlpha);
 
       }
       else
@@ -363,7 +363,7 @@ namespace turboc
 
       }
 
-      //pdraw2d->imaging().bitmap_blend(pgraphics,::int_point(),imageFast.m_size,imageFast.get_graphics(),::int_point(),255);
+      //pdraw2d->imaging().bitmap_blend(pgraphics,::i32_point(),imageFast.m_size,imageFast.get_graphics(),::i32_point(),255);
 
 
       //pgraphics->FillSolidRect(100,100,100,100,argb(128,0,128,0));
@@ -373,7 +373,7 @@ namespace turboc
    void impact::_001OnDraw(::draw2d::graphics_pointer & pgraphics)
    {
 
-      ::int_rectangle rectangleX;
+      ::i32_rectangle rectangleX;
 
       GetClientRect(rectangleX);
 
@@ -392,7 +392,7 @@ namespace turboc
 
       pdcScreen->set_alpha_mode(::draw2d::e_alpha_mode_blend);
 
-      pdcScreen->from(::int_point(),m_pimagePost->m_size,m_pimagePost.get_graphics(),::int_point());
+      pdcScreen->from(::i32_point(),m_pimagePost->m_size,m_pimagePost.get_graphics(),::i32_point());
 
 //      pdcScreen->FillSolidRect(500,200,100,100,argb(255,255,210,0));
 
@@ -408,7 +408,7 @@ namespace turboc
 
       synchronous_lock slDraw(m_pmutexDraw, DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 
-      ::int_size sizeNew = ::int_size(m_cx,m_cy) + ::int_size(100,100);
+      ::i32_size sizeNew = ::i32_size(m_cx,m_cy) + ::i32_size(100,100);
 
       bool bNewSize = m_pimageFast->width() < sizeNew->cx || m_pimageFast->height() < sizeNew->cy;
 
@@ -423,7 +423,7 @@ namespace turboc
 
       ::draw2d::graphics_pointer & pgraphics = m_pimageFast->get_graphics();
 
-      float fHeight = 100.0;
+      ::f32 fHeight = 100.0;
 
       m_pfont->create_pixel_font(pnode->font_name(e_font_sans),fHeight,e_font_weight_bold);
 
@@ -431,9 +431,9 @@ namespace turboc
 
       pgraphics->set_text_rendering_hint(::write_text::e_rendering_anti_alias);
 
-      ::int_size size = pgraphics->get_text_extent(strHelloMultiverse);
+      ::i32_size size = pgraphics->get_text_extent(strHelloMultiverse);
 
-      double ratey = fHeight * 0.84 / size.cy;
+      ::f64 ratey = fHeight * 0.84 / size.cy;
 
       m_pfont->create_pixel_font(pnode->font_name(e_font_sans),minimum(m_cy * ratey,m_cx * size.cy * ratey / size.cx),e_font_weight_bold);
 
@@ -499,7 +499,7 @@ namespace turboc
    void impact::full_render()
    {
 
-      int_size sizeNew = int_size(m_cx, m_cy) + size(100,100);
+      i32_size sizeNew = i32_size(m_cx, m_cy) + size(100,100);
 
       if(m_bNewLayout)
       {
@@ -517,10 +517,10 @@ namespace turboc
          {
 
 
-            //          unsigned int dwTime2= ::time::now();
+            //          ::u32 dwTime2= ::time::now();
 
             //informationf("message_handler call time0= %d ms",dwTime2 - t_time1.operator DWORD_PTR());
-//            informationf("hello_impact::lyot call timeA= %d ms",(unsigned long long) (dwTime2 - t_time1.operator DWORD_PTR()));
+//            informationf("hello_impact::lyot call timeA= %d ms",(::u64) (dwTime2 - t_time1.operator DWORD_PTR()));
 
          }
 
@@ -568,7 +568,7 @@ namespace turboc
          }
          {
 
-//            unsigned int dwTime2= ::time::now();
+//            ::u32 dwTime2= ::time::now();
 
             //informationf("message_handler call time0= %d ms",dwTime2 - t_time1.operator DWORD_PTR());
             //informationf("hello_impact::lyot call timeB= %d ms",dwTime2 - t_time1.operator DWORD_PTR());
@@ -602,29 +602,29 @@ namespace turboc
       if(m_eeffect == effect_crt)
       {
 
-         int iFactor = 3;
-         int iMult = 1 << iFactor;
+         ::i32 iFactor = 3;
+         ::i32 iMult = 1 << iFactor;
 
 /*         pimage->g()->StretchBlt(0,0,pimage->width() / iMult,pimage->height() / iMult,pimage->g(),0,0,pimage->width(),pimage->height());
 /*         pimage->g()->StretchBlt(0,0,pimage->width(),pimage->height(),pimage->g(),0,0,pimage->width() / iMult,pimage->height() / iMult);
 
          color32_t color32;
 
-         unsigned char a,r,g,b,rm,gm,bm;
+         ::u8 a,r,g,b,rm,gm,bm;
 
-/*         int h = (pimage->height() / 3) * 3;
+/*         ::i32 h = (pimage->height() / 3) * 3;
 
-/*         int w = (pimage->width() / 3) * 3;
+/*         ::i32 w = (pimage->width() / 3) * 3;
 
-         for(int i = 0; i < h; i+=3)
+         for(::i32 i = 0; i < h; i+=3)
          {
-            for(int j = 0; j < w; j+=3)
+            for(::i32 j = 0; j < w; j+=3)
             {
 /*               color32 = pimage->get_data()[i * pimage->width() + j];
-               a = color32_byte_opacity(color32);
-               r = color32_byte_red(color32);
-               g = color32_byte_green(color32);
-               b = color32_byte_blue(color32);
+               a = color32_u8_opacity(color32);
+               r = color32_u8_red(color32);
+               g = color32_u8_green(color32);
+               b = color32_u8_blue(color32);
                rm = (g + b) / 4;
                gm = (r + b) / 4;
                bm = (r + g) / 4;
@@ -646,7 +646,7 @@ namespace turboc
 
 /*         pimage->g()->SelectObject(pen);
 
-/*         for(int i = 0; i < pimage->height(); i+=3)
+/*         for(::i32 i = 0; i < pimage->height(); i+=3)
          {
 
 /*            pimage->g()->draw_line(0,i,pimage->width(),i);
@@ -700,7 +700,7 @@ namespace turboc
    }
 
 
-   unsigned int impact::thread_proc_render(void * pparam)
+   ::u32 impact::thread_proc_render(void * pparam)
    {
 
       impact * pviewParam = (impact *)pparam;
@@ -744,7 +744,7 @@ namespace turboc
    void impact::on_layout(::draw2d::graphics_pointer & pgraphics)
    {
 
-      ::int_rectangle rectangleX;
+      ::i32_rectangle rectangleX;
 
       GetClientRect(rectangleX);
 
@@ -874,8 +874,8 @@ namespace turboc
 
          m_bFirstDone = true;
 
-         ::int_rectangle rectangleWork(0,0,m_pimageWork->width(),m_pimageWork->height());
-         ::int_rectangle rectangleImage(0,0,m_pimageImage->width(),m_pimageImage->height());
+         ::i32_rectangle rectangleWork(0,0,m_pimageWork->width(),m_pimageWork->height());
+         ::i32_rectangle rectangleImage(0,0,m_pimageImage->width(),m_pimageImage->height());
 
          rectangleImage.FitOnCenterOf(rectangleWork);
 

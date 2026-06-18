@@ -30,6 +30,7 @@
 #undef ERROR
 #define log_error(...) TRACE_LOG_ERROR(__VA_ARGS__)
 
+#define SOCKET_DEBUG_LEVEL 1
 
 namespace sockets_bsd
 {
@@ -78,7 +79,7 @@ namespace sockets_bsd
    //}
 
 
-   int socket::close_socket(SOCKET s)
+   ::i32 socket::close_socket(SOCKET s)
    {
 
       return ::_close_socket(s);
@@ -103,7 +104,7 @@ namespace sockets_bsd
 
       }
 
-      int n;
+      ::i32 n;
 
       if ((n = close_socket(m_socketid)) == -1)
       {
@@ -140,7 +141,7 @@ namespace sockets_bsd
    }
 
 
-   SOCKET socket::CreateSocket(int af, int iType, const ::scoped_string & scopedstrProtocol)
+   SOCKET socket::CreateSocket(::i32 af, ::i32 iType, const ::scoped_string & scopedstrProtocol)
    {
 
       SOCKET s;
@@ -151,7 +152,7 @@ namespace sockets_bsd
       
       m_strSocketProtocol = scopedstrProtocol;
 
-      int protno;
+      ::i32 protno;
 
 #ifdef __ANDROID__
 
@@ -232,7 +233,11 @@ namespace sockets_bsd
          return INVALID_SOCKET;
       }
 
-      information() << "socket::CreateSocket socket = " << (int) s;
+#if SOCKET_DEBUG_LEVEL >= 6
+      
+      information() << "socket::CreateSocket socket = " << (::i32) s;
+      
+#endif
 
       //attach(s);
       OnOptions(af, iType, protno, s);
@@ -278,7 +283,7 @@ namespace sockets_bsd
    {
 #ifdef _WIN32
       u_long l = bNb ? 1 : 0;
-      int n = ioctlsocket(s, FIONBIO, &l);
+      ::i32 n = ioctlsocket(s, FIONBIO, &l);
       if (n != 0)
       {
 

@@ -11,7 +11,7 @@
 //{
 //
 //
-//   void node::system_time_to_earth_time(posix_time * ptime, const system_time & systemtime, int nDST)
+//   void node::system_time_to_earth_time(posix_time * ptime, const system_time & systemtime, ::i32 nDST)
 //   {
 //
 //      throw ::interface_only();
@@ -47,7 +47,7 @@ system_time::system_time(const ::earth::gregorian_time & gregoriantime)
 
    wDayOfWeek = gregoriantime.m_iDayOfWeek;
 
-   wMilliseconds = (unsigned short)(gregoriantime.m_iNanoSecond / 1'000'000);
+   wMilliseconds = (::u16)(gregoriantime.m_iNanoSecond / 1'000'000);
 
    wSecond = gregoriantime.m_iSecond;
    wMinute = gregoriantime.m_iMinute;

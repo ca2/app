@@ -33,6 +33,8 @@ namespace user
 
       const class visual_state& visual() const { return* this; }
 
+      class visual_state& visual() { return* this; }
+
       using visual_state::operator =;
 
       layout_state& operator = (const ::zorder& zorder) { m_zorder = zorder; return *this; }
@@ -40,7 +42,7 @@ namespace user
       ::zorder & zorder() { return m_zorder; }
       const ::zorder & zorder() const { return m_zorder; }
 
-      void _patch_order(int iOrder) { m_zorder.m_iZOrder = iOrder; }
+      void _patch_order(::i32 iOrder) { m_zorder.m_iZOrder = iOrder; }
 
       ::user::activation activation() const { return m_activation; }
       bool has_activation_request() const

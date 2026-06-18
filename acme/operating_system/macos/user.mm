@@ -10,6 +10,13 @@
 #import <Foundation/Foundation.h>
 #import <Cocoa/Cocoa.h>
 
+#include <ApplicationServices/ApplicationServices.h>
+#include <CoreGraphics/CoreGraphics.h>
+#include <AppKit/AppKit.h>
+
+
+
+
 class ns_alert_box
 {
 public:
@@ -18,7 +25,7 @@ public:
    int m_iButtonCount = 0;
    enum_dialog_result m_edialogresulta[4];
 
-   ns_alert_box(const char * pszMessage, const char * pszTitle, ::user::enum_message_box emessagebox)
+   ns_alert_box(const char * pszMessage, const char * pszTitle, const ::user::e_message_box & emessagebox)
    {
       m_palert = [[NSAlert alloc] init];
       NSString * strMessage = [[NSString alloc]initWithUTF8String:pszMessage];
@@ -113,7 +120,7 @@ public:
 };
 
 
-enum_dialog_result ns_alert_box(const char * pszMessage, const char * pszTitle, ::user::enum_message_box emessagebox)
+enum_dialog_result ns_alert_box(const char * pszMessage, const char * pszTitle, const ::user::e_message_box & emessagebox)
 {
    
    class ns_alert_box nsalertbox(pszMessage, pszTitle, emessagebox);
@@ -126,4 +133,147 @@ enum_dialog_result ns_alert_box(const char * pszMessage, const char * pszTitle, 
 
 
 
+#include <ApplicationServices/ApplicationServices.h>
+#include <AppKit/AppKit.h>
 
+
+
+namespace operating_system
+{
+
+CGRect _get_console_rect()
+{
+    CGRect rect = CGRectZero;
+
+    @autoreleasepool
+    {
+        NSRunningApplication* app =
+            [[NSWorkspace sharedWorkspace]
+                frontmostApplication];
+
+        if (!app)
+            return rect;
+
+        NSString* bundleId = app.bundleIdentifier;
+
+        bool isTerminal =
+            [bundleId isEqualToString:@"com.apple.Terminal"] ||
+            [bundleId isEqualToString:@"com.googlecode.iterm2"];
+
+        if (!isTerminal)
+            return rect;
+
+        AXUIElementRef appElement =
+            AXUIElementCreateApplication(app.processIdentifier);
+
+        if (!appElement)
+            return rect;
+
+        CFTypeRef focusedWindow = nullptr;
+
+        AXError err =
+            AXUIElementCopyAttributeValue(
+                appElement,
+                kAXFocusedWindowAttribute,
+                &focusedWindow);
+
+        if (err == kAXErrorSuccess && focusedWindow)
+        {
+            CGPoint position = {};
+            CGSize size = {};
+
+            CFTypeRef posValue = nullptr;
+            CFTypeRef sizeValue = nullptr;
+
+            AXUIElementCopyAttributeValue(
+                (AXUIElementRef)focusedWindow,
+                kAXPositionAttribute,
+                &posValue);
+
+            AXUIElementCopyAttributeValue(
+                (AXUIElementRef)focusedWindow,
+                kAXSizeAttribute,
+                &sizeValue);
+
+            if (posValue &&
+                AXValueGetType((AXValueRef)posValue) ==
+                    kAXValueCGPointType)
+            {
+                AXValueGetValue(
+                    (AXValueRef)posValue,
+                                kAXValueTypeCGPoint,
+                    &position);
+            }
+
+            if (sizeValue &&
+                AXValueGetType((AXValueRef)sizeValue) ==
+                    kAXValueCGSizeType)
+            {
+                AXValueGetValue(
+                    (AXValueRef)sizeValue,
+                    kAXValueTypeCGSize,
+                    &size);
+            }
+
+            rect.origin = position;
+            rect.size = size;
+
+            if (posValue)
+                CFRelease(posValue);
+
+            if (sizeValue)
+                CFRelease(sizeValue);
+
+            CFRelease(focusedWindow);
+        }
+
+        CFRelease(appElement);
+    }
+
+    return rect;
+}
+
+
+} // namespace operating_system
+
+
+
+
+int ns_message_box(const char* title, const char* message, const ::user::e_message_box & emessagebox)
+{
+    NSAlert *alert = [[NSAlert alloc] init];
+    
+    [alert setMessageText:[NSString stringWithUTF8String:title]];
+    [alert setInformativeText:[NSString stringWithUTF8String:message]];
+    [alert setAlertStyle:NSAlertStyleInformational];
+
+    if (emessagebox & ::user::e_message_box_yes_no) {
+        [alert addButtonWithTitle:@"Yes"];   // Index 1000
+        [alert addButtonWithTitle:@"No"];    // Index 1001
+    } else {
+        [alert addButtonWithTitle:@"OK"];     // Index 1000
+        [alert addButtonWithTitle:@"Cancel"]; // Index 1001
+    }
+
+    NSInteger result = [alert runModal];
+
+    // Map NSAlert returns back to our custom enum
+    if (emessagebox & ::user::e_message_box_yes_no) {
+        return (result == NSAlertFirstButtonReturn) ? e_dialog_result_yes : e_dialog_result_no;
+    } else {
+        return (result == NSAlertFirstButtonReturn) ? e_dialog_result_ok :e_dialog_result_cancel;
+    }
+}
+
+
+
+namespace operating_system{
+
+void message_beep(const ::user::e_message_box & emessagebox)
+{
+   
+   NSBeep();
+   
+}
+
+} // namespace operating_system

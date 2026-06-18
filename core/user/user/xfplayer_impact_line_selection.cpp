@@ -23,7 +23,7 @@ xfplayer_impact_line_selection::~xfplayer_impact_line_selection()
 }
 
 
-void xfplayer_impact_line_selection::relay_event(xfplayer_impact_line & viewline, ::message::message * pmessage)
+void xfplayer_impact_line_selection::relay_event(xfplayer_impact_line * pline, ::message::message * pmessage)
 {
 
    ::pointer<::user::message>pusermessage(pmessage);
@@ -51,9 +51,9 @@ void xfplayer_impact_line_selection::relay_event(xfplayer_impact_line & viewline
       
       auto pointCursor = pusermessage->m_lparam.point();
 
-      ::int_rectangle rectanglePlacement;
+      ::i32_rectangle rectanglePlacement;
       
-      viewline.GetPlacement(&rectanglePlacement);
+      pline->GetPlacement(&rectanglePlacement);
       
       bInside = rectanglePlacement.contains(pointCursor) != 0;
       
@@ -67,29 +67,29 @@ void xfplayer_impact_line_selection::relay_event(xfplayer_impact_line & viewline
                   (pointCursor.y <= rectanglePlacement.bottom &&
                    pointCursor.x < rectanglePlacement.left))
             {
-               SetSelBefore(viewline);
-               //                   viewline.get_interaction()->set_need_redraw();
+               SetSelBefore(pline);
+               //                   pline->get_interaction()->set_need_redraw();
             }
             else
             {
-               SetSelAfter(viewline);
-               //                viewline.get_interaction()->set_need_redraw();
+               SetSelAfter(pline);
+               //                pline->get_interaction()->set_need_redraw();
             }
             if(emessage == ::user::e_message_left_button_up)
             {
-               OnSelEvent(viewline, e_event_end);
+               OnSelEvent(pline, e_event_end);
             }
          }
          return;
       }
       else if(bInside)
       {
-         //unsigned int fwKeys = pusermessage->m_wparam; // key flags
+         //::u32 fwKeys = pusermessage->m_wparam; // key flags
          if(emessage == ::user::e_message_left_button_down)
          {
-            if(viewline.CalcChar(pointCursor, iChar))
+            if(pline->CalcChar(pointCursor, iChar))
             {
-               iLine = viewline.m_iIndex;
+               iLine = pline->m_iIndex;
                m_item.SetLineStart(iLine);
                m_item.SetCharStart(iChar);
                m_item.SetLineEnd(iLine);
@@ -103,8 +103,8 @@ void xfplayer_impact_line_selection::relay_event(xfplayer_impact_line & viewline
                m_item.SetLineEnd(-1);
                m_item.SetCharEnd(-1);
             }
-            //                viewline.get_interaction()->set_need_redraw();
-            OnSelEvent(viewline, e_event_start);
+            //                pline->get_interaction()->set_need_redraw();
+            OnSelEvent(pline, e_event_start);
             pusermessage->m_bRet = true;
             return;
          }
@@ -113,30 +113,30 @@ void xfplayer_impact_line_selection::relay_event(xfplayer_impact_line & viewline
           || emessage == ::user::e_message_mouse_move)
          && GetState() == e_state_tracking)
          {
-            if(viewline.CalcChar(pointCursor, iChar))
+            if(pline->CalcChar(pointCursor, iChar))
             {
-               iLine = viewline.m_iIndex;
+               iLine = pline->m_iIndex;
                m_item.SetLineEnd(iLine);
                m_item.SetCharEnd(iChar);
                //                m_item.NormalizeSel();
                //                m_etype |= TypeMaskEndHere;
-               //viewline.get_interaction()->set_need_redraw();
+               //pline->get_interaction()->set_need_redraw();
             }
             else
             {
-               if(pointCursor.x < viewline.m_iaPosition[0])
+               if(pointCursor.x < pline->m_iaPosition[0])
                {
-                  SetSelBefore(viewline);
+                  SetSelBefore(pline);
                }
                {
-                  SetSelAfter(viewline);
+                  SetSelAfter(pline);
                }
-               //viewline.get_interaction()->set_need_redraw();
+               //pline->get_interaction()->set_need_redraw();
 
             }
             if(emessage == ::user::e_message_left_button_up)
             {
-               OnSelEvent(viewline, e_event_end);
+               OnSelEvent(pline, e_event_end);
                if(m_iLineStartSource == m_item.GetLineStart()
                      && m_iLineEndSource == m_item.GetLineEnd()
                      && m_iCharStartSource == m_item.GetCharStart()
@@ -147,9 +147,9 @@ void xfplayer_impact_line_selection::relay_event(xfplayer_impact_line & viewline
 
                   auto pointCursor = m_puserinteraction->mouse_cursor_position();
 
-                  if(viewline.get_link(str, pointCursor))
+                  if(pline->get_link(str, pointCursor))
                   {
-                     //usersp(::user::impact) pimpact = viewline.get_interaction();
+                     //usersp(::user::impact) pimpact = pline->get_interaction();
                      //pimpact->on_link_click(str);
                   }
                }
@@ -162,7 +162,7 @@ void xfplayer_impact_line_selection::relay_event(xfplayer_impact_line & viewline
 
             auto pointCursor = m_puserinteraction->mouse_cursor_position();
 
-            viewline.update_hover(pointCursor);
+            pline->update_hover(pointCursor);
 
          }
 
@@ -174,19 +174,19 @@ void xfplayer_impact_line_selection::relay_event(xfplayer_impact_line & viewline
 
       uptr uEvent = pusermessage->m_wparam;
 
-      if(uEvent == ::e_timer_hover)
+      if(uEvent == ::e_timer_hover_update)
       {
 
          auto pointCursor = m_puserinteraction->mouse_cursor_position();
 
-         viewline.update_hover(pointCursor);
+         pline->update_hover(pointCursor);
 
-         if(!viewline.is_hover())
+         if(!pline->is_hover())
          {
 
-            ::pointer<::user::interaction>puserinteraction = viewline.get_interaction();
+            ::pointer<::user::interaction>puserinteraction = pline->get_interaction();
 
-            puserinteraction->kill_timer(::e_timer_hover);
+            puserinteraction->kill_timer(::e_timer_hover_update);
 
          }
 
@@ -197,9 +197,9 @@ void xfplayer_impact_line_selection::relay_event(xfplayer_impact_line & viewline
 }
 
 
-void xfplayer_impact_line_selection::OnSelEvent(xfplayer_impact_line & viewline, xfplayer_impact_line_selection::enum_happening ehappening)
+void xfplayer_impact_line_selection::OnSelEvent(xfplayer_impact_line * pline, xfplayer_impact_line_selection::enum_happening ehappening)
 {
-   __UNREFERENCED_PARAMETER(viewline);
+   __UNREFERENCED_PARAMETER(pline);
    switch(ehappening)
    {
    case e_event_start:
@@ -209,10 +209,10 @@ void xfplayer_impact_line_selection::OnSelEvent(xfplayer_impact_line & viewline,
       m_iCharEndSource      = m_item.GetCharEnd();
       m_estate               = e_state_tracking;
 
-      //         viewline.GetTemplate()->OnSelStart(&viewline);
+      //         pline->GetTemplate()->OnSelStart(&pline);
       break;
    case e_event_end:
-      //NormalizeSel(viewline);
+      //NormalizeSel(pline);
       //         m_item.NormalizeSel();
       Select(
       m_item.GetLineStart(),
@@ -220,7 +220,7 @@ void xfplayer_impact_line_selection::OnSelEvent(xfplayer_impact_line & viewline,
       m_item.GetCharStart(),
       m_item.GetCharEnd(), false);
       m_estate = e_state_initial;
-      //      viewline.GetTemplate()->OnSelEnd(&viewline);
+      //      pline->GetTemplate()->OnSelEnd(&pline);
 
       break;
    default:
@@ -228,14 +228,14 @@ void xfplayer_impact_line_selection::OnSelEvent(xfplayer_impact_line & viewline,
    }
 }
 
-bool xfplayer_impact_line_selection::SetSelBefore(xfplayer_impact_line & viewline)
+bool xfplayer_impact_line_selection::SetSelBefore(xfplayer_impact_line * pline)
 {
    /*   if(m_etype & TypeMaskEndHere)
    {
    if(m_etype & TypeMaskStartHere)
    {
    m_etype &= ~TypeMaskStartHere;*/
-   m_item.SetLineStart(viewline.m_iIndex);
+   m_item.SetLineStart(pline->m_iIndex);
    m_item.SetCharStart(0);
    /*      }
    }
@@ -243,27 +243,27 @@ bool xfplayer_impact_line_selection::SetSelBefore(xfplayer_impact_line & viewlin
    {
    m_etype &= ~TypeMaskStartHere;
    m_etype |= TypeMaskEndHere;
-   m_item.SetLineStart(viewline.GetFirstLine());
+   m_item.SetLineStart(pline->GetFirstLine());
    m_item.SetCharStart(0);
    }
    else
    {
    string str;
-   viewline.m_tokenaMain.element_at(viewline.GetLineCount() - 1).GetText(str);
-   m_item.SetLineStart(viewline.GetFirstLine());
+   pline->m_tokenaMain.element_at(pline->GetLineCount() - 1).GetText(str);
+   m_item.SetLineStart(pline->GetFirstLine());
    m_item.SetCharStart(0);
-   m_item.SetLineEnd(viewline.GetFirstLine() + viewline.GetLineCount() - 1);
-   m_item.SetCharEnd(viewline.m_tokenaMain.last().GetCharCount() - 1);
+   m_item.SetLineEnd(pline->GetFirstLine() + pline->GetLineCount() - 1);
+   m_item.SetCharEnd(pline->m_tokenaMain.last().GetCharCount() - 1);
    }*/
    return true;
 }
 
-bool xfplayer_impact_line_selection::SetSelAfter(xfplayer_impact_line & viewline)
+bool xfplayer_impact_line_selection::SetSelAfter(xfplayer_impact_line * pline)
 {
-   if(viewline.m_iaPosition.get_count() > 0)
+   if(pline->m_iaPosition.get_count() > 0)
    {
-      m_item.SetLineEnd(viewline.m_iIndex);
-      m_item.SetCharEnd(viewline.m_iaPosition.get_upper_bound());
+      m_item.SetLineEnd(pline->m_iIndex);
+      m_item.SetCharEnd(pline->m_iaPosition.get_upper_bound());
    }
 
    /*   if(m_etype & TypeMaskEndHere)
@@ -271,18 +271,18 @@ bool xfplayer_impact_line_selection::SetSelAfter(xfplayer_impact_line & viewline
    if(m_etype & TypeMaskStartHere)
    {*/
    /*         string str;
-   viewline.m_tokenaMain.element_at(viewline.GetLineCount() - 1).GetText(str);
+   pline->m_tokenaMain.element_at(pline->GetLineCount() - 1).GetText(str);
    //         m_etype &= ~TypeMaskEndHere;
-   m_item.SetLineEnd(viewline.GetFirstLine() + viewline.m_tokenaMain.get_size() - 1);
+   m_item.SetLineEnd(pline->GetFirstLine() + pline->m_tokenaMain.get_size() - 1);
    m_item.SetCharEnd(str.length());*/
    /*      }
    else
    {
    string str;
-   viewline.m_tokenaMain.element_at(viewline.GetLineCount() - 1).GetText(str);
+   pline->m_tokenaMain.element_at(pline->GetLineCount() - 1).GetText(str);
    m_etype &= ~TypeMaskEndHere;
    m_etype |= TypeMaskStartHere;
-   m_item.SetLineEnd(viewline.GetFirstLine() + viewline.m_tokenaMain.get_size() - 1);
+   m_item.SetLineEnd(pline->GetFirstLine() + pline->m_tokenaMain.get_size() - 1);
    m_item.SetCharEnd(str.length() - 1);
    }
    }
@@ -292,26 +292,26 @@ bool xfplayer_impact_line_selection::SetSelAfter(xfplayer_impact_line & viewline
    else
    {
    string str;
-   viewline.m_tokenaMain.element_at(viewline.GetLineCount() - 1).GetText(str);
-   m_item.SetLineStart(viewline.GetFirstLine());
+   pline->m_tokenaMain.element_at(pline->GetLineCount() - 1).GetText(str);
+   m_item.SetLineStart(pline->GetFirstLine());
    m_item.SetCharStart(0);
-   m_item.SetLineEnd(viewline.GetFirstLine() + viewline.m_tokenaMain.get_size() - 1);
+   m_item.SetLineEnd(pline->GetFirstLine() + pline->m_tokenaMain.get_size() - 1);
    m_item.SetCharEnd(str.length() - 1);
    }*/
    return true;
 }
 
-void xfplayer_impact_line_selection::NormalizeSel(xfplayer_impact_line & viewline)
+void xfplayer_impact_line_selection::NormalizeSel(xfplayer_impact_line * pline)
 {
-   __UNREFERENCED_PARAMETER(viewline);
+   __UNREFERENCED_PARAMETER(pline);
    ASSERT(false);
    /*   string str;
    if(m_item.m_iLineStart < 0)
    {
    }
-   else if(m_item.m_iLineStart >= viewline.m_tokenaMain.get_size())
+   else if(m_item.m_iLineStart >= pline->m_tokenaMain.get_size())
    {
-   m_item.m_iLineStart = viewline.m_tokenaMain.get_size() - 1;
+   m_item.m_iLineStart = pline->m_tokenaMain.get_size() - 1;
    if(m_item.m_iLineStart < 0)
    {
    m_item.m_iCharStart = -1;
@@ -326,7 +326,7 @@ void xfplayer_impact_line_selection::NormalizeSel(xfplayer_impact_line & viewlin
    }
    else
    {
-   viewline.m_tokenaMain[m_item.m_iLineStart].GetText(str);
+   pline->m_tokenaMain[m_item.m_iLineStart].GetText(str);
    if(m_item.m_iCharStart >= str.length())
    {
    if(str.is_empty())
@@ -348,16 +348,16 @@ void xfplayer_impact_line_selection::NormalizeSel(xfplayer_impact_line & viewlin
    m_item.m_iCharEnd = m_item.m_iCharStart;
    }
 
-   if(m_item.m_iLineEnd >= viewline.m_tokenaMain.get_size())
+   if(m_item.m_iLineEnd >= pline->m_tokenaMain.get_size())
    {
-   m_item.m_iLineEnd = viewline.m_tokenaMain.get_size() - 1;
+   m_item.m_iLineEnd = pline->m_tokenaMain.get_size() - 1;
    if(m_item.m_iLineEnd < 0)
    {
    m_item.m_iCharEnd = -1;
    }
    else
    {
-   viewline.m_tokenaMain[m_item.m_iLineEnd].GetText(str);
+   pline->m_tokenaMain[m_item.m_iLineEnd].GetText(str);
    if(str.is_empty())
    {
    m_item.m_iCharEnd = 0;
@@ -368,7 +368,7 @@ void xfplayer_impact_line_selection::NormalizeSel(xfplayer_impact_line & viewlin
    }
    }
    }
-   viewline.m_tokenaMain[m_item.m_iLineEnd].GetText(str);
+   pline->m_tokenaMain[m_item.m_iLineEnd].GetText(str);
    if(m_item.m_iCharEnd >= str.length())
    {
    if(str.is_empty())
@@ -453,21 +453,22 @@ bool    bMerge)
 }
 
 
-bool xfplayer_impact_line_selection::OnLButtonDown(xfplayer_impact_line & viewline, ::user::e_button_state ebuttonstate, const ::int_point & point)
+//bool xfplayer_impact_line_selection::OnLButtonDown(xfplayer_impact_line * pline, const ::user::keyboard_state & keyboardstate, const ::i32_point & point)
+bool xfplayer_impact_line_selection::OnLButtonDown(xfplayer_impact_line *pline, const ::i32_point & point)
 {
    
-   __UNREFERENCED_PARAMETER(ebuttonstate);
+   //__UNREFERENCED_PARAMETER(keyboardstate);
 
    auto point1 = point;
    
-   viewline.get_interaction()->screen_to_client()(point1);
+   pline->get_interaction()->screen_to_client()(point1);
 
    bool bInside;
 
    ::collection::index iLine;
    character_count iChar;
-   ::int_rectangle rectanglePlacement;
-   viewline.GetPlacement(&rectanglePlacement);
+   ::i32_rectangle rectanglePlacement;
+   pline->GetPlacement(&rectanglePlacement);
    bInside = rectanglePlacement.contains(point1) != 0;
    if(!bInside && GetState() == e_state_tracking)
    {
@@ -475,10 +476,10 @@ bool xfplayer_impact_line_selection::OnLButtonDown(xfplayer_impact_line & viewli
    }
    else if(bInside)
    {
-      //             unsigned int fwKeys = user; // key flags
-      if(viewline.CalcChar(point1, iChar))
+      //             ::u32 fwKeys = user; // key flags
+      if(pline->CalcChar(point1, iChar))
       {
-         iLine = viewline.m_iIndex;
+         iLine = pline->m_iIndex;
          m_item.SetLineStart(iLine);
          m_item.SetCharStart(iChar);
          m_item.SetLineEnd(iLine);
@@ -493,8 +494,8 @@ bool xfplayer_impact_line_selection::OnLButtonDown(xfplayer_impact_line & viewli
          m_item.SetLineEnd(-1);
          m_item.SetCharEnd(-1);
       }
-      //               viewline.get_interaction()->set_need_redraw();
-      OnSelEvent(viewline, e_event_start);
+      //               pline->get_interaction()->set_need_redraw();
+      OnSelEvent(pline, e_event_start);
       return true;
    }
 
@@ -502,10 +503,11 @@ bool xfplayer_impact_line_selection::OnLButtonDown(xfplayer_impact_line & viewli
 }
 
 
-bool xfplayer_impact_line_selection::OnMouseMove(xfplayer_impact_line & viewline, ::user::e_button_state ebuttonstate, const ::int_point & point)
+//bool xfplayer_impact_line_selection::OnMouseMove(xfplayer_impact_line * pline, const ::user::keyboard_state & keyboardstate, const ::i32_point & point)
+bool xfplayer_impact_line_selection::OnMouseMove(xfplayer_impact_line * pline, const ::i32_point & point)
 {
    
-   if (!viewline.IsVisible())
+   if (!pline->IsVisible())
    {
 
       return false;
@@ -516,15 +518,15 @@ bool xfplayer_impact_line_selection::OnMouseMove(xfplayer_impact_line & viewline
 
    auto point1 = point;
    
-   viewline.get_interaction()->screen_to_client()(point1);
+   pline->get_interaction()->screen_to_client()(point1);
 
    ::collection::index iLine;
 
    character_count iChar;
 
-   ::int_rectangle rectanglePlacement;
+   ::i32_rectangle rectanglePlacement;
 
-   viewline.GetPlacement(&rectanglePlacement);
+   pline->GetPlacement(&rectanglePlacement);
 
    bInside = rectanglePlacement.contains(point1) != 0;
 
@@ -535,54 +537,54 @@ bool xfplayer_impact_line_selection::OnMouseMove(xfplayer_impact_line & viewline
             (rectanglePlacement.contains_y(point1.y) &&
              point1.x < rectanglePlacement.left))
       {
-         SetSelBefore(viewline);
-         //             viewline.get_interaction()->set_need_redraw();
+         SetSelBefore(pline);
+         //             pline->get_interaction()->set_need_redraw();
       }
       else
       {
-         SetSelAfter(viewline);
-         //          viewline.get_interaction()->set_need_redraw();
+         SetSelAfter(pline);
+         //          pline->get_interaction()->set_need_redraw();
       }
       return false;
    }
    else if(bInside && GetState() == e_state_tracking)
    {
-      //unsigned int fwKeys = user; // key flags
+      //::u32 fwKeys = user; // key flags
       if(GetState() == e_state_tracking)
       {
-         if(viewline.m_iaPosition.get_size() <= 0)
+         if(pline->m_iaPosition.get_size() <= 0)
             return false;
-         if(viewline.CalcChar(point1, iChar))
+         if(pline->CalcChar(point1, iChar))
          {
-            iLine = viewline.m_iIndex;
+            iLine = pline->m_iIndex;
             m_item.SetLineEnd(iLine);
             m_item.SetCharEnd(iChar);
             //m_item.NormalizeSel();
             //             m_etype |= TypeMaskEndHere;
-            //               viewline.get_interaction()->set_need_redraw();
+            //               pline->get_interaction()->set_need_redraw();
          }
          else
          {
-            if(point1.x < viewline.m_iaPosition[0])
+            if(point1.x < pline->m_iaPosition[0])
             {
-               SetSelBefore(viewline);
+               SetSelBefore(pline);
             }
             {
-               SetSelAfter(viewline);
+               SetSelAfter(pline);
             }
-            //                viewline.get_interaction()->set_need_redraw();
+            //                pline->get_interaction()->set_need_redraw();
 
          }
-         //OnSelEvent(viewline, e_event_end);
+         //OnSelEvent(pline, e_event_end);
          if(m_iLineStartSource == m_item.GetLineStart()
                && m_iLineEndSource == m_item.GetLineEnd()
                && m_iCharStartSource == m_item.GetCharStart()
                && m_iCharEndSource == m_item.GetCharEnd())
          {
             string str;
-            if(viewline.get_link(str, point) == ::user::e_line_hit_link)
+            if(pline->get_link(str, point) == ::user::e_line_hit_link)
             {
-               //                   usersp(::user::impact) pimpact = viewline.get_interaction();
+               //                   usersp(::user::impact) pimpact = pline->get_interaction();
                //                 pimpact->on_link_click(str);
             }
          }
@@ -593,24 +595,25 @@ bool xfplayer_impact_line_selection::OnMouseMove(xfplayer_impact_line & viewline
    return false;
 }
 
-bool xfplayer_impact_line_selection::OnLButtonUp(xfplayer_impact_line & viewline, ::user::e_button_state ebuttonstate, const ::int_point & point)
+//bool xfplayer_impact_line_selection::OnLButtonUp(xfplayer_impact_line * pline, const ::user::keyboard_state & keyboardstate, const ::i32_point & point)
+bool xfplayer_impact_line_selection::OnLButtonUp(xfplayer_impact_line * pline, const ::i32_point & point)
 {
-   __UNREFERENCED_PARAMETER(ebuttonstate);
-   if(!viewline.IsVisible())
+//   __UNREFERENCED_PARAMETER(keyboardstate);
+   if(!pline->IsVisible())
       return false;
 
    bool bInside;
 
-   ::int_point point1 = point;
+   ::i32_point point1 = point;
    
-   viewline.get_interaction()->screen_to_client()(point1);
+   pline->get_interaction()->screen_to_client()(point1);
 
    ::collection::index iLine;
    character_count iChar;
 
-   ::int_rectangle rectanglePlacement;
+   ::i32_rectangle rectanglePlacement;
    
-   viewline.GetPlacement(&rectanglePlacement);
+   pline->GetPlacement(&rectanglePlacement);
    
    bInside = rectanglePlacement.contains(point1) != 0;
    
@@ -621,54 +624,54 @@ bool xfplayer_impact_line_selection::OnLButtonUp(xfplayer_impact_line & viewline
             (point1.y <= rectanglePlacement.bottom &&
              point1.x < rectanglePlacement.left))
       {
-         SetSelBefore(viewline);
-         //             viewline.get_interaction()->set_need_redraw();
+         SetSelBefore(pline);
+         //             pline->get_interaction()->set_need_redraw();
       }
       else
       {
-         SetSelAfter(viewline);
-         //          viewline.get_interaction()->set_need_redraw();
+         SetSelAfter(pline);
+         //          pline->get_interaction()->set_need_redraw();
       }
       return false;
    }
    else if(bInside)
    {
-      //unsigned int fwKeys = user; // key flags
+      //::u32 fwKeys = user; // key flags
       if(GetState() == e_state_tracking)
       {
-         if(viewline.m_iaPosition.get_size() <= 0)
+         if(pline->m_iaPosition.get_size() <= 0)
             return false;
-         if(viewline.CalcChar(point1, iChar))
+         if(pline->CalcChar(point1, iChar))
          {
-            iLine = viewline.m_iIndex;
+            iLine = pline->m_iIndex;
             m_item.SetLineEnd(iLine);
             m_item.SetCharEnd(iChar);
 
             //             m_etype |= TypeMaskEndHere;
-            //               viewline.get_interaction()->set_need_redraw();
+            //               pline->get_interaction()->set_need_redraw();
          }
          else
          {
-            if(point1.x < viewline.m_iaPosition[0])
+            if(point1.x < pline->m_iaPosition[0])
             {
-               SetSelBefore(viewline);
+               SetSelBefore(pline);
             }
             {
-               SetSelAfter(viewline);
+               SetSelAfter(pline);
             }
-            //                viewline.get_interaction()->set_need_redraw();
+            //                pline->get_interaction()->set_need_redraw();
 
          }
-         OnSelEvent(viewline, e_event_end);
+         OnSelEvent(pline, e_event_end);
          if(m_iLineStartSource == m_item.GetLineStart()
                && m_iLineEndSource == m_item.GetLineEnd()
                && m_iCharStartSource == m_item.GetCharStart()
                && m_iCharEndSource == m_item.GetCharEnd())
          {
             string str;
-            if(viewline.get_link(str, point) == ::user::e_line_hit_link)
+            if(pline->get_link(str, point) == ::user::e_line_hit_link)
             {
-               //                   usersp(::user::impact) pimpact = viewline.get_interaction();
+               //                   usersp(::user::impact) pimpact = pline->get_interaction();
                //                 pimpact->on_link_click(str);
             }
          }
@@ -680,26 +683,27 @@ bool xfplayer_impact_line_selection::OnLButtonUp(xfplayer_impact_line & viewline
    return false;
 }
 
-bool xfplayer_impact_line_selection::OnTimer(xfplayer_impact_line & viewline, unsigned int user)
+void xfplayer_impact_line_selection::operator()(::timer * ptimer)
 {
-   unsigned int uEvent = user;
-   if(uEvent == ::e_timer_hover)
+    ::cast < xfplayer_impact_line > pline = ptimer->m_pcarrier1;
+   //::u32 uEvent = user;
+   if(ptimer->m_etimer == ::e_timer_hover_update)
    {
-      if(viewline.is_hover())
+      if(pline->is_hover())
       {
          
          auto pointCursor = m_puserinteraction->mouse_cursor_position();
 
-         viewline.update_hover(pointCursor);
+         pline->update_hover(pointCursor);
 
-         if(!viewline.is_hover())
+         if(!pline->is_hover())
          {
             
-            ::int_rectangle rectanglePlacement;
+            ::i32_rectangle rectanglePlacement;
             
-            viewline.GetPlacement(&rectanglePlacement);
+            pline->GetPlacement(&rectanglePlacement);
             
-            viewline.get_interaction()->set_need_redraw();
+            pline->get_interaction()->set_need_redraw();
             
          }
          
@@ -707,7 +711,7 @@ bool xfplayer_impact_line_selection::OnTimer(xfplayer_impact_line & viewline, un
       
    }
    
-   return false;
+   //return false;
    
 }
 
@@ -810,9 +814,9 @@ void xfplayer_impact_line_selection_item::SetCharEnd(character_count iChar)
    m_iCharEnd = iChar;
 }
 
-bool xfplayer_impact_line_selection_item::Intersect(xfplayer_impact_line &viewline)
+bool xfplayer_impact_line_selection_item::Intersect(xfplayer_impact_line * pline)
 {
-   return Intersect(viewline.m_iIndex, viewline.m_iaPosition.get_upper_bound());
+   return Intersect(pline->m_iIndex, pline->m_iaPosition.get_upper_bound());
 }
 
 
@@ -830,9 +834,9 @@ bool xfplayer_impact_line_selection_item::Intersect(::collection::index iFirstLi
 
 }
 
-bool xfplayer_impact_line_selection::get_item(xfplayer_impact_line_selection_item &item, xfplayer_impact_line &viewline)
+bool xfplayer_impact_line_selection::get_item(xfplayer_impact_line_selection_item &item, xfplayer_impact_line * pline)
 {
-   if(m_item.Intersect(viewline))
+   if(m_item.Intersect(pline))
    {
       item = m_item;
       item.NormalizeSel();
@@ -841,7 +845,7 @@ bool xfplayer_impact_line_selection::get_item(xfplayer_impact_line_selection_ite
    for(::collection::index iItem = 0; iItem < m_itema.get_size(); iItem++)
    {
       xfplayer_impact_line_selection_item & itemTest = m_itema.element_at(iItem);
-      if(itemTest.Intersect(viewline))
+      if(itemTest.Intersect(pline))
       {
          item = itemTest;
          item.NormalizeSel();

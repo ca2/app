@@ -56,7 +56,7 @@ namespace user
 
          DECLARE_MESSAGE_HANDLER(on_message_create);
 
-         virtual void set_font_size(double d);
+         virtual void set_font_size(::f64 d);
 
          void _001OnDraw(::draw2d::graphics_pointer & pgraphics) override;
 

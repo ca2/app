@@ -6,7 +6,7 @@
 #include <ws2tcpip.h>
 
 
-using socklen_t = int;
+using socklen_t = ::i32;
 
 
 

@@ -10,10 +10,10 @@ CLASS_DECL_ACME void *     memory_allocate_no_track(memsize size);
 
 
 
-CLASS_DECL_ACME void *     memory_allocate_debug(memsize nSize, int nBlockUse, const_char_pointer szFileName, int nLine);
-CLASS_DECL_ACME void *     memory_reallocate_debug(void * p, memsize nSize, int nBlockUse, const_char_pointer szFileName, int nLine);
-CLASS_DECL_ACME void       memory_free_debug(void * p, int iBlockType);
-CLASS_DECL_ACME memsize    memory_size_debug(void* p, int iBlockType);
+CLASS_DECL_ACME void *     memory_allocate_debug(memsize nSize, ::i32 nBlockUse, const_char_pointer szFileName, ::i32 nLine);
+CLASS_DECL_ACME void *     memory_reallocate_debug(void * p, memsize nSize, ::i32 nBlockUse, const_char_pointer szFileName, ::i32 nLine);
+CLASS_DECL_ACME void       memory_free_debug(void * p, ::i32 iBlockType);
+CLASS_DECL_ACME memsize    memory_size_debug(void* p, ::i32 iBlockType);
 
 
 
@@ -23,9 +23,9 @@ CLASS_DECL_ACME memsize    memory_size_debug(void* p, int iBlockType);
 #if MEMDLEAK
 
 
-CLASS_DECL_ACME int        memdleak_enabled();
-CLASS_DECL_ACME void       memdleak_enable(int enable);
-CLASS_DECL_ACME int        global_memdleak_enabled();
+CLASS_DECL_ACME ::i32        memdleak_enabled();
+CLASS_DECL_ACME void       memdleak_enable(::i32 enable);
+CLASS_DECL_ACME ::i32        global_memdleak_enabled();
 CLASS_DECL_ACME void       memdleak_init();
 CLASS_DECL_ACME void       memdleak_term();
 
@@ -50,8 +50,8 @@ class CLASS_DECL_ACME system_heap :
 #if MEMDLEAK || defined(__MCRTDBG)
 
 
-   void * system_heap_alloc_debug(memsize size, int nBlockUse, const_char_pointer pszFile, int iLine);
-   void * system_heap_realloc_debug(void * p, memsize size, int nBlockUse, const_char_pointer pszFile, int iLine);
+   void * system_heap_alloc_debug(memsize size, ::i32 nBlockUse, const_char_pointer pszFile, ::i32 iLine);
+   void * system_heap_realloc_debug(void * p, memsize size, ::i32 nBlockUse, const_char_pointer pszFile, ::i32 iLine);
 
 
 #endif
@@ -89,12 +89,12 @@ struct memdleak_block
 {
 
 
-   int                           m_iBlockUse;
-   int                           m_iEnabled;
-   const_char_pointer                 m_pszFileName;
+   ::i32                           m_iBlockUse;
+   ::i32                           m_iEnabled;
+   const_char_pointer m_pszFileName;
    void *                        m_stacka[64];
-   int                           m_iStack;
-   unsigned int                           m_uiLine;
+   ::i32                           m_iStack;
+   ::u32                           m_uiLine;
    memsize                       m_size;
    struct memdleak_block *       m_pnext;
    struct memdleak_block *       m_pprevious;

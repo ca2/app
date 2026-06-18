@@ -14,7 +14,7 @@
       They are using UnicodeData.txt file and some codepage files, available
       from <a href="http://www.unicode.org/">http://www.unicode.org/</a>
     - Character class supports most Unicode character properties, except for
-      Bidirectional char class, and Decomposition information.
+      Bidirectional ::i8 class, and Decomposition information.
       Most of these methods works like Java Character class methods.
 
     \par Todo:
@@ -29,10 +29,10 @@
 */
 
 
-CLASS_DECL_ACME int trailingBytesForUTF8(::ansi_character ch);
+CLASS_DECL_ACME ::i32 trailingBytesForUTF8(::ansi_character ch);
 
 
-inline int ch_unicode_len(int c)
+inline ::i32 ch_unicode_len(::i32 c)
 {
 
    return trailingBytesForUTF8(c) + 1;
@@ -40,7 +40,7 @@ inline int ch_unicode_len(int c)
 }
 
 
-inline int str_uni_len(const ::scoped_string & scopedstrUtf8)
+inline ::i32 str_uni_len(const ::scoped_string & scopedstrUtf8)
 {
 
    return ch_unicode_len(*pszUtf8);

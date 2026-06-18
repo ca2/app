@@ -8,7 +8,7 @@
 #include "aura/graphics/image/target.h"
 #include "bred/gpu/context.h"
 #include "bred/gpu/context_lock.h"
-#include "bred/gpu/frame.h"
+#include "bred/gpu/layer.h"
 
 
 namespace gpu_opengl
@@ -41,7 +41,7 @@ namespace gpu_opengl
 
       ::gpu::context_lock contextlock(m_pgpucontext);
 
-      ::cast < texture > ptexture = m_pgpucontext->current_target_texture(::gpu::current_frame());
+      ::cast < texture > ptexture = m_pgpucontext->current_target_texture(::gpu::current_layer());
 
       auto gluSrcFbo = ptexture->frame_buffer_object();
 
@@ -166,7 +166,7 @@ namespace gpu_opengl
          ::opengl::check_error("");
 
       }
-      int iError = glGetError();
+      ::i32 iError = glGetError();
 
       if(iError != 0)
       {
@@ -181,14 +181,14 @@ namespace gpu_opengl
 
       //{
 
-      //   auto dst = (unsigned char *)data;
+      //   auto dst = (::u8 *)data;
       //   auto size = cx * cy;
 
       //   while (size > 0)
       //   {
-      //      dst[0] = byte_clip(((int)dst[0] * (int)dst[3]) / 255);
-      //      dst[1] = byte_clip(((int)dst[1] * (int)dst[3]) / 255);
-      //      dst[2] = byte_clip(((int)dst[2] * (int)dst[3]) / 255);
+      //      dst[0] = byte_clip(((::i32)dst[0] * (::i32)dst[3]) / 255);
+      //      dst[1] = byte_clip(((::i32)dst[1] * (::i32)dst[3]) / 255);
+      //      dst[2] = byte_clip(((::i32)dst[2] * (::i32)dst[3]) / 255);
       //      dst += 4;
       //      size--;
       //   }

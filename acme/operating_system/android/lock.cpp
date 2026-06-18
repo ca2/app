@@ -6,10 +6,10 @@
 
 
 //
-//int _c_lock_is_active(const ::scoped_string & scopedstrName)
+//::i32 _c_lock_is_active(const ::scoped_string & scopedstrName)
 //{
 //
-//   int * pfd;
+//   ::i32 * pfd;
 //
 //   if(_c_lock(scopedstrName, (void **) &pfd))
 //   {
@@ -22,10 +22,10 @@
 //}
 //
 //
-//int _c_lock(const ::scoped_string & scopedstrName, void ** pdata)
+//::i32 _c_lock(const ::scoped_string & scopedstrName, void ** pdata)
 //{
 //
-//   int fd;
+//   ::i32 fd;
 //
 //   _ca_get_file_name(::file::path("/payload/lib/acme/") / pszName, true, &fd);
 //
@@ -48,7 +48,7 @@
 //      }
 //   }
 //
-//   int * pi = ___new int();
+//   ::i32 * pi = ___new ::i32();
 //   *pi = fd;
 //   *pdata = pi;
 //
@@ -57,10 +57,10 @@
 //}
 //
 //
-//int _c_unlock(void ** pdata)
+//::i32 _c_unlock(void ** pdata)
 //{
 //
-//   int * pfd = (int *) *pdata;
+//   ::i32 * pfd = (::i32 *) *pdata;
 //
 //   if(flock(*pfd, LOCK_EX | LOCK_NB | LOCK_UN) == -1)
 //   {
@@ -81,7 +81,7 @@
 //
 //
 //
-//string _ca_get_file_name(const ::scoped_string & scopedstrName, bool bCreate, int * pfd)
+//string _ca_get_file_name(const ::scoped_string & scopedstrName, bool bCreate, ::i32 * pfd)
 //{
 //
 //   string str(scopedstrName);
@@ -97,7 +97,7 @@
 //
 //   if(bCreate)
 //   {
-//      int fd = open(str, O_CREAT | O_RDWR);
+//      ::i32 fd = open(str, O_CREAT | O_RDWR);
 //      if(fd == -1)
 //         return "";
 //      if(pfd != nullptr)

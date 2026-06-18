@@ -52,7 +52,7 @@ void defer_term_ui();
 //extern ::pointer< ::mutex > psystem->m_pmutexLibrary;
 //extern string_map_base < PFN_NEW_AURA_LIBRARY >* g_pmapNewAuraLibrary;
 
-int_bool point_is_window_origin(::int_point ptHitTest, ::acme::windowing::window * pwindow, int iMargin);
+::i32_bool point_is_window_origin(::i32_point ptHitTest, ::acme::windowing::window * pwindow, ::i32 iMargin);
 
 #ifdef UNIVERSAL_WINDOWS
 
@@ -120,7 +120,7 @@ namespace axis
 
       // m_puiLastLButtonDown = nullptr;
 
-      m_pmapKeyPressed                 = nullptr;
+      //m_pmapKeyPressed                 = nullptr;
 
       //m_puiMouseMoveCapture            = nullptr;
 
@@ -480,7 +480,7 @@ namespace axis
 //
 //      WCHAR wsz[1024];
 //
-//      unsigned int dwSize = sizeof(wsz) / sizeof(WCHAR);
+//      ::u32 dwSize = sizeof(wsz) / sizeof(WCHAR);
 //
 //      GetUserNameW(wsz, &dwSize);
 //

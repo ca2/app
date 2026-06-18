@@ -62,11 +62,11 @@ namespace turboc
    }
 
 
-   long long edit_impact::increment_reference_count()
+   ::i64 edit_impact::increment_reference_count()
    {
       return ::root::increment_reference_count();
    }
-   long long edit_impact::decrement_reference_count()
+   ::i64 edit_impact::decrement_reference_count()
    {
       return ::root::decrement_reference_count();
    }

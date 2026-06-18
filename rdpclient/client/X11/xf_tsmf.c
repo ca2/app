@@ -306,13 +306,13 @@ int xf_tsmf_xv_video_frame_event(TsmfClientContext* tsmf, TSMF_VIDEO_FRAME_EVENT
 int xf_tsmf_xv_init(xfContext* xfc, TsmfClientContext* tsmf)
 {
 	int ret;
-	unsigned int i;
-	unsigned int version;
-	unsigned int release;
-	unsigned int event_base;
-	unsigned int error_base;
-	unsigned int request_base;
-	unsigned int num_adaptors;
+	::u32 i;
+	::u32 version;
+	::u32 release;
+	::u32 event_base;
+	::u32 error_base;
+	::u32 request_base;
+	::u32 num_adaptors;
 	xfXvContext* xv;
 	XvAdaptorInfo* ai;
 	XvAttribute* attr;
@@ -378,7 +378,7 @@ int xf_tsmf_xv_init(xfContext* xfc, TsmfClientContext* tsmf)
 
 	attr = XvQueryPortAttributes(xfc->display, xv->xv_port, &ret);
 
-	for (i = 0; i < (unsigned int)ret; i++)
+	for (i = 0; i < (::u32)ret; i++)
 	{
 		if (strcmp(attr[i].name, "XV_COLORKEY") == 0)
 		{

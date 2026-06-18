@@ -11,7 +11,7 @@
 //time time::operator - (const class time & time) const
 //{
 //
-//   return ::time(m_i - time.m_i, m_i - time.m_i);
+//   return ::time(m_i32 - time.m_i32, m_i32 - time.m_i32);
 //
 //}
 //
@@ -19,7 +19,7 @@
 //time time::operator + (const class time & time) const
 //{
 //
-//   return ::time(m_i + time.m_i, m_i + time.m_i);
+//   return ::time(m_i32 + time.m_i32, m_i32 + time.m_i32);
 //
 //}
 
@@ -40,7 +40,7 @@
 //
 //   auto tickDuration = time.u32_millis();
 //
-//   ::sleep((unsigned int)tickDuration);
+//   ::sleep((::u32)tickDuration);
 //
 
 //}
@@ -52,19 +52,19 @@
 //void time::sleep() const
 //{
 //
-//   if (m_secs.m_i >= 20)
+//   if (m_secs.m_i32 >= 20)
 //   {
 //
 //      ::preempt(m_secs);
 //
 //   }
-//   else if (m_secs.m_i > 0 || m_nanos.m_i > 20'000'000)
+//   else if (m_secs.m_i32 > 0 || m_nanos.m_i32 > 20'000'000)
 //   {
 //
 //      ::preempt(::time());
 //
 //   }
-//   else if (m_nanos.m_i > 20'000)
+//   else if (m_nanos.m_i32 > 20'000)
 //   {
 //
 //      ::preempt(microsecond());
@@ -83,7 +83,7 @@
 
 
 
-void time::set(long double d, enum_unit eunit)
+void time::set(::f128 d, enum_unit eunit)
 {
 
    switch (eunit)
@@ -113,30 +113,30 @@ void time::set(long double d, enum_unit eunit)
 }
 
 
-void time::fset(long double d, double dNano)
+void time::fset(::f128 d, ::f64 dNano)
 {
 
    dNano += fmod(d, 1.0) * 1000.0 * 1000.0 * 1000.0;
 
    raw_set(
-      posix_time({ posix_time_t{}, (long long)(floor(d) + floor((dNano / (1000.0 * 1000.0 * 1000.0)))) }),
+      posix_time({ posix_time_t{}, (::i64)(floor(d) + floor((dNano / (1000.0 * 1000.0 * 1000.0)))) }),
       nanosecond({nanosecond_t{}, (long)fmod(dNano, 1000.0 * 1000.0 * 1000.0)})
    );
 
 }
 
 
-void time::fset(long double d)
+void time::fset(::f128 d)
 {
 
    raw_set(
-      posix_time{ posix_time_t{}, (long long)floor(d) },
+      posix_time{ posix_time_t{}, (::i64)floor(d) },
       nanosecond{ nanosecond_t{}, (long)(fmod(d, 1.0) * 1'000'000'000.0) });
 
 }
 
 
-class ::time time::fcreate(long double d, double dNano)
+class ::time time::fcreate(::f128 d, ::f64 dNano)
 {
 
    time time;

@@ -10,7 +10,7 @@ namespace user
 {
 
 
-   enum enum_message_prototype : int
+   enum enum_message_prototype : ::i32
    {
 
       e_message_prototype_none,

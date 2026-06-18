@@ -30,7 +30,7 @@ payload & payload::operator = (ENUM e) { this->operator = ((const ::atom &) e); 
 
 
 template < character_count n >
-payload & payload::operator = (const char(&cha)[n])
+payload & payload::operator = (const ::i8(&cha)[n])
 {
 
    return this->operator = (::string(cha));
@@ -427,9 +427,9 @@ inline ::payload & payload::operator *= (FLOATING f)
 //template < prototype_payload PAYLOAD >
 //inline bool strictly_equal(const ::scoped_string & scopedstr, const PAYLOAD & payload);
 //template < prototype_payload PAYLOAD >
-//inline bool strictly_equal(double d, const PAYLOAD & payload);
+//inline bool strictly_equal(::f64 d, const PAYLOAD & payload);
 //template < prototype_payload PAYLOAD >
-//inline bool strictly_equal(int i, const PAYLOAD & payload);
+//inline bool strictly_equal(::i32 i, const PAYLOAD & payload);
 //template < prototype_payload PAYLOAD >
 //inline bool strictly_equal(bool b, const PAYLOAD & payload);
 
@@ -439,9 +439,9 @@ inline bool strictly_different(const ::scoped_string & scopedstr, const PAYLOAD 
 template < prototype_payload PAYLOAD >
 inline bool strictly_different(const ::scoped_string & scopedstr, const PAYLOAD & payload);
 template < prototype_payload PAYLOAD >
-inline bool strictly_different(double d, const PAYLOAD & payload);
+inline bool strictly_different(::f64 d, const PAYLOAD & payload);
 template < prototype_payload PAYLOAD >
-inline bool strictly_different(int i, const PAYLOAD & payload);
+inline bool strictly_different(::i32 i, const PAYLOAD & payload);
 template < prototype_payload PAYLOAD >
 inline bool strictly_different(bool b, const PAYLOAD & payload);
 
@@ -742,7 +742,7 @@ inline void assign(long & l, const payload & payload)
 }
 
 
-inline void assign(unsigned long & ul, const payload & payload)
+inline void assign(ulong & ul, const payload & payload)
 {
 
    ul = payload.get_unsigned_long();
@@ -758,7 +758,7 @@ namespace file
 
 
    // inline path::path(const ::payload & payload,e_path epath): path(payload.get_file_path(),epath){}
-   // inline path::path(const property & property,e_path epath, int iDir): path(property.get_file_path(),epath, iDir) {}
+   // inline path::path(const property & property,e_path epath, ::i32 iDir): path(property.get_file_path(),epath, iDir) {}
    //inline path & path::operator = (const ::payload & payload) { return operator = (payload.get_string()); }
    //inline path & path::operator += (const ::payload & payload) { return operator += (payload.get_string()); }
    //inline path & path::operator = (const property & property) { return operator = ((const ::payload &)property); }
@@ -945,18 +945,18 @@ inline INTEGRAL & copy(INTEGRAL & integral, const ::payload & payload)
 }
 
 
-inline float & copy(float & f, const ::payload & payload)
+inline ::f32 & copy(::f32 & f, const ::payload & payload)
 {
 
-   return f = payload.as_float();
+   return f = payload.as_f32();
 
 }
 
 
-inline double & copy(double & f, const ::payload & payload)
+inline ::f64 & copy(::f64 & f, const ::payload & payload)
 {
 
-   return f = payload.as_double();
+   return f = payload.as_f64();
 
 }
 
@@ -1013,7 +1013,7 @@ inline ::payload & copy(::payload & payload1, const ::payload & payload2)
 //
 //
 //template < ::collection::count c >
-//inline ::string operator +(const char(&sz)[c], const ::payload & payload)
+//inline ::string operator +(const ::i8(&sz)[c], const ::payload & payload)
 //{
 //
 //   return ::transfer(::string(sz) + payload);

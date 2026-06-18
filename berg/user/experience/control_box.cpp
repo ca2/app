@@ -9,7 +9,7 @@
 #include "acme/constant/timer.h"
 #include "acme/constant/windowing2.h"
 #include "acme/platform/system.h"
-#include "acme/platform/timer.h"
+//#include "acme/platform/timer.h"
 #include "acme/prototype/geometry2d/_text_stream.h"
 #include "acme/windowing/windowing.h"
 #include "aura/graphics/draw2d/brush.h"
@@ -87,7 +87,7 @@ namespace experience
           && m_pframewindow->m_pframe->is_control_box_moveable())
       {
 
-         ::int_point point = pmouse->m_pointAbsolute;
+         ::i32_point point = pmouse->m_pointAbsolute;
 
          m_pframewindow->screen_to_client()(point);
 
@@ -119,7 +119,7 @@ namespace experience
          if (m_bDrag)
          {
 
-            ::int_point point = pmouse->m_pointHost;
+            ::i32_point point = pmouse->m_pointHost;
 
             m_pframewindow->host_to_client()(point);
 
@@ -142,10 +142,10 @@ namespace experience
    }
 
 
-   void control_box::drag(const ::int_point & point)
+   void control_box::drag(const ::i32_point & point)
    {
 
-      //int x = point.x - m_pointDrag.x;
+      //::i32 x = point.x - m_pointDrag.x;
 
       //if (x < 0)
       //{
@@ -154,15 +154,15 @@ namespace experience
 
       //}
 
-      //::int_rectangle rectangleParent;
+      //::i32_rectangle rectangleParent;
 
       //get_parent()->rectangle(rectangleParent);
 
-      //::int_rectangle rectangleX;
+      //::i32_rectangle rectangleX;
 
       //this->rectangle(rectangleX);
 
-      //::int_rectangle rectangleWindow;
+      //::i32_rectangle rectangleWindow;
 
       //window_rectangle(rectangleWindow);
 
@@ -174,15 +174,15 @@ namespace experience
 
       //x = m_pframewindow->m_pframe->calc_control_box_left(true);
 
-      //::int_point point(x, rectangleWindow.top);
+      //::i32_point point(x, rectangleWindow.top);
 
-      //::int_point pointScreen(point);
+      //::i32_point pointScreen(point);
 
       //get_parent()->client_to_screen(pointScreen);
 
       //m_pframewindow->m_pframe->m_iControlBoxRight = rectangleParent.right - point.x - rectangleWindow.width();
 
-      //int iControlBoxRight = m_pframewindow->m_pframe->m_iControlBoxRight;
+      //::i32 iControlBoxRight = m_pframewindow->m_pframe->m_iControlBoxRight;
 
       //m_pframewindow->prop("control_box_right_to_right") = iControlBoxRight;
 
@@ -217,12 +217,12 @@ namespace experience
    }
 
 
-   void control_box::on_timer(::timer * ptimer)
+   void control_box::operator()(::timer * ptimer)
    {
 
-      ::user::auto_hide::on_timer(ptimer);
+      ::user::auto_hide::operator()(ptimer);
 
-      if (ptimer->m_uTimer == e_timer_check_hover)
+      if (ptimer->m_etimer == e_timer_check_hover)
       {
 
          if (top_level()->layout().is_moving())
@@ -230,18 +230,23 @@ namespace experience
 
             //informationf("experience control_box : top level is moving : ignoring ::user::e_message_timer");
 
+            //return true;
+
             return;
 
-         } else if (top_level()->layout().is_sizing())
+         }
+         else if (top_level()->layout().is_sizing())
          {
 
             //informationf("experience control_box : top level is sizing : ignoring ::user::e_message_timer");
+
+            //return true;
 
             return;
 
          }
 
-         ::int_point pointCursorHost;
+         ::i32_point pointCursorHost;
 
          pointCursorHost = host_mouse_cursor_position();
 
@@ -253,7 +258,8 @@ namespace experience
 
                m_timeShow.Now();
 
-            } else
+            }
+            else
             {
 
                if (m_pframewindow != nullptr)
@@ -556,7 +562,7 @@ namespace experience
    }
 
 
-   int control_box::auto_hide_threshold_height()
+   ::i32 control_box::auto_hide_threshold_height()
    {
 
       return this->height();
@@ -564,7 +570,7 @@ namespace experience
    }
 
 
-   void control_box::_layout_button(enum_button ebutton, ::int_rectangle & rectangle)
+   void control_box::_layout_button(enum_button ebutton, ::i32_rectangle & rectangle)
    {
 
       auto pbutton = get_box_button(ebutton);
@@ -615,7 +621,7 @@ namespace experience
          if (pbutton)
          {
 
-            pbutton->hide();
+            pbutton->display(e_display_hide, {});
 
          }
 
@@ -628,13 +634,13 @@ namespace experience
    {
 
       auto_hide_calculate_control_visibility();
-//      ::int_rectangle rectangleWindow = m_pframewindow->window_rectangle(::user::e_layout_lading);
+//      ::i32_rectangle rectangleWindow = m_pframewindow->window_rectangle(::user::e_layout_lading);
 //
-//      ::int_rectangle rectangleParent(rectangleWindow);
+//      ::i32_rectangle rectangleParent(rectangleWindow);
 //
 //      m_pframewindow->screen_to_client(::user::e_layout_lading)(rectangleParent);
 //
-//      ::int_rectangle rectangle;
+//      ::i32_rectangle rectangle;
 //
 //      window_rectangle(rectangle, ::user::e_layout_lading);
 //
@@ -654,7 +660,7 @@ namespace experience
 
       auto rectangle = this->rectangle(::user::e_layout_lading);
 
-//      int iWidth = rectangleX.width();
+//      ::i32 iWidth = rectangleX.width();
 //
       rectangle.left = rectangle.right;
 
@@ -863,31 +869,31 @@ namespace experience
       switch (ebutton)
       {
          case e_button_close:
-            strCaption = (char) 114;
+            strCaption = (::i8) 114;
             break;
          case e_button_up:
-            strCaption = (char) 53;
+            strCaption = (::i8) 53;
             break;
          case e_button_down:
-            strCaption = (char) 54;
+            strCaption = (::i8) 54;
             break;
          case e_button_minimize:
-            strCaption = (char) 48;
+            strCaption = (::i8) 48;
             break;
          case e_button_maximize:
-            strCaption = (char) 49;
+            strCaption = (::i8) 49;
             break;
          case e_button_restore:
-            strCaption = (char) 50;
+            strCaption = (::i8) 50;
             break;
          case e_button_notify_icon:
-            strCaption = (char) 0x69;
+            strCaption = (::i8) 0x69;
             break;
          case e_button_transparent_frame:
-            strCaption = (char) ' ';
+            strCaption = (::i8) ' ';
             break;
          case e_button_dock:
-            strCaption = (char) 0x6E;
+            strCaption = (::i8) 0x6E;
             break;
 
          default:
@@ -902,7 +908,7 @@ namespace experience
    enum_stock_icon control_box::get_control_box_button_stock_icon(enum_button ebutton)
    {
 
-      return (enum_stock_icon) ((int) ebutton - (int) e_button_begin + (int) e_stock_icon_control_box_begin);
+      return (enum_stock_icon) ((::i32) ebutton - (::i32) e_button_begin + (::i32) e_stock_icon_control_box_begin);
 
    }
 
@@ -1035,14 +1041,14 @@ namespace experience
 //   void control_box::reset_layout(::draw2d::graphics_pointer & pgraphics)
 //   {
 //
-//      int iDefaultButtonSize = calculate_button_size(pgraphics);
+//      ::i32 iDefaultButtonSize = calculate_button_size(pgraphics);
 //
-//      m_sizeButtonDefault = ::int_size(iDefaultButtonSize, iDefaultButtonSize);
+//      m_sizeButtonDefault = ::i32_size(iDefaultButtonSize, iDefaultButtonSize);
 //
 //   }
 
 
-   int_size control_box::get_button_size(enum_button ebutton)
+   i32_size control_box::get_button_size(enum_button ebutton)
    {
 
       return m_sizeButtonDefault;
@@ -1050,10 +1056,10 @@ namespace experience
    }
 
 
-   int_rectangle control_box::get_button_margin(enum_button ebutton)
+   i32_rectangle control_box::get_button_margin(enum_button ebutton)
    {
 
-      ::int_rectangle rectangleMargin;
+      ::i32_rectangle rectangleMargin;
 
       rectangleMargin.left = 0;
       rectangleMargin.top = m_iDefaultButtonMargin;
@@ -1065,14 +1071,14 @@ namespace experience
    }
 
 
-   int control_box::calculate_button_size(::draw2d::graphics_pointer & pgraphics)
+   ::i32 control_box::calculate_button_size(::draw2d::graphics_pointer & pgraphics)
    {
 
       auto dFontHeight = m_pfontMarlett->get_height(pgraphics);
 
-      int iButtonSize = (int) (dFontHeight + m_iDefaultButtonMargin * 3);
+      ::i32 iButtonSize = (::i32) (dFontHeight + m_iDefaultButtonMargin * 3);
 
-      m_sizeButtonDefault = ::int_size(iButtonSize, iButtonSize);
+      m_sizeButtonDefault = ::i32_size(iButtonSize, iButtonSize);
 
       return iButtonSize;
 
@@ -1103,12 +1109,12 @@ namespace experience
    }
 
 
-   int control_box::calculate_control_box_width(::draw2d::graphics_pointer & pgraphics)
+   ::i32 control_box::calculate_control_box_width(::draw2d::graphics_pointer & pgraphics)
    {
 
       m_iDefaultButtonSize = calculate_button_size(pgraphics);
 
-      int iWidth = 0;
+      ::i32 iWidth = 0;
 
       for (auto & pitem: m_itemmap.payloads())
       {
@@ -1180,11 +1186,11 @@ namespace experience
    void control_box::on_message_move(::message::message * pmessage)
    {
 
-      ::int_rectangle rectangleWindow;
+      ::i32_rectangle rectangleWindow;
 
       m_pframewindow->window_rectangle(rectangleWindow);
 
-      ::int_rectangle rectangle;
+      ::i32_rectangle rectangle;
 
       window_rectangle(rectangle);
 
@@ -1248,11 +1254,11 @@ namespace experience
 //      try
 //      {
 //
-//         ::int_rectangle rectangleClip;
+//         ::i32_rectangle rectangleClip;
 //
 //         ::aura::draw_context * pdrawcontext = pgraphics->::aura::simple_chain < ::aura::draw_context >::get_last();
 //
-//         ::int_rectangle rectangleX;
+//         ::i32_rectangle rectangleX;
 //
 //         bool bFirst = true;
 //
@@ -1279,7 +1285,7 @@ namespace experience
 //
 //            ::user::interaction * pinteraction = this;
 //
-//            ::int_rectangle rectangleFocus;
+//            ::i32_rectangle rectangleFocus;
 //
 //            while (pinteraction != nullptr)
 //            {

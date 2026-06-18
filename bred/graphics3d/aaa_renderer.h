@@ -29,13 +29,13 @@
 //      virtual ::pointer < frame > beginFrame();
 //
 //
-//      virtual void on_begin_render(frame* pframe);
-//      virtual void on_end_render(frame* pframe);
+//      virtual void on_begin_render(::gpu::layer * pgpulayer);
+//      virtual void on_end_render(::gpu::layer * pgpulayer);
 //
 //      virtual void endFrame();
 //
 //
-//      //virtual void on_layout(int cx, int cy);
+//      //virtual void on_layout(::i32 cx, ::i32 cy);
 //
 //
 //   };

@@ -44,7 +44,7 @@ void interprocess_intercommunication::initialize_interprocess_communication(::pa
 
 #else
 
-   m_atomApp = (long long) ::get_current_process_id();
+   m_atomApp = (::i64) ::get_current_process_id();
 
 #endif
 
@@ -61,7 +61,7 @@ void interprocess_intercommunication::initialize_interprocess_communication(::pa
 
    //}
 
-   int iPid = node()->get_pid();
+   ::i32 iPid = node()->get_pid();
 
    //defer_add_module(file()->module(), iPid);
 
@@ -158,9 +158,9 @@ void interprocess_intercommunication::start(const ::scoped_string & scopedstrApp
 
          branch_procedure(plauncher);
 
-         int iStep = 0;
+         ::i32 iStep = 0;
 
-         int iSubStep;
+         ::i32 iSubStep;
 
          while(iStep < 8 && ::task_get_run())
          {
@@ -303,7 +303,7 @@ string interprocess_intercommunication::key(const ::scoped_string & scopedstrApp
    
 #ifdef MACOS
 
-   strKey += "/" + as_string(idPid.as_int());
+   strKey += "/" + as_string(idPid.as_i32());
 
 #endif
 
@@ -354,7 +354,7 @@ bool interprocess_intercommunication::on_interprocess_receive(::inteprocess::han
 //
 //   }
 //
-//   long long iCall = ::str::consume_natural(strMessage);
+//   ::i64 iCall = ::str::consume_natural(strMessage);
 //
 //   if(!strMessage.begins_eat(" from "))
 //   {
@@ -491,7 +491,7 @@ bool interprocess_intercommunication::on_interprocess_receive(::inteprocess::han
 
          string strOriginObject = propertyset["protocol"]["origin_object"].get_string();
 
-         ::collection::index iCallId = propertyset["protocol"]["call_id"].long_long;
+         ::collection::index iCallId = propertyset["protocol"]["call_id"].i64;
 
          auto pcall = create_call(strOrigin, strOriginObject, "reply." + strMember);
 
@@ -533,7 +533,7 @@ bool interprocess_intercommunication::on_interprocess_receive(::inteprocess::han
 }
 
 
-::pointer<::interprocess::task>interprocess_intercommunication::get_task(long long iTask)
+::pointer<::interprocess::task>interprocess_intercommunication::get_task(::i64 iTask)
 {
 
    synchronous_lock synchronouslock(this->synchronization(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
@@ -568,7 +568,7 @@ bool interprocess_intercommunication::on_interprocess_call(::payload & payload, 
       if(case_insensitive_string_begins(strMember, "reply."))
       {
 
-         long long iTask = propertyset["protocol:call_id"];
+         ::i64 iTask = propertyset["protocol:call_id"];
 
          auto pinterprocesstask = get_task(iTask);
 
@@ -595,7 +595,7 @@ bool interprocess_intercommunication::on_interprocess_call(::payload & payload, 
          papp->on_additional_local_instance(
             (bool &) payload["handled"],
             strModule, 
-            propertyset["pid"].as_int(),
+            propertyset["pid"].as_i32(),
             strCommandLine);
 
          propertyset["continue"] = true;
@@ -671,7 +671,7 @@ repeat:
 
    string_array_base stra2;
 
-   ::int_array iaPid2;
+   ::i32_array iaPid2;
 
    auto psystem = system();
 
@@ -754,7 +754,7 @@ void interprocess_intercommunication::defer_add_module(const ::scoped_string & s
 
    pathModule /= m_strApp + ".module_list";
    
-   ::file::path pathPid = pnode->module_path_from_pid((unsigned int)idPid.long_long);
+   ::file::path pathPid = pnode->module_path_from_pid((::u32)idPid.i64);
 
    string strModuleList = file_system()->as_string(pathModule);
 
@@ -762,7 +762,7 @@ void interprocess_intercommunication::defer_add_module(const ::scoped_string & s
 
    string_array_base stra2;
 
-   ::int_array iaPid2;
+   ::i32_array iaPid2;
 
    for (::collection::index i = 0; i < m_straModule.get_count();)
    {

@@ -96,7 +96,7 @@ namespace dynamic_source
 
       //m_pmanager.release();
 
-      m_pfileError.defer_destroy();
+      m_pfileError.defer_destroy_and_release();
 
       m_textstreamError.m_pfile.release();
 
@@ -171,7 +171,7 @@ namespace dynamic_source
    }
 
 
-   ::pointer < ::file::listing > script::folder_enumerate(int iId, const ::file::path& pathFolder, const ::function < void(::file::listing& listing) >& procedureListing)
+   ::pointer < ::file::listing > script::folder_enumerate(::i32 iId, const ::file::path& pathFolder, const ::function < void(::file::listing& listing) >& procedureListing)
    {
 
       if(!m_pmutexFolderEnumerate)
@@ -557,7 +557,7 @@ namespace dynamic_source
 
 #ifdef WINDOWS_DESKTOP
 
-            unsigned int dwMessageId = GetLastError();
+            ::u32 dwMessageId = GetLastError();
 
             if(dwMessageId == 0x139)
             {
@@ -732,14 +732,7 @@ namespace dynamic_source
 
       _synchronous_lock synchronouslock(this->synchronization(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 
-      if (m_plibrary.is_set() && !m_plibrary->is_closed())
-      {
-
-         return;
-
-      }
-
-      if (!ShouldBuild())
+      if (m_plibrary.is_set() && !m_plibrary->is_closed() && !ShouldBuild())
       {
 
          return;
@@ -766,7 +759,7 @@ namespace dynamic_source
 
       string str;
 
-      int iRetry = 0;
+      ::i32 iRetry = 0;
 
       bool bHasTempError = false;
 

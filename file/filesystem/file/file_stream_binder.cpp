@@ -132,7 +132,7 @@ namespace file
    {
       if (size > 0)
       {
-         _data = (unsigned char *) data;
+         _data = (::u8 *) data;
          _size = size;
          _allBytesAreWritenEvent.reset_happening();
          _thereAreBytesToReadEvent.set_happening();

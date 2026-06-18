@@ -5,7 +5,7 @@
 
 
 #include "acme/windowing/windowing.h"
-#include "acme/prototype/collection/int_map.h"
+#include "acme/prototype/collection/integer_map.h"
 #include "acme/prototype/collection/list.h"
 
 
@@ -79,6 +79,7 @@ namespace windowing
       virtual bool has_readily_gettable_absolute_coordinates() const;
       virtual bool has_mouse_capture_capability();
 
+      void on_activate() override;
 
       //virtual void initialize_windowing(::user::user * puser);
 
@@ -103,8 +104,8 @@ namespace windowing
       virtual void set_cursor_set_from_matter(::object * pobjectContext, const ::file::path & pathFolder);
 
       
-      //inline ::int_point get_cursor_position() { return m_pointCursor; }
-      //virtual void set_cursor_position(const ::int_point & pointCursor);
+      //inline ::i32_point get_cursor_position() { return m_pointCursor; }
+      //virtual void set_cursor_position(const ::i32_point & pointCursor);
       virtual ::windowing::display * display();
 
       //::acme::windowing::window * acme_windowing_window(const ::operating_system::window & operatingsystemwindow) override;
@@ -113,7 +114,7 @@ namespace windowing
       virtual ::windowing::window * windowing_window(const ::lparam & lparam);
 
       
-      ::particle * defer_initialize_host_window(const ::int_rectangle* lpcrect) override;
+      ::particle * defer_initialize_host_window(const ::i32_rectangle* lpcrect) override;
 
       virtual bool is_sandboxed();
       
@@ -129,7 +130,7 @@ namespace windowing
 
       virtual ::acme::windowing::window * get_keyboard_focus(::thread * pthread) override;
 
-      virtual ::int_point try_absolute_mouse_position(::user::interaction* puserinteraction, const ::int_point& point);
+      virtual ::i32_point try_absolute_mouse_position(::user::interaction* puserinteraction, const ::i32_point& point);
       virtual ::acme::windowing::window * get_mouse_capture(::thread * pthread) override;
       virtual void set_mouse_capture(::thread * pthread, ::acme::windowing::window * pwindow);
       virtual bool has_mouse_capture(::thread * pthread, ::acme::windowing::window * pwindow);
@@ -148,7 +149,7 @@ namespace windowing
 
       //virtual ::acme::windowing::display * acme_display();
 
-      virtual int_size get_window_minimum_size();
+      virtual i32_size get_window_minimum_size();
 
       void kick_idle() override;
 
@@ -193,7 +194,7 @@ namespace windowing
 
       //virtual void enum_draw2d_fonts(::write_text::font_enumeration_item_array& itema);
 
-      virtual int_bool point_is_window_origin(::int_point ptHitTest, ::acme::windowing::window * pacmewindowingwindowExclude, int iMargin);
+      virtual ::i32_bool point_is_window_origin(::i32_point ptHitTest, ::acme::windowing::window * pacmewindowingwindowExclude, ::i32 iMargin);
 
       //virtual void top_windows_by_z_order(::user::oswindow_array & a);
 
@@ -234,8 +235,8 @@ namespace windowing
 #endif
 
 
-      virtual wstring _windows_calc_icon_window_class(::user::interaction* pinteraction, unsigned int dwDefaultStyle, const ::scoped_string & scopedstrMatter);
-      virtual wstring _windows_get_user_interaction_window_class(::user::interaction* pinteraction);
+      virtual wstring _windows_calc_icon_window_class(::acme::user::interaction* pinteraction, ::u32 dwDefaultStyle, const ::scoped_string & scopedstrMatter);
+      virtual wstring _windows_get_user_interaction_window_class(::acme::user::interaction* pinteraction);
 
 
       template < typename OBJECT_POINTER, typename OBJECT_METHOD, typename PAYLOAD_POINTER >
@@ -270,13 +271,13 @@ namespace windowing
       virtual ::pointer < ::user::interaction > create_message_window(const ::scoped_string & scopedstrName, ::user::interaction_listener * plistener = nullptr);
 
 
-      virtual void windowing_application_main_loop() override;
+      virtual void run() override;
 
-      virtual int system_metrics_get_cx_icon_spacing();
-      virtual int system_metrics_get_cy_icon_spacing();
-      virtual int system_metrics_get_cx_icon();
-      virtual int system_metrics_get_cy_icon();
-      virtual int system_metrics_get_cy_caption();
+      virtual ::i32 system_metrics_get_cx_icon_spacing();
+      virtual ::i32 system_metrics_get_cy_icon_spacing();
+      virtual ::i32 system_metrics_get_cx_icon();
+      virtual ::i32 system_metrics_get_cy_icon();
+      virtual ::i32 system_metrics_get_cy_caption();
 
 
 //      virtual ::pointer < ::graphics::graphics > create_graphics();

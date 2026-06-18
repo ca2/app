@@ -13,13 +13,13 @@ namespace sockets
       
       
       string   m_strIp;
-      int      m_iPort;
+      ::i32      m_iPort;
 
 
       sip_server(::particle * pparticle);
    
 
-      virtual int run();
+      virtual ::i32 run();
 
 
    };

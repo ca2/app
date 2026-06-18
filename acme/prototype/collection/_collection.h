@@ -169,7 +169,7 @@ inline void dump_elements(dump_context & dumpcontext, const TYPE * pElements, ::
 
 
 #include "attrib_map.h"
-#include "int_map.h"
+#include "integer_map.h"
 #include "acme/prototype/collection/string_map.h"
 #include "strid_map.h"
 #include "map_to_smart_pointer.h"
@@ -195,13 +195,13 @@ class object_list;              // list_base of matter*
 #include "acme/prototype/collection/string_list.h"
 
 
-using map_u16_to_ptr = map_base < unsigned short, unsigned short, void *, void * >;
+using map_u16_to_ptr = map_base < ::u16, ::u16, void *, void * >;
 
-using map_ptr_to_unsigned_short = map_base < void *, void *, unsigned short, unsigned short >;
+using map_ptr_to_unsigned_short = map_base < void *, void *, ::u16, ::u16 >;
 
 using map_ptr_to_ptr = map_base < void *, void *, void *, void * >;
 
-using map_word_to_ob = map_base < unsigned short, unsigned short, matter *, matter * >;
+using map_word_to_ob = map_base < ::u16, ::u16, matter *, matter * >;
 
 using map_string_to_ptr = map_base < string, const ::scoped_string & scopedstr, void *, void * >;
 
@@ -222,7 +222,7 @@ using map_string_to_ob = map_base < string, const ::scoped_string & scopedstr, m
 #include "acme/platform/options.h"
 
 
-typedef CLASS_DECL_ACME pointer_array < unsigned_int_array > dword_2darray;
+typedef CLASS_DECL_ACME pointer_array < u32_array > dword_2darray;
 typedef CLASS_DECL_ACME pointer_array < index_array > index_2darray;
 
 

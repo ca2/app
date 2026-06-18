@@ -132,7 +132,7 @@ namespace netserver
                   
                   auto iPort = m_iCurrentPort;
 
-                  int iError = m_pincomingsocket->Bind(m_strIp, (::networking::port_t)iPort);
+                  ::i32 iError = m_pincomingsocket->Bind(m_strIp, (::networking::port_t)iPort);
 
                   if (iError == 0)
                   {

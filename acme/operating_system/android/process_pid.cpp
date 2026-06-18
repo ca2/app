@@ -3,12 +3,12 @@
 
 ::e_status fgets_string(string& str, FILE* pfile, memsize iBufferSize);
 
-int get_process_pid(const_char_pointer procNameParam)
+::i32 get_process_pid(const_char_pointer procNameParam)
 {
 
    string procName(procNameParam);
 
-   int pid = -1;
+   ::i32 pid = -1;
 
    // Open the /proc directory
    DIR *dp = opendir("/proc");
@@ -19,7 +19,7 @@ int get_process_pid(const_char_pointer procNameParam)
       while (pid < 0 && (dirp = readdir(dp)))
       {
          // Skip non-numeric entries
-         int atom = atoi(dirp->d_name);
+         ::i32 atom = atoi(dirp->d_name);
          if (atom > 0)
          {
             // Read contents of virtual /proc/{pid}/cmdline file
@@ -58,21 +58,21 @@ int get_process_pid(const_char_pointer procNameParam)
 
 
 
-string module_path_from_pid(unsigned int iPid)
+string module_path_from_pid(::u32 iPid)
 {
 
-   int iSize = 1024 * 8;
+   ::i32 iSize = 1024 * 8;
 
    string path;
-   char * pszBuffer = path.get_buffer(iSize);
-   char * systemPath = nullptr;
-   char * candidateDir = nullptr;
+   char_pointer pszBuffer = path.get_buffer(iSize);
+   char_pointer systemPath = nullptr;
+   char_pointer candidateDir = nullptr;
 
    string str;
    str = "/proc/" + as_string(iPid) + "/exe";
 
    /* the easiest case: we are in linux */
-   ssize_t s = readlink(pszBuffer,(char *) (const_char_pointer )path,iSize);
+   ssize_t s = readlink(pszBuffer,(char_pointer ) (const_char_pointer )path,iSize);
 
    if(s == -1)
    {
@@ -90,10 +90,10 @@ string module_path_from_pid(unsigned int iPid)
 
 
 
-//::int_array_base module_path_get_pid(const ::file::path & path)
+//::i32_array_base module_path_get_pid(const ::file::path & path)
 //{
 //
-//   ::int_array_base ia;
+//   ::i32_array_base ia;
 //
 //   ::file::path_array_base stra;
 //
@@ -102,7 +102,7 @@ string module_path_from_pid(unsigned int iPid)
 //   for(auto & strPid : stra)
 //   {
 //
-//      int iPid = atoi(strPid.title());
+//      ::i32 iPid = atoi(strPid.title());
 //
 //      if(iPid > 0)
 //      {
@@ -147,7 +147,7 @@ string module_path_from_pid(unsigned int iPid)
 //   for(auto & strPid : stra)
 //   {
 //
-//      int iPid = atoi(strPid.title());
+//      ::i32 iPid = atoi(strPid.title());
 //
 //      if(iPid > 0)
 //      {
@@ -188,7 +188,7 @@ string module_path_from_pid(unsigned int iPid)
 //
 //
 //
-//string_array_base cmdline_from_pid(unsigned int iPid)
+//string_array_base cmdline_from_pid(::u32 iPid)
 //{
 //
 //   string_array_base stra;
@@ -201,12 +201,12 @@ string module_path_from_pid(unsigned int iPid)
 //
 //   string strArg;
 //
-//   char ch;
+//   ::i8 ch;
 //
-//   for(int i = 0; i < mem.get_size(); i++)
+//   for(::i32 i = 0; i < mem.get_size(); i++)
 //   {
 //
-//      ch = (char)mem.get_data()[i];
+//      ch = (::i8)mem.get_data()[i];
 //
 //      if(ch == '\0')
 //      {

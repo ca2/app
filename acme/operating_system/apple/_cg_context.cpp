@@ -11,7 +11,7 @@
 #include <CoreImage/CoreImage.h>
 
 
-CGContextRef CreateARGBBitmapContext (CGImageRef inImage, int cx, int cy)
+CGContextRef CreateARGBBitmapContext (CGImageRef inImage, ::i32 cx, ::i32 cy)
 {
 
    CGContextRef    context = nullptr;
@@ -20,9 +20,9 @@ CGContextRef CreateARGBBitmapContext (CGImageRef inImage, int cx, int cy)
 
    //void *          bitmapData;
 
-   int             bitmapByteCount;
+   ::i32             bitmapByteCount;
 
-   int             bitmapBytesPerRow;
+   ::i32             bitmapBytesPerRow;
 
    bitmapBytesPerRow   = (cx * 4);
 
@@ -83,7 +83,7 @@ CGContextRef CreateARGBBitmapContext (CGImageRef inImage, int cx, int cy)
 }
 
 
-bool GetImagePixelData(unsigned int * pcr, int cx, int cy, int iScan, CGImageRef inImage)
+bool GetImagePixelData(::u32 * pcr, ::i32 cx, ::i32 cy, ::i32 iScan, CGImageRef inImage)
 {
 
    CGContextRef cgctx = CreateARGBBitmapContext(inImage, cx, cy);
@@ -101,15 +101,15 @@ bool GetImagePixelData(unsigned int * pcr, int cx, int cy, int iScan, CGImageRef
 
    void *data = CGBitmapContextGetData (cgctx);
 
-   unsigned char * pdest = (unsigned char * ) pcr;
+   ::u8 * pdest = (::u8 * ) pcr;
 
    if (data != nullptr)
    {
 
-      for(int y = cy - 1; y >= 0; y--)
+      for(::i32 y = cy - 1; y >= 0; y--)
       {
 
-         unsigned char * pline = (unsigned char *) &((unsigned int*)data)[y * cx];
+         ::u8 * pline = (::u8 *) &((::u32*)data)[y * cx];
 
          ::memory_copy(pdest, pline, cx* 4);
 

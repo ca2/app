@@ -169,9 +169,9 @@ namespace html
 
          }
 
-         string strSize = m_pelemental->m_phtmlbase->get_tag()->get_attr_value("int_size");
+         string strSize = m_pelemental->m_phtmlbase->get_tag()->get_attr_value("i32_size");
 
-         int iSize = 20;
+         ::i32 iSize = 20;
 
          if (strSize.has_character())
             iSize = maximum(1, atoi(strSize));
@@ -214,7 +214,7 @@ namespace html
 
          ::draw2d::graphics_pointer & pgraphics = pdata->m_pcoredata->m_pgraphics;
 
-         //::int_rectangle rectangleWindow;
+         //::i32_rectangle rectangleWindow;
 
          //m_pcombo->window_rectangle(rectangleWindow);
 

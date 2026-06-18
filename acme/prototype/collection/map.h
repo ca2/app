@@ -197,7 +197,7 @@ public:
 //    //iterator get_next(const iteratorpnodeRet);
 //
 //    //advanced features for derived classes
-//    unsigned int GetHashTableSize() const
+//    ::u32 GetHashTableSize() const
 //    {
 //
 //       return this->m_hashtable.GetHashTableSize();
@@ -205,7 +205,7 @@ public:
 //    }
 //
 //
-//    void InitHashTable(unsigned int hashSize,bool bAllocNow = true);
+//    void InitHashTable(::u32 hashSize,bool bAllocNow = true);
 //
 //
 //    PAYLOAD get(ARG_KEY key, ARG_PAYLOAD valueDefault);
@@ -231,14 +231,14 @@ public:
 //    //inline const_iterator find_item(ARG_KEY key) const { return ((pair_map_base *) this)->find_item(key); }
 //
 //
-//    //BASE_NODE * new_node(ARG_KEY key, unsigned int nHashBucket, unsigned int nHashValue);
-//    //inline void hash(BASE_NODE *, unsigned int nHashBucket, unsigned int nHashValue);
-//    //void attach(iterator iterator, unsigned int nHashBucket, unsigned int nHashValue);
+//    //BASE_NODE * new_node(ARG_KEY key, ::u32 nHashBucket, ::u32 nHashValue);
+//    //inline void hash(BASE_NODE *, ::u32 nHashBucket, ::u32 nHashValue);
+//    //void attach(iterator iterator, ::u32 nHashBucket, ::u32 nHashValue);
 //    //bool erase(iterator iterator);
 //    //void detach(iterator iterator);
-//    //void hash(unsigned int& nHashBucket, unsigned int& nHashValue, ARG_KEY) const;
-//    //inline iterator node_at(ARG_KEY, unsigned int & nHashBucket, unsigned int & nHashValue) const;
-//    //inline const_iterator node_at(ARG_KEY, unsigned int& nHashBucket, unsigned int& nHashValue) const;
+//    //void hash(::u32& nHashBucket, ::u32& nHashValue, ARG_KEY) const;
+//    //inline iterator node_at(ARG_KEY, ::u32 & nHashBucket, ::u32 & nHashValue) const;
+//    //inline const_iterator node_at(ARG_KEY, ::u32& nHashBucket, ::u32& nHashValue) const;
 //
 //    // void transfer(iterator iterator, pair_map_base * iterator_map = nullptr);
 //    // void transfer(pair_map_base* iterator_map, ARG_KEY key);
@@ -517,7 +517,7 @@ public:
 //
 
 // template < typename PAIR >
-// void pair_map_base < PAIR >::attach(iterator p, unsigned int nHashBucket, unsigned int nHashValue)
+// void pair_map_base < PAIR >::attach(iterator p, ::u32 nHashBucket, ::u32 nHashValue)
 // {
 //
 //    hash(p, nHashBucket, nHashValue);
@@ -545,7 +545,7 @@ public:
 
 //
 // template < typename PAIR >
-// inline void pair_map_base < PAIR >::hash(iterator p, unsigned int nHashBucket, unsigned int nHashValue)
+// inline void pair_map_base < PAIR >::hash(iterator p, ::u32 nHashBucket, ::u32 nHashValue)
 // {
 //
 //    // not precise (memleak? a watch dog can restart from the last check point... continuable tasks need...) but self-healing(self-recoverable/not-fatal)...
@@ -574,7 +574,7 @@ public:
 //
 // template < typename PAIR >
 // typename pair_map_base < PAIR >::iterator
-// pair_map_base < PAIR >::new_node(ARG_KEY key, unsigned int nHashBucket, unsigned int nHashValue)
+// pair_map_base < PAIR >::new_node(ARG_KEY key, ::u32 nHashBucket, ::u32 nHashValue)
 // {
 //
 //    //if(this->m_pnodeFree == nullptr)
@@ -676,7 +676,7 @@ public:
 // }
 //
 // template < typename PAIR >
-// void pair_map_base < PAIR >::hash(unsigned int& nHashBucket, unsigned int& nHashValue, ARG_KEY key) const
+// void pair_map_base < PAIR >::hash(::u32& nHashBucket, ::u32& nHashValue, ARG_KEY key) const
 // {
 //
 //    nHashValue = ::as_hash32(key).m_u;
@@ -687,7 +687,7 @@ public:
 //
 // //template < typename PAIR >
 // //inline typename pair_map_base < PAIR >::const_iterator
-// //pair_map_base < PAIR >::node_at(ARG_KEY key, unsigned int & nHashBucket, unsigned int & nHashValue) const
+// //pair_map_base < PAIR >::node_at(ARG_KEY key, ::u32 & nHashBucket, ::u32 & nHashValue) const
 // //{
 // //
 // //   return (const_iterator &) ((pair_map_base *)this)->node_at(key, nHashBucket, nHashValue);
@@ -697,7 +697,7 @@ public:
 //
 // template < typename PAIR >
 // inline typename pair_map_base < PAIR >::iterator
-// pair_map_base < PAIR >::node_at(ARG_KEY key, unsigned int& nHashBucket, unsigned int& nHashValue) const
+// pair_map_base < PAIR >::node_at(ARG_KEY key, ::u32& nHashBucket, ::u32& nHashValue) const
 // {
 //
 //    hash(nHashBucket, nHashValue, key);
@@ -729,9 +729,9 @@ public:
 // void pair_map_base < PAIR >::transfer(pair_map_base* iterator_map, ARG_KEY key)
 // {
 //
-//    unsigned int uHashBucket;
+//    ::u32 uHashBucket;
 //
-//    unsigned int uHashValue;
+//    ::u32 uHashValue;
 //
 //    auto iterator = iterator_map->node_at(key, uHashBucket, uHashValue);
 //
@@ -761,9 +761,9 @@ public:
 //
 //    }
 //
-//    unsigned int nHashBucket;
+//    ::u32 nHashBucket;
 //
-//    unsigned int nHashValue;
+//    ::u32 nHashValue;
 //
 //    hash(nHashBucket, nHashValue, iterator->element1());
 //
@@ -818,7 +818,7 @@ public:
 // inline typename pair_map_base < PAIR >::iterator pair_map_base < PAIR >::get_item(ARG_KEY key)
 // {
 //
-//    unsigned int nHashBucket,nHashValue;
+//    ::u32 nHashBucket,nHashValue;
 //
 //    iterator p;
 //
@@ -957,16 +957,16 @@ public:
 
 
 template < class PAYLOAD >
-using double_map_base = map_base < double, PAYLOAD >;
+using f64_map_base = map_base < ::f64, PAYLOAD >;
 
 template < class PAYLOAD >
-using double_map = map_particle < double_map_base < PAYLOAD > >;
+using f64_map = map_particle < f64_map_base < PAYLOAD > >;
 
-using double_to_double_base = double_map_base < double >;
+using f64_to_f64_base = f64_map_base < ::f64 >;
 
 
 template < class PAYLOAD >
-using dword_map = map_base < unsigned int, PAYLOAD >;
+using dword_map = map_base < ::u32, PAYLOAD >;
 
 
 template < class PAYLOAD >
@@ -1034,10 +1034,10 @@ __declare_pair_map(xkeyvaluetype, xkeytype, xkey, xvaluetype, xvalue);
 //
 // template < typename PAIR >
 // void pair_map_base < PAIR >::InitHashTable(
-//    unsigned int nHashSize, bool bAllocNow)
+//    ::u32 nHashSize, bool bAllocNow)
 // //
 // // Used to force allocation of a hash table or to override the default
-// //   hash table int_size of (which is fairly small)
+// //   hash table i32_size of (which is fairly small)
 // {
 //
 //    //ASSERT_OK(this);

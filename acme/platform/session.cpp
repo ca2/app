@@ -9,9 +9,11 @@
 #include "system.h"
 #include "acme/exception/interface_only.h"
 #include "acme/handler/request.h"
+#include "acme/platform/timer.h"
 #include "acme/prototype/text/context.h"
 #include "acme/windowing/windowing.h"
 #include "acme/constant/windowing2.h"
+
 
 namespace platform
 {
@@ -28,7 +30,7 @@ namespace platform
       // m_pbasesession = nullptr;
       // m_pbredsession = nullptr;
       // m_pcoresession = nullptr;
-      m_bKeepRunningPostedProcedures = true;
+      m_bRunMainLoop = true;
 
    }
 
@@ -194,10 +196,15 @@ namespace platform
    void session::init1()
    {
 
-      if (system()->acme_windowing()->m_ewindowingbias == ::windowing::e_bias_unknown)
+      if (system()->m_pacmewindowing)
       {
 
-         system()->acme_windowing()->m_ewindowingbias = system()->acme_windowing()->calculate_windowing_bias();
+         if (system()->acme_windowing()->m_ewindowingbias == ::windowing::e_bias_unknown)
+         {
+
+            system()->acme_windowing()->m_ewindowingbias = system()->acme_windowing()->calculate_windowing_bias();
+
+         }
 
       }
 
@@ -329,10 +336,38 @@ namespace platform
 
       }
 
+   }
 
+
+   void session::set_finish()
+   {
+
+      ::task::set_finish();
 
    }
 
+
+   class ::timer_handler * session::get_timer_handler(const class ::time & time)
+{
+
+      _synchronous_lock synchronouslock(this->synchronization(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
+
+      if (m_taskaTimer.is_empty())
+      {
+
+         auto ptask = createø<::task>();
+
+         ptask->id() = "timer_handler";
+
+         ptask->m_bRunMainLoop = true;
+
+         m_taskaTimer.add(ptask);
+
+      }
+
+      return m_taskaTimer.first();
+
+   }
 
 
    void session::term2()

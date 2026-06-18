@@ -40,8 +40,8 @@ namespace user
    void scroll_base_y::destroy()
    {
 
-      m_pscrollbarY.defer_destroy();
-      m_pscrolllayoutY.defer_destroy();
+      m_pscrollbarY.defer_destroy_and_release();
+      m_pscrolllayoutY.defer_destroy_and_release();
       ::user::interaction::destroy();
 
    }
@@ -90,7 +90,7 @@ namespace user
    void scroll_base_y::set_scroll_state_y(const scroll_state & scrollstate, ::user::enum_layout elayout)
    {
 
-      auto iLayout = (int)elayout;
+      auto iLayout = (::i32)elayout;
 
       while (iLayout >= 0)
       {
@@ -104,10 +104,10 @@ namespace user
    }
 
 
-   void scroll_base_y::set_scroll_dimension(const ::int_size & size, ::user::enum_layout elayout)
+   void scroll_base_y::set_scroll_dimension(const ::i32_size & size, ::user::enum_layout elayout)
    {
 
-      auto iLayout = (int)elayout;
+      auto iLayout = (::i32)elayout;
 
       while (iLayout >= 0)
       {
@@ -125,11 +125,11 @@ namespace user
    void scroll_base_y::layout_scroll_bar_y(::user::enum_layout elayout)
    {
 
-      ::int_rectangle rectangleX = raw_rectangle(elayout);
+      ::i32_rectangle rectangleX = raw_rectangle(elayout);
 
       //scroll_bar_get_client_rect(rectangleX);
 
-//      int ifswp = SWP_SHOWWINDOW | SWP_NOCOPYBITS;
+//      ::i32 ifswp = SWP_SHOWWINDOW | SWP_NOCOPYBITS;
 
       defer_create_scroll_bar_y(elayout);
 
@@ -141,11 +141,11 @@ namespace user
 
             synthesize_scroll_state_y(m_pscrolllayoutY->m_scrollstatea[elayout], elayout);
 
-            ::int_rectangle rectangleNewPos;
+            ::i32_rectangle rectangleNewPos;
 
             auto pstyle = get_style();
 
-            int iScrollBarWidth = get_int(pstyle, e_int_scroll_bar_thickness);
+            ::i32 iScrollBarWidth = get_int(pstyle, e_int_scroll_bar_thickness);
 
             rectangleNewPos.left = rectangleX.right - iScrollBarWidth;
             rectangleNewPos.top = rectangleX.top;
@@ -235,7 +235,7 @@ namespace user
 
       ::user::enum_layout elayout = ::user::e_layout_sketch;
 
-      double Δ = 0.0;
+      ::f64 Δ = 0.0;
 
       auto y = get_context_offset_y(elayout);
 
@@ -305,6 +305,8 @@ namespace user
 
          y += Δ;
 
+         information("user::scroll_base_y {}", y);
+
          constrain_context_offset_y(y, elayout);
 
          set_context_offset_y(y, elayout);
@@ -321,10 +323,10 @@ namespace user
 
 
 
-   int scroll_base_y::get_wheel_scroll_delta()
+   ::i32 scroll_base_y::get_wheel_scroll_delta()
    {
 
-      return (int)m_pscrolllayoutY->m_scrollstatea[::user::e_layout_sketch].m_dWheel;
+      return (::i32)m_pscrolllayoutY->m_scrollstatea[::user::e_layout_sketch].m_dWheel;
 
    }
 
@@ -439,7 +441,7 @@ namespace user
 
       //      index iDelta = m_iWheelDelta / WHEEL_DELTA;
       //
-      //      m_iWheelDelta -= (short)(WHEEL_DELTA * iDelta);
+      //      m_iWheelDelta -= (::i16)(WHEEL_DELTA * iDelta);
       //
       //      index nPos = m_pscrollbarY->m_scrollinfo.nPos - iDelta * get_wheel_scroll_delta();
       //
@@ -448,7 +450,7 @@ namespace user
       //      else if (nPos > m_pscrollbarY->m_scrollinfo.nMax - m_pscrollbarY->m_scrollinfo.nPage)
       //         nPos = m_pscrollbarY->m_scrollinfo.nMax - m_pscrollbarY->m_scrollinfo.nPage;
       //
-      //      m_pscrollbarY->m_scrollinfo.nPos =  (int) nPos;
+      //      m_pscrollbarY->m_scrollinfo.nPos =  (::i32) nPos;
 
 
       auto ekey = pkey->m_ekey;
@@ -477,7 +479,7 @@ namespace user
    }
 
 
-   //bool scroll_base_y::validate_context_offset(int_point & point)
+   //bool scroll_base_y::validate_context_offset(i32_point & point)
    //{
 
    //   if (point.y < 0)
@@ -496,7 +498,7 @@ namespace user
    //      if (point.y > maximum(0, sizeTotal.cy - sizePage.cy))
    //      {
 
-   //         point.y = (int)maximum(0, sizeTotal.cy - sizePage.cy);
+   //         point.y = (::i32)maximum(0, sizeTotal.cy - sizePage.cy);
 
    //      }
 
@@ -507,7 +509,7 @@ namespace user
    //}
 
 
-   void scroll_base_y::set_scroll_tracking_y(double y, ::user::enum_layout elayout)
+   void scroll_base_y::set_scroll_tracking_y(::f64 y, ::user::enum_layout elayout)
    {
 
       auto iLayout = (::collection::index)elayout;
@@ -524,7 +526,7 @@ namespace user
    }
 
 
-   double scroll_base_y::get_context_offset_y(::user::enum_layout elayout)
+   ::f64 scroll_base_y::get_context_offset_y(::user::enum_layout elayout)
    {
 
       return m_pscrolllayoutY->m_scrollstatea[elayout].m_dPosition;
@@ -532,7 +534,7 @@ namespace user
    }
 
 
-   void scroll_base_y::set_context_offset_y(double y, ::user::enum_layout elayout)
+   void scroll_base_y::set_context_offset_y(::f64 y, ::user::enum_layout elayout)
    {
 
       auto iLayout = (::collection::index)elayout;
@@ -549,7 +551,7 @@ namespace user
    }
 
 
-   void scroll_base_y::constrain_context_offset_y(double & y, ::user::enum_layout elayout)
+   void scroll_base_y::constrain_context_offset_y(::f64 & y, ::user::enum_layout elayout)
    {
 
       auto scrollstatey = get_scroll_state_y(elayout);
@@ -574,7 +576,7 @@ namespace user
             //   if (point.x > maximum(0, sizeTotal.cx - sizePage.cx))
             //   {
 
-            //      point.x = (int)maximum(0, sizeTotal.cx - sizePage.cx);
+            //      point.x = (::i32)maximum(0, sizeTotal.cx - sizePage.cx);
 
             //   }
 
@@ -604,21 +606,21 @@ namespace user
 
       auto scrollstatey = get_scroll_state_y(elayout);
 
-      scrollstatey.m_dThickness = (double)get_int(pstyle, e_int_scroll_bar_thickness);
+      scrollstatey.m_dThickness = (::f64)get_int(pstyle, e_int_scroll_bar_thickness);
 
       auto rectangleX = this->rectangle();
 
-      int iTotalHeight = (int)sizeTotal.cy;
+      ::i32 iTotalHeight = (::i32)sizeTotal.cy;
 
-      int iTotalWidth = (int)sizeTotal.cx;
+      ::i32 iTotalWidth = (::i32)sizeTotal.cx;
 
-      int iClientHeight = rectangleX.height();
+      ::i32 iClientHeight = rectangleX.height();
 
-      int iClientWidth = rectangleX.width();
+      ::i32 iClientWidth = rectangleX.width();
 
-      int iScrollHeight = iClientHeight - get_int(pstyle, e_int_scroll_bar_thickness);
+      ::i32 iScrollHeight = iClientHeight - get_int(pstyle, e_int_scroll_bar_thickness);
 
-      //int iscrollWidth = iClientWidth - GetSystemMetrics(SM_CXVSCROLL);
+      //::i32 iscrollWidth = iClientWidth - GetSystemMetrics(SM_CXVSCROLL);
 
       m_pscrolllayoutY->m_scrollstatea[::user::e_layout_sketch].m_bHasScroll = false;
 
@@ -660,18 +662,18 @@ namespace user
    }
 
 
-   int scroll_base_y::get_final_scroll_bar_y_thickness(::user::enum_layout elayout)
+   ::i32 scroll_base_y::get_final_scroll_bar_y_thickness(::user::enum_layout elayout)
    {
 
       //return m_pscrollstateVertical->m_bScroll && m_pscrollstateVertical->m_bScrollEnable ? m_pscrollstateVertical->m_iWidth : 0;
 
-      return (int)m_pscrolllayoutY->m_scrollstatea[elayout].m_dThickness;
+      return (::i32)m_pscrolllayoutY->m_scrollstatea[elayout].m_dThickness;
 
    }
 
 
 
-   void scroll_base_y::send_scroll_y_message(enum_scroll_command ecommand, double dPosition)
+   void scroll_base_y::send_scroll_y_message(enum_scroll_command ecommand, ::f64 dPosition)
    {
 
       auto pscroll = allocateø ::message::scroll();
@@ -687,7 +689,7 @@ namespace user
       //else
       //{
 
-      //   pscroll->m_nPos = (int)get_context_offset().y;
+      //   pscroll->m_nPos = (::i32)get_context_offset().y;
 
       //}
 
@@ -764,7 +766,7 @@ namespace user
    }
 
 
-   void scroll_base_y::scroll_y(int iPosition)
+   void scroll_base_y::scroll_y(::i32 iPosition)
    {
 
       send_scroll_y_message(e_scroll_command_thumb_position, iPosition);

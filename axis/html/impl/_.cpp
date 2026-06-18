@@ -5,7 +5,7 @@
 void trim001(string & str)
 {
 
-   char uch;
+   ::i8 uch;
 
    while (str.length() > 0)
    {

@@ -77,7 +77,7 @@ namespace heap
       //allocator(::acme::acme * pacme);
       //~allocator();
       
-      //virtual void * allocate(memsize iSize, const_char_pointer pszFile, int iLine);
+      //virtual void * allocate(memsize iSize, const_char_pointer pszFile, ::i32 iLine);
       //virtual void * allocate(memsize iSize);
       //virtual void free(void * p);
       //virtual void zero(void * p);

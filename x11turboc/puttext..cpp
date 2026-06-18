@@ -34,17 +34,17 @@
 
 //------------------------------------------------------------------------
 
-int
-puttext (int left, int top, int right, int bottom, void *source)
+::i32
+puttext (::i32 left, ::i32 top, ::i32 right, ::i32 bottom, void *source)
 {
   chtype ch;
-  int TranslateTurboColor (int newattr);
-  unsigned char *TurboData;
-  int NcursesAttr;
-  int Row, Col, i, j;
+  ::i32 TranslateTurboColor (::i32 newattr);
+  ::u8 *TurboData;
+  ::i32 NcursesAttr;
+  ::i32 Row, Col, i, j;
   gint Char;
-  int ReturnValue = 0;
-  int sminrow, smincol, height_1, width_1;
+  ::i32 ReturnValue = 0;
+  ::i32 sminrow, smincol, height_1, width_1;
   WINDOW *TempWin = NULL;
   if (!ConioInitialized)
     textmode (LASTMODE);
@@ -74,7 +74,7 @@ puttext (int left, int top, int right, int bottom, void *source)
     goto Error;
   // Now we have all of the data, but we must translate it from the 
   // form provided by ncurses to the form needed in Turbo C.  
-  TurboData = (char *) source;
+  TurboData = (char_pointer ) source;
   for (Row = top, i = 0; Row <= bottom; Row++, i++)
     for (Col = left, j = 0; Col <= right; Col++, j++)
       {

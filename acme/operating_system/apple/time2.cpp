@@ -18,12 +18,12 @@
 
 namespace acme
 {
-extern double g_machtime_conversion_factor;
+extern ::f64 g_machtime_conversion_factor;
 } // namespace acme
-void ns_Sleep(unsigned int uiMillis);
+void ns_Sleep(::u32 uiMillis);
 
 
-CLASS_DECL_ACME long long _get_nanosecond()
+CLASS_DECL_ACME ::i64 _get_nanosecond()
 {
    
    return mach_absolute_time() * ::acme::g_machtime_conversion_factor;
@@ -32,13 +32,13 @@ CLASS_DECL_ACME long long _get_nanosecond()
    //
    //   clock_get_time(g_cclock, &mts);
    //
-   //   return ((unsigned long long) mts.tv_sec * (unsigned long long)1000 * (unsigned long long)1000 * (unsigned long long)1000 )+ ((unsigned long long) mts.tv_nsec);
+   //   return ((::u64) mts.tv_sec * (::u64)1000 * (::u64)1000 * (::u64)1000 )+ ((::u64) mts.tv_nsec);
    
 }
 
 void utc_timespec(timespec * ptimespec);
 
-CLASS_DECL_ACME long long long_long_nanosecond()
+CLASS_DECL_ACME ::i64 i64_nanosecond()
 {
    
    struct timespec timespec;

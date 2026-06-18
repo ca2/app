@@ -45,46 +45,46 @@ public:
    string   pa_splits;
    string   m_strWord;
    character_count  m_iPos;
-   char     pa_breakchar;
-   char     pa_enable;
-   char     pa_disable;
-   short    pa_nospace;
+   ::i8     pa_breakchar;
+   ::i8     pa_enable;
+   ::i8     pa_disable;
+   ::i16    pa_nospace;
    bool     m_bQuote;
    character_count  m_iLen;
 
    parse();
    parse(::character_range < const_char_pointer >range) : parse(range.begin(), range.size(), range.m_erange, range.m_pbasedata) {}
    parse(::character_range < const_char_pointer >range, ::character_range < const_char_pointer > splits):parse(range.begin(), range.size(), splits, range.m_erange, range.m_pbasedata) {}
-   parse(::character_range < const_char_pointer >range, ::character_range < const_char_pointer > splits, short nospace):parse(range.begin(), range.size(), splits, nospace, range.m_erange, range.m_pbasedata) {}
+   parse(::character_range < const_char_pointer >range, ::character_range < const_char_pointer > splits, ::i16 nospace):parse(range.begin(), range.size(), splits, nospace, range.m_erange, range.m_pbasedata) {}
    parse(const_char_pointer psz, character_count iLen, enum_range erange = e_range_none, base_data<ansi_character > * pbasedata = nullptr);
    parse(const_char_pointer psz, character_count iLen, ::character_range < const_char_pointer > splits, enum_range erange = e_range_none, base_data<ansi_character > * pbasedata = nullptr);
-   parse(const_char_pointer psz, character_count iLen, ::character_range < const_char_pointer > splits, short nospace, enum_range erange = e_range_none, base_data<ansi_character > * pbasedata = nullptr);
+   parse(const_char_pointer psz, character_count iLen, ::character_range < const_char_pointer > splits, ::i16 nospace, enum_range erange = e_range_none, base_data<ansi_character > * pbasedata = nullptr);
    ~parse();
-   short issplit(const char);
+   ::i16 issplit(const ::i8);
    void getsplit();
    void getsplit(string &);
    string getword();
    void getword(string &);
-   void getword(string &, string &, int);
+   void getword(string &, string &, ::i32);
    void getsplitword();
    void getsplitword(string &);
    string getrest();
    void getrest(string &);
    long getvalue();
-   void setbreak(const char);
-   int getwordlen();
-   int getrestlen();
+   void setbreak(const ::i8);
+   ::i32 getwordlen();
+   ::i32 getrestlen();
 
    inline bool has_character() const { return m_iPos < m_iLen; }
    inline bool is_eostr() const { return !has_character();  }
       
 
-   void enablebreak(const char ca)
+   void enablebreak(const ::i8 ca)
    {
       pa_enable = ca;
    }
 
-   void disablebreak(const char ca)
+   void disablebreak(const ::i8 ca)
    {
       pa_disable = ca;
    }

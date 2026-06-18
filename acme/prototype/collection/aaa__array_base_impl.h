@@ -105,7 +105,7 @@ void base_array < TYPE, ARG_TYPE, TYPED, MEMORY, t_etypeContainer >::free_extra(
 
    if(m_nSize != m_nMaxSize)
    {
-      // shrink to desired int_size
+      // shrink to desired i32_size
 #ifdef SIZE_T_MAX
       ASSERT(m_nSize <= SIZE_T_MAX / sizeof(TYPE)); // no overflow
 #endif
@@ -235,7 +235,7 @@ template < typename TYPE, typename ARG_TYPE, typename ALLOCATOR, ::enum_type t_e
       // inserting in the middle of the array
       ::collection::count nOldSize = (::collection::count) m_nSize;
 
-      set_size((::collection::count) m_nSize + nCount,-1);  // grow it to aaa_primitive_new int_size
+      set_size((::collection::count) m_nSize + nCount,-1);  // grow it to aaa_primitive_new i32_size
       // destroy intial data before copying over it
       // shift old data up to fill gap
       ::safe_memory_transfer(m_pData + nIndex + nCount,(size_t) ((nOldSize - nIndex) * sizeof(TYPE)),m_pData + nIndex,(size_t)((nOldSize - nIndex) * sizeof(TYPE)));
@@ -401,7 +401,7 @@ template < typename TYPE, typename ARG_TYPE, typename ALLOCATOR, ::enum_type t_e
       // inserting in the middle of the array
       ::collection::count nOldSize = (::collection::count) m_nSize;
 
-      set_size((::collection::count) (m_nSize + nCount), -1);  // grow it to aaa_primitive_new int_size
+      set_size((::collection::count) (m_nSize + nCount), -1);  // grow it to aaa_primitive_new i32_size
       // destroy intial data before copying over it
       // shift old data up to fill gap
       ::safe_memory_transfer(m_pData + nIndex + nCount, (size_t) ((nOldSize - nIndex) * sizeof(TYPE)), m_pData + nIndex, (size_t) ((nOldSize - nIndex) * sizeof(TYPE)));
@@ -516,7 +516,7 @@ template < typename TYPE, typename ARG_TYPE, typename ALLOCATOR, ::enum_type t_e
       throw ::exception(error_bad_argument);
 
    if(nGrowBy >= 0)
-      m_nGrowBy = nGrowBy;  // set aaa_primitive_new int_size
+      m_nGrowBy = nGrowBy;  // set aaa_primitive_new i32_size
 
    if(nNewSize == 0)
    {
@@ -677,7 +677,7 @@ template < typename TYPE, typename ARG_TYPE, typename ALLOCATOR, ::enum_type t_e
 
       ::safe_memory_copy(pNewData,(size_t)nNewMax * sizeof(TYPE),m_pData,(size_t)m_nSize * sizeof(TYPE));
 
-      ///for(int i = 0; i < nNewSize - m_nSize; i++)
+      ///for(::i32 i = 0; i < nNewSize - m_nSize; i++)
       // get rid of old stuff (note: no destructors called)
       ALLOCATOR::_free(m_pData);
 
@@ -712,7 +712,7 @@ template < typename TYPE, typename ARG_TYPE, typename ALLOCATOR, ::enum_type t_e
    if(nGrowBy >= 0)
    {
 
-      m_nGrowBy = nGrowBy;  // set aaa_primitive_new int_size
+      m_nGrowBy = nGrowBy;  // set aaa_primitive_new i32_size
 
    }
 

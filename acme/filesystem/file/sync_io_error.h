@@ -7,12 +7,12 @@ class CLASS_DECL_ACME sync_io_error
    public:
 
 
-   int   m_iGenerateBefore;
-   int   m_iErrorBefore;
-   int * m_piError;
+   ::i32   m_iGenerateBefore;
+   ::i32   m_iErrorBefore;
+   ::i32 * m_piError;
 
 
-   sync_io_error(int * piError = nullptr)
+   sync_io_error(::i32 * piError = nullptr)
    {
       m_iGenerateBefore = get_generate_sync_io_error();
       m_iErrorBefore = get_sync_io_error();

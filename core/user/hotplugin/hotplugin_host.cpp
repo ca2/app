@@ -6,7 +6,7 @@
 #if defined(LINUX) || defined(__ANDROID__) || defined(APPLEOS) || defined(SOLARIS)
 iptr get_map_failed();
 void my_munmap(void * pimage32,HANDLE hfile);
-void * my_open_map(const ::scoped_string & scopedstr,HANDLE * pfile,bool bRead,bool bWrite,long long int_size);
+void * my_open_map(const ::scoped_string & scopedstr,HANDLE * pfile,bool bRead,bool bWrite,::i64 i32_size);
 #endif
 
 
@@ -142,7 +142,7 @@ namespace hotplugin
    }
 
 
-   int host::start_ca2_system()
+   ::i32 host::start_ca2_system()
    {
 
       if(m_pplugin != nullptr)
@@ -157,7 +157,7 @@ namespace hotplugin
    }
 
 
-   void host::on_paint(::draw2d::graphics_pointer & pgraphics,const ::int_rectangle & rectangle)
+   void host::on_paint(::draw2d::graphics_pointer & pgraphics,const ::i32_rectangle & rectangle)
 
    {
 
@@ -166,11 +166,11 @@ namespace hotplugin
 
          try
          {
-            //unsigned int dwTime1= ::time::now();
+            //::u32 dwTime1= ::time::now();
 
             m_pplugin->on_paint(pgraphics, rectangle);
 
-            //unsigned int dwTime9= ::time::now();
+            //::u32 dwTime9= ::time::now();
 
             //informationf("plugin->on_paint %d",dwTime9 - dwTime1);
 
@@ -191,19 +191,19 @@ namespace hotplugin
 
       if(::user::interaction::m_pimpl != nullptr && pgraphics != nullptr)
       {
-         //unsigned int dwTime1= ::time::now();
+         //::u32 dwTime1= ::time::now();
 
 
          ::user::interaction::m_pimpl->_001Print(pgraphics);
-         //unsigned int dwTime9= ::time::now();
+         //::u32 dwTime9= ::time::now();
 
          //informationf("m_pimpl->_001Print %d",dwTime9 - dwTime1);
 
       }
-      //unsigned int dwTime1= ::time::now();
+      //::u32 dwTime1= ::time::now();
 
       deferred_prodevian_redraw();
-      //unsigned int dwTime9= ::time::now();
+      //::u32 dwTime9= ::time::now();
 
       //informationf("deferred_prodevian_redraw %d",dwTime9 - dwTime1);
 
@@ -317,7 +317,7 @@ namespace hotplugin
    }
 
 
-   void host::set_progress_rate(double dRate)
+   void host::set_progress_rate(::f64 dRate)
    {
 
       m_dProgressRate = dRate;
@@ -325,7 +325,7 @@ namespace hotplugin
    }
 
 
-   double host::get_progress_rate()
+   ::f64 host::get_progress_rate()
    {
 
       if(m_dProgressRate < 0.0)
@@ -354,7 +354,7 @@ namespace hotplugin
    }
 
 
-   int host::start_app_install(const ::scoped_string & scopedstrCommandLine)
+   ::i32 host::start_app_install(const ::scoped_string & scopedstrCommandLine)
    {
 
       return start_app_install(scopedstrCommandLine, get_app(), this);
@@ -362,7 +362,7 @@ namespace hotplugin
    }
 
 
-   int host::s_start_app_install(const ::scoped_string & scopedstrCommandLine, ::aura::application * papp, host * phost, plugin * pplugin)
+   ::i32 host::s_start_app_install(const ::scoped_string & scopedstrCommandLine, ::aura::application * papp, host * phost, plugin * pplugin)
    {
 
       return phost->start_app_install(scopedstrCommandLine, papp, pplugin);
@@ -370,7 +370,7 @@ namespace hotplugin
    }
 
 
-   int host::start_app_install(const ::scoped_string & scopedstrCommandLine, ::aura::application * papp, plugin * pplugin)
+   ::i32 host::start_app_install(const ::scoped_string & scopedstrCommandLine, ::aura::application * papp, plugin * pplugin)
    {
 
       if(m_bHostStarterStart)
@@ -395,7 +395,7 @@ namespace hotplugin
    }
 
 
-   int host::s_host_starter_start_sync(const ::scoped_string & scopedstrCommandLine, ::aura::application * papp, host * phost, plugin * pplugin)
+   ::i32 host::s_host_starter_start_sync(const ::scoped_string & scopedstrCommandLine, ::aura::application * papp, host * phost, plugin * pplugin)
    {
 
       return phost->host_starter_start_sync(scopedstrCommandLine, papp, pplugin);
@@ -403,7 +403,7 @@ namespace hotplugin
    }
 
 
-   int host::host_starter_start_sync(const ::scoped_string & scopedstrCommandLine, ::aura::application * papp, plugin * pplugin)
+   ::i32 host::host_starter_start_sync(const ::scoped_string & scopedstrCommandLine, ::aura::application * papp, plugin * pplugin)
    {
 
       if (m_bHostStarterStart)
@@ -465,7 +465,7 @@ namespace hotplugin
    }
 
 
-   void host::set_bitmap(::draw2d::graphics_pointer & pgraphics,const ::int_rectangle & rectangle)
+   void host::set_bitmap(::draw2d::graphics_pointer & pgraphics,const ::i32_rectangle & rectangle)
    {
 
       ensure_bitmap_data(rectangle.size(), false);
@@ -509,7 +509,7 @@ namespace hotplugin
    }
 
 
-   void host::paint_bitmap(::draw2d::graphics_pointer & pgraphics,const ::int_rectangle & rectangle)
+   void host::paint_bitmap(::draw2d::graphics_pointer & pgraphics,const ::i32_rectangle & rectangle)
    {
 
       ensure_bitmap_data(rectangle, false);
@@ -548,7 +548,7 @@ namespace hotplugin
    }
 
 
-   void host::blend_bitmap(::draw2d::graphics_pointer & pgraphics,const ::int_rectangle & rectangleOut)
+   void host::blend_bitmap(::draw2d::graphics_pointer & pgraphics,const ::i32_rectangle & rectangleOut)
    {
 
       auto rectangle = window_rectangle();
@@ -575,19 +575,19 @@ namespace hotplugin
 
       ::memory_copy(m_pimage->image32(), m_memorymapBitmap.get_data(), (size_t) (m_pimage->area() * sizeof(color32_t)));
 
-      pgraphics->draw((const ::int_point *) &rectangleOut, m_sizeBitmap, m_pimage->g());
+      pgraphics->draw((const ::i32_point *) &rectangleOut, m_sizeBitmap, m_pimage->g());
 
 
    }
 
 
-   void host::translate_mouse_message(int * px, int * py)
+   void host::translate_mouse_message(::i32 * px, ::i32 * py)
    {
 
    }
 
 
-   //bool host::window_rectangle(::long_long_rectangle * prectangle)
+   //bool host::window_rectangle(::i64_rectangle * prectangle)
    //{
 
    //   ::copy(prectangle, m_rectangleWindow);
@@ -597,7 +597,7 @@ namespace hotplugin
    //}
 
 
-   //bool host::this->rectangle(::long_long_rectangle * prectangle)
+   //bool host::this->rectangle(::i64_rectangle * prectangle)
    //{
 
    //   ::copy(prectangle,m_rectangleX);
@@ -703,7 +703,7 @@ namespace hotplugin
 
 
 
-   //bool host::set_window_position(class ::user::zorder zorder, int x, int y, int cx, int cy, unsigned int nFlags)
+   //bool host::set_window_position(class ::user::zorder zorder, ::i32 x, ::i32 y, ::i32 cx, ::i32 cy, ::u32 nFlags)
    //{
 
    //   bool bOk = ::hotplugin::plugin::set_window_position(zorder, x, y, cx, cy, nFlags);

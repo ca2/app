@@ -11,16 +11,16 @@ namespace networking_bsd
    public:
 
       
-      unsigned int                 m_nOpenFlags;
+      ::u32                 m_nOpenFlags;
       string               m_strPath;
 
 
       http_batch_buffer();
 
 
-      //virtual ::extended::status open(const ::file::path & path, unsigned int nOpenFlags);
+      //virtual ::extended::status open(const ::file::path & path, ::u32 nOpenFlags);
 
-      virtual void open(const ::file::path & path, unsigned int nOpenFlags);
+      virtual void open(const ::file::path & path, ::u32 nOpenFlags);
 
       virtual void close();
       virtual void flush();

@@ -18,7 +18,7 @@ public:
 //       ::ansi_character    m_chaTempuStock[8];
 //       ::wd16_character    m_shaTempoStore[4];
 //       ::wd32_character    m_iaTempiWarehouse[2];
-//       long long               m_llTempeMart;
+//       ::i64               m_llTempeMart;
 //
 //   };
 
@@ -544,7 +544,7 @@ public:
 
 
    //template < character_count n >
-   //scoped_string_base(const char (&cha)[n]) :m_str(e_zero_initialize), BASE_RANGE(e_zero_initialize) { _construct1(cha); }
+   //scoped_string_base(const ::i8 (&cha)[n]) :m_str(e_zero_initialize), BASE_RANGE(e_zero_initialize) { _construct1(cha); }
    //template < typed_character_pointer < typename scoped_string_base < ITERATOR_TYPE >::CHARACTER > CHARACTER_POINTER >
    //void construct_owned_string(ITERATOR_TYPE start, ITERATOR_TYPE end, enum_range erange = e_range_none)
    //requires (sizeof(get_iterator_item < ITERATOR_TYPE >) == sizeof(CHARACTER))
@@ -771,7 +771,7 @@ public:
    //const CHARACTER * c_str() const { return this->null_terminated(); }
 
 
-   ::block as_block() const { return { (unsigned char *)this->begin(), this->size() * sizeof(CHARACTER) }; }
+   ::block as_block() const { return { (::u8 *)this->begin(), this->size() * sizeof(CHARACTER) }; }
 
 
 };
@@ -906,7 +906,7 @@ public:
 
 
 template<prototype_character CHARACTER>
-inline ::hash32 _scoped_string_unsigned_int_hash(const ::scoped_string_base<const CHARACTER *> & scopedstr) 
+inline ::hash32 _scoped_string_u32_hash(const ::scoped_string_base<const CHARACTER *> & scopedstr) 
 {
 
    if (scopedstr.is_empty()) 
@@ -916,7 +916,7 @@ inline ::hash32 _scoped_string_unsigned_int_hash(const ::scoped_string_base<cons
 
    }
 
-   unsigned int uHash = 0;
+   ::u32 uHash = 0;
 
    auto p = scopedstr.m_begin;
 
@@ -976,7 +976,7 @@ inline ::block as_block(const ::scoped_string & scopedstr)
 
 
 template <  >
-inline bool EqualElements(const ::scoped_string_base < const char * > & element1, const ::scoped_string_base < const char * > & element2)
+inline bool EqualElements(const ::scoped_string_base < const_char_pointer > & element1, const ::scoped_string_base < const_char_pointer > & element2)
 {
 
    return element1.equals(element2);

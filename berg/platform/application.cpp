@@ -14,6 +14,7 @@
 #include "axis/user/user/line_layout.h"
 #include "berg/user/menu/item.h"
 #include "berg/user/menu/menu.h"
+#include "berg/user/impact/about_the_operating_system_impact.h"
 #include "berg/user/user/document_manager.h"
 #include "berg/user/user/document_manager_container.h"
 #include "berg/user/user/impact_system.h"
@@ -373,6 +374,8 @@ namespace berg
 
             m_ptabimpactBerg->add_tab("Operating System Information", OPERATING_SYSTEM_INFORMATION_IMPACT);
 
+            m_ptabimpactBerg->set_current_tab_by_id(OPERATING_SYSTEM_INFORMATION_IMPACT);
+
             m_ptabimpactBerg->get_parent()->set_need_layout();
 
             m_ptabimpactBerg->get_parent()->set_need_perform_layout();
@@ -380,6 +383,8 @@ namespace berg
             m_ptabimpactBerg->set_need_layout();
 
             m_ptabimpactBerg->set_need_redraw();
+
+            m_ptabimpactBerg->set_need_perform_layout();
 
             m_ptabimpactBerg->post_redraw();
 
@@ -417,16 +422,35 @@ namespace berg
       void application::create_operating_system_information_impact(const ::atom &atom, ::user::interaction *pparent)
    {
 
-      auto playoutLine = create_line_layout(pparent, e_orientation_vertical);
+   ::cast < ::user::impact > pimpactParent = pparent;
 
-      auto lines = get_operating_system_information_lines();
+      pimpactParent->create_impact < ::berg::about_the_operating_system_impact >();
 
-      for (auto &line: lines)
-      {
+//      auto playoutLine = create_line_layout(pparent, e_orientation_vertical);
 
-         create_label<::user::still>(playoutLine, line);
-      }
+  //    auto lines = get_operating_system_information_lines();
+
+    //  for (auto &line: lines)
+      //{
+
+        // ::string strLine = line;
+
+ //        if (strLine.begins_eat("#"))
+   //      {
+     //    }
+       //  else if (strLine.begins_eat("-#"))
+         //{
+//         }
+  //       else if (strLine.begins_eat("<br />"))
+    //     {
+      //   }
+
+        // create_label<::user::still>(playoutLine, strLine);
+
+//      }
+
    }
+
 
    void application::on_after_prepare_impact_menu(::user::menu * pmenu)
    {
@@ -486,10 +510,10 @@ namespace berg
    }
 
 
-      void application::show_lines_box(const ::string_array_base & straLines, const ::scoped_string & scopedstrIconUrl,  ::user::activation_token *puseractivationtoken)
+      void application::show_lines_box(const ::string_array_base & straLines, const ::string_array_base & straIconUrl,  ::user::activation_token *puseractivationtoken)
    {
 
-      ::axis::application::show_lines_box(straLines, scopedstrIconUrl, puseractivationtoken);
+      ::axis::application::show_lines_box(straLines, straIconUrl, puseractivationtoken);
 
       // if (!m_ptabimpactBase)
       //{
@@ -521,7 +545,7 @@ namespace berg
    }
 
 
-   int application::track_popup_menu(::menu::track_popup * ptrackpopup)
+   ::i32 application::track_popup_menu(::menu::track_popup * ptrackpopup)
    {
       
       auto puser = user();

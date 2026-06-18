@@ -43,9 +43,9 @@ namespace user
 
       m_bDefaultParentMouseMessageHandling = true;
 
-      m_flagNonClient.erase(e_non_client_background);
+      m_enonclient.erase(::user::e_non_client_background);
 
-      m_flagNonClient.erase(e_non_client_focus_rect);
+      m_enonclient.erase(::user::e_non_client_focus_rect);
 
    }
 
@@ -291,13 +291,13 @@ namespace user
    ::user::item * menu_impact::layout_user_item_by_index(::collection::index iMenuItemIndex)
    {
 
-      //::status < ::int_rectangle > rectangleMenuItem;
+      //::status < ::i32_rectangle > rectangleMenuItem;
 
-      int iHeight = (int) ( m_pfontTitle->m_fontsize.as_double() * 1.25 + 20);
+      ::i32 iHeight = (::i32) ( m_pfontTitle->m_fontsize.as_f64() * 1.25 + 20);
 
-      int x = 10;
+      ::i32 x = 10;
 
-      int y = 10;
+      ::i32 y = 10;
 
       y += m_pimageLogo->height();
 
@@ -305,15 +305,15 @@ namespace user
 
       auto rectangleX = this->rectangle();
 
-      int w = rectangleX.width() - x * 2;
+      ::i32 w = rectangleX.width() - x * 2;
 
-      int iPos = 0;
+      ::i32 iPos = 0;
 
-      int iSep = 0;
+      ::i32 iSep = 0;
 
       ::pointer < ::menu::item > pmenuitem;
 
-      for (int i = 0; i < m_pmenuitem->m_pmenuitema->get_count(); i++)
+      for (::i32 i = 0; i < m_pmenuitem->m_pmenuitema->get_count(); i++)
       {
 
          if (iMenuItemIndex == iPos)
@@ -327,7 +327,7 @@ namespace user
 
          iPos++;
 
-         for (int j = 0; j < (*m_pmenuitem->m_pmenuitema)[i]->m_pmenuitema->get_count(); j++)
+         for (::i32 j = 0; j < (*m_pmenuitem->m_pmenuitema)[i]->m_pmenuitema->get_count(); j++)
          {
 
             if (iMenuItemIndex == iPos)
@@ -356,7 +356,7 @@ namespace user
 
       auto puseritem = user_item(pmenuitem);
 
-      puseritem->m_rectangle2.top = (int)( y + (iMenuItemIndex + iSep) * iHeight);
+      puseritem->m_rectangle2.top = (::i32)( y + (iMenuItemIndex + iSep) * iHeight);
 
       puseritem->m_rectangle2.bottom = puseritem->m_rectangle2.top + iHeight;
 
@@ -369,14 +369,14 @@ namespace user
    }
 
 
-   ::item_pointer menu_impact::on_hit_test(const ::int_point &point, ::user::e_zorder ezorder)
+   ::item_pointer menu_impact::on_hit_test(const ::i32_point &point, ::user::e_zorder ezorder)
    {
 
       //index iPos = 0;
 
-      ::status < ::int_rectangle > statusrectangle;
+      ::status < ::i32_rectangle > statusrectangle;
 
-      for (int i = 0; i < m_pmenuitem->m_pmenuitema->get_count(); i++)
+      for (::i32 i = 0; i < m_pmenuitem->m_pmenuitema->get_count(); i++)
       {
 
          auto pmenuitemPopup = m_pmenuitem->m_pmenuitema->element_at(i);
@@ -390,7 +390,7 @@ namespace user
 
          }
 
-         for (int j = 0; j < pmenuitemPopup->m_pmenuitema->get_count(); j++)
+         for (::i32 j = 0; j < pmenuitemPopup->m_pmenuitema->get_count(); j++)
          {
 
             auto pmenuitem = pmenuitemPopup->m_pmenuitema->element_at(j);
@@ -460,11 +460,11 @@ namespace user
 
       //construct_newø(m_pitema);
 
-//      ::int_rectangle rectangle;
+//      ::i32_rectangle rectangle;
 
-      int_rectangle_array_base raMenu;
+      i32_rectangle_array_base raMenu;
 
-      int iPos = 0;
+      ::i32 iPos = 0;
 
       //xml::node * pnodeMain = m_pxmldoc->get_child_at("menubar", 0, 1);
 
@@ -475,7 +475,7 @@ namespace user
 
       //}
 
-      for (int i = 0; i < m_pmenuitem->m_pmenuitema->get_count(); i++)
+      for (::i32 i = 0; i < m_pmenuitem->m_pmenuitema->get_count(); i++)
       {
 
          auto pmenuitemPopup = m_pmenuitem->m_pmenuitema->element_at(i);
@@ -500,9 +500,9 @@ namespace user
 
          iPos++;
 
-         ::int_rectangle rectanglePopupTotal = puseritemPopup->m_rectangle2;
+         ::i32_rectangle rectanglePopupTotal = puseritemPopup->m_rectangle2;
 
-         for (int j = 0; j < pmenuitemPopup->m_pmenuitema->get_count(); j++)
+         for (::i32 j = 0; j < pmenuitemPopup->m_pmenuitema->get_count(); j++)
          {
 
             auto pmenuitem = pmenuitemPopup->m_pmenuitema->element_at(j);
@@ -611,7 +611,7 @@ namespace user
             if (pimage1->is_set())
             {
 
-               ::int_rectangle rectangleDib;
+               ::i32_rectangle rectangleDib;
 
                rectangleDib.left = puseritem->m_rectangle2.right - pimage1->width() - 10;
                rectangleDib.top = puseritem->m_rectangle2.top + (puseritem->m_rectangle2.height() - pimage1->height()) / 2;
@@ -637,7 +637,7 @@ namespace user
 
       iPos = 0;
 
-      for (int i = 0; i < m_pmenuitem->m_pmenuitema->get_count(); i++)
+      for (::i32 i = 0; i < m_pmenuitem->m_pmenuitema->get_count(); i++)
       {
 
          auto pmenuitemPopup = m_pmenuitem->m_pmenuitema->element_at(i);
@@ -650,7 +650,7 @@ namespace user
 
          iPos++;
 
-         for (int j = 0; j < pmenuitemPopup->m_pmenuitema->get_count(); j++)
+         for (::i32 j = 0; j < pmenuitemPopup->m_pmenuitema->get_count(); j++)
          {
 
             auto pmenuitem = pmenuitemPopup->m_pmenuitema->element_at(j);
@@ -671,7 +671,7 @@ namespace user
 
       }
 
-      for (int i = 0; i < m_pmenuitem->m_pmenuitema->get_count(); i++)
+      for (::i32 i = 0; i < m_pmenuitem->m_pmenuitema->get_count(); i++)
       {
 
          draw_border_rectangle(pgraphics, raMenu[i]);
@@ -745,13 +745,13 @@ namespace user
 
       }
 
-      int iPos = 0;
+      ::i32 iPos = 0;
 
-      ::status < ::int_rectangle > statusrectangle;
+      ::status < ::i32_rectangle > statusrectangle;
 
-      int iMenu;
+      ::i32 iMenu;
 
-      int iCommand;
+      ::i32 iCommand;
 
 //      auto papp = get_app();
 
@@ -785,7 +785,7 @@ namespace user
 
          pmenuitemMenuBar->m_item.m_iItem = iPos;
 
-         //m_iaPopup.add((const int)pnode->get_children_count() + 1);
+         //m_iaPopup.add((const ::i32)pnode->get_children_count() + 1);
 
          iPos++;
 
@@ -840,7 +840,7 @@ namespace user
    }
 
 
-   void menu_impact::draw_border_rectangle(::draw2d::graphics_pointer & pgraphics, const ::int_rectangle & rectangle)
+   void menu_impact::draw_border_rectangle(::draw2d::graphics_pointer & pgraphics, const ::i32_rectangle & rectangle)
    {
 
       pgraphics->line(
@@ -854,7 +854,7 @@ namespace user
    }
 
 
-   void menu_impact::draw_header_separator(::draw2d::graphics_pointer & pgraphics, const ::int_point& point1, const ::int_point& point2)
+   void menu_impact::draw_header_separator(::draw2d::graphics_pointer & pgraphics, const ::i32_point& point1, const ::i32_point& point2)
    {
 
       pgraphics->line(
@@ -864,7 +864,7 @@ namespace user
    }
 
 
-   void menu_impact::draw_header_rectangle(::draw2d::graphics_pointer & pgraphics, const ::int_rectangle & rectangle)
+   void menu_impact::draw_header_rectangle(::draw2d::graphics_pointer & pgraphics, const ::i32_rectangle & rectangle)
    {
 
       pgraphics->fill_rectangle(rectangle, argb(255, 240, 240, 240));
@@ -883,7 +883,7 @@ namespace user
    }
 
 
-   void menu_impact::draw_item_rectangle(::draw2d::graphics_pointer & pgraphics, const ::int_rectangle & rectangle)
+   void menu_impact::draw_item_rectangle(::draw2d::graphics_pointer & pgraphics, const ::i32_rectangle & rectangle)
    {
 
       pgraphics->line(
@@ -897,7 +897,7 @@ namespace user
    }
 
 
-   void menu_impact::draw_item_rectangle_hover001(::draw2d::graphics_pointer & pgraphics, const ::int_rectangle & rectangle)
+   void menu_impact::draw_item_rectangle_hover001(::draw2d::graphics_pointer & pgraphics, const ::i32_rectangle & rectangle)
    {
 
       pgraphics->fill_rectangle(rectangle);
@@ -913,7 +913,7 @@ namespace user
    }
 
 
-   void menu_impact::draw_item_rectangle_sel001(::draw2d::graphics_pointer & pgraphics, const ::int_rectangle & rectangle)
+   void menu_impact::draw_item_rectangle_sel001(::draw2d::graphics_pointer & pgraphics, const ::i32_rectangle & rectangle)
    {
 
       pgraphics->fill_rectangle(rectangle);
@@ -922,13 +922,13 @@ namespace user
          rectangle.left, rectangle.top,  
          rectangle.left, rectangle.bottom);
 
-      int h = ::height(rectangle);
+      ::i32 h = ::height(rectangle);
 
       pgraphics->line(
          rectangle.right, rectangle.bottom - 1,
          rectangle.right, rectangle.bottom - h / 3 - 2);
 
-      double_point_array pta;
+      f64_point_array pta;
 
       pta.add(rectangle.right, rectangle.bottom - h / 3 - 2);
 
@@ -955,7 +955,7 @@ namespace user
    }
 
 
-   void menu_impact::draw_item_rectangle_hover_sel001(::draw2d::graphics_pointer & pgraphics, const ::int_rectangle & rectangle)
+   void menu_impact::draw_item_rectangle_hover_sel001(::draw2d::graphics_pointer & pgraphics, const ::i32_rectangle & rectangle)
    {
 
       pgraphics->fill_rectangle(rectangle);
@@ -964,13 +964,13 @@ namespace user
          rectangle.left, rectangle.top,
             rectangle.left, rectangle.bottom);
 
-      int h = ::height(rectangle);
+      ::i32 h = ::height(rectangle);
 
       pgraphics->line(
          rectangle.right, rectangle.bottom - 1,
          rectangle.right, rectangle.bottom - h / 3 - 2);
 
-      double_point_array pta;
+      f64_point_array pta;
 
       pta.add(rectangle.right, rectangle.bottom - h / 3 - 2);
 
@@ -997,7 +997,7 @@ namespace user
    }
 
 
-   void menu_impact::draw_item_separator(::draw2d::graphics_pointer& pgraphics, const ::int_point& point1, const ::int_point& point2)
+   void menu_impact::draw_item_separator(::draw2d::graphics_pointer& pgraphics, const ::i32_point& point1, const ::i32_point& point2)
    {
 
       pgraphics->line(point1, point2);

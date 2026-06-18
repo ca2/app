@@ -83,7 +83,7 @@ namespace coding
          strParams.formatf("\"openvsproject://%s\"", strProj);
 
 
-         //int iRet = call_sync("C:\\bergedge\\time\\stage\\visual_studio_automation_2017.exe",strParams, "C:\\bergedge\\time\\stage\\", SW_HIDE, 30, 1000, nullptr, 0);
+         //::i32 iRet = call_sync("C:\\bergedge\\time\\stage\\visual_studio_automation_2017.exe",strParams, "C:\\bergedge\\time\\stage\\", SW_HIDE, 30, 1000, nullptr, 0);
 
 
          psystem->fork([=]()
@@ -150,7 +150,7 @@ namespace coding
                //Initialize the VARIANT (Type is SAFEARRAY of byte)
                VariantInit(&payload);
                payload.vt = VT_ARRAY | VT_BSTR;
-               int nBufferSize = 1;
+               ::i32 nBufferSize = 1;
                // Define a safe array of nCnt Item and Starting index as 0
                SAFEARRAYBOUND safeBounds = { (ULONG)nBufferSize, 0 };
 
@@ -343,7 +343,7 @@ namespace coding
 
 
 
-   //int application::unix_shell_command(const ::scoped_string& scopedstrCommand)
+   //::i32 application::unix_shell_command(const ::scoped_string& scopedstrCommand)
    //{
 
    //   try
@@ -383,7 +383,7 @@ namespace coding
 
       //set_status("Installing...");
 
-      //auto transferprogressfunction = [this](double rate, filesize done, filesize total)
+      //auto transferprogressfunction = [this](::f64 rate, filesize done, filesize total)
       //   {
 
       //      if (total == 0 || total == (filesize)-1)

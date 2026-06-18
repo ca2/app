@@ -21,7 +21,7 @@ void plex::FreeDataChain(::heap::allocator * pallocator)     // free this one an
       plex* p = this;
       while (p != nullptr)
       {
-         unsigned char* bytes = (unsigned char*) p;
+         ::u8* bytes = (::u8*) p;
          plex* pNextLocal = p->pNext;
          pallocator->free(bytes);
          //pPrevious = p;

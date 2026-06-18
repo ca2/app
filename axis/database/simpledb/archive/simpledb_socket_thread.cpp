@@ -52,18 +52,18 @@ namespace simpledb
       nullptr,
       ".",
       &startupinfo,
-      &m_pi))
+      &m_processinformation))
       {
       return false;
       }
 
 
-      WaitForInputIdle(m_pi.hProcess, U32_INFINITE_TIMEOUT);
+      WaitForInputIdle(m_processinformation.hProcess, U32_INFINITE_TIMEOUT);
 
 
-      //   m_hChildThreadId = ::OpenThread(THREAD_ALL_ACCESS, true, m_pi.dwThreadId);
+      //   m_hChildThreadId = ::OpenThread(THREAD_ALL_ACCESS, true, m_processinformation.dwThreadId);
 
-      ::post_thread_message(m_pi.dwThreadId, WM_APP, 0, m_nThreadID);
+      ::post_thread_message(m_processinformation.dwThreadId, WM_APP, 0, m_nThreadID);
 
       post_thread_message(WM_APP, 0, 0);*/
 
@@ -74,13 +74,13 @@ namespace simpledb
       //sleep(15000_ms);
       if(!m_plistensocket->create(80, SOCK_STREAM))
       {
-      unsigned int dw = ::get_last_error();
+      ::u32 dw = ::get_last_error();
       informationf("error %u", dw);
       return false;
       }
       if(!m_plistensocket->Listen())
       {
-      unsigned int dw = ::get_last_error();
+      ::u32 dw = ::get_last_error();
       informationf("error %u", dw);
       return false;
       }*/

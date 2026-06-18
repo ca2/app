@@ -10,16 +10,16 @@ namespace gpu
    {
 
 
-      const int TEXTURE_UNIT_ALBEDO = 4;
-      const int TEXTURE_UNIT_NORMAL = 5;
-      const int TEXTURE_UNIT_METALLIC_ROUGHNESS = 6;
-      const int TEXTURE_UNIT_AMBIENT_OCCLUSION = 7;
-      const int TEXTURE_UNIT_EMISSIVE = 8;
+      const ::i32 TEXTURE_UNIT_ALBEDO = 4;
+      const ::i32 TEXTURE_UNIT_NORMAL = 5;
+      const ::i32 TEXTURE_UNIT_METALLIC_ROUGHNESS = 6;
+      const ::i32 TEXTURE_UNIT_AMBIENT_OCCLUSION = 7;
+      const ::i32 TEXTURE_UNIT_EMISSIVE = 8;
 
 
-      const int TEXTURE_UNIT_DIFFUSE_IRRADIANCE_MAP = 10;
-      const int TEXTURE_UNIT_PREFILTERED_ENV_MAP = 11;
-      const int TEXTURE_UNIT_BRDF_CONVOLUTION_MAP = 12;
+      const ::i32 TEXTURE_UNIT_DIFFUSE_IRRADIANCE_MAP = 10;
+      const ::i32 TEXTURE_UNIT_PREFILTERED_ENV_MAP = 11;
+      const ::i32 TEXTURE_UNIT_BRDF_CONVOLUTION_MAP = 12;
 
 
    } // namespace ibl

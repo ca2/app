@@ -6,7 +6,7 @@
 
 //#define BLOCK_SIZE  256
 //
-//void CTSFEditWnd::_SaveToFile(char * pszFile)
+//void CTSFEditWnd::_SaveToFile(char_pointer pszFile)
 //{
 //    if(scopedstrFile)
 //    {
@@ -40,7 +40,7 @@
 //                pStream->Seek(li, STREAM_SEEK_SET, NULL);
 //                
 //                //write the contents of the stream to the file
-//                unsigned char    buffer[BLOCK_SIZE];
+//                ::u8    buffer[BLOCK_SIZE];
 //                ULONG   uRead;
 //                HRESULT hr;
 //
@@ -48,7 +48,7 @@
 //                hr = pStream->Read(buffer, BLOCK_SIZE, &uRead);
 //                while(uRead > 0)
 //                {
-//                    unsigned int   dwWritten;
+//                    ::u32   dwWritten;
 //                    
 //                    WriteFile(hFile, buffer, uRead, &dwWritten, NULL);
 //                    
@@ -78,7 +78,7 @@
 //        
 //        //write the plain UNICODE text into the stream
 //        LPWSTR          pwsz;
-//        int            cch;
+//        ::i32            cch;
 //        ULONG           uWritten;
 //        LARGE_INTEGER   li;
 //        ULONG           uSize;
@@ -136,7 +136,7 @@
 //
 //                                /*
 //                                Write the property header into the primary stream. 
-//                                The header also contains the int_size of the property 
+//                                The header also contains the i32_size of the property 
 //                                data.
 //                                */
 //                                hr = pStream->Write(&PropHeader, sizeof(TF_PERSISTENT_PROPERTY_HEADER_ACP), &uWritten);
@@ -166,7 +166,7 @@
 //                pEnumProps->Release();
 //            }
 //
-//            //write a property header with zero int_size and guid into the stream as a terminator
+//            //write a property header with zero i32_size and guid into the stream as a terminator
 //            ZeroMemory(&PropHeader, sizeof(TF_PERSISTENT_PROPERTY_HEADER_ACP));
 //            hr = pStream->Write(&PropHeader, sizeof(TF_PERSISTENT_PROPERTY_HEADER_ACP), &uWritten);
 //        }
@@ -179,7 +179,7 @@
 
 **************************************************************************/
 
-//void CTSFEditWnd::_LoadFromFile(char * pszFile)
+//void CTSFEditWnd::_LoadFromFile(char_pointer pszFile)
 //{
 //    if(scopedstrFile)
 //    {
@@ -208,7 +208,7 @@
 //                pStream->Seek(li, STREAM_SEEK_SET, NULL);
 //                
 //                //write the contents of the stream to the file
-//                unsigned char    buffer[BLOCK_SIZE];
+//                ::u8    buffer[BLOCK_SIZE];
 //                ULONG   uRead;
 //                HRESULT hr;
 //
@@ -264,7 +264,7 @@
 //    li.QuadPart = 0;
 //    pStream->Seek(li, STREAM_SEEK_SET, NULL);
 //
-//    //get the int_size of the text, in BYTES. This is the first ULONG in the stream
+//    //get the i32_size of the text, in BYTES. This is the first ULONG in the stream
 //    hr = pStream->Read(&uSize, sizeof(ULONG), &uRead);
 //    if(SUCCEEDED(hr) && (sizeof(ULONG) == uRead))
 //    {

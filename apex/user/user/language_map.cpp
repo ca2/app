@@ -56,19 +56,19 @@ namespace user
    }
 
 
-   bool language_map::set_language_resource_map(::int_sz * pintstringLanguageResourceMap)
+   bool language_map::set_language_resource_map(::i32_sz * pintstringLanguageResourceMap)
    {
 
       m_pintstring = pintstringLanguageResourceMap;
 
-      int i = 0;
+      ::i32 i = 0;
 
       while (m_pintstring[i].m_psz != nullptr)
       {
 
          string strLanguageCode(m_pintstring[i].m_psz);
 
-         int iResourceId = m_pintstring[i].m_i;
+         ::i32 iResourceId = m_pintstring[i].m_i32;
 
          m_straLang.add(strLanguageCode);
 
@@ -126,7 +126,7 @@ namespace user
 
       ::collection::index iSel = -1;
 
-      for (int i = 0; i < m_straLang.get_size(); i++)
+      for (::i32 i = 0; i < m_straLang.get_size(); i++)
       {
 
          if (m_straLang[i] == m_strLang)
@@ -145,7 +145,7 @@ namespace user
 
       }
 
-      for (int i = 0; i < m_straLang.get_size(); i++)
+      for (::i32 i = 0; i < m_straLang.get_size(); i++)
       {
 
          auto planguage = m_languagemap[m_straLang[i]];

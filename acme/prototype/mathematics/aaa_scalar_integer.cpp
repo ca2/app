@@ -40,7 +40,7 @@ bool scalar_source::get_integer_scalar_maximum(enum_scalar escalar, ::integer& i
 }
 
 
-bool scalar_source::listener::on_set_integer_scalar(scalar_source* psource, enum_scalar escalar, ::integer iValue, int iFlags)
+bool scalar_source::listener::on_set_integer_scalar(scalar_source* psource, enum_scalar escalar, ::integer iValue, ::i32 iFlags)
 {
 
    __UNREFERENCED_PARAMETER(psource);
@@ -53,7 +53,7 @@ bool scalar_source::listener::on_set_integer_scalar(scalar_source* psource, enum
 }
 
 
-bool scalar_source::set_integer_scalar(enum_scalar escalar, ::integer iValue, bool bForce, int iFlags)
+bool scalar_source::set_integer_scalar(enum_scalar escalar, ::integer iValue, bool bForce, ::i32 iFlags)
 {
 
    if (!bForce)
@@ -237,7 +237,7 @@ bool scalar_source::contains_integer_scalar(enum_scalar escalar, ::integer iValu
 //
 //
 //
-bool scalar_source::on_set_integer_scalar(enum_scalar escalar,::integer iValue,int iFlags)
+bool scalar_source::on_set_integer_scalar(enum_scalar escalar,::integer iValue,::i32 iFlags)
 {
 
    __UNREFERENCED_PARAMETER(escalar);
@@ -283,7 +283,7 @@ bool scalar_source::on_set_integer_scalar(enum_scalar escalar,::integer iValue,i
 
 
 
-double scalar_source::get_integer_scalar_rate(enum_scalar escalar, double dDefault)
+::f64 scalar_source::get_integer_scalar_rate(enum_scalar escalar, ::f64 dDefault)
 {
 
    ::integer iMax = 0;
@@ -305,13 +305,13 @@ double scalar_source::get_integer_scalar_rate(enum_scalar escalar, double dDefau
 
    ::integer iNumerator = iVal - iMin;
 
-   return (double)iNumerator / (double)iDenominator; // aproximate value along iDenominator and iNumerator evaluation
+   return (::f64)iNumerator / (::f64)iDenominator; // aproximate value along iDenominator and iNumerator evaluation
 
 }
 
 
 
-bool scalar_source::set_integer_scalar_rate(enum_scalar escalar, double dValue, int iFlags)
+bool scalar_source::set_integer_scalar_rate(enum_scalar escalar, ::f64 dValue, ::i32 iFlags)
 {
 
    if (dValue < 0.0)
@@ -394,7 +394,7 @@ void integer_scalar::set(::integer iValue)
 }
 
 
-double integer_scalar::get_rate(double dDefault)
+::f64 integer_scalar::get_rate(::f64 dDefault)
 {
 
    if (m_psource == nullptr || m_escalar == e_scalar_none)
@@ -409,7 +409,7 @@ double integer_scalar::get_rate(double dDefault)
 }
 
 
-bool integer_scalar::set_rate(double dValue, int iFlags)
+bool integer_scalar::set_rate(::f64 dValue, ::i32 iFlags)
 {
 
    if (m_psource == nullptr || m_escalar == e_scalar_none)

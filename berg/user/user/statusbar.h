@@ -27,11 +27,11 @@ namespace user
 
 
       ::atom              m_atomStatusPane;        // IDC of indicator: 0 => normal text area
-      int               cxText;     // width of string area in pixels
+      ::i32               cxText;     // width of string area in pixels
                      //   on both sides there is a 3 pixel gap and
                      //   a one pixel border, making a pane 6 pixels wider
-      unsigned int              nStyle;     // style flags (SBPS_*)
-      unsigned int              nFlags;     // state flags (SBPF_*)
+      ::u32              nStyle;     // style flags (SBPS_*)
+      ::u32              nFlags;     // state flags (SBPF_*)
       string            strText;    // text in the pane
 
 
@@ -51,7 +51,7 @@ namespace user
 
 
       pointer_array < __STATUSPANE >     m_panecompositea;
-      int                                    m_nMinHeight;
+      ::i32                                    m_nMinHeight;
 
 
       status_bar();
@@ -59,32 +59,32 @@ namespace user
 
       //using ::user::control_bar::create_window;
       //using ::user::control_bar::create_window_ex;
-      //virtual bool create_window(::user::interaction * puiParent,unsigned int uStyle = WS_CHILD | WS_VISIBLE | CBRS_BOTTOM,atom nID = "status_bar");
-      //virtual bool create_window_ex(::user::interaction * puiParent,unsigned int dwCtrlStyle = 0,unsigned int uStyle = WS_CHILD | WS_VISIBLE | CBRS_BOTTOM, atom nID = "status_bar");
+      //virtual bool create_window(::user::interaction * puiParent,::u32 uStyle = WS_CHILD | WS_VISIBLE | CBRS_BOTTOM,atom nID = "status_bar");
+      //virtual bool create_window_ex(::user::interaction * puiParent,::u32 dwCtrlStyle = 0,::u32 uStyle = WS_CHILD | WS_VISIBLE | CBRS_BOTTOM, atom nID = "status_bar");
       //virtual bool create_child(::user)
       bool SetIndicators(string_array_base & stra);
 
-      void SetBorders(const ::int_rectangle & rectangle);
+      void SetBorders(const ::i32_rectangle & rectangle);
 
-      void SetBorders(int cxLeft = 0, int cyTop = 0, int cxRight = 0, int cyBottom = 0);
+      void SetBorders(::i32 cxLeft = 0, ::i32 cyTop = 0, ::i32 cxRight = 0, ::i32 cyBottom = 0);
 
       // standard control bar things
-      int CommandToIndex(atom atom);
-      atom GetItemId(int nIndex);
-      void GetItemRect(int nIndex, ::int_rectangle * prectangle);
+      ::i32 CommandToIndex(atom atom);
+      atom GetItemId(::i32 nIndex);
+      void GetItemRect(::i32 nIndex, ::i32_rectangle * prectangle);
 
 
       // specific to status_bar
-      void GetPaneText(int nIndex, string & rString);
-      string GetPaneText(int nIndex);
-      bool SetPaneText(int nIndex, const ::scoped_string & scopedstrNewText, bool bUpdate = true);
+      void GetPaneText(::i32 nIndex, string & rString);
+      string GetPaneText(::i32 nIndex);
+      bool SetPaneText(::i32 nIndex, const ::scoped_string & scopedstrNewText, bool bUpdate = true);
 
-      void GetPaneInfo(int nIndex, atom & atom, unsigned int& nStyle, int& cxWidth);
-      void SetPaneInfo(int nIndex, const ::atom & atom, unsigned int nStyle, int cxWidth);
-      //void SetPaneInfo(int nIndex, int iId, unsigned int nStyle, int cxWidth);
-      //void SetPaneInfo(int nIndex, const ::scoped_string & scopedstrId, unsigned int nStyle, int cxWidth);
-      unsigned int GetPaneStyle(int nIndex);
-      void SetPaneStyle(int nIndex, unsigned int nStyle);
+      void GetPaneInfo(::i32 nIndex, atom & atom, ::u32& nStyle, ::i32& cxWidth);
+      void SetPaneInfo(::i32 nIndex, const ::atom & atom, ::u32 nStyle, ::i32 cxWidth);
+      //void SetPaneInfo(::i32 nIndex, ::i32 iId, ::u32 nStyle, ::i32 cxWidth);
+      //void SetPaneInfo(::i32 nIndex, const ::scoped_string & scopedstrId, ::u32 nStyle, ::i32 cxWidth);
+      ::u32 GetPaneStyle(::i32 nIndex);
+      void SetPaneStyle(::i32 nIndex, ::u32 nStyle);
 
       // for direct access to the underlying common control
       status_bar_control& GetStatusBarCtrl();
@@ -94,15 +94,15 @@ namespace user
 //      virtual void DrawItem(LPDRAWITEMSTRUCT);
 //#endif
 
-      virtual ::int_size CalcFixedLayout(::draw2d::graphics_pointer& pgraphics, bool bStretch, bool bHorz) override;
+      virtual ::i32_size CalcFixedLayout(::draw2d::graphics_pointer& pgraphics, bool bStretch, bool bHorz) override;
       bool pre_create_window(::user::system * pusersystem) override;
-      //bool AllocElements(int nElements, int cbElement);
-      void CalcInsideRect(::draw2d::graphics_pointer& pgraphics, ::int_rectangle& rectangle, bool bHorz);
-      virtual void OnBarStyleChange(unsigned int dwOldStyle, unsigned int dwNewStyle) override;
+      //bool AllocElements(::i32 nElements, ::i32 cbElement);
+      void CalcInsideRect(::draw2d::graphics_pointer& pgraphics, ::i32_rectangle& rectangle, bool bHorz);
+      virtual void OnBarStyleChange(::u32 dwOldStyle, ::u32 dwNewStyle) override;
 
 //      // void assert_ok() const override;
 //      // void dump(dump_context & dumpcontext) const override;
-      void EnableDocking(unsigned int dwDockStyle);
+      void EnableDocking(::u32 dwDockStyle);
 
 
       void on_command_probe(::user::interaction * puserinteraction, bool bDisableIfNoHndler) override;

@@ -6,7 +6,7 @@
 #include "acme/exception/exception.h"
 #include "acme/parallelization/critical_section.h"
 #include "acme/prototype/collection/atom_map.h"
-#include "acme/prototype/collection/int_map.h"
+#include "acme/prototype/collection/integer_map.h"
 #include "acme/prototype/collection/string_map.h"
 
 #include "acme/prototype/prototype/type.h"

@@ -10,7 +10,7 @@
 //{
 
 
-application_menu_command::application_menu_command(int* pestatus) :
+application_menu_command::application_menu_command(::i32* pestatus) :
    m_pestatus(pestatus)
    {
       

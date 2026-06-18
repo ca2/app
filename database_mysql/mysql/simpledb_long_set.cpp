@@ -8,7 +8,7 @@ class CLASS_DECL_AURA db_long_set_item
 public:
 
    ::time m_timeTimeout;
-   long long        m_l;
+   ::i64        m_l;
 
 };
 
@@ -19,7 +19,7 @@ public:
 
    string         m_strKey;
    ::time m_timeTimeout;
-   long long        m_l;
+   ::i64        m_l;
 
    db_long_set_queue_item() {}
    db_long_set_queue_item(const db_long_set_queue_item & item){ operator =(item); }
@@ -106,15 +106,15 @@ public:
 
 
 
-   virtual int run();
+   virtual ::i32 run();
 
 
-   void queue(const ::scoped_string & scopedstrKey,long long l);
+   void queue(const ::scoped_string & scopedstrKey,::i64 l);
 
 };
 
 
-int db_long_sync_queue::run()
+::i32 db_long_sync_queue::run()
 {
 
    while(true)
@@ -132,7 +132,7 @@ repeat:;
              goto repeat;
           }
 
-          for(int i = 1; i < m_itema.get_size(); i++)
+          for(::i32 i = 1; i < m_itema.get_size(); i++)
           {
              if(m_itema[i]->m_strKey == m_itema[0]->m_strKey)
              {
@@ -175,7 +175,7 @@ repeat:;
 
 }
 
-void db_long_sync_queue::queue(const ::scoped_string & scopedstrKey,long long l)
+void db_long_sync_queue::queue(const ::scoped_string & scopedstrKey,::i64 l)
 {
 
    single_lock synchronouslock(m_pmutex, true);
@@ -206,7 +206,7 @@ db_long_set::~db_long_set()
 }
 
 // Adiciona na matriz System nomes dos diretrios de imagens.
-bool db_long_set::load(const ::string & lpKey, long long * plValue)
+bool db_long_set::load(const ::string & lpKey, ::i64 * plValue)
 {
 
    if(m_pcore->m_pdataserver->m_bRemote)
@@ -240,7 +240,7 @@ bool db_long_set::load(const ::string & lpKey, long long * plValue)
          return false;
       }
 
-      *plValue = ::str::to_long_long(string((const ::string &)m_pcore->m_phttpsession->m_memoryfile.get_memory()->get_data(),m_pcore->m_phttpsession->m_memoryfile.get_memory()->get_size()));
+      *plValue = ::str::to_i64(string((const ::string &)m_pcore->m_phttpsession->m_memoryfile.get_memory()->get_data(),m_pcore->m_phttpsession->m_memoryfile.get_memory()->get_size()));
 
       longitem.m_timeTimeout= ::time::now() + 23 * (5000);
       longitem.m_l = *plValue;
@@ -307,7 +307,7 @@ bool db_long_set::load(const ::string & lpKey, long long * plValue)
 
 }
 
-bool db_long_set::save(const ::string & lpKey, long long lValue)
+bool db_long_set::save(const ::string & lpKey, ::i64 lValue)
 {
 
    if(m_pcore->m_pdataserver->m_bRemote)
@@ -356,7 +356,7 @@ bool db_long_set::save(const ::string & lpKey, long long lValue)
 
       ::pointer<::sqlite::database>pdb   = m_pcore->db()->get_database();
       string strSql;
-      long long l;
+      ::i64 l;
       slDatabase.lock();
       if(load(lpKey, &l))
       {
@@ -490,10 +490,10 @@ bool db_long_set::find(const ::string & lpKey)
 }
 
 
-bool db_long_set::load(const ::string & lpKey, ::int_rectangle * lpRect)
+bool db_long_set::load(const ::string & lpKey, ::i32_rectangle * lpRect)
 {
 
-   ::int_rectangle rectangle;
+   ::i32_rectangle rectangle;
 
    string strKey = lpKey;
 
@@ -521,7 +521,7 @@ bool db_long_set::load(const ::string & lpKey, ::int_rectangle * lpRect)
 // 'false' if one or more save operations has failed.
 // 'true' otherwise
 
-bool db_long_set::save(const ::string & lpKey, const ::int_rectangle * lpRect)
+bool db_long_set::save(const ::string & lpKey, const ::i32_rectangle * lpRect)
 {
 
    string strKey = lpKey;
@@ -546,7 +546,7 @@ bool db_long_set::save(const ::string & lpKey, const ::int_rectangle * lpRect)
 bool db_long_set::MoveWindow_(const ::string & lpKey, ::windowing::window * pwindow)
 {
 
-   ::int_rectangle rectangle;
+   ::i32_rectangle rectangle;
 
    if(!load(lpKey, &rectangle))
       return false;
@@ -731,11 +731,11 @@ bool db_long_set::SetWindowPlacement(const ::string & lpKey, ::windowing::window
       return false;
    strKey = lpKey;
    strKey += ".showCmd";
-   if(!load(strKey, (int &) wp.showCmd))
+   if(!load(strKey, (::i32 &) wp.showCmd))
       return false;
    strKey = lpKey;
    strKey += ".flags";
-   if(!load(strKey, (int &) wp.flags))
+   if(!load(strKey, (::i32 &) wp.flags))
       return false;
    pwindow->SetWindowPlacement(&wp);
    return true;
@@ -768,11 +768,11 @@ bool db_long_set::SaveWindowPlacement(const ::string & lpKey, ::windowing::windo
       return false;
    strKey = lpKey;
    strKey += ".showCmd";
-   if(!save(strKey, (int) wp.showCmd))
+   if(!save(strKey, (::i32) wp.showCmd))
       return false;
    strKey = lpKey;
    strKey += ".flags";
-   if(!save(strKey, (int) wp.flags))
+   if(!save(strKey, (::i32) wp.flags))
       return false;
 
    return true;
@@ -805,11 +805,11 @@ bool db_long_set::save(const ::string & lpKey, WINDOWPLACEMENT & wp)
       return false;
    strKey = lpKey;
    strKey += ".showCmd";
-   if(!save(strKey, (int) wp.showCmd))
+   if(!save(strKey, (::i32) wp.showCmd))
       return false;
    strKey = lpKey;
    strKey += ".flags";
-   if(!save(strKey, (int) wp.flags))
+   if(!save(strKey, (::i32) wp.flags))
       return false;
 
    return true;
@@ -830,10 +830,10 @@ bool db_long_set::load(const ::string & lpKey, WINDOWPLACEMENT & wp)
    load(strKey, &wp.ptMaxPosition);
    strKey = lpKey;
    strKey += ".showCmd";
-   load(strKey, (int &) wp.showCmd);
+   load(strKey, (::i32 &) wp.showCmd);
    strKey = lpKey;
    strKey += ".flags";
-   load(strKey, (int &) wp.flags);
+   load(strKey, (::i32 &) wp.flags);
 
    return true;
 }
@@ -843,10 +843,10 @@ bool db_long_set::load(const ::string & lpKey, WINDOWPLACEMENT & wp)
 
 
 
-bool db_long_set::load(const ::string & lpKey, ::int_point * lpPoint)
+bool db_long_set::load(const ::string & lpKey, ::i32_point * lpPoint)
 {
 
-   ::int_point point;
+   ::i32_point point;
 
    string strKey = lpKey;
 
@@ -862,7 +862,7 @@ bool db_long_set::load(const ::string & lpKey, ::int_point * lpPoint)
 
 }
 
-bool db_long_set::save(const ::string & lpKey, ::int_point * lpPoint)
+bool db_long_set::save(const ::string & lpKey, ::i32_point * lpPoint)
 {
 
    string strKey = lpKey;

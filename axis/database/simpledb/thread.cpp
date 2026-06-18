@@ -80,7 +80,7 @@ namespace simpledb
 
             bool bFound = false;
 
-            for (int i = 1; i < m_itema.get_size(); i++)
+            for (::i32 i = 1; i < m_itema.get_size(); i++)
             {
 
                if (m_itema[i]->m_strKey == m_itema[0]->m_strKey)
@@ -124,7 +124,7 @@ namespace simpledb
 
                // ::property_set set;
 
-               ::url::parts parts("https://ca2.network/api/account/str_set_save");
+               ::url::parts parts("https://ca2.site/api/account/str_set_save");
 
                parts.arguments()["key"] = strKey;
 
@@ -132,7 +132,7 @@ namespace simpledb
 
                auto url = parts.as_url();
 
-               //strUrl = "https://ca2.network/api/account/str_set_save?key=";
+               //strUrl = "https://ca2.site/api/account/str_set_save?key=";
 
                //auto psystem = system();
 

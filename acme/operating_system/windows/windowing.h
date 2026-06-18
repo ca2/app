@@ -46,8 +46,12 @@ namespace windows
 
       ::operating_system::window operating_system_window(const ::lparam &lparam) override;
 
+      void run_loop2(::task *ptask);
 
    };
+
+
+   void dump_child_window_hierarchy(const ::operating_system::window & operatingsystemwindow);
 
 
 } // namespace windows

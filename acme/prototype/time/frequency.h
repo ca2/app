@@ -4,9 +4,9 @@
 
 //#include "acme/prototype/time/time.h"
 
-constexpr double double_equal_delta = 0.0001;
+constexpr ::f64 f64_equal_delta = 0.0001;
 
-constexpr bool double_equals(double d1, double d2, double delta)
+constexpr bool f64_equals(::f64 d1, ::f64 d2, ::f64 delta)
 {
 
    auto d = d1 - d2;
@@ -16,15 +16,15 @@ constexpr bool double_equals(double d1, double d2, double delta)
 }
 
 
-constexpr bool double_equals(double d1, double d2)
+constexpr bool f64_equals(::f64 d1, ::f64 d2)
 {
 
-   return double_equals(d1, d2, double_equal_delta);
+   return f64_equals(d1, d2, f64_equal_delta);
 
 }
 
 
-constexpr ::std::strong_ordering double_order(double d1, double d2, double delta)
+constexpr ::std::strong_ordering f64_order(::f64 d1, ::f64 d2, ::f64 delta)
 {
 
    auto d = d1 - d2;
@@ -51,10 +51,10 @@ constexpr ::std::strong_ordering double_order(double d1, double d2, double delta
 }
 
 
-constexpr ::std::strong_ordering double_order(double d1, double d2)
+constexpr ::std::strong_ordering f64_order(::f64 d1, ::f64 d2)
 {
 
-   return double_order(d1, d2, double_equal_delta);
+   return f64_order(d1, d2, f64_equal_delta);
 
 }
 
@@ -66,7 +66,7 @@ public:
 
 
    constexpr frequency(zero_t ezero = zero_t{}) :FREQUENCY{} {}
-   constexpr frequency(double dHertz) : FREQUENCY{dHertz} {}
+   constexpr frequency(::f64 dHertz) : FREQUENCY{dHertz} {}
    constexpr frequency(const ::FREQUENCY & frequency) : FREQUENCY(frequency) {}
 
    template < prototype_floating FLOATING >
@@ -107,7 +107,7 @@ public:
    bool operator == (const ::frequency frequency) const
    {
 
-      return double_equals(m_dHertz, frequency.m_dHertz);
+      return f64_equals(m_dHertz, frequency.m_dHertz);
 
    }
 
@@ -115,12 +115,12 @@ public:
    ::std::strong_ordering operator <=> (const ::frequency frequency) const
    {
 
-      return double_order(m_dHertz, frequency.m_dHertz);
+      return f64_order(m_dHertz, frequency.m_dHertz);
 
    }
 
 
-   double hertz() const { return m_dHertz; }
+   ::f64 hertz() const { return m_dHertz; }
 
 
 
@@ -145,7 +145,7 @@ constexpr ::frequency operator / (INTEGRAL i, const class time& time)
 
    auto nanosecond = (time.m_iSecond * 1'000'000'000 + time.m_iNanosecond);
 
-   return FREQUENCY{(double)(i * 1'000'000'000) / (double)nanosecond};
+   return FREQUENCY{(::f64)(i * 1'000'000'000) / (::f64)nanosecond};
 
 }
 
@@ -174,7 +174,7 @@ template < prototype_integral INTEGRAL >
 constexpr class time operator / (INTEGRAL i, const frequency & frequency)
 {
 
-   auto dSeconds = (double) i / frequency.m_dHertz;
+   auto dSeconds = (::f64) i / frequency.m_dHertz;
 
    return { dSeconds };
 
@@ -185,12 +185,12 @@ template < prototype_integral INTEGRAL >
 constexpr ::frequency operator * (INTEGRAL i, const frequency & frequency)
 {
 
-   return (double)i * frequency.m_dHertz;
+   return (::f64)i * frequency.m_dHertz;
 
 }
 
 
-constexpr double operator * (const class ::time & time, const frequency & frequency)
+constexpr ::f64 operator * (const class ::time & time, const frequency & frequency)
 {
 
    return time.floating_second() * frequency.m_dHertz;
@@ -198,7 +198,7 @@ constexpr double operator * (const class ::time & time, const frequency & freque
 }
 
 
-constexpr double operator * (const frequency & frequency, const class ::time & time)
+constexpr ::f64 operator * (const frequency & frequency, const class ::time & time)
 {
 
    return frequency.m_dHertz * time.floating_second();

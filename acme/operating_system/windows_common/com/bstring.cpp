@@ -12,7 +12,7 @@
 //    //
 //    // auto dstlen = utf_to_utf_length(bstr, scopedstr.data(), srclen);
 //    //
-//    // bstr = ::SysAllocStringLen(nullptr, (unsigned int) dstlen);
+//    // bstr = ::SysAllocStringLen(nullptr, (::u32) dstlen);
 //    //
 //    // if (bstr == nullptr)
 //    // {

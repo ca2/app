@@ -82,7 +82,7 @@ namespace experience
 
       auto pointCursor = pmouse->m_pointAbsolute;
 
-      ::int_rectangle rectangleWindow;
+      ::i32_rectangle rectangleWindow;
 
       m_pframewindow->window_rectangle(rectangleWindow);
 
@@ -443,7 +443,7 @@ namespace experience
    }
 
 
-   bool move_manager::on_timer(unsigned int uEvent)
+   bool move_manager::on_timer(::u32 uEvent)
    {
 
       return false;

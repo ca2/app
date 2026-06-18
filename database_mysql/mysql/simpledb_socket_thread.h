@@ -20,14 +20,14 @@ namespace simpledb
 
 #ifdef WINDOWS_DESKTOP
 
-      PROCESS_INFORMATION     m_pi;
+      PROCESS_INFORMATION     m_processinformation;
 
 #endif
 
       service *               m_pservice;
 
       string                  m_strIp;
-      int                     m_iPort;
+      ::i32                     m_iPort;
 
       ::happening                 m_happeningCanInit;
       ::happening                 m_happeningInitialized;

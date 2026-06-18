@@ -42,12 +42,12 @@ namespace console_hello
 
             auto lines = file_system()->lines(path);
 
-            for(int iLine = 1; iLine <= lines.size(); iLine++)
+            for(::i32 iLine = 1; iLine <= lines.size(); iLine++)
             {
 
                auto & line = lines[iLine - 1];
 
-               for (int iCharacter = 1; iCharacter <= line.size(); iCharacter++)
+               for (::i32 iCharacter = 1; iCharacter <= line.size(); iCharacter++)
                {
 
                   auto & character = line[iCharacter - 1];
@@ -91,7 +91,7 @@ namespace console_hello
 
       //   }
 
-      //   //char szBomCandidate;
+      //   //::i8 szBomCandidate;
 
       //   //pfile->read(szBomCandidate, 3);
 

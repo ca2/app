@@ -38,7 +38,7 @@ namespace dynamic_source
       ::file::path                     m_strScriptPath;
       manual_reset_happening           m_happeningCreationEnabled;
       class ::time                     m_timeLastBuildTime;
-      bool                             m_bShouldBuild;
+      //bool                             m_bShouldBuild;
       bool                             m_bShouldCalcTempError;
       bool                             m_bHasTempError;
       bool                             m_bHasTempOsError;

@@ -144,7 +144,7 @@ bool ifs::enumerate(::file::listing_base & listing)
 
    //string strUrl;
 
-   //strUrl = "http://file.ca2.network/ifs/ls?path=" + ::url::encode(listing.m_pathUser);
+   //strUrl = "http://file.ca2.site/ifs/ls?path=" + ::url::encode(listing.m_pathUser);
 
    //string strSource;
 
@@ -155,7 +155,7 @@ bool ifs::enumerate(::file::listing_base & listing)
    //if(strSource.is_empty())
    //{
 
-   //   dir.m_uiLsTimeout = (unsigned int) (::get_tick() + ((5000) * 4));
+   //   dir.m_uiLsTimeout = (::u32) (::get_tick() + ((5000) * 4));
 
    //   return listing = ::error_failed;
 
@@ -164,7 +164,7 @@ bool ifs::enumerate(::file::listing_base & listing)
    //if(!doc.load(strSource))
    //{
 
-   //   dir.m_uiLsTimeout = (unsigned int) (::get_tick() + ((5000) * 4));
+   //   dir.m_uiLsTimeout = (::u32) (::get_tick() + ((5000) * 4));
 
    //   return listing = ::error_failed;
 
@@ -173,7 +173,7 @@ bool ifs::enumerate(::file::listing_base & listing)
    //if(doc.root()->get_name() != "folder")
    //{
 
-   //   dir.m_uiLsTimeout = (unsigned int) (::get_tick() + ((5000) * 4));
+   //   dir.m_uiLsTimeout = (::u32) (::get_tick() + ((5000) * 4));
 
    //   return listing = ::error_failed;
 
@@ -213,7 +213,7 @@ bool ifs::enumerate(::file::listing_base & listing)
 
    //      auto & path = dir.add_get(::file::path(listing.m_pathUser / pchild->attribute("name").as_string(),::file::path_url));
 
-   //      path.m_iSize = pchild->attribute("int_size");
+   //      path.m_iSize = pchild->attribute("i32_size");
 
    //      path.m_iDir = 0;
 
@@ -221,7 +221,7 @@ bool ifs::enumerate(::file::listing_base & listing)
 
    //}
 
-   //dir.m_uiTimeout = (unsigned int) (::get_tick() + ((1000) * 4));
+   //dir.m_uiTimeout = (::u32) (::get_tick() + ((1000) * 4));
 
 
 
@@ -236,9 +236,9 @@ bool ifs::enumerate(::file::listing_base & listing)
    ////if(m_mapdirFileName[strDir].is_null())
    ////   m_mapdirFileName[strDir] = allocateø string_array_base();
    ////if (m_mapdirFileSize[strDir].is_null())
-   ////   m_mapdirFileSize[strDir] = allocateø long_long_array_base();
+   ////   m_mapdirFileSize[strDir] = allocateø i64_array_base();
    ////if (m_mapdirFolderSize[strDir].is_null())
-   ////   m_mapdirFolderSize[strDir] = allocateø long_long_array_base();
+   ////   m_mapdirFolderSize[strDir] = allocateø i64_array_base();
    ////if(m_mapdirFileDir[strDir].is_null())
    ////   m_mapdirFileDir[strDir] = allocateø bool_array();
    ////if(m_mapdirFolderDir[strDir].is_null())
@@ -249,8 +249,8 @@ bool ifs::enumerate(::file::listing_base & listing)
    ////::file::path_array_base  & straThisDirName     = m_mapdirFolderName[strDir];
    ////::file::path_array_base  & straThisFile        = m_mapdirFile[strDir];
    ////::file::path_array_base  & straThisFileName    = m_mapdirFileName[strDir];
-   ////long_long_array_base    & iaThisFileSize      = *m_mapdirFileSize[strDir];
-   ////long_long_array_base    & iaThisFolderSize    = *m_mapdirFolderSize[strDir];
+   ////i64_array_base    & iaThisFileSize      = *m_mapdirFileSize[strDir];
+   ////i64_array_base    & iaThisFolderSize    = *m_mapdirFolderSize[strDir];
    ////bool_array     & baThisFileDir       = *m_mapdirFileDir[strDir];
    ////bool_array     & baThisFolderDir     = *m_mapdirFolderDir[strDir];
 
@@ -266,14 +266,14 @@ bool ifs::enumerate(::file::listing_base & listing)
 
 
 
-   //dir.m_uiLsTimeout = (unsigned int) (::get_tick() + ((1000) * 4));
+   //dir.m_uiLsTimeout = (::u32) (::get_tick() + ((1000) * 4));
 
    return listing;
 
 }
 
 
-int ifs::is_dir(const ::file::path & path)
+::i32 ifs::is_dir(const ::file::path & path)
 {
 
    if(path.is_empty())
@@ -332,7 +332,7 @@ int ifs::is_dir(const ::file::path & path)
 
    }
 
-   return dir[iFind].m_etype & ::file::e_type_folder2;
+   return (::i32_boolean) (dir[iFind].m_etype & ::file::e_type_folder2);
 
 }
 

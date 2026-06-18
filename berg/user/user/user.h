@@ -108,7 +108,7 @@ namespace berg
 
       //
       //      virtual ::pointer<::user::menu> _track_popup_menu(::user::interaction * pinteraction, ::menu::item *
-      //      pmenuitem, int iFlags, const ::int_point & point, const ::int_size & sizeMinimum = ::int_size(),
+      //      pmenuitem, ::i32 iFlags, const ::i32_point & point, const ::i32_size & sizeMinimum = ::i32_size(),
       //      ::channel * pchannelNotify = nullptr);
       //
 

@@ -6,7 +6,7 @@ namespace user
 {
 
 
-   enum enum_message : unsigned int
+   enum enum_message : ::u32
    {
 
       e_message_undefined = UINT32_MAX,
@@ -38,6 +38,7 @@ namespace user
       e_message_get_min_max_info = 36, // 0x0024
       e_message_wm_notify = 78, // 0x004E
       e_message_context_menu = 0x007B,
+      e_message_display_change = 0x007E, // WM_DISPLAYCHANGE 126
 
       e_message_key_first = 256,
       e_message_key_down = 256,
@@ -68,9 +69,11 @@ namespace user
       e_message_non_client_mouse_move = 0x00A0,
       e_message_non_client_left_button_down = 0x00A1,
       e_message_non_client_left_button_up = 0x00A2,
+      e_message_initialize_dialog = 0x0110, // WM_INITDIALOG
       e_message_command = 0x0111,
       e_message_timer = 0x0113,
-      e_message_initialize_menu_popup = 0x0117,
+      e_message_initialize_menu = 0x0116, // WM_INITMENU
+      e_message_initialize_menu_popup = 0x0117, // WM_INITMENUPOPUP
 
 
       e_message_mouse_first = 512,
@@ -157,7 +160,7 @@ namespace user
       e_message_recalc_parent,
       // #define WM_SIZECHILD        0x0369  // special notify from COleResizeBar
       //  wParam = ID of child interaction_impl
-      //  lParam = pRectNew (aaa_memory_new position/int_size)
+      //  lParam = pRectNew (aaa_memory_new position/i32_size)
       e_message_size_child,
       // #define WM_KICKIDLE         0x036A  // (params unused) causes idles to kick in
       e_message_kick_idle,
@@ -167,7 +170,7 @@ namespace user
       e_message_disable_modal,
       // lResult = 1, don't disable
       // #define WM_FLOATSTATUS      0x036D  // wParam combination of FS_* flags below
-      e_message_float_status,
+      e_message_f32_status,
 
       // WM_ACTIVATETOPLEVEL is like WM_ACTIVATEAPP but works with hierarchies
       //   of mixed processes (as is the case with OLE in-place activation)
@@ -220,7 +223,7 @@ namespace user
       // #define WM_RESERVED_037E    0x037E
 
       // WM_FORWARDMSG - used by aura to forward a message to another interaction_impl for processing
-      //   WPARAM - unsigned int dwUserData - defined by ::account::user
+      //   WPARAM - ::u32 dwUserData - defined by ::account::user
       //   LPARAM - MESSAGE * pMsg - a pointer to the MESSAGE structure
       //   return value - 0 if the message was not processed, nonzero if it was
       // #define WM_FORWARDMSG      0x037F
@@ -251,7 +254,6 @@ namespace user
       e_message_has_command_handler,
       e_message_thread,
       e_message_desk,
-      e_message_display_change,
       e_message_property,
       e_message_midi_attribute,
       e_message_event1,
@@ -328,6 +330,8 @@ namespace user
 
 
    };
+
+
 
 
 } // namespace user

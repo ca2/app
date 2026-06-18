@@ -127,7 +127,7 @@ namespace html
 
          string strSize = m_pelemental->m_phtmlbase->get_tag()->get_attr_value("ize");
 
-         int iSize = 20;
+         ::i32 iSize = 20;
 
          if (strSize.has_character())
          {
@@ -169,7 +169,7 @@ namespace html
 
          //::draw2d::graphics_pointer & pgraphics = pdata->m_pcoredata->m_pgraphics;
 
-         //::int_rectangle rectangleWindow;
+         //::i32_rectangle rectangleWindow;
 
          //m_pedit->window_rectangle(rectangleWindow);
 

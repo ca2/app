@@ -18,7 +18,7 @@ character_count wd32_to_ansi_len(const ::wd32_character* pwsz, character_count s
 
    character_count n;
 
-   //char sz[16];
+   //::i8 sz[16];
 
    while (*pwsz != L'\0' && srclen != 0)
    {
@@ -60,7 +60,7 @@ character_count wd32_to_ansi_len2(const ::wd32_character *pwsz, character_count 
 
    character_count count = 0;
 
-   // char sz[16];
+   // ::i8 sz[16];
 
    while (count < srclen && *pwsz != L'\0')
    {
@@ -104,7 +104,7 @@ character_count wd32_to_ansi_len2(const ::wd32_character *pwsz, character_count 
 //
 //   character_count n;
 //
-//   char sz[16];
+//   ::i8 sz[16];
 //
 //   while (input_size != 0 && *pwsz != L'\0')
 //   {
@@ -146,7 +146,7 @@ character_count utf32_len(const ::wd32_character* pwsz)
    }
    return s;
 }
-character_count wd32_to_ansi(char* psz, const ::wd32_character* pwsz, character_count srclen)
+character_count wd32_to_ansi(char_pointer psz, const ::wd32_character* pwsz, character_count srclen)
 {
 
    character_count c = 0;
@@ -258,9 +258,9 @@ character_count ansi_to_wd32_len2(const_char_pointer psz, character_count & srcl
 character_count ansi_to_wd32(::wd32_character* pwsz, const_char_pointer psz, character_count srclen)
 {
 
-   int dstlen = 0;
+   ::i32 dstlen = 0;
 
-   int len = 0;
+   ::i32 len = 0;
 
    while (srclen != 0 && psz != nullptr && *psz != '\0')
    {
@@ -327,7 +327,7 @@ string wd32_to_ansi_str(const ::wd32_character * pwszUni32, character_count iUni
 
    string str;
 
-   char * psz = str.get_buffer(iUtf8Len);
+   char_pointer psz = str.get_buffer(iUtf8Len);
 
    wd32_to_ansi(psz, pwszUni32, iUni32Len);
 
@@ -355,7 +355,7 @@ CLASS_DECL_ACME character_count wd32_to_wd32_len(const wd32_character * psz, cha
 
    //   auto p = psz;
 
-   //   int iError = 0;
+   //   ::i32 iError = 0;
 
    //   while (*p)
    //   {
@@ -396,7 +396,7 @@ CLASS_DECL_ACME character_count wd32_to_wd32_len2(const wd32_character * psz, ch
 
    //   auto count = 0;
 
-   //   int iError = 0;
+   //   ::i32 iError = 0;
 
    //   while (count < input_size && *p)
    //   {
@@ -438,7 +438,7 @@ CLASS_DECL_ACME character_count wd32_to_wd32(wd32_character *psz, const wd32_cha
 
       auto pDst = psz;
 
-      int iError = 0;
+      ::i32 iError = 0;
 
       while (*pSrc)
       {
@@ -477,7 +477,7 @@ CLASS_DECL_ACME character_count wd32_to_wd32(wd32_character *psz, const wd32_cha
 
       auto count = 0;
 
-      int iError = 0;
+      ::i32 iError = 0;
 
       while (count < input_size && *pSrc)
       {

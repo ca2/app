@@ -36,15 +36,15 @@ namespace gpu_opengl
       //HGLRC                         m_hrc;
       //HDC                           m_hdc;
       //HWND                          m_hwnd;
-      //::int_size                        m_sizeNew;
-      //::int_size                        m_size;
+      //::i32_size                        m_sizeNew;
+      //::i32_size                        m_size;
       //HDC                           m_hdcGraphics;
-      //float                         m_z;
-      //int_point                         m_pointTranslate;
+      //::f32                         m_z;
+      //i32_point                         m_pointTranslate;
       //::pointer<::opengl::buffer>  m_pbuffer;
       //::pointer<::opengl::program> m_pprogram;
-      //unsigned int                  VAO;
-      //unsigned int                  VBO;
+      //::u32                  VAO;
+      //::u32                  VBO;
 
 
       approach();
@@ -56,10 +56,10 @@ namespace gpu_opengl
       void gpu_on_before_create_window(::acme::windowing::window* pwindow) override;
       void _gpu_on_create_window(::acme::windowing::window* pwindow) override;
 
-      //::pointer < ::gpu::context > _create_context(::particle * pparticle, ::gpu::enum_output eoutput, ::windowing::window* pwindow, const ::int_rectangle& rectanglePlacement) override;
+      //::pointer < ::gpu::context > _create_context(::particle * pparticle, ::gpu::enum_output eoutput, ::windowing::window* pwindow, const ::i32_rectangle& rectanglePlacement) override;
 
 
-      int fread(void * data, int c, int s ,::file::file* pfile);
+      ::i32 fread(void * data, ::i32 c, ::i32 s ,::file::file* pfile);
 
       virtual void defer_init_gpu_library() override;
 
@@ -67,7 +67,7 @@ namespace gpu_opengl
       //virtual void start();
       //virtual void render();
 
-      //virtual bool create_offscreen_buffer(const ::int_size& size);
+      //virtual bool create_offscreen_buffer(const ::i32_size& size);
       //virtual bool destroy_offscreen_buffer();
 
 

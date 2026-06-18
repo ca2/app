@@ -25,7 +25,7 @@ namespace nano
 } // namespace nano
 
 
-class ::nano::graphics::device;
+class ::nano::graphics::context;
 class micro::interchange;
 
 
@@ -63,7 +63,7 @@ enum enum_nano_control
 
 
 
-//CLASS_DECL_ACME void operating_system_get_main_screen_size(int & cx, int & cy);
+//CLASS_DECL_ACME void operating_system_get_main_screen_size(::i32 & cx, ::i32 & cy);
 
 CLASS_DECL_ACME void initialize_nano();
 

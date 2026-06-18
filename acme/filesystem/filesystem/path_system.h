@@ -83,8 +83,8 @@ public:
 
 
    virtual void rename(const ::file::path& pathNewName, const ::file::path& pathOldName);
-   virtual ::file::path get_sequence_path(const ::file::path& path, ::collection::index iSequence, int iZeroPaddingWidth = 1);
-   virtual void defer_free_name_by_renaming_to_last_in_sequence(const ::file::path& path, int iZeroPaddingWidth = 1);
+   virtual ::file::path get_sequence_path(const ::file::path& path, ::collection::index iSequence, ::i32 iZeroPaddingWidth = 1);
+   virtual void defer_free_name_by_renaming_to_last_in_sequence(const ::file::path& path, ::i32 iZeroPaddingWidth = 1);
 
 
    virtual ::file::e_type executable_type(const ::file::path & path);

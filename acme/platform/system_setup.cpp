@@ -28,8 +28,8 @@ system_setup::system_setup(PFN_factory pfnFactory, const_char_pointer pszName) :
 
 }
 
-//system_setup::system_setup(const_char_pointer lpszName, PFN_NEW_APEX_APPLICATION pfnNewAuraApplication) :
-//   m_pszName(lpszName),
+//system_setup::system_setup(const_char_pointer pszName, PFN_NEW_APEX_APPLICATION pfnNewAuraApplication) :
+//   m_pszName(pszName),
 //   m_pfnNewAuraApplication(pfnNewAuraApplication),
 //   m_pfnNewAuraLibrary(nullptr),
 //   m_eflag(flag_application)
@@ -40,8 +40,8 @@ system_setup::system_setup(PFN_factory pfnFactory, const_char_pointer pszName) :
 //}
 //
 //
-//system_setup::system_setup(const_char_pointer lpszName, PFN_NEW_APEX_LIBRARY pfnNewLibrary):
-//   m_pszName(lpszName),
+//system_setup::system_setup(const_char_pointer pszName, PFN_NEW_APEX_LIBRARY pfnNewLibrary):
+//   m_pszName(pszName),
 //   m_pfnNewAuraApplication(nullptr),
 //   m_pfnNewAuraLibrary(pfnNewLibrary),
 //   m_eflag(flag_library)
@@ -70,7 +70,7 @@ system_setup* system_setup::get_first(::system_setup::enum_flag eflag, const_cha
    while (psetup != nullptr)
    {
 
-      if ((int)(psetup->m_eflag & eflag) == (int)eflag
+      if ((::i32)(psetup->m_eflag & eflag) == (::i32)eflag
       && (::is_empty(pszName) || string_equals(pszName, psetup->m_pszName)))
       {
 
@@ -206,7 +206,7 @@ system_setup* system_setup::get_last(::system_setup::enum_flag eflag, const_char
    while (psetup != nullptr)
    {
 
-      if ((int)(psetup->m_eflag & eflag) == (int)eflag
+      if ((::i32)(psetup->m_eflag & eflag) == (::i32)eflag
          && (::is_empty(pszName) || ::string_equals(pszName, psetup->m_pszName)))
       {
 
@@ -223,7 +223,7 @@ system_setup* system_setup::get_last(::system_setup::enum_flag eflag, const_char
 
 }
 
-//::system_setup * system_setup::get(const_char_pointer lpszName)
+//::system_setup * system_setup::get(const_char_pointer pszName)
 //{
 //
 //   if(s_papp == nullptr)
@@ -235,7 +235,7 @@ system_setup* system_setup::get_last(::system_setup::enum_flag eflag, const_char
 //
 //   system_setup * papp = s_papp;
 //
-//   if (papp != nullptr && !ansi_cmp(lpszName, "acid"))
+//   if (papp != nullptr && !ansi_cmp(pszName, "acid"))
 //   {
 //
 //      return papp;
@@ -245,7 +245,7 @@ system_setup* system_setup::get_last(::system_setup::enum_flag eflag, const_char
 //   while(papp != nullptr)
 //   {
 //
-//      if(!case_insensitive_ansi_compare(papp->m_pszName, lpszName))
+//      if(!case_insensitive_ansi_compare(papp->m_pszName, pszName))
 //      {
 //
 //         return papp;
@@ -269,7 +269,7 @@ system_setup* system_setup::get_last(::system_setup::enum_flag eflag, const_char
 //   while (psetup != nullptr)
 //   {
 //
-//      if ((int)(psetup->m_eflag & eflag) == (int) eflag)
+//      if ((::i32)(psetup->m_eflag & eflag) == (::i32) eflag)
 //      {
 //
 //         return true;

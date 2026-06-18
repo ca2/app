@@ -49,20 +49,20 @@ namespace file
       //// void dump(dump_context & dumpcontext) const override;
 
 
-      virtual bool is_end_of_file() const;
+      virtual  ::i32_boolean is_end_of_file() const;
       virtual void set_end_of_file();
 
       inline bool _is_end_of_file() const { return is_end_of_file(); }
 
       virtual bool is_in_memory_file() const;
       
-      virtual unsigned char * full_data_begin();
+      virtual ::u8 * full_data_begin();
 
-      virtual unsigned char * full_data_end();
+      virtual ::u8 * full_data_end();
 
-      virtual const unsigned char * full_data_begin() const;
+      virtual const ::u8 * full_data_begin() const;
 
-      virtual const unsigned char * full_data_end() const;
+      virtual const ::u8 * full_data_end() const;
 
       
       inline ::block full_data(memsize start = 0, memsize count = -1)
@@ -86,13 +86,13 @@ namespace file
       inline bool full_data_is_set() const { return ::is_set(full_data_begin()); }
 
 
-      virtual unsigned char * data_begin();
+      virtual ::u8 * data_begin();
 
-      virtual unsigned char * data_end();
+      virtual ::u8 * data_end();
 
-      virtual const unsigned char * data_begin() const;
+      virtual const ::u8 * data_begin() const;
 
-      virtual const unsigned char * data_end() const;
+      virtual const ::u8 * data_end() const;
 
       
       inline ::block data(memsize start = 0, memsize count = -1)
@@ -131,8 +131,8 @@ namespace file
 
 
       void translate(filesize offset, ::enum_seek eseek) override;
-      virtual int getc();
-      virtual int ungetc(int iChar);
+      virtual ::i32 getc();
+      virtual ::i32 ungetc(::i32 iChar);
 
       inline filesize get_remaining_byte_count() const { return size() - get_position(); }
 
@@ -157,7 +157,7 @@ namespace file
       using ::file::writable::write;
       void write(const void * p, memsize s) override;
 
-      virtual void write_unsigned_char(unsigned char uch);
+      virtual void write_unsigned_char(::u8 uch);
       
       using ::file::writable::defer_write;
       memsize defer_write(const void * dataToWrite, memsize amountToWrite) override;
@@ -186,29 +186,29 @@ namespace file
       void close() override;
 
 
-      virtual file & put(char ch);
+      virtual file & put(::i8 ch);
 
-      virtual file & getline(char* sz, character_count n);
-      //virtual int get();
-      //virtual int peek();
-      virtual bool read(char * pch);
-      virtual bool read(unsigned char * puch);
-      virtual bool peek(char * pch);
-      virtual bool peek(unsigned char * puch);
-      //virtual int sgetc();
-      //virtual int sbumpc();
+      virtual file & getline(char_pointer sz, character_count n);
+      //virtual ::i32 get();
+      //virtual ::i32 peek();
+      virtual bool read(char_pointer pch);
+      virtual bool read(::u8 * puch);
+      virtual bool peek(char_pointer pch);
+      virtual bool peek(::u8 * puch);
+      //virtual ::i32 sgetc();
+      //virtual ::i32 sbumpc();
 
-      virtual int peek_byte(); // 0-255 - -1 if eof otherwise exception?
-      virtual void put_byte_back(unsigned char b);
+      virtual ::i32 peek_byte(); // 0-255 - -1 if eof otherwise exception?
+      virtual void put_byte_back(::u8 b);
 
-      virtual int get_unsigned_char(); // 0-255 - -1 if eof otherwise exception?
-      inline unsigned char get_byte_unbounded() { return get_unsigned_char(); }
+      virtual ::i32 get_unsigned_char(); // 0-255 - -1 if eof otherwise exception?
+      inline ::u8 get_byte_unbounded() { return get_unsigned_char(); }
 
-      virtual int get_unsigned_short(); // 0-255 - -1 if eof otherwise exception?
-      inline unsigned short get_u16_unbounded() { return get_unsigned_short(); }
+      virtual ::i32 get_unsigned_short(); // 0-255 - -1 if eof otherwise exception?
+      inline ::u16 get_u16_unbounded() { return get_unsigned_short(); }
 
-      virtual bool get_unsigned_long_long(unsigned long long & hn); // 0-255 - -1 if eof otherwise exception?
-      inline unsigned long long get_u64_unbounded() { unsigned long long ull; get_unsigned_long_long(ull); return ull; }
+      virtual bool get_u64(::u64 & hn); // 0-255 - -1 if eof otherwise exception?
+      inline ::u64 get_u64_unbounded() { ::u64 ull; get_u64(ull); return ull; }
 
 
       virtual bool unget_if(::ansi_character ch);
@@ -237,7 +237,7 @@ namespace file
       virtual void set_storing();
       virtual void set_loading();
 
-      virtual bool has_write_mode();
+      virtual i32_boolean has_write_mode();
 
       virtual file_status get_status() const;
       virtual ::file::path get_file_path() const;
@@ -298,7 +298,7 @@ namespace file
 
    
    CLASS_DECL_ACME void set_no_cache(::payload& payload);
-   CLASS_DECL_ACME bool get_no_cache(const ::payload & payload);
+   CLASS_DECL_ACME ::i32_boolean get_no_cache(const ::payload & payload);
 
 
  } // namespace file

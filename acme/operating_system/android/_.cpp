@@ -65,7 +65,7 @@ CLASS_DECL_ACME void __node_acme_pos_term()
 
 
 
-CLASS_DECL_ACME int __node_is_debugger_attached()
+CLASS_DECL_ACME ::i32 __node_is_debugger_attached()
 {
 
    return false;

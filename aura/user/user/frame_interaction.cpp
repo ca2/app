@@ -12,6 +12,7 @@
 #include "acme/parallelization/synchronous_lock.h"
 #include "acme/constant/user_message.h"
 #include "acme/user/user/key.h"
+#include "acme/user/user/keyboard_state.h"
 #include "apex/handler/signal.h"
 #include "aura/graphics/image/icon.h"
 #include "aura/message/user.h"
@@ -306,15 +307,15 @@ namespace user
       //if (m_pshapeaClip) m_pshapeaClip->destroy();
       if (m_pdrawcontext) m_pdrawcontext->destroy();
 
-      m_puserstyleFrameInteraction.defer_destroy();
+      m_puserstyleFrameInteraction.defer_destroy_and_release();
 
-      m_pdrawicon.defer_destroy();
+      m_pdrawicon.defer_destroy_and_release();
       //}
-      m_pusersystem.defer_destroy();
+      m_pusersystem.defer_destroy_and_release();
       //      if (m_playout) m_playout->destroy();
-      m_pgraphicscalla.defer_destroy();
-      m_puserinteractionCustomWindowProc.defer_destroy();
-      m_puiLabel.defer_destroy();
+      m_pgraphicscalla.defer_destroy_and_release();
+      m_puserinteractionCustomWindowProc.defer_destroy_and_release();
+      m_puiLabel.defer_destroy_and_release();
       //if (m_puseritema) m_puseritema->destroy_all();
       // tasks should not be destroyed in destroy
       //m_pform && m_pform != this && m_pform->destroy();
@@ -345,8 +346,8 @@ namespace user
       //m_pthreadUserInteraction && m_pthreadUserInteraction->destroy();
       // tasks should not be destroyed in destroy
       //m_pthreadUserInteraction && m_pthreadUserInteraction->destroy();
-      m_ptooltip.defer_destroy();
-      m_pmenuitem.defer_destroy();
+      m_ptooltip.defer_destroy_and_release();
+      m_pmenuitem.defer_destroy_and_release();
       m_menua.destroy();
 
       // ownership
@@ -373,7 +374,7 @@ namespace user
 
       //m_pacmew
 
-      m_pinteractionScaler.defer_destroy();
+      m_pinteractionScaler.defer_destroy_and_release();
 
       {
 
@@ -652,7 +653,7 @@ namespace user
    }
 
 
-//   ::pointer<::utoolbar>frame_interaction::load_toolbar(const ::atom & idToolbar, const ::scoped_string & scopedstrToolbar, unsigned int dwCtrlStyle, unsigned int uStyle, const ::platform::type & type)
+//   ::pointer<::utoolbar>frame_interaction::load_toolbar(const ::atom & idToolbar, const ::scoped_string & scopedstrToolbar, ::u32 dwCtrlStyle, ::u32 uStyle, const ::platform::type & type)
 //   {
 //
 //      return false;
@@ -788,7 +789,7 @@ namespace user
    }
 
 
-   //void frame_interaction::this->rectangle(::int_rectangle* lprect)
+   //void frame_interaction::this->rectangle(::i32_rectangle* lprect)
    //{
    //   
    //   ::user::interaction::this->rectangle(lprect);
@@ -1062,7 +1063,7 @@ namespace user
    }
 
 
-   int_size frame_interaction::get_window_minimum_size()
+   i32_size frame_interaction::get_window_minimum_size()
    {
 
       if (m_sizeMinimum.area() > 0)
@@ -1074,7 +1075,7 @@ namespace user
       else if (const_layout().sketch().display() == ::e_display_minimal)
       {
 
-         return ::int_size(8, 8);
+         return ::i32_size(8, 8);
 
       }
       else
@@ -1201,7 +1202,7 @@ namespace user
 
          string strName;
 
-         //int iStyle = get_window_long(GWL_STYLE);
+         //::i32 iStyle = get_window_long(GWL_STYLE);
 
          //iStyle |= WS_CHILD;
 
@@ -1212,7 +1213,7 @@ namespace user
 
          //}
 
-         ::int_rectangle rectangleWindow;
+         ::i32_rectangle rectangleWindow;
 
          ::pointer<::user::interaction> pparent = puserinteractionParent;
 

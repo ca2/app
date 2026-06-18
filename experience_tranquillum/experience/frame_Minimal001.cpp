@@ -48,16 +48,16 @@ namespace experience_tranquillum
    }
 
 
-//    ::experience::enum_frame frame_Minimal001::experience_frame_hit_test(const ::int_point & point, ::user::e_zorder ezorder)
+//    ::experience::enum_frame frame_Minimal001::experience_frame_hit_test(const ::i32_point & point, ::user::e_zorder ezorder)
 //   {
 //       ::experience::enum_frame etest =  ::experience::e_frame_client;
 //      {
 //         //      m_pframewindow->GetEventWindow()->screen_to_client()(point);
-//         ::int_rectangle rectangleEvent;
+//         ::i32_rectangle rectangleEvent;
 //         m_pframewindow->window_rectangle(rectangleEvent);
-//         ::int_rectangle rectangle;
-//         ::int_point pointCenter = rectangleEvent.center();
-//         enum_grip egrip = m_pframewindow->size_manager()->GetGripMask();
+//         ::i32_rectangle rectangle;
+//         ::i32_point pointCenter = rectangleEvent.center();
+//         auto egrip = m_pframewindow->size_manager()->GetGripMask();
 //
 //         if(egrip & e_grip_top_left)
 //         {
@@ -195,7 +195,7 @@ namespace experience_tranquillum
 
 
 
-   void frame_Minimal001::draw_border_side(::draw2d::graphics_pointer & pgraphics, const ::int_rectangle & rectangleX, enum_border eside)
+   void frame_Minimal001::draw_border_side(::draw2d::graphics_pointer & pgraphics, const ::i32_rectangle & rectangleX, enum_border eside)
    {
 
       if (eside != e_border_top)
@@ -241,7 +241,7 @@ namespace experience_tranquillum
       if(is_translucid_style(estyle))
       {
 
-         ::int_rectangle rectangle;
+         ::i32_rectangle rectangle;
 
          GetBorderRectangle(rectangleX, &rectangle, eside);
 
@@ -254,7 +254,7 @@ namespace experience_tranquillum
       /*else if(m_estyle == StyleLightBlue)
       {
 
-         ::int_rectangle rectangle;
+         ::i32_rectangle rectangle;
 
          GetBorderRectangle(rectangleX, &rectangle, eside);
 
@@ -279,13 +279,13 @@ namespace experience_tranquillum
       else
       {
          
-         ::int_rectangle rectangleX;
+         ::i32_rectangle rectangleX;
 
          rectangleX = m_pframewindow->rectangle();
 
          rectangleX.deflate(2, 2, 2, 2);
 
-         ::int_rectangle rectangle;
+         ::i32_rectangle rectangle;
 
          GetBorderRectangle(rectangleX, &rectangle, eside);
 
@@ -315,7 +315,7 @@ namespace experience_tranquillum
 
       string str;
 
-      ::int_rectangle rectangleWindow;
+      ::i32_rectangle rectangleWindow;
 
       pframewindow->window_rectangle(rectangleWindow);
 
@@ -338,17 +338,17 @@ namespace experience_tranquillum
    }
 
 
-   void frame_Minimal001::DrawBorder(::draw2d::graphics_pointer & pgraphics, const ::int_rectangle & rectangleX)
+   void frame_Minimal001::DrawBorder(::draw2d::graphics_pointer & pgraphics, const ::i32_rectangle & rectangleX)
 
    {
 
       auto pmovemanager = m_pframewindow->move_manager();
 
-      enum_border eborder = pmovemanager->GetBorderMask();
+      auto eborder = pmovemanager->GetBorderMask();
 
       if(m_pframewindow->layout().is_zoomed())
       {
-         eborder = (enum_border)
+         eborder = 
                      (eborder &
                      ~(e_border_right
                         | e_border_bottom
@@ -389,18 +389,18 @@ namespace experience_tranquillum
 
    }
 
-   //void frame_Minimal001::GetBorderRectangle(const ::int_rectangle & rectangleX, ::int_rectangle * prectangle, enum_border eside)
+   //void frame_Minimal001::GetBorderRectangle(const ::i32_rectangle & rectangleX, ::i32_rectangle * prectangle, enum_border eside)
 
    //{
 
-   //   ::int_rectangle rectangleBig(rectangleX);
+   //   ::i32_rectangle rectangleBig(rectangleX);
 
 
-   //   ::int_rectangle rectangleSmall;
+   //   ::i32_rectangle rectangleSmall;
 
    //   rectangleSmall = client_rectangle2();
 
-   //   ::int_rectangle rectangle;
+   //   ::i32_rectangle rectangle;
 
    //   if(eside == e_border_top)
    //   {
@@ -451,7 +451,7 @@ namespace experience_tranquillum
    }
 
 
-   void frame_Minimal001::DrawGrip(::draw2d::graphics_pointer & pgraphics, const ::int_rectangle & rectangleX, enum_grip egrip)
+   void frame_Minimal001::DrawGrip(::draw2d::graphics_pointer & pgraphics, const ::i32_rectangle & rectangleX, enum_grip egrip)
 
    {
 
@@ -459,27 +459,27 @@ namespace experience_tranquillum
 
 
 
-//               ::int_rectangle rectangleC(rectangleX);
+//               ::i32_rectangle rectangleC(rectangleX);
 
 //
-//               ::int_rectangle rectangleX(rectangleX);
+//               ::i32_rectangle rectangleX(rectangleX);
 
 //
 //               rectangleX.right--;
 //
 //               rectangleX.bottom--;
 //
-//               ::int_rectangle rectangleXB(rectangleX);
+//               ::i32_rectangle rectangleXB(rectangleX);
 //
-//               ::int_rectangle rectangleA;
+//               ::i32_rectangle rectangleA;
 //
-//               ::int_point pointA;
+//               ::i32_point pointA;
 //
-//               ::int_point pointB;
+//               ::i32_point pointB;
 //
-//               ::int_point pointC;
+//               ::i32_point pointC;
 //
-//               ::int_rectangle rectangle(rectangleX);
+//               ::i32_rectangle rectangle(rectangleX);
 //
 //               switch(egrip)
 //               {
@@ -506,7 +506,7 @@ namespace experience_tranquillum
 //
 //                                  pgraphics->set(m_ppenFace1);
 //
-//                                  // Most external int_rectangle
+//                                  // Most external i32_rectangle
 //
 //                                  rectangleA = rectangleX;
 //
@@ -651,7 +651,7 @@ namespace experience_tranquillum
 //
 //                                   pgraphics->set(m_ppenFace1);
 //
-//                                   // Most external int_rectangle
+//                                   // Most external i32_rectangle
 //
 //                                   rectangleA = rectangleX;
 //
@@ -662,7 +662,7 @@ namespace experience_tranquillum
 //                                   pgraphics->line_to(pointB);
 //
 //
-//                                   // Most internal int_rectangle
+//                                   // Most internal i32_rectangle
 //
 //                                   rectangleA.top += 4;
 //                                   rectangleA.left += 4;
@@ -814,7 +814,7 @@ namespace experience_tranquillum
 //
 //                                     pgraphics->set(m_ppenFace1);
 //
-//                                     // Most external int_rectangle 0
+//                                     // Most external i32_rectangle 0
 //
 //                                     rectangleA = rectangleX;
 //
@@ -824,7 +824,7 @@ namespace experience_tranquillum
 //                                     pgraphics->set_current_point(pointB);
 //                                     pgraphics->line_to(pointA);
 //
-//                                     // Most internal int_rectangle 4
+//                                     // Most internal i32_rectangle 4
 //
 //                                     rectangleA.top += 4;
 //                                     rectangleA.left += 4;
@@ -973,7 +973,7 @@ namespace experience_tranquillum
 //
 //                                      rectangleA = rectangleX;
 //
-//                                      // Most internal int_rectangle
+//                                      // Most internal i32_rectangle
 //
 //                                      rectangleA.top += 4;
 //                                      rectangleA.left += 4;
@@ -1074,15 +1074,15 @@ namespace experience_tranquillum
 //                  break;
 //               case e_grip_top:
 //               {
-//                                    ::int_point pointCenter = rectangle.center();
+//                                    ::i32_point pointCenter = rectangle.center();
 //
-//                                    int iMod;
+//                                    ::i32 iMod;
 //                                    if(rectangle.width() % 2 == 1)
 //                                       iMod = 1;
 //                                    else
 //                                       iMod = 0;
 //
-//                                    ::int_rectangle rectangleB;
+//                                    ::i32_rectangle rectangleB;
 //
 //                                    rectangleB.top = rectangleC.top;
 //                                    rectangleB.left = pointCenter.x - GRIP_CENTER_LARGE_CX / 2 + iMod;
@@ -1094,11 +1094,11 @@ namespace experience_tranquillum
 //                  break;
 //               case e_grip_bottom:
 //               {
-//                                       ::int_point pointCenter = rectangle.center();
+//                                       ::i32_point pointCenter = rectangle.center();
 //
-//                                       ::int_rectangle rectangleB;
+//                                       ::i32_rectangle rectangleB;
 //
-//                                       int iMod;
+//                                       ::i32 iMod;
 //                                       if(rectangle.width() % 2 == 1)
 //                                          iMod = 1;
 //                                       else
@@ -1114,16 +1114,16 @@ namespace experience_tranquillum
 //                  break;
 //               case e_grip_left:
 //               {
-//                                     ::int_point pointCenter = rectangle.center();
+//                                     ::i32_point pointCenter = rectangle.center();
 //
-//                                     int iMod;
+//                                     ::i32 iMod;
 //                                     if(rectangle.height() % 2 == 1)
 //                                        iMod = 1;
 //                                     else
 //                                        iMod = 0;
 //
 //
-//                                     ::int_rectangle rectangleB;
+//                                     ::i32_rectangle rectangleB;
 //
 //                                     rectangleB.top = pointCenter.y - GRIP_CENTER_LARGE_CY / 2 + iMod;
 //                                     rectangleB.left = rectangleC.left;
@@ -1135,16 +1135,16 @@ namespace experience_tranquillum
 //                  break;
 //               case e_grip_right:
 //               {
-//                                      ::int_point pointCenter = rectangle.center();
+//                                      ::i32_point pointCenter = rectangle.center();
 //
-//                                      int iMod;
+//                                      ::i32 iMod;
 //                                      if(rectangle.height() % 2 == 1)
 //                                         iMod = 1;
 //                                      else
 //                                         iMod = 0;
 //
 //
-//                                      ::int_rectangle rectangleB;
+//                                      ::i32_rectangle rectangleB;
 //
 //                                      rectangleB.top = pointCenter.y - GRIP_CENTER_LARGE_CY / 2 + iMod;
 //                                      rectangleB.right = rectangleC.right;
@@ -1161,12 +1161,12 @@ namespace experience_tranquillum
 //
 //            }
 //
-//            void frame_Minimal001::DrawRectGrip(::draw2d::graphics_pointer & pgraphics,const int_rectangle & rectangleParam)
+//            void frame_Minimal001::DrawRectGrip(::draw2d::graphics_pointer & pgraphics,const i32_rectangle & rectangleParam)
 //            {
 //
 //
 //
-//               ::int_rectangle rectangle(rectangleParam);
+//               ::i32_rectangle rectangle(rectangleParam);
 //
 //               //rectangle.right++;
 //
@@ -1189,12 +1189,12 @@ namespace experience_tranquillum
    }
 
 
-   void frame_Minimal001::DrawGripSet(::draw2d::graphics_pointer & pgraphics, const ::int_rectangle & rectangleX)
+   void frame_Minimal001::DrawGripSet(::draw2d::graphics_pointer & pgraphics, const ::i32_rectangle & rectangleX)
    {
 
       ::experience::size_manager * psizenager = m_pframewindow->size_manager();
 
-      enum_grip egrip = psizenager->GetGripMask();
+      auto egrip = psizenager->GetGripMask();
 
       if(egrip & e_grip_top)
       {

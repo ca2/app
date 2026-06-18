@@ -220,7 +220,7 @@ namespace coding
 //
 //       //m_bSvnInstalled = false;
 //
-//       //#if INSTALL_GIT_SCM
+//       //#if INSTALL_GIT_ServiceControlManager
 //       //
 //       //      m_cPendingInstall += 2; // git scm and download source with git scm
 //       //
@@ -268,7 +268,7 @@ namespace coding
 //
 //                   ::file::path pathStorageWindowsZip = "C:/operating_system/storage-windows.zip";
 //
-//                   ::file::path pathStorageWindowsUrl = "https://ca2.software/download/storage-windows.zip";
+//                   ::file::path pathStorageWindowsUrl = "https://ca2.site/download/storage-windows.zip";
 //
 //                   ::property_set set;
 //
@@ -278,7 +278,7 @@ namespace coding
 //
 //                   transfer_progress_function transferprogressfunction;
 //
-//                   transferprogressfunction = [this](double rate, filesize done, filesize total)
+//                   transferprogressfunction = [this](::f64 rate, filesize done, filesize total)
 //                      {
 //
 //                         if (total == 0 || total == (filesize)-1)
@@ -352,7 +352,7 @@ namespace coding
 //       //
 //       //#endif
 //       //
-// #if INSTALL_GIT_SCM
+// #if INSTALL_GIT_ServiceControlManager
 //
 //       defer_start_installation(::coding::e_install_git_scm);
 //
@@ -369,7 +369,7 @@ namespace coding
 //                try
 //                {
 //
-//                   int iTry = 0;
+//                   ::i32 iTry = 0;
 //
 //                   while (!is_installed_svn_command() && iTry < 3)
 //                   {

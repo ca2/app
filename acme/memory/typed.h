@@ -124,7 +124,7 @@ namespace constructor
 
             ::zero(p, sizeof(TYPE));
 
-            ((unsigned char *&)p) += sizeof(TYPE);
+            ((::u8 *&)p) += sizeof(TYPE);
 
             c--;
 
@@ -488,7 +488,7 @@ namespace typed
       }
 
 
-      //inline  TYPE * alloc(::collection::count c, const_char_pointer pszFile, int iLine)
+      //inline  TYPE * alloc(::collection::count c, const_char_pointer pszFile, ::i32 iLine)
       //{
 
       //   return m_ptypedallocator->allocate(c, pszFile, iLine);
@@ -624,7 +624,7 @@ namespace typed
       }
 
 
-      //inline  TYPE * alloc(::collection::count c, const_char_pointer pszFile, int iLine)
+      //inline  TYPE * alloc(::collection::count c, const_char_pointer pszFile, ::i32 iLine)
       //{
 
       //   return m_ptypedallocator->allocate(c, pszFile, iLine);
@@ -744,7 +744,7 @@ namespace typed
       }
 
 
-      //inline  TYPE * alloc(::collection::count c, const_char_pointer pszFile, int iLine)
+      //inline  TYPE * alloc(::collection::count c, const_char_pointer pszFile, ::i32 iLine)
       //{
 
       //   m_ptypedallocator->alloc(c, pszFile, iLine);
@@ -880,7 +880,7 @@ namespace typed
 
       }
 
-      /*    inline  TYPE * alloc(::collection::count c, const_char_pointer pszFile, int iLine)
+      /*    inline  TYPE * alloc(::collection::count c, const_char_pointer pszFile, ::i32 iLine)
           {
 
              return m_ptypedallocator->alloc(c, pszFile, iLine);
@@ -992,7 +992,7 @@ namespace typed
          }
 
       }
-      //inline  TYPE * alloc(::collection::count c, const_char_pointer pszFile, int iLine)
+      //inline  TYPE * alloc(::collection::count c, const_char_pointer pszFile, ::i32 iLine)
       //{
 
       //   return m_ptypedallocator->alloc(c, pszFile, iLine);
@@ -1121,7 +1121,7 @@ namespace typed
 
       }
 
-      //inline  TYPE * alloc(::collection::count c, const_char_pointer pszFile, int iLine)
+      //inline  TYPE * alloc(::collection::count c, const_char_pointer pszFile, ::i32 iLine)
       //{
 
       //   return m_ptypedallocator->alloc(c, pszFile, iLine);
@@ -1215,7 +1215,7 @@ namespace typed
    //
    //
    //#if MEMDLEAK || defined(__MCRTDBG)
-   //      inline  TYPE * alloc(::collection::count c, const_char_pointer pszFile, int iLine)
+   //      inline  TYPE * alloc(::collection::count c, const_char_pointer pszFile, ::i32 iLine)
    //      {
    //
    //         return heap::sys < TYPE >::alloc(c, pszFile, iLine);

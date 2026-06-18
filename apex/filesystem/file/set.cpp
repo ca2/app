@@ -116,7 +116,7 @@ namespace file
 
       string strFilter;
 
-      int i;
+      ::i32 i;
 
       string strFile;
 

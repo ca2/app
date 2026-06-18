@@ -18,7 +18,7 @@
 //      *\return
 //      *Whether or not this is an image icon.
 //      * /
-inline bool nano2d_is_image_icon(int value) { return value < 1024; }
+inline bool nano2d_is_image_icon(::i32 value) { return value < 1024; }
 
 /**
  * \brief Determine whether an icon ID is a font-based icon (e.g. from ``entypo.ttf``).
@@ -33,7 +33,7 @@ inline bool nano2d_is_image_icon(int value) { return value < 1024; }
  * \return
  *     Whether or not this is a font icon (from ``entypo.ttf``).
  */
-inline bool nano2d_is_font_icon(int value) { return value >= 1024; }
+inline bool nano2d_is_font_icon(::i32 value) { return value >= 1024; }
 
 
 
@@ -92,93 +92,93 @@ namespace nano2d
 //
 //struct ::nano2d::state {
 //   NVGcompositeOperationState compositeOperation;
-//   int shapeAntiAlias;
+//   ::i32 shapeAntiAlias;
 //   ::nano2d::paint fill;
 //   ::nano2d::paint stroke;
-//   float strokeWidth;
-//   float miterLimit;
-//   int lineJoin;
-//   int lineCap;
-//   float alpha;
-//   float xform[6];
+//   ::f32 strokeWidth;
+//   ::f32 miterLimit;
+//   ::i32 lineJoin;
+//   ::i32 lineCap;
+//   ::f32 alpha;
+//   ::f32 xform[6];
 //   NVGscissor scissor;
-//   float fontSize;
-//   float letterSpacing;
-//   float lineHeight;
-//   float fontBlur;
-//   int textAlign;
-//   int fontId;
+//   ::f32 fontSize;
+//   ::f32 letterSpacing;
+//   ::f32 lineHeight;
+//   ::f32 fontBlur;
+//   ::i32 textAlign;
+//   ::i32 fontId;
 //};
 //typedef struct ::nano2d::state ::nano2d::state;
 //
 //struct NVGpoint {
-//   float x, y;
-//   float Δx, Δy;
-//   float len;
-//   float dmx, dmy;
-//   unsigned char flags;
+//   ::f32 x, y;
+//   ::f32 Δx, Δy;
+//   ::f32 len;
+//   ::f32 dmx, dmy;
+//   ::u8 flags;
 //};
 //typedef struct NVGpoint NVGpoint;
 //
 //struct NVGpathCache {
 //   NVGpoint * points;
-//   int npoints;
-//   int cpoints;
+//   ::i32 npoints;
+//   ::i32 cpoints;
 //   ::nano2d::path * paths;
-//   int npaths;
-//   int cpaths;
+//   ::i32 npaths;
+//   ::i32 cpaths;
 //   NVGvertex * verts;
-//   int nverts;
-//   int cverts;
-//   float bounds[4];
+//   ::i32 nverts;
+//   ::i32 cverts;
+//   ::f32 bounds[4];
 //};
 //typedef struct NVGpathCache NVGpathCache;
 
 //struct NANO2D_CONTEXT {
 //   NVGparams params;
-//   float * m_faCommands;
-//   int m_ccommands;
-//   int m_ncommands;
-//   float m_fCommandX, m_fCommandY;
+//   ::f32 * m_faCommands;
+//   ::i32 m_ccommands;
+//   ::i32 m_ncommands;
+//   ::f32 m_fCommandX, m_fCommandY;
 //   ::nano2d::state states[NVG_MAX_STATES];
-//   int m_nStates;
+//   ::i32 m_nStates;
 //   NVGpathCache * m_ppathcache;
-//   float tessTol;
-//   float distTol;
-//   float fringeWidth;
-//   float devicePxRatio;
+//   ::f32 tessTol;
+//   ::f32 distTol;
+//   ::f32 fringeWidth;
+//   ::f32 devicePxRatio;
 //   struct FONScontext * fs;
-//   int fontImages[NVG_MAX_FONTIMAGES];
-//   int fontImageIdx;
-//   int drawCallCount;
-//   int fillTriCount;
-//   int strokeTriCount;
-//   int textTriCount;
+//   ::i32 fontImages[NVG_MAX_FONTIMAGES];
+//   ::i32 fontImageIdx;
+//   ::i32 drawCallCount;
+//   ::i32 fillTriCount;
+//   ::i32 strokeTriCount;
+//   ::i32 textTriCount;
 //};
 
-inline float __sqrtf(float a) { return sqrtf(a); }
-//static float __modf(float a, float b) { return fmodf(a, b); }
-inline float __sinf(float a) { return sinf(a); }
-inline float __cosf(float a) { return cosf(a); }
-inline float __tanf(float a) { return tanf(a); }
-inline float __atan2f(float a, float b) { return atan2f(a, b); }
-inline float __acosf(float a) { return acosf(a); }
+inline ::f32 __sqrtf(::f32 a) { return sqrtf(a); }
+//static ::f32 __modf(::f32 a, ::f32 b) { return fmodf(a, b); }
+inline ::f32 __sinf(::f32 a) { return sinf(a); }
+inline ::f32 __cosf(::f32 a) { return cosf(a); }
+inline ::f32 __tanf(::f32 a) { return tanf(a); }
+inline ::f32 __atan2f(::f32 a, ::f32 b) { return atan2f(a, b); }
+inline ::f32 __acosf(::f32 a) { return acosf(a); }
 
-//inline int __mini(int a, int b) { return a < b ? a : b; }
-//inline int __maxi(int a, int b) { return a > b ? a : b; }
-//inline int __clampi(int a, int mn, int mx) { return a < mn ? mn : (a > mx ? mx : a); }
-inline float __minf(float a, float b) { return a < b ? a : b; }
-inline float __maxf(float a, float b) { return a > b ? a : b; }
-inline float __absf(float a) { return a >= 0.0f ? a : -a; }
-inline float __signf(float a) { return a >= 0.0f ? 1.0f : -1.0f; }
-//static float __clampf(float a, float mn, float mx) { return a < mn ? mn : (a > mx ? mx : a); }
-inline float __cross(float dx0, float dy0, float dx1, float dy1) { return dx1 * dy0 - dx0 * dy1; }
+//inline ::i32 __mini(::i32 a, ::i32 b) { return a < b ? a : b; }
+//inline ::i32 __maxi(::i32 a, ::i32 b) { return a > b ? a : b; }
+//inline ::i32 __clampi(::i32 a, ::i32 mn, ::i32 mx) { return a < mn ? mn : (a > mx ? mx : a); }
+inline ::f32 __minf(::f32 a, ::f32 b) { return a < b ? a : b; }
+inline ::f32 __maxf(::f32 a, ::f32 b) { return a > b ? a : b; }
+inline ::f32 __absf(::f32 a) { return a >= 0.0f ? a : -a; }
+inline ::f32 __signf(::f32 a) { return a >= 0.0f ? 1.0f : -1.0f; }
+//static ::f32 __clampf(::f32 a, ::f32 mn, ::f32 mx) { return a < mn ? mn : (a > mx ? mx : a); }
+inline ::f32 __cross(::f32 dx0, ::f32 dy0, ::f32 dx1, ::f32 dy1) { return dx1 * dy0 - dx0 * dy1; }
 
-inline float __normalize(float * x, float * y)
+inline ::f32 __normalize(::f32 * x, ::f32 * y)
 {
-   float d = __sqrtf((*x) * (*x) + (*y) * (*y));
+   ::f32 d = __sqrtf((*x) * (*x) + (*y) * (*y));
    if (d > 1e-6f) {
-      float id = 1.0f / d;
+      ::f32 id = 1.0f / d;
       *x *= id;
       *y *= id;
    }
@@ -222,7 +222,7 @@ inline float __normalize(float * x, float * y)
 //   return NULL;
 //}
 
-//static void context::__setDevicePixelRatio(float ratio)
+//static void context::__setDevicePixelRatio(::f32 ratio)
 //{
 //   tessTol = 0.25f / ratio;
 //   distTol = 0.01f / ratio;
@@ -230,9 +230,9 @@ inline float __normalize(float * x, float * y)
 //   devicePxRatio = ratio;
 //}
 
-inline ::nano2d::compositeOperationState __compositeOperationState(int op)
+inline ::nano2d::compositeOperationState __compositeOperationState(::i32 op)
 {
-   int sfactor, dfactor;
+   ::i32 sfactor, dfactor;
    
    if (op == ::nano2d::e_composite_operation_source_over)
    {

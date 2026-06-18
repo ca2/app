@@ -14,7 +14,7 @@
 #include "acme/handler/request.h"
 #include "aura/graphics/image/context.h"
 #include "acme/prototype/data/listener.h"
-#include "acme/platform/timer.h"
+//#include "acme/platform/timer.h"
 #include "acme/user/user/drag.h"
 #include "aura/graphics/image/list.h"
 #include "aura/user/user/frame_interaction.h"
@@ -29,7 +29,7 @@
 
 //extern CLASS_DECL_BERG thread_int_ptr < DWORD_PTR > t_time1;
 
-// pgraphics->get_text_extent("->:<-"); // oh no!! omg!! The int_size is the int_size of the alien!!
+// pgraphics->get_text_extent("->:<-"); // oh no!! omg!! The i32_size is the i32_size of the alien!!
 #define MAGIC_PALACE_TAB_SPLT "->:<-"
 #define MAGIC_PALACE_TAB_SIZE "-/-"
 #define MAGIC_PALACE_TAB_TEXT "/"
@@ -122,7 +122,7 @@ namespace user
    void tab::destroy()
    {
 
-      m_pdata.defer_destroy();
+      m_pdata.defer_destroy_and_release();
 
       m_pitemClick.release();
 
@@ -139,7 +139,7 @@ namespace user
    }
 
 
-   /*bool tab::add_tab(unsigned int uIdTitle, int iId)
+   /*bool tab::add_tab(::u32 uIdTitle, ::i32 iId)
    {
       get_pane get_pane;
       ppane->m_uiId = uiIdTitle;
@@ -336,7 +336,7 @@ namespace user
 
       //bool bRestorableMatch = false;
 
-      for (int i = 0; i < get_data()->m_tabpanea.get_count(); i++)
+      for (::i32 i = 0; i < get_data()->m_tabpanea.get_count(); i++)
       {
 
          if (get_data()->m_tabpanea[i]->id() == atom)
@@ -394,7 +394,7 @@ namespace user
       if (bVisible)
       {
 
-         for (int i = 0; iIndex >= 0 && i < get_data()->m_tabpanea.get_count(); i++)
+         for (::i32 i = 0; iIndex >= 0 && i < get_data()->m_tabpanea.get_count(); i++)
          {
 
             if (get_data()->m_tabpanea[i]->m_bTabPaneVisible)
@@ -456,7 +456,7 @@ namespace user
 
 
 
-   void tab::get_title(int iIndex, string_array_base & stra)
+   void tab::get_title(::i32 iIndex, string_array_base & stra)
    {
 
       auto ppane = get_data()->m_tabpanea[iIndex].get();
@@ -466,7 +466,7 @@ namespace user
    }
 
 
-   void tab::GetTabClientRect(::int_rectangle & rectangle)
+   void tab::GetTabClientRect(::i32_rectangle & rectangle)
    {
 
       rectangle = get_data()->m_rectangleHosting;
@@ -474,10 +474,10 @@ namespace user
    }
 
 
-   void tab::GetTabClientRect(::long_long_rectangle & rectangle)
+   void tab::GetTabClientRect(::i64_rectangle & rectangle)
    {
 
-      ::int_rectangle rectangleHosting;
+      ::i32_rectangle rectangleHosting;
 
       GetTabClientRect(rectangleHosting);
 
@@ -516,11 +516,11 @@ namespace user
 
       }
 
-      ::int_rectangle rectangleChild;
+      ::i32_rectangle rectangleChild;
 
       GetTabClientRect(rectangleChild);
 
-      ::int_rectangle rectangleWindow;
+      ::i32_rectangle rectangleWindow;
 
       pholder->window_rectangle(rectangleWindow);
 
@@ -561,7 +561,7 @@ namespace user
       else if (::is_set(ppaneSel) && ppaneSel->m_eflag.has(e_flag_hide_all_others_on_show))
       {
 
-         pholder->hide();
+         pholder->display(e_display_hide, {});
 
       }
 
@@ -792,7 +792,7 @@ namespace user
    }
 
 
-   int tab::auto_hide_threshold_height()
+   ::i32 tab::auto_hide_threshold_height()
    {
 
       auto pdata = get_data();
@@ -809,17 +809,17 @@ namespace user
    //}
 
 
-   bool tab::get_element_rectangle(::collection::index iIndex, ::int_rectangle & rectangle, enum_element eelement)
+   bool tab::get_element_rectangle(::collection::index iIndex, ::i32_rectangle & rectangle, const ::e_element & eelement)
    {
 
-      int_point ptOffset(0, 0);
+      i32_point ptOffset(0, 0);
 
       auto ptabdata = get_data();
 
       if (_001HasBarXDragScrolling())
       {
 
-         float fDensity = 1.0f;
+         ::f32 fDensity = 1.0f;
 
          //if (!is_sandboxed())
          {
@@ -863,7 +863,7 @@ namespace user
 
                   fDensity = get_density_for_window();
 
-                  rectangle.bottom = rectangle.top + (int)(8.0f * fDensity);
+                  rectangle.bottom = rectangle.top + (::i32)(8.0f * fDensity);
 
                }
                else
@@ -877,7 +877,7 @@ namespace user
 
                   fDensity = get_density_for_window();
 
-                  rectangle.right = rectangle.left + (int)(16.0f * fDensity);
+                  rectangle.right = rectangle.left + (::i32)(16.0f * fDensity);
 
                   rectangle.bottom = rectangleTab.bottom - ptabdata->m_rectangleBorder.bottom;
 
@@ -922,7 +922,7 @@ namespace user
 
                   fDensity = get_density_for_window();
 
-                  rectangle.top = rectangleTab.bottom - (int)(8.0f * fDensity);
+                  rectangle.top = rectangleTab.bottom - (::i32)(8.0f * fDensity);
 
                   rectangle.right = rectangleTab.right;
 
@@ -936,7 +936,7 @@ namespace user
 
                   fDensity = get_density_for_window();
 
-                  rectangle.left = rectangleTab.right - (int)(16.0f * fDensity);
+                  rectangle.left = rectangleTab.right - (::i32)(16.0f * fDensity);
 
                   rectangle.top = rectangleTab.top
                   +ptabdata->m_rectangleBorder.top;
@@ -1119,7 +1119,7 @@ namespace user
 
          rectangle.left = rectangleTab.left;
 
-         rectangle.top = (int)(rectangleTab.top + iIndex * ptabdata->m_iTabHeight);
+         rectangle.top = (::i32)(rectangleTab.top + iIndex * ptabdata->m_iTabHeight);
 
          rectangle.right = rectangleTab.right;
 
@@ -1246,7 +1246,7 @@ namespace user
    }
 
 
-   ::item_pointer tab::on_hit_test(const ::int_point & point, ::user::e_zorder ezorder)
+   ::item_pointer tab::on_hit_test(const ::i32_point & point, ::user::e_zorder ezorder)
    {
       
       if(!should_draw())
@@ -1262,7 +1262,7 @@ namespace user
 
       //_synchronous_lock synchronouslock(this->synchronization(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 
-      ::int_rectangle rectangleScroll;
+      ::i32_rectangle rectangleScroll;
 
       bool bScroll = _001HasBarXDragScrolling();
 
@@ -1309,9 +1309,9 @@ namespace user
       if (should_draw())
       {
 
-         ::int_rectangle rectangle;
+         ::i32_rectangle rectangle;
 
-         for (int iIndex = 0; iIndex < get_data()->m_tabpanea.get_size(); iIndex++)
+         for (::i32 iIndex = 0; iIndex < get_data()->m_tabpanea.get_size(); iIndex++)
          {
 
             auto ppane = get_data()->m_tabpanea[iIndex].get();
@@ -1319,7 +1319,7 @@ namespace user
             if (ppane->m_straTitle.get_size() > 1)
             {
 
-               ::int_rectangle rectangleText;
+               ::i32_rectangle rectangleText;
 
                if (get_element_rectangle(iIndex, rectangleText, e_element_text))
                {
@@ -1327,21 +1327,21 @@ namespace user
                   if (rectangleText.contains(point))
                   {
 
-                     for (int iTitle = 0; iTitle < ppane->m_straTitle.get_size(); iTitle++)
+                     for (::i32 iTitle = 0; iTitle < ppane->m_straTitle.get_size(); iTitle++)
                      {
 
-                        rectangleText.left += (int)(ppane->m_sizeaText[iTitle].cx);
+                        rectangleText.left += (::i32)(ppane->m_sizeaText[iTitle].cx);
 
-                        rectangleText.right = (int)(rectangleText.left + get_data()->m_sizeSep.cx);
+                        rectangleText.right = (::i32)(rectangleText.left + get_data()->m_sizeSep.cx);
 
                         if (rectangleText.contains(point))
                         {
 
-                           return allocateø ::item((enum_element)((int)e_element_split + iTitle), iIndex);
+                           return allocateø ::item((enum_element)((::i32)e_element_split + iTitle), iIndex);
 
                         }
 
-                        rectangleText.left += (int)(get_data()->m_sizeSep.cx);
+                        rectangleText.left += (::i32)(get_data()->m_sizeSep.cx);
 
                      }
 
@@ -1395,7 +1395,7 @@ namespace user
    }
 
 
-   bool tab::on_drag_start(::int_point & pointDrag, ::user::mouse * pmouse, ::item * pitem)
+   bool tab::on_drag_start(::i32_point & pointDrag, ::user::mouse * pmouse, ::item * pitem)
    {
       
       if(::user::interaction::on_drag_start(pointDrag, pmouse, pitem))
@@ -1409,7 +1409,7 @@ namespace user
           || pitem->m_item.m_eelement == e_element_tab_far_scroll)
       {
          
-         //::int_rectangle r;
+         //::i32_rectangle r;
 
          //get_element_rectangle(0, r, pitem->m_item.m_eelement);
          
@@ -1476,7 +1476,7 @@ namespace user
          
          auto pdrag = drag(pitem);
 
-         pdrag->m_ecursor = e_cursor_move;
+         pdrag->m_ecursorDrag = e_cursor_move;
 
          auto point = drag_point(pitem, pmouse);
 
@@ -1521,7 +1521,7 @@ namespace user
    }
 
    /*
-   bool tab::create(::user::interaction * pchannel, unsigned int uId)
+   bool tab::create(::user::interaction * pchannel, ::u32 uId)
    {
       if(!m_puserinteraction->create(
          pchannel,
@@ -1986,7 +1986,7 @@ namespace user
 
       auto & panea = get_data()->m_tabpanea;
 
-      for (int i = 0; i < panea.get_count(); i++)
+      for (::i32 i = 0; i < panea.get_count(); i++)
       {
 
          auto ptabpane = panea[i].get();
@@ -2019,7 +2019,7 @@ namespace user
 
       auto & panea = get_data()->m_tabpanea;
 
-      for (int i = 0; i < panea.get_count(); i++)
+      for (::i32 i = 0; i < panea.get_count(); i++)
       {
 
          auto ptabpane = panea[i].get();
@@ -2197,7 +2197,7 @@ namespace user
 
       }
 
-      pplaceholder->hide();
+      pplaceholder->display(e_display_hide, {});
 
       //      pplaceholder->set_need_redraw();
       //
@@ -2468,7 +2468,7 @@ namespace user
    //atom tab::index_id(::collection::index iIndex)
    //{
 
-   //   for(int iIndex = 0; iIndex < get_data()->m_tabpanea.get_count(); iIndex++)
+   //   for(::i32 iIndex = 0; iIndex < get_data()->m_tabpanea.get_count(); iIndex++)
    //   {
 
    //      if(get_data()->m_tabpanea[iIndex]->m_bTabPaneVisible)
@@ -2587,9 +2587,9 @@ namespace user
    }
 
 
-   enum_position tab::DragHitTest(const ::int_point & point)
+   enum_position tab::DragHitTest(const ::i32_point & point)
    {
-      ::int_rectangle rectangle;
+      ::i32_rectangle rectangle;
       GetDragRect(rectangle, e_position_top);
       if (rectangle.contains(point))
       {
@@ -2627,7 +2627,7 @@ namespace user
    }
 
 
-   void tab::GetDragRect(::int_rectangle & rectangle, enum_position eposition)
+   void tab::GetDragRect(::i32_rectangle & rectangle, enum_position eposition)
    {
 
       switch (eposition)
@@ -2709,7 +2709,7 @@ namespace user
    }
 
 
-   void tab::get_child_rect(::int_rectangle & rectangle)
+   void tab::get_child_rect(::i32_rectangle & rectangle)
    {
 
       _synchronous_lock synchronouslock(this->synchronization(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
@@ -2781,14 +2781,14 @@ namespace user
    }
 
 
-   void tab::on_timer(::timer * ptimer)
+   void tab::operator()(::timer * ptimer)
    {
 
-      ::user::interaction::on_timer(ptimer);
+      ::user::interaction::operator()(ptimer);
 
-      ::user::auto_hide::on_timer(ptimer);
+      ::user::auto_hide::operator()(ptimer);
 
-      if (ptimer->m_uTimer == e_timer_drag_start)
+      if (ptimer->m_etimer == e_timer_drag_start)
       {
          //auto elapsed = g_tickDragStart.elapsed();
          kill_timer(e_timer_drag_start);
@@ -2856,7 +2856,7 @@ namespace user
    //      try
    //      {
 
-   //         ::int_rectangle rectangleTabScreen(get_data()->m_rectangleTab);
+   //         ::i32_rectangle rectangleTabScreen(get_data()->m_rectangleTab);
 
    //         client_to_screen(rectangleTabScreen);
 
@@ -3111,7 +3111,7 @@ namespace user
 
       auto & panea = get_data()->m_tabpanea;
 
-      for (int i = 0; i < panea.get_count(); i++)
+      for (::i32 i = 0; i < panea.get_count(); i++)
       {
 
          auto ppane = panea[i].get();
@@ -3162,7 +3162,7 @@ namespace user
 
       tab_pane_array & panea = get_data()->m_tabpanea;
 
-      for (int i = 0; i < panea.get_count(); i++)
+      for (::i32 i = 0; i < panea.get_count(); i++)
       {
 
          auto ppane = panea[i].get();
@@ -3223,7 +3223,7 @@ namespace user
 
       tab_pane_array & panea = get_data()->m_tabpanea;
 
-      for (int i = 0; i < panea.get_count(); i++)
+      for (::i32 i = 0; i < panea.get_count(); i++)
       {
 
          varId = panea[i]->id();
@@ -3261,7 +3261,7 @@ namespace user
          return false;
       ::payload varId;
       tab_pane_array & panea = get_data()->m_tabpanea;
-      for (int i = 0; i < panea.get_count(); i++)
+      for (::i32 i = 0; i < panea.get_count(); i++)
       {
          varId = panea[i]->id();
          if (matchany.matches(varId))
@@ -3282,7 +3282,7 @@ namespace user
 
       string_array_base stra;
 
-      for (int i = 0; i < payloada.get_count(); i++)
+      for (::i32 i = 0; i < payloada.get_count(); i++)
       {
 
          // ODOW : TODO : should create bergedgewrapper to open bergedge inside a window.
@@ -3348,7 +3348,7 @@ namespace user
    }
 
 
-   ::int_rectangle tab::hosting_rectangle(::user::enum_layout elayout)
+   ::i32_rectangle tab::hosting_rectangle(::user::enum_layout elayout)
    {
 
       return m_pdata->m_rectangleHosting;

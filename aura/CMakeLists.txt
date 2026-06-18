@@ -242,6 +242,7 @@ list(APPEND library_source
         graphics/write_text/text.h
         graphics/write_text/text_box.cpp
         graphics/write_text/text_box.h
+        graphics/write_text/text_metric.cpp
         graphics/write_text/text_metric.h
         graphics/write_text/text_out.cpp
         graphics/write_text/text_out.h
@@ -449,6 +450,8 @@ list(APPEND library_source
         #user/user/message_window_listener.h
         #user/user/mouse.cpp
         #user/user/mouse.h
+   user/user/notification_listener.cpp
+   user/user/notification_listener.h
         user/user/notify_icon.cpp
         user/user/notify_icon.h
         user/user/notify_icon_listener.cpp

@@ -2,8 +2,8 @@
 #include "jpCntx.h"
 
 
-//This is hiragana 2-char sequence table, the number in each cell represents its frequency category
-char jp2CharContext[83][83] = 
+//This is hiragana 2-::i8 sequence table, the number in each cell represents its frequency category
+::i8 jp2CharContext[83][83] = 
 { 
 { 0,0,0,2,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,0,0,0,1,0,0,0,0,0,0,0,0,0,0,1,},
 { 2,4,0,4,0,3,0,4,0,3,4,4,4,2,4,3,3,4,3,2,3,3,4,2,3,3,3,2,4,1,4,3,3,1,5,4,3,4,3,4,3,5,3,0,3,5,4,2,0,3,1,0,3,3,0,3,3,0,1,1,0,4,3,0,3,3,0,4,0,2,0,3,5,5,5,5,4,0,4,1,0,3,4,},
@@ -92,18 +92,18 @@ char jp2CharContext[83][83] =
 
 #define MINIMUM_DATA_THRESHOLD  4
 
-void JapaneseContextAnalysis::HandleData(const ::string & aBuf, PRunsigned int aLen)
+void JapaneseContextAnalysis::HandleData(const ::string & aBuf, PRunsigned ::i32 aLen)
 {
-  PRunsigned int charLen;
+  PRunsigned ::i32 charLen;
   PRInt32 order;
-  PRunsigned int i;
+  PRunsigned ::i32 i;
   
   if (mDone)
     return;
 
-  //The buffer we got is unsigned char oriented, and a character may span in more than one
-  //buffers. In case the last one or two unsigned char in last buffer is not complete, we 
-  //record how many unsigned char needed to complete that character and skip these bytes here.
+  //The buffer we got is ::u8 oriented, and a character may span in more than one
+  //buffers. In case the last one or two ::u8 in last buffer is not complete, we 
+  //record how many ::u8 needed to complete that character and skip these bytes here.
   //We can choose to record those bytes as well and analyse the character once it 
   //is complete, but since a character will not make much difference, by simply skipping
   //this character will simply our logic and improve performance.
@@ -137,58 +137,58 @@ void JapaneseContextAnalysis::HandleData(const ::string & aBuf, PRunsigned int a
 void JapaneseContextAnalysis::Reset(void)
 {
   mTotalRel = 0;
-  for (PRunsigned int i = 0; i < NUM_OF_CATEGORY; i++)
+  for (PRunsigned ::i32 i = 0; i < NUM_OF_CATEGORY; i++)
     mRelSample[i] = 0;
   mNeedToSkipCharNum = 0;
   mLastCharOrder = -1;
   mDone = PR_FALSE;
 }
-#define DONT_KNOW (float)-1
+#define DONT_KNOW (::f32)-1
 
-float  JapaneseContextAnalysis::GetConfidence()
+::f32  JapaneseContextAnalysis::GetConfidence()
 {
   //This is just one way to calculate confidence. It works well for me.
   if (mTotalRel > MINIMUM_DATA_THRESHOLD)
-    return ((float)(mTotalRel - mRelSample[0]))/mTotalRel;
+    return ((::f32)(mTotalRel - mRelSample[0]))/mTotalRel;
   else 
-    return (float)DONT_KNOW;
+    return (::f32)DONT_KNOW;
 }
 
 
-PRInt32 SJISContextAnalysis::GetOrder(const ::scoped_string & scopedstr, PRunsigned int *charLen)
+PRInt32 SJISContextAnalysis::GetOrder(const ::scoped_string & scopedstr, PRunsigned ::i32 *charLen)
 {
-  //find out current char's unsigned char length
-  if (((unsigned char)*str >= (unsigned char)0x81 && (unsigned char)*str <= (unsigned char)0x9f) ||
-      (((unsigned char)*str >= (unsigned char)0xe0 && (unsigned char)*str <= (unsigned char)0xfc)))
+  //find out current ::i8's ::u8 length
+  if (((::u8)*str >= (::u8)0x81 && (::u8)*str <= (::u8)0x9f) ||
+      (((::u8)*str >= (::u8)0xe0 && (::u8)*str <= (::u8)0xfc)))
       *charLen = 2;
   else 
       *charLen = 1;
 
   //return its order if it is hiragana
   if (*str == '\202' && 
-        (unsigned char)*(str+1) >= (unsigned char)0x9f && 
-        (unsigned char)*(str+1) <= (unsigned char)0xf1)
-    return (unsigned char)*(str+1) - (unsigned char)0x9f;
+        (::u8)*(str+1) >= (::u8)0x9f && 
+        (::u8)*(str+1) <= (::u8)0xf1)
+    return (::u8)*(str+1) - (::u8)0x9f;
   return -1;
 }
 
-PRInt32 EUCJPContextAnalysis::GetOrder(const ::scoped_string & scopedstr, PRunsigned int *charLen)
+PRInt32 EUCJPContextAnalysis::GetOrder(const ::scoped_string & scopedstr, PRunsigned ::i32 *charLen)
 {
-  //find out current char's unsigned char length
-  if ((unsigned char)*str == (unsigned char)0x8e ||
-      ((unsigned char)*str >= (unsigned char)0xa1 && 
-      (unsigned char)*str <= (unsigned char)0xfe))
+  //find out current ::i8's ::u8 length
+  if ((::u8)*str == (::u8)0x8e ||
+      ((::u8)*str >= (::u8)0xa1 && 
+      (::u8)*str <= (::u8)0xfe))
       *charLen = 2;
-  else if ((unsigned char)*str == (unsigned char)0x8f)
+  else if ((::u8)*str == (::u8)0x8f)
     *charLen = 3;
   else
     *charLen = 1;
 
   //return its order if it is hiragana
-  if ((unsigned char)*str == (unsigned char)0xa4 &&
-      (unsigned char)*(str+1) >= (unsigned char)0xa1 && 
-      (unsigned char)*(str+1) <= (unsigned char)0xf3)
-     return (unsigned char)*(str+1) - (unsigned char)0xa1;
+  if ((::u8)*str == (::u8)0xa4 &&
+      (::u8)*(str+1) >= (::u8)0xa1 && 
+      (::u8)*(str+1) <= (::u8)0xf3)
+     return (::u8)*(str+1) - (::u8)0xa1;
   return -1;
 }
 

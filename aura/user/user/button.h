@@ -51,9 +51,9 @@ namespace user
          ::image::image_list_pointer          m_pimagelistNormal;
          ::image::image_list_pointer          m_pimagelistItemHover;
          ::image::image_list_pointer          m_pimagelistSubItemHover;
-         int                              m_iImageNormal;
-         int                              m_iImageItemHover;
-         int                              m_iImageSubItemHover;
+         ::i32                              m_iImageNormal;
+         ::i32                              m_iImageItemHover;
+         ::i32                              m_iImageSubItemHover;
 
       };
 
@@ -62,15 +62,17 @@ namespace user
       //e_rect                            m_erectMargin;
       //e_rect                            m_erectBorder;
       //e_rect                            m_erectPadding;
+      ::write_text::font_pointer m_pfont;
       ::e_align                           m_ealignText;
       ::e_draw_text                       m_edrawtext;
       enum_style                          m_estyle;
-      //::int_rectangle                     m_rectangleText;
+      //::i32_rectangle                     m_rectangleText;
       ::collection::index                               m_iClick;
       enum_stock_icon                     m_estockicon;
-      ::int_rectangle                     m_rectangleCheckBox;
+      ::i32_rectangle                     m_rectangleCheckBox;
       ::pointer < bitmap >                m_pbitmap;
       ::pointer < list_base >                  m_plist;
+      ::i32_size                          m_sizeFixed;
 
 
       button();
@@ -86,7 +88,7 @@ namespace user
       //virtual bool create_interaction(::user::interaction * pinteractionParent, const ::atom & atom) override;
 
 
-      ::write_text::font_pointer get_font(style* pstyle, enum_element eelement = e_element_none, ::user::enum_state estate = e_state_none) override;
+      ::write_text::font_pointer get_font(style* pstyle, const ::e_element & eelement = e_element_none, const ::user::e_state & estate = e_state_none) override;
       enum_translucency get_translucency(style * pstyle) override;
 
       //virtual void resize_to_fit(::draw2d::graphics_pointer& pgraphics) override;
@@ -100,7 +102,7 @@ namespace user
       virtual void _001OnButtonDrawBitmap(::draw2d::graphics_pointer & pgraphics);
       virtual void _001OnButtonDrawImageAndText(::draw2d::graphics_pointer & pgraphics, bool bDecoration);
       virtual void _001OnButtonDrawBackground(::draw2d::graphics_pointer & pgraphics);
-      virtual void _001OnButtonDrawTextLayer(::draw2d::graphics_pointer & pgraphics, ::int_rectangle & rectText);
+      virtual void _001OnButtonDrawTextLayer(::draw2d::graphics_pointer & pgraphics, ::i32_rectangle & rectText);
 
       virtual void _001OnButtonDrawNormal(::draw2d::graphics_pointer & pgraphics);
 
@@ -122,7 +124,7 @@ namespace user
       //virtual bool is_pressed();
 
 
-      //virtual ::item_pointer on_hit_test(const ::int_point & point, ::user::e_zorder ezorder) override;
+      //virtual ::item_pointer on_hit_test(const ::i32_point & point, ::user::e_zorder ezorder) override;
 
       DECLARE_MESSAGE_HANDLER(on_message_key_down);
       DECLARE_MESSAGE_HANDLER(on_message_key_up);
@@ -130,8 +132,8 @@ namespace user
       DECLARE_MESSAGE_HANDLER(on_message_left_button_double_click);
 
 
-      ::double_size get_fitting_size(::draw2d::graphics_pointer & pgraphics) override;
-      ::double_size get_preferred_size(::draw2d::graphics_pointer & pgraphics) override;
+      ::f64_size get_fitting_size(::draw2d::graphics_pointer & pgraphics) override;
+      ::f64_size get_preferred_size(::draw2d::graphics_pointer & pgraphics) override;
 
       bool keyboard_focus_is_focusable() override;
 
@@ -145,9 +147,9 @@ namespace user
       virtual void on_exit_button_style(enum_style estyle);
 
       virtual void BaseToolTipRelayEvent(::message::message * pmessage);
-      virtual void BaseToolTipGetRect(::int_rectangle & rectangle);
+      virtual void BaseToolTipGetRect(::i32_rectangle & rectangle);
 
-      virtual int BaseToolTipGetIndex();
+      virtual ::i32 BaseToolTipGetIndex();
 
       virtual void pre_translate_message(::message::message * pmessage) override;
 

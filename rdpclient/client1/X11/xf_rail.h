@@ -25,15 +25,15 @@
 
 #include <freerdp/client/rail.h>
 
-void xf_rail_paint(xfContext* xfc, INT32 uleft, INT32 utop, unsigned int uright, unsigned int ubottom);
-void xf_rail_send_client_system_command(xfContext* xfc, unsigned int windowId, ::u3216 command);
+void xf_rail_paint(xfContext* xfc, INT32 uleft, INT32 utop, ::u32 uright, ::u32 ubottom);
+void xf_rail_send_client_system_command(xfContext* xfc, ::u32 windowId, ::u3216 command);
 void xf_rail_send_activate(xfContext* xfc, Window xwindow, BOOL enabled);
 void xf_rail_adjust_position(xfContext* xfc, xfAppWindow* appWindow);
 void xf_rail_end_local_move(xfContext* xfc, xfAppWindow* appWindow);
 void xf_rail_enable_remoteapp_mode(xfContext* xfc);
 void xf_rail_disable_remoteapp_mode(xfContext* xfc);
 
-int xf_rail_init(xfContext* xfc, RailClientContext* rail);
-int xf_rail_uninit(xfContext* xfc, RailClientContext* rail);
+::i32 xf_rail_init(xfContext* xfc, RailClientContext* rail);
+::i32 xf_rail_uninit(xfContext* xfc, RailClientContext* rail);
 
 #endif /* __XF_RAIL_H */

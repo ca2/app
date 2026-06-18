@@ -23,13 +23,13 @@ namespace app_integration
 
       pgraphics->text_out(100, 50, "Circle Path (300, 300) - (800, 800) r = 250");
 
-      ::double_rectangle r(300, 300, 800, 800);
+      ::f64_rectangle r(300, 300, 800, 800);
 
-      double Δx = m_rectangle.width() / 1000.0;
+      ::f64 Δx = m_rectangle.width() / 1000.0;
 
-      double Δy = m_rectangle.height() / 900.0;
+      ::f64 Δy = m_rectangle.height() / 900.0;
 
-      double d = minimum(Δx, Δy);
+      ::f64 d = minimum(Δx, Δy);
 
       r *= d;
 
@@ -43,7 +43,7 @@ namespace app_integration
 
       ppath->close_figure();
 
-      double radius = 100 * d;
+      ::f64 radius = 100 * d;
 
       ::draw2d::pen_pointer ppen;
 

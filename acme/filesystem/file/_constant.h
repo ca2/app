@@ -2,7 +2,7 @@
 
 
 
-enum enum_depth : int
+enum enum_depth : ::i32
 {
 
    e_depth_none = 0,
@@ -16,7 +16,7 @@ namespace file
 
 
    enum enum_flag :
-      long long
+      ::i64
    {
 
       e_flag_none = 0,
@@ -68,7 +68,7 @@ enum enum_stream
 
 };
 
-   enum fmtflags : unsigned int
+   enum fmtflags : ::u32
    {
       nofmtflags = 0,
       boolalpha = 0x00000001,
@@ -90,11 +90,11 @@ enum enum_stream
       separated = 0x00010000,
       adjustfield = left | right | internal,
       basefield = dec | oct | hex,
-      floatfield = scientific | fixed
+      f32field = scientific | fixed
    };
 
 
-   DECLARE_ENUMERATION(e_flag, enum_flag);
+   DECLARE_C_FLAG(e_flag, enum_flag);
 
 } // namespace file
 

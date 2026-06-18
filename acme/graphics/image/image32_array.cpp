@@ -18,21 +18,21 @@ image32_array::~image32_array()
 //{
 //
 //   // Do nothing
-//   const unsigned int STANDARD_PALETTE[] = {00,51,102,153,204,255};
-//   const int STANDARD_COLOR_SIZE = 6;
-////   const int STANDARD_PALETTE_VAL_DIF = 51;
+//   const ::u32 STANDARD_PALETTE[] = {00,51,102,153,204,255};
+//   const ::i32 STANDARD_COLOR_SIZE = 6;
+////   const ::i32 STANDARD_PALETTE_VAL_DIF = 51;
 //   allocate(216);
-////   unsigned int dwColorMapTable[216] = {0};
-//   int nColorMapIdx = 0;
-//   for(int nBlueIdx = 0; nBlueIdx < STANDARD_COLOR_SIZE; ++nBlueIdx)
+////   ::u32 dwColorMapTable[216] = {0};
+//   ::i32 nColorMapIdx = 0;
+//   for(::i32 nBlueIdx = 0; nBlueIdx < STANDARD_COLOR_SIZE; ++nBlueIdx)
 //   {
-//      for(int nGreenIdx = 0; nGreenIdx < STANDARD_COLOR_SIZE; ++nGreenIdx)
+//      for(::i32 nGreenIdx = 0; nGreenIdx < STANDARD_COLOR_SIZE; ++nGreenIdx)
 //      {
-//         for(int nRedIdx = 0; nRedIdx < STANDARD_COLOR_SIZE; ++nRedIdx)
+//         for(::i32 nRedIdx = 0; nRedIdx < STANDARD_COLOR_SIZE; ++nRedIdx)
 //         {
-//            this->element_at(nColorMapIdx) = argb(255, (unsigned char) STANDARD_PALETTE[nRedIdx],
-//             (unsigned char) STANDARD_PALETTE[nGreenIdx],
-//               (unsigned char) STANDARD_PALETTE[nBlueIdx]);
+//            this->element_at(nColorMapIdx) = argb(255, (::u8) STANDARD_PALETTE[nRedIdx],
+//             (::u8) STANDARD_PALETTE[nGreenIdx],
+//               (::u8) STANDARD_PALETTE[nBlueIdx]);
 //            ++nColorMapIdx;
 //
 //         }
@@ -49,7 +49,7 @@ image32_array::~image32_array()
 //
 //
 //
-//   CLASS_DECL_ACME void cra_from_quada(colorref_array & colorrefa, WINRGBQUAD * prgbquad, int iCount)
+//   CLASS_DECL_ACME void cra_from_quada(colorref_array & colorrefa, WINRGBQUAD * prgbquad, ::i32 iCount)
 //   {
 //
 //      colorrefa.set_size(iCount);

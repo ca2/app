@@ -78,7 +78,7 @@ namespace nanoui
 
       m_bVisible &= m_parent_window->visible_recursive();
       
-      int iMaxH=-1;
+      ::i32 iMaxH=-1;
       if(m_parent_window->m_pwidgetParent)
       {
          
@@ -88,12 +88,12 @@ namespace nanoui
       
       auto posParent = m_parent_window->position();
       
-      m_pos = posParent + m_anchor_pos - int_sequence2(0, m_anchor_offset);
+      m_pos = posParent + m_anchor_pos - i32_sequence2(0, m_anchor_offset);
       
       if(iMaxH > 0 && (m_pos.y + m_size.height() > iMaxH))
       {
-         int iNewY =iMaxH - m_size.height();
-         int iOffsetY = iNewY - m_pos.y;
+         ::i32 iNewY =iMaxH - m_size.height();
+         ::i32 iOffsetY = iNewY - m_pos.y;
          m_pos.y += iOffsetY;
          m_anchor_offset -= iOffsetY;
       }
@@ -115,8 +115,8 @@ namespace nanoui
       if (!m_bVisible)
          return;
 
-      int ds = m_ptheme->m_iWindowDropShadowSize;
-      int cr = m_ptheme->m_iWindowCorderRadius;
+      ::i32 ds = m_ptheme->m_iWindowDropShadowSize;
+      ::i32 cr = m_ptheme->m_iWindowCorderRadius;
 
       {
          ::nano2d::guard guard(pcontext);
@@ -124,30 +124,30 @@ namespace nanoui
          //pcontext->reset_scissor();
 
          /* Draw a drop shadow */
-         ::nano2d::paint shadow_paint = pcontext->box_gradient((float)m_pos.x, (float)m_pos.y, (float)m_size.cx, (float)m_size.cy, cr * 2.f, ds * 2.f,
+         ::nano2d::paint shadow_paint = pcontext->box_gradient((::f32)m_pos.x, (::f32)m_pos.y, (::f32)m_size.cx, (::f32)m_size.cy, cr * 2.f, ds * 2.f,
             m_ptheme->m_colorDropShadow, m_ptheme->m_colorTransparent);
 
          pcontext->begin_path();
-         pcontext->rectangle((float)m_pos.x - ds, (float)m_pos.y - ds, (float)m_size.cx + 2.f * ds, (float)m_size.cy + 2.f * ds);
-         pcontext->rounded_rectangle((float)m_pos.x, (float)m_pos.y, (float)m_size.cx, (float)m_size.cy, (float)cr);
+         pcontext->rectangle((::f32)m_pos.x - ds, (::f32)m_pos.y - ds, (::f32)m_size.cx + 2.f * ds, (::f32)m_size.cy + 2.f * ds);
+         pcontext->rounded_rectangle((::f32)m_pos.x, (::f32)m_pos.y, (::f32)m_size.cx, (::f32)m_size.cy, (::f32)cr);
          pcontext->path_winding(::nano2d::e_solidity_hole);
          pcontext->fill_paint(shadow_paint);
          pcontext->fill();
 
          /* Draw window */
          pcontext->begin_path();
-         pcontext->rounded_rectangle((float)m_pos.x, (float)m_pos.y, (float)m_size.cx, (float)m_size.cy, (float)cr);
+         pcontext->rounded_rectangle((::f32)m_pos.x, (::f32)m_pos.y, (::f32)m_size.cx, (::f32)m_size.cy, (::f32)cr);
 
-         auto base = m_pos + int_sequence2(0, m_anchor_offset);
-         int sign = -1;
+         auto base = m_pos + i32_sequence2(0, m_anchor_offset);
+         ::i32 sign = -1;
          if (m_side == Side::Left) {
             base.x += m_size.cx;
             sign = 1;
          }
 
-         pcontext->move_to((float)base.x + m_anchor_size * sign, (float)base.y);
-         pcontext->line_to((float)base.x - 1.f * sign, (float)base.y - m_anchor_size);
-         pcontext->line_to((float)base.x - 1.f * sign, (float)base.y + m_anchor_size);
+         pcontext->move_to((::f32)base.x + m_anchor_size * sign, (::f32)base.y);
+         pcontext->line_to((::f32)base.x - 1.f * sign, (::f32)base.y - m_anchor_size);
+         pcontext->line_to((::f32)base.x - 1.f * sign, (::f32)base.y + m_anchor_size);
 
          pcontext->fill_color(m_ptheme->m_colorWindowPopup);
          pcontext->fill();

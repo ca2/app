@@ -27,7 +27,7 @@ namespace user
          bool                             m_bPendingSelectionChange;
 
          /// runtime span, ephemeral, derived
-/// should be easily rebuildable from "storage" data and a client int_rectangle
+/// should be easily rebuildable from "storage" data and a client i32_rectangle
          pointer< pointer_array < line > >            m_plinea;
          character_count                                      m_iSelBeg;
          character_count                                      m_iSelEnd;
@@ -48,16 +48,16 @@ namespace user
 
 
          virtual void on_after_change(const ::atom & atom);
-         double get_rotate() override;
+         ::f64 get_rotate() override;
 
 
          //::pointer<span>add_span(::e_align ealignNewLine = e_align_none);
 
-         ::item_pointer on_hit_test(const ::int_point & point, ::user::e_zorder ezorder) override;
+         ::item_pointer on_hit_test(const ::i32_point & point, ::user::e_zorder ezorder) override;
 
-         virtual bool get_item_rect(::int_rectangle * prectangle, ::collection::index i);
+         virtual bool get_item_rect(::i32_rectangle * prectangle, ::collection::index i);
 
-         virtual bool get_element_rectangle(::int_rectangle * prectangle, ::collection::index i, enum_element eelement);
+         virtual bool get_element_rectangle(::i32_rectangle * prectangle, ::collection::index i, const ::e_element & eelement);
 
 
          ::user::drawable * get_drawable() override;
@@ -67,7 +67,7 @@ namespace user
          bool is_this_visible(enum_layout elayout = e_layout_design) override;
 
 
-         virtual ::double_size get_size() override;
+         virtual ::f64_size get_size() override;
 
          virtual void do_layout();
 
@@ -75,7 +75,7 @@ namespace user
          // void dump(dump_context & dumpcontext) const override;
 
          virtual bool _001GetItemText(string & str, ::collection::index iItem);
-         virtual bool _001IsPointInside(const ::int_point & point) override;
+         virtual bool _001IsPointInside(const ::i32_point & point) override;
          virtual void update_data(bool bSaveAndValidate) override;
          virtual void update_placement() override;
 
@@ -88,11 +88,11 @@ namespace user
          virtual void _001GetLayoutText(string & str) const;
 
 
-         //virtual long long increment_reference_count() override
+         //virtual ::i64 increment_reference_count() override
          //{
          //   return ::object::increment_reference_count();
          //}
-         //virtual long long decrement_reference_count() override
+         //virtual ::i64 decrement_reference_count() override
          //{
          //   return ::object::decrement_reference_count();
          //}
@@ -109,7 +109,7 @@ namespace user
 
          virtual void _001OnDeleteText();
 
-         virtual ::double_rectangle get_drawing_rect();
+         virtual ::f64_rectangle get_drawing_rect();
 
          virtual void internal_update_sel_char();
 
@@ -150,7 +150,7 @@ namespace user
          //DECLARE_MESSAGE_HANDLER(on_message_kill_focus);
 
 
-         void on_timer(::timer * ptimer) override;
+         void operator()(::timer * ptimer) override;
 
 
          virtual void key_to_char(::message::key * pkey);
@@ -167,7 +167,7 @@ namespace user
 
          void handle(::topic * ptopic, ::handler_context * phandlercontext) override;
 
-         virtual void draw_text(::draw2d::graphics_pointer & pgraphics, const ::double_rectangle & rectangle);
+         virtual void draw_text(::draw2d::graphics_pointer & pgraphics, const ::f64_rectangle & rectangle);
 
          virtual character_count _001GetLayoutTextLength() const;
 
@@ -180,7 +180,7 @@ namespace user
          virtual void _001GetSelLineText(string & str);
 
 
-         void get_text_composition_area(::int_rectangle & r) override;
+         void get_text_composition_area(::i32_rectangle & r) override;
          void on_text_composition(const ::scoped_string & scopedstr) override;
          void on_text_composition_done() override;
          bool edit_undo() override;
@@ -195,8 +195,8 @@ namespace user
 
          bool has_text_input() override;
 
-         virtual character_count _hit_test(double_point point);
-         virtual character_count _hit_test_line_x(::collection::index iLine, double x);
+         virtual character_count _hit_test(::f64_point point);
+         virtual character_count _hit_test_line_x(::collection::index iLine, ::f64 x);
 
 
       };

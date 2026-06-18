@@ -33,7 +33,7 @@ namespace turboc
 
       ::pointer < ::mutex >                                  m_pmutexAiFont;
 
-      int                                m_iErrorAiFont;
+      ::i32                                m_iErrorAiFont;
       bool                                   m_bLoadAiFont;
       void *                                 m_faceAi;
 
@@ -63,11 +63,11 @@ namespace turboc
 
 
 
-      virtual int  exit_application() override;
+      virtual ::i32  exit_application() override;
 
       virtual void on_request(::request * prequest) override;
 
-      static unsigned int thread_proc_load_ai_font(void * pparam);
+      static ::u32 thread_proc_load_ai_font(void * pparam);
       virtual void load_ai_font();
 
    };

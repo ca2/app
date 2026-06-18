@@ -7,9 +7,9 @@
 
 //struct TIME { posix_time m_posixtime; nanosecond m_nanosecond; };
 
-struct FREQUENCY { double m_dHertz; };
+struct FREQUENCY { ::f64 m_dHertz; };
 
-constexpr FREQUENCY operator""_Hz(long double d) { return { (double) d }; }
+constexpr FREQUENCY operator""_Hz(::f128 d) { return { (::f64) d }; }
 
 
 class time;

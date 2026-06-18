@@ -65,13 +65,13 @@ namespace user
 
          get_window_text(strText);
 
-         ::double_rectangle rectangleX;
+         ::f64_rectangle rectangleX;
 
          this->rectangle(rectangleX);
 
-         //::double_rectangle rectangleMargin(2, 2,2, 2);
+         //::f64_rectangle rectangleMargin(2, 2,2, 2);
 
-//         ::double_rectangle rectangleBorder(2, 2,2, 2);
+//         ::f64_rectangle rectangleBorder(2, 2,2, 2);
 
   //       rectangleX.deflate(rectangleMargin);
 
@@ -131,14 +131,14 @@ namespace user
 
          }
 
-         ::double_rectangle rectanglePadding(0, 0, 0, 0);
+         ::f64_rectangle rectanglePadding(0, 0, 0, 0);
 
          rectangleX.deflate(rectanglePadding);
 
          if (m_estockicon == stock_icon_none)
          {
 
-            int iDrawTextFlags =  get_int(pstyle, ::user::int_edit_draw_text_flags,e_align_left_center, e_draw_text_single_line);
+            ::i32 iDrawTextFlags =  get_int(pstyle, ::user::i32_edit_draw_text_flags,e_align_left_center, e_draw_text_single_line);
 
             if(m_pfont)
             {
@@ -173,7 +173,7 @@ namespace user
 
             pgraphics->set(ppen);
 
-            ::double_rectangle rectangleIcon(rectangleX);
+            ::f64_rectangle rectangleIcon(rectangleX);
 
             rectangleIcon.deflate(rectangleIcon.width() / 4, rectangleIcon.height() / 4);
 
@@ -219,9 +219,9 @@ namespace user
 
    //   pmessage->previous();
 
-   //   enum_element eelement;
+   //   const ::e_element & eelement;
 
-   //   ::int_point point = pmouse->m_point;
+   //   ::i32_point point = pmouse->m_point;
 
    //   screen_to_client()(point);
 
@@ -249,9 +249,9 @@ namespace user
 
    //   pmessage->previous();
 
-   //   enum_element eelement;
+   //   const ::e_element & eelement;
 
-   //   ::int_point point = pmouse->m_point;
+   //   ::i32_point point = pmouse->m_point;
 
    //   screen_to_client()(point);
 
@@ -283,9 +283,9 @@ namespace user
 
    //   //auto pmouse = pmessage->m_union.m_pmouse;
 
-   //   //enum_element eelement;
+   //   //const ::e_element & eelement;
 
-   //   //::int_point point = pmouse->m_point;
+   //   //::i32_point point = pmouse->m_point;
 
    //   //screen_to_client()(point);
 
@@ -349,7 +349,7 @@ namespace user
 
    //   //auto pmouse = pmessage->m_union.m_pmouse;
 
-   //   //enum_element eelement;
+   //   //const ::e_element & eelement;
 
    //   //index iHover = hit_test(pmouse->m_point, eelement);
    //   //if (iHover != m_iHover)
@@ -412,12 +412,12 @@ namespace user
 
    //}
 
-   //::item_pointer still::on_hit_test(const ::int_point &point, ::user::e_zorder ezorder)
+   //::item_pointer still::on_hit_test(const ::i32_point &point, ::user::e_zorder ezorder)
    //{
 
    //   return control::hit_test(pmouse);
 
-   //   //::double_rectangle rectangleWindow;
+   //   //::f64_rectangle rectangleWindow;
    //   //window_rectangle(rectangleWindow);
    //   //if (rectangleWindow.contains(point))
    //   //{
@@ -479,10 +479,10 @@ namespace user
 
          auto size = pgraphics->get_text_extent(str);
 
-         ::double_rectangle rectangle(0, 0, 0, 0);
+         ::f64_rectangle rectangle(0, 0, 0, 0);
 
-         rectangle.right = int(size.cx * 1.6);
-         rectangle.bottom = int(size.cy * 1.4);
+         rectangle.right = ::i32(size.cx * 1.6);
+         rectangle.bottom = ::i32(size.cy * 1.4);
 
          layout().sketch() = rectangle.size();
 
@@ -500,9 +500,9 @@ namespace user
 
          auto sizeTotal = calc_text_size();
 
-         sizeTotal.cx = (int)(sizeTotal.cx * 1.6);
+         sizeTotal.cx = (::i32)(sizeTotal.cx * 1.6);
 
-         sizeTotal.cy = (int)(sizeTotal.cy * 1.4);
+         sizeTotal.cy = (::i32)(sizeTotal.cy * 1.4);
 
          layout().sketch() = sizeTotal;
 
@@ -572,14 +572,14 @@ namespace user
    void still::on_layout(::draw2d::graphics_pointer & pgraphics)
    {
 
-      ::double_rectangle rectangleX;
+      ::f64_rectangle rectangleX;
 
       this->rectangle(rectangleX);
 
 
       ::size sizeText = calc_text_size();
 
-      ::double_rectangle rectangle;
+      ::f64_rectangle rectangle;
 
       rectangle.left = rectangleX.left + (rectangleX.width() - sizeText.cx) / 2;
 
@@ -602,7 +602,7 @@ namespace user
    }
 
 
-   ::write_text::font_pointer still::get_font(style * pstyle, enum_element eelement, estate estate) const
+   ::write_text::font_pointer still::get_font(style * pstyle, const ::e_element & eelement, estate estate) const
    {
 
       //if (pstyle)
@@ -637,7 +637,7 @@ namespace user
 
 
 
-      ::double_rectangle rectangleX;
+      ::f64_rectangle rectangleX;
 
       this->rectangle(rectangleX);
 
@@ -714,11 +714,11 @@ namespace user
 
       rectangleX.left += 3;
       rectangleX.top += 3;
-      ::double_rectangle rectangleText = m_rectangleText;
+      ::f64_rectangle rectangleText = m_rectangleText;
       //      string str = utf8_to_unicode(str);
       if (m_pimage->is_ok())
       {
-         ::double_rectangle rectangleDib;
+         ::f64_rectangle rectangleDib;
          rectangleDib = m_rectangleText;
          rectangleDib.bottom = minimum(rectangleText.top + m_pimage->height(), rectangleText.bottom);
          rectangleDib.right = minimum(rectangleText.left + m_pimage->width(), rectangleText.right);
@@ -779,9 +779,9 @@ namespace user
 
       auto pkey = pmessage->m_union.m_pkey;
 
-      ::user::enum_key iKey = pkey->m_ekey;
+      auto ekey = pkey->m_ekey;
 
-      if (iKey == ::user::e_key_return || iKey == ::user::e_key_space)
+      if (ekey == ::user::e_key_return || ekey == ::user::e_key_space)
       {
 
          ::topic topic;
@@ -809,7 +809,7 @@ namespace user
 
       get_window_text(strText);
 
-      ::double_rectangle rectangleX;
+      ::f64_rectangle rectangleX;
       this->rectangle(rectangleX);
 
 
@@ -872,25 +872,25 @@ namespace user
       if (pimage->area() > 0 && rectangleX.area() > 0)
       {
 
-         ::double_rectangle rectangleAspect;
+         ::f64_rectangle rectangleAspect;
 
          rectangleAspect.left = 0;
 
          rectangleAspect.top = 0;
 
-         double dW = (double)rectangleX.width() / (double)pimage->width();
+         ::f64 dW = (::f64)rectangleX.width() / (::f64)pimage->width();
 
-         double dH = (double)rectangleX.height() / (double)pimage->height();
+         ::f64 dH = (::f64)rectangleX.height() / (::f64)pimage->height();
 
-         double dMin = maximum(minimum(dW, dH), 1.0);
+         ::f64 dMin = maximum(minimum(dW, dH), 1.0);
 
-         rectangleAspect.right = (int) (pimage->width() * dMin);
+         rectangleAspect.right = (::i32) (pimage->width() * dMin);
 
-         rectangleAspect.bottom = (int) (pimage->height() * dMin);
+         rectangleAspect.bottom = (::i32) (pimage->height() * dMin);
 
          rectangleAspect.Align(e_align_center, rectangleX);
 
-        pgraphics->draw(rectangleX, pimage->g(), ::double_rectangle(pimage->get_size()));
+        pgraphics->draw(rectangleX, pimage->g(), ::f64_rectangle(pimage->get_size()));
 
       }
 
@@ -1008,10 +1008,10 @@ namespace user
 
    }
 
-   int still::BaseToolTipGetIndex()
+   ::i32 still::BaseToolTipGetIndex()
    {
       // use window dialog control atom as the index
-      return (int)GetDlgCtrlId();
+      return (::i32)GetDlgCtrlId();
    }
 
 

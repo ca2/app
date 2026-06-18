@@ -1,6 +1,6 @@
 
 
-//int main(int argc, char* argv[])
+//::i32 main(::i32 argc, char_pointer argv[])
 //{
 //
 //   //class apex_apex apex_apex;
@@ -42,7 +42,7 @@
 //
 //   }
 //
-//   int iErrorStatus = estatus.error_status();
+//   ::i32 iErrorStatus = estatus.error_status();
 //
 //   psystem->inline_term();
 //
@@ -89,7 +89,7 @@ public:
    }
 
 
-   console(int argc, char ** argv, char ** envp)
+   console(::i32 argc, char_pointer * argv, char_pointer * envp)
    {
 
       common_construct();
@@ -101,7 +101,7 @@ public:
    }
 
 
-   console(int argc, wchar_t ** argv, wchar_t ** envp)
+   console(::i32 argc, wchar_t ** argv, wchar_t ** envp)
    {
 
       common_construct();
@@ -121,12 +121,12 @@ public:
    }
 
 
-   int result()
+   ::i32 result()
    {
 
       m_estatus = m_papplication->application()->m_estatus;
 
-      int iErrorStatus = m_estatus.error_status();
+      ::i32 iErrorStatus = m_estatus.error_status();
 
       system()->inline_term();
 
@@ -154,7 +154,7 @@ public:
 };
 
 
-//int wmain(int argc, wchar_t* argv[])
+//::i32 wmain(::i32 argc, wchar_t* argv[])
 //{
 //
 //   console console(argc, argv);

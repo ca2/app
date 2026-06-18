@@ -205,7 +205,7 @@ bool item_container::contains_item(const ::atom & atom) const
 }
 
 
-::item * item_container::find_item(enum_element eelement, ::collection::index iItem)
+::item * item_container::find_item(const ::e_element & eelement, ::collection::index iItem)
 {
 
    if (!m_pitema)
@@ -239,7 +239,7 @@ bool item_container::contains_item(const ::atom & atom) const
 }
 
 
-::item * item_container::defer_item(enum_element eelement, ::collection::index iItem)
+::item * item_container::defer_item(const ::e_element & eelement, ::collection::index iItem)
 {
 
    auto pitem = this->find_item(eelement, iItem);
@@ -256,7 +256,7 @@ bool item_container::contains_item(const ::atom & atom) const
 }
 
 
-::item_pointer item_container::add_item(enum_element eelement, ::collection::index iItem)
+::item_pointer item_container::add_item(const ::e_element & eelement, ::collection::index iItem)
 {
 
    auto pitem = allocateø ::item(eelement, iItem);

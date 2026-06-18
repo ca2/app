@@ -50,17 +50,17 @@
 ////   ::windows_definition::DispStock = 1
 ////};
 //
-////IA64: __DISPMAP_ENTRY could be ordered more efficiently to reduce int_size
+////IA64: __DISPMAP_ENTRY could be ordered more efficiently to reduce i32_size
 //// bloat from alignment
 //#pragma warning( disable: 4121 )
 //struct CLASS_DECL_APEX __DISPMAP_ENTRY
 //{
-//   const_char_pointer lpszName;       // member/property name
+//   const_char_pointer pszName;       // member/property name
 
 //   long lDispID;           // DISPID (may be DISPID_UNKNOWN)
 //   const ::scoped_string & scopedstrParams;      // member parameter description
 
-//   unsigned short vt;                // return value type / or type of property
+//   ::u16 vt;                // return value type / or type of property
 //   __PMSG pfn;           // normal member On<membercall> or, OnGet<property>
 //   __PMSG pfnSet;        // special member for OnSet<property>
 //   size_t nPropOffset;     // property offset
@@ -71,8 +71,8 @@
 //struct CLASS_DECL_APEX __EVENTSINKMAP_ENTRY
 //{
 //   __DISPMAP_ENTRY dispEntry;
-//   unsigned int nCtrlIDFirst;
-//   unsigned int nCtrlIDLast;
+//   ::u32 nCtrlIDFirst;
+//   ::u32 nCtrlIDLast;
 //};
 //
 //// DSC Sink state/reason codes passed to apex API ::account::user happening handlers

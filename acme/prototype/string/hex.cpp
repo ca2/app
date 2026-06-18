@@ -4,7 +4,7 @@
 #include "acme/exception/parsing.h"
 
 
-int alphadigit_weight(char ch)
+::i32 alphadigit_weight(::i8 ch)
 {
 
    if (ch >= '0' && ch <= '9')
@@ -39,10 +39,10 @@ namespace hex
 {
 
 
-   long long to_long_long(const ::scoped_string & scopedstr)
+   ::i64 to_i64(const ::scoped_string & scopedstr)
    {
 
-      long long r = 0, num = 0;
+      ::i64 r = 0, num = 0;
       if (scopedstr.is_empty())
       {
 
@@ -50,10 +50,10 @@ namespace hex
 
       }
       auto pcsz = scopedstr.begin();
-      for(long long i = ansi_len(pcsz)-1; i >= 0; i--)
+      for(::i64 i = ansi_len(pcsz)-1; i >= 0; i--)
       {
 
-         long long d = alphadigit_weight(pcsz[i]);
+         ::i64 d = alphadigit_weight(pcsz[i]);
 
          if(d == -1)
             return -1;
@@ -63,20 +63,20 @@ namespace hex
       return num;
    }
 
-   unsigned int to_unsigned_int(const ::scoped_string & scopedstr)
+   ::u32 to_u32(const ::scoped_string & scopedstr)
    {
-      unsigned int r = 0;
-      for (int i = 0; i < scopedstr.length(); i++)
+      ::u32 r = 0;
+      for (::i32 i = 0; i < scopedstr.length(); i++)
       {
          r = r * 16 + scopedstr[i] - 48 - ((scopedstr[i] >= 'A') ? 7 : 0) - ((scopedstr[i] >= 'a') ? 32 : 0);
       }
       return r;
    }
 
-   unsigned long long to_unsigned_long_long(const ::scoped_string & scopedstr)
+   ::u64 to_u64(const ::scoped_string & scopedstr)
    {
-      unsigned long long r = 0;
-      for(int i = 0; i < scopedstr.length(); i++)
+      ::u64 r = 0;
+      for(::i32 i = 0; i < scopedstr.length(); i++)
       {
          r = r * 16 + scopedstr[i] - 48 - ((scopedstr[i] >= 'A') ? 7 : 0) - ((scopedstr[i] >= 'a') ? 32 : 0);
       }
@@ -101,7 +101,7 @@ namespace hex
 {
 
 
-   unsigned short parse_u16_exc(::const_ansi_range & range)
+   ::u16 parse_u16_exc(::const_ansi_range & range)
    {
       
       string strUni;
@@ -144,7 +144,7 @@ namespace hex
 
       }
 
-      return ::hex::to_unsigned_int(strUni);
+      return ::hex::to_u32(strUni);
 
    }
 

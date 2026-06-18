@@ -57,7 +57,7 @@ list(APPEND library_source
    #    impact_interface.cpp
    #    impact_interface.h
         install.cpp
-        install.h
+        #install.h
       #coding.cpp
    #coding.h
    #    integration_command.cpp
@@ -104,6 +104,7 @@ list(APPEND library_source
 if(${FREEBSD})
     list(APPEND library_source
             install_freebsd.cpp
+            freebsd.cpp
     )
 endif()
 

@@ -1,10 +1,10 @@
 #include "framework.h"
 
 
-//void dump_context::write(float f)
+//void dump_context::write(::f32 f)
 //{
 //
-//   char szBuffer[32];
+//   ::i8 szBuffer[32];
 //
 //#ifdef WINDOWS
 //
@@ -21,10 +21,10 @@
 //}
 //
 //
-//void dump_context::write(double d)
+//void dump_context::write(::f64 d)
 //{
 //
-//   char szBuffer[32];
+//   ::i8 szBuffer[32];
 //
 //#ifdef WINDOWS
 //

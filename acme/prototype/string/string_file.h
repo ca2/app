@@ -7,7 +7,7 @@ class CLASS_DECL_ACME string_buffer
 public:
 
    string_base < TYPE_CHAR >& m_str;
-   char* m_pszBuffer;
+   char_pointer m_pszBuffer;
    character_count m_nLength;
    character_count m_nBufferLength;
 
@@ -30,7 +30,7 @@ public:
 
    }
 
-   string_buffer(string_base& str, character_count nMinLength, unsigned int dwFlags = AUTO_LENGTH) THROWS :
+   string_buffer(string_base& str, character_count nMinLength, ::u32 dwFlags = AUTO_LENGTH) THROWS :
    m_str(str),
       m_pszBuffer(nullptr),
       m_nLength((dwFlags& AUTO_LENGTH) ? -1 : nMinLength),
@@ -61,7 +61,7 @@ public:
    }
 
 
-   operator char* () noexcept
+   operator char_pointer () noexcept
    {
 
       return m_pszBuffer;

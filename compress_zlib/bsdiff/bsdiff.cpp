@@ -119,7 +119,7 @@ static void split(off_t *I,off_t *V,off_t start,off_t len,off_t h)
    if(start+len>kk) split(I,V,kk,start+len-kk,h);
 }
 
-static void qsufsort(off_t *I,off_t *V,u_char *old,off_t oldsize)
+static void qsufsort(off_t *I,off_t *V,u_char_pointer old,off_t oldsize)
 {
    off_t buckets[256];
    off_t i,h,len;
@@ -162,7 +162,7 @@ static void qsufsort(off_t *I,off_t *V,u_char *old,off_t oldsize)
    for(i=0; i<oldsize+1; i++) I[V[i]]=i;
 }
 
-static off_t matchlen(u_char *old,off_t oldsize,u_char *___new,off_t newsize)
+static off_t matchlen(u_char_pointer old,off_t oldsize,u_char_pointer ___new,off_t newsize)
 {
    off_t i;
 
@@ -172,8 +172,8 @@ static off_t matchlen(u_char *old,off_t oldsize,u_char *___new,off_t newsize)
    return i;
 }
 
-static off_t search(off_t *I,u_char *old,off_t oldsize,
-                    u_char *___new,off_t newsize,off_t st,off_t en,off_t *pos)
+static off_t search(off_t *I,u_char_pointer old,off_t oldsize,
+                    u_char_pointer ___new,off_t newsize,off_t st,off_t en,off_t *pos)
 {
    off_t x,y;
 
@@ -205,7 +205,7 @@ static off_t search(off_t *I,u_char *old,off_t oldsize,
    };
 }
 
-static void offtout(off_t x,u_char *buf)
+static void offtout(off_t x,u_char_pointer buf)
 {
    off_t y;
 
@@ -223,10 +223,10 @@ static void offtout(off_t x,u_char *buf)
    if(x<0) buf[7]|=0x80;
 }
 
-int main(int argc,char *argv[])
+::i32 main(::i32 argc,char_pointer argv[])
 {
-   int fd;
-   u_char *old,*___new;
+   ::i32 fd;
+   u_char_pointer old,*___new;
    off_t oldsize,newsize;
    off_t *I,*V;
    off_t scan,pos,len;
@@ -236,12 +236,12 @@ int main(int argc,char *argv[])
    off_t overlap,Ss,lens;
    off_t i;
    off_t dblen,eblen;
-   u_char *db,*eb;
+   u_char_pointer db,*eb;
    u_char buf[8];
    u_char header[32];
    FILE * pf;
    BZFILE * pfbz2;
-   int bz2err;
+   ::i32 bz2err;
 
    if(argc!=4) errx(1,"usage: %s oldfile newfile patchfile\n",argv[0]);
 
@@ -393,7 +393,7 @@ int main(int argc,char *argv[])
    if (bz2err != BZ_OK)
       errx(1, "BZ2_bzWriteClose, bz2err = %d", bz2err);
 
-   /* Compute int_size of compressed ctrl data */
+   /* Compute i32_size of compressed ctrl data */
    if ((len = ftello(pf)) == -1)
       err(1, "ftello");
    offtout(len-32, header + 8);
@@ -408,7 +408,7 @@ int main(int argc,char *argv[])
    if (bz2err != BZ_OK)
       errx(1, "BZ2_bzWriteClose, bz2err = %d", bz2err);
 
-   /* Compute int_size of compressed diff data */
+   /* Compute i32_size of compressed diff data */
    if ((newsize = ftello(pf)) == -1)
       err(1, "ftello");
    offtout(newsize - len, header + 16);

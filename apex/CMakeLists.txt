@@ -152,6 +152,7 @@ list(APPEND apex_source
    inline/console.h
    inline/console_common.h
    #inline/library.h
+
    innate_ui/button.cpp
    innate_ui/button.h
    innate_ui/dialog.cpp
@@ -160,6 +161,8 @@ list(APPEND apex_source
    innate_ui/icon.h
    innate_ui/innate_ui.cpp
    innate_ui/innate_ui.h
+   innate_ui/menu.cpp
+   innate_ui/menu.h
    innate_ui/still.cpp
    innate_ui/still.h
    innate_ui/window.cpp
@@ -700,6 +703,7 @@ if (WIN32)
       #operating_system/win32/font.h
       #operating_system/win32/window.cpp
       #operating_system/win32/window.h
+
    )
 else ()
 

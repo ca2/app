@@ -21,7 +21,7 @@ namespace image
       bool                                m_bDefaultCursor;
       ::image::image_pointer                     m_pimage;
       ::image::image_pointer                     m_pimageCursor;
-      ::int_size                          m_szHotspotOffset;
+      ::i32_size                          m_szHotspotOffset;
 
 
       ::pointer<::windowing::cursor>     m_pcursor;
@@ -48,14 +48,14 @@ namespace image
       //static bool reset(::user::interaction * pinteraction, ::aura::session * psession);
 
       ::draw2d::graphics * g() const;
-      ::draw2d::graphics * g(const ::double_size & sizeHint);
+      ::draw2d::graphics * g(const ::f64_size & sizeHint);
 
       
-      ::image::image_pointer image_source_image(const ::int_size & size) override;
+      ::image::image_pointer image_source_image(const ::i32_size & size) override;
 
-      ::int_size image_source_size(const ::double_size & sizeDst, enum_image_selection eimageselection) const override;
+      ::i32_size image_source_size(const ::f64_size & sizeDst, enum_image_selection eimageselection) const override;
 
-      ::int_size image_source_size() const override;
+      ::i32_size image_source_size() const override;
 
 
    };
@@ -64,7 +64,7 @@ namespace image
    typedef ::pointer<cursor>cursor_pointer;
 
 
-   CLASS_DECL_AURA void cursor_alloc(::particle * pparticle, cursor_pointer & image,int xHotspot,int yHotspot);
+   CLASS_DECL_AURA void cursor_alloc(::particle * pparticle, cursor_pointer & image,::i32 xHotspot,::i32 yHotspot);
    CLASS_DECL_AURA ::image::image_pointer cursor_get_image(cursor * pcursor);
 
 
@@ -72,7 +72,7 @@ namespace image
 
 
 
-//CLASS_DECL_AURA hcursor CreateAlphaCursor(::windowing::window * pwindow, const ::image::image *pimage,int xHotSpot,int yHotSpot);
+//CLASS_DECL_AURA hcursor CreateAlphaCursor(::windowing::window * pwindow, const ::image::image *pimage,::i32 xHotSpot,::i32 yHotSpot);
 
 
 

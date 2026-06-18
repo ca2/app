@@ -9,7 +9,7 @@
 
 /*
 
-int crypt_encrypt(memory & storageEncrypt, const memory & storageDecrypt, memory & memKeyDataParam)
+::i32 crypt_encrypt(memory & storageEncrypt, const memory & storageDecrypt, memory & memKeyDataParam)
 {
 
    memory memKeyData(memKeyDataParam);
@@ -21,7 +21,7 @@ int crypt_encrypt(memory & storageEncrypt, const memory & storageDecrypt, memory
    if(iSize < 32)
    {
 
-      memory_set(&((unsigned char *) memKeyData.get_data())[iSize], 0, 32 - iSize);
+      memory_set(&((::u8 *) memKeyData.get_data())[iSize], 0, 32 - iSize);
 
    }
 
@@ -84,7 +84,7 @@ int crypt_encrypt(memory & storageEncrypt, const memory & storageDecrypt, memory
 
    }
 
-   unsigned char iv[8] = {1,2,3,4,5,6,7,8};
+   ::u8 iv[8] = {1,2,3,4,5,6,7,8};
 
    CFDataRef dataIv = CFDataCreate(kCFAllocatorDefault, (const ::u328 *) iv, sizeof(iv));
 
@@ -177,11 +177,11 @@ int crypt_encrypt(memory & storageEncrypt, const memory & storageDecrypt, memory
 
    CFRelease(key);
 
-    return (int) storageEncrypt.get_size();
+    return (::i32) storageEncrypt.get_size();
 
 }
 
-int crypt_decrypt(memory & storageDecrypt, const memory & storageEncrypt, memory & memKeyDataParam)
+::i32 crypt_decrypt(memory & storageDecrypt, const memory & storageEncrypt, memory & memKeyDataParam)
 {
 
    memory memKeyData(memKeyDataParam);
@@ -193,7 +193,7 @@ int crypt_decrypt(memory & storageDecrypt, const memory & storageEncrypt, memory
    if(iSize < 32)
    {
 
-      memory_set(&((unsigned char *) memKeyData.get_data())[iSize], 0, 32 - iSize);
+      memory_set(&((::u8 *) memKeyData.get_data())[iSize], 0, 32 - iSize);
 
    }
 
@@ -256,7 +256,7 @@ int crypt_decrypt(memory & storageDecrypt, const memory & storageEncrypt, memory
 
    }
 
-   unsigned char iv[8] = {1,2,3,4,5,6,7,8};
+   ::u8 iv[8] = {1,2,3,4,5,6,7,8};
 
    CFDataRef dataIv = CFDataCreate(kCFAllocatorDefault, (const ::u328 *) iv, sizeof(iv));
 
@@ -349,7 +349,7 @@ int crypt_decrypt(memory & storageDecrypt, const memory & storageEncrypt, memory
 
    CFRelease(key);
 
-   return (int) storageDecrypt.get_size();
+   return (::i32) storageDecrypt.get_size();
 
 }
 

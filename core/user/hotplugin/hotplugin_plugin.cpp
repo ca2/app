@@ -17,11 +17,11 @@
 #if defined(LINUX) || defined(__ANDROID__) || defined(APPLEOS) || defined(SOLARIS)
 iptr get_map_failed();
 void my_munmap(void * pimage32,HANDLE hfile);
-void * my_open_map(const ::scoped_string & scopedstr,HANDLE * pfile,bool bRead,bool bWrite,long long int_size);
+void * my_open_map(const ::scoped_string & scopedstr,HANDLE * pfile,bool bRead,bool bWrite,::i64 i32_size);
 #endif
 
 
-//void fastblur(unsigned int * pdata, int w, int h, int radius);
+//void fastblur(::u32 * pdata, ::i32 w, ::i32 h, ::i32 radius);
 
 
 namespace hotplugin
@@ -157,7 +157,7 @@ namespace hotplugin
    }
 
    //// ca.dll-absence-(ca.dll-delay-load)-safe
-   //void plugin::window_rectangle(::int_rectangle * prectangle)
+   //void plugin::window_rectangle(::i32_rectangle * prectangle)
 
    //{
 
@@ -166,7 +166,7 @@ namespace hotplugin
 
    //}
 
-   //void plugin::set_window_rect(const ::int_rectangle & rectangle)
+   //void plugin::set_window_rect(const ::i32_rectangle & rectangle)
    //{
 
    //   m_rectangle = *rectangle;
@@ -222,7 +222,7 @@ namespace hotplugin
    }
 
 
-   void plugin::on_paint(::draw2d::graphics_pointer & pgraphics,const ::int_rectangle & rectangle)
+   void plugin::on_paint(::draw2d::graphics_pointer & pgraphics,const ::i32_rectangle & rectangle)
    {
 
       on_bare_paint(pgraphics, rectangle);
@@ -240,7 +240,7 @@ namespace hotplugin
 
 #elif defined(LINUX) || defined(SOLARIS)
 
-   int plugin::x11_message_handler(void  * pevent)
+   ::i32 plugin::x11_message_handler(void  * pevent)
    {
       return 0;
    }
@@ -248,7 +248,7 @@ namespace hotplugin
 #endif
 
 
-   int plugin::start_ca2_system()
+   ::i32 plugin::start_ca2_system()
    {
       return -1;
    }
@@ -306,34 +306,34 @@ namespace hotplugin
 
    }
 
-   /*double cos_prec_dup(double x,double prec)
+   /*::f64 cos_prec_dup(::f64 x,::f64 prec)
    {
-   double t , s ;
-   int int_point;
+   ::f64 t , s ;
+   ::i32 i32_point;
    point = 0;
    s = 1.0;
    t = 1.0;
    while(fabs(t/s) > prec)
    {
-   int_point++;
-   t = (-t * x * x) / ((2 * int_point - 1) * (2 * int_point));
+   i32_point++;
+   t = (-t * x * x) / ((2 * i32_point - 1) * (2 * i32_point));
    s += t;
    }
    return s;
    }*/
 
-   double sin_dup(double x);
+   ::f64 sin_dup(::f64 x);
 
-   double cos_dup(double x)
+   ::f64 cos_dup(::f64 x)
    {
 
-      double sin = sin_dup(x / 2.0);
+      ::f64 sin = sin_dup(x / 2.0);
 
       return 1.0 - 2.0 * sin * sin;
 
    }
 
-   double sin_dup(double x)
+   ::f64 sin_dup(::f64 x)
    {
 
       if(x < 0.0)
@@ -345,11 +345,11 @@ namespace hotplugin
       else if(x < 3.1415 / 16.0)
       {
 
-         double sin = 0.0;
-         double pow = x;
-         double fact = 1.0;
+         ::f64 sin = 0.0;
+         ::f64 pow = x;
+         ::f64 fact = 1.0;
 
-         for(double d = 0.0; d < 16.0; d += 1.0)
+         for(::f64 d = 0.0; d < 16.0; d += 1.0)
          {
             sin += pow / fact;
             pow *= x * x;
@@ -368,11 +368,11 @@ namespace hotplugin
 
    }
 
-   void plugin::get_progress_color(unsigned char & uchR, unsigned char & uchG, unsigned char & uchB, double dRate, int iProfile)
+   void plugin::get_progress_color(::u8 & uchR, ::u8 & uchG, ::u8 & uchB, ::f64 dRate, ::i32 iProfile)
    {
-      double dH = dRate; // blue ==> red => green
-      double dL;
-      double dS;
+      ::f64 dH = dRate; // blue ==> red => green
+      ::f64 dL;
+      ::f64 dS;
 
       if(iProfile == 0)
       {
@@ -406,9 +406,9 @@ namespace hotplugin
          else if(dS < 0.0)
             dS = 0.0;
 
-         double dR;
-         double dG;
-         double dB;
+         ::f64 dR;
+         ::f64 dG;
+         ::f64 dB;
 
          dH *= 6.0;
 
@@ -420,7 +420,7 @@ namespace hotplugin
          if(dH >= 6.0)
             dH -= 6.0;
 
-         double dA;
+         ::f64 dA;
          if(dH >= 5.0)
             dA = dH - 5.0;
          else if(dH >= 4.0)
@@ -495,9 +495,9 @@ namespace hotplugin
             }
          }
 
-         double dCMin;
-         double dCAdd;
-         double dSL = dS * dL;
+         ::f64 dCMin;
+         ::f64 dCAdd;
+         ::f64 dSL = dS * dL;
          if(dL >= 0.5)
          {
             dCMin = dL - dS + dSL;
@@ -514,19 +514,19 @@ namespace hotplugin
          dG      = (dCMin + dG * dCAdd);
          dB      = (dCMin + dB * dCAdd);
 
-         /*uchR      = (unsigned char) ftol(dR * 255.0);
-         uchG      = (unsigned char) ftol(dG * 255.0);
-         uchB      = (unsigned char) ftol(dB * 255.0);*/
-         uchR      = (unsigned char) (dR * 255.0);
-         uchG      = (unsigned char) (dG * 255.0);
-         uchB      = (unsigned char) (dB * 255.0);
+         /*uchR      = (::u8) ftol(dR * 255.0);
+         uchG      = (::u8) ftol(dG * 255.0);
+         uchB      = (::u8) ftol(dB * 255.0);*/
+         uchR      = (::u8) (dR * 255.0);
+         uchG      = (::u8) (dG * 255.0);
+         uchB      = (::u8) (dB * 255.0);
 
       }
 
    }
 
 
-   void plugin::on_bare_paint(::draw2d::graphics_pointer & pgraphics,const ::int_rectangle & rectangle)
+   void plugin::on_bare_paint(::draw2d::graphics_pointer & pgraphics,const ::i32_rectangle & rectangle)
 
    {
 
@@ -561,12 +561,12 @@ namespace hotplugin
    {
    }
 
-   /*void plugin::free_memory(unsigned char ** ppuchMemory)
+   /*void plugin::free_memory(::u8 ** ppuchMemory)
    {
       host::free_memory(ppuchMemory);
    }*/
 
-   void plugin::set_progress_rate(double dRate)
+   void plugin::set_progress_rate(::f64 dRate)
    {
       if(m_phost != nullptr)
       {
@@ -575,7 +575,7 @@ namespace hotplugin
    }
 
 
-   double plugin::get_progress_rate()
+   ::f64 plugin::get_progress_rate()
    {
 
       if(m_phost != nullptr)
@@ -590,7 +590,7 @@ namespace hotplugin
    }
 
 
-   double plugin::extract_spa_progress_rate()
+   ::f64 plugin::extract_spa_progress_rate()
    {
 
       if (m_phost != nullptr)
@@ -613,39 +613,39 @@ namespace hotplugin
    }
 
 
-   void plugin::on_paint_progress(::draw2d::graphics_pointer & pgraphics,const ::int_rectangle & rectangleParam)
+   void plugin::on_paint_progress(::draw2d::graphics_pointer & pgraphics,const ::i32_rectangle & rectangleParam)
 
    {
 
       if(m_phost != nullptr && !m_phost->m_bShowProgress)
          return;
 
-      ::int_rectangle rectangleWindow(rectangleParam);
+      ::i32_rectangle rectangleWindow(rectangleParam);
 
-      int cx = rectangleWindow.right - rectangleWindow.left;
+      ::i32 cx = rectangleWindow.right - rectangleWindow.left;
 
-      int cy = rectangleWindow.bottom - rectangleWindow.top;
+      ::i32 cy = rectangleWindow.bottom - rectangleWindow.top;
 
-      double dRate = get_progress_rate();
+      ::f64 dRate = get_progress_rate();
 
-      int iLineCount = 25;
+      ::i32 iLineCount = 25;
 
-      int x;
+      ::i32 x;
 
-      int y = rectangleWindow.top;
+      ::i32 y = rectangleWindow.top;
 
-      int pcx = cx;
+      ::i32 pcx = cx;
 
-      int pcy = cy / iLineCount;
+      ::i32 pcy = cy / iLineCount;
 
-      ::int_rectangle rectangleP;
+      ::i32_rectangle rectangleP;
 
-      for(int iLine = 0; iLine < iLineCount; iLine++)
+      for(::i32 iLine = 0; iLine < iLineCount; iLine++)
       {
 
-         double dStart = (double) iLine / (double) iLineCount;
+         ::f64 dStart = (::f64) iLine / (::f64) iLineCount;
 
-         double dEnd = (double) (iLine + 1) / (double) iLineCount;
+         ::f64 dEnd = (::f64) (iLine + 1) / (::f64) iLineCount;
 
          if(dRate <= dEnd)
          {
@@ -653,7 +653,7 @@ namespace hotplugin
             if(dRate < dStart)
                x = rectangleWindow.left;
             else
-               x = (int) (rectangleWindow.left + ((((dRate - dStart) * (double) pcx) / (dEnd - dStart))));
+               x = (::i32) (rectangleWindow.left + ((((dRate - dStart) * (::f64) pcx) / (dEnd - dStart))));
 
             if(iLine >= (iLineCount - 1))
                pcy = rectangleWindow.bottom - y;
@@ -750,10 +750,10 @@ namespace hotplugin
    }
 
 
-   void plugin::ensure_bitmap_data(const ::int_size & size, bool bCreate)
+   void plugin::ensure_bitmap_data(const ::i32_size & size, bool bCreate)
    {
 
-      if (!int_size)
+      if (!i32_size)
       {
 
          return;
@@ -761,7 +761,7 @@ namespace hotplugin
       }
 
       if(m_memorymapBitmap.get_data() == nullptr
-            || m_sizeBitmapData != int_size)
+            || m_sizeBitmapData != i32_size)
       {
 
          m_sizeBitmapData = size;
@@ -769,7 +769,7 @@ namespace hotplugin
          //m_memB
          //{
          //   my_munmap(m_pcolorref, m_hfileBitmap);
-         //   m_pcolorref = (unsigned int *)get_map_failed();
+         //   m_pcolorref = (::u32 *)get_map_failed();
          //}
 
                   auto psystem = system();
@@ -778,7 +778,7 @@ namespace hotplugin
 
 pdirectorysystem->create(dir::appdata() / "time" / "aura");
 
-         //int iOpen;
+         //::i32 iOpen;
 
 //         if(bCreateFile)
 //         {
@@ -834,7 +834,7 @@ pdirectorysystem->create(dir::appdata() / "time" / "aura");
 //
 //
 //#ifdef WINDOWS
-//         unsigned int dwError = get_last_error();
+//         ::u32 dwError = get_last_error();
 //         if(m_hfileBitmap == INVALID_HANDLE_VALUE)
 //#else
 //         if(m_hfileBitmap == -1)
@@ -944,7 +944,7 @@ pdirectorysystem->create(dir::appdata() / "time" / "aura");
 
    }
 
-   //bool plugin::client_to_screen(::int_point * ppt)
+   //bool plugin::client_to_screen(::i32_point * ppt)
    //{
 
    //   ::user::interaction::client_to_screen(ppt);
@@ -953,7 +953,7 @@ pdirectorysystem->create(dir::appdata() / "time" / "aura");
 
    //}
 
-   //bool plugin::screen_to_client(::int_point * ppt)
+   //bool plugin::screen_to_client(::i32_point * ppt)
    //{
 
    //   ::user::interaction::screen_to_client(ppt);
@@ -963,7 +963,7 @@ pdirectorysystem->create(dir::appdata() / "time" / "aura");
    //}
 
 
-   //bool plugin::window_rectangle(::long_long_rectangle * prectangle)
+   //bool plugin::window_rectangle(::i64_rectangle * prectangle)
    //{
 
    //   if(m_phost == nullptr)
@@ -985,7 +985,7 @@ pdirectorysystem->create(dir::appdata() / "time" / "aura");
    //}
 
 
-   //bool plugin::this->rectangle(::long_long_rectangle * prectangle)
+   //bool plugin::this->rectangle(::i64_rectangle * prectangle)
    //{
 
    //   if(m_phost == nullptr)
@@ -1008,7 +1008,7 @@ pdirectorysystem->create(dir::appdata() / "time" / "aura");
    //}
 
 
-   void plugin::translate_mouse_message(int * px, int * py)
+   void plugin::translate_mouse_message(::i32 * px, ::i32 * py)
    {
 
       if (m_phost != nullptr)
@@ -1080,7 +1080,7 @@ pdirectorysystem->create(dir::appdata() / "time" / "aura");
       lparam lparam;
 
 
-      message = (unsigned int) (LPARAM) pusermessage->id().long_long;
+      message = (::u32) (LPARAM) pusermessage->id().i64;
 
       wparam     = pusermessage->m_wparam;
 

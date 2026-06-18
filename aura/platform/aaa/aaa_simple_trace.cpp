@@ -9,11 +9,11 @@
 #include "trace_category.h"
 
 
-CLASS_DECL_AURA void __simple_tracea(::particle * pparticle, enum_trace_level elevel, const ::scoped_string & scopedstrFunction, const ::scoped_string & scopedstrFile, int iLine, const ::scoped_string & scopedstr);
-CLASS_DECL_AURA void __simple_tracev(::particle * pparticle, enum_trace_level elevel, const ::scoped_string & scopedstrFunction, const ::scoped_string & scopedstrFile, int iLine, const ::scoped_string & scopedstrFormat, va_list args);
+CLASS_DECL_AURA void __simple_tracea(::particle * pparticle, enum_trace_level elevel, const ::scoped_string & scopedstrFunction, const ::scoped_string & scopedstrFile, ::i32 iLine, const ::scoped_string & scopedstr);
+CLASS_DECL_AURA void __simple_tracev(::particle * pparticle, enum_trace_level elevel, const ::scoped_string & scopedstrFunction, const ::scoped_string & scopedstrFile, ::i32 iLine, const ::scoped_string & scopedstrFormat, va_list args);
 
 
-//CLASS_DECL_AURA void FUNCTION_DEBUGBOX(const ::scoped_string & scopedstrMessage, const ::scoped_string & scopedstrTitle, const ::::user::e_message_box & emessagebox, ::callback callback)
+//CLASS_DECL_AURA void FUNCTION_DEBUGBOX(const ::scoped_string & scopedstrMessage, const ::scoped_string & scopedstrTitle, const ::user::e_message_box & emessagebox, ::callback callback)
 //{
 //
 //   ::auto pmessageboxpayload = __initialize_new ::message_box_payload(nullptr, pszMessage, pszTitle, iFlags, function);
@@ -23,7 +23,7 @@ send(pmessageboxpayload);
 //}
 
 
-//CLASS_DECL_AURA void FUNCTION_DEBUGBOXW(const WCHAR * pszMessage, const WCHAR * pszTitle, int iFlags, const ::function_arg& function)
+//CLASS_DECL_AURA void FUNCTION_DEBUGBOXW(const WCHAR * pszMessage, const WCHAR * pszTitle, ::i32 iFlags, const ::function_arg& function)
 //{
 //
 //   ::os_message_box_w(nullptr, pszMessage, pszTitle, iFlags, function);
@@ -33,7 +33,7 @@ send(pmessageboxpayload);
 
 
 
-string FormatMessageFromSystem(unsigned int dwError)
+string FormatMessageFromSystem(::u32 dwError)
 {
 
 
@@ -50,7 +50,7 @@ void o_debug_string(const ::scoped_string & scopedstr)
 }
 
 
-CLASS_DECL_AURA void trace(enum_trace_level elevel, const ::scoped_string & scopedstrTag, const ::scoped_string & scopedstrText, const ::scoped_string & scopedstrFile, int iLine)
+CLASS_DECL_AURA void trace(enum_trace_level elevel, const ::scoped_string & scopedstrTag, const ::scoped_string & scopedstrText, const ::scoped_string & scopedstrFile, ::i32 iLine)
 {
 
    character_count iLen;
@@ -75,7 +75,7 @@ CLASS_DECL_AURA void trace(enum_trace_level elevel, const ::scoped_string & scop
 
    string str;
 
-   char * psz = str.get_buffer(iLen + 8);
+   char_pointer psz = str.get_buffer(iLen + 8);
 
    strcpy(scopedstr, pszText);
 
@@ -89,9 +89,9 @@ CLASS_DECL_AURA void trace(enum_trace_level elevel, const ::scoped_string & scop
       if (iLine >= 1)
       {
 
-         char pszNum[30];
+         ::i8 pszNum[30];
 
-         ansi_from_long_long(scopedstrNum, iLine, 10);
+         ansi_from_i64(scopedstrNum, iLine, 10);
 
          ansi_concatenate(scopedstr, "(");
 
@@ -113,11 +113,11 @@ CLASS_DECL_AURA void trace(enum_trace_level elevel, const ::scoped_string & scop
 
 
 
-int g_iMemoryCounters = -1;
+::i32 g_iMemoryCounters = -1;
 
 CLASS_DECL_AURA::pointer< ::mutex > g_pmutexMemoryCounters = nullptr;
 
-int g_iMemoryCountersStartable = 0;
+::i32 g_iMemoryCountersStartable = 0;
 
 CLASS_DECL_AURA bool memory_counter_on()
 {
@@ -206,16 +206,16 @@ simple_trace::~simple_trace()
 }
 
 
-void simple_trace::__tracea(::particle * pparticle, enum_trace_level elevel, const ::scoped_string & scopedstrFunction, const ::scoped_string & scopedstrFile, int iLine, const ::scoped_string & scopedstr)
+void simple_trace::__tracea(::particle * pparticle, enum_trace_level elevel, const ::scoped_string & scopedstrFunction, const ::scoped_string & scopedstrFile, ::i32 iLine, const ::scoped_string & scopedstr)
 {
 
    __simple_tracea(pparticle, elevel, pszFunction, pszFile, iLine, psz);
-   //printf("%d %c %s %d %s", (int)ecategory, e_trace_level_char(elevel), pszFunction, iLine, psz);
+   //printf("%d %c %s %d %s", (::i32)ecategory, e_trace_level_char(elevel), pszFunction, iLine, psz);
 
 }
 
 
-CLASS_DECL_AURA const char * trace_category_name(e_trace_category ecategory)
+CLASS_DECL_AURA const_char_pointer trace_category_name(e_trace_category ecategory)
 {
 
    if (ecategory < trace_category_first && ecategory < trace_category_count)
@@ -240,7 +240,7 @@ CLASS_DECL_AURA bool enable_trace_category(e_trace_category ecategory, bool bEna
 }
 
 
-CLASS_DECL_AURA int_bool c_enable_trace_category(e_trace_category ecategory, int_bool iEnable)
+CLASS_DECL_AURA i32_bool c_enable_trace_category(e_trace_category ecategory, i32_bool iEnable)
 {
 
    if (!enable_trace_category(ecategory, iEnable != false))
@@ -271,7 +271,7 @@ CLASS_DECL_AURA::matter * trace_object(e_trace_category ecategory)
 }
 
 
-const char * g_pszTraceLevelName[] =
+const_char_pointer g_pszTraceLevelName[] =
 {
 
    "none",
@@ -284,7 +284,7 @@ const char * g_pszTraceLevelName[] =
 };
 
 
-char g_chaTraceLevel[] =
+::i8 g_chaTraceLevel[] =
 {
 
    ' ',

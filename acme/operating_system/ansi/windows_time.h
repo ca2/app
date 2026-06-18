@@ -10,13 +10,13 @@
 
 
 
-using WORD = unsigned short;
-using LONG = int;
-using WINULONG = unsigned int;
-using LONGLONG = long long;
-using ULONGLONG = unsigned long long;
-using NTSTATUS = int;
-using DWORD = unsigned int;
+using WORD = ::u16;
+using LONG = ::i32;
+using WINULONG = ::u32;
+using LONGLONG = ::i64;
+using ULONGLONG = ::u64;
+using NTSTATUS = ::i32;
+using DWORD = ::u32;
 using LPDWORD = ::DWORD *;
 
 
@@ -40,13 +40,16 @@ typedef struct _SYSTEMTIME {
 } SYSTEMTIME, *PSYSTEMTIME, *LPSYSTEMTIME;
 
 
-CLASS_DECL_ACME int_bool FileTimeToSystemTime(const FILETIME * pfiletime, SYSTEMTIME * psystemtime);
+CLASS_DECL_ACME ::i32_bool FileTimeToSystemTime(const FILETIME * pfiletime, SYSTEMTIME * psystemtime);
 
 
-CLASS_DECL_ACME int_bool SystemTimeToFileTime(const SYSTEMTIME * psystemtime, FILETIME * pfiletime);
+CLASS_DECL_ACME ::i32_bool SystemTimeToFileTime(const SYSTEMTIME * psystemtime, FILETIME * pfiletime);
 
 
 CLASS_DECL_ACME void GetSystemTime(SYSTEMTIME * psystemtime);
+
+
+CLASS_DECL_ACME ::i32_bool FileTimeToLocalFileTime( const FILETIME *utcft, LPFILETIME localft );
 
 
 

@@ -4,7 +4,7 @@
 #ifndef UNIVERSAL_WINDOWS
 
 
-typedef char **MYSQL_ROW;		/* return data as array of strings */
+typedef char_pointer *MYSQL_ROW;		/* return data as array of strings */
 typedef struct st_mysql MYSQL;
 
 

@@ -39,7 +39,7 @@ namespace data
    }
 
 
-   void data_container::on_update_data(int iHint)
+   void data_container::on_update_data(::i32 iHint)
    {
       __UNREFERENCED_PARAMETER(iHint);
    }

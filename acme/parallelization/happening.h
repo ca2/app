@@ -38,7 +38,7 @@ class CLASS_DECL_ACME happening :
 public:
 
 
-   int m_iEventSerialId;
+   ::i32 m_iEventSerialId;
 
 #ifdef WINDOWS
 
@@ -52,7 +52,7 @@ public:
    /// Private Mutexes
    bool              m_bManualEvent;
    bool              m_bSignaled;  // meaningful only when m_bManualEvent
-   int               m_iSignalId;  // meaningful only when m_bManualEvent
+   ::i32               m_iSignalId;  // meaningful only when m_bManualEvent
    void *            m_pcond; // pthread_cond_t
    void *            m_pmutex; // pthread_mutex_t;
 
@@ -67,7 +67,7 @@ public:
 #if defined(LINUX) || defined(__APPLE__) || defined(__BSD__) || defined(__ANDROID__)
 
    /// Named Mutexes
-   int               m_sem;
+   ::i32               m_sem;
 
 #endif
 

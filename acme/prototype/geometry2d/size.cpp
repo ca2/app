@@ -9,17 +9,17 @@
 void image_impact_center_debug()
 {
 
-   float_size offset;
+   f32_size offset;
 
-   int_size size;
+   i32_size size;
 
-   float pixel_ratio = 1.f;
+   ::f32 pixel_ratio = 1.f;
 
-   int_size sizeImage;
+   i32_size sizeImage;
 
-   float scale = 1.f;
+   ::f32 scale = 1.f;
 
-   int i = 10;
+   ::i32 i = 10;
 
    auto f1 = i * 0.f;
 
@@ -29,7 +29,7 @@ void image_impact_center_debug()
 
 
 
-   bool bOk = sizeof(t1) == sizeof(float);
+   bool bOk = sizeof(t1) == sizeof(::f32);
 
    offset = size * .5f * pixel_ratio - sizeImage * scale;
 

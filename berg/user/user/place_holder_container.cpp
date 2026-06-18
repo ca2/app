@@ -36,7 +36,7 @@ namespace user
    }
 
 
-   ::user::place_holder * place_holder_container::get_new_place_holder(const ::int_rectangle & rectangleCreate)
+   ::user::place_holder * place_holder_container::get_new_place_holder(const ::i32_rectangle & rectangleCreate)
    {
 
       auto pplaceholder = create_newø < ::user::place_holder >();
@@ -76,7 +76,7 @@ namespace user
       return bRemove;
    }
 
-   ::user::place_holder * place_holder_container::place_hold(::user::interaction * pinteraction,const ::int_rectangle & rectangleCreate)
+   ::user::place_holder * place_holder_container::place_hold(::user::interaction * pinteraction,const ::i32_rectangle & rectangleCreate)
    {
       ::pointer<place_holder>pholder = get_new_place_holder(rectangleCreate);
       if(!on_place_hold(pinteraction, pholder))
@@ -91,7 +91,7 @@ namespace user
    bool place_holder_container::unplace(::user::interaction * pinteraction)
    {
 
-      for(int i = 0; i < m_placeholdera.get_count(); i++)
+      for(::i32 i = 0; i < m_placeholdera.get_count(); i++)
       {
 
          if(m_placeholdera[i]->is_place_holding(pinteraction))
@@ -156,14 +156,14 @@ namespace user
    //}
 
 
-   place_holder_ptra place_holder_container_ptra::place(::user::interaction * pinteraction,const int_rectangle & rectangleCreate)
+   place_holder_ptra place_holder_container_ptra::place(::user::interaction * pinteraction,const i32_rectangle & rectangleCreate)
    {
 
       place_holder_ptra holderptra;
 
       ::pointer<place_holder>pholder;
 
-      for(int i = 0; i < this->get_count(); i++)
+      for(::i32 i = 0; i < this->get_count(); i++)
       {
 
          pholder = this->element_at(i)->place_hold(pinteraction,rectangleCreate);
@@ -182,10 +182,10 @@ namespace user
    }
 
 
-   int place_holder_container_ptra::unplace(::user::interaction * pinteraction)
+   ::i32 place_holder_container_ptra::unplace(::user::interaction * pinteraction)
    {
-      int count = 0;
-      for(int i = 0; i < this->get_count(); i++)
+      ::i32 count = 0;
+      for(::i32 i = 0; i < this->get_count(); i++)
       {
          if(this->element_at(i)->unplace(pinteraction))
          {

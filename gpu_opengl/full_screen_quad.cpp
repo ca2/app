@@ -86,20 +86,20 @@
 //
 //      glBindBuffer(GL_ARRAY_BUFFER, m_uVBO); // use this VBO for subsequent calls
 //      ::opengl::check_error("");
-//      glBufferData(GL_ARRAY_BUFFER, size * sizeof(float), data, GL_STATIC_DRAW); // copy over the vertex data
+//      glBufferData(GL_ARRAY_BUFFER, size * sizeof(::f32), data, GL_STATIC_DRAW); // copy over the vertex data
 //      ::opengl::check_error("");
 //
 //      // setup the locations of vertex data
 //      // positions
 //      glEnableVertexAttribArray(0);
 //      ::opengl::check_error("");
-//      glVertexAttribPointer(0, 2, GL_FLOAT, GL_FALSE, 4 * sizeof(float), (void*)0);
+//      glVertexAttribPointer(0, 2, GL_FLOAT, GL_FALSE, 4 * sizeof(::f32), (void*)0);
 //      ::opengl::check_error("");
 //
 //      // texture coordinates
 //      glEnableVertexAttribArray(1);
 //      ::opengl::check_error("");
-//      glVertexAttribPointer(1, 2, GL_FLOAT, GL_FALSE, 4 * sizeof(float), (void*)(2 * sizeof(float)));
+//      glVertexAttribPointer(1, 2, GL_FLOAT, GL_FALSE, 4 * sizeof(::f32), (void*)(2 * sizeof(::f32)));
 //      ::opengl::check_error("");
 //
 //      glBindVertexArray(0);

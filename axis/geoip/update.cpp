@@ -10,7 +10,7 @@
 
 
 
-short parse_http_proxy(char **proxy_host, int *port);
+::i16 parse_http_proxy(char_pointer *proxy_host, ::i32 *port);
 //#ifdef BSD_STYLE_SOCKETS
 //struct hostent *GeoIP_get_host_or_proxy ();
 //#else
@@ -26,7 +26,7 @@ string GeoIP_get_host_or_proxy ();
  */
 const_char_pointer GeoIPUpdateHost = "updates.maxmind.com";
 /* This is the direct, or proxy port number. */
-//static int GeoIPHTTPPort = 80;
+//static ::i32 GeoIPHTTPPort = 80;
 /* License-only format (OLD) */
 const_char_pointer GeoIPHTTPRequest = "GET %s%s/app/update?license_key=%s&md5=%s HTTP/1.0\nHost: updates.maxmind.com\n\n";
 /* General DB Types formats */
@@ -40,7 +40,7 @@ const_char_pointer MD5Info = "MD5 Digest of installed database is %s\n";
 const_char_pointer SavingGzip = "Saving gzip file to %s ... ";
 const_char_pointer WritingFile = "Writing uncompressed data to %s ...";
 
-const_char_pointer GeoIP_get_error_message(int i) {
+const_char_pointer GeoIP_get_error_message(::i32 i) {
   switch (i) {
   case GEOIP_NO_NEW_UPDATES:
     return "no ___new updates";
@@ -84,11 +84,11 @@ const_char_pointer GeoIP_get_error_message(int i) {
     return "no error";
   }
 }
-int GeoIP_fprintf(int (*f)(FILE *, char *),FILE *fp, const_char_pointer str, ...) {
+::i32 GeoIP_fprintf(::i32 (*f)(FILE *, char_pointer ),FILE *fp, const_char_pointer str, ...) {
   va_list ap;
-  int rc;
-  char * f_str;
-  int silence;
+  ::i32 rc;
+  char_pointer f_str;
+  ::i32 silence;
 
   if ( f == nullptr )
     return 0;
@@ -100,7 +100,7 @@ int GeoIP_fprintf(int (*f)(FILE *, char *),FILE *fp, const_char_pointer str, ...
   if ( f_str )
     silence = vsnprintf(f_str, 4096, str, ap);
 #else
-  f_str = (char *) malloc(4096);
+  f_str = (char_pointer ) malloc(4096);
   if ( f_str )
     silence = vsprintf(f_str, str, ap);
 #endif
@@ -112,10 +112,10 @@ int GeoIP_fprintf(int (*f)(FILE *, char *),FILE *fp, const_char_pointer str, ...
   return(rc);
 }
 
-void GeoIP_printf(void (*f)(char *), const_char_pointer str,...) {
+void GeoIP_printf(void (*f)(char_pointer ), const_char_pointer str,...) {
   va_list params;
-  char * f_str;
-  int silence;
+  char_pointer f_str;
+  ::i32 silence;
   if (f == nullptr)
     return;
   va_start(params, str);
@@ -126,7 +126,7 @@ void GeoIP_printf(void (*f)(char *), const_char_pointer str,...) {
   if ( f_str )
     silence = vsnprintf(f_str, 4096, str, params);
 #else
-  f_str =(char *)  malloc(4096);
+  f_str =(char_pointer )  malloc(4096);
   if ( f_str )
     silence = vsprintf(f_str, str, params);
 #endif
@@ -159,7 +159,7 @@ void GeoIP_printf(void (*f)(char *), const_char_pointer str,...) {
  *
  * A "::account::user:password@" part will break this.
  */
-short parse_http_proxy(char **proxy_host, int *port) {
+::i16 parse_http_proxy(char_pointer *proxy_host, ::i32 *port) {
 
 #ifdef UNIVERSAL_WINDOWS
 
@@ -167,9 +167,9 @@ short parse_http_proxy(char **proxy_host, int *port) {
 
 #else
 
-   char * http_proxy;
+   char_pointer http_proxy;
 
-   char * port_value;
+   char_pointer port_value;
 
    if ((http_proxy = getenv("http_proxy"))) {
 
@@ -178,7 +178,7 @@ short parse_http_proxy(char **proxy_host, int *port) {
       if ( *proxy_host == nullptr )
          return 0; /* let the other functions deal with the memory error */
 
-      if ((port_value = (char *) strchr(*proxy_host, ':'))) {
+      if ((port_value = (char_pointer ) strchr(*proxy_host, ':'))) {
          *port_value++ = '\0';
          *port = atoi(port_value);
       }
@@ -219,15 +219,15 @@ string GeoIP_get_host_or_proxy()
 //string GeoIP_get_host_or_proxy ()
 //#endif
 //{
-//   char * hostname = (char *) GeoIPUpdateHost;
-//   char * proxy_host;
-//   int proxy_port;
+//   char_pointer hostname = (char_pointer ) GeoIPUpdateHost;
+//   char_pointer proxy_host;
+//   ::i32 proxy_port;
 //
 //   /* Set Proxy from App: Unix/Linux */
 //   if (parse_http_proxy(&proxy_host,&proxy_port)) {
 //      hostname = proxy_host;
 //      GeoIPProxyHTTP = "http://";
-//      GeoIPProxiedHost = (char *) GeoIPUpdateHost;
+//      GeoIPProxiedHost = (char_pointer ) GeoIPUpdateHost;
 //      GeoIPHTTPPort = proxy_port;
 //   }
 //
@@ -244,34 +244,34 @@ string GeoIP_get_host_or_proxy()
 //}
 
 
-short GeoIP_update_database (char * license_key, int verbose, void (*f)( char * ));
+::i16 GeoIP_update_database (char_pointer license_key, ::i32 verbose, void (*f)( char_pointer ));
 
 
-//short GeoIP_update_database (char * license_key, int verbose, void (*f)( char * ))
+//::i16 GeoIP_update_database (char_pointer license_key, ::i32 verbose, void (*f)( char_pointer ))
 //{
 //
 //#ifdef BSD_STYLE_SOCKETS
 //   struct hostent *hostlist;
 //   SOCKET sock;
 //
-//   char * buf;
+//   char_pointer buf;
 //   struct sockaddr_in sa;
-//   int offset = 0, err;
-//   char * request_uri;
-//   char * compr;
-//   unsigned int comprLen;
+//   ::i32 offset = 0, err;
+//   char_pointer request_uri;
+//   char_pointer compr;
+//   ::u32 comprLen;
 //   FILE *comp_fh, *cur_db_fh, *gi_fh;
 //   gzFile gz_fh;
-//   char * file_path_gz, * file_path_test;
+//   char_pointer file_path_gz, * file_path_test;
 //   MD5_CTX context;
 //   uchar buffer[1024], digest[16];
 ////   uchar buffer[1024];
-//   char hex_digest[34] = "00000000000000000000000000000000\0";
-//   unsigned int i;
+//   ::i8 hex_digest[34] = "00000000000000000000000000000000\0";
+//   ::u32 i;
 //   GeoIP * gi;
-//   char * db_info;
-//   char block[BLOCK_SIZE];
-//   int block_size = BLOCK_SIZE;
+//   char_pointer db_info;
+//   ::i8 block[BLOCK_SIZE];
+//   ::i32 block_size = BLOCK_SIZE;
 //   size_t len;
 //   size_t written;
 //   _GeoIP_setup_dbfilename();
@@ -290,7 +290,7 @@ short GeoIP_update_database (char * license_key, int verbose, void (*f)( char * 
 //
 //      MD5_Init(&context);
 //      while ((len = fread (buffer, 1, 1024, cur_db_fh)) > 0)
-//         MD5_Update (&context, buffer, (unsigned int) len);
+//         MD5_Update (&context, buffer, (::u32) len);
 //        // MD5_Update(&ctx, buffer, len);
 //      MD5_Final (buffer, &context);
 //      ::memory_copy(digest,buffer,16);
@@ -332,14 +332,14 @@ short GeoIP_update_database (char * license_key, int verbose, void (*f)( char * 
 //   if (connect(sock, (struct sockaddr *)&sa, sizeof(struct sockaddr))< 0)
 //      return GEOIP_CONNECTION_ERR;
 //
-//   request_uri = (char *) malloc(sizeof(char) * (strlen(license_key) + strlen(GeoIPHTTPRequest)+36));
+//   request_uri = (char_pointer ) malloc(sizeof(::i8) * (strlen(license_key) + strlen(GeoIPHTTPRequest)+36));
 //   if (request_uri == nullptr)
 //      return GEOIP_OUT_OF_MEMORY_ERR;
 //   sprintf(request_uri,GeoIPHTTPRequest,GeoIPProxyHTTP,GeoIPProxiedHost,license_key, hex_digest);
-//   send(sock, request_uri, (int) strlen(request_uri),0);
+//   send(sock, request_uri, (::i32) strlen(request_uri),0);
 //   free(request_uri);
 //
-//   buf = (char *) malloc(sizeof(char) * block_size);
+//   buf = (char_pointer ) malloc(sizeof(::i8) * block_size);
 //   if (buf == nullptr)
 //      return GEOIP_OUT_OF_MEMORY_ERR;
 //
@@ -347,8 +347,8 @@ short GeoIP_update_database (char * license_key, int verbose, void (*f)( char * 
 //      GeoIP_printf(f,"Downloading gzipped GeoIP Dataaxis...\n");
 //
 //   for (;;) {
-//      int amt;
-//      amt = (int) recv(sock, &buf[offset], block_size,0);
+//      ::i32 amt;
+//      amt = (::i32) recv(sock, &buf[offset], block_size,0);
 //      if (amt == 0) {
 //         break;
 //      } else if (amt == -1) {
@@ -356,13 +356,13 @@ short GeoIP_update_database (char * license_key, int verbose, void (*f)( char * 
 //         return GEOIP_SOCKET_READ_ERR;
 //      }
 //      offset += amt;
-//      buf = (char *) realloc(buf, offset+block_size);
+//      buf = (char_pointer ) realloc(buf, offset+block_size);
 //      if (buf == nullptr)
 //         return GEOIP_OUT_OF_MEMORY_ERR;
 //   }
 //
 //   compr = strstr(buf, "\r\n\r\n") + 4;
-//   comprLen = (unsigned int) (offset + buf - compr);
+//   comprLen = (::u32) (offset + buf - compr);
 //
 //   if (strstr(compr, "License Key Invalid") != nullptr) {
 //      if (verbose == 1)
@@ -381,7 +381,7 @@ short GeoIP_update_database (char * license_key, int verbose, void (*f)( char * 
 //      GeoIP_printf(f,"Done\n");
 //
 //   /* save gzip file */
-//   file_path_gz = (char *) malloc(sizeof(char) * (strlen(GeoIPDBFileName[GEOIP_COUNTRY_EDITION]) + 4));
+//   file_path_gz = (char_pointer ) malloc(sizeof(::i8) * (strlen(GeoIPDBFileName[GEOIP_COUNTRY_EDITION]) + 4));
 //   if (file_path_gz == nullptr)
 //      return GEOIP_OUT_OF_MEMORY_ERR;
 //   strcpy(file_path_gz,GeoIPDBFileName[GEOIP_COUNTRY_EDITION]);
@@ -412,7 +412,7 @@ short GeoIP_update_database (char * license_key, int verbose, void (*f)( char * 
 //
 //   /* uncompress gzip file */
 //   gz_fh = gzopen(file_path_gz, "rb");
-//   file_path_test = (char *) malloc(sizeof(char) * (strlen(GeoIPDBFileName[GEOIP_COUNTRY_EDITION]) + 6));
+//   file_path_test = (char_pointer ) malloc(sizeof(::i8) * (strlen(GeoIPDBFileName[GEOIP_COUNTRY_EDITION]) + 6));
 //   if (file_path_test == nullptr)
 //      return GEOIP_OUT_OF_MEMORY_ERR;
 //   strcpy(file_path_test,GeoIPDBFileName[GEOIP_COUNTRY_EDITION]);
@@ -521,40 +521,40 @@ short GeoIP_update_database (char * license_key, int verbose, void (*f)( char * 
 //
 //}
 
-short GeoIP_update_database_general (::particle * pparticle, char * user_id,char * license_key,char *data_axis_type, int verbose,char ** client_ipaddr, void (*f)( char *));
+::i16 GeoIP_update_database_general (::particle * pparticle, char_pointer user_id,char_pointer license_key,char_pointer data_axis_type, ::i32 verbose,char_pointer * client_ipaddr, void (*f)( char_pointer ));
 
 
-//short GeoIP_update_database_general (::particle * pparticle, char * user_id,char * license_key,char *data_axis_type, int verbose,char ** client_ipaddr, void (*f)( char *)) {
+//::i16 GeoIP_update_database_general (::particle * pparticle, char_pointer user_id,char_pointer license_key,char_pointer data_axis_type, ::i32 verbose,char_pointer * client_ipaddr, void (*f)( char_pointer )) {
 //
 //#ifdef BSD_STYLE_SOCKETS
 //   struct hostent *hostlist;
 //   SOCKET sock;
-//   char * buf;
+//   char_pointer buf;
 //   struct sockaddr_in sa;
-//   int offset = 0, err;
-//   char * request_uri;
-//   char * compr;
-//   unsigned int comprLen;
+//   ::i32 offset = 0, err;
+//   char_pointer request_uri;
+//   char_pointer compr;
+//   ::u32 comprLen;
 //   FILE *comp_fh, *cur_db_fh, *gi_fh;
 //   gzFile gz_fh;
-//   char * file_path_gz, * file_path_test;
+//   char_pointer file_path_gz, * file_path_test;
 //   MD5_CTX context;
 //   MD5_CTX context2;
 //   uchar buffer[1024];
 //   uchar digest[16] ,digest2[16];
-//   char hex_digest[33] = "0000000000000000000000000000000\0";
-//   char hex_digest2[33] = "0000000000000000000000000000000\0";
-//   unsigned int i;
-//   char *f_str;
+//   ::i8 hex_digest[33] = "0000000000000000000000000000000\0";
+//   ::i8 hex_digest2[33] = "0000000000000000000000000000000\0";
+//   ::u32 i;
+//   char_pointer f_str;
 //   GeoIP * gi;
-//   char * db_info;
-//   char *ipaddress;
-//   char *geoipfilename;
-//   char *tmpstr;
-//   int dbtype;
-//   int lookupresult = 1;
-//   char block[BLOCK_SIZE];
-//   int block_size = BLOCK_SIZE;
+//   char_pointer db_info;
+//   char_pointer ipaddress;
+//   char_pointer geoipfilename;
+//   char_pointer tmpstr;
+//   ::i32 dbtype;
+//   ::i32 lookupresult = 1;
+//   ::i8 block[BLOCK_SIZE];
+//   ::i32 block_size = BLOCK_SIZE;
 //   size_t len;
 //   size_t request_uri_len;
 //   size_t size;
@@ -583,7 +583,7 @@ short GeoIP_update_database_general (::particle * pparticle, char * user_id,char
 //
 //   if (connect(sock, (struct sockaddr *)&sa, sizeof(struct sockaddr))< 0)
 //      return GEOIP_CONNECTION_ERR;
-//   request_uri = (char *) malloc(sizeof(char) * (strlen(license_key) + strlen(GeoIPHTTPRequestMD5)+1036));
+//   request_uri = (char_pointer ) malloc(sizeof(::i8) * (strlen(license_key) + strlen(GeoIPHTTPRequestMD5)+1036));
 //   if (request_uri == nullptr)
 //      return GEOIP_OUT_OF_MEMORY_ERR;
 //
@@ -592,15 +592,15 @@ short GeoIP_update_database_general (::particle * pparticle, char * user_id,char
 //   if (verbose == 1) {
 //      GeoIP_printf(f, "sending request %s \n",request_uri);
 //   }
-//   send(sock, request_uri, (int) strlen(request_uri),0); /* send the request */
+//   send(sock, request_uri, (::i32) strlen(request_uri),0); /* send the request */
 //   free(request_uri);
-//   buf = (char *) malloc(sizeof(char) * (block_size+4));
+//   buf = (char_pointer ) malloc(sizeof(::i8) * (block_size+4));
 //   if (buf == nullptr)
 //      return GEOIP_OUT_OF_MEMORY_ERR;
 //   offset = 0;
 //   for (;;){
-//      int amt;
-//      amt = (int) recv(sock, &buf[offset], block_size,0);
+//      ::i32 amt;
+//      amt = (::i32) recv(sock, &buf[offset], block_size,0);
 //      if (amt == 0){
 //         break;
 //      } else if (amt == -1) {
@@ -608,7 +608,7 @@ short GeoIP_update_database_general (::particle * pparticle, char * user_id,char
 //         return GEOIP_SOCKET_READ_ERR;
 //      }
 //      offset += amt;
-//      buf = (char *) realloc(buf, offset + block_size + 4);
+//      buf = (char_pointer ) realloc(buf, offset + block_size + 4);
 //   }
 //   buf[offset] = 0;
 //   offset = 0;
@@ -634,7 +634,7 @@ short GeoIP_update_database_general (::particle * pparticle, char * user_id,char
 //      MD5_Init(&context);
 //      while ((len = fread (buffer, 1, 1024, cur_db_fh)) > 0)
 //        // ctx.update(buffer, len);
-//         MD5_Update (&context, buffer, (unsigned int) len);
+//         MD5_Update (&context, buffer, (::u32) len);
 //      MD5_Final (buffer, &context);
 //    ::memory_copy(digest,buffer,16);
 //      fclose (cur_db_fh);
@@ -667,7 +667,7 @@ short GeoIP_update_database_general (::particle * pparticle, char * user_id,char
 //         free(geoipfilename);
 //         return GEOIP_CONNECTION_ERR;
 //      }
-//      request_uri = (char *) malloc(sizeof(char) * (strlen(license_key) + strlen(GeoIPHTTPRequestMD5)+1036));
+//      request_uri = (char_pointer ) malloc(sizeof(::i8) * (strlen(license_key) + strlen(GeoIPHTTPRequestMD5)+1036));
 //      if (request_uri == nullptr) {
 //         free(geoipfilename);
 //         return GEOIP_OUT_OF_MEMORY_ERR;
@@ -675,12 +675,12 @@ short GeoIP_update_database_general (::particle * pparticle, char * user_id,char
 //
 //      /* get client ip address from MaxMind web page */
 //      sprintf(request_uri,GeoIPHTTPRequestClientIP,GeoIPProxyHTTP,GeoIPProxiedHost,GeoIPUpdateHost);
-//      send(sock, request_uri, (int) strlen(request_uri),0); /* send the request */
+//      send(sock, request_uri, (::i32) strlen(request_uri),0); /* send the request */
 //      if (verbose == 1) {
 //         GeoIP_printf(f, "sending request %s", request_uri);
 //      }
 //      free(request_uri);
-//      buf = (char *) malloc(sizeof(char) * (block_size+1));
+//      buf = (char_pointer ) malloc(sizeof(::i8) * (block_size+1));
 //      if (buf == nullptr) {
 //         free(geoipfilename);
 //         return GEOIP_OUT_OF_MEMORY_ERR;
@@ -688,8 +688,8 @@ short GeoIP_update_database_general (::particle * pparticle, char * user_id,char
 //      offset = 0;
 //
 //      for (;;){
-//         int amt;
-//         amt = (int) recv(sock, &buf[offset], block_size,0);
+//         ::i32 amt;
+//         amt = (::i32) recv(sock, &buf[offset], block_size,0);
 //         if (amt == 0) {
 //            break;
 //         } else if (amt == -1) {
@@ -697,13 +697,13 @@ short GeoIP_update_database_general (::particle * pparticle, char * user_id,char
 //            return GEOIP_SOCKET_READ_ERR;
 //         }
 //         offset += amt;
-//         buf = (char *) realloc(buf, offset+block_size+1);
+//         buf = (char_pointer ) realloc(buf, offset+block_size+1);
 //      }
 //
 //      buf[offset] = 0;
 //      offset = 0;
 //      ipaddress = strstr(buf, "\r\n\r\n") + 4; /* get the ip address */
-//      ipaddress = (char *) malloc(strlen(strstr(buf, "\r\n\r\n") + 4)+5);
+//      ipaddress = (char_pointer ) malloc(strlen(strstr(buf, "\r\n\r\n") + 4)+5);
 //      strcpy(ipaddress,strstr(buf, "\r\n\r\n") + 4);
 //      client_ipaddr[0] = ipaddress;
 //      if (verbose == 1) {
@@ -718,15 +718,15 @@ short GeoIP_update_database_general (::particle * pparticle, char * user_id,char
 //   ipaddress = client_ipaddr[0];
 //
 //   /* make a md5 sum of ip address and license_key and store it in hex_digest2 */
-//   request_uri_len = sizeof(char) * 2036;
-//   request_uri = (char *) malloc(request_uri_len);
+//   request_uri_len = sizeof(::i8) * 2036;
+//   request_uri = (char_pointer ) malloc(request_uri_len);
 //   //::crypto::md5::handler_context ctx2(this);
 //   MD5_Init(&context2);
 //   uchar bufMd5[16];
 ////   ctx2.update(license_key,12);
 //   //ctx2.update(ipaddress, strlen(ipaddress));
-//   MD5_Update (&context2, (unsigned char *)license_key, 12);//add license key to the md5 sum
-//   MD5_Update (&context2, (unsigned char *)ipaddress, (unsigned int) strlen(ipaddress));//add ip address to the md5 sum
+//   MD5_Update (&context2, (::u8 *)license_key, 12);//add license key to the md5 sum
+//   MD5_Update (&context2, (::u8 *)ipaddress, (::u32) strlen(ipaddress));//add ip address to the md5 sum
 //   MD5_Final (bufMd5, &context2);
 //   ::memory_copy(digest2, bufMd5,16);
 //   for (i = 0; i < 16; i++)
@@ -751,7 +751,7 @@ short GeoIP_update_database_general (::particle * pparticle, char * user_id,char
 //   if (connect(sock, (struct sockaddr *)&sa, sizeof(struct sockaddr))< 0)
 //      return GEOIP_CONNECTION_ERR;
 //   snprintf(request_uri, request_uri_len, GeoIPHTTPRequestMD5,GeoIPProxyHTTP,GeoIPProxiedHost,hex_digest,hex_digest2,user_id,data_axis_type);
-//   send(sock, request_uri, (int) strlen(request_uri),0);
+//   send(sock, request_uri, (::i32) strlen(request_uri),0);
 //   if (verbose == 1) {
 //      GeoIP_printf(f, "sending request %s\n",request_uri);
 //   }
@@ -759,7 +759,7 @@ short GeoIP_update_database_general (::particle * pparticle, char * user_id,char
 //   free(request_uri);
 //
 //   offset = 0;
-//   buf = (char *) malloc(sizeof(char) * block_size);
+//   buf = (char_pointer ) malloc(sizeof(::i8) * block_size);
 //   if (buf == nullptr)
 //      return GEOIP_OUT_OF_MEMORY_ERR;
 //
@@ -767,8 +767,8 @@ short GeoIP_update_database_general (::particle * pparticle, char * user_id,char
 //      GeoIP_printf(f,"Downloading gzipped GeoIP Dataaxis...\n");
 //
 //   for (;;) {
-//      int amt;
-//      amt = (int) recv(sock, &buf[offset], block_size,0);
+//      ::i32 amt;
+//      amt = (::i32) recv(sock, &buf[offset], block_size,0);
 //
 //      if (amt == 0) {
 //         break;
@@ -777,13 +777,13 @@ short GeoIP_update_database_general (::particle * pparticle, char * user_id,char
 //         return GEOIP_SOCKET_READ_ERR;
 //      }
 //      offset += amt;
-//      buf = (char *) realloc(buf, offset+block_size);
+//      buf = (char_pointer ) realloc(buf, offset+block_size);
 //      if (buf == nullptr)
 //         return GEOIP_OUT_OF_MEMORY_ERR;
 //   }
 //
 //   compr = strstr(buf, "\r\n\r\n") + 4;
-//   comprLen = (unsigned int) (offset + buf - compr);
+//   comprLen = (::u32) (offset + buf - compr);
 //
 //   if (strstr(compr, "License Key Invalid") != nullptr) {
 //      if (verbose == 1)
@@ -808,7 +808,7 @@ short GeoIP_update_database_general (::particle * pparticle, char * user_id,char
 //   GeoIP_printf(f, "Updating %s\n", geoipfilename);
 //
 //   /* save gzip file */
-//   file_path_gz =(char *) malloc(sizeof(char) * (strlen(geoipfilename) + 4));
+//   file_path_gz =(char_pointer ) malloc(sizeof(::i8) * (strlen(geoipfilename) + 4));
 //
 //   if (file_path_gz == nullptr)
 //      return GEOIP_OUT_OF_MEMORY_ERR;
@@ -828,7 +828,7 @@ short GeoIP_update_database_general (::particle * pparticle, char * user_id,char
 //   size = fwrite(compr, 1, comprLen, comp_fh);
 //   fclose(comp_fh);
 //   free(buf);
-//        if ( int_size != comprLen ) {
+//        if ( i32_size != comprLen ) {
 //      return GEOIP_GZIP_IO_ERR;
 //   }
 //
@@ -838,7 +838,7 @@ short GeoIP_update_database_general (::particle * pparticle, char * user_id,char
 //      GeoIP_printf(f,"Uncompressing gzip file ... ");
 //   }
 //
-//   file_path_test = (char *) malloc(sizeof(char) * (strlen(GeoIPDBFileName[GEOIP_COUNTRY_EDITION]) + 6));
+//   file_path_test = (char_pointer ) malloc(sizeof(::i8) * (strlen(GeoIPDBFileName[GEOIP_COUNTRY_EDITION]) + 6));
 //   if (file_path_test == nullptr) {
 //      free(file_path_gz);
 //      return GEOIP_OUT_OF_MEMORY_ERR;
@@ -881,7 +881,7 @@ short GeoIP_update_database_general (::particle * pparticle, char * user_id,char
 //
 //   if (verbose == 1) {
 //      len = strlen(WritingFile) + strlen(geoipfilename) - 1;
-//      f_str = (char *) malloc(len);
+//      f_str = (char_pointer ) malloc(len);
 //      snprintf(f_str,len,WritingFile,geoipfilename);
 //      free(f_str);
 //   }
@@ -934,7 +934,7 @@ short GeoIP_update_database_general (::particle * pparticle, char * user_id,char
 //   if (verbose == 1)
 //      GeoIP_printf(f,"find  ");
 //   if (dbtype == GEOIP_NETSPEED_EDITION) {
-//      int netspeed = GeoIP_id_by_name(gi,"24.24.24.24");
+//      ::i32 netspeed = GeoIP_id_by_name(gi,"24.24.24.24");
 //      lookupresult = 0;
 //      if (netspeed == GEOIP_CABLEDSL_SPEED){
 //         lookupresult = 1;

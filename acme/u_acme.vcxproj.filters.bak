@@ -159,7 +159,7 @@
       <UniqueIdentifier>{96dedba9-3d94-456b-bdea-6e16d45f30b2}</UniqueIdentifier>
     </Filter>
     <Filter Include="Source Files\operating_system">
-      <UniqueIdentifier>{969f64ae-be6c-423e-bb78-55a5b2c20b04}</UniqueIdentifier>
+      <UniqueIdentifier>{969f64_ae-be6c-423e-bb78-55a5b2c20b04}</UniqueIdentifier>
     </Filter>
     <Filter Include="Header Files\operating_system">
       <UniqueIdentifier>{cf5f6f91-946b-4690-8775-7206cf0108ca}</UniqueIdentifier>

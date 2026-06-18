@@ -104,19 +104,19 @@ CLASS_DECL_ACME::file::path get_module_path(HANDLE hProcess, HMODULE hmodule)
 
 //    wstring wstr2(pathParam2);
 
-//    unichar * pwszFile1;
+//    wide_character * pwszFile1;
 
-//    unichar * pwszFile2;
+//    wide_character * pwszFile2;
 
-//    ::acme::malloc < unichar * > pwszPath1;
+//    ::acme::malloc < wide_character * > pwszPath1;
 
-//    ::acme::malloc < unichar * > pwszPath2;
+//    ::acme::malloc < wide_character * > pwszPath2;
 
 //    pwszPath1.alloc((size_t)(wstr1.length() * 2 * sizeof(unichar)));
 
 //    pwszPath2.alloc((size_t)(wstr2.length() * 2 * sizeof(unichar)));
 
-//    int iCmp = -1;
+//    ::i32 iCmp = -1;
 
 //    if (GetFullPathNameW(wstr1, (DWORD)(pwszPath1.m_iSize / sizeof(unichar)), pwszPath1, &pwszFile1))
 //    {
@@ -135,7 +135,7 @@ CLASS_DECL_ACME::file::path get_module_path(HANDLE hProcess, HMODULE hmodule)
 // }
 
 
-bool CLASS_DECL_ACME shell_get_special_folder_path(HWND hwnd, ::file::path &str, int csidl, bool fCreate);
+bool CLASS_DECL_ACME shell_get_special_folder_path(HWND hwnd, ::file::path &str, ::i32 csidl, bool fCreate);
 //{
 //
 //   return ::SHGetSpecialFolderPathW(hwnd, wstring_adaptor(str, MAX_PATH * 8), csidl, fCreate) != false;
@@ -143,7 +143,7 @@ bool CLASS_DECL_ACME shell_get_special_folder_path(HWND hwnd, ::file::path &str,
 //}
 
 
-//::file::path CLASS_DECL_ACME shell_get_special_folder_path(HWND hwnd, int csidl, bool fCreate,
+//::file::path CLASS_DECL_ACME shell_get_special_folder_path(HWND hwnd, ::i32 csidl, bool fCreate,
 //                                                                   ::windowing::window *pwindow)
 //{
 //
@@ -173,7 +173,7 @@ CLASS_DECL_ACME::file::path home_folder_path()
 }
 
 
-::file::path CLASS_DECL_ACME shell_get_special_folder_path(HWND hwnd, int csidl, bool fCreate)
+::file::path CLASS_DECL_ACME shell_get_special_folder_path(HWND hwnd, ::i32 csidl, bool fCreate)
 {
 
    ::file::path path;

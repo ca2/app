@@ -11,7 +11,7 @@ public:
    simple_array < MESSAGE * >           m_msgptra;
 
 
-   int_bool GetMessage(MESSAGE * pmsg);
+   ::i32_bool GetMessage(MESSAGE * pmsg);
 
 
 };
@@ -20,7 +20,7 @@ public:
 
 
 
-int_bool sys_message_queue::GetMessage(MESSAGE * pmsg)
+::i32_bool sys_message_queue::GetMessage(MESSAGE * pmsg)
 {
    mutex_lock lockMutex(m_pmutex, false);
    while(true)
@@ -54,7 +54,7 @@ sys_thread::sys_thread(pthread_t pthread) :
 {
 }
 
-int_bool sys_thread::GetMessage(MESSAGE * pmsg)
+::i32_bool sys_thread::GetMessage(MESSAGE * pmsg)
 {
       return m_messagequeue.GetMessage(pmsg);
 }
@@ -77,7 +77,7 @@ sys_thread * sys_thread_pool::get(pthread_t pthread)
    mutex_lock lockMutex(m_pmutex, false);
 
 
-   for(int i = 0; i < m_threadptra.get_count(); i++)
+   for(::i32 i = 0; i < m_threadptra.get_count(); i++)
    {
       if(m_threadptra[i]->m_pthread == pthread)
          return m_threadptra[i];

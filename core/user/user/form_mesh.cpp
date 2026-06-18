@@ -47,7 +47,7 @@ namespace user
 
    }
 
-   bool form_mesh::_001HitTest_(const ::int_point & point, ::collection::index &iItem, ::collection::index &iSubItem)
+   bool form_mesh::_001HitTest_(const ::i32_point & point, ::collection::index &iItem, ::collection::index &iSubItem)
    {
 
       return false;
@@ -117,7 +117,7 @@ namespace user
    void form_mesh::_001PlaceControl(::user::interaction * pinteraction, ::collection::index iEditItem, bool bClick, bool bOnlySizeAndPosition)
    {
 
-      ::int_rectangle rectangle;
+      ::i32_rectangle rectangle;
 
       auto psubitem = get_subitem(pinteraction->m_iEditItem, pinteraction->m_iEditSubItem);
 
@@ -224,7 +224,7 @@ namespace user
    }
 
 
-   bool form_mesh::_001OnMouseActivate(::windowing::window * pDesktopWnd,unsigned int nHitTest,const ::atom & atom, lresult & iResult)
+   bool form_mesh::_001OnMouseActivate(::windowing::window * pDesktopWnd,::u32 nHitTest,const ::atom & atom, lresult & iResult)
    {
       __UNREFERENCED_PARAMETER(pDesktopWnd);
       __UNREFERENCED_PARAMETER(nHitTest);
@@ -238,9 +238,9 @@ namespace user
       __UNREFERENCED_PARAMETER(pmessage);
    }
 
-   void form_mesh::on_timer(::timer * ptimer)
+   void form_mesh::operator()(::timer * ptimer)
    {
-      mesh::on_timer(ptimer);
+      mesh::operator()(ptimer);
    }
 
    void form_mesh::_001OnMessageNotify(::message::message * pmessage)
@@ -399,7 +399,7 @@ namespace user
    }
 
 
-   bool form_mesh::_001IsPointInside(::user::interaction * pinteraction, const long_long_point & point)
+   bool form_mesh::_001IsPointInside(::user::interaction * pinteraction, const i64_point & point)
    {
 
       if(pinteraction != nullptr)
@@ -412,7 +412,7 @@ namespace user
             if(pinteraction == _001GetEditControl())
             {
                
-               ::int_rectangle rectangleWindow;
+               ::i32_rectangle rectangleWindow;
                
                pinteraction->window_rectangle(rectangleWindow);
 
@@ -428,9 +428,9 @@ namespace user
 
       }
 
-      ::int_rectangle rectangleControl;
+      ::i32_rectangle rectangleControl;
 
-      ::int_rectangle rectangle;
+      ::i32_rectangle rectangle;
 
       draw_mesh_item item;
 
@@ -443,8 +443,8 @@ namespace user
       //return ::is_set(m_pitemControl)
         // && m_pitemControl->m_item.m_iSubItem == pinteraction->m_iEditSubItem;
 
-      //int iEditItem;
-      //int iEditSubItem;
+      //::i32 iEditItem;
+      //::i32 iEditSubItem;
 
       //_001DisplayHitTest(point, iEditItem, iEditSubItem);
 
@@ -458,9 +458,9 @@ namespace user
 //      //index_element_rectangle(&item, ::user::mesh::element_sub_item);
 //      rectangleControl = item.m_rectangleSubItem;
 //      client_to_screen(rectangleControl);
-//      long_long_rectangle rectangleForm;
+//      i64_rectangle rectangleForm;
 //      window_rectangle(rectangleForm);
-//      long_long_rectangle rectangleX;
+//      i64_rectangle rectangleX;
 //      rectangleX.top = rectangleForm.top;
 //      rectangleX.bottom = rectangleForm.bottom;
 //      rectangleX.left = rectangleControl.left;
@@ -471,7 +471,7 @@ namespace user
    //void form_mesh::_001OnColumnChange()
    //{
    //   ::user::mesh::_001OnColumnChange();
-   //   for(int i = 0; i < m_columna.get_size(); i++)
+   //   for(::i32 i = 0; i < m_columna.get_size(); i++)
    //   {
    //      if(m_columna[i]->m_iControl >= 0 && m_columna[i]->m_iControl < m_controldescriptorset.get_size())
    //      {
@@ -503,16 +503,16 @@ namespace user
 
    //   //}
 
-   //   //::int_point point = pmouse->m_point;
+   //   //::i32_point point = pmouse->m_point;
 
    //   //screen_to_client()(point);
 
    //   //if(pmouse->m_emessage == ::user::e_message_left_button_down)
    //   //{
    //   //
-   //   //   int iItem;
+   //   //   ::i32 iItem;
    //   //
-   //   //   int iSubItem;
+   //   //   ::i32 iSubItem;
    //   //
    //   //   ::user::range range;
    //   //
@@ -536,8 +536,8 @@ namespace user
    //   //}
    //   //else if(emessage == ::user::e_message_left_button_up)
    //   //{
-   //   //int iItem;
-   //   //int iSubItem;
+   //   //::i32 iItem;
+   //   //::i32 iSubItem;
    //   //::user::range range;
    //   //get_selection(range);
    //   //if(_001DisplayHitTest(point, iItem, iSubItem))
@@ -553,7 +553,7 @@ namespace user
    //   //}
    //   //}
    //   //}*/
-   //   //control_keep controlkeep(this,int_point);
+   //   //control_keep controlkeep(this,i32_point);
    //   //::pointer<::user::interaction>pinteraction = top_child();
    //   //::pointer<::user::interaction>puiBefore = nullptr;
    //   //bool bError;
@@ -602,19 +602,19 @@ namespace user
    //}
 
 
-   void form_mesh::control_get_client_rect(::user::interaction * pinteraction, ::int_rectangle  & rectangle)
+   void form_mesh::control_get_client_rect(::user::interaction * pinteraction, ::i32_rectangle  & rectangle)
    {
 
       if(pinteraction == nullptr)
       {
 
-         ::null(rectangle);
+         ::clear(rectangle);
 
          return;
 
       }
 
-      //::int_rectangle rectangleControl;
+      //::i32_rectangle rectangleControl;
 
       //auto iItem = display_to_strict(m_iDisplayItemHover);
 
@@ -633,7 +633,7 @@ namespace user
    }
 
 
-   void form_mesh::control_get_window_rect(::user::interaction * pinteraction,::int_rectangle & rectangle)
+   void form_mesh::control_get_window_rect(::user::interaction * pinteraction,::i32_rectangle & rectangle)
    {
 
       control_get_client_rect(pinteraction,rectangle);
@@ -643,7 +643,7 @@ namespace user
    }
 
 
-   bool form_mesh::control_001DisplayHitTest(const ::int_point & point)
+   bool form_mesh::control_001DisplayHitTest(const ::i32_point & point)
    {
 
       //return _001DisplayHitTest(point, m_pitemControl->m_item.m_iItem, m_pitemControl->m_item.m_iSubItem);

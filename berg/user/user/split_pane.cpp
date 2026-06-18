@@ -15,7 +15,7 @@ namespace user
 
       //m_rectangleX.Null();
 
-      //m_sizeFixed = ::int_size(0, 0);
+      //m_sizeFixed = ::i32_size(0, 0);
 
    }
 

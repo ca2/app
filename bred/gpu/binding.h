@@ -28,13 +28,13 @@ namespace gpu
 
 
       bool m_bSet = false;
-      int m_iSlot = -1;
+      ::i32 m_iSlot = -1;
       bool m_bVertexShader = false;
       bool m_bFragmentShader = false;
       union
       {
-         int m_iBindingPoint2 = -1;
-         int m_iTextureUnit;
+         ::i32 m_iBindingPoint2 = -1;
+         ::i32 m_iTextureUnit;
       };
       // bool                       m_bImageSampler = false;
       ::string m_strUniform;
@@ -70,7 +70,7 @@ namespace gpu
       bool has_global_ubo() const;
 
 
-      ::gpu::binding * binding(int iSlot);
+      ::gpu::binding * binding(::i32 iSlot);
 
       virtual void defer_update_binding_set(::gpu::command_buffer *pgpucommandbuffer);
 
@@ -100,8 +100,8 @@ namespace gpu
    public:
 
 
-      int m_iSet = -1;
-      int m_iSlot = -1;
+      ::i32 m_iSet = -1;
+      ::i32 m_iSlot = -1;
       ::pointer<binding> m_pbinding;
       ::pointer<::gpu::texture> m_ptexture;
       ::pointer<::gpu::block> m_pblock;
@@ -119,7 +119,7 @@ namespace gpu
    {
    public:
 
-      int m_iSet = -1;
+      ::i32 m_iSet = -1;
       ::pointer<binding_set> m_pbindingset;
 
       // binding_set * operator->()
@@ -131,11 +131,11 @@ namespace gpu
 
       virtual void initialize_binding_slot_set(::gpu::binding_set * pbindingset);
 
-      ::gpu::binding_slot *binding_slot(int iSlot);
+      ::gpu::binding_slot *binding_slot(::i32 iSlot);
 
-      //::gpu::binding_slot binding_slot(int iSlot);
+      //::gpu::binding_slot binding_slot(::i32 iSlot);
 
-      virtual void update_binding_slots(int iSet);
+      virtual void update_binding_slots(::i32 iSet);
 
       virtual void set_texture(::pointer < ::gpu::texture > * ppgputexture, ::gpu::empty_texture_source * pemptytexturesource);
 
@@ -165,7 +165,7 @@ namespace gpu
    };
 
 
-   //inline ::gpu::binding_slot * binding_set_pointer::binding(int iSlot)
+   //inline ::gpu::binding_slot * binding_set_pointer::binding(::i32 iSlot)
    //{
 
    //   return {m_iSet, iSlot, m_pbindingset->binding(iSlot)};

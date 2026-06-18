@@ -115,7 +115,7 @@ namespace user
 
 //#ifdef WINDOWS_DESKTOP
 //
-//      int iPo = m_iPo;
+//      ::i32 iPo = m_iPo;
 //
 //      return read_resource_as_string(nullptr, iPo, "PO", bOnlyHeader ? 4096 : -1);
 //
@@ -178,7 +178,7 @@ namespace user
 
       stra.add_lines(strPo);
 
-      int iState = -1;
+      ::i32 iState = -1;
 
       string strMsgId;
 
@@ -186,7 +186,7 @@ namespace user
 
       avoid_parsing_exception avoidParsingException;
 
-      int iStringCount = 0;
+      ::i32 iStringCount = 0;
 
       string strLine;
 

@@ -14,7 +14,7 @@ namespace graphics3d
  //    struct point_light_component
  //    {
  //
- //        float lightIntensity = 1.0f;
+ //        ::f32 lightIntensity = 1.0f;
  //
  //    };
  //

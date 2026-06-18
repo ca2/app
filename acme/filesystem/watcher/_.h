@@ -6,7 +6,7 @@
 
 
 using transfer_progress_function =
-::function < void(double, filesize, filesize) >;
+::function < void(::f64, filesize, filesize) >;
 
 
 namespace file
@@ -20,7 +20,7 @@ namespace file
    class listener;
 
 
-   //using watch_id = long long;
+   //using watch_id = ::i64;
 
 
 
@@ -42,6 +42,8 @@ namespace file
 
    };
 
+
+   DECLARE_C_FLAG(e_action, enum_action);
 
 
 };

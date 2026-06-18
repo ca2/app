@@ -57,10 +57,10 @@ static glob_t *GlobsOpen[MAX_GLOBS_OPEN];
 
 //----------------------------------------------------------------------------
 
-int
-findfirst (const ::string &pathname, struct ffblk *fblk, int attrib)
+::i32
+findfirst (const ::string &pathname, struct ffblk *fblk, ::i32 attrib)
 {
-  int i;
+  ::i32 i;
   gint Flag;
   for (i = 0; i < MAX_GLOBS_OPEN; i++)
     if (GlobsOpen[i] == NULL)
@@ -91,12 +91,12 @@ findfirst (const ::string &pathname, struct ffblk *fblk, int attrib)
 
 //---------------------------------------------------------------------------
 
-int
+::i32
 findnext (struct ffblk *fblk)
 {
   struct tm *TimeBuf;
   struct stat StatBuf;
-  int ReturnValue = 1, attr;
+  ::i32 ReturnValue = 1, attr;
   if (fblk == NULL || fblk->GlobPtr == NULL)
     return (1);
   for (; fblk->OnFile < fblk->GlobPtr->gl_pathc; fblk->OnFile++)
@@ -139,7 +139,7 @@ findnext (struct ffblk *fblk)
 void
 findlast (struct ffblk *fblk)
 {
-  int i;
+  ::i32 i;
   if (fblk != NULL && fblk->GlobPtr != NULL)
     {
       for (i = 0; i < MAX_GLOBS_OPEN; i++)

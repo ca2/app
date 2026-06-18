@@ -22,7 +22,7 @@ bool launcher::start()
    infoa.lpFile         = strPath;
    infoa.lpDirectory    = strDir;*/
 
-    execlp(strPath, strPath, (char *) 0);
+    execlp(strPath, strPath, (char_pointer ) 0);
 
    return true;
 

@@ -8,7 +8,7 @@
 #include "acme/handler/topic.h"
 #include "acme/platform/application.h"
 #include "acme/platform/session.h"
-#include "acme/platform/timer.h"
+#include "acme/constant/timer.h"
 #include "acme/platform/application.h"
 #include "acme/platform/system.h"
 #include "acme/prototype/data/listener.h"
@@ -76,7 +76,7 @@ namespace userfs
 
 #ifdef _DEBUG
 
-   long long tree_data::increment_reference_count()
+   ::i64 tree_data::increment_reference_count()
    {
 
       return ::user::tree_data<::userfs::item>::increment_reference_count();
@@ -93,7 +93,7 @@ namespace userfs
    }
 
 
-   long long tree_data::decrement_reference_count()
+   ::i64 tree_data::decrement_reference_count()
    {
 
 //      auto c = m_countReference--;
@@ -114,10 +114,10 @@ namespace userfs
    }
 
 
-   long long tree_data::release()
+   ::i64 tree_data::release()
    {
 
-      long long i = decrement_reference_count();
+      ::i64 i = decrement_reference_count();
 
       if (i == 0)
       {
@@ -168,7 +168,7 @@ namespace userfs
 
       __UNREFERENCED_PARAMETER(pmessage);
 //      ::pointer<::message::context_menu>pcontextmenu(pmessage);
-      //   int iItem;
+      //   ::i32 iItem;
       //   HRESULT hr;
 //         auto point = pcontextmenu->GetPoint();
 //      ::user::tree_data::screen_to_client(&point);
@@ -227,10 +227,10 @@ namespace userfs
    }
 
 
-   void tree_data::on_timer(::timer * ptimer)
+   void tree_data::operator()(::timer * ptimer)
    {
 
-      if (ptimer->m_uTimer == 1234567)
+      if (ptimer->m_etimer == e_timer_animation)
       {
          
          m_iAnimate += 2;
@@ -240,21 +240,21 @@ namespace userfs
             
             m_iAnimate = 0;
 
-            ptimer->m_ptimercallback->erase_timer(ptimer);
+            ptimer->cancel();
 
          }
          
-         ptimer->m_ptimercallback->get_user_interaction()->set_need_redraw();
+         //ptimer->m_ptimercallback->get_user_interaction()->set_need_redraw();
 
       }
-      else if (ptimer->m_uTimer == 123)
+      else if (ptimer->m_etimer == e_timer_redraw)
       {
          
-         ptimer->m_ptimercallback->get_user_interaction()->set_need_redraw();
+         //ptimer->m_ptimercallback->get_user_interaction()->set_need_redraw();
          
-         m_bTimer123 = false;
+         m_bTimerRedraw = false;
          
-         ptimer->m_ptimercallback->erase_timer(ptimer);
+         ptimer->cancel();
 
       }
 
@@ -266,7 +266,7 @@ namespace userfs
       
       m_iAnimate = 1;
       
-      pinteraction->set_timer(1234567, 50_ms, nullptr);
+      pinteraction->set_timer(e_timer_animation, 50_ms, nullptr);
 
    }
 
@@ -334,7 +334,7 @@ namespace userfs
       pinteraction->id() = FILE_MANAGER_ID_FILE_NAME;
       control.set_data_type(::user::form_control_data_type_string);
 
-      int iControl =  _001AddControl(control);
+      ::i32 iControl =  _001AddControl(control);
 
       CColumn column;
 
@@ -357,7 +357,7 @@ namespace userfs
 
       get_selection(itemptraSelected);
 
-      for (int i = 0; i < itemptraSelected.get_size(); i++)
+      for (::i32 i = 0; i < itemptraSelected.get_size(); i++)
       {
 
          stra.add(itemptraSelected[0]->m_pitem.cast < ::userfs::item >()->user_path());
@@ -384,7 +384,7 @@ namespace userfs
    }
    else
    {
-   int iCSIDL = MapToCSIDL(efolder);
+   ::i32 iCSIDL = MapToCSIDL(efolder);
 
    ASSERT(iCSIDL >= 0);
 
@@ -423,7 +423,7 @@ namespace userfs
    }
    }*/
 
-   /*   int tree_data::MapToCSIDL(EFolder efolder)
+   /*   ::i32 tree_data::MapToCSIDL(EFolder efolder)
    {
    switch(efolder)
    {

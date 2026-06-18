@@ -38,15 +38,15 @@ namespace user
 
       void _001OnNcDraw(::draw2d::graphics_pointer & pgraphics) override;
       void _001OnDraw(::draw2d::graphics_pointer & pgraphics) override;
-      void on_timer(::timer * ptime) override;
+      void operator()(::timer * ptimer) override;
 
       //void route_command(::message::command * pcommand, bool bRouteToKeyDescendant = false) override;
       //virtual void on_command(::message::command * pcommand) override;
       void handle(::topic * ptopic, ::handler_context * phandlercontext) override;
 
-      //virtual void set_context_offset(::draw2d::graphics_pointer & pgraphics, int, int) override;
-      //virtual ::int_point get_context_offset() override;
-      //::double_size get_total_size() override;
+      //virtual void set_context_offset(::draw2d::graphics_pointer & pgraphics, ::i32, ::i32) override;
+      //virtual ::i32_point get_context_offset() override;
+      //::f64_size get_total_size() override;
 
       //void handle(::topic * ptopic, ::handler_context * phandlercontext) override;
 

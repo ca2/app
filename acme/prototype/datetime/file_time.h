@@ -13,16 +13,16 @@ public:
 
 
    // Microseconds between 1601-01-01 00:00:00 UTC and 1970-01-01 00:00:00 UTC
-   inline static const unsigned long long EPOCH_DIFFERENCE_NANOS = 11644473600000000000ull;
+   inline static constexpr ::u64 EPOCH_DIFFERENCE_100NS = 116444736000000000ull;
 
 
    // Contains a 64-bit value representing the number
    // of 100-nanosecond intervals since January 1, 1601 (UTC).
-   unsigned long long          m_uFileTime;
+   ::u64          m_uFileTime;
 
 
    file_time() noexcept { m_uFileTime = 0; }
-   file_time(file_time_t, unsigned long long uFileTime) noexcept { m_uFileTime = uFileTime; }
+   file_time(file_time_t, ::u64 uFileTime) noexcept { m_uFileTime = uFileTime; }
    explicit file_time(const system_time & systemtime);
    explicit file_time(const ::posix_time & time);
    explicit file_time(const class ::time & time);
@@ -53,8 +53,8 @@ public:
    //bool operator<=(file_time ft) const noexcept;
    //bool operator>=(file_time ft) const noexcept;
 
-   unsigned long long get_file_time() const noexcept;
-   void set_file_time(unsigned long long nTime) noexcept;
+   ::u64 get_file_time() const noexcept;
+   void set_file_time(::u64 nTime) noexcept;
 
 
    
@@ -75,7 +75,7 @@ public:
 extern CLASS_DECL_ACME const_char_pointer const szInvalidDateTime;
 extern CLASS_DECL_ACME const_char_pointer const szInvalidDateTimeSpan;
 
-const int maxTimeBufferSize = 128;
+const ::i32 maxTimeBufferSize = 128;
 const long maxDaysInSpan  =   3615897L;
 
 
@@ -107,7 +107,7 @@ struct CLASS_DECL_ACME file_time_set
 
 
 
-   bool modified_timeout(const file_time & current, int iSeconds) const
+   bool modified_timeout(const file_time & current, ::i32 iSeconds) const
    {
 
       if ((current - m_filetimeModified).m_iFileTimeSpan > (iSeconds * 10'000'000))
@@ -122,7 +122,7 @@ struct CLASS_DECL_ACME file_time_set
    }
 
 
-   bool modified_timeout(int iSeconds) const;
+   bool modified_timeout(::i32 iSeconds) const;
 
 };
 
@@ -136,7 +136,7 @@ namespace earth
 } // namespace earth
 
 
-CLASS_DECL_ACME bool file_modified_timeout(const ::file::path & path, int iSeconds);
+CLASS_DECL_ACME bool file_modified_timeout(const ::file::path & path, ::i32 iSeconds);
 
 
 CLASS_DECL_ACME void get_file_time_set(const ::file::path & path, file_time_set & time);

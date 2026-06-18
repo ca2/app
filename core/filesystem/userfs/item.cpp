@@ -52,12 +52,12 @@ namespace userfs
 
    //}
 
-   int item::get_index() const
+   ::i32 item::get_index() const
    {
       return m_iIndex;
    }
 
-   bool item::is_folder() const
+   ::i32_boolean item::is_folder() const
    {
       return m_flags.has(::file::e_flag_folder);
    }

@@ -76,7 +76,7 @@ public:
 
 
    inline db_str_set * get_db_str_set();
-   void on_timer(::timer * ptimer);
+   void operator()(::timer * ptimer) override;
 
    void assert_ok() const;
    void dump(dump_context &) const;

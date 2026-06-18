@@ -2,9 +2,9 @@
 #include "acme/_operating_system.h"
 
 
-CLASS_DECL_ACME int MultiByteToWideChar2(
-   unsigned int CodePage, unsigned int uFlags, const_char_pointer pMultiByteStr,
-   int cbMultiByte, LPWSTR  pWideCharStr, int cchWideChar)
+CLASS_DECL_ACME ::i32 MultiByteToWideChar2(
+   ::u32 CodePage, ::u32 uFlags, const_char_pointer pMultiByteStr,
+   ::i32 cbMultiByte, LPWSTR  pWideCharStr, ::i32 cchWideChar)
 {
 
    return MultiByteToWideChar(CodePage, uFlags, pMultiByteStr, cbMultiByte, pWideCharStr, cchWideChar);
@@ -13,10 +13,10 @@ CLASS_DECL_ACME int MultiByteToWideChar2(
 }
 
 
-CLASS_DECL_ACME int WideCharToMultiByte2(
-   unsigned int CodePage, unsigned int uFlags, const ::wide_character *  pWideCharStr,
-   int cchWideChar, char * pMultiByteStr, int cbMultiByte,
-   const_char_pointer pDefaultChar, int_bool * pUsedDefaultChar)
+CLASS_DECL_ACME ::i32 WideCharToMultiByte2(
+   ::u32 CodePage, ::u32 uFlags, const ::wide_character *  pWideCharStr,
+   ::i32 cchWideChar, char_pointer pMultiByteStr, ::i32 cbMultiByte,
+   const_char_pointer pDefaultChar, ::i32_bool * pUsedDefaultChar)
 {
 
    return WideCharToMultiByte(CodePage, uFlags, pWideCharStr, cchWideChar, pMultiByteStr, cbMultiByte, pDefaultChar, pUsedDefaultChar);

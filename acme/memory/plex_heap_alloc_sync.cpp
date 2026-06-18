@@ -48,7 +48,7 @@ class memdupfree2
 //#include "acme/platform/acme.h"
 
 
-plex_heap_alloc_sync::plex_heap_alloc_sync(::heap::allocator * pallocator, memsize nAllocSize, unsigned int nBlockSize) :
+plex_heap_alloc_sync::plex_heap_alloc_sync(::heap::allocator * pallocator, memsize nAllocSize, ::u32 nBlockSize) :
    m_pallocator(pallocator)
 {
 
@@ -77,7 +77,7 @@ plex_heap_alloc_sync::plex_heap_alloc_sync(::heap::allocator * pallocator, memsi
 
    }
 
-   m_nAllocSize = (int)nAllocSize;
+   m_nAllocSize = (::i32)nAllocSize;
 
    m_nBlockSize = nBlockSize;
 
@@ -198,7 +198,7 @@ void plex_heap_alloc_sync::Free(void * pParam)
    //      printf("Free 8192");
    //
    //   }
-   unsigned long long & u = ((unsigned long long &)pParam);
+   ::u64 & u = ((::u64 &)pParam);
    if ((u & 0xffffffff) == 00)
    {
       informationf("");
@@ -207,7 +207,7 @@ void plex_heap_alloc_sync::Free(void * pParam)
 
    if (m_nAllocSize == 128)
    {
-      //unsigned long long & u = ((unsigned long long &)pParam);
+      //::u64 & u = ((::u64 &)pParam);
 
       if ((u & 0xff000000) == 00)
       {
@@ -216,7 +216,7 @@ void plex_heap_alloc_sync::Free(void * pParam)
       }
 
    }
-   if ((unsigned char *)0x0000000020000218 == ((unsigned char *)pParam))
+   if ((::u8 *)0x0000000020000218 == ((::u8 *)pParam))
    {
 
       debug_break();
@@ -339,7 +339,7 @@ void plex_heap_alloc_sync::NewBlock()
 
    critical_section_lock synchronouslock(&m_criticalsection);
 
-   unsigned int nAllocSize = m_nAllocSize;
+   ::u32 nAllocSize = m_nAllocSize;
 
    m_pallocator->m_pacme->heap()->on_plex_new_block(nAllocSize);
 
@@ -351,18 +351,18 @@ void plex_heap_alloc_sync::NewBlock()
 
    auto nBlockSize = m_nBlockSize;
 
-   for (int i = 0; i < nBlockSize; i++)
+   for (::i32 i = 0; i < nBlockSize; i++)
    {
 
       pnode->m_pnext = pnodeNext;
 
       pnodeNext = pnode;
 
-      pnode = (node *)&((unsigned char *)pnode)[nAllocSize];
+      pnode = (node *)&((::u8 *)pnode)[nAllocSize];
 
    }
 
-   if ((unsigned char *)0x0000000200000020 == ((unsigned char *)pnodeNext))
+   if ((::u8 *)0x0000000200000020 == ((::u8 *)pnodeNext))
    {
 
       debug_break();

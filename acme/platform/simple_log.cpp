@@ -20,8 +20,8 @@ static bool g_bPrintfIfDebuggerIsNotAttached = false;
 string get_status_message(const ::e_status & estatus);
 
 
-CLASS_DECL_ACME void __simple_tracea(enum_trace_level elevel, const_char_pointer pszFunction, const_char_pointer pszFile, int iLine, const ::scoped_string & scopedstr);
-CLASS_DECL_ACME void __simple_tracev(enum_trace_level elevel, const_char_pointer pszFunction, const_char_pointer pszFile, int iLine, const ::scoped_string & scopedstrFormat, va_list args);
+CLASS_DECL_ACME void __simple_tracea(enum_trace_level elevel, const_char_pointer pszFunction, const_char_pointer pszFile, ::i32 iLine, const ::scoped_string & scopedstr);
+CLASS_DECL_ACME void __simple_tracev(enum_trace_level elevel, const_char_pointer pszFunction, const_char_pointer pszFile, ::i32 iLine, const ::scoped_string & scopedstrFormat, va_list args);
 
 
 //CLASS_DECL_ACME void FUNCTION_DEBUGBOX(const ::scoped_string & scopedstrMessage, const ::scoped_string & scopedstrTitle, const ::user::e_message_box & emessagebox, ::callback callback)
@@ -34,7 +34,7 @@ CLASS_DECL_ACME void __simple_tracev(enum_trace_level elevel, const_char_pointer
 //}
 
 
-//CLASS_DECL_ACME void FUNCTION_DEBUGBOXW(const WCHAR * pszMessage, const WCHAR * pszTitle, int iFlags, const ::function_arg& function)
+//CLASS_DECL_ACME void FUNCTION_DEBUGBOXW(const WCHAR * pszMessage, const WCHAR * pszTitle, ::i32 iFlags, const ::function_arg& function)
 //{
 //
 //   ::os_message_box_w(nullptr, pszMessage, pszTitle, iFlags, function);
@@ -70,7 +70,7 @@ void o_debug_string(const ::scoped_string & scopedstr)
 }
 
 
-CLASS_DECL_ACME void __trace(enum_trace_level elevel, const ::scoped_string & scopedstrTag, const ::scoped_string & scopedstrText, const ::scoped_string & scopedstrFile, int iLine)
+CLASS_DECL_ACME void __trace(enum_trace_level elevel, const ::scoped_string & scopedstrTag, const ::scoped_string & scopedstrText, const ::scoped_string & scopedstrFile, ::i32 iLine)
 {
 
    character_count iLen;
@@ -95,7 +95,7 @@ CLASS_DECL_ACME void __trace(enum_trace_level elevel, const ::scoped_string & sc
 
    string str;
 
-   char * psz = str.get_buffer(iLen + 8);
+   char_pointer psz = str.get_buffer(iLen + 8);
 
    ansi_ncpy(psz, scopedstrText, scopedstrText.size());
 
@@ -109,9 +109,9 @@ CLASS_DECL_ACME void __trace(enum_trace_level elevel, const ::scoped_string & sc
       if (iLine >= 1)
       {
 
-         char pszNum[30];
+         ::i8 pszNum[30];
 
-         ansi_from_long_long(pszNum, iLine, 10, e_digit_case_upper);
+         ansi_from_i64(pszNum, iLine, 10, e_digit_case_upper);
 
          ansi_concatenate(psz, "(");
 
@@ -133,11 +133,11 @@ CLASS_DECL_ACME void __trace(enum_trace_level elevel, const ::scoped_string & sc
 
 
 
-//int g_iMemoryCounters = -1;
+//::i32 g_iMemoryCounters = -1;
 //
 //CLASS_DECL_ACME::pointer< ::mutex > g_pmutexMemoryCounters = nullptr;
 //
-//int g_iMemoryCountersStartable = 0;
+//::i32 g_iMemoryCountersStartable = 0;
 //
 //CLASS_DECL_ACME bool memory_counter_on()
 //{
@@ -219,7 +219,7 @@ simple_log::simple_log()
 
    m_bReallySimple = true;
    m_bWithTimePrefix = true;
-   m_bDisplayRelativeTime = true;
+   m_bDisplayRelativeTime = false;
 
    ::file::path pathTrace;
 
@@ -251,6 +251,8 @@ simple_log::~simple_log()
 }
 
 
+
+
 void simple_log::print(::trace_statement & tracestatement, bool bFlush)
 {
 
@@ -261,45 +263,95 @@ void simple_log::print(::trace_statement & tracestatement, bool bFlush)
 
    }
 
-   if(tracestatement.m_etracelevel <= m_etracelevelMinimum)
+   if(tracestatement.m_etracelevel > m_etracelevelMinimum)
    {
 
-      string str;
+      return;
 
-      auto sPrefix = tracestatement.prefix();
+   }
 
-      if (sPrefix == "task")
+   string str;
+
+   auto sPrefix = tracestatement.prefix();
+
+   if (sPrefix == "task")
+   {
+
+      auto sPrefix2 = tracestatement.prefix();
+
+      sPrefix = sPrefix2;
+
+   }
+
+   auto s = tracestatement.as_string();
+
+   if (m_bReallySimple)
+   {
+
+      if (sPrefix.begins_eat("\r"))
       {
 
-         auto sPrefix2 = tracestatement.prefix();
+         str += "\r";
 
-         sPrefix = sPrefix2;
+         str += sPrefix + "> ";
+
+         str += s;
+
+      }
+      else
+      {
+
+         str += sPrefix + "> ";
+
+         str += s;
+
+         str += "\n";
 
       }
 
-      auto s = tracestatement.as_string();
+   }
+   else
+   {
 
-      if (m_bReallySimple)
+      str.formatf("%s> %c %s %d %s\n", sPrefix.c_str(), trace_level_char(tracestatement.m_etracelevel), tracestatement.m_pszFunction, tracestatement.m_iLine, s.c_str());
+
+   }
+
+   if(m_bWithTimePrefix)
+   {
+
+      ::string strTime;
+
+      class ::time timeNow;
+
+      timeNow.Now();
+
+      if(m_bDisplayRelativeTime)
       {
 
-         if (sPrefix.begins_eat("\r"))
+         auto Δtime = timeNow - ::acme::get()->m_timeStart;
+
+         ::earth::time_span earthtimepan(Δtime);
+
+         if(earthtimepan.days() <= 0)
          {
-            
-            str += "\r";
 
-            str += sPrefix + "> ";
-
-            str += s;
+            strTime.formatf("%02d:%02d:%02d %03d ",
+                           earthtimepan.hours(),
+                           earthtimepan.minute(),
+                           earthtimepan.second(),
+                           Δtime.millisecond());
 
          }
          else
          {
 
-            str += sPrefix + "> ";
-
-            str += s;
-
-            str += "\n";
+            strTime.formatf("%3d %02d:%02d:%02d %03d ",
+                           earthtimepan.days(),
+                           earthtimepan.hour(),
+                           earthtimepan.minute(),
+                           earthtimepan.second(),
+                           Δtime.millisecond());
 
          }
 
@@ -307,135 +359,74 @@ void simple_log::print(::trace_statement & tracestatement, bool bFlush)
       else
       {
 
-         str.formatf("%s> %c %s %d %s\n", sPrefix.c_str(), trace_level_char(tracestatement.m_etracelevel), tracestatement.m_pszFunction, tracestatement.m_iLine, s.c_str());
+         ::earth::time earthtime(timeNow);
+
+         strTime.formatf("%04d-%02d-%02d %02d:%02d:%02d %03d ",
+                        earthtime.year(),
+                        earthtime.month(),
+                        earthtime.day(),
+                        earthtime.hour(),
+                        earthtime.minute(),
+                        earthtime.second(),
+                        timeNow.millisecond());
 
       }
 
-      if(m_bWithTimePrefix)
+      if (str.begins_eat("\r"))
       {
 
-         ::string strTime;
 
-         class ::time timeNow;
+         str = "\r"+strTime + str;
 
-         timeNow.Now();
+      }
+      else
+      {
 
-         if(m_bDisplayRelativeTime)
+         if (str.is_empty())
          {
 
-            auto Δtime = timeNow - ::acme::get()->m_timeStart;
-
-            ::earth::time_span earthtimepan(Δtime);
-
-            if(earthtimepan.days() <= 0)
-            {
-
-               strTime.formatf("%02d:%02d:%02d %03d ",
-                              earthtimepan.hours(),
-                              earthtimepan.minute(),
-                              earthtimepan.second(),
-                              Δtime.millisecond());
-
-            }
-            else
-            {
-
-               strTime.formatf("%3d %02d:%02d:%02d %03d ",
-                              earthtimepan.days(),
-                              earthtimepan.hour(),
-                              earthtimepan.minute(),
-                              earthtimepan.second(),
-                              Δtime.millisecond());
-
-            }
+            output_debug_string("WHAT?!?!(2)");
 
          }
-         else
+         else if (str.begins("\n"))
          {
 
-            ::earth::time earthtime(timeNow);
-
-            strTime.formatf("%04d-%02d-%02d %02d:%02d:%02d %03d ",
-                           earthtime.year(),
-                           earthtime.month(),
-                           earthtime.day(),
-                           earthtime.hour(),
-                           earthtime.minute(),
-                           earthtime.second(),
-                           timeNow.millisecond());
+            output_debug_string("WHAT?!?!");
 
          }
 
-         if (str.begins_eat("\r"))
+         str = strTime + str;
+
+      }
+
+   }
+
+   auto pplatform = ::platform::get();
+
+   if ((pplatform && pplatform->is_console()) || (!::is_debugger_attached() && g_bPrintfIfDebuggerIsNotAttached))
+   {
+
+      if (tracestatement.m_pparticleLogging)
+      {
+
+         if (tracestatement.m_pparticleLogging->has_flag(e_flag_no_stdout))
          {
 
-
-            str = "\r"+strTime + str;
-
-         }
-         else
-         {
-
-            if (str.is_empty())
-            {
-
-               output_debug_string("WHAT?!?!(2)");
-
-            }
-            else if (str.begins("\n"))
-            {
-
-               output_debug_string("WHAT?!?!");
-
-            }
-
-            str = strTime + str;
+            return;
 
          }
 
       }
 
-      auto pplatform = ::platform::get();
-
-      if ((pplatform && pplatform->is_console()) || (!::is_debugger_attached() && g_bPrintfIfDebuggerIsNotAttached))
+      if (tracestatement.m_etracelevel <= e_trace_level_information)
       {
 
-         if (tracestatement.m_pparticleLogging)
+         fwrite(str.c_str(), 1, str.size(), stdout);
+
+         if(bFlush)
          {
 
-            if (tracestatement.m_pparticleLogging->has_flag(e_flag_no_stdout))
-            {
-
-               return;
-
-            }
-
-         }
-
-         if (tracestatement.m_etracelevel <= e_trace_level_information)
-         {
-
-            fwrite(str.c_str(), 1, str.size(), stdout);
-
-            if(bFlush)
-            {
-
-               fflush(stdout);
-
-            }
-
-         }
-         else
-         {
-
-            fprintf(stderr, "%s", str.c_str());
-
-            if(bFlush)
-            {
-
-               fflush(stderr);
-
-            }
+            fflush(stdout);
 
          }
 
@@ -443,11 +434,24 @@ void simple_log::print(::trace_statement & tracestatement, bool bFlush)
       else
       {
 
-         ::output_debug_string(str);
+         fprintf(stderr, "%s", str.c_str());
 
-         ::output_debug_string_flush();
+         if(bFlush)
+         {
+
+            fflush(stderr);
+
+         }
 
       }
+
+   }
+   else
+   {
+
+      ::output_debug_string(str);
+
+      ::output_debug_string_flush();
 
    }
 
@@ -463,7 +467,7 @@ CLASS_DECL_ACME const_char_pointer e_trace_level_name(enum_trace_level elevel);
 #define SIMPLE_TRACE_FUNCTION_NAME 0
 #define SIMPLE_TRACE_FILE_NAME 0
 
-CLASS_DECL_ACME void __simple_tracea(::particle * pparticle, enum_trace_level elevel, const_char_pointer pszFunction, const_char_pointer pszFileName, int iLine, const ::scoped_string & scopedstr)
+CLASS_DECL_ACME void __simple_tracea(::particle * pparticle, enum_trace_level elevel, const_char_pointer pszFunction, const_char_pointer pszFileName, ::i32 iLine, const ::scoped_string & scopedstr)
 {
 
 #ifndef _DEBUG
@@ -540,7 +544,7 @@ CLASS_DECL_ACME void __simple_tracea(::particle * pparticle, enum_trace_level el
 }
 
 
-CLASS_DECL_ACME void __simple_tracev(::particle * pparticle, enum_trace_level elevel, const_char_pointer pszFunction, const_char_pointer pszFileName, int iLine, const_char_pointer pszFormat, va_list args)
+CLASS_DECL_ACME void __simple_tracev(::particle * pparticle, enum_trace_level elevel, const_char_pointer pszFunction, const_char_pointer pszFileName, ::i32 iLine, const_char_pointer pszFormat, va_list args)
 {
 
    //if (s_pstringmanager == nullptr)

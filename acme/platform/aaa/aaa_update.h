@@ -1,7 +1,7 @@
 #pragma once
 
 
-//CLASS_DECL_ACME int os_get_system_update_poll_time(long long iUpdate);
+//CLASS_DECL_ACME ::i32 os_get_system_update_poll_time(::i64 iUpdate);
 
 using update_map = map < ::pointer<matter> ::pointer<::update_item>>
 
@@ -43,13 +43,13 @@ public:
    ::pointer<::layered>                           m_pcontrolevent; // user::control_event
    ::pointer<::file::item>                        m_pfileitem;
    //::pointer<::u>                       m_pupdatetask;
-   long long                                           m_iUpdateSerial;
+   ::i64                                           m_iUpdateSerial;
    ::user::enum_key                                   m_ekey;
    ::payload                                           m_var;
    bool                                            m_bModified;
-   int                                             m_iMillisSleep;
-   //long long                                        m_iUpdate;
-   //long long                   m_iSerial;
+   ::i32                                             m_iMillisSleep;
+   //::i64                                        m_iUpdate;
+   //::i64                   m_iSerial;
 
 
    update();
@@ -69,9 +69,9 @@ public:
    static void post_destroy_all();
 
    inline bool is_ending() { synchronous_lock synchronouslock(this->synchronization(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX); return m_map.is_empty(); };
-   inline int poll_millis() { return os_get_system_update_poll_time(m_iUpdateSerial); };
+   inline ::i32 poll_millis() { return os_get_system_update_poll_time(m_iUpdateSerial); };
 
-   static inline bool should_poll(int iMillis)
+   static inline bool should_poll(::i32 iMillis)
    {
 
       return iMillis >= 100;

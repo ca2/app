@@ -104,12 +104,12 @@ namespace sockets
          m_response.attr("http_status_code") = 200;
          m_response.attr("http_status") = "OK";
 
-         m_response.header("Content-length") = (long long) mem.get_size();
+         m_response.header("Content-length") = (::i64) mem.get_size();
          m_response.header("content-type") = type;
          //      m_response.header("Last-modified") = m_start;
          SendResponse();
 
-         write((char *)mem.get_data(), (int) mem.get_size());
+         write((char_pointer )mem.get_data(), (::i32) mem.get_size());
       }
    }
 
@@ -122,8 +122,8 @@ namespace sockets
       const_char_pointer months[] = { "Jan","Feb","Mar","Apr","May","Jun",
                                "Jul","Aug","Sep","Oct","Nov","Dec"
                              };
-      int i;
-      char s[40];
+      ::i32 i;
+      ::i8 s[40];
 
       /* 1997-12-16 09:50:40 */
 
@@ -171,7 +171,7 @@ namespace sockets
 #else
       localtime_r(&t, &tp);
 #endif
-      char slask[40]; // yyyy-mm-dd hh:mm:ss
+      ::i8 slask[40]; // yyyy-mm-dd hh:mm:ss
       sprintf(slask,"%d-%02d-%02d %02d:%02d:%02d",
               tp.tm_year + 1900,
               tp.tm_mon + 1,
@@ -188,9 +188,9 @@ namespace sockets
    }
 
 
-   map_base < int, DH * > * g_pmapdh = nullptr;
+   map_base < ::i32, DH * > * g_pmapdh = nullptr;
 
-   map_base < int, DH * > * dh_map()
+   map_base < ::i32, DH * > * dh_map()
    {
 
       synchronous_lock synchronouslock(::globals_critical_section(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
@@ -198,7 +198,7 @@ namespace sockets
       if (g_pmapdh == nullptr)
       {
 
-         g_pmapdh = ___new map_base < int, DH * > ();
+         g_pmapdh = ___new map_base < ::i32, DH * > ();
 
       }
 
@@ -207,7 +207,7 @@ namespace sockets
    }
 
 
-   DH * get_dh(int keylength)
+   DH * get_dh(::i32 keylength)
    {
 
       synchronous_lock synchronouslock(::globals_critical_section(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
@@ -217,7 +217,7 @@ namespace sockets
    }
 
 
-   void set_dh(int keylength, DH * pdh)
+   void set_dh(::i32 keylength, DH * pdh)
    {
 
       synchronous_lock synchronouslock(::globals_critical_section(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
@@ -227,7 +227,7 @@ namespace sockets
    }
 
 
-   DH * tmp_dh_callback(SSL *ssl, int is_export, int keylength)
+   DH * tmp_dh_callback(SSL *ssl, ::i32 is_export, ::i32 keylength)
    {
 
       switch(keylength)
@@ -276,7 +276,7 @@ namespace sockets
       //if (strCipherList.find("DH") >= 0)
       //{
 
-      //   ::int_array_base ia;
+      //   ::i32_array_base ia;
 
       //   ia.add(512);
       //   ia.add(1024);
@@ -286,7 +286,7 @@ namespace sockets
       //   for (::collection::index i = 0; i < ia.get_count(); i++)
       //   {
 
-      //      int keylength = ia[i];
+      //      ::i32 keylength = ia[i];
 
       //      if (get_dh(keylength) == nullptr)
       //      {
@@ -324,7 +324,7 @@ namespace sockets
       //}
 
 
-      //int nid = OBJ_sn2nid(ECDHE_CURVE);
+      //::i32 nid = OBJ_sn2nid(ECDHE_CURVE);
 
       if (strCipherList.find("ECDH") >= 0)
       {
@@ -335,12 +335,12 @@ namespace sockets
 
          //SSL_CTX_set_tmp_ecdh(m_psslcontext->m_pclientcontext->m_psslcontext, ecdh);
 
-         int_array_base iaCurves;
-         //int* curves_new;
-         char* cs = NULL;
-         //char* p, * q;
-         int rv = -1;
-         //int nid;
+         i32_array_base iaCurves;
+         //::i32* curves_new;
+         char_pointer cs = NULL;
+         //char_pointer p, * q;
+         ::i32 rv = -1;
+         //::i32 nid;
 
 
 #define TLS_ECDHE_CURVES	"X25519,P-256,P-384"

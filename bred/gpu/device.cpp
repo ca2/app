@@ -76,7 +76,7 @@ namespace gpu
    }
 
 
-   void device::initialize_gpu_device_for_off_screen(::gpu::approach* pgpuapproach, const ::int_rectangle& rectanglePlacement)
+   void device::initialize_gpu_device_for_off_screen(::gpu::approach* pgpuapproach, const ::i32_rectangle& rectanglePlacement)
    {
 
       m_edevicetarget = e_device_target_off_screen;
@@ -168,17 +168,17 @@ namespace gpu
    }
 
 
-   ::gpu::layer* device::get_previous_layer(::gpu::layer* player)
+   ::gpu::layer* device::get_previous_layer(::gpu::layer * pgpulayer)
    {
 
-      if (!m_playera)
+      if (!m_pgpulayera)
       {
 
          return nullptr;
 
       }
 
-      auto iFind = m_playera->find_first(player);
+      auto iFind = m_pgpulayera->find_first(pgpulayer);
       
       if (iFind <= 0)
       {
@@ -187,13 +187,16 @@ namespace gpu
 
       }
 
-      for(int i = (int) iFind - 1; i >= 0; i--)
+      for(::i32 i = (::i32) iFind - 1; i >= 0; i--)
       {
-         if (m_playera->element_at(i)->m_pgpurenderer
-             == player->m_pgpurenderer)
+         
+         if (m_pgpulayera->element_at(i)->m_pgpurenderer == pgpulayer->m_pgpurenderer)
          {
-            return m_playera->element_at(i);
+
+            return m_pgpulayera->element_at(i);
+
          }
+
       }
 
       return nullptr;
@@ -201,7 +204,7 @@ namespace gpu
    }
 
 
-   //::pointer < ::gpu::context > device::start_gpu_output_context(const ::gpu::enum_output& eoutput, const ::int_size& size)
+   //::pointer < ::gpu::context > device::start_gpu_output_context(const ::gpu::enum_output& eoutput, const ::i32_size& size)
    //{
 
    //   auto pgpucontext = start_gpu_context(eoutput, nullptr,  size);
@@ -211,7 +214,7 @@ namespace gpu
    //}
 
 
-   //::pointer < ::gpu::context > device::start_cpu_buffer_context(::particle* pparticle, const ::function< void(::image::target* ptarget) >& callbackOnImagePixels, const ::int_size& size)
+   //::pointer < ::gpu::context > device::start_cpu_buffer_context(::particle* pparticle, const ::function< void(::image::target* ptarget) >& callbackOnImagePixels, const ::i32_size& size)
    //{
 
    //   auto pgpucontext = start_gpu_context(
@@ -242,7 +245,7 @@ namespace gpu
    }
 
 
-   ::pointer < ::gpu::context > device::create_gpu_context(const ::gpu::enum_output& eoutput, const ::gpu::enum_scene & escene, const ::int_size& size)
+   ::pointer < ::gpu::context > device::create_gpu_context(const ::gpu::enum_output& eoutput, const ::gpu::enum_scene & escene, const ::i32_size& size)
    {
 
       if (size.is_empty())
@@ -295,7 +298,7 @@ namespace gpu
    //}
 
 
-   ::pointer < ::gpu::context > device::create_draw2d_context(const ::gpu::enum_output& eoutput, const ::int_size& size)
+   ::pointer < ::gpu::context > device::create_draw2d_context(const ::gpu::enum_output& eoutput, const ::i32_size& size)
    {
 
       //auto pgpucontext = createø<::gpu::context>();
@@ -422,13 +425,13 @@ namespace gpu
    //   //
    //   //      }
    //   //      //glGenBuffers(1, &VAO);
-   //   ////      float vertexes[] = {
+   //   ////      ::f32 vertexes[] = {
    //   //         // positions         // colors
    //   //  //        0.5f, -0.5f, 0.0f,  1.0f, 0.0f, 0.0f,   // bottom right
    //   //    //     -0.5f, -0.5f, 0.0f,  0.0f, 1.0f, 0.0f,   // bottom left
    //   //      //    0.0f,  0.5f, 0.0f,  0.0f, 0.0f, 1.0f    // top
    //   //      //};
-   //   //      float vertexes[] = {
+   //   //      ::f32 vertexes[] = {
    //   //         // first triangle
    //   //          1.f,  1.f, 0.0f,  // top right
    //   //          1.f, -1.f, 0.0f,  // bottom right
@@ -448,10 +451,10 @@ namespace gpu
    //         //glBufferData(GL_ARRAY_BUFFER, sizeof(vertexes), vertexes, GL_STATIC_DRAW);
 
    //         //// position attribute
-   //         //glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, 3 * sizeof(float), (void*)0);
+   //         //glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, 3 * sizeof(::f32), (void*)0);
    //         //glEnableVertexAttribArray(0);
    //         //// color attribute
-   //         ////glVertexAttribPointer(1, 3, GL_FLOAT, GL_FALSE, 6 * sizeof(float), (void*)(3 * sizeof(float)));
+   //         ////glVertexAttribPointer(1, 3, GL_FLOAT, GL_FALSE, 6 * sizeof(::f32), (void*)(3 * sizeof(::f32)));
    //         ////glEnableVertexAttribArray(1);
 
    //         //return ::success;
@@ -486,9 +489,9 @@ namespace gpu
    //   ////glUseProgram(shaderProgram);
 
    //   //// update the uniform color
-   //   ////float timeValue = glfwGetTime();
-   //   ////float greenValue = sin(timeValue) / 2.0f + 0.5f;
-   //   ////int vertexColorLocation = glGetUniformLocation(shaderProgram, "ourColor");
+   //   ////::f32 timeValue = glfwGetTime();
+   //   ////::f32 greenValue = sin(timeValue) / 2.0f + 0.5f;
+   //   ////::i32 vertexColorLocation = glGetUniformLocation(shaderProgram, "ourColor");
    //   ////glUniform4f(vertexColorLocation, 0.0f, greenValue, 0.0f, 1.0f);
 
    //   //return ::success;
@@ -574,7 +577,7 @@ namespace gpu
    //}
 
 
-   //void device::create_offscreen_buffer(const ::int_size& size)
+   //void device::create_offscreen_buffer(const ::i32_size& size)
    //{
 
    //   send([this, size]()
@@ -663,7 +666,7 @@ namespace gpu
    //}
 
 
-   //void device::_create_offscreen_buffer(const ::int_size& size)
+   //void device::_create_offscreen_buffer(const ::i32_size& size)
    //{
 
    //   //return ::success_none;
@@ -679,7 +682,7 @@ namespace gpu
    //}
 
 
-   //void device::resize_offscreen_buffer(const ::int_size& size)
+   //void device::resize_offscreen_buffer(const ::i32_size& size)
    //{
 
    //   send([this, size]()
@@ -1015,7 +1018,7 @@ void device::create_main_context(::acme::windowing::window * pacmewindowingwindo
 
       //m_iCurrentFrame3 = (m_iCurrentFrame3 + 1) % iFrameCount;
 
-      auto& pframestorage = m_framestoragea.ø(m_iCurrentFrame3);
+      auto& pframestorage = m_framestoragea.atø(m_iCurrentFrame3);
 
       if (!pframestorage)
       {
@@ -1030,7 +1033,7 @@ void device::create_main_context(::acme::windowing::window * pacmewindowingwindo
 
       pframestorage->m_iBufferOffset = 0;
 
-      auto& pframeephemeral = m_frameephemerala.ø(m_iCurrentFrame3);
+      auto& pframeephemeral = m_frameephemerala.atø(m_iCurrentFrame3);
 
       constructø(pframeephemeral);
 
@@ -1080,13 +1083,13 @@ void device::create_main_context(::acme::windowing::window * pacmewindowingwindo
    }
 
 
-   int device::get_frame_index3()
+   ::i32 device::get_frame_index3()
    {
 
       if (this->get_frame_count() > 1)
       {
 
-         return (int)m_iCurrentFrame3;
+         return (::i32)m_iCurrentFrame3;
 
       }
       else
@@ -1099,13 +1102,13 @@ void device::create_main_context(::acme::windowing::window * pacmewindowingwindo
    }
 
 
-   int device::get_image_index()
+   ::i32 device::get_image_index()
    {
 
       if (this->get_frame_count() > 1)
       {
 
-         return (int)m_iCurrentImage;
+         return (::i32)m_iCurrentImage;
       }
       else
       {
@@ -1116,17 +1119,17 @@ void device::create_main_context(::acme::windowing::window * pacmewindowingwindo
    }
 
 
-   int device::get_frame_count()
+   ::i32 device::get_frame_count()
    {
 
-      return (int)m_iFrameCount;
+      return (::i32)m_iFrameCount;
 
    }
 
 
 
    
-   pool_group* device::frame_pool_group(int iFrameIndex)
+   pool_group* device::frame_pool_group(::i32 iFrameIndex)
    {
 
       auto & ppoolgroupFrame = m_poolgroupaFrame.element_at_grow(iFrameIndex);
@@ -1140,7 +1143,7 @@ void device::create_main_context(::acme::windowing::window * pacmewindowingwindo
    }
 
 
-   ::pointer_array<::particle >* device::frame_particle_array(int iFrameIndex)
+   ::pointer_array<::particle >* device::frame_particle_array(::i32 iFrameIndex)
    {
       
       auto& pparticleaFrame = m_particleaFrame.element_at_grow(iFrameIndex);
@@ -1202,7 +1205,7 @@ void device::create_main_context(::acme::windowing::window * pacmewindowingwindo
 
 
 
-   //::int_size device::size()
+   //::i32_size device::size()
    //{
 
    //   return m_size;
@@ -1257,7 +1260,7 @@ void device::create_main_context(::acme::windowing::window * pacmewindowingwindo
 
    //   string strFragment =
    //      "uniform floating_sequence2 resolution;\n"
-   //      "uniform float time;\n"
+   //      "uniform ::f32 time;\n"
    //      "uniform floating_sequence2 mouse;\n"
    //      "uniform sampler2D backbuffer;\n"
    //      "\n"
@@ -1299,10 +1302,10 @@ void device::create_main_context(::acme::windowing::window * pacmewindowingwindo
          strFragment =
             //"#" + strVersion + "\n"
             //"\n"
-            //"precision highp float;\n"
+            //"precision highp ::f32;\n"
             "\n"
             "uniform floating_sequence2 iResolution;\n"
-            "uniform float iTime;\n"
+            "uniform ::f32 iTime;\n"
             "uniform floating_sequence2 iMouse;\n"
             "uniform sampler2D backbuffer;\n"
             "\n"
@@ -1361,13 +1364,13 @@ void device::create_main_context(::acme::windowing::window * pacmewindowingwindo
    }
 
 
-   int device::get_type_size(::gpu::enum_type etype)
+   ::i32 device::get_type_size(::gpu::enum_type etype)
    {
 
       switch (etype)
       {
-      case e_type_int: return sizeof(int);
-      case e_type_float: return sizeof(float);
+      case e_type_i32: return sizeof(::i32);
+      case e_type_f32: return sizeof(::f32);
       case e_type_seq4: return sizeof(floating_sequence4);
       case e_type_mat4: return sizeof(floating_matrix4);
       case e_type_seq3: return sizeof(floating_sequence3);
@@ -1433,15 +1436,15 @@ void device::create_main_context(::acme::windowing::window * pacmewindowingwindo
    }
 
 
-   layer * device::next_layer(renderer* pgpurenderer)
+   layer * device::create_gpu_layer(renderer* pgpurenderer)
    {
 
       m_iLayer = m_iLayerCount;
       m_iLayerCount++;
 
-      defer_construct_newø(m_playera);
+      defer_construct_newø(m_pgpulayera);
 
-      auto & player = m_playera->element_at_grow(m_iLayer);
+      auto & player = m_pgpulayera->element_at_grow(m_iLayer);
 
       defer_constructø(player);
 
@@ -1466,14 +1469,14 @@ void device::create_main_context(::acme::windowing::window * pacmewindowingwindo
    void device::layer_end()
    {
 
-      auto& layera = *m_playera;
+      auto& layera = *m_pgpulayera;
 
       auto& player = layera[m_iLayer];
 
       player->layer_end();
       //player->take_snapshot();
 
-      //return player->texture()->m_pgpurenderer->m_pgpucontext->rectangle();
+      //return pgpulayer->texture()->m_pgpurenderer->m_pgpucontext->rectangle();
 
    }
 
@@ -1481,14 +1484,14 @@ void device::create_main_context(::acme::windowing::window * pacmewindowingwindo
    layer* device::current_layer()
    {
       
-      if (m_iLayer < 0 || m_iLayer >= m_playera->get_count())
+      if (m_iLayer < 0 || m_iLayer >= m_pgpulayera->get_count())
       {
       
          throw ::exception(error_wrong_state);
 
       }
 
-      auto& layera = *m_playera;
+      auto& layera = *m_pgpulayera;
 
       auto& player = layera[m_iLayer];
 
@@ -1509,7 +1512,7 @@ void device::create_main_context(::acme::windowing::window * pacmewindowingwindo
    frame_storage* device::current_frame_storage()
    {
 
-      return m_framestoragea.ø(m_iCurrentFrame3);
+      return m_framestoragea.atø(m_iCurrentFrame3);
 
    }
 
@@ -1517,7 +1520,7 @@ void device::create_main_context(::acme::windowing::window * pacmewindowingwindo
    ::gpu::frame_ephemeral* device::current_frame_ephemeral()
    {
 
-      return m_frameephemerala.ø(m_iCurrentFrame3);
+      return m_frameephemerala.atø(m_iCurrentFrame3);
 
    }
 

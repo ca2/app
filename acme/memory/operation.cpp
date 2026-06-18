@@ -2,7 +2,7 @@
 #include "framework.h"
 #include "operation.h"
 #include "acme/exception/runtime_check.h"
-#include "acme/operating_system/shared_posix/c_error_number.h"
+#include "acme/operating_system/shared_posix/c_errno.h"
 
 
 #include <string.h>
@@ -19,7 +19,7 @@ CLASS_DECL_ACME void safe_memory_copy_bytes(void* ptarget, character_count sizeT
    if (iErrNo)
    {
 
-      throw ::runtime_check_exception(error_failed, { c_error_number(iErrNo) }, "safe_memory_copy");
+      throw ::runtime_check_exception(error_failed, { c_errno(c_errno_t{}, iErrNo) }, "safe_memory_copy");
 
    }
 
@@ -42,7 +42,7 @@ CLASS_DECL_ACME void safe_wide_memory_transfer(::wide_character* ptarget, charac
    if (iErrNo)
    {
 
-      throw ::runtime_check_exception(error_runtime_check, { c_error_number(iErrNo) }, "safe_wide_memory_transfer");
+      throw ::runtime_check_exception(error_runtime_check, { c_errno(c_errno_t{}, iErrNo) }, "safe_wide_memory_transfer");
 
    }
 
@@ -65,7 +65,7 @@ CLASS_DECL_ACME void safe_memory_transfer_bytes(void* ptarget, character_count s
    if (iErrNo)
    {
 
-      throw ::runtime_check_exception(error_runtime_check, { c_error_number(iErrNo) }, "safe_memory_transfer");
+      throw ::runtime_check_exception(error_runtime_check, { c_errno(c_errno_t{}, iErrNo) }, "safe_memory_transfer");
 
    }
 

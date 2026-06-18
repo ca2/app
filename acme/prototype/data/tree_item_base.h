@@ -10,7 +10,7 @@ namespace data
 {
 
 
-   DECLARE_ENUMERATION(e_tree_item_state, enum_tree_item_state);
+   DECLARE_C_FLAG(e_tree_item_state, enum_tree_item_state);
 
 
    class CLASS_DECL_ACME tree_item_base :
@@ -63,14 +63,14 @@ namespace data
 #ifdef _DEBUG
 
 
-      virtual long long increment_reference_count() override
+      virtual ::i64 increment_reference_count() override
       {
 
          return ::particle::increment_reference_count();
 
       }
 
-      virtual long long decrement_reference_count() override
+      virtual ::i64 decrement_reference_count() override
       {
 
          return ::particle::decrement_reference_count();
@@ -83,8 +83,8 @@ namespace data
       void destroy() override;
       virtual bool erase_item_from_parent();
 
-      virtual tree_item_base * _get_child_by_user_data(unsigned long long ullUserData);
-      virtual tree_item_base * _find_next_by_user_data(unsigned long long ullUserData);
+      virtual tree_item_base * _get_child_by_user_data(::u64 ullUserData);
+      virtual tree_item_base * _find_next_by_user_data(::u64 ullUserData);
       virtual void _get_children(::data::tree_item_base_ptr_array & ptra);
       virtual ::collection::count get_children_count();
       virtual tree_item_base * _get_parent();
@@ -191,8 +191,8 @@ namespace data
       virtual void _predicate_each(const ::function < bool(tree_item_base *) > & callback);
       virtual ::collection::index _predicate_find_first(const ::function < bool(tree_item_base *) > & callback);
 
-      virtual bool is_expanded() const;
-      virtual bool is_expandable() const;
+      virtual ::i32_boolean is_expanded() const;
+      virtual ::i32_boolean is_expandable() const;
 
       virtual void on_fill_children();
 
@@ -349,7 +349,7 @@ namespace data
 
    //      }
 
-   //      if (ptreeitem->m_dwUser == (unsigned int)iUserData)
+   //      if (ptreeitem->m_dwUser == (::u32)iUserData)
    //      {
 
    //         return ptreeitem;
@@ -1234,7 +1234,7 @@ namespace data
    //::collection::index tree_item ::get_proper_item_index(tree_item_base * _pitemParam, ::collection::index * piLevel)
    //{
 
-   //   int iIndex = 0;
+   //   ::i32 iIndex = 0;
 
    //   if (piLevel)
    //   {

@@ -23,7 +23,7 @@ namespace ios
    {
       
       //get this machines host name
-      char szHostname[256];
+      ::i8 szHostname[256];
       
       if (gethostname(szHostname, sizeof(szHostname)))
       {
@@ -58,7 +58,7 @@ namespace ios
 
       //call the virtual callback function in a loop
 
-      int nAdapter = 0;
+      ::i32 nAdapter = 0;
 
       string str;
 

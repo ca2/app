@@ -26,7 +26,7 @@ namespace filemanager
       string                              m_strManagerId;
       bool                                m_bInitialized;
 ///      ::pointer < ::user::document >         m_pdocumentTopic;
-      int m_iIconSize;
+      ::i32 m_iIconSize;
 
       document();
       ~document() override;
@@ -71,11 +71,11 @@ namespace filemanager
       //virtual void defer_check_manager_id(const ::scoped_string & scopedstrNewManagerId = "");
       virtual void on_request(::request * prequest) override;
 
-      virtual bool do_prompt_file_name(::payload & payloadFile, const ::scoped_string & scopedstrTitle, unsigned int lFlags, bool bOpenFileDialog, ::user::impact_system * ptemplate, ::user::document * pdocument);
+      virtual bool do_prompt_file_name(::payload & payloadFile, const ::scoped_string & scopedstrTitle, ::u32 lFlags, bool bOpenFileDialog, ::user::impact_system * ptemplate, ::user::document * pdocument);
 
       ::pointer<::filemanager::data>create_file_manager_data(::request * prequest = nullptr);
 
-      //virtual void Initialize(int iTemplate, const ::scoped_string & scopedstrMatter);
+      //virtual void Initialize(::i32 iTemplate, const ::scoped_string & scopedstrMatter);
 
       void browse_initial_path(const ::action_context & actioncontext) override;
 
@@ -176,9 +176,9 @@ namespace filemanager
    };
 
 
-   CLASS_DECL_CORE int get_manager_id_byte_len();
+   CLASS_DECL_CORE ::i32 get_manager_id_byte_len();
 
-   CLASS_DECL_CORE int get_manager_id_len();
+   CLASS_DECL_CORE ::i32 get_manager_id_len();
 
    CLASS_DECL_CORE string create_manager_id(::particle * pparticle);
 

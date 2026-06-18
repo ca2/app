@@ -59,7 +59,7 @@ void plex_heap::FreeDataChain(::heap::allocator * pallocator)     // free this o
    while (::is_set(pheap))
    {
 
-      unsigned char * pbytes = (unsigned char *)pheap;
+      ::u8 * pbytes = (::u8 *)pheap;
 
       auto pheapNext = pheap->m_pheapNext;
 

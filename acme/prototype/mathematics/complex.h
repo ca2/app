@@ -7,8 +7,8 @@
 struct COMPLEXD 
 {
    
-   double r;
-   double i;
+   ::f64 r;
+   ::f64 i;
 
 };
 

@@ -110,7 +110,7 @@ namespace app_build
    void pane_impact::on_create_impact(::user::impact_data * pimpactdata)
    {
 
-      switch(pimpactdata->id().as_long_long())
+      switch(pimpactdata->id().as_i64())
       {
       break;
       case MAIN_IMPACT:

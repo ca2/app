@@ -13,12 +13,12 @@
 // public:
 // //
 // //
-// //   //int                              m_argc;
-// //   //char**                           m_argv;
-// //   //char**                           m_envp;
+// //   //::i32                              m_argc;
+// //   //char_pointer *                           m_argv;
+// //   //char_pointer *                           m_envp;
 // //   //wchar_t**                        m_wargv;
 // //   //wchar_t**                        m_wenvp;
-// //   //int                              m_iExitCode;
+// //   //::i32                              m_iExitCode;
 // //   //string                           m_strCommandLine;
 // //   //string                           m_strAppId;
 // //
@@ -40,10 +40,10 @@
 // //   void system_construct(main_arguments & mainarguments);
 // //
 // //
-// //   //void system_construct(int argc, char** argv, char** envp);
+// //   //void system_construct(::i32 argc, char_pointer * argv, char_pointer * envp);
 // //  
 // //
-// //   //void system_construct(int argc, wchar_t** argv, wchar_t** envp);
+// //   //void system_construct(::i32 argc, wchar_t** argv, wchar_t** envp);
 // //
 // //
 // //   //void system_construct(const ::scoped_string & scopedstrCommandLine);
@@ -95,10 +95,10 @@ struct CLASS_DECL_ACME main_struct :
 
    ::logic::boolean                    m_bExperienceMainFrame;
 
-   ::int_sz *                  m_pintstringLanguageResourceMap;
-   int                           m_iMatterFromHttpCache;
+   ::i32_sz *                  m_pintstringLanguageResourceMap;
+   ::i32                           m_iMatterFromHttpCache;
 
-   const char *                  m_pszMain;
+   const_char_pointer m_pszMain;
    PFN_NEW_MATTER                m_pfnnewmatterApplication;
    PFN_NEW_LIBRARY               m_pfnnewlibrary;
 

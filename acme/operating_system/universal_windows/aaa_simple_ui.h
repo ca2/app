@@ -14,13 +14,13 @@ namespace os
       string                     m_strTitle;
       string                     m_strWindowClass;
 
-      int                        m_w;
-      int                        m_h;
-      ::int_size                       m_size;
-      ::int_point                      m_point;
+      ::i32                        m_w;
+      ::i32                        m_h;
+      ::i32_size                       m_size;
+      ::i32_point                      m_point;
       bool                       m_bLButtonDown;
-      ::int_point                      m_pointLButtonDown;
-      ::int_point                      m_pointLButtonDownPos;
+      ::i32_point                      m_pointLButtonDown;
+      ::i32_point                      m_pointLButtonDownPos;
 
       bool                       m_bShiftKey;
 
@@ -29,11 +29,11 @@ namespace os
       manual_reset_happening         m_happeningReady;
 
 
-      ::int_rectangle                     m_rectangleDesktop;
+      ::i32_rectangle                     m_rectangleDesktop;
 
       bool                       m_bNoDecorations;
 
-      int_point                      m_pointCursor;
+      i32_point                      m_pointCursor;
 
 
       simple_ui(::particle * pparticle);
@@ -41,18 +41,18 @@ namespace os
 
 
 
-      virtual void get_cursor_position(::int_point * ppt);
+      virtual void get_cursor_position(::i32_point * ppt);
 
       //void draw(ID2D1DeviceContext * pctx);
 
 
 
-      //virtual string interactive_auth(::int_rectangle * lprect, string & strUsername, string & strSessId, string & strServerId, string & strLoginUrl, string strFontopusServer);
+      //virtual string interactive_auth(::i32_rectangle * lprect, string & strUsername, string & strSessId, string & strServerId, string & strLoginUrl, string strFontopusServer);
 
 
-      virtual bool create_window(const ::int_rectangle * lpcrect);
+      virtual bool create_window(const ::i32_rectangle * lpcrect);
 
-      virtual bool prepare_window(const ::int_rectangle * lpcrect);
+      virtual bool prepare_window(const ::i32_rectangle * lpcrect);
 
 
       virtual bool show_window(bool bShow = true);
@@ -63,34 +63,34 @@ namespace os
       virtual bool run_loop();
 
 
-      virtual void window_rectangle(::int_rectangle * prectangle);
-      virtual void this->rectangle(::int_rectangle * prectangle);
+      virtual void window_rectangle(::i32_rectangle * prectangle);
+      virtual void this->rectangle(::i32_rectangle * prectangle);
 
 
       /*
-      virtual bool on_lbutton_up(int x, int y);
-      virtual bool on_lbutton_down(int x, int y);
-      virtual bool on_mouse_move(int x, int y);
-      virtual bool on_char(int iKey, const ::scoped_string & scopedstrChar);
+      virtual bool on_lbutton_up(::i32 x, ::i32 y);
+      virtual bool on_lbutton_down(::i32 x, ::i32 y);
+      virtual bool on_mouse_move(::i32 x, ::i32 y);
+      virtual bool on_char(::i32 iKey, const ::scoped_string & scopedstrChar);
       */
 
       //virtual bool on_windows_key_down(wparam wparam, lparam lparam);
       //virtual bool on_windows_key_up(wparam wparam, lparam lparam);
 
 
-      virtual bool set_window_position(int x, int y, int cx, int cy, bool bShow);
-      virtual bool move_window(int x, int y);
+      virtual bool set_window_position(::i32 x, ::i32 y, ::i32 cx, ::i32 cy, bool bShow);
+      virtual bool move_window(::i32 x, ::i32 y);
 
-      void viewport_client_to_screen(::int_point * ppt);
-      void viewport_screen_to_client(::int_point * ppt);
+      void viewport_client_to_screen(::i32_point * ppt);
+      void viewport_screen_to_client(::i32_point * ppt);
 
-      void client_to_screen(::int_point * ppt);
-      void screen_to_client(::int_point * ppt);
+      void client_to_screen(::i32_point * ppt);
+      void screen_to_client(::i32_point * ppt);
 
-      void client_to_screen(::int_rectangle * prectangle);
-      void screen_to_client(::int_rectangle * prectangle);
+      void client_to_screen(::i32_rectangle * prectangle);
+      void screen_to_client(::i32_rectangle * prectangle);
 
-      void window_rectangle(::int_rectangle * prectangle);
+      void window_rectangle(::i32_rectangle * prectangle);
 
       virtual void set_capture();
       virtual void release_capture();

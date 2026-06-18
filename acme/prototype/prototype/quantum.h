@@ -6,13 +6,23 @@
 //#include "subparticle_flags.h"
 
 
+struct quantum_flag
+{
+
+
+   ::e_flag                         m_eflagElement;
+
+
+};
+
+
 class CLASS_DECL_ACME quantum :
-   public memory_quantum
+   public memory_quantum,
+   virtual public quantum_flag
 {
 public:
 
 
-   ::e_flag                            m_eflagElement;
    ::e_status                          m_estatus;
 
 
@@ -47,10 +57,10 @@ public:
 
 
 
-   [[nodiscard]] inline bool has_flag(enum_flag eflag) const { return (m_eflagElement & eflag) == eflag; }
-   inline void set_flag(enum_flag eflag) { m_eflagElement = (enum_flag)((unsigned long long)(m_eflagElement) | (unsigned long long)(eflag)); }
+   [[nodiscard]] inline bool has_flag(enum_flag eflag) const { return m_eflagElement.is(eflag); }
+   inline void set_flag(enum_flag eflag) { m_eflagElement = m_eflagElement | eflag; }
    inline void set_flag(enum_flag eflag, bool bSet) { if (bSet) set_flag(eflag); else clear_flag(eflag); }
-   inline void clear_flag(enum_flag eflag) { m_eflagElement = (enum_flag)((unsigned long long)(m_eflagElement) & (~(unsigned long long)(eflag))); }
+   inline void clear_flag(enum_flag eflag) { m_eflagElement = m_eflagElement & ~eflag; }
 
 
    inline void set_ok_flag() { set_flag(e_flag_success); clear_flag(e_flag_timeout); clear_flag(e_flag_failure); }

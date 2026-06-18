@@ -29,11 +29,11 @@ namespace graphics3d
 
 
       // Generate a graphics3d with position, color, texture coordinates, and normals
-   ::pointer < ::graphics3d::renderable > shape_factory::create_cube_001(::gpu::context * pgpucontext, float size)
+   ::pointer < ::graphics3d::renderable > shape_factory::create_cube_001(::gpu::context * pgpucontext, ::f32 size)
    {
       auto pshape = create_newø<shape>();
 
-      float halfSize = size / 2.0f;
+      ::f32 halfSize = size / 2.0f;
 
      pshape->set_vertexes({
          // Front face  (normal =  0, 0,  1)
@@ -130,10 +130,10 @@ namespace graphics3d
    }
 
 
-   ::pointer<::graphics3d::renderable> shape_factory::create_cube_002(::gpu::context *pgpucontext, float size)
+   ::pointer<::graphics3d::renderable> shape_factory::create_cube_002(::gpu::context *pgpucontext, ::f32 size)
    {
       auto pshape = create_newø<shape>();
-      float s = size * 0.5f;
+      ::f32 s = size * 0.5f;
 
       pshape->set_vertexes( {
 
@@ -189,12 +189,12 @@ namespace graphics3d
 
 
    // Generate a plane (XZ plane by default) with position, texture coords, and normals
-   ::pointer < ::graphics3d::renderable > shape_factory::create_plane(::gpu::context * pgpucontext, float width, float depth)
+   ::pointer < ::graphics3d::renderable > shape_factory::create_plane(::gpu::context * pgpucontext, ::f32 width, ::f32 depth)
    {
       auto pshape = create_newø<shape>();
 
-      float halfWidth = width / 2.0f;
-      float halfDepth = depth / 2.0f;
+      ::f32 halfWidth = width / 2.0f;
+      ::f32 halfDepth = depth / 2.0f;
 
       // Vertices for a plane
       pshape->set_vertexes( {
@@ -213,12 +213,12 @@ namespace graphics3d
    }
 
    // Generate a wall (XY plane by default) with position, texture coords, and normals
-   ::pointer < ::graphics3d::renderable > shape_factory::create_wall(::gpu::context * pgpucontext, float width, float height)
+   ::pointer < ::graphics3d::renderable > shape_factory::create_wall(::gpu::context * pgpucontext, ::f32 width, ::f32 height)
    {
       auto pshape = create_newø<shape>();
 
-      float halfWidth = width / 2.0f;
-      float halfHeight = height / 2.0f;
+      ::f32 halfWidth = width / 2.0f;
+      ::f32 halfHeight = height / 2.0f;
 
       // Vertices for a wall
       pshape->set_vertexes( {
@@ -236,24 +236,24 @@ namespace graphics3d
 
    }
 
-   ::pointer<::graphics3d::renderable> shape_factory::create_sphere(::gpu::context *pgpucontext, float radius,
-                                                                          unsigned int sectorCount,
-                                                                  unsigned int stackCount)
+   ::pointer<::graphics3d::renderable> shape_factory::create_sphere(::gpu::context *pgpucontext, ::f32 radius,
+                                                                          ::u32 sectorCount,
+                                                                  ::u32 stackCount)
    {
       auto pshape = create_newø<shape>();
 
       ::array_base<::graphics3d::shape_factory::Vertex> vertexes;
 
-      float xy; // vertex position
-      float lengthInv = 1.0f / radius; // normal
-      // float s, t;                                      // texture coordinates
+      ::f32 xy; // vertex position
+      ::f32 lengthInv = 1.0f / radius; // normal
+      // ::f32 s, t;                                      // texture coordinates
 
-      float sectorStep = 2 * π / sectorCount;
-      float stackStep = π / stackCount;
-      float sectorAngle, stackAngle;
+      ::f32 sectorStep = 2 * π / sectorCount;
+      ::f32 stackStep = π / stackCount;
+      ::f32 sectorAngle, stackAngle;
       Vertex vertex;
 
-      for (unsigned int i = 0; i <= stackCount; ++i)
+      for (::u32 i = 0; i <= stackCount; ++i)
       {
          stackAngle = π / 2 - i * stackStep; // from pi/2 to -pi/2
          xy = radius * cosf(stackAngle); // r * cos(u)
@@ -261,7 +261,7 @@ namespace graphics3d
 
          // add (sectorCount+1) vertexes per stack
          // the first and last vertexes have same position and normal, but different tex coords
-         for (unsigned int j = 0; j <= sectorCount; ++j)
+         for (::u32 j = 0; j <= sectorCount; ++j)
          {
             sectorAngle = j * sectorStep; // from 0 to 2pi
 
@@ -275,8 +275,8 @@ namespace graphics3d
             vertex.m_normal.z = vertex.m_position.z * lengthInv;
 
             // vertex tex coord (s, t) range between [0, 1]
-            vertex.m_uv.x = (float)j / sectorCount;
-            vertex.m_uv.y = (float)i / stackCount;
+            vertex.m_uv.x = (::f32)j / sectorCount;
+            vertex.m_uv.y = (::f32)i / stackCount;
 
             vertexes.add(vertex);
          }
@@ -284,16 +284,16 @@ namespace graphics3d
 
       pshape->set_vertexes(vertexes);
 
-      array_base<unsigned int> indexes;
+      array_base<::u32> indexes;
 
       // Indices
-      unsigned int k1, k2;
-      for (unsigned int i = 0; i < stackCount; ++i)
+      ::u32 k1, k2;
+      for (::u32 i = 0; i < stackCount; ++i)
       {
          k1 = i * (sectorCount + 1); // beginning of current stack
          k2 = k1 + sectorCount + 1; // beginning of next stack
 
-         for (unsigned int j = 0; j < sectorCount; ++j, ++k1, ++k2)
+         for (::u32 j = 0; j < sectorCount; ++j, ++k1, ++k2)
          {
             if (i != 0)
             {
@@ -320,7 +320,7 @@ namespace graphics3d
    }
 
    ////// Generate a ray with a specified length
-   //::pointer < ::graphics3d::scene_renderable > shape_factory::CreateRay(float length)
+   //::pointer < ::graphics3d::scene_renderable > shape_factory::CreateRay(::f32 length)
    //{
    //    shape shape;
 

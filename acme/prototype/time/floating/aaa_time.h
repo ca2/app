@@ -33,7 +33,7 @@
 //   inline floating_time elapsed(const floating_time & timeStop = ::now < FLOATING_TIME_TYPE >()) const
 //   {
 //
-//      return timeStop.m_d - this->m_d;
+//      return timeStop.m_f64 - this->m_f64;
 //
 //   }
 //
@@ -53,15 +53,15 @@
 //   inline floating_time half() const
 //   {
 //
-//      return this->m_d/ 2.0;
+//      return this->m_f64/ 2.0;
 //
 //   }
 //
 //
-//   inline double sawtooth(const floating_time & period)
+//   inline ::f64 sawtooth(const floating_time & period)
 //   {
 //
-//      return fmod(elapsed().m_d, period.m_d) / period.m_d;
+//      return fmod(elapsed().m_f64, period.m_f64) / period.m_f64;
 //
 //   }
 //
@@ -74,10 +74,10 @@
 //   }
 //
 //
-//   inline double period_rate(const floating_time & period)
+//   inline ::f64 period_rate(const floating_time & period)
 //   {
 //
-//      return elapsed().m_d / period.m_d;
+//      return elapsed().m_f64 / period.m_f64;
 //
 //   }
 //
@@ -85,16 +85,16 @@
 //   inline bool on_off(const floating_time & period) const
 //   {
 //
-//      return fmod(elapsed() , period.m_d) < half();
+//      return fmod(elapsed() , period.m_f64) < half();
 //
 //
 //   }
 //
 //
-//   inline bool on_off(const floating_time & period, double dRate) const
+//   inline bool on_off(const floating_time & period, ::f64 dRate) const
 //   {
 //
-//      return fmod(elapsed().m_d, period.m_d) < period.m_d * dRate;
+//      return fmod(elapsed().m_f64, period.m_f64) < period.m_f64 * dRate;
 //
 //
 //   }
@@ -102,41 +102,41 @@
 //   
 //
 //   template < prototype_floating FLOATING >
-//   floating_time operator %(FLOATING floating) const { return typename FLOATING_TIME_TYPE::BASE_TYPE(fmod(this->m_d, floating)); }
+//   floating_time operator %(FLOATING floating) const { return typename FLOATING_TIME_TYPE::BASE_TYPE(fmod(this->m_f64, floating)); }
 //
 //   template < prototype_floating FLOATING >
-//   floating_time operator /(FLOATING floating) const { return typename FLOATING_TIME_TYPE::BASE_TYPE(this->m_d / floating); }
+//   floating_time operator /(FLOATING floating) const { return typename FLOATING_TIME_TYPE::BASE_TYPE(this->m_f64 / floating); }
 //
 //   template < prototype_floating FLOATING >
-//   floating_time operator *(FLOATING floating) const { return typename FLOATING_TIME_TYPE::BASE_TYPE(this->m_d * floating); }
+//   floating_time operator *(FLOATING floating) const { return typename FLOATING_TIME_TYPE::BASE_TYPE(this->m_f64 * floating); }
 //
 //   template < prototype_floating FLOATING >
-//   floating_time operator +(FLOATING floating) const { return typename FLOATING_TIME_TYPE::BASE_TYPE(this->m_d + floating); }
+//   floating_time operator +(FLOATING floating) const { return typename FLOATING_TIME_TYPE::BASE_TYPE(this->m_f64 + floating); }
 //
 //   template < prototype_floating FLOATING >
-//   floating_time operator -(FLOATING floating) const { return typename FLOATING_TIME_TYPE::BASE_TYPE(this->m_d - floating); }
+//   floating_time operator -(FLOATING floating) const { return typename FLOATING_TIME_TYPE::BASE_TYPE(this->m_f64 - floating); }
 //
 //
-//   floating_time operator %(const BASE_TYPE & time) const { return typename FLOATING_TIME_TYPE::BASE_TYPE(fmod(this->m_d, time.m_d)); }
-//   double operator /(const BASE_TYPE & time) const { return this->m_d / time.m_d; }
-//   // floating_time operator *(const BASE_TYPE & time) const { return BASE_TYPE(this->m_d * time.m_d); }
-//   floating_time operator +(const BASE_TYPE & time) const { return typename FLOATING_TIME_TYPE::BASE_TYPE(this->m_d + time.m_d); }
-//   floating_time operator -(const BASE_TYPE & time) const { return typename FLOATING_TIME_TYPE::BASE_TYPE(this->m_d - time.m_d); }
+//   floating_time operator %(const BASE_TYPE & time) const { return typename FLOATING_TIME_TYPE::BASE_TYPE(fmod(this->m_f64, time.m_f64)); }
+//   ::f64 operator /(const BASE_TYPE & time) const { return this->m_f64 / time.m_f64; }
+//   // floating_time operator *(const BASE_TYPE & time) const { return BASE_TYPE(this->m_f64 * time.m_f64); }
+//   floating_time operator +(const BASE_TYPE & time) const { return typename FLOATING_TIME_TYPE::BASE_TYPE(this->m_f64 + time.m_f64); }
+//   floating_time operator -(const BASE_TYPE & time) const { return typename FLOATING_TIME_TYPE::BASE_TYPE(this->m_f64 - time.m_f64); }
 //
 //   
-//   floating_time operator -() const { return typename FLOATING_TIME_TYPE::BASE_TYPE(-this->m_d); }
+//   floating_time operator -() const { return typename FLOATING_TIME_TYPE::BASE_TYPE(-this->m_f64); }
 //
 //
-//   //bool operator ==(const BASE_TYPE & time) const { return this->m_d == time.m_d; }
-//   //bool operator >(const BASE_TYPE & time) const { return this->m_d > time.m_d; }
-//   //bool operator >=(const BASE_TYPE & time) const { return this->m_d >= time.m_d; }
-//   //bool operator <(const BASE_TYPE & time) const { return this->m_d < time.m_d; }
-//   //bool operator <=(const BASE_TYPE & time) const { return this->m_d <= time.m_d; }
-//   //bool operator !=(const BASE_TYPE & time) const { return this->m_d != time.m_d; }
+//   //bool operator ==(const BASE_TYPE & time) const { return this->m_f64 == time.m_f64; }
+//   //bool operator >(const BASE_TYPE & time) const { return this->m_f64 > time.m_f64; }
+//   //bool operator >=(const BASE_TYPE & time) const { return this->m_f64 >= time.m_f64; }
+//   //bool operator <(const BASE_TYPE & time) const { return this->m_f64 < time.m_f64; }
+//   //bool operator <=(const BASE_TYPE & time) const { return this->m_f64 <= time.m_f64; }
+//   //bool operator !=(const BASE_TYPE & time) const { return this->m_f64 != time.m_f64; }
 //
 //
 //
-//   //__DURATION_SETUP__(floating_time, m_d);
+//   //__DURATION_SETUP__(floating_time, m_f64);
 //
 //
 //   //DECLARE_COMPARISON_WITH_TIME

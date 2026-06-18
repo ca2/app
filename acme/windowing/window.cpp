@@ -20,7 +20,7 @@
 #include "display.h"
 #include "window.h"
 #include "windowing.h"
-#include "acme/nano/graphics/device.h"
+#include "acme/nano/graphics/context.h"
 //#include "interaction.h"
 //#include "button.h"
 //#include "user.h"
@@ -55,13 +55,12 @@ namespace acme
       window::window() :
          m_pointCursor2(I32_MINIMUM)
       {
-         m_bMouseOn = false;
          m_bPerformingEntireRepositionProcess = false;
          m_bPerformingEntireResizingProcess = false;
          //m_ebias = e_bias_unknown;
          m_bRepositioningWindowFromCenter = false;
          m_bResizingWindowFromBottomRight = false;
-
+         //m_bCustomPaint = true;
          //}
          //{
 
@@ -153,7 +152,7 @@ namespace acme
       //}
 
 
-   //long long window::__CGWindowID()
+   //::i64 window::__CGWindowID()
    //{
 
    //   return 0;
@@ -213,7 +212,7 @@ namespace acme
 
 
 
-      //::int_rectangle window::get_window_rectangle()
+      //::i32_rectangle window::get_window_rectangle()
       //{
 
       //   return m_rectangle;
@@ -236,8 +235,12 @@ namespace acme
 
          //update_drawing_objects();
 
-         m_pacmeuserinteraction->on_create_window();
+         if (m_pacmeuserinteraction)
+         {
 
+            m_pacmeuserinteraction->on_create_window();
+
+         }
 
       }
 
@@ -312,20 +315,20 @@ namespace acme
       }
 
 
-      void window::show_window()
-      {
+      //void window::show_window()
+      //{
 
-         //m_pacmeuserinteraction->show_window();
+      //   //m_pacmeuserinteraction->show_window();
 
-      }
+      //}
 
 
-      void window::hide_window()
-      {
+      //void window::hide_window()
+      //{
 
-         //m_pacmeuserinteraction->hide();
+      //   //m_pacmeuserinteraction->hide();
 
-      }
+      //}
 
 
       void window::window_message_loop()
@@ -337,7 +340,7 @@ namespace acme
 
 
 
-      //void window::on_draw(::nano::graphics::device * pnanodevice)
+      //void window::on_draw(::nano::graphics::context * pnanodevice)
       //{
 
       //   //m_pacmeuserinteraction->draw(pnanodevice);
@@ -345,7 +348,7 @@ namespace acme
       //}
 
 
-      //void window::on_char(int iChar)
+      //void window::on_char(::i32 iChar)
       //{
 
       //   if (iChar == '\t' && m_childa.has_element())
@@ -402,7 +405,7 @@ namespace acme
    }
    
    
-   void window::full_screen(const ::int_rectangle & rect)
+   void window::full_screen(const ::i32_rectangle & rect)
    {
       
       
@@ -442,9 +445,9 @@ namespace acme
 //      return true;
 //   
 //   }
-   //virtual iptr get_window_long_ptr(int nIndex);
-   //virtual iptr set_window_long_ptr(int nIndex, iptr l);
-   bool window::client_to_screen(::int_point* ppoint)
+   //virtual iptr get_window_long_ptr(::i32 nIndex);
+   //virtual iptr set_window_long_ptr(::i32 nIndex, iptr l);
+   bool window::client_to_screen(::i32_point* ppoint)
    {
       
       
@@ -452,7 +455,7 @@ namespace acme
       
    }
    
-   bool window::screen_to_client(::int_point* ppoint)
+   bool window::screen_to_client(::i32_point* ppoint)
    {
       
       return true;
@@ -461,8 +464,8 @@ namespace acme
    }
    
    
-   //virtual bool set_window_pos(class::zorder zorder, int x, int y, int cx, int cy,unsigned int nFlags);
-   //virtual bool _set_window_pos(class::zorder zorder, int x, int y, int cx, int cy,unsigned int nFlags);
+   //virtual bool set_window_pos(class::zorder zorder, ::i32 x, ::i32 y, ::i32 cx, ::i32 cy,::u32 nFlags);
+   //virtual bool _set_window_pos(class::zorder zorder, ::i32 x, ::i32 y, ::i32 cx, ::i32 cy,::u32 nFlags);
    
    
    bool window::is_destroying()
@@ -478,7 +481,7 @@ namespace acme
    
    //virtual bool set_icon(::image::image* pimage);
    
-   //virtual int x_change_property(Atom property, Atom type, int format, int mode, const unsigned char * data, int nelements);
+   //virtual ::i32 x_change_property(Atom property, Atom type, ::i32 format, ::i32 mode, const ::u8 * data, ::i32 nelements);
    
    void window::set_mouse_cursor(::windowing::cursor* pcursor)
    {
@@ -554,14 +557,14 @@ namespace acme
       }
 
 
-      void window::_on_reposition(int x, int y)
+      void window::_on_reposition(::i32 x, ::i32 y)
       {
 
 
       }
 
 
-      void window::_on_size(int cx, int cy)
+      void window::_on_size(::i32 cx, ::i32 cy)
       {
 
 
@@ -648,7 +651,7 @@ namespace acme
       }
 
 
-      bool window::defer_perform_entire_resizing_process(::experience::enum_frame eframeSizing, ::user::mouse * pmouse)
+      bool window::defer_perform_entire_resizing_process(const ::experience::e_frame & eframeSizing, ::user::mouse * pmouse)
       {
 
          if (m_pacmeuserinteraction)
@@ -668,7 +671,7 @@ namespace acme
       }
 
 
-      //::int_point window::try_absolute_mouse_position(const ::int_point & point)
+      //::i32_point window::try_absolute_mouse_position(const ::i32_point & point)
       //{
 
       //   return m_pacmeuserinteraction->try_absolute_mouse_position(point);
@@ -676,7 +679,7 @@ namespace acme
       //}
 
 
-      ::int_point window::origin()
+      ::i32_point window::origin()
       {
 
          return m_rectangle.origin();
@@ -688,7 +691,7 @@ namespace acme
 
 
 
-      //void window::set_position(const ::int_point & point)
+      //void window::set_position(const ::i32_point & point)
       //{
 
       //   m_pacmeuserinteraction->set_position(point);
@@ -704,7 +707,7 @@ namespace acme
       }
 
 
-      void window::set_interaction_rectangle(const ::int_rectangle & rectangle)
+      void window::set_interaction_rectangle(const ::i32_rectangle & rectangle)
       {
 
          m_rectangle = rectangle;
@@ -712,7 +715,7 @@ namespace acme
       }
 
 
-      ::int_rectangle window::get_rectangle()
+      ::i32_rectangle window::get_rectangle()
       {
 
          return m_rectangle;
@@ -720,10 +723,10 @@ namespace acme
       }
 
 
-      //::int_rectangle window::get_window_rectangle()
+      //::i32_rectangle window::get_window_rectangle()
       //{
 
-      //   //::int_rectangle rectangle;
+      //   //::i32_rectangle rectangle;
 
       //   //rectangle.left = 0;
       //   //rectangle.top = 0;
@@ -737,7 +740,7 @@ namespace acme
       //}
 
 
-      // ::int_rectangle window::get_window_rectangle()
+      // ::i32_rectangle window::get_window_rectangle()
       // {
       //
       //    return m_rectangle;
@@ -842,7 +845,7 @@ namespace acme
        
     
     }
-   //virtual int_bool is_window( windowing_android_WINDOW_MEMBER );
+   //virtual ::i32_bool is_window( windowing_android_WINDOW_MEMBER );
    
    
    void window::set_window_text(const ::scoped_string & scopedstrString)
@@ -913,7 +916,7 @@ namespace acme
       }
 
 
-      ::pointer<::nano::graphics::device>window::create_device()
+      ::pointer<::nano::graphics::context>window::create_device()
       {
 
          throw interface_only();
@@ -926,6 +929,21 @@ namespace acme
       void window::on_mouse_enter()
       {
 
+
+      }
+
+
+      bool window::on_window_mouse_move(const i32_point &point, const i32_point &pointAbsolute)
+      {
+
+         if (m_pacmeuserinteraction)
+         {
+
+            return m_pacmeuserinteraction->on_window_mouse_move(point, pointAbsolute);
+
+         }
+
+         return false;
 
       }
 
@@ -986,6 +1004,22 @@ namespace acme
                return;
 
             }
+
+         }
+         else
+         {
+
+            if (acme_windowing_window()->m_pacmeuserinteractionHover)
+            {
+
+               auto pacmeuserinteractionWasHover = acme_windowing_window()->m_pacmeuserinteractionHover;
+
+               acme_windowing_window()->m_pacmeuserinteractionHover = nullptr;
+
+               pacmeuserinteractionWasHover->on_mouse_leave();
+
+            }
+
 
          }
 
@@ -1065,6 +1099,189 @@ namespace acme
             m_pacmeuserinteractionHover = nullptr;
 
          }
+
+      }
+#ifdef WINDOWS
+
+      ::windows::window_class window::_get_window_class()
+      {
+
+         if (m_pacmeuserinteraction)
+         {
+
+            return m_pacmeuserinteraction->_get_window_class();
+
+         }
+
+         return system()->acme_windowing()->_default_window_class();
+
+      }
+
+#endif
+
+
+      void window::on_window_paint(::nano::graphics::context *pgraphicscontext)
+      {
+
+         if (m_pacmeuserinteraction)
+         {
+
+            m_pacmeuserinteraction->on_window_paint(pgraphicscontext);
+
+         }
+
+      }
+
+
+      void window::on_window_size()
+      {
+
+         if (m_pacmeuserinteraction)
+         {
+
+            m_pacmeuserinteraction->on_window_size();
+
+         }
+
+      }
+
+
+      void window::on_window_set_focus()
+      {
+
+         if (m_pacmeuserinteraction)
+         {
+
+            m_pacmeuserinteraction->on_window_set_focus();
+
+         }
+
+      }
+
+
+      bool window::on_window_activate(::i32 iActivate, bool bMinimized, const ::operating_system::window & operatingsystemwindow)
+      {
+
+         if (::is_null(m_pacmeuserinteraction))
+         {
+
+            return false;
+
+         }
+
+         return m_pacmeuserinteraction->on_window_activate(iActivate, bMinimized, operatingsystemwindow);
+
+      }
+
+
+      bool window::on_window_mouse_activate(::i32 & iResult, const ::operating_system::window & operatingsystemwindowTop,
+   ::i32 iHitTest, ::i32 iMessage)
+      {
+
+         if (::is_null(m_pacmeuserinteraction))
+         {
+
+            return false;
+
+         }
+
+         return m_pacmeuserinteraction->on_window_mouse_activate(iResult, operatingsystemwindowTop, iHitTest, iMessage);
+
+      }
+
+
+      bool window::is_window_iconic()
+      {
+
+         return false;
+
+      }
+
+
+      ::f32 window::get_window_scale()
+      {
+
+         return 1.0f;
+
+      }
+
+
+      void window::show_window(::i32 iShowFlags)
+      {
+
+
+      }
+
+
+      void window::set_window_style(::i32 iShowFlags)
+      {
+
+
+      }
+
+
+      ::i64 window::get_window_style()
+      {
+
+         return -1;
+
+      }
+
+
+      void window::set_window_position(const ::operating_system::window & operatingsystemwindow, const ::i32_point & point, const ::i32_size & size, ::i32 iSetWindowPosFlags)
+      {
+
+
+
+      }
+
+
+      void window::window_invalidate_rect(const ::i32_rectangle * prectangle, bool bErase)
+      {
+
+
+      }
+
+
+      void window::update_window()
+      {
+
+
+      }
+
+
+      void window::redraw_window(const i32_rectangle *prectangle, void *pHRGN, ::i32 iRedrawFlags)
+      {
+
+      }
+
+
+      void window::window_set_focus()
+      {
+
+
+      }
+
+
+      void window::dump_operating_system_child_window_hierarchy()
+      {
+
+
+      }
+
+
+      ::i32_rectangle window::window_get_client_rect()
+      {
+
+         return{};
+
+      }
+
+
+      ::i32_rectangle window::get_window_rect()
+      {
+
+         return {};
 
       }
 
@@ -1181,7 +1398,7 @@ namespace acme
    //#include "window.h"
    //#include "platform/system.h"
    //#include "acme/nano/nano.h"
-   //#include "acme/nano/graphics/device.h"
+   //#include "acme/nano/graphics/context.h"
    //#include "acme/user/micro/display.h"
    //#include "acme/operating_system/a_system_menu.h"
    //#include "acme/parallelization/synchronous_lock.h"
@@ -1261,7 +1478,7 @@ namespace acme
       }
 
 
-      ::int_point window::windowing_popup_origin()
+      ::i32_point window::windowing_popup_origin()
       {
 
          return {};
@@ -1269,7 +1486,7 @@ namespace acme
       }
 
 
-      ::int_size window::windowing_popup_size()
+      ::i32_size window::windowing_popup_size()
       {
 
          return {};
@@ -1284,7 +1501,7 @@ namespace acme
       }
 
 
-      bool window::is_satellite_window()
+      ::i32_boolean window::is_satellite_window()
       {
 
          return false;
@@ -1491,7 +1708,7 @@ namespace acme
 
 
 
-      //::int_point window::try_absolute_mouse_position(const ::int_point & point)
+      //::i32_point window::try_absolute_mouse_position(const ::i32_point & point)
       //{
 
       //   //return window_interface::try_absolute_mouse_position(point);
@@ -1532,7 +1749,7 @@ namespace acme
       //}
 
 
-      // ::int_size window::get_main_screen_size()
+      // ::i32_size window::get_main_screen_size()
       // {
       //
       //    auto pdisplay = get_display();
@@ -1667,7 +1884,7 @@ namespace acme
       }
 
 
-      //void window::on_char(int iChar)
+      //void window::on_char(::i32 iChar)
       //{
 
 
@@ -1732,7 +1949,7 @@ namespace acme
       //
 
 
-      void window::set_interface_client_size(const ::int_size & sizeWindow) // set_size
+      void window::set_interface_client_size(const ::i32_size & sizeWindow) // set_size
       {
 
          m_sizeWindow = sizeWindow;
@@ -1740,7 +1957,7 @@ namespace acme
       }
 
 
-      void window::set_rectangle(const int_rectangle & rectangle)
+      void window::set_rectangle(const i32_rectangle & rectangle)
       {
 
          auto r = rectangle;
@@ -1755,7 +1972,7 @@ namespace acme
       }
 
 
-      void window::set_position(const int_point & point)
+      void window::set_position(const i32_point & point)
       {
 
          auto p = point;
@@ -1770,7 +1987,7 @@ namespace acme
       }
 
 
-      void window::set_size(const int_size & size)
+      void window::set_size(const i32_size & size)
       {
 
          auto s = size;
@@ -1786,7 +2003,7 @@ namespace acme
       }
 
 
-      void window::set_rectangle_unlocked(const int_rectangle & rectangle)
+      void window::set_rectangle_unlocked(const i32_rectangle & rectangle)
       {
 
          set_size_unlocked(rectangle.size());
@@ -1796,24 +2013,24 @@ namespace acme
       }
 
 
-      void window::set_position_unlocked(const int_point & point)
+      void window::set_position_unlocked(const i32_point & point)
       {
 
 
       }
 
 
-      void window::set_size_unlocked(const int_size & size)
+      void window::set_size_unlocked(const i32_size & size)
       {
 
 
       }
 
 
-      ::int_rectangle window::get_window_rectangle()
+      ::i32_rectangle window::get_window_rectangle()
       {
 
-         ::int_rectangle rectangle;
+         ::i32_rectangle rectangle;
 
          main_send([this, &rectangle]()
          {
@@ -1827,7 +2044,7 @@ namespace acme
       }
 
 
-      ::int_rectangle window::get_window_rectangle_unlocked()
+      ::i32_rectangle window::get_window_rectangle_unlocked()
       {
 
          return {};
@@ -1939,7 +2156,7 @@ namespace acme
          return puserinteractionOwner->acme_windowing_window();
 
       }
-   int window::control_box_right_when_at_left() const
+   ::i32 window::control_box_right_when_at_left() const
    {
       
       
@@ -2019,7 +2236,7 @@ void window::on_control_box_zoom()
 
    //} // namespace windowing
    
-      void window::get_os_window_handle(void *p, int iSize) 
+      void window::get_os_window_handle(void *p, ::i32 iSize) 
       {
          
          throw ::interface_only();
@@ -2027,7 +2244,7 @@ void window::on_control_box_zoom()
       }
 
 
-   void window::on_gpu_context_render_frame(int w, int h)
+   void window::on_gpu_context_render_frame(::i32 w, ::i32 h)
    
    {
       

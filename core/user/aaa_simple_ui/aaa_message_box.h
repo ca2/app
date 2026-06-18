@@ -14,20 +14,20 @@ namespace simple_ui
       string_array_base                     m_stra;
       pointer_array < tap >             m_tapaA;
       pointer_array < tap >             m_tapaB;
-      int                              m_iResult;
+      ::i32                              m_iResult;
       string                           m_strMessage;
       string                           m_strTitle;
-      ::::user::e_message_box                  m_emessagebox;
+      ::user::e_message_box                  m_emessagebox;
       ::duration                       m_durationTimeout;
       callback                         m_callback;
       manual_reset_happening               m_happeningReady;
 
 
-      message_box(::particle * pparticle, const ::scoped_string & scopedstrMessage, const ::scoped_string & scopedstrTitle, const ::::user::e_message_box & emessagebox, ::duration durationTimeout);
+      message_box(::particle * pparticle, const ::scoped_string & scopedstrMessage, const ::scoped_string & scopedstrTitle, const ::user::e_message_box & emessagebox, ::duration durationTimeout);
       virtual ~message_box();
 
 
-      int show();
+      ::i32 show();
 
       virtual void _001OnDraw(::draw2d::graphics_pointer & pgraphics) override;
 
@@ -49,8 +49,8 @@ namespace simple_ui
 
 //      virtual void on_select_user_style() override;
 
-      //virtual long long increment_reference_count() override;
-      //virtual long long decrement_reference_count() override;
+      //virtual ::i64 increment_reference_count() override;
+      //virtual ::i64 decrement_reference_count() override;
       
 
    };
@@ -60,7 +60,7 @@ namespace simple_ui
 
 
 
-CLASS_DECL_CORE int simple_ui_message_box(oswindow interaction_impl, const ::string & pText, const ::string & lpCaption, unsigned int uFlags);
+CLASS_DECL_CORE ::i32 simple_ui_message_box(oswindow interaction_impl, const ::string & pText, const ::string & lpCaption, ::u32 uFlags);
 
 
 

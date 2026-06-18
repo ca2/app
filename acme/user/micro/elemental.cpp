@@ -33,7 +33,7 @@
 #include "acme/filesystem/filesystem/directory_system.h"
 #include "acme/filesystem/filesystem/file_system.h"
 #include "acme/handler/topic.h"
-#include "acme/nano/graphics/device.h"
+#include "acme/nano/graphics/context.h"
 #include "acme/nano/nano.h"
 #include "acme/user/micro/theme.h"
 #include "acme/windowing/window.h"
@@ -54,6 +54,9 @@ namespace micro
 
    elemental::elemental()
    {
+
+      m_bMouseOn = false;
+
 
       m_efont = e_font_sans;
 
@@ -179,7 +182,7 @@ namespace micro
    }
 
 
-   void elemental::_on_draw(::nano::graphics::device * pnanodevice)
+   void elemental::_on_draw(::nano::graphics::context * pnanodevice)
    {
 
       draw_background(pnanodevice);
@@ -189,44 +192,68 @@ namespace micro
    }
 
 
-   void elemental::draw_background(::nano::graphics::device * pmicrodevice)
+   void elemental::on_window_paint(::nano::graphics::context *pgraphicscontext)
    {
 
-      ::pointer<::nano::graphics::pen> pmicropenBorder;
+      draw_background(pgraphicscontext);
 
-      if (acme_windowing_window()->is_active_window())
+      draw_foreground(pgraphicscontext);
+
+   }
+
+
+
+   void elemental::draw_background(::nano::graphics::context * pgraphicscontext)
+   {
+
+      if (m_bBorder)
       {
 
-         pmicropenBorder = micro_theme()->m_ppenBorderFocus;
+         ::pointer<::nano::graphics::pen> pmicropenBorder;
 
+         if (acme_windowing_window()->is_active_window())
+         {
+
+            pmicropenBorder = micro_theme()->m_ppenBorderFocus;
+         }
+         else
+         {
+
+            pmicropenBorder = micro_theme()->m_ppenBorder;
+         }
+
+         ::i32_rectangle rectangleX;
+
+         rectangleX = get_client_rectangle();
+         
+         pgraphicscontext->set_brush( micro_theme()->m_pbrushWindow);
+         
+         pgraphicscontext->set_pen(pmicropenBorder);
+
+         pgraphicscontext->rectangle(rectangleX);
+         
       }
       else
       {
 
-         pmicropenBorder = micro_theme()->m_ppenBorder;
+         //information("not drawing border");
 
       }
 
-      ::int_rectangle rectangleX;
-
-      rectangleX = get_client_rectangle();
-
-      pmicrodevice->rectangle(rectangleX, micro_theme()->m_pbrushWindow, pmicropenBorder);
-
    }
 
 
-   void elemental::draw_foreground(::nano::graphics::device * pmicrodevice)
+   void elemental::draw_foreground(::nano::graphics::context * pgraphicscontext)
    {
 
-      on_draw(pmicrodevice);
+      on_draw(pgraphicscontext);
 
-      draw_children(pmicrodevice);
+      draw_children(pgraphicscontext);
 
    }
 
 
-   void elemental::draw_children(::nano::graphics::device * pmicrodevice)
+   void elemental::draw_children(::nano::graphics::context * pgraphicscontext)
    {
 
       if (m_pacmeuserinteractionaChildren)
@@ -242,26 +269,26 @@ namespace micro
             if (pchild != pelementalHover)
             {
 
-               draw_child(pmicrodevice, pelemental);
+               draw_child(pgraphicscontext, pelemental);
 
             }
 
             //auto r = pelemental->get_rectangle();
 
-            //pmicrodevice->translate(r.left, r.top);
+            //pgraphicscontext->translate(r.left, r.top);
 
-            //pelemental->draw_background(pmicrodevice);
+            //pelemental->draw_background(pgraphicscontext);
 
-            //pelemental->draw_foreground(pmicrodevice);
+            //pelemental->draw_foreground(pgraphicscontext);
 
-            //pmicrodevice->translate(-r.left, -r.top);
+            //pgraphicscontext->translate(-r.left, -r.top);
 
          }
 
          if (pelementalHover)
          {
 
-            draw_child(pmicrodevice, pelementalHover);
+            draw_child(pgraphicscontext, pelementalHover);
 
          }
 
@@ -270,18 +297,18 @@ namespace micro
    }
 
 
-   void elemental::draw_child(::nano::graphics::device* pmicrodevice, ::micro::elemental* pelemental)
+   void elemental::draw_child(::nano::graphics::context * pgraphicscontext, ::micro::elemental* pelemental)
    {
 
       auto r = pelemental->get_rectangle();
 
-      pmicrodevice->translate(r.left, r.top);
+      pgraphicscontext->translate(r.left, r.top);
 
-      pelemental->draw_background(pmicrodevice);
+      pelemental->draw_background(pgraphicscontext);
 
-      pelemental->draw_foreground(pmicrodevice);
+      pelemental->draw_foreground(pgraphicscontext);
 
-      pmicrodevice->translate(-r.left, -r.top);
+      pgraphicscontext->translate(-r.left, -r.top);
 
    }
 
@@ -289,9 +316,13 @@ namespace micro
    void elemental::resize_to_fit()
    {
 
-      auto pdevice = createø<::nano::graphics::device>();
+      auto pcontext = createø<::nano::graphics::context>();
 
-      auto size = pdevice->get_text_extents(m_strText, micro_theme()->m_pfont);
+      pcontext->create({400, 300});
+      
+      pcontext->set_font(micro_theme()->m_pfont);
+
+      auto size = pcontext->get_text_extents(m_strText);
 
       m_rectangle.right = m_rectangle.left + size.cx;
 
@@ -728,21 +759,21 @@ namespace micro
    //}
 
 
-   //void elemental::draw(::nano::graphics::device * pmicrodevice)
+   //void elemental::draw(::nano::graphics::context * pgraphicscontext)
    //{
 
 
    //}
 
 
-   void elemental::on_draw(::nano::graphics::device * pmicrodevice)
+   void elemental::on_draw(::nano::graphics::context * pgraphicscontext)
    {
 
 
    }
 
 
-   void elemental::on_char(int iChar)
+   void elemental::on_char(::i32 iChar)
    {
 
       //if (iChar == '\t' && m_pacmeuserinteractionaChildren.has_element())
@@ -778,7 +809,7 @@ namespace micro
    }
 
 
-   void elemental::add_button(const ::scoped_string & scopedstrText, enum_dialog_result edialogresult, char chLetter)
+   void elemental::add_button(const ::scoped_string & scopedstrText, enum_dialog_result edialogresult, ::i8 chLetter)
    {
 
       auto pbutton = allocateø::micro::button();
@@ -914,6 +945,64 @@ namespace micro
       //   }
 
       //}
+
+   }
+
+
+   bool elemental::on_window_mouse_move(const i32_point &point, const i32_point &pointAbsolute)
+   {
+
+
+      if (!m_bMouseOn)
+      {
+
+         m_bMouseOn = true;
+         
+#if defined(WINDOWS_DESKTOP)
+
+         auto hwnd = ::as_HWND(this->operating_system_window());
+
+         TRACKMOUSEEVENT trackmouseevent = { sizeof(TRACKMOUSEEVENT) };
+         trackmouseevent.dwFlags = TME_LEAVE;
+         trackmouseevent.hwndTrack = hwnd;
+         ::TrackMouseEvent(&trackmouseevent);
+#endif
+         
+         on_mouse_enter();
+
+      }
+
+      auto pmouse = create_newø < ::user::mouse >();
+
+      pmouse->m_pointHost = point;
+
+      pmouse->m_pointAbsolute = pointAbsolute;
+
+      fore_on_mouse_move(pmouse);
+
+      //::cast < ::micro::elemental > pelemental = m_pacmeuserinteraction;
+
+      //if (pelemental)
+      //{
+
+      //   pelemental->fore_on_mouse_move(pmouse);
+
+      //}
+
+      if (!pmouse->m_bRet)
+      {
+
+
+         //if (pelemental)
+         //{
+
+         back_on_mouse_move(pmouse);
+
+         //}
+
+      }
+
+      return pmouse->m_bRet;
 
    }
 
@@ -1469,6 +1558,12 @@ namespace micro
    }
 
 
+   void elemental::on_create()
+   {
+      
+      
+   }
+
 
    void elemental::on_click(const ::payload & payload, ::user::mouse * pmouse)
    {
@@ -1501,7 +1596,7 @@ namespace micro
    //}
 
 
-   //void elemental::draw_children(::nano::graphics::device * pmicrodevice)
+   //void elemental::draw_children(::nano::graphics::context * pgraphicscontext)
    //{
 
 
@@ -1537,7 +1632,7 @@ namespace micro
           //}
 
 
-          //::int_point elemental::origin()
+          //::i32_point elemental::origin()
           //{
 
           //   throw ::exception(error_wrong_state);
@@ -1605,7 +1700,7 @@ namespace micro
    }
 
 
-   ::int_point elemental::origin()
+   ::i32_point elemental::origin()
    {
       auto r = get_window_rectangle();
 
@@ -1614,7 +1709,7 @@ namespace micro
    }
 
 
-   ::int_rectangle elemental::get_client_rectangle()
+   ::i32_rectangle elemental::get_client_rectangle()
    {
       auto r = get_rectangle();
 
@@ -1625,7 +1720,7 @@ namespace micro
    }
 
 
-   void elemental::set_rectangle(const ::int_rectangle & rectangle)
+   void elemental::set_rectangle(const ::i32_rectangle & rectangle)
    {
 
       m_rectangle = rectangle;
@@ -1696,7 +1791,7 @@ namespace micro
    }
 
 
-   //::int_point elemental::try_absolute_mouse_position(const ::int_point & point)
+   //::i32_point elemental::try_absolute_mouse_position(const ::i32_point & point)
    //{
 
    //   auto p = point;
@@ -1716,7 +1811,7 @@ namespace micro
    //}
 
 
-   //bool elemental::on_drag_start(::int_point & point, ::item * pitem)
+   //bool elemental::on_drag_start(::i32_point & point, ::item * pitem)
    //{
 
    //   if (pitem->m_item.m_eelement == e_element_client)
@@ -1742,7 +1837,7 @@ namespace micro
    //}
 
 
-   //::int_point elemental::drag_mouse_cursor_position(::item * pitem, const ::int_point & point)
+   //::i32_point elemental::drag_mouse_cursor_position(::item * pitem, const ::i32_point & point)
    //{
 
    //   //auto p = try_absolute_mouse_position(point);
@@ -1873,7 +1968,7 @@ namespace micro
       //}
 
 
-   void elemental::set_position(const ::int_point & point)
+   void elemental::set_position(const ::i32_point & point)
    {
 
       acme_windowing_window()->set_position(point);
@@ -1991,14 +2086,14 @@ namespace micro
    }
 
 
-   //void elemental::get_client_rectangle(::int_rectangle & rectangle)
+   //void elemental::get_client_rectangle(::i32_rectangle & rectangle)
    //{
 
 
    //}
 
 
-   int_rectangle elemental::get_rectangle()
+   i32_rectangle elemental::get_rectangle()
    {
 
       return m_rectangle;
@@ -2165,7 +2260,7 @@ namespace micro
    //}
 
 
-   //::collection::index elemental::plain_edit_sel_to_column_x(::draw2d::graphics_pointer & pgraphics, character_count iSel, int & x)
+   //::collection::index elemental::plain_edit_sel_to_column_x(::draw2d::graphics_pointer & pgraphics, character_count iSel, ::i32 & x)
    //{
 
    //   return -1;
@@ -2181,7 +2276,7 @@ namespace micro
    //}
 
 
-   //::collection::index elemental::plain_edit_sel_to_line_x(::draw2d::graphics_pointer & pgraphics, character_count iSel, int & x)
+   //::collection::index elemental::plain_edit_sel_to_line_x(::draw2d::graphics_pointer & pgraphics, character_count iSel, ::i32 & x)
    //{
 
    //   return -1;
@@ -2197,7 +2292,7 @@ namespace micro
    //}
 
 
-   //character_count elemental::plain_edit_line_x_to_sel(::draw2d::graphics_pointer & pgraphics, ::collection::index iLine, int x)
+   //character_count elemental::plain_edit_line_x_to_sel(::draw2d::graphics_pointer & pgraphics, ::collection::index iLine, ::i32 x)
    //{
 
    //   return -1;

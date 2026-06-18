@@ -51,7 +51,7 @@ namespace platform
       //m_psession = nullptr;
       //m_psystem = nullptr;
       //m_pnode = nullptr;
-      m_bKeepRunningPostedProcedures = true;
+      m_bRunMainLoop = true;
 
    }
 
@@ -81,12 +81,11 @@ namespace platform
    void context::destroy()
    {
 
-      m_ptexttranslator.defer_destroy();
-      m_pimagecontext.defer_destroy();
-      m_pdirectorycontext.defer_destroy();
-      m_pfilecontext.defer_destroy();
-      m_phttp.defer_destroy();
-
+      m_ptexttranslator.defer_destroy_and_release();
+      m_pimagecontext.defer_destroy_and_release();
+      m_pdirectorycontext.defer_destroy_and_release();
+      m_pfilecontext.defer_destroy_and_release();
+      m_phttp.defer_destroy_and_release();
 
       ::task::destroy();
 
@@ -147,7 +146,7 @@ namespace platform
 
       __check_refdbg
 
-      m_ptexttranslator = allocateø ::text::translator();
+      construct_newø(m_ptexttranslator);
 
       __check_refdbg
 
@@ -836,7 +835,7 @@ namespace platform
                             const ::procedure& procedureCompletion, ::collection::index iStart)
    {
 
-      int iAffinityOrder = node()->get_current_process_affinity_order();
+      ::i32 iAffinityOrder = node()->get_current_process_affinity_order();
 
       if (::get_task() != nullptr && ::get_task()->m_bAvoidProcedureFork)
       {
@@ -925,12 +924,26 @@ namespace platform
       if (case_insensitive_string_begins(path, "matter:/"))
       {
 
+         if (!system()->m_bAttemptedToInitializeMatter)
+         {
+
+            system()->defer_initialize_matter();
+
+         }
+
          return directory()->matter(path);
 
       }
 
       if (path.case_insensitive_begins("appmatter:/"))
       {
+
+         if (!system()->m_bAttemptedToInitializeMatter)
+         {
+
+            system()->defer_initialize_matter();
+
+         }
 
          //path = directory()->appmatter(path, false);
          return directory()->appmatter(path);
@@ -939,6 +952,13 @@ namespace platform
 
       if (path.case_insensitive_begins_eat("icon:/"))
       {
+
+         if (!system()->m_bAttemptedToInitializeMatter)
+         {
+
+            system()->defer_initialize_matter();
+
+         }
 
          path += ".ico";
 
@@ -1076,7 +1096,7 @@ namespace platform
 
          path.case_insensitive_begins_eat("appmatter:/");
 
-         path = "https://ca2.network/matter" / path;
+         path = "https://ca2.site/matter" / path;
 
          //if (file()->exists(path, this))
          {

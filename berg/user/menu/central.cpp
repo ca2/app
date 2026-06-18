@@ -39,11 +39,11 @@ namespace user
 
       synchronous_lock synchronouslock(this->synchronization(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 
-      int iIndex;
+      ::i32 iIndex;
 
       atom atom;
 
-      for(int i = 0; i < pnode->children().get_count(); i++)
+      for(::i32 i = 0; i < pnode->children().get_count(); i++)
       {
 
          ::pointer<::xml::node>pchild = pnode->child_at(i);
@@ -118,10 +118,10 @@ namespace user
    }
 
 
-   int menu_central::command_image(atom atom)
+   ::i32 menu_central::command_image(atom atom)
    {
 
-      int iImage;
+      ::i32 iImage;
 
       if(!m_mapCommandImage.find(atom, iImage))
       {
@@ -135,7 +135,7 @@ namespace user
    }
 
 
-   atom menu_central::image_command(int iImage)
+   atom menu_central::image_command(::i32 iImage)
    {
 
       atom atom;

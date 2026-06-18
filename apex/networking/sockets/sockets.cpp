@@ -245,12 +245,12 @@ namespace sockets
 
    //   string strBoundary = "----";
 
-   //   for (int i = 0; i < 12; i++)
+   //   for (::i32 i = 0; i < 12; i++)
    //   {
 
-   //      char c = m_countHttpPostBoundary++ % 128;
+   //      ::i8 c = m_countHttpPostBoundary++ % 128;
 
-   //      while (!character_isalnum((unsigned char)c))
+   //      while (!character_isalnum((::u8)c))
    //      {
 
    //         c = m_countHttpPostBoundary++ % 128;

@@ -11,7 +11,7 @@
 #define DEBUG_WINDOWS_C_ANDROID_FONTS 0
 
 
-#define __expand_double_rgba(color) color.dr(), color.dg(), color.db(), color.da()
+#define __expand_f64_rgba(color) color.dr(), color.dg(), color.db(), color.da()
 
 
 // https://www.codeproject.com/Articles/2293/Retrieving-Font-Name-from-TTF-File
@@ -19,14 +19,14 @@
 // Team Leader Varonis
 // Israel Israel
 
-//inline bool is_equal(double d1, double d2, double dTolerance)
+//inline bool is_equal(::f64 d1, ::f64 d2, ::f64 dTolerance)
 //{
 //
 //   return fabs(d1 - d2) <= dTolerance;
 //
 //}
 //
-//inline bool is_different(double d1, double d2, double dTolerance)
+//inline bool is_different(::f64 d1, ::f64 d2, ::f64 dTolerance)
 //{
 //
 //   return !is_equal(d1, d2, dTolerance);
@@ -34,7 +34,7 @@
 //}
 
 
-double g_dPi = atan(1.0) * 4.0;
+::f64 g_dPi = atan(1.0) * 4.0;
 
 
 #if defined(LINUX)
@@ -62,12 +62,12 @@ string_to_string_base * g_pmapFontPath;
 //
 //};
 //
-//BOOL CALLBACK EnumFamCallBackW(LPLOGFONTW lplf, LPNEWTEXTMETRICW lpntm, unsigned int dwFontType, LPVOID p)
+//BOOL CALLBACK EnumFamCallBackW(LPLOGFONTW lplf, LPNEWTEXTMETRICW lpntm, ::u32 dwFontType, LPVOID p)
 //{
 //
 //   font_fam_callback * pc = (font_fam_callback *)p;
 //
-//   int iType = -1;
+//   ::i32 iType = -1;
 //
 //   if (dwFontType & RASTER_FONTTYPE)
 //   {
@@ -104,7 +104,7 @@ string_to_string_base * g_pmapFontPath;
 //
 //   }
 //
-//   //int far * aiFontCount = (int far *) aFontCount;
+//   //::i32 far * aiFontCount = (::i32 far *) aFontCount;
 //
 //   //// Record the number of raster, TrueType, and vector
 //   //// fonts in the font-count array.
@@ -132,7 +132,7 @@ string_to_string_base * g_pmapFontPath;
 
 #endif
 
-string_map_base<int_map<FT_Face> > * g_pmapFontFace = nullptr;
+string_map_base<i32_map<FT_Face> > * g_pmapFontFace = nullptr;
 
 string_map_base<cairo_font_face_t *> * g_pmapCairoFontFace = nullptr;
 
@@ -148,7 +148,7 @@ namespace draw2d_cairo
 
 
    FT_Face g_ft = nullptr;
-   int g_iFtLevel = -1;
+   ::i32 g_iFtLevel = -1;
 
    graphics::graphics()
    {
@@ -326,7 +326,7 @@ namespace draw2d_cairo
    }
 
 
-   bool graphics::fill_contains(const double_point & point)
+   bool graphics::fill_contains(const ::f64_point & point)
    {
 
       //return cairo_in_fill(m_pdc, point.x, point.y);
@@ -356,7 +356,7 @@ namespace draw2d_cairo
    }
 
 
-   void graphics::_add_shape(const ::double_rectangle & rectangle)
+   void graphics::_add_shape(const ::f64_rectangle & rectangle)
    {
 
       cairo_rectangle(m_pdc, rectangle.left + m_pointAddShapeTranslate.x, rectangle.top + m_pointAddShapeTranslate.y,
@@ -367,7 +367,7 @@ namespace draw2d_cairo
    }
 
 
-   void graphics::_add_shape(const ::double_ellipse & ellipse)
+   void graphics::_add_shape(const ::f64_ellipse & ellipse)
    {
 
       cairo_keep keep(m_pdc);
@@ -386,7 +386,7 @@ namespace draw2d_cairo
    }
 
 
-   void graphics::_add_shape(const ::double_polygon & polygon)
+   void graphics::_add_shape(const ::f64_polygon & polygon)
    {
 
       if (polygon.is_empty())
@@ -402,7 +402,7 @@ namespace draw2d_cairo
 
       cairo_move_to(m_pdc, polygon[0].x + m_pointAddShapeTranslate.x, polygon[0].y + m_pointAddShapeTranslate.y);
 
-      for (int i = 1; i < polygon.get_count(); i++)
+      for (::i32 i = 1; i < polygon.get_count(); i++)
       {
 
          cairo_line_to(m_pdc, polygon[i].x + m_pointAddShapeTranslate.x, polygon[i].y + m_pointAddShapeTranslate.y);
@@ -416,7 +416,7 @@ namespace draw2d_cairo
    }
 
 
-//int graphics::ExcludeUpdateRgn(::user::interaction_base * pwindow)
+//::i32 graphics::ExcludeUpdateRgn(::user::interaction_base * pwindow)
 //{
 //
 //    throw ::interface_only();
@@ -426,7 +426,7 @@ namespace draw2d_cairo
 //}
 
 
-   int graphics::GetDevicecaps(int nIndex)
+   ::i32 graphics::GetDevicecaps(::i32 nIndex)
    {
 
       throw ::interface_only();
@@ -436,37 +436,37 @@ namespace draw2d_cairo
    }
 
 
-   double_point graphics::GetBrushOrg()
+   ::f64_point graphics::GetBrushOrg()
    {
 
       throw ::interface_only();
 
-      return ::double_point();
+      return ::f64_point();
 
    }
 
 
-   double_point graphics::SetBrushOrg(double x, double y)
+   ::f64_point graphics::SetBrushOrg(::f64 x, ::f64 y)
    {
 
       throw ::interface_only();
 
-      return ::int_point();
+      return ::i32_point();
 
    }
 
 
-   double_point graphics::SetBrushOrg(const ::double_point & point)
+   ::f64_point graphics::SetBrushOrg(const ::f64_point & point)
    {
 
       throw ::interface_only();
 
-      return ::double_point();
+      return ::f64_point();
 
    }
 
 //
-//int graphics::EnumObjects(int nObjectType, int(CALLBACK* lpfn)(LPVOID, LPARAM), LPARAM lpData)
+//::i32 graphics::EnumObjects(::i32 nObjectType, ::i32(CALLBACK* lpfn)(LPVOID, LPARAM), LPARAM lpData)
 //{
 //
 //    throw ::interface_only();
@@ -528,7 +528,7 @@ namespace draw2d_cairo
 //}
 //
 //
-//unsigned int graphics::RealizePalette()
+//::u32 graphics::RealizePalette()
 //{
 //
 //    return 0;
@@ -542,7 +542,7 @@ namespace draw2d_cairo
 //}
 //
 
-//int graphics::GetPolyFillMode()
+//::i32 graphics::GetPolyFillMode()
 //{
 //
 //    synchronous_lock ml(::draw2d_cairo::mutex(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
@@ -561,7 +561,7 @@ namespace draw2d_cairo
 //}
 
 
-//int graphics::GetROP2()
+//::i32 graphics::GetROP2()
 //{
 //
 //    return 0;
@@ -569,7 +569,7 @@ namespace draw2d_cairo
 //}
 
 
-//int graphics::GetStretchBltMode()
+//::i32 graphics::GetStretchBltMode()
 //{
 //
 //    return 0;
@@ -577,7 +577,7 @@ namespace draw2d_cairo
 //}
 //
 //
-//int graphics::GetMapMode()
+//::i32 graphics::GetMapMode()
 //{
 //
 //    return 0;
@@ -585,7 +585,7 @@ namespace draw2d_cairo
 //}
 //
 //
-//int graphics::GetGraphicsMode()
+//::i32 graphics::GetGraphicsMode()
 //{
 //
 //    return 0;
@@ -601,32 +601,32 @@ namespace draw2d_cairo
 //}
 
 
-   double_size graphics::get_context_extents()
+   ::f64_size graphics::get_context_extents()
    {
 
-      return ::double_size(0, 0);
+      return ::f64_size(0, 0);
 
    }
 
 
-   double_point graphics::GetWindowOrg()
+   ::f64_point graphics::GetWindowOrg()
    {
 
-      return ::double_point();
+      return ::f64_point();
 
    }
 
 
-   double_size graphics::GetWindowExt()
+   ::f64_size graphics::GetWindowExt()
    {
 
-      return ::double_size(0, 0);
+      return ::f64_size(0, 0);
 
    }
 
 
 // non-virtual helpers calling virtual mapping functions
-   double_point graphics::set_origin(const ::double_point & point)
+   ::f64_point graphics::set_origin(const ::f64_point & point)
    {
 
       return set_origin(point.x, point.y);
@@ -634,49 +634,49 @@ namespace draw2d_cairo
    }
 
 
-   double_size graphics::set_context_extents(const ::double_size & double_size)
+   ::f64_size graphics::set_context_extents(const ::f64_size & size)
    {
 
-      return ::double_size(0, 0);
+      return ::f64_size(0, 0);
 
    }
 
 
-   double_point graphics::SetWindowOrg(const ::double_point & point)
+   ::f64_point graphics::SetWindowOrg(const ::f64_point & point)
    {
 
-      return ::double_point();
+      return ::f64_point();
 
    }
 
 
-   double_size graphics::set_window_ext(const ::double_size & double_size)
+   ::f64_size graphics::set_window_ext(const ::f64_size & size)
    {
 
-      return ::double_size(0, 0);
+      return ::f64_size(0, 0);
 
    }
 
 
-   void graphics::DPtoLP(::double_point * lpPoints, ::collection::count nCount)
-   {
-
-   }
-
-
-   void graphics::DPtoLP(::double_rectangle * prectangle)
+   void graphics::DPtoLP(::f64_point * lpPoints, ::collection::count nCount)
    {
 
    }
 
 
-   void graphics::LPtoDP(::double_point * lpPoints, ::collection::count nCount)
+   void graphics::DPtoLP(::f64_rectangle * prectangle)
    {
 
    }
 
 
-   void graphics::LPtoDP(::double_rectangle * prectangle)
+   void graphics::LPtoDP(::f64_point * lpPoints, ::collection::count nCount)
+   {
+
+   }
+
+
+   void graphics::LPtoDP(::f64_rectangle * prectangle)
    {
 
    }
@@ -692,7 +692,7 @@ namespace draw2d_cairo
    }
 
 
-   void graphics::frame_region(::draw2d::region * pRgn, ::draw2d::brush * pBrush, double nWidth, double nHeight)
+   void graphics::frame_region(::draw2d::region * pRgn, ::draw2d::brush * pBrush, ::f64 nWidth, ::f64 nHeight)
    {
 
       throw ::interface_only();
@@ -722,7 +722,7 @@ namespace draw2d_cairo
    }
 
 
-//void graphics::PtVisible(double x, double y)
+//void graphics::PtVisible(::f64 x, ::f64 y)
 //{
 //
 //    throw ::interface_only();
@@ -732,7 +732,7 @@ namespace draw2d_cairo
 //}
 
 
-//void graphics::PtVisible(const ::double_point & point)
+//void graphics::PtVisible(const ::f64_point & point)
 //{
 //
 //    throw ::interface_only();
@@ -742,7 +742,7 @@ namespace draw2d_cairo
 //}
 
 
-//void graphics::rectVisible(const ::int_rectangle & rectangle)
+//void graphics::rectVisible(const ::i32_rectangle & rectangle)
 //{
 //
 //    throw ::interface_only();
@@ -752,7 +752,7 @@ namespace draw2d_cairo
 //}
 
 
-   double_point graphics::current_position()
+   ::f64_point graphics::current_position()
    {
 
       return ::draw2d::graphics::current_position();
@@ -760,18 +760,18 @@ namespace draw2d_cairo
    }
 
 
-   void graphics::arc(double x1, double y1, double x2, double y2, double x3, double y3, double x4, double y4)
+   void graphics::arc(::f64 x1, ::f64 y1, ::f64 x2, ::f64 y2, ::f64 x3, ::f64 y3, ::f64 x4, ::f64 y4)
    {
 
       synchronous_lock ml(::draw2d_cairo::mutex(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 
-      double centerx = (x2 + x1) / 2.0;
+      ::f64 centerx = (x2 + x1) / 2.0;
 
-      double centery = (y2 + y1) / 2.0;
+      ::f64 centery = (y2 + y1) / 2.0;
 
-      double radiusx = abs(x2 - x1) / 2.0;
+      ::f64 radiusx = abs(x2 - x1) / 2.0;
 
-      double radiusy = abs(y2 - y1) / 2.0;
+      ::f64 radiusy = abs(y2 - y1) / 2.0;
 
       if (radiusx == 0.0 || radiusy == 0.0)
       {
@@ -780,9 +780,9 @@ namespace draw2d_cairo
 
       }
 
-      double start = atan2(y3 - centery, x3 - centerx);
+      ::f64 start = atan2(y3 - centery, x3 - centerx);
 
-      double end = atan2(y4 - centery, x4 - centerx);
+      ::f64 end = atan2(y4 - centery, x4 - centerx);
 
       cairo_keep keep(m_pdc);
 
@@ -797,16 +797,16 @@ namespace draw2d_cairo
    }
 
 
-   void graphics::arc(double x, double y, double w, double h, angle start, angle extends)
+   void graphics::arc(::f64 x, ::f64 y, ::f64 w, ::f64 h, angle start, angle extends)
    {
 
       synchronous_lock ml(::draw2d_cairo::mutex(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 
-      double end = start + extends;
+      ::f64 end = start + extends;
 
-      double start_angle = start;
+      ::f64 start_angle = start;
 
-      double end_angle = end;
+      ::f64 end_angle = end;
 
       cairo_keep keep(m_pdc);
 
@@ -834,7 +834,7 @@ namespace draw2d_cairo
    }
 
 
-   void graphics::arc(const ::double_rectangle & rectangle, const ::double_point & pointStart, const ::double_point & pointEnd)
+   void graphics::arc(const ::f64_rectangle & rectangle, const ::f64_point & pointStart, const ::f64_point & pointEnd)
    {
 
       return arc(
@@ -850,7 +850,7 @@ namespace draw2d_cairo
    }
 
 
-   void graphics::polyline(const ::double_point * lpPoints, ::collection::count nCount)
+   void graphics::polyline(const ::f64_point * lpPoints, ::collection::count nCount)
    {
 
       return draw_polygon(lpPoints, nCount);
@@ -858,7 +858,7 @@ namespace draw2d_cairo
    }
 
 
-   void graphics::fill_rectangle(const ::double_rectangle & rectangle, ::draw2d::brush * pbrush)
+   void graphics::fill_rectangle(const ::f64_rectangle & rectangle, ::draw2d::brush * pbrush)
    {
 
       synchronous_lock ml(::draw2d_cairo::mutex(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
@@ -880,7 +880,7 @@ namespace draw2d_cairo
    }
 
 
-   void graphics::draw_rectangle(const ::double_rectangle & rectangle, ::draw2d::pen * ppen)
+   void graphics::draw_rectangle(const ::f64_rectangle & rectangle, ::draw2d::pen * ppen)
    {
 
       synchronous_lock ml(::draw2d_cairo::mutex(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
@@ -902,7 +902,7 @@ namespace draw2d_cairo
    }
 
 
-   void graphics::invert_rectangle(const ::double_rectangle & rectangle)
+   void graphics::invert_rectangle(const ::f64_rectangle & rectangle)
    {
 
       throw ::interface_only();
@@ -912,7 +912,7 @@ namespace draw2d_cairo
    }
 
 
-//void graphics::DrawIcon(double x, double y, ::image::icon * picon)
+//void graphics::DrawIcon(::f64 x, ::f64 y, ::image::icon * picon)
 //{
 //
 //    throw ::interface_only();
@@ -922,7 +922,7 @@ namespace draw2d_cairo
 //}
 
 
-//void graphics::DrawIcon(const ::double_point & point, ::image::icon * picon)
+//void graphics::DrawIcon(const ::f64_point & point, ::image::icon * picon)
 //{
 //
 //    throw ::interface_only();
@@ -934,7 +934,7 @@ namespace draw2d_cairo
 
 //#ifdef WINDOWS_DESKTOP
 //
-//void graphics::draw(::image::icon * picon, int cx, int cy, unsigned int istepIfAniCur, HBRUSH hbrFlickerFreeDraw, unsigned int diFlags)
+//void graphics::draw(::image::icon * picon, ::i32 cx, ::i32 cy, ::u32 istepIfAniCur, HBRUSH hbrFlickerFreeDraw, ::u32 diFlags)
 //{
 //
 //
@@ -992,11 +992,11 @@ namespace draw2d_cairo
 //            try
 //            {
 //
-//                //Gdiplus::Bitmap b(cx, cy, cx * 4 , PixelFormat32bppARGB, (unsigned char *) pimage32);
+//                //Gdiplus::Bitmap b(cx, cy, cx * 4 , PixelFormat32bppARGB, (::u8 *) pimage32);
 //
 //                ::draw2d::bitmap_pointer b(e_create);
 //
-//                b->CreateBitmap(this, ::double_size(cx, cy), 1, 32, pimage32, cx * sizeof(color32_t));
+//                b->CreateBitmap(this, ::f64_size(cx, cy), 1, 32, pimage32, cx * sizeof(color32_t));
 //
 //                cairo_surface_t * psurface = (cairo_surface_t *)b->get_os_data();
 //
@@ -1060,7 +1060,7 @@ namespace draw2d_cairo
 //#endif
 
 
-//void graphics::DrawState(const ::double_point & point, const ::double_size & double_size, HBITMAP hBitmap, unsigned int nFlags, HBRUSH hBrush)
+//void graphics::DrawState(const ::f64_point & point, const ::f64_size & size, HBITMAP hBitmap, ::u32 nFlags, HBRUSH hBrush)
 //{
 //
 //    throw ::interface_only();
@@ -1070,7 +1070,7 @@ namespace draw2d_cairo
 //}
 //
 //
-//void graphics::DrawState(const ::double_point & point, const ::double_size & double_size, ::draw2d::bitmap* pBitmap, unsigned int nFlags, ::draw2d::brush* pBrush)
+//void graphics::DrawState(const ::f64_point & point, const ::f64_size & size, ::draw2d::bitmap* pBitmap, ::u32 nFlags, ::draw2d::brush* pBrush)
 //{
 //
 //    throw ::interface_only();
@@ -1080,7 +1080,7 @@ namespace draw2d_cairo
 //}
 //
 //
-//void graphics::DrawState(const ::double_point & point, const ::double_size & double_size, const ::scoped_string & scopedstrText, unsigned int nFlags, bool bPrefixText, int nTextLen, HBRUSH hBrush)
+//void graphics::DrawState(const ::f64_point & point, const ::f64_size & size, const ::scoped_string & scopedstrText, ::u32 nFlags, bool bPrefixText, ::i32 nTextLen, HBRUSH hBrush)
 //{
 //
 //    throw ::interface_only();
@@ -1090,27 +1090,7 @@ namespace draw2d_cairo
 //}
 //
 //
-//void graphics::DrawState(const ::double_point & point, const ::double_size & double_size, const ::scoped_string & scopedstrText, unsigned int nFlags, bool bPrefixText, int nTextLen, ::draw2d::brush* pBrush)
-//{
-//
-//    throw ::interface_only();
-//
-//    return false;
-//
-//}
-
-
-//void graphics::DrawEdge(const ::int_rectangle & rectangle, unsigned int nEdge, unsigned int nFlags)
-//{
-//
-//    throw ::interface_only();
-//
-//    return false;
-//
-//}
-//
-//
-//void graphics::DrawFrameControl(const ::int_rectangle & rectangle, unsigned int nType, unsigned int nState)
+//void graphics::DrawState(const ::f64_point & point, const ::f64_size & size, const ::scoped_string & scopedstrText, ::u32 nFlags, bool bPrefixText, ::i32 nTextLen, ::draw2d::brush* pBrush)
 //{
 //
 //    throw ::interface_only();
@@ -1120,7 +1100,27 @@ namespace draw2d_cairo
 //}
 
 
-   void graphics::Chord(double x1, double y1, double x2, double y2, double x3, double y3, double x4, double y4)
+//void graphics::DrawEdge(const ::i32_rectangle & rectangle, ::u32 nEdge, ::u32 nFlags)
+//{
+//
+//    throw ::interface_only();
+//
+//    return false;
+//
+//}
+//
+//
+//void graphics::DrawFrameControl(const ::i32_rectangle & rectangle, ::u32 nType, ::u32 nState)
+//{
+//
+//    throw ::interface_only();
+//
+//    return false;
+//
+//}
+
+
+   void graphics::Chord(::f64 x1, ::f64 y1, ::f64 x2, ::f64 y2, ::f64 x3, ::f64 y3, ::f64 x4, ::f64 y4)
    {
 
       throw ::interface_only();
@@ -1130,7 +1130,7 @@ namespace draw2d_cairo
    }
 
 
-   void graphics::Chord(const ::double_rectangle & rectangle, const ::double_point & pointStart, const ::double_point & pointEnd)
+   void graphics::Chord(const ::f64_rectangle & rectangle, const ::f64_point & pointStart, const ::f64_point & pointEnd)
    {
 
       throw ::interface_only();
@@ -1140,7 +1140,7 @@ namespace draw2d_cairo
    }
 
 
-   void graphics::DrawFocusRect(const ::double_rectangle & rectangle)
+   void graphics::DrawFocusRect(const ::f64_rectangle & rectangle)
    {
 
       throw ::interface_only();
@@ -1148,18 +1148,18 @@ namespace draw2d_cairo
    }
 
 
-   void graphics::draw_ellipse(double x1, double y1, double x2, double y2)
+   void graphics::draw_ellipse(::f64 x1, ::f64 y1, ::f64 x2, ::f64 y2)
    {
 
       synchronous_lock ml(::draw2d_cairo::mutex(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 
-      double centerx = (x2 + x1) / 2.0;
+      ::f64 centerx = (x2 + x1) / 2.0;
 
-      double centery = (y2 + y1) / 2.0;
+      ::f64 centery = (y2 + y1) / 2.0;
 
-      double radiusx = fabs(x2 - x1) / 2.0;
+      ::f64 radiusx = fabs(x2 - x1) / 2.0;
 
-      double radiusy = fabs(y2 - y1) / 2.0;
+      ::f64 radiusy = fabs(y2 - y1) / 2.0;
 
       if (radiusx == 0.0 || radiusy == 0.0)
       {
@@ -1202,7 +1202,7 @@ namespace draw2d_cairo
    }
 
 
-   void graphics::draw_ellipse(const ::double_rectangle & rectangle)
+   void graphics::draw_ellipse(const ::f64_rectangle & rectangle)
    {
 
       return draw_ellipse(rectangle.left, rectangle.top, rectangle.right, rectangle.bottom);
@@ -1210,18 +1210,18 @@ namespace draw2d_cairo
    }
 
 
-   void graphics::fill_ellipse(double x1, double y1, double x2, double y2)
+   void graphics::fill_ellipse(::f64 x1, ::f64 y1, ::f64 x2, ::f64 y2)
    {
 
       synchronous_lock ml(::draw2d_cairo::mutex(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 
-      double centerx = (x2 + x1) / 2.0;
+      ::f64 centerx = (x2 + x1) / 2.0;
 
-      double centery = (y2 + y1) / 2.0;
+      ::f64 centery = (y2 + y1) / 2.0;
 
-      double radiusx = fabs(x2 - x1) / 2.0;
+      ::f64 radiusx = fabs(x2 - x1) / 2.0;
 
-      double radiusy = fabs(y2 - y1) / 2.0;
+      ::f64 radiusy = fabs(y2 - y1) / 2.0;
 
       if (radiusx == 0.0 || radiusy == 0.0)
       {
@@ -1254,7 +1254,7 @@ namespace draw2d_cairo
    }
 
 
-   void graphics::fill_ellipse(const ::double_rectangle & rectangle)
+   void graphics::fill_ellipse(const ::f64_rectangle & rectangle)
    {
 
       return fill_ellipse(rectangle.left, rectangle.top, rectangle.right, rectangle.bottom);
@@ -1262,7 +1262,7 @@ namespace draw2d_cairo
    }
 
 
-   void graphics::Pie(double x1, double y1, double x2, double y2, double x3, double y3, double x4, double y4)
+   void graphics::Pie(::f64 x1, ::f64 y1, ::f64 x2, ::f64 y2, ::f64 x3, ::f64 y3, ::f64 x4, ::f64 y4)
    {
 
       throw ::interface_only();
@@ -1272,7 +1272,7 @@ namespace draw2d_cairo
    }
 
 
-   void graphics::Pie(const ::double_rectangle & rectangle, const ::double_point & pointStart, const ::double_point & pointEnd)
+   void graphics::Pie(const ::f64_rectangle & rectangle, const ::f64_point & pointStart, const ::f64_point & pointEnd)
    {
 
       throw ::interface_only();
@@ -1282,7 +1282,7 @@ namespace draw2d_cairo
    }
 
 
-   void graphics::fill_polygon(const ::double_point * pa, ::collection::count nCount)
+   void graphics::fill_polygon(const ::f64_point * pa, ::collection::count nCount)
    {
 
       synchronous_lock ml(::draw2d_cairo::mutex(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
@@ -1298,7 +1298,7 @@ namespace draw2d_cairo
 
       cairo_move_to(m_pdc, pa[0].x, pa[0].y);
 
-      for (int i = 1; i < nCount; i++)
+      for (::i32 i = 1; i < nCount; i++)
       {
 
          cairo_line_to(m_pdc, pa[i].x, pa[i].y);
@@ -1312,7 +1312,7 @@ namespace draw2d_cairo
    }
 
 
-   void graphics::draw_polygon(const ::double_point * pa, ::collection::count nCount)
+   void graphics::draw_polygon(const ::f64_point * pa, ::collection::count nCount)
    {
 
       synchronous_lock ml(::draw2d_cairo::mutex(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
@@ -1328,7 +1328,7 @@ namespace draw2d_cairo
 
       cairo_move_to(m_pdc, pa[0].x, pa[0].y);
 
-      for (int i = 1; i < nCount; i++)
+      for (::i32 i = 1; i < nCount; i++)
       {
 
          cairo_line_to(m_pdc, pa[i].x, pa[i].y);
@@ -1342,7 +1342,7 @@ namespace draw2d_cairo
    }
 
 
-   void graphics::polygon(const ::double_point * pa, ::collection::count nCount)
+   void graphics::polygon(const ::f64_point * pa, ::collection::count nCount)
    {
 
       synchronous_lock ml(::draw2d_cairo::mutex(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
@@ -1358,7 +1358,7 @@ namespace draw2d_cairo
 
       cairo_move_to(m_pdc, pa[0].x, pa[0].y);
 
-      for (int i = 1; i < nCount; i++)
+      for (::i32 i = 1; i < nCount; i++)
       {
 
          cairo_line_to(m_pdc, pa[i].x, pa[i].y);
@@ -1372,7 +1372,7 @@ namespace draw2d_cairo
    }
 
 
-   void graphics::double_rectangle(const ::double_rectangle & rectangle)
+   void graphics::f64_rectangle(const ::f64_rectangle & rectangle)
    {
 
       synchronous_lock ml(::draw2d_cairo::mutex(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
@@ -1386,7 +1386,7 @@ namespace draw2d_cairo
    }
 
 
-   void graphics::round_rectangle(const ::double_rectangle & rectangle, double dRadius)
+   void graphics::round_rectangle(const ::f64_rectangle & rectangle, ::f64 dRadius)
    {
 
       throw ::interface_only();
@@ -1396,8 +1396,8 @@ namespace draw2d_cairo
    }
 
 
-   void graphics::_draw_raw(const ::double_rectangle & rectangleTarget, ::image::image *pimage,
-                            const ::image::image_drawing_options & imagedrawingoptions, const ::double_point & pointSrc)
+   void graphics::_draw_raw(const ::f64_rectangle & rectangleTarget, ::image::image *pimage,
+                            const ::image::image_drawing_options & imagedrawingoptions, const ::f64_point & pointSrc)
    {
 
       synchronous_lock ml(::draw2d_cairo::mutex(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
@@ -1557,7 +1557,7 @@ namespace draw2d_cairo
       if (m_pimageAlphaBlend->is_ok())
       {
 
-         ::double_rectangle rectangleIntersect(m_pointAlphaBlend, m_pimageAlphaBlend->size());
+         ::f64_rectangle rectangleIntersect(m_pointAlphaBlend, m_pimageAlphaBlend->size());
 
          if (rectangleIntersect.intersect(rectangleIntersect, imagedrawing.m_rectangleTarget))
          {
@@ -1566,11 +1566,11 @@ namespace draw2d_cairo
 
             auto & rectangleTarget = imagedrawing.m_rectangleTarget;
 
-            ::int_point pointSrc(rectangleSource.top_left());
+            ::i32_point pointSrc(rectangleSource.top_left());
 
-            ::int_point pointDst(imagedrawing.m_rectangleTarget.top_left());
+            ::i32_point pointDst(imagedrawing.m_rectangleTarget.top_left());
 
-            ::int_size size(imagedrawing.m_rectangleTarget.size());
+            ::i32_size size(imagedrawing.m_rectangleTarget.size());
 
             ::image::image_pointer pimage1 = image()->create_image(size);
 
@@ -1585,7 +1585,7 @@ namespace draw2d_cairo
 
                ::image::image_source imagesource(imagedrawing.m_pimagesource, { pointSrc, size });
 
-               double_rectangle rectangle(size);
+               ::f64_rectangle rectangle(size);
 
                ::image::image_drawing_options imagedrawingoptions(rectangle);
 
@@ -1615,9 +1615,9 @@ namespace draw2d_cairo
             {
 
                ::image::image_source imagesource(m_pimageAlphaBlend,
-                  { ::double_point(maximum(0, rectangleTarget.left - m_pointAlphaBlend.x), maximum(0, rectangleTarget.top - m_pointAlphaBlend.y)), size });
+                  { ::f64_point(maximum(0, rectangleTarget.left - m_pointAlphaBlend.x), maximum(0, rectangleTarget.top - m_pointAlphaBlend.y)), size });
 
-               double_rectangle rectangle(double_point(maximum(0, m_pointAlphaBlend.x - rectangleTarget.left), maximum(0, m_pointAlphaBlend.y - rectangleTarget.top)), size);
+               ::f64_rectangle rectangle(::f64_point(maximum(0, m_pointAlphaBlend.x - rectangleTarget.left), maximum(0, m_pointAlphaBlend.y - rectangleTarget.top)), size);
 
                ::image::image_drawing_options imagedrawingoptions(rectangle);
 
@@ -1631,9 +1631,9 @@ namespace draw2d_cairo
 
             {
 
-               ::image::image_source imagesource(pimage1, ::double_rectangle(pointSrc, size));
+               ::image::image_source imagesource(pimage1, ::f64_rectangle(pointSrc, size));
 
-               double_rectangle rectangle(pointDst, size);
+               ::f64_rectangle rectangle(pointDst, size);
 
                ::image::image_drawing_options imagedrawingoptions(rectangle);
 
@@ -1656,9 +1656,9 @@ namespace draw2d_cairo
    }
 
 
-   void graphics::_stretch_raw(const ::double_rectangle & rectangleTarget, ::image::image *pimage,
+   void graphics::_stretch_raw(const ::f64_rectangle & rectangleTarget, ::image::image *pimage,
                                const ::image::image_drawing_options & imagedrawingoptions,
-                               const ::double_rectangle & rectangleSource)
+                               const ::f64_rectangle & rectangleSource)
    {
 
       synchronous_lock ml(::draw2d_cairo::mutex(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
@@ -1686,7 +1686,7 @@ namespace draw2d_cairo
 
       auto nSrcHeight = rectangleSource.height();
 
-      double_rectangle rectangleFinal = rectangleTarget;
+      ::f64_rectangle rectangleFinal = rectangleTarget;
 
       auto nDstWidth = rectangleFinal.width();
 
@@ -1742,7 +1742,7 @@ namespace draw2d_cairo
 
       cairo_matrix_init_translate(&matrix, xSrc, ySrc);
 
-      cairo_matrix_scale(&matrix, (double) nSrcWidth / (double) nDstWidth, (double) nSrcHeight / (double) nDstHeight);
+      cairo_matrix_scale(&matrix, (::f64) nSrcWidth / (::f64) nDstWidth, (::f64) nSrcHeight / (::f64) nDstHeight);
 
       cairo_pattern_set_matrix(ppattern, &matrix);
 
@@ -1816,7 +1816,7 @@ namespace draw2d_cairo
    }
 
 
-   ::color::color graphics::GetPixel(double x, double y)
+   ::color::color graphics::GetPixel(::f64 x, ::f64 y)
    {
 
       throw ::interface_only();
@@ -1826,7 +1826,7 @@ namespace draw2d_cairo
    }
 
 
-   ::color::color graphics::GetPixel(const ::double_point & point)
+   ::color::color graphics::GetPixel(const ::f64_point & point)
    {
 
       throw ::interface_only();
@@ -1836,7 +1836,7 @@ namespace draw2d_cairo
    }
 
 
-   ::color::color graphics::SetPixel(double x, double y, const ::color::color & color)
+   ::color::color graphics::SetPixel(::f64 x, ::f64 y, const ::color::color & color)
    {
 
       throw ::interface_only();
@@ -1846,7 +1846,7 @@ namespace draw2d_cairo
    }
 
 
-   ::color::color graphics::SetPixel(const ::double_point & point, const ::color::color & color)
+   ::color::color graphics::SetPixel(const ::f64_point & point, const ::color::color & color)
    {
 
       throw ::interface_only();
@@ -1856,7 +1856,7 @@ namespace draw2d_cairo
    }
 
 
-//void graphics::FloodFill(double x, double y, const ::color::color & color)
+//void graphics::FloodFill(::f64 x, ::f64 y, const ::color::color & color)
 //{
 //
 //    throw ::interface_only();
@@ -1866,7 +1866,7 @@ namespace draw2d_cairo
 //}
 //
 //
-//void graphics::ExtFloodFill(double x, double y, const ::color::color & color, unsigned int nFillType)
+//void graphics::ExtFloodFill(::f64 x, ::f64 y, const ::color::color & color, ::u32 nFillType)
 //{
 //
 //    throw ::interface_only();
@@ -1879,89 +1879,19 @@ namespace draw2d_cairo
 // true blend
 // COLOR_DEST = SRC_ALPHA * COLOR_SRC  + (1 - SRC_ALPHA) * COLOR_DST
 
-// double blend
+// ::f64 blend
 //// COLOR_DEST = SRC_ALPHA * BLEND_ALPHA * COLOR_SRC  + (1 - SRC_ALPHA * BLEND_ALPHA) * COLOR_DST
 
 //
-//void graphics::text_out(double x, double y, const ::scoped_string & scopedstr)
+//void graphics::text_out(::f64 x, ::f64 y, const ::scoped_string & scopedstr)
 //{
 //
-//    return ::draw2d::graphics::text_out(double(x), double(y), str);
+//    return ::draw2d::graphics::text_out(::f64(x), ::f64(y), str);
 //
 //}
 
 
-//void graphics::ExtTextOut(double x, double y, unsigned int nOptions, const ::double_rectangle & rectangle, const ::scoped_string & scopedstrString, character_count nCount, int * lpDxWidths)
-//{
-//
-//    throw ::interface_only();
-//
-//    return false;
-//
-//}
-
-
-//double_size graphics::TabbedTextOut(double x, double y, const ::scoped_string & scopedstrString, character_count nCount, ::collection::count nTabPositions, int * lpnTabStopPositions, int nTabOrigin)
-//{
-//
-//    throw ::interface_only();
-//
-//    return ::double_size(0, 0);
-//
-//}
-//
-//
-//double_size graphics::TabbedTextOut(double x, double y, const ::scoped_string & scopedstr, ::collection::count nTabPositions, int * lpnTabStopPositions, int nTabOrigin)
-//{
-//
-//    throw ::interface_only();
-//
-//    return ::double_size(0, 0);
-//
-//}
-//
-//
-//double_size graphics::GetTabbedTextExtent(const ::scoped_string & scopedstrString, character_count nCount, ::collection::count nTabPositions, int * lpnTabStopPositions)
-//{
-//
-//    throw ::interface_only();
-//
-//    return ::double_size(0, 0);
-//
-//}
-//
-//
-//double_size graphics::GetTabbedTextExtent(const ::scoped_string & scopedstr, ::collection::count nTabPositions, int * lpnTabStopPositions)
-//{
-//
-//    throw ::interface_only();
-//
-//    return ::double_size(0, 0);
-//
-//}
-
-
-//double_size graphics::GetOutputTabbedTextExtent(const ::scoped_string & scopedstrString, character_count nCount, ::collection::count nTabPositions, int * lpnTabStopPositions)
-//{
-//
-//    throw ::interface_only();
-//
-//    return ::double_size(0, 0);
-//
-//}
-//
-//
-//double_size graphics::GetOutputTabbedTextExtent(const ::scoped_string & scopedstr, ::collection::count nTabPositions, int * lpnTabStopPositions)
-//{
-//
-//    throw ::interface_only();
-//
-//    return ::double_size(0, 0);
-//
-//}
-//
-
-//void graphics::GrayString(::draw2d::brush* pBrush, bool (CALLBACK* lpfnOutput)(HDC, LPARAM, int), LPARAM lpData, int nCount, double x, double y, double nWidth, double nHeight)
+//void graphics::ExtTextOut(::f64 x, ::f64 y, ::u32 nOptions, const ::f64_rectangle & rectangle, const ::scoped_string & scopedstrString, character_count nCount, ::i32 * lpDxWidths)
 //{
 //
 //    throw ::interface_only();
@@ -1971,7 +1901,77 @@ namespace draw2d_cairo
 //}
 
 
-   unsigned int graphics::GetTextAlign()
+//::f64_size graphics::TabbedTextOut(::f64 x, ::f64 y, const ::scoped_string & scopedstrString, character_count nCount, ::collection::count nTabPositions, ::i32 * lpnTabStopPositions, ::i32 nTabOrigin)
+//{
+//
+//    throw ::interface_only();
+//
+//    return ::f64_size(0, 0);
+//
+//}
+//
+//
+//::f64_size graphics::TabbedTextOut(::f64 x, ::f64 y, const ::scoped_string & scopedstr, ::collection::count nTabPositions, ::i32 * lpnTabStopPositions, ::i32 nTabOrigin)
+//{
+//
+//    throw ::interface_only();
+//
+//    return ::f64_size(0, 0);
+//
+//}
+//
+//
+//::f64_size graphics::GetTabbedTextExtent(const ::scoped_string & scopedstrString, character_count nCount, ::collection::count nTabPositions, ::i32 * lpnTabStopPositions)
+//{
+//
+//    throw ::interface_only();
+//
+//    return ::f64_size(0, 0);
+//
+//}
+//
+//
+//::f64_size graphics::GetTabbedTextExtent(const ::scoped_string & scopedstr, ::collection::count nTabPositions, ::i32 * lpnTabStopPositions)
+//{
+//
+//    throw ::interface_only();
+//
+//    return ::f64_size(0, 0);
+//
+//}
+
+
+//::f64_size graphics::GetOutputTabbedTextExtent(const ::scoped_string & scopedstrString, character_count nCount, ::collection::count nTabPositions, ::i32 * lpnTabStopPositions)
+//{
+//
+//    throw ::interface_only();
+//
+//    return ::f64_size(0, 0);
+//
+//}
+//
+//
+//::f64_size graphics::GetOutputTabbedTextExtent(const ::scoped_string & scopedstr, ::collection::count nTabPositions, ::i32 * lpnTabStopPositions)
+//{
+//
+//    throw ::interface_only();
+//
+//    return ::f64_size(0, 0);
+//
+//}
+//
+
+//void graphics::GrayString(::draw2d::brush* pBrush, bool (CALLBACK* lpfnOutput)(HDC, LPARAM, ::i32), LPARAM lpData, ::i32 nCount, ::f64 x, ::f64 y, ::f64 nWidth, ::f64 nHeight)
+//{
+//
+//    throw ::interface_only();
+//
+//    return false;
+//
+//}
+
+
+   ::u32 graphics::GetTextAlign()
    {
 
       throw ::interface_only();
@@ -1981,7 +1981,7 @@ namespace draw2d_cairo
    }
 
 
-//int graphics::GetTextFace(count nCount, char * lpszFacename)
+//::i32 graphics::GetTextFace(count nCount, char_pointer lpszFacename)
 //{
 //
 //    throw ::interface_only();
@@ -1991,7 +1991,7 @@ namespace draw2d_cairo
 //}
 //
 //
-//int graphics::GetTextFace(string & rString)
+//::i32 graphics::GetTextFace(string & rString)
 //{
 //
 //    throw ::interface_only();
@@ -2045,7 +2045,7 @@ namespace draw2d_cairo
 
          PangoFont * ppangofont = pango_font_map_load_font(pfontmap, pcontext, pdesc);
 
-         int iHeight = 0;
+         ::i32 iHeight = 0;
 
          PangoLayout * playout;                            // layout for a paragraph of text
 
@@ -2060,7 +2060,7 @@ namespace draw2d_cairo
          pango_cairo_update_layout(m_pdc,
                                    playout);                  // if the target surface or transformation properties of the cairo instance
          // have changed, update the pango layout to reflect this
-         int width = 0;
+         ::i32 width = 0;
 
          PangoRectangle pos;
 
@@ -2083,19 +2083,19 @@ namespace draw2d_cairo
 
          PangoFontMetrics * pfontmetrics = pango_font_get_metrics(ppangofont, nullptr);
 
-         int iAscent = pango_font_metrics_get_ascent(pfontmetrics);
+         ::i32 iAscent = pango_font_metrics_get_ascent(pfontmetrics);
 
          lpMetrics->m_dAscent = iAscent / PANGO_SCALE;
 
-         int iDescent = pango_font_metrics_get_descent(pfontmetrics);
+         ::i32 iDescent = pango_font_metrics_get_descent(pfontmetrics);
 
          lpMetrics->m_dDescent = iDescent / PANGO_SCALE;
 
-         lpMetrics->m_dHeight = (int) iHeight;
+         lpMetrics->m_dHeight = (::i32) iHeight;
 
          lpMetrics->m_dExternalLeading = (lpMetrics->m_dHeight - (lpMetrics->m_dAscent + lpMetrics->m_dDescent));
 
-         lpMetrics->m_dInternalLeading = (int) 0;
+         lpMetrics->m_dInternalLeading = (::i32) 0;
 
          pango_font_metrics_unref(pfontmetrics);
 
@@ -2149,7 +2149,7 @@ namespace draw2d_cairo
    }
 
 
-//int graphics::GetTextCharacterExtra()
+//::i32 graphics::GetTextCharacterExtra()
 //{
 //
 //    throw ::interface_only();
@@ -2159,7 +2159,7 @@ namespace draw2d_cairo
 //}
 //
 //
-//void graphics::GetCharWidth(unsigned int nFirstChar, unsigned int nLastChar, LPINT lpBuffer)
+//void graphics::GetCharWidth(::u32 nFirstChar, ::u32 nLastChar, LPINT lpBuffer)
 //{
 //
 //    throw ::interface_only();
@@ -2169,7 +2169,7 @@ namespace draw2d_cairo
 //}
 //
 //
-//void graphics::GetOutputCharWidth(unsigned int nFirstChar, unsigned int nLastChar, LPINT lpBuffer)
+//void graphics::GetOutputCharWidth(::u32 nFirstChar, ::u32 nLastChar, LPINT lpBuffer)
 //{
 //
 //    throw ::interface_only();
@@ -2179,7 +2179,7 @@ namespace draw2d_cairo
 //}
 //
 //
-//unsigned int graphics::GetFontLanguageInfo()
+//::u32 graphics::GetFontLanguageInfo()
 //{
 //
 //    throw ::interface_only();
@@ -2189,17 +2189,17 @@ namespace draw2d_cairo
 //}
 //
 
-//double_size graphics::GetAspectRatioFilter()
+//::f64_size graphics::GetAspectRatioFilter()
 //{
 //
 //    throw ::interface_only();
 //
-//    return double_size(0, 0);
+//    return ::f64_size(0, 0);
 //
 //}
 //
 //
-//void graphics::ScrollDC(int Δx, int Δy, const ::int_rectangle & rectangleScroll, const ::int_rectangle & rectangleClip, ::draw2d::region* pRgnUpdate, ::int_rectangle * lpRectUpdate)
+//void graphics::ScrollDC(::i32 Δx, ::i32 Δy, const ::i32_rectangle & rectangleScroll, const ::i32_rectangle & rectangleClip, ::draw2d::region* pRgnUpdate, ::i32_rectangle * lpRectUpdate)
 //{
 //
 //    throw ::interface_only();
@@ -2210,7 +2210,7 @@ namespace draw2d_cairo
 //
 //
 //// Printer Escape Functions
-//int graphics::Escape(int nEscape, int nCount, const ::scoped_string & scopedstrInData, LPVOID lpOutData)
+//::i32 graphics::Escape(::i32 nEscape, ::i32 nCount, const ::scoped_string & scopedstrInData, LPVOID lpOutData)
 //{
 //
 //    throw ::interface_only();
@@ -2221,7 +2221,7 @@ namespace draw2d_cairo
 
 
 // graphics 3.1 Specific functions
-   unsigned int graphics::SetBoundsRect(const ::double_rectangle & rectangleBounds, unsigned int flags)
+   ::u32 graphics::SetBoundsRect(const ::f64_rectangle & rectangleBounds, ::u32 flags)
    {
 
       throw ::interface_only();
@@ -2231,7 +2231,7 @@ namespace draw2d_cairo
    }
 
 
-   unsigned int graphics::GetBoundsRect(::double_rectangle * rectangleBounds, unsigned int flags)
+   ::u32 graphics::GetBoundsRect(::f64_rectangle * rectangleBounds, ::u32 flags)
    {
 
       throw ::interface_only();
@@ -2241,7 +2241,7 @@ namespace draw2d_cairo
    }
 
 
-//unsigned int graphics::GetFontData(unsigned int dwTable, unsigned int dwOffset, LPVOID lpData, unsigned int cbData)
+//::u32 graphics::GetFontData(::u32 dwTable, ::u32 dwOffset, LPVOID lpData, ::u32 cbData)
 //{
 //
 //    throw ::interface_only();
@@ -2251,7 +2251,7 @@ namespace draw2d_cairo
 //}
 //
 //
-   int graphics::StartPage()
+   ::i32 graphics::StartPage()
    {
 
       throw ::interface_only();
@@ -2261,7 +2261,7 @@ namespace draw2d_cairo
    }
 
 
-   int graphics::EndPage()
+   ::i32 graphics::EndPage()
    {
 
       throw ::interface_only();
@@ -2271,7 +2271,7 @@ namespace draw2d_cairo
    }
 
 
-//int graphics::SetAbortProc(bool (CALLBACK* lpfn)(HDC, int))
+//::i32 graphics::SetAbortProc(bool (CALLBACK* lpfn)(HDC, ::i32))
 //{
 //
 //    throw ::interface_only();
@@ -2281,7 +2281,7 @@ namespace draw2d_cairo
 //}
 
 
-   int graphics::AbortDoc()
+   ::i32 graphics::AbortDoc()
    {
 
       throw ::interface_only();
@@ -2291,7 +2291,7 @@ namespace draw2d_cairo
    }
 
 
-   int graphics::EndDoc()
+   ::i32 graphics::EndDoc()
    {
 
       throw ::interface_only();
@@ -2301,7 +2301,7 @@ namespace draw2d_cairo
    }
 
 
-//void graphics::MaskBlt(double x, double y, double nWidth, double nHeight, ::draw2d::graphics * pgraphicsSrc, double xSrc, double ySrc, ::draw2d::bitmap& maskBitmap, double xMask, double yMask)
+//void graphics::MaskBlt(::f64 x, ::f64 y, ::f64 nWidth, ::f64 nHeight, ::draw2d::graphics * pgraphicsSrc, ::f64 xSrc, ::f64 ySrc, ::draw2d::bitmap& maskBitmap, ::f64 xMask, ::f64 yMask)
 //{
 //
 //    throw ::interface_only();
@@ -2311,7 +2311,7 @@ namespace draw2d_cairo
 //}
 
 
-//void graphics::PlgBlt(::double_point * lpPoint, ::draw2d::graphics * pgraphicsSrc, int nXSrc, int nYSrc, double nWidth, double nHeight, ::draw2d::bitmap& maskBitmap, double xMask, double yMask)
+//void graphics::PlgBlt(::f64_point * lpPoint, ::draw2d::graphics * pgraphicsSrc, ::i32 nXSrc, ::i32 nYSrc, ::f64 nWidth, ::f64 nHeight, ::draw2d::bitmap& maskBitmap, ::f64 xMask, ::f64 yMask)
 //{
 //
 //    if (::is_null(m_pdc))
@@ -2344,13 +2344,13 @@ namespace draw2d_cairo
 ////
 ////      }
 //
-//    //cairo_matrix_scale(&matrixPlg, (double)dDstWidth / (double)dSrcWidth, (double)dDstHeight / (double)dSrcHeight);
+//    //cairo_matrix_scale(&matrixPlg, (::f64)dDstWidth / (::f64)dSrcWidth, (::f64)dDstHeight / (::f64)dSrcHeight);
 //
 //    cairo_matrix_t matrixShear;
 //
-//    double dWidth = nWidth;
-//    double dHeight = nHeight;
-//    double srcArea = dWidth * dHeight;
+//    ::f64 dWidth = nWidth;
+//    ::f64 dHeight = nHeight;
+//    ::f64 srcArea = dWidth * dHeight;
 //
 //    if(nWidth <= 0 || nHeight <= 0)
 //    {
@@ -2361,7 +2361,7 @@ namespace draw2d_cairo
 //
 //
 //
-//    ::double_point plg[3];
+//    ::f64_point plg[3];
 //
 //
 //    plg[0].x =lpPoint[0].x;
@@ -2373,25 +2373,25 @@ namespace draw2d_cairo
 //
 //
 //    /* X components */
-////    xf.eM11 = (plg[1].x*(int_rectangle[2].y - int_rectangle[0].y) - plg[2].x*(int_rectangle[1].y - int_rectangle[0].y) - plg[0].x*(int_rectangle[2].y - int_rectangle[1].y)) / det;
-////    xf.eM21 = (int_rectangle[1].x*(plg[2].x - plg[0].x) - int_rectangle[2].x*(plg[1].x - plg[0].x) - int_rectangle[0].x*(plg[2].x - plg[1].x)) / det;
-////    xf.eDx  = (int_rectangle[0].x*(int_rectangle[1].y*plg[2].x - int_rectangle[2].y*plg[1].x) -
-////               int_rectangle[1].x*(int_rectangle[0].y*plg[2].x - int_rectangle[2].y*plg[0].x) +
-////               int_rectangle[2].x*(int_rectangle[0].y*plg[1].x - int_rectangle[1].y*plg[0].x)
+////    xf.eM11 = (plg[1].x*(i32_rectangle[2].y - i32_rectangle[0].y) - plg[2].x*(i32_rectangle[1].y - i32_rectangle[0].y) - plg[0].x*(i32_rectangle[2].y - i32_rectangle[1].y)) / det;
+////    xf.eM21 = (i32_rectangle[1].x*(plg[2].x - plg[0].x) - i32_rectangle[2].x*(plg[1].x - plg[0].x) - i32_rectangle[0].x*(plg[2].x - plg[1].x)) / det;
+////    xf.eDx  = (i32_rectangle[0].x*(i32_rectangle[1].y*plg[2].x - i32_rectangle[2].y*plg[1].x) -
+////               i32_rectangle[1].x*(i32_rectangle[0].y*plg[2].x - i32_rectangle[2].y*plg[0].x) +
+////               i32_rectangle[2].x*(i32_rectangle[0].y*plg[1].x - i32_rectangle[1].y*plg[0].x)
 ////               ) / det;
 ////
 ////    xf.eM21 = (nSrcx*(plg[2].x - plg[0].x) + nWitdh(plg[2].x - plg[0].x) - nSrcX*(plg[1].x - plg[0].x) - nSrcx*(plg[2].x - plg[1].x)) / det;
 ////    xf.eM21 = (+ nWitdh(plg[2].x - plg[0].x)  / det;
-////    xf.eDx  = (int_rectangle[0].x*(int_rectangle[1].y*plg[2].x - int_rectangle[2].y*plg[1].x) -
-////               int_rectangle[1].x*(nYSrc*plg[2].x - int_rectangle[2].y*plg[0].x) +
-////               int_rectangle[2].x*(nYSrc*plg[1].x - int_rectangle[1].y*plg[0].x)
+////    xf.eDx  = (i32_rectangle[0].x*(i32_rectangle[1].y*plg[2].x - i32_rectangle[2].y*plg[1].x) -
+////               i32_rectangle[1].x*(nYSrc*plg[2].x - i32_rectangle[2].y*plg[0].x) +
+////               i32_rectangle[2].x*(nYSrc*plg[1].x - i32_rectangle[1].y*plg[0].x)
 ////               ) / det;
-////    xf.eDx  = (nXSrc*(int_rectangle[1].y*plg[2].x - int_rectangle[2].y*plg[1].x) -
-////               int_rectangle[1].x*(nYSrc*plg[2].x - nYSrc*plg[0].x) +
-////               int_rectangle[2].x*(nYSrc*plg[1].x - nYSrc*plg[0].x)
+////    xf.eDx  = (nXSrc*(i32_rectangle[1].y*plg[2].x - i32_rectangle[2].y*plg[1].x) -
+////               i32_rectangle[1].x*(nYSrc*plg[2].x - nYSrc*plg[0].x) +
+////               i32_rectangle[2].x*(nYSrc*plg[1].x - nYSrc*plg[0].x)
 ////               ) / det;
-////    xf.eDx  = (nXSrc*(nYSrc*plg[2].x - int_rectangle[2].y*plg[1].x) -
-////               int_rectangle[1].x*(nYSrc*plg[2].x - nYSrc*plg[0].x) +
+////    xf.eDx  = (nXSrc*(nYSrc*plg[2].x - i32_rectangle[2].y*plg[1].x) -
+////               i32_rectangle[1].x*(nYSrc*plg[2].x - nYSrc*plg[0].x) +
 ////               nXSrc*(nYSrc*plg[1].x - nYSrc*plg[0].x)
 ////               ) / det;
 ////    xf.eDx  = (nXSrc*(nYSrc*plg[2].x - (nYSrc + nHeight)*plg[1].x) -
@@ -2403,19 +2403,19 @@ namespace draw2d_cairo
 ////               nXSrc*(nYSrc*plg[1].x - nYSrc*plg[0].x)
 ////               ) / det;
 //    /* Y components */
-////    xf.eM12 = (plg[1].y*(int_rectangle[2].y - int_rectangle[0].y) - plg[2].y*(int_rectangle[1].y - int_rectangle[0].y) - plg[0].y*(int_rectangle[2].y - int_rectangle[1].y)) / det;
-////    xf.eM22 = (int_rectangle[1].x*(plg[2].y - plg[0].y) - int_rectangle[2].x*(plg[1].y - plg[0].y) - int_rectangle[0].x*(plg[2].y - plg[1].y)) / det;
-////    xf.eDy  = (int_rectangle[0].x*(int_rectangle[1].y*plg[2].y - int_rectangle[2].y*plg[1].y) -
-////               int_rectangle[1].x*(int_rectangle[0].y*plg[2].y - int_rectangle[2].y*plg[0].y) +
-////               int_rectangle[2].x*(int_rectangle[0].y*plg[1].y - int_rectangle[1].y*plg[0].y)
+////    xf.eM12 = (plg[1].y*(i32_rectangle[2].y - i32_rectangle[0].y) - plg[2].y*(i32_rectangle[1].y - i32_rectangle[0].y) - plg[0].y*(i32_rectangle[2].y - i32_rectangle[1].y)) / det;
+////    xf.eM22 = (i32_rectangle[1].x*(plg[2].y - plg[0].y) - i32_rectangle[2].x*(plg[1].y - plg[0].y) - i32_rectangle[0].x*(plg[2].y - plg[1].y)) / det;
+////    xf.eDy  = (i32_rectangle[0].x*(i32_rectangle[1].y*plg[2].y - i32_rectangle[2].y*plg[1].y) -
+////               i32_rectangle[1].x*(i32_rectangle[0].y*plg[2].y - i32_rectangle[2].y*plg[0].y) +
+////               i32_rectangle[2].x*(i32_rectangle[0].y*plg[1].y - i32_rectangle[1].y*plg[0].y)
 ////               ) / det;
-////    xf.eM22 = (int_rectangle[1].x*(plg[2].y - plg[0].y) - int_rectangle[2].x*(plg[1].y - plg[0].y) - int_rectangle[0].x*(plg[2].y - plg[1].y)) / det;
+////    xf.eM22 = (i32_rectangle[1].x*(plg[2].y - plg[0].y) - i32_rectangle[2].x*(plg[1].y - plg[0].y) - i32_rectangle[0].x*(plg[2].y - plg[1].y)) / det;
 ////    xf.eM22 = (nXSrc*(plg[2].y - plg[0].y)+nWidth*(plg[2].y - plg[0].y) - nXSrc*(plg[1].y - plg[0].y) - nXSrc*(plg[2].y - plg[1].y)) / det;
 ////    xf.eM22 = (nWidth*(plg[2].y - plg[0].y) - nXSrc*(plg[1].y ) - nXSrc*(- plg[1].y)) / det;
 ////    xf.eM22 = (nWidth*(plg[2].y - plg[0].y) ) / det;
 //
 //
-//    ::double_point src[3];
+//    ::f64_point src[3];
 //
 //
 //    src[0].x = nXSrc;
@@ -2426,11 +2426,11 @@ namespace draw2d_cairo
 //    src[2].y = nYSrc + nHeight;
 //
 //
-//    //double dX = nXSrc;
-//    //double dY = nYSrc;
-//    double dA = nWidth * nHeight;
-//    //double dX2 = nXSrc + nWidth;
-//    //double dY2 = nYSrc + nHeight;
+//    //::f64 dX = nXSrc;
+//    //::f64 dY = nYSrc;
+//    ::f64 dA = nWidth * nHeight;
+//    //::f64 dX2 = nXSrc + nWidth;
+//    //::f64 dY2 = nYSrc + nHeight;
 //
 //
 //    matrixShear.xx = (plg[1].x - plg[0].x) / dWidth;
@@ -2511,9 +2511,9 @@ namespace draw2d_cairo
 //    }
 //    cairo_transform(m_pdc, &matrixShear);
 //
-//    int cxImage = cairo_image_surface_get_width(psurface);
+//    ::i32 cxImage = cairo_image_surface_get_width(psurface);
 //
-//    int cyImage = cairo_image_surface_get_height(psurface);
+//    ::i32 cyImage = cairo_image_surface_get_height(psurface);
 //
 //    if(nXSrc > 0 || nYSrc > 0 || nWidth < cxImage || nHeight < cyImage)
 //    {
@@ -2567,7 +2567,7 @@ namespace draw2d_cairo
 //}
 
 
-//void graphics::SetPixelV(double x, double y, const ::color::color & color)
+//void graphics::SetPixelV(::f64 x, ::f64 y, const ::color::color & color)
 //{
 //
 //   throw ::interface_only();
@@ -2577,7 +2577,7 @@ namespace draw2d_cairo
 //}
 
 
-//void graphics::SetPixelV(const ::double_point & point, const ::color::color & color)
+//void graphics::SetPixelV(const ::f64_point & point, const ::color::color & color)
 //{
 //
 //   throw ::interface_only();
@@ -2587,7 +2587,7 @@ namespace draw2d_cairo
 //}
 
 
-   void graphics::angle_arc(double x, double y, double nRadius, angle fStartAngle, angle fSweepAngle)
+   void graphics::angle_arc(::f64 x, ::f64 y, ::f64 nRadius, angle fStartAngle, angle fSweepAngle)
    {
 
       throw ::interface_only();
@@ -2598,7 +2598,7 @@ namespace draw2d_cairo
 
 
    void
-   graphics::arc_to(const ::double_rectangle & rectangle, const ::double_point & pointStart, const ::double_point & pointEnd)
+   graphics::arc_to(const ::f64_rectangle & rectangle, const ::f64_point & pointStart, const ::f64_point & pointEnd)
    {
 
       throw ::interface_only();
@@ -2608,7 +2608,7 @@ namespace draw2d_cairo
    }
 
 
-//int graphics::GetArcDirection()
+//::i32 graphics::GetArcDirection()
 //{
 //
 //   throw ::interface_only();
@@ -2618,7 +2618,7 @@ namespace draw2d_cairo
 //}
 
 
-   void graphics::poly_polyline(const ::double_point * lpPoints, const int * lpPolyPoints, ::collection::count nCount)
+   void graphics::poly_polyline(const ::f64_point * lpPoints, const ::i32 * lpPolyPoints, ::collection::count nCount)
    {
 
       throw ::interface_only();
@@ -2668,7 +2668,7 @@ namespace draw2d_cairo
 //}
 
 
-   void graphics::poly_bezier(const ::double_point * lpPoints, ::collection::count nCount)
+   void graphics::poly_bezier(const ::f64_point * lpPoints, ::collection::count nCount)
    {
 
       throw ::interface_only();
@@ -2678,7 +2678,7 @@ namespace draw2d_cairo
    }
 //
 //
-//int graphics::DrawEscape(int nEscape, int nInputSize, const ::scoped_string & scopedstrInputData)
+//::i32 graphics::DrawEscape(::i32 nEscape, ::i32 nInputSize, const ::scoped_string & scopedstrInputData)
 //{
 //
 //    throw ::interface_only();
@@ -2688,7 +2688,7 @@ namespace draw2d_cairo
 //}
 //
 //
-//int graphics::Escape(int nEscape, int nInputSize, const ::scoped_string & scopedstrInputData, int nOutputSize, char * lpszOutputData)
+//::i32 graphics::Escape(::i32 nEscape, ::i32 nInputSize, const ::scoped_string & scopedstrInputData, ::i32 nOutputSize, char_pointer lpszOutputData)
 //{
 //
 //    throw ::interface_only();
@@ -2698,7 +2698,7 @@ namespace draw2d_cairo
 //}
 //
 //
-//void graphics::GetCharWidth(unsigned int nFirstChar, unsigned int nLastChar, float* lpFloatBuffer)
+//void graphics::GetCharWidth(::u32 nFirstChar, ::u32 nLastChar, ::f32* lpFloatBuffer)
 //{
 //
 //    throw ::interface_only();
@@ -2768,7 +2768,7 @@ namespace draw2d_cairo
    }
 
 
-   float graphics::GetMiterLimit()
+   ::f32 graphics::GetMiterLimit()
    {
 
       throw ::interface_only();
@@ -2778,7 +2778,7 @@ namespace draw2d_cairo
    }
 
 //
-//int graphics::GetPath(::double_point * lpPoints, unsigned char * lpTypes, ::collection::count nCount)
+//::i32 graphics::GetPath(::f64_point * lpPoints, ::u8 * lpTypes, ::collection::count nCount)
 //{
 //
 //    throw ::interface_only();
@@ -2788,7 +2788,7 @@ namespace draw2d_cairo
 //}
 
 
-   void graphics::SetMiterLimit(float fMiterLimit)
+   void graphics::SetMiterLimit(::f32 fMiterLimit)
    {
 
       throw ::interface_only();
@@ -2902,7 +2902,7 @@ namespace draw2d_cairo
 // true blend
 // COLOR_DEST = SRC_ALPHA * COLOR_SRC  + (1 - SRC_ALPHA) * COLOR_DST
 
-// double blend
+// ::f64 blend
 // COLOR_DEST = SRC_ALPHA * BLEND_ALPHA * COLOR_SRC  + (1 - SRC_ALPHA * BLEND_ALPHA) * COLOR_DST
 
 //// Thank you
@@ -2911,7 +2911,7 @@ namespace draw2d_cairo
 //// India India
 //// Member
 //
-//void graphics::_alpha_blend_raw(const ::double_rectangle & rectangleTarget, ::draw2d::graphics * pgraphicsSrc, const ::double_rectangle & rectangleSource, double dRate)
+//void graphics::_alpha_blend_raw(const ::f64_rectangle & rectangleTarget, ::draw2d::graphics * pgraphicsSrc, const ::f64_rectangle & rectangleSource, ::f64 dRate)
 //{
 //
 //    synchronous_lock ml(::draw2d_cairo::mutex(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
@@ -3021,7 +3021,7 @@ namespace draw2d_cairo
 //}
 
 
-//void graphics::TransparentBlt(double xDest, double yDest, int nDestWidth, int nDestHeight, ::draw2d::graphics * pgraphicsSrc, double xSrc, double ySrc, int nSrcWidth, int nSrcHeight, unsigned int crTransparent)
+//void graphics::TransparentBlt(::f64 xDest, ::f64 yDest, ::i32 nDestWidth, ::i32 nDestHeight, ::draw2d::graphics * pgraphicsSrc, ::f64 xSrc, ::f64 ySrc, ::i32 nSrcWidth, ::i32 nSrcHeight, ::u32 crTransparent)
 //{
 //
 //    throw ::interface_only();
@@ -3031,7 +3031,7 @@ namespace draw2d_cairo
 //}
 //
 //
-//void graphics::GradientFill(TRIVERTEX* pVertices, WINULONG nVertices, void * pMesh, WINULONG nMeshElements, unsigned int dwMode)
+//void graphics::GradientFill(TRIVERTEX* pVertices, WINULONG nVertices, void * pMesh, WINULONG nMeshElements, ::u32 dwMode)
 //{
 //
 //    throw ::interface_only();
@@ -3091,7 +3091,7 @@ namespace draw2d_cairo
 //#if (_WIN32_WINNT >= 0x0500)
 //
 //
-//void graphics::GetCharABCWidthsI(unsigned int giFirst, unsigned int cgi, LPWORD pgi, LPABC lpabc)
+//void graphics::GetCharABCWidthsI(::u32 giFirst, ::u32 cgi, LPWORD pgi, LPABC lpabc)
 //{
 //
 //    throw ::interface_only();
@@ -3101,7 +3101,7 @@ namespace draw2d_cairo
 //}
 //
 //
-//void graphics::GetCharWidthI(unsigned int giFirst, unsigned int cgi, LPWORD pgi, LPINT lpBuffer)
+//void graphics::GetCharWidthI(::u32 giFirst, ::u32 cgi, LPWORD pgi, LPINT lpBuffer)
 //{
 //
 //    throw ::interface_only();
@@ -3117,7 +3117,7 @@ namespace draw2d_cairo
 //#if (_WIN32_WINNT >= 0x0500)
 //
 //
-//void graphics::GetTextExtentExPointI(LPWORD pgiIn, int cgi, int nMaxExtent, LPINT lpnFit, LPINT alpDx, LPSIZE32 LPSIZE32)
+//void graphics::GetTextExtentExPointI(LPWORD pgiIn, ::i32 cgi, ::i32 nMaxExtent, LPINT lpnFit, LPINT alpDx, LPSIZE32 LPSIZE32)
 //{
 //
 //    throw ::interface_only();
@@ -3127,7 +3127,7 @@ namespace draw2d_cairo
 //}
 //
 //
-//void graphics::GetTextExtentPointI(LPWORD pgiIn, int cgi, LPSIZE32 LPSIZE32)
+//void graphics::GetTextExtentPointI(LPWORD pgiIn, ::i32 cgi, LPSIZE32 LPSIZE32)
 //{
 //
 //    throw ::interface_only();
@@ -3147,7 +3147,7 @@ namespace draw2d_cairo
 #define HIMETRIC_INCH   2540    // HIMETRIC units per inch
 
 
-   void graphics::DPtoHIMETRIC(::double_size * psize)
+   void graphics::DPtoHIMETRIC(::f64_size * psize)
    {
 
       throw ::interface_only();
@@ -3155,7 +3155,7 @@ namespace draw2d_cairo
    }
 
 
-   void graphics::HIMETRICtoDP(::double_size * psize)
+   void graphics::HIMETRICtoDP(::f64_size * psize)
    {
 
       throw ::interface_only();
@@ -3178,7 +3178,7 @@ namespace draw2d_cairo
 //}
 
 
-//   void graphics::DrawDragRect(const ::int_rectangle & rectangle, const ::double_size & double_size, const ::int_rectangle & rectangleLast, const ::double_size & sizeLast, ::draw2d::brush* pBrush, ::draw2d::brush* pBrushLast)
+//   void graphics::DrawDragRect(const ::i32_rectangle & rectangle, const ::f64_size & size, const ::i32_rectangle & rectangleLast, const ::f64_size & sizeLast, ::draw2d::brush* pBrush, ::draw2d::brush* pBrushLast)
 //   {
 //
 //      throw ::interface_only();
@@ -3209,7 +3209,7 @@ namespace draw2d_cairo
    }
 
 
-//int graphics::StartDoc(const ::scoped_string & scopedstrDocName)
+//::i32 graphics::StartDoc(const ::scoped_string & scopedstrDocName)
 //{
 //
 //    throw ::interface_only();
@@ -3219,7 +3219,7 @@ namespace draw2d_cairo
 //}
 
 
-   int graphics::SaveDC()
+   ::i32 graphics::SaveDC()
    {
 
       synchronous_lock synchronouslock(::draw2d_cairo::mutex(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
@@ -3233,7 +3233,7 @@ namespace draw2d_cairo
    }
 
 
-   void graphics::RestoreDC(int nSavedDC)
+   void graphics::RestoreDC(::i32 nSavedDC)
    {
 
       synchronous_lock synchronouslock(::draw2d_cairo::mutex(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
@@ -3263,7 +3263,7 @@ namespace draw2d_cairo
    }
 
 
-   ::draw2d::object * graphics::set_stock_object(int nIndex)
+   ::draw2d::object * graphics::set_stock_object(::i32 nIndex)
    {
 
       return nullptr;
@@ -3324,7 +3324,7 @@ namespace draw2d_cairo
 //}
 //
 
-//int graphics::SetPolyFillMode(int nPolyFillMode)
+//::i32 graphics::SetPolyFillMode(::i32 nPolyFillMode)
 //{
 //
 //    throw ::interface_only();
@@ -3334,7 +3334,7 @@ namespace draw2d_cairo
 //}
 //
 //
-//int graphics::SetROP2(int nDrawMode)
+//::i32 graphics::SetROP2(::i32 nDrawMode)
 //{
 //
 //    throw ::interface_only();
@@ -3361,7 +3361,7 @@ namespace draw2d_cairo
    }
 
 
-//int graphics::SetGraphicsMode(int iMode)
+//::i32 graphics::SetGraphicsMode(::i32 iMode)
 //{
 //
 //    throw ::interface_only();
@@ -3381,7 +3381,7 @@ namespace draw2d_cairo
 //}
 
 
-//void graphics::ModifyWorldTransform(const XFORM* pXform, unsigned int iMode)
+//void graphics::ModifyWorldTransform(const XFORM* pXform, ::u32 iMode)
 //{
 //
 //    throw ::interface_only();
@@ -3391,7 +3391,7 @@ namespace draw2d_cairo
 //}
 
 
-//int graphics::SetMapMode(int nMapMode)
+//::i32 graphics::SetMapMode(::i32 nMapMode)
 //{
 //
 //    return 0;
@@ -3399,7 +3399,7 @@ namespace draw2d_cairo
 //}
 
 
-   double_point graphics::get_origin()
+   ::f64_point graphics::get_origin()
    {
 
       return ::draw2d::graphics::get_origin();
@@ -3407,7 +3407,7 @@ namespace draw2d_cairo
    }
 
 
-   double_point graphics::set_origin(double x, double y)
+   ::f64_point graphics::set_origin(::f64 x, ::f64 y)
    {
 
       return ::draw2d::graphics::set_origin(x, y);
@@ -3415,7 +3415,7 @@ namespace draw2d_cairo
    }
 
 
-   double_point graphics::offset_origin(double nWidth, double nHeight)
+   ::f64_point graphics::offset_origin(::f64 nWidth, ::f64 nHeight)
    {
 
       return ::draw2d::graphics::offset_origin(nWidth, nHeight);
@@ -3423,17 +3423,17 @@ namespace draw2d_cairo
    }
 
 
-   double_size graphics::set_context_extents(double x, double y)
+   ::f64_size graphics::set_context_extents(::f64 x, ::f64 y)
    {
 
       throw ::interface_only();
 
-      return ::double_size(0, 0);
+      return ::f64_size(0, 0);
 
    }
 
 
-   double_size graphics::scale_context_extents(double xNum, double xDenom, double yNum, double yDenom)
+   ::f64_size graphics::scale_context_extents(::f64 xNum, ::f64 xDenom, ::f64 yNum, ::f64 yDenom)
    {
 
       return ::draw2d::graphics::scale_context_extents(xNum, xDenom, yNum, yDenom);
@@ -3441,47 +3441,47 @@ namespace draw2d_cairo
    }
 
 
-   double_point graphics::SetWindowOrg(double x, double y)
+   ::f64_point graphics::SetWindowOrg(::f64 x, ::f64 y)
    {
 
       throw ::interface_only();
 
-      return ::int_point();
+      return ::i32_point();
 
    }
 
 
-   double_point graphics::offset_window_org(double nWidth, double nHeight)
+   ::f64_point graphics::offset_window_org(::f64 nWidth, ::f64 nHeight)
    {
 
       throw ::interface_only();
 
-      return ::double_point();
+      return ::f64_point();
 
    }
 
 
-   double_size graphics::set_window_ext(double x, double y)
+   ::f64_size graphics::set_window_ext(::f64 x, ::f64 y)
    {
 
       throw ::interface_only();
 
-      return ::double_size(0, 0);
+      return ::f64_size(0, 0);
 
    }
 
 
-   double_size graphics::scale_window_ext(double xNum, double xDenom, double yNum, double yDenom)
+   ::f64_size graphics::scale_window_ext(::f64 xNum, ::f64 xDenom, ::f64 yNum, ::f64 yDenom)
    {
 
       throw ::interface_only();
 
-      return ::double_size(0, 0);
+      return ::f64_size(0, 0);
 
    }
 
 
-   int graphics::get_clip_box(::double_rectangle * prectangle)
+   ::i32 graphics::get_clip_box(::f64_rectangle * prectangle)
    {
 
       return 0;
@@ -3489,7 +3489,7 @@ namespace draw2d_cairo
    }
 
 
-//int graphics::SelectClipRgn(::draw2d::region * pregion)
+//::i32 graphics::SelectClipRgn(::draw2d::region * pregion)
 //{
 //
 //   synchronous_lock ml(::draw2d_cairo::mutex(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
@@ -3512,7 +3512,7 @@ namespace draw2d_cairo
 //}
 
 
-//int graphics::ExcludeClipRect(double x1, double y1, double x2, double y2)
+//::i32 graphics::ExcludeClipRect(::f64 x1, ::f64 y1, ::f64 x2, ::f64 y2)
 //{
 //
 //    //throw ::interface_only();
@@ -3522,7 +3522,7 @@ namespace draw2d_cairo
 //}
 //
 
-//int graphics::ExcludeClipRect(const ::int_rectangle & rectangle)
+//::i32 graphics::ExcludeClipRect(const ::i32_rectangle & rectangle)
 //{
 //
 //    throw ::interface_only();
@@ -3532,7 +3532,7 @@ namespace draw2d_cairo
 //}
 //
 
-//int graphics::IntersectClipRect(double x1, double y1, double x2, double y2)
+//::i32 graphics::IntersectClipRect(::f64 x1, ::f64 y1, ::f64 x2, ::f64 y2)
 //{
 //
 //   synchronous_lock ml(::draw2d_cairo::mutex(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
@@ -3546,7 +3546,7 @@ namespace draw2d_cairo
 //}
 
 
-//int graphics::IntersectClipRect(const ::int_rectangle & rectangle)
+//::i32 graphics::IntersectClipRect(const ::i32_rectangle & rectangle)
 //{
 //
 //   return IntersectClipRect(rectangle.left, rectangle.top, rectangle.right, rectangle.bottom);
@@ -3554,7 +3554,7 @@ namespace draw2d_cairo
 //}
 
 
-//int graphics::OffsetClipRgn(double x, double y)
+//::i32 graphics::OffsetClipRgn(::f64 x, ::f64 y)
 //{
 //
 //   return ::draw2d::graphics::OffsetClipRgn(x, y);
@@ -3569,19 +3569,19 @@ namespace draw2d_cairo
 //}
 
 
-//int graphics::OffsetClipRgn(const ::double_size & double_size)
+//::i32 graphics::OffsetClipRgn(const ::f64_size & size)
 //{
 //
 //    //throw ::interface_only();
 //
 //    //return 0;
 //
-//    return ::draw2d::graphics::OffsetClipRgn(double_size);
+//    return ::draw2d::graphics::OffsetClipRgn(::f64_size);
 //
 //}
 
 
-//void graphics::move_to(double x, double y)
+//void graphics::move_to(::f64 x, ::f64 y)
 //{
 //
 //    synchronous_lock ml(::draw2d_cairo::mutex(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
@@ -3597,7 +3597,7 @@ namespace draw2d_cairo
 //}
 
 
-   void graphics::set_current_point(double x, double y)
+   void graphics::set_current_point(::f64 x, ::f64 y)
    {
 
       synchronous_lock ml(::draw2d_cairo::mutex(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
@@ -3613,7 +3613,7 @@ namespace draw2d_cairo
    }
 
 
-   unsigned int graphics::SetTextAlign(unsigned int nFlags)
+   ::u32 graphics::SetTextAlign(::u32 nFlags)
    {
 
       return 0;
@@ -3621,7 +3621,7 @@ namespace draw2d_cairo
    }
 
 
-//int graphics::SetTextJustification(int nBreakExtra, int nBreakCount)
+//::i32 graphics::SetTextJustification(::i32 nBreakExtra, ::i32 nBreakCount)
 //{
 //
 //    throw ::interface_only();
@@ -3631,7 +3631,7 @@ namespace draw2d_cairo
 //}
 //
 //
-//int graphics::SetTextCharacterExtra(int nCharExtra)
+//::i32 graphics::SetTextCharacterExtra(::i32 nCharExtra)
 //{
 //
 //    throw ::interface_only();
@@ -3641,7 +3641,7 @@ namespace draw2d_cairo
 //}
 //
 //
-//unsigned int graphics::SetMapperFlags(unsigned int dwFlag)
+//::u32 graphics::SetMapperFlags(::u32 dwFlag)
 //{
 //
 //    throw ::interface_only();
@@ -3651,17 +3651,7 @@ namespace draw2d_cairo
 //}
 //
 //
-   unsigned int graphics::GetLayout()
-   {
-
-      throw ::interface_only();
-
-      return 0;
-
-   }
-
-
-   unsigned int graphics::SetLayout(unsigned int dwSetLayout)
+   ::u32 graphics::GetLayout()
    {
 
       throw ::interface_only();
@@ -3671,7 +3661,17 @@ namespace draw2d_cairo
    }
 
 
-//void graphics::ArcTo(double x1, double y1, double x2, double y2, double x3, double y3, double x4, double y4)
+   ::u32 graphics::SetLayout(::u32 dwSetLayout)
+   {
+
+      throw ::interface_only();
+
+      return 0;
+
+   }
+
+
+//void graphics::ArcTo(::f64 x1, ::f64 y1, ::f64 x2, ::f64 y2, ::f64 x3, ::f64 y3, ::f64 x4, ::f64 y4)
 //{
 //
 //    throw ::interface_only();
@@ -3681,7 +3681,7 @@ namespace draw2d_cairo
 //}
 
 
-//int graphics::SetArcDirection(int nArcDirection)
+//::i32 graphics::SetArcDirection(::i32 nArcDirection)
 //{
 //
 //    throw ::interface_only();
@@ -3691,7 +3691,7 @@ namespace draw2d_cairo
 //}
 
 
-   void graphics::polydraw(const ::double_point * lpPoints, const unsigned char * lpTypes, ::collection::count nCount)
+   void graphics::polydraw(const ::f64_point * lpPoints, const ::u8 * lpTypes, ::collection::count nCount)
    {
 
       throw ::interface_only();
@@ -3701,7 +3701,7 @@ namespace draw2d_cairo
    }
 
 
-   void graphics::polyline_to(const ::double_point * lpPoints, ::collection::count nCount)
+   void graphics::polyline_to(const ::f64_point * lpPoints, ::collection::count nCount)
    {
 
       throw ::interface_only();
@@ -3711,7 +3711,7 @@ namespace draw2d_cairo
    }
 
 
-   void graphics::poly_bezier_to(const ::double_point * lpPoints, ::collection::count nCount)
+   void graphics::poly_bezier_to(const ::f64_point * lpPoints, ::collection::count nCount)
    {
 
       throw ::interface_only();
@@ -3721,7 +3721,7 @@ namespace draw2d_cairo
    }
 
 
-   void graphics::SelectClipPath(int nMode)
+   void graphics::SelectClipPath(::i32 nMode)
    {
 
       throw ::interface_only();
@@ -3731,7 +3731,7 @@ namespace draw2d_cairo
    }
 
 
-//int graphics::SelectClipRgn(::draw2d::region* pRgn, ::draw2d::enum_combine ecombine)
+//::i32 graphics::SelectClipRgn(::draw2d::region* pRgn, ::draw2d::enum_combine ecombine)
 //{
 //
 //    return SelectClipRgn(pRgn);
@@ -3739,7 +3739,7 @@ namespace draw2d_cairo
 //}
 
 
-   void graphics::LPtoDP(::double_size * psize)
+   void graphics::LPtoDP(::f64_size * psize)
    {
 
       throw ::interface_only();
@@ -3749,7 +3749,7 @@ namespace draw2d_cairo
    }
 
 
-   void graphics::DPtoLP(::double_size * psize)
+   void graphics::DPtoLP(::f64_size * psize)
    {
 
       throw ::interface_only();
@@ -3759,7 +3759,7 @@ namespace draw2d_cairo
    }
 
 
-//void graphics::draw_text(const ::scoped_string & scopedstrString, character_count nCount, const ::int_rectangle & rectangle, const ::e_align & ealign, const ::e_draw_text & edrawtext)
+//void graphics::draw_text(const ::scoped_string & scopedstrString, character_count nCount, const ::i32_rectangle & rectangle, const ::e_align & ealign, const ::e_draw_text & edrawtext)
 //{
 //
 //    return draw_text(string(lpszString, nCount), rectangle, nFormat);
@@ -3770,7 +3770,7 @@ namespace draw2d_cairo
    //internal_draw_text_cairo - line3651.cpp
 
 
-      void graphics::internal_draw_text_cairo(const ::block & block, const ::double_rectangle & rectangle,
+      void graphics::internal_draw_text_cairo(const ::block & block, const ::f64_rectangle & rectangle,
          const ::e_align & ealign, const ::e_draw_text & edrawtext,
          PFN_CAIRO_TEXT ftext)
    {
@@ -3804,7 +3804,7 @@ namespace draw2d_cairo
 
       cairo_keep keep(m_pdc);
 
-      double_size sz = get_text_extent(str);
+      ::f64_size sz = get_text_extent(str);
 
       _set(m_pfont);
 
@@ -3812,9 +3812,9 @@ namespace draw2d_cairo
 
       cairo_font_extents(m_pdc, &e);
 
-      double Δx;
+      ::f64 Δx;
 
-      double Δy;
+      ::f64 Δy;
 
       if (ealign & e_align_right)
       {
@@ -3900,7 +3900,7 @@ namespace draw2d_cairo
 
       stra.add_lines(str);
 
-      int i = 0;
+      ::i32 i = 0;
 
       _fill1();
 
@@ -3935,7 +3935,7 @@ namespace draw2d_cairo
    }
 
 
-   void graphics::draw_text(const ::scoped_string & scopedstrParam, const ::double_rectangle & rectangleParam, const ::e_align & ealign,
+   void graphics::draw_text(const ::scoped_string & scopedstrParam, const ::f64_rectangle & rectangleParam, const ::e_align & ealign,
                             const ::e_draw_text & edrawtext)
    {
 
@@ -3943,7 +3943,7 @@ namespace draw2d_cairo
 
       cairo_keep keep(m_pdc);
 
-      double_rectangle rectangle;
+      ::f64_rectangle rectangle;
 
       copy(rectangle, rectangleParam);
 
@@ -3952,7 +3952,7 @@ namespace draw2d_cairo
    }
 
 
-   void graphics::internal_draw_text(const block & block, const ::double_rectangle & rectangle, const ::e_align & ealign,
+   void graphics::internal_draw_text(const block & block, const ::f64_rectangle & rectangle, const ::e_align & ealign,
                                      const ::e_draw_text & edrawtext)
    {
 
@@ -4003,7 +4003,7 @@ namespace draw2d_cairo
 #if defined(USE_PANGO)
 
    void graphics::internal_draw_text_pango(::draw2d_cairo::font * pfont, const block & block,
-                                           const ::double_rectangle & rectangleParam, const ::e_align & ealign,
+                                           const ::f64_rectangle & rectangleParam, const ::e_align & ealign,
                                            const ::e_draw_text & edrawtext, PFN_PANGO_TEXT pfnPango)
    {
 
@@ -4043,7 +4043,7 @@ namespace draw2d_cairo
 
       }
 
-      double_point ptRef;
+      ::f64_point ptRef;
 
       if (ealign & e_align_bottom)
       {
@@ -4119,7 +4119,7 @@ namespace draw2d_cairo
 #else
 
 
-   //void graphics::draw_text(const ::scoped_string & scopedstrParam, const ::double_rectangle & rectangle, const ::e_align & ealign, const ::e_draw_text & edrawtext)
+   //void graphics::draw_text(const ::scoped_string & scopedstrParam, const ::f64_rectangle & rectangle, const ::e_align & ealign, const ::e_draw_text & edrawtext)
    //{
 
    //    //return
@@ -4129,7 +4129,7 @@ namespace draw2d_cairo
    //}
 
 
-   //void graphics::internal_draw_text_cairo(const ::block & block, const ::double_rectangle & rectangle, const ::e_align & ealign, const ::e_draw_text & edrawtext, PFN_CAIRO_TEXT pfnCairo)
+   //void graphics::internal_draw_text_cairo(const ::block & block, const ::f64_rectangle & rectangle, const ::e_align & ealign, const ::e_draw_text & edrawtext, PFN_CAIRO_TEXT pfnCairo)
    //{
 
    //    string str((const_char_pointer )block.get_data(), block.get_size());
@@ -4169,11 +4169,11 @@ namespace draw2d_cairo
 
    //    cairo_font_extents(m_pdc, &e);
 
-   //    double_size sz = get_text_extent(str);
+   //    ::f64_size sz = get_text_extent(str);
 
-   //    double Δx;
+   //    ::f64 Δx;
 
-   //    double Δy;
+   //    ::f64 Δy;
 
    //    if (ealign & e_align_right)
    //    {
@@ -4259,7 +4259,7 @@ namespace draw2d_cairo
 
    //    stra.add_lines(str);
 
-   //    int i = 0;
+   //    ::i32 i = 0;
 
    //    for (auto & strLine : stra)
    //    {
@@ -4293,7 +4293,7 @@ namespace draw2d_cairo
 #endif
 
 
-   void graphics::draw_text_ex(const ::scoped_string & scopedstr, const ::double_rectangle & rectangle, const ::e_align & ealign,
+   void graphics::draw_text_ex(const ::scoped_string & scopedstr, const ::f64_rectangle & rectangle, const ::e_align & ealign,
                                const ::e_draw_text & edrawtext)
    {
 
@@ -4304,17 +4304,17 @@ namespace draw2d_cairo
    }
 
 
-   double_size graphics::get_text_extent(const_char_pointer lpszString, character_count nCount, character_count iIndex)
+   ::f64_size graphics::get_text_extent(const_char_pointer pszString, character_count nCount, character_count iIndex)
    {
 
-      double_size sz;
+      ::f64_size sz;
 
       get_text_extent(sz, lpszString, nCount, iIndex);
 
       //if (!get_text_extent(sz, lpszString, nCount, iIndex))
       //{
 
-      //    return ::double_size(0.0, 0.0);
+      //    return ::f64_size(0.0, 0.0);
 
       //}
 
@@ -4323,7 +4323,7 @@ namespace draw2d_cairo
    }
 
 
-   double_size graphics::get_text_extent(const_char_pointer lpszString, character_count nCount)
+   ::f64_size graphics::get_text_extent(const_char_pointer pszString, character_count nCount)
    {
 
       return get_text_extent(lpszString, nCount, -1);
@@ -4331,7 +4331,7 @@ namespace draw2d_cairo
    }
 
 
-   double_size graphics::get_text_extent(const block & block)
+   ::f64_size graphics::get_text_extent(const block & block)
    {
 
       return get_text_extent((const_char_pointer )block.get_data(), block.get_size());
@@ -4339,27 +4339,27 @@ namespace draw2d_cairo
    }
 
 
-//double_size graphics::GetOutputTextExtent(const_char_pointer lpszString, character_count nCount)
+//::f64_size graphics::GetOutputTextExtent(const_char_pointer pszString, character_count nCount)
 //{
 //
 //    throw ::interface_only();
 //
-//    return ::double_size(0, 0);
+//    return ::f64_size(0, 0);
 //
 //}
 //
 //
-//double_size graphics::GetOutputTextExtent(const ::scoped_string & scopedstr)
+//::f64_size graphics::GetOutputTextExtent(const ::scoped_string & scopedstr)
 //{
 //
 //    throw ::interface_only();
 //
-//    return ::double_size(0, 0);
+//    return ::f64_size(0, 0);
 //
 //}
 
 
-   void graphics::get_text_extent(double_size & size, const_char_pointer lpszString, character_count nCount, character_count iIndex)
+   void graphics::get_text_extent(::f64_size & size, const_char_pointer pszString, character_count nCount, character_count iIndex)
    {
 
       string str(lpszString, minimum_non_negative(iIndex, nCount));
@@ -4397,7 +4397,7 @@ namespace draw2d_cairo
       if (iIndex < 0)
       {
 
-         iIndex = (int) nCount;
+         iIndex = (::i32) nCount;
 
       }
 
@@ -4427,9 +4427,9 @@ namespace draw2d_cairo
                                       playout);                  // if the target surface or transformation properties of the cairo instance
 
             // have changed, update the pango layout to reflect this
-            int width = 0;
+            ::i32 width = 0;
 
-            int height = 0;
+            ::i32 height = 0;
 
             PangoRectangle pos;
 
@@ -4437,7 +4437,7 @@ namespace draw2d_cairo
 
             pango_layout_get_pixel_size(playout, &width, &height);
 
-            size.cx = (double) pos.x / (double) PANGO_SCALE;
+            size.cx = (::f64) pos.x / (::f64) PANGO_SCALE;
 
             size.cy = height;
 
@@ -4483,7 +4483,7 @@ namespace draw2d_cairo
       for (auto & strLine: straLines)
       {
 
-         double_size s0(0.0, 0.0);
+         ::f64_size s0(0.0, 0.0);
 
          get_text_extent(s0, strLine, str.length(), str.length());
 
@@ -4498,13 +4498,13 @@ namespace draw2d_cairo
    }
 
 
-   bool graphics::_GetTextExtent(double_size & size, const_char_pointer lpszString, character_count nCount, character_count iIndex)
+   bool graphics::_GetTextExtent(::f64_size & size, const_char_pointer pszString, character_count nCount, character_count iIndex)
    {
 
       if (iIndex < 0)
       {
 
-         iIndex = (int) nCount;
+         iIndex = (::i32) nCount;
 
       }
 
@@ -4558,9 +4558,9 @@ namespace draw2d_cairo
          pango_cairo_update_layout(m_pdc,
                                    playout);                  // if the target surface or transformation properties of the cairo instance
          // have changed, update the pango layout to reflect this
-         int width = 0;
+         ::i32 width = 0;
 
-         int height = 0;
+         ::i32 height = 0;
 
          pango_layout_get_pixel_size(playout, &width, &height);
 
@@ -4614,9 +4614,9 @@ namespace draw2d_cairo
 
          }
 
-         size.cx = (int) (ex.x_advance * m_pfont->m_dFontWidth);
+         size.cx = (::i32) (ex.x_advance * m_pfont->m_dFontWidth);
 
-         size.cy = (int) e.height;
+         size.cy = (::i32) e.height;
 
       }
 
@@ -4625,23 +4625,23 @@ namespace draw2d_cairo
    }
 
 
-   void graphics::get_text_extent(double_size & double_size, const_char_pointer lpszString, character_count nCount)
+   void graphics::get_text_extent(::f64_size & size, const_char_pointer pszString, character_count nCount)
    {
 
-      return get_text_extent(double_size, lpszString, nCount, -1);
+      return get_text_extent(::f64_size, lpszString, nCount, -1);
 
    }
 
 
-   void graphics::get_text_extent(double_size & double_size, const ::scoped_string & scopedstr)
+   void graphics::get_text_extent(::f64_size & size, const ::scoped_string & scopedstr)
    {
 
-      return get_text_extent(double_size, str, str.length());
+      return get_text_extent(::f64_size, str, str.length());
 
    }
 
 
-   void graphics::fill_rectangle(const ::double_rectangle & rectangle, const ::color::color & color)
+   void graphics::fill_rectangle(const ::f64_rectangle & rectangle, const ::color::color & color)
    {
 
       synchronous_lock ml(::draw2d_cairo::mutex(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
@@ -4667,7 +4667,7 @@ namespace draw2d_cairo
    }
 
 
-//void graphics::fill_rectangle(const ::double_rectangle & rectangle, const ::color::color & color)
+//void graphics::fill_rectangle(const ::f64_rectangle & rectangle, const ::color::color & color)
 //{
 //
 //    synchronous_lock ml(::draw2d_cairo::mutex(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
@@ -4690,7 +4690,7 @@ namespace draw2d_cairo
 //}
 
 
-//void graphics::text_out(double x, double y, const ::scoped_string & scopedstrString, character_count nCount)
+//void graphics::text_out(::f64 x, ::f64 y, const ::scoped_string & scopedstrString, character_count nCount)
 //{
 //
 //    return text_out(x, y, string(lpszString, nCount));
@@ -4698,7 +4698,7 @@ namespace draw2d_cairo
 //}
 
 
-   void graphics::TextOutRaw(double x, double y, const block & block)
+   void graphics::TextOutRaw(::f64 x, ::f64 y, const block & block)
    {
 
       synchronous_lock ml(::draw2d_cairo::mutex(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
@@ -4707,15 +4707,15 @@ namespace draw2d_cairo
 
 #if defined(USE_PANGO)
 
-      auto rectangle = ::double_rectangle(double_point(x, y), double_size(65535.0, 65535.0));
+      auto rectangle = ::f64_rectangle(::f64_point(x, y), ::f64_size(65535.0, 65535.0));
 
       internal_draw_text(block, rectangle, e_align_none);
 
 #else
 
-      ::int_rectangle rectangle = int_rectangle_dimension(
-                        int(x),
-                        int(y),
+      ::i32_rectangle rectangle = i32_rectangle_dimension(
+                        ::i32(x),
+                        ::i32(y),
                         65535,
                         65535
                     );
@@ -4731,7 +4731,7 @@ namespace draw2d_cairo
    }
 
 
-   void graphics::line_to(double x, double y)
+   void graphics::line_to(::f64 x, ::f64 y)
    {
 
       synchronous_lock ml(::draw2d_cairo::mutex(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
@@ -4756,7 +4756,7 @@ namespace draw2d_cairo
    }
 
 
-   void graphics::draw_line(double x1, double y1, double x2, double y2, ::draw2d::pen * ppen)
+   void graphics::draw_line(::f64 x1, ::f64 y1, ::f64 x2, ::f64 y2, ::draw2d::pen * ppen)
    {
 
       synchronous_lock ml(::draw2d_cairo::mutex(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
@@ -4776,7 +4776,7 @@ namespace draw2d_cairo
    }
 
 
-//void graphics::draw_line(const ::double_point & point1, const ::double_point & point2, ::draw2d::pen * ppen)
+//void graphics::draw_line(const ::f64_point & point1, const ::f64_point & point2, ::draw2d::pen * ppen)
 //{
 //
 //    synchronous_lock ml(::draw2d_cairo::mutex(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
@@ -4880,7 +4880,7 @@ namespace draw2d_cairo
    }
 
 
-   void cairo_image_surface_blur(cairo_surface_t * surface, double radius)
+   void cairo_image_surface_blur(cairo_surface_t * surface, ::f64 radius)
    {
 
       synchronous_lock ml(::draw2d_cairo::mutex(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
@@ -4889,25 +4889,25 @@ namespace draw2d_cairo
       // Released into the public domain.
 
       // get width, height
-      int width = cairo_image_surface_get_width(surface);
+      ::i32 width = cairo_image_surface_get_width(surface);
 
-      int height = cairo_image_surface_get_height(surface);
+      ::i32 height = cairo_image_surface_get_height(surface);
 
-      unsigned char * dst = (unsigned char *) malloc(width * height * 4);
+      ::u8 * dst = (::u8 *) malloc(width * height * 4);
 
-      unsigned * precalc = (unsigned *) malloc(width * height * sizeof(unsigned));
+      ::u32 * precalc = (::u32 *) malloc(width * height * sizeof(::u32));
 
-      unsigned char * src = cairo_image_surface_get_data(surface);
+      ::u8 * src = cairo_image_surface_get_data(surface);
 
-      double mul = 1.f / ((radius * 2) * (radius * 2));
+      ::f64 mul = 1.f / ((radius * 2) * (radius * 2));
 
-      int channel;
+      ::i32 channel;
 
       // The number of times to perform the averaging. According to wikipedia,
       // three iterations is good enough to pass for a gaussian.
-      const int MAX_ITERATIONS = 3;
+      const ::i32 MAX_ITERATIONS = 3;
 
-      int iteration;
+      ::i32 iteration;
 
       ::memory_copy(dst, src, width * height * 4);
 
@@ -4917,12 +4917,12 @@ namespace draw2d_cairo
          for (channel = 0; channel < 4; channel++)
          {
 
-            double x, y;
+            ::f64 x, y;
 
             // precomputation step.
-            unsigned char * pix = src;
+            ::u8 * pix = src;
 
-            unsigned * pre = precalc;
+            ::u32 * pre = precalc;
 
             pix += channel;
 
@@ -4932,7 +4932,7 @@ namespace draw2d_cairo
                for (x = 0; x < width; x++)
                {
 
-                  int tot = pix[0];
+                  ::i32 tot = pix[0];
 
                   if (x > 0) tot += pre[-1];
 
@@ -4949,32 +4949,32 @@ namespace draw2d_cairo
             }
 
             // blur step.
-            pix = dst + (int) radius * width * 4 + (int) radius * 4 + channel;
+            pix = dst + (::i32) radius * width * 4 + (::i32) radius * 4 + channel;
 
-            for (y = (int) radius; y < height - radius; y++)
+            for (y = (::i32) radius; y < height - radius; y++)
             {
 
-               for (x = (int) radius; x < width - radius; x++)
+               for (x = (::i32) radius; x < width - radius; x++)
                {
 
-                  int l = (int) (x < radius ? 0 : x - radius);
+                  ::i32 l = (::i32) (x < radius ? 0 : x - radius);
 
-                  int t = (int) (y < radius ? 0 : y - radius);
+                  ::i32 t = (::i32) (y < radius ? 0 : y - radius);
 
-                  int r = (int) (x + radius >= width ? width - 1 : x + radius);
+                  ::i32 r = (::i32) (x + radius >= width ? width - 1 : x + radius);
 
-                  int b = (int) (y + radius >= height ? height - 1 : y + radius);
+                  ::i32 b = (::i32) (y + radius >= height ? height - 1 : y + radius);
 
-                  int tot = precalc[r + b * width] + precalc[l + t * width] -
+                  ::i32 tot = precalc[r + b * width] + precalc[l + t * width] -
                             precalc[l + b * width] - precalc[r + t * width];
 
-                  *pix = (unsigned char) (tot * mul);
+                  *pix = (::u8) (tot * mul);
 
                   pix += 4;
 
                }
 
-               pix += (int) radius * 2 * 4;
+               pix += (::i32) radius * 2 * 4;
 
             }
 
@@ -4991,7 +4991,7 @@ namespace draw2d_cairo
    }
 
 
-   void graphics::blur(bool bExpand, double dRadius, const ::double_rectangle & rectangle)
+   void graphics::blur(bool bExpand, ::f64 dRadius, const ::f64_rectangle & rectangle)
    {
 
       synchronous_lock ml(::draw2d_cairo::mutex(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
@@ -5022,7 +5022,7 @@ namespace draw2d_cairo
    }
 
 
-   double graphics::get_dpix()
+   ::f64 graphics::get_dpix()
    {
 
       return 72.0;
@@ -5030,7 +5030,7 @@ namespace draw2d_cairo
    }
 
 
-   bool graphics::_set(::draw2d::brush * pbrush, double x, double y)
+   bool graphics::_set(::draw2d::brush * pbrush, ::f64 x, ::f64 y)
    {
 
       synchronous_lock ml(::draw2d_cairo::mutex(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
@@ -5042,9 +5042,9 @@ namespace draw2d_cairo
                                                                   pbrush->m_point.x - x, pbrush->m_point.y - y,
                                                                   maximum(pbrush->m_size.cx, pbrush->m_size.cy));
 
-         cairo_pattern_add_color_stop_rgba(ppattern, 0., __expand_double_rgba(pbrush->m_color1));
+         cairo_pattern_add_color_stop_rgba(ppattern, 0., __expand_f64_rgba(pbrush->m_color1));
 
-         cairo_pattern_add_color_stop_rgba(ppattern, 1., __expand_double_rgba(pbrush->m_color2));
+         cairo_pattern_add_color_stop_rgba(ppattern, 1., __expand_f64_rgba(pbrush->m_color2));
 
          cairo_set_source(m_pdc, ppattern);
 
@@ -5054,41 +5054,41 @@ namespace draw2d_cairo
       else if (pbrush->m_ebrush == ::draw2d::e_brush_linear_gradient_point_color)
       {
 
-         double x0 = pbrush->m_point1.x - x;
+         ::f64 x0 = pbrush->m_point1.x - x;
 
-         double y0 = pbrush->m_point1.y - y;
+         ::f64 y0 = pbrush->m_point1.y - y;
 
-         double x1 = pbrush->m_point2.x - x;
+         ::f64 x1 = pbrush->m_point2.x - x;
 
-         double y1 = pbrush->m_point2.y - y;
+         ::f64 y1 = pbrush->m_point2.y - y;
 
          cairo_pattern_t * ppattern = cairo_pattern_create_linear(x0, y0, x1, y1);
 
-         double dR;
+         ::f64 dR;
 
-         double dG;
+         ::f64 dG;
 
-         double dB;
+         ::f64 dB;
 
-         double dA;
+         ::f64 dA;
 
-         dR = (double) pbrush->m_color1.dr();
+         dR = (::f64) pbrush->m_color1.dr();
 
-         dG = (double) pbrush->m_color1.dg();
+         dG = (::f64) pbrush->m_color1.dg();
 
-         dB = (double) pbrush->m_color1.db();
+         dB = (::f64) pbrush->m_color1.db();
 
-         dA = (double) pbrush->m_color1.da();
+         dA = (::f64) pbrush->m_color1.da();
 
          cairo_pattern_add_color_stop_rgba(ppattern, 0., dR, dG, dB, dA);
 
-         dR = (double) pbrush->m_color2.dr();
+         dR = (::f64) pbrush->m_color2.dr();
 
-         dG = (double) pbrush->m_color2.dg();
+         dG = (::f64) pbrush->m_color2.dg();
 
-         dB = (double) pbrush->m_color2.db();
+         dB = (::f64) pbrush->m_color2.db();
 
-         dA = (double) pbrush->m_color2.da();
+         dA = (::f64) pbrush->m_color2.da();
 
          cairo_pattern_add_color_stop_rgba(ppattern, 1., dR, dG, dB, dA);
 
@@ -5101,11 +5101,11 @@ namespace draw2d_cairo
       else if (pbrush->m_ebrush == ::draw2d::e_brush_box_gradient)
       {
 
-         double_rectangle outer(pbrush->m_point, pbrush->m_size);
-         double_rectangle inner(outer);
+         ::f64_rectangle outer(pbrush->m_point, pbrush->m_size);
+         ::f64_rectangle inner(outer);
          inner.deflate(pbrush->m_dRadius);
-         double K = 0.5522847498; // For HalfPi arc (90 degrees)
-         double KR = K * pbrush->m_dRadius;
+         ::f64 K = 0.5522847498; // For HalfPi arc (90 degrees)
+         ::f64 KR = K * pbrush->m_dRadius;
 
 
          //https://stackoverflow.com/questions/734076/how-to-best-approximate-a-geometrical-arc-with-a-bezier-curve
@@ -5137,12 +5137,12 @@ namespace draw2d_cairo
          //cairo_mesh_pattern_curve_to (pattern, 60,  30, 130,  60, 100, 100);
          //cairo_mesh_pattern_curve_to (pattern, 60,  70,  30, 130,   0, 100);
          //cairo_mesh_pattern_curve_to (pattern, 30,  70, -30,  30,   0, 0);
-         cairo_mesh_pattern_set_corner_color_rgba(ppattern, 0, __expand_double_rgba(pbrush->m_color1));
-         cairo_mesh_pattern_set_corner_color_rgba(ppattern, 1, __expand_double_rgba(pbrush->m_color2));
-         cairo_mesh_pattern_set_corner_color_rgba(ppattern, 2, __expand_double_rgba(pbrush->m_color2));
-         cairo_mesh_pattern_set_corner_color_rgba(ppattern, 3, __expand_double_rgba(pbrush->m_color1));
+         cairo_mesh_pattern_set_corner_color_rgba(ppattern, 0, __expand_f64_rgba(pbrush->m_color1));
+         cairo_mesh_pattern_set_corner_color_rgba(ppattern, 1, __expand_f64_rgba(pbrush->m_color2));
+         cairo_mesh_pattern_set_corner_color_rgba(ppattern, 2, __expand_f64_rgba(pbrush->m_color2));
+         cairo_mesh_pattern_set_corner_color_rgba(ppattern, 3, __expand_f64_rgba(pbrush->m_color1));
          cairo_mesh_pattern_end_patch(ppattern);
-         int iStatus = cairo_pattern_status(ppattern);
+         ::i32 iStatus = cairo_pattern_status(ppattern);
 
 
          cairo_mesh_pattern_begin_patch(ppattern);
@@ -5150,10 +5150,10 @@ namespace draw2d_cairo
          cairo_mesh_pattern_line_to(ppattern, outer.right, inner.top);
          cairo_mesh_pattern_line_to(ppattern, outer.right, inner.bottom);
          cairo_mesh_pattern_line_to(ppattern, inner.right, inner.bottom);
-         cairo_mesh_pattern_set_corner_color_rgba(ppattern, 0, __expand_double_rgba(pbrush->m_color1));
-         cairo_mesh_pattern_set_corner_color_rgba(ppattern, 1, __expand_double_rgba(pbrush->m_color2));
-         cairo_mesh_pattern_set_corner_color_rgba(ppattern, 2, __expand_double_rgba(pbrush->m_color2));
-         cairo_mesh_pattern_set_corner_color_rgba(ppattern, 3, __expand_double_rgba(pbrush->m_color1));
+         cairo_mesh_pattern_set_corner_color_rgba(ppattern, 0, __expand_f64_rgba(pbrush->m_color1));
+         cairo_mesh_pattern_set_corner_color_rgba(ppattern, 1, __expand_f64_rgba(pbrush->m_color2));
+         cairo_mesh_pattern_set_corner_color_rgba(ppattern, 2, __expand_f64_rgba(pbrush->m_color2));
+         cairo_mesh_pattern_set_corner_color_rgba(ppattern, 3, __expand_f64_rgba(pbrush->m_color1));
          cairo_mesh_pattern_end_patch(ppattern);
 
 ///* Add a Coons patch */
@@ -5194,10 +5194,10 @@ namespace draw2d_cairo
          cairo_mesh_pattern_curve_to(ppattern, outer.right, inner.bottom + KR, inner.right + KR, outer.bottom,
                                      inner.right, outer.bottom);
          cairo_mesh_pattern_line_to(ppattern, inner.right, inner.bottom);
-         cairo_mesh_pattern_set_corner_color_rgba(ppattern, 0, __expand_double_rgba(pbrush->m_color1));
-         cairo_mesh_pattern_set_corner_color_rgba(ppattern, 1, __expand_double_rgba(pbrush->m_color2));
-         cairo_mesh_pattern_set_corner_color_rgba(ppattern, 2, __expand_double_rgba(pbrush->m_color2));
-         cairo_mesh_pattern_set_corner_color_rgba(ppattern, 3, __expand_double_rgba(pbrush->m_color1));
+         cairo_mesh_pattern_set_corner_color_rgba(ppattern, 0, __expand_f64_rgba(pbrush->m_color1));
+         cairo_mesh_pattern_set_corner_color_rgba(ppattern, 1, __expand_f64_rgba(pbrush->m_color2));
+         cairo_mesh_pattern_set_corner_color_rgba(ppattern, 2, __expand_f64_rgba(pbrush->m_color2));
+         cairo_mesh_pattern_set_corner_color_rgba(ppattern, 3, __expand_f64_rgba(pbrush->m_color1));
          cairo_mesh_pattern_end_patch(ppattern);
 
 
@@ -5206,10 +5206,10 @@ namespace draw2d_cairo
          cairo_mesh_pattern_line_to(ppattern, inner.right, outer.bottom);
          cairo_mesh_pattern_line_to(ppattern, inner.left, outer.bottom);
          cairo_mesh_pattern_line_to(ppattern, inner.left, inner.bottom);
-         cairo_mesh_pattern_set_corner_color_rgba(ppattern, 0, __expand_double_rgba(pbrush->m_color1));
-         cairo_mesh_pattern_set_corner_color_rgba(ppattern, 1, __expand_double_rgba(pbrush->m_color2));
-         cairo_mesh_pattern_set_corner_color_rgba(ppattern, 2, __expand_double_rgba(pbrush->m_color2));
-         cairo_mesh_pattern_set_corner_color_rgba(ppattern, 3, __expand_double_rgba(pbrush->m_color1));
+         cairo_mesh_pattern_set_corner_color_rgba(ppattern, 0, __expand_f64_rgba(pbrush->m_color1));
+         cairo_mesh_pattern_set_corner_color_rgba(ppattern, 1, __expand_f64_rgba(pbrush->m_color2));
+         cairo_mesh_pattern_set_corner_color_rgba(ppattern, 2, __expand_f64_rgba(pbrush->m_color2));
+         cairo_mesh_pattern_set_corner_color_rgba(ppattern, 3, __expand_f64_rgba(pbrush->m_color1));
          cairo_mesh_pattern_end_patch(ppattern);
 
 
@@ -5218,10 +5218,10 @@ namespace draw2d_cairo
          cairo_mesh_pattern_line_to(ppattern, inner.right, inner.top);
          cairo_mesh_pattern_line_to(ppattern, inner.right, inner.bottom);
          cairo_mesh_pattern_line_to(ppattern, inner.left, inner.bottom);
-         cairo_mesh_pattern_set_corner_color_rgba(ppattern, 0, __expand_double_rgba(pbrush->m_color1));
-         cairo_mesh_pattern_set_corner_color_rgba(ppattern, 1, __expand_double_rgba(pbrush->m_color1));
-         cairo_mesh_pattern_set_corner_color_rgba(ppattern, 2, __expand_double_rgba(pbrush->m_color1));
-         cairo_mesh_pattern_set_corner_color_rgba(ppattern, 3, __expand_double_rgba(pbrush->m_color1));
+         cairo_mesh_pattern_set_corner_color_rgba(ppattern, 0, __expand_f64_rgba(pbrush->m_color1));
+         cairo_mesh_pattern_set_corner_color_rgba(ppattern, 1, __expand_f64_rgba(pbrush->m_color1));
+         cairo_mesh_pattern_set_corner_color_rgba(ppattern, 2, __expand_f64_rgba(pbrush->m_color1));
+         cairo_mesh_pattern_set_corner_color_rgba(ppattern, 3, __expand_f64_rgba(pbrush->m_color1));
          cairo_mesh_pattern_end_patch(ppattern);
 
          // clockwise bottom-left
@@ -5238,10 +5238,10 @@ namespace draw2d_cairo
          cairo_mesh_pattern_curve_to(ppattern, inner.left - KR, outer.bottom, outer.left, inner.bottom + KR, outer.left,
                                      inner.bottom);
          cairo_mesh_pattern_line_to(ppattern, inner.left, inner.bottom);
-         cairo_mesh_pattern_set_corner_color_rgba(ppattern, 0, __expand_double_rgba(pbrush->m_color1));
-         cairo_mesh_pattern_set_corner_color_rgba(ppattern, 1, __expand_double_rgba(pbrush->m_color2));
-         cairo_mesh_pattern_set_corner_color_rgba(ppattern, 2, __expand_double_rgba(pbrush->m_color2));
-         cairo_mesh_pattern_set_corner_color_rgba(ppattern, 3, __expand_double_rgba(pbrush->m_color1));
+         cairo_mesh_pattern_set_corner_color_rgba(ppattern, 0, __expand_f64_rgba(pbrush->m_color1));
+         cairo_mesh_pattern_set_corner_color_rgba(ppattern, 1, __expand_f64_rgba(pbrush->m_color2));
+         cairo_mesh_pattern_set_corner_color_rgba(ppattern, 2, __expand_f64_rgba(pbrush->m_color2));
+         cairo_mesh_pattern_set_corner_color_rgba(ppattern, 3, __expand_f64_rgba(pbrush->m_color1));
          cairo_mesh_pattern_end_patch(ppattern);
 
 
@@ -5250,10 +5250,10 @@ namespace draw2d_cairo
          cairo_mesh_pattern_line_to(ppattern, outer.left, inner.top);
          cairo_mesh_pattern_line_to(ppattern, outer.left, inner.bottom);
          cairo_mesh_pattern_line_to(ppattern, inner.left, inner.bottom);
-         cairo_mesh_pattern_set_corner_color_rgba(ppattern, 0, __expand_double_rgba(pbrush->m_color1));
-         cairo_mesh_pattern_set_corner_color_rgba(ppattern, 1, __expand_double_rgba(pbrush->m_color2));
-         cairo_mesh_pattern_set_corner_color_rgba(ppattern, 2, __expand_double_rgba(pbrush->m_color2));
-         cairo_mesh_pattern_set_corner_color_rgba(ppattern, 3, __expand_double_rgba(pbrush->m_color1));
+         cairo_mesh_pattern_set_corner_color_rgba(ppattern, 0, __expand_f64_rgba(pbrush->m_color1));
+         cairo_mesh_pattern_set_corner_color_rgba(ppattern, 1, __expand_f64_rgba(pbrush->m_color2));
+         cairo_mesh_pattern_set_corner_color_rgba(ppattern, 2, __expand_f64_rgba(pbrush->m_color2));
+         cairo_mesh_pattern_set_corner_color_rgba(ppattern, 3, __expand_f64_rgba(pbrush->m_color1));
          cairo_mesh_pattern_end_patch(ppattern);
 
 
@@ -5273,10 +5273,10 @@ namespace draw2d_cairo
          cairo_mesh_pattern_curve_to(ppattern, outer.left, inner.top - KR, inner.left - KR, outer.top, inner.left,
                                      outer.top);
          cairo_mesh_pattern_line_to(ppattern, inner.left, inner.top);
-         cairo_mesh_pattern_set_corner_color_rgba(ppattern, 0, __expand_double_rgba(pbrush->m_color1));
-         cairo_mesh_pattern_set_corner_color_rgba(ppattern, 1, __expand_double_rgba(pbrush->m_color2));
-         cairo_mesh_pattern_set_corner_color_rgba(ppattern, 2, __expand_double_rgba(pbrush->m_color2));
-         cairo_mesh_pattern_set_corner_color_rgba(ppattern, 3, __expand_double_rgba(pbrush->m_color1));
+         cairo_mesh_pattern_set_corner_color_rgba(ppattern, 0, __expand_f64_rgba(pbrush->m_color1));
+         cairo_mesh_pattern_set_corner_color_rgba(ppattern, 1, __expand_f64_rgba(pbrush->m_color2));
+         cairo_mesh_pattern_set_corner_color_rgba(ppattern, 2, __expand_f64_rgba(pbrush->m_color2));
+         cairo_mesh_pattern_set_corner_color_rgba(ppattern, 3, __expand_f64_rgba(pbrush->m_color1));
          cairo_mesh_pattern_end_patch(ppattern);
 
 
@@ -5285,10 +5285,10 @@ namespace draw2d_cairo
          cairo_mesh_pattern_line_to(ppattern, inner.left, outer.top);
          cairo_mesh_pattern_line_to(ppattern, inner.right, outer.top);
          cairo_mesh_pattern_line_to(ppattern, inner.right, inner.top);
-         cairo_mesh_pattern_set_corner_color_rgba(ppattern, 0, __expand_double_rgba(pbrush->m_color1));
-         cairo_mesh_pattern_set_corner_color_rgba(ppattern, 1, __expand_double_rgba(pbrush->m_color2));
-         cairo_mesh_pattern_set_corner_color_rgba(ppattern, 2, __expand_double_rgba(pbrush->m_color2));
-         cairo_mesh_pattern_set_corner_color_rgba(ppattern, 3, __expand_double_rgba(pbrush->m_color1));
+         cairo_mesh_pattern_set_corner_color_rgba(ppattern, 0, __expand_f64_rgba(pbrush->m_color1));
+         cairo_mesh_pattern_set_corner_color_rgba(ppattern, 1, __expand_f64_rgba(pbrush->m_color2));
+         cairo_mesh_pattern_set_corner_color_rgba(ppattern, 2, __expand_f64_rgba(pbrush->m_color2));
+         cairo_mesh_pattern_set_corner_color_rgba(ppattern, 3, __expand_f64_rgba(pbrush->m_color1));
          cairo_mesh_pattern_end_patch(ppattern);
 
 
@@ -5341,10 +5341,10 @@ namespace draw2d_cairo
       else
       {
 
-         double dR = pbrush->m_color.dr();
-         double dG = pbrush->m_color.dg();
-         double dB = pbrush->m_color.db();
-         double dA = pbrush->m_color.da();
+         ::f64 dR = pbrush->m_color.dr();
+         ::f64 dG = pbrush->m_color.dg();
+         ::f64 dB = pbrush->m_color.db();
+         ::f64 dA = pbrush->m_color.da();
 
          cairo_set_source_rgba(m_pdc, dR, dG, dB, dA);
 
@@ -5369,7 +5369,7 @@ namespace draw2d_cairo
       else
       {
 
-         cairo_set_source_rgba(m_pdc, __expand_double_rgba(ppen->m_color));
+         cairo_set_source_rgba(m_pdc, __expand_f64_rgba(ppen->m_color));
 
       }
 
@@ -5436,9 +5436,9 @@ namespace draw2d_cairo
 
 #ifdef __ANDROID__
 
-      float fDpi = maximum(::operating_system_driver::get()->m_fDpiX, ::operating_system_driver::get()->m_fDpiY);
+      ::f32 fDpi = maximum(::operating_system_driver::get()->m_fDpiX, ::operating_system_driver::get()->m_fDpiY);
 
-      float fDensity = ::operating_system_driver::get()->m_fDensity;
+      ::f32 fDensity = ::operating_system_driver::get()->m_fDensity;
 
 #endif
 
@@ -5527,7 +5527,7 @@ namespace draw2d_cairo
    }
 
 
-   bool graphics::fill(::draw2d::brush * pbrush, double xOrg, double yOrg)
+   bool graphics::fill(::draw2d::brush * pbrush, ::f64 xOrg, ::f64 yOrg)
    {
 
       synchronous_lock ml(::draw2d_cairo::mutex(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
@@ -5550,7 +5550,7 @@ namespace draw2d_cairo
    }
 
 
-   bool graphics::_fill1(::draw2d::brush * pbrush, double xOrg, double yOrg)
+   bool graphics::_fill1(::draw2d::brush * pbrush, ::f64 xOrg, ::f64 yOrg)
    {
 
       if (pbrush == nullptr || pbrush->m_ebrush == ::draw2d::e_brush_null)
@@ -5582,7 +5582,7 @@ namespace draw2d_cairo
    }
 
 
-   bool graphics::_fill2(::draw2d::brush * pbrush, double xOrg, double yOrg)
+   bool graphics::_fill2(::draw2d::brush * pbrush, ::f64 xOrg, ::f64 yOrg)
    {
 
       if (pbrush == nullptr || pbrush->m_ebrush == ::draw2d::e_brush_null)
@@ -5606,7 +5606,7 @@ namespace draw2d_cairo
    }
 
 
-   bool graphics::fill(double xOrg, double yOrg)
+   bool graphics::fill(::f64 xOrg, ::f64 yOrg)
    {
 
       return fill(m_pbrush, xOrg, yOrg);
@@ -5614,7 +5614,7 @@ namespace draw2d_cairo
    }
 
 
-   bool graphics::_fill1(double xOrg, double yOrg)
+   bool graphics::_fill1(::f64 xOrg, ::f64 yOrg)
    {
 
       return _fill1(m_pbrush, xOrg, yOrg);
@@ -5622,7 +5622,7 @@ namespace draw2d_cairo
    }
 
 
-   bool graphics::_fill2(double xOrg, double yOrg)
+   bool graphics::_fill2(::f64 xOrg, ::f64 yOrg)
    {
 
       return _fill2(m_pbrush, xOrg, yOrg);
@@ -5696,7 +5696,7 @@ namespace draw2d_cairo
 
       }
 
-      for (int i = 0; i < ppath->m_shapea.get_count(); i++)
+      for (::i32 i = 0; i < ppath->m_shapea.get_count(); i++)
       {
 
          _set(ppath->m_shapea[i]);
@@ -5734,13 +5734,13 @@ namespace draw2d_cairo
          case ::e_shape_lines:
             return _set(pshape->shape<::lines>());
             //case ::e_shape_rect:
-            //   return _set(pshape->shape < ::int_rectangle > ());
+            //   return _set(pshape->shape < ::i32_rectangle > ());
          case ::e_shape_rectangle:
-            return _set(pshape->shape<::double_rectangle>());
+            return _set(pshape->shape<::f64_rectangle>());
             //case ::e_shape_polygon:
-            //   return _set(pshape->shape < ::int_polygon > ());
+            //   return _set(pshape->shape < ::i32_polygon > ());
          case ::e_shape_ellipse:
-            return _set(pshape->shape<::double_ellipse>());
+            return _set(pshape->shape<::f64_ellipse>());
          case ::e_shape_polygon:
             return _set(pshape->shape<::polygon>());
          case ::e_shape_text_out:
@@ -5851,9 +5851,9 @@ namespace draw2d_cairo
 //    if (cairo_has_current_point(m_pdc))
 //    {
 //
-//      double x;
+//      ::f64 x;
 //
-//      double y;
+//      ::f64 y;
 //
 //      cairo_get_current_point (m_pdc, &x, &y);
 //
@@ -5893,9 +5893,9 @@ namespace draw2d_cairo
       if (cairo_has_current_point(m_pdc))
       {
 
-         double x;
+         ::f64 x;
 
-         double y;
+         ::f64 y;
 
          cairo_get_current_point(m_pdc, &x, &y);
 
@@ -5921,7 +5921,7 @@ namespace draw2d_cairo
    }
 
 
-   bool graphics::_set(const ::int_point_array & pointa)
+   bool graphics::_set(const ::i32_point_array & pointa)
    {
 
       if (pointa.get_count() <= 1)
@@ -5936,9 +5936,9 @@ namespace draw2d_cairo
       if (cairo_has_current_point(m_pdc))
       {
 
-         double x;
+         ::f64 x;
 
-         double y;
+         ::f64 y;
 
          cairo_get_current_point(m_pdc, &x, &y);
 
@@ -5975,7 +5975,7 @@ namespace draw2d_cairo
    }
 
 
-   bool graphics::_set(const ::double_point_array & pointa)
+   bool graphics::_set(const ::f64_point_array & pointa)
    {
 
       if (pointa.get_count() <= 1)
@@ -5990,9 +5990,9 @@ namespace draw2d_cairo
       if (cairo_has_current_point(m_pdc))
       {
 
-         double x;
+         ::f64 x;
 
-         double y;
+         ::f64 y;
 
          cairo_get_current_point(m_pdc, &x, &y);
 
@@ -6043,7 +6043,7 @@ namespace draw2d_cairo
 //
 //   cairo_new_sub_path(m_pdc);
 //
-//   _set((const ::int_point_array &) lines);
+//   _set((const ::i32_point_array &) lines);
 //
 //   return true;
 //
@@ -6064,17 +6064,17 @@ namespace draw2d_cairo
 
       cairo_new_sub_path(m_pdc);
 
-      _set((const ::double_point_array &) lines);
+      _set((const ::f64_point_array &) lines);
 
       return true;
 
    }
 
 
-//bool graphics::_set(const ::int_polygon & int_polygon)
+//bool graphics::_set(const ::i32_polygon & i32_polygon)
 //{
 //
-//   if(int_polygon.get_count() <= 1)
+//   if(i32_polygon.get_count() <= 1)
 //   {
 //
 //      return true;
@@ -6085,7 +6085,7 @@ namespace draw2d_cairo
 //
 //   cairo_new_sub_path(m_pdc);
 //
-//   _set((const ::int_point_array &) int_polygon);
+//   _set((const ::i32_point_array &) i32_polygon);
 //
 //   cairo_close_path(m_pdc);
 //
@@ -6094,10 +6094,10 @@ namespace draw2d_cairo
 //}
 
 
-   bool graphics::_set(const ::double_polygon & int_polygon)
+   bool graphics::_set(const ::f64_polygon & i32_polygon)
    {
 
-      if (int_polygon.get_count() <= 1)
+      if (i32_polygon.get_count() <= 1)
       {
 
          return true;
@@ -6108,7 +6108,7 @@ namespace draw2d_cairo
 
       cairo_new_sub_path(m_pdc);
 
-      _set((const ::double_point_array &) int_polygon);
+      _set((const ::f64_point_array &) i32_polygon);
 
       cairo_close_path(m_pdc);
 
@@ -6117,7 +6117,7 @@ namespace draw2d_cairo
    }
 
 
-//bool graphics::_set(const ::int_rectangle & rectangle)
+//bool graphics::_set(const ::i32_rectangle & rectangle)
 //{
 //
 //    synchronous_lock ml(::draw2d_cairo::mutex(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
@@ -6134,7 +6134,7 @@ namespace draw2d_cairo
 //}
 
 
-   bool graphics::_set(const ::double_rectangle & rectangle)
+   bool graphics::_set(const ::f64_rectangle & rectangle)
    {
 
       synchronous_lock ml(::draw2d_cairo::mutex(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
@@ -6151,20 +6151,20 @@ namespace draw2d_cairo
    }
 
 
-   bool graphics::_set(const ::double_ellipse & ellipse)
+   bool graphics::_set(const ::f64_ellipse & ellipse)
    {
 
       synchronous_lock ml(::draw2d_cairo::mutex(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 
-      double Δx = ellipse.center_x();
+      ::f64 Δx = ellipse.center_x();
 
-      double Δy = ellipse.center_y();
+      ::f64 Δy = ellipse.center_y();
 
       cairo_translate(m_pdc, Δx, Δy);
 
-      double rx = ellipse.width() / 2.0;
+      ::f64 rx = ellipse.width() / 2.0;
 
-      double ry = ellipse.height() / 2.0;
+      ::f64 ry = ellipse.height() / 2.0;
 
       cairo_scale(m_pdc, rx, ry);
 
@@ -6184,7 +6184,7 @@ namespace draw2d_cairo
 
       synchronous_lock ml(::draw2d_cairo::mutex(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 
-      auto rectangle = ::double_rectangle(textout.m_point, double_size(65535.0, 65535.0));
+      auto rectangle = ::f64_rectangle(textout.m_point, ::f64_size(65535.0, 65535.0));
 
       internal_draw_text(textout.m_strText, rectangle, e_align_top_left, e_draw_text_none);
 
@@ -6301,13 +6301,13 @@ namespace draw2d_cairo
 
       synchronous_lock ml(::draw2d_cairo::mutex(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 
-      auto r = color32_byte_red(color32);
+      auto r = color32_u8_red(color32);
 
-      auto g = color32_byte_green(color32);
+      auto g = color32_u8_green(color32);
 
-      auto b = color32_byte_blue(color32);
+      auto b = color32_u8_blue(color32);
 
-      auto a = color32_byte_opacity(color32);
+      auto a = color32_u8_opacity(color32);
 
       cairo_set_source_rgba(m_pdc, r / 255.0, g / 255.0, b / 255.0, a / 255.0);
 
@@ -6429,7 +6429,7 @@ namespace draw2d_cairo
 //
 //    PangoFontFamily ** families;
 //
-//    int n_families = 0;
+//    ::i32 n_families = 0;
 //
 //    pango_font_map_list_families(pfontmap, &families, &n_families);
 //
@@ -6437,7 +6437,7 @@ namespace draw2d_cairo
 //
 //    ::pointer<::write_text::font_enumeration_item>item;
 //
-//    for (int i = 0; i < n_families; i++)
+//    for (::i32 i = 0; i < n_families; i++)
 //    {
 //
 //        item = allocateø ::write_text::font_enumeration_item();
@@ -6518,7 +6518,7 @@ namespace draw2d_cairo
 ////
 ////   FcChar8 *      file;
 ////
-////   int            i;
+////   ::i32            i;
 ////
 ////   if (!g_fcResult)
 ////   {
@@ -6625,7 +6625,7 @@ namespace draw2d_cairo
 //#endif
 //
 //
-//::file::path graphics::get_font_path(const ::scoped_string & scopedstr, int iWeight, bool bItalic)
+//::file::path graphics::get_font_path(const ::scoped_string & scopedstr, ::i32 iWeight, bool bItalic)
 //{
 //
 //#ifdef LINUX
@@ -6775,7 +6775,7 @@ namespace draw2d_cairo
    }
 
 
-   FT_Face graphics::ftface(const ::scoped_string & scopedstrFontName, int iWeight, bool bItalic)
+   FT_Face graphics::ftface(const ::scoped_string & scopedstrFontName, ::i32 iWeight, bool bItalic)
    {
 
       synchronous_lock synchronouslock(::draw2d_cairo::mutex(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
@@ -6895,14 +6895,14 @@ FT_Library __ftlibrary()
 }
 
 
-//bool path::contains(::draw2d::graphics_pointer & pgraphics, const double_point& point)
+//bool path::contains(::draw2d::graphics_pointer & pgraphics, const ::f64_point& point)
 //{
 //
 //   pgraphics->set(this);
 //
 //   pgraphics->fill_contains(point);
 //
-//   int iFill = 0;
+//   ::i32 iFill = 0;
 //
 //   for (auto& pmatter : m_shapea)
 //   {

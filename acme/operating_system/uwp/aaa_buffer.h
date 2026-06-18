@@ -6,7 +6,7 @@ namespace universal_windows
 
 
    class CLASS_DECL_ACME buffer :
-      //virtual public ::graphics::double_buffer,
+      //virtual public ::graphics::f64_buffer,
       virtual public ::graphics::bitmap_source_buffer
    {
    public:
@@ -46,7 +46,7 @@ namespace universal_windows
       virtual void initialize_graphics_graphics(::windowing::window* pimpl) override;
 
 
-      virtual bool create_buffer(const ::size& size, int iStride = -1);
+      virtual bool create_buffer(const ::size& size, ::i32 iStride = -1);
       virtual void destroy_buffer();
       virtual bool update_window();
 
@@ -59,7 +59,7 @@ namespace universal_windows
       virtual void on_end_draw();
 
 
-      bool create_os_buffer(const ::size& size, int iStride = -1);
+      bool create_os_buffer(const ::size& size, ::i32 iStride = -1);
       void destroy_os_buffer();
 
 

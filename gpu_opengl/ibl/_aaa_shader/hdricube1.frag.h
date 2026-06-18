@@ -3,7 +3,7 @@
 #pragma once
 
 
-const char g_psz_hdricube1_frag[] = R"frag_text(#version 330 core
+const ::i8 g_psz_hdricube1_frag[] = R"frag_text(#version 330 core
 
 out vec4 FragColor;
 in vec3 modelCoordinates;

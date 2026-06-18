@@ -144,7 +144,7 @@ namespace userex
 
          synchronous_lock synchronouslock(this->synchronization(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 
-         int iForkDib = m_iForkAddDib;
+         ::i32 iForkDib = m_iForkAddDib;
 
          class time timeStart;
 
@@ -286,15 +286,15 @@ namespace userex
 
    //   auto pmouse = pmessage->m_union.m_pmouse;
 
-   //   const ::int_point & point = pmouse->m_point;
+   //   const ::i32_point & point = pmouse->m_point;
 
    //   screen_to_client()(point);
 
-   //   int iMenuSel;
+   //   ::i32 iMenuSel;
 
-   //   int iCommandSel;
+   //   ::i32 iCommandSel;
 
-   //   int iHover = hit_test(point, iMenuSel, iCommandSel);
+   //   ::i32 iHover = hit_test(point, iMenuSel, iCommandSel);
 
    //   if (iCommandSel >= 0)
    //   {
@@ -313,15 +313,15 @@ namespace userex
 
    //   auto pmouse = pmessage->m_union.m_pmouse;
 
-   //   const ::int_point & point = pmouse->m_point;
+   //   const ::i32_point & point = pmouse->m_point;
 
    //   screen_to_client()(point);
 
-   //   int iMenuHover;
+   //   ::i32 iMenuHover;
 
-   //   int iCommandHover;
+   //   ::i32 iCommandHover;
 
-   //   int iHover = hit_test(point, iMenuHover, iCommandHover);
+   //   ::i32 iHover = hit_test(point, iMenuHover, iCommandHover);
 
    //   if (iHover >= 0 && m_iHover < 0)
    //   {

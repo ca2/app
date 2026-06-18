@@ -166,7 +166,7 @@ namespace filemanager
 
          datastream()->get(::atom(), straFolderPath);
 
-         for (int i = 0; i < stra.get_count(); i++)
+         for (::i32 i = 0; i < stra.get_count(); i++)
          {
 
             if (!straFolderPath.contains(stra[i]))
@@ -192,7 +192,7 @@ namespace filemanager
       }
 
 
-      bool list_data::add_unique(const string_array_base & stra, int_array_base & baRecursive)
+      bool list_data::add_unique(const string_array_base & stra, i32_array_base & baRecursive)
       {
 
          synchronous_lock synchronouslock(this->synchronization(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
@@ -201,11 +201,11 @@ namespace filemanager
 
          datastream()->get(::atom(), straFolderPath);
 
-         int_array_base iaRecursive;
+         i32_array_base iaRecursive;
 
          datastream()->get("recursive", iaRecursive);
 
-         for (int i = 0; i < stra.get_count(); i++)
+         for (::i32 i = 0; i < stra.get_count(); i++)
          {
 
             if (!straFolderPath.contains(stra[i]))
@@ -269,13 +269,13 @@ namespace filemanager
 
          }
 
-         int_array_base iaRecursive;
+         i32_array_base iaRecursive;
 
          datastream()->get("recursive", iaRecursive);
 
          ::collection::index iFind;
 
-         for (int i = 0; i < stra.get_count(); i++)
+         for (::i32 i = 0; i < stra.get_count(); i++)
          {
 
             while ((iFind = straFolderPath.find_first(stra[i])) >= 0)
@@ -338,7 +338,7 @@ namespace filemanager
 
          synchronous_lock synchronouslock(this->synchronization(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 
-         int_array_base iaRecursive;
+         i32_array_base iaRecursive;
 
          try
          {
@@ -376,7 +376,7 @@ namespace filemanager
 
          synchronous_lock synchronouslock(this->synchronization(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 
-         int_array_base iaRecursive;
+         i32_array_base iaRecursive;
 
          try
          {

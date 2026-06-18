@@ -30,7 +30,7 @@ namespace acme
       //void dump(dump_context &) const override;
 
       //void     initialize_matter(::matter * pmatter) override;
-      //virtual void     initialize_library(::matter* pmatter, int iDesmabi, const ::scoped_string & scopedstrRoot = nullptr, const ::scoped_string & scopedstrName = nullptr, const ::scoped_string & scopedstrFolder = nullptr);
+      //virtual void     initialize_library(::matter* pmatter, ::i32 iDesmabi, const ::scoped_string & scopedstrRoot = nullptr, const ::scoped_string & scopedstrName = nullptr, const ::scoped_string & scopedstrFolder = nullptr);
       //virtual void initialize_library(::matter* pmatter, const ::scoped_string & scopedstrName = nullptr, const ::scoped_string & scopedstrFolder = nullptr);
 
       //virtual void open(const ::file::path & path,bool bAutoClose = true,bool bCa2Path = false);
@@ -97,13 +97,13 @@ namespace acme
       //virtual void get_extension_list(string_array_base & stra);
 
 
-      // virtual ::matter * factory_new(::particle * pparticle, const_char_pointer lpszClass);
+      // virtual ::matter * factory_new(::particle * pparticle, const_char_pointer pszClass);
 
 
-      //virtual ::pointer<::matter>factory_create(const_char_pointer lpszClass);
-      //virtual bool factory_has_object_class(const_char_pointer lpszClass);
+      //virtual ::pointer<::matter>factory_create(const_char_pointer pszClass);
+      //virtual bool factory_has_object_class(const_char_pointer pszClass);
 
-      //library_object_allocator_base * find_allocator(const_char_pointer lpszClass);
+      //library_object_allocator_base * find_allocator(const_char_pointer pszClass);
 
       //virtual void initialize_factory();
 

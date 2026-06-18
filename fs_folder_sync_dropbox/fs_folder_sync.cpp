@@ -49,11 +49,11 @@ namespace fs_folder_sync_dropbox
 
       }
 
-      char buffer[1_KiB];
+      ::i8 buffer[1_KiB];
 
       path = local_folder_path() / path;
 
-      for (int iTry = 0; iTry < 5; iTry++)
+      for (::i32 iTry = 0; iTry < 5; iTry++)
       {
 
          try
@@ -159,7 +159,7 @@ namespace fs_folder_sync_dropbox
 
 
 
-   int folder_sync::is_dir(const ::file::path& path)
+   ::i32 folder_sync::is_dir(const ::file::path& path)
    {
 
       return ::fs::folder_sync::is_dir(path);
@@ -193,7 +193,7 @@ namespace fs_folder_sync_dropbox
    //}
 
 
-   //string folder_sync::eat_end_level(const ::file::path & path, int iCount)
+   //string folder_sync::eat_end_level(const ::file::path & path, ::i32 iCount)
    //{
 
    //   string strPath(scopedstrPath);
@@ -325,7 +325,7 @@ namespace fs_folder_sync_dropbox
 
          ::string strLs;
 
-         int iExitCode = node()->get_posix_shell_command_output(strLs, strDropboxCommand + " dropbox filestatus");
+         ::i32 iExitCode = node()->get_posix_shell_command_output(strLs, strDropboxCommand + " dropbox filestatus");
 
          auto pszLs = strLs.c_str();
 
@@ -342,7 +342,7 @@ namespace fs_folder_sync_dropbox
 
             auto pszLine = line.c_str();
 
-            int iFind = stra.case_insensitive_find_first_begins(line + ":");
+            ::i32 iFind = stra.case_insensitive_find_first_begins(line + ":");
 
             if (iFind < 0)
             {

@@ -24,11 +24,11 @@ namespace gpu
          ::string m_strSamplerUniform;
 
 
-         //int m_uWidth, m_uHeight;
+         //::i32 m_uWidth, m_uHeight;
          ::pointer < ::gpu::texture > m_ptexture;
-         // unsigned int m_uFramebufferId;
-         // unsigned int m_uDepthRenderbufferId;
-         // unsigned int m_uCubemapTextureId;
+         // ::u32 m_uFramebufferId;
+         // ::u32 m_uDepthRenderbufferId;
+         // ::u32 m_uCubemapTextureId;
 
          cubemap_framebuffer();
 
@@ -36,7 +36,7 @@ namespace gpu
          ~cubemap_framebuffer() override;
 
 
-         virtual void initialize_cubemap_framebuffer(::gpu::context * pgpucontext, int width, int height);
+         virtual void initialize_cubemap_framebuffer(::gpu::context * pgpucontext, ::i32 width, ::i32 height);
 
 
          virtual void on_initialize_cubemap_framebuffer();
@@ -52,10 +52,10 @@ namespace gpu
           * Set which cube face texture to render to.
           * @param index
           */
-         virtual void set_cube_face(unsigned int index, ::gpu::shader * pgpushader);
+         virtual void set_cube_face(::u32 index, ::gpu::shader * pgpushader);
 
 
-         //virtual unsigned int getCubemapTextureId();
+         //virtual ::u32 getCubemapTextureId();
 
 
       };

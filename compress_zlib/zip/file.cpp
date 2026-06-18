@@ -75,7 +75,7 @@ namespace zip
 //   }
 
 
-   bool file::unzip_open(file_pointer pfile, int iBufferLevel)
+   bool file::unzip_open(file_pointer pfile, ::i32 iBufferLevel)
    {
 
       if (iBufferLevel >= 2)
@@ -184,8 +184,8 @@ namespace zip
       str.replace("\\", "/");
       if(unzLocateFile(m_pfUnzip, str, 1) != UNZ_OK)
          return;
-      unsigned char buf[1024];
-      int iRead;
+      ::u8 buf[1024];
+      ::i32 iRead;
       if(unzOpenCurrentFile(m_pfUnzip) != UNZ_OK)
          return;
 
@@ -204,7 +204,7 @@ namespace zip
 //
 //
 //
-//voidpf fileopen_file_func (voidpf opaque, const_char_pointer filename, int mode)
+//voidpf fileopen_file_func (voidpf opaque, const_char_pointer pszFilename, ::i32 mode)
 //{
 //   __UNREFERENCED_PARAMETER(mode);
 //   __UNREFERENCED_PARAMETER(filename);
@@ -232,7 +232,7 @@ namespace zip
 //   return (long) pfile->get_position();
 //}
 //
-//long   fileseek_file_func (voidpf opaque, voidpf stream, uptr offset, int origin)
+//long   fileseek_file_func (voidpf opaque, voidpf stream, uptr offset, ::i32 origin)
 //{
 //   __UNREFERENCED_PARAMETER(stream);
 //   ::zip::file * pzipfile = (::zip::file *) opaque;
@@ -244,7 +244,7 @@ namespace zip
 //
 //}
 //
-//int    fileclose_file_func (voidpf opaque, voidpf stream)
+//::i32    fileclose_file_func (voidpf opaque, voidpf stream)
 //{
 //   __UNREFERENCED_PARAMETER(opaque);
 //   __UNREFERENCED_PARAMETER(stream);
@@ -253,7 +253,7 @@ namespace zip
 //   return 1;
 //}
 //
-//int c_zip_file_testerror_file_func (voidpf opaque, voidpf stream)
+//::i32 c_zip_file_testerror_file_func (voidpf opaque, voidpf stream)
 //{
 //   __UNREFERENCED_PARAMETER(opaque);
 //   __UNREFERENCED_PARAMETER(stream);
@@ -273,7 +273,7 @@ namespace zip
 
 
 
-voidpf c_zip_file_open_file_func (voidpf opaque, const_char_pointer filename, int mode)
+voidpf c_zip_file_open_file_func (voidpf opaque, const_char_pointer pszFilename, ::i32 mode)
 {
    __UNREFERENCED_PARAMETER(mode);
    __UNREFERENCED_PARAMETER(filename);
@@ -298,7 +298,7 @@ long   c_zip_file_tell_file_func (voidpf opaque, voidpf stream)
    return (long) pfile->get_position();
 }
 
-long   c_zip_file_seek_file_func (voidpf opaque, voidpf stream, uptr offset, int origin)
+long   c_zip_file_seek_file_func (voidpf opaque, voidpf stream, uptr offset, ::i32 origin)
 {
    __UNREFERENCED_PARAMETER(stream);
    auto * pfile = (::file::file *) opaque;
@@ -309,7 +309,7 @@ long   c_zip_file_seek_file_func (voidpf opaque, voidpf stream, uptr offset, int
 
 }
 
-int    c_zip_file_close_file_func (voidpf opaque, voidpf stream)
+::i32    c_zip_file_close_file_func (voidpf opaque, voidpf stream)
 {
    __UNREFERENCED_PARAMETER(opaque);
    __UNREFERENCED_PARAMETER(stream);
@@ -318,7 +318,7 @@ int    c_zip_file_close_file_func (voidpf opaque, voidpf stream)
    return 1;
 }
 
-int c_zip_file_testerror_file_func (voidpf opaque, voidpf stream)
+::i32 c_zip_file_testerror_file_func (voidpf opaque, voidpf stream)
 {
    __UNREFERENCED_PARAMETER(opaque);
    __UNREFERENCED_PARAMETER(stream);

@@ -2,7 +2,7 @@
 
 
 #include "aura/graphics/image/source.h"
-#include "acme/prototype/collection/int_map.h"
+#include "acme/prototype/collection/integer_map.h"
 #include "acme/prototype/geometry2d/_collection.h"
 
 
@@ -30,7 +30,7 @@ namespace image
 
       ::pointer<::windowing::icon>              m_pwindowingicon;
       ::pointer<size_image>                     m_pimagemap;
-      ::int_size_array                          m_sizea;
+      ::i32_size_array                          m_sizea;
       // Sizes of Readily Available Icons in Increasing Sorting Order
       bool                                      m_bAutoDelete;
       string                                    m_strAppTrayIcon;
@@ -55,37 +55,37 @@ namespace image
       string get_tray_icon_name();
 
 
-      ::int_size get_size();
+      ::i32_size get_size();
 
 
-      ::int_size get_smaller_size(const ::int_size & size);
+      ::i32_size get_smaller_size(const ::i32_size & size);
 
 
       virtual void on_update_icon();
 
 
-      inline ::double_size origin() const { return ::double_size(); }
+      inline ::f64_size origin() const { return ::f64_size(); }
 
 
-//      ::image::image_pointer get_image(const concrete < ::int_size > & size);
+//      ::image::image_pointer get_image(const concrete < ::i32_size > & size);
 
 
-      ::image::image_pointer image_source_image(const ::int_size& size) override;
+      ::image::image_pointer image_source_image(const ::i32_size& size) override;
 
 
-      // inline concrete < ::int_size > int_size(const ::double_size & sizeDst, const ::double_size & sizeSrc, enum_image_selection eimageselection) const { return get_image(sizeDst)->int_size(sizeDst, sizeSrc, eimageselection); }
+      // inline concrete < ::i32_size > i32_size(const ::f64_size & sizeDst, const ::f64_size & sizeSrc, enum_image_selection eimageselection) const { return get_image(sizeDst)->i32_size(sizeDst, sizeSrc, eimageselection); }
 
-      ::int_size image_source_size(const ::double_size & sizeDst, enum_image_selection eimageselection) const override;
+      ::i32_size image_source_size(const ::f64_size & sizeDst, enum_image_selection eimageselection) const override;
 
       
-      ::int_size image_source_size() const override;
+      ::i32_size image_source_size() const override;
 
          
    };
 
 
    class CLASS_DECL_AURA icon_int_map :
-      virtual public int_map < icon * >
+      virtual public i32_map < icon * >
    {
    public:
 

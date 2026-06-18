@@ -74,10 +74,10 @@ namespace graphics3d
    };
 
 
-   using float_rotation = rotation_type<float>;
-   using double_rotation = rotation_type<double>;
+   using f32_rotation = rotation_type<::f32>;
+   using f64_rotation = rotation_type<::f64>;
 
-   using floating_rotation = float_rotation;
+   using floating_rotation = f32_rotation;
 
 
 } // namespace graphics3d

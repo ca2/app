@@ -19,7 +19,7 @@
 
 #define _wcsinc(_pc)    ((_pc)+1)
 
-unsigned int __get_file_title(const ::wide_character * pszPathName, ::wide_character * pszTitle, unsigned int nMax);
+::u32 __get_file_title(const ::wide_character * pszPathName, ::wide_character * pszTitle, ::u32 nMax);
 
 
 bool _set_reg_key(const ::wide_character * pszKey, const ::wide_character * pszValue, const ::wide_character * pszValueName = nullptr);
@@ -42,28 +42,28 @@ void __get_module_short_file_name(hinstance hInst, string& strShortName);
 namespace user
 {
 
-   const char document_manager::gen_ShellOpenFmt[] = "%s\\shell\\open\\%s";
-   const char document_manager::gen_ShellPrintFmt[] = "%s\\shell\\print\\%s";
-   const char document_manager::gen_ShellPrintToFmt[] = "%s\\shell\\printto\\%s";
-   const char document_manager::gen_DefaultIconFmt[] = "%s\\DefaultIcon";
-   const char document_manager::gen_ShellNewFmt[] = "%s\\ShellNew";
+   ::string_literal document_manager::gen_ShellOpenFmt = "%s\\shell\\open\\%s";
+   ::string_literal document_manager::gen_ShellPrintFmt = "%s\\shell\\print\\%s";
+   ::string_literal document_manager::gen_ShellPrintToFmt = "%s\\shell\\printto\\%s";
+   ::string_literal document_manager::gen_DefaultIconFmt = "%s\\DefaultIcon";
+   ::string_literal document_manager::gen_ShellNewFmt = "%s\\ShellNew";
 
 #define DEFAULT_ICON_INDEX 0
 
-   const char document_manager::gen_IconIndexFmt[] = ",%d";
-   const char document_manager::gen_Command[] = "command";
-   const char document_manager::gen_OpenArg[] = " \"%1\"";
-   const char document_manager::gen_PrintArg[] = " /int_point \"%1\"";
-   const char document_manager::gen_PrintToArg[] = " /int_point \"%1\" \"%2\" \"%3\" \"%4\"";
-   const char document_manager::gen_DDEArg[] = " /dde";
+   ::string_literal document_manager::gen_IconIndexFmt = ",%d";
+   ::string_literal document_manager::gen_Command = "command";
+   ::string_literal document_manager::gen_OpenArg = " \"%1\"";
+   ::string_literal document_manager::gen_PrintArg = " /i32_point \"%1\"";
+   ::string_literal document_manager::gen_PrintToArg = " /i32_point \"%1\" \"%2\" \"%3\" \"%4\"";
+   ::string_literal document_manager::gen_DDEArg = " /dde";
 
-   const char document_manager::gen_DDEExec[] = "ddeexec";
-   const char document_manager::gen_DDEOpen[] = "[open(\"%1\")]";
-   const char document_manager::gen_DDEPrint[] = "[print(\"%1\")]";
-   const char document_manager::gen_DDEPrintTo[] = "[printto(\"%1\",\"%2\",\"%3\",\"%4\")]";
+   ::string_literal document_manager::gen_DDEExec = "ddeexec";
+   ::string_literal document_manager::gen_DDEOpen = "[open(\"%1\")]";
+   ::string_literal document_manager::gen_DDEPrint = "[print(\"%1\")]";
+   ::string_literal document_manager::gen_DDEPrintTo = "[printto(\"%1\",\"%2\",\"%3\",\"%4\")]";
 
-   const char document_manager::gen_ShellNewValueName[] = "NullFile";
-   const char document_manager::gen_ShellNewValue[] = "";
+   ::string_literal document_manager::gen_ShellNewValueName = "NullFile";
+   ::string_literal document_manager::gen_ShellNewValue = "";
 
 
    document_manager::document_manager()
@@ -97,7 +97,7 @@ namespace user
       __get_module_short_file_name(psystem->m_hInstance, strPathName);
 
       POSITION pos = m_templateptra.get_head_position();
-      for (int nTemplateIndex = 1; pos != nullptr; nTemplateIndex++)
+      for (::i32 nTemplateIndex = 1; pos != nullptr; nTemplateIndex++)
       {
       ::pointer<impact_system>ptemplate = (::pointer<impact_system>_templateptra.get_next(pos);
 
@@ -140,12 +140,12 @@ namespace user
       (const ::string &)gen_Command);
       __delete_reg_key(strTemp);
 
-      // path\shell\print\command = path /int_point filename
+      // path\shell\print\command = path /i32_point filename
       strTemp.formatf(gen_ShellPrintFmt, (const ::string &)strFileTypeId,
       (const ::string &)gen_Command);
       __delete_reg_key(strTemp);
 
-      // path\shell\printto\command = path /int_point filename printer driver port
+      // path\shell\printto\command = path /i32_point filename printer driver port
       strTemp.formatf(gen_ShellPrintToFmt, (const ::string &)strFileTypeId,
       (const ::string &)gen_Command);
       __delete_reg_key(strTemp);
@@ -155,8 +155,8 @@ namespace user
       {
       ASSERT(strFilterExt[0] == '.');
 
-      int lSize = _MAX_PATH * 2;
-      int lResult = ::RegQueryValue(HKEY_CLASSES_ROOT, strFilterExt,
+      ::i32 lSize = _MAX_PATH * 2;
+      ::i32 lResult = ::RegQueryValue(HKEY_CLASSES_ROOT, strFilterExt,
       strTemp.GetBuffer(lSize), &lSize);
       strTemp.ReleaseBuffer();
 
@@ -187,7 +187,7 @@ namespace user
       __get_module_short_file_name(psystem->m_hInstance, strPathName);
 
       POSITION pos = m_templateptra.get_head_position();
-      for (int nTemplateIndex = 1; pos != nullptr; nTemplateIndex++)
+      for (::i32 nTemplateIndex = 1; pos != nullptr; nTemplateIndex++)
       {
       ::pointer<impact_system>ptemplate = (::pointer<impact_system>_templateptra.get_next(pos);
 
@@ -274,8 +274,8 @@ namespace user
       else
       {
       // path\shell\open\command = path filename
-      // path\shell\print\command = path /int_point filename
-      // path\shell\printto\command = path /int_point filename printer driver port
+      // path\shell\print\command = path /i32_point filename
+      // path\shell\printto\command = path /i32_point filename printer driver port
       strOpenCommandLine += gen_OpenArg;
       if (bCompat)
       {
@@ -292,13 +292,13 @@ namespace user
 
       if (bCompat)
       {
-      // path\shell\print\command = path /int_point filename
+      // path\shell\print\command = path /i32_point filename
       strTemp.formatf(gen_ShellPrintFmt, (const ::string &)strFileTypeId,
       (const ::string &)gen_Command);
       if (!__set_reg_key(strTemp, strPrintCommandLine))
       continue;       // just skip it
 
-      // path\shell\printto\command = path /int_point filename printer driver port
+      // path\shell\printto\command = path /i32_point filename printer driver port
       strTemp.formatf(gen_ShellPrintToFmt, (const ::string &)strFileTypeId,
       (const ::string &)gen_Command);
       if (!__set_reg_key(strTemp, strPrintToCommandLine))
@@ -310,8 +310,8 @@ namespace user
       {
       ASSERT(strFilterExt[0] == '.');
 
-      int lSize = _MAX_PATH * 2;
-      int lResult = ::RegQueryValue(HKEY_CLASSES_ROOT, strFilterExt,
+      ::i32 lSize = _MAX_PATH * 2;
+      ::i32 lResult = ::RegQueryValue(HKEY_CLASSES_ROOT, strFilterExt,
       strTemp.GetBuffer(lSize), &lSize);
       strTemp.ReleaseBuffer();
 
@@ -352,9 +352,9 @@ namespace user
    // add to filter
    filter += strFilterName;
    ASSERT(!filter.is_empty());  // must have a file type name
-   filter += (char)'\0';  // next string please
+   filter += (::i8)'\0';  // next string please
 
-   int iStart = 0;
+   ::i32 iStart = 0;
    do
    {
    string strExtension = strFilterExt.Tokenize( _T( ";" ), iStart );
@@ -377,14 +377,14 @@ namespace user
    {
    // set the default extension
    *pstrDefaultExt = strExtension.substr( 1 );  // skip the '.'
-   ofn.pstrDefExt = const_cast< char * >((const ::string &)(*pstrDefaultExt));
+   ofn.pstrDefExt = const_cast< char_pointer >((const ::string &)(*pstrDefaultExt));
 
    ofn.nFilterIndex = ofn.nMaxCustFilter + 1;  // 1 based number
    }
 
-   filter += (char)'*';
+   filter += (::i8)'*';
    filter += strExtension;
-   filter += (char)';';  // Always append a ';'.  The last ';' will get replaced with a '\0' later.
+   filter += (::i8)';';  // Always append a ';'.  The last ';' will get replaced with a '\0' later.
    }
    } while (iStart != -1);
 
@@ -521,7 +521,7 @@ namespace user
    }
 
 
-   bool document_manager::do_prompt_file_name(::payload & payloadFile, string nIDSTitle, unsigned int lFlags, bool bOpenFileDialog, ::user::impact_system * ptemplate, ::user::document * pdocument)
+   bool document_manager::do_prompt_file_name(::payload & payloadFile, string nIDSTitle, ::u32 lFlags, bool bOpenFileDialog, ::user::impact_system * ptemplate, ::user::document * pdocument)
    {
 
       throw_todo();
@@ -578,7 +578,7 @@ namespace user
       else
       return false; // not a command we handle
 
-      int i = strCommand.find('"');
+      ::i32 i = strCommand.find('"');
       if (i == -1)
       return false; // illegally terminated
 
@@ -683,7 +683,7 @@ namespace user
       }
 
       // get document ::collection::count before opening it
-      int nOldCount; nOldCount = get_document_count();
+      ::i32 nOldCount; nOldCount = get_document_count();
 
       // open the document, then print it.
       pDoc = psystem->open_document_file(get_app(), cmdInfo.m_payloadFile);
@@ -808,15 +808,15 @@ namespace user
 
       ::user::document * pOpenDocument = nullptr;
 
-      /*char szPath[_MAX_PATH];
+      /*::i8 szPath[_MAX_PATH];
       ASSERT(lstrlen(varFileName) < _countof(szPath));
-      char szTemp[_MAX_PATH];
+      ::i8 szTemp[_MAX_PATH];
       if (scopedstrFileName[0] == '\"')
 
       ++pszFileName;
 
       ::aura::tcsncpy_s(szTemp, _countof(szTemp), varFileName, _TRUNCATE);
-      char * pszLast = _tcsrchr(szTemp, '\"');
+      char_pointer pszLast = _tcsrchr(szTemp, '\"');
 
       if (scopedstrLast != nullptr)
 
@@ -830,7 +830,7 @@ namespace user
       // length < _MAX_PATH
       //}
 
-      /*   char szLinkName[_MAX_PATH];
+      /*   ::i8 szLinkName[_MAX_PATH];
       if (::aura::ResolveShortcut(psystem->m_puiMain, szPath, szLinkName, _MAX_PATH))
       ::aura::tcscpy_s(szPath, _countof(szPath), szLinkName);
       */
@@ -934,7 +934,7 @@ namespace user
          try
          {
 
-            pimpactsystem.defer_destroy();
+            pimpactsystem.defer_destroy_and_release();
 
          }
          catch (...)

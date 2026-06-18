@@ -89,7 +89,7 @@ public:
    }
 
 
-   text_reader & operator >>(char & ch)
+   text_reader & operator >>(::i8 & ch)
    {
 
       ch = *m_psz++;
@@ -99,10 +99,10 @@ public:
    }
 
 
-   text_reader & operator >>(unsigned char & uch)
+   text_reader & operator >>(::u8 & uch)
    {
 
-      uch = *((unsigned char *)m_psz);
+      uch = *((::u8 *)m_psz);
 
       m_psz++;
 
@@ -127,7 +127,7 @@ public:
 #endif
 
 
-   //text_reader & operator >>(char & i)
+   //text_reader & operator >>(::i8 & i)
    //{
 
    //   i = *m_psz++;
@@ -139,7 +139,7 @@ public:
 
 
 
-   text_reader & operator >>(short & sh)
+   text_reader & operator >>(::i16 & sh)
    {
 
       read_integer(sh, m_psz);
@@ -149,7 +149,7 @@ public:
    }
 
 
-   text_reader & operator >>(unsigned short & u)
+   text_reader & operator >>(::u16 & u)
    {
 
       read_natural(u, m_psz);
@@ -159,7 +159,7 @@ public:
    }
 
 
-   text_reader & operator >>(int & i)
+   text_reader & operator >>(::i32 & i)
    {
 
       read_integer(i, m_psz);
@@ -169,7 +169,7 @@ public:
    }
 
 
-   text_reader & operator >>(unsigned int & u)
+   text_reader & operator >>(::u32 & u)
    {
 
       read_natural(u, m_psz);
@@ -179,7 +179,7 @@ public:
    }
 
 
-   text_reader & operator >>(long long & i)
+   text_reader & operator >>(::i64 & i)
    {
 
       read_integer(i, m_psz);
@@ -189,7 +189,7 @@ public:
    }
 
 
-   text_reader & operator >>(unsigned long long & u)
+   text_reader & operator >>(::u64 & u)
    {
 
       read_natural(u, m_psz);
@@ -199,20 +199,20 @@ public:
    }
 
 
-   text_reader & operator >>(float & f)
+   text_reader & operator >>(::f32 & f)
    {
 
-      read_float(f, m_psz);
+      read_f32(f, m_psz);
 
       return *this;
 
    }
 
 
-   text_reader & operator >>(double & d)
+   text_reader & operator >>(::f64 & d)
    {
 
-      read_float(d, m_psz);
+      read_f32(d, m_psz);
 
       return *this;
 
@@ -327,7 +327,7 @@ public:
 
       auto pszStart = psz;
 
-      auto l = strtol(psz, (char **) & psz, 10);
+      auto l = strtol(psz, (char_pointer *) & psz, 10);
 
       if (psz == pszStart || l < 0)
       {
@@ -349,7 +349,7 @@ public:
 
       auto pszStart = psz;
 
-      t = (TYPE)strtol(psz, (char **) & psz, 10);
+      t = (TYPE)strtol(psz, (char_pointer *) & psz, 10);
 
       if (psz == pszStart)
       {
@@ -362,19 +362,19 @@ public:
 
 
    template < typename TYPE >
-   void read_float(TYPE & t, const_char_pointer &psz)
+   void read_f32(TYPE & t, const_char_pointer &psz)
    {
 
       skip_whitespace(psz);
 
       auto pszStart = psz;
 
-      t = (TYPE)strtod(psz, (char **) & psz);
+      t = (TYPE)strtod(psz, (char_pointer *) & psz);
 
       if (psz == pszStart)
       {
 
-         throw parsing_exception("cannot text_reader::read_float from \"" + ellipsis(pszStart, 32) + "\"");
+         throw parsing_exception("cannot text_reader::read_f32 from \"" + ellipsis(pszStart, 32) + "\"");
 
       }
 

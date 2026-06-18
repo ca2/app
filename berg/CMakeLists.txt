@@ -45,7 +45,7 @@ list(APPEND library_source
    platform/system.cpp
    platform/system.h
    user/experience/_.h
-   user/experience/_constant.h
+   #user/experience/_constant.h
    #user/experience/_experience.h
    user/experience/button.cpp
    user/experience/button.h
@@ -76,6 +76,8 @@ list(APPEND library_source
    user/form/update_hint.h
    user/form/impact.cpp
    user/form/impact.h
+   user/impact/about_the_operating_system_impact.cpp
+   user/impact/about_the_operating_system_impact.h
    user/menu/_.h
    #user/menu/_menu.h
    user/menu/button.cpp

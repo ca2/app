@@ -5,7 +5,7 @@
 #include "set_node.h"
 
 
-template < typename ITEM, const int DEFAULT_HASH_TABLE_SIZE = 17 >
+template < typename ITEM, const ::i32 DEFAULT_HASH_TABLE_SIZE = 17 >
 class set_dynamic_hash_table
 {
 public:
@@ -22,7 +22,7 @@ public:
 
    BASE_NODE *          m_pHashDefault[DEFAULT_HASH_TABLE_SIZE];
    BASE_NODE **         m_ppHash;
-   unsigned int         m_nHashTableSize;
+   ::u32         m_nHashTableSize;
 
 
    set_dynamic_hash_table()
@@ -35,7 +35,7 @@ public:
    }
 
 
-   unsigned int GetHashTableSize() const
+   ::u32 GetHashTableSize() const
    {
 
       return m_nHashTableSize;
@@ -43,7 +43,7 @@ public:
    }
 
 
-   void InitHashTable(unsigned int nHashSize, bool bAllocNow = true)
+   void InitHashTable(::u32 nHashSize, bool bAllocNow = true)
    {
 
       if (nHashSize <= 0)
@@ -107,7 +107,7 @@ public:
 };
 
 
-template < int m_nHashTableSize, typename PAYLOAD >
+template < ::i32 m_nHashTableSize, typename PAYLOAD >
 class set_fixed_hash_table
 {
 public:
@@ -129,7 +129,7 @@ public:
    }
 
 
-   unsigned int GetHashTableSize() const
+   ::u32 GetHashTableSize() const
    {
 
       return m_nHashTableSize;
@@ -137,7 +137,7 @@ public:
    }
 
 
-   void InitHashTable(unsigned int hashSize, bool bAllocNow = true) {  }
+   void InitHashTable(::u32 hashSize, bool bAllocNow = true) {  }
 
 
    void erase_all()

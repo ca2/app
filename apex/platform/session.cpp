@@ -15,6 +15,8 @@
 #include "acme/platform/system_setup.h"
 #include "acme/prototype/data/listener.h"
 #include "acme/prototype/text/context.h"
+#include "acme/user/user/keyboard_state.h"
+#include "acme/user/user/mouse.h"
 #include "apex/filesystem/fs/fs.h"
 #include "apex/filesystem/fs/ifs.h"
 #include "apex/filesystem/fs/link.h"
@@ -56,7 +58,7 @@ void defer_term_ui();
 //CLASS_DECL_ACME bool is_verbose();
 
 
-int_bool point_is_window_origin(::int_point ptHitTest, ::windowing::window * pwindowExclude, int iMargin);
+::i32_bool point_is_window_origin(::i32_point ptHitTest, ::windowing::window * pwindowExclude, ::i32 iMargin);
 
 #ifdef UNIVERSAL_WINDOWS
 
@@ -76,6 +78,8 @@ namespace apex
    session::session()
    {
 
+
+      ::system()->factory()->add_factory_item<::user::keyboard_state>();
       //m_papexsession = this;
 
       //m_bSimpleMessageLoop = false;
@@ -149,6 +153,8 @@ namespace apex
          m_bSystemSynchronizedCursor   = psystem->m_bSystemSynchronizedCursor;
 
       }
+
+      initialize_keyboard_state();
 
       //m_pappCurrent                    = nullptr;
 
@@ -247,7 +253,7 @@ namespace apex
    //}
    
 
-   //index session::get_main_monitor(::int_rectangle* prectangle)
+   //index session::get_main_monitor(::i32_rectangle* prectangle)
    //{
 
    //   return -1;
@@ -263,7 +269,7 @@ namespace apex
    //}
 
    
-   //bool  session::get_monitor_rectangle(::collection::index iMonitor, ::int_rectangle* prectangle)
+   //bool  session::get_monitor_rectangle(::collection::index iMonitor, ::i32_rectangle* prectangle)
    //{
 
    //   return false;
@@ -279,7 +285,7 @@ namespace apex
    //}
 
 
-   //bool  session::get_desk_monitor_rect(::collection::index iMonitor, ::int_rectangle* prectangle)
+   //bool  session::get_desk_monitor_rect(::collection::index iMonitor, ::i32_rectangle* prectangle)
    //{
 
    //   return false;
@@ -287,7 +293,7 @@ namespace apex
    //}
 
 
-   //index session::get_main_workspace(::int_rectangle* prectangle)
+   //index session::get_main_workspace(::i32_rectangle* prectangle)
    //{
 
    //   return -1;
@@ -303,7 +309,7 @@ namespace apex
    //}
 
 
-   //bool  session::get_workspace_rectangle(::collection::index iWorkspace, ::int_rectangle* prectangle)
+   //bool  session::get_workspace_rectangle(::collection::index iWorkspace, ::i32_rectangle* prectangle)
    //{
 
    //   return false;
@@ -319,7 +325,7 @@ namespace apex
    //}
   
    //
-   //bool  session::get_desk_workspace_rect(::collection::index iWorkspace, ::int_rectangle* prectangle)
+   //bool  session::get_desk_workspace_rect(::collection::index iWorkspace, ::i32_rectangle* prectangle)
    //{
 
    //   return false;
@@ -343,7 +349,7 @@ namespace apex
    //}
 
 
-   //bool session::workspace_to_monitor(::int_rectangle* prectangle, ::collection::index iMonitor, ::collection::index iWorkspace)
+   //bool session::workspace_to_monitor(::i32_rectangle* prectangle, ::collection::index iMonitor, ::collection::index iWorkspace)
    //{
 
    //   return false;
@@ -351,7 +357,7 @@ namespace apex
    //}
 
 
-   //bool session::monitor_to_workspace(::int_rectangle* prectangle, ::collection::index iWorkspace, ::collection::index iMonitor)
+   //bool session::monitor_to_workspace(::i32_rectangle* prectangle, ::collection::index iWorkspace, ::collection::index iMonitor)
    //{
 
    //   return false;
@@ -359,7 +365,7 @@ namespace apex
    //}
 
 
-   //bool session::workspace_to_monitor(::int_rectangle* prectangle)
+   //bool session::workspace_to_monitor(::i32_rectangle* prectangle)
    //{
 
    //   return false;
@@ -367,7 +373,7 @@ namespace apex
    //}
 
 
-   //bool session::monitor_to_workspace(::int_rectangle* prectangle)
+   //bool session::monitor_to_workspace(::i32_rectangle* prectangle)
    //{
 
    //   return false;
@@ -375,7 +381,7 @@ namespace apex
    //}
 
 
-   //void session::get_monitor(int_rectangle_array_base& rectaMonitor, int_rectangle_array_base& rectaIntersect, const ::int_rectangle& rectangle)
+   //void session::get_monitor(i32_rectangle_array_base& rectaMonitor, i32_rectangle_array_base& rectaIntersect, const ::i32_rectangle& rectangle)
    //{
 
 
@@ -405,10 +411,10 @@ namespace apex
 
 
 
-   //int_size session::get_window_minimum_size()
+   //i32_size session::get_window_minimum_size()
    //{
 
-   //   return int_size(300, 300);
+   //   return i32_size(300, 300);
 
    //}
 
@@ -597,6 +603,40 @@ class ::fs::data * session::fs()
       ::platform::session::on_request(prequest);
 
    }
+
+   
+   bool session::on_ui_mouse_message(::user::mouse *pmouse)
+   {
+
+      auto emessage = pmouse->m_eusermessage;
+      if (emessage == ::user::e_message_left_button_down)
+      {
+         keyboard_state().set_left_button_pressed();
+      }
+      else if (emessage == ::user::e_message_right_button_down)
+      {
+         keyboard_state().set_right_button_pressed();
+      }
+      else if (emessage == ::user::e_message_middle_button_down)
+      {
+         keyboard_state().set_middle_button_pressed();
+      }
+      else if (emessage == ::user::e_message_left_button_up)
+      {
+         keyboard_state().clear_left_button_pressed();
+      }
+      else if (emessage == ::user::e_message_right_button_up)
+      {
+         keyboard_state().clear_right_button_pressed();
+      }
+      else if (emessage == ::user::e_message_middle_button_up)
+      {
+         keyboard_state().clear_middle_button_pressed();
+      }
+
+      return false;
+   }
+
 
 
    bool session::open_by_file_extension(const ::scoped_string & scopedstrPathName, ::request * prequest)
@@ -820,230 +860,149 @@ class ::fs::data * session::fs()
    }
 
 
-   ::user::e_key session::key_modifiers()
+   /*
+   ::user::e_button_state session::button_state()
    {
 
-      ::user::e_key ekeyModifiers = ::user::e_key_none;
-
-      if (is_key_pressed(::user::e_key_left_shift))
-      {
-
-         ekeyModifiers |= ::user::e_key_left_shift;
-
-      }
-
-      if (is_key_pressed(::user::e_key_right_shift))
-      {
-
-         ekeyModifiers |= ::user::e_key_right_shift;
-
-      }
-
-      if (is_key_pressed(::user::e_key_left_control))
-      {
-
-         ekeyModifiers |= ::user::e_key_left_control;
-
-//#if !defined(__APPLE__)
-//
-//         ekeyModifiers |= ::user::e_key_system_left_command;
-//
-//#endif
-
-      }
-
-      if (is_key_pressed(::user::e_key_right_control))
-      {
-
-         ekeyModifiers |= ::user::e_key_right_control;
-
-//#if !defined(__APPLE__)
-//
-//         ekeyModifiers |= ::user::e_key_system_right_command;
-//
-//#endif
-
-      }
-
-      if (is_key_pressed(::user::e_key_left_alt))
-      {
-
-         ekeyModifiers |= ::user::e_key_left_alt;
-
-      }
-
-      if (is_key_pressed(::user::e_key_right_alt))
-      {
-
-         ekeyModifiers |= ::user::e_key_right_alt;
-
-      }
-
-      if (is_key_pressed(::user::e_key_left_command))
-      {
-
-         ekeyModifiers |= ::user::e_key_left_command;
-
-#if defined(__APPLE__)
-
-         ekeyModifiers |= ::user::e_key_system_left_command;
-
-#endif
-
-      }
-
-      if (is_key_pressed(::user::e_key_right_command))
-      {
-
-         ekeyModifiers |= ::user::e_key_right_command;
-
-#if defined(__APPLE__)
-
-         ekeyModifiers |= ::user::e_key_system_right_command;
-
-#endif
-
-      }
+      ::user::e_button_state ebuttontate = ::key::e_state_none;
 
       if (is_key_pressed(::user::e_key_left_button))
       {
 
-         ekeyModifiers |= ::user::e_key_left_button;
-
+         ebuttontate |= ::user::e_key_state_left_button;
       }
 
       if (is_key_pressed(::user::e_key_middle_button))
       {
 
-         ekeyModifiers |= ::user::e_key_middle_button;
-
+         ebuttontate |= ::user::e_key_state_middle_button;
       }
 
       if (is_key_pressed(::user::e_key_right_button))
       {
 
-         ekeyModifiers |= ::user::e_key_right_button;
-
+         ebuttontate |= ::user::e_key_state_right_button;
       }
 
-      return ekeyModifiers;
+   
+      return ebuttontate;
 
-   }
-
-
-   bool session::is_key_pressed(::user::enum_key ekey)
-   {
-
-      {
-
-         bool bPressed = false;
-
-         if (node()->is_key_pressed(&bPressed, ekey))
-         {
-
-            return bPressed;
-
-         }
-
-      }
-
-      _synchronous_lock synchronouslock(this->synchronization(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
-
-      if (!m_pmapKeyPressed)
-      {
-
-         construct_newø(m_pmapKeyPressed);
-
-      }
-
-      bool bPressed = false;
-
-      if (ekey == ::user::e_key_shift)
-      {
-
-         m_pmapKeyPressed->find(::user::e_key_shift, bPressed);
-         if (bPressed)
-            goto ret;
-         m_pmapKeyPressed->find(::user::e_key_left_shift, bPressed);
-         if (bPressed)
-            goto ret;
-         m_pmapKeyPressed->find(::user::e_key_right_shift, bPressed);
-         if (bPressed)
-            goto ret;
-      }
-      else if (ekey == ::user::e_key_command
-#ifdef __APPLE__
-         || ekey == ::user::e_key_system_command
-#endif
-         )
-      {
-         m_pmapKeyPressed->find(::user::e_key_command, bPressed);
-         if (bPressed)
-            goto ret;
-         m_pmapKeyPressed->find(::user::e_key_left_command, bPressed);
-         if (bPressed)
-            goto ret;
-         m_pmapKeyPressed->find(::user::e_key_right_command, bPressed);
-         if (bPressed)
-            goto ret;
-      }
-      else if (ekey == ::user::e_key_control
-#ifndef __APPLE__
-         || ekey == ::user::e_key_system_command
-#endif
-         )
-      {
-         m_pmapKeyPressed->find(::user::e_key_control, bPressed);
-         if (bPressed)
-            goto ret;
-         m_pmapKeyPressed->find(::user::e_key_left_control, bPressed);
-         if (bPressed)
-            goto ret;
-         m_pmapKeyPressed->find(::user::e_key_right_control, bPressed);
-         if (bPressed)
-            goto ret;
-      }
-      else if (ekey == ::user::e_key_alt)
-      {
-         m_pmapKeyPressed->find(::user::e_key_alt, bPressed);
-         if (bPressed)
-            goto ret;
-         m_pmapKeyPressed->find(::user::e_key_left_alt, bPressed);
-         if (bPressed)
-            goto ret;
-         m_pmapKeyPressed->find(::user::e_key_right_alt, bPressed);
-         if (bPressed)
-            goto ret;
-      }
-      else
-      {
-
-         m_pmapKeyPressed->find(ekey, bPressed);
-
-      }
-
-ret:
-
-      return bPressed;
-
-   }
+   }*/
 
 
-   void session::set_key_pressed(::user::enum_key ekey, bool bPressed)
-   {
-
-      _synchronous_lock synchronouslock(this->synchronization(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
-
-      if (!m_pmapKeyPressed)
-      {
-
-         construct_newø(m_pmapKeyPressed);
-
-      }
-
-      (*m_pmapKeyPressed)[ekey] = bPressed;
-
-   }
+//   bool keyboard_state::is_key_pressed(const ::user::e_key & ekey)
+//   {
+//
+//      {
+//
+//         bool bPressed = false;
+//
+//         if (node()->is_key_pressed(&bPressed, ekey))
+//         {
+//
+//            return bPressed;
+//
+//         }
+//
+//      }
+//
+//      _synchronous_lock synchronouslock(this->synchronization(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
+//
+//      if (!m_pmapKeyPressed)
+//      {
+//
+//         construct_newø(m_pmapKeyPressed);
+//
+//      }
+//
+//      bool bPressed = false;
+//
+//      if (ekey == ::user::e_key_shift)
+//      {
+//
+//         m_pmapKeyPressed->find(::user::e_key_shift, bPressed);
+//         if (bPressed)
+//            goto ret;
+//         m_pmapKeyPressed->find(::user::e_key_left_shift, bPressed);
+//         if (bPressed)
+//            goto ret;
+//         m_pmapKeyPressed->find(::user::e_key_right_shift, bPressed);
+//         if (bPressed)
+//            goto ret;
+//      }
+//      else if (ekey == ::user::e_key_command
+//#ifdef __APPLE__
+//         || ekey == ::user::e_key_system_command
+//#endif
+//         )
+//      {
+//         m_pmapKeyPressed->find(::user::e_key_command, bPressed);
+//         if (bPressed)
+//            goto ret;
+//         m_pmapKeyPressed->find(::user::e_key_left_command, bPressed);
+//         if (bPressed)
+//            goto ret;
+//         m_pmapKeyPressed->find(::user::e_key_right_command, bPressed);
+//         if (bPressed)
+//            goto ret;
+//      }
+//      else if (ekey == ::user::e_key_control
+//#ifndef __APPLE__
+//         || ekey == ::user::e_key_system_command
+//#endif
+//         )
+//      {
+//         m_pmapKeyPressed->find(::user::e_key_control, bPressed);
+//         if (bPressed)
+//            goto ret;
+//         m_pmapKeyPressed->find(::user::e_key_left_control, bPressed);
+//         if (bPressed)
+//            goto ret;
+//         m_pmapKeyPressed->find(::user::e_key_right_control, bPressed);
+//         if (bPressed)
+//            goto ret;
+//      }
+//      else if (ekey == ::user::e_key_alt)
+//      {
+//         m_pmapKeyPressed->find(::user::e_key_alt, bPressed);
+//         if (bPressed)
+//            goto ret;
+//         m_pmapKeyPressed->find(::user::e_key_left_alt, bPressed);
+//         if (bPressed)
+//            goto ret;
+//         m_pmapKeyPressed->find(::user::e_key_right_alt, bPressed);
+//         if (bPressed)
+//            goto ret;
+//      }
+//      else
+//      {
+//
+//         m_pmapKeyPressed->find(ekey, bPressed);
+//
+//      }
+//
+//ret:
+//
+//      return bPressed;
+//
+//   }
+//
+//
+//   void session::set_key_pressed(const ::user::e_key & ekey, bool bPressed)
+//   {
+//
+//      _synchronous_lock synchronouslock(this->synchronization(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
+//
+//      if (!m_pmapKeyPressed)
+//      {
+//
+//         construct_newø(m_pmapKeyPressed);
+//
+//      }
+//
+//      (*m_pmapKeyPressed)[ekey] = bPressed;
+//
+//   }
 
 
    void session::init1()
@@ -1230,7 +1189,7 @@ ret:
    }
 
 
-::particle * session::defer_initialize_host_window(const ::int_rectangle * lpcrect)
+::particle * session::defer_initialize_host_window(const ::i32_rectangle * lpcrect)
    {
 
    return nullptr;
@@ -1323,25 +1282,12 @@ ret:
    void session::term()
    {
 
-      try
-      {
-
-         m_pmapKeyPressed.release();
-
-      }
-      catch (...)
-      {
-
-         //m_result.add(error_failed);
-
-      }
-
       ::platform::session::term();
 
    }
 
 
-   unsigned int session::get_Long_PhRESSing_time()
+   ::u32 session::get_Long_PhRESSing_time()
    {
 
       return m_dwLongPhRESSingTime;
@@ -1895,7 +1841,7 @@ namespace apex
 //   }
 
 
-   //void session::_001OnDefaultTabPaneDrawTitle(::user::tab_pane& pane, ::user::tab* ptab, ::draw2d::graphics_pointer & pgraphics, const ::int_rectangle& rectangle, ::draw2d::brush_pointer& pbrushText)
+   //void session::_001OnDefaultTabPaneDrawTitle(::user::tab_pane& pane, ::user::tab* ptab, ::draw2d::graphics_pointer & pgraphics, const ::i32_rectangle& rectangle, ::draw2d::brush_pointer& pbrushText)
    //{
 
    //   string_array_base& straTitle = pane.m_straTitle;
@@ -1911,17 +1857,17 @@ namespace apex
    //   else
    //   {
 
-   //      ::int_rectangle rectangleText(rectangle);
+   //      ::i32_rectangle rectangleText(rectangle);
 
 
    //      ::write_text::font_pointer pfont;
    //      font = pgraphics->get_current_font();
-   //      int_size sSep = ptab->get_data()->m_sizeSep;
-   //      ::int_rectangle rectangleEmp;
+   //      i32_size sSep = ptab->get_data()->m_sizeSep;
+   //      ::i32_rectangle rectangleEmp;
    //      for (::collection::index i = 0; i < straTitle.get_size(); i++)
    //      {
    //         string str = straTitle[i];
-   //         int_size s = pane.m_sizeaText[i];
+   //         i32_size s = pane.m_sizeaText[i];
    //         rectangleText.right = rectangleText.left + s.cx;
    //         pgraphics->_DrawText(str, rectangleTexte_bottom_left, e_draw_text_no_prefix);
    //         rectangleText.left += s.cx;
@@ -2112,7 +2058,7 @@ namespace apex
       ::platform::application_container::m_applicationa.erase_all();
 
       //::platform::context::destroy();
-
+::user::keyboard_state::destroy();
 
       ::task::destroy();
       //return success;

@@ -1071,14 +1071,14 @@ namespace wave
 
    }
 
-   void player::player_set_volume(double dVolume)
+   void player::player_set_volume(::f64 dVolume)
    {
 
 
    }
 
 
-   double player::player_get_volume()
+   ::f64 player::player_get_volume()
    {
 
       return 1.0;
@@ -1108,7 +1108,7 @@ namespace wave
 
    //}
 
-   unsigned long long player::player_get_frame_byte_count()
+   ::u64 player::player_get_frame_byte_count()
    {
 
       return 0;

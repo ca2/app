@@ -5,7 +5,7 @@
 
 //
 //
-//::collection::count get_mem_info(int** ppiUse, const_char_pointer ** ppszFile, const_char_pointer ** ppszCallStack, unsigned int** ppuiLine, memsize** ppsize);
+//::collection::count get_mem_info(::i32** ppiUse, const_char_pointer ** ppszFile, const_char_pointer ** ppszCallStack, ::u32** ppuiLine, memsize** ppsize);
 //
 //#if !defined(MCHECK) && !defined(__VLD) && !defined(__MCRTDBG) && MEMDLEAK
 //
@@ -106,7 +106,7 @@
 //}
 //
 //
-//void * aligned_memory_allocate_debug(memsize size, int nBlockUse, const_char_pointer szFileName, int nLine, memsize align)
+//void * aligned_memory_allocate_debug(memsize size, ::i32 nBlockUse, const_char_pointer szFileName, ::i32 nLine, memsize align)
 //{
 //
 //   void * p;
@@ -123,7 +123,7 @@
 //}
 //
 //
-//void * unaligned_memory_allocate_debug(memsize size, int nBlockUse, const_char_pointer szFileName, int nLine)
+//void * unaligned_memory_allocate_debug(memsize size, ::i32 nBlockUse, const_char_pointer szFileName, ::i32 nLine)
 //{
 //
 //   void * p;
@@ -183,7 +183,7 @@
 //}
 //
 //
-//void * memory_allocate_debug(memsize nSize, int nBlockUse, const_char_pointer szFileName, int nLine)
+//void * memory_allocate_debug(memsize nSize, ::i32 nBlockUse, const_char_pointer szFileName, ::i32 nLine)
 //{
 //
 //   return unaligned_memory_allocate_debug(nSize, nBlockUse, szFileName, nLine);
@@ -198,7 +198,7 @@
 //
 //}
 //
-//void * memory_reallocate_debug(void * pmemory, memsize size, int nBlockUse, const_char_pointer szFileName, int nLine)
+//void * memory_reallocate_debug(void * pmemory, memsize size, ::i32 nBlockUse, const_char_pointer szFileName, ::i32 nLine)
 //{
 //
 //   memsize nAllocSize = size + sizeof(memdleak_block);
@@ -253,7 +253,7 @@
 //   if (nAllocSize > pblock->m_size)
 //   {
 //
-//      zero(&((unsigned char*)pblock)[pblock->m_size], nAllocSize - pblock->m_size);
+//      zero(&((::u8*)pblock)[pblock->m_size], nAllocSize - pblock->m_size);
 //
 //   }
 //   //pblock->m_iBlockUse = nBlockUse;
@@ -345,7 +345,7 @@
 //}
 //
 //
-//void memory_free_debug(void * pmemory, int iBlockType)
+//void memory_free_debug(void * pmemory, ::i32 iBlockType)
 //{
 //
 //   memdleak_block * pblock = &((memdleak_block *)pmemory)[-1];
@@ -391,7 +391,7 @@
 //}
 //
 //
-//memsize memory_size_debug(void * pmemory, int iBlockType)
+//memsize memory_size_debug(void * pmemory, ::i32 iBlockType)
 //{
 //
 //
@@ -444,7 +444,7 @@
 //}
 //
 //
-//void* _memory_allocate_debug(memsize nSize, int nBlockUse, const_char_pointer szFileName, int nLine)
+//void* _memory_allocate_debug(memsize nSize, ::i32 nBlockUse, const_char_pointer szFileName, ::i32 nLine)
 //{
 //
 //   // return unaligned_memory_allocate_debug(nSize, nBlockUse, szFileName, nLine);
@@ -462,7 +462,7 @@
 //}
 //
 //
-//void* _memory_reallocate_debug(void* pmemory, memsize size, int nBlockUse, const_char_pointer szFileName, int nLine)
+//void* _memory_reallocate_debug(void* pmemory, memsize size, ::i32 nBlockUse, const_char_pointer szFileName, ::i32 nLine)
 //{
 //
 //   if (pmemory == nullptr)
@@ -481,11 +481,11 @@
 //
 //   }
 //
-//   unsigned char blockuse = pheapmemory->m_blockuse;
+//   ::u8 blockuse = pheapmemory->m_blockuse;
 //
 //   memsize sizeOld = pheapmemory->m_size;
 //
-//   unsigned char align = pheapmemory->m_align;
+//   ::u8 align = pheapmemory->m_align;
 //
 //   void* p = heap_memory_base_get(pmemory);
 //
@@ -615,7 +615,7 @@
 //}
 //
 //
-//void _memory_free_debug(void* pmemory, int iBlockType)
+//void _memory_free_debug(void* pmemory, ::i32 iBlockType)
 //{
 //
 //   system_heap_free(pmemory);
@@ -631,7 +631,7 @@
 //}
 //
 //
-//memsize _memory_size_debug(void* pmemory, int iBlockType)
+//memsize _memory_size_debug(void* pmemory, ::i32 iBlockType)
 //{
 //
 //#ifdef WINDOWS
@@ -645,14 +645,14 @@
 //#endif
 //
 //}
-//CLASS_DECL_ACME int  memdleak_enabled()
+//CLASS_DECL_ACME ::i32  memdleak_enabled()
 //{
 //
 //   return global_memdleak_enabled() && (t_iMemdleak == (iptr) 1 || t_iMemdleak == (iptr)0);
 //
 //}
 //
-//CLASS_DECL_ACME void memdleak_enable(int enable)
+//CLASS_DECL_ACME void memdleak_enable(::i32 enable)
 //{
 //
 //   if (!enable)
@@ -681,12 +681,12 @@
 //{
 //public:
 //
-//   int 	m_iUse;
+//   ::i32 	m_iUse;
 //   string 	m_strFile;
-//   int		m_iLine;
+//   ::i32		m_iLine;
 //
-//   int		m_iCount;
-//   long long     m_iSize;
+//   ::i32		m_iCount;
+//   ::i64     m_iSize;
 //
 //};
 //
@@ -699,10 +699,10 @@
 //
 //   string str;
 //
-//   int * piUse = nullptr;
+//   ::i32 * piUse = nullptr;
 //   const_char_pointer *pszFile = nullptr;
 //   const_char_pointer *pszCallStack = nullptr;
-//   unsigned int * puiLine = nullptr;
+//   ::u32 * puiLine = nullptr;
 //   memsize * psize = nullptr;
 //
 //   try
@@ -712,10 +712,10 @@
 //
 //      memblocka bla;
 //
-//      int j;
+//      ::i32 j;
 //
 //
-//      for (int i = 0; i < c; i++)
+//      for (::i32 i = 0; i < c; i++)
 //      {
 //         for (j = 0; j < bla.get_size(); j++)
 //         {
@@ -741,18 +741,18 @@
 //      }
 //
 //
-//      ::int_array_base ia;
+//      ::i32_array_base ia;
 //
 //      ia.set_size(bla.get_count());
 //
-//      for (int i = 0; i < bla.get_count(); i++)
+//      for (::i32 i = 0; i < bla.get_count(); i++)
 //      {
 //         ia[i] = i;
 //      }
 //
-//      int s;
+//      ::i32 s;
 //
-//      for (int i = 0; i < bla.get_count(); i++)
+//      for (::i32 i = 0; i < bla.get_count(); i++)
 //      {
 //         for (j = i + 1; j < bla.get_count(); j++)
 //         {
@@ -786,7 +786,7 @@
 //      print("</tr>");
 //
 //
-//      for (int i = 0; i < bla.get_count(); i++)
+//      for (::i32 i = 0; i < bla.get_count(); i++)
 //      {
 //         if ((i % 2) == 0)
 //         {
@@ -843,19 +843,19 @@
 //
 //   memdleak_block * pblock = s_pmemdleakList;
 //
-//   char sz[24];
-//   int i = 0;
+//   ::i8 sz[24];
+//   ::i32 i = 0;
 //   while (pblock != nullptr)
 //   {
 //      if (pblock->m_iStack > 0)
 //      {
 //         informationf("----> ");
 //         informationf("--------------------------------------------------------\n");
-//         ansi_from_unsigned_long_long(sz, ++i, 10);
+//         ansi_from_u64(sz, ++i, 10);
 //         informationf("Index : ");
 //         information(sz);
 //         informationf("----> ");
-//         ansi_from_unsigned_long_long(sz, pblock->m_size, 10);
+//         ansi_from_u64(sz, pblock->m_size, 10);
 //         informationf("Size : ");
 //         information(sz);
 //         informationf("----> ");
@@ -869,7 +869,7 @@
 //   }
 //   informationf("----> ");
 //   informationf("--------------------------------------------------------\n");
-//   ansi_from_unsigned_long_long(sz, i, 10);
+//   ansi_from_u64(sz, i, 10);
 //   informationf("----> Found ");
 //   information(sz);
 //   informationf(" memory leaks.");
@@ -910,7 +910,7 @@
 //#if MEMDLEAK
 //
 //
-//::collection::count get_mem_info(int** ppiUse, const_char_pointer ** ppszFile, const_char_pointer ** ppszCallStack, unsigned int** ppuiLine, memsize** ppsize)
+//::collection::count get_mem_info(::i32** ppiUse, const_char_pointer ** ppszFile, const_char_pointer ** ppszCallStack, ::u32** ppuiLine, memsize** ppsize)
 //{
 //
 //   //throw ::exception(error_failed, "plex_heap_alloc_array::get_mem_info member function is available only with \"memdleak\" builds - MEMDLEAK defined");
@@ -932,10 +932,10 @@
 //   }
 //
 //
-//   int* piUse = (int*)malloc(sizeof(int) * ca);
+//   ::i32* piUse = (::i32*)malloc(sizeof(::i32) * ca);
 //   const_char_pointer *pszFile = (const_char_pointer *)malloc(sizeof(const_char_pointer )* ca);
 //   const_char_pointer *pszCallStack = (const_char_pointer *)malloc(sizeof(const_char_pointer )* ca);
-//   unsigned int* puiLine = (unsigned int*)malloc(sizeof(unsigned int) * ca);
+//   ::u32* puiLine = (::u32*)malloc(sizeof(::u32) * ca);
 //   memsize* psize = (memsize*)malloc(sizeof(memsize) * ca);
 //
 //   ::collection::index i = 0;

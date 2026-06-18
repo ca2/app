@@ -16,17 +16,17 @@ namespace userstack
 
       ::pointer<pane_impact>   m_ppaneimpact;
 
-      int m_iV;
-      int m_iVH;
-      int m_iVW;
+      ::i32 m_iV;
+      ::i32 m_iVH;
+      ::i32 m_iVW;
       ::image::image_pointer m_pimageV;
-      int m_i_veriwell;
-      int m_i_veriwell_h;
-      int m_i_veriwell_w;
+      ::i32 m_i_veriwell;
+      ::i32 m_i_veriwell_h;
+      ::i32 m_i_veriwell_w;
       ::image::image_pointer m_pimage_veriwell;
-      int m_i_winactionarea;
-      int m_i_winactionarea_h;
-      int m_i_winactionarea_w;
+      ::i32 m_i_winactionarea;
+      ::i32 m_i_winactionarea_h;
+      ::i32 m_i_winactionarea_w;
       ::image::image_pointer m_pimage_winactionarea;
 
 
@@ -43,7 +43,7 @@ namespace userstack
       ::file::listing_base            m_straImagePath;
       string                     m_strCurrentImagePath;
       bool                       m_bDestroy;
-      int_rectangle_array_base                 m_rectangleaUpdate;
+      i32_rectangle_array_base                 m_rectangleaUpdate;
       class ::time                       m_timeLastUpdate;
       ::pointer < ::mutex >                      m_pmutexDraw;
 
@@ -68,25 +68,25 @@ namespace userstack
 
       ::user::document * get_document();
 
-      void GetAreaThumbRect(::int_rectangle * lprect, int iArea);
+      void GetAreaThumbRect(::i32_rectangle * lprect, ::i32 iArea);
 
-      ::item_pointer on_hit_test(const ::int_point & point, ::user::e_zorder ezorder) override;
+      ::item_pointer on_hit_test(const ::i32_point & point, ::user::e_zorder ezorder) override;
 
       DECLARE_MESSAGE_HANDLER(on_message_destroy);
       DECLARE_MESSAGE_HANDLER(_001OnPaint);
       DECLARE_MESSAGE_HANDLER(on_message_create);
       DECLARE_MESSAGE_HANDLER(on_message_context_menu);
       //DECLARE_MESSAGE_HANDLER(on_message_set_cursor);
-      void on_timer(::timer * ptimer) override;
+      void operator()(::timer * ptimer) override;
       DECLARE_MESSAGE_HANDLER(on_message_left_button_up);
 
-      virtual void _001OnTabClick(int iTab);
+      virtual void _001OnTabClick(::i32 iTab);
 
       void check_apps();
 
-      void mt_show_window(::acme::windowing::window * pacmewindowingwindow, int iShow);
+      void mt_show_window(::acme::windowing::window * pacmewindowingwindow, ::i32 iShow);
 
-      static unsigned int c_cdecl ThreadProcShowWindow(LPVOID lpparam);
+      static ::u32 c_cdecl ThreadProcShowWindow(LPVOID lpparam);
 
       void _000OnMouse(::message::mouse * pmouse) override;
 

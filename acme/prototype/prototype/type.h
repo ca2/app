@@ -166,7 +166,7 @@ public:
 
    type_custom_id();
    type_custom_id(const_char_pointer pszNameId);
-   type_custom_id(const ::string_literal < const_char_pointer > & strliteralNameId);
+   type_custom_id(const ::string_literal & strliteralNameId);
    type_custom_id(const ::scoped_string & scopedstrNameId);
    type_custom_id(const ::type_iptr_pair & ipairId);
    type_custom_id(const ::scoped_string & scopedstrNameId, const ::type_iptr_pair & ipairId);
@@ -296,7 +296,7 @@ inline const_char_pointer c_demangle(const_char_pointer psz)
 //public:
 //
 //
-//   const char*    m_pszRawName = nullptr;
+//   const_char_pointer m_pszRawName = nullptr;
 //   //::string       m_strDemangled;
 //
 //
@@ -373,7 +373,7 @@ inline const_char_pointer c_demangle(const_char_pointer psz)
 //   }
 //   
 //
-//   const char * raw_name() const { return this->m_pszRawName; }
+//   const_char_pointer raw_name() const { return this->m_pszRawName; }
 //   const ::string& id() const { return this->m_strDemangled; }
 //
 //
@@ -511,11 +511,11 @@ inline ::string type_raw_name(const ::std::type_info & typeinfo)
 
 #ifdef WINDOWS
 
-   return (string_literal < const_char_pointer >) typeinfo.raw_name();
+   return (::string_literal) typeinfo.raw_name();
 
 #else
 
-   return (string_literal<const_char_pointer>) typeinfo.name();
+   return (::string_literal) typeinfo.name();
 
 #endif
 
@@ -619,7 +619,7 @@ namespace platform
 
       const ::string &raw_name() const;
       const ::string &name() const;
-      const char *c_str() const;
+      const_char_pointer c_str() const;
       const ::string & text() const;
       bool is_set() const;
       bool is_empty() const;

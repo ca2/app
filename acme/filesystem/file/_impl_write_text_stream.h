@@ -13,7 +13,7 @@
 
 
 //    FILE *         m_pfile;
-//    char           m_chSeparator = ' ';
+//    ::i8           m_chSeparator = ' ';
 //#ifdef WINDOWS
 //    const_char_pointer m_pszEolSeparator = "\r\n";
 //#else
@@ -79,7 +79,7 @@
 //    //void number_read(TYPE& t)
 //    //{
 //
-//    //   const char endptr = nullptr;
+//    //   const ::i8 endptr = nullptr;
 //
 //    //   auto hn = strtoull(m_str, &endptr, 10);
 //
@@ -252,7 +252,7 @@
 //
 //
 //// template < typename FILE >
-//write_text_stream < FILE > & write_text_stream < FILE >::operator <<(char ch)
+//write_text_stream < FILE > & write_text_stream < FILE >::operator <<(::i8 ch)
 //{
 //
 //   write(&ch, 1);
@@ -303,7 +303,7 @@
 //write_text_stream < FILE > & write_text_stream < FILE >::operator <<(unichar wch)
 //{
 //
-//   char sz[10];
+//   ::i8 sz[10];
 //
 //   wd16_to_ansi(sz, &wch, 1);
 //
@@ -377,7 +377,7 @@
 //
 //
 //
-// //write_text_stream& operator <<(int i)
+// //write_text_stream& operator <<(::i32 i)
 // //{
 //
 // //   write_integer(i);
@@ -389,7 +389,7 @@
 // //}
 //
 //
-// //write_text_stream& operator <<(unsigned int u)
+// //write_text_stream& operator <<(::u32 u)
 // //{
 //
 // //   write_natural(u);
@@ -401,7 +401,7 @@
 // //}
 //
 //
-// //write_text_stream& operator <<(long long i)
+// //write_text_stream& operator <<(::i64 i)
 // //{
 //
 // //   write_integer(i);
@@ -413,7 +413,7 @@
 // //}
 //
 //
-// //write_text_stream& operator <<(unsigned long long u)
+// //write_text_stream& operator <<(::u64 u)
 // //{
 //
 // //   write_natural(u);
@@ -434,7 +434,7 @@
 //
 //    strFormat.formatf("%%0%d.%df", m_pprintingformat->m_width, m_pprintingformat->m_precision);
 //
-////   char szFormat[32];
+////   ::i8 szFormat[32];
 ////
 ////   snprintf(szFormat, sizeof(szFormat), );
 //
@@ -468,7 +468,7 @@
 ////#endif
 ////
 ////
-////   write_text_stream& operator <<(double d)
+////   write_text_stream& operator <<(::f64 d)
 ////   {
 ////
 ////      write_floating(d);
@@ -480,9 +480,9 @@
 ////   }
 ////
 //
-//    // void write(const ::int_point & point) ;
-//    // void write(const ::int_size & size) ;
-//    // void write(const ::int_rectangle &rectangle) ;
+//    // void write(const ::i32_point & point) ;
+//    // void write(const ::i32_size & size) ;
+//    // void write(const ::i32_rectangle &rectangle) ;
 //
 //
 //// template < typename FILE >
@@ -636,20 +636,20 @@
 //    //operator void* () { return this; }
 //
 ////   text_stream& operator >>(bool& b);
-////   text_stream& operator >>(char& ch);
+////   text_stream& operator >>(::i8& ch);
 ////   text_stream& operator >>(uchar& uch);
 ////#ifdef WINDOWS
 ////   text_stream& operator >>(unichar& wch);
 ////#endif
-////   text_stream& operator >>(char& i);
-////   text_stream& operator >>(short& sh);
-////   text_stream& operator >>(unsigned short& u);
-////   text_stream& operator >>(int& i);
-////   text_stream& operator >>(unsigned int& u);
-////   text_stream& operator >>(long long& i);
-////   text_stream& operator >>(unsigned long long& u);
-////   text_stream& operator >>(float& f);
-////   text_stream& operator >>(double& d);
+////   text_stream& operator >>(::i8& i);
+////   text_stream& operator >>(::i16& sh);
+////   text_stream& operator >>(::u16& u);
+////   text_stream& operator >>(::i32& i);
+////   text_stream& operator >>(::u32& u);
+////   text_stream& operator >>(::i64& i);
+////   text_stream& operator >>(::u64& u);
+////   text_stream& operator >>(::f32& f);
+////   text_stream& operator >>(::f64& d);
 ////   text_stream& operator >>(string& str);
 ////   //text_stream & operator >>(::property_set & set) ;
 ////   //text_stream & operator >>(::atom & atom) ;

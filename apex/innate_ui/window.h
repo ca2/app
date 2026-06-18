@@ -2,6 +2,10 @@
 #pragma once
 
 
+
+#include "acme/windowing/window.h"
+
+
 namespace innate_ui
 {
 
@@ -11,16 +15,18 @@ namespace innate_ui
 
 
    class CLASS_DECL_APEX window :
-      virtual public ::particle
+      virtual public ::acme::windowing::window
    {
    public:
 
 
+      ::f64 m_dFontSizeEm = 1.0;
+      ::i32 m_iFontWeight = 400;
       window *                         m_pwindowParent;
       ::pointer_array < window >       m_childa;
-      procedure_array                  m_procedureaLayoutChildSize;
-      procedure_array                  m_procedureaLayoutChildPosition;
-      procedure_array                  m_procedureaLayoutParent;
+      ::procedure_array                m_procedureaLayoutChildSize;
+      ::procedure_array                m_procedureaLayoutChildPosition;
+      ::procedure_array                m_procedureaLayoutParent;
 
 
       window();
@@ -39,19 +45,22 @@ namespace innate_ui
       virtual void set_text(const ::scoped_string & scopedstr);
 
       virtual void fit();
-      virtual void set_position(const ::int_point & point);
-      virtual void set_size(const ::int_size & size);
-      virtual void adjust_for_client_size(const ::int_size & size);
+      virtual ::f64 get_scale_factor();
+      virtual void set_position(const ::i32_point & point);
+      virtual void set_size(const ::i32_size & size);
+      virtual void adjust_for_client_size(const ::i32_size & size);
 
       ::innate_ui::innate_ui * innate_ui();
 
       virtual void set_icon(icon * picon);
-
+      virtual void set_icon_path(const ::scoped_string & scopedstr, const ::i32_size & size);
       void main_post(const ::procedure & procedure) override;
       void main_send(const ::procedure & procedure) override;
 
       virtual void defer_show_system_menu(::user::mouse * pmouse);
 
+
+      virtual void on_size();
    
    };
 

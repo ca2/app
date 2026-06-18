@@ -29,15 +29,15 @@ namespace nanoui
    {
    public:
 
-      typedef ::array<::pair<int, ::string>> Images;
+      typedef ::array<::pair<::i32, ::string>> Images;
       ::string m_strLoadDirectory;
       bool m_bPendingLoad = false;
 
       Images m_images;
       ::function<void(::collection::index)> m_callback;
-      int m_iThumbSize;
-      int m_iSpacing;
-      int m_iMargin;
+      ::i32 m_iThumbSize;
+      ::i32 m_iSpacing;
+      ::i32 m_iMargin;
       ::collection::index m_iMouseIndex;
 
 
@@ -53,16 +53,16 @@ namespace nanoui
       ::function<void(::collection::index)> callback() const { return m_callback; }
       void set_callback(const ::function<void(::collection::index)>& callback) { m_callback = callback; }
 
-      bool mouse_motion_event(const int_point& p, const int_size& rel, bool bDown, const ::user::e_key& ekeyModifiers) override;
-      bool mouse_button_event(const int_point& p, ::user::e_mouse emouse, bool down, bool bDoubleClick, const ::user::e_key& ekeyModifiers) override;
-      int_size preferred_size(::nano2d::context * pcontext, bool bRecalcTextSize = true) override;
+      bool mouse_motion_event(const i32_point &point) override;
+      bool mouse_button_event(const i32_point & point, ::user::e_key euserkeyMouseButton, bool bDown, bool bDoubleClick) override;
+      i32_size preferred_size(::nano2d::context * pcontext, bool bRecalcTextSize = true) override;
       void draw(::nano2d::context * pcontext) override;
 
       void _defer_load_image_directory(::nano2d::context * pcontext);
 
-      int_size grid_size() const;
+      i32_size grid_size() const;
       
-      int index_for_position(const int_point& p) const;
+      ::i32 index_for_position(const i32_point & point) const;
       
       
    };

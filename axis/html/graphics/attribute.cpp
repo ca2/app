@@ -43,7 +43,7 @@ namespace html
    ::pointer<attribute>attribute_array::get(const ::atom & atom)
    {
 
-      for(int i = 0; i < this->get_size(); i++)
+      for(::i32 i = 0; i < this->get_size(); i++)
       {
 
          if(this->element_at(i)->get_name() == atom)

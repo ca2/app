@@ -17,7 +17,7 @@ namespace html
       public:
 
 
-         int                    m_iFont;
+         ::i32                    m_iFont;
          ::pointer<::user::combo_box>    m_pcombo;
 
 
@@ -39,7 +39,7 @@ namespace html
 
          void on_change_layout(html_data * pdocument);
 
-         //void set_pos(html_data * pdocument,float x,float y,float cx,float cy);
+         //void set_pos(html_data * pdocument,::f32 x,::f32 y,::f32 cx,::f32 cy);
 
       };
 

@@ -15,13 +15,14 @@ public:
 
    constexpr lparam(nullptr_t = nullptr) { m_lparam = 0; }
 
-   template < prototype_integral INTEGRAL >
-   constexpr lparam(INTEGRAL i) { m_lparam = (iptr)i; }
+   template < prototype_integral_number INTEGRAL_NUMBER >
+   constexpr lparam(INTEGRAL_NUMBER i) { m_lparam = (iptr)i; }
    template < prototype_size SIZE >
-   constexpr lparam(const SIZE & size):lparam((int)size.cx, (int) size.cy) {}
+   constexpr lparam(const SIZE & size):lparam((::i32)size.cx, (::i32) size.cy) {}
    template < prototype_point POINT >
    constexpr lparam(const POINT & point);
-   lparam(int x, int y) { m_lparam = make_unsigned_int(x, y); }
+   constexpr lparam(const wparam &wparam);
+   lparam(::i32 x, ::i32 y) { m_lparam = make_u32(x, y); }
 
 
    /// catching/receiving subparticle
@@ -116,22 +117,25 @@ public:
    }
 
 
-   constexpr short x() const
+   constexpr ::i16 x() const
    {
 
-      return ::lparam_int_x(m_lparam);
+      return ::iptr_int_x(m_lparam);
 
    }
 
 
-   constexpr short y() const
+   constexpr ::i16 y() const
    {
 
-      return ::lparam_int_y(m_lparam);
+      return ::iptr_int_y(m_lparam);
 
    }
 
-   constexpr ::int_point point() const;
+   constexpr ::i16 hiword() const { return __hiword(m_lparam); }
+   constexpr ::i16 loword() const { return __loword(m_lparam); }
+
+   constexpr ::i32_point point() const;
 
 };
 

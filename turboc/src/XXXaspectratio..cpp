@@ -31,7 +31,7 @@
 //----------------------------------------------------------------------------
 
 void
-getaspectratio (int *xasp, int *yasp)
+getaspectratio (::i32 *xasp, ::i32 *yasp)
 {
   *xasp = *yasp = 10000;
 }
@@ -39,7 +39,7 @@ getaspectratio (int *xasp, int *yasp)
 //----------------------------------------------------------------------------
 
 void
-setaspectratio (int xasp, int yasp)
+setaspectratio (::i32 xasp, ::i32 yasp)
 {
 }
 

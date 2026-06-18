@@ -13,7 +13,7 @@ namespace user
    {
 
       m_bNew = true;
-      m_uiSmallBitmap = (unsigned int)-1;
+      m_uiSmallBitmap = (::u32)-1;
       m_iOrder = -1;
       m_iColumn = -1;
       m_bVisible = true;
@@ -87,13 +87,13 @@ namespace user
    }
 
 
-   int list_column::CompareOrderSectEndNonVisible(const ::pointer<list_column>& pcolumna, const ::pointer<list_column> pcolumnb)
+   ::i32 list_column::CompareOrderSectEndNonVisible(const ::pointer<list_column>& pcolumna, const ::pointer<list_column> pcolumnb)
    {
 
       if (pcolumna->m_bVisible && pcolumnb->m_bVisible)
       {
 
-         return (int)(pcolumna->m_iOrder - pcolumnb->m_iOrder);
+         return (::i32)(pcolumna->m_iOrder - pcolumnb->m_iOrder);
 
       }
       else if (pcolumna->m_bVisible)
@@ -118,10 +118,10 @@ namespace user
    }
 
 
-   int list_column::CompareOrder(const ::pointer<list_column>& pcolumna, const ::pointer<list_column> pcolumnb)
+   ::i32 list_column::CompareOrder(const ::pointer<list_column>& pcolumna, const ::pointer<list_column> pcolumnb)
    {
 
-      return (int)(pcolumna->m_iOrder - pcolumnb->m_iOrder);
+      return (::i32)(pcolumna->m_iOrder - pcolumnb->m_iOrder);
 
    }
 

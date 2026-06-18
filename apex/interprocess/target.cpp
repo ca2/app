@@ -103,7 +103,7 @@ namespace interprocess
    //   //
    //   //   }
    //   //
-   //   //   long long iCall = ::str::consume_natural(strMessage);
+   //   //   ::i64 iCall = ::str::consume_natural(strMessage);
    //   //
    //   //   if(!strMessage.begins_eat(" from "))
    //   //   {
@@ -240,7 +240,7 @@ namespace interprocess
 
    //         string strOriginObject = propertyset["protocol"]["origin_object"].get_string();
 
-   //         auto iCallId = propertyset["protocol"]["call_id"].long_long;
+   //         auto iCallId = propertyset["protocol"]["call_id"].i64;
 
    //         auto pcall = m_pcommunication->create_call(strOrigin, strOriginObject, "reply." + strMember);
 
@@ -307,7 +307,7 @@ namespace interprocess
    //}
 
 
-   //void target::on_interprocess_receive(int message, ::memory && memory)
+   //void target::on_interprocess_receive(::i32 message, ::memory && memory)
    //{
 
    //   ///memory memory(pdata, len);
@@ -328,7 +328,7 @@ namespace interprocess
    //}
 
 
-   //void target::on_interprocess_post(long long a, long long b)
+   //void target::on_interprocess_post(::i64 a, ::i64 b)
    //{
 
    //   if (m_phandler != nullptr)
@@ -371,7 +371,7 @@ namespace interprocess
    //}
 
 
-   //void target::dispatch_message(unsigned long long uData, ::memory && memory)
+   //void target::dispatch_message(::u64 uData, ::memory && memory)
    //{
 
    //   auto pdispatchitem = allocateø class dispatch_item (uData, ::transfer(memory));
@@ -407,7 +407,7 @@ namespace interprocess
 
    //   single_lock singlelock(m_pmutexDispatch);
 
-   //   while (ptask->task_get_run())
+   //   while (ptask->should_run())
    //   {
 
    //      if (m_happeningDispatchItemNew._wait(1_s))
@@ -416,7 +416,7 @@ namespace interprocess
    //         singlelock.lock();
 
    //         while (m_dispatchitema.has_element()
-   //            && ptask->task_get_run())
+   //            && ptask->should_run())
    //         {
 
    //            {

@@ -76,13 +76,13 @@ namespace dynamic_source
 
       ::netnode::script_manager *                           m_pnetnodescriptmanager;
 
-      int m_iFileSystemScriptSlotIndex = -1;
+      ::i32 m_iFileSystemScriptSlotIndex = -1;
       pointer_array < plugin_map_item >                     m_pluginmapitema;
 
       ::semaphore                                           m_semCompiler;
       //::pointer<::user::message_window>                  m_pmessagequeue;
 
-      int                                                   m_iTunnelPluginCount;
+      ::i32                                                   m_iTunnelPluginCount;
       ::pointer < ::mutex >                                 m_pmutexOutLink;
       string_map_base < ::pointer<::sockets::link_out_socket > > m_mapOutLink;
       ::pointer < ::mutex >                                 m_pmutexInLink;
@@ -92,7 +92,7 @@ namespace dynamic_source
 
 
       ::pointer < ::mutex >                                 m_pmutexImageSize;
-      string_map_base < ::int_size >                             m_mapImageSize;
+      string_map_base < ::i32_size >                             m_mapImageSize;
 
 
 
@@ -189,7 +189,7 @@ namespace dynamic_source
       string get_library_build_log();
 
 
-      //static unsigned int c_cdecl clear_include_matches_FolderWatchThread(LPVOID lpParam); // thread procedure
+      //static ::u32 c_cdecl clear_include_matches_FolderWatchThread(LPVOID lpParam); // thread procedure
 
       ::file::real_and_logical_path _real_path1(const ::scoped_string& scopedstrName) override;
       //virtual ::file_system_cache_item _real_path(const ::file::path & str);
@@ -216,8 +216,8 @@ namespace dynamic_source
       ::sockets::link_in_socket * get_link_in(const ::scoped_string & scopedstrServer, ::sockets::link_out_socket * poutsocket);
       bool is_online(const ::scoped_string & scopedstrServer);
       ::sockets::link_out_socket * create_link_out(const ::scoped_string & scopedstrServer, ::httpd::socket * phttpdsocket);
-      ::int_size get_image_size(const ::file::path & strFile);
-      bool extract_image_size(const ::file::path & strFile,::int_size * psize);
+      ::i32_size get_image_size(const ::file::path & strFile);
+      bool extract_image_size(const ::file::path & strFile,::i32_size * psize);
 
 
       virtual void defer_clean_session();

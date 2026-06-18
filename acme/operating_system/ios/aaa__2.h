@@ -6,7 +6,7 @@
 
 #include "base_internal.h"
 
-unsigned int m_sleep(unsigned int seconds);
+::u32 m_sleep(::u32 seconds);
 
 
 
@@ -23,7 +23,7 @@ class thread_pointer
 public:
     
     
-    const char * name;
+    const_char_pointer pszName;
     
     thread_pointer(const ::scoped_string & scopedstrName)
     {
@@ -60,7 +60,7 @@ class thread_var
 {
 public:
     
-    const char * name;
+    const_char_pointer pszName;
     
     thread_var(const ::scoped_string & scopedstrName)
     {

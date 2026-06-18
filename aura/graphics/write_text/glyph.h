@@ -15,9 +15,9 @@ namespace write_text
    public:
 
 
-      unsigned int   m_ui;
+      ::u32   m_u32;
 
-      array_base <int_point_array_base > m_pointsets;
+      array_base <i32_point_array_base > m_pointsets;
 //
 //#ifdef WINDOWS_DESKTOP
 //
@@ -30,17 +30,17 @@ namespace write_text
       ~glyph() override;
 
 
-      void DrawGlyph(::draw2d::graphics_pointer & pgraphics, bool bFill, double dRateX, ::int_point * ppointoffset);
+      void DrawGlyph(::draw2d::graphics_pointer & pgraphics, bool bFill, ::f64 dRateX, ::i32_point * ppointoffset);
 
 
 //#ifdef WINDOWS_DESKTOP
 //
-//      void Initialize(LPTTPOLYGONHEADER pph, unsigned int cbSize, int iFontHiHeight);
+//      void Initialize(LPTTPOLYGONHEADER pph, ::u32 cbSize, ::i32 iFontHiHeight);
 //
 //
 //#endif
 
-      void GetGlyphRect(int x, int y, ::int_rectangle * prectangle);
+      void GetGlyphRect(::i32 x, ::i32 y, ::i32_rectangle * prectangle);
 
 
       void clear();

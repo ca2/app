@@ -135,9 +135,9 @@ namespace file
    void listing_base::defer_add(::file::path & path)
    {
 
-      ASSERT((m_eflag & ::file::e_flag_file_or_folder) != 0);
+      ASSERT(m_eflag & ::file::e_flag_file_or_folder);
 
-      ASSERT((path.m_etype & ::file::e_type_file_or_folder2) != 0);
+      ASSERT(path.m_etype & ::file::e_type_file_or_folder2);
 
       bool bMatches = true;
 

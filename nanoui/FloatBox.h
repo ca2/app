@@ -3,8 +3,8 @@
  *
  * \brief A specialization of TextBox representing floating point values.
 
- *  The emplate parametersshould a be floating point type, e.g. ``float`` or
- *  ``double``.
+ *  The emplate parametersshould a be floating point type, e.g. ``::f32`` or
+ *  ``::f64``.
  */
  // From TextBox.h by camilo on 2023-05-16 14:22 <3ThomasBorregaardSorensen!!
 #pragma once
@@ -22,7 +22,7 @@ namespace nanoui
    {
    public:
       FloatBox(Widget* parent, Scalar value = (Scalar)0.f) : TextBox(parent) {
-         m_number_format = sizeof(Scalar) == sizeof(float) ? "%.4g" : "%.7g";
+         m_number_format = sizeof(Scalar) == sizeof(::f32) ? "%.4g" : "%.7g";
          set_default_value("0");
          set_format("[-+]?[0-9]*\\.?[0-9]+([e_e][-+]?[0-9]+)?");
          set_value_increment((Scalar)0.1);
@@ -86,19 +86,26 @@ namespace nanoui
       }
 
 
-      bool mouse_button_event(const int_point& p, ::user::e_mouse emouse, bool down, bool bDoubleClick, const ::user::e_key& ekeyModifiers) override
+      bool mouse_button_event(const i32_point & point, ::user::e_key euserkeyMouseButton, bool bDown, bool bDoubleClick) override
       {
 
-         if ((m_bEditable || m_bSpinnable) && down)
+         if (!m_bEnabled || euserkeyMouseButton != ::user::e_key_left_button)
+         {
+
+            return false;
+
+         }
+
+         if ((m_bEditable || m_bSpinnable) && bDown)
          {
 
             m_mouse_down_value = value();
 
          }
 
-         SpinArea area = spin_area(p);
+         SpinArea area = spin_area(point);
 
-         if (m_bSpinnable && area != SpinArea::None && down && !focused())
+         if (m_bSpinnable && area != SpinArea::None && bDown && !focused())
          {
 
             if (area == SpinArea::Top)
@@ -132,29 +139,29 @@ namespace nanoui
 
          }
 
-         return TextBox::mouse_button_event(p, emouse, down, bDoubleClick, ekeyModifiers);
+         return TextBox::mouse_button_event(point, euserkeyMouseButton, bDown, bDoubleClick);
 
       }
 
 
-      //bool mouse_drag_event(const int_point& p, const int_size& rel, bool bDown, const ::user::e_key& ekeyModifiers) override
-      bool mouse_motion_event(const int_point & p, const int_size & rel, bool bDown, const ::user::e_key & ekeyModifiers) override
+      //bool mouse_drag_event(const i32_point & point, ::user::e_key euserkeyMouseButton, bool bDown, const ::user::keyboard_state &keyboardstate, bool bDoubleClick) override
+      bool mouse_motion_event(const i32_point &point) override
       {
 
-         if (TextBox::mouse_motion_event(p, rel, bDown, ekeyModifiers))
+         if (TextBox::mouse_motion_event(point))
          {
 
             return true;
 
          }
 
-         if (bDown)
+         if (is_left_button_pressed())
          {
 
-            if (m_bSpinnable && !focused() && ekeyModifiers & ::user::e_key_right_button && m_pointMouseDown.x != -1)
+            if (m_bSpinnable && !focused() && m_pointMouseDown.x != -1)
             {
 
-               int value_delta = static_cast<int>((p.x - m_pointMouseDown.x) / float(10));
+               ::i32 value_delta = static_cast<::i32>((point.x - m_pointMouseDown.x) / ::f32(10));
 
                set_value(m_mouse_down_value + value_delta * m_value_increment, e_source_user);
 
@@ -176,10 +183,10 @@ namespace nanoui
       }
 
 
-      virtual bool scroll_event(const int_point& p, const float_size& rel) override
+      virtual bool scroll_event(const i32_point & point, const ::f32_size& rel) override
       {
 
-         if (Widget::scroll_event(p, rel))
+         if (Widget::scroll_event(point, rel))
          {
 
             return true;
@@ -189,7 +196,7 @@ namespace nanoui
          if (m_bSpinnable && !focused())
          {
 
-            int value_delta = (rel.cy > 0) ? 1 : -1;
+            ::i32 value_delta = (rel.cy > 0) ? 1 : -1;
 
             set_value(value() + value_delta * m_value_increment, e_source_user);
 

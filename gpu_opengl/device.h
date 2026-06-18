@@ -45,10 +45,10 @@ namespace gpu_opengl
       //void set_bitmap_1(::image::image* pimage) override;
 
       //void swap_buffers() override;
-      //virtual void create_offscreen_buffer(const ::int_size& size);
-      //virtual void _create_offscreen_buffer(const ::int_size& size);
+      //virtual void create_offscreen_buffer(const ::i32_size& size);
+      //virtual void _create_offscreen_buffer(const ::i32_size& size);
 
-      //virtual void resize_offscreen_buffer(const ::int_size& size);
+      //virtual void resize_offscreen_buffer(const ::i32_size& size);
       //virtual void destroy_offscreen_buffer();
 
    /*   virtual void translate_shader(string & str);
@@ -70,9 +70,9 @@ namespace gpu_opengl
 
 
 
-      int get_frame_index3() override;
+      ::i32 get_frame_index3() override;
 
-      int get_frame_count() override;
+      ::i32 get_frame_count() override;
 
    };
 

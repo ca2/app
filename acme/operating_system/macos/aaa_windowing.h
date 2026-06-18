@@ -32,62 +32,62 @@ struct NSWindow;
 #define GetWindowLong GetWindowLongA
 #define SetWindowLong SetWindowLongA
 
-int get_main_screen_rectangle(::int_rectangle * prectangle);
+::i32 get_main_screen_rectangle(::i32_rectangle * prectangle);
 
 
-int GetScreenRect(::int_rectangle * prectangle, int iMonitor);
+::i32 GetScreenRect(::i32_rectangle * prectangle, ::i32 iMonitor);
 
 
-int GetScreenCount();
+::i32 GetScreenCount();
 
-int GetWorkspaceRect(::int_rectangle * prectangle, int iMonitor);
+::i32 GetWorkspaceRect(::i32_rectangle * prectangle, ::i32 iMonitor);
 
 
-int GetWorkspaceCount();
+::i32 GetWorkspaceCount();
 
 
 
 //#define HWND_MESSAGE ((::oswindow_data *) (iptr) 1)
 
 
-//int_bool destroy_window(oswindow w);
+//i32_bool destroy_window(oswindow w);
 
 
 //oswindow get_capture();
 //oswindow set_capture(oswindow window);
-//int_bool release_capture();
+//i32_bool release_capture();
 //oswindow set_focus(oswindow window);
 //oswindow get_focus();
 //oswindow get_active_window();
 //oswindow set_active_window(oswindow window);
-//int_bool enable_window(oswindow hwnd, int_bool bEnable);
+//i32_bool enable_window(oswindow hwnd, i32_bool bEnable);
 
-//void get_main_screen_rectangle(::int_rectangle * prectangle);
+//void get_main_screen_rectangle(::i32_rectangle * prectangle);
 
 //
-//int_bool SetForegroundWindow(oswindow window);
-//int_bool BringWindowToTop(oswindow window);
+//i32_bool SetForegroundWindow(oswindow window);
+//i32_bool BringWindowToTop(oswindow window);
 //
 //void ns_redraw_window(oswindow window);
 //
 
 
-//void copy(CGRect & rectangle, const ::int_rectangle * prectangle);
+//void copy(CGRect & rectangle, const ::i32_rectangle * prectangle);
 //
-//void copy(::int_rectangle * prectangle, const CGRect & rectangleSource);
+//void copy(::i32_rectangle * prectangle, const CGRect & rectangleSource);
 //
-//void screen_coordinates_aware_copy(CGRect & rectangle, const ::int_rectangle * prectangle);
+//void screen_coordinates_aware_copy(CGRect & rectangle, const ::i32_rectangle * prectangle);
 //
-//void screen_coordinates_aware_copy(::int_rectangle * prectangle, const CGRect & rectangleSource);
+//void screen_coordinates_aware_copy(::i32_rectangle * prectangle, const CGRect & rectangleSource);
 //
 //#ifdef MM
-//void copy(NSRect & rectangle, const ::int_rectangle * prectangle);
+//void copy(NSRect & rectangle, const ::i32_rectangle * prectangle);
 //
-//void copy(::int_rectangle * prectangle, const NSRect & rectangleSource);
+//void copy(::i32_rectangle * prectangle, const NSRect & rectangleSource);
 //
-//void screen_coordinates_aware_copy(NSRect & rectangle, const ::int_rectangle * prectangle);
+//void screen_coordinates_aware_copy(NSRect & rectangle, const ::i32_rectangle * prectangle);
 //
-//void screen_coordinates_aware_copy(::int_rectangle * prectangle, const NSRect & rectangleSource);
+//void screen_coordinates_aware_copy(::i32_rectangle * prectangle, const NSRect & rectangleSource);
 //
 //#endif
 

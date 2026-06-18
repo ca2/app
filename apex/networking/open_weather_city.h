@@ -9,9 +9,9 @@ public:
    ::collection::index    m_iIndex;
    string   m_strCnt;
    string   m_strCit;
-   long long  m_iId;
-   double   m_dLat;
-   double   m_dLon;
+   ::i64  m_iId;
+   ::f64   m_dLat;
+   ::f64   m_dLon;
 
 };
 

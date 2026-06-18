@@ -29,6 +29,8 @@ namespace networking
 
       ::string_array m_straDisabledIpv6Addresses;
 
+      bool m_bChecked_IP6_IP4_connectability;
+
       //string         m_host; ///< local hostname
       //in_addr        m_ip; ///< local ip address
       //string         m_addr; ///< local ip address in string format
@@ -100,15 +102,18 @@ namespace networking
       virtual void destroy() override;
 
 
+      void defer_check_ip6_ip4_connectability(bool bForceAsUserApplication = false);
+
+
       //virtual bool convert(string& str, const struct ::in_addr& inaddr);
       //virtual bool convert(string& str, const struct ::in6_addr& inaddr6);
 
-      virtual ::string last_error_message(long long llError = 0x8000000000000000);
-      virtual ::string _last_error_message(long long llError);
-      virtual long long last_error();
+      virtual ::string last_error_message(::i64 llError = 0x8000000000000000);
+      virtual ::string _last_error_message(::i64 llError);
+      virtual ::i64 last_error();
 
 
-      virtual ::string so_error_description(long long llError);
+      virtual ::string so_error_description(::i64 llError);
 
       virtual bool has_ip4_internet();
       virtual bool has_ip6_internet();
@@ -141,13 +146,13 @@ namespace networking
 
 
       virtual address_pointer create_address(const ::scoped_string & scopedstrAddress, enum_address_type eaddresstypePreferred = e_address_type_none, port_t port = 0);
-      virtual address_pointer create_ip4_address(int iIp, port_t port = 0);
-      //virtual bool convert(struct ::in_addr& l, const ::scoped_string & scopedstr, int ai_flags = 0);
-      //virtual bool convert(struct ::in6_addr& l, const ::scoped_string & scopedstr, int ai_flags = 0);
+      virtual address_pointer create_ip4_address(::i32 iIp, port_t port = 0);
+      //virtual bool convert(struct ::in_addr& l, const ::scoped_string & scopedstr, ::i32 ai_flags = 0);
+      //virtual bool convert(struct ::in6_addr& l, const ::scoped_string & scopedstr, ::i32 ai_flags = 0);
       //virtual bool convert(string& str, const struct ::in_addr& ip);
       //virtual bool convert(string& str, const struct ::in6_addr& ip, bool mixed = false);
 
-      //virtual int in6_addr_compare(struct ::in6_addr a, struct ::in6_addr b);
+      //virtual ::i32 in6_addr_compare(struct ::in6_addr a, struct ::in6_addr b);
 
       //virtual void ResolveLocal();
 
@@ -173,11 +178,11 @@ namespace networking
       
       virtual string ip_reverse(const string & number);
 
-      virtual bool u2service(const string& name, int& service, int ai_flags);
+      virtual bool u2service(const string& name, ::i32& service, ::i32 ai_flags);
 
-      virtual int service_port(const ::scoped_string & scopedstr, int flags = 0);
+      virtual ::i32 service_port(const ::scoped_string & scopedstr, ::i32 flags = 0);
 
-      virtual string  service_name(int iPort, int flags = 0);
+      virtual string  service_name(::i32 iPort, ::i32 flags = 0);
 
 
       virtual string canonical_name(::networking::address * address);
@@ -186,7 +191,7 @@ namespace networking
 
       virtual string reverse_name(::networking::address * address);
 
-      //virtual int _select(::sockets::socket_handler * psockethandler, const class time & timeWait);
+      //virtual ::i32 _select(::sockets::socket_handler * psockethandler, const class time & timeWait);
 
       virtual ::pointer<::networking::address>create_ip4_address(const ::scoped_string & scopedstrIp4, ::networking::port_t port = 0);
 

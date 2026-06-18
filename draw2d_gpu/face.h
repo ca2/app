@@ -17,7 +17,7 @@ namespace draw2d_gpu
    public:
 
       
-      //sunsigned int m_FaceVAO, m_FaceVBO;
+      //sunsigned ::i32 m_FaceVAO, m_FaceVBO;
 
       ::pointer < ::gpu::model_buffer >   m_pmodelbuffer;
 
@@ -31,7 +31,7 @@ namespace draw2d_gpu
 
       void create_draw_buffers();
 
-      virtual void create_texture(::typeface::character& ch, const unsigned char* p);
+      virtual void create_texture(::typeface::character& ch, const ::u8* p);
 
 
    };

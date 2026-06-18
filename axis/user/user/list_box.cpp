@@ -14,7 +14,7 @@
 #include "aura/graphics/draw2d/graphics.h"
 #include "aura/graphics/draw2d/brush.h"
 #include "aura/graphics/draw2d/pen.h"
-#include "acme/platform/timer.h"
+//#include "acme/platform/timer.h"
 #include "aura/user/user/scroll_state.h"
 #include "aura/user/user/interaction_graphics_thread.h"
 //#include "aura/user/user/interaction_impl.h"
@@ -460,7 +460,7 @@ namespace user
 
       //::draw2d::save_context savecontext(pgraphics);
 
-      //::double_rectangle rectangleClipBox;
+      //::f64_rectangle rectangleClipBox;
 
       //pgraphics->get_clip_box(rectangleClipBox);
 
@@ -496,7 +496,7 @@ namespace user
 
       pgraphics->fill_rectangle(rectangleX);
 
-      ::int_rectangle rectangleItem;
+      ::i32_rectangle rectangleItem;
 
       rectangleItem = rectangleX;
 
@@ -607,7 +607,7 @@ namespace user
 
       pgraphics->set(ppen);
 
-      ::double_rectangle rX(rectangleX);
+      ::f64_rectangle rX(rectangleX);
 
       rX.deflate(1, 1, 1, 1);
 
@@ -620,7 +620,7 @@ namespace user
    }
 
 
-   ::write_text::font_pointer list_box::get_font(style* pstyle, enum_element eelement, ::user::enum_state estate)
+   ::write_text::font_pointer list_box::get_font(style* pstyle, const ::e_element & eelement, const ::user::e_state & estate)
    {
 
       if (m_pcombo)
@@ -642,7 +642,7 @@ namespace user
    }
 
 
-   void list_box::query_full_size(::draw2d::graphics_pointer& pgraphics, ::int_size* psize)
+   void list_box::query_full_size(::draw2d::graphics_pointer& pgraphics, ::i32_size* psize)
    {
 
       _synchronous_lock synchronouslock(this->synchronization(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
@@ -653,7 +653,7 @@ namespace user
 
       string strItem;
 
-      ::double_size size;
+      ::f64_size size;
 
       psize->cx = 0;
 
@@ -673,14 +673,14 @@ namespace user
          if (size.cx > psize->cx)
          {
 
-            psize->cx = (int)size.cx;
+            psize->cx = (::i32)size.cx;
 
          }
 
          if (size.cy > m_dItemHeight)
          {
 
-            m_dItemHeight = (int)size.cy;
+            m_dItemHeight = (::i32)size.cy;
 
             if (size.cy != 18)
             {
@@ -695,7 +695,7 @@ namespace user
 
       m_dItemHeight += 4.0;
 
-      int iAddUp = 0;
+      ::i32 iAddUp = 0;
 
       if (m_pcombo && m_pcombo->m_bEdit)
       {
@@ -718,9 +718,9 @@ namespace user
 
       }
 
-      psize->cy = (int)(_001GetItemHeight() * (_001GetListCount() + iAddUp));
+      psize->cy = (::i32)(_001GetItemHeight() * (_001GetListCount() + iAddUp));
 
-      int iScrollBarWidth = 20;
+      ::i32 iScrollBarWidth = 20;
 
       psize->cx += iScrollBarWidth;
 
@@ -738,10 +738,10 @@ namespace user
    }
 
 
-   int list_box::_001GetItemHeight() const
+   ::i32 list_box::_001GetItemHeight() const
    {
 
-      return (int)(m_dItemHeight + m_iPadding * 2);
+      return (::i32)(m_dItemHeight + m_iPadding * 2);
 
    }
 
@@ -754,7 +754,7 @@ namespace user
          && iItem >= 0 && iItem < m_pcombo->_001GetListCount())
       {
 
-         set_context_offset_y((double)(iItem * _001GetItemHeight()));
+         set_context_offset_y((::f64)(iItem * _001GetItemHeight()));
 
       }
       else
@@ -767,7 +767,7 @@ namespace user
    }
 
 
-   void list_box::on_timer(::timer* ptimer)
+   void list_box::operator()(::timer * ptimer)
    {
 
       //if (ptimer->m_etimer == e_timer_kill_focus)
@@ -790,7 +790,7 @@ namespace user
 
       //}
 
-      ::user::scroll_base::on_timer(ptimer);
+      return ::user::scroll_base::operator()(ptimer);
 
    }
 
@@ -902,7 +902,7 @@ namespace user
          {
 
             m_timeHideDropDown.Now();
-            hide();
+            display(e_display_hide, {});
 
 
             //se
@@ -1184,16 +1184,16 @@ namespace user
    }
 
 
-   ::item_pointer list_box::on_hit_test(const ::int_point& point, ::user::e_zorder ezorder)
+   ::item_pointer list_box::on_hit_test(const ::i32_point& point, ::user::e_zorder ezorder)
    {
 
       ::collection::count iItemCount = _001GetListCount();
 
       auto rectangleX = this->rectangle();
 
-      ::int_rectangle rectangleItem = rectangleX;
+      ::i32_rectangle rectangleItem = rectangleX;
 
-      int iAddUp = 0;
+      ::i32 iAddUp = 0;
 
       if (m_pcombo && m_pcombo->m_bEdit)
       {
@@ -1205,7 +1205,7 @@ namespace user
       for (::collection::index iItem = 0; iItem < iItemCount; iItem++)
       {
 
-         rectangleItem.top = rectangleX.top + (_001GetItemHeight() * (int)(iAddUp + iItem));
+         rectangleItem.top = rectangleX.top + (_001GetItemHeight() * (::i32)(iAddUp + iItem));
 
          rectangleItem.bottom = rectangleItem.top + _001GetItemHeight();
 
@@ -1261,16 +1261,16 @@ namespace user
    //   }
 
 
-   void list_box::on_drop_down(const ::int_rectangle& rectangleWindow, const ::int_size& sizeFull)
+   void list_box::on_drop_down(const ::i32_rectangle& rectangleWindow, const ::i32_size& sizeFull)
    {
 
       //lock_sketch_to_design lockSketchToDesign(this);
 
-      ::int_rectangle rectangleMonitor;
+      ::i32_rectangle rectangleMonitor;
 
       ::collection::index i = get_best_monitor(&rectangleMonitor, rectangleWindow);
 
-      ::int_rectangle rectangleList;
+      ::i32_rectangle rectangleList;
 
       rectangleList.left = rectangleWindow.left;
       //rectangleList.right = rectangleWindow.left + maximum(rectangleWindow.width(), sizeFull.cx) + 20;
@@ -1315,7 +1315,7 @@ namespace user
 
          }
 
-         //::int_rectangle rectangleListOver;
+         //::i32_rectangle rectangleListOver;
 
          //rectangleListOver.left = rectangleList.left;
          //rectangleListOver.right = rectangleList.right;
@@ -1416,7 +1416,7 @@ namespace user
 
       set_activation({ ::user::e_activation_no_activate });
 
-      place(::int_rectangle(rectangleList));
+      place(::i32_rectangle(rectangleList));
 
       information() << "on_drop_down (10) : " << rectangleList;
 
@@ -1482,7 +1482,7 @@ namespace user
 //      else
 //      {
 //
-//         place(::int_rectangle(rectangleList).inflate(m_iBorder));
+//         place(::i32_rectangle(rectangleList).inflate(m_iBorder));
 //
 //         order_top_most();
 //

@@ -28,6 +28,9 @@
 #include "acme/user/user/element.h"
 #include "acme/user/user/drag_client.h"
 
+#ifdef WINDOWS_DESKTOP
+#include "acme/operating_system/windows/_window_class.h"
+#endif
 
 
 namespace acme
@@ -54,8 +57,9 @@ namespace acme
                bool     m_bChild : 1;
                bool     m_bMessageOnlyWindow : 1;
                bool     m_bHover : 1;
+               bool     m_bHasOwnWindow : 1;
             };
-            unsigned int m_uFlagsAcmeUserInteraction;
+            ::u32 m_uFlagsAcmeUserInteraction;
          };
 
          ::pointer < ::acme::windowing::window >       m_pacmewindowingwindow;
@@ -66,11 +70,20 @@ namespace acme
 
          ////string                                    m_strText;
          ////::atom                                    id();
-         ////int_rectangle                             m_rectangle;
+         ////i32_rectangle                             m_rectangle;
          ////enum_font                                 m_efont;
-         ::pointer<::acme::timer_array>               m_ptimerarray;
+         //::pointer<::acme::timer_array>               m_ptimerarray;
 
+         bool m_bDefaultNcHitTest;
+         bool m_bNanoPaint;
 
+#ifdef WINDOWS_DESKTOP
+//          ::i32 m_iStyle;
+//          ::i32 m_iExStyle;
+         void * m_pHICON_Big;
+         void * m_pHICON_Small;
+         ::windows::window_class m_windowclassThis;
+#endif
 
          //bool                                      m_bMinimizeBox;
          //bool                                      m_bMaximizeBox;
@@ -112,32 +125,50 @@ namespace acme
 
          bool is_host_top_level() override;
 
-         virtual void set_timer(uptr uEvent, const class ::time& millisElapse, const ::procedure& procedure = {}, bool bPeriodic = true);
-         virtual void kill_timer(uptr uEvent);
+         //virtual void set_timer(uptr uEvent, const class ::time& millisElapse, const ::procedure& procedure = {}, bool bPeriodic = true);
+         //virtual void kill_timer(uptr uEvent);
 
+
+         //virtual class ::timer_task *procedure_timer();
+
+         //virtual void add_timer(::i32 iTimer, const class ::time & time, const ::procedure_timer_callback & callback = {}, ::timer_task * ptimer = nullptr);
+         //virtual void erase_timer(::i32 iTimer);
+
+         virtual ::i64 get_style_for_creating_window();
+         virtual ::i64 get_ex_style_for_creating_window();
          
          virtual bool on_add_child(::acme::user::interaction * pacmeuserinteractionChild);
 
+
+
+#ifdef WINDOWS_DESKTOP
+
+         virtual bool _on_window_procedure(::lresult & lresult, ::u32 message, ::wparam wparam, ::lparam lparam);
+         virtual ::windows::window_class _get_window_class();
+
+#endif
          //void show_window() override;
 
          //void hide_window() override;
 
          //void message_loop() override;
 
-         //void draw(::nano::graphics::device * pnanodevice) override;
+         //void draw(::nano::graphics::context * pnanodevice) override;
 
-         //void on_draw(::nano::graphics::device * pnanodevice) override;
+         //void on_draw(::nano::graphics::context * pnanodevice) override;
 
-         //void draw(::nano::graphics::device * pnanodevice);
+         //void draw(::nano::graphics::context * pnanodevice);
 
-         virtual void _on_draw(::nano::graphics::device * pnanodevice);
+         virtual void _on_draw(::nano::graphics::context * pnanodevice);
 
-         //virtual void on_char(int iChar);
+         virtual void on_window_paint(::nano::graphics::context * pgraphicscontext);
+
+         //virtual void on_char(::i32 iChar);
 
          //bool is_active() override;
          //void set_active() override;
 
-         //virtual void draw_children(::nano::graphics::device * pnanodevice);
+         //virtual void draw_children(::nano::graphics::context * pnanodevice);
 
          //void delete_drawing_objects() override;
          //bool get_dark_mode() override;
@@ -145,10 +176,10 @@ namespace acme
          //void create_drawing_objects() override;
          //void update_drawing_objects() override;
 
-         //::int_point try_absolute_mouse_position(const ::int_point & point) override;
+         //::i32_point try_absolute_mouse_position(const ::i32_point & point) override;
 
 
-         virtual ::int_point origin();
+         virtual ::i32_point origin();
 
          //virtual ::payload get_result();
 
@@ -162,21 +193,21 @@ namespace acme
 
                   //::micro::child * hit_test(::user::mouse * pmouse, ::user::e_zorder ezorder) override;
          //virtual ::acme::user::interaction * hit_test(::user::mouse * pmouse, ::user::e_zorder ezorder);
-         //virtual ::acme::user::interaction * on_hit_test(const ::int_point & point, ::user::e_zorder ezorder);
+         //virtual ::acme::user::interaction * on_hit_test(const ::i32_point & point, ::user::e_zorder ezorder);
          //virtual void add_child(::acme::user::interaction * pchild);
          //virtual ::acme::user::interaction * get_child_by_id(const ::atom & atom);
 
          virtual ::acme::user::interaction * acme_hit_test(::user::mouse * pmouse, ::user::e_zorder ezorder);
-         virtual ::acme::user::interaction * on_acme_hit_test(const ::int_point & point, ::user::e_zorder ezorder);
+         virtual ::acme::user::interaction * on_acme_hit_test(const ::i32_point & point, ::user::e_zorder ezorder);
 
-         virtual ::int_rectangle get_client_rectangle();
-         virtual ::int_size get_window_minimum_size();
+         virtual ::i32_rectangle get_client_rectangle();
+         virtual ::i32_size get_window_minimum_size();
 
 
          /// @brief  Child
          /// @param pnanodevice 
-         //virtual void on_draw(::nano::graphics::device * pnanodevice);
-         //virtual void on_char(int iChar);
+         //virtual void on_draw(::nano::graphics::context * pnanodevice);
+         //virtual void on_char(::i32 iChar);
          virtual void set_keyboard_focus() override;
          virtual bool is_keyboard_focusable();
          virtual bool has_keyboard_focus();
@@ -186,11 +217,19 @@ namespace acme
          bool has_mouse_capture() override;
          void release_mouse_capture() override;
 
+
+         virtual bool on_window_mouse_move(const ::i32_point & point, const ::i32_point & pointAbsolute);
          
          virtual void on_mouse_enter();
          virtual void back_on_mouse_move(::user::mouse * pmouse);
          virtual void fore_on_mouse_move(::user::mouse * pmouse);
          virtual void on_mouse_leave();
+         
+         
+         //virtual void discard_all_cursor_rectangles();
+         //virtual void add_cursor_rectangle(const ::i32_rectangle & rectangle, ::enum_cursor ecursor);
+         //virtual void on_set_cursor_rectangles();
+         //virtual void invalidate_cursor_rectangles();
 
          //virtual void resize_to_fit();
 
@@ -248,7 +287,6 @@ namespace acme
 
             //   interaction_base();
           /*     ~interaction_base() override;*/
-
 
                virtual ::pointer < ::operating_system::a_system_menu > create_system_menu(bool bContextual = true);
 
@@ -310,24 +348,24 @@ namespace acme
 
                //virtual void create_window();
 
-               virtual void show();
+               //virtual void show();
 
-               void hide() override;
+               //void hide() override;
 
                //virtual void message_loop();
 
                virtual void implementation_message_loop_step();
 
-               //virtual void draw(::nano::graphics::device * pnanodevice);
+               //virtual void draw(::nano::graphics::context * pnanodevice);
 
-               //virtual void on_draw(::nano::graphics::device * pnanodevice);
+               //virtual void on_draw(::nano::graphics::context * pnanodevice);
 
-               //virtual void on_char(int iChar);
+               //virtual void on_char(::i32 iChar);
 
                //virtual bool is_active();
                //virtual void set_active();
 
-               //virtual void draw_children(::nano::graphics::device * pnanodevice);
+               //virtual void draw_children(::nano::graphics::context * pnanodevice);
 
                //virtual void delete_drawing_objects();
                //virtual bool get_dark_mode();
@@ -335,7 +373,7 @@ namespace acme
                //virtual void create_drawing_objects();
                //virtual void update_drawing_objects();
 
-               //virtual ::int_point origin();
+               //virtual ::i32_point origin();
 
                //virtual bool defer_perform_entire_reposition_process();
 
@@ -357,12 +395,12 @@ namespace acme
                virtual ::shift_int absolute_to_client();
                virtual ::shift_int client_to_absolute();
 
-               //virtual ::int_point try_absolute_mouse_position(const ::int_point & point);
+               //virtual ::i32_point try_absolute_mouse_position(const ::i32_point & point);
 
                // drag_client
                void drag_set_capture() override;
-               bool on_drag_start(::int_point & point, ::user::mouse * pmouse, ::item * pitem) override;
-               ::int_point drag_mouse_cursor_position(::item * pitem, const ::int_point & point) override;
+               bool on_drag_start(::i32_point & point, ::user::mouse * pmouse, ::item * pitem) override;
+               ::i32_point drag_mouse_cursor_position(::item * pitem, const ::i32_point & point) override;
                bool drag_shift(::item * pitem, ::user::mouse * pmouse) override;
                bool drag_hover(::item * pitem) override;
                void drag_release_capture() override;
@@ -370,12 +408,13 @@ namespace acme
 
 
                // virtual ::micro::child * nano_user_hit_test(::user::mouse * pmouse, ::user::e_zorder ezorder);
-               // virtual ::micro::child * nano_user_on_hit_test(const ::int_point & point, ::user::e_zorder ezorder);
+               // virtual ::micro::child * nano_user_on_hit_test(const ::i32_point & point, ::user::e_zorder ezorder);
                // virtual void nano_user_add_child(::micro::child * pchild);
 
                //virtual ::payload get_result();
-               //void add_button(const ::scoped_string & scopedstrText, enum_dialog_result edialogresult, char chLetter);
+               //void add_button(const ::scoped_string & scopedstrText, enum_dialog_result edialogresult, ::i8 chLetter);
 
+               void display(::e_display edisplay, const ::user::activation& useractivation) override;
 
                virtual void display_temporary_file_with_text(const ::scoped_string & scopedstr);
 
@@ -390,16 +429,18 @@ namespace acme
 
                //virtual LRESULT window_procedure(UINT message, WPARAM wparam, LPARAM lparam);
 
-               void set_position(const ::int_point & point) override;
+               void set_position(const ::i32_point & point) override;
 
                void destroy() override;
 
+               void post_redraw(bool bAscendants = true) override;
+
                void redraw() override;
 
-               //virtual void get_client_rectangle(::int_rectangle & rectangle);
-               ::int_rectangle get_window_rectangle() override;
+               //virtual void get_client_rectangle(::i32_rectangle & rectangle);
+               ::i32_rectangle get_window_rectangle() override;
 
-               ::int_rectangle get_rectangle() override;
+               ::i32_rectangle get_rectangle() override;
 
                //void set_mouse_capture() override;
 
@@ -420,11 +461,11 @@ namespace acme
                void get_text_selection(character_count & iBeg, character_count & iEnd) const override;
                virtual void get_text_selection(character_count & iBeg, character_count & iEnd, character_count & iComposingStart, character_count & iComposingEnd) const;
                virtual ::collection::index plain_edit_sel_to_column(::draw2d::graphics_pointer & pgraphics, character_count iSel);
-               virtual ::collection::index plain_edit_sel_to_column_x(::draw2d::graphics_pointer & pgraphics, character_count iSel, int & x);
+               virtual ::collection::index plain_edit_sel_to_column_x(::draw2d::graphics_pointer & pgraphics, character_count iSel, ::i32 & x);
                virtual ::collection::index plain_edit_sel_to_line(::draw2d::graphics_pointer & pgraphics, character_count iSel);
-               virtual ::collection::index plain_edit_sel_to_line_x(::draw2d::graphics_pointer & pgraphics, character_count iSel, int & x);
+               virtual ::collection::index plain_edit_sel_to_line_x(::draw2d::graphics_pointer & pgraphics, character_count iSel, ::i32 & x);
                virtual character_count plain_edit_line_column_to_sel(::draw2d::graphics_pointer & pgraphics, ::collection::index iLine, ::collection::index iColumn);
-               virtual character_count plain_edit_line_x_to_sel(::draw2d::graphics_pointer & pgraphics, ::collection::index iLine, int x);
+               virtual character_count plain_edit_line_x_to_sel(::draw2d::graphics_pointer & pgraphics, ::collection::index iLine, ::i32 x);
                virtual ::collection::index plain_edit_char_to_line(::draw2d::graphics_pointer & pgraphics, character_count iSel);
 
 
@@ -483,6 +524,46 @@ namespace acme
          virtual void on_control_box_close();
          virtual void on_control_box_minimize();
          virtual void on_control_box_zoom();
+
+
+
+
+
+         void on_window_size() override;
+         void on_window_set_focus() override;
+         void on_window_show(bool bShow, int iDetail) override;
+         bool on_window_activate(::i32 iActivate, bool bMinimized, const ::operating_system::window & operatingsystemwindow) override;
+         bool on_window_mouse_activate(::i32 & iResult, const ::operating_system::window & operatingsystemwindowTop, ::i32 iHitTest, ::i32 iMessage) override;
+
+
+         bool is_window_visible() override;
+         bool is_window_iconic() override;
+         ::f32 get_window_scale() override;
+
+
+         ::i32_point screen_to_window_client(const ::i32_point & point) override;
+         ::i32_rectangle screen_to_window_client(const ::i32_rectangle & rectangle) override;
+         ::i32_point window_client_to_screen(const ::i32_point & point) override;
+         ::i32_rectangle window_client_to_screen(const ::i32_rectangle & rectangle) override;
+
+         void post_message(::user::enum_message eusermessage, wparam wparam = {}, lparam lparam = {}) override;
+
+         void set_active_window() override;
+         void set_window_text(const ::scoped_string & scopedstrString) override;
+         void set_window_style(::i32 iStyle) override;
+         ::i64 get_window_style() override;
+         void show_window(::i32 iShowFlags) override;
+         void set_window_position(const ::operating_system::window & operatingsystemwindow, const ::i32_point & point, const ::i32_size & size, ::i32 iSetWindowPosFlags) override;
+         void window_invalidate_rect(const ::i32_rectangle * prectangle, bool bErase) override;
+         void update_window() override;
+         void redraw_window(const ::i32_rectangle * prectangle, void * pHRGN, ::i32 iRedrawFlags) override;
+         void window_set_focus() override;
+         void set_foreground_window(::user::activation_token * puseractivationtoken) override;
+         ::i32_rectangle window_get_client_rect() override;
+         ::i32_rectangle get_window_rect() override;
+         bool defer_update_system_menu() override;
+         void dump_operating_system_child_window_hierarchy() override;
+
 
 
       };

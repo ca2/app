@@ -242,4 +242,9 @@
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
+  <ItemGroup>
+    <None Include="nanoui.def">
+      <Filter>Source Files</Filter>
+    </None>
+  </ItemGroup>
 </Project>

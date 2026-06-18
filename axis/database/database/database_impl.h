@@ -26,11 +26,11 @@ namespace database
       string            m_strUser;
       string            m_strPass;
       string            m_strSckt;
-      unsigned long long               m_uConnectionFlags;
+      ::u64               m_uConnectionFlags;
 
 
       bool              m_bTransactionActive;
-      int               m_iLastError;
+      ::i32               m_iLastError;
       string            m_strLastError;
       class ::time        m_timeLastUse;
 
@@ -56,7 +56,7 @@ namespace database
 
       void     init() override;
       enum_connection connection_status() override { return m_econnection; }
-      void     set_error_code(int iErrorCode) override;
+      void     set_error_code(::i32 iErrorCode) override;
       string get_error_message() override;
       void* get_handle() override = 0;
 
@@ -67,7 +67,7 @@ namespace database
          const ::scoped_string & scopedstrUser = nullptr,
          const ::scoped_string & scopedstrPass = nullptr,
          const ::scoped_string & scopedstrSocket = nullptr,
-         unsigned long long uConnectionFlags = 0) override;
+         ::u64 uConnectionFlags = 0) override;
 
       void     _connect()  override= 0;
 

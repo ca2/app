@@ -13,6 +13,7 @@
 #include "acme/parallelization/synchronization_array.h"
 #include "acme/parallelization/types.h"
 #include "acme/platform/implementable.h"
+#include "acme/platform/timer.h"
 #include "acme/prototype/data/property_container.h"
 #include "acme/prototype/collection/block_array.h"
 #include "acme/prototype/collection/comparable_eq_list.h"
@@ -81,8 +82,7 @@
 
 #endif
 
-
-DECLARE_ENUMERATION(e_happening, enum_happening);
+DECLARE_C_FLAG(e_happening, enum_happening);
 
 
 class locale;
@@ -110,7 +110,8 @@ class CLASS_DECL_ACME task :
    virtual public ::object,
    virtual public ::acme::implementable,
    virtual public ::handler::handler,
-   virtual public ::tracer,
+    virtual public ::timer_handler,
+   virtual public ::platform::tracer,
    virtual public ::source,
    virtual public ::data::property_container
 {
@@ -138,6 +139,7 @@ public:
          bool                                            m_bCoInitializeMultithreaded : 1;
 #endif
          bool                                            m_bMessageThread : 1;
+         bool                                            m_bMessageThread2 : 1;
          bool                                            m_bHandleRequest : 1;
          bool                                            m_bHandleProcedure : 1;
          bool                                            m_bHandleHappening : 1;
@@ -146,18 +148,19 @@ public:
 #ifdef PARALLELIZATION_PTHREAD
          bool                                            m_bJoinable : 1;
 #endif
-         bool                                            m_bKeepRunningPostedProcedures : 1;
-
+         bool                                            m_bRunMainLoop : 1;
+        bool m_bAutoStartOnTimerAdded :1;
+         bool m_bBranchCall : 1;
 
       };
 
 
-      unsigned long long m_hnTaskFlag;
+      ::u64 m_hnTaskFlag;
 
 
    };
 
-   unsigned long long                                    m_uThreadAffinityMask;
+   ::u64                                    m_uThreadAffinityMask;
 
 #if defined(WINDOWS)
 
@@ -165,7 +168,7 @@ public:
 
 #endif
 
-
+::i64 m_iTaskObjectSerialId;
    class ::time                                    m_timeSample;
    
    class finishing :
@@ -210,7 +213,6 @@ public:
       }
       
    };
-   
    ::pointer < finishing > m_pfinishing;
    //bool m_bDetectedHasFinishingFlag = false;
    
@@ -242,7 +244,7 @@ public:
 #endif
 
 #ifdef _DEBUG
-   char *                                          m_pszDebug;
+   char_pointer m_pszDebug;
 #endif
    ::pointer < ::parallelization::counter >        m_pcounter;
    ::task_pointer                                  m_ptask;
@@ -267,7 +269,7 @@ public:
 
    ::waiting_call_stack                            m_waitingcallstack;
 
-   int m_iExitCode;
+   ::i32 m_iExitCode;
 
 
 
@@ -279,13 +281,18 @@ public:
       const ::subparticle *m_psubparticleContext;
       ::subparticle *m_psubparticleSynchronization;
       const_char_pointer m_pszFile;
-      int m_iLine;
+      ::i32 m_iLine;
    };
 
 
    ::block_array<synchronous_lock_description_t, 64>
       m_synchronouslockdescriptiona;
-
+private:
+      critical_section m_criticalsectionMsgTranslator;
+#if defined(WINDOWS_DESKTOP)
+   ::comparable_array<::function<bool(MSG *)>> m_msgtranslatora;
+#endif
+   public:
 
    task();
    ~task() override;
@@ -293,7 +300,14 @@ public:
 
    void on_initialize_particle() override;
 
-   
+   void on_new_main_loop_happening_creation() override;
+
+#if defined(WINDOWS_DESKTOP)
+   virtual void add_msg_translator(::function<bool(MSG *)> msgtranslator);
+   virtual void erase_msg_translator(::function<bool(MSG *)> msgtranslator);
+
+   virtual bool msg_translator_handlers(MSG *pmsg);
+#endif
    //virtual void on_pre_run_task();
 
    
@@ -309,7 +323,7 @@ public:
    
    virtual void on_single_lock_lock(::subparticle *psubparticleSynchronization,
                                             const ::subparticle *psubparticleContext, const_char_pointer pszFile,
-                                            int iLine);
+                                            ::i32 iLine);
    virtual void on_single_lock_unlock(::subparticle *psubparticleSynchronization);
 
 
@@ -334,6 +348,10 @@ public:
    //virtual ::manual_reset_happening * new_main_loop_happening();
 
    //virtual ::manual_reset_happening* new_happening();
+
+       virtual void on_start_timers_handling_hint();
+   virtual void on_stop_timers_handling_hint();
+
 
    virtual bool pick_next_posted_procedure();
 
@@ -361,7 +379,7 @@ public:
 
 #ifdef WINDOWS
 
-   static unsigned int WINDOWS_API s_os_task(void* p);
+   static ::u32 WINDOWS_API s_os_task(void* p);
 
 #else
 
@@ -385,6 +403,7 @@ public:
    void post(const ::procedure & procedure) override;
    void send(const ::procedure & procedure) override;
 
+
    //void _post(::subparticle * p) override;
    //void _send(::subparticle * p) override;
 
@@ -402,7 +421,7 @@ public:
    virtual bool on_happening(e_happening ehappening);
 
 
-   virtual int __task_main();
+   virtual ::i32 __task_main();
    virtual void __task_init();
    //virtual void __task_main(::procedure & procedureTaskEnded);
    virtual void __task_term();
@@ -451,8 +470,8 @@ public:
 //   static ::task_pointer launch(
 //      ::matter* pmatter,
 //      ::enum_priority epriority = e_priority_normal,
-//      unsigned int nStackSize = 0,
-//      unsigned int dwCreateFlags = 0);
+//      ::u32 nStackSize = 0,
+//      ::u32 dwCreateFlags = 0);
 
 
    //virtual ::property_object * thread_parent();
@@ -463,7 +482,7 @@ public:
 
 
    virtual bool is_thread_class() const override;
-   virtual bool task_get_run() const override;
+   bool should_run() const override;
 
    bool is_ready_to_quit() const override;
 
@@ -482,12 +501,19 @@ public:
 
    virtual void kick_thread();
 
+   virtual ::i32 call_main();
    virtual void main();
 
    void run() override;
 
+   virtual void run_main_loop();
+
 
    virtual void run_loop();
+   virtual void run_loop1(::task *ptask);
+   virtual void run_loop2(::task *ptask);
+
+   virtual void run_default_loop1();
 
    virtual bool task_run(const class ::time & time = 0_s);
 
@@ -593,7 +619,7 @@ CLASS_DECL_ACME string task_get_name();
 CLASS_DECL_ACME string task_get_name(htask htask);
 
 
-CLASS_DECL_ACME void thread_name_abbreviate(string & strName, int len);
+CLASS_DECL_ACME void thread_name_abbreviate(string & strName, ::i32 len);
 
 
 //CLASS_DECL_ACME ::task * _get_task();
@@ -620,39 +646,7 @@ using task_pointer = ::pointer<::task>;
 class task_pool;
 
 
-
-
-
-
-
-
-template < typename PRED >
-inline void while_predicateicate_Sleep(int iTime, PRED pred)
-{
-
-   iTime += 99;
-
-   iTime /= 100;
-
-   for (::collection::index i = 0; i < iTime; i++)
-   {
-
-      preempt(100_ms);
-
-      if (!pred())
-      {
-
-         return;
-
-      }
-
-      preempt();
-
-   }
-
-   throw ::exception(error_timeout);
-
-}
+CLASS_DECL_ACME void predicate_preempt(const class ::time & time, const ::function < bool() > & function);
 
 
 CLASS_DECL_ACME void task_release();

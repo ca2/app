@@ -9,13 +9,13 @@
 
 
 
-//CLASS_DECL_ACME int_bool WINAPI GetMessage(MESSAGE * lpMsg, ::acme::windowing::window * pacmewindowingwindow, unsigned int wMsgFilterMin, unsigned int wMsgFilterMax);
+//CLASS_DECL_ACME ::i32_bool WINAPI GetMessage(MESSAGE * lpMsg, ::acme::windowing::window * pacmewindowingwindow, ::u32 wMsgFilterMin, ::u32 wMsgFilterMax);
 
-//CLASS_DECL_ACME int_bool WINAPI PeekMessage(MESSAGE * lpMsg, ::acme::windowing::window * pacmewindowingwindow, unsigned int wMsgFilterMin, unsigned int wMsgFilterMax,unsigned int wRemoveMsg);
+//CLASS_DECL_ACME ::i32_bool WINAPI PeekMessage(MESSAGE * lpMsg, ::acme::windowing::window * pacmewindowingwindow, ::u32 wMsgFilterMin, ::u32 wMsgFilterMax,::u32 wRemoveMsg);
 
-//CLASS_DECL_ACME int_bool WINAPI PostThreadMessage(itask idthread, unsigned int Msg, WPARAM wParam, LPARAM lParam);
+//CLASS_DECL_ACME ::i32_bool WINAPI PostThreadMessage(itask idthread, ::u32 Msg, WPARAM wParam, LPARAM lParam);
 
-//unsigned int WinMsgWaitForMultipleObjects(unsigned int dwSize,const HANDLE * lphandles,unsigned int tickTimeout,unsigned int dwWakeMask,unsigned int dwFlags);
+//::u32 WinMsgWaitForMultipleObjects(::u32 dwSize,const HANDLE * lphandles,::u32 tickTimeout,::u32 dwWakeMask,::u32 dwFlags);
 
 
 

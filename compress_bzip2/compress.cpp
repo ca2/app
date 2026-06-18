@@ -10,7 +10,7 @@
 #include <bzlib.h>
 
 
-#define MAKEU64(hi, lo) ((((unsigned long long)hi) << 32) | ((unsigned long long) lo))
+#define MAKEU64(hi, lo) ((((::u64)hi) << 32) | ((::u64) lo))
 
 //#define ALLOC(size) malloc(size)
 //#define TRYFREE(point) {if (point) free(point);}
@@ -25,17 +25,17 @@
 typedef  uchar GZIP;
 typedef  GZIP* LPGZIP;
 
-//static const int gz_magic[2] = {0x1f, 0x8b}; /* gzip magic header */
+//static const ::i32 gz_magic[2] = {0x1f, 0x8b}; /* gzip magic header */
 
 #define BZ_SETERR(err) m_z_err = err
 extern "C"
 {
-   typedef  void *(* bzalloc)(void *,int,int);
+   typedef  void *(* bzalloc)(void *,::i32,::i32);
    typedef  void(* bzfree)(void *,void *);
 
 }
 
-//unsigned char *                   m_outbuf; /* output buffer */
+//::u8 *                   m_outbuf; /* output buffer */
 //uptr                   m_crc;     /* crc32 of uncompressed data */
 
 namespace compress_bzip2
@@ -74,7 +74,7 @@ namespace compress_bzip2
    }
 
 
-   void compress::set_bzip2_parameters(int iBlockSize, int iVerbosity, int iWorkFactor)
+   void compress::set_bzip2_parameters(::i32 iBlockSize, ::i32 iVerbosity, ::i32 iWorkFactor)
    {
 
       m_iBlockSize = iBlockSize;
@@ -90,44 +90,44 @@ namespace compress_bzip2
    {
 
       memory                     memory;
-      int                    m_CurrentBufferSize;
+      ::i32                    m_CurrentBufferSize;
       bz_stream                  zstream;
-      int                    m_z_err;   /* error code for last stream operation */
+      ::i32                    m_z_err;   /* error code for last stream operation */
       iptr                    ret;
 
       zero(zstream);
 
-      int iBlockSize = m_iBlockSize;
-      int iVerbosity = m_iVerbosity;
-      int iWorkFactor = m_iWorkFactor;
+      ::i32 iBlockSize = m_iBlockSize;
+      ::i32 iVerbosity = m_iVerbosity;
+      ::i32 iWorkFactor = m_iWorkFactor;
 
       class memory memIn;
       memIn.set_size(1024 * 64);
 
-      long long uRead = pfileUncompressed->read(memIn.data(), memIn.size());
+      ::i64 uRead = pfileUncompressed->read(memIn.data(), memIn.size());
 
       iBlockSize = maximum(1, minimum(9, iBlockSize));
       iVerbosity = maximum(0, minimum(4, iVerbosity));
       iWorkFactor = maximum(0, minimum(250, iWorkFactor));
 
       m_CurrentBufferSize = 1024 * 1024 * 8;
-      int blockSize100k = iBlockSize; // 900k
-      int workFactor = iWorkFactor;
-      int verbosity = iVerbosity;
+      ::i32 blockSize100k = iBlockSize; // 900k
+      ::i32 workFactor = iWorkFactor;
+      ::i32 verbosity = iVerbosity;
       memory.set_size(m_CurrentBufferSize);
 
       zstream.bzalloc = (bzalloc)0;
       zstream.bzfree = (bzfree)0;
       zstream.opaque = (void*)0;
-      zstream.next_in = (char*)memIn.data();
-      zstream.avail_in = (unsigned int)uRead;
+      zstream.next_in = (char_pointer )memIn.data();
+      zstream.avail_in = (::u32)uRead;
       zstream.next_out = nullptr;
       zstream.avail_out = 0;
       m_z_err = BZ_OK;
 
       //   m_crc = crc32(0L,nullptr,0);
 
-      int err = BZ2_bzCompressInit(&zstream, blockSize100k, verbosity, workFactor);
+      ::i32 err = BZ2_bzCompressInit(&zstream, blockSize100k, verbosity, workFactor);
 
       if (err != BZ_OK || memory.data() == nullptr)
       {
@@ -138,7 +138,7 @@ namespace compress_bzip2
 
       m_z_err = BZ_OK;
 
-      int iState = BZ_RUN;
+      ::i32 iState = BZ_RUN;
 
       while (true)
       {
@@ -146,8 +146,8 @@ namespace compress_bzip2
          do
          {
 
-            zstream.next_out = (char*)memory.data();
-            zstream.avail_out = (unsigned int)memory.size();
+            zstream.next_out = (char_pointer )memory.data();
+            zstream.avail_out = (::u32)memory.size();
 
             ret = BZ2_bzCompress(&zstream, iState);
 
@@ -181,17 +181,17 @@ namespace compress_bzip2
 
             iState = BZ_FINISH;
 
-            zstream.next_in = (char*)nullptr;
+            zstream.next_in = (char_pointer )nullptr;
 
-            zstream.avail_in = (unsigned int)0;
+            zstream.avail_in = (::u32)0;
 
          }
          else
          {
 
-            zstream.next_in = (char*)memIn.data();
+            zstream.next_in = (char_pointer )memIn.data();
 
-            zstream.avail_in = (unsigned int)uRead;
+            zstream.avail_in = (::u32)uRead;
 
          }
 

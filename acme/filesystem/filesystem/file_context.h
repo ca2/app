@@ -94,7 +94,7 @@ public:
    virtual ::file::path module();
 
    
-   ::file::path time(const ::file::path & pathBasePath, int iDepth = 0, const ::scoped_string & scopedstrPrefix = nullptr, const ::scoped_string & scopedstrSuffix = nullptr, bool bTryDelete = false);
+   ::file::path time(const ::file::path & pathBasePath, ::i32 iDepth = 0, const ::scoped_string & scopedstrPrefix = nullptr, const ::scoped_string & scopedstrSuffix = nullptr, bool bTryDelete = false);
    ::file::path time_square(const ::scoped_string & scopedstrPrefix = nullptr, const ::scoped_string & scopedstrSuffix = nullptr);
    ::file::path time_log(const ::scoped_string & scopedstr);
 
@@ -162,12 +162,13 @@ public:
    //}
 
 
-   virtual int filterex_time_square(const ::scoped_string & scopedstrPrefix, ::file::path_array_base & stra);
+   virtual ::i32 filterex_time_square(const ::scoped_string & scopedstrPrefix, ::file::path_array_base & stra);
    virtual bool try_create_file(const ::file::path & path, bool bTryDelete);
 
 
    virtual ::payload as_network_payload(const ::payload & payloadFile);
    virtual ::payload safe_get_network_payload(const ::payload & payloadFile);
+   virtual ::pointer_array<::string_array> as_comma_separated(const ::payload &payloadFile);
    virtual ::memory _005SignedMemory(const ::payload & payloadFile);
    virtual string _005SignedString(const ::payload & payloadFile);
    virtual string as_string(const ::payload & payloadFile);
@@ -215,7 +216,7 @@ public:
    virtual file_pointer resource_get_file(const ::file::path & path);
 
    virtual ::file::path sys_temp(const ::scoped_string & scopedstrName, const ::scoped_string & scopedstrExtension);
-   virtual ::file::path sys_temp_unique(const ::file::path & lpszName);
+   virtual ::file::path sys_temp_unique(const ::file::path & pszName);
 
 
    virtual ::file::path replace_with_extension(const ::scoped_string & scopedstrExtension,  const ::file::path & pathFile);
@@ -252,8 +253,8 @@ public:
 
    // 'n' (natural) terminated ascii number, example: 245765487n
    // pmd5ctx = openssl/md5.h's MD5_CTX
-   //virtual void write_n_number(::file::file * pfile, void * pmd5ctx, long long iNumber);
-   //virtual void read_n_number(::file::file * pfile, void * pmd5ctx, long long & iNumber);
+   //virtual void write_n_number(::file::file * pfile, void * pmd5ctx, ::i64 iNumber);
+   //virtual void read_n_number(::file::file * pfile, void * pmd5ctx, ::i64 & iNumber);
 
    //virtual void write_gen_string(::file::file * pfile, void * pmd5ctx, string & str);
    //virtual void read_gen_string(::file::file * pfile, void * pmd5ctx, string & str);
@@ -321,7 +322,7 @@ public:
   // virtual ::payload length(const ::file::path & path);
 
 
-   //::file::path time(const ::file::path & pathBasePath, int iDepth = 1, const ::scoped_string & scopedstrPrefix = nullptr, const ::scoped_string & scopedstrSuffix = nullptr);
+   //::file::path time(const ::file::path & pathBasePath, ::i32 iDepth = 1, const ::scoped_string & scopedstrPrefix = nullptr, const ::scoped_string & scopedstrSuffix = nullptr);
 
 
    //virtual file_pointer time_square_file(const ::scoped_string & scopedstrPrefix = nullptr, const ::scoped_string & scopedstrSuffix = nullptr);
@@ -387,10 +388,10 @@ public:
    //virtual bool add_contents(const ::payload & payloadFile, const ::scoped_string & scopedstrContents);
 
 
-   string sys_temp(const_char_pointer lpszName, const ::scoped_string & scopedstrExtension);
+   string sys_temp(const_char_pointer pszName, const ::scoped_string & scopedstrExtension);
 
 
-   //virtual ::file_pointer get_file(const ::payload & payloadFile, unsigned int nOpenFlags);
+   //virtual ::file_pointer get_file(const ::payload & payloadFile, ::u32 nOpenFlags);
 
 
    //virtual bool is_read_only(const ::file::path & path);
@@ -470,7 +471,7 @@ CLASS_DECL_ACME void set_bypass_cache_if_empty(::payload & payloadFile);
 CLASS_DECL_ACME bool get_bypass_cache_if_empty(const ::payload & payloadFile);
 
 CLASS_DECL_ACME void set_bypass_cache(::payload & payloadFile);
-CLASS_DECL_ACME bool get_bypass_cache(const ::payload & payloadFile);
+CLASS_DECL_ACME ::i32_boolean get_bypass_cache(const ::payload & payloadFile);
 
 
 

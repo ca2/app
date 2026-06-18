@@ -20,7 +20,7 @@ namespace message
    //class sender; -> oet,chnel (targetable!!evenmoreeasilykillble (dissolve "bad" idea/group/team, not person));
    //class receiver; -> oyet
 
-   unsigned int translate_to_os_message(const ::atom& atom);
+   ::u32 translate_to_os_message(const ::atom& atom);
 
 
    CLASS_DECL_APEX bool is_idle_message(::message::message * pmessage);
@@ -45,10 +45,10 @@ namespace user
 {
 
 
-   enum enum_message_prototype : int;
+   enum enum_message_prototype : ::i32;
 
 
-   CLASS_DECL_APEX enum_message_prototype get_message_prototype(::user::enum_message eusermessage, unsigned int uCode);
+   CLASS_DECL_APEX enum_message_prototype get_message_prototype(::user::enum_message eusermessage, ::u32 uCode);
 
 
 } // namespace user

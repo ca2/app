@@ -33,8 +33,8 @@
 ////::pointer<task>material_object::branch(
 ////   ::matter* pmatter,
 ////   ::enum_priority epriority,
-////   unsigned int nStackSize,
-////   unsigned int dwCreateFlags
+////   ::u32 nStackSize,
+////   ::u32 dwCreateFlags
 ////   ARG_SEC_ATTRS)
 ////{
 ////
@@ -152,7 +152,7 @@
 //   pprocedurea->add(procedure);
 //
 //}
-//::long_long_array & material_object::idarray() const
+//::i64_array & material_object::idarray() const
 //{
 //
 //   m_papplication->defer_construct_newø(((material_object *)this)->m_pia); return *m_pia;

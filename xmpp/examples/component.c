@@ -43,7 +43,7 @@ int main(int argc, char **argv)
     xmpp_conn_t *conn;
     xmpp_log_t *log;
     char *jid, *pass, *host, *port_err = NULL;
-    unsigned short port = 0;
+    ::u16 port = 0;
 
     /* take a jid and password on the command line */
     if (argc < 4 || argc > 5) {
@@ -61,7 +61,7 @@ int main(int argc, char **argv)
             fprintf(stderr, "Invalid value of <port> [%s].\n", argv[4]);
             return 1;
         }
-        port = (unsigned short) tmp_port;
+        port = (::u16) tmp_port;
     }
 
     /* init library */

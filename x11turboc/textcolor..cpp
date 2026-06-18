@@ -26,7 +26,7 @@
 #include "conio.h"
 
 void
-textcolor (int newcolor)
+textcolor (::i32 newcolor)
 {
   if (!ConioInitialized)
     textmode (LASTMODE);

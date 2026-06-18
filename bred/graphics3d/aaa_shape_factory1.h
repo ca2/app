@@ -28,18 +28,18 @@ namespace graphics3d
       using shape_data = ::gpu::model_data<Vertex>;
 
       // Generate a graphics3d with position, color, texture coordinates, and normals
-      virtual shape_data create_cube(float size);
+      virtual shape_data create_cube(::f32 size);
 
       // Generate a plane (XZ plane by default) with position, texture coords, and normals
-      virtual shape_data create_plane(float width, float depth);
+      virtual shape_data create_plane(::f32 width, ::f32 depth);
 
       // Generate a wall (XY plane by default) with position, texture coords, and normals
-      virtual shape_data create_wall(float width, float height);
+      virtual shape_data create_wall(::f32 width, ::f32 height);
 
-      virtual shape_data create_sphere(float radius, unsigned int sectorCount, unsigned int stackCount);
+      virtual shape_data create_sphere(::f32 radius, ::u32 sectorCount, ::u32 stackCount);
 
       // Generate a ray with a specified length
-      virtual shape_data create_ray(float length);
+      virtual shape_data create_ray(::f32 length);
       
 
    };

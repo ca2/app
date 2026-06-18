@@ -4,7 +4,7 @@
 #include "acme/exception/interface_only.h"
 #include "bred/gpu/block.h"
 #include "bred/gpu/context.h"
-#include "bred/gpu/frame.h"
+#include "bred/gpu/layer.h"
 #include "bred/graphics3d/asset_manager.h"
 #include "bred/graphics3d/engine.h"
 #include "bred/graphics3d/input.h"
@@ -16,6 +16,7 @@
 #include "acme/platform/session.h"
 #include "aura/graphics/draw2d/draw2d.h"
 #include "aura/graphics/draw2d/graphics.h"
+#include "aura/graphics/draw2d/graphics_context.h"
 #include "aura/graphics/draw2d/pen.h"
 #include "aura/graphics/image/context.h"
 #include "aura/graphics/image/drawing.h"
@@ -40,8 +41,8 @@ namespace user
       //m_ekeyboard = ::graphics3d::e_keyboard_updateMovement;
       ////m_bAbsoluteMousePosition = false;
       //m_bShouldClose = false;
-      m_bFrameBufferResized = false;
-
+      m_bFramebufferResized = false;
+        m_psession=nullptr;
    }
 
 
@@ -119,7 +120,7 @@ namespace user
    }
 
 
-   void graphics3d::on_mouse_move(const int_point & point)
+   void graphics3d::on_mouse_move(const i32_point & point)
    {
 
       auto pengine = m_pengine;
@@ -141,7 +142,7 @@ namespace user
    }
 
 
-   void graphics3d::defer_initialize_engine(const ::int_rectangle& rectanglePlacement)
+   void graphics3d::defer_initialize_engine(const ::i32_rectangle& rectanglePlacement)
    {
 
       if (!m_pengine)
@@ -278,8 +279,8 @@ namespace user
 
       auto &mousestate = pinput->m_mousestate;
 
-      mousestate.m_position.x = (float) point.x;
-      mousestate.m_position.y = (float) point.y;
+      mousestate.m_position.x = (::f32) point.x;
+      mousestate.m_position.y = (::f32) point.y;
       mousestate.m_buttons.left = true;
 
       set_mouse_capture();
@@ -300,8 +301,8 @@ namespace user
 
       host_to_client()(point);
 
-      m_pengine->m_pinput->m_mousestate.m_position.x = (float) point.x;
-      m_pengine->m_pinput->m_mousestate.m_position.y = (float) point.y;
+      m_pengine->m_pinput->m_mousestate.m_position.x = (::f32) point.x;
+      m_pengine->m_pinput->m_mousestate.m_position.y = (::f32) point.y;
       m_pengine->m_pinput->m_mousestate.m_buttons.left = false;
 
       
@@ -312,6 +313,7 @@ namespace user
 
    void graphics3d::on_message_create(::message::message* pmessage)
    {
+       m_psession = session();
 
       ::pointer<::message::create>pcreate(pmessage);
 
@@ -323,6 +325,8 @@ namespace user
          return;
 
       }
+
+
 
       //get_app()->m_pimpact = this;
 
@@ -336,7 +340,7 @@ namespace user
    }
 
 
-   void graphics3d::on_timer(::timer* ptimer)
+   void graphics3d::operator()(::timer * ptimer)
    {
 
    }
@@ -379,7 +383,7 @@ namespace user
 
 #ifdef DEBUG_WORK
 
-         ::int_rectangle rectangleDryProWithLove_Work(5, 5, 1915, 1075);
+         ::i32_rectangle rectangleDryProWithLove_Work(5, 5, 1915, 1075);
 
          pgraphics->fill_rectangle(rectangleDryProWithLove_Work, argb(255, 150, 200, 255));
 
@@ -412,11 +416,11 @@ namespace user
 
          //bool bWhite = true;
 
-         //double x = 0.;
+         //::f64 x = 0.;
 
-         double y = 0.;
+         ::f64 y = 0.;
 
-         ::int_point point;
+         ::i32_point point;
 
          string strText;
 
@@ -424,7 +428,7 @@ namespace user
 
          strText.formatf("øçåJErDgTBS__!!; %d", m_iFrameCounter);
 
-         stra.ø(0) = strText;
+         stra.atø(0) = strText;
 
          auto size = pgraphics->get_text_extent(strText);
 
@@ -434,13 +438,13 @@ namespace user
 
          strFps.format("FPS {:.1f}", m_fpscounter.getAverageFps());
 
-         stra.ø(1) = strFps;
+         stra.atø(1) = strFps;
 
          ::string strFrameTime;
 
          strFrameTime.format("Frame Time: {:.1f}ms", m_fpscounter.getAverageFrameTime());
 
-         stra.ø(2) = strFrameTime;
+         stra.atø(2) = strFrameTime;
 
          //bool bFixedPosition = true;
 
@@ -510,29 +514,33 @@ namespace user
 
       //return;
 
-      ::cast < ::gpu::compositor > pcompositor = pgraphics;
+      //::cast < ::gpu::compositor > pcompositor = pgraphics;
 
-      //::gpu::frame* pgpuframe = nullptr;
+      //::gpu::layer* pgpulayer = nullptr;
 
       if (m_papplication->m_gpu.m_bUseSwapChainWindow)
       {
 
-         if(pcompositor)
-         {
+         pgraphics->end_layer();
 
-            pcompositor->gpu_context()->m_pgpurenderer->frame_suffix();
+         //if(pcompositor)
+         //{
 
-            //double_rectangle r;
+         //   //pcompositor->gpu_context()->m_pgpurenderer->frame_suffix();
 
-            //r.left = 400.0;
-            //r.top = 200.0;
-            //r.set_size(50.0, 50.0);
+         //   pcompositor->end_layer();
 
-            //pgraphics->fill_solid_rectangle(r, argb(1.0, 0.5, 0.75, 0.95));
-            //
-            //pgpuframe = pcompositor->end_gpu_layer(::gpu::current_frame());
+         //   //::f64_rectangle r;
 
-         }
+         //   //r.left = 400.0;
+         //   //r.top = 200.0;
+         //   //r.set_size(50.0, 50.0);
+
+         //   //pgraphics->fill_solid_rectangle(r, argb(1.0, 0.5, 0.75, 0.95));
+         //   //
+         //   //pgpulayer = pcompositor->end_gpu_layer(::gpu::current_layer());
+
+         //}
 
       }
             
@@ -546,13 +554,17 @@ namespace user
       if (m_papplication->m_gpu.m_bUseSwapChainWindow)
       {
 
-         if (pcompositor)
-         {
+         pgraphics->start_layer();
 
-            pcompositor->gpu_context()->m_pgpurenderer->frame_prefix();
-            //pcompositor->start_gpu_layer(pgpuframe);
+         //if (pcompositor)
+         //{
 
-         }
+         //   //pcompositor->gpu_context()->m_pgpurenderer->frame_prefix();
+         //   //pcompositor->start_gpu_layer(pgpulayer);
+
+         //   pcompositor->start_layer();
+
+         //}
 
       }
 
@@ -566,19 +578,19 @@ namespace user
    }
 
 
-   ::user::enum_key_state graphics3d::get_key_state(::user::e_key ekey)
-   {
+//   ::key::enum_state graphics3d::get_key_state(const ::user::e_key & ekey)
+  // {
 
-      if (session()->is_key_pressed(ekey))
-      {
+    //  if (session()->is_key_pressed(ekey))
+      //{
 
-         return ::user::e_key_state_pressed;
+        // return ::key::e_state_pressed;
 
-      }
+ //     }
 
-      return ::user::e_key_state_none;
+   //   return ::key::e_state_none;
 
-   }
+   //}
 
 
    void graphics3d::on_layout(::draw2d::graphics_pointer& pgraphics)
@@ -620,7 +632,7 @@ namespace user
    bool graphics3d::wasWindowResized()
    {
 
-      return m_bFrameBufferResized;
+      return m_bFramebufferResized;
 
 
    }
@@ -629,7 +641,7 @@ namespace user
    void graphics3d::resetWindowResizedFlag()
    {
 
-      m_bFrameBufferResized = false;
+      m_bFramebufferResized = false;
 
    }
 
@@ -657,10 +669,10 @@ namespace user
    }
    
    
-   float graphics3d::getAspectRatio()
+   ::f32 graphics3d::getAspectRatio()
    {
 
-      auto fH = fabs(static_cast<float>(this->height()));
+      auto fH = fabs(static_cast<::f32>(this->height()));
 
       if (fH <= 0.00001)
       {
@@ -669,7 +681,7 @@ namespace user
 
       }
 
-      return static_cast<float>(this->width()) / fH;
+      return static_cast<::f32>(this->width()) / fH;
 
    }
 

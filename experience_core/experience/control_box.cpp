@@ -77,9 +77,9 @@ namespace experience_core
       {
 
          crBackground = argb(90, 
-            m_colorBackground.m_uchRed, 
-            m_colorBackground.m_uchGreen, 
-            m_colorBackground.m_uchBlue);
+            m_colorBackground.m_u8Red, 
+            m_colorBackground.m_u8Green, 
+            m_colorBackground.m_u8Blue);
 
       }
       else
@@ -120,10 +120,10 @@ namespace experience_core
    }
 
 
-   void control_box::on_timer(::timer * ptimer)
+   void control_box::operator()(::timer * ptimer)
    {
 
-      ::experience::control_box::on_timer(ptimer);
+      ::experience::control_box::operator()(ptimer);
 
    }
 
@@ -140,7 +140,7 @@ namespace experience_core
    }
 
 
-   int control_box::calculate_button_size(::draw2d::graphics_pointer & pgraphics)
+   ::i32 control_box::calculate_button_size(::draw2d::graphics_pointer & pgraphics)
    {
 
       m_sizeButtonDefault={26, 26};
@@ -150,17 +150,17 @@ namespace experience_core
    }
 
 
-   ::int_rectangle control_box::get_button_margin(::experience::enum_button ebutton)
+   ::i32_rectangle control_box::get_button_margin(::experience::enum_button ebutton)
    {
 
       if (::experience::e_button_close == ebutton)
       {
 
-         return ::int_rectangle(1, 4, 4, 4);
+         return ::i32_rectangle(1, 4, 4, 4);
 
       }
 
-      return ::int_rectangle(1, 4, 2, 4);
+      return ::i32_rectangle(1, 4, 2, 4);
 
    }
 

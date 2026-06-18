@@ -17,19 +17,19 @@ CLASS_DECL_ACME ::string & copy(::string & str, const integral_byte & memsize)
    else if (memsize < 1_MiB)
    {
 
-      str.formatf("%0.2f KiB", (double)memsize / (double)(1_KiB));
+      str.formatf("%0.2f KiB", (::f64)memsize / (::f64)(1_KiB));
 
    }
    else if (memsize < 1_GiB)
    {
 
-      str.formatf("%0.2f MB", (double)memsize / (double)(1_MiB));
+      str.formatf("%0.2f MB", (::f64)memsize / (::f64)(1_MiB));
 
    }
    else
    {
 
-      str.formatf("%0.2f GB", (double)memsize / (double)(1_GiB));
+      str.formatf("%0.2f GB", (::f64)memsize / (::f64)(1_GiB));
 
    }
 

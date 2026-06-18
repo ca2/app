@@ -23,15 +23,15 @@
 //      ~pixmap() override;
 //
 //
-//      // virtual ::int_size size();
+//      // virtual ::i32_size size();
 //
 //
-//      void initialize_gpu_pixmap(::gpu::renderer* pgpurenderer, const ::int_size & size) override;
+//      void initialize_gpu_pixmap(::gpu::renderer* pgpurenderer, const ::i32_size & size) override;
 //
 //
-//      void set_pixels(const void* data, int w, int h) override;
+//      void set_pixels(const void* data, ::i32 w, ::i32 h) override;
 //      //virtual void merge_layers(::pointer_array < ::gpu::layer >* playera);
-//      //virtual void blend(::gpu::layer* player);
+//      //virtual void blend(::gpu::layer * pgpulayer);
 //      //virtual void blend(::gpu::texture* ptexture);
 //
 //

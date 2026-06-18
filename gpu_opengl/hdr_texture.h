@@ -16,7 +16,7 @@
 //    {
 //    public:
 //
-//       unsigned int m_uId;
+//       ::u32 m_uId;
 //
 //
 //
@@ -25,7 +25,7 @@
 //
 //
 //       void initialize_hdr_texture(const ::file::path & path) override;
-//       unsigned int getId();
+//       ::u32 getId();
 //
 //
 //    };

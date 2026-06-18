@@ -42,7 +42,7 @@ namespace platform
       ::pointer<::operating_system::department>             m_poperatingsystem;
 
       ::pointer<::parallelization::threading>               m_pthreading;
-      size_t                                                m_nSafetyPoolSize; // ideal int_size
+      size_t                                                m_nSafetyPoolSize; // ideal i32_size
 
 
       ::pointer < ::input::input >                          m_pinput;
@@ -52,7 +52,7 @@ namespace platform
       string_array_base                                          m_straCommandLineAccumul;
       string_array_base                                          m_straCommandLineExtra;
       class ::time                                          m_timeCommandLineLast;
-      int                                                   m_iCommandLineDelay;
+      ::i32                                                   m_iCommandLineDelay;
 
       bool                                                  m_bSystemSynchronizedCursor;
       bool                                                  m_bSystemSynchronizedScreen;
@@ -216,7 +216,7 @@ namespace platform
       //
 
 
-      virtual unsigned int os_post_to_all_threads(::user::enum_message eusermessage, ::wparam wparam = {}, ::lparam lparam = {});
+      virtual ::u32 os_post_to_all_threads(::user::enum_message eusermessage, ::wparam wparam = {}, ::lparam lparam = {});
 
 
       //
@@ -248,11 +248,11 @@ namespace platform
 
 
 
-      virtual int _001OnDebugReport(int i1,const ::scoped_string & scopedstr1,int i2,const ::scoped_string & scopedstr2,const ::scoped_string & scopedstr3,va_list args);
-      virtual int _debug_logging_report(int iReportType, const ::scoped_string & scopedstrFilename, int iLinenumber, const ::scoped_string & scopedstrModuleName, const_char_pointer pszFormat, va_list list_base);
-      virtual bool assert_failed_line(const ::scoped_string & scopedstrFileName,int iLine);
+      virtual ::i32 _001OnDebugReport(::i32 i1,const ::scoped_string & scopedstr1,::i32 i2,const ::scoped_string & scopedstr2,const ::scoped_string & scopedstr3,va_list args);
+      virtual ::i32 _debug_logging_report(::i32 iReportType, const ::scoped_string & scopedstrFilename, ::i32 iLinenumber, const ::scoped_string & scopedstrModuleName, const_char_pointer pszFormat, va_list list_base);
+      virtual bool assert_failed_line(const ::scoped_string & scopedstrFileName,::i32 iLine);
 
-      virtual bool on_assert_failed_line(const ::scoped_string & scopedstrFileName,int iLine);
+      virtual bool on_assert_failed_line(const ::scoped_string & scopedstrFileName,::i32 iLine);
 
 
 
@@ -277,7 +277,7 @@ namespace platform
 
 
 
-      virtual void install_progress_add_up(int iAddUp = 1);
+      virtual void install_progress_add_up(::i32 iAddUp = 1);
 
 
 
@@ -362,7 +362,7 @@ namespace platform
 
 #ifdef UNIVERSAL_WINDOWS
 
-      virtual bool window_rectangle(::int_rectangle* prectangle);
+      virtual bool window_rectangle(::i32_rectangle* prectangle);
 
 
 #endif
@@ -394,7 +394,7 @@ namespace platform
 
       virtual void dump_command_line_and_environment_variables_to_file();
 
-      virtual ::lresult system_id_topic(int iId, long long llWparam, long long llLparam);
+      virtual ::lresult system_id_topic(::i32 iId, ::i64 llWparam, ::i64 llLparam);
 
 
       [[nodiscard]] virtual class ::handler::signal * signal(const ::atom& atom);
@@ -418,9 +418,9 @@ namespace platform
 
       virtual bool _handle_uri(const ::block & block);
 
-      virtual void application_main(int argc, char *argv[], const ::scoped_string & scopedstrCommandLine);
+      virtual void application_main(::i32 argc, ::i8 * args[], const ::scoped_string & scopedstrCommandLine);
 
-      virtual int console_end(::e_status estatus);
+      virtual ::i32 console_end(::e_status estatus);
 
 
       //virtual void get_public_internet_domain_extension_list(string_array_base& stra) override;

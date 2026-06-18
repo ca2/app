@@ -31,7 +31,7 @@ namespace gpu
 
 
          //::array_base<::gpu::gltf::vertex> m_vertexa;
-         //unsigned_int_array m_indexa;
+         //u32_array m_indexa;
          //::gpu::model_data<::gpu::gltf::vertex> m_modeldataGltf;
          //::gpu::model_data<::graphics3d::Vertex> m_modeldataWavefront;
          ::pointer<::gpu::model_data_base> m_pmodeldata;
@@ -40,7 +40,7 @@ namespace gpu
          struct UniformBlock {
             floating_matrix4 matrix;
             floating_matrix4 jointMatrix[64]{};
-            float jointcount{ 0 };
+            ::f32 jointcount{ 0 };
          } uniformBlock;
 
 

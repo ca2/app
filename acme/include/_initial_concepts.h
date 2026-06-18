@@ -15,6 +15,7 @@ struct matrix_t{};
 
 
 #include <format>
+#include <compare>
 
 
 
@@ -47,10 +48,23 @@ concept prototype_sequence4 = requires(SEQUENCE4 s4) {
    s4.w;
 };
 
+
+template<typename ENUM>
+concept prototype_raw_enum =
+   std::is_enum<::decay<ENUM>>::value;
+
+template<typename ENUMERATION>
+concept prototype_enumeration = 
+   ::is_same<typename ENUMERATION::ENUM_TYPE_TAG, enum_type_t>;
+
+template<typename CFLAG>
+concept prototype_c_flag = ::is_same<typename CFLAG::CFLAG_TYPE_TAG, c_flag_type_t>;
+
 template < typename ENUM >
 concept prototype_enum = 
-   std::is_enum < ::decay < ENUM > >::value 
-   || ::is_same < typename ENUM::ENUM_TYPE_TAG, enum_type_t >;
+   prototype_raw_enum < ENUM >
+   || prototype_enumeration < ENUM >
+   || prototype_c_flag < ENUM >;
 
 
 template < typename BLOCK >
@@ -153,7 +167,7 @@ concept non_raw_pointer_castable = !raw_pointer_castable < FROM, TO_POINTER >;
 
 template < typename T >
 concept prototype_character =
-   ::is_same < ::non_const<T>, char> || 
+   ::is_same < ::non_const<T>, ::i8> || 
    ::is_same < ::non_const<T>, char8_t> ||
    ::is_same < ::non_const<T>, wchar_t> ||
    ::is_same < ::non_const<T>, ::ansi_character> ||
@@ -237,14 +251,14 @@ concept array_of_non_prototype_character =
 
 template < typename T >
 concept prototype_character_iterator =
-::is_same < T, unsigned char * > ||
-::is_same < T, char * > ||
+::is_same < T, ::u8 * > ||
+::is_same < T, char_pointer > ||
 ::is_same < T, char8_t * > ||
 ::is_same < T, wchar_t * > ||
 ::is_same < T, ::ansi_character * > ||
 ::is_same < T, ::wd16_character * > ||
 ::is_same < T, ::wd32_character * > ||
-::is_same < T, const unsigned char * > ||
+::is_same < T, const ::u8 * > ||
 ::is_same < T, const_char_pointer > ||
 ::is_same < T, const char8_t * > ||
 ::is_same < T, const wchar_t * > ||
@@ -255,14 +269,14 @@ concept prototype_character_iterator =
 
 template < typename T >
 concept prototype_character_iterator_reference =
-::is_same < T, unsigned char * & > ||
-::is_same < T, char * & > ||
+::is_same < T, ::u8 * & > ||
+::is_same < T, char_pointer & > ||
 ::is_same < T, char8_t *& > ||
 ::is_same < T, wchar_t * & > ||
 ::is_same < T, ::ansi_character * & > ||
 ::is_same < T, ::wd16_character * & > ||
 ::is_same < T, ::wd32_character * & > ||
-::is_same < T, const unsigned char * & > ||
+::is_same < T, const ::u8 * & > ||
 ::is_same < T, const_char_pointer &> ||
 ::is_same < T, const char8_t *& > ||
 ::is_same < T, const wchar_t * & > ||
@@ -329,6 +343,24 @@ class character_range;
 template <typename ITERATOR_TYPE>
 struct std::formatter<::character_range<ITERATOR_TYPE>>;
 
+
+
+template <typename T>
+concept prototype_character_pointer =
+    std::is_pointer<T>::value &&
+    requires {
+   typename non_const<non_pointer<T>>;
+    } &&
+    (
+        std::same_as<non_const<non_pointer<T>>, ::i8> ||
+        std::same_as<non_const<non_pointer<T>>, wchar_t> ||
+        std::same_as<non_const<non_pointer<T>>, char8_t> ||
+        std::same_as<non_const<non_pointer<T>>, char16_t> ||
+        std::same_as<non_const<non_pointer<T>>, char32_t>
+    );
+
+template < typename STDSTRING >
+concept prototype_std_string = (::std::is_base_of_v<::std::string, STDSTRING > || ::std::is_base_of_v<::std::wstring, STDSTRING >);
 
 
 template < typename CHARACTER_RANGE >
@@ -542,6 +574,10 @@ template < typename T >
 concept character_range_not_string_neither_scoped_string = prototype_character_range<T> && !prototype_string<T> && !prototype_scoped_string<T>;
 
 
+template<typename NUMBER>
+concept prototype_integral_number =
+   prototype_integral<NUMBER> || 
+   prototype_enum<NUMBER>;
 
 
 template < typename NUMBER >
@@ -563,8 +599,8 @@ template < typename POINT >
 concept function_point = requires(POINT point)
 {
    { point.semantic_t() } ->::std::convertible_to<point2_t>;
-   { point.x }->prototype_number;
-   { point.y }->prototype_number;
+   { point.x() }->prototype_number;
+   { point.y() }->prototype_number;
 };
 
 template < typename POINT >
@@ -815,10 +851,10 @@ template < typename T >
 concept bool_type = same_as < T, bool >;
 
 template < typename T >
-concept i8_type = same_as < T, char >;
+concept i8_type = same_as < T, ::i8 >;
 
 template < typename T >
-concept char_type = same_as < T, char >;
+concept char_type = same_as < T, ::i8 >;
 
 template < typename A_PARTICLE >
 concept a_particle = ::std::derived_from<A_PARTICLE, ::particle>;
@@ -835,7 +871,10 @@ concept non_particle = !a_particle < NON_PARTICLE >;
 
 
 template < prototype_character CHARACTER >
-constexpr bool string_compare_prefix(::std::strong_ordering & ordering, const CHARACTER * pszA, const CHARACTER * pszB) noexcept;
+constexpr bool string_compare_prefix(::i32 & ordering, const CHARACTER * pszA, const CHARACTER * pszB) noexcept;
+
+template < prototype_character CHARACTER >
+constexpr bool string_order_prefix(::std::strong_ordering & ordering, const CHARACTER * pszA, const CHARACTER * pszB) noexcept;
 
 
 template < prototype_fundamental TYPE >
@@ -846,12 +885,45 @@ template < prototype_type TYPE >
 constexpr bool equals(const TYPE & a, const TYPE & b) { return a == b; }
 
 
-template < prototype_fundamental TYPE >
-constexpr ::std::strong_ordering compare(TYPE a, TYPE b) { return ::std::strong_order(a, b); }
+template<typename A, typename B>
+constexpr ::i32 compare(const A &a, const B &b)
+{
+   if constexpr (requires { a <=> b; })
+   {
+      auto c = a <=> b;
+
+      if (c < 0)
+         return -1;
+      if (c > 0)
+         return 1;
+
+      // covers equal OR unordered (e.g. NaN cases)
+      return 0;
+   }
+   else
+   {
+      if (a < b)
+         return -1;
+      if (b < a)
+         return 1;
+      return 0;
+   }
+}
+
+template<prototype_fundamental TYPEA, prototype_fundamental TYPEB>
+constexpr ::std::strong_ordering order(TYPEA a, TYPEB b)
+{
+   return ::std::strong_order(a, b);
+}
 
 
-template < prototype_type TYPE >
-constexpr ::std::strong_ordering compare(const TYPE & a, const TYPE & b) { return ::std::strong_order(a, b); }
+
+
+template<prototype_type TYPEA, prototype_type TYPEB>
+constexpr ::std::strong_ordering order(const TYPEA & a, const TYPEB & b) 
+{
+   return ::std::strong_order(a, b); 
+}
 
 
 
@@ -859,7 +931,7 @@ template<prototype_character CHARACTER, character_count m_sizeMaximumLength>
 class inline_string;
 
 
-using inline_number_string = inline_string<char, 64>;
+using inline_number_string = inline_string<::i8, 64>;
 
 
 
@@ -959,7 +1031,7 @@ concept non_container = !prototype_container < CONTAINER >;
 
 
 template < prototype_enum ENUM >
-inline long long as_long_long(const ENUM & e) { return (long long)(::raw_enum_of<ENUM>) e; }
+inline ::i64 as_i64(const ENUM & e) { return (::i64)(::raw_enum_of<ENUM>) e; }
 
 
 template<typename ITERATOR_TYPE>

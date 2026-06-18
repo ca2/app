@@ -36,11 +36,11 @@
 // If TIOCGWINSZ is a macro containing a cast (as it is in FreeBSD, but not
 // in Linux), we can't allow it to be directly used in the code after the
 // integer types have been redefined.
-static unsigned long tiocgwinsz = TIOCGWINSZ;
+static ulong tiocgwinsz = TIOCGWINSZ;
 
 #include "conio.h"
 
-extern char BypassResizeXterm;
+extern ::i8 BypassResizeXterm;
 
 //-----------------------------------------------------------------------
 // Resize the physical terminal.
@@ -58,9 +58,9 @@ RawResizeTurboC (gint Rows, gint Columns)
   // that don't yet exist, because the sizing has not yet completed,
   // and this can cause a segfault.  Anyhow, the loop is an attempt 
   // to kill time, or fill up the buffer, or whatever.  It aborts
-  // if it finds that the int_size has actually reached the correct
+  // if it finds that the i32_size has actually reached the correct
   // value, so there's not too much harm in it except for remote
-  // logins (in which case the remote terminal int_size doesn't seem
+  // logins (in which case the remote terminal i32_size doesn't seem
   // to be determined correctly).  We make a feeble attempt to 
   // determine if the login is remote, so that we can shorten the
   // loop in that case.
@@ -68,8 +68,8 @@ RawResizeTurboC (gint Rows, gint Columns)
   // for the big loop.  There's some kind of intermittent timing
   // problem with the screen resize when running remotely, but
   // it's not the loop.
-  int i, MaxCount;
-  //char *display;
+  ::i32 i, MaxCount;
+  //char_pointer display;
   MaxCount = 16384;
   // Possibly detect a remote login.
   //display = getenv ("DISPLAY");
@@ -113,7 +113,7 @@ ResizeTurboC (gint Code)
     {
       // What this code does is to undo the manual resizing which the
       // user has performed, and to restore the physical terminal
-      // int_size to what textmode has set it at.  Unfortunately, this 
+      // i32_size to what textmode has set it at.  Unfortunately, this 
       // only works if the ANSI sequence for resizing the screen works.
       // Fortunately, this works in xterm.
       struct winsize winsz;

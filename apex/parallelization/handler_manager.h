@@ -16,8 +16,8 @@ public:
    //::task_pointer                       m_pthread;
    //::procedure_array                    m_procedurea;
    //::pointer<manual_reset_happening>      m_pevTaskOnQueue;
-   //int                                    m_iAliveCount;
-   //int                                    m_iAlive;
+   //::i32                                    m_iAliveCount;
+   //::i32                                    m_iAlive;
    //string                                 m_strThreadName;
 
 
@@ -25,7 +25,7 @@ public:
    ~handler_manager() override;
 
 
-   virtual void initialize_handler_manager(::particle * pparticleContext, const ::scoped_string & scopedstrThreadName, int iAliveCount = -1);
+   virtual void initialize_handler_manager(::particle * pparticleContext, const ::scoped_string & scopedstrThreadName, ::i32 iAliveCount = -1);
    
 
    //virtual void on_start_loop();

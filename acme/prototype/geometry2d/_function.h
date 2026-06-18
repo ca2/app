@@ -1,5 +1,7 @@
 // Created by camilo on 2022-11-08 16:01 <3ThomasBorregaardSorensen!!
 #pragma once
+template < prototype_rectangle RECTANGLE_TYPE >
+RECTANGLE_TYPE & clear(RECTANGLE_TYPE & rectangle);
 
 
 //template < prototype_rectangle RECTANGLE_TYPE >
@@ -131,13 +133,13 @@
 //
 //
 //template < prototype_rectangle RECTANGLE1, prototype_rectangle RECTANGLE2 >
-//bool is_equal(const RECTANGLE1 & rectangle1, const RECTANGLE2 & rectangle2, float epsilon = 0.0001);
+//bool is_equal(const RECTANGLE1 & rectangle1, const RECTANGLE2 & rectangle2, ::f32 epsilon = 0.0001);
 //
 //template < prototype_point POINT1, prototype_point POINT2 >
-//bool is_equal(const POINT1 & point1, const POINT2 & point2, float epsilon = 0.0001);
+//bool is_equal(const POINT1 & point1, const POINT2 & point2, ::f32 epsilon = 0.0001);
 
 //template < prototype_size SIZE_TYPE1, prototype_size SIZE_TYPE2 >
-//bool is_equal(const SIZE_TYPE1 & size1, const SIZE_TYPE2 & size2, float epsilon = 0.0001);
+//bool is_equal(const SIZE_TYPE1 & size1, const SIZE_TYPE2 & size2, ::f32 epsilon = 0.0001);
 //
 //template < prototype_rectangle RECTANGLE_TYPE, prototype_number L, prototype_number T, prototype_number R, prototype_number B >
 //RECTANGLE_TYPE & assign(RECTANGLE_TYPE & rectangle, L l, T t, R r, B b);
@@ -149,11 +151,11 @@
 //template < prototype_rectangle RECTANGLE,  typename L, typename T, typename W, typename H >
 //inline auto _001SetRectDim(RECTANGLE &r, L l, T t, W w, H h) { return set_dim(p, l, t, w, h); }
 //template <  typename L, typename T, typename W, typename H >
-//inline auto _001SetRectDim(::long_long_rectangle * p, L l, T t, W w, H h) { return set_rect_dim(p, l, t, w, h); }
+//inline auto _001SetRectDim(::i64_rectangle * p, L l, T t, W w, H h) { return set_rect_dim(p, l, t, w, h); }
 //template <  typename L, typename T, typename W, typename H >
-//inline auto _001SetRectDim(::float_rectangle * p, L l, T t, W w, H h) { return set_rect_dim(p, l, t, w, h); }
+//inline auto _001SetRectDim(::f32_rectangle * p, L l, T t, W w, H h) { return set_rect_dim(p, l, t, w, h); }
 //template <  typename L, typename T, typename W, typename H >
-//inline auto _001SetRectDim(::double_rectangle * p, L l, T t, W w, H h) { return set_rect_dim(p, l, t, w, h); }
+//inline auto _001SetRectDim(::f64_rectangle * p, L l, T t, W w, H h) { return set_rect_dim(p, l, t, w, h); }
 
 
 //template < prototype_rectangle RECTANGLE, prototype_point POINT, prototype_size SIZE >
@@ -215,10 +217,10 @@
 //
 //
 //template < prototype_point POINT1, prototype_point POINT2 >
-//inline bool polygon_contains_winding(const POINT1 * ppPolygon, int iCount, const POINT2 & point);
+//inline bool polygon_contains_winding(const POINT1 * ppPolygon, ::i32 iCount, const POINT2 & point);
 //
 //template < prototype_point POINT1, prototype_point POINT2 >
-//inline bool polygon_contains_alternate(const POINT1 * ppPolygon, int iCount, const POINT2 & point, bool bUseHoles, float epsilon = 0.00001f);
+//inline bool polygon_contains_alternate(const POINT1 * ppPolygon, ::i32 iCount, const POINT2 & point, bool bUseHoles, ::f32 epsilon = 0.00001f);
 //
 //template < prototype_point POINT, prototype_point POINT2 >
 //inline POINT & operator -= (POINT & point, const POINT2 & pointOffset);
@@ -233,11 +235,11 @@
 //inline RECTANGLE & operator += (RECTANGLE & rectangle, const POINT & point);
 //
 //
-//CLASS_DECL_ACME double d_distance(const int_point& point1, const int_point& point2);
+//CLASS_DECL_ACME ::f64 d_distance(const i32_point& point1, const i32_point& point2);
 
 
 template < prototype_point POINT1, prototype_point POINT2 >
-double f64_distance(const POINT1 & point1, const POINT2 & point2)
+::f64 f64_distance(const POINT1 & point1, const POINT2 & point2)
 {
 
    return sqrt((point2.x - point1.x) * (point2.x - point1.x) + (point2.y - point1.y) * (point2.y - point1.y));
@@ -810,7 +812,7 @@ bool intersect(RECTANGLE_TYPE & rectangle, const RECT_TYPE1 & rect1, const RECT_
    //if (::is_set(rectangle))
    //{
 
-      null(rectangle);
+      clear(rectangle);
 
    //}
 
@@ -904,7 +906,7 @@ bool null_intersect(RECTANGLE_TYPE & rectangle, const RECT_TYPE1 & rect1, const 
    //if (::is_set(rectangle))
    //{
 
-      null(rectangle);
+      ::clear(rectangle);
 
    //}
 
@@ -952,7 +954,7 @@ bool top_left_null_intersect(RECTANGLE_TYPE & rectangle, const RECT_TYPE1 & rect
    else
    {
 
-      null(rectangle);
+      clear(rectangle);
 
       return false;
 
@@ -1021,11 +1023,11 @@ RECTANGLE & set_dimension(RECTANGLE & rectangle, L l, T t, W w, H h)
 //template < prototype_rectangle RECTANGLE,  typename L, typename T, typename W, typename H >
 //inline auto _001SetRectDim(RECTANGLE &r, L l, T t, W w, H h) { return set_dim(p, l, t, w, h); }
 //template <  typename L, typename T, typename W, typename H >
-//inline auto _001SetRectDim(::long_long_rectangle * p, L l, T t, W w, H h) { return set_rect_dim(p, l, t, w, h); }
+//inline auto _001SetRectDim(::i64_rectangle * p, L l, T t, W w, H h) { return set_rect_dim(p, l, t, w, h); }
 //template <  typename L, typename T, typename W, typename H >
-//inline auto _001SetRectDim(::float_rectangle * p, L l, T t, W w, H h) { return set_rect_dim(p, l, t, w, h); }
+//inline auto _001SetRectDim(::f32_rectangle * p, L l, T t, W w, H h) { return set_rect_dim(p, l, t, w, h); }
 //template <  typename L, typename T, typename W, typename H >
-//inline auto _001SetRectDim(::double_rectangle * p, L l, T t, W w, H h) { return set_rect_dim(p, l, t, w, h); }
+//inline auto _001SetRectDim(::f64_rectangle * p, L l, T t, W w, H h) { return set_rect_dim(p, l, t, w, h); }
 
 
 template < prototype_rectangle RECTANGLE, prototype_point POINT, prototype_size SIZE >
@@ -1055,7 +1057,7 @@ RECTANGLE & assign(RECTANGLE & rectangle, const POINT & point, const SIZE & size
 
 
 template < prototype_rectangle RECTANGLE_TYPE >
-RECTANGLE_TYPE & null(RECTANGLE_TYPE & rectangle)
+RECTANGLE_TYPE & clear(RECTANGLE_TYPE & rectangle)
 {
 
    return ::assign(rectangle, 0, 0, 0, 0);
@@ -1191,10 +1193,10 @@ inline RECTANGLE_TYPE & swap_left_right(RECTANGLE_TYPE & rectangle) { __swap(rec
 
 
 template < prototype_point POINT1, prototype_point POINT2 >
-inline bool polygon_contains_winding(const POINT1 * ppPolygon, int iCount, const POINT2 & point)
+inline bool polygon_contains_winding(const POINT1 * ppPolygon, ::i32 iCount, const POINT2 & point)
 {
 
-   int i, j = iCount - 1;
+   ::i32 i, j = iCount - 1;
 
    auto x = point.x;
 
@@ -1228,16 +1230,16 @@ inline bool polygon_contains_winding(const POINT1 * ppPolygon, int iCount, const
 
 /* intersection function */
 template < prototype_point POINT1, prototype_point POINT2 >
-inline bool polygon_contains_alternate(const POINT1 * ppPolygon, int iCount, const POINT2 & point, const bool use_holes, largest_number < ::decay<typename POINT1::UNIT_TYPE>, ::decay<typename POINT2::UNIT_TYPE>> epsilon = default_epsilon<largest_number < ::decay < typename POINT1::UNIT_TYPE >, ::decay < typename POINT2::UNIT_TYPE > > > ())
+inline bool polygon_contains_alternate(const POINT1 * ppPolygon, ::i32 iCount, const POINT2 & point, const bool use_holes, largest_number < ::decay<typename POINT1::UNIT_TYPE>, ::decay<typename POINT2::UNIT_TYPE>> epsilon = default_epsilon<largest_number < ::decay < typename POINT1::UNIT_TYPE >, ::decay < typename POINT2::UNIT_TYPE > > > ())
 {
 
    using UNIT_TYPE = largest_number < ::decay <typename  POINT1::UNIT_TYPE >, ::decay<typename POINT2::UNIT_TYPE > >;
 
    /* we do the angle rule, define that all added angles should be about zero or (2 * PI) */
    UNIT_TYPE angletot{};
-   //float fp1[2], fp2[2];
-   //unsigned int i;
-   //const float * p1, * p2;
+   //::f32 fp1[2], fp2[2];
+   //::u32 i;
+   //const ::f32 * p1, * p2;
 
    auto * p1 = &ppPolygon[iCount - 1];
 
@@ -1246,7 +1248,7 @@ inline bool polygon_contains_alternate(const POINT1 * ppPolygon, int iCount, con
    /* first vector */
    POINT1 fp1 = *p1 - point;
 
-   for (int i = 0; i < iCount; i++)
+   for (::i32 i = 0; i < iCount; i++)
    {
       
       p2 = &ppPolygon[i];
@@ -1269,11 +1271,11 @@ inline bool polygon_contains_alternate(const POINT1 * ppPolygon, int iCount, con
    if (use_holes)
    {
    
-      auto nested = (UNIT_TYPE) (floor((double) (angletot / (UNIT_TYPE)(MATH_PI * 2.0)) + (double) epsilon));
+      auto nested = (UNIT_TYPE) (floor((::f64) (angletot / (UNIT_TYPE)(MATH_PI * 2.0)) + (::f64) epsilon));
 
       angletot -= nested * (UNIT_TYPE)(MATH_PI * 2.0);
 
-      return (angletot > 4.0f) != ((int)nested % 2);
+      return (angletot > 4.0f) != ((::i32)nested % 2);
 
    }
    else
@@ -1288,13 +1290,13 @@ inline bool polygon_contains_alternate(const POINT1 * ppPolygon, int iCount, con
 
 /* math lib */
 
-//static float dot_v2v2(const float a[2], const float b[2])
+//static ::f32 dot_v2v2(const ::f32 a[2], const ::f32 b[2])
 //{
 //   return a[0] * b[0] + a[1] * b[1];
 //}
 
 
-//static void copy_v2_v2(float r[2], const float a[2])
+//static void copy_v2_v2(::f32 r[2], const ::f32 a[2])
 //{
 //   r[0] = a[0];
 //   r[1] = a[1];
@@ -1361,7 +1363,7 @@ inline void collapse_rect(RECT1& rectangle, const RECT2& r)
       if (::width(rectangle) == 0 || height(rectangle) == 0)
       {
 
-         ::null(rectangle);
+         ::clear(rectangle);
 
       }
 
@@ -1386,40 +1388,40 @@ template < prototype_rectangle RECTANGLE >
 inline auto & bottom_right(const RECTANGLE& rectangle) { return *(typename RECTANGLE::POINT_TYPE*)&rectangle.right; }
 
 
-//inline long_long_point& top_left(const long_long_rectangle& rectangle) { return *(long_long_point*)&rectangle; }
-//inline long_long_point& bottom_right(const long_long_rectangle& rectangle) { return *(long_long_point*)&rectangle.right; }
+//inline i64_point& top_left(const i64_rectangle& rectangle) { return *(i64_point*)&rectangle; }
+//inline i64_point& bottom_right(const i64_rectangle& rectangle) { return *(i64_point*)&rectangle.right; }
 
 
-//inline float_point& top_left(const float_rectangle& rectangle) { return *(float_point*)&rectangle; }
-//inline float_point& bottom_right(const float_rectangle& rectangle) { return *(float_point*)&rectangle.right; }
+//inline ::f32_point& top_left(const ::f32_rectangle& rectangle) { return *(::f32_point*)&rectangle; }
+//inline ::f32_point& bottom_right(const ::f32_rectangle& rectangle) { return *(::f32_point*)&rectangle.right; }
 
 
-//inline double_point& top_left(const double_rectangle& rectangle) { return *(double_point*)&rectangle; }
-//inline double_point& bottom_right(const double_rectangle& rectangle) { return *(double_point*)&rectangle.right; }
+//inline ::f64_point& top_left(const ::f64_rectangle& rectangle) { return *(::f64_point*)&rectangle; }
+//inline ::f64_point& bottom_right(const ::f64_rectangle& rectangle) { return *(::f64_point*)&rectangle.right; }
 
 
-//inline int_point & top_left(const ::int_rectangle &rectangle) { return *(int_point *)&rectangle; }
-//inline int_point & bottom_right(const ::int_rectangle &rectangle) { return *(int_point *)&rectangle.right; }
-//inline int_point & top_left(const ::int_rectangle &rectangle) { return top_left(&rectangle); }
-//inline int_point & bottom_right(const ::int_rectangle &rectangle) { return bottom_right(&rectangle); }
+//inline i32_point & top_left(const ::i32_rectangle &rectangle) { return *(i32_point *)&rectangle; }
+//inline i32_point & bottom_right(const ::i32_rectangle &rectangle) { return *(i32_point *)&rectangle.right; }
+//inline i32_point & top_left(const ::i32_rectangle &rectangle) { return top_left(&rectangle); }
+//inline i32_point & bottom_right(const ::i32_rectangle &rectangle) { return bottom_right(&rectangle); }
 
 
-//inline long_long_point & top_left(const ::long_long_rectangle & rectangle) { return *(long_long_point *)&rectangle; }
-//inline long_long_point & bottom_right(const ::long_long_rectangle & rectangle) { return *(long_long_point *)&rectangle.right; }
-//inline long_long_point & top_left(const ::long_long_rectangle & rectangle) { return top_left(&rectangle); }
-//inline long_long_point & bottom_right(const ::long_long_rectangle & rectangle) { return bottom_right(&rectangle); }
+//inline i64_point & top_left(const ::i64_rectangle & rectangle) { return *(i64_point *)&rectangle; }
+//inline i64_point & bottom_right(const ::i64_rectangle & rectangle) { return *(i64_point *)&rectangle.right; }
+//inline i64_point & top_left(const ::i64_rectangle & rectangle) { return top_left(&rectangle); }
+//inline i64_point & bottom_right(const ::i64_rectangle & rectangle) { return bottom_right(&rectangle); }
 
 
-//inline double_point & top_left(const ::double_rectangle & rectangle) { return *(double_point *)&rectangle; }
-//inline double_point & bottom_right(const ::double_rectangle & rectangle) { return *(double_point *)&rectangle.right; }
-//inline double_point & top_left(const ::double_rectangle & rectangle) { return top_left(&rectangle); }
-//inline double_point & bottom_right(const ::double_rectangle & rectangle) { return bottom_right(&rectangle); }
+//inline ::f64_point & top_left(const ::f64_rectangle & rectangle) { return *(::f64_point *)&rectangle; }
+//inline ::f64_point & bottom_right(const ::f64_rectangle & rectangle) { return *(::f64_point *)&rectangle.right; }
+//inline ::f64_point & top_left(const ::f64_rectangle & rectangle) { return top_left(&rectangle); }
+//inline ::f64_point & bottom_right(const ::f64_rectangle & rectangle) { return bottom_right(&rectangle); }
 
 
 
 
 //template < typename BASE_TYPE, typename POINT_BASE_TYPE, typename RECTANGLE_BASE_TYPE >
-//inline size_type < BASE_TYPE, POINT_BASE_TYPE, RECTANGLE_BASE_TYPE >::size_type(const POINT_TYPE & point) noexcept : size_type((size_type&)int_point) {}
+//inline size_type < BASE_TYPE, POINT_BASE_TYPE, RECTANGLE_BASE_TYPE >::size_type(const POINT_TYPE & point) noexcept : size_type((size_type&)i32_point) {}
 //
 //
 //template < typename BASE_TYPE, typename POINT_BASE_TYPE, typename RECTANGLE_BASE_TYPE >
@@ -1436,28 +1438,28 @@ inline auto & bottom_right(const RECTANGLE& rectangle) { return *(typename RECTA
 //
 //
 //template <  >
-//inline int __conv<int>(const ::scoped_string & scopedstr)
+//inline ::i32 __conv<::i32>(const ::scoped_string & scopedstr)
 //{
 //
-//   return (int) ::atoi(str);
+//   return (::i32) ::atoi(str);
 //
 //}
 //
 //
 //template <  >
-//inline long long __conv<long long>(const ::scoped_string & scopedstr)
+//inline ::i64 __conv<::i64>(const ::scoped_string & scopedstr)
 //{
 //
-//   return (int) ::atoi(str);
+//   return (::i32) ::atoi(str);
 //
 //}
 //
 //
 //template <  >
-//inline double __conv<double>(const ::scoped_string & scopedstr)
+//inline ::f64 __conv<::f64>(const ::scoped_string & scopedstr)
 //{
 //
-//   return (int) ::atoi(str);
+//   return (::i32) ::atoi(str);
 //
 //}
 //
@@ -1472,7 +1474,7 @@ inline auto & bottom_right(const RECTANGLE& rectangle) { return *(typename RECTA
 //
 //
 //template < >
-//inline string __xmlpri<int>()
+//inline string __xmlpri<::i32>()
 //{
 //
 //   return "%" PRId32;
@@ -1481,7 +1483,7 @@ inline auto & bottom_right(const RECTANGLE& rectangle) { return *(typename RECTA
 //
 //
 //template < >
-//inline string __xmlpri<long long>()
+//inline string __xmlpri<::i64>()
 //{
 //
 //   return "%" PRId64;
@@ -1490,7 +1492,7 @@ inline auto & bottom_right(const RECTANGLE& rectangle) { return *(typename RECTA
 //
 //
 //template < >
-//inline string __xmlpri<double>()
+//inline string __xmlpri<::f64>()
 //{
 //
 //   return "%f";
@@ -1528,7 +1530,7 @@ namespace geometry
    //
    //////////////////////////////////////////////////////////////////////
    template < prototype_rectangle RECTANGLE >
-   inline void deflate(RECTANGLE& rectangle, double dLeftRate, double dRightRate, double dTopRate, double dBottomRate)
+   inline void deflate(RECTANGLE& rectangle, ::f64 dLeftRate, ::f64 dRightRate, ::f64 dTopRate, ::f64 dBottomRate)
    {
 
       rectangle.left = range_rate(rectangle.left, rectangle.right, dLeftRate);

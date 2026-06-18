@@ -4,7 +4,7 @@
 #include <math.h>
 
 
-void kf_cexp(COMPLEXD * x,double phase) /* returns e ** (j*phase)   */
+void kf_cexp(COMPLEXD * x,::f64 phase) /* returns e ** (j*phase)   */
 {
 #ifdef FIXED_POINT
     x->r = (kiss_fft_scalar) (32767 * cos (phase));

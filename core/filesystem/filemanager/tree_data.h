@@ -61,9 +61,9 @@ namespace filemanager
 #ifdef _DEBUG
 
 
-      virtual long long increment_reference_count() override;
-      virtual long long decrement_reference_count() override;
-      virtual long long release() override;
+      virtual ::i64 increment_reference_count() override;
+      virtual ::i64 decrement_reference_count() override;
+      virtual ::i64 release() override;
 
 
 #endif
@@ -81,7 +81,7 @@ namespace filemanager
 
       virtual void on_insert_columns() override;
 
-      void on_timer(::timer * ptimer) override;
+      void operator()(::timer * ptimer) override;
       virtual void add_path(bool bExpandAscendants, const ::file::path & path, const ::scoped_string & scopedstrName);
 
       void install_message_routing(::channel * pchannel) override;
@@ -96,7 +96,7 @@ namespace filemanager
 
 //#ifdef WINDOWS_DESKTOP
 //
-//      int MapToCSIDL(EFolder efolder);
+//      ::i32 MapToCSIDL(EFolder efolder);
 //
 //      IShellFolder * _001GetFolder(EFolder efolder);
 //
@@ -118,7 +118,7 @@ namespace filemanager
 
 
 
-      void RenameFile(int iLine, string & str, const ::action_context & action_context);
+      void RenameFile(::i32 iLine, string & str, const ::action_context & action_context);
 
       void handle(::topic * ptopic, ::handler_context * phandlercontext) override;
 

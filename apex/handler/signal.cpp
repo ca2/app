@@ -30,7 +30,7 @@ namespace handler
 #ifdef _DEBUG
 
 
-   long long signal::increment_reference_count()
+   ::i64 signal::increment_reference_count()
    {
 
       return ::topic::increment_reference_count();
@@ -38,7 +38,7 @@ namespace handler
    }
 
 
-   long long signal::decrement_reference_count()
+   ::i64 signal::decrement_reference_count()
    {
 
       return ::topic::decrement_reference_count();
@@ -46,7 +46,7 @@ namespace handler
    }
 
 
-   long long signal::release()
+   ::i64 signal::release()
    {
 
       return ::topic::release();
@@ -64,7 +64,7 @@ namespace handler
    //
    //   auto ptask = ::get_task();
    //
-   //   if (::manager::s_bDestroyAll || !ptask->task_get_run())
+   //   if (::manager::s_bDestroyAll || !ptask->should_run())
    //   {
    //
    //      return ::error_failed;

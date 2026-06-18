@@ -103,7 +103,7 @@ lite_html_reader::lite_html_reader()
 }
 
 
-lite_html_reader::EventMaskEnum lite_html_reader::setEventMask(unsigned int dwNewEventMask)
+lite_html_reader::EventMaskEnum lite_html_reader::setEventMask(::u32 dwNewEventMask)
 {
    EventMaskEnum   oldMask = m_happeningMask;
    m_happeningMask = (EventMaskEnum)dwNewEventMask;
@@ -111,15 +111,15 @@ lite_html_reader::EventMaskEnum lite_html_reader::setEventMask(unsigned int dwNe
 }
 
 
-lite_html_reader::EventMaskEnum lite_html_reader::setEventMask(unsigned int addFlags, unsigned int eraseFlags)
+lite_html_reader::EventMaskEnum lite_html_reader::setEventMask(::u32 addFlags, ::u32 eraseFlags)
 {
-   unsigned int   dwOldMask = (unsigned int)m_happeningMask;
-   unsigned int   dwNewMask = (dwOldMask | addFlags) & ~eraseFlags;
+   ::u32   dwOldMask = (::u32)m_happeningMask;
+   ::u32   dwNewMask = (dwOldMask | addFlags) & ~eraseFlags;
    m_happeningMask = (EventMaskEnum)dwNewMask;
    return ((EventMaskEnum)dwOldMask);
 }
 
-character_count lite_html_reader::setAppData(unsigned int dwNewAppData)
+character_count lite_html_reader::setAppData(::u32 dwNewAppData)
 {
    character_count   dwOldAppData = m_dwAppData;
    m_dwAppData = dwNewAppData;
@@ -145,8 +145,8 @@ character_count lite_html_reader::parseDocument()
    string   strT;               // temporary storage
    character_count   dwCharDataStart = 0L;   // starting position of character data
    character_count   dwCharDataLen = 0L;      // length of character data
-   int   lTemp = 0L;            // temporary storage
-   char   ch = 0;               // character at current buffer position
+   ::i32   lTemp = 0L;            // temporary storage
+   ::i8   ch = 0;               // character at current buffer position
    lite_html_tag   oTag;         // tag information
 
    if(m_strBuffer.is_empty())
@@ -330,7 +330,7 @@ character_count lite_html_reader::read_form_document(const ::scoped_string & sco
 
 
 
-char lite_html_reader::UngetChar()
+::i8 lite_html_reader::UngetChar()
 {
    if(m_strBuffer.is_empty())
       return '\0';
@@ -338,7 +338,7 @@ char lite_html_reader::UngetChar()
 }
 
 
-bool lite_html_reader::getEventNotify(unsigned int dwEvent) const
+bool lite_html_reader::getEventNotify(::u32 dwEvent) const
 {
    ASSERT(dwEvent == notifyStartStop  ||
           dwEvent == notifyTagStart   ||
@@ -350,7 +350,7 @@ bool lite_html_reader::getEventNotify(unsigned int dwEvent) const
    return ((m_happeningMask & dwEvent) == dwEvent);
 }
 
-bool lite_html_reader::isWhiteSpace(char ch) const
+bool lite_html_reader::isWhiteSpace(::i8 ch) const
 {
    return ::character_isspace(ch) ? true : false;
 }
@@ -370,7 +370,7 @@ bool lite_html_reader::isWhiteSpace(char ch) const
 bool lite_html_reader::parseTag(lite_html_tag &rTag, bool &bIsOpeningTag, bool &bIsClosingTag)
 {
 
-   unsigned int nRetVal = rTag.parseFromStr(this, m_strBuffer, m_dwBufPos, bIsOpeningTag, bIsClosingTag);
+   ::u32 nRetVal = rTag.parseFromStr(this, m_strBuffer, m_dwBufPos, bIsOpeningTag, bIsClosingTag);
 
    if(!nRetVal)
       return false;
@@ -481,16 +481,16 @@ bool lite_html_reader::parseComment(string &rComment)
       return (true);
    }
 
-   string   strComment(pszBegin, int(pszEnd - pszBegin));
+   string   strComment(pszBegin, ::i32(pszEnd - pszBegin));
 
 
    // end of buffer?
-   if (pszEnd + (sizeof(char) * 2) >= &m_strBuffer[0] + m_strBuffer.size())
+   if (pszEnd + (sizeof(::i8) * 2) >= &m_strBuffer[0] + m_strBuffer.size())
 
       return (false);
 
    // skip white-space characters after comment ending delimeter '--'
-   pszEnd += (sizeof(char) * 2);
+   pszEnd += (sizeof(::i8) * 2);
 
    while (::character_isspace(*pszEnd))
 

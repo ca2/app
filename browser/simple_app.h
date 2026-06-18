@@ -15,7 +15,7 @@ public:
    bool m_bCefInitialized;
 
    //HWND m_hwnd;
-   //::int_rectangle m_rectangle;
+   //::i32_rectangle m_rectangle;
    SimpleApp();
 
    // CefApp methods:

@@ -7,7 +7,7 @@ namespace calculator
 {
 
 
-   value pow(const value & val1, double ca);
+   value pow(const value & val1, ::f64 ca);
 
 
    value::value()
@@ -20,7 +20,7 @@ namespace calculator
    {
    }
 
-   double value::arg() const
+   ::f64 value::arg() const
    {
       if(m_dR == 0.0)
       {
@@ -60,7 +60,7 @@ namespace calculator
       }
    }
 
-   double value::mod() const
+   ::f64 value::mod() const
    {
       return ::sqrt(m_dR * m_dR + m_dI * m_dI);
    }
@@ -105,9 +105,9 @@ namespace calculator
       return "";
    }
 
-   double g_dPi = ::atan(1.0) * 4.0;
+   ::f64 g_dPi = ::atan(1.0) * 4.0;
 
-   double pi()
+   ::f64 pi()
    {
       return M_PI;
    }
@@ -140,17 +140,17 @@ namespace calculator
    value operator / (const value & val1, const value & val2)
    {
       value val;
-      double dDiv = val2.m_dR * val2.m_dR + val2.m_dI * val2.m_dI;
+      ::f64 dDiv = val2.m_dR * val2.m_dR + val2.m_dI * val2.m_dI;
       val.m_dR = (val1.m_dR * val2.m_dR + val1.m_dI * val2.m_dI) / dDiv;
       val.m_dI = (val1.m_dI * val2.m_dR - val1.m_dR * val2.m_dI) / dDiv;
       return val;
    }
 
-   value pow(const value & val1, double ca)
+   value pow(const value & val1, ::f64 ca)
    {
       value val;
-      double dMod = val1.mod();
-      double dArg = val1.arg();
+      ::f64 dMod = val1.mod();
+      ::f64 dArg = val1.arg();
       dMod = ::pow(dMod, ca);
       dArg = dArg * ca;
       val.m_dR = dMod * ::cos(dArg);
@@ -162,10 +162,10 @@ namespace calculator
    value pow(const value & val1, const value & val2)
    {
       value val;
-      double dMod1 = val1.mod();
-      double dArg1 = val1.arg();
-      double dArg = val2.m_dR * dArg1 + val2.m_dI * ::log(dMod1);
-      double dMod = ::pow(dMod1, val2.m_dR) * ::exp(-val2.m_dI * dArg1);
+      ::f64 dMod1 = val1.mod();
+      ::f64 dArg1 = val1.arg();
+      ::f64 dArg = val2.m_dR * dArg1 + val2.m_dI * ::log(dMod1);
+      ::f64 dMod = ::pow(dMod1, val2.m_dR) * ::exp(-val2.m_dI * dArg1);
       val.m_dR = dMod * ::cos(dArg);
       val.m_dI = dMod * ::sin(dArg);
       return val;
@@ -184,8 +184,8 @@ namespace calculator
    value exp(const value & val1)
    {
       value val;
-      double dMod = ::exp(val1.m_dR);
-      double dArg = val1.arg();
+      ::f64 dMod = ::exp(val1.m_dR);
+      ::f64 dArg = val1.arg();
       val.m_dR = dMod * ::cos(dArg);
       val.m_dI = dArg * ::sin(dArg);
       return val;
@@ -205,7 +205,7 @@ namespace calculator
    {
       // TODO imaginary
       value val;
-      double dMod = val1.mod();
+      ::f64 dMod = val1.mod();
       val.m_dR = ::atan(dMod);
       val.m_dI = 0;
       return val;
@@ -215,7 +215,7 @@ namespace calculator
    {
       // TODO imaginary
       value val;
-      double dMod = val1.mod();
+      ::f64 dMod = val1.mod();
       val.m_dR = ::acos(dMod);
       val.m_dI = 0;
       return val;
@@ -225,7 +225,7 @@ namespace calculator
    {
       // TODO imaginary
       value val;
-      double dMod = val1.mod();
+      ::f64 dMod = val1.mod();
       val.m_dR = ::asin(dMod);
       val.m_dI = 0;
       return val;
@@ -235,7 +235,7 @@ namespace calculator
    {
       // TODO imaginary
       value val;
-      double dMod = val1.mod();
+      ::f64 dMod = val1.mod();
       val.m_dR = ::tan(dMod);
       val.m_dI = 0;
       return val;
@@ -245,7 +245,7 @@ namespace calculator
    {
       // TODO imaginary
       value val;
-      double dMod = val1.mod();
+      ::f64 dMod = val1.mod();
       val.m_dR = ::cos(dMod);
       val.m_dI = 0;
       return val;
@@ -255,7 +255,7 @@ namespace calculator
    {
       // TODO imaginary
       value val;
-      double dMod = val1.mod();
+      ::f64 dMod = val1.mod();
       val.m_dR = ::sin(dMod);
       val.m_dI = 0;
       return val;

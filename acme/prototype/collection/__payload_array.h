@@ -20,7 +20,7 @@ public:
    payload_array_base();
    payload_array_base(const std::initializer_list < ::payload > & varlist);
    payload_array_base(const string_array_base & stra);
-   payload_array_base(const ::int_array_base & inta);
+   payload_array_base(const ::i32_array_base & inta);
    payload_array_base(const ::property_set & propset);
    payload_array_base(const typename BASE_ARRAY::BASE_ARRAY::RAW_BASE_ARRAY& payloada);
    payload_array_base(typename BASE_ARRAY::BASE_ARRAY::RAW_BASE_ARRAY&& payloada);
@@ -34,14 +34,14 @@ public:
 //   inline ::collection::index add(const ::scoped_string & scopedstr) { return add((const ::payload &) str); }
    //inline ::collection::index add(const ::scoped_string & scopedstr) { return add((const payload &) scopedstr); }
 
-   //inline ::collection::index add(char ch) { return add((const ::payload &) ch); }
-   //inline ::collection::index add(unsigned char uch) { return add((const ::payload &) uch); }
-   //inline ::collection::index add(short sh) { return add((const ::payload &) sh); }
-   //inline ::collection::index add(unsigned short ush) { return add((const ::payload &) ush); }
-   //inline ::collection::index add(int i) { return add((const ::payload &) i); }
-   //inline ::collection::index add(unsigned int ui) { return add((const ::payload &) ui); }
-   //inline ::collection::index add(long long hi) { return add((const ::payload &) hi); }
-   //inline ::collection::index add(unsigned long long hn) { return add((const ::payload &) hn); }
+   //inline ::collection::index add(::i8 ch) { return add((const ::payload &) ch); }
+   //inline ::collection::index add(::u8 uch) { return add((const ::payload &) uch); }
+   //inline ::collection::index add(::i16 sh) { return add((const ::payload &) sh); }
+   //inline ::collection::index add(::u16 ush) { return add((const ::payload &) ush); }
+   //inline ::collection::index add(::i32 i) { return add((const ::payload &) i); }
+   //inline ::collection::index add(::u32 ui) { return add((const ::payload &) ui); }
+   //inline ::collection::index add(::i64 hi) { return add((const ::payload &) hi); }
+   //inline ::collection::index add(::u64 hn) { return add((const ::payload &) hn); }
 
    ::collection::count append_unique(const payload_array_base & payloada);
 
@@ -93,7 +93,7 @@ public:
    payload_array_base operator +(const payload_array_base & payloada) const;
 
    payload_array_base & operator = (const string_array_base & stra);
-   payload_array_base & operator = (const ::int_array_base & inta);
+   payload_array_base & operator = (const ::i32_array_base & inta);
    payload_array_base & operator = (const ::property_set & propset);
    payload_array_base & operator = (const payload_array_base & payloada);
 

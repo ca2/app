@@ -32,9 +32,46 @@ constexpr memsize index_of(const TYPE * p, const TYPE * pBegin)
 
 }
 
+template < prototype_character CHARACTER >
+constexpr bool string_compare_prefix(::i32 & ordering, const CHARACTER * pszA, const CHARACTER * pszB) noexcept
+{
+
+   if (::is_empty(pszA))
+   {
+
+      if (::is_empty(pszB))
+      {
+
+         ordering = 0;
+
+         return true;
+
+      }
+      else
+      {
+
+         ordering = -1;
+
+         return true;
+
+      }
+
+   }
+   else if (::is_empty(pszB))
+   {
+
+      ordering = 1;
+
+      return true;
+
+   }
+
+   return false;
+
+}
 
 template < prototype_character CHARACTER >
-constexpr bool string_compare_prefix(::std::strong_ordering & ordering, const CHARACTER * pszA, const CHARACTER * pszB) noexcept
+constexpr bool string_order_prefix(::std::strong_ordering & ordering, const CHARACTER * pszA, const CHARACTER * pszB) noexcept
 {
 
    if (::is_empty(pszA))
@@ -121,11 +158,11 @@ constexpr auto as_absolute_unsigned(SIGNED i)
    return ::make_pair{ (typename std::make_unsigned<SIGNED>::type) ((bNegative = i < 0) ? -i : i), bNegative };
 
 }
-//::pair<int, int> ia;
-//inline unsigned long long make64_from32(unsigned int l, unsigned int h)
+//::pair<::i32, ::i32> ia;
+//inline ::u64 make64_from32(::u32 l, ::u32 h)
 //{
 //
-//   return ((unsigned long long)l) | (((unsigned long long)h) << 32);
+//   return ((::u64)l) | (((::u64)h) << 32);
 //
 //}
 //
@@ -135,7 +172,7 @@ constexpr auto as_absolute_unsigned(SIGNED i)
 //
 //#ifdef DEEP_DEBUG
 //
-//   unsigned char* pbyte = (unsigned char*)p;
+//   ::u8* pbyte = (::u8*)p;
 //
 //   if (bReadWrite)
 //   {
@@ -143,9 +180,9 @@ constexpr auto as_absolute_unsigned(SIGNED i)
 //      for (::collection::index i = 0; i < size; i++)
 //      {
 //
-//         unsigned char& b = *pbyte;
+//         ::u8& b = *pbyte;
 //
-//         b++; // tests read/write of unsigned char b
+//         b++; // tests read/write of ::u8 b
 //
 //         b--; // restablish it
 //
@@ -155,14 +192,14 @@ constexpr auto as_absolute_unsigned(SIGNED i)
 //   else
 //   {
 //
-//      int sum = 0;
+//      ::i32 sum = 0;
 //
 //      for (::collection::index i = 0; i < size; i++)
 //      {
 //
-//         unsigned char& b = *pbyte;
+//         ::u8& b = *pbyte;
 //
-//         sum += b; // tests read of unsigned char b
+//         sum += b; // tests read of ::u8 b
 //
 //      }
 //
@@ -192,11 +229,11 @@ constexpr auto as_absolute_unsigned(SIGNED i)
 //
 //
 //
-//inline int_bool address_overlaps(const void* pszDst, const void* pszSrc, character_count srclen)
+//inline ::i32_bool address_overlaps(const void* pszDst, const void* pszSrc, character_count srclen)
 //{
 //
-//   return (((unsigned char*)pszSrc) <= ((unsigned char*)pszDst) && ((unsigned char*)pszSrc) + srclen > ((unsigned char*)pszDst))
-//      || (((unsigned char*)pszDst) <= ((unsigned char*)pszSrc) && ((unsigned char*)pszDst) + srclen > ((unsigned char*)pszSrc));
+//   return (((::u8*)pszSrc) <= ((::u8*)pszDst) && ((::u8*)pszSrc) + srclen > ((::u8*)pszDst))
+//      || (((::u8*)pszDst) <= ((::u8*)pszSrc) && ((::u8*)pszDst) + srclen > ((::u8*)pszSrc));
 //
 //}
 //
@@ -270,7 +307,7 @@ inline bool returns_false(PRED pred, bool bOnVoid, Args... args)
 //
 //
 //
-//inline int read_char(unsigned char*& pdata, memsize& s, char* pch)
+//inline ::i32 read_char(::u8*& pdata, memsize& s, char_pointer pch)
 //{
 //
 //   if (s < 1)
@@ -280,7 +317,7 @@ inline bool returns_false(PRED pred, bool bOnVoid, Args... args)
 //
 //   }
 //
-//   *pch = (char)*pdata;
+//   *pch = (::i8)*pdata;
 //
 //   pdata++;
 //
@@ -313,10 +350,10 @@ inline bool is_reference_set(const TYPE& t)
 
 //
 //
-//inline bool is_impact_group(unsigned long long u, unsigned long long uGroup) { return u >= uGroup && u < uGroup + 1000; }
+//inline bool is_impact_group(::u64 u, ::u64 uGroup) { return u >= uGroup && u < uGroup + 1000; }
 //
 //
-//inline bool is_impact_subgroup(unsigned long long u, unsigned long long uGroup) { return u >= uGroup && u < uGroup + 100; }
+//inline bool is_impact_subgroup(::u64 u, ::u64 uGroup) { return u >= uGroup && u < uGroup + 100; }
 //
 //
 //inline bool is_file_or_folder(const ::file::enum_type& etype)
@@ -376,14 +413,14 @@ inline bool __sort(T1& t1, T2& t2)
 
 
 //
-//inline long long ansi_to_long_long(const_char_pointer psz, const_char_pointer *ppszEnd, int iBase)
+//inline ::i64 ansi_to_i64(const_char_pointer psz, const_char_pointer *ppszEnd, ::i32 iBase)
 //{
 //
 //   return strtoll(scopedstr, (::ansi_character **) ppszEnd, iBase);
 //
 //}
 //
-//inline unsigned long long ansi_to_unsigned_long_long(const_char_pointer psz, const_char_pointer *ppszEnd, int iBase)
+//inline ::u64 ansi_to_u64(const_char_pointer psz, const_char_pointer *ppszEnd, ::i32 iBase)
 //{
 //
 //   return strtoull(scopedstr, (::ansi_character **) ppszEnd, iBase);
@@ -391,7 +428,7 @@ inline bool __sort(T1& t1, T2& t2)
 //}
 //
 //
-//inline int ansi_to_int(const_char_pointer psz, const_char_pointer *ppszEnd, int iBase)
+//inline ::i32 ansi_to_int(const_char_pointer psz, const_char_pointer *ppszEnd, ::i32 iBase)
 //{
 //
 //#ifdef WINDOWS
@@ -419,14 +456,14 @@ inline bool __sort(T1& t1, T2& t2)
 //
 //   }
 //
-//   return (int) l;
+//   return (::i32) l;
 //
 //#endif
 //
 //}
 //
 //
-//inline unsigned int ansi_to_unsigned_int(const_char_pointer psz, const_char_pointer *ppszEnd, int iBase)
+//inline ::u32 ansi_to_u32(const_char_pointer psz, const_char_pointer *ppszEnd, ::i32 iBase)
 //{
 //
 //#ifdef WINDOWS
@@ -435,7 +472,7 @@ inline bool __sort(T1& t1, T2& t2)
 //
 //#else
 //
-//   unsigned long ul = strtoul(scopedstr, (::ansi_character **) ppszEnd, iBase);
+//   ulong ul = strtoul(scopedstr, (::ansi_character **) ppszEnd, iBase);
 //
 //   if(ul > UINT_MAX)
 //   {
@@ -446,7 +483,7 @@ inline bool __sort(T1& t1, T2& t2)
 //
 //   }
 //
-//   return (unsigned int) ul;
+//   return (::u32) ul;
 //
 //#endif
 //
@@ -812,7 +849,7 @@ bool not_found(const T * p)
 }
 
 
-//template < prototype_floating FLOATING, int len >
+//template < prototype_floating FLOATING, ::i32 len >
 //inline ::string as_string(FLOATING f, const_char_pointer pszFormat = "%f");
 
 

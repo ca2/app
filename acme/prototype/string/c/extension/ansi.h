@@ -1,18 +1,18 @@
 #pragma once
 
 
-CLASS_DECL_ACME ::ansi_character               ansi_char_tolower(int i);
-CLASS_DECL_ACME ::ansi_character               ansi_char_toupper(int i);
+CLASS_DECL_ACME ::ansi_character               ansi_char_tolower(::i32 i);
+CLASS_DECL_ACME ::ansi_character               ansi_char_toupper(::i32 i);
 
-CLASS_DECL_ACME int                    ansi_char_isdigit(int i);
-CLASS_DECL_ACME int                    ansi_char_isalpha(int i);
-CLASS_DECL_ACME int                    ansi_char_isalnum(int i);
-CLASS_DECL_ACME int                    ansi_char_isspace(int i);
+CLASS_DECL_ACME ::i32                    ansi_char_isdigit(::i32 i);
+CLASS_DECL_ACME ::i32                    ansi_char_isalpha(::i32 i);
+CLASS_DECL_ACME ::i32                    ansi_char_isalnum(::i32 i);
+CLASS_DECL_ACME ::i32                    ansi_char_isspace(::i32 i);
 
-CLASS_DECL_ACME int                    ansi_char_isxdigit(int i);
+CLASS_DECL_ACME ::i32                    ansi_char_isxdigit(::i32 i);
 
 
-CLASS_DECL_ACME int                    ansi_char_is_hexadecimal(int i);
+CLASS_DECL_ACME ::i32                    ansi_char_is_hexadecimal(::i32 i);
 
 
 CLASS_DECL_ACME ::ansi_character * ansi_last_char(::ansi_character * psz);
@@ -32,48 +32,48 @@ CLASS_DECL_ACME const_char_pointer case_insensitive_ansi_count_find_string(const
 //CLASS_DECL_ACME ::ansi_character *             ansi_next_token(::ansi_character * psz, ::ansi_character ch);
 
 
-CLASS_DECL_ACME int                    ansi_compare(const_char_pointer sz1, const_char_pointer sz2);
-CLASS_DECL_ACME int                    case_insensitive_ansi_compare(const_char_pointer sz1, const_char_pointer sz2);
-CLASS_DECL_ACME int                    ansi_count_compare(const_char_pointer sz1, const_char_pointer sz2, character_count iLen);
-CLASS_DECL_ACME int                    case_insensitive_ansi_count_compare(const_char_pointer sz1, const_char_pointer sz2, character_count iLen);
-CLASS_DECL_ACME int                    ansi_collate(const_char_pointer sz1, const_char_pointer sz2);
-CLASS_DECL_ACME int                    case_insensitive_ansi_collate(const_char_pointer sz1, const_char_pointer sz2);
-CLASS_DECL_ACME int                    ansi_count_collate(const_char_pointer sz1, const_char_pointer sz2, character_count iLen);
-CLASS_DECL_ACME int                    case_insensitive_ansi_count_collate(const_char_pointer sz1, const_char_pointer sz2, character_count iLen);
-CLASS_DECL_ACME int                    ansi_begins(const_char_pointer sz1, const_char_pointer prefix);
-CLASS_DECL_ACME int                    case_insensitive_ansi_begins(const_char_pointer sz1, const_char_pointer prefix);
+CLASS_DECL_ACME ::i32                    ansi_compare(const_char_pointer sz1, const_char_pointer sz2);
+CLASS_DECL_ACME ::i32                    case_insensitive_ansi_compare(const_char_pointer sz1, const_char_pointer sz2);
+CLASS_DECL_ACME ::i32                    ansi_count_compare(const_char_pointer sz1, const_char_pointer sz2, character_count iLen);
+CLASS_DECL_ACME ::i32                    case_insensitive_ansi_count_compare(const_char_pointer sz1, const_char_pointer sz2, character_count iLen);
+CLASS_DECL_ACME ::i32                    ansi_collate(const_char_pointer sz1, const_char_pointer sz2);
+CLASS_DECL_ACME ::i32                    case_insensitive_ansi_collate(const_char_pointer sz1, const_char_pointer sz2);
+CLASS_DECL_ACME ::i32                    ansi_count_collate(const_char_pointer sz1, const_char_pointer sz2, character_count iLen);
+CLASS_DECL_ACME ::i32                    case_insensitive_ansi_count_collate(const_char_pointer sz1, const_char_pointer sz2, character_count iLen);
+CLASS_DECL_ACME ::i32                    ansi_begins(const_char_pointer sz1, const_char_pointer prefix);
+CLASS_DECL_ACME ::i32                    case_insensitive_ansi_begins(const_char_pointer sz1, const_char_pointer prefix);
 CLASS_DECL_ACME const_char_pointer ansi_begins_eat(const_char_pointer sz1, const_char_pointer prefix);
 CLASS_DECL_ACME const_char_pointer case_insensitive_ansi_begins_eat(const_char_pointer sz1, const_char_pointer prefix);
-CLASS_DECL_ACME int                    ansi_ends(const_char_pointer sz1, const_char_pointer suffix);
-CLASS_DECL_ACME int                    case_insensitive_ansi_ends(const_char_pointer sz1, const_char_pointer suffix);
+CLASS_DECL_ACME ::i32                    ansi_ends(const_char_pointer sz1, const_char_pointer suffix);
+CLASS_DECL_ACME ::i32                    case_insensitive_ansi_ends(const_char_pointer sz1, const_char_pointer suffix);
 CLASS_DECL_ACME const_char_pointer ansi_find_char(const_char_pointer sz, ::ansi_character ch);
 CLASS_DECL_ACME const_char_pointer ansi_find_char_reverse(const_char_pointer sz, ::ansi_character ch);
-CLASS_DECL_ACME const_char_pointer ansi_concatenate_and_duplicate(const_char_pointer psz1, const_char_pointer psz2, int_bool iFree1 = false, int_bool iFree2 = false);
+CLASS_DECL_ACME const_char_pointer ansi_concatenate_and_duplicate(const_char_pointer psz1, const_char_pointer psz2, ::i32_bool iFree1 = false, ::i32_bool iFree2 = false);
 
-//CLASS_DECL_ACME void ansi_from_long_long(char* sz, long long i, int iBase, enum_digit_case edigitcase = e_digit_case_lower);
-//CLASS_DECL_ACME void ansi_from_unsigned_long_long(char* sz, unsigned long long u, int iBase, enum_digit_case edigitcase = e_digit_case_lower);
+//CLASS_DECL_ACME void ansi_from_i64(char_pointer sz, ::i64 i, ::i32 iBase, enum_digit_case edigitcase = e_digit_case_lower);
+//CLASS_DECL_ACME void ansi_from_u64(char_pointer sz, ::u64 u, ::i32 iBase, enum_digit_case edigitcase = e_digit_case_lower);
 
-CLASS_DECL_ACME void                   ansi_from_unsigned_long_long(::ansi_character * psz, unsigned long long u, int iBase = 10, enum_digit_case edigitcase = e_digit_case_lower);
-CLASS_DECL_ACME void                   ansi_from_long_long(::ansi_character * psz, long long i, int iBase = 10, enum_digit_case edigitcase = e_digit_case_lower);
+CLASS_DECL_ACME void                   ansi_from_u64(::ansi_character * psz, ::u64 u, ::i32 iBase = 10, enum_digit_case edigitcase = e_digit_case_lower);
+CLASS_DECL_ACME void                   ansi_from_i64(::ansi_character * psz, ::i64 i, ::i32 iBase = 10, enum_digit_case edigitcase = e_digit_case_lower);
 
-CLASS_DECL_ACME void                   ansi_from_ui(::ansi_character * psz, unsigned int u, int iBase = 10, enum_digit_case edigitcase = e_digit_case_lower);
-CLASS_DECL_ACME void                   ansi_from_i(::ansi_character * psz, int i, int iBase = 10, enum_digit_case edigitcase = e_digit_case_lower);
+CLASS_DECL_ACME void                   ansi_from_ui(::ansi_character * psz, ::u32 u, ::i32 iBase = 10, enum_digit_case edigitcase = e_digit_case_lower);
+CLASS_DECL_ACME void                   ansi_from_i(::ansi_character * psz, ::i32 i, ::i32 iBase = 10, enum_digit_case edigitcase = e_digit_case_lower);
 
-CLASS_DECL_ACME long long                    ansi_to_long_long(const_char_pointer psz, const_char_pointer *ppszEnd = nullptr, int iBase = 10);
-CLASS_DECL_ACME unsigned long long                    ansi_to_unsigned_long_long(const_char_pointer psz, const_char_pointer *ppszEnd = nullptr, int iBase = 10);
-CLASS_DECL_ACME long long                    ansi_count_to_long_long(const_char_pointer psz, const_char_pointer *ppszEnd, int iBase, character_count srclen);
+CLASS_DECL_ACME ::i64                    ansi_to_i64(const_char_pointer psz, const_char_pointer *ppszEnd = nullptr, ::i32 iBase = 10);
+CLASS_DECL_ACME ::u64                    ansi_to_u64(const_char_pointer psz, const_char_pointer *ppszEnd = nullptr, ::i32 iBase = 10);
+CLASS_DECL_ACME ::i64                    ansi_count_to_i64(const_char_pointer psz, const_char_pointer *ppszEnd, ::i32 iBase, character_count srclen);
 
-CLASS_DECL_ACME int                    ansi_to_int(const_char_pointer psz, const_char_pointer *ppszEnd = nullptr, int iBase = 10);
-CLASS_DECL_ACME unsigned int                    ansi_to_unsigned_int(const_char_pointer psz, const_char_pointer *ppszEnd = nullptr, int iBase = 10);
-CLASS_DECL_ACME int                    ansi_count_to_int(const_char_pointer psz, const_char_pointer *ppszEnd, int iBase, character_count srclen);
+CLASS_DECL_ACME ::i32                    ansi_to_int(const_char_pointer psz, const_char_pointer *ppszEnd = nullptr, ::i32 iBase = 10);
+CLASS_DECL_ACME ::u32                    ansi_to_u32(const_char_pointer psz, const_char_pointer *ppszEnd = nullptr, ::i32 iBase = 10);
+CLASS_DECL_ACME ::i32                    ansi_count_to_int(const_char_pointer psz, const_char_pointer *ppszEnd, ::i32 iBase, character_count srclen);
 
 
 CLASS_DECL_ACME void                   ansi_reverse(::ansi_character * sz);
 CLASS_DECL_ACME void                   ansi_reverse(::ansi_character * sz, character_count size);
 CLASS_DECL_ACME void                   ansi_zero_pad(::ansi_character * sz, character_count lenPad);
-CLASS_DECL_ACME const_char_pointer        _ansi_scan(const_char_pointer psz, const_char_pointer pszCharacters);
-CLASS_DECL_ACME const_char_pointer        ansi_scan(const_char_pointer psz, const_char_pointer pszCharacters);
-//CLASS_DECL_ACME const_char_pointer        ansi_token(const_char_pointer psz, const_char_pointer pszSeparators);
+CLASS_DECL_ACME const_char_pointer _ansi_scan(const_char_pointer psz, const_char_pointer pszCharacters);
+CLASS_DECL_ACME const_char_pointer ansi_scan(const_char_pointer psz, const_char_pointer pszCharacters);
+//CLASS_DECL_ACME const_char_pointer ansi_token(const_char_pointer psz, const_char_pointer pszSeparators);
 CLASS_DECL_ACME ::ansi_character *             ansi_first_token(::ansi_character * psz, const_char_pointer delimiters, ::ansi_character ** action_context);
 CLASS_DECL_ACME ::ansi_character *             ansi_next_token(const_char_pointer delimiters, ::ansi_character ** action_context);
 
@@ -82,11 +82,11 @@ CLASS_DECL_ACME ::ansi_character * ansi_lower(::ansi_character * pch);
 CLASS_DECL_ACME ::ansi_character * ansi_upper(::ansi_character * pch);
 
 
-CLASS_DECL_ACME int_bool matches_wildcard_criteria(const_char_pointer pszCriteria, const_char_pointer pszValue);
-CLASS_DECL_ACME int_bool case_insensitive_matches_wildcard_criteria(const_char_pointer pszCriteria, const_char_pointer pszValue);
+CLASS_DECL_ACME ::i32_bool matches_wildcard_criteria(const_char_pointer pszCriteria, const_char_pointer pszValue);
+CLASS_DECL_ACME ::i32_bool case_insensitive_matches_wildcard_criteria(const_char_pointer pszCriteria, const_char_pointer pszValue);
 
 
-CLASS_DECL_ACME void ansi_parse_command_line(::ansi_character * cmdstart, ::ansi_character ** argv, ::ansi_character * args, int * numargs, int * numchars);
+CLASS_DECL_ACME void ansi_parse_command_line(::ansi_character * cmdstart, ::ansi_character ** argv, ::ansi_character * args, ::i32 * numargs, ::i32 * numchars);
 
 
 
@@ -97,8 +97,8 @@ CLASS_DECL_ACME const void * memory_find_memory(const void * src, character_coun
 CLASS_DECL_ACME const_char_pointer wildcard_next_stop(const_char_pointer pszCriteria);
 
 
-CLASS_DECL_ACME int_bool               wildcard_matches_criteria(const_char_pointer pszCriteria, const_char_pointer pszValue);
-CLASS_DECL_ACME int_bool               case_insensitive_wildcard_matches_criteria(const_char_pointer pszCriteria, const_char_pointer pszValue);
+CLASS_DECL_ACME ::i32_bool               wildcard_matches_criteria(const_char_pointer pszCriteria, const_char_pointer pszValue);
+CLASS_DECL_ACME ::i32_bool               case_insensitive_wildcard_matches_criteria(const_char_pointer pszCriteria, const_char_pointer pszValue);
 
 
 //CLASS_DECL_ACME const_char_pointer eol();

@@ -3,7 +3,7 @@
 //#include "aura/graphics/draw2d/_component.h"
 #include "acme/platform/application.h"
 #include "acme/platform/system.h"
-#include "acme/platform/timer.h"
+//#include "acme/platform/timer.h"
 #include "berg/platform/session.h"
 #include "axis/account/department.h"
 
@@ -78,7 +78,7 @@ namespace userpresence
    bool department::defer_initialize_user_presence()
    {
 
-      delete_all_timers();
+      //delete_all_timers();
 
       return true;
 
@@ -118,9 +118,9 @@ namespace userpresence
 
       }
 
-      delete_timer(2000);
+      //delete_timer(2000);
 
-      delete_timer(8888);
+      //delete_timer(8888);
 
       m_ppresence.release();
 
@@ -139,7 +139,7 @@ namespace userpresence
    }
 
 
-   void department::on_timer(::timer * ptimer)
+   void department::operator()(::timer * ptimer)
    {
 
       auto psession = session();
@@ -150,12 +150,12 @@ namespace userpresence
          if(m_ppresence.is_set())
          {
 
-            if(ptimer->m_uTimer == 8888)
-            {
-
-               m_ppresence->defer_pulse_user_presence();
-
-            }
+            // if(ptimer->m_etimer == 8888)
+            // {
+            //
+            //    m_ppresence->defer_pulse_user_presence();
+            //
+            // }
 
          }
 

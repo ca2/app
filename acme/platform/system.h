@@ -11,8 +11,9 @@
 #include "acme/platform/system_aura.h"
 #include "acme/platform/system_axis.h"
 #include "acme/platform/system_core.h"
-
-
+#ifdef WINDOWS
+#include "acme/operating_system/windows_common/apartment_thread.h"
+#endif
 namespace platform
 {
 
@@ -60,16 +61,20 @@ namespace platform
       ::pointer < ::particle >               m_pparticleHttpTextSynchronization;
       ::string_map_base < ::string_to_string_base >    m_mapText;
       ::pointer < ::platform::application >  m_papplicationMain;
+      //::pointer<::particle>                  m_pparticleSubsystem;
+#ifdef WINDOWS
+      ::pointer<::windows::apartment_thread>m_papartmentthread;
+#endif
 
       system();
       ~system() override;
 
 
       virtual ::particle * matter_mutex() override;
-      virtual ::particle * http_download_mutex() override;
+      //virtual ::particle * http_download_mutex() override;
 
-      virtual ::string_array_base * http_download_array() override;
-      virtual ::string_array_base * http_exists_array() override;
+      //virtual ::string_array_base * http_download_array() override;
+      //virtual ::string_array_base * http_exists_array() override;
 
       virtual class ::time * file_listing_cache_time() override;
 
@@ -95,6 +100,9 @@ namespace platform
 
       ::thread_storage * thread_storage(const ::task_index & taskindex) override;
       ::thread_storage * _thread_storage_unlocked(const ::task_index & taskindex) override;
+#ifdef WINDOWS
+      virtual ::windows::apartment_thread * apartment_thread();
+#endif
 
 
       void on_initialize_particle() override;
@@ -102,6 +110,8 @@ namespace platform
 
       virtual void process_machine_event_data(machine_event_data * pdata) override;
 
+
+      virtual ::string get_subsystem_library_component_name();
 
       virtual ::string get_operating_ambient();
 
@@ -113,9 +123,13 @@ namespace platform
 
       virtual ::string get_acme_windowing_toolkit_id();
 
+      virtual ::string get_subsystem_toolkit_id();
+
       void do_operating_ambient_factory() override;
 
-      void do_graphics_and_windowing_factory() override;
+      void do_graphics_factory() override;
+
+      void do_windowing_factory() override;
 
       virtual void application_main(::platform::application * papplication);
 
@@ -124,20 +138,22 @@ namespace platform
       virtual enum_trace_level get_trace_level() override;
       //void os_construct();
 
-      virtual void initialize_matter() override;
+      virtual void defer_initialize_matter() override;
       
 
 #ifdef _DEBUG
 
 
-      long long increment_reference_count() override;
+      ::i64 increment_reference_count() override;
 
 
-      long long decrement_reference_count() override;
+      ::i64 decrement_reference_count() override;
 
 
 #endif
 
+      
+      void prepare_application() override;
 
       virtual void create_task_message_queue();
       virtual void destroy_task_message_queue();
@@ -205,6 +221,8 @@ namespace platform
 
       ::component * component(const ::scoped_string & scopedstrComponent)override;
 
+      //::string_table* string_table() override;
+
       ::string component_path(const ::scoped_string & scopedstrComponent) override;
 
       void defer_innate_ui() override;
@@ -226,6 +244,10 @@ namespace platform
 
       //virtual ::windowing::windowing_base * windowing_base();
 
+      virtual ::platform::subsystem *MainSubsystem() override;
+
+      virtual ::platform::ProfileLogger &ProfileLogger() override;
+
       //virtual ::http_system * http_system();
 
       virtual string get_system_platform() override;
@@ -235,7 +257,6 @@ namespace platform
       //virtual void defer_post_file_open();
 
       //virtual void defer_post_application_start_file_open_request();
-
 
       virtual void defer_audio() override;
 
@@ -297,7 +318,13 @@ namespace platform
       }
 
 
-      virtual unsigned int crc32(unsigned int uCrc, const ::block & block) override;
+      virtual ::u32 crc32(::u32 uCrc, const ::block & block) override;
+
+
+      using ::task::branch;
+
+      void branch(enum_parallelization eparallelization = e_parallelization_asynchronous, const create_task_attributes_t& createtaskattributes = {}) override;
+
 
 
       virtual void create_session(::collection::index iEdge = 0) override;
@@ -311,6 +338,7 @@ namespace platform
       virtual void on_add_session(::platform::session * psession) override;
       virtual void erase_session(::collection::index iEdge) override;
 
+      void set_finish() override;
 
       void on_request(::request * prequest) override;
 
@@ -331,7 +359,7 @@ namespace platform
 
 #ifdef WINDOWS_DESKTOP
 
-      void system_construct(hinstance hinstanceThis, hinstance hPrevInstance, char * pCmdLine, int nCmdShow);
+      void system_construct(hinstance hinstanceThis, hinstance hPrevInstance, char_pointer pCmdLine, ::i32 nCmdShow);
 
 #elif defined(UNIVERSAL_WINDOWS)
 
@@ -362,15 +390,22 @@ namespace platform
       virtual void init_system() override;
       virtual void term_system() override;
 
-      ::request *application_start_file_open_request() override;
+      //::request *application_start_file_open_request() override;
        //virtual void on_start_system() override;
 
 
       //virtual void defer_post_initial_request() override;
 
-      void post_application_start() override;
-      void defer_post_application_start_file_open_request() override;
-      void post_application_started() override;
+
+      //void defer_start_system() override;
+
+
+
+      //void post_application_start() override;
+
+      //void defer_post_application_start_file_open_request() override;
+
+      //void post_application_started() override;
 
 
 
@@ -421,7 +456,7 @@ namespace platform
       bool _handle_uri(const ::block & block) override;
 
 
-      //void __tracea(enum_trace_level elevel, const ::scoped_string & scopedstrFunction, const ::scoped_string & scopedstrFile, int iLine, const ::scoped_string & scopedstr) const override;
+      //void __tracea(enum_trace_level elevel, const ::scoped_string & scopedstrFunction, const ::scoped_string & scopedstrFile, ::i32 iLine, const ::scoped_string & scopedstr) const override;
 
 
       //virtual void main_user_async(const ::procedure & procedure, ::enum_priority epriority = e_priority_normal);
@@ -455,9 +490,9 @@ namespace platform
 //
 //      critical_section_lock synchronouslock(&m_csEnumText);
 //
-//      m_mapEnumToText[::type<e>().name()][(long long)e] = psz;
+//      m_mapEnumToText[::type<e>().name()][(::i64)e] = psz;
 //
-//      m_mapTextToEnum[::type<e>().name()][psz] = (long long)e;
+//      m_mapTextToEnum[::type<e>().name()][psz] = (::i64)e;
 //
 //   }
 
@@ -468,7 +503,7 @@ namespace platform
 //
 //      critical_section_lock synchronouslock(&m_csEnumText);
 //
-//      return m_mapEnumToText[::type<e>().name()][(long long)e];
+//      return m_mapEnumToText[::type<e>().name()][(::i64)e];
 //
 //   }
 
@@ -479,7 +514,7 @@ namespace platform
 //
 //      critical_section_lock lock(&m_csEnumText);
 //
-//      long long iValue;
+//      ::i64 iValue;
 //
 //      if (m_mapTextToEnum[::type<e>().name()].find(scopedstr, iValue))
 //      {
@@ -512,7 +547,7 @@ namespace platform
 //   inline string enum_text(const base_enum < ENUM, edefault >& b)
 //   {
 //
-//      return enum_text(b.m_evalue, (long long)(ENUM)b);
+//      return enum_text(b.m_evalue, (::i64)(ENUM)b);
 //
 //   }
 
@@ -528,7 +563,7 @@ namespace platform
       static inline ::atom atom(const ::std::type_info & info);
       static inline ::atom atom(const ::scoped_string & scopedstr);
       static inline ::atom atom(const ::string & str);
-      static inline ::atom atom(long long i);
+      static inline ::atom atom(::i64 i);
       //static inline ::atom_space & atom();
       inline ::atom atom(const ::payload & payload);
       inline ::atom atom(const ::property & property);
@@ -536,17 +571,17 @@ namespace platform
       virtual void check_exit() override;
 
       virtual ::regular_expression_pointer create_regular_expression(const ::scoped_string & scopedstrStyle, const ::scoped_string & scopedstr) override;
-      //virtual ::pointer<::regular_expression::context> create_regular_expression_context(const ::scoped_string & scopedstrStyle, int iCount);
+      //virtual ::pointer<::regular_expression::context> create_regular_expression_context(const ::scoped_string & scopedstrStyle, ::i32 iCount);
       virtual ::pointer<::regular_expression::context> get_regular_expression_context(const ::scoped_string & scopedstrStyle) override;
 
       virtual ::regular_expression_pointer compile_pcre(const ::scoped_string & scopedstr) override;
       virtual ::pointer<::regular_expression::context> get_pcre_context() override;
-      //virtual int system::pcre_add_tokens(string_array_base& stra, const ::scoped_string & scopedstrTopic, const ::scoped_string & scopedstrRegexp, int nCount)
+      //virtual ::i32 system::pcre_add_tokens(string_array_base& stra, const ::scoped_string & scopedstrTopic, const ::scoped_string & scopedstrRegexp, ::i32 nCount)
 
       virtual void get_public_internet_domain_extension_list(string_array_base & stra) override;
       virtual ::string fetch_public_internet_domain_extension_list_text() override;
 
-      ::lresult system_id_topic(int iId, long long llWparam, long long llLparam) override;
+      ::lresult system_id_topic(::i32 iId, ::i64 llWparam, ::i64 llLparam) override;
 
       void handle(::topic * ptopic, ::handler_context * phandlercontext) override;
       
@@ -661,7 +696,7 @@ namespace platform
       virtual ::file::path local_get_matter_path(const ::scoped_string & scopedstrMatter) override;
 
 
-      virtual void install_progress_add_up(int iAddUp = 1) override;
+      virtual void install_progress_add_up(::i32 iAddUp = 1) override;
 
       virtual bool is_operating_system_package_installed(const ::scoped_string & scopedstrPackageName);
       virtual ::string_array_base not_installed_operating_system_packages(const ::string_array_base & straPackageNames);
@@ -676,7 +711,7 @@ namespace platform
 
       virtual ::color::color background_color() const override;
 
-      virtual double luminance() const override;
+      virtual ::f64 luminance() const override;
 
       virtual void set_background_color(const ::color::color & color) override;
 
@@ -686,13 +721,13 @@ namespace platform
       virtual void set_dark_mode_time(const class ::time & time) override;
       virtual void on_application_dark_mode_change() override;
 
-      //      virtual int get_simple_ui_darkness();
+      //      virtual ::i32 get_simple_ui_darkness();
 
-      //      virtual void set_simple_ui_darkness(int iWeatherDarkness);
+      //      virtual void set_simple_ui_darkness(::i32 iWeatherDarkness);
 
       virtual void set_dark_mode(bool bDark) override;
 
-      virtual ::color::color get_simple_ui_color(::enum_element eelement, ::user::enum_state estate = ::user::e_state_none) override;
+      virtual ::color::color get_simple_ui_color(const ::e_element & eelement, const ::user::e_state & estate = ::user::e_state_none) override;
 
       virtual ::color::color get_default_color(::color::color color) override;
 
@@ -784,20 +819,20 @@ namespace platform
 //       //virtual string install_get_version() override;
 //       //virtual void install_set_version(const ::scoped_string & scopedstrVersion) override;
 //       //virtual string install_get_latest_build_number(const ::scoped_string & scopedstrVersion) override;
-//       //virtual int install_start(const ::scoped_string & scopedstrCommandLine, const ::scoped_string & scopedstrBuild) override;
-//       //virtual int install_progress_app_add_up(int iAddUp = 1) override;
+//       //virtual ::i32 install_start(const ::scoped_string & scopedstrCommandLine, const ::scoped_string & scopedstrBuild) override;
+//       //virtual ::i32 install_progress_app_add_up(::i32 iAddUp = 1) override;
 //
 //       //virtual ::install::canvas * install_create_canvas();
-//       //virtual void install_canvas_on_paint(::draw2d::graphics_pointer & pgraphics, const ::int_rectangle & rectangle);
-//       //virtual int install_canvas_increment_mode();
+//       //virtual void install_canvas_on_paint(::draw2d::graphics_pointer & pgraphics, const ::i32_rectangle & rectangle);
+//       //virtual ::i32 install_canvas_increment_mode();
 //
 //       //virtual string install_get_platform() override;
 //       //virtual void install_set_platform(const ::scoped_string & scopedstrPlatform) override;
 //       //virtual string install_get_version() override;
 //       //virtual void install_set_version(const ::scoped_string & scopedstrVersion) override;
 //       //virtual string install_get_latest_build_number(const ::scoped_string & scopedstrVersion) override;
-//       //virtual int install_start(const ::scoped_string & scopedstrCommandLine, const ::scoped_string & scopedstrBuild) override;
-//       //virtual int install_progress_app_add_up(int iAddUp = 1) override;
+//       //virtual ::i32 install_start(const ::scoped_string & scopedstrCommandLine, const ::scoped_string & scopedstrBuild) override;
+//       //virtual ::i32 install_progress_app_add_up(::i32 iAddUp = 1) override;
 //
 //       //virtual ::pointer<::factory::factory> & node_factory() override;
 //
@@ -841,7 +876,7 @@ namespace platform
 //
 //       //virtual bool initialize_application() override;
 //
-//       //virtual int exit_instance();
+//       //virtual ::i32 exit_instance();
 //       //virtual bool destroy();
 //
 //       //virtual void destroy() override;
@@ -872,7 +907,7 @@ namespace platform
 //       //virtual void on_request(::request * prequest) override;
 //
 //
-//       //virtual unsigned int crc32(unsigned int dwPrevious, const ::scoped_string & scopedstr);
+//       //virtual ::u32 crc32(::u32 dwPrevious, const ::scoped_string & scopedstr);
 //
 //
 //       //virtual string ::url::encode(const ::scoped_string & scopedstr) override;
@@ -909,7 +944,7 @@ namespace platform
 //
 //       //::xml::department                            &  xml();
 //       //class ::base64                          &  base64();
-//       //class ::aura::log                            &  log();
+//       //class ::aura::plogwriter                            &  plogwriter();
 //       //class ::machine_event_central                &  machine_event_central();
 //       //inline ::parallelization::threading           *  threading() { return m_pthreading; }
 //
@@ -1033,7 +1068,7 @@ namespace platform
 //       //virtual ::acme::library * get_library(const ::scoped_string & scopedstrLibrary, bool bOpenCa2 = false) override;
 //
 //
-//       //virtual unsigned int os_post_to_all_threads(const ::atom & atom,const ::wparam & wparam = {},const ::lparam & lparam = {}) override;
+//       //virtual ::u32 os_post_to_all_threads(const ::atom & atom,const ::wparam & wparam = {},const ::lparam & lparam = {}) override;
 //
 //
 //       //virtual void session_add(::collection::index iEdge, ::apex::session * psession) overr;
@@ -1085,17 +1120,17 @@ namespace platform
 //   /*    static inline ::atom atom(const ::std::type_info & info);
 //       static inline ::atom atom(const ::scoped_string & scopedstr);
 //       static inline ::atom atom(const ::scoped_string & scopedstr);
-//       static inline ::atom atom(long long i);
+//       static inline ::atom atom(::i64 i);
 //       static inline ::atom_space & atom();
 //       inline ::atom atom(const ::payload & payload);
 //       inline ::atom atom(const property & prop);*/
 //
 //
-//       //virtual int _001OnDebugReport(int i1, const ::scoped_string & scopedstr1,int i2, const ::scoped_string & scopedstr2, const ::scoped_string & scopedstr3,va_list args) override;
-//       //virtual int _debug_logging_report(int iReportType, const ::scoped_string & scopedstrFilename, int iLinenumber, const ::scoped_string & scopedstrModuleName, const ::scoped_string & scopedstrFormat, va_list list_base) override;
-//       //virtual bool assert_failed_line(const ::scoped_string & scopedstrFileName,int iLine) override;
+//       //virtual ::i32 _001OnDebugReport(::i32 i1, const ::scoped_string & scopedstr1,::i32 i2, const ::scoped_string & scopedstr2, const ::scoped_string & scopedstr3,va_list args) override;
+//       //virtual ::i32 _debug_logging_report(::i32 iReportType, const ::scoped_string & scopedstrFilename, ::i32 iLinenumber, const ::scoped_string & scopedstrModuleName, const ::scoped_string & scopedstrFormat, va_list list_base) override;
+//       //virtual bool assert_failed_line(const ::scoped_string & scopedstrFileName,::i32 iLine) override;
 //
-//       //virtual bool on_assert_failed_line(const ::scoped_string & scopedstrFileName,int iLine) override;
+//       //virtual bool on_assert_failed_line(const ::scoped_string & scopedstrFileName,::i32 iLine) override;
 //
 //
 //       //virtual void initialize_log(const ::scoped_string & scopedstrId) override;
@@ -1135,7 +1170,7 @@ namespace platform
 // //virtual bool map_application_library(const ::scoped_string & scopedstrLibrary) override;
 //
 //
-// //virtual void install_progress_add_up(int iAddUp = 1) override;
+// //virtual void install_progress_add_up(::i32 iAddUp = 1) override;
 //
 // //virtual void create_session(::collection::index iEdge = 0) override;
 //
@@ -1146,8 +1181,8 @@ namespace platform
 // //virtual void on_request(::request * prequest) override;
 //
 // //::pointer<regex>create_regular_expression(const ::scoped_string & scopedstrStyle, const ::scoped_string & scopedstr);
-// //::pointer<regex_context>create_regular_expression_context(const ::scoped_string & scopedstrStyle, int iCount);
-// //virtual int pcre_add_tokens(string_array_base& stra, const ::scoped_string & scopedstrTopic, const ::scoped_string & scopedstrRegexp, int nCount);
+// //::pointer<regex_context>create_regular_expression_context(const ::scoped_string & scopedstrStyle, ::i32 iCount);
+// //virtual ::i32 pcre_add_tokens(string_array_base& stra, const ::scoped_string & scopedstrTopic, const ::scoped_string & scopedstrRegexp, ::i32 nCount);
 //
 //
 // //virtual string get_system_platform() override;
@@ -1155,7 +1190,7 @@ namespace platform
 // //virtual string get_latest_build_number(const ::scoped_string & scopedstrConfiguration, const ::scoped_string & scopedstrAppId);
 // //#ifndef UNIVERSAL_WINDOWS
 //
-// //virtual void get_time(timeval * int_point) override;
+// //virtual void get_time(timeval * i32_point) override;
 //
 // //#endif
 //
@@ -1176,8 +1211,8 @@ namespace platform
 //       //virtual void defer_check_openweather_city_list();
 //
 //       //virtual openweather_city * openweather_find_city(const ::scoped_string & scopedstrQuery);
-//       //virtual ::collection::index openweather_find_city2(const ::scoped_string & scopedstrQuery, string & strCit, long long & iId, double & dLat, double & dLon);
-//       //virtual ::collection::index openweather_find_city2(const ::scoped_string & scopedstrQ1, const ::scoped_string & scopedstrQ2, string & strCit, long long & iId, double & dLat, double & dLon, bool bPrefix);
+//       //virtual ::collection::index openweather_find_city2(const ::scoped_string & scopedstrQuery, string & strCit, ::i64 & iId, ::f64 & dLat, ::f64 & dLon);
+//       //virtual ::collection::index openweather_find_city2(const ::scoped_string & scopedstrQ1, const ::scoped_string & scopedstrQ2, string & strCit, ::i64 & iId, ::f64 & dLat, ::f64 & dLon, bool bPrefix);
 //
 // //#ifdef __ANDROID__
 // ////#pragma message("at macos??")
@@ -1192,11 +1227,11 @@ namespace platform
 // //
 // //      virtual bool on_open_file(::payload payloadFile, const ::scoped_string & scopedstrExtra) override;
 // //
-//       //virtual LPWAVEOUT waveout_open(int iChannel, LPAUDIOFORMAT pformat, LPWAVEOUT_CALLBACK pcallback);
+//       //virtual LPWAVEOUT waveout_open(::i32 iChannel, LPAUDIOFORMAT pformat, LPWAVEOUT_CALLBACK pcallback);
 //
 //       //virtual bool initialize_native_window1();
 //
-//       //virtual void * initialize_native_window2(const ::int_rectangle & rectangle);
+//       //virtual void * initialize_native_window2(const ::i32_rectangle & rectangle);
 //
 //
 //       //virtual void on_os_text(e_os_text etext, const ::scoped_string & scopedstrText) override;
@@ -1209,7 +1244,7 @@ namespace platform
 //       //virtual bool set_standalone_setting(const ::scoped_string & scopedstr, const ::scoped_string & scopedstrSetting) override;
 //
 //
-//       //virtual void on_event(unsigned long long u, ::particle * pparticle) override;
+//       //virtual void on_event(::u64 u, ::particle * pparticle) override;
 //
 //
 //       virtual void on_initial_frame_position(::user::frame_interaction * pframe);
@@ -1220,7 +1255,7 @@ namespace platform
 //
 //
 //
-//       //virtual void __tracea(enum_trace_level elevel, const ::scoped_string & scopedstrFunction, const ::scoped_string & scopedstrFile, int iLine, const ::scoped_string & scopedstr) const override;
+//       //virtual void __tracea(enum_trace_level elevel, const ::scoped_string & scopedstrFunction, const ::scoped_string & scopedstrFile, ::i32 iLine, const ::scoped_string & scopedstr) const override;
 //
 //
 //       //void chromium(const ::scoped_string & scopedstrUrl, const ::scoped_string & scopedstrBrowser, const ::scoped_string & scopedstrId, ::file::path path, const ::scoped_string & scopedstrProfile, const ::scoped_string & scopedstrParam);
@@ -1249,7 +1284,7 @@ namespace platform
 //       //virtual void term_system() override;
 //
 //
-//       //virtual int main();
+//       //virtual ::i32 main();
 //       ///virtual void InitApplication() override;
 //
 //       //virtual void init() override;
@@ -1286,7 +1321,7 @@ namespace platform
 //
 //       //      virtual ::pointer<::handler>handler();
 //
-//       //virtual int main();
+//       //virtual ::i32 main();
 //
 //       //virtual void on_allocation_error(const ::scoped_string & scopedstr, ::object* pobjectSometimes) override;
 //
@@ -1316,11 +1351,11 @@ namespace platform
 //
 //
 //
-//       //      unsigned int guess_code_page(const ::scoped_string & scopedstr);
+//       //      ::u32 guess_code_page(const ::scoped_string & scopedstr);
 //
 // //#ifdef UNIVERSAL_WINDOWS
 // //
-// //      virtual bool window_rectangle(::int_rectangle* prectangle);
+// //      virtual bool window_rectangle(::i32_rectangle* prectangle);
 // //
 // //
 // //#endif
@@ -1334,7 +1369,7 @@ namespace platform
 //
 //       //      virtual void add_impact_library(::acme::library* plibrary);
 //
-//             //virtual void get_cursor_position(::int_point * ppoint);
+//             //virtual void get_cursor_position(::i32_point * ppoint);
 //
 //
 //
@@ -1389,18 +1424,18 @@ namespace platform
 //
 //       //virtual ::pointer<::aura::session>on_create_session() override;
 //       //virtual ::install::canvas * install_create_canvas() override;
-//       //virtual void install_canvas_on_paint(::draw2d::graphics_pointer & pgraphics, const ::int_rectangle & rectangle);
-//       //virtual int install_canvas_increment_mode() override;
+//       //virtual void install_canvas_on_paint(::draw2d::graphics_pointer & pgraphics, const ::i32_rectangle & rectangle);
+//       //virtual ::i32 install_canvas_increment_mode() override;
 //
 //
 //
-//       //virtual unsigned int get_monitor_color_temperature(::collection::index iMonitor);
-//       //virtual bool adjust_monitor(::collection::index iMonitor, unsigned int dwTemperature, double dBrightness, double dwGamma);
-//       //virtual bool get_monitor_rectangle(::collection::index iMonitor, ::int_rectangle* prectangle) override;
+//       //virtual ::u32 get_monitor_color_temperature(::collection::index iMonitor);
+//       //virtual bool adjust_monitor(::collection::index iMonitor, ::u32 dwTemperature, ::f64 dBrightness, ::f64 dwGamma);
+//       //virtual bool get_monitor_rectangle(::collection::index iMonitor, ::i32_rectangle* prectangle) override;
 //
 //       //virtual ::collection::count get_monitor_count() override;
 //
-//       //bool get_workspace_rectangle(::collection::index iWorkspace, ::int_rectangle* prectangle) override;
+//       //bool get_workspace_rectangle(::collection::index iWorkspace, ::i32_rectangle* prectangle) override;
 //
 //
 //       //virtual ::windowing::window * impl_from_handle(void * pdata) override;
@@ -1427,6 +1462,11 @@ namespace platform
 //
 //
 
+      ::accessibility::accessibility *accessibility() override;
+
+      virtual ::string operating_system_icon_url(const ::i32_size &size);
+      virtual ::string operating_ambient_icon_url(const ::i32_size &size);
+
 
 
    };
@@ -1443,5 +1483,44 @@ inline ::platform::system * system()
    return ::platform::system::s_p;
 
 }
+
+
+
+
+template < typename APPLICATION >
+APPLICATION* main_application()
+{
+
+   auto psystem = ::system();
+
+   if (::is_null(psystem))
+   {
+
+      return nullptr;
+
+   }
+
+   auto pacmeapplication = psystem->m_papplication;
+
+   if (::is_null(pacmeapplication))
+   {
+
+      return nullptr;
+
+   }
+
+   ::cast < APPLICATION > papplication = pacmeapplication;
+
+   if (::is_null(papplication))
+   {
+
+      return nullptr;
+
+   }
+
+   return papplication;
+
+}
+
 
 

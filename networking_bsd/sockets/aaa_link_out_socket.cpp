@@ -27,7 +27,7 @@ namespace networking_bsd
    {
    }
 
-   void link_out_socket::OnRead( char *buf, memsize n )
+   void link_out_socket::OnRead( char_pointer buf, memsize n )
    {
 
       m_in->link_write(buf, n);
@@ -36,7 +36,7 @@ namespace networking_bsd
 
    void link_out_socket::link_write(void * p, memsize size)
    {
-      m_out->write((const char *) p, size);
+      m_out->write((const_char_pointer ) p, size);
    }
 
 

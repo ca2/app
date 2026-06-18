@@ -7,7 +7,7 @@ namespace opengl
 {
 
 
-   exception::exception(const ::scoped_string& scopedstrMessage, int iGLError, const_char_pointer pszGlError, const ::scoped_string& nameFile, int iLine):
+   exception::exception(const ::scoped_string& scopedstrMessage, ::i32 iGLError, const_char_pointer pszGlError, const ::scoped_string& nameFile, ::i32 iLine):
       ::exception(error_open_failed, scopedstrMessage),
       m_iGlError(iGLError)
    {
@@ -26,12 +26,12 @@ namespace opengl
    }
 
 
-   [[noreturn]] void throw_exception(const ::scoped_string& scopestrMessage, int iGLError, const ::scoped_string& nameFile, int iLine)
+   [[noreturn]] void throw_exception(const ::scoped_string& scopestrMessage, ::i32 iGLError, const ::scoped_string& nameFile, ::i32 iLine)
    {
 
       auto pszGlErrorString = ::opengl_error_string(iGLError);
 
-      const char *pszFramebufferStatusText = nullptr;
+      const_char_pointer pszFramebufferStatusText = nullptr;
       
       void * pCurrentContext = nullptr;
 
@@ -66,9 +66,9 @@ namespace opengl
 
       switch (etype)
       {
-      case ::gpu::e_type_int:
+      case ::gpu::e_type_i32:
          return GL_INT;
-      case ::gpu::e_type_float:
+      case ::gpu::e_type_f32:
          return GL_FLOAT;
       case ::gpu::e_type_seq2:
          return GL_FLOAT;
@@ -108,9 +108,9 @@ namespace opengl
    }
 
 
-   const char * check_framebuffer_status_text(GLenum status)
+   const_char_pointer check_framebuffer_status_text(GLenum status)
    {
-      const char *psz = nullptr;
+      const_char_pointer psz = nullptr;
       if (status != GL_FRAMEBUFFER_COMPLETE)
       {
          switch (status)
@@ -133,7 +133,7 @@ namespace opengl
 
 void defer_throw_gl_error()
 {
-   int iGlError = glGetError();
+   ::i32 iGlError = glGetError();
    
    if (iGlError != 0)
    {
@@ -162,7 +162,7 @@ void defer_throw_gl_error()
    void check_error(const_char_pointer pszErrorMessage)
    {
 
-      int iGlError = glGetError();
+      ::i32 iGlError = glGetError();
 
       if (iGlError != 0)
       {
@@ -180,7 +180,7 @@ void defer_throw_gl_error()
       if (!lHandle)
       {
 
-         int iGlError = glGetError();
+         ::i32 iGlError = glGetError();
 
          if (iGlError != 0)
          {

@@ -13,75 +13,111 @@ namespace operating_system
 {
 
 
-   union macos_window_t
+   struct macos_window_t
    {
 
 
-      CGWindowID m_cgwindowidMacosWindow;
+      //::u64 m_uCgwindowidMacosWindow;
+      union
+      {
+         ::u64 m_uNSWindow;
+         ::u64 m_uNSImpact;
+      };
+      //::u64 m_uTag;
 
 
-      void Null() { m_cgwindowidMacosWindow = NULL; }
+      void Null() { m_uNSWindow = 0; //m_uTag = 0;
+      }
+      
+      
+      bool is_set() const{
+         return this->m_uNSWindow != 0;
+      }
+      bool is_null() const
+      {
+         return !this->is_set();
+      }
+
 
    };
 
 
-   class macos_window : public ::operating_system::a_window<e_operating_system_macos, macos_window_t>
+   class macos_window : public ::operating_system::a_window<::windowing::e_operating_ambient_macos, macos_window_t>
    {
    public:
 
 
-      using BASE_TYPE = ::operating_system::a_window<e_operating_system_macos, macos_window_t>;
+      using BASE_TYPE = ::operating_system::a_window<::windowing::e_operating_ambient_macos, macos_window_t>;
 
 
       using BASE_TYPE::BASE_TYPE;
 
 
-      macos_window(CGWindowID cgwindowid)
+//      macos_window(::uptr uptr)
+//      {
+//
+//         this->operator=(uptr);
+//      
+//      }
+
+      macos_window(::uptr uptr, ::windowing::enum_operating_ambient eoperatingambient)
       {
 
-         this->operator=(cgwindowid);
+         m_eoperatingambient = eoperatingambient;
+         m_window.m_uNSWindow = uptr;
+         //m_window.m_uTag = uTag;
+         m_pacmewindowingwindow = nullptr;
+         m_opaque.m_ulla[2]= 0;
       
       }
 
-
-      CGWindowID as_CGWindowID() const
+      ::uptr window_uptr() const
       {
          
-         if(this->m_eoperatingsystem == e_operating_system_macos)
+         if(this->m_eoperatingambient == ::windowing::e_operating_ambient_macos)
          {
 
-            if (!this->m_window.m_cgwindowidMacosWindow)
-            {
-
-               throw ::exception(error_wrong_state);
-
-            }
-
-            return this->m_window.m_cgwindowidMacosWindow;
+            return this->m_window.m_uNSWindow;
 
          }
-         else if (this->m_window.m_cgwindowidMacosWindow)
+         else if(this->m_eoperatingambient == ::windowing::e_operating_ambient_macos_impact_by_tag)
          {
 
-            throw ::exception(error_wrong_state);
+            return this->m_window.m_uNSWindow;
 
          }
          else
          {
-
+            
             return NULL;
-
+            
          }
       
       }
 
+      ::uptr impact_uptr() const
+      {
+         
+         if(this->m_eoperatingambient == ::windowing::e_operating_ambient_macos_impact2)
+         {
 
-      using BASE_TYPE::operator=;
+            return this->m_window.m_uNSImpact;
 
-      macos_window & operator=(CGWindowID cgwindowid)
+         }
+         else
+         {
+            
+            return NULL;
+            
+         }
+      
+      }
+
+  
+      macos_window & operator=(::uptr uNSWindow)
       {
 
-         if (!cgwindowid)
+         if (!uNSWindow)
          {
 
             this->Null();
@@ -90,8 +126,8 @@ namespace operating_system
          else
          {
 
-            this->m_eoperatingsystem = e_operating_system_macos;
-            this->m_window.m_cgwindowidMacosWindow = cgwindowid;
+            this->m_eoperatingambient = ::windowing::e_operating_ambient_macos;
+            this->m_window.m_uNSWindow = uNSWindow;
 
          }
 
@@ -116,15 +152,15 @@ namespace macos
 //
 //
 //      ::operating_system::macos_window m_macoswindow;
-//      double m_dVelocity;
+//      ::f64 m_dVelocity;
 //      class ::time m_timeLastSizeMove;
-//      ::int_point m_pointSizeMoveStart;
+//      ::i32_point m_pointSizeMoveStart;
 //      bool m_bMovingNow;
 //      bool m_bDefaultSystemMenu;
 //      bool m_bSizeMoveMode;
 //      //CGWindowID m_cgwindowid;
 //      HMENU m_hmenuSystem;
-//      int m_iDebugAtom = 0;
+//      ::i32 m_iDebugAtom = 0;
 //
 //      window();
 //      ~window() override;

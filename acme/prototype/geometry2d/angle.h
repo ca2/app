@@ -89,7 +89,7 @@ public:
 
       
 
-   double normalized() const { auto d = (FLOATING) fmod(m_fAngle, 2.0 * MATH_PI); return d <  (FLOATING) 0.0 ? d + (FLOATING) (2.0 * MATH_PI) : d; }
+   ::f64 normalized() const { auto d = (FLOATING) fmod(m_fAngle, 2.0 * MATH_PI); return d <  (FLOATING) 0.0 ? d + (FLOATING) (2.0 * MATH_PI) : d; }
    void normalize() { m_fAngle = normalized(); }
 
    
@@ -146,8 +146,8 @@ public:
 
 
 
-using float_angle = angle_type < float >;
-using double_angle = angle_type < double >;
+using f32_angle = angle_type < ::f32 >;
+using f64_angle = angle_type < ::f64 >;
 
 
 namespace geometry
@@ -224,14 +224,14 @@ constexpr angle_type<FLOATING> degrees(FLOATING fAngle)
 }
 
 
-inline double_angle operator""_degree(long double degrees) {
+inline f64_angle operator""_degree(long double degrees) {
 
    return radians(degrees_to_radians(degrees));
 
 }
 
 
-inline double_angle operator""_degrees(long double degrees)
+inline f64_angle operator""_degrees(long double degrees)
 {
 
    return operator""_degree(degrees);
@@ -239,15 +239,15 @@ inline double_angle operator""_degrees(long double degrees)
 }
 
 
-inline float_angle operator""_f_degree(long double degrees)
+inline f32_angle operator""_f_degree(long double degrees)
 {
    
-   return radians(degrees_to_radians((float)degrees)); 
+   return radians(degrees_to_radians((::f32)degrees)); 
 
 }
 
 
-inline float_angle operator""_f_degrees(long double degrees)
+inline f32_angle operator""_f_degrees(long double degrees)
 {
    
    return operator""_f_degree(degrees);
@@ -255,15 +255,15 @@ inline float_angle operator""_f_degrees(long double degrees)
 }
 
 
-inline double_angle operator""_degree(unsigned long long degrees)
+inline f64_angle operator""_degree(::u64 degrees)
 {
 
-   return radians(degrees_to_radians((double)degrees));
+   return radians(degrees_to_radians((::f64)degrees));
 
 }
 
 
-inline double_angle operator""_degrees(unsigned long long hn)
+inline f64_angle operator""_degrees(::u64 hn)
 {
 
    return operator""_degree(hn);
@@ -271,15 +271,15 @@ inline double_angle operator""_degrees(unsigned long long hn)
 }
 
 
-inline float_angle operator""_f_degree(unsigned long long degrees)
+inline f32_angle operator""_f_degree(::u64 degrees)
 {
 
-   return radians(degrees_to_radians((float)degrees));
+   return radians(degrees_to_radians((::f32)degrees));
 
 }
 
 
-inline float_angle operator""_f_degrees(unsigned long long hn)
+inline f32_angle operator""_f_degrees(::u64 hn)
 {
    
    return operator""_f_degree(hn);

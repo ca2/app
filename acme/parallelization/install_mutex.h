@@ -12,7 +12,7 @@
 //{
 //public:
 //
-//   char sz[32]; // I hope it is enough to hold SECURITY_ATTRIBUTES;
+//   ::i8 sz[32]; // I hope it is enough to hold SECURITY_ATTRIBUTES;
 //
 //};
 //

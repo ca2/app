@@ -19,7 +19,7 @@
 #include "ostypes.h"
 
 /* timing functions */
-unsigned long long time_stamp(void);
-unsigned long long time_elapsed(unsigned long long t1, unsigned long long t2);
+::u64 time_stamp(void);
+::u64 time_elapsed(::u64 t1, ::u64 t2);
 
 #endif /* __LIBSTROPHE_UTIL_H__ */

@@ -67,7 +67,7 @@
 /**
  * \brief JSON Web Token
  *
- * A namespace to contain everything related to handling JSON Web Tokens, JWT for short,
+ * A namespace to contain everything related to handling JSON Web Tokens, JWT for ::i16,
  * as a part of [RFC7519](https://tools.ietf.org/html/rfc7519), or alternatively for
  * JWS (JSON Web Signature) from [RFC7515](https://tools.ietf.org/html/rfc7515)
  */
@@ -114,8 +114,8 @@ namespace jwt {
 		inline std::error_category& rsa_error_category() {
 			class rsa_error_cat : public std::error_category {
 			public:
-				const char* name() const noexcept override { return "rsa_error"; };
-				std::string message(int ev) const override {
+				const_char_pointer pszName() const noexcept override { return "rsa_error"; };
+				std::string message(::i32 ev) const override {
 					switch (static_cast<rsa_error>(ev)) {
 					case rsa_error::ok: return "no error";
 					case rsa_error::cert_load_failed: return "error loading cert into memory";
@@ -135,7 +135,7 @@ namespace jwt {
 			return cat;
 		}
 
-		inline std::error_code make_error_code(rsa_error e) { return {static_cast<int>(e), rsa_error_category()}; }
+		inline std::error_code make_error_code(rsa_error e) { return {static_cast<::i32>(e), rsa_error_category()}; }
 		/**
 		 * \brief Errors related to processing of RSA signatures
 		 */
@@ -154,8 +154,8 @@ namespace jwt {
 		inline std::error_category& ecdsa_error_category() {
 			class ecdsa_error_cat : public std::error_category {
 			public:
-				const char* name() const noexcept override { return "ecdsa_error"; };
-				std::string message(int ev) const override {
+				const_char_pointer pszName() const noexcept override { return "ecdsa_error"; };
+				std::string message(::i32 ev) const override {
 					switch (static_cast<ecdsa_error>(ev)) {
 					case ecdsa_error::ok: return "no error";
 					case ecdsa_error::load_key_bio_write: return "failed to load key: bio write failed";
@@ -173,7 +173,7 @@ namespace jwt {
 			return cat;
 		}
 
-		inline std::error_code make_error_code(ecdsa_error e) { return {static_cast<int>(e), ecdsa_error_category()}; }
+		inline std::error_code make_error_code(ecdsa_error e) { return {static_cast<::i32>(e), ecdsa_error_category()}; }
 
 		/**
 		 * \brief Errors related to verification of signatures
@@ -194,8 +194,8 @@ namespace jwt {
 		inline std::error_category& signature_verification_error_category() {
 			class verification_error_cat : public std::error_category {
 			public:
-				const char* name() const noexcept override { return "signature_verification_error"; };
-				std::string message(int ev) const override {
+				const_char_pointer pszName() const noexcept override { return "signature_verification_error"; };
+				std::string message(::i32 ev) const override {
 					switch (static_cast<signature_verification_error>(ev)) {
 					case signature_verification_error::ok: return "no error";
 					case signature_verification_error::invalid_signature: return "invalid signature";
@@ -220,7 +220,7 @@ namespace jwt {
 		}
 
 		inline std::error_code make_error_code(signature_verification_error e) {
-			return {static_cast<int>(e), signature_verification_error_category()};
+			return {static_cast<::i32>(e), signature_verification_error_category()};
 		}
 
 		/**
@@ -248,8 +248,8 @@ namespace jwt {
 		inline std::error_category& signature_generation_error_category() {
 			class signature_generation_error_cat : public std::error_category {
 			public:
-				const char* name() const noexcept override { return "signature_generation_error"; };
-				std::string message(int ev) const override {
+				const_char_pointer pszName() const noexcept override { return "signature_generation_error"; };
+				std::string message(::i32 ev) const override {
 					switch (static_cast<signature_generation_error>(ev)) {
 					case signature_generation_error::ok: return "no error";
 					case signature_generation_error::hmac_failed: return "hmac failed";
@@ -285,7 +285,7 @@ namespace jwt {
 		}
 
 		inline std::error_code make_error_code(signature_generation_error e) {
-			return {static_cast<int>(e), signature_generation_error_category()};
+			return {static_cast<::i32>(e), signature_generation_error_category()};
 		}
 
 		/**
@@ -306,8 +306,8 @@ namespace jwt {
 		inline std::error_category& token_verification_error_category() {
 			class token_verification_error_cat : public std::error_category {
 			public:
-				const char* name() const noexcept override { return "token_verification_error"; };
-				std::string message(int ev) const override {
+				const_char_pointer pszName() const noexcept override { return "token_verification_error"; };
+				std::string message(::i32 ev) const override {
 					switch (static_cast<token_verification_error>(ev)) {
 					case token_verification_error::ok: return "no error";
 					case token_verification_error::wrong_algorithm: return "wrong algorithm";
@@ -328,7 +328,7 @@ namespace jwt {
 		}
 
 		inline std::error_code make_error_code(token_verification_error e) {
-			return {static_cast<int>(e), token_verification_error_category()};
+			return {static_cast<::i32>(e), token_verification_error_category()};
 		}
 
 		inline void throw_if_error(std::error_code ec) {
@@ -384,10 +384,10 @@ namespace jwt {
 			ec.clear();
 #if OPENSSL_VERSION_NUMBER <= 0x10100003L
 			std::unique_ptr<BIO, decltype(&BIO_free_all)> certbio(
-				BIO_new_mem_buf(const_cast<char*>(certstr.data()), static_cast<int>(certstr.size())), BIO_free_all);
+				BIO_new_mem_buf(const_cast<char_pointer >(certstr.data()), static_cast<::i32>(certstr.size())), BIO_free_all);
 #else
 			std::unique_ptr<BIO, decltype(&BIO_free_all)> certbio(
-				BIO_new_mem_buf(certstr.data(), static_cast<int>(certstr.size())), BIO_free_all);
+				BIO_new_mem_buf(certstr.data(), static_cast<::i32>(certstr.size())), BIO_free_all);
 #endif
 			std::unique_ptr<BIO, decltype(&BIO_free_all)> keybio(BIO_new(BIO_s_mem()), BIO_free_all);
 			if (!certbio || !keybio) {
@@ -396,7 +396,7 @@ namespace jwt {
 			}
 
 			std::unique_ptr<X509, decltype(&X509_free)> cert(
-				PEM_read_bio_X509(certbio.get(), nullptr, nullptr, const_cast<char*>(pw.c_str())), X509_free);
+				PEM_read_bio_X509(certbio.get(), nullptr, nullptr, const_cast<char_pointer >(pw.c_str())), X509_free);
 			if (!cert) {
 				ec = error::rsa_error::cert_load_failed;
 				return {};
@@ -410,7 +410,7 @@ namespace jwt {
 				ec = error::rsa_error::write_key_failed;
 				return {};
 			}
-			char* ptr = nullptr;
+			char_pointer ptr = nullptr;
 			auto len = BIO_get_mem_data(keybio.get(), &ptr);
 			if (len <= 0 || ptr == nullptr) {
 				ec = error::rsa_error::convert_to_pem_failed;
@@ -452,10 +452,10 @@ namespace jwt {
 											  std::error_code& ec) {
 			ec.clear();
 			const auto decodedStr = decode(cert_base64_der_str);
-			auto c_str = reinterpret_cast<const unsigned char*>(decodedStr.c_str());
+			auto c_str = reinterpret_cast<const ::u8*>(decodedStr.c_str());
 
 			std::unique_ptr<X509, decltype(&X509_free)> cert(
-				d2i_X509(NULL, &c_str, static_cast<int>(decodedStr.size())), X509_free);
+				d2i_X509(NULL, &c_str, static_cast<::i32>(decodedStr.size())), X509_free);
 			std::unique_ptr<BIO, decltype(&BIO_free_all)> certbio(BIO_new(BIO_s_mem()), BIO_free_all);
 			if (!cert || !certbio) {
 				ec = error::rsa_error::create_mem_bio_failed;
@@ -467,7 +467,7 @@ namespace jwt {
 				return {};
 			}
 
-			char* ptr = nullptr;
+			char_pointer ptr = nullptr;
 			const auto len = BIO_get_mem_data(certbio.get(), &ptr);
 			if (len <= 0 || ptr == nullptr) {
 				ec = error::rsa_error::convert_to_pem_failed;
@@ -551,13 +551,13 @@ namespace jwt {
 			if (key.substr(0, 27) == "-----BEGIN CERTIFICATE-----") {
 				auto epkey = helper::extract_pubkey_from_cert(key, password, ec);
 				if (ec) return nullptr;
-				const int len = static_cast<int>(epkey.size());
+				const ::i32 len = static_cast<::i32>(epkey.size());
 				if (BIO_write(pubkey_bio.get(), epkey.data(), len) != len) {
 					ec = error::rsa_error::load_key_bio_write;
 					return nullptr;
 				}
 			} else {
-				const int len = static_cast<int>(key.size());
+				const ::i32 len = static_cast<::i32>(key.size());
 				if (BIO_write(pubkey_bio.get(), key.data(), len) != len) {
 					ec = error::rsa_error::load_key_bio_write;
 					return nullptr;
@@ -606,13 +606,13 @@ namespace jwt {
 				ec = error::rsa_error::create_mem_bio_failed;
 				return nullptr;
 			}
-			const int len = static_cast<int>(key.size());
+			const ::i32 len = static_cast<::i32>(key.size());
 			if (BIO_write(privkey_bio.get(), key.data(), len) != len) {
 				ec = error::rsa_error::load_key_bio_write;
 				return nullptr;
 			}
 			std::shared_ptr<EVP_PKEY> pkey(
-				PEM_read_bio_PrivateKey(privkey_bio.get(), nullptr, nullptr, const_cast<char*>(password.c_str())),
+				PEM_read_bio_PrivateKey(privkey_bio.get(), nullptr, nullptr, const_cast<char_pointer >(password.c_str())),
 				EVP_PKEY_free);
 			if (!pkey) {
 				ec = error::rsa_error::load_key_bio_read;
@@ -656,13 +656,13 @@ namespace jwt {
 			if (key.substr(0, 27) == "-----BEGIN CERTIFICATE-----") {
 				auto epkey = helper::extract_pubkey_from_cert(key, password, ec);
 				if (ec) return nullptr;
-				const int len = static_cast<int>(epkey.size());
+				const ::i32 len = static_cast<::i32>(epkey.size());
 				if (BIO_write(pubkey_bio.get(), epkey.data(), len) != len) {
 					ec = error::ecdsa_error::load_key_bio_write;
 					return nullptr;
 				}
 			} else {
-				const int len = static_cast<int>(key.size());
+				const ::i32 len = static_cast<::i32>(key.size());
 				if (BIO_write(pubkey_bio.get(), key.data(), len) != len) {
 					ec = error::ecdsa_error::load_key_bio_write;
 					return nullptr;
@@ -711,13 +711,13 @@ namespace jwt {
 				ec = error::ecdsa_error::create_mem_bio_failed;
 				return nullptr;
 			}
-			const int len = static_cast<int>(key.size());
+			const ::i32 len = static_cast<::i32>(key.size());
 			if (BIO_write(privkey_bio.get(), key.data(), len) != len) {
 				ec = error::ecdsa_error::load_key_bio_write;
 				return nullptr;
 			}
 			std::shared_ptr<EVP_PKEY> pkey(
-				PEM_read_bio_PrivateKey(privkey_bio.get(), nullptr, nullptr, const_cast<char*>(password.c_str())),
+				PEM_read_bio_PrivateKey(privkey_bio.get(), nullptr, nullptr, const_cast<char_pointer >(password.c_str())),
 				EVP_PKEY_free);
 			if (!pkey) {
 				ec = error::ecdsa_error::load_key_bio_read;
@@ -756,7 +756,7 @@ namespace jwt {
 #endif
 		{
 			std::string res(BN_num_bytes(bn), '\0');
-			BN_bn2bin(bn, (unsigned char*)res.data()); // NOLINT(google-readability-casting) requires `const_cast`
+			BN_bn2bin(bn, (::u8*)res.data()); // NOLINT(google-readability-casting) requires `const_cast`
 			return res;
 		}
 		/**
@@ -766,7 +766,7 @@ namespace jwt {
 		 */
 		inline static std::unique_ptr<BIGNUM, decltype(&BN_free)> raw2bn(const std::string& raw) {
 			return std::unique_ptr<BIGNUM, decltype(&BN_free)>(
-				BN_bin2bn(reinterpret_cast<const unsigned char*>(raw.data()), static_cast<int>(raw.size()), nullptr),
+				BN_bin2bn(reinterpret_cast<const ::u8*>(raw.data()), static_cast<::i32>(raw.size()), nullptr),
 				BN_free);
 		}
 	} // namespace helper
@@ -829,10 +829,10 @@ namespace jwt {
 			std::string sign(const std::string& data, std::error_code& ec) const {
 				ec.clear();
 				std::string res(static_cast<size_t>(EVP_MAX_MD_SIZE), '\0');
-				auto len = static_cast<unsigned int>(res.size());
-				if (HMAC(md(), secret.data(), static_cast<int>(secret.size()),
-						 reinterpret_cast<const unsigned char*>(data.data()), static_cast<int>(data.size()),
-						 (unsigned char*)res.data(), // NOLINT(google-readability-casting) requires `const_cast`
+				auto len = static_cast<::u32>(res.size());
+				if (HMAC(md(), secret.data(), static_cast<::i32>(secret.size()),
+						 reinterpret_cast<const ::u8*>(data.data()), static_cast<::i32>(data.size()),
+						 (::u8*)res.data(), // NOLINT(google-readability-casting) requires `const_cast`
 						 &len) == nullptr) {
 					ec = error::signature_generation_error::hmac_failed;
 					return {};
@@ -920,13 +920,13 @@ namespace jwt {
 				}
 
 				std::string res(EVP_PKEY_size(pkey.get()), '\0');
-				unsigned int len = 0;
+				::u32 len = 0;
 
 				if (!EVP_SignUpdate(ctx.get(), data.data(), data.size())) {
 					ec = error::signature_generation_error::signupdate_failed;
 					return {};
 				}
-				if (EVP_SignFinal(ctx.get(), (unsigned char*)res.data(), &len, pkey.get()) == 0) {
+				if (EVP_SignFinal(ctx.get(), (::u8*)res.data(), &len, pkey.get()) == 0) {
 					ec = error::signature_generation_error::signfinal_failed;
 					return {};
 				}
@@ -959,8 +959,8 @@ namespace jwt {
 					ec = error::signature_verification_error::verifyupdate_failed;
 					return;
 				}
-				auto res = EVP_VerifyFinal(ctx.get(), reinterpret_cast<const unsigned char*>(signature.data()),
-										   static_cast<unsigned int>(signature.size()), pkey.get());
+				auto res = EVP_VerifyFinal(ctx.get(), reinterpret_cast<const ::u8*>(signature.data()),
+										   static_cast<::u32>(signature.size()), pkey.get());
 				if (res != 1) {
 					ec = error::signature_verification_error::verifyfinal_failed;
 					return;
@@ -1022,7 +1022,7 @@ namespace jwt {
 // 				if (ec) return {};
 
 // 				std::unique_ptr<ECDSA_SIG, decltype(&ECDSA_SIG_free)> sig(
-// 					ECDSA_do_sign(reinterpret_cast<const unsigned char*>(hash.data()), static_cast<int>(hash.size()),
+// 					ECDSA_do_sign(reinterpret_cast<const ::u8*>(hash.data()), static_cast<::i32>(hash.size()),
 // 								  pkey.get()),
 // 					ECDSA_SIG_free);
 // 				if (!sig) {
@@ -1064,7 +1064,7 @@ namespace jwt {
 // 				sig.r = r.get();
 // 				sig.s = s.get();
 
-// 				if (ECDSA_do_verify((const unsigned char*)hash.data(), static_cast<int>(hash.size()), &sig,
+// 				if (ECDSA_do_verify((const ::u8*)hash.data(), static_cast<::i32>(hash.size()), &sig,
 // 									pkey.get()) != 1) {
 // 					ec = error::signature_verification_error::invalid_signature;
 // 					return;
@@ -1078,7 +1078,7 @@ namespace jwt {
 
 // 				ECDSA_SIG_set0(sig.get(), r.release(), s.release());
 
-// 				if (ECDSA_do_verify(reinterpret_cast<const unsigned char*>(hash.data()), static_cast<int>(hash.size()),
+// 				if (ECDSA_do_verify(reinterpret_cast<const ::u8*>(hash.data()), static_cast<::i32>(hash.size()),
 // 									sig.get(), pkey.get()) != 1) {
 // 					ec = error::signature_verification_error::invalid_signature;
 // 					return;
@@ -1116,11 +1116,11 @@ namespace jwt {
 // 					ec = error::signature_generation_error::digestupdate_failed;
 // 					return {};
 // 				}
-// 				unsigned int len = 0;
+// 				::u32 len = 0;
 // 				std::string res(EVP_MD_CTX_size(ctx.get()), '\0');
 // 				if (EVP_DigestFinal(
 // 						ctx.get(),
-// 						(unsigned char*)res.data(), // NOLINT(google-readability-casting) requires `const_cast`
+// 						(::u8*)res.data(), // NOLINT(google-readability-casting) requires `const_cast`
 // 						&len) == 0) {
 // 					ec = error::signature_generation_error::digestfinal_failed;
 // 					return {};
@@ -1200,19 +1200,19 @@ namespace jwt {
 // mess.
 #if defined(LIBRESSL_VERSION_NUMBER) || defined(LIBWOLFSSL_VERSION_HEX)
 				ERR_clear_error();
-				if (EVP_DigestSignUpdate(ctx.get(), reinterpret_cast<const unsigned char*>(data.data()), data.size()) !=
+				if (EVP_DigestSignUpdate(ctx.get(), reinterpret_cast<const ::u8*>(data.data()), data.size()) !=
 					1) {
 					std::cout << ERR_error_string(ERR_get_error(), NULL) << std::endl;
 					ec = error::signature_generation_error::signupdate_failed;
 					return {};
 				}
-				if (EVP_DigestSignFinal(ctx.get(), reinterpret_cast<unsigned char*>(&res[0]), &len) != 1) {
+				if (EVP_DigestSignFinal(ctx.get(), reinterpret_cast<::u8*>(&res[0]), &len) != 1) {
 					ec = error::signature_generation_error::signfinal_failed;
 					return {};
 				}
 #else
-				if (EVP_DigestSign(ctx.get(), reinterpret_cast<unsigned char*>(&res[0]), &len,
-								   reinterpret_cast<const unsigned char*>(data.data()), data.size()) != 1) {
+				if (EVP_DigestSign(ctx.get(), reinterpret_cast<::u8*>(&res[0]), &len,
+								   reinterpret_cast<const ::u8*>(data.data()), data.size()) != 1) {
 					ec = error::signature_generation_error::signfinal_failed;
 					return {};
 				}
@@ -1248,19 +1248,19 @@ namespace jwt {
 // OpenSSL on the otherhand does not support using EVP_DigestVerifyUpdate for eddsa, which is why we end up with this
 // mess.
 #if defined(LIBRESSL_VERSION_NUMBER) || defined(LIBWOLFSSL_VERSION_HEX)
-				if (EVP_DigestVerifyUpdate(ctx.get(), reinterpret_cast<const unsigned char*>(data.data()),
+				if (EVP_DigestVerifyUpdate(ctx.get(), reinterpret_cast<const ::u8*>(data.data()),
 										   data.size()) != 1) {
 					ec = error::signature_verification_error::verifyupdate_failed;
 					return;
 				}
-				if (EVP_DigestVerifyFinal(ctx.get(), reinterpret_cast<const unsigned char*>(signature.data()),
+				if (EVP_DigestVerifyFinal(ctx.get(), reinterpret_cast<const ::u8*>(signature.data()),
 										  signature.size()) != 1) {
 					ec = error::signature_verification_error::verifyfinal_failed;
 					return;
 				}
 #else
-				auto res = EVP_DigestVerify(ctx.get(), reinterpret_cast<const unsigned char*>(signature.data()),
-											signature.size(), reinterpret_cast<const unsigned char*>(data.data()),
+				auto res = EVP_DigestVerify(ctx.get(), reinterpret_cast<const ::u8*>(signature.data()),
+											signature.size(), reinterpret_cast<const ::u8*>(data.data()),
 											data.size());
 				if (res != 1) {
 					ec = error::signature_verification_error::verifyfinal_failed;
@@ -1349,7 +1349,7 @@ namespace jwt {
 				std::string res(size, 0x00);
 				if (EVP_DigestSignFinal(
 						md_ctx.get(),
-						(unsigned char*)res.data(), // NOLINT(google-readability-casting) requires `const_cast`
+						(::u8*)res.data(), // NOLINT(google-readability-casting) requires `const_cast`
 						&size) <= 0) {
 					ec = error::signature_generation_error::signfinal_failed;
 					return {};
@@ -1399,7 +1399,7 @@ namespace jwt {
 					return;
 				}
 
-				if (EVP_DigestVerifyFinal(md_ctx.get(), (unsigned char*)signature.data(), signature.size()) <= 0) {
+				if (EVP_DigestVerifyFinal(md_ctx.get(), (::u8*)signature.data(), signature.size()) <= 0) {
 					ec = error::signature_verification_error::verifyfinal_failed;
 					return;
 				}
@@ -1794,7 +1794,7 @@ namespace jwt {
 		};
 
 		template<typename traits_type>
-		using as_integer_function = decltype(traits_type::as_int);
+		using as_integer_function = decltype(traits_type::as_i32);
 
 		template<typename traits_type, typename value_type, typename integer_type>
 		using is_as_integer_signature =
@@ -1841,7 +1841,7 @@ namespace jwt {
 						  "traits must provide `number_type as_number(const value_type&)`");
 			static_assert(
 				supports_as_integer<traits, typename traits::value_type, typename traits::integer_type>::value,
-				"traits must provide `integer_type as_int(const value_type&)`");
+				"traits must provide `integer_type as_i32(const value_type&)`");
 			static_assert(
 				supports_as_boolean<traits, typename traits::value_type, typename traits::boolean_type>::value,
 				"traits must provide `boolean_type as_bool(const value_type&)`");
@@ -1921,7 +1921,7 @@ namespace jwt {
 			struct sfinae_true : std::true_type {};
 
 			template<class T, class A0>
-			static auto test_operator_plus(int)
+			static auto test_operator_plus(::i32)
 				-> sfinae_true<decltype(std::declval<T>().operator[](std::declval<A0>()))>;
 			template<class, class A0>
 			static auto test_operator_plus(long) -> std::false_type;
@@ -1983,7 +1983,7 @@ namespace jwt {
 			struct sfinae_true : std::true_type {};
 
 			template<class T, class A0>
-			static auto test_operator_plus(int)
+			static auto test_operator_plus(::i32)
 				-> sfinae_true<decltype(std::declval<T>().operator +(std::declval<A0>()))>;
 			template<class, class A0>
 			static auto test_operator_plus(long) -> std::false_type;
@@ -2116,7 +2116,7 @@ namespace jwt {
 		 * \return content as date
 		 * \throw std::bad_cast Content was not a date
 		 */
-		date as_date() const { return std::chrono::system_clock::from_time_t(as_int()); }
+		date as_date() const { return std::chrono::system_clock::from_time_t(as_i32()); }
 
 		/**
 		 * Get the contained JSON value as an array
@@ -2140,10 +2140,10 @@ namespace jwt {
 
 		/**
 		 * Get the contained JSON value as an integer
-		 * \return content as int
-		 * \throw std::bad_cast Content was not an int
+		 * \return content as ::i32
+		 * \throw std::bad_cast Content was not an ::i32
 		 */
-		typename json_traits::integer_type as_int() const { return json_traits::as_int(val); }
+		typename json_traits::integer_type as_i32() const { return json_traits::as_i32(val); }
 
 		/**
 		 * Get the contained JSON value as a bool
@@ -2154,7 +2154,7 @@ namespace jwt {
 
 		/**
 		 * Get the contained JSON value as a number
-		 * \return content as double
+		 * \return content as ::f64
 		 * \throw std::bad_cast Content was not a number
 		 */
 		typename json_traits::number_type as_number() const { return json_traits::as_number(val); }
@@ -2847,7 +2847,7 @@ namespace jwt {
 				const bool matches = [&]() {
 					switch (expected.get_type()) {
 					case json::platform::type::boolean: return expected.as_bool() == jc.as_bool();
-					case json::platform::type::integer: return expected.as_int() == jc.as_int();
+					case json::platform::type::integer: return expected.as_i32() == jc.as_i32();
 					case json::platform::type::number::number: return expected.as_number() == jc.as_number();
 					case json::platform::type::string: return expected.as_string() == jc.as_string();
 					case json::platform::type::array:
@@ -3525,15 +3525,15 @@ namespace jwt {
 		using object_type = picojson::object;
 		using array_type = picojson::array;
 		using string_type = std::string;
-		using number_type = double;
-		using integer_type = long long;
+		using number_type = ::f64;
+		using integer_type = ::i64;
 		using boolean_type = bool;
 
 		static json::platform::type get_type(const picojson::value& val) {
 			using json::platform::type;
 			if (val.is<bool>()) return type::boolean;
-			if (val.is<long long>()) return type::integer;
-			if (val.is<double>()) return type::number::number;
+			if (val.is<::i64>()) return type::integer;
+			if (val.is<::f64>()) return type::number::number;
 			if (val.is<std::string>()) return type::string;
 			if (val.is<picojson::array>()) return type::array;
 			if (val.is<picojson::object>()) return type::object;
@@ -3556,9 +3556,9 @@ namespace jwt {
 			return val.get<picojson::array>();
 		}
 
-		static long long as_int(const picojson::value& val) {
-			if (!val.is<long long>()) throw std::bad_cast();
-			return val.get<long long>();
+		static ::i64 as_i32(const picojson::value& val) {
+			if (!val.is<::i64>()) throw std::bad_cast();
+			return val.get<::i64>();
 		}
 
 		static bool as_bool(const picojson::value& val) {
@@ -3566,9 +3566,9 @@ namespace jwt {
 			return val.get<bool>();
 		}
 
-		static double as_number(const picojson::value& val) {
-			if (!val.is<double>()) throw std::bad_cast();
-			return val.get<double>();
+		static ::f64 as_number(const picojson::value& val) {
+			if (!val.is<::f64>()) throw std::bad_cast();
+			return val.get<::f64>();
 		}
 
 		static bool parse(picojson::value& val, const std::string& str) { return picojson::parse(val, str).empty(); }

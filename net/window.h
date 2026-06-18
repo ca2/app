@@ -32,9 +32,9 @@ namespace app_net
 
 
       string                        m_strUrl;
-      double                        m_dBreathPeriod;
+      ::f64                        m_dBreathPeriod;
       class ::time                    m_timeStart;
-      double                        m_dPhaseShift;
+      ::f64                        m_dPhaseShift;
       ::write_text::font_pointer    m_pfont;
       string                        m_strGet;
       bool                          m_bGettingUrl;

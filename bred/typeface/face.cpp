@@ -2,7 +2,7 @@
 // 2025-06-02 03:52 <3ThomasBorregaardSørensen!!
 #include "framework.h"
 #include "face.h"
-#include "bred/gpu/frame.h"
+#include "bred/gpu/layer.h"
 #include "bred/gpu/model_buffer.h"
 #include "bred/gpu/pixmap.h"
 #include "bred/gpu/renderer.h"
@@ -56,7 +56,7 @@ namespace typeface
 
       ::string str(scopedstr);
 
-      int iUnicodeIndex = unicode_index(scopedstr);
+      ::i32 iUnicodeIndex = unicode_index(scopedstr);
 
       character& ch = m_mapCharacter[iUnicodeIndex];
 
@@ -102,20 +102,20 @@ namespace typeface
 
    //      m_pmodelbufferBox->initialize_gpu_context_object(m_pgpurenderer->m_pgpucontext);
 
-   //      m_pmodelbufferBox->bind(m_pgpurenderer->getCurrentCommandBuffer2(::gpu::current_frame()));
+   //      m_pmodelbufferBox->bind(m_pgpurenderer->getCurrentCommandBuffer2(::gpu::current_layer()));
 
    //      m_pmodelbufferBox->create_vertexes<::graphics3d::sequence2_uv>(6);
    //      /* glGenVertexArrays(1, &m_VAO);
    //       glGenBuffers(1, &m_VBO);
    //       glBindVertexArray(m_VAO);
    //       glBindBuffer(GL_ARRAY_BUFFER, m_VBO);
-   //       glBufferData(GL_ARRAY_BUFFER, sizeof(float) * 6 * 4, NULL, GL_DYNAMIC_DRAW);
+   //       glBufferData(GL_ARRAY_BUFFER, sizeof(::f32) * 6 * 4, NULL, GL_DYNAMIC_DRAW);
    //       glEnableVertexAttribArray(0);
-   //       glVertexAttribPointer(0, 4, GL_FLOAT, GL_FALSE, 4 * sizeof(float), 0);
+   //       glVertexAttribPointer(0, 4, GL_FLOAT, GL_FALSE, 4 * sizeof(::f32), 0);
    //       glBindBuffer(GL_ARRAY_BUFFER, 0);
    //       glBindVertexArray(0);*/
 
-   //      m_pmodelbufferBox->unbind(m_pgpurenderer->getCurrentCommandBuffer2(::gpu::current_frame()));
+   //      m_pmodelbufferBox->unbind(m_pgpurenderer->getCurrentCommandBuffer2(::gpu::current_layer()));
 
    //   }
 
@@ -123,7 +123,7 @@ namespace typeface
    //}
 
    
-   void face::create_texture(character& ch, const unsigned char* p)
+   void face::create_texture(character& ch, const ::u8* p)
    {
 
       auto size = ch.Size.x * ch.Size.y * 4;
@@ -142,7 +142,7 @@ namespace typeface
 
       //glPixelStorei(GL_UNPACK_ALIGNMENT, 1);
       //// generate texture
-      //   //unsigned int texture;
+      //   //::u32 texture;
       //glGenTextures(1, &ch.TextureID);
       //glBindTexture(GL_TEXTURE_2D, ch.TextureID);
       //glTexImage2D(

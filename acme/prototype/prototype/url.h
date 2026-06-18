@@ -43,7 +43,7 @@ namespace url
 {
 
 
-   CLASS_DECL_ACME ::string connect_string(const ::scoped_string& scopedstrProtocol, const ::scoped_string& scopedstrHost, int iPort);
+   CLASS_DECL_ACME ::string connect_string(const ::scoped_string& scopedstrProtocol, const ::scoped_string& scopedstrHost, ::i32 iPort);
    CLASS_DECL_ACME::string request_string(const ::scoped_string& scopedstrPath, const ::scoped_string& scopedstrQuery = {}, const ::scoped_string& scopedstrFragment = {});
    CLASS_DECL_ACME::string request_string(const ::scoped_string& scopedstrPath, const ::property_set& setArguments, const ::scoped_string& scopedstrFragment = {});
 
@@ -80,7 +80,7 @@ namespace url
       ::ansi_range            m_rangeHost{ nullptr };
       ::ansi_range            m_rangePort{ nullptr };
       ::ansi_range            m_rangeRequest{ nullptr };
-      int                     m_iPort = -1;
+      ::i32                     m_iPort = -1;
 
 
       connect_range();
@@ -108,7 +108,7 @@ namespace url
       auto protocol() const { return m_rangeProtocol; }
       auto host() const { return m_rangeHost; }
       auto port_range() const { return m_rangePort; }
-      int port() const;
+      ::i32 port() const;
       ::string port_part() const;
       bool is_url() const { return m_bIsUrl; }
       bool is_secure() const;
@@ -211,7 +211,7 @@ namespace url
 
       //::string                   m_strProtocol;
       //::string                   m_strHost;
-      //int                        m_iPort;
+      //::i32                        m_iPort;
       //::logic::boolean           m_bSecure;
 
 
@@ -226,7 +226,7 @@ namespace url
       //connect& operator = (const ::url::url & url);
 
 
-      void set(const ::scoped_string& scopedstrProtocol, const ::scoped_string& scopedstrHost, int iPort = -1, ::logic::boolean booleanSecure = {});
+      void set(const ::scoped_string& scopedstrProtocol, const ::scoped_string& scopedstrHost, ::i32 iPort = -1, ::logic::boolean booleanSecure = {});
 
 
       //::string as_string() const;
@@ -326,7 +326,7 @@ namespace url
    //   ::const_ansi_range      m_rangeProtocol{ nullptr };
    //   ::const_ansi_range      m_rangeHost{ nullptr };
    //   ::const_ansi_range      m_rangePort{ nullptr };
-   //   int                     m_iPort = -1;
+   //   ::i32                     m_iPort = -1;
    //   
 
    //   friend ::url::url;
@@ -438,7 +438,7 @@ namespace url
       ::string                m_str;
 
 
-      //const_char_pointer            m_pszRequest;
+      //const_char_pointer m_pszRequest;
 
       
       //bool                    m_bScoped = false;

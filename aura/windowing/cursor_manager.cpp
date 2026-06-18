@@ -52,7 +52,7 @@ namespace windowing
    }
 
 
-   long long cursor_manager::increment_reference_count()
+   ::i64 cursor_manager::increment_reference_count()
    {
 
       return ::object::increment_reference_count();
@@ -60,7 +60,7 @@ namespace windowing
    }
 
 
-   long long cursor_manager::decrement_reference_count()
+   ::i64 cursor_manager::decrement_reference_count()
    {
 
       return ::object::decrement_reference_count();
@@ -72,14 +72,14 @@ namespace windowing
    void cursor_manager::destroy()
    {
 
-      for (auto & pcursor : m_cursormap.payloads())
-      {
+      // for (auto & pcursor : m_cursormap.payloads())
+      // {
+      //
+      //    pcursor.defer_destroy();
+      //
+      // }
 
-         pcursor.defer_destroy();
-
-      }
-
-      m_cursormap.clear();
+      m_cursormap.defer_destroy_and_release();
 
       m_pwindowing.release();
 

@@ -22,7 +22,7 @@ namespace fs
       class ::time m_timeRestartTimeout;
       class ::time m_timeLastOperation;
       class ::time m_timeOperationThrottlingTime;
-      int m_iStableOkCount;
+      ::i32 m_iStableOkCount;
 
 
       folder_sync();
@@ -47,7 +47,7 @@ namespace fs
       virtual ::string non__empty__file_as_string(const ::payload& payloadFile,
                                                   const ::function<void(const ::scoped_string&)>& callbackStatus = {});
       virtual void wait_folder_contains_files(const ::file::path& pathTargetFolder, const ::string_array_base& straName,
-                                              int iMinimumSize,
+                                              ::i32 iMinimumSize,
                                               const ::function<void(const ::scoped_string&)>& callbackStatus = {});
 
 
@@ -75,7 +75,7 @@ namespace fs
 
       bool fast_has_subdir(const ::file::path & path) override;
 
-      int is_dir(const ::file::path& path) override;
+      ::i32 is_dir(const ::file::path& path) override;
       ::file::listing_base& root_ones(::file::listing_base& listing) override;
 
       bool file_exists(const ::file::path & path) override;
@@ -104,11 +104,11 @@ namespace fs
 
       virtual ::file::path _cloud_ensure_files_in_file_txt_are_up_to_date_and_present(
          const ::file::path& pathCloudFile, const ::scoped_string& scopedstrFileExtension,
-         int iMinimumFileSize, const ::function<void(const ::scoped_string&)>& callbackStatus);
+         ::i32 iMinimumFileSize, const ::function<void(const ::scoped_string&)>& callbackStatus);
 
       virtual void _cloud_ensure_files_are_up_to_date_and_present(
          const ::file::path& pathFolder, const ::string_array_base & stra,
-         int iMinimumFileSize, const ::function<void(const ::scoped_string&)>& callbackStatus);
+         ::i32 iMinimumFileSize, const ::function<void(const ::scoped_string&)>& callbackStatus);
 
    };
 

@@ -32,7 +32,7 @@ namespace networking
       psocket->EnableSSL();
       // psocket->SetSSLNegotiate();
 
-      int iPort = 465;
+      ::i32 iPort = 465;
 
       if (!psocket->open(strHost, (port_t)iPort))
       {

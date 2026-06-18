@@ -27,10 +27,10 @@ namespace user
 
 
       ::pointer<::write_text::font_list>     m_pfontlist;
-      ::int_rectangle                        m_rectangleMargin;
+      ::i32_rectangle                        m_rectangleMargin;
       bool                                   m_bEnsureVisible;
       bool                                   m_bFirstShown;
-      int                                  m_iLayoutSerial;
+      ::i32                                  m_iLayoutSerial;
       ::string                               m_strFontBranch;
 
 
@@ -47,7 +47,7 @@ namespace user
       virtual void on_change_combo_sel(::collection::index iSel) override;
 
       //void attach_visual_font_list(::write_text::font_list * pdata);
-      //virtual void on_update_data(::write_text::font_list * pdata, int iHint);
+      //virtual void on_update_data(::write_text::font_list * pdata, ::i32 iHint);
 
       //virtual void font_list_update();
 
@@ -96,11 +96,11 @@ namespace user
       virtual void ensure_item_visible_by_index(::collection::index iItem) override;
 
 
-      virtual void on_timer(::timer * ptimer) override;
+      void operator()(::timer * ptimer) override;
 
-      status < int_rectangle > item_rectangle(::item * pitem, ::user::enum_layout elayout) override;
+      status < i32_rectangle > item_rectangle(::item * pitem, ::user::enum_layout elayout) override;
 
-      virtual ::item_pointer on_hit_test(const ::int_point & point, ::user::e_zorder ezorder) override;
+      virtual ::item_pointer on_hit_test(const ::i32_point & point, ::user::e_zorder ezorder) override;
 
       void on_update_hover(::item * pitem) override;
 
@@ -112,7 +112,7 @@ namespace user
 
       virtual void __on_draw_ensure_sel_visible();
 
-      virtual void query_full_size(::draw2d::graphics_pointer& pgraphics, ::int_size * psize) override;
+      virtual void query_full_size(::draw2d::graphics_pointer& pgraphics, ::i32_size * psize) override;
 
 
       virtual void update_data(bool bSaveAndValidate) override;

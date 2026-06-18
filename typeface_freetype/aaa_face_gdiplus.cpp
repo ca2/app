@@ -36,8 +36,8 @@ namespace typeface_freetype
 
    // Converts a 32bpp bitmap into an 8bpp grayscale buffer
    memory ExtractGrayscaleFromBitmap(Bitmap& bmp) {
-      int width = bmp.GetWidth();
-      int height = bmp.GetHeight();
+      ::i32 width = bmp.GetWidth();
+      ::i32 height = bmp.GetHeight();
 
       memory grayBuffer(width * height);
 
@@ -47,9 +47,9 @@ namespace typeface_freetype
 
       BYTE* src = static_cast<BYTE*>(data.Scan0);
 
-      for (int y = 0; y < height; ++y) {
+      for (::i32 y = 0; y < height; ++y) {
          BYTE* row = src + y * data.Stride;
-         for (int x = 0; x < width; ++x) {
+         for (::i32 x = 0; x < width; ++x) {
             BYTE b = row[x * 4 + 0];
             BYTE g = row[x * 4 + 1];
             BYTE r = row[x * 4 + 2];
@@ -71,12 +71,12 @@ namespace typeface_freetype
       return grayBuffer;
    }
 
-   //memory RenderGlyphTo8BitGray(wchar_t ch, int width = 64, int height = 64) 
+   //memory RenderGlyphTo8BitGray(wchar_t ch, ::i32 width = 64, ::i32 height = 64) 
    //{
 
    //   //// Display as ASCII art (debugging purpose)
-   //   //for (int y = 0; y < height; ++y) {
-   //   //   for (int x = 0; x < width; ++x) {
+   //   //for (::i32 y = 0; y < height; ++y) {
+   //   //   for (::i32 x = 0; x < width; ++x) {
    //   //      BYTE value = grayscale[y * width + x];
    //   //      putchar(value > 128 ? '#' : (value > 32 ? '+' : '.'));
    //   //   }
@@ -126,7 +126,7 @@ namespace typeface_freetype
 
       }
 
-      int fontSize = m_iPixelSize;
+      ::i32 fontSize = m_iPixelSize;
       wd32_character ia[2];
       ia[0] = unicode_index(scopedstr);
       ia[1] = 0;
@@ -144,8 +144,8 @@ namespace typeface_freetype
       measureGraphics.MeasureString(wch, 1, m_pfont, origin, &layoutRect);
       ReleaseDC(NULL, screenDC);
 
-      int bmpWidth = static_cast<int>(ceil(layoutRect.Width)) + 4;   // padding
-      int bmpHeight = static_cast<int>(ceil(layoutRect.Height)) + 4;
+      ::i32 bmpWidth = static_cast<::i32>(ceil(layoutRect.Width)) + 4;   // padding
+      ::i32 bmpHeight = static_cast<::i32>(ceil(layoutRect.Height)) + 4;
 
       Bitmap bmp(bmpWidth, bmpHeight, PixelFormat32bppARGB);
       Graphics g(&bmp);
@@ -168,9 +168,9 @@ namespace typeface_freetype
       //pre.set_size(bmpWidth * bmpHeight*4);
       //BYTE* src = static_cast<BYTE*>(data.Scan0);
 
-      //for (int y = 0; y < bmpHeight; ++y) {
+      //for (::i32 y = 0; y < bmpHeight; ++y) {
       //   BYTE* row = src + y * data.Stride;
-      //   for (int x = 0; x < bmpWidth; ++x) {
+      //   for (::i32 x = 0; x < bmpWidth; ++x) {
       //      BYTE b = row[x * 4 + 0];
       //      BYTE g = row[x * 4 + 1];
       //      BYTE r = row[x * 4 + 2];
@@ -192,7 +192,7 @@ namespace typeface_freetype
       // Measure metrics (bearing and advance)
       HDC hdc = GetDC(NULL);
       HFONT hFont = CreateFontW(
-         static_cast<int>(-fontSize), 0, 0, 0, FW_NORMAL,
+         static_cast<::i32>(-fontSize), 0, 0, 0, FW_NORMAL,
          FALSE, FALSE, FALSE, DEFAULT_CHARSET,
          OUT_DEFAULT_PRECIS, CLIP_DEFAULT_PRECIS, CLEARTYPE_QUALITY,
          DEFAULT_PITCH | FF_DONTCARE, ::wstring(m_strFontName));
@@ -205,9 +205,9 @@ namespace typeface_freetype
       TEXTMETRIC tm;
       GetTextMetrics(hdc, &tm);
 
-      int bearingX = abc.abcA;
-      int bearingY = tm.tmAscent; // baseline to top
-      int advance = abc.abcA + abc.abcB + abc.abcC;
+      ::i32 bearingX = abc.abcA;
+      ::i32 bearingY = tm.tmAscent; // baseline to top
+      ::i32 advance = abc.abcA + abc.abcB + abc.abcC;
 
       DeleteObject(hFont);
       ReleaseDC(NULL, hdc);
@@ -220,10 +220,10 @@ namespace typeface_freetype
       ch.Advance = advance;
 
 
-      create_texture(ch,  (const unsigned char *) data.Scan0);
+      create_texture(ch,  (const ::u8 *) data.Scan0);
       bmp.UnlockBits(&data);
       //};
-      //Characters.insert(std::pair<char, Character>(c, character));
+      //Characters.insert(std::pair<::i8, Character>(c, character));
    //}
 
       

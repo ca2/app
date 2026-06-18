@@ -149,9 +149,9 @@ namespace console
          if(m_iCursor <= 0)
             return;
 
-         const_char_pointer lpsz = &m_strCommand[m_iCursor];
+         const_char_pointer psz = &m_strCommand[m_iCursor];
 
-         const_char_pointer lpszDec = ::str::utf8_dec(m_strCommand, lpsz);
+         const_char_pointer pszDec = ::str::utf8_dec(m_strCommand, lpsz);
 
          if(lpsz - lpszDec > 0)
          {
@@ -171,9 +171,9 @@ namespace console
          if(m_iCursor >= m_strCommand.utf8.length())
             return;
 
-         const_char_pointer lpsz = &m_strCommand[m_iCursor];
+         const_char_pointer psz = &m_strCommand[m_iCursor];
 
-         const_char_pointer lpszInc = unicode_next(lpsz);
+         const_char_pointer pszInc = unicode_next(lpsz);
 
          if(lpszInc - lpsz > 0)
          {
@@ -267,7 +267,7 @@ namespace console
    }
 
 
-   int prompt_impact::getch()
+   ::i32 prompt_impact::getch()
    {
 
       m_timeCaretPeriod.Now();
@@ -276,11 +276,11 @@ namespace console
 
       m_happeningNewChar.wait();
 
-      return (int) m_iNewChar;
+      return (::i32) m_iNewChar;
 
    }
 
-   int prompt_impact::ungetch(int c)
+   ::i32 prompt_impact::ungetch(::i32 c)
    {
 
       return 0;
@@ -300,7 +300,7 @@ namespace console
 
       pgraphics->SelectObject(f);
 
-      unsigned int dwAlpha = 123;
+      ::u32 dwAlpha = 123;
 
       color32_t crTopic;
 
@@ -331,9 +331,9 @@ namespace console
 
       pgraphics->set_text_color(crTopic);
 
-      int i;
+      ::i32 i;
 
-      int iLeftMargin = 2;
+      ::i32 iLeftMargin = 2;
 
       for( i = 0; i < m_strCommand.length(); i++)
       {
@@ -345,9 +345,9 @@ namespace console
       if(bCaretOn)
       {
 
-         ::int_rectangle rectangleCaret;
+         ::i32_rectangle rectangleCaret;
 
-         rectangleCaret.left = (int) (iLeftMargin+m_sizeChar.cx * m_iCursor);
+         rectangleCaret.left = (::i32) (iLeftMargin+m_sizeChar.cx * m_iCursor);
          rectangleCaret.right = rectangleCaret.left + m_sizeChar.cx;
          rectangleCaret.top = m_sizeChar.cy - 3;
          rectangleCaret.bottom = m_sizeChar.cy;

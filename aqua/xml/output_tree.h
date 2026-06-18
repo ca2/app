@@ -25,11 +25,11 @@ namespace xml
 
       void set_attribute(const ::atom & atom, const ::payload & payload);
 
-      //void set_attr(const ::scoped_string & scopedstrName, long long iValue, bool bOptional = true);
+      //void set_attr(const ::scoped_string & scopedstrName, ::i64 iValue, bool bOptional = true);
 
       //void set_bool_attr(const ::scoped_string & scopedstrName, bool bValue, bool bOptional = true);
 
-      //void set_double_attr(const ::scoped_string & scopedstrName, double dValue);
+      //void set_f64_attr(const ::scoped_string & scopedstrName, ::f64 dValue);
 
       void set_value(const ::scoped_string & scopedstrValue);
 

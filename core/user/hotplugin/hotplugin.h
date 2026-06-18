@@ -61,13 +61,13 @@ namespace hotplugin
    // hotplugin plugin dll HINSTANCE
    CLASS_DECL_BERG HINSTANCE get_hinstance();
    CLASS_DECL_BERG void set_hinstance(HINSTANCE hinstance);
-   //CLASS_DECL_BERG void entry_hall_windows_on_paint(HDC hdc,const ::int_rectangle & rectangle, const ::scoped_string & scopedstrEntryHallText);
+   //CLASS_DECL_BERG void entry_hall_windows_on_paint(HDC hdc,const ::i32_rectangle & rectangle, const ::scoped_string & scopedstrEntryHallText);
 
 
 
 #endif
 
-      CLASS_DECL_BERG void entry_hall_windows_on_paint(::draw2d::graphics_pointer & pgraphics, const ::int_rectangle & rectangle, const ::scoped_string & scopedstrEntryHallText);
+      CLASS_DECL_BERG void entry_hall_windows_on_paint(::draw2d::graphics_pointer & pgraphics, const ::i32_rectangle & rectangle, const ::scoped_string & scopedstrEntryHallText);
 
 } // namespace ca2plugin_container
 

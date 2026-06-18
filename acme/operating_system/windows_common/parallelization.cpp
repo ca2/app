@@ -6,7 +6,7 @@
 
 #include "acme/_operating_system.h"
 
-int_bool SetThreadName(unsigned int dwThreadID, const_char_pointer threadName);
+::i32_bool SetThreadName(::u32 dwThreadID, const_char_pointer threadName);
 typedef HRESULT WINAPI FN_GetThreadDescription(HANDLE htask, PWSTR* ppszThreadDescription);
 
 
@@ -115,7 +115,7 @@ CLASS_DECL_ACME void task_set_name(htask htask, const ::scoped_string & scopedst
 typedef HRESULT WINAPI FN_SetThreadDescription(_In_ htask htask, _In_ PCWSTR pThreadDescription);
 
 
-int get_os_thread_priority(::enum_priority epriority)
+::i32 get_os_thread_priority(::enum_priority epriority)
 {
 
    if (epriority <= ::e_priority_none)
@@ -145,7 +145,7 @@ int get_os_thread_priority(::enum_priority epriority)
 
 
 
-int get_os_priority_class(::enum_priority epriority)
+::i32 get_os_priority_class(::enum_priority epriority)
 {
 
    if (epriority <= ::e_priority_none)
@@ -174,7 +174,7 @@ int get_os_priority_class(::enum_priority epriority)
 }
 
 
-::enum_priority get_os_thread_scheduling_priority(int nPriority)
+::enum_priority get_os_thread_scheduling_priority(::i32 nPriority)
 {
 
    ::enum_priority epriority;
@@ -213,7 +213,7 @@ int get_os_priority_class(::enum_priority epriority)
 }
 
 
-::enum_priority get_os_class_scheduling_priority(int nPriority)
+::enum_priority get_os_class_scheduling_priority(::i32 nPriority)
 {
 
    ::enum_priority epriority;
@@ -296,27 +296,35 @@ void task_set_name(const ::scoped_string & scopedstrThreadName)
 
    }
 
+   auto ptask 
+      = ::get_task();
+
+   if (::is_set(ptask))
+      {
+      ptask->m_strTaskName = scopedstrThreadName;
+      }  
+
    /*return*/ task_set_name((htask)(::uptr) ::GetCurrentThread(), scopedstrThreadName);
 
 }
 
 
-const unsigned int MS_VC_EXCEPTION = 0x406D1388;
+const ::u32 MS_VC_EXCEPTION = 0x406D1388;
 
 #pragma pack(push,8)
 
 typedef struct tagTHREADNAME_INFO
 {
-   unsigned int dwType; // Must be 0x1000.
+   ::u32 dwType; // Must be 0x1000.
    const_char_pointer szName; // Pointer to name (in user addr space).
-   unsigned int dwThreadID; // Thread ID (-1=caller thread).
-   unsigned int dwFlags; // Reserved for future use, must be zero.
+   ::u32 dwThreadID; // Thread ID (-1=caller thread).
+   ::u32 dwFlags; // Reserved for future use, must be zero.
 } THREADNAME_INFO;
 #pragma pack(pop)
 
 
 
-int_bool SetThreadName(unsigned int dwThreadID, const_char_pointer threadName)
+::i32_bool SetThreadName(::u32 dwThreadID, const_char_pointer threadName)
 {
    THREADNAME_INFO info;
    info.dwType = 0x1000;
@@ -345,13 +353,13 @@ CLASS_DECL_ACME string task_get_name()
 }
 
 
-//enum_synchronization_result windows_wait_result_to_synchronization_result(int iResult)
+//enum_synchronization_result windows_wait_result_to_synchronization_result(::i32 iResult)
 //{
 //
 //   if (iResult >= WAIT_ABANDONED_0 && iResult < (WAIT_ABANDONED_0 + MAXIMUM_WAIT_OBJECTS))
 //   {
 //
-//      return (enum_synchronization_result)((int)e_synchronization_result_abandoned_base + (iResult - WAIT_ABANDONED_0));
+//      return (enum_synchronization_result)((::i32)e_synchronization_result_abandoned_base + (iResult - WAIT_ABANDONED_0));
 //
 //   }
 //   else if (iResult == WAIT_IO_COMPLETION)
@@ -375,7 +383,7 @@ CLASS_DECL_ACME string task_get_name()
 //   else if (iResult >= WAIT_OBJECT_0 && iResult < (WAIT_OBJECT_0 + MAXIMUM_WAIT_OBJECTS))
 //   {
 //
-//      return (enum_synchronization_result)((int)e_synchronization_result_signaled_base + (iResult - WAIT_OBJECT_0));
+//      return (enum_synchronization_result)((::i32)e_synchronization_result_signaled_base + (iResult - WAIT_OBJECT_0));
 //
 //   }
 //   else
@@ -412,7 +420,7 @@ CLASS_DECL_ACME bool _hsynchronization_wait(::hsynchronization h, const class ::
 
 #endif
 
-   DWORD dwWait = ::windows::wait(timeWait);
+   DWORD dwWait = ::windows::wait_millis(timeWait);
 
    DWORD dwResult = ::WaitForSingleObjectEx(handle, dwWait, false);
 
@@ -433,11 +441,11 @@ CLASS_DECL_ACME bool _hsynchronization_wait(::hsynchronization h, const class ::
    else
    {
 
-      auto dwLastError = ::GetLastError();
+      auto lasterror = ::windows::get_last_error();
 
-      auto estatus = ::windows::last_error_status(dwLastError);
+      auto estatus = ::windows::last_error_status(lasterror);
 
-      auto errorcode = ::windows::last_error_error_code(dwLastError);
+      auto errorcode = ::windows::last_error_error_code(lasterror);
 
       throw ::exception(estatus, { errorcode }, "WaitForSingleObjectEx WAIT_FAILED");
 
@@ -449,7 +457,7 @@ CLASS_DECL_ACME bool _hsynchronization_wait(::hsynchronization h, const class ::
 }
 
 
-CLASS_DECL_ACME int get_processor_count()
+CLASS_DECL_ACME ::i32 get_processor_count()
 {
 
    SYSTEM_INFO sysinfo;

@@ -85,7 +85,7 @@ namespace draw2d_gpu
    }
 
 
-   void font::create(::draw2d::graphics * pgraphics, char iCreate)
+   void font::create(::draw2d::graphics * pgraphics, ::i8 iCreate)
    {
 
       //if (m_hdcFont == nullptr || is_modified(iCreate))
@@ -98,7 +98,7 @@ namespace draw2d_gpu
 
       //   ((font *)this)->m_baseFont = glGenLists(256);								// Storage For 256 Characters
 
-      //   ((font *)this)->m_hfont = CreateFont(-m_fontsize.as_int(),							// Height Of Font
+      //   ((font *)this)->m_hfont = CreateFont(-m_fontsize.as_i32(),							// Height Of Font
       //      0,								// Width Of Font
       //      0,								// Angle Of Escapement
       //      0,								// Orientation Angle

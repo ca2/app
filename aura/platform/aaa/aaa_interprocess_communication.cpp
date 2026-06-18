@@ -7,7 +7,7 @@ namespace aura
 
 
 
-   inteprocess_channel::task::task(class call * pcall, const ::atom & idPid, long long iTask) :
+   inteprocess_channel::task::task(class call * pcall, const ::atom & idPid, ::i64 iTask) :
          ::object(pcall),
          m_pcall(pcall),
          m_atomPid(idPid),
@@ -235,7 +235,7 @@ namespace aura
 
 #else
 
-      m_atomApp = (long long) ::get_current_process_id();
+      m_atomApp = (::i64) ::get_current_process_id();
 
 #endif
 
@@ -274,7 +274,7 @@ namespace aura
 
       }
 
-      int iPid = pcontext->os().get_pid();
+      ::i32 iPid = pcontext->os().get_pid();
 
       //defer_add_module(file()->module(), iPid);
 
@@ -357,9 +357,9 @@ namespace aura
 
             launcher.start();
 
-            int iStep = 0;
+            ::i32 iStep = 0;
 
-            int iSubStep;
+            ::i32 iSubStep;
 
             while(iStep < 8 && ::task_get_run())
             {
@@ -509,7 +509,7 @@ pdirectorysystem->system() / "inteprocess_channel" / strApp / as_string(idPid);
 
 #ifdef MACOS
 
-      strKey += "/" + as_string(idPid.as_int());
+      strKey += "/" + as_string(idPid.as_i32());
 
 #endif
 
@@ -557,7 +557,7 @@ pdirectorysystem->system() / "inteprocess_channel" / strApp / as_string(idPid);
 
       }
 
-      long long iCall = ::str::consume_natural(str);
+      ::i64 iCall = ::str::consume_natural(str);
 
       if(!str.begins_eat(" from "))
       {
@@ -579,7 +579,7 @@ pdirectorysystem->system() / "inteprocess_channel" / strApp / as_string(idPid);
 
       ::atom idPidFrom = strFrom;
 
-      if(idPidFrom.is_empty() || (idPidFrom.is_integer() && idPidFrom.long_long == 0))
+      if(idPidFrom.is_empty() || (idPidFrom.is_integer() && idPidFrom.i64 == 0))
       {
 
          return;
@@ -690,7 +690,7 @@ pdirectorysystem->system() / "inteprocess_channel" / strApp / as_string(idPid);
    }
 
 
-   ::pointer<class inteprocess_channel::task> inteprocess_channel::get_task(long long iTask)
+   ::pointer<class inteprocess_channel::task> inteprocess_channel::get_task(::i64 iTask)
    {
 
       synchronous_lock synchronouslock(this->synchronization(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
@@ -725,7 +725,7 @@ pdirectorysystem->system() / "inteprocess_channel" / strApp / as_string(idPid);
          if(case_insensitive_string_begins(strMember, "reply."))
          {
 
-            long long iTask = payloada[0].long_long;
+            ::i64 iTask = payloada[0].i64;
 
             auto pobjectTask = get_task(iTask);
 
@@ -804,7 +804,7 @@ repeat:
 
       string_array_base stra2;
 
-      ::int_array iaPid2;
+      ::i32_array iaPid2;
 
       for (auto & str : stra)
       {
@@ -879,7 +879,7 @@ repeat:
 
       pathModule /= m_strApp + ".module_list";
 
-      ::file::path pathPid = module_path_from_pid((unsigned int)idPid.long_long);
+      ::file::path pathPid = module_path_from_pid((::u32)idPid.i64);
 
       string strModuleList = file_system()->as_string(pathModule);
 
@@ -887,7 +887,7 @@ repeat:
 
       string_array_base stra2;
 
-      ::int_array iaPid2;
+      ::i32_array iaPid2;
 
       for (::collection::index i = 0; i < m_straModule.get_count();)
       {

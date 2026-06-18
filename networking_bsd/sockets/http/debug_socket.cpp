@@ -97,7 +97,7 @@ namespace sockets
    void http_debug_socket::OnData(const_char_pointer point,memsize l)
    {
       write(point,l);
-      m_read_ptr += (int)l;
+      m_read_ptr += (::i32)l;
       if (m_read_ptr >= m_content_length && m_content_length && m_content_length != ((memsize)(-1)))
       {
          print("</pre><hr></body></html>");

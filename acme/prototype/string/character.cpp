@@ -3,10 +3,10 @@
 //#include "string.h"
 
 
-//character::utf8_char(unsigned long long u)
+//character::utf8_char(::u64 u)
 //{
 //
-//   m_chLen = (char)wd32_to_ansi_char(m_sz, (unsigned int)u);
+//   m_chLen = (::i8)wd32_to_ansi_char(m_sz, (::u32)u);
 //
 //   m_sz[m_chLen] = '\0';
 //
@@ -17,15 +17,15 @@
 //::wd32_character character::parse_utf8(const ::scoped_string & scopedstrUtf8)
 //{
 //
-//   int iLen;
+//   ::i32 iLen;
 //
 //   return unicode_index_length(scopedstrUtf8, iLen);
 //
 //}
 //
 
-//char chLen = 1 + trailingBytesForUTF8(*pszUtf8);
-//char ch = 0;
+//::i8 chLen = 1 + trailingBytesForUTF8(*pszUtf8);
+//::i8 ch = 0;
 //for (; ch < chLen; ch++)
 //{
 //   if (*psz == 0)

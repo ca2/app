@@ -104,29 +104,29 @@
 struct SIZEPARENTPARAMS
 {
 
-   ::int_rectangle  rectangle;     // parent client rectangle (trim as appropriate)
-   ::int_size       sizeTotal;     // total size on each side as on_layout proceeds
+   ::i32_rectangle  rectangle;     // parent client rectangle (trim as appropriate)
+   ::i32_size       sizeTotal;     // total size on each side as on_layout proceeds
    bool           bStretch;      // should stretch to fill all space
 
 };
 
 
-//CLASS_DECL_ACME long long oswindow_id(oswindow w);
+//CLASS_DECL_ACME ::i64 oswindow_id(oswindow w);
 
 
-//CLASS_DECL_ACME int_bool is_window(::acme::windowing::window * pacmewindowingwindow);
+//CLASS_DECL_ACME i32_bool is_window(::acme::windowing::window * pacmewindowingwindow);
 //CLASS_DECL_ACME oswindow get_focus();
 //CLASS_DECL_ACME oswindow set_focus(::acme::windowing::window * pacmewindowingwindow);
 //CLASS_DECL_ACME oswindow get_active_window();
 //CLASS_DECL_ACME oswindow set_active_window(::acme::windowing::window * pacmewindowingwindow);
 //CLASS_DECL_ACME oswindow get_capture();
 //CLASS_DECL_ACME oswindow set_capture(::acme::windowing::window * pacmewindowingwindow);
-//CLASS_DECL_ACME int_bool release_capture();
-//CLASS_DECL_ACME int_bool destroy_window(::acme::windowing::window * pacmewindowingwindow);
-//CLASS_DECL_ACME oswindow get_window(::acme::windowing::window * pacmewindowingwindow, int iWindow);
+//CLASS_DECL_ACME i32_bool release_capture();
+//CLASS_DECL_ACME i32_bool destroy_window(::acme::windowing::window * pacmewindowingwindow);
+//CLASS_DECL_ACME oswindow get_window(::acme::windowing::window * pacmewindowingwindow, ::i32 iWindow);
 //CLASS_DECL_ACME oswindow get_desktop_window();
-//CLASS_DECL_ACME int_bool show_window(::acme::windowing::window * pacmewindowingwindow, int iShow);
-//CLASS_DECL_ACME int_bool set_foreground_window(::acme::windowing::window * pacmewindowingwindow);
+//CLASS_DECL_ACME i32_bool show_window(::acme::windowing::window * pacmewindowingwindow, ::i32 iShow);
+//CLASS_DECL_ACME i32_bool set_foreground_window(::acme::windowing::window * pacmewindowingwindow);
 //
 //
 //#ifdef WINDOWS_DESKTOP

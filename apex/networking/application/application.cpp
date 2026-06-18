@@ -83,7 +83,7 @@ namespace networking
    }
 
 
-   int application::get_current_port()
+   ::i32 application::get_current_port()
    {
 
       auto iConnectPort = m_psocketthread->m_iConnectPort;
@@ -94,7 +94,7 @@ namespace networking
 
 
 
-   int application::wait_get_current_port(const class time & time)
+   ::i32 application::wait_get_current_port(const class time & time)
    {
 
       class ::time timeStart;
@@ -188,7 +188,7 @@ namespace networking
       strHtml += "<h1>";
       strHtml += "🌌 🌍 [ ca2/C++/Windows ] Creating Simple Local Webserver";
       strHtml += "</h1>";
-      strHtml += "<h4><a href=\"https://ca2.network/camilo\">cs</a><a href=\"https://ca2.io\">&lt;3</a><a href=\"https://thomasbs.com/\">tbs</a>!!</h4>";
+      strHtml += "<h4><a href=\"https://ca2.site/camilo\">cs</a><a href=\"https://ca2.io\">&lt;3</a><a href=\"https://thomasbs.com/\">tbs</a>!!</h4>";
       strHtml += "&lt;3TBS - InfinityUnicodeCharacter - " + pdatetime->date_time_text() + "- +InfinityUnicodeCharacter - CA2(THWOASONE)";
       strHtml += "</body>";
       strHtml += "</html>";

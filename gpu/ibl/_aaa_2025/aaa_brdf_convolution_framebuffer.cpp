@@ -31,7 +31,7 @@ namespace gpu
 
 
       void brdf_convolution_framebuffer::initialize_BrdfConvolutionFramebuffer(::graphics3d::scene_base *pscenebase,
-                                                                               unsigned int width, unsigned int height)
+                                                                               ::u32 width, ::u32 height)
       {
 
          initialize_scene_object(pscenebase);
@@ -43,7 +43,7 @@ namespace gpu
          defer_constructø(m_ptexture);
          //m_ptexture->m_pgpucontext = m_pgpucontext->m_pgpurenderer;
 
-         ::gpu::texture_attributes textureattributes(int_rectangle{API_CHANGED_ARGUMENT, width, height});
+         ::gpu::texture_attributes textureattributes(i32_rectangle{API_CHANGED_ARGUMENT, width, height});
          textureattributes.m_iBitsPerChannel = 16;
          textureattributes.m_iChannelCount = 2;
          textureattributes.m_iFloat = 1;
@@ -61,7 +61,7 @@ namespace gpu
          m_ptexture->initialize_texture(pgpurenderer, textureattributes, textureflags);
          //on_initialize_BrdfConvolutionFramebuffer();
 
-         // framebuffer
+         // pframebuffer
          // glGenFramebuffers(1, &framebufferId);
          // glBindFramebuffer(GL_FRAMEBUFFER, framebufferId);
          //
@@ -102,19 +102,19 @@ namespace gpu
       }
 
 
-      unsigned int brdf_convolution_framebuffer::getWidth()
+      ::u32 brdf_convolution_framebuffer::getWidth()
       {
          return m_ptexture->width();
       }
 
 
-      unsigned int brdf_convolution_framebuffer::getHeight()
+      ::u32 brdf_convolution_framebuffer::getHeight()
       {
          return m_ptexture->height();
       }
       //
       //
-      // unsigned int brdf_convolution_framebuffer::getColorTextureId()
+      // ::u32 brdf_convolution_framebuffer::getColorTextureId()
       // {
       //    //return m_uColorTextureId;
       //    return 0;

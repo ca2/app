@@ -57,12 +57,12 @@ microsecond_sleep::~microsecond_sleep()
 #ifdef WINDOWS
 
 
-bool microsecond_sleep::sleep(unsigned long usec)
+bool microsecond_sleep::sleep(ulong usec)
 {
 
    LARGE_INTEGER ft;
 
-   ft.QuadPart = -(10 * (long long)usec);
+   ft.QuadPart = -(10 * (::i64)usec);
 
    MICROSECOND_SLEEP * pthis = (MICROSECOND_SLEEP *)this;
 

@@ -17,11 +17,11 @@
 struct MWMHints
 {
 
-   unsigned long flags;
-   unsigned long functions;
-   unsigned long decorations;
+   ulong flags;
+   ulong functions;
+   ulong decorations;
    long input_mode;
-   unsigned long status;
+   ulong status;
 
 };
 
@@ -157,7 +157,7 @@ namespace xcb
          long display::_window_get_long_property(xcb_window_t window, xcb_atom_t property, xcb_atom_t type)
          {
 
-            int iDelete = 0;
+            ::i32 iDelete = 0;
 
             auto cookie = xcb_get_property(m_pconnection, iDelete, window, property, type, 0, 1);
 
@@ -181,7 +181,7 @@ namespace xcb
 
             }
 
-            auto pint = (int *) xcb_get_property_value(preply);
+            auto pint = (::i32 *) xcb_get_property_value(preply);
 
             if (!pint)
             {
@@ -195,7 +195,7 @@ namespace xcb
          }
 
 
-         ::e_status display::_change_window_property(xcb_window_t window, xcb_atom_t property, xcb_atom_t type, int mode, int format, int nelements, const void * data)
+         ::e_status display::_change_window_property(xcb_window_t window, xcb_atom_t property, xcb_atom_t type, ::i32 mode, ::i32 format, ::i32 nelements, const void * data)
          {
 
             auto cookie = xcb_change_property(
@@ -223,7 +223,7 @@ namespace xcb
          }
 
 
-         ::e_status display::_select_input(xcb_window_t window, int iInput)
+         ::e_status display::_select_input(xcb_window_t window, ::i32 iInput)
          {
 
             windowing_output_debug_string("\nwindow::select_input");
@@ -322,7 +322,7 @@ namespace xcb
          //
          //   }
 
-         //int g_fdX11[2] = {};
+         //::i32 g_fdX11[2] = {};
          //
          //bool g_bX11Idle = false;
          //
@@ -334,7 +334,7 @@ namespace xcb
          //   struct timeval tv;
          //
          //   // This returns the FD of the X11 display (or something like that)
-         //   int x11_fd = ConnectionNumber(m_pconnection);
+         //   ::i32 x11_fd = ConnectionNumber(m_pconnection);
          //
          //   fd_set in_fds;
          //
@@ -348,7 +348,7 @@ namespace xcb
          //   tv.tv_sec = 1;
          //
          //   // Wait for X Event or a Timer
-         //   int num_ready_fds = select(maximum(x11_fd, g_fdX11[0]) + 1, &in_fds, NULL, NULL, &tv);
+         //   ::i32 num_ready_fds = select(maximum(x11_fd, g_fdX11[0]) + 1, &in_fds, NULL, NULL, &tv);
          //
          //   if (num_ready_fds > 0)
          //   {
@@ -357,9 +357,9 @@ namespace xcb
          //
          //      g_bX11Idle = false;
          //
-         //      char buf[32];
+         //      ::i8 buf[32];
          //
-         //      int iRead;
+         //      ::i32 iRead;
          //
          //      while((iRead = read(g_fdX11[0], buf, sizeof(buf)))>0)
          //      {
@@ -672,9 +672,9 @@ namespace xcb
 
                   const xcb_render_pictvisual_t * visuals = xcb_render_pictdepth_visuals(depths.data);
 
-                  const int len = xcb_render_pictdepth_visuals_length(depths.data);
+                  const ::i32 len = xcb_render_pictdepth_visuals_length(depths.data);
 
-                  for (int i = 0; i < len; i++)
+                  for (::i32 i = 0; i < len; i++)
                   {
 
                      m_mapVisualPictFormat.set_at(visuals[i].visual, visuals[i].format);
@@ -688,9 +688,9 @@ namespace xcb
             // Init the format ID -> xcb_render_directformat_t* hash table
             const xcb_render_pictforminfo_t * formats = xcb_render_query_pict_formats_formats(preply);
 
-            const int len = xcb_render_query_pict_formats_formats_length(preply);
+            const ::i32 len = xcb_render_query_pict_formats_formats_length(preply);
 
-            for (int i = 0; i < len; i++)
+            for (::i32 i = 0; i < len; i++)
             {
 
                if (formats[i].type == XCB_RENDER_PICT_TYPE_DIRECT)
@@ -709,11 +709,11 @@ namespace xcb
                   for (auto depth = xcb_screen_allowed_depths_iterator(screen.data); depth.rem; xcb_depth_next(&depth))
                   {
 
-                     const int len = xcb_depth_visuals_length(depth.data);
+                     const ::i32 len = xcb_depth_visuals_length(depth.data);
 
                      const xcb_visualtype_t * visualtypea = xcb_depth_visuals(depth.data);
 
-                     for (int i = 0; i < len; i++)
+                     for (::i32 i = 0; i < len; i++)
                      {
 
                         m_mapVisualDepth.set_at(visualtypea[i].visual_id, depth.data->depth);
@@ -836,7 +836,7 @@ namespace xcb
 
                xcb_window_t window = xcb_generate_id(m_pconnection);
 
-               unsigned int uEventMask = XCB_EVENT_MASK_NO_EVENT;
+               ::u32 uEventMask = XCB_EVENT_MASK_NO_EVENT;
 
                auto cookie = xcb_create_window(
                   m_pconnection,
@@ -1023,7 +1023,7 @@ namespace xcb
             if (perror)
             {
 
-               int iErrorCode = perror->error_code;
+               ::i32 iErrorCode = perror->error_code;
 
                return error_failed;
 
@@ -1035,7 +1035,7 @@ namespace xcb
 
 
          ::e_status
-         display::_send_client_event(xcb_window_t window1, xcb_window_t window2, xcb_atom_t atom, unsigned int numArgs, ...)
+         display::_send_client_event(xcb_window_t window1, xcb_window_t window2, xcb_atom_t atom, ::u32 numArgs, ...)
          {
 
             va_list argList;
@@ -1052,7 +1052,7 @@ namespace xcb
 
 
          ::e_status
-         display::_send_client_event_v(xcb_window_t window1, xcb_window_t window2, xcb_atom_t atom, unsigned int numArgs,
+         display::_send_client_event_v(xcb_window_t window1, xcb_window_t window2, xcb_atom_t atom, ::u32 numArgs,
                                        va_list argList)
          {
 
@@ -1066,13 +1066,13 @@ namespace xcb
             happening.type = atom;
             happening.format = 32;
 
-            for (int i = 0; i < 5; i++)
+            for (::i32 i = 0; i < 5; i++)
             {
 
                if (i < numArgs)
                {
 
-                  happening.data.data32[i] = va_arg(argList, int);
+                  happening.data.data32[i] = va_arg(argList, ::i32);
 
                }
                else
@@ -1150,7 +1150,7 @@ namespace xcb
          ::e_status display::_map_window(xcb_window_t window)
          {
 
-            int i = 0;
+            ::i32 i = 0;
 
             windowing_output_debug_string("\nwindow::map_window");
 
@@ -1303,7 +1303,7 @@ namespace xcb
 
             auto count = len / sizeof(xcb_atom_t);
 
-            for(int i = 0; i < count; i++)
+            for(::i32 i = 0; i < count; i++)
             {
 
                if(patom[i] == propertyItem)
@@ -1757,7 +1757,7 @@ namespace xcb
          }
 
 
-         ::e_status display::_move_window(xcb_window_t window, int x, int y)
+         ::e_status display::_move_window(xcb_window_t window, ::i32 x, ::i32 y)
          {
 
             uint16_t mask = 0;
@@ -1767,7 +1767,7 @@ namespace xcb
             mask |=
                XCB_CONFIG_WINDOW_Y;
 
-            unsigned int ua[] = {(unsigned int) x, (unsigned int) y};
+            ::u32 ua[] = {(::u32) x, (::u32) y};
 
             auto cookie = xcb_configure_window(m_pconnection, window, mask, ua);
 
@@ -1807,7 +1807,7 @@ namespace xcb
 
             //display_lock displaylock(xcb_display());
 
-            int owner_events = 0;
+            ::i32 owner_events = 0;
 
             xcb_window_t confine_to = XCB_WINDOW_NONE;
 
@@ -1906,7 +1906,7 @@ namespace xcb
 
 
          /// must be run in x11 thread (user thread)
-         ::e_status display::_set_nodecorations(xcb_window_t window, int bMap)
+         ::e_status display::_set_nodecorations(xcb_window_t window, ::i32 bMap)
          {
 
             ::e_status estatus = ::error_failed;
@@ -1922,7 +1922,7 @@ namespace xcb
                hints.decorations = MWM_DECOR_NONE;
 
                //XChangeProperty(xcb_connection(), xcb_window(), atomMotifHints, atomMotifHints, 32, PropModeReplace,
-               //              (unsigned char *) &hints, sizeof(MWMHints) / 4);
+               //              (::u8 *) &hints, sizeof(MWMHints) / 4);
                estatus = _change_window_property(window, atomMotifHints, atomMotifHints, XCB_PROP_MODE_REPLACE, 32, 5, &hints);
 
             }
@@ -1950,7 +1950,7 @@ namespace xcb
          }
 
 
-         ::int_size display::get_main_screen_size()
+         ::i32_size display::get_main_screen_size()
          {
 
             auto snum = DefaultScreen((Display *) m_pX11Display);

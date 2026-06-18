@@ -85,7 +85,7 @@ namespace datetime
          //      int32_t iFirstWeek;
          int32_t iLastDayOfWeek = timeLastDayOfMonth.day_of_week();
          int32_t iLastDayPreviousMonth = (timeFirstDayOfMonth - timespanOneDay).day();
-         int_rectangle rectangleDay;
+         i32_rectangle rectangleDay;
          int32_t iDay;
          pfile->raw_print("<table cellpadding=\"0\" cellspacing=\"0\">");
          if (!pfile->m_strOptions.contains("<no-week-bar-title>"))
@@ -147,7 +147,7 @@ namespace datetime
                }
 
                pfile->raw_print("<td>");
-               pfile->raw_print(::as_string((long long)w.m_iSecond));
+               pfile->raw_print(::as_string((::i64)w.m_iSecond));
                pfile->raw_print("</td>");
             }
             for (int32_t iWeekDay = 1; iWeekDay <= 7; iWeekDay++)

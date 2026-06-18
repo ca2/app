@@ -23,9 +23,9 @@
       ::pointer < ::sub_system >       m_pplatform;
 
 #if defined(WINDOWS)  && defined(UNICODE)
-      main(int argc, wchar_t* wargv[], wchar_t* wenvp[]);
+      main(::i32 argc, wchar_t* wargv[], wchar_t* wenvp[]);
 #else
-      main(int argc, platform_char** argv, platform_char** envp);
+      main(::i32 argc, platform_char ** argv, platform_char ** envp);
 #endif
       ~main();
 

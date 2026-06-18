@@ -25,10 +25,10 @@ namespace simple_ui
 
 
 
-   void draw::simple_ui_draw_frame_window_rect(const ::int_rectangle& rectangle, ::draw2d::graphics_pointer& pgraphics)
+   void draw::simple_ui_draw_frame_window_rect(const ::i32_rectangle& rectangle, ::draw2d::graphics_pointer& pgraphics)
    {
 
-      ::int_rectangle rectangleDraw;
+      ::i32_rectangle rectangleDraw;
 
       rectangleDraw = rectangle;
 
@@ -51,30 +51,30 @@ namespace simple_ui
    }
 
 
-   void draw::simple_ui_draw_fuzzy_color_spread(const ::int_rectangle& rectangle, ::draw2d::graphics_pointer& pgraphics)
+   void draw::simple_ui_draw_fuzzy_color_spread(const ::i32_rectangle& rectangle, ::draw2d::graphics_pointer& pgraphics)
    {
       /*
-      ::int_rectangle rectangleDraw;
+      ::i32_rectangle rectangleDraw;
 
       window_rectangle(rectangleDraw);
 
-      int i = 0;
-      int j = 0;
-      int iCount = rectangleDraw.width();
-      int jCount = rectangleDraw.height();
+      ::i32 i = 0;
+      ::i32 j = 0;
+      ::i32 iCount = rectangleDraw.width();
+      ::i32 jCount = rectangleDraw.height();
 
-      unsigned char * point = (unsigned char *)m_pimage->get_data();
+      ::u8 * point = (::u8 *)m_pimage->get_data();
 
       for (i = 0; i < iCount; i++)
       {
       for (j = 0; j < jCount; j++)
       {
-      double dPhase = fmod((((double) ::get_tick() * 360 * 0.5984 / 1000.0) + (i * 360.0 / (double)iCount) + (j * 360.0 / (double)jCount) + ((double)(sin(((double) ::get_tick() * 3.1415 * 2.0  *0.0484 / 1000.0) + i * 3.1415 * 2.0 * 2.0 / (double)(iCount)) * sin(((double) ::get_tick() * 3.1415 * 2.0  * 0.0484 / 1000.0) + j * 3.1415 * 2.0 * 2.0 / (double)(jCount)) * 360))), 360.0);
-      int iR;
-      int iG;
-      int iB;
-      double dRate = fmod(dPhase, 60.0) / 60.0;
-      int iColor = (int)(dRate * 155.0);
+      ::f64 dPhase = fmod((((::f64) ::get_tick() * 360 * 0.5984 / 1000.0) + (i * 360.0 / (::f64)iCount) + (j * 360.0 / (::f64)jCount) + ((::f64)(sin(((::f64) ::get_tick() * 3.1415 * 2.0  *0.0484 / 1000.0) + i * 3.1415 * 2.0 * 2.0 / (::f64)(iCount)) * sin(((::f64) ::get_tick() * 3.1415 * 2.0  * 0.0484 / 1000.0) + j * 3.1415 * 2.0 * 2.0 / (::f64)(jCount)) * 360))), 360.0);
+      ::i32 iR;
+      ::i32 iG;
+      ::i32 iB;
+      ::f64 dRate = fmod(dPhase, 60.0) / 60.0;
+      ::i32 iColor = (::i32)(dRate * 155.0);
       if (dPhase < 60)
       {
       // purple to blue
@@ -118,10 +118,10 @@ namespace simple_ui
       iB = 100 + iColor;
       }
 
-      int_point[0] = iR;
-      int_point[1] = iG;
-      int_point[2] = iB;
-      int_point[3] = 84;
+      i32_point[0] = iR;
+      i32_point[1] = iG;
+      i32_point[2] = iB;
+      i32_point[3] = 84;
       point += 4;
 
       }
@@ -132,10 +132,10 @@ namespace simple_ui
    }
 
 
-   void draw::simple_ui_draw_dark_glass(const ::int_rectangle& rectangle, ::draw2d::graphics_pointer& pgraphics)
+   void draw::simple_ui_draw_dark_glass(const ::i32_rectangle& rectangle, ::draw2d::graphics_pointer& pgraphics)
    {
 
-      ::int_rectangle rectangleDraw;
+      ::i32_rectangle rectangleDraw;
 
       rectangleDraw = rectangle;
 
@@ -145,25 +145,25 @@ namespace simple_ui
 
 
 
-   void draw::simple_ui_draw_pestana(const ::int_rectangle& rectangle, ::draw2d::graphics_pointer& pgraphics)
+   void draw::simple_ui_draw_pestana(const ::i32_rectangle& rectangle, ::draw2d::graphics_pointer& pgraphics)
    {
 
-      ::int_rectangle rectangleDraw;
+      ::i32_rectangle rectangleDraw;
 
       rectangleDraw = rectangle;
 
       pgraphics->set_alpha_mode(draw2d::e_alpha_mode_blend);
 
-      int iCount = rectangleDraw.height();
+      ::i32 iCount = rectangleDraw.height();
       auto ppen = createø < ::draw2d::pen > ();
-      for (int i = 0; i < iCount; i += 2)
+      for (::i32 i = 0; i < iCount; i += 2)
       {
-         double dRate = (double)i / (double)iCount;
+         ::f64 dRate = (::f64)i / (::f64)iCount;
          dRate = 1.0 - dRate;
-         unsigned char a1 = __byte_rate(1.0 - dRate, 23, 90);
-         unsigned char r1 = __byte_rate(dRate, 23, 127);
-         unsigned char g1 = __byte_rate(dRate, 23, 127);
-         unsigned char b1 = __byte_rate(dRate, 23, 127);
+         ::u8 a1 = __byte_rate(1.0 - dRate, 23, 90);
+         ::u8 r1 = __byte_rate(dRate, 23, 127);
+         ::u8 g1 = __byte_rate(dRate, 23, 127);
+         ::u8 b1 = __byte_rate(dRate, 23, 127);
          ppen->create_solid(1.0, argb(a1, r1, g1, b1));
          pgraphics->set(ppen);
          pgraphics->line(rectangleDraw.left, i, rectangleDraw.right, i);
@@ -175,26 +175,26 @@ namespace simple_ui
 
 
 
-   void draw::simple_ui_draw_auth_box(const ::int_rectangle& rectangle, ::draw2d::graphics_pointer& pgraphics)
+   void draw::simple_ui_draw_auth_box(const ::i32_rectangle& rectangle, ::draw2d::graphics_pointer& pgraphics)
    {
 
-      ::int_rectangle rectangleDraw = rectangle;
+      ::i32_rectangle rectangleDraw = rectangle;
 
       pgraphics->set_alpha_mode(draw2d::e_alpha_mode_blend);
 
       // front
-      double_point pa[4];
+      ::f64_point pa[4];
       //  0       1
       //
       //
       //  3       2
 
       // back
-      double_point pb[4];
+      ::f64_point pb[4];
 
 
       // guards
-      double_point pc[4];
+      ::f64_point pc[4];
 
 
       pa[0].x = rectangle.left;
@@ -374,7 +374,7 @@ namespace simple_ui
 
    }
 
-   void draw::simple_ui_draw_back_01_old(const ::int_rectangle & rectangle, ::draw2d::graphics_pointer& pgraphics)
+   void draw::simple_ui_draw_back_01_old(const ::i32_rectangle & rectangle, ::draw2d::graphics_pointer& pgraphics)
    {
 
       pgraphics->set_alpha_mode(::draw2d::e_alpha_mode_blend);
@@ -400,26 +400,26 @@ namespace simple_ui
 
       }
 
-      int iBorderH = minimum(rectangle.height() / 2, 49);
+      ::i32 iBorderH = minimum(rectangle.height() / 2, 49);
 
       auto pbrush = createø < ::draw2d::brush > ();
 
-      pbrush->CreateLinearGradientBrush(rectangle.top_left(), int_point(rectangle.left, rectangle.top + iBorderH), crOut, crIn);
+      pbrush->CreateLinearGradientBrush(rectangle.top_left(), i32_point(rectangle.left, rectangle.top + iBorderH), crOut, crIn);
 
-      pgraphics->fill_rectangle(::int_rectangle(rectangle.left, rectangle.top, (int)rectangle.width(), iBorderH), pbrush);
+      pgraphics->fill_rectangle(::i32_rectangle(rectangle.left, rectangle.top, (::i32)rectangle.width(), iBorderH), pbrush);
 
       pbrush->create_solid(crIn);
 
-      pgraphics->fill_rectangle(::int_rectangle(rectangle.left, rectangle.top + iBorderH, (int)rectangle.width(), (int)rectangle.height() - (iBorderH * 2)), pbrush);
+      pgraphics->fill_rectangle(::i32_rectangle(rectangle.left, rectangle.top + iBorderH, (::i32)rectangle.width(), (::i32)rectangle.height() - (iBorderH * 2)), pbrush);
 
-      pbrush->CreateLinearGradientBrush(int_point(rectangle.left, rectangle.bottom - iBorderH), rectangle.bottom_left(), crIn, crOut);
+      pbrush->CreateLinearGradientBrush(i32_point(rectangle.left, rectangle.bottom - iBorderH), rectangle.bottom_left(), crIn, crOut);
 
-      pgraphics->fill_rectangle(::int_rectangle(rectangle.left, rectangle.bottom - iBorderH, (int)rectangle.width(), iBorderH), pbrush);
+      pgraphics->fill_rectangle(::i32_rectangle(rectangle.left, rectangle.bottom - iBorderH, (::i32)rectangle.width(), iBorderH), pbrush);
 
    }
 
 
-   void draw::simple_ui_draw_back_01_new(const ::int_rectangle& rectangle, ::draw2d::graphics_pointer& pgraphics)
+   void draw::simple_ui_draw_back_01_new(const ::i32_rectangle& rectangle, ::draw2d::graphics_pointer& pgraphics)
    {
 
       /*simple_solid_brush br(g, argb(255, 255, 255, 255));

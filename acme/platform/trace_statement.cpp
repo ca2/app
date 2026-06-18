@@ -4,9 +4,17 @@
 #include <stdarg.h>
 
 
-class tracer * fallback_tracer();
+namespace platform
+{
 
-trace_statement::trace_statement(class tracer * ptracer) :
+
+   ::platform::tracer * fallback_tracer();
+
+
+} // namespace platform
+
+
+trace_statement::trace_statement(::platform::tracer * ptracer) :
    trace_statement_struct(ptracer)
 {
 
@@ -21,7 +29,7 @@ trace_statement::trace_statement(class tracer * ptracer) :
 
       __check_refdbg
 
-      m_ptracer = fallback_tracer();
+      m_ptracer = ::platform::fallback_tracer();
 
       __check_refdbg
 
@@ -32,7 +40,7 @@ trace_statement::trace_statement(class tracer * ptracer) :
 
       __check_refdbg
 
-      m_pprintingformat = fallback_tracer();
+      m_pprintingformat = ::platform::fallback_tracer();
 
       __check_refdbg
 

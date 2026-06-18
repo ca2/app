@@ -25,7 +25,7 @@ namespace aura
    }
 
 
-   bool timer_array::create_timer(uptr uEvent,unsigned int nEllapse, PFN_TIMER pfnTimer, bool bPeriodic, void * pvoidData)
+   bool timer_array::create_timer(uptr uEvent,::u32 nEllapse, PFN_TIMER pfnTimer, bool bPeriodic, void * pvoidData)
    {
 
       if(nEllapse < 800)
@@ -92,7 +92,7 @@ namespace aura
    }
 
 
-   bool timer_array::set_timer(uptr uEvent, unsigned int nEllapse, PFN_TIMER pfnTimer, bool bPeriodic, void * pvoidData)
+   bool timer_array::set_timer(uptr uEvent, ::u32 nEllapse, PFN_TIMER pfnTimer, bool bPeriodic, void * pvoidData)
    {
 
       if (!create_timer(uEvent, nEllapse, pfnTimer, bPeriodic, pvoidData))
@@ -140,7 +140,7 @@ namespace aura
       try
       {
 
-         uptr uEvent = ptimer->m_uTimer;
+         uptr uEvent = ptimer->m_etimer;
 
          auto * ppair = m_map.plookup(uEvent);
 
@@ -185,7 +185,7 @@ namespace aura
       if (!m_bOk)
       {
 
-         delete_timer(ptimer->m_uTimer);
+         delete_timer(ptimer->m_etimer);
 
          return false;
 
@@ -196,7 +196,7 @@ namespace aura
       if(!ptimer->m_bPeriodic)
       {
 
-         delete_timer(ptimer->m_uTimer);
+         delete_timer(ptimer->m_etimer);
 
          return false;
 
@@ -207,7 +207,7 @@ namespace aura
    }
 
 
-   void timer_array::on_timer(::timer * ptimer)
+   void timer_array::operator()(::timer * ptimer)
    {
 
       if (m_pcallback != nullptr)

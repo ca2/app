@@ -204,10 +204,10 @@ namespace text
 
       //   //if(iLen == 4)
       //   //{
-      //   //   char ch1 = pszLocale[0];
-      //   //   char ch2 = pszLocale[1];
-      //   //   char ch3 = pszLocale[2];
-      //   //   char ch4 = pszLocale[3];
+      //   //   ::i8 ch1 = pszLocale[0];
+      //   //   ::i8 ch2 = pszLocale[1];
+      //   //   ::i8 ch3 = pszLocale[2];
+      //   //   ::i8 ch4 = pszLocale[3];
       //   //   if(ch1 <= '_')
       //   //   {
       //   //      if(ch2 <= 's')
@@ -224,10 +224,10 @@ namespace text
       //   //}
       //   //else if(iLen == 2 || (iLen == 5 && pszLocale[2] == '-'))
       //   //{
-      //   //   char ch1 = pszLocale[0];
-      //   //   char ch2 = pszLocale[1];
-      //   //   char ch4;
-      //   //   char ch5;
+      //   //   ::i8 ch1 = pszLocale[0];
+      //   //   ::i8 ch2 = pszLocale[1];
+      //   //   ::i8 ch4;
+      //   //   ::i8 ch5;
 
       //   //   if(iLen == 5)
       //   //   {
@@ -395,8 +395,8 @@ namespace text
 
       //   //if(iLen == 2)
       //   //{
-      //   //   char ch1 = psz[0];
-      //   //   char ch2 = psz[1];
+      //   //   ::i8 ch1 = psz[0];
+      //   //   ::i8 ch2 = psz[1];
 
       //   //   if(ch1 != '-' && ch2 != '-')
       //   //   {
@@ -532,7 +532,7 @@ namespace text
       //   //      {
       //   //         if(ch2 == 't')
       //   //         {
-      //   //            // int_point
+      //   //            // i32_point
       //   //            defer_add_locale("br", idSchema);
       //   //            defer_add_locale("pt_br", idSchema);
       //   //            defer_add_locale("es", idSchema);
@@ -594,7 +594,7 @@ namespace text
 //               idSchema2 = "std";
 //            }
 //
-//            for(int i = 0; i < m_idaLocale.get_count() && i < m_idaSchema.get_count(); i++)
+//            for(::i32 i = 0; i < m_idaLocale.get_count() && i < m_idaSchema.get_count(); i++)
 //            {
 //               if(m_idaLocale[i] == idLocale && m_idaSchema[i] == idSchema2)
 //                  goto step2;
@@ -610,7 +610,7 @@ namespace text
 //step2:
 //
 
-         for(int i = 0; i < m_straLocale.get_count() && i < m_straSchema.get_count(); i++)
+         for(::i32 i = 0; i < m_straLocale.get_count() && i < m_straSchema.get_count(); i++)
          {
 
             if (m_straLocale[i] == scopedstrLocale
@@ -783,7 +783,7 @@ namespace text
 
 #ifdef _DEBUG
 
-      long long locale_schema::increment_reference_count()
+      ::i64 locale_schema::increment_reference_count()
       {
 
          return particle::increment_reference_count();
@@ -791,7 +791,7 @@ namespace text
       }
 
 
-      long long locale_schema::release()
+      ::i64 locale_schema::release()
       {
 
          return particle::release();

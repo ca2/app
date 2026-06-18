@@ -21,10 +21,10 @@ inline bool IsDirSep(::wide_character ch)
 
 
 
-CLASS_DECL_ACME int get_sync_io_error();
-CLASS_DECL_ACME void set_sync_io_error(int iError);
-CLASS_DECL_ACME int get_generate_sync_io_error();
-CLASS_DECL_ACME void set_generate_sync_io_error(int iError);
+CLASS_DECL_ACME ::i32 get_sync_io_error();
+CLASS_DECL_ACME void set_sync_io_error(::i32 iError);
+CLASS_DECL_ACME ::i32 get_generate_sync_io_error();
+CLASS_DECL_ACME void set_generate_sync_io_error(::i32 iError);
 
 
 
@@ -82,12 +82,12 @@ namespace file
 
 class memory_base;
 
-// CLASS_DECL_ACME bool xxxfile_save_stra(const_char_pointer lpszName, const string_array_base & stra);
-// CLASS_DECL_ACME bool xxxfile_load_stra(const_char_pointer lpszName, string_array_base & stra, bool bAddEmpty = true);
+// CLASS_DECL_ACME bool xxxfile_save_stra(const_char_pointer pszName, const string_array_base & stra);
+// CLASS_DECL_ACME bool xxxfile_load_stra(const_char_pointer pszName, string_array_base & stra, bool bAddEmpty = true);
 
 
 // CLASS_DECL_ACME bool xxxfile_put_contents(const ::file::path & path, const memory_base & memory);
-// CLASS_DECL_ACME int_bool xxxfile_put_contents(const ::file::path & path, const_char_pointer contents);
+// CLASS_DECL_ACME ::i32_bool xxxfile_put_contents(const ::file::path & path, const_char_pointer contents);
 // CLASS_DECL_ACME bool xxxfile_as_memory(memory_base & memory, const ::file::path & path, memsize iReadAtMostByteCount = -1);
 // CLASS_DECL_ACME memsize xxxfile_as_memory(const ::file::path & path, void * p, memsize s);
 

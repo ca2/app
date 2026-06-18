@@ -31,13 +31,13 @@ namespace account
       string                        m_strPassword;
 
       bool                          m_bSelfLayout;
-      double                        m_dRateX;
-      double                        m_dRateY;
+      ::f64                        m_dRateX;
+      ::f64                        m_dRateY;
 
       bool                          m_bCred;
       string                        m_strCred;
 
-      ::image::icon *                m_picon95; // the best int_size to fit current ca2 icon (as of 2014)
+      ::image::icon *                m_picon95; // the best i32_size to fit current ca2 icon (as of 2014)
 
 
       impact();

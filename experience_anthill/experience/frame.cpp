@@ -63,14 +63,14 @@ namespace experience_anthill
    }
 
 
-   void frame::Glass(::draw2d::graphics_pointer & pgraphics, const ::int_rectangle & rectangleParam)
+   void frame::Glass(::draw2d::graphics_pointer & pgraphics, const ::i32_rectangle & rectangleParam)
    {
 
       auto pframewindow = m_pframewindow;
 
-      ::int_rectangle rectangleX(rectangleParam);
+      ::i32_rectangle rectangleX(rectangleParam);
 
-      ::int_rectangle rectangleInflate;
+      ::i32_rectangle rectangleInflate;
 
       if (rectangleX.is_empty())
       {
@@ -79,14 +79,14 @@ namespace experience_anthill
 
       }
 
-      int iInflate = 5; // raio 2 pixels + centro 1 pixel
+      ::i32 iInflate = 5; // raio 2 pixels + centro 1 pixel
 
       rectangleInflate = rectangleX;
       rectangleInflate.inflate(iInflate, iInflate);
 
       //::pointer<::user::interaction>puserinteractionDesktop = psystem->get_desktop_window();
 
-      ::int_rectangle rectangleScreen;
+      ::i32_rectangle rectangleScreen;
 
       pframewindow->best_monitor(&rectangleScreen);
 
@@ -97,7 +97,7 @@ namespace experience_anthill
       pimage1 = image()->create_image({ rectangleX.width() + iInflate * 2,  rectangleX.height() + iInflate * 2 });
 
       pimage2 = image()->create_image({ rectangleX.width() + iInflate * 2,  rectangleX.height() + iInflate * 2 });
-      ::int_rectangle rectangleWindow = rectangleX;
+      ::i32_rectangle rectangleWindow = rectangleX;
       pframewindow->client_to_screen()(rectangleWindow);
       //pimage = create_image({rectangleX.width(),  rectangleX.height()});
       //bool b = pimage2->get_graphics()->BitBlt(0, 0, rectangleX.width() + iInflate * 2, rectangleX.height() + iInflate * 2, pgraphics, rectangleX.left - iInflate, rectangleX.top - iInflate);
@@ -105,9 +105,9 @@ namespace experience_anthill
       {
 
          ::image::image_source imagesource(pgraphics,
-            double_rectangle(::int_point(rectangleX.left - iInflate, rectangleX.top - iInflate), ::double_size(rectangleX.width() + iInflate * 2, rectangleX.height() + iInflate * 2)));
+            ::f64_rectangle(::i32_point(rectangleX.left - iInflate, rectangleX.top - iInflate), ::f64_size(rectangleX.width() + iInflate * 2, rectangleX.height() + iInflate * 2)));
 
-         auto rectangle = double_rectangle_dimension(0, 0, rectangleX.width() + iInflate * 2, rectangleX.height() + iInflate * 2);
+         auto rectangle = f64_rectangle_dimension(0, 0, rectangleX.width() + iInflate * 2, rectangleX.height() + iInflate * 2);
 
          ::image::image_drawing_options imagedrawingoptions(rectangle);
 
@@ -118,7 +118,7 @@ namespace experience_anthill
       }
       //bool b = ::BitBlt(dc2, 0, 0, rectangleX.width() + iInflate * 2, rectangleX.height() + iInflate * 2, hdcScreen, rectangleX.left - iInflate, rectangleX.top - iInflate);
 
-      m_pfastblur->blur(pimage1, ::int_rectangle(::int_size(rectangleX.width() + iInflate * 2, rectangleX.height() + iInflate * 2)));
+      m_pfastblur->blur(pimage1, ::i32_rectangle(::i32_size(rectangleX.width() + iInflate * 2, rectangleX.height() + iInflate * 2)));
 
       //spgraphics->Draw3dRect(rectangleX, 127 << 24, 127 << 24);
       //rectangleX.deflate(1, 1);
@@ -145,7 +145,7 @@ namespace experience_anthill
 
       {
 
-         ::image::image_source imagesource(pimage1, ::double_rectangle(double_point(iInflate, iInflate), rectangleX.size()));
+         ::image::image_source imagesource(pimage1, ::f64_rectangle(::f64_point(iInflate, iInflate), rectangleX.size()));
 
          ::image::image_drawing_options imagedrawingoptions(rectangleX);
 
@@ -170,12 +170,12 @@ namespace experience_anthill
    //}
 
 
-   void frame::ColorGlass(::draw2d::graphics_pointer & pgraphics, const ::int_rectangle & rectangle, const ::color::color & color, const ::opacity & opacity)
+   void frame::ColorGlass(::draw2d::graphics_pointer & pgraphics, const ::i32_rectangle & rectangle, const ::color::color & color, const ::opacity & opacity)
    {
 
       /*Gdiplus::Graphics g((HDC) pgraphics->get_os_data());
       g.SetCompositingMode(Gdiplus::CompositingModeSourceOver);
-      Gdiplus::SolidBrush solidBrush(Gdiplus::Color(bAlpha, color32_byte_red(color32), color32_byte_green(color32), color32_byte_blue(color32)));
+      Gdiplus::SolidBrush solidBrush(Gdiplus::Color(bAlpha, color32_u8_red(color32), color32_u8_green(color32), color32_u8_blue(color32)));
       g.FillRectangle(&solidBrush, rectangle.left, rectangle.top, rectangle.right - rectangle.left, rectangle.bottom - rectangle.top);*/
 
       pgraphics->fill_rectangle(rectangle, color & opacity);
@@ -240,10 +240,10 @@ namespace experience_anthill
    //}
 
 
-   bool frame::get_element_rectangle(::int_rectangle & rectangle, enum_element eelement)
+   bool frame::get_element_rectangle(::i32_rectangle & rectangle, const ::e_element & eelement)
    {
       
-      switch (eelement)
+      switch (eelement.m_eenum)
       {
       case e_element_top_left_icon:
 
@@ -374,7 +374,7 @@ namespace experience_anthill
       constructø(m_ppenDkShadow1);
 
 
-      m_minSize = int_size(144, 48);
+      m_minSize = i32_size(144, 48);
       m_minSize.cy = 48;
 
       set_frame_color_system_default_001();
@@ -444,14 +444,14 @@ namespace experience_anthill
    //}
 
 
-   void frame::Draw3dRectSide(::draw2d::graphics_pointer & pgraphics, const ::int_rectangle & rectangleParam, enum_border eborder, color32_t crTopLeft, color32_t crBottomRight)
+   void frame::Draw3dRectSide(::draw2d::graphics_pointer & pgraphics, const ::i32_rectangle & rectangleParam, enum_border eborder, color32_t crTopLeft, color32_t crBottomRight)
    {
 
-      ::int_rectangle rectangle(rectangleParam);
-      int x = rectangle.left;
-      int y = rectangle.top;
-      int cx = rectangle.width();
-      int cy = rectangle.height();
+      ::i32_rectangle rectangle(rectangleParam);
+      ::i32 x = rectangle.left;
+      ::i32 y = rectangle.top;
+      ::i32 cx = rectangle.width();
+      ::i32 cy = rectangle.height();
 
 
 
@@ -548,7 +548,7 @@ namespace experience_anthill
       if (pframewindow->layout().is_minimal())
       {
 
-         ::int_rectangle rectangleIcon;
+         ::i32_rectangle rectangleIcon;
 
          if (get_element_rectangle(rectangleIcon, e_element_top_left_icon))
          {
@@ -570,17 +570,17 @@ namespace experience_anthill
 
          }
 
-         ::int_rectangle rectangleGrip;
+         ::i32_rectangle rectangleGrip;
 
          if (get_element_rectangle(rectangleGrip, e_element_move_grip_minimal))
          {
 
-            int i = 0;
+            ::i32 i = 0;
 
             while (i < rectangleGrip.width() - 5 + 1)
             {
 
-               pgraphics->draw_inset_3d_rectangle(int_rectangle_dimension(rectangleGrip.left + i, rectangleGrip.top, 3, rectangleGrip.height()), argb(110, 230, 230, 230), argb(110, 130, 130, 130), 1.0);
+               pgraphics->draw_inset_3d_rectangle(i32_rectangle_dimension(rectangleGrip.left + i, rectangleGrip.top, 3, rectangleGrip.height()), argb(110, 230, 230, 230), argb(110, 130, 130, 130), 1.0);
 
                i += 5;
 
@@ -607,7 +607,7 @@ namespace experience_anthill
 
          }
 
-         ::int_rectangle rectangleIcon;
+         ::i32_rectangle rectangleIcon;
 
          auto pframewindow = m_pframewindow;
 
@@ -643,7 +643,7 @@ namespace experience_anthill
 
          }
 
-         ::int_rectangle rectangle;
+         ::i32_rectangle rectangle;
 
 
 
@@ -720,7 +720,7 @@ namespace experience_anthill
 
 
 
-   void frame::GetFrameRect(int_rectangle & rectangle)
+   void frame::GetFrameRect(i32_rectangle & rectangle)
    {
 
       m_pframewindow->window_rectangle(rectangle);
@@ -732,8 +732,8 @@ namespace experience_anthill
    }
 
 
-   ::experience::enum_frame frame::experience_frame_hit_test(const ::int_point & point, ::user::e_zorder ezorder)
-   ////::item_pointer frame::experience_frame_hit_test(const ::int_point & point, ::user::e_zorder ezorder)
+   ::experience::enum_frame frame::experience_frame_hit_test(const ::i32_point & point, ::user::e_zorder ezorder)
+   ////::item_pointer frame::experience_frame_hit_test(const ::i32_point & point, ::user::e_zorder ezorder)
    {
       //::experience::enum_frame etest = ::e_element_client;
       //{
@@ -748,9 +748,9 @@ namespace experience_anthill
 
       }
 
-         ::int_rectangle rectangle;
-         ::int_point pointCenter = rectangleEvent.center();
-         enum_grip egrip = m_pframewindow->size_manager()->GetGripMask();
+         ::i32_rectangle rectangle;
+         ::i32_point pointCenter = rectangleEvent.center();
+         auto egrip = m_pframewindow->size_manager()->GetGripMask();
 
          if (egrip & e_grip_top_left)
          {
@@ -891,16 +891,16 @@ namespace experience_anthill
    }
 
 
-   void frame::GetBorderRectangle(const ::int_rectangle & rectangleX, ::int_rectangle * lprect, enum_border eside)
+   void frame::GetBorderRectangle(const ::i32_rectangle & rectangleX, ::i32_rectangle * lprect, enum_border eside)
    {
 
-      ::int_rectangle rectangleBig(rectangleX);
+      ::i32_rectangle rectangleBig(rectangleX);
 
-      ::int_rectangle rectangleSmall;
+      ::i32_rectangle rectangleSmall;
 
       rectangleSmall = m_pframewindow->rectangle();
 
-      ::int_rectangle rectangle;
+      ::i32_rectangle rectangle;
 
       if (eside == e_border_top)
       {

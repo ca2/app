@@ -24,7 +24,7 @@
 //      *\return
 //      *Whether or not this is an image icon.
 //      * /
-      inline bool ::nano2d::_is_image_icon(int value) { return value < 1024; }
+      inline bool ::nano2d::_is_image_icon(::i32 value) { return value < 1024; }
 
 /**
  * \brief Determine whether an icon ID is a font-based icon (e.g. from ``entypo.ttf``).
@@ -39,7 +39,7 @@
  * \return
  *     Whether or not this is a font icon (from ``entypo.ttf``).
  */
-inline bool ::nano2d_is_font_icon(int value) { return value >= 1024; }
+inline bool ::nano2d_is_font_icon(::i32 value) { return value >= 1024; }
 
 
 

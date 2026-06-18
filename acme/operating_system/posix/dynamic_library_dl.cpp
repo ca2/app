@@ -84,7 +84,7 @@ public:
    }
 
 
-   static int s_callback(::dl_phdr_info* info, size_t size, void* data)
+   static ::i32 s_callback(::dl_phdr_info* info, size_t size, void* data)
    {
 
       auto pcallback = (modules_query*)data;
@@ -94,7 +94,7 @@ public:
    }
 
 
-   int callback(::dl_phdr_info* info, size_t size)
+   ::i32 callback(::dl_phdr_info* info, size_t size)
    {
 
       if (m_plibrary && m_plibrary == (::library_t*)info->dlpi_addr)
@@ -242,7 +242,7 @@ namespace dl
 
          // pubs.opengroup.org contribution
 
-         int iError = errno;
+         ::i32 iError = errno;
 
          const_char_pointer psz = strerror(iError);
 
@@ -253,7 +253,7 @@ namespace dl
 
          }
 
-         char* errstr;
+         char_pointer errstr;
 
          errstr = dlerror();
 
@@ -307,7 +307,7 @@ namespace dl
 
       }
 
-      int iError = errno;
+      ::i32 iError = errno;
 
       const_char_pointer psz = strerror(iError);
 

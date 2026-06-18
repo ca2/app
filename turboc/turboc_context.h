@@ -15,9 +15,9 @@ namespace turboc
 /*      ::image::image_pointer           m_pimage;
 /*      image_array         m_pimagea;
 
-      int m_iDriver;
-      int m_iActivePage;
-      int m_iVisualPage;
+      ::i32 m_iDriver;
+      ::i32 m_iActivePage;
+      ::i32 m_iVisualPage;
 
       array <RgbStruct > m_rgbset;
 
@@ -40,7 +40,7 @@ namespace turboc
 /*      image_array & Pixmaps() { return m_pimagea; }
       array <RgbStruct > & Colors() { return m_rgbset; }
 
-      void resize(int x,int y);
+      void resize(::i32 x,::i32 y);
 
    };
 

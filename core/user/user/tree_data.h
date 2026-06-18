@@ -22,9 +22,9 @@ namespace user
       ::pointer < ::draw2d::graphics >             m_pdc;
       ::collection::index                          m_iItem;
       ::collection::index                          m_iIndentation;
-      double                                       m_dItemHeight;
-      ::double_rectangle                           m_rectangleX;
-      ::double_rectangle                           m_rectangle;
+      ::f64                                       m_dItemHeight;
+      ::f64_rectangle                           m_rectangleX;
+      ::f64_rectangle                           m_rectangle;
    };
 
    class CLASS_DECL_CORE tree_data_base :
@@ -78,7 +78,7 @@ namespace user
       void _001OnItemExpand(::data::tree_item_base * ptreeitembase, const ::action_context & action_context) override;
       void _001OnItemCollapse(::data::tree_item_base * ptreeitembase, const ::action_context & action_context) override;
       void _001OnOpenItem(::data::tree_item_base * ptreeitembase, const ::action_context & action_context) override;
-      virtual void _001OnItemContextMenu(::data::tree_item_base * ptreeitembase, const ::action_context & action_context,::user::tree * ptree,const ::int_point & point);
+      virtual void _001OnItemContextMenu(::data::tree_item_base * ptreeitembase, const ::action_context & action_context,::user::tree * ptree,const ::i32_point & point);
 
 
       void _001ExpandItem(::data::tree_item < ITEM > * pitem, const ::action_context & action_context,bool bExpand = true,bool bRedraw = true,bool bLayout = true) override;

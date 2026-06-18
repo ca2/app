@@ -92,7 +92,7 @@ So we've done a broad replace of all the member-related ASSERT to ASSUME.
 #ifndef ENSURE_RETURN_HR
 #define ENSURE_RETURN_HR(expr, hr)          \
 do {                                           \
-   int __atl_condVal=!!(expr);                \
+   ::i32 __atl_condVal=!!(expr);                \
    ASSERT(__atl_condVal);                  \
    if(!(__atl_condVal)) return hr;            \
 } while (0)
@@ -110,7 +110,7 @@ do {                                           \
 //#include "acme/networking/sockets/trace_interface.h"
 
 
-CLASS_DECL_ACME void __trace(enum_trace_level elevel, const ::scoped_string & scopedstrTag, const ::scoped_string & scopedstr, const ::scoped_string & scopedstrFile = nullptr, int iLine = -1);
+CLASS_DECL_ACME void __trace(enum_trace_level elevel, const ::scoped_string & scopedstrTag, const ::scoped_string & scopedstr, const ::scoped_string & scopedstrFile = nullptr, ::i32 iLine = -1);
 
 
 #define _DEBUG_WIDE_(s) L ## s
@@ -119,19 +119,19 @@ CLASS_DECL_ACME void __trace(enum_trace_level elevel, const ::scoped_string & sc
 #define _NORMAL_BLOCK 1
 
 
-CLASS_DECL_ACME int DECL_C debug_report(
-int _ReportType,
+CLASS_DECL_ACME ::i32 DECL_C debug_report(
+::i32 _ReportType,
 const_char_pointer _Filename,
-int _LineNumber,
+::i32 _LineNumber,
 const_char_pointer _ModuleName,
 const_char_pointer _Format,
 ...);
 
 
-CLASS_DECL_ACME int DECL_C debug_report(
-int _ReportType,
+CLASS_DECL_ACME ::i32 DECL_C debug_report(
+::i32 _ReportType,
 const wchar_t * _Filename,
-int _LineNumber,
+::i32 _LineNumber,
 const wchar_t * _ModuleName,
 const wchar_t * _Format,
 ...);
@@ -162,11 +162,11 @@ typedef void * _HFILE; /* file handle pointer */
 #define _DEBUG_FILE_STDERR   ((_HFILE)-5)
 #define _DEBUG_REPORT_FILE   ((_HFILE)-6)
 #else
-#define _DEBUG_INVALID_HFILE ((_HFILE)(long long)-1)
-#define _DEBUG_HFILE_ERROR   ((_HFILE)(long long)-2)
-#define _DEBUG_FILE_STDOUT   ((_HFILE)(long long)-4)
-#define _DEBUG_FILE_STDERR   ((_HFILE)(long long)-5)
-#define _DEBUG_REPORT_FILE   ((_HFILE)(long long)-6)
+#define _DEBUG_INVALID_HFILE ((_HFILE)(::i64)-1)
+#define _DEBUG_HFILE_ERROR   ((_HFILE)(::i64)-2)
+#define _DEBUG_FILE_STDOUT   ((_HFILE)(::i64)-4)
+#define _DEBUG_FILE_STDERR   ((_HFILE)(::i64)-5)
+#define _DEBUG_REPORT_FILE   ((_HFILE)(::i64)-6)
 #endif
 
 #endif
@@ -191,7 +191,7 @@ typedef void * _HFILE; /* file handle pointer */
 #define _DEBUG_CHECK_EVERY_128_DF  0x00800000  /* check heap every 128 heap ops */
 #define _DEBUG_CHECK_EVERY_1024_DF 0x04000000  /* check heap every 1024 heap ops */
 /*
-We do not check the heap by default at this int_point because the cost was too high
+We do not check the heap by default at this i32_point because the cost was too high
 for some applications. You can still turn this feature on manually.
  */
 #define _DEBUG_CHECK_DEFAULT_DF    0
@@ -243,7 +243,7 @@ typedef struct _MEMORY_STATE
    is left in even if __DEBUG is not defined. */
 
 #ifndef _STATIC_ASSERT
-#define _STATIC_ASSERT(expr) typedef char __static_assert_t[ (expr) ]
+#define _STATIC_ASSERT(expr) typedef ::i8 __static_assert_t[ (expr) ]
 #endif
 
 #ifndef _DEBUG
@@ -313,11 +313,11 @@ typedef struct _MEMORY_STATE
 
 
 
-// CLASS_DECL_ACME int FUNCTION_DEBUGBOX(const ::scoped_string & scopedstrMessage, const ::scoped_string & scopedstrTitle, int iFlags);
+// CLASS_DECL_ACME ::i32 FUNCTION_DEBUGBOX(const ::scoped_string & scopedstrMessage, const ::scoped_string & scopedstrTitle, ::i32 iFlags);
 
-// CLASS_DECL_ACME int FUNCTION_DEBUGBOXW(const WCHAR * pszMessage, const WCHAR * pszTitle, int iFlags);
+// CLASS_DECL_ACME ::i32 FUNCTION_DEBUGBOXW(const WCHAR * pszMessage, const WCHAR * pszTitle, ::i32 iFlags);
 
-// inline int FUNCTION_XXDEBUGBOX(const ::scoped_string & scopedstrMessage, const ::scoped_string & scopedstrTitle, int iFlags)
+// inline ::i32 FUNCTION_XXDEBUGBOX(const ::scoped_string & scopedstrMessage, const ::scoped_string & scopedstrTitle, ::i32 iFlags)
 // {
 
 //    __UNREFERENCED_PARAMETER(scopedstrMessage);
@@ -328,7 +328,7 @@ typedef struct _MEMORY_STATE
 
 // }
 
-// inline int FUNCTION_XXDEBUGBOXW(const WCHAR * pszMessage, const WCHAR * pszTitle, int iFlags)
+// inline ::i32 FUNCTION_XXDEBUGBOXW(const WCHAR * pszMessage, const WCHAR * pszTitle, ::i32 iFlags)
 // {
 
 //    __UNREFERENCED_PARAMETER(scopedstrMessage);
@@ -354,7 +354,7 @@ typedef struct _MEMORY_STATE
 
 
 
-//CLASS_DECL_ACME string FormatMessageFromSystem(unsigned int dwError);
+//CLASS_DECL_ACME string FormatMessageFromSystem(::u32 dwError);
 
 
 
@@ -368,8 +368,8 @@ typedef struct _MEMORY_STATE
 //
 //
 //
-//   //virtual void sockets_trace(::sockets::base_socket_handler * phandler, ::sockets::base_socket * psocket, enum_trace_level elevel, const ::scoped_string & scopedstrContext, int iError, const ::scoped_string & scopedstrContext) override;
-//   //virtual void sockets_trace(::sockets::base_socket_handler * phandler, ::sockets::base_socket * psocket, enum_trace_level elevel, const ::scoped_string & scopedstrContext, int iError, const ::scoped_string & scopedstrContext) override;
+//   //virtual void sockets_trace(::sockets::base_socket_handler * phandler, ::sockets::base_socket * psocket, enum_trace_level elevel, const ::scoped_string & scopedstrContext, ::i32 iError, const ::scoped_string & scopedstrContext) override;
+//   //virtual void sockets_trace(::sockets::base_socket_handler * phandler, ::sockets::base_socket * psocket, enum_trace_level elevel, const ::scoped_string & scopedstrContext, ::i32 iError, const ::scoped_string & scopedstrContext) override;
 //
 //
 //};
@@ -379,7 +379,7 @@ typedef struct _MEMORY_STATE
 //extern matter * g_pobjecTracer;
 //
 CLASS_DECL_ACME void os_trace(enum_trace_level elevel, const ::scoped_string & scopedstrTag, const ::scoped_string & scopedstrMessage);
-//CLASS_DECL_ACME void trace(enum_trace_level elevel, const ::scoped_string & scopedstrTag, const ::scoped_string & scopedstr, const ::scoped_string & scopedstrFile = nullptr, int iLine = -1);
+//CLASS_DECL_ACME void trace(enum_trace_level elevel, const ::scoped_string & scopedstrTag, const ::scoped_string & scopedstr, const ::scoped_string & scopedstrFile = nullptr, ::i32 iLine = -1);
 
 
 
@@ -455,10 +455,10 @@ CLASS_DECL_ACME enum_trace_level trace_level_constraint(enum_trace_level elevel)
 CLASS_DECL_ACME const_char_pointer trace_level_name(enum_trace_level elevel);
 
 
-//extern char g_chaTraceLevel[];;;
+//extern ::i8 g_chaTraceLevel[];;;
 //
 //
-CLASS_DECL_ACME char trace_level_char(enum_trace_level elevel);
+CLASS_DECL_ACME ::i8 trace_level_char(enum_trace_level elevel);
 //{
 //
 //   return g_chaTraceLevel[trace_level_constraint(elevel)];

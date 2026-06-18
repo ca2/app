@@ -25,3 +25,9 @@
 //
 //} // macos
 //
+
+
+::enum_dialog_result ns_message_box(const_char_pointer title, const_char_pointer message, const ::user::e_message_box & emessagebox);
+
+
+

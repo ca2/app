@@ -85,7 +85,7 @@ namespace experience_core
                else
                {
 
-                  ::int_rectangle rectanglePush(rectangleX);
+                  ::i32_rectangle rectanglePush(rectangleX);
 
                   ::color::color colorBack(colorBackground);
 
@@ -233,7 +233,7 @@ namespace experience_core
 
       }
 
-      ::int_rectangle rectangleEllipse(rectangleX);
+      ::i32_rectangle rectangleEllipse(rectangleX);
 
       rectangleEllipse.deflate(0, 0, 2, 2);
 
@@ -277,7 +277,7 @@ namespace experience_core
 
          pgraphics->set(ppen);
 
-         ::int_rectangle rectangleIcon(rectangleEllipse);
+         ::i32_rectangle rectangleIcon(rectangleEllipse);
 
          rectangleIcon.deflate(rectangleIcon.width() / 4, rectangleIcon.height() / 4);
 
@@ -323,7 +323,7 @@ namespace experience_core
 
       constructø(m_pregion);
       
-      ::double_ellipse ellipse;
+      ::f64_ellipse ellipse;
       
       ellipse.set(rectangleX);
 

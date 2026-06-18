@@ -69,7 +69,7 @@ namespace graphics3d
       struct PrimitiveInfo {
          uint32_t      firstIndex;
          uint32_t      indexCount;
-         int           textureIndex; // index into textures[]
+         ::i32           textureIndex; // index into textures[]
          floating_matrix4     modelMatrix;
       };
       struct Builder {

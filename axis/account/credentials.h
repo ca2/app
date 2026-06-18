@@ -28,7 +28,7 @@ namespace account
       bool                                      m_bInteractive;
       ::e_status                                m_estatusHttp;
       string                                    m_strTitle;
-      ::int_rectangle                           m_rectangleDialog;
+      ::i32_rectangle                           m_rectangleDialog;
       string                                    m_strPassword;
       string                                    m_strPasshash;
       character_count                                   m_iPasswordOriginalLength;

@@ -57,8 +57,8 @@ protected:
    
    ::pointer_array < subparticle >                             m_subparticlea;
 
-   hsynchronization_array                                                 m_hsynchronizationa;
-   fixed_raw_array < unsigned char, MAXIMUM_SYNCHRONIZING_OBJECTS >     m_uaIndexes;
+   hsynchronization_array                                      m_hsynchronizationa;
+   fixed_raw_array < ::u8, MAXIMUM_SYNCHRONIZING_OBJECTS >     m_uaIndexes;
 
 public:
 
@@ -85,11 +85,11 @@ public:
 
    ::e_status wait() override;
 
-   virtual ::e_status wait(const class time & timeWait, bool waitForAll = true, unsigned int uWaitMask = 0);
+   virtual ::e_status wait(const class time & timeWait, bool waitForAll = true, ::u32 uWaitMask = 0);
 
    virtual void unlock_item(::collection::index index);
 
-   virtual void unlock_item(::collection::index index, int lCount, int * pPrevCount = nullptr);
+   virtual void unlock_item(::collection::index index, ::i32 lCount, ::i32 * pPrevCount = nullptr);
 
    virtual void contains(const ::e_status & result) const;
 

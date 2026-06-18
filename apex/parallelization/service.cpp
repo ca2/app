@@ -14,7 +14,7 @@ service::~service()
 }
 
 
-void service::set_arguments(int argc, char** argv)
+void service::set_arguments(::i32 argc, char_pointer * argv)
 {
 
 
@@ -22,7 +22,7 @@ void service::set_arguments(int argc, char** argv)
 }
 
 
-void service::set_arguments(int argc, wchar_t** argv)
+void service::set_arguments(::i32 argc, wchar_t** argv)
 {
 
 
@@ -55,7 +55,7 @@ void service::stop_service()
 
 
 //
-//void service::start_service(unsigned int control)
+//void service::start_service(::u32 control)
 //{
 //
 //   m_estatus = e_status_starting;
@@ -65,7 +65,7 @@ void service::stop_service()
 //}
 //
 //
-//void service::stop_service(unsigned int control)
+//void service::stop_service(::u32 control)
 //{
 //
 //   m_estatus = e_status_stopping;

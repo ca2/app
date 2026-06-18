@@ -188,7 +188,7 @@ inline auto new_predicateicate_task(::particle * pparticle, PRED pred)
 CLASS_DECL_ACME ::task * predicate_run(::object * pobjectParent, bool bSync, const ::procedure & procedure);
 
 
-//CLASS_DECL_ACME int get_current_process_affinity_order();
+//CLASS_DECL_ACME ::i32 get_current_process_affinity_order();
 
 
 
@@ -211,7 +211,7 @@ CLASS_DECL_ACME ::task * predicate_run(::object * pobjectParent, bool bSync, con
 //
 
 //template < typename PRED >
-//::task * fork(::particle * pparticle, PRED pred, const ::scoped_string & scopedstrTag, int iCallStackAddUp = 0, enum_priority epriority = e_priority_normal)
+//::task * fork(::particle * pparticle, PRED pred, const ::scoped_string & scopedstrTag, ::i32 iCallStackAddUp = 0, enum_priority epriority = e_priority_normal)
 //{
 //
 //   auto ppredtask = allocateø predicate_task < PRED > (pparticle, pred);
@@ -282,7 +282,7 @@ CLASS_DECL_ACME ::task * predicate_run(::object * pobjectParent, bool bSync, con
 
 
 //template < typename PRED >
-//inline auto object::fork(PRED pred, const ::scoped_string & scopedstrTag, int iCallStackAddUp, enum_priority epriority)
+//inline auto object::fork(PRED pred, const ::scoped_string & scopedstrTag, ::i32 iCallStackAddUp, enum_priority epriority)
 //{
 //
 //   iCallStackAddUp++;
@@ -372,12 +372,12 @@ CLASS_DECL_ACME ::task * predicate_run(::object * pobjectParent, bool bSync, con
 //      index       m_iIndex;
 //      index       m_iScan;
 //      ::collection::count     m_cCount;
-//      index       m_i;
+//      index       m_i32;
 //
 //      operator index()
 //      {
 //
-//         return m_i;
+//         return m_i32;
 //
 //      }
 //
@@ -399,7 +399,7 @@ CLASS_DECL_ACME ::task * predicate_run(::object * pobjectParent, bool bSync, con
 //   virtual void run() override
 //   {
 //
-//      for (m_index.m_i = m_index.m_iIndex; m_index.m_i < m_index.m_cCount; m_index.m_i += m_index.m_iScan)
+//      for (m_index.m_i32 = m_index.m_iIndex; m_index.m_i32 < m_index.m_cCount; m_index.m_i32 += m_index.m_iScan)
 //      {
 //
 //         m_function(m_index);
@@ -457,7 +457,7 @@ public:
 //
 //   //ASSERT(pobjectParent != nullptr && pobjectParent->application() != nullptr);
 //
-//   int iAffinityOrder = get_current_process_affinity_order();
+//   ::i32 iAffinityOrder = get_current_process_affinity_order();
 //
 //   if (::get_task() == nullptr || ::get_task()->m_bAvoidProcedureFork)
 //   {
@@ -515,7 +515,7 @@ public:
 //   void construct()
 //   {
 //
-//      m_uThreadAffinityMask = translate_processor_affinity(int(m_iOrder));
+//      m_uThreadAffinityMask = translate_processor_affinity(::i32(m_iOrder));
 //
 //   }
 //
@@ -559,7 +559,7 @@ public:
 //auto fork_for(::object * pobjectParent, ::collection::count iCount, PRED pred, ::collection::index iStart = 0)
 //{
 //
-//   int iAffinityOrder = get_current_process_affinity_order();
+//   ::i32 iAffinityOrder = get_current_process_affinity_order();
 //
 //   if (::get_task() == nullptr || ::get_task()->m_bAvoidProcedureFork)
 //   {
@@ -570,7 +570,7 @@ public:
 //
 //   ::collection::count iScan = maximum(1, minimum(iCount - iStart, iAffinityOrder));
 //
-//   auto pcounter = allocateø ::counter < int > (iScan);
+//   auto pcounter = allocateø ::counter < ::i32 > (iScan);
 //
 //   for (::collection::index iOrder = 0; iOrder < iScan; iOrder++)
 //   {
@@ -591,7 +591,7 @@ public:
 //auto fork_for_end(::object* pobjectParent, ::collection::count iCount, PRED pred, PRED_END predEnd, ::collection::index iStart = 0)
 //{
 //
-//   int iAffinityOrder = get_current_process_affinity_order();
+//   ::i32 iAffinityOrder = get_current_process_affinity_order();
 //
 //   if (::get_task() == nullptr || ::get_task()->m_bAvoidProcedureFork)
 //   {
@@ -602,7 +602,7 @@ public:
 //
 //   ::collection::count iScan = maximum(1, minimum(iCount - iStart, iAffinityOrder));
 //
-//   auto pcounter = allocateø ::counter < int >  (iScan);
+//   auto pcounter = allocateø ::counter < ::i32 >  (iScan);
 //
 //   auto pobjectTaskEnd = __runnable(predEnd);
 //
@@ -627,7 +627,7 @@ public:
 
 
 
-CLASS_DECL_ACME unsigned int processor_index_generator();
+CLASS_DECL_ACME ::u32 processor_index_generator();
 
 
 //template < typename PRED >
@@ -636,7 +636,7 @@ CLASS_DECL_ACME unsigned int processor_index_generator();
 //
 //   pointer_array < ::task > taskptra;
 //
-//   int iProcCount = get_current_process_affinity_order();
+//   ::i32 iProcCount = get_current_process_affinity_order();
 //
 //   if (iCount < 0 || iCount > iProcCount)
 //   {

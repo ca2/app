@@ -27,9 +27,9 @@
 //      bool useTextureEmissive = false;
 //
 //      floating_sequence3 m_seq3Albedo = constants::colorRed;
-//      float m_fMetallic = 1.0f;
-//      float m_fRoughness = 0.0f;
-//      float m_fAmbientOcclusion = 1.0f;
+//      ::f32 m_fMetallic = 1.0f;
+//      ::f32 m_fRoughness = 0.0f;
+//      ::f32 m_fAmbientOcclusion = 1.0f;
 //      floating_sequence3 m_seq3Emissive = floating_sequence3(0.0, 0.0, 0.0);
 //
 //      ::pointer<::gpu::texture> m_ptextureAlbedo;

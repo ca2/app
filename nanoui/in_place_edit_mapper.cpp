@@ -7,7 +7,7 @@ namespace nanoui
 {
 
 
-   ::float_point in_place_edit_mapper::inner_to_outer(const ::float_point& point, in_place_edit*)
+   ::f32_point in_place_edit_mapper::inner_to_outer(const ::f32_point& point, in_place_edit*)
    {
 
       return point;
@@ -15,7 +15,7 @@ namespace nanoui
    }
    
    
-   ::float_point in_place_edit_mapper::outer_to_inner(const ::float_point& point, in_place_edit*)
+   ::f32_point in_place_edit_mapper::outer_to_inner(const ::f32_point& point, in_place_edit*)
    {
 
       return point;
@@ -23,14 +23,14 @@ namespace nanoui
    }
 
 
-   ::float_rectangle in_place_edit_mapper::inner_to_outer(const ::float_rectangle& rectangle, in_place_edit* pinplaceedit)
+   ::f32_rectangle in_place_edit_mapper::inner_to_outer(const ::f32_rectangle& rectangle, in_place_edit* pinplaceedit)
    {
       
       auto top_left = rectangle.top_left();
 
       auto bottom_right = rectangle.bottom_right();
 
-      ::float_rectangle rectangleOuter;
+      ::f32_rectangle rectangleOuter;
 
       rectangleOuter.top_left() = inner_to_outer(top_left, pinplaceedit);
 

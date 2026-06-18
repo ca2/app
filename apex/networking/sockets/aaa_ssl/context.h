@@ -23,7 +23,7 @@ namespace sockets
    public:
 
 
-      int                              m_iSslCtxRetry;
+      ::i32                              m_iSslCtxRetry;
 
       ::pointer<ssl_client_context>   m_pclientcontext;
       //SSL *                            m_ssl; ///< ssl 'socket'

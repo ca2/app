@@ -44,7 +44,7 @@ namespace file
 {
 
 
-   inline path_meta::path_meta(enum_path epath, long long iSize, e_type etype, long long iName, character_count iBasePathLength, enumeration < ::file::enum_flag > eflag)
+   inline path_meta::path_meta(enum_path epath, ::i64 iSize, e_type etype, ::i64 iName, character_count iBasePathLength, const ::file::e_flag & eflag)
    {
 
       m_epath = epath;
@@ -57,8 +57,8 @@ namespace file
    }
 
 
-   //template < typename ITERATOR_TYPE, int t_size >
-   //inline path::path(const const_string_range_static_array < ITERATOR_TYPE, t_size >& a, enum_path epath, e_type etype, bool bNormalize, long long iSize) :
+   //template < typename ITERATOR_TYPE, ::i32 t_size >
+   //inline path::path(const const_string_range_static_array < ITERATOR_TYPE, t_size >& a, enum_path epath, e_type etype, bool bNormalize, ::i64 iSize) :
    //   path((const ::ansi_string&)a, epath, etype, bNormalize, iSize)
    //{
 
@@ -68,7 +68,7 @@ namespace file
 
 
 
-   //inline path::path(const ::wd16_string & wd16str, enum_path epath, e_type etype, bool bNormalizePath, long long iSize) :
+   //inline path::path(const ::wd16_string & wd16str, enum_path epath, e_type etype, bool bNormalizePath, ::i64 iSize) :
    //   path(::string(wd16str), epath, etype, bNormalizePath, iSize)
    //{
 
@@ -77,7 +77,7 @@ namespace file
 
 
    //template < typename ITERATOR_TYPE >
-   //inline path::path(const ::range < ITERATOR_TYPE > & range, enum_path epath, e_type etype, bool bNormalizePath, long long iSize) :
+   //inline path::path(const ::range < ITERATOR_TYPE > & range, enum_path epath, e_type etype, bool bNormalizePath, ::i64 iSize) :
    //   path(::string(range), epath, etype, bNormalizePath, iSize)
    //{
 
@@ -85,7 +85,7 @@ namespace file
    //}
 
 
-   //inline path::path(const_char_pointer pansisz, enum_path epath, e_type etype, bool bNormalizePath, long long iSize) :
+   //inline path::path(const_char_pointer pansisz, enum_path epath, e_type etype, bool bNormalizePath, ::i64 iSize) :
    //   path(::ansi_string(pansisz), epath, etype, bNormalizePath, iSize)
    //{
 
@@ -93,7 +93,7 @@ namespace file
    //}
 
 
-   //inline path::path(const ::wd16_character * pwd16sz, enum_path epath, e_type etype, bool bNormalizePath, long long iSize) :
+   //inline path::path(const ::wd16_character * pwd16sz, enum_path epath, e_type etype, bool bNormalizePath, ::i64 iSize) :
    //   path(::string(pwd16sz), epath, etype, bNormalizePath, iSize)
    //{
 
@@ -101,7 +101,7 @@ namespace file
    //}
 
 
-   //inline path::path(const ::wd32_character * pwd32sz, enum_path epath, e_type etype, bool bNormalizePath, long long iSize) :
+   //inline path::path(const ::wd32_character * pwd32sz, enum_path epath, e_type etype, bool bNormalizePath, ::i64 iSize) :
    //   path(::string(pwd32sz), epath, etype, bNormalizePath, iSize)
    //{
 
@@ -176,7 +176,7 @@ namespace file
    //
 
 
-   //   path::path(const unichar * pwsz, character_count iCount, e_path epath, e_type etype, bool bNormalizePath, long long iSize) :
+   //   path::path(const wide_character * pwsz, character_count iCount, e_path epath, e_type etype, bool bNormalizePath, ::i64 iSize) :
    //      string(pwsz, iCount),
    //      path_meta(epath, iSize, iDir)
    //   {
@@ -251,7 +251,7 @@ namespace file
    //
    //   }
 
-   //   path::path(const unichar * psz, e_path epath, e_type etype) :
+   //   path::path(const wide_character * psz, e_path epath, e_type etype) :
    //      path(string(scopedstr), epath, iDir)
    //   {
    //
@@ -439,7 +439,7 @@ namespace file
    //}
 
 
-   inline path path::folder(int i) const
+   inline path path::folder(::i32 i) const
    {
 
       ::file::path path(*this);
@@ -466,7 +466,7 @@ namespace file
    }
 
 
-   inline path& path::ascend(int i)
+   inline path& path::ascend(::i32 i)
    {
 
       while (i > 0)
@@ -939,7 +939,7 @@ namespace file
    inline path& path::set_file_path()
    {
 
-      m_etype = (enum_type)((m_etype | e_type_file2) & ~e_type_folder2);
+      m_etype = ((m_etype | e_type_file2) & ~e_type_folder2);
 
       return *this;
 
@@ -949,7 +949,7 @@ namespace file
    inline path& path::set_folder_path()
    {
 
-      m_etype = (enum_type)((m_etype | e_type_folder2) & ~e_type_file2);
+      m_etype = ((m_etype | e_type_folder2) & ~e_type_file2);
 
       return *this;
 
@@ -971,7 +971,7 @@ namespace file
    inline path& path::set_existent()
    {
 
-      m_etype = (enum_type)((m_etype | e_type_exists) & ~e_type_doesnt_exist);
+      m_etype = ((m_etype | e_type_exists) & ~e_type_doesnt_exist);
 
       return *this;
 
@@ -1214,7 +1214,7 @@ namespace file
    }
 
 
-   inline path path::ascendant(int i) const
+   inline path path::ascendant(::i32 i) const
    {
 
       return folder(i);
@@ -1222,7 +1222,7 @@ namespace file
    }
 
 
-   inline path& path::operator -= (int i)
+   inline path& path::operator -= (::i32 i)
    {
 
       return ascend(i);
@@ -1347,7 +1347,7 @@ namespace file
 
 
 //template < character_count m_sizeMaximumLength >
-//inline ::file::path operator +(const ::file::path & path, const ::inline_string < char, m_sizeMaximumLength > & inlinestring)
+//inline ::file::path operator +(const ::file::path & path, const ::inline_string < ::i8, m_sizeMaximumLength > & inlinestring)
 //{
 //
 //   return ((const ::string &)path) + ::string(inlinestring);
@@ -1381,7 +1381,7 @@ namespace file
 //
 //
 //template < ::collection::count c >
-//inline ::file::path operator +(const char(&sz)[c], const ::file::path & path)
+//inline ::file::path operator +(const ::i8(&sz)[c], const ::file::path & path)
 //{
 //
 //   return ::string(sz) + ((const::string &)path);
@@ -1538,7 +1538,7 @@ template < prototype_character_range RANGE, character_count n >
 
 
 
-//template < prototype_character ITERATOR_TYPE2, int t_size, prototype_character_range RANGE >
+//template < prototype_character ITERATOR_TYPE2, ::i32 t_size, prototype_character_range RANGE >
 //::file::path operator / (const const_string_range_static_array <ITERATOR_TYPE2, t_size >& a, const RANGE& range)
 //{
 //
@@ -1569,7 +1569,7 @@ template < prototype_character_range RANGE, character_pointer CHARACTER_POINTER 
 }
 
 
-//template < prototype_character_range RANGE, typename ITERATOR_TYPE2, int t_size >
+//template < prototype_character_range RANGE, typename ITERATOR_TYPE2, ::i32 t_size >
 //::file::path operator / (const RANGE& range, const const_string_range_static_array <ITERATOR_TYPE2, t_size >& a)
 //{
 //
@@ -1578,7 +1578,7 @@ template < prototype_character_range RANGE, character_pointer CHARACTER_POINTER 
 //}
 //
 
-//template < typename ITERATOR_TYPE2, character_count n, int t_size >
+//template < typename ITERATOR_TYPE2, character_count n, ::i32 t_size >
 //::file::path operator / (const ::non_pointer < non_const <ITERATOR_TYPE2>>(&sz)[n], const const_string_range_static_array <ITERATOR_TYPE2, t_size >& a)
 //{
 //

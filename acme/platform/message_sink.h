@@ -24,7 +24,7 @@ public:
    void on_initialize_particle() override;
 
 
-   virtual ::pointer < ::platform::message > create_message(::enum_message emessage, long long llWparam = 0, long long llLparam = 0);
+   virtual ::pointer < ::platform::message > create_message(::enum_message emessage, ::i64 llWparam = 0, ::i64 llLparam = 0);
 
    virtual void post_simple_message(::enum_message emessage);
    virtual void post_message(::platform::message * pmessage);

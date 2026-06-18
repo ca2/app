@@ -25,19 +25,19 @@ public:
    }
 
 
-   void wait(unsigned long long uWait)
+   void wait(::u64 uWait)
    {
 
 #ifdef WINDOWS
 
       LARGE_INTEGER li = {};
 
-      li.QuadPart = - ((long long) uWait / 100LL);
+      li.QuadPart = - ((::i64) uWait / 100LL);
 
       if (!SetWaitableTimer(m_hTimer, &li, 0, nullptr, nullptr, false))
       {
 
-         sleep(unsigned int(uWait / 1000000LL));
+         sleep(::u32(uWait / 1000000LL));
 
       }
       else
@@ -127,7 +127,7 @@ public:
    bool                                m_bPeriodic;
    void *                              m_pvoidData;
    bool                                m_bRunning;
-   unsigned int                               m_dwMillis;
+   ::u32                               m_dwMillis;
    ::user::interaction *               m_puserinteraction;
    bool                                m_bHandling;
 
@@ -174,7 +174,7 @@ public:
    //#endif
 
 
-   bool start(int ::duration, bool bPeriodic);
+   bool start(::i32 ::duration, bool bPeriodic);
 
    //void stop();
 

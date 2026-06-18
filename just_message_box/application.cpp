@@ -22,7 +22,7 @@ namespace app_just_message_box
    void application::on_request(::request * prequest)
    {
 
-      if (prequest->m_ecommand == ::e_command_application_start)
+      if (prequest->m_ecommand == ::e_command_default_start)
       {
 
          show_message_box();
@@ -35,54 +35,53 @@ namespace app_just_message_box
    void application::show_message_box()
    {
 
-      auto pmessageboxpayload = __initialize_new ::message_box_payload(
+      //auto pmessageboxpayload = __initialize_new ::message_box_payload(
+         //"Showing a message box as requested.\n\nIs it ok?", nullptr, ::user::e_message_box_yes_no_cancel);
+
+
+      post_message_box(
          "Showing a message box as requested.\n\nIs it ok?",
          nullptr,
-         ::user::e_message_box_yes_no_cancel);
-
-      pmessageboxpayload->m_functionOnDialogResult = [this](const ::payload & payloadResult)
+         ::user::e_message_box_yes_no_cancel,
+         [this](::message_box_payload * pmessageboxpayload)
          {
 
-            if (payloadResult == e_dialog_result_cancel)
+            if (pmessageboxpayload->m_payloadResult == e_dialog_result_cancel)
             {
 
                _001PostTryCloseApplication();
 
             }
-            else  if (payloadResult == e_dialog_result_no)
+            else if (pmessageboxpayload->m_payloadResult == e_dialog_result_no)
             {
 
-               auto pmessageboxNo = __initialize_new ::message_box_payload("No!", nullptr, ::user::e_message_box_ok);
-
-               pmessageboxNo->m_functionOnDialogResult = [this](const ::payload & payloadResult)
+               post_message_box("No!", nullptr, ::user::e_message_box_ok,
+                   [this](::message_box_payload * pmessageboxpayload)
                   {
 
                      show_message_box();
 
-                  };
-
-               post(pmessageboxNo);
+                  });
 
             }
-            else  if (payloadResult == e_dialog_result_yes)
+            else if (pmessageboxpayload->m_payloadResult == e_dialog_result_yes)
             {
 
-               auto pmessageboxYes = __initialize_new ::message_box_payload("Yes!!", nullptr, ::user::e_message_box_ok);
 
-               pmessageboxYes->m_functionOnDialogResult = [this](const ::payload & payloadResult)
+               post_message_box(
+                  "Yes!!", nullptr, ::user::e_message_box_ok,
+                   [this](::message_box_payload * pmessageboxpayload)
                   {
 
                      _001PostTryCloseApplication();
 
-                  };
-
-               post(pmessageboxYes);
+                  });
 
             }
 
-         };
+         });
 
-      post(pmessageboxpayload);
+      //post(pmessageboxpayload);
 
 
    }

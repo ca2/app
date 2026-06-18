@@ -14,6 +14,8 @@
 #include "PopupButton.h"
 #include "Screen.h"
 #include "acme/constant/user_key.h"
+#include "acme/platform/session.h"
+#include "acme/user/user/keyboard_state.h"
 #include "nano2d/context.h"
 #include "aura/user/user/interaction.h"
 
@@ -57,7 +59,7 @@ void Window::on_destroy_window()
    }
 
 
-   int_size Window::preferred_size(::nano2d::context * pcontext, bool bRecalcTextSize)
+   i32_size Window::preferred_size(::nano2d::context * pcontext, bool bRecalcTextSize)
    {
 
       bool bButtonPanelWasVisible = true;
@@ -89,9 +91,9 @@ void Window::on_destroy_window()
 
       }
 
-      return int_size(
-         ::maximum(sizeResult.cx, (int)(m_boundsHeader.width() + 20)),
-         ::maximum(sizeResult.cy, (int)(m_boundsHeader.height()))
+      return i32_size(
+         ::maximum(sizeResult.cx, (::i32)(m_boundsHeader.width() + 20)),
+         ::maximum(sizeResult.cy, (::i32)(m_boundsHeader.height()))
       );
    }
 
@@ -105,7 +107,7 @@ void Window::on_destroy_window()
          m_button_panel = allocateø Widget(this);
 
          m_button_panel->set_layout(
-            allocateø BoxLayout(e_orientation_horizontal, e_alignment_middle, ::int_rectangle(0, 0, 0, 0), 4));
+            allocateø BoxLayout(e_orientation_horizontal, e_alignment_middle, ::i32_rectangle(0, 0, 0, 0), 4));
 
       }
 
@@ -176,16 +178,16 @@ void Window::on_destroy_window()
 
       }
 
-      //int ds = m_ptheme->m_iWindowDropShadowSize;
-      int cr = m_ptheme->m_iWindowCorderRadius;
-      int hh = m_ptheme->m_iWindowHeaderHeight;
+      //::i32 ds = m_ptheme->m_iWindowDropShadowSize;
+      ::i32 cr = m_ptheme->m_iWindowCorderRadius;
+      ::i32 hh = m_ptheme->m_iWindowHeaderHeight;
 
       /* Draw window */
       {
          ::nano2d::guard guard(pcontext);
          //pcontext->save();
          pcontext->begin_path();
-         pcontext->rounded_rectangle((float)m_pos.x, (float)m_pos.y, (float)m_size.cx, (float)m_size.cy, (float)cr);
+         pcontext->rounded_rectangle((::f32)m_pos.x, (::f32)m_pos.y, (::f32)m_size.cx, (::f32)m_size.cy, (::f32)cr);
 
          pcontext->fill_color(m_bMouseHover ? m_ptheme->m_colorWindowFillFocused
             : m_ptheme->m_colorWindowFillUnfocused);
@@ -210,19 +212,19 @@ void Window::on_destroy_window()
          if (m_title.has_character()) {
             /* Draw header */
             ::nano2d::paint header_paint = pcontext->linear_gradient(
-               (float)m_pos.x, (float)m_pos.y, (float)m_pos.x,
-               (float)m_pos.y + (float)hh,
+               (::f32)m_pos.x, (::f32)m_pos.y, (::f32)m_pos.x,
+               (::f32)m_pos.y + (::f32)hh,
                m_ptheme->m_colorWindowHeaderGradientTop,
                m_ptheme->m_colorWindowHeaderGradientBottom);
 
             pcontext->begin_path();
-            pcontext->rounded_rectangle((float)m_pos.x, (float)m_pos.y, (float)m_size.cx, (float)hh, (float)cr);
+            pcontext->rounded_rectangle((::f32)m_pos.x, (::f32)m_pos.y, (::f32)m_size.cx, (::f32)hh, (::f32)cr);
 
             pcontext->fill_paint(header_paint);
             pcontext->fill();
 
             pcontext->begin_path();
-            pcontext->rounded_rectangle((float)m_pos.x, (float)m_pos.y, (float)m_size.cx, (float)hh, (float)cr);
+            pcontext->rounded_rectangle((::f32)m_pos.x, (::f32)m_pos.y, (::f32)m_size.cx, (::f32)hh, (::f32)cr);
             pcontext->stroke_color(m_ptheme->m_colorWindowHeaderSeparationTop);
 
             //pcontext->Save();
@@ -277,38 +279,38 @@ void Window::on_destroy_window()
    }
 
 
-   bool Window::mouse_enter_event(const int_point& pointCursor, bool enter, const ::user::e_key& ekeyModifiers)
+   bool Window::mouse_enter_event(const i32_point& point, bool bEnter)
    {
 
-      Widget::mouse_enter_event(pointCursor, enter, ekeyModifiers);
+      Widget::mouse_enter_event(point, bEnter);
 
       return true;
 
    }
 
-
 #define __MOUSE_LEFT_BUTTON 0
+
 #define __MOUSE_RIGHT_BUTTON 1
 
 
-   bool Window::mouse_motion_event(const int_point&pointCursor, const int_size& rel, bool bDown, const ::user::e_key& ekeyModifiers)
+   bool Window::mouse_motion_event(const i32_point & point)
    {
 
-      if (m_bDrag && (ekeyModifiers & ::user::e_key_left_button) != 0 && bDown)
+      if (m_bDrag && is_left_button_pressed())
       {
 
          auto offset = screen()->m_pointLastCursor - m_pointDragStartCursor;
          
          auto posNew = m_pointDragStartPosition + offset;
          
-         posNew = posNew.maximum(::int_point(0, 0));
+         posNew = posNew.maximum(::i32_point(0, 0));
          
          posNew = posNew.minimum(parent()->size() - m_size);
          
          if(posNew != m_pointLastDragPosition)
          {
             
-            ::int_point parentPosition;
+            ::i32_point parentPosition;
             
             if(parent())
             {
@@ -317,7 +319,7 @@ void Window::on_destroy_window()
                
             }
             
-            ::int_rectangle rectangleOld(m_pointLastDragPosition, m_size);
+            ::i32_rectangle rectangleOld(m_pointLastDragPosition, m_size);
             
             if(parent())
             {
@@ -332,7 +334,7 @@ void Window::on_destroy_window()
                         rectangleOld.right,
                         rectangleOld.bottom);
             
-            ::int_rectangle_array_base rectanglea;
+            ::i32_rectangle_array_base rectanglea;
             
             rectanglea.add(rectangleOld);
 
@@ -341,7 +343,7 @@ void Window::on_destroy_window()
 
                auto ppopup = ppopupbutton->popup();
 
-               ::int_rectangle rectangleOld(ppopup->m_pointLastDragPosition, ppopup->m_size);
+               ::i32_rectangle rectangleOld(ppopup->m_pointLastDragPosition, ppopup->m_size);
 
                if (ppopup->parent())
                {
@@ -373,7 +375,7 @@ void Window::on_destroy_window()
 
             }
 
-            ::int_rectangle rectangleNew(posNew, m_size);
+            ::i32_rectangle rectangleNew(posNew, m_size);
 
             if(parent())
             {
@@ -397,7 +399,7 @@ void Window::on_destroy_window()
 
                auto ppopup = ppopupbutton->popup();
 
-               ::int_rectangle rectangleNew(ppopup->m_pointLastDragPosition, ppopup->m_size);
+               ::i32_rectangle rectangleNew(ppopup->m_pointLastDragPosition, ppopup->m_size);
 
                rectangleNew += offset;
 
@@ -461,28 +463,28 @@ void Window::on_destroy_window()
 
       }
 
-      return Widget::mouse_motion_event(pointCursor, rel, bDown, ekeyModifiers);
+      return Widget::mouse_motion_event(point);
 
    }
 
 
-   bool Window::mouse_button_event(const int_point& pointCursor, ::user::e_mouse emouse, bool down, bool bDoubleClick, const ::user::e_key& ekeyModifiers)
+   bool Window::mouse_button_event(const i32_point & point, ::user::e_key euserkeyMouseButton, bool bDown, bool bDoubleClick)
    {
 
-      if (Widget::mouse_button_event(pointCursor, emouse, down, bDoubleClick, ekeyModifiers))
+      if (Widget::mouse_button_event(point, euserkeyMouseButton, bDown, bDoubleClick))
       {
 
          return true;
 
       }
 
-      if (emouse == ::user::e_mouse_left_button)
+      if (euserkeyMouseButton == ::user::e_key_left_button)
       {
 
-         if (down)
+         if (bDown)
          {
 
-            auto bDrag = down && (pointCursor.y - m_pos.y) < m_ptheme->m_iWindowHeaderHeight;
+            auto bDrag = (point.y - m_pos.y) < m_ptheme->m_iWindowHeaderHeight;
 
             m_bDrag = bDrag;
 
@@ -496,6 +498,8 @@ void Window::on_destroy_window()
                m_pointDragStartPosition = m_pos;
                
                m_pointLastDragPosition = m_pos;
+
+               m_keystatePress = session();
 
                return true;
 
@@ -517,6 +521,8 @@ void Window::on_destroy_window()
 
                }
 
+               m_keystatePress = session();
+
                m_bDrag = false;
 
                return true;
@@ -532,7 +538,7 @@ void Window::on_destroy_window()
    }
 
 
-   bool Window::scroll_event(const int_point& pointCursor, const float_size& rel)
+   bool Window::scroll_event(const i32_point& pointCursor, const ::f32_size& rel)
    {
 
       Widget::scroll_event(pointCursor, rel);

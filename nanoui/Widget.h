@@ -20,6 +20,7 @@
 #include "acme/prototype/geometry2d/size.h"
 #include "acme/prototype/geometry2d/rectangle.h"
 #include "acme/user/user/container.h"
+#include "acme/user/user/key_state.h"
 //#include <xxxvector>
 //#include <xxxalgorithm>
 //#include "acme/prototype/prototype/function.h"
@@ -42,10 +43,11 @@ namespace nanoui
     * also be used as an panel to arrange an arbitrary number of pwidgetChild
     * widgets using a layout generator (see \::pointer Layout).
     */
-   class CLASS_DECL_NANOUI Widget :
-      public Object,
-      public ::user::acme_container,
-      public in_place_edit_mapper
+   class CLASS_DECL_NANOUI Widget : 
+      virtual public Object,
+      virtual public ::user::acme_container, 
+      virtual public in_place_edit_mapper,
+      virtual public ::timer_dispatch
    {
    public:
 
@@ -55,14 +57,15 @@ namespace nanoui
       ::pointer < Widget>     m_pwidgetParent;
       ::pointer<Theme>        m_ptheme;
       ::pointer<Layout>       m_playout;
-      int_point               m_pos;
-      int_size                m_size;
-      int_size                m_fixed_size;
+      i32_point               m_pos;
+      i32_size                m_size;
+      i32_size                m_fixed_size;
       bool                    m_bHoverCache;
       ::pointer<::nano2d::text_box>    m_ptextboxTooltip;
+      ::user::key_state       m_keystatePress;
 
-      //int_size                m_offsetToApplyOnDraw;
-      //int_size                m_offsetSizeToApplyOnDraw;
+      //i32_size                m_offsetToApplyOnDraw;
+      //i32_size                m_offsetSizeToApplyOnDraw;
       ::pointer<Widget>       m_pwidgetDragDropArena;
       ::pointer_array<Widget> m_children;
       //::collection::index               m_iHoverCandidateChildStart;
@@ -85,7 +88,7 @@ namespace nanoui
 
       bool                 m_bMouseHover;
       ::string             m_tooltip;
-      int                  m_font_size;
+      ::i32                  m_font_size;
 
 
 
@@ -112,7 +115,7 @@ namespace nanoui
        *       virtual void draw(::nano2d::context  *ctx) {
        *           // fontSize depends on the kind of Widget.  Search for `FontSize`
        *           // in the Theme class (e.g., standard vs button)
-       *           float ih = font_size;
+       *           ::f32 ih = font_size;
        *           // assuming your Widget has a declared `mIcon`
        *           if (::nano2d::IsFontIcon(mIcon)) {
        *               ih *= icon_scale();
@@ -123,7 +126,7 @@ namespace nanoui
        *       }
        * \endrst
        */
-      float                m_icon_extra_scale;
+      ::f32                m_icon_extra_scale;
       Cursor               m_cursor;
 
       //::function < void(::nano2d::context  *) >    m_callbackSizing;
@@ -190,38 +193,40 @@ namespace nanoui
       virtual void set_theme(const ::pointer < Theme > & theme);
 
       /// Return the position relative to the parent pwidget
-      const int_point& position() const { return m_pos; }
+      const i32_point& position() const { return m_pos; }
       /// Set the position relative to the parent pwidget
-      void set_position(const int_point& pos) { m_pos = pos; }
+      void set_position(const i32_point& pos) { m_pos = pos; }
 
       /// Return the absolute position on pscreen
-      int_point absolute_position() const {
+      i32_point absolute_position() const {
          return m_pwidgetParent ?
             (parent()->absolute_position() + m_pos) : m_pos;
       }
 
-      virtual int_point screen_position() const;
+      virtual i32_point screen_position() const;
 
 
-      virtual int_size get_scroll_offset() const;
-      virtual int_size get_accumulated_scroll_offset() const;
+      virtual i32_size get_scroll_offset() const;
+      virtual i32_size get_accumulated_scroll_offset() const;
 
       /// Return the size of the pwidget
-      const int_size& size() const { return m_size; }
+      const i32_size& size() const { return m_size; }
       /// set the size of the pwidget
-      virtual void set_size(const int_size& size);
+      virtual void set_size(const i32_size& size);
 
       /// Return the width of the pwidget
-      int width() const { return m_size.cx; }
+      ::i32 width() const { return m_size.cx; }
       /// Set the width of the pwidget
-      void set_width(int width) { m_size.cx = width; }
+      void set_width(::i32 width) { m_size.cx = width; }
 
       /// Return the height of the pwidget
-      int height() const { return m_size.cy; }
+      ::i32 height() const { return m_size.cy; }
       /// Set the height of the pwidget
-      void set_height(int height) { m_size.cy = height; }
+      void set_height(::i32 height) { m_size.cy = height; }
 
-      ::pointer < TextBox > create_in_place_edit(const ::float_rectangle& rectangle, const ::scoped_string & scopedstr);
+      void operator()(::timer * ptimer) override;
+
+      ::pointer < TextBox > create_in_place_edit(const ::f32_rectangle& rectangle, const ::scoped_string & scopedstr);
 
       // returns true if something changed that needs redrawing
       virtual bool end_in_place_edit();
@@ -236,15 +241,19 @@ namespace nanoui
       virtual void set_mouse_down(bool bMouseDown);
 
 
-      ::int_rectangle interaction_rectangle() const;
+      virtual bool is_left_button_pressed() const;
+      virtual bool is_right_button_pressed() const;
 
-      virtual void set_need_redraw(const ::int_rectangle& rectangle = {}, function < void() > function = nullptr);
+
+      ::i32_rectangle interaction_rectangle() const;
+
+      virtual void set_need_redraw(const ::i32_rectangle& rectangle = {}, function < void() > function = nullptr);
 
       virtual void post_redraw();
 
-      virtual void fixed_placement(const ::int_rectangle& rectangle);
+      virtual void fixed_placement(const ::i32_rectangle& rectangle);
 
-      virtual void expose_fixed_size(const ::int_rectangle& rectangle, bool bRedraw = true);
+      virtual void expose_fixed_size(const ::i32_rectangle& rectangle, bool bRedraw = true);
 
 
       /**
@@ -256,19 +265,19 @@ namespace nanoui
        * size; this is done with a call to \::pointer set_size or a call to \::pointer perform_layout()
        * in the parent pwidget.
        */
-      virtual void set_fixed_size(const int_size& fixed_size) { m_fixed_size = fixed_size; }
+      virtual void set_fixed_size(const i32_size& fixed_size) { m_fixed_size = fixed_size; }
 
       /// Return the fixed size (see \::pointer set_fixed_size())
-      const int_size& fixed_size() const { return m_fixed_size; }
+      const i32_size& fixed_size() const { return m_fixed_size; }
 
       // Return the fixed width (see \::pointer set_fixed_size())
-      int fixed_width() const { return m_fixed_size.cx; }
+      ::i32 fixed_width() const { return m_fixed_size.cx; }
       // Return the fixed height (see \::pointer set_fixed_size())
-      int fixed_height() const { return m_fixed_size.cy; }
+      ::i32 fixed_height() const { return m_fixed_size.cy; }
       /// Set the fixed width (see \::pointer set_fixed_size())
-      void set_fixed_width(int width) { m_fixed_size.cx = width; }
+      void set_fixed_width(::i32 width) { m_fixed_size.cx = width; }
       /// Set the fixed height (see \::pointer set_fixed_size())
-      void set_fixed_height(int height) { m_fixed_size.cy = height; }
+      void set_fixed_height(::i32 height) { m_fixed_size.cy = height; }
 
       /// Return whether or not the pwidget is currently visible (assuming all parents are visible)
       virtual bool visible() const;
@@ -276,6 +285,9 @@ namespace nanoui
       /// Set whether or not the pwidget is currently visible (assuming all parents are visible)
       virtual void set_visible(bool bVisible);
       virtual void toggle_visible();
+
+
+      virtual void on_show_widget(bool bShow);
 
       /// Check if this pwidget is currently visible, taking parent widgets into account
       bool visible_recursive() const {
@@ -289,7 +301,7 @@ namespace nanoui
       }
       //
       //   /// Return the number of pwidgetChild widgets
-      int child_count() const { return (int)m_children.size(); }
+      ::i32 child_count() const { return (::i32)m_children.size(); }
 
       //::collection::count get_child_as_item_count() override;
       
@@ -334,7 +346,7 @@ namespace nanoui
       Widget* child_at(::collection::index iIndex) { return m_children[(size_t)iIndex]; }
 
       /// Returns the iIndex of a specific pwidgetChild or -1 if not found
-      int child_index(Widget* pwidget) const;
+      ::i32 child_index(Widget* pwidget) const;
 
       /// Variadic shorthand notation to construct and add a pwidgetChild pwidget
       template<typename WidgetClass, typename... Args>
@@ -371,9 +383,9 @@ namespace nanoui
       void set_tooltip(const ::scoped_string& tooltip) { m_tooltip = tooltip; }
       //
       //   /// Return current font size. If not set the default of the current theme will be returned
-      float font_size() const;
+      ::f32 font_size() const;
       /// Set the font size of this pwidget
-      void set_font_size(float font_size);
+      void set_font_size(::f32 font_size);
       /// Return whether the font size is explicitly specified for this pwidget
       bool has_font_size() const { return m_font_size >= 1.f; }
 
@@ -381,13 +393,13 @@ namespace nanoui
        * The amount of extra scaling applied to *icon* fonts.
        * See \::pointer nanoui::Widget::m_icon_extra_scale.
        */
-      float icon_extra_scale() const { return m_icon_extra_scale; }
+      ::f32 icon_extra_scale() const { return m_icon_extra_scale; }
 
       /**
        * Sets the amount of extra scaling applied to *icon* fonts.
        * See \::pointer nanoui::Widget::m_icon_extra_scale.
        */
-      void set_icon_extra_scale(float scale) { m_icon_extra_scale = scale; }
+      void set_icon_extra_scale(::f32 scale) { m_icon_extra_scale = scale; }
 
       /// Return a pointer to the cursor of the pwidget
       Cursor cursor() const { return m_cursor; }
@@ -395,46 +407,46 @@ namespace nanoui
       void set_cursor(Cursor cursor) { m_cursor = cursor; }
 
       /// Check if the pwidget contains a certain position
-      bool contains(const int_point& p) const;
+      bool contains(const i32_point & point) const;
 
       /// Determine the pwidget located at the given position value (recursive)
-      Widget* find_widget(const int_point& p);
-      const Widget* find_widget(const int_point& p) const;
+      Widget* find_widget(const i32_point & point);
+      const Widget* find_widget(const i32_point & point) const;
 
       /// Handle a mouse button happening (default implementation: propagate to children)
-      virtual bool mouse_button_event(const int_point& p, ::user::e_mouse emouse, bool down, bool bDoubleClick, const ::user::e_key& ekeyModifiers);
+      virtual bool mouse_button_event(const i32_point & point, ::user::e_key euserkeyMouseButton, bool bDown, bool bDoubleClick);
 
       /// Handle a mouse motion happening (default implementation: propagate to children)
-      virtual bool mouse_motion_event(const int_point& p, const int_size& rel, bool bDown, const ::user::e_key& ekeyModifiers);
+      virtual bool mouse_motion_event(const i32_point & point);
 
       /// Handle a mouse drag happening (default implementation: do nothing)
-      // virtual bool mouse_drag_event(const int_point& p, const int_size& rel, const ::user::e_key& ekeyModifiers);
+      // virtual bool mouse_drag_event(const i32_point & point, const i32_size& rel, const ::user::keyboard_state & keyboardstate);
 
       /// Handle a mouse enter/leave happening (default implementation: record this fact, but do nothing)
-      virtual bool mouse_enter_event(const int_point& p, bool enter, const ::user::e_key& ekeyModifiers);
+      virtual bool mouse_enter_event(const i32_point & point, bool bEnter);
 
       virtual void set_mouse_capture();
 
       virtual void release_mouse_capture();
 
       /// Handle a mouse scroll happening (default implementation: propagate to children)
-      virtual bool scroll_event(const int_point& p, const float_size& rel);
+      virtual bool scroll_event(const i32_point & point, const ::f32_size& rel);
 
       /// Handle a focus change happening (default implementation: record the focus status, but do nothing)
       virtual bool focus_event(bool focused);
 
       /// Handle a keyboard happening (default implementation: do nothing)
-      virtual bool keyboard_event(::user::enum_key ekey, int scancode, int action, const ::user::e_key& ekeyModifiers, const ::scoped_string & scopedstrText);
+      virtual bool keyboard_event(const ::user::e_key & ekey, ::i32 scancode, ::i32 action, const ::scoped_string & scopedstrText);
 
       /// Handle text input (UTF-32 format) (default implementation: do nothing)
-      virtual bool keyboard_character_event(unsigned int codepoint);
+      virtual bool keyboard_character_event(::u32 codepoint);
 
       virtual bool need_to_draw(::nano2d::context * pcontext);
 
       virtual void on_begin_draw(::nano2d::context * pcontext);
 
       /// Compute the preferred size of the pwidget
-      virtual int_size preferred_size(::nano2d::context * pcontext, bool bRecalcTextSize = true);
+      virtual i32_size preferred_size(::nano2d::context * pcontext, bool bRecalcTextSize = true);
 
 
       virtual void set_need_layout();
@@ -465,7 +477,7 @@ namespace nanoui
        *     \::pointer nanoui::Widget::m_icon_extra_scale.  This tiered scaling
        *     strategy may not be appropriate with fonts other than ``entypo.ttf``.
        */
-      float icon_scale() const { return m_ptheme->m_fIconScale * m_icon_extra_scale; }
+      ::f32 icon_scale() const { return m_ptheme->m_fIconScale * m_icon_extra_scale; }
 
 
    };

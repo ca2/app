@@ -168,7 +168,7 @@ auto      pwindow = ::windowing::windowing::get_new_window();
    }
 
 
-::particle * windowing::defer_initialize_host_window(const ::int_rectangle* lpcrect)
+::particle * windowing::defer_initialize_host_window(const ::i32_rectangle* lpcrect)
    {
 
 //      if (::is_set(m_phostinteraction))
@@ -413,7 +413,7 @@ auto      pwindow = ::windowing::windowing::get_new_window();
 
       //}
 
-      //int iCursor = 0;
+      //::i32 iCursor = 0;
 
       //if (ecursor == e_cursor_size_top_left)
       //{

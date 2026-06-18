@@ -10,7 +10,7 @@
 
 bool uiwindow_is_visible(UIWindow * window);
 bool uiwindow_is_iconic(UIWindow * window);
-bool uiwindow_show_window(UIWindow * window, int iShow);
+bool uiwindow_show_window(UIWindow * window, ::i32 iShow);
 
 bool oswindow_data::is_window_visible()
 {
@@ -28,7 +28,7 @@ bool oswindow_data::is_iconic()
 }
 
 
-bool oswindow_data::show_window(enum_display edisplay)
+bool oswindow_data::show_window(const ::e_display & edisplay)
 {
    
    return uiwindow_show_window(window(), edisplay);
@@ -36,10 +36,10 @@ bool oswindow_data::show_window(enum_display edisplay)
 }
 
 
-bool oswindow_data::client_to_screen(::int_point *lppoint)
+bool oswindow_data::client_to_screen(::i32_point *lppoint)
 {
 
-   ::int_rectangle int_rectangle;
+   ::i32_rectangle i32_rectangle;
    
    get_uiwindow_rect(this, &rectangle);
    
@@ -52,10 +52,10 @@ bool oswindow_data::client_to_screen(::int_point *lppoint)
 }
 
 
-bool oswindow_data::screen_to_client(::int_point *lppoint)
+bool oswindow_data::screen_to_client(::i32_point *lppoint)
 {
    
-   ::int_rectangle int_rectangle;
+   ::i32_rectangle i32_rectangle;
    
    get_uiwindow_rect(this, &rectangle);
    
@@ -69,12 +69,12 @@ bool oswindow_data::screen_to_client(::int_point *lppoint)
 
 
 
-int_bool SetWindowPos(oswindow hwnd, oswindow hwndInsertAfter, int x, int y, int cx, int cy, unsigned int uFlags)
+i32_bool SetWindowPos(oswindow hwnd, oswindow hwndInsertAfter, ::i32 x, ::i32 y, ::i32 cx, ::i32 cy, ::u32 uFlags)
 {
    
    return true;
    
-//   //   int   value_mask = 0;
+//   //   ::i32   value_mask = 0;
 //   bool  bMove = !(uFlags & SWP_NOMOVE);
 //   bool  bSize = !(uFlags & SWP_NOSIZE);
 //

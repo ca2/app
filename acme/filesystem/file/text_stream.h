@@ -9,9 +9,9 @@
 
 
 inline ::string ellipsis(const_char_pointer psz, character_count len);
-inline unsigned long long consume_natural(const_char_pointer &psz, const_char_pointer pszBegin, int iRadix = 10);
-inline long long consume_integer(const_char_pointer &psz, const_char_pointer pszBegin, int iRadix = 10);
-inline double consume_floating(const_char_pointer &psz, const_char_pointer pszBegin, int iRadix = 10);
+inline ::u64 consume_natural(const_char_pointer &psz, const_char_pointer pszBegin, ::i32 iRadix = 10);
+inline ::i64 consume_integer(const_char_pointer &psz, const_char_pointer pszBegin, ::i32 iRadix = 10);
+inline ::f64 consume_floating(const_char_pointer &psz, const_char_pointer pszBegin, ::i32 iRadix = 10);
 
 
 #include "write_text_stream.h"
@@ -134,7 +134,7 @@ public:
 
 
 //// template < typename FILE >
-//text_stream < FILE>& text_stream < FILE >::operator >>(char& ch)
+//text_stream < FILE>& text_stream < FILE >::operator >>(::i8& ch)
 //{
 //
 //   m_gcount = m_pfile->read(&ch, 1);
@@ -183,10 +183,10 @@ public:
 //
 //
 //// template < typename FILE >
-//text_stream < FILE >& text_stream < FILE >::operator <<(char ch)
+//text_stream < FILE >& text_stream < FILE >::operator <<(::i8 ch)
 //{
 //
-//   m_pfile->write(&ch, sizeof(ch)); // treat as char - character
+//   m_pfile->write(&ch, sizeof(ch)); // treat as ::i8 - character
 //
 //   return *this;
 //
@@ -197,7 +197,7 @@ public:
 //text_stream < FILE >& text_stream < FILE >::operator <<(uchar uch)
 //{
 //
-//   operator <<((unsigned int)uch);
+//   operator <<((::u32)uch);
 //
 //   return *this;
 //
@@ -205,10 +205,10 @@ public:
 //
 //
 //// template < typename FILE >
-//text_stream < FILE >& text_stream < FILE >::operator <<(short i)
+//text_stream < FILE >& text_stream < FILE >::operator <<(::i16 i)
 //{
 //
-//   operator <<((int)i);
+//   operator <<((::i32)i);
 //
 //   return *this;
 //
@@ -216,10 +216,10 @@ public:
 //
 //
 //// template < typename FILE >
-//text_stream < FILE >& text_stream < FILE >::operator <<(unsigned short u)
+//text_stream < FILE >& text_stream < FILE >::operator <<(::u16 u)
 //{
 //
-//   operator <<((unsigned int)u);
+//   operator <<((::u32)u);
 //
 //   return *this;
 //
@@ -274,7 +274,7 @@ public:
 
 
 //// template < typename FILE >
-//text_stream < FILE >& text_stream < FILE >::operator <<(int i)
+//text_stream < FILE >& text_stream < FILE >::operator <<(::i32 i)
 //{
 //
 //   print_number(as_string(i));
@@ -285,7 +285,7 @@ public:
 //
 //
 //// template < typename FILE >
-//text_stream < FILE >& text_stream < FILE >::operator <<(unsigned int u)
+//text_stream < FILE >& text_stream < FILE >::operator <<(::u32 u)
 //{
 //
 //   print_number(as_string(u));
@@ -296,7 +296,7 @@ public:
 //
 //
 //// template < typename FILE >
-//text_stream < FILE >& text_stream < FILE >::operator <<(long long i)
+//text_stream < FILE >& text_stream < FILE >::operator <<(::i64 i)
 //{
 //
 //   print_number(as_string(i));
@@ -307,7 +307,7 @@ public:
 //
 //
 //// template < typename FILE >
-//text_stream < FILE >& text_stream < FILE >::operator <<(unsigned long long u)
+//text_stream < FILE >& text_stream < FILE >::operator <<(::u64 u)
 //{
 //
 //   print_number(as_string(u));
@@ -318,7 +318,7 @@ public:
 //
 //
 //// template < typename FILE >
-//text_stream < FILE >& text_stream < FILE >::operator <<(float f)
+//text_stream < FILE >& text_stream < FILE >::operator <<(::f32 f)
 //{
 //
 //   string str;
@@ -333,7 +333,7 @@ public:
 //
 //
 //// template < typename FILE >
-//text_stream < FILE >& text_stream < FILE >::operator <<(double d)
+//text_stream < FILE >& text_stream < FILE >::operator <<(::f64 d)
 //{
 //
 //   string str;
@@ -347,20 +347,20 @@ public:
 //}
 
 
-//text_stream & text_stream < FILE >::operator <<(const ::int_rectangle &rectangle)
+//text_stream & text_stream < FILE >::operator <<(const ::i32_rectangle &rectangle)
 //{
 //
-//   this->m_estrflag = (e_str_flag)((int)this->m_estrflag & ~(int)str_flag_ifnumberparenthesizeandspace);
+//   this->m_estrflag = (e_str_flag)((::i32)this->m_estrflag & ~(::i32)str_flag_ifnumberparenthesizeandspace);
 //
 //   *this << prectangle->left << prectangle->top << prectangle->right << prectangle->bottom;
 //
 //}
 //
 //
-//text_stream & text_stream < FILE >::operator <<(const ::int_size * psize)
+//text_stream & text_stream < FILE >::operator <<(const ::i32_size & psize)
 //{
 //
-//   this->m_estrflag = (e_str_flag)((int)this->m_estrflag & ~(int)str_flag_ifnumberparenthesizeandspace);
+//   this->m_estrflag = (e_str_flag)((::i32)this->m_estrflag & ~(::i32)str_flag_ifnumberparenthesizeandspace);
 //
 //   *this << psize->cx << psize->cy;
 //
@@ -368,10 +368,10 @@ public:
 //
 //
 //
-//text_stream & text_stream < FILE >::operator <<(const ::int_point * ppoint)
+//text_stream & text_stream < FILE >::operator <<(const ::i32_point * ppoint)
 //{
 //
-//   this->m_estrflag = (e_str_flag)((int)this->m_estrflag & ~(int)str_flag_ifnumberparenthesizeandspace);
+//   this->m_estrflag = (e_str_flag)((::i32)this->m_estrflag & ~(::i32)str_flag_ifnumberparenthesizeandspace);
 //
 //   *this << ppoint->x << ppoint->y;
 //
@@ -416,7 +416,7 @@ public:
 //
 //   write(str.c_str(), str.size());
 //
-//   this->m_estrflag = (e_str_flag)((int)this->m_estrflag & ~(int)str_flag_ifnumberparenthesize);
+//   this->m_estrflag = (e_str_flag)((::i32)this->m_estrflag & ~(::i32)str_flag_ifnumberparenthesize);
 //
 //}
 //
@@ -432,16 +432,16 @@ public:
 //}
 //
 ////
-////text_stream & text_stream < FILE >::operator >>(char & ch)
+////text_stream & text_stream < FILE >::operator >>(::i8 & ch)
 ////{
 ////
-////   return operator >>((char &)ch);
+////   return operator >>((::i8 &)ch);
 ////
 ////}
 //
 //
 //// template < typename FILE >
-//text_stream < FILE >& text_stream < FILE >::operator >>(char& ch)
+//text_stream < FILE >& text_stream < FILE >::operator >>(::i8& ch)
 //{
 //
 //   m_gcount = m_pfile->read(&ch, sizeof(ch));
@@ -486,7 +486,7 @@ public:
 //
 //
 //// template < typename FILE >
-//text_stream < FILE >& text_stream < FILE >::operator >>(short& sh)
+//text_stream < FILE >& text_stream < FILE >::operator >>(::i16& sh)
 //{
 //
 //   m_pfile->read(&sh, sizeof(sh));
@@ -497,7 +497,7 @@ public:
 //
 //
 //// template < typename FILE >
-//text_stream < FILE >& text_stream < FILE >::operator >>(unsigned short& u)
+//text_stream < FILE >& text_stream < FILE >::operator >>(::u16& u)
 //{
 //
 //   m_pfile->read(&u, sizeof(u));
@@ -508,7 +508,7 @@ public:
 //
 //
 //// template < typename FILE >
-//text_stream < FILE >& text_stream < FILE >::operator >>(int& i)
+//text_stream < FILE >& text_stream < FILE >::operator >>(::i32& i)
 //{
 //
 //   number_read(i);
@@ -519,7 +519,7 @@ public:
 //
 //
 //// template < typename FILE >
-//text_stream < FILE >& text_stream < FILE >::operator >>(unsigned int& u)
+//text_stream < FILE >& text_stream < FILE >::operator >>(::u32& u)
 //{
 //
 //   number_read(u);
@@ -530,7 +530,7 @@ public:
 //
 //
 //// template < typename FILE >
-//text_stream < FILE >& text_stream < FILE >::operator >>(long long& i)
+//text_stream < FILE >& text_stream < FILE >::operator >>(::i64& i)
 //{
 //
 //   number_read(i);
@@ -541,7 +541,7 @@ public:
 //
 //
 //// template < typename FILE >
-//text_stream < FILE >& text_stream < FILE >::operator >>(unsigned long long& u)
+//text_stream < FILE >& text_stream < FILE >::operator >>(::u64& u)
 //{
 //
 //   number_read(u);
@@ -552,7 +552,7 @@ public:
 //
 //
 //// template < typename FILE >
-//text_stream < FILE >& text_stream < FILE >::operator >>(float& f)
+//text_stream < FILE >& text_stream < FILE >::operator >>(::f32& f)
 //{
 //
 //   number_read(f);
@@ -563,7 +563,7 @@ public:
 //
 //
 //// template < typename FILE >
-//text_stream < FILE >& text_stream < FILE >::operator >>(double& d)
+//text_stream < FILE >& text_stream < FILE >::operator >>(::f64& d)
 //{
 //
 //   number_read(d);
@@ -572,7 +572,7 @@ public:
 //
 //}
 //
-////text_stream & text_stream < FILE >::operator >>(::int_rectangle * prectangle)
+////text_stream & text_stream < FILE >::operator >>(::i32_rectangle * prectangle)
 ////
 ////{
 ////   m_pfile->read(&prectangle->left, sizeof(prectangle->left));
@@ -585,13 +585,13 @@ public:
 ////   
 ////}
 ////
-////text_stream & text_stream < FILE >::operator >>(::int_size * psize)
+////text_stream & text_stream < FILE >::operator >>(::i32_size * psize)
 ////{
 ////   m_pfile->read(&psize->cx, sizeof(psize->cx));
 ////   m_pfile->read(&psize->cy, sizeof(psize->cy));
 ////}
 ////
-////text_stream & text_stream < FILE >::operator >>(::int_point * ppoint)
+////text_stream & text_stream < FILE >::operator >>(::i32_point * ppoint)
 ////{
 ////   m_pfile->read(&ppoint->x, sizeof(ppoint->x));
 ////   m_pfile->read(&ppoint->y, sizeof(ppoint->y));
@@ -604,7 +604,7 @@ public:
 //
 //   str.empty();
 //
-//   char ch = 0;
+//   ::i8 ch = 0;
 //
 //   while (true)
 //   {

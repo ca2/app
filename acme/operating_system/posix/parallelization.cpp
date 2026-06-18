@@ -11,7 +11,7 @@
 namespace ansios
 {
 
-   unsigned long timeCounter()
+   ulong timeCounter()
    {
       timeval tv;
       gettimeofday(&tv, 0);
@@ -30,7 +30,7 @@ namespace ansios
 
 
 
-// void __end_thread_impl(platform::application*, unsigned int, bool)
+// void __end_thread_impl(platform::application*, ::u32, bool)
 
 // {
 

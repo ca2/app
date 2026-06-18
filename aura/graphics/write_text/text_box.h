@@ -24,8 +24,8 @@ namespace write_text
 
       ::image::image_pointer               m_pimage;
       ::write_text::font_pointer    m_pfont;
-      ::int_rectangle               m_rectangle;
-      int_size                      m_size;
+      ::i32_rectangle               m_rectangle;
+      i32_size                      m_size;
       bool                          m_bDarkMode;
 
 
@@ -39,7 +39,7 @@ namespace write_text
       void set_text_box_init(bool bSet = true);
       void set_text_box_ok(bool bSet = true);
 
-      void update(font_list * pdata, int iBox, const ::scoped_string & scopedstrText);
+      void update(font_list * pdata, ::i32 iBox, const ::scoped_string & scopedstrText);
 
 
    };

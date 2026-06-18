@@ -86,11 +86,11 @@ namespace html
       {
       public:
 
-         float_array       m_cxa;
-         float_array       m_cxMax;
-         float_array       m_cya;
+         f32_array       m_cxa;
+         f32_array       m_cxMax;
+         f32_array       m_cya;
          bool                          m_bHasChar;
-         float                         m_cy;
+         ::f32                         m_cy;
 
 
          void reset();
@@ -102,11 +102,11 @@ namespace html
       class CLASS_DECL_AXIS layout_state2
       {
       public:
-         int      m_iBody;
-         float    m_y;
-         float    m_cy;
-         float    m_x;
-         float    m_cx;
+         ::i32      m_iBody;
+         ::f32    m_y;
+         ::f32    m_cy;
+         ::f32    m_x;
+         ::f32    m_cx;
          //         bool     m_bLastBlockX;
          //         bool     m_bLastCellX;
          bool     m_bLastBlock;
@@ -127,15 +127,15 @@ namespace html
       class CLASS_DECL_AXIS layout_state3
       {
       public:
-         int           m_iBody;
-         float_array       m_yParent;
-         float             m_y;
-         //         float_array       m_cyStack;
-         float_array       m_xParent;
-         float_array       m_cya;
-         //       int                           m_iy;
-         float             m_x;
-         float             m_cx;
+         ::i32           m_iBody;
+         f32_array       m_yParent;
+         ::f32             m_y;
+         //         f32_array       m_cyStack;
+         f32_array       m_xParent;
+         f32_array       m_cya;
+         //       ::i32                           m_iy;
+         ::f32             m_x;
+         ::f32             m_cx;
          //         bool     m_bLastBlockX;
          //         bool     m_bLastCellX;
          bool              m_bLastBlock;
@@ -155,7 +155,7 @@ namespace html
       ::user::form_callback* m_pcallback;
       ::user::interaction* m_puserinteraction;
       ::pointer<::draw2d::graphics>m_pgraphics;
-      ::float_rectangle                              m_box;
+      ::f32_rectangle                              m_box;
       string                                 m_strTitle;
       layout_state1                          m_layoutstate1;
       layout_state2                          m_layoutstate2;
@@ -209,8 +209,8 @@ namespace html
 
 
       virtual string process_url(const ::scoped_string & scopedstrUrl);
-      //virtual long long increment_reference_count() override;
-      //virtual long long decrement_reference_count() override;
+      //virtual ::i64 increment_reference_count() override;
+      //virtual ::i64 decrement_reference_count() override;
 
 
       bool open_document(const ::payload & payloadFile) override;
@@ -263,7 +263,7 @@ namespace html
 
 
 
-      int create_font(::html::element* pelemental);
+      ::i32 create_font(::html::element* pelemental);
 
       void handle(::topic * ptopic, ::handler_context * phandlercontext) override;
 

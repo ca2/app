@@ -55,15 +55,15 @@ namespace sockets
       
       IEventOwner *     m_from;
       EventTime         m_time;
-      static int        m_unique_id;
-      int               m_iId;
+      static ::i32        m_unique_id;
+      ::i32               m_iId;
       
 
       Event(IEventOwner *,long sec,long usec);
       ~Event();
 
 
-      int GetID();
+      ::i32 GetID();
       const EventTime & get_time() const;
       IEventOwner * GetFrom();
 

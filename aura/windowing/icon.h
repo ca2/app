@@ -20,7 +20,7 @@ namespace windowing
 
       string                                    m_strTrayIconName;
 
-      array < ::int_size >                      m_sizea;
+      array < ::i32_size >                      m_sizea;
 
 
       icon();
@@ -33,10 +33,10 @@ namespace windowing
       virtual void set_tray_icon_name(const ::scoped_string & scopedstrTrayIconName);
 
 
-      virtual void get_sizes(::int_size_array & a);
+      virtual void get_sizes(::i32_size_array & a);
 
 
-      virtual void * get_os_data(const ::int_size & size) const;
+      virtual void * get_os_data(const ::i32_size & size) const;
 
 
       virtual void load_matter(const ::scoped_string & scopedstrPath);
@@ -44,10 +44,10 @@ namespace windowing
       virtual void load_file(const ::scoped_string & scopedstrPath);
 
 
-      virtual ::image::image_pointer get_image(const ::int_size & size);
+      virtual ::image::image_pointer get_image(const ::i32_size & size);
 
 
-      virtual ::pointer < ::innate_ui::icon > innate_ui_icon(const ::int_size & size);
+      virtual ::pointer < ::innate_ui::icon > innate_ui_icon(const ::i32_size & size);
       
    };
 

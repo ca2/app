@@ -45,7 +45,7 @@ namespace apex
       //       ::pointer<::operating_system::department>       m_poperatingsystem;
       //
       //       ::pointer<::parallelization::threading>         m_pthreading;
-      //       size_t                                             m_nSafetyPoolSize; // ideal int_size
+      //       size_t                                             m_nSafetyPoolSize; // ideal i32_size
       //
       //
       //       ::pointer < ::input::input >                       m_pinput;
@@ -53,7 +53,7 @@ namespace apex
       //       string_array_base                                       m_straCommandLineAccumul;
       //       string_array_base                                       m_straCommandLineExtra;
       //       class ::time                                         m_timeCommandLineLast;
-      //       int                                                m_iCommandLineDelay;
+      //       ::i32                                                m_iCommandLineDelay;
       //
       //       bool                                               m_bSystemSynchronizedCursor;
       //       bool                                               m_bSystemSynchronizedScreen;
@@ -79,10 +79,10 @@ namespace apex
 #ifdef _DEBUG
 
 
-      long long increment_reference_count() override;
+      ::i64 increment_reference_count() override;
 
 
-      long long decrement_reference_count() override;
+      ::i64 decrement_reference_count() override;
 
 
 #endif
@@ -95,6 +95,12 @@ namespace apex
 
 
       void system_construct(::platform::application* papplication) override;
+
+
+      using ::task::branch;
+
+
+      void branch(enum_parallelization eparallelization = e_parallelization_asynchronous, const create_task_attributes_t& createtaskattributes = {}) override;
 
 
       void init_task() override;
@@ -120,6 +126,7 @@ namespace apex
 
       void do_operating_ambient_factory() override;
 
+      ::string get_subsystem_library_component_name() override;
 
       //virtual void __task_init() override;
 
@@ -163,7 +170,7 @@ namespace apex
       string get_application_server_name() override;
 
 
-      bool task_get_run() const override;
+      bool should_run() const override;
 
 
       [[nodiscard]] class ::handler::signal* signal(const ::atom& atom) override;
@@ -280,7 +287,7 @@ namespace apex
       virtual bool on_get_task_name(string& strTaskName) override;
 
 
-      unsigned int os_post_to_all_threads(::user::enum_message eusermessage, ::wparam wparam = {}, ::lparam lparam = {}) override;
+      ::u32 os_post_to_all_threads(::user::enum_message eusermessage, ::wparam wparam = {}, ::lparam lparam = {}) override;
 
 
       //virtual void init_task() override;
@@ -305,20 +312,20 @@ namespace apex
       virtual void process_term() override;
 
 
-      virtual int _001OnDebugReport(int i1, const ::scoped_string& scopedstr1, int i2,
+      virtual ::i32 _001OnDebugReport(::i32 i1, const ::scoped_string& scopedstr1, ::i32 i2,
                                     const ::scoped_string& scopedstr2, const ::scoped_string& scopedstr3,
                                     va_list args) override;
 
 
-      virtual int _debug_logging_report(int iReportType, const ::scoped_string& scopedstrFilename, int iLinenumber,
+      virtual ::i32 _debug_logging_report(::i32 iReportType, const ::scoped_string& scopedstrFilename, ::i32 iLinenumber,
                                         const ::scoped_string& scopedstrModuleName, const_char_pointer pszFormat,
                                         va_list list_base) override;
 
 
-      virtual bool assert_failed_line(const ::scoped_string& scopedstrFileName, int iLine) override;
+      virtual bool assert_failed_line(const ::scoped_string& scopedstrFileName, ::i32 iLine) override;
 
 
-      virtual bool on_assert_failed_line(const ::scoped_string& scopedstrFileName, int iLine) override;
+      virtual bool on_assert_failed_line(const ::scoped_string& scopedstrFileName, ::i32 iLine) override;
 
 
       virtual void initialize_log(const ::scoped_string& scopedstrId) override;
@@ -346,7 +353,7 @@ namespace apex
       virtual ::collection::count get_application_count() override;
 
 
-      void install_progress_add_up(int iAddUp = 1) override;
+      void install_progress_add_up(::i32 iAddUp = 1) override;
 
 
       virtual void on_start_find_applications_from_cache() override;
@@ -437,7 +444,7 @@ namespace apex
       //
       //#ifdef UNIVERSAL_WINDOWS
       //
-      //      virtual bool window_rectangle(::int_rectangle* prectangle);
+      //      virtual bool window_rectangle(::i32_rectangle* prectangle);
       //
       //
       //#endif
@@ -468,7 +475,7 @@ namespace apex
       void dump_command_line_and_environment_variables_to_file() override;
 
 
-      //void system_id_topic(int iId, long long llWparam, long long llLparam) override;
+      //void system_id_topic(::i32 iId, ::i64 llWparam, ::i64 llLparam) override;
 
       //void add_handler(::particle * pmatter, bool bPriority = false) override;
 
@@ -490,10 +497,10 @@ namespace apex
       using ::platform::system::application_main;
 
 
-      virtual void application_main(int argc, char* argv[], const ::scoped_string& scopedstrCommandLine) override;
+      virtual void application_main(::i32 argc, char_pointer argv[], const ::scoped_string& scopedstrCommandLine) override;
 
 
-      virtual int console_end(::e_status estatus) override;
+      virtual ::i32 console_end(::e_status estatus) override;
 
 
       //virtual void get_public_internet_domain_extension_list(string_array_base& stra) override;
@@ -504,8 +511,10 @@ namespace apex
 
       void on_application_dark_mode_change() override;
 
-      virtual ::pointer<::innate_ui::icon> operating_system_innate_ui_icon(const ::int_size &size);
-      virtual ::string operating_system_innate_ui_icon_url(const ::int_size &size);
+      virtual ::pointer<::innate_ui::icon> operating_system_innate_ui_icon(const ::i32_size &size);
+      virtual ::pointer<::innate_ui::icon> operating_ambient_innate_ui_icon(const ::i32_size &size);
+      ::string operating_system_icon_url(const ::i32_size &size) override;
+      ::string operating_ambient_icon_url(const ::i32_size &size) override;
       void show_operating_system_information_box(::user::activation_token *puseractivationtoken) override;
 
     
@@ -556,6 +565,6 @@ CLASS_DECL_APEX ::apex::system* create_apex_system();
 
 //#ifdef UNIVERSAL_WINDOWS
 //
-//CLASS_DECL_APEX int app_core_main(const ::scoped_string & scopedstr);
+//CLASS_DECL_APEX ::i32 app_core_main(const ::scoped_string & scopedstr);
 //
 //#endif

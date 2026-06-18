@@ -25,11 +25,14 @@
 #include "acme/prototype/string/_str.h"
 #include "acme/prototype/text/context.h"
 #include "acme/nano/nano.h"
+#include "acme/user/micro/message_box.h"
 #include "acme/user/micro/user.h"
 #include "acme/user/user/activation_token.h"
 #include "acme/nano/graphics/icon.h"
 #include "acme/windowing/windowing.h"
 #include "acme/constant/id.h"
+#include "operating_system/cpu_features.h"
+#include "user/simple/dialog_box_line.h"
 
 #ifdef WINDOWS_DESKTOP
 
@@ -71,13 +74,16 @@ namespace platform
    application::application()
    {
 
+      m_bIsService = false;
       m_bUseCloudStorageForAppData = true;
       m_gpu.m_bUseSwapChainWindow = false;
       m_gpu.m_eoutputDraw2d = ::gpu::e_output_none;
       m_gpu.m_eoutputEngine = ::gpu::e_output_none;
 
+      m_bUserApplication = true;
+
 #ifdef _DEBUG
-      int cx = 204;
+      ::i32 cx = 204;
 
 //      _001Test001(::as_string(cx));
 
@@ -87,7 +93,9 @@ namespace platform
 
       m_pfilesystemoptions = allocateø::filesystem::file_system_options();
 
-      m_bApplicationFirstRequest = true;
+      //m_bApplicationFirstRequest = true;
+
+      m_bPostedCommandLineFileOpen = false;
 
 
       _001TestSlashedPath();
@@ -260,8 +268,128 @@ namespace platform
 
    }
 
+//
+//   ::pointer<::message_box_payload> application::send_message_box(const ::scoped_string & scopedstrMessage,
+//                                               const ::scoped_string & scopedstrTitle,
+//                                               const ::user::e_message_box & emessagebox,
+//                                               const ::scoped_string & scopedstrDetails,
+//                                               ::nano::graphics::icon * picon)
+//   {
+//
+//      auto pmessageboxpayload =
+//         __initialize_new ::message_box_payload(scopedstrMessage, scopedstrTitle, emessagebox, scopedstrDetails, picon);
+//
+//      auto pmanualresetevent = create_newø<manual_reset_happening>();
+//
+//      pmessageboxpayload->m_functionOnMessageBoxResult =
+//         [this, pmessageboxpayload, pmanualresetevent](message_box_payload *pmessageboxpayloadOnResult)
+//      {
+//         if (pmessageboxpayloadOnResult != pmessageboxpayload)
+//         {
+//
+//            throw ::exception(error_wrong_state);
+//         }
+//         pmanualresetevent->set_happening();
+//      };
+//
+//      post(pmessageboxpayload);
+//
+//      pmanualresetevent->wait();
+//
+//      return pmessageboxpayload;
+//
+//      
+//
+//      /*auto predicate = [this](::message_box_payload *)
+//      {
+//         post_message_box(scopedstrMessage, scopedstrTitle, functionOnResult, emessagebox, scopedstrDetails, picon);
+//      }*/
+//
+//}
+//
+//
+//      ::pointer<::message_box_payload> application::send_message_box(const ::exception & exception,
+//         const ::scoped_string &scopedstrMessage,
+//                                                               const ::scoped_string &scopedstrTitle,
+//                                                               const ::user::e_message_box &emessagebox,
+//                                                               const ::scoped_string &scopedstrDetails,
+//                                                               ::nano::graphics::icon *picon)
+//{
+//
+//   auto pmessageboxpayload =
+//      __initialize_new ::message_box_payload(exception, scopedstrMessage, scopedstrTitle, emessagebox, scopedstrDetails, picon);
+//
+//   auto pmanualresetevent = create_newø<manual_reset_happening>();
+//
+//   pmessageboxpayload->m_functionOnMessageBoxResult =
+//      [this, pmessageboxpayload, pmanualresetevent](message_box_payload *pmessageboxpayloadOnResult)
+//   {
+//      if (pmessageboxpayloadOnResult != pmessageboxpayload)
+//      {
+//
+//         throw ::exception(error_wrong_state);
+//      }
+//      pmanualresetevent->set_happening();
+//   };
+//
+//   post(pmessageboxpayload);
+//
+//   pmanualresetevent->wait();
+//
+//   return pmessageboxpayload;
+//
+//
+//   /*auto predicate = [this](::message_box_payload *)
+//   {
+//      post_message_box(scopedstrMessage, scopedstrTitle, functionOnResult, emessagebox, scopedstrDetails, picon);
+//   }*/
+//}
+//
+//
+//   void application::post_message_box(const ::scoped_string &scopedstrMessage,
+//                                           const ::scoped_string &scopedstrTitle,
+//                                           const ::user::e_message_box &emessagebox,
+//                                           const ::function<void(::message_box_payload *)> & functionOnResult,
+//                                           const ::scoped_string &scopedstrDetails, ::nano::graphics::icon *picon)
+//   {
+//
+//   //   m_papplication->post_message_box_payload(scopedstrMessage, scopedstrTitle, emessagebox, functionOnResult,
+//   //                                            scopedstrDetails, picon);
+//      auto pmessageboxpayload =
+//         __initialize_new ::message_box_payload(scopedstrMessage, scopedstrTitle, emessagebox, scopedstrDetails, picon);
+//
+//      pmessageboxpayload->m_functionOnMessageBoxResult = functionOnResult;
+//
+//      post(pmessageboxpayload);
+//
+//
+//
+//   }
 
-   //int application::application_main()
+
+   void application::run_message_box(::message_box_payload * pmessageboxpayload)
+   {
+
+      auto pmicromessagebox = create_newø<::micro::message_box>();
+
+      //pmicromessagebox->m_pdialog = pmessageboxpayload;
+
+      system()->do_graphics_factory();
+
+      pmicromessagebox->show_modal(pmessageboxpayload);
+
+   }
+
+
+   //void application::post_message_box_payload(::message_box_payload *pmessageboxpayload) 
+   //{
+   //
+   //   ::system()->micro_user()->post_message_box_payload(pmessageboxpayload);
+   //
+   //}
+
+
+   //::i32 application::application_main()
    //{
 
    //   implement_application();
@@ -280,42 +408,42 @@ namespace platform
 
 
    //void application::start_application(::request* prequest)
-void application::start_application()
-   {
-
-
-      //bool application::start_application(::request * prequest)
-      //{
-   branch_synchronously();
-      
-//      if(prequest && prequest->m_bPreferSync)
-//      {
-//         
-//         branch_synchronously();
-//         
-//         request(prequest);
-//         
-//      }
-//      else
-//      {
-//         
-//         branch();
-//         
-//         if (::is_set(prequest))
-//         {
-//            
-//            post_request(prequest);
-//            
-//         }
-//         
-//      }
+// void application::start_application()
+//    {
 //
-//      //return true;
 //
-//      //   ;;;
-//      //}
-
-   }
+//       //bool application::start_application(::request * prequest)
+//       //{
+//    branch_synchronously();
+//
+// //      if(prequest && prequest->m_bPreferSync)
+// //      {
+// //
+// //         branch_synchronously();
+// //
+// //         request(prequest);
+// //
+// //      }
+// //      else
+// //      {
+// //
+// //         branch();
+// //
+// //         if (::is_set(prequest))
+// //         {
+// //
+// //            post_request(prequest);
+// //
+// //         }
+// //
+// //      }
+// //
+// //      //return true;
+// //
+// //      //   ;;;
+// //      //}
+//
+//    }
 
 
    ::application_menu * application::application_menu()
@@ -328,9 +456,55 @@ void application::start_application()
 
          m_papplicationmenu->m_bPopup = true;
 
+         on_update_application_menu();
+
       }
 
       return m_papplicationmenu;
+
+   }
+
+
+   void application::on_update_application_menu()
+   {
+
+      auto papplicationmenu = application_menu();
+
+      papplicationmenu->erase_all();
+
+      using namespace ::apex;
+
+      {
+
+         auto ppopupApp = papplicationmenu->defer_add_popup(application_title());
+
+         //pmenuMain->add(pmenuApp);
+
+         ppopupApp->defer_add_item("About " + application_title(), "show_about_box", "", "");
+
+         ppopupApp->add_separator();
+
+         ppopupApp->defer_add_item("Quit " + application_title(), "try_close_application", "", "");
+
+      }
+
+      //      {
+      //
+      //         auto ppopupView = papplicationmenu->popup("View");
+      //
+      //         //ppopupView->add(pmenuView);
+      //
+      //         ppopupView->item("Transparent Frame", "transparent_frame", "", "");
+      //
+      //      }
+      //
+      //      //applicationmenu().add_item(i++, _("Transparent Frame"), "transparent_frame");
+      //
+      ////      applicationmenu()->add_item(i++, "About " + m_strAppName, "show_about", "", "Show About");
+      ////
+      ////      applicationmenu()->add_item(i++, "Transparent Frame", "transparent_frame", "Ctrl+Shift+T", "Toggle Transparent Frame");
+
+      application_menu_update();
 
    }
 
@@ -418,7 +592,7 @@ void application::start_application()
    }
 
 
-   void application::application_on_status(::e_status estatus, ::particle* pparticle, long long hi, void* p)
+   void application::application_on_status(::e_status estatus, ::particle* pparticle, ::i64 hi, void* p)
    {
 
       if (estatus == error_icloud_not_available)
@@ -452,7 +626,7 @@ void application::start_application()
    }
 
 
-   void application::on_error_icloud_not_available(::particle* pparticle, long long hi, void* p)
+   void application::on_error_icloud_not_available(::particle* pparticle, ::i64 hi, void* p)
    {
 
       ::function < void(const ::atom& atom) > function;
@@ -467,7 +641,15 @@ void application::start_application()
    }
 
 
-   int application::application_main()
+   //void application::on_application_system_start()
+   //{
+
+
+
+   //}
+
+
+   ::i32 application::application_main()
    {
 
       __check_refdbg
@@ -837,6 +1019,299 @@ void application::start_application()
    }
 
 
+   ::request *application::application_start_file_open_request()
+   {
+
+      if (m_bApplicationStartFileOpenRequest)
+      {
+
+         return m_prequestApplicationStartFileOpen;
+      }
+
+      m_bApplicationStartFileOpenRequest = true;
+
+      auto psystem = system();
+
+      auto papplication = psystem;
+
+      auto strCommandLineSystemNative = psystem->m_strCommandLineSystemNative;
+
+      strCommandLineSystemNative.trim();
+
+      ::payload payloadFile;
+
+      ::string strAppId = m_strAppId;
+
+      ::string strApp;
+
+      ::property_set setRequest;
+
+      if (strCommandLineSystemNative.has_character())
+      {
+
+         information() << "system::defer_post_initial_request command line: \"" << strCommandLineSystemNative << "\"";
+
+         setRequest._008ParseCommandFork(strCommandLineSystemNative, payloadFile, strApp);
+      }
+      else if (psystem->m_argc > 0 && psystem->m_args)
+      {
+
+         strApp = psystem->m_args[0];
+
+         ::string_array_base straFiles;
+
+         for (::i32 iArgument = 1; iArgument < psystem->m_argc;)
+         {
+
+            auto iArgumentBefore = iArgument;
+
+            if (node()->defer_consume_main_arguments(psystem->m_argc, psystem->m_args, iArgument) &&
+                iArgument > iArgumentBefore)
+            {
+
+               continue;
+            }
+
+            if (papplication->defer_consume_main_arguments(psystem->m_argc, psystem->m_args, iArgument) &&
+                iArgument > iArgumentBefore)
+            {
+
+               continue;
+            }
+
+            ::string strArgument = psystem->m_args[iArgument];
+
+            if (strArgument.begins("-"))
+            {
+
+               setRequest._008AddArgument(strArgument);
+            }
+            else
+            {
+
+               straFiles.add(strArgument);
+            }
+
+            iArgument++;
+         }
+
+         if (straFiles.has_elements())
+         {
+
+            if (straFiles.size() == 1)
+            {
+
+               payloadFile = straFiles[0];
+            }
+            else
+            {
+
+               payloadFile.string_array_reference() = straFiles;
+            }
+         }
+      }
+
+      if (!payloadFile.is_empty())
+      {
+
+         auto prequest = create_newø<::request>();
+
+         prequest->m_ecommand = e_command_file_open;
+
+         prequest->m_strAppId = strAppId;
+
+         prequest->property_set().merge(setRequest);
+
+         prequest->m_payloadFile = payloadFile;
+
+         payload("command_line_arg0") = strApp;
+
+         ///papplication->property_set().merge(prequest->property_set());
+
+         prequest->m_bPreferSync = true;
+         
+         m_bPostedApplicationDefaultStartOrFileOpenRequest = true;
+
+         // call_request(prequest);
+
+         m_prequestApplicationStartFileOpen = prequest;
+
+      }
+
+      return m_prequestApplicationStartFileOpen;
+
+   }
+
+
+   void application::process_command_line_options()
+   {
+
+      if (!m_bPostedCommandLineFileOpen)
+      {
+
+         m_bPostedCommandLineFileOpen = true;
+
+         auto prequest = application_start_file_open_request();
+
+         if (prequest)
+         {
+
+            if (!prequest->m_payloadFile.is_empty())
+            {
+
+               prequest->m_ecommand = e_command_file_open;
+
+               property_set().merge(prequest->property_set());
+
+               post_request(prequest);
+
+            }
+
+         }
+         else
+         {
+
+            auto prequestDefaultStart = create_newø<::request>();
+
+            prequestDefaultStart->m_ecommand = e_command_default_start;
+
+            post_request(prequestDefaultStart);
+
+         }
+
+      }
+
+   }
+
+
+
+   //   void application::process_command_line_options_2025()
+   //{
+
+   //   if (!m_bPostedCommandLineFileOpen)
+   //   {
+
+   //      m_bPostedCommandLineFileOpen = true;
+
+   //      auto prequest = application_start_file_open_request();
+
+   //      // auto prequest = m_prequestApplicationStartFileOpen;
+
+   //      // auto prequest = create_newø<::request>();
+
+   //      // auto strCommandLine = this->command_line();
+
+   //      // strCommandLine.trim();
+
+   //      // prequest->m_strAppId = application()->m_strAppId;
+
+   //      //::string strApp;
+
+   //      // if (strCommandLine.has_character())
+   //      //{
+
+   //      //   information() << "system::defer_post_initial_request ***strCommandLine*** : ***" << strCommandLine <<
+   //      //   "***";
+
+   //      //   prequest->m_strCommandLine = strCommandLine;
+
+   //      //   prequest->property_set()._008ParseCommandFork(
+   //      //      strCommandLine,
+   //      //      prequest->m_payloadFile,
+   //      //      strApp);
+
+   //      //}
+   //      // else
+   //      //{
+
+   //      //   strApp = this->m_args[0];
+
+   //      //   ::string_array straFiles;
+
+   //      //   for (::i32 iArgument = 1; iArgument < this->m_argc;)
+   //      //   {
+
+   //      //      auto iArgumentBefore = iArgument;
+
+   //      //      if (node()->defer_consume_main_arguments(
+   //      //         this->m_argc,
+   //      //         this->m_args,
+   //      //         iArgument)
+   //      //         && iArgument > iArgumentBefore)
+   //      //      {
+
+   //      //         continue;
+
+   //      //      }
+
+   //      //      if (application()->defer_consume_main_arguments(
+   //      //         this->m_argc,
+   //      //         this->m_args,
+   //      //         iArgument)
+   //      //         && iArgument > iArgumentBefore)
+   //      //      {
+
+   //      //         continue;
+
+   //      //      }
+
+   //      //      ::string strArgument = this->m_args[iArgument];
+
+   //      //      if (strArgument.begins("-"))
+   //      //      {
+
+   //      //         prequest->property_set()._008AddArgument(strArgument);
+
+   //      //      }
+   //      //      else
+   //      //      {
+
+   //      //         straFiles.add(strArgument);
+
+   //      //      }
+
+   //      //      iArgument++;
+
+   //      //   }
+
+   //      //   if (straFiles.has_elements())
+   //      //   {
+
+   //      //      if (straFiles.size() == 1)
+   //      //      {
+
+   //      //         prequest->m_payloadFile = straFiles[0];
+
+   //      //      }
+   //      //      else
+   //      //      {
+
+   //      //         prequest->m_payloadFile.string_array_reference() = straFiles;
+
+   //      //      }
+
+   //      //   }
+
+   //      //}
+
+   //      if (prequest)
+   //      {
+
+   //         if (!prequest->m_payloadFile.is_empty())
+   //         {
+
+   //            prequest->m_ecommand = e_command_file_open;
+
+   //            property_set().merge(prequest->property_set());
+
+   //            post_request(prequest);
+   //         }
+   //      }
+   //   }
+   //}
+
+
+
    ::string application::application_title()
    {
 
@@ -932,7 +1407,7 @@ void application::start_application()
    //#else
    //
    //
-   //   void application::set_args(int argc, char * argv[], char * envp[])
+   //   void application::set_args(::i32 argc, char_pointer argv[], char_pointer envp[])
    //   {
    //
    //      m_argc = argc;
@@ -947,7 +1422,7 @@ void application::start_application()
    //#endif
 
 
-   //int application::__implement()
+   //::i32 application::__implement()
    //{
 
    //   return main_loop();
@@ -955,7 +1430,7 @@ void application::start_application()
    //}
 
 
-   //int application::main_loop()
+   //::i32 application::main_loop()
    //{
 
    //   //__main(this);
@@ -990,6 +1465,13 @@ void application::start_application()
    void application::init3()
    {
 
+      string strFolder = m_strAppName;
+
+      strFolder.replace_with("_", ".");
+      strFolder.replace_with("-", "::");
+      strFolder.replace_with("_", ":");
+
+      m_strRelativeFolder = strFolder;
 
    }
 
@@ -997,48 +1479,63 @@ void application::start_application()
    void application::init()
    {
 
-      if (!system()->m_bConsole)
+      //if (!system()->m_bConsole)
+      //{
+//            application_menu();
+  //    }
+
+   }
+
+
+   void application::prepare_application()
+   {
+
+      if (!is_task_set2())
       {
-         auto papplicationmenu = application_menu();
 
-         papplicationmenu->erase_all();
+         branch_synchronously();
 
-         using namespace ::apex;
+      }
 
-         {
+      bool bOk = false;
 
-            auto ppopupApp = papplicationmenu->defer_add_popup(application_title());
+      send([this, &bOk]()
+      {
+      
+         on_prepare_application();
 
-            //pmenuMain->add(pmenuApp);
+         on_after_prepare_application();
 
-            ppopupApp->defer_add_item("About " + application_title(), "show_about_box", "", "");
+         bOk = true;
 
-            ppopupApp->add_separator();
+      });
 
-            ppopupApp->defer_add_item("Quit " + application_title(), "try_close_application", "", "");
+      if (!bOk)
+      {
+         
+         throw ::exception(error_failed);
 
-         }
-
-         //      {
-         //
-         //         auto ppopupView = papplicationmenu->popup("View");
-         //
-         //         //ppopupView->add(pmenuView);
-         //
-         //         ppopupView->item("Transparent Frame", "transparent_frame", "", "");
-         //
-         //      }
-         //
-         //      //applicationmenu().add_item(i++, _("Transparent Frame"), "transparent_frame");
-         //
-         ////      applicationmenu()->add_item(i++, "About " + m_strAppName, "show_about", "", "Show About");
-         ////
-         ////      applicationmenu()->add_item(i++, "Transparent Frame", "transparent_frame", "Ctrl+Shift+T", "Toggle Transparent Frame");
-
-         application_menu_update();
       }
 
    }
+   
+   
+   void application::on_prepare_application()
+   {
+
+
+      node()->on_prepare_application(this);
+
+
+   }
+         
+   
+   void application::on_after_prepare_application()
+   {
+
+
+   }
+
 
 
    void application::application_menu_update()
@@ -1147,27 +1644,45 @@ void application::start_application()
    void application::user_confirm_close_application()
    {
 
-      auto pmessageboxpayload = __initialize_new ::message_box_payload("Are you sure you want to close application?", nullptr, ::user::e_message_box_yes_no);
+      post_message_box("Are you sure you want to close application?", nullptr, ::user::e_message_box_yes_no,
 
-      pmessageboxpayload->m_functionOnDialogResult = [this](const ::payload & payloadResult)
-         {
+                       [this](message_box_payload * pmessageboxpayload)
+                       {
+                          if (pmessageboxpayload->m_payloadResult == e_dialog_result_yes)
+                          {
 
-            if (payloadResult == e_dialog_result_yes)
-            {
+                             auto papp = get_app();
 
-               auto papp = get_app();
+                             papp->_001PostTryCloseApplication();
+                          }
+                          else if (pmessageboxpayload->m_payloadResult == e_dialog_result_cancel)
+                          {
+                          }
+                       }
 
-               papp->_001PostTryCloseApplication();
+      );
+   
+      //auto pmessageboxpayload = __initialize_new ::message_box_payload("Are you sure you want to close application?", nullptr, ::user::e_message_box_yes_no);
 
-            }
-            else if (payloadResult == e_dialog_result_cancel)
-            {
+      //pmessageboxpayload->m_functionOnDialogResult = [this](const ::payload & payloadResult)
+      //   {
 
-            }
+      //      if (payloadResult == e_dialog_result_yes)
+      //      {
 
-         };
+      //         auto papp = get_app();
 
-      post(pmessageboxpayload);
+      //         papp->_001PostTryCloseApplication();
+
+      //      }
+      //      else if (payloadResult == e_dialog_result_cancel)
+      //      {
+
+      //      }
+
+      //   };
+
+      //post(pmessageboxpayload);
 
    }
 
@@ -1283,7 +1798,7 @@ void application::start_application()
 #ifdef _DEBUG
 
 
-   long long application::increment_reference_count()
+   ::i64 application::increment_reference_count()
    {
 
       return ::platform::context::increment_reference_count();
@@ -1291,7 +1806,7 @@ void application::start_application()
    }
    
    
-   long long application::decrement_reference_count()
+   ::i64 application::decrement_reference_count()
    {
 
       return ::platform::context::decrement_reference_count();
@@ -1468,7 +1983,7 @@ void application::start_application()
 
          auto ptextcontext = psession->text_context();
 
-         for (int i = 0; i < ptextcontext->localeschema()->m_straLocale.get_count(); i++)
+         for (::i32 i = 0; i < ptextcontext->localeschema()->m_straLocale.get_count(); i++)
          {
 
             auto strLocale = ptextcontext->localeschema()->m_straLocale[i];
@@ -1604,10 +2119,10 @@ void application::start_application()
    }
 
 
-   ::enum_id application::key_command(::user::enum_key ekey, ::user::key_state* pkeystate)
+   ::enum_id application::key_command(const ::user::e_key & ekey)
    {
 
-      return node()->key_command(ekey, pkeystate);
+      return node()->key_command(ekey);
 
    }
 
@@ -1651,7 +2166,7 @@ void application::start_application()
 
    void application::init_task()
    {
-
+      
       ::task::init_task();
       //
       //information() << "apex::application::application_pre_run";
@@ -1672,7 +2187,7 @@ void application::start_application()
       //if (!is_system() && is_true("SessionSynchronizedInput"))
       //{
       //
-      //::AttachThreadInput(GetCurrentThreadId(), (unsigned int)psystem->get_itask(), true);
+      //::AttachThreadInput(GetCurrentThreadId(), (::u32)psystem->get_itask(), true);
       //
       //}
       //
@@ -2186,6 +2701,13 @@ void application::start_application()
 
    }
 
+   void application::set_finish()
+   {
+
+      ::task::set_finish();
+
+   }
+
 
 
 
@@ -2335,9 +2857,11 @@ void application::start_application()
 
       ::string_array_base stra;
 
-      stra.add(m_strAppName);
+      stra.add("#"+m_strAppName);
 
-      stra.add("Application ID: " + m_strAppId);
+      stra.add("-#" + m_strAppId);
+
+      stra.add("<br />");
 
       stra.add("Release Time: " + ::as_string(releasetimeforproject));
 
@@ -2351,17 +2875,37 @@ void application::start_application()
 
       auto lines = get_about_box_lines();
 
+      for (auto & line : lines)
+      {
+
+         auto psimpledialogboxline = create_newø < ::simple_dialog_box_line >();
+
+         psimpledialogboxline->_001Parse(line);
+
+         line = psimpledialogboxline->m_str;
+
+      }
+
       ::string strMessage;
 
       strMessage = lines.implode("\n");
 
-      auto picon = createø < ::nano::graphics::icon>();
+      auto linesOperatingSystem = get_operating_system_information_lines();
 
-      auto pfile = file()->get("matter://main/icon.png");
+      ::string strDetails = linesOperatingSystem.implode("\n");
 
-      picon->load_image_from_file(pfile);
+      strDetails.find_replace("<br />", "\n");
+      strDetails.find_replace("-#", "");
+      strDetails.find_replace("#", "");
 
-      auto paboutbox = __initialize_new_with(system()->acme_windowing()) ::message_box_payload("About\n\n" + strMessage, nullptr, ::user::e_message_box_ok, "", picon);
+      auto paboutbox = __initialize_new_with(
+         system()->acme_windowing()) ::message_box_payload("About\n\n" + strMessage, nullptr, ::user::e_message_box_ok, 
+            strDetails, {"matter://main/icon.png"});
+
+      paboutbox->m_strDetailsTitle = "Operating System Information ...";
+
+      paboutbox->m_straDetailsIconUrl.add(system()->operating_system_icon_url({48, 48}));
+      paboutbox->m_straDetailsIconUrl.add(system()->operating_ambient_icon_url({32, 32}));
 
       //psequencer->then([this, strPath](auto pconversation)
       //      {
@@ -2384,7 +2928,7 @@ void application::start_application()
 
       paboutbox->m_puseractivationtoken = puseractivationtoken;
 
-      post(paboutbox);
+      main_post(paboutbox);
 
 
 
@@ -2537,10 +3081,20 @@ void application::start_application()
    void application::on_system_main()
    {
 
-      information() << "platform::application::on_system_main";
+      debug() << "platform::application::on_system_main";
 
-      system()->acme_windowing()->windowing_application_main_loop();
+      if (system()->m_bBranchMainThread)
+      {
 
+         system()->acme_windowing()->branch();
+
+      }
+      else
+      {
+
+         system()->acme_windowing()->call_main();
+
+      }
 
    }
 
@@ -2701,6 +3255,41 @@ void application::start_application()
    }
 
 
+   ::string application::get_http_user_agent()
+   {
+
+      ::string strUserAgent;
+
+#if defined(WINDOWS)
+      strUserAgent = "Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:140.0) Gecko/20100101 Firefox/140.0";
+#elif defined(MACOS)
+      strUserAgent = "Mozilla/5.0 (Macintosh; Intel Mac OS X 15.7; rv:140.0) Gecko/20100101 Firefox/140.0.";
+#elif defined(ANDROID)
+      strUserAgent = "Mozilla/5.0 (Android 16; Mobile; rv:150.0) Gecko/150.0 Firefox/150.0";
+#else
+
+      auto strArch = ::operating_system::machine_architecture();
+
+      strUserAgent= "Mozilla/5.0 (X11; Linux "+strArch+"; rv:140.0) Gecko/20100101 Firefox/140.0";
+#endif
+
+      return strUserAgent;
+
+   }
+
+
+   void application::get_http_user_agent(::property_set & set)
+   {
+
+      ::string strUserAgent;
+
+      strUserAgent = get_http_user_agent();
+
+      set["in_headers"]["user-agent"] = strUserAgent;
+
+   }
+
+
 } // namespace platform
 
 
@@ -2720,7 +3309,7 @@ bool application_get_bool(::platform::application * papplication, const_char_poi
 }
 
 
-CLASS_DECL_ACME void application_send_status(::enum_status estatus, ::particle* pparticle, long long hi, void* p)
+CLASS_DECL_ACME void application_send_status(::enum_status estatus, ::particle* pparticle, ::i64 hi, void* p)
 {
 
    system()->application()->application_on_status(estatus, pparticle, hi, p);
@@ -2751,5 +3340,13 @@ bool platform_application_is_swap_chain(::platform::application * papplication)
    
    bool bSwapChainWindow =papplication->m_gpu.m_bUseSwapChainWindow;
    return bSwapChainWindow;
+   
+}
+
+
+char * øget_resource_name_strdup(int iResource)
+{
+   
+   return strdup(::system()->m_papplication->getResourceName(iResource));
    
 }

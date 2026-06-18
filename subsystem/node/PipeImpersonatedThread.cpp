@@ -1,0 +1,97 @@
+// Copyright (C) 2011,2012 GlavSoft LLC.
+// All rights reserved.
+//
+//-------------------------------------------------------------------------
+// This file is part of the T i g h t V N C software.  Please visit our Web site:
+//
+//                       http://www.t i g h t v n c.com/
+//
+// This program is free software; you can redistribute it and/or modify
+// it under the terms of the GNU General Public License as published by
+// the Free Software Foundation; either version 2 of the License, or
+// (at your option) any later version.
+//
+// This program is distributed in the hope that it will be useful,
+// but WITHOUT ANY WARRANTY; without even the implied warranty of
+// MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+// GNU General Public License for more details.
+//
+// You should have received a copy of the GNU General Public License along
+// with this program; if not, w_rite to the Free Software Foundation, Inc.,
+// 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA.
+//-------------------------------------------------------------------------
+//
+#include "framework.h"
+#include "PipeImpersonatedThread.h"
+
+
+namespace subsystem
+{
+
+
+   // //PipeImpersonatedThreadComposite::PipeImpersonatedThreadComposite(HANDLE pipeHandle)
+   // PipeImpersonatedThreadComposite::PipeImpersonatedThreadComposite()
+   // // : m_pipeHandle(pipeHandle),
+   // //   m_success(false)
+   // {
+   // }
+   //
+   // PipeImpersonatedThreadComposite::~PipeImpersonatedThreadComposite()
+   // {
+   //    // terminate();
+   //    // wait();
+   // }
+   //
+   //
+   // void PipeImpersonatedThreadComposite::initialize_pipe_impersonated_thread(::subsystem::FileInterface *pfilePipe)
+   // {
+   //
+   //    m_pparticleThis->initialize_pipe_impersonated_thread(pfilePipe);
+   //
+   //
+   // }
+   //  void PipeImpersonatedThreadComposite::onTermThread()
+   //  {
+   //     //m_threadSleeper.notify();
+   //     m_pparticleThis->onTermThread();
+   //  }
+   //
+   //  void PipeImpersonatedThreadComposite::waitUntilImpersonated()
+   //  {
+   //     //m_impersonationReadyEvent.waitForEvent();
+   //     m_pparticleThis->waitUntilImpersonated();
+   //  }
+   //
+   //  bool PipeImpersonatedThreadComposite::getImpersonationSuccess()
+   //  {
+   //     //return m_success;
+   //     return m_pparticleThis->getImpersonationSuccess();
+   //  }
+   //
+   //  ::string PipeImpersonatedThreadComposite::getFaultReason()
+   //  {
+   //     //return m_faultReason;
+   //     return m_pparticleThis->getFaultReason();
+   //  }
+   //
+   //  void PipeImpersonatedThreadComposite::onThreadMain()
+   //  {
+   //     m_pparticleThis->execute();
+   //     // m_success = ImpersonateNamedPipeClient(m_pipeHandle) != 0;
+   //     // if (!m_success) {
+   //     //    // Store fault reason
+   //     //    m_faultReason = ::windows::last_error_message(::windows::last_error());
+   //     // }
+   //     // m_impersonationReadyEvent.notify();
+   //     //
+   //     // while (!isTerminating()) {
+   //     //    m_threadSleeper.waitForEvent();
+   //     // }
+   //     // RevertToSelf();
+   //  }
+
+
+
+} // namespace subsystem
+
+

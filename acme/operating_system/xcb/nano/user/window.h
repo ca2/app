@@ -28,7 +28,7 @@ namespace xcb
             ::pointer<class display>        m_pdisplay;
             xcb_window_t                    m_window;
             cairo_surface_t *               m_psurface;
-            ::pointer<::nano::graphics::device>         m_pnanodevice;
+            ::pointer<::nano::graphics::context>         m_pnanodevice;
             //::pointer<::nano::graphics::font>         m_pfont;
             //color32_t                     m_colorText;
             //color32_t                     m_colorFocus;
@@ -37,8 +37,8 @@ namespace xcb
             //bool                          m_bNcActive;
 
             manual_reset_happening              m_happeningEnd;
-            //int_rectangle                 m_rectangle;
-            //int_rectangle                 m_rectangleX;
+            //i32_rectangle                 m_rectangle;
+            //i32_rectangle                 m_rectangleX;
 
             //pointer_array < ::micro::child >   m_childa;
             //::atom                          m_atomLeftButtonDown;
@@ -75,17 +75,17 @@ namespace xcb
 
             //virtual bool aaa_message_loop_step();
 
-            virtual void _draw(::nano::graphics::device * pnanodevice);
+            virtual void _draw(::nano::graphics::context * pnanodevice);
 
-            //virtual void on_draw(::nano::graphics::device * pnanodevice);
+            //virtual void on_draw(::nano::graphics::context * pnanodevice);
 
-            void on_char(int iChar) override;
+            void on_char(::i32 iChar) override;
 
             bool is_active() override;
 
             void set_active() override;
 
-            ///virtual void draw_children(::nano::graphics::device * pnanodevice);
+            ///virtual void draw_children(::nano::graphics::context * pnanodevice);
 
             void delete_drawing_objects() override;
 
@@ -117,24 +117,24 @@ namespace xcb
 
             //virtual LRESULT window_procedure(UINT message, WPARAM wparam, LPARAM lparam);
 
-            void move_to(const ::int_point & point) override;
+            void move_to(const ::i32_point & point) override;
 
             void redraw() override;
 
-            void get_client_rectangle(::int_rectangle & rectangle) override;
+            void get_client_rectangle(::i32_rectangle & rectangle) override;
 
-            void get_window_rectangle(::int_rectangle & rectangle) override;
+            void get_window_rectangle(::i32_rectangle & rectangle) override;
 
             void set_mouse_capture() override;
 
             void release_mouse_capture() override;
 
-            virtual void _wm_nodecorations(int iMap);
+            virtual void _wm_nodecorations(::i32 iMap);
 
             virtual void _get_geometry(xcb_get_geometry_reply_t * pgeometry);
 
 
-            //::int_size get_main_screen_size() override;
+            //::i32_size get_main_screen_size() override;
 
 
          };

@@ -10,10 +10,10 @@
 #define DO(e) case e: return MAKE_STRING(e)
 
 
-const_char_pointer as_psz(::experience::enum_frame eframe)
+const_char_pointer as_psz(const ::experience::e_frame & eframe)
 {
 
-   switch (eframe)
+   switch (eframe.m_cflag)
    {
       DO(::experience::e_frame_none);
    DO(::experience::e_frame_sizing_left);
@@ -33,7 +33,7 @@ default:
 };
 
 
-::string as_string(::experience::enum_frame eframe)
+::string as_string(const ::experience::e_frame & eframe)
 {
 
    return as_psz(eframe);

@@ -10,6 +10,7 @@
 #include "apex/networking/sockets/http/http_callback.h"
 
 #define HEAVY_HTTP_LOG 0
+#define HEAVY_HTTP_HEADER_LOG 0
 
 template < typename T >
 T* non_const_of(const T* p)
@@ -132,7 +133,7 @@ namespace sockets
    }
 
 
-   void http_socket::OnRawData(char *buf, memsize len)
+   void http_socket::OnRawData(char_pointer buf, memsize len)
    {
       
       if(m_bWebSocketEnabled)
@@ -180,10 +181,10 @@ namespace sockets
                         {
                            memory mem;
                            mem.set_size(TCP_BUFSIZE_READ);
-                           char *tmp = (char *) mem.data();
+                           char_pointer tmp = (char_pointer ) mem.data();
                            ::memory_copy(tmp, buf + ptr, len - ptr);
                            tmp[len - ptr] = 0;
-                           on_read(tmp, (int) (len - ptr));
+                           on_read(tmp, (::i32) (len - ptr));
                            ptr = len;
                         }
                      }
@@ -201,7 +202,7 @@ namespace sockets
 
                         string size_str = pa.getword();
 
-                        m_chunk_size = ::hex::to_unsigned_int(size_str);
+                        m_chunk_size = ::hex::to_u32(size_str);
 
                         if (!m_chunk_size)
                         {
@@ -291,7 +292,7 @@ namespace sockets
                   if (len - sizeData > 0)
                   {
 
-                     on_read(buf + sizeData, (int) (len - sizeData));
+                     on_read(buf + sizeData, (::i32) (len - sizeData));
 
                   }
 
@@ -331,7 +332,7 @@ namespace sockets
             m_response.attr("http_version") = str;
             string strHttpStatusCode = pa.getword();
 
-            int iStatusCode = atoi(strHttpStatusCode);
+            ::i32 iStatusCode = atoi(strHttpStatusCode);
             m_response.attr("http_status_code") = iStatusCode;
 
             ::string strStatus = pa.getrest();
@@ -453,7 +454,11 @@ namespace sockets
       auto pszLine = scopedstrLine.m_begin;
       OnHeader(key, value);
 
+#if HEAVY_HTTP_HEADER_LOG
+      
       printf_line("Header Key: %s Value: %s", key.as_string().c_str(), value.c_str());
+      
+#endif
 
       if(key.case_insensitive_order("x-forwarded-proto") == 0)
       {
@@ -661,7 +666,7 @@ namespace sockets
          }
 
 
-         for (int j = 0; j < straValue.get_count(); j++)
+         for (::i32 j = 0; j < straValue.get_count(); j++)
          {
 
             string strValue = straValue[j];
@@ -889,7 +894,7 @@ namespace sockets
    {
       string version = "Mozilla/5.0 (Windows NT 6.1; WOW64; rv:10.0) Gecko/20100101 veriview/10.0";
 
-      //string version = "Mozilla/5.0 (Windows; U; Windows NT 6.0; int_point-BR; rv:1.9.2.13) Gecko/20101203 Firefox/3.6.13";
+      //string version = "Mozilla/5.0 (Windows; U; Windows NT 6.0; i32_point-BR; rv:1.9.2.13) Gecko/20101203 Firefox/3.6.13";
       //string version = "C++Sockets/";
 #ifdef _VERSION
       version += _VERSION;
@@ -1148,9 +1153,9 @@ namespace sockets
          //
          //         m_pwebsocket->m_strBase64 = pbase64->encode(m);
          //
-         //         //int iLen;
+         //         //::i32 iLen;
          //
-         //         //iLen = (int)(m_strBase64.length());
+         //         //iLen = (::i32)(m_strBase64.length());
          //
          //         inheader("Sec-WebSocket-Key") = m_pwebsocket->m_strBase64;
          //         if (m_pwebsocket->m_strWebSocketProtocol.has_character())
@@ -1233,7 +1238,7 @@ namespace sockets
    }
 
 
-   long long http_socket::get_request_serial()
+   ::i64 http_socket::get_request_serial()
    {
 
       return m_iHttpSocketRequestSerial;
@@ -1249,7 +1254,7 @@ namespace sockets
    }
 
 
-   ::string http_socket::get_short_debug_text(int i) const
+   ::string http_socket::get_short_debug_text(::i32 i) const
    {
 
       ::string str;

@@ -44,7 +44,7 @@ class plex_heap_alloc_array;
 
 #if OBJECT_TYPE_COUNTER
 
-extern map < const char *, const char *, long long, long long > * g_pmapObjTypCtr;
+extern map < const_char_pointer , const_char_pointer , ::i64, ::i64 > * g_pmapObjTypCtr;
 
 #endif
 
@@ -55,7 +55,7 @@ extern map < const char *, const char *, long long, long long > * g_pmapObjTypCt
 
 #if OBJECT_TYPE_COUNTER
 
-extern int g_iObjTypCtrInit;
+extern ::i32 g_iObjTypCtrInit;
 
 #endif
 
@@ -67,7 +67,7 @@ extern int g_iObjTypCtrInit;
 #else
 
 //extern DWORD_PTR g_tlsindexLastError;
-extern char * g_pszDemangle;
+extern char_pointer g_pszDemangle;
 //extern critical_section * g_pcsDemangle;
 
 #endif
@@ -99,7 +99,7 @@ extern bool g_bOutputDebugString;
 #include <mach/mach_time.h>
 
 //clock_serv_t   g_cclock;
-extern double g_machtime_conversion_factor;
+extern ::f64 g_machtime_conversion_factor;
 //   clock_get_time(cclock, &mts);
 
 #endif
@@ -139,7 +139,7 @@ extern ::nanosecond g_nanosecondFirst;
 
 //plex_heap_alloc_array * g_pplexheapallocarray;
 
-extern int g_iMemoryCountersStartable;
+extern ::i32 g_iMemoryCountersStartable;
 //extern ::pointer< ::mutex > g_pmutexTrait;
 //extern ::pointer< ::mutex > g_pmutexFactory;
 
@@ -388,7 +388,7 @@ extern thread_local ::task_pointer t_pthread;
 //{
 //
 //
-//   acme::acme(int argc, wchar_t* wargv[], wchar_t* wenvp[])
+//   acme::acme(::i32 argc, wchar_t* wargv[], wchar_t* wenvp[])
 //   {
 //
 //      common_construct();
@@ -406,7 +406,7 @@ extern thread_local ::task_pointer t_pthread;
 
 #if OBJECT_TYPE_COUNTER
 
-   map < const char*, const char*, long long, long long >* g_pmapObjTypCtr;
+   map < const_char_pointer , const_char_pointer , ::i64, ::i64 >* g_pmapObjTypCtr;
 
 #endif
 
@@ -416,7 +416,7 @@ extern thread_local ::task_pointer t_pthread;
 
 #if OBJECT_TYPE_COUNTER
 
-   int g_iObjTypCtrInit;
+   ::i32 g_iObjTypCtrInit;
 
 #endif
 
@@ -461,7 +461,7 @@ extern thread_local ::task_pointer t_pthread;
 #include <mach/mach_time.h>
 
 //clock_serv_t   g_cclock;
-   double g_machtime_conversion_factor;
+   ::f64 g_machtime_conversion_factor;
    //   clock_get_time(cclock, &mts);
 
 #endif
@@ -496,7 +496,7 @@ extern thread_local ::task_pointer t_pthread;
 #if !defined(WINDOWS)
 
 
-   char* g_pszDemangle;
+   char_pointer g_pszDemangle;
 
 
 #endif
@@ -508,7 +508,7 @@ extern thread_local ::task_pointer t_pthread;
 
    //plex_heap_alloc_array * g_pplexheapallocarray;
 
-   int g_iMemoryCountersStartable;
+   ::i32 g_iMemoryCountersStartable;
    //::critical_section g_criticalsectionTrait;
    //::critical_section g_criticalsectionFactory;
 
@@ -935,7 +935,7 @@ extern thread_local ::task_pointer t_pthread;
 
          mach_timebase_info(&timebase);
 
-         g_machtime_conversion_factor = (double)timebase.numer / (double)timebase.denom;
+         g_machtime_conversion_factor = (::f64)timebase.numer / (::f64)timebase.denom;
 
       }
 
@@ -985,7 +985,7 @@ extern thread_local ::task_pointer t_pthread;
 
 #if OBJECT_TYPE_COUNTER
 
-      g_pmapObjTypCtr = aaa_primitive_new map < const char*, const char*, long long, long long >;
+      g_pmapObjTypCtr = aaa_primitive_new map < const_char_pointer , const_char_pointer , ::i64, ::i64 >;
 
 #endif
 
@@ -1975,7 +1975,7 @@ namespace acme
 //
 //
 ////   acme * acme::g_p = nullptr;
-////   int g_iReference = 0;
+////   ::i32 g_iReference = 0;
 //////critical_section g_cs;
 ////
 ////   void increment_reference_count()
@@ -2070,7 +2070,7 @@ namespace acme
 //#include "acme/platform/system_setup.h"
 
 
-//int main(int argc, char * argv[], char * envp[])
+//::i32 main(::i32 argc, char_pointer argv[], char_pointer envp[])
 //{
 //
 //   auto papp = ::app_factory::new_app();
@@ -2085,7 +2085,7 @@ namespace acme
 //
 //#endif
 //
-//   int iExitCode = papp->main_loop();
+//   ::i32 iExitCode = papp->main_loop();
 //
 //   return iExitCode;
 //

@@ -32,12 +32,12 @@
 //   };
 //   
 //
-//   char * const *       m_ppszParent;
-//   char * const *       m_ppszMenu;
-//   char * const *       m_ppszId;
+//   char_pointer const *       m_ppszParent;
+//   char_pointer const *       m_ppszMenu;
+//   char_pointer const *       m_ppszId;
 //   void **              m_ositema;
-//   int  *               m_statusa;
-//   int                  m_iCount;
+//   ::i32  *               m_statusa;
+//   ::i32                  m_iCount;
 //   //::platform::system *     system();
 //
 //   menu_shared();

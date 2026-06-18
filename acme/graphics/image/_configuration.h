@@ -8,7 +8,7 @@
 //#if defined(WINDOWS) || defined(LINUX) || defined(__i386__) || defined(FREEBSD) || defined(OPENBSD)
 //
 //
-//#define IMAGE_ARGB(a, r, g, b)         ((::color::color)((lower_byte(b)|((unsigned short)(lower_byte(g))<<8))|(((unsigned int)lower_byte(r))<<16)|(((unsigned int)lower_byte(a))<<24)))
+//#define IMAGE_ARGB(a, r, g, b)         ((::color::color)((lower_byte(b)|((::u16)(lower_byte(g))<<8))|(((::u32)lower_byte(r))<<16)|(((::u32)lower_byte(a))<<24)))
 //
 //
 //#define image_r_value(rgb)    (lower_byte((rgb)>>16))
@@ -20,7 +20,7 @@
 //#else
 //
 //
-//#define IMAGE_ARGB(a, r, g, b)         ((::color::color)((lower_byte(r)|((unsigned short)(lower_byte(g))<<8))|(((unsigned int)lower_byte(b))<<16)|(((unsigned int)lower_byte(a))<<24)))
+//#define IMAGE_ARGB(a, r, g, b)         ((::color::color)((lower_byte(r)|((::u16)(lower_byte(g))<<8))|(((::u32)lower_byte(b))<<16)|(((::u32)lower_byte(a))<<24)))
 //
 //
 //#define image_r_value(rgb)    (lower_byte((rgb)))

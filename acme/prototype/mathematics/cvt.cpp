@@ -44,11 +44,11 @@
 
 #define MAX_PRECISION 2048
 
-char *ccvt_internal(double arg,int ndigits,int *decpt,int *sign,char *buf,int eflag, int * pi  = nullptr)
+char_pointer ccvt_internal(::f64 arg,::i32 ndigits,::i32 *decpt,::i32 *sign,char_pointer buf,::i32 eflag, ::i32 * pi  = nullptr)
 {
-   int r2;
-   double fi,fj;
-   char *p,*point1;
+   ::i32 r2;
+   ::f64 fi,fj;
+   char_pointer p,point1;
 
    if(ndigits < 0) ndigits = 0;
    if(ndigits >= CVTBUFSIZE - 1) ndigits = CVTBUFSIZE - 2;
@@ -66,7 +66,7 @@ char *ccvt_internal(double arg,int ndigits,int *decpt,int *sign,char *buf,int ef
       point1 = &buf[CVTBUFSIZE];
       while(fi != 0) {
          fj = modf(fi / 10,&fi);
-         *--point1 = (int)((fj + .03) * 10) + '0';
+         *--point1 = (::i32)((fj + .03) * 10) + '0';
          r2++;
       }
       while(point1 < &buf[CVTBUFSIZE]) *p++ = *point1++;
@@ -84,11 +84,11 @@ char *ccvt_internal(double arg,int ndigits,int *decpt,int *sign,char *buf,int ef
       buf[0] = '\0';
       return buf;
    }
-   int i = 0;
+   ::i32 i = 0;
    while(p <= point1 && p < &buf[CVTBUFSIZE] && (!(eflag & MAX_PRECISION) || (arg != 0.0 || i >= ndigits))) {
       arg *= 10;
       arg = modf(arg,&fj);
-      *p++ = (int)fj + '0';
+      *p++ = (::i32)fj + '0';
       i++;
    }
    if(pi != nullptr)
@@ -119,10 +119,10 @@ char *ccvt_internal(double arg,int ndigits,int *decpt,int *sign,char *buf,int ef
    return buf;
 }
 
-int ccvt_dup(char *buf, int nchar, double arg,int ndigits,int *decpt,int *sign,int eflag)
+::i32 ccvt_dup(char_pointer buf, ::i32 nchar, ::f64 arg,::i32 ndigits,::i32 *decpt,::i32 *sign,::i32 eflag)
 {
 
-   char sz[CVTBUFSIZE + 9];
+   ::i8 sz[CVTBUFSIZE + 9];
 
    ccvt_internal(arg,ndigits,decpt,sign,sz,eflag);
 
@@ -136,7 +136,7 @@ int ccvt_dup(char *buf, int nchar, double arg,int ndigits,int *decpt,int *sign,i
 }
 
 
-int ecvt_dup(char *buf,int nchar,double arg,int ndigits,int *decpt,int *sign)
+::i32 ecvt_dup(char_pointer buf,::i32 nchar,::f64 arg,::i32 ndigits,::i32 *decpt,::i32 *sign)
 {
 
    return ccvt_dup(buf,nchar, arg,ndigits,decpt,sign,1);
@@ -144,7 +144,7 @@ int ecvt_dup(char *buf,int nchar,double arg,int ndigits,int *decpt,int *sign)
 }
 
 
-int fcvt_dup(char *buf, int nchar,double arg,int ndigits,int *decpt,int *sign)
+::i32 fcvt_dup(char_pointer buf, ::i32 nchar,::f64 arg,::i32 ndigits,::i32 *decpt,::i32 *sign)
 {
 
    return ccvt_dup(buf,nchar,arg,ndigits,decpt,sign,0);
@@ -152,10 +152,10 @@ int fcvt_dup(char *buf, int nchar,double arg,int ndigits,int *decpt,int *sign)
 }
 
 
-int max_cvt_dup(char *buf,int nchar,double arg,int ndigits,int *decpt,int *sign, int *pi)
+::i32 max_cvt_dup(char_pointer buf,::i32 nchar,::f64 arg,::i32 ndigits,::i32 *decpt,::i32 *sign, ::i32 *pi)
 {
 
-   char sz[CVTBUFSIZE + 9];
+   ::i8 sz[CVTBUFSIZE + 9];
 
    ccvt_internal(arg,ndigits,decpt,sign,sz,MAX_PRECISION, pi);
 

@@ -21,8 +21,8 @@ namespace user
       //scroll_state                  m_scrollstateaY[::user::e_layout_maximum_count];
       ::pointer<scroll_layout>      m_pscrolllayoutY;
       //scroll_design                 m_scrolldesignY;
-      short                           m_iWheelDelta;
-      //short                           m_iWheelDeltaScroll;
+      ::i16                           m_iWheelDelta;
+      //::i16                           m_iWheelDeltaScroll;
 
 
       scroll_base_y();
@@ -41,24 +41,24 @@ namespace user
 
       scroll_state get_scroll_state_y(::user::enum_layout elayout = ::user::e_layout_sketch) override;
       void set_scroll_state_y(const scroll_state & scrollstate, ::user::enum_layout elayout = ::user::e_layout_sketch) override;
-      void set_scroll_dimension(const ::int_size & size, ::user::enum_layout elayout) override;
+      void set_scroll_dimension(const ::i32_size & size, ::user::enum_layout elayout) override;
 
-      virtual void send_scroll_y_message(enum_scroll_command ecommand, double dPosition = DOUBLE_MOST_NEGATIVE);
+      virtual void send_scroll_y_message(enum_scroll_command ecommand, ::f64 dPosition = DOUBLE_MOST_NEGATIVE);
 
       void install_message_routing(::channel * pchannel) override;
 
       virtual void on_change_scroll_state(::user::enum_layout elayout = ::user::e_layout_sketch) override;
       //virtual void on_change_context_offset(::draw2d::graphics_pointer & pgraphics) override;
-      virtual int get_wheel_scroll_delta() override;
+      virtual ::i32 get_wheel_scroll_delta() override;
       virtual bool create_scroll_bar_y();
       //virtual void layout_scroll_bar_x(::draw2d::graphics_pointer & pgraphics) override;
       virtual void layout_scroll_bar_y(::user::enum_layout elayout = ::user::e_layout_sketch);
       virtual void defer_create_scroll_bar_y(::user::enum_layout elayout = ::user::e_layout_sketch);
       //virtual void on_create_scroll_bar_y();
-      void set_scroll_tracking_y(double y, ::user::enum_layout = ::user::e_layout_sketch) override;
-      double get_context_offset_y(::user::enum_layout elayout) override;
-      void set_context_offset_y(double x, ::user::enum_layout = ::user::e_layout_sketch) override;
-      virtual void constrain_context_offset_y(double & y, ::user::enum_layout elayout = ::user::e_layout_sketch);
+      void set_scroll_tracking_y(::f64 y, ::user::enum_layout = ::user::e_layout_sketch) override;
+      ::f64 get_context_offset_y(::user::enum_layout elayout) override;
+      void set_context_offset_y(::f64 x, ::user::enum_layout = ::user::e_layout_sketch) override;
+      virtual void constrain_context_offset_y(::f64 & y, ::user::enum_layout elayout = ::user::e_layout_sketch);
 
 
       DECLARE_MESSAGE_HANDLER(on_message_scroll_y);
@@ -70,9 +70,9 @@ namespace user
       virtual void scroll_down_line();
       virtual void scroll_up_page();
       virtual void scroll_down_page();
-      virtual void scroll_y(int nPos);
+      virtual void scroll_y(::i32 nPos);
 
-      virtual int get_final_scroll_bar_y_thickness(::user::enum_layout elayout = ::user::e_layout_sketch) override;
+      virtual ::i32 get_final_scroll_bar_y_thickness(::user::enum_layout elayout = ::user::e_layout_sketch) override;
 
 
    };

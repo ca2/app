@@ -13,7 +13,7 @@
 struct WAIT
 {
 
-   long long m_iNanosecond;
+   ::i64 m_iNanosecond;
 
 };
 
@@ -26,17 +26,17 @@ public:
 
    wait(no_initialize_t) {}
    constexpr wait() {}
-   constexpr wait(long long iNanosecond) { m_iNanosecond = iNanosecond; }
-   constexpr wait(long long iSecond, long long iNanosecond): wait(iNanosecond + iSecond * 1'000'000'000) { }
-   wait(double dWait): wait((long long) (dWait * 1'000'000'000.0)) {}
+   constexpr wait(::i64 iNanosecond) { m_iNanosecond = iNanosecond; }
+   constexpr wait(::i64 iSecond, ::i64 iNanosecond): wait(iNanosecond + iSecond * 1'000'000'000) { }
+   wait(::f64 dWait): wait((::i64) (dWait * 1'000'000'000.0)) {}
    wait(const struct TIME& time) : wait(time.m_iSecond, time.m_iNanosecond) {}
    wait(const class wait& wait) : wait(wait.m_iNanosecond) {}
 
    static inline ::wait infinite() { return {infinite_milliseconds().m_i, 0}; }
 
-   static inline integral_millisecond infinite_milliseconds() { return numeric_info<unsigned int>::maximum(); }
+   static inline integral_millisecond infinite_milliseconds() { return numeric_info<::u32>::maximum(); }
 
-   constexpr WAIT infinite_nanoseconds() { return { numeric_info<unsigned int>::maximum() * 1'000'000'000 }; }
+   constexpr WAIT infinite_nanoseconds() { return { numeric_info<::u32>::maximum() * 1'000'000'000 }; }
 
    constexpr bool is_infinite() { return m_iNanosecond >= infinite_nanoseconds().m_iNanosecond; }
 

@@ -13,7 +13,7 @@
 #endif
 
 
-int WINAPI _tWinMain(HINSTANCE hinstanceThis, HINSTANCE hinstancePrev, TCHAR* pCmdLine, int nCmdShow)
+::i32 WINAPI _tWinMain(HINSTANCE hinstanceThis, HINSTANCE hinstancePrev, TCHAR* pCmdLine, ::i32 nCmdShow)
 {
 
    ::main main;
@@ -42,7 +42,7 @@ int WINAPI _tWinMain(HINSTANCE hinstanceThis, HINSTANCE hinstancePrev, TCHAR* pC
 
    auto estatus = __main(main);
 
-   int iStatus = estatus.error_status();
+   ::i32 iStatus = estatus.error_status();
 
    return iStatus;
 

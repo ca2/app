@@ -16,16 +16,16 @@
 
 
 
-long long g_iMaxHttpPost = 1_GiB;
+::i64 g_iMaxHttpPost = 1_GiB;
 
-void set_max_http_post(long long i)
+void set_max_http_post(::i64 i)
 {
 
    g_iMaxHttpPost = i;
 
 }
 
-long long get_max_http_post()
+::i64 get_max_http_post()
 {
 
    return g_iMaxHttpPost;
@@ -176,7 +176,7 @@ namespace http
 
                                  character_count x = 0;
 
-                                 for (int i = 0; i < current_filename.length(); i++)
+                                 for (::i32 i = 0; i < current_filename.length(); i++)
                                  {
 
                                     if (current_filename[i] == '/' || current_filename[i] == '\\')
@@ -248,9 +248,9 @@ namespace http
                      // read until m_strBoundary...
 //                     FILE *fil;
 
-                     int out = 0;
+                     ::i32 out = 0;
 
-                     char ca;
+                     ::i8 ca;
 
                      //string strFormat;
 

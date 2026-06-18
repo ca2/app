@@ -19,21 +19,21 @@
 #if !defined(APPLE_IOS)
 
 
-//void command_system(string_array_base & straOutput, int& iExitCode, const ::scoped_string & scopedstr, enum_command_system ecommandsystem, const class time & timeTimeout, ::particle * pparticleSynchronization, ::file::file * pfileLog)
+//void command_system(string_array_base & straOutput, ::i32& iExitCode, const ::scoped_string & scopedstr, enum_command_system ecommandsystem, const class time & timeTimeout, ::particle * pparticleSynchronization, ::file::file * pfileLog)
 //{
 //
 //   single_lock singlelock(pparticleSynchronization);
 //
 //   ::e_status estatus = success;
 //
-//   int stdout_fds[2] = {};
+//   ::i32 stdout_fds[2] = {};
 //
-//   int iError = pipe(stdout_fds);
+//   ::i32 iError = pipe(stdout_fds);
 //
 //   if(iError != 0)
 //   {
 //
-//      auto cerrornumber = c_error_number();
+//      auto cerrno = c_errno();
 //
 //      estatus = errno_status(iErrNo);
 //
@@ -41,14 +41,14 @@
 //
 //   }
 //
-//   int stderr_fds[2] = {};
+//   ::i32 stderr_fds[2] = {};
 //
 //   iError = pipe(stderr_fds);
 //
 //   if(iError != 0)
 //   {
 //
-//      auto cerrornumber = c_error_number();
+//      auto cerrno = c_errno();
 //
 //      estatus = errno_status(iErrNo);
 //
@@ -83,13 +83,13 @@
 //
 //      wordexp(scopedstrCommandLine, &we, 0);
 //
-//      char ** argv = øallocate_array< char * >(we.we_wordc+1);
+//      char_pointer * argv = øallocate_array< char_pointer >(we.we_wordc+1);
 //
-//      ::memory_copy(argv, we.we_wordv, we.we_wordc * sizeof(char*));
+//      ::memory_copy(argv, we.we_wordv, we.we_wordc * sizeof(char_pointer ));
 //
-//      int iErrNo = 0;
+//      ::i32 iErrNo = 0;
 //
-//      int iChildExitCode = execvp(argv[0], &argv[0]);
+//      ::i32 iChildExitCode = execvp(argv[0], &argv[0]);
 //
 //      if(iChildExitCode == -1)
 //      {
@@ -116,11 +116,11 @@
 //
 //   fcntl(stderr_fds[0], F_SETFL, fcntl(stderr_fds[0], F_GETFL) | O_NONBLOCK);
 //
-//   const int buf_size = 4096;
+//   const ::i32 buf_size = 4096;
 //
-//   char buffer[buf_size];
+//   ::i8 buffer[buf_size];
 //
-//   char chExitCode = 0;
+//   ::i8 chExitCode = 0;
 //
 //   while(true)
 //   {
@@ -134,7 +134,7 @@
 //
 //         kill(pid, SIGKILL);
 //
-//         int iStatus = 0;
+//         ::i32 iStatus = 0;
 //
 //         waitpid(pid, &iStatus, 0);
 //
@@ -208,14 +208,14 @@
 //
 //      {
 //
-//         int status = 0;
+//         ::i32 status = 0;
 //
-//         int iWaitPid = waitpid(pid, &status, WNOHANG | WUNTRACED | WCONTINUED);
+//         ::i32 iWaitPid = waitpid(pid, &status, WNOHANG | WUNTRACED | WCONTINUED);
 //
 //         if(iWaitPid == -1)
 //         {
 //
-//            int iErrorNo = errno;
+//            ::i32 iErrorNo = errno;
 //
 //            if(iErrorNo != ECHILD)
 //            {

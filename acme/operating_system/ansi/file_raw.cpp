@@ -7,7 +7,7 @@
 #if !defined(WINDOWS)
 
 
-int_bool file_path_is_link(const ::file::path & path)
+::i32_bool file_path_is_link(const ::file::path & path)
 {
 
    struct stat stat;
@@ -85,7 +85,7 @@ void file_beg_contents_raw(const ::file::path & path, const ::scoped_string & sc
 
    long lSize = 1024 * 1024;
 
-   char * buf = (char *) malloc(lSize);
+   char_pointer buf = (char_pointer ) malloc(lSize);
 
    long lRemain = lEnd - lLen;
 
@@ -101,7 +101,7 @@ void file_beg_contents_raw(const ::file::path & path, const ::scoped_string & sc
       if(iReadCount < iToReadCount)
       {
 
-         int iFileError = ferror(f);
+         ::i32 iFileError = ferror(f);
 
          if(iFileError != 0)
          {
@@ -110,7 +110,7 @@ void file_beg_contents_raw(const ::file::path & path, const ::scoped_string & sc
 
          }
 
-         int iFileEOF = feof(f);
+         ::i32 iFileEOF = feof(f);
 
 
 
@@ -145,7 +145,7 @@ void file_beg_contents_raw(const ::file::path & path, const ::scoped_string & sc
 #endif
 
 
-unsigned long long file_length_raw(const ::file::path & path)
+::u64 file_length_raw(const ::file::path & path)
 {
 
 #ifdef WINDOWS
@@ -179,11 +179,11 @@ unsigned long long file_length_raw(const ::file::path & path)
 //
 //   }
 //
-//   int iChar;
+//   ::i32 iChar;
 //
 //   string strLine;
 //
-//   int iLastChar = -1;
+//   ::i32 iLastChar = -1;
 //
 //   while (iLine >= 0)
 //   {
@@ -217,7 +217,7 @@ unsigned long long file_length_raw(const ::file::path & path)
 //      else if (iLine == 0)
 //      {
 //
-//         str += (char)iChar;
+//         str += (::i8)iChar;
 //
 //      }
 //

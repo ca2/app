@@ -30,15 +30,15 @@ namespace nanoui
    {
    public:
       
-      using PixelCallback = ::function<void(const int_sequence2 &, char **, size_t)>;
+      using PixelCallback = ::function<void(const i32_sequence2 &, char_pointer *, size_t)>;
 
       // opengl
       //nanoui::pointer<Shader> m_image_shader;
       // opengl
       //nanoui::pointer<Texture> m_image;
       //::image::image_pointer m_pimage;
-      float m_scale = 0;
-      float_size m_offset;
+      ::f32 m_scale = 0;
+      ::f32_size m_offset;
       bool m_draw_image_border;
       ::color::color m_image_border_color;
       ::color::color m_image_background_color;
@@ -77,25 +77,25 @@ namespace nanoui
       const PixelCallback & pixel_callback() const { return m_pixel_callback; }
 
       /// Return the pixel offset of the zoomed image rectangle
-      float_sequence2 offset() const { return m_offset; }
+      f32_sequence2 offset() const { return m_offset; }
       /// Set the pixel offset of the zoomed image rectangle
-      void set_offset(const float_sequence2 & offset) { m_offset = offset; }
+      void set_offset(const f32_sequence2 & offset) { m_offset = offset; }
 
       /// Return the current magnification of the image
-      float scale() const;
+      ::f32 scale() const;
       /// Set the current magnification of the image
-      void set_scale(float scale);
+      void set_scale(::f32 scale);
 
       /// Convert a position within the pwidget to a pixel position in the image
-      float_point pos_to_pixel(const float_point & p) const;
+      ::f32_point pos_to_pixel(const ::f32_point & p) const;
       /// Convert a pixel position in the image to a position within the pwidget
-      float_point pixel_to_pos(const float_point & p) const;
+      ::f32_point pixel_to_pos(const ::f32_point & p) const;
 
       // Widget implementation
-      bool keyboard_event(::user::enum_key ekey, int scancode, int action, const ::user::e_key & ekeyModifiers, const ::scoped_string & scopedstrText) override;
-      bool mouse_motion_event(const int_point& p, const int_size& rel, bool bDown, const ::user::e_key& ekeyModifiers) override;
-      //bool mouse_drag_event(const int_sequence2 & p, const int_sequence2 & rel, const ::user::e_key & ekeyModifiers) override;
-      bool scroll_event(const int_point & p, const float_size & rel) override;
+      bool keyboard_event(const ::user::e_key & ekey, ::i32 scancode, ::i32 action, const ::scoped_string & scopedstrText) override;
+      bool mouse_motion_event(const i32_point &point) override;
+      //bool mouse_drag_event(const i32_sequence2 & p, const i32_sequence2 & rel, const ::user::keyboard_state & keyboardstate) override;
+      bool scroll_event(const i32_point & point, const ::f32_size & rel) override;
       void draw(::nano2d::context  * pcontext) override;
       void draw_contents(::nano2d::context  * pcontext) override;
 

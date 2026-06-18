@@ -7,7 +7,7 @@
 //
 //   // BUG SS (STILL SIMPLE) using bounding box HAHA LOL ROFL
 //
-//   ::int_rectangle rectangle;
+//   ::i32_rectangle rectangle;
 //
 //   if (!get_bounding_box(rectangle, arc))
 //   {
@@ -39,11 +39,11 @@
 //}
 //
 
-// https://forums.codeguru.com/showthread.php?419763-Check-a-Point-lies-in-a-Line-segment
+// https://forums.codeguru.com/showthread.php?419763-Check-a-::i32_point-lies-in-a-Line-segment
 
 
 template < prototype_number NUMBER1, prototype_number NUMBER2, prototype_number NUMBER >
-bool segment_contains(const ::point_type < NUMBER1 > & point1, const ::point_type < NUMBER2 > & point2, const ::point_type < NUMBER > & point, const float epsilon = 0.001f)
+bool segment_contains(const ::point_type < NUMBER1 > & point1, const ::point_type < NUMBER2 > & point2, const ::point_type < NUMBER > & point, const ::f32 epsilon = 0.001f)
 {
 
    auto dx = point2.x - point1.x;

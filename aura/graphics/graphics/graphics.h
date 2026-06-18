@@ -20,14 +20,14 @@ namespace graphics
       ::image::image_pointer        m_pimage2;
       ::mutex_pointer               m_pmutex;
       ::draw2d::graphics_pointer    m_pgraphicsBufferItem;
-      ::int_point                   m_pointBufferItemDraw;
-      ::int_size                    m_sizeBufferItemDraw;
-      ::int_point                   m_pointBufferItemWindow;
-      ::int_size                    m_sizeBufferItemWindow;
+      ::i32_point                   m_pointBufferItem;
+      ::i32_size                    m_sizeBufferItem;
+      ::i32_point                   m_pointBufferItemWindow;
+      ::i32_size                    m_sizeBufferItemWindow;
       ::particle_pointer            m_pparticleData;
       manual_reset_happening        m_manualresethappening;
-      ::int_size                    m_sizeInternal;
-      int                           m_iScan;
+      ::i32_size                    m_sizeInternal;
+      ::i32                           m_iScan;
 
 
       ::draw2d::graphics_pointer g();
@@ -90,18 +90,24 @@ namespace graphics
 
       virtual void buffer_size_and_position(buffer_item * pitem);
 
-      virtual long long _001GetTopLeftWeightedOpaqueArea(const ::int_rectangle &rect);
+      virtual ::i64 _001GetTopLeftWeightedOpaqueArea(const ::i32_rectangle &rect);
 
       //virtual ::particle * get_draw_lock();
-      virtual buffer_item * on_begin_draw(::e_graphics egraphics);
 
-      virtual bool _on_begin_draw(buffer_item * pbufferitem);
+
+      virtual buffer_item * on_begin(::e_graphics egraphics);
+      virtual buffer_item * on_begin_layout();
+      virtual buffer_item * on_begin_draw();
+
+      virtual bool _on_begin(buffer_item * pbufferitem);
 
       //virtual void __on_begin_draw();
 
       virtual void on_end_draw();
+      virtual void on_end_layout();
+      virtual void on_end(::e_graphics egraphics);
 
-      //virtual bool update_buffer(const ::int_size & size, int iStrideParam = -1);
+      //virtual bool update_buffer(const ::i32_size & size, ::i32 iStrideParam = -1);
 
       virtual bool update_buffer(buffer_item * pitem);
 

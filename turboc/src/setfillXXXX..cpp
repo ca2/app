@@ -36,10 +36,10 @@
 // pixmap TcTile.
 
 static void
-RawTile (char *pattern)
+RawTile (char_pointer pattern)
 {
-  int i, j, k, Match;
-  int OldColor;
+  ::i32 i, j, k, Match;
+  ::i32 OldColor;
   OldColor = TcForegroundColor;
   // This loop draws  all of the background-color pixels on the first
   // pass, and all of the fill-color pixels on the second.
@@ -66,9 +66,9 @@ RawTile (char *pattern)
 //----------------------------------------------------------------------------
 
 void
-setfillpattern (char *upattern, int color)
+setfillpattern (char_pointer upattern, ::i32 color)
 {
-  int i;
+  ::i32 i;
   for (i = 0; i < 8; i++)
     TcUserFillPattern[i] = upattern[i];
   TcFillColor = color;
@@ -79,9 +79,9 @@ setfillpattern (char *upattern, int color)
 //---------------------------------------------------------------------------
 
 void
-getfillpattern (char *upattern)
+getfillpattern (char_pointer upattern)
 {
-  int i;
+  ::i32 i;
   for (i = 0; i < 8; i++)
     upattern[i] = TcUserFillPattern[i];
 }
@@ -89,7 +89,7 @@ getfillpattern (char *upattern)
 //---------------------------------------------------------------------------
 
 // These are setfillpattern-compatible arrays for all of the tiling patterns.
-static char FillStyles[12][8] = {
+static ::i8 FillStyles[12][8] = {
   {0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00},
   {0xff, 0xff, 0xff, 0xff, 0xff, 0xff, 0xff, 0xff},
   {0xff, 0xff, 0x00, 0x00, 0xff, 0xff, 0x00, 0x00},
@@ -105,7 +105,7 @@ static char FillStyles[12][8] = {
 };
 
 void
-setfillstyle (int pattern, int color)
+setfillstyle (::i32 pattern, ::i32 color)
 {
   // An input value of USER_FILL isn't actually legal, but it's convenient
   // for us to use it (in conjunction with setbkcolor).

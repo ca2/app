@@ -15,7 +15,7 @@ CLASS_DECL_ACME ::string call_stack_default_format()
 }
 
 
-//CLASS_DECL_ACME void get_call_stack_frames(void** stack, int & frame_count)
+//CLASS_DECL_ACME void get_call_stack_frames(void** stack, ::i32 & frame_count)
 //{
 //
 //   this->::system()->node()->get_call_stack_frames(stack, frame_count);
@@ -23,7 +23,7 @@ CLASS_DECL_ACME ::string call_stack_default_format()
 //}
 //
 //
-//CLASS_DECL_ACME ::string get_call_stack_trace(void ** stack, int c, const_char_pointer pszFormat)
+//CLASS_DECL_ACME ::string get_call_stack_trace(void ** stack, ::i32 c, const_char_pointer pszFormat)
 //{
 //
 //   return this->::system()->node()->get_call_stack_trace(stack, c, pszFormat);

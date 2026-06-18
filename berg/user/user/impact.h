@@ -91,20 +91,20 @@ namespace user
       virtual bool IsSelected(const ::object* pDocItem) const; // support for OLE
 
       // OLE scrolling support (used for drag/drop as well)
-      virtual bool OnScroll(unsigned int nScrollCode, unsigned int nPos, bool bDoScroll = true);
-      //virtual bool OnScrollBy(::int_size sizeScroll, bool bDoScroll = true);
+      virtual bool OnScroll(::u32 nScrollCode, ::u32 nPos, bool bDoScroll = true);
+      //virtual bool OnScrollBy(::i32_size sizeScroll, bool bDoScroll = true);
 
       // OLE drag/drop support
       /*   virtual DROPEFFECT OnDragEnter(COleDataObject* pDataObject,
-      unsigned int dwKeyState, const ::int_point & point);
+      ::u32 dwKeyState, const ::i32_point & point);
       virtual DROPEFFECT OnDragOver(COleDataObject* pDataObject,
-      unsigned int dwKeyState, const ::int_point & point);
+      ::u32 dwKeyState, const ::i32_point & point);
       virtual void OnDragLeave();
       virtual bool OnDrop(COleDataObject* pDataObject,
-      DROPEFFECT dropEffect, const ::int_point & point);
+      DROPEFFECT dropEffect, const ::i32_point & point);
       virtual DROPEFFECT OnDropEx(COleDataObject* pDataObject,
-      DROPEFFECT dropDefault, DROPEFFECT dropList, const ::int_point & point);
-      virtual DROPEFFECT OnDragScroll(unsigned int dwKeyState, const ::int_point & point);*/
+      DROPEFFECT dropDefault, DROPEFFECT dropList, const ::i32_point & point);
+      virtual DROPEFFECT OnDragScroll(::u32 dwKeyState, const ::i32_point & point);*/
 
       //virtual void OnPrepareDC(::draw2d::graphics_pointer & pgraphics, CPrintInfo* pInfo = nullptr);
 
@@ -137,7 +137,7 @@ namespace user
 
 
 
-      //virtual void CalcWindowRect(::int_rectangle * pClientRect, unsigned int nAdjustType = adjustBorder) override;
+      //virtual void CalcWindowRect(::i32_rectangle * pClientRect, ::u32 nAdjustType = adjustBorder) override;
 
 
 
@@ -169,9 +169,9 @@ namespace user
 
 
       void OnUpdateSplitCmd(::message::command* pCmdUI);
-      bool OnSplitCmd(unsigned int nID);
+      bool OnSplitCmd(::u32 nID);
       void OnUpdateNextPaneMenu(::message::command* pCmdUI);
-      bool OnNextPaneCmd(unsigned int nID);
+      bool OnNextPaneCmd(::u32 nID);
 
       // not mapped commands - must be mapped in derived class
       void OnFilePrint();
@@ -179,7 +179,7 @@ namespace user
 
       // TODO: could return a kind of - also TODO - JOB object in case of assynchronous call
       //virtual void collaborate(::job * pjob);
-      virtual int  get_total_page_count(::handler_context * ptopic) override;
+      virtual ::i32  get_total_page_count(::handler_context * ptopic) override;
 
 
       //virtual void on_simple_impact_update_hint(::pointer<::user::impact>pviewSender, e_hint ehint, object * pupdate);
@@ -194,26 +194,26 @@ namespace user
       //      virtual bool IsSelected(const object* pDocItem) const; // support for OLE
 
       // OLE scrolling support (used for drag/drop as well)
-      //      virtual bool OnScroll(unsigned int nScrollCode, unsigned int nPos, bool bDoScroll = true);
-      //    virtual bool OnScrollBy(const ::int_size & sizeScroll, bool bDoScroll = true);
+      //      virtual bool OnScroll(::u32 nScrollCode, ::u32 nPos, bool bDoScroll = true);
+      //    virtual bool OnScrollBy(const ::i32_size & sizeScroll, bool bDoScroll = true);
 
       // OLE drag/drop support
 #ifndef __ANDROID__
       //virtual DROPEFFECT OnDragEnter(COleDataObject* pDataObject,
-      //   unsigned int dwKeyState, const ::int_point & point);
+      //   ::u32 dwKeyState, const ::i32_point & point);
       //virtual DROPEFFECT OnDragOver(COleDataObject* pDataObject,
-      //   unsigned int dwKeyState, const ::int_point & point);
+      //   ::u32 dwKeyState, const ::i32_point & point);
       //virtual void OnDragLeave();
       //virtual bool OnDrop(COleDataObject* pDataObject,
-      //   DROPEFFECT dropEffect, const ::int_point & point);
+      //   DROPEFFECT dropEffect, const ::i32_point & point);
       //virtual DROPEFFECT OnDropEx(COleDataObject* pDataObject,
-      //   DROPEFFECT dropDefault, DROPEFFECT dropList, const ::int_point & point);
-      //virtual DROPEFFECT OnDragScroll(unsigned int dwKeyState, const ::int_point & point);
+      //   DROPEFFECT dropDefault, DROPEFFECT dropList, const ::i32_point & point);
+      //virtual DROPEFFECT OnDragScroll(::u32 dwKeyState, const ::i32_point & point);
 #endif
 
 
       //virtual void OnActivateImpact(bool bActivate, ::pointer<::user::impact>pActivateImpact, ::pointer<::user::impact>DeactiveImpact);
-      //virtual void OnActivateFrame(unsigned int nState, ::pointer<::user::frame_window>pFrameWnd);
+      //virtual void OnActivateFrame(::u32 nState, ::pointer<::user::frame_window>pFrameWnd);
 
       void handle(::topic * ptopic, ::handler_context * phandlercontext) override;
 

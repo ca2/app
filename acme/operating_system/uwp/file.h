@@ -7,7 +7,7 @@
 class FileException;
 struct FileStatus;
 
-void CLASS_DECL_ACME vfxGetRoot(const unichar * lpszPath, string& wstrRoot);
+void CLASS_DECL_ACME vfxGetRoot(const wide_character * lpszPath, string& wstrRoot);
 void CLASS_DECL_ACME vfxGetRoot(wstring & wstrRoot, const wstring & wstrPath);
 
 
@@ -62,8 +62,8 @@ namespace universal_windows
 
       //virtual bool GetStatus(const ::file::path & lpszFileName,::file::file_status& rStatus);
 
-      unsigned long long ReadHuge(void * lpBuffer, unsigned long long dwCount);
-      void WriteHuge(const void * lpBuffer, unsigned long long dwCount);
+      ::u64 ReadHuge(void * lpBuffer, ::u64 dwCount);
+      void WriteHuge(const void * lpBuffer, ::u64 dwCount);
 
       //virtual ::pointer<::file::file>Duplicate() const;
 
@@ -83,7 +83,7 @@ namespace universal_windows
 
       virtual bool is_opened()const  override;
       //enum BufferCommand { bufferRead, bufferWrite, bufferCommit, bufferCheck };
-      //virtual unsigned long long GetBufferPtr(unsigned int nCommand, unsigned long long nCount = 0,
+      //virtual ::u64 GetBufferPtr(::u32 nCommand, ::u64 nCount = 0,
       //                              void ** ppBufStart = nullptr, void ** ppBufMax = nullptr);
 
    };
@@ -91,10 +91,10 @@ namespace universal_windows
    //namespace WinFileException
    //{
 
-   //   void OsErrorToException(int lOsError);
-   //   void ErrnoToException(int nErrno);
-   //   void ThrowOsError(::particle * pparticle, int lOsError, const_char_pointer lpszFileName = nullptr);
-   //   void ThrowErrno(::particle * pparticle, int nErrno, const_char_pointer lpszFileName = nullptr);
+   //   void OsErrorToException(::i32 lOsError);
+   //   void ErrnoToException(::i32 nErrno);
+   //   void ThrowOsError(::particle * pparticle, ::i32 lOsError, const_char_pointer pszFileName = nullptr);
+   //   void ThrowErrno(::particle * pparticle, ::i32 nErrno, const_char_pointer pszFileName = nullptr);
 
    //}
 

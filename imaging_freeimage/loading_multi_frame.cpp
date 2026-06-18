@@ -64,14 +64,14 @@ namespace imaging_freeimage
 
                   pframe->m_iFrame = iFrame;
 
-                  FIBITMAP * pfi = FreeImage_LockPage(multibitmap, (int)iFrame);
+                  FIBITMAP * pfi = FreeImage_LockPage(multibitmap, (::i32)iFrame);
 
                   if (pfi != nullptr)
                   {
 
-                     int w = FreeImage_GetWidth(pfi);
+                     ::i32 w = FreeImage_GetWidth(pfi);
 
-                     int h = FreeImage_GetHeight(pfi);
+                     ::i32 h = FreeImage_GetHeight(pfi);
 
                      FITAG * ptag;
 
@@ -84,7 +84,7 @@ namespace imaging_freeimage
                            if (FreeImage_GetTagType(ptag) == FIDT_SHORT)
                            {
 
-                              pframea->m_size.cx = *((short *)FreeImage_GetTagValue(ptag));
+                              pframea->m_size.cx = *((::i16 *)FreeImage_GetTagValue(ptag));
 
                            }
 
@@ -96,7 +96,7 @@ namespace imaging_freeimage
                            if (FreeImage_GetTagType(ptag) == FIDT_SHORT)
                            {
 
-                              pframea->m_size.cy = *((short *)FreeImage_GetTagValue(ptag));
+                              pframea->m_size.cy = *((::i16 *)FreeImage_GetTagValue(ptag));
 
                            }
 
@@ -120,7 +120,7 @@ namespace imaging_freeimage
                            if (FreeImage_GetTagType(ptag) == FIDT_LONG)
                            {
 
-                              pframea->m_countLoop = (unsigned int)*((unsigned int *)FreeImage_GetTagValue(ptag));
+                              pframea->m_countLoop = (::u32)*((::u32 *)FreeImage_GetTagValue(ptag));
 
                            }
 
@@ -140,7 +140,7 @@ namespace imaging_freeimage
                         if (FreeImage_GetTagType(ptag) == FIDT_SHORT)
                         {
 
-                           pframe->m_rectangle.left = *((short *)FreeImage_GetTagValue(ptag));
+                           pframe->m_rectangle.left = *((::i16 *)FreeImage_GetTagValue(ptag));
 
                         }
 
@@ -156,7 +156,7 @@ namespace imaging_freeimage
                         if (FreeImage_GetTagType(ptag) == FIDT_SHORT)
                         {
 
-                           pframe->m_rectangle.top = *((short *)FreeImage_GetTagValue(ptag));
+                           pframe->m_rectangle.top = *((::i16 *)FreeImage_GetTagValue(ptag));
 
                         }
 
@@ -170,7 +170,7 @@ namespace imaging_freeimage
                         if (FreeImage_GetTagType(ptag) == FIDT_BYTE)
                         {
 
-                           pframe->m_bLocalPalette = *((unsigned char *)FreeImage_GetTagValue(ptag)) == 0;
+                           pframe->m_bLocalPalette = *((::u8 *)FreeImage_GetTagValue(ptag)) == 0;
 
                         }
 
@@ -184,7 +184,7 @@ namespace imaging_freeimage
                         if (FreeImage_GetTagType(ptag) == FIDT_BYTE)
                         {
 
-                           auto iDisposal = *((unsigned char *)FreeImage_GetTagValue(ptag));
+                           auto iDisposal = *((::u8 *)FreeImage_GetTagValue(ptag));
 
                            pframe->gif_set_disposal(iDisposal);
 
@@ -198,7 +198,7 @@ namespace imaging_freeimage
                         if (FreeImage_GetTagType(ptag) == FIDT_LONG)
                         {
 
-                           unsigned int uMillisecond = *(unsigned int *)FreeImage_GetTagValue(ptag);
+                           ::u32 uMillisecond = *(::u32 *)FreeImage_GetTagValue(ptag);
 
                            pframe->m_time = millisecond_time(uMillisecond);
 
@@ -274,9 +274,9 @@ namespace imaging_freeimage
 
       //pdata = FreeImage_GetBits(pfi);
 
-      //int w = FreeImage_GetWidth(pfi);
+      //::i32 w = FreeImage_GetWidth(pfi);
 
-      //int h = FreeImage_GetHeight(pfi);
+      //::i32 h = FreeImage_GetHeight(pfi);
 
       ::image::image_pointer pimageFrame;
 
@@ -301,7 +301,7 @@ namespace imaging_freeimage
       pframe->_001Process(pimageCompose, pimageFrame, pframea);
 
 
-//      int transparentIndex = FreeImage_GetTransparentIndex(pfi);
+//      ::i32 transparentIndex = FreeImage_GetTransparentIndex(pfi);
 //
 //      bool bIsTransparent = FreeImage_IsTransparent(pfi) != 0;
 //
@@ -321,7 +321,7 @@ namespace imaging_freeimage
 //
 //      }
 //
-//      int iScan = FreeImage_GetPitch(pfi);
+//      ::i32 iScan = FreeImage_GetPitch(pfi);
 //
 //      if (FreeImage_GetBPP(pfi) == 8)
 //      {
@@ -333,7 +333,7 @@ namespace imaging_freeimage
 //
 //            cra_from_quada(cra, pbi->bmiColors, pbi->bmiHeader.biClrUsed);
 //
-//            /*if (!draw2d_gif_load_frame(pimageCompose, pframea, pframe, iFrame, (unsigned char *)pdata, iScan, cra, transparentIndex))
+//            /*if (!draw2d_gif_load_frame(pimageCompose, pframea, pframe, iFrame, (::u8 *)pdata, iScan, cra, transparentIndex))
 //            {
 //
 //               return false;
@@ -354,7 +354,7 @@ namespace imaging_freeimage
 //
 //#endif
 //
-//            //if (!draw2d_gif_load_frame(pimageCompose, pframea, pframe, iFrame, (unsigned char *)pdata, iScan, pframea->m_colorrefa, transparentIndex))
+//            //if (!draw2d_gif_load_frame(pimageCompose, pframea, pframe, iFrame, (::u8 *)pdata, iScan, pframea->m_colorrefa, transparentIndex))
 //            //{
 //
 //            //   return false;

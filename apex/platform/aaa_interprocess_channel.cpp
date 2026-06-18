@@ -41,7 +41,7 @@ namespace interprocess_channel
 
    //      on_interprocess_receive(
    //         prx,
-   //         (int) pdispatchitem->m_uData, 
+   //         (::i32) pdispatchitem->m_uData, 
    //         ::transfer(pdispatchitem->m_memory));
 
    //   }
@@ -57,13 +57,13 @@ namespace interprocess_channel
    }
 
 
-   //void listener::on_interprocess_receive(handler * prx, int message, ::memory & memory)
+   //void listener::on_interprocess_receive(handler * prx, ::i32 message, ::memory & memory)
    //{
 
    //}
 
 
-   //void listener::on_interprocess_post(handler * prx, long long a, long long b)
+   //void listener::on_interprocess_post(handler * prx, ::i64 a, ::i64 b)
    //{
 
    //}
@@ -108,7 +108,7 @@ namespace interprocess_channel
    }
 
 
-   bool interprocess_channel::ensure_tx(int message, void * pdata, int len, duration durationTimeout)
+   bool interprocess_channel::ensure_tx(::i32 message, void * pdata, ::i32 len, duration durationTimeout)
    {
 
       if (message == WM_APP + WM_USER)
@@ -159,7 +159,7 @@ namespace interprocess_channel
 
 
 
-   // typedef int (WINAPI * LPFN_ChangeWindowMessageFilter)(const ::atom & atom, unsigned int dwFlag);
+   // typedef ::i32 (WINAPI * LPFN_ChangeWindowMessageFilter)(const ::atom & atom, ::u32 dwFlag);
 
 
    //extern LPFN_ChangeWindowMessageFilter g_pfnChangeWindowMessageFilter;
@@ -230,7 +230,7 @@ namespace interprocess_channel
    }
 
 
-   void caller::send(int message, void * pdata, int len, const duration & durationTimeout)
+   void caller::send(::i32 message, void * pdata, ::i32 len, const duration & durationTimeout)
    {
 
       if (message == I32_MINIMUM)
@@ -346,7 +346,7 @@ namespace interprocess_channel
    }
 
 
-   //void handler::on_interprocess_receive(int message, ::memory && memory)
+   //void handler::on_interprocess_receive(::i32 message, ::memory && memory)
    //{
 
    //   ///memory memory(pdata, len);
@@ -367,7 +367,7 @@ namespace interprocess_channel
    //}
 
 
-   void handler::on_interprocess_post(long long a, long long b)
+   void handler::on_interprocess_post(::i64 a, ::i64 b)
    {
 
       if (m_preceiver != nullptr)
@@ -410,7 +410,7 @@ namespace interprocess_channel
    //}
 
 
-   //void handler::dispatch_message(unsigned long long uData, ::memory && memory)
+   //void handler::dispatch_message(::u64 uData, ::memory && memory)
    //{
 
    //   auto pdispatchitem = allocateø class dispatch_item (uData, ::transfer(memory));
@@ -446,7 +446,7 @@ namespace interprocess_channel
 
    //   single_lock singlelock(m_pmutexDispatch);
 
-   //   while (ptask->task_get_run())
+   //   while (ptask->should_run())
    //   {
 
    //      if (m_happeningDispatchItemNew._wait(1_s))
@@ -455,7 +455,7 @@ namespace interprocess_channel
    //         singlelock.lock();
 
    //         while (m_dispatchitema.has_element()
-   //            && ptask->task_get_run())
+   //            && ptask->should_run())
    //         {
 
    //            {

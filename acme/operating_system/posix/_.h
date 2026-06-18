@@ -4,7 +4,7 @@
 #pragma once
 
 
-#include "acme/operating_system/shared_posix/c_error_number.h"
+#include "acme/operating_system/shared_posix/c_errno.h"
 
 
 class time;
@@ -15,11 +15,11 @@ CLASS_DECL_ACME void copy(class ::time * ptime, const struct timespec * ptimespe
 
 
 
-[[noreturn]] CLASS_DECL_ACME void throw_errno_exception(const ::scoped_string & scopedstr = nullptr, c_error_number cerrornumber = {});
-[[noreturn]] CLASS_DECL_ACME void throw_file_errno_exception(const ::file::path & path, ::file::e_open eopen, const ::scoped_string & scopedstr = nullptr, c_error_number cerrornumber = {});
+[[noreturn]] CLASS_DECL_ACME void throw_errno_exception(const ::scoped_string & scopedstr = nullptr, c_errno cerrno = {});
+[[noreturn]] CLASS_DECL_ACME void throw_file_errno_exception(const ::file::path & path, ::file::e_open eopen, const ::scoped_string & scopedstr = nullptr, c_errno cerrno = {});
 
-//CLASS_DECL_ACME void throw_errno_exception(const ::scoped_string & scopedstr = nullptr, int iErrNo = 0);
-//CLASS_DECL_ACME void throw_errno_exception(const ::file::path & path, ::file::e_open eopen, const ::scoped_string & scopedstr = nullptr, int iErrNo = 0);
+//CLASS_DECL_ACME void throw_errno_exception(const ::scoped_string & scopedstr = nullptr, ::i32 iErrNo = 0);
+//CLASS_DECL_ACME void throw_errno_exception(const ::file::path & path, ::file::e_open eopen, const ::scoped_string & scopedstr = nullptr, ::i32 iErrNo = 0);
 
 
 void copy(::file::file_status * pstatus, const struct stat * pst);

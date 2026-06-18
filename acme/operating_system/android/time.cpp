@@ -4,7 +4,7 @@
 #include <time.h>
 
 
-CLASS_DECL_ACME long long long_long_nanosecond()
+CLASS_DECL_ACME ::i64 i64_nanosecond()
 {
 
 #ifdef RASPBERRYPIOS
@@ -31,7 +31,7 @@ CLASS_DECL_ACME long long long_long_nanosecond()
 
    }
 
-   return (unsigned long long)ts.tv_sec * 1'000'000'000ull + (unsigned long long)ts.tv_nsec;
+   return (::u64)ts.tv_sec * 1'000'000'000ull + (::u64)ts.tv_nsec;
 
 #endif
 
@@ -44,14 +44,14 @@ CLASS_DECL_ACME long long long_long_nanosecond()
 
 //#include "linux/byteorder/swab.h"
 //#include <math.h>
-//#include <float.h>
+//#include <::f32.h>
 
 
 //extern "C"
 //{
 
    //extern "C"
-CLASS_DECL_ACME long long get_nanos()
+CLASS_DECL_ACME ::i64 get_nanos()
 {
 
    struct timespec ts;
@@ -62,7 +62,7 @@ CLASS_DECL_ACME long long get_nanos()
       return 0;
    }
 
-   unsigned long long u = ts.tv_sec;
+   ::u64 u = ts.tv_sec;
 
    u *= 1000 * 1000 * 1000;
 

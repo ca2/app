@@ -18,9 +18,9 @@ namespace userfs
 
 
       ::userfs::tree_data *               m_ptreedata;
-      int                                 m_iIdentation;
+      ::i32                                 m_iIdentation;
       string                              m_strFolder;
-      int                                 m_iIndex;
+      ::i32                                 m_iIndex;
 
 
       item(::userfs::tree_data * ptree);
@@ -31,8 +31,8 @@ namespace userfs
       ::image::image_list * get_item_image_list(::user::item_base * pitemstate, ::collection::index iSubItem = 0) override;
 
       //static ::std::strong_ordering CompareArrangeByName(const ::pointer<::data::tree_item<item>>& pitema, const ::pointer<::data::tree_item<item>> pitemb);
-      int get_index() const;
-      bool is_folder() const override;
+      ::i32 get_index() const;
+      i32_boolean is_folder() const override;
 
       //void write(binary_stream & s) const override;
       //void read(binary_stream & s) override;

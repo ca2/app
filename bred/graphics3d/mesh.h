@@ -22,13 +22,13 @@ namespace graphics3d
       ::pointer_array<::gpu::texture>                 m_texturea;
       ::gpu::model_data<Vertex>                       m_modeldata;
       ::pointer < ::gpu::model_buffer >               m_pmodel;
-      //unsigned int m_VAO, m_VBO, m_EBO;
-      unsigned int m_IndexOffset;
-      unsigned int m_IndexCount;
-      unsigned int m_VertexOffset;
+      //::u32 m_VAO, m_VBO, m_EBO;
+      ::u32 m_IndexOffset;
+      ::u32 m_IndexCount;
+      ::u32 m_VertexOffset;
       ::array<floating_matrix4> m_ModelMatrices;
       // New instance buffer
-      //unsigned int m_InstanceVBO;
+      //::u32 m_InstanceVBO;
 
 
 
@@ -40,14 +40,14 @@ namespace graphics3d
 
       //void initialize_mesh(
       //   const model_data<Vertex>& data,
-      //   unsigned int vertexOffset,
-      //   unsigned int indexOffset,
-      //   unsigned int indexCount);
+      //   ::u32 vertexOffset,
+      //   ::u32 indexOffset,
+      //   ::u32 indexCount);
 
       virtual void bind();
       virtual void unbind();
-      virtual unsigned int GetIndexCount() const;
-      virtual unsigned int GetIndexOffset() const;
+      virtual ::u32 GetIndexCount() const;
+      virtual ::u32 GetIndexOffset() const;
       virtual void SetInstanceModelMatrices(const ::array<floating_matrix4>& modelmatricies);
       virtual void UpdateInstanceModelMatrices(const ::array<floating_matrix4>& modelMatrices);
 

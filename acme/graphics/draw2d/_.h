@@ -18,7 +18,7 @@ namespace draw2d
 } // namespace draw2d
 
 
-inline unsigned char clampAndConvert(double v)
+inline ::u8 clampAndConvert(::f64 v)
 {
 
 
@@ -26,7 +26,7 @@ inline unsigned char clampAndConvert(double v)
       return 0;
    if (v > 255)
       return 255;
-   return (unsigned char)(v);
+   return (::u8)(v);
 
 
 }
@@ -57,7 +57,7 @@ inline unsigned char clampAndConvert(double v)
 
 
 //CLASS_DECL_ACME string os_font_name(enum_font efont);
-//CLASS_DECL_ACME string os_font_name(enum_operating_system eoperatingsystem, int iVariant, enum_font efont);
+//CLASS_DECL_ACME string os_font_name(enum_operating_system eoperatingsystem, ::i32 iVariant, enum_font efont);
 //CLASS_DECL_ACME string linux_font_name(enum_linux_distribution elinuxdistribution, enum_font efont);
 
 

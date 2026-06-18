@@ -11,7 +11,7 @@ struct color_indexes
    union
    {
 
-      unsigned char m_ba[4];
+      ::u8 m_ba[4];
 
       // m_ba[0] red index
       // m_ba[1] green index
@@ -22,14 +22,14 @@ struct color_indexes
       struct
       {
 
-         unsigned char m_uchIndexRed;
-         unsigned char m_uchIndexGreen;
-         unsigned char m_uchIndexBlue;
-         unsigned char m_uchIndexOpacity;
+         ::u8 m_u8IndexRed;
+         ::u8 m_u8IndexGreen;
+         ::u8 m_u8IndexBlue;
+         ::u8 m_u8IndexOpacity;
 
       };
 
-      unsigned int m_ui;
+      ::u32 m_u32;
 
    };
 
@@ -39,35 +39,35 @@ struct color_indexes
    constexpr color_indexes(const color_indexes & indexes) = default;
    //{
 
-   //   m_uchIndexOpacity = indexes.m_uchIndexOpacity;
-   //   m_uchIndexRed = indexes.m_uchIndexRed;
-   //   m_uchIndexGreen = indexes.m_uchIndexGreen;
-   //   m_uchIndexBlue = indexes.m_uchIndexBlue;
+   //   m_u8IndexOpacity = indexes.m_u8IndexOpacity;
+   //   m_u8IndexRed = indexes.m_u8IndexRed;
+   //   m_u8IndexGreen = indexes.m_u8IndexGreen;
+   //   m_u8IndexBlue = indexes.m_u8IndexBlue;
 
    //}
 
 
    constexpr color_indexes(
-      unsigned char u8IndexRed,
-      unsigned char u8IndexGreen,
-      unsigned char u8IndexBlue,
-      unsigned char u8IndexOpacity) :
-      m_uchIndexRed(u8IndexRed),
-      m_uchIndexGreen(u8IndexGreen),
-      m_uchIndexBlue(u8IndexBlue),
-      m_uchIndexOpacity(u8IndexOpacity)
+      ::u8 u8IndexRed,
+      ::u8 u8IndexGreen,
+      ::u8 u8IndexBlue,
+      ::u8 u8IndexOpacity) :
+      m_u8IndexRed(u8IndexRed),
+      m_u8IndexGreen(u8IndexGreen),
+      m_u8IndexBlue(u8IndexBlue),
+      m_u8IndexOpacity(u8IndexOpacity)
    {
 
    }
 
 
-   constexpr unsigned char red() const { return m_ba[0]; }
-   constexpr unsigned char green() const { return m_ba[1]; }
-   constexpr unsigned char blue() const { return m_ba[2]; }
-   constexpr unsigned char opacity() const { return m_ba[3]; }
+   constexpr ::u8 red() const { return m_ba[0]; }
+   constexpr ::u8 green() const { return m_ba[1]; }
+   constexpr ::u8 blue() const { return m_ba[2]; }
+   constexpr ::u8 opacity() const { return m_ba[3]; }
 
 
-   constexpr unsigned char operator[](unsigned char u) const { return m_ba[u]; }
+   constexpr ::u8 operator[](::u8 u) const { return m_ba[u]; }
 
 
 };

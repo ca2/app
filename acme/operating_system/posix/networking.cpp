@@ -4,7 +4,7 @@
 #include <unistd.h>
 
 
-int _open_socket(int af, int type, int protocol)
+::i32 _open_socket(::i32 af, ::i32 type, ::i32 protocol)
 {
 
    auto socket = ::socket(af, type, protocol);
@@ -21,7 +21,7 @@ int _open_socket(int af, int type, int protocol)
 }
 
 
-int _close_socket(int s)
+::i32 _close_socket(::i32 s)
 {
 
    auto iError = ::close(s);
@@ -39,9 +39,9 @@ int _close_socket(int s)
 
 
 #if defined(__BSD__) || defined(__ANDROID__) || defined(__APPLE__) || defined(LINUX)
-int _accept_socket(int s, sockaddr* addr, socklen_t* addrlen)
+::i32 _accept_socket(::i32 s, sockaddr* addr, socklen_t* addrlen)
 #else
-int _accept_socket(int s, sockaddr* addr, int* addrlen)
+::i32 _accept_socket(::i32 s, sockaddr* addr, ::i32* addrlen)
 #endif
 {
 

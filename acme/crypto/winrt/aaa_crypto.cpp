@@ -10,7 +10,7 @@
 //   CLASS_DECL_APEX void from(string& str, const MD5_CTX& ctx)
 //   {
 //
-//      unsigned char digest[MD5_DIGEST_LENGTH];
+//      ::u8 digest[MD5_DIGEST_LENGTH];
 //
 //      MD5_Final(digest, (MD5_CTX*)&ctx);
 //
@@ -22,7 +22,7 @@
 //   CLASS_DECL_APEX void from(string& str, const WHIRLPOOL_CTX& ctx)
 //   {
 //
-//      unsigned char digest[WHIRLPOOL_DIGEST_LENGTH];
+//      ::u8 digest[WHIRLPOOL_DIGEST_LENGTH];
 //
 //      WHIRLPOOL_Final(digest, (WHIRLPOOL_CTX*)&ctx);
 //
@@ -34,7 +34,7 @@
 //   void md5(void* ptarget, const void* psource, ::memsize size)
 //   {
 //
-//      MD5((const unsigned char*)psource, size, (unsigned char*)ptarget);
+//      MD5((const ::u8*)psource, size, (::u8*)ptarget);
 //
 //   }
 //
@@ -42,7 +42,7 @@
 //   void sha1(void* ptarget, const void* psource, ::memsize size)
 //   {
 //
-//      SHA1((const unsigned char*)psource, size, (unsigned char*)ptarget);
+//      SHA1((const ::u8*)psource, size, (::u8*)ptarget);
 //
 //   }
 //
@@ -50,7 +50,7 @@
 //   void sha256(void* ptarget, const void* psource, ::memsize size)
 //   {
 //
-//      SHA256((const unsigned char*)psource, size, (unsigned char*)ptarget);
+//      SHA256((const ::u8*)psource, size, (::u8*)ptarget);
 //
 //   }
 //
@@ -70,7 +70,7 @@
 #define CA4_CRYPT_V5_FINAL_HASH_BYTES 1024
 #define CA4_CRYPT_V5_SALT_BYTES (CA4_CRYPT_V5_FINAL_HASH_BYTES - CA4_BASE_HASH_DIGEST_LENGTH)
 
-string chunk_split(const string& body, int chunklen = 76, const string& end = "\r\n");
+string chunk_split(const string& body, ::i32 chunklen = 76, const string& end = "\r\n");
 namespace crypto
 {
 
@@ -128,14 +128,14 @@ namespace crypto
 
 
 
-   int crypto::key(memory& storage)
+   ::i32 crypto::key(memory& storage)
    {
       storage.set_size(16);
       for (memsize i = 0; i < storage.get_size(); i++)
       {
-         storage.get_data()[i] = random<char>() & 0xff;
+         storage.get_data()[i] = random<::i8>() & 0xff;
       }
-      return (int)storage.get_size();
+      return (::i32)storage.get_size();
    }
 
    /**
@@ -164,15 +164,15 @@ namespace crypto
 #ifdef HAVE_OPENSSL
 
 
-      int plainlen = (int)storageDecrypt.get_size();
+      ::i32 plainlen = (::i32)storageDecrypt.get_size();
 
-      int cipherlen, tmplen;
+      ::i32 cipherlen, tmplen;
 
       EVP_CIPHER_CTX* pctx = EVP_CIPHER_CTX_new();
 
       EVP_EncryptInit(pctx, EVP_aes_256_ecb(), memSha1.get_data(), iv.get_data());
 
-      cipherlen = (int)(storageDecrypt.get_size() + EVP_CIPHER_CTX_block_size(pctx));
+      cipherlen = (::i32)(storageDecrypt.get_size() + EVP_CIPHER_CTX_block_size(pctx));
 
       storageEncrypt.set_size(cipherlen);
 
@@ -588,20 +588,20 @@ namespace crypto
 
 #else
 
-      int cipherlen = (int)storageEncrypt.get_size();
+      ::i32 cipherlen = (::i32)storageEncrypt.get_size();
 
-      int plainlen, tmplen;
+      ::i32 plainlen, tmplen;
 
       EVP_CIPHER_CTX* pctx = EVP_CIPHER_CTX_new();
 
 
 
-      int iKeyLen = EVP_CIPHER_key_length(EVP_aes_256_ecb());
+      ::i32 iKeyLen = EVP_CIPHER_key_length(EVP_aes_256_ecb());
       memsize iShaLen = memSha1.get_size();
 
       EVP_DecryptInit(pctx, EVP_aes_256_ecb(), memSha1.get_data(), iv.get_data());
 
-      plainlen = (int)storageEncrypt.get_size() + EVP_CIPHER_CTX_block_size(pctx);
+      plainlen = (::i32)storageEncrypt.get_size() + EVP_CIPHER_CTX_block_size(pctx);
 
       storageDecrypt.set_size(plainlen);
 
@@ -650,7 +650,7 @@ namespace crypto
       return ::apexacmesystem()->base64().encode(storage);
    }
 
-   int crypto::encrypt(string& strEncrypt, const ::scoped_string & scopedstrDecrypt, const ::scoped_string & scopedstrKey)
+   ::i32 crypto::encrypt(string& strEncrypt, const ::scoped_string & scopedstrDecrypt, const ::scoped_string & scopedstrKey)
    {
       memory storageDecrypt;
       memory storageEncrypt;
@@ -662,12 +662,12 @@ namespace crypto
       }
       storageDecrypt.from_string(scopedstrDecrypt);
       ::apexacmesystem()->base64().decode(storageKey, pszKey);
-      int cipherlen = encrypt(storageEncrypt, storageDecrypt, storageKey);
+      ::i32 cipherlen = encrypt(storageEncrypt, storageDecrypt, storageKey);
       strEncrypt = ::apexacmesystem()->base64().encode(storageEncrypt);
       return cipherlen;
    }
 
-   int crypto::decrypt(string& strDecrypt, const ::scoped_string & scopedstrEncrypt, const ::scoped_string & scopedstrKey)
+   ::i32 crypto::decrypt(string& strDecrypt, const ::scoped_string & scopedstrEncrypt, const ::scoped_string & scopedstrKey)
    {
 
       memory storageEncrypt;
@@ -680,7 +680,7 @@ namespace crypto
 
       ::apexacmesystem()->base64().decode(storageKey, pszKey);
 
-      int plainlen = decrypt(storageDecrypt, storageEncrypt, storageKey);
+      ::i32 plainlen = decrypt(storageDecrypt, storageEncrypt, storageKey);
 
       storageDecrypt.to_string(strDecrypt);
 
@@ -689,10 +689,10 @@ namespace crypto
    }
 
 
-   unsigned int crypto::crc32(unsigned int dwPrevious, const ::scoped_string & scopedstr)
+   ::u32 crypto::crc32(::u32 dwPrevious, const ::scoped_string & scopedstr)
    {
 
-      return ::crc32(dwPrevious, (const Bytef*)psz, (unsigned int)strlen(scopedstr));
+      return ::crc32(dwPrevious, (const Bytef*)psz, (::u32)strlen(scopedstr));
 
    }
 
@@ -770,7 +770,7 @@ namespace crypto
    }
 
 
-   int crypto::get_md5_digest_length() const
+   ::i32 crypto::get_md5_digest_length() const
    {
 
       return 16;
@@ -778,7 +778,7 @@ namespace crypto
    }
 
 
-   int crypto::get_sha1_digest_length() const
+   ::i32 crypto::get_sha1_digest_length() const
    {
 
       return 20;
@@ -786,7 +786,7 @@ namespace crypto
    }
 
 
-   int crypto::get_sha256_digest_length() const
+   ::i32 crypto::get_sha256_digest_length() const
    {
 
       return 32;
@@ -794,7 +794,7 @@ namespace crypto
    }
 
 
-   int crypto::get_nessie_digest_length() const
+   ::i32 crypto::get_nessie_digest_length() const
    {
 
       return 64;
@@ -959,9 +959,9 @@ namespace crypto
    {
       string strSalt;
       string strFormat;
-      for (int i = 0; i < CA4_CRYPT_V5_FINAL_HASH_BYTES - CA4_BASE_HASH_DIGEST_LENGTH; i += 2)
+      for (::i32 i = 0; i < CA4_CRYPT_V5_FINAL_HASH_BYTES - CA4_BASE_HASH_DIGEST_LENGTH; i += 2)
       {
-         long long iDigit = random<char>();
+         ::i64 iDigit = random<::i8>();
          strFormat.formatf("%02x", iDigit);
          strSalt += strFormat;
       }
@@ -970,12 +970,12 @@ namespace crypto
 
    // calculate the hash from a salt and a password
    // slow hash is more secure for personal attack possibility (strong fast hashs are only good for single transactional operations and not for a possibly lifetime password)
-   string crypto::v5_get_password_hash(const ::scoped_string & scopedstrSalt, const ::scoped_string & scopedstrPassword, int iOrder)
+   string crypto::v5_get_password_hash(const ::scoped_string & scopedstrSalt, const ::scoped_string & scopedstrPassword, ::i32 iOrder)
    {
       string strHash(scopedstrPassword);
       string strSalt(scopedstrSalt);
       strSalt = strSalt.left(CA4_CRYPT_V5_SALT_BYTES);
-      for (int i = iOrder; i < CA4_CRYPT_V5_FINAL_HASH_BYTES - CA4_BASE_HASH_DIGEST_LENGTH; i++)
+      for (::i32 i = iOrder; i < CA4_CRYPT_V5_FINAL_HASH_BYTES - CA4_BASE_HASH_DIGEST_LENGTH; i++)
       {
          string strStepSalt = strSalt.substr(i) + strSalt.left(i);
          strHash = nessie(strStepSalt + strHash).lowered();
@@ -983,12 +983,12 @@ namespace crypto
       return strSalt + strHash;
    }
 
-   string crypto::v5_get_passhash(const ::scoped_string & scopedstrSalt, const ::scoped_string & scopedstrPassword, int iMaxOrder)
+   string crypto::v5_get_passhash(const ::scoped_string & scopedstrSalt, const ::scoped_string & scopedstrPassword, ::i32 iMaxOrder)
    {
       string strHash(scopedstrPassword);
       string strSalt(scopedstrSalt);
       strSalt = strSalt.left(CA4_CRYPT_V5_SALT_BYTES);
-      for (int i = 0; i < iMaxOrder; i++)
+      for (::i32 i = 0; i < iMaxOrder; i++)
       {
          string strStepSalt = strSalt.substr(i) + strSalt.left(i);
          strHash = nessie(strStepSalt + strHash).lowered();
@@ -996,7 +996,7 @@ namespace crypto
       return strSalt + strHash;
    }
 
-   bool crypto::v5_compare_password(const ::scoped_string & scopedstrPassword, const ::scoped_string & scopedstrHash, int iOrder)
+   bool crypto::v5_compare_password(const ::scoped_string & scopedstrPassword, const ::scoped_string & scopedstrHash, ::i32 iOrder)
    {
       string strHash(scopedstrHash);
       string strSalt = strHash.left(CA4_CRYPT_V5_SALT_BYTES);
@@ -1011,7 +1011,7 @@ namespace crypto
       return ::str::has_all_v1(scopedstrPassword);
    }
 
-   string crypto::v5_get_password_hash(const ::scoped_string & scopedstrPassword, int iOrder)
+   string crypto::v5_get_password_hash(const ::scoped_string & scopedstrPassword, ::i32 iOrder)
    {
       return v5_get_password_hash(v5_get_password_salt(), pszPassword, iOrder);
    }
@@ -1023,9 +1023,9 @@ namespace crypto
 
 #ifndef UNIVERSAL_WINDOWS
 
-      unsigned int md_len = 0;
+      ::u32 md_len = 0;
 
-      HMAC(EVP_sha1(), memKey.get_data(), int(memKey.get_size()), memMessage.get_data(), (size_t)memMessage.get_size(), (unsigned char*)result, &md_len);
+      HMAC(EVP_sha1(), memKey.get_data(), ::i32(memKey.get_size()), memMessage.get_data(), (size_t)memMessage.get_size(), (::u8*)result, &md_len);
 
 #endif
 
@@ -1039,9 +1039,9 @@ namespace crypto
 
 #ifndef UNIVERSAL_WINDOWS
 
-      unsigned int md_len = 0;
+      ::u32 md_len = 0;
 
-      HMAC(EVP_sha1(), strKey.c_str(), int(strKey.length()), (const unsigned char*)(const char*)strMessage, (size_t)strMessage.length(), (unsigned char*)result, &md_len);
+      HMAC(EVP_sha1(), strKey.c_str(), ::i32(strKey.length()), (const ::u8*)(const_char_pointer )strMessage, (size_t)strMessage.length(), (::u8*)result, &md_len);
 
 #endif
 
@@ -1074,7 +1074,7 @@ pdirectorysystem->system() / "user" / "databin.bin";
 
       }
 
-      int iLength = 256;
+      ::i32 iLength = 256;
 
       generate_random_alphanumeric(str.get_buffer(iLength), iLength);
 
@@ -1185,7 +1185,7 @@ pdirectorysystem->system() / "user" / "databin.bin";
 
 
 
-   //   int rsa::private_decrypt(memory& out, const memory& in, string& strError)
+   //   ::i32 rsa::private_decrypt(memory& out, const memory& in, string& strError)
    //   {
    //
    //
@@ -1202,20 +1202,20 @@ pdirectorysystem->system() / "user" / "databin.bin";
    //
    //      single_lock synchronouslock(mutex(), true);
    //
-   //      int iRsaSize = 8192;
+   //      ::i32 iRsaSize = 8192;
    //
    //      out.set_size(iRsaSize);
    //
    //      out.set(0);
    //
-   //      ::collection::count i = RSA_private_decrypt((int)in.get_size(), in.get_data(), out.get_data(), m_prsa, RSA_PKCS1_PADDING);
+   //      ::collection::count i = RSA_private_decrypt((::i32)in.get_size(), in.get_data(), out.get_data(), m_prsa, RSA_PKCS1_PADDING);
    //
    //      if (i < 0 || i >(1024 * 1024))
    //      {
    //
    //         strError = ERR_error_string(ERR_get_error(), nullptr);
    //
-   //         return (int)i;
+   //         return (::i32)i;
    //
    //      }
    //
@@ -1223,11 +1223,11 @@ pdirectorysystem->system() / "user" / "databin.bin";
    //
    //#endif
    //
-   //      return int(out.get_size());
+   //      return ::i32(out.get_size());
    //
    //   }
    //
-   //   int rsa::private_encrypt(memory& out, const memory& in, string& strError)
+   //   ::i32 rsa::private_encrypt(memory& out, const memory& in, string& strError)
    //   {
    //#ifdef MACOS_DEPRECATED
    //
@@ -1320,15 +1320,15 @@ pdirectorysystem->system() / "user" / "databin.bin";
    //
    //#else
    //
-   //      auto iInSize = (int)in.get_size();
+   //      auto iInSize = (::i32)in.get_size();
    //
-   //      auto pInData = (const uchar*)(const char*)in.get_data();
+   //      auto pInData = (const ::u8 * )(const_char_pointer )in.get_data();
    //
    //      auto pOutData = out.get_data();
    //
    //      auto prsa = m_prsa;
    //
-   //      int i = RSA_private_encrypt(iInSize, pInData, pOutData, prsa, RSA_PKCS1_PADDING);
+   //      ::i32 i = RSA_private_encrypt(iInSize, pInData, pOutData, prsa, RSA_PKCS1_PADDING);
    //
    //      strError = ERR_error_string(ERR_get_error(), nullptr);
    //
@@ -1338,12 +1338,12 @@ pdirectorysystem->system() / "user" / "databin.bin";
    //
    //#endif
    //
-   //      return int(out.get_size());
+   //      return ::i32(out.get_size());
    //
    //   }
    //
    //
-   //   int rsa::public_decrypt(memory& out, const memory& in, string& strError)
+   //   ::i32 rsa::public_decrypt(memory& out, const memory& in, string& strError)
    //   {
    //
    //
@@ -1360,20 +1360,20 @@ pdirectorysystem->system() / "user" / "databin.bin";
    //
    //      single_lock synchronouslock(mutex(), true);
    //
-   //      int iRsaSize = 8192;
+   //      ::i32 iRsaSize = 8192;
    //
    //      out.set_size(iRsaSize);
    //
    //      out.set(0);
    //
-   //      ::collection::count i = RSA_public_decrypt((int)in.get_size(), in.get_data(), out.get_data(), m_prsa, RSA_PKCS1_PADDING);
+   //      ::collection::count i = RSA_public_decrypt((::i32)in.get_size(), in.get_data(), out.get_data(), m_prsa, RSA_PKCS1_PADDING);
    //
    //      if (i < 0 || i >(1024 * 1024))
    //      {
    //
    //         strError = ERR_error_string(ERR_get_error(), nullptr);
    //
-   //         return (int)i;
+   //         return (::i32)i;
    //
    //      }
    //
@@ -1381,7 +1381,7 @@ pdirectorysystem->system() / "user" / "databin.bin";
    //
    //#endif
    //
-   //      return int(out.get_size());
+   //      return ::i32(out.get_size());
    //
    //   }
 
@@ -1403,7 +1403,7 @@ pdirectorysystem->system() / "user" / "databin.bin";
 
       string strError;
 
-      int i = prsa->public_encrypt(memory, memIn, strError);
+      ::i32 i = prsa->public_encrypt(memory, memIn, strError);
 
       if (i < 0 || i >(1024 * 1024))
       {
@@ -1434,7 +1434,7 @@ pdirectorysystem->system() / "user" / "databin.bin";
 
       string strError;
 
-      int i = prsa->private_decrypt(memory, memIn, strError);
+      ::i32 i = prsa->private_decrypt(memory, memIn, strError);
 
       if (i < 0 || i >(1024 * 1024))
       {
@@ -1461,7 +1461,7 @@ pdirectorysystem->system() / "user" / "databin.bin";
 
       string strError;
 
-      int i = prsa->public_decrypt(memory, memIn, strError);
+      ::i32 i = prsa->public_decrypt(memory, memIn, strError);
 
       if (i < 0 || i >(1024 * 1024))
       {
@@ -1491,7 +1491,7 @@ pdirectorysystem->system() / "user" / "databin.bin";
 
       string strError;
 
-      int i = prsa->public_decrypt(memory, memIn, strError);
+      ::i32 i = prsa->public_decrypt(memory, memIn, strError);
 
       if (i < 0 || i >(1024 * 1024))
       {
@@ -1520,7 +1520,7 @@ pdirectorysystem->system() / "user" / "databin.bin";
 
       string strError;
 
-      int i = prsa->private_encrypt(memory, memIn, strError);
+      ::i32 i = prsa->private_encrypt(memory, memIn, strError);
 
       if (i < 0 || i >(1024 * 1024))
       {
@@ -1542,7 +1542,7 @@ pdirectorysystem->system() / "user" / "databin.bin";
       X509* signer = nullptr;
       {
          string strSigner = file()->as_string(strSignerPath);
-         BIO* pbio = BIO_new_mem_buf((void*)(const char *)strSigner, (int)strSigner.length());
+         BIO* pbio = BIO_new_mem_buf((void*)(const_char_pointer )strSigner, (::i32)strSigner.length());
          //signer = PEM_read_bio_X509_AUX(pbio, nullptr, 0, nullptr);
          signer = PEM_read_bio_X509(pbio, nullptr, 0, nullptr);
          BIO_free(pbio);
@@ -1551,7 +1551,7 @@ pdirectorysystem->system() / "user" / "databin.bin";
       EVP_PKEY* pkey;
       {
          string strKey = file()->as_string(strKeyPath);
-         BIO* pbio = BIO_new_mem_buf((void*)(const char *)strKey, (int)strKey.length());
+         BIO* pbio = BIO_new_mem_buf((void*)(const_char_pointer )strKey, (::i32)strKey.length());
          pkey = PEM_read_bio_PrivateKey(pbio, nullptr, nullptr, nullptr);
          BIO_free(pbio);
       }
@@ -1589,13 +1589,13 @@ pdirectorysystem->system() / "user" / "databin.bin";
          }
          pstack509 = sk_X509_new_null();
 
-         for (int i = 0; i < xptra.get_count(); i++)
+         for (::i32 i = 0; i < xptra.get_count(); i++)
          {
             sk_X509_push(pstack509, xptra[i]);
          }
       }
 
-      BIO* input = BIO_new_mem_buf((void*)(const char *)strSignature, (int)strSignature.length());
+      BIO* input = BIO_new_mem_buf((void*)(const_char_pointer )strSignature, (::i32)strSignature.length());
 
       PKCS7* pkcs7 = PKCS7_sign(signer, pkey, pstack509, input, PKCS7_BINARY | PKCS7_DETACHED);
 
@@ -1608,7 +1608,7 @@ pdirectorysystem->system() / "user" / "databin.bin";
 
       i2d_PKCS7_bio(output, pkcs7);
 
-      char* pchData = nullptr;
+      char_pointer pchData = nullptr;
       long count = BIO_get_mem_data(output, &pchData);
 
       file()->put_contents(strDir / "META-INF/zigbert.rsa", pchData, count);
@@ -1634,7 +1634,7 @@ pdirectorysystem->system() / "user" / "databin.bin";
 
       string strError;
 
-      int i = prsa->private_encrypt(memory, memIn, strError);
+      ::i32 i = prsa->private_encrypt(memory, memIn, strError);
 
       if (i < 0 || i >(1024 * 1024))
       {
@@ -1663,7 +1663,7 @@ pdirectorysystem->system() / "user" / "databin.bin";
 
       string strError;
 
-      int i = prsa->public_decrypt(memory, memIn, strError);
+      ::i32 i = prsa->public_decrypt(memory, memIn, strError);
 
       if (i < 0 || i >(1024 * 1024))
       {
@@ -1696,7 +1696,7 @@ pdirectorysystem->system() / "user" / "databin.bin";
 //
 //         BN_set_word(e, 65537);
 //
-//         int ret = RSA_generate_key_ex(prsa, 1024, e, nullptr);
+//         ::i32 ret = RSA_generate_key_ex(prsa, 1024, e, nullptr);
 //
 //         if (ret != 1)
 //         {
@@ -1713,14 +1713,14 @@ pdirectorysystem->system() / "user" / "databin.bin";
 //
 //#if (defined(UNIVERSAL_WINDOWS) && (!defined(RASPBERRYPIOS))) && (OPENSSL_API_COMPAT < 0x10100000L)
 //
-//      char* hexN = BN_bn2hex(prsa->n);
-//      char* hexE = BN_bn2hex(prsa->e);
-//      char* hexD = BN_bn2hex(prsa->d);
-//      char* hexP = BN_bn2hex(prsa->p);
-//      char* hexQ = BN_bn2hex(prsa->q);
-//      char* hexDmp1 = BN_bn2hex(prsa->dmp1);
-//      char* hexDmq1 = BN_bn2hex(prsa->dmq1);
-//      char* hexIqmp = BN_bn2hex(prsa->iqmp);
+//      char_pointer hexN = BN_bn2hex(prsa->n);
+//      char_pointer hexE = BN_bn2hex(prsa->e);
+//      char_pointer hexD = BN_bn2hex(prsa->d);
+//      char_pointer hexP = BN_bn2hex(prsa->p);
+//      char_pointer hexQ = BN_bn2hex(prsa->q);
+//      char_pointer hexDmp1 = BN_bn2hex(prsa->dmp1);
+//      char_pointer hexDmq1 = BN_bn2hex(prsa->dmq1);
+//      char_pointer hexIqmp = BN_bn2hex(prsa->iqmp);
 //
 //#else
 //
@@ -1737,14 +1737,14 @@ pdirectorysystem->system() / "user" / "databin.bin";
 //      RSA_get0_factors(prsa, &p, &q);
 //      RSA_get0_crt_params(prsa, &dmp1, &dmq1, &iqmp);
 //
-//      char* hexN = BN_bn2hex(n);
-//      char* hexE = BN_bn2hex(e);
-//      char* hexD = BN_bn2hex(d);
-//      char* hexP = BN_bn2hex(p);
-//      char* hexQ = BN_bn2hex(q);
-//      char* hexDmp1 = BN_bn2hex(dmp1);
-//      char* hexDmq1 = BN_bn2hex(dmq1);
-//      char* hexIqmp = BN_bn2hex(iqmp);
+//      char_pointer hexN = BN_bn2hex(n);
+//      char_pointer hexE = BN_bn2hex(e);
+//      char_pointer hexD = BN_bn2hex(d);
+//      char_pointer hexP = BN_bn2hex(p);
+//      char_pointer hexQ = BN_bn2hex(q);
+//      char_pointer hexDmp1 = BN_bn2hex(dmp1);
+//      char_pointer hexDmq1 = BN_bn2hex(dmq1);
+//      char_pointer hexIqmp = BN_bn2hex(iqmp);
 //
 //#endif
 //
@@ -1835,44 +1835,44 @@ pdirectorysystem->system() / "user" / "databin.bin";
 
 
 void
-stunCalculateIntegrity_longterm(char* hmac, const char* input, int length,
-   const char* username, const char* realm, const char* password)
+stunCalculateIntegrity_longterm(char_pointer hmac, const_char_pointer input, ::i32 length,
+   const_char_pointer username, const_char_pointer realm, const_char_pointer password)
 {
 
 #if !defined(UNIVERSAL_WINDOWS) || defined(HAVE_OPENSSL)
-   unsigned int resultSize = 0;
+   ::u32 resultSize = 0;
    uchar HA1[16];
-   char HA1_text[1024];
+   ::i8 HA1_text[1024];
 
    snprintf(HA1_text, sizeof(HA1_text), "%s:%s:%s", username, realm, password);
-   MD5((uchar*)HA1_text, strlen(HA1_text), HA1);
+   MD5((::u8 * )HA1_text, strlen(HA1_text), HA1);
 
    HMAC(EVP_sha1(),
       HA1, 16,
-      (const uchar*)input, length,
-      (uchar*)hmac, &resultSize);
+      (const ::u8 * )input, length,
+      (::u8 * )hmac, &resultSize);
 #endif
 }
 
 void
-stunCalculateIntegrity_shortterm(char* hmac, const char* input, int length, const char* key)
+stunCalculateIntegrity_shortterm(char_pointer hmac, const_char_pointer input, ::i32 length, const_char_pointer key)
 {
 #if !defined(UNIVERSAL_WINDOWS) || defined(HAVE_OPENSSL)
-   unsigned int resultSize = 0;
+   ::u32 resultSize = 0;
    HMAC(EVP_sha1(),
-      key, (int)strlen(key),
-      (const uchar*)input, length,
-      (uchar*)hmac, &resultSize);
+      key, (::i32)strlen(key),
+      (const ::u8 * )input, length,
+      (::u8 * )hmac, &resultSize);
 #endif
 }
 
-void hmac_evp_sha1_1234(unsigned char* hmac, unsigned int* hmacSize, const unsigned char* buf, size_t bufLen)
+void hmac_evp_sha1_1234(::u8* hmac, ::u32* hmacSize, const ::u8* buf, size_t bufLen)
 {
 #if !defined(UNIVERSAL_WINDOWS) || defined(HAVE_OPENSSL)
 
    HMAC(EVP_sha1(),
       "1234", 4,
-      (const uchar*)buf, bufLen - 20 - 4,
+      (const ::u8 * )buf, bufLen - 20 - 4,
       hmac, hmacSize);
 #endif
 

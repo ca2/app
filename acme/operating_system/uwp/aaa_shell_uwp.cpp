@@ -32,10 +32,10 @@ namespace universal_windows
    }
 
 
-   int shell::get_image_by_extension(const image_key & imagekey, color32_t crBk)
+   ::i32 shell::get_image_by_extension(const image_key & imagekey, color32_t crBk)
    {
 
-      int iImage = -1;
+      ::i32 iImage = -1;
 //
 //         SHFILEINFOW shfi16;
 //
@@ -45,7 +45,7 @@ namespace universal_windows
 //
 //         imagekey.m_strPath = "foo";
 //
-//         imagekey.m_pszShellThemePrefix = (char *)m_strShellThemePrefix.c_str();
+//         imagekey.m_pszShellThemePrefix = (char_pointer )m_strShellThemePrefix.c_str();
 //
 //         {
 //
@@ -133,7 +133,7 @@ namespace universal_windows
    }
 
 
-   shell::e_folder shell::get_folder_type(::particle * pparticle, const char * lpcsz)
+   shell::e_folder shell::get_folder_type(::particle * pparticle, const_char_pointer lpcsz)
    {
 
       return get_folder_type(pparticle, utf8_to_unicode(lpcsz));
@@ -141,7 +141,7 @@ namespace universal_windows
    }
 
 
-   shell::e_folder shell::get_folder_type(::particle * pparticle, const unichar * lpcszPath)
+   shell::e_folder shell::get_folder_type(::particle * pparticle, const wide_character * lpcszPath)
    {
 
       string strPath;
@@ -181,10 +181,10 @@ pdirectorysystem->is(strPath))
    }
 
 
-   int shell::impl_get_file_image(const image_key & imagekey)
+   ::i32 shell::impl_get_file_image(const image_key & imagekey)
    {
 
-      int iImage = I32_MINIMUM;
+      ::i32 iImage = I32_MINIMUM;
 
       if (case_insensitive_string_begins(imagekey.m_strPath, "uifs:"))
       {
@@ -299,7 +299,7 @@ pdirectorysystem->is(strPath))
 
          string strProtocol = string(imagekey.m_strPath).left(maximum(iFind, iFind2));
 
-         int i = 0;
+         ::i32 i = 0;
 
          while (i < strProtocol.length() && ansi_char_is_alnum(strProtocol[i]))
          {

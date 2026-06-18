@@ -16,7 +16,7 @@
 //		//m_dCursorY = 0.;
 //		//m_bFirstMouse = true;
 //		//m_bLastMouse = false;
-//		//m_bFrameBufferResized = false;
+//		//m_bFramebufferResized = false;
 //	}
 //
 //	container::~container() {
@@ -34,10 +34,10 @@
 //	}
 //
 //
-//	::user::enum_key_state container::get_key_state(::user::e_key ekey)
+//	::user::enum_key_state container::get_key_state(const ::user::e_key & ekey)
 //	{
 //
-//		return ::user::e_key_state_none;
+//		return ::key::e_state_none;
 //
 //	}
 //
@@ -56,7 +56,7 @@
 //	//	}
 //	//}
 //
-//	/*void container::framebufferResizeCallback(GLFWwindow* window, int m_iWidth, int m_iHeight) {
+//	/*void container::framebufferResizeCallback(GLFWwindow* window, ::i32 m_iWidth, ::i32 m_iHeight) {
 //		auto Window = reinterpret_cast<container*>(glfwGetWindowUserPointer(window));
 //		Window->framebufferResized = true;
 //		Window->m_iWidth = m_iWidth;
@@ -80,7 +80,7 @@
 //	}
 //
 //
-//	::int_size container::size()
+//	::i32_size container::size()
 //	{
 //
 //		return {};
@@ -91,7 +91,7 @@
 //	bool container::wasWindowResized()
 //	{
 //		
-//		return m_bFrameBufferResized; 
+//		return m_bFramebufferResized;
 //	
 //	
 //	}
@@ -100,7 +100,7 @@
 //	void container::resetWindowResizedFlag()
 //	{
 //		
-//		m_bFrameBufferResized = false; 
+//		m_bFramebufferResized = false;
 //	
 //	}
 //

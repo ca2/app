@@ -37,19 +37,19 @@ namespace nanoui
       Popup(Widget* parent, Window* parent_window = nullptr);
 
       /// Return the anchor position in the parent window; the placement of the popup is relative to it
-      void set_anchor_pos(const int_sequence2& anchor_pos) { m_anchor_pos = anchor_pos; }
+      void set_anchor_pos(const i32_sequence2& anchor_pos) { m_anchor_pos = anchor_pos; }
       /// Set the anchor position in the parent window; the placement of the popup is relative to it
-      const int_sequence2& anchor_pos() const { return m_anchor_pos; }
+      const i32_sequence2& anchor_pos() const { return m_anchor_pos; }
 
       /// Set the anchor height; this determines the vertical shift relative to the anchor position
-      void set_anchor_offset(int anchor_offset) { m_anchor_offset = anchor_offset; }
+      void set_anchor_offset(::i32 anchor_offset) { m_anchor_offset = anchor_offset; }
       /// Return the anchor height; this determines the vertical shift relative to the anchor position
-      int anchor_offset() const { return m_anchor_offset; }
+      ::i32 anchor_offset() const { return m_anchor_offset; }
 
       /// Set the anchor width
-      void set_anchor_size(int anchor_size) { m_anchor_size = anchor_size; }
+      void set_anchor_size(::i32 anchor_size) { m_anchor_size = anchor_size; }
       /// Return the anchor width
-      int anchor_size() const { return m_anchor_size; }
+      ::i32 anchor_size() const { return m_anchor_size; }
 
       /// Set the side of the parent window at which popup will appear
       void set_side(Side popup_side) { m_side = popup_side; }
@@ -76,8 +76,8 @@ namespace nanoui
    protected:
 
       Window* m_parent_window;
-      int_sequence2 m_anchor_pos;
-      int m_anchor_offset, m_anchor_size;
+      i32_sequence2 m_anchor_pos;
+      ::i32 m_anchor_offset, m_anchor_size;
       Side m_side;
    };
 

@@ -2,7 +2,7 @@
 //#include "GLFW/glfw3.h" 
 #include "mesh.h"
 #include "bred/gpu/command_buffer.h"
-#include "bred/gpu/frame.h"
+#include "bred/gpu/layer.h"
 #include "bred/gpu/renderer.h"
 #include "bred/gpu/shader.h"
 //#include "bred/graphics3d/model.h"
@@ -15,8 +15,8 @@ namespace graphics3d
 
 
    mesh::mesh()/*
-   {const ::array<float>& vertexes, const ::array<unsigned int>& indexes,
-      unsigned int vertexOffset, unsigned int indexOffset, unsigned int indexCount)
+   {const ::array<::f32>& vertexes, const ::array<::u32>& indexes,
+      ::u32 vertexOffset, ::u32 indexOffset, ::u32 indexCount)
       : m_Vertices(vertexes), m_Indices(indexes), m_VertexOffset(vertexOffset),
       m_IndexOffset(indexOffset), m_IndexCount(indexCount) */
    {
@@ -58,11 +58,11 @@ namespace graphics3d
    {
 
       // bind appropriate textures
-//      unsigned int diffuseNr = 1;
-//      unsigned int specularNr = 1;
-//      unsigned int normalNr = 1;
-//      unsigned int heightNr = 1;
-      for (unsigned int i = 0; i < m_texturea.size(); i++)
+//      ::u32 diffuseNr = 1;
+//      ::u32 specularNr = 1;
+//      ::u32 normalNr = 1;
+//      ::u32 heightNr = 1;
+      for (::u32 i = 0; i < m_texturea.size(); i++)
       {
          
          auto ptexture = m_texturea[i];
@@ -76,11 +76,11 @@ namespace graphics3d
          //if (name == "texture_diffuse")
          //   number = std::to_string(diffuseNr++);
          //else if (name == "texture_specular")
-         //   number = std::to_string(specularNr++); // transfer unsigned int to string
+         //   number = std::to_string(specularNr++); // transfer ::u32 to string
          //else if (name == "texture_normal")
-         //   number = std::to_string(normalNr++); // transfer unsigned int to string
+         //   number = std::to_string(normalNr++); // transfer ::u32 to string
          //else if (name == "texture_height")
-         //   number = std::to_string(heightNr++); // transfer unsigned int to string
+         //   number = std::to_string(heightNr++); // transfer ::u32 to string
 
          //// now set the sampler to the correct texture unit
          ////glUniform1i(glGetUniformLocation(pshader->m_ProgramID, (name + number).c_str()), i);
@@ -89,7 +89,7 @@ namespace graphics3d
          //glBindTexture(GL_TEXTURE_2D, m_texturea[i]->m_TextureID);
       }
 
-      auto pcommandbuffer = m_pgpucontext->m_pgpurenderer->getCurrentCommandBuffer2(::gpu::current_frame());
+      auto pcommandbuffer = m_pgpucontext->m_pgpurenderer->getCurrentCommandBuffer2(::gpu::current_layer());
 
       //pcommandbuffer->set_model(m_pmodel);
 
@@ -99,7 +99,7 @@ namespace graphics3d
 
       //// draw mesh
       //glBindVertexArray(m_VAO);
-      //glDrawElements(GL_TRIANGLES, static_cast<unsigned int>(m_Indices.size()), GL_UNSIGNED_INT, 0);
+      //glDrawElements(GL_TRIANGLES, static_cast<::u32>(m_Indices.size()), GL_UNSIGNED_INT, 0);
       //glBindVertexArray(0);
 
       //// always good practice to set everything back to defaults once configured.
@@ -133,22 +133,22 @@ namespace graphics3d
 
       //// Setup the vertex buffer (VBO)
       //glBindBuffer(GL_ARRAY_BUFFER, m_VBO);
-      //glBufferData(GL_ARRAY_BUFFER, m_Vertices.size() * sizeof(float), m_Vertices.data(), GL_STATIC_DRAW);
+      //glBufferData(GL_ARRAY_BUFFER, m_Vertices.size() * sizeof(::f32), m_Vertices.data(), GL_STATIC_DRAW);
 
       //// Setup the index buffer (EBO)
       //glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, m_EBO);
-      //glBufferData(GL_ELEMENT_ARRAY_BUFFER, m_Indices.size() * sizeof(unsigned int), m_Indices.data(), GL_STATIC_DRAW);
+      //glBufferData(GL_ELEMENT_ARRAY_BUFFER, m_Indices.size() * sizeof(::u32), m_Indices.data(), GL_STATIC_DRAW);
 
       //// Position attribute
-      //glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, 8 * sizeof(float), (void*)(m_VertexOffset * 8 * sizeof(float)));
+      //glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, 8 * sizeof(::f32), (void*)(m_VertexOffset * 8 * sizeof(::f32)));
       //glEnableVertexAttribArray(0);
 
       //// Color attribute
-      //glVertexAttribPointer(1, 3, GL_FLOAT, GL_FALSE, 8 * sizeof(float), (void*)(m_VertexOffset * 8 * sizeof(float) + 3 * sizeof(float)));
+      //glVertexAttribPointer(1, 3, GL_FLOAT, GL_FALSE, 8 * sizeof(::f32), (void*)(m_VertexOffset * 8 * sizeof(::f32) + 3 * sizeof(::f32)));
       //glEnableVertexAttribArray(1);
 
       //// texture coord attribute
-      //glVertexAttribPointer(2, 2, GL_FLOAT, GL_FALSE, 8 * sizeof(float), (void*)(m_VertexOffset * 8 * sizeof(float) + 6 * sizeof(float)));
+      //glVertexAttribPointer(2, 2, GL_FLOAT, GL_FALSE, 8 * sizeof(::f32), (void*)(m_VertexOffset * 8 * sizeof(::f32) + 6 * sizeof(::f32)));
       //glEnableVertexAttribArray(2);
 
 
@@ -166,7 +166,7 @@ namespace graphics3d
       //glBufferData(GL_ARRAY_BUFFER, modelMatrices.size() * sizeof(floating_matrix4), modelMatrices.data(), GL_STATIC_DRAW);
 
       //// Set instance attributes for the model matrix (layout locations 3, 4, 5, and 6)
-      //for (unsigned int i = 0; i < 4; i++) {
+      //for (::u32 i = 0; i < 4; i++) {
       //   glEnableVertexAttribArray(3 + i);
       //   glVertexAttribPointer(3 + i, 4, GL_FLOAT, GL_FALSE, sizeof(floating_matrix4), (void*)(i * sizeof(floating_sequence4)));
       //   glVertexAttribDivisor(3 + i, 1);  // Set attribute divisor to 1 for instanced rendering
@@ -192,11 +192,11 @@ namespace graphics3d
       //glBindVertexArray(0);
    }
 
-   unsigned int mesh::GetIndexCount() const {
+   ::u32 mesh::GetIndexCount() const {
       return m_IndexCount;
    }
 
-   unsigned int mesh::GetIndexOffset() const {
+   ::u32 mesh::GetIndexOffset() const {
       return m_IndexOffset;
    }
 
@@ -208,7 +208,7 @@ namespace graphics3d
       //for (auto pmesh : *this) 
       //{
       //   pmesh->bind();
-      //   glDrawElementsInstanced(GL_TRIANGLES, mesh->GetIndexCount(), GL_UNSIGNED_INT, (void*)(mesh->GetIndexOffset() * sizeof(unsigned int)), instanceCount);
+      //   glDrawElementsInstanced(GL_TRIANGLES, mesh->GetIndexCount(), GL_UNSIGNED_INT, (void*)(mesh->GetIndexOffset() * sizeof(::u32)), instanceCount);
       //   pmesh->unbind();
       //}
 

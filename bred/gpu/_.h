@@ -34,29 +34,29 @@ namespace gpu
    class semaphore;
 
 
-   template<typename VERTEX, typename INDEX = unsigned int>
+   template<typename VERTEX, typename INDEX = ::u32>
    class model_data;
 
-   CLASS_DECL_BRED int get_type_size(::gpu::enum_type e);
+   CLASS_DECL_BRED ::i32 get_type_size(::gpu::enum_type e);
 
-   CLASS_DECL_BRED int get_type_unit_count(::gpu::enum_type e);
+   CLASS_DECL_BRED ::i32 get_type_unit_count(::gpu::enum_type e);
 
    CLASS_DECL_BRED ::gpu::enum_type get_type_unit_type(::gpu::enum_type e);
 
 
-   //using uniform = int;
+   //using uniform = ::i32;
    struct payload
    {
 
       union
       {
-         int m_iOffset;
-         int m_iUniform;
+         ::i32 m_iOffset;
+         ::i32 m_iUniform;
       };
       enum_type m_etype;
 
    };
-   using element = int;
+   using element = ::i32;
 
    struct renderable_t;
 
@@ -74,7 +74,7 @@ namespace gpu
    class renderer;
    class render;
 
-   class frame;
+   //class frame;
 
    //class property_descriptor;
    //class property_data;
@@ -114,13 +114,13 @@ namespace draw2d
 {
 
 
-   enum enum_model : int;
+   enum enum_model : ::i32;
 
 
 } // namespace draw2d
 
 
-#define __expand_float_pre_rgba(color) (color.f32_opacity()*color.f32_red()),(color.f32_opacity()* color.f32_green()), (color.f32_opacity()*color.f32_blue()), color.f32_opacity()
+#define __expand_f32_pre_rgba(color) (color.f32_opacity()*color.f32_red()),(color.f32_opacity()* color.f32_green()), (color.f32_opacity()*color.f32_blue()), color.f32_opacity()
 
 
 #include "_types.h"

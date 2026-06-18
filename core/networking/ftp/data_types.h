@@ -33,7 +33,7 @@ namespace ftp
    };
 
    // constants
-   const char ANONYMOUS_USER[] = "anonymous";
+   const ::i8 ANONYMOUS_USER[] = "anonymous";
    enum T_enConstants
    {
       DEFAULT_FTP_PORT = 21, ///< The default port that an FTP service listens to on a remote host
@@ -249,8 +249,8 @@ namespace ftp
          virtual ~iextended_info() {}
          virtual const string& GetServerString() const = 0;
          virtual const string& GetCompleteServerStringSyntax() const = 0;
-         virtual unsigned int GetNumberOfParameters() const = 0;
-         virtual unsigned int GetNumberOfOptionalParameters() const = 0;
+         virtual ::u32 GetNumberOfParameters() const = 0;
+         virtual ::u32 GetNumberOfOptionalParameters() const = 0;
          virtual TSpecificationEnum GetSpecification() const = 0;
          virtual enum_type GetType() const = 0;
       };
@@ -329,8 +329,8 @@ namespace ftp
       typedef command::TSpecificationEnum TSpecificationEnum;
       typedef command::enum_type enum_type;
    public:
-      extended_info(const ::scoped_string & scopedstrServerString, const ::scoped_string & scopedstrCompleteServerStringSyntax, unsigned int uNumberOfParameters,
-                    unsigned int uNumberOfOptionalParameters, TSpecificationEnum enSpecification, enum_type enType) :
+      extended_info(const ::scoped_string & scopedstrServerString, const ::scoped_string & scopedstrCompleteServerStringSyntax, ::u32 uNumberOfParameters,
+                    ::u32 uNumberOfOptionalParameters, TSpecificationEnum enSpecification, enum_type enType) :
          m_strServerString(scopedstrServerString),
          m_strCompleteServerStringSyntax(scopedstrCompleteServerStringSyntax),
          m_uNumberOfParameters(uNumberOfParameters),
@@ -351,15 +351,15 @@ namespace ftp
 
       virtual const string& GetServerString() const override { return m_strServerString; }
       virtual const string& GetCompleteServerStringSyntax() const override { return m_strCompleteServerStringSyntax; }
-      virtual unsigned int GetNumberOfParameters() const override { return m_uNumberOfParameters; }
-      virtual unsigned int GetNumberOfOptionalParameters() const override { return m_uNumberOfOptionalParameters; }
+      virtual ::u32 GetNumberOfParameters() const override { return m_uNumberOfParameters; }
+      virtual ::u32 GetNumberOfOptionalParameters() const override { return m_uNumberOfOptionalParameters; }
       virtual TSpecificationEnum GetSpecification() const override { return m_enSpecification; }
       virtual enum_type GetType() const override { return m_etype; }
 
       const string            m_strServerString;
       const string            m_strCompleteServerStringSyntax;
-      const unsigned int               m_uNumberOfParameters;
-      const unsigned int               m_uNumberOfOptionalParameters;
+      const ::u32               m_uNumberOfParameters;
+      const ::u32               m_uNumberOfOptionalParameters;
       const TSpecificationEnum m_enSpecification;
       const enum_type          m_etype;
 
@@ -374,8 +374,8 @@ namespace ftp
 
       info2();
 
-      void insert(enum_command enCommand, const ::scoped_string & scopedstrServerString, const ::scoped_string & scopedstrCompleteServerStringSyntax, unsigned int uNumberOfParameters,
-                  unsigned int uNumberOfOptionalParameters, TSpecificationEnum enSpecification, enum_type enType);
+      void insert(enum_command enCommand, const ::scoped_string & scopedstrServerString, const ::scoped_string & scopedstrCompleteServerStringSyntax, ::u32 uNumberOfParameters,
+                  ::u32 uNumberOfOptionalParameters, TSpecificationEnum enSpecification, enum_type enType);
 
       static info2& GetInstance() { if (g_pTheOneAndOnly == nullptr) g_pTheOneAndOnly = new info2 (); return *g_pTheOneAndOnly; }
 
@@ -393,41 +393,41 @@ namespace ftp
    {
    public:
       logon();
-      logon(const ::scoped_string & scopedstrHostname, unsigned short ushHostport=DEFAULT_FTP_PORT, const ::scoped_string & scopedstrUsername=ANONYMOUS_USER,
+      logon(const ::scoped_string & scopedstrHostname, ::u16 ushHostport=DEFAULT_FTP_PORT, const ::scoped_string & scopedstrUsername=ANONYMOUS_USER,
             const ::scoped_string & scopedstrPassword="anonymous@user.com", const ::scoped_string & scopedstrAccount="");
-      logon(const ::scoped_string & scopedstrHostname, unsigned short ushHostport, const ::scoped_string & scopedstrUsername, const ::scoped_string & scopedstrPassword,
+      logon(const ::scoped_string & scopedstrHostname, ::u16 ushHostport, const ::scoped_string & scopedstrUsername, const ::scoped_string & scopedstrPassword,
             const ::scoped_string & scopedstrAccount, const ::scoped_string & scopedstrFwHostname, const ::scoped_string & scopedstrFwUsername, const ::scoped_string & scopedstrFwPassword,
-            unsigned short ushFwPort, const firewall_type& crFwType);
+            ::u16 ushFwPort, const firewall_type& crFwType);
 
-      void SetHost(const ::scoped_string & scopedstrHostname, unsigned short ushHostport=DEFAULT_FTP_PORT, const ::scoped_string & scopedstrUsername=ANONYMOUS_USER,
+      void SetHost(const ::scoped_string & scopedstrHostname, ::u16 ushHostport=DEFAULT_FTP_PORT, const ::scoped_string & scopedstrUsername=ANONYMOUS_USER,
                    const ::scoped_string & scopedstrPassword="anonymous@user.com", const ::scoped_string & scopedstrAccount="");
 
       void SetFirewall(const ::scoped_string & scopedstrFwHostname, const ::scoped_string & scopedstrFwUsername, const ::scoped_string & scopedstrFwPassword,
-                       unsigned short ushFwPort, const firewall_type& crFwType);
+                       ::u16 ushFwPort, const firewall_type& crFwType);
 
       void DisableFirewall() { m_FwType = firewall_type::None(); }
 
       string&       Hostname()    { return m_strHostname;    }
-      unsigned short               Hostport()   const  { return m_ushHostport;    }
+      ::u16               Hostport()   const  { return m_ushHostport;    }
       string&       Username()    { return m_puser->m_strLogin;    }
       string&       Password()    { return m_strPassword;    }
       const string&       Account()    const  { return m_strAccount;     }
       const string&       FwHost()     const  { return m_strFwHostname;  }
       const string&       FwUsername() const  { return m_strFwUsername;  }
       const string&       FwPassword() const  { return m_strFwPassword;  }
-      unsigned short               FwPort()     const  { return m_ushFwPort;      }
+      ::u16               FwPort()     const  { return m_ushFwPort;      }
       const firewall_type& FwType()     const  { return m_FwType;         }
       bool           m_bFailedBecauseOfSecurityLevelCanUpgrade;
    private:
       string        m_strHostname;   ///< name or ip-address of the ftp-server
-      unsigned short         m_ushHostport;   ///< port of the ftp-server
+      ::u16         m_ushHostport;   ///< port of the ftp-server
 //      string        m_strUsername;   ///< username for ftp-server
 //      string        m_strPassword;   ///< password for ftp-server
       string        m_strAccount;    ///< account mostly needed on ftp-servers running on unix/linux
       string        m_strFwHostname; ///< name or ip-address of the firewall
       string        m_strFwUsername; ///< username for firewall
       string        m_strFwPassword; ///< password for firewall
-      unsigned short         m_ushFwPort;     ///< port of the firewall
+      ::u16         m_ushFwPort;     ///< port of the firewall
       firewall_type  m_FwType;        ///< type of firewall
    };
 
@@ -439,7 +439,7 @@ namespace ftp
       /// Holds the reply code.
       class code
       {
-         char m_szCode[4];
+         ::i8 m_szCode[4];
       public:
          code()
          {

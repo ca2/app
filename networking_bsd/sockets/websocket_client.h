@@ -35,15 +35,15 @@ namespace networking_bsd
 
       class ::time  m_timeClientPingTimeout;
 
-      int         m_fin;
-      int         m_opcode;
-      int         m_mask;
-      int         m_n0;
+      ::i32         m_fin;
+      ::i32         m_opcode;
+      ::i32         m_mask;
+      ::i32         m_n0;
       memsize         m_header_size;
       memsize         m_iN;
-      int         m_i;
-      unsigned char        m_maskingkey[4];
-      int         m_iLastPos;
+      ::i32         m_i32;
+      ::u8        m_maskingkey[4];
+      ::i32         m_iLastPos;
       ::pointer < ::mutex >       m_pmutexWebsocketWrite;
       string            m_strOrigin;
 
@@ -70,9 +70,9 @@ namespace networking_bsd
       virtual bool send_network_payload(::payload varNetworkPayload);
       virtual bool send_memory(memory & memory);
 
-      virtual void OnRawData(char *buf, memsize len) override;
+      virtual void OnRawData(char_pointer buf, memsize len) override;
 
-      virtual void on_websocket_data(unsigned char * pdata, int len);
+      virtual void on_websocket_data(::u8 * pdata, ::i32 len);
       virtual void on_websocket_data(const ::scoped_string & scopedstr);
 
       virtual bool client_ping_pong_ok();
@@ -84,7 +84,7 @@ namespace networking_bsd
 } // namespace networking_bsd
 
 
-CLASS_DECL_NETWORKING_BSD void websocket_prefix_varuint32(memory & m, unsigned int u);
+CLASS_DECL_NETWORKING_BSD void websocket_prefix_varuint32(memory & m, ::u32 u);
 
 
 

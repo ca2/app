@@ -80,7 +80,7 @@ namespace sockets_bsd
       bool                       m_bLost; ///< connection lost
       bool                       m_bErasedByHandler; ///< Set by handler before delete
       ::earth::time              m_timeClose; ///< time in seconds when ordered to close
-      int                        m_iBindPort;
+      ::i32                        m_iBindPort;
       bool                       m_bDelete; ///< Delete by handler flag
       bool                       m_bCloseAndDelete; ///< close and delete flag
       ::pointer < ::sockets::base_socket >  m_psocketParent; ///< Pointer to listen_socket class, valid for incoming sockets
@@ -93,7 +93,7 @@ namespace sockets_bsd
       class ::time               m_timeKeepConnectionAfterLastIO;
       class ::time               m_timeStart; ///< Set by SetTimeout
       bool                       m_bNonBlocking;
-      //    unsigned long           m_flags; ///< boolean flags, replacing old 'bool' members
+      //    ulong           m_flags; ///< boolean flags, replacing old 'bool' members
 
 #if !defined(BSD_STYLE_SOCKETS)
       manual_reset_happening      m_happening;
@@ -105,9 +105,9 @@ namespace sockets_bsd
 
       bool                    m_bIpv6; ///< This is an ipv6 base_socket if this one is true
 
-      int                     m_iFamily;
-      int                     m_iSocketType; ///< Type of base_socket, from base_socket() call
-      int                     m_iProtocolType;
+      ::i32                     m_iFamily;
+      ::i32                     m_iSocketType; ///< Type of base_socket, from base_socket() call
+      ::i32                     m_iProtocolType;
       string                  m_strSocketProtocol; ///< Protocol, from base_socket() call
       bool                    m_bClient; ///< only client connections are pooled
       bool                    m_bRetain; ///< keep connection on close
@@ -126,8 +126,8 @@ namespace sockets_bsd
 
       // LineProtocol
       bool                    m_bLineProtocol; ///< Line protocol mode flag
-      bool                    m_skip_c; ///< Skip element2() char of CRLF or LFCR sequence in OnRead
-      char                    m_c; ///< First char in CRLF or LFCR sequence
+      bool                    m_skip_c; ///< Skip element2() ::i8 of CRLF or LFCR sequence in OnRead
+      ::i8                    m_c; ///< First ::i8 in CRLF or LFCR sequence
       //scoped_string           m_scopedstrLine; ///< Current line in line protocol mode
       string                  m_strLine;
 
@@ -137,9 +137,9 @@ namespace sockets_bsd
 
       ::string_array_base          m_straDebug;
 
-      int m_iSelectRead;
-      int m_iSelectWrite;
-      int m_iSelectError;
+      ::i32 m_iSelectRead;
+      ::i32 m_iSelectWrite;
+      ::i32 m_iSelectError;
 
 
 #if !defined(BSD_STYLE_SOCKETS)
@@ -260,7 +260,7 @@ namespace sockets_bsd
       bool is_end() const override;
 
 
-      virtual int close_socket(SOCKET s);
+      virtual ::i32 close_socket(SOCKET s);
 
 
       bool is_connecting() override;
@@ -302,10 +302,10 @@ namespace sockets_bsd
 
 
       /** Outgoing traffic counter. */
-      unsigned long long GetBytesSent(bool clear = false) override;
+      ::u64 GetBytesSent(bool clear = false) override;
 
       /** Incoming traffic counter. */
-      unsigned long long GetBytesReceived(bool clear = false) override;
+      ::u64 GetBytesReceived(bool clear = false) override;
 
       // LIST_TIMEOUT
 
@@ -359,7 +359,7 @@ namespace sockets_bsd
       //virtual memsize read(void * buf, memsize c);
 
       void on_read(const void * buf, memsize c) override;
-      void OnRawData(char * buf, memsize len) override;
+      void OnRawData(char_pointer buf, memsize len) override;
 
       /** Called on connect timeout (5s). */
       void OnConnectFailed() override;
@@ -369,7 +369,7 @@ namespace sockets_bsd
       \lparam protocol Protocol number (tcp, udp, sctp, etc)
       \lparam s base_socket file descriptor
       */
-      virtual void OnOptions(int family, int type, int protocol, SOCKET s);
+      virtual void OnOptions(::i32 family, ::i32 type, ::i32 protocol, SOCKET s);
       /** Connection retry callback - return false to abort connection attempts */
       bool OnConnectRetry()  override;
       /** a reconnect has been made */
@@ -475,13 +475,13 @@ namespace sockets_bsd
       //@{
 
       virtual bool SetIpOptions(const void *point, socklen_t len);
-      bool SetIpTOS(unsigned char tos) override;
-      unsigned char IpTOS() override;
-      bool SetIpTTL(int ttl) override;
-      int IpTTL() override;
+      bool SetIpTOS(::u8 tos) override;
+      ::u8 IpTOS() override;
+      bool SetIpTTL(::i32 ttl) override;
+      ::i32 IpTTL() override;
       bool SetIpHdrincl(bool x = true) override;
-      bool SetIpMulticastTTL(int) override;
-      int IpMulticastTTL() override;
+      bool SetIpMulticastTTL(::i32) override;
+      ::i32 IpMulticastTTL() override;
       bool SetMulticastLoop(bool x = true) override;
       virtual bool IpAddMembership(struct ip_mreq&);
       virtual bool IpDropMembership(struct ip_mreq&);
@@ -508,7 +508,7 @@ namespace sockets_bsd
       bool SetIpMtudiscover(bool x = true) override;
 #endif
 #ifdef IP_MTU
-      int IpMtu() override;
+      ::i32 IpMtu() override;
 #endif
 #ifdef IP_ROUTER_ALERT
       bool SetIpRouterAlert(bool x = true) override;
@@ -528,19 +528,19 @@ namespace sockets_bsd
       bool SoAcceptconn() override;
       bool SetSoBroadcast(bool x = true) override;
       bool SetSoDebug(bool x = true) override;
-      int SoError() override;
+      ::i32 SoError() override;
       bool SetSoDontroute(bool x = true) override;
-      bool SetSoLinger(int onoff, int linger) override;
+      bool SetSoLinger(::i32 onoff, ::i32 linger) override;
       bool SetSoOobinline(bool x = true) override;
-      bool SetSoRcvlowat(int) override;
-      bool SetSoSndlowat(int) override;
+      bool SetSoRcvlowat(::i32) override;
+      bool SetSoSndlowat(::i32) override;
       bool SetSoRcvtimeo(struct timeval&);
       bool SetSoSndtimeo(struct timeval&);
-      bool SetSoRcvbuf(int) override;
-      int SoRcvbuf() override;
-      bool SetSoSndbuf(int) override;
-      int SoSndbuf() override;
-      int SoType() override;
+      bool SetSoRcvbuf(::i32) override;
+      ::i32 SoRcvbuf() override;
+      bool SetSoSndbuf(::i32) override;
+      ::i32 SoSndbuf() override;
+      ::i32 SoType() override;
       bool SetSoReuseaddr(bool x = true) override;
       virtual bool _SetSoReuseaddr(SOCKET s, bool x = true);
       bool SetSoKeepalive(bool x = true) override;
@@ -559,13 +559,13 @@ namespace sockets_bsd
       virtual bool SoPeercred(struct ::ucred &);
 #endif
 #ifdef SO_PRIORITY
-      bool SetSoPriority(int) override;
+      bool SetSoPriority(::i32) override;
 #endif
 #ifdef SO_RCVBUFFORCE
-      bool SetSoRcvbufforce(int) override;
+      bool SetSoRcvbufforce(::i32) override;
 #endif
 #ifdef SO_SNDBUFFORCE
-      bool SetSoSndbufforce(int) override;
+      bool SetSoSndbufforce(::i32) override;
 #endif
 #ifdef SO_TIMESTAMP
       bool SetSoTimestamp(bool x = true) override;
@@ -644,9 +644,9 @@ namespace sockets_bsd
       /** Client = connecting tcp_socket. */
       void SetIsClient() override;
       /** base_socket type from base_socket() call. */
-      void SetSocketType(int x) override;
+      void SetSocketType(::i32 x) override;
       /** base_socket type from base_socket() call. */
-      int GetSocketType() override;
+      ::i32 GetSocketType() override;
       /** Protocol type from base_socket() call. */
       void SetSocketProtocol(const ::scoped_string & scopedstrProtocol) override;
       /** Protocol type from base_socket() call. */
@@ -690,7 +690,7 @@ namespace sockets_bsd
 //      void SetSocks4Host(const ::scoped_string & scopedstr);
 //#endif
       /** Socks4 server port to use. */
-      void SetSocks4Port(::networking::port_t int_point) override;
+      void SetSocks4Port(::networking::port_t i32_point) override;
       /** Provide a socks4 userid if required by the socks4 server. */
       void SetSocks4Userid(const string & x) override;
       /** get the ip address/port of socks4 server to use.
@@ -710,25 +710,25 @@ namespace sockets_bsd
       \lparam host hostname to be resolved
       \lparam port port number passed along for the ride
       \return Resolve ID */
-      //int Resolve(const ::scoped_string & scopedstrHost,::networking::port_t port = 0);
-      //int Resolve6(const ::scoped_string & scopedstrHost, ::networking::port_t port = 0);
+      //::i32 Resolve(const ::scoped_string & scopedstrHost,::networking::port_t port = 0);
+      //::i32 Resolve6(const ::scoped_string & scopedstrHost, ::networking::port_t port = 0);
       /** Callback returning a resolved ::networking::address.
       \lparam atom Resolve ID from Resolve call
       \lparam a resolved ip address/port
       \lparam port port number passed to Resolve */
-      //virtual void OnResolved(int atom, ::networking::address * addr);
-      //virtual void OnResolved(int atom, in6_addr & a, ::networking::port_t port);
+      //virtual void OnResolved(::i32 atom, ::networking::address * addr);
+      //virtual void OnResolved(::i32 atom, in6_addr & a, ::networking::port_t port);
       /** Request asynchronous reverse dns find.
       \lparam a in_addr to be translated */
-      //int Resolve(in_addr a);
-      //int Resolve(in6_addr& a);
+      //::i32 Resolve(in_addr a);
+      //::i32 Resolve(in6_addr& a);
       /** Callback returning reverse resolve results.
       \lparam atom Resolve ID
       \lparam name Resolved hostname */
-      //virtual void OnReverseResolved(int atom,const string & name);
+      //virtual void OnReverseResolved(::i32 atom,const string & name);
       /** Callback indicating failed dns find.
       \lparam atom Resolve ID */
-      //virtual void OnResolveFailed(int atom);
+      //virtual void OnResolveFailed(::i32 atom);
       //@}
       /** \name Thread Support */
       //@{
@@ -774,11 +774,11 @@ namespace sockets_bsd
       /** \name Triggers */
       //@{
       /** Subscribe to trigger atom. */
-      void Subscribe(int atom) override;
+      void Subscribe(::i32 atom) override;
       /** Unsubscribe from trigger atom. */
-      void Unsubscribe(int atom) override;
+      void Unsubscribe(::i32 atom) override;
       /** Trigger callback, with data passed from source to destination. */
-      virtual void OnTrigger(int atom, const trigger_data & data);
+      virtual void OnTrigger(::i32 atom, const trigger_data & data);
       /** Trigger cancelled because source has been deleted (as in delete). */
       virtual void OnCancelled(SOCKET atom);
       //@}
@@ -787,8 +787,8 @@ namespace sockets_bsd
       void run() override;
       //bool step() override;
 
-      //virtual void __tracef(object * pparticle, enum_trace_level elevel, const ::scoped_string & scopedstrFunction, const ::scoped_string & scopedstrFile, int iLine, const ::scoped_string & scopedstrFormat, ...);
-      //virtual void __tracef(object * pparticle, enum_trace_level elevel, const ::scoped_string & scopedstrFunction, const ::scoped_string & scopedstrFile, int iLine, e_log elog, const ::scoped_string & scopedstrContext, int err, const ::scoped_string & scopedstrMessage);
+      //virtual void __tracef(object * pparticle, enum_trace_level elevel, const ::scoped_string & scopedstrFunction, const ::scoped_string & scopedstrFile, ::i32 iLine, const ::scoped_string & scopedstrFormat, ...);
+      //virtual void __tracef(object * pparticle, enum_trace_level elevel, const ::scoped_string & scopedstrFunction, const ::scoped_string & scopedstrFile, ::i32 iLine, e_log elog, const ::scoped_string & scopedstrContext, ::i32 err, const ::scoped_string & scopedstrMessage);
 
       string get_short_description() override;
 

@@ -25,7 +25,7 @@ public:
    //enum_device_state                            m_edevicestate;
    //enum_decoder_state                           m_epluginstate;
    enum_player_state                            m_eplayerstate;
-   //int                                          m_iBufferId;
+   //::i32                                          m_iBufferId;
    //enum_purpose                                 m_epurpose;
    //::pointer<::iaudio::wave_stream_effect>     m_pstreameffectOut;
 
@@ -90,11 +90,11 @@ public:
 
    //virtual ::audio::plugin* plugin();
 
-   virtual void player_set_volume(double dVolume);
-   virtual double player_get_volume();
+   virtual void player_set_volume(::f64 dVolume);
+   virtual ::f64 player_get_volume();
 
    virtual class ::time player_get_prebuffer_time();
-   virtual unsigned long long player_get_frame_byte_count();
+   virtual ::u64 player_get_frame_byte_count();
 
 
    //virtual out * wave_out();

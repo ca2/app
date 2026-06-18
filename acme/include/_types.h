@@ -2,16 +2,40 @@
 #pragma once
 
 
-//typedef unsigned long long file_time_t;
+//typedef ::u64 file_time_t;
 
 
-using process_identifier = long long;
+
+namespace collection
+{
+
+
+   using index = iptr;
+
+
+} // namespace collection
+
+
+namespace collection
+{
+
+   
+   using count = ::iptr;
+
+
+} // namespace collection
+
+
+
+
+
+using process_identifier = ::i64;
 
 
 using nullptr_t = ::std::nullptr_t;
 
 
-constexpr unsigned long long operator""_uintmax(unsigned long long u) { return u << 32LL; }
+constexpr ::u64 operator""_uintmax(::u64 u) { return u << 32LL; }
 
 
 #include "acme/parallelization/_types.h"

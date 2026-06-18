@@ -1,6 +1,9 @@
 #pragma once
 
 
+
+
+
 ////#include "acme/prototype/collection/numeric_array.h"
 
 
@@ -11,7 +14,7 @@ class flags :
 public:
 
 
-   long_long_array_base m_ia;
+   i64_array_base m_ia;
 
 
    flags();
@@ -25,7 +28,7 @@ public:
    bool erase(ENUM eenum);
    bool has(ENUM eenum) const;
    bool set(ENUM eenum, bool bSet);
-   int add(flags < ENUM > & f);
+   ::i32 add(flags < ENUM > & f);
    bool clear();
    bool toggle(ENUM eenum);
 
@@ -128,21 +131,21 @@ flags < ENUM > ::~flags()
 template < class ENUM >
 bool flags < ENUM > ::add(ENUM eenum)
 {
-   return m_ia.add_unique((long long)eenum);
+   return m_ia.add_unique((::i64)eenum);
 }
 
 
 template < class ENUM >
 bool flags < ENUM > ::erase(ENUM eenum)
 {
-   return m_ia.erase((long long)eenum);
+   return m_ia.erase((::i64)eenum);
 }
 
 
 template < class ENUM >
 bool flags < ENUM > ::has(ENUM eenum) const
 {
-   return ::is_set(this) && m_ia.has((long long)eenum);
+   return ::is_set(this) && m_ia.has((::i64)eenum);
 }
 
 
@@ -160,10 +163,10 @@ bool flags < ENUM > ::set(ENUM eenum, bool bSet)
 }
 
 template < class ENUM >
-int flags < ENUM > ::add(flags < ENUM > & f)
+::i32 flags < ENUM > ::add(flags < ENUM > & f)
 {
-   int iCount = 0;
-   for (int i = 0; i < f.m_ia.get_size(); i++)
+   ::i32 iCount = 0;
+   for (::i32 i = 0; i < f.m_ia.get_size(); i++)
    {
       if (add((ENUM)f.m_ia[i]))
          iCount++;
@@ -174,7 +177,7 @@ int flags < ENUM > ::add(flags < ENUM > & f)
 template < class ENUM >
 bool flags < ENUM > ::toggle(ENUM eenum)
 {
-   ASSERT(((int)eenum) < 128);
+   ASSERT(((::i32)eenum) < 128);
    if (has(eenum))
    {
       return erase(eenum);
@@ -220,7 +223,7 @@ class flags_listener
    friend class flags_ex < ENUM >;
 protected:
    virtual void on_change_signalization(ENUM eenum);
-   void on_change_signalization(int iEnum);
+   void on_change_signalization(::i32 iEnum);
 };
 
 template < class ENUM >
@@ -229,7 +232,7 @@ void flags_listener < ENUM > ::on_change_signalization(ENUM)
 }
 
 template < class ENUM >
-void flags_listener < ENUM > ::on_change_signalization(int iEnum)
+void flags_listener < ENUM > ::on_change_signalization(::i32 iEnum)
 {
    on_change_signalization((ENUM)iEnum);
 }
@@ -329,7 +332,7 @@ void flags_listener < ENUM > ::on_change_signalization(int iEnum)
 ////{
 ////public:
 ////
-////   int m_iEnum;
+////   ::i32 m_iEnum;
 ////
 ////
 ////   flag_change_signalization()
@@ -345,7 +348,7 @@ void flags_listener < ENUM > ::on_change_signalization(int iEnum)
 ////
 ////   flag_change_signalization obj;
 ////
-////   obj.m_iEnum = (int)eenum;
+////   obj.m_iEnum = (::i32)eenum;
 ////
 ////   m_signal.route_message(&obj);
 ////

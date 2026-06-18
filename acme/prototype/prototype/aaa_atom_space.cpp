@@ -11,7 +11,7 @@
 //}
 //
 //
-//const char * atom_space::get_id(const ::scoped_string & scopedstr)
+//const_char_pointer atom_space::get_id(const ::scoped_string & scopedstr)
 //{
 //
 //   if (::is_null(scopedstr) || *psz == '\0')
@@ -32,7 +32,7 @@
 //
 //   }
 //
-//   char * pszNew = (char *)::system()->m_pheapmanagement->memory(::heap::e_memory_main)->allocate(strlen(scopedstr) + 1);
+//   char_pointer pszNew = (char_pointer )::system()->m_pheapmanagement->memory(::heap::e_memory_main)->allocate(strlen(scopedstr) + 1);
 //
 //   if (scopedstrNew == nullptr)
 //   {
@@ -73,7 +73,7 @@
 //         try
 //         {
 //
-//            char * psz = (char *)m_psza.element_at(i);
+//            char_pointer psz = (char_pointer )m_psza.element_at(i);
 //
 //            ::system()->m_pheapmanagement->memory(::heap::e_memory_main)->free(scopedstr);
 //
@@ -104,7 +104,7 @@
 //}
 //
 //
-//atom atom_space::operator()(long long i)
+//atom atom_space::operator()(::i64 i)
 //{
 //
 //   return (iptr) i;
@@ -121,10 +121,10 @@
 ////   stackLowerBound.allocate(0,1024);
 ////   stackUpperBound.allocate(0,1024);
 ////
-////   const char * pid1 = nullptr;
-////   const char * pid2 = nullptr;
+////   const_char_pointer pid1 = nullptr;
+////   const_char_pointer pid2 = nullptr;
 ////
-////   const char ** pida = m_psza.get_data();
+////   const_char_pointer * pida = m_psza.get_data();
 ////
 ////
 ////   index iLowerBound;
@@ -224,7 +224,7 @@
 //
 //   index iUpperBound = m_psza.get_upper_bound();
 //
-//   long long iCompare = 0;
+//   ::i64 iCompare = 0;
 //
 //   const ::scoped_string & scopedstr;
 //
@@ -500,7 +500,7 @@
 //   if(find(atom,iIndex))
 //      return;
 //
-//   m_idptra.add((char * const &) atom.m_psz);
+//   m_idptra.add((char_pointer const &) atom.m_psz);
 //   m_iaId.insert_at(iIndex,m_idptra.get_upper_bound());
 //   //m_iaId.add(m_idptra.get_upper_bound());
 //   //sort();
@@ -511,7 +511,7 @@
 //{
 //
 //
-//   if(!find((const char *)atom,iIndex))
+//   if(!find((const_char_pointer )atom,iIndex))
 //      return false;
 //
 //   iIndex = m_iaId[iIndex];

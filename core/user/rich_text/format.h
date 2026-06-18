@@ -26,7 +26,7 @@ namespace user
          bool                                            m_bItalic;
          bool                                            m_bUnderline;
          string                                          m_strFontFamily;
-         double                                          m_dFontSize;
+         ::f64                                          m_dFontSize;
          ::color::color                                  m_colorForeground;
          ::color::color                                  m_colorBackground;
          enum_script                                     m_escript;

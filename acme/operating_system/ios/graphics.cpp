@@ -2,10 +2,10 @@
 #include "acme/parallelization/synchronous_lock.h"
 
 //
-//bool apple_get_file_image(unsigned int * pcr, int cx, int cy, int iScan, const ::scoped_string & scopedstr);
+//bool apple_get_file_image(::u32 * pcr, ::i32 cx, ::i32 cy, ::i32 iScan, const ::scoped_string & scopedstr);
 //
 //
-//bool apple_get_file_image(unsigned int * pcr, int cx, int cy, int iScan, const ::scoped_string & scopedstr)
+//bool apple_get_file_image(::u32 * pcr, ::i32 cx, ::i32 cy, ::i32 iScan, const ::scoped_string & scopedstr)
 //{
 //
 //   static ::pointer< ::mutex > pmutex = nullptr;
@@ -60,7 +60,7 @@
 
 
 //
-//int_bool delete_hcursor(HCURSOR h)
+//::i32_bool delete_hcursor(HCURSOR h)
 //{
 //   
 //   return 1;

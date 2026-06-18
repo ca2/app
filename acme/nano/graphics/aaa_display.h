@@ -20,7 +20,7 @@ namespace nano
 
 
       ::array < ::procedure >      m_procedureaPost;
-      ::int_point                   m_pointCursor2;
+      ::i32_point                   m_pointCursor2;
 
 
       inline static display * g_p = nullptr;
@@ -36,7 +36,7 @@ namespace nano
       virtual bool display_posted_routine_step();
 
 
-      virtual ::int_size get_main_screen_size();
+      virtual ::i32_size get_main_screen_size();
 
 
    };

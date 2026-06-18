@@ -24,7 +24,7 @@ namespace graphics
    };
 
 
-   DECLARE_ENUMERATION(e_output_purpose, enum_output_purpose);
+   DECLARE_C_FLAG(e_output_purpose, enum_output_purpose);
 
 
 } // namespace graphics

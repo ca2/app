@@ -13,8 +13,8 @@
 struct size_parent_layout
 {
 
-   ::int_rectangle      m_rectangle;     // parent client rectangle (trim as appropriate)
-   ::int_size           m_sizeTotal;     // total size on each side as on_layout proceeds
+   ::i32_rectangle      m_rectangle;     // parent client rectangle (trim as appropriate)
+   ::i32_size           m_sizeTotal;     // total size on each side as on_layout proceeds
    bool                 m_bStretch;      // should stretch to fill all space
 
 };

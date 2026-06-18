@@ -1,15 +1,16 @@
 #include "framework.h"
 #include "application_container.h"
-#include "node.h"
-#include "application.h"
-#include "system.h"
 #include "acme/constant/user_message.h"
 #include "acme/exception/exit.h"
-#include "acme/filesystem/filesystem/path_system.h"
 #include "acme/filesystem/filesystem/file_system.h"
+#include "acme/filesystem/filesystem/path_system.h"
 #include "acme/handler/request.h"
 #include "acme/parallelization/multiple_lock.h"
 #include "acme/parallelization/synchronous_lock.h"
+#include "application.h"
+#include "node.h"
+#include "system.h"
+#include "windowing/windowing.h"
 
 
 namespace platform
@@ -102,6 +103,15 @@ namespace platform
 
       if (m_applicationa.is_empty() && m_bFinalizeIfNoApplication)
       {
+
+         auto pacmewindowing = ::system()->m_pacmewindowing;
+
+         if (::is_set(pacmewindowing))
+         {
+
+            pacmewindowing->set_finish();
+
+         }
 
          set_finish();
 
@@ -212,7 +222,7 @@ namespace platform
 
       //multiplelock.lock();
 
-      ////int i = 50;
+      ////::i32 i = 50;
 
       ////while (i > 0 && applicationa.get_size() > 0)
       ////{
@@ -314,7 +324,7 @@ namespace platform
    ::pointer<::platform::application>application_container::instantiate_application(const ::scoped_string & scopedstrAppId)
    {
 
-      information() <<  "apex::application::instantiate_application";
+      debug() << "::platform::application_container::instantiate_application";
 
       ::e_status estatus = ::success;
 
@@ -425,7 +435,7 @@ namespace platform
 
       //papplication->start_application(prequest);
       
-      papplication->start_application();
+      //papplication->start_application();
 
       return papplication;
 

@@ -25,7 +25,7 @@ namespace graphics3d
    // {
    // public:
    //
-   // 	float m_fLightIntensity = 1.0f;
+   // 	::f32 m_fLightIntensity = 1.0f;
    //
    // };
 
@@ -44,7 +44,7 @@ namespace graphics3d
       //::pointer<graphics3d::pipeline> m_ppipeline;
       //VkPipelineLayout m_pipelineLayout;
 
-      float m_rotationSpeed = 0.2f;
+      ::f32 m_rotationSpeed = 0.2f;
       // point_light_render_system(const point_light_render_system&) = delete;
       // point_light_render_system& operator=(const point_light_render_system&) = delete;
 

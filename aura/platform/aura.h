@@ -19,14 +19,14 @@
 //
 ////#if OBJECT_TYPE_COUNTER
 ////
-////   extern map_base < const_char_pointer ,const ::scoped_string & scopedstr, long long, long long >* g_pmapObjTypCtr;
+////   extern map_base < const_char_pointer ,const ::scoped_string & scopedstr, ::i64, ::i64 >* g_pmapObjTypCtr;
 ////
 ////#endif
 //
 //
 //   //extern CLASS_DECL_AURA critical_section* g_pcsGlobal;
 //
-//   extern CLASS_DECL_AURA string_map_base < int_to_string > * g_pmapFontFaceName;
+//   extern CLASS_DECL_AURA string_map_base < i32_to_string > * g_pmapFontFaceName;
 //
 //   extern CLASS_DECL_AURA critical_section* g_pcsFont;
 //
@@ -37,7 +37,7 @@
 //
 ////#if OBJECT_TYPE_COUNTER
 ////
-////   extern int g_iObjTypCtrInit;
+////   extern ::i32 g_iObjTypCtrInit;
 ////
 ////#endif
 //
@@ -56,7 +56,7 @@
 ////#else
 ////
 ////   extern DWORD_PTR g_tlsindexLastError;
-////   extern char* g_pszDemangle;
+////   extern char_pointer g_pszDemangle;
 ////   extern critical_section* g_pcsDemangle;
 ////
 ////#endif
@@ -88,7 +88,7 @@
 ////#include <mach/mach_time.h>
 ////
 //////clock_serv_t   g_cclock;
-////   extern double g_machtime_conversion_factor;
+////   extern ::f64 g_machtime_conversion_factor;
 ////   //   clock_get_time(cclock, &mts);
 ////
 ////#endif
@@ -129,11 +129,11 @@
 ////
 ////#endif
 //
-//   //extern long long g_iFirstNano;
+//   //extern ::i64 g_iFirstNano;
 //
 //   //plex_heap_alloc_array * g_pplexheapallocarray;
 //
-//   //extern int g_iMemoryCountersStartable;
+//   //extern ::i32 g_iMemoryCountersStartable;
 //   //extern ::pointer< ::mutex > g_pmutexTrait;
 //   //extern ::pointer< ::mutex > g_pmutexFactory;
 //

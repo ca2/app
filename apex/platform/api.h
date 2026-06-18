@@ -85,12 +85,12 @@ public:
 
    virtual bool is_api_get_ok(const ::scoped_string& scopedstrUrl, const ::scoped_string & scopedstr, const ::payload & payload, ::property_set & set);
 
-   virtual bool is_http_status_ok(const ::scoped_string& scopedstrUrl, const ::scoped_string& scopedstr, const ::payload& payload, ::property_set & set, int iHttpStatusCode);
+   virtual bool is_http_status_ok(const ::scoped_string& scopedstrUrl, const ::scoped_string& scopedstr, const ::payload& payload, ::property_set & set, ::i32 iHttpStatusCode);
 
 
    virtual void on_login_authentication_failed();
 
-   virtual string randomDataBase64url(unsigned int length);
+   virtual string randomDataBase64url(::u32 length);
    virtual memory sha256(const ::scoped_string & scopedstrInput);
    virtual string base64urlencodeNoPadding(memory m);
 

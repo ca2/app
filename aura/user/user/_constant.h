@@ -166,7 +166,7 @@ enum
 // Frame interaction_impl styles
 #define FWS_ADDTOTITLE  0x00008000L // modify title based on content
 #define FWS_PREFIXTITLE 0x00004000L // show document name before cast name
-#define FWS_SNAPTOBARS  0x00002000L // snap int_size to int_size of contained bars
+#define FWS_SNAPTOBARS  0x00002000L // snap i32_size to i32_size of contained bars
 
 
 
@@ -314,22 +314,22 @@ namespace user
 
 
 
-//CLASS_DECL_ACME long long oswindow_id(oswindow w);
+//CLASS_DECL_ACME ::i64 oswindow_id(oswindow w);
 
 
-//CLASS_DECL_ACME int_bool is_window(::acme::windowing::window * pacmewindowingwindow);
+//CLASS_DECL_ACME ::i32_bool is_window(::acme::windowing::window * pacmewindowingwindow);
 //CLASS_DECL_ACME oswindow get_focus();
 //CLASS_DECL_ACME oswindow set_keyboard_focus(::acme::windowing::window * pacmewindowingwindow);
 //CLASS_DECL_ACME oswindow get_active_window();
 //CLASS_DECL_ACME oswindow set_active_window(::acme::windowing::window * pacmewindowingwindow);
 //CLASS_DECL_ACME oswindow get_capture();
 //CLASS_DECL_ACME oswindow set_mouse_capture(::acme::windowing::window * pacmewindowingwindow);
-//CLASS_DECL_ACME int_bool release_mouse_capture();
-//CLASS_DECL_ACME int_bool destroy_window(::acme::windowing::window * pacmewindowingwindow);
-//CLASS_DECL_ACME oswindow get_window(::acme::windowing::window * pacmewindowingwindow, int iWindow);
+//CLASS_DECL_ACME ::i32_bool release_mouse_capture();
+//CLASS_DECL_ACME ::i32_bool destroy_window(::acme::windowing::window * pacmewindowingwindow);
+//CLASS_DECL_ACME oswindow get_window(::acme::windowing::window * pacmewindowingwindow, ::i32 iWindow);
 //CLASS_DECL_ACME oswindow get_desktop_window();
-//CLASS_DECL_ACME int_bool show_window(::acme::windowing::window * pacmewindowingwindow, int iShow);
-//CLASS_DECL_ACME int_bool set_foreground_window(::acme::windowing::window * pacmewindowingwindow);
+//CLASS_DECL_ACME ::i32_bool show_window(::acme::windowing::window * pacmewindowingwindow, ::i32 iShow);
+//CLASS_DECL_ACME ::i32_bool set_foreground_window(::acme::windowing::window * pacmewindowingwindow);
 //
 //
 //#ifdef WINDOWS_DESKTOP

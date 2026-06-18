@@ -54,7 +54,7 @@ file_size_table::file_size_table(::particle * pparticle) :
                                                false );
          if ( bSetOk )
          {
-            // Make the security attributes int_point
+            // Make the security attributes i32_point
             // to the security descriptor
             MutexAttributes.lpSecurityDescriptor = &SD;*/
    //mutex() = ___new ::pointer < ::mutex > (false, "Global\\::draw2d::account::file_system_size::7807e510-5579-11dd-ae16-0800200c7784", &MutexAttributes);
@@ -95,12 +95,12 @@ void file_size_table::item::ls(::particle * pparticle, ::collection::index & iIt
    {
       string_array_base               straPath;
       string_array_base               straTitle;
-      long_long_array_base iaSize;
+      i64_array_base iaSize;
       bool_array baIsDir;
       if(path().is_empty())
       {
          Sess(papp).directory()->root_ones(straPath, straTitle);
-         for(int i = 0; i < straPath.get_size(); i++)
+         for(::i32 i = 0; i < straPath.get_size(); i++)
          {
             item item;
             item.m_bPending = true;
@@ -116,7 +116,7 @@ void file_size_table::item::ls(::particle * pparticle, ::collection::index & iIt
       else
       {
          Sess(papp).directory()->ls(path(), &straPath, &straTitle, &baIsDir, &iaSize);
-         for(int i = 0; i < straTitle.get_size(); i++)
+         for(::i32 i = 0; i < straTitle.get_size(); i++)
          {
             item item;
             item.m_bPending = baIsDir[i];
@@ -202,7 +202,7 @@ void file_size_table::item::update_size(::particle * pparticle, ::collection::in
    {
       m_iSize = 0;
       m_bPending = false;
-      for(int i = 0; i < m_itema.get_size(); i++)
+      for(::i32 i = 0; i < m_itema.get_size(); i++)
       {
          m_iSize += m_itema[i]->m_iSize;
          if(m_itema[i]->m_bPending || m_itema[i]->m_bPendingLs)
@@ -220,7 +220,7 @@ void file_size_table::item::update_size_recursive(::particle * pparticle, ::coll
    {
       ls(papp, iIteration);
    }
-   for(int i = 0; i < m_itema.get_size(); i++)
+   for(::i32 i = 0; i < m_itema.get_size(); i++)
    {
       m_itema[i]->update_size_recursive(papp, iIteration);
       if(iIteration > 230)
@@ -242,7 +242,7 @@ DBFileSystemSizeSet::~DBFileSystemSizeSet()
 }
 
 
-bool DBFileSystemSizeSet::get_cache_fs_size(long long & i64Size, const ::scoped_string & scopedstrPath, bool & bPending)
+bool DBFileSystemSizeSet::get_cache_fs_size(::i64 & i64Size, const ::scoped_string & scopedstrPath, bool & bPending)
 {
    return false;
    single_lock synchronouslock(m_table.mutex(), false);
@@ -286,7 +286,7 @@ bool DBFileSystemSizeSet::get_cache_fs_size(long long & i64Size, const ::scoped_
        }*/
 }
 
-bool DBFileSystemSizeSet::get_fs_size(long long & i64Size, const ::scoped_string & scopedstrPath, bool & bPending)
+bool DBFileSystemSizeSet::get_fs_size(::i64 & i64Size, const ::scoped_string & scopedstrPath, bool & bPending)
 {
    ::collection::index iIteration = 0;
    single_lock synchronouslock(m_table.mutex(), false);
@@ -298,7 +298,7 @@ bool DBFileSystemSizeSet::get_fs_size(long long & i64Size, const ::scoped_string
    return true;
 }
 
-bool DBFileSystemSizeSet::get_fs_size(long long & i64Size, const ::scoped_string & scopedstrPath, bool & bPending, ::collection::index & iIteration)
+bool DBFileSystemSizeSet::get_fs_size(::i64 & i64Size, const ::scoped_string & scopedstrPath, bool & bPending, ::collection::index & iIteration)
 {
    single_lock synchronouslock(m_table.mutex(), false);
    if(!synchronouslock.lock(time::zero()))
@@ -351,7 +351,7 @@ bool FileSystemSizeWnd::CreateClient()
    return m_p->create_message_queue("::draw2d::account::FileSystemSizeWnd::Client");
    /*  ::pointer<::user::interaction>puiMessage = nullptr;
       puiMessage = psystem->ui_from_handle(HWND_MESSAGE);
-      return m_p->create(nullptr, "::draw2d::account::FileSystemSizeWnd::Client", 0, int_rectangle(0, 0, 0, 0), puiMessage, atom()) != false;*/
+      return m_p->create(nullptr, "::draw2d::account::FileSystemSizeWnd::Client", 0, i32_rectangle(0, 0, 0, 0), puiMessage, atom()) != false;*/
 
 //#else
 
@@ -367,7 +367,7 @@ bool FileSystemSizeWnd::CreateServer()
 #ifdef WINDOWS
 
    m_bServer = true;
-   if(!m_p->create_window("Local\\::draw2d::account::FileSystemSizeWnd::Server",0,::int_rectangle(),psystem->ui_from_handle(HWND_MESSAGE),atom()))
+   if(!m_p->create_window("Local\\::draw2d::account::FileSystemSizeWnd::Server",0,::i32_rectangle(),psystem->ui_from_handle(HWND_MESSAGE),atom()))
       return false;
    m_p->set_timer(100, 100, nullptr);
    return true;
@@ -380,7 +380,7 @@ bool FileSystemSizeWnd::CreateServer()
 
 }
 
-bool FileSystemSizeWnd::get_fs_size(long long & i64Size, const ::scoped_string & scopedstrPath, bool & bPending)
+bool FileSystemSizeWnd::get_fs_size(::i64 & i64Size, const ::scoped_string & scopedstrPath, bool & bPending)
 {
 
 #ifdef WINDOWS_DESKTOP
@@ -405,7 +405,7 @@ bool FileSystemSizeWnd::get_fs_size(long long & i64Size, const ::scoped_string &
 
    COPYDATASTRUCT data;
    data.dwData = 0;
-   data.cbData = (unsigned int) file.get_length();
+   data.cbData = (::u32) file.get_length();
    data.lpData = file.get_data();
    ::oswindow oswindowWparam = (::oswindow) m_p->get_os_data();
    wparam wparam = (WPARAM) oswindowWparam;
@@ -474,13 +474,13 @@ void FileSystemSizeWnd::_001OnCopyData(::message::message * pmessage)
 
 }
 
-void FileSystemSizeWnd::on_timer(::timer * ptimer)
+void FileSystemSizeWnd::operator()(::timer * ptimer)
 {
 
 #ifdef WINDOWS_DESKTOP
 
-   super::on_timer(ptimer);;
-   if(ptimer->m_uTimer == 100)
+   super::operator()(ptimer);;
+   if(ptimer->m_etimer == 100)
    {
       //::PostMessage(pusermessage->m_wparam, WM_COPYDATA, (WPARAM) get_handle(), (LPARAM) &data);
       if(m_sizea.get_size() > 0)
@@ -497,7 +497,7 @@ void FileSystemSizeWnd::on_timer(::timer * ptimer)
             file_size_table::get_fs_size & size = m_sizea[0];
             file.m_spmemorybuffer->Truncate(0);
             size.write(file);
-            data.cbData = (unsigned int) file.get_length();
+            data.cbData = (::u32) file.get_length();
             data.lpData = file.get_data();
             ::SendMessage(size.m_pacmewindowingwindow, WM_COPYDATA, (WPARAM) m_p->get_os_data(), (LPARAM) &data);
             m_sizea.erase_at(0);
@@ -565,7 +565,7 @@ void file_size_table::get_fs_size::write(::file::output_stream & ostream) const
 
 #ifdef WINDOWS_DESKTOP
 
-   ostream << (int) m_pacmewindowingwindow;
+   ostream << (::i32) m_pacmewindowingwindow;
 
 #else
 
@@ -585,7 +585,7 @@ void file_size_table::get_fs_size::read(::file::input_stream & istream)
 
 #ifdef WINDOWS
 
-   istream >> (int &) m_pacmewindowingwindow;
+   istream >> (::i32 &) m_pacmewindowingwindow;
 
 #else
 

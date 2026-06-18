@@ -34,10 +34,12 @@ public:
    // DECLARE_REUSABLE(manual_reset_happening);
 
 
-   manual_reset_happening(char * sz = nullptr, bool bInitiallyOwn = false);
+   manual_reset_happening(char_pointer sz = nullptr, bool bInitiallyOwn = false);
    ~manual_reset_happening() override;
 
    //void reuse() { reset_happening(); }
+   
+   void clear() { reset_happening(); }
 
 };
 
@@ -75,7 +77,7 @@ public:
       
       m_synca.add_unique(p);
       
-//      for (int i = 0; i < m_iSyncCount; i++)
+//      for (::i32 i = 0; i < m_iSyncCount; i++)
 //      {
 //         
 //         auto & psync = m_synca[i];
@@ -89,7 +91,7 @@ public:
 //         
 //      }
 //
-//      for (int i = 0; i < m_iSyncCount; i++)
+//      for (::i32 i = 0; i < m_iSyncCount; i++)
 //      {
 //         
 //         auto & psync = m_synca[i];
@@ -117,7 +119,7 @@ public:
 //         return;
 //      }
    
-//      for (int i = 0; i < m_iSyncCount; i++)
+//      for (::i32 i = 0; i < m_iSyncCount; i++)
 //      {
 //         
 //         auto & psync = m_synca[i];

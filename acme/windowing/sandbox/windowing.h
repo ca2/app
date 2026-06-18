@@ -66,7 +66,7 @@ public:
    
    void finalize_windowing() override;
    
-   ::particle * defer_initialize_host_window(const ::int_rectangle* lpcrect) override;
+   ::particle * defer_initialize_host_window(const ::i32_rectangle* lpcrect) override;
    
    ::acme::windowing::window* get_application_host_window() override;
    virtual bool targeted_keyboard_messages();

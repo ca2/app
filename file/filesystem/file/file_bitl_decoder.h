@@ -1,4 +1,4 @@
-// BitlDecoder.h -- the Least Significant Bit of unsigned char is First
+// BitlDecoder.h -- the Least Significant Bit of ::u8 is First
 // from 7-zip on 2012-12-23, dawn
 #pragma once
 
@@ -10,24 +10,24 @@ namespace file
    namespace bitl
    {
 
-      const unsigned int kNumBigValueBits = 8 * 4;
-      const unsigned int kNumValueBytes = 3;
-      const unsigned int kNumValueBits = 8  * kNumValueBytes;
+      const ::u32 kNumBigValueBits = 8 * 4;
+      const ::u32 kNumValueBytes = 3;
+      const ::u32 kNumValueBits = 8  * kNumValueBytes;
 
-      const unsigned int kMask = (1 << kNumValueBits) - 1;
+      const ::u32 kMask = (1 << kNumValueBits) - 1;
 
-      extern unsigned char kInvertTable[256];
+      extern ::u8 kInvertTable[256];
 
       template < class TInByte >
       class base_decoder
       {
       protected:
-         unsigned int m_BitPos;
-         unsigned int m_Value;
+         ::u32 m_BitPos;
+         ::u32 m_Value;
          TInByte m_Stream;
       public:
-         unsigned int NumExtraBytes;
-         bool Create(unsigned int bufferSize) { return m_Stream.Create(bufferSize); }
+         ::u32 NumExtraBytes;
+         bool Create(::u32 bufferSize) { return m_Stream.Create(bufferSize); }
          void SetStream(reader *inStream) { m_Stream.SetStream(inStream); }
          void ReleaseStream() { m_Stream.ReleaseStream(); }
          void Init()
@@ -37,13 +37,13 @@ namespace file
             m_Value = 0;
             NumExtraBytes = 0;
          }
-         unsigned long long GetProcessedSize() const { return m_Stream.GetProcessedSize() + NumExtraBytes - (kNumBigValueBits - m_BitPos) / 8; }
+         ::u64 GetProcessedSize() const { return m_Stream.GetProcessedSize() + NumExtraBytes - (kNumBigValueBits - m_BitPos) / 8; }
 
          void Normalize()
          {
             for (; m_BitPos >= 8; m_BitPos -= 8)
             {
-               unsigned char b = 0;
+               ::u8 b = 0;
                if (!m_Stream.ReadByte(b))
                {
                   b = 0xFF; // check it
@@ -53,10 +53,10 @@ namespace file
             }
          }
 
-         unsigned int ReadBits(unsigned int numBits)
+         ::u32 ReadBits(::u32 numBits)
          {
             Normalize();
-            unsigned int res = m_Value & ((1 << numBits) - 1);
+            ::u32 res = m_Value & ((1 << numBits) - 1);
             m_BitPos += numBits;
             m_Value >>= numBits;
             return res;
@@ -66,7 +66,7 @@ namespace file
          {
             if (NumExtraBytes == 0)
                return false;
-            return ((unsigned int)(kNumBigValueBits - m_BitPos) < (NumExtraBytes << 3));
+            return ((::u32)(kNumBigValueBits - m_BitPos) < (NumExtraBytes << 3));
          }
       };
 
@@ -74,7 +74,7 @@ namespace file
       class decoder :
          public base_decoder < TInByte >
       {
-         unsigned int m_NormalValue;
+         ::u32 m_NormalValue;
 
       public:
          void Init()
@@ -87,7 +87,7 @@ namespace file
          {
             for (; this->m_BitPos >= 8; this->m_BitPos -= 8)
             {
-               unsigned char b = 0;
+               ::u8 b = 0;
                if (!this->m_Stream.ReadByte(b))
                {
                   b = 0xFF; // check it
@@ -98,33 +98,33 @@ namespace file
             }
          }
 
-         unsigned int GetValue(unsigned int numBits)
+         ::u32 GetValue(::u32 numBits)
          {
             Normalize();
             return ((this->m_Value >> (8 - this->m_BitPos)) & kMask) >> (kNumValueBits - numBits);
          }
 
-         void MovePos(unsigned int numBits)
+         void MovePos(::u32 numBits)
          {
             this->m_BitPos += numBits;
             m_NormalValue >>= numBits;
          }
 
-         unsigned int ReadBits(unsigned int numBits)
+         ::u32 ReadBits(::u32 numBits)
          {
             Normalize();
-            unsigned int res = m_NormalValue & ((1 << numBits) - 1);
+            ::u32 res = m_NormalValue & ((1 << numBits) - 1);
             MovePos(numBits);
             return res;
          }
 
          void AlignToByte() { MovePos((32 - this->m_BitPos) & 7); }
 
-         unsigned char ReadByte()
+         ::u8 ReadByte()
          {
             if (this->m_BitPos == kNumBigValueBits)
             {
-               unsigned char b = 0;
+               ::u8 b = 0;
                if (!this->m_Stream.ReadByte(b))
                {
                   b = 0xFF;
@@ -133,7 +133,7 @@ namespace file
                return b;
             }
             {
-               unsigned char b = (unsigned char)(m_NormalValue & 0xFF);
+               ::u8 b = (::u8)(m_NormalValue & 0xFF);
                MovePos(8);
                return b;
             }

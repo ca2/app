@@ -71,7 +71,7 @@ namespace data
    //   }
    //
    //
-   //   void text_property::get_text(char * psz, character_count len)
+   //   void text_property::get_text(char_pointer psz, character_count len)
    //   {
    //
    //      string str;
@@ -202,7 +202,7 @@ namespace data
    //   }
    //
    //
-   //   void text_property::get_text_composition_area(::int_rectangle& rectangle)
+   //   void text_property::get_text_composition_area(::i32_rectangle& rectangle)
    //   {
    //
    //
@@ -303,12 +303,12 @@ namespace data
    character_count text_property::get_text_length() const
    {
 
-      return this->get_property({ id_text_length }).as_long_long();
+      return this->get_property({ id_text_length }).as_i64();
 
    }
 
 
-  /* void text_property::get_text(char * psz, character_count len)
+  /* void text_property::get_text(char_pointer psz, character_count len)
    {
 
       auto strText = this->as_text();
@@ -511,7 +511,7 @@ namespace data
       }
 
 
-      void text_property::get_text_composition_area(::int_rectangle& rectangle)
+      void text_property::get_text_composition_area(::i32_rectangle& rectangle)
       {
 
 
@@ -707,7 +707,7 @@ namespace data
    //}
 
 
-   //void text_property::get_text(char * psz, character_count len)
+   //void text_property::get_text(char_pointer psz, character_count len)
    //{
 
    //   string str;
@@ -838,7 +838,7 @@ namespace data
    //}
 
 
-   //void text::get_text_composition_area(::int_rectangle& rectangle)
+   //void text::get_text_composition_area(::i32_rectangle& rectangle)
    //{
 
 

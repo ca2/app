@@ -24,7 +24,7 @@ namespace geometry2d
 
 
 
-   matrix matrix::translation(double x, double y)
+   matrix matrix::translation(::f64 x, ::f64 y)
    {
 
       matrix m;
@@ -37,7 +37,7 @@ namespace geometry2d
 
    }
 
-   matrix matrix::rotation(double dAngleDegrees)
+   matrix matrix::rotation(::f64 dAngleDegrees)
    {
 
       matrix m;
@@ -56,7 +56,7 @@ namespace geometry2d
    }
 
 
-   matrix matrix::scaling(double dRateX, double dRateY)
+   matrix matrix::scaling(::f64 dRateX, ::f64 dRateY)
    {
 
       matrix m;
@@ -98,23 +98,23 @@ namespace geometry2d
    }
 
 
-   void matrix::transform(int_sequence2 & sequence)
+   void matrix::transform(i32_sequence2 & sequence)
    {
 
-      ::int_sequence2 s;
+      ::i32_sequence2 s;
 
-      s.x = (int) (sequence.x * a1 + sequence.y * b1 + c1);
-      s.y = (int) (sequence.x * a2 + sequence.y * b2 + c2);
+      s.x = (::i32) (sequence.x * a1 + sequence.y * b1 + c1);
+      s.y = (::i32) (sequence.x * a2 + sequence.y * b2 + c2);
 
       sequence = s;
 
    }
 
 
-   void matrix::transform(double_sequence2 & sequence)
+   void matrix::transform(f64_sequence2 & sequence)
    {
 
-      double_sequence2 s;
+      f64_sequence2 s;
 
       s.x = sequence.x * a1 + sequence.y * b1 + c1;
       s.y = sequence.x * a2 + sequence.y * b2 + c2;
@@ -124,7 +124,7 @@ namespace geometry2d
    }
 
 
-   void matrix::transform(double_sequence2* ppoint, ::collection::count c)
+   void matrix::transform(f64_sequence2* ppoint, ::collection::count c)
    {
 
       while (c-- > 0) transform(ppoint[c]);
@@ -133,7 +133,7 @@ namespace geometry2d
 
 
    // 6 (six) elements
-   void matrix::SetElements(float * fa)
+   void matrix::SetElements(::f32 * fa)
    {
 
       a1 = fa[0];
@@ -146,7 +146,7 @@ namespace geometry2d
 
    }
 
-   matrix & matrix::translate(double x, double y, e_mode emode)
+   matrix & matrix::translate(::f64 x, ::f64 y, e_mode emode)
    {
 
       if (emode == mode_prepend)
@@ -164,7 +164,7 @@ namespace geometry2d
    }
 
 
-   matrix & matrix::rotate(double dAngleRadians, e_mode emode)
+   matrix & matrix::rotate(::f64 dAngleRadians, e_mode emode)
    {
 
       if (emode == mode_prepend)
@@ -183,7 +183,7 @@ namespace geometry2d
    }
 
 
-   matrix & matrix::scale(double dRateX, double dRateY, e_mode emode)
+   matrix & matrix::scale(::f64 dRateX, ::f64 dRateY, e_mode emode)
    {
 
       if (emode == mode_prepend)
@@ -202,7 +202,7 @@ namespace geometry2d
    }
 
 
-   double matrix::determinant() const
+   ::f64 matrix::determinant() const
    {
 
       return
@@ -216,7 +216,7 @@ namespace geometry2d
    bool matrix::invert(matrix & aDst, const matrix & aSrc)
    {
 
-      double det = aSrc.determinant();
+      ::f64 det = aSrc.determinant();
 
       if (det == 0.0)
       {
@@ -227,7 +227,7 @@ namespace geometry2d
 
       }
 
-      double invdet = 1 / det;
+      ::f64 invdet = 1 / det;
 
       aDst.a[0][0] = (aSrc.a[1][1] * aSrc.a[2][2] - aSrc.a[2][1] * aSrc.a[1][2]) * invdet;
       aDst.a[0][1] = (aSrc.a[0][2] * aSrc.a[2][1] - aSrc.a[0][1] * aSrc.a[2][2]) * invdet;

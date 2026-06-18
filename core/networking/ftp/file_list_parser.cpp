@@ -88,13 +88,13 @@ namespace ftp
    }
 
 
-   int file_list_parser::GetMonth(const ::scoped_string & scopedstr) const
+   ::i32 file_list_parser::GetMonth(const ::scoped_string & scopedstr) const
    {
 
       if (scopedstr.size() == 3)
       {
 
-         for (int i = 0; i < 12; ++i)
+         for (::i32 i = 0; i < 12; ++i)
          {
 
             if (CheckMonth(scopedstr, m_Months[i]))
@@ -271,8 +271,8 @@ namespace ftp
       }
 
       long lTemp = 0;
-      int i = 1;
-      for (int j = 1; j < scopedstrLine.size(); ++j)
+      ::i32 i = 1;
+      for (::i32 j = 1; j < scopedstrLine.size(); ++j)
       {
          
          if (scopedstrLine.begin()[j] == ('\t'))
@@ -369,8 +369,8 @@ namespace ftp
          ftpFileStatus.m_bRetrEnabled = true;
       }
 
-      int  iState = 1;
-      int  i = 0;
+      ::i32  iState = 1;
+      ::i32  i = 0;
       long lSize = 0;
       long lYear = 0;
       long lMonth = 0;
@@ -378,7 +378,7 @@ namespace ftp
       long lHour = 0;
       long lMinute = 0;
 
-      for (int j = 1; j < scopedstrLine.size(); ++j)
+      for (::i32 j = 1; j < scopedstrLine.size(); ++j)
       {
          if (scopedstrLine.begin()[j] == (' ') && scopedstrLine.begin()[j - 1] != (' '))
          {
@@ -398,7 +398,7 @@ namespace ftp
                iState = 4;
                ftpFileStatus.m_strUID.assign_range(scopedstrLine(i, j - i));
                break;
-            case 4: // getting tentative int_size
+            case 4: // getting tentative i32_size
                if (!GetLong(scopedstrLine(i, j - i), lSize))
                {
                   lSize = -1;
@@ -406,7 +406,7 @@ namespace ftp
                }
                iState = 5;
                break;
-            case 5: // searching for month, otherwise getting tentative int_size
+            case 5: // searching for month, otherwise getting tentative i32_size
                lMonth = GetMonth(scopedstrLine(i, j - i));
                if (lMonth >= 0)
                   iState = 6;
@@ -416,7 +416,7 @@ namespace ftp
                      lSize = -1;
                }
                break;
-            case 6: // have int_size and month
+            case 6: // have i32_size and month
                GetLong(scopedstrLine(i, j - i), lMDay);
                iState = 7;
                break;
@@ -500,7 +500,7 @@ namespace ftp
          return false;
 
       // name find of `i' changed for ___new ISO `for' scoping
-      int i = 0;
+      ::i32 i = 0;
       for (; i < scopedstrLine.size(); ++i)
          if (scopedstrLine.begin()[i] == (';'))
             break;
@@ -522,7 +522,7 @@ namespace ftp
          while (scopedstrLine.begin()[i] != (' ')) if (++i == scopedstrLine.size()) return false;
          while (scopedstrLine.begin()[i] == (' ')) if (++i == scopedstrLine.size()) return false;
 
-         int j = i;
+         ::i32 j = i;
          while (scopedstrLine.begin()[j] != ('-')) if (++j == scopedstrLine.size()) return false;
          long lMDay = 0;
          GetLong(scopedstrLine(i, j - i), lMDay);
@@ -573,8 +573,8 @@ namespace ftp
       if (!IsMSDOSListing(scopedstrLine))
          return false;
 
-      int i = 0;
-      int j = 0;
+      ::i32 i = 0;
+      ::i32 j = 0;
       while (scopedstrLine.begin()[j] != ('-')) if (++j == scopedstrLine.size()) return false;
       long lMonth = 0;
       GetLong(scopedstrLine(i, j - i), lMonth); //+# -1

@@ -11,7 +11,7 @@ namespace file
    memsize limited_reader::read(void *data, memsize size)
    {
      memsize realProcessedSize = 0;
-     unsigned int sizeToRead = (unsigned int)minimum((_size - _pos), (unsigned long long)int_size);
+     ::u32 sizeToRead = (::u32)minimum((_size - _pos), (::u64)i32_size);
 //     HRESULT result = S_OK;
      if (sizeToRead > 0)
      {

@@ -4,12 +4,12 @@
 
 //
 //
-//using line = ::double_line;
+//using line = ::f64_line;
 //
 //
-//using line = ::double_line;
-//using rectangle = ::double_rectangle;
-//using ellipse = ::double_ellipse;
+//using line = ::f64_line;
+//using rectangle = ::f64_rectangle;
+//using ellipse = ::f64_ellipse;
 
 
 
@@ -32,14 +32,14 @@
 
 
 
-//inline auto left(const ::int_rectangle& rectangle) { return rectangle.left; }
-//inline auto top(const ::int_rectangle& rectangle) { return rectangle.top; }
-//inline auto left(const ::long_long_rectangle& rectangle) { return rectangle.left; }
-//inline auto top(const ::long_long_rectangle& rectangle) { return rectangle.top; }
-//inline auto left(const ::float_rectangle& rectangle) { return rectangle.left; }
-//inline auto top(const ::float_rectangle& rectangle) { return rectangle.top; }
-//inline auto left(const ::double_rectangle& rectangle) { return rectangle.left; }
-//inline auto top(const ::double_rectangle& rectangle) { return rectangle.top; }
+//inline auto left(const ::i32_rectangle& rectangle) { return rectangle.left; }
+//inline auto top(const ::i32_rectangle& rectangle) { return rectangle.top; }
+//inline auto left(const ::i64_rectangle& rectangle) { return rectangle.left; }
+//inline auto top(const ::i64_rectangle& rectangle) { return rectangle.top; }
+//inline auto left(const ::f32_rectangle& rectangle) { return rectangle.left; }
+//inline auto top(const ::f32_rectangle& rectangle) { return rectangle.top; }
+//inline auto left(const ::f64_rectangle& rectangle) { return rectangle.left; }
+//inline auto top(const ::f64_rectangle& rectangle) { return rectangle.top; }
 
 
 

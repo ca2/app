@@ -47,7 +47,7 @@ if([happening modifierFlags] & NSNumericPadKeyMask) // arrow keys have this mask
 else
 {
    
-   unsigned short ush = [happening keyCode];
+   ::u16 ush = [happening keyCode];
    
    return ush;
    

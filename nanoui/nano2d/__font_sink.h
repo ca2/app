@@ -21,10 +21,10 @@ namespace nano2d
    public:
       
       
-      string_map_base < map_base < float, ::write_text::font_pointer > > m_mapSharedFont;
+      string_map_base < map_base < ::f32, ::write_text::font_pointer > > m_mapSharedFont;
       
 
-      virtual ::write_text::font_pointer get_shared_font(const_char_pointer face, float size);
+      virtual ::write_text::font_pointer get_shared_font(const_char_pointer face, ::f32 size);
       
       
    };

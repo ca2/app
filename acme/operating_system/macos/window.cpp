@@ -1,6 +1,7 @@
 // Created by camilo on 2024-09-13 15:58 <3ThomasBorregaardSorensen!!
 // From windows/window.h by camilo on 2026-02-28 21:17 <3ThomasBorregaardSørensen!!
 #include "framework.h"
+#include "acme/operating_system/macos/window.h"
 //#include "window.h"
 //#include "windowing.h"
 //#include "acme/platform/application.h"
@@ -47,8 +48,8 @@
 //      {
 //
 //         lresult = 1;
-//         double Δx = 0.;
-//         double Δy= 0.;
+//         ::f64 Δx = 0.;
+//         ::f64 Δy= 0.;
 //
 //         ::SetCursor(::LoadCursor(nullptr, IDC_SIZEALL));
 //
@@ -120,9 +121,9 @@
 //
 //               m_bMovingNow = true;
 //
-//               auto x = (int)(r.left + Δx);
+//               auto x = (::i32)(r.left + Δx);
 //
-//               auto y = (int)(r.top + Δy);
+//               auto y = (::i32)(r.top + Δy);
 //
 //               SetWindowPos(m_hwnd, nullptr, x, y, 0, 0, SWP_NOSIZE | SWP_NOZORDER);
 //               m_bMovingNow = false;
@@ -361,7 +362,7 @@
 //   bool window::_on_default_system_menu_command(LRESULT & lresult,WPARAM wparam, LPARAM lparam)
 //   {
 //
-//      int wmId = LOWORD(wparam);
+//      ::i32 wmId = LOWORD(wparam);
 //
 //      if (wmId == 123)
 //      {
@@ -544,3 +545,19 @@
 //} // namespace windows
 //
 //
+
+
+
+CLASS_DECL_ACME ::operating_system::window as_operating_system_window(::uptr u)
+{
+
+   if (u == 0)
+   {
+
+      return {};
+
+   }
+
+   return {::windowing::e_operating_ambient_macos, u};
+
+}

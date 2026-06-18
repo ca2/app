@@ -40,9 +40,9 @@ namespace draw2d
 
    };
 
-   using clip_rectangle = clip_item_base < ::int_rectangle, e_clip_item_rectangle >;
-   using clip_ellipse = clip_item_base < ::double_ellipse, e_clip_item_ellipse >;
-   using clip_polygon = clip_item_base < ::double_polygon, e_clip_item_polygon >;
+   using clip_rectangle = clip_item_base < ::i32_rectangle, e_clip_item_rectangle >;
+   using clip_ellipse = clip_item_base < ::f64_ellipse, e_clip_item_ellipse >;
+   using clip_polygon = clip_item_base < ::f64_polygon, e_clip_item_polygon >;
 
 
    class CLASS_DECL_AURA clip_group :
@@ -50,7 +50,7 @@ namespace draw2d
    {
    public:
 
-      bool is_rectangle_only(::int_rectangle_array_base& rectanglea) const
+      bool is_rectangle_only(::i32_rectangle_array_base& rectanglea) const
       {
          for (auto& pclipitem : *this)
          {

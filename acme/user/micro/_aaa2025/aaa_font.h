@@ -19,7 +19,7 @@ public:
 
 
    string      m_strFontName;
-   int         m_iFontSize;
+   ::i32         m_iFontSize;
    bool        m_bBold;
 
 

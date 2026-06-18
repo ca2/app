@@ -44,15 +44,15 @@ namespace gpu
             floating_sequence3 e1 = v2 - v1;
             floating_sequence3 e2 = v3 - v1;
 
-            float s1 = w2.x - w1.x;
-            float s2 = w3.x - w1.x;
-            float t1 = w2.y - w1.y;
-            float t2 = w3.y - w1.y;
+            ::f32 s1 = w2.x - w1.x;
+            ::f32 s2 = w3.x - w1.x;
+            ::f32 t1 = w2.y - w1.y;
+            ::f32 t2 = w3.y - w1.y;
 
-            float det = s1 * t2 - s2 * t1;
+            ::f32 det = s1 * t2 - s2 * t1;
             if (fabs(det) < 1e-10f)
                continue;
-            float r = 1.0f / det;
+            ::f32 r = 1.0f / det;
 
             floating_sequence3 sdir = (e1 * t2 - e2 * t1) * r;
             floating_sequence3 tdir = (e2 * s1 - e1 * s2) * r;
@@ -71,7 +71,7 @@ namespace gpu
             const ::floating_sequence3 &t = tan1[i];
 
             auto tangent = (t - n * n.dotted(t)).normalized();
-            float sign = (n.crossed(t).dotted(tan2[i]) < 0.0f) ? -1.0f : 1.0f;
+            ::f32 sign = (n.crossed(t).dotted(tan2[i]) < 0.0f) ? -1.0f : 1.0f;
 
             vertices[i].tangent = floating_sequence4(tangent, sign);
          }
@@ -92,7 +92,7 @@ namespace gpu
             void processNode(::gpu::model::model * pmodel, aiNode *node, const aiScene *scene)
             {
                // process all of this node's meshes if it has any
-               for (unsigned int i = 0; i < node->mNumMeshes; i++)
+               for (::u32 i = 0; i < node->mNumMeshes; i++)
                {
                   aiMesh *mesh = scene->mMeshes[node->mMeshes[i]];
 
@@ -180,7 +180,7 @@ namespace gpu
                }
 
                // continue with children
-               for (unsigned int i = 0; i < node->mNumChildren; i++)
+               for (::u32 i = 0; i < node->mNumChildren; i++)
                {
                   processNode(pmodel, node->mChildren[i], scene);
                }
@@ -217,7 +217,7 @@ namespace gpu
          }
 
          //::array_base<gltf::vertex> vertices;
-         //::array_base<unsigned int> indices;
+         //::array_base<::u32> indices;
          //::pointer<::gpu::model::material> pmaterial;
 
          if (pmaterialOverride)
@@ -235,7 +235,7 @@ namespace gpu
          bool bHasTangentsAndBitangents = mesh->HasTangentsAndBitangents();
 
          // vertices
-         for (unsigned int i = 0; i < mesh->mNumVertices; i++)
+         for (::u32 i = 0; i < mesh->mNumVertices; i++)
          {
             VERTEX vertex;
 
@@ -316,12 +316,12 @@ namespace gpu
          }
 
          // indices
-         for (unsigned int i = 0; i < mesh->mNumFaces; i++)
+         for (::u32 i = 0; i < mesh->mNumFaces; i++)
          {
 
             aiFace face = mesh->mFaces[i];
 
-            for (unsigned int j = 0; j < face.mNumIndices; j++)
+            for (::u32 j = 0; j < face.mNumIndices; j++)
             {
                auto iIndex = face.mIndices[j];
                indexes.add(iIndex);
@@ -366,7 +366,7 @@ namespace gpu
 
                if (::is_set(ptextureMetallic))
                {
-                  int iChannelCountMetallic = ptextureMetallic->m_textureattributes.m_iChannelCount;
+                  ::i32 iChannelCountMetallic = ptextureMetallic->m_textureattributes.m_iChannelCount;
                   if (iChannelCountMetallic == 2)
                   {
                      // metallicRoughness (in gltf 2.0 they are combined in one texture)
@@ -384,7 +384,7 @@ namespace gpu
                      if (::is_set(ptextureRoughness))
                      {
                         information() << "it seems there's roughness";
-                        int iChannelCountRoughness = ptextureMetallic->m_textureattributes.m_iChannelCount;
+                        ::i32 iChannelCountRoughness = ptextureMetallic->m_textureattributes.m_iChannelCount;
                         if (iChannelCountRoughness == 1)
                         {
                            information() << "it seems roughness is one channel";
@@ -456,7 +456,7 @@ namespace gpu
                         information() << "Alpha Mode: MASK";
                         // You can also retrieve the alphaCutoff value if needed:
                         pmaterial->alphaMode = material::ALPHAMODE_MASK;
-                        float alphaCutoff = 0.5f; // Default value
+                        ::f32 alphaCutoff = 0.5f; // Default value
                         if (aiMaterial->Get(AI_MATKEY_GLTF_ALPHACUTOFF, alphaCutoff) == AI_SUCCESS)
                         {
                            information() << "Alpha Cutoff: " << alphaCutoff;
@@ -481,7 +481,7 @@ namespace gpu
                   }
                }
                {
-                  float fMetallic = 0.f;
+                  ::f32 fMetallic = 0.f;
                   // Attempt to get the glTF alphaMode property
                   if (aiMaterial->Get(AI_MATKEY_METALLIC_FACTOR, fMetallic) == AI_SUCCESS)
                   {
@@ -501,7 +501,7 @@ namespace gpu
                   }
                }
                {
-                  float fRoughness = 0.f;
+                  ::f32 fRoughness = 0.f;
                   // Attempt to get the glTF alphaMode property
                   if (aiMaterial->Get(AI_MATKEY_ROUGHNESS_FACTOR, fRoughness) == AI_SUCCESS)
                   {
@@ -521,7 +521,7 @@ namespace gpu
                   }
                }
                {
-                  float ambientOcclusionStrength = 1.f;
+                  ::f32 ambientOcclusionStrength = 1.f;
                   // Attempt to get the glTF alphaMode property
                   if (aiMaterial->Get(AI_MATKEY_GLTF_TEXTURE_STRENGTH(aiTextureType_AMBIENT_OCCLUSION, 0),
                                       ambientOcclusionStrength) == AI_SUCCESS)

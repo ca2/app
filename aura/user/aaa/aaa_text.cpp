@@ -57,7 +57,7 @@ namespace user
    }
 
 
-   void text::get_text(char * psz, character_count len) const
+   void text::get_text(char_pointer psz, character_count len) const
    {
 
       string str;

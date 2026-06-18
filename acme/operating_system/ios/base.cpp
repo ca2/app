@@ -3,11 +3,11 @@
 #include <string.h>
 #include <stdio.h>
 
-unsigned int
+::u32
 //rWINAPI
 GetTempPathA(
-unsigned int nBufferLength,
-char * lpBuffer
+::u32 nBufferLength,
+char_pointer lpBuffer
 )
 {
 
@@ -16,7 +16,7 @@ char * lpBuffer
    if(ptmpdir != nullptr && *ptmpdir != '\0')
    {
       strncpy(lpBuffer, ptmpdir, minimum(nBufferLength, strlen(ptmpdir) + 1));
-      return (unsigned int) strlen(ptmpdir);
+      return (::u32) strlen(ptmpdir);
    }
 
    ptmpdir = P_tmpdir;
@@ -24,7 +24,7 @@ char * lpBuffer
    if(ptmpdir != nullptr && *ptmpdir != '\0')
    {
       strncpy(lpBuffer, ptmpdir, minimum(nBufferLength, strlen(ptmpdir) + 1));
-      return (unsigned int) strlen(ptmpdir);
+      return (::u32) strlen(ptmpdir);
    }
 
    strncpy(lpBuffer, "/tmp", minimum(nBufferLength, 5));

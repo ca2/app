@@ -12,7 +12,7 @@
 #include <signal.h>
 #endif
 
-int __is_ok_socket(socket_id fd) {
+::i32 __is_ok_socket(socket_id fd) {
     struct sockaddr sa{};
     socklen_t len = sizeof(sa);
     if (getsockname(fd, &sa, &len) == 0) {
@@ -32,7 +32,7 @@ int __is_ok_socket(socket_id fd) {
 #endif
 
 
-#define THIS_FILE_DEBUG_LEVEL 20
+#define THIS_FILE_DEBUG_LEVEL 0
 #define THIS_FILE_DEBUG_LEVEL_FOR_LISTENING 0
 
 
@@ -92,7 +92,7 @@ namespace sockets_bsd
 
       g_interlockedcountSocketHandler++;
 
-      ::informationf("%s currently allocated count = %lld", typeid(*this).name(), g_interlockedcountSocketHandler.operator long long);
+      ::informationf("%s currently allocated count = %lld", typeid(*this).name(), g_interlockedcountSocketHandler.operator ::i64);
 
 #endif
 
@@ -110,7 +110,7 @@ namespace sockets_bsd
 
 
 
-   long long socket_handler::increment_reference_count()
+   ::i64 socket_handler::increment_reference_count()
    {
 
       return ::object::increment_reference_count();
@@ -118,7 +118,7 @@ namespace sockets_bsd
    }
 
 
-   long long socket_handler::decrement_reference_count()
+   ::i64 socket_handler::decrement_reference_count()
    {
 
       return ::object::decrement_reference_count();
@@ -266,7 +266,7 @@ namespace sockets_bsd
       if (::is_set(psocket->socket_handler()))
       {
 
-         warning() << "socket_handler add " << (int)psocket->GetSocketId() << " socket is already being handled by another handler";
+         warning() << "socket_handler add " << (::i32)psocket->GetSocketId() << " socket is already being handled by another handler";
 
          return;
 
@@ -290,10 +290,10 @@ namespace sockets_bsd
 
       socket_pointer find;
 
-      if (m_socketmapAdd.find((int)psocket->GetSocketId(), find))
+      if (m_socketmapAdd.find((::i32)psocket->GetSocketId(), find))
       {
 
-         information() << "add: Invalid socket " << (int)psocket->GetSocketId() << " Attempt to add socket already in add queue";
+         information() << "add: Invalid socket " << (::i32)psocket->GetSocketId() << " Attempt to add socket already in add queue";
 
          //m_delete.add_tail(psocket);
          return;
@@ -344,12 +344,12 @@ namespace sockets_bsd
 
       psocket->m_estatus = ::success;
 
-      auto& a = m_socketmapAdd[(int) psocket->GetSocketId()];
+      auto& a = m_socketmapAdd[(::i32) psocket->GetSocketId()];
 
        a= psocket;
 
 
-      auto xxx = m_socketmapAdd[(int) psocket->GetSocketId()];
+      auto xxx = m_socketmapAdd[(::i32) psocket->GetSocketId()];
 
    }
 
@@ -414,7 +414,7 @@ namespace sockets_bsd
    //}
 
 
-   //void socket_handler::_get(SOCKET s, int& r, int& w, int& e)
+   //void socket_handler::_get(SOCKET s, ::i32& r, ::i32& w, ::i32& e)
    //{
 
    //   if (s >= 0)
@@ -446,7 +446,7 @@ namespace sockets_bsd
    //}
 
 
-   //void socket_handler::get(int& r, int& w, int& e)
+   //void socket_handler::get(::i32& r, ::i32& w, ::i32& e)
    //{
 
    //   r = 0;
@@ -555,7 +555,7 @@ namespace sockets_bsd
    //}
 
 
-   int socket_handler::select(int lSeconds, int lMicroseconds)
+   ::i32 socket_handler::select(::i32 lSeconds, ::i32 lMicroseconds)
    {
 
       struct timeval timeval;
@@ -569,7 +569,7 @@ namespace sockets_bsd
    }
 
 
-   int socket_handler::select()
+   ::i32 socket_handler::select()
    {
 
       if (m_socketlistCallOnConnect.get_size() ||
@@ -590,7 +590,7 @@ namespace sockets_bsd
    }
 
 
-   int socket_handler::select(const class time & timeWait)
+   ::i32 socket_handler::select(const class time & timeWait)
    {
 
       struct timeval tsel;
@@ -664,7 +664,7 @@ namespace sockets_bsd
             if (!m_socketmap.find(socket, psocket)) // not found
             {
 
-               warning() <<"socket_handler " << (int)socket << " Did not find expected socket using file descriptor(4)";
+               warning() <<"socket_handler " << (::i32)socket << " Did not find expected socket using file descriptor(4)";
 
                m_socketlistCallOnConnect.erase(psocket->GetSocketId());
 
@@ -686,7 +686,11 @@ namespace sockets_bsd
                      if (psocket->IsSSL()) // SSL Enabled socket
                      {
 
-                        ptcpsocket->information() << "OnSSLConnect";
+#if THIS_FILE_DEBUG_LEVEL >= 9
+                              
+                              ptcpsocket->information() << "::sockets_bsd::socket_handler::call_on_connect OnSSLConnect";
+                              
+#endif
 
                         psocket->OnSSLConnect();
 
@@ -708,7 +712,11 @@ namespace sockets_bsd
                            if (ptcpsocket->GetOutputLength())
                            {
 
-                              ptcpsocket->information() << "OnWrite";
+#if THIS_FILE_DEBUG_LEVEL >= 9
+                              
+                              ptcpsocket->information() << "::sockets_bsd::socket_handler::call_on_connect OnWrite";
+                              
+#endif
 
                               psocket->OnWrite();
 
@@ -756,14 +764,14 @@ namespace sockets_bsd
    }
 
 
-   int socket_handler::_select(struct timeval *tsel)
+   ::i32 socket_handler::_select(struct timeval *tsel)
    {
 
       bool bOnlyListeningSockets = false;
 
-      int iListeningCount = 0;
+      ::i32 iListeningCount = 0;
 
-      int iNonListeningCount = 0;
+      ::i32 iNonListeningCount = 0;
 
       fd_set rfds{};
       fd_set wfds{};
@@ -799,7 +807,7 @@ start_processing_adding:
          if (m_socketmap.get_size() >= FD_SETSIZE)
          {
 
-            warning() <<"Select " << (int)m_socketmap.get_size() << " FD_SETSIZE reached";
+            warning() <<"Select " << (::i32)m_socketmap.get_size() << " FD_SETSIZE reached";
 
             goto end_processing_adding;
 
@@ -812,7 +820,7 @@ start_processing_adding:
          if (m_socketmap.has(socket))
          {
 
-            psocket->warning() << "add" << (int)psocket->GetSocketId() << "Attempt to add socket already in controlled queue";
+            psocket->warning() << "add" << (::i32)psocket->GetSocketId() << "Attempt to add socket already in controlled queue";
 
             m_socketmapAdd.erase(passociationAdd);
 
@@ -823,7 +831,7 @@ start_processing_adding:
          if (psocket->IsCloseAndDelete())
          {
 
-            psocket->warning() << "add " << (int)psocket->GetSocketId() << " Trying to add socket with SetCloseAndDelete() true";
+            psocket->warning() << "add " << (::i32)psocket->GetSocketId() << " Trying to add socket with SetCloseAndDelete() true";
 
             m_socketlist.add_tail(socket);
 
@@ -894,9 +902,9 @@ end_processing_adding:
       //fd_set wfds;
       //fd_set efds;
 
-      int countR = 0;
-      int countW = 0;
-      int countE = 0;
+      ::i32 countR = 0;
+      ::i32 countW = 0;
+      ::i32 countE = 0;
 
       //get(countR, countW, countE);
 
@@ -1132,7 +1140,7 @@ end_processing_adding:
       fd_set * pwfds = countW > 0 ? &wfds : nullptr;
       fd_set * pefds = countE > 0 ? &efds : nullptr;
 
-      int n = 0;
+      ::i32 n = 0;
 
       tick1 = ::time::now();
 
@@ -1189,7 +1197,7 @@ end_processing_adding:
 
             }
 
-            //n = ::select((int)m_maxsock, psetR, psetW, psetE, tsel);
+            //n = ::select((::i32)m_maxsock, psetR, psetW, psetE, tsel);
             
 #if defined(OPENBSD)
 
@@ -1199,7 +1207,7 @@ end_processing_adding:
             
 #else
             
-            n = ::select((int)maxsock + 1, prfds, pwfds, pefds, &timevalSelect);
+            n = ::select((::i32)maxsock + 1, prfds, pwfds, pefds, &timevalSelect);
             
 #endif
 
@@ -1221,7 +1229,7 @@ end_processing_adding:
             
 #endif
 
-            //n = ::select((int)m_maxsock, psetR, psetW, psetE, tsel);
+            //n = ::select((::i32)m_maxsock, psetR, psetW, psetE, tsel);
             
 #if defined(OPENBSD)
 
@@ -1252,7 +1260,7 @@ end_processing_adding:
 
 #if THIS_FILE_DEBUG_LEVEL_FOR_LISTENING > 3
 
-               informationf("socket_handler select all listen maxsock + 1 : %d", (int)maxsock + 1);
+               informationf("socket_handler select all listen maxsock + 1 : %d", (::i32)maxsock + 1);
 
 #endif
 
@@ -1262,13 +1270,13 @@ end_processing_adding:
 
 #if THIS_FILE_DEBUG_LEVEL > 3
 
-               informationf("socket_handler select maxsock + 1 : %d", (int)maxsock + 1);
+               informationf("socket_handler select maxsock + 1 : %d", (::i32)maxsock + 1);
 
 #endif
 
             }
             
-            n = ::select((int)maxsock + 1, prfds, pwfds, pefds, &timevalSelect);
+            n = ::select((::i32)maxsock + 1, prfds, pwfds, pefds, &timevalSelect);
             
 #endif
 
@@ -1335,7 +1343,7 @@ end_processing_adding:
 
             information() << "select" << m_iSelectErrno << ", " << bsd_socket_error(m_iSelectErrno);
 
-            int iError = m_iSelectErrno;
+            ::i32 iError = m_iSelectErrno;
 
 //#if defined(LINUX) || defined(MACOS)
 
@@ -1450,14 +1458,14 @@ end_processing_adding:
 
                      tv.tv_usec = 0;
 
-                     int n = ::select((int)(p->m_socketid + 1), &fds, nullptr, nullptr, &tv);
+                     ::i32 n = ::select((::i32)(p->m_socketid + 1), &fds, nullptr, nullptr, &tv);
 
                      if (n == -1)
                      {
 
                         // %! bad fd, erase
 
-                        p->m_psocket->error() << " Select " << (int)p->m_socketid << "Bad fd in fd_set (2)"; // ->error() << LOG_LEVEL_ERROR);
+                        p->m_psocket->error() << " Select " << (::i32)p->m_socketid << "Bad fd in fd_set (2)"; // ->error() << LOG_LEVEL_ERROR);
 
                         m_socketlistErase.add_unique(p->m_socketid);
 
@@ -1505,7 +1513,7 @@ end_processing_adding:
 
                      //      // %! none set
 
-                     //      p->m_psocket->error() << "Select " << (int)p->m_socketid << " No fd in fd_set"; // ->error() << LOG_LEVEL_ERROR);
+                     //      p->m_psocket->error() << "Select " << (::i32)p->m_socketid << " No fd in fd_set"; // ->error() << LOG_LEVEL_ERROR);
 
                      //      m_socketlistErase.add(p->m_socketid);
 
@@ -1519,7 +1527,7 @@ end_processing_adding:
 
                      // %! mismatch
 
-                     p->m_psocket->error() << "Select" << (int)p->m_socketid << "Bad fd in fd_set (3)"; // ->error() << LOG_LEVEL_ERROR);
+                     p->m_psocket->error() << "Select" << (::i32)p->m_socketid << "Bad fd in fd_set (3)"; // ->error() << LOG_LEVEL_ERROR);
 
                      m_socketlistErase.add_unique(p->m_socketid);
 
@@ -1531,7 +1539,7 @@ end_processing_adding:
 
                   // general error
 
-                  p->m_psocket->error() << "Select" << (int)p->m_socketid << "Bad fd in fd_set (3)"; // ->error() << LOG_LEVEL_ERROR);
+                  p->m_psocket->error() << "Select" << (::i32)p->m_socketid << "Bad fd in fd_set (3)"; // ->error() << LOG_LEVEL_ERROR);
 
                   m_socketlistErase.add_unique(p->m_socketid);
 
@@ -1688,7 +1696,7 @@ end_processing_adding:
                else
                {
 
-                  warning() << "socket_handler " << (int)socket << "Did not find expected socket using file descriptor(1)";
+                  warning() << "socket_handler " << (::i32)socket << "Did not find expected socket using file descriptor(1)";
 
                }
 
@@ -1737,7 +1745,11 @@ end_processing_adding:
                   else
                   {
 
-                     pbasesocket->information() << "OnWrite";
+#if THIS_FILE_DEBUG_LEVEL >= 9
+                              
+                     pbasesocket->information() << "::sockets_bsd::socket_handler::_select OnWrite";
+                              
+#endif
 
                      pbasesocket->OnWrite();
 
@@ -1747,7 +1759,7 @@ end_processing_adding:
                else
                {
 
-                  warning() << "socket_handler " << (int)socket << " Did not find expected socket using file descriptor(2)";
+                  warning() << "socket_handler " << (::i32)socket << " Did not find expected socket using file descriptor(2)";
 
                }
 
@@ -1798,7 +1810,7 @@ end_processing_adding:
                      if (pbasesocket->is_connecting())
                      {
 
-                        warning() << "socket_handler " << (int)socket << " stream_socket on_connection_timeout (3)";
+                        warning() << "socket_handler " << (::i32)socket << " stream_socket on_connection_timeout (3)";
 
                         pbasesocket->on_connection_timeout();
 
@@ -1806,7 +1818,7 @@ end_processing_adding:
                      else
                      {
 
-                        warning() << "socket_handler " << (int)socket << " socket on_timeout(3)";
+                        warning() << "socket_handler " << (::i32)socket << " socket on_timeout(3)";
 
                         pbasesocket->on_timeout();
 
@@ -1824,7 +1836,7 @@ end_processing_adding:
                else
                {
 
-                  warning() << "socket_handler " << (int)socket << " Did not find expected socket using file descripto(3)r";
+                  warning() << "socket_handler " << (::i32)socket << " Did not find expected socket using file descripto(3)r";
 
                }
 
@@ -1927,7 +1939,7 @@ end_processing_adding:
                   if (iteratorSocket.is_null() || ::is_null(iteratorSocket->m_psocket))
                   {
 
-                     warning() << "socket_handler " << (int)socket << " Did not find expected socket using file descriptor(f)";
+                     warning() << "socket_handler " << (::i32)socket << " Did not find expected socket using file descriptor(f)";
 
                      m_socketlistTimeout.erase(socket);
 
@@ -1948,7 +1960,7 @@ end_processing_adding:
                      if (iteratorSocket->m_psocket->is_connecting())
                      {
 
-                        warning() << "socket_handler " << (int)socket << " stream_socket on_connection_timeout (g)";
+                        warning() << "socket_handler " << (::i32)socket << " stream_socket on_connection_timeout (g)";
 
                         iteratorSocket->m_psocket->on_connection_timeout();
 
@@ -1956,7 +1968,7 @@ end_processing_adding:
                      else
                      {
 
-                        warning() << "socket_handler " << (int)socket << " socket on_timeout (g)";
+                        warning() << "socket_handler " << (::i32)socket << " socket on_timeout (g)";
 
                         iteratorSocket->m_psocket->on_timeout();
 
@@ -1998,7 +2010,7 @@ end_processing_adding:
             if (iteratorSocket.is_null() || ::is_null(iteratorSocket->m_psocket))
             {
 
-               warning() << "socket_handler " << (int)*p << " Did not find expected socket using file descriptor(g)";
+               warning() << "socket_handler " << (::i32)*p << " Did not find expected socket using file descriptor(g)";
 
             }
 
@@ -2075,7 +2087,7 @@ end_processing_adding:
                if (iteratorSocket.is_null() || ::is_null(iteratorSocket->m_psocket))
                {
 
-                  warning() << "socket_handler " << (int)socket << " Did not find expected socket using file descriptor(8)";
+                  warning() << "socket_handler " << (::i32)socket << " Did not find expected socket using file descriptor(8)";
 
                }
                else
@@ -2112,7 +2124,7 @@ end_processing_adding:
                      if (ptcpsocket->GetOutputLength())
                      {
 
-                        ptcpsocket->information() << "Closing " << (int)ptcpsocket->GetOutputLength() << " Sending all data before closing";
+                        ptcpsocket->information() << "Closing " << (::i32)ptcpsocket->GetOutputLength() << " Sending all data before closing";
 
                      }
                      else // shutdown write when output buffer is is_empty
@@ -2174,12 +2186,12 @@ end_processing_adding:
                   else
                   {
 
-                     //informationf(" close(3) fd %d GetSocket() %d\n", socket, int_point -> GetSocket()));
+                     //informationf(" close(3) fd %d GetSocket() %d\n", socket, i32_point -> GetSocket()));
 
                      if (psocket && psocket->IsConnected() && ptcpsocket->GetOutputLength())
                      {
 
-                        psocket->warning() << "Closing " << (int)ptcpsocket->GetOutputLength() << " Closing socket while data still left to send";
+                        psocket->warning() << "Closing " << (::i32)ptcpsocket->GetOutputLength() << " Closing socket while data still left to send";
 
                      }
 
@@ -2202,7 +2214,7 @@ end_processing_adding:
 
                         ppoolsocket->SetCloseAndDelete(false); // added - erase from m_socketlistClose
 
-                        //int_point -> SetCloseAndDelete(false); // added - erase from m_socketlistClose
+                        //i32_point -> SetCloseAndDelete(false); // added - erase from m_socketlistClose
 
                      }
                      //else if (psocket.cast < http_session >() != nullptr && !psocket->Lost())
@@ -2445,7 +2457,7 @@ end_processing_adding:
    }
 
 
-//   int socket_handler::Resolve(base_socket * pbasesocket, const ::scoped_string & scopedstrHost, port_t port)
+//   ::i32 socket_handler::Resolve(base_socket * pbasesocket, const ::scoped_string & scopedstrHost, port_t port)
 //   {
 //
 //      // check cache
@@ -2475,14 +2487,14 @@ end_processing_adding:
 //
 //      m_resolve_q[pbasesocket] = true;
 //
-//      informationf(" *** Resolve '%s:%d' atom#%d  m_resolve_q int_size: %d  base_socket: %p\n", host.c_str(), port, presolvsocket->GetId(), m_resolve_q.get_size(), pbasesocket));
+//      informationf(" *** Resolve '%s:%d' atom#%d  m_resolve_q i32_size: %d  base_socket: %p\n", host.c_str(), port, presolvsocket->GetId(), m_resolve_q.get_size(), pbasesocket));
 //
 //      return presolvsocket->GetId();
 //
 //   }
 
 
-//   int socket_handler::Resolve6(base_socket * pbasesocket, const ::scoped_string & scopedstrHost, port_t port)
+//   ::i32 socket_handler::Resolve6(base_socket * pbasesocket, const ::scoped_string & scopedstrHost, port_t port)
 //   {
 //
 //      // check cache
@@ -2517,7 +2529,7 @@ end_processing_adding:
 //   }
 
 
-//   int socket_handler::Resolve(base_socket * pbasesocket, in_addr a)
+//   ::i32 socket_handler::Resolve(base_socket * pbasesocket, in_addr a)
 //   {
 //
 //      // check cache
@@ -2552,7 +2564,7 @@ end_processing_adding:
 //   }
 
 
-//   int socket_handler::Resolve(base_socket * pbasesocket, in6_addr& a)
+//   ::i32 socket_handler::Resolve(base_socket * pbasesocket, in6_addr& a)
 //   {
 //
 //      // check cache
@@ -2670,7 +2682,7 @@ end_processing_adding:
 //   }
 
 
-   ::pointer<base_socket_handler::pool_socket>socket_handler::FindConnection(int type, const string & protocol, ::networking::address * ad)
+   ::pointer<base_socket_handler::pool_socket>socket_handler::FindConnection(::i32 type, const string & protocol, ::networking::address * ad)
    {
 
       auto pnetworking2 = __SystemNetworking(system());
@@ -2936,7 +2948,7 @@ end_processing_adding:
 
       //set(s, false, false, false); // erase from fd_set's
 
-      int iSocketList = 0;
+      ::i32 iSocketList = 0;
       auto psocketlistCallOnConnect = &m_socketlistCallOnConnect;
       psocketlistCallOnConnect->erase(s);
 
@@ -2959,10 +2971,10 @@ end_processing_adding:
    }
 
 
-   int socket_handler::TriggerID(::sockets::base_socket * src)
+   ::i32 socket_handler::TriggerID(::sockets::base_socket * src)
    {
 
-      int atom = m_next_trigger_id++;
+      ::i32 atom = m_next_trigger_id++;
 
       m_trigger_src[atom] = src;
 
@@ -2971,7 +2983,7 @@ end_processing_adding:
    }
 
 
-   bool socket_handler::Subscribe(int atom, ::sockets::base_socket * psocketDst)
+   bool socket_handler::Subscribe(::i32 atom, ::sockets::base_socket * psocketDst)
    {
 
       if (m_trigger_src.find(atom))
@@ -3000,7 +3012,7 @@ end_processing_adding:
    }
 
 
-   bool socket_handler::Unsubscribe(int atom, ::sockets::base_socket * psocketDst)
+   bool socket_handler::Unsubscribe(::i32 atom, ::sockets::base_socket * psocketDst)
    {
 
       if (m_trigger_src.find(atom))
@@ -3029,7 +3041,7 @@ end_processing_adding:
    }
 
 
-   void socket_handler::Trigger(int atom, socket::trigger_data& data, bool bErase)
+   void socket_handler::Trigger(::i32 atom, socket::trigger_data& data, bool bErase)
    {
 
       if (m_trigger_src.contains(atom))

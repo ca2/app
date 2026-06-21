@@ -5,7 +5,7 @@
 #include "acme/platform/application.h"
 
 
-namespace app_just_message_box
+namespace just_message_box
 {
 
 
@@ -30,7 +30,7 @@ namespace app_just_message_box
    };
 
 
-} // namespace app_just_acme_message_box
+} // namespace just_acme_message_box
 
 
 

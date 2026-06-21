@@ -10,7 +10,7 @@ namespace app_just_aqua_message_box
 
 
    class CLASS_DECL_APP_JUST_AQUA_MESSAGE_BOX_APP application :
-      virtual public ::app_just_message_box::application,
+      virtual public ::just_message_box::application,
       virtual public ::aqua::application
    {
    public:

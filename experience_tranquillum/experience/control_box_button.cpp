@@ -9,6 +9,7 @@
 #include "aura/graphics/draw2d/graphics.h"
 #include "aura/graphics/draw2d/brush.h"
 #include "aura/graphics/draw2d/pen.h"
+#include "aura/graphics/draw2d/stock_icon.h"
 #include "aura/message/user.h"
 #include "berg/user/experience/control_box.h"
 
@@ -133,22 +134,32 @@ namespace experience_tranquillum
       }
       else
       {
+         
+         defer_construct_newø(m_pstockicon);
+         
+         if(m_pstockicon->m_estockiconNew != m_estockicon)
+         {
+            
+            m_pstockicon->m_estockiconNew = m_estockicon;
+            
+         }
 
          m_pbrush->create_solid(::is_set(pgraphics->get_current_pen())
-                                 ? pgraphics->get_current_pen()->m_color : argb(255, 255, 255, 255));
-
+                                ? pgraphics->get_current_pen()->m_color : argb(255, 255, 255, 255));
+         
          pgraphics->set(m_pbrush);
-
+         
          m_ppen->create_solid(1.0, ::is_set(pgraphics->get_current_pen())
                               ? pgraphics->get_current_pen()->m_color : argb(255, 255, 255, 255));
-
+         
          pgraphics->set(m_ppen);
-
+         
          ::i32_rectangle rectangleIcon(rectangleEllipse);
-
+         
          rectangleIcon.deflate(rectangleIcon.width() / 4, rectangleIcon.height() / 4);
 
-         pgraphics->draw_stock_icon(rectangleIcon, m_estockicon);
+         pgraphics->draw(rectangleIcon, m_pstockicon);
+         
 
          //pgraphics->FillSolidRect(rectangleEllipse, argb(255, 255, 255, 255));
 

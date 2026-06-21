@@ -14,6 +14,8 @@
 		9A52438F2CD521B9006ED868 /* libapp_just_acme_message_box.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 9A52438E2CD521B9006ED868 /* libapp_just_acme_message_box.dylib */; };
 		9A5243922CD52330006ED868 /* libapp_just_acme_message_box.dylib in Embed Libraries */ = {isa = PBXBuildFile; fileRef = 9A5243902CD5232F006ED868 /* libapp_just_acme_message_box.dylib */; settings = {ATTRIBUTES = (CodeSignOnCopy, ); }; };
 		9A5D09A52B7F9A90003239D4 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 9A5D099B2B7F9A90003239D4 /* Images.xcassets */; };
+		9A6873502FE738F000B1B607 /* libapp_just_message_box.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 9A68734F2FE738F000B1B607 /* libapp_just_message_box.dylib */; };
+		9A6873512FE738F000B1B607 /* libapp_just_message_box.dylib in Embed Libraries */ = {isa = PBXBuildFile; fileRef = 9A68734F2FE738F000B1B607 /* libapp_just_message_box.dylib */; settings = {ATTRIBUTES = (CodeSignOnCopy, ); }; };
 		9A83B51A2807E6E100A1A2B6 /* libacme_apple.dylib in Embed Libraries */ = {isa = PBXBuildFile; fileRef = 9A83B5102807E6E100A1A2B6 /* libacme_apple.dylib */; settings = {ATTRIBUTES = (CodeSignOnCopy, ); }; };
 		9A83B51C2807E6E100A1A2B6 /* libacme_macos.dylib in Embed Libraries */ = {isa = PBXBuildFile; fileRef = 9A83B5112807E6E100A1A2B6 /* libacme_macos.dylib */; settings = {ATTRIBUTES = (CodeSignOnCopy, ); }; };
 		9A83B51E2807E6E100A1A2B6 /* libacme_posix.dylib in Embed Libraries */ = {isa = PBXBuildFile; fileRef = 9A83B5122807E6E100A1A2B6 /* libacme_posix.dylib */; settings = {ATTRIBUTES = (CodeSignOnCopy, ); }; };
@@ -156,6 +158,7 @@
 				9AE7A1C92D1CC3AE00070257 /* libnano_graphics_quartz2d.dylib in Embed Libraries */,
 				9AE7A1C72D1CC3A200070257 /* libacme_windowing_kit.dylib in Embed Libraries */,
 				9A83B51A2807E6E100A1A2B6 /* libacme_apple.dylib in Embed Libraries */,
+				9A6873512FE738F000B1B607 /* libapp_just_message_box.dylib in Embed Libraries */,
 				9A22742227CF37560042BAC2 /* libacme.dylib in Embed Libraries */,
 				9A22742A27CF38210042BAC2 /* libidn.dylib in Embed Libraries */,
 				9A9A157F2AFC236900FA9BEB /* libdarwin.dylib in Embed Libraries */,
@@ -188,11 +191,12 @@
 		9A5243C22CD5B6AE006ED868 /* app_just_acme_message_box.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = app_just_acme_message_box.xcodeproj; path = ../app_just_acme_message_box.xcodeproj; sourceTree = SOURCE_ROOT; };
 		9A5243CA2CD5B6CB006ED868 /* folder_zip.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = folder_zip.xcodeproj; path = ../../folder_zip/folder_zip.xcodeproj; sourceTree = SOURCE_ROOT; };
 		9A5243D82CD5B6E2006ED868 /* nano_graphics_quartz2d.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = nano_graphics_quartz2d.xcodeproj; path = "../../../../operating_system/operating_system-apple/nano_graphics_quartz2d/nano_graphics_quartz2d.xcodeproj"; sourceTree = SOURCE_ROOT; };
-		9A52441C2CD5BEE6006ED868 /* _matter.zip */ = {isa = PBXFileReference; lastKnownFileType = archive.zip; name = _matter.zip; path = _matter.zip; sourceTree = "<group>"; };
+		9A52441C2CD5BEE6006ED868 /* _matter.zip */ = {isa = PBXFileReference; lastKnownFileType = archive.zip; path = _matter.zip; sourceTree = "<group>"; };
 		9A5D099B2B7F9A90003239D4 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
 		9A5D099D2B7F9A90003239D4 /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		9A5D09A82B7F9ACC003239D4 /* _____release.xcconfig */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xcconfig; name = "_____release.xcconfig"; path = "../_____release.xcconfig"; sourceTree = "<group>"; };
 		9A5D09A92B7F9ACC003239D4 /* _____debug.xcconfig */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xcconfig; name = "_____debug.xcconfig"; path = "../_____debug.xcconfig"; sourceTree = "<group>"; };
+		9A68734F2FE738F000B1B607 /* libapp_just_message_box.dylib */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.dylib"; path = libapp_just_message_box.dylib; sourceTree = BUILT_PRODUCTS_DIR; };
 		9A6A47F226611202004ED97A /* libwindowing_macos.dylib */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.dylib"; path = libwindowing_macos.dylib; sourceTree = BUILT_PRODUCTS_DIR; };
 		9A6A480626611214004ED97A /* libwrite_text_quartz2d.dylib */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.dylib"; path = libwrite_text_quartz2d.dylib; sourceTree = BUILT_PRODUCTS_DIR; };
 		9A6FB4972EBCBC39003BBE61 /* _____debug_application.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = "_____debug_application.xcconfig"; sourceTree = "<group>"; };
@@ -233,6 +237,7 @@
 			files = (
 				9A52438F2CD521B9006ED868 /* libapp_just_acme_message_box.dylib in Frameworks */,
 				9A46D35E267859BC000B22D0 /* libacme.dylib in Frameworks */,
+				9A6873502FE738F000B1B607 /* libapp_just_message_box.dylib in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -358,6 +363,7 @@
 		9ADF1D2922C16DBB00456537 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				9A68734F2FE738F000B1B607 /* libapp_just_message_box.dylib */,
 				9AE7A1C32D1CC3A200070257 /* libacme_windowing_kit.dylib */,
 				9A5243902CD5232F006ED868 /* libapp_just_acme_message_box.dylib */,
 				9A52438E2CD521B9006ED868 /* libapp_just_acme_message_box.dylib */,
@@ -404,12 +410,12 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 070B8F071B6E53FA00D26137 /* Build configuration list for PBXNativeTarget "_app_just_acme_message_box" */;
 			buildPhases = (
-				9A932AE82D6DB671006557FC /* ShellScript */,
+				9A932AE82D6DB671006557FC /* _on_before_build_executable */,
 				070B8EE61B6E53F900D26137 /* Sources */,
 				070B8EE71B6E53F900D26137 /* Frameworks */,
 				070B8EE81B6E53F900D26137 /* Resources */,
 				9A6A47EF26611186004ED97A /* Embed Libraries */,
-				9A930CD32D6DAA45006557FC /* ShellScript */,
+				9A930CD32D6DAA45006557FC /* _on_after_build_executable */,
 			);
 			buildRules = (
 			);
@@ -598,7 +604,7 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
-		9A930CD32D6DAA45006557FC /* ShellScript */ = {
+		9A930CD32D6DAA45006557FC /* _on_after_build_executable */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -617,18 +623,16 @@
 				"$(SRCROOT)/output.xcfilelist",
 			);
 			outputPaths = (
-				"$(WorkspaceDir)/time-$(PLATFORM_MODIFIER)/output/$(EXECUTABLE_NAME)",
+				"$(WorkspaceDir)/time-$(PLATFORM_MODIFIER)/output-$(CONFIIGURATION)/$(EXECUTABLE_NAME)",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
 			shellScript = "$HOME/code/operating_system/tool/bin/_on_after_build_executable\n";
 		};
-		9A932AE82D6DB671006557FC /* ShellScript */ = {
+		9A932AE82D6DB671006557FC /* _on_before_build_executable */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-			);
-			inputFileListPaths = (
 			);
 			inputFileListPaths = (
 				"",
@@ -756,7 +760,10 @@
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				HEADER_SEARCH_PATHS = "";
-LD_RUNPATH_SEARCH_PATHS = "@executable_path @loader_path";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"@executable_path",
+					"@loader_path",
+				);
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(WorkspaceDir)/operating_system",
@@ -841,7 +848,10 @@ LD_RUNPATH_SEARCH_PATHS = "@executable_path @loader_path";
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				HEADER_SEARCH_PATHS = "";
-LD_RUNPATH_SEARCH_PATHS = "@executable_path @loader_path";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"@executable_path",
+					"@loader_path",
+				);
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(WorkspaceDir)/operating_system",
@@ -884,7 +894,7 @@ LD_RUNPATH_SEARCH_PATHS = "@executable_path @loader_path";
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				"CODE_SIGN_IDENTITY[sdk=macosx*]" = "Apple Development";
 				INFOPLIST_FILE = "$(SRCROOT)/macos/Info.plist";
-				PRODUCT_BUNDLE_IDENTIFIER = "app.just-message-box";
+				PRODUCT_BUNDLE_IDENTIFIER = "app.just-acme-message-box";
 			};
 			name = Debug;
 		};
@@ -895,7 +905,7 @@ LD_RUNPATH_SEARCH_PATHS = "@executable_path @loader_path";
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				"CODE_SIGN_IDENTITY[sdk=macosx*]" = "Apple Development";
 				INFOPLIST_FILE = "$(SRCROOT)/macos/Info.plist";
-				PRODUCT_BUNDLE_IDENTIFIER = "app.just-message-box";
+				PRODUCT_BUNDLE_IDENTIFIER = "app.just-acme-message-box";
 			};
 			name = Release;
 		};
@@ -911,7 +921,10 @@ LD_RUNPATH_SEARCH_PATHS = "@executable_path @loader_path";
 				);
 				GCC_PREPROCESSOR_DEFINITIONS = "$(inherited)";
 				INFOPLIST_FILE = "Hello Multiverse!!Tests/Info.plist";
-LD_RUNPATH_SEARCH_PATHS = "@executable_path @loader_path";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"@executable_path",
+					"@loader_path",
+				);
 				PRODUCT_BUNDLE_IDENTIFIER = "com.ca2.$(PRODUCT_NAME:rfc1034identifier)";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Hello Multiverse!!.app_message_box/Contents/MacOS/Hello Multiverse!!";
@@ -929,7 +942,10 @@ LD_RUNPATH_SEARCH_PATHS = "@executable_path @loader_path";
 					"$(inherited)",
 				);
 				INFOPLIST_FILE = "Hello Multiverse!!Tests/Info.plist";
-LD_RUNPATH_SEARCH_PATHS = "@executable_path @loader_path";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"@executable_path",
+					"@loader_path",
+				);
 				PRODUCT_BUNDLE_IDENTIFIER = "com.ca2.$(PRODUCT_NAME:rfc1034identifier)";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Hello Multiverse!!.app_message_box/Contents/MacOS/Hello Multiverse!!";

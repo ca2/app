@@ -906,22 +906,39 @@ namespace user
 
 
          if (
-            m_puserinteraction->m_pacmewindowingwindow
-            && m_puserinteraction->has_fps_output_purpose())
+            m_puserinteraction->m_pacmewindowingwindow)
          {
-
-            auto elapsed = m_puserinteraction->window()->m_timeLastDrawGuard1.elapsed();
-
-            if (elapsed > timeFrame
-               && (
-                  m_puserinteraction->const_layout().sketch().is_screen_visible()
-                  || m_puserinteraction->const_layout().window().is_screen_visible()))
+            if(m_puserinteraction->has_fps_output_purpose())
             {
-
-               return true;
-
+               
+               auto elapsed = m_puserinteraction->window()->m_timeLastDrawGuard1.elapsed();
+               
+               if (elapsed > timeFrame
+                   && (
+                       m_puserinteraction->const_layout().sketch().is_screen_visible()
+                       || m_puserinteraction->const_layout().window().is_screen_visible()))
+               {
+                  
+                  return true;
+                  
+               }
+               
             }
-
+            else
+            {
+               
+               auto elapsedSinceLastPresentation = m_puserinteraction->m_pacmewindowingwindow->m_timeLastPresent.elapsed();
+               
+               if(elapsedSinceLastPresentation > timeFrame)
+               {
+                  
+                  return true;
+                  
+               }
+               
+               
+            }
+            
          }
          //::i64 i2 = get_nanos();
 
@@ -1302,8 +1319,11 @@ namespace user
             || m_puserinteraction->const_layout().window().is_screen_visible())
             || pwindow->has_offscreen_output_purpose())
          {
-
+            class ::time timeDrawFrame;
+            timeDrawFrame.Now();
             pwindow->draw_frame();
+            auto fMillis = timeDrawFrame.elapsed().floating_millisecond();
+            informationf("draw_frame took %0.2f ms", fMillis);
 
             //m_puserinteraction->windowing_window()->do_graphics(e_graphics_draw);
 

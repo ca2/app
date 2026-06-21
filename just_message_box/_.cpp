@@ -6,7 +6,7 @@
 
 
 
-__BEGIN_RELEASE_TIME(app_just_message_box)
+__BEGIN_RELEASE_TIME(just_message_box)
 #include "release_time.txt"
 __END_RELEASE_TIME()
 

@@ -2248,8 +2248,10 @@ void task::post(const ::procedure & procedure)
       _synchronous_lock synchronouslock(this->synchronization(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 
       m_procedurea2.add(procedure);
+      
+      new_main_loop_happening()->set_happening();
 
-      kick_idle();
+      //kick_idle();
 
       //update_new_main_loop_happening();
 
@@ -3698,12 +3700,12 @@ void task::kick_idle()
    }
    else
 #endif
-   if (m_pmanualresethappeningMainLoop)
-   {
-
-      m_pmanualresethappeningMainLoop->set_happening();
-
-   }
+//   if (m_pmanualresethappeningMainLoop)
+//   {
+//
+//      m_pmanualresethappeningMainLoop->set_happening();
+//
+//   }
 
    //post([]() {});
 

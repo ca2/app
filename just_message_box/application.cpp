@@ -4,12 +4,12 @@
 #include "acme/handler/request.h"
 
 
-__IMPLEMENT_APPLICATION_RELEASE_TIME(app_just_message_box);
-IMPLEMENT_APPLICATION_FACTORY(app_just_message_box);
+__IMPLEMENT_APPLICATION_RELEASE_TIME(just_message_box);
+IMPLEMENT_APPLICATION_FACTORY(just_message_box);
 
 
 
-namespace app_just_message_box
+namespace just_message_box
 {
 
 

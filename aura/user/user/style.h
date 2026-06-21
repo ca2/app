@@ -42,7 +42,7 @@ namespace user
       //::pointer<::user::f64_map>       m_mapDouble;
 
       ::pointer<::user::style>              m_puserstyleComposite;
-
+      ::pointer < ::draw2d::stock_icon >     m_pstockicon;
       //::pointer<::aura::node>               m_pnode;
 
       ::draw2d::graphics *                   m_pgraphics;
@@ -98,6 +98,7 @@ namespace user
 
       virtual bool draw_check(::user::interaction * pinteraction, ::enum_check echeck, const ::i32_rectangle & rectangle, ::draw2d::graphics_pointer & pgraphics) override;
 
+      virtual bool draw_item(::draw2d::graphics_pointer & pgraphics, ::user::interaction * pinteraction, ::user::item & useritem, const ::user::e_state & estate);
 
       ::i32_rectangle simple_ui_focus_rect_extra_margin(::user::interaction * pinteraction) override;
       bool simple_ui_draw_focus_rect(::user::interaction * pinteraction,::draw2d::graphics_pointer & pgraphics) override;

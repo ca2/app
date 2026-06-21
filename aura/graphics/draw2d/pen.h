@@ -27,7 +27,8 @@ namespace draw2d
       pen();
       ~pen() override;
 
-
+      virtual bool is_similar_attributes(const pen * ppenSrc);
+      virtual bool copy_attributes(const pen * ppenSrc);
       // void dump(dump_context & dumpcontext) const override;
 
       virtual bool create_null();

@@ -96,13 +96,13 @@ CLASS_DECL_ACME ::string as_string(::user::enum_activation useractivation)
    return "::user::e_activation_default";
 }
    ::string str;
-   if(useractivation & ::user::e_activation_no_activate)
+   if(useractivation == ::user::e_activation_no_activate)
    {
       str += "no_activate;";
    }
-   if(useractivation & ::user::e_activation_set_active)
+   if(useractivation & ::user::e_activation_default)
    {
-      str += "set_active;";
+      str += "default;";
    }
    if(useractivation & ::user::e_activation_set_foreground)
    {

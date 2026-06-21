@@ -1685,8 +1685,8 @@ namespace user
       virtual void on_kill_keyboard_focus();
 
 
-      virtual void set_foreground_window(::user::activation_token * puseractivationtoken);
-      virtual void set_active_window();
+      void set_foreground_window(::user::activation_token * puseractivationtoken) override;
+      void set_active_window() override;
 
       virtual void bring_to_front();
 

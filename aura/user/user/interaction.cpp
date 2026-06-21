@@ -631,7 +631,7 @@ namespace user
 
             //}
 
-      display_visible_trying_to_restore_last_visible({::user::e_activation_set_active, puseractivationtoken});
+      display_visible_trying_to_restore_last_visible({::user::e_activation_default, puseractivationtoken});
 
       set_need_layout();
 
@@ -17846,7 +17846,7 @@ if(get_parent())
 
       }
 
-      bool bActivation = layout().lading().m_activation.is_change_request();
+      bool bActivation = layout().lading().m_activation.is_activation_request();
 
       layout().layout() = layout().lading().appearance();
 
@@ -18193,7 +18193,7 @@ if(get_parent())
 
       }
 
-      if (!layout().design().activation().is_change_request() || layout().layout().activation().is_change_request())
+      if (!layout().design().activation().is_activation_request() || layout().layout().activation().is_activation_request())
       {
 
          layout().design().m_activation = layout().layout().m_activation;
@@ -21634,7 +21634,7 @@ if(get_parent())
 
          display(e_display_normal,
             { ::user::e_activation_set_foreground
-            | ::user::e_activation_set_active,
+            | ::user::e_activation_default,
             puseractivationtoken });
 
       }
@@ -21685,7 +21685,7 @@ if(get_parent())
          if (bDisplayPreviousOnRestore)
          {
 
-            display_visible_trying_to_restore_last_visible({::user::e_activation_set_active, puseractivationtoken});
+            display_visible_trying_to_restore_last_visible({::user::e_activation_default, puseractivationtoken});
 
          }
          else
@@ -29371,57 +29371,17 @@ void interaction::on_keyboard_layout_change(const_char_pointer pszKeyboardLayout
 
       }
 
-      auto pitem = useritem.m_pitem;
-
-      if (pitem->m_item.m_eelement == ::e_element_close_icon)
+      auto pstyle = get_style(pgraphics);
+      
+      if(::is_null(pstyle))
       {
-
-         ::user::draw_close_icon(pgraphics, this, useritem, estate);
-
+         
+         throw ::exception(error_wrong_state);
+         
       }
-      else if (pitem->m_item.m_eelement == ::e_element_switch_icon)
-      {
-
-         ::user::draw_switch_icon(pgraphics, this, useritem, estate);
-
-      }
-      else if (pitem->m_item.m_eelement == ::e_element_maximize_icon)
-      {
-
-         ::user::draw_maximize_icon(pgraphics, this, useritem, estate);
-
-      }
-      else if (pitem->m_item.m_eelement == ::e_element_minimize_icon)
-      {
-
-         ::user::draw_minimize_icon(pgraphics, this, useritem, estate);
-
-      }
-      else if (pitem->m_item.m_eelement == ::e_element_close_button)
-      {
-
-         ::user::draw_close_button(pgraphics, this, useritem, estate);
-
-      }
-      else if (pitem->m_item.m_eelement == ::e_element_maximize_button)
-      {
-
-         ::user::draw_maximize_button(pgraphics, this, useritem, estate);
-
-      }
-      else if (pitem->m_item.m_eelement == ::e_element_minimize_button)
-      {
-
-         ::user::draw_minimize_button(pgraphics, this, useritem, estate);
-
-      }
-      else if (pitem->m_item.m_eelement == ::e_element_switch_button)
-      {
-
-         ::user::draw_switch_button(pgraphics, this, useritem, estate);
-
-      }
-
+    
+      pstyle->draw_item(pgraphics, this, useritem, estate);
+      
    }
 
 

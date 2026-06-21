@@ -2705,13 +2705,13 @@ void window::on_keyboard_layout_change(const_char_pointer pszKeyboardLayoutId)
 
       bool bZ = zOutput.is_change_request();
 
-      if (bVisibilityChange || bZ || activationOutput.is_change_request())
+      if (bVisibilityChange || bZ || activationOutput.is_activation_request())
       {
 
          informationf("::windowing::window::configure_window_unlocked bVisibilityChange(%d) bZ(%d) bActivation(%d)",
             (::i32)bVisibilityChange,
             (::i32)bZ,
-            (::i32)(activationOutput.is_change_request()));
+            (::i32)(activationOutput.is_activation_request()));
 
          information() << "::windowing::window::configure_window_unlocked displayRequest : " << edisplayOutput;
 
@@ -2922,7 +2922,7 @@ void window::on_keyboard_layout_change(const_char_pointer pszKeyboardLayoutId)
 
       }
 
-      bool bActivate = activationOutput.is_change_request();
+      bool bActivate = activationOutput.is_activation_request();
 
       if (bMove || bSize
          || bVisibilityChange || bZ || bActivate)
@@ -10605,6 +10605,10 @@ void window::on_keyboard_layout_change(const_char_pointer pszKeyboardLayoutId)
    
    void window::draw_frame()
    {
+      
+      class ::time time1;
+      
+      time1.Now();
 
       if (m_bDoingGraphics)
       {
@@ -10802,16 +10806,30 @@ void window::on_keyboard_layout_change(const_char_pointer pszKeyboardLayoutId)
             }
 
          }
+         
+         auto elapsed1 = time1.elapsed();
+         informationf("draw_frame elapsed1 %0.2f", elapsed1.floating_millisecond());
+
+         class ::time time2;
+         time2.Now();
 
          // draw2dlock.unlock();
 
          pgraphics->send(
-            [this, pgraphics]()
+            [this, pgraphics, time2]()
             {
-
+               auto elapsed21 = time2.elapsed();
+               informationf("draw_frame elapsed2.1 %0.2f", elapsed21.floating_millisecond());
+               class ::time time22;
+               time22.Now();
                frame_layout_stage(pgraphics);
+               auto elapsed22 = time22.elapsed();
+               informationf("draw_frame elapsed2.2 %0.2f", elapsed22.floating_millisecond());
 
             });
+
+         auto elapsed2 = time2.elapsed();
+         informationf("draw_frame elapsed2 %0.2f", elapsed2.floating_millisecond());
 
          // draw_on_context();
 
@@ -11068,7 +11086,9 @@ void window::on_keyboard_layout_change(const_char_pointer pszKeyboardLayoutId)
       //   information("Optimized out a layout phase");
 
       //}
-      
+      class ::time time3;
+      time3.Now();
+
       auto pbuffer = m_pgraphicsgraphics;
 //       //
       if (pbuffer)
@@ -11158,10 +11178,19 @@ slGraphics.unlock();
           //pgraphics = pgraphics;
     pgraphics->m_egraphics = ::e_graphics_draw;
 
+         
+         auto elapsed3 = time3.elapsed();
+         information("draw_frame elapsed3 %0.2f", elapsed3.floating_millisecond());
+
           //draw2dlock.unlock();
 
+         
+         class ::time time4;
+         
+         time4.Now();
+         
          pgraphics->send(
-       [this, pgraphics, pbufferitem]()
+       [this, pgraphics, pbufferitem, time4]()
          {
          
             try
@@ -11172,8 +11201,13 @@ slGraphics.unlock();
               //_synchronous_lock synchronous_lock(m_pmutexGraphics);
 
               //m_pgraphicscontextDrawFrame->m_pgraphics->start_layer(m_pgraphicscontextDrawFrame);
-
+               auto elapsed41 = time4.elapsed();
+               informationf("draw_frame elapsed4.1 %0.2f", elapsed41.floating_millisecond());
+               class ::time time42;
+               time42.Now();
               frame_draw_stage(pgraphics);
+               auto elapsed42 = time42.elapsed();
+               informationf("draw_frame elapsed4.2 %0.2f", elapsed42.floating_millisecond());
 
               m_sizeLastBuffer = pbufferitem->m_sizeBufferItem;
 
@@ -11445,6 +11479,11 @@ slGraphics.unlock();
 
 
             });
+         
+         
+         auto elapsed4 = time4.elapsed();
+         informationf("draw_frame elapsed4 %0.2f", elapsed4.floating_millisecond());
+
 
       //}
 

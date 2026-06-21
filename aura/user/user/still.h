@@ -24,6 +24,7 @@ namespace user
       //::i32_rectangle                     m_rectangleText;
       ::collection::index                               m_iClick;
       enum_stock_icon                     m_estockicon;
+      ::pointer < ::draw2d::stock_icon >  m_pstockicon;
       ::image::icon_pointer              m_picon;
       ::pointer < ::write_text::text_out_array > m_ptextouta;
       ::i32_size                          m_sizeFixed;

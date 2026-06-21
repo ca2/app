@@ -521,6 +521,13 @@ namespace acme
 
 
       }
+   
+   void window::set_last_present_time()
+   {
+      
+      m_timeLastPresent.Now();
+      
+   }
 
 
       bool window::defer_perform_entire_reposition_process(::user::mouse * pmouse)

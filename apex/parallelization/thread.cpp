@@ -4323,7 +4323,8 @@ void thread::post(::message::message* pmessage)
 
    m_messagea.add(pmessage);
 
-   kick_idle();
+   new_main_loop_happening()->set_happening();
+   //kick_idle();
 
 }
 

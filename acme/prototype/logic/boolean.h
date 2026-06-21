@@ -22,6 +22,13 @@ public:
    {
 
    }
+   template < typename T>
+   requires (::std::is_enum<T>::value)
+   constexpr i32_boolean(const T & t):
+   m_i((((::std::underlying_type_t<T>)t) != (::std::underlying_type_t<T>)0))
+   {
+
+   }
    constexpr i32_boolean(::i32 i):m_i(i) { }
 
 

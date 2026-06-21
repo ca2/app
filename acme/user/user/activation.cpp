@@ -138,10 +138,10 @@ namespace user
    }
 
 
-   bool activation::is_change_request() const
+   bool activation::is_activation_request() const
    {
 
-      return m_eactivation != ::user::e_activation_default;
+      return m_eactivation != ::user::e_activation_no_activate;
 
    }
 
@@ -157,7 +157,7 @@ namespace user
    void activation::clear()
    {
 
-      m_eactivation = ::user::e_activation_default;
+      m_eactivation = ::user::e_activation_no_activate;
       m_pactivationtoken = nullptr;
 
    }

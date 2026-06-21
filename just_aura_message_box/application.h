@@ -10,7 +10,7 @@ namespace app_just_aura_message_box
 
 
    class CLASS_DECL_APP_JUST_AURA_MESSAGE_BOX_APP application :
-      virtual public ::app_just_message_box::application,
+      virtual public ::just_message_box::application,
       virtual public ::aura::application
    {
    public:

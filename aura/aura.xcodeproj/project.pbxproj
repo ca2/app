@@ -110,6 +110,8 @@
 		9A2BE851251EC3BC0075218C /* game.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A2BE84A251EC3BC0075218C /* game.h */; };
 		9A2BE852251EC3BC0075218C /* game.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A2BE84B251EC3BC0075218C /* game.cpp */; };
 		9A2BE853251EC3BC0075218C /* _.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A2BE84C251EC3BC0075218C /* _.h */; };
+		9A337EC82FE3F59A00C0ED37 /* text_metric.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A337EC72FE3F59A00C0ED37 /* text_metric.cpp */; };
+		9A337EC92FE3F59A00C0ED37 /* text_metric.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A337EC72FE3F59A00C0ED37 /* text_metric.cpp */; };
 		9A3764752409BF0C002D15D3 /* graphics.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A37640A2409BEF8002D15D3 /* graphics.h */; };
 		9A3764782409BF0C002D15D3 /* buffered_graphics.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A37640D2409BEF9002D15D3 /* buffered_graphics.cpp */; };
 		9A37647C2409BF0C002D15D3 /* _.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A3764112409BEFA002D15D3 /* _.cpp */; };
@@ -196,6 +198,12 @@
 		9A5ECD4428CCC39E0084D354 /* item.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A5ECD3D28CCC3940084D354 /* item.cpp */; };
 		9A68547A2432ED410002FE94 /* bitmap_source_buffer.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A6854782432ED410002FE94 /* bitmap_source_buffer.h */; };
 		9A68547B2432ED420002FE94 /* bitmap_source_buffer.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A6854792432ED410002FE94 /* bitmap_source_buffer.cpp */; };
+		9A6866CF2FE6BB9100B1B607 /* drawing.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A6866CD2FE6BB8D00B1B607 /* drawing.h */; };
+		9A6866D12FE6BC1900B1B607 /* drawing.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A6866D02FE6BC1800B1B607 /* drawing.cpp */; };
+		9A6866D22FE6BC1900B1B607 /* drawing.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A6866D02FE6BC1800B1B607 /* drawing.cpp */; };
+		9A6866D42FE6BC8D00B1B607 /* stock_icon.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A6866D32FE6BC8700B1B607 /* stock_icon.h */; };
+		9A6866D62FE6BC9200B1B607 /* stock_icon.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A6866D52FE6BC9100B1B607 /* stock_icon.cpp */; };
+		9A6866D72FE6BC9200B1B607 /* stock_icon.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A6866D52FE6BC9100B1B607 /* stock_icon.cpp */; };
 		9A6D3F042A2E0E660081052F /* path_optimization.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A6D3F032A2E0E660081052F /* path_optimization.cpp */; };
 		9A6D3F0D2A2E26C30081052F /* _constant.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A6D3F0C2A2E26C30081052F /* _constant.h */; };
 		9A6D3F0F2A2E28130081052F /* font_descriptor.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A6D3F0E2A2E28130081052F /* font_descriptor.h */; };
@@ -741,6 +749,7 @@
 		9A2BE84A251EC3BC0075218C /* game.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = game.h; sourceTree = "<group>"; };
 		9A2BE84B251EC3BC0075218C /* game.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = game.cpp; sourceTree = "<group>"; };
 		9A2BE84C251EC3BC0075218C /* _.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = _.h; sourceTree = "<group>"; };
+		9A337EC72FE3F59A00C0ED37 /* text_metric.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = text_metric.cpp; sourceTree = "<group>"; };
 		9A37640A2409BEF8002D15D3 /* graphics.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = graphics.h; sourceTree = "<group>"; };
 		9A37640D2409BEF9002D15D3 /* buffered_graphics.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = buffered_graphics.cpp; sourceTree = "<group>"; };
 		9A3764112409BEFA002D15D3 /* _.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = _.cpp; sourceTree = "<group>"; };
@@ -817,6 +826,10 @@
 		9A6854782432ED410002FE94 /* bitmap_source_buffer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = bitmap_source_buffer.h; sourceTree = "<group>"; };
 		9A6854792432ED410002FE94 /* bitmap_source_buffer.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = bitmap_source_buffer.cpp; sourceTree = "<group>"; };
 		9A68557A2432F2BF0002FE94 /* libsqlite3.0.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libsqlite3.0.tbd; path = usr/lib/libsqlite3.0.tbd; sourceTree = SDKROOT; };
+		9A6866CD2FE6BB8D00B1B607 /* drawing.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = drawing.h; sourceTree = "<group>"; };
+		9A6866D02FE6BC1800B1B607 /* drawing.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = drawing.cpp; sourceTree = "<group>"; };
+		9A6866D32FE6BC8700B1B607 /* stock_icon.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = stock_icon.h; sourceTree = "<group>"; };
+		9A6866D52FE6BC9100B1B607 /* stock_icon.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = stock_icon.cpp; sourceTree = "<group>"; };
 		9A6D3F032A2E0E660081052F /* path_optimization.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = path_optimization.cpp; sourceTree = "<group>"; };
 		9A6D3F0C2A2E26C30081052F /* _constant.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = _constant.h; sourceTree = "<group>"; };
 		9A6D3F0E2A2E28130081052F /* font_descriptor.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = font_descriptor.h; sourceTree = "<group>"; };
@@ -1302,71 +1315,75 @@
 		9A2A52FA1F1FEDFD001AB0F8 /* draw2d */ = {
 			isa = PBXGroup;
 			children = (
-				9A7FEB322E7F45A80082C6FD /* offset.h */,
-				9A7FEB332E7F45A80082C6FD /* offset.cpp */,
-				9A3764112409BEFA002D15D3 /* _.cpp */,
 				9A37646C2409BF0B002D15D3 /* _.h */,
+				9A3764112409BEFA002D15D3 /* _.cpp */,
 				9A3764222409BEFD002D15D3 /* _impl.h */,
 				9A3764172409BEFB002D15D3 /* _visual_impl.h */,
 				9A3764722409BF0B002D15D3 /* alpha.cpp */,
-				9A37646F2409BF0B002D15D3 /* api.cpp */,
 				9A37643A2409BF01002D15D3 /* api.h */,
-				9A3764452409BF03002D15D3 /* bitmap.cpp */,
+				9A37646F2409BF0B002D15D3 /* api.cpp */,
 				9A3764142409BEFB002D15D3 /* bitmap.h */,
-				9A37645A2409BF05002D15D3 /* brush.cpp */,
+				9A3764452409BF03002D15D3 /* bitmap.cpp */,
 				9A37641E2409BEFC002D15D3 /* brush.h */,
-				9A37640D2409BEF9002D15D3 /* buffered_graphics.cpp */,
+				9A37645A2409BF05002D15D3 /* brush.cpp */,
 				9A3764152409BEFB002D15D3 /* buffered_graphics.h */,
+				9A37640D2409BEF9002D15D3 /* buffered_graphics.cpp */,
 				9A268DA52A3E3E4700AE8FE0 /* clip.h */,
-				9AC2CE932653452D00CC8096 /* color_filter.cpp */,
 				9AC2CE8A2653452900CC8096 /* color_filter.h */,
-				9A3764252409BEFD002D15D3 /* color_matrix.cpp */,
+				9AC2CE932653452D00CC8096 /* color_filter.cpp */,
 				9A3764542409BF04002D15D3 /* color_matrix.h */,
+				9A3764252409BEFD002D15D3 /* color_matrix.cpp */,
 				9A3764162409BEFB002D15D3 /* common.h */,
 				9A3764732409BF0C002D15D3 /* debug.cpp */,
-				9AC2CE872653452800CC8096 /* device_lock.cpp */,
 				9AC2CE8C2653452900CC8096 /* device_lock.h */,
-				9A3764432409BF02002D15D3 /* draw2d.cpp */,
+				9AC2CE872653452800CC8096 /* device_lock.cpp */,
 				9A2A52FC1F1FEDFD001AB0F8 /* draw2d.h */,
+				9A3764432409BF02002D15D3 /* draw2d.cpp */,
+				9A6866CD2FE6BB8D00B1B607 /* drawing.h */,
+				9A6866D02FE6BC1800B1B607 /* drawing.cpp */,
 				9A3764342409BF00002D15D3 /* fwd.h */,
-				9AC2CE8E2653452A00CC8096 /* graphics_call.h */,
-				9A3764492409BF03002D15D3 /* graphics_extension.cpp */,
-				9A3764572409BF05002D15D3 /* graphics_extension.h */,
-				9A37646E2409BF0B002D15D3 /* graphics.cpp */,
 				9A37640A2409BEF8002D15D3 /* graphics.h */,
-				9A5498632A2C00310052BAB6 /* holdee.cpp */,
+				9A37646E2409BF0B002D15D3 /* graphics.cpp */,
+				9AC2CE8E2653452A00CC8096 /* graphics_call.h */,
+				9A3764572409BF05002D15D3 /* graphics_extension.h */,
+				9A3764492409BF03002D15D3 /* graphics_extension.cpp */,
 				9A5498642A2C00310052BAB6 /* holdee.h */,
-				9A5498652A2C00310052BAB6 /* holder.cpp */,
+				9A5498632A2C00310052BAB6 /* holdee.cpp */,
 				9A1FB50D28712FAC0042849A /* holder.h */,
-				9AE245DB27F1227900B849D0 /* host.cpp */,
+				9A5498652A2C00310052BAB6 /* holder.cpp */,
 				9AE245DC27F1227900B849D0 /* host.h */,
-				9A5ECD3D28CCC3940084D354 /* item.cpp */,
+				9AE245DB27F1227900B849D0 /* host.cpp */,
 				9AB3DCC3278360390025099F /* item.h */,
-				9AF8CE50271B670C00BF80B7 /* lock.cpp */,
+				9A5ECD3D28CCC3940084D354 /* item.cpp */,
 				9AF8CE51271B670D00BF80B7 /* lock.h */,
-				9AF8CE4A271B347400BF80B7 /* nano_svg_rasterization.cpp */,
+				9AF8CE50271B670C00BF80B7 /* lock.cpp */,
 				9AF8CE4B271B347400BF80B7 /* nano_svg.cpp */,
-				9A3764562409BF05002D15D3 /* object.cpp */,
+				9AF8CE4A271B347400BF80B7 /* nano_svg_rasterization.cpp */,
 				9A3764272409BEFD002D15D3 /* object.h */,
-				9A3764602409BF06002D15D3 /* palette.cpp */,
+				9A3764562409BF05002D15D3 /* object.cpp */,
+				9A7FEB322E7F45A80082C6FD /* offset.h */,
+				9A7FEB332E7F45A80082C6FD /* offset.cpp */,
 				9A3764192409BEFB002D15D3 /* palette.h */,
-				9A6D3F032A2E0E660081052F /* path_optimization.cpp */,
-				9A979CC128C7F98B0013DC54 /* path_optimization.h */,
-				9A1FB50C28712FAB0042849A /* path_shape.h */,
-				9A1FB50828712FAB0042849A /* path_simple_optimization.cpp */,
-				9A1FB50E28712FAC0042849A /* path_simple_optimization.h */,
-				9A3764682409BF07002D15D3 /* path.cpp */,
+				9A3764602409BF06002D15D3 /* palette.cpp */,
 				9A3764182409BEFB002D15D3 /* path.h */,
-				9A37643B2409BF01002D15D3 /* pen.cpp */,
+				9A3764682409BF07002D15D3 /* path.cpp */,
+				9A979CC128C7F98B0013DC54 /* path_optimization.h */,
+				9A6D3F032A2E0E660081052F /* path_optimization.cpp */,
+				9A1FB50C28712FAB0042849A /* path_shape.h */,
+				9A1FB50E28712FAC0042849A /* path_simple_optimization.h */,
+				9A1FB50828712FAB0042849A /* path_simple_optimization.cpp */,
 				9A37642A2409BEFE002D15D3 /* pen.h */,
-				9A3764702409BF0B002D15D3 /* printer.cpp */,
+				9A37643B2409BF01002D15D3 /* pen.cpp */,
 				9A3764372409BF01002D15D3 /* printer.h */,
-				9A1FB50A28712FAB0042849A /* region_shape.h */,
-				9A3764712409BF0B002D15D3 /* region.cpp */,
+				9A3764702409BF0B002D15D3 /* printer.cpp */,
 				9A3764312409BF00002D15D3 /* region.h */,
+				9A3764712409BF0B002D15D3 /* region.cpp */,
+				9A1FB50A28712FAB0042849A /* region_shape.h */,
 				9A5ECD3E28CCC3940084D354 /* shape.h */,
-				9AC2CE912653452A00CC8096 /* task_tool.cpp */,
+				9A6866D32FE6BC8700B1B607 /* stock_icon.h */,
+				9A6866D52FE6BC9100B1B607 /* stock_icon.cpp */,
 				9AC2CE922653452D00CC8096 /* task_tool.h */,
+				9AC2CE912653452A00CC8096 /* task_tool.cpp */,
 			);
 			path = draw2d;
 			sourceTree = "<group>";
@@ -1490,6 +1507,7 @@
 				9A8FCD7F2651AFAB00C0D8A1 /* text_box.h */,
 				9A8FCD722651AFAB00C0D8A1 /* text_box.cpp */,
 				9A2273BA27CF053B0042BAC2 /* text_metric.h */,
+				9A337EC72FE3F59A00C0ED37 /* text_metric.cpp */,
 				9A8FCD772651AFAB00C0D8A1 /* text_out.h */,
 				9AE6378526700C19005F3412 /* text_out.cpp */,
 				9AE6378C26700C19005F3412 /* text_out_array.h */,
@@ -1991,6 +2009,7 @@
 				9A750F77282B90B700C4861B /* range.h in Headers */,
 				9A750F7D282B90B700C4861B /* _data.h in Headers */,
 				9A1E1D8F22F0AF69004243B8 /* window_dc.h in Headers */,
+				9A6866D42FE6BC8D00B1B607 /* stock_icon.h in Headers */,
 				9A2485EF2452C48F00F23D28 /* _impl.h in Headers */,
 				9A92312B27EACF2100B5A78D /* frame_array.h in Headers */,
 				9A979D7028C82ACE0013DC54 /* drawable.h in Headers */,
@@ -2072,6 +2091,7 @@
 				9A3764E72409BF28002D15D3 /* _.h in Headers */,
 				9A24860B2452C48F00F23D28 /* _features.h in Headers */,
 				9A8FCD972651AFAB00C0D8A1 /* text_box.h in Headers */,
+				9A6866CF2FE6BB9100B1B607 /* drawing.h in Headers */,
 				9A92311727EACF2100B5A78D /* drawing.h in Headers */,
 				9A87FF09284B8D6F0084AA05 /* target.h in Headers */,
 				9A750F6A282B90B600C4861B /* interaction.h in Headers */,
@@ -2266,7 +2286,7 @@
 			outputFileListPaths = (
 			);
 			outputPaths = (
-				"$(WorkspaceDir)/time-$(PLATFORM_MODIFIER)/output/$(EXECUTABLE_NAME)",
+				"$(WorkspaceDir)/time-$(PLATFORM_MODIFIER)/output-$(CONFIIGURATION)/$(EXECUTABLE_NAME)",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
@@ -2279,6 +2299,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				9A6866D72FE6BC9200B1B607 /* stock_icon.cpp in Sources */,
 				9A94DE6D282C0ADA00F5C1CA /* window.cpp in Sources */,
 				9A750FCF282B929E00C4861B /* source.cpp in Sources */,
 				9A750F62282B90A200C4861B /* scroll.cpp in Sources */,
@@ -2431,6 +2452,7 @@
 				9A8FCD912651AFAB00C0D8A1 /* write_text.cpp in Sources */,
 				9A750FDE282B929E00C4861B /* extension.cpp in Sources */,
 				9A94DE65282C0ADA00F5C1CA /* debug.cpp in Sources */,
+				9A6866D22FE6BC1900B1B607 /* drawing.cpp in Sources */,
 				9A9979732D8461AF00A1FC11 /* component.cpp in Sources */,
 				9A750FBD282B916D00C4861B /* progress.cpp in Sources */,
 				9A75C6AB283D6E6400EC37F2 /* device_listener.cpp in Sources */,
@@ -2452,6 +2474,7 @@
 				9A750FBB282B916D00C4861B /* plain_edit.cpp in Sources */,
 				9A750FDB282B929E00C4861B /* frame.cpp in Sources */,
 				9A50C7582B6C7FAB00FDB101 /* holder.cpp in Sources */,
+				9A337EC92FE3F59A00C0ED37 /* text_metric.cpp in Sources */,
 				9A94DE70282C0ADA00F5C1CA /* display.cpp in Sources */,
 				9A750FD5282B929E00C4861B /* nanosvg.cpp in Sources */,
 				9A7DE1412D26B08400118A10 /* glyph.cpp in Sources */,
@@ -2468,6 +2491,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				9A6866D62FE6BC9200B1B607 /* stock_icon.cpp in Sources */,
 				9A92314E27EAE40F00B5A78D /* appearance.cpp in Sources */,
 				9A92314F27EAE40F00B5A78D /* button.cpp in Sources */,
 				9A92315027EAE40F00B5A78D /* still.cpp in Sources */,
@@ -2620,6 +2644,7 @@
 				9A979D9728C82B1C0013DC54 /* text_composition_composite.cpp in Sources */,
 				9AC2CEA12653452D00CC8096 /* color_filter.cpp in Sources */,
 				9A9979742D8461AF00A1FC11 /* component.cpp in Sources */,
+				9A6866D12FE6BC1900B1B607 /* drawing.cpp in Sources */,
 				9A92310D27EACF2100B5A78D /* context.cpp in Sources */,
 				9A75C6A8283D6E6400EC37F2 /* devices.cpp in Sources */,
 				9A2BE852251EC3BC0075218C /* game.cpp in Sources */,
@@ -2641,6 +2666,7 @@
 				9A75C6AA283D6E6400EC37F2 /* device_listener.cpp in Sources */,
 				9A92311127EACF2100B5A78D /* frame.cpp in Sources */,
 				9A979D9628C82B1C0013DC54 /* zorder.cpp in Sources */,
+				9A337EC82FE3F59A00C0ED37 /* text_metric.cpp in Sources */,
 				9A5498682A2C00320052BAB6 /* holder.cpp in Sources */,
 				9A8FCD8A2651AFAB00C0D8A1 /* font_enumeration.cpp in Sources */,
 				9A7DE13B2D26B08400118A10 /* glyph.cpp in Sources */,
@@ -2832,20 +2858,21 @@
 				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = NO;
-				FRAMEWORK_SEARCH_PATHS = (
-					"$(inherited)",
-					"$(DEVELOPER_FRAMEWORKS_DIR)",
-					"$(WorkspaceDir)/../operating_system/storage-$(PLATFORM_MODIFIER)/$(CONFIGURATION)/framework",
-				);
 				COPY_PHASE_STRIP = NO;
 				DEAD_CODE_STRIPPING = NO;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				DEPLOYMENT_POSTPROCESSING = YES;
+				DEVELOPMENT_TEAM = HS8735NRM5;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				ENABLE_TESTABILITY = YES;
 				ENABLE_USER_SCRIPT_SANDBOXING = YES;
 				EXCLUDED_ARCHS = "";
 				EXECUTABLE_PREFIX = lib;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(DEVELOPER_FRAMEWORKS_DIR)",
+					"$(WorkspaceDir)/../operating_system/storage-$(PLATFORM_MODIFIER)/$(CONFIGURATION)/framework",
+				);
 				GCC_C_LANGUAGE_STANDARD = c11;
 				GCC_DYNAMIC_NO_PIC = NO;
 				GCC_ENABLE_CPP_EXCEPTIONS = YES;
@@ -2869,7 +2896,10 @@
 				GCC_WARN_UNUSED_FUNCTION = NO;
 				GCC_WARN_UNUSED_VARIABLE = NO;
 				HEADER_SEARCH_PATHS = "";
-				LD_RUNPATH_SEARCH_PATHS = "@executable_path @loader_path";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"@executable_path",
+					"@loader_path",
+				);
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(WorkspaceDir)/operating_system",
@@ -2952,21 +2982,22 @@
 				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = NO;
-				FRAMEWORK_SEARCH_PATHS = (
-					"$(inherited)",
-					"$(DEVELOPER_FRAMEWORKS_DIR)",
-					"$(WorkspaceDir)/../operating_system/storage-$(PLATFORM_MODIFIER)/$(CONFIGURATION)/framework",
-				);
 				COPY_PHASE_STRIP = NO;
 				DEAD_CODE_STRIPPING = NO;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				DEPLOYMENT_POSTPROCESSING = YES;
+				DEVELOPMENT_TEAM = HS8735NRM5;
 				ENABLE_HARDENED_RUNTIME = YES;
 				ENABLE_NS_ASSERTIONS = NO;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				ENABLE_USER_SCRIPT_SANDBOXING = YES;
 				EXCLUDED_ARCHS = "";
 				EXECUTABLE_PREFIX = lib;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(DEVELOPER_FRAMEWORKS_DIR)",
+					"$(WorkspaceDir)/../operating_system/storage-$(PLATFORM_MODIFIER)/$(CONFIGURATION)/framework",
+				);
 				GCC_C_LANGUAGE_STANDARD = c11;
 				GCC_ENABLE_CPP_EXCEPTIONS = YES;
 				GCC_ENABLE_CPP_RTTI = YES;
@@ -2988,7 +3019,10 @@
 				GCC_WARN_UNUSED_FUNCTION = NO;
 				GCC_WARN_UNUSED_VARIABLE = NO;
 				HEADER_SEARCH_PATHS = "";
-				LD_RUNPATH_SEARCH_PATHS = "@executable_path @loader_path";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"@executable_path",
+					"@loader_path",
+				);
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(WorkspaceDir)/operating_system",

@@ -34,7 +34,7 @@ namespace innate_ui
 
       virtual void create();
       virtual void create_child(window * pwindowParent);
-      virtual void destroy_window();
+      void destroy_window() override;
 
       virtual void center();
       virtual void show();
@@ -46,8 +46,8 @@ namespace innate_ui
 
       virtual void fit();
       virtual ::f64 get_scale_factor();
-      virtual void set_position(const ::i32_point & point);
-      virtual void set_size(const ::i32_size & size);
+      void set_position(const ::i32_point & point) override;
+      void set_size(const ::i32_size & size) override;
       virtual void adjust_for_client_size(const ::i32_size & size);
 
       ::innate_ui::innate_ui * innate_ui();

@@ -42,7 +42,7 @@ namespace user
 
       ::user::activation & operator |= (const ::user::activation & useractivation);
 
-      bool is_change_request() const;
+      bool is_activation_request() const;
 
 
       i32_boolean operator & (const ::user::e_activation & useractivation) const;

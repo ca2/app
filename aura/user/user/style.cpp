@@ -4,6 +4,8 @@
 #include "aura/graphics/draw2d/draw2d.h"
 #include "aura/graphics/draw2d/path.h"
 #include "aura/graphics/draw2d/pen.h"
+#include "aura/graphics/user/control_box_button.h"
+#include "aura/graphics/user/control_box_icon.h"
 #include "style.h"
 #include "interaction.h"
 #include "aura/platform/node.h"
@@ -320,6 +322,61 @@ namespace user
    }
 
 
+   bool style::draw_item(::draw2d::graphics_pointer & pgraphics, ::user::interaction * pinteraction,  ::user::item & useritem, const ::user::e_state & estate)
+   {
+      
+      auto pitem = useritem.m_pitem;
+      
+      if (pitem->m_item.m_eelement == ::e_element_close_icon)
+      {
+         
+         ::user::draw_close_icon(pgraphics, pinteraction, useritem, estate, m_pstockicon);
+         
+      }
+      else if (pitem->m_item.m_eelement == ::e_element_switch_icon)
+      {
+         
+         ::user::draw_switch_icon(pgraphics, pinteraction, useritem, estate, m_pstockicon);
+         
+      }
+      else if (pitem->m_item.m_eelement == ::e_element_maximize_icon)
+      {
+         
+         ::user::draw_maximize_icon(pgraphics, pinteraction, useritem, estate, m_pstockicon);
+         
+      }
+      else if (pitem->m_item.m_eelement == ::e_element_minimize_icon)
+      {
+         
+         ::user::draw_minimize_icon(pgraphics, pinteraction, useritem, estate, m_pstockicon);
+         
+      }
+      else if (pitem->m_item.m_eelement == ::e_element_close_button)
+      {
+         
+         ::user::draw_close_button(pgraphics, pinteraction, useritem, estate, m_pstockicon);
+         
+      }
+      else if (pitem->m_item.m_eelement == ::e_element_maximize_button)
+      {
+         
+         ::user::draw_maximize_button(pgraphics, pinteraction, useritem, estate, m_pstockicon);
+         
+      }
+      else if (pitem->m_item.m_eelement == ::e_element_minimize_button)
+      {
+         
+         ::user::draw_minimize_button(pgraphics, pinteraction, useritem, estate, m_pstockicon);
+         
+      }
+      else if (pitem->m_item.m_eelement == ::e_element_switch_button)
+      {
+         
+         ::user::draw_switch_button(pgraphics, pinteraction, useritem, estate, m_pstockicon);
+         
+      }
+      
+   }
 
 
    //bool style::on_ui_event(enum_happening ehappening, e_object eobject, ::user::interaction * pinteraction)

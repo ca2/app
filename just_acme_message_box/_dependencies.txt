@@ -1,4 +1,1 @@
-default_draw2d
-default_node
-default_windowing
-default_write_text
+default_acme_windowing

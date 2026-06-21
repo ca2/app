@@ -338,7 +338,6 @@ namespace user
       ::pointer<::draw2d::path>     m_ppath;
       ::pointer<::user::mouse>      m_pmouse;
       //bool                             m_bAnyHoverChange;
-
       
       ::item_pointer                m_pitem;
       //::i32_point                   m_pointScreen;

@@ -9,6 +9,7 @@
 #include "aura/graphics/draw2d/graphics.h"
 #include "aura/graphics/draw2d/brush.h"
 #include "aura/graphics/draw2d/pen.h"
+#include "aura/graphics/draw2d/stock_icon.h"
 #include "aura/message/user.h"
 
 
@@ -152,8 +153,12 @@ namespace experience_anthill
          ::i32_rectangle rectangleIcon(rectangleEllipse);
 
          rectangleIcon.deflate(rectangleIcon.width() / 4, rectangleIcon.height() / 4);
+         
+         defer_construct_newø(m_pstockicon);
+         
+         m_pstockicon->m_estockiconNew = m_estockicon;
 
-         pgraphics->draw_stock_icon(rectangleIcon, m_estockicon);
+         pgraphics->draw(rectangleIcon, m_pstockicon);
 
          //pgraphics->FillSolidRect(rectangleEllipse, argb(255, 255, 255, 255));
 

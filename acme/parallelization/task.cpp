@@ -3700,12 +3700,12 @@ void task::kick_idle()
    }
    else
 #endif
-//   if (m_pmanualresethappeningMainLoop)
-//   {
-//
-//      m_pmanualresethappeningMainLoop->set_happening();
-//
-//   }
+   if (m_pmanualresethappeningMainLoop)
+   {
+
+      m_pmanualresethappeningMainLoop->set_happening();
+
+   }
 
    //post([]() {});
 

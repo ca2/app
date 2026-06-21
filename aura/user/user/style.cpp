@@ -375,6 +375,14 @@ namespace user
          ::user::draw_switch_button(pgraphics, pinteraction, useritem, estate, m_pstockicon);
          
       }
+      else
+      {
+
+         return false;
+
+      }
+
+      return true;
       
    }
 

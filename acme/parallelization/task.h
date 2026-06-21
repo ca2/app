@@ -349,8 +349,8 @@ private:
 
    //virtual ::manual_reset_happening* new_happening();
 
-       virtual void on_start_timers_handling_hint();
-   virtual void on_stop_timers_handling_hint();
+   void on_start_timers_handling_hint() override;
+   void on_stop_timers_handling_hint() override;
 
 
    virtual bool pick_next_posted_procedure();

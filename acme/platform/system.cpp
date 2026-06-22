@@ -561,38 +561,38 @@ namespace platform
    }
 
 
-   void system::prepare_application()
-   {
+   //void system::prepare_application()
+   //{
 
-      if (!is_task_set2())
-      {
-         
-         branch_synchronously();
+   //   if (!is_task_set2())
+   //   {
+   //      
+   //      branch_synchronously();
 
-      }
+   //   }
 
-      auto psession = session();
+   //   auto psession = session();
 
-      if (psession == nullptr)
-      {
+   //   if (psession == nullptr)
+   //   {
 
-         return;
+   //      return;
 
-      }
+   //   }
 
-      auto papplication = psession->get_application(
-         m_papplication->m_strAppId, true, nullptr);
+   //   auto papplication = psession->get_application(
+   //      m_papplication->m_strAppId, true, nullptr);
 
-      if (!papplication)
-      {
+   //   if (!papplication)
+   //   {
 
-         throw ::exception(error_failed, "failed to get application to be prepared");
+   //      throw ::exception(error_failed, "failed to get application to be prepared");
 
-      }
+   //   }
 
-      papplication->prepare_application();
+   //   papplication->prepare_application();
 
-   }
+   //}
 
 
    ::task_message_queue* system::task_message_queue()

@@ -1030,6 +1030,15 @@ namespace platform
 
       m_bApplicationStartFileOpenRequest = true;
 
+
+      
+      //m_papplication->post(
+      //   [this]()
+      //   {
+      //      m_papplication->process_command_line_options();
+      //   });
+
+
       auto psystem = system();
 
       auto papplication = psystem;

@@ -416,7 +416,7 @@ class ::fs::data * session::fs() { return m_pfsdata; }
 
       }
 
-      auto papp = get_application(strId, true, prequest);
+      auto papp = get_application(strId);
 
       if (papp == nullptr)
       {

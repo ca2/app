@@ -4271,11 +4271,11 @@ return nullptr;
    }
 
 
-   void acme_system_layer::prepare_application()
-   {
+   //void acme_system_layer::prepare_application()
+   //{
 
 
-   }
+   //}
 
 
    ::pointer<::platform::session> acme_system_layer::on_create_session(::collection::index iEdge)

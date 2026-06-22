@@ -384,7 +384,7 @@ namespace platform
 
       virtual ::u32 crc32(::u32 uCrc, const ::block & block);
 
-      virtual void prepare_application();
+      //virtual void prepare_application();
 
       virtual void create_session(::collection::index iEdge = 0);
 

@@ -153,7 +153,7 @@ namespace platform
 #endif
 
       
-      void prepare_application() override;
+      //void prepare_application() override;
 
       virtual void create_task_message_queue();
       virtual void destroy_task_message_queue();

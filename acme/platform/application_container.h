@@ -30,7 +30,10 @@ namespace platform
       ~application_container() override;
 
 
-      virtual ::platform::application * get_application(const ::scoped_string & scopedstrAppId, bool bCreate = true, ::request * prequest = nullptr);
+      virtual ::platform::application *find_application(const ::scoped_string &scopedstrAppId);
+      virtual ::platform::application *get_application(const ::scoped_string &scopedstrAppId);
+      // ::request * prequest = nullptr);
+      //virtual ::platform::application * get_application(const ::scoped_string & scopedstrAppId, bool bCreate = true, ::request * prequest = nullptr);
 
 
       //virtual ::pointer<::apex::application>create_application(const ::scoped_string & scopedstrAppId, bool bSynch, ::request * prequest);

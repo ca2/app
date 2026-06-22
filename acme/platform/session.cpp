@@ -99,7 +99,7 @@ namespace platform
 
       information() << "m_strAppId = " << prequest->m_strAppId;
 
-      auto papplication = get_application(prequest->m_strAppId, true, prequest);
+      auto papplication = get_application(prequest->m_strAppId);
 
       if (!papplication)
       {

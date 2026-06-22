@@ -433,6 +433,12 @@ namespace platform
 
       add_application(papplication);
 
+      papplication->prepare_application();
+
+
+
+
+
       //papplication->start_application(prequest);
       
       //papplication->start_application();
@@ -587,10 +593,10 @@ namespace platform
    //   }
 
 
-   ::platform::application* application_container::get_application(const ::scoped_string & scopedstrAppId, bool bCreate, ::request* prequest)
+   ::platform::application *application_container::find_application(const ::scoped_string &scopedstrAppId)
    {
 
-      ::pointer<::platform::application>papplication;
+      ::pointer<::platform::application> papplication;
 
       if (m_applicationa.find(scopedstrAppId, papplication))
       {
@@ -599,14 +605,22 @@ namespace platform
 
       }
 
-      if (!bCreate)
+      return nullptr;
+   
+   }
+
+
+   ::platform::application* application_container::get_application(const ::scoped_string & scopedstrAppId)
+   {
+
+      ::pointer<::platform::application>papplication = find_application(scopedstrAppId);
+
+      if (papplication)
       {
 
-         return nullptr;
+         return papplication;
 
       }
-
-      papplication = nullptr;
 
       try
       {

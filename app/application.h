@@ -19,7 +19,7 @@ namespace app_app
       
       __DECLARE_APPLICATION_RELEASE_TIME();
 
-
+      void on_before_branch() override;
 
       virtual void on_request(::request * prequest) override;
 

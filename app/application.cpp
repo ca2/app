@@ -43,6 +43,14 @@ namespace app_app
    }
 
 
+   void application::on_before_branch()
+   {
+
+      ::aura::application::on_before_branch();
+
+   }
+
+
    void application::on_request(::request * prequest)
    {
 

@@ -271,6 +271,9 @@ namespace windowing
       virtual void graphics_unlock();
 
 
+      virtual ::f64 get_full_hd_factor();
+      virtual ::i32_rectangle get_screen_rectangle();
+
       //virtual bool has_mouse_capture() const;
       bool has_keyboard_focus() override;
 

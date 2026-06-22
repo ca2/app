@@ -26,12 +26,14 @@ namespace user
       e_key_state_right_shift = 1 << 8,
       e_key_state_left_control = 1 << 9,
       e_key_state_right_control = 1 << 10,
-      e_key_state_left_alt = 1 << 11,
-      e_key_state_right_alt = 1 << 12,
-      e_key_state_left_command = 1 << 13,
-      e_key_state_right_command = 1 << 14,
-      e_key_state_system_left_command = 1 << 15,
-      e_key_state_system_right_command = 1 << 16,
+      e_key_state_alt = 1 << 11,
+      e_key_state_left_alt = 1 << 12,
+      e_key_state_right_alt = 1 << 13,
+      e_key_state_command = 1 << 14,
+      e_key_state_left_command = 1 << 15,
+      e_key_state_right_command = 1 << 16,
+      e_key_state_system_left_command = 1 << 17,
+      e_key_state_system_right_command = 1 << 18,
 
    };
 

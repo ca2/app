@@ -872,33 +872,33 @@ namespace coding
       //if (m_pbuttonOpenBaseFolder)
       //{
 
-      //   r.top() = r.bottom() - m_iButtonHeight;
+      //   r.top = r.bottom - m_iButtonHeight;
 
       //   m_pbuttonOpenBaseFolder->place(r);
 
-      //   r.bottom() -= (m_iButtonPadding + m_iButtonHeight);
+      //   r.bottom -= (m_iButtonPadding + m_iButtonHeight);
 
       //}
 
       //if (m_pbuttonOpenSolutionFolder)
       //{
 
-      //   r.top() = r.bottom() - m_iButtonHeight;
+      //   r.top = r.bottom - m_iButtonHeight;
 
       //   m_pbuttonOpenSolutionFolder->place(r);
 
-      //   r.bottom() -= (m_iButtonPadding + m_iButtonHeight);
+      //   r.bottom -= (m_iButtonPadding + m_iButtonHeight);
 
       //}
 
       //if (m_pbuttonLaunchSolution)
       //{
 
-      //   r.top() = r.bottom() - m_iButtonHeight;
+      //   r.top = r.bottom - m_iButtonHeight;
 
       //   m_pbuttonLaunchSolution->place(r);
 
-      //   r.bottom() -= (m_iButtonPadding + m_iButtonHeight);
+      //   r.bottom -= (m_iButtonPadding + m_iButtonHeight);
 
       //}
 

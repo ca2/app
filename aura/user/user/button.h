@@ -69,6 +69,7 @@ namespace user
       //::i32_rectangle                     m_rectangleText;
       ::collection::index                               m_iClick;
       enum_stock_icon                     m_estockicon;
+      ::pointer < ::draw2d::stock_icon >  m_pstockicon;
       ::i32_rectangle                     m_rectangleCheckBox;
       ::pointer < bitmap >                m_pbitmap;
       ::pointer < list_base >                  m_plist;

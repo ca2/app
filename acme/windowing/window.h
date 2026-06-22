@@ -97,7 +97,7 @@ namespace acme
 
 
          ::pointer < ::acme::windowing::display >           m_pacmewindowingdisplayWindow;
-
+         class ::time m_timeLastPresent;
 //         long                                               m_lX11NativeVisualId;
 //         ::i32                                                m_lX11MapNotify = -1;
 
@@ -133,6 +133,8 @@ namespace acme
          virtual void set_user_thread(::user::thread * puserthread);
          virtual void set_user_graphics_thread(::user::graphics_thread * pusergraphicsthread);
 
+         
+         virtual void set_last_present_time();
 
          //bool defer_perform_entire_reposition_process() override;
 
@@ -174,7 +176,7 @@ namespace acme
          virtual bool _is_window();
 
          
-         virtual void set_foreground_window(::user::activation_token * puseractivationtoken);
+         void set_foreground_window(::user::activation_token * puseractivationtoken) override;
          
          
          virtual bool has_keyboard_focus();
@@ -203,19 +205,19 @@ namespace acme
 #endif
 
          virtual void on_window_paint(::nano::graphics::context * pgraphicscontext);
-         virtual void on_window_size();
-         virtual void on_window_set_focus();
-         virtual bool on_window_activate(::i32 iActivate, bool bMinimized, const ::operating_system::window & operatingsystemwindow);
-         virtual bool on_window_mouse_activate(::i32 & iResult, const ::operating_system::window & operatingsystemwindowTop,
-            ::i32 iHitTest, ::i32 iMessage);
+         void on_window_size() override;
+         void on_window_set_focus() override;
+         bool on_window_activate(::i32 iActivate, bool bMinimized, const ::operating_system::window & operatingsystemwindow) override;
+         bool on_window_mouse_activate(::i32 & iResult, const ::operating_system::window & operatingsystemwindowTop ,
+            ::i32 iHitTest, ::i32 iMessage)override;
 
 
-         virtual bool is_window_iconic();
-         virtual ::f32 get_window_scale();
+         bool is_window_iconic() override;
+         ::f32 get_window_scale() override;
 
 
-         virtual void show_window(::i32 iShowFlags);
-         virtual void set_window_style(::i32 iStyle);
+         void show_window(::i32 iShowFlags) override;
+         void set_window_style(::i32 iStyle) override;
          ::i64 get_window_style() override;
          void set_window_position(const ::operating_system::window & operatingsystemwindow, const ::i32_point & point, const ::i32_size & size, ::i32 iSetWindowPosFlags) override;
          void window_invalidate_rect(const ::i32_rectangle * prectangle, bool bErase) override;
@@ -374,7 +376,7 @@ namespace acme
          void on_window_hidden() override;
 
 
-         virtual void set_active_window();
+         void set_active_window() override;
 
          virtual bool is_active_window();
 

@@ -35,7 +35,8 @@ namespace draw2d
    class host;
    class graphics;
    class bitmap;
-
+   class drawing;
+   class stock_icon;
 
    ///class graphics_context;
    class graphics_context_interface;
@@ -64,7 +65,18 @@ namespace draw2d
    using region_pointer = ::pointer<region>;
 
 
+
+
    CLASS_DECL_ACME void colora_from_quada(color_array & colora, WINRGBQUAD * prgbquad, ::i32 iCount);
+
+
+   inline bool is_similar(::f64 f1, ::f64 f2, ::f64 Δ = 0.001)
+   {
+   
+      return ::std::abs(f1 - f2) < Δ;
+      
+   }
+
 
 
 } // namespace draw2d

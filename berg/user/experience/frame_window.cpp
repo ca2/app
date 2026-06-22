@@ -342,7 +342,7 @@ namespace experience
 
                      pkey->m_bRet = true;
 
-                     display_visible_trying_to_restore_last_visible({::user::e_activation_set_active, pmessage->user_activation_token()});
+                     display_visible_trying_to_restore_last_visible({::user::e_activation_default, pmessage->user_activation_token()});
 
                      set_reposition();
 

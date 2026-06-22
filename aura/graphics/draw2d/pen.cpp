@@ -3,7 +3,6 @@
 #include "brush.h"
 #include "acme/exception/interface_only.h"
 
-
 namespace draw2d
 {
 
@@ -24,6 +23,52 @@ namespace draw2d
 
    pen::~pen()
    {
+
+   }
+
+
+   bool pen::is_similar_attributes(const pen * ppenSrc)
+   {
+      
+      if(m_epen == ppenSrc->m_epen
+         && m_elinecapBeg == ppenSrc->m_elinecapBeg
+         && m_elinecapEnd == ppenSrc->m_elinecapEnd
+         && m_elinejoin == ppenSrc->m_elinejoin
+         && m_epenalign == ppenSrc->m_epenalign
+         && is_similar(m_dWidth, ppenSrc->m_dWidth)
+         && m_color == ppenSrc->m_color
+         && m_pbrush == ppenSrc->m_pbrush)
+      {
+         
+         return true;
+         
+      }
+      
+      return false;
+      
+   }
+
+
+   bool pen::copy_attributes(const pen * ppenSrc)
+   {
+      
+      if(is_similar_attributes(ppenSrc))
+      {
+         
+         return false;
+         
+      }
+      
+      m_epen = ppenSrc->m_epen;
+      m_elinecapBeg = ppenSrc->m_elinecapBeg;
+      m_elinecapEnd = ppenSrc->m_elinecapEnd;
+      m_elinejoin = ppenSrc->m_elinejoin;
+      m_epenalign = ppenSrc->m_epenalign;
+      m_dWidth = ppenSrc->m_dWidth;
+      m_color = ppenSrc->m_color;
+      m_pbrush = ppenSrc->m_pbrush;
+      
+      return true;
 
    }
 

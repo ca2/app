@@ -27,6 +27,9 @@ namespace windowing
       ~monitor() override;
 
 
+      virtual void initialize_monitor(::windowing::display * pwindowingdisplay, int iMonitor);
+
+
       virtual void update_cache();
 
 

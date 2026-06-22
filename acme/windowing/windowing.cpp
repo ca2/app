@@ -626,6 +626,20 @@ namespace acme
 
             fetch_dark_mode();
 
+            if (!m_papplication->m_bPostedCommandLineFileOpen)
+            {
+
+               auto prequestDefaultStart = create_newø<::request>();
+
+               prequestDefaultStart->m_ecommand = e_command_default_start;
+
+               prequestDefaultStart->m_strAppId = m_papplication->m_strAppId;
+
+               system()->post_request(prequestDefaultStart);
+
+
+            }
+
 //            auto prequestDefaultStart = create_newø<::request>();
 //
 //            prequestDefaultStart->m_ecommand = e_command_default_start;

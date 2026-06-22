@@ -24,6 +24,7 @@
 		9A46D35F267859BC000B22D0 /* libapex.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 9AC3970125195DEB0036B92A /* libapex.dylib */; };
 		9A5D09A42B7F9A90003239D4 /* MainMenu.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9A5D09992B7F9A90003239D4 /* MainMenu.xib */; };
 		9A5D09A52B7F9A90003239D4 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 9A5D099B2B7F9A90003239D4 /* Images.xcassets */; };
+		9A6873582FE7399C00B1B607 /* libapp_just_message_box.dylib in Embed Libraries */ = {isa = PBXBuildFile; fileRef = 9AEC3EF32D1AA52F00F9E621 /* libapp_just_message_box.dylib */; settings = {ATTRIBUTES = (CodeSignOnCopy, ); }; };
 		9A6A480326611202004ED97A /* libdraw2d_quartz2d.dylib in Embed Libraries */ = {isa = PBXBuildFile; fileRef = 9AC2D08326540D6B00CC8096 /* libdraw2d_quartz2d.dylib */; settings = {ATTRIBUTES = (CodeSignOnCopy, ); }; };
 		9A6A480526611203004ED97A /* libwindowing_macos.dylib in Embed Libraries */ = {isa = PBXBuildFile; fileRef = 9A6A47F226611202004ED97A /* libwindowing_macos.dylib */; settings = {ATTRIBUTES = (CodeSignOnCopy, ); }; };
 		9A6A480B26611214004ED97A /* libwrite_text_quartz2d.dylib in Embed Libraries */ = {isa = PBXBuildFile; fileRef = 9A6A480626611214004ED97A /* libwrite_text_quartz2d.dylib */; settings = {ATTRIBUTES = (CodeSignOnCopy, ); }; };
@@ -226,6 +227,7 @@
 				9ADD664C26B6226400D11298 /* libssl.dylib in Embed Libraries */,
 				9ADD664D26B6226400D11298 /* libcrypto.dylib in Embed Libraries */,
 				9A83B5202807E6E200A1A2B6 /* libapex_apple.dylib in Embed Libraries */,
+				9A6873582FE7399C00B1B607 /* libapp_just_message_box.dylib in Embed Libraries */,
 				9AA3F9952A95608D004283CA /* libapex_darwin.dylib in Embed Libraries */,
 				9AE7A1EE2D1CC56600070257 /* libnano_graphics_quartz2d.dylib in Embed Libraries */,
 				9A83B5222807E6E200A1A2B6 /* libapex_macos.dylib in Embed Libraries */,
@@ -249,7 +251,7 @@
 		9A1CC6C32CF31C6D004A00CB /* libapp_just_aura_message_box.dylib */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.dylib"; path = libapp_just_aura_message_box.dylib; sourceTree = BUILT_PRODUCTS_DIR; };
 		9A1CC6C62CF31DE9004A00CB /* liboperating_ambient_macos.dylib */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.dylib"; path = liboperating_ambient_macos.dylib; sourceTree = BUILT_PRODUCTS_DIR; };
 		9A1CC6C92CF32055004A00CB /* operating_ambient_macos.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = operating_ambient_macos.xcodeproj; path = "../../../../operating_system/operating_system-macos/operating_ambient_macos/operating_ambient_macos.xcodeproj"; sourceTree = SOURCE_ROOT; };
-		9A1CC6D12CF3218E004A00CB /* _matter.zip */ = {isa = PBXFileReference; lastKnownFileType = archive.zip; name = _matter.zip; path = _matter.zip; sourceTree = SOURCE_ROOT; };
+		9A1CC6D12CF3218E004A00CB /* _matter.zip */ = {isa = PBXFileReference; lastKnownFileType = archive.zip; path = _matter.zip; sourceTree = SOURCE_ROOT; };
 		9A1FB51A28713B2E0042849A /* crypto_openssl.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = crypto_openssl.xcodeproj; path = ../../crypto_openssl/crypto_openssl.xcodeproj; sourceTree = SOURCE_ROOT; };
 		9A1FB52C28713C0A0042849A /* folder_zip.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = folder_zip.xcodeproj; path = ../../folder_zip/folder_zip.xcodeproj; sourceTree = SOURCE_ROOT; };
 		9A22742027CF35F40042BAC2 /* main.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = main.cpp; sourceTree = SOURCE_ROOT; };
@@ -507,12 +509,12 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 070B8F071B6E53FA00D26137 /* Build configuration list for PBXNativeTarget "_app_just_aura_message_box" */;
 			buildPhases = (
-				9A932AEB2D6DB6D2006557FC /* ShellScript */,
+				9A932AEB2D6DB6D2006557FC /* _on_before_build_executable */,
 				070B8EE61B6E53F900D26137 /* Sources */,
 				070B8EE71B6E53F900D26137 /* Frameworks */,
 				070B8EE81B6E53F900D26137 /* Resources */,
 				9A6A47EF26611186004ED97A /* Embed Libraries */,
-				9A930CD62D6DAA73006557FC /* ShellScript */,
+				9A930CD62D6DAA73006557FC /* _on_after_build_executable */,
 			);
 			buildRules = (
 			);
@@ -729,7 +731,7 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
-		9A930CD62D6DAA73006557FC /* ShellScript */ = {
+		9A930CD62D6DAA73006557FC /* _on_after_build_executable */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -748,18 +750,16 @@
 				"$(SRCROOT)/output.xcfilelist",
 			);
 			outputPaths = (
-				"$(WorkspaceDir)/time-$(PLATFORM_MODIFIER)/output/$(EXECUTABLE_NAME)",
+				"$(WorkspaceDir)/time-$(PLATFORM_MODIFIER)/output-$(CONFIIGURATION)/$(EXECUTABLE_NAME)",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
 			shellScript = "$HOME/code/operating_system/tool/bin/_on_after_build_executable\n";
 		};
-		9A932AEB2D6DB6D2006557FC /* ShellScript */ = {
+		9A932AEB2D6DB6D2006557FC /* _on_before_build_executable */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-			);
-			inputFileListPaths = (
 			);
 			inputFileListPaths = (
 				"",
@@ -903,7 +903,10 @@
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				HEADER_SEARCH_PATHS = "";
-LD_RUNPATH_SEARCH_PATHS = "@executable_path @loader_path";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"@executable_path",
+					"@loader_path",
+				);
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(WorkspaceDir)/operating_system",
@@ -988,7 +991,10 @@ LD_RUNPATH_SEARCH_PATHS = "@executable_path @loader_path";
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				HEADER_SEARCH_PATHS = "";
-LD_RUNPATH_SEARCH_PATHS = "@executable_path @loader_path";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"@executable_path",
+					"@loader_path",
+				);
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(WorkspaceDir)/operating_system",
@@ -1030,7 +1036,7 @@ LD_RUNPATH_SEARCH_PATHS = "@executable_path @loader_path";
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				INFOPLIST_FILE = "$(SRCROOT)/macos/Info.plist";
-				PRODUCT_BUNDLE_IDENTIFIER = "app.just-message-box";
+				PRODUCT_BUNDLE_IDENTIFIER = "app.just-aura-message-box";
 			};
 			name = Debug;
 		};
@@ -1040,7 +1046,7 @@ LD_RUNPATH_SEARCH_PATHS = "@executable_path @loader_path";
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				INFOPLIST_FILE = "$(SRCROOT)/macos/Info.plist";
-				PRODUCT_BUNDLE_IDENTIFIER = "app.just-message-box";
+				PRODUCT_BUNDLE_IDENTIFIER = "app.just-aura-message-box";
 			};
 			name = Release;
 		};
@@ -1056,7 +1062,10 @@ LD_RUNPATH_SEARCH_PATHS = "@executable_path @loader_path";
 				);
 				GCC_PREPROCESSOR_DEFINITIONS = "$(inherited)";
 				INFOPLIST_FILE = "Hello Multiverse!!Tests/Info.plist";
-LD_RUNPATH_SEARCH_PATHS = "@executable_path @loader_path";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"@executable_path",
+					"@loader_path",
+				);
 				PRODUCT_BUNDLE_IDENTIFIER = "com.ca2.$(PRODUCT_NAME:rfc1034identifier)";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Hello Multiverse!!.app_message_box/Contents/MacOS/Hello Multiverse!!";
@@ -1074,7 +1083,10 @@ LD_RUNPATH_SEARCH_PATHS = "@executable_path @loader_path";
 					"$(inherited)",
 				);
 				INFOPLIST_FILE = "Hello Multiverse!!Tests/Info.plist";
-LD_RUNPATH_SEARCH_PATHS = "@executable_path @loader_path";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"@executable_path",
+					"@loader_path",
+				);
 				PRODUCT_BUNDLE_IDENTIFIER = "com.ca2.$(PRODUCT_NAME:rfc1034identifier)";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Hello Multiverse!!.app_message_box/Contents/MacOS/Hello Multiverse!!";

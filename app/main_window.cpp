@@ -10,6 +10,7 @@
 #include "aura/message/user.h"
 #include "acme/prototype/mathematics/mathematics.h"
 #include "aura/platform/application.h"
+#include "aura/user/user/style.h"
 
 
 #define STEPPY_DEBUG 0
@@ -296,8 +297,12 @@ namespace app_app
 
       if (pitem->m_item.m_eelement == ::e_element_close_button)
       {
+         
+         auto pstyle = get_style(pgraphics);
+         
+         pstyle->draw_item(pgraphics, this, useritem, estate);
 
-         ::user::draw_close_button(pgraphics, this, useritem, estate);
+         //::user::draw_close_button(pgraphics, this, useritem, estate);
 
          m_iCloseButtonDraw++;
 

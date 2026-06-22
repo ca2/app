@@ -17,6 +17,7 @@
 
 #include <CoreGraphics/CoreGraphics.h>
 
+#include "acme/operating_system/apple/_.h"
 
 //#include "acme/prototype/geometry2d/_geometry2d.h"
 

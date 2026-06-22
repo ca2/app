@@ -9,6 +9,7 @@
 #include "aura/graphics/draw2d/graphics.h"
 #include "aura/graphics/draw2d/brush.h"
 #include "aura/graphics/draw2d/pen.h"
+#include "aura/graphics/draw2d/stock_icon.h"
 
 
 namespace experience
@@ -120,8 +121,12 @@ namespace experience
          ::i32_rectangle rectangleIcon(rectangleX);
 
          rectangleIcon.deflate(rectangleIcon.width() / 6, rectangleIcon.height() / 6);
+         
+         defer_construct_newø(m_pstockicon);
+         
+         m_pstockicon->m_estockiconNew = m_estockicon;
 
-         pgraphics->draw_stock_icon(rectangleIcon, m_estockicon);
+         pgraphics->draw(rectangleIcon, m_pstockicon);
 
       }
 

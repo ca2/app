@@ -48,7 +48,7 @@ namespace user
       bool has_activation_request() const
       {
 
-         return m_activation.is_change_request() ||
+         return m_activation.is_activation_request() ||
             m_zorder.is_change_request();
 
 

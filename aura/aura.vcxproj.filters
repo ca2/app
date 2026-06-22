@@ -711,6 +711,12 @@
     <ClCompile Include="graphics\write_text\text_metric.cpp">
       <Filter>Source Files\graphics\write_text</Filter>
     </ClCompile>
+    <ClCompile Include="graphics\draw2d\drawing.cpp">
+      <Filter>Source Files\graphics\draw2d</Filter>
+    </ClCompile>
+    <ClCompile Include="graphics\draw2d\stock_icon.cpp">
+      <Filter>Source Files\graphics\draw2d</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="windowing\_.h">

@@ -1143,6 +1143,7 @@ namespace user
       bool on_add_child(::acme::user::interaction * puserinteractionChild) override;
       virtual void on_after_set_parent();
 
+      virtual ::f64 get_full_hd_factor();
 
       virtual bool on_set_owner(::user::interaction_base * pinterface);
 
@@ -1684,8 +1685,8 @@ namespace user
       virtual void on_kill_keyboard_focus();
 
 
-      virtual void set_foreground_window(::user::activation_token * puseractivationtoken);
-      virtual void set_active_window();
+      void set_foreground_window(::user::activation_token * puseractivationtoken) override;
+      void set_active_window() override;
 
       virtual void bring_to_front();
 

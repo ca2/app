@@ -1254,7 +1254,9 @@ namespace draw2d
       //void draw_round_bottom_right(const ::f64_rectangle & rectangle, const ::color::color & color, ::i32 radius, ::i32 width, const ::e_border & eborder = e_border_all);
 
 
-      virtual void draw_stock_icon(const ::f64_rectangle& rectangle, enum_stock_icon estockicon);
+      virtual void _draw_stock_icon(const ::f64_rectangle& rectangle, enum_stock_icon estockicon);
+      
+      virtual void draw(const ::f64_rectangle& rectangle, ::draw2d::drawing * pdrawing);
 
 
       //=============================================================================

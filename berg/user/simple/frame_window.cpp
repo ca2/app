@@ -2462,7 +2462,7 @@ void simple_frame_window::pre_translate_message(::message::message * pmessage)
 void simple_frame_window::on_frame_position()
 {
 
-   display(e_display_default, { ::user::e_activation_set_active } );
+   display(e_display_default, { ::user::e_activation_default } );
 
    order_top();
 

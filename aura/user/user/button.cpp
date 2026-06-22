@@ -10,6 +10,7 @@
 #include "aura/graphics/draw2d/graphics.h"
 #include "aura/graphics/draw2d/draw2d.h"
 #include "aura/graphics/draw2d/pen.h"
+#include "aura/graphics/draw2d/stock_icon.h"
 #include "aura/graphics/image/image.h"
 #include "aura/graphics/image/drawing.h"
 #include "aura/graphics/image/list.h"
@@ -888,8 +889,12 @@ namespace user
          ::i32_rectangle rectangleIcon(rectangleText);
 
          rectangleIcon.deflate(rectangleIcon.width() / 16, rectangleIcon.height() / 16);
+         
+         defer_construct_newø(m_pstockicon);
+         
+         m_pstockicon->m_estockiconNew = m_estockicon;
 
-         pgraphics->draw_stock_icon(rectangleIcon, m_estockicon);
+         pgraphics->draw(rectangleIcon, m_pstockicon);
 
       }
 

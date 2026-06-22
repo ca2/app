@@ -3428,6 +3428,7 @@
     <ClInclude Include="user\user\key_state.h" />
     <ClInclude Include="user\user\message_box.h" />
     <ClInclude Include="user\user\property.h" />
+    <ClInclude Include="user\user\shortcut_key.h" />
     <ClInclude Include="user\user\text.h" />
     <ClInclude Include="user\_.h" />
     <ClInclude Include="windowing\display.h" />

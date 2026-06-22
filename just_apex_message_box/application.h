@@ -10,7 +10,7 @@ namespace app_just_apex_message_box
 
 
    class CLASS_DECL_APP_JUST_APEX_MESSAGE_BOX_APP application :
-      virtual public ::app_just_message_box::application,
+      virtual public ::just_message_box::application,
       virtual public ::apex::application
    {
    public:

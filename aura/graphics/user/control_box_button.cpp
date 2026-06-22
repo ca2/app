@@ -5,6 +5,7 @@
 #include "aura/graphics/draw2d/graphics.h"
 #include "aura/graphics/draw2d/brush.h"
 #include "aura/graphics/draw2d/pen.h"
+#include "aura/graphics/draw2d/stock_icon.h"
 #include "aura/user/user/interaction.h"
 
 
@@ -12,7 +13,7 @@ namespace user
 {
 
 
-   void draw_close_button(::draw2d::graphics_pointer& pgraphics, ::user::interaction * puserinteraction, ::user::item & useritem, const ::user::e_state & estate)
+   void draw_close_button(::draw2d::graphics_pointer& pgraphics, ::user::interaction * puserinteraction, ::user::item & useritem, const ::user::e_state & estate, ::pointer < ::draw2d::stock_icon > & pstockicon)
    {
 
       pgraphics->set_alpha_mode(::draw2d::e_alpha_mode_blend);
@@ -77,12 +78,16 @@ namespace user
 
       pgraphics->set_smooth_mode(::draw2d::e_smooth_mode_high);
 
-      pgraphics->draw_stock_icon(rectangle, e_stock_icon_close);
+      puserinteraction->defer_construct_newø(pstockicon);
+      
+      pstockicon->m_estockiconNew = e_stock_icon_close;
+      
+      pgraphics->draw(rectangle, pstockicon);
 
    }
 
 
-   void draw_switch_button(::draw2d::graphics_pointer& pgraphics, ::user::interaction* puserinteraction, ::user::item & useritem, const ::user::e_state & estate)
+   void draw_switch_button(::draw2d::graphics_pointer& pgraphics, ::user::interaction* puserinteraction, ::user::item & useritem, const ::user::e_state & estate, ::pointer < ::draw2d::stock_icon > & pstockicon)
    {
 
       pgraphics->set_alpha_mode(::draw2d::e_alpha_mode_blend);
@@ -125,7 +130,7 @@ namespace user
    }
 
 
-   void draw_maximize_button(::draw2d::graphics_pointer & pgraphics, ::user::interaction * puserinteraction, ::user::item & useritem, const ::user::e_state & estate)
+   void draw_maximize_button(::draw2d::graphics_pointer & pgraphics, ::user::interaction * puserinteraction, ::user::item & useritem, const ::user::e_state & estate, ::pointer < ::draw2d::stock_icon > & pstockicon)
    {
 
       pgraphics->set_alpha_mode(::draw2d::e_alpha_mode_blend);
@@ -192,13 +197,17 @@ namespace user
       pgraphics->set(ppen);
 
       pgraphics->set_smooth_mode(::draw2d::e_smooth_mode_high);
+      
+      puserinteraction->defer_construct_newø(pstockicon);
+      
+      pstockicon->m_estockiconNew = e_stock_icon_zoom;
 
-      pgraphics->draw_stock_icon(rectangle, e_stock_icon_zoom);
+      pgraphics->draw(rectangle, pstockicon);
 
    }
 
 
-   void draw_minimize_button(::draw2d::graphics_pointer & pgraphics, ::user::interaction * puserinteraction, ::user::item & useritem, const ::user::e_state & estate)
+   void draw_minimize_button(::draw2d::graphics_pointer & pgraphics, ::user::interaction * puserinteraction, ::user::item & useritem, const ::user::e_state & estate, ::pointer < ::draw2d::stock_icon > & pstockicon)
    {
 
       pgraphics->set_alpha_mode(::draw2d::e_alpha_mode_blend);
@@ -265,7 +274,11 @@ namespace user
 
       pgraphics->set_smooth_mode(::draw2d::e_smooth_mode_high);
 
-      pgraphics->draw_stock_icon(rectangle, e_stock_icon_iconify);
+      puserinteraction->defer_construct_newø(pstockicon);
+      
+      pstockicon->m_estockiconNew = e_stock_icon_iconify;
+
+      pgraphics->draw(rectangle, pstockicon);
 
    }
 

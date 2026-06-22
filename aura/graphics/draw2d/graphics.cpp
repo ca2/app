@@ -5,6 +5,7 @@
 #include "pen.h"
 #include "path.h"
 #include "draw2d.h"
+#include "drawing.h"
 #include "acme/exception/interface_only.h"
 #include "acme/parallelization/synchronous_lock.h"
 #include "acme/prototype/geometry2d/item.h"
@@ -5817,9 +5818,15 @@ namespace draw2d
    }
 
 
+   void graphics::draw(const ::f64_rectangle & rectangleParam, ::draw2d::drawing * pdrawing)
+   {
+      
+      pdrawing->on_draw(this, rectangleParam);
+      
+   }
 
 
-   void graphics::draw_stock_icon(const ::f64_rectangle & rectangleParam, enum_stock_icon estockicon)
+   void graphics::_draw_stock_icon(const ::f64_rectangle & rectangleParam, enum_stock_icon estockicon)
    {
 
       ::f64_rectangle rectangle(rectangleParam);

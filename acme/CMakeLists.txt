@@ -2190,6 +2190,7 @@ if (${ANDROID})
             #operating_system/android/_os_remote.h
             operating_system/android/acme.cpp
             operating_system/android/callstack.cpp
+            operating_system/android/console.cpp
        operating_system/android/cpu_features.cpp
             operating_system/android/cross_win_file.h
             operating_system/android/cross_win_gdi.h
@@ -3320,7 +3321,7 @@ elseif (${LINUX} OR ${__BSD__} OR ${ANDROID})
 
         #list(APPEND this_system_libraries z idn)
         list(APPEND library_references zlib iconv idn)
-        list(APPEND this_system_libraries log cpufeatures)
+        list(APPEND this_system_libraries android log cpufeatures)
         #list(APPEND this_system_libraries log)
         #list(APPEND static_this_system_libraries pthread)
         #message(SEND_ERROR "test is really android?! ${this_system_libraries}")

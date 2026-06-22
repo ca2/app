@@ -3318,7 +3318,7 @@ void task::branch_synchronously(const ::create_task_attributes_t & createtaskatt
 
          auto phappeningProtectionWhileWaiting = m_phappeningInitialization;
 
-         m_estatus = phappeningProtectionWhileWaiting->wait(::as_continue_predicate([this]()
+         m_estatus = phappeningProtectionWhileWaiting->wait([this]()->bool
             {
 
                if (has_finishing_flag())
@@ -3330,7 +3330,7 @@ void task::branch_synchronously(const ::create_task_attributes_t & createtaskatt
 
                return true;
 
-            }));
+            });
 
       }
 

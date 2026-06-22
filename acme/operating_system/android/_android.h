@@ -16,6 +16,7 @@
 #include "implementation.h"
 #include "factory_exchange.h"
 #include "thread.h"
+#include "acme/operating_system/window.h"
 //#include "os_context.h"
 
 //#include "directory_system.h"
@@ -42,14 +43,14 @@ CLASS_DECL_ACME void __cdecl __pre_translate_message(::message::message* pmessag
 
 ::i32_bool PeekMessage(
    MESSAGE * lpMsg,
-   oswindow hWnd,
+   const ::operating_system::window & operatingsystemwindow,
    ::u32 wMsgFilterMin,
    ::u32 wMsgFilterMax,
    ::u32 wRemoveMsg);
 
 ::i32_bool GetMessage(
    MESSAGE * lpMsg,
-   oswindow hWnd,
+   const ::operating_system::window & operatingsystemwindow,
    ::u32 wMsgFilterMin,
    ::u32 wMsgFilterMax);
 

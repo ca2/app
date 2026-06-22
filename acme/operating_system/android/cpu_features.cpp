@@ -7,6 +7,8 @@
 #include "acme/operating_system/cpu_features.h"
 
 #include <cpu-features.h>
+#include <string.h>
+#include <sys/utsname.h>
 
 cpu_features::cpu_features()
 {
@@ -52,6 +54,81 @@ cpu_features::cpu_features()
 #endif
    }
 }
+
+
+namespace operating_system
+{
+
+
+   ::string machine_architecture()
+   {
+
+      auto family = android_getCpuFamily();
+
+      switch (family)
+      {
+      case ANDROID_CPU_FAMILY_ARM64:
+         return "arm64";
+      case ANDROID_CPU_FAMILY_ARM:
+         return "arm";
+      case ANDROID_CPU_FAMILY_X86_64:
+         return "x86_64";
+      case ANDROID_CPU_FAMILY_X86:
+         return "x86";
+      default:
+         break;
+      }
+
+      struct utsname u;
+
+      if (uname(&u) == 0)
+      {
+
+         if (!strcmp(u.machine, "aarch64"))
+         {
+
+            return "arm64";
+
+         }
+         else if (!strcmp(u.machine, "armv7l") || !strcmp(u.machine, "armv8l"))
+         {
+
+            return "arm";
+
+         }
+         else if (!strcmp(u.machine, "x86_64"))
+         {
+
+            return "x86_64";
+
+         }
+         else if (!strcmp(u.machine, "i386") || !strcmp(u.machine, "i686"))
+         {
+
+            return "x86";
+
+         }
+
+         return u.machine;
+
+      }
+
+#if defined(__aarch64__)
+      return "arm64";
+#elif defined(__arm__)
+      return "arm";
+#elif defined(__x86_64__)
+      return "x86_64";
+#elif defined(__i386__)
+      return "x86";
+#else
+      return "(Unknown architecture)";
+#endif
+
+   }
+
+
+} // namespace operating_system
 
 
 

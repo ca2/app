@@ -621,7 +621,7 @@ void subparticle::_wait()
 }
 
 
-::e_status subparticle::wait(const continue_predicate_t & predicate)
+::e_status subparticle::wait(const ::function < bool() > & functionShouldContinue)
 {
 
    auto ptask = ::get_task();
@@ -659,7 +659,7 @@ void subparticle::_wait()
 
       }
 
-      if (!predicate())
+      if (functionShouldContinue && !functionShouldContinue())
       {
 
          return error_discontinued;

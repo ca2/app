@@ -632,7 +632,7 @@ namespace platform
 
       /// @brief  please now display it
       /// @param pmessageboxpayload 
-      virtual void run_message_box(::message_box_payload *pmessageboxpayload);
+      //virtual void display_message_box_and_wait_message_box_response(::message_box_payload *pmessageboxpayload);
 
       //void post_message_box_payload(::message_box_payload * pmessageboxpayload) override;
 

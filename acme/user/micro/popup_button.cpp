@@ -90,7 +90,7 @@ namespace micro
    void popup_button::initialize_popup_button(const ::scoped_string & scopedstrText, ::i32 x, ::i32 y, ::acme::user::interaction * pacmeuserinteractionOwner)
    {
 
-      m_pdialog = message_box(scopedstrText);
+//      m_pdialog = message_box(scopedstrText);
 
       m_pacmeuserinteractionOwner = pacmeuserinteractionOwner;
 
@@ -174,7 +174,7 @@ namespace micro
    void popup_button::set_dialog_result(const ::payload & payloadResult)
    {
 
-      ::dialog_reifier::set_dialog_result(payloadResult);
+//      ::dialog_reifier::set_dialog_result(payloadResult);
       //m_payloadPopupButtonResult = payloadResult;
 
       //on_dialog_result_set();

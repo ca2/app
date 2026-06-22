@@ -133,6 +133,10 @@ namespace acme
 
 
       class interaction;
+   
+   class dialog;
+   
+   class message_box;
 
 
    }// namespace user

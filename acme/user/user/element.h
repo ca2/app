@@ -12,7 +12,7 @@
 #include "acme/filesystem/filesystem/file_dialog.h"
 #include "acme/handler/source.h"
 #include "acme/operating_system/window.h"
-#include "acme/platform/message_box.h"
+//#include "acme/platform/message_box.h"
 #include "acme/platform/timer.h"
 #include "acme/prototype/geometry2d/rectangle.h"
 #include "acme/prototype/geometry2d/rectangle_array.h"

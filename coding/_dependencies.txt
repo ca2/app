@@ -7,4 +7,4 @@ app/folder_zip
 app/crypto_openssl
 app/dropbox
 app/fs_folder_sync_dropbox
-app-core/text_to_speech_sapi
+audio-text_to_speech/text_to_speech_sapi

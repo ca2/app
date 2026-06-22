@@ -6,7 +6,7 @@
 
 #include "acme/filesystem/file/byte2_stream.h"
 
-
+#include "acme/user/user/message_box.h"
 
 
 namespace message
@@ -96,12 +96,12 @@ namespace message
 
       }
 
-      message_box(::message_box_payload * pmessageboxpayload)
+      message_box(::acme::user::message_box * pmessagebox)
       {
-         pmessageboxpayload->increment_reference_count();
-         m_llMessageBoxSequence = (::i64)(::iptr)(void*)pmessageboxpayload;
-         m_strMessage = pmessageboxpayload->m_strMessage;
-         m_strTitle = pmessageboxpayload->m_strTitle;
+         pmessagebox->increment_reference_count();
+         m_llMessageBoxSequence = (::i64)(::iptr)(void*)pmessagebox;
+         m_strMessage = pmessagebox->m_strMessage;
+         m_strTitle = pmessagebox->m_strTitle;
          m_iButton = 0;
 
       }

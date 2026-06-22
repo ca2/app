@@ -16,8 +16,7 @@ namespace micro
 
 
    class CLASS_DECL_ACME dialog :
-      virtual public ::micro::main_window,
-      virtual public ::dialog_reifier
+      virtual public ::micro::main_window
    {
    public:
 

@@ -410,9 +410,9 @@ namespace user
       catch (const ::exception& exception)
       {
 
-         auto pmessageboxpayload = __initialize_new ::message_box_payload(exception, __FUNCTION_FILE_LINE__);
+         auto pmessagebox = __initialize_new ::acme::user::message_box(exception, __FUNCTION_FILE_LINE__);
 
-         post(pmessageboxpayload);
+         pmessagebox->display(e_display_normal, {});
 
          return false;
 
@@ -2742,6 +2742,5 @@ namespace user
 
 
 } // namespace user
-
 
 

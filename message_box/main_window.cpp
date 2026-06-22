@@ -69,13 +69,13 @@ namespace app_message_box
 
       pmessage->m_bRet = true;
 
-      auto pmessageboxpayload = __initialize_new ::message_box_payload("Are you sure you want to close application?", nullptr, ::user::e_message_box_yes_no);
+      auto pmessagebox = __initialize_new ::acme::user::message_box("Are you sure you want to close application?", nullptr, ::user::e_message_box_yes_no);
 
       
-      pmessageboxpayload->m_functionOnDialogResult2= [this, pmessageboxpayload](const ::payload & payloadResult)
+      pmessagebox->m_functionOnMessageBoxResult= [this](::acme::user::message_box * pmessagebox)
          {
 
-            if (payloadResult == e_dialog_result_yes)
+            if (pmessagebox->m_payloadResult == e_dialog_result_yes)
             {
 
                auto papp = get_app();
@@ -83,7 +83,7 @@ namespace app_message_box
                papp->_001PostTryCloseApplication();
 
             }
-            else if (payloadResult == e_dialog_result_cancel)
+            else if (pmessagebox->m_payloadResult == e_dialog_result_cancel)
             {
 
                show_message_box();
@@ -92,7 +92,7 @@ namespace app_message_box
 
          };
       
-      post(pmessageboxpayload);
+      pmessagebox->display(e_display_normal, {});
 
       //post(pmessageboxpayload);
 
@@ -163,18 +163,18 @@ namespace app_message_box
    void main_window::show_message_box()
    {
 
-      auto pmessageboxpayload = __initialize_new ::message_box_payload("Showing a message box as requested.\n\nIs it ok?", nullptr, ::user::e_message_box_yes_no_cancel);
+      auto pmessagebox = __initialize_new ::acme::user::message_box("Showing a message box as requested.\n\nIs it ok?", nullptr, ::user::e_message_box_yes_no_cancel);
 
-      pmessageboxpayload->m_functionOnDialogResult2 = [this, pmessageboxpayload](const ::payload & payloadResult)
+      pmessagebox->m_functionOnMessageBoxResult = [this](::acme::user::message_box * pmessagebox)
          {
 
-            if (payloadResult == e_dialog_result_yes)
+            if (pmessagebox->m_payloadResult == e_dialog_result_yes)
             {
 
                post_message(::user::e_message_close);
 
             }
-            else if (payloadResult == e_dialog_result_cancel)
+            else if (pmessagebox->m_payloadResult == e_dialog_result_cancel)
             {
 
                show_message_box();
@@ -183,7 +183,7 @@ namespace app_message_box
 
          };
       
-      post(pmessageboxpayload);
+      pmessagebox->display(e_display_normal, {});
 
 
       //post(pmessageboxpayload);
@@ -192,6 +192,5 @@ namespace app_message_box
 
 
 } // namespace app_message_box
-
 
 

@@ -529,45 +529,46 @@ namespace micro
       }
 
 
-      //::pointer < ::reified < ::message_box > > user::realize(::realizable < ::message_box > * p)
-      void user::display(::message_box_payload * pmessageboxpayload)
-      {
-
-         // ::pointer < ::message_box_payload > pmessageboxRealizable;
-         //
-         // pmessageboxRealizable = p;
-         //
-         // ::pointer < ::reified < ::message_box > > pmessageboxReified;
-
-         //system()->acme_windowing()->display(pmessagebox);
-
-         //if()
-         //{
-            
-            //return pmessageboxReified;
-            
-         //}
-
-         ::pointer < ::dialog_reifier > pdialogreifier;
-
-         if (pmessageboxpayload->m_bDetails)
-         {
-
-            pdialogreifier = create_newø < ::micro::details_window >();
-
-         }
-         else
-         {
-
-            pdialogreifier = create_newø < ::micro::message_box >();
-
-         }
-
-         pdialogreifier->display_dialog(pmessageboxpayload);
-
-         //return pmessageboxReified;
-
-      }
+//      //::pointer < ::reified < ::message_box > > user::realize(::realizable < ::message_box > * p)
+//      ::pointer < ::dialog_reifier > user::create_message_box_dialog_reifier(::message_box_payload * pmessageboxpayload)
+//      {
+////
+////         // ::pointer < ::message_box_payload > pmessageboxRealizable;
+////         //
+////         // pmessageboxRealizable = p;
+////         //
+////         // ::pointer < ::reified < ::message_box > > pmessageboxReified;
+////
+////         //system()->acme_windowing()->display(pmessagebox);
+////
+////         //if()
+////         //{
+////            
+////            //return pmessageboxReified;
+////            
+////         //}
+////
+//         ::pointer < ::dialog_reifier > pdialogreifier;
+//
+//         if (pmessageboxpayload->m_bDetails)
+//         {
+//
+//            pdialogreifier = create_newø < ::micro::details_window >();
+//
+//         }
+//         else
+//         {
+//
+//            pdialogreifier = create_newø < ::micro::message_box >();
+//
+//         }
+//
+//         return pdialogreifier;
+////         pdialogreifier->display_dialog(pmessageboxpayload);
+////
+////         //return pmessageboxReified;
+////
+//      }
 
 
       //void user::post_message_box_payload(::message_box_payload * pmessageboxpayload)

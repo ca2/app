@@ -171,9 +171,11 @@ extern char_pointer *environ;
       else
       {
 
-         auto pmessageboxpayload = __initialize_new_with(::system()) ::message_box_payload(exception, "Exception", "Exception", ::user::e_message_box_icon_error, exception.get_message() +"\n\nCallstack:\n"+ exception.m_strCallStackTrace);
+         auto pmessagebox = __initialize_new_with(::system()) ::acme::user::message_box(exception, "Exception", "Exception", ::user::e_message_box_icon_error, exception.get_message() +"\n\nCallstack:\n"+ exception.m_strCallStackTrace);
 
-         ::system()->send(pmessageboxpayload);
+         pmessagebox->display(e_display_normal, {});
+
+         pmessagebox->wait_dialog_response();
 
       }
 
@@ -192,9 +194,11 @@ extern char_pointer *environ;
       else
       {
 
-         auto pmessageboxpayload = __initialize_new_with(::system()) ::message_box_payload("Unhandled Exception");
+         auto pmessagebox = __initialize_new_with(::system()) ::acme::user::message_box("Unhandled Exception");
 
-         ::system()->send(pmessageboxpayload);
+         pmessagebox->display(e_display_normal, {});
+
+         pmessagebox->wait_dialog_response();
 
       }
 
@@ -435,6 +439,5 @@ extern char_pointer *environ;
 #define STATIC_FACTORY_INCLUDE "_static_factory_.inl"
 #include "acme/_static_factory.h"
 #endif
-
 
 

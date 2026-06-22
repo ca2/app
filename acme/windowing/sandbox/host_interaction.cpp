@@ -14,6 +14,7 @@
 #include "acme/user/micro/button.h"
 #include "acme/user/micro/popup_button.h"
 #include "acme/user/user/activation_token.h"
+#include "acme/user/user/message_box.h"
 #include "acme/user/user/mouse.h"
 
 
@@ -111,12 +112,12 @@ void host_interaction::on_click(const ::payload & payload, ::user::mouse * pmous
   //    post(ppopupbutton);
 
       //ppopupbutton->main_async()
-      ::cast <::message_box_payload > pmessageboxpayload = ppopupbutton->m_pdialog;
+      ::cast <::acme::user::message_box > pmessagebox = ppopupbutton;
 
-      pmessageboxpayload->m_functionOnDialogResult2 = [this, ppopupbutton, puseractivationtoken](const ::payload & payloadResult)
+      pmessagebox->m_functionOnMessageBoxResult = [this, ppopupbutton, puseractivationtoken](const ::acme::user::message_box * pmessagebox)
          {
 
-         if (payloadResult == e_dialog_result_yes)
+         if (pmessagebox->m_payloadResult == e_dialog_result_yes)
          {
             application()->show_about_box(puseractivationtoken);
          }

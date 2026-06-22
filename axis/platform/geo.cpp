@@ -228,11 +228,11 @@ namespace geo
 
             DEBUGF_LINE("jklxxc1");
 
-            auto pmessageboxpayload = __initialize_new ::message_box_payload(exception, "geo::defer_check_openweather_city_list");
+            auto pmessagebox = __initialize_new ::acme::user::message_box(exception, "geo::defer_check_openweather_city_list");
 
             DEBUGF_LINE("jklxxc3");
 
-            post(pmessageboxpayload);
+            pmessagebox->display(e_display_normal, {});
 
          }
          catch (...)
@@ -244,11 +244,11 @@ namespace geo
 
             DEBUGF_LINE("jklxxc4");
 
-            auto pmessageboxpayload = __initialize_new ::message_box_payload(exception, "geo::defer_check_openweather_city_list");
+            auto pmessagebox = __initialize_new ::acme::user::message_box(exception, "geo::defer_check_openweather_city_list");
 
             DEBUGF_LINE("jklxxc5");
 
-            post(pmessageboxpayload);
+            pmessagebox->display(e_display_normal, {});
 
          }
 
@@ -389,11 +389,11 @@ namespace geo
 
             DEBUGF_LINE("pqrxxe1 exception type : " + ::platform::type(exception).name());
 
-            auto pmessageboxpayload = __initialize_new ::message_box_payload(exception, "geo::defer_check_openweather_city_list");
+            auto pmessagebox = __initialize_new ::acme::user::message_box(exception, "geo::defer_check_openweather_city_list");
 
             DEBUGF_LINE("pqrxxe2");
 
-            post(pmessageboxpayload);
+            pmessagebox->display(e_display_normal, {});
 
          }
          catch (...)
@@ -401,11 +401,11 @@ namespace geo
 
             DEBUGF_LINE("pqrxxe3");
 
-            auto pmessageboxpayload = __initialize_new ::message_box_payload("Unable to download \"https://ca2.site/city-list_base.json\"");
+            auto pmessagebox = __initialize_new ::acme::user::message_box("Unable to download \"https://ca2.site/city-list_base.json\"");
 
             DEBUGF_LINE("pqrxxe4");
 
-            post(pmessageboxpayload);
+            pmessagebox->display(e_display_normal, {});
 
          }
 
@@ -2091,6 +2091,5 @@ namespace geo
 
 
 } // namespace geo
-
 
 

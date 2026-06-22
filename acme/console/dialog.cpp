@@ -26,21 +26,23 @@ namespace console
 
    void dialog::run()
    {
+      
+      throw ::exception(error_failed);
 
-      {
-
-         auto pmessageboxpayload = m_pparticle.cast < ::message_box_payload >();
-
-         if (pmessageboxpayload)
-         {
-
-            m_payloadResult = run_message_box(pmessageboxpayload);
-
-            return;
-
-         }
-
-      }
+//      {
+//
+//         auto pmessageboxpayload = m_pparticle.cast < ::amessage_box_payload >();
+//
+//         if (pmessageboxpayload)
+//         {
+//
+//            m_payloadResult = run_message_box(pmessageboxpayload);
+//
+//            return;
+//
+//         }
+//
+//      }
 
    }
 

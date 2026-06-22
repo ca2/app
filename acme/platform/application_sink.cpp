@@ -141,7 +141,7 @@ namespace platform
 //
 
    void
-   application_sink::post_message_box(::message_box_payload * pmessageboxpayload)
+   application_sink::post_message_box(::acme::user::message_box * pmessagebox)
    {
 
       //synchronous_lock synchronouslock(m_pparticleMutexMessageBoxSequencer, DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
@@ -152,7 +152,7 @@ namespace platform
 
       output_byte2_stream stream(pmessage->m_memory);
 
-      ::message::message_box box(pmessageboxpayload);
+      ::message::message_box box(pmessagebox);
 
       stream << box;
 

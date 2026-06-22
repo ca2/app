@@ -3566,9 +3566,9 @@ class ::time coding::get_topic_elapsed_time()
 
          m_straError.add(strError);
 
-         auto pmessageboxpayload = message_box(strError, "Integration Failed");
+         auto pmessagebox = message_box(strError, "Integration Failed");
 
-         post(pmessageboxpayload);
+         pmessagebox->display(e_display_normal, {});
 
          return;
 
@@ -3582,9 +3582,9 @@ class ::time coding::get_topic_elapsed_time()
 
          m_straError.add(strError);
 
-         auto pmessageboxpayload = message_box(strError, "Integration Failed");
+         auto pmessagebox = message_box(strError, "Integration Failed");
 
-         post(pmessageboxpayload);
+         pmessagebox->display(e_display_normal, {});
 
          return;
 

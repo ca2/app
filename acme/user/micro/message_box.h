@@ -5,98 +5,98 @@
 #pragma once
 
 
-#include "acme/user/user/message_box.h"
-#include "acme/user/micro/dialog.h"
-
-
-namespace micro
-{
-
-
-      class icon;
-
-
-      class message_box :
-         virtual public ::micro::dialog,
-         virtual public ::acme::user::message_box
-      {
-      public:
-
-
-         string                                    m_strLabelDetails;
-         ::pointer<::micro::still>                 m_pstillDetails;
-         ::pointer<::micro::still>                 m_pstillTimeout;
-         //::pointer<::micro::still>               m_pstillIcon;
-         ::pointer<::nano::graphics::icon>         m_picon;
-         //::pointer < ::message_box_payload >               m_pmessagebox;
-         ::manual_reset_happening                  m_manualresethappeningDialogResult;
-
-
-         message_box();
-         ~message_box() override;
-
-
-         void create_window() override;
-
-         void destroy() override;
-         
-         
-         //void on_sequence() override;
-         //virtual void set(::message_box_payload * pmessageboxpayload);
-
-         void display_dialog(::dialog * pdialog) override;
-
-
-         void show_modal(::dialog * pdialog) override;
-         
-         
-         void on_context_menu(::user::mouse * pmouse) override;
-
-
-         //virtual void create_message_box(conversation * pconversation);
-         void add_button(const ::scoped_string & scopedstrText, enum_dialog_result edialogresult, ::i8 chLetter) override;
-         
-         ::string get_title() override;
-
-
-         //::user::e_message_box get_conversation_flags() override;
-         virtual void set_icon(::nano::graphics::icon * picon);
-
-         virtual void calculate_size();
-
-         void set_dialog_result(const ::payload & payloadResult) override;
-
-         ::payload get_dialog_result() override;
-
-
-         //void operator()(::timer * ptimer) override;
-
-         void operator()(::timer * ptimer);
-
-         //void initialize_conversation(const ::scoped_string & scopedstrMessage, const ::scoped_string & scopedstrTitle, const ::user::e_message_box & emessagebox, const ::scoped_string & scopedstrDetails = nullptr, ::nano::graphics::icon * picon = nullptr) override;
-
-         // void initialize_message_box(const ::scoped_string & scopedstrMessage, const ::scoped_string & scopedstrTitle, const ::user::e_message_box & emessagebox, const ::scoped_string & scopedstrDetails) override;
-
-         //void do_message_box(const ::scoped_string & scopedstrMessage, const ::scoped_string & scopedstrTitle, const ::user::e_message_box & emessagebox, const ::scoped_string & scopedstrDetails) override;
-
-         void on_draw(::nano::graphics::context * pnanodevice) override;
-
-         void on_click(const ::payload & payload, ::user::mouse * pmouse) override;
-
-         void on_right_click(const ::payload & payload, ::user::mouse * pmouse) override;
-
-         void defer_create_details_still();
-
-         void on_before_create_window(::acme::windowing::window * pacmewindowingwindow) override;
-
-         void on_create_window() override;
-
-         bool is_popup_window() const override;
-
-      };
-
-
-} // namespace micro
-
-
-
+//#include "acme/user/user/message_box_reifier.h"
+//#include "acme/user/micro/dialog.h"
+//
+//
+//namespace micro
+//{
+//
+//
+//      class icon;
+//
+//
+//      class message_box :
+//         virtual public ::micro::dialog,
+//         virtual public ::acme::user::message_box
+//      {
+//      public:
+//
+//
+//         string                                    m_strLabelDetails;
+//         ::pointer<::micro::still>                 m_pstillDetails;
+//         ::pointer<::micro::still>                 m_pstillTimeout;
+//         //::pointer<::micro::still>               m_pstillIcon;
+//         ::pointer<::nano::graphics::icon>         m_picon;
+//         //::pointer < ::message_box_payload >               m_pmessagebox;
+//         ::manual_reset_happening                  m_manualresethappeningDialogResult;
+//
+//
+//         message_box();
+//         ~message_box() override;
+//
+//
+//         void create_window() override;
+//
+//         void destroy() override;
+//         
+//         
+//         //void on_sequence() override;
+//         //virtual void set(::message_box_payload * pmessageboxpayload);
+//
+//         void display_dialog() override;
+//
+//
+//         void display_dialog_and_wait_dialog_response() override;
+//         
+//         
+//         void on_context_menu(::user::mouse * pmouse) override;
+//
+//
+//         //virtual void create_message_box(conversation * pconversation);
+//         void add_button(const ::scoped_string & scopedstrText, enum_dialog_result edialogresult, ::i8 chLetter) override;
+//         
+//         ::string get_title() override;
+//
+//
+//         //::user::e_message_box get_conversation_flags() override;
+//         virtual void set_icon(::nano::graphics::icon * picon);
+//
+//         virtual void calculate_size();
+//
+//         void set_dialog_result(const ::payload & payloadResult) override;
+//
+//         ::payload get_dialog_result() override;
+//
+//
+//         //void operator()(::timer * ptimer) override;
+//
+//         void operator()(::timer * ptimer);
+//
+//         //void initialize_conversation(const ::scoped_string & scopedstrMessage, const ::scoped_string & scopedstrTitle, const ::user::e_message_box & emessagebox, const ::scoped_string & scopedstrDetails = nullptr, ::nano::graphics::icon * picon = nullptr) override;
+//
+//         // void initialize_message_box(const ::scoped_string & scopedstrMessage, const ::scoped_string & scopedstrTitle, const ::user::e_message_box & emessagebox, const ::scoped_string & scopedstrDetails) override;
+//
+//         //void do_message_box(const ::scoped_string & scopedstrMessage, const ::scoped_string & scopedstrTitle, const ::user::e_message_box & emessagebox, const ::scoped_string & scopedstrDetails) override;
+//
+//         void on_draw(::nano::graphics::context * pnanodevice) override;
+//
+//         void on_click(const ::payload & payload, ::user::mouse * pmouse) override;
+//
+//         void on_right_click(const ::payload & payload, ::user::mouse * pmouse) override;
+//
+//         void defer_create_details_still();
+//
+//         void on_before_create_window(::acme::windowing::window * pacmewindowingwindow) override;
+//
+//         void on_create_window() override;
+//
+//         bool is_popup_window() const override;
+//
+//      };
+//
+//
+//} // namespace micro
+//
+//
+//

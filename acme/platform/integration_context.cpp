@@ -17,6 +17,7 @@
 #include "acme/platform/node.h"
 #include "acme/platform/system.h"
 #include "acme/prototype/prototype/url.h"
+#include "acme/user/user/message_box.h"
 //#include "acme/filesystem/filesystem/file_context.h"
 //#include "apex/networking/http/context.h"
 //#include "apex/platform/application.h"
@@ -258,9 +259,11 @@ namespace integration
       if (iExitCode != 0)
       {
 
-         auto pmessageboxpayload = __initialize_new ::message_box_payload("Command :\n\"" + scopedstrCommand + "\"\n\nFailed with code : \"" + ::as_string(iExitCode) + "\"");
+         auto pmessagebox = __initialize_new ::acme::user::message_box("Command :\n\"" + scopedstrCommand + "\"\n\nFailed with code : \"" + ::as_string(iExitCode) + "\"");
 
-         send(pmessageboxpayload);
+         pmessagebox->display(e_display_normal, {});
+
+         pmessagebox->wait_dialog_response();
 
          throw ::exception(error_exception);
 
@@ -962,5 +965,4 @@ namespace integration
 
 
 } // namespace integration
-
 

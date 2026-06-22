@@ -2033,9 +2033,9 @@ namespace user
 
 #ifdef _DEBUG
 
-         auto pmessageboxpayload = __initialize_new ::message_box_payload(exception, "Failed to create toolbar \"" + idToolbar.as_string() + "\"");
+         auto pmessagebox = __initialize_new ::acme::user::message_box(exception, "Failed to create toolbar \"" + idToolbar.as_string() + "\"");
 
-         post(pmessageboxpayload);
+         pmessagebox->display(e_display_normal, {});
 
 #endif
 
@@ -2047,9 +2047,9 @@ namespace user
 
          ::exception exception(error_catch_all_exception);
 
-         auto pmessageboxpayload = __initialize_new ::message_box_payload(exception, "Failed to create toolbar \"" + idToolbar.as_string() + "\"");
+         auto pmessagebox = __initialize_new ::acme::user::message_box(exception, "Failed to create toolbar \"" + idToolbar.as_string() + "\"");
 
-         post(pmessageboxpayload);
+         pmessagebox->display(e_display_normal, {});
 
 #endif
 
@@ -3219,6 +3219,5 @@ namespace user
 
 
 } // namespace user
-
 
 

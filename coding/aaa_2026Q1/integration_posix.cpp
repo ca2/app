@@ -49,7 +49,7 @@ namespace coding
 
          m_straError.add(strError);
 
-         auto pmessageboxpayload = message_box(strError, "Integration Failed");
+         auto pmessagebox = message_box(strError, "Integration Failed");
 
          psequencer->do_asynchronously();
 
@@ -65,7 +65,7 @@ namespace coding
 
          m_straError.add(strError);
 
-         auto pmessageboxpayload = message_box(strError, "Integration Failed");
+         auto pmessagebox = message_box(strError, "Integration Failed");
 
          psequencer->do_asynchronously();
 
@@ -81,7 +81,7 @@ namespace coding
 
          m_straError.add(strError);
 
-         auto pmessageboxpayload = message_box(strError, "Integration Failed");
+         auto pmessagebox = message_box(strError, "Integration Failed");
 
          psequencer->do_asynchronously();
 
@@ -97,7 +97,7 @@ namespace coding
 
          m_straError.add(strError);
 
-         auto pmessageboxpayload = message_box(strError, "Integration Failed");
+         auto pmessagebox = message_box(strError, "Integration Failed");
 
          psequencer->do_asynchronously();
 

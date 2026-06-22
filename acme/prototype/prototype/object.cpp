@@ -20,6 +20,7 @@
 #include "acme/platform/application.h"
 #include "acme/platform/referencing_debugging.h"
 #include "acme/platform/system.h"
+#include "acme/user/user/message_box.h"
 
 
 object::~object()
@@ -2028,9 +2029,11 @@ void object::handle_exception(const ::exception& e)
    else if (e.estatus() == error_library_not_found)
    {
 
-      auto pmessageboxpayload = __initialize_new ::message_box_payload(e.m_strMessage);
+      auto pmessagebox = __initialize_new ::acme::user::message_box(e.m_strMessage);
 
-      send(pmessageboxpayload);
+      pmessagebox->display(e_display_normal, {});
+      
+      pmessagebox->wait_dialog_response();
 
    }
 

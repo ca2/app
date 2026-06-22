@@ -89,9 +89,9 @@ namespace linux
 
             m_straError.add(strError);
 
-            auto pmessageboxpayload = message_box(strError, "Integration Failed");
+            auto pmessagebox = message_box(strError, "Integration Failed");
 
-            post(pmessageboxpayload);
+            pmessagebox->display(e_display_normal, {});
 
             return ;
 
@@ -105,9 +105,9 @@ namespace linux
 
             m_straError.add(strError);
 
-            auto pmessageboxpayload = message_box(strError, "Integration Failed");
+            auto pmessagebox = message_box(strError, "Integration Failed");
 
-            post(pmessageboxpayload);
+            pmessagebox->display(e_display_normal, {});
 
             return ;
 

@@ -4,7 +4,7 @@
 #include "file_context_interface.h"
 #include "acme/nano/nano.h"
 #include "acme/user/micro/user.h"
-#include "acme/platform/message_box.h"
+#include "acme/user/user/message_box.h"
 
 
 ::string file_context_interface::safe_get_string(const ::payload& payloadFile, ::e_status* pestatus)
@@ -46,9 +46,9 @@ void file_context_interface::safe_get_memory(const ::payload& payloadFile, memor
    catch (const ::exception& exception)
    {
 
-      auto pmessageboxpayload = __initialize_new ::message_box_payload(exception, "file_context_interface::safe_get_memory");
+      auto pmessagebox = __initialize_new ::acme::user::message_box(exception, "file_context_interface::safe_get_memory");
 
-      post(pmessageboxpayload);
+      pmessagebox->display(e_display_normal, {});
 
    }
 
@@ -105,6 +105,5 @@ string_array_base file_context_interface::safe_get_lines(const ::payload& payloa
    return file()->get_file(payloadFile, eopen, ppfileexception);
 
 }
-
 
 

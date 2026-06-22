@@ -737,9 +737,9 @@ namespace user
       catch (const ::exception & exception)
       {
 
-         auto pmessageboxpayload = allocateø ::message_box_payload(exception, __FUNCTION_FILE_LINE__);
+         auto pmessagebox = allocateø ::acme::user::message_box(exception, __FUNCTION_FILE_LINE__);
 
-         post(pmessageboxpayload);
+         pmessagebox->display(e_display_normal, {});
 
          return false;
 
@@ -1006,5 +1006,4 @@ namespace user
 
 
 } // namespace user
-
 

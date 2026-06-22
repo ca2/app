@@ -877,6 +877,22 @@ namespace acme
          return m_pacmewindowingwindow.is_set();
 
       }
+   
+   
+       bool interaction::is_window()
+   {
+          
+          if(::is_null(this))
+          {
+             
+             return false;
+             
+          }
+      
+      
+          return m_bWindowCreated;
+      
+   }
 
 
       //void interaction::set_timer(uptr uEvent, const class ::time & timeEllapse, const ::procedure & procedure, bool bPeriodic)
@@ -1739,6 +1755,13 @@ namespace acme
 
       void interaction::display(::e_display edisplay, const ::user::activation& useractivation)
       {
+         
+         if(!is_window())
+         {
+            
+            create_window();
+            
+         }
 
          if(m_pacmewindowingwindow)
          {
@@ -1748,6 +1771,14 @@ namespace acme
          }
 
       }
+   
+   
+   void interaction::on_dialog_result(const ::payload &payloadResult)
+   {
+      
+      
+      
+   }
 
 
       void interaction::display_temporary_file_with_text(const ::scoped_string & scopedstr)

@@ -21,7 +21,7 @@ namespace acme
    {
 
 
-      class CLASS_DECL_ACME message_box :
+      class CLASS_DECL_ACME message_box_reifier :
          virtual public ::dialog_reifier
          //virtual public ::reified < ::message_box >
          //virtual public ::message_box
@@ -32,8 +32,8 @@ namespace acme
          //::pointer <::message_box_payload >m_pmessagebox;
 
 
-         message_box();
-         ~message_box() override;
+         message_box_reifier();
+         ~message_box_reifier() override;
 
          // ::pointer < ::
 

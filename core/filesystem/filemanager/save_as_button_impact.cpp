@@ -129,12 +129,12 @@ namespace filemanager
 
                //   });
 
-               auto pmessageboxpayload = __initialize_new ::message_box_payload("Do you want to replace the existing file " + strPath + "?", nullptr, ::user::e_message_box_yes_no);
+               auto pmessagebox = __initialize_new ::acme::user::message_box("Do you want to replace the existing file " + strPath + "?", nullptr, ::user::e_message_box_yes_no);
 
-               pmessageboxpayload->m_functionOnDialogResult2 = [this, strPath](const ::payload & payloadResult)
+               pmessagebox->m_functionOnMessageBoxResult = [this, strPath](::acme::user::message_box * pmessagebox)
                {
 
-                  if (payloadResult == e_dialog_result_yes)
+                  if (pmessagebox->m_payloadResult == e_dialog_result_yes)
                   {
 
                      save_document(strPath);
@@ -149,7 +149,7 @@ namespace filemanager
 
                };
 
-               post(pmessageboxpayload);
+               pmessagebox->display(e_display_normal, {});
 
                // pmessageboxpayload->async()
                //    << [this, pmessagebox, strPath]()
@@ -225,6 +225,5 @@ namespace filemanager
 
 
 } // namespace filemanager
-
 
 

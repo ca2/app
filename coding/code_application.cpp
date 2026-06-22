@@ -1568,7 +1568,7 @@ namespace coding
 
          //MessageBox(nullptr, NULL, NULL, MB_OK);
 
-         //auto pmessageboxpayload = message_box("code.exe is starting in correct location");
+         //auto pmessagebox = message_box("code.exe is starting in correct location");
 
          //psequencer->do_synchronously();
 
@@ -2086,9 +2086,9 @@ namespace coding
          if (iTry % 2 == 0)
          {
 
-            auto pmessageboxpayload = message_box("There maybe a prompt for which program to open simple.sln.\n\n\"Visual Studio Version selector\" is good default choice as it generally selects Visual Studio of same version as the one used to edit project/solution file being opened.", "Prompt for selecting code_application for opening simple.sln", ::user::e_message_box_ok);
+            auto pmessagebox = message_box("There maybe a prompt for which program to open simple.sln.\n\n\"Visual Studio Version selector\" is good default choice as it generally selects Visual Studio of same version as the one used to edit project/solution file being opened.", "Prompt for selecting code_application for opening simple.sln", ::user::e_message_box_ok);
 
-            post(pmessageboxpayload);
+            pmessagebox->display(e_display_normal, {});
 
             preempt(2_s);
 

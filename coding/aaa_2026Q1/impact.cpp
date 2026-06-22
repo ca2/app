@@ -1342,9 +1342,11 @@ namespace coding
             catch(const ::exception & e)
             {
    
-               auto pmessageboxpayload = message_box(e.get_message());
+               auto pmessagebox = message_box(e.get_message());
    
-               send(pmessageboxpayload);
+               pmessagebox->display(e_display_normal, {});
+
+               pmessagebox->wait_dialog_response();
    
             }
             catch (...)

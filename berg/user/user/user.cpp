@@ -1728,9 +1728,9 @@ namespace berg
 
 #ifdef _DEBUG
 
-         auto pmessageboxpayload = __initialize_new ::message_box_payload(exception, "Failed to create form \"" + pathFile + "\"");
+         auto pmessagebox = __initialize_new ::acme::user::message_box(exception, "Failed to create form \"" + pathFile + "\"");
 
-         post(pmessageboxpayload);
+         pmessagebox->display(e_display_normal, {});
 
 #endif
 
@@ -1742,9 +1742,9 @@ namespace berg
 
          ::exception exception(error_catch_all_exception);
 
-         auto pmessageboxpayload = __initialize_new ::message_box_payload(exception, "Failed to create form \"" + pathFile + "\"");
+         auto pmessagebox = __initialize_new ::acme::user::message_box(exception, "Failed to create form \"" + pathFile + "\"");
 
-         post(pmessageboxpayload);
+         pmessagebox->display(e_display_normal, {});
 
 #endif
 
@@ -1963,6 +1963,5 @@ namespace berg
 //      color32_u8_green(color32),
 //      color32_u8_red(color32));
 //}
-
 
 

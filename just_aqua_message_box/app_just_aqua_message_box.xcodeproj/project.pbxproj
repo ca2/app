@@ -8,7 +8,6 @@
 
 /* Begin PBXBuildFile section */
 		9A2E626525258C4E0001CC7E /* libaqua.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 9A2E626425258C4E0001CC7E /* libaqua.dylib */; };
-		9A6873912FE73C7E00B1B607 /* libjust_message_box.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 9A6873762FE73BE200B1B607 /* libjust_message_box.dylib */; };
 		9A6A481A26611437004ED97A /* _.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A8FCB8C2651A84F00C0D8A1 /* _.cpp */; };
 		9A6A481B26611437004ED97A /* application.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A8FCBA62651A84F00C0D8A1 /* application.cpp */; };
 		9A6A481C26611437004ED97A /* framework.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A8FCAFC2651A84D00C0D8A1 /* framework.cpp */; };
@@ -17,6 +16,7 @@
 		9AC3F1702CF785830061DCC0 /* _.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A8FCB8C2651A84F00C0D8A1 /* _.cpp */; };
 		9AC3F1712CF785830061DCC0 /* application.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A8FCBA62651A84F00C0D8A1 /* application.cpp */; };
 		9AC3F1722CF785830061DCC0 /* framework.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A8FCAFC2651A84D00C0D8A1 /* framework.cpp */; };
+		9AE60D1C2FE87DB2000F5BC1 /* libjust_message_box.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 9A7C89B42FE786C300E38560 /* libjust_message_box.dylib */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -41,23 +41,23 @@
 			remoteGlobalIDString = 9A81898B2A71CC42008F470C;
 			remoteInfo = static_aqua;
 		};
-		9A6873712FE73BE100B1B607 /* PBXContainerItemProxy */ = {
+		9A2F977F2FE87BB2009327B0 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
-			containerPortal = 9A68736E2FE73BE100B1B607 /* just_message_box.xcodeproj */;
+			containerPortal = 9A1CC4582CF30DF9004A00CB /* just_message_box.xcodeproj */;
 			proxyType = 1;
 			remoteGlobalIDString = 9A5243E82CD5BBE2006ED868;
 			remoteInfo = just_message_box;
 		};
-		9A6873752FE73BE200B1B607 /* PBXContainerItemProxy */ = {
+		9A7C89B32FE786C300E38560 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
-			containerPortal = 9A68736E2FE73BE100B1B607 /* just_message_box.xcodeproj */;
+			containerPortal = 9A1CC4582CF30DF9004A00CB /* just_message_box.xcodeproj */;
 			proxyType = 2;
 			remoteGlobalIDString = 9A5243E92CD5BBE2006ED868;
 			remoteInfo = just_message_box;
 		};
-		9A6873772FE73BE200B1B607 /* PBXContainerItemProxy */ = {
+		9A7C89B52FE786C300E38560 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
-			containerPortal = 9A68736E2FE73BE100B1B607 /* just_message_box.xcodeproj */;
+			containerPortal = 9A1CC4582CF30DF9004A00CB /* just_message_box.xcodeproj */;
 			proxyType = 2;
 			remoteGlobalIDString = 9A4753C62CF541EE00ED30AE;
 			remoteInfo = ios_just_message_box;
@@ -98,7 +98,6 @@
 		9A48898624EB48DE00119EC4 /* libapp_just_aqua_message_box.dylib */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.dylib"; includeInIndex = 0; path = libapp_just_aqua_message_box.dylib; sourceTree = BUILT_PRODUCTS_DIR; };
 		9A5D09AE2B7F9BFF003239D4 /* _____release.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = "_____release.xcconfig"; sourceTree = "<group>"; };
 		9A5D09AF2B7F9BFF003239D4 /* _____debug.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = "_____debug.xcconfig"; sourceTree = "<group>"; };
-		9A68736E2FE73BE100B1B607 /* just_message_box.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = just_message_box.xcodeproj; path = /Volumes/hapid/code/main/source/app/just_message_box/just_message_box.xcodeproj; sourceTree = "<absolute>"; };
 		9A8FCAF02651A84D00C0D8A1 /* aaa_want_to_remove_pane_impact_update_hint.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = aaa_want_to_remove_pane_impact_update_hint.h; sourceTree = "<group>"; };
 		9A8FCAFC2651A84D00C0D8A1 /* framework.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = framework.cpp; sourceTree = "<group>"; };
 		9A8FCAFF2651A84D00C0D8A1 /* application.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = application.h; sourceTree = "<group>"; };
@@ -119,7 +118,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				9A6873912FE73C7E00B1B607 /* libjust_message_box.dylib in Frameworks */,
+				9AE60D1C2FE87DB2000F5BC1 /* libjust_message_box.dylib in Frameworks */,
 				9A2E626525258C4E0001CC7E /* libaqua.dylib in Frameworks */,
 				9AC3970425195DFA0036B92A /* libacme.dylib in Frameworks */,
 				9AC3970625195DFA0036B92A /* libapex.dylib in Frameworks */,
@@ -147,7 +146,6 @@
 				9A8FCADA2651A84D00C0D8A1 /* just_aqua_message_box */,
 				9A48898724EB48DE00119EC4 /* Products */,
 				9A488A5124EB4BAF00119EC4 /* Frameworks */,
-				9A68736E2FE73BE100B1B607 /* just_message_box.xcodeproj */,
 			);
 			sourceTree = "<group>";
 		};
@@ -170,11 +168,11 @@
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
-		9A68736F2FE73BE100B1B607 /* Products */ = {
+		9A7C898E2FE786C100E38560 /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				9A6873762FE73BE200B1B607 /* libjust_message_box.dylib */,
-				9A6873782FE73BE200B1B607 /* libios_just_message_box.a */,
+				9A7C89B42FE786C300E38560 /* libjust_message_box.dylib */,
+				9A7C89B62FE786C300E38560 /* libios_just_message_box.a */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -231,7 +229,7 @@
 			buildRules = (
 			);
 			dependencies = (
-				9A6873722FE73BE100B1B607 /* PBXTargetDependency */,
+				9A2F97802FE87BB2009327B0 /* PBXTargetDependency */,
 				9A93322B2D6DC29D006557FC /* PBXTargetDependency */,
 			);
 			name = app_just_aqua_message_box;
@@ -288,8 +286,8 @@
 					ProjectRef = 9A1CC43E2CF30B06004A00CB /* aqua.xcodeproj */;
 				},
 				{
-					ProductGroup = 9A68736F2FE73BE100B1B607 /* Products */;
-					ProjectRef = 9A68736E2FE73BE100B1B607 /* just_message_box.xcodeproj */;
+					ProductGroup = 9A7C898E2FE786C100E38560 /* Products */;
+					ProjectRef = 9A1CC4582CF30DF9004A00CB /* just_message_box.xcodeproj */;
 				},
 			);
 			projectRoot = "";
@@ -322,18 +320,18 @@
 			remoteRef = 9A191CDB2CF3D87E001239A6 /* PBXContainerItemProxy */;
 			sourceTree = BUILT_PRODUCTS_DIR;
 		};
-		9A6873762FE73BE200B1B607 /* libjust_message_box.dylib */ = {
+		9A7C89B42FE786C300E38560 /* libjust_message_box.dylib */ = {
 			isa = PBXReferenceProxy;
 			fileType = "compiled.mach-o.dylib";
 			path = libjust_message_box.dylib;
-			remoteRef = 9A6873752FE73BE200B1B607 /* PBXContainerItemProxy */;
+			remoteRef = 9A7C89B32FE786C300E38560 /* PBXContainerItemProxy */;
 			sourceTree = BUILT_PRODUCTS_DIR;
 		};
-		9A6873782FE73BE200B1B607 /* libios_just_message_box.a */ = {
+		9A7C89B62FE786C300E38560 /* libios_just_message_box.a */ = {
 			isa = PBXReferenceProxy;
 			fileType = "compiled.mach-o.dylib";
 			path = libios_just_message_box.a;
-			remoteRef = 9A6873772FE73BE200B1B607 /* PBXContainerItemProxy */;
+			remoteRef = 9A7C89B52FE786C300E38560 /* PBXContainerItemProxy */;
 			sourceTree = BUILT_PRODUCTS_DIR;
 		};
 /* End PBXReferenceProxy section */
@@ -385,10 +383,10 @@
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
-		9A6873722FE73BE100B1B607 /* PBXTargetDependency */ = {
+		9A2F97802FE87BB2009327B0 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			name = just_message_box;
-			targetProxy = 9A6873712FE73BE100B1B607 /* PBXContainerItemProxy */;
+			targetProxy = 9A2F977F2FE87BB2009327B0 /* PBXContainerItemProxy */;
 		};
 		9A93322B2D6DC29D006557FC /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;

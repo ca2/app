@@ -39,7 +39,7 @@ public:
 
    user::enum_line_hit hit_test(const i32_point &pointCursor, character_count &iLine, character_count &iChar);
 
-   void install_message_routing(::channel * pchannel);
+   void install_message_routing(::channel * pchannel) override;
 
    virtual ~xfplayer_impact_linea();
 

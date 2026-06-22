@@ -2,6 +2,7 @@
 
 
 #include "acme/platform/department.h"
+#include "acme/user/micro/user.h"
 #include "aura/user/user/user_aura.h"
 #include "aura/user/user/user_axis.h"
 #include "aura/user/user/user_base.h"
@@ -32,17 +33,17 @@ namespace user
 
 
    class CLASS_DECL_AURA user :
-      virtual public ::platform::department,
+      virtual public ::micro::user,
       virtual public ::user::aura_user_layer_t,
       virtual public ::user::axis_user_layer_t,
       virtual public ::user::base_user_layer_t,
-   virtual public ::user::bred_user_layer_t,
-   virtual public ::user::core_user_layer_t,
+      virtual public ::user::bred_user_layer_t,
+      virtual public ::user::core_user_layer_t,
       virtual public ::user::aura_user_layer,
       virtual public ::user::axis_user_layer,
       virtual public ::user::base_user_layer,
-   virtual public ::user::bred_user_layer,
-   virtual public ::user::core_user_layer
+      virtual public ::user::bred_user_layer,
+      virtual public ::user::core_user_layer
    {
    public:
 

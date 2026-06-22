@@ -1,7 +1,7 @@
 #include "framework.h"
 #include "application.h"
-
 #include "acme/handler/request.h"
+#include "acme/user/user/message_box.h"
 
 
 __IMPLEMENT_APPLICATION_RELEASE_TIME(just_message_box);
@@ -38,48 +38,55 @@ namespace just_message_box
       //auto pmessageboxpayload = __initialize_new ::message_box_payload(
          //"Showing a message box as requested.\n\nIs it ok?", nullptr, ::user::e_message_box_yes_no_cancel);
 
+      auto pmessageboxMain = message_box("Showing a message box as requested.\n\nIs it ok?", nullptr, ::user::e_message_box_yes_no_cancel);
 
-      post_message_box(
-         "Showing a message box as requested.\n\nIs it ok?",
-         nullptr,
-         ::user::e_message_box_yes_no_cancel,
-         [this](::message_box_payload * pmessageboxpayload)
+      pmessageboxMain->m_functionOnMessageBoxResult =
+      [this](::acme::user::message_box * pmessagebox)
+      {
+
+         if (pmessagebox->m_payloadResult == e_dialog_result_cancel)
          {
 
-            if (pmessageboxpayload->m_payloadResult == e_dialog_result_cancel)
+            _001PostTryCloseApplication();
+
+         }
+         else if (pmessagebox->m_payloadResult == e_dialog_result_no)
+         {
+
+            auto pmessageboxNo = message_box("No!", nullptr, ::user::e_message_box_ok);
+            
+            pmessageboxNo->m_functionOnMessageBoxResult =
+            [this](::acme::user::message_box * pmessagebox)
             {
 
-               _001PostTryCloseApplication();
+               show_message_box();
 
-            }
-            else if (pmessageboxpayload->m_payloadResult == e_dialog_result_no)
-            {
+            };
+            
+            pmessageboxNo->display(e_display_normal, {});
 
-               post_message_box("No!", nullptr, ::user::e_message_box_ok,
-                   [this](::message_box_payload * pmessageboxpayload)
-                  {
-
-                     show_message_box();
-
-                  });
-
-            }
-            else if (pmessageboxpayload->m_payloadResult == e_dialog_result_yes)
-            {
+         }
+         else if (pmessagebox->m_payloadResult == e_dialog_result_yes)
+         {
 
 
-               post_message_box(
-                  "Yes!!", nullptr, ::user::e_message_box_ok,
-                   [this](::message_box_payload * pmessageboxpayload)
-                  {
+            auto pmessageboxYes = message_box("Yes!!", nullptr, ::user::e_message_box_ok);
+            
+            pmessageboxYes->m_functionOnMessageBoxResult =
+                [this](::acme::user::message_box * pmessagebox)
+               {
 
-                     _001PostTryCloseApplication();
+                  _001PostTryCloseApplication();
 
-                  });
+               };
+            
+            pmessageboxYes->display(e_display_normal, {});
 
-            }
+         }
 
-         });
+      };
+      
+      pmessageboxMain->display(e_display_normal, {});
 
       //post(pmessageboxpayload);
 

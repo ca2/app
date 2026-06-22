@@ -15,7 +15,7 @@
 
 
 #include "acme/platform/department.h"
-#include "acme/platform/message_box.h"
+#include "acme/user/user/message_box.h"
 #include "acme/prototype/collection/comparable_list.h"
 #include "_.h"
 
@@ -27,8 +27,7 @@ namespace micro
 
 
    class CLASS_DECL_ACME user :
-      virtual public ::platform::department,
-      virtual public ::dialog
+      virtual public ::platform::department
       //virtual public ::reificator < ::message_box >
    {
    public:
@@ -118,8 +117,8 @@ namespace micro
       virtual void windowing_system_post_quit();
 
 
-      void display(::message_box_payload * pmessageboxpayload);
-      void display_exception(const ::exception & exception, ::message_box_payload * pmessageboxpayload);
+      //::pointer < ::dialog_reifier > create_message_box_dialog_reifier(::message_box_payload * pmessageboxpayload);
+//      void display_exception(const ::exception & exception, ::message_box_payload * pmessageboxpayload);
 
 
       //::pointer < ::message_box_payload > message_box(const ::scoped_string & scopedstrMessage, const ::scoped_string & scopedstrTitle = nullptr, const ::user::e_message_box & emessagebox = ::user::e_message_box_ok, const ::scoped_string & scopedstrDetails = nullptr, ::nano::graphics::icon * picon = nullptr) override;

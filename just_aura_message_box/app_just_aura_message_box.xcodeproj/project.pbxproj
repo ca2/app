@@ -27,9 +27,9 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
-		9A6873662FE73BC600B1B607 /* PBXContainerItemProxy */ = {
+		9AE60D0B2FE87D56000F5BC1 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
-			containerPortal = 9A6873632FE73BC600B1B607 /* just_message_box.xcodeproj */;
+			containerPortal = 9A93322C2D6DC2AC006557FC /* just_message_box.xcodeproj */;
 			proxyType = 1;
 			remoteGlobalIDString = 9A5243E82CD5BBE2006ED868;
 			remoteInfo = just_message_box;
@@ -71,7 +71,6 @@
 		9A1CC6BD2CF319BA004A00CB /* libapex.dylib */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.dylib"; path = libapex.dylib; sourceTree = BUILT_PRODUCTS_DIR; };
 		9A1CC6BF2CF319D3004A00CB /* libaqua.dylib */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.dylib"; path = libaqua.dylib; sourceTree = BUILT_PRODUCTS_DIR; };
 		9A6873612FE73BA600B1B607 /* libjust_message_box.dylib */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.dylib"; path = libjust_message_box.dylib; sourceTree = BUILT_PRODUCTS_DIR; };
-		9A6873632FE73BC600B1B607 /* just_message_box.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = just_message_box.xcodeproj; path = /Volumes/hapid/code/main/source/app/just_message_box/just_message_box.xcodeproj; sourceTree = "<absolute>"; };
 		9A6CA20C2D6DC65A000BCB3E /* aura.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = aura.xcodeproj; path = ../aura/aura.xcodeproj; sourceTree = SOURCE_ROOT; };
 		9A93322C2D6DC2AC006557FC /* just_message_box.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = just_message_box.xcodeproj; path = ../just_message_box/just_message_box.xcodeproj; sourceTree = SOURCE_ROOT; };
 		9AC3F1C12CF78DB90061DCC0 /* libios_app_just_aura_message_box.a */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.dylib"; includeInIndex = 0; path = libios_app_just_aura_message_box.a; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -101,7 +100,6 @@
 				9A1CC6A92CF316B7004A00CB /* just_aura_message_box */,
 				9A1CC6BA2CF319AE004A00CB /* Frameworks */,
 				9A1CC4A22CF314C5004A00CB /* Products */,
-				9A6873632FE73BC600B1B607 /* just_message_box.xcodeproj */,
 			);
 			sourceTree = "<group>";
 		};
@@ -140,7 +138,7 @@
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
-		9A6873642FE73BC600B1B607 /* Products */ = {
+		9A7C89882FE786C100E38560 /* Products */ = {
 			isa = PBXGroup;
 			children = (
 			);
@@ -193,7 +191,7 @@
 			buildRules = (
 			);
 			dependencies = (
-				9A6873672FE73BC600B1B607 /* PBXTargetDependency */,
+				9AE60D0C2FE87D56000F5BC1 /* PBXTargetDependency */,
 				9AEA8B952D6FE67000DC8A9E /* PBXTargetDependency */,
 			);
 			name = app_just_aura_message_box;
@@ -255,8 +253,8 @@
 					ProjectRef = 9A6CA20C2D6DC65A000BCB3E /* aura.xcodeproj */;
 				},
 				{
-					ProductGroup = 9A6873642FE73BC600B1B607 /* Products */;
-					ProjectRef = 9A6873632FE73BC600B1B607 /* just_message_box.xcodeproj */;
+					ProductGroup = 9A7C89882FE786C100E38560 /* Products */;
+					ProjectRef = 9A93322C2D6DC2AC006557FC /* just_message_box.xcodeproj */;
 				},
 			);
 			projectRoot = "";
@@ -324,10 +322,10 @@
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
-		9A6873672FE73BC600B1B607 /* PBXTargetDependency */ = {
+		9AE60D0C2FE87D56000F5BC1 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			name = just_message_box;
-			targetProxy = 9A6873662FE73BC600B1B607 /* PBXContainerItemProxy */;
+			targetProxy = 9AE60D0B2FE87D56000F5BC1 /* PBXContainerItemProxy */;
 		};
 		9AE715BF2F36BDB1003C7283 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;

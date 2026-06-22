@@ -58,6 +58,7 @@ namespace acme
                bool     m_bMessageOnlyWindow : 1;
                bool     m_bHover : 1;
                bool     m_bHasOwnWindow : 1;
+               bool     m_bWindowCreated : 1;
             };
             ::u32 m_uFlagsAcmeUserInteraction;
          };
@@ -124,6 +125,10 @@ namespace acme
          virtual void set_children_to_destroy_unlocked();
 
          bool is_host_top_level() override;
+         
+         virtual bool is_window();
+         
+         virtual void on_dialog_result(const ::payload & payloadResult);
 
          //virtual void set_timer(uptr uEvent, const class ::time& millisElapse, const ::procedure& procedure = {}, bool bPeriodic = true);
          //virtual void kill_timer(uptr uEvent);

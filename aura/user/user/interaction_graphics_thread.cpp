@@ -161,10 +161,10 @@ namespace user
          {
 
             
-            m_puserinteraction->user_thread()->send([this]()
+            m_puserinteraction->user_thread()->post([this]()
                                                      {
                
-               branch_synchronously();
+               branch();
                
             });
             

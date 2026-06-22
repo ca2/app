@@ -864,11 +864,11 @@
 		9A523E622CD40FF9006ED868 /* _.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A523E502CD40FF9006ED868 /* _.h */; };
 		9A523E632CD40FF9006ED868 /* display.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A523E522CD40FF9006ED868 /* display.h */; };
 		9A523E642CD40FF9006ED868 /* windowing.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A523E542CD40FF9006ED868 /* windowing.h */; };
-		9A523E6A2CD41029006ED868 /* message_box.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A523E682CD41029006ED868 /* message_box.h */; };
-		9A523E6B2CD41029006ED868 /* message_box.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A523E692CD41029006ED868 /* message_box.cpp */; };
-		9A523E6C2CD41029006ED868 /* message_box.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A523E692CD41029006ED868 /* message_box.cpp */; };
-		9A523E6D2CD41029006ED868 /* message_box.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A523E682CD41029006ED868 /* message_box.h */; };
-		9A523E6E2CD41029006ED868 /* message_box.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A523E682CD41029006ED868 /* message_box.h */; };
+		9A523E6A2CD41029006ED868 /* message_box_reifier.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A523E682CD41029006ED868 /* message_box_reifier.h */; };
+		9A523E6B2CD41029006ED868 /* message_box_reifier.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A523E692CD41029006ED868 /* message_box_reifier.cpp */; };
+		9A523E6C2CD41029006ED868 /* message_box_reifier.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A523E692CD41029006ED868 /* message_box_reifier.cpp */; };
+		9A523E6D2CD41029006ED868 /* message_box_reifier.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A523E682CD41029006ED868 /* message_box_reifier.h */; };
+		9A523E6E2CD41029006ED868 /* message_box_reifier.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A523E682CD41029006ED868 /* message_box_reifier.h */; };
 		9A523E722CD4103C006ED868 /* interaction.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A523E712CD4103C006ED868 /* interaction.cpp */; };
 		9A523E732CD4103C006ED868 /* interaction.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A523E702CD4103C006ED868 /* interaction.h */; };
 		9A523E742CD4103C006ED868 /* interaction.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A523E702CD4103C006ED868 /* interaction.h */; };
@@ -1088,19 +1088,14 @@
 		9A5240142CD443A7006ED868 /* client.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A52400A2CD443A7006ED868 /* client.h */; };
 		9A52401D2CD44444006ED868 /* node_apex.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A52401A2CD44444006ED868 /* node_apex.h */; };
 		9A52401E2CD44444006ED868 /* node_acme.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A5240182CD44444006ED868 /* node_acme.h */; };
-		9A52401F2CD44444006ED868 /* message_box.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A5240162CD44444006ED868 /* message_box.h */; };
 		9A5240242CD44444006ED868 /* node_apex.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A52401A2CD44444006ED868 /* node_apex.h */; };
 		9A5240252CD44444006ED868 /* node_acme.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A5240182CD44444006ED868 /* node_acme.h */; };
-		9A5240262CD44444006ED868 /* message_box.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A5240162CD44444006ED868 /* message_box.h */; };
 		9A5240272CD44444006ED868 /* node_apex.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A52401B2CD44444006ED868 /* node_apex.cpp */; };
-		9A5240282CD44444006ED868 /* message_box.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A5240172CD44444006ED868 /* message_box.cpp */; };
 		9A5240292CD44444006ED868 /* node_aqua.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A52401C2CD44444006ED868 /* node_aqua.cpp */; };
 		9A52402A2CD44444006ED868 /* node_acme.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A5240192CD44444006ED868 /* node_acme.cpp */; };
 		9A52402B2CD44444006ED868 /* node_apex.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A52401A2CD44444006ED868 /* node_apex.h */; };
 		9A52402C2CD44444006ED868 /* node_acme.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A5240182CD44444006ED868 /* node_acme.h */; };
-		9A52402D2CD44444006ED868 /* message_box.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A5240162CD44444006ED868 /* message_box.h */; };
 		9A52402E2CD44444006ED868 /* node_apex.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A52401B2CD44444006ED868 /* node_apex.cpp */; };
-		9A52402F2CD44444006ED868 /* message_box.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A5240172CD44444006ED868 /* message_box.cpp */; };
 		9A5240302CD44444006ED868 /* node_aqua.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A52401C2CD44444006ED868 /* node_aqua.cpp */; };
 		9A5240312CD44444006ED868 /* node_acme.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A5240192CD44444006ED868 /* node_acme.cpp */; };
 		9A5240342CD44596006ED868 /* sequence_continuation.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A5240322CD44596006ED868 /* sequence_continuation.h */; };
@@ -1437,7 +1432,6 @@
 		9A5241B12CD47440006ED868 /* logger.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A523EFB2CD433B0006ED868 /* logger.cpp */; };
 		9A5241B22CD47440006ED868 /* lparam.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A68A5632511442F008DABD2 /* lparam.cpp */; };
 		9A5241B32CD47440006ED868 /* math.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A68A55A2511442E008DABD2 /* math.cpp */; };
-		9A5241B42CD47440006ED868 /* message_box.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A5240172CD44444006ED868 /* message_box.cpp */; };
 		9A5241B52CD47440006ED868 /* muldiv64.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9AE479C62A723FA100AA37BC /* muldiv64.cpp */; };
 		9A5241B62CD47440006ED868 /* nanosecond_timer.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A5DCE1F271A3BCB00C2ED86 /* nanosecond_timer.cpp */; };
 		9A5241B72CD47440006ED868 /* node.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A787B6E264BB118003DF8A0 /* node.cpp */; };
@@ -1666,7 +1660,7 @@
 		9A52429E2CD47440006ED868 /* interaction.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A523E712CD4103C006ED868 /* interaction.cpp */; };
 		9A52429F2CD47440006ED868 /* key_state.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A9B2FE02B04719200197C30 /* key_state.cpp */; };
 		9A5242A02CD47440006ED868 /* keyboard.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A72EF032A3D5C31009743AD /* keyboard.cpp */; };
-		9A5242A12CD47440006ED868 /* message_box.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A523E692CD41029006ED868 /* message_box.cpp */; };
+		9A5242A12CD47440006ED868 /* message_box_reifier.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A523E692CD41029006ED868 /* message_box_reifier.cpp */; };
 		9A5242A22CD47440006ED868 /* mouse.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A72EF052A3D5C31009743AD /* mouse.cpp */; };
 		9A5242A32CD47440006ED868 /* os_colors.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9AA8F8C227BA7268008FF9AA /* os_colors.cpp */; };
 		9A5242A42CD47440006ED868 /* os_theme_colors.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9AA8F8BE27BA7268008FF9AA /* os_theme_colors.cpp */; };
@@ -5274,6 +5268,18 @@
 		9AE47F8A2A7F434B00AA37BC /* link.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9AE47F862A7F434A00AA37BC /* link.cpp */; };
 		9AE47F8B2A7F434B00AA37BC /* link.h in Headers */ = {isa = PBXBuildFile; fileRef = 9AE47F882A7F434B00AA37BC /* link.h */; };
 		9AE47F8C2A7F434B00AA37BC /* link.h in Headers */ = {isa = PBXBuildFile; fileRef = 9AE47F882A7F434B00AA37BC /* link.h */; };
+		9AE60D5A2FE99EFA000F5BC1 /* dialog.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9AE60D572FE99EFA000F5BC1 /* dialog.cpp */; };
+		9AE60D5B2FE99EFA000F5BC1 /* message_box.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9AE60D592FE99EFA000F5BC1 /* message_box.cpp */; };
+		9AE60D5C2FE99EFA000F5BC1 /* message_box.h in Headers */ = {isa = PBXBuildFile; fileRef = 9AE60D582FE99EFA000F5BC1 /* message_box.h */; };
+		9AE60D5D2FE99EFA000F5BC1 /* dialog.h in Headers */ = {isa = PBXBuildFile; fileRef = 9AE60D562FE99EFA000F5BC1 /* dialog.h */; };
+		9AE60D5E2FE99EFA000F5BC1 /* dialog.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9AE60D572FE99EFA000F5BC1 /* dialog.cpp */; };
+		9AE60D5F2FE99EFA000F5BC1 /* message_box.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9AE60D592FE99EFA000F5BC1 /* message_box.cpp */; };
+		9AE60D602FE99EFA000F5BC1 /* message_box.h in Headers */ = {isa = PBXBuildFile; fileRef = 9AE60D582FE99EFA000F5BC1 /* message_box.h */; };
+		9AE60D612FE99EFA000F5BC1 /* dialog.h in Headers */ = {isa = PBXBuildFile; fileRef = 9AE60D562FE99EFA000F5BC1 /* dialog.h */; };
+		9AE60D622FE99EFA000F5BC1 /* dialog.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9AE60D572FE99EFA000F5BC1 /* dialog.cpp */; };
+		9AE60D632FE99EFA000F5BC1 /* message_box.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9AE60D592FE99EFA000F5BC1 /* message_box.cpp */; };
+		9AE60D642FE99EFA000F5BC1 /* message_box.h in Headers */ = {isa = PBXBuildFile; fileRef = 9AE60D582FE99EFA000F5BC1 /* message_box.h */; };
+		9AE60D652FE99EFA000F5BC1 /* dialog.h in Headers */ = {isa = PBXBuildFile; fileRef = 9AE60D562FE99EFA000F5BC1 /* dialog.h */; };
 		9AE6DE452961B5BA008A1335 /* _string.h in Headers */ = {isa = PBXBuildFile; fileRef = 9AE6DE442961B5BA008A1335 /* _string.h */; };
 		9AE6DE5329621577008A1335 /* application_flags.h in Headers */ = {isa = PBXBuildFile; fileRef = 9AE6DE4A29621575008A1335 /* application_flags.h */; };
 		9AE6DE5429621577008A1335 /* application_array.h in Headers */ = {isa = PBXBuildFile; fileRef = 9AE6DE4B29621575008A1335 /* application_array.h */; };
@@ -6059,8 +6065,8 @@
 		9A523E532CD40FF9006ED868 /* display.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = display.cpp; sourceTree = "<group>"; };
 		9A523E542CD40FF9006ED868 /* windowing.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = windowing.h; sourceTree = "<group>"; };
 		9A523E552CD40FF9006ED868 /* windowing.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = windowing.cpp; sourceTree = "<group>"; };
-		9A523E682CD41029006ED868 /* message_box.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = message_box.h; sourceTree = "<group>"; };
-		9A523E692CD41029006ED868 /* message_box.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = message_box.cpp; sourceTree = "<group>"; };
+		9A523E682CD41029006ED868 /* message_box_reifier.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = message_box_reifier.h; sourceTree = "<group>"; };
+		9A523E692CD41029006ED868 /* message_box_reifier.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = message_box_reifier.cpp; sourceTree = "<group>"; };
 		9A523E702CD4103C006ED868 /* interaction.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = interaction.h; sourceTree = "<group>"; };
 		9A523E712CD4103C006ED868 /* interaction.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = interaction.cpp; sourceTree = "<group>"; };
 		9A523E782CD41051006ED868 /* _.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = _.h; sourceTree = "<group>"; };
@@ -6166,8 +6172,6 @@
 		9A52400A2CD443A7006ED868 /* client.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = client.h; sourceTree = "<group>"; };
 		9A52400B2CD443A7006ED868 /* client.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = client.cpp; sourceTree = "<group>"; };
 		9A52400C2CD443A7006ED868 /* signal.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = signal.h; sourceTree = "<group>"; };
-		9A5240162CD44444006ED868 /* message_box.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = message_box.h; sourceTree = "<group>"; };
-		9A5240172CD44444006ED868 /* message_box.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = message_box.cpp; sourceTree = "<group>"; };
 		9A5240182CD44444006ED868 /* node_acme.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = node_acme.h; sourceTree = "<group>"; };
 		9A5240192CD44444006ED868 /* node_acme.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = node_acme.cpp; sourceTree = "<group>"; };
 		9A52401A2CD44444006ED868 /* node_apex.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = node_apex.h; sourceTree = "<group>"; };
@@ -7518,6 +7522,10 @@
 		9AE47AA12FD3616C003088D6 /* path.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = path.cpp; sourceTree = "<group>"; };
 		9AE47F862A7F434A00AA37BC /* link.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = link.cpp; sourceTree = "<group>"; };
 		9AE47F882A7F434B00AA37BC /* link.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = link.h; sourceTree = "<group>"; };
+		9AE60D562FE99EFA000F5BC1 /* dialog.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = dialog.h; sourceTree = "<group>"; };
+		9AE60D572FE99EFA000F5BC1 /* dialog.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = dialog.cpp; sourceTree = "<group>"; };
+		9AE60D582FE99EFA000F5BC1 /* message_box.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = message_box.h; sourceTree = "<group>"; };
+		9AE60D592FE99EFA000F5BC1 /* message_box.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = message_box.cpp; sourceTree = "<group>"; };
 		9AE6DE442961B5BA008A1335 /* _string.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = _string.h; sourceTree = "<group>"; };
 		9AE6DE472961FC38008A1335 /* earth_time_span.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = earth_time_span.cpp; sourceTree = "<group>"; };
 		9AE6DE4929621575008A1335 /* application_container.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = application_container.cpp; sourceTree = "<group>"; };
@@ -8682,8 +8690,6 @@
 				9A68A55A2511442E008DABD2 /* math.cpp */,
 				9ADD64B126B5CB3300D11298 /* message.h */,
 				9AFC61AD2D573F08005ED062 /* message.cpp */,
-				9A5240162CD44444006ED868 /* message_box.h */,
-				9A5240172CD44444006ED868 /* message_box.cpp */,
 				9A7FEB222E7F43E60082C6FD /* message_sink.h */,
 				9A7FEB232E7F43E60082C6FD /* message_sink.cpp */,
 				9AE479C62A723FA100AA37BC /* muldiv64.cpp */,
@@ -10077,6 +10083,8 @@
 				9ACD714E2C172ADC00E392FF /* control.cpp */,
 				9AB398672B40144D005E0874 /* controller.h */,
 				9AB3986A2B40144E005E0874 /* controller.cpp */,
+				9AE60D562FE99EFA000F5BC1 /* dialog.h */,
+				9AE60D572FE99EFA000F5BC1 /* dialog.cpp */,
 				9A2AA66D27F9530800DB0519 /* drag.h */,
 				9A2AA66C27F9530800DB0519 /* drag.cpp */,
 				9A0842EC293665F2009F7FF4 /* drag_client.h */,
@@ -10100,8 +10108,10 @@
 				9A72EF032A3D5C31009743AD /* keyboard.cpp */,
 				9AE47A752FD2C519003088D6 /* keyboard_state.h */,
 				9AE47A762FD2C519003088D6 /* keyboard_state.cpp */,
-				9A523E682CD41029006ED868 /* message_box.h */,
-				9A523E692CD41029006ED868 /* message_box.cpp */,
+				9AE60D582FE99EFA000F5BC1 /* message_box.h */,
+				9AE60D592FE99EFA000F5BC1 /* message_box.cpp */,
+				9A523E682CD41029006ED868 /* message_box_reifier.h */,
+				9A523E692CD41029006ED868 /* message_box_reifier.cpp */,
 				9A2AA66B27F9530800DB0519 /* mouse.h */,
 				9A72EF052A3D5C31009743AD /* mouse.cpp */,
 				9AA8F8CB27BA7268008FF9AA /* os_colors.h */,
@@ -10657,7 +10667,7 @@
 				9A0841962935C1FD009F7FF4 /* _function_declarations.h in Headers */,
 				9A15A735264B6F2D0080670E /* _impl.h in Headers */,
 				9A68AD4025114434008DABD2 /* objc.h in Headers */,
-				9A523E6E2CD41029006ED868 /* message_box.h in Headers */,
+				9A523E6E2CD41029006ED868 /* message_box_reifier.h in Headers */,
 				9A865FB6296616BA000C82F0 /* str_array.h in Headers */,
 				9A9AB0A02A2A71E20075A73B /* item.h in Headers */,
 				9AC018E927489248006BEBCC /* plain_text_file_options.h in Headers */,
@@ -11123,7 +11133,6 @@
 				9A68AE0825114435008DABD2 /* forward.h in Headers */,
 				9A52401D2CD44444006ED868 /* node_apex.h in Headers */,
 				9A52401E2CD44444006ED868 /* node_acme.h in Headers */,
-				9A52401F2CD44444006ED868 /* message_box.h in Headers */,
 				9A8F437C2A23022C00097EE1 /* arc.h in Headers */,
 				9A68AF8625114436008DABD2 /* binary_stream.h in Headers */,
 				9AA3F8722A94851E004283CA /* not_dir.h in Headers */,
@@ -11528,6 +11537,8 @@
 				9A68AF7C25114435008DABD2 /* byte_stream.h in Headers */,
 				9AA8021927BA72A6008FF9AA /* graphics.h in Headers */,
 				9A8F43A22A23022C00097EE1 /* _geometry2d.h in Headers */,
+				9AE60D5C2FE99EFA000F5BC1 /* message_box.h in Headers */,
+				9AE60D5D2FE99EFA000F5BC1 /* dialog.h in Headers */,
 				9AA8FD6927BA729A008FF9AA /* aaa_c2.h in Headers */,
 				9A7551442B21715100FFB669 /* prototype.h in Headers */,
 				9A0842E22935EB40009F7FF4 /* scope_stack.h in Headers */,
@@ -12395,6 +12406,8 @@
 				9AC102C42B6AC9BD0053DB45 /* process_c.h in Headers */,
 				9AC102C52B6AC9BD0053DB45 /* _thread_os_create_impl.h in Headers */,
 				9AC102C62B6AC9BD0053DB45 /* command_line.h in Headers */,
+				9AE60D602FE99EFA000F5BC1 /* message_box.h in Headers */,
+				9AE60D612FE99EFA000F5BC1 /* dialog.h in Headers */,
 				9AC102C72B6AC9BD0053DB45 /* simple_memory_allocate.h in Headers */,
 				9AC102C82B6AC9BD0053DB45 /* _operating_system.h in Headers */,
 				9AC102CB2B6AC9BD0053DB45 /* _template_structures.h in Headers */,
@@ -12582,7 +12595,7 @@
 				9AC103442B6AC9BD0053DB45 /* x_charcategory_names.h in Headers */,
 				9AC103452B6AC9BD0053DB45 /* _.h in Headers */,
 				9AC103472B6AC9BD0053DB45 /* hash.h in Headers */,
-				9A523E6A2CD41029006ED868 /* message_box.h in Headers */,
+				9A523E6A2CD41029006ED868 /* message_box_reifier.h in Headers */,
 				9AC103482B6AC9BD0053DB45 /* _mm.h in Headers */,
 				9AC103492B6AC9BD0053DB45 /* cmp.h in Headers */,
 				9AC1034A2B6AC9BD0053DB45 /* source.h in Headers */,
@@ -12923,7 +12936,6 @@
 				9AC104822B6AC9BD0053DB45 /* wd16.h in Headers */,
 				9A5240242CD44444006ED868 /* node_apex.h in Headers */,
 				9A5240252CD44444006ED868 /* node_acme.h in Headers */,
-				9A5240262CD44444006ED868 /* message_box.h in Headers */,
 				9AC104832B6AC9BD0053DB45 /* _papaya_impl.h in Headers */,
 				9AC104842B6AC9BD0053DB45 /* _structures.h in Headers */,
 				9AC104852B6AC9BD0053DB45 /* element.h in Headers */,
@@ -13349,6 +13361,8 @@
 				9AD68F62251A753A00C0EBD7 /* keep.h in Headers */,
 				9AD68F64251A753A00C0EBD7 /* exception.h in Headers */,
 				9AD68F65251A753A00C0EBD7 /* binary.h in Headers */,
+				9AE60D642FE99EFA000F5BC1 /* message_box.h in Headers */,
+				9AE60D652FE99EFA000F5BC1 /* dialog.h in Headers */,
 				9A787CF7264C0740003DF8A0 /* _regular_expression.h in Headers */,
 				9A08427E2935E694009F7FF4 /* collection.h in Headers */,
 				9AEA1BB026794D5B006F4A68 /* _system_color.h in Headers */,
@@ -13408,7 +13422,6 @@
 				9A95EDA72AFAFE17000F322B /* _c.h in Headers */,
 				9A52402B2CD44444006ED868 /* node_apex.h in Headers */,
 				9A52402C2CD44444006ED868 /* node_acme.h in Headers */,
-				9A52402D2CD44444006ED868 /* message_box.h in Headers */,
 				9A8F43712A23022C00097EE1 /* collection.h in Headers */,
 				9A97A7662CFBCDEB000A2F7C /* wait_for_end_of_sequence.h in Headers */,
 				9A08433629366748009F7FF4 /* _c.h in Headers */,
@@ -13533,7 +13546,7 @@
 				9AD68FE8251A753A00C0EBD7 /* _papaya_impl.h in Headers */,
 				9A892DDF26CD9061008D6412 /* status.h in Headers */,
 				9A78621F264B90B4003DF8A0 /* random_number_generator.h in Headers */,
-				9A523E6D2CD41029006ED868 /* message_box.h in Headers */,
+				9A523E6D2CD41029006ED868 /* message_box_reifier.h in Headers */,
 				9AD68FEE251A753A00C0EBD7 /* numeric_array.h in Headers */,
 				9A5FB451299EBD0900094E43 /* earth_time.h in Headers */,
 				9AD68FF0251A753A00C0EBD7 /* list.h in Headers */,
@@ -14544,7 +14557,6 @@
 				9A5241B12CD47440006ED868 /* logger.cpp in Sources */,
 				9A5241B22CD47440006ED868 /* lparam.cpp in Sources */,
 				9A5241B32CD47440006ED868 /* math.cpp in Sources */,
-				9A5241B42CD47440006ED868 /* message_box.cpp in Sources */,
 				9A5241B52CD47440006ED868 /* muldiv64.cpp in Sources */,
 				9A7FEB1C2E7F43C60082C6FD /* byte2_stream.cpp in Sources */,
 				9A5241B62CD47440006ED868 /* nanosecond_timer.cpp in Sources */,
@@ -14728,6 +14740,8 @@
 				9A52425C2CD47440006ED868 /* _c_trait_wide.cpp in Sources */,
 				9A52425D2CD47440006ED868 /* _str.cpp in Sources */,
 				9A52425E2CD47440006ED868 /* _str_impl.cpp in Sources */,
+				9AE60D5A2FE99EFA000F5BC1 /* dialog.cpp in Sources */,
+				9AE60D5B2FE99EFA000F5BC1 /* message_box.cpp in Sources */,
 				9A52425F2CD47440006ED868 /* _string.cpp in Sources */,
 				9A5242602CD47440006ED868 /* as_string.cpp in Sources */,
 				9A5242612CD47440006ED868 /* base64.cpp in Sources */,
@@ -14832,7 +14846,7 @@
 				9A52429F2CD47440006ED868 /* key_state.cpp in Sources */,
 				9AE47AA52FD3616C003088D6 /* path.cpp in Sources */,
 				9A5242A02CD47440006ED868 /* keyboard.cpp in Sources */,
-				9A5242A12CD47440006ED868 /* message_box.cpp in Sources */,
+				9A5242A12CD47440006ED868 /* message_box_reifier.cpp in Sources */,
 				9A5242A22CD47440006ED868 /* mouse.cpp in Sources */,
 				9A5242A32CD47440006ED868 /* os_colors.cpp in Sources */,
 				9A5242A42CD47440006ED868 /* os_theme_colors.cpp in Sources */,
@@ -14893,6 +14907,8 @@
 				9AC104AE2B6AC9BD0053DB45 /* item_array.cpp in Sources */,
 				9AC104AF2B6AC9BD0053DB45 /* unicode16.cpp in Sources */,
 				9AE47A772FD2C519003088D6 /* keyboard_state.cpp in Sources */,
+				9AE60D5E2FE99EFA000F5BC1 /* dialog.cpp in Sources */,
+				9AE60D5F2FE99EFA000F5BC1 /* message_box.cpp in Sources */,
 				9A523E752CD4103C006ED868 /* interaction.cpp in Sources */,
 				9AC104B02B6AC9BD0053DB45 /* value.cpp in Sources */,
 				9A54051B2CE76B850009869E /* dialog.cpp in Sources */,
@@ -15060,7 +15076,6 @@
 				9AC105142B6AC9BD0053DB45 /* screen.cpp in Sources */,
 				9AC105152B6AC9BD0053DB45 /* binary_stream.cpp in Sources */,
 				9A5240272CD44444006ED868 /* node_apex.cpp in Sources */,
-				9A5240282CD44444006ED868 /* message_box.cpp in Sources */,
 				9A5240292CD44444006ED868 /* node_aqua.cpp in Sources */,
 				9A52402A2CD44444006ED868 /* node_acme.cpp in Sources */,
 				9AC105162B6AC9BD0053DB45 /* exit.cpp in Sources */,
@@ -15151,7 +15166,7 @@
 				9AC105602B6AC9BD0053DB45 /* block.cpp in Sources */,
 				9AB1F8352DC382CB00425531 /* _compare_swap.cpp in Sources */,
 				9AB1F8362DC382CB00425531 /* _container.cpp in Sources */,
-				9A523E6B2CD41029006ED868 /* message_box.cpp in Sources */,
+				9A523E6B2CD41029006ED868 /* message_box_reifier.cpp in Sources */,
 				9A58CB6D2D9CF11200DE95D0 /* handler_context.cpp in Sources */,
 				9AC105612B6AC9BD0053DB45 /* message_box.cpp in Sources */,
 				9AC105622B6AC9BD0053DB45 /* summary.cpp in Sources */,
@@ -15540,6 +15555,8 @@
 				9AA44BA6297BF2F600AA2F92 /* factory_function.cpp in Sources */,
 				9A94DE49282C034800F5C1CA /* paged_memory.cpp in Sources */,
 				9AD6915F251A753A00C0EBD7 /* item_array.cpp in Sources */,
+				9AE60D622FE99EFA000F5BC1 /* dialog.cpp in Sources */,
+				9AE60D632FE99EFA000F5BC1 /* message_box.cpp in Sources */,
 				9A787CC4264C04CD003DF8A0 /* context.cpp in Sources */,
 				9AD69162251A753A00C0EBD7 /* buffered_buffer.cpp in Sources */,
 				9A5DCE4F271A75CE00C2ED86 /* resource.cpp in Sources */,
@@ -15905,7 +15922,7 @@
 				9AA8038027BAC7F7008FF9AA /* memory.cpp in Sources */,
 				9A809D832A60072900FCA9FD /* time.cpp in Sources */,
 				9A26B4192F819C7B0047ECA2 /* ini.cpp in Sources */,
-				9A523E6C2CD41029006ED868 /* message_box.cpp in Sources */,
+				9A523E6C2CD41029006ED868 /* message_box_reifier.cpp in Sources */,
 				9A809F732A6021C600FCA9FD /* time.cpp in Sources */,
 				9AA3F86F2A94851E004283CA /* is_dir.cpp in Sources */,
 				9A5ECD6628CCC63F0084D354 /* console_client.cpp in Sources */,
@@ -16024,7 +16041,6 @@
 				9A523FF42CD43440006ED868 /* console_message_box.cpp in Sources */,
 				9A08433C29366748009F7FF4 /* _synchronization.cpp in Sources */,
 				9A52402E2CD44444006ED868 /* node_apex.cpp in Sources */,
-				9A52402F2CD44444006ED868 /* message_box.cpp in Sources */,
 				9A5240302CD44444006ED868 /* node_aqua.cpp in Sources */,
 				9AB1F8492DC382CB00425531 /* _compare_swap.cpp in Sources */,
 				9AB1F84A2DC382CB00425531 /* _container.cpp in Sources */,
@@ -16231,6 +16247,7 @@
 				DEAD_CODE_STRIPPING = NO;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				DEPLOYMENT_POSTPROCESSING = YES;
+				DEVELOPMENT_TEAM = HS8735NRM5;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				ENABLE_TESTABILITY = YES;
 				ENABLE_USER_SCRIPT_SANDBOXING = YES;
@@ -16351,6 +16368,7 @@
 				DEAD_CODE_STRIPPING = NO;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				DEPLOYMENT_POSTPROCESSING = YES;
+				DEVELOPMENT_TEAM = HS8735NRM5;
 				ENABLE_HARDENED_RUNTIME = YES;
 				ENABLE_NS_ASSERTIONS = NO;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;

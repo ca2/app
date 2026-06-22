@@ -15,6 +15,7 @@
 #include "acme/handler/request.h"
 #include "acme/nano/nano.h"
 #include "acme/user/user/interaction.h"
+#include "acme/user/user/message_box.h"
 #include "acme/windowing/window.h"
 #include "acme/parallelization/synchronous_lock.h"
 #include "acme/parallelization/multiple_lock.h"
@@ -1189,7 +1190,13 @@ void task::main()
    catch (::exception & exception)
    {
 
-      send(__initialize_new ::message_box_payload(exception, application()->m_strAppId, exception.m_strDetails));
+      
+      
+      auto pmessagebox = allocateø ::acme::user::message_box(exception, application()->m_strAppId, exception.m_strDetails);
+      
+      pmessagebox->display(e_display_normal, {});
+      
+      pmessagebox->wait_dialog_response();
 
    }
    catch (...)
@@ -1346,7 +1353,12 @@ void task::run_main_loop()
 
       strMoreDetails = "task::run";
 
-      send(__initialize_new ::message_box_payload(exception, strMoreDetails));
+      auto pmessagebox = message_box(exception, strMoreDetails);
+      
+      pmessagebox->display(e_display_normal, {});
+      
+      pmessagebox->wait_dialog_response();
+      
    }
 
 }

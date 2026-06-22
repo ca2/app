@@ -125,12 +125,12 @@ namespace platform
 {
 
 
-    void node::_user_post(const ::procedure &procedure)
+    void node::user_post(const ::procedure &procedure)
     {
 
        //information() << "::platform::node::user_post going to display_post";
 
-       system()->acme_windowing()->_user_post(procedure);
+       system()->acme_windowing()->user_post(procedure);
 
     }
 

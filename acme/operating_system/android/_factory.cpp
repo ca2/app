@@ -1,5 +1,6 @@
 #include "framework.h"
 #include "_android.h"
+#include "acme/operating_system/posix/shared_memory.h"
 //#include "buffer.h"
 //#include "acme/operating_system/posix/pipe.h"
 
@@ -58,6 +59,14 @@ void __node_acme_factory(::factory::factory * pfactory)
    //add_factory_item < ::android::interaction_impl    , ::windowing::window    > ();
 
    //add_factory_item < ::file::os_watcher             , ::file::watcher             > ();
+
+}
+
+
+void operating_system_factory(::factory::factory * pfactory)
+{
+
+   pfactory->add_factory_item < ::posix::shared_memory, ::shared_memory >();
 
 }
 

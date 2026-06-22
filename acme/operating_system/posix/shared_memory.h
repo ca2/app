@@ -22,6 +22,9 @@ namespace posix
       //HANDLE m_hToMap;
       int   m_fd;
       void *m_p;
+#if defined(__ANDROID__)
+      string m_strName;
+#endif
 
       //bool                             m_bAllowGrow;
 

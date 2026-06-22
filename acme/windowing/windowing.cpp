@@ -775,6 +775,71 @@ namespace acme
 
       void windowing::run()
       {
+         // system()->prepare_application();
+
+         // m_papplication->prepare_application();
+
+         //__task_init();
+
+
+         // init_task();
+
+         // set_current_handles();
+
+         //::set_main_thread();
+
+         auto prequest = create_newø<::request>();
+
+         prequest->m_strAppId = system()->m_papplication->m_strAppId;
+
+         prequest->m_ecommand = e_command_start_application;
+
+         system()->post_request(prequest);
+
+         // run();
+
+
+         // on_activate();
+
+
+         // system()->defer_post_application_start_file_open_request
+
+
+         // system()->defer_post_initial_request();
+
+         //            ::string strAppId = m_papplication->m_strAppId;
+         //
+         // session()->get_application(strAppId, true);
+
+         // m_papplication->postø() << [this]()
+         //    {
+
+         //      m_papplication->m_bReadyToAttendRequests = true;
+
+         //   });
+
+         run_main_loop();
+
+         // while (true)
+         //{
+
+         //   if (!_process_windowing_messages())
+         //   {
+
+         //      break;
+
+         //   }
+
+         //}
+
+         // if (::system()->m_pmanualresethappeningMainLoopEnd)
+         //{
+
+         //   ::system()->m_pmanualresethappeningMainLoopEnd->set_happening();
+
+         //}
+
+         information() << "windowing_win32::windowing::windowing::run ending!!";
 
 
       }

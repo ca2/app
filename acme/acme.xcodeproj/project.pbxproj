@@ -5268,18 +5268,14 @@
 		9AE47F8A2A7F434B00AA37BC /* link.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9AE47F862A7F434A00AA37BC /* link.cpp */; };
 		9AE47F8B2A7F434B00AA37BC /* link.h in Headers */ = {isa = PBXBuildFile; fileRef = 9AE47F882A7F434B00AA37BC /* link.h */; };
 		9AE47F8C2A7F434B00AA37BC /* link.h in Headers */ = {isa = PBXBuildFile; fileRef = 9AE47F882A7F434B00AA37BC /* link.h */; };
-		9AE60D5A2FE99EFA000F5BC1 /* dialog.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9AE60D572FE99EFA000F5BC1 /* dialog.cpp */; };
-		9AE60D5B2FE99EFA000F5BC1 /* message_box.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9AE60D592FE99EFA000F5BC1 /* message_box.cpp */; };
-		9AE60D5C2FE99EFA000F5BC1 /* message_box.h in Headers */ = {isa = PBXBuildFile; fileRef = 9AE60D582FE99EFA000F5BC1 /* message_box.h */; };
-		9AE60D5D2FE99EFA000F5BC1 /* dialog.h in Headers */ = {isa = PBXBuildFile; fileRef = 9AE60D562FE99EFA000F5BC1 /* dialog.h */; };
-		9AE60D5E2FE99EFA000F5BC1 /* dialog.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9AE60D572FE99EFA000F5BC1 /* dialog.cpp */; };
-		9AE60D5F2FE99EFA000F5BC1 /* message_box.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9AE60D592FE99EFA000F5BC1 /* message_box.cpp */; };
-		9AE60D602FE99EFA000F5BC1 /* message_box.h in Headers */ = {isa = PBXBuildFile; fileRef = 9AE60D582FE99EFA000F5BC1 /* message_box.h */; };
-		9AE60D612FE99EFA000F5BC1 /* dialog.h in Headers */ = {isa = PBXBuildFile; fileRef = 9AE60D562FE99EFA000F5BC1 /* dialog.h */; };
-		9AE60D622FE99EFA000F5BC1 /* dialog.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9AE60D572FE99EFA000F5BC1 /* dialog.cpp */; };
-		9AE60D632FE99EFA000F5BC1 /* message_box.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9AE60D592FE99EFA000F5BC1 /* message_box.cpp */; };
-		9AE60D642FE99EFA000F5BC1 /* message_box.h in Headers */ = {isa = PBXBuildFile; fileRef = 9AE60D582FE99EFA000F5BC1 /* message_box.h */; };
-		9AE60D652FE99EFA000F5BC1 /* dialog.h in Headers */ = {isa = PBXBuildFile; fileRef = 9AE60D562FE99EFA000F5BC1 /* dialog.h */; };
+		9AE60D702FEB09ED000F5BC1 /* message_box.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9AE60D6E2FEB09ED000F5BC1 /* message_box.cpp */; };
+		9AE60D712FEB09ED000F5BC1 /* dialog_implementation.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9AE60D672FEB09ED000F5BC1 /* dialog_implementation.cpp */; };
+		9AE60D722FEB09ED000F5BC1 /* dialog.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9AE60D6C2FEB09ED000F5BC1 /* dialog.cpp */; };
+		9AE60D732FEB09ED000F5BC1 /* message_box_implementation.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9AE60D692FEB09ED000F5BC1 /* message_box_implementation.cpp */; };
+		9AE60D742FEB09ED000F5BC1 /* message_box.h in Headers */ = {isa = PBXBuildFile; fileRef = 9AE60D6D2FEB09ED000F5BC1 /* message_box.h */; };
+		9AE60D752FEB09ED000F5BC1 /* dialog.h in Headers */ = {isa = PBXBuildFile; fileRef = 9AE60D6B2FEB09ED000F5BC1 /* dialog.h */; };
+		9AE60D762FEB09ED000F5BC1 /* message_box_implementation.h in Headers */ = {isa = PBXBuildFile; fileRef = 9AE60D682FEB09ED000F5BC1 /* message_box_implementation.h */; };
+		9AE60D772FEB09ED000F5BC1 /* dialog_implementation.h in Headers */ = {isa = PBXBuildFile; fileRef = 9AE60D662FEB09ED000F5BC1 /* dialog_implementation.h */; };
 		9AE6DE452961B5BA008A1335 /* _string.h in Headers */ = {isa = PBXBuildFile; fileRef = 9AE6DE442961B5BA008A1335 /* _string.h */; };
 		9AE6DE5329621577008A1335 /* application_flags.h in Headers */ = {isa = PBXBuildFile; fileRef = 9AE6DE4A29621575008A1335 /* application_flags.h */; };
 		9AE6DE5429621577008A1335 /* application_array.h in Headers */ = {isa = PBXBuildFile; fileRef = 9AE6DE4B29621575008A1335 /* application_array.h */; };
@@ -7522,10 +7518,14 @@
 		9AE47AA12FD3616C003088D6 /* path.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = path.cpp; sourceTree = "<group>"; };
 		9AE47F862A7F434A00AA37BC /* link.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = link.cpp; sourceTree = "<group>"; };
 		9AE47F882A7F434B00AA37BC /* link.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = link.h; sourceTree = "<group>"; };
-		9AE60D562FE99EFA000F5BC1 /* dialog.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = dialog.h; sourceTree = "<group>"; };
-		9AE60D572FE99EFA000F5BC1 /* dialog.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = dialog.cpp; sourceTree = "<group>"; };
-		9AE60D582FE99EFA000F5BC1 /* message_box.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = message_box.h; sourceTree = "<group>"; };
-		9AE60D592FE99EFA000F5BC1 /* message_box.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = message_box.cpp; sourceTree = "<group>"; };
+		9AE60D662FEB09ED000F5BC1 /* dialog_implementation.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = dialog_implementation.h; sourceTree = "<group>"; };
+		9AE60D672FEB09ED000F5BC1 /* dialog_implementation.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = dialog_implementation.cpp; sourceTree = "<group>"; };
+		9AE60D682FEB09ED000F5BC1 /* message_box_implementation.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = message_box_implementation.h; sourceTree = "<group>"; };
+		9AE60D692FEB09ED000F5BC1 /* message_box_implementation.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = message_box_implementation.cpp; sourceTree = "<group>"; };
+		9AE60D6B2FEB09ED000F5BC1 /* dialog.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = dialog.h; sourceTree = "<group>"; };
+		9AE60D6C2FEB09ED000F5BC1 /* dialog.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = dialog.cpp; sourceTree = "<group>"; };
+		9AE60D6D2FEB09ED000F5BC1 /* message_box.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = message_box.h; sourceTree = "<group>"; };
+		9AE60D6E2FEB09ED000F5BC1 /* message_box.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = message_box.cpp; sourceTree = "<group>"; };
 		9AE6DE442961B5BA008A1335 /* _string.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = _string.h; sourceTree = "<group>"; };
 		9AE6DE472961FC38008A1335 /* earth_time_span.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = earth_time_span.cpp; sourceTree = "<group>"; };
 		9AE6DE4929621575008A1335 /* application_container.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = application_container.cpp; sourceTree = "<group>"; };
@@ -10083,8 +10083,6 @@
 				9ACD714E2C172ADC00E392FF /* control.cpp */,
 				9AB398672B40144D005E0874 /* controller.h */,
 				9AB3986A2B40144E005E0874 /* controller.cpp */,
-				9AE60D562FE99EFA000F5BC1 /* dialog.h */,
-				9AE60D572FE99EFA000F5BC1 /* dialog.cpp */,
 				9A2AA66D27F9530800DB0519 /* drag.h */,
 				9A2AA66C27F9530800DB0519 /* drag.cpp */,
 				9A0842EC293665F2009F7FF4 /* drag_client.h */,
@@ -10108,8 +10106,6 @@
 				9A72EF032A3D5C31009743AD /* keyboard.cpp */,
 				9AE47A752FD2C519003088D6 /* keyboard_state.h */,
 				9AE47A762FD2C519003088D6 /* keyboard_state.cpp */,
-				9AE60D582FE99EFA000F5BC1 /* message_box.h */,
-				9AE60D592FE99EFA000F5BC1 /* message_box.cpp */,
 				9A523E682CD41029006ED868 /* message_box_reifier.h */,
 				9A523E692CD41029006ED868 /* message_box_reifier.cpp */,
 				9A2AA66B27F9530800DB0519 /* mouse.h */,
@@ -10456,6 +10452,8 @@
 		9AAE6E98251920DB00F10692 /* user */ = {
 			isa = PBXGroup;
 			children = (
+				9AE60D6A2FEB09ED000F5BC1 /* implementation */,
+				9AE60D6F2FEB09ED000F5BC1 /* interface */,
 				9A523ED02CD41062006ED868 /* menu */,
 				9A523EA32CD41051006ED868 /* micro */,
 				9A26B2A72F8184D10047ECA2 /* simple */,
@@ -10562,6 +10560,28 @@
 				9AD8627029B1272C0054C9B3 /* libstatic_idn.a */,
 			);
 			name = Products;
+			sourceTree = "<group>";
+		};
+		9AE60D6A2FEB09ED000F5BC1 /* implementation */ = {
+			isa = PBXGroup;
+			children = (
+				9AE60D662FEB09ED000F5BC1 /* dialog_implementation.h */,
+				9AE60D672FEB09ED000F5BC1 /* dialog_implementation.cpp */,
+				9AE60D682FEB09ED000F5BC1 /* message_box_implementation.h */,
+				9AE60D692FEB09ED000F5BC1 /* message_box_implementation.cpp */,
+			);
+			path = implementation;
+			sourceTree = "<group>";
+		};
+		9AE60D6F2FEB09ED000F5BC1 /* interface */ = {
+			isa = PBXGroup;
+			children = (
+				9AE60D6B2FEB09ED000F5BC1 /* dialog.h */,
+				9AE60D6C2FEB09ED000F5BC1 /* dialog.cpp */,
+				9AE60D6D2FEB09ED000F5BC1 /* message_box.h */,
+				9AE60D6E2FEB09ED000F5BC1 /* message_box.cpp */,
+			);
+			path = interface;
 			sourceTree = "<group>";
 		};
 		9AE834B12C1CC91200096100 /* idn */ = {
@@ -11537,8 +11557,6 @@
 				9A68AF7C25114435008DABD2 /* byte_stream.h in Headers */,
 				9AA8021927BA72A6008FF9AA /* graphics.h in Headers */,
 				9A8F43A22A23022C00097EE1 /* _geometry2d.h in Headers */,
-				9AE60D5C2FE99EFA000F5BC1 /* message_box.h in Headers */,
-				9AE60D5D2FE99EFA000F5BC1 /* dialog.h in Headers */,
 				9AA8FD6927BA729A008FF9AA /* aaa_c2.h in Headers */,
 				9A7551442B21715100FFB669 /* prototype.h in Headers */,
 				9A0842E22935EB40009F7FF4 /* scope_stack.h in Headers */,
@@ -11689,6 +11707,10 @@
 				9AA8005F27BA72A1008FF9AA /* _const_console.h in Headers */,
 				9A2706B02D92298900D20305 /* _const_string_range_impl.h in Headers */,
 				9A68AF3725114435008DABD2 /* stringtow.h in Headers */,
+				9AE60D742FEB09ED000F5BC1 /* message_box.h in Headers */,
+				9AE60D752FEB09ED000F5BC1 /* dialog.h in Headers */,
+				9AE60D762FEB09ED000F5BC1 /* message_box_implementation.h in Headers */,
+				9AE60D772FEB09ED000F5BC1 /* dialog_implementation.h in Headers */,
 				9A892DE226CD9061008D6412 /* _constant.h in Headers */,
 				9A9A9DF029A43882009B6D92 /* scoped_string_base.h in Headers */,
 				9A8F43622A23022C00097EE1 /* contains.h in Headers */,
@@ -12406,8 +12428,6 @@
 				9AC102C42B6AC9BD0053DB45 /* process_c.h in Headers */,
 				9AC102C52B6AC9BD0053DB45 /* _thread_os_create_impl.h in Headers */,
 				9AC102C62B6AC9BD0053DB45 /* command_line.h in Headers */,
-				9AE60D602FE99EFA000F5BC1 /* message_box.h in Headers */,
-				9AE60D612FE99EFA000F5BC1 /* dialog.h in Headers */,
 				9AC102C72B6AC9BD0053DB45 /* simple_memory_allocate.h in Headers */,
 				9AC102C82B6AC9BD0053DB45 /* _operating_system.h in Headers */,
 				9AC102CB2B6AC9BD0053DB45 /* _template_structures.h in Headers */,
@@ -13361,8 +13381,6 @@
 				9AD68F62251A753A00C0EBD7 /* keep.h in Headers */,
 				9AD68F64251A753A00C0EBD7 /* exception.h in Headers */,
 				9AD68F65251A753A00C0EBD7 /* binary.h in Headers */,
-				9AE60D642FE99EFA000F5BC1 /* message_box.h in Headers */,
-				9AE60D652FE99EFA000F5BC1 /* dialog.h in Headers */,
 				9A787CF7264C0740003DF8A0 /* _regular_expression.h in Headers */,
 				9A08427E2935E694009F7FF4 /* collection.h in Headers */,
 				9AEA1BB026794D5B006F4A68 /* _system_color.h in Headers */,
@@ -14363,6 +14381,10 @@
 				9A5240F32CD47440006ED868 /* font.cpp in Sources */,
 				9A5240F42CD47440006ED868 /* graphics.cpp in Sources */,
 				9AE47A842FD2C82C003088D6 /* user_key.cpp in Sources */,
+				9AE60D702FEB09ED000F5BC1 /* message_box.cpp in Sources */,
+				9AE60D712FEB09ED000F5BC1 /* dialog_implementation.cpp in Sources */,
+				9AE60D722FEB09ED000F5BC1 /* dialog.cpp in Sources */,
+				9AE60D732FEB09ED000F5BC1 /* message_box_implementation.cpp in Sources */,
 				9A5240F52CD47440006ED868 /* icon.cpp in Sources */,
 				9A5240F62CD47440006ED868 /* object.cpp in Sources */,
 				9A5240F72CD47440006ED868 /* pen.cpp in Sources */,
@@ -14740,8 +14762,6 @@
 				9A52425C2CD47440006ED868 /* _c_trait_wide.cpp in Sources */,
 				9A52425D2CD47440006ED868 /* _str.cpp in Sources */,
 				9A52425E2CD47440006ED868 /* _str_impl.cpp in Sources */,
-				9AE60D5A2FE99EFA000F5BC1 /* dialog.cpp in Sources */,
-				9AE60D5B2FE99EFA000F5BC1 /* message_box.cpp in Sources */,
 				9A52425F2CD47440006ED868 /* _string.cpp in Sources */,
 				9A5242602CD47440006ED868 /* as_string.cpp in Sources */,
 				9A5242612CD47440006ED868 /* base64.cpp in Sources */,
@@ -14907,8 +14927,6 @@
 				9AC104AE2B6AC9BD0053DB45 /* item_array.cpp in Sources */,
 				9AC104AF2B6AC9BD0053DB45 /* unicode16.cpp in Sources */,
 				9AE47A772FD2C519003088D6 /* keyboard_state.cpp in Sources */,
-				9AE60D5E2FE99EFA000F5BC1 /* dialog.cpp in Sources */,
-				9AE60D5F2FE99EFA000F5BC1 /* message_box.cpp in Sources */,
 				9A523E752CD4103C006ED868 /* interaction.cpp in Sources */,
 				9AC104B02B6AC9BD0053DB45 /* value.cpp in Sources */,
 				9A54051B2CE76B850009869E /* dialog.cpp in Sources */,
@@ -15555,8 +15573,6 @@
 				9AA44BA6297BF2F600AA2F92 /* factory_function.cpp in Sources */,
 				9A94DE49282C034800F5C1CA /* paged_memory.cpp in Sources */,
 				9AD6915F251A753A00C0EBD7 /* item_array.cpp in Sources */,
-				9AE60D622FE99EFA000F5BC1 /* dialog.cpp in Sources */,
-				9AE60D632FE99EFA000F5BC1 /* message_box.cpp in Sources */,
 				9A787CC4264C04CD003DF8A0 /* context.cpp in Sources */,
 				9AD69162251A753A00C0EBD7 /* buffered_buffer.cpp in Sources */,
 				9A5DCE4F271A75CE00C2ED86 /* resource.cpp in Sources */,

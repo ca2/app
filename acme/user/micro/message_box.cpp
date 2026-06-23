@@ -2,19 +2,23 @@
 // Created by camilo on 2022-01-21 14:57 <3ThomasBorregaardSorensen
 // Generalization by camilo on 31/01/2022 14:53 <3ThomasBorregaardSorensen!!
 #include "framework.h"
-//#include "button.h"
-//#include "message_box.h"
-//#include "still.h"
-//#include "theme.h"
+#include "button.h"
+#include "message_box.h"
+#include "popup_button.h"
+#include "still.h"
+#include "theme.h"
 //#include "acme/constant/timer.h"
-//#include "acme/filesystem/filesystem/file_context.h"
+#include "acme/filesystem/filesystem/file_context.h"
 //#include "acme/handler/sequence.h"
+#include "acme/nano/graphics/context.h"
+#include "acme/nano/graphics/icon.h"
 #include "acme/platform/system.h"
 ////#include "acme/platform/timer.h"
 #include "acme/user/user/mouse.h"
 #include "acme/_operating_system.h"
 #include "acme/user/micro/user.h"
 #include "acme/windowing/display.h"
+#include "acme/windowing/window.h"
 #include "acme/windowing/windowing.h"
 
 

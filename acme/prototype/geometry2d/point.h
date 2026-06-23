@@ -451,7 +451,6 @@ constexpr ::i32_point lparam::point() const
 
 
 
-
 template <prototype_number NUMBER>
 struct std::formatter<point_type<NUMBER>>
 {

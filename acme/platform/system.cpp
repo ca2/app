@@ -33,6 +33,7 @@
 #include "acme/handler/extended_topic.h"
 #include "acme/handler/request.h"
 #include "acme/handler/topic.h"
+#include "acme/user/micro/message_box.h"
 #include "acme/operating_system/dynamic_library.h"
 #include "acme/operating_system/file.h"
 #include "acme/operating_system/process.h"
@@ -48,14 +49,15 @@
 #include "acme/regular_expression/context.h"
 //#include "acme/prototype/prototype/payload.h"
 //#include "acme/prototype/string/hex.h"
-#include "acme/user/micro/user.h"
 #include "acme/nano/http/http.h"
 #include "acme/nano/speech/speech.h"
+#include "acme/user/micro/user.h"
+#include "acme/windowing/sandbox/host_interaction.h"
 #include "acme/windowing/window.h"
 #include "acme/windowing/windowing.h"
-#include "acme/windowing/sandbox/host_interaction.h"
 #include "prototype/string/_str.h"
-//#include "acme/user/user/conversation.h"
+#include "user/micro/message_box.h"
+// #include "acme/user/user/conversation.h"
 
 #if defined(LINUX)
 
@@ -297,6 +299,8 @@ namespace platform
 
       factory()->add_factory_item < ::nano::http::get>();
       factory()->add_factory_item < ::component >();
+      factory()->add_factory_item < ::micro::message_box, ::user_interface::message_box >();
+
 
    }
 

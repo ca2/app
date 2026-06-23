@@ -236,9 +236,30 @@ namespace windows
       if (message == WM_CREATE)
       {
 
-            on_create_window();
+         auto hwnd = ::as_HWND(this->operating_system_window());
+
+         lresult= DefWindowProc(hwnd, message, wparam, lparam);
+
+         if (lresult == -1)
+         {
+
+            return true;
+
+         }
+
+         if (!on_window_create(lparam.raw_cast<void *>()))
+         {
+
+            lresult = -1;
+
+            return true;
+
+         }
+
          lresult = 0;
+
          return true;
+
       }
       else if (message == WM_SHOWWINDOW)
       {
@@ -290,7 +311,7 @@ namespace windows
          }
 
 
-         on_window_size();
+         on_window_size(lparam.size());
          lresult = 0;
          return true;
 

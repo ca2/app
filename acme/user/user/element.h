@@ -168,13 +168,13 @@ namespace user
 
       virtual void PreSubClassWindow();
 
-      virtual bool is_waiting_for_dialog_result();
+      virtual bool is_waiting_for_dialog_response();
 
-      virtual ::payload wait_for_dialog_result(const class ::time & timeTimeout = ::time::infinity());
+      virtual ::payload wait_for_dialog_response(const class ::time & timeTimeout = ::time::infinity());
 
-      virtual void set_dialog_result(const ::payload & payloadResult);
+      virtual void set_dialog_response(const ::payload & payloadResult);
 
-      virtual ::payload get_dialog_result();
+      virtual ::payload get_dialog_response();
 
 
 
@@ -366,7 +366,7 @@ namespace user
 
 
       virtual void on_before_create_window(::acme::windowing::window * pacmewindowingwindow);
-      virtual void on_create_window();
+      //virtual void on_create_window();
 
       //virtual void create_host(enum_parallelization eparallelization);
       //virtual void create_host();
@@ -927,7 +927,9 @@ namespace user
       ::trace_statement & trace_statement_prefix(::trace_statement & statement) const override;
 
 
-      virtual void on_window_size();
+      virtual bool on_window_create(void * pCREATESTRUCT);
+      virtual void on_window_position(const ::i32_point & point);
+      virtual void on_window_size(const ::i32_size & size);
       virtual void on_window_set_focus();
       virtual void on_window_show(bool bShow, int iDetail);
       virtual bool on_window_activate(::i32 iActivate, bool bMinimized, const ::operating_system::window & operatingsystemwindow);

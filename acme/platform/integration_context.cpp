@@ -1,24 +1,24 @@
 // Created by camilo on 2023-01-15 16:16 <3ThomasBorregaardSorensen!!
-#include "framework.h"
 #include "integration_context.h"
+#include "../user/interface/message_box.h"
 #include "acme/compress/compress.h"
 #include "acme/constant/integration.h"
 #include "acme/exception/interface_only.h"
 #include "acme/filesystem/file/file.h"
 #include "acme/filesystem/file/memory_file.h"
 #include "acme/filesystem/filesystem/directory_system.h"
-#include "acme/filesystem/filesystem/file_system.h"
 #include "acme/filesystem/filesystem/file_context.h"
-#include "acme/nano/nano.h"
+#include "acme/filesystem/filesystem/file_system.h"
 #include "acme/nano/archive/archive.h"
+#include "acme/nano/nano.h"
 #include "acme/operating_system/summary.h"
 #include "acme/platform/application.h"
 #include "acme/platform/http.h"
 #include "acme/platform/node.h"
 #include "acme/platform/system.h"
 #include "acme/prototype/prototype/url.h"
-#include "acme/user/user/message_box.h"
-//#include "acme/filesystem/filesystem/file_context.h"
+#include "framework.h"
+// #include "acme/filesystem/filesystem/file_context.h"
 //#include "apex/networking/http/context.h"
 //#include "apex/platform/application.h"
 //#include "apex/platform/system.h"
@@ -259,9 +259,10 @@ namespace integration
       if (iExitCode != 0)
       {
 
-         auto pmessagebox = __initialize_new ::acme::user::message_box("Command :\n\"" + scopedstrCommand + "\"\n\nFailed with code : \"" + ::as_string(iExitCode) + "\"");
+         auto pmessagebox = createø < ::user_interface::message_box >();
+         pmessagebox->initialize_message_box("Command :\n\"" + scopedstrCommand + "\"\n\nFailed with code : \"" + ::as_string(iExitCode) + "\"");
 
-         pmessagebox->display(e_display_normal, {});
+         pmessagebox->display({});
 
          pmessagebox->wait_dialog_response();
 

@@ -2194,26 +2194,34 @@ bool particle::should_run_async() const
 
 }
 
-::pointer<::acme::user::message_box> particle::message_box(const ::scoped_string &scopedstrMessage,
+::pointer<::user_interface::message_box> particle::message_box(const ::scoped_string &scopedstrMessage,
                                                             const ::scoped_string &scopedstrTitle,
                                                             const ::user::e_message_box &emessagebox,
                                                             const ::scoped_string &scopedstrDetails, 
                                                        const ::string_array_base * pstraIconUrl)
 {
 
-    return __initialize_new::acme::user::message_box(scopedstrMessage, scopedstrTitle, emessagebox, scopedstrDetails,
+    auto pmessagebox = createø < ::user_interface::message_box >();
+
+    pmessagebox->initialize_message_box(scopedstrMessage, scopedstrTitle, emessagebox, scopedstrDetails,
     *pstraIconUrl);
+
+    return pmessagebox;
 }
 
 
-::pointer<::acme::user::message_box>
+::pointer<::user_interface::message_box>
 particle::message_box(const ::exception &exception, const ::scoped_string &scopedstrMessage,
                            const ::scoped_string &scopedstrTitle, const ::user::e_message_box &emessagebox,
                       const ::scoped_string &scopedstrDetails, const ::string_array_base *pstraIconUrl)
 {
 
-    return __initialize_new::acme::user::message_box(exception, scopedstrMessage, scopedstrTitle, emessagebox,
+    auto pmessagebox = createø < ::user_interface::message_box >();
+
+    pmessagebox->initialize_message_box(exception, scopedstrMessage, scopedstrTitle, emessagebox,
     scopedstrDetails, *pstraIconUrl);
+
+    return pmessagebox;
 }
 
 

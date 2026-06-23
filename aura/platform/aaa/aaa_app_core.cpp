@@ -340,7 +340,8 @@ void app_core::system_init()
 
       uid_t uid = atoi(strUid);
 
-      auto pmessagebox = __initialize_new ::acme::user::message_box("going to seteuid to: " + as_string(uid), "going to seteuid", ::user::e_message_box_ok);
+      auto pmessagebox = createø < ::user_interface::message_box >();
+      pmessagebox->initialize_message_box("going to seteuid to: " + as_string(uid), "going to seteuid", ::user::e_message_box_ok);
 
       pmessagebox->display(e_display_normal, {});
 
@@ -349,7 +350,8 @@ void app_core::system_init()
       if (seteuid(uid) == 0)
       {
 
-         auto pmessagebox = __initialize_new ::acme::user::message_box("uid=" + as_string(uid), "seteuid success", ::user::e_message_box_ok);
+         auto pmessagebox = createø < ::user_interface::message_box >();
+         pmessagebox->initialize_message_box("uid=" + as_string(uid), "seteuid success", ::user::e_message_box_ok);
 
          pmessagebox->display(e_display_normal, {});
 
@@ -365,7 +367,8 @@ void app_core::system_init()
 
          strError.formatf("errno=%d uid=%d", iErr);
 
-         auto pmessagebox = __initialize_new ::acme::user::message_box(strError, "seteuid failed", ::user::e_message_box_icon_exclamation);
+         auto pmessagebox = createø < ::user_interface::message_box >();
+         pmessagebox->initialize_message_box(strError, "seteuid failed", ::user::e_message_box_icon_exclamation);
 
          pmessagebox->display(e_display_normal, {});
 

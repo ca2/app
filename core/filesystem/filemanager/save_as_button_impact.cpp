@@ -129,12 +129,13 @@ namespace filemanager
 
                //   });
 
-               auto pmessagebox = __initialize_new ::acme::user::message_box("Do you want to replace the existing file " + strPath + "?", nullptr, ::user::e_message_box_yes_no);
+               auto pmessagebox = createø < ::user_interface::message_box >();
+               pmessagebox->initialize_message_box("Do you want to replace the existing file " + strPath + "?", nullptr, ::user::e_message_box_yes_no);
 
-               pmessagebox->m_functionOnMessageBoxResult = [this, strPath](::acme::user::message_box * pmessagebox)
+               pmessagebox->message_box_response_callback() = [this, strPath](::user_interface::message_box * pmessagebox)
                {
 
-                  if (pmessagebox->m_payloadResult == e_dialog_result_yes)
+                  if (pmessagebox->get_dialog_response() == e_dialog_result_yes)
                   {
 
                      save_document(strPath);

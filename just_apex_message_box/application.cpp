@@ -102,7 +102,7 @@ namespace app_just_apex_message_box
 //
 //         send(pmessageboxpayload);
 //
-//         auto result = pmessagebox->m_payloadResult.as_atom().m_edialogresult;
+//         auto result = pmessagebox->get_dialog_response().as_atom().m_edialogresult;
 //
 //         if (result == e_dialog_result_cancel)
 //         {

@@ -130,6 +130,8 @@ namespace acme
          
          virtual void on_dialog_result(const ::payload & payloadResult);
 
+         virtual ::i32_rectangle initial_frame_rectangle();
+
          //virtual void set_timer(uptr uEvent, const class ::time& millisElapse, const ::procedure& procedure = {}, bool bPeriodic = true);
          //virtual void kill_timer(uptr uEvent);
 
@@ -145,6 +147,7 @@ namespace acme
          virtual bool on_add_child(::acme::user::interaction * pacmeuserinteractionChild);
 
 
+         virtual ::micro::theme * micro_theme();
 
 #ifdef WINDOWS_DESKTOP
 
@@ -534,7 +537,7 @@ namespace acme
 
 
 
-         void on_window_size() override;
+         void on_window_size(const ::i32_size & size) override;
          void on_window_set_focus() override;
          void on_window_show(bool bShow, int iDetail) override;
          bool on_window_activate(::i32 iActivate, bool bMinimized, const ::operating_system::window & operatingsystemwindow) override;

@@ -2033,7 +2033,8 @@ namespace user
 
 #ifdef _DEBUG
 
-         auto pmessagebox = __initialize_new ::acme::user::message_box(exception, "Failed to create toolbar \"" + idToolbar.as_string() + "\"");
+         auto pmessagebox = createø < ::user_interface::message_box >();
+         pmessagebox->initialize_message_box(exception, "Failed to create toolbar \"" + idToolbar.as_string() + "\"");
 
          pmessagebox->display(e_display_normal, {});
 
@@ -2047,7 +2048,8 @@ namespace user
 
          ::exception exception(error_catch_all_exception);
 
-         auto pmessagebox = __initialize_new ::acme::user::message_box(exception, "Failed to create toolbar \"" + idToolbar.as_string() + "\"");
+         auto pmessagebox = createø < ::user_interface::message_box >();
+         pmessagebox->initialize_message_box(exception, "Failed to create toolbar \"" + idToolbar.as_string() + "\"");
 
          pmessagebox->display(e_display_normal, {});
 

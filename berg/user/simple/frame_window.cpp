@@ -2019,7 +2019,7 @@ void simple_frame_window::on_message_close(::message::message * pmessage)
    if (m_bModal)
    {
       //throw todo;
-      set_dialog_result(m_nModalResult);
+      set_dialog_response(m_nModalResult);
 
       pmessage->m_bRet = true;
 

@@ -374,6 +374,16 @@ namespace micro
       //virtual void get_client_rectangle(::i32_rectangle & rectangle);
       ::i32_rectangle get_rectangle() override;
 
+
+      bool on_window_create(void * pCREATESTRUCT) override;
+      void on_window_position(const ::i32_point & point) override;
+      void on_window_size(const ::i32_size & size) override;
+
+
+      virtual void on_elemental_layout();
+
+
+
       //void set_mouse_capture() override;
 
       //bool has_mouse_capture() override;

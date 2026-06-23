@@ -8,15 +8,15 @@
 #pragma once
 
 
-#include "acme/user/user/dialog.h"
+#include "acme/user/interface/dialog.h"
 
 
-namespace acme
+namespace user_interface
 {
 
 
-namespace user
-{
+// namespace user
+// {
 //
 //class message_box;
 //
@@ -141,33 +141,66 @@ namespace user
 
 class CLASS_DECL_ACME message_box :
 //virtual public ::realizable < message_box >
-virtual public ::acme::user::dialog
+virtual public ::user_interface::dialog
 {
 public:
-   
-   
-   bool                                               m_bDetails = false;
-   string                                             m_strMessage;
-   string                                             m_strTitle;
-   ::user::e_message_box                              m_emessagebox;
-   string                                             m_strDetails;
-   ::string                                           m_strDetailsTitle;
-   ::string_array                                     m_straDetailsIconUrl;
-   ::pointer < ::nano::graphics::icon >               m_picon2;
-   ::string_array                                     m_straIconUrl;
-   ::pointer < ::user::activation_token >             m_puseractivationtoken;
-   ::function<void(::acme::user::message_box *)>                  m_functionOnMessageBoxResult;
-   
+
+
+
+   //
+   // bool                                               m_bDetails = false;
+   // string                                             m_strMessage;
+   // string                                             m_strTitle;
+   // ::user::e_message_box                              m_emessagebox;
+   // string                                             m_strDetails;
+   // ::string                                           m_strDetailsTitle;
+   // ::string_array                                     m_straDetailsIconUrl;
+   // ::pointer < ::nano::graphics::icon >               m_picon2;
+   // ::string_array                                     m_straIconUrl;
+   // ::pointer < ::user::activation_token >             m_puseractivationtoken;
+   // ::function<void(::user_interface::message_box *)>      m_functionOnMessageBoxResult;
+   // ::pointer<::nano::graphics::icon>                  m_picon;
+   //
+
+::pointer < ::user_interface::message_box > m_pmessagebox;
+
    
    //message_box_payload(const ::scoped_string & scopedstrMessage, const ::scoped_string & scopedstrTitle = {}, const ::user::e_message_box & emessagebox = {}, const ::scoped_string & scopedstrDetails = nullptr, ::nano::graphics::icon * picon = nullptr);
-   message_box(const ::scoped_string &scopedstrMessage, const ::scoped_string &scopedstrTitle = {},
-               const ::user::e_message_box &emessagebox = {}, const ::scoped_string &scopedstrDetails = nullptr,
-               const ::string_array_base &straIconUrl = {});
-   message_box(const ::exception & exception, const ::scoped_string & strMoreDetails);
-   message_box(const ::exception &exception, const ::scoped_string &strMessage,
+   //message_box(const ::scoped_string &scopedstrMessage, const ::scoped_string &scopedstrTitle = {},
+     //          const ::user::e_message_box &emessagebox = {}, const ::scoped_string &scopedstrDetails = nullptr,
+       //        const ::string_array_base &straIconUrl = {});
+   //message_box(const ::exception & exception, const ::scoped_string & strMoreDetails);
+   //message_box(const ::exception &exception, const ::scoped_string &strMessage,
+     //          const ::scoped_string &scopedstrTitle, const ::user::e_message_box &emessagebox = {},
+       //        const ::scoped_string &scopedstrDetails = nullptr, const ::string_array_base &straIconUrl = {});
+   message_box();
+   ~message_box() override;
+
+
+
+
+   virtual void initialize_message_box(const ::scoped_string &scopedstrMessage, const ::scoped_string &scopedstrTitle = {},
+            const ::user::e_message_box &emessagebox = {}, const ::scoped_string &scopedstrDetails = nullptr,
+            const ::string_array_base &straIconUrl = {});
+   virtual void initialize_message_box(const ::exception & exception, const ::scoped_string & strMoreDetails);
+   virtual void initialize_message_box(const ::exception &exception, const ::scoped_string &strMessage,
                const ::scoped_string &scopedstrTitle, const ::user::e_message_box &emessagebox = {},
                const ::scoped_string &scopedstrDetails = nullptr, const ::string_array_base &straIconUrl = {});
-   ~message_box() override;
+
+
+   virtual ::string get_message() const;
+   virtual ::string get_title() const;
+   virtual ::user::e_message_box get_emessagebox() const;
+
+   //virtual void _001InitializeMessageBox();
+
+
+   ::i32_rectangle initial_frame_rectangle() override;
+
+
+
+   ///void _on_draw(::nano::graphics::context * pgraphicscontext) override;
+
    //
    //#ifdef _DEBUG
    //   ::i64 increment_reference_count() override;
@@ -182,15 +215,33 @@ public:
    
    //message_box_payload *get_message_box_payload() override;
    
-   ::payload get_result_payload() override;
+   ::payload get_dialog_response() override;
    
    
    void on_timed_out() override;
    
    ::string dialog_details() const override;
+
+   virtual ::string dialog_details_title() const;
+
+
+   virtual void set_user_activation_token(::user::activation_token * puseractivationtoken);
+
+   virtual void set_dialog_details_title(const ::scoped_string & scopedstrTitle);
    
    ::string_array_base dialog_details_icon_urls() const override;
-   
+
+
+   ::string_array_base & dialog_details_icon_urls() override;
+
+
+   virtual ::function < void (::user_interface::message_box *) > & message_box_response_callback();
+
+
+   virtual void add_button(const ::scoped_string & scopedstrTitle, enum_dialog_result edialogresult, ::i8 chLetter);
+
+
+   void display(::e_display edisplay = e_display_default, const ::user::activation & useractivation = {}) override;
 //   void display_dialog() override;
    //virtual void async();
    //virtual void sync();
@@ -204,12 +255,12 @@ public:
    //void complete_aggregation(sequence * psequence) override;
    //
    
-   void on_dialog_result(const ::payload &payloadResult) override;
+   void on_dialog_response(const ::payload &payloadResult) override;
    
 };
 
 
 
-} // namespace user
+//} // namespace user
 
-} // namespace acme
+} // namespace user_interface

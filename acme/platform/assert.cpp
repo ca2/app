@@ -1,8 +1,8 @@
-#include "framework.h"
-#include "acme/parallelization/task.h"
-#include "acme/user/user/message_box.h"
-#include "acme/platform/system.h"
 #include <stdio.h>
+#include "../user/interface/message_box.h"
+#include "acme/parallelization/task.h"
+#include "acme/platform/system.h"
+#include "framework.h"
 
 
 //#if defined(__APPLE__)
@@ -162,18 +162,18 @@ CLASS_DECL_ACME ::payload __cpp_assert_failed_line(const_char_pointer pszFileNam
 
    sprintf(szMessage,"Assert failed!\n\nFile: %s\nLine: %d\n\nYou can choose to:\n\n\t - \"Cancel\": cancel debugging.\n\t - \"Try\": try debug break where assertion occurred.\n\t - \"Continue\": continue running", pszFileName,iLineNumber);
 
-   auto pmessagebox =
-      __initialize_new_with(system())
-      ::acme::user::message_box(
+   auto pmessagebox = ::system()->createø<::user_interface::message_box>();
+
+   pmessagebox->initialize_message_box(
          szMessage,
          "ASSERT",
          ::user::e_message_box_cancel_try_continue | ::user::e_message_box_icon_error);
 
-   pmessagebox->display(e_display_normal, {});
+   pmessagebox->display({});
 
    pmessagebox->wait_dialog_response();
 
-   return pmessagebox->m_payloadResult;
+   return pmessagebox->get_dialog_response();
 
 }
 

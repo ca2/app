@@ -2410,9 +2410,10 @@ void node::open_internet_link(const ::scoped_string & scopedstrUrl, const ::scop
    void node::report_exception_to_user(::particle* pparticle, ::exception& exception, const ::scoped_string & scopedstrMoreDetails)
    {
 
-      auto pmessagebox = __initialize_new ::acme::user::message_box(exception, scopedstrMoreDetails);
+      auto pmessagebox = createø < ::user_interface::message_box >();
+      pmessagebox->initialize_message_box(exception, scopedstrMoreDetails);
       
-      pmessagebox->display(e_display_normal, {});
+      pmessagebox->display({});
       
       pmessagebox->wait_dialog_response();
 

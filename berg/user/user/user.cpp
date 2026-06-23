@@ -1728,7 +1728,8 @@ namespace berg
 
 #ifdef _DEBUG
 
-         auto pmessagebox = __initialize_new ::acme::user::message_box(exception, "Failed to create form \"" + pathFile + "\"");
+         auto pmessagebox = createø < ::user_interface::message_box >();
+         pmessagebox->initialize_message_box(exception, "Failed to create form \"" + pathFile + "\"");
 
          pmessagebox->display(e_display_normal, {});
 
@@ -1742,7 +1743,8 @@ namespace berg
 
          ::exception exception(error_catch_all_exception);
 
-         auto pmessagebox = __initialize_new ::acme::user::message_box(exception, "Failed to create form \"" + pathFile + "\"");
+         auto pmessagebox = createø < ::user_interface::message_box >();
+         pmessagebox->initialize_message_box(exception, "Failed to create form \"" + pathFile + "\"");
 
          pmessagebox->display(e_display_normal, {});
 

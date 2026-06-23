@@ -141,7 +141,7 @@ namespace platform
 //
 
    void
-   application_sink::post_message_box(::acme::user::message_box * pmessagebox)
+   application_sink::post_message_box(::user_interface::message_box * pmessagebox)
    {
 
       //synchronous_lock synchronouslock(m_pparticleMutexMessageBoxSequencer, DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);

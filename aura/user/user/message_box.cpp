@@ -74,7 +74,7 @@ namespace user
    }
 
 
-   void message_box::display_dialog(::dialog * pdialog)
+   void message_box::on_initialize_dialog()
    {
 
       //auto psequencer = allocateø ::sequencer <::conversation > ();
@@ -87,9 +87,9 @@ namespace user
 
       //m_strTitle = pmessa;
 
-      ::cast < ::message_box_payload > pmessageboxpayload = m_pdialog;
+//      ::cast < ::message_box_payload > pmessageboxpayload = m_pdialog;
 
-      ::string strMessage(pmessageboxpayload->m_strMessage);
+      ::string strMessage(::user_interface::message_box::get_message());
 
       strMessage.case_insensitive_replace_with(" \n", "<br>");
 
@@ -110,7 +110,10 @@ namespace user
 
       //::user::message_box::show(puserinteraction, strMessageParam, strTitle, emessagebox);
 
-      ::acme::user::message_box::display_dialog(pmessageboxpayload);
+      ///::user_interface::message_box::display_dialog(pmessageboxpayload);
+      ///
+
+      on_initialize_dialog();
 
       m_pbuttonClose->initialize(this);
 
@@ -126,7 +129,7 @@ namespace user
       
       //create_host(e_parallelization_synchronous);
 
-      create_window();
+      //create_window();
 
       //if (!estatus)
       //{
@@ -137,7 +140,7 @@ namespace user
 
       //}
 
-      do_show();
+      //do_show();
 
       //return psequencer;
 
@@ -148,7 +151,7 @@ namespace user
    {
 
       ::user::interaction::destroy();
-      ::acme::user::message_box::destroy();
+      ::user_interface::message_box::destroy();
 
    }
 
@@ -159,6 +162,14 @@ namespace user
       ::user::interaction::install_message_routing(pchannel);
 
       USER_MESSAGE_LINK(::user::e_message_create, pchannel, this, &message_box::on_message_create);
+
+   }
+
+
+   void message_box::display(::e_display edisplay, const ::user::activation & useractivation)
+   {
+
+      ::user::interaction::display(edisplay, useractivation);
 
    }
 
@@ -248,7 +259,7 @@ namespace user
 
          //m_prealizable->m_payloadResult = ptopic->m_puserelement->user_interaction()->id();
 
-         ::acme::user::message_box::set_dialog_result(ptopic->m_puserelement->user_interaction()->id());
+         ::user_interface::message_box::set_dialog_response(ptopic->m_puserelement->user_interaction()->id());
 
          m_estatus = ::success;
 

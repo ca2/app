@@ -585,11 +585,11 @@ public:
    [[nodiscard]] virtual bool should_run_async() const;
 
 
-   virtual ::pointer<::acme::user::message_box>
+   virtual ::pointer<::user_interface::message_box>
    message_box(const ::scoped_string &scopedstrMessage, const ::scoped_string &scopedstrTitle = nullptr,
                     const ::user::e_message_box &emessagebox = {}, const ::scoped_string &scopedstrDetails = nullptr,
                                                                       const ::string_array_base * pstraIconUrl = nullptr);
-   virtual ::pointer<::acme::user::message_box>
+   virtual ::pointer<::user_interface::message_box>
    message_box(const ::exception &exception, const ::scoped_string &scopedstrMessage = nullptr,
                     const ::scoped_string &scopedstrTitle = nullptr, const ::user::e_message_box &emessagebox = {},
                   const ::scoped_string &scopedstrDetails = nullptr, const ::string_array_base * pstraIconUrl = nullptr);

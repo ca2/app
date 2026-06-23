@@ -426,6 +426,8 @@ list(APPEND library_source
         nano/graphics/font_family.h
         nano/graphics/graphics.cpp
         nano/graphics/graphics.h
+        nano/graphics/image.cpp
+        nano/graphics/image.h
         nano/graphics/object.cpp
         nano/graphics/object.h
         nano/graphics/path.cpp
@@ -708,8 +710,8 @@ list(APPEND library_source
         platform/math.cpp
         platform/message.cpp
         platform/message.h
-        platform/message_box.cpp
-        platform/message_box.h
+        #platform/message_box.cpp
+        #platform/message_box.h
    platform/message_sink.cpp
    platform/message_sink.h
         #platform/muldiv64.cpp
@@ -1383,7 +1385,15 @@ list(APPEND library_source
         regular_expression/regular_expression.h
         regular_expression/result.cpp
         regular_expression/result.h
-
+        user/implementation/dialog_implementation.cpp
+        user/implementation/dialog_implementation.h
+        user/implementation/message_box_implementation.cpp
+        user/implementation/message_box_implementation.h
+        user/interface/dialog.cpp
+        user/interface/dialog.h
+        user/interface/message_box.cpp
+        user/interface/message_box.h
+        user/key/state.h
         user/micro/_.h
         user/micro/button.cpp
         user/micro/button.h
@@ -1486,10 +1496,8 @@ list(APPEND library_source
         user/user/key.h
         user/user/key_state.cpp
         user/user/key_state.h
-   user/user/keyboard_state.cpp
-   user/user/keyboard_state.h
-        user/user/message_box.cpp
-        user/user/message_box.h
+        user/user/keyboard_state.cpp
+        user/user/keyboard_state.h
         user/user/mouse.cpp
         user/user/mouse.h
         user/user/os_colors.cpp
@@ -3247,8 +3255,7 @@ if (${LINUX} OR ${__BSD__})
 endif ()
 
 
-add_library(${PROJECT_NAME} SHARED ${library_source}
-   user/key/state.h)
+add_library(${PROJECT_NAME} SHARED ${library_source})
 
 
 add_library(static_${PROJECT_NAME} STATIC ${library_source}

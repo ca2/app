@@ -15,8 +15,9 @@ namespace micro
    dialog::dialog()
    {
 
-      m_bRunningModalLoop = false;
+      //m_bRunningModalLoop = false;
       m_timeDialogTimeout = ::time::infinity();
+      m_pdialog = this;
 
    }
 
@@ -28,24 +29,34 @@ namespace micro
    }
 
 
-   ::payload dialog::wait_for_dialog_result(const class time & timeTimeout)
+   bool dialog::on_window_create(void *pCREATESTRUCT)
    {
 
-      m_manualresethappeningFinished.wait(timeTimeout);
+      on_initialize_dialog();
 
-      return get_dialog_result();
+      return true;
 
    }
 
 
-   void dialog::set_dialog_result(const ::payload & payloadResult)
+   ::payload dialog::wait_for_dialog_response(const class time & timeTimeout)
+   {
+
+      m_pmanualresethappeningDialogResponse->wait(timeTimeout);
+
+      return get_dialog_response();
+
+   }
+
+
+   void dialog::set_dialog_response(const ::payload & payloadResult)
    {
 
 
    }
 
    
-   ::payload dialog::get_dialog_result()
+   ::payload dialog::get_dialog_response()
    {
 
       return {};
@@ -53,48 +64,39 @@ namespace micro
    }
 
 
-   bool dialog::is_waiting_for_dialog_result()
+   // bool dialog::is_waiting_for_dialog_response()
+   // {
+   //
+   //    return !m_manualresethappeningFinished.lock(0_s);
+   //
+   // }
+
+
+   void dialog::on_dialog_response(const ::payload & payloadResult)
    {
 
-      return !m_manualresethappeningFinished.lock(0_s);
+      //m_pmanualresethappeningFinished->set_happening();
 
-   }
+      ::user_interface::dialog_implementation::on_dialog_response(payloadResult);
 
-
-   void dialog::on_dialog_result(const ::payload & payloadResult)
-   {
-
-      m_manualresethappeningFinished.set_happening();
-
-      display(e_display_hide, {});
-
-      destroy_window();
-      
-      on_dialog_finished();
-      
-      if(system()->acme_windowing()->get_application_host_window())
-      {
-         
-         system()->acme_windowing()->get_application_host_window()->redraw();
-         
-      }
 
    }
 
 
    void dialog::run()
    {
-
-      debug() << "micro::dialog::run";
-
-      main_send([this]()
-      {
-
-         create_window();
-
-         display(e_display_center, {});
-
-      });
+      throw ::interface_only();
+      //
+      // debug() << "micro::dialog::run";
+      //
+      // main_send([this]()
+      // {
+      //
+      //    create_window();
+      //
+      //    display(e_display_center, {});
+      //
+      // });
 
       //m_manualresethappeningFinished.wait(m_timeDialogTimeout);
 
@@ -123,10 +125,10 @@ namespace micro
    void dialog::on_window_close()
    {
 
-      if (m_bRunningModalLoop)
+      if (is_waiting_for_dialog_response())
       {
 
-         set_dialog_result(e_dialog_result_cancel);
+         set_dialog_response(e_dialog_result_cancel);
 
       }
 
@@ -136,8 +138,29 @@ namespace micro
    void dialog::on_dialog_finished()
    {
 
+      ::user_interface::dialog_implementation::on_dialog_finished();
+
+      destroy_window();
+
+      //   on_dialog_finished();
+
+      if(system()->acme_windowing()->get_application_host_window())
+      {
+
+         system()->acme_windowing()->get_application_host_window()->redraw();
+
+      }
 
    }
+
+
+   void dialog::display(::e_display edisplay, const ::user::activation & useractivation)
+   {
+
+      ::micro::main_window::display(edisplay, useractivation);
+
+   }
+
 
    // void dialog::set_dialog_result(const ::payload & payloadResult)
    //{

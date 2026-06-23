@@ -69,21 +69,24 @@ namespace app_message_box
 
       pmessage->m_bRet = true;
 
-      auto pmessagebox = __initialize_new ::acme::user::message_box("Are you sure you want to close application?", nullptr, ::user::e_message_box_yes_no);
+      auto pmessagebox = createø < ::user_interface::message_box >();
+      pmessagebox->initialize_message_box("Are you sure you want to close application?", nullptr, ::user::e_message_box_yes_no);
 
       
-      pmessagebox->m_functionOnMessageBoxResult= [this](::acme::user::message_box * pmessagebox)
+      pmessagebox->message_box_response_callback() = [this](::user_interface::message_box * pmessagebox)
          {
 
-            if (pmessagebox->m_payloadResult == e_dialog_result_yes)
+            if (pmessagebox->get_dialog_response() == e_dialog_result_yes)
             {
 
                auto papp = get_app();
 
-               papp->_001PostTryCloseApplication();
+               //papp->_001PostTryCloseApplication();
+
+               papp->try_close_application();
 
             }
-            else if (pmessagebox->m_payloadResult == e_dialog_result_cancel)
+            else if (pmessagebox->get_dialog_response() == e_dialog_result_cancel)
             {
 
                show_message_box();
@@ -163,18 +166,19 @@ namespace app_message_box
    void main_window::show_message_box()
    {
 
-      auto pmessagebox = __initialize_new ::acme::user::message_box("Showing a message box as requested.\n\nIs it ok?", nullptr, ::user::e_message_box_yes_no_cancel);
+      auto pmessagebox = createø < ::user_interface::message_box >();
+      pmessagebox->initialize_message_box("Showing a message box as requested.\n\nIs it ok?", nullptr, ::user::e_message_box_yes_no_cancel);
 
-      pmessagebox->m_functionOnMessageBoxResult = [this](::acme::user::message_box * pmessagebox)
+      pmessagebox->message_box_response_callback() = [this](::user_interface::message_box * pmessagebox)
          {
 
-            if (pmessagebox->m_payloadResult == e_dialog_result_yes)
+            if (pmessagebox->get_dialog_response() == e_dialog_result_yes)
             {
 
                post_message(::user::e_message_close);
 
             }
-            else if (pmessagebox->m_payloadResult == e_dialog_result_cancel)
+            else if (pmessagebox->get_dialog_response() == e_dialog_result_cancel)
             {
 
                show_message_box();

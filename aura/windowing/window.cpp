@@ -869,14 +869,16 @@ namespace windowing
       }
       else
       {
+
+         auto r = m_pacmeuserinteraction->initial_frame_rectangle();
        
-         x = m_pacmeuserinteraction->get_rectangle().left;
+         x = r.left;
          
-         y = m_pacmeuserinteraction->get_rectangle().top;
+         y = r.top;
          
-         w = m_pacmeuserinteraction->get_rectangle().width();
+         w = r.width();
          
-         h = m_pacmeuserinteraction->get_rectangle().height();
+         h = r.height();
          
       }
          
@@ -916,7 +918,7 @@ namespace windowing
 
             _create_window();
 
-            on_create_window();
+            //on_create_window();
 
          });
 

@@ -342,6 +342,7 @@ public:
       this->top = topNew;
       this->bottom += offsetY;
    }
+   void set_top_left(const POINT_TYPE & point) {this->set_top_left(point.x, point.y);}
    rectangle_type & set_center_and_half_size(const POINT_TYPE & center, const SIZE_TYPE & halfsize)
    {
 

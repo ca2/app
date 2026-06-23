@@ -14,12 +14,10 @@
 #pragma once
 
 
-#include "acme/platform/department.h"
-#include "acme/user/user/message_box.h"
-#include "acme/prototype/collection/comparable_list.h"
+#include "../interface/message_box.h"
 #include "_.h"
-
-
+#include "acme/platform/department.h"
+#include "acme/prototype/collection/comparable_list.h"
 
 
 namespace micro

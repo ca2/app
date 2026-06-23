@@ -3,16 +3,9 @@
 //#include "application.h"
 
 
-<<<<<<< HEAD
 __FACTORY_EXPORT void app_integration_factory(::factory::factory* pfactory)
 {
 
     //pfactory->add_factory_item < ::app_integration::application, ::platform::application >();
-=======
-__FACTORY_EXPORT void app_simple_drawing_factory(::factory::factory* pfactory)
-{
-
-    //pfactory->add_factory_item < ::app_simple_drawing::application, ::platform::application >();
->>>>>>> origin/main
 
 }

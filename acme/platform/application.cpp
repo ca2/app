@@ -632,12 +632,13 @@ namespace platform
 
       ::function < void(const ::atom& atom) > function;
 
-      auto pmessagebox = __initialize_new ::acme::user::message_box(
+      auto pmessagebox = createø < ::user_interface::message_box >();
+      pmessagebox->initialize_message_box(
          "Application needs iCloud and it is not Available",
          "iCloud is not Available.",
          ::user::e_message_box_ok | ::user::e_message_box_icon_exclamation);
 
-      pmessagebox->display(e_display_normal, {});
+      pmessagebox->display({});
 
       pmessagebox->wait_dialog_response();
 
@@ -1658,23 +1659,26 @@ namespace platform
 
       auto pmessagebox = message_box("Are you sure you want to close application?", nullptr, ::user::e_message_box_yes_no);
       
-      pmessagebox->m_functionOnMessageBoxResult=                      [this](::acme::user::message_box * pmessageboxpayload)
+      pmessagebox->message_box_response_callback()=                      [this](::user_interface::message_box * pmessagebox)
                        {
-                          if (pmessageboxpayload->m_payloadResult == e_dialog_result_yes)
+                          if (pmessagebox->get_dialog_response() == e_dialog_result_yes)
                           {
 
-                             auto papp = get_app();
+                             //auto papp = get_app();
 
-                             papp->_001PostTryCloseApplication();
+                             //papp->_001PostTryCloseApplication();
+
+                             //papp->_001PostTryCloseApplication();
+                             try_close_application();
                           }
-                          else if (pmessageboxpayload->m_payloadResult == e_dialog_result_cancel)
+                          else if (pmessagebox->get_dialog_response() == e_dialog_result_cancel)
                           {
                           }
                        }
 
       ;
       
-      pmessagebox->display(e_display_normal, {});
+      pmessagebox->display({});
    
       //auto pmessageboxpayload = __initialize_new ::message_box_payload("Are you sure you want to close application?", nullptr, ::user::e_message_box_yes_no);
 
@@ -2310,13 +2314,14 @@ namespace platform
 
          handle_exception(e);
 
-         auto pmessagebox = __initialize_new ::acme::user::message_box(
+         auto pmessagebox = createø < ::user_interface::message_box >();
+         pmessagebox->initialize_message_box(
             "Application failed to initialize (1).\n\n" + e.m_strMessage,
             m_strAppName,
             ::user::e_message_box_ok,
             e.m_strMessage + "\n" + e.m_strDetails);
 
-         pmessagebox->display(e_display_normal, {});
+         pmessagebox->display({});
 
          pmessagebox->wait_dialog_response();
 
@@ -2326,11 +2331,12 @@ namespace platform
       catch (...)
       {
 
-         auto pmessagebox = __initialize_new ::acme::user::message_box(
+         auto pmessagebox = createø < ::user_interface::message_box >();
+         pmessagebox->initialize_message_box(
             "Application failed to initialize (2). Unknown exception",
             m_strAppName);
 
-         pmessagebox->display(e_display_normal, {});
+         pmessagebox->display({});
 
          pmessagebox->wait_dialog_response();
 
@@ -2377,13 +2383,14 @@ namespace platform
       catch (const ::exception& exception)
       {
 
-         auto pmessagebox = __initialize_new ::acme::user::message_box(
+         auto pmessagebox = createø < ::user_interface::message_box >();
+         pmessagebox->initialize_message_box(
             "Application failed to initialize (4). Unknown exception",
             m_strAppName,
             ::user::e_message_box_ok,
             exception.m_strMessage + "\n\n" + exception.get_consolidated_details(this));
 
-         pmessagebox->display(e_display_normal, {});
+         pmessagebox->display({});
 
          pmessagebox->wait_dialog_response();
 
@@ -2393,11 +2400,12 @@ namespace platform
       catch (...)
       {
 
-         auto pmessagebox = __initialize_new ::acme::user::message_box(
+         auto pmessagebox = createø < ::user_interface::message_box >();
+         pmessagebox->initialize_message_box(
             "Application failed to initialize (4). Unknown exception",
             m_strAppName);
 
-         pmessagebox->display(e_display_normal, {});
+         pmessagebox->display({});
 
          pmessagebox->wait_dialog_response();
 
@@ -2920,14 +2928,14 @@ namespace platform
       strDetails.find_replace("-#", "");
       strDetails.find_replace("#", "");
 
-      auto paboutbox = __initialize_new_with(
-         system()->acme_windowing()) ::acme::user::message_box("About\n\n" + strMessage, nullptr, ::user::e_message_box_ok, 
-            strDetails, {"matter://main/icon.png"});
+      auto paboutbox = system()->acme_windowing()->createø < ::user_interface::message_box >();
+      paboutbox->initialize_message_box("About\n\n" + strMessage, nullptr, ::user::e_message_box_ok,
+         strDetails, {"matter://main/icon.png"});
 
-      paboutbox->m_strDetailsTitle = "Operating System Information ...";
+      paboutbox->set_dialog_details_title("Operating System Information ...");
 
-      paboutbox->m_straDetailsIconUrl.add(system()->operating_system_icon_url({48, 48}));
-      paboutbox->m_straDetailsIconUrl.add(system()->operating_ambient_icon_url({32, 32}));
+      paboutbox->dialog_details_icon_urls().add(system()->operating_system_icon_url({48, 48}));
+      paboutbox->dialog_details_icon_urls().add(system()->operating_ambient_icon_url({32, 32}));
 
       //psequencer->then([this, strPath](auto pconversation)
       //      {
@@ -2948,9 +2956,9 @@ namespace platform
 
       //      });
 
-      paboutbox->m_puseractivationtoken = puseractivationtoken;
+      paboutbox->set_user_activation_token(puseractivationtoken);
 
-      main_post(paboutbox);
+      paboutbox->display();
 
 
 

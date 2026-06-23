@@ -16,9 +16,9 @@
 //#include "acme/handler/sequence.h"
 #include "acme/platform/system.h"
 ////#include "acme/exception/exception.h"
-#include "acme/parallelization/task.h"
-#include "acme/user/user/message_box.h"
+#include "../user/interface/message_box.h"
 #include "acme/_operating_system.h"
+#include "acme/parallelization/task.h"
 //
 //
 
@@ -1505,7 +1505,7 @@ g_bWindowingOutputDebugString = true;
          auto pmessagebox = message_box(strMessage, "Library Loading Failure", ::user::e_message_box_ok | ::user::e_message_box_icon_warning,
             strDetails);
 
-         pmessagebox->display(e_display_normal, {});
+         pmessagebox->display({});
 
          throw exception;
 

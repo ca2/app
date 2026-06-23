@@ -36,6 +36,7 @@
 #include "acme/nano/nano.h"
 #include "acme/user/micro/elemental.h"
 #include "acme/user/micro/theme.h"
+#include "acme/user/micro/user.h"
 #include "acme/windowing/window.h"
 #include "acme/operating_system/a_system_menu.h"
 #include "acme/platform/application.h"
@@ -332,7 +333,15 @@ namespace acme
       //}
 
 
-      void interaction::_on_draw(::nano::graphics::context * pnanodevice)
+      ::micro::theme * interaction::micro_theme()
+      {
+
+         return system()->micro_user()->micro_theme();
+
+      }
+
+
+      void interaction::_on_draw(::nano::graphics::context * pgraphicscontext)
       {
 
 
@@ -342,6 +351,7 @@ namespace acme
       void interaction::on_window_paint(::nano::graphics::context *pgraphicscontext)
       {
 
+         _on_draw(pgraphicscontext);
 
       }
 
@@ -1773,12 +1783,20 @@ namespace acme
       }
    
    
-   void interaction::on_dialog_result(const ::payload &payloadResult)
-   {
+      void interaction::on_dialog_result(const ::payload &payloadResult)
+      {
       
       
       
-   }
+      }
+
+
+      ::i32_rectangle interaction::initial_frame_rectangle()
+      {
+
+         return get_rectangle();
+
+      }
 
 
       void interaction::display_temporary_file_with_text(const ::scoped_string & scopedstr)
@@ -2460,7 +2478,7 @@ namespace acme
    }
    
    
-      void interaction::on_window_size()
+      void interaction::on_window_size(const ::i32_size & size)
       {
 
          information("::acme::user::interaction::on_window_size()");

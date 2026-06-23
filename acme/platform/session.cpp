@@ -108,9 +108,14 @@ namespace platform
 
       }
 
-      m_varCurrentImpactFile = prequest->m_payloadFile;
+      if (prequest->m_ecommand != e_command_start_application)
+      {
 
-      papplication->post_request(prequest);
+         m_varCurrentImpactFile = prequest->m_payloadFile;
+
+         papplication->post_request(prequest);
+
+      }
 
    }
 

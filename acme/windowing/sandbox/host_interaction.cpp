@@ -7,15 +7,15 @@
 //  match OPERATING_SYSTEM_NAMESPACE::create_*host*_window() naming.)
 // as acme::sandbox_windowing on 2024-11-25 23:25 by
 // camilo <3ThomasBorregaardSorensen!!
-#include "framework.h"
+#include "../../user/interface/message_box.h"
 #include "_sandbox.h"
 #include "acme/constant/id.h"
 #include "acme/platform/application.h"
 #include "acme/user/micro/button.h"
 #include "acme/user/micro/popup_button.h"
 #include "acme/user/user/activation_token.h"
-#include "acme/user/user/message_box.h"
 #include "acme/user/user/mouse.h"
+#include "framework.h"
 
 
 namespace acme
@@ -112,12 +112,12 @@ void host_interaction::on_click(const ::payload & payload, ::user::mouse * pmous
   //    post(ppopupbutton);
 
       //ppopupbutton->main_async()
-      ::cast <::acme::user::message_box > pmessagebox = ppopupbutton;
+      ::cast <::user_interface::message_box > pmessagebox = ppopupbutton;
 
-      pmessagebox->m_functionOnMessageBoxResult = [this, ppopupbutton, puseractivationtoken](const ::acme::user::message_box * pmessagebox)
+      pmessagebox->message_box_response_callback() = [this, ppopupbutton, puseractivationtoken](::user_interface::message_box * pmessagebox)
          {
 
-         if (pmessagebox->m_payloadResult == e_dialog_result_yes)
+         if (pmessagebox->get_dialog_response() == e_dialog_result_yes)
          {
             application()->show_about_box(puseractivationtoken);
          }

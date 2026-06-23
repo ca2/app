@@ -170,7 +170,7 @@ namespace userex
 
       m_pframe->post_redraw();
 
-      m_pframe->set_dialog_result(idResult);
+      m_pframe->set_dialog_response(idResult);
 
    }
 

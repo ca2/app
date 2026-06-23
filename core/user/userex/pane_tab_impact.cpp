@@ -361,10 +361,10 @@ namespace userex
       if (m_pimpactdataOld != nullptr && is_filemanager(m_pimpactdataOld->id()))
       {
 
-         if (parent_frame()->is_waiting_for_dialog_result())
+         if (parent_frame()->is_waiting_for_dialog_response())
          {
 
-            parent_frame()->set_dialog_result("yes");
+            parent_frame()->set_dialog_response("yes");
 
          }
 
@@ -917,11 +917,11 @@ namespace userex
 
       ::user::tab::_001OnTabClose(iTab);
 
-      if(parent_frame()->is_waiting_for_dialog_result() && ::is_set(filemanager_document("file_manager_save"))
+      if(parent_frame()->is_waiting_for_dialog_response() && ::is_set(filemanager_document("file_manager_save"))
             && filemanager_document("file_manager_save")->filemanager_data()->m_pdocumentTopic!= nullptr)
       {
 
-         parent_frame()->set_dialog_result("yes");
+         parent_frame()->set_dialog_response("yes");
 
       }
 

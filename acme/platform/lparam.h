@@ -136,6 +136,7 @@ public:
    constexpr ::i16 loword() const { return __loword(m_lparam); }
 
    constexpr ::i32_point point() const;
+   constexpr ::i32_size size() const;
 
 };
 

@@ -56,7 +56,7 @@ namespace user
    }
 
    
-   bool element::is_waiting_for_dialog_result()
+   bool element::is_waiting_for_dialog_response()
    {
 
       return false;
@@ -64,7 +64,7 @@ namespace user
    }
 
 
-   ::payload element::wait_for_dialog_result(const class ::time & timeTimeout)
+   ::payload element::wait_for_dialog_response(const class ::time & timeTimeout)
    {
 
       return {};
@@ -72,14 +72,14 @@ namespace user
    }
 
 
-   void element::set_dialog_result(const ::payload & payloadResult)
+   void element::set_dialog_response(const ::payload & payloadResult)
    {
 
 
    }
 
 
-   ::payload element::get_dialog_result()
+   ::payload element::get_dialog_response()
    {
 
       return {};
@@ -1229,12 +1229,12 @@ namespace user
    }
 
 
-   void element::on_create_window()
-   {
-
-
-
-   }
+   // void element::on_create_window()
+   // {
+   //
+   //
+   //
+   // }
 
 
 
@@ -5183,7 +5183,26 @@ void element::pick_multiple_file(const ::file::file_dialog_filter & filedialogfi
 
    // }
 
-         void element::on_window_size()
+
+   bool element::on_window_create(void * pCREATESTRUCT)
+   {
+
+      information("::acme::user::element::on_window_create()");
+
+      return true;
+
+   }
+
+
+   void element::on_window_position(const ::i32_point & point)
+   {
+
+      information("::acme::user::element::on_window_position()");
+
+   }
+
+
+      void element::on_window_size(const ::i32_size & size)
       {
 
          information("::acme::user::element::on_window_size()");

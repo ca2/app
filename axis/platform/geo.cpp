@@ -228,7 +228,8 @@ namespace geo
 
             DEBUGF_LINE("jklxxc1");
 
-            auto pmessagebox = __initialize_new ::acme::user::message_box(exception, "geo::defer_check_openweather_city_list");
+            auto pmessagebox = createø < ::user_interface::message_box >();
+            pmessagebox->initialize_message_box(exception, "geo::defer_check_openweather_city_list");
 
             DEBUGF_LINE("jklxxc3");
 
@@ -244,7 +245,8 @@ namespace geo
 
             DEBUGF_LINE("jklxxc4");
 
-            auto pmessagebox = __initialize_new ::acme::user::message_box(exception, "geo::defer_check_openweather_city_list");
+            auto pmessagebox = createø < ::user_interface::message_box >();
+            pmessagebox->initialize_message_box(exception, "geo::defer_check_openweather_city_list");
 
             DEBUGF_LINE("jklxxc5");
 
@@ -389,7 +391,8 @@ namespace geo
 
             DEBUGF_LINE("pqrxxe1 exception type : " + ::platform::type(exception).name());
 
-            auto pmessagebox = __initialize_new ::acme::user::message_box(exception, "geo::defer_check_openweather_city_list");
+            auto pmessagebox = createø < ::user_interface::message_box >();
+            pmessagebox->initialize_message_box(exception, "geo::defer_check_openweather_city_list");
 
             DEBUGF_LINE("pqrxxe2");
 
@@ -401,7 +404,8 @@ namespace geo
 
             DEBUGF_LINE("pqrxxe3");
 
-            auto pmessagebox = __initialize_new ::acme::user::message_box("Unable to download \"https://ca2.site/city-list_base.json\"");
+            auto pmessagebox = createø < ::user_interface::message_box >();
+            pmessagebox->initialize_message_box("Unable to download \"https://ca2.site/city-list_base.json\"");
 
             DEBUGF_LINE("pqrxxe4");
 

@@ -737,7 +737,8 @@ namespace user
       catch (const ::exception & exception)
       {
 
-         auto pmessagebox = allocateø ::acme::user::message_box(exception, __FUNCTION_FILE_LINE__);
+         auto pmessagebox = createø < ::user_interface::message_box >();
+         pmessagebox->initialize_message_box(exception, __FUNCTION_FILE_LINE__);
 
          pmessagebox->display(e_display_normal, {});
 

@@ -796,6 +796,10 @@ namespace acme
 
          system()->post_request(prequest);
 
+
+         system()->m_papplication->process_command_line_options();
+
+
          // run();
 
 

@@ -116,7 +116,14 @@ namespace experience
 } // namespace experience
 
 
+namespace user_interface
+{
 
+   class dialog;
+
+   class message_box;
+
+} // namespace user_interface
 
 
 namespace acme
@@ -134,9 +141,6 @@ namespace acme
 
       class interaction;
    
-   class dialog;
-   
-   class message_box;
 
 
    }// namespace user

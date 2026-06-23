@@ -60,6 +60,8 @@ elseif (${LINUX} OR ${__BSD__} OR ${ANDROID})
 
 endif ()
 
+add_dependencies(${PROJECT_NAME} ${default_nano_graphics})
+add_dependencies(${PROJECT_NAME} folder_zip)
 
 list(APPEND library_include_directories ${CMAKE_CURRENT_SOURCE_DIR})
 list(APPEND library_include_directories ${CMAKE_CURRENT_SOURCE_DIR}/..)

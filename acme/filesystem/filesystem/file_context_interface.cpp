@@ -1,10 +1,10 @@
 // From file_context.h by camilo on 2024-06-28 09:39 <3ThomasBorregaardSorensen!!
-#include "framework.h"
-#include "file_context.h"
 #include "file_context_interface.h"
+#include "../../user/interface/message_box.h"
 #include "acme/nano/nano.h"
 #include "acme/user/micro/user.h"
-#include "acme/user/user/message_box.h"
+#include "file_context.h"
+#include "framework.h"
 
 
 ::string file_context_interface::safe_get_string(const ::payload& payloadFile, ::e_status* pestatus)
@@ -46,9 +46,11 @@ void file_context_interface::safe_get_memory(const ::payload& payloadFile, memor
    catch (const ::exception& exception)
    {
 
-      auto pmessagebox = __initialize_new ::acme::user::message_box(exception, "file_context_interface::safe_get_memory");
+      auto pmessagebox = createø < ::user_interface::message_box >();
 
-      pmessagebox->display(e_display_normal, {});
+      pmessagebox->initialize_message_box(exception, "file_context_interface::safe_get_memory");
+
+      pmessagebox->display({});
 
    }
 

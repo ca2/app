@@ -1,4 +1,4 @@
-// now based on a ::acme::user::message_box based on ::reified<::message_box> by
+// now based on a ::user_interface::message_box based on ::reified<::message_box> by
 //    camilo on 2024-10-09 09:00 <3ThomasBorregaardSorensen!!
 //
 // Created by camilo on 29/01/2021.  02:05 BRT <3ThomasBS_!!
@@ -6,7 +6,7 @@
 #pragma once
 
 
-#include "acme/user/user/message_box.h"
+#include "../../../acme/user/interface/message_box.h"
 #include "interaction.h"
 
 
@@ -17,7 +17,7 @@ namespace user
 
    class CLASS_DECL_AURA message_box :
       virtual public ::user::interaction,
-      virtual public ::acme::user::message_box
+      virtual public ::user_interface::message_box
    {
    public:
 
@@ -88,6 +88,7 @@ namespace user
       ::i32                                             m_iResult;
 
 
+
       //message_box(const ::scoped_string & scopedstrMessage, const ::scoped_string & scopedstrTitle, const ::user::e_message_box & emessagebox);
       message_box();
       ~message_box() override;
@@ -95,14 +96,15 @@ namespace user
 
       // message_box_interface
       //::pointer < ::subparticle > show(::user::interaction * puserinteraction, const ::scoped_string & scopedstrMessage, const ::scoped_string & scopedstrTitle, const ::user::e_message_box & emessagebox) override;
-      using ::user::interaction::display;
-      void display_dialog(::dialog * pdialog) override;
+      //using ::user::interaction::display;
+      //void display_dialog(::acme::user::dialog * pdialog) override;
       void add_button(const ::scoped_string & scopedstrTitle, enum_dialog_result edialogresult, ::i8 chLetter) override;
 
       void destroy() override;
 
       void install_message_routing(::channel * pchannel) override;
 
+      void display(::e_display edisplay = e_display_default, const ::user::activation & useractivation = {}) override;
 
       ::i64 increment_reference_count() override;
       ::i64 decrement_reference_count() override;
@@ -123,6 +125,8 @@ namespace user
       //GC create_gc();
 
       virtual void invalidate();
+
+      void on_initialize_dialog() override;
 
       //virtual void on_idle() override;
 

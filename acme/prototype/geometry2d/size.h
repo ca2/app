@@ -24,8 +24,8 @@ public:
    
    
    
-   size_type() {}
-   size_type(no_initialize_t) : sequence_type < NUMBER, 2 >(no_initialize_t{}) {}
+   constexpr size_type() {}
+   constexpr size_type(no_initialize_t) : sequence_type < NUMBER, 2 >(no_initialize_t{}) {}
    //size_type(nullptr_t) : sequence_type < NUMBER, 2 >(nullptr) {}
 
 //   sequence_type(const sequence_type&) = default;
@@ -39,7 +39,7 @@ public:
 //   }
    
    template < prototype_number C >
-   size_type(C c)
+   constexpr size_type(C c)
    {
    
       this->set_all((NUMBER)c);
@@ -47,14 +47,14 @@ public:
    }
 
    template < prototype_number CX, prototype_number CY >
-   size_type(CX cx, CY cy)
+   constexpr size_type(CX cx, CY cy)
    {
       this->m_coordinatea[0] = (UNIT_TYPE) cx;
       this->m_coordinatea[1] = (UNIT_TYPE) cy;
    }
    
    template < prototype_number NUMBER1 >
-   size_type(const sequence_type < NUMBER1, 2 > & sequence) :
+   constexpr size_type(const sequence_type < NUMBER1, 2 > & sequence) :
       sequence_type < UNIT_TYPE, 2 >(sequence)
    {
       
@@ -314,5 +314,18 @@ inline auto abs(const SIZE & size) noexcept { return SIZE(abs(size.cx), abs(size
 //inline auto abs(const ::i64_size& size) noexcept { return ::i64_size(abs(size.cx), abs(size.cy)); }
 //inline auto abs(const ::f32_size& size) noexcept { return ::f32_size(abs(size.cx), abs(size.cy)); }
 //inline auto abs(const ::f64_size& size) noexcept { return ::f64_size(abs(size.cx), abs(size.cy)); }
+
+
+
+
+
+constexpr ::i32_size lparam::size() const
+{
+
+   return {this->loword(), this->hiword()};
+
+}
+
+
 
 

@@ -151,7 +151,7 @@ namespace acme
 
          ::i32_rectangle get_window_rectangle() override;
 
-         void on_create_window() override;
+         //void on_create_window() override;
 
          void destroy() override;
 
@@ -205,7 +205,9 @@ namespace acme
 #endif
 
          virtual void on_window_paint(::nano::graphics::context * pgraphicscontext);
-         void on_window_size() override;
+         bool on_window_create(void * pCREATESTRUCT) override;
+         void on_window_position(const ::i32_point & point) override;
+         void on_window_size(const ::i32_size & size) override;
          void on_window_set_focus() override;
          bool on_window_activate(::i32 iActivate, bool bMinimized, const ::operating_system::window & operatingsystemwindow) override;
          bool on_window_mouse_activate(::i32 & iResult, const ::operating_system::window & operatingsystemwindowTop,

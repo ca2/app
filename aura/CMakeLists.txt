@@ -52,6 +52,8 @@ list(APPEND library_source
         graphics/draw2d/device_lock.h
         graphics/draw2d/draw2d.cpp
         graphics/draw2d/draw2d.h
+        graphics/draw2d/drawing.cpp
+        graphics/draw2d/drawing.h
         graphics/draw2d/fwd.h
         graphics/draw2d/graphics.cpp
         graphics/draw2d/graphics.h
@@ -94,6 +96,8 @@ list(APPEND library_source
         graphics/draw2d/region.h
         #graphics/draw2d/region_item.cpp
         #graphics/draw2d/region_shape.h
+        graphics/draw2d/stock_icon.cpp
+        graphics/draw2d/stock_icon.h
         graphics/draw2d/task_tool.cpp
         graphics/draw2d/task_tool.h
         #graphics/draw2d/ttf_util.cpp

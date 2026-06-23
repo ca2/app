@@ -230,19 +230,19 @@ namespace acme
       }
 
 
-      void window::on_create_window()
-      {
-
-         //update_drawing_objects();
-
-         if (m_pacmeuserinteraction)
-         {
-
-            m_pacmeuserinteraction->on_create_window();
-
-         }
-
-      }
+      // void window::on_create_window()
+      // {
+      //
+      //    //update_drawing_objects();
+      //
+      //    if (m_pacmeuserinteraction)
+      //    {
+      //
+      //       m_pacmeuserinteraction->on_create_window();
+      //
+      //    }
+      //
+      // }
 
 
       void window::destroy()
@@ -1140,13 +1140,41 @@ namespace acme
       }
 
 
-      void window::on_window_size()
+      bool window::on_window_create(void * pCREATESTRUCT)
       {
 
          if (m_pacmeuserinteraction)
          {
 
-            m_pacmeuserinteraction->on_window_size();
+            return m_pacmeuserinteraction->on_window_create(pCREATESTRUCT);
+
+         }
+
+         return true;
+
+      }
+
+
+      void window::on_window_position(const ::i32_point & point)
+      {
+
+         if (m_pacmeuserinteraction)
+         {
+
+            m_pacmeuserinteraction->on_window_position(point);
+
+         }
+
+      }
+
+
+      void window::on_window_size(const ::i32_size & size)
+      {
+
+         if (m_pacmeuserinteraction)
+         {
+
+            m_pacmeuserinteraction->on_window_size(size);
 
          }
 

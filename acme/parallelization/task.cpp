@@ -1,29 +1,29 @@
-#include "framework.h"
 #include "task.h"
-#include "waiting_call.h"
-#include "manual_reset_happening.h"
-#include "wait_for_end_of_sequence.h"
-#include "acme/handler/sequence.h"
-#include "acme/handler/task_handler.h"
-#include "acme/platform/scoped_restore.h"
-#include "acme/platform/acme.h"
-#include "acme/platform/application.h"
-#include "acme/platform/system.h"
+#include "../user/interface/message_box.h"
+#include "acme/_operating_system.h"
+#include "acme/exception/_text_stream.h"
 #include "acme/exception/exit.h"
 #include "acme/exception/interface_only.h"
 #include "acme/exception/translator.h"
 #include "acme/handler/request.h"
+#include "acme/handler/sequence.h"
+#include "acme/handler/task_handler.h"
 #include "acme/nano/nano.h"
-#include "acme/user/user/interaction.h"
-#include "acme/user/user/message_box.h"
-#include "acme/windowing/window.h"
-#include "acme/parallelization/synchronous_lock.h"
-#include "acme/parallelization/multiple_lock.h"
-#include "acme/parallelization/task_message_queue.h"
-#include "acme/platform/node.h"
-#include "acme/exception/_text_stream.h"
-#include "acme/_operating_system.h"
 #include "acme/operating_system/parallelization.h"
+#include "acme/parallelization/multiple_lock.h"
+#include "acme/parallelization/synchronous_lock.h"
+#include "acme/parallelization/task_message_queue.h"
+#include "acme/platform/acme.h"
+#include "acme/platform/application.h"
+#include "acme/platform/node.h"
+#include "acme/platform/scoped_restore.h"
+#include "acme/platform/system.h"
+#include "acme/user/user/interaction.h"
+#include "acme/windowing/window.h"
+#include "framework.h"
+#include "manual_reset_happening.h"
+#include "wait_for_end_of_sequence.h"
+#include "waiting_call.h"
 ///#include "acme/windowing/window_base.h"
 #include "acme/windowing/windowing.h"
 
@@ -1192,9 +1192,10 @@ void task::main()
 
       
       
-      auto pmessagebox = allocateø ::acme::user::message_box(exception, application()->m_strAppId, exception.m_strDetails);
+      auto pmessagebox = createø < ::user_interface::message_box >();
+      pmessagebox->initialize_message_box(exception, application()->m_strAppId, exception.m_strDetails);
       
-      pmessagebox->display(e_display_normal, {});
+      pmessagebox->display({});
       
       pmessagebox->wait_dialog_response();
 
@@ -1355,7 +1356,7 @@ void task::run_main_loop()
 
       auto pmessagebox = message_box(exception, strMoreDetails);
       
-      pmessagebox->display(e_display_normal, {});
+      pmessagebox->display({});
       
       pmessagebox->wait_dialog_response();
       

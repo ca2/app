@@ -29,7 +29,6 @@ constexpr ::i16 upper_short(::iptr i) { return (::i16)(((::uptr)(i) >> 16) & 0xf
 constexpr ::u32 lower_u32(::u64 u) { return (::u32)(u); }
 constexpr ::u32 upper_u32(::u64 u) { return (::u32)((u >> 32) & 0xffffffff); }
 
-
 constexpr ::i32 iptr_int_x(::iptr i) { return (::i32)(::i16)lower_unsigned_short(i); }
 constexpr ::i32 iptr_int_y(::iptr i) { return (::i32)(::i16)upper_unsigned_short(i); }
 constexpr ::i32 u32_x(::uptr u) { return (::i32)(::i16)lower_unsigned_short(u); }

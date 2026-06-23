@@ -171,7 +171,8 @@ extern char_pointer *environ;
       else
       {
 
-         auto pmessagebox = __initialize_new_with(::system()) ::acme::user::message_box(exception, "Exception", "Exception", ::user::e_message_box_icon_error, exception.get_message() +"\n\nCallstack:\n"+ exception.m_strCallStackTrace);
+         auto pmessagebox = ::system()->createø < ::user_interface::message_box >();
+         pmessagebox->initialize_message_box(exception, "Exception", "Exception", ::user::e_message_box_icon_error, exception.get_message() +"\n\nCallstack:\n"+ exception.m_strCallStackTrace);
 
          pmessagebox->display(e_display_normal, {});
 
@@ -194,7 +195,8 @@ extern char_pointer *environ;
       else
       {
 
-         auto pmessagebox = __initialize_new_with(::system()) ::acme::user::message_box("Unhandled Exception");
+         auto pmessagebox = ::system()->createø < ::user_interface::message_box >();
+         pmessagebox->initialize_message_box("Unhandled Exception");
 
          pmessagebox->display(e_display_normal, {});
 

@@ -1100,7 +1100,7 @@ namespace console_hello
 
          pmessagebox->wait_dialog_response();
 
-         auto result = pmessagebox->m_payloadResult;
+         auto result = pmessagebox->get_dialog_response();
 
          if (result == e_dialog_result_yes)
          {

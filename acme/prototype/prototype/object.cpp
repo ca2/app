@@ -11,8 +11,7 @@
 //#include "acme/prototype/text/_.h"
 #include "acme/prototype/prototype/set_bit.h"
 //#include "acme/prototype/string/hex.h"
-#include "acme/prototype/text/text.h"
-#include "acme/prototype/collection/atom_map.h"
+#include "../../user/interface/message_box.h"
 #include "acme/parallelization/manual_reset_happening.h"
 #include "acme/parallelization/queue.h"
 #include "acme/parallelization/synchronously_keep_bit.h"
@@ -20,7 +19,8 @@
 #include "acme/platform/application.h"
 #include "acme/platform/referencing_debugging.h"
 #include "acme/platform/system.h"
-#include "acme/user/user/message_box.h"
+#include "acme/prototype/collection/atom_map.h"
+#include "acme/prototype/text/text.h"
 
 
 object::~object()
@@ -2029,9 +2029,10 @@ void object::handle_exception(const ::exception& e)
    else if (e.estatus() == error_library_not_found)
    {
 
-      auto pmessagebox = __initialize_new ::acme::user::message_box(e.m_strMessage);
+      auto pmessagebox = createø < ::user_interface::message_box >();
+      pmessagebox->initialize_message_box(e.m_strMessage);
 
-      pmessagebox->display(e_display_normal, {});
+      pmessagebox->display({});
       
       pmessagebox->wait_dialog_response();
 

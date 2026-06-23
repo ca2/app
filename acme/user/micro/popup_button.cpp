@@ -171,9 +171,10 @@ namespace micro
    }
 
 
-   void popup_button::set_dialog_result(const ::payload & payloadResult)
+   void popup_button::set_dialog_response(const ::payload & payloadResult)
    {
 
+      ::user_interface::dialog_implementation::set_dialog_response(payloadResult);
 //      ::dialog_reifier::set_dialog_result(payloadResult);
       //m_payloadPopupButtonResult = payloadResult;
 
@@ -190,7 +191,7 @@ namespace micro
 
       //destroy();
 
-      set_dialog_result(payload);
+      set_dialog_response(payload);
       
       pmouse->m_bRet = true;
       

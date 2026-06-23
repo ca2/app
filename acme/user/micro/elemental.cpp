@@ -215,11 +215,13 @@ namespace micro
          {
 
             pmicropenBorder = micro_theme()->m_ppenBorderFocus;
+
          }
          else
          {
 
             pmicropenBorder = micro_theme()->m_ppenBorder;
+
          }
 
          ::i32_rectangle rectangleX;
@@ -285,7 +287,7 @@ namespace micro
 
          }
 
-         if (pelementalHover)
+         if (pelementalHover && m_pacmeuserinteractionaChildren->contains(pelementalHover))
          {
 
             draw_child(pgraphicscontext, pelementalHover);
@@ -914,37 +916,41 @@ namespace micro
 
       }
 
-      //auto pchild = hit_test(pmouse, ::user::e_zorder_front);
+      auto pchild = acme_hit_test(pmouse, ::user::e_zorder_front);
 
-      //if (pchild)
-      //{
+      if (pchild)
+      {
 
-      //   if (acme_windowing_window()->m_pacmeuserinteractionHover != pchild)
-      //   {
+         pchild->fore_on_mouse_move(pmouse);
 
-      //      if (acme_windowing_window()->m_pacmeuserinteractionHover)
-      //      {
+         if (pmouse->m_bRet)
+         {
 
-      //         acme_windowing_window()->m_pacmeuserinteractionHover->on_mouse_leave();
+            return;
 
-      //      }
+         }
 
-      //      acme_windowing_window()->m_pacmeuserinteractionHover = pchild;
+      }
+      else
+      {
 
-      //      acme_windowing_window()->m_pacmeuserinteractionHover->on_mouse_enter();
+         if (acme_windowing_window()->m_pacmeuserinteractionHover != this)
+         {
 
-      //   }
+            if (acme_windowing_window()->m_pacmeuserinteractionHover)
+            {
 
-      //   pchild->fore_on_mouse_move(pmouse);
+               acme_windowing_window()->m_pacmeuserinteractionHover->on_mouse_leave();
 
-      //   if (pmouse->m_bRet)
-      //   {
+            }
 
-      //      return;
+            acme_windowing_window()->m_pacmeuserinteractionHover = this;
 
-      //   }
+            acme_windowing_window()->m_pacmeuserinteractionHover->on_mouse_enter();
 
-      //}
+         }
+
+      }
 
    }
 
@@ -1009,54 +1015,53 @@ namespace micro
 
    void elemental::back_on_mouse_move(::user::mouse * pmouse)
    {
+      //
+      // if (acme_windowing_window()->m_pacmeuserinteractionMouseCapture
+      //    && acme_windowing_window()->m_pacmeuserinteractionMouseCapture != this)
+      // {
+      //
+      //    ::pointer<::micro::elemental> pelemental;
+      //
+      //    pelemental = acme_windowing_window()->m_pacmeuserinteractionMouseCapture;
+      //
+      //    if (pelemental)
+      //    {
+      //
+      //       pelemental->back_on_mouse_move(pmouse);
+      //
+      //       if (pmouse->m_bRet)
+      //       {
+      //
+      //          return;
+      //
+      //       }
+      //
+      //    }
+      //
+      // }
 
+//      if (drag_on_mouse_move(pmouse))
+      // {
+      //
+      //    return;
+      //
+      // }
 
-      //if (acme_windowing_window()->m_pacmeuserinteractionMouseCapture
-      //   && acme_windowing_window()->m_pacmeuserinteractionMouseCapture != this)
-      //{
+      auto pchild = acme_hit_test(pmouse, ::user::e_zorder_back);
 
-      //   ::pointer<::micro::elemental> pelemental;
+      if (pchild)
+      {
 
-      //   pelemental = acme_windowing_window()->m_pacmeuserinteractionMouseCapture;
+         pchild->back_on_mouse_move(pmouse);
 
-      //   if (pelemental)
-      //   {
+         if (pmouse->m_bRet)
+         {
 
-      //      pelemental->back_on_mouse_move(pmouse);
+            return;
 
-      //      if (pmouse->m_bRet)
-      //      {
+         }
 
-      //         return;
-
-      //      }
-
-      //   }
-
-      //}
-
-      //if (drag_on_mouse_move(pmouse))
-      //{
-
-      //   return;
-
-      //}
-
-      //auto pchild = hit_test(pmouse, ::user::e_zorder_back);
-
-      //if (pchild)
-      //{
-
-      //   pchild->back_on_mouse_move(pmouse);
-
-      //   if (pmouse->m_bRet)
-      //   {
-
-      //      return;
-
-      //   }
-
-      //}
+      }
 
       //return false;
 
@@ -2101,7 +2106,46 @@ namespace micro
    }
 
 
-   //void elemental::set_mouse_capture()
+   bool elemental::on_window_create(void * pCREATESTRUCT)
+   {
+
+      return true;
+
+   }
+
+
+   void elemental::on_window_position(const ::i32_point & point)
+   {
+
+      //information("::acme::user::interaction::on_window_size()");
+
+      m_rectangle.set_top_left(point);
+
+
+   }
+
+
+   void elemental::on_window_size(const ::i32_size & size)
+   {
+
+      //information("::acme::user::interaction::on_window_size()");
+
+      m_rectangle.set_size(size);
+
+
+      on_elemental_layout();
+
+
+   }
+
+
+   void elemental::on_elemental_layout()
+   {
+
+
+   }
+
+   // void elemental::set_mouse_capture()
    //{
 
    //   acme_windowing_window()->set_mouse_capture();

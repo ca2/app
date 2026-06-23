@@ -42,7 +42,7 @@ namespace micro
       void on_draw(::nano::graphics::context* pgraphicscontext) override;
 
 
-      void set_dialog_result(const ::payload& payloadResult) override;
+      void set_dialog_response(const ::payload& payloadResult) override;
 
 
       ::pointer<::operating_system::a_system_menu> create_system_menu(bool bContextual = true) override;

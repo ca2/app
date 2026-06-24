@@ -522,10 +522,10 @@ namespace acme
 
       }
    
-   void window::set_last_present_time()
+   void window::set_last_present_request_time()
    {
       
-      m_timeLastPresent.Now();
+      m_timeLastPresentRequest.Now();
       
    }
 

@@ -927,14 +927,14 @@ namespace user
             else
             {
                
-               auto elapsedSinceLastPresentation = m_puserinteraction->m_pacmewindowingwindow->m_timeLastPresent.elapsed();
-               
-               if(elapsedSinceLastPresentation > timeFrame)
-               {
-                  
-                  return true;
-                  
-               }
+//               auto elapsedSinceLastPresentation = m_puserinteraction->m_pacmewindowingwindow->m_timeLastPresentRequest.elapsed();
+//               
+//               if(elapsedSinceLastPresentation > timeFrame)
+//               {
+//                  
+//                  return true;
+//                  
+//               }
                
                
             }

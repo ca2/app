@@ -97,7 +97,7 @@ namespace acme
 
 
          ::pointer < ::acme::windowing::display >           m_pacmewindowingdisplayWindow;
-         class ::time m_timeLastPresent;
+         class ::time m_timeLastPresentRequest;
 //         long                                               m_lX11NativeVisualId;
 //         ::i32                                                m_lX11MapNotify = -1;
 
@@ -134,7 +134,7 @@ namespace acme
          virtual void set_user_graphics_thread(::user::graphics_thread * pusergraphicsthread);
 
          
-         virtual void set_last_present_time();
+         virtual void set_last_present_request_time();
 
          //bool defer_perform_entire_reposition_process() override;
 

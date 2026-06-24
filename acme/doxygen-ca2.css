@@ -1,6 +1,6 @@
 @import url("https://fonts.googleapis.com/css2?family=Source+Code+Pro:wght@400;600&family=Titillium+Web:wght@300;400;600;700&display=swap");
 
-html {
+:root {
    --font-family-normal: "Titillium Web", "Segoe UI", Helvetica, Arial, sans-serif;
    --font-family-nav: "Titillium Web", "Segoe UI", Helvetica, Arial, sans-serif;
    --font-family-title: "Titillium Web", "Segoe UI", Helvetica, Arial, sans-serif;

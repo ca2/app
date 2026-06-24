@@ -381,7 +381,8 @@ class ::time dialog_implementation::dialog_timeout() const
    bool dialog_implementation::is_waiting_for_dialog_response()
 {
 
-   return !m_pmanualresethappeningDialogResponse->lock(0_s);
+   return m_pmanualresethappeningDialogResponse
+      && !m_pmanualresethappeningDialogResponse->lock(0_s);
 
 
 }
@@ -389,8 +390,13 @@ class ::time dialog_implementation::dialog_timeout() const
 
 void dialog_implementation::on_dialog_finished()
 {
-
-   m_pmanualresethappeningDialogResponse->set_happening();
+   
+   if(m_pmanualresethappeningDialogResponse)
+   {
+      
+      m_pmanualresethappeningDialogResponse->set_happening();
+      
+   }
 
 
 

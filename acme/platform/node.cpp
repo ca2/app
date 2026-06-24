@@ -2413,7 +2413,7 @@ void node::open_internet_link(const ::scoped_string & scopedstrUrl, const ::scop
       auto pmessagebox = createø < ::user_interface::message_box >();
       pmessagebox->initialize_message_box(exception, scopedstrMoreDetails);
       
-      pmessagebox->display({});
+      pmessagebox->display(e_display_normal, {});
       
       pmessagebox->wait_dialog_response();
 
@@ -5290,6 +5290,5 @@ void node_application_send_status(const_char_pointer pszStatus, void * p, ::i64 
    system()->node()->node_application_on_status(pszStatus, p, hi);
    
 }
-
 
 

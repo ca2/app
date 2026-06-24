@@ -169,12 +169,11 @@ CLASS_DECL_ACME ::payload __cpp_assert_failed_line(const_char_pointer pszFileNam
          "ASSERT",
          ::user::e_message_box_cancel_try_continue | ::user::e_message_box_icon_error);
 
-   pmessagebox->display({});
+   pmessagebox->display(e_display_normal, {});
 
    pmessagebox->wait_dialog_response();
 
    return pmessagebox->get_dialog_response();
 
 }
-
 

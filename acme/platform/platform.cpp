@@ -1505,7 +1505,7 @@ g_bWindowingOutputDebugString = true;
          auto pmessagebox = message_box(strMessage, "Library Loading Failure", ::user::e_message_box_ok | ::user::e_message_box_icon_warning,
             strDetails);
 
-         pmessagebox->display({});
+         pmessagebox->display(e_display_normal, {});
 
          throw exception;
 
@@ -1819,7 +1819,6 @@ CLASS_DECL_ACME ::subparticle* refdbg_this()
    return (::subparticle*)::platform::get(); 
 
 }
-
 
 
 

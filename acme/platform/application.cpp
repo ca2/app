@@ -96,7 +96,7 @@ namespace platform
 
       //m_bApplicationFirstRequest = true;
 
-      m_bPostedCommandLineFileOpen = false;
+      //m_bPostedCommandLineFileOpen = false;
 
 
       _001TestSlashedPath();
@@ -638,7 +638,7 @@ namespace platform
          "iCloud is not Available.",
          ::user::e_message_box_ok | ::user::e_message_box_icon_exclamation);
 
-      pmessagebox->display({});
+      pmessagebox->display(e_display_normal, {});
 
       pmessagebox->wait_dialog_response();
 
@@ -1159,10 +1159,10 @@ namespace platform
    void application::process_command_line_options()
    {
 
-      if (!m_bPostedCommandLineFileOpen)
+      if (!m_bPostedApplicationDefaultStartOrFileOpenRequest)
       {
 
-         m_bPostedCommandLineFileOpen = true;
+         m_bPostedApplicationDefaultStartOrFileOpenRequest = true;
 
          auto prequest = application_start_file_open_request();
 
@@ -1678,7 +1678,7 @@ namespace platform
 
       ;
       
-      pmessagebox->display({});
+      pmessagebox->display(e_display_normal, {});
    
       //auto pmessageboxpayload = __initialize_new ::message_box_payload("Are you sure you want to close application?", nullptr, ::user::e_message_box_yes_no);
 
@@ -2321,7 +2321,7 @@ namespace platform
             ::user::e_message_box_ok,
             e.m_strMessage + "\n" + e.m_strDetails);
 
-         pmessagebox->display({});
+         pmessagebox->display(e_display_normal, {});
 
          pmessagebox->wait_dialog_response();
 
@@ -2336,7 +2336,7 @@ namespace platform
             "Application failed to initialize (2). Unknown exception",
             m_strAppName);
 
-         pmessagebox->display({});
+         pmessagebox->display(e_display_normal, {});
 
          pmessagebox->wait_dialog_response();
 
@@ -2390,7 +2390,7 @@ namespace platform
             ::user::e_message_box_ok,
             exception.m_strMessage + "\n\n" + exception.get_consolidated_details(this));
 
-         pmessagebox->display({});
+         pmessagebox->display(e_display_normal, {});
 
          pmessagebox->wait_dialog_response();
 
@@ -2405,7 +2405,7 @@ namespace platform
             "Application failed to initialize (4). Unknown exception",
             m_strAppName);
 
-         pmessagebox->display({});
+         pmessagebox->display(e_display_normal, {});
 
          pmessagebox->wait_dialog_response();
 
@@ -2920,9 +2920,11 @@ namespace platform
 
       strMessage = lines.implode("\n");
 
-      auto linesOperatingSystem = get_operating_system_information_lines();
+      ::string_array straOperatingSystemLines;
+      
+      straOperatingSystemLines = get_operating_system_information_lines();
 
-      ::string strDetails = linesOperatingSystem.implode("\n");
+      ::string strDetails = straOperatingSystemLines.implode("\n");
 
       strDetails.find_replace("<br />", "\n");
       strDetails.find_replace("-#", "");

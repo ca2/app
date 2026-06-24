@@ -50,7 +50,7 @@ void file_context_interface::safe_get_memory(const ::payload& payloadFile, memor
 
       pmessagebox->initialize_message_box(exception, "file_context_interface::safe_get_memory");
 
-      pmessagebox->display({});
+      pmessagebox->display(e_display_normal, {});
 
    }
 
@@ -107,5 +107,4 @@ string_array_base file_context_interface::safe_get_lines(const ::payload& payloa
    return file()->get_file(payloadFile, eopen, ppfileexception);
 
 }
-
 

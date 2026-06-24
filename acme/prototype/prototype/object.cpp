@@ -2032,7 +2032,7 @@ void object::handle_exception(const ::exception& e)
       auto pmessagebox = createø < ::user_interface::message_box >();
       pmessagebox->initialize_message_box(e.m_strMessage);
 
-      pmessagebox->display({});
+      pmessagebox->display(e_display_normal, {});
       
       pmessagebox->wait_dialog_response();
 

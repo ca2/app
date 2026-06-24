@@ -626,9 +626,11 @@ namespace acme
 
             fetch_dark_mode();
 
-            if (!m_papplication->m_bPostedCommandLineFileOpen)
+            if (!m_papplication->m_bPostedApplicationDefaultStartOrFileOpenRequest)
             {
 
+               m_papplication->m_bPostedApplicationDefaultStartOrFileOpenRequest = true;
+               
                auto prequestDefaultStart = create_newø<::request>();
 
                prequestDefaultStart->m_ecommand = e_command_default_start;

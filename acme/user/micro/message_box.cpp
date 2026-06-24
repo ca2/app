@@ -774,7 +774,7 @@ namespace micro
 
          };
 
-      ppopupbutton->display({});
+      ppopupbutton->display(e_display_normal, {});
 
 
       pmouse->m_bRet = true;

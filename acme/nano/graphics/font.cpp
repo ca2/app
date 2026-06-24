@@ -3,6 +3,7 @@
 //
 #include "framework.h"
 #include "font.h"
+#include "font_family.h"
 #include "acme/platform/node.h"
 #include "acme/platform/system.h"
 
@@ -29,7 +30,13 @@ namespace nano
       void font::create_point_font(font_family * pfontfamily, ::f64 fPointSize, bool bBold, bool bItalic, bool bUnderline)
       {
 
-         throw ::interface_only();
+         m_pfontfamily = pfontfamily;
+         m_fFontSize = fPointSize;
+         m_bPixelSize = false;
+         m_bBold = bBold;
+         m_bItalic = bItalic;
+         m_bUnderline = bUnderline;
+         //throw ::interface_only();
 
          //::pointer<::nano::graphics::font>pfont(e_create, pparticle, nullptr);
 
@@ -45,7 +52,13 @@ namespace nano
       void font::create_pixel_font(font_family * pfontfamily, ::f64 fPixelSize, bool bBold, bool bItalic, bool bUnderline)
       {
 
-         throw ::interface_only();
+         m_pfontfamily = pfontfamily;
+         m_fFontSize = fPixelSize;
+         m_bPixelSize = true;
+         m_bBold = bBold;
+         m_bItalic = bItalic;
+         m_bUnderline = bUnderline;
+//         throw ::interface_only();
 
          //::pointer<::nano::graphics::font>pfont(e_create, pparticle, nullptr);
 

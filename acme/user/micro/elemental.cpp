@@ -1745,19 +1745,24 @@ namespace micro
    {
 
       ::collection::count c = 0;
-
-      for (auto & pinteraction : *m_pacmeuserinteractionaChildren)
+      
+      if(m_pacmeuserinteractionaChildren)
       {
-
-         auto pbutton = pinteraction.cast<::micro::button>();
-
-         if (pbutton)
+         
+         for (auto & pinteraction : *m_pacmeuserinteractionaChildren)
          {
-
-            c++;
-
+            
+            auto pbutton = pinteraction.cast<::micro::button>();
+            
+            if (pbutton)
+            {
+               
+               c++;
+               
+            }
+            
          }
-
+         
       }
 
       return c;

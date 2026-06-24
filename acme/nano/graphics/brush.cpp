@@ -31,8 +31,8 @@ brush::~brush()
 void brush::create_solid_brush(const ::color::color& color)
 {
 
-
-   throw ::interface_only();
+   m_color = color;
+   //throw ::interface_only();
 
 
 }

@@ -65,7 +65,7 @@ namespace just_message_box
 
             };
             
-            pmessageboxNo->display({});
+            pmessageboxNo->display(e_display_normal, {});
 
          }
          else if (pmessagebox->get_dialog_response() == e_dialog_result_yes)
@@ -82,13 +82,13 @@ namespace just_message_box
 
                };
             
-            pmessageboxYes->display({});
+            pmessageboxYes->display(e_display_normal, {});
 
          }
 
       };
       
-      pmessageboxMain->display({});
+      pmessageboxMain->display(e_display_normal, {});
 
       //post(pmessageboxpayload);
 

@@ -1195,7 +1195,7 @@ void task::main()
       auto pmessagebox = createø < ::user_interface::message_box >();
       pmessagebox->initialize_message_box(exception, application()->m_strAppId, exception.m_strDetails);
       
-      pmessagebox->display({});
+      pmessagebox->display(e_display_normal, {});
       
       pmessagebox->wait_dialog_response();
 
@@ -1356,7 +1356,7 @@ void task::run_main_loop()
 
       auto pmessagebox = message_box(exception, strMoreDetails);
       
-      pmessagebox->display({});
+      pmessagebox->display(e_display_normal, {});
       
       pmessagebox->wait_dialog_response();
       

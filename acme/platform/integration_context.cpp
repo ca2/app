@@ -262,7 +262,7 @@ namespace integration
          auto pmessagebox = createø < ::user_interface::message_box >();
          pmessagebox->initialize_message_box("Command :\n\"" + scopedstrCommand + "\"\n\nFailed with code : \"" + ::as_string(iExitCode) + "\"");
 
-         pmessagebox->display({});
+         pmessagebox->display(e_display_normal, {});
 
          pmessagebox->wait_dialog_response();
 
@@ -966,4 +966,3 @@ namespace integration
 
 
 } // namespace integration
-

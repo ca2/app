@@ -7,7 +7,8 @@
 //  match OPERATING_SYSTEM_NAMESPACE::create_*host*_window() naming.)
 // as acme::sandbox_windowing on 2024-11-25 23:25 by
 // camilo <3ThomasBorregaardSorensen!!
-#include "../../user/interface/message_box.h"
+#include "framework.h"
+#include "acme/user/interface/message_box.h"
 #include "_sandbox.h"
 #include "acme/constant/id.h"
 #include "acme/platform/application.h"
@@ -15,7 +16,6 @@
 #include "acme/user/micro/popup_button.h"
 #include "acme/user/user/activation_token.h"
 #include "acme/user/user/mouse.h"
-#include "framework.h"
 
 
 namespace acme

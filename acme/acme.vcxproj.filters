@@ -478,6 +478,18 @@
     <Filter Include="Source Files\constant">
       <UniqueIdentifier>{2a59b37b-105a-42f2-ac4c-19d7d30f87c9}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Source Files\user\implementation">
+      <UniqueIdentifier>{055385a6-8836-47ad-8deb-5adbe4622b97}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\user\interface">
+      <UniqueIdentifier>{26870b1d-b531-49e9-9f3c-9ef3ba9a64bf}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\user\implementation">
+      <UniqueIdentifier>{d1ad36d3-29f3-416c-b57f-97bbabc2fa3f}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\user\interface">
+      <UniqueIdentifier>{a233bc3b-7e54-4302-8173-ff5b26ebfbef}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="filesystem\filesystem.h">
@@ -3903,9 +3915,6 @@
     <ClInclude Include="prototype\collection\procedure_array.h">
       <Filter>Header Files\prototype\collection</Filter>
     </ClInclude>
-    <ClInclude Include="user\user\message_box.h">
-      <Filter>Header Files\user\user</Filter>
-    </ClInclude>
     <ClInclude Include="parallelization\task_context.h">
       <Filter>Header Files\parallelization</Filter>
     </ClInclude>
@@ -4397,6 +4406,18 @@
     </ClInclude>
     <ClInclude Include="user\user\shortcut_key.h">
       <Filter>Header Files\user\user</Filter>
+    </ClInclude>
+    <ClInclude Include="user\interface\message_box.h">
+      <Filter>Header Files\user\interface</Filter>
+    </ClInclude>
+    <ClInclude Include="user\interface\dialog.h">
+      <Filter>Header Files\user\interface</Filter>
+    </ClInclude>
+    <ClInclude Include="user\implementation\message_box_implementation.h">
+      <Filter>Header Files\user\implementation</Filter>
+    </ClInclude>
+    <ClInclude Include="user\implementation\dialog_implementation.h">
+      <Filter>Header Files\user\implementation</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -5134,9 +5155,6 @@
     </ClCompile>
     <ClCompile Include="operating_system\console_client.cpp">
       <Filter>Source Files\operating_system</Filter>
-    </ClCompile>
-    <ClCompile Include="platform\message_box.cpp">
-      <Filter>Source Files\platform</Filter>
     </ClCompile>
     <ClCompile Include="operating_system\error_code.cpp">
       <Filter>Source Files\operating_system</Filter>
@@ -5927,9 +5945,6 @@
     <ClCompile Include="prototype\collection\procedure_array.cpp">
       <Filter>Source Files\prototype\collection</Filter>
     </ClCompile>
-    <ClCompile Include="user\user\message_box.cpp">
-      <Filter>Source Files\user\user</Filter>
-    </ClCompile>
     <ClCompile Include="operating_system\dynamic_library.cpp">
       <Filter>Source Files\operating_system</Filter>
     </ClCompile>
@@ -6334,6 +6349,18 @@
     </ClCompile>
     <ClCompile Include="nano\graphics\font_family.cpp">
       <Filter>Source Files\nano\graphics</Filter>
+    </ClCompile>
+    <ClCompile Include="user\interface\dialog.cpp">
+      <Filter>Source Files\user\interface</Filter>
+    </ClCompile>
+    <ClCompile Include="user\interface\message_box.cpp">
+      <Filter>Source Files\user\interface</Filter>
+    </ClCompile>
+    <ClCompile Include="user\implementation\dialog_implementation.cpp">
+      <Filter>Source Files\user\implementation</Filter>
+    </ClCompile>
+    <ClCompile Include="user\implementation\message_box_implementation.cpp">
+      <Filter>Source Files\user\implementation</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

@@ -5,11 +5,11 @@
 //  Created by Camilo Sasuke Thomas Borregaard Soerensen on 01/Oct/22. 00:59
 //  Copyright (c) 2022 Camilo Sasuke Thomas Borregaard Soerensen. All rights reserved.
 //
+#include "framework.h"
 #include "message_box.h"
 #include "acme/handler/sequence.h"
 #include "acme/platform/application.h"
 #include "acme/platform/node.h"
-#include "framework.h"
 //#include "acme/handler/sequence.h"
 #include "acme/nano/graphics/icon.h"
 #include "acme/user/micro/theme.h"

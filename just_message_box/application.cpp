@@ -1,7 +1,7 @@
-#include "application.h"
-#include "../acme/user/interface/message_box.h"
-#include "acme/handler/request.h"
 #include "framework.h"
+#include "application.h"
+#include "acme/user/interface/message_box.h"
+#include "acme/handler/request.h"
 
 
 __IMPLEMENT_APPLICATION_RELEASE_TIME(just_message_box);

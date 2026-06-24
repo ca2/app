@@ -315,7 +315,7 @@ namespace account
 
       //set_timer(2000, 300_ms, nullptr);
 
-      atom idResult = wait_for_dialog_result();
+      atom idResult = wait_for_dialog_response();
 
       return idResult;
 

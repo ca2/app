@@ -1,7 +1,7 @@
 #pragma once
 
 
-#include "dialog.h"
+#include "core/user/userex/dialog.h"
 ////#include "acme/exception/exception.h"
 
 
@@ -10,7 +10,7 @@ namespace userex
 
 
    class CLASS_DECL_CORE failure_dialog :
-      virtual public ::dialog
+      virtual public ::userex::dialog
    {
    public:
 

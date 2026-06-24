@@ -1,3 +1,4 @@
+#include "framework.h"
 #include "task.h"
 #include "../user/interface/message_box.h"
 #include "acme/_operating_system.h"
@@ -20,7 +21,6 @@
 #include "acme/platform/system.h"
 #include "acme/user/user/interaction.h"
 #include "acme/windowing/window.h"
-#include "framework.h"
 #include "manual_reset_happening.h"
 #include "wait_for_end_of_sequence.h"
 #include "waiting_call.h"

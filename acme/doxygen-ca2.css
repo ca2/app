@@ -1,0 +1,240 @@
+@import url("https://fonts.googleapis.com/css2?family=Source+Code+Pro:wght@400;600&family=Titillium+Web:wght@300;400;600;700&display=swap");
+
+html {
+   --font-family-normal: "Titillium Web", "Segoe UI", Helvetica, Arial, sans-serif;
+   --font-family-nav: "Titillium Web", "Segoe UI", Helvetica, Arial, sans-serif;
+   --font-family-title: "Titillium Web", "Segoe UI", Helvetica, Arial, sans-serif;
+   --font-family-toc: "Titillium Web", "Segoe UI", Helvetica, Arial, sans-serif;
+   --font-family-search: "Titillium Web", "Segoe UI", Helvetica, Arial, sans-serif;
+   --font-family-monospace: "Source Code Pro", Consolas, Monaco, monospace;
+
+   --page-background-color: #f4f6f7;
+   --page-foreground-color: #202428;
+   --page-link-color: #176fa8;
+   --page-visited-link-color: #176fa8;
+   --page-external-link-color: #225e85;
+   --header-background-color: #e9edef;
+   --header-separator-color: #c4ccd1;
+   --group-header-separator-color: #c4ccd1;
+   --group-header-color: #155f91;
+   --title-background-color: #f4f6f7;
+   --title-separator-color: #c4ccd1;
+   --nav-background-color: #e9edef;
+   --nav-foreground-color: #26323a;
+   --nav-border-color: #c4ccd1;
+   --nav-breadcrumb-active-bg: #dbe4e9;
+   --nav-breadcrumb-color: #155f91;
+   --nav-menu-background-color: #f4f6f7;
+   --nav-menu-foreground-color: #26323a;
+   --nav-menu-active-bg: #dbe4e9;
+   --nav-menu-active-color: #176fa8;
+   --search-background-color: #ffffff;
+   --search-active-color: #202428;
+   --search-box-border-color: #aeb9c0;
+   --memdecl-background-color: #edf1f3;
+   --memdecl-foreground-color: #354049;
+   --memdecl-border-color: #cbd3d8;
+   --memdef-border-color: #aebac2;
+   --memdef-title-background-color: #dfe7eb;
+   --memdef-proto-background-color: #e9eef1;
+   --memdef-proto-text-color: #202428;
+   --table-cell-border-color: #7f909b;
+   --table-header-background-color: #34434c;
+   --table-header-foreground-color: #ffffff;
+   --fragment-background-color: #ffffff;
+   --fragment-foreground-color: #202428;
+   --fragment-border-color: #c4ccd1;
+   --blockquote-background-color: #e8eef2;
+   --blockquote-border-color: #54a7df;
+   --scrollbar-thumb-color: #9daab2;
+   --scrollbar-background-color: #e9edef;
+}
+
+@media (prefers-color-scheme: dark) {
+   html:not(.light-mode) {
+      --page-background-color: #202326;
+      --page-foreground-color: #f2f5f7;
+      --page-link-color: #56a8e8;
+      --page-visited-link-color: #79b9e8;
+      --page-external-link-color: #81bee9;
+      --index-odd-item-bg-color: #292d31;
+      --index-even-item-bg-color: #24282b;
+      --index-header-color: #f2f5f7;
+      --index-separator-color: #4a5158;
+      --header-background-color: #17191b;
+      --header-separator-color: #4a5158;
+      --group-header-separator-color: #4a5158;
+      --group-header-color: #72b8ea;
+      --title-background-color: #202326;
+      --title-separator-color: #4a5158;
+      --nav-background-color: #25292c;
+      --nav-foreground-color: #e1e7eb;
+      --nav-border-color: #4a5158;
+      --nav-breadcrumb-active-bg: #34393e;
+      --nav-breadcrumb-color: #72b8ea;
+      --nav-menu-background-color: #292d31;
+      --nav-menu-foreground-color: #e1e7eb;
+      --nav-menu-active-bg: #173f5e;
+      --nav-menu-active-color: #ffffff;
+      --search-background-color: #292d31;
+      --search-foreground-color: #b8c0c7;
+      --search-active-color: #ffffff;
+      --search-box-border-color: #4a5158;
+      --memdecl-background-color: #292d31;
+      --memdecl-foreground-color: #d8dfe4;
+      --memdecl-border-color: #4a5158;
+      --memdef-border-color: #56616a;
+      --memdef-title-background-color: #34393e;
+      --memdef-proto-background-color: #292d31;
+      --memdef-proto-text-color: #f2f5f7;
+      --table-cell-border-color: #56616a;
+      --table-header-background-color: #34393e;
+      --table-header-foreground-color: #ffffff;
+      --fragment-background-color: #171a1d;
+      --fragment-foreground-color: #edf1f3;
+      --fragment-border-color: #4a5158;
+      --blockquote-background-color: #252f36;
+      --blockquote-border-color: #56a8e8;
+      --scrollbar-thumb-color: #56616a;
+      --scrollbar-background-color: #202326;
+   }
+}
+
+html.dark-mode {
+   --page-background-color: #202326;
+   --page-foreground-color: #f2f5f7;
+   --page-link-color: #56a8e8;
+   --page-visited-link-color: #79b9e8;
+   --header-background-color: #17191b;
+   --header-separator-color: #4a5158;
+   --title-background-color: #202326;
+   --title-separator-color: #4a5158;
+   --nav-background-color: #25292c;
+   --nav-foreground-color: #e1e7eb;
+   --nav-border-color: #4a5158;
+   --fragment-background-color: #171a1d;
+   --fragment-foreground-color: #edf1f3;
+   --fragment-border-color: #4a5158;
+}
+
+body,
+table,
+div,
+p,
+dl {
+   letter-spacing: 0;
+}
+
+#projectname {
+   font-size: 25px;
+   font-weight: 700;
+}
+
+#projectbrief {
+   color: var(--page-foreground-color);
+   font-size: 15px;
+   font-weight: 300;
+}
+
+div.header,
+#titlearea {
+   box-shadow: none;
+}
+
+div.contents {
+   max-width: none;
+   margin: 18px 28px 32px;
+}
+
+.title {
+   font-size: 32px;
+   font-weight: 700;
+}
+
+.ca2-quick-links {
+   display: grid;
+   grid-template-columns: repeat(4, minmax(150px, 1fr));
+   gap: 1px;
+   margin: 24px 0 28px;
+   border: 1px solid var(--nav-border-color);
+   background: var(--nav-border-color);
+}
+
+.ca2-quick-link {
+   display: block;
+   min-width: 0;
+   padding: 15px 16px;
+   color: var(--page-foreground-color);
+   background: var(--header-background-color);
+}
+
+.ca2-quick-link:hover {
+   background: var(--nav-breadcrumb-active-bg);
+}
+
+.ca2-quick-link strong,
+.ca2-quick-link span {
+   display: block;
+}
+
+.ca2-quick-link strong {
+   font-size: 17px;
+}
+
+.ca2-quick-link span {
+   margin-top: 2px;
+   color: var(--memdecl-foreground-color);
+   font-size: 14px;
+}
+
+.ca2-architecture {
+   display: grid;
+   grid-template-columns: repeat(5, minmax(130px, 1fr));
+   gap: 8px;
+   margin: 14px 0 26px;
+}
+
+.ca2-layer {
+   display: block;
+   min-width: 0;
+   padding: 12px;
+   color: var(--page-foreground-color);
+   background: var(--header-background-color);
+   border-left: 3px solid var(--page-link-color);
+}
+
+.ca2-layer strong,
+.ca2-layer span {
+   display: block;
+}
+
+.ca2-layer span {
+   margin-top: 3px;
+   color: var(--memdecl-foreground-color);
+   font-size: 13px;
+}
+
+table.markdownTable {
+   width: 100%;
+}
+
+@media (max-width: 900px) {
+   div.contents {
+      margin: 14px 16px 26px;
+   }
+
+   .ca2-quick-links {
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+   }
+
+   .ca2-architecture {
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+   }
+}
+
+@media (max-width: 520px) {
+   .ca2-quick-links,
+   .ca2-architecture {
+      grid-template-columns: 1fr;
+   }
+}

@@ -1360,6 +1360,14 @@ void directory_system::change_current(const ::file::path & path)
 }
 
 
+void directory_system::change_current_compatibility(const ::file::path& path)
+{
+
+   change_current(path);
+
+}
+
+
 void directory_system::set_current(const ::file::path& path)
 {
 

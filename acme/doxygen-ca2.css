@@ -52,6 +52,12 @@
 
 @media (prefers-color-scheme: dark) {
    html:not(.light-mode) {
+      --font-family-normal: "Titillium Web", "Segoe UI", Helvetica, Arial, sans-serif;
+      --font-family-nav: "Titillium Web", "Segoe UI", Helvetica, Arial, sans-serif;
+      --font-family-title: "Titillium Web", "Segoe UI", Helvetica, Arial, sans-serif;
+      --font-family-toc: "Titillium Web", "Segoe UI", Helvetica, Arial, sans-serif;
+      --font-family-search: "Titillium Web", "Segoe UI", Helvetica, Arial, sans-serif;
+      --font-family-monospace: "Source Code Pro", Consolas, Monaco, monospace;
       --page-background-color: #202326;
       --page-foreground-color: #f2f5f7;
       --page-link-color: #56a8e8;
@@ -101,6 +107,12 @@
 }
 
 html.dark-mode {
+   --font-family-normal: "Titillium Web", "Segoe UI", Helvetica, Arial, sans-serif;
+   --font-family-nav: "Titillium Web", "Segoe UI", Helvetica, Arial, sans-serif;
+   --font-family-title: "Titillium Web", "Segoe UI", Helvetica, Arial, sans-serif;
+   --font-family-toc: "Titillium Web", "Segoe UI", Helvetica, Arial, sans-serif;
+   --font-family-search: "Titillium Web", "Segoe UI", Helvetica, Arial, sans-serif;
+   --font-family-monospace: "Source Code Pro", Consolas, Monaco, monospace;
    --page-background-color: #202326;
    --page-foreground-color: #f2f5f7;
    --page-link-color: #56a8e8;
@@ -219,6 +231,14 @@ table.markdownTable {
 }
 
 @media (max-width: 900px) {
+   #side-nav {
+      display: none !important;
+   }
+
+   #doc-content {
+      margin-left: 0 !important;
+   }
+
    div.contents {
       margin: 14px 16px 26px;
    }

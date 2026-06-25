@@ -10810,7 +10810,7 @@ void window::on_keyboard_layout_change(const_char_pointer pszKeyboardLayoutId)
          }
          
          auto elapsed1 = time1.elapsed();
-         informationf("draw_frame elapsed1 %0.2f", elapsed1.floating_millisecond());
+         //informationf("draw_frame elapsed1 %0.2f", elapsed1.floating_millisecond());
 
          class ::time time2;
          time2.Now();
@@ -10821,17 +10821,17 @@ void window::on_keyboard_layout_change(const_char_pointer pszKeyboardLayoutId)
             [this, pgraphics, time2]()
             {
                auto elapsed21 = time2.elapsed();
-               informationf("draw_frame elapsed2.1 %0.2f", elapsed21.floating_millisecond());
+               //informationf("draw_frame elapsed2.1 %0.2f", elapsed21.floating_millisecond());
                class ::time time22;
                time22.Now();
                frame_layout_stage(pgraphics);
                auto elapsed22 = time22.elapsed();
-               informationf("draw_frame elapsed2.2 %0.2f", elapsed22.floating_millisecond());
+               //informationf("draw_frame elapsed2.2 %0.2f", elapsed22.floating_millisecond());
 
             });
 
          auto elapsed2 = time2.elapsed();
-         informationf("draw_frame elapsed2 %0.2f", elapsed2.floating_millisecond());
+         //informationf("draw_frame elapsed2 %0.2f", elapsed2.floating_millisecond());
 
          // draw_on_context();
 
@@ -11182,7 +11182,7 @@ slGraphics.unlock();
 
          
          auto elapsed3 = time3.elapsed();
-         information("draw_frame elapsed3 %0.2f", elapsed3.floating_millisecond());
+         //information("draw_frame elapsed3 %0.2f", elapsed3.floating_millisecond());
 
           //draw2dlock.unlock();
 
@@ -11204,12 +11204,12 @@ slGraphics.unlock();
 
               //m_pgraphicscontextDrawFrame->m_pgraphics->start_layer(m_pgraphicscontextDrawFrame);
                auto elapsed41 = time4.elapsed();
-               informationf("draw_frame elapsed4.1 %0.2f", elapsed41.floating_millisecond());
+               //informationf("draw_frame elapsed4.1 %0.2f", elapsed41.floating_millisecond());
                class ::time time42;
                time42.Now();
               frame_draw_stage(pgraphics);
                auto elapsed42 = time42.elapsed();
-               informationf("draw_frame elapsed4.2 %0.2f", elapsed42.floating_millisecond());
+               //informationf("draw_frame elapsed4.2 %0.2f", elapsed42.floating_millisecond());
 
               m_sizeLastBuffer = pbufferitem->m_sizeBufferItem;
 
@@ -11484,7 +11484,7 @@ slGraphics.unlock();
          
          
          auto elapsed4 = time4.elapsed();
-         informationf("draw_frame elapsed4 %0.2f", elapsed4.floating_millisecond());
+         //informationf("draw_frame elapsed4 %0.2f", elapsed4.floating_millisecond());
 
 
       //}

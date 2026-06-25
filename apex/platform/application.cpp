@@ -1097,7 +1097,7 @@ void application::setResourceName(::i32 iId, const ::scoped_string &scopedstrRes
       //information() << "apex::application::on_prepare_application going to create_impact_system";
 
       // auto estatus =
-      create_impact_system();
+      //create_impact_system();
 
       // if (failed(estatus))
       //{

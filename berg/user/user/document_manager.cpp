@@ -970,10 +970,19 @@ namespace user
    }
 
 
-   void document_manager::add_impact_system(const ::atom & atom, const ::pointer < ::user::impact_system > & pimpactsystem)
+   void document_manager::add_impact_system(const ::atom & atom, const ::pointer < ::user::impact_system > & pimpactsystemNew)
    {
 
-      __impact_system(atom) = pimpactsystem;
+      auto &pimpactsystem = __impact_system(atom);
+
+      if (pimpactsystem)
+      {
+
+         throw ::exception(error_wrong_state);
+
+      }
+
+      pimpactsystem = pimpactsystemNew;
 
       on_add_impact_system(atom);
 

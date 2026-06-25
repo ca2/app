@@ -288,6 +288,7 @@ public:
 
    virtual ::file::path current();
    virtual void change_current(const ::file::path & path);
+   virtual void change_current_compatibility(const ::file::path& path);
    virtual void set_current(const ::file::path& path);
    virtual void change_to_home();
 

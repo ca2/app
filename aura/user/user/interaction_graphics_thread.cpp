@@ -1323,7 +1323,7 @@ namespace user
             timeDrawFrame.Now();
             pwindow->draw_frame();
             auto fMillis = timeDrawFrame.elapsed().floating_millisecond();
-            informationf("draw_frame took %0.2f ms", fMillis);
+            //informationf("draw_frame took %0.2f ms", fMillis);
 
             //m_puserinteraction->windowing_window()->do_graphics(e_graphics_draw);
 

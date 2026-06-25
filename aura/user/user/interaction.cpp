@@ -22629,6 +22629,12 @@ if(get_parent())
 
       pwindow->set_user_thread(puserthread);
 
+      ::string strTaskName = puserthread->task_get_name();
+
+      auto pszTaskName = strTaskName.c_str();
+
+      auto iId = puserthread->m_itask.m_i;
+
       ::pointer<::user::graphics_thread> pusergraphicsthread;
 
       if (is_graphical())

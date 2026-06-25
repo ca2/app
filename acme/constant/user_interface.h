@@ -1,5 +1,5 @@
 //
-//  lightui.h
+//  user_interface.h
 //  acme
 //
 //  Created by Camilo Sasuke Thomas Borregaard Sørensen
@@ -9,7 +9,7 @@
 
 
 
-namespace lightui
+namespace user_interface
 {
 
 enum enum_notification
@@ -29,9 +29,12 @@ e_SWP_NOACTIVATE =  0x0010,
    
 };
 
-enum enum_SW
+enum enum_show_window
 {
-e_SW_HIDE =      0,
+   
+   e_show_window_hide = 0,
+   e_show_window_show_normal = 1,
+   
    
 };
 
@@ -49,4 +52,4 @@ enum enum_MK : unsigned int
 
 
 
-} // namespace lightui
+} // namespace user_interface

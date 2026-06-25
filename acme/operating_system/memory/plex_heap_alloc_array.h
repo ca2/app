@@ -1,0 +1,49 @@
+#pragma once
+
+
+class plex_heap_alloc;
+
+
+class CLASS_DECL_ACME plex_heap_alloc_array :
+   public ::array < plex_heap_alloc *, plex_heap_alloc *, ::typed::def < plex_heap_alloc*  >, ::heap::operating_system_typed_memory < plex_heap_alloc * > >
+{
+public:
+
+
+   ::heap::allocator * m_pallocator;
+   ::heap::enum_memory m_ememory;
+
+
+   plex_heap_alloc_array(::heap::allocator * pallocator, ::heap::enum_memory ememory);
+   ~plex_heap_alloc_array();
+
+
+   plex_heap_alloc * find(memsize nAllocSize);
+
+
+   void * _alloc(memsize size, memsize * psizeAllocated);
+   void * _realloc(void * p, memsize nAllocSize, memsize nOldAllocSize, ::i32 align);
+   void _free(void * p, memsize nAllocSize);
+
+   void pre_finalize();
+
+   void * alloc_debug(memsize nAllocSize, memsize * psizeAllocated, ::i32 nBlockUse, const_char_pointer szFileName, ::i32 iLine);
+   void * realloc_debug(void * p, memsize nAllocSize, memsize nOldAllocSize, ::i32 align, ::i32 nBlockUse, const_char_pointer szFileName, ::i32 iLine);
+   void free_debug(void * p, memsize nAllocSize);
+
+   //static plex_heap_alloc_array * new_plex_heap_alloc_array(::heap::allocator * pallocator, ::heap::enum_memory ememory);
+
+   //static void delete_plex_heap_alloc_array(plex_heap_alloc_array * p);
+
+
+   //plex_heap_alloc * new_plex_heap_alloc(memsize nAllocSize, ::u32 nBlockSize = 64);
+   //void delete_plex_heap_alloc(plex_heap_alloc * pplexheapalloc);
+
+
+};
+
+
+
+
+
+

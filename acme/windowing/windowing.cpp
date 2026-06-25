@@ -168,6 +168,8 @@ namespace acme
       {
 
          //system()->defer_post_initial_request();
+         
+         on_activate();
 
       }
 
@@ -1250,7 +1252,7 @@ namespace acme
       }
 
    
-//   void windowing::on_user_command(::uptr u, ::lightui::enum_notification enotification, ::uptr uControl)
+//   void windowing::on_user_command(::uptr u, ::user_interface::enum_notification enotification, ::uptr uControl)
 //   
 //   {
 //      
@@ -1279,9 +1281,9 @@ namespace windowing
 } // namespace windowing
 
 
-#include "acme/constant/lightui.h"
+#include "acme/constant/user_interface.h"
 
-//void ns_on_user_command(::uptr u, ::lightui::enum_notification enotification, ::uptr uControl)
+//void ns_on_user_command(::uptr u, ::user_interface::enum_notification enotification, ::uptr uControl)
 //{
 //   
 //   ::wparam wparam;

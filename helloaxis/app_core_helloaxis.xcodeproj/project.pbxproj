@@ -7,141 +7,141 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		070533EF1C90B2CF00F31B3F /* libgcom.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 070533E61C90B2A100F31B3F /* libgcom.dylib */; };
-		07473E601B5050B8004688C5 /* helloaxis_switcher_impact.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 076D09F11A3FC72C007432B6 /* helloaxis_switcher_impact.cpp */; };
-		07473E641B5050B8004688C5 /* helloaxis_main_impact.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9AA1008C19971FCE004F84BD /* helloaxis_main_impact.cpp */; };
-		076D09FB1A3FC72C007432B6 /* helloaxis_switcher_impact.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 076D09F11A3FC72C007432B6 /* helloaxis_switcher_impact.cpp */; };
-		076D09FC1A3FC72C007432B6 /* helloaxis_switcher_impact.h in Headers */ = {isa = PBXBuildFile; fileRef = 076D09F21A3FC72C007432B6 /* helloaxis_switcher_impact.h */; };
-		07A4B1371B76469200DA5C57 /* helloaxis_render.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 07FB1AA21B744E8800F3FCC1 /* helloaxis_render.cpp */; };
-		07A684EC17F0E06700C41DE6 /* helloaxis_application.h in Headers */ = {isa = PBXBuildFile; fileRef = 07A684E617F0E06700C41DE6 /* helloaxis_application.h */; };
-		07A684ED17F0E06700C41DE6 /* helloaxis_document.h in Headers */ = {isa = PBXBuildFile; fileRef = 07A684E717F0E06700C41DE6 /* helloaxis_document.h */; };
-		07A684EE17F0E06700C41DE6 /* helloaxis_frame.h in Headers */ = {isa = PBXBuildFile; fileRef = 07A684E817F0E06700C41DE6 /* helloaxis_frame.h */; };
-		07A684EF17F0E06700C41DE6 /* aaa_want_to_erase_helloaxis_impact_update_hint.h in Headers */ = {isa = PBXBuildFile; fileRef = 07A684E917F0E06700C41DE6 /* aaa_want_to_erase_helloaxis_impact_update_hint.h */; };
-		07A684F017F0E06700C41DE6 /* helloaxis_pane_impact.h in Headers */ = {isa = PBXBuildFile; fileRef = 07A684EA17F0E06700C41DE6 /* helloaxis_pane_impact.h */; };
-		07A684F117F0E06700C41DE6 /* helloaxis_impact.h in Headers */ = {isa = PBXBuildFile; fileRef = 07A684EB17F0E06700C41DE6 /* helloaxis_impact.h */; };
-		07AE494E1CC7A83F00959A6F /* helloaxis_gcom.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 07AE494A1CC7A83F00959A6F /* helloaxis_gcom.cpp */; };
-		07AE494F1CC7A83F00959A6F /* helloaxis_gcom.h in Headers */ = {isa = PBXBuildFile; fileRef = 07AE494B1CC7A83F00959A6F /* helloaxis_gcom.h */; };
-		07AE49501CC7A83F00959A6F /* helloaxis_impact_base.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 07AE494C1CC7A83F00959A6F /* helloaxis_impact_base.cpp */; };
-		07AE49511CC7A83F00959A6F /* helloaxis_impact_base.h in Headers */ = {isa = PBXBuildFile; fileRef = 07AE494D1CC7A83F00959A6F /* helloaxis_impact_base.h */; };
-		07B65520190F3001002DAADE /* framework.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9AEB75BE16F78E600085103B /* framework.cpp */; };
-		07B65521190F3001002DAADE /* helloaxis_application.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9AEB75C916F78E600085103B /* helloaxis_application.cpp */; };
-		07B65522190F3001002DAADE /* helloaxis_document.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9AEB75CA16F78E600085103B /* helloaxis_document.cpp */; };
-		07B65523190F3001002DAADE /* helloaxis_frame.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9AEB75CB16F78E600085103B /* helloaxis_frame.cpp */; };
-		07B65524190F3001002DAADE /* helloaxis_pane_impact.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9AEB75CC16F78E600085103B /* helloaxis_pane_impact.cpp */; };
-		07B65525190F3001002DAADE /* aaa_want_to_erase_helloaxis_impact_update_hint.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9AEB75CD16F78E600085103B /* aaa_want_to_erase_helloaxis_impact_update_hint.cpp */; };
-		07B65526190F3001002DAADE /* helloaxis_impact.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9AEB75CE16F78E600085103B /* helloaxis_impact.cpp */; };
-		07FB1AA41B744E8800F3FCC1 /* helloaxis_render.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 07FB1AA21B744E8800F3FCC1 /* helloaxis_render.cpp */; };
-		07FB1AA51B744E8800F3FCC1 /* helloaxis_render.h in Headers */ = {isa = PBXBuildFile; fileRef = 07FB1AA31B744E8800F3FCC1 /* helloaxis_render.h */; };
-		9A6716B61D155B860069A961 /* helloaxis_main_frame.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A72594A1D1403E6001F56B4 /* helloaxis_main_frame.cpp */; };
-		9A6716B71D155B860069A961 /* helloaxis_gcom.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 07AE494A1CC7A83F00959A6F /* helloaxis_gcom.cpp */; };
-		9A6716B81D155B860069A961 /* helloaxis_impact_base.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 07AE494C1CC7A83F00959A6F /* helloaxis_impact_base.cpp */; };
-		9A72594C1D1403E6001F56B4 /* helloaxis_main_frame.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A72594A1D1403E6001F56B4 /* helloaxis_main_frame.cpp */; };
-		9A72594D1D1403E6001F56B4 /* helloaxis_main_frame.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A72594B1D1403E6001F56B4 /* helloaxis_main_frame.h */; };
-		9A8C49451F6069A8004A5BA4 /* libace.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 9A8C49441F6069A8004A5BA4 /* libace.dylib */; };
-		9A920FD81F3BF68500CD9D94 /* libcore.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 9A920FD71F3BF68500CD9D94 /* libcore.dylib */; };
-		9A920FDC1F3BF69300CD9D94 /* libsphere.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 9A920FDB1F3BF69300CD9D94 /* libsphere.dylib */; };
-		9AA1009019971FCE004F84BD /* helloaxis_main_impact.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9AA1008C19971FCE004F84BD /* helloaxis_main_impact.cpp */; };
-		9AA1009119971FCE004F84BD /* helloaxis_main_impact.h in Headers */ = {isa = PBXBuildFile; fileRef = 9AA1008D19971FCE004F84BD /* helloaxis_main_impact.h */; };
-		9ACE47D61D2041A300A1E0AD /* libaura.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 9ACE47D51D2041A300A1E0AD /* libaura.dylib */; };
-		9ACE47DA1D2041AE00A1E0AD /* libaxis.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 9ACE47D91D2041AE00A1E0AD /* libaxis.dylib */; };
-		9ACE47DC1D2041B800A1E0AD /* libberg.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 9ACE47DB1D2041B800A1E0AD /* libberg.dylib */; };
-		9ACE47DE1D2041E400A1E0AD /* libpcre.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 9ACE47DD1D2041E400A1E0AD /* libpcre.dylib */; };
-		9AE24EA11904CFFD001AEFFB /* libapp_core_helloaxis.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 9AE24E8A1904CFFD001AEFFB /* libapp_core_helloaxis.a */; };
-		9AE24EA71904CFFD001AEFFB /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 9AE24EA51904CFFD001AEFFB /* InfoPlist.strings */; };
-		9AE24EA91904CFFD001AEFFB /* app_core_helloaxis_iosTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 9AE24EA81904CFFD001AEFFB /* app_core_helloaxis_iosTests.m */; };
-		9AEB75DD16F78E600085103B /* framework.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9AEB75BE16F78E600085103B /* framework.cpp */; };
-		9AEB75DE16F78E600085103B /* framework.h in Headers */ = {isa = PBXBuildFile; fileRef = 9AEB75BF16F78E600085103B /* framework.h */; };
-		9AEB75E016F78E600085103B /* helloaxis.h in Headers */ = {isa = PBXBuildFile; fileRef = 9AEB75C316F78E600085103B /* helloaxis.h */; };
-		9AEB75E116F78E600085103B /* helloaxis_application.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9AEB75C916F78E600085103B /* helloaxis_application.cpp */; };
-		9AEB75E216F78E600085103B /* helloaxis_document.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9AEB75CA16F78E600085103B /* helloaxis_document.cpp */; };
-		9AEB75E316F78E600085103B /* helloaxis_frame.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9AEB75CB16F78E600085103B /* helloaxis_frame.cpp */; };
-		9AEB75E416F78E600085103B /* helloaxis_pane_impact.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9AEB75CC16F78E600085103B /* helloaxis_pane_impact.cpp */; };
-		9AEB75E516F78E600085103B /* aaa_want_to_erase_helloaxis_impact_update_hint.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9AEB75CD16F78E600085103B /* aaa_want_to_erase_helloaxis_impact_update_hint.cpp */; };
-		9AEB75E616F78E600085103B /* helloaxis_impact.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9AEB75CE16F78E600085103B /* helloaxis_impact.cpp */; };
+		6E54FD890ED00C97AE86FEA0 /* libgcom.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 169B22461522A119460B96F4 /* libgcom.dylib */; };
+		7D93DD64BDE67CC2E32BF9B2 /* helloaxis_switcher_impact.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 6FD517C19E2BFD2A59CF301F /* helloaxis_switcher_impact.cpp */; };
+		57706F4F88712350C8B322D3 /* helloaxis_main_impact.cpp in Sources */ = {isa = PBXBuildFile; fileRef = CCFB2426E0F459693EE2E173 /* helloaxis_main_impact.cpp */; };
+		0183F23CB4E14C64CF09DF21 /* helloaxis_switcher_impact.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 6FD517C19E2BFD2A59CF301F /* helloaxis_switcher_impact.cpp */; };
+		C8BD40F6C64DE316121CE64A /* helloaxis_switcher_impact.h in Headers */ = {isa = PBXBuildFile; fileRef = 53F494D7C601D21914DBCEE8 /* helloaxis_switcher_impact.h */; };
+		0FA8115C091C795669789A10 /* helloaxis_render.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 2ACB67F3D4F8F21CF7731E37 /* helloaxis_render.cpp */; };
+		B755035E3E9A67947C2E3B08 /* helloaxis_application.h in Headers */ = {isa = PBXBuildFile; fileRef = C2C55328F4A886AFF54D3E9F /* helloaxis_application.h */; };
+		A9D8530003A3FFB70A0A16B7 /* helloaxis_document.h in Headers */ = {isa = PBXBuildFile; fileRef = 93F2B2822383356C03C54CEE /* helloaxis_document.h */; };
+		5BDAB88BF4E024E18284202F /* helloaxis_frame.h in Headers */ = {isa = PBXBuildFile; fileRef = C89571122EFD21A32BB6E880 /* helloaxis_frame.h */; };
+		C140FFBF84D3C5A69382EEB9 /* aaa_want_to_erase_helloaxis_impact_update_hint.h in Headers */ = {isa = PBXBuildFile; fileRef = ABCC6873EE32F636FACAE9E2 /* aaa_want_to_erase_helloaxis_impact_update_hint.h */; };
+		77B2137D936E4CFA6CC615CF /* helloaxis_pane_impact.h in Headers */ = {isa = PBXBuildFile; fileRef = F48081067F90FA7341DD6D9F /* helloaxis_pane_impact.h */; };
+		95D93628D268173049BB2356 /* helloaxis_impact.h in Headers */ = {isa = PBXBuildFile; fileRef = 7D7AAD0316FCD267A8947D3F /* helloaxis_impact.h */; };
+		728010ED13077D5656A68B38 /* helloaxis_gcom.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 173B9D2F7A95F532D84C69E3 /* helloaxis_gcom.cpp */; };
+		926E1C08D13334EA39B4588F /* helloaxis_gcom.h in Headers */ = {isa = PBXBuildFile; fileRef = B2862542CBD11EC86079648F /* helloaxis_gcom.h */; };
+		59A76E8C8E3BBB494700400E /* helloaxis_impact_base.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 28747304FD22F0F7108DF600 /* helloaxis_impact_base.cpp */; };
+		D02B0FA89A96C09304DD8AF4 /* helloaxis_impact_base.h in Headers */ = {isa = PBXBuildFile; fileRef = 9863C42E2C1667957B8664B8 /* helloaxis_impact_base.h */; };
+		AD5110EAEF2784B648785506 /* framework.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 43C8FE0CCB5AF3BD191D201C /* framework.cpp */; };
+		2A1C9F92479A8DF44F010304 /* helloaxis_application.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9894B37AFC31DB8549E62899 /* helloaxis_application.cpp */; };
+		C66A382B67AF03B8C8AA24E6 /* helloaxis_document.cpp in Sources */ = {isa = PBXBuildFile; fileRef = E95428FDF2FC96981F0BE012 /* helloaxis_document.cpp */; };
+		7D48BA6BFBACBA15FBCF7FB8 /* helloaxis_frame.cpp in Sources */ = {isa = PBXBuildFile; fileRef = E66A01C90E05E89007BE0381 /* helloaxis_frame.cpp */; };
+		A8EF1197DDA09485DA76CF99 /* helloaxis_pane_impact.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 6A2EB36E86E25A02A1AAC76D /* helloaxis_pane_impact.cpp */; };
+		2174AF4EBB98A49CA206DF6A /* aaa_want_to_erase_helloaxis_impact_update_hint.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B6F9B60CCC3509C904EF4628 /* aaa_want_to_erase_helloaxis_impact_update_hint.cpp */; };
+		44E3DB556CA186A026C0C51D /* helloaxis_impact.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 311AEA77B737870BC424AE42 /* helloaxis_impact.cpp */; };
+		8C7B9B6ECB1FC5851A334B4F /* helloaxis_render.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 2ACB67F3D4F8F21CF7731E37 /* helloaxis_render.cpp */; };
+		2166BEB35484D7A5E46B5399 /* helloaxis_render.h in Headers */ = {isa = PBXBuildFile; fileRef = A45E41DE52EB6A1D8BF6A78A /* helloaxis_render.h */; };
+		B0E919FD82FDD86ABB372684 /* helloaxis_main_frame.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 88A8D6AB33C759720BD58DF7 /* helloaxis_main_frame.cpp */; };
+		8A7DA479CF9FC784093EF335 /* helloaxis_gcom.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 173B9D2F7A95F532D84C69E3 /* helloaxis_gcom.cpp */; };
+		D9629A8D388FE1AEF95F2282 /* helloaxis_impact_base.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 28747304FD22F0F7108DF600 /* helloaxis_impact_base.cpp */; };
+		EFB3CE81B0824109A525548D /* helloaxis_main_frame.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 88A8D6AB33C759720BD58DF7 /* helloaxis_main_frame.cpp */; };
+		816DC35034854D16003FC842 /* helloaxis_main_frame.h in Headers */ = {isa = PBXBuildFile; fileRef = C33A9BCA73166F85A5D55B4A /* helloaxis_main_frame.h */; };
+		DAC892659E4F122E63995162 /* libace.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 7947237F582DCBBABA493900 /* libace.dylib */; };
+		B98C29191410B22706847A9F /* libcore.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 4FF2ED66BA5845683F134303 /* libcore.dylib */; };
+		B98B9B9E35C423E3A16E75CD /* libsphere.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = E45F3CD91E943CAC1ED85A2D /* libsphere.dylib */; };
+		0514CF940DB68A1667C58BA8 /* helloaxis_main_impact.cpp in Sources */ = {isa = PBXBuildFile; fileRef = CCFB2426E0F459693EE2E173 /* helloaxis_main_impact.cpp */; };
+		2653B81AAD639A9D4977B79E /* helloaxis_main_impact.h in Headers */ = {isa = PBXBuildFile; fileRef = C5DA8952D89D49F197ED0586 /* helloaxis_main_impact.h */; };
+		46D1C4592F1CBD02B54BD3CB /* libaura.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 4A6A60C7866D27B85B590BDE /* libaura.dylib */; };
+		60D3E9834CEC332DFA66B837 /* libaxis.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = C50885B38C33981F7E74FD52 /* libaxis.dylib */; };
+		27B0C0053152FEAD347B023B /* libberg.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 60096F1B4828F2EDBA49722C /* libberg.dylib */; };
+		BF0B3CD1C483F88661F00792 /* libpcre.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 8CEF31160E5AC8B2C8C5942E /* libpcre.dylib */; };
+		0A011691D5FF36AA377DC48E /* libapp_core_helloaxis.a in Frameworks */ = {isa = PBXBuildFile; fileRef = EB0C664AEFE4984D6D6E8B93 /* libapp_core_helloaxis.a */; };
+		749F84EDBC4F46290E46F99C /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = B5BBE953A0B9588B46573A91 /* InfoPlist.strings */; };
+		1342B9FEE75B2DFEA8FF6B29 /* app_core_helloaxis_iosTests.m in Sources */ = {isa = PBXBuildFile; fileRef = E8E35222EC85590E55AA4886 /* app_core_helloaxis_iosTests.m */; };
+		EBBA5966D10F2155DA76426B /* framework.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 43C8FE0CCB5AF3BD191D201C /* framework.cpp */; };
+		235901330E8A8B0EE8B03A51 /* framework.h in Headers */ = {isa = PBXBuildFile; fileRef = B680FC2247A1E6A3D1209282 /* framework.h */; };
+		4C5126E403C285086A3818AF /* helloaxis.h in Headers */ = {isa = PBXBuildFile; fileRef = F7DA0814B52F0915A78EFD85 /* helloaxis.h */; };
+		5F9CAB0C25438776A8EA1FDF /* helloaxis_application.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9894B37AFC31DB8549E62899 /* helloaxis_application.cpp */; };
+		2AC674F2D63DCC4CEFE8E7A3 /* helloaxis_document.cpp in Sources */ = {isa = PBXBuildFile; fileRef = E95428FDF2FC96981F0BE012 /* helloaxis_document.cpp */; };
+		612027E637FD87420020B098 /* helloaxis_frame.cpp in Sources */ = {isa = PBXBuildFile; fileRef = E66A01C90E05E89007BE0381 /* helloaxis_frame.cpp */; };
+		CC3C08AFBE8A4EDC607F1EB1 /* helloaxis_pane_impact.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 6A2EB36E86E25A02A1AAC76D /* helloaxis_pane_impact.cpp */; };
+		DA711391F719DA24B93D8D4F /* aaa_want_to_erase_helloaxis_impact_update_hint.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B6F9B60CCC3509C904EF4628 /* aaa_want_to_erase_helloaxis_impact_update_hint.cpp */; };
+		B4025347B88B670EB3AABA8E /* helloaxis_impact.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 311AEA77B737870BC424AE42 /* helloaxis_impact.cpp */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
-		070533E51C90B2A100F31B3F /* PBXContainerItemProxy */ = {
+		FECF9F1745B32E5104404B80 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
-			containerPortal = 070533CB1C90B2A100F31B3F /* gcom.xcodeproj */;
+			containerPortal = DD828AD40CCBE2E5B9E1DE5C /* gcom.xcodeproj */;
 			proxyType = 2;
 			remoteGlobalIDString = 9AEB75A316F78DF10085103B;
 			remoteInfo = gcom;
 		};
-		070533E71C90B2A100F31B3F /* PBXContainerItemProxy */ = {
+		145682232C16054462CB0DE8 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
-			containerPortal = 070533CB1C90B2A100F31B3F /* gcom.xcodeproj */;
+			containerPortal = DD828AD40CCBE2E5B9E1DE5C /* gcom.xcodeproj */;
 			proxyType = 2;
 			remoteGlobalIDString = 9AE24E8A1904CFFD001AEFFB;
 			remoteInfo = ios_gcom;
 		};
-		070533E91C90B2A100F31B3F /* PBXContainerItemProxy */ = {
+		FF58EE8DDABDC95E3D98BDB3 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
-			containerPortal = 070533CB1C90B2A100F31B3F /* gcom.xcodeproj */;
+			containerPortal = DD828AD40CCBE2E5B9E1DE5C /* gcom.xcodeproj */;
 			proxyType = 2;
 			remoteGlobalIDString = 9AE24E991904CFFD001AEFFB;
 			remoteInfo = gcom_iosTests;
 		};
-		070533ED1C90B2B900F31B3F /* PBXContainerItemProxy */ = {
+		3F440A6AA15D377DF7EBB2C0 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
-			containerPortal = 070533CB1C90B2A100F31B3F /* gcom.xcodeproj */;
+			containerPortal = DD828AD40CCBE2E5B9E1DE5C /* gcom.xcodeproj */;
 			proxyType = 1;
 			remoteGlobalIDString = 9AEB75A216F78DF10085103B;
 			remoteInfo = gcom;
 		};
-		9A259E1C1D25D9B40044727D /* PBXContainerItemProxy */ = {
+		A850135B0685BA802900D3B5 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
-			containerPortal = 070533CB1C90B2A100F31B3F /* gcom.xcodeproj */;
+			containerPortal = DD828AD40CCBE2E5B9E1DE5C /* gcom.xcodeproj */;
 			proxyType = 1;
 			remoteGlobalIDString = 9AE24E891904CFFD001AEFFB;
 			remoteInfo = ios_gcom;
 		};
-		9A95784E1F62217D00623508 /* PBXContainerItemProxy */ = {
+		896693B5D1EF7419A46EA72B /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
-			containerPortal = 9A9578481F62217C00623508 /* sphere.xcodeproj */;
+			containerPortal = B12ECF9EF64913F845B0A73B /* sphere.xcodeproj */;
 			proxyType = 2;
-			remoteGlobalIDString = 9A574B9816AAB906000CC4EF;
+			remoteGlobalIDString = C554D253C4E1463AAE5208BC;
 			remoteInfo = sphere;
 		};
-		9A9578501F62217D00623508 /* PBXContainerItemProxy */ = {
+		5FBF33D15EDD72F014937BB3 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
-			containerPortal = 9A9578481F62217C00623508 /* sphere.xcodeproj */;
+			containerPortal = B12ECF9EF64913F845B0A73B /* sphere.xcodeproj */;
 			proxyType = 2;
-			remoteGlobalIDString = 07B657E2190F3CCB002DAADE;
+			remoteGlobalIDString = 89E25EB4BECCD4B8A59CA5CC;
 			remoteInfo = ios_sphere;
 		};
-		9A9578521F62217D00623508 /* PBXContainerItemProxy */ = {
+		FE55FFDAFAE46AB328E95821 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
-			containerPortal = 9A9578481F62217C00623508 /* sphere.xcodeproj */;
+			containerPortal = B12ECF9EF64913F845B0A73B /* sphere.xcodeproj */;
 			proxyType = 2;
-			remoteGlobalIDString = 07B657F1190F3CCC002DAADE;
+			remoteGlobalIDString = 5D9740AFEADC75FA24DE8853;
 			remoteInfo = sphere_iosTests;
 		};
-		9A9578541F62218E00623508 /* PBXContainerItemProxy */ = {
+		BE8629A1842C2A137AF188AB /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
-			containerPortal = 9A9578481F62217C00623508 /* sphere.xcodeproj */;
+			containerPortal = B12ECF9EF64913F845B0A73B /* sphere.xcodeproj */;
 			proxyType = 1;
-			remoteGlobalIDString = 07B657E1190F3CCB002DAADE;
+			remoteGlobalIDString = F109413A2178ABC07B6D3315;
 			remoteInfo = ios_sphere;
 		};
-		9A9578561F62219700623508 /* PBXContainerItemProxy */ = {
+		CBD4C03BB5BB49EED6C470BE /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
-			containerPortal = 9A9578481F62217C00623508 /* sphere.xcodeproj */;
+			containerPortal = B12ECF9EF64913F845B0A73B /* sphere.xcodeproj */;
 			proxyType = 1;
-			remoteGlobalIDString = 9A574B9716AAB906000CC4EF;
+			remoteGlobalIDString = C5A5928074328EC9AAE8A11B;
 			remoteInfo = sphere;
 		};
-		9AE24E9F1904CFFD001AEFFB /* PBXContainerItemProxy */ = {
+		49F86620CF8A7326E5B485C1 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
-			containerPortal = 9AEB759B16F78DF10085103B /* Project object */;
+			containerPortal = D1522A88F50E9DA8D8BAAC62 /* Project object */;
 			proxyType = 1;
-			remoteGlobalIDString = 9AE24E891904CFFD001AEFFB;
+			remoteGlobalIDString = B79CBA4BC798E0EEEFF4D345;
 			remoteInfo = app_core_helloaxis_ios;
 		};
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXCopyFilesBuildPhase section */
-		9AE24E881904CFFD001AEFFB /* CopyFiles */ = {
+		F1C762E9E76B1C53D3C16628 /* CopyFiles */ = {
 			isa = PBXCopyFilesBuildPhase;
 			buildActionMask = 2147483647;
 			dstPath = "include/$(PRODUCT_NAME)";
@@ -153,212 +153,212 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
-		070533CB1C90B2A100F31B3F /* gcom.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = gcom.xcodeproj; path = ../gcom/gcom.xcodeproj; sourceTree = SOURCE_ROOT; };
-		076D09F11A3FC72C007432B6 /* helloaxis_switcher_impact.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = helloaxis_switcher_impact.cpp; sourceTree = "<group>"; };
-		076D09F21A3FC72C007432B6 /* helloaxis_switcher_impact.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = helloaxis_switcher_impact.h; sourceTree = "<group>"; };
-		07A684E617F0E06700C41DE6 /* helloaxis_application.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = helloaxis_application.h; sourceTree = "<group>"; };
-		07A684E717F0E06700C41DE6 /* helloaxis_document.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = helloaxis_document.h; sourceTree = "<group>"; };
-		07A684E817F0E06700C41DE6 /* helloaxis_frame.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = helloaxis_frame.h; sourceTree = "<group>"; };
-		07A684E917F0E06700C41DE6 /* aaa_want_to_erase_helloaxis_impact_update_hint.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = aaa_want_to_erase_helloaxis_impact_update_hint.h; sourceTree = "<group>"; };
-		07A684EA17F0E06700C41DE6 /* helloaxis_pane_impact.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = helloaxis_pane_impact.h; sourceTree = "<group>"; };
-		07A684EB17F0E06700C41DE6 /* helloaxis_impact.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = helloaxis_impact.h; sourceTree = "<group>"; };
-		07AE494A1CC7A83F00959A6F /* helloaxis_gcom.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = helloaxis_gcom.cpp; sourceTree = "<group>"; };
-		07AE494B1CC7A83F00959A6F /* helloaxis_gcom.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = helloaxis_gcom.h; sourceTree = "<group>"; };
-		07AE494C1CC7A83F00959A6F /* helloaxis_impact_base.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = helloaxis_impact_base.cpp; sourceTree = "<group>"; };
-		07AE494D1CC7A83F00959A6F /* helloaxis_impact_base.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = helloaxis_impact_base.h; sourceTree = "<group>"; };
-		07FB1AA21B744E8800F3FCC1 /* helloaxis_render.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = helloaxis_render.cpp; sourceTree = "<group>"; };
-		07FB1AA31B744E8800F3FCC1 /* helloaxis_render.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = helloaxis_render.h; sourceTree = "<group>"; };
-		9A72594A1D1403E6001F56B4 /* helloaxis_main_frame.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = helloaxis_main_frame.cpp; sourceTree = "<group>"; };
-		9A72594B1D1403E6001F56B4 /* helloaxis_main_frame.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = helloaxis_main_frame.h; sourceTree = "<group>"; };
-		9A8C49441F6069A8004A5BA4 /* libace.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libace.dylib; path = ../../../../Volumes/apple/archive/Xcode/DerivedData/Build/Products/Debug/libace.dylib; sourceTree = "<group>"; };
-		9A920FD71F3BF68500CD9D94 /* libcore.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libcore.dylib; path = ../../../../Volumes/apple/archive/Xcode/DerivedData/Build/Products/Debug/libcore.dylib; sourceTree = "<group>"; };
-		9A920FD91F3BF68B00CD9D94 /* libmultimedia.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libmultimedia.dylib; path = ../../../../Volumes/apple/archive/Xcode/DerivedData/Build/Products/Debug/libmultimedia.dylib; sourceTree = "<group>"; };
-		9A920FDB1F3BF69300CD9D94 /* libsphere.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libsphere.dylib; path = ../../../../Volumes/apple/archive/Xcode/DerivedData/Build/Products/Debug/libsphere.dylib; sourceTree = "<group>"; };
-		9A9578481F62217C00623508 /* sphere.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = sphere.xcodeproj; path = ../../app/sphere/sphere.xcodeproj; sourceTree = SOURCE_ROOT; };
-		9A986CDE1D22629C001F4C04 /* libios_base.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libios_base.dylib; path = "../../app/base/build/Debug-iphoneos/libios_base.dylib"; sourceTree = "<group>"; };
-		9A986CE01D2262BA001F4C04 /* libios_axis.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libios_axis.dylib; path = "../../app/axis/build/Debug-iphoneos/libios_axis.dylib"; sourceTree = "<group>"; };
-		9A986CE21D2262CB001F4C04 /* libios_aura.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libios_aura.dylib; path = "../../app/aura/build/Debug-iphoneos/libios_aura.dylib"; sourceTree = "<group>"; };
-		9AA1008C19971FCE004F84BD /* helloaxis_main_impact.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = helloaxis_main_impact.cpp; sourceTree = "<group>"; };
-		9AA1008D19971FCE004F84BD /* helloaxis_main_impact.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = helloaxis_main_impact.h; sourceTree = "<group>"; };
-		9AC62E941D20C12200A4AC0A /* libaura.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libaura.dylib; path = "../../../../Users/camilo/Library/Developer/Xcode/DerivedData/basic-ios-bmuegusfgbffmoeixicbxhlnbzop/Build/Products/Debug-iphonesimulator/libaura.dylib"; sourceTree = "<group>"; };
-		9AC62E981D20C12800A4AC0A /* libaxis.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libaxis.dylib; path = "../../app/axis/build/Debug-iphoneos/libaxis.dylib"; sourceTree = "<group>"; };
-		9AC62E9A1D20C12F00A4AC0A /* libberg.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libberg.dylib; path = "../../app/base/build/Debug-iphoneos/libberg.dylib"; sourceTree = "<group>"; };
-		9AC62E9C1D20C14600A4AC0A /* libios_pcre.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libios_pcre.dylib; path = "../../app/pcre/build/Debug-iphoneos/libios_pcre.dylib"; sourceTree = "<group>"; };
-		9ACE47D51D2041A300A1E0AD /* libaura.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libaura.dylib; path = "../../../../Users/camilo/Library/Developer/Xcode/DerivedData/aura-mac-ekqwiewkpeyhdudtxguywfqohhby/Build/Products/Debug/libaura.dylib"; sourceTree = "<group>"; };
-		9ACE47D91D2041AE00A1E0AD /* libaxis.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libaxis.dylib; path = ../../app/axis/build/Debug/libaxis.dylib; sourceTree = "<group>"; };
-		9ACE47DB1D2041B800A1E0AD /* libberg.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libberg.dylib; path = ../../app/base/build/Debug/libberg.dylib; sourceTree = "<group>"; };
-		9ACE47DD1D2041E400A1E0AD /* libpcre.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libpcre.dylib; path = "../../../../Users/camilo/Library/Developer/Xcode/DerivedData/aura-mac-ekqwiewkpeyhdudtxguywfqohhby/Build/Products/Debug/libpcre.dylib"; sourceTree = "<group>"; };
-		9AE24E8A1904CFFD001AEFFB /* libapp_core_helloaxis.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libapp_core_helloaxis.a; sourceTree = BUILT_PRODUCTS_DIR; };
-		9AE24E991904CFFD001AEFFB /* app_core_helloaxis_iosTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = app_core_helloaxis_iosTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
-		9AE24EA41904CFFD001AEFFB /* app_core_helloaxis_iosTests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "app_core_helloaxis_iosTests-Info.plist"; sourceTree = "<group>"; };
-		9AE24EA61904CFFD001AEFFB /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
-		9AE24EA81904CFFD001AEFFB /* app_core_helloaxis_iosTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = app_core_helloaxis_iosTests.m; sourceTree = "<group>"; };
-		9AEB75A316F78DF10085103B /* libapp_core_helloaxis.dylib */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.dylib"; includeInIndex = 0; path = libapp_core_helloaxis.dylib; sourceTree = BUILT_PRODUCTS_DIR; };
-		9AEB75BE16F78E600085103B /* framework.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = framework.cpp; sourceTree = "<group>"; };
-		9AEB75BF16F78E600085103B /* framework.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = framework.h; sourceTree = "<group>"; };
-		9AEB75C316F78E600085103B /* helloaxis.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = helloaxis.h; sourceTree = "<group>"; };
-		9AEB75C916F78E600085103B /* helloaxis_application.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = helloaxis_application.cpp; sourceTree = "<group>"; };
-		9AEB75CA16F78E600085103B /* helloaxis_document.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = helloaxis_document.cpp; sourceTree = "<group>"; };
-		9AEB75CB16F78E600085103B /* helloaxis_frame.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = helloaxis_frame.cpp; sourceTree = "<group>"; };
-		9AEB75CC16F78E600085103B /* helloaxis_pane_impact.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = helloaxis_pane_impact.cpp; sourceTree = "<group>"; };
-		9AEB75CD16F78E600085103B /* aaa_want_to_erase_helloaxis_impact_update_hint.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = aaa_want_to_erase_helloaxis_impact_update_hint.cpp; sourceTree = "<group>"; };
-		9AEB75CE16F78E600085103B /* helloaxis_impact.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = helloaxis_impact.cpp; sourceTree = "<group>"; };
-		9AF75DEF1F83EBA100FDE7CC /* libios_aura.dylib */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.dylib"; path = libios_aura.dylib; sourceTree = BUILT_PRODUCTS_DIR; };
-		9AF75DF31F83EBAA00FDE7CC /* libios_axis.dylib */ = {isa = PBXFileReference; explicitFileType = archive.ar; path = libios_axis.dylib; sourceTree = BUILT_PRODUCTS_DIR; };
-		9AF75DF51F83EBB300FDE7CC /* libios_base.dylib */ = {isa = PBXFileReference; explicitFileType = archive.ar; path = libios_base.dylib; sourceTree = BUILT_PRODUCTS_DIR; };
-		9AF75DF71F83EBBB00FDE7CC /* libios_core.dylib */ = {isa = PBXFileReference; explicitFileType = archive.ar; path = libios_core.dylib; sourceTree = BUILT_PRODUCTS_DIR; };
+		DD828AD40CCBE2E5B9E1DE5C /* gcom.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = gcom.xcodeproj; path = ../gcom/gcom.xcodeproj; sourceTree = SOURCE_ROOT; };
+		6FD517C19E2BFD2A59CF301F /* helloaxis_switcher_impact.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = helloaxis_switcher_impact.cpp; sourceTree = "<group>"; };
+		53F494D7C601D21914DBCEE8 /* helloaxis_switcher_impact.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = helloaxis_switcher_impact.h; sourceTree = "<group>"; };
+		C2C55328F4A886AFF54D3E9F /* helloaxis_application.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = helloaxis_application.h; sourceTree = "<group>"; };
+		93F2B2822383356C03C54CEE /* helloaxis_document.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = helloaxis_document.h; sourceTree = "<group>"; };
+		C89571122EFD21A32BB6E880 /* helloaxis_frame.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = helloaxis_frame.h; sourceTree = "<group>"; };
+		ABCC6873EE32F636FACAE9E2 /* aaa_want_to_erase_helloaxis_impact_update_hint.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = aaa_want_to_erase_helloaxis_impact_update_hint.h; sourceTree = "<group>"; };
+		F48081067F90FA7341DD6D9F /* helloaxis_pane_impact.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = helloaxis_pane_impact.h; sourceTree = "<group>"; };
+		7D7AAD0316FCD267A8947D3F /* helloaxis_impact.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = helloaxis_impact.h; sourceTree = "<group>"; };
+		173B9D2F7A95F532D84C69E3 /* helloaxis_gcom.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = helloaxis_gcom.cpp; sourceTree = "<group>"; };
+		B2862542CBD11EC86079648F /* helloaxis_gcom.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = helloaxis_gcom.h; sourceTree = "<group>"; };
+		28747304FD22F0F7108DF600 /* helloaxis_impact_base.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = helloaxis_impact_base.cpp; sourceTree = "<group>"; };
+		9863C42E2C1667957B8664B8 /* helloaxis_impact_base.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = helloaxis_impact_base.h; sourceTree = "<group>"; };
+		2ACB67F3D4F8F21CF7731E37 /* helloaxis_render.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = helloaxis_render.cpp; sourceTree = "<group>"; };
+		A45E41DE52EB6A1D8BF6A78A /* helloaxis_render.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = helloaxis_render.h; sourceTree = "<group>"; };
+		88A8D6AB33C759720BD58DF7 /* helloaxis_main_frame.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = helloaxis_main_frame.cpp; sourceTree = "<group>"; };
+		C33A9BCA73166F85A5D55B4A /* helloaxis_main_frame.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = helloaxis_main_frame.h; sourceTree = "<group>"; };
+		7947237F582DCBBABA493900 /* libace.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libace.dylib; path = ../../../../Volumes/apple/archive/Xcode/DerivedData/Build/Products/Debug/libace.dylib; sourceTree = "<group>"; };
+		4FF2ED66BA5845683F134303 /* libcore.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libcore.dylib; path = ../../../../Volumes/apple/archive/Xcode/DerivedData/Build/Products/Debug/libcore.dylib; sourceTree = "<group>"; };
+		F61BF5816D691B6002E8C78B /* libmultimedia.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libmultimedia.dylib; path = ../../../../Volumes/apple/archive/Xcode/DerivedData/Build/Products/Debug/libmultimedia.dylib; sourceTree = "<group>"; };
+		E45F3CD91E943CAC1ED85A2D /* libsphere.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libsphere.dylib; path = ../../../../Volumes/apple/archive/Xcode/DerivedData/Build/Products/Debug/libsphere.dylib; sourceTree = "<group>"; };
+		B12ECF9EF64913F845B0A73B /* sphere.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = sphere.xcodeproj; path = ../../app/sphere/sphere.xcodeproj; sourceTree = SOURCE_ROOT; };
+		33A8A3E0911A5C5B7872167B /* libios_base.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libios_base.dylib; path = "../../app/base/build/Debug-iphoneos/libios_base.dylib"; sourceTree = "<group>"; };
+		531600ABB03E6AD6FFC76FA2 /* libios_axis.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libios_axis.dylib; path = "../../app/axis/build/Debug-iphoneos/libios_axis.dylib"; sourceTree = "<group>"; };
+		17827E0B0CE2A11123470BA3 /* libios_aura.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libios_aura.dylib; path = "../../app/aura/build/Debug-iphoneos/libios_aura.dylib"; sourceTree = "<group>"; };
+		CCFB2426E0F459693EE2E173 /* helloaxis_main_impact.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = helloaxis_main_impact.cpp; sourceTree = "<group>"; };
+		C5DA8952D89D49F197ED0586 /* helloaxis_main_impact.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = helloaxis_main_impact.h; sourceTree = "<group>"; };
+		71B9A5303B96936E18DD2D28 /* libaura.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libaura.dylib; path = "../../../../Users/camilo/Library/Developer/Xcode/DerivedData/basic-ios-bmuegusfgbffmoeixicbxhlnbzop/Build/Products/Debug-iphonesimulator/libaura.dylib"; sourceTree = "<group>"; };
+		BCFFEC4E8315D2EADD91A4E7 /* libaxis.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libaxis.dylib; path = "../../app/axis/build/Debug-iphoneos/libaxis.dylib"; sourceTree = "<group>"; };
+		B3382AF478E61DE42BEAAE8C /* libberg.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libberg.dylib; path = "../../app/base/build/Debug-iphoneos/libberg.dylib"; sourceTree = "<group>"; };
+		A56B563B6E30E7E8B012E079 /* libios_pcre.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libios_pcre.dylib; path = "../../app/pcre/build/Debug-iphoneos/libios_pcre.dylib"; sourceTree = "<group>"; };
+		4A6A60C7866D27B85B590BDE /* libaura.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libaura.dylib; path = "../../../../Users/camilo/Library/Developer/Xcode/DerivedData/aura-mac-ekqwiewkpeyhdudtxguywfqohhby/Build/Products/Debug/libaura.dylib"; sourceTree = "<group>"; };
+		C50885B38C33981F7E74FD52 /* libaxis.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libaxis.dylib; path = ../../app/axis/build/Debug/libaxis.dylib; sourceTree = "<group>"; };
+		60096F1B4828F2EDBA49722C /* libberg.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libberg.dylib; path = ../../app/base/build/Debug/libberg.dylib; sourceTree = "<group>"; };
+		8CEF31160E5AC8B2C8C5942E /* libpcre.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libpcre.dylib; path = "../../../../Users/camilo/Library/Developer/Xcode/DerivedData/aura-mac-ekqwiewkpeyhdudtxguywfqohhby/Build/Products/Debug/libpcre.dylib"; sourceTree = "<group>"; };
+		EB0C664AEFE4984D6D6E8B93 /* libapp_core_helloaxis.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libapp_core_helloaxis.a; sourceTree = BUILT_PRODUCTS_DIR; };
+		B1CB5B59B0E9CD0310C26B39 /* app_core_helloaxis_iosTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = app_core_helloaxis_iosTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		2C7FD6B394B07971E236FA54 /* app_core_helloaxis_iosTests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "app_core_helloaxis_iosTests-Info.plist"; sourceTree = "<group>"; };
+		417B494D60384F1086BC1FEC /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
+		E8E35222EC85590E55AA4886 /* app_core_helloaxis_iosTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = app_core_helloaxis_iosTests.m; sourceTree = "<group>"; };
+		BBF94F6144B325CDBA9705E2 /* libapp_core_helloaxis.dylib */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.dylib"; includeInIndex = 0; path = libapp_core_helloaxis.dylib; sourceTree = BUILT_PRODUCTS_DIR; };
+		43C8FE0CCB5AF3BD191D201C /* framework.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = framework.cpp; sourceTree = "<group>"; };
+		B680FC2247A1E6A3D1209282 /* framework.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = framework.h; sourceTree = "<group>"; };
+		F7DA0814B52F0915A78EFD85 /* helloaxis.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = helloaxis.h; sourceTree = "<group>"; };
+		9894B37AFC31DB8549E62899 /* helloaxis_application.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = helloaxis_application.cpp; sourceTree = "<group>"; };
+		E95428FDF2FC96981F0BE012 /* helloaxis_document.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = helloaxis_document.cpp; sourceTree = "<group>"; };
+		E66A01C90E05E89007BE0381 /* helloaxis_frame.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = helloaxis_frame.cpp; sourceTree = "<group>"; };
+		6A2EB36E86E25A02A1AAC76D /* helloaxis_pane_impact.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = helloaxis_pane_impact.cpp; sourceTree = "<group>"; };
+		B6F9B60CCC3509C904EF4628 /* aaa_want_to_erase_helloaxis_impact_update_hint.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = aaa_want_to_erase_helloaxis_impact_update_hint.cpp; sourceTree = "<group>"; };
+		311AEA77B737870BC424AE42 /* helloaxis_impact.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = helloaxis_impact.cpp; sourceTree = "<group>"; };
+		9502E3E6457218DADDE753D1 /* libios_aura.dylib */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.dylib"; path = libios_aura.dylib; sourceTree = BUILT_PRODUCTS_DIR; };
+		AE663180971302130B11ABCF /* libios_axis.dylib */ = {isa = PBXFileReference; explicitFileType = archive.ar; path = libios_axis.dylib; sourceTree = BUILT_PRODUCTS_DIR; };
+		C442934F38A430CEDC70E2C6 /* libios_base.dylib */ = {isa = PBXFileReference; explicitFileType = archive.ar; path = libios_base.dylib; sourceTree = BUILT_PRODUCTS_DIR; };
+		10659982E9015271677707B7 /* libios_core.dylib */ = {isa = PBXFileReference; explicitFileType = archive.ar; path = libios_core.dylib; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
-		9AE24E871904CFFD001AEFFB /* Frameworks */ = {
+		95F56D6419B3ABAB04627E01 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		9AE24E961904CFFD001AEFFB /* Frameworks */ = {
+		28171EF1E9BB3A5F3538742A /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				9AE24EA11904CFFD001AEFFB /* libapp_core_helloaxis.a in Frameworks */,
+				0A011691D5FF36AA377DC48E /* libapp_core_helloaxis.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		9AEB75A016F78DF10085103B /* Frameworks */ = {
+		7DB4DAF46F4A42A2EC292070 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				9A8C49451F6069A8004A5BA4 /* libace.dylib in Frameworks */,
-				9A920FDC1F3BF69300CD9D94 /* libsphere.dylib in Frameworks */,
-				9A920FD81F3BF68500CD9D94 /* libcore.dylib in Frameworks */,
-				9ACE47DE1D2041E400A1E0AD /* libpcre.dylib in Frameworks */,
-				9ACE47DC1D2041B800A1E0AD /* libberg.dylib in Frameworks */,
-				9ACE47DA1D2041AE00A1E0AD /* libaxis.dylib in Frameworks */,
-				9ACE47D61D2041A300A1E0AD /* libaura.dylib in Frameworks */,
-				070533EF1C90B2CF00F31B3F /* libgcom.dylib in Frameworks */,
+				DAC892659E4F122E63995162 /* libace.dylib in Frameworks */,
+				B98B9B9E35C423E3A16E75CD /* libsphere.dylib in Frameworks */,
+				B98C29191410B22706847A9F /* libcore.dylib in Frameworks */,
+				BF0B3CD1C483F88661F00792 /* libpcre.dylib in Frameworks */,
+				27B0C0053152FEAD347B023B /* libberg.dylib in Frameworks */,
+				60D3E9834CEC332DFA66B837 /* libaxis.dylib in Frameworks */,
+				46D1C4592F1CBD02B54BD3CB /* libaura.dylib in Frameworks */,
+				6E54FD890ED00C97AE86FEA0 /* libgcom.dylib in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		070533CC1C90B2A100F31B3F /* Products */ = {
+		EE342BB858D3CCAD7D9B59CF /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				070533E61C90B2A100F31B3F /* libgcom.dylib */,
-				070533E81C90B2A100F31B3F /* libios_gcom.a */,
-				070533EA1C90B2A100F31B3F /* gcom_iosTests.xctest */,
+				169B22461522A119460B96F4 /* libgcom.dylib */,
+				E69932A01D463710729EA019 /* libios_gcom.a */,
+				A350CE546C6B1421F901B50A /* gcom_iosTests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
 		};
-		9A920FD61F3BF68400CD9D94 /* Frameworks */ = {
+		8045C9E4F82648DCCA3900BC /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
-				9AF75DF71F83EBBB00FDE7CC /* libios_core.dylib */,
-				9AF75DF51F83EBB300FDE7CC /* libios_base.dylib */,
-				9AF75DF31F83EBAA00FDE7CC /* libios_axis.dylib */,
-				9AF75DEF1F83EBA100FDE7CC /* libios_aura.dylib */,
-				9A8C49441F6069A8004A5BA4 /* libace.dylib */,
-				9A920FDB1F3BF69300CD9D94 /* libsphere.dylib */,
-				9A920FD91F3BF68B00CD9D94 /* libmultimedia.dylib */,
-				9A920FD71F3BF68500CD9D94 /* libcore.dylib */,
+				10659982E9015271677707B7 /* libios_core.dylib */,
+				C442934F38A430CEDC70E2C6 /* libios_base.dylib */,
+				AE663180971302130B11ABCF /* libios_axis.dylib */,
+				9502E3E6457218DADDE753D1 /* libios_aura.dylib */,
+				7947237F582DCBBABA493900 /* libace.dylib */,
+				E45F3CD91E943CAC1ED85A2D /* libsphere.dylib */,
+				F61BF5816D691B6002E8C78B /* libmultimedia.dylib */,
+				4FF2ED66BA5845683F134303 /* libcore.dylib */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
-		9A9578491F62217C00623508 /* Products */ = {
+		E6D21C604A6E04463D5EEBA4 /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				9A95784F1F62217D00623508 /* libsphere.dylib */,
-				9A9578511F62217D00623508 /* libios_sphere.a */,
-				9A9578531F62217D00623508 /* sphere_iosTests.xctest */,
+				E1AF23566F82B0FFC5AA115E /* libsphere.dylib */,
+				1A067C2E09B362D98E1CD655 /* libios_sphere.a */,
+				DB657B4383B4B817A13F3933 /* sphere_iosTests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
 		};
-		9AE24EA21904CFFD001AEFFB /* app_core_helloaxis_iosTests */ = {
+		1B0F8A8A5C160F88F3CD0DEB /* app_core_helloaxis_iosTests */ = {
 			isa = PBXGroup;
 			children = (
-				9AE24EA81904CFFD001AEFFB /* app_core_helloaxis_iosTests.m */,
-				9AE24EA31904CFFD001AEFFB /* Supporting Files */,
+				E8E35222EC85590E55AA4886 /* app_core_helloaxis_iosTests.m */,
+				F6156AC50C18581782B0C990 /* Supporting Files */,
 			);
 			path = app_core_helloaxis_iosTests;
 			sourceTree = "<group>";
 		};
-		9AE24EA31904CFFD001AEFFB /* Supporting Files */ = {
+		F6156AC50C18581782B0C990 /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
-				9AE24EA41904CFFD001AEFFB /* app_core_helloaxis_iosTests-Info.plist */,
-				9AE24EA51904CFFD001AEFFB /* InfoPlist.strings */,
+				2C7FD6B394B07971E236FA54 /* app_core_helloaxis_iosTests-Info.plist */,
+				B5BBE953A0B9588B46573A91 /* InfoPlist.strings */,
 			);
 			name = "Supporting Files";
 			sourceTree = "<group>";
 		};
-		9AEB759A16F78DF10085103B = {
+		4D5AD96DA1ED4A2EDD9EE969 = {
 			isa = PBXGroup;
 			children = (
-				9A9578481F62217C00623508 /* sphere.xcodeproj */,
-				070533CB1C90B2A100F31B3F /* gcom.xcodeproj */,
-				9A986CE21D2262CB001F4C04 /* libios_aura.dylib */,
-				9A986CE01D2262BA001F4C04 /* libios_axis.dylib */,
-				9A986CDE1D22629C001F4C04 /* libios_base.dylib */,
-				9AC62E9C1D20C14600A4AC0A /* libios_pcre.dylib */,
-				9AC62E9A1D20C12F00A4AC0A /* libberg.dylib */,
-				9AC62E981D20C12800A4AC0A /* libaxis.dylib */,
-				9AC62E941D20C12200A4AC0A /* libaura.dylib */,
-				9ACE47DD1D2041E400A1E0AD /* libpcre.dylib */,
-				9ACE47DB1D2041B800A1E0AD /* libberg.dylib */,
-				9ACE47D91D2041AE00A1E0AD /* libaxis.dylib */,
-				9ACE47D51D2041A300A1E0AD /* libaura.dylib */,
-				9AEB75AA16F78E600085103B /* helloaxis */,
-				9AE24EA21904CFFD001AEFFB /* app_core_helloaxis_iosTests */,
-				9AEB75A416F78DF10085103B /* Products */,
-				9A920FD61F3BF68400CD9D94 /* Frameworks */,
+				B12ECF9EF64913F845B0A73B /* sphere.xcodeproj */,
+				DD828AD40CCBE2E5B9E1DE5C /* gcom.xcodeproj */,
+				17827E0B0CE2A11123470BA3 /* libios_aura.dylib */,
+				531600ABB03E6AD6FFC76FA2 /* libios_axis.dylib */,
+				33A8A3E0911A5C5B7872167B /* libios_base.dylib */,
+				A56B563B6E30E7E8B012E079 /* libios_pcre.dylib */,
+				B3382AF478E61DE42BEAAE8C /* libberg.dylib */,
+				BCFFEC4E8315D2EADD91A4E7 /* libaxis.dylib */,
+				71B9A5303B96936E18DD2D28 /* libaura.dylib */,
+				8CEF31160E5AC8B2C8C5942E /* libpcre.dylib */,
+				60096F1B4828F2EDBA49722C /* libberg.dylib */,
+				C50885B38C33981F7E74FD52 /* libaxis.dylib */,
+				4A6A60C7866D27B85B590BDE /* libaura.dylib */,
+				0169945B7B4B86BBC4BE9EE7 /* helloaxis */,
+				1B0F8A8A5C160F88F3CD0DEB /* app_core_helloaxis_iosTests */,
+				1F6B2831C68583DA83350B4D /* Products */,
+				8045C9E4F82648DCCA3900BC /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
-		9AEB75A416F78DF10085103B /* Products */ = {
+		1F6B2831C68583DA83350B4D /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				9AEB75A316F78DF10085103B /* libapp_core_helloaxis.dylib */,
-				9AE24E8A1904CFFD001AEFFB /* libapp_core_helloaxis.a */,
-				9AE24E991904CFFD001AEFFB /* app_core_helloaxis_iosTests.xctest */,
+				BBF94F6144B325CDBA9705E2 /* libapp_core_helloaxis.dylib */,
+				EB0C664AEFE4984D6D6E8B93 /* libapp_core_helloaxis.a */,
+				B1CB5B59B0E9CD0310C26B39 /* app_core_helloaxis_iosTests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
 		};
-		9AEB75AA16F78E600085103B /* helloaxis */ = {
+		0169945B7B4B86BBC4BE9EE7 /* helloaxis */ = {
 			isa = PBXGroup;
 			children = (
-				9AEB75C316F78E600085103B /* helloaxis.h */,
-				9AEB75BE16F78E600085103B /* framework.cpp */,
-				9AEB75BF16F78E600085103B /* framework.h */,
-				9AEB75C916F78E600085103B /* helloaxis_application.cpp */,
-				07A684E617F0E06700C41DE6 /* helloaxis_application.h */,
-				9AEB75CA16F78E600085103B /* helloaxis_document.cpp */,
-				07A684E717F0E06700C41DE6 /* helloaxis_document.h */,
-				9AEB75CB16F78E600085103B /* helloaxis_frame.cpp */,
-				07A684E817F0E06700C41DE6 /* helloaxis_frame.h */,
-				07AE494A1CC7A83F00959A6F /* helloaxis_gcom.cpp */,
-				07AE494B1CC7A83F00959A6F /* helloaxis_gcom.h */,
-				9A72594A1D1403E6001F56B4 /* helloaxis_main_frame.cpp */,
-				9A72594B1D1403E6001F56B4 /* helloaxis_main_frame.h */,
-				9AA1008C19971FCE004F84BD /* helloaxis_main_impact.cpp */,
-				9AA1008D19971FCE004F84BD /* helloaxis_main_impact.h */,
-				9AEB75CC16F78E600085103B /* helloaxis_pane_impact.cpp */,
-				07A684EA17F0E06700C41DE6 /* helloaxis_pane_impact.h */,
-				9AEB75CD16F78E600085103B /* aaa_want_to_erase_helloaxis_impact_update_hint.cpp */,
-				07A684E917F0E06700C41DE6 /* aaa_want_to_erase_helloaxis_impact_update_hint.h */,
-				07FB1AA21B744E8800F3FCC1 /* helloaxis_render.cpp */,
-				07FB1AA31B744E8800F3FCC1 /* helloaxis_render.h */,
-				076D09F11A3FC72C007432B6 /* helloaxis_switcher_impact.cpp */,
-				076D09F21A3FC72C007432B6 /* helloaxis_switcher_impact.h */,
-				07AE494C1CC7A83F00959A6F /* helloaxis_impact_base.cpp */,
-				07AE494D1CC7A83F00959A6F /* helloaxis_impact_base.h */,
-				9AEB75CE16F78E600085103B /* helloaxis_impact.cpp */,
-				07A684EB17F0E06700C41DE6 /* helloaxis_impact.h */,
+				F7DA0814B52F0915A78EFD85 /* helloaxis.h */,
+				43C8FE0CCB5AF3BD191D201C /* framework.cpp */,
+				B680FC2247A1E6A3D1209282 /* framework.h */,
+				9894B37AFC31DB8549E62899 /* helloaxis_application.cpp */,
+				C2C55328F4A886AFF54D3E9F /* helloaxis_application.h */,
+				E95428FDF2FC96981F0BE012 /* helloaxis_document.cpp */,
+				93F2B2822383356C03C54CEE /* helloaxis_document.h */,
+				E66A01C90E05E89007BE0381 /* helloaxis_frame.cpp */,
+				C89571122EFD21A32BB6E880 /* helloaxis_frame.h */,
+				173B9D2F7A95F532D84C69E3 /* helloaxis_gcom.cpp */,
+				B2862542CBD11EC86079648F /* helloaxis_gcom.h */,
+				88A8D6AB33C759720BD58DF7 /* helloaxis_main_frame.cpp */,
+				C33A9BCA73166F85A5D55B4A /* helloaxis_main_frame.h */,
+				CCFB2426E0F459693EE2E173 /* helloaxis_main_impact.cpp */,
+				C5DA8952D89D49F197ED0586 /* helloaxis_main_impact.h */,
+				6A2EB36E86E25A02A1AAC76D /* helloaxis_pane_impact.cpp */,
+				F48081067F90FA7341DD6D9F /* helloaxis_pane_impact.h */,
+				B6F9B60CCC3509C904EF4628 /* aaa_want_to_erase_helloaxis_impact_update_hint.cpp */,
+				ABCC6873EE32F636FACAE9E2 /* aaa_want_to_erase_helloaxis_impact_update_hint.h */,
+				2ACB67F3D4F8F21CF7731E37 /* helloaxis_render.cpp */,
+				A45E41DE52EB6A1D8BF6A78A /* helloaxis_render.h */,
+				6FD517C19E2BFD2A59CF301F /* helloaxis_switcher_impact.cpp */,
+				53F494D7C601D21914DBCEE8 /* helloaxis_switcher_impact.h */,
+				28747304FD22F0F7108DF600 /* helloaxis_impact_base.cpp */,
+				9863C42E2C1667957B8664B8 /* helloaxis_impact_base.h */,
+				311AEA77B737870BC424AE42 /* helloaxis_impact.cpp */,
+				7D7AAD0316FCD267A8947D3F /* helloaxis_impact.h */,
 			);
 			name = helloaxis;
 			sourceTree = "<group>";
@@ -366,269 +366,269 @@
 /* End PBXGroup section */
 
 /* Begin PBXHeadersBuildPhase section */
-		9AEB75A116F78DF10085103B /* Headers */ = {
+		5641790818C5F3C653DE11AA /* Headers */ = {
 			isa = PBXHeadersBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				9AEB75DE16F78E600085103B /* framework.h in Headers */,
-				07FB1AA51B744E8800F3FCC1 /* helloaxis_render.h in Headers */,
-				9AEB75E016F78E600085103B /* helloaxis.h in Headers */,
-				07A684F117F0E06700C41DE6 /* helloaxis_impact.h in Headers */,
-				9AA1009119971FCE004F84BD /* helloaxis_main_impact.h in Headers */,
-				07AE49511CC7A83F00959A6F /* helloaxis_impact_base.h in Headers */,
-				9A72594D1D1403E6001F56B4 /* helloaxis_main_frame.h in Headers */,
-				07A684EF17F0E06700C41DE6 /* aaa_want_to_erase_helloaxis_impact_update_hint.h in Headers */,
-				07A684ED17F0E06700C41DE6 /* helloaxis_document.h in Headers */,
-				07A684F017F0E06700C41DE6 /* helloaxis_pane_impact.h in Headers */,
-				07AE494F1CC7A83F00959A6F /* helloaxis_gcom.h in Headers */,
-				07A684EE17F0E06700C41DE6 /* helloaxis_frame.h in Headers */,
-				076D09FC1A3FC72C007432B6 /* helloaxis_switcher_impact.h in Headers */,
-				07A684EC17F0E06700C41DE6 /* helloaxis_application.h in Headers */,
+				235901330E8A8B0EE8B03A51 /* framework.h in Headers */,
+				2166BEB35484D7A5E46B5399 /* helloaxis_render.h in Headers */,
+				4C5126E403C285086A3818AF /* helloaxis.h in Headers */,
+				95D93628D268173049BB2356 /* helloaxis_impact.h in Headers */,
+				2653B81AAD639A9D4977B79E /* helloaxis_main_impact.h in Headers */,
+				D02B0FA89A96C09304DD8AF4 /* helloaxis_impact_base.h in Headers */,
+				816DC35034854D16003FC842 /* helloaxis_main_frame.h in Headers */,
+				C140FFBF84D3C5A69382EEB9 /* aaa_want_to_erase_helloaxis_impact_update_hint.h in Headers */,
+				A9D8530003A3FFB70A0A16B7 /* helloaxis_document.h in Headers */,
+				77B2137D936E4CFA6CC615CF /* helloaxis_pane_impact.h in Headers */,
+				926E1C08D13334EA39B4588F /* helloaxis_gcom.h in Headers */,
+				5BDAB88BF4E024E18284202F /* helloaxis_frame.h in Headers */,
+				C8BD40F6C64DE316121CE64A /* helloaxis_switcher_impact.h in Headers */,
+				B755035E3E9A67947C2E3B08 /* helloaxis_application.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXHeadersBuildPhase section */
 
 /* Begin PBXNativeTarget section */
-		9AE24E891904CFFD001AEFFB /* ios_app_core_helloaxis */ = {
+		B79CBA4BC798E0EEEFF4D345 /* ios_app_core_helloaxis */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 9AE24EBA1904CFFD001AEFFB /* Build configuration list for PBXNativeTarget "ios_app_core_helloaxis" */;
+			buildConfigurationList = CAF8F6EEF15FD03C9EFC3347 /* Build configuration list for PBXNativeTarget "ios_app_core_helloaxis" */;
 			buildPhases = (
-				9AE24E861904CFFD001AEFFB /* Sources */,
-				9AE24E871904CFFD001AEFFB /* Frameworks */,
-				9AE24E881904CFFD001AEFFB /* CopyFiles */,
+				C860579707F517D916A23C6D /* Sources */,
+				95F56D6419B3ABAB04627E01 /* Frameworks */,
+				F1C762E9E76B1C53D3C16628 /* CopyFiles */,
 			);
 			buildRules = (
 			);
 			dependencies = (
-				9A9578551F62218E00623508 /* PBXTargetDependency */,
-				9A259E1D1D25D9B40044727D /* PBXTargetDependency */,
+				E429403705F77D6B2DC4A247 /* PBXTargetDependency */,
+				E50D78626386727EFDD49E70 /* PBXTargetDependency */,
 			);
 			name = ios_app_core_helloaxis;
 			productName = app_core_helloaxis_ios;
-			productReference = 9AE24E8A1904CFFD001AEFFB /* libapp_core_helloaxis.a */;
+			productReference = EB0C664AEFE4984D6D6E8B93 /* libapp_core_helloaxis.a */;
 			productType = "com.apple.product-type.library.static";
 		};
-		9AE24E981904CFFD001AEFFB /* app_core_helloaxis_iosTests */ = {
+		CC358DE963CB5431A250B26E /* app_core_helloaxis_iosTests */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 9AE24EBB1904CFFD001AEFFB /* Build configuration list for PBXNativeTarget "app_core_helloaxis_iosTests" */;
+			buildConfigurationList = 383551CEFC5760217518E1E4 /* Build configuration list for PBXNativeTarget "app_core_helloaxis_iosTests" */;
 			buildPhases = (
-				9AE24E951904CFFD001AEFFB /* Sources */,
-				9AE24E961904CFFD001AEFFB /* Frameworks */,
-				9AE24E971904CFFD001AEFFB /* Resources */,
+				2437E88FA9FF78998410CCDC /* Sources */,
+				28171EF1E9BB3A5F3538742A /* Frameworks */,
+				1A9CEE885EB4E2D46DE27D2E /* Resources */,
 			);
 			buildRules = (
 			);
 			dependencies = (
-				9AE24EA01904CFFD001AEFFB /* PBXTargetDependency */,
+				571ED67828A3EEC2C1C6BE10 /* PBXTargetDependency */,
 			);
 			name = app_core_helloaxis_iosTests;
 			productName = app_core_helloaxis_iosTests;
-			productReference = 9AE24E991904CFFD001AEFFB /* app_core_helloaxis_iosTests.xctest */;
+			productReference = B1CB5B59B0E9CD0310C26B39 /* app_core_helloaxis_iosTests.xctest */;
 			productType = "com.apple.product-type.bundle.unit-test";
 		};
-		9AEB75A216F78DF10085103B /* app_core_helloaxis */ = {
+		FA696847A98CCC6C123BCA03 /* app_core_helloaxis */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 9AEB75A716F78DF10085103B /* Build configuration list for PBXNativeTarget "app_core_helloaxis" */;
+			buildConfigurationList = BDB38EB2167CA0D399AD155A /* Build configuration list for PBXNativeTarget "app_core_helloaxis" */;
 			buildPhases = (
-				9AEB759F16F78DF10085103B /* Sources */,
-				9AEB75A016F78DF10085103B /* Frameworks */,
-				9AEB75A116F78DF10085103B /* Headers */,
+				8B236A13402C3E7DC5E51CDD /* Sources */,
+				7DB4DAF46F4A42A2EC292070 /* Frameworks */,
+				5641790818C5F3C653DE11AA /* Headers */,
 			);
 			buildRules = (
 			);
 			dependencies = (
-				9A9578571F62219700623508 /* PBXTargetDependency */,
-				070533EE1C90B2B900F31B3F /* PBXTargetDependency */,
+				5F8A43ED938E1E0023B04FD0 /* PBXTargetDependency */,
+				557FA86F424830D04205E234 /* PBXTargetDependency */,
 			);
 			name = app_core_helloaxis;
 			productName = app_core_helloaxis;
-			productReference = 9AEB75A316F78DF10085103B /* libapp_core_helloaxis.dylib */;
+			productReference = BBF94F6144B325CDBA9705E2 /* libapp_core_helloaxis.dylib */;
 			productType = "com.apple.product-type.library.dynamic";
 		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
-		9AEB759B16F78DF10085103B /* Project object */ = {
+		D1522A88F50E9DA8D8BAAC62 /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
 				LastUpgradeCheck = 0900;
 				ORGANIZATIONNAME = "Camilo Sasuke Tsumanuma";
 				TargetAttributes = {
-					9AE24E981904CFFD001AEFFB = {
-						TestTargetID = 9AEB75A216F78DF10085103B;
+					CC358DE963CB5431A250B26E = {
+						TestTargetID = FA696847A98CCC6C123BCA03;
 					};
 				};
 			};
-			buildConfigurationList = 9AEB759E16F78DF10085103B /* Build configuration list for PBXProject "app_core_helloaxis" */;
+			buildConfigurationList = D6AF8B387F7DD148C008C20A /* Build configuration list for PBXProject "app_core_helloaxis" */;
 			compatibilityVersion = "Xcode 3.2";
 			developmentRegion = English;
 			hasScannedForEncodings = 0;
 			knownRegions = (
 				en,
 			);
-			mainGroup = 9AEB759A16F78DF10085103B;
-			productRefGroup = 9AEB75A416F78DF10085103B /* Products */;
+			mainGroup = 4D5AD96DA1ED4A2EDD9EE969;
+			productRefGroup = 1F6B2831C68583DA83350B4D /* Products */;
 			projectDirPath = "";
 			projectReferences = (
 				{
-					ProductGroup = 070533CC1C90B2A100F31B3F /* Products */;
-					ProjectRef = 070533CB1C90B2A100F31B3F /* gcom.xcodeproj */;
+					ProductGroup = EE342BB858D3CCAD7D9B59CF /* Products */;
+					ProjectRef = DD828AD40CCBE2E5B9E1DE5C /* gcom.xcodeproj */;
 				},
 				{
-					ProductGroup = 9A9578491F62217C00623508 /* Products */;
-					ProjectRef = 9A9578481F62217C00623508 /* sphere.xcodeproj */;
+					ProductGroup = E6D21C604A6E04463D5EEBA4 /* Products */;
+					ProjectRef = B12ECF9EF64913F845B0A73B /* sphere.xcodeproj */;
 				},
 			);
 			projectRoot = "";
 			targets = (
-				9AEB75A216F78DF10085103B /* app_core_helloaxis */,
-				9AE24E891904CFFD001AEFFB /* ios_app_core_helloaxis */,
-				9AE24E981904CFFD001AEFFB /* app_core_helloaxis_iosTests */,
+				FA696847A98CCC6C123BCA03 /* app_core_helloaxis */,
+				B79CBA4BC798E0EEEFF4D345 /* ios_app_core_helloaxis */,
+				CC358DE963CB5431A250B26E /* app_core_helloaxis_iosTests */,
 			);
 		};
 /* End PBXProject section */
 
 /* Begin PBXReferenceProxy section */
-		070533E61C90B2A100F31B3F /* libgcom.dylib */ = {
+		169B22461522A119460B96F4 /* libgcom.dylib */ = {
 			isa = PBXReferenceProxy;
 			fileType = "compiled.mach-o.dylib";
 			path = libgcom.dylib;
-			remoteRef = 070533E51C90B2A100F31B3F /* PBXContainerItemProxy */;
+			remoteRef = FECF9F1745B32E5104404B80 /* PBXContainerItemProxy */;
 			sourceTree = BUILT_PRODUCTS_DIR;
 		};
-		070533E81C90B2A100F31B3F /* libios_gcom.a */ = {
+		E69932A01D463710729EA019 /* libios_gcom.a */ = {
 			isa = PBXReferenceProxy;
 			fileType = archive.ar;
 			path = libios_gcom.a;
-			remoteRef = 070533E71C90B2A100F31B3F /* PBXContainerItemProxy */;
+			remoteRef = 145682232C16054462CB0DE8 /* PBXContainerItemProxy */;
 			sourceTree = BUILT_PRODUCTS_DIR;
 		};
-		070533EA1C90B2A100F31B3F /* gcom_iosTests.xctest */ = {
+		A350CE546C6B1421F901B50A /* gcom_iosTests.xctest */ = {
 			isa = PBXReferenceProxy;
 			fileType = wrapper.cfbundle;
 			path = gcom_iosTests.xctest;
-			remoteRef = 070533E91C90B2A100F31B3F /* PBXContainerItemProxy */;
+			remoteRef = FF58EE8DDABDC95E3D98BDB3 /* PBXContainerItemProxy */;
 			sourceTree = BUILT_PRODUCTS_DIR;
 		};
-		9A95784F1F62217D00623508 /* libsphere.dylib */ = {
+		E1AF23566F82B0FFC5AA115E /* libsphere.dylib */ = {
 			isa = PBXReferenceProxy;
 			fileType = "compiled.mach-o.dylib";
 			path = libsphere.dylib;
-			remoteRef = 9A95784E1F62217D00623508 /* PBXContainerItemProxy */;
+			remoteRef = 896693B5D1EF7419A46EA72B /* PBXContainerItemProxy */;
 			sourceTree = BUILT_PRODUCTS_DIR;
 		};
-		9A9578511F62217D00623508 /* libios_sphere.a */ = {
+		1A067C2E09B362D98E1CD655 /* libios_sphere.a */ = {
 			isa = PBXReferenceProxy;
 			fileType = archive.ar;
 			path = libios_sphere.a;
-			remoteRef = 9A9578501F62217D00623508 /* PBXContainerItemProxy */;
+			remoteRef = 5FBF33D15EDD72F014937BB3 /* PBXContainerItemProxy */;
 			sourceTree = BUILT_PRODUCTS_DIR;
 		};
-		9A9578531F62217D00623508 /* sphere_iosTests.xctest */ = {
+		DB657B4383B4B817A13F3933 /* sphere_iosTests.xctest */ = {
 			isa = PBXReferenceProxy;
 			fileType = wrapper.cfbundle;
 			path = sphere_iosTests.xctest;
-			remoteRef = 9A9578521F62217D00623508 /* PBXContainerItemProxy */;
+			remoteRef = FE55FFDAFAE46AB328E95821 /* PBXContainerItemProxy */;
 			sourceTree = BUILT_PRODUCTS_DIR;
 		};
 /* End PBXReferenceProxy section */
 
 /* Begin PBXResourcesBuildPhase section */
-		9AE24E971904CFFD001AEFFB /* Resources */ = {
+		1A9CEE885EB4E2D46DE27D2E /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				9AE24EA71904CFFD001AEFFB /* InfoPlist.strings in Resources */,
+				749F84EDBC4F46290E46F99C /* InfoPlist.strings in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
-		9AE24E861904CFFD001AEFFB /* Sources */ = {
+		C860579707F517D916A23C6D /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				9A6716B61D155B860069A961 /* helloaxis_main_frame.cpp in Sources */,
-				9A6716B71D155B860069A961 /* helloaxis_gcom.cpp in Sources */,
-				9A6716B81D155B860069A961 /* helloaxis_impact_base.cpp in Sources */,
-				07A4B1371B76469200DA5C57 /* helloaxis_render.cpp in Sources */,
-				07473E641B5050B8004688C5 /* helloaxis_main_impact.cpp in Sources */,
-				07473E601B5050B8004688C5 /* helloaxis_switcher_impact.cpp in Sources */,
-				07B65520190F3001002DAADE /* framework.cpp in Sources */,
-				07B65521190F3001002DAADE /* helloaxis_application.cpp in Sources */,
-				07B65522190F3001002DAADE /* helloaxis_document.cpp in Sources */,
-				07B65523190F3001002DAADE /* helloaxis_frame.cpp in Sources */,
-				07B65524190F3001002DAADE /* helloaxis_pane_impact.cpp in Sources */,
-				07B65525190F3001002DAADE /* aaa_want_to_erase_helloaxis_impact_update_hint.cpp in Sources */,
-				07B65526190F3001002DAADE /* helloaxis_impact.cpp in Sources */,
+				B0E919FD82FDD86ABB372684 /* helloaxis_main_frame.cpp in Sources */,
+				8A7DA479CF9FC784093EF335 /* helloaxis_gcom.cpp in Sources */,
+				D9629A8D388FE1AEF95F2282 /* helloaxis_impact_base.cpp in Sources */,
+				0FA8115C091C795669789A10 /* helloaxis_render.cpp in Sources */,
+				57706F4F88712350C8B322D3 /* helloaxis_main_impact.cpp in Sources */,
+				7D93DD64BDE67CC2E32BF9B2 /* helloaxis_switcher_impact.cpp in Sources */,
+				AD5110EAEF2784B648785506 /* framework.cpp in Sources */,
+				2A1C9F92479A8DF44F010304 /* helloaxis_application.cpp in Sources */,
+				C66A382B67AF03B8C8AA24E6 /* helloaxis_document.cpp in Sources */,
+				7D48BA6BFBACBA15FBCF7FB8 /* helloaxis_frame.cpp in Sources */,
+				A8EF1197DDA09485DA76CF99 /* helloaxis_pane_impact.cpp in Sources */,
+				2174AF4EBB98A49CA206DF6A /* aaa_want_to_erase_helloaxis_impact_update_hint.cpp in Sources */,
+				44E3DB556CA186A026C0C51D /* helloaxis_impact.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		9AE24E951904CFFD001AEFFB /* Sources */ = {
+		2437E88FA9FF78998410CCDC /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				9AE24EA91904CFFD001AEFFB /* app_core_helloaxis_iosTests.m in Sources */,
+				1342B9FEE75B2DFEA8FF6B29 /* app_core_helloaxis_iosTests.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		9AEB759F16F78DF10085103B /* Sources */ = {
+		8B236A13402C3E7DC5E51CDD /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				9AA1009019971FCE004F84BD /* helloaxis_main_impact.cpp in Sources */,
-				9AEB75DD16F78E600085103B /* framework.cpp in Sources */,
-				07AE494E1CC7A83F00959A6F /* helloaxis_gcom.cpp in Sources */,
-				9A72594C1D1403E6001F56B4 /* helloaxis_main_frame.cpp in Sources */,
-				076D09FB1A3FC72C007432B6 /* helloaxis_switcher_impact.cpp in Sources */,
-				07FB1AA41B744E8800F3FCC1 /* helloaxis_render.cpp in Sources */,
-				9AEB75E116F78E600085103B /* helloaxis_application.cpp in Sources */,
-				07AE49501CC7A83F00959A6F /* helloaxis_impact_base.cpp in Sources */,
-				9AEB75E216F78E600085103B /* helloaxis_document.cpp in Sources */,
-				9AEB75E316F78E600085103B /* helloaxis_frame.cpp in Sources */,
-				9AEB75E416F78E600085103B /* helloaxis_pane_impact.cpp in Sources */,
-				9AEB75E516F78E600085103B /* aaa_want_to_erase_helloaxis_impact_update_hint.cpp in Sources */,
-				9AEB75E616F78E600085103B /* helloaxis_impact.cpp in Sources */,
+				0514CF940DB68A1667C58BA8 /* helloaxis_main_impact.cpp in Sources */,
+				EBBA5966D10F2155DA76426B /* framework.cpp in Sources */,
+				728010ED13077D5656A68B38 /* helloaxis_gcom.cpp in Sources */,
+				EFB3CE81B0824109A525548D /* helloaxis_main_frame.cpp in Sources */,
+				0183F23CB4E14C64CF09DF21 /* helloaxis_switcher_impact.cpp in Sources */,
+				8C7B9B6ECB1FC5851A334B4F /* helloaxis_render.cpp in Sources */,
+				5F9CAB0C25438776A8EA1FDF /* helloaxis_application.cpp in Sources */,
+				59A76E8C8E3BBB494700400E /* helloaxis_impact_base.cpp in Sources */,
+				2AC674F2D63DCC4CEFE8E7A3 /* helloaxis_document.cpp in Sources */,
+				612027E637FD87420020B098 /* helloaxis_frame.cpp in Sources */,
+				CC3C08AFBE8A4EDC607F1EB1 /* helloaxis_pane_impact.cpp in Sources */,
+				DA711391F719DA24B93D8D4F /* aaa_want_to_erase_helloaxis_impact_update_hint.cpp in Sources */,
+				B4025347B88B670EB3AABA8E /* helloaxis_impact.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
-		070533EE1C90B2B900F31B3F /* PBXTargetDependency */ = {
+		557FA86F424830D04205E234 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			name = gcom;
-			targetProxy = 070533ED1C90B2B900F31B3F /* PBXContainerItemProxy */;
+			targetProxy = 3F440A6AA15D377DF7EBB2C0 /* PBXContainerItemProxy */;
 		};
-		9A259E1D1D25D9B40044727D /* PBXTargetDependency */ = {
+		E50D78626386727EFDD49E70 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			name = ios_gcom;
-			targetProxy = 9A259E1C1D25D9B40044727D /* PBXContainerItemProxy */;
+			targetProxy = A850135B0685BA802900D3B5 /* PBXContainerItemProxy */;
 		};
-		9A9578551F62218E00623508 /* PBXTargetDependency */ = {
+		E429403705F77D6B2DC4A247 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			name = ios_sphere;
-			targetProxy = 9A9578541F62218E00623508 /* PBXContainerItemProxy */;
+			targetProxy = BE8629A1842C2A137AF188AB /* PBXContainerItemProxy */;
 		};
-		9A9578571F62219700623508 /* PBXTargetDependency */ = {
+		5F8A43ED938E1E0023B04FD0 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			name = sphere;
-			targetProxy = 9A9578561F62219700623508 /* PBXContainerItemProxy */;
+			targetProxy = CBD4C03BB5BB49EED6C470BE /* PBXContainerItemProxy */;
 		};
-		9AE24EA01904CFFD001AEFFB /* PBXTargetDependency */ = {
+		571ED67828A3EEC2C1C6BE10 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
-			target = 9AE24E891904CFFD001AEFFB /* ios_app_core_helloaxis */;
-			targetProxy = 9AE24E9F1904CFFD001AEFFB /* PBXContainerItemProxy */;
+			target = B79CBA4BC798E0EEEFF4D345 /* ios_app_core_helloaxis */;
+			targetProxy = 49F86620CF8A7326E5B485C1 /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
-		9AE24EA51904CFFD001AEFFB /* InfoPlist.strings */ = {
+		B5BBE953A0B9588B46573A91 /* InfoPlist.strings */ = {
 			isa = PBXVariantGroup;
 			children = (
-				9AE24EA61904CFFD001AEFFB /* en */,
+				417B494D60384F1086BC1FEC /* en */,
 			);
 			name = InfoPlist.strings;
 			sourceTree = "<group>";
@@ -636,7 +636,7 @@
 /* End PBXVariantGroup section */
 
 /* Begin XCBuildConfiguration section */
-		9AE24EAA1904CFFD001AEFFB /* Debug */ = {
+		B48908F0EA7765B15BB5A423 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				EXECUTABLE_EXTENSION = a;
@@ -646,7 +646,7 @@
 			};
 			name = Debug;
 		};
-		9AE24EAB1904CFFD001AEFFB /* Release */ = {
+		223272857F08548BEB411B51 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				EXECUTABLE_EXTENSION = a;
@@ -656,7 +656,7 @@
 			};
 			name = Release;
 		};
-		9AE24EAC1904CFFD001AEFFB /* Debug */ = {
+		CF9E3994DC9088561209E544 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
@@ -690,7 +690,7 @@
 			};
 			name = Debug;
 		};
-		9AE24EAD1904CFFD001AEFFB /* Release */ = {
+		08D0B28ED927CB6BF84F77A5 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
@@ -723,7 +723,7 @@
 			};
 			name = Release;
 		};
-		9AEB75A516F78DF10085103B /* Debug */ = {
+		6390D0535459A14326FF66D3 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = YES;
@@ -791,7 +791,7 @@
 			};
 			name = Debug;
 		};
-		9AEB75A616F78DF10085103B /* Release */ = {
+		FC5041872CB309C87C057C04 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = YES;
@@ -851,7 +851,7 @@
 			};
 			name = Release;
 		};
-		9AEB75A816F78DF10085103B /* Debug */ = {
+		91AE3D1E67DF2861BE1FEDFB /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				CODE_SIGN_IDENTITY = "";
@@ -859,7 +859,7 @@
 			};
 			name = Debug;
 		};
-		9AEB75A916F78DF10085103B /* Release */ = {
+		D121ADEE2CF4C038509063B1 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				CODE_SIGN_IDENTITY = "";
@@ -870,43 +870,43 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		9AE24EBA1904CFFD001AEFFB /* Build configuration list for PBXNativeTarget "ios_app_core_helloaxis" */ = {
+		CAF8F6EEF15FD03C9EFC3347 /* Build configuration list for PBXNativeTarget "ios_app_core_helloaxis" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
-				9AE24EAA1904CFFD001AEFFB /* Debug */,
-				9AE24EAB1904CFFD001AEFFB /* Release */,
+				B48908F0EA7765B15BB5A423 /* Debug */,
+				223272857F08548BEB411B51 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		9AE24EBB1904CFFD001AEFFB /* Build configuration list for PBXNativeTarget "app_core_helloaxis_iosTests" */ = {
+		383551CEFC5760217518E1E4 /* Build configuration list for PBXNativeTarget "app_core_helloaxis_iosTests" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
-				9AE24EAC1904CFFD001AEFFB /* Debug */,
-				9AE24EAD1904CFFD001AEFFB /* Release */,
+				CF9E3994DC9088561209E544 /* Debug */,
+				08D0B28ED927CB6BF84F77A5 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		9AEB759E16F78DF10085103B /* Build configuration list for PBXProject "app_core_helloaxis" */ = {
+		D6AF8B387F7DD148C008C20A /* Build configuration list for PBXProject "app_core_helloaxis" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
-				9AEB75A516F78DF10085103B /* Debug */,
-				9AEB75A616F78DF10085103B /* Release */,
+				6390D0535459A14326FF66D3 /* Debug */,
+				FC5041872CB309C87C057C04 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		9AEB75A716F78DF10085103B /* Build configuration list for PBXNativeTarget "app_core_helloaxis" */ = {
+		BDB38EB2167CA0D399AD155A /* Build configuration list for PBXNativeTarget "app_core_helloaxis" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
-				9AEB75A816F78DF10085103B /* Debug */,
-				9AEB75A916F78DF10085103B /* Release */,
+				91AE3D1E67DF2861BE1FEDFB /* Debug */,
+				D121ADEE2CF4C038509063B1 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
-	rootObject = 9AEB759B16F78DF10085103B /* Project object */;
+	rootObject = D1522A88F50E9DA8D8BAAC62 /* Project object */;
 }

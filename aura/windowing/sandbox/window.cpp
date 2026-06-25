@@ -1093,6 +1093,8 @@ namespace sandbox_windowing
       //      }
 
       m_pacmeuserinteraction = pacmeuserinteraction;
+      
+      pacmeuserinteraction->m_pacmewindowingwindow = this;
 
       //m_pwindow = pimpl;
 

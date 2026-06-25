@@ -7,7 +7,7 @@
 #include "acme/constant/user_key.h"
 #include "acme/parallelization/synchronous_lock.h"
 #include "acme/platform/node.h"
-#include "acme/constant/lightui.h"
+#include "acme/constant/user_interface.h"
 
 
 namespace user
@@ -269,21 +269,21 @@ namespace user
 
       auto wparam = pmouse->m_wparam.m_wparam;
 
-      if (wparam & ::lightui::e_MK_LBUTTON)
+      if (wparam & ::user_interface::e_MK_LBUTTON)
       {
 
          keystate.m_ekeystate |=  e_key_state_left_button;
 
       }
 
-      if (wparam & ::lightui::e_MK_RBUTTON)
+      if (wparam & ::user_interface::e_MK_RBUTTON)
       {
 
          keystate.m_ekeystate |=  e_key_state_right_button;
 
       }
 
-      if (wparam & ::lightui::e_MK_SHIFT)
+      if (wparam & ::user_interface::e_MK_SHIFT)
       {
 
          keystate.m_ekeystate |=  e_key_state_shift;
@@ -301,7 +301,7 @@ namespace user
          }
       }
 
-      if (wparam & ::lightui::e_MK_CONTROL)
+      if (wparam & ::user_interface::e_MK_CONTROL)
       {
 
          keystate.m_ekeystate |=  e_key_state_control;
@@ -319,19 +319,19 @@ namespace user
          }
       }
 
-      if (wparam & ::lightui::e_MK_MBUTTON)
+      if (wparam & ::user_interface::e_MK_MBUTTON)
       {
 
          keystate.m_ekeystate |=  e_key_state_middle_button;
       }
 
-      if (wparam & ::lightui::e_MK_XBUTTON1)
+      if (wparam & ::user_interface::e_MK_XBUTTON1)
       {
 
          keystate.m_ekeystate |=  e_key_state_x1_button;
       }
 
-      if (wparam & ::lightui::e_MK_XBUTTON2)
+      if (wparam & ::user_interface::e_MK_XBUTTON2)
       {
 
          keystate.m_ekeystate |=  e_key_state_x2_button;

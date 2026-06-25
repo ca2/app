@@ -1241,7 +1241,7 @@ namespace acme
       }
 
 
-      void window::show_window(::i32 iShowFlags)
+      void window::show_window(::user_interface::enum_show_window eshowwindow)
       {
 
 

@@ -7,80 +7,80 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		071B6B291B5AE07B002C55E2 /* libaxisfreeimage.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 076333EB1B5902FC0079C405 /* libaxisfreeimage.dylib */; };
-		076335191B5903BD0079C405 /* PluginJPEG.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 076334B11B5903BC0079C405 /* PluginJPEG.cpp */; };
-		0763351A1B5903BD0079C405 /* PluginJPEG.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 076334B11B5903BC0079C405 /* PluginJPEG.cpp */; };
-		07B6577B190F3CA2002DAADE /* libios_image_decode_jpeg.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 07B65764190F3CA2002DAADE /* libios_image_decode_jpeg.a */; };
-		9A9F0A7C1D7F356C00ED6D8A /* libaxisjpeg.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 9A9F0A501D7F345500ED6D8A /* libaxisjpeg.dylib */; };
+		A5F363061F0195C50C4B0F4F /* libaxisfreeimage.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = CCD2CC55A1F0166A45A21160 /* libaxisfreeimage.dylib */; };
+		60072E9BFB8A713C04AF0091 /* PluginJPEG.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 77A95FC79C987E1B87444B20 /* PluginJPEG.cpp */; };
+		07FDEAE2B33D47A853CA9FCA /* PluginJPEG.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 77A95FC79C987E1B87444B20 /* PluginJPEG.cpp */; };
+		6BCAA4E5B2F2D75B2A20D6FA /* libios_image_decode_jpeg.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 256009DFDDB41E4C90305827 /* libios_image_decode_jpeg.a */; };
+		468AFE02486713FC448C0FE7 /* libaxisjpeg.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 357B0CFF43D76C0C7125B1A6 /* libaxisjpeg.dylib */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
-		071B6B261B5AE067002C55E2 /* PBXContainerItemProxy */ = {
+		48D572E731017CF0544C54F1 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
-			containerPortal = 076333E51B5902FB0079C405 /* axisfreeimage.xcodeproj */;
+			containerPortal = 2D913A91507D76C4D60A5523 /* axisfreeimage.xcodeproj */;
 			proxyType = 1;
 			remoteGlobalIDString = 9AA5E4C216F7C61B005C45CE;
 			remoteInfo = axisfreeimage;
 		};
-		076333EA1B5902FC0079C405 /* PBXContainerItemProxy */ = {
+		EAAEF4C300DB75EB4576165A /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
-			containerPortal = 076333E51B5902FB0079C405 /* axisfreeimage.xcodeproj */;
+			containerPortal = 2D913A91507D76C4D60A5523 /* axisfreeimage.xcodeproj */;
 			proxyType = 2;
 			remoteGlobalIDString = 9AEEB48E19C5084900866C9E;
 			remoteInfo = axisfreeimage;
 		};
-		076333EC1B5902FC0079C405 /* PBXContainerItemProxy */ = {
+		4BB0EA78DE7ECCDDEC368DCF /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
-			containerPortal = 076333E51B5902FB0079C405 /* axisfreeimage.xcodeproj */;
+			containerPortal = 2D913A91507D76C4D60A5523 /* axisfreeimage.xcodeproj */;
 			proxyType = 2;
 			remoteGlobalIDString = 07108BD71B4C97D500A28F80;
 			remoteInfo = ios_axisfreeimage;
 		};
-		076336221B590A1A0079C405 /* PBXContainerItemProxy */ = {
+		5E556B7468833046506DE29B /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
-			containerPortal = 076333E51B5902FB0079C405 /* axisfreeimage.xcodeproj */;
+			containerPortal = 2D913A91507D76C4D60A5523 /* axisfreeimage.xcodeproj */;
 			proxyType = 1;
 			remoteGlobalIDString = 07108B6F1B4C97D500A28F80;
 			remoteInfo = ios_axisfreeimage;
 		};
-		07B65779190F3CA2002DAADE /* PBXContainerItemProxy */ = {
+		7F4EE907177BBA5A081FEE91 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
-			containerPortal = 9A574B8F16AAB906000CC4EF /* Project object */;
+			containerPortal = 555C9F17E2A1EA2FE6DE7ADB /* Project object */;
 			proxyType = 1;
-			remoteGlobalIDString = 07B65763190F3CA2002DAADE;
+			remoteGlobalIDString = D40AD13E61C276447A415BCF;
 			remoteInfo = math_ios;
 		};
-		9A21173E1D832C1C000C4336 /* PBXContainerItemProxy */ = {
+		902E2471C85097BF2EEA13BC /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
-			containerPortal = 9A9F0A491D7F345500ED6D8A /* axisjpeg.xcodeproj */;
+			containerPortal = 8489842DE341B97CE40CEE72 /* axisjpeg.xcodeproj */;
 			proxyType = 1;
 			remoteGlobalIDString = 07B65763190F3CA2002DAADE;
 			remoteInfo = ios_axisjpeg;
 		};
-		9A9F0A4F1D7F345500ED6D8A /* PBXContainerItemProxy */ = {
+		22C7638D8C612184EFEB39E7 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
-			containerPortal = 9A9F0A491D7F345500ED6D8A /* axisjpeg.xcodeproj */;
+			containerPortal = 8489842DE341B97CE40CEE72 /* axisjpeg.xcodeproj */;
 			proxyType = 2;
 			remoteGlobalIDString = 9A574B9816AAB906000CC4EF;
 			remoteInfo = axisjpeg;
 		};
-		9A9F0A511D7F345500ED6D8A /* PBXContainerItemProxy */ = {
+		7F374584E6CA05E27B462DD1 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
-			containerPortal = 9A9F0A491D7F345500ED6D8A /* axisjpeg.xcodeproj */;
+			containerPortal = 8489842DE341B97CE40CEE72 /* axisjpeg.xcodeproj */;
 			proxyType = 2;
 			remoteGlobalIDString = 07B65764190F3CA2002DAADE;
 			remoteInfo = ios_axisjpeg;
 		};
-		9A9F0A531D7F345500ED6D8A /* PBXContainerItemProxy */ = {
+		1AB6C47C7218B6DA98E073D6 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
-			containerPortal = 9A9F0A491D7F345500ED6D8A /* axisjpeg.xcodeproj */;
+			containerPortal = 8489842DE341B97CE40CEE72 /* axisjpeg.xcodeproj */;
 			proxyType = 2;
 			remoteGlobalIDString = 07B65773190F3CA2002DAADE;
 			remoteInfo = axisjpeg_iosTests;
 		};
-		9A9F0A7A1D7F356400ED6D8A /* PBXContainerItemProxy */ = {
+		410FFAD80C348D5614282CD3 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
-			containerPortal = 9A9F0A491D7F345500ED6D8A /* axisjpeg.xcodeproj */;
+			containerPortal = 8489842DE341B97CE40CEE72 /* axisjpeg.xcodeproj */;
 			proxyType = 1;
 			remoteGlobalIDString = 9A574B9716AAB906000CC4EF;
 			remoteInfo = axisjpeg;
@@ -88,7 +88,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXCopyFilesBuildPhase section */
-		07B65762190F3CA2002DAADE /* CopyFiles */ = {
+		57747CFC7BDBB7C66ECA3668 /* CopyFiles */ = {
 			isa = PBXCopyFilesBuildPhase;
 			buildActionMask = 2147483647;
 			dstPath = "include/$(PRODUCT_NAME)";
@@ -100,107 +100,107 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
-		076333E51B5902FB0079C405 /* axisfreeimage.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = axisfreeimage.xcodeproj; path = ../freeimage/axisfreeimage.xcodeproj; sourceTree = SOURCE_ROOT; };
-		076334B11B5903BC0079C405 /* PluginJPEG.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = PluginJPEG.cpp; sourceTree = "<group>"; };
-		07B65764190F3CA2002DAADE /* libios_image_decode_jpeg.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; name = libios_image_decode_jpeg.a; path = lib.a; sourceTree = BUILT_PRODUCTS_DIR; };
-		07B65773190F3CA2002DAADE /* axisjpeg_iosTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = axisjpeg_iosTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
-		9A574B9816AAB906000CC4EF /* libimage_decode_jpeg.dylib */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.dylib"; includeInIndex = 0; path = libimage_decode_jpeg.dylib; sourceTree = BUILT_PRODUCTS_DIR; };
-		9A9F0A491D7F345500ED6D8A /* axisjpeg.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = axisjpeg.xcodeproj; path = ../../third/jpeg/axisjpeg.xcodeproj; sourceTree = SOURCE_ROOT; };
+		2D913A91507D76C4D60A5523 /* axisfreeimage.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = axisfreeimage.xcodeproj; path = ../freeimage/axisfreeimage.xcodeproj; sourceTree = SOURCE_ROOT; };
+		77A95FC79C987E1B87444B20 /* PluginJPEG.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = PluginJPEG.cpp; sourceTree = "<group>"; };
+		256009DFDDB41E4C90305827 /* libios_image_decode_jpeg.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; name = libios_image_decode_jpeg.a; path = lib.a; sourceTree = BUILT_PRODUCTS_DIR; };
+		6312B7968899F014D7FB9A9C /* axisjpeg_iosTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = axisjpeg_iosTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		80985A03B4A4C64FA646B925 /* libimage_decode_jpeg.dylib */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.dylib"; includeInIndex = 0; path = libimage_decode_jpeg.dylib; sourceTree = BUILT_PRODUCTS_DIR; };
+		8489842DE341B97CE40CEE72 /* axisjpeg.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = axisjpeg.xcodeproj; path = ../../third/jpeg/axisjpeg.xcodeproj; sourceTree = SOURCE_ROOT; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
-		07B65761190F3CA2002DAADE /* Frameworks */ = {
+		3FE2372475175B36274EE1B0 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		07B65770190F3CA2002DAADE /* Frameworks */ = {
+		8DE4E4751A0D95A80009A470 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				07B6577B190F3CA2002DAADE /* libios_image_decode_jpeg.a in Frameworks */,
+				6BCAA4E5B2F2D75B2A20D6FA /* libios_image_decode_jpeg.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		9A574B9516AAB906000CC4EF /* Frameworks */ = {
+		00BCB985261B326F47899422 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				9A9F0A7C1D7F356C00ED6D8A /* libaxisjpeg.dylib in Frameworks */,
-				071B6B291B5AE07B002C55E2 /* libaxisfreeimage.dylib in Frameworks */,
+				468AFE02486713FC448C0FE7 /* libaxisjpeg.dylib in Frameworks */,
+				A5F363061F0195C50C4B0F4F /* libaxisfreeimage.dylib in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		076333E61B5902FB0079C405 /* Products */ = {
+		445FE301F4DB205C3C4E7E4E /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				076333EB1B5902FC0079C405 /* libaxisfreeimage.dylib */,
-				076333ED1B5902FC0079C405 /* libios_axisfreeimage.a */,
+				CCD2CC55A1F0166A45A21160 /* libaxisfreeimage.dylib */,
+				2FE2C82577122B3419389742 /* libios_axisfreeimage.a */,
 			);
 			name = Products;
 			sourceTree = "<group>";
 		};
-		076334AF1B5903BC0079C405 /* Source */ = {
+		C2F71ACC390EF4511022992E /* Source */ = {
 			isa = PBXGroup;
 			children = (
-				076334B01B5903BC0079C405 /* FreeImage */,
-				076334B21B5903BC0079C405 /* FreeImageToolkit */,
+				7CF0A8066FEFBF175BE62AFF /* FreeImage */,
+				AA08BE962EBDE2A7B716AA24 /* FreeImageToolkit */,
 			);
 			path = Source;
 			sourceTree = "<group>";
 		};
-		076334B01B5903BC0079C405 /* FreeImage */ = {
+		7CF0A8066FEFBF175BE62AFF /* FreeImage */ = {
 			isa = PBXGroup;
 			children = (
-				076334B11B5903BC0079C405 /* PluginJPEG.cpp */,
+				77A95FC79C987E1B87444B20 /* PluginJPEG.cpp */,
 			);
 			path = FreeImage;
 			sourceTree = "<group>";
 		};
-		076334B21B5903BC0079C405 /* FreeImageToolkit */ = {
+		AA08BE962EBDE2A7B716AA24 /* FreeImageToolkit */ = {
 			isa = PBXGroup;
 			children = (
 			);
 			path = FreeImageToolkit;
 			sourceTree = "<group>";
 		};
-		9A574B8D16AAB906000CC4EF = {
+		89D52535667EA2DEBE20FF32 = {
 			isa = PBXGroup;
 			children = (
-				076333E51B5902FB0079C405 /* axisfreeimage.xcodeproj */,
-				9A9F0A491D7F345500ED6D8A /* axisjpeg.xcodeproj */,
-				076334AF1B5903BC0079C405 /* Source */,
-				9A574B9916AAB906000CC4EF /* Products */,
-				9AF4C75B1F83E60400197385 /* Frameworks */,
+				2D913A91507D76C4D60A5523 /* axisfreeimage.xcodeproj */,
+				8489842DE341B97CE40CEE72 /* axisjpeg.xcodeproj */,
+				C2F71ACC390EF4511022992E /* Source */,
+				DB0767409C8552FC07B87575 /* Products */,
+				72EB93355499727917716374 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
-		9A574B9916AAB906000CC4EF /* Products */ = {
+		DB0767409C8552FC07B87575 /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				9A574B9816AAB906000CC4EF /* libimage_decode_jpeg.dylib */,
-				07B65764190F3CA2002DAADE /* libios_image_decode_jpeg.a */,
-				07B65773190F3CA2002DAADE /* axisjpeg_iosTests.xctest */,
-			);
-			name = Products;
-			sourceTree = "<group>";
-		};
-		9A9F0A4A1D7F345500ED6D8A /* Products */ = {
-			isa = PBXGroup;
-			children = (
-				9A9F0A501D7F345500ED6D8A /* libaxisjpeg.dylib */,
-				9A9F0A521D7F345500ED6D8A /* libios_axisjpeg.a */,
-				9A9F0A541D7F345500ED6D8A /* axisjpeg_iosTests.xctest */,
+				80985A03B4A4C64FA646B925 /* libimage_decode_jpeg.dylib */,
+				256009DFDDB41E4C90305827 /* libios_image_decode_jpeg.a */,
+				6312B7968899F014D7FB9A9C /* axisjpeg_iosTests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
 		};
-		9AF4C75B1F83E60400197385 /* Frameworks */ = {
+		6DA287B1CD1120CD4E1DEAE1 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				357B0CFF43D76C0C7125B1A6 /* libaxisjpeg.dylib */,
+				EB4C504F7883DE89D55B08EE /* libios_axisjpeg.a */,
+				E08ACC92E386CCF539A295B3 /* axisjpeg_iosTests.xctest */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		72EB93355499727917716374 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
 			);
@@ -210,7 +210,7 @@
 /* End PBXGroup section */
 
 /* Begin PBXHeadersBuildPhase section */
-		9A574B9616AAB906000CC4EF /* Headers */ = {
+		B8A5FBA92AF87D74F30C98AE /* Headers */ = {
 			isa = PBXHeadersBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -220,77 +220,77 @@
 /* End PBXHeadersBuildPhase section */
 
 /* Begin PBXNativeTarget section */
-		07B65763190F3CA2002DAADE /* ios_image_decode_jpeg */ = {
+		D40AD13E61C276447A415BCF /* ios_image_decode_jpeg */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 07B65788190F3CA2002DAADE /* Build configuration list for PBXNativeTarget "ios_image_decode_jpeg" */;
+			buildConfigurationList = C0D9BF6CF97BF185CD707006 /* Build configuration list for PBXNativeTarget "ios_image_decode_jpeg" */;
 			buildPhases = (
-				07B65760190F3CA2002DAADE /* Sources */,
-				07B65761190F3CA2002DAADE /* Frameworks */,
-				07B65762190F3CA2002DAADE /* CopyFiles */,
+				E6406228B68D2901D8498E3D /* Sources */,
+				3FE2372475175B36274EE1B0 /* Frameworks */,
+				57747CFC7BDBB7C66ECA3668 /* CopyFiles */,
 			);
 			buildRules = (
 			);
 			dependencies = (
-				9A21173F1D832C1C000C4336 /* PBXTargetDependency */,
-				076336231B590A1A0079C405 /* PBXTargetDependency */,
+				4D737437553D8CC0E221DCFE /* PBXTargetDependency */,
+				62F42618074F9CD0B26808F9 /* PBXTargetDependency */,
 			);
 			name = ios_image_decode_jpeg;
 			productName = math_ios;
-			productReference = 07B65764190F3CA2002DAADE /* libios_image_decode_jpeg.a */;
+			productReference = 256009DFDDB41E4C90305827 /* libios_image_decode_jpeg.a */;
 			productType = "com.apple.product-type.library.static";
 		};
-		07B65772190F3CA2002DAADE /* axisjpeg_iosTests */ = {
+		A98F447F81741395239F6175 /* axisjpeg_iosTests */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 07B65789190F3CA2002DAADE /* Build configuration list for PBXNativeTarget "axisjpeg_iosTests" */;
+			buildConfigurationList = 7643A4538BD27B6F00418A54 /* Build configuration list for PBXNativeTarget "axisjpeg_iosTests" */;
 			buildPhases = (
-				07B6576F190F3CA2002DAADE /* Sources */,
-				07B65770190F3CA2002DAADE /* Frameworks */,
-				07B65771190F3CA2002DAADE /* Resources */,
+				3C599F5F4E2431BD4AFBB059 /* Sources */,
+				8DE4E4751A0D95A80009A470 /* Frameworks */,
+				05525EE739C3832C14A5AAA6 /* Resources */,
 			);
 			buildRules = (
 			);
 			dependencies = (
-				07B6577A190F3CA2002DAADE /* PBXTargetDependency */,
+				FCF3113151E93C84867358BF /* PBXTargetDependency */,
 			);
 			name = axisjpeg_iosTests;
 			productName = math_iosTests;
-			productReference = 07B65773190F3CA2002DAADE /* axisjpeg_iosTests.xctest */;
+			productReference = 6312B7968899F014D7FB9A9C /* axisjpeg_iosTests.xctest */;
 			productType = "com.apple.product-type.bundle.unit-test";
 		};
-		9A574B9716AAB906000CC4EF /* image_decode_jpeg */ = {
+		36A426B0515FA7A93C0F49C0 /* image_decode_jpeg */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 9A574B9C16AAB906000CC4EF /* Build configuration list for PBXNativeTarget "image_decode_jpeg" */;
+			buildConfigurationList = 342EF6297D8EEEE902FBFA8F /* Build configuration list for PBXNativeTarget "image_decode_jpeg" */;
 			buildPhases = (
-				9A574B9416AAB906000CC4EF /* Sources */,
-				9A574B9516AAB906000CC4EF /* Frameworks */,
-				9A574B9616AAB906000CC4EF /* Headers */,
+				B7A9320EB81E4808F7039383 /* Sources */,
+				00BCB985261B326F47899422 /* Frameworks */,
+				B8A5FBA92AF87D74F30C98AE /* Headers */,
 			);
 			buildRules = (
 			);
 			dependencies = (
-				9A9F0A7B1D7F356400ED6D8A /* PBXTargetDependency */,
-				071B6B271B5AE067002C55E2 /* PBXTargetDependency */,
+				5A04A73EC00CFB5106BCA65C /* PBXTargetDependency */,
+				19B4BEAB5D9F314115590DFD /* PBXTargetDependency */,
 			);
 			name = image_decode_jpeg;
 			productName = ca2;
-			productReference = 9A574B9816AAB906000CC4EF /* libimage_decode_jpeg.dylib */;
+			productReference = 80985A03B4A4C64FA646B925 /* libimage_decode_jpeg.dylib */;
 			productType = "com.apple.product-type.library.dynamic";
 		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
-		9A574B8F16AAB906000CC4EF /* Project object */ = {
+		555C9F17E2A1EA2FE6DE7ADB /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
 				LastUpgradeCheck = 1020;
 				ORGANIZATIONNAME = "Camilo Sasuke Tsumanuma";
 				TargetAttributes = {
-					07B65772190F3CA2002DAADE = {
-						TestTargetID = 9A574B9716AAB906000CC4EF;
+					A98F447F81741395239F6175 = {
+						TestTargetID = 36A426B0515FA7A93C0F49C0;
 					};
 				};
 			};
-			buildConfigurationList = 9A574B9216AAB906000CC4EF /* Build configuration list for PBXProject "image_decode_jpeg" */;
+			buildConfigurationList = 00D7B7BD54E13D1898D94486 /* Build configuration list for PBXProject "image_decode_jpeg" */;
 			compatibilityVersion = "Xcode 3.2";
 			developmentRegion = en;
 			hasScannedForEncodings = 0;
@@ -298,68 +298,68 @@
 				en,
 				Base,
 			);
-			mainGroup = 9A574B8D16AAB906000CC4EF;
-			productRefGroup = 9A574B9916AAB906000CC4EF /* Products */;
+			mainGroup = 89D52535667EA2DEBE20FF32;
+			productRefGroup = DB0767409C8552FC07B87575 /* Products */;
 			projectDirPath = "";
 			projectReferences = (
 				{
-					ProductGroup = 076333E61B5902FB0079C405 /* Products */;
-					ProjectRef = 076333E51B5902FB0079C405 /* axisfreeimage.xcodeproj */;
+					ProductGroup = 445FE301F4DB205C3C4E7E4E /* Products */;
+					ProjectRef = 2D913A91507D76C4D60A5523 /* axisfreeimage.xcodeproj */;
 				},
 				{
-					ProductGroup = 9A9F0A4A1D7F345500ED6D8A /* Products */;
-					ProjectRef = 9A9F0A491D7F345500ED6D8A /* axisjpeg.xcodeproj */;
+					ProductGroup = 6DA287B1CD1120CD4E1DEAE1 /* Products */;
+					ProjectRef = 8489842DE341B97CE40CEE72 /* axisjpeg.xcodeproj */;
 				},
 			);
 			projectRoot = "";
 			targets = (
-				9A574B9716AAB906000CC4EF /* image_decode_jpeg */,
-				07B65763190F3CA2002DAADE /* ios_image_decode_jpeg */,
-				07B65772190F3CA2002DAADE /* axisjpeg_iosTests */,
+				36A426B0515FA7A93C0F49C0 /* image_decode_jpeg */,
+				D40AD13E61C276447A415BCF /* ios_image_decode_jpeg */,
+				A98F447F81741395239F6175 /* axisjpeg_iosTests */,
 			);
 		};
 /* End PBXProject section */
 
 /* Begin PBXReferenceProxy section */
-		076333EB1B5902FC0079C405 /* libaxisfreeimage.dylib */ = {
+		CCD2CC55A1F0166A45A21160 /* libaxisfreeimage.dylib */ = {
 			isa = PBXReferenceProxy;
 			fileType = "compiled.mach-o.dylib";
 			path = libaxisfreeimage.dylib;
-			remoteRef = 076333EA1B5902FC0079C405 /* PBXContainerItemProxy */;
+			remoteRef = EAAEF4C300DB75EB4576165A /* PBXContainerItemProxy */;
 			sourceTree = BUILT_PRODUCTS_DIR;
 		};
-		076333ED1B5902FC0079C405 /* libios_axisfreeimage.a */ = {
+		2FE2C82577122B3419389742 /* libios_axisfreeimage.a */ = {
 			isa = PBXReferenceProxy;
 			fileType = "compiled.mach-o.dylib";
 			path = libios_axisfreeimage.a;
-			remoteRef = 076333EC1B5902FC0079C405 /* PBXContainerItemProxy */;
+			remoteRef = 4BB0EA78DE7ECCDDEC368DCF /* PBXContainerItemProxy */;
 			sourceTree = BUILT_PRODUCTS_DIR;
 		};
-		9A9F0A501D7F345500ED6D8A /* libaxisjpeg.dylib */ = {
+		357B0CFF43D76C0C7125B1A6 /* libaxisjpeg.dylib */ = {
 			isa = PBXReferenceProxy;
 			fileType = "compiled.mach-o.dylib";
 			path = libaxisjpeg.dylib;
-			remoteRef = 9A9F0A4F1D7F345500ED6D8A /* PBXContainerItemProxy */;
+			remoteRef = 22C7638D8C612184EFEB39E7 /* PBXContainerItemProxy */;
 			sourceTree = BUILT_PRODUCTS_DIR;
 		};
-		9A9F0A521D7F345500ED6D8A /* libios_axisjpeg.a */ = {
+		EB4C504F7883DE89D55B08EE /* libios_axisjpeg.a */ = {
 			isa = PBXReferenceProxy;
 			fileType = archive.ar;
 			path = libios_axisjpeg.a;
-			remoteRef = 9A9F0A511D7F345500ED6D8A /* PBXContainerItemProxy */;
+			remoteRef = 7F374584E6CA05E27B462DD1 /* PBXContainerItemProxy */;
 			sourceTree = BUILT_PRODUCTS_DIR;
 		};
-		9A9F0A541D7F345500ED6D8A /* axisjpeg_iosTests.xctest */ = {
+		E08ACC92E386CCF539A295B3 /* axisjpeg_iosTests.xctest */ = {
 			isa = PBXReferenceProxy;
 			fileType = wrapper.cfbundle;
 			path = axisjpeg_iosTests.xctest;
-			remoteRef = 9A9F0A531D7F345500ED6D8A /* PBXContainerItemProxy */;
+			remoteRef = 1AB6C47C7218B6DA98E073D6 /* PBXContainerItemProxy */;
 			sourceTree = BUILT_PRODUCTS_DIR;
 		};
 /* End PBXReferenceProxy section */
 
 /* Begin PBXResourcesBuildPhase section */
-		07B65771190F3CA2002DAADE /* Resources */ = {
+		05525EE739C3832C14A5AAA6 /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -369,61 +369,61 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
-		07B65760190F3CA2002DAADE /* Sources */ = {
+		E6406228B68D2901D8498E3D /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				0763351A1B5903BD0079C405 /* PluginJPEG.cpp in Sources */,
+				07FDEAE2B33D47A853CA9FCA /* PluginJPEG.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		07B6576F190F3CA2002DAADE /* Sources */ = {
+		3C599F5F4E2431BD4AFBB059 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		9A574B9416AAB906000CC4EF /* Sources */ = {
+		B7A9320EB81E4808F7039383 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				076335191B5903BD0079C405 /* PluginJPEG.cpp in Sources */,
+				60072E9BFB8A713C04AF0091 /* PluginJPEG.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
-		071B6B271B5AE067002C55E2 /* PBXTargetDependency */ = {
+		19B4BEAB5D9F314115590DFD /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			name = axisfreeimage;
-			targetProxy = 071B6B261B5AE067002C55E2 /* PBXContainerItemProxy */;
+			targetProxy = 48D572E731017CF0544C54F1 /* PBXContainerItemProxy */;
 		};
-		076336231B590A1A0079C405 /* PBXTargetDependency */ = {
+		62F42618074F9CD0B26808F9 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			name = ios_axisfreeimage;
-			targetProxy = 076336221B590A1A0079C405 /* PBXContainerItemProxy */;
+			targetProxy = 5E556B7468833046506DE29B /* PBXContainerItemProxy */;
 		};
-		07B6577A190F3CA2002DAADE /* PBXTargetDependency */ = {
+		FCF3113151E93C84867358BF /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
-			target = 07B65763190F3CA2002DAADE /* ios_image_decode_jpeg */;
-			targetProxy = 07B65779190F3CA2002DAADE /* PBXContainerItemProxy */;
+			target = D40AD13E61C276447A415BCF /* ios_image_decode_jpeg */;
+			targetProxy = 7F4EE907177BBA5A081FEE91 /* PBXContainerItemProxy */;
 		};
-		9A21173F1D832C1C000C4336 /* PBXTargetDependency */ = {
+		4D737437553D8CC0E221DCFE /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			name = ios_axisjpeg;
-			targetProxy = 9A21173E1D832C1C000C4336 /* PBXContainerItemProxy */;
+			targetProxy = 902E2471C85097BF2EEA13BC /* PBXContainerItemProxy */;
 		};
-		9A9F0A7B1D7F356400ED6D8A /* PBXTargetDependency */ = {
+		5A04A73EC00CFB5106BCA65C /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			name = axisjpeg;
-			targetProxy = 9A9F0A7A1D7F356400ED6D8A /* PBXContainerItemProxy */;
+			targetProxy = 410FFAD80C348D5614282CD3 /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
 
 /* Begin XCBuildConfiguration section */
-		07B65784190F3CA2002DAADE /* Debug */ = {
+		080688863879F14FE306689B /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				CLANG_WARN_BOOL_CONVERSION = YES;
@@ -443,7 +443,7 @@
 			};
 			name = Debug;
 		};
-		07B65785190F3CA2002DAADE /* Release */ = {
+		C7AD38578355524602F35894 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				CLANG_WARN_BOOL_CONVERSION = YES;
@@ -465,7 +465,7 @@
 			};
 			name = Release;
 		};
-		07B65786190F3CA2002DAADE /* Debug */ = {
+		FDE4B26A37582857D6D2CC65 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				BUNDLE_LOADER = "$(BUILT_PRODUCTS_DIR)/libmath.dylib";
@@ -500,7 +500,7 @@
 			};
 			name = Debug;
 		};
-		07B65787190F3CA2002DAADE /* Release */ = {
+		388812DB579FDEC78B1568D5 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				BUNDLE_LOADER = "$(BUILT_PRODUCTS_DIR)/libmath.dylib";
@@ -534,7 +534,7 @@
 			};
 			name = Release;
 		};
-		9A574B9A16AAB906000CC4EF /* Debug */ = {
+		3DF2835E3119B7C4C3ED39F9 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
@@ -599,7 +599,7 @@
 			};
 			name = Debug;
 		};
-		9A574B9B16AAB906000CC4EF /* Release */ = {
+		235F36224D5B1DAC224CE1D5 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
@@ -656,7 +656,7 @@
 			};
 			name = Release;
 		};
-		9A574B9D16AAB906000CC4EF /* Debug */ = {
+		DE972B19787E91A2BF48547A /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				COMBINE_HIDPI_IMAGES = YES;
@@ -665,7 +665,7 @@
 			};
 			name = Debug;
 		};
-		9A574B9E16AAB906000CC4EF /* Release */ = {
+		07D686E0E604E9C694B86C81 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				COMBINE_HIDPI_IMAGES = YES;
@@ -677,43 +677,43 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		07B65788190F3CA2002DAADE /* Build configuration list for PBXNativeTarget "ios_image_decode_jpeg" */ = {
+		C0D9BF6CF97BF185CD707006 /* Build configuration list for PBXNativeTarget "ios_image_decode_jpeg" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
-				07B65784190F3CA2002DAADE /* Debug */,
-				07B65785190F3CA2002DAADE /* Release */,
+				080688863879F14FE306689B /* Debug */,
+				C7AD38578355524602F35894 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		07B65789190F3CA2002DAADE /* Build configuration list for PBXNativeTarget "axisjpeg_iosTests" */ = {
+		7643A4538BD27B6F00418A54 /* Build configuration list for PBXNativeTarget "axisjpeg_iosTests" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
-				07B65786190F3CA2002DAADE /* Debug */,
-				07B65787190F3CA2002DAADE /* Release */,
+				FDE4B26A37582857D6D2CC65 /* Debug */,
+				388812DB579FDEC78B1568D5 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		9A574B9216AAB906000CC4EF /* Build configuration list for PBXProject "image_decode_jpeg" */ = {
+		00D7B7BD54E13D1898D94486 /* Build configuration list for PBXProject "image_decode_jpeg" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
-				9A574B9A16AAB906000CC4EF /* Debug */,
-				9A574B9B16AAB906000CC4EF /* Release */,
+				3DF2835E3119B7C4C3ED39F9 /* Debug */,
+				235F36224D5B1DAC224CE1D5 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		9A574B9C16AAB906000CC4EF /* Build configuration list for PBXNativeTarget "image_decode_jpeg" */ = {
+		342EF6297D8EEEE902FBFA8F /* Build configuration list for PBXNativeTarget "image_decode_jpeg" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
-				9A574B9D16AAB906000CC4EF /* Debug */,
-				9A574B9E16AAB906000CC4EF /* Release */,
+				DE972B19787E91A2BF48547A /* Debug */,
+				07D686E0E604E9C694B86C81 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
-	rootObject = 9A574B8F16AAB906000CC4EF /* Project object */;
+	rootObject = 555C9F17E2A1EA2FE6DE7ADB /* Project object */;
 }

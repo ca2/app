@@ -82,7 +82,7 @@ namespace micro
       //void do_asynchronously() override;
 
 
-      virtual ::micro::theme * micro_theme();
+      ::micro::theme * micro_theme() override;
 
       virtual enum_font micro_font();
 

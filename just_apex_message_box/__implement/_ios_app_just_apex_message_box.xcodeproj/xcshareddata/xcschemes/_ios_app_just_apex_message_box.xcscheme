@@ -39,7 +39,7 @@
          runnableDebuggingMode = "0">
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "9A4752BD2CF5124100ED30AE"
+            BlueprintIdentifier = "F8193DE560390D8DD1EB54A3"
             BuildableName = "_ios_app_just_apex_message_box.app"
             BlueprintName = "_ios_app_just_apex_message_box"
             ReferencedContainer = "container:_ios_app_just_apex_message_box.xcodeproj">
@@ -55,7 +55,7 @@
       <MacroExpansion>
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "9A4752BD2CF5124100ED30AE"
+            BlueprintIdentifier = "F8193DE560390D8DD1EB54A3"
             BuildableName = "_ios_app_just_apex_message_box.app"
             BlueprintName = "_ios_app_just_apex_message_box"
             ReferencedContainer = "container:_ios_app_just_apex_message_box.xcodeproj">

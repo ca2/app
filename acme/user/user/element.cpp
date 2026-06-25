@@ -5381,7 +5381,7 @@ void element::pick_multiple_file(const ::file::file_dialog_filter & filedialogfi
       }
 
 
-      void element::show_window(::i32 iShowFlags)
+      void element::show_window(::user_interface::enum_show_window eshowwindow)
       {
 
          //m_pacmewindowingwindow->show_window(iShowFlags);
@@ -5395,6 +5395,7 @@ void element::pick_multiple_file(const ::file::file_dialog_filter & filedialogfi
          //m_pacmewindowingwindow->set_window_position(operatingsystemwindow, point, size, iSetWindowPosFlags);
 
       }
+
 
       void element::window_invalidate_rect(const ::i32_rectangle * prectangle, bool bErase)
       {

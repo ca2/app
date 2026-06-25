@@ -14,7 +14,7 @@
             buildForAnalyzing = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "070B8EE91B6E53F900D26137"
+               BlueprintIdentifier = "0D3AA351A7C1CB40248A9F8E"
                BuildableName = "_app_shader.app"
                BlueprintName = "_app_shader"
                ReferencedContainer = "container:_app_shader.xcodeproj">
@@ -44,7 +44,7 @@
          runnableDebuggingMode = "0">
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "070B8EE91B6E53F900D26137"
+            BlueprintIdentifier = "0D3AA351A7C1CB40248A9F8E"
             BuildableName = "_app_shader.app"
             BlueprintName = "_app_shader"
             ReferencedContainer = "container:_app_shader.xcodeproj">
@@ -61,7 +61,7 @@
          runnableDebuggingMode = "0">
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "070B8EE91B6E53F900D26137"
+            BlueprintIdentifier = "0D3AA351A7C1CB40248A9F8E"
             BuildableName = "_app_shader.app"
             BlueprintName = "_app_shader"
             ReferencedContainer = "container:_app_shader.xcodeproj">

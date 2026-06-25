@@ -37,7 +37,7 @@
          runnableDebuggingMode = "0">
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "070B8EE91B6E53F900D26137"
+            BlueprintIdentifier = "370A3156B17A7EC52153BE19"
             BuildableName = "_app_core_hellomultiverse.app"
             BlueprintName = "_app_core_hellomultiverse"
             ReferencedContainer = "container:_app_core_hellomultiverse.xcodeproj">
@@ -53,7 +53,7 @@
       <MacroExpansion>
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "070B8EE91B6E53F900D26137"
+            BlueprintIdentifier = "370A3156B17A7EC52153BE19"
             BuildableName = "_app_core_hellomultiverse.app"
             BlueprintName = "_app_core_hellomultiverse"
             ReferencedContainer = "container:_app_core_hellomultiverse.xcodeproj">

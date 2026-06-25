@@ -1,4 +1,5 @@
 #include "framework.h"
+#include "acme/operating_system/posix/shared_memory.h"
 
 
 //
@@ -42,5 +43,15 @@ void ios_factory(::factory::factory * pfactory)
 {
 
    ios_message_box_factory(pfactory);
+
+}
+
+
+
+
+void operating_system_factory(::factory::factory * pfactory)
+{
+
+   pfactory->add_factory_item< ::posix::shared_memory, ::shared_memory>();
 
 }

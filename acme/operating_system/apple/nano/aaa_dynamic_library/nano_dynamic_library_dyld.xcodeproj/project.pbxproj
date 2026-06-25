@@ -7,20 +7,20 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		9A558C772C0E5F34004C402A /* nano_dynamic_library_dyld.hpp in Headers */ = {isa = PBXBuildFile; fileRef = 9A558C762C0E5F34004C402A /* nano_dynamic_library_dyld.hpp */; };
-		9A558C792C0E5F34004C402A /* nano_dynamic_library_dyldPriv.hpp in Headers */ = {isa = PBXBuildFile; fileRef = 9A558C782C0E5F34004C402A /* nano_dynamic_library_dyldPriv.hpp */; };
-		9A558C7B2C0E5F34004C402A /* nano_dynamic_library_dyld.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A558C7A2C0E5F34004C402A /* nano_dynamic_library_dyld.cpp */; };
+		78C463D04D2457ABF210D180 /* nano_dynamic_library_dyld.hpp in Headers */ = {isa = PBXBuildFile; fileRef = 4DC39C2D5230D470B4B258AE /* nano_dynamic_library_dyld.hpp */; };
+		E3036DB8670F70F2DD02FEC3 /* nano_dynamic_library_dyldPriv.hpp in Headers */ = {isa = PBXBuildFile; fileRef = 8D3D19EFCEF284AD455B8D8F /* nano_dynamic_library_dyldPriv.hpp */; };
+		3CD19B62227576435DA15BE2 /* nano_dynamic_library_dyld.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 1DF09C37524AAD8A9EE8202C /* nano_dynamic_library_dyld.cpp */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		9A558C732C0E5F34004C402A /* libnano_dynamic_library_dyld.dylib */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.dylib"; includeInIndex = 0; path = libnano_dynamic_library_dyld.dylib; sourceTree = BUILT_PRODUCTS_DIR; };
-		9A558C762C0E5F34004C402A /* nano_dynamic_library_dyld.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = nano_dynamic_library_dyld.hpp; sourceTree = "<group>"; };
-		9A558C782C0E5F34004C402A /* nano_dynamic_library_dyldPriv.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = nano_dynamic_library_dyldPriv.hpp; sourceTree = "<group>"; };
-		9A558C7A2C0E5F34004C402A /* nano_dynamic_library_dyld.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = nano_dynamic_library_dyld.cpp; sourceTree = "<group>"; };
+		8BD229CDD9E770F755E53941 /* libnano_dynamic_library_dyld.dylib */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.dylib"; includeInIndex = 0; path = libnano_dynamic_library_dyld.dylib; sourceTree = BUILT_PRODUCTS_DIR; };
+		4DC39C2D5230D470B4B258AE /* nano_dynamic_library_dyld.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = nano_dynamic_library_dyld.hpp; sourceTree = "<group>"; };
+		8D3D19EFCEF284AD455B8D8F /* nano_dynamic_library_dyldPriv.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = nano_dynamic_library_dyldPriv.hpp; sourceTree = "<group>"; };
+		1DF09C37524AAD8A9EE8202C /* nano_dynamic_library_dyld.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = nano_dynamic_library_dyld.cpp; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
-		9A558C712C0E5F34004C402A /* Frameworks */ = {
+		D10BD87DE3601B8FD3F3011A /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -30,28 +30,28 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		9A558C6A2C0E5F34004C402A = {
+		B16EA3FABEDF10FAA468D6B9 = {
 			isa = PBXGroup;
 			children = (
-				9A558C752C0E5F34004C402A /* nano_dynamic_library_dyld */,
-				9A558C742C0E5F34004C402A /* Products */,
+				ED70ABE61BBAD67698D5AF77 /* nano_dynamic_library_dyld */,
+				D07C04CA28A362A1E91A8BDC /* Products */,
 			);
 			sourceTree = "<group>";
 		};
-		9A558C742C0E5F34004C402A /* Products */ = {
+		D07C04CA28A362A1E91A8BDC /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				9A558C732C0E5F34004C402A /* libnano_dynamic_library_dyld.dylib */,
+				8BD229CDD9E770F755E53941 /* libnano_dynamic_library_dyld.dylib */,
 			);
 			name = Products;
 			sourceTree = "<group>";
 		};
-		9A558C752C0E5F34004C402A /* nano_dynamic_library_dyld */ = {
+		ED70ABE61BBAD67698D5AF77 /* nano_dynamic_library_dyld */ = {
 			isa = PBXGroup;
 			children = (
-				9A558C762C0E5F34004C402A /* nano_dynamic_library_dyld.hpp */,
-				9A558C782C0E5F34004C402A /* nano_dynamic_library_dyldPriv.hpp */,
-				9A558C7A2C0E5F34004C402A /* nano_dynamic_library_dyld.cpp */,
+				4DC39C2D5230D470B4B258AE /* nano_dynamic_library_dyld.hpp */,
+				8D3D19EFCEF284AD455B8D8F /* nano_dynamic_library_dyldPriv.hpp */,
+				1DF09C37524AAD8A9EE8202C /* nano_dynamic_library_dyld.cpp */,
 			);
 			path = nano_dynamic_library_dyld;
 			sourceTree = "<group>";
@@ -59,25 +59,25 @@
 /* End PBXGroup section */
 
 /* Begin PBXHeadersBuildPhase section */
-		9A558C6F2C0E5F34004C402A /* Headers */ = {
+		E12F0DF3324BE51613C69A3C /* Headers */ = {
 			isa = PBXHeadersBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				9A558C792C0E5F34004C402A /* nano_dynamic_library_dyldPriv.hpp in Headers */,
-				9A558C772C0E5F34004C402A /* nano_dynamic_library_dyld.hpp in Headers */,
+				E3036DB8670F70F2DD02FEC3 /* nano_dynamic_library_dyldPriv.hpp in Headers */,
+				78C463D04D2457ABF210D180 /* nano_dynamic_library_dyld.hpp in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXHeadersBuildPhase section */
 
 /* Begin PBXNativeTarget section */
-		9A558C722C0E5F34004C402A /* nano_dynamic_library_dyld */ = {
+		BE59476CA7474256A2FBCE47 /* nano_dynamic_library_dyld */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 9A558C7E2C0E5F34004C402A /* Build configuration list for PBXNativeTarget "nano_dynamic_library_dyld" */;
+			buildConfigurationList = 4853C46B7380FBEF9229DA90 /* Build configuration list for PBXNativeTarget "nano_dynamic_library_dyld" */;
 			buildPhases = (
-				9A558C6F2C0E5F34004C402A /* Headers */,
-				9A558C702C0E5F34004C402A /* Sources */,
-				9A558C712C0E5F34004C402A /* Frameworks */,
+				E12F0DF3324BE51613C69A3C /* Headers */,
+				22B1116C6F84233B127C8F23 /* Sources */,
+				D10BD87DE3601B8FD3F3011A /* Frameworks */,
 			);
 			buildRules = (
 			);
@@ -85,24 +85,24 @@
 			);
 			name = nano_dynamic_library_dyld;
 			productName = nano_dynamic_library_dyld;
-			productReference = 9A558C732C0E5F34004C402A /* libnano_dynamic_library_dyld.dylib */;
+			productReference = 8BD229CDD9E770F755E53941 /* libnano_dynamic_library_dyld.dylib */;
 			productType = "com.apple.product-type.library.dynamic";
 		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
-		9A558C6B2C0E5F34004C402A /* Project object */ = {
+		3CDB09F5ACFD13EF3737E404 /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
 				BuildIndependentTargetsInParallel = 1;
 				LastUpgradeCheck = 1540;
 				TargetAttributes = {
-					9A558C722C0E5F34004C402A = {
+					BE59476CA7474256A2FBCE47 = {
 						CreatedOnToolsVersion = 15.4;
 					};
 				};
 			};
-			buildConfigurationList = 9A558C6E2C0E5F34004C402A /* Build configuration list for PBXProject "nano_dynamic_library_dyld" */;
+			buildConfigurationList = 17CB2467E39FCAB9D660927B /* Build configuration list for PBXProject "nano_dynamic_library_dyld" */;
 			compatibilityVersion = "Xcode 14.0";
 			developmentRegion = en;
 			hasScannedForEncodings = 0;
@@ -110,29 +110,29 @@
 				en,
 				Base,
 			);
-			mainGroup = 9A558C6A2C0E5F34004C402A;
-			productRefGroup = 9A558C742C0E5F34004C402A /* Products */;
+			mainGroup = B16EA3FABEDF10FAA468D6B9;
+			productRefGroup = D07C04CA28A362A1E91A8BDC /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				9A558C722C0E5F34004C402A /* nano_dynamic_library_dyld */,
+				BE59476CA7474256A2FBCE47 /* nano_dynamic_library_dyld */,
 			);
 		};
 /* End PBXProject section */
 
 /* Begin PBXSourcesBuildPhase section */
-		9A558C702C0E5F34004C402A /* Sources */ = {
+		22B1116C6F84233B127C8F23 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				9A558C7B2C0E5F34004C402A /* nano_dynamic_library_dyld.cpp in Sources */,
+				3CD19B62227576435DA15BE2 /* nano_dynamic_library_dyld.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXSourcesBuildPhase section */
 
 /* Begin XCBuildConfiguration section */
-		9A558C7C2C0E5F34004C402A /* Debug */ = {
+		567966D5D1941116E71D6F51 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
@@ -193,7 +193,7 @@
 			};
 			name = Debug;
 		};
-		9A558C7D2C0E5F34004C402A /* Release */ = {
+		2E0F969199BB3195BE864C3E /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
@@ -247,7 +247,7 @@
 			};
 			name = Release;
 		};
-		9A558C7F2C0E5F34004C402A /* Debug */ = {
+		822D01613B0181FCAEB0EE39 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				CODE_SIGN_STYLE = Automatic;
@@ -262,7 +262,7 @@
 			};
 			name = Debug;
 		};
-		9A558C802C0E5F34004C402A /* Release */ = {
+		26DA971437E139F97AAC5EA2 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				CODE_SIGN_STYLE = Automatic;
@@ -280,25 +280,25 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		9A558C6E2C0E5F34004C402A /* Build configuration list for PBXProject "nano_dynamic_library_dyld" */ = {
+		17CB2467E39FCAB9D660927B /* Build configuration list for PBXProject "nano_dynamic_library_dyld" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
-				9A558C7C2C0E5F34004C402A /* Debug */,
-				9A558C7D2C0E5F34004C402A /* Release */,
+				567966D5D1941116E71D6F51 /* Debug */,
+				2E0F969199BB3195BE864C3E /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		9A558C7E2C0E5F34004C402A /* Build configuration list for PBXNativeTarget "nano_dynamic_library_dyld" */ = {
+		4853C46B7380FBEF9229DA90 /* Build configuration list for PBXNativeTarget "nano_dynamic_library_dyld" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
-				9A558C7F2C0E5F34004C402A /* Debug */,
-				9A558C802C0E5F34004C402A /* Release */,
+				822D01613B0181FCAEB0EE39 /* Debug */,
+				26DA971437E139F97AAC5EA2 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
-	rootObject = 9A558C6B2C0E5F34004C402A /* Project object */;
+	rootObject = 3CDB09F5ACFD13EF3737E404 /* Project object */;
 }

@@ -2619,10 +2619,10 @@ namespace acme
       }
 
 
-      void interaction::show_window(::i32 iShowFlags)
+      void interaction::show_window(::user_interface::enum_show_window eshowwindow)
       {
 
-         m_pacmewindowingwindow->show_window(iShowFlags);
+         m_pacmewindowingwindow->show_window(eshowwindow);
 
       }
 

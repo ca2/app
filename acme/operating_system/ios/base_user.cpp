@@ -27,7 +27,13 @@ void message_box_synchronous(::acme::windowing::window * pacmewindowingwindow, c
 
    auto pevent = ::platform::get()->create_newø< manual_reset_happening >();
    
-   auto eresult = (::enum_dialog_result) ui_MessageBoxA(scopedstrMessage, scopedstrTitle, emessagebox, scopedstrDetails, [function, pevent](enum_dialog_result eresult)
+   ::string strMessage(scopedstrMessage);
+   
+   ::string strTitle(scopedstrTitle);
+   
+   ::string strDetails(scopedstrDetails);
+   
+   ui_MessageBoxA(strMessage, strTitle, emessagebox.m_cflag, strDetails, [function, pevent](enum_dialog_result eresult)
                                                         {
       
       function(eresult);

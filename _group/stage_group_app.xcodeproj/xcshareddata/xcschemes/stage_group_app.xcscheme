@@ -37,7 +37,7 @@
          runnableDebuggingMode = "0">
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "070B8EE91B6E53F900D26137"
+            BlueprintIdentifier = "AD45332DEA9A9254DBA630EF"
             BuildableName = "stage_group_app.app"
             BlueprintName = "stage_group_app"
             ReferencedContainer = "container:stage_group_app.xcodeproj">

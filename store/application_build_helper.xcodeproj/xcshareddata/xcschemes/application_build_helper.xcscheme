@@ -14,7 +14,7 @@
             buildForAnalyzing = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "9AC14776297B3327006D9BD3"
+               BlueprintIdentifier = "B343435B8FC7E770FDC15644"
                BuildableName = "application_build_helper"
                BlueprintName = "application_build_helper"
                ReferencedContainer = "container:application_build_helper.xcodeproj">
@@ -46,7 +46,7 @@
          runnableDebuggingMode = "0">
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "9AC14776297B3327006D9BD3"
+            BlueprintIdentifier = "B343435B8FC7E770FDC15644"
             BuildableName = "application_build_helper"
             BlueprintName = "application_build_helper"
             ReferencedContainer = "container:application_build_helper.xcodeproj">
@@ -76,7 +76,7 @@
       <MacroExpansion>
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "9AC14776297B3327006D9BD3"
+            BlueprintIdentifier = "B343435B8FC7E770FDC15644"
             BuildableName = "application_build_helper"
             BlueprintName = "application_build_helper"
             ReferencedContainer = "container:application_build_helper.xcodeproj">

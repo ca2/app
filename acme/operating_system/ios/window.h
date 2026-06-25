@@ -17,50 +17,53 @@ namespace operating_system
    {
 
 
-      UIWindow_uptr m_uiwindowuptrIosWindow;
+      void * m_pUIWindow;
 
 
-      void Null() { m_uiwindowuptrIosWindow = 0; }
+      void Null() { m_pUIWindow = nullptr; }
 
    };
 
 
-   class ios_window : public ::operating_system::a_window<e_operating_system_ios, ios_window_t>
+   class ios_window : public ::operating_system::a_window<::windowing::e_operating_ambient_ios, ios_window_t>
    {
    public:
 
 
-      using BASE_TYPE = ::operating_system::a_window<e_operating_system_ios, ios_window_t>;
+      using BASE_TYPE = ::operating_system::a_window<::windowing::e_operating_ambient_ios, ios_window_t>;
 
 
       using BASE_TYPE::BASE_TYPE;
 
-
-      ios_window(UIWindow_uptr uiwindowuptr)
+      
+      ios_window(void * pUIWindow, ::windowing::enum_operating_ambient eoperatingambient)
       {
 
-         this->operator=(uiwindowuptr);
+         m_eoperatingambient = eoperatingambient;
+         m_window.m_pUIWindow = pUIWindow;
+         //m_window.m_uTag = uTag;
+         m_pacmewindowingwindow = nullptr;
+         m_opaque.m_ulla[2]= 0;
       
       }
 
-
-      UIWindow_uptr as_UIWindow_uptr() const
+      void * as_UIWindow() const
       {
          
-         if(this->m_eoperatingsystem == e_operating_system_macos)
+         if(this->m_eoperatingambient == e_operating_system_ios)
          {
 
-            if (!this->m_window.m_uiwindowuptrIosWindow)
+            if (!this->m_window.m_pUIWindow)
             {
 
                throw ::exception(error_wrong_state);
 
             }
 
-            return this->m_window.m_uiwindowuptrIosWindow;
+            return this->m_window.m_pUIWindow;
 
          }
-         else if (this->m_window.m_uiwindowuptrIosWindow)
+         else if (this->m_window.m_pUIWindow)
          {
 
             throw ::exception(error_wrong_state);
@@ -78,10 +81,10 @@ namespace operating_system
 
       using BASE_TYPE::operator=;
 
-      ios_window & operator=(UIWindow_uptr uiwindowuptr)
+      ios_window & operator=(void * pUIWindow)
       {
 
-         if (!uiwindowuptr)
+         if (!pUIWindow)
          {
 
             this->Null();
@@ -90,8 +93,8 @@ namespace operating_system
          else
          {
 
-            this->m_eoperatingsystem = e_operating_system_macos;
-            this->m_window.m_uiwindowuptrIosWindow = uiwindowuptr;
+            this->m_eoperatingambient = ::windowing::e_operating_ambient_ios;
+            this->m_window.m_pUIWindow = pUIWindow;
 
          }
 

@@ -7,141 +7,141 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		070533EF1C90B2CF00F31B3F /* libgcom.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 070533E61C90B2A100F31B3F /* libgcom.dylib */; };
-		07473E601B5050B8004688C5 /* hellobase_switcher_impact.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 076D09F11A3FC72C007432B6 /* hellobase_switcher_impact.cpp */; };
-		07473E641B5050B8004688C5 /* hellobase_main_impact.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9AA1008C19971FCE004F84BD /* hellobase_main_impact.cpp */; };
-		076D09FB1A3FC72C007432B6 /* hellobase_switcher_impact.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 076D09F11A3FC72C007432B6 /* hellobase_switcher_impact.cpp */; };
-		076D09FC1A3FC72C007432B6 /* hellobase_switcher_impact.h in Headers */ = {isa = PBXBuildFile; fileRef = 076D09F21A3FC72C007432B6 /* hellobase_switcher_impact.h */; };
-		07A4B1371B76469200DA5C57 /* hellobase_render.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 07FB1AA21B744E8800F3FCC1 /* hellobase_render.cpp */; };
-		07A684EC17F0E06700C41DE6 /* hellobase_application.h in Headers */ = {isa = PBXBuildFile; fileRef = 07A684E617F0E06700C41DE6 /* hellobase_application.h */; };
-		07A684ED17F0E06700C41DE6 /* hellobase_document.h in Headers */ = {isa = PBXBuildFile; fileRef = 07A684E717F0E06700C41DE6 /* hellobase_document.h */; };
-		07A684EE17F0E06700C41DE6 /* hellobase_frame.h in Headers */ = {isa = PBXBuildFile; fileRef = 07A684E817F0E06700C41DE6 /* hellobase_frame.h */; };
-		07A684EF17F0E06700C41DE6 /* aaa_want_to_erase_hellobase_impact_update_hint.h in Headers */ = {isa = PBXBuildFile; fileRef = 07A684E917F0E06700C41DE6 /* aaa_want_to_erase_hellobase_impact_update_hint.h */; };
-		07A684F017F0E06700C41DE6 /* hellobase_pane_impact.h in Headers */ = {isa = PBXBuildFile; fileRef = 07A684EA17F0E06700C41DE6 /* hellobase_pane_impact.h */; };
-		07A684F117F0E06700C41DE6 /* hellobase_impact.h in Headers */ = {isa = PBXBuildFile; fileRef = 07A684EB17F0E06700C41DE6 /* hellobase_impact.h */; };
-		07AE494E1CC7A83F00959A6F /* hellobase_gcom.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 07AE494A1CC7A83F00959A6F /* hellobase_gcom.cpp */; };
-		07AE494F1CC7A83F00959A6F /* hellobase_gcom.h in Headers */ = {isa = PBXBuildFile; fileRef = 07AE494B1CC7A83F00959A6F /* hellobase_gcom.h */; };
-		07AE49501CC7A83F00959A6F /* hellobase_impact_base.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 07AE494C1CC7A83F00959A6F /* hellobase_impact_base.cpp */; };
-		07AE49511CC7A83F00959A6F /* hellobase_impact_base.h in Headers */ = {isa = PBXBuildFile; fileRef = 07AE494D1CC7A83F00959A6F /* hellobase_impact_base.h */; };
-		07B65520190F3001002DAADE /* framework.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9AEB75BE16F78E600085103B /* framework.cpp */; };
-		07B65521190F3001002DAADE /* hellobase_application.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9AEB75C916F78E600085103B /* hellobase_application.cpp */; };
-		07B65522190F3001002DAADE /* hellobase_document.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9AEB75CA16F78E600085103B /* hellobase_document.cpp */; };
-		07B65523190F3001002DAADE /* hellobase_frame.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9AEB75CB16F78E600085103B /* hellobase_frame.cpp */; };
-		07B65524190F3001002DAADE /* hellobase_pane_impact.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9AEB75CC16F78E600085103B /* hellobase_pane_impact.cpp */; };
-		07B65525190F3001002DAADE /* aaa_want_to_erase_hellobase_impact_update_hint.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9AEB75CD16F78E600085103B /* aaa_want_to_erase_hellobase_impact_update_hint.cpp */; };
-		07B65526190F3001002DAADE /* hellobase_impact.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9AEB75CE16F78E600085103B /* hellobase_impact.cpp */; };
-		07FB1AA41B744E8800F3FCC1 /* hellobase_render.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 07FB1AA21B744E8800F3FCC1 /* hellobase_render.cpp */; };
-		07FB1AA51B744E8800F3FCC1 /* hellobase_render.h in Headers */ = {isa = PBXBuildFile; fileRef = 07FB1AA31B744E8800F3FCC1 /* hellobase_render.h */; };
-		9A6716B61D155B860069A961 /* hellobase_main_frame.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A72594A1D1403E6001F56B4 /* hellobase_main_frame.cpp */; };
-		9A6716B71D155B860069A961 /* hellobase_gcom.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 07AE494A1CC7A83F00959A6F /* hellobase_gcom.cpp */; };
-		9A6716B81D155B860069A961 /* hellobase_impact_base.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 07AE494C1CC7A83F00959A6F /* hellobase_impact_base.cpp */; };
-		9A72594C1D1403E6001F56B4 /* hellobase_main_frame.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A72594A1D1403E6001F56B4 /* hellobase_main_frame.cpp */; };
-		9A72594D1D1403E6001F56B4 /* hellobase_main_frame.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A72594B1D1403E6001F56B4 /* hellobase_main_frame.h */; };
-		9A8C49451F6069A8004A5BA4 /* libace.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 9A8C49441F6069A8004A5BA4 /* libace.dylib */; };
-		9A920FD81F3BF68500CD9D94 /* libcore.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 9A920FD71F3BF68500CD9D94 /* libcore.dylib */; };
-		9A920FDC1F3BF69300CD9D94 /* libsphere.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 9A920FDB1F3BF69300CD9D94 /* libsphere.dylib */; };
-		9AA1009019971FCE004F84BD /* hellobase_main_impact.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9AA1008C19971FCE004F84BD /* hellobase_main_impact.cpp */; };
-		9AA1009119971FCE004F84BD /* hellobase_main_impact.h in Headers */ = {isa = PBXBuildFile; fileRef = 9AA1008D19971FCE004F84BD /* hellobase_main_impact.h */; };
-		9ACE47D61D2041A300A1E0AD /* libaura.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 9ACE47D51D2041A300A1E0AD /* libaura.dylib */; };
-		9ACE47DA1D2041AE00A1E0AD /* libaxis.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 9ACE47D91D2041AE00A1E0AD /* libaxis.dylib */; };
-		9ACE47DC1D2041B800A1E0AD /* libberg.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 9ACE47DB1D2041B800A1E0AD /* libberg.dylib */; };
-		9ACE47DE1D2041E400A1E0AD /* libpcre.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 9ACE47DD1D2041E400A1E0AD /* libpcre.dylib */; };
-		9AE24EA11904CFFD001AEFFB /* libapp_core_hellobase.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 9AE24E8A1904CFFD001AEFFB /* libapp_core_hellobase.a */; };
-		9AE24EA71904CFFD001AEFFB /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 9AE24EA51904CFFD001AEFFB /* InfoPlist.strings */; };
-		9AE24EA91904CFFD001AEFFB /* app_core_hellobase_iosTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 9AE24EA81904CFFD001AEFFB /* app_core_hellobase_iosTests.m */; };
-		9AEB75DD16F78E600085103B /* framework.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9AEB75BE16F78E600085103B /* framework.cpp */; };
-		9AEB75DE16F78E600085103B /* framework.h in Headers */ = {isa = PBXBuildFile; fileRef = 9AEB75BF16F78E600085103B /* framework.h */; };
-		9AEB75E016F78E600085103B /* hellobase.h in Headers */ = {isa = PBXBuildFile; fileRef = 9AEB75C316F78E600085103B /* hellobase.h */; };
-		9AEB75E116F78E600085103B /* hellobase_application.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9AEB75C916F78E600085103B /* hellobase_application.cpp */; };
-		9AEB75E216F78E600085103B /* hellobase_document.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9AEB75CA16F78E600085103B /* hellobase_document.cpp */; };
-		9AEB75E316F78E600085103B /* hellobase_frame.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9AEB75CB16F78E600085103B /* hellobase_frame.cpp */; };
-		9AEB75E416F78E600085103B /* hellobase_pane_impact.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9AEB75CC16F78E600085103B /* hellobase_pane_impact.cpp */; };
-		9AEB75E516F78E600085103B /* aaa_want_to_erase_hellobase_impact_update_hint.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9AEB75CD16F78E600085103B /* aaa_want_to_erase_hellobase_impact_update_hint.cpp */; };
-		9AEB75E616F78E600085103B /* hellobase_impact.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9AEB75CE16F78E600085103B /* hellobase_impact.cpp */; };
+		53B44DB03A6AB826810B239A /* libgcom.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 2F1005BDC5FAFDEE68AE8E70 /* libgcom.dylib */; };
+		020DBC5E8D2492E3BF780CB0 /* hellobase_switcher_impact.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 16ACC4FC35DD321E80377F7B /* hellobase_switcher_impact.cpp */; };
+		7C7477A79F7410A642DEAACA /* hellobase_main_impact.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D68EF0BFDCB0738DC15D1329 /* hellobase_main_impact.cpp */; };
+		D85F27A57789A59DF3F6B4AA /* hellobase_switcher_impact.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 16ACC4FC35DD321E80377F7B /* hellobase_switcher_impact.cpp */; };
+		4EFC29D5ADF562DF24C5A1F0 /* hellobase_switcher_impact.h in Headers */ = {isa = PBXBuildFile; fileRef = AA440CB837CEA1F6E888D028 /* hellobase_switcher_impact.h */; };
+		00CA556825026CBC34D6AC83 /* hellobase_render.cpp in Sources */ = {isa = PBXBuildFile; fileRef = A12436012DDCD5ABF8458B27 /* hellobase_render.cpp */; };
+		6CE23DEF27A5C629C3A67D2A /* hellobase_application.h in Headers */ = {isa = PBXBuildFile; fileRef = FC1E3FCAEA8407CD81537F72 /* hellobase_application.h */; };
+		B5B72E035AEDC080AFCBC936 /* hellobase_document.h in Headers */ = {isa = PBXBuildFile; fileRef = F477EEDDB5392798AC055E89 /* hellobase_document.h */; };
+		5BF0445857C9B6E703405DA2 /* hellobase_frame.h in Headers */ = {isa = PBXBuildFile; fileRef = B8CCD4D39BECF335F57DE413 /* hellobase_frame.h */; };
+		C5DD04BF3D0B2969845595EC /* aaa_want_to_erase_hellobase_impact_update_hint.h in Headers */ = {isa = PBXBuildFile; fileRef = D40855ABB1867022FCC6CD82 /* aaa_want_to_erase_hellobase_impact_update_hint.h */; };
+		115F752770064D0C2E4D39E4 /* hellobase_pane_impact.h in Headers */ = {isa = PBXBuildFile; fileRef = 3F26479ACD224D2492C11643 /* hellobase_pane_impact.h */; };
+		14C8A1EB4D50E4D62CC388F9 /* hellobase_impact.h in Headers */ = {isa = PBXBuildFile; fileRef = E205B8FFA010F3A0F99EEAF4 /* hellobase_impact.h */; };
+		39C74AE3A567C77DE4BF87AC /* hellobase_gcom.cpp in Sources */ = {isa = PBXBuildFile; fileRef = EEB63DA793973AF927DC7AB4 /* hellobase_gcom.cpp */; };
+		6390094CE3ED9E8147ACBF39 /* hellobase_gcom.h in Headers */ = {isa = PBXBuildFile; fileRef = 9FF8A56C2532BE445F587EA8 /* hellobase_gcom.h */; };
+		11993F07CCAB6818DA74DB38 /* hellobase_impact_base.cpp in Sources */ = {isa = PBXBuildFile; fileRef = FFA58DE4A85D8777B838B43A /* hellobase_impact_base.cpp */; };
+		58F78BE8D51A2ADDDE58F137 /* hellobase_impact_base.h in Headers */ = {isa = PBXBuildFile; fileRef = D40BE2BC9BD920848D1674B5 /* hellobase_impact_base.h */; };
+		72E1EC27492F03533932DA18 /* framework.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 4538132F960884B0F9EFF480 /* framework.cpp */; };
+		425DAE1492727D45D741D277 /* hellobase_application.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9DCA6FE4D8FC36C5B2114A15 /* hellobase_application.cpp */; };
+		54E9A084EE1B1BED22A125A9 /* hellobase_document.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 1D13F74DBA91D819C41A211F /* hellobase_document.cpp */; };
+		654EB351C83CA0180FB21624 /* hellobase_frame.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 572CA408292350C5696CA2FA /* hellobase_frame.cpp */; };
+		E6F1C676131CD5F4ECA498D7 /* hellobase_pane_impact.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 4498A05A9EF4506A8D9CAFF9 /* hellobase_pane_impact.cpp */; };
+		1939D9FD62A5947CC966C639 /* aaa_want_to_erase_hellobase_impact_update_hint.cpp in Sources */ = {isa = PBXBuildFile; fileRef = E6090534E17FE0C703FF8A72 /* aaa_want_to_erase_hellobase_impact_update_hint.cpp */; };
+		6E62A049839182D9920C2800 /* hellobase_impact.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 7539FC908DCCB03CBA983F37 /* hellobase_impact.cpp */; };
+		E7DEAFDAB51DE0EDF4A67026 /* hellobase_render.cpp in Sources */ = {isa = PBXBuildFile; fileRef = A12436012DDCD5ABF8458B27 /* hellobase_render.cpp */; };
+		435D1AC9B613ACAEF8A0B499 /* hellobase_render.h in Headers */ = {isa = PBXBuildFile; fileRef = 5D51BA87772E0080AD0D7736 /* hellobase_render.h */; };
+		3C6F59174305E0D78B832733 /* hellobase_main_frame.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 3F724AD17025C8CD8DF51A63 /* hellobase_main_frame.cpp */; };
+		8C99894EFD1B67B58E9A5C5D /* hellobase_gcom.cpp in Sources */ = {isa = PBXBuildFile; fileRef = EEB63DA793973AF927DC7AB4 /* hellobase_gcom.cpp */; };
+		FFD44309B813A61632EC6CED /* hellobase_impact_base.cpp in Sources */ = {isa = PBXBuildFile; fileRef = FFA58DE4A85D8777B838B43A /* hellobase_impact_base.cpp */; };
+		1E199B50C6AC57EC2DC74866 /* hellobase_main_frame.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 3F724AD17025C8CD8DF51A63 /* hellobase_main_frame.cpp */; };
+		151177C64DE9A23689305D98 /* hellobase_main_frame.h in Headers */ = {isa = PBXBuildFile; fileRef = 1DADA0F9D705E4CC521D63D5 /* hellobase_main_frame.h */; };
+		6E7EB7206C6E20867A4CB9F4 /* libace.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 20CE3C64FEBD2EEB9A3BAD29 /* libace.dylib */; };
+		C93CF7E79F66F369AF8363D5 /* libcore.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 811D2C7A7772088F567AD722 /* libcore.dylib */; };
+		43196E04B59E49ADCC8924E1 /* libsphere.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = D6FE919B4A131CF657D6BCD7 /* libsphere.dylib */; };
+		153C4A0ABA5DF4F2D3FACF57 /* hellobase_main_impact.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D68EF0BFDCB0738DC15D1329 /* hellobase_main_impact.cpp */; };
+		7446EC393F060DB6AD7AE557 /* hellobase_main_impact.h in Headers */ = {isa = PBXBuildFile; fileRef = 39D33E69534FE60EFA023924 /* hellobase_main_impact.h */; };
+		50CB342AB58481CB12E51A0C /* libaura.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 874159B87D71E68A95607A70 /* libaura.dylib */; };
+		D1956DB3728DC0142200B165 /* libaxis.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 802EC9D705590BF511BC2B18 /* libaxis.dylib */; };
+		EB0518653B6626EA5CC2D0B0 /* libberg.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 19EA0132430C8CB379C9809A /* libberg.dylib */; };
+		1F6A5CCD3E4CEBC6AEE34ED6 /* libpcre.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 74324CAFBF7C61C97107C04F /* libpcre.dylib */; };
+		14BCD626519698AC7FAFC627 /* libapp_core_hellobase.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 569C525C1D6FCDB1C327AA4D /* libapp_core_hellobase.a */; };
+		57AEC421E6969B16A659A329 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 6561C3D5F9527D085F197887 /* InfoPlist.strings */; };
+		63BAE006D4421643AF228565 /* app_core_hellobase_iosTests.m in Sources */ = {isa = PBXBuildFile; fileRef = B487FC2427A79F87B4248D67 /* app_core_hellobase_iosTests.m */; };
+		724441D6640D79BAA456C487 /* framework.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 4538132F960884B0F9EFF480 /* framework.cpp */; };
+		2B62351AD5869803ADA261E9 /* framework.h in Headers */ = {isa = PBXBuildFile; fileRef = 0BD037D4A57872F58E9DCECC /* framework.h */; };
+		DE66C11F795416CC36EB382E /* hellobase.h in Headers */ = {isa = PBXBuildFile; fileRef = 9900A21ABBD06C5320583468 /* hellobase.h */; };
+		582985BB9342C556C7C1163E /* hellobase_application.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9DCA6FE4D8FC36C5B2114A15 /* hellobase_application.cpp */; };
+		74331EB90495050970DB6065 /* hellobase_document.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 1D13F74DBA91D819C41A211F /* hellobase_document.cpp */; };
+		3EC9FBE92838B17B00CF5212 /* hellobase_frame.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 572CA408292350C5696CA2FA /* hellobase_frame.cpp */; };
+		D585E07198A0737558AB6233 /* hellobase_pane_impact.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 4498A05A9EF4506A8D9CAFF9 /* hellobase_pane_impact.cpp */; };
+		23D5DBE9040960189C33816C /* aaa_want_to_erase_hellobase_impact_update_hint.cpp in Sources */ = {isa = PBXBuildFile; fileRef = E6090534E17FE0C703FF8A72 /* aaa_want_to_erase_hellobase_impact_update_hint.cpp */; };
+		E91EB7339A5F0300849E2C9F /* hellobase_impact.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 7539FC908DCCB03CBA983F37 /* hellobase_impact.cpp */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
-		070533E51C90B2A100F31B3F /* PBXContainerItemProxy */ = {
+		B46CF45D10E7CE4FD39F5138 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
-			containerPortal = 070533CB1C90B2A100F31B3F /* gcom.xcodeproj */;
+			containerPortal = 61BDCE04D6D79BE3C57180B1 /* gcom.xcodeproj */;
 			proxyType = 2;
 			remoteGlobalIDString = 9AEB75A316F78DF10085103B;
 			remoteInfo = gcom;
 		};
-		070533E71C90B2A100F31B3F /* PBXContainerItemProxy */ = {
+		1FAEC91D7524592AB4738CE6 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
-			containerPortal = 070533CB1C90B2A100F31B3F /* gcom.xcodeproj */;
+			containerPortal = 61BDCE04D6D79BE3C57180B1 /* gcom.xcodeproj */;
 			proxyType = 2;
 			remoteGlobalIDString = 9AE24E8A1904CFFD001AEFFB;
 			remoteInfo = ios_gcom;
 		};
-		070533E91C90B2A100F31B3F /* PBXContainerItemProxy */ = {
+		5BEBE63D1AD2DE93F5D13EBE /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
-			containerPortal = 070533CB1C90B2A100F31B3F /* gcom.xcodeproj */;
+			containerPortal = 61BDCE04D6D79BE3C57180B1 /* gcom.xcodeproj */;
 			proxyType = 2;
 			remoteGlobalIDString = 9AE24E991904CFFD001AEFFB;
 			remoteInfo = gcom_iosTests;
 		};
-		070533ED1C90B2B900F31B3F /* PBXContainerItemProxy */ = {
+		36B61BA8B5ACF26A50D9F1BF /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
-			containerPortal = 070533CB1C90B2A100F31B3F /* gcom.xcodeproj */;
+			containerPortal = 61BDCE04D6D79BE3C57180B1 /* gcom.xcodeproj */;
 			proxyType = 1;
 			remoteGlobalIDString = 9AEB75A216F78DF10085103B;
 			remoteInfo = gcom;
 		};
-		9A259E1C1D25D9B40044727D /* PBXContainerItemProxy */ = {
+		91011376CA2161FD17B31844 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
-			containerPortal = 070533CB1C90B2A100F31B3F /* gcom.xcodeproj */;
+			containerPortal = 61BDCE04D6D79BE3C57180B1 /* gcom.xcodeproj */;
 			proxyType = 1;
 			remoteGlobalIDString = 9AE24E891904CFFD001AEFFB;
 			remoteInfo = ios_gcom;
 		};
-		9A95784E1F62217D00623508 /* PBXContainerItemProxy */ = {
+		C60EC8DB392917E8B2D9C41D /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
-			containerPortal = 9A9578481F62217C00623508 /* sphere.xcodeproj */;
+			containerPortal = ACFD7A519B036242D77AEBBA /* sphere.xcodeproj */;
 			proxyType = 2;
-			remoteGlobalIDString = 9A574B9816AAB906000CC4EF;
+			remoteGlobalIDString = C554D253C4E1463AAE5208BC;
 			remoteInfo = sphere;
 		};
-		9A9578501F62217D00623508 /* PBXContainerItemProxy */ = {
+		0A3CC2D31E55AC1BBCA8BA72 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
-			containerPortal = 9A9578481F62217C00623508 /* sphere.xcodeproj */;
+			containerPortal = ACFD7A519B036242D77AEBBA /* sphere.xcodeproj */;
 			proxyType = 2;
-			remoteGlobalIDString = 07B657E2190F3CCB002DAADE;
+			remoteGlobalIDString = 89E25EB4BECCD4B8A59CA5CC;
 			remoteInfo = ios_sphere;
 		};
-		9A9578521F62217D00623508 /* PBXContainerItemProxy */ = {
+		FC9EDCADD9641ACEA5C9689B /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
-			containerPortal = 9A9578481F62217C00623508 /* sphere.xcodeproj */;
+			containerPortal = ACFD7A519B036242D77AEBBA /* sphere.xcodeproj */;
 			proxyType = 2;
-			remoteGlobalIDString = 07B657F1190F3CCC002DAADE;
+			remoteGlobalIDString = 5D9740AFEADC75FA24DE8853;
 			remoteInfo = sphere_iosTests;
 		};
-		9A9578541F62218E00623508 /* PBXContainerItemProxy */ = {
+		4D98CD2048460F9D14DD39BD /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
-			containerPortal = 9A9578481F62217C00623508 /* sphere.xcodeproj */;
+			containerPortal = ACFD7A519B036242D77AEBBA /* sphere.xcodeproj */;
 			proxyType = 1;
-			remoteGlobalIDString = 07B657E1190F3CCB002DAADE;
+			remoteGlobalIDString = F109413A2178ABC07B6D3315;
 			remoteInfo = ios_sphere;
 		};
-		9A9578561F62219700623508 /* PBXContainerItemProxy */ = {
+		00734D18868861956A7FD869 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
-			containerPortal = 9A9578481F62217C00623508 /* sphere.xcodeproj */;
+			containerPortal = ACFD7A519B036242D77AEBBA /* sphere.xcodeproj */;
 			proxyType = 1;
-			remoteGlobalIDString = 9A574B9716AAB906000CC4EF;
+			remoteGlobalIDString = C5A5928074328EC9AAE8A11B;
 			remoteInfo = sphere;
 		};
-		9AE24E9F1904CFFD001AEFFB /* PBXContainerItemProxy */ = {
+		731CAEBE99D7B95745ED4551 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
-			containerPortal = 9AEB759B16F78DF10085103B /* Project object */;
+			containerPortal = 1D4153DC514D3E006FA07A6F /* Project object */;
 			proxyType = 1;
-			remoteGlobalIDString = 9AE24E891904CFFD001AEFFB;
+			remoteGlobalIDString = 935179945E1EA94156FC3644;
 			remoteInfo = app_core_hellobase_ios;
 		};
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXCopyFilesBuildPhase section */
-		9AE24E881904CFFD001AEFFB /* CopyFiles */ = {
+		C761640C1DDF07C69697A521 /* CopyFiles */ = {
 			isa = PBXCopyFilesBuildPhase;
 			buildActionMask = 2147483647;
 			dstPath = "include/$(PRODUCT_NAME)";
@@ -153,212 +153,212 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
-		070533CB1C90B2A100F31B3F /* gcom.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = gcom.xcodeproj; path = ../gcom/gcom.xcodeproj; sourceTree = SOURCE_ROOT; };
-		076D09F11A3FC72C007432B6 /* hellobase_switcher_impact.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = hellobase_switcher_impact.cpp; sourceTree = "<group>"; };
-		076D09F21A3FC72C007432B6 /* hellobase_switcher_impact.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = hellobase_switcher_impact.h; sourceTree = "<group>"; };
-		07A684E617F0E06700C41DE6 /* hellobase_application.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = hellobase_application.h; sourceTree = "<group>"; };
-		07A684E717F0E06700C41DE6 /* hellobase_document.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = hellobase_document.h; sourceTree = "<group>"; };
-		07A684E817F0E06700C41DE6 /* hellobase_frame.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = hellobase_frame.h; sourceTree = "<group>"; };
-		07A684E917F0E06700C41DE6 /* aaa_want_to_erase_hellobase_impact_update_hint.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = aaa_want_to_erase_hellobase_impact_update_hint.h; sourceTree = "<group>"; };
-		07A684EA17F0E06700C41DE6 /* hellobase_pane_impact.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = hellobase_pane_impact.h; sourceTree = "<group>"; };
-		07A684EB17F0E06700C41DE6 /* hellobase_impact.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = hellobase_impact.h; sourceTree = "<group>"; };
-		07AE494A1CC7A83F00959A6F /* hellobase_gcom.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = hellobase_gcom.cpp; sourceTree = "<group>"; };
-		07AE494B1CC7A83F00959A6F /* hellobase_gcom.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = hellobase_gcom.h; sourceTree = "<group>"; };
-		07AE494C1CC7A83F00959A6F /* hellobase_impact_base.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = hellobase_impact_base.cpp; sourceTree = "<group>"; };
-		07AE494D1CC7A83F00959A6F /* hellobase_impact_base.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = hellobase_impact_base.h; sourceTree = "<group>"; };
-		07FB1AA21B744E8800F3FCC1 /* hellobase_render.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = hellobase_render.cpp; sourceTree = "<group>"; };
-		07FB1AA31B744E8800F3FCC1 /* hellobase_render.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = hellobase_render.h; sourceTree = "<group>"; };
-		9A72594A1D1403E6001F56B4 /* hellobase_main_frame.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = hellobase_main_frame.cpp; sourceTree = "<group>"; };
-		9A72594B1D1403E6001F56B4 /* hellobase_main_frame.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = hellobase_main_frame.h; sourceTree = "<group>"; };
-		9A8C49441F6069A8004A5BA4 /* libace.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libace.dylib; path = ../../../../Volumes/apple/archive/Xcode/DerivedData/Build/Products/Debug/libace.dylib; sourceTree = "<group>"; };
-		9A920FD71F3BF68500CD9D94 /* libcore.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libcore.dylib; path = ../../../../Volumes/apple/archive/Xcode/DerivedData/Build/Products/Debug/libcore.dylib; sourceTree = "<group>"; };
-		9A920FD91F3BF68B00CD9D94 /* libmultimedia.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libmultimedia.dylib; path = ../../../../Volumes/apple/archive/Xcode/DerivedData/Build/Products/Debug/libmultimedia.dylib; sourceTree = "<group>"; };
-		9A920FDB1F3BF69300CD9D94 /* libsphere.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libsphere.dylib; path = ../../../../Volumes/apple/archive/Xcode/DerivedData/Build/Products/Debug/libsphere.dylib; sourceTree = "<group>"; };
-		9A9578481F62217C00623508 /* sphere.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = sphere.xcodeproj; path = ../../app/sphere/sphere.xcodeproj; sourceTree = SOURCE_ROOT; };
-		9A986CDE1D22629C001F4C04 /* libios_base.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libios_base.dylib; path = "../../app/base/build/Debug-iphoneos/libios_base.dylib"; sourceTree = "<group>"; };
-		9A986CE01D2262BA001F4C04 /* libios_axis.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libios_axis.dylib; path = "../../app/axis/build/Debug-iphoneos/libios_axis.dylib"; sourceTree = "<group>"; };
-		9A986CE21D2262CB001F4C04 /* libios_aura.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libios_aura.dylib; path = "../../app/aura/build/Debug-iphoneos/libios_aura.dylib"; sourceTree = "<group>"; };
-		9AA1008C19971FCE004F84BD /* hellobase_main_impact.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = hellobase_main_impact.cpp; sourceTree = "<group>"; };
-		9AA1008D19971FCE004F84BD /* hellobase_main_impact.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = hellobase_main_impact.h; sourceTree = "<group>"; };
-		9AC62E941D20C12200A4AC0A /* libaura.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libaura.dylib; path = "../../../../Users/camilo/Library/Developer/Xcode/DerivedData/basic-ios-bmuegusfgbffmoeixicbxhlnbzop/Build/Products/Debug-iphonesimulator/libaura.dylib"; sourceTree = "<group>"; };
-		9AC62E981D20C12800A4AC0A /* libaxis.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libaxis.dylib; path = "../../app/axis/build/Debug-iphoneos/libaxis.dylib"; sourceTree = "<group>"; };
-		9AC62E9A1D20C12F00A4AC0A /* libberg.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libberg.dylib; path = "../../app/base/build/Debug-iphoneos/libberg.dylib"; sourceTree = "<group>"; };
-		9AC62E9C1D20C14600A4AC0A /* libios_pcre.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libios_pcre.dylib; path = "../../app/pcre/build/Debug-iphoneos/libios_pcre.dylib"; sourceTree = "<group>"; };
-		9ACE47D51D2041A300A1E0AD /* libaura.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libaura.dylib; path = "../../../../Users/camilo/Library/Developer/Xcode/DerivedData/aura-mac-ekqwiewkpeyhdudtxguywfqohhby/Build/Products/Debug/libaura.dylib"; sourceTree = "<group>"; };
-		9ACE47D91D2041AE00A1E0AD /* libaxis.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libaxis.dylib; path = ../../app/axis/build/Debug/libaxis.dylib; sourceTree = "<group>"; };
-		9ACE47DB1D2041B800A1E0AD /* libberg.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libberg.dylib; path = ../../app/base/build/Debug/libberg.dylib; sourceTree = "<group>"; };
-		9ACE47DD1D2041E400A1E0AD /* libpcre.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libpcre.dylib; path = "../../../../Users/camilo/Library/Developer/Xcode/DerivedData/aura-mac-ekqwiewkpeyhdudtxguywfqohhby/Build/Products/Debug/libpcre.dylib"; sourceTree = "<group>"; };
-		9AE24E8A1904CFFD001AEFFB /* libapp_core_hellobase.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libapp_core_hellobase.a; sourceTree = BUILT_PRODUCTS_DIR; };
-		9AE24E991904CFFD001AEFFB /* app_core_hellobase_iosTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = app_core_hellobase_iosTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
-		9AE24EA41904CFFD001AEFFB /* app_core_hellobase_iosTests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "app_core_hellobase_iosTests-Info.plist"; sourceTree = "<group>"; };
-		9AE24EA61904CFFD001AEFFB /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
-		9AE24EA81904CFFD001AEFFB /* app_core_hellobase_iosTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = app_core_hellobase_iosTests.m; sourceTree = "<group>"; };
-		9AEB75A316F78DF10085103B /* libapp_core_hellobase.dylib */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.dylib"; includeInIndex = 0; path = libapp_core_hellobase.dylib; sourceTree = BUILT_PRODUCTS_DIR; };
-		9AEB75BE16F78E600085103B /* framework.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = framework.cpp; sourceTree = "<group>"; };
-		9AEB75BF16F78E600085103B /* framework.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = framework.h; sourceTree = "<group>"; };
-		9AEB75C316F78E600085103B /* hellobase.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = hellobase.h; sourceTree = "<group>"; };
-		9AEB75C916F78E600085103B /* hellobase_application.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = hellobase_application.cpp; sourceTree = "<group>"; };
-		9AEB75CA16F78E600085103B /* hellobase_document.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = hellobase_document.cpp; sourceTree = "<group>"; };
-		9AEB75CB16F78E600085103B /* hellobase_frame.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = hellobase_frame.cpp; sourceTree = "<group>"; };
-		9AEB75CC16F78E600085103B /* hellobase_pane_impact.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = hellobase_pane_impact.cpp; sourceTree = "<group>"; };
-		9AEB75CD16F78E600085103B /* aaa_want_to_erase_hellobase_impact_update_hint.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = aaa_want_to_erase_hellobase_impact_update_hint.cpp; sourceTree = "<group>"; };
-		9AEB75CE16F78E600085103B /* hellobase_impact.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = hellobase_impact.cpp; sourceTree = "<group>"; };
-		9AF75DEF1F83EBA100FDE7CC /* libios_aura.dylib */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.dylib"; path = libios_aura.dylib; sourceTree = BUILT_PRODUCTS_DIR; };
-		9AF75DF31F83EBAA00FDE7CC /* libios_axis.dylib */ = {isa = PBXFileReference; explicitFileType = archive.ar; path = libios_axis.dylib; sourceTree = BUILT_PRODUCTS_DIR; };
-		9AF75DF51F83EBB300FDE7CC /* libios_base.dylib */ = {isa = PBXFileReference; explicitFileType = archive.ar; path = libios_base.dylib; sourceTree = BUILT_PRODUCTS_DIR; };
-		9AF75DF71F83EBBB00FDE7CC /* libios_core.dylib */ = {isa = PBXFileReference; explicitFileType = archive.ar; path = libios_core.dylib; sourceTree = BUILT_PRODUCTS_DIR; };
+		61BDCE04D6D79BE3C57180B1 /* gcom.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = gcom.xcodeproj; path = ../gcom/gcom.xcodeproj; sourceTree = SOURCE_ROOT; };
+		16ACC4FC35DD321E80377F7B /* hellobase_switcher_impact.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = hellobase_switcher_impact.cpp; sourceTree = "<group>"; };
+		AA440CB837CEA1F6E888D028 /* hellobase_switcher_impact.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = hellobase_switcher_impact.h; sourceTree = "<group>"; };
+		FC1E3FCAEA8407CD81537F72 /* hellobase_application.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = hellobase_application.h; sourceTree = "<group>"; };
+		F477EEDDB5392798AC055E89 /* hellobase_document.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = hellobase_document.h; sourceTree = "<group>"; };
+		B8CCD4D39BECF335F57DE413 /* hellobase_frame.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = hellobase_frame.h; sourceTree = "<group>"; };
+		D40855ABB1867022FCC6CD82 /* aaa_want_to_erase_hellobase_impact_update_hint.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = aaa_want_to_erase_hellobase_impact_update_hint.h; sourceTree = "<group>"; };
+		3F26479ACD224D2492C11643 /* hellobase_pane_impact.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = hellobase_pane_impact.h; sourceTree = "<group>"; };
+		E205B8FFA010F3A0F99EEAF4 /* hellobase_impact.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = hellobase_impact.h; sourceTree = "<group>"; };
+		EEB63DA793973AF927DC7AB4 /* hellobase_gcom.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = hellobase_gcom.cpp; sourceTree = "<group>"; };
+		9FF8A56C2532BE445F587EA8 /* hellobase_gcom.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = hellobase_gcom.h; sourceTree = "<group>"; };
+		FFA58DE4A85D8777B838B43A /* hellobase_impact_base.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = hellobase_impact_base.cpp; sourceTree = "<group>"; };
+		D40BE2BC9BD920848D1674B5 /* hellobase_impact_base.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = hellobase_impact_base.h; sourceTree = "<group>"; };
+		A12436012DDCD5ABF8458B27 /* hellobase_render.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = hellobase_render.cpp; sourceTree = "<group>"; };
+		5D51BA87772E0080AD0D7736 /* hellobase_render.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = hellobase_render.h; sourceTree = "<group>"; };
+		3F724AD17025C8CD8DF51A63 /* hellobase_main_frame.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = hellobase_main_frame.cpp; sourceTree = "<group>"; };
+		1DADA0F9D705E4CC521D63D5 /* hellobase_main_frame.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = hellobase_main_frame.h; sourceTree = "<group>"; };
+		20CE3C64FEBD2EEB9A3BAD29 /* libace.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libace.dylib; path = ../../../../Volumes/apple/archive/Xcode/DerivedData/Build/Products/Debug/libace.dylib; sourceTree = "<group>"; };
+		811D2C7A7772088F567AD722 /* libcore.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libcore.dylib; path = ../../../../Volumes/apple/archive/Xcode/DerivedData/Build/Products/Debug/libcore.dylib; sourceTree = "<group>"; };
+		2B8253D1DB7C1518CAAF125E /* libmultimedia.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libmultimedia.dylib; path = ../../../../Volumes/apple/archive/Xcode/DerivedData/Build/Products/Debug/libmultimedia.dylib; sourceTree = "<group>"; };
+		D6FE919B4A131CF657D6BCD7 /* libsphere.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libsphere.dylib; path = ../../../../Volumes/apple/archive/Xcode/DerivedData/Build/Products/Debug/libsphere.dylib; sourceTree = "<group>"; };
+		ACFD7A519B036242D77AEBBA /* sphere.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = sphere.xcodeproj; path = ../../app/sphere/sphere.xcodeproj; sourceTree = SOURCE_ROOT; };
+		D9CCA3D116537A0DA050126A /* libios_base.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libios_base.dylib; path = "../../app/base/build/Debug-iphoneos/libios_base.dylib"; sourceTree = "<group>"; };
+		B0872DC2F837190C0B61A500 /* libios_axis.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libios_axis.dylib; path = "../../app/axis/build/Debug-iphoneos/libios_axis.dylib"; sourceTree = "<group>"; };
+		06C592A0FEB00683F2F0D9EF /* libios_aura.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libios_aura.dylib; path = "../../app/aura/build/Debug-iphoneos/libios_aura.dylib"; sourceTree = "<group>"; };
+		D68EF0BFDCB0738DC15D1329 /* hellobase_main_impact.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = hellobase_main_impact.cpp; sourceTree = "<group>"; };
+		39D33E69534FE60EFA023924 /* hellobase_main_impact.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = hellobase_main_impact.h; sourceTree = "<group>"; };
+		2C67D74B2C7225672DEE624C /* libaura.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libaura.dylib; path = "../../../../Users/camilo/Library/Developer/Xcode/DerivedData/basic-ios-bmuegusfgbffmoeixicbxhlnbzop/Build/Products/Debug-iphonesimulator/libaura.dylib"; sourceTree = "<group>"; };
+		87B2D3FBFE606DCCD21DCEAE /* libaxis.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libaxis.dylib; path = "../../app/axis/build/Debug-iphoneos/libaxis.dylib"; sourceTree = "<group>"; };
+		3099D6F85513FAA6080E581C /* libberg.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libberg.dylib; path = "../../app/base/build/Debug-iphoneos/libberg.dylib"; sourceTree = "<group>"; };
+		A130CF5C39FB3B7F8F150ABC /* libios_pcre.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libios_pcre.dylib; path = "../../app/pcre/build/Debug-iphoneos/libios_pcre.dylib"; sourceTree = "<group>"; };
+		874159B87D71E68A95607A70 /* libaura.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libaura.dylib; path = "../../../../Users/camilo/Library/Developer/Xcode/DerivedData/aura-mac-ekqwiewkpeyhdudtxguywfqohhby/Build/Products/Debug/libaura.dylib"; sourceTree = "<group>"; };
+		802EC9D705590BF511BC2B18 /* libaxis.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libaxis.dylib; path = ../../app/axis/build/Debug/libaxis.dylib; sourceTree = "<group>"; };
+		19EA0132430C8CB379C9809A /* libberg.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libberg.dylib; path = ../../app/base/build/Debug/libberg.dylib; sourceTree = "<group>"; };
+		74324CAFBF7C61C97107C04F /* libpcre.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libpcre.dylib; path = "../../../../Users/camilo/Library/Developer/Xcode/DerivedData/aura-mac-ekqwiewkpeyhdudtxguywfqohhby/Build/Products/Debug/libpcre.dylib"; sourceTree = "<group>"; };
+		569C525C1D6FCDB1C327AA4D /* libapp_core_hellobase.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libapp_core_hellobase.a; sourceTree = BUILT_PRODUCTS_DIR; };
+		8E47E1897182BAA4ED8D39B5 /* app_core_hellobase_iosTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = app_core_hellobase_iosTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		5AC7AB0FC1557890CBB3312D /* app_core_hellobase_iosTests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "app_core_hellobase_iosTests-Info.plist"; sourceTree = "<group>"; };
+		B42DE3B34D602AF85B48209C /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
+		B487FC2427A79F87B4248D67 /* app_core_hellobase_iosTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = app_core_hellobase_iosTests.m; sourceTree = "<group>"; };
+		D445FCA47C9EE7F13FD7D7D0 /* libapp_core_hellobase.dylib */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.dylib"; includeInIndex = 0; path = libapp_core_hellobase.dylib; sourceTree = BUILT_PRODUCTS_DIR; };
+		4538132F960884B0F9EFF480 /* framework.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = framework.cpp; sourceTree = "<group>"; };
+		0BD037D4A57872F58E9DCECC /* framework.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = framework.h; sourceTree = "<group>"; };
+		9900A21ABBD06C5320583468 /* hellobase.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = hellobase.h; sourceTree = "<group>"; };
+		9DCA6FE4D8FC36C5B2114A15 /* hellobase_application.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = hellobase_application.cpp; sourceTree = "<group>"; };
+		1D13F74DBA91D819C41A211F /* hellobase_document.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = hellobase_document.cpp; sourceTree = "<group>"; };
+		572CA408292350C5696CA2FA /* hellobase_frame.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = hellobase_frame.cpp; sourceTree = "<group>"; };
+		4498A05A9EF4506A8D9CAFF9 /* hellobase_pane_impact.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = hellobase_pane_impact.cpp; sourceTree = "<group>"; };
+		E6090534E17FE0C703FF8A72 /* aaa_want_to_erase_hellobase_impact_update_hint.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = aaa_want_to_erase_hellobase_impact_update_hint.cpp; sourceTree = "<group>"; };
+		7539FC908DCCB03CBA983F37 /* hellobase_impact.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = hellobase_impact.cpp; sourceTree = "<group>"; };
+		330ADB9BF06294799EF91B50 /* libios_aura.dylib */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.dylib"; path = libios_aura.dylib; sourceTree = BUILT_PRODUCTS_DIR; };
+		3651C29C4F91EDAB7ABAA7FC /* libios_axis.dylib */ = {isa = PBXFileReference; explicitFileType = archive.ar; path = libios_axis.dylib; sourceTree = BUILT_PRODUCTS_DIR; };
+		07C4E6819A0A4842EDAA7BE8 /* libios_base.dylib */ = {isa = PBXFileReference; explicitFileType = archive.ar; path = libios_base.dylib; sourceTree = BUILT_PRODUCTS_DIR; };
+		D049AD2436A37DF66CDBE3CA /* libios_core.dylib */ = {isa = PBXFileReference; explicitFileType = archive.ar; path = libios_core.dylib; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
-		9AE24E871904CFFD001AEFFB /* Frameworks */ = {
+		BC56A34F7638317924F7EF52 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		9AE24E961904CFFD001AEFFB /* Frameworks */ = {
+		FDAFA5B8594CEB14CBB275B6 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				9AE24EA11904CFFD001AEFFB /* libapp_core_hellobase.a in Frameworks */,
+				14BCD626519698AC7FAFC627 /* libapp_core_hellobase.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		9AEB75A016F78DF10085103B /* Frameworks */ = {
+		7EB029DC00D1BF1EA3EC163D /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				9A8C49451F6069A8004A5BA4 /* libace.dylib in Frameworks */,
-				9A920FDC1F3BF69300CD9D94 /* libsphere.dylib in Frameworks */,
-				9A920FD81F3BF68500CD9D94 /* libcore.dylib in Frameworks */,
-				9ACE47DE1D2041E400A1E0AD /* libpcre.dylib in Frameworks */,
-				9ACE47DC1D2041B800A1E0AD /* libberg.dylib in Frameworks */,
-				9ACE47DA1D2041AE00A1E0AD /* libaxis.dylib in Frameworks */,
-				9ACE47D61D2041A300A1E0AD /* libaura.dylib in Frameworks */,
-				070533EF1C90B2CF00F31B3F /* libgcom.dylib in Frameworks */,
+				6E7EB7206C6E20867A4CB9F4 /* libace.dylib in Frameworks */,
+				43196E04B59E49ADCC8924E1 /* libsphere.dylib in Frameworks */,
+				C93CF7E79F66F369AF8363D5 /* libcore.dylib in Frameworks */,
+				1F6A5CCD3E4CEBC6AEE34ED6 /* libpcre.dylib in Frameworks */,
+				EB0518653B6626EA5CC2D0B0 /* libberg.dylib in Frameworks */,
+				D1956DB3728DC0142200B165 /* libaxis.dylib in Frameworks */,
+				50CB342AB58481CB12E51A0C /* libaura.dylib in Frameworks */,
+				53B44DB03A6AB826810B239A /* libgcom.dylib in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		070533CC1C90B2A100F31B3F /* Products */ = {
+		E2D9E988E4DBD720C8BB7408 /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				070533E61C90B2A100F31B3F /* libgcom.dylib */,
-				070533E81C90B2A100F31B3F /* libios_gcom.a */,
-				070533EA1C90B2A100F31B3F /* gcom_iosTests.xctest */,
+				2F1005BDC5FAFDEE68AE8E70 /* libgcom.dylib */,
+				0EC6B486F21E615D960A172C /* libios_gcom.a */,
+				B8EFD99D9C94AD7DB82F976D /* gcom_iosTests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
 		};
-		9A920FD61F3BF68400CD9D94 /* Frameworks */ = {
+		63C9E9336F8A90B5286CEE33 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
-				9AF75DF71F83EBBB00FDE7CC /* libios_core.dylib */,
-				9AF75DF51F83EBB300FDE7CC /* libios_base.dylib */,
-				9AF75DF31F83EBAA00FDE7CC /* libios_axis.dylib */,
-				9AF75DEF1F83EBA100FDE7CC /* libios_aura.dylib */,
-				9A8C49441F6069A8004A5BA4 /* libace.dylib */,
-				9A920FDB1F3BF69300CD9D94 /* libsphere.dylib */,
-				9A920FD91F3BF68B00CD9D94 /* libmultimedia.dylib */,
-				9A920FD71F3BF68500CD9D94 /* libcore.dylib */,
+				D049AD2436A37DF66CDBE3CA /* libios_core.dylib */,
+				07C4E6819A0A4842EDAA7BE8 /* libios_base.dylib */,
+				3651C29C4F91EDAB7ABAA7FC /* libios_axis.dylib */,
+				330ADB9BF06294799EF91B50 /* libios_aura.dylib */,
+				20CE3C64FEBD2EEB9A3BAD29 /* libace.dylib */,
+				D6FE919B4A131CF657D6BCD7 /* libsphere.dylib */,
+				2B8253D1DB7C1518CAAF125E /* libmultimedia.dylib */,
+				811D2C7A7772088F567AD722 /* libcore.dylib */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
-		9A9578491F62217C00623508 /* Products */ = {
+		466DCFC82D834C46EE31185D /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				9A95784F1F62217D00623508 /* libsphere.dylib */,
-				9A9578511F62217D00623508 /* libios_sphere.a */,
-				9A9578531F62217D00623508 /* sphere_iosTests.xctest */,
+				46E2AF9B500EE615E685DE92 /* libsphere.dylib */,
+				621431B894C484EEC17A3A46 /* libios_sphere.a */,
+				857DE062558FD4B79CF6A291 /* sphere_iosTests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
 		};
-		9AE24EA21904CFFD001AEFFB /* app_core_hellobase_iosTests */ = {
+		7A77476536A445E7BECA4B44 /* app_core_hellobase_iosTests */ = {
 			isa = PBXGroup;
 			children = (
-				9AE24EA81904CFFD001AEFFB /* app_core_hellobase_iosTests.m */,
-				9AE24EA31904CFFD001AEFFB /* Supporting Files */,
+				B487FC2427A79F87B4248D67 /* app_core_hellobase_iosTests.m */,
+				0BD026B6E93DCE9727F6AE87 /* Supporting Files */,
 			);
 			path = app_core_hellobase_iosTests;
 			sourceTree = "<group>";
 		};
-		9AE24EA31904CFFD001AEFFB /* Supporting Files */ = {
+		0BD026B6E93DCE9727F6AE87 /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
-				9AE24EA41904CFFD001AEFFB /* app_core_hellobase_iosTests-Info.plist */,
-				9AE24EA51904CFFD001AEFFB /* InfoPlist.strings */,
+				5AC7AB0FC1557890CBB3312D /* app_core_hellobase_iosTests-Info.plist */,
+				6561C3D5F9527D085F197887 /* InfoPlist.strings */,
 			);
 			name = "Supporting Files";
 			sourceTree = "<group>";
 		};
-		9AEB759A16F78DF10085103B = {
+		DE9E4F10F2E5DF920F1EA80D = {
 			isa = PBXGroup;
 			children = (
-				9A9578481F62217C00623508 /* sphere.xcodeproj */,
-				070533CB1C90B2A100F31B3F /* gcom.xcodeproj */,
-				9A986CE21D2262CB001F4C04 /* libios_aura.dylib */,
-				9A986CE01D2262BA001F4C04 /* libios_axis.dylib */,
-				9A986CDE1D22629C001F4C04 /* libios_base.dylib */,
-				9AC62E9C1D20C14600A4AC0A /* libios_pcre.dylib */,
-				9AC62E9A1D20C12F00A4AC0A /* libberg.dylib */,
-				9AC62E981D20C12800A4AC0A /* libaxis.dylib */,
-				9AC62E941D20C12200A4AC0A /* libaura.dylib */,
-				9ACE47DD1D2041E400A1E0AD /* libpcre.dylib */,
-				9ACE47DB1D2041B800A1E0AD /* libberg.dylib */,
-				9ACE47D91D2041AE00A1E0AD /* libaxis.dylib */,
-				9ACE47D51D2041A300A1E0AD /* libaura.dylib */,
-				9AEB75AA16F78E600085103B /* hellobase */,
-				9AE24EA21904CFFD001AEFFB /* app_core_hellobase_iosTests */,
-				9AEB75A416F78DF10085103B /* Products */,
-				9A920FD61F3BF68400CD9D94 /* Frameworks */,
+				ACFD7A519B036242D77AEBBA /* sphere.xcodeproj */,
+				61BDCE04D6D79BE3C57180B1 /* gcom.xcodeproj */,
+				06C592A0FEB00683F2F0D9EF /* libios_aura.dylib */,
+				B0872DC2F837190C0B61A500 /* libios_axis.dylib */,
+				D9CCA3D116537A0DA050126A /* libios_base.dylib */,
+				A130CF5C39FB3B7F8F150ABC /* libios_pcre.dylib */,
+				3099D6F85513FAA6080E581C /* libberg.dylib */,
+				87B2D3FBFE606DCCD21DCEAE /* libaxis.dylib */,
+				2C67D74B2C7225672DEE624C /* libaura.dylib */,
+				74324CAFBF7C61C97107C04F /* libpcre.dylib */,
+				19EA0132430C8CB379C9809A /* libberg.dylib */,
+				802EC9D705590BF511BC2B18 /* libaxis.dylib */,
+				874159B87D71E68A95607A70 /* libaura.dylib */,
+				374B23529068E9BC6B35F2C7 /* hellobase */,
+				7A77476536A445E7BECA4B44 /* app_core_hellobase_iosTests */,
+				7ACAA4A7527E3B69A05A942B /* Products */,
+				63C9E9336F8A90B5286CEE33 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
-		9AEB75A416F78DF10085103B /* Products */ = {
+		7ACAA4A7527E3B69A05A942B /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				9AEB75A316F78DF10085103B /* libapp_core_hellobase.dylib */,
-				9AE24E8A1904CFFD001AEFFB /* libapp_core_hellobase.a */,
-				9AE24E991904CFFD001AEFFB /* app_core_hellobase_iosTests.xctest */,
+				D445FCA47C9EE7F13FD7D7D0 /* libapp_core_hellobase.dylib */,
+				569C525C1D6FCDB1C327AA4D /* libapp_core_hellobase.a */,
+				8E47E1897182BAA4ED8D39B5 /* app_core_hellobase_iosTests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
 		};
-		9AEB75AA16F78E600085103B /* hellobase */ = {
+		374B23529068E9BC6B35F2C7 /* hellobase */ = {
 			isa = PBXGroup;
 			children = (
-				9AEB75C316F78E600085103B /* hellobase.h */,
-				9AEB75BE16F78E600085103B /* framework.cpp */,
-				9AEB75BF16F78E600085103B /* framework.h */,
-				9AEB75C916F78E600085103B /* hellobase_application.cpp */,
-				07A684E617F0E06700C41DE6 /* hellobase_application.h */,
-				9AEB75CA16F78E600085103B /* hellobase_document.cpp */,
-				07A684E717F0E06700C41DE6 /* hellobase_document.h */,
-				9AEB75CB16F78E600085103B /* hellobase_frame.cpp */,
-				07A684E817F0E06700C41DE6 /* hellobase_frame.h */,
-				07AE494A1CC7A83F00959A6F /* hellobase_gcom.cpp */,
-				07AE494B1CC7A83F00959A6F /* hellobase_gcom.h */,
-				9A72594A1D1403E6001F56B4 /* hellobase_main_frame.cpp */,
-				9A72594B1D1403E6001F56B4 /* hellobase_main_frame.h */,
-				9AA1008C19971FCE004F84BD /* hellobase_main_impact.cpp */,
-				9AA1008D19971FCE004F84BD /* hellobase_main_impact.h */,
-				9AEB75CC16F78E600085103B /* hellobase_pane_impact.cpp */,
-				07A684EA17F0E06700C41DE6 /* hellobase_pane_impact.h */,
-				9AEB75CD16F78E600085103B /* aaa_want_to_erase_hellobase_impact_update_hint.cpp */,
-				07A684E917F0E06700C41DE6 /* aaa_want_to_erase_hellobase_impact_update_hint.h */,
-				07FB1AA21B744E8800F3FCC1 /* hellobase_render.cpp */,
-				07FB1AA31B744E8800F3FCC1 /* hellobase_render.h */,
-				076D09F11A3FC72C007432B6 /* hellobase_switcher_impact.cpp */,
-				076D09F21A3FC72C007432B6 /* hellobase_switcher_impact.h */,
-				07AE494C1CC7A83F00959A6F /* hellobase_impact_base.cpp */,
-				07AE494D1CC7A83F00959A6F /* hellobase_impact_base.h */,
-				9AEB75CE16F78E600085103B /* hellobase_impact.cpp */,
-				07A684EB17F0E06700C41DE6 /* hellobase_impact.h */,
+				9900A21ABBD06C5320583468 /* hellobase.h */,
+				4538132F960884B0F9EFF480 /* framework.cpp */,
+				0BD037D4A57872F58E9DCECC /* framework.h */,
+				9DCA6FE4D8FC36C5B2114A15 /* hellobase_application.cpp */,
+				FC1E3FCAEA8407CD81537F72 /* hellobase_application.h */,
+				1D13F74DBA91D819C41A211F /* hellobase_document.cpp */,
+				F477EEDDB5392798AC055E89 /* hellobase_document.h */,
+				572CA408292350C5696CA2FA /* hellobase_frame.cpp */,
+				B8CCD4D39BECF335F57DE413 /* hellobase_frame.h */,
+				EEB63DA793973AF927DC7AB4 /* hellobase_gcom.cpp */,
+				9FF8A56C2532BE445F587EA8 /* hellobase_gcom.h */,
+				3F724AD17025C8CD8DF51A63 /* hellobase_main_frame.cpp */,
+				1DADA0F9D705E4CC521D63D5 /* hellobase_main_frame.h */,
+				D68EF0BFDCB0738DC15D1329 /* hellobase_main_impact.cpp */,
+				39D33E69534FE60EFA023924 /* hellobase_main_impact.h */,
+				4498A05A9EF4506A8D9CAFF9 /* hellobase_pane_impact.cpp */,
+				3F26479ACD224D2492C11643 /* hellobase_pane_impact.h */,
+				E6090534E17FE0C703FF8A72 /* aaa_want_to_erase_hellobase_impact_update_hint.cpp */,
+				D40855ABB1867022FCC6CD82 /* aaa_want_to_erase_hellobase_impact_update_hint.h */,
+				A12436012DDCD5ABF8458B27 /* hellobase_render.cpp */,
+				5D51BA87772E0080AD0D7736 /* hellobase_render.h */,
+				16ACC4FC35DD321E80377F7B /* hellobase_switcher_impact.cpp */,
+				AA440CB837CEA1F6E888D028 /* hellobase_switcher_impact.h */,
+				FFA58DE4A85D8777B838B43A /* hellobase_impact_base.cpp */,
+				D40BE2BC9BD920848D1674B5 /* hellobase_impact_base.h */,
+				7539FC908DCCB03CBA983F37 /* hellobase_impact.cpp */,
+				E205B8FFA010F3A0F99EEAF4 /* hellobase_impact.h */,
 			);
 			name = hellobase;
 			sourceTree = "<group>";
@@ -366,269 +366,269 @@
 /* End PBXGroup section */
 
 /* Begin PBXHeadersBuildPhase section */
-		9AEB75A116F78DF10085103B /* Headers */ = {
+		5F2FBB4CCBF117FC7EC106EA /* Headers */ = {
 			isa = PBXHeadersBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				9AEB75DE16F78E600085103B /* framework.h in Headers */,
-				07FB1AA51B744E8800F3FCC1 /* hellobase_render.h in Headers */,
-				9AEB75E016F78E600085103B /* hellobase.h in Headers */,
-				07A684F117F0E06700C41DE6 /* hellobase_impact.h in Headers */,
-				9AA1009119971FCE004F84BD /* hellobase_main_impact.h in Headers */,
-				07AE49511CC7A83F00959A6F /* hellobase_impact_base.h in Headers */,
-				9A72594D1D1403E6001F56B4 /* hellobase_main_frame.h in Headers */,
-				07A684EF17F0E06700C41DE6 /* aaa_want_to_erase_hellobase_impact_update_hint.h in Headers */,
-				07A684ED17F0E06700C41DE6 /* hellobase_document.h in Headers */,
-				07A684F017F0E06700C41DE6 /* hellobase_pane_impact.h in Headers */,
-				07AE494F1CC7A83F00959A6F /* hellobase_gcom.h in Headers */,
-				07A684EE17F0E06700C41DE6 /* hellobase_frame.h in Headers */,
-				076D09FC1A3FC72C007432B6 /* hellobase_switcher_impact.h in Headers */,
-				07A684EC17F0E06700C41DE6 /* hellobase_application.h in Headers */,
+				2B62351AD5869803ADA261E9 /* framework.h in Headers */,
+				435D1AC9B613ACAEF8A0B499 /* hellobase_render.h in Headers */,
+				DE66C11F795416CC36EB382E /* hellobase.h in Headers */,
+				14C8A1EB4D50E4D62CC388F9 /* hellobase_impact.h in Headers */,
+				7446EC393F060DB6AD7AE557 /* hellobase_main_impact.h in Headers */,
+				58F78BE8D51A2ADDDE58F137 /* hellobase_impact_base.h in Headers */,
+				151177C64DE9A23689305D98 /* hellobase_main_frame.h in Headers */,
+				C5DD04BF3D0B2969845595EC /* aaa_want_to_erase_hellobase_impact_update_hint.h in Headers */,
+				B5B72E035AEDC080AFCBC936 /* hellobase_document.h in Headers */,
+				115F752770064D0C2E4D39E4 /* hellobase_pane_impact.h in Headers */,
+				6390094CE3ED9E8147ACBF39 /* hellobase_gcom.h in Headers */,
+				5BF0445857C9B6E703405DA2 /* hellobase_frame.h in Headers */,
+				4EFC29D5ADF562DF24C5A1F0 /* hellobase_switcher_impact.h in Headers */,
+				6CE23DEF27A5C629C3A67D2A /* hellobase_application.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXHeadersBuildPhase section */
 
 /* Begin PBXNativeTarget section */
-		9AE24E891904CFFD001AEFFB /* ios_app_core_hellobase */ = {
+		935179945E1EA94156FC3644 /* ios_app_core_hellobase */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 9AE24EBA1904CFFD001AEFFB /* Build configuration list for PBXNativeTarget "ios_app_core_hellobase" */;
+			buildConfigurationList = 8E598878F08E72179919F84D /* Build configuration list for PBXNativeTarget "ios_app_core_hellobase" */;
 			buildPhases = (
-				9AE24E861904CFFD001AEFFB /* Sources */,
-				9AE24E871904CFFD001AEFFB /* Frameworks */,
-				9AE24E881904CFFD001AEFFB /* CopyFiles */,
+				FE2708BBB6F82072E3B9B748 /* Sources */,
+				BC56A34F7638317924F7EF52 /* Frameworks */,
+				C761640C1DDF07C69697A521 /* CopyFiles */,
 			);
 			buildRules = (
 			);
 			dependencies = (
-				9A9578551F62218E00623508 /* PBXTargetDependency */,
-				9A259E1D1D25D9B40044727D /* PBXTargetDependency */,
+				0E578D7FF6F7782988BE3DBC /* PBXTargetDependency */,
+				C93EF9C9B5358BBC12F17A8F /* PBXTargetDependency */,
 			);
 			name = ios_app_core_hellobase;
 			productName = app_core_hellobase_ios;
-			productReference = 9AE24E8A1904CFFD001AEFFB /* libapp_core_hellobase.a */;
+			productReference = 569C525C1D6FCDB1C327AA4D /* libapp_core_hellobase.a */;
 			productType = "com.apple.product-type.library.static";
 		};
-		9AE24E981904CFFD001AEFFB /* app_core_hellobase_iosTests */ = {
+		DD1FBE48CE922BF9AB9D5E36 /* app_core_hellobase_iosTests */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 9AE24EBB1904CFFD001AEFFB /* Build configuration list for PBXNativeTarget "app_core_hellobase_iosTests" */;
+			buildConfigurationList = CA4A8CA2DF2DDBF021D9A380 /* Build configuration list for PBXNativeTarget "app_core_hellobase_iosTests" */;
 			buildPhases = (
-				9AE24E951904CFFD001AEFFB /* Sources */,
-				9AE24E961904CFFD001AEFFB /* Frameworks */,
-				9AE24E971904CFFD001AEFFB /* Resources */,
+				680BA7E9237593AA8DEAE54B /* Sources */,
+				FDAFA5B8594CEB14CBB275B6 /* Frameworks */,
+				A3731933C0742A084104F608 /* Resources */,
 			);
 			buildRules = (
 			);
 			dependencies = (
-				9AE24EA01904CFFD001AEFFB /* PBXTargetDependency */,
+				3B97D71B953A7004E6DEAD86 /* PBXTargetDependency */,
 			);
 			name = app_core_hellobase_iosTests;
 			productName = app_core_hellobase_iosTests;
-			productReference = 9AE24E991904CFFD001AEFFB /* app_core_hellobase_iosTests.xctest */;
+			productReference = 8E47E1897182BAA4ED8D39B5 /* app_core_hellobase_iosTests.xctest */;
 			productType = "com.apple.product-type.bundle.unit-test";
 		};
-		9AEB75A216F78DF10085103B /* app_core_hellobase */ = {
+		BCE393433FB20947EAD8B09D /* app_core_hellobase */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 9AEB75A716F78DF10085103B /* Build configuration list for PBXNativeTarget "app_core_hellobase" */;
+			buildConfigurationList = E691ED402D939680A2891878 /* Build configuration list for PBXNativeTarget "app_core_hellobase" */;
 			buildPhases = (
-				9AEB759F16F78DF10085103B /* Sources */,
-				9AEB75A016F78DF10085103B /* Frameworks */,
-				9AEB75A116F78DF10085103B /* Headers */,
+				13200D3F84E0D0ABACE7F6DD /* Sources */,
+				7EB029DC00D1BF1EA3EC163D /* Frameworks */,
+				5F2FBB4CCBF117FC7EC106EA /* Headers */,
 			);
 			buildRules = (
 			);
 			dependencies = (
-				9A9578571F62219700623508 /* PBXTargetDependency */,
-				070533EE1C90B2B900F31B3F /* PBXTargetDependency */,
+				F33E62932253C55891B57D38 /* PBXTargetDependency */,
+				58DDA93BD6106CE4D5B4FAD4 /* PBXTargetDependency */,
 			);
 			name = app_core_hellobase;
 			productName = app_core_hellobase;
-			productReference = 9AEB75A316F78DF10085103B /* libapp_core_hellobase.dylib */;
+			productReference = D445FCA47C9EE7F13FD7D7D0 /* libapp_core_hellobase.dylib */;
 			productType = "com.apple.product-type.library.dynamic";
 		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
-		9AEB759B16F78DF10085103B /* Project object */ = {
+		1D4153DC514D3E006FA07A6F /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
 				LastUpgradeCheck = 0900;
 				ORGANIZATIONNAME = "Camilo Sasuke Tsumanuma";
 				TargetAttributes = {
-					9AE24E981904CFFD001AEFFB = {
-						TestTargetID = 9AEB75A216F78DF10085103B;
+					DD1FBE48CE922BF9AB9D5E36 = {
+						TestTargetID = BCE393433FB20947EAD8B09D;
 					};
 				};
 			};
-			buildConfigurationList = 9AEB759E16F78DF10085103B /* Build configuration list for PBXProject "app_core_hellobase" */;
+			buildConfigurationList = 28E5188DD55F6D310D912D67 /* Build configuration list for PBXProject "app_core_hellobase" */;
 			compatibilityVersion = "Xcode 3.2";
 			developmentRegion = English;
 			hasScannedForEncodings = 0;
 			knownRegions = (
 				en,
 			);
-			mainGroup = 9AEB759A16F78DF10085103B;
-			productRefGroup = 9AEB75A416F78DF10085103B /* Products */;
+			mainGroup = DE9E4F10F2E5DF920F1EA80D;
+			productRefGroup = 7ACAA4A7527E3B69A05A942B /* Products */;
 			projectDirPath = "";
 			projectReferences = (
 				{
-					ProductGroup = 070533CC1C90B2A100F31B3F /* Products */;
-					ProjectRef = 070533CB1C90B2A100F31B3F /* gcom.xcodeproj */;
+					ProductGroup = E2D9E988E4DBD720C8BB7408 /* Products */;
+					ProjectRef = 61BDCE04D6D79BE3C57180B1 /* gcom.xcodeproj */;
 				},
 				{
-					ProductGroup = 9A9578491F62217C00623508 /* Products */;
-					ProjectRef = 9A9578481F62217C00623508 /* sphere.xcodeproj */;
+					ProductGroup = 466DCFC82D834C46EE31185D /* Products */;
+					ProjectRef = ACFD7A519B036242D77AEBBA /* sphere.xcodeproj */;
 				},
 			);
 			projectRoot = "";
 			targets = (
-				9AEB75A216F78DF10085103B /* app_core_hellobase */,
-				9AE24E891904CFFD001AEFFB /* ios_app_core_hellobase */,
-				9AE24E981904CFFD001AEFFB /* app_core_hellobase_iosTests */,
+				BCE393433FB20947EAD8B09D /* app_core_hellobase */,
+				935179945E1EA94156FC3644 /* ios_app_core_hellobase */,
+				DD1FBE48CE922BF9AB9D5E36 /* app_core_hellobase_iosTests */,
 			);
 		};
 /* End PBXProject section */
 
 /* Begin PBXReferenceProxy section */
-		070533E61C90B2A100F31B3F /* libgcom.dylib */ = {
+		2F1005BDC5FAFDEE68AE8E70 /* libgcom.dylib */ = {
 			isa = PBXReferenceProxy;
 			fileType = "compiled.mach-o.dylib";
 			path = libgcom.dylib;
-			remoteRef = 070533E51C90B2A100F31B3F /* PBXContainerItemProxy */;
+			remoteRef = B46CF45D10E7CE4FD39F5138 /* PBXContainerItemProxy */;
 			sourceTree = BUILT_PRODUCTS_DIR;
 		};
-		070533E81C90B2A100F31B3F /* libios_gcom.a */ = {
+		0EC6B486F21E615D960A172C /* libios_gcom.a */ = {
 			isa = PBXReferenceProxy;
 			fileType = archive.ar;
 			path = libios_gcom.a;
-			remoteRef = 070533E71C90B2A100F31B3F /* PBXContainerItemProxy */;
+			remoteRef = 1FAEC91D7524592AB4738CE6 /* PBXContainerItemProxy */;
 			sourceTree = BUILT_PRODUCTS_DIR;
 		};
-		070533EA1C90B2A100F31B3F /* gcom_iosTests.xctest */ = {
+		B8EFD99D9C94AD7DB82F976D /* gcom_iosTests.xctest */ = {
 			isa = PBXReferenceProxy;
 			fileType = wrapper.cfbundle;
 			path = gcom_iosTests.xctest;
-			remoteRef = 070533E91C90B2A100F31B3F /* PBXContainerItemProxy */;
+			remoteRef = 5BEBE63D1AD2DE93F5D13EBE /* PBXContainerItemProxy */;
 			sourceTree = BUILT_PRODUCTS_DIR;
 		};
-		9A95784F1F62217D00623508 /* libsphere.dylib */ = {
+		46E2AF9B500EE615E685DE92 /* libsphere.dylib */ = {
 			isa = PBXReferenceProxy;
 			fileType = "compiled.mach-o.dylib";
 			path = libsphere.dylib;
-			remoteRef = 9A95784E1F62217D00623508 /* PBXContainerItemProxy */;
+			remoteRef = C60EC8DB392917E8B2D9C41D /* PBXContainerItemProxy */;
 			sourceTree = BUILT_PRODUCTS_DIR;
 		};
-		9A9578511F62217D00623508 /* libios_sphere.a */ = {
+		621431B894C484EEC17A3A46 /* libios_sphere.a */ = {
 			isa = PBXReferenceProxy;
 			fileType = archive.ar;
 			path = libios_sphere.a;
-			remoteRef = 9A9578501F62217D00623508 /* PBXContainerItemProxy */;
+			remoteRef = 0A3CC2D31E55AC1BBCA8BA72 /* PBXContainerItemProxy */;
 			sourceTree = BUILT_PRODUCTS_DIR;
 		};
-		9A9578531F62217D00623508 /* sphere_iosTests.xctest */ = {
+		857DE062558FD4B79CF6A291 /* sphere_iosTests.xctest */ = {
 			isa = PBXReferenceProxy;
 			fileType = wrapper.cfbundle;
 			path = sphere_iosTests.xctest;
-			remoteRef = 9A9578521F62217D00623508 /* PBXContainerItemProxy */;
+			remoteRef = FC9EDCADD9641ACEA5C9689B /* PBXContainerItemProxy */;
 			sourceTree = BUILT_PRODUCTS_DIR;
 		};
 /* End PBXReferenceProxy section */
 
 /* Begin PBXResourcesBuildPhase section */
-		9AE24E971904CFFD001AEFFB /* Resources */ = {
+		A3731933C0742A084104F608 /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				9AE24EA71904CFFD001AEFFB /* InfoPlist.strings in Resources */,
+				57AEC421E6969B16A659A329 /* InfoPlist.strings in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
-		9AE24E861904CFFD001AEFFB /* Sources */ = {
+		FE2708BBB6F82072E3B9B748 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				9A6716B61D155B860069A961 /* hellobase_main_frame.cpp in Sources */,
-				9A6716B71D155B860069A961 /* hellobase_gcom.cpp in Sources */,
-				9A6716B81D155B860069A961 /* hellobase_impact_base.cpp in Sources */,
-				07A4B1371B76469200DA5C57 /* hellobase_render.cpp in Sources */,
-				07473E641B5050B8004688C5 /* hellobase_main_impact.cpp in Sources */,
-				07473E601B5050B8004688C5 /* hellobase_switcher_impact.cpp in Sources */,
-				07B65520190F3001002DAADE /* framework.cpp in Sources */,
-				07B65521190F3001002DAADE /* hellobase_application.cpp in Sources */,
-				07B65522190F3001002DAADE /* hellobase_document.cpp in Sources */,
-				07B65523190F3001002DAADE /* hellobase_frame.cpp in Sources */,
-				07B65524190F3001002DAADE /* hellobase_pane_impact.cpp in Sources */,
-				07B65525190F3001002DAADE /* aaa_want_to_erase_hellobase_impact_update_hint.cpp in Sources */,
-				07B65526190F3001002DAADE /* hellobase_impact.cpp in Sources */,
+				3C6F59174305E0D78B832733 /* hellobase_main_frame.cpp in Sources */,
+				8C99894EFD1B67B58E9A5C5D /* hellobase_gcom.cpp in Sources */,
+				FFD44309B813A61632EC6CED /* hellobase_impact_base.cpp in Sources */,
+				00CA556825026CBC34D6AC83 /* hellobase_render.cpp in Sources */,
+				7C7477A79F7410A642DEAACA /* hellobase_main_impact.cpp in Sources */,
+				020DBC5E8D2492E3BF780CB0 /* hellobase_switcher_impact.cpp in Sources */,
+				72E1EC27492F03533932DA18 /* framework.cpp in Sources */,
+				425DAE1492727D45D741D277 /* hellobase_application.cpp in Sources */,
+				54E9A084EE1B1BED22A125A9 /* hellobase_document.cpp in Sources */,
+				654EB351C83CA0180FB21624 /* hellobase_frame.cpp in Sources */,
+				E6F1C676131CD5F4ECA498D7 /* hellobase_pane_impact.cpp in Sources */,
+				1939D9FD62A5947CC966C639 /* aaa_want_to_erase_hellobase_impact_update_hint.cpp in Sources */,
+				6E62A049839182D9920C2800 /* hellobase_impact.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		9AE24E951904CFFD001AEFFB /* Sources */ = {
+		680BA7E9237593AA8DEAE54B /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				9AE24EA91904CFFD001AEFFB /* app_core_hellobase_iosTests.m in Sources */,
+				63BAE006D4421643AF228565 /* app_core_hellobase_iosTests.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		9AEB759F16F78DF10085103B /* Sources */ = {
+		13200D3F84E0D0ABACE7F6DD /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				9AA1009019971FCE004F84BD /* hellobase_main_impact.cpp in Sources */,
-				9AEB75DD16F78E600085103B /* framework.cpp in Sources */,
-				07AE494E1CC7A83F00959A6F /* hellobase_gcom.cpp in Sources */,
-				9A72594C1D1403E6001F56B4 /* hellobase_main_frame.cpp in Sources */,
-				076D09FB1A3FC72C007432B6 /* hellobase_switcher_impact.cpp in Sources */,
-				07FB1AA41B744E8800F3FCC1 /* hellobase_render.cpp in Sources */,
-				9AEB75E116F78E600085103B /* hellobase_application.cpp in Sources */,
-				07AE49501CC7A83F00959A6F /* hellobase_impact_base.cpp in Sources */,
-				9AEB75E216F78E600085103B /* hellobase_document.cpp in Sources */,
-				9AEB75E316F78E600085103B /* hellobase_frame.cpp in Sources */,
-				9AEB75E416F78E600085103B /* hellobase_pane_impact.cpp in Sources */,
-				9AEB75E516F78E600085103B /* aaa_want_to_erase_hellobase_impact_update_hint.cpp in Sources */,
-				9AEB75E616F78E600085103B /* hellobase_impact.cpp in Sources */,
+				153C4A0ABA5DF4F2D3FACF57 /* hellobase_main_impact.cpp in Sources */,
+				724441D6640D79BAA456C487 /* framework.cpp in Sources */,
+				39C74AE3A567C77DE4BF87AC /* hellobase_gcom.cpp in Sources */,
+				1E199B50C6AC57EC2DC74866 /* hellobase_main_frame.cpp in Sources */,
+				D85F27A57789A59DF3F6B4AA /* hellobase_switcher_impact.cpp in Sources */,
+				E7DEAFDAB51DE0EDF4A67026 /* hellobase_render.cpp in Sources */,
+				582985BB9342C556C7C1163E /* hellobase_application.cpp in Sources */,
+				11993F07CCAB6818DA74DB38 /* hellobase_impact_base.cpp in Sources */,
+				74331EB90495050970DB6065 /* hellobase_document.cpp in Sources */,
+				3EC9FBE92838B17B00CF5212 /* hellobase_frame.cpp in Sources */,
+				D585E07198A0737558AB6233 /* hellobase_pane_impact.cpp in Sources */,
+				23D5DBE9040960189C33816C /* aaa_want_to_erase_hellobase_impact_update_hint.cpp in Sources */,
+				E91EB7339A5F0300849E2C9F /* hellobase_impact.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
-		070533EE1C90B2B900F31B3F /* PBXTargetDependency */ = {
+		58DDA93BD6106CE4D5B4FAD4 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			name = gcom;
-			targetProxy = 070533ED1C90B2B900F31B3F /* PBXContainerItemProxy */;
+			targetProxy = 36B61BA8B5ACF26A50D9F1BF /* PBXContainerItemProxy */;
 		};
-		9A259E1D1D25D9B40044727D /* PBXTargetDependency */ = {
+		C93EF9C9B5358BBC12F17A8F /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			name = ios_gcom;
-			targetProxy = 9A259E1C1D25D9B40044727D /* PBXContainerItemProxy */;
+			targetProxy = 91011376CA2161FD17B31844 /* PBXContainerItemProxy */;
 		};
-		9A9578551F62218E00623508 /* PBXTargetDependency */ = {
+		0E578D7FF6F7782988BE3DBC /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			name = ios_sphere;
-			targetProxy = 9A9578541F62218E00623508 /* PBXContainerItemProxy */;
+			targetProxy = 4D98CD2048460F9D14DD39BD /* PBXContainerItemProxy */;
 		};
-		9A9578571F62219700623508 /* PBXTargetDependency */ = {
+		F33E62932253C55891B57D38 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			name = sphere;
-			targetProxy = 9A9578561F62219700623508 /* PBXContainerItemProxy */;
+			targetProxy = 00734D18868861956A7FD869 /* PBXContainerItemProxy */;
 		};
-		9AE24EA01904CFFD001AEFFB /* PBXTargetDependency */ = {
+		3B97D71B953A7004E6DEAD86 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
-			target = 9AE24E891904CFFD001AEFFB /* ios_app_core_hellobase */;
-			targetProxy = 9AE24E9F1904CFFD001AEFFB /* PBXContainerItemProxy */;
+			target = 935179945E1EA94156FC3644 /* ios_app_core_hellobase */;
+			targetProxy = 731CAEBE99D7B95745ED4551 /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
-		9AE24EA51904CFFD001AEFFB /* InfoPlist.strings */ = {
+		6561C3D5F9527D085F197887 /* InfoPlist.strings */ = {
 			isa = PBXVariantGroup;
 			children = (
-				9AE24EA61904CFFD001AEFFB /* en */,
+				B42DE3B34D602AF85B48209C /* en */,
 			);
 			name = InfoPlist.strings;
 			sourceTree = "<group>";
@@ -636,7 +636,7 @@
 /* End PBXVariantGroup section */
 
 /* Begin XCBuildConfiguration section */
-		9AE24EAA1904CFFD001AEFFB /* Debug */ = {
+		F3D4683E1FC367E0B4A3F304 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				EXECUTABLE_EXTENSION = a;
@@ -646,7 +646,7 @@
 			};
 			name = Debug;
 		};
-		9AE24EAB1904CFFD001AEFFB /* Release */ = {
+		03FDC9ABB94993B3C216AA43 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				EXECUTABLE_EXTENSION = a;
@@ -656,7 +656,7 @@
 			};
 			name = Release;
 		};
-		9AE24EAC1904CFFD001AEFFB /* Debug */ = {
+		5AB14E9F1D08FAD5A0D0B489 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
@@ -690,7 +690,7 @@
 			};
 			name = Debug;
 		};
-		9AE24EAD1904CFFD001AEFFB /* Release */ = {
+		DB2837F53652A6BD33B6DC75 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
@@ -723,7 +723,7 @@
 			};
 			name = Release;
 		};
-		9AEB75A516F78DF10085103B /* Debug */ = {
+		530086DE9E7C6C931DBAABAE /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = YES;
@@ -791,7 +791,7 @@
 			};
 			name = Debug;
 		};
-		9AEB75A616F78DF10085103B /* Release */ = {
+		45C29ECF5CA08AC2CB029482 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = YES;
@@ -851,7 +851,7 @@
 			};
 			name = Release;
 		};
-		9AEB75A816F78DF10085103B /* Debug */ = {
+		54C5486974A8D8AEF8E2D460 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				CODE_SIGN_IDENTITY = "";
@@ -859,7 +859,7 @@
 			};
 			name = Debug;
 		};
-		9AEB75A916F78DF10085103B /* Release */ = {
+		41E9C6BFC30D633DC94F5CBA /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				CODE_SIGN_IDENTITY = "";
@@ -870,43 +870,43 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		9AE24EBA1904CFFD001AEFFB /* Build configuration list for PBXNativeTarget "ios_app_core_hellobase" */ = {
+		8E598878F08E72179919F84D /* Build configuration list for PBXNativeTarget "ios_app_core_hellobase" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
-				9AE24EAA1904CFFD001AEFFB /* Debug */,
-				9AE24EAB1904CFFD001AEFFB /* Release */,
+				F3D4683E1FC367E0B4A3F304 /* Debug */,
+				03FDC9ABB94993B3C216AA43 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		9AE24EBB1904CFFD001AEFFB /* Build configuration list for PBXNativeTarget "app_core_hellobase_iosTests" */ = {
+		CA4A8CA2DF2DDBF021D9A380 /* Build configuration list for PBXNativeTarget "app_core_hellobase_iosTests" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
-				9AE24EAC1904CFFD001AEFFB /* Debug */,
-				9AE24EAD1904CFFD001AEFFB /* Release */,
+				5AB14E9F1D08FAD5A0D0B489 /* Debug */,
+				DB2837F53652A6BD33B6DC75 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		9AEB759E16F78DF10085103B /* Build configuration list for PBXProject "app_core_hellobase" */ = {
+		28E5188DD55F6D310D912D67 /* Build configuration list for PBXProject "app_core_hellobase" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
-				9AEB75A516F78DF10085103B /* Debug */,
-				9AEB75A616F78DF10085103B /* Release */,
+				530086DE9E7C6C931DBAABAE /* Debug */,
+				45C29ECF5CA08AC2CB029482 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		9AEB75A716F78DF10085103B /* Build configuration list for PBXNativeTarget "app_core_hellobase" */ = {
+		E691ED402D939680A2891878 /* Build configuration list for PBXNativeTarget "app_core_hellobase" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
-				9AEB75A816F78DF10085103B /* Debug */,
-				9AEB75A916F78DF10085103B /* Release */,
+				54C5486974A8D8AEF8E2D460 /* Debug */,
+				41E9C6BFC30D633DC94F5CBA /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
-	rootObject = 9AEB759B16F78DF10085103B /* Project object */;
+	rootObject = 1D4153DC514D3E006FA07A6F /* Project object */;
 }

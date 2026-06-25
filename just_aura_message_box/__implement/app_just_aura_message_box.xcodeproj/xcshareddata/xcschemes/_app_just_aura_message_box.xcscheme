@@ -15,7 +15,7 @@
             buildForAnalyzing = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "070B8EE91B6E53F900D26137"
+               BlueprintIdentifier = "8FA813219F4764F55B54F849"
                BuildableName = "_app_just_aura_message_box.app"
                BlueprintName = "_app_just_aura_message_box"
                ReferencedContainer = "container:app_just_aura_message_box.xcodeproj">
@@ -44,7 +44,7 @@
          runnableDebuggingMode = "0">
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "070B8EE91B6E53F900D26137"
+            BlueprintIdentifier = "8FA813219F4764F55B54F849"
             BuildableName = "_app_just_aura_message_box.app"
             BlueprintName = "_app_just_aura_message_box"
             ReferencedContainer = "container:app_just_aura_message_box.xcodeproj">
@@ -60,7 +60,7 @@
       <MacroExpansion>
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "070B8EE91B6E53F900D26137"
+            BlueprintIdentifier = "8FA813219F4764F55B54F849"
             BuildableName = "_app_just_aura_message_box.app"
             BlueprintName = "_app_just_aura_message_box"
             ReferencedContainer = "container:app_just_aura_message_box.xcodeproj">

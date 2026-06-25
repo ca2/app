@@ -94,14 +94,14 @@ virtual ::i32_rectangle initial_frame_rectangle();
    //virtual void display_dialog(::dialog * pdialog);
    //virtual void display_dialog_and_wait_dialog_response(::dialog * pdialog);
    //virtual void display_dialog(::dialog * pdialog);
-   virtual bool is_waiting_for_dialog_response();
+   bool is_waiting_for_dialog_response() override;
 
    virtual void wait_dialog_response(const class ::time & timeTimeout = ::time::infinity());
    
    
-   virtual void set_dialog_response(const ::payload & payloadResult);
+   void set_dialog_response(const ::payload & payloadResult) override;
 
-   virtual ::payload get_dialog_response();
+   ::payload get_dialog_response() override;
    
    virtual void on_dialog_response(const ::payload & payloadResult);
 

@@ -7,134 +7,134 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		071EFB6E1C5575A100EA68B0 /* client.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 07B098071B848AA9002AC4F0 /* client.cpp */; };
-		071EFB6F1C5575A100EA68B0 /* cmdline.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 07B098081B848AA9002AC4F0 /* cmdline.cpp */; };
-		071EFB701C5575A100EA68B0 /* compatibility.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 07B098091B848AA9002AC4F0 /* compatibility.cpp */; };
-		071EFB711C5575A100EA68B0 /* file.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 07B0980A1B848AA9002AC4F0 /* file.cpp */; };
-		071EFB751C5575B500EA68B0 /* ca2rdp_event_queue.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 07E9DC931C499E1C009F99E7 /* ca2rdp_event_queue.cpp */; };
-		071EFB761C5575B500EA68B0 /* cf_channels.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 07FACBA51B84BB660035DF9D /* cf_channels.cpp */; };
-		071EFB771C5575B500EA68B0 /* cf_client.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 07FACBA71B84BB660035DF9D /* cf_client.cpp */; };
-		074BD0D61B5F409400219723 /* libaura.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 074BD0D11B5F406300219723 /* libaura.dylib */; };
-		07B0980E1B848AA9002AC4F0 /* client.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 07B098071B848AA9002AC4F0 /* client.cpp */; };
-		07B0980F1B848AA9002AC4F0 /* cmdline.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 07B098081B848AA9002AC4F0 /* cmdline.cpp */; };
-		07B098101B848AA9002AC4F0 /* compatibility.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 07B098091B848AA9002AC4F0 /* compatibility.cpp */; };
-		07B098111B848AA9002AC4F0 /* file.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 07B0980A1B848AA9002AC4F0 /* file.cpp */; };
-		07B098121B848AA9002AC4F0 /* graphics.h in Headers */ = {isa = PBXBuildFile; fileRef = 07B0980B1B848AA9002AC4F0 /* graphics.h */; };
-		07B098131B848AA9002AC4F0 /* rdpclient.h in Headers */ = {isa = PBXBuildFile; fileRef = 07B0980D1B848AA9002AC4F0 /* rdpclient.h */; };
-		07DD652D1B5F0BC2003A1CE1 /* ca2rdp.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 07DD63731B5F0BC1003A1CE1 /* ca2rdp.cpp */; };
-		07DD652E1B5F0BC2003A1CE1 /* ca2rdp.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 07DD63731B5F0BC1003A1CE1 /* ca2rdp.cpp */; };
-		07DD652F1B5F0BC2003A1CE1 /* ca2rdp.h in Headers */ = {isa = PBXBuildFile; fileRef = 07DD63741B5F0BC1003A1CE1 /* ca2rdp.h */; };
-		07DD65301B5F0BC2003A1CE1 /* ca2rdp.h in Headers */ = {isa = PBXBuildFile; fileRef = 07DD63741B5F0BC1003A1CE1 /* ca2rdp.h */; };
-		07DD65311B5F0BC2003A1CE1 /* ca2rdp_event.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 07DD63751B5F0BC1003A1CE1 /* ca2rdp_event.cpp */; };
-		07DD65321B5F0BC2003A1CE1 /* ca2rdp_event.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 07DD63751B5F0BC1003A1CE1 /* ca2rdp_event.cpp */; };
-		07DD65331B5F0BC2003A1CE1 /* ca2rdp_event.h in Headers */ = {isa = PBXBuildFile; fileRef = 07DD63761B5F0BC1003A1CE1 /* ca2rdp_event.h */; };
-		07DD65341B5F0BC2003A1CE1 /* ca2rdp_event.h in Headers */ = {isa = PBXBuildFile; fileRef = 07DD63761B5F0BC1003A1CE1 /* ca2rdp_event.h */; };
-		07DD65351B5F0BC2003A1CE1 /* ca2rdp_graphics.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 07DD63771B5F0BC1003A1CE1 /* ca2rdp_graphics.cpp */; };
-		07DD65361B5F0BC2003A1CE1 /* ca2rdp_graphics.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 07DD63771B5F0BC1003A1CE1 /* ca2rdp_graphics.cpp */; };
-		07DD65371B5F0BC2003A1CE1 /* ca2rdp_graphics.h in Headers */ = {isa = PBXBuildFile; fileRef = 07DD63781B5F0BC1003A1CE1 /* ca2rdp_graphics.h */; };
-		07DD65381B5F0BC2003A1CE1 /* ca2rdp_graphics.h in Headers */ = {isa = PBXBuildFile; fileRef = 07DD63781B5F0BC1003A1CE1 /* ca2rdp_graphics.h */; };
-		07DD653F1B5F0BC2003A1CE1 /* compatibility.h in Headers */ = {isa = PBXBuildFile; fileRef = 07DD637D1B5F0BC1003A1CE1 /* compatibility.h */; };
-		07DD65401B5F0BC2003A1CE1 /* compatibility.h in Headers */ = {isa = PBXBuildFile; fileRef = 07DD637D1B5F0BC1003A1CE1 /* compatibility.h */; };
-		07DD669D1B5F0BC2003A1CE1 /* config.h in Headers */ = {isa = PBXBuildFile; fileRef = 07DD64B91B5F0BC2003A1CE1 /* config.h */; };
-		07DD669E1B5F0BC2003A1CE1 /* config.h in Headers */ = {isa = PBXBuildFile; fileRef = 07DD64B91B5F0BC2003A1CE1 /* config.h */; };
-		07E9DC941C499E1C009F99E7 /* ca2rdp_event_queue.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 07E9DC931C499E1C009F99E7 /* ca2rdp_event_queue.cpp */; };
-		07FACBA91B84BB660035DF9D /* cf_channels.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 07FACBA51B84BB660035DF9D /* cf_channels.cpp */; };
-		07FACBAA1B84BB660035DF9D /* cf_channels.h in Headers */ = {isa = PBXBuildFile; fileRef = 07FACBA61B84BB660035DF9D /* cf_channels.h */; };
-		07FACBAB1B84BB660035DF9D /* cf_client.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 07FACBA71B84BB660035DF9D /* cf_client.cpp */; };
-		07FACBAC1B84BB660035DF9D /* cf_client.h in Headers */ = {isa = PBXBuildFile; fileRef = 07FACBA81B84BB660035DF9D /* cf_client.h */; };
-		9A97F3281D80E698000B4EC2 /* libclientchannels.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 9A97F30B1D80E66C000B4EC2 /* libclientchannels.dylib */; };
-		9A97F3291D80E69F000B4EC2 /* libfreerdp.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 9A97F3141D80E672000B4EC2 /* libfreerdp.dylib */; };
-		9A97F32A1D80E6A9000B4EC2 /* libwinpr.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 9A97F31D1D80E679000B4EC2 /* libwinpr.dylib */; };
+		B77C344DA65A7966AA697D20 /* client.cpp in Sources */ = {isa = PBXBuildFile; fileRef = CDA5B8CA0C8BC62C41503929 /* client.cpp */; };
+		E3B0F853A7129984CB14F66A /* cmdline.cpp in Sources */ = {isa = PBXBuildFile; fileRef = DB41F540DFBFAFD83B87C5E7 /* cmdline.cpp */; };
+		8BE197A97D7F19C88535626F /* compatibility.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 7F4F425BCE5024CC5BF35D03 /* compatibility.cpp */; };
+		15E064C7A383528BE5975DD8 /* file.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 75B6C45F2454618D464BC8AF /* file.cpp */; };
+		E6B41EDCE5C41F97BA41912B /* ca2rdp_event_queue.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 8614B0B8FBC1309E7AE5EA9F /* ca2rdp_event_queue.cpp */; };
+		D7228343BA8B4787331F429A /* cf_channels.cpp in Sources */ = {isa = PBXBuildFile; fileRef = F77B86A196ADE76ABE154AC9 /* cf_channels.cpp */; };
+		FDDDBF14DB969674703FC734 /* cf_client.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 64D406356D58A6CBEDFBE2A0 /* cf_client.cpp */; };
+		FA7D7A6208A4C56A148C04E4 /* libaura.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = A72245BD66627ACBE9B54593 /* libaura.dylib */; };
+		CED3B69A7BAA3F5C541DAAD1 /* client.cpp in Sources */ = {isa = PBXBuildFile; fileRef = CDA5B8CA0C8BC62C41503929 /* client.cpp */; };
+		2225DBE67E4E8136D94F1D34 /* cmdline.cpp in Sources */ = {isa = PBXBuildFile; fileRef = DB41F540DFBFAFD83B87C5E7 /* cmdline.cpp */; };
+		B7C112E6E2DFC40469CCAC71 /* compatibility.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 7F4F425BCE5024CC5BF35D03 /* compatibility.cpp */; };
+		7F8E9DD3C8EE6905C1BDEBFF /* file.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 75B6C45F2454618D464BC8AF /* file.cpp */; };
+		EB12D58C137096F6ACC9B9CB /* graphics.h in Headers */ = {isa = PBXBuildFile; fileRef = D48B2CCC4A2DE3069AADDE8F /* graphics.h */; };
+		13BD6726E81FACBB0BC472D7 /* rdpclient.h in Headers */ = {isa = PBXBuildFile; fileRef = AA7463989DCFD61A158AC1ED /* rdpclient.h */; };
+		CF29A14E16461A3968B146B8 /* ca2rdp.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 228CDD42168D7985196A4AC4 /* ca2rdp.cpp */; };
+		2F3017522BFA7EE50F3D7926 /* ca2rdp.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 228CDD42168D7985196A4AC4 /* ca2rdp.cpp */; };
+		C99CF9E002D0E1340835BCDC /* ca2rdp.h in Headers */ = {isa = PBXBuildFile; fileRef = 74C32A1688CBF49679C164E0 /* ca2rdp.h */; };
+		C1FD6C2AEBCC6F4305F8B29A /* ca2rdp.h in Headers */ = {isa = PBXBuildFile; fileRef = 74C32A1688CBF49679C164E0 /* ca2rdp.h */; };
+		E1B4CE8B46F451BECAA1427D /* ca2rdp_event.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 1ABA908E245F84A0CC7DFBBF /* ca2rdp_event.cpp */; };
+		A7A1462B48D20397477D1CD8 /* ca2rdp_event.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 1ABA908E245F84A0CC7DFBBF /* ca2rdp_event.cpp */; };
+		4060563DD833370A1608E9D7 /* ca2rdp_event.h in Headers */ = {isa = PBXBuildFile; fileRef = 2201AA443F58CFFDC92AD0D9 /* ca2rdp_event.h */; };
+		0669B00D22BE833A288F0EB8 /* ca2rdp_event.h in Headers */ = {isa = PBXBuildFile; fileRef = 2201AA443F58CFFDC92AD0D9 /* ca2rdp_event.h */; };
+		5F6A5F1C8E3DF59BCBCB44C0 /* ca2rdp_graphics.cpp in Sources */ = {isa = PBXBuildFile; fileRef = C51371136C1052DA011A1364 /* ca2rdp_graphics.cpp */; };
+		C139EBF8BAC69A681DFB3F9F /* ca2rdp_graphics.cpp in Sources */ = {isa = PBXBuildFile; fileRef = C51371136C1052DA011A1364 /* ca2rdp_graphics.cpp */; };
+		32CF160FC2A756BB07EE156A /* ca2rdp_graphics.h in Headers */ = {isa = PBXBuildFile; fileRef = F1D929C6889B7C103C83F35E /* ca2rdp_graphics.h */; };
+		9D5D626F207F85C1518FE35F /* ca2rdp_graphics.h in Headers */ = {isa = PBXBuildFile; fileRef = F1D929C6889B7C103C83F35E /* ca2rdp_graphics.h */; };
+		7621C7A07DDA7B066E4FDD3F /* compatibility.h in Headers */ = {isa = PBXBuildFile; fileRef = 13557E4630A13FF751B0D37A /* compatibility.h */; };
+		19C98049D8753C82FD7F6000 /* compatibility.h in Headers */ = {isa = PBXBuildFile; fileRef = 13557E4630A13FF751B0D37A /* compatibility.h */; };
+		540338CB4D5C1DF72A043E51 /* config.h in Headers */ = {isa = PBXBuildFile; fileRef = DCD32D5D5E644120B912DF70 /* config.h */; };
+		82AEC1BD47A966509CB4ED3F /* config.h in Headers */ = {isa = PBXBuildFile; fileRef = DCD32D5D5E644120B912DF70 /* config.h */; };
+		B804FDBE7B53239AFD5EF69A /* ca2rdp_event_queue.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 8614B0B8FBC1309E7AE5EA9F /* ca2rdp_event_queue.cpp */; };
+		CF8D5767B09A1AEF00DA9C48 /* cf_channels.cpp in Sources */ = {isa = PBXBuildFile; fileRef = F77B86A196ADE76ABE154AC9 /* cf_channels.cpp */; };
+		5AE82D30D27E0D8850B4A039 /* cf_channels.h in Headers */ = {isa = PBXBuildFile; fileRef = 940F2FFB32FDEFEF1D3D9755 /* cf_channels.h */; };
+		8B9615EB546A63E232C8B62E /* cf_client.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 64D406356D58A6CBEDFBE2A0 /* cf_client.cpp */; };
+		402D8B6779FD63C129EBCB1A /* cf_client.h in Headers */ = {isa = PBXBuildFile; fileRef = 627D0B4357584A6757325479 /* cf_client.h */; };
+		070D60751433AD0179086504 /* libclientchannels.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 31BEA5504819B3D8E970DC67 /* libclientchannels.dylib */; };
+		D7B75E9A52776A2B840CCF36 /* libfreerdp.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 9D94B240226E488830A914C9 /* libfreerdp.dylib */; };
+		B99B374924FDA036D918570E /* libwinpr.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 59844032A883E7C072CC34B7 /* libwinpr.dylib */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
-		074BD0D01B5F406300219723 /* PBXContainerItemProxy */ = {
+		D13085DC5538B5C2FCC196C3 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
-			containerPortal = 074BD0CA1B5F406300219723 /* aura.xcodeproj */;
+			containerPortal = 61594B8BA8E440717E33A5FF /* aura.xcodeproj */;
 			proxyType = 2;
 			remoteGlobalIDString = 9A98A6151771D67E000AE16E;
 			remoteInfo = aura;
 		};
-		074BD0D21B5F406300219723 /* PBXContainerItemProxy */ = {
+		96D7171B03B86EF900EB8EE7 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
-			containerPortal = 074BD0CA1B5F406300219723 /* aura.xcodeproj */;
+			containerPortal = 61594B8BA8E440717E33A5FF /* aura.xcodeproj */;
 			proxyType = 2;
 			remoteGlobalIDString = 077A080B1B4D7403001C85FF;
 			remoteInfo = ios_aura;
 		};
-		074BD0D41B5F406300219723 /* PBXContainerItemProxy */ = {
+		497E88B4916F5A90D1EE094D /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
-			containerPortal = 074BD0CA1B5F406300219723 /* aura.xcodeproj */;
+			containerPortal = 61594B8BA8E440717E33A5FF /* aura.xcodeproj */;
 			proxyType = 2;
 			remoteGlobalIDString = 9AE24D431904CEFE001AEFFB;
 			remoteInfo = aura_iosTests;
 		};
-		9A97F30A1D80E66C000B4EC2 /* PBXContainerItemProxy */ = {
+		41A5C98791084C3E84A252C9 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
-			containerPortal = 9A97F3051D80E66C000B4EC2 /* axisclientchannels.xcodeproj */;
+			containerPortal = 81022DAF8D9A5B22753226B3 /* axisclientchannels.xcodeproj */;
 			proxyType = 2;
 			remoteGlobalIDString = 9A1B358C16A2D7A500875A94;
 			remoteInfo = axisclientchannels;
 		};
-		9A97F30C1D80E66C000B4EC2 /* PBXContainerItemProxy */ = {
+		A78E1FC0A4F62BDBD6CE8460 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
-			containerPortal = 9A97F3051D80E66C000B4EC2 /* axisclientchannels.xcodeproj */;
+			containerPortal = 81022DAF8D9A5B22753226B3 /* axisclientchannels.xcodeproj */;
 			proxyType = 2;
 			remoteGlobalIDString = 07DD6E341B5F0C87003A1CE1;
 			remoteInfo = ios_axisclientchannels;
 		};
-		9A97F3131D80E672000B4EC2 /* PBXContainerItemProxy */ = {
+		E803461E57A2F62A2031A15C /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
-			containerPortal = 9A97F30E1D80E672000B4EC2 /* axisfreerdp.xcodeproj */;
+			containerPortal = 72736585E4DC85DA38BA8241 /* axisfreerdp.xcodeproj */;
 			proxyType = 2;
 			remoteGlobalIDString = 9A1B358C16A2D7A500875A94;
 			remoteInfo = axisfreerdp;
 		};
-		9A97F3151D80E672000B4EC2 /* PBXContainerItemProxy */ = {
+		2CA98D8C791C72B76CE904E1 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
-			containerPortal = 9A97F30E1D80E672000B4EC2 /* axisfreerdp.xcodeproj */;
+			containerPortal = 72736585E4DC85DA38BA8241 /* axisfreerdp.xcodeproj */;
 			proxyType = 2;
 			remoteGlobalIDString = 07DD674C1B5F0C16003A1CE1;
 			remoteInfo = ios_axisfreerdp;
 		};
-		9A97F31C1D80E679000B4EC2 /* PBXContainerItemProxy */ = {
+		26FBD41DD56F17DF67D550B1 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
-			containerPortal = 9A97F3171D80E679000B4EC2 /* axiswinpr.xcodeproj */;
+			containerPortal = EF9E155FEAB665CA5E6DF5BA /* axiswinpr.xcodeproj */;
 			proxyType = 2;
 			remoteGlobalIDString = 9A1B358C16A2D7A500875A94;
 			remoteInfo = axiswinpr;
 		};
-		9A97F31E1D80E679000B4EC2 /* PBXContainerItemProxy */ = {
+		0A1EDC0DDA4E70FC290DE502 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
-			containerPortal = 9A97F3171D80E679000B4EC2 /* axiswinpr.xcodeproj */;
+			containerPortal = EF9E155FEAB665CA5E6DF5BA /* axiswinpr.xcodeproj */;
 			proxyType = 2;
 			remoteGlobalIDString = 07DD5DF91B5F0A1E003A1CE1;
 			remoteInfo = ios_axiswinpr;
 		};
-		9A97F3201D80E68C000B4EC2 /* PBXContainerItemProxy */ = {
+		1739FCA635E36BC2EDD0E306 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
-			containerPortal = 074BD0CA1B5F406300219723 /* aura.xcodeproj */;
+			containerPortal = 61594B8BA8E440717E33A5FF /* aura.xcodeproj */;
 			proxyType = 1;
 			remoteGlobalIDString = 9A98A6031771D67E000AE16E;
 			remoteInfo = aura;
 		};
-		9A97F3221D80E68C000B4EC2 /* PBXContainerItemProxy */ = {
+		0C0D60A0A2DDD9E114E51381 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
-			containerPortal = 9A97F3051D80E66C000B4EC2 /* axisclientchannels.xcodeproj */;
+			containerPortal = 81022DAF8D9A5B22753226B3 /* axisclientchannels.xcodeproj */;
 			proxyType = 1;
 			remoteGlobalIDString = 9A1B358B16A2D7A500875A94;
 			remoteInfo = axisclientchannels;
 		};
-		9A97F3241D80E68C000B4EC2 /* PBXContainerItemProxy */ = {
+		3B145EBFE60B32B35717FE62 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
-			containerPortal = 9A97F30E1D80E672000B4EC2 /* axisfreerdp.xcodeproj */;
+			containerPortal = 72736585E4DC85DA38BA8241 /* axisfreerdp.xcodeproj */;
 			proxyType = 1;
 			remoteGlobalIDString = 9A1B358B16A2D7A500875A94;
 			remoteInfo = axisfreerdp;
 		};
-		9A97F3261D80E68C000B4EC2 /* PBXContainerItemProxy */ = {
+		4406A386DC89834C5AE65742 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
-			containerPortal = 9A97F3171D80E679000B4EC2 /* axiswinpr.xcodeproj */;
+			containerPortal = EF9E155FEAB665CA5E6DF5BA /* axiswinpr.xcodeproj */;
 			proxyType = 1;
 			remoteGlobalIDString = 9A1B358B16A2D7A500875A94;
 			remoteInfo = axiswinpr;
@@ -142,159 +142,159 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		074BD0CA1B5F406300219723 /* aura.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = aura.xcodeproj; path = ../../aura/.xcodeproj; sourceTree = SOURCE_ROOT; };
-		07B098071B848AA9002AC4F0 /* client.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = client.cpp; sourceTree = "<group>"; };
-		07B098081B848AA9002AC4F0 /* cmdline.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = cmdline.cpp; sourceTree = "<group>"; };
-		07B098091B848AA9002AC4F0 /* compatibility.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = compatibility.cpp; sourceTree = "<group>"; };
-		07B0980A1B848AA9002AC4F0 /* file.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = file.cpp; sourceTree = "<group>"; };
-		07B0980B1B848AA9002AC4F0 /* graphics.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = graphics.h; sourceTree = "<group>"; };
-		07B0980D1B848AA9002AC4F0 /* rdpclient.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = rdpclient.h; sourceTree = "<group>"; };
-		07DD624A1B5F0B8D003A1CE1 /* libios_axisrdpclient.a */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.dylib"; includeInIndex = 0; path = libios_axisrdpclient.a; sourceTree = BUILT_PRODUCTS_DIR; };
-		07DD63731B5F0BC1003A1CE1 /* ca2rdp.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = ca2rdp.cpp; sourceTree = "<group>"; };
-		07DD63741B5F0BC1003A1CE1 /* ca2rdp.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ca2rdp.h; sourceTree = "<group>"; };
-		07DD63751B5F0BC1003A1CE1 /* ca2rdp_event.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = ca2rdp_event.cpp; sourceTree = "<group>"; };
-		07DD63761B5F0BC1003A1CE1 /* ca2rdp_event.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ca2rdp_event.h; sourceTree = "<group>"; };
-		07DD63771B5F0BC1003A1CE1 /* ca2rdp_graphics.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = ca2rdp_graphics.cpp; sourceTree = "<group>"; };
-		07DD63781B5F0BC1003A1CE1 /* ca2rdp_graphics.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ca2rdp_graphics.h; sourceTree = "<group>"; };
-		07DD637D1B5F0BC1003A1CE1 /* compatibility.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = compatibility.h; sourceTree = "<group>"; };
-		07DD64B91B5F0BC2003A1CE1 /* config.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = config.h; sourceTree = "<group>"; };
-		07E9DC931C499E1C009F99E7 /* ca2rdp_event_queue.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = ca2rdp_event_queue.cpp; sourceTree = "<group>"; };
-		07FACBA51B84BB660035DF9D /* cf_channels.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = cf_channels.cpp; sourceTree = "<group>"; };
-		07FACBA61B84BB660035DF9D /* cf_channels.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = cf_channels.h; sourceTree = "<group>"; };
-		07FACBA71B84BB660035DF9D /* cf_client.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = cf_client.cpp; sourceTree = "<group>"; };
-		07FACBA81B84BB660035DF9D /* cf_client.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = cf_client.h; sourceTree = "<group>"; };
-		9A1B358C16A2D7A500875A94 /* libaxisrdpclient.dylib */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.dylib"; includeInIndex = 0; path = libaxisrdpclient.dylib; sourceTree = BUILT_PRODUCTS_DIR; };
-		9A97F3051D80E66C000B4EC2 /* axisclientchannels.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = axisclientchannels.xcodeproj; path = ../../third/clientchannels/axisclientchannels.xcodeproj; sourceTree = SOURCE_ROOT; };
-		9A97F30E1D80E672000B4EC2 /* axisfreerdp.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = axisfreerdp.xcodeproj; path = ../../third/freerdp/axisfreerdp.xcodeproj; sourceTree = SOURCE_ROOT; };
-		9A97F3171D80E679000B4EC2 /* axiswinpr.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = axiswinpr.xcodeproj; path = ../../third/winpr/axiswinpr.xcodeproj; sourceTree = SOURCE_ROOT; };
+		61594B8BA8E440717E33A5FF /* aura.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = aura.xcodeproj; path = ../../aura/.xcodeproj; sourceTree = SOURCE_ROOT; };
+		CDA5B8CA0C8BC62C41503929 /* client.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = client.cpp; sourceTree = "<group>"; };
+		DB41F540DFBFAFD83B87C5E7 /* cmdline.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = cmdline.cpp; sourceTree = "<group>"; };
+		7F4F425BCE5024CC5BF35D03 /* compatibility.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = compatibility.cpp; sourceTree = "<group>"; };
+		75B6C45F2454618D464BC8AF /* file.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = file.cpp; sourceTree = "<group>"; };
+		D48B2CCC4A2DE3069AADDE8F /* graphics.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = graphics.h; sourceTree = "<group>"; };
+		AA7463989DCFD61A158AC1ED /* rdpclient.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = rdpclient.h; sourceTree = "<group>"; };
+		1ECDB5FFC7ABA2255C2187FE /* libios_axisrdpclient.a */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.dylib"; includeInIndex = 0; path = libios_axisrdpclient.a; sourceTree = BUILT_PRODUCTS_DIR; };
+		228CDD42168D7985196A4AC4 /* ca2rdp.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = ca2rdp.cpp; sourceTree = "<group>"; };
+		74C32A1688CBF49679C164E0 /* ca2rdp.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ca2rdp.h; sourceTree = "<group>"; };
+		1ABA908E245F84A0CC7DFBBF /* ca2rdp_event.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = ca2rdp_event.cpp; sourceTree = "<group>"; };
+		2201AA443F58CFFDC92AD0D9 /* ca2rdp_event.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ca2rdp_event.h; sourceTree = "<group>"; };
+		C51371136C1052DA011A1364 /* ca2rdp_graphics.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = ca2rdp_graphics.cpp; sourceTree = "<group>"; };
+		F1D929C6889B7C103C83F35E /* ca2rdp_graphics.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ca2rdp_graphics.h; sourceTree = "<group>"; };
+		13557E4630A13FF751B0D37A /* compatibility.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = compatibility.h; sourceTree = "<group>"; };
+		DCD32D5D5E644120B912DF70 /* config.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = config.h; sourceTree = "<group>"; };
+		8614B0B8FBC1309E7AE5EA9F /* ca2rdp_event_queue.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = ca2rdp_event_queue.cpp; sourceTree = "<group>"; };
+		F77B86A196ADE76ABE154AC9 /* cf_channels.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = cf_channels.cpp; sourceTree = "<group>"; };
+		940F2FFB32FDEFEF1D3D9755 /* cf_channels.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = cf_channels.h; sourceTree = "<group>"; };
+		64D406356D58A6CBEDFBE2A0 /* cf_client.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = cf_client.cpp; sourceTree = "<group>"; };
+		627D0B4357584A6757325479 /* cf_client.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = cf_client.h; sourceTree = "<group>"; };
+		FD68C542A98BC2FB93650B40 /* libaxisrdpclient.dylib */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.dylib"; includeInIndex = 0; path = libaxisrdpclient.dylib; sourceTree = BUILT_PRODUCTS_DIR; };
+		81022DAF8D9A5B22753226B3 /* axisclientchannels.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = axisclientchannels.xcodeproj; path = ../../third/clientchannels/axisclientchannels.xcodeproj; sourceTree = SOURCE_ROOT; };
+		72736585E4DC85DA38BA8241 /* axisfreerdp.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = axisfreerdp.xcodeproj; path = ../../third/freerdp/axisfreerdp.xcodeproj; sourceTree = SOURCE_ROOT; };
+		EF9E155FEAB665CA5E6DF5BA /* axiswinpr.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = axiswinpr.xcodeproj; path = ../../third/winpr/axiswinpr.xcodeproj; sourceTree = SOURCE_ROOT; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
-		07DD61C21B5F0B8D003A1CE1 /* Frameworks */ = {
+		95319439D675BA776DAFB5C8 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		9A1B358916A2D7A500875A94 /* Frameworks */ = {
+		6E7DA1E7746093AB56F388A2 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				9A97F32A1D80E6A9000B4EC2 /* libwinpr.dylib in Frameworks */,
-				9A97F3291D80E69F000B4EC2 /* libfreerdp.dylib in Frameworks */,
-				9A97F3281D80E698000B4EC2 /* libclientchannels.dylib in Frameworks */,
-				074BD0D61B5F409400219723 /* libaura.dylib in Frameworks */,
+				B99B374924FDA036D918570E /* libwinpr.dylib in Frameworks */,
+				D7B75E9A52776A2B840CCF36 /* libfreerdp.dylib in Frameworks */,
+				070D60751433AD0179086504 /* libclientchannels.dylib in Frameworks */,
+				FA7D7A6208A4C56A148C04E4 /* libaura.dylib in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		074BD0CB1B5F406300219723 /* Products */ = {
+		D6DD9C741457C25CFB34127B /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				074BD0D11B5F406300219723 /* libaura.dylib */,
-				074BD0D31B5F406300219723 /* libios_aura.a */,
-				074BD0D51B5F406300219723 /* aura_iosTests.xctest */,
+				A72245BD66627ACBE9B54593 /* libaura.dylib */,
+				D1A384FC1038A5549AF0A838 /* libios_aura.a */,
+				6DC2A4DE43BC14B6A232DA9E /* aura_iosTests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
 		};
-		07DD624B1B5F0BC1003A1CE1 /* rdpclient */ = {
+		705AD22591899A44047512A7 /* rdpclient */ = {
 			isa = PBXGroup;
 			children = (
-				07DD62561B5F0BC1003A1CE1 /* client */,
-				07DD64B91B5F0BC2003A1CE1 /* config.h */,
+				9F90535EDA554AA9AF1CDD96 /* client */,
+				DCD32D5D5E644120B912DF70 /* config.h */,
 			);
 			name = rdpclient;
 			sourceTree = "<group>";
 		};
-		07DD62561B5F0BC1003A1CE1 /* client */ = {
+		9F90535EDA554AA9AF1CDD96 /* client */ = {
 			isa = PBXGroup;
 			children = (
-				07DD63721B5F0BC1003A1CE1 /* ca2 */,
-				07DD63791B5F0BC1003A1CE1 /* common */,
+				A00C1F6CC89101EC247FA176 /* ca2 */,
+				FDFC27FF6D8F4ACCB612CF5C /* common */,
 			);
 			path = client;
 			sourceTree = "<group>";
 		};
-		07DD63721B5F0BC1003A1CE1 /* ca2 */ = {
+		A00C1F6CC89101EC247FA176 /* ca2 */ = {
 			isa = PBXGroup;
 			children = (
-				07DD63731B5F0BC1003A1CE1 /* ca2rdp.cpp */,
-				07DD63741B5F0BC1003A1CE1 /* ca2rdp.h */,
-				07DD63751B5F0BC1003A1CE1 /* ca2rdp_event.cpp */,
-				07DD63761B5F0BC1003A1CE1 /* ca2rdp_event.h */,
-				07E9DC931C499E1C009F99E7 /* ca2rdp_event_queue.cpp */,
-				07DD63771B5F0BC1003A1CE1 /* ca2rdp_graphics.cpp */,
-				07DD63781B5F0BC1003A1CE1 /* ca2rdp_graphics.h */,
+				228CDD42168D7985196A4AC4 /* ca2rdp.cpp */,
+				74C32A1688CBF49679C164E0 /* ca2rdp.h */,
+				1ABA908E245F84A0CC7DFBBF /* ca2rdp_event.cpp */,
+				2201AA443F58CFFDC92AD0D9 /* ca2rdp_event.h */,
+				8614B0B8FBC1309E7AE5EA9F /* ca2rdp_event_queue.cpp */,
+				C51371136C1052DA011A1364 /* ca2rdp_graphics.cpp */,
+				F1D929C6889B7C103C83F35E /* ca2rdp_graphics.h */,
 			);
 			path = ca2;
 			sourceTree = "<group>";
 		};
-		07DD63791B5F0BC1003A1CE1 /* common */ = {
+		FDFC27FF6D8F4ACCB612CF5C /* common */ = {
 			isa = PBXGroup;
 			children = (
-				07FACBA51B84BB660035DF9D /* cf_channels.cpp */,
-				07FACBA61B84BB660035DF9D /* cf_channels.h */,
-				07FACBA71B84BB660035DF9D /* cf_client.cpp */,
-				07FACBA81B84BB660035DF9D /* cf_client.h */,
-				07B098071B848AA9002AC4F0 /* client.cpp */,
-				07B098081B848AA9002AC4F0 /* cmdline.cpp */,
-				07B098091B848AA9002AC4F0 /* compatibility.cpp */,
-				07B0980A1B848AA9002AC4F0 /* file.cpp */,
-				07B0980B1B848AA9002AC4F0 /* graphics.h */,
-				07B0980D1B848AA9002AC4F0 /* rdpclient.h */,
-				07DD637D1B5F0BC1003A1CE1 /* compatibility.h */,
+				F77B86A196ADE76ABE154AC9 /* cf_channels.cpp */,
+				940F2FFB32FDEFEF1D3D9755 /* cf_channels.h */,
+				64D406356D58A6CBEDFBE2A0 /* cf_client.cpp */,
+				627D0B4357584A6757325479 /* cf_client.h */,
+				CDA5B8CA0C8BC62C41503929 /* client.cpp */,
+				DB41F540DFBFAFD83B87C5E7 /* cmdline.cpp */,
+				7F4F425BCE5024CC5BF35D03 /* compatibility.cpp */,
+				75B6C45F2454618D464BC8AF /* file.cpp */,
+				D48B2CCC4A2DE3069AADDE8F /* graphics.h */,
+				AA7463989DCFD61A158AC1ED /* rdpclient.h */,
+				13557E4630A13FF751B0D37A /* compatibility.h */,
 			);
 			path = common;
 			sourceTree = "<group>";
 		};
-		9A1B358116A2D7A500875A94 = {
+		D187F0D09070D965BAB3F2D5 = {
 			isa = PBXGroup;
 			children = (
-				074BD0CA1B5F406300219723 /* aura.xcodeproj */,
-				9A97F3051D80E66C000B4EC2 /* axisclientchannels.xcodeproj */,
-				9A97F30E1D80E672000B4EC2 /* axisfreerdp.xcodeproj */,
-				9A97F3171D80E679000B4EC2 /* axiswinpr.xcodeproj */,
-				07DD624B1B5F0BC1003A1CE1 /* rdpclient */,
-				9A1B358D16A2D7A500875A94 /* Products */,
+				61594B8BA8E440717E33A5FF /* aura.xcodeproj */,
+				81022DAF8D9A5B22753226B3 /* axisclientchannels.xcodeproj */,
+				72736585E4DC85DA38BA8241 /* axisfreerdp.xcodeproj */,
+				EF9E155FEAB665CA5E6DF5BA /* axiswinpr.xcodeproj */,
+				705AD22591899A44047512A7 /* rdpclient */,
+				C6048902586EFBFA90FA7464 /* Products */,
 			);
 			sourceTree = "<group>";
 		};
-		9A1B358D16A2D7A500875A94 /* Products */ = {
+		C6048902586EFBFA90FA7464 /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				9A1B358C16A2D7A500875A94 /* libaxisrdpclient.dylib */,
-				07DD624A1B5F0B8D003A1CE1 /* libios_axisrdpclient.a */,
-			);
-			name = Products;
-			sourceTree = "<group>";
-		};
-		9A97F3061D80E66C000B4EC2 /* Products */ = {
-			isa = PBXGroup;
-			children = (
-				9A97F30B1D80E66C000B4EC2 /* libclientchannels.dylib */,
-				9A97F30D1D80E66C000B4EC2 /* libios_axisclientchannels.a */,
+				FD68C542A98BC2FB93650B40 /* libaxisrdpclient.dylib */,
+				1ECDB5FFC7ABA2255C2187FE /* libios_axisrdpclient.a */,
 			);
 			name = Products;
 			sourceTree = "<group>";
 		};
-		9A97F30F1D80E672000B4EC2 /* Products */ = {
+		02B82CC5A6E441E2B6DFE0ED /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				9A97F3141D80E672000B4EC2 /* libfreerdp.dylib */,
-				9A97F3161D80E672000B4EC2 /* libios_axisfreerdp.a */,
+				31BEA5504819B3D8E970DC67 /* libclientchannels.dylib */,
+				89868FA615B9442409B51183 /* libios_axisclientchannels.a */,
 			);
 			name = Products;
 			sourceTree = "<group>";
 		};
-		9A97F3181D80E679000B4EC2 /* Products */ = {
+		E591B01657D7521093B1C3C0 /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				9A97F31D1D80E679000B4EC2 /* libwinpr.dylib */,
-				9A97F31F1D80E679000B4EC2 /* libios_axiswinpr.a */,
+				9D94B240226E488830A914C9 /* libfreerdp.dylib */,
+				329364DE470B7183A885B736 /* libios_axisfreerdp.a */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		3D3CE0CE16536FAD0B069556 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				59844032A883E7C072CC34B7 /* libwinpr.dylib */,
+				93F4F14C5E18D6964D70E2FE /* libios_axiswinpr.a */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -302,44 +302,44 @@
 /* End PBXGroup section */
 
 /* Begin PBXHeadersBuildPhase section */
-		07DD61C31B5F0B8D003A1CE1 /* Headers */ = {
+		EAB9B0ACFE4E6611F6B4727C /* Headers */ = {
 			isa = PBXHeadersBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				07DD65301B5F0BC2003A1CE1 /* ca2rdp.h in Headers */,
-				07DD669E1B5F0BC2003A1CE1 /* config.h in Headers */,
-				07DD65341B5F0BC2003A1CE1 /* ca2rdp_event.h in Headers */,
-				07DD65381B5F0BC2003A1CE1 /* ca2rdp_graphics.h in Headers */,
-				07DD65401B5F0BC2003A1CE1 /* compatibility.h in Headers */,
+				C1FD6C2AEBCC6F4305F8B29A /* ca2rdp.h in Headers */,
+				82AEC1BD47A966509CB4ED3F /* config.h in Headers */,
+				0669B00D22BE833A288F0EB8 /* ca2rdp_event.h in Headers */,
+				9D5D626F207F85C1518FE35F /* ca2rdp_graphics.h in Headers */,
+				19C98049D8753C82FD7F6000 /* compatibility.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		9A1B358A16A2D7A500875A94 /* Headers */ = {
+		416D4006D6058AD663537A54 /* Headers */ = {
 			isa = PBXHeadersBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				07FACBAC1B84BB660035DF9D /* cf_client.h in Headers */,
-				07B098121B848AA9002AC4F0 /* graphics.h in Headers */,
-				07DD652F1B5F0BC2003A1CE1 /* ca2rdp.h in Headers */,
-				07DD669D1B5F0BC2003A1CE1 /* config.h in Headers */,
-				07DD65331B5F0BC2003A1CE1 /* ca2rdp_event.h in Headers */,
-				07FACBAA1B84BB660035DF9D /* cf_channels.h in Headers */,
-				07DD65371B5F0BC2003A1CE1 /* ca2rdp_graphics.h in Headers */,
-				07B098131B848AA9002AC4F0 /* rdpclient.h in Headers */,
-				07DD653F1B5F0BC2003A1CE1 /* compatibility.h in Headers */,
+				402D8B6779FD63C129EBCB1A /* cf_client.h in Headers */,
+				EB12D58C137096F6ACC9B9CB /* graphics.h in Headers */,
+				C99CF9E002D0E1340835BCDC /* ca2rdp.h in Headers */,
+				540338CB4D5C1DF72A043E51 /* config.h in Headers */,
+				4060563DD833370A1608E9D7 /* ca2rdp_event.h in Headers */,
+				5AE82D30D27E0D8850B4A039 /* cf_channels.h in Headers */,
+				32CF160FC2A756BB07EE156A /* ca2rdp_graphics.h in Headers */,
+				13BD6726E81FACBB0BC472D7 /* rdpclient.h in Headers */,
+				7621C7A07DDA7B066E4FDD3F /* compatibility.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXHeadersBuildPhase section */
 
 /* Begin PBXNativeTarget section */
-		07DD61A31B5F0B8D003A1CE1 /* ios_axisrdpclient */ = {
+		9EFEDB5C62C027F130B87767 /* ios_axisrdpclient */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 07DD62471B5F0B8D003A1CE1 /* Build configuration list for PBXNativeTarget "ios_axisrdpclient" */;
+			buildConfigurationList = 95452C349DEE8C2829679BEA /* Build configuration list for PBXNativeTarget "ios_axisrdpclient" */;
 			buildPhases = (
-				07DD61A41B5F0B8D003A1CE1 /* Sources */,
-				07DD61C21B5F0B8D003A1CE1 /* Frameworks */,
-				07DD61C31B5F0B8D003A1CE1 /* Headers */,
+				F5027451F07F0E9F3938F981 /* Sources */,
+				95319439D675BA776DAFB5C8 /* Frameworks */,
+				EAB9B0ACFE4E6611F6B4727C /* Headers */,
 			);
 			buildRules = (
 			);
@@ -347,40 +347,40 @@
 			);
 			name = ios_axisrdpclient;
 			productName = freetype;
-			productReference = 07DD624A1B5F0B8D003A1CE1 /* libios_axisrdpclient.a */;
+			productReference = 1ECDB5FFC7ABA2255C2187FE /* libios_axisrdpclient.a */;
 			productType = "com.apple.product-type.library.dynamic";
 		};
-		9A1B358B16A2D7A500875A94 /* axisrdpclient */ = {
+		6515555D7AD0E0FC0F16A9B9 /* axisrdpclient */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 9A1B359016A2D7A500875A94 /* Build configuration list for PBXNativeTarget "axisrdpclient" */;
+			buildConfigurationList = A0CC20FEC63D4E4EBD3E4CDF /* Build configuration list for PBXNativeTarget "axisrdpclient" */;
 			buildPhases = (
-				9A1B358816A2D7A500875A94 /* Sources */,
-				9A1B358916A2D7A500875A94 /* Frameworks */,
-				9A1B358A16A2D7A500875A94 /* Headers */,
+				D675BF088980D28B54E845C5 /* Sources */,
+				6E7DA1E7746093AB56F388A2 /* Frameworks */,
+				416D4006D6058AD663537A54 /* Headers */,
 			);
 			buildRules = (
 			);
 			dependencies = (
-				9A97F3211D80E68C000B4EC2 /* PBXTargetDependency */,
-				9A97F3231D80E68C000B4EC2 /* PBXTargetDependency */,
-				9A97F3251D80E68C000B4EC2 /* PBXTargetDependency */,
-				9A97F3271D80E68C000B4EC2 /* PBXTargetDependency */,
+				725D817B28654CA90FA85978 /* PBXTargetDependency */,
+				A9C7C6939C527EA53C3AA438 /* PBXTargetDependency */,
+				A6739399388C770FBAE0EA83 /* PBXTargetDependency */,
+				F9AAA69C1FA9113E9A331F82 /* PBXTargetDependency */,
 			);
 			name = axisrdpclient;
 			productName = freetype;
-			productReference = 9A1B358C16A2D7A500875A94 /* libaxisrdpclient.dylib */;
+			productReference = FD68C542A98BC2FB93650B40 /* libaxisrdpclient.dylib */;
 			productType = "com.apple.product-type.library.dynamic";
 		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
-		9A1B358316A2D7A500875A94 /* Project object */ = {
+		72B9AF09497BEE2112359FF4 /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
 				LastUpgradeCheck = 1020;
 				ORGANIZATIONNAME = "Camilo Sasuke Tsumanuma";
 			};
-			buildConfigurationList = 9A1B358616A2D7A500875A94 /* Build configuration list for PBXProject "axisrdpclient" */;
+			buildConfigurationList = 6AFDAA51BFE1B9816E01E1B3 /* Build configuration list for PBXProject "axisrdpclient" */;
 			compatibilityVersion = "Xcode 3.2";
 			developmentRegion = en;
 			hasScannedForEncodings = 0;
@@ -388,163 +388,163 @@
 				en,
 				Base,
 			);
-			mainGroup = 9A1B358116A2D7A500875A94;
-			productRefGroup = 9A1B358D16A2D7A500875A94 /* Products */;
+			mainGroup = D187F0D09070D965BAB3F2D5;
+			productRefGroup = C6048902586EFBFA90FA7464 /* Products */;
 			projectDirPath = "";
 			projectReferences = (
 				{
-					ProductGroup = 074BD0CB1B5F406300219723 /* Products */;
-					ProjectRef = 074BD0CA1B5F406300219723 /* aura.xcodeproj */;
+					ProductGroup = D6DD9C741457C25CFB34127B /* Products */;
+					ProjectRef = 61594B8BA8E440717E33A5FF /* aura.xcodeproj */;
 				},
 				{
-					ProductGroup = 9A97F3061D80E66C000B4EC2 /* Products */;
-					ProjectRef = 9A97F3051D80E66C000B4EC2 /* axisclientchannels.xcodeproj */;
+					ProductGroup = 02B82CC5A6E441E2B6DFE0ED /* Products */;
+					ProjectRef = 81022DAF8D9A5B22753226B3 /* axisclientchannels.xcodeproj */;
 				},
 				{
-					ProductGroup = 9A97F30F1D80E672000B4EC2 /* Products */;
-					ProjectRef = 9A97F30E1D80E672000B4EC2 /* axisfreerdp.xcodeproj */;
+					ProductGroup = E591B01657D7521093B1C3C0 /* Products */;
+					ProjectRef = 72736585E4DC85DA38BA8241 /* axisfreerdp.xcodeproj */;
 				},
 				{
-					ProductGroup = 9A97F3181D80E679000B4EC2 /* Products */;
-					ProjectRef = 9A97F3171D80E679000B4EC2 /* axiswinpr.xcodeproj */;
+					ProductGroup = 3D3CE0CE16536FAD0B069556 /* Products */;
+					ProjectRef = EF9E155FEAB665CA5E6DF5BA /* axiswinpr.xcodeproj */;
 				},
 			);
 			projectRoot = "";
 			targets = (
-				9A1B358B16A2D7A500875A94 /* axisrdpclient */,
-				07DD61A31B5F0B8D003A1CE1 /* ios_axisrdpclient */,
+				6515555D7AD0E0FC0F16A9B9 /* axisrdpclient */,
+				9EFEDB5C62C027F130B87767 /* ios_axisrdpclient */,
 			);
 		};
 /* End PBXProject section */
 
 /* Begin PBXReferenceProxy section */
-		074BD0D11B5F406300219723 /* libaura.dylib */ = {
+		A72245BD66627ACBE9B54593 /* libaura.dylib */ = {
 			isa = PBXReferenceProxy;
 			fileType = "compiled.mach-o.dylib";
 			path = libaura.dylib;
-			remoteRef = 074BD0D01B5F406300219723 /* PBXContainerItemProxy */;
+			remoteRef = D13085DC5538B5C2FCC196C3 /* PBXContainerItemProxy */;
 			sourceTree = BUILT_PRODUCTS_DIR;
 		};
-		074BD0D31B5F406300219723 /* libios_aura.a */ = {
+		D1A384FC1038A5549AF0A838 /* libios_aura.a */ = {
 			isa = PBXReferenceProxy;
 			fileType = "compiled.mach-o.dylib";
 			path = libios_aura.a;
-			remoteRef = 074BD0D21B5F406300219723 /* PBXContainerItemProxy */;
+			remoteRef = 96D7171B03B86EF900EB8EE7 /* PBXContainerItemProxy */;
 			sourceTree = BUILT_PRODUCTS_DIR;
 		};
-		074BD0D51B5F406300219723 /* aura_iosTests.xctest */ = {
+		6DC2A4DE43BC14B6A232DA9E /* aura_iosTests.xctest */ = {
 			isa = PBXReferenceProxy;
 			fileType = wrapper.cfbundle;
 			path = aura_iosTests.xctest;
-			remoteRef = 074BD0D41B5F406300219723 /* PBXContainerItemProxy */;
+			remoteRef = 497E88B4916F5A90D1EE094D /* PBXContainerItemProxy */;
 			sourceTree = BUILT_PRODUCTS_DIR;
 		};
-		9A97F30B1D80E66C000B4EC2 /* libclientchannels.dylib */ = {
+		31BEA5504819B3D8E970DC67 /* libclientchannels.dylib */ = {
 			isa = PBXReferenceProxy;
 			fileType = "compiled.mach-o.dylib";
 			path = libclientchannels.dylib;
-			remoteRef = 9A97F30A1D80E66C000B4EC2 /* PBXContainerItemProxy */;
+			remoteRef = 41A5C98791084C3E84A252C9 /* PBXContainerItemProxy */;
 			sourceTree = BUILT_PRODUCTS_DIR;
 		};
-		9A97F30D1D80E66C000B4EC2 /* libios_axisclientchannels.a */ = {
+		89868FA615B9442409B51183 /* libios_axisclientchannels.a */ = {
 			isa = PBXReferenceProxy;
 			fileType = "compiled.mach-o.dylib";
 			path = libios_axisclientchannels.a;
-			remoteRef = 9A97F30C1D80E66C000B4EC2 /* PBXContainerItemProxy */;
+			remoteRef = A78E1FC0A4F62BDBD6CE8460 /* PBXContainerItemProxy */;
 			sourceTree = BUILT_PRODUCTS_DIR;
 		};
-		9A97F3141D80E672000B4EC2 /* libfreerdp.dylib */ = {
+		9D94B240226E488830A914C9 /* libfreerdp.dylib */ = {
 			isa = PBXReferenceProxy;
 			fileType = "compiled.mach-o.dylib";
 			path = libfreerdp.dylib;
-			remoteRef = 9A97F3131D80E672000B4EC2 /* PBXContainerItemProxy */;
+			remoteRef = E803461E57A2F62A2031A15C /* PBXContainerItemProxy */;
 			sourceTree = BUILT_PRODUCTS_DIR;
 		};
-		9A97F3161D80E672000B4EC2 /* libios_axisfreerdp.a */ = {
+		329364DE470B7183A885B736 /* libios_axisfreerdp.a */ = {
 			isa = PBXReferenceProxy;
 			fileType = "compiled.mach-o.dylib";
 			path = libios_axisfreerdp.a;
-			remoteRef = 9A97F3151D80E672000B4EC2 /* PBXContainerItemProxy */;
+			remoteRef = 2CA98D8C791C72B76CE904E1 /* PBXContainerItemProxy */;
 			sourceTree = BUILT_PRODUCTS_DIR;
 		};
-		9A97F31D1D80E679000B4EC2 /* libwinpr.dylib */ = {
+		59844032A883E7C072CC34B7 /* libwinpr.dylib */ = {
 			isa = PBXReferenceProxy;
 			fileType = "compiled.mach-o.dylib";
 			path = libwinpr.dylib;
-			remoteRef = 9A97F31C1D80E679000B4EC2 /* PBXContainerItemProxy */;
+			remoteRef = 26FBD41DD56F17DF67D550B1 /* PBXContainerItemProxy */;
 			sourceTree = BUILT_PRODUCTS_DIR;
 		};
-		9A97F31F1D80E679000B4EC2 /* libios_axiswinpr.a */ = {
+		93F4F14C5E18D6964D70E2FE /* libios_axiswinpr.a */ = {
 			isa = PBXReferenceProxy;
 			fileType = "compiled.mach-o.dylib";
 			path = libios_axiswinpr.a;
-			remoteRef = 9A97F31E1D80E679000B4EC2 /* PBXContainerItemProxy */;
+			remoteRef = 0A1EDC0DDA4E70FC290DE502 /* PBXContainerItemProxy */;
 			sourceTree = BUILT_PRODUCTS_DIR;
 		};
 /* End PBXReferenceProxy section */
 
 /* Begin PBXSourcesBuildPhase section */
-		07DD61A41B5F0B8D003A1CE1 /* Sources */ = {
+		F5027451F07F0E9F3938F981 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				071EFB751C5575B500EA68B0 /* ca2rdp_event_queue.cpp in Sources */,
-				071EFB761C5575B500EA68B0 /* cf_channels.cpp in Sources */,
-				071EFB771C5575B500EA68B0 /* cf_client.cpp in Sources */,
-				071EFB6E1C5575A100EA68B0 /* client.cpp in Sources */,
-				071EFB6F1C5575A100EA68B0 /* cmdline.cpp in Sources */,
-				071EFB701C5575A100EA68B0 /* compatibility.cpp in Sources */,
-				071EFB711C5575A100EA68B0 /* file.cpp in Sources */,
-				07DD652E1B5F0BC2003A1CE1 /* ca2rdp.cpp in Sources */,
-				07DD65361B5F0BC2003A1CE1 /* ca2rdp_graphics.cpp in Sources */,
-				07DD65321B5F0BC2003A1CE1 /* ca2rdp_event.cpp in Sources */,
+				E6B41EDCE5C41F97BA41912B /* ca2rdp_event_queue.cpp in Sources */,
+				D7228343BA8B4787331F429A /* cf_channels.cpp in Sources */,
+				FDDDBF14DB969674703FC734 /* cf_client.cpp in Sources */,
+				B77C344DA65A7966AA697D20 /* client.cpp in Sources */,
+				E3B0F853A7129984CB14F66A /* cmdline.cpp in Sources */,
+				8BE197A97D7F19C88535626F /* compatibility.cpp in Sources */,
+				15E064C7A383528BE5975DD8 /* file.cpp in Sources */,
+				2F3017522BFA7EE50F3D7926 /* ca2rdp.cpp in Sources */,
+				C139EBF8BAC69A681DFB3F9F /* ca2rdp_graphics.cpp in Sources */,
+				A7A1462B48D20397477D1CD8 /* ca2rdp_event.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		9A1B358816A2D7A500875A94 /* Sources */ = {
+		D675BF088980D28B54E845C5 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				07DD652D1B5F0BC2003A1CE1 /* ca2rdp.cpp in Sources */,
-				07DD65351B5F0BC2003A1CE1 /* ca2rdp_graphics.cpp in Sources */,
-				07E9DC941C499E1C009F99E7 /* ca2rdp_event_queue.cpp in Sources */,
-				07B098111B848AA9002AC4F0 /* file.cpp in Sources */,
-				07B0980F1B848AA9002AC4F0 /* cmdline.cpp in Sources */,
-				07FACBA91B84BB660035DF9D /* cf_channels.cpp in Sources */,
-				07B0980E1B848AA9002AC4F0 /* client.cpp in Sources */,
-				07FACBAB1B84BB660035DF9D /* cf_client.cpp in Sources */,
-				07B098101B848AA9002AC4F0 /* compatibility.cpp in Sources */,
-				07DD65311B5F0BC2003A1CE1 /* ca2rdp_event.cpp in Sources */,
+				CF29A14E16461A3968B146B8 /* ca2rdp.cpp in Sources */,
+				5F6A5F1C8E3DF59BCBCB44C0 /* ca2rdp_graphics.cpp in Sources */,
+				B804FDBE7B53239AFD5EF69A /* ca2rdp_event_queue.cpp in Sources */,
+				7F8E9DD3C8EE6905C1BDEBFF /* file.cpp in Sources */,
+				2225DBE67E4E8136D94F1D34 /* cmdline.cpp in Sources */,
+				CF8D5767B09A1AEF00DA9C48 /* cf_channels.cpp in Sources */,
+				CED3B69A7BAA3F5C541DAAD1 /* client.cpp in Sources */,
+				8B9615EB546A63E232C8B62E /* cf_client.cpp in Sources */,
+				B7C112E6E2DFC40469CCAC71 /* compatibility.cpp in Sources */,
+				E1B4CE8B46F451BECAA1427D /* ca2rdp_event.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
-		9A97F3211D80E68C000B4EC2 /* PBXTargetDependency */ = {
+		725D817B28654CA90FA85978 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			name = aura;
-			targetProxy = 9A97F3201D80E68C000B4EC2 /* PBXContainerItemProxy */;
+			targetProxy = 1739FCA635E36BC2EDD0E306 /* PBXContainerItemProxy */;
 		};
-		9A97F3231D80E68C000B4EC2 /* PBXTargetDependency */ = {
+		A9C7C6939C527EA53C3AA438 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			name = axisclientchannels;
-			targetProxy = 9A97F3221D80E68C000B4EC2 /* PBXContainerItemProxy */;
+			targetProxy = 0C0D60A0A2DDD9E114E51381 /* PBXContainerItemProxy */;
 		};
-		9A97F3251D80E68C000B4EC2 /* PBXTargetDependency */ = {
+		A6739399388C770FBAE0EA83 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			name = axisfreerdp;
-			targetProxy = 9A97F3241D80E68C000B4EC2 /* PBXContainerItemProxy */;
+			targetProxy = 3B145EBFE60B32B35717FE62 /* PBXContainerItemProxy */;
 		};
-		9A97F3271D80E68C000B4EC2 /* PBXTargetDependency */ = {
+		F9AAA69C1FA9113E9A331F82 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			name = axiswinpr;
-			targetProxy = 9A97F3261D80E68C000B4EC2 /* PBXContainerItemProxy */;
+			targetProxy = 4406A386DC89834C5AE65742 /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
 
 /* Begin XCBuildConfiguration section */
-		07DD62481B5F0B8D003A1CE1 /* Debug */ = {
+		F47E33636AF24647BBE7CEE9 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				EXECUTABLE_EXTENSION = a;
@@ -553,7 +553,7 @@
 			};
 			name = Debug;
 		};
-		07DD62491B5F0B8D003A1CE1 /* Release */ = {
+		7C500986C17AFEAF49DFDD9D /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				EXECUTABLE_EXTENSION = a;
@@ -562,7 +562,7 @@
 			};
 			name = Release;
 		};
-		9A1B358E16A2D7A500875A94 /* Debug */ = {
+		3A2498BFB86E79F3BABF8DA8 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = YES;
@@ -632,7 +632,7 @@
 			};
 			name = Debug;
 		};
-		9A1B358F16A2D7A500875A94 /* Release */ = {
+		32E1EE62970786079A67A9C8 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = YES;
@@ -693,7 +693,7 @@
 			};
 			name = Release;
 		};
-		9A1B359116A2D7A500875A94 /* Debug */ = {
+		7B74AF4B48D71F71BFD56F79 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				COMBINE_HIDPI_IMAGES = YES;
@@ -701,7 +701,7 @@
 			};
 			name = Debug;
 		};
-		9A1B359216A2D7A500875A94 /* Release */ = {
+		EB2F07A7F3672A43C48F7D82 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				COMBINE_HIDPI_IMAGES = YES;
@@ -712,34 +712,34 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		07DD62471B5F0B8D003A1CE1 /* Build configuration list for PBXNativeTarget "ios_axisrdpclient" */ = {
+		95452C349DEE8C2829679BEA /* Build configuration list for PBXNativeTarget "ios_axisrdpclient" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
-				07DD62481B5F0B8D003A1CE1 /* Debug */,
-				07DD62491B5F0B8D003A1CE1 /* Release */,
+				F47E33636AF24647BBE7CEE9 /* Debug */,
+				7C500986C17AFEAF49DFDD9D /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		9A1B358616A2D7A500875A94 /* Build configuration list for PBXProject "axisrdpclient" */ = {
+		6AFDAA51BFE1B9816E01E1B3 /* Build configuration list for PBXProject "axisrdpclient" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
-				9A1B358E16A2D7A500875A94 /* Debug */,
-				9A1B358F16A2D7A500875A94 /* Release */,
+				3A2498BFB86E79F3BABF8DA8 /* Debug */,
+				32E1EE62970786079A67A9C8 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		9A1B359016A2D7A500875A94 /* Build configuration list for PBXNativeTarget "axisrdpclient" */ = {
+		A0CC20FEC63D4E4EBD3E4CDF /* Build configuration list for PBXNativeTarget "axisrdpclient" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
-				9A1B359116A2D7A500875A94 /* Debug */,
-				9A1B359216A2D7A500875A94 /* Release */,
+				7B74AF4B48D71F71BFD56F79 /* Debug */,
+				EB2F07A7F3672A43C48F7D82 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
-	rootObject = 9A1B358316A2D7A500875A94 /* Project object */;
+	rootObject = 72B9AF09497BEE2112359FF4 /* Project object */;
 }

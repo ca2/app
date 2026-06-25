@@ -4,6 +4,7 @@
 
 #include "activation.h"
 #include "command_update_target.h"
+#include "acme/constant/user_interface.h"
 #include "acme/prototype/data/property_container.h"
 #include "acme/user/user/check.h"
 #include "acme/user/user/control.h"
@@ -957,7 +958,7 @@ namespace user
       virtual void set_window_text_source(const ::a_string_function & astringfunction);
       virtual void set_window_style(::i32 iStyle);
       virtual ::i64 get_window_style();
-      virtual void show_window(::i32 iShowFlags);
+      virtual void show_window(::user_interface::enum_show_window eshowwindow);
       virtual void set_window_position(const ::operating_system::window & operatingsystemwindow, const ::i32_point & point, const ::i32_size & size, ::i32 iSetWindowPosFlags);
       virtual void window_invalidate_rect(const ::i32_rectangle * prectangle, bool bErase);
       virtual void update_window();

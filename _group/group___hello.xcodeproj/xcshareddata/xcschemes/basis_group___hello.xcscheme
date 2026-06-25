@@ -37,7 +37,7 @@
          runnableDebuggingMode = "0">
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "070B8EE91B6E53F900D26137"
+            BlueprintIdentifier = "E82273B7E11EB39212644B85"
             BuildableName = "group___hello.app"
             BlueprintName = "group___hello"
             ReferencedContainer = "container:group___hello.xcodeproj">
@@ -53,7 +53,7 @@
       <MacroExpansion>
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "070B8EE91B6E53F900D26137"
+            BlueprintIdentifier = "E82273B7E11EB39212644B85"
             BuildableName = "group___hello.app"
             BlueprintName = "group___hello"
             ReferencedContainer = "container:group___hello.xcodeproj">

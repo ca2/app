@@ -14,7 +14,7 @@
             buildForAnalyzing = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "9AA14F5D282A2A6200B1621E"
+               BlueprintIdentifier = "D3B253525D31EC6BD3EF35B7"
                BuildableName = "_ios_app_app.app"
                BlueprintName = "_ios_app_app"
                ReferencedContainer = "container:_ios_app_app.xcodeproj">
@@ -32,7 +32,7 @@
             skipped = "NO">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "9AA14F78282A2A6600B1621E"
+               BlueprintIdentifier = "DB988AB29195ABAED19F802C"
                BuildableName = "_ios_app_appTests.xctest"
                BlueprintName = "_ios_app_appTests"
                ReferencedContainer = "container:_ios_app_app.xcodeproj">
@@ -42,7 +42,7 @@
             skipped = "NO">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "9AA14F82282A2A6700B1621E"
+               BlueprintIdentifier = "21B5C93494C66C93AD467E6D"
                BuildableName = "_ios_app_appUITests.xctest"
                BlueprintName = "_ios_app_appUITests"
                ReferencedContainer = "container:_ios_app_app.xcodeproj">
@@ -64,7 +64,7 @@
          runnableDebuggingMode = "0">
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "9AA14F5D282A2A6200B1621E"
+            BlueprintIdentifier = "D3B253525D31EC6BD3EF35B7"
             BuildableName = "_ios_app_app.app"
             BlueprintName = "_ios_app_app"
             ReferencedContainer = "container:_ios_app_app.xcodeproj">
@@ -81,7 +81,7 @@
          runnableDebuggingMode = "0">
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "9AA14F5D282A2A6200B1621E"
+            BlueprintIdentifier = "D3B253525D31EC6BD3EF35B7"
             BuildableName = "_ios_app_app.app"
             BlueprintName = "_ios_app_app"
             ReferencedContainer = "container:_ios_app_app.xcodeproj">

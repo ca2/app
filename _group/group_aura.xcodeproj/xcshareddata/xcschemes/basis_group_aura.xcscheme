@@ -37,7 +37,7 @@
          runnableDebuggingMode = "0">
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "070B8EE91B6E53F900D26137"
+            BlueprintIdentifier = "A6175C9044F4C471F2B06978"
             BuildableName = "group_aura.app"
             BlueprintName = "group_aura"
             ReferencedContainer = "container:group_aura.xcodeproj">

@@ -7,46 +7,46 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		9A0FA4632454A5B000E0C30E /* api.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A0FA4612454A5B000E0C30E /* api.cpp */; };
-		9A0FA4642454A5B000E0C30E /* api.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A0FA4622454A5B000E0C30E /* api.h */; };
-		9A0FA61F2454ADB900E0C30E /* libaura.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 9A0FA6182454AD9F00E0C30E /* libaura.dylib */; };
-		9A57DB481F211FEC0001548E /* framework.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A57DB251F211FEC0001548E /* framework.cpp */; };
-		9A57DB491F211FEC0001548E /* framework.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A57DB261F211FEC0001548E /* framework.h */; };
+		59CA03BCAAFC40D59A8C8BAC /* api.cpp in Sources */ = {isa = PBXBuildFile; fileRef = DDAF73B903C6D77E4254CC57 /* api.cpp */; };
+		8E4BA6F7782E4BB4DA79D2D1 /* api.h in Headers */ = {isa = PBXBuildFile; fileRef = 6E13F3A95B00C430A669FE07 /* api.h */; };
+		CE79E15B2296B31B976FAA7E /* libaura.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = A5FB99C15DB2D6778D58F0E8 /* libaura.dylib */; };
+		972514EA1366A31517ADC029 /* framework.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 698AEC1CFB0883CA461CA3A3 /* framework.cpp */; };
+		B536D6910D0DBDC95AE803FF /* framework.h in Headers */ = {isa = PBXBuildFile; fileRef = D3DC6D3E57577961AE515E8D /* framework.h */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
-		9A0FA6172454AD9F00E0C30E /* PBXContainerItemProxy */ = {
+		650F4D41BAF626B9F91689C2 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
-			containerPortal = 9A0FA6112454AD9E00E0C30E /* aura.xcodeproj */;
+			containerPortal = BC1FA349386668EE1B3CD0F7 /* aura.xcodeproj */;
 			proxyType = 2;
-			remoteGlobalIDString = 9A98A6151771D67E000AE16E;
+			remoteGlobalIDString = E4417B3C048CFEB95EEAB513;
 			remoteInfo = aura;
 		};
-		9A0FA6192454AD9F00E0C30E /* PBXContainerItemProxy */ = {
+		C25BB7B842EEA8F11F5D48BA /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
-			containerPortal = 9A0FA6112454AD9E00E0C30E /* aura.xcodeproj */;
+			containerPortal = BC1FA349386668EE1B3CD0F7 /* aura.xcodeproj */;
 			proxyType = 2;
 			remoteGlobalIDString = 077A080B1B4D7403001C85FF;
 			remoteInfo = ios_aura;
 		};
-		9A0FA61B2454AD9F00E0C30E /* PBXContainerItemProxy */ = {
+		EFECDAC5C2C97D0D84FF2CC1 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
-			containerPortal = 9A0FA6112454AD9E00E0C30E /* aura.xcodeproj */;
+			containerPortal = BC1FA349386668EE1B3CD0F7 /* aura.xcodeproj */;
 			proxyType = 2;
-			remoteGlobalIDString = 9AE24D431904CEFE001AEFFB;
+			remoteGlobalIDString = 430A724391C0109CE61F368C;
 			remoteInfo = aura_iosTests;
 		};
-		9A0FA61D2454ADB100E0C30E /* PBXContainerItemProxy */ = {
+		3280C6F642F7C350373E4BC6 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
-			containerPortal = 9A0FA6112454AD9E00E0C30E /* aura.xcodeproj */;
+			containerPortal = BC1FA349386668EE1B3CD0F7 /* aura.xcodeproj */;
 			proxyType = 1;
-			remoteGlobalIDString = 9A98A6031771D67E000AE16E;
+			remoteGlobalIDString = A7460B7BA348DC6C50506755;
 			remoteInfo = aura;
 		};
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXCopyFilesBuildPhase section */
-		9AE24E881904CFFD001AEFFB /* CopyFiles */ = {
+		CE9E3B51E9940DC59A116E8C /* CopyFiles */ = {
 			isa = PBXCopyFilesBuildPhase;
 			buildActionMask = 2147483647;
 			dstPath = "include/$(PRODUCT_NAME)";
@@ -58,77 +58,77 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
-		9A0FA4612454A5B000E0C30E /* api.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = api.cpp; sourceTree = "<group>"; };
-		9A0FA4622454A5B000E0C30E /* api.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = api.h; sourceTree = "<group>"; };
-		9A0FA6112454AD9E00E0C30E /* aura.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = aura.xcodeproj; path = ../../app/aura/aura.xcodeproj; sourceTree = SOURCE_ROOT; };
-		9A57DB251F211FEC0001548E /* framework.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = framework.cpp; sourceTree = "<group>"; };
-		9A57DB261F211FEC0001548E /* framework.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = framework.h; sourceTree = "<group>"; };
-		9AE24E8A1904CFFD001AEFFB /* libios_youtube.dylib */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libios_youtube.dylib; sourceTree = BUILT_PRODUCTS_DIR; };
-		9AEB75A316F78DF10085103B /* libapi_gool.dylib */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.dylib"; includeInIndex = 0; path = libapi_gool.dylib; sourceTree = BUILT_PRODUCTS_DIR; };
+		DDAF73B903C6D77E4254CC57 /* api.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = api.cpp; sourceTree = "<group>"; };
+		6E13F3A95B00C430A669FE07 /* api.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = api.h; sourceTree = "<group>"; };
+		BC1FA349386668EE1B3CD0F7 /* aura.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = aura.xcodeproj; path = ../../app/aura/aura.xcodeproj; sourceTree = SOURCE_ROOT; };
+		698AEC1CFB0883CA461CA3A3 /* framework.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = framework.cpp; sourceTree = "<group>"; };
+		D3DC6D3E57577961AE515E8D /* framework.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = framework.h; sourceTree = "<group>"; };
+		24F8FB9821E12ACF4CB12F11 /* libios_youtube.dylib */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libios_youtube.dylib; sourceTree = BUILT_PRODUCTS_DIR; };
+		CD91325C79D26DB0131C66B2 /* libapi_gool.dylib */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.dylib"; includeInIndex = 0; path = libapi_gool.dylib; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
-		9AE24E871904CFFD001AEFFB /* Frameworks */ = {
+		CAC09722C729F5E1CA85AFFE /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		9AEB75A016F78DF10085103B /* Frameworks */ = {
+		69146983CDAEBF4815AAA829 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				9A0FA61F2454ADB900E0C30E /* libaura.dylib in Frameworks */,
+				CE79E15B2296B31B976FAA7E /* libaura.dylib in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		9A0FA6122454AD9E00E0C30E /* Products */ = {
+		E13E2235087F8534FCA4C7C4 /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				9A0FA6182454AD9F00E0C30E /* libaura.dylib */,
-				9A0FA61A2454AD9F00E0C30E /* libios_aura.a */,
-				9A0FA61C2454AD9F00E0C30E /* aura_iosTests.xctest */,
+				A5FB99C15DB2D6778D58F0E8 /* libaura.dylib */,
+				9080E541568D185B88756F20 /* libios_aura.a */,
+				DB599DF9EA47656E8FD22DD6 /* aura_iosTests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
 		};
-		9A2F5FA11FA11693006CA37F /* Frameworks */ = {
+		04406D07BA45DBBE785A9F9D /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
-		9A57DB201F211FEC0001548E /* youtube */ = {
+		FE9DA0948F7816C08684A93D /* youtube */ = {
 			isa = PBXGroup;
 			children = (
-				9A0FA4612454A5B000E0C30E /* api.cpp */,
-				9A0FA4622454A5B000E0C30E /* api.h */,
-				9A57DB251F211FEC0001548E /* framework.cpp */,
-				9A57DB261F211FEC0001548E /* framework.h */,
+				DDAF73B903C6D77E4254CC57 /* api.cpp */,
+				6E13F3A95B00C430A669FE07 /* api.h */,
+				698AEC1CFB0883CA461CA3A3 /* framework.cpp */,
+				D3DC6D3E57577961AE515E8D /* framework.h */,
 			);
 			name = youtube;
 			sourceTree = "<group>";
 		};
-		9AEB759A16F78DF10085103B = {
+		E198FBDB08D1F1846E41F89C = {
 			isa = PBXGroup;
 			children = (
-				9A0FA6112454AD9E00E0C30E /* aura.xcodeproj */,
-				9A57DB201F211FEC0001548E /* youtube */,
-				9AEB75A416F78DF10085103B /* Products */,
-				9A2F5FA11FA11693006CA37F /* Frameworks */,
+				BC1FA349386668EE1B3CD0F7 /* aura.xcodeproj */,
+				FE9DA0948F7816C08684A93D /* youtube */,
+				F5E6886BE07FB63E640297C9 /* Products */,
+				04406D07BA45DBBE785A9F9D /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
-		9AEB75A416F78DF10085103B /* Products */ = {
+		F5E6886BE07FB63E640297C9 /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				9AEB75A316F78DF10085103B /* libapi_gool.dylib */,
-				9AE24E8A1904CFFD001AEFFB /* libios_youtube.dylib */,
+				CD91325C79D26DB0131C66B2 /* libapi_gool.dylib */,
+				24F8FB9821E12ACF4CB12F11 /* libios_youtube.dylib */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -136,25 +136,25 @@
 /* End PBXGroup section */
 
 /* Begin PBXHeadersBuildPhase section */
-		9AEB75A116F78DF10085103B /* Headers */ = {
+		BD6177116EDC5972E61EAB88 /* Headers */ = {
 			isa = PBXHeadersBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				9A57DB491F211FEC0001548E /* framework.h in Headers */,
-				9A0FA4642454A5B000E0C30E /* api.h in Headers */,
+				B536D6910D0DBDC95AE803FF /* framework.h in Headers */,
+				8E4BA6F7782E4BB4DA79D2D1 /* api.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXHeadersBuildPhase section */
 
 /* Begin PBXNativeTarget section */
-		9AE24E891904CFFD001AEFFB /* ios_youtube */ = {
+		BEC11FCA3A4F745476A40939 /* ios_youtube */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 9AE24EBA1904CFFD001AEFFB /* Build configuration list for PBXNativeTarget "ios_youtube" */;
+			buildConfigurationList = 4B63AB145F1B8D1BE94C3A1D /* Build configuration list for PBXNativeTarget "ios_youtube" */;
 			buildPhases = (
-				9AE24E861904CFFD001AEFFB /* Sources */,
-				9AE24E871904CFFD001AEFFB /* Frameworks */,
-				9AE24E881904CFFD001AEFFB /* CopyFiles */,
+				590B63C6E38511303CD12110 /* Sources */,
+				CAC09722C729F5E1CA85AFFE /* Frameworks */,
+				CE9E3B51E9940DC59A116E8C /* CopyFiles */,
 			);
 			buildRules = (
 			);
@@ -162,37 +162,37 @@
 			);
 			name = ios_youtube;
 			productName = app_core_hellomultiverse_ios;
-			productReference = 9AE24E8A1904CFFD001AEFFB /* libios_youtube.dylib */;
+			productReference = 24F8FB9821E12ACF4CB12F11 /* libios_youtube.dylib */;
 			productType = "com.apple.product-type.library.static";
 		};
-		9AEB75A216F78DF10085103B /* api_gool */ = {
+		1A995680CC4B8FD9072DDE46 /* api_gool */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 9AEB75A716F78DF10085103B /* Build configuration list for PBXNativeTarget "api_gool" */;
+			buildConfigurationList = 52BA2C1964449636B22BD091 /* Build configuration list for PBXNativeTarget "api_gool" */;
 			buildPhases = (
-				9AEB759F16F78DF10085103B /* Sources */,
-				9AEB75A016F78DF10085103B /* Frameworks */,
-				9AEB75A116F78DF10085103B /* Headers */,
+				44D5DF2CC2C5147B01A46B09 /* Sources */,
+				69146983CDAEBF4815AAA829 /* Frameworks */,
+				BD6177116EDC5972E61EAB88 /* Headers */,
 			);
 			buildRules = (
 			);
 			dependencies = (
-				9A0FA61E2454ADB100E0C30E /* PBXTargetDependency */,
+				594EA428FD9AE2E67C505549 /* PBXTargetDependency */,
 			);
 			name = api_gool;
 			productName = app_core_hellomultiverse;
-			productReference = 9AEB75A316F78DF10085103B /* libapi_gool.dylib */;
+			productReference = CD91325C79D26DB0131C66B2 /* libapi_gool.dylib */;
 			productType = "com.apple.product-type.library.dynamic";
 		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
-		9AEB759B16F78DF10085103B /* Project object */ = {
+		84DEFCD5135DE4D192FC5220 /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
 				LastUpgradeCheck = 1310;
 				ORGANIZATIONNAME = "Camilo Sasuke Tsumanuma";
 			};
-			buildConfigurationList = 9AEB759E16F78DF10085103B /* Build configuration list for PBXProject "api_ca2" */;
+			buildConfigurationList = BA1AC8DC651494B418232B24 /* Build configuration list for PBXProject "api_ca2" */;
 			compatibilityVersion = "Xcode 3.2";
 			developmentRegion = en;
 			hasScannedForEncodings = 0;
@@ -200,76 +200,76 @@
 				en,
 				Base,
 			);
-			mainGroup = 9AEB759A16F78DF10085103B;
-			productRefGroup = 9AEB75A416F78DF10085103B /* Products */;
+			mainGroup = E198FBDB08D1F1846E41F89C;
+			productRefGroup = F5E6886BE07FB63E640297C9 /* Products */;
 			projectDirPath = "";
 			projectReferences = (
 				{
-					ProductGroup = 9A0FA6122454AD9E00E0C30E /* Products */;
-					ProjectRef = 9A0FA6112454AD9E00E0C30E /* aura.xcodeproj */;
+					ProductGroup = E13E2235087F8534FCA4C7C4 /* Products */;
+					ProjectRef = BC1FA349386668EE1B3CD0F7 /* aura.xcodeproj */;
 				},
 			);
 			projectRoot = "";
 			targets = (
-				9AEB75A216F78DF10085103B /* api_gool */,
-				9AE24E891904CFFD001AEFFB /* ios_youtube */,
+				1A995680CC4B8FD9072DDE46 /* api_gool */,
+				BEC11FCA3A4F745476A40939 /* ios_youtube */,
 			);
 		};
 /* End PBXProject section */
 
 /* Begin PBXReferenceProxy section */
-		9A0FA6182454AD9F00E0C30E /* libaura.dylib */ = {
+		A5FB99C15DB2D6778D58F0E8 /* libaura.dylib */ = {
 			isa = PBXReferenceProxy;
 			fileType = "compiled.mach-o.dylib";
 			path = libaura.dylib;
-			remoteRef = 9A0FA6172454AD9F00E0C30E /* PBXContainerItemProxy */;
+			remoteRef = 650F4D41BAF626B9F91689C2 /* PBXContainerItemProxy */;
 			sourceTree = BUILT_PRODUCTS_DIR;
 		};
-		9A0FA61A2454AD9F00E0C30E /* libios_aura.a */ = {
+		9080E541568D185B88756F20 /* libios_aura.a */ = {
 			isa = PBXReferenceProxy;
 			fileType = archive.ar;
 			path = libios_aura.a;
-			remoteRef = 9A0FA6192454AD9F00E0C30E /* PBXContainerItemProxy */;
+			remoteRef = C25BB7B842EEA8F11F5D48BA /* PBXContainerItemProxy */;
 			sourceTree = BUILT_PRODUCTS_DIR;
 		};
-		9A0FA61C2454AD9F00E0C30E /* aura_iosTests.xctest */ = {
+		DB599DF9EA47656E8FD22DD6 /* aura_iosTests.xctest */ = {
 			isa = PBXReferenceProxy;
 			fileType = wrapper.cfbundle;
 			path = aura_iosTests.xctest;
-			remoteRef = 9A0FA61B2454AD9F00E0C30E /* PBXContainerItemProxy */;
+			remoteRef = EFECDAC5C2C97D0D84FF2CC1 /* PBXContainerItemProxy */;
 			sourceTree = BUILT_PRODUCTS_DIR;
 		};
 /* End PBXReferenceProxy section */
 
 /* Begin PBXSourcesBuildPhase section */
-		9AE24E861904CFFD001AEFFB /* Sources */ = {
+		590B63C6E38511303CD12110 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		9AEB759F16F78DF10085103B /* Sources */ = {
+		44D5DF2CC2C5147B01A46B09 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				9A0FA4632454A5B000E0C30E /* api.cpp in Sources */,
-				9A57DB481F211FEC0001548E /* framework.cpp in Sources */,
+				59CA03BCAAFC40D59A8C8BAC /* api.cpp in Sources */,
+				972514EA1366A31517ADC029 /* framework.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
-		9A0FA61E2454ADB100E0C30E /* PBXTargetDependency */ = {
+		594EA428FD9AE2E67C505549 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			name = aura;
-			targetProxy = 9A0FA61D2454ADB100E0C30E /* PBXContainerItemProxy */;
+			targetProxy = 3280C6F642F7C350373E4BC6 /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
 
 /* Begin XCBuildConfiguration section */
-		9AE24EAA1904CFFD001AEFFB /* Debug */ = {
+		3C50AD04A07E233EEF61503E /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				DSTROOT = /tmp/app_core_hellomultiverse_ios.dst;
@@ -280,7 +280,7 @@
 			};
 			name = Debug;
 		};
-		9AE24EAB1904CFFD001AEFFB /* Release */ = {
+		6C7E8286C6C59759895AB1C9 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				DSTROOT = /tmp/app_core_hellomultiverse_ios.dst;
@@ -291,7 +291,7 @@
 			};
 			name = Release;
 		};
-		9AEB75A516F78DF10085103B /* Debug */ = {
+		BDC24D9410657E05AA532F91 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
@@ -362,7 +362,7 @@
 			};
 			name = Debug;
 		};
-		9AEB75A616F78DF10085103B /* Release */ = {
+		397B2CE9DF436A83C0E12307 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
@@ -426,7 +426,7 @@
 			};
 			name = Release;
 		};
-		9AEB75A816F78DF10085103B /* Debug */ = {
+		F4E1F1C2E3739969510802CD /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				COMBINE_HIDPI_IMAGES = YES;
@@ -446,7 +446,7 @@
 			};
 			name = Debug;
 		};
-		9AEB75A916F78DF10085103B /* Release */ = {
+		D99033510BE64850EECD6DC0 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				COMBINE_HIDPI_IMAGES = YES;
@@ -466,34 +466,34 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		9AE24EBA1904CFFD001AEFFB /* Build configuration list for PBXNativeTarget "ios_youtube" */ = {
+		4B63AB145F1B8D1BE94C3A1D /* Build configuration list for PBXNativeTarget "ios_youtube" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
-				9AE24EAA1904CFFD001AEFFB /* Debug */,
-				9AE24EAB1904CFFD001AEFFB /* Release */,
+				3C50AD04A07E233EEF61503E /* Debug */,
+				6C7E8286C6C59759895AB1C9 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		9AEB759E16F78DF10085103B /* Build configuration list for PBXProject "api_ca2" */ = {
+		BA1AC8DC651494B418232B24 /* Build configuration list for PBXProject "api_ca2" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
-				9AEB75A516F78DF10085103B /* Debug */,
-				9AEB75A616F78DF10085103B /* Release */,
+				BDC24D9410657E05AA532F91 /* Debug */,
+				397B2CE9DF436A83C0E12307 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		9AEB75A716F78DF10085103B /* Build configuration list for PBXNativeTarget "api_gool" */ = {
+		52BA2C1964449636B22BD091 /* Build configuration list for PBXNativeTarget "api_gool" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
-				9AEB75A816F78DF10085103B /* Debug */,
-				9AEB75A916F78DF10085103B /* Release */,
+				F4E1F1C2E3739969510802CD /* Debug */,
+				D99033510BE64850EECD6DC0 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
-	rootObject = 9AEB759B16F78DF10085103B /* Project object */;
+	rootObject = 84DEFCD5135DE4D192FC5220 /* Project object */;
 }

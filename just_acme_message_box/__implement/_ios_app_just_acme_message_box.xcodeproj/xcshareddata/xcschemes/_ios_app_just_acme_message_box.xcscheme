@@ -15,7 +15,7 @@
             buildForAnalyzing = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "9A4752BD2CF5124100ED30AE"
+               BlueprintIdentifier = "D2F299C986B00B6D627BF71D"
                BuildableName = "_ios_app_just_acme_message_box.app"
                BlueprintName = "_ios_app_just_acme_message_box"
                ReferencedContainer = "container:_ios_app_just_acme_message_box.xcodeproj">
@@ -44,7 +44,7 @@
          runnableDebuggingMode = "0">
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "9A4752BD2CF5124100ED30AE"
+            BlueprintIdentifier = "D2F299C986B00B6D627BF71D"
             BuildableName = "_ios_app_just_acme_message_box.app"
             BlueprintName = "_ios_app_just_acme_message_box"
             ReferencedContainer = "container:_ios_app_just_acme_message_box.xcodeproj">
@@ -61,7 +61,7 @@
          runnableDebuggingMode = "0">
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "9A4752BD2CF5124100ED30AE"
+            BlueprintIdentifier = "D2F299C986B00B6D627BF71D"
             BuildableName = "_ios_app_just_acme_message_box.app"
             BlueprintName = "_ios_app_just_acme_message_box"
             ReferencedContainer = "container:_ios_app_just_acme_message_box.xcodeproj">

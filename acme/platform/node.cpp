@@ -574,6 +574,7 @@ namespace platform
    void node::_did_finish_launching()
    {
       
+      system()->acme_windowing()->_did_finish_launching();
       
    }
 

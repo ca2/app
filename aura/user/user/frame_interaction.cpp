@@ -118,6 +118,8 @@ namespace user
             ::cast < ::windowing::window > pwindowingwindowHost = pwindowHost;
 
             auto puserinteraction = pwindowingwindowHost->user_interaction();
+            
+            m_pacmewindowingwindow = pwindowingwindowHost;
 
             create_child(puserinteraction);
 

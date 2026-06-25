@@ -7,20 +7,20 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		9AE834DB2C1CCECE00096100 /* nano_archive_libarchive.hpp in Headers */ = {isa = PBXBuildFile; fileRef = 9AE834DA2C1CCECE00096100 /* nano_archive_libarchive.hpp */; };
-		9AE834DD2C1CCECE00096100 /* nano_archive_libarchivePriv.hpp in Headers */ = {isa = PBXBuildFile; fileRef = 9AE834DC2C1CCECE00096100 /* nano_archive_libarchivePriv.hpp */; };
-		9AE834DF2C1CCECE00096100 /* nano_archive_libarchive.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9AE834DE2C1CCECE00096100 /* nano_archive_libarchive.cpp */; };
+		CB54C33D3B4BF6E4F8EC0707 /* nano_archive_libarchive.hpp in Headers */ = {isa = PBXBuildFile; fileRef = 297C74DCB5DCA3230E122E0D /* nano_archive_libarchive.hpp */; };
+		20C8E1B9F49BF4888229EFEB /* nano_archive_libarchivePriv.hpp in Headers */ = {isa = PBXBuildFile; fileRef = 14AA6F2BC950EF60AF3A4BAF /* nano_archive_libarchivePriv.hpp */; };
+		F1E81CFB81ACB6D19C217145 /* nano_archive_libarchive.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 38264F00CC8508E91F35F501 /* nano_archive_libarchive.cpp */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		9AE834D72C1CCECE00096100 /* libnano_archive_libarchive.dylib */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.dylib"; includeInIndex = 0; path = libnano_archive_libarchive.dylib; sourceTree = BUILT_PRODUCTS_DIR; };
-		9AE834DA2C1CCECE00096100 /* nano_archive_libarchive.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = nano_archive_libarchive.hpp; sourceTree = "<group>"; };
-		9AE834DC2C1CCECE00096100 /* nano_archive_libarchivePriv.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = nano_archive_libarchivePriv.hpp; sourceTree = "<group>"; };
-		9AE834DE2C1CCECE00096100 /* nano_archive_libarchive.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = nano_archive_libarchive.cpp; sourceTree = "<group>"; };
+		CD2D3B8A835E4C828D1B9257 /* libnano_archive_libarchive.dylib */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.dylib"; includeInIndex = 0; path = libnano_archive_libarchive.dylib; sourceTree = BUILT_PRODUCTS_DIR; };
+		297C74DCB5DCA3230E122E0D /* nano_archive_libarchive.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = nano_archive_libarchive.hpp; sourceTree = "<group>"; };
+		14AA6F2BC950EF60AF3A4BAF /* nano_archive_libarchivePriv.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = nano_archive_libarchivePriv.hpp; sourceTree = "<group>"; };
+		38264F00CC8508E91F35F501 /* nano_archive_libarchive.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = nano_archive_libarchive.cpp; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
-		9AE834D52C1CCECE00096100 /* Frameworks */ = {
+		23105993B9FBDE01678F32F5 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -30,28 +30,28 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		9AE834CE2C1CCECE00096100 = {
+		CC5970D59AE9EE418237CEC1 = {
 			isa = PBXGroup;
 			children = (
-				9AE834D92C1CCECE00096100 /* nano_archive_libarchive */,
-				9AE834D82C1CCECE00096100 /* Products */,
+				4CA0F8B663B0EAFA037CD471 /* nano_archive_libarchive */,
+				E118660A64AF56218BF11F43 /* Products */,
 			);
 			sourceTree = "<group>";
 		};
-		9AE834D82C1CCECE00096100 /* Products */ = {
+		E118660A64AF56218BF11F43 /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				9AE834D72C1CCECE00096100 /* libnano_archive_libarchive.dylib */,
+				CD2D3B8A835E4C828D1B9257 /* libnano_archive_libarchive.dylib */,
 			);
 			name = Products;
 			sourceTree = "<group>";
 		};
-		9AE834D92C1CCECE00096100 /* nano_archive_libarchive */ = {
+		4CA0F8B663B0EAFA037CD471 /* nano_archive_libarchive */ = {
 			isa = PBXGroup;
 			children = (
-				9AE834DA2C1CCECE00096100 /* nano_archive_libarchive.hpp */,
-				9AE834DC2C1CCECE00096100 /* nano_archive_libarchivePriv.hpp */,
-				9AE834DE2C1CCECE00096100 /* nano_archive_libarchive.cpp */,
+				297C74DCB5DCA3230E122E0D /* nano_archive_libarchive.hpp */,
+				14AA6F2BC950EF60AF3A4BAF /* nano_archive_libarchivePriv.hpp */,
+				38264F00CC8508E91F35F501 /* nano_archive_libarchive.cpp */,
 			);
 			path = nano_archive_libarchive;
 			sourceTree = "<group>";
@@ -59,25 +59,25 @@
 /* End PBXGroup section */
 
 /* Begin PBXHeadersBuildPhase section */
-		9AE834D32C1CCECE00096100 /* Headers */ = {
+		304F12A1D00CA0740F33F046 /* Headers */ = {
 			isa = PBXHeadersBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				9AE834DB2C1CCECE00096100 /* nano_archive_libarchive.hpp in Headers */,
-				9AE834DD2C1CCECE00096100 /* nano_archive_libarchivePriv.hpp in Headers */,
+				CB54C33D3B4BF6E4F8EC0707 /* nano_archive_libarchive.hpp in Headers */,
+				20C8E1B9F49BF4888229EFEB /* nano_archive_libarchivePriv.hpp in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXHeadersBuildPhase section */
 
 /* Begin PBXNativeTarget section */
-		9AE834D62C1CCECE00096100 /* nano_archive_libarchive */ = {
+		40B6C81CF88088AA16582C95 /* nano_archive_libarchive */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 9AE834E22C1CCECE00096100 /* Build configuration list for PBXNativeTarget "nano_archive_libarchive" */;
+			buildConfigurationList = 44F6A4959ED2E268F221C4E0 /* Build configuration list for PBXNativeTarget "nano_archive_libarchive" */;
 			buildPhases = (
-				9AE834D32C1CCECE00096100 /* Headers */,
-				9AE834D42C1CCECE00096100 /* Sources */,
-				9AE834D52C1CCECE00096100 /* Frameworks */,
+				304F12A1D00CA0740F33F046 /* Headers */,
+				B02F268E8D3AC8880949624C /* Sources */,
+				23105993B9FBDE01678F32F5 /* Frameworks */,
 			);
 			buildRules = (
 			);
@@ -85,24 +85,24 @@
 			);
 			name = nano_archive_libarchive;
 			productName = nano_archive_libarchive;
-			productReference = 9AE834D72C1CCECE00096100 /* libnano_archive_libarchive.dylib */;
+			productReference = CD2D3B8A835E4C828D1B9257 /* libnano_archive_libarchive.dylib */;
 			productType = "com.apple.product-type.library.dynamic";
 		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
-		9AE834CF2C1CCECE00096100 /* Project object */ = {
+		2F32800E80E2DB521E8EF8EE /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
 				BuildIndependentTargetsInParallel = 1;
 				LastUpgradeCheck = 1540;
 				TargetAttributes = {
-					9AE834D62C1CCECE00096100 = {
+					40B6C81CF88088AA16582C95 = {
 						CreatedOnToolsVersion = 15.4;
 					};
 				};
 			};
-			buildConfigurationList = 9AE834D22C1CCECE00096100 /* Build configuration list for PBXProject "nano_archive_libarchive" */;
+			buildConfigurationList = 72FDF9B90D5F8466B604F1A8 /* Build configuration list for PBXProject "nano_archive_libarchive" */;
 			compatibilityVersion = "Xcode 14.0";
 			developmentRegion = en;
 			hasScannedForEncodings = 0;
@@ -110,29 +110,29 @@
 				en,
 				Base,
 			);
-			mainGroup = 9AE834CE2C1CCECE00096100;
-			productRefGroup = 9AE834D82C1CCECE00096100 /* Products */;
+			mainGroup = CC5970D59AE9EE418237CEC1;
+			productRefGroup = E118660A64AF56218BF11F43 /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				9AE834D62C1CCECE00096100 /* nano_archive_libarchive */,
+				40B6C81CF88088AA16582C95 /* nano_archive_libarchive */,
 			);
 		};
 /* End PBXProject section */
 
 /* Begin PBXSourcesBuildPhase section */
-		9AE834D42C1CCECE00096100 /* Sources */ = {
+		B02F268E8D3AC8880949624C /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				9AE834DF2C1CCECE00096100 /* nano_archive_libarchive.cpp in Sources */,
+				F1E81CFB81ACB6D19C217145 /* nano_archive_libarchive.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXSourcesBuildPhase section */
 
 /* Begin XCBuildConfiguration section */
-		9AE834E02C1CCECE00096100 /* Debug */ = {
+		CBD537B936E221176C722EB9 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
@@ -193,7 +193,7 @@
 			};
 			name = Debug;
 		};
-		9AE834E12C1CCECE00096100 /* Release */ = {
+		9F2344F1243A5D6F806E4740 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
@@ -247,7 +247,7 @@
 			};
 			name = Release;
 		};
-		9AE834E32C1CCECE00096100 /* Debug */ = {
+		BC4B0ABE810A3761A6725BD7 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				CODE_SIGN_STYLE = Automatic;
@@ -262,7 +262,7 @@
 			};
 			name = Debug;
 		};
-		9AE834E42C1CCECE00096100 /* Release */ = {
+		05CBDFCAA0CF14494A4FB7E4 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				CODE_SIGN_STYLE = Automatic;
@@ -280,25 +280,25 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		9AE834D22C1CCECE00096100 /* Build configuration list for PBXProject "nano_archive_libarchive" */ = {
+		72FDF9B90D5F8466B604F1A8 /* Build configuration list for PBXProject "nano_archive_libarchive" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
-				9AE834E02C1CCECE00096100 /* Debug */,
-				9AE834E12C1CCECE00096100 /* Release */,
+				CBD537B936E221176C722EB9 /* Debug */,
+				9F2344F1243A5D6F806E4740 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		9AE834E22C1CCECE00096100 /* Build configuration list for PBXNativeTarget "nano_archive_libarchive" */ = {
+		44F6A4959ED2E268F221C4E0 /* Build configuration list for PBXNativeTarget "nano_archive_libarchive" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
-				9AE834E32C1CCECE00096100 /* Debug */,
-				9AE834E42C1CCECE00096100 /* Release */,
+				BC4B0ABE810A3761A6725BD7 /* Debug */,
+				05CBDFCAA0CF14494A4FB7E4 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
-	rootObject = 9AE834CF2C1CCECE00096100 /* Project object */;
+	rootObject = 2F32800E80E2DB521E8EF8EE /* Project object */;
 }

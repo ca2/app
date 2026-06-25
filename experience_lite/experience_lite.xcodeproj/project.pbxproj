@@ -7,100 +7,100 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		0793EA2B1CA4063B001374D8 /* libaura.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 0793EA2A1CA4063B001374D8 /* libaura.dylib */; };
-		0793EA2D1CA40726001374D8 /* libberg.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 0793EA2C1CA40726001374D8 /* libberg.dylib */; };
-		0793EA2F1CA4074C001374D8 /* libaxis.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 0793EA2E1CA4074C001374D8 /* libaxis.dylib */; };
-		07A6FBE01BA0E28F00D9C008 /* user_button.h in Headers */ = {isa = PBXBuildFile; fileRef = 07A6FBDC1BA0E28F00D9C008 /* user_button.h */; };
-		07A6FBE21BA0E28F00D9C008 /* user_control_box.h in Headers */ = {isa = PBXBuildFile; fileRef = 07A6FBDE1BA0E28F00D9C008 /* user_control_box.h */; };
-		07B6597D190F44A9002DAADE /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9AE24E5C1904CFE2001AEFFB /* Foundation.framework */; };
-		9A0CB68D1FEC16D80096D4CE /* experience_lite_frame_013.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A0CB6611FEC16CB0096D4CE /* experience_lite_frame_013.cpp */; };
-		9A0CB68E1FEC16D80096D4CE /* experience_lite_frame_002.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A0CB6621FEC16CB0096D4CE /* experience_lite_frame_002.cpp */; };
-		9A0CB68F1FEC16D80096D4CE /* experience_lite_frame.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A0CB6631FEC16CB0096D4CE /* experience_lite_frame.cpp */; };
-		9A0CB6901FEC16D80096D4CE /* experience_lite_frame_Minimal001.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A0CB6651FEC16CB0096D4CE /* experience_lite_frame_Minimal001.cpp */; };
-		9A0CB6911FEC16D80096D4CE /* experience_lite_frame_001.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A0CB6681FEC16CC0096D4CE /* experience_lite_frame_001.h */; };
-		9A0CB6921FEC16D80096D4CE /* experience_lite_frame_008.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A0CB66A1FEC16CC0096D4CE /* experience_lite_frame_008.h */; };
-		9A0CB6931FEC16D80096D4CE /* experience_lite_frame_011.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A0CB66B1FEC16CC0096D4CE /* experience_lite_frame_011.cpp */; };
-		9A0CB6941FEC16D80096D4CE /* experience_lite_library.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A0CB66C1FEC16CD0096D4CE /* experience_lite_library.cpp */; };
-		9A0CB6951FEC16D80096D4CE /* experience_lite_library.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A0CB66E1FEC16CD0096D4CE /* experience_lite_library.h */; };
-		9A0CB6961FEC16D80096D4CE /* experience_lite_frame.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A0CB6701FEC16CD0096D4CE /* experience_lite_frame.h */; };
-		9A0CB6971FEC16D80096D4CE /* experience_lite_interaction.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A0CB6711FEC16CE0096D4CE /* experience_lite_interaction.cpp */; };
-		9A0CB6981FEC16D80096D4CE /* experience_lite_frame_005.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A0CB6731FEC16CE0096D4CE /* experience_lite_frame_005.h */; };
-		9A0CB6991FEC16D80096D4CE /* experience_lite.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A0CB6771FEC16D00096D4CE /* experience_lite.h */; };
-		9A0CB69A1FEC16D80096D4CE /* experience_lite_frame_001.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A0CB6791FEC16D10096D4CE /* experience_lite_frame_001.cpp */; };
-		9A0CB69B1FEC16D80096D4CE /* experience_lite.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A0CB67B1FEC16D10096D4CE /* experience_lite.cpp */; };
-		9A0CB69C1FEC16D80096D4CE /* experience_lite_frame_011.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A0CB67C1FEC16D20096D4CE /* experience_lite_frame_011.h */; };
-		9A0CB69E1FEC16D80096D4CE /* experience_lite_frame_008.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A0CB6841FEC16D40096D4CE /* experience_lite_frame_008.cpp */; };
-		9A0CB6A01FEC16D80096D4CE /* experience_lite_interaction.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A0CB6861FEC16D50096D4CE /* experience_lite_interaction.h */; };
-		9A0CB6A11FEC16D80096D4CE /* experience_lite_frame_002.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A0CB6871FEC16D50096D4CE /* experience_lite_frame_002.h */; };
-		9A0CB6A21FEC16D80096D4CE /* experience_lite_frame_005.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A0CB6881FEC16D60096D4CE /* experience_lite_frame_005.cpp */; };
-		9A0CB6A31FEC16D80096D4CE /* experience_lite_frame_013.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A0CB6891FEC16D60096D4CE /* experience_lite_frame_013.h */; };
-		9A0CB6A41FEC16D80096D4CE /* experience_lite_frame_Minimal001.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A0CB68B1FEC16D70096D4CE /* experience_lite_frame_Minimal001.h */; };
-		9A0CB6F71FEC187F0096D4CE /* user_button.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 07A6FBDB1BA0E28F00D9C008 /* user_button.cpp */; };
-		9A0CB6F81FEC187F0096D4CE /* user_control_box.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 07A6FBDD1BA0E28F00D9C008 /* user_control_box.cpp */; };
-		9A0CB6F91FEC187F0096D4CE /* framework.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9AEB760016F78F120085103B /* framework.cpp */; };
-		9A6630531D210AC900664CE3 /* libios_core.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 9A9705C21915E3B500032B50 /* libios_core.a */; };
-		9A6630551D210AD200664CE3 /* libios_base.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 9A6630541D210AD200664CE3 /* libios_base.dylib */; };
-		9A6630571D210AF800664CE3 /* libios_axis.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 9A6630561D210AF800664CE3 /* libios_axis.dylib */; };
-		9A6630591D210B0200664CE3 /* libios_aura.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 9A6630581D210B0200664CE3 /* libios_aura.dylib */; };
-		9A8B50A919C90CD300E4F4D9 /* libcore.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 9A9705C01915E3B500032B50 /* libcore.dylib */; };
-		9ACB7A6320D23C1200C1C857 /* experience_lite_user_theme.h in Headers */ = {isa = PBXBuildFile; fileRef = 9ACB7A6120D23C1100C1C857 /* experience_lite_user_theme.h */; };
-		9ACB7A6420D23C1200C1C857 /* experience_lite_user_theme.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9ACB7A6220D23C1200C1C857 /* experience_lite_user_theme.cpp */; };
-		9AE24E6B1904CFE2001AEFFB /* XCTest.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9AE24E6A1904CFE2001AEFFB /* XCTest.framework */; };
-		9AE24E6C1904CFE2001AEFFB /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9AE24E5C1904CFE2001AEFFB /* Foundation.framework */; };
-		9AE24E6E1904CFE2001AEFFB /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9AE24E6D1904CFE2001AEFFB /* UIKit.framework */; };
-		9AE24E711904CFE2001AEFFB /* libexperience_lite.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 9AE24E5A1904CFE2001AEFFB /* libexperience_lite.dylib */; };
-		9AE24E771904CFE2001AEFFB /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 9AE24E751904CFE2001AEFFB /* InfoPlist.strings */; };
-		9AE24E791904CFE2001AEFFB /* app_core_uinteraction_iosTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 9AE24E781904CFE2001AEFFB /* app_core_uinteraction_iosTests.m */; };
-		9AEB761D16F78F120085103B /* framework.h in Headers */ = {isa = PBXBuildFile; fileRef = 9AEB760116F78F120085103B /* framework.h */; };
+		051C6941C14CEC7331401F48 /* libaura.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = BF485C7F2D65D60BAC28F556 /* libaura.dylib */; };
+		5B46BDE8FB846DD10FB5C620 /* libberg.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = DB2371524DB2121EF2B2B9FA /* libberg.dylib */; };
+		EB5764226F31BF94860FA40F /* libaxis.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 176E40079FFE104F9E8030E8 /* libaxis.dylib */; };
+		986024E7EEF619CCD901C477 /* user_button.h in Headers */ = {isa = PBXBuildFile; fileRef = 67573C42940F91DF1FBEB3B2 /* user_button.h */; };
+		0C0B55287B167589E1F8DBC3 /* user_control_box.h in Headers */ = {isa = PBXBuildFile; fileRef = 8FE1EB9FB01D0F20AD1714DC /* user_control_box.h */; };
+		A7512FDB2B9A9C279CBBDC97 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F12E2533B970BA28A31817AE /* Foundation.framework */; };
+		6EE3BECD771E0DA691765BF4 /* experience_lite_frame_013.cpp in Sources */ = {isa = PBXBuildFile; fileRef = F67EB1D7DA2F004449906A59 /* experience_lite_frame_013.cpp */; };
+		566C5F91256269EE34A322CB /* experience_lite_frame_002.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 6B5D6B28B52C0348B581AAEA /* experience_lite_frame_002.cpp */; };
+		F07AD51FF0DA1219A96CEE37 /* experience_lite_frame.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 6F5F24535DB6C4116681AF85 /* experience_lite_frame.cpp */; };
+		1B7A173A0B32943DE7A5EA98 /* experience_lite_frame_Minimal001.cpp in Sources */ = {isa = PBXBuildFile; fileRef = CE3E3DFE7C12A4C59BB97A93 /* experience_lite_frame_Minimal001.cpp */; };
+		F93C3197FDB695C605798478 /* experience_lite_frame_001.h in Headers */ = {isa = PBXBuildFile; fileRef = 87CB36B1319B8FB4B323B48D /* experience_lite_frame_001.h */; };
+		2F1D380EF798A7D2A908437A /* experience_lite_frame_008.h in Headers */ = {isa = PBXBuildFile; fileRef = F9EB944C93B3B14A08051CA3 /* experience_lite_frame_008.h */; };
+		4CB57AFB2F319403310E1761 /* experience_lite_frame_011.cpp in Sources */ = {isa = PBXBuildFile; fileRef = A1DF55AF6F56854014A90EF4 /* experience_lite_frame_011.cpp */; };
+		23C1FB0F68EE92628B7DCB44 /* experience_lite_library.cpp in Sources */ = {isa = PBXBuildFile; fileRef = E8D9EE5BDA114E357F6B5D0A /* experience_lite_library.cpp */; };
+		D007F7BCB1FDE16856D4B296 /* experience_lite_library.h in Headers */ = {isa = PBXBuildFile; fileRef = 1099409FEBD939D3381A10DA /* experience_lite_library.h */; };
+		E4F6012357288D727386E46F /* experience_lite_frame.h in Headers */ = {isa = PBXBuildFile; fileRef = F3B8DCFA9608A2B148243E16 /* experience_lite_frame.h */; };
+		5DCE4B551BF3F212B0857EBB /* experience_lite_interaction.cpp in Sources */ = {isa = PBXBuildFile; fileRef = F0F57E75101AE126C849AAA3 /* experience_lite_interaction.cpp */; };
+		F21672B943B7F6C264234F67 /* experience_lite_frame_005.h in Headers */ = {isa = PBXBuildFile; fileRef = 27B903ABFE3840D1A8E73FBF /* experience_lite_frame_005.h */; };
+		F0A80CEB940D39C2D64EEA18 /* experience_lite.h in Headers */ = {isa = PBXBuildFile; fileRef = D94E86561BF718B648A2F007 /* experience_lite.h */; };
+		8A26396A4EC0E67B8D3EC1F9 /* experience_lite_frame_001.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 5F5382E289D426739BA4AAB9 /* experience_lite_frame_001.cpp */; };
+		AABC8FD479C547957F39213B /* experience_lite.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 91ABE1A07C6BF723507AD1F2 /* experience_lite.cpp */; };
+		375B467FABEFF378B1A7E0DD /* experience_lite_frame_011.h in Headers */ = {isa = PBXBuildFile; fileRef = 67DC33DDE9D7CDC9E7803338 /* experience_lite_frame_011.h */; };
+		66620ECC4358732275B30101 /* experience_lite_frame_008.cpp in Sources */ = {isa = PBXBuildFile; fileRef = C1FB025DACE5FCFFD4472DEE /* experience_lite_frame_008.cpp */; };
+		270334D446EA2E1FF7AC0BBF /* experience_lite_interaction.h in Headers */ = {isa = PBXBuildFile; fileRef = 1301B14DF68802038DDE3506 /* experience_lite_interaction.h */; };
+		AB696EB6B5333C206A1B56B1 /* experience_lite_frame_002.h in Headers */ = {isa = PBXBuildFile; fileRef = 86B3BC71EA8740FA5EBF3B41 /* experience_lite_frame_002.h */; };
+		4A74952788ED1A226F4F5109 /* experience_lite_frame_005.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 636600DE73B8BA6AFE458E0C /* experience_lite_frame_005.cpp */; };
+		2911DD94953A7808E193BEA3 /* experience_lite_frame_013.h in Headers */ = {isa = PBXBuildFile; fileRef = C3E49F6A87652A21817EBF36 /* experience_lite_frame_013.h */; };
+		EDEA6009B6545625CE776A94 /* experience_lite_frame_Minimal001.h in Headers */ = {isa = PBXBuildFile; fileRef = 59F474E5F849DBCA1DDE87CD /* experience_lite_frame_Minimal001.h */; };
+		1A593EC349D022326565A98A /* user_button.cpp in Sources */ = {isa = PBXBuildFile; fileRef = E9DE49A0548D76E58BB85261 /* user_button.cpp */; };
+		A3B592CFF4587243DFDCBF8C /* user_control_box.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 2141EF5B584C465E74ED635D /* user_control_box.cpp */; };
+		B5A84EAB3422666E57798432 /* framework.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D661509AB7E99F6EA1724D10 /* framework.cpp */; };
+		3D64BBB0506DA4392A4BFD26 /* libios_core.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 024AFD579FF7F00FC1BC0C82 /* libios_core.a */; };
+		0A50491DE86F12BC9E8F2F6E /* libios_base.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 3791CD320F7969A9B632AA50 /* libios_base.dylib */; };
+		BCE4978FA19AA558F38BEDED /* libios_axis.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 9C9C45CD75D1F06FFAA7C1D6 /* libios_axis.dylib */; };
+		A1636A7CAE5BCF48BF9CF2F8 /* libios_aura.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 07A4C1E183322DEF1F242114 /* libios_aura.dylib */; };
+		F627EA993BA04648D6FBCC4F /* libcore.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = FEF038889108AA730800D0DF /* libcore.dylib */; };
+		984D7B53185C40808F185B0D /* experience_lite_user_theme.h in Headers */ = {isa = PBXBuildFile; fileRef = 5B95886C9D62F5656EE539C4 /* experience_lite_user_theme.h */; };
+		F5612691F4373B613ACAD7A7 /* experience_lite_user_theme.cpp in Sources */ = {isa = PBXBuildFile; fileRef = EBFB63F3C92CCEF14B4FE1E3 /* experience_lite_user_theme.cpp */; };
+		473AB1C5761ED185348379F9 /* XCTest.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8FA1309E7583C443B12D7450 /* XCTest.framework */; };
+		418F204E9F0E3F3B4A4693A1 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F12E2533B970BA28A31817AE /* Foundation.framework */; };
+		A9BCF2B53965F0EDE37A47C0 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5D59995AB71E3DDEC1CE034D /* UIKit.framework */; };
+		E32D02EEA2FE6F55AAD96BDD /* libexperience_lite.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = B5A40671F0BBA826C01C968C /* libexperience_lite.dylib */; };
+		529B08AE039E0BF52BD5FE04 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 18933A7F20E80164B9B053B0 /* InfoPlist.strings */; };
+		D4642A791DE81CDD593D20A8 /* app_core_uinteraction_iosTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 59784C024338D5933BAA775B /* app_core_uinteraction_iosTests.m */; };
+		3FDF12631724BF8FC2D41FBF /* framework.h in Headers */ = {isa = PBXBuildFile; fileRef = 8087C52C7A48EC5DC5B7E2F7 /* framework.h */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
-		9A5CDDA71D20FEB80093150A /* PBXContainerItemProxy */ = {
+		EAC0E5E3B63A0750281D31EC /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
-			containerPortal = 9A9705B81915E3B400032B50 /* aura.xcodeproj */;
+			containerPortal = 9AACE40852D96CCF24AF74C7 /* aura.xcodeproj */;
 			proxyType = 1;
 			remoteGlobalIDString = 9AE24DDB1904CF6E001AEFFB;
 			remoteInfo = ios_core;
 		};
-		9A8B50A719C90CC500E4F4D9 /* PBXContainerItemProxy */ = {
+		C0E7410743390ED8659B4142 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
-			containerPortal = 9A9705B81915E3B400032B50 /* aura.xcodeproj */;
+			containerPortal = 9AACE40852D96CCF24AF74C7 /* aura.xcodeproj */;
 			proxyType = 1;
 			remoteGlobalIDString = 9A19A1A419C6F50B0018DF7D;
 			remoteInfo = aura;
 		};
-		9A9705BF1915E3B500032B50 /* PBXContainerItemProxy */ = {
+		B48B1061BC9571FF460FB225 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
-			containerPortal = 9A9705B81915E3B400032B50 /* aura.xcodeproj */;
+			containerPortal = 9AACE40852D96CCF24AF74C7 /* aura.xcodeproj */;
 			proxyType = 2;
 			remoteGlobalIDString = 9A8916841751D72100E531ED;
 			remoteInfo = aura;
 		};
-		9A9705C11915E3B500032B50 /* PBXContainerItemProxy */ = {
+		BABDE82F0DA580CC20595717 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
-			containerPortal = 9A9705B81915E3B400032B50 /* aura.xcodeproj */;
+			containerPortal = 9AACE40852D96CCF24AF74C7 /* aura.xcodeproj */;
 			proxyType = 2;
 			remoteGlobalIDString = 9AE24DDC1904CF6E001AEFFB;
 			remoteInfo = core_ios;
 		};
-		9A9705C31915E3B500032B50 /* PBXContainerItemProxy */ = {
+		F2CD60C98489B7706A2B196A /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
-			containerPortal = 9A9705B81915E3B400032B50 /* aura.xcodeproj */;
+			containerPortal = 9AACE40852D96CCF24AF74C7 /* aura.xcodeproj */;
 			proxyType = 2;
 			remoteGlobalIDString = 9AE24DEB1904CF6E001AEFFB;
 			remoteInfo = core_iosTests;
 		};
-		9AE24E6F1904CFE2001AEFFB /* PBXContainerItemProxy */ = {
+		11E94893E9F12115B4238F03 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
-			containerPortal = 9AEB75EC16F78EDC0085103B /* Project object */;
+			containerPortal = C7EED73E94233CCCD85E7DC3 /* Project object */;
 			proxyType = 1;
-			remoteGlobalIDString = 9AE24E591904CFE2001AEFFB;
+			remoteGlobalIDString = 6373DFE5D67439EECA4B9AA6;
 			remoteInfo = app_core_uinteraction_ios;
 		};
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXCopyFilesBuildPhase section */
-		9AE24E581904CFE2001AEFFB /* CopyFiles */ = {
+		78FE85D18DFC92C07FB30AE0 /* CopyFiles */ = {
 			isa = PBXCopyFilesBuildPhase;
 			buildActionMask = 2147483647;
 			dstPath = "include/$(PRODUCT_NAME)";
@@ -112,206 +112,206 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
-		077A022E1B4D5B2C001C85FF /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS8.4.sdk/System/Library/Frameworks/UIKit.framework; sourceTree = DEVELOPER_DIR; };
-		0793EA2A1CA4063B001374D8 /* libaura.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libaura.dylib; path = ../../app/aura/build/Debug/libaura.dylib; sourceTree = "<group>"; };
-		0793EA2C1CA40726001374D8 /* libberg.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libberg.dylib; path = ../../app/base/build/Debug/libberg.dylib; sourceTree = "<group>"; };
-		0793EA2E1CA4074C001374D8 /* libaxis.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libaxis.dylib; path = ../../app/axis/build/Debug/libaxis.dylib; sourceTree = "<group>"; };
-		07A6FBDB1BA0E28F00D9C008 /* user_button.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = user_button.cpp; sourceTree = "<group>"; };
-		07A6FBDC1BA0E28F00D9C008 /* user_button.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = user_button.h; sourceTree = "<group>"; };
-		07A6FBDD1BA0E28F00D9C008 /* user_control_box.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = user_control_box.cpp; sourceTree = "<group>"; };
-		07A6FBDE1BA0E28F00D9C008 /* user_control_box.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = user_control_box.h; sourceTree = "<group>"; };
-		9A0CB6611FEC16CB0096D4CE /* experience_lite_frame_013.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = experience_lite_frame_013.cpp; sourceTree = "<group>"; };
-		9A0CB6621FEC16CB0096D4CE /* experience_lite_frame_002.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = experience_lite_frame_002.cpp; sourceTree = "<group>"; };
-		9A0CB6631FEC16CB0096D4CE /* experience_lite_frame.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = experience_lite_frame.cpp; sourceTree = "<group>"; };
-		9A0CB6651FEC16CB0096D4CE /* experience_lite_frame_Minimal001.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = experience_lite_frame_Minimal001.cpp; sourceTree = "<group>"; };
-		9A0CB6681FEC16CC0096D4CE /* experience_lite_frame_001.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = experience_lite_frame_001.h; sourceTree = "<group>"; };
-		9A0CB66A1FEC16CC0096D4CE /* experience_lite_frame_008.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = experience_lite_frame_008.h; sourceTree = "<group>"; };
-		9A0CB66B1FEC16CC0096D4CE /* experience_lite_frame_011.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = experience_lite_frame_011.cpp; sourceTree = "<group>"; };
-		9A0CB66C1FEC16CD0096D4CE /* experience_lite_library.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = experience_lite_library.cpp; sourceTree = "<group>"; };
-		9A0CB66E1FEC16CD0096D4CE /* experience_lite_library.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = experience_lite_library.h; sourceTree = "<group>"; };
-		9A0CB6701FEC16CD0096D4CE /* experience_lite_frame.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = experience_lite_frame.h; sourceTree = "<group>"; };
-		9A0CB6711FEC16CE0096D4CE /* experience_lite_interaction.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = experience_lite_interaction.cpp; sourceTree = "<group>"; };
-		9A0CB6731FEC16CE0096D4CE /* experience_lite_frame_005.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = experience_lite_frame_005.h; sourceTree = "<group>"; };
-		9A0CB6771FEC16D00096D4CE /* experience_lite.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = experience_lite.h; sourceTree = "<group>"; };
-		9A0CB6791FEC16D10096D4CE /* experience_lite_frame_001.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = experience_lite_frame_001.cpp; sourceTree = "<group>"; };
-		9A0CB67B1FEC16D10096D4CE /* experience_lite.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = experience_lite.cpp; sourceTree = "<group>"; };
-		9A0CB67C1FEC16D20096D4CE /* experience_lite_frame_011.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = experience_lite_frame_011.h; sourceTree = "<group>"; };
-		9A0CB6841FEC16D40096D4CE /* experience_lite_frame_008.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = experience_lite_frame_008.cpp; sourceTree = "<group>"; };
-		9A0CB6861FEC16D50096D4CE /* experience_lite_interaction.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = experience_lite_interaction.h; sourceTree = "<group>"; };
-		9A0CB6871FEC16D50096D4CE /* experience_lite_frame_002.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = experience_lite_frame_002.h; sourceTree = "<group>"; };
-		9A0CB6881FEC16D60096D4CE /* experience_lite_frame_005.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = experience_lite_frame_005.cpp; sourceTree = "<group>"; };
-		9A0CB6891FEC16D60096D4CE /* experience_lite_frame_013.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = experience_lite_frame_013.h; sourceTree = "<group>"; };
-		9A0CB68B1FEC16D70096D4CE /* experience_lite_frame_Minimal001.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = experience_lite_frame_Minimal001.h; sourceTree = "<group>"; };
-		9A5CDDA91D20FEC60093150A /* libios_core.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libios_core.dylib; path = "../../../../macos/app/aura/build/Debug-iphoneos/libios_core.dylib"; sourceTree = "<group>"; };
-		9A5CDDAB1D20FED10093150A /* libios_base.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libios_base.dylib; path = "../../app/base/build/Debug-iphoneos/libios_base.dylib"; sourceTree = "<group>"; };
-		9A5CDDAD1D20FEE50093150A /* libios_axis.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libios_axis.dylib; path = "../../app/axis/build/Debug-iphoneos/libios_axis.dylib"; sourceTree = "<group>"; };
-		9A5CDDAF1D20FEF40093150A /* libaura.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libaura.dylib; path = "../../../../macos/app/aura/build/Debug-iphoneos/libaura.dylib"; sourceTree = "<group>"; };
-		9A6630541D210AD200664CE3 /* libios_base.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libios_base.dylib; path = "../../app/base/build/Debug-iphoneos/libios_base.dylib"; sourceTree = "<group>"; };
-		9A6630561D210AF800664CE3 /* libios_axis.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libios_axis.dylib; path = "../../../../macos/app/axis/build/Debug-iphoneos/libios_axis.dylib"; sourceTree = "<group>"; };
-		9A6630581D210B0200664CE3 /* libios_aura.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libios_aura.dylib; path = "../../app/aura/build/Debug-iphoneos/libios_aura.dylib"; sourceTree = "<group>"; };
-		9A6716831D1558630069A961 /* libberg.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libberg.dylib; path = "../../app/base/build/Debug-iphoneos/libberg.dylib"; sourceTree = "<group>"; };
-		9A6716861D15586E0069A961 /* libaxis.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libaxis.dylib; path = "../../app/axis/build/Debug-iphoneos/libaxis.dylib"; sourceTree = "<group>"; };
-		9A6716881D1558770069A961 /* libaura.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libaura.dylib; path = "../../../../Users/camilo/Library/Developer/Xcode/DerivedData/all-ios-hcjyrbebieoraofrrypdpkveyzyc/Build/Products/Debug-iphonesimulator/libaura.dylib"; sourceTree = "<group>"; };
-		9A9705B81915E3B400032B50 /* aura.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = aura.xcodeproj; path = ../../app/aura/.xcodeproj; sourceTree = SOURCE_ROOT; };
-		9ACB7A6120D23C1100C1C857 /* experience_lite_user_theme.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = experience_lite_user_theme.h; sourceTree = "<group>"; };
-		9ACB7A6220D23C1200C1C857 /* experience_lite_user_theme.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = experience_lite_user_theme.cpp; sourceTree = "<group>"; };
-		9AE24E5A1904CFE2001AEFFB /* libexperience_lite.dylib */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libexperience_lite.dylib; sourceTree = BUILT_PRODUCTS_DIR; };
-		9AE24E5C1904CFE2001AEFFB /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
-		9AE24E691904CFE2001AEFFB /* experience_lite_iosTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = experience_lite_iosTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
-		9AE24E6A1904CFE2001AEFFB /* XCTest.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = XCTest.framework; path = Library/Frameworks/XCTest.framework; sourceTree = DEVELOPER_DIR; };
-		9AE24E6D1904CFE2001AEFFB /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = Library/Frameworks/UIKit.framework; sourceTree = DEVELOPER_DIR; };
-		9AE24E741904CFE2001AEFFB /* app_core_uinteraction_iosTests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "app_core_uinteraction_iosTests-Info.plist"; sourceTree = "<group>"; };
-		9AE24E761904CFE2001AEFFB /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
-		9AE24E781904CFE2001AEFFB /* app_core_uinteraction_iosTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = app_core_uinteraction_iosTests.m; sourceTree = "<group>"; };
-		9AEB75F416F78EDC0085103B /* libexperience_lite.dylib */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.dylib"; includeInIndex = 0; path = libexperience_lite.dylib; sourceTree = BUILT_PRODUCTS_DIR; };
-		9AEB760016F78F120085103B /* framework.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = framework.cpp; sourceTree = "<group>"; };
-		9AEB760116F78F120085103B /* framework.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = framework.h; sourceTree = "<group>"; };
+		964AD12A404AF1D6158B9683 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS8.4.sdk/System/Library/Frameworks/UIKit.framework; sourceTree = DEVELOPER_DIR; };
+		BF485C7F2D65D60BAC28F556 /* libaura.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libaura.dylib; path = ../../app/aura/build/Debug/libaura.dylib; sourceTree = "<group>"; };
+		DB2371524DB2121EF2B2B9FA /* libberg.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libberg.dylib; path = ../../app/base/build/Debug/libberg.dylib; sourceTree = "<group>"; };
+		176E40079FFE104F9E8030E8 /* libaxis.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libaxis.dylib; path = ../../app/axis/build/Debug/libaxis.dylib; sourceTree = "<group>"; };
+		E9DE49A0548D76E58BB85261 /* user_button.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = user_button.cpp; sourceTree = "<group>"; };
+		67573C42940F91DF1FBEB3B2 /* user_button.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = user_button.h; sourceTree = "<group>"; };
+		2141EF5B584C465E74ED635D /* user_control_box.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = user_control_box.cpp; sourceTree = "<group>"; };
+		8FE1EB9FB01D0F20AD1714DC /* user_control_box.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = user_control_box.h; sourceTree = "<group>"; };
+		F67EB1D7DA2F004449906A59 /* experience_lite_frame_013.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = experience_lite_frame_013.cpp; sourceTree = "<group>"; };
+		6B5D6B28B52C0348B581AAEA /* experience_lite_frame_002.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = experience_lite_frame_002.cpp; sourceTree = "<group>"; };
+		6F5F24535DB6C4116681AF85 /* experience_lite_frame.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = experience_lite_frame.cpp; sourceTree = "<group>"; };
+		CE3E3DFE7C12A4C59BB97A93 /* experience_lite_frame_Minimal001.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = experience_lite_frame_Minimal001.cpp; sourceTree = "<group>"; };
+		87CB36B1319B8FB4B323B48D /* experience_lite_frame_001.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = experience_lite_frame_001.h; sourceTree = "<group>"; };
+		F9EB944C93B3B14A08051CA3 /* experience_lite_frame_008.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = experience_lite_frame_008.h; sourceTree = "<group>"; };
+		A1DF55AF6F56854014A90EF4 /* experience_lite_frame_011.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = experience_lite_frame_011.cpp; sourceTree = "<group>"; };
+		E8D9EE5BDA114E357F6B5D0A /* experience_lite_library.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = experience_lite_library.cpp; sourceTree = "<group>"; };
+		1099409FEBD939D3381A10DA /* experience_lite_library.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = experience_lite_library.h; sourceTree = "<group>"; };
+		F3B8DCFA9608A2B148243E16 /* experience_lite_frame.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = experience_lite_frame.h; sourceTree = "<group>"; };
+		F0F57E75101AE126C849AAA3 /* experience_lite_interaction.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = experience_lite_interaction.cpp; sourceTree = "<group>"; };
+		27B903ABFE3840D1A8E73FBF /* experience_lite_frame_005.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = experience_lite_frame_005.h; sourceTree = "<group>"; };
+		D94E86561BF718B648A2F007 /* experience_lite.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = experience_lite.h; sourceTree = "<group>"; };
+		5F5382E289D426739BA4AAB9 /* experience_lite_frame_001.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = experience_lite_frame_001.cpp; sourceTree = "<group>"; };
+		91ABE1A07C6BF723507AD1F2 /* experience_lite.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = experience_lite.cpp; sourceTree = "<group>"; };
+		67DC33DDE9D7CDC9E7803338 /* experience_lite_frame_011.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = experience_lite_frame_011.h; sourceTree = "<group>"; };
+		C1FB025DACE5FCFFD4472DEE /* experience_lite_frame_008.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = experience_lite_frame_008.cpp; sourceTree = "<group>"; };
+		1301B14DF68802038DDE3506 /* experience_lite_interaction.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = experience_lite_interaction.h; sourceTree = "<group>"; };
+		86B3BC71EA8740FA5EBF3B41 /* experience_lite_frame_002.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = experience_lite_frame_002.h; sourceTree = "<group>"; };
+		636600DE73B8BA6AFE458E0C /* experience_lite_frame_005.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = experience_lite_frame_005.cpp; sourceTree = "<group>"; };
+		C3E49F6A87652A21817EBF36 /* experience_lite_frame_013.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = experience_lite_frame_013.h; sourceTree = "<group>"; };
+		59F474E5F849DBCA1DDE87CD /* experience_lite_frame_Minimal001.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = experience_lite_frame_Minimal001.h; sourceTree = "<group>"; };
+		07C4CA8687792FC105FFA087 /* libios_core.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libios_core.dylib; path = "../../../../macos/app/aura/build/Debug-iphoneos/libios_core.dylib"; sourceTree = "<group>"; };
+		DD645FF58052C97FFB0E079D /* libios_base.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libios_base.dylib; path = "../../app/base/build/Debug-iphoneos/libios_base.dylib"; sourceTree = "<group>"; };
+		068FB166AB563AED735F35D4 /* libios_axis.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libios_axis.dylib; path = "../../app/axis/build/Debug-iphoneos/libios_axis.dylib"; sourceTree = "<group>"; };
+		5672A74BD8FA41BA1E5D368E /* libaura.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libaura.dylib; path = "../../../../macos/app/aura/build/Debug-iphoneos/libaura.dylib"; sourceTree = "<group>"; };
+		3791CD320F7969A9B632AA50 /* libios_base.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libios_base.dylib; path = "../../app/base/build/Debug-iphoneos/libios_base.dylib"; sourceTree = "<group>"; };
+		9C9C45CD75D1F06FFAA7C1D6 /* libios_axis.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libios_axis.dylib; path = "../../../../macos/app/axis/build/Debug-iphoneos/libios_axis.dylib"; sourceTree = "<group>"; };
+		07A4C1E183322DEF1F242114 /* libios_aura.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libios_aura.dylib; path = "../../app/aura/build/Debug-iphoneos/libios_aura.dylib"; sourceTree = "<group>"; };
+		EAD29542E70BE0CBCB378B10 /* libberg.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libberg.dylib; path = "../../app/base/build/Debug-iphoneos/libberg.dylib"; sourceTree = "<group>"; };
+		C5885A396556A0FAE39E355D /* libaxis.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libaxis.dylib; path = "../../app/axis/build/Debug-iphoneos/libaxis.dylib"; sourceTree = "<group>"; };
+		4DF5B3974CB39C155123AB8F /* libaura.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libaura.dylib; path = "../../../../Users/camilo/Library/Developer/Xcode/DerivedData/all-ios-hcjyrbebieoraofrrypdpkveyzyc/Build/Products/Debug-iphonesimulator/libaura.dylib"; sourceTree = "<group>"; };
+		9AACE40852D96CCF24AF74C7 /* aura.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = aura.xcodeproj; path = ../../app/aura/.xcodeproj; sourceTree = SOURCE_ROOT; };
+		5B95886C9D62F5656EE539C4 /* experience_lite_user_theme.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = experience_lite_user_theme.h; sourceTree = "<group>"; };
+		EBFB63F3C92CCEF14B4FE1E3 /* experience_lite_user_theme.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = experience_lite_user_theme.cpp; sourceTree = "<group>"; };
+		B5A40671F0BBA826C01C968C /* libexperience_lite.dylib */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libexperience_lite.dylib; sourceTree = BUILT_PRODUCTS_DIR; };
+		F12E2533B970BA28A31817AE /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
+		7BCC551A0CC6D1403B8C1C6E /* experience_lite_iosTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = experience_lite_iosTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		8FA1309E7583C443B12D7450 /* XCTest.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = XCTest.framework; path = Library/Frameworks/XCTest.framework; sourceTree = DEVELOPER_DIR; };
+		5D59995AB71E3DDEC1CE034D /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = Library/Frameworks/UIKit.framework; sourceTree = DEVELOPER_DIR; };
+		62E5621593B8308FD732E41B /* app_core_uinteraction_iosTests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "app_core_uinteraction_iosTests-Info.plist"; sourceTree = "<group>"; };
+		94469D6EFE12BFCE4B3A1082 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
+		59784C024338D5933BAA775B /* app_core_uinteraction_iosTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = app_core_uinteraction_iosTests.m; sourceTree = "<group>"; };
+		69F500518D132226A7CE12CD /* libexperience_lite.dylib */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.dylib"; includeInIndex = 0; path = libexperience_lite.dylib; sourceTree = BUILT_PRODUCTS_DIR; };
+		D661509AB7E99F6EA1724D10 /* framework.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = framework.cpp; sourceTree = "<group>"; };
+		8087C52C7A48EC5DC5B7E2F7 /* framework.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = framework.h; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
-		9AE24E571904CFE2001AEFFB /* Frameworks */ = {
+		C472F481EDF13D535DC47DD1 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				9A6630591D210B0200664CE3 /* libios_aura.dylib in Frameworks */,
-				9A6630571D210AF800664CE3 /* libios_axis.dylib in Frameworks */,
-				9A6630551D210AD200664CE3 /* libios_base.dylib in Frameworks */,
-				9A6630531D210AC900664CE3 /* libios_core.a in Frameworks */,
+				A1636A7CAE5BCF48BF9CF2F8 /* libios_aura.dylib in Frameworks */,
+				BCE4978FA19AA558F38BEDED /* libios_axis.dylib in Frameworks */,
+				0A50491DE86F12BC9E8F2F6E /* libios_base.dylib in Frameworks */,
+				3D64BBB0506DA4392A4BFD26 /* libios_core.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		9AE24E661904CFE2001AEFFB /* Frameworks */ = {
+		D0C59B56BB98283C1E80EC5B /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				9AE24E6B1904CFE2001AEFFB /* XCTest.framework in Frameworks */,
-				9AE24E6E1904CFE2001AEFFB /* UIKit.framework in Frameworks */,
-				9AE24E6C1904CFE2001AEFFB /* Foundation.framework in Frameworks */,
-				9AE24E711904CFE2001AEFFB /* libexperience_lite.dylib in Frameworks */,
+				473AB1C5761ED185348379F9 /* XCTest.framework in Frameworks */,
+				A9BCF2B53965F0EDE37A47C0 /* UIKit.framework in Frameworks */,
+				418F204E9F0E3F3B4A4693A1 /* Foundation.framework in Frameworks */,
+				E32D02EEA2FE6F55AAD96BDD /* libexperience_lite.dylib in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		9AEB75F116F78EDC0085103B /* Frameworks */ = {
+		A0BE8766368E32B217943178 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				0793EA2F1CA4074C001374D8 /* libaxis.dylib in Frameworks */,
-				0793EA2D1CA40726001374D8 /* libberg.dylib in Frameworks */,
-				0793EA2B1CA4063B001374D8 /* libaura.dylib in Frameworks */,
-				07B6597D190F44A9002DAADE /* Foundation.framework in Frameworks */,
-				9A8B50A919C90CD300E4F4D9 /* libcore.dylib in Frameworks */,
+				EB5764226F31BF94860FA40F /* libaxis.dylib in Frameworks */,
+				5B46BDE8FB846DD10FB5C620 /* libberg.dylib in Frameworks */,
+				051C6941C14CEC7331401F48 /* libaura.dylib in Frameworks */,
+				A7512FDB2B9A9C279CBBDC97 /* Foundation.framework in Frameworks */,
+				F627EA993BA04648D6FBCC4F /* libcore.dylib in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		9A9705B91915E3B400032B50 /* Products */ = {
+		B582B5B9B24E42FED98A72A9 /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				9A9705C01915E3B500032B50 /* libcore.dylib */,
-				9A9705C21915E3B500032B50 /* libios_core.a */,
-				9A9705C41915E3B500032B50 /* core_iosTests.xctest */,
+				FEF038889108AA730800D0DF /* libcore.dylib */,
+				024AFD579FF7F00FC1BC0C82 /* libios_core.a */,
+				437AEF3167076B839BA5A129 /* core_iosTests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
 		};
-		9AE24E5B1904CFE2001AEFFB /* Frameworks */ = {
+		B99CB39503003494511394FD /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
-				9A6630581D210B0200664CE3 /* libios_aura.dylib */,
-				9A6630561D210AF800664CE3 /* libios_axis.dylib */,
-				9A6630541D210AD200664CE3 /* libios_base.dylib */,
-				9A5CDDAF1D20FEF40093150A /* libaura.dylib */,
-				9A5CDDAD1D20FEE50093150A /* libios_axis.dylib */,
-				9A5CDDAB1D20FED10093150A /* libios_base.dylib */,
-				9A5CDDA91D20FEC60093150A /* libios_core.dylib */,
-				9A6716881D1558770069A961 /* libaura.dylib */,
-				9A6716861D15586E0069A961 /* libaxis.dylib */,
-				9A6716831D1558630069A961 /* libberg.dylib */,
-				0793EA2E1CA4074C001374D8 /* libaxis.dylib */,
-				0793EA2C1CA40726001374D8 /* libberg.dylib */,
-				0793EA2A1CA4063B001374D8 /* libaura.dylib */,
-				077A022E1B4D5B2C001C85FF /* UIKit.framework */,
-				9AE24E5C1904CFE2001AEFFB /* Foundation.framework */,
-				9AE24E6A1904CFE2001AEFFB /* XCTest.framework */,
-				9AE24E6D1904CFE2001AEFFB /* UIKit.framework */,
+				07A4C1E183322DEF1F242114 /* libios_aura.dylib */,
+				9C9C45CD75D1F06FFAA7C1D6 /* libios_axis.dylib */,
+				3791CD320F7969A9B632AA50 /* libios_base.dylib */,
+				5672A74BD8FA41BA1E5D368E /* libaura.dylib */,
+				068FB166AB563AED735F35D4 /* libios_axis.dylib */,
+				DD645FF58052C97FFB0E079D /* libios_base.dylib */,
+				07C4CA8687792FC105FFA087 /* libios_core.dylib */,
+				4DF5B3974CB39C155123AB8F /* libaura.dylib */,
+				C5885A396556A0FAE39E355D /* libaxis.dylib */,
+				EAD29542E70BE0CBCB378B10 /* libberg.dylib */,
+				176E40079FFE104F9E8030E8 /* libaxis.dylib */,
+				DB2371524DB2121EF2B2B9FA /* libberg.dylib */,
+				BF485C7F2D65D60BAC28F556 /* libaura.dylib */,
+				964AD12A404AF1D6158B9683 /* UIKit.framework */,
+				F12E2533B970BA28A31817AE /* Foundation.framework */,
+				8FA1309E7583C443B12D7450 /* XCTest.framework */,
+				5D59995AB71E3DDEC1CE034D /* UIKit.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
-		9AE24E721904CFE2001AEFFB /* app_core_uinteraction_iosTests */ = {
+		A635E9CB607F18FD0B1AC350 /* app_core_uinteraction_iosTests */ = {
 			isa = PBXGroup;
 			children = (
-				9AE24E781904CFE2001AEFFB /* app_core_uinteraction_iosTests.m */,
-				9AE24E731904CFE2001AEFFB /* Supporting Files */,
+				59784C024338D5933BAA775B /* app_core_uinteraction_iosTests.m */,
+				07F6B2BC9D5D958835BF32AE /* Supporting Files */,
 			);
 			path = app_core_uinteraction_iosTests;
 			sourceTree = "<group>";
 		};
-		9AE24E731904CFE2001AEFFB /* Supporting Files */ = {
+		07F6B2BC9D5D958835BF32AE /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
-				9AE24E741904CFE2001AEFFB /* app_core_uinteraction_iosTests-Info.plist */,
-				9AE24E751904CFE2001AEFFB /* InfoPlist.strings */,
+				62E5621593B8308FD732E41B /* app_core_uinteraction_iosTests-Info.plist */,
+				18933A7F20E80164B9B053B0 /* InfoPlist.strings */,
 			);
 			name = "Supporting Files";
 			sourceTree = "<group>";
 		};
-		9AEB75EB16F78EDC0085103B = {
+		227A6823CBF81139E21B43D0 = {
 			isa = PBXGroup;
 			children = (
-				9A9705B81915E3B400032B50 /* aura.xcodeproj */,
-				9AEB75FB16F78F120085103B /* uinteraction */,
-				9AE24E721904CFE2001AEFFB /* app_core_uinteraction_iosTests */,
-				9AE24E5B1904CFE2001AEFFB /* Frameworks */,
-				9AEB75F516F78EDC0085103B /* Products */,
+				9AACE40852D96CCF24AF74C7 /* aura.xcodeproj */,
+				7FD71C21E771A0D8F9908E4E /* uinteraction */,
+				A635E9CB607F18FD0B1AC350 /* app_core_uinteraction_iosTests */,
+				B99CB39503003494511394FD /* Frameworks */,
+				C57379216597316DB170C1FB /* Products */,
 			);
 			sourceTree = "<group>";
 		};
-		9AEB75F516F78EDC0085103B /* Products */ = {
+		C57379216597316DB170C1FB /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				9AEB75F416F78EDC0085103B /* libexperience_lite.dylib */,
-				9AE24E5A1904CFE2001AEFFB /* libexperience_lite.dylib */,
-				9AE24E691904CFE2001AEFFB /* experience_lite_iosTests.xctest */,
+				69F500518D132226A7CE12CD /* libexperience_lite.dylib */,
+				B5A40671F0BBA826C01C968C /* libexperience_lite.dylib */,
+				7BCC551A0CC6D1403B8C1C6E /* experience_lite_iosTests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
 		};
-		9AEB75FB16F78F120085103B /* uinteraction */ = {
+		7FD71C21E771A0D8F9908E4E /* uinteraction */ = {
 			isa = PBXGroup;
 			children = (
-				9ACB7A6220D23C1200C1C857 /* experience_lite_user_theme.cpp */,
-				9ACB7A6120D23C1100C1C857 /* experience_lite_user_theme.h */,
-				9A0CB6791FEC16D10096D4CE /* experience_lite_frame_001.cpp */,
-				9A0CB6681FEC16CC0096D4CE /* experience_lite_frame_001.h */,
-				9A0CB6621FEC16CB0096D4CE /* experience_lite_frame_002.cpp */,
-				9A0CB6871FEC16D50096D4CE /* experience_lite_frame_002.h */,
-				9A0CB6881FEC16D60096D4CE /* experience_lite_frame_005.cpp */,
-				9A0CB6731FEC16CE0096D4CE /* experience_lite_frame_005.h */,
-				9A0CB6841FEC16D40096D4CE /* experience_lite_frame_008.cpp */,
-				9A0CB66A1FEC16CC0096D4CE /* experience_lite_frame_008.h */,
-				9A0CB66B1FEC16CC0096D4CE /* experience_lite_frame_011.cpp */,
-				9A0CB67C1FEC16D20096D4CE /* experience_lite_frame_011.h */,
-				9A0CB6611FEC16CB0096D4CE /* experience_lite_frame_013.cpp */,
-				9A0CB6891FEC16D60096D4CE /* experience_lite_frame_013.h */,
-				9A0CB6651FEC16CB0096D4CE /* experience_lite_frame_Minimal001.cpp */,
-				9A0CB68B1FEC16D70096D4CE /* experience_lite_frame_Minimal001.h */,
-				9A0CB6631FEC16CB0096D4CE /* experience_lite_frame.cpp */,
-				9A0CB6701FEC16CD0096D4CE /* experience_lite_frame.h */,
-				9A0CB6711FEC16CE0096D4CE /* experience_lite_interaction.cpp */,
-				9A0CB6861FEC16D50096D4CE /* experience_lite_interaction.h */,
-				9A0CB66C1FEC16CD0096D4CE /* experience_lite_library.cpp */,
-				9A0CB66E1FEC16CD0096D4CE /* experience_lite_library.h */,
-				9A0CB67B1FEC16D10096D4CE /* experience_lite.cpp */,
-				9A0CB6771FEC16D00096D4CE /* experience_lite.h */,
-				07A6FBDB1BA0E28F00D9C008 /* user_button.cpp */,
-				07A6FBDC1BA0E28F00D9C008 /* user_button.h */,
-				07A6FBDD1BA0E28F00D9C008 /* user_control_box.cpp */,
-				07A6FBDE1BA0E28F00D9C008 /* user_control_box.h */,
-				9AEB760016F78F120085103B /* framework.cpp */,
-				9AEB760116F78F120085103B /* framework.h */,
+				EBFB63F3C92CCEF14B4FE1E3 /* experience_lite_user_theme.cpp */,
+				5B95886C9D62F5656EE539C4 /* experience_lite_user_theme.h */,
+				5F5382E289D426739BA4AAB9 /* experience_lite_frame_001.cpp */,
+				87CB36B1319B8FB4B323B48D /* experience_lite_frame_001.h */,
+				6B5D6B28B52C0348B581AAEA /* experience_lite_frame_002.cpp */,
+				86B3BC71EA8740FA5EBF3B41 /* experience_lite_frame_002.h */,
+				636600DE73B8BA6AFE458E0C /* experience_lite_frame_005.cpp */,
+				27B903ABFE3840D1A8E73FBF /* experience_lite_frame_005.h */,
+				C1FB025DACE5FCFFD4472DEE /* experience_lite_frame_008.cpp */,
+				F9EB944C93B3B14A08051CA3 /* experience_lite_frame_008.h */,
+				A1DF55AF6F56854014A90EF4 /* experience_lite_frame_011.cpp */,
+				67DC33DDE9D7CDC9E7803338 /* experience_lite_frame_011.h */,
+				F67EB1D7DA2F004449906A59 /* experience_lite_frame_013.cpp */,
+				C3E49F6A87652A21817EBF36 /* experience_lite_frame_013.h */,
+				CE3E3DFE7C12A4C59BB97A93 /* experience_lite_frame_Minimal001.cpp */,
+				59F474E5F849DBCA1DDE87CD /* experience_lite_frame_Minimal001.h */,
+				6F5F24535DB6C4116681AF85 /* experience_lite_frame.cpp */,
+				F3B8DCFA9608A2B148243E16 /* experience_lite_frame.h */,
+				F0F57E75101AE126C849AAA3 /* experience_lite_interaction.cpp */,
+				1301B14DF68802038DDE3506 /* experience_lite_interaction.h */,
+				E8D9EE5BDA114E357F6B5D0A /* experience_lite_library.cpp */,
+				1099409FEBD939D3381A10DA /* experience_lite_library.h */,
+				91ABE1A07C6BF723507AD1F2 /* experience_lite.cpp */,
+				D94E86561BF718B648A2F007 /* experience_lite.h */,
+				E9DE49A0548D76E58BB85261 /* user_button.cpp */,
+				67573C42940F91DF1FBEB3B2 /* user_button.h */,
+				2141EF5B584C465E74ED635D /* user_control_box.cpp */,
+				8FE1EB9FB01D0F20AD1714DC /* user_control_box.h */,
+				D661509AB7E99F6EA1724D10 /* framework.cpp */,
+				8087C52C7A48EC5DC5B7E2F7 /* framework.h */,
 			);
 			name = uinteraction;
 			sourceTree = "<group>";
@@ -319,100 +319,100 @@
 /* End PBXGroup section */
 
 /* Begin PBXHeadersBuildPhase section */
-		9AEB75F216F78EDC0085103B /* Headers */ = {
+		D952A13FCF72DF83ACAC9014 /* Headers */ = {
 			isa = PBXHeadersBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				07A6FBE01BA0E28F00D9C008 /* user_button.h in Headers */,
-				9A0CB6961FEC16D80096D4CE /* experience_lite_frame.h in Headers */,
-				9A0CB6A01FEC16D80096D4CE /* experience_lite_interaction.h in Headers */,
-				9A0CB6981FEC16D80096D4CE /* experience_lite_frame_005.h in Headers */,
-				9A0CB69C1FEC16D80096D4CE /* experience_lite_frame_011.h in Headers */,
-				9A0CB6A41FEC16D80096D4CE /* experience_lite_frame_Minimal001.h in Headers */,
-				9ACB7A6320D23C1200C1C857 /* experience_lite_user_theme.h in Headers */,
-				9A0CB6951FEC16D80096D4CE /* experience_lite_library.h in Headers */,
-				07A6FBE21BA0E28F00D9C008 /* user_control_box.h in Headers */,
-				9A0CB6911FEC16D80096D4CE /* experience_lite_frame_001.h in Headers */,
-				9A0CB6A31FEC16D80096D4CE /* experience_lite_frame_013.h in Headers */,
-				9A0CB6A11FEC16D80096D4CE /* experience_lite_frame_002.h in Headers */,
-				9A0CB6921FEC16D80096D4CE /* experience_lite_frame_008.h in Headers */,
-				9AEB761D16F78F120085103B /* framework.h in Headers */,
-				9A0CB6991FEC16D80096D4CE /* experience_lite.h in Headers */,
+				986024E7EEF619CCD901C477 /* user_button.h in Headers */,
+				E4F6012357288D727386E46F /* experience_lite_frame.h in Headers */,
+				270334D446EA2E1FF7AC0BBF /* experience_lite_interaction.h in Headers */,
+				F21672B943B7F6C264234F67 /* experience_lite_frame_005.h in Headers */,
+				375B467FABEFF378B1A7E0DD /* experience_lite_frame_011.h in Headers */,
+				EDEA6009B6545625CE776A94 /* experience_lite_frame_Minimal001.h in Headers */,
+				984D7B53185C40808F185B0D /* experience_lite_user_theme.h in Headers */,
+				D007F7BCB1FDE16856D4B296 /* experience_lite_library.h in Headers */,
+				0C0B55287B167589E1F8DBC3 /* user_control_box.h in Headers */,
+				F93C3197FDB695C605798478 /* experience_lite_frame_001.h in Headers */,
+				2911DD94953A7808E193BEA3 /* experience_lite_frame_013.h in Headers */,
+				AB696EB6B5333C206A1B56B1 /* experience_lite_frame_002.h in Headers */,
+				2F1D380EF798A7D2A908437A /* experience_lite_frame_008.h in Headers */,
+				3FDF12631724BF8FC2D41FBF /* framework.h in Headers */,
+				F0A80CEB940D39C2D64EEA18 /* experience_lite.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXHeadersBuildPhase section */
 
 /* Begin PBXNativeTarget section */
-		9AE24E591904CFE2001AEFFB /* ios_experience_lite */ = {
+		6373DFE5D67439EECA4B9AA6 /* ios_experience_lite */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 9AE24E841904CFE2001AEFFB /* Build configuration list for PBXNativeTarget "ios_experience_lite" */;
+			buildConfigurationList = 78AA195C384B6F0EA5DA0FA3 /* Build configuration list for PBXNativeTarget "ios_experience_lite" */;
 			buildPhases = (
-				9AE24E561904CFE2001AEFFB /* Sources */,
-				9AE24E571904CFE2001AEFFB /* Frameworks */,
-				9AE24E581904CFE2001AEFFB /* CopyFiles */,
+				F5DA328230E9B77AB649E64B /* Sources */,
+				C472F481EDF13D535DC47DD1 /* Frameworks */,
+				78FE85D18DFC92C07FB30AE0 /* CopyFiles */,
 			);
 			buildRules = (
 			);
 			dependencies = (
-				9A5CDDA81D20FEB80093150A /* PBXTargetDependency */,
+				05CA6701770BAE8C2821F82C /* PBXTargetDependency */,
 			);
 			name = ios_experience_lite;
 			productName = app_core_uinteraction_ios;
-			productReference = 9AE24E5A1904CFE2001AEFFB /* libexperience_lite.dylib */;
+			productReference = B5A40671F0BBA826C01C968C /* libexperience_lite.dylib */;
 			productType = "com.apple.product-type.library.static";
 		};
-		9AE24E681904CFE2001AEFFB /* experience_lite_iosTests */ = {
+		95CB371E94D4181E06D3459A /* experience_lite_iosTests */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 9AE24E851904CFE2001AEFFB /* Build configuration list for PBXNativeTarget "experience_lite_iosTests" */;
+			buildConfigurationList = 31C53F055705435AFD2CA30A /* Build configuration list for PBXNativeTarget "experience_lite_iosTests" */;
 			buildPhases = (
-				9AE24E651904CFE2001AEFFB /* Sources */,
-				9AE24E661904CFE2001AEFFB /* Frameworks */,
-				9AE24E671904CFE2001AEFFB /* Resources */,
+				88C06BD3AD2E0D06B7954289 /* Sources */,
+				D0C59B56BB98283C1E80EC5B /* Frameworks */,
+				EEEEDC835FB456544F49B608 /* Resources */,
 			);
 			buildRules = (
 			);
 			dependencies = (
-				9AE24E701904CFE2001AEFFB /* PBXTargetDependency */,
+				514940790AE9E0CCC2F5763E /* PBXTargetDependency */,
 			);
 			name = experience_lite_iosTests;
 			productName = app_core_uinteraction_iosTests;
-			productReference = 9AE24E691904CFE2001AEFFB /* experience_lite_iosTests.xctest */;
+			productReference = 7BCC551A0CC6D1403B8C1C6E /* experience_lite_iosTests.xctest */;
 			productType = "com.apple.product-type.bundle.unit-test";
 		};
-		9AEB75F316F78EDC0085103B /* experience_lite */ = {
+		438A3B0F66A3DBF23AA9E6E4 /* experience_lite */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 9AEB75F816F78EDC0085103B /* Build configuration list for PBXNativeTarget "experience_lite" */;
+			buildConfigurationList = 9B615EBD436A47D2DB609228 /* Build configuration list for PBXNativeTarget "experience_lite" */;
 			buildPhases = (
-				9AEB75F016F78EDC0085103B /* Sources */,
-				9AEB75F116F78EDC0085103B /* Frameworks */,
-				9AEB75F216F78EDC0085103B /* Headers */,
+				6A430E2F21498FD94578DA42 /* Sources */,
+				A0BE8766368E32B217943178 /* Frameworks */,
+				D952A13FCF72DF83ACAC9014 /* Headers */,
 			);
 			buildRules = (
 			);
 			dependencies = (
-				9A8B50A819C90CC500E4F4D9 /* PBXTargetDependency */,
+				C48C5A385DA2A520ABD0A94F /* PBXTargetDependency */,
 			);
 			name = experience_lite;
 			productName = app_core_uinteraction;
-			productReference = 9AEB75F416F78EDC0085103B /* libexperience_lite.dylib */;
+			productReference = 69F500518D132226A7CE12CD /* libexperience_lite.dylib */;
 			productType = "com.apple.product-type.library.dynamic";
 		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
-		9AEB75EC16F78EDC0085103B /* Project object */ = {
+		C7EED73E94233CCCD85E7DC3 /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
 				LastUpgradeCheck = 1310;
 				ORGANIZATIONNAME = "Camilo Sasuke Tsumanuma";
 				TargetAttributes = {
-					9AE24E681904CFE2001AEFFB = {
-						TestTargetID = 9AEB75F316F78EDC0085103B;
+					95CB371E94D4181E06D3459A = {
+						TestTargetID = 438A3B0F66A3DBF23AA9E6E4;
 					};
 				};
 			};
-			buildConfigurationList = 9AEB75EF16F78EDC0085103B /* Build configuration list for PBXProject "experience_lite" */;
+			buildConfigurationList = EA7859C846D84EF7F266B0EB /* Build configuration list for PBXProject "experience_lite" */;
 			compatibilityVersion = "Xcode 3.2";
 			developmentRegion = English;
 			hasScannedForEncodings = 0;
@@ -420,122 +420,122 @@
 				English,
 				en,
 			);
-			mainGroup = 9AEB75EB16F78EDC0085103B;
-			productRefGroup = 9AEB75F516F78EDC0085103B /* Products */;
+			mainGroup = 227A6823CBF81139E21B43D0;
+			productRefGroup = C57379216597316DB170C1FB /* Products */;
 			projectDirPath = "";
 			projectReferences = (
 				{
-					ProductGroup = 9A9705B91915E3B400032B50 /* Products */;
-					ProjectRef = 9A9705B81915E3B400032B50 /* aura.xcodeproj */;
+					ProductGroup = B582B5B9B24E42FED98A72A9 /* Products */;
+					ProjectRef = 9AACE40852D96CCF24AF74C7 /* aura.xcodeproj */;
 				},
 			);
 			projectRoot = "";
 			targets = (
-				9AEB75F316F78EDC0085103B /* experience_lite */,
-				9AE24E591904CFE2001AEFFB /* ios_experience_lite */,
-				9AE24E681904CFE2001AEFFB /* experience_lite_iosTests */,
+				438A3B0F66A3DBF23AA9E6E4 /* experience_lite */,
+				6373DFE5D67439EECA4B9AA6 /* ios_experience_lite */,
+				95CB371E94D4181E06D3459A /* experience_lite_iosTests */,
 			);
 		};
 /* End PBXProject section */
 
 /* Begin PBXReferenceProxy section */
-		9A9705C01915E3B500032B50 /* libcore.dylib */ = {
+		FEF038889108AA730800D0DF /* libcore.dylib */ = {
 			isa = PBXReferenceProxy;
 			fileType = "compiled.mach-o.dylib";
 			path = libcore.dylib;
-			remoteRef = 9A9705BF1915E3B500032B50 /* PBXContainerItemProxy */;
+			remoteRef = B48B1061BC9571FF460FB225 /* PBXContainerItemProxy */;
 			sourceTree = BUILT_PRODUCTS_DIR;
 		};
-		9A9705C21915E3B500032B50 /* libios_core.a */ = {
+		024AFD579FF7F00FC1BC0C82 /* libios_core.a */ = {
 			isa = PBXReferenceProxy;
 			fileType = archive.ar;
 			path = libios_core.a;
-			remoteRef = 9A9705C11915E3B500032B50 /* PBXContainerItemProxy */;
+			remoteRef = BABDE82F0DA580CC20595717 /* PBXContainerItemProxy */;
 			sourceTree = BUILT_PRODUCTS_DIR;
 		};
-		9A9705C41915E3B500032B50 /* core_iosTests.xctest */ = {
+		437AEF3167076B839BA5A129 /* core_iosTests.xctest */ = {
 			isa = PBXReferenceProxy;
 			fileType = wrapper.cfbundle;
 			path = core_iosTests.xctest;
-			remoteRef = 9A9705C31915E3B500032B50 /* PBXContainerItemProxy */;
+			remoteRef = F2CD60C98489B7706A2B196A /* PBXContainerItemProxy */;
 			sourceTree = BUILT_PRODUCTS_DIR;
 		};
 /* End PBXReferenceProxy section */
 
 /* Begin PBXResourcesBuildPhase section */
-		9AE24E671904CFE2001AEFFB /* Resources */ = {
+		EEEEDC835FB456544F49B608 /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				9AE24E771904CFE2001AEFFB /* InfoPlist.strings in Resources */,
+				529B08AE039E0BF52BD5FE04 /* InfoPlist.strings in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
-		9AE24E561904CFE2001AEFFB /* Sources */ = {
+		F5DA328230E9B77AB649E64B /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		9AE24E651904CFE2001AEFFB /* Sources */ = {
+		88C06BD3AD2E0D06B7954289 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				9AE24E791904CFE2001AEFFB /* app_core_uinteraction_iosTests.m in Sources */,
+				D4642A791DE81CDD593D20A8 /* app_core_uinteraction_iosTests.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		9AEB75F016F78EDC0085103B /* Sources */ = {
+		6A430E2F21498FD94578DA42 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				9A0CB6F71FEC187F0096D4CE /* user_button.cpp in Sources */,
-				9A0CB6F81FEC187F0096D4CE /* user_control_box.cpp in Sources */,
-				9A0CB6F91FEC187F0096D4CE /* framework.cpp in Sources */,
-				9A0CB69B1FEC16D80096D4CE /* experience_lite.cpp in Sources */,
-				9A0CB6941FEC16D80096D4CE /* experience_lite_library.cpp in Sources */,
-				9A0CB68E1FEC16D80096D4CE /* experience_lite_frame_002.cpp in Sources */,
-				9A0CB6971FEC16D80096D4CE /* experience_lite_interaction.cpp in Sources */,
-				9ACB7A6420D23C1200C1C857 /* experience_lite_user_theme.cpp in Sources */,
-				9A0CB6901FEC16D80096D4CE /* experience_lite_frame_Minimal001.cpp in Sources */,
-				9A0CB68D1FEC16D80096D4CE /* experience_lite_frame_013.cpp in Sources */,
-				9A0CB6931FEC16D80096D4CE /* experience_lite_frame_011.cpp in Sources */,
-				9A0CB6A21FEC16D80096D4CE /* experience_lite_frame_005.cpp in Sources */,
-				9A0CB68F1FEC16D80096D4CE /* experience_lite_frame.cpp in Sources */,
-				9A0CB69E1FEC16D80096D4CE /* experience_lite_frame_008.cpp in Sources */,
-				9A0CB69A1FEC16D80096D4CE /* experience_lite_frame_001.cpp in Sources */,
+				1A593EC349D022326565A98A /* user_button.cpp in Sources */,
+				A3B592CFF4587243DFDCBF8C /* user_control_box.cpp in Sources */,
+				B5A84EAB3422666E57798432 /* framework.cpp in Sources */,
+				AABC8FD479C547957F39213B /* experience_lite.cpp in Sources */,
+				23C1FB0F68EE92628B7DCB44 /* experience_lite_library.cpp in Sources */,
+				566C5F91256269EE34A322CB /* experience_lite_frame_002.cpp in Sources */,
+				5DCE4B551BF3F212B0857EBB /* experience_lite_interaction.cpp in Sources */,
+				F5612691F4373B613ACAD7A7 /* experience_lite_user_theme.cpp in Sources */,
+				1B7A173A0B32943DE7A5EA98 /* experience_lite_frame_Minimal001.cpp in Sources */,
+				6EE3BECD771E0DA691765BF4 /* experience_lite_frame_013.cpp in Sources */,
+				4CB57AFB2F319403310E1761 /* experience_lite_frame_011.cpp in Sources */,
+				4A74952788ED1A226F4F5109 /* experience_lite_frame_005.cpp in Sources */,
+				F07AD51FF0DA1219A96CEE37 /* experience_lite_frame.cpp in Sources */,
+				66620ECC4358732275B30101 /* experience_lite_frame_008.cpp in Sources */,
+				8A26396A4EC0E67B8D3EC1F9 /* experience_lite_frame_001.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
-		9A5CDDA81D20FEB80093150A /* PBXTargetDependency */ = {
+		05CA6701770BAE8C2821F82C /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			name = ios_core;
-			targetProxy = 9A5CDDA71D20FEB80093150A /* PBXContainerItemProxy */;
+			targetProxy = EAC0E5E3B63A0750281D31EC /* PBXContainerItemProxy */;
 		};
-		9A8B50A819C90CC500E4F4D9 /* PBXTargetDependency */ = {
+		C48C5A385DA2A520ABD0A94F /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			name = aura;
-			targetProxy = 9A8B50A719C90CC500E4F4D9 /* PBXContainerItemProxy */;
+			targetProxy = C0E7410743390ED8659B4142 /* PBXContainerItemProxy */;
 		};
-		9AE24E701904CFE2001AEFFB /* PBXTargetDependency */ = {
+		514940790AE9E0CCC2F5763E /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
-			target = 9AE24E591904CFE2001AEFFB /* ios_experience_lite */;
-			targetProxy = 9AE24E6F1904CFE2001AEFFB /* PBXContainerItemProxy */;
+			target = 6373DFE5D67439EECA4B9AA6 /* ios_experience_lite */;
+			targetProxy = 11E94893E9F12115B4238F03 /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
-		9AE24E751904CFE2001AEFFB /* InfoPlist.strings */ = {
+		18933A7F20E80164B9B053B0 /* InfoPlist.strings */ = {
 			isa = PBXVariantGroup;
 			children = (
-				9AE24E761904CFE2001AEFFB /* en */,
+				94469D6EFE12BFCE4B3A1082 /* en */,
 			);
 			name = InfoPlist.strings;
 			sourceTree = "<group>";
@@ -543,7 +543,7 @@
 /* End PBXVariantGroup section */
 
 /* Begin XCBuildConfiguration section */
-		9AE24E7A1904CFE2001AEFFB /* Debug */ = {
+		10D2C3E577D5F6A252B3FE30 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				EXECUTABLE_EXTENSION = dylib;
@@ -552,7 +552,7 @@
 			};
 			name = Debug;
 		};
-		9AE24E7B1904CFE2001AEFFB /* Release */ = {
+		BD26987D0E3BDA03CDAE2B16 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				EXECUTABLE_EXTENSION = dylib;
@@ -561,7 +561,7 @@
 			};
 			name = Release;
 		};
-		9AE24E7C1904CFE2001AEFFB /* Debug */ = {
+		435558E7D9E3519C57AF19EA /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
@@ -593,7 +593,7 @@
 			};
 			name = Debug;
 		};
-		9AE24E7D1904CFE2001AEFFB /* Release */ = {
+		C1311FCD5E70BAE4E75DA5F0 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
@@ -624,7 +624,7 @@
 			};
 			name = Release;
 		};
-		9AEB75F616F78EDC0085103B /* Debug */ = {
+		5F8CC553D370CD112B92B612 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
@@ -691,7 +691,7 @@
 			};
 			name = Debug;
 		};
-		9AEB75F716F78EDC0085103B /* Release */ = {
+		831A1AA685F5E3F6BD89482B /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
@@ -751,7 +751,7 @@
 			};
 			name = Release;
 		};
-		9AEB75F916F78EDC0085103B /* Debug */ = {
+		0E9F06253DCF03395611C172 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				COMBINE_HIDPI_IMAGES = YES;
@@ -759,7 +759,7 @@
 			};
 			name = Debug;
 		};
-		9AEB75FA16F78EDC0085103B /* Release */ = {
+		EBF05FF83BFD55B4C7519AD6 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				COMBINE_HIDPI_IMAGES = YES;
@@ -770,43 +770,43 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		9AE24E841904CFE2001AEFFB /* Build configuration list for PBXNativeTarget "ios_experience_lite" */ = {
+		78AA195C384B6F0EA5DA0FA3 /* Build configuration list for PBXNativeTarget "ios_experience_lite" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
-				9AE24E7A1904CFE2001AEFFB /* Debug */,
-				9AE24E7B1904CFE2001AEFFB /* Release */,
+				10D2C3E577D5F6A252B3FE30 /* Debug */,
+				BD26987D0E3BDA03CDAE2B16 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		9AE24E851904CFE2001AEFFB /* Build configuration list for PBXNativeTarget "experience_lite_iosTests" */ = {
+		31C53F055705435AFD2CA30A /* Build configuration list for PBXNativeTarget "experience_lite_iosTests" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
-				9AE24E7C1904CFE2001AEFFB /* Debug */,
-				9AE24E7D1904CFE2001AEFFB /* Release */,
+				435558E7D9E3519C57AF19EA /* Debug */,
+				C1311FCD5E70BAE4E75DA5F0 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		9AEB75EF16F78EDC0085103B /* Build configuration list for PBXProject "experience_lite" */ = {
+		EA7859C846D84EF7F266B0EB /* Build configuration list for PBXProject "experience_lite" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
-				9AEB75F616F78EDC0085103B /* Debug */,
-				9AEB75F716F78EDC0085103B /* Release */,
+				5F8CC553D370CD112B92B612 /* Debug */,
+				831A1AA685F5E3F6BD89482B /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		9AEB75F816F78EDC0085103B /* Build configuration list for PBXNativeTarget "experience_lite" */ = {
+		9B615EBD436A47D2DB609228 /* Build configuration list for PBXNativeTarget "experience_lite" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
-				9AEB75F916F78EDC0085103B /* Debug */,
-				9AEB75FA16F78EDC0085103B /* Release */,
+				0E9F06253DCF03395611C172 /* Debug */,
+				EBF05FF83BFD55B4C7519AD6 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
-	rootObject = 9AEB75EC16F78EDC0085103B /* Project object */;
+	rootObject = C7EED73E94233CCCD85E7DC3 /* Project object */;
 }

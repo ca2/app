@@ -24,17 +24,18 @@ namespace multimedia
       ::file::path                  m_pathOrigin;
       ::pointer<decoder_plugin>     m_pplugin;
       bool                          m_bDecoderDecode;
+      ::string_array                m_straMultimediaOpenError;
 
 
       decoder();
       ~decoder() override;
 
 
-      virtual void      multimedia_open(::file::file * pfile);
-      virtual void      multimedia_close();
+      virtual ::e_status      multimedia_open(::file::file * pfile);
+      virtual void            multimedia_close();
 
-      virtual void      impl_multimedia_open(::file::file * payloadFile);
-      virtual void      impl_multimedia_close();
+      virtual ::e_status      impl_multimedia_open(::file::file * payloadFile);
+      virtual void            impl_multimedia_close();
 
 
       virtual string          multimedia_get_origin_path();

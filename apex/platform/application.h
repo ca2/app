@@ -1273,6 +1273,8 @@ namespace apex
                                                  ::networking::application_handler*
                                                  papplicationhandlerCreateNetworkApplication = nullptr) override;
 
+      void did_pick_document_at_url(const ::scoped_string & scopedstrUrl) override;
+
       ::e_status on_html_response(::networking::application_socket* psocket, ::string& strHtml, const ::scoped_string & scopedstrUrl,
                                   const ::property_set& setPost) override;
 

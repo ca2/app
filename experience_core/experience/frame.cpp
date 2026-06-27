@@ -693,7 +693,7 @@ x + cx, y + cy);
    {
 
       //return; // abcxxx
-
+      informationf("experience_core::frame::_001OnDraw        enabled=%d", (int) m_pframewindow->is_frame_experience_enabled());
 
       if (!m_pframewindow->is_frame_experience_enabled())
       {
@@ -710,6 +710,8 @@ x + cx, y + cy);
 
       if (!pframewindow->layout().is_full_screen() && !pframewindow->layout().is_zoomed() && !pframewindow->layout().is_iconic() && !m_pframewindow->frame_is_transparent() && m_pframewindow->m_bShowControlBox)
       {
+         
+         informationf("experience_core::frame::_001OnDraw        on_draw_frame");
 
          on_draw_frame(pgraphics);
 
@@ -717,6 +719,8 @@ x + cx, y + cy);
 
       if (pframewindow->layout().is_minimal())
       {
+         
+         informationf("experience_core::frame::_001OnDraw        Draw Minimal Caption Bar");
 
          ::i32_rectangle rectangleIcon;
 
@@ -763,6 +767,12 @@ x + cx, y + cy);
       }
       else if (!pframewindow->layout().is_full_screen() && !m_pframewindow->frame_is_transparent())
       {
+
+         informationf("experience_core::frame::_001OnDraw        DrawCaptionBar");
+         
+         informationf("experience_core::frame::_001OnDraw        translation %s", pgraphics->translation_friendly_text().c_str());
+         
+         informationf("experience_core::frame::_001OnDraw        clipbox %s", pgraphics->clip_box_friendly_text().c_str());
 
          _001DrawCaptionBar(pgraphics);
 

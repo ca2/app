@@ -55,6 +55,7 @@ namespace acme
       window::window() :
          m_pointCursor2(I32_MINIMUM)
       {
+         m_bUsesGraphicsThread = false;
          m_bPerformingEntireRepositionProcess = false;
          m_bPerformingEntireResizingProcess = false;
          //m_ebias = e_bias_unknown;

@@ -1214,7 +1214,8 @@ namespace draw2d
 
       virtual void set_font(::user::interaction* pinteraction, const ::e_element & eelement = ::e_element_none, const ::user::e_state & estate = ::user::e_state_none);
 
-
+      virtual ::string translation_friendly_text();
+      virtual ::string clip_box_friendly_text();
       virtual void get(::geometry2d::matrix& matrix);
       //using ::aura::simple_chain < ::aura::draw_context >::set;
       virtual void set(const ::geometry2d::matrix& matrix);

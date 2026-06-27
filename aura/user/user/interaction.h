@@ -296,7 +296,7 @@ namespace user
       bool                                      m_bAutomaticallyStoreWindowRectangle;
       bool                                      m_bPendingSaveWindowRectangle;
       bool                                      m_bLoadingWindowRectangle;
-
+      //bool                                      m_bUsesGraphicsThread;
 
       ::i32_rectangle                           m_rectangleMargin1;
 

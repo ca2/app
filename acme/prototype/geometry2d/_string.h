@@ -3,7 +3,7 @@
 
 
 template < typename COORDINATE, size_t SIZE >
-::string as_string(const vector_base<COORDINATE, SIZE>& m_coordinatea)
+::string as_string(const sequence_type<COORDINATE, SIZE>& coordinatea)
 {
 
    ::string str;
@@ -13,7 +13,7 @@ template < typename COORDINATE, size_t SIZE >
    for (size_t i = 0; i < SIZE; ++i) 
    {
 
-      str += as_string(m_coordinatea.m_coordinatea[i]);
+      str += as_string(coordinatea.m_coordinatea[i]);
       
       if (i + 1 < SIZE)
       {
@@ -31,56 +31,71 @@ template < typename COORDINATE, size_t SIZE >
 }
 
 
-template < typename COORDINATE, size_t SIZE>
-::string as_string(const Matrix<COORDINATE, SIZE>& m) 
+//template < typename COORDINATE, size_t SIZE>
+//::string as_string(const Matrix<COORDINATE, SIZE>& m) 
+//{
+//
+//   ::string str;
+//
+//   str += '[';
+//
+//   for (size_t i = 0; i < SIZE; ++i) 
+//   {
+//      
+//      if (i != 0)
+//      {
+//
+//         str += ' ';
+//
+//      }
+//
+//      str += '[';
+//
+//      for (size_t j = 0; j < SIZE; ++j) 
+//      {
+//         
+//         str +=::as_string( m.m[j][i]);
+//
+//         if (j + 1 < SIZE)
+//         {
+//
+//            str += ", ";
+//
+//         }
+//
+//      }
+//
+//      str += ']';
+//
+//      if (i != SIZE - 1)
+//      {
+//
+//         str += ",\n";
+//
+//      }
+//
+//   }
+//
+//   str += ']';
+//
+//   return ::transfer(str);
+//
+//}
+
+
+
+template < typename NUMBER >
+::string as_string(const rectangle_type < NUMBER > & rectangle)
 {
 
    ::string str;
-
-   str += '[';
-
-   for (size_t i = 0; i < SIZE; ++i) 
-   {
-      
-      if (i != 0)
-      {
-
-         str += ' ';
-
-      }
-
-      str += '[';
-
-      for (size_t j = 0; j < SIZE; ++j) 
-      {
-         
-         str +=::as_string( m.m[j][i]);
-
-         if (j + 1 < SIZE)
-         {
-
-            str += ", ";
-
-         }
-
-      }
-
-      str += ']';
-
-      if (i != SIZE - 1)
-      {
-
-         str += ",\n";
-
-      }
-
-   }
-
-   str += ']';
-
-   return ::transfer(str);
+   
+   str.append_format("{},{} ({}x{})", rectangle.left, rectangle.top, rectangle.width(), rectangle.height());
+   
+   return str;
 
 }
+
 
 
 

@@ -79,6 +79,7 @@ namespace draw2d
 
    graphics::graphics()
    {
+
       m_iYFlipHeight = 0;
       //m_bHasCurrentPoint = false;
       //_m_bYFlip = false;
@@ -6656,6 +6657,32 @@ namespace draw2d
    }
 
 
+   ::string graphics::translation_friendly_text()
+   {
+
+      return ::string_formatf("(%g, %g)", m_matrix.c1, m_matrix.c2);
+
+   }
+
+
+   ::string graphics::clip_box_friendly_text()
+   {
+
+      ::f64_rectangle rectangle;
+
+      auto iClipBox = get_clip_box(rectangle);
+
+      if (iClipBox <= 0)
+      {
+
+         return "(empty)";
+
+      }
+
+      return ::string_formatf("(%g, %g)-(%g, %g)", rectangle.left, rectangle.top, rectangle.right, rectangle.bottom);
+
+   }
+
    void graphics::get(::geometry2d::matrix & matrix)
    {
 
@@ -7086,6 +7113,3 @@ namespace draw2d
 
 
 } // namespace draw2d
-
-
-

@@ -10377,6 +10377,28 @@ void application::setResourceName(::i32 iId, const ::scoped_string &scopedstrRes
    }
 
 
+   void application::did_pick_document_at_url(const ::scoped_string & scopedstrUrl)
+   {
+      
+      ::string strHtml;
+      
+      ::property_set setHttpPost;
+      
+      auto estatusOnHtmlResponse = on_html_response(nullptr, strHtml, scopedstrUrl, setHttpPost);
+      
+      if(estatusOnHtmlResponse.succeeded())
+      {
+       
+         return;
+         
+      }
+                
+      ::platform::application::did_pick_document_at_url(scopedstrUrl);
+
+   }
+
+
+
    ::e_status application::on_html_response(::networking::application_socket * psocket, string & strHtml, const ::scoped_string & scopedstrUrl, const ::property_set & setPost)
    {
 

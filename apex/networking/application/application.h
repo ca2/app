@@ -49,6 +49,8 @@ namespace networking
 
       ::e_status on_html_response(::networking::application_socket * psocket, ::string & strHtml, const ::scoped_string & scopedstrUrl, const ::property_set& setPost) override;
 
+      
+      
 
    };
 

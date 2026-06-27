@@ -57,6 +57,12 @@ namespace windowing
 
    window::window()
    {
+      
+//#ifdef APPLE_IOS
+//      m_bUsesGraphicsThread = false;
+//#else
+      m_bUsesGraphicsThread = true;
+//#endif
 
       m_psandboxwindowingwindow = nullptr;
 
@@ -10664,6 +10670,13 @@ void window::on_keyboard_layout_change(const_char_pointer pszKeyboardLayoutId)
          return;
 
       }
+      
+      if(m_pgraphicsthread && !m_pgraphicsthread->m_bGraphicsThreadDoesDraw)
+      {
+         
+         return;
+         
+      }
 
       debug() << "windowing::window::do_graphics";
 
@@ -11168,7 +11181,7 @@ slGraphics.unlock();
              //for(::collection::index i = 0; i < iSeverity * 20; i++)
              //{
 
-             information() << "m_pgraphics->on_begin_draw FAILED (1)";
+             information() << "m_pgraphics->on_begin_draw FAILED (2)";
 
              //}
              //m_pgraphicscontextDrawFrame.release();
@@ -12235,7 +12248,7 @@ slGraphics.unlock();
             //for(::collection::index i = 0; i < iSeverity * 20; i++)
             //{
 
-            information() << "m_pgraphics->on_begin_draw FAILED (1)";
+            information() << "m_pgraphics->on_begin_draw FAILED (3)";
 
             //}
 

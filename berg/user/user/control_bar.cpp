@@ -806,6 +806,15 @@ namespace user
 
          ::i32_size size = CalcDynamicLayout(pgraphics, -1, dwMode);
 
+         informationf("control_bar size id=%s style=%llx visible=%d requested=%dx%d available=%dx%d",
+            GetDlgCtrlId().as_string().c_str(),
+            (unsigned long long)m_dwStyle,
+            bIsThisVisible,
+            size.cx,
+            size.cy,
+            sizeAvail.cx,
+            sizeAvail.cy);
+
          size.cx = minimum(size.cx, sizeAvail.cx);
          size.cy = minimum(size.cy, sizeAvail.cy);
 

@@ -380,7 +380,7 @@ namespace api_ca2
 
       strGuessedBundleIdentifier.find_replace("/", ".");
 
-      return strGuessedBundleIdentifier + "://localhost/";
+      return strGuessedBundleIdentifier + "://localhost/redirect";
 
 #else
 

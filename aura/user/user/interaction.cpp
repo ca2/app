@@ -233,7 +233,7 @@ namespace user
 
    interaction::interaction()
    {
-
+      
       m_eelementMain = e_element_none;
 
       m_ekeyboardmode = e_keyboard_mode_none;
@@ -5302,16 +5302,65 @@ namespace user
 
    void interaction::_001OnTopNcClip(::draw2d::graphics_pointer & pgraphics)
    {
+      
+      const char * pszType = nullptr;
+      
+#ifdef _DEBUG
+      
+      pszType = typeid(*this).name();
+      
+#endif
+      
+      const char * pszDebugType = nullptr;
 
+      if(pszType)
+      {
+         
+         if(::strstr(pszType, "host_interaction"))
+         {
+            
+            pszDebugType = "host_inter";
+            
+         }
+         else if(::strstr(pszType, "main_frame"))
+         {
+            
+            pszDebugType = "main_frame";
+            
+         }
+         
+      }
+
+      if(pszDebugType)
+      {
+       
+         printf_line("type=%s: _001OnTopNcClip", pszDebugType);
+         
+      }
+      
       if (::is_set(pgraphics->m_pgraphicsgraphics) && !pgraphics->m_pgraphicsgraphics->is_single_buffer_mode())
       {
 
+         if(pszDebugType)
+         {
+            
+            printf_line("type=%s: _001OnTopNcClip (exit1)", pszDebugType);
+            
+         }
+         
          return;
 
       }
 
       if (system()->draw2d()->graphics_context_does_full_redraw())
       {
+         
+         if(pszDebugType)
+         {
+            
+            printf_line("type=%s: _001OnTopNcClip (exit2)", pszDebugType);
+            
+         }
 
          return;
 
@@ -5319,13 +5368,42 @@ namespace user
 
       try
       {
+         
+#if !defined(APPLE_IOS)
 
          auto puserredraw = pgraphics->user_redraw();
 
          if (::is_set(puserredraw))
          {
+            
+            ::string * pstrDebug = nullptr;
+            
+#ifdef _DEBUG
+            
+            ::string strDebug;
+            
+            if(pszDebugType)
+            {
+               
+               pstrDebug = &strDebug;
+               
+            }
 
-            puserredraw->apply_clip(host_to_client());
+#endif
+
+            puserredraw->apply_clip(host_to_client(), pstrDebug);
+            
+#ifdef _DEBUG
+            
+            if(pszDebugType && pstrDebug)
+            {
+               
+               printf_line("type=%s: _001OnTopNcClip apply_clip %s", pszDebugType, pstrDebug->c_str());
+               
+            }
+            
+#endif
+
 
          }
 
@@ -5356,6 +5434,8 @@ namespace user
          //   pgraphics->intersect_clip(clipgroup);
 
          //}
+         
+#endif //
 
       }
       catch (...)
@@ -5975,7 +6055,7 @@ namespace user
 
                      if(!puserinteraction->is_window())
                      {
-                        informationf("trying to draw window being destroyed !window");
+                        informationf("trying to draw !window type=%s flags=%llx", ::platform::type(puserinteraction).name().c_str(), (unsigned long long)puserinteraction->m_ewindowflag);
                      }else{
                         informationf("trying to draw window being destroyed");
 
@@ -7339,10 +7419,29 @@ namespace user
 
 
          //pgraphics->m_dFontFactor = 1.0;
-
+         
          ::draw2d::save_context savecontext(pgraphics);
 
          auto offsetcontext = pgraphics->offset_context();
+         
+         auto pszType = typeid(*this).name();
+
+#if 0
+         
+         if(pszType)
+         {
+            
+            if(::strstr(pszType, "host_interaction")
+               || ::strstr(pszType, "main_frame"))
+            {
+               
+               informationf("_000OnDraw type=%s %d, %d", pszType, offsetcontext.m_point.x, offsetcontext.m_point.y);
+               
+            }
+            
+         }
+         
+#endif
 
          on_context_offset(offsetcontext);
 
@@ -11393,6 +11492,15 @@ if(get_parent())
       //}
 
       m_ewindowflag |= e_window_flag_window_created;
+
+      // A platform may service an invalidation while the create handler is
+      // still running. Request the first paint only after this interaction is
+      // eligible to participate in its host's child-draw pass.
+      set_need_redraw();
+      if (m_pacmewindowingwindow)
+      {
+         m_pacmewindowingwindow->post_redraw();
+      }
 
       //m_bUserImplCreated = true;
 
@@ -22637,7 +22745,7 @@ if(get_parent())
 
       ::pointer<::user::graphics_thread> pusergraphicsthread;
 
-      if (is_graphical())
+      if (is_graphical() && pwindow->m_bUsesGraphicsThread)
       {
 
          pusergraphicsthread = create_user_graphics_thread();

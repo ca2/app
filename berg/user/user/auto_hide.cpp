@@ -51,6 +51,13 @@ namespace user
    void auto_hide::auto_hide_calculate_control_visibility()
    {
 
+      informationf("auto_hide state sandboxed=%d hide=%d force=%d effective=%d fullscreen_or_transparent=%d",
+         is_sandboxed(),
+         m_bHideControlOnFullScreenOrTransparentFrame,
+         m_bForceHiddenControl,
+         m_bEffectiveVisibleControl,
+         auto_hide_is_top_level_full_screen_or_transparent());
+
       if (m_bForceHiddenControl)
       {
 
@@ -232,6 +239,16 @@ namespace user
 
    bool auto_hide::auto_hide_full_screen_or_transparent_frame_control_visibility()
    {
+
+      // Sandboxed hosts (iOS and similar) use a full-screen, transparent
+      // application host rather than desktop chrome. Their tab controls are
+      // primary navigation and must remain available.
+      if (is_sandboxed())
+      {
+
+         return true;
+
+      }
 
       if (!m_bHideControlOnFullScreenOrTransparentFrame)
       {
@@ -432,13 +449,13 @@ namespace user
       else if (ptopic->id() == id_on_after_enter_full_screen)
       {
 
-         m_bEffectiveVisibleControl = false;
+         m_bEffectiveVisibleControl = is_sandboxed();
 
       }
       else if (ptopic->id() == id_on_set_transparent_frame)
       {
 
-         m_bEffectiveVisibleControl = false;
+         m_bEffectiveVisibleControl = is_sandboxed();
 
       }
       else if (ptopic->id() == id_on_after_exit_full_screen)
@@ -464,5 +481,3 @@ namespace user
 
 
 } // namespace user
-
-

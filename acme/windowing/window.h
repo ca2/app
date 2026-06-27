@@ -61,6 +61,7 @@ namespace acme
          class ::time                              m_timeHoverNoiseSuppression;
 
 
+         bool                                      m_bUsesGraphicsThread;
 
 
          i32_rectangle                             m_rectangle;

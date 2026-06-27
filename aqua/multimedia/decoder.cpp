@@ -33,10 +33,10 @@ namespace multimedia
    //}
 
 
-   void decoder::multimedia_open(::file::file * pfile)
+   ::e_status decoder::multimedia_open(::file::file * pfile)
    {
 
-      //return ::success;
+      return ::error_not_implemented;
 
    }
 
@@ -49,10 +49,10 @@ namespace multimedia
    }
 
 
-   void decoder::impl_multimedia_open(::file::file * pfile)
+   ::e_status decoder::impl_multimedia_open(::file::file * pfile)
    {
 
-      //return ::error_failed;
+      return ::error_not_implemented;
 
    }
 

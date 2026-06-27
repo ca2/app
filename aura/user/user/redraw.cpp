@@ -4,6 +4,7 @@
 #include "aura/graphics/draw2d/clip.h"
 #include "aura/graphics/draw2d/draw2d.h"
 #include "aura/graphics/draw2d/graphics.h"
+#include "acme/prototype/geometry2d/_string.h"
 #include "aura/platform/system.h"
 
 
@@ -188,33 +189,35 @@ namespace user
    }
 
 
-   void redraw::apply_clip(shift_int ΔHostToClient)
+   void redraw::apply_clip(shift_int ΔHostToClient, string * pstrDebug)
    {
 
       m_pgraphics->reset_clip();
-
+      
       if (m_rectangleaNeedRedraw.has_element())
       {
-
+         
          ::draw2d::clip_group clipgroup;
-
+         
          for (auto rectangleHostNeedRedraw : m_rectangleaNeedRedraw)
          {
-
+            
             auto rectangleNeedRedraw = rectangleHostNeedRedraw;
-
+            
             ΔHostToClient(rectangleNeedRedraw);
-
+            
             auto prectangle = allocateø ::draw2d::clip_rectangle();
-
+            
             prectangle->m_item = rectangleNeedRedraw;
-
+            
+            pstrDebug->append_format("add_clip_rect: {}", ::as_string(rectangleNeedRedraw).c_str());
+            
             clipgroup.add(prectangle);
-
+            
          }
-
+         
          m_pgraphics->intersect_clip(clipgroup);
-
+         
       }
 
    }

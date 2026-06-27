@@ -67,6 +67,14 @@ namespace user
 
    graphics_thread::graphics_thread()
    {
+      
+#ifdef APPLE_IOS
+      m_bGraphicsThreadDoesDraw = false;
+#else
+      m_bGraphicsThreadDoesDraw = false;
+#endif
+      
+      
 
       //m_bUpdateBufferUpdateWindowPending = false;
 
@@ -1321,7 +1329,10 @@ namespace user
          {
             class ::time timeDrawFrame;
             timeDrawFrame.Now();
-            pwindow->draw_frame();
+            //if(m_bGraphicsThreadDoesDraw)
+            //{
+               pwindow->draw_frame();
+            //}
             auto fMillis = timeDrawFrame.elapsed().floating_millisecond();
             //informationf("draw_frame took %0.2f ms", fMillis);
 
@@ -1497,7 +1508,7 @@ namespace user
    bool graphics_thread::graphics_thread_update_screen()
    {
 
-      information() << "graphics_thread_update_screen";
+//      information() << "graphics_thread_update_screen";
 
 //      if (m_bExclusiveMode)
 //      {

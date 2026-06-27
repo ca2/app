@@ -552,7 +552,7 @@
 				MACH_O_TYPE = mh_execute;
 				MARKETING_VERSION = 0.1;
 				PLATFORM_MODIFIER = ios;
-				PRODUCT_BUNDLE_IDENTIFIER = "ca2.site.app-core.timer";
+				PRODUCT_BUNDLE_IDENTIFIER = "site.ca2.app-core.timer";
 				WRAPPER_EXTENSION = app;
 			};
 			name = Debug;
@@ -571,7 +571,7 @@
 				MACH_O_TYPE = mh_execute;
 				MARKETING_VERSION = 0.1;
 				PLATFORM_MODIFIER = ios;
-				PRODUCT_BUNDLE_IDENTIFIER = "ca2.site.app-core.timer";
+				PRODUCT_BUNDLE_IDENTIFIER = "site.ca2.app-core.timer";
 				WRAPPER_EXTENSION = app;
 			};
 			name = Release;

@@ -259,6 +259,8 @@ i32_size simple_toolbar::CalcSimpleLayout(::draw2d::graphics_pointer& pgraphics)
 
 void simple_toolbar::_001OnDraw(::draw2d::graphics_pointer & pgraphics)
 {
+   
+   //return;
 
    pgraphics->set_text_rendering_hint(::write_text::e_rendering_anti_alias);
 
@@ -279,6 +281,13 @@ void simple_toolbar::_001OnDraw(::draw2d::graphics_pointer & pgraphics)
    //}
 
    auto rectangleX = this->rectangle();
+
+   informationf("simple_toolbar draw id=%s rectangle=%d,%d %dx%d",
+      id().as_string().c_str(),
+      rectangleX.left,
+      rectangleX.top,
+      rectangleX.width(),
+      rectangleX.height());
 
    pgraphics->set_alpha_mode(::draw2d::e_alpha_mode_blend);
 
@@ -2820,7 +2829,6 @@ i32_size simple_toolbar::get_separator_size()
    return i;
 
 }
-
 
 
 

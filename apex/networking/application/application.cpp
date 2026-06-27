@@ -132,6 +132,7 @@ namespace networking
    }
 
 
+
    ::e_status application::on_html_response(::networking::application_socket * psocket, ::string & strHtml, const ::scoped_string & scopedstrUrl, const ::property_set& setPost)
    {
 

@@ -50,7 +50,7 @@ namespace user
       void set_need_redraw(const ::i32_rectangle & rectangle);
       void set_need_redraw(const ::i32_rectangle_array_base & rectanglea);
       bool needs_to_draw(const ::i32_rectangle & rectangle);
-      void apply_clip(shift_int ΔHostToClient);
+      void apply_clip(shift_int ΔHostToClient, string * pstringDebug);
 
 
    };

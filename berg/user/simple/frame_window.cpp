@@ -1572,6 +1572,10 @@ void simple_frame_window::show_control_bars(const ::e_display & edisplay, bool b
 
    }
 
+   // Control bars are created after the frame's first layout pass. Request the
+   // top-down pass that delivers e_message_size_parent and positions them.
+   set_need_perform_layout();
+
    set_need_layout();
 
 }
@@ -4677,7 +4681,6 @@ void simple_frame_window::_on_configure_notify_unlocked(const ::i32_rectangle & 
 //   ::experience::frame_window::_001OnAfterAppearance();
 //
 //}
-
 
 
 

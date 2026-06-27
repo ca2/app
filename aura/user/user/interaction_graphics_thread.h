@@ -32,7 +32,7 @@ namespace user
       class ::time                                m_timeThisFrame;
 
       ///manual_reset_happening                           m_happeningReady;
-
+      bool                                        m_bGraphicsThreadDoesDraw;
       bool                                        m_bGraphicsThreadEnabled;
 
       class ::time                                m_timePostRedrawProdevian;

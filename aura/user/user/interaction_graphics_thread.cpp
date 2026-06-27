@@ -71,7 +71,7 @@ namespace user
 #ifdef APPLE_IOS
       m_bGraphicsThreadDoesDraw = false;
 #else
-      m_bGraphicsThreadDoesDraw = false;
+      m_bGraphicsThreadDoesDraw = true;
 #endif
       
       

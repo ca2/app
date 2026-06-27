@@ -213,7 +213,7 @@ namespace windows
 
 
 
-      void show_window(::i32 iShowFlags) override;
+      void show_window(::user_interface::enum_show_window eshowwindow) override;
       void set_window_style(::i32 iStyle) override;
       ::i64 get_window_style() override;
 

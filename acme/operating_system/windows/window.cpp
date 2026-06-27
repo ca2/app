@@ -1139,12 +1139,12 @@ namespace windows
 
    }
 
-   void window::show_window(::i32 iShowFlags)
+   void window::show_window(::user_interface::enum_show_window eshowwindow)
    {
 
       auto hwnd = m_windowswindow.as_HWND();
 
-      ::ShowWindow(hwnd, iShowFlags);
+      ::ShowWindow(hwnd, (::i32) eshowwindow);
 
    }
 

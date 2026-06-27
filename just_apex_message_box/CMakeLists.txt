@@ -62,7 +62,9 @@ endif ()
 
 
 add_dependencies(${PROJECT_NAME} ${default_nano_graphics})
-add_dependencies(${PROJECT_NAME} ${default_nano_idn})
+if(default_nano_idn)
+    add_dependencies(${PROJECT_NAME} ${default_nano_idn})
+endif()
 add_dependencies(${PROJECT_NAME} folder_zip)
 
 

@@ -60,7 +60,8 @@ namespace innate_ui
       virtual void defer_show_system_menu(::user::mouse * pmouse);
 
 
-      virtual void on_size();
+      void on_size() override;
+      
    
    };
 

@@ -11655,7 +11655,7 @@ if(get_parent())
       if (((interaction *)this)->get_parent() == nullptr)
       {
 
-         if (!((interaction *)this)->m_pacmewindowingwindow->is_window())
+         if (!((interaction *)this)->acme_windowing_window()->is_window())
          {
 
             return false;

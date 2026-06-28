@@ -8424,6 +8424,31 @@ void window::on_keyboard_layout_change(const_char_pointer pszKeyboardLayoutId)
 
          return;
 
+
+
+
+
+
+//#if defined(__ANDROID__)
+//
+//         user_interaction()->post([this]()
+//                                  {
+//
+//                                     if (!has_destroying_flag() && m_pgraphicsthread)
+//                                     {
+//
+//                                        m_pgraphicsthread->m_iRedrawMessageCount++;
+//
+//                                        m_pgraphicsthread->graphics_thread_iteration();
+//
+//                                     }
+//
+//                                  });
+//
+//#endif
+
+         return;
+
       }
 
       if (m_pgraphicsthread->m_bFps)
@@ -11203,6 +11228,8 @@ slGraphics.unlock();
          class ::time time4;
          
          time4.Now();
+
+         synchronouslock.unlock();
          
          pgraphics->send(
        [this, pgraphics, pbufferitem, time4]()
@@ -11211,20 +11238,26 @@ slGraphics.unlock();
             try
             {
 
-              //defer_begin_frame(m_pgraphicscontextDrawFrame);
+              {
 
-              //_synchronous_lock synchronous_lock(m_pmutexGraphics);
+                 _synchronous_lock synchronouslockDraw(pbufferitem->m_pmutex, DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 
-              //m_pgraphicscontextDrawFrame->m_pgraphics->start_layer(m_pgraphicscontextDrawFrame);
-               auto elapsed41 = time4.elapsed();
-               //informationf("draw_frame elapsed4.1 %0.2f", elapsed41.floating_millisecond());
-               class ::time time42;
-               time42.Now();
-              frame_draw_stage(pgraphics);
-               auto elapsed42 = time42.elapsed();
-               //informationf("draw_frame elapsed4.2 %0.2f", elapsed42.floating_millisecond());
+                 //defer_begin_frame(m_pgraphicscontextDrawFrame);
 
-              m_sizeLastBuffer = pbufferitem->m_sizeBufferItem;
+                 //_synchronous_lock synchronous_lock(m_pmutexGraphics);
+
+                 //m_pgraphicscontextDrawFrame->m_pgraphics->start_layer(m_pgraphicscontextDrawFrame);
+                 auto elapsed41 = time4.elapsed();
+                 //informationf("draw_frame elapsed4.1 %0.2f", elapsed41.floating_millisecond());
+                 class ::time time42;
+                 time42.Now();
+                 frame_draw_stage(pgraphics);
+                 auto elapsed42 = time42.elapsed();
+                 //informationf("draw_frame elapsed4.2 %0.2f", elapsed42.floating_millisecond());
+
+                 m_sizeLastBuffer = pbufferitem->m_sizeBufferItem;
+
+              }
 
               //}
 
@@ -11232,14 +11265,28 @@ slGraphics.unlock();
 
               if (m_pgraphicsgraphics) {
 
-#ifndef LINUX
+#if !defined(LINUX) || defined(__ANDROID__)
+                 information() << "draw_frame before on_end_draw";
                  m_pgraphicsgraphics->on_end_draw();
+#if defined(__ANDROID__)
+                 information() << "draw_frame before update_screen";
+                 m_pgraphicsgraphics->update_screen();
+                 information() << "draw_frame after update_screen";
+#endif
 #endif
 
               }
            }
+              catch(const ::exception & exception)
+                 {
+
+                    information() << "draw_frame async exception: " << exception.get_message();
+
+                 }
               catch(...)
                  {
+
+                    information() << "draw_frame async unknown exception";
 
                  }
 
@@ -15788,6 +15835,23 @@ slGraphics.unlock();
 
       information("windowing::window::on_message_size w={}, h={}", m_sizeWindow.cx, m_sizeWindow.cy);
 
+#if defined(__ANDROID__)
+
+      if (user_interaction()->const_layout().sketch().size() != psize->m_size)
+      {
+
+         user_interaction()->set_size(psize->m_size, ::user::e_layout_sketch);
+
+         user_interaction()->set_need_layout();
+
+         user_interaction()->set_need_redraw();
+
+         user_interaction()->post_redraw();
+
+      }
+
+#endif
+
       //      bool bLayered = user_interaction()->GetExStyle() & WS_EX_LAYERED;
       //
       //#ifndef WINDOWS_DESKTOP
@@ -16537,13 +16601,15 @@ slGraphics.unlock();
 
       //_synchronous_lock synchronouslock(pitem->m_pmutex, DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 
-      ::i32 wSource;
+      ::i32 wSource = 0;
 
-      ::i32 hSource;
+      ::i32 hSource = 0;
 
       ::image32_t * pdataSource = nullptr;
 
-      ::i32 scanSource;
+      ::i32 scanSource = 0;
+
+      static int s_iAndroidFillLogCount = 0;
 
       if(pitem)
       {
@@ -16564,6 +16630,21 @@ slGraphics.unlock();
             scanSource = pimageSource->m_iScan;
 
          }
+
+      }
+
+      if (s_iAndroidFillLogCount < 40)
+      {
+
+         information() << "android_fill_plasma"
+            << " graphics=" << (::iptr) m_pgraphicsgraphics.m_p
+            << " item=" << (::iptr) pitem
+            << " image=" << (::iptr) pimageSource
+            << " data=" << (::iptr) pdataSource
+            << " bitmap=(" << width << ", " << height << ")"
+            << " source=(" << wSource << ", " << hSource << ")";
+
+         s_iAndroidFillLogCount++;
 
       }
 

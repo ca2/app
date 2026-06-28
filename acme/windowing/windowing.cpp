@@ -628,22 +628,6 @@ namespace acme
 
             fetch_dark_mode();
 
-            if (!m_papplication->m_bPostedApplicationDefaultStartOrFileOpenRequest)
-            {
-
-               m_papplication->m_bPostedApplicationDefaultStartOrFileOpenRequest = true;
-               
-               auto prequestDefaultStart = create_newø<::request>();
-
-               prequestDefaultStart->m_ecommand = e_command_default_start;
-
-               prequestDefaultStart->m_strAppId = m_papplication->m_strAppId;
-
-               system()->post_request(prequestDefaultStart);
-
-
-            }
-
 //            auto prequestDefaultStart = create_newø<::request>();
 //
 //            prequestDefaultStart->m_ecommand = e_command_default_start;
@@ -777,6 +761,23 @@ namespace acme
       //}
 
 
+      void windowing::post_start_application_request_and_process_command_line_options()
+      {
+
+         auto prequest = create_newø<::request>();
+
+         prequest->m_strAppId = system()->m_papplication->m_strAppId;
+
+         prequest->m_ecommand = e_command_start_application;
+
+         system()->post_request(prequest);
+
+
+         system()->m_papplication->process_command_line_options();
+
+      }
+
+
       void windowing::run()
       {
          // system()->prepare_application();
@@ -792,16 +793,7 @@ namespace acme
 
          //::set_main_thread();
 
-         auto prequest = create_newø<::request>();
-
-         prequest->m_strAppId = system()->m_papplication->m_strAppId;
-
-         prequest->m_ecommand = e_command_start_application;
-
-         system()->post_request(prequest);
-
-
-         system()->m_papplication->process_command_line_options();
+         post_start_application_request_and_process_command_line_options();
 
 
          // run();

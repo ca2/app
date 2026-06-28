@@ -219,6 +219,8 @@ namespace acme
 
          //virtual void windowing_application_on_start();
 
+         virtual void post_start_application_request_and_process_command_line_options();
+
          void run() override;
 
          virtual void windowing_post_quit();

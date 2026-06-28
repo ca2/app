@@ -73,7 +73,7 @@ extern bool g_bIntermediateThreadReferencingDebugging;
 
 CLASS_DECL_ACME void exception_message_box(::particle * pparticle, ::exception & exception, const ::scoped_string & scopedstrMoreDetails);
 
-::interlocked_i64 g_iTaskObjectSerialId;
+::interlocked_count g_iTaskObjectSerialId;
 
 task::task()
 {

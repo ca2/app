@@ -1661,6 +1661,12 @@ namespace platform
    string node::font_name(enum_font efont)
    {
 
+#ifdef __ANDROID__
+
+      return android_font_name(efont);
+
+#else
+
       if(efont == e_font_sans)
       {
 
@@ -1717,6 +1723,8 @@ namespace platform
       }
 
       return "";
+
+#endif
 
    }
 

@@ -181,13 +181,13 @@ public:
 
 
 
-   virtual void initialize_message_box(const ::scoped_string &scopedstrMessage, const ::scoped_string &scopedstrTitle = {},
+   void initialize_message_box(const ::scoped_string &scopedstrMessage, const ::scoped_string &scopedstrTitle = {},
             const ::user::e_message_box &emessagebox = {}, const ::scoped_string &scopedstrDetails = nullptr,
-            const ::string_array_base &straIconUrl = {});
-   virtual void initialize_message_box(const ::exception & exception, const ::scoped_string & strMoreDetails);
-   virtual void initialize_message_box(const ::exception &exception, const ::scoped_string &strMessage,
+            const ::string_array_base &straIconUrl = {}) override;
+   void initialize_message_box(const ::exception & exception, const ::scoped_string & strMoreDetails) override;
+   void initialize_message_box(const ::exception &exception, const ::scoped_string &strMessage,
                const ::scoped_string &scopedstrTitle, const ::user::e_message_box &emessagebox = {},
-               const ::scoped_string &scopedstrDetails = nullptr, const ::string_array_base &straIconUrl = {});
+               const ::scoped_string &scopedstrDetails = nullptr, const ::string_array_base &straIconUrl = {}) override;
 
 
 
@@ -238,7 +238,7 @@ public:
 
 
    void set_dialog_details_title(const ::scoped_string & scopedstrTitle) override;
-   virtual void add_button(const ::scoped_string & scopedstrTitle, enum_dialog_result edialogresult, ::i8 chLetter);
+   void add_button(const ::scoped_string & scopedstrTitle, enum_dialog_result edialogresult, ::i8 chLetter) override;
    
 //   void display_dialog() override;
    //virtual void async();

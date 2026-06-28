@@ -56,6 +56,7 @@ inline ::u8 clampAndConvert(::f64 v)
 
 
 
+CLASS_DECL_ACME string android_font_name(enum_font efont);
 //CLASS_DECL_ACME string os_font_name(enum_font efont);
 //CLASS_DECL_ACME string os_font_name(enum_operating_system eoperatingsystem, ::i32 iVariant, enum_font efont);
 //CLASS_DECL_ACME string linux_font_name(enum_linux_distribution elinuxdistribution, enum_font efont);

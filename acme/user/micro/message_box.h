@@ -85,7 +85,7 @@ namespace micro
 
          //void operator()(::timer * ptimer) override;
 
-         void operator()(::timer * ptimer);
+         void operator()(::timer * ptimer) override;
 
          //void initialize_conversation(const ::scoped_string & scopedstrMessage, const ::scoped_string & scopedstrTitle, const ::user::e_message_box & emessagebox, const ::scoped_string & scopedstrDetails = nullptr, ::nano::graphics::icon * picon = nullptr) override;
 

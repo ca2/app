@@ -86,6 +86,35 @@ string ubuntu_font_name(enum_font efont)
 }
 
 
+string android_font_name(enum_font efont)
+{
+
+   switch (efont)
+   {
+      case e_font_sans:
+      case e_font_sans_ui:
+         return "sans-serif";
+      case e_font_sans_ex:
+         return "sans-serif-condensed";
+      case e_font_sans_fx:
+         return "sans-serif-medium";
+      case e_font_serif:
+      case e_font_serif_ui:
+      case e_font_serif_ex:
+      case e_font_serif_fx:
+         return "serif";
+      case e_font_monospace:
+      case e_font_monospace_ui:
+      case e_font_monospace_ex:
+      case e_font_monospace_fx:
+         return "monospace";
+      default:
+         return "sans-serif";
+   }
+
+}
+
+
 string linux_font_name(enum_linux_distribution elinuxdistribution, enum_font efont)
 {
 

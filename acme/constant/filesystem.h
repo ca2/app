@@ -16,7 +16,7 @@ namespace file
 {
 
 
-   enum enum_open : ::uptr
+   enum enum_open : ::u64
    {
 
       e_open_none = 0ull,

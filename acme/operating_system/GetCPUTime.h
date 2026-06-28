@@ -26,6 +26,10 @@
 //#define _GETCPUTIME_H_
 #pragma once
 
+#if !defined(_WIN32)
+#include <time.h>
+#endif
+
 // returns current process time of work in seconds
 ::f64 getCPUTime();
 
@@ -34,35 +38,45 @@
 
 // returns current processor tick number
 inline ::u64 rdtsc() {
-  ::u32 lo, hi;
 #ifdef __GNUC__
 
-#if defined(__aarch64__)
+#if defined(__aarch64__) || defined(__arm64__)
 
   uint64_t val;
   asm volatile("mrs %0, cntvct_el0" : "=r"(val));
   return val;
 
-#else
+#elif defined(__i386__) || defined(__x86_64__)
+  ::u32 lo, hi;
   asm  volatile ("rdtsc\n" : "=a" (lo), "=d" (hi));
+  return ((::u64)hi << 32) | lo;
+
+#else
+  struct timespec ts;
+  if (clock_gettime(CLOCK_MONOTONIC, &ts) == 0)
+  {
+     return (::u64)ts.tv_sec * 1000000000ull + (::u64)ts.tv_nsec;
+  }
+  return 0;
 
 #endif
 
 #elif _MSC_VER
 #ifdef _M_IX86
+  ::u32 lo, hi;
   __asm
   {
     rdtsc
     mov DWORD PTR [lo], eax
     mov DWORD PTR [hi], edx
   }
+  return ((::u64)hi << 32) | lo;
 #else
   return 0;
 #endif
 #else
   #error "Unsupported compiler"
 #endif
-  return ((::u64)hi << 32) | lo;
 }
 
 //#endif _GETCPUTIME_H_

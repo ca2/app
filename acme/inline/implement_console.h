@@ -35,7 +35,7 @@ void acme_system_term();
 
 
 #include "acme/platform/platform.h"
-#include "acme/platform/message_box.h"
+#include "acme/user/interface/message_box.h"
 #include "acme/operating_system/acme_initialize.h"
 
 

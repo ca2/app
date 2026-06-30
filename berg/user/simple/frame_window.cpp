@@ -969,7 +969,7 @@ void simple_frame_window::on_message_create(::message::message * pmessage)
 //   //else
 //   //{
 //
-//   //   m_bWindowFrame = system()->m_bExperienceMainFrame;
+//   //   m_bWindowFrame = system()->m_emainuserinterface;
 //
 //   //}
 //
@@ -994,7 +994,7 @@ void simple_frame_window::on_message_create(::message::message * pmessage)
 //   if (m_bWindowFrame.undefined())
 //   {
 //
-//      auto & bApplicationExperienceMainFrame = papp->m_bExperienceMainFrame;
+//      auto & bApplicationExperienceMainFrame = papp->m_emainuserinterface;
 //
 //      if (bApplicationExperienceMainFrame.is_set())
 //      {
@@ -1452,7 +1452,7 @@ void simple_frame_window::on_layout(::draw2d::graphics_pointer & pgraphics)
 
    //auto papp = get_app();
 
-   //if (!papp->m_bExperienceMainFrame && get_parent() == nullptr)
+   //if (!papp->m_emainuserinterface && get_parent() == nullptr)
    //{
 
    //   auto rectangle = get_host_user_interaction()->rectangle();
@@ -2546,7 +2546,7 @@ void simple_frame_window::on_frame_position()
 //            display(e_display_zoomed);
 //
 //         }
-//            //else if(papp->m_bExperienceMainFrame)
+//            //else if(papp->m_emainuserinterface)
 //            //{
 //
 //            //   if(is_frame_experience_enabled())

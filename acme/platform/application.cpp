@@ -83,6 +83,7 @@ namespace platform
 
       m_bUserApplication = true;
 
+
 #ifdef _DEBUG
       ::i32 cx = 204;
 
@@ -1502,6 +1503,19 @@ namespace platform
 
    void application::prepare_application()
    {
+
+      if(is_sandboxed())
+      {
+
+         m_euserexperience = e_user_experience_focus;
+
+      }
+      else
+      {
+
+         m_euserexperience = e_user_experience_desktop;
+
+      }
 
       if (!is_task_set2())
       {

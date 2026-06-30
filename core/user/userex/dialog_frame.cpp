@@ -155,7 +155,7 @@ namespace userex
 
       auto papp = get_app();
 
-      m_bWindowFrame = !papp->m_bExperienceMainFrame;
+      //m_bWindowFrame = !papp->m_emainuserinterface;
 
       if (papp->has_property("opaque"))
       {

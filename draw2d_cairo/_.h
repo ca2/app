@@ -17,6 +17,7 @@
 #include <cairo/cairo-features.h>
 #include <cairo/cairo.h>
 #include <cairo/cairo-ft.h>
+#include FT_MULTIPLE_MASTERS_H
 #ifdef WINDOWS_DESKTOP
 #include "cairo/cairo-win32.h"
 #endif
@@ -35,7 +36,7 @@
 #define TOY_FONT_SELECTION 0
 
 
-#if defined(LINUX)
+#if defined(LINUX) && !defined(__ANDROID__)
 
 #define USE_PANGO
 
@@ -87,7 +88,7 @@ FT_Library __ftlibrary();
 #define TOY_FONT_SELECTION 0
 
 
-#if defined(LINUX)
+#if defined(LINUX) && !defined(__ANDROID__)
 
 #define USE_PANGO
 

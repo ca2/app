@@ -560,12 +560,16 @@ bool happening::set_happening()
 
    pthread_mutex_lock((pthread_mutex_t *) m_pmutex);
 
+   bool bNotifyLocks = false;
+
    if(m_bManualEvent)
    {
 
       m_bSignaled = true;
 
       m_iSignalId++;
+
+      bNotifyLocks = true;
 
       pthread_cond_broadcast((pthread_cond_t *) m_pcond);
 
@@ -578,6 +582,13 @@ bool happening::set_happening()
    }
 
    pthread_mutex_unlock((pthread_mutex_t *) m_pmutex);
+
+   if (bNotifyLocks)
+   {
+
+      notify_lock_notify_all();
+
+   }
 
    return true;
 

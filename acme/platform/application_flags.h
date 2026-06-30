@@ -5,6 +5,26 @@
 #pragma once
 
 
+enum enum_main_user_interface
+{
+
+   e_main_user_interface_main_frame,
+   e_main_user_interface_impact,
+
+};
+
+
+enum enum_user_experience
+{
+
+   e_user_experience_none,
+   e_user_experience_desktop,
+   e_user_experience_tiled,
+   e_user_experience_focus,
+
+};
+
+
 struct CLASS_DECL_ACME APPLICATION_FLAGS // : public ::acme::reference
 {
 
@@ -36,7 +56,8 @@ struct CLASS_DECL_ACME APPLICATION_FLAGS // : public ::acme::reference
    ::logic::boolean                       m_bDataCentralRequired;
    bool                                   m_bUseCloudStorageForAppData = true;
    bool                                   m_bUseComputerNameInAppLocalConfigFolder = false;
-   ::logic::boolean                       m_bExperienceMainFrame;
+   enum_main_user_interface               m_emainuserinterface;
+   enum_user_experience                   m_euserexperience;
    ::logic::boolean                       m_bVerbose;
 //   //PFN_NEW_MATTER                   m_pfnnewmatterApplication;
 //   //PFN_NEW_LIBRARY                  m_pfnnewlibrary;

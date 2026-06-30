@@ -142,7 +142,7 @@ list(APPEND library_source
         crypto/crypto.h
         #crypto/hasher.cpp
         crypto/hasher.h
-        #crypto/hasher_algorithm.cpp
+        crypto/hasher_algorithm.cpp
         crypto/hasher_algorithm.h
         crypto/initializer.cpp
         crypto/initializer.h

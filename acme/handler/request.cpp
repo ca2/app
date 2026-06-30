@@ -244,7 +244,7 @@ void request::create_common_construct(const ::payload & varOptions, ::user::elem
    m_ecommand                          = e_command_default;
    m_payloadOptions                    = varOptions;
    m_bTransparentBackground            = true;
-   m_bExperienceMainFrame              = false;
+   //m_emainuserinterface                = false;
    m_bOuterPopupAlertLike              = false;
    m_bHold                             = true;
 
@@ -303,17 +303,17 @@ void request::finish_initialization()
 
    //}
 
-   if(get_app())
-   {
-
-      if(get_app()->m_bExperienceMainFrame)
-      {
-
-         m_bExperienceMainFrame = true;
-
-      }
-
-   }
+//   if(get_app())
+//   {
+//
+//      if(get_app()->m_emainuserinterface)
+//      {
+//
+//         m_emainuserinterface = true;
+//
+//      }
+//
+//   }
 
    //return estatus;
 

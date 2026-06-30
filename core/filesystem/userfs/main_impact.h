@@ -21,7 +21,7 @@ namespace userfs
 
 
       main_impact();
-      void install_message_routing(::channel * pchannel);
+      void install_message_routing(::channel * pchannel) override;
       DECLARE_MESSAGE_HANDLER(on_message_create);
       void operator()(::timer * ptimer) override;
 

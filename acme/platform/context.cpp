@@ -765,6 +765,14 @@ namespace platform
    }
 
 
+   bool context::defer_process_picker_protocol_path(::file::path& path)
+   {
+
+      return false;
+
+   }
+
+
    bool context::defer_process_fs_raw_folder_protocol_path(::file::path & path)
    {
 
@@ -799,7 +807,13 @@ namespace platform
 
       path = path_system()->defer_process_relative_path(path);
 
-      if (defer_process_media_library_path(path))
+      if (defer_process_picker_protocol_path(path))
+      {
+
+         return path;
+
+      }
+      else if (defer_process_media_library_path(path))
       {
 
          return path;

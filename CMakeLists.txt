@@ -8,7 +8,7 @@ add_subdirectory(aqua)
 add_subdirectory(aura)
 
 
-if(${LINUX} OR ${__BSD__})
+if(${LINUX} OR ${__BSD__} OR ${ANDROID})
     add_subdirectory(nano_idn_libidn)
 endif()
 

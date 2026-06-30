@@ -19,7 +19,7 @@ public:
 
    void open(const ::file::path & path, ::file::e_open eopen, ::pointer < ::file::exception > * ppfileexception) override;
 
-
+   void flush() override;
    void close() override;
 
 

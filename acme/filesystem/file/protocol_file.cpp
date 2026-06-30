@@ -41,7 +41,7 @@ void protocol_file::open(const ::file::path & path, ::file::e_open eopen, ::poin
 }
 
 
-void protocol_file::close()
+void protocol_file::flush()
 {
 
    if(m_eopen & ::file::e_open_write)
@@ -50,6 +50,15 @@ void protocol_file::close()
       node()->protocol_set_data(m_path, *get_memory());
 
    }
+
+}
+
+
+void protocol_file::close()
+{
+
+
+   flush();
 
 }
 

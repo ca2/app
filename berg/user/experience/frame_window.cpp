@@ -1578,15 +1578,15 @@ namespace experience
       if (m_bWindowFrame.undefined())
       {
 
-         auto & bApplicationExperienceMainFrame = papp->m_bExperienceMainFrame;
+         auto euserexperience = papp->m_euserexperience;
 
-         if (bApplicationExperienceMainFrame.is_set())
+         if (euserexperience == e_user_experience_desktop)
          {
 
-            if (get_parent() == nullptr)
+            if (get_parent() == nullptr || wfi_has_up_down())
             {
 
-               m_bWindowFrame = bApplicationExperienceMainFrame;
+               m_bWindowFrame = true;
 
             }
             else
@@ -1603,10 +1603,10 @@ namespace experience
 //            m_bWindowFrame = false;
 //            
 //         }
-//         else
+         else
          {
 
-            m_bWindowFrame = get_parent() == nullptr || wfi_has_up_down();
+            m_bWindowFrame = false;
 
          }
 

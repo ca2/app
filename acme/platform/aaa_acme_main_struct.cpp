@@ -23,20 +23,20 @@ apex_main_struct::apex_main_struct()
 
 #endif
 
-   if (m_bExperienceMainFrame.is_none())
-   {
-
-#if defined(UNIVERSAL_WINDOWS) || defined(APPLE_IOS) || defined(__ANDROID__)
-
-      m_bExperienceMainFrame = false;
-
-#else 
-
-      m_bExperienceMainFrame = true;
-
-#endif
-
-   }
+//   if (m_emainuserinterface.is_none())
+//   {
+//
+//#if defined(UNIVERSAL_WINDOWS) || defined(APPLE_IOS) || defined(__ANDROID__)
+//
+//      m_emainuserinterface = false;
+//
+//#else
+//
+//      m_emainuserinterface = true;
+//
+//#endif
+//
+//   }
 
    m_pszMain = nullptr;
    m_pfnnewmatterApplication = nullptr;

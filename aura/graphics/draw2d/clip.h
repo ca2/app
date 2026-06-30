@@ -7,6 +7,9 @@
 #pragma once
 
 
+#include "acme/prototype/geometry2d/ellipse.h"
+#include "acme/prototype/geometry2d/polygon.h"
+
 namespace draw2d
 {
 
@@ -19,9 +22,12 @@ namespace draw2d
    };
 
    class CLASS_DECL_AURA clip_item :
-      public ::particle
+      virtual public ::particle
    {
    public:
+
+      clip_item(){}
+      ~clip_item() override{}
 
       virtual enum_clip_item clip_item_type() const { return e_clip_item_none; }
 
@@ -29,24 +35,51 @@ namespace draw2d
 
    template < typename TYPE, enum_clip_item t_eclipitem >
    class clip_item_base :
-      public clip_item
+      virtual public clip_item
    {
    public:
 
 
       TYPE m_item;
 
-      virtual enum_clip_item clip_item_type() const { return t_eclipitem; }
+
+      clip_item_base(){}
+      ~clip_item_base() override{}
+
+      virtual enum_clip_item clip_item_type() const  override { return t_eclipitem; }
 
    };
 
-   using clip_rectangle = clip_item_base < ::i32_rectangle, e_clip_item_rectangle >;
-   using clip_ellipse = clip_item_base < ::f64_ellipse, e_clip_item_ellipse >;
-   using clip_polygon = clip_item_base < ::f64_polygon, e_clip_item_polygon >;
+   class CLASS_DECL_AURA clip_rectangle :
+      virtual public clip_item_base < ::i32_rectangle, e_clip_item_rectangle > {
+   public:
+
+      clip_rectangle();
+      ~clip_rectangle() override;
+
+   };
+
+   class CLASS_DECL_AURA clip_ellipse :
+      virtual public clip_item_base < ::f64_ellipse, e_clip_item_ellipse > {
+   public:
+
+      clip_ellipse();
+      ~clip_ellipse() override;
+
+   };
+
+   class CLASS_DECL_AURA clip_polygon :
+      virtual public clip_item_base < ::f64_polygon, e_clip_item_polygon > {
+   public:
+
+      clip_polygon();
+      ~clip_polygon() override;
+
+   };
 
 
    class CLASS_DECL_AURA clip_group :
-      public ::pointer_array < clip_item >
+      virtual public ::pointer_array < clip_item >
    {
    public:
 
@@ -72,14 +105,20 @@ namespace draw2d
 
       }
 
+      clip_group(){}
+      ~clip_group() override {}
+
+
    };
 
 
    class CLASS_DECL_AURA clip :
-      public ::pointer_array <  clip_group >
+      virtual public ::pointer_array <  clip_group >
    {
    public:
 
+      clip(){}
+      ~clip() override{}
 
    };
 

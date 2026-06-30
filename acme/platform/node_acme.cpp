@@ -1287,6 +1287,12 @@ namespace platform
    }
 
 
+   bool acme_node_layer::defer_process_picker_protocol_path(::file::path& path)
+   {
+      return false;
+   }
+
+
    //void finalize() override{}
 
    //::string acme_node_layer::get_command_line(){}
@@ -1991,6 +1997,91 @@ void acme_node_layer::open_internet_link(const ::scoped_string& scopedstrUrl, co
    {
 
       throw interface_only();
+
+   }
+
+
+   void acme_node_layer::post_google_drive_appdata_operation(::data::block* pdatablock)
+   {
+
+      throw interface_only();
+
+   }
+
+
+   void acme_node_layer::google_drive_appdata_set_data(const ::scoped_string & scopedstrPath, const ::block & block)
+   {
+
+
+
+   }
+
+
+   ::memory acme_node_layer::google_drive_appdata_get_data(const ::scoped_string & scopedstrPath)
+   {
+
+
+
+   }
+
+
+   ::string acme_node_layer::google_drive_appdata_list()
+   {
+
+
+   }
+
+
+   void acme_node_layer::google_drive_appdata_delete(const ::scoped_string & scopedstrPath)
+   {
+
+
+   }
+
+
+   bool acme_node_layer::secure_app_storage_set(const ::scoped_string & scopedstrName, const ::scoped_string & scopedstrValue)
+   {
+
+      return false;
+
+   }
+
+
+   ::string acme_node_layer::secure_app_storage_get(const ::scoped_string & scopedstrName)
+   {
+
+      return {};
+
+   }
+
+
+   bool acme_node_layer::secure_app_storage_delete(const ::scoped_string & scopedstrName)
+   {
+
+      return false;
+
+   }
+
+
+   bool acme_node_layer::secure_app_storage_contains(const ::scoped_string & scopedstrName)
+   {
+
+      return false;
+
+   }
+
+
+   ::string acme_node_layer::get_google_access_token(const ::scoped_string & scopedstrScope)
+   {
+
+      return {};
+
+   }
+
+
+   void acme_node_layer::clear_google_access_token(const ::scoped_string & scopedstrScope, const ::scoped_string & scopedstrAccessToken)
+   {
+
 
    }
 

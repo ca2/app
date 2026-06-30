@@ -14538,10 +14538,12 @@ if(get_parent())
 
                   ::pointer<::aura::application> papp = get_app();
 
-                  if (::is_set(pinteraction)  &&
-                      (pinteraction->m_bExtendOnParent ||
-                      (pinteraction->m_bExtendOnParentIfOnlyClient
-                         && papp && papp->m_bExperienceMainFrame)))
+                  if (::is_set(pinteraction)
+                  && (
+                        pinteraction->m_bExtendOnParent
+                        || pinteraction->m_bExtendOnParentIfOnlyClient
+                     )
+                     )
                   {
 
                      synchronouslock.unlock();
@@ -29929,7 +29931,7 @@ void interaction::on_keyboard_layout_change(const_char_pointer pszKeyboardLayout
    //    ::pointer<::aura::application>papp = get_app();
 
    //    if (m_bExtendOnParent ||
-   //       (m_bExtendOnParentIfClientOnly && papp->m_bExperienceMainFrame))
+   //       (m_bExtendOnParentIfClientOnly && papp->m_emainuserinterface))
    //    {
 
    //       auto puserinteractionParent = get_parent();

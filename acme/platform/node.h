@@ -708,8 +708,22 @@ namespace platform
 
       bool defer_process_protocol_path(::file::path & path) override;
 
+      bool defer_process_picker_protocol_path(::file::path & path) override;
 
-   void destroy() override;
+
+      void google_drive_appdata_set_data(const ::scoped_string & scopedstrPath, const ::block & block) override;
+      ::memory google_drive_appdata_get_data(const ::scoped_string & scopedstrPath) override;
+      ::string google_drive_appdata_list() override;
+      void google_drive_appdata_delete(const ::scoped_string & scopedstrPath) override;
+
+      bool secure_app_storage_set(const ::scoped_string & scopedstrName, const ::scoped_string & scopedstrValue) override;
+      ::string secure_app_storage_get(const ::scoped_string & scopedstrName) override;
+      bool secure_app_storage_delete(const ::scoped_string & scopedstrName) override;
+      bool secure_app_storage_contains(const ::scoped_string & scopedstrName) override;
+      ::string get_google_access_token(const ::scoped_string & scopedstrScope) override;
+      void clear_google_access_token(const ::scoped_string & scopedstrScope, const ::scoped_string & scopedstrAccessToken) override;
+
+      void destroy() override;
 
    //virtual string get_command_line();
 

@@ -912,7 +912,6 @@ namespace user
          auto timeFrame = m_puserinteraction->has_fps_output_purpose()
             ? m_timePostRedrawProdevian : m_timePostRedrawNominal ;
 
-
          if (
             m_puserinteraction->m_pacmewindowingwindow)
          {

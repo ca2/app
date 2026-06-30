@@ -17,7 +17,7 @@ namespace browser
 
       window_enable_full_screen();
 
-      m_bWindowFrame = !papp->m_bExperienceMainFrame;
+      //m_bWindowFrame = !papp->m_emainuserinterface;
 
       set_translucent();
 

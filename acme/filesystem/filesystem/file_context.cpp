@@ -3954,7 +3954,8 @@ file_pointer file_context::_get_file(const ::payload & payloadFile, ::file::e_op
 ::file_pointer file_context::defer_get_protocol_file(const ::scoped_string & scopedstrProtocol, const ::file::path & path, ::file::e_open eopen, ::pointer < ::file::exception > * pfileexception)
 {
 
-   if(scopedstrProtocol == "mediastore")
+   if(scopedstrProtocol == "mediastore"
+   || scopedstrProtocol == "gdrive-appdata")
    {
 
       auto pfile = create_newø < ::protocol_file >();

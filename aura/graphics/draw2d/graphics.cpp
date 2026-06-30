@@ -3782,23 +3782,23 @@ namespace draw2d
    //   }
    //
 
-   void graphics::intersect_clip(const clip & clip)
+   void graphics::intersect_clip(clip * pclip)
    {
 
-      for (auto & pclipgroup : clip)
+      for (auto & pclipgroup : *pclip)
       {
 
-         intersect_clip(*pclipgroup);
+         intersect_clip(pclipgroup);
 
       }
 
    }
 
 
-   void graphics::intersect_clip(const clip_group & clipgroup)
+   void graphics::intersect_clip(clip_group * pclipgroup)
    {
 
-      for (auto & pclipitem : clipgroup)
+      for (auto & pclipitem : *pclipgroup)
       {
 
          _add_clip_item(pclipitem);
@@ -3815,14 +3815,23 @@ namespace draw2d
 
       switch (pclipitem->clip_item_type())
       {
-      case e_clip_item_rectangle:
-         _add_shape(dynamic_cast<clip_rectangle *>(pclipitem)->m_item);
+      case e_clip_item_rectangle: {
+         auto pcliprectangle =dynamic_cast<::draw2d::clip_rectangle *>(pclipitem);
+         auto & rectangle = pcliprectangle->m_item;
+         _add_shape(rectangle);
+      }
          break;
-      case e_clip_item_ellipse:
-         _add_shape(dynamic_cast<clip_ellipse *>(pclipitem)->m_item);
+      case e_clip_item_ellipse: {
+         auto pclipellipse =dynamic_cast<::draw2d::clip_ellipse *>(pclipitem);
+         auto & ellipse = pclipellipse->m_item;
+         _add_shape(ellipse);
          break;
-      case e_clip_item_polygon:
-         _add_shape(dynamic_cast<clip_polygon *>(pclipitem)->m_item);
+      }
+      case e_clip_item_polygon: {
+         auto pclippolygon =dynamic_cast<::draw2d::clip_polygon *>(pclipitem);
+         auto & polygon = pclippolygon->m_item;
+         _add_shape(polygon);
+      }
          break;
       default:
          break;

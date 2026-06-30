@@ -1386,16 +1386,16 @@ namespace aura
 
       }*/
 
-      ::pointer<::aura::application>papp = pinteraction->get_app();
-
-      if (prequest->m_bExperienceMainFrame ||
-            papp->m_bExperienceMainFrame ||
-            prequest->m_bOuterPopupAlertLike)
-      {
-         
-         return puserinteractionParent;
-
-      }
+//      ::pointer<::aura::application>papp = pinteraction->get_app();
+//
+//      if (
+//            papp->m_emainuserinterface ||
+//            prequest->m_bOuterPopupAlertLike)
+//      {
+//
+//         return puserinteractionParent;
+//
+//      }
 
       //bool bCreateBergedge = false;
 
@@ -1413,7 +1413,7 @@ namespace aura
 
       //auto papp = pinteraction->get_app();
 
-      string strAppName = papp->m_strAppName;
+      //string strAppName = papp->m_strAppName;
 
       //if (strAppName != "bergedge")
       //{

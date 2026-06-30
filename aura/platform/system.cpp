@@ -4137,31 +4137,31 @@ namespace aura
    void system::on_initial_frame_position(::user::frame_interaction * pframe)
    {
 
-      if(application()->m_bExperienceMainFrame)
-      {
-
-//#ifdef UNIVERSAL_WINDOWS
+//      if(application()->m_emainuserinterface)
+//      {
 //
-//         //
+////#ifdef UNIVERSAL_WINDOWS
+////
+////         //
+////
+////         auto puserinteraction = __user_interaction(pframe);
+////
+////         ::pointer<::universal_windows::interaction_impl>pimpl = puserinteraction->m_pimpl;
+////
+////         if (pimpl.is_set())
+////         {
+////
+////            auto pframeworkview = pimpl->m_pframeworkview;
+////
+////            auto directx = pframeworkview->m_directx;
+////
+////            directx->UpdateForWindowSizeChange();
+////
+////         }
+////
+////#endif
 //
-//         auto puserinteraction = __user_interaction(pframe);
-//
-//         ::pointer<::universal_windows::interaction_impl>pimpl = puserinteraction->m_pimpl;
-//
-//         if (pimpl.is_set())
-//         {
-//
-//            auto pframeworkview = pimpl->m_pframeworkview;
-//
-//            auto directx = pframeworkview->m_directx;
-//
-//            directx->UpdateForWindowSizeChange();
-//
-//         }
-//
-//#endif
-
-      }
+//      }
 
    }
 

@@ -1559,6 +1559,32 @@ namespace factory
    ////}
 
 
+   void factory::set_factory_item_by_type_id(const ::type_id & type_id, const ::pointer<::factory::factory_item_interface> & pfactoryitem)
+   {
+
+      if(type_id.m_typeindex != ::std::type_index(typeid(void)))
+      {
+
+         m_mapByTypeIndex[type_id.m_typeindex] = pfactoryitem;
+
+      }
+
+      if(type_id.m_strRawTypeName.has_character())
+      {
+
+         m_mapByTypeName[type_id.m_strRawTypeName] = pfactoryitem;
+
+      }
+
+      if(type_id.m_strTypeName.has_character())
+      {
+
+         m_mapByTypeName[type_id.m_strTypeName] = pfactoryitem;
+
+      }
+
+   }
+
 
    void factory::set_factory_item_by_type(const ::platform::type & type, const ::pointer<::factory::factory_item_interface> & pfactoryitem)
    {
@@ -1573,7 +1599,7 @@ namespace factory
       if (type.m_typeid.is_set())
       {
 
-         set_factory_item_by_type(type.m_typeid, pfactoryitem);
+         set_factory_item_by_type_id(type.m_typeid, pfactoryitem);
 
       }
 

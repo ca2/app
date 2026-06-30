@@ -252,13 +252,17 @@ namespace platform
 
    bool acme_context_layer::defer_process_media_library_path(::file::path& path)
    {
+
       return false;
+
    }
 
 
    bool acme_context_layer::defer_process_known_folder_path(::file::path& path)
    {
+
       return false;
+
    }
 
 
@@ -269,6 +273,13 @@ namespace platform
 
    }
 
+
+   bool acme_context_layer::defer_process_picker_protocol_path(::file::path& path)
+   {
+
+      return false;
+
+   }
 
 
    ::platform::http * acme_context_layer::http()

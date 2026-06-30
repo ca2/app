@@ -429,7 +429,13 @@ namespace user
 
       }
 
-      auto toolbartransport = pframewindow->m_puserframewindow->get_toolbar( get_toolbar_id(), bCreate);
+      auto atomToolbarId = get_toolbar_id();
+
+      auto strToolbarId = atomToolbarId.as_string();
+
+      auto pszToolbarId = strToolbarId.c_str();
+
+      auto toolbartransport = pframewindow->m_puserframewindow->get_toolbar(atomToolbarId, bCreate);
 
       if(!toolbartransport)
       {

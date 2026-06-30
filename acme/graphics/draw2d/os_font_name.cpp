@@ -92,22 +92,29 @@ string android_font_name(enum_font efont)
    switch (efont)
    {
       case e_font_sans:
+         return "Roboto";
       case e_font_sans_ui:
-         return "sans-serif";
+         return "Roboto";
       case e_font_sans_ex:
          return "sans-serif-condensed";
       case e_font_sans_fx:
          return "sans-serif-medium";
       case e_font_serif:
+         return "Noto Serif";
       case e_font_serif_ui:
+         return "Noto Serif";
       case e_font_serif_ex:
+         return "Noto Serif";
       case e_font_serif_fx:
-         return "serif";
+         return "Noto Serif";
       case e_font_monospace:
+         return "Droid Sans Mono";
       case e_font_monospace_ui:
+         return "Droid Sans Mono";
       case e_font_monospace_ex:
+         return "Cutive Mono";
       case e_font_monospace_fx:
-         return "monospace";
+         return "Droid Sans Mono";
       default:
          return "sans-serif";
    }

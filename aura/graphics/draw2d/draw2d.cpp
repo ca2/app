@@ -1565,7 +1565,7 @@ void draw2d::emboss_predicate(
 
 #elif defined(__ANDROID__)
 
-      return "android";
+      return "afont";
 
 #elif defined(__BSD__)
 

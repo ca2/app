@@ -72,6 +72,7 @@ public:
    ::file::path defer_process_relative_path(const ::file::path & path, const ::file::path & pathFolder = "");
 
    virtual bool defer_process_protocol_path(::file::path & path);
+   virtual bool defer_process_picker_protocol_path(::file::path & path);
    
    virtual ::file::path get_absolute_path(const ::scoped_string & scopedstr);
    virtual bool is_absolute_path(const ::scoped_string & scopedstr);

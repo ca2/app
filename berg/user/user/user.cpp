@@ -974,8 +974,8 @@ namespace berg
 //
 //      }*/
 //
-//      if (pcreate->m_bExperienceMainFrame ||
-//            papp->m_bExperienceMainFrame ||
+//      if (pcreate->m_emainuserinterface ||
+//            papp->m_emainuserinterface ||
 //            pcreate->m_bOuterPopupAlertLike)
 //      {
 //         return puiParent;

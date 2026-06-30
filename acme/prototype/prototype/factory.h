@@ -319,9 +319,12 @@ namespace factory
 
       template < typename ORIGIN_TYPE  >
       inline pointer< ::factory::factory_item_base < ORIGIN_TYPE > > add_factory_item_with_custom_id(const ::type_custom_id & typecustomid);
+      template < typename ORIGIN_TYPE  >
+      inline pointer< ::factory::factory_item_base < ORIGIN_TYPE > > add_factory_item_by_type(const ::platform::type & type);
       //template < typename TYPE, typename ORIGIN_TYPE >
       //inline pointer< ::factory::factory_item_base < ORIGIN_TYPE > > add_factory_item_from(const ::platform::type & typeSource);
       virtual void set_factory_item_by_custom_id(const ::type_custom_id & typecustomid, const ::pointer<::factory::factory_item_interface> & pfactoryitem);
+      virtual void set_factory_item_by_type_id(const ::type_id & type, const ::pointer<::factory::factory_item_interface> & pfactoryitem);
       virtual void set_factory_item_by_type(const ::platform::type & type, const ::pointer<::factory::factory_item_interface> & pfactoryitem);
 
       template < typename TYPE, typename ORIGIN_TYPE>
@@ -534,6 +537,28 @@ namespace factory
 
    }
 
+
+
+   template <  typename TYPE >
+   inline pointer< ::factory::factory_item_base < TYPE > > factory::add_factory_item_by_type(const ::platform::type & type)
+   {
+
+      if (type.is_empty())
+      {
+
+         throw ::exception(error_bad_argument, "type is not set");
+
+      }
+
+      critical_section_lock lock(&m_criticalsection);
+
+      auto pfactoryitem = allocateø ::factory::factory_item< TYPE, TYPE > ();
+
+      set_factory_item_by_type(type, pfactoryitem);
+
+      return pfactoryitem;
+
+   }
 
    CLASS_DECL_ACME::factory::factory * loading_library_factory();
 

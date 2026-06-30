@@ -77,6 +77,15 @@ void api::load_configuration()
 
    }
 
+#elif defined(__ANDROID__)
+
+   if (m_strImplementation.case_insensitive_equals("google"))
+   {
+
+      strPrefix = "android/";
+
+   }
+
 #endif
 
    ::file::path pathName;

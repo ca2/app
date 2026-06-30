@@ -592,8 +592,8 @@ namespace draw2d
       virtual void _eo_clip();
       //virtual void _add_clipping_shape(___shape<::draw2d::region> & shape);
 
-      virtual void intersect_clip(const clip& clip);
-      virtual void intersect_clip(const clip_group& clipgroup);
+      virtual void intersect_clip(clip * pclip);
+      virtual void intersect_clip(clip_group *pclipgroup);
       virtual void _add_clip_item(clip_item* pclipitem);
 
       /// If it is "simple" shape (not combine_item) it

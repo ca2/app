@@ -534,6 +534,14 @@ bool path_system::defer_process_protocol_path(::file::path & path)
 
 
 
+bool path_system::defer_process_picker_protocol_path(::file::path & path)
+{
+
+   return node()->defer_process_picker_protocol_path(path);
+
+}
+
+
 ::file::path path_system::get_absolute_path(const ::scoped_string& scopedstr)
 {
 

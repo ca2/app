@@ -79,6 +79,7 @@ namespace platform
        //virtual ::pointer < ::data::block > media_store_get_data(const ::scoped_string & scopedstrPath);
 
        virtual void post_media_store_operation(::data::block * pdatablock);
+       virtual void post_google_drive_appdata_operation(::data::block * pdatablock);
 
        //virtual void on_main_task_iteration();
 

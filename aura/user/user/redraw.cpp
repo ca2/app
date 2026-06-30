@@ -197,7 +197,7 @@ namespace user
       if (m_rectangleaNeedRedraw.has_element())
       {
          
-         ::draw2d::clip_group clipgroup;
+         auto pclipgroup = create_newø < ::draw2d::clip_group >();
          
          for (auto rectangleHostNeedRedraw : m_rectangleaNeedRedraw)
          {
@@ -206,17 +206,22 @@ namespace user
             
             ΔHostToClient(rectangleNeedRedraw);
             
-            auto prectangle = allocateø ::draw2d::clip_rectangle();
+            auto pcliprectangle = create_newø < ::draw2d::clip_rectangle >();
             
-            prectangle->m_item = rectangleNeedRedraw;
+            pcliprectangle->m_item = rectangleNeedRedraw;
+
+            if(::is_set(pstrDebug)) {
+
+               pstrDebug->append_format("add_clip_rect: {}",
+                                        ::as_string(rectangleNeedRedraw).c_str());
+
+            }
             
-            pstrDebug->append_format("add_clip_rect: {}", ::as_string(rectangleNeedRedraw).c_str());
-            
-            clipgroup.add(prectangle);
+            pclipgroup->add(pcliprectangle);
             
          }
          
-         m_pgraphics->intersect_clip(clipgroup);
+         m_pgraphics->intersect_clip(pclipgroup);
          
       }
 

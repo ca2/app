@@ -5429,6 +5429,29 @@ namespace draw2d_cairo
 
       cairo_set_font_face(m_pdc, pfontface);
 
+#if defined(__ANDROID__)
+
+      auto pfontoptions = cairo_font_options_create();
+
+      if (pfontoptions)
+      {
+
+         cairo_get_font_options(m_pdc, pfontoptions);
+
+         string strVariations;
+
+         strVariations.formatf("wght=%d,ital=%d",
+            pfontParam->m_fontweight.as_i32() > 0 ? pfontParam->m_fontweight.as_i32() : 400,
+            pfontParam->m_bItalic ? 1 : 0);
+
+         cairo_font_options_set_variations(pfontoptions, strVariations);
+         cairo_set_font_options(m_pdc, pfontoptions);
+         cairo_font_options_destroy(pfontoptions);
+
+      }
+
+#endif
+
       ::f32 fPreferredDpiX = 96.0f;
 
       ::f32 fPreferredDpiY = 96.0f;
@@ -5476,12 +5499,14 @@ namespace draw2d_cairo
 
       ::f32 fDensity = fPreferredDensity;
 
+      ::f64 fFontSize = pfontParam->m_fontsize.as_f64();
+
       if (pfontParam->m_fontsize.eunit() == ::e_unit_pixel)
       {
 
          //cairo_set_font_size(m_pdc, pfontParam->m_dFontSize * dFontScaler * fDensity);
 
-         cairo_set_font_size(m_pdc, pfontParam->m_fontsize.as_f64() * fDensity);
+         cairo_set_font_size(m_pdc, fFontSize * fDensity);
 
       }
       else
@@ -5489,7 +5514,7 @@ namespace draw2d_cairo
 
          //cairo_set_font_size(m_pdc, pfontParam->m_dFontSize * dFontScaler * fPreferredDpiX / fDenominatorDpi);
 
-         cairo_set_font_size(m_pdc, pfontParam->m_fontsize.as_f64() * fPreferredDpiX / fDenominatorDpi);
+         cairo_set_font_size(m_pdc, fFontSize * fPreferredDpiX / fDenominatorDpi);
 
       }
 
@@ -7030,6 +7055,107 @@ namespace draw2d_cairo
    }
 
 
+   namespace
+   {
+
+
+      FT_Fixed fixed_from_axis_value(double dValue)
+      {
+
+         return (FT_Fixed)(dValue * 65536.0);
+
+      }
+
+
+      FT_Fixed clamp_axis_value(FT_Fixed value, const FT_Var_Axis & axis)
+      {
+
+         if (value < axis.minimum)
+         {
+
+            return axis.minimum;
+
+         }
+
+         if (value > axis.maximum)
+         {
+
+            return axis.maximum;
+
+         }
+
+         return value;
+
+      }
+
+
+      void set_variable_font_axes(FT_Library ftlibrary, FT_Face ftface, ::i32 iWeight, bool bItalic)
+      {
+
+         if (!ftface || !FT_HAS_MULTIPLE_MASTERS(ftface))
+         {
+
+            return;
+
+         }
+
+         FT_MM_Var * pmmvar = nullptr;
+
+         if (FT_Get_MM_Var(ftface, &pmmvar) != 0 || !pmmvar)
+         {
+
+            return;
+
+         }
+
+         if (pmmvar->num_axis <= 0)
+         {
+
+            FT_Done_MM_Var(ftlibrary, pmmvar);
+
+            return;
+
+         }
+
+         auto pcoordinates = new FT_Fixed[pmmvar->num_axis];
+
+         for (FT_UInt iAxis = 0; iAxis < pmmvar->num_axis; iAxis++)
+         {
+
+            auto & axis = pmmvar->axis[iAxis];
+            auto value = axis.def;
+
+            if (axis.tag == FT_MAKE_TAG('w', 'g', 'h', 't'))
+            {
+
+               auto iClampedWeight = iWeight > 0 ? iWeight : 400;
+
+               value = fixed_from_axis_value(iClampedWeight);
+
+            }
+            else if (axis.tag == FT_MAKE_TAG('i', 't', 'a', 'l'))
+            {
+
+               value = fixed_from_axis_value(bItalic ? 1.0 : 0.0);
+
+            }
+
+            pcoordinates[iAxis] = clamp_axis_value(value, axis);
+
+         }
+
+         FT_Set_Var_Design_Coordinates(ftface, pmmvar->num_axis, pcoordinates);
+
+         delete[] pcoordinates;
+
+         FT_Done_MM_Var(ftlibrary, pmmvar);
+
+      }
+
+
+   } // namespace
+
+
    FT_Face graphics::ftface(const ::scoped_string & scopedstrFontName, ::i32 iWeight, bool bItalic)
    {
 
@@ -7112,6 +7238,8 @@ namespace draw2d_cairo
          }
          else
          {
+
+            set_variable_font_axes(ftlibrary, ftface, iWeight, bItalic);
 
             information() << "Creating font : " << scopedstrFontName;
 

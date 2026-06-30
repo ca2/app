@@ -735,6 +735,14 @@ namespace apex
    }
 
 
+   bool context::defer_process_picker_protocol_path(::file::path & path)
+   {
+
+      return path_system()->defer_process_picker_protocol_path(path);
+
+   }
+
+
    ::file::path context::full_process_path(::file::path path)
    {
 

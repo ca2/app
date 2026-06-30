@@ -41,6 +41,8 @@ list(APPEND library_source
         graphics/draw2d/brush.h
         graphics/draw2d/buffered_graphics.cpp
         graphics/draw2d/buffered_graphics.h
+        graphics/draw2d/clip.cpp
+        graphics/draw2d/clip.h
         #graphics/draw2d/color.h
         graphics/draw2d/color_filter.cpp
         graphics/draw2d/color_filter.h

@@ -42,8 +42,11 @@ if(${WIN32})
     target_link_options(${PROJECT_NAME} PRIVATE "/SUBSYSTEM:WINDOWS")
 elseif (${LINUX} OR ${__BSD__} OR ${ANDROID})
 
-
-    pkg_check_modules(${PROJECT_NAME}_PKGCONFIG libidn)
+   if (${USE_PKGCONFIG})
+      pkg_check_modules(${PROJECT_NAME}_PKGCONFIG libidn)
+   else()
+      list(APPEND library_references idn)
+   endif()
 
    target_compile_features(${PROJECT_NAME} PRIVATE cxx_std_20)
    #set_target_properties(${PROJECT_NAME} PROPERTIES CMAKE_INSTALL_RPATH_USE_LINK_PATH TRUE)
@@ -79,7 +82,7 @@ target_include_directories(${PROJECT_NAME} PRIVATE ${library_include_directories
 target_include_directories(static_${PROJECT_NAME} PRIVATE ${library_include_directories})
 
 
-target_compile_definitions(${PROJECT_NAME} PRIVATE _nano_idn_libidn_project)
+target_compile_definitions(${PROJECT_NAME} PRIVATE _${PROJECT_NAME}_project)
 
 
 

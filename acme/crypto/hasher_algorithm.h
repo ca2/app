@@ -14,6 +14,9 @@ namespace crypto
    public:
 
 
+      ~hasher_algorithm() override;
+
+
       virtual void initialize_hasher_algorithm(enum_hash ehash) = 0;
 
       virtual enum_hash ehash() const = 0;

@@ -63,7 +63,23 @@ namespace crypto
 
       //}
 
-      auto palgorithm = createø < ::crypto::hasher_algorithm >(system()->m_pfactoryCrypto);
+      auto pfactoryCrypto = system()->m_pfactoryCrypto;
+
+      ::pointer < ::crypto::hasher_algorithm > palgorithm;
+
+      if (pfactoryCrypto)
+      {
+
+         øconstruct_by_type(palgorithm, "crypto::hasher_algorithm", pfactoryCrypto);
+
+      }
+
+      if (!palgorithm)
+      {
+
+         palgorithm = createø < ::crypto::hasher_algorithm >(pfactoryCrypto);
+
+      }
 
       if (!palgorithm)
       {

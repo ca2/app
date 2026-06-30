@@ -125,6 +125,8 @@ namespace apex
 
       bool defer_process_protocol_path(::file::path & path) override;
 
+      bool defer_process_picker_protocol_path(::file::path & path) override;
+
       //sclass ::hyperlink hyperlink() { return this; }
 
 

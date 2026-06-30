@@ -886,6 +886,9 @@ namespace platform
       virtual bool defer_process_protocol_path(::file::path& path);
 
 
+      virtual bool defer_process_picker_protocol_path(::file::path& path);
+
+
       //void finalize() override;
 
       //virtual string get_command_line();
@@ -1300,6 +1303,19 @@ namespace platform
 
 
       virtual void post_media_store_operation(::data::block * pdatablock);
+      virtual void post_google_drive_appdata_operation(::data::block * pdatablock);
+
+      virtual void google_drive_appdata_set_data(const ::scoped_string & scopedstrPath, const ::block & block);
+      virtual ::memory google_drive_appdata_get_data(const ::scoped_string & scopedstrPath);
+      virtual ::string google_drive_appdata_list();
+      virtual void google_drive_appdata_delete(const ::scoped_string & scopedstrPath);
+
+      virtual bool secure_app_storage_set(const ::scoped_string & scopedstrName, const ::scoped_string & scopedstrValue);
+      virtual ::string secure_app_storage_get(const ::scoped_string & scopedstrName);
+      virtual bool secure_app_storage_delete(const ::scoped_string & scopedstrName);
+      virtual bool secure_app_storage_contains(const ::scoped_string & scopedstrName);
+      virtual ::string get_google_access_token(const ::scoped_string & scopedstrScope);
+      virtual void clear_google_access_token(const ::scoped_string & scopedstrScope, const ::scoped_string & scopedstrAccessToken);
 
       virtual void restart_application();
    };

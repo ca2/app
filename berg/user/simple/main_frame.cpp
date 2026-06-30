@@ -72,7 +72,7 @@ void simple_main_frame::on_message_create(::message::message * pmessage)
 //   else
 //   {
 //
-//      m_bWindowFrame = papp->m_bExperienceMainFrame;
+//      m_bWindowFrame = papp->m_emainuserinterface;
 //
 //   }
 //   
@@ -80,7 +80,7 @@ void simple_main_frame::on_message_create(::message::message * pmessage)
 //   if (m_bWindowFrame.undefined())
 //   {
 //
-//      auto & bApplicationExperienceMainFrame = papp->m_bExperienceMainFrame;
+//      auto & bApplicationExperienceMainFrame = papp->m_emainuserinterface;
 //
 //      if (bApplicationExperienceMainFrame.is_set())
 //      {

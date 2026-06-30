@@ -5368,12 +5368,15 @@ void window::on_keyboard_layout_change(const_char_pointer pszKeyboardLayoutId)
       auto poutputpurpose = allocateø::graphics::output_purpose(pparticleGraphicalOutputPurposeOriginator, epurpose);
 
       bool bHadGraphicalOutputPurpose = user_interaction()->has_graphical_output_purpose();
+      bool bHadFpsGraphicalOutputPurpose = user_interaction()->has_fps_output_purpose();
 
       this->add(poutputpurpose);
 
       bool bHasGraphicalOutputPurpose = user_interaction()->has_graphical_output_purpose();
+      bool bHasFpsGraphicalOutputPurpose = user_interaction()->has_fps_output_purpose();
 
-      if (bHasGraphicalOutputPurpose && !bHadGraphicalOutputPurpose)
+      if ((bHasGraphicalOutputPurpose && !bHadGraphicalOutputPurpose)
+         || (bHasFpsGraphicalOutputPurpose && !bHadFpsGraphicalOutputPurpose))
       {
 
          user_interaction()->set_need_redraw();
@@ -11291,9 +11294,6 @@ slGraphics.unlock();
                  }
 
               //m_pgraphicscontextDrawFrame.release();
-
-
-
 
 //
 //

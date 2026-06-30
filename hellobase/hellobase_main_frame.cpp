@@ -11,7 +11,7 @@ namespace hellobase
 
       WfiEnableFullScreen();
 
-      m_bWindowFrame = !papp->m_bExperienceMainFrame;
+      //m_bWindowFrame = !papp->m_emainuserinterface;
 
 
 

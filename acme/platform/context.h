@@ -228,6 +228,7 @@ namespace platform
       bool defer_process_media_library_path(::file::path & path) override;
       bool defer_process_known_folder_path(::file::path & path) override;
       bool defer_process_protocol_path(::file::path & path) override;
+      bool defer_process_picker_protocol_path(::file::path & path) override;
       
       
       

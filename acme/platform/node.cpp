@@ -3852,12 +3852,141 @@ bool node::are_any_shared_libraries_mapped(const ::file::path_array_base & patha
    }
 
 
+   bool node::defer_process_picker_protocol_path(::file::path & path)
+   {
+
+      return false;
+
+   }
+
+
    void node::destroy()
    {
 
       ::acme::shell::destroy();
 
    }
+
+
+   void node::google_drive_appdata_set_data(const ::scoped_string & scopedstrPath, const ::block & block)
+   {
+
+      auto pdatablock = create_newø<::data::block>();
+
+      pdatablock->initialize_set_operation(scopedstrPath, "application/octet-stream", block);
+
+      construct_newø(pdatablock->m_pmanualresethappening);
+
+      this->post_google_drive_appdata_operation(pdatablock);
+
+      pdatablock->m_pmanualresethappening->wait(1_min);
+
+   }
+
+
+   ::memory node::google_drive_appdata_get_data(const ::scoped_string & scopedstrPath)
+   {
+
+      auto pdatablock = create_newø<::data::block>();
+
+      pdatablock->initialize_get_operation(scopedstrPath, "application/octet-stream");
+
+      construct_newø(pdatablock->m_pmanualresethappening);
+
+      this->post_google_drive_appdata_operation(pdatablock);
+
+      pdatablock->m_pmanualresethappening->wait(1_min);
+
+      return pdatablock->m_memory;
+
+
+   }
+
+
+   ::string node::google_drive_appdata_list()
+   {
+
+      auto pdatablock = create_newø<::data::block>();
+
+      pdatablock->initialize_get_operation("", "application/x-ca2-google-drive-appdata-list");
+
+      construct_newø(pdatablock->m_pmanualresethappening);
+
+      this->post_google_drive_appdata_operation(pdatablock);
+
+      pdatablock->m_pmanualresethappening->wait(1_min);
+
+      return pdatablock->m_memory.get_string();
+
+
+   }
+
+
+   void node::google_drive_appdata_delete(const ::scoped_string & scopedstrPath)
+   {
+
+      auto pdatablock = create_newø<::data::block>();
+
+      pdatablock->initialize_set_operation(
+         scopedstrPath,
+         "application/x-ca2-google-drive-appdata-delete",
+         {});
+
+      construct_newø(pdatablock->m_pmanualresethappening);
+
+      this->post_google_drive_appdata_operation(pdatablock);
+
+      pdatablock->m_pmanualresethappening->wait(1_min);
+
+   }
+
+
+   bool node::secure_app_storage_set(const ::scoped_string & scopedstrName, const ::scoped_string & scopedstrValue)
+   {
+
+      return false;
+
+   }
+
+
+   ::string node::secure_app_storage_get(const ::scoped_string & scopedstrName)
+   {
+
+      return {};
+
+   }
+
+
+   bool node::secure_app_storage_delete(const ::scoped_string & scopedstrName)
+   {
+
+      return false;
+
+   }
+
+
+   bool node::secure_app_storage_contains(const ::scoped_string & scopedstrName)
+   {
+
+      return false;
+
+   }
+
+
+   ::string node::get_google_access_token(const ::scoped_string & scopedstrScope)
+   {
+
+      return {};
+
+   }
+
+
+   void node::clear_google_access_token(const ::scoped_string & scopedstrScope, const ::scoped_string & scopedstrAccessToken)
+   {
+
+
+   }
+
 
 
 //   string node::get_command_line()
@@ -5060,6 +5189,12 @@ bool node::are_any_shared_libraries_mapped(const ::file::path_array_base & patha
          pdatablock->m_pmanualresethappening->wait(1_min);
 
       }
+      else if(scopedstrProtocol == "gdrive-appdata")
+      {
+
+         google_drive_appdata_set_data(scopedstrPath, block);
+
+      }
       else
       {
 
@@ -5087,6 +5222,12 @@ bool node::are_any_shared_libraries_mapped(const ::file::path_array_base & patha
          pdatablock->m_pmanualresethappening->wait(1_min);
 
          return pdatablock->m_memory;
+
+      }
+      else if(scopedstrProtocol == "gdrive-appdata")
+      {
+
+         return google_drive_appdata_get_data(scopedstrPath);
 
       }
       else

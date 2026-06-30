@@ -15,7 +15,7 @@ _STUD_API bool __is_windows = false;
 
 #define FOR_WINDOWS if constexpr(__is_windows)
 
-#if defined(__linux__)
+#if defined(__linux__) && !defined(__ANDROID__)
 _STUD_API bool __is_linux = true;
 #else
 _STUD_API bool __is_linux = false;

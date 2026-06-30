@@ -739,7 +739,6 @@ void simple_toolbar::_001DrawItem(::draw2d::graphics_pointer & pgraphics, ::coll
 
    return _001DrawSimpleToolbarItem(pgraphics, iItem);
 
-
 }
 
 

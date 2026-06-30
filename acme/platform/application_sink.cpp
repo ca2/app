@@ -80,6 +80,16 @@ namespace platform
    }
 
 
+   void application_sink::post_google_drive_appdata_operation(::data::block * pdatablock)
+   {
+
+      m_pmessagesinkMediaStore->post_data_block_message(
+         ::e_message_google_drive_appdata_operation,
+         pdatablock);
+
+   }
+
+
 //   void application_sink::on_main_task_iteration()
 //   {
 //
@@ -245,7 +255,19 @@ namespace platform
 
       synchronous_lock lock(this->synchronization(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 
-      m_straOpenUrl.add(scopedstrOpenUrl);
+      //m_straOpenUrl.add(scopedstrOpenUrl);
+
+      auto pmessageOpenUrl = message_sink()->create_message(::e_message_open_url);
+
+      output_byte2_stream stream(pmessageOpenUrl->m_memory);
+
+      ::message::open_url openurl;
+
+      openurl.m_strUrl = scopedstrOpenUrl;
+
+      stream << openurl;
+
+      message_sink()->post_message(pmessageOpenUrl);
 
    }
 

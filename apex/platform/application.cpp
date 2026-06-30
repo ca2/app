@@ -9347,7 +9347,7 @@ void application::setResourceName(::i32 iId, const ::scoped_string &scopedstrRes
    //   //         puiParent = dynamic_cast < ::user::interaction * > (pcreate->m_pappbias->m_puserinteractionParent);
    //   //      }
 
-   //         //if(puiParent == nullptr && m_psession != nullptr && m_psession->m_psession != nullptr && !pcreate->m_bExperienceMainFrame
+   //         //if(puiParent == nullptr && m_psession != nullptr && m_psession->m_psession != nullptr && !pcreate->m_emainuserinterface
    //         /*if (puiParent == nullptr && m_psession != nullptr && m_psession != nullptr
    //               && !pcreate->m_bOuterPopupAlertLike && m_psession != dynamic_cast < session * > (this))
    //         {

@@ -83,7 +83,7 @@ public:
 
    //bool                             m_bMakeVisible;
    bool                             m_bTransparentBackground;
-   bool                             m_bExperienceMainFrame;
+   //bool                             m_emainuserinterface;
    bool                             m_bOuterPopupAlertLike;
    bool                             m_bHold;
    ::pointer<::user::element>       m_puserelementParent;

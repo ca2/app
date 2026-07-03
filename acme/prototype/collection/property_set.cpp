@@ -2635,7 +2635,16 @@ string property_set_base::as_string(const ::scoped_string& scopedstrSeparator1, 
    for (; i < this->get_count(); i++)
    {
 
-      if (this->element_at(i)->name() == atom)
+      auto & pproperty = this->element_at(i);
+
+      if(!pproperty)
+      {
+
+         continue;
+
+      }
+
+      if (pproperty->name() == atom)
       {
 
          return i;

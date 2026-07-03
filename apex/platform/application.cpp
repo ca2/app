@@ -1493,20 +1493,6 @@ void application::setResourceName(::i32 iId, const ::scoped_string &scopedstrRes
 
          }
          
-         if(prequest->m_ecommand == e_command_file_open)
-         {
-            
-            auto path  = prequest->m_payloadFile.as_file_path();
-            
-            if(::url::is(path))
-            {
-               
-               handle_uri(path);
-               
-            }
-            
-         }
-
          m_bAttendedFirstRequest = true;
 
          // if(!m_bGUIReady)
@@ -10788,6 +10774,26 @@ void application::setResourceName(::i32 iId, const ::scoped_string &scopedstrRes
             pdialog->show_front(puseractivationtoken);
 
          });
+   }
+
+
+   void application::on_request(::request * prequest)
+   {
+
+      if(prequest->m_ecommand == e_command_file_open)
+      {
+
+         auto path  = prequest->m_payloadFile.as_file_path();
+
+         if(::url::is(path))
+         {
+
+            handle_uri(path);
+
+         }
+
+      }
+
    }
 
 

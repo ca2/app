@@ -249,7 +249,7 @@ namespace user
 
       // border space negotiation
       enum BorderCmd { borderGet = 1, borderRequest = 2, borderSet = 3 };
-      virtual bool NegotiateBorderSpace(::u32 nBorderCmd, ::i32_rectangle * pRectBorder);
+      virtual bool NegotiateBorderSpace(::draw2d::graphics_pointer & pgraphics, ::u32 nBorderCmd, ::i32_rectangle * pRectBorder);
 
       virtual bool on_create_client(::user::system * pusersystem);
 

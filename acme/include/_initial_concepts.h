@@ -862,6 +862,10 @@ concept a_particle = ::std::derived_from<A_PARTICLE, ::particle>;
 template < typename NON_PARTICLE >
 concept non_particle = !a_particle < NON_PARTICLE >;
 
+template < typename PARTICLE_POINTER >
+concept prototype_particle_pointer =
+   ::std::is_pointer_v<PARTICLE_POINTER>
+      && a_particle < ::non_pointer<PARTICLE_POINTER>>;
 
 //template < typename T, typename ...Args >
 //inline T * __call_allocate(Args &&... args);
@@ -1005,7 +1009,7 @@ template < typename ARRAY >
 concept prototype_particle_array = requires(ARRAY array, ::collection::index i, ::collection::count c)
 {
    array.get_count();
-   {array.element_at(i)}->prototype_pointer2;
+   {array.element_at(i)}->prototype_particle_pointer;
    array.set_size(c);
 };
 

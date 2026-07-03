@@ -299,12 +299,12 @@ namespace experience
 
             ::i32_rectangle rectangle(0, 0, 32767, 32767);
 
-            pframewindow->RepositionBars(0, 0xffff, FIRST_PANE, pframewindow->reposQuery,
+            pframewindow->RepositionBars(pgraphics, 0, 0xffff, FIRST_PANE, pframewindow->reposQuery,
                                  &rectangle, rectangle, false);
             rectangle.offset(rectangleHosting.top_left());
             ::i32_rectangle rectangleBorder;
             pframewindow->GetBorderRectangle(&rectangleBorder);
-            pframewindow->RepositionBars(0, 0xffff, FIRST_PANE, pframewindow->reposExtra,
+            pframewindow->RepositionBars(pgraphics, 0, 0xffff, FIRST_PANE, pframewindow->reposExtra,
                                  &rectangleBorder, rectangle, true);
             pframewindow->SetBorderRect(rectangleBorder);
             //pframewindow->CalcWindowRect(&rectangle);
@@ -325,7 +325,7 @@ namespace experience
 
             pframewindow->GetBorderRectangle(&rectangleBorder);
 
-            pframewindow->RepositionBars(0, 0xffff, FIRST_PANE, pframewindow->reposExtra, &rectangleBorder, rectangleHosting);
+            pframewindow->RepositionBars(pgraphics, 0, 0xffff, FIRST_PANE, pframewindow->reposExtra, &rectangleBorder, rectangleHosting);
 
             pframewindow->SetBorderRect(rectangleBorder);
 

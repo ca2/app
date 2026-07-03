@@ -1111,13 +1111,17 @@ namespace experience_anthill
                      && !::in_element_range(ptab->m_pitemHover, ::e_element_split, 100))
                   {
 
-                     pgraphics->set(ptab->get_font(pstyle, ::user::e_state_selected | ::user::e_state_hover));
+                     auto pfont = pstyle->get_font(ptab, ::e_element_tab, ::user::e_state_selected | ::user::e_state_hover);
+
+                     pgraphics->set(pfont);
 
                   }
                   else
                   {
 
-                     pgraphics->set(ptab->get_font(pstyle, ::user::e_state_selected));
+                     auto pfont = pstyle->get_font(ptab, ::e_element_tab, ::user::e_state_selected);
+
+                     pgraphics->set(pfont);
 
                   }
 
@@ -1154,7 +1158,10 @@ namespace experience_anthill
 
                      auto pstyle = ptab->get_style(pgraphics);
 
-                     pgraphics->set(ptab->get_font(pstyle, ::user::e_state_hover));
+
+                     auto pfont = pstyle->get_font(ptab, ::e_element_tab, ::user::e_state_hover);
+
+                     pgraphics->set(pfont);
 
                      pbrushText->create_solid(ptab->get_color(pstyle, ::e_element_border, ::user::e_state_selected));
 
@@ -1176,7 +1183,9 @@ namespace experience_anthill
 
                      auto pstyle = ptab->get_style(pgraphics);
 
-                     pgraphics->set(ptab->get_font(pstyle));
+                     auto pfont = pstyle->get_font(ptab, ::e_element_tab);
+
+                     pgraphics->set(pfont);
 
                      pbrushText->create_solid(ptab->get_color(pstyle, ::e_element_item_text));
 
@@ -1381,7 +1390,9 @@ namespace experience_anthill
             if (ptab->get_element_rectangle(iTab, rectangleClose, ::e_element_close_tab_button))
             {
 
-               pgraphics->set(ptab->get_font(pstyle, ::e_element_close_tab_button));
+               auto pfont = pstyle->get_font(ptab, ::e_element_close_tab_button);
+
+               pgraphics->set(pfont);
 
                if (::is_item(ptab->m_pitemHover, iTab)
                   && ::is_element(ptab->m_pitemHover, ::e_element_close_tab_button))
@@ -1485,7 +1496,9 @@ namespace experience_anthill
 
                }
 
-               pgraphics->set(ptab->get_font(pstyle, ::e_element_close_tab_button));
+               auto pfont = pstyle->get_font(ptab, ::e_element_close_tab_button);
+
+               pgraphics->set(pfont);
 
                pgraphics->set_alpha_mode(emode);
 
@@ -1520,7 +1533,9 @@ namespace experience_anthill
 
       //ptab->defer_handle_auto_hide_tabs(false);
 
-      pgraphics->set(ptab->get_font(pstyle, ::user::e_state_selected));
+      auto pfontSelected = pstyle->get_font(ptab, ::e_element_tab, ::user::e_state_selected);
+
+      pgraphics->set(pfontSelected);
 
       pdata->m_rectangleMargin = ptab->get_margin(pstyle);
 
@@ -1666,7 +1681,9 @@ namespace experience_anthill
            //       pgraphics->create_compatible_graphics(nullptr);
              //     ::draw2d::graphics_pointer & pgraphics = graphics;
 
-         pgraphics->set(ptab->get_font(pstyle, ::user::e_state_selected));
+             auto pfont = pstyle->get_font(ptab, ::e_element_tab, ::user::e_state_selected);
+
+         pgraphics->set(pfont);
 
          ::i32_rectangle rectangleX = ptab->rectangle(::user::e_layout_lading);
 

@@ -18,6 +18,7 @@
 
 
       ::file::path                  m_pathLocalFolder;
+      ::file::path                  m_pathAppMusic;
 
 
       directory_context();
@@ -181,6 +182,9 @@
 
       //virtual ::file::path dropbox();
       virtual ::file::path onedrive();
+
+
+      virtual ::file::path app_music();
 
       //virtual ::file::path dropbox_app();
 

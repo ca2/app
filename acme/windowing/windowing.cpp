@@ -678,6 +678,14 @@ namespace acme
       }
 
 
+      int windowing::open_file_descriptor(const ::file::path & path, ::file::e_open eopen)
+      {
+
+         return -1;
+
+      }
+
+
       void windowing::main_send(const ::procedure& procedure)
       {
 

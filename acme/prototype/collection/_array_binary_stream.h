@@ -16,7 +16,7 @@ inline binary_stream & operator <<(binary_stream & stream, const POINTER_ARRAY &
    for (auto & p : a)
    {
 
-      stream.write_particle(p.m_p);
+      stream.write_particle(p);
 
       if (stream.nok())
       {
@@ -282,20 +282,8 @@ inline binary_stream & operator >>(binary_stream & stream, ARRAY & a)
 }
 
 
-inline binary_stream & operator <<(binary_stream & stream, const ::property_set & propertyset)
-{
-
-   return stream << (const property_holder_array_base & ) propertyset;
-
-}
-
-
-inline binary_stream & operator >>(binary_stream & stream, ::property_set & propertyset)
-{
-
-   return stream >> (property_holder_array_base &) propertyset;
-
-}
+CLASS_DECL_ACME binary_stream & operator <<(binary_stream & stream, const ::property_set & propertyset);
+CLASS_DECL_ACME binary_stream & operator >>(binary_stream & stream, ::property_set & propertyset);
 
 
 CLASS_DECL_ACME binary_stream& binary_stream_write_property(::binary_stream& stream, const property& property);

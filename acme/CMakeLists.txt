@@ -811,10 +811,11 @@ list(APPEND library_source
    platform/wparam.cpp
    platform/wparam.h
         prototype/collection/__payload_array.cpp
+        prototype/collection/_array_binary_stream.h
         prototype/collection/_generic_array.h
-
         #prototype/collection/2d_array.cpp
         prototype/collection/array.cpp
+        prototype/collection/_array_binary_stream.cpp
         prototype/collection/atom_array.h
         prototype/collection/atom_map.h
         prototype/collection/bit_array.cpp

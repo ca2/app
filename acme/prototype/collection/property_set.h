@@ -532,4 +532,9 @@ public:
 CLASS_DECL_ACME ::pointer < ::property_set > create_network_arguments_property_set(const ::scoped_string& scopedstrNetworkArguments);
 
 
+CLASS_DECL_ACME binary_stream & operator <<(binary_stream & stream, const property_holder_array_base & a);
+
+CLASS_DECL_ACME binary_stream & operator >>(binary_stream & stream, property_holder_array_base & a);
+
+
 

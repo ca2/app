@@ -17,6 +17,8 @@
 
 
 #include "acme/platform/department.h"
+#include "acme/constant/filesystem.h"
+#include "acme/filesystem/filesystem/path.h"
 #include "acme/prototype/collection/comparable_list.h"
 #include "_.h"
 #include "acme/handler/task_handler.h"
@@ -72,6 +74,8 @@ namespace acme
 
 
          virtual ::string get_version();
+
+         virtual int open_file_descriptor(const ::file::path & path, ::file::e_open eopen);
          //inline static const_char_pointer represented_component_name() { return "nano_windowing"; }
 
          //::acme::windowing::window * windowing_window() override;

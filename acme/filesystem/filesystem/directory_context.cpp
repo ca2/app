@@ -3395,6 +3395,14 @@ bool directory_context::is_inside(const ::file::path & pathFolder, const ::file:
 }
 
 
+::file::path directory_context::app_music()
+{
+
+   return m_pathAppMusic;
+
+}
+
+
 // bool directory_context::is_onedrive_installed()
 // {
 //

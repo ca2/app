@@ -796,11 +796,13 @@ namespace user
 
          }
 
-         auto psystem = system();
+//         auto psystem = system();
 
-         auto pdraw2d = psystem->draw2d();
+  //       auto pdraw2d = psystem->draw2d();
 
-         auto pgraphics = pdraw2d->create_memory_graphics(this);
+    //     auto pgraphics = pdraw2d->create_memory_graphics(this);
+
+ auto & pgraphics = playout->m_pgraphics;
 
          //pgraphics->m_puserinteraction = this;
 

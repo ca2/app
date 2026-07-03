@@ -27,7 +27,7 @@ class holder
 
 public:
 
-
+   using POINTER_TYPE_TAG = pointer_type_t;
 
    holder() :
       m_p(nullptr)

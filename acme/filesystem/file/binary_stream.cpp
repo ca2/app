@@ -306,8 +306,7 @@ binary_stream & operator <<(binary_stream&stream, const ::payload & payload)
       throw ::exception(todo);
       break;
    case e_type_property_set:
-      //*this << *payload.m_pfilepropertyset;
-      throw ::exception(todo);
+      stream << *payload.m_ppropertyset;
       break;
    case e_type_i64_array:
       //*this << *payload.m_pfilei64a;

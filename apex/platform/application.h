@@ -1289,6 +1289,9 @@ namespace apex
       bool on_command_final(const ::atom& atom, ::user::activation_token * puseractivationtoken) override;
 
 
+      void on_request(::request * prequest) override;
+
+
    };
 
 

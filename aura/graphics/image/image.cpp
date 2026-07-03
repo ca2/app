@@ -4423,7 +4423,19 @@ void image::copy_from(::image::image* pimage, const ::i32_point  & point, ::enum
 
    }
 
-   memcpy(data(), pimage->data(), this->scan_area_in_bytes());
+//   if(pimage->m_bMapped && m_bMapped) {
+//
+//      m_pimage32->copy(size(),m_iScan, pimage->m_pimage32, pimage->m_iScan);
+//
+//   } else
+//   {
+
+
+      copy_from_no_create(pimage, point);
+
+//   }
+
+//   memcpy(data(), pimage->data(), this->scan_area_in_bytes());
    //copy_from_no_create(pimage, point);
 
 }

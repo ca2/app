@@ -2580,9 +2580,9 @@ namespace user
 
          ::i32_rectangle rectangle(0, 0, 32767, 32767);
 
-         RepositionBars(0, 0xffff, FIRST_PANE, reposQuery, &rectangle, rectangle, false);
+         RepositionBars(pgraphics, 0, 0xffff, FIRST_PANE, reposQuery, &rectangle, rectangle, false);
 
-         RepositionBars(0, 0xffff, FIRST_PANE, reposExtra, &m_rectangleBorder, rectangle, true);
+         RepositionBars(pgraphics, 0, 0xffff, FIRST_PANE, reposExtra, &m_rectangleBorder, rectangle, true);
 
          //CalcWindowRect(&rectangle);
 
@@ -2594,7 +2594,7 @@ namespace user
       else
       {
 
-         RepositionBars(0, 0xffff, FIRST_PANE, reposExtra, &m_rectangleBorder);
+         RepositionBars(pgraphics, 0, 0xffff, FIRST_PANE, reposExtra, &m_rectangleBorder);
 
       }
 
@@ -2602,7 +2602,7 @@ namespace user
 
 
    // frame_window implementation of OLE border space negotiation
-   bool frame_window::NegotiateBorderSpace(::u32 nBorderCmd, ::i32_rectangle * pRectBorder)
+   bool frame_window::NegotiateBorderSpace(::draw2d::graphics_pointer & pgraphics, ::u32 nBorderCmd, ::i32_rectangle * pRectBorder)
    {
 
       ::i32_rectangle border, request;
@@ -2612,7 +2612,7 @@ namespace user
       case borderGet:
          ASSERT(pRectBorder != nullptr);
 
-         RepositionBars(0, 0xffff, FIRST_PANE, reposQuery,
+         RepositionBars(pgraphics, 0, 0xffff, FIRST_PANE, reposQuery,
                         pRectBorder);
 
          break;

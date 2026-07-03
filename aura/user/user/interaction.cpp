@@ -13012,7 +13012,7 @@ if(get_parent())
    }
 
 
-   void interaction::RepositionBars(::u32 nIDFirst, ::u32 nIDLast, ::atom idLeft, ::u32 nFlags,
+   void interaction::RepositionBars(::draw2d::graphics_pointer & pgraphics, ::u32 nIDFirst, ::u32 nIDLast, ::atom idLeft, ::u32 nFlags,
                                     ::i32_rectangle * prectParam, const ::i32_rectangle & rectangleX,
                                     bool bStretch)
    {
@@ -13042,7 +13042,7 @@ if(get_parent())
       ASSERT(nFlags == 0 || (nFlags & ~reposNoPosLeftOver) == reposQuery ||
              (nFlags & ~reposNoPosLeftOver) == reposExtra);
 
-      size_parent_layout sizeparentlayout;
+      size_parent_layout sizeparentlayout(pgraphics);
 
       ::pointer<::user::interaction> puiLeft;
 

@@ -639,11 +639,19 @@ void binary_stream::read_payload_body(::payload & payload, enum_type etype)
    break;
    case e_type_property_set:
    {
-      throw ::exception(todo);
 
-      //__exchange_load_array(*this, (::property_set &) payload);
+      // throw ::exception(todo);
 
+      // __exchange_load_array(*this, (::property_set &) payload);
 
+      if(::is_null(payload.m_ppropertyset))
+      {
+
+         payload.m_ppropertyset = new ::property_set();
+
+      }
+
+      *this >> *payload.m_ppropertyset;
 
    }
    break;

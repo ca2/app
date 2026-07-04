@@ -40,7 +40,22 @@ void output_debug_string(const ::scoped_string & scopedstr)
 
    //__android_log_print(ANDROID_LOG_INFO, "information", str);
 
-   __android_log_print(ANDROID_LOG_INFO,"information", "%s", ::string(scopedstr).c_str());
+   if(*scopedstr.m_end)
+   {
+
+      auto psz = strndup(scopedstr.m_begin, scopedstr.size());
+
+      __android_log_print(ANDROID_LOG_INFO,"information", "%s", psz);
+
+      ::free(psz);
+
+   }
+   else
+   {
+
+      __android_log_print(ANDROID_LOG_INFO, "information", "%s", scopedstr.m_begin);
+
+   }
 
    //      }
 

@@ -1887,7 +1887,12 @@ namespace platform
 
          ::string strUri = pmessage->m_memory.get_string();
 
-         system()->handle_uri(strUri);
+         system()->post([this, strUri]()
+                        {
+
+                           system()->handle_uri(strUri);
+
+                        });
 
       }
       else if (emessage == ::e_message_open_file_request)
@@ -1901,7 +1906,7 @@ namespace platform
 
          prequest->m_ecommand = ::e_command_file_open;
 
-         this->request(prequest);
+         this->post_request(prequest);
 
       }
 

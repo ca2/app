@@ -4481,7 +4481,7 @@ namespace draw2d_cairo
 
             //size.cy = x;
 
-            return {textextents.x_advance, textextents.height} ;
+            return {textextents.x_advance, fontextents.height} ;
 
          }
 

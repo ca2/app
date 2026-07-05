@@ -15,12 +15,19 @@
 #include <FreeImage.h>
 #endif
 
+#include <mutex>
+
 
 CLASS_DECL_APEX void set_bypass_cache_if_empty(::payload& payloadFile);
 
 
 namespace imaging_freeimage
 {
+
+
+   static std::recursive_mutex g_freeimageMutex;
+
+
    bool image_from_freeimage(::image::image* pimage, FIBITMAP* pfibitmap)
    {
       if (pfibitmap == nullptr)
@@ -286,11 +293,15 @@ void FreeImageErrorHandler(FREE_IMAGE_FORMAT fif, const_char_pointer message) {
 
          if (tmp.case_insensitive_ends(".gif"))
          {
+
             informationf("GIF!!");
+
          }
       }
 
       set_bypass_cache_if_empty(payloadFile);
+
+      std::lock_guard<std::recursive_mutex> freeimageLock(g_freeimageMutex);
 
       //::file::path path = payloadFile.as_file_path();
 
@@ -347,44 +358,95 @@ void FreeImageErrorHandler(FREE_IMAGE_FORMAT fif, const_char_pointer message) {
 
          auto size = memory.size();
 
-         ::i8 pszPngSignature[] = {(::i8)137, 80, 78, 71, 13, 10, 26, 10};
+         const ::u8 pngSignature[] = {137, 80, 78, 71, 13, 10, 26, 10};
 
-         bool bPng = size > sizeof(pszPngSignature)
-                     && ansi_ncmp((const_char_pointer )pszData, pszPngSignature, sizeof(pszPngSignature)) == 0;
-                     
-		 information() << "bPng: " << (bPng ? "true" : "false");
+         bool bPng = false;
 
-         bool bJpegBegins = memory.begins("\x0FF\x0D8");
-         
-         information() << "bJpegBegins: " << (bJpegBegins ? "true" : "false");
+         const auto iPngSignatureSize = sizeof(pngSignature);
 
-         bool bJpegEnds = memory.ends("\x0FF\x0D9");
-         
-         information() << "bJpegEnds: " << (bJpegEnds ? "true" : "false");
+         if(size >= iPngSignatureSize)
+         {
 
-         bool bGif87a = memory.begins("GIF87a");
-         
-         information() << "bGif87a: " << (bGif87a ? "true" : "false");
+            bPng = ::memory_order(
+               pszData,
+               pngSignature,
+               iPngSignatureSize) == 0;
 
-         bool bGif89a = memory.begins("bGif89a");
-         
-         information() << "bGif89a: " << (bGif89a ? "true" : "false");
+         }
 
-         bool bJpeg = bJpegBegins && bJpegEnds;
-         
-         information() << "bJpeg: " << (bJpeg ? "true" : "false");
+         informationf("bPng: %s", (bPng ? "true" : "false"));
 
-         bool bJfif = memory.begins("JFIF");
-         
-         information() << "bJfif: " << (bJfif ? "true" : "false");
+         bool bJpegBegins = false;
 
-         bool bExif = memory.begins("Exif");
-         
-         information() << "bExif: " << (bExif ? "true" : "false");
+         bool bJpegEnds = false;
 
-         bool bGif = bGif87a || bGif89a;
-         
-         information() << "bGif: " << (bGif ? "true" : "false");
+         bool bJpeg = false;
+
+         if(!bPng)
+         {
+
+            const ::u8 jpegBeginSignature[] = {0xff, 0xd8};
+
+            const ::u8 jpegEndSignature[] = {0xff, 0xd9};
+
+            bJpegBegins = memory.begins(::block(jpegBeginSignature, sizeof(jpegBeginSignature)));
+
+            informationf("bJpegBegins: %s", (bJpegBegins ? "true" : "false"));
+
+            bJpegEnds = memory.ends(::block(jpegEndSignature, sizeof(jpegEndSignature)));
+
+            informationf("bJpegEnds: %s", (bJpegEnds ? "true" : "false"));
+
+            bJpeg = bJpegBegins && bJpegEnds;
+
+            informationf("bJpeg: %s", (bJpeg ? "true" : "false"));
+
+         }
+
+         bool bGif87a = false;
+
+         bool bGif89a = false;
+
+         bool bGif = false;
+
+         if(!bPng && !bJpeg)
+         {
+
+            bGif87a = memory.begins("GIF87a");
+
+            informationf("bGif87a: %s", (bGif87a ? "true" : "false"));
+
+            bGif89a = memory.begins("GIF89a");
+
+            informationf("bGif89a: %s", (bGif89a ? "true" : "false"));
+
+            bGif = bGif87a || bGif89a;
+
+            informationf("bGif: %s", (bGif ? "true" : "false"));
+
+         }
+
+         bool bJfif = false;
+
+         if(!bPng && !bJpeg && !bGif)
+         {
+
+            bJfif = memory.begins("JFIF");
+
+            informationf("bJfif: %s", (bJfif ? "true" : "false"));
+
+         }
+
+         bool bExif = false;
+
+         if(!bPng && !bJpeg && !bGif && !bJfif)
+         {
+
+            bExif = memory.begins("Exif");
+
+            informationf("bExif: %s", (bExif ? "true" : "false"));
+
+         }
 
          bool bBinary = *pszData == '\0';
 
@@ -407,6 +469,9 @@ void FreeImageErrorHandler(FREE_IMAGE_FORMAT fif, const_char_pointer message) {
          }
          else if (bGif)
          {
+
+            std::lock_guard<std::recursive_mutex> lock(g_freeimageMutex);
+
             //file_system()->put_contents("/home/camilo/a.gif", memory);
 
             _load_multi_frame_image(pimage, memory);
@@ -431,6 +496,8 @@ void FreeImageErrorHandler(FREE_IMAGE_FORMAT fif, const_char_pointer message) {
             // return pimage->m_estatus;
          }
 
+         std::lock_guard<std::recursive_mutex> lock(g_freeimageMutex);
+
          pmem = FreeImage_OpenMemory(memory.data(), (::u32)memory.size());
 
          if (pmem == nullptr)
@@ -440,44 +507,90 @@ void FreeImageErrorHandler(FREE_IMAGE_FORMAT fif, const_char_pointer message) {
 
          try
          {
-			 
-			     FreeImage_SetOutputMessage(FreeImageErrorHandler);
+				 
+				     FreeImage_SetOutputMessage(FreeImageErrorHandler);
 
 
-            FREE_IMAGE_FORMAT format;
+	            FREE_IMAGE_FORMAT format = FIF_UNKNOWN;
 
-            format = FreeImage_GetFileTypeFromMemory(pmem);
-            
+            if (bPng)
+            {
+
+               format = FIF_PNG;
+
+            }
+            else if (bJpeg)
+            {
+
+               format = FIF_JPEG;
+
+            }
+            else
+            {
+
+               format = FreeImage_GetFileTypeFromMemory(pmem);
+
+            }
+
             auto pszImageFormat = getFreeImageFormatName(format);
-            
+
             information() << "FreeImage_GetFileTypeFromMemory returned: " << (::i32) format << " = "<< pszImageFormat;
+
+            if (format == FIF_UNKNOWN)
+            {
+
+               FreeImage_CloseMemory(pmem);
+
+               pmem = nullptr;
+
+               continue;
+
+            }
 
             pfibitmap = FreeImage_LoadFromMemory(format, pmem);
 
             if(pfibitmap)
             {
-				
-				information() << "FreeImage Bitmap is set";
-               break;
+
+					information() << "FreeImage Bitmap is set";
+
+		               break;
             }
             else
             {
-				
-				information() << "FreeImage Bitmap is not set";
-				
-			}
+
+					information() << "FreeImage Bitmap is not set";
+
+					}
 
          }
          catch (...)
          {
          }
+
+         if (pfibitmap == nullptr && pmem != nullptr)
+         {
+
+            FreeImage_CloseMemory(pmem);
+
+            pmem = nullptr;
+
+         }
       }
 
       if (pfibitmap == nullptr)
       {
-		  
-		  information() << "FreeImage Bitmap is not set (2)";
-         FreeImage_CloseMemory(pmem);
+				  
+			  information() << "FreeImage Bitmap is not set (2)";
+
+	         if (pmem != nullptr)
+         {
+
+            FreeImage_CloseMemory(pmem);
+
+            pmem = nullptr;
+
+         }
 
          pimage->m_estatus = error_failed;
 
@@ -496,14 +609,17 @@ void FreeImageErrorHandler(FREE_IMAGE_FORMAT fif, const_char_pointer message) {
 
       if (mdhandle)
       {
-		  
-		  information() << "FreeImage Could get Exif information";
-         do
+			  
+			  information() << "FreeImage Could get Exif information";
+
+	         do
          {
             if (!ansi_icmp(FreeImage_GetTagKey(tag), "orientation"))
             {
-				information() << "FreeImage Could get Exif Orientation";
-               bOrientation = true;
+
+					information() << "FreeImage Could get Exif Orientation";
+
+	               bOrientation = true;
 
                auto type = FreeImage_GetTagType(tag);
 
@@ -530,17 +646,18 @@ void FreeImageErrorHandler(FREE_IMAGE_FORMAT fif, const_char_pointer message) {
 
       if (!image_from_freeimage(pimage, pfibitmap))
       {
-		  
-		  information() << "image_from_freeimage failed";
-         FreeImage_Unload(pfibitmap);
+			  
+			  information() << "image_from_freeimage failed";
+
+	         FreeImage_Unload(pfibitmap);
 
          FreeImage_CloseMemory(pmem);
 
          throw ::exception(error_failed);
       }
 
+      information() << "image_from_freeimage Success";
 
-information() << "image_from_freeimage Success";
       FreeImage_Unload(pfibitmap);
 
       FreeImage_CloseMemory(pmem);

@@ -2,6 +2,8 @@
 #include "acme/parallelization/synchronous_lock.h"
 
 #include <android/log.h>
+#include <stdlib.h>
+#include <string.h>
 
 
 //static string * m_pstrOutputDebugStringA = nullptr;
@@ -40,14 +42,26 @@ void output_debug_string(const ::scoped_string & scopedstr)
 
    //__android_log_print(ANDROID_LOG_INFO, "information", str);
 
-   if(*scopedstr.m_end)
+   if (::is_null(scopedstr.m_begin) || ::is_null(scopedstr.m_end) || scopedstr.m_end < scopedstr.m_begin)
    {
 
-      auto psz = strndup(scopedstr.m_begin, scopedstr.size());
+      return;
 
-      __android_log_print(ANDROID_LOG_INFO,"information", "%s", psz);
+   }
 
-      ::free(psz);
+   if (*scopedstr.m_end)
+   {
+
+      auto psz = strndup(scopedstr.m_begin, scopedstr.m_end - scopedstr.m_begin);
+
+      if (::is_set(psz))
+      {
+
+         __android_log_print(ANDROID_LOG_INFO, "information", "%s", psz);
+
+         free(psz);
+
+      }
 
    }
    else
@@ -156,6 +170,4 @@ va_list *Arguments
 //#endif
 //
 //}
-
-
 

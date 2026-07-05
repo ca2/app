@@ -20,6 +20,7 @@ namespace platform
     ::i32 m_iHeight;
 
     ::i64 m_lMemFreeAvailableKb;
+    ::i64 m_lMemTotalKb;
 
     bool m_bRedraw;
        bool m_bSetApplicationReady;

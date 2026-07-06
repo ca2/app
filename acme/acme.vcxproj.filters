@@ -6362,6 +6362,12 @@
     <ClCompile Include="user\implementation\message_box_implementation.cpp">
       <Filter>Source Files\user\implementation</Filter>
     </ClCompile>
+    <ClCompile Include="crypto\hasher_algorithm.cpp">
+      <Filter>Source Files\crypto</Filter>
+    </ClCompile>
+    <ClCompile Include="prototype\collection\_array_binary_stream.cpp">
+      <Filter>Source Files\prototype\collection</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <None Include="prototype\string\_defer.h">

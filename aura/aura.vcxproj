@@ -2507,6 +2507,7 @@
     <ClCompile Include="graphics\draw2d\bitmap.cpp" />
     <ClCompile Include="graphics\draw2d\brush.cpp" />
     <ClCompile Include="graphics\draw2d\buffered_graphics.cpp" />
+    <ClCompile Include="graphics\draw2d\clip.cpp" />
     <ClCompile Include="graphics\draw2d\color_filter.cpp" />
     <ClCompile Include="graphics\draw2d\color_matrix.cpp" />
     <ClCompile Include="graphics\draw2d\Debug.cpp" />

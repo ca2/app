@@ -2020,7 +2020,9 @@ void acme_node_layer::open_internet_link(const ::scoped_string& scopedstrUrl, co
    ::memory acme_node_layer::google_drive_appdata_get_data(const ::scoped_string & scopedstrPath)
    {
 
+      throw ::interface_only();
 
+      return {};
 
    }
 
@@ -2028,6 +2030,9 @@ void acme_node_layer::open_internet_link(const ::scoped_string& scopedstrUrl, co
    ::string acme_node_layer::google_drive_appdata_list()
    {
 
+      throw ::interface_only();
+
+      return {};
 
    }
 

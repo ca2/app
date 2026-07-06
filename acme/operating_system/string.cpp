@@ -410,7 +410,12 @@ CLASS_DECL_ACME const_char_pointer ansi_rchr(const_char_pointer psz1, ::ansi_cha
 
 CLASS_DECL_ACME ::i32 ansi_cmp(const_char_pointer psz1, const_char_pointer psz2) { return strcmp(psz1, psz2); }
 
-CLASS_DECL_ACME ::i32 ansi_ncmp(const_char_pointer psz1, const_char_pointer psz2, character_count s) { return strncmp(psz1, psz2, s); }
+CLASS_DECL_ACME ::i32 ansi_ncmp(const_char_pointer psz1, const_char_pointer psz2, character_count s)
+{
+
+   return strncmp(psz1, psz2, s);
+
+}
 
 CLASS_DECL_ACME const_char_pointer ansi_str(const_char_pointer psz, const_char_pointer pszFind) { return strstr(psz, pszFind); }
 

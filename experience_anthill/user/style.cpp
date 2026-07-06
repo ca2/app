@@ -1378,6 +1378,28 @@ namespace experience_anthill
             if (ptab->get_element_rectangle(iTab, rectangleText, ::e_element_text))
             {
 
+               ::user::e_state estateTitle = ::user::e_state_none;
+
+               if (estate & ::user::e_state_selected)
+               {
+
+                  estateTitle |= ::user::e_state_selected;
+
+               }
+
+               if (::is_item(ptab->m_pitemHover, iTab)
+                  && !::is_element(ptab->m_pitemHover, ::e_element_close_tab_button)
+                  && !::in_element_range(ptab->m_pitemHover, ::e_element_split, 100))
+               {
+
+                  estateTitle |= ::user::e_state_hover;
+
+               }
+
+               auto pfont = pstyle->get_font(ptab, ::e_element_tab, estateTitle);
+
+               pgraphics->set(pfont);
+
                _001OnTabPaneDrawTitle(*ppane, ptab, pgraphics, rectangleText, pbrushText, estate);
 
             }

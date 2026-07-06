@@ -3853,13 +3853,13 @@ namespace draw2d_cairo
       if (ealign & e_align_bottom)
       {
 
-         Δy = rectangle.bottom - rectangle.top - e.ascent;
+         Δy = rectangle.bottom - rectangle.top - e.height;
 
       }
       else if (ealign & e_align_vertical_center)
       {
 
-         Δy = ((rectangle.bottom - rectangle.top) - (e.ascent)) / 2.0;
+         Δy = ((rectangle.bottom - rectangle.top) - e.height) / 2.0;
 
       }
       else
@@ -3924,7 +3924,7 @@ namespace draw2d_cairo
 
          //cairo_move_to(m_pdc, rectangle.left + Δx, rectangle.top + Δy + e.ascent + sz.cy * (i) / stra.get_size());
 
-         cairo_move_to(m_pdc, rectangle.left + Δx, rectangle.top + Δy + e.ascent + e.ascent * i);
+         cairo_move_to(m_pdc, rectangle.left + Δx, rectangle.top + Δy + e.ascent + e.height * i);
 
          (*ftext)(m_pdc, strLine);
 
@@ -4481,7 +4481,7 @@ namespace draw2d_cairo
 
             //size.cy = x;
 
-            return {textextents.x_advance, textextents.height} ;
+            return {textextents.x_advance, fontextents.height} ;
 
          }
 

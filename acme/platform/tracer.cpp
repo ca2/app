@@ -3,6 +3,9 @@
 //
 #include "framework.h"
 #include "tracer.h"
+#include <mutex>
+
+static std::recursive_mutex g_tracerFlushMutex;
 #include "acme/platform/log.h"
 #include "acme/platform/system.h"
 
@@ -175,6 +178,8 @@ namespace platform
    void tracer::flush(trace_statement & tracestatement)
    {
 
+      std::lock_guard<std::recursive_mutex> lock(g_tracerFlushMutex);
+
       ::platform::logger * plogger = nullptr;
 
       if(::is_set(m_plogger))
@@ -238,6 +243,5 @@ namespace platform
 
 
 } // namespace platform
-
 
 

@@ -15,7 +15,11 @@
 #include <stdio.h>
 #endif
 
+#include <mutex>
+
 static bool g_bPrintfIfDebuggerIsNotAttached = false;
+
+static std::recursive_mutex g_simpleLogMutex;
 
 string get_status_message(const ::e_status & estatus);
 
@@ -255,6 +259,8 @@ simple_log::~simple_log()
 
 void simple_log::print(::trace_statement & tracestatement, bool bFlush)
 {
+
+   std::lock_guard<std::recursive_mutex> lock(g_simpleLogMutex);
 
    if (!m_bLog)
    {
@@ -563,4 +569,3 @@ CLASS_DECL_ACME void __simple_tracev(::particle * pparticle, enum_trace_level el
    __simple_tracea(pparticle, elevel, pszFunction, pszFileName, iLine, strMessage);
 
 }
-

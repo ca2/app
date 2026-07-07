@@ -220,7 +220,7 @@ public:
 
    using BASE_ARRAY::equals;
 
-   bool equals(CONST_RAW_RANGE a) const
+   bool equals(const BASE_RANGE a) const
    {
 
       return BASE_ARRAY::equals(a, ::comparison::comparison < TYPE >());
@@ -228,14 +228,14 @@ public:
    }
 
 
-   bool operator ==(CONST_RAW_RANGE a) const
+   bool operator==(const BASE_RANGE &a) const
    {
 
       return this->equals(a);
 
    }
 
-
+   bool operator==(const comparable_eq_array_base &a) const { return this->equals(a); }
 };
 
 

@@ -277,7 +277,7 @@ namespace user
    //}
 
 
-   ::user::interaction* interaction_base::get_host_user_interaction()
+   ::user::interaction* interaction_base::host_interaction()
    {
 
       //if (get_session() == nullptr

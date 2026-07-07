@@ -12,7 +12,7 @@
 #include "acme/prototype/prototype/cast.h"
 
 
-template < typename TYPE >
+template < a_subparticle TYPE >
 inline ::ptr < TYPE > & ptr < TYPE >::operator = (const ::pointer < TYPE > & p)
 {
    
@@ -59,7 +59,7 @@ inline ::ptr < TYPE > & ptr < TYPE >::operator = (const ::pointer < TYPE > & p)
 }
 
 
-template < typename TYPE >
+template < a_subparticle TYPE >
 inline ::ptr < TYPE > & ptr < TYPE >::operator = (::pointer < TYPE > && p)
 {
 
@@ -99,7 +99,7 @@ inline ::ptr < TYPE > & ptr < TYPE >::operator = (::pointer < TYPE > && p)
 }
 
 
-template < typename TYPE >
+template < a_subparticle TYPE >
 template < typename TYPE2 >
 inline ::ptr < TYPE > & ptr < TYPE >::operator = (const ::pointer < TYPE2 > & p)
 {
@@ -158,7 +158,7 @@ inline ::ptr < TYPE > & ptr < TYPE >::operator = (const ::pointer < TYPE2 > & p)
 }
 
 
-template < typename TYPE >
+template < a_subparticle TYPE >
 template < typename TYPE2 >
 inline ::ptr < TYPE > & ptr < TYPE >::operator = (::pointer < TYPE2 > && p)
 {

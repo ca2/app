@@ -584,9 +584,13 @@ namespace user
 
       virtual ::windowing::display * get_display();
 
-      virtual ::user::interaction * get_host_user_interaction() override;
+      virtual ::acme::user::interaction * acme_host_interaction() override;
 
-      //virtual ::windowing::window * get_host_user_interaction_impl();
+      virtual ::user::interaction * host_interaction() override;
+
+      virtual ::acme::windowing::window * acme_host_window() override;
+
+      virtual ::windowing::window * host_window() override;
 
       virtual ::user::enum_state get_user_state();
 

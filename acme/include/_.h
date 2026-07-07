@@ -65,6 +65,7 @@
 #include "acme/include/_forward_declaration.h"
 #include "acme/include/_structures.h"
 #include "acme/include/_template_forward_declaration.h"
+#include "acme/include/_pointer_forward_declaration.h"
 #include "acme/include/_initial_concepts.h"
 //#include "_other_initial_concepts.h"
 #include "acme/include/_template_after_initial_concepts.h"

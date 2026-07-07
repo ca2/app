@@ -837,7 +837,14 @@ void binary_stream::read_to_hex(string & str, filesize tickStart, filesize tickE
 }
 
 
-::pointer < ::subparticle > binary_stream::read_particle()
+void binary_stream::read_particle(const ::subparticle *psubparticle)
+{
+
+   ((subparticle *)psubparticle)->read_from_stream(*this);
+}
+
+
+::pointer < ::subparticle > binary_stream::read_polymorphic_type()
 {
 
    ::atom atom;
@@ -846,20 +853,31 @@ void binary_stream::read_to_hex(string & str, filesize tickStart, filesize tickE
 
    auto pparticle = øcreate_by_type(atom);
 
-   pparticle->read_from_stream(*this);
+   read_particle(pparticle);
 
    return pparticle;
 
 }
 
 
-void binary_stream::write_particle(const ::subparticle * pparticle)
+void binary_stream::write_particle(const ::subparticle *psubparticle)
 {
 
-   ::atom atom(::platform::type(typeid(*pparticle)).name());
+   ((subparticle *)psubparticle)->write_to_stream(*this);
+
+}
+
+
+void binary_stream::write_polymorphic_type(const ::subparticle *psubparticle)
+{
+
+   ::atom atom(::platform::type(typeid(*psubparticle)).name());
 
    *this << atom;
 
-   ((subparticle *)pparticle)->write_to_stream(*this);
+   write_particle(psubparticle);
 
 }
+
+
+

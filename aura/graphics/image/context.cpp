@@ -1473,4 +1473,169 @@ namespace image
    }
 
 
+   ::image::enum_format image_context::quick_file_to_format(::file::file *pfile)
+   {
+
+      try
+      {
+
+      ::image::enum_format eformat = ::image::e_format_none;
+         ::memory memory;
+      memory.set_size(16);
+      auto position = pfile->get_position();
+      {
+         auto size = pfile->read(memory.data(), memory.size());
+
+         memory.set_size(size);
+      }
+      pfile->translate(position, e_seek_set);
+      if (memory.size() < 16)
+      {
+
+         return ::image::e_format_none;
+      }
+
+      auto pszData = memory.data();
+
+   const ::u8 pngSignature[] = {137, 80, 78, 71, 13, 10, 26, 10};
+
+   bool bPng = false;
+
+   const auto iPngSignatureSize = sizeof(pngSignature);
+
+   if (memory.size() >= iPngSignatureSize)
+   {
+
+      bPng = ::memory_order(pszData, pngSignature, iPngSignatureSize) == 0;
+
+      if (bPng)
+      {
+
+         return ::image::e_format_png;
+
+      }
+
+   }
+
+   informationf("bPng: %s", (bPng ? "true" : "false"));
+
+   bool bJpegBegins = false;
+
+   bool bJpegEnds = false;
+
+   bool bJpeg = false;
+
+      const ::u8 jpegBeginSignature[] = {0xff, 0xd8};
+
+      const ::u8 jpegEndSignature[] = {0xff, 0xd9};
+
+      bJpegBegins = memory.begins(::block(jpegBeginSignature, sizeof(jpegBeginSignature)));
+
+      informationf("bJpegBegins: %s", (bJpegBegins ? "true" : "false"));
+
+      bJpegEnds = memory.ends(::block(jpegEndSignature, sizeof(jpegEndSignature)));
+
+      informationf("bJpegEnds: %s", (bJpegEnds ? "true" : "false"));
+
+      bJpeg = bJpegBegins && bJpegEnds;
+
+      informationf("bJpeg: %s", (bJpeg ? "true" : "false"));
+
+      if (bJpeg)
+      {
+         return ::image::e_format_jpeg;
+      }
+   //}
+
+   bool bGif87a = false;
+
+   bool bGif89a = false;
+
+   bool bGif = false;
+
+   //if (!bPng && !bJpeg)
+   //{
+
+      bGif87a = memory.begins("GIF87a");
+
+      informationf("bGif87a: %s", (bGif87a ? "true" : "false"));
+
+      bGif89a = memory.begins("GIF89a");
+
+      informationf("bGif89a: %s", (bGif89a ? "true" : "false"));
+
+      bGif = bGif87a || bGif89a;
+
+      informationf("bGif: %s", (bGif ? "true" : "false"));
+
+      if (bGif)
+      {
+
+         return ::image::e_format_gif;
+
+      }
+   //}
+
+   bool bJfif = false;
+
+
+      bJfif = memory.begins("JFIF");
+
+      informationf("bJfif: %s", (bJfif ? "true" : "false"));
+      if (bJfif)
+      {
+
+         return ::image::e_format_jfif;
+
+      }
+
+   bool bExif = false;
+
+   //if (!bPng && !bJpeg && !bGif && !bJfif)
+   //{
+
+      bExif = memory.begins("Exif");
+
+      informationf("bExif: %s", (bExif ? "true" : "false"));
+      if (bExif)
+      {
+
+         return ::image::e_format_exif;
+
+      }
+   //}
+
+
+      bool bWebP = true;
+
+
+         if (memory.size() < 12)
+         {
+            bWebP = false; // File is too small to be a valid WebP
+         }
+
+         // Check for "RIFF" at bytes 0-3 and "WEBP" at bytes 8-11
+         if (memcmp(memory.data(), "RIFF", 4) != 0 || memcmp(memory.data() + 8, "WEBP", 4) != 0)
+         {
+            bWebP = false;
+         }
+
+         if (bWebP)
+         {
+
+            return ::image::e_format_webp;
+
+         }
+
+   }
+catch (...) {}
+
+   return ::image::e_format_none;
+
+   }
+
+
+
+
+
 } // namespace image

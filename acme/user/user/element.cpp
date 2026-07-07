@@ -87,6 +87,14 @@ namespace user
    }
 
 
+   ::acme::user::interaction *element::acme_get_wnd() 
+   {
+      
+      return nullptr; 
+   
+   }
+
+
    ::user::interaction * element::get_wnd()
    {
 
@@ -187,7 +195,33 @@ namespace user
    }
 
 
-   ::user::interaction * element::get_host_user_interaction()
+   ::acme::user::interaction *element::acme_host_interaction()
+   {
+
+      // if (get_session() == nullptr
+      //    || get_session() == nullptr)
+      //{
+
+      //   return nullptr;
+
+      //}
+
+      // if (get_session()->m_puserelementHost)
+      //{
+
+      //   return __user_element(get_session()->m_puserelementHost);
+
+      //}
+      // else
+      //{
+
+      return acme_get_wnd();
+
+      //}
+   }
+
+
+   ::user::interaction * element::host_interaction()
    {
 
       //if (get_session() == nullptr
@@ -211,6 +245,22 @@ namespace user
 
       //}
 
+   }
+
+   
+   ::acme::windowing::window *element::acme_host_window()
+   {
+
+      return acme_get_wnd()->acme_windowing_window();
+
+   }
+
+
+   ::windowing::window *element::host_window() 
+   {
+      
+      return nullptr; 
+   
    }
 
 

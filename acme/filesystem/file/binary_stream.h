@@ -1260,8 +1260,522 @@ public:
    }
 
 
-   virtual ::pointer < ::subparticle > read_particle();
-   virtual void write_particle(const ::subparticle * pparticle);
+   virtual void read_particle(const ::subparticle *psubparticle);
+
+   virtual ::pointer < ::subparticle > read_polymorphic_type();
+
+   virtual void write_polymorphic_type(const ::subparticle *pparticle);
+
+      
+   virtual void write_particle(const ::subparticle *pparticle);
+
+
+   template < prototype_writable WRITABLE >
+   binary_stream & write(const WRITABLE & writeable)
+   {
+
+      writeable.write(*this);
+
+      return *this;
+
+   }
+
+   template < prototype_readable READABLE >
+   binary_stream & read(const READABLE & readable)
+   {
+
+      readable.read(*this);
+
+      return *this;
+
+   }
+
+
+
+   template<typename DOUBLE_ANGLE_BRACKET_WRITABLE_ARRAY>
+   inline binary_stream &double_angle_bracket_write(const DOUBLE_ANGLE_BRACKET_WRITABLE_ARRAY &a)
+   {
+
+      //return stream.double_angle_bracket_write(a);
+
+      auto &stream = *this;
+
+       ::collection::count c = a.get_count();
+
+       stream << c;
+
+       for (auto & element : a)
+       {
+
+          stream << element;
+
+          if (stream. nok())
+          {
+
+             break;
+
+          }
+
+       }
+
+       return stream;
+   }
+
+
+   template<typename DOUBLE_ANGLE_BRACKET_READABLE_ARRAY>
+   binary_stream &double_angle_bracket_read(DOUBLE_ANGLE_BRACKET_READABLE_ARRAY &a)
+   {
+
+      auto &stream = *this;
+
+       ::collection::count c;
+
+       stream >> c;
+
+       if (stream.nok() || c <= 0)
+       {
+
+          return stream  ;
+
+       }
+
+       a.set_size(c);
+
+       ::collection::index i = 0;
+
+       try
+       {
+
+          for (; i < c && stream.has_ok_flag(); i++)
+          {
+
+             stream >> a[i];
+
+          }
+
+       }
+       catch (...)
+       {
+
+          stream.set_nok();
+
+       }
+
+       if (stream.nok())
+       {
+
+          a.set_size(i);
+
+       }
+
+       return stream;
+   }
+
+
+
+   
+template < typename SERIALIZABLE_ARRAY >
+inline binary_stream & write_serializable_array(const SERIALIZABLE_ARRAY & a)
+{
+
+   ::collection::count c = a.get_count();
+   
+   *this << c;
+
+   for (auto & element : a)
+   {
+      
+      *this  << element;
+
+      if (this->nok())
+      {
+
+         break;
+
+      }
+
+   }
+
+   return *this;
+
+}
+
+
+template < typename SERIALIZABLE_ARRAY >
+binary_stream & read_serializable_array(SERIALIZABLE_ARRAY & a)
+{
+
+   ::collection::count c;
+   
+   *this >> c;
+   
+   if (this->nok() || c <= 0)
+   {
+
+      return *this  ;
+
+   }
+   
+   a.set_size(c);
+
+   ::collection::index i = 0;
+
+   try
+   {
+
+      for (; i < c && this->has_ok_flag(); i++)
+      {
+
+               *this >> a[i];
+
+      }
+
+   }
+   catch (...)
+   {
+
+      this->set_nok();
+
+   }
+
+   if (this->  nok())
+   {
+
+      a.set_size(i);
+
+   }
+
+   return *this;
+
+}
+
+
+   
+
+
+template < typename WRITABLE_ARRAY >
+inline binary_stream & write_array(binary_stream & stream, const WRITABLE_ARRAY & a)
+{
+
+   ::collection::count c = a.get_count();
+   
+   stream << c;
+
+   for (auto & element : a)
+   {
+      
+      stream.write(element);
+
+      if (stream. nok())
+      {
+
+         break;
+
+      }
+
+   }
+
+   return stream;
+
+}
+
+
+template < typename READABLE_ARRAY >
+binary_stream & read_array(binary_stream & stream, READABLE_ARRAY & a)
+{
+
+   ::collection::count c;
+   
+   stream >> c;
+   
+   if (stream.nok() || c <= 0)
+   {
+
+      return stream  ;
+
+   }
+   
+   a.set_size(c);
+
+   ::collection::index i = 0;
+
+   try
+   {
+
+      for (; i < c && stream.has_ok_flag(); i++)
+      {
+
+         stream.read(a[i]);
+
+      }
+
+   }
+   catch (...)
+   {
+
+      stream.set_nok();
+
+   }
+
+   if (stream.nok())
+   {
+
+      a.set_size(i);
+
+   }
+
+   return stream;
+
+}
+   
+
+template < typename RAW_ARRAY >
+binary_stream & write_raw_array(const RAW_ARRAY & a)
+{
+
+   ::collection::count c = a.get_count();
+
+   *this << c;
+
+   m_pfile->write({ a.get_data(), sizeof(typename RAW_ARRAY::BASE_TYPE) * c});
+
+   return *this;
+
+}
+
+template < typename RAW_ARRAY >
+binary_stream & read_raw_array(RAW_ARRAY & a)
+{
+   
+   ::collection::count c;
+   
+   *this >> c;
+   
+   if (this->nok())
+   {
+      
+      return *this;
+      
+   }
+   
+   a.set_size(c);
+   
+   auto iRead = m_pfile->read({ a.get_data(), sizeof(typename RAW_ARRAY::BASE_TYPE) * c });
+   
+   if (this->nok() || iRead < (memsize)(sizeof(typename RAW_ARRAY::BASE_TYPE) * c))
+   {
+      
+      a.set_size(iRead / sizeof(typename RAW_ARRAY::BASE_TYPE));
+      
+   }
+   
+   return *this;
+   
+}
+
+   
+
+template<typename POLYMORPHIC_SMART_POINTER_ARRAY>
+inline binary_stream & write_polymorphic_pointer_array(const POLYMORPHIC_SMART_POINTER_ARRAY & a)
+{
+
+   ::collection::count c = a.get_count();
+
+   *this << c;
+
+   for (auto & p : a)
+   {
+
+      this->write_polymorphic_type(p);
+
+      if (this->nok())
+      {
+
+         break;
+
+      }
+
+   }
+
+   return *this;
+
+}
+
+
+template < typename POLYMORPHIC_SMART_POINTER_ARRAY >
+inline binary_stream & read_polymorphic_pointer_array( POLYMORPHIC_SMART_POINTER_ARRAY & a)
+{
+
+   ::collection::count c;
+
+   *this >> c;
+
+   if (this->nok())
+   {
+
+      return *this;
+
+   }
+
+   a.set_size(c);
+
+   ::collection::index i = 0;
+
+   try
+   {
+
+      for (; i < c && this->has_ok_flag(); i++)
+      {
+
+         a[i] = this->read_polymorphic_type();
+
+      }
+
+   }
+   catch (...)
+   {
+
+      this->set_nok();
+
+   }
+
+   if (this->nok())
+   {
+
+      a.set_size(i);
+
+   }
+
+   return *this;
+
+}
+
+
+template < typename RAW_POINTER_ARRAY >
+inline binary_stream & write_raw_pointer_array(const RAW_POINTER_ARRAY & a)
+{
+
+   ::collection::count c = a.get_count();
+   
+   *this << c;
+
+   for (auto & p : a)
+   {
+      
+      *this << *p;
+
+      if (this->nok())
+      {
+
+         break;
+
+      }
+
+   }
+
+   return *this;
+
+}
+
+
+// template<typename ARRAY>
+// inline binary_stream &create_read_raw_pointer_array(ARRAY &a)
+// {
+
+//    ::collection::count c;
+
+//    *this >> c;
+
+//    if (this->nok())
+//    {
+
+//       return *this;
+//    }
+
+//    a.set_size(c);
+
+//    ::collection::index i = 0;
+
+//    try
+//    {
+
+//       for (; i < c && this->has_ok_flag(); i++)
+//       {
+
+//          auto p = ___new typename ARRAY::BASE_TYPE();
+
+//          a[i] = p;
+
+//          *this >> *p;
+//       }
+//    }
+//    catch (...)
+//    {
+
+//       this->set_nok();
+//    }
+
+//    if (this->nok())
+//    {
+
+//       a.set_size(i);
+//    }
+
+//    return *this;
+// }
+
+
+template<typename RAW_POINTER_ARRAY>
+inline binary_stream &read_raw_pointer_array(binary_stream & stream, RAW_POINTER_ARRAY & a)
+{
+
+   ::collection::count c;
+
+   *this >> c;
+
+   if (this->nok())
+   {
+
+      return *this;
+   }
+
+   a.set_size(c);
+
+   ::collection::index i = 0;
+
+   try
+   {
+
+      for (; i < c && this->has_ok_flag(); i++)
+      {
+
+         auto &p = a[i];
+
+         if (::is_null(p))
+         {
+          
+            p = ___new typename RAW_POINTER_ARRAY::BASE_TYPE();
+         
+         }
+
+         *this >> *p;
+      }
+   }
+   catch (...)
+   {
+
+      this->set_nok();
+   }
+
+   if (this->nok())
+   {
+
+      a.set_size(i);
+   }
+
+   return *this;
+}
+
 
 };
 

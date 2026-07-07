@@ -156,7 +156,7 @@ namespace user
       if (puserinteractionOwner)
       {
 
-         auto puserinteractionHost = puserinteractionOwner->get_host_user_interaction();
+         auto puserinteractionHost = puserinteractionOwner->host_interaction();
 
          if (puserinteractionHost)
          {
@@ -372,7 +372,7 @@ namespace user
 
                //throw todo;
 
-               auto p = get_host_user_interaction()->window()->m_pgraphicsthread->get_message_queue();
+               auto p = host_window()->m_pgraphicsthread->get_message_queue();
 
                p->m_eflagElement |= (::enum_flag)(1ll << 36);
 
@@ -403,7 +403,7 @@ namespace user
       if (puserinteractionOwner)
       {
 
-         auto puserinteractionHost = puserinteractionOwner->get_host_user_interaction();
+         auto puserinteractionHost = puserinteractionOwner->host_interaction();
 
          if (puserinteractionHost)
          {

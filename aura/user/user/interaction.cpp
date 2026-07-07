@@ -1386,7 +1386,15 @@ namespace user
    }
 
 
-   ::user::interaction * interaction::get_host_user_interaction()
+   ::acme::user::interaction * interaction::acme_host_interaction()
+   {
+
+      return host_interaction();
+
+   }
+
+
+   ::user::interaction *interaction::host_interaction()
    {
 
       auto psession = session();
@@ -1395,7 +1403,6 @@ namespace user
       {
 
          return nullptr;
-
       }
 
       ::pointer<::user::interaction> puserinteractionHost = psession->m_puserprimitiveHost;
@@ -1404,11 +1411,52 @@ namespace user
       {
 
          return puserinteractionHost;
-
       }
 
       return get_wnd();
+   }
 
+
+
+   ::acme::windowing::window *interaction::acme_host_window() 
+   {
+
+      auto pacmeuserinteraction = acme_host_interaction();
+
+      if (::is_null(pacmeuserinteraction))
+      {
+      
+         return nullptr;
+
+      }
+
+      return pacmeuserinteraction->m_pacmewindowingwindow; 
+   
+   }
+
+
+   ::windowing::window *interaction::host_window() 
+   {
+   
+      auto puserinteraction = host_interaction();
+
+      if (::is_null(puserinteraction))
+      {
+
+         return nullptr;
+      }
+
+      ::cast <::windowing::window > pwindow =  puserinteraction->m_pacmewindowingwindow; 
+
+      if (::is_null(pwindow))
+      {
+
+         return nullptr;
+
+      }
+
+      return pwindow;
+   
    }
 
 
@@ -2364,7 +2412,7 @@ namespace user
       //
       //      }
 
-      auto * pinteraction = get_host_user_interaction();
+      auto * pinteraction = host_interaction();
 
       if (::is_null(pinteraction))
       {
@@ -7174,8 +7222,6 @@ namespace user
    void interaction::defer_update_hover(::draw2d::graphics_pointer & pgraphics)
    {
 
-      return;
-
       {
 
          auto pmouse = ::transfer(m_pmousePendingBackUpdateHover);
@@ -7779,11 +7825,12 @@ namespace user
 
          pgraphics->fill_rectangle(rectangleRaw, colorBackground);
 
-         auto phostwindow = get_host_user_interaction();
+         auto puserinteractionHost = host_interaction();
 
-         auto & iDrawControlBackgroundCounter = phostwindow->payload("draw_control_background_counter").i32_reference();
+         auto &iDrawControlBackgroundCounter =
+            puserinteractionHost->payload("draw_control_background_counter").i32_reference();
 
-         auto & iNcDraw0FillCounter = phostwindow->payload("nc_draw_0_fill_counter").i32_reference();
+         auto &iNcDraw0FillCounter = puserinteractionHost->payload("nc_draw_0_fill_counter").i32_reference();
 
          iDrawControlBackgroundCounter++;
 
@@ -7949,20 +7996,16 @@ if(get_parent())
 
       }
 
-      auto pwindowThis = window();
+      auto pwindowHost = host_window();
 
-      if (!pwindowThis)
+      if (::is_null(pwindowHost))
       {
 
-         defer_construct_newø(m_pusersystem);
-
-         m_pusersystem->add(allocateø::graphics::output_purpose(pparticle, epurpose));
-
-         return;
+         throw ::exception(error_wrong_state);
 
       }
 
-      pwindowThis->add_graphical_output_purpose(pparticle, epurpose);
+      pwindowHost->add_graphical_output_purpose(pparticle, epurpose);
 
    }
 
@@ -7970,16 +8013,16 @@ if(get_parent())
    void interaction::erase_graphical_output_purpose(::particle * pparticle)
    {
 
-      auto pwindowThis = window();
+      auto pwindowHost = host_window();
 
-      if (!pwindowThis)
+      if (::is_null(pwindowHost))
       {
 
-         return;
+         throw ::exception(error_wrong_state);
 
       }
 
-      pwindowThis->erase_graphical_output_purpose(pparticle);
+      pwindowHost->erase_graphical_output_purpose(pparticle);
 
    }
 
@@ -17254,20 +17297,9 @@ if(get_parent())
    void interaction::set_foreground_window(::user::activation_token * puseractivationtoken)
    {
 
-      auto phost = get_host_user_interaction();
+      auto pwindowHost = host_window();
 
-      if (!phost)
-      {
-
-         //return error_failed;
-
-         return;
-
-      }
-
-      auto pwindow = phost->windowing_window();
-
-      if (!pwindow)
+      if (::is_null(pwindowHost))
       {
 
          //return error_failed;
@@ -17287,7 +17319,7 @@ if(get_parent())
 
       //}
 
-      return pwindow->set_foreground_window(puseractivationtoken);
+      return pwindowHost->set_foreground_window(puseractivationtoken);
 
    }
 
@@ -17295,26 +17327,14 @@ if(get_parent())
    void interaction::set_active_window()
    {
 
-      auto phost = get_host_user_interaction();
+     auto pwindowHost = host_window();
 
-      if (!phost)
+      if (::is_null(pwindowHost))
       {
 
-         //return error_failed;
+         // return error_failed;
 
          return;
-
-      }
-
-      auto pwindow = phost->windowing_window();
-
-      if (!pwindow)
-      {
-
-         //return error_failed;
-
-         return;
-
       }
 
       //auto pwindow = pwindow->m_pwindow;
@@ -17328,7 +17348,7 @@ if(get_parent())
 
       //}
 
-      return pwindow->set_active_window();
+      return pwindowHost->set_active_window();
 
    }
 
@@ -19428,25 +19448,16 @@ if(get_parent())
    ::frequency interaction::get_output_per_second()
    {
 
-      auto pinteraction = get_host_user_interaction();
+      auto pwindowHost = host_window();
 
-      if (::is_null(pinteraction))
+      if (::is_null(pwindowHost))
       {
 
-         return 0.0;
+         return {};
 
       }
 
-      auto pwindow = pinteraction->windowing_window();
-
-      if (!pwindow)
-      {
-
-         return 0.0;
-
-      }
-
-      return pwindow->get_output_per_second();
+      return pwindowHost->get_output_per_second();
 
    }
 
@@ -25416,7 +25427,7 @@ void interaction::on_control_box_zoom(){
    void interaction::show_software_keyboard(::user::element * pelement)
    {
 
-      if (get_host_user_interaction() == this)
+      if (host_interaction() == this)
       {
 
          if (::is_null(window()))
@@ -25432,16 +25443,16 @@ void interaction::on_control_box_zoom(){
       else
       {
 
-         auto pwindow = get_host_user_interaction();
+         auto puserinteractionHost = host_interaction();
 
-         if (::is_null(pwindow))
+         if (::is_null(puserinteractionHost))
          {
 
             throw ::exception(error_null_pointer);
 
          }
 
-         return pwindow->show_software_keyboard(pelement);
+         return puserinteractionHost->show_software_keyboard(pelement);
 
       }
 
@@ -25451,7 +25462,7 @@ void interaction::on_control_box_zoom(){
    void interaction::hide_software_keyboard(::user::element * pelement)
    {
 
-      if (get_host_user_interaction() == this)
+      if (host_interaction() == this)
       {
 
          if (::is_null(window()))
@@ -25467,16 +25478,16 @@ void interaction::on_control_box_zoom(){
       else
       {
 
-         auto pwindow = get_host_user_interaction();
+         auto puserinteractionHost = host_interaction();
 
-         if (::is_null(pwindow))
+         if (::is_null(puserinteractionHost))
          {
 
             throw ::exception(error_null_pointer);
 
          }
 
-         return pwindow->hide_software_keyboard(pelement);
+         return puserinteractionHost->hide_software_keyboard(pelement);
 
       }
 
@@ -29738,7 +29749,7 @@ void interaction::on_keyboard_layout_change(const_char_pointer pszKeyboardLayout
          if (!pparent)
          {
 
-            pparent = puserinteraction->get_host_user_interaction();
+            pparent = puserinteraction->host_interaction();
 
             if (!pparent || pparent == puserinteraction)
             {

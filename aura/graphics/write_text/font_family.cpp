@@ -59,6 +59,14 @@ namespace write_text
 
    }
 
+
+   bool font_family::operator==(const font_family &fontfamily) const
+   {
+
+      return m_efont == fontfamily.m_efont && m_strFamilyName == fontfamily.m_strFamilyName;
+
+   }
+
    ::string font_family::family_name(::particle * pparticle) const
    {
 

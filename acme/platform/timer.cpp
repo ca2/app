@@ -311,17 +311,19 @@ void timer_handler::handle_timers()
           //(*ptimer)(ptimer);
       }
 
-      if (ptimermap->count() <= 0)
-      {
+      //if (ptimermap->count() <= 0)
+      //{
 
-        _synchronous_lock synchronouslock(this->synchronization(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
+      //  _synchronous_lock synchronouslock(this->synchronization(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 
-      if (ptimermap->count() <= 0)
-        {
-           m_timermap.erase(it);
-        }
+      //   if (ptimermap->count() <= 0)
+      //   {
+      //      
+      //      m_timermap.erase(it);
 
-      }
+      //   }
+
+      //}
          //else
          //{
 

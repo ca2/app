@@ -159,6 +159,20 @@ namespace write_text
       }
 
 
+            template<prototype_integral INTEGRAL>
+      constexpr bool operator==(const INTEGRAL iFontWeight) const
+      {
+
+         return m_iFontWeight == iFontWeight;
+      }
+
+
+                  
+      constexpr bool operator==(const font_weight & fontweight) const
+      {
+
+         return m_iFontWeight == fontweight.m_iFontWeight;
+      }
       template < prototype_integral INTEGRAL >
       void set_font_weight(INTEGRAL iFontWeight)
       {

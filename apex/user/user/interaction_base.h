@@ -52,7 +52,7 @@ namespace user
       void create_message_queue(const ::scoped_string & scopedstrName) override;
 
 
-      ::user::interaction * get_host_user_interaction() override;
+      ::user::interaction * host_interaction() override;
 
       ::user::form * get_form() override;
 

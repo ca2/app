@@ -37,12 +37,16 @@ class subparticle;
 // operational system nullptr/void itself to a windowing service
 //
 // Curitiba, inha-metro-win-ubuntu-mountain-lion-macos 4 de novembro de 2012
+/// TYPE should be a subparticle, otherwise the code will not work.
+/// Don't use concept to constrain TYPE to subparticle, because it would require the
+/// type to be complete when the pointer is declared. 
+/// The pointer is designed to be used with forward declarations of subparticle types.
 template < typename T >
 class pointer
 {
 public:
 
-   using POINTER_TYPE_TAG = pointer_type_t;
+   using POINTER_TYPE_TAG = polymorphic_pointer_type_t;
    using TYPE = T;
 
    using RAW_POINTER = TYPE *;

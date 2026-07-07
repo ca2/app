@@ -10642,7 +10642,7 @@ void application::setResourceName(::i32 iId, const ::scoped_string &scopedstrRes
 
             pdialog->create();
 
-            ::i32 max_width = system()->acme_windowing()->acme_display()->get_main_screen_size().cx;
+            ::f32 max_width = system()->acme_windowing()->acme_display()->get_main_screen_size().cx;
 
             ::string strTitle;
 
@@ -10654,9 +10654,9 @@ void application::setResourceName(::i32 iId, const ::scoped_string &scopedstrRes
 
             auto stra = straLines;
 
-            ::i32 y_text = 30 * fWindowScale;
+            ::f32 y_text = 30 * fWindowScale;
 
-            ::i32 y_icon = 30 * fWindowScale;
+            ::f32 y_icon = 30 * fWindowScale;
 
             if (straIconUrl.size() >= 1)
             {

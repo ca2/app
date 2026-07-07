@@ -159,6 +159,7 @@ namespace write_text
       void destroy() override;
 
       font & operator = (const font & font);
+      bool operator==(const font &font) const;
 
       virtual void set_family_name(const ::scoped_string & scopedstrFamilyName);
       virtual void set_size(const font_size & fontsize);

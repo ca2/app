@@ -262,6 +262,8 @@ namespace user
       
       ::pointer < ::menu::track_popup >      m_ptrackpopupContextMenu;
 
+      ::function<::string(::user::plain_edit * pplainedit, const ::scoped_string &)> m_functionClipboardPasteFilter; 
+
       //bool                                m_bPendingOnSetText;
       //bool                                m_bPendingOnUpdate;
       //::action_context                    m_actioncontextPending;

@@ -1002,7 +1002,8 @@ namespace windowing
       if(puserinteraction)
       {
          
-         puserinteraction->send_message(::user::e_message_after_create, 0, 0);
+         //puserinteraction->send_message(::user::e_message_after_create, 0, 0);
+         puserinteraction->post_message(::user::e_message_after_create, 0, 0);
          
       }
 
@@ -9102,6 +9103,15 @@ void window::on_keyboard_layout_change(const_char_pointer pszKeyboardLayoutId)
 
    void window::_001OnPrioCreate(::message::message* pmessage)
    {
+
+      auto type = ::platform::type(user_interaction());
+
+      if (type.name() == "user::menu")
+      {
+      
+         information("window::_001OnPrioCreate");
+      
+      }
 
       if (user_interaction()->is_graphical())
       {

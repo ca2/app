@@ -1546,9 +1546,11 @@ namespace user
          if (m_pmenuitemShowSubMenu2)
          {
 
-            show_sub_menu(m_pmenuitemShowSubMenu2);
+            auto pmenuitemShowSubMenu2 = m_pmenuitemShowSubMenu2;
 
             m_pmenuitemShowSubMenu2 = nullptr;
+
+            show_sub_menu(pmenuitemShowSubMenu2);
 
          }
          else if (m_bHideSubMenu2)

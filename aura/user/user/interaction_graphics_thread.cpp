@@ -168,6 +168,7 @@ namespace user
          if (!(m_puserinteraction->m_ewindowflag & e_window_flag_embedded_graphics_thread_if_child))
          {
 
+
             
             m_puserinteraction->user_thread()->post([this]()
                                                      {
@@ -349,6 +350,14 @@ namespace user
 //
 //      }
 
+      auto type = ::platform::type(m_puserinteraction);
+
+             if (type.name() == "user::menu")
+      {
+
+         information() << "user::menu graphics_thread_iteration user::menu";
+      }
+
       //m_puserinteraction->add_task(this);
 
       //m_puserinteraction->m_pthreadUserInteraction->add_task(this);
@@ -445,6 +454,15 @@ namespace user
 
    void graphics_thread::on_message_redraw(::message::message * pmessage)
    {
+
+      auto type = ::platform::type(m_puserinteraction);
+
+      if (type.name() == "user::menu")
+      {
+
+         information("graphics_thread::on_message_redraw user::menu");
+
+      }
 
       m_iRedrawMessageCount++;
 

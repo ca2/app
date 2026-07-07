@@ -4419,6 +4419,39 @@
     <ClInclude Include="user\implementation\dialog_implementation.h">
       <Filter>Header Files\user\implementation</Filter>
     </ClInclude>
+    <ClInclude Include="prototype\prototype\_impl_memory.h">
+      <Filter>Header Files\prototype\prototype</Filter>
+    </ClInclude>
+    <ClInclude Include="prototype\prototype\_impl_pointer.h">
+      <Filter>Header Files\prototype\prototype</Filter>
+    </ClInclude>
+    <ClInclude Include="prototype\prototype\_impl_property_set.h">
+      <Filter>Header Files\prototype\prototype</Filter>
+    </ClInclude>
+    <ClInclude Include="prototype\prototype\_impl_prototype.h">
+      <Filter>Header Files\prototype\prototype</Filter>
+    </ClInclude>
+    <ClInclude Include="prototype\prototype\aaa_c_memory.h">
+      <Filter>Header Files\prototype\prototype</Filter>
+    </ClInclude>
+    <ClInclude Include="prototype\prototype\aaa_u32hash.h">
+      <Filter>Header Files\prototype\prototype</Filter>
+    </ClInclude>
+    <ClInclude Include="prototype\prototype\domain_enumeration.h">
+      <Filter>Header Files\prototype\prototype</Filter>
+    </ClInclude>
+    <ClInclude Include="prototype\prototype\ptr.h">
+      <Filter>Header Files\prototype\prototype</Filter>
+    </ClInclude>
+    <ClInclude Include="prototype\prototype\sequence_continuation.h">
+      <Filter>Header Files\prototype\prototype</Filter>
+    </ClInclude>
+    <ClInclude Include="prototype\prototype\transfer.h">
+      <Filter>Header Files\prototype\prototype</Filter>
+    </ClInclude>
+    <ClInclude Include="include\_pointer_forward_declaration.h">
+      <Filter>Header Files\include</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="prototype\prototype\bit.cpp">

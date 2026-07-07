@@ -818,17 +818,43 @@ concept prototype_raw_type =
    || (::std::is_bounded_array_v<RAW_TYPE>
        && _primitive_raw_type<dereference<RAW_TYPE>>);
 
+class stream_base;
+
+template < typename STREAM_TYPE >
+concept prototype_stream= 
+   ::std::is_base_of_v<::stream_base, STREAM_TYPE>;
 
 template < typename POINTER >
-concept prototype_pointer2 = 
-   ::is_same < typename decay <POINTER >::POINTER_TYPE_TAG, pointer_type_t >;
+concept polymorphic_smart_pointer = 
+   ::is_same < typename decay <POINTER >::POINTER_TYPE_TAG, polymorphic_pointer_type_t >;
 
-template < typename OBJECT >
-concept prototype_object = 
-   !::is_raw_pointer < OBJECT >
-   && !::is_function < OBJECT >
-   && !prototype_pointer2 < OBJECT >
-   && !prototype_raw_type < OBJECT >;
+// template < typename OBJECT >
+// concept prototype_object = 
+//    !::is_raw_pointer < OBJECT >
+//    && !::is_function < OBJECT >
+//    && !polymorphic_smart_pointer < OBJECT >
+//    && !prototype_raw_type < OBJECT >;
+
+template < typename TYPE, typename STREAM >
+concept prototype_serializable = requires(TYPE t, STREAM stream)
+{
+   t.serialize(stream);
+};
+
+template<typename TYPE, typename STREAM>
+concept prototype_readable = requires(TYPE t, STREAM stream)
+{
+   t.read(stream);
+};
+
+template<typename TYPE, typename STREAM>
+concept prototype_writable = requires(TYPE t, STREAM stream)
+{
+   t.write(stream);
+};
+
+template < typename TYPE >
+concept prototype_readable_writable = prototype_readable<TYPE> && prototype_writable<TYPE>;
 
 
 template < typename PARTICLE >
@@ -862,10 +888,16 @@ concept a_particle = ::std::derived_from<A_PARTICLE, ::particle>;
 template < typename NON_PARTICLE >
 concept non_particle = !a_particle < NON_PARTICLE >;
 
-template < typename PARTICLE_POINTER >
-concept prototype_particle_pointer =
-   ::std::is_pointer_v<PARTICLE_POINTER>
-      && a_particle < ::non_pointer<PARTICLE_POINTER>>;
+template < typename A_SUBPARTICLE >
+concept a_subparticle = ::std::derived_from<A_SUBPARTICLE, ::subparticle>;
+
+template < typename NON_SUBPARTICLE >
+concept non_subparticle = !a_subparticle < NON_SUBPARTICLE >;
+
+//template < typename PARTICLE_POINTER >
+//concept prototype_particle_pointer =
+  // ::std::is_pointer_v<PARTICLE_POINTER>
+    //  && a_particle < ::non_pointer<PARTICLE_POINTER>>;
 
 //template < typename T, typename ...Args >
 //inline T * __call_allocate(Args &&... args);
@@ -987,8 +1019,8 @@ concept prototype_map = requires(const MAP & map)
 };
 
 
-template < typename ARRAY >
-concept prototype_raw_type_array = requires(ARRAY array, ::collection::index i, ::collection::count c)
+template < typename RAW_ARRAY_CLASS >
+concept prototype_raw_array_class = requires(RAW_ARRAY_CLASS array, ::collection::index i, ::collection::count c) 
 {
    array.get_count();
    {array.element_at(i)}->prototype_raw_type;
@@ -1006,22 +1038,57 @@ concept prototype_raw_pointer_array = requires(ARRAY array, ::collection::index 
 
 
 template < typename ARRAY >
-concept prototype_particle_array = requires(ARRAY array, ::collection::index i, ::collection::count c)
+concept polymorphic_smart_pointer_array = requires(ARRAY array, ::collection::index i, ::collection::count c)
 {
    array.get_count();
-   {array.element_at(i)}->prototype_particle_pointer;
+   {array.element_at(i)}->polymorphic_smart_pointer;
    array.set_size(c);
 };
 
 
 template < typename ARRAY >
-concept prototype_object_array = requires(ARRAY array, ::collection::index i, ::collection::count c)
+concept prototype_serializable_array = requires(ARRAY array, ::collection::index i, ::collection::count c)
 {
    array.get_count();
-   {array.element_at(i)}->prototype_object;
+   {array.element_at(i)}->prototype_serializable;
    array.set_size(c);
 };
 
+
+template < typename ARRAY >
+concept prototype_writable_array = requires(const ARRAY &array, ::collection::index i)
+{
+   array.get_count();
+   {array.element_at(i)}->prototype_writable;
+};
+
+
+template < typename ARRAY >
+concept prototype_readable_array = requires(ARRAY & array, ::collection::index i, ::collection::count c)
+{
+   {array.element_at(i)}->prototype_readable;
+   array.set_size(c);
+};
+
+
+template < typename ARRAY, typename STREAM >
+concept prototype_double_angle_bracket_writable_array = 
+   prototype_stream < STREAM > &&
+   requires(const ARRAY & array, ::collection::index i, STREAM & stream)
+{
+   array.get_count();
+   stream << array.element_at(i);
+};
+
+
+template<typename ARRAY, typename STREAM>
+concept prototype_double_angle_bracket_readable_array = 
+   prototype_stream < STREAM > &&
+   requires(ARRAY & array, ::collection::index i, ::collection::count c, STREAM& stream)
+{
+   stream >> array.element_at(i);
+   array.set_size(c);
+};
 
 template < typename CONTAINER >
 concept prototype_container =

@@ -80,6 +80,9 @@ namespace write_text
       font_family & operator = (const font_family & fontfamily);
 
 
+      bool operator==(const font_family &fontfamily) const;
+
+
       ::string family_name(::particle * pparticle) const;
 
 

@@ -187,6 +187,39 @@ namespace write_text
       return *this;
 
    }
+   
+
+   bool font::operator==(const font &font) const
+   {
+
+      if (::is_null(&font))
+      {
+
+         return false;
+
+      }
+
+      if (this == &font)
+      {
+
+         return true;
+
+      }
+
+      return *m_pfontfamily == *font.m_pfontfamily
+         &&  m_path == font.m_path
+         && m_fontsize == font.m_fontsize
+         && m_dFontWidth ==  font.m_dFontWidth
+         // m_eunitFontSize = font.m_eunitFontSize;
+         && m_fontweight == font.m_fontweight
+         && m_bItalic == font.m_bItalic
+         && m_bUnderline == font.m_bUnderline
+         && m_bStrikeout == font.m_bStrikeout
+         && m_echaracterseta == font.m_echaracterseta
+         && m_echaracterset == font.m_echaracterset;
+
+   }
+
 
 
    void font::set_family_name(const ::scoped_string & scopedstrFamilyName)

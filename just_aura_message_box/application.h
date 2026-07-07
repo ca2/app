@@ -16,20 +16,20 @@ namespace app_just_aura_message_box
    public:
 
 
-      application();
-      ~application() override;
-      
       __DECLARE_APPLICATION_RELEASE_TIME();
 
 
+      application();
+      ~application() override;
+      
 
       //void init_instance() override;
       //void term_application() override;
 
 
-//      void on_request(::request * prequest) override;
-//
-//
+      void on_request(::request * prequest) override;
+
+
 //#ifdef _DEBUG
 //
 //      virtual ::i64 increment_reference_count() override;

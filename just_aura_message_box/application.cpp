@@ -62,12 +62,14 @@ namespace app_just_aura_message_box
    //}
 
 
-   //void application::on_request(::request * prequest)
-   //{
+   void application::on_request(::request * prequest)
+   {
 
    //   show_message_box();
 
-   //}
+      ::just_message_box::application::on_request(prequest);
+
+   }
 
 
    ////#ifdef _DEBUG

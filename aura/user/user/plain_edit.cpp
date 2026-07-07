@@ -10379,7 +10379,22 @@ namespace user
 
       }
 
-      insert_text(str, true, e_source_user);
+      ::string strPaste;
+
+      if (m_functionClipboardPasteFilter)
+      {
+
+         strPaste = m_functionClipboardPasteFilter(this, str);
+
+      }
+      else
+      {
+
+         strPaste = str;
+
+      }
+      
+      insert_text(strPaste, true, e_source_user);
 
       if (m_bEnterKeyOnPaste)
       {

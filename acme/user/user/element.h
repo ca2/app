@@ -155,7 +155,13 @@ namespace user
       //::pointer<::message::message>get_message(::user::enum_message eusermessage, ::wparam wparam, ::lparam lparam) override;
       void destroy() override;
 
-      virtual ::user::interaction * get_host_user_interaction();
+      virtual ::acme::user::interaction * acme_host_interaction();
+
+      virtual ::user::interaction * host_interaction();
+
+      virtual ::acme::windowing::window * acme_host_window();
+
+      virtual ::windowing::window * host_window();
 
       virtual ::user::form * get_form();
 
@@ -520,6 +526,8 @@ namespace user
       virtual ::user::element * get_primitive_by_id(const ::atom & atom, ::collection::index iItem = -1, ::i32 iLevel = -1);
 
 
+
+      virtual ::acme::user::interaction * acme_get_wnd();
       virtual ::user::interaction * get_wnd();
       virtual ::user::interaction * get_wnd(::u32 nCmd);
       //virtual ::windowing::window * get_impl() const;

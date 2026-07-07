@@ -19,6 +19,7 @@ struct sequence_size_t
 
 
 struct pointer_type_t{};
+struct polymorphic_pointer_type_t{};
 struct c_flag_type_t {};
 struct enum_type_t {};
 struct raw_type_t {};

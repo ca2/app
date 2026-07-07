@@ -71,6 +71,7 @@ namespace image
 
       ::image::enum_format file_extension_to_format(const ::payload & payloadFile);
       ::image::enum_format text_to_format(const ::scoped_string & scopedstr);
+      ::image::enum_format quick_file_to_format(::file::file *pfile);
 
 
       //virtual void set_finish_composites(::property_object* pcontextobjectRootFinishingInitiator) override;

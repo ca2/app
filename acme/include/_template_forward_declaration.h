@@ -504,8 +504,6 @@ using count_array_base = numeric_array_base < ::collection::count >;
 using unsigned_i32_array_base = numeric_array_base < ::u32 >;
 
 
-using unique_int_sort_array = unique_number_sort_array < ::i32 >;
-using unique_i64_sort_array = unique_number_sort_array < ::i64 >;
 
 
 #ifdef OS64BIT
@@ -514,16 +512,10 @@ using unique_i64_sort_array = unique_number_sort_array < ::i64 >;
 using iptr_array_base = i64_array_base;
 using uptr_array_base = u64_array_base;
 
-using unique_iptr_sort_array = unique_i64_sort_array;
-
-
 #else
 
 using iptr_array_base = i32_array_base;
 using uptr_array_base = u32_array_base;
-
-using unique_iptr_sort_array = unique_int_sort_array;
-
 
 #endif
 
@@ -576,16 +568,6 @@ void __swap(A & a, B & b)
    b = aCopy;
 
 }
-
-
-
-template <class TYPEA, class TYPEB, class ARRAYA = array < TYPEA >, class ARRAYB = array < TYPEB > >
-class spreadset;
-
-
-using i32_spreadset = spreadset < ::i32, ::i32, unique_int_sort_array, unique_int_sort_array >;
-
-using i64_spreadset = spreadset < ::i64, ::i64, unique_i64_sort_array, unique_i64_sort_array >;
 
 
 

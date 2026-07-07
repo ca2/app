@@ -1270,7 +1270,7 @@ public:
    virtual void write_particle(const ::subparticle *pparticle);
 
 
-   template < prototype_writable WRITABLE >
+   template < prototype_writable< ::binary_stream > WRITABLE >
    binary_stream & write(const WRITABLE & writeable)
    {
 
@@ -1280,7 +1280,7 @@ public:
 
    }
 
-   template < prototype_readable READABLE >
+   template < prototype_readable<::binary_stream> READABLE >
    binary_stream & read(const READABLE & readable)
    {
 

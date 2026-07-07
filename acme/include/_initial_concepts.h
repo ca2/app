@@ -853,8 +853,8 @@ concept prototype_writable = requires(TYPE t, STREAM stream)
    t.write(stream);
 };
 
-template < typename TYPE >
-concept prototype_readable_writable = prototype_readable<TYPE> && prototype_writable<TYPE>;
+template < typename TYPE, typename STREAM >
+concept prototype_readable_writable = prototype_readable<TYPE, STREAM> && prototype_writable<TYPE, STREAM>;
 
 
 template < typename PARTICLE >
@@ -1046,27 +1046,27 @@ concept polymorphic_smart_pointer_array = requires(ARRAY array, ::collection::in
 };
 
 
-template < typename ARRAY >
+template < typename ARRAY, typename STREAM >
 concept prototype_serializable_array = requires(ARRAY array, ::collection::index i, ::collection::count c)
 {
    array.get_count();
-   {array.element_at(i)}->prototype_serializable;
+   {array.element_at(i)}->prototype_serializable < STREAM >;
    array.set_size(c);
 };
 
 
-template < typename ARRAY >
+template < typename ARRAY, typename STREAM >
 concept prototype_writable_array = requires(const ARRAY &array, ::collection::index i)
 {
    array.get_count();
-   {array.element_at(i)}->prototype_writable;
+   {array.element_at(i)}->prototype_writable < STREAM >;
 };
 
 
-template < typename ARRAY >
+template < typename ARRAY, typename STREAM >
 concept prototype_readable_array = requires(ARRAY & array, ::collection::index i, ::collection::count c)
 {
-   {array.element_at(i)}->prototype_readable;
+   {array.element_at(i)}->prototype_readable < STREAM >;
    array.set_size(c);
 };
 

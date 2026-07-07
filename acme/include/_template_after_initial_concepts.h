@@ -223,4 +223,30 @@ template<prototype_floating FLOATING_TYPE, ::i32 t_iDimension, enum_matrix_major
 struct matrix_type;
 
 
+template <class TYPEA, class TYPEB, class ARRAYA = array < TYPEA >, class ARRAYB = array < TYPEB > >
+class spreadset;
+
+
+using unique_i32_sort_array = unique_number_sort_array < ::i32 >;
+
+using unique_i64_sort_array = unique_number_sort_array < ::i64 >;
+
+
+using i32_spreadset = spreadset < ::i32, ::i32, unique_i32_sort_array, unique_i32_sort_array >;
+
+using i64_spreadset = spreadset < ::i64, ::i64, unique_i64_sort_array, unique_i64_sort_array >;
+
+
+
+#ifdef OS64BIT
+
+using unique_iptr_sort_array = unique_i64_sort_array;
+
+#else
+
+using unique_iptr_sort_array = unique_i32_sort_array;
+
+#endif
+
+
 

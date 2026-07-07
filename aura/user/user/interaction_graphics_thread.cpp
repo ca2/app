@@ -594,7 +594,7 @@ namespace user
 
          ASSERT(!(m_puserinteraction->m_ewindowflag & e_window_flag_embedded_graphics_thread_if_child));
 
-         m_bFps = m_puserinteraction->has_fps_output_purpose();
+         //m_bFps = m_puserinteraction->has_fps_output_purpose();
 
          if (!m_puserinteraction
             || !m_puserinteraction->windowing_window())
@@ -703,7 +703,7 @@ namespace user
 
       }
       
-      if(!m_bFps)
+      if(!m_puserinteraction->has_fps_output_purpose())
       {
          
          if(m_iRedrawMessageCount <= 0)
@@ -1827,7 +1827,7 @@ namespace user
    void graphics_thread::post_redraw()
    {
 
-      if (m_bFps)
+      if (m_puserinteraction->has_fps_output_purpose())
       {
 
          //warning() << "graphics thread is going to ignore post redraw as it should be doing Fps drawing";

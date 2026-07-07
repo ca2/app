@@ -74,7 +74,7 @@ namespace user
 
       //bool                                      m_bUpdateBufferUpdateWindowPending;
 
-      bool                                      m_bFps;
+      //bool                                      m_bFps;
       ::i32 m_iRedrawMessageCount;
 
 

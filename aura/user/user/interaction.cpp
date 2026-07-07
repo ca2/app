@@ -2122,10 +2122,7 @@ namespace user
 
       }
 
-      if (
-         m_pacmewindowingwindow &&
-         window()->m_pgraphicsthread &&
-         window()->m_pgraphicsthread->m_bFps)
+      if (has_fps_output_purpose())
       {
 
          //warning() << "graphics thread is going to ignore post redraw as it should be doing Fps drawing";
@@ -4000,7 +3997,7 @@ namespace user
          if (pgraphicsthread)
          {
 
-            if (pgraphicsthread->m_bFps)
+            if (has_fps_output_purpose())
             {
 
                //warning() << "graphics thread is going to ignore post redraw as it should be doing Fps drawing";
@@ -27032,7 +27029,38 @@ void interaction::on_control_box_zoom(){
       //
       //      }
 
-      auto pitemLButtonDown = update_hover(pmouse, e_zorder_back);
+      enum_zorder ezorderLeftButtonDown = e_zorder_none;
+
+      if (m_bDefaultParentMouseMessageHandling)
+      {
+
+         ezorderLeftButtonDown = e_zorder_back;
+
+      }
+      else
+      {
+
+         ezorderLeftButtonDown = e_zorder_any;
+
+      }
+
+      auto pitemLButtonDown = update_hover(pmouse, ezorderLeftButtonDown);
+
+      if (::is_set(pitemLButtonDown))
+      {
+
+         if (strType == "app_core_chronometer::impact")
+         {
+
+            information("app_core_chronometer::impact going to to repeat update hover for debugging purpose");
+
+            auto pitemLButtonDown2 = update_hover(pmouse, ezorderLeftButtonDown);
+
+            information("app_core_chronometer::impact on_message_left_button_down");
+
+         }
+
+      }
 
       if (drag_on_button_down(pitemLButtonDown))
       {
@@ -28328,8 +28356,6 @@ __check_refdbg;
    ::item_pointer interaction::update_hover(::message::mouse * pmouse, e_zorder ezorder)
    {
 
-      auto pszName = ::platform::type(this).name().c_str();
-
       if (::platform::type(this).name() == "app_core_chronometer::impact")
       {
 
@@ -28345,7 +28371,9 @@ __check_refdbg;
       else
       {
 
-         informationf("%s update_hover", pszName);
+         auto strName = ::platform::type(this).name();
+
+         information("update_hover at: {}", strName);
 
       }
 

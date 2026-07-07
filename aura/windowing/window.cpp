@@ -8457,7 +8457,7 @@ void window::on_keyboard_layout_change(const_char_pointer pszKeyboardLayoutId)
 
       }
 
-      if (m_pgraphicsthread->m_bFps)
+      if (has_fps_output_purpose())
       {
 
          //warning() << "graphics thread is going to ignore post redraw as it should be doing Fps drawing";

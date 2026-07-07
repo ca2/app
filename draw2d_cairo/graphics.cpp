@@ -3785,7 +3785,7 @@ namespace draw2d_cairo
    //internal_draw_text_cairo - line3651.cpp
 
 
-      void graphics::internal_draw_text_cairo(const ::block & block, const ::f64_rectangle & rectangle,
+   void graphics::internal_draw_text_cairo(const ::block & block, const ::f64_rectangle & rectangle,
          const ::e_align & ealign, const ::e_draw_text & edrawtext,
          PFN_CAIRO_TEXT ftext)
    {
@@ -5452,53 +5452,6 @@ namespace draw2d_cairo
 
 #endif
 
-      ::f32 fPreferredDpiX = 96.0f;
-
-      ::f32 fPreferredDpiY = 96.0f;
-
-      ::f32 fPreferredDensity = 1.0f;
-
-      ::f32 fDenominatorDpi;
-
-#ifdef __ANDROID__
-
-      fDenominatorDpi = 160.0;
-
-#elif defined(MACOS)
-
-      fDenominatorDpi = 72.0;
-
-#else
-
-      fDenominatorDpi = 96.0;
-
-#endif
-
-      //::f64 dFontScaler = 1.0;
-
-
-      //if (::is_set(m_pdraw2dhost))
-      //{
-
-      //   dFontScaler = m_pdraw2dhost->font_scaler();
-
-      //}
-      
-      if (::is_set(m_puserinteractionDraw2dGraphics))
-      {
-
-         fPreferredDpiX = m_puserinteractionDraw2dGraphics->preferred_dpi_x();
-
-         fPreferredDpiY = m_puserinteractionDraw2dGraphics->preferred_dpi_y();
-
-         fPreferredDensity = m_puserinteractionDraw2dGraphics->preferred_density();
-
-      }
-         
-      ::f32 fDpi = maximum(fPreferredDpiX, fPreferredDpiY);
-
-      ::f32 fDensity = fPreferredDensity;
-
       ::f64 fFontSize = pfontParam->m_fontsize.as_f64();
 
       if (pfontParam->m_fontsize.eunit() == ::e_unit_pixel)
@@ -5506,11 +5459,58 @@ namespace draw2d_cairo
 
          //cairo_set_font_size(m_pdc, pfontParam->m_dFontSize * dFontScaler * fDensity);
 
-         cairo_set_font_size(m_pdc, fFontSize * fDensity);
+         //cairo_set_font_size(m_pdc, fFontSize * fDensity);
+         cairo_set_font_size(m_pdc, fFontSize);
 
       }
       else
       {
+
+         ::f32 fPreferredDpiX = 96.0f;
+
+         ::f32 fPreferredDpiY = 96.0f;
+
+         ::f32 fPreferredDensity = 1.0f;
+
+         ::f32 fDenominatorDpi;
+
+#ifdef __ANDROID__
+
+         fDenominatorDpi = 160.0;
+
+#elif defined(MACOS)
+
+         fDenominatorDpi = 72.0;
+
+#else
+
+         fDenominatorDpi = 96.0;
+
+#endif
+
+         //::f64 dFontScaler = 1.0;
+
+         //if (::is_set(m_pdraw2dhost))
+         //{
+
+         //   dFontScaler = m_pdraw2dhost->font_scaler();
+
+         //}
+
+         if (::is_set(m_puserinteractionDraw2dGraphics))
+         {
+
+            fPreferredDpiX = m_puserinteractionDraw2dGraphics->preferred_dpi_x();
+
+            fPreferredDpiY = m_puserinteractionDraw2dGraphics->preferred_dpi_y();
+
+            fPreferredDensity = m_puserinteractionDraw2dGraphics->preferred_density();
+
+         }
+
+         ::f32 fDpi = maximum(fPreferredDpiX, fPreferredDpiY);
+
+         ::f32 fDensity = fPreferredDensity;
 
          //cairo_set_font_size(m_pdc, pfontParam->m_dFontSize * dFontScaler * fPreferredDpiX / fDenominatorDpi);
 

@@ -5371,6 +5371,8 @@ void window::on_keyboard_layout_change(const_char_pointer pszKeyboardLayoutId)
       bool bHadGraphicalOutputPurpose = user_interaction()->has_graphical_output_purpose();
       bool bHadFpsGraphicalOutputPurpose = user_interaction()->has_fps_output_purpose();
 
+      erase_graphical_output_purpose(pparticleGraphicalOutputPurposeOriginator);
+
       this->add(poutputpurpose);
 
       bool bHasGraphicalOutputPurpose = user_interaction()->has_graphical_output_purpose();

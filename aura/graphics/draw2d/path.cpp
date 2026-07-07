@@ -1793,10 +1793,50 @@ namespace draw2d
    }
 
 
-   bool path::contains(::draw2d::graphics_pointer & pgraphics, const ::f64_point& point)
+   //bool path::contains(::draw2d::graphics_pointer & pgraphics, const ::f64_point& point)
+   //{
+
+   //   //if (!m_pshapea)
+   //   //{
+
+   //   //   return false;
+
+   //   //}
+
+   //   ::i32 iFill = 0;
+
+   //   for (auto& pitem : m_itema)
+   //   {
+
+   //      if (pitem->contains(point))
+   //      {
+
+   //         if (m_efillmode == ::draw2d::e_fill_mode_winding)
+   //         {
+
+   //            return true;
+
+   //         }
+   //         else
+   //         {
+
+   //            iFill++;
+
+   //         }
+
+   //      }
+
+   //   }
+
+   //   return (iFill % 2) == 1;
+
+   //}
+
+
+   bool path::path_contains_point(const ::f64_point &point)
    {
 
-      //if (!m_pshapea)
+      // if (!m_pshapea)
       //{
 
       //   return false;
@@ -1805,7 +1845,7 @@ namespace draw2d
 
       ::i32 iFill = 0;
 
-      for (auto& pitem : m_itema)
+      for (auto &pitem: m_itema)
       {
 
          if (pitem->contains(point))
@@ -1815,23 +1855,17 @@ namespace draw2d
             {
 
                return true;
-
             }
             else
             {
 
                iFill++;
-
             }
-
          }
-
       }
 
       return (iFill % 2) == 1;
-
    }
-
 
    bool path::add_arc_label(const ::f64_rectangle & rectangleParam)
    {

@@ -76,7 +76,9 @@ namespace draw2d
       virtual bool add_arc_label(const ::f64_rectangle & rectangle);
 
 
-      virtual bool contains(::draw2d::graphics_pointer & pgraphics, const ::f64_point & point);
+      //virtual bool contains(::draw2d::graphics_pointer & pgraphics, const ::f64_point & point);
+
+      virtual bool path_contains_point(const ::f64_point &point);
 
 
       virtual bool add_rectangle(const ::f64_rectangle & rectangle, const ::f64_point & point, const ::f64_angle & angleRotation);

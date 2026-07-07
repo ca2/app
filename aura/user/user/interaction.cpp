@@ -7219,75 +7219,80 @@ namespace user
    }
 
 
-   void interaction::defer_update_hover(::draw2d::graphics_pointer & pgraphics)
-   {
+   //void interaction::defer_update_hover(::draw2d::graphics_pointer & pgraphics)
+   //{
 
-      {
+   //   {
 
-         auto pmouse = ::transfer(m_pmousePendingBackUpdateHover);
+   //      auto pmouse = ::transfer(m_pmousePendingBackUpdateHover);
 
-         if (pmouse)
-         {
+   //      if (pmouse)
+   //      {
 
-            auto type = ::platform::type(this);
+   //         auto type = ::platform::type(this);
 
-            if (type.name().contains("experience") && type.name().contains("button"))
-            {
+   //         if (type.name().contains("experience") && type.name().contains("button"))
+   //         {
 
-               informationf("experience, button");
+   //            informationf("experience, button");
 
-            }
+   //         }
+   //         else if (type.name().contains("app_core_chronometer") && type.name().contains("impact"))
+   //         {
 
-            __check_refdbg;
+   //            informationf("app_core_chronometer, impact");
+   //         }
 
-
-
-            scoped_restore (m_pgraphicsInternalPriority);
-
-            m_pgraphicsInternalPriority = pgraphics.m_p;
-            ::item_pointer pitemFront;
-
-            ::item_pointer pitemBack;
-
-            //bool bAvoidRedraw = !m_bDefaultMouseHoverHandling;
-
-            if (!m_bDefaultParentMouseMessageHandling)
-            {
-
-               //informationf("on_message_mouse_move %d,%d", pmouse->m_pointAbsolute.x, pmouse->m_pointAbsolute.y);
-
-               pitemFront = update_hover(pmouse, e_zorder_front);
-
-            }
-
-            if (!::is_item_set(pitemFront))
-            {
-
-               __check_refdbg;
-
-               if (type.name().contains("experience") && type.name().contains("button"))
-               {
-
-                  informationf("experience, button going to update_hover with e_zorder_back");
-
-               }
-
-               //information() << "update_hover pmouse e_zorder_back";
-
-               pitemBack = update_hover(pmouse, e_zorder_back);
-
-               __check_refdbg;
-
-            }
-
-            //m_pgraphicsInternalPriority = nullptr;
-
-         }
-
-      }
+   //         __check_refdbg;
 
 
-   }
+
+   //         scoped_restore (m_pgraphicsInternalPriority);
+
+   //         m_pgraphicsInternalPriority = pgraphics.m_p;
+   //         ::item_pointer pitemFront;
+
+   //         ::item_pointer pitemBack;
+
+   //         //bool bAvoidRedraw = !m_bDefaultMouseHoverHandling;
+
+   //         if (!m_bDefaultParentMouseMessageHandling)
+   //         {
+
+   //            //informationf("on_message_mouse_move %d,%d", pmouse->m_pointAbsolute.x, pmouse->m_pointAbsolute.y);
+
+   //            pitemFront = update_hover(pmouse, e_zorder_front);
+
+   //         }
+
+   //         if (!::is_item_set(pitemFront))
+   //         {
+
+   //            __check_refdbg;
+
+   //            if (type.name().contains("experience") && type.name().contains("button"))
+   //            {
+
+   //               informationf("experience, button going to update_hover with e_zorder_back");
+
+   //            }
+
+   //            //information() << "update_hover pmouse e_zorder_back";
+
+   //            pitemBack = update_hover(pmouse, e_zorder_back);
+
+   //            __check_refdbg;
+
+   //         }
+
+   //         //m_pgraphicsInternalPriority = nullptr;
+
+   //      }
+
+   //   }
+
+
+   //}
 
 
    void interaction::_000OnDraw(::draw2d::graphics_pointer & pgraphics)
@@ -7295,7 +7300,7 @@ namespace user
 
       scoped_restore(pgraphics->m_bInheritDraw);
 
-      defer_update_hover(pgraphics);
+      //defer_update_hover(pgraphics);
 
       //      auto pszType = typeid(*this).name();
       //
@@ -8007,6 +8012,10 @@ if(get_parent())
 
       pwindowHost->add_graphical_output_purpose(pparticle, epurpose);
 
+      set_need_redraw();
+
+      post_redraw();
+
    }
 
 
@@ -8023,6 +8032,10 @@ if(get_parent())
       }
 
       pwindowHost->erase_graphical_output_purpose(pparticle);
+
+      set_need_redraw();
+
+      post_redraw();
 
    }
 
@@ -23819,45 +23832,45 @@ if(get_parent())
    }
 
 
-   ::draw2d::graphics_pointer interaction::get_internal_draw2d_graphics()
-   {
+   //::draw2d::graphics_pointer interaction::get_internal_draw2d_graphics()
+   //{
 
-      if (m_pgraphicsInternalPriority)
-      {
+   //   if (m_pgraphicsInternalPriority)
+   //   {
 
-         return m_pgraphicsInternalPriority;
+   //      return m_pgraphicsInternalPriority;
 
-      }
+   //   }
 
-      auto pinteractionHost = get_wnd();
+   //   auto pinteractionHost = get_wnd();
 
-      if (::is_null(pinteractionHost))
-      {
+   //   if (::is_null(pinteractionHost))
+   //   {
 
-         informationf("interaction::get_internal_draw2d_graphics ::is_null(pinteractionHost)");
+   //      informationf("interaction::get_internal_draw2d_graphics ::is_null(pinteractionHost)");
 
-         return nullptr;
+   //      return nullptr;
 
-      }
+   //   }
 
-      auto pwindow = pinteractionHost->windowing_window();
+   //   auto pwindow = pinteractionHost->windowing_window();
 
-      if (::is_null(pwindow))
-      {
+   //   if (::is_null(pwindow))
+   //   {
 
-         informationf("interaction::get_internal_draw2d_graphics ::is_null(pwindow)");
+   //      informationf("interaction::get_internal_draw2d_graphics ::is_null(pwindow)");
 
-         return nullptr;
+   //      return nullptr;
 
-      }
+   //   }
 
-      auto & pdraw2dgraphics = pwindow->m_pdraw2dgraphics;
+   //   auto & pdraw2dgraphics = pwindow->m_pdraw2dgraphics;
 
-      defer_graphics(pdraw2dgraphics);
+   //   defer_graphics(pdraw2dgraphics);
 
-      return pdraw2dgraphics;
+   //   return pdraw2dgraphics;
 
-   }
+   //}
 
 
    bool interaction::is_composite()
@@ -27468,12 +27481,18 @@ void interaction::on_control_box_zoom(){
 
       ::string strType;
 
-      strType = type(this).name();
+      strType = ::platform::type(this).name();
 
       if (strType.contains("font_list"))
       {
 
          //information() << "interaction::on_message_mouse_move font_list";
+
+      }
+      else if (strType.contains("app_core_chronometer::impact"))
+      {
+
+         information() << "app_core_chronometer::impact on_message_mouse_move";
 
       }
       else if (strType.contains("main_window"))
@@ -27702,76 +27721,79 @@ __check_refdbg;
          if (bUpdateHover)
          {
 
-            m_pmousePendingBackUpdateHover = pmouse;
+            //m_pmousePendingBackUpdateHover = pmouse;
 
-            // ::item_pointer pitemFront;
-            //
-            // ::item_pointer pitemBack;
-            //
-            // //bool bAvoidRedraw = !m_bDefaultMouseHoverHandling;
-            //
-            // if (!m_bDefaultParentMouseMessageHandling)
-            // {
-            //
-            //    //informationf("on_message_mouse_move %d,%d", pmouse->m_pointAbsolute.x, pmouse->m_pointAbsolute.y);
-            //
-            //    pitemFront = update_hover(pmouse, e_zorder_front);
-            //
-            // }
-            //
-            // if (!::is_item_set(pitemFront))
-            // {
-            //
-            //    __check_refdbg;
-            //
-            //    if (type.name().contains("experience") && type.name().contains("button"))
-            //    {
-            //
-            //       informationf("experience, button going to update_hover with e_zorder_back");
-            //
-            //    }
-            //
-            //    //information() << "update_hover pmouse e_zorder_back";
-            //
-            //    pitemBack = update_hover(pmouse, e_zorder_back);
-            //
-            //    __check_refdbg;
-            //
-            // }
+             ::item_pointer pitemFront;
+            
+             ::item_pointer pitemBack;
+            
+             //bool bAvoidRedraw = !m_bDefaultMouseHoverHandling;
+            
+             if (!m_bDefaultParentMouseMessageHandling)
+             {
+            
+                //informationf("on_message_mouse_move %d,%d", pmouse->m_pointAbsolute.x, pmouse->m_pointAbsolute.y);
+            
+                pitemFront = update_hover(pmouse, e_zorder_front);
+            
+             }
+            
+             if (!::is_item_set(pitemFront))
+             {
+            
+                __check_refdbg;
 
-            //update_hover(pointCursorClient, false);
-
-            //if (::is_item_set(pitemBack))
-            //{
-
-            //   if (!::is_item_set(m_pitemHover))
-            //   {
+                auto type = ::platform::type(this);
+            
+                if (type.name().contains("experience") && type.name().contains("button"))
+                {
+            
+                   informationf("experience, button going to update_hover with e_zorder_back");
+            
+                }
+            
+                //information() << "update_hover pmouse e_zorder_back";
+            
+                pitemBack = update_hover(pmouse, e_zorder_back);
+            
+                __check_refdbg;
+            
+             }
 
 
-            //      track_mouse_leave();
+            //update_hover(pmouse, false);
 
-            //      //auto pappearance = get_appearance();
+            if (::is_item_set(pitemBack))
+            {
 
-            //      //if (::is_set(pappearance))
-            //      //{
+               if (!::is_item_set(m_pitemHover))
+               {
 
-            //      //   ::i32_point pointClient;
 
-            //      //   _screen_to_client(pointClient, pmouse->m_point);
+                  track_mouse_leave();
 
-            //      //   auto psession = session();
+                  //auto pappearance = get_appearance();
 
-            //      //   auto & keyboardstate = psession->keyboard_state();
+                  //if (::is_set(pappearance))
+                  //{
 
-            //      //   pappearance->on_mouse_enter(pointClient, keyboardstate);
+                  //   ::i32_point pointClient;
 
-            //      //}
+                  //   _screen_to_client(pointClient, pmouse->m_point);
 
-            //   }
+                  //   auto psession = session();
+
+                  //   auto & keyboardstate = psession->keyboard_state();
+
+                  //   pappearance->on_mouse_enter(pointClient, keyboardstate);
+
+                  //}
+
+               }
 
             //}
 
-            //}
+            }
 
          }
 
@@ -28306,6 +28328,27 @@ __check_refdbg;
    ::item_pointer interaction::update_hover(::message::mouse * pmouse, e_zorder ezorder)
    {
 
+      auto pszName = ::platform::type(this).name().c_str();
+
+      if (::platform::type(this).name() == "app_core_chronometer::impact")
+      {
+
+         information("app_core_chronometer::impact update_hover");
+
+      }
+      else if (::platform::type(this).name() == "app_core_chronometer::pane_impact")
+      {
+
+         information("app_core_chronometer::pane_impact update_hover");
+
+      }
+      else
+      {
+
+         informationf("%s update_hover", pszName);
+
+      }
+
       if (ezorder == e_zorder_any)
       {
 
@@ -28372,6 +28415,13 @@ __check_refdbg;
 
          if (::is_item_set(m_pitemHover))
          {
+
+            if (m_pitemHover->m_item.m_eelement == e_element_reset)
+            {
+
+               information() << "update_hover e_element_reset";
+
+            }
 
             if (id() == "frame::e_button_transparent_frame")
             {
@@ -28894,9 +28944,10 @@ __check_refdbg;
 //
 //         }
 
-         auto pgraphics = get_internal_draw2d_graphics();
+         //auto pgraphics = get_internal_draw2d_graphics();
 
-         if (ppath->contains(pgraphics, point))
+         //if (ppath->contains(pgraphics, point))
+         if (ppath->path_contains_point(point))
          {
 
             return true;

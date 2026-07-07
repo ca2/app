@@ -300,8 +300,8 @@ namespace user
 
       ::i32_rectangle                           m_rectangleMargin1;
 
-::pointer < ::message::mouse > m_pmousePendingBackUpdateHover;
-      ::draw2d::graphics * m_pgraphicsInternalPriority = nullptr;
+//::pointer < ::message::mouse > m_pmousePendingBackUpdateHover;
+      //::draw2d::graphics * m_pgraphicsInternalPriority = nullptr;
       //bool                                      m_bVisualChanged;
 
       // <3ThomasBorreggardSoerensen_!!
@@ -1770,7 +1770,7 @@ namespace user
 
       ::graphics::graphics* get_window_graphics() override;
 
-      virtual ::draw2d::graphics_pointer get_internal_draw2d_graphics();
+      //virtual ::draw2d::graphics_pointer get_internal_draw2d_graphics();
 
       //virtual void _001PrintBuffer(::draw2d::graphics_pointer& pgraphics);
       //virtual void _001Print(::draw2d::graphics_pointer& pgraphics);
@@ -2536,7 +2536,7 @@ namespace user
       virtual ::item_pointer update_hover(::message::mouse * pmouse, e_zorder ezorder);
       virtual ::item_pointer update_hover_according_to_last_hover_update(e_zorder ezorder);
       //virtual ::item_pointer update_hover(::user::mouse * pmouse, e_zorder ezorder);
-      virtual void defer_update_hover(::draw2d::graphics_pointer & pgraphics);
+      //virtual void defer_update_hover(::draw2d::graphics_pointer & pgraphics);
       virtual void on_update_hover(::item * pitem);
 
       virtual bool is_mouse_hover() const;

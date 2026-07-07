@@ -127,6 +127,7 @@ enum enum_element : ::i64
    e_element_title_bar,
    e_element_item_box,
    e_element_divider,
+   e_element_display,
 
 };
 

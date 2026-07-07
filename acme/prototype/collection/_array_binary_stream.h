@@ -5,7 +5,7 @@
 #include "acme/filesystem/file/binary_stream.h"
 
 
-template < prototype_serializable_array SERIALIZABLE_ARRAY >
+template < prototype_serializable_array<binary_stream> SERIALIZABLE_ARRAY >
 inline binary_stream & operator <<(binary_stream & stream, const SERIALIZABLE_ARRAY & a)
 {
 
@@ -34,7 +34,7 @@ inline binary_stream & operator <<(binary_stream & stream, const SERIALIZABLE_AR
 }
 
 
-template < prototype_serializable_array SERIALIZABLE_ARRAY >
+template < prototype_serializable_array<binary_stream> SERIALIZABLE_ARRAY >
 binary_stream & operator >>(binary_stream & stream, SERIALIZABLE_ARRAY & a)
 {
 
@@ -86,7 +86,7 @@ binary_stream & operator >>(binary_stream & stream, SERIALIZABLE_ARRAY & a)
 
 
 
-template < prototype_writable_array WRITABLE_ARRAY >
+template < prototype_writable_array<binary_stream> WRITABLE_ARRAY >
 inline binary_stream & operator <<(binary_stream & stream, const WRITABLE_ARRAY & a)
 {
 
@@ -115,7 +115,7 @@ inline binary_stream & operator <<(binary_stream & stream, const WRITABLE_ARRAY 
 }
 
 
-template < prototype_readable_array READABLE_ARRAY >
+template < prototype_readable_array<binary_stream> READABLE_ARRAY >
 binary_stream & operator >>(binary_stream & stream, READABLE_ARRAY & a)
 {
 

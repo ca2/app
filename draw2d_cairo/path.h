@@ -23,7 +23,9 @@ namespace draw2d_cairo
       bool create(::draw2d::graphics * pgraphics);
       void destroy() override;
 
-      bool contains(::draw2d::graphics_pointer & pgraphics, const ::f64_point& point) override;
+      //bool contains(::draw2d::graphics_pointer & pgraphics, const ::f64_point& point) override;
+
+      bool path_contains_point(const ::f64_point& point) override;
 
 
    };

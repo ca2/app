@@ -58,6 +58,8 @@ namespace draw2d
       critical_section                                         m_criticalsectionGraphicsContextList;
       pointer_array < graphics >                               m_graphicsa;
 
+      ::map<task_index, ::pointer_array<::draw2d::graphics >> m_mapThreadPathGraphics;
+
 
       draw2d();
       ~draw2d() override;
@@ -90,8 +92,7 @@ namespace draw2d
       void clear_image_list_os_data();
       void clear_graphics_context_list_os_data();
 
-
-
+      virtual ::draw2d::graphics * get_thread_graphics(int iSlot = 0);
 
       virtual void process_init() override;
 

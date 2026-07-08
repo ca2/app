@@ -254,6 +254,28 @@ namespace draw2d
 
    }
 
+   ::draw2d::graphics * draw2d::get_thread_graphics(int iSlot)
+   {
+
+      auto taskindex = current_task_index();
+
+      synchronous_lock synchronouslock(this->synchronization(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
+
+      auto & pgraphics = m_mapThreadPathGraphics[taskindex].atø(iSlot);
+
+      synchronouslock.unlock();
+
+      if(defer_constructø(pgraphics))
+      {
+
+         pgraphics->create_memory_graphics({256, 256});
+
+      }
+
+      return pgraphics;
+
+   }
+
 
    api & draw2d::api()
    {

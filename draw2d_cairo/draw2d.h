@@ -37,6 +37,7 @@ namespace draw2d_cairo
       string_map_base < cairo_font_face_t * > * m_mapCairoFontFace;
 
 
+
 //extern CLASS_DECL_AURA array < matter * > * g_paAura;
 
 #if defined(LINUX) || defined(FREEBSD) || defined(OPENBSD)
@@ -63,6 +64,7 @@ namespace draw2d_cairo
       virtual void destroy() override;
 
 
+      //virtual ::draw2d::graphics * get_thread_path_graphics();
 
 
 

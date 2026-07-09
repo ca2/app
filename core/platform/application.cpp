@@ -125,8 +125,8 @@ namespace core
 
       auto puser = user();
 
-      puser->will_use_impact_hint(COLORSEL_IMPACT);
-      puser->will_use_impact_hint(FONTSEL_IMPACT);
+      puser->will_use_impact_hint("color_selection_impact");
+      puser->will_use_impact_hint("font_selection_impact");
 
       auto psystem = system();
 

@@ -16,8 +16,8 @@
 //   {
 //
 //      impact_none,
-//      COLORSEL_IMPACT,
-//      FONTSEL_IMPACT,
+//      "color_selection_impact",
+//      "font_selection_impact",
 //
 //   };
 //

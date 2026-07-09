@@ -1293,7 +1293,7 @@ public:
 
 
    template<typename DOUBLE_ANGLE_BRACKET_WRITABLE_ARRAY>
-   inline binary_stream &double_angle_bracket_write(const DOUBLE_ANGLE_BRACKET_WRITABLE_ARRAY &a)
+   inline binary_stream &double_angle_bracket_array_write(const DOUBLE_ANGLE_BRACKET_WRITABLE_ARRAY &a)
    {
 
       //return stream.double_angle_bracket_write(a);
@@ -1323,7 +1323,7 @@ public:
 
 
    template<typename DOUBLE_ANGLE_BRACKET_READABLE_ARRAY>
-   binary_stream &double_angle_bracket_read(DOUBLE_ANGLE_BRACKET_READABLE_ARRAY &a)
+   binary_stream &double_angle_bracket_array_read(DOUBLE_ANGLE_BRACKET_READABLE_ARRAY &a)
    {
 
       auto &stream = *this;
@@ -1371,6 +1371,59 @@ public:
        return stream;
    }
 
+
+   template<typename POINTER_HOLDER_ARRAY>
+   binary_stream &pointer_holder_array_read(POINTER_HOLDER_ARRAY &a)
+   {
+
+      auto &stream = *this;
+
+      ::collection::count c;
+
+      stream >> c;
+
+      if (stream.nok() || c <= 0)
+      {
+
+         return stream;
+      }
+
+      a.set_size(c);
+
+      ::collection::index i = 0;
+
+      try
+      {
+
+         for (; i < c && stream.has_ok_flag(); i++)
+         {
+
+            if (::is_null(a.element_at(i).get()))
+            {
+
+               a.element_at(i).create<create_tag_t>();
+
+            }
+
+            stream >> a[i];
+
+
+         }
+      }
+      catch (...)
+      {
+
+         stream.set_nok();
+      }
+
+      if (stream.nok())
+      {
+
+         a.set_size(i);
+      }
+
+      return stream;
+   }
 
 
    

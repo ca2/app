@@ -2968,7 +2968,7 @@ namespace user
    //}
 
 
-   ::user::tab_pane * tab::create_tab_by_id(const ::atom & atom)
+   ::user::tab_pane * tab::create_tab_by_id(const ::atom & atom, bool bCreateImpact)
    {
 
       if (!add_tab("", atom))

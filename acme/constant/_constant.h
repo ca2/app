@@ -90,9 +90,9 @@ enum ENUM_IMPACT : ::iptr
 BASE_IMPACT= 100'000,
 
 
-FILEMANAGER_IMPACT =1'001'000,
-COLORSEL_IMPACT =2'001'000,
-FONTSEL_IMPACT =2'002'000,
+//"file_manager_impact" =1'001'000,
+//"color_selection_impact" =2'001'000,
+//"font_selection_impact" =2'002'000,
 
 TABBED_GROUP =100,
 LIST_GROUP =200,

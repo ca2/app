@@ -17,7 +17,7 @@ namespace user
 
       // Pointer to ::user::document_manager used to manage document templates
    // for this application instance.
-      ::pointer<::user::document_manager>          m_pdocmanager;
+      ::pointer<::user::document_manager>          m_pdocumentmanager;
 
 
       document_manager_container();
@@ -26,7 +26,7 @@ namespace user
 
       ::user::document_manager* document_manager();
 
-
+      virtual ::pointer < ::user::document_manager > create_user_document_manager();
 
       void initialize(::particle * pparticle) override;
 
@@ -35,8 +35,10 @@ namespace user
 
       virtual void add_impact_system(const ::atom & atom, const ::pointer<::user::impact_system> & pimpactsystem);
       virtual ::pointer<::user::impact_system> impact_system(const ::atom & atom);
+      virtual bool has_impact_system(const ::atom &atom);
 
 
+      virtual ::pointer<::user::impact_system> create_impact_system(const ::atom &atom);
       
 
    };

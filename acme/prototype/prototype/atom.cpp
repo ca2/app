@@ -3,93 +3,196 @@
 #include "payload.h"
 
 
-
-
-
-
-
-bool is_filemanager(const ::atom & atom)
+CLASS_DECL_ACME ::string file_manager_group(const ::atom &atom)
 {
 
-   if(atom.is_text())
+   if (!atom.is_text())
    {
 
-      return atom.m_str.begins("file_manager_");
+      return "";
 
    }
 
-   return is_impact_group(atom.as_i64(), FILEMANAGER_IMPACT);
+   ::string str = atom.m_str;
+
+   if (str == "file_manager_impact")
+   {
+
+      return "file_manager_impact";
+
+   }
+   else if (str.begins_eat("file_manager_impact_"))
+   {
+
+      return str;
+
+   }
+
+   return "";
 
 }
 
 
-bool is_filemanager_group(const ::atom & atom, const ::scoped_string & scopedstrGroup)
+bool is_file_manager(const ::atom & atom)
 {
 
-   if(!atom.is_text())
-   {
+   auto strFileManagerGroup = file_manager_group(atom);
 
-      return false;
-
-   }
-
-   string strFileManagerGroup;
-
-   strFileManagerGroup.formatf("file_manager_%s", scopedstrGroup.as_string().c_str());
-
-   if(atom == strFileManagerGroup)
-   {
-
-      return true;
-
-   }
-
-   strFileManagerGroup += "_";
-
-   if(atom.m_str.begins(strFileManagerGroup))
-   {
-
-
-      return true;
-
-   }
-
-   return false;
-
-}
-
-
-bool is_filemanager_group(const ::atom & atom, ::i32 iGroup)
-{
-
-   if(atom.is_text())
+   if (strFileManagerGroup.is_empty())
    {
 
       return false;
 
    }
 
-   return is_impact_subgroup(atom.as_i64(), FILEMANAGER_IMPACT + iGroup);
+   return true;
 
 }
 
 
+//bool is_filemanager_group(const ::atom & atom, const ::scoped_string & scopedstrGroup)
+//{
+//
+//   if(!atom.is_text())
+//   {
+//
+//      return false;
+//
+//   }
+//
+//   string strFileManagerGroup;
+//
+//   strFileManagerGroup.formatf("file_manager_%s", scopedstrGroup.as_string().c_str());
+//
+//   if(atom == strFileManagerGroup)
+//   {
+//
+//      return true;
+//
+//   }
+//
+//   strFileManagerGroup += "_";
+//
+//   if(atom.m_str.begins(strFileManagerGroup))
+//   {
+//
+//
+//      return true;
+//
+//   }
+//
+//   return false;
+//
+//}
 
-bool _is_color_sel(const ::atom & atom)
+
+//bool is_filemanager_group(const ::atom & atom, ::i32 iGroup)
+//{
+//
+//   if(atom.is_text())
+//   {
+//
+//      return false;
+//
+//   }
+//
+//   return is_impact_subgroup(atom.as_i64(), "file_manager_impact" + iGroup);
+//
+//}
+
+
+
+::string color_selection_group(const ::atom & atom)
 {
    
-   return is_impact_group(atom.as_i64(), COLORSEL_IMPACT);
+   //return is_impact_group(atom.as_i64(), "color_selection_impact");
+
+      if (!atom.is_text())
+   {
+
+      return "";
+   }
+
+   ::string str = atom.m_str;
+
+   if (str == "color_selection_impact")
+   {
+
+      return "color_selection_impact";
+   }
+   else if (str.begins_eat("color_selection_impact_"))
+   {
+
+      return str;
+   }
+
+   return "";
 
 }
 
-
-bool _is_font_sel(const ::atom & atom) 
+bool is_color_selection(const ::atom &atom)
 {
-   
-   return is_impact_group(atom.as_i64(), FONTSEL_IMPACT);
 
+   auto strColorSelectionGroup = color_selection_group(atom);
+
+   if (strColorSelectionGroup.is_empty())
+   {
+
+      return false;
+   }
+
+   return true;
 }
 
+
+
+::string font_selection_group(const ::atom &atom)
+{
+
+   // return is_impact_group(atom.as_i64(), "color_selection_impact");
+
+   if (!atom.is_text())
+   {
+
+      return "";
+   }
+
+   ::string str = atom.m_str;
+
+   if (str == "font_selection_impact")
+   {
+
+      return "font_selection_impact";
+   }
+   else if (str.begins_eat("font_selection_impact_"))
+   {
+
+      return str;
+   }
+
+   return "";
+}
+
+//bool _is_font_sel(const ::atom & atom) 
+//{
+//   
+//   return is_impact_group(atom.as_i64(), "font_selection_impact");
+//
+//}
+
+bool is_font_selection(const ::atom &atom)
+{
+
+   auto strFontSelectionGroup = font_selection_group(atom);
+
+   if (strFontSelectionGroup.is_empty())
+   {
+
+      return false;
+   }
+
+   return true;
+}
 
 
 

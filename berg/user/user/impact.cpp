@@ -32,7 +32,7 @@ namespace user
       m_bEmptyAreaIsClientArea = false;
 
       //m_bExtendOnParent = true;
-
+      m_bExtendOnParentHostingArea = true;
 
    }
 
@@ -130,13 +130,13 @@ namespace user
 
       ::pointer<::message::create>pmessagecreate(pmessage);
 
-      if (get_parent()->is_frame_window() ||
-         get_parent()->is_place_holder())
-      {
+      //if (get_parent()->is_frame_window() ||
+      //   get_parent()->is_place_holder())
+      //{
 
-         m_bExtendOnParentHostingArea = true;
+      //   m_bExtendOnParentHostingArea = true;
 
-      }
+      //}
 
       if (!(m_ewindowflag & e_window_flag_window_created))
       {

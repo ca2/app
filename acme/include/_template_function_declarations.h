@@ -134,7 +134,7 @@ typedef void THREAD_ROUTINE(thread_parameter parameter);
 //CLASS_DECL_ACME bool succeeded(const ::payload& payload);
 
 
-CLASS_DECL_ACME bool is_filemanager(const ::atom& atom);
+CLASS_DECL_ACME bool is_file_manager(const ::atom& atom);
 
 
 CLASS_DECL_ACME bool is_filemanager_group(const ::atom& atom, const ::scoped_string & scopedstrGroup);

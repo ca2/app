@@ -84,7 +84,7 @@ namespace userex
 
       bool on_place_hold(::user::interaction * pinteraction, ::user::place_holder * pholder) override;
 
-      ::user::tab_pane * create_tab_by_id(const ::atom & atom) override;
+      ::user::tab_pane * create_tab_by_id(const ::atom & atom, bool bCreateImpact = true) override;
 
       void on_create_impact(::user::impact_data * pimpactdata) override;
 

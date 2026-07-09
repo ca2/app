@@ -459,7 +459,7 @@ namespace user
 
    //}
 
-   ::pointer < ::user::impact_system > & document_manager::__impact_system(const ::atom & atom)
+   ::pointer < ::user::impact_system > & document_manager::impact_system(const ::atom & atom)
    {
 
       return m_mapImpactSystem[atom];
@@ -970,10 +970,18 @@ namespace user
    }
 
 
+   void document_manager::create_user_impact_systems()
+   {
+
+
+
+   }
+
+
    void document_manager::add_impact_system(const ::atom & atom, const ::pointer < ::user::impact_system > & pimpactsystemNew)
    {
 
-      auto &pimpactsystem = __impact_system(atom);
+      auto &pimpactsystem = impact_system(atom);
 
       if (pimpactsystem)
       {

@@ -12,6 +12,7 @@
 //#include "acme/handler/sequence.h"
 #include "acme/nano/graphics/context.h"
 #include "acme/nano/graphics/icon.h"
+#include "acme/nano/nano.h"
 #include "acme/platform/system.h"
 ////#include "acme/platform/timer.h"
 #include "acme/user/user/mouse.h"
@@ -61,6 +62,8 @@ namespace micro
 
    void message_box::create_window()
    {
+
+      system()->nano()->graphics();
 
       ::micro::main_window::create_window();
 

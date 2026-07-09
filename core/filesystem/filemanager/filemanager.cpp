@@ -45,6 +45,7 @@
 #include "berg/user/user/user.h"
 #include "core/user/simple/form_impact.h"
 #include "core/user/user/tree.h"
+#include "core/platform/application.h"
 #include "core/platform/session.h"
 
 
@@ -275,12 +276,6 @@ namespace filemanager
       //   return estatus;
 
       //}
-      user()->add_impact_system(
-         "filemanager", __initialize_new ::user::multiple_document_template(
-         "filemanager",
-         __form_document_type(),
-         ::type<form_child_frame>(),
-         ::type<form>()));
 
       //constructø(m_pimpactsystemForm, pmulti);
 
@@ -288,12 +283,12 @@ namespace filemanager
 
       psession->add_document_template(pmulti);*/
 
-      user()->add_impact_system(
-         "filemanager_operation", __initialize_new ::user::multiple_document_template(
-         "filemanager",
-         ::type<operation_document>(),
-         ::type<operation_child_frame>(),
-         ::type<operation_impact>()));
+      //user()->add_impact_system(
+      //   "filemanager_operation", __initialize_new ::user::multiple_document_template(
+      //   "filemanager",
+      //   ::type<operation_document>(),
+      //   ::type<operation_child_frame>(),
+      //   ::type<operation_impact>()));
 
       //constructø(m_pimpactsystemOperation, psingle);
 
@@ -307,17 +302,19 @@ namespace filemanager
    void  filemanager::filemanager_finalize()
    {
 
-      if (user()->impact_system("filemanager"))
+      ::cast<::core::application> pcoreapplication = m_papplication;
+
+      if (pcoreapplication->has_impact_system("filemanager"))
       {
 
-         user()->impact_system("filemanager")->close_all_documents(false);
+         pcoreapplication->impact_system("filemanager")->close_all_documents(false);
 
       }
 
-      if (user()->impact_system("filemanager_operation"))
+      if (pcoreapplication->has_impact_system("filemanager_operation"))
       {
 
-         user()->impact_system("filemanager_operation")->close_all_documents(false);
+         pcoreapplication->impact_system("filemanager_operation")->close_all_documents(false);
 
       }
 
@@ -327,25 +324,27 @@ namespace filemanager
    ::user::impact_system * filemanager::impact_system()
    {
 
-      if (::is_null(user()->impact_system("filemanager_filemanager")))
-      {
+      //if (::is_null(user()->impact_system("filemanager_filemanager")))
+      //{
 
-         //m_pimpactsystemFileManager = 
-         user()->add_impact_system(
-            "filemanager_filemanager", __initialize_new ::user::multiple_document_template(
-            "filemanager",
-            ::type<document>(),
-            ::type<frame>(),
-               ::type<impact>()));
-            //::type<main_impact>()));
+      //   //m_pimpactsystemFileManager = 
+      //   user()->add_impact_system(
+      //      "filemanager_filemanager", __initialize_new ::user::multiple_document_template(
+      //      "filemanager",
+      //      ::type<document>(),
+      //      ::type<frame>(),
+      //         ::type<impact>()));
+      //      //::type<main_impact>()));
 
-         //
+      //   //
 
-         //psession->add_document_template(m_pimpactsystemFileManager);
+      //   //psession->add_document_template(m_pimpactsystemFileManager);
 
-      }
+      //}
 
-      return user()->impact_system("filemanager_filemanager");
+      ::cast<::core::application> pcoreapplication = m_papplication;
+
+      return pcoreapplication->impact_system("filemanager_filemanager");
 
    }
 
@@ -353,7 +352,7 @@ namespace filemanager
    //::pointer<data>filemanager::filemanager_create_data(atom atom)
    //{
 
-   //   if (!is_filemanager(atom))
+   //   if (!is_file_manager(atom))
    //   {
 
    //      return nullptr;
@@ -426,7 +425,7 @@ namespace filemanager
    ::pointer<data>filemanager::create_filemanager_data()
    {
 
-      //if (!is_filemanager(atom))
+      //if (!is_file_manager(atom))
       //{
 
       //   return nullptr;

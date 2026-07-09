@@ -805,6 +805,8 @@ concept prototype_subparticle = ::std::is_base_of_v<::subparticle, SUBPARTICLE>;
 //
 
 
+struct pointer_holder_type_t {};
+
 
 template < typename RAW_TYPE >
 concept _primitive_raw_type = 
@@ -817,6 +819,12 @@ concept prototype_raw_type =
    ::_primitive_raw_type < RAW_TYPE >
    || (::std::is_bounded_array_v<RAW_TYPE>
        && _primitive_raw_type<dereference<RAW_TYPE>>);
+
+
+template<typename POINTER_HOLDER>
+concept prototype_pointer_holder = requires {
+   typename ::std::remove_cvref_t<POINTER_HOLDER>::POINTER_HOLDER_TYPE;
+} && ::std::is_same_v<typename ::std::remove_cvref_t<POINTER_HOLDER>::POINTER_HOLDER_TYPE, pointer_holder_type_t>;
 
 class stream_base;
 
@@ -1029,16 +1037,23 @@ concept prototype_raw_array_class = requires(RAW_ARRAY_CLASS array, ::collection
 
 
 template < typename ARRAY >
-concept prototype_raw_pointer_array = requires(ARRAY array, ::collection::index i, ::collection::count c)
+concept prototype_raw_pointer_array = requires(ARRAY & array, ::collection::index i, ::collection::count c)
 {
    array.get_count();
    {array.element_at(i)}->prototype_raw_pointer;
    array.set_size(c);
 };
 
+template<typename ARRAY>
+concept prototype_pointer_holder_array = requires(ARRAY & array, ::collection::index i, ::collection::count c) 
+{
+   { array.get_count() } -> ::std::convertible_to<::collection::count >;
+   { array.element_at(i) } -> prototype_pointer_holder;
+   array.set_size(c);
+};
 
 template < typename ARRAY >
-concept polymorphic_smart_pointer_array = requires(ARRAY array, ::collection::index i, ::collection::count c)
+concept polymorphic_smart_pointer_array = requires(ARRAY & array, ::collection::index i, ::collection::count c)
 {
    array.get_count();
    {array.element_at(i)}->polymorphic_smart_pointer;

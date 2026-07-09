@@ -39,7 +39,7 @@ namespace user
       m_enonclient -= ::user::e_non_client_focus_rect;
 
       m_bFirstShown = false;
-      m_atomImpact = FONTSEL_IMPACT;
+      m_atomImpact = "font_selection_impact";
       m_pscrolllayoutY->m_scrollstatea[::user::e_layout_sketch].m_bScrollEnable = true;
       m_bEnsureVisible = false;
       m_bDefaultClickHandling = true;

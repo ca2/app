@@ -79,9 +79,9 @@ namespace filemanager
       bool erase_filemanager(document * pdocument);
 
 
-      /// atom = FILEMANAGER_IMPACT - behaviour
+      /// atom = "file_manager_impact" - behaviour
       /// if there is main "pane_impact" (create this concecpt of main pane_impact!!)
-      /// open the (already existing concept) of "pane_impact" FILEMANAGER_IMPACT
+      /// open the (already existing concept) of "pane_impact" "file_manager_impact"
       /// (even if the tab is not already there)
       /// otherwise open a detached window
 
@@ -89,7 +89,7 @@ namespace filemanager
 
       //document * open_main(::aura::application * pappOnBehalfOf, ::atom atom = -1, ::request * prequest = nullptr, ::fs::data * pfsdata = nullptr, callback * pcallback = nullptr);
       //document * open_child(bool bMakeVisible = true, bool bTransparentBackground = false, ::pointer<::user::interaction>puiParent = nullptr, callback * pcallback = nullptr);
-      //data * filemanager_data(atom atom = FILEMANAGER_IMPACT);
+      //data * filemanager_data(atom atom = "file_manager_impact");
       //document * get_list(atom atom);
       //document * get_folder_selection_list(atom atom);
 

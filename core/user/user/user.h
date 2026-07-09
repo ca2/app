@@ -15,6 +15,8 @@ namespace core
    {
    public:
 
+      ::atom_array m_atomaWillUseImpact;
+
       //
       //
       // //::user::impact_system *                      m_ptemplatePlaceHolder;
@@ -722,9 +724,14 @@ namespace core
 
       // virtual void SendMessageToWindows(::user::enum_message eusermessage, ::wparam wparam, ::lparam lparam);
 
-      virtual void term() override;
+      void term() override;
 
-      virtual ::platform::type controltype_to_typeinfo(::user::enum_control_type econtroltype) override;
+      ::platform::type controltype_to_typeinfo(::user::enum_control_type econtroltype) override;
+
+
+      ::pointer<::user::impact_system> create_impact_system(const ::atom &atomImpactId) override;
+
+
    };
 
 

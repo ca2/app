@@ -65,10 +65,10 @@ namespace browser
       set_tab("gcom", GCOM_IMPACT);
       set_tab("browser", MAIN_IMPACT);
       set_tab("switcher",MAIN_SWITCHER_IMPACT);
-      set_tab("Font",FONTSEL_IMPACT);
-      set_tab("Color", COLORSEL_IMPACT);
+      set_tab("Font","font_selection_impact");
+      set_tab("Color", "color_selection_impact");
 #if 1
-      set_tab("Open", FILEMANAGER_IMPACT);
+      set_tab("Open", "file_manager_impact");
 #endif
 
       set_current_tab_by_id(MAIN_IMPACT);
@@ -248,7 +248,7 @@ namespace browser
          }
 
       }
-      else if (get_impact_id() == FONTSEL_IMPACT)
+      else if (get_impact_id() == "font_selection_impact")
       {
 
          ::pointer<::user::font_list_impact>pfontview = ptabpaneFontSel->m_pholder->get_child_by_id("font_list_impact");
@@ -261,7 +261,7 @@ namespace browser
          }
 
       }
-      else if (get_impact_id() == COLORSEL_IMPACT)
+      else if (get_impact_id() == "color_selection_impact")
       {
 
          if (m_pimpactLastBilbo != nullptr && m_pcolorimpact != nullptr)
@@ -273,7 +273,7 @@ namespace browser
 
       }
 
-      if (m_pimpactdataOld != nullptr && m_pimpactdataOld->id() == FONTSEL_IMPACT)
+      if (m_pimpactdataOld != nullptr && m_pimpactdataOld->id() == "font_selection_impact")
       {
 
          ::pointer<::user::font_list_impact>pfontview = ptabpaneFontSel->m_pholder->get_child_by_id("font_list_impact");

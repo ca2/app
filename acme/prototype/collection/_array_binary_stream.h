@@ -172,7 +172,7 @@ inline binary_stream &operator<<(binary_stream &stream, const DOUBLE_ANGLE_BRACK
    requires(!prototype_raw_array_class<DOUBLE_ANGLE_BRACKET_WRITABLE_ARRAY>)
 {
 
-   return stream.double_angle_bracket_write(a);
+   return stream.double_angle_bracket_array_write(a);
 
    // ::collection::count c = a.get_count();
 
@@ -198,10 +198,11 @@ inline binary_stream &operator<<(binary_stream &stream, const DOUBLE_ANGLE_BRACK
 
 template<prototype_double_angle_bracket_readable_array<::binary_stream> DOUBLE_ANGLE_BRACKET_READABLE_ARRAY>
 binary_stream &operator>>(binary_stream &stream, DOUBLE_ANGLE_BRACKET_READABLE_ARRAY &a) 
-   requires(!prototype_raw_array_class<DOUBLE_ANGLE_BRACKET_READABLE_ARRAY>)
+   requires(!prototype_raw_array_class<DOUBLE_ANGLE_BRACKET_READABLE_ARRAY> 
+&& !prototype_pointer_holder_array<DOUBLE_ANGLE_BRACKET_READABLE_ARRAY>)
 {
 
-   return stream.double_angle_bracket_read(a);
+   return stream.double_angle_bracket_array_read(a);
 
    // ::collection::count c;
 
@@ -245,6 +246,16 @@ binary_stream &operator>>(binary_stream &stream, DOUBLE_ANGLE_BRACKET_READABLE_A
 
    // return stream;
 }
+
+
+template<prototype_pointer_holder_array POINTER_HOLDER_ARRAY>
+binary_stream &operator>>(binary_stream &stream, POINTER_HOLDER_ARRAY &a)
+{
+
+   return stream.pointer_holder_array_read(a);
+
+}
+
 
 template<prototype_raw_array_class RAW_ARRAY_CLASS>
 binary_stream & operator <<(binary_stream & stream, const RAW_ARRAY_CLASS & a)

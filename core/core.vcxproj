@@ -1073,6 +1073,7 @@
     <ClCompile Include="user\userex\home_impact.cpp" />
     <ClCompile Include="user\userex\image_list.cpp" />
     <ClCompile Include="user\userex\impact_host.cpp" />
+    <ClCompile Include="user\userex\impact_host_host.cpp" />
     <ClCompile Include="user\userex\menu_document.cpp" />
     <ClCompile Include="user\userex\menu_frame.cpp" />
     <ClCompile Include="user\userex\message_box.cpp" />
@@ -1205,6 +1206,7 @@
     <ClInclude Include="user\userex\dialog_frame.h" />
     <ClInclude Include="user\userex\group_image_list.h" />
     <ClInclude Include="user\userex\image_list.h" />
+    <ClInclude Include="user\userex\impact_host_host.h" />
     <ClInclude Include="user\userex\progress.h" />
     <ClInclude Include="user\user\color_selector_control.h" />
     <ClInclude Include="user\user\color_selector_impact.h" />

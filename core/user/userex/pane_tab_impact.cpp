@@ -358,7 +358,7 @@ namespace userex
 
       ::user::tab_impact::on_change_cur_sel();
 
-      if (m_pimpactdataOld != nullptr && is_filemanager(m_pimpactdataOld->id()))
+      if (m_pimpactdataOld != nullptr && is_file_manager(m_pimpactdataOld->id()))
       {
 
          if (parent_frame()->is_waiting_for_dialog_response())
@@ -545,12 +545,12 @@ namespace userex
    }
 
 
-   ::user::tab_pane * pane_tab_impact::create_tab_by_id(const ::atom & atom)
+   ::user::tab_pane * pane_tab_impact::create_tab_by_id(const ::atom & atom, bool bCreateImpact)
    {
 
       //::user::impact_data * pimpactdata = get_impact_data(atom, get_data()->m_rectangleHosting);
 
-      ::user::impact_data * pimpactdata = get_impact_data(atom, true);
+      ::user::impact_data * pimpactdata = get_impact_data(atom, bCreateImpact);
 
       if(pimpactdata == nullptr)
       {
@@ -627,7 +627,7 @@ namespace userex
       //   }
 
       //}
-      else if (is_impact_group(pimpactdata->id().as_iptr(), FONTSEL_IMPACT))
+      else if (is_impact_group(pimpactdata->id().as_iptr(), "font_selection_impact"))
       {
 
          pimpactdata->m_eflag.add(::user::e_flag_modifier_impact);
@@ -638,7 +638,7 @@ namespace userex
          
          auto puser = psession->m_puser;
 
-         puser->will_use_impact_hint(FONTSEL_IMPACT);
+         puser->will_use_impact_hint("font_selection_impact");
 
          //auto pcreate = allocateø create(this);
 
@@ -650,9 +650,11 @@ namespace userex
 
          //pcreate->m_pusersystem
 
-//         auto pdocument = puser->m_mapimpactsystem[FONTSEL_IMPACT]->do_request(get_app(), ::e_type_null, false, pimpactdata->m_pplaceholder);
+//         auto pdocument = puser->m_mapimpactsystem["font_selection_impact"]->do_request(get_app(), ::e_type_null, false, pimpactdata->m_pplaceholder);
 
-         auto ptemplate = puser->impact_system(FONTSEL_IMPACT);
+         ::cast<::berg::application> pbergapplication = m_papplication;
+
+         auto ptemplate = pbergapplication->impact_system("font_selection_impact");
 
          auto pdocument = ptemplate->open_document_file(get_app(), ::e_type_null, __visible(true).is_true(), pimpactdata->m_pplaceholder);
 
@@ -666,7 +668,7 @@ namespace userex
          
          m_pfontimpact->m_pimpact->add_handler(this);
 
-         ::pointer<::user::interaction>pimpact = psession->get_bound_ui(FONTSEL_IMPACT);
+         ::pointer<::user::interaction>pimpact = psession->get_bound_ui("font_selection_impact");
 
          if(pimpact)
          {
@@ -676,7 +678,7 @@ namespace userex
          }
 
       }
-      else if (is_impact_group(pimpactdata->id().as_iptr(), COLORSEL_IMPACT))
+      else if (is_impact_group(pimpactdata->id().as_iptr(), "color_selection_impact"))
       {
 
          pimpactdata->m_eflag.add(::user::e_flag_modifier_impact);
@@ -687,9 +689,9 @@ namespace userex
          
          auto puser = psession->m_puser;
 
-         puser->will_use_impact_hint(COLORSEL_IMPACT);
+         puser->will_use_impact_hint("color_selection_impact");
 
-         //auto pimpactsystem = puser->impact_system(COLORSEL_IMPACT);
+         //auto pimpactsystem = puser->impact_system("color_selection_impact");
 
          //auto pdocument = pimpactsystem->open_document_file(get_app(), ::e_type_null, __visible(false).is_true(), pimpactdata->m_pplaceholder);
 
@@ -701,7 +703,7 @@ namespace userex
          
          m_pcolorselectorimpact->add_handler(this);
 
-         ::pointer<::user::interaction>pimpact = psession->get_bound_ui(COLORSEL_IMPACT);
+         ::pointer<::user::interaction>pimpact = psession->get_bound_ui("color_selection_impact");
 
          if(pimpact)
          {
@@ -713,7 +715,7 @@ namespace userex
          return;
 
       }
-      else if(is_filemanager(pimpactdata->id()))
+      else if(is_file_manager(pimpactdata->id()))
       {
 
          pimpactdata->m_eflag.add(::user::e_flag_tool_impact);

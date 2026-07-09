@@ -23,17 +23,23 @@
 #include "axis/html/html/html.h"
 #include "axis/user/user/line_layout.h"
 #include "berg/user/user/picture.h"
-#include "berg/user/user/multiple_document_template.h"
 #include "berg/user/user/document_manager.h"
 #include "berg/user/form/document.h"
 #include "berg/user/form/impact.h"
+#include "berg/user/user/multiple_document_template.h"
+#include "berg/user/user/single_document_template.h"
 #include "berg/user/experience/orto_button.h"
 #include "berg/user/simple/child_frame.h"
 #include "berg/user/simple/toolbar.h"
+#include "core/filesystem/filemanager/child_frame.h"
 #include "core/filesystem/filemanager/data.h"
 #include "core/filesystem/filemanager/document.h"
+#include "core/filesystem/filemanager/form.h"
 #include "core/filesystem/filemanager/frame.h"
 #include "core/filesystem/filemanager/impact.h"
+#include "core/filesystem/filemanager/operation/child_frame.h"
+#include "core/filesystem/filemanager/operation/document.h"
+#include "core/filesystem/filemanager/operation/impact.h"
 #include "core/platform/application.h"
 #include "core/platform/session.h"
 #include "core/user/account/impact.h"
@@ -67,6 +73,7 @@
 //#include <Commdlg.h>
 //#endif
 
+CLASS_DECL_BERG ::platform::type __form_document_type();
 
 //#if defined(FREEBSD) || defined(OPENBSD) || defined(__APPLE__)
 //#include <stdio.h>
@@ -304,16 +311,6 @@ namespace core
       factory()->add_factory_item <menu_frame >();
       //factory()->add_factory_item <menu_impact >();
 
-      auto psystem = system();
-
-      auto typeinfo = psystem->get_simple_frame_window_type_info();
-
-      add_impact_system(
-         "system/form", __initialize_new ::user::multiple_document_template(
-         "system/form",
-         ::type<form_document>(),
-         psystem->get_simple_frame_window_type_info(),
-         ::type<::user::form_impact>()));
 
       //ptemplate->initialize(this);
 
@@ -334,26 +331,6 @@ namespace core
      // m_ptemplateChildForm = ptemplate;
 
       //add_document_template(m_ptemplateChildForm);
-      add_impact_system(
-         "system/form_placeholder", __initialize_new ::user::multiple_document_template(
-         "system/form",
-         ::type<::user::document>(),
-         psystem->get_simple_frame_window_type_info(),
-         ::type<::user::place_holder>()));
-
-      //ptemplate->initialize(this);
-
-      //m_ptemplatePlaceHolder = ptemplate;
-
-      //add_document_template(ptemplate);
-
-      add_impact_system(
-         "progress_impact", __initialize_new ::user::multiple_document_template(
-         "main",
-         ::type<::user::document>(),
-         ::type<::userex::dialog_frame>(),
-         ::type<::userex::progress_impact>()));
-
       //m_ptemplateProgress2 = pmultitemplate;
 
       //add_document_template(pmultitemplate);
@@ -498,6 +475,199 @@ namespace core
       //}
 
       //return ::success;
+
+   }
+
+
+   ::pointer<::user::impact_system> user::create_impact_system(const ::atom & atomImpactId)
+   {
+
+      if (atomImpactId == "tab")
+      {
+
+//         bCreateTab = true;
+
+         auto pimpactsystem= __initialize_new ::user::single_document_template(
+                                                "main", typeid(::user::document), typeid(simple_frame_window),
+                                                typeid(::userex::pane_tab_impact));
+
+                                                return pimpactsystem;
+         // m_ptemplateTab->initialize(this);
+      }
+      else  if (atomImpactId == "filemanager_filemanager")
+      {
+
+          //if (::is_null(user()->impact_system("filemanager_filemanager")))
+         //{
+
+            // m_pimpactsystemFileManager =
+           // user()->add_impact_system("filemanager_filemanager",
+                                      auto pimpactsystem = __initialize_new ::user::multiple_document_template(
+                                         "filemanager", ::type<::filemanager::document>(),
+                                         ::type<::filemanager::frame>(), 
+                                         ::type<::filemanager::impact>());
+            //::type<main_impact>()));
+
+            //
+
+            // psession->add_document_template(m_pimpactsystemFileManager);
+         //}
+
+                                      return pimpactsystem;
+
+      }
+
+      else if (atomImpactId == "filemanager")
+      {
+
+                 //}
+         ::cast<::core::application> pcoreapplication = m_papplication;
+
+                  auto pimpactsystem = 
+               //"filemanager", 
+               // __initialize_new ::user::multiple_document_template(
+                  
+                     __initialize_new ::user::multiple_document_template(
+                     "filemanager", 
+                     __form_document_type(),
+                     ::type<form_child_frame>(),
+                     ::type<::filemanager::form>());
+
+
+                  return pimpactsystem;
+      }
+      else if (::is_file_manager(atomImpactId))
+      {
+
+
+         will_use_impact_hint(atomImpactId);
+
+                  // if (::is_null(user()->impact_system("filemanager_filemanager")))
+         //{
+
+            // m_pimpactsystemFileManager =
+            auto pimpactsystem=
+                              __initialize_new ::user::multiple_document_template(
+                                 "filemanager", ::type<::filemanager::document>(), ::type<::filemanager::frame>(),
+                                 ::type<::filemanager::impact>());
+            //::type<main_impact>()));
+
+            //
+
+            // psession->add_document_template(m_pimpactsystemFileManager);
+         ////}
+         //   ::cast<::core::application> pcoreapplication = m_papplication;
+
+         //         auto pimpactsystem = 
+         //      "filemanager", __initialize_new ::user::multiple_document_template(
+         //                        "filemanager", pcoreapplication->filemanager()->__form_document_type(), ::type<form_child_frame>(), ::type<form>()));
+
+
+         return pimpactsystem;
+
+
+      }
+      else if (atomImpactId == "filemanger_operation")
+      {
+
+         // user()->add_impact_system("filemanager_operation",
+         auto pimpactsystem = __initialize_new ::user::multiple_document_template(
+            "filemanager", ::type<::filemanager::operation_document>(), 
+            ::type<::filemanager::operation_child_frame>(), 
+            ::type<::filemanager::operation_impact>());
+
+
+         return pimpactsystem;
+
+      }
+      else if (_is_color_sel(atomImpactId))
+      {
+
+         will_use_impact_hint(atomImpactId);
+
+               auto pimpactsystem =  __initialize_new ::user::multiple_document_template(
+                                               "main", ::type<::user::document>(), ::type<::simple_frame_window>(),
+                                               ::type<::user::color_selector_impact>());
+
+                                               return pimpactsystem;
+      }
+      else if (_is_font_sel(atomImpactId))
+      {
+
+auto pimpactsystem= __initialize_new ::user::multiple_document_template(
+            "main",
+            ::type<::user::document>(),
+            ::type<::simple_frame_window>(),
+            ::type<::userex::font_impact>());
+
+
+return pimpactsystem;
+
+
+      }
+      else if (atomImpactId == "system/auth")
+      {
+
+
+               auto pimpactsystem=
+             __initialize_new ::user::single_document_template("system/auth", ::type<::user::document>(),
+                                                                             ::type<simple_frame_window>(),
+                                                                             ::type<::userex::pane_tab_impact>());
+
+                                                                             return pimpactsystem;
+      }
+      else if (atomImpactId == "system/form")
+      {
+
+         auto psystem = system();
+
+         auto typeinfo = psystem->get_simple_frame_window_type_info();
+
+         auto pimpactsystem =                            __initialize_new ::user::multiple_document_template(
+                              "system/form", ::type<form_document>(), psystem->get_simple_frame_window_type_info(),
+                              ::type<::user::form_impact>());
+
+         return pimpactsystem;
+
+      }
+      else if (atomImpactId == "system/form_placeholder")
+      {
+
+         auto psystem = system();
+
+         auto typeinfo = psystem->get_simple_frame_window_type_info();
+
+
+         auto pimpactsystem = __initialize_new ::user::multiple_document_template(
+            "system/form", ::type<::user::document>(), psystem->get_simple_frame_window_type_info(),
+            ::type<::user::place_holder>());
+
+         // ptemplate->initialize(this);
+
+         // m_ptemplatePlaceHolder = ptemplate;
+
+         // add_document_template(ptemplate);
+
+         return pimpactsystem;
+      }
+      else if (atomImpactId == "progress_impact")
+      {
+
+
+      auto pimpactsystem= __initialize_new ::user::multiple_document_template(
+                                              "main", ::type<::user::document>(), ::type<::userex::dialog_frame>(),
+                                              ::type<::userex::progress_impact>());
+
+                                              return pimpactsystem;
+      }
+
+
+
+
+
+
+      return ::bred::user::create_impact_system(atomImpactId);
+
 
    }
 
@@ -935,9 +1105,9 @@ namespace core
 
 #else
 
-      will_use_impact_hint(COLORSEL_IMPACT);
+      will_use_impact_hint("color_selection_impact");
 
-      auto pdocument = impact_system(COLORSEL_IMPACT)->open_document_file(puiOwner->get_app(), ::e_type_null, true);
+      auto pdocument = impact_system("color_selection_impact")->open_document_file(puiOwner->get_app(), ::e_type_null, true);
 
       ::pointer<::user::color_selector_impact>pimpact = pdocument->get_typed_impact < ::user::color_selector_impact >();
 
@@ -1164,7 +1334,9 @@ namespace core
 
       prequest->m_bHold = false;
 
-      impact_system("place_holder")->request(prequest);
+      ::cast<::berg::application> pbergapplication = m_papplication;
+
+      pbergapplication->impact_system("place_holder")->request(prequest);
 
       ::pointer<::form_document>pformdocument = ::user::__document(prequest);
 
@@ -1715,115 +1887,128 @@ namespace core
    void user::will_use_impact_hint(::atom idImpact)
    {
 
-      if (idImpact == FILEMANAGER_IMPACT)
+      if (::is_file_manager(idImpact))
       {
 
-         if (impact_system(FILEMANAGER_IMPACT) != nullptr)
+         if (m_atomaWillUseImpact.contains("file_manager_impact"))
          {
 
             return;
 
          }
 
+         m_atomaWillUseImpact.add("file_manager_impact");
+
+         /*::cast<::berg::application> pbergapplication = m_papplication;
+
+         if (pbergapplication->impact_system("file_manager_impact") != nullptr)
+         {
+
+            return;
+
+         }
+*/
 
          application()->filemanager();
 
-         //if (::is_null(user()->impact_system("filemanager_filemanager")))
-         {
 
-            //m_pimpactsystemFileManager = 
-            add_impact_system(
-               FILEMANAGER_IMPACT, __initialize_new ::user::multiple_document_template(
-                  "filemanager",
-                  ::type<::filemanager::document>(),
-                  ::type<::filemanager::frame>(),
-                  ::type<::filemanager::impact>()));
-            //::type<main_impact>()));
-
-         //
-
-         //psession->add_document_template(m_pimpactsystemFileManager);
-
-         }
-
-
-
-         //m_mapimpactsystem[FILEMANAGER_IMPACT] = filemanager(idImpact)->m_pimpactsystem;
+         //m_mapimpactsystem["file_manager_impact"] = filemanager(idImpact)->m_pimpactsystem;
 
          //add_factory_item <::user::color_impact >();
 
    //      add_impact_system(
-   //COLORSEL_IMPACT, __initialize_new ::user::multiple_document_template(
+   //"color_selection_impact", __initialize_new ::user::multiple_document_template(
    //   "main",
    //   ::type<::user::document>(),
    //   ::type<::simple_frame_window>(),
    //   ::type<::user::color_selector_impact>()));
 
 
-         //user()->m_mapimpactsystem[COLORSEL_IMPACT] = __initialize_new ::user::multiple_document_template(
+         //user()->m_mapimpactsystem["color_selection_impact"] = __initialize_new ::user::multiple_document_template(
          //   get_app(),
          //   "main",
          //   ::type<::user::document>(),
          //   ::type<::prodevian_translucent_simple_frame_window>(),
          //   ::type<::user::color_impact>()));
 
-         //add_document_template(user()->m_mapimpactsystem[COLORSEL_IMPACT]);
+         //add_document_template(user()->m_mapimpactsystem["color_selection_impact"]);
 
       }
-      else if (idImpact == COLORSEL_IMPACT)
+      else if (idImpact == "color_selection_impact")
       {
 
-         if (impact_system(COLORSEL_IMPACT) != nullptr)
+         //if (impact_system("color_selection_impact") != nullptr)
+         //{
+
+         //   return;
+
+         //}
+
+
+                  if (m_atomaWillUseImpact.contains("color_sel_impact"))
          {
 
             return;
-
          }
+
+         m_atomaWillUseImpact.add("color_sel_impact");
+
 
          factory()->add_factory_item <::user::color_selector_impact >();
 
-         add_impact_system(
-            COLORSEL_IMPACT, __initialize_new ::user::multiple_document_template(
+   /*      add_impact_system(
+            "color_selection_impact", __initialize_new ::user::multiple_document_template(
             "main",
             ::type<::user::document>(),
             ::type<::simple_frame_window>(),
-            ::type<::user::color_selector_impact>()));
+            ::type<::user::color_selector_impact>()));*/
 
          //
 
          //psession->add_document_template(ptemplate);
 
-         //m_mapimpactsystem[COLORSEL_IMPACT] = ptemplate;
+         //m_mapimpactsystem["color_selection_impact"] = ptemplate;
 
       }
-      else if (idImpact == FONTSEL_IMPACT)
+      else if (idImpact == "font_selection_impact")
       {
 
-         if (m_bFontSelInitialized)
+
+         
+
+                  if (m_atomaWillUseImpact.contains("font_sel_impact"))
          {
 
             return;
-
          }
 
-         m_bFontSelInitialized = true;
+         m_atomaWillUseImpact.add("font_sel_impact");
+
+         //if (m_bFontSelInitialized)
+         //{
+
+         //   return;
+
+         //}
+
+         //m_bFontSelInitialized = true;
 
          factory()->add_factory_item <::user::font_list >();
          factory()->add_factory_item <::user::font_list_impact >();
          factory()->add_factory_item <::userex::font_impact >();
 
-         add_impact_system(
-            FONTSEL_IMPACT, __initialize_new ::user::multiple_document_template(
-            "main",
-            ::type<::user::document>(),
-            ::type<::simple_frame_window>(),
-            ::type<::userex::font_impact>()));
+         //add_impact_system(
+         //   "font_selection_impact", __initialize_new ::user::multiple_document_template(
+         //   "main",
+         //   ::type<::user::document>(),
+         //   ::type<::simple_frame_window>(),
+         //   ::type<::userex::font_impact>()));
 
          //
 
          //psession->add_document_template(ptemplate);
 
-         //m_mapimpactsystem[FONTSEL_IMPACT] = ptemplate;
+         //m_mapimpactsystem["font_selection_impact"] = ptemplate;
 
          fork([this]()
          {

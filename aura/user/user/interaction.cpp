@@ -396,7 +396,7 @@ namespace user
 
       //m_playout = NULL;
 
-      m_bWfiUpDownTarget = false;
+      
 
       //m_puserinteraction = this;
 
@@ -1040,6 +1040,8 @@ namespace user
 
    bool interaction::on_set_position(::i32_point & point, enum_layout elayout)
    {
+
+      auto &o = m_layout.m_statea[elayout].origin();
 
       if (point == const_layout().m_statea[elayout].origin())
       {
@@ -12634,53 +12636,35 @@ if(get_parent())
 
       }
 
-      main_send([this]()
+
+      if (m_pacmewindowingwindow)
+      {
+
+         main_send([this]()
          {
 
+            _synchronous_lock synchronouslock(window()->m_pmutexGraphics, DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
+
+               //
+               //   if (!window())
+               //   {
+               //
+               //      throw ::exception(error_wrong_state);
+               //
+               //   }
+
             auto puserinteractionHold = ::as_pointer(this);
+            
             auto pwindowingwindowHold = ::as_pointer(m_pacmewindowingwindow);
 
-         _synchronous_lock synchronouslock(window()->m_pmutexGraphics, DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
+            auto pacmewindowingwindow = m_pacmewindowingwindow.m_p;
 
-
-            //
-            //   if (!window())
-            //   {
-            //
-            //      throw ::exception(error_wrong_state);
-            //
-            //   }
-
-            if (m_pacmewindowingwindow)
-            {
-
-               auto pacmewindowingwindow = m_pacmewindowingwindow.m_p;
-
-               pacmewindowingwindow->destroy_window();
-
-               try
-               {
-
-                  pacmewindowingwindow->destroy();
-
-               }
-               catch (...)
-               {
-
-               }
-
-            }
-            else
-            {
-
-               _destroy_window();
-
-            }
+            pacmewindowingwindow->destroy_window();
 
             try
             {
 
-               destroy();
+               pacmewindowingwindow->destroy();
 
             }
             catch (...)
@@ -12688,7 +12672,26 @@ if(get_parent())
 
             }
 
-      });
+         });
+
+      }
+      else
+      {
+
+         _destroy_window();
+
+      }
+
+      try
+      {
+
+         destroy();
+
+      }
+      catch (...)
+      {
+
+      }
 
    }
 
@@ -16846,6 +16849,13 @@ if(get_parent())
       {
 
          throw ::exception(error_wrong_state);
+
+      }
+
+      if (eusermessage == ::user::e_message_close)
+      {
+
+         information("user::e_message_close");
 
       }
 
@@ -30181,6 +30191,28 @@ void interaction::on_keyboard_layout_change(const_char_pointer pszKeyboardLayout
    }
    // updown end
 
+
+   bool interaction::wfi_is_up_down_target()
+   {
+
+      return false;
+
+   }
+
+
+   ::user::interaction *interaction::wfi_up_down_target_get_hosting_parent(const ::atom &atomImpactId)
+   {
+
+      if (!get_parent()->wfi_is_up_down_target())
+      {
+
+         throw ::exception(error_wrong_state);
+
+      }
+
+      return this;
+
+   }
 
 
    //index interaction::GetEditItem()

@@ -266,7 +266,6 @@ namespace user
       bool                                      m_bCursorInside;
       bool                                      m_bRectOk;
 
-      bool                                      m_bWfiUpDownTarget;
       bool                                      m_bPendingChildrenZorder;
       bool                                      m_bPadding001;
       bool                                      m_bPadding002;
@@ -833,6 +832,8 @@ namespace user
       virtual bool wfi_is_down();
       virtual i32_boolean wfi_has_up_down();
       // end updown
+      virtual bool wfi_is_up_down_target();
+      virtual ::user::interaction *wfi_up_down_target_get_hosting_parent(const ::atom & atomImpactId);
 
 
       virtual void child_set_unique_id(::user::interaction* pinteraction);

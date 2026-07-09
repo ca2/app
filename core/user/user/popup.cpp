@@ -104,15 +104,15 @@ namespace user
 
             //   auto puser = psession->m_puser;
 
-            //   puser->will_use_impact_hint(COLORSEL_IMPACT);
+            //   puser->will_use_impact_hint("color_selection_impact");
 
-            //   m_pdocument = puser->m_mapimpactsystem[COLORSEL_IMPACT]->open_document_file(get_app(), ::e_type_null, __visible(false).is_true());
+            //   m_pdocument = puser->m_mapimpactsystem["color_selection_impact"]->open_document_file(get_app(), ::e_type_null, __visible(false).is_true());
 
             //   m_pimpact = m_pdocument->get_typed_impact < ::userex::color_impact >();
 
             //   m_pimpact->m_bCompact = true;
 
-            //   psession->set_bound_ui(COLORSEL_IMPACT, this);
+            //   psession->set_bound_ui("color_selection_impact", this);
 
             //   m_pframewindow = dynamic_cast <::simple_frame_window *> (m_pimpact->top_level_frame());
 

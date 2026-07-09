@@ -83,7 +83,7 @@ pdirectorysystem->create(szRelative);  // or SHCreateDirectory(NULL, szCacheDir)
 
       ::aura::session * pcoression = &Session;
 
-      pcoression->will_use_impact_hint(FONTSEL_IMPACT);
+      pcoression->will_use_impact_hint("font_selection_impact");
 
       add_factory_item <::browser::document >();
       add_factory_item <::browser::frame >();

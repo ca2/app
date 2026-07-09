@@ -86,7 +86,7 @@ namespace app_integration
    void menu::on_message_create(::message::message * pmessage)
    {
 
-      payload(FONTSEL_IMPACT) = true;
+      payload("font_selection_impact") = true;
 
       ::pointer<::message::create> pcreate(pmessage);
 

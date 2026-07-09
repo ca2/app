@@ -97,17 +97,17 @@ enum enum_impact : ::i64
    
    
    e_impact_tooling= 1 << 20,
-   e_impact_filemanager = FILEMANAGER_IMPACT,
-   e_impact_filemanager_main,
-   e_impact_filemanager_save,
-   e_impact_filemanager_tabbed = FILEMANAGER_IMPACT + TABBED_GROUP,
-   e_impact_filemanager_list = FILEMANAGER_IMPACT + LIST_GROUP,
-   e_impact_filemanager_folder_selection_list = FILEMANAGER_IMPACT + FOLDER_SELECTION_LIST_GROUP,
+   //e_impact_filemanager = "file_manager_impact",
+   //e_impact_filemanager_main,
+   //e_impact_filemanager_save,
+   //e_impact_filemanager_tabbed = "file_manager_impact" + TABBED_GROUP,
+   //e_impact_filemanager_list = "file_manager_impact" + LIST_GROUP,
+   //e_impact_filemanager_folder_selection_list = "file_manager_impact" + FOLDER_SELECTION_LIST_GROUP,
    
    
    e_impact_modifying = 1 << 21,
-   e_impact_color_sel = COLORSEL_IMPACT,
-   e_impact_font_sel = FONTSEL_IMPACT,
+   e_impact_color_sel = "color_selection_impact",
+   e_impact_font_sel = "font_selection_impact",
    
 
    e_impact_multitasking = 1 << 22,

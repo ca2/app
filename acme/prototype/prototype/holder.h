@@ -18,6 +18,7 @@ TYPE * copy_pointer(const TYPE * p)
 
 }
 
+struct create_tag_t{};
 
 template < typename TYPE >
 class holder
@@ -28,6 +29,7 @@ class holder
 public:
 
    using POINTER_TYPE_TAG = pointer_type_t;
+   using POINTER_HOLDER_TYPE = pointer_holder_type_t;
 
    holder() :
       m_p(nullptr)
@@ -61,6 +63,15 @@ public:
    {
 
       destroy();
+
+   }
+
+
+   template < typename CREATE_TAG >
+   void create()
+   {
+
+      m_p = new TYPE();
 
    }
 
@@ -134,6 +145,11 @@ public:
    TYPE & operator *() { return *m_p; }
 
    const TYPE & operator *() const { return *m_p; }
+
+   TYPE *get() { return m_p; }
+
+   const TYPE *get() const { return m_p; }
+   
 
 };
 

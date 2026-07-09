@@ -162,19 +162,20 @@ class e_status;
 
 
 
-
-CLASS_DECL_ACME bool is_filemanager(const ::atom& atom);
-
-
-CLASS_DECL_ACME bool is_filemanager_group(const ::atom& atom, const ::scoped_string & scopedstrGroup);
-
-CLASS_DECL_ACME bool is_filemanager_group(const ::atom& atom, ::i32 iGroup);
+CLASS_DECL_ACME ::string file_manager_group(const ::atom &atom);
+CLASS_DECL_ACME bool is_file_manager(const ::atom& atom);
 
 
-CLASS_DECL_ACME bool _is_color_sel(const ::atom& atom);
+//CLASS_DECL_ACME bool is_filemanager_group(const ::atom& atom, const ::scoped_string & scopedstrGroup);
+
+//CLASS_DECL_ACME bool is_filemanager_group(const ::atom &atom, ::i32 iGroup);
+
+CLASS_DECL_ACME ::string color_selection_group(const ::atom &atom);
+CLASS_DECL_ACME bool is_color_selection(const ::atom& atom);
 
 
-CLASS_DECL_ACME bool _is_font_sel(const ::atom& atom);
+CLASS_DECL_ACME ::string font_selection_group(const ::atom &atom);
+CLASS_DECL_ACME bool is_font_selection(const ::atom& atom);
 
 
 

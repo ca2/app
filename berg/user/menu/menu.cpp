@@ -775,6 +775,8 @@ namespace user
       m_procedureOnAfterCreate = [this]()
          {
 
+            add_graphical_output_purpose(this, ::graphics::e_output_purpose_screen);
+
             display(e_display_normal,
                { ::user::e_activation_set_foreground | ::user::e_activation_for_context_menu,
                nullptr });
@@ -790,8 +792,6 @@ namespace user
             post_redraw();
 
          };
-
-      add_graphical_output_purpose(this, ::graphics::e_output_purpose_screen);
 
       track_hints(ptrackpopup);
 

@@ -26,7 +26,7 @@ namespace user
 
 
       //::pointer<::userex::userex>             m_puserex;
-      bool                                         m_bFontSelInitialized;
+      //bool                                         m_bFontSelInitialized;
 
 
 

@@ -1733,20 +1733,20 @@ namespace user
    }
 
    
-   void user::add_impact_system(const ::atom & atom, ::user::impact_system * pimpactsystem)
-   {
+   //void user::add_impact_system(const ::atom & atom, ::user::impact_system * pimpactsystem)
+   //{
 
-      throw interface_only();
+   //   throw interface_only();
 
-   }
+   //}
 
 
-   ::pointer<::user::impact_system> user::impact_system(const ::atom & atom)
-   {
+   //::pointer<::user::impact_system> user::impact_system(const ::atom & atom)
+   //{
 
-      throw interface_only();
+   //   throw interface_only();
 
-   }
+   //}
 
 
 

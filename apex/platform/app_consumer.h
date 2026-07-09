@@ -250,6 +250,15 @@ public:
    inline APP* get_app() const { return (APP *)m_papp.get(); }
 
 
+   void _001OnDraw(::draw2d::graphics_pointer & pgraphics) override
+   {
+
+      BASE1::_001OnDraw(pgraphics);
+
+
+   }
+
+
 };
 
 

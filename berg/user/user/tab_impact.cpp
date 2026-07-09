@@ -1184,11 +1184,11 @@ namespace user
    }
 
 
-   ::user::tab_pane * tab_impact::create_tab_by_id(const ::atom & atom)
+   ::user::tab_pane * tab_impact::create_tab_by_id(const ::atom & atom, bool bCreateImpact)
    {
 
       //if (get_impact_data(atom, get_data()->m_rectangleHosting) == nullptr)
-      if (get_impact_data(atom, true) == nullptr)
+      if (get_impact_data(atom, bCreateImpact) == nullptr)
       {
 
          return nullptr;

@@ -22,8 +22,8 @@ namespace browser
       m_bBrowser = false;
       m_bPendingImageChange = false;
 
-      prop(FONTSEL_IMPACT) = true;
-      prop(COLORSEL_IMPACT) = true;
+      prop("font_selection_impact") = true;
+      prop("color_selection_impact") = true;
 
 
       m_enonclient.erase(::user::e_non_client_background);
@@ -432,7 +432,7 @@ namespace browser
 
       bool bHover = get_typed_parent < pane_impact >() != nullptr
                     && get_typed_parent < pane_impact >()->m_pimpactLast == this
-                    && get_typed_parent < pane_impact >()->get_current_tab_id() == FONTSEL_IMPACT;
+                    && get_typed_parent < pane_impact >()->get_current_tab_id() == "font_selection_impact";
 
       //if(m_prender->m_cx == rectangleX.width()
       //    && m_prender->m_cy == rectangleX.height()

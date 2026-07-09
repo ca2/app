@@ -959,6 +959,9 @@
     <ClInclude Include="_.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="user\userex\impact_host_host.h">
+      <Filter>Header Files\user\userex</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="user\user\tooltip.cpp">
@@ -1476,6 +1479,9 @@
     </ClCompile>
     <ClCompile Include="user\rich_text\_factory.cpp">
       <Filter>Source Files\user\rich_text</Filter>
+    </ClCompile>
+    <ClCompile Include="user\userex\impact_host_host.cpp">
+      <Filter>Source Files\user\userex</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

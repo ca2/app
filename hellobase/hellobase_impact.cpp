@@ -19,7 +19,7 @@ namespace hellobase
    {
 
 
-      prop(FONTSEL_IMPACT) = true;
+      prop("font_selection_impact") = true;
 
 
       m_enonclient.erase(::user::e_non_client_background);

@@ -80,7 +80,7 @@ namespace berg
 
       print_line("berg::user::initialize (2)");
 
-      ::user::document_manager_container::initialize(pparticle);
+      //::user::document_manager_container::initialize(pparticle);
 
       //if (!estatus)
       //{
@@ -391,7 +391,7 @@ namespace berg
 
 
 
-      ::user::document_manager_container::destroy();
+      //::user::document_manager_container::destroy();
 
       ::axis::user::user::destroy();
 
@@ -1498,7 +1498,10 @@ namespace berg
       }
 
       //m_ptemplateForm->request(prequest);
-      impact_system("form")->request(prequest);
+
+      ::cast<::berg::application> pbergapplication = m_papplication;
+          
+      pbergapplication->impact_system("form")->request(prequest);
 
       ::pointer<::form_document>pformdocument = ::user::__document(prequest);
 
@@ -1591,7 +1594,9 @@ namespace berg
 
       //m_ptemplateChildForm->request(prequest);
 
-      impact_system("child_form")->request(prequest);
+      ::cast<::berg::application> pbergapplication = m_papplication;
+
+      pbergapplication->impact_system("child_form")->request(prequest);
 
       ::pointer<::form_document>pformdocument = ::user::__document(prequest);
 
@@ -1644,7 +1649,9 @@ namespace berg
          if (!pimpactsystem)
          {
 
-            auto typeDocument = impact_system("child_form")->m_typeDocument;
+            ::cast<::berg::application> pbergapplication = m_papplication;
+
+            auto typeDocument = pbergapplication->impact_system("child_form")->m_typeDocument;
 
             if (is_html_file(payload.as_file_path()))
             {
@@ -1802,15 +1809,42 @@ namespace berg
    }
 
 
-   void user::add_impact_system(const ::atom & atom, ::user::impact_system * pimpactsystem)
-   {
+   //void user::add_impact_system(const ::atom & atom, ::user::impact_system * pimpactsystem)
+   //{
 
-      return document_manager_container::add_impact_system(atom, pimpactsystem);
+   //   return add_impact_system(atom, pimpactsystem);
 
-   }
+   //}
 
 
-   bool user::create_impact_system(const ::atom & atom)
+   //bool user::create_impact_system(const ::atom & atom)
+   //{
+
+   //   if (atom == "child_form")
+   //   {
+
+   //      initialize_html();
+
+   //      add_impact_system(
+   //         atom,
+   //         allocateø::user::multiple_document_template(
+   //            "system/form",
+   //            ::type<form_document>(),
+   //            get_simple_child_frame_type_info(),
+   //            ::type<::user::form_impact>()));
+
+   //      return true;
+
+   //   }
+
+   //   throw ::exception(error_failed, "Cannot create impact_system with id " + atom.as_string());
+
+   //   return false;
+
+   //}
+
+
+   ::pointer<::user::impact_system> user::create_impact_system(const ::atom & atom)
    {
 
       if (atom == "child_form")
@@ -1818,45 +1852,17 @@ namespace berg
 
          initialize_html();
 
-         add_impact_system(
-            atom,
-            allocateø::user::multiple_document_template(
-               "system/form",
-               ::type<form_document>(),
-               get_simple_child_frame_type_info(),
-               ::type<::user::form_impact>()));
+         auto pimpactsystem = allocateø::user::multiple_document_template("system/form", ::type<form_document>(),
+                                                                             get_simple_child_frame_type_info(),
+                                                                             ::type<::user::form_impact>());
 
-         return true;
+         return pimpactsystem;
 
       }
 
-      throw ::exception(error_failed, "Cannot create impact_system with id " + atom.as_string());
+      throw ::not_implemented("Cannot create impact_system with id " + atom.as_string());
 
-      return false;
-
-   }
-
-
-   ::pointer<::user::impact_system> user::impact_system(const ::atom & atom)
-   {
-
-      auto pimpactsystem = document_manager_container::impact_system(atom);
-
-      if (atom == "child_form")
-      {
-
-         if (!pimpactsystem)
-         {
-
-            create_impact_system(atom);
-
-         }
-
-         pimpactsystem = document_manager_container::impact_system(atom);
-
-      }
-
-      return pimpactsystem;
+      return {};
 
    }
 

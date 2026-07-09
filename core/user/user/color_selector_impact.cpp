@@ -25,9 +25,9 @@ namespace user
 
       m_bCompact = false;
 
-      m_atomImpact = COLORSEL_IMPACT;
+      m_atomImpact = "color_selection_impact";
 
-      id() = COLORSEL_IMPACT;
+      id() = "color_selection_impact";
 
    }
 

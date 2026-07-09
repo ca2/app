@@ -181,15 +181,15 @@ namespace user
    }
 
 
-   void aura_user_layer::add_impact_system(const ::atom& atom, ::user::impact_system* pimpactsystem)
-   {
-   }
+   //void aura_user_layer::add_impact_system(const ::atom& atom, ::user::impact_system* pimpactsystem)
+   //{
+   //}
 
 
-   ::pointer<::user::impact_system> aura_user_layer::impact_system(const ::atom& atom)
-   {
-      return {};
-   }
+   //::pointer<::user::impact_system> aura_user_layer::impact_system(const ::atom& atom)
+   //{
+   //   return {};
+   //}
 
 
    ::pointer<::menu::menu> aura_user_layer::menu_from_xml(::particle* pparticleContext,

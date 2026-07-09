@@ -176,7 +176,7 @@ namespace experience
 
       m_eupdown = e_updown_normal_frame;
 
-      m_pupdowntarget = nullptr;
+      //m_pupdowntarget = nullptr;
 
       m_bFullScreenOnZoom = false;
 
@@ -2760,10 +2760,14 @@ namespace experience
    void frame_window::frame_Attach()
    {
 
-      if (m_pupdowntarget != nullptr)
+      if (m_ewindowflag & e_window_flag_window_created)
       {
 
-         m_pupdowntarget->UpDownTargetAttach(this);
+         if (m_pupdowntarget != nullptr)
+         {
+
+            m_pupdowntarget->UpDownTargetAttach(this);
+         }
 
       }
 
@@ -2773,10 +2777,15 @@ namespace experience
    void frame_window::frame_Detach()
    {
 
-      if (m_pupdowntarget != nullptr)
+      if (m_ewindowflag & e_window_flag_window_created)
       {
 
-         m_pupdowntarget->UpDownTargetDetach(this);
+         if (m_pupdowntarget != nullptr)
+         {
+
+            m_pupdowntarget->UpDownTargetDetach(this);
+
+         }
 
       }
 

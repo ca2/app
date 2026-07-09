@@ -32,7 +32,7 @@ namespace userex
    home_impact::home_impact()
    {
 
-      m_atomImpact = COLORSEL_IMPACT;
+      m_atomImpact = "color_selection_impact";
 
    }
 

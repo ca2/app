@@ -899,7 +899,11 @@ return;
 
             pitemNew->set_final_path(pathFinal);
 
-            if (filemanager_data()->fs_data()->is_dir(pitemNew->final_path()))
+            auto pfilemanagerdata = filemanager_data();
+
+            auto pfsdata = pfilemanagerdata->fs_data();
+
+            if (pfsdata->is_dir(pitemNew->final_path()))
             {
 
                pitemNew->m_flags |= ::file::e_flag_folder;
@@ -922,8 +926,6 @@ return;
             pchild = insert_item(pitemNew, ::data::e_relative_last_child, pparent);
 
             pparent->m_etreeitemstate |= ::data::e_tree_item_state_expandable;
-
-            auto pfsdata = filemanager_data()->fs_data();
 
             if (pfsdata->fast_has_subdir(pitemNew->final_path()))
             {

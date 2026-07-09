@@ -56,7 +56,7 @@ namespace turboc
 
       set_tab("turboc", MAIN_IMPACT);
       set_tab("switcher",MAIN_SWITCHER_IMPACT);
-      set_tab("Open", FILEMANAGER_IMPACT);
+      set_tab("Open", "file_manager_impact");
 
       //set_current_tab_by_id(MAIN_SWITCHER_IMPACT);
       set_current_tab_by_id(MAIN_IMPACT);

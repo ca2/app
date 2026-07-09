@@ -15,7 +15,8 @@ namespace berg
 {
 
 
-   class CLASS_DECL_BERG user : virtual public ::axis::user, virtual public ::user::document_manager_container
+   //class CLASS_DECL_BERG user : virtual public ::axis::user, virtual public ::user::document_manager_container
+   class CLASS_DECL_BERG user : virtual public ::axis::user
    {
    public:
 
@@ -186,13 +187,16 @@ namespace berg
       ::pointer<::user::plain_edit> create_calculator_edit() override;
 
 
-      void add_impact_system(const ::atom &atom, ::user::impact_system *pimpactsystem) override;
+      //void add_impact_system(const ::atom &atom, ::user::impact_system *pimpactsystem) override;
 
 
-      bool create_impact_system(const ::atom &atom) override;
+      //bool create_impact_system(const ::atom &atom) override;
 
 
-      ::pointer<::user::impact_system> impact_system(const ::atom &atom) override;
+      virtual ::pointer < ::user::impact_system > create_impact_system(const ::atom &atom);
+
+
+      //::pointer<::user::impact_system> impact_system(const ::atom &atom) override;
 
       ::pointer<::user::interaction> create_menu_button(::user::menu *pusermenu,
                                                          ::draw2d::graphics_pointer &pgraphics,

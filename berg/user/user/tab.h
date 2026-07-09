@@ -226,7 +226,7 @@ namespace user
 
 
       virtual ::user::tab_pane * get_tab_by_id(const ::atom & idTab);
-      virtual ::user::tab_pane* create_tab_by_id(const ::atom & idTab);
+      virtual ::user::tab_pane* create_tab_by_id(const ::atom & idTab, bool bCreateImpact = true);
 
       virtual void on_change_tab_count(::array < ::user::tab_pane * > array = ::array < ::user::tab_pane * >());
 

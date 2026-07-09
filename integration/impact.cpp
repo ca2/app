@@ -90,7 +90,7 @@ namespace app_integration
 
       m_pathIntegration = directory_system()->module() / "shared_console_integration.exe";
 
-      payload(FONTSEL_IMPACT) = true;
+      payload("font_selection_impact") = true;
 
       ::pointer<::message::create> pcreate(pmessage);
 

@@ -60,9 +60,9 @@ namespace helloworld
       set_tab("Menu",MENU_IMPACT);
       set_tab("helloworld", ::helloworld::PaneImpactHelloWorld);
       set_tab("switcher",::helloworld::PaneImpactHelloWorldSwitcher);
-      set_tab("Font",FONTSEL_IMPACT);
+      set_tab("Font","font_selection_impact");
 #if 1
-      set_tab("Open", FILEMANAGER_IMPACT);
+      set_tab("Open", "file_manager_impact");
 #endif
 
       //set_current_tab_by_id(GCOM_IMPACT);
@@ -210,7 +210,7 @@ namespace helloworld
          }
 
       }
-      else if (get_impact_id() == FONTSEL_IMPACT)
+      else if (get_impact_id() == "font_selection_impact")
       {
 
          ::pointer<::user::font_list_impact>pfontview = ptabpaneFontSel->m_pholder->get_child_by_id("font_list_impact");

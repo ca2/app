@@ -11,6 +11,7 @@
 #include "aura/user/user/progress.h"
 #include "aura/windowing/display.h"
 #include "aura/windowing/windowing.h"
+#include "berg/platform/application.h"
 #include "berg/user/user/multiple_document_template.h"
 #include "berg/user/user/document.h"
 #include "core/user/user/user.h"
@@ -79,7 +80,9 @@ namespace userex
 
          //auto puser = psession->m_puser;
 
-         m_pdocument = user()->impact_system("progress_impact")->open_document_file(get_app(), ::e_type_null, __visible(false).is_true());
+         ::cast<::berg::application> pbergapplication = m_papplication;
+
+         m_pdocument = pbergapplication->impact_system("progress_impact")->open_document_file(get_app(), ::e_type_null, __visible(false).is_true());
 
          m_pimpact = m_pdocument->get_typed_impact<::userex::progress_impact>();
 

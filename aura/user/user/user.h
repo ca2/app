@@ -170,9 +170,9 @@ namespace user
 
       virtual ::pointer<::user::plain_edit>create_calculator_edit() override;
 
-      virtual void add_impact_system(const ::atom & atom, ::user::impact_system * pimpactsystem) override;
+      //virtual void add_impact_system(const ::atom & atom, ::user::impact_system * pimpactsystem) override;
 
-      virtual ::pointer<::user::impact_system> impact_system(const ::atom & atom) override;
+      //virtual ::pointer<::user::impact_system> impact_system(const ::atom & atom) override;
 
       virtual ::pointer < ::menu::menu > menu_from_xml(::particle * pparticleContext, const ::scoped_string & scopedstrXml) override;
 

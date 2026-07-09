@@ -275,12 +275,12 @@ return {};
    }
 
 
-   bool base_user_layer::create_impact_system(const ::atom& atom)
-   {
-
-return false;
-
-   }
+//   bool base_user_layer::create_impact_system(const ::atom& atom)
+//   {
+//
+//return false;
+//
+//   }
 
 
    //::pointer<::user::impact_system> impact_system(const ::atom & atom) override{}

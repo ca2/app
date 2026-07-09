@@ -78,9 +78,10 @@ namespace user
 
          _synchronous_lock synchronouslock(this->synchronization(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 
-         if (::is_set(pimpactdata->m_pplaceholder)
-            && ::is_set(pimpactdata->m_pplaceholder->m_pacmeuserinteractionaChildren)
-            && pimpactdata->m_pplaceholder->m_pacmeuserinteractionaChildren->has_element())
+         //if (::is_set(pimpactdata->m_pplaceholder)
+           // && ::is_set(pimpactdata->m_pplaceholder->m_pacmeuserinteractionaChildren)
+            //&& pimpactdata->m_pplaceholder->m_pacmeuserinteractionaChildren->has_element())
+         if (::is_set(pimpactdata->m_pplaceholder) && pimpactdata->m_pplaceholder->is_window())
          {
 
             pimpactdata->m_bOk = true;

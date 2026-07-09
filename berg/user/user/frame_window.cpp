@@ -1136,12 +1136,14 @@ namespace user
 
       ::i32_rectangle rectangleFrame;
 
-      ::pointer<::user::place_holder>pholder;
+      ::pointer<::user::place_holder> pplaceholder;
 
-      if (puiParent != nullptr && (pholder = puiParent).is_set())
+      pplaceholder = puiParent;
+
+      if (pplaceholder.is_set())
       {
 
-         rectangleFrame = pholder->rectangle();
+         rectangleFrame = pplaceholder->rectangle();
 
       }
       else
@@ -1217,13 +1219,28 @@ namespace user
 
    //m_bLockSketchToDesign = true;
 
-   if (puiParent == nullptr || wfi_has_up_down())
+   auto bWfiHasUpDown = wfi_has_up_down();
+
+   bool bParentIsWfiUpDownTarget = false;
+
+   if (puiParent == nullptr || bWfiHasUpDown)
    {
 
-      if (wfi_has_up_down() && ::is_set(puiParent) && puiParent->m_bWfiUpDownTarget)
+      if (bWfiHasUpDown && ::is_set(puiParent) && ::is_set(puiParent->get_parent()))
       {
 
-         m_pupdowntarget = puiParent;
+         bParentIsWfiUpDownTarget = puiParent->get_parent()->wfi_is_up_down_target();
+
+         if (bParentIsWfiUpDownTarget)
+         {
+
+            m_pupdowntarget = puiParent;
+
+            ::atom atomImpactId = pusersystem->m_prequest->id();
+
+            puiParent = m_pupdowntarget->wfi_up_down_target_get_hosting_parent(atomImpactId);
+
+         }
 
       }
       
@@ -2979,7 +2996,7 @@ namespace user
 
       }
 
-      if (atomImpactSystem.m_eimpact == (enum_impact)FONTSEL_IMPACT)
+      if (atomImpactSystem.m_eimpact == (enum_impact)"font_selection_impact")
       {
 
          information() << "FontSelImpact Frame";

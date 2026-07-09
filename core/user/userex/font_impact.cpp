@@ -88,7 +88,7 @@ namespace userex
          }
 
       }
-      else if (ptopic->user_interaction_id() == FONTSEL_IMPACT)
+      else if (ptopic->user_interaction_id() == "font_selection_impact")
       {
 
          if (ptopic->id() == ::id_after_change_cur_sel)
@@ -149,7 +149,7 @@ namespace userex
 
       }
 
-      m_pimpact = create_impact < ::user::font_list_impact >(nullptr, get_pane_holder(1), FONTSEL_IMPACT);
+      m_pimpact = create_impact < ::user::font_list_impact >(nullptr, get_pane_holder(1), "font_selection_impact");
 
       if (m_pimpact == nullptr)
       {

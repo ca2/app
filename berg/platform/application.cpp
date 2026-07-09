@@ -174,6 +174,27 @@ namespace berg
    }
 
 
+   ::pointer<::user::document_manager> application::create_user_document_manager()
+   {
+
+      print_line("berg::application Going to create new document manager");
+
+      if (system()->factory()->has_factory_item<::user::document_manager>())
+      {
+
+         return createø<::user::document_manager >();
+
+      }
+      else
+      {
+
+         return ::user::document_manager_container::create_user_document_manager();
+
+      }
+
+   }
+
+
    ::pointer<::user::document>application::defer_create_impact(const ::scoped_string & scopedstrImpact, ::user::interaction* puiParent, e_window_flag ewindowflag, const ::atom& atom)
    {
 

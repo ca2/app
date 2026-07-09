@@ -2,6 +2,7 @@
 #include "document_manager_container.h"
 #include "document_manager.h"
 #include "impact_system.h"
+#include "user.h"
 ////#include "acme/exception/exception.h"
 
 //#if defined(FREEBSD) || defined(OPENBSD) || defined(__APPLE__)
@@ -31,7 +32,22 @@ namespace user
    ::user::document_manager* document_manager_container::document_manager()
    {
 
-      return m_pdocmanager;
+      if (!m_pdocumentmanager)
+      {
+
+         m_pdocumentmanager = create_user_document_manager();
+
+      }
+
+      return m_pdocumentmanager;
+
+   }
+
+
+   ::pointer < ::user::document_manager > document_manager_container::create_user_document_manager()
+   {
+
+      return create_newø<::user::document_manager>();
 
    }
 
@@ -52,14 +68,7 @@ namespace user
 
       //estatus =
 
-      print_line("berg::user::document_manager_container Going to create ___new document manager");
 
-      if (!m_pdocmanager)
-      {
-
-         construct_newø(m_pdocmanager);
-
-      }
 
       //if (!estatus)
       //{
@@ -76,7 +85,7 @@ namespace user
    void document_manager_container::destroy()
    {
 
-      m_pdocmanager.release();
+      m_pdocumentmanager.release();
 
       ::object::destroy();
 
@@ -91,33 +100,85 @@ namespace user
    }
 
 
-   ::pointer<::user::impact_system> document_manager_container::impact_system(const ::atom & atom)
+   //::pointer<::user::impact_system> document_manager_container::impact_system(const ::atom & atom)
+   //{
+
+   //   //if (ptemplate == nullptr)
+   //   //{
+
+   //   //   throw ::exception(error_bad_argument, "impact system template should be valid");
+
+   //   //   return;
+
+   //   //}
+
+   //   //if (!m_pdocmanager)
+   //   //{
+
+   //   //   construct_newø(m_pdocmanager);
+
+   //   //}
+
+   //   //m_pdocmanager->increment_reference_count();
+
+   //   return document_manager()->__impact_system(atom);
+
+   //}
+
+
+   bool document_manager_container::has_impact_system(const ::atom & atom)
    {
 
-      //if (ptemplate == nullptr)
+               auto &pimpactsystem = document_manager()->impact_system(atom);
+
+      // if (atom == "child_form")
       //{
 
-      //   throw ::exception(error_bad_argument, "impact system template should be valid");
-
-      //   return;
-
-      //}
-
-      if (!m_pdocmanager)
+      if (pimpactsystem.is_null())
       {
-
-         construct_newø(m_pdocmanager);
-
+         return false;
       }
 
-      //m_pdocmanager->increment_reference_count();
-
-      return document_manager()->__impact_system(atom);
+      return true;
 
    }
 
 
-   
+   ::pointer<::user::impact_system> document_manager_container::impact_system(const ::atom &atom)
+   {
+
+      //::cast<::berg::application> pbergapplication = m_papplication
+
+         auto & pimpactsystem = document_manager()->impact_system(atom);
+
+      //if (atom == "child_form")
+      //{
+
+         if (!pimpactsystem)
+         {
+
+            pimpactsystem = create_impact_system(atom);
+
+         }
+
+        // pimpactsystem = document_manager_container::impact_system(atom);
+      //}
+
+      return pimpactsystem;
+
+   }   
+
+
+   ::pointer<::user::impact_system> document_manager_container::create_impact_system(const ::atom & atom)
+   {
+
+      ::cast<::berg::user> pberguser = user();
+
+      auto pimpactsystem = pberguser->create_impact_system(atom);
+
+      return pimpactsystem;
+
+   }
 
 
 } // namespace user

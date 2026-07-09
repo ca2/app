@@ -180,7 +180,7 @@ namespace user
    void menu_impact::on_message_create(::message::message * pmessage)
    {
 
-      payload(FONTSEL_IMPACT) = true;
+      payload("font_selection_impact") = true;
 
       constructø(m_pbrushBkSel);
       constructø(m_pbrushBkHoverSel);

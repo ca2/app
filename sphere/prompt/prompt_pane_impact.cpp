@@ -49,7 +49,7 @@ namespace prompt
       add_tab("menu", CONTEXT_MENU_IMPACT);
       add_tab("primary verbing", impact_primary_command);
       add_tab("options", impact_configuration);
-      add_tab("File Manager", FILEMANAGER_IMPACT);
+      add_tab("File Manager", "file_manager_impact");
 
       set_current_tab_by_id(impact_primary_command);
 
@@ -69,7 +69,7 @@ namespace prompt
       ::userex::pane_tab_impact::on_change_cur_sel();
       ::pointer<frame>pframe = get_typed_parent < frame > ();
 
-      if(get_impact_id() == FILEMANAGER_IMPACT)
+      if(get_impact_id() == "file_manager_impact")
       {
          pframe->m_bAutoHideOnOutClick = false;
          
@@ -162,7 +162,7 @@ namespace prompt
          }
       }
       break;
-//      case FILEMANAGER_IMPACT:
+//      case "file_manager_impact":
 //      {
 //         ::pointer<::filemanager::document>pdocument = puser->filemanager()->open_child(false, true);
 //         if(pdocument != nullptr)
@@ -301,7 +301,7 @@ namespace prompt
 
       atom idNew;
 
-      if (get_impact_id() == FILEMANAGER_IMPACT)
+      if (get_impact_id() == "file_manager_impact")
       {
 
          idNew = CONTEXT_MENU_IMPACT;
@@ -316,7 +316,7 @@ namespace prompt
             idNew = impact_primary_command;
             break;
          case impact_primary_command:
-            idNew = FILEMANAGER_IMPACT;
+            idNew = "file_manager_impact";
             break;
          default:
             idNew = impact_primary_command;

@@ -100,6 +100,78 @@ int main()
 
    }
 
+   pool.reconcile(3);
+
+   auto please4 = pool.acquire(pmemory1);
+   auto please5 = pool.acquire(pmemory1);
+   auto please6 = pool.acquire(pmemory2);
+
+   pool.reconcile(1);
+
+   please4.release();
+   please5.release();
+
+   if (pool.session_count() != 1 || pool.active_count() != 1)
+   {
+
+      return 5;
+
+   }
+
+   ::std::promise < void > promiseResizeStarted;
+   auto futureResizeStarted = promiseResizeStarted.get_future();
+   ::std::promise < void > promiseResizeAcquired;
+   auto futureResizeAcquired = promiseResizeAcquired.get_future();
+
+   ::std::thread resizeWaiter([&]
+      {
+
+         promiseResizeStarted.set_value();
+
+         auto please7 = pool.acquire(pmemory1);
+
+         promiseResizeAcquired.set_value();
+
+      });
+
+   futureResizeStarted.wait();
+
+   if (futureResizeAcquired.wait_for(::std::chrono::milliseconds(100)) != ::std::future_status::timeout)
+   {
+
+      resizeWaiter.join();
+
+      return 6;
+
+   }
+
+   please6.release();
+
+   if (futureResizeAcquired.wait_for(::std::chrono::seconds(2)) != ::std::future_status::ready)
+   {
+
+      resizeWaiter.detach();
+
+      return 7;
+
+   }
+
+   resizeWaiter.join();
+
+   pool.reconcile(4);
+
+   auto please8 = pool.acquire(pmemory1);
+   auto please9 = pool.acquire(pmemory1);
+   auto please10 = pool.acquire(pmemory2);
+   auto please11 = pool.acquire(pmemory2);
+
+   if (pool.session_count() != 4 || pool.active_count() != 4)
+   {
+
+      return 8;
+
+   }
+
    return 0;
 
 }

@@ -20,6 +20,9 @@ namespace folder_zip
 
    file::~file()
    {
+
+      close();
+
       //if(m_pfUnzip != nullptr)
       //{
       //   unzip_Close(m_pfUnzip);
@@ -192,10 +195,14 @@ namespace folder_zip
 memsize file::read(void * p, ::memsize s)
 {
 
-   _synchronous_lock synchronouslock(m_pfolder->synchronization(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
+   auto unzipfile = m_psessionlease ? m_psessionlease->unzip_file() : nullptr;
 
-   //   ASSERT_OK(this);
-   ASSERT(m_pfolder->m_unzip_file != nullptr);
+   if (!unzipfile)
+   {
+
+      return 0;
+
+   }
 
    auto data = (::u8 *) p;
 
@@ -206,7 +213,14 @@ memsize file::read(void * p, ::memsize s)
 
    ASSERT(is_memory_segment_ok(data, (uptr)s));
 
-   auto iRead = unzip_ReadCurrentFile(m_pfolder->m_unzip_file, data, (::u32)s);
+   auto iRead = unzip_ReadCurrentFile(unzipfile, data, (::u32)s);
+
+   if (iRead <= 0)
+   {
+
+      return 0;
+
+   }
 
    m_iPosition += iRead;
 
@@ -287,6 +301,14 @@ void file::write(const void * p, ::memsize s)
    void file::close()
    {
 
+      if (m_psessionlease)
+      {
+
+         m_psessionlease->close_current_file();
+         m_psessionlease.release();
+
+      }
+
       //m_filea.erase_all();
       //m_infilea.erase_all();
       m_straPath.erase_all();
@@ -299,7 +321,14 @@ void file::write(const void * p, ::memsize s)
    void file::translate(filesize offset, ::enum_seek eseek)
    {
 
-      _synchronous_lock synchronouslock(m_pfolder->synchronization(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
+      auto unzipfile = m_psessionlease ? m_psessionlease->unzip_file() : nullptr;
+
+      if (!unzipfile)
+      {
+
+         throw ::exception(error_wrong_state);
+
+      }
 
       ::u64 iNewPosition;
 
@@ -312,7 +341,7 @@ void file::write(const void * p, ::memsize s)
       else if (eseek == ::e_seek_from_end)
       {
 
-         iNewPosition = m_pfolder->m_unzip_fileinfo.uncompressed_size - offset;
+         iNewPosition = m_unzipfileinfo.uncompressed_size - offset;
 
       }
       else if (eseek == ::e_seek_current)
@@ -331,14 +360,9 @@ void file::write(const void * p, ::memsize s)
       if (iNewPosition < m_iPosition)
       {
 
-         if (unzip_CloseCurrentFile(m_pfolder->m_unzip_file) != UNZ_OK)
-         {
+         m_psessionlease->close_current_file();
 
-            throw exception(error_failed);
-
-         }
-
-         if (unzip_OpenCurrentFile(m_pfolder->m_unzip_file) != UNZ_OK)
+         if (!m_psessionlease->open_current_file())
          {
 
             throw exception(error_failed);
@@ -365,7 +389,7 @@ void file::write(const void * p, ::memsize s)
 
             iGet = minimum(iRemain, 1024);
 
-            iRead = unzip_ReadCurrentFile(m_pfolder->m_unzip_file, pbBuf, (::u32)iGet);
+            iRead = unzip_ReadCurrentFile(unzipfile, pbBuf, (::u32)iGet);
 
             iRemain -= iRead;
 
@@ -392,7 +416,7 @@ void file::write(const void * p, ::memsize s)
    bool file::is_opened() const
    {
 
-      return m_pfolder && m_pfolder->m_unzip_file;
+      return m_psessionlease && m_psessionlease->unzip_file();
 
    }
 
@@ -408,7 +432,7 @@ void file::write(const void * p, ::memsize s)
    filesize file::size() const
    {
 
-      return m_pfolder->m_unzip_fileinfo.uncompressed_size;
+      return m_unzipfileinfo.uncompressed_size;
 
    }
 

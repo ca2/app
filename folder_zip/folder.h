@@ -3,6 +3,7 @@
 
 #include "unzip.h"
 #include "zip.h"
+#include "session.h"
 #include "acme/filesystem/file/folder.h"
 
 
@@ -16,13 +17,11 @@ namespace folder_zip
    public:
 
 
-      file_pointer            m_pfile;
       file_pointer            m_pbuffile1;
       file_pointer            m_pbuffile2;
-      unzip_File                 m_unzip_file;
       zipFile                 m_zipfile;
       bool                    m_bOwnFile;
-      unzip__file_info           m_unzip_fileinfo;
+      ::pointer < memory_base > m_pmemoryReadOnly;
 
       ::string m_strLogNotFound;
 
@@ -48,7 +47,7 @@ namespace folder_zip
 
       bool is_compressed(const ::file::path & pathItem = nullptr) override;
 
-      class ::time get_modification_time() const;
+      class ::time get_modification_time(const unzip__file_info & fileinfo) const;
 
       ::file_pointer get_file(const ::file::path & pathFile) override;
 
@@ -68,6 +67,14 @@ namespace folder_zip
       //bool perform_file_relative_name_listing(::file::listing_base& listing) override;
 
       void didnt_locate_file(const_char_pointer pszFile);
+
+
+   protected:
+
+
+      ::pointer < session_lease > acquire_session();
+      bool locate(session_lease * please, const ::function < bool(const_char_pointer) > & function);
+      bool locate_file(session_lease * please, const ::file::path & pathFileName, bool bOpenCurrentFile);
 
    };
 

@@ -390,9 +390,9 @@ namespace folder_zip
    session_pool & global_session_pool()
    {
 
-      static session_pool s_pool;
+      static auto s_ppool = new session_pool;
 
-      return s_pool;
+      return *s_ppool;
 
    }
 

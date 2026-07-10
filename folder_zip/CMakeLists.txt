@@ -121,4 +121,8 @@ if(BUILD_TESTING)
     target_link_libraries(folder_zip_session_pool_test PRIVATE static_folder_zip static_acme zlib)
     add_test(NAME folder_zip_session_pool_test COMMAND folder_zip_session_pool_test)
 
+    add_executable(folder_zip_session_concurrency_test test/concurrent_folder_reads.cpp)
+    target_link_libraries(folder_zip_session_concurrency_test PRIVATE static_folder_zip static_acme zlib)
+    add_test(NAME folder_zip_session_concurrency_test COMMAND folder_zip_session_concurrency_test)
+
 endif()

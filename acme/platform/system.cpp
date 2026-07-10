@@ -348,6 +348,22 @@ namespace platform
    }
 
 
+   void system::set_zip_file_session_maximum(::collection::count count)
+   {
+
+      m_countZipFileSessionMaximum.store(maximum((::collection::count) 1, count), ::std::memory_order_relaxed);
+
+   }
+
+
+   ::collection::count system::zip_file_session_maximum() const
+   {
+
+      return m_countZipFileSessionMaximum.load(::std::memory_order_relaxed);
+
+   }
+
+
    void system::application_main()
    {
 

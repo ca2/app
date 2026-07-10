@@ -2,6 +2,7 @@
 
 
 #include "acme/filesystem/file/file.h"
+#include "session.h"
 //#include "acme/prototype/collection/string_array.h"
 
 
@@ -41,6 +42,8 @@ namespace folder_zip
       ::u64                                 m_iPosition;
       string_array_base                        m_straPath;
       ::pointer<folder>                  m_pfolder;
+      ::pointer<session_lease>           m_psessionlease;
+      unzip__file_info                   m_unzipfileinfo{};
       //pointer_array < ::file_container >   m_filea;
       //pointer_array < ::zip::in_file >     m_infilea;
       string_array_base                        m_straPrefix;

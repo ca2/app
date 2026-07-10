@@ -11,6 +11,7 @@
 #include "acme/platform/system_aura.h"
 #include "acme/platform/system_axis.h"
 #include "acme/platform/system_core.h"
+#include <atomic>
 #ifdef WINDOWS
 #include "acme/operating_system/windows_common/apartment_thread.h"
 #endif
@@ -61,6 +62,7 @@ namespace platform
       ::pointer < ::particle >               m_pparticleHttpTextSynchronization;
       ::string_map_base < ::string_to_string_base >    m_mapText;
       ::pointer < ::platform::application >  m_papplicationMain;
+      ::std::atomic < ::collection::count >  m_countZipFileSessionMaximum{8};
       //::pointer<::particle>                  m_pparticleSubsystem;
 #ifdef WINDOWS
       ::pointer<::windows::apartment_thread>m_papartmentthread;
@@ -68,6 +70,10 @@ namespace platform
 
       system();
       ~system() override;
+
+
+      void set_zip_file_session_maximum(::collection::count count);
+      ::collection::count zip_file_session_maximum() const;
 
 
       virtual ::particle * matter_mutex() override;

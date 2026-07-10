@@ -3040,6 +3040,7 @@
     <ClInclude Include="zip.h" />
     <ClInclude Include="file.h" />
     <ClInclude Include="ioapi.h" />
+    <ClInclude Include="session.h" />
     <ClInclude Include="iowin32.h" />
     <ClInclude Include="unzip.h" />
     <ClInclude Include="_.h" />
@@ -3052,6 +3053,7 @@
     <ClCompile Include="file_function_definitions.cpp" />
     <ClCompile Include="folder.cpp" />
     <ClCompile Include="ioapi.cpp" />
+    <ClCompile Include="session.cpp" />
     <ClCompile Include="unzip.cpp" />
     <ClCompile Include="zip.cpp" />
     <ClCompile Include="_.cpp" />

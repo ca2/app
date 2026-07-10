@@ -53,17 +53,19 @@ namespace aura
 {
 
 
-   void system::_001AddPacks(string_to_string_base & base64map, string & str)
+   void system::_001AddPacks(string_to_string_base &base64map, string &str, ::platform::data_pack_name_filter * pdatapacknamefilter)
    {
 
       auto iPack = base64map.get_count();
 
       character_count iData = -1;
 
+      int iTagAddUp = 1;
+
       while (true)
       {
 
-         iData = str.find_index("data:", iData + 1);
+         iData = str.find_index("data:", iData + iTagAddUp);
 
          if (iData < 0 || !(iData == 0 || !character_isalnum(str[iData - 1])))
          {
@@ -80,6 +82,8 @@ namespace aura
             continue;
 
          }
+
+         string strMime = str.substr(iData + 5, iMime - (iData + 5));
 
          character_count iEncoding1 = str.find_index(',', iMime + 1);
 
@@ -119,7 +123,19 @@ namespace aura
 
             string strPack = "%pack" + ::as_string(iPack + 1) + "%";
 
-            str = str.left(iEncoding + 1) + strPack + str.substr(iBase64);
+            ::string strTag = str.substr(iData, iEncoding + 1 - iData) + strPack;
+
+            if (pdatapacknamefilter)
+            {
+
+               strTag = pdatapacknamefilter->defer_filter_data_pack_name(strTag, strMime, str.left(iData),
+                                                                         str.substr(iBase64));
+
+            }
+
+            iTagAddUp = strTag.length();
+
+            str = str.left(iData) + strTag + str.substr(iBase64);
 
             base64map[strPack] = strBase64;
 
@@ -1780,7 +1796,9 @@ namespace user
    //}
 
 
-   void plain_edit::get_text(string & str, ::collection::index iBegParam, ::collection::index iEndParam) const
+   void plain_edit::get_text(string & str, ::collection::index iBegParam, ::collection::index iEndParam,
+                             ::collection::index *piBeg, ::collection::index *piEnd,
+                             ::string *pstrWithDataPacks) const
    {
 
       _synchronous_lock synchronouslock(this->synchronization(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
@@ -1817,12 +1835,66 @@ namespace user
 
          str.release_buffer();
 
+         if (piBeg)
+         {
+
+            *piBeg = iBegParam;
+
+         }
+
+         if (piEnd)
+         {
+
+            *piEnd = iEndParam;
+
+         }
+
+
+         if (pstrWithDataPacks)
+         {
+
+            *pstrWithDataPacks = str;
+
+         }
+
+
          for (auto & m : m_base64map)
          {
 
             string strPack = m.element1();
 
-            str.replace_with(m.element2(), strPack);
+            int iFind = str.find_index(strPack);
+
+            if (iFind >= 0)
+            {
+
+               if (piBeg)
+               {
+
+                  if (*piBeg >= iBegParam + iFind + strPack.length())
+                  {
+
+                     *piBeg += m.element2().length() - strPack.length();
+
+                  }
+
+               }
+
+               if (piEnd)
+               {
+
+                  if (*piEnd >= iBegParam + iFind + strPack.length())
+                  {
+
+                     *piEnd += m.element2().length() - strPack.length();
+                  }
+               }
+
+               str = str.left(iFind) + m.element2() + str.substr(iFind + strPack.length());
+
+            }
+
+
 
          }
 
@@ -6487,13 +6559,21 @@ namespace user
 
       on_before_change_text();
 
-      get_text(strSel, i1, i2);
+      ::collection::index a1 = i1;
+      ::collection::index a2 = i2;
+
+      ::string strSelWithoutDataPacks;
+
+      get_text(strSel, i1, i2, &a1, &a2, &strSelWithoutDataPacks);
+
+      i1 = a1;
+      i2 = a2;
 
       ::collection::index iLine1 = -1;
       
       ::collection::index iLine2 = -1;
 
-      _plain_edit_update_for_delete(pgraphics, strSel, i1, iLine1, iLine2);
+      _plain_edit_update_for_delete(pgraphics, strSelWithoutDataPacks, i1, iLine1, iLine2);
 
       m_ptree->m_peditfile->seek(i1, ::e_seek_set);
 
@@ -10041,7 +10121,10 @@ namespace user
 
                __check_refdbg
 
-                  psystem->_001AddPacks(m_base64map, str);
+                  ::cast<::platform::data_pack_name_filter>
+                     pdatapacknamefilter = m_papplication;
+
+                  psystem->_001AddPacks(m_base64map, str, pdatapacknamefilter);
 
                __check_refdbg
 
@@ -10130,7 +10213,10 @@ namespace user
 
             auto psystem = system();
 
-            psystem->_001AddPacks(m_base64map, str);
+                              ::cast<::platform::data_pack_name_filter> pdatapacknamefilter = m_papplication;
+
+
+            psystem->_001AddPacks(m_base64map, str, pdatapacknamefilter);
 
          }
 
@@ -11129,7 +11215,10 @@ namespace user
 
       ::string strText(scopedstrText);
 
-      psystem->_001AddPacks(m_base64map, strText);
+                        ::cast<::platform::data_pack_name_filter> pdatapacknamefilter = m_papplication;
+
+
+      psystem->_001AddPacks(m_base64map, strText, pdatapacknamefilter);
 
       if (m_bMultiLine)
       {

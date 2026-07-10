@@ -60,7 +60,15 @@ public:
 
 
    inline pointer();
-   inline pointer(no_initialize_t){}
+#if REFERENCING_DEBUGGING
+   inline pointer(T *p, ::subparticle * psubparticle, ::enum_status estatus, reference_referer *preferer) : 
+      m_p(p), m_psubparticle(psubparticle), m_estatus(estatus), m_preferer(preferer)
+   {}
+#else
+   inline pointer(T *p, ::subparticle *psubparticle, ::enum_status estatus) :
+      m_p(p), m_psubparticle(psubparticle), m_estatus(estatus)
+   {}
+#endif
    inline pointer( nullptr_t);
    inline pointer(wparam& wparam);
    inline pointer(lparam& lparam);

@@ -2008,7 +2008,7 @@ namespace user
       virtual void show_control_bar(::user::control_bar * pcontrolbar);
       virtual void hide_control_bar(::user::control_bar * pcontrolbar);
 
-      void RepositionBars(::draw2d::graphics_pointer & pgraphics, ::u32 nIDFirst = 0, ::u32 nIDLast = 0xffff, ::atom idLeftOver = FIRST_PANE, ::u32 nFlag = reposDefault, ::i32_rectangle* prectParam = nullptr, const ::i32_rectangle& rectangleX = {
+      void RepositionBars(::draw2d::graphics_pointer & pgraphics, ::u32 nIDFirst = 0, ::u32 nIDLast = 0xffff, ::user::interaction * puserinteractionLeftOver = nullptr, ::u32 nFlag = reposDefault, ::i32_rectangle* prectParam = nullptr, const ::i32_rectangle& rectangleX = {
          }, bool bStretch = true) override;
 
       virtual ::user::interaction* ChildWindowFromPoint(const ::i32_point& point) override;

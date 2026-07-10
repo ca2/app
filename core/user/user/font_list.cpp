@@ -205,7 +205,7 @@ namespace user
 
             ptopic->m_puserelement = this;
 
-            ptopic->m_actioncontext = ::e_source_user;
+            ptopic->m_actioncontext = ::e_source_user;   
 
             ptopic->m_pitem = pitem;
 

@@ -2,7 +2,10 @@
 #pragma once
 
 
-struct nanosecond_t {};
+struct nanosecond_t
+{
+};
+
 
 struct nanosecond
 {
@@ -10,7 +13,6 @@ struct nanosecond
    ::i64    m_iNanosecond;
 
    constexpr nanosecond() : m_iNanosecond(0) {}
-   constexpr nanosecond(no_initialize_t) {}
    template < prototype_integral INTEGRAL >
    constexpr nanosecond(nanosecond_t, INTEGRAL iNanosecond) : m_iNanosecond(iNanosecond) {}
    constexpr nanosecond(const nanosecond &) = default;

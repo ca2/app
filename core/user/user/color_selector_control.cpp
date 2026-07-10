@@ -37,6 +37,10 @@ namespace user
 
       id() = "color_selection_impact";
 
+      auto &str = m_atomMatterId.m_str;
+
+      auto pszMatterId = str.c_str();
+
       m_bMode0 = true;
 
       m_bColorWheel = true;
@@ -797,6 +801,16 @@ namespace user
          auto ptopic = create_topic(::id_after_change_cur_hover);
 
          ptopic->m_puserelement = this;
+
+         ::string strId = ptopic->m_puserelement->id().as_string();
+
+         auto pszId = strId.c_str();
+
+         auto atomImpactId = ptopic->user_interaction_id();
+
+         auto strImpactId = atomImpactId.as_string();
+
+         auto pszImpactId = strImpactId.c_str();
 
          ptopic->m_actioncontext = ::e_source_user;
 

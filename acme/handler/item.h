@@ -40,7 +40,7 @@ struct item_t
 
 
    
-   constexpr item_t(const ::e_element & eelement = e_element_none, ::collection::index iItem = -1, ::collection::index iSubItem = -1, ::collection::index iListItem = -1) :
+   constexpr item_t(const ::e_element & eelement = e_element_none, ::collection::index iItem = -1, ::collection::index iSubItem = -1, ::collection::index iListItem = -1) noexcept :
       // constexpr item_t(const ::e_element & eelement = e_element_none, ::collection::index iItem = -1) :
       m_eelement(eelement),
       m_iItem(iItem)
@@ -175,7 +175,7 @@ public:
    }
 
 
-   item(item && item) :
+   item(item && item) noexcept :
       subparticle(::transfer(item)),
       particle(::transfer(item)),
       m_item(::transfer(item.m_item)),

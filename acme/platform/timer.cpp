@@ -403,6 +403,7 @@ void timer_handler::_handle_timers(::timer_map * ptimermap)
    decltype(itNext) it; 
 
    ::pointer < ::timer > ptimer;
+   ::e_timer etimer;
 
    while (task_get_run())
    {
@@ -430,6 +431,7 @@ void timer_handler::_handle_timers(::timer_map * ptimermap)
          }
 
          ptimer = it->m_element2;
+         etimer = it->m_element1;
 
          itNext = it + 1;
 
@@ -440,23 +442,32 @@ void timer_handler::_handle_timers(::timer_map * ptimermap)
 
          (*ptimer)(ptimer);
 
-         if (ptimer->m_bRet)
          {
 
             _synchronous_lock synchronouslock(this->synchronization(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 
-            if (ptimermap->contains(it))
+            auto itCurrent = ptimermap->find(etimer);
+
+            if (itCurrent && itCurrent->element2() == ptimer)
             {
 
-               ptimermap->erase(it);
+               if (ptimer->m_bRet)
+               {
+
+                  ptimermap->erase(itCurrent);
+
+               }
+               else
+               {
+
+                  ptimer->restart();
+
+               }
 
             }
 
-         }
-         else
-         {
-
-            ptimer->restart();
+            // A callback can reenter the task loop and mutate the timer map.
+            itNext = ptimermap->begin();
 
          }
 

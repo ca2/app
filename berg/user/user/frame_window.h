@@ -36,7 +36,7 @@ namespace user
       };
 
       pointer_array < ::user::control_bar >        m_controlbara; // array of all control bars that have this interaction_impl as their dock site
-
+      ::pointer<::user::impact>                    m_pimpactMain;
       //bool                                       m_bAutoWindowFrame;
       ::logic::boolean                             m_bWindowFrame;
       bool                                         m_bLayered;

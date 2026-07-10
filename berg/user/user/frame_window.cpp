@@ -984,9 +984,9 @@ namespace user
          if (pusersystem->m_typeNewImpact || pusersystem->m_puserprimitiveNew != nullptr)
          {
 
-            auto pinteraction = pusersystem->create_impact(this, FIRST_PANE);
+            m_pimpactMain = pusersystem->create_impact(this);
 
-            if(!pinteraction)
+            if (!m_pimpactMain)
             {
 
                warning() << "the impact wasn't created: " << pusersystem->m_typeNewImpact;
@@ -2597,9 +2597,9 @@ namespace user
 
          ::i32_rectangle rectangle(0, 0, 32767, 32767);
 
-         RepositionBars(pgraphics, 0, 0xffff, FIRST_PANE, reposQuery, &rectangle, rectangle, false);
+         RepositionBars(pgraphics, 0, 0xffff, m_pimpactMain, reposQuery, &rectangle, rectangle, false);
 
-         RepositionBars(pgraphics, 0, 0xffff, FIRST_PANE, reposExtra, &m_rectangleBorder, rectangle, true);
+         RepositionBars(pgraphics, 0, 0xffff, m_pimpactMain, reposExtra, &m_rectangleBorder, rectangle, true);
 
          //CalcWindowRect(&rectangle);
 
@@ -2611,7 +2611,7 @@ namespace user
       else
       {
 
-         RepositionBars(pgraphics, 0, 0xffff, FIRST_PANE, reposExtra, &m_rectangleBorder);
+         RepositionBars(pgraphics, 0, 0xffff, m_pimpactMain, reposExtra, &m_rectangleBorder);
 
       }
 
@@ -2629,7 +2629,7 @@ namespace user
       case borderGet:
          ASSERT(pRectBorder != nullptr);
 
-         RepositionBars(pgraphics, 0, 0xffff, FIRST_PANE, reposQuery,
+         RepositionBars(pgraphics, 0, 0xffff, m_pimpactMain, reposQuery,
                         pRectBorder);
 
          break;
@@ -2996,7 +2996,7 @@ namespace user
 
       }
 
-      if (atomImpactSystem.m_eimpact == (enum_impact)"font_selection_impact")
+      if (is_font_selection(atomImpactSystem))
       {
 
          information() << "FontSelImpact Frame";

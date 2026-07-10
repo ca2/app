@@ -2,7 +2,7 @@
 #pragma once
 
 
-struct no_initialize_t {};
+//struct no_initialize_t {};
 
 
 

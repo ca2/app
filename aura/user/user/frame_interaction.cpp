@@ -1068,7 +1068,13 @@ namespace user
    i32_size frame_interaction::get_window_minimum_size()
    {
 
-      if (m_sizeMinimum.area() > 0)
+      if (get_parent() != nullptr && get_parent() != host_interaction())
+      {
+
+         return ::user::interaction::get_window_minimum_size();
+
+      }
+      else if (m_sizeMinimum.area() > 0)
       {
 
          return m_sizeMinimum;

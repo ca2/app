@@ -106,8 +106,8 @@ enum enum_impact : ::i64
    
    
    e_impact_modifying = 1 << 21,
-   e_impact_color_sel = "color_selection_impact",
-   e_impact_font_sel = "font_selection_impact",
+   //e_impact_color_sel = "color_selection_impact",
+   //e_impact_font_sel = "font_selection_impact",
    
 
    e_impact_multitasking = 1 << 22,

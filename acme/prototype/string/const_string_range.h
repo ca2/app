@@ -170,7 +170,7 @@ public:
    constexpr const_string_range(const const_string_range & range) :
       BASE_RANGE(range.m_begin, range.m_end, range.m_erange) { }
 
-   constexpr const_string_range(const_string_range && range) :
+   constexpr const_string_range(const_string_range && range) noexcept :
       BASE_RANGE(::transfer(range)) { }
 
    constexpr const_string_range(this_iterator begin, this_iterator end, enum_range erange = e_range_none, BASE_DATA * pbasedata = nullptr) :
@@ -3119,13 +3119,13 @@ public:
 
 
    constexpr string_literal_base(ITERATOR_TYPE s, std::size_t n) :
-   BASE_RANGE(no_initialize_t{})
+   BASE_RANGE(s, s+n, e_range_string_literal)
    {
 
-      this->m_begin = s;
-      this->m_end = s + n;
-      this->m_erange = e_range_string_literal;
-      this->m_pbasedata = nullptr;
+      //this->m_begin = s;
+      //this->m_end = s + n;
+      //this->m_erange = e_range_string_literal;
+      //this->m_pbasedata = nullptr;
 
    }
 

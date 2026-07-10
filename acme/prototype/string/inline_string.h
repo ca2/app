@@ -17,13 +17,9 @@ public:
 
    
    constexpr inline_string() :
-      ::character_range < const CHARACTER * >(no_initialize_t{})
+      ::character_range < const CHARACTER * >(m_sz, m_sz, e_range_none)
    {
       
-      this->m_begin = m_sz;
-      this->m_end = this->m_begin;
-      this->m_erange = e_range_none;
-      this->m_pbasedata = nullptr;
       m_sz[0] = '\0';
 
    }

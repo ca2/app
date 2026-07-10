@@ -188,6 +188,8 @@ namespace user
 
       virtual bool set_tab_with_icon(const ::scoped_string & scopedstr, const ::scoped_string & scopedstrImage, const ::atom & idTab = nullptr, bool bVisible = true);
 
+
+      virtual bool has_tab_by_id(const ::atom &idTab);
       virtual bool erase_tab_by_id(const ::atom & idTab);
       virtual void erase_tab(::collection::index iTab, bool bVisible = true);
       virtual void erase_all_tabs();

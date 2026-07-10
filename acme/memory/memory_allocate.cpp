@@ -12,6 +12,26 @@
 
 CLASS_DECL_ACME void * memory_allocate(memsize size, memsize * psizeAllocated, const_char_pointer pszAnnotation)
 {
+
+#if USE_MALLOC
+
+   auto p = malloc(size);
+
+   if (p)
+   {
+
+      if (psizeAllocated)
+      {
+
+         *psizeAllocated = size;
+
+      }
+
+   }
+
+   return p;
+
+#else
    
    ::heap::memory * pmemory;
    
@@ -48,10 +68,15 @@ CLASS_DECL_ACME void * memory_allocate(memsize size, memsize * psizeAllocated, c
    
       p = simple_memory_allocate(size, pszAnnotation);
 
-      if (psizeAllocated)
+      if (::is_set(p))
       {
 
-         *psizeAllocated = size;
+         if (psizeAllocated)
+         {
+
+            *psizeAllocated = size;
+
+         }
 
       }
    
@@ -65,11 +90,19 @@ CLASS_DECL_ACME void * memory_allocate(memsize size, memsize * psizeAllocated, c
 
    return p;
 
+#endif
+
 }
 
 
 CLASS_DECL_ACME void * memory_reallocate(void * p, memsize size, const_char_pointer pszAnnotation)
 {
+
+#if USE_MALLOC
+
+   return realloc(p, size);
+
+#else
 
    auto p2 = simple_memory_reallocate(p, size, pszAnnotation);
 
@@ -81,29 +114,53 @@ CLASS_DECL_ACME void * memory_reallocate(void * p, memsize size, const_char_poin
 
    return p2;
 
+#endif
+
 }
 
 
 CLASS_DECL_ACME void memory_free(void * p)
 {
+
+#if USE_MALLOC
+
+   free(p);
+
+#else
    
    simple_memory_free(p);
+
+#endif
    
 }
 
 
 CLASS_DECL_ACME memsize memory_size(void * p)
 {
+
+#if USE_MALLOC
+
+   return _msize(p);
+
+#else
    
    auto s = simple_memory_size(p);
 
    return s;
+
+#endif
    
 }
 
 
 CLASS_DECL_ACME void * memory_allocate_debug(memsize size, ::i32 nType, const_char_pointer pszFileName, ::i32 nLine, const_char_pointer pszAnnotation)
 {
+
+#if USE_MALLOC
+
+   return malloc(size);
+
+#else
 
    auto pmemoryMain = ::acme::get()->m_pheapmanagement->memory(::heap::e_memory_main);
 
@@ -137,11 +194,19 @@ CLASS_DECL_ACME void * memory_allocate_debug(memsize size, ::i32 nType, const_ch
 
    return p;
 
+#endif
+
 }
 
 
 CLASS_DECL_ACME void * memory_reallocate_debug(void * p, memsize size, ::i32 nType, const_char_pointer pszFileName, ::i32 nLine, const_char_pointer pszAnnotation)
 {
+
+#if USE_MALLOC
+
+   return realloc(p, size);
+
+#else
 
    auto pmemoryMain = ::acme::get()->m_pheapmanagement->memory(::heap::e_memory_main);
 
@@ -177,11 +242,19 @@ CLASS_DECL_ACME void * memory_reallocate_debug(void * p, memsize size, ::i32 nTy
 
    return p2;
 
+#endif
+
 }
 
 
 CLASS_DECL_ACME void memory_free_debug(void * p, ::i32 nType)
 {
+
+#if USE_MALLOC
+
+   free(p);
+
+#else
 
    auto pmemoryMain = ::acme::get()->m_pheapmanagement->memory(::heap::e_memory_main);
 
@@ -207,6 +280,8 @@ CLASS_DECL_ACME void memory_free_debug(void * p, ::i32 nType)
 //#endif
 
    //return p2;
+
+#endif
 
 }
 

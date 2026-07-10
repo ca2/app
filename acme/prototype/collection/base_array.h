@@ -370,7 +370,7 @@ public:
    }
 
 
-   base_array & operator = (base_array && base_array)
+   base_array & operator = (base_array && base_array) noexcept
    {
 
       if (this != &base_array)

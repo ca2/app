@@ -67,7 +67,7 @@ namespace acme
          ::pointer < ::acme::user::interaction >       m_pacmeuserinteractionParent;
          ::pointer < ::acme::user::interaction >       m_pacmeuserinteractionOwner;
          ::pointer <::pointer_array < ::acme::user::interaction >> m_pacmeuserinteractionaChildren;
-         ::pointer <::pointer_array < ::acme::user::interaction >> m_pacmeuserinteractionaChildrenToDestroy;
+         //::pointer <::pointer_array < ::acme::user::interaction >> m_pacmeuserinteractionaChildrenToDestroy;
 
          ////string                                    m_strText;
          ////::atom                                    id();

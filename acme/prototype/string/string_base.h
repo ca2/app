@@ -226,7 +226,7 @@ public:
    //string_base(const ::ansi_string & ansistr) : NATURAL_POINTER(no_initialize_t{}) { construct_from_a_range(ansistr); }
    //string_base(const ::wd16_string & wd16str) : NATURAL_POINTER(no_initialize_t{}) { construct_from_a_range(wd16str); }
    //string_base(const ::wd32_string & wd32str) : NATURAL_POINTER(no_initialize_t{}) { construct_from_a_range(wd32str); }
-   string_base(string_base && str) :
+   string_base(string_base && str) noexcept :
       ::const_string_range < ITERATOR_TYPE >(no_initialize_t{})
    { 
       this->m_begin = str.m_begin; 
@@ -1768,6 +1768,8 @@ public:
 
       }
 
+      this->m_begin = pdata;
+
       if (::is_set(pdataOld))
       {
 
@@ -1782,6 +1784,8 @@ public:
                memory_copy((void*)pdata, pdataOld, sizeCopy * sizeof(CHARACTER));
 
             }
+
+            this->_set_length(lengthNew);
 
          }
 
@@ -1798,8 +1802,6 @@ public:
          //}
 
       }
-
-      this->m_begin = pdata;
 
       //this->_set_length(lengthNew);
 

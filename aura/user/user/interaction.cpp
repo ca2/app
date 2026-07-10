@@ -83,7 +83,7 @@ CLASS_DECL_AURA ::i32 get_last_x_abs()
 #endif
 
 #define REDRAW_LOG_LEVEL 2
-
+#define DEEP_DEBUGGING
 
 CLASS_DECL_AURA::i32_point __get_top_right();
 CLASS_DECL_AURA void __set_top_right(const ::i32_point & pointTopRight);
@@ -4050,10 +4050,12 @@ namespace user
 
          m_bUserInteractionSetFinish = true;
 
-         main_post([this]()
+         ::pointer < ::user::interaction > puserinteraction = this;
+
+         main_post([puserinteraction]()
             {
 
-               destroy_window();
+               puserinteraction->destroy_window();
 
             });
 
@@ -4614,19 +4616,27 @@ namespace user
    void interaction::destroy_children()
    {
 
-      if (m_pacmeuserinteractionaChildren)
+      ::pointer<::pointer_array<::acme::user::interaction>> pacmeuserinteractionaChildrenToDestroy;
+
       {
 
-         m_pacmeuserinteractionaChildrenToDestroy = ::transfer(m_pacmeuserinteractionaChildren);
+         auto pwindow = this->window();
+
+         _synchronous_lock synchronouslock(pwindow ? pwindow->m_pparticleChildrenSynchronization : nullptr);
+
+         if (m_pacmeuserinteractionaChildren)
+         {
+
+            pacmeuserinteractionaChildrenToDestroy = ::transfer(m_pacmeuserinteractionaChildren);
+
+         }
 
       }
 
-      auto puserinteractionpointeraChildrenToDestroy = ::transfer(m_pacmeuserinteractionaChildrenToDestroy);
-
-      if(puserinteractionpointeraChildrenToDestroy)
+      if (pacmeuserinteractionaChildrenToDestroy)
       {
 
-      for (auto & puserinteraction : *puserinteractionpointeraChildrenToDestroy)
+      for (auto &pacmeuserinteraction: *pacmeuserinteractionaChildrenToDestroy)
       {
 
          // try
@@ -4643,7 +4653,7 @@ namespace user
          try
          {
 
-            puserinteraction->destroy_window();
+            pacmeuserinteraction->destroy_window();
 
          }
          catch (...)
@@ -13068,7 +13078,8 @@ if(get_parent())
    }
 
 
-   void interaction::RepositionBars(::draw2d::graphics_pointer & pgraphics, ::u32 nIDFirst, ::u32 nIDLast, ::atom idLeft, ::u32 nFlags,
+   void interaction::RepositionBars(::draw2d::graphics_pointer &pgraphics, ::u32 nIDFirst, ::u32 nIDLast,
+                                    ::user::interaction *puserinteractionLeftOver, ::u32 nFlags,
                                     ::i32_rectangle * prectParam, const ::i32_rectangle & rectangleX,
                                     bool bStretch)
    {
@@ -13131,9 +13142,9 @@ if(get_parent())
       for_user_interaction_children(puserinteraction, this)
       {
 
-         atom atom = puserinteraction->GetDlgCtrlId();
+         //atom atom = puserinteraction->GetDlgCtrlId();
 
-         if (atom == idLeft)
+         if (puserinteraction == puserinteractionLeftOver)
          {
 
             puiLeft = puserinteraction;
@@ -13174,7 +13185,7 @@ if(get_parent())
 
       }
 
-      if (!idLeft.is_empty() && puiLeft != nullptr)
+      if (::is_set(puserinteractionLeftOver) && puiLeft != nullptr)
       {
 
          if ((nFlags & ~reposNoPosLeftOver) == reposExtra)
@@ -28412,7 +28423,7 @@ __check_refdbg;
       if (::is_item_set(pitemHitTest))
       {
 
-         //information() << "::is_item_set(pitemHitTest)";
+         information() << "::is_item_set(pitemHitTest)";
 
          bRet = drag_on_mouse_hover(pitemHitTest, pmouse);
 
@@ -28436,7 +28447,7 @@ __check_refdbg;
       if (!::is_item_equivalent(pitemHitTest, m_pitemHover))
       {
 
-         //informationf("user::interaction::update_hover !is_item_equivalent(pitemHitTest, m_pitemHover)");
+         informationf("user::interaction::update_hover !is_item_equivalent(pitemHitTest, m_pitemHover)");
 
          auto pitemOldHover = m_pitemHover;
 
@@ -28444,9 +28455,19 @@ __check_refdbg;
 
          m_pitemHover = pitemHitTest;
 
-         //informationf("----------------------------------------------------");
-         //informationf("-------------------------------------------------------------m_pitemHover->m_item.m_iItem = %lld", m_pitemHover->m_item.m_iItem);
-         //informationf("----------------------------------------------------");
+         informationf("----------------------------------------------------");
+         if (m_pitemHover)
+         {
+            informationf(
+               "-------------------------------------------------------------m_pitemHover->m_item.m_iItem = %lld",
+               m_pitemHover->m_item.m_iItem);
+         }
+         else
+         {
+            informationf(
+               "-------------------------------------------------------------m_pitemHover is null");
+         }
+         informationf("----------------------------------------------------");
          on_update_hover(m_pitemHover);
 
          //m_pitemHOver->m_bAnyHoverChange = true;
@@ -28500,12 +28521,12 @@ __check_refdbg;
          if (::is_item_set(pitemOldHover))
          {
 
-            //informationf("user::interaction::update_hover is_item_set(pitemOldHover)");
+            informationf("user::interaction::update_hover is_item_set(pitemOldHover)");
 
             if (should_redraw_on_hover(pitemOldHover))
             {
 
-               //informationf("user::interaction::update_hover should_redraw_on_hover(pitemOldHover)");
+               informationf("user::interaction::update_hover should_redraw_on_hover(pitemOldHover)");
 
                //auto puseritem = user_item(pitemOldHover);
 
@@ -28527,12 +28548,12 @@ __check_refdbg;
          if (::is_item_set(pitemHitTest))
          {
 
-            //informationf("user::interaction::update_hover is_item_set(pitemHitTest)");
+            informationf("user::interaction::update_hover is_item_set(pitemHitTest)");
 
             if (should_redraw_on_hover(pitemHitTest))
             {
 
-               //informationf("user::interaction::update_hover should_redraw_on_hover(pitemHitTest)");
+               informationf("user::interaction::update_hover should_redraw_on_hover(pitemHitTest)");
 
                auto rectangleBounding = item_rectangle(pitemHitTest, e_layout_design);
 
@@ -28554,14 +28575,14 @@ __check_refdbg;
          if (rectanglea.has_element())
          {
 
-            //informationf("user::interaction::update_hover set_need_redraw (%d rectangle(s))", rectanglea.size());
+            informationf("user::interaction::update_hover set_need_redraw (%d rectangle(s))", rectanglea.size());
 
-             for (auto & rectangle : rectanglea)
-             {
+            for (auto & rectangle : rectanglea)
+            {
 
-                //information() << "user::interaction::update_hover set_need_redraw" << rectangle;
+               information() << "user::interaction::update_hover set_need_redraw" << rectangle;
 
-             }
+            }
 
             set_need_redraw(rectanglea);
 
@@ -28802,7 +28823,7 @@ __check_refdbg;
       if (!r.contains(pointClient))
       {
 
-         //information() << "hit_test !r.contains(pointClient)";
+         information() << "hit_test !r.contains(pointClient)";
 
          auto pitemNone = stock_item(e_element_none);
 
@@ -28814,6 +28835,8 @@ __check_refdbg;
 
       if (!pitem)
       {
+
+         information() << "hit_test(pointClient, ezorder) !pitem";
 
          return nullptr;
 
@@ -28830,7 +28853,7 @@ __check_refdbg;
       if (puseritem->m_pmouse)
       {
 
-         output_debug_string("user::interaction::hit_test;");
+         information("user::interaction::hit_test;");
 
       }
 
@@ -28851,12 +28874,12 @@ __check_refdbg;
       if (get_element_rectangle(rectangleXHitTest, e_element_client_hit_test))
       {
 
-         //information() << "hit_test got_element_rect client_hit_test";
+         information() << "hit_test got_element_rect client_hit_test";
 
          if (!rectangleXHitTest.contains(pointClient))
          {
 
-            //information() << "hit_test got_element_rect !rectangleXHitTest";
+            information() << "hit_test got_element_rect !rectangleXHitTest";
 
             return nullptr;
 
@@ -28952,6 +28975,8 @@ __check_refdbg;
       }
 
       auto pitemNone = stock_item(e_element_none);
+
+      information("on_hit_test pitemNone = stock_item(e_element_none);");
 
       return pitemNone;
 

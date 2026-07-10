@@ -12,6 +12,12 @@
 
 void * simple_memory_allocate(size_t s, const_char_pointer pszAllocation)
 {
+
+#if USE_MALLOC
+
+   return malloc(s);
+
+#else
    
    auto s2 = heap_memory_aligned_provision_get_size(s, ALIGN_BYTE_COUNT);
    
@@ -20,13 +26,21 @@ void * simple_memory_allocate(size_t s, const_char_pointer pszAllocation)
    auto p2 = heap_memory_aligned(p, s, 0, ALIGN_BYTE_COUNT, ::heap::e_memory_simple);
    
    return p2;
+
+#endif
    
 }
 
 
 void * simple_memory_reallocate(void * p2, size_t s, const_char_pointer pszAllocation)
 {
-   
+
+#if USE_MALLOC
+
+   return realloc(p2, s);
+
+#else
+
    auto pheapmemory = heap_memory_get(p2);
    
    if(pheapmemory->m_ememory == ::heap::e_memory_simple)
@@ -49,12 +63,20 @@ void * simple_memory_reallocate(void * p2, size_t s, const_char_pointer pszAlloc
       return ::acme::get()->m_pheapmanagement->memory(pheapmemory->m_ememory)->reallocate(p2, s);
 
    }
+
+#endif
    
 }
 
 
 void simple_memory_free(void * p2)
 {
+
+#if USE_MALLOC
+
+   ::free(p2);
+
+#else
 
    if(::is_null(p2))
    {
@@ -117,15 +139,25 @@ void simple_memory_free(void * p2)
 
    }
 
+#endif
+
 }
 
 
 memsize simple_memory_size(void * p2)
 {
+
+#if USE_MALLOC
+
+   return _msize(p2);
+
+#else
    
    auto pheapmemory = heap_memory_get(p2);
    
    return pheapmemory->m_size;
+
+#endif
 
 }
 

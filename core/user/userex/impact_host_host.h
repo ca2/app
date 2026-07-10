@@ -35,7 +35,7 @@ namespace userex
       ::f64_rectangle m_rectangleImpactHostRate;
       atom_array m_idaHandledImpacts;
 
-
+      ::i32_rectangle m_rectangleDebugImpactHost;
 
       impact_host_host();
       ~impact_host_host() override;
@@ -49,6 +49,8 @@ namespace userex
       virtual bool _001IsCompactMode();
 
       virtual void toggle_impact(const ::atom &atomImpactId);
+      virtual void show_impact(const ::atom &atomImpactId);
+      virtual void hide_impact(const ::atom &atomImpactId);
 
 
       bool wfi_is_up_down_target() override;
@@ -59,6 +61,8 @@ namespace userex
 
 
       virtual ::pointer<::user::impact> get_hosted_impact(const ::atom &atomImpactId);
+
+      virtual void on_user_impact_created(const ::atom &atomImpactId);
 
 
       void route_command(::message::command *pcommand, bool bRouteToKeyDescendant) override;

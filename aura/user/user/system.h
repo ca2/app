@@ -87,7 +87,8 @@ namespace user
 
       //inline auto get_rect() { ::i32_rectangle rectangle(no_initialize_t{}); get_rect(&rectangle); return rectangle; }
 
-      ::pointer<::user::interaction>create_impact(::user::interaction * puserinteractionParent, const ::atom & atom);
+      ::pointer<::user::interaction> create_impact(::user::interaction *puserinteractionParent,
+                                                   const ::atom &atom = {});
 
 
       void destroy() override;

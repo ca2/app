@@ -249,8 +249,9 @@ namespace windowing
          _synchronous_lock synchronouslockRedrawItem(m_pmutexRedrawItem);
 
          m_redrawitema.destroy();
-         m_pmutexRedrawItem.release();
       }
+
+      m_pmutexRedrawItem.release();
 
       //::channel::destroy();
 

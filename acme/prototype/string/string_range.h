@@ -57,7 +57,7 @@ public:
    constexpr string_range(const_iterator begin, INTEGRAL count) : BASE_RANGE((this_iterator)begin,
                                                                              (this_iterator)(begin + count)) {}
 
-   string_range(no_initialize_t) : BASE_RANGE(no_initialize_t{}) {}
+   //string_range(no_initialize_t) : BASE_RANGE(no_initialize_t{}) {}
 
    string_range(nullptr_t) : BASE_RANGE(nullptr) {}
 
@@ -71,7 +71,7 @@ public:
    constexpr string_range(const string_range & range) :
       BASE_RANGE(range) { }
 
-   constexpr string_range(string_range && range) :
+   constexpr string_range(string_range && range) noexcept :
       BASE_RANGE(::transfer(range)) { }
 
    string_range(this_iterator begin, this_iterator end) : BASE_RANGE(begin, end) {}
@@ -1857,7 +1857,8 @@ public:
    string_range consume_line()
    {
 
-      string_range range(no_initialize_t{});
+      //string_range range(no_initialize_t{});
+      string_range range;
 
       if (!consume_line(range))
       {

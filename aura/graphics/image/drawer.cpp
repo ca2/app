@@ -14,7 +14,7 @@ namespace image
 void image_drawer::draw(const ::image::image_drawing & imagedrawing)
 {
 
-   if (::is_null(imagedrawing.m_pimagesource))
+   if (!::is_ok(imagedrawing.m_pimagesource))
    {
 
       return;

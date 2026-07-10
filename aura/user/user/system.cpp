@@ -251,7 +251,12 @@ namespace user
 
          pinteraction->m_pusersystem = this;
 
-         pinteraction->id() = atom;
+         if (atom.is_set())
+         {
+
+            pinteraction->id() = atom;
+
+         }
 
          //if (!pinteraction->create_interaction(nullptr, nullptr, WS_VISIBLE | WS_CHILD, puserinteractionParent, atom, pcreate))
          //if (!pinteraction->create_child(puserinteractionParent))

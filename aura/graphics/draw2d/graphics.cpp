@@ -5070,6 +5070,15 @@ namespace draw2d
 
       }
 
+      ::write_text::font_pointer pfont(m_pfont);
+
+      if (!pfont)
+      {
+
+         return -1;
+
+      }
+
 
       //::write_text::font::text * ptext = nullptr;
 
@@ -5077,7 +5086,7 @@ namespace draw2d
 
       _synchronous_lock synchronouslock(::write_text::font::s_pmutexFontTextMap);
 
-      m_pfont->get_os_data(this);
+      pfont->get_os_data(this);
 
       string str(strParam);
 
@@ -5146,7 +5155,7 @@ namespace draw2d
 
          _synchronous_lock synchronouslockFontTextMap(::write_text::font::s_pmutexFontTextMap);
 
-         auto ptext = &m_pfont->m_mapFontText[str];
+         auto ptext = &pfont->m_mapFontText[str];
 
          auto ptextitem = ptext->get_item(::write_text::font::text::e_size_word_break);
 
@@ -5182,7 +5191,7 @@ namespace draw2d
 
          _synchronous_lock synchronouslockFontTextMap(::write_text::font::s_pmutexFontTextMap);
 
-         auto ptext = &m_pfont->m_mapFontText[str];
+         auto ptext = &pfont->m_mapFontText[str];
 
          auto ptextitem = ptext->get_item(::write_text::font::text::e_size_end_ellipsis);
 
@@ -5265,7 +5274,7 @@ namespace draw2d
 
          _synchronous_lock synchronouslockFontTextMap(::write_text::font::s_pmutexFontTextMap);
 
-         auto ptext = &m_pfont->m_mapFontText[str];
+         auto ptext = &pfont->m_mapFontText[str];
 
          auto ptextitem = ptext->get_item(::write_text::font::text::e_size_case_3);
 
@@ -5370,7 +5379,7 @@ namespace draw2d
 
             constructø(pfontUnderline);
 
-            pfontUnderline->operator=(*get_current_font());
+            pfontUnderline->operator=(*pfont);
 
             pfontUnderline->set_bold();
 
@@ -5378,7 +5387,7 @@ namespace draw2d
 
       }
 
-      //::f64 dLineSpacing = m_pfont->m_textmetric2.get_line_spacing();
+      //::f64 dLineSpacing = pfont->m_textmetric2.get_line_spacing();
 
       //::draw2d::graphics * pgraphics = this;
 

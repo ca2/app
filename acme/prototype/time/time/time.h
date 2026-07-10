@@ -23,7 +23,23 @@ namespace earth
    inline bool operator == (const TYPE & t) const { return operator == ((class ::time) t); } \
    inline ::std::strong_ordering operator <=> (const TYPE & t) const { return operator <=> ((class ::time) t); }
 
+inline struct timespec get_timespec(int iBase)
+{
 
+   struct timespec timespec;
+
+   if (timespec_get(&timespec, iBase) != iBase)
+   {
+
+      throw "timespec_get failed!!";
+
+   }
+
+   return timespec;
+
+}
+
+   
 class CLASS_DECL_ACME time :
    public posix_time,
    public nanosecond
@@ -51,9 +67,13 @@ public:
 
    constexpr time() { }
 
-   constexpr time(zero_t) : posix_time(zero_t{}) { }
+   time(const struct timespec &timespec) : 
+      posix_time(posix_time_t {} , timespec.tv_sec), 
+      nanosecond(nanosecond_t {} , timespec.tv_nsec)
+   {
+   }
 
-   time(now_t) : posix_time(no_initialize_t{}), nanosecond(no_initialize_t{}) { Now(); }
+   time(now_t) : time(get_timespec(TIME_UTC)) {}
 
    constexpr time(infinite_t) { Infinite(); }
 

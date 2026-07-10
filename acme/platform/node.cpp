@@ -24,6 +24,7 @@
 #include "acme/operating_system/summary.h"
 #include "acme/parallelization/install_mutex.h"
 #include "acme/parallelization/asynchronous.h"
+#include "acme/parallelization/synchronous_lock.h"
 #include "acme/exception/interface_only.h"
 //#include "acme/prototype/collection/array.h"
 //#include "acme/prototype/collection/string_array.h"
@@ -68,6 +69,8 @@ namespace platform
 
    node::node()
    {
+
+      defer_create_synchronization();
 
       //m_bUserDarkMode = false;
 
@@ -3603,6 +3606,8 @@ bool node::_is_smart_git_installed()
 
    ::string node::get_character_set_default_sample_text(enum_character_set echaracterset)
    {
+
+      _synchronous_lock synchronouslock(this->synchronization(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 
       if (m_mapCharacterSetDefaultSampleText.is_empty())
       {

@@ -561,7 +561,10 @@ namespace user
       //virtual bool is_descendant(const ::user::element * pinteraction,bool bIncludeSelf = false) const;
       virtual ::user::interaction * get_focusable_descendant();
 
-      virtual void RepositionBars(::draw2d::graphics_pointer & pgraphics, ::u32 nIDFirst, ::u32 nIDLast, ::atom idLeftOver, ::u32 nFlag = reposDefault, ::i32_rectangle * prectParam = nullptr, const ::i32_rectangle & rectangleX = {}, bool bStretch = true);
+      virtual void RepositionBars(::draw2d::graphics_pointer &pgraphics, ::u32 nIDFirst, ::u32 nIDLast,
+                                  ::user::interaction *puserinteractionLeftOver = nullptr, ::u32 nFlag = reposDefault,
+                                  ::i32_rectangle *prectParam = nullptr, const ::i32_rectangle &rectangleX = {},
+                                  bool bStretch = true);
 
       virtual ::user::interaction * ChildWindowFromPoint(const ::i32_point & point);
       virtual ::user::interaction * ChildWindowFromPoint(const ::i32_point & point, ::u32 nFlags);

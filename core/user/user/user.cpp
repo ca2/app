@@ -580,7 +580,7 @@ namespace core
          return pimpactsystem;
 
       }
-      else if (_is_color_sel(atomImpactId))
+      else if (is_color_selection(atomImpactId))
       {
 
          will_use_impact_hint(atomImpactId);
@@ -591,7 +591,7 @@ namespace core
 
                                                return pimpactsystem;
       }
-      else if (_is_font_sel(atomImpactId))
+      else if (is_font_selection(atomImpactId))
       {
 
 auto pimpactsystem= __initialize_new ::user::multiple_document_template(

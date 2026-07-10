@@ -54,7 +54,7 @@ public:
    constexpr mutable_string_range(const_iterator begin, INTEGRAL count) : BASE_RANGE((this_iterator) begin,
                                                                              (this_iterator) (begin + count)) {}
    
-   mutable_string_range(no_initialize_t) : BASE_RANGE(no_initialize_t{}) {}
+   //mutable_string_range(no_initialize_t) : BASE_RANGE(no_initialize_t{}) {}
    
    mutable_string_range(nullptr_t) : BASE_RANGE(nullptr) {}
    

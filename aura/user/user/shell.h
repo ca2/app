@@ -90,7 +90,9 @@ namespace user
       struct _get_file_image_
       {
 
-         
+         virtual ~_get_file_image_() = default;
+
+          
          ::i32               m_iImage;
          ::file::path      m_pathProcessed;
          ::file::path      m_pathFinal;

@@ -252,19 +252,23 @@ public:
    this_iterator     m_end;
    enum_range        m_erange;
 
+   constexpr range(no_initialize_t) {
 
-   constexpr range(no_initialize_t)
-   {
-   }
+       }
 
    constexpr range(nullptr_t) :
       range(nullptr, nullptr, e_range_none)
    {
 
-   };
+   }
 
    constexpr range() : 
       range(nullptr, nullptr, e_range_none)
+   {
+   }
+
+   constexpr range(this_iterator begin, this_iterator end, enum_range erange = e_range_none) :
+       m_begin(begin), m_end(end), m_erange(erange)
    {
    }
 
@@ -357,10 +361,6 @@ public:
    {
    }
 
-   constexpr range(this_iterator begin, this_iterator end, enum_range erange = e_range_none) :
-      m_begin(begin), m_end(end), m_erange(erange)
-   {
-   }
 
    template<::comparison::equality<ITEM> EQUALITY>
    constexpr range(this_iterator begin, EQUALITY equality) : 
@@ -387,7 +387,7 @@ public:
    }
 
 
-   range & operator=(range && range)
+   range & operator=(range && range) noexcept
    {
 
       m_begin = range.m_begin;
@@ -2846,19 +2846,26 @@ public:
    //enum_range        m_erange;
 
 
-   constexpr block_range(no_initialize_t noinitialize) :
-   _BASE_RAW_RANGE(noinitialize)
+   constexpr block_range(no_initialize_t) : 
+      _BASE_RAW_RANGE(no_initialize_t{}) 
    {
+   
    }
+
 
    constexpr block_range(nullptr_t) :
       _BASE_RAW_RANGE(nullptr)
    {
 
-   };
+   }
 
    constexpr block_range() :
    _BASE_RAW_RANGE()
+   {
+   }
+
+   constexpr block_range(this_iterator begin, this_iterator end, enum_range erange = e_range_none) :
+       _BASE_RAW_RANGE(begin, end, erange)
    {
    }
 
@@ -2939,10 +2946,10 @@ public:
    {
    }
 
-   constexpr block_range(this_iterator begin, this_iterator end, enum_range erange = e_range_none) :
-      _BASE_RAW_RANGE(begin, end, erange)
-   {
-   }
+   //constexpr block_range(this_iterator begin, this_iterator end, enum_range erange = e_range_none) :
+   //   _BASE_RAW_RANGE(begin, end, erange)
+   //{
+   //}
 
    template<::comparison::equality<ITEM> EQUALITY>
    constexpr block_range(this_iterator begin, EQUALITY equality) :
@@ -2964,7 +2971,7 @@ public:
    }
 
 
-   block_range & operator=(block_range && range)
+   block_range & operator=(block_range && range) noexcept
    {
 
       _BASE_RAW_RANGE::operator =(::transfer(range));

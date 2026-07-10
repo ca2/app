@@ -42,7 +42,7 @@ public:
    //heap_data(): m_countData(0), m_sizeStorageInBytes(0), m_countReference(1) {}
    //heap_data(enum_zero_init) : m_countData(0), m_sizeStorageInBytes(0), m_countReference(1) {}
 
-   base_data(::collection::count count) : m_count(count), m_countReference(1) {}
+   base_data(::collection::count count) : m_count(count), m_countReference(1), m_ememoryHeap(::heap::e_memory_main) {}
    //heap_data(enum_zero_init) :  m_sizeStorageInBytes(0), m_countReference(1) {}
 
    bool base_data_is_shared() const { return m_countReference >= 2; }
@@ -94,8 +94,10 @@ public:
 
       const memsize memsizeBaseData = sizeof(base_data);
 
-      auto p = ::acme::get()->m_pheapmanagement->memory(ememory)->allocate(
-         memsizeAllocation + memsizeBaseData, &memsizeAllocation);
+      //auto p = ::acme::get()->m_pheapmanagement->memory(ememory)->allocate(
+        // memsizeAllocation + memsizeBaseData, &memsizeAllocation);
+
+      auto p = memory_allocate(memsizeAllocation + memsizeBaseData, &memsizeAllocation);
 
       auto pbasedata = øraw_new (p) base_data((memsizeAllocation - memsizeBaseData) / sizeof(DATA));
 

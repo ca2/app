@@ -295,7 +295,7 @@ CLASS_DECL_ACME bool solve_relative_inplace(string & str, bool & bUrl, bool & bO
 
                   }
 
-                  ansi_cpy(&psz[iNewPosition], p);
+                  memmove(&psz[iNewPosition], p, ansi_len(p));
 
                   auto sizeDecrease = p - &psz[iNewPosition];
 

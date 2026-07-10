@@ -331,6 +331,43 @@ namespace user
    }
 
 
+   bool tab::has_tab_by_id(const ::atom &atom)
+   {
+
+      // bool bRestorableMatch = false;
+
+      for (::i32 i = 0; i < get_data()->m_tabpanea.get_count(); i++)
+      {
+
+         if (get_data()->m_tabpanea[i]->id() == atom)
+         {
+
+            // if (!bRestorableMatch && matches_restorable_tab(get_data()->m_tabpanea[i]->id(),
+            // get_data()->m_tabpanea[i]->m_pplaceholder))
+            //{
+
+            //   bRestorableMatch = true;
+
+            //}
+
+            return true;
+         }
+      }
+
+      // if (bRestorableMatch)
+      //{
+
+      //   on_change_tab_count({ nullptr });
+
+      //}
+
+      // on_change_tab_count();
+
+      return false;
+
+   }
+
+
    bool tab::erase_tab_by_id(const ::atom & atom)
    {
 
@@ -351,7 +388,7 @@ namespace user
 
             erase_tab(i, false);
 
-            break;
+            return true;
 
          }
 
@@ -366,7 +403,7 @@ namespace user
 
       //on_change_tab_count();
 
-      return true;
+      return false;
 
    }
 

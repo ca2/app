@@ -38,19 +38,14 @@ namespace userex
 
       m_sizeTabbedFrame.cx = 800;
       m_sizeTabbedFrame.cy = 300;
-      //m_ptemplateTab = nullptr;
-
+      // m_ptemplateTab = nullptr;
    }
 
 
-   impact_host::~impact_host()
-   {
+   impact_host::~impact_host() {}
 
 
-   }
-
-
-   //void impact_host::assert_ok() const
+   // void impact_host::assert_ok() const
    //{
 
    //   ::user::impact::assert_ok();
@@ -58,7 +53,7 @@ namespace userex
    //}
 
 
-   //void impact_host::dump(dump_context & dumpcontext) const
+   // void impact_host::dump(dump_context & dumpcontext) const
    //{
 
    //   ::user::impact::dump(dumpcontext);
@@ -96,17 +91,16 @@ namespace userex
    // }
 
 
-   void impact_host::install_message_routing(::channel * pchannel)
+   void impact_host::install_message_routing(::channel *pchannel)
    {
 
       ::user::impact::install_message_routing(pchannel);
 
       USER_MESSAGE_LINK(::user::e_message_create, pchannel, this, &impact_host::on_message_create);
-
    }
 
 
-   void impact_host::on_message_create(::message::message * pmessage)
+   void impact_host::on_message_create(::message::message *pmessage)
    {
 
       m_pimpacthosthost = get_parent();
@@ -176,66 +170,57 @@ namespace userex
             }
          }
       }
-
-
    }
 
 
-   void impact_host::on_command(::message::command * pcommand)
+   void impact_host::on_command(::message::command *pcommand)
    {
 
       if (m_pimpacthosthost->m_idaHandledImpacts.contains(pcommand->command_id()))
       {
 
          toggle_impact(pcommand->command_id());
-
       }
 
       return ::user::impact::on_command(pcommand);
-
    }
 
 
-
-
-
-   void impact_host::_001DefaultLayoutImpact(const ::atom & idImpact)
+   void impact_host::_001DefaultLayoutImpact(const ::atom &atomImpactId)
    {
 
-      if (m_mapframe[idImpact] == nullptr)
+      if (impact_item_frame_window(atomImpactId) == nullptr)
       {
 
          return;
-
       }
 
       ::i32_rectangle rectangle;
 
       rectangle = this->rectangle();
 
-      auto pframewindow = m_mapframe[idImpact];
+      auto pframewindow = impact_item_frame_window(atomImpactId);
 
       pframewindow->order_front();
 
-      pframewindow->place(::i32_rectangle_dimension(rectangle.width() / 4, 0, rectangle.width() / 2, rectangle.height() / 5));
+      pframewindow->place(
+         ::i32_rectangle_dimension(rectangle.width() / 4, 0, rectangle.width() / 2, rectangle.height() / 5));
 
       pframewindow->display();
 
       pframewindow->set_need_redraw();
-
    }
 
 
-   ::pointer<::simple_frame_window>impact_host::_001GetFrame(const ::atom & idImpact)
+   ::pointer<::simple_frame_window> impact_host::_001GetFrame(const ::atom &atomImpactId)
    {
 
-      ::pointer<::user::impact>pimpact = _001GetImpact(idImpact);
+      ::pointer<::user::impact> pimpact = _001GetImpact(atomImpactId);
 
       if (pimpact.is_null())
       {
 
          return nullptr;
-
       }
 
       auto pframewindow = pimpact->parent_frame();
@@ -244,47 +229,41 @@ namespace userex
       {
 
          return nullptr;
-
       }
 
       return pframewindow;
-
    }
 
 
-   ::pointer<::user::impact>impact_host::_001GetImpact(const ::atom & idImpact)
+   ::pointer<::user::impact> impact_host::_001GetImpact(const ::atom &atomImpactId)
    {
 
-      ::pointer<::user::document>pdocument = get_doc(idImpact);
+      ::pointer<::user::document> pdocument = impact_item_document(atomImpactId);
 
       if (pdocument.is_null())
       {
 
          return nullptr;
-
       }
 
       return pdocument->get_impact();
-
    }
 
 
-   void impact_host::handle(::topic * ptopic, ::handler_context * phandlercontext)
+   void impact_host::handle(::topic *ptopic, ::handler_context *phandlercontext)
    {
 
       ::user::impact::handle(ptopic, phandlercontext);
-
    }
 
 
-   bool impact_host::OnUpDownTargetAttach(::user::interaction * pupdown)
+   bool impact_host::OnUpDownTargetAttach(::user::interaction *pupdown)
    {
 
       if (m_pimpacthosthost->OnUpDownTargetAttach(pupdown))
       {
 
          return true;
-
       }
 
 
@@ -292,23 +271,20 @@ namespace userex
       {
 
          return false;
-
       }
 
       return true;
-
    }
 
 
-      bool impact_host::OnUpDownTargetDetach(::user::interaction *pupdown)
+   bool impact_host::OnUpDownTargetDetach(::user::interaction *pupdown)
    {
 
-         if (m_pimpacthosthost->OnUpDownTargetDetach(pupdown))
-         {
+      if (m_pimpacthosthost->OnUpDownTargetDetach(pupdown))
+      {
 
-            return true;
-
-         }
+         return true;
+      }
 
       information() << "-------------------------------------------------------------------";
       information() << "";
@@ -404,13 +380,35 @@ namespace userex
    }
 
 
+   bool impact_host::is_user_impact_visible(const ::atom &atomImpactId)
+   {
 
-   ::pointer<::userex::pane_tab_impact>impact_host::get_pane_tab_impact()
+      auto p = m_mapImpactItem.find(atomImpactId);
+
+      if (p.is_null())
+      {
+
+         return false;
+      }
+
+      auto &pimpactitem = p->m_element2;
+
+      if (::is_null(pimpactitem))
+      {
+
+         return false;
+      }
+
+      return pimpactitem->m_bVisible;
+   }
+
+
+   ::pointer<::userex::pane_tab_impact> impact_host::get_pane_tab_impact()
    {
 
       ::cast<::berg::application> pbergapplication = m_papplication;
 
-      //if (!pbergapplication->impact_system("main"))
+      // if (!pbergapplication->impact_system("main"))
       //{
 
       //   //m_ptemplateTab = ;;
@@ -425,21 +423,20 @@ namespace userex
 
       //}
 
-      ::pointer<::user::document>pdocTab = pbergapplication->impact_system("main")->get_document();
+      ::pointer<::user::document> pdocTab = pbergapplication->impact_system("main")->get_document();
 
       if (pdocTab == nullptr)
       {
 
-         pdocTab = pbergapplication->impact_system("main")->open_document_file(get_app(), ::e_type_null, __visible(false).is_true(), this);
-
+         pdocTab = pbergapplication->impact_system("main")->open_document_file(get_app(), ::e_type_null,
+                                                                               __visible(false).is_true(), this);
       }
 
-      return pdocTab->get_typed_impact < ::userex::pane_tab_impact >();
-
+      return pdocTab->get_typed_impact<::userex::pane_tab_impact>();
    }
 
 
-   bool impact_host::tabfy(::user::interaction * pupdown)
+   bool impact_host::tabfy(::user::interaction *pupdown)
    {
 
 
@@ -450,10 +447,10 @@ namespace userex
       information() << "";
       information() << "";
 
-      //post_procedure([pupdown, this]
+      // post_procedure([pupdown, this]
       {
 
-         ::pointer<::simple_frame_window>pframewindow = pupdown;
+         ::pointer<::simple_frame_window> pframewindow = pupdown;
 
          auto ptabimpact = get_pane_tab_impact();
 
@@ -463,7 +460,6 @@ namespace userex
             {
 
                return true;
-
             }
 
             __keep_on(&pframewindow->m_uiUserInteractionFlags, ::user::e_interaction_wfi_up_down_loading2);
@@ -488,7 +484,8 @@ namespace userex
             information() << "";
             information() << "";
 
-            //::user::impact_data* pimpactdata = ptabimpact->host_impact(atom, strTitle, pframewindow, pframewindow->get_active_document());
+            //::user::impact_data* pimpactdata = ptabimpact->host_impact(atom, strTitle, pframewindow,
+            //:pframewindow->get_active_document());
             ptabimpact->host_impact(atom, pframewindow, pframewindow->get_active_document());
 
             ptabimpact->get_tab_by_id(atom)->set_title(strTitle);
@@ -517,9 +514,7 @@ namespace userex
                pframewindow->set_need_layout();
 
                pframewindow->WindowDataSaveWindowRectangle();
-
             }
-
          }
 
 
@@ -551,38 +546,68 @@ namespace userex
             pframewindow->set_need_redraw();
 
             pframewindow->post_redraw();
-
          }
-
       }
 
       return true;
+   }
+
+
+   void impact_host::on_layout(::draw2d::graphics_pointer &pgraphics) { ::user::impact::on_layout(pgraphics); }
+
+
+   ::pointer<::user::document> impact_host::impact_item_document(const ::atom &atomImpactId)
+   {
+      
+      auto p = m_mapImpactItem.find(atomImpactId);
+
+      if (p.is_null())
+      {
+
+         return nullptr;
+      }
+
+      auto &pimpactitem = p->m_element2;
+
+      if (::is_null(pimpactitem))
+      {
+
+         return nullptr;
+      }
+
+      return pimpactitem->m_pdocument;
 
    }
 
 
-
-
-   void impact_host::on_layout(::draw2d::graphics_pointer & pgraphics)
+      ::pointer<::simple_frame_window> impact_host::impact_item_frame_window(const ::atom &atomImpactId)
    {
 
-      ::user::impact::on_layout(pgraphics);
+      auto p = m_mapImpactItem.find(atomImpactId);
+
+      if (p.is_null())
+      {
+
+         return nullptr;
+      }
+
+      auto &pimpactitem = p->m_element2;
+
+      if (::is_null(pimpactitem))
+      {
+
+         return nullptr;
+      }
+
+      return pimpactitem->m_pframewindow;
 
    }
 
 
-   ::pointer<::user::document>impact_host::get_doc(const ::atom & idImpact)
+   ::pointer<::user::impact>impact_host::get_hosted_impact(const ::atom & atomImpactId)
    {
 
-      return m_mapdoc[idImpact];
-
-   }
-
-
-   ::pointer<::user::impact>impact_host::get_hosted_impact(const ::atom & idImpact)
-   {
-
-      ::pointer<::user::document>pdocument = get_doc(idImpact);
+      ::pointer<::user::document>pdocument = impact_item_document(atomImpactId);
 
       if (pdocument.is_null())
       {
@@ -620,7 +645,7 @@ namespace userex
    }
 
 
-   bool impact_host::_001AttachImpact(const ::atom & idImpact)
+   bool impact_host::_001AttachImpact(const ::atom & atomImpactId)
    {
 
       if(_001IsCompactMode())
@@ -630,7 +655,7 @@ namespace userex
 
       }
 
-      ::pointer<::userex::font_impact>pimpact = _001GetImpact(idImpact);
+      ::pointer<::userex::font_impact>pimpact = _001GetImpact(atomImpactId);
 
       if(pimpact.is_null())
       {
@@ -639,32 +664,36 @@ namespace userex
 
       }
 
-      m_mapframe[idImpact] = dynamic_cast < simple_frame_window * > (pimpact->parent_frame());
+      defer_construct_newø(m_mapImpactItem[atomImpactId]);
+      
+      auto pframewindow = dynamic_cast<simple_frame_window *>(pimpact->parent_frame());
 
-      m_mapframe[idImpact]->display(e_display_none);
+      m_mapImpactItem[atomImpactId]->m_pframewindow = pframewindow;
 
-      _001DefaultLayoutImpact(idImpact);
+      pframewindow->display(e_display_none);
+
+      _001DefaultLayoutImpact(atomImpactId);
 
       return true;
 
    }
 
 
-   ::pointer<::user::impact>impact_host::_001DetachImpact(const ::atom & idImpact)
+   ::pointer<::user::impact>impact_host::_001DetachImpact(const ::atom & atomImpactId)
    {
 
-      ::pointer<::user::impact>pimpact = _001GetImpact(idImpact);
+      ::pointer<::user::impact>pimpact = _001GetImpact(atomImpactId);
 
-      if (m_mapframe[idImpact] == nullptr)
+      if (impact_item_frame_window(atomImpactId) == nullptr)
       {
 
          return nullptr;
 
       }
 
-      ASSERT(m_mapframe[idImpact] != nullptr);
+      ASSERT(impact_item_frame_window(atomImpactId) != nullptr);
 
-      m_mapframe[idImpact] = nullptr;
+      m_mapImpactItem[atomImpactId] = nullptr;
 
       return pimpact;
 
@@ -687,10 +716,10 @@ namespace userex
 
 
 
-   bool impact_host::defer_create_impact(const ::atom & idImpact, ::request * prequest)
+   bool impact_host::defer_create_impact(const ::atom & atomImpactId, ::request * prequest)
    {
 
-      ::pointer<::user::document>pdocument = get_doc(idImpact);
+      ::pointer<::user::document>pdocument = impact_item_document(atomImpactId);
 
       auto papp = get_app();
 
@@ -701,7 +730,7 @@ namespace userex
 
       }
 
-      ::atom atom = idImpact;
+      ::atom atom = atomImpactId;
 
       auto pcontext = m_papplication;
       
@@ -711,7 +740,7 @@ namespace userex
 
       ::cast<::berg::application> pbergapplication = m_papplication;
 
-      ::user::impact_system * pimpactsystem = pbergapplication->impact_system(idImpact);
+      ::user::impact_system * pimpactsystem = pbergapplication->impact_system(atomImpactId);
 
       if (pimpactsystem != nullptr)
       {
@@ -750,31 +779,35 @@ namespace userex
       {
 
          pdocument = papp->defer_create_impact(
-            idImpact,
+            atomImpactId,
             this, m_pimpacthosthost->wfi_is_up_down_target() ? e_window_flag_updown : e_window_flag_none,
             atom);
 
       }
 
-      m_mapdoc[idImpact] = pdocument;
+      defer_construct_newø(m_mapImpactItem[atomImpactId]);
+
+      m_mapImpactItem[atomImpactId]->m_pdocument = pdocument;
 
       ASSERT(pdocument->m_pimpactTopic != nullptr);
 
       pdocument->m_pimpactTopic->set_notify_user_interaction(this);
+
+      m_pimpacthosthost->on_user_impact_created(atomImpactId);
 
       return true;
 
    }
 
 
-   void impact_host::_001OnImpact(const ::atom & idImpact)
+   void impact_host::_001OnImpact(const ::atom & atomImpactId)
    {
 
-      toggle_impact(idImpact);
+      toggle_impact(atomImpactId);
 
-      //defer_create_impact(idImpact);
+      //defer_create_impact(atomImpactId);
 
-      //::pointer<::simple_frame_window>pframewindow = _001GetFrame(idImpact);
+      //::pointer<::simple_frame_window>pframewindow = _001GetFrame(atomImpactId);
 
       //if (pframewindow.is_set())
       //{
@@ -791,14 +824,14 @@ namespace userex
    }
 
 
-   void impact_host::show_impact(const ::atom & idImpact)
+   void impact_host::show_impact(const ::atom &atomImpactId)
    {
 
       bool bShow = true;
 
       ::cast < ::database::client > pdatabaseclient = application();
 
-      pdatabaseclient->datastream()->set("frame::" + idImpact + ".visible", bShow);
+      pdatabaseclient->datastream()->set("frame::" + atomImpactId + ".visible", bShow);
 
       auto pcontext = m_papplication;
       
@@ -806,17 +839,17 @@ namespace userex
       
       auto puser = psession->m_puser;
 
-      puser->will_use_impact_hint(idImpact);
+      puser->will_use_impact_hint(atomImpactId);
 
-      if (!defer_create_impact(idImpact))
+      if (!defer_create_impact(atomImpactId))
       {
 
-         ::pointer<::simple_frame_window>pframewindow = _001GetFrame(idImpact);
+         ::pointer<::simple_frame_window> pframewindow = _001GetFrame(atomImpactId);
 
          if (pframewindow.is_set())
          {
 
-            pframewindow->WindowDataLoadWindowRectangle();
+            //pframewindow->WindowDataLoadWindowRectangle();
 
             pframewindow->set_need_redraw();
 
@@ -826,19 +859,26 @@ namespace userex
 
       }
 
+      auto &pimpactitem = m_mapImpactItem[atomImpactId];
+
+      defer_construct_newø(pimpactitem);
+
+      pimpactitem->m_bVisible = true;
+          
+
    }
 
 
-   void impact_host::hide_impact(const ::atom & idImpact)
+   void impact_host::hide_impact(const ::atom &atomImpactId)
    {
 
       bool bShow = false;
 
       ::cast < ::database::client > pdatabaseclient = application();
 
-      pdatabaseclient->datastream()->set("frame::" + idImpact + ".visible", bShow);
+      pdatabaseclient->datastream()->set("frame::" + atomImpactId + ".visible", bShow);
 
-      ::pointer<::simple_frame_window>pframewindow = _001GetFrame(idImpact);
+      ::pointer<::simple_frame_window> pframewindow = _001GetFrame(atomImpactId);
 
       if(pframewindow.is_null())
       {
@@ -853,33 +893,40 @@ namespace userex
 
       pframewindow->post_redraw();
 
+            auto &pimpactitem = m_mapImpactItem[atomImpactId];
+
+      defer_construct_newø(pimpactitem);
+
+      pimpactitem->m_bVisible = false;
+
+
    }
 
 
-   void impact_host::toggle_impact(const ::atom & idImpact)
+   void impact_host::toggle_impact(const ::atom &atomImpactId)
    {
 
-      //post_procedure(__routine([this, idImpact]()
+      //post_procedure(__routine([this, atomImpactId]()
          //{
 
-            bool bShow = false;
+            bool bVisible = is_user_impact_visible(atomImpactId);
 
-            ::cast < ::database::client > pdatabaseclient = application();
+            //::cast < ::database::client > pdatabaseclient = application();
 
-            pdatabaseclient->datastream()->get("frame::" + idImpact + ".visible", bShow);
+            //pdatabaseclient->datastream()->get("frame::" + atomImpactId + ".visible", bShow);
 
-            bShow = !bShow;
+            //bShow = !bShow;
 
-            if (bShow)
+            if (!bVisible)
             {
 
-               show_impact(idImpact);
+               show_impact(atomImpactId);
 
             }
             else
             {
 
-               hide_impact(idImpact);
+               hide_impact(atomImpactId);
 
             }
 
@@ -889,14 +936,14 @@ namespace userex
    }
 
 
-   void impact_host::defer_show_impact(const ::atom & idImpact)
+   void impact_host::defer_show_impact(const ::atom & atomImpactId)
    {
 
       bool bShow = false;
 
       ::cast < ::database::client > pdatabaseclient = application();
 
-      pdatabaseclient->datastream()->get("frame::" + idImpact + ".visible", bShow);
+      pdatabaseclient->datastream()->get("frame::" + atomImpactId + ".visible", bShow);
 
       if (!bShow)
       {
@@ -905,7 +952,7 @@ namespace userex
 
       }
 
-      show_impact(idImpact);
+      show_impact(atomImpactId);
 
    }
 

@@ -627,7 +627,7 @@ namespace userex
       //   }
 
       //}
-      else if (is_impact_group(pimpactdata->id().as_iptr(), "font_selection_impact"))
+      else if (is_font_selection(pimpactdata->id()))
       {
 
          pimpactdata->m_eflag.add(::user::e_flag_modifier_impact);
@@ -678,7 +678,7 @@ namespace userex
          }
 
       }
-      else if (is_impact_group(pimpactdata->id().as_iptr(), "color_selection_impact"))
+      else if (is_color_selection(pimpactdata->id()))
       {
 
          pimpactdata->m_eflag.add(::user::e_flag_modifier_impact);

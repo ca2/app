@@ -55,9 +55,22 @@ namespace userex
    public:
 
 
+      class impact_item : virtual public ::particle
+      {
+      public:
+
+         ::atom m_atom;
+         bool m_bVisible = false;
+         ::pointer<::user::document> m_pdocument;
+         ::pointer<::simple_frame_window> m_pframewindow;
+
+      };
+
+
       ::i32_size                                    m_sizeTabbedFrame;
-      string_map_base < ::pointer<::user::document >>      m_mapdoc;
-      string_map_base < simple_frame_window * >      m_mapframe;
+      //string_map_base < ::pointer<::user::document >>      m_mapdoc;
+      //string_map_base < simple_frame_window * >      m_mapframe;
+      atom_map_base<::pointer<impact_item>> m_mapImpactItem;
       ::pointer<::userex::impact_host_host> m_pimpacthosthost;
       //::pointer<::user::single_document_template>     m_ptemplateTab;
 
@@ -76,7 +89,7 @@ namespace userex
 
       void handle(::topic * ptopic, ::handler_context * phandlercontext) override;
 
-
+      bool is_user_impact_visible(const ::atom &atomImpactId);
       virtual ::pointer<::userex::pane_tab_impact>get_pane_tab_impact();
 
       virtual bool _001IsCompactMode();
@@ -94,7 +107,8 @@ namespace userex
       virtual bool _001AttachImpact(const ::atom & atomImpactId);
       virtual void _001DefaultLayoutImpact(const ::atom & atomImpactId);
       virtual ::pointer<::user::impact>get_hosted_impact(const ::atom & atomImpactId);
-      virtual ::pointer<::user::document>get_doc(const ::atom & atomImpactId);
+      virtual ::pointer<::user::document> impact_item_document(const ::atom & atomImpactId);
+      virtual ::pointer<::simple_frame_window> impact_item_frame_window(const ::atom &atomImpactId);
       virtual bool defer_create_impact(const ::atom & atomImpactId, ::request * prequest = nullptr);
       //virtual ::pointer<::user::document>detach_doc(const ::atom & atomImpactId);
       //virtual bool attach(::pointer<::user::document>pdocument, ::atom atomImpactId);

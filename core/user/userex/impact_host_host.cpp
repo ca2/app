@@ -112,6 +112,38 @@ namespace userex
    }
 
 
+   void impact_host_host::show_impact(const ::atom &atomImpactId)
+   {
+
+      auto pimpacthost = impact_host();
+
+      if (!pimpacthost)
+      {
+
+         throw ::exception(error_wrong_state);
+      }
+
+      pimpacthost->show_impact(atomImpactId);
+
+   }
+
+
+   void impact_host_host::hide_impact(const ::atom &atomImpactId)
+   {
+
+      auto pimpacthost = impact_host();
+
+      if (!pimpacthost)
+      {
+
+         throw ::exception(error_wrong_state);
+      }
+
+      pimpacthost->hide_impact(atomImpactId);
+
+   }
+
+
    bool impact_host_host::OnUpDownTargetAttach(::user::interaction *pupdown)
    {
 
@@ -169,6 +201,12 @@ namespace userex
 
    }
 
+   void impact_host_host::on_user_impact_created(const ::atom & atomImpactId)
+   {
+
+
+   }
+
 
    void impact_host_host::_001OnDraw(::draw2d::graphics_pointer & pgraphics)
    {
@@ -209,6 +247,8 @@ namespace userex
       rectangle.top = (::i32)(rectangle.height() * m_rectangleImpactHostRate.top);
       rectangle.right = (::i32)(rectangle.width() * m_rectangleImpactHostRate.right);
       rectangle.bottom = (::i32)(rectangle.height() * m_rectangleImpactHostRate.bottom);
+
+      m_rectangleDebugImpactHost = rectangle;
 
       auto r = m_pimpacthost->client2_rectangle();
 

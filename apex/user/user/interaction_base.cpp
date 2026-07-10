@@ -1952,7 +1952,9 @@ namespace user
    //}
 
 
-   void interaction_base::RepositionBars(::draw2d::graphics_pointer & pgraphics, ::u32 nIDFirst, ::u32 nIDLast, ::atom idLeftOver, ::u32 nFlag, ::i32_rectangle * prectParam, const ::i32_rectangle & rectangleX, bool bStretch)
+   void interaction_base::RepositionBars(::draw2d::graphics_pointer &pgraphics, ::u32 nIDFirst, ::u32 nIDLast,
+                                         ::user::interaction *puserinteractionLeftOver, ::u32 nFlag,
+                                         ::i32_rectangle *prectParam, const ::i32_rectangle &rectangleX, bool bStretch)
    {
 
       throw ::interface_only();

@@ -109,8 +109,6 @@ public:
       _BASE_RAW_RANGE(begin, end, erange)
    {
 
-      this->m_begin = begin;
-   
       this->m_pbasedata = pbasedata;
 
 //      if (::is_set(this->m_pbasedata) && !(erange & e_range_scoped_ownership))
@@ -129,17 +127,9 @@ public:
 
 
    template < character_count length >
-   character_range(const CHARACTER (&s)[length]) :
-      _BASE_RAW_RANGE(no_initialize_t{})
+   character_range(const CHARACTER (&s)[length]) : 
+      _BASE_RAW_RANGE(s, s + string_safe_length2(s, length), e_range_none)
    {
-
-      auto lengthNew = string_safe_length2(s, length);
-
-      this->m_begin = s;
-
-      this->m_end = s + lengthNew;
-
-      this->m_erange = e_range_none;
 
       this->m_pbasedata = nullptr;
 

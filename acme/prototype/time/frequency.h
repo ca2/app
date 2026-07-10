@@ -65,7 +65,7 @@ class frequency :
 public:
 
 
-   constexpr frequency(zero_t ezero = zero_t{}) :FREQUENCY{} {}
+   constexpr frequency() :FREQUENCY{0.} {}
    constexpr frequency(::f64 dHertz) : FREQUENCY{dHertz} {}
    constexpr frequency(const ::FREQUENCY & frequency) : FREQUENCY(frequency) {}
 

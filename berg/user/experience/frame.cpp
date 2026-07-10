@@ -18,6 +18,7 @@
 #include "aura/windowing/windowing.h"
 #include "aura/user/user/style.h"
 #include "berg/platform/session.h"
+#include "berg/user/user/impact.h"
 
 
 CLASS_DECL_BERG ::i32_rectangle_array_base get_borders(const ::i32_rectangle & rectangleOuter, const ::i32_rectangle & rectangleInner)
@@ -299,12 +300,12 @@ namespace experience
 
             ::i32_rectangle rectangle(0, 0, 32767, 32767);
 
-            pframewindow->RepositionBars(pgraphics, 0, 0xffff, FIRST_PANE, pframewindow->reposQuery,
+            pframewindow->RepositionBars(pgraphics, 0, 0xffff, pframewindow->m_pimpactMain, pframewindow->reposQuery,
                                  &rectangle, rectangle, false);
             rectangle.offset(rectangleHosting.top_left());
             ::i32_rectangle rectangleBorder;
             pframewindow->GetBorderRectangle(&rectangleBorder);
-            pframewindow->RepositionBars(pgraphics, 0, 0xffff, FIRST_PANE, pframewindow->reposExtra,
+            pframewindow->RepositionBars(pgraphics, 0, 0xffff, pframewindow->m_pimpactMain, pframewindow->reposExtra,
                                  &rectangleBorder, rectangle, true);
             pframewindow->SetBorderRect(rectangleBorder);
             //pframewindow->CalcWindowRect(&rectangle);
@@ -325,7 +326,7 @@ namespace experience
 
             pframewindow->GetBorderRectangle(&rectangleBorder);
 
-            pframewindow->RepositionBars(pgraphics, 0, 0xffff, FIRST_PANE, pframewindow->reposExtra, &rectangleBorder, rectangleHosting);
+            pframewindow->RepositionBars(pgraphics, 0, 0xffff, pframewindow->m_pimpactMain, pframewindow->reposExtra, &rectangleBorder, rectangleHosting);
 
             pframewindow->SetBorderRect(rectangleBorder);
 

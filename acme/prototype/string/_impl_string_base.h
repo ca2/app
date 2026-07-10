@@ -3257,22 +3257,41 @@ typename const_string_range < ITERATOR_TYPE >::CHARACTER const_string_range < IT
 template < typename ITERATOR_TYPE >
 string_base < ITERATOR_TYPE > & string_base < ITERATOR_TYPE >::make_upper()
 {
+   
    character_count nLength = this->size();
-   CHARACTER * pszBuffer = get_buffer<true>(nLength);
-   string_uppercase(pszBuffer, nLength + 1);
-   release_buffer(nLength);
+
+   if (nLength > 0)
+   {
+
+      CHARACTER *pszBuffer = get_buffer<true>(nLength);
+
+      string_uppercase(pszBuffer, nLength + 1);
+
+      release_buffer(nLength);
+
+   }
 
    return *this;
+
 }
 
 // Convert the string_base < ITERATOR_TYPE > to lowercase
 template < typename ITERATOR_TYPE >
 string_base < ITERATOR_TYPE > & string_base < ITERATOR_TYPE >::make_lower()
 {
+
    character_count nLength = this->size();
-   CHARACTER * pszBuffer = get_buffer<true>(nLength);
-   string_lowercase(pszBuffer, nLength + 1);
-   release_buffer(nLength);
+
+   if (nLength > 0)
+   {
+
+      CHARACTER *pszBuffer = get_buffer<true>(nLength);
+
+      string_lowercase(pszBuffer, nLength + 1);
+
+      release_buffer(nLength);
+
+   }
 
    return *this;
 }
@@ -3281,12 +3300,22 @@ string_base < ITERATOR_TYPE > & string_base < ITERATOR_TYPE >::make_lower()
 template < typename ITERATOR_TYPE >
 string_base < ITERATOR_TYPE > & string_base < ITERATOR_TYPE >::MakeReverse()
 {
+
    character_count nLength = this->size();
-   CHARACTER * pszBuffer = get_buffer<true>(nLength);
-   string_reverse(pszBuffer);
-   release_buffer(nLength);
+
+   if (nLength > 1)
+   {
+
+      CHARACTER *pszBuffer = get_buffer<true>(nLength);
+
+      string_reverse(pszBuffer);
+
+      release_buffer(nLength);
+
+   }
 
    return *this;
+
 }
 
 // trimming

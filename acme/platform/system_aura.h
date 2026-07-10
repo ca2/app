@@ -19,6 +19,21 @@ namespace platform
 {
 
 
+   class data_pack_name_filter
+   {
+      public:
+
+
+         virtual ::string defer_filter_data_pack_name(const ::scoped_string & scopedstrTag, const ::scoped_string & scopedstrMime, const ::scoped_string & scopedstrPrefix, const ::scoped_string & scopedstrSuffix)
+         {
+
+            return scopedstrTag;
+
+         }
+
+   };
+
+
    struct aura_system_layer_t
    {
 
@@ -796,7 +811,9 @@ virtual ::apex::session * session(::collection::index iEdge = 0) override;*/
 
       virtual void initialize_estamira();
 
-      virtual void _001AddPacks(string_to_string_base & base64map, string & str);
+
+
+      virtual void _001AddPacks(string_to_string_base &base64map, string &str, data_pack_name_filter *pdatapackfilter);
 
       //pointer< ::extended::sequence < ::conversation > > message_box(::user::interaction * puserinteraction, const ::scoped_string & scopedstrMessage, const ::scoped_string & scopedstrTitle = nullptr, const ::user::e_message_box & emessagebox = ::user::e_message_box_ok) override;
 

@@ -11710,12 +11710,12 @@ if(get_parent())
 
       }
       
-      if (!(m_ewindowflag & e_window_flag_window_created))
-      {
+      //if (!(m_ewindowflag & e_window_flag_window_created))
+      //{
 
-         return false;
+      //   return false;
 
-      }
+      //}
 
       if (((interaction *)this)->get_parent() == nullptr)
       {

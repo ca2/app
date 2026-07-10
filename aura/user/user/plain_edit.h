@@ -551,7 +551,8 @@ namespace user
       //virtual void get_text(string & str) override;
       //virtual void get_selection_text(string & str) override;
       //virtual void get_text(string & str, ::collection::index iBeg, ::collection::index iEnd) override;
-      virtual void get_text(string & str, ::collection::index iBeg = 0, ::collection::index iEnd = -1) const;
+      virtual void get_text(string &str, ::collection::index iBeg = 0, ::collection::index iEnd = -1,
+                            ::collection::index *piBeg = nullptr, ::collection::index *piEnd = nullptr, ::string * pstrWithDataPacks = nullptr) const;
 
       //void get_text_selection(character_count &iSelStart, character_count &iSelEnd) override;
       //void get_text_selection(character_count & iSelStart, character_count & iSelEnd);
@@ -658,7 +659,10 @@ namespace user
       virtual void plain_edit_on_delete(::draw2d::graphics_pointer& pgraphics, bool bBackIfSelectionEmtpy);
 
       virtual bool _plain_edit_on_delete(::draw2d::graphics_pointer & pgraphics, ::collection::index & iLineUpdate, ::character_count & i1, ::character_count & i2, bool bBackIfSelectionEmtpy);
-      virtual void _plain_edit_update_for_delete(::draw2d::graphics_pointer & pgraphics, const ::block & block, ::character_count i1, ::collection::index & iLine1, ::collection::index & iLine2);
+      virtual void _plain_edit_update_for_delete(::draw2d::graphics_pointer &pgraphics, const ::block &block,
+                                                 ::character_count i1,
+                                                 ::collection::index &iLine1,
+                                                 ::collection::index &iLine2);
       virtual void _plain_edit_update_for_insert(::draw2d::graphics_pointer & pgraphics, const ::block & block, ::character_count i1, ::collection::index & iLine1, ::collection::index & iLine2);
       virtual void _001OnNcDraw(::draw2d::graphics_pointer & pgraphics) override;
 

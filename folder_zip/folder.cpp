@@ -75,9 +75,6 @@ namespace folder_zip
 {
 
 
-   file_function_definitions g_filefunctiondefinitions;
-
-
    folder::folder() :
       m_unzip_file(nullptr),
       m_zipfile(nullptr)

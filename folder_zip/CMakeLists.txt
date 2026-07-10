@@ -20,6 +20,8 @@ list(APPEND library_source
    folder.h
    ioapi.cpp
    ioapi.h
+   session.cpp
+   session.h
    unzip.cpp
    unzip.h
    zip.cpp
@@ -114,5 +116,9 @@ if(BUILD_TESTING)
     add_executable(folder_zip_system_limit_test test/system_zip_session_limit.cpp)
     target_link_libraries(folder_zip_system_limit_test PRIVATE static_acme)
     add_test(NAME folder_zip_system_limit_test COMMAND folder_zip_system_limit_test)
+
+    add_executable(folder_zip_session_pool_test test/session_pool.cpp)
+    target_link_libraries(folder_zip_session_pool_test PRIVATE static_folder_zip static_acme zlib)
+    add_test(NAME folder_zip_session_pool_test COMMAND folder_zip_session_pool_test)
 
 endif()

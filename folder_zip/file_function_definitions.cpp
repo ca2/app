@@ -163,6 +163,9 @@ long   c_zip_file_seek_file_func(voidpf opaque, voidpf stream, uptr offset, ::i3
 namespace folder_zip
 {
 
+
+   file_function_definitions g_filefunctiondefinitions;
+
    file_function_definitions::file_function_definitions() 
    {
 

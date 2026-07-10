@@ -23,6 +23,9 @@ namespace folder_zip
    };
 
 
+   extern file_function_definitions g_filefunctiondefinitions;
+
+
 } // namespace folder_zip
 
 

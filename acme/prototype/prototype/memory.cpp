@@ -320,7 +320,9 @@ memory::~memory()
 
 #if !MEMDLEAK
 
-   if(m_bAligned)
+   return (::u8*) memory_allocate(dwAllocation);
+
+   /*if(m_bAligned)
    {
 
       return (::u8 *)::acme::get()->m_pheapmanagement->memory(::heap::e_memory_main)->aligned_allocate((size_t)dwAllocation, nullptr);
@@ -331,7 +333,7 @@ memory::~memory()
 
       return (::u8 *)::acme::get()->m_pheapmanagement->memory(::heap::e_memory_main)->allocate((size_t)dwAllocation, nullptr);
 
-   }
+   }*/
 
 #else
 
@@ -422,7 +424,8 @@ memory::~memory()
    }
    else
    {
-      return (::u8 *)::acme::get()->m_pheapmanagement->memory(::heap::e_memory_main)->reallocate(pdata, (size_t)dwAllocation);
+      return (::u8*) memory_reallocate(pdata, dwAllocation);
+      //return (::u8 *)::acme::get()->m_pheapmanagement->memory(::heap::e_memory_main)->reallocate(pdata, (size_t)dwAllocation);
    }
 
 }
@@ -433,7 +436,8 @@ void memory::impl_free(::u8 * pdata)
    if (this->m_bOwner)
    {
 
-      ::acme::get()->m_pheapmanagement->memory(::heap::e_memory_main)->free(pdata);
+      memory_free(pdata);
+      //::acme::get()->m_pheapmanagement->memory(::heap::e_memory_main)->free(pdata);
 
    }
 

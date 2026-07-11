@@ -809,6 +809,7 @@ namespace platform
 
       virtual void add_impact_system(const ::atom& atom, const ::pointer<::user::impact_system>& pimpactsystem) override;
       virtual ::pointer<::user::impact_system> impact_system(const ::atom& atom) override;
+      virtual bool has_impact_system(const ::atom &atom) override;
 
 
       virtual get_file_extension_mime_type* get_get_file_extension_mime_type() override;

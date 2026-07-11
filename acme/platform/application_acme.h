@@ -298,6 +298,7 @@ namespace platform
 
       virtual void add_impact_system(const ::atom & atom, const ::pointer<::user::impact_system> & pimpactsystem);
       virtual ::pointer<::user::impact_system> impact_system(const ::atom & atom);
+      virtual bool has_impact_system(const ::atom &atom);
 
 
       virtual get_file_extension_mime_type * get_get_file_extension_mime_type();

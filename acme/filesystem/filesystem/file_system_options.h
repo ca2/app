@@ -27,6 +27,7 @@ namespace filesystem
       bool                 m_b_iCloudContainer;
       bool                 m_bOneDrive;
       bool                 m_bDropbox;
+      bool                 m_bGoogleDrive;
       bool                 m_bVideo;
       bool                 m_bDesktop;
       

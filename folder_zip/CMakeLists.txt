@@ -107,3 +107,24 @@ target_include_directories(static_${PROJECT_NAME} PRIVATE ${library_include_dire
 
 target_compile_definitions(${PROJECT_NAME} PRIVATE _${PROJECT_NAME}_project)
 target_compile_definitions(static_${PROJECT_NAME} PRIVATE _${PROJECT_NAME}_project)
+
+
+if(BUILD_TESTING)
+
+    add_executable(folder_zip_system_limit_test test/system_zip_session_limit.cpp)
+    target_link_libraries(folder_zip_system_limit_test PRIVATE static_acme)
+    add_test(NAME folder_zip_system_limit_test COMMAND folder_zip_system_limit_test)
+
+    add_executable(resource_folder_pool_test test/resource_folder_pool.cpp)
+    target_link_libraries(resource_folder_pool_test PRIVATE static_acme)
+    add_test(NAME resource_folder_pool_test COMMAND resource_folder_pool_test)
+
+    add_executable(resource_file_context_test test/resource_file_context.cpp)
+    target_link_libraries(resource_file_context_test PRIVATE static_acme)
+    add_test(NAME resource_file_context_test COMMAND resource_file_context_test)
+
+    add_executable(folder_zip_session_concurrency_test test/concurrent_folder_reads.cpp)
+    target_link_libraries(folder_zip_session_concurrency_test PRIVATE static_folder_zip static_acme zlib)
+    add_test(NAME folder_zip_session_concurrency_test COMMAND folder_zip_session_concurrency_test)
+
+endif()

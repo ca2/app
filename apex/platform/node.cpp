@@ -726,7 +726,25 @@ namespace apex
          
       }
       
-      if(pfilesystemoptions->m_bOneDrive)
+      if (pfilesystemoptions->m_bGoogleDrive)
+      {
+
+         ::file::path pathGoogleDrive = m_papplication->defer_process_matter_path("google_drive://");
+
+         if (pathGoogleDrive.has_character() && directory()->is(pathGoogleDrive))
+         {
+
+            ::file::path &path = listing.insert_at(0, "google_drive://");
+
+            path.set_existent_folder();
+
+            listing.m_straTitle.insert_at(0, unitext("Google Drive"));
+
+         }
+
+      }
+        
+      if (pfilesystemoptions->m_bOneDrive)
       {
          
          ::file::path pathOneDrive = m_papplication->defer_process_matter_path("onedrive://");

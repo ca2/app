@@ -3781,7 +3781,38 @@ namespace user
    }
 
 
-   void interaction::display(::e_display edisplay, const ::user::activation & useractivation)
+   void interaction::display_up()
+   {
+
+      // informationf("----> e_display_up\n");
+
+#ifdef INFO_LAYOUT_DISPLAY
+
+      information() << "interaction::display_up";
+
+#endif
+
+      set_display(e_display_up, e_layout_sketch);
+
+   }
+
+
+   void interaction::display_down()
+   {
+
+      // informationf("----> e_display_down\n");
+
+#ifdef INFO_LAYOUT_DISPLAY
+
+      information() << "interaction::display_down";
+
+#endif
+
+      set_display(e_display_down, e_layout_sketch);
+   }
+
+
+   void interaction::display(::e_display edisplay, const ::user::activation &useractivation)
    {
 
       bool bChange = false;
@@ -3927,6 +3958,24 @@ namespace user
          }
          else
          {
+
+            if (m_pupdowntarget)
+            {
+
+               if (edisplay == e_display_up)
+               {
+
+                  display_up();
+
+               }
+               else if (edisplay == e_display_down)
+               {
+
+                  display_down();
+
+               }
+
+            }
 
 #ifdef INFO_LAYOUT_DISPLAY
 
@@ -11710,12 +11759,12 @@ if(get_parent())
 
       }
       
-      if (!(m_ewindowflag & e_window_flag_window_created))
-      {
+      //if (!(m_ewindowflag & e_window_flag_window_created))
+      //{
 
-         return false;
+      //   return false;
 
-      }
+      //}
 
       if (((interaction *)this)->get_parent() == nullptr)
       {

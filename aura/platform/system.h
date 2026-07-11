@@ -792,7 +792,8 @@ namespace aura
 
       virtual void initialize_estamira() override;
 
-      virtual void _001AddPacks(string_to_string_base& base64map, string& str) override;
+      virtual void _001AddPacks(string_to_string_base &base64map, string &str,
+                                ::platform::data_pack_name_filter *pdatapacknamefilter) override;
 
       //pointer< ::extended::sequence < ::conversation > > message_box(::user::interaction * puserinteraction, const ::scoped_string & scopedstrMessage, const ::scoped_string & scopedstrTitle = nullptr, const ::user::e_message_box & emessagebox = ::user::e_message_box_ok) override;
 

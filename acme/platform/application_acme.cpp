@@ -468,6 +468,14 @@ namespace platform
    }
 
 
+   bool acme_application_layer::has_impact_system(const ::atom &atom) 
+   {
+   
+      return false;
+   
+   }
+
+
    get_file_extension_mime_type* acme_application_layer::get_get_file_extension_mime_type()
    {
       return nullptr;

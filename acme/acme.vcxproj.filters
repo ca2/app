@@ -3345,6 +3345,9 @@
     <ClInclude Include="filesystem\filesystem\file_context.h">
       <Filter>Header Files\filesystem\filesystem</Filter>
     </ClInclude>
+    <ClInclude Include="filesystem\filesystem\resource_folder_pool.h">
+      <Filter>Header Files\filesystem\filesystem</Filter>
+    </ClInclude>
     <ClInclude Include="filesystem\filesystem\file_system.h">
       <Filter>Header Files\filesystem\filesystem</Filter>
     </ClInclude>
@@ -4452,6 +4455,12 @@
     <ClInclude Include="include\_pointer_forward_declaration.h">
       <Filter>Header Files\include</Filter>
     </ClInclude>
+    <ClInclude Include="parallelization1.h">
+      <Filter>Header Files\operating_system\windows</Filter>
+    </ClInclude>
+    <ClInclude Include="parallelization\locking.h">
+      <Filter>Header Files\parallelization</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="prototype\prototype\bit.cpp">
@@ -5552,6 +5561,9 @@
     <ClCompile Include="filesystem\filesystem\file_context.cpp">
       <Filter>Source Files\filesystem\filesystem</Filter>
     </ClCompile>
+    <ClCompile Include="filesystem\filesystem\resource_folder_pool.cpp">
+      <Filter>Source Files\filesystem\filesystem</Filter>
+    </ClCompile>
     <ClCompile Include="filesystem\filesystem\file_system.cpp">
       <Filter>Source Files\filesystem\filesystem</Filter>
     </ClCompile>
@@ -6400,6 +6412,9 @@
     </ClCompile>
     <ClCompile Include="prototype\collection\_array_binary_stream.cpp">
       <Filter>Source Files\prototype\collection</Filter>
+    </ClCompile>
+    <ClCompile Include="locking.cpp">
+      <Filter>Source Files\operating_system\windows</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

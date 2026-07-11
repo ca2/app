@@ -3053,6 +3053,16 @@ namespace platform
    }
 
 
+   bool application::has_impact_system(const ::atom &atom)
+   {
+
+      throw interface_only();
+
+      return false;
+
+   }
+
+
    get_file_extension_mime_type* application::get_get_file_extension_mime_type()
    {
 

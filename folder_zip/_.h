@@ -22,9 +22,6 @@ namespace folder_zip
 
    class file;
    class folder;
-   class session;
-   class session_lease;
-   class session_pool;
 
 
 } // namespace folder_zip

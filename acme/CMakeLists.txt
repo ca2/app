@@ -545,6 +545,8 @@ list(APPEND library_source
         parallelization/condition.h
         parallelization/condition_variable.cpp
         parallelization/condition_variable.h
+        filesystem/filesystem/resource_folder_pool.cpp
+        filesystem/filesystem/resource_folder_pool.h
         parallelization/create_task_attributes.cpp
         parallelization/create_task_attributes.h
         parallelization/critical_section.cpp

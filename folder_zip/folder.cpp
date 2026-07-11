@@ -2,13 +2,11 @@
 #include "folder.h"
 #include "file.h"
 #include "file_function_definitions.h"
-#include "acme/filesystem/file/memory_file.h"
 #include "acme/filesystem/file/status.h"
 #include "acme/filesystem/filesystem/file_system.h"
 #include "acme/filesystem/filesystem/listing.h"
 #include "acme/operating_system/dos_time1.h"
 #include "acme/parallelization/synchronous_lock.h"
-#include "acme/platform/system.h"
 #include "acme/prototype/prototype/memory.h"
 
 #include "acme/_operating_system.h"
@@ -78,6 +76,7 @@ namespace folder_zip
 
 
    folder::folder() :
+      m_unzip_file(nullptr),
       m_zipfile(nullptr)
    {
 
@@ -88,6 +87,15 @@ namespace folder_zip
 
    folder::~folder()
    {
+
+      if (m_unzip_file)
+      {
+
+         unzip_Close(m_unzip_file);
+
+         m_unzip_file = nullptr;
+
+      }
 
       if (m_zipfile)
       {
@@ -145,61 +153,11 @@ namespace folder_zip
    void folder::open_for_reading(::file_pointer pfile, ::i32 iBufferLevel)
    {
 
-      auto pmemoryfile = dynamic_cast < memory_file * > (pfile.m_p);
+      auto unzip_file = unzip_Open2("pad", (zlib_filefunc_def*)&g_filefunctiondefinitions, pfile.m_p);
 
-      if (!pmemoryfile)
-      {
+      m_pfile = pfile;
 
-         throw ::exception(error_bad_argument, "folder_zip requires an in-memory archive");
-
-      }
-
-      m_pmemoryReadOnly = pmemoryfile->get_memory();
-
-      auto please = acquire_session();
-
-      if (!please)
-      {
-
-         m_pmemoryReadOnly.release();
-
-         throw ::exception(error_failed);
-
-      }
-
-   }
-
-
-   ::pointer < session_lease > folder::acquire_session()
-   {
-
-      if (!m_pmemoryReadOnly)
-      {
-
-         throw ::exception(error_wrong_state);
-
-      }
-
-      auto maximum = (::collection::count) 8;
-      auto psystem = ::system();
-
-      if (psystem)
-      {
-
-         maximum = psystem->zip_file_session_maximum();
-
-      }
-
-      auto & pool = global_session_pool();
-
-      if (psystem)
-      {
-
-         pool.reconcile(maximum);
-
-      }
-
-      return pool.acquire(m_pmemoryReadOnly);
+      m_unzip_file = unzip_file;
 
    }
 
@@ -260,9 +218,9 @@ namespace folder_zip
    bool folder::enumerate(::file::listing_base& listing)
    {
 
-      auto please = acquire_session();
+      _synchronous_lock synchronouslock(this->synchronization(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 
-      unzip_File pf = please->unzip_file();
+      unzip_File pf = m_unzip_file;
 
       if (pf == nullptr)
       {
@@ -363,7 +321,7 @@ namespace folder_zip
    ::file_pointer folder::get_file(const ::file::path& pathFile)
    {
 
-      auto please = acquire_session();
+      _synchronous_lock synchronouslock(this->synchronization(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 
       if (pathFile.has_character())
       {
@@ -375,7 +333,7 @@ namespace folder_zip
 
          }
 
-         if (!locate_file(please, pathFile, true))
+         if (!locate_file(pathFile))
          {
 
             return nullptr;
@@ -384,34 +342,7 @@ namespace folder_zip
 
       }
 
-      else
-      {
-
-         auto unzipfile = please->unzip_file();
-
-         if (!unzipfile
-            || unzip_GetCurrentFileInfo(unzipfile, &please->file_info(), nullptr, 0, nullptr, 0, nullptr, 0) != UNZ_OK
-            || !please->open_current_file())
-         {
-
-            return nullptr;
-
-         }
-
-      }
-
-      auto pfile = create_newø < ::folder_zip::file >();
-
-      pfile->m_pfolder = this;
-      pfile->m_psessionlease = please;
-      pfile->m_unzipfileinfo = please->file_info();
-      pfile->m_iPosition = 0;
-
-      pfile->m_estatus = ::success;
-
-      pfile->set_ok_flag();
-
-      return pfile;
+      return this->get_file();
 
    }
 
@@ -420,7 +351,15 @@ namespace folder_zip
    ::file_pointer folder::get_file()
    {
 
-      return get_file(::file::path{});
+      auto pfile = create_newø < ::folder_zip::file >();
+
+      pfile->m_pfolder = this;
+
+      pfile->m_estatus = ::success;
+
+      pfile->set_ok_flag();
+
+      return pfile;
 
    }
 
@@ -461,7 +400,7 @@ namespace folder_zip
 
    }
 
-   class ::time folder::get_modification_time(const unzip__file_info & fileinfo) const
+   class ::time folder::get_modification_time() const
    {
 
       class ::time time;
@@ -469,7 +408,7 @@ namespace folder_zip
 #ifdef WINDOWS
 
 
-      auto dosDate = fileinfo.dosDate;
+      auto dosDate = m_unzip_fileinfo.dosDate;
 
 
 #ifdef WINDOWS_DESKTOP
@@ -492,7 +431,7 @@ namespace folder_zip
 
 #else
 
-      auto tmu_date = fileinfo.tmu_date;
+      auto tmu_date = m_unzip_fileinfo.tmu_date;
 
       struct tm newdate;
 
@@ -558,25 +497,16 @@ namespace folder_zip
          if (bExtract)
          {
 
-            auto pfile = get_file(pathItem);
+            extract(memory, pathItem);
 
-            auto pzipfile = dynamic_cast < ::folder_zip::file * > (pfile.m_p);
-
-            if (pzipfile)
-            {
-
-               memory = pfile->full_memory();
-
-            }
-
-            if (pzipfile && memory.is_set())
+            if (memory.is_set())
             {
 
                auto pathTarget = pathTargetFolder / range;
 
                file_system()->put_block(pathTarget, memory);
 
-               auto time = get_modification_time(pzipfile->m_unzipfileinfo);
+               auto time = get_modification_time();
 
                file_system()->set_modification_time(pathTarget, time);
 
@@ -610,18 +540,9 @@ namespace folder_zip
          if (path.case_insensitive_ends(scopedstrSuffix))
          {
 
-            auto pfile = get_file(path);
+            extract(memory, path);
 
-            auto pzipfile = dynamic_cast < ::folder_zip::file * > (pfile.m_p);
-
-            if (pzipfile)
-            {
-
-               memory = pfile->full_memory();
-
-            }
-
-            if (!pzipfile || !memory.is_set())
+            if (!memory.is_set())
             {
 
                throw ::exception(error_failed);
@@ -634,7 +555,7 @@ namespace folder_zip
 
                file_system()->put_block(pathTarget, memory);
 
-               auto time = get_modification_time(pzipfile->m_unzipfileinfo);
+               auto time = get_modification_time();
 
                file_system()->set_modification_time(pathTarget, time);
 
@@ -654,15 +575,7 @@ namespace folder_zip
    bool folder::locate_file(const ::file::path& pathFileName)
    {
 
-      auto please = acquire_session();
-
-      return locate_file(please, pathFileName, false);
-
-   }
-
-
-   bool folder::locate_file(session_lease * please, const ::file::path& pathFileName, bool bOpenCurrentFile)
-   {
+      m_iFilePosition = -1;
 
       string strFile(pathFileName);
 
@@ -675,24 +588,22 @@ namespace folder_zip
 
       }
 
-      if (!locate(please, [strFile](const_char_pointer psz) {return strFile.case_insensitive_equals(psz); }))
+      if (!locate([strFile](const_char_pointer psz) {return strFile.case_insensitive_equals(psz); }))
       {
 
          return false;
 
       }
 
-      auto unzipfile = please ? please->unzip_file() : nullptr;
-
-      if (!unzipfile)
+      if (unzip_OpenCurrentFile(m_unzip_file) != UNZ_OK)
       {
 
          return false;
 
       }
 
-      if (unzip_GetCurrentFileInfo(unzipfile,
-         &please->file_info(),
+      if (unzip_GetCurrentFileInfo(m_unzip_file,
+         &m_unzip_fileinfo,
          nullptr,
          0,
          nullptr,
@@ -705,12 +616,9 @@ namespace folder_zip
 
       }
 
-      if (bOpenCurrentFile && !please->open_current_file())
-      {
+      m_iFilePosition = 0;
 
-         return false;
-
-      }
+      m_strCurrent = strFile;
 
       return true;
 
@@ -720,17 +628,9 @@ namespace folder_zip
    bool folder::locate(const ::function < bool(const_char_pointer )>& function)
    {
 
-      auto please = acquire_session();
+      _synchronous_lock synchronouslock(this->synchronization(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 
-      return locate(please, function);
-
-   }
-
-
-   bool folder::locate(session_lease * please, const ::function < bool(const_char_pointer )>& function)
-   {
-
-      unzip_File pf = please ? please->unzip_file() : nullptr;
+      unzip_File pf = m_unzip_file;
 
       if (pf == nullptr)
       {

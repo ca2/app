@@ -1,0 +1,507 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 54;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		26F7746B88BA493E7D2EBF87 /* _.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 6A8B655C5C329BBDBE120F9B /* _.cpp */; };
+		D0CB4E80CB81984D7E82D163 /* _factory.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 19F7838D26638AEC1AA603C7 /* _factory.cpp */; };
+		FE5DCF325BEB8355030CD4C9 /* framework.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 280EB9C2B7AAD06F9F5B9883 /* framework.cpp */; };
+		7FC2DF6A18B5410BF23751C5 /* fs_raw_folder_protocol.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 0AAD3871940FC86BCC712056 /* fs_raw_folder_protocol.cpp */; };
+		6715AB4350486B8CD838E2F1 /* libacme.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 49E7A22A8429FE12157B1F5E /* libacme.dylib */; };
+		8B41A3D9BC04FBC81D0B4086 /* libapex.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = E215DB9E9465D09148C6D712 /* libapex.dylib */; };
+		14AC9B2258DD27E22AFF921F /* fs_raw_folder_protocol_other.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B02F5DF4A45CBB265DC54F9B /* fs_raw_folder_protocol_other.cpp */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		116B51C94970AC6887E1C970 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 7D5BDE8B8D24352A2E58E93C /* apex.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 93435C3FC5978B757D47E3CB;
+			remoteInfo = apex;
+		};
+		338BC030B8AB6BD00D8C98E7 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 7D5BDE8B8D24352A2E58E93C /* apex.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 4B0B84AA79B28A52109F92CA;
+			remoteInfo = ios_apex;
+		};
+		CAA068CCB4DB8254FE234267 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 7D5BDE8B8D24352A2E58E93C /* apex.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 7DF3028EAE71F89590D062D2;
+			remoteInfo = static_apex;
+		};
+		E872346ED3E0C32D3B3CA1DD /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 7D5BDE8B8D24352A2E58E93C /* apex.xcodeproj */;
+			proxyType = 1;
+			remoteGlobalIDString = 322D0E62CE15140CD4F7930A;
+			remoteInfo = apex;
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXFileReference section */
+		BF1F1984682BA5679EA8BCEF /* libfs_raw_folder_protocol_google_drive.dylib */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.dylib"; includeInIndex = 0; path = libfs_raw_folder_protocol_google_drive.dylib; sourceTree = BUILT_PRODUCTS_DIR; };
+		F9510F3556C7752257470955 /* _____debug.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = "_____debug.xcconfig"; sourceTree = "<group>"; };
+		39776A199A5AA8D456E18135 /* _____release.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = "_____release.xcconfig"; sourceTree = "<group>"; };
+		6A8B655C5C329BBDBE120F9B /* _.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = _.cpp; sourceTree = "<group>"; };
+		6BCEA3F83664A7BA334D471C /* _.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = _.h; sourceTree = "<group>"; };
+		19F7838D26638AEC1AA603C7 /* _factory.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = _factory.cpp; sourceTree = "<group>"; };
+		280EB9C2B7AAD06F9F5B9883 /* framework.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = framework.cpp; sourceTree = "<group>"; };
+		8F0EB4C9C41282E88EE0D864 /* framework.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = framework.h; sourceTree = "<group>"; };
+		08C0FC6DCA97A16F64374BBB /* fs_raw_folder_protocol_linux.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = fs_raw_folder_protocol_linux.cpp; sourceTree = "<group>"; };
+		0AAD3871940FC86BCC712056 /* fs_raw_folder_protocol.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = fs_raw_folder_protocol.cpp; sourceTree = "<group>"; };
+		AAAE88ED2E940FE0B7961017 /* fs_raw_folder_protocol.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = fs_raw_folder_protocol.h; sourceTree = "<group>"; };
+		15F3595F387A888736506C35 /* resource.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = resource.h; sourceTree = "<group>"; };
+		7D5BDE8B8D24352A2E58E93C /* apex.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = apex.xcodeproj; path = ../apex/apex.xcodeproj; sourceTree = SOURCE_ROOT; };
+		49E7A22A8429FE12157B1F5E /* libacme.dylib */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.dylib"; path = libacme.dylib; sourceTree = BUILT_PRODUCTS_DIR; };
+		B02F5DF4A45CBB265DC54F9B /* fs_raw_folder_protocol_other.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = fs_raw_folder_protocol_other.cpp; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		9137A7A03C71A62620AC4908 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				8B41A3D9BC04FBC81D0B4086 /* libapex.dylib in Frameworks */,
+				6715AB4350486B8CD838E2F1 /* libacme.dylib in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		E73770982A9E95DCBEB030EE = {
+			isa = PBXGroup;
+			children = (
+				7D5BDE8B8D24352A2E58E93C /* apex.xcodeproj */,
+				367A4ED68083EB73A2EBC233 /* fs_raw_folder_protocol_google_drive */,
+				45BAB16AFEDA93B84B724C15 /* Products */,
+				8FF2CB9241DF5F82C8646BE4 /* Frameworks */,
+			);
+			sourceTree = "<group>";
+		};
+		45BAB16AFEDA93B84B724C15 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				BF1F1984682BA5679EA8BCEF /* libfs_raw_folder_protocol_google_drive.dylib */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		367A4ED68083EB73A2EBC233 /* fs_raw_folder_protocol_google_drive */ = {
+			isa = PBXGroup;
+			children = (
+				F9510F3556C7752257470955 /* _____debug.xcconfig */,
+				39776A199A5AA8D456E18135 /* _____release.xcconfig */,
+				6A8B655C5C329BBDBE120F9B /* _.cpp */,
+				6BCEA3F83664A7BA334D471C /* _.h */,
+				19F7838D26638AEC1AA603C7 /* _factory.cpp */,
+				280EB9C2B7AAD06F9F5B9883 /* framework.cpp */,
+				8F0EB4C9C41282E88EE0D864 /* framework.h */,
+				08C0FC6DCA97A16F64374BBB /* fs_raw_folder_protocol_linux.cpp */,
+				B02F5DF4A45CBB265DC54F9B /* fs_raw_folder_protocol_other.cpp */,
+				0AAD3871940FC86BCC712056 /* fs_raw_folder_protocol.cpp */,
+				AAAE88ED2E940FE0B7961017 /* fs_raw_folder_protocol.h */,
+				15F3595F387A888736506C35 /* resource.h */,
+			);
+			name = fs_raw_folder_protocol_google_drive;
+			sourceTree = "<group>";
+		};
+		E9913690D1DAF06527BA31AD /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				E215DB9E9465D09148C6D712 /* libapex.dylib */,
+				01D09108235BD01BE3A9AECF /* libios_apex.a */,
+				B36C6FF7FD5FEDC71F7E88AE /* libstatic_apex.a */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		8FF2CB9241DF5F82C8646BE4 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				49E7A22A8429FE12157B1F5E /* libacme.dylib */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXHeadersBuildPhase section */
+		44AF93F05E27B4AE543A42A4 /* Headers */ = {
+			isa = PBXHeadersBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXHeadersBuildPhase section */
+
+/* Begin PBXNativeTarget section */
+		29467C3C1064EDFE2A429C46 /* fs_raw_folder_protocol_google_drive */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 89D5940EBEF7D87CF74F1E14 /* Build configuration list for PBXNativeTarget "fs_raw_folder_protocol_google_drive" */;
+			buildPhases = (
+				44AF93F05E27B4AE543A42A4 /* Headers */,
+				81972B281C66A63439836CF4 /* Sources */,
+				9137A7A03C71A62620AC4908 /* Frameworks */,
+				92523093F8C89CECA4DD2D8E /* ShellScript */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				94C4E7B80258EABD381BFD29 /* PBXTargetDependency */,
+			);
+			name = fs_raw_folder_protocol_google_drive;
+			productName = fs_raw_folder_protocol_google_drive;
+			productReference = BF1F1984682BA5679EA8BCEF /* libfs_raw_folder_protocol_google_drive.dylib */;
+			productType = "com.apple.product-type.library.dynamic";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		4AE444D9200CB559D7007510 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				BuildIndependentTargetsInParallel = 1;
+				LastUpgradeCheck = 1540;
+				ORGANIZATIONNAME = "ca2 Software Development";
+				TargetAttributes = {
+					29467C3C1064EDFE2A429C46 = {
+						CreatedOnToolsVersion = 15.4;
+					};
+				};
+			};
+			buildConfigurationList = 5F8A0445925263D27BCE8247 /* Build configuration list for PBXProject "fs_raw_folder_protocol_google_drive" */;
+			compatibilityVersion = "Xcode 12.0";
+			developmentRegion = en;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = E73770982A9E95DCBEB030EE;
+			productRefGroup = 45BAB16AFEDA93B84B724C15 /* Products */;
+			projectDirPath = "";
+			projectReferences = (
+				{
+					ProductGroup = E9913690D1DAF06527BA31AD /* Products */;
+					ProjectRef = 7D5BDE8B8D24352A2E58E93C /* apex.xcodeproj */;
+				},
+			);
+			projectRoot = "";
+			targets = (
+				29467C3C1064EDFE2A429C46 /* fs_raw_folder_protocol_google_drive */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXReferenceProxy section */
+		E215DB9E9465D09148C6D712 /* libapex.dylib */ = {
+			isa = PBXReferenceProxy;
+			fileType = "compiled.mach-o.dylib";
+			path = libapex.dylib;
+			remoteRef = 116B51C94970AC6887E1C970 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		01D09108235BD01BE3A9AECF /* libios_apex.a */ = {
+			isa = PBXReferenceProxy;
+			fileType = "compiled.mach-o.dylib";
+			path = libios_apex.a;
+			remoteRef = 338BC030B8AB6BD00D8C98E7 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		B36C6FF7FD5FEDC71F7E88AE /* libstatic_apex.a */ = {
+			isa = PBXReferenceProxy;
+			fileType = "compiled.mach-o.dylib";
+			path = libstatic_apex.a;
+			remoteRef = CAA068CCB4DB8254FE234267 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+/* End PBXReferenceProxy section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		92523093F8C89CECA4DD2D8E /* ShellScript */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"$(BUILT_PRODUCTS_DIR)/$(EXECUTABLE_NAME)",
+				"$(WorkspaceDir)/output_copy.txt",
+			);
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(WorkspaceDir)/time-$(PLATFORM_MODIFIER)/output-$(CONFIIGURATION)/$(EXECUTABLE_NAME)",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = ". $HOME/code/operating_system/tool/bin/_on_after_build_dylib\n";
+		};
+/* End PBXShellScriptBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		81972B281C66A63439836CF4 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				14AC9B2258DD27E22AFF921F /* fs_raw_folder_protocol_other.cpp in Sources */,
+				D0CB4E80CB81984D7E82D163 /* _factory.cpp in Sources */,
+				26F7746B88BA493E7D2EBF87 /* _.cpp in Sources */,
+				FE5DCF325BEB8355030CD4C9 /* framework.cpp in Sources */,
+				7FC2DF6A18B5410BF23751C5 /* fs_raw_folder_protocol.cpp in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		94C4E7B80258EABD381BFD29 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			name = apex;
+			targetProxy = E872346ED3E0C32D3B3CA1DD /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin XCBuildConfiguration section */
+		EB14F2422592EB4D3744F291 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = F9510F3556C7752257470955 /* _____debug.xcconfig */;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				ASSETCATALOG_COMPILER_GENERATE_SWIFT_ASSET_SYMBOL_EXTENSIONS = YES;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "c++20";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEAD_CODE_STRIPPING = YES;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				ENABLE_USER_SCRIPT_SANDBOXING = YES;
+				EXECUTABLE_PREFIX = lib;
+				GCC_C_LANGUAGE_STANDARD = c11;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_INCREASE_PRECOMPILED_HEADER_SHARING = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = framework.h;
+				GCC_PREPROCESSOR_DEFINITIONS = "$(inherited)";
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				HEADER_SEARCH_PATHS = "$(WorkspaceDir)/../operating_system/include";
+				LD_RUNPATH_SEARCH_PATHS = "@executable_path @loader_path";
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(WorkspaceDir)/../operating_system/storage-$(PLATFORM_MODIFIER)/$(CONFIGURATION)/library",
+				);
+				LOCALIZATION_PREFERS_STRING_CATALOGS = YES;
+				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
+				MTL_FAST_MATH = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				OTHER_LDFLAGS = "-all_load";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = macosx;
+				SKIP_INSTALL = YES;
+				SYSTEM_HEADER_SEARCH_PATHS = (
+					"$(WorkspaceDir)/operating_system/operating_system-$(PLATFORM_MODIFIER)/include",
+					"$(WorkspaceDir)/operating_system/operating_system-$(PLATFORM_MODIFIER)/configuration",
+					"$(WorkspaceDir)/port/include",
+					"$(WorkspaceDir)/source/app/include",
+				);
+				USER_HEADER_SEARCH_PATHS = (
+					.,
+					"$(WorkspaceDir)/source",
+					"$(WorkspaceDir)/source/app",
+					"$(WorkspaceDir)/source/app/_include",
+					"$(WorkspaceDir)/operating_system",
+					"$(WorkspaceDir)/operating_system/operating_system-$(PLATFORM_MODIFIER)",
+					"$(WorkspaceDir)/operating_system/operating_system-$(PLATFORM_MODIFIER)/configuration_selection/$(CONFIGURATION)",
+					"$(WorkspaceDir)/port/_",
+					"$(PROJECT_DIR)",
+					"$(PROJECT_DIR)/..",
+					"$(PROJECT_DIR)/../..",
+					"$(HOME)/sensitive/sensitive/include",
+				);
+				USE_HEADERMAP = NO;
+				WorkspaceDir = "$(SRCROOT)/../../..";
+			};
+			name = Debug;
+		};
+		B5389F5C50543D263185E160 /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 39776A199A5AA8D456E18135 /* _____release.xcconfig */;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				ASSETCATALOG_COMPILER_GENERATE_SWIFT_ASSET_SYMBOL_EXTENSIONS = YES;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "c++20";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEAD_CODE_STRIPPING = YES;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_HARDENED_RUNTIME = YES;
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_USER_SCRIPT_SANDBOXING = YES;
+				EXECUTABLE_PREFIX = lib;
+				GCC_C_LANGUAGE_STANDARD = c11;
+				GCC_INCREASE_PRECOMPILED_HEADER_SHARING = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = framework.h;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				HEADER_SEARCH_PATHS = "$(WorkspaceDir)/../operating_system/include";
+				LD_RUNPATH_SEARCH_PATHS = "@executable_path @loader_path";
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(WorkspaceDir)/../operating_system/storage-$(PLATFORM_MODIFIER)/$(CONFIGURATION)/library",
+				);
+				LOCALIZATION_PREFERS_STRING_CATALOGS = YES;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				MTL_FAST_MATH = YES;
+				OTHER_LDFLAGS = "-all_load";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = macosx;
+				SKIP_INSTALL = YES;
+				SYSTEM_HEADER_SEARCH_PATHS = (
+					"$(WorkspaceDir)/operating_system/operating_system-$(PLATFORM_MODIFIER)/include",
+					"$(WorkspaceDir)/operating_system/operating_system-$(PLATFORM_MODIFIER)/configuration",
+					"$(WorkspaceDir)/port/include",
+					"$(WorkspaceDir)/source/app/include",
+				);
+				USER_HEADER_SEARCH_PATHS = (
+					.,
+					"$(WorkspaceDir)/source",
+					"$(WorkspaceDir)/source/app",
+					"$(WorkspaceDir)/source/app/_include",
+					"$(WorkspaceDir)/operating_system",
+					"$(WorkspaceDir)/operating_system/operating_system-$(PLATFORM_MODIFIER)",
+					"$(WorkspaceDir)/operating_system/operating_system-$(PLATFORM_MODIFIER)/configuration_selection/$(CONFIGURATION)",
+					"$(WorkspaceDir)/port/_",
+					"$(PROJECT_DIR)",
+					"$(PROJECT_DIR)/..",
+					"$(PROJECT_DIR)/../..",
+					"$(HOME)/sensitive/sensitive/include",
+				);
+				USE_HEADERMAP = NO;
+				WorkspaceDir = "$(SRCROOT)/../../..";
+			};
+			name = Release;
+		};
+		8BC4DD4BA33D46B4E6DD0DE9 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				DEAD_CODE_STRIPPING = YES;
+				PLATFORM_MODIFIER = macos;
+				SDKROOT = macosx;
+			};
+			name = Debug;
+		};
+		314E0EC29456AEADA12AB6A4 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				DEAD_CODE_STRIPPING = YES;
+				PLATFORM_MODIFIER = macos;
+				SDKROOT = macosx;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		5F8A0445925263D27BCE8247 /* Build configuration list for PBXProject "fs_raw_folder_protocol_google_drive" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				EB14F2422592EB4D3744F291 /* Debug */,
+				B5389F5C50543D263185E160 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		89D5940EBEF7D87CF74F1E14 /* Build configuration list for PBXNativeTarget "fs_raw_folder_protocol_google_drive" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				8BC4DD4BA33D46B4E6DD0DE9 /* Debug */,
+				314E0EC29456AEADA12AB6A4 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = 4AE444D9200CB559D7007510 /* Project object */;
+}

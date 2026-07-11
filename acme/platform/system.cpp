@@ -1,4 +1,5 @@
 #include "framework.h"
+#include "acme/filesystem/filesystem/resource_folder_pool.h"
 #include "library.h"
 #include "node.h"
 #include "acme.h"
@@ -211,6 +212,8 @@ namespace platform
    system::system()
    {
 
+      m_presourcefolderpool = new ::resource_folder_pool;
+
       m_bAttemptedToInitializeMatter = false;
 
       if (!s_p)
@@ -340,6 +343,9 @@ namespace platform
 
       debug() << "platform::system::~system() (destroyed)";
 
+      delete m_presourcefolderpool;
+      m_presourcefolderpool = nullptr;
+
       //::acme::get()->m_pmanualresethappeningReadyToExit->set_happening();
       //on_system_before_destroy();
 
@@ -360,6 +366,14 @@ namespace platform
    {
 
       return m_countZipFileSessionMaximum.load(::std::memory_order_relaxed);
+
+   }
+
+
+   ::resource_folder_pool * system::resource_folder_pool()
+   {
+
+      return m_presourcefolderpool;
 
    }
 

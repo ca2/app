@@ -4,6 +4,7 @@
 #include "acme/prototype/prototype/memory.h"
 #include "acme/filesystem/file/plain_text_file_options.h"
 #include "file_context_interface.h"
+#include "resource_folder_pool.h"
 ////#include "acme/prototype/prototype/object.h"
 //#include "acme/prototype/collection/string_array.h"
 
@@ -14,8 +15,7 @@ class CLASS_DECL_ACME file_context :
 public:
 
 
-   ::pointer<::folder>           m_pfolderResource;
-   bool                          m_bFolderResourceCalculated;
+   ::pointer<memory_base>        m_pmemoryResource;
    bool                          m_bMainResourceMemoryCalculated;
    ::memory                      m_memoryMainResource;
 
@@ -46,7 +46,7 @@ public:
    virtual ::block get_main_resource_block();
 
    
-   virtual ::folder* resource_folder();
+   virtual resource_folder_lease resource_folder();
    virtual ::memory_file_pointer create_resource_file(const ::file::path & path);
    virtual ::memory get_resource_memory(const ::file::path & path);
    virtual ::file::enum_type resource_get_type(const ::file::path & path, ::string  * pstrLogNotFound = nullptr);

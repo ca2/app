@@ -566,6 +566,14 @@ namespace berg
    }
 
 
+   bool application::has_impact_system(const ::atom &atom)
+   {
+
+      return document_manager_container::has_impact_system(atom);
+
+   }
+
+
    ::i32 application::track_popup_menu(::menu::track_popup * ptrackpopup)
    {
       

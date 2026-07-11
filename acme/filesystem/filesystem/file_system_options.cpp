@@ -28,6 +28,7 @@ namespace filesystem
          m_b_iCloudContainer = false;
          m_bOneDrive = true;
          m_bDropbox = true;
+         m_bGoogleDrive = true;
          m_bVideo = true;
          m_bDesktop = true;
 

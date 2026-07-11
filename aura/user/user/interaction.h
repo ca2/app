@@ -904,6 +904,8 @@ namespace user
       virtual void display_iconic();
       virtual void display_full_screen(::collection::index iMonitor, const ::user::activation & useractivation);
       virtual void display_notify_icon();
+      virtual void display_up();
+      virtual void display_down();
 
       
       virtual void design_window_stored_state();

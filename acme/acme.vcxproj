@@ -2690,6 +2690,7 @@
     <ClCompile Include="filesystem\filesystem\directory_system.cpp" />
     <ClCompile Include="filesystem\filesystem\enumerator.cpp" />
     <ClCompile Include="filesystem\filesystem\file_context.cpp" />
+    <ClCompile Include="filesystem\filesystem\resource_folder_pool.cpp" />
     <ClCompile Include="filesystem\filesystem\file_context_interface.cpp" />
     <ClCompile Include="filesystem\filesystem\file_dialog.cpp" />
     <ClCompile Include="filesystem\filesystem\file_path.cpp" />
@@ -2816,6 +2817,7 @@
     <ClCompile Include="operating_system\windows_common\cpu_features.cpp" />
     <ClCompile Include="operating_system\windows_common\last_error.cpp" />
     <ClCompile Include="operating_system\windows_common\task.cpp" />
+    <ClCompile Include="locking.cpp" />
     <ClCompile Include="platform\ini.cpp" />
     <ClCompile Include="platform\ProfileLogger.cpp" />
     <ClCompile Include="platform\registry.cpp" />
@@ -2888,6 +2890,8 @@
     <ClInclude Include="operating_system\windows_common\com\_.h" />
     <ClInclude Include="operating_system\windows_common\last_error.h" />
     <ClInclude Include="operating_system\windows_common\networking.h" />
+    <ClInclude Include="parallelization1.h" />
+    <ClInclude Include="parallelization\locking.h" />
     <ClInclude Include="parallelization\_platform.h" />
     <ClInclude Include="platform\acme_message.h" />
     <ClInclude Include="platform\guid.h" />
@@ -3044,6 +3048,7 @@
     <ClInclude Include="filesystem\filesystem\dir_system_heap.h" />
     <ClInclude Include="filesystem\filesystem\enumerator.h" />
     <ClInclude Include="filesystem\filesystem\file_context.h" />
+    <ClInclude Include="filesystem\filesystem\resource_folder_pool.h" />
     <ClInclude Include="filesystem\filesystem\file_context_interface.h" />
     <ClInclude Include="filesystem\filesystem\file_dialog.h" />
     <ClInclude Include="filesystem\filesystem\file_path.h" />

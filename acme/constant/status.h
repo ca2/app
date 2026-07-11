@@ -132,6 +132,8 @@ enum enum_status : ::i64
    error_codec_not_found,
    error_vkresult,
    error_discontinued,
+   error_operation_not_permitted,
+   error_resource_deadlock_would_occur,
 
 
 error_time_bag = INT_FAILURE_STATUS(STATUS_RANGE_EXCEPTION),

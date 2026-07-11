@@ -247,25 +247,17 @@ bool file_context::exists(const ::file::path & pathParam)
 
       pathInZip.begins_eat("zipresource://");
 
-         ::folder *pfolder = nullptr;
+         auto folderlease = resource_folder();
 
+         if (!folderlease)
          {
 
-            _synchronous_lock synchronouslock(this->synchronization(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
+            return ::file::e_type_doesnt_exist;
 
-            pfolder = resource_folder();
-
-            if (::is_null(pfolder))
-            {
-
-               return ::file::e_type_doesnt_exist;
-            }
          }
 
-         _synchronous_lock synchronouslock(pfolder->synchronization(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 
-
-         return pfolder->type(pathInZip);
+         return folderlease->type(pathInZip);
    }
 
    if (path.begins("http://") || path.begins("https://"))
@@ -1507,65 +1499,79 @@ void file_context::calculate_main_resource_memory()
 }
 
 
-::folder * file_context::resource_folder()
+resource_folder_lease file_context::resource_folder()
 {
 
    try
    {
 
-      _synchronous_lock synchronouslock(this->synchronization(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
-
-      auto pfactory = system()->folder_factory();
-
-      if (m_bFolderResourceCalculated)
       {
 
-         if (!m_pfolderResource)
+         _synchronous_lock synchronouslock(this->synchronization(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
+
+         if (!m_pmemoryResource)
          {
 
-            informationf("m_pfolderResource is null? Why?");
+            auto block = get_main_resource_block();
+
+            if (!block)
+            {
+
+               return {};
+
+            }
+
+            m_pmemoryResource = allocateø ::make_particle1 < read_only_memory >(block);
 
          }
 
-         return m_pfolderResource;
-
       }
 
-      m_bFolderResourceCalculated = true;
+      auto pmemory = m_pmemoryResource;
+      auto psystem = system();
 
-      auto block = get_main_resource_block();
-
-      if (!block)
+      if (!pmemory || !psystem)
       {
 
-         return nullptr;
+         return {};
 
       }
 
-      auto pmemory = allocateø ::make_particle1 < read_only_memory >(block);
+      auto ppool = psystem->resource_folder_pool();
 
-      auto pfile = allocateø::memory_file(pmemory);
+      ppool->reconcile(psystem->zip_file_session_maximum());
 
-      system()->folder_factory()->constructø(m_papplication, m_pfolderResource);
+      ::function < ::pointer < ::folder >() > functionCreateFolder = [this, pmemory]()
+         {
 
-      m_pfolderResource->initialize(this);
+            ::pointer < ::folder > pfolder;
 
-      m_pfolderResource->open_for_reading(pfile);
-      //if (!)
-      //{
+            system()->folder_factory()->constructø(m_papplication, pfolder);
 
+            if (!pfolder)
+            {
 
-      //   return nullptr;
+               return pfolder;
 
-      //}
+            }
 
-      return m_pfolderResource;
+            pfolder->initialize(this);
+
+            auto pfile = allocateø::memory_file(pmemory);
+
+            pfolder->open_for_reading(pfile);
+
+            return pfolder;
+
+         };
+
+      return ppool->acquire(pmemory, functionCreateFolder);
 
    }
    catch (...)
    {
 
-      return nullptr;
+      return {};
 
    }
 
@@ -1575,24 +1581,14 @@ void file_context::calculate_main_resource_memory()
 ::memory_file_pointer file_context::create_resource_file(const ::file::path & path)
 {
 
-   ::folder * pfolder = nullptr;
+   auto folderlease = resource_folder();
 
+   if (!folderlease)
    {
 
-      _synchronous_lock synchronouslock(this->synchronization(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
-
-      pfolder = resource_folder();
-
-      if (::is_null(pfolder))
-      {
-
-         return nullptr;
-
-      }
+      return nullptr;
 
    }
-
-   _synchronous_lock synchronouslock(pfolder->synchronization(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 
    string strPath(path);
 
@@ -1602,14 +1598,14 @@ void file_context::calculate_main_resource_memory()
 
    fflush(stdout);
 
-   if (!pfolder->locate_file(strPath))
+   if (!folderlease->locate_file(strPath))
    {
 
       return nullptr;
 
    }
 
-   auto pfile = pfolder->get_file();
+   auto pfile = folderlease->get_file();
 
    if (pfile.nok())
    {
@@ -1671,20 +1667,12 @@ void file_context::calculate_main_resource_memory()
 ::file::enum_type file_context::resource_get_type(const ::file::path & path, string * pstrLogNotFound)
 {
 
-   ::folder * pfolder = nullptr;
+   auto folderlease = resource_folder();
 
+   if (!folderlease)
    {
 
-      _synchronous_lock synchronouslock(this->synchronization(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
-
-      pfolder = resource_folder();
-
-      if (::is_null(pfolder))
-      {
-
-         return ::file::e_type_doesnt_exist;
-
-      }
+      return ::file::e_type_doesnt_exist;
 
    }
 
@@ -1696,16 +1684,14 @@ void file_context::calculate_main_resource_memory()
 
    }
 
-   _synchronous_lock synchronouslock(pfolder->synchronization(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
-
-   if (pfolder->locate_file(path))
+   if (folderlease->locate_file(path))
    {
 
       return ::file::e_type_existent_file;
 
    }
 
-   if (pfolder->locate_folder(path))
+   if (folderlease->locate_folder(path))
    {
 
       return ::file::e_type_existent_folder;
@@ -3130,7 +3116,7 @@ void file_context::term_system()
 void file_context::destroy()
 {
 
-   m_pfolderResource.defer_destroy_and_release();
+   m_pmemoryResource.defer_destroy_and_release();
 
    file_context_interface::destroy();
 

@@ -473,6 +473,8 @@ list(APPEND library_source
    user/userex/image_list.h
    user/userex/impact_host.cpp
    user/userex/impact_host.h
+   user/userex/impact_host_host.cpp
+   user/userex/impact_host_host.h
    user/userex/menu_document.cpp
    user/userex/menu_document.h
    user/userex/menu_frame.cpp

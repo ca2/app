@@ -1401,7 +1401,7 @@ public:
             if (::is_null(a.element_at(i).get()))
             {
 
-               a.element_at(i).create<create_tag_t>();
+               a.element_at(i).template create<create_tag_t>();
 
             }
 

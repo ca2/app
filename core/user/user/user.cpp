@@ -1107,7 +1107,9 @@ return pimpactsystem;
 
       will_use_impact_hint("color_selection_impact");
 
-      auto pdocument = impact_system("color_selection_impact")->open_document_file(puiOwner->get_app(), ::e_type_null, true);
+      ::cast < ::core::application > pcoreapplication = m_papplication;
+
+      auto pdocument = pcoreapplication->impact_system("color_selection_impact")->open_document_file(puiOwner->get_app(), ::e_type_null, true);
 
       ::pointer<::user::color_selector_impact>pimpact = pdocument->get_typed_impact < ::user::color_selector_impact >();
 

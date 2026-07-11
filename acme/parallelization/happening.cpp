@@ -1280,7 +1280,7 @@ bool happening::is_signaled() const
    else
    {
 
-      return ((happening *)this)->wait({ zero_t{} }).ok();
+      return ((happening *)this)->wait(0_ms).ok();
 
    }
 

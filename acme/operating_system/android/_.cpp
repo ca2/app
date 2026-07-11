@@ -8,13 +8,13 @@ class ::time os_get_system_update_poll_time(const ::atom& atom)
    if (atom == id_operating_system_user_theme_change)
    {
 
-      return zero_t{};
+      return 0_ms;
 
    }
    else if (atom == id_operating_system_user_color_change)
    {
 
-      return zero_t{};
+      return 0_ms;
 
    }
    //else if (atom == id_operating_system_font_change)
@@ -30,7 +30,7 @@ class ::time os_get_system_update_poll_time(const ::atom& atom)
 
    //}
 
-   return zero_t{};
+   return 0_ms;
 
 }
 

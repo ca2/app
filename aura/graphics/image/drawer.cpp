@@ -14,10 +14,27 @@ namespace image
 void image_drawer::draw(const ::image::image_drawing & imagedrawing)
 {
 
-   if (!::is_ok(imagedrawing.m_pimagesource))
+   auto pimagesource = imagedrawing.m_pimagesource;
+
+   if (::is_null(pimagesource))
    {
 
+      throw ::exception(error_failed);
+
       return;
+
+   }
+   else
+   {
+
+      if(!pimagesource->is_ok())
+      {
+
+         throw ::exception(error_failed);
+
+         return;
+
+      }
 
    }
 

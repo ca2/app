@@ -293,6 +293,7 @@ namespace user
       m_bExtendOnParentHostingArea = false;
 
       m_bToolWindow = false;
+      m_bAppWindow = false;
       m_bMessageOnlyWindow = false;
       m_bCompositedFrameWindow = false;
 

@@ -4458,7 +4458,7 @@
     <ClInclude Include="parallelization1.h">
       <Filter>Header Files\operating_system\windows</Filter>
     </ClInclude>
-    <ClInclude Include="parallelization\locking.h">
+    <ClInclude Include="parallelization\parallelization.h">
       <Filter>Header Files\parallelization</Filter>
     </ClInclude>
   </ItemGroup>
@@ -5039,7 +5039,7 @@
     <ClCompile Include="operating_system\windows\message_box.cpp">
       <Filter>Source Files\operating_system\windows</Filter>
     </ClCompile>
-    <ClCompile Include="operating_system\windows\parallelization.cpp">
+    <ClCompile Include="operating_system\windows\threading.cpp">
       <Filter>Source Files\operating_system\windows</Filter>
     </ClCompile>
     <ClCompile Include="operating_system\windows\windows.cpp">
@@ -5052,9 +5052,6 @@
       <Filter>Source Files\operating_system\windows_common</Filter>
     </ClCompile>
     <ClCompile Include="operating_system\windows_common\file.cpp">
-      <Filter>Source Files\operating_system\windows_common</Filter>
-    </ClCompile>
-    <ClCompile Include="operating_system\windows_common\parallelization.cpp">
       <Filter>Source Files\operating_system\windows_common</Filter>
     </ClCompile>
     <ClCompile Include="operating_system\windows_common\time.cpp">
@@ -6413,8 +6410,11 @@
     <ClCompile Include="prototype\collection\_array_binary_stream.cpp">
       <Filter>Source Files\prototype\collection</Filter>
     </ClCompile>
-    <ClCompile Include="locking.cpp">
+    <ClCompile Include="operating_system\windows\parallelization.cpp">
       <Filter>Source Files\operating_system\windows</Filter>
+    </ClCompile>
+    <ClCompile Include="operating_system\windows_common\threading.cpp">
+      <Filter>Source Files\operating_system\windows_common</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

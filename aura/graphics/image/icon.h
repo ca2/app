@@ -42,6 +42,7 @@ namespace image
       icon();
       ~icon() override;
 
+      bool _is_ok() const override;
 
       void initialize(::particle * pparticle) override;
 

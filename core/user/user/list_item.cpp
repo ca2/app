@@ -281,6 +281,9 @@ namespace user
 
                ::image::image_drawing imagedrawing(imagedrawingoptions, imagesource);
 
+               //m_pitem->m_pdrawlistitem->m_pgraphics->fill_solid_rectangle(rectangleDib, argb(120, 100, 160, 200));
+
+               //m_pitem->m_pdrawlistitem->m_pgraphics->draw(imagedrawing);
                m_pitem->m_pdrawlistitem->m_pgraphics->draw(imagedrawing);
 
             }

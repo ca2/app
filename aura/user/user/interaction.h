@@ -180,6 +180,7 @@ namespace user
       ::logic::boolean                          m_bExtendOnParentIfOnlyClient;
       ::logic::boolean                          m_bExtendOnParentHostingArea;
       bool                                      m_bToolWindow;
+      bool                                      m_bAppWindow;
       //bool                                      m_bMessageWindow;
       ::logic::boolean                          m_bLockGraphicalUpdate;
 

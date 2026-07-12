@@ -54,6 +54,35 @@ namespace image
    }
 
 
+   bool icon::_is_ok() const
+   {
+
+      if (::is_null(this))
+      {
+
+         return false;
+
+      }
+
+      if (::is_null(m_pwindowingicon))
+      {
+
+         return false;
+
+      }
+
+      if (!m_pwindowingicon->is_ok())
+      {
+
+         return false;
+
+      }
+
+      return true;
+
+   }
+
+
    void icon::initialize(::particle * pparticle)
    {
 

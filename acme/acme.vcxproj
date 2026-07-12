@@ -2812,12 +2812,13 @@
     <ClCompile Include="operating_system\shared_memory.cpp" />
     <ClCompile Include="operating_system\windows\console.cpp" />
     <ClCompile Include="operating_system\windows\CtrlAltDelSimulator.cpp" />
+    <ClCompile Include="operating_system\windows\parallelization.cpp" />
     <ClCompile Include="operating_system\windows\shared_memory.cpp" />
     <ClCompile Include="operating_system\windows_common\apartment_thread.cpp" />
     <ClCompile Include="operating_system\windows_common\cpu_features.cpp" />
     <ClCompile Include="operating_system\windows_common\last_error.cpp" />
     <ClCompile Include="operating_system\windows_common\task.cpp" />
-    <ClCompile Include="locking.cpp" />
+    <ClCompile Include="operating_system\windows_common\threading.cpp" />
     <ClCompile Include="platform\ini.cpp" />
     <ClCompile Include="platform\ProfileLogger.cpp" />
     <ClCompile Include="platform\registry.cpp" />
@@ -2891,7 +2892,7 @@
     <ClInclude Include="operating_system\windows_common\last_error.h" />
     <ClInclude Include="operating_system\windows_common\networking.h" />
     <ClInclude Include="parallelization1.h" />
-    <ClInclude Include="parallelization\locking.h" />
+    <ClInclude Include="parallelization\parallelization.h" />
     <ClInclude Include="parallelization\_platform.h" />
     <ClInclude Include="platform\acme_message.h" />
     <ClInclude Include="platform\guid.h" />
@@ -4220,7 +4221,7 @@
     <ClInclude Include="operating_system\windows\find_file.h" />
     <ClCompile Include="operating_system\windows\message_box.cpp" />
     <ClCompile Include="operating_system\windows\message_loop.cpp" />
-    <ClCompile Include="operating_system\windows\parallelization.cpp" />
+    <ClCompile Include="operating_system\windows\threading.cpp" />
     <ClCompile Include="operating_system\windows\process.cpp" />
     <ClCompile Include="operating_system\windows\thread.cpp" />
     <ClCompile Include="operating_system\windows\user.cpp" />
@@ -4243,7 +4244,6 @@
     <ClCompile Include="operating_system\windows_common\file.cpp" />
     <ClCompile Include="operating_system\windows_common\memory.cpp" />
     <ClCompile Include="operating_system\windows_common\networking.cpp" />
-    <ClCompile Include="operating_system\windows_common\parallelization.cpp" />
     <ClCompile Include="operating_system\windows_common\process.cpp" />
     <ClCompile Include="operating_system\windows_common\time.cpp" />
     <ClCompile Include="operating_system\windows_common\unicode.cpp" />

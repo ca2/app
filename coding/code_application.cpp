@@ -31,6 +31,7 @@
 #include "acme/platform/session.h"
 //#include "aura/os/_os.h"
 //#include "aura/update.h"
+#include "acme/user/interface/message_box.h"
 #include "code.h"
 #include "acme/operating_system/summary.h"
 // #include "aura/user/user/button.h"

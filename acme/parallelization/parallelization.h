@@ -41,15 +41,15 @@ namespace parallelization
    public:
 
 
-      mutex *m_pmutex{};
+      ::parallelization::mutex *m_pmutex{};
       bool m_bOwnsLock{};
 
 
-      explicit unique_lock(mutex &mutex) noexcept : m_pmutex(&mutex) { lock(); }
+      explicit unique_lock(::parallelization::mutex &mutex) noexcept : m_pmutex(&mutex) { lock(); }
 
-      unique_lock(mutex &mutex, defer_lock_t) noexcept : m_pmutex(&mutex) {}
+      unique_lock(::parallelization::mutex &mutex, defer_lock_t) noexcept : m_pmutex(&mutex) {}
 
-      unique_lock(mutex &mutex, adopt_lock_t) noexcept : m_pmutex(&mutex), m_bOwnsLock(true) {}
+      unique_lock(::parallelization::mutex &mutex, adopt_lock_t) noexcept : m_pmutex(&mutex), m_bOwnsLock(true) {}
 
       unique_lock(const unique_lock &) = delete;
       unique_lock &operator=(const unique_lock &) = delete;
@@ -140,7 +140,7 @@ namespace parallelization
       explicit operator bool() const noexcept { return owns_lock(); }
 
       [[nodiscard]]
-      mutex *mutex() const noexcept
+      ::parallelization::mutex *mutex() const noexcept
       {
          return m_pmutex;
       }

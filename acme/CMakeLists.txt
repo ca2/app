@@ -1996,8 +1996,8 @@ list(APPEND library_source
         operating_system/universal_windows/base_file.h
         operating_system/universal_windows/exception_engine.h
         operating_system/universal_windows/host_interaction.h
-        operating_system/universal_windows/parallelization.h
-        operating_system/universal_windows/parallelization_winrt.h
+        operating_system/universal_windows/threading.h
+        operating_system/universal_windows/threading_winrt.h
         operating_system/universal_windows/process.h
         operating_system/universal_windows/sockets.h
         operating_system/user.h
@@ -2600,7 +2600,7 @@ if (${LINUX})
             operating_system/linux/linux_linux.h
             operating_system/linux/node.cpp
             operating_system/linux/os.cpp
-            operating_system/linux/parallelization.cpp
+            operating_system/linux/threading.cpp
             operating_system/linux/process.cpp
             operating_system/linux/process.h
             operating_system/linux/process_pid.cpp
@@ -3219,9 +3219,6 @@ if (${LINUX} OR ${__BSD__} OR ${APPLE} OR ${SOLARIS} OR ${ANDROID})
             #operating_system/posix/local_memory_map.cpp
             operating_system/posix/memory.cpp
             operating_system/posix/process.cpp
-            operating_system/posix/parallelization.cpp
-            operating_system/posix/parallelization_pthread.cpp
-            operating_system/posix/parallelization_pthread.h
             #operating_system/posix/time.cpp
             #operating_system/posix/timer.cpp
             operating_system/winpr_keycode.cpp
@@ -3229,6 +3226,10 @@ if (${LINUX} OR ${__BSD__} OR ${APPLE} OR ${SOLARIS} OR ${ANDROID})
             operating_system/strict_posix/debug.cpp
             operating_system/posix/dynamic_library_dl.cpp
             operating_system/posix/dynamic_library_dl.h
+       operating_system/posix/threading.cpp
+       operating_system/posix/threading_pthread.cpp
+       operating_system/posix/threading_pthread.h
+       operating_system/pthread/parallelization.cpp
     )
 
     #set_source_files_properties(operating_system/posix/process.cpp PROPERTIES SKIP_PRECOMPILE_HEADERS ON)

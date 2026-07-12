@@ -876,6 +876,8 @@ namespace apex
       //void request(::create * pcommand) override;
       //void on_create(::request * prequest) override;
 
+      void post_request(::request* prequest) override;
+
       //      virtual void dispatch_user_message(::user::message * pusermessage);
 
       //virtual void throw_not_installed();

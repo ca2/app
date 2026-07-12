@@ -769,21 +769,20 @@ namespace acme
       //}
 
 
-      void windowing::post_start_application_request_and_process_command_line_options()
-      {
-
-         auto prequest = create_newø<::request>();
-
-         prequest->m_strAppId = system()->m_papplication->m_strAppId;
-
-         prequest->m_ecommand = e_command_start_application;
-
-         system()->post_request(prequest);
-
-
-         system()->m_papplication->process_command_line_options();
-
-      }
+      // void windowing::post_start_application_request_and_process_command_line_options()
+      // {
+      //
+      //    auto prequest = create_newø<::request>();
+      //
+      //    prequest->m_strAppId = system()->m_papplication->m_strAppId;
+      //
+      //    prequest->m_ecommand = e_command_start_application;
+      //
+      //    system()->post_request(prequest);
+      //
+      //    system()->m_papplication->process_command_line_options();
+      //
+      // }
 
 
       void windowing::run()
@@ -801,8 +800,9 @@ namespace acme
 
          //::set_main_thread();
 
-         post_start_application_request_and_process_command_line_options();
+         //post_start_application_request_and_process_command_line_options();
 
+         post_request(nullptr);
 
          // run();
 

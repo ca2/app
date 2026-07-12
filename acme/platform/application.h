@@ -228,9 +228,10 @@ namespace platform
 
 
       //bool m_bPostedCommandLineFileOpen;
-      bool m_bApplicationStartFileOpenRequest = false;
-      bool m_bPostedApplicationDefaultStartOrFileOpenRequest = false;
-      ::pointer<::request> m_prequestApplicationStartFileOpen;
+      bool m_bCommandLineProcessed = false;
+      bool m_bPostedApplicationStartRequest = false;
+      ::pointer<::request> m_prequestCommandLine;
+      //::payload_array m_payloadFilesToOpenOnApplicationStart;
 
 
       ::string m_strNetworkingApplicationHostname;
@@ -734,8 +735,8 @@ namespace platform
       void term_task() override;
 
 
-      virtual ::request * application_start_file_open_request();
-      void process_command_line_options() override;
+      virtual void defer_process_command_line();
+      void post_request(::request * prequest) override;
 
 
       virtual void user_confirm_close_application();

@@ -1024,25 +1024,23 @@ namespace platform
    }
 
 
-   ::request *application::application_start_file_open_request()
+   void application::defer_process_command_line()
    {
 
-      if (m_bApplicationStartFileOpenRequest)
+      if (m_bCommandLineProcessed)
       {
 
-         return m_prequestApplicationStartFileOpen;
+         return;
+
       }
 
-      m_bApplicationStartFileOpenRequest = true;
+      m_bCommandLineProcessed = true;
 
-
-      
       //m_papplication->post(
       //   [this]()
       //   {
       //      m_papplication->process_command_line_options();
       //   });
-
 
       auto psystem = system();
 
@@ -1066,6 +1064,7 @@ namespace platform
          information() << "system::defer_post_initial_request command line: \"" << strCommandLineSystemNative << "\"";
 
          setRequest._008ParseCommandFork(strCommandLineSystemNative, payloadFile, strApp);
+
       }
       else if (psystem->m_argc > 0 && psystem->m_args)
       {
@@ -1084,6 +1083,7 @@ namespace platform
             {
 
                continue;
+
             }
 
             if (papplication->defer_consume_main_arguments(psystem->m_argc, psystem->m_args, iArgument) &&
@@ -1091,6 +1091,7 @@ namespace platform
             {
 
                continue;
+
             }
 
             ::string strArgument = psystem->m_args[iArgument];
@@ -1099,14 +1100,17 @@ namespace platform
             {
 
                setRequest._008AddArgument(strArgument);
+
             }
             else
             {
 
                straFiles.add(strArgument);
+
             }
 
             iArgument++;
+
          }
 
          if (straFiles.has_elements())
@@ -1116,13 +1120,17 @@ namespace platform
             {
 
                payloadFile = straFiles[0];
+
             }
             else
             {
 
                payloadFile.string_array_reference() = straFiles;
+
             }
+
          }
+
       }
 
       if (!payloadFile.is_empty())
@@ -1144,38 +1152,66 @@ namespace platform
 
          prequest->m_bPreferSync = true;
          
-         m_bPostedApplicationDefaultStartOrFileOpenRequest = true;
+         //m_bPostedApplicationDefaultStartOrFileOpenRequest = true;
 
          // call_request(prequest);
 
-         m_prequestApplicationStartFileOpen = prequest;
+         //m_prequestApplicationStartFileOpen = prequest;
+
+         m_prequestCommandLine = prequest;
 
       }
 
-      return m_prequestApplicationStartFileOpen;
+      //return m_prequestApplicationStartFileOpen;
 
    }
 
 
-   void application::process_command_line_options()
+   void application::post_request(::request * prequest)
    {
 
-      if (!m_bPostedApplicationDefaultStartOrFileOpenRequest)
+      if (prequest)
       {
 
-         m_bPostedApplicationDefaultStartOrFileOpenRequest = true;
-
-         auto prequest = application_start_file_open_request();
-
-         if (prequest)
+         if (m_bPostedApplicationStartRequest)
          {
 
-            if (!prequest->m_payloadFile.is_empty())
+            post_request(prequest);
+
+            return;
+
+         }
+
+      }
+
+      if (!m_bPostedApplicationStartRequest)
+      {
+
+         m_bPostedApplicationStartRequest = true;
+
+         defer_process_command_line();
+
+         if (!m_prequestCommandLine)
+         {
+
+            if (prequest)
             {
 
-               prequest->m_ecommand = e_command_file_open;
+               m_prequestCommandLine = prequest;
 
-               property_set().merge(prequest->property_set());
+               prequest = nullptr;
+
+            }
+
+         }
+
+         if (m_prequestCommandLine)
+         {
+
+            post_request(m_prequestCommandLine);
+
+            if (prequest)
+            {
 
                post_request(prequest);
 
@@ -1193,6 +1229,29 @@ namespace platform
 
          }
 
+         //    if (!prequest->m_payloadFile.is_empty())
+         //    {
+         //
+         //       prequest->m_ecommand = e_command_file_open;
+         //
+         //       property_set().merge(prequest->property_set());
+         //
+         //       post_request(prequest);
+         //
+         //    }
+         //
+         // }
+         // else
+         // {
+         //
+         //    auto prequestDefaultStart = create_newø<::request>();
+         //
+         //    prequestDefaultStart->m_ecommand = e_command_default_start;
+         //
+         //    post_request(prequestDefaultStart);
+         //
+         // }
+         //
       }
 
    }

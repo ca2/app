@@ -905,6 +905,14 @@ namespace acme
    }
 
 
+      void interaction::on_send_window_create_message()
+      {
+
+                  
+
+      }
+
+
       //void interaction::set_timer(uptr uEvent, const class ::time & timeEllapse, const ::procedure & procedure, bool bPeriodic)
       //{
 

@@ -127,6 +127,8 @@ namespace acme
          bool is_host_top_level() override;
          
          virtual bool is_window();
+
+         virtual void on_send_window_create_message();
          
          virtual void on_dialog_result(const ::payload & payloadResult);
 

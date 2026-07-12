@@ -58,9 +58,9 @@ namespace acme
          ::windowing::enum_bias                             m_ewindowingbias;
 
 
-         ::procedure                                        m_callbackOnApplicationActivate;
+         //::procedure                                        m_callbackOnApplicationActivate;
 
-         bool                                               m_bApplicationActivated;
+         bool                                               m_bDarkModeSystemStarted;
          bool                                               m_bIsOperatingAmbientApplicationHeld;
 
 
@@ -147,6 +147,9 @@ namespace acme
 
          void __task_suffix() override;
 
+
+         virtual void on_prepare_application();
+
          
          virtual void show(::particle_pointer pparticle);
 
@@ -195,7 +198,7 @@ namespace acme
 
          virtual void initialize_windowing();
 
-         virtual void on_activate();
+         //virtual void on_activate();
 
          virtual void finalize_windowing();
 
@@ -288,7 +291,7 @@ namespace acme
          virtual void on_unhold_operating_ambient_application();
 
 
-         virtual void on_application_activate();
+         //virtual void on_application_activate();
 
 
          void run_loop2(::task *ptask) override;

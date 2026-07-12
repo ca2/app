@@ -42,7 +42,7 @@ namespace acme
          m_bRunMainLoop = true;
          m_ewindowing = ::windowing::e_windowing_none;
          m_ewindowingbias = ::windowing::e_bias_unknown;
-         m_bApplicationActivated = false;
+         m_bDarkModeSystemStarted = false;
 
       }
 
@@ -169,7 +169,8 @@ namespace acme
 
          //system()->defer_post_initial_request();
          
-         on_activate();
+         //on_activate();
+         m_papplication->post_request(nullptr);
 
       }
 
@@ -408,7 +409,7 @@ namespace acme
 
          m_pacmedisplay.defer_destroy_and_release();
 
-         m_callbackOnApplicationActivate.release();
+         //m_callbackOnApplicationActivate.release();
 
          //m_windowmap.clear();
 
@@ -546,11 +547,9 @@ namespace acme
       }
 
 
-      void windowing::on_activate()
+      void windowing::on_prepare_application()
       {
 
-
-         fetch_system_background_color();
 
          // if (!estatus)
          //{
@@ -619,12 +618,14 @@ namespace acme
 
          }
 
-         if (!m_bApplicationActivated)
+         if (!m_bDarkModeSystemStarted)
          {
 
-            m_bApplicationActivated = true;
+            m_bDarkModeSystemStarted = true;
 
             hook_operating_ambient_theme_change_callbacks();
+
+            fetch_system_background_color();
 
             fetch_dark_mode();
 
@@ -1217,31 +1218,31 @@ namespace acme
       }
 
 
-      void windowing::on_application_activate()
-      {
-
-         ::information() << "::acme::windowing::windowing::on_application_activate";
-
-         if (m_callbackOnApplicationActivate)
-         {
-
-            m_callbackOnApplicationActivate();
-
-            return;
-
-         }
-
-         //system()->defer_post_initial_request();
-
-         //system()->post_aaa_application_start();
-         //system()->defer_post_aaa_application_start_file_open_request();
-         //system()->post_aaa_application_started();
-
-         //windowing_application_on_start();
-
-         on_activate();
-
-      }
+      // void windowing::on_application_activate()
+      // {
+      //
+      //    ::information() << "::acme::windowing::windowing::on_application_activate";
+      //
+      //    if (m_callbackOnApplicationActivate)
+      //    {
+      //
+      //       m_callbackOnApplicationActivate();
+      //
+      //       return;
+      //
+      //    }
+      //
+      //    //system()->defer_post_initial_request();
+      //
+      //    //system()->post_aaa_application_start();
+      //    //system()->defer_post_aaa_application_start_file_open_request();
+      //    //system()->post_aaa_application_started();
+      //
+      //    //windowing_application_on_start();
+      //
+      //    on_activate();
+      //
+      // }
 
 
       void windowing::run_loop2(::task* ptask)

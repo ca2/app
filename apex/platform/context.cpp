@@ -1215,11 +1215,10 @@ namespace apex
    //}
 
 
-   void context::post_request(::request * prequest)
+   void context::_post_request(::request * prequest)
    {
 
-      ::handler::handler::post_request(prequest);
-
+      ::handler::handler::_post_request(prequest);
 
    }
 

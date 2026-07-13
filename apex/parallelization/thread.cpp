@@ -4916,10 +4916,10 @@ void thread::verb()
 }
 
 
-void thread::post_request(::request* prequest)
+void thread::_post_request(::request* prequest)
 {
 
-   ::task::post_request(prequest);
+   ::task::_post_request(prequest);
    //post_element(::user::e_message_system, e_system_message_create, prequest);
 
 }

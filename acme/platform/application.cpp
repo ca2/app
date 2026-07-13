@@ -1208,12 +1208,12 @@ namespace platform
          if (m_prequestCommandLine)
          {
 
-            _post_request(m_prequestCommandLine);
+            m_psystem->_post_request(m_prequestCommandLine);
 
             if (prequest)
             {
 
-               _post_request(prequest);
+               m_psystem->_post_request(prequest);
 
             }
 
@@ -1225,7 +1225,7 @@ namespace platform
 
             prequestDefaultStart->m_ecommand = e_command_default_start;
 
-            _post_request(prequestDefaultStart);
+            m_psystem->_post_request(prequestDefaultStart);
 
          }
 

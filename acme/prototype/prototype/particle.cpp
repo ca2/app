@@ -2218,8 +2218,16 @@ particle::message_box(const ::exception &exception, const ::scoped_string &scope
 
     auto pmessagebox = createø < ::user_interface::message_box >();
 
-    pmessagebox->initialize_message_box(exception, scopedstrMessage, scopedstrTitle, emessagebox,
-    scopedstrDetails, *pstraIconUrl);
+   if (::is_null(pstraIconUrl))
+   {
+      pmessagebox->initialize_message_box(exception, scopedstrMessage, scopedstrTitle, emessagebox,
+      scopedstrDetails);
+   }
+   else
+   {
+      pmessagebox->initialize_message_box(exception, scopedstrMessage, scopedstrTitle, emessagebox,
+      scopedstrDetails, *pstraIconUrl);
+   }
 
     return pmessagebox;
 }

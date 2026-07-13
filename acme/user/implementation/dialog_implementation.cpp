@@ -83,7 +83,7 @@ dialog_implementation::~dialog_implementation()
    void dialog_implementation::on_initialize_dialog()
 {
 
-construct_newø(m_pmanualresethappeningDialogResponse);
+   defer_construct_newø(m_pmanualresethappeningDialogResponse);
 
 }
 
@@ -372,6 +372,8 @@ class ::time dialog_implementation::dialog_timeout() const
 
  void dialog_implementation::wait_dialog_response(const class ::time & timeTimeout)
 {
+
+   defer_construct_newø(m_pmanualresethappeningDialogResponse);
     
     m_pmanualresethappeningDialogResponse->wait(timeTimeout);
     

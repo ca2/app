@@ -1491,7 +1491,14 @@ void window::on_keyboard_layout_change(const_char_pointer pszKeyboardLayoutId)
 
       auto r = ::i32_rectangle(m_pointWindow, m_sizeWindow);
 
-      user_interaction()->_on_configure_notify_unlocked(r);
+      auto puserinteraction = user_interaction();
+
+      if (puserinteraction)
+      {
+
+         puserinteraction->_on_configure_notify_unlocked(r);
+
+      }
 
    }
 

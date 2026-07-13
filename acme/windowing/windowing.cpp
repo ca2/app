@@ -803,7 +803,7 @@ namespace acme
 
          //post_start_application_request_and_process_command_line_options();
 
-         post_request(nullptr);
+         m_papplication->post_request(nullptr);
 
          // run();
 

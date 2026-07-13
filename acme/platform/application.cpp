@@ -1176,7 +1176,7 @@ namespace platform
          if (m_bPostedApplicationStartRequest)
          {
 
-            post_request(prequest);
+            _post_request(prequest);
 
             return;
 
@@ -1208,12 +1208,12 @@ namespace platform
          if (m_prequestCommandLine)
          {
 
-            post_request(m_prequestCommandLine);
+            _post_request(m_prequestCommandLine);
 
             if (prequest)
             {
 
-               post_request(prequest);
+               _post_request(prequest);
 
             }
 
@@ -1225,7 +1225,7 @@ namespace platform
 
             prequestDefaultStart->m_ecommand = e_command_default_start;
 
-            post_request(prequestDefaultStart);
+            _post_request(prequestDefaultStart);
 
          }
 

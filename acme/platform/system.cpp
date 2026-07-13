@@ -3139,7 +3139,7 @@ void system::open_internet_link(const ::scoped_string & scopedstrUrl, const ::sc
       information() << "::apex::system::on_request session = " << ::platform::type(psession).name() << "(" << ((iptr)psession) <<
          ")";
 
-      psession->post_request(prequest);
+      psession->_post_request(prequest);
 
    }
 

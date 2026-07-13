@@ -388,11 +388,10 @@ bool task::is_current_task() const
 //}
 
 
-void task::post_request(::request * prequest)
+void task::_post_request(::request * prequest)
 {
 
-   ::handler::handler::post_request(prequest);
-
+   ::handler::handler::_post_request(prequest);
 
    //auto prequestHold =  __retain prequest;
 

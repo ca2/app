@@ -81,7 +81,7 @@ namespace handler
 
       virtual void defer_reset_main_loop_happening();
 
-      virtual void post_request(::request * prequest);
+      virtual void _post_request(::request * prequest);
 
       //virtual ::request * pick_next_posted_request();
 

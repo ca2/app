@@ -737,6 +737,7 @@ namespace platform
 
       virtual void defer_process_command_line();
       void post_request(::request * prequest) override;
+      //void _post_request(::request * prequest) override;
 
 
       virtual void user_confirm_close_application();

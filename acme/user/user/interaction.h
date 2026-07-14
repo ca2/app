@@ -426,7 +426,7 @@ namespace acme
                //virtual ::payload get_result();
                //void add_button(const ::scoped_string & scopedstrText, enum_dialog_result edialogresult, ::i8 chLetter);
 
-               void display(::e_display edisplay, const ::user::activation& useractivation) override;
+               //void display(::e_display edisplay, const ::user::activation& useractivation) override;
 
                virtual void display_temporary_file_with_text(const ::scoped_string & scopedstr);
 

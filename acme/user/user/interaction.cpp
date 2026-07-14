@@ -905,6 +905,34 @@ namespace acme
    }
 
 
+      // void interaction::display(::e_display edisplay, const ::user::activation & useractivation)
+      // {
+      //
+      //    if (::is_screen_visible(edisplay))
+      //    {
+      //
+      //       m_pacmewindowingwindow->show_window(::user_interface::e_show_window_show_normal);
+      //
+      //    }
+      //    else
+      //    {
+      //
+      //       m_pacmewindowingwindow->show_window(::user_interface::e_show_window_hide);
+      //
+      //    }
+      //
+      // }
+
+
+
+      // void interaction::on_send_window_create_message()
+      // {
+      //
+      //    mess
+      //
+      // }
+
+
       //void interaction::set_timer(uptr uEvent, const class ::time & timeEllapse, const ::procedure & procedure, bool bPeriodic)
       //{
 

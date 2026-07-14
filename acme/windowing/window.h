@@ -481,6 +481,10 @@ namespace acme
          virtual void _lock_window_gpu_context();
          virtual void _unlock_window_gpu_context();
 
+
+         void display(::e_display edisplay, const ::user::activation& useractivation) override;
+
+
       };
 
 

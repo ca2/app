@@ -383,10 +383,12 @@ namespace platform
 
    void acme_application_layer::process_term()
    {
+
+
    }
 
 
-   void acme_application_layer::process_command_line_options()
+   void acme_application_layer::post_request(::request * prequest)
    {
 
 

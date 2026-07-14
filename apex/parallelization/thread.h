@@ -445,7 +445,7 @@ public:
 
    void message_handler(::message::message * pmessage) override;
 
-   virtual void post_request(::request* prequest) override;
+   void _post_request(::request* prequest) override;
 
    virtual void on_request_message(::request* prequest);
 

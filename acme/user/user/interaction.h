@@ -127,6 +127,10 @@ namespace acme
          bool is_host_top_level() override;
          
          virtual bool is_window();
+
+         void display(::e_display edisplay, const ::user::activation& useractivation);
+
+         //virtual void on_send_window_create_message();
          
          virtual void on_dialog_result(const ::payload & payloadResult);
 
@@ -422,7 +426,7 @@ namespace acme
                //virtual ::payload get_result();
                //void add_button(const ::scoped_string & scopedstrText, enum_dialog_result edialogresult, ::i8 chLetter);
 
-               void display(::e_display edisplay, const ::user::activation& useractivation) override;
+               //void display(::e_display edisplay, const ::user::activation& useractivation) override;
 
                virtual void display_temporary_file_with_text(const ::scoped_string & scopedstr);
 

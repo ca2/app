@@ -1076,10 +1076,10 @@ namespace windowing
    // }
 
 
-   void windowing::on_activate()
+   void windowing::on_prepare_application()
    {
    
-      ::acme::windowing::windowing::on_activate();
+      ::acme::windowing::windowing::on_prepare_application();
    
    }
 

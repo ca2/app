@@ -272,7 +272,7 @@ namespace platform
       /// so here either files maybe requested to be opened by the
       /// application or otherwise, the application will be requested
       /// to do a default start.
-      virtual void process_command_line_options();
+      virtual void post_request(::request * prequest);
 
       //virtual void pre_run();
       //virtual void application_pre_run();

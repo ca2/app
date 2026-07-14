@@ -974,7 +974,7 @@ void application::setResourceName(::i32 iId, const ::scoped_string &scopedstrRes
 
       //system()->application_start_file_open_request();
 
-      application_start_file_open_request();
+      defer_process_command_line();
 
       bool bHandled = false;
 
@@ -3934,7 +3934,7 @@ void application::setResourceName(::i32 iId, const ::scoped_string &scopedstrRes
                try
                {
 
-                  auto prequest = ::transfer(m_prequestApplicationStartFileOpen);
+                  auto prequest = ::transfer(m_prequestCommandLine);
 
                   on_exclusive_instance_conflict(prequest, bHandled, e_exclusive_instance_global,
                                                  "");
@@ -3963,7 +3963,7 @@ void application::setResourceName(::i32 iId, const ::scoped_string &scopedstrRes
                try
                {
 
-                  auto prequest = ::transfer(m_prequestApplicationStartFileOpen);
+                  auto prequest = ::transfer(m_prequestCommandLine);
 
                   on_exclusive_instance_conflict(prequest, bHandled, e_exclusive_instance_global_id, get_global_mutex_id());
 
@@ -3988,7 +3988,7 @@ void application::setResourceName(::i32 iId, const ::scoped_string &scopedstrRes
 
                information() << "A instance of the application:<br><br>-" << m_strAppName << "<br><br>seems to be already running at the same account.<br>Only one instance of this application can run locally: at the same account.<br><br>Exiting this ___new instance.";
 
-               auto prequest = ::transfer(m_prequestApplicationStartFileOpen);
+               auto prequest = ::transfer(m_prequestCommandLine);
 
                on_exclusive_instance_conflict(prequest, bHandled, e_exclusive_instance_local, "");
 
@@ -4011,7 +4011,7 @@ void application::setResourceName(::i32 iId, const ::scoped_string &scopedstrRes
                   // Should in some way activate the other instance
                   information() << "A instance of the application:<br><br> - " << m_strAppName << " with the atom \"" << get_local_mutex_id() << "\" <br><br>seems to be already running at the same account.<br>Only one instance of this application can run locally: at the same ac::collection::count with the same atom.<br><br>Exiting this ___new instance.";
 
-                  auto prequest = ::transfer(m_prequestApplicationStartFileOpen);
+                  auto prequest = ::transfer(m_prequestCommandLine);
 
                   on_exclusive_instance_conflict(prequest, bHandled, e_exclusive_instance_local_id, get_local_mutex_id());
                   //if(!)
@@ -4794,6 +4794,15 @@ void application::setResourceName(::i32 iId, const ::scoped_string &scopedstrRes
    //   __UNREFERENCED_PARAMETER(bSynch);
 
    //}
+
+
+   void application::post_request(::request* prequest)
+   {
+
+      ::platform::application::post_request(prequest);
+
+   }
+
 
    void application::post_critical_error_message(const ::scoped_string & scopedstrMessage, bool bShowLog)
    {

@@ -373,7 +373,7 @@ private:
    virtual bool is_current_task() const;
    //virtual object * calc_parent_thread();
 
-   virtual void post_request(::request* prequest) override;
+   void _post_request(::request* prequest) override;
 
    virtual bool task_set_name(const ::scoped_string & scopedstrName);
 

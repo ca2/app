@@ -978,18 +978,23 @@ namespace user
    bool frame_window::on_create_client(::user::system * pusersystem)
    {
 
-      if (pusersystem != nullptr)
+      if (m_pimpactMain.is_null())
       {
 
-         if (pusersystem->m_typeNewImpact || pusersystem->m_puserprimitiveNew != nullptr)
+         if (pusersystem != nullptr)
          {
 
-            m_pimpactMain = pusersystem->create_impact(this);
-
-            if (!m_pimpactMain)
+            if (pusersystem->m_typeNewImpact || pusersystem->m_puserprimitiveNew != nullptr)
             {
 
-               warning() << "the impact wasn't created: " << pusersystem->m_typeNewImpact;
+               m_pimpactMain = pusersystem->create_impact(this);
+
+               if (!m_pimpactMain)
+               {
+
+                  warning() << "the impact wasn't created: " << pusersystem->m_typeNewImpact;
+
+               }
 
             }
 
@@ -1041,7 +1046,8 @@ namespace user
 
       ::pointer<::message::create>pcreatemessage(pmessage);
 
-      if (!(m_ewindowflag & e_window_flag_window_created))
+      //if (!(m_ewindowflag & e_window_flag_window_created))
+      if (m_pimpactMain.is_null())
       {
 
          pcreatemessage->m_lresult = OnCreateHelper(m_pusersystem);

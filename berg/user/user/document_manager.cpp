@@ -744,7 +744,7 @@ namespace user
 
       auto psession = session();
 
-      psession->post_request(prequest);
+      psession->_post_request(prequest);
       // if returns nullptr, the ::account::user has already been alerted
    }
 

@@ -172,8 +172,13 @@ namespace user
             
             m_puserinteraction->user_thread()->post([this]()
                                                      {
-               
-               branch();
+
+               if (!is_task_set2())
+               {
+
+                  branch();
+
+               }
                
             });
             

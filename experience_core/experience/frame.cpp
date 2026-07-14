@@ -768,11 +768,11 @@ x + cx, y + cy);
       else if (!pframewindow->layout().is_full_screen() && !m_pframewindow->frame_is_transparent())
       {
 
-         informationf("experience_core::frame::_001OnDraw        DrawCaptionBar");
+         //informationf("experience_core::frame::_001OnDraw        DrawCaptionBar");
          
-         informationf("experience_core::frame::_001OnDraw        translation %s", pgraphics->translation_friendly_text().c_str());
+         //informationf("experience_core::frame::_001OnDraw        translation %s", pgraphics->translation_friendly_text().c_str());
          
-         informationf("experience_core::frame::_001OnDraw        clipbox %s", pgraphics->clip_box_friendly_text().c_str());
+         //informationf("experience_core::frame::_001OnDraw        clipbox %s", pgraphics->clip_box_friendly_text().c_str());
 
          _001DrawCaptionBar(pgraphics);
 

@@ -59,6 +59,14 @@ namespace launch
 
       strBranch.make_lower();
 
+      print_line("VARIANT_ID=\"" + strBranch + "\"...");
+
+      ::string strXdgCurrentDesktop = getenv("XDG_CURRENT_DESKTOP");
+
+      strXdgCurrentDesktop.make_lower();
+
+      print_line("getenv(\"XDG_CURRENT_DESKTOP\")=\"" + strXdgCurrentDesktop + "\"...");
+
       ::string strRelease;
 
       strRelease = m_poperatingsystemsummary->m_strSystemRelease;
@@ -72,22 +80,22 @@ namespace launch
 
       if (m_strSystem == "ubuntu")
       {
-         if (strBranch == "kde")
+         if (strBranch == "kde" || strXdgCurrentDesktop == "kde")
          {
             m_strSystem = "kubuntu";
             print_line("This is Kubuntu System...");
          }
-         else if (strBranch == "xfce")
+         else if (strBranch == "xfce" || strXdgCurrentDesktop == "xfce")
          {
             m_strSystem = "xubuntu";
             print_line("This is Xubuntu System...");
          }
-         else if (strBranch == "lxde")
+         else if (strBranch == "lxde" || strXdgCurrentDesktop == "lxde")
          {
             m_strSystem = "lubuntu";
             print_line("This is Lubuntu System (LXDE)...");
          }
-         else if (strBranch == "lxqt")
+         else if (strBranch == "lxqt" || strXdgCurrentDesktop == "lxqt")
          {
             m_strSystem = "lubuntu";
             print_line("This is Xubuntu System (LXQt)...");

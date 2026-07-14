@@ -41,6 +41,7 @@ namespace launch
    void application::on_launch_main_status(const ::scoped_string& scopedstrMain)
    {
 
+      print_line(scopedstrMain);
 
    }
 

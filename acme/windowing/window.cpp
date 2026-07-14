@@ -2311,6 +2311,24 @@ void window::on_control_box_zoom()
     
     }
 
+
+      void window::display(::e_display edisplay, const ::user::activation& useractivation)
+      {
+
+         if (::is_screen_visible(edisplay))
+         {
+
+            show_window(::user_interface::e_show_window_show_normal);
+
+         }
+         else
+         {
+
+            show_window(::user_interface::e_show_window_hide);
+
+         }
+
+      }
    
 
    } // namespace windowing

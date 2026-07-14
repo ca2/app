@@ -96,6 +96,14 @@ namespace nano
       }
 
 
+      void * context::detach(::i32 iType)
+      {
+
+         return nullptr;
+
+      }
+
+
       void context::on_begin_draw()
       {
 

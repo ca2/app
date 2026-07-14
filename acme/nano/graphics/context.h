@@ -59,7 +59,7 @@ namespace nano
          virtual void resize(const ::i32_size & size);
 
          virtual void attach(void * posdata, const ::i32_size & size, ::i32 iType);
-
+         virtual void * detach(::i32 iType);
 
          virtual void on_begin_draw();
 

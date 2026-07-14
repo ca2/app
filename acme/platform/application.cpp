@@ -1225,6 +1225,8 @@ namespace platform
 
             prequestDefaultStart->m_ecommand = e_command_default_start;
 
+            prequestDefaultStart->m_strAppId = m_strAppId;
+
             m_psystem->_post_request(prequestDefaultStart);
 
          }

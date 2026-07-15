@@ -2991,7 +2991,6 @@ if (${FREEBSD})
             operating_system/freebsd/internal.h
             #operating_system/freebsd/library.cpp
             operating_system/freebsd/os.cpp
-            operating_system/freebsd/parallelization.cpp
             operating_system/freebsd/process.cpp
             operating_system/freebsd/process.h
             operating_system/freebsd/process_pid.cpp
@@ -3003,6 +3002,7 @@ if (${FREEBSD})
             operating_system/freebsd/system.cpp
             operating_system/freebsd/thread.cpp
             operating_system/freebsd/thread.h
+            operating_system/freebsd/threading.cpp
             #            operating_system/freebsd/time.cpp
             operating_system/freebsd/trace.cpp
             operating_system/freebsd/user.h
@@ -3081,7 +3081,6 @@ if (${OPENBSD})
             operating_system/openbsd/internal.h
             #            operating_system/openbsd/library.cpp
             operating_system/openbsd/os.cpp
-            operating_system/openbsd/parallelization.cpp
             operating_system/openbsd/process.cpp
             operating_system/openbsd/process.h
             operating_system/openbsd/process_pid.cpp
@@ -3093,6 +3092,7 @@ if (${OPENBSD})
             operating_system/openbsd/system.cpp
             operating_system/openbsd/thread.cpp
             operating_system/openbsd/thread.h
+            operating_system/openbsd/threading.cpp
             #            operating_system/openbsd/time.cpp
             operating_system/openbsd/trace.cpp
             operating_system/openbsd/user.h
@@ -3136,7 +3136,6 @@ if (${NETBSD})
             operating_system/netbsd/graphics.cpp
             operating_system/netbsd/internal.h
             operating_system/netbsd/os.cpp
-            operating_system/netbsd/parallelization.cpp
             operating_system/netbsd/process.cpp
             operating_system/netbsd/process.h
             operating_system/netbsd/process_pid.cpp
@@ -3148,6 +3147,7 @@ if (${NETBSD})
             operating_system/netbsd/system.cpp
             operating_system/netbsd/thread.cpp
             operating_system/netbsd/thread.h
+            operating_system/netbsd/threading.cpp
             #            operating_system/netbsd/time.cpp
             operating_system/netbsd/trace.cpp
             operating_system/netbsd/user.h
@@ -3162,8 +3162,8 @@ if (${__BSD__})
 
     list(APPEND library_source
        operating_system/bsd/file.cpp
-       operating_system/bsd/parallelization.cpp
        operating_system/bsd/time.cpp
+       operating_system/bsd/threading.cpp
     )
 
     if (NOT ${OPENBSD})

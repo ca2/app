@@ -5360,7 +5360,7 @@
     <ClCompile Include="memory\paged_win32.cpp">
       <Filter>Source Files\memory</Filter>
     </ClCompile>
-    <ClCompile Include="platform\application_base.cpp">
+    <ClCompile Include="platform\application_berg.cpp">
       <Filter>Source Files\platform</Filter>
     </ClCompile>
     <ClCompile Include="platform\session.cpp">

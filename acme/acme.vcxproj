@@ -4670,7 +4670,7 @@
     <ClCompile Include="platform\application_array.cpp" />
     <ClCompile Include="platform\application_aura.cpp" />
     <ClCompile Include="platform\application_axis.cpp" />
-    <ClCompile Include="platform\application_base.cpp" />
+    <ClCompile Include="platform\application_berg.cpp" />
     <ClCompile Include="platform\application_bred.cpp" />
     <ClCompile Include="platform\application_container.cpp" />
     <ClCompile Include="platform\application_core.cpp" />

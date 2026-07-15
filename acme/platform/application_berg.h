@@ -53,7 +53,7 @@ namespace platform
 //   };
 
 
-   class CLASS_DECL_ACME base_application_layer
+   class CLASS_DECL_ACME berg_application_layer
    {
    public:
 

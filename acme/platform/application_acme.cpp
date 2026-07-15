@@ -520,4 +520,12 @@ namespace platform
    }
 
 
+
+   void acme_application_layer::on_application_activate()
+   {
+
+
+   }
+
+
 }// namespace platform

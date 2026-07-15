@@ -3,7 +3,7 @@
 // Recreated as layer by camilo on 2024-10-28 06:27 <3ThomasBorregaardSorensen!!
 //
 #include "framework.h"
-#include "application_base.h"
+#include "application_berg.h"
 #include "acme.h"
 
 //
@@ -69,7 +69,7 @@ namespace platform
 {
 
 
-   ::pointer < ::data::data > base_application_layer::create_default_new_document_data()
+   ::pointer < ::data::data > berg_application_layer::create_default_new_document_data()
    {
 
 return {};
@@ -85,7 +85,7 @@ return {};
    // ::berg::session* get_session(){}
 
 
-   ::pointer<::user::document>base_application_layer::defer_create_impact(const ::scoped_string & scopedstrImpact, ::user::interaction* puiParent, e_window_flag ewindowflag, const ::atom& atom)
+   ::pointer<::user::document>berg_application_layer::defer_create_impact(const ::scoped_string & scopedstrImpact, ::user::interaction* puiParent, e_window_flag ewindowflag, const ::atom& atom)
    {
 
       return {};
@@ -93,7 +93,7 @@ return {};
    }
 
 
-   ::user::document * base_application_layer::place_hold(::user::interaction * pinteraction)
+   ::user::document * berg_application_layer::place_hold(::user::interaction * pinteraction)
    {
 
 return nullptr;
@@ -101,8 +101,8 @@ return nullptr;
    }
 
 
-   void base_application_layer::on_create_split_impact(::user::split_impact* pimpact){}
-   void base_application_layer::on_change_cur_sel(::user::tab* ptab){}
+   void berg_application_layer::on_create_split_impact(::user::split_impact* pimpact){}
+   void berg_application_layer::on_change_cur_sel(::user::tab* ptab){}
    //virtual void create_impact_system() override{}
    //virtual void on_create_impact(::user::impact_data* pimpactdata) override{}
 
@@ -113,22 +113,22 @@ return nullptr;
 
 
    //void create_options_impact(::user::interaction * pparent) override{}
-   void base_application_layer::create_options_header(const ::atom &atom, ::user::interaction *pparent) {}
-   void base_application_layer::create_options_body(const ::atom &atom, ::user::interaction *pparent) {}
-   void base_application_layer::create_options_footer(const ::atom &atom, ::user::interaction *pparent) {}
+   void berg_application_layer::create_options_header(const ::atom &atom, ::user::interaction *pparent) {}
+   void berg_application_layer::create_options_body(const ::atom &atom, ::user::interaction *pparent) {}
+   void berg_application_layer::create_options_footer(const ::atom &atom, ::user::interaction *pparent) {}
 
-   void base_application_layer::create_auto_start_option(const ::atom &atom, ::user::interaction *pparent) {}
+   void berg_application_layer::create_auto_start_option(const ::atom &atom, ::user::interaction *pparent) {}
 
-   void base_application_layer::create_about_option(const ::atom &atom, ::user::interaction *pparent) {}
+   void berg_application_layer::create_about_option(const ::atom &atom, ::user::interaction *pparent) {}
 
-   void base_application_layer::create_about_impact(const ::atom &atom, ::user::interaction *pparent) {}
+   void berg_application_layer::create_about_impact(const ::atom &atom, ::user::interaction *pparent) {}
 
-   void base_application_layer::create_operating_system_information_impact(const ::atom &atom,
+   void berg_application_layer::create_operating_system_information_impact(const ::atom &atom,
                                                                            ::user::interaction *pparent)
    {
    }
 
-   void base_application_layer::on_after_prepare_impact_menu(::user::menu * pmenu){}
+   void berg_application_layer::on_after_prepare_impact_menu(::user::menu * pmenu){}
 
 
    //void show_about_box() override{}

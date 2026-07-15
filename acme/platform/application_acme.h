@@ -313,6 +313,9 @@ namespace platform
 
       virtual bool fill_system_menu(::operating_system::a_system_menu * psystemmenu);
 
+
+      virtual void on_application_activate();
+
    };
 
 

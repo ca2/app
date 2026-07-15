@@ -2460,7 +2460,7 @@
     <ClInclude Include="application.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="platform\application_base.h">
+    <ClInclude Include="platform\application_berg.h">
       <Filter>Header Files\platform</Filter>
     </ClInclude>
     <ClInclude Include="platform\session.h">

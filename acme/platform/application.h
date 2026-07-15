@@ -16,7 +16,7 @@ class get_file_extension_mime_type;
 namespace acme { class acme; }
 
 
-#include "application_base.h"
+#include "application_berg.h"
 #include "application_exit.h"
 #include "application_flags.h"
 #include "acme/constant/gpu.h"
@@ -30,7 +30,7 @@ namespace acme { class acme; }
 #include "application_aqua.h"
 #include "application_aura.h"
 #include "application_axis.h"
-#include "application_base.h"
+#include "application_berg.h"
 #include "application_bred.h"
 #include "application_core.h"
 
@@ -59,7 +59,7 @@ namespace platform
       virtual public ::platform::aqua_application_layer,
       virtual public ::platform::aura_application_layer,
       virtual public ::platform::axis_application_layer,
-      virtual public ::platform::base_application_layer,
+      virtual public ::platform::berg_application_layer,
       virtual public ::platform::bred_application_layer,
       virtual public ::platform::core_application_layer
    {
@@ -844,6 +844,9 @@ namespace platform
 
       virtual ::string get_http_user_agent();
       virtual void get_http_user_agent(::property_set & set);
+
+
+      void on_application_activate() override;
 
 
    };

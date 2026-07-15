@@ -5492,7 +5492,7 @@
     <ClInclude Include="platform\aaa_apex_main_struct.h" />
     <ClInclude Include="platform\aaa_app_core.h" />
     <ClInclude Include="platform\application_array.h" />
-    <ClInclude Include="platform\application_base.h" />
+    <ClInclude Include="platform\application_berg.h" />
     <ClInclude Include="platform\application_container.h" />
     <ClInclude Include="platform\application_exit.h" />
     <ClInclude Include="platform\message_box.h" />

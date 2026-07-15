@@ -297,6 +297,9 @@ namespace acme
          void run_loop2(::task *ptask) override;
 
 
+         virtual void on_application_activate();
+
+
       };
 
    

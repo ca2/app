@@ -1205,6 +1205,8 @@ namespace platform
 
          }
 
+         on_application_activate();
+
          if (m_prequestCommandLine)
          {
 
@@ -3408,6 +3410,23 @@ namespace platform
       strUserAgent = get_http_user_agent();
 
       set["in_headers"]["user-agent"] = strUserAgent;
+
+   }
+
+
+   void application::on_application_activate()
+   {
+
+      auto pacmewindowingwindowing = system()->acme_windowing();
+
+      if (::is_null(pacmewindowingwindowing))
+      {
+
+         return;
+
+      }
+
+      pacmewindowingwindowing->on_application_activate();
 
    }
 

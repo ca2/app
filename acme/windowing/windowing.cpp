@@ -1252,6 +1252,14 @@ namespace acme
 
       }
 
+      
+      void windowing::on_application_activate()
+      {
+
+
+         
+      }
+
    
 //   void windowing::on_user_command(::uptr u, ::user_interface::enum_notification enotification, ::uptr uControl)
 //   

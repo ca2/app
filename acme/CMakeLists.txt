@@ -651,8 +651,8 @@ list(APPEND library_source
         platform/application_aura.h
         platform/application_array.cpp
         platform/application_array.h
-        platform/application_base.cpp
-        platform/application_base.h
+        platform/application_berg.cpp
+        platform/application_berg.h
         platform/application_bred.cpp
         platform/application_bred.h
         platform/application_core.cpp

@@ -77,6 +77,26 @@ void application::open_by_module_path(const ::scoped_string & scopedstr)
    }
 
 
+   ::e_status application::post_and_wait_to_exit(const class ::time & timeTimeout)
+   {
+
+      __UNREFERENCED_PARAMETER(timeTimeout);
+
+      return error_unsupported_function;
+
+   }
+
+
+   ::e_status application::force_exit(const class ::time & timeTimeout)
+   {
+
+      __UNREFERENCED_PARAMETER(timeTimeout);
+
+      return error_unsupported_function;
+
+   }
+
+
    ::string application::name()
    {
 
@@ -116,6 +136,4 @@ void application::open_by_module_path(const ::scoped_string & scopedstr)
 
 
 } // namespace accessibility
-
-
 

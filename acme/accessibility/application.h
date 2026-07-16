@@ -34,6 +34,10 @@ namespace accessibility
       virtual void post_close();
 
       virtual void post_exit();
+
+      virtual ::e_status post_and_wait_to_exit(const class ::time & timeTimeout);
+
+      virtual ::e_status force_exit(const class ::time & timeTimeout);
       
       virtual ::string name();
 
@@ -50,6 +54,5 @@ namespace accessibility
 
 
 } // namespace accessibility
-
 
 

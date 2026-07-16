@@ -3405,4 +3405,24 @@ target_compile_definitions(${PROJECT_NAME} PRIVATE "_${PROJECT_NAME}_project")
 target_compile_definitions(static_${PROJECT_NAME} PRIVATE "_${PROJECT_NAME}_project")
 
 
+if(BUILD_TESTING)
+
+   add_executable(accessibility_application_exit_contract_test
+      test/accessibility_application_exit_contract.cpp)
+
+   target_link_libraries(accessibility_application_exit_contract_test PRIVATE static_acme)
+
+   add_test(NAME accessibility_application_exit_contract_test
+      COMMAND accessibility_application_exit_contract_test)
+
+   add_executable(message_box_custom_buttons_test
+      test/message_box_custom_buttons.cpp)
+
+   target_link_libraries(message_box_custom_buttons_test PRIVATE static_acme)
+
+   add_test(NAME message_box_custom_buttons_test
+      COMMAND message_box_custom_buttons_test)
+
+endif()
+
 

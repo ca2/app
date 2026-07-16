@@ -569,6 +569,12 @@ message_box_implementation::~message_box_implementation()
    void message_box_implementation::_001InitializeMessageBox()
    {
 
+      if (m_bCustomButtons)
+      {
+
+         return;
+
+      }
 
       // ::cast < ::message_box_payload > pmessageboxpayload = pdialog;
       //

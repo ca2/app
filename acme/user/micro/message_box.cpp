@@ -211,6 +211,8 @@ namespace micro
    void message_box::add_button(const ::scoped_string& scopedstrText, enum_dialog_result edialogresult, ::i8 chLetter)
    {
 
+      m_bCustomButtons = true;
+
       ::micro::dialog::add_button(scopedstrText, edialogresult, chLetter);
 
    }
@@ -867,6 +869,5 @@ information("message_box::on_initialize_dialog");
    }
 
 } // namespace micro
-
 
 

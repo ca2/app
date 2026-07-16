@@ -5801,6 +5801,12 @@ void system::open_internet_link(const ::scoped_string & scopedstrUrl, const ::sc
 
          ::string strOperatingAmbientName = ::windowing::get_eoperating_ambient_name();
 
+#if (defined(LINUX) || defined(__BSD__)) && !defined(ANDROID)
+
+         strOperatingAmbientName = "gtk4";
+
+#endif
+
          information("Going to do accessibility factory with this operating ambient name: {}", strOperatingAmbientName);
 
          auto pfactoryAccessibility = factory("accessibility", strOperatingAmbientName);

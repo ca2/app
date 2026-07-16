@@ -703,6 +703,16 @@ message_box::~message_box()
    void message_box::add_button(const ::scoped_string & scopedstrTitle, enum_dialog_result edialogresult, ::i8 chLetter)
 {
 
+      if (::is_null(m_pmessagebox))
+      {
+
+         throw ::exception(error_wrong_state);
+
+      }
+
+      m_pmessagebox->m_bCustomButtons = true;
+
+      m_pmessagebox->add_button(scopedstrTitle, edialogresult, chLetter);
 
 }
 

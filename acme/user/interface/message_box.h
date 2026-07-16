@@ -164,6 +164,8 @@ public:
 
 ::pointer < ::user_interface::message_box > m_pmessagebox;
 
+   bool m_bCustomButtons = false;
+
    
    //message_box_payload(const ::scoped_string & scopedstrMessage, const ::scoped_string & scopedstrTitle = {}, const ::user::e_message_box & emessagebox = {}, const ::scoped_string & scopedstrDetails = nullptr, ::nano::graphics::icon * picon = nullptr);
    //message_box(const ::scoped_string &scopedstrMessage, const ::scoped_string &scopedstrTitle = {},

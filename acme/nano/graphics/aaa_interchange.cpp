@@ -685,7 +685,7 @@ void interchange::on_right_button_up(::user::mouse * pmouse)
    if (m_atomRightButtonUp == m_atomRightButtonDown)
    {
       
-      on_right_click(m_atomLeftButtonUp, pmouse);
+      on_right_click(m_atomRightButtonUp, pmouse);
       
    }
    

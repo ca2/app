@@ -1931,6 +1931,8 @@ namespace experience
          if (pitem->m_item.m_eelement == e_element_title_bar)
          {
 
+            information("on_message_right_button_up (title_bar) defer_show_system_menu");
+
             window()->defer_show_system_menu(pmouse);
 
          }

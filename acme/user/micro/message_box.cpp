@@ -219,6 +219,7 @@ namespace micro
    void message_box::on_initialize_dialog()
    {
 
+information("message_box::on_initialize_dialog");
 
       ::micro::dialog::on_initialize_dialog();
       //::cast < ::message_box_payload > pmessageboxpayload = pdialog;
@@ -383,6 +384,7 @@ namespace micro
    void message_box::on_elemental_layout()
    {
 
+
       auto wButton = (::i32)(m_rectangle.width() * 0.2);
 
       auto hButton = (::i32)(m_rectangle.height() * 0.2);
@@ -394,6 +396,8 @@ namespace micro
       auto wSpacing = (::i32)(m_rectangle.width() * 0.025);
 
       auto countButton = micro_button_count();
+
+   information("message_box::on_elemental_layout with button count = {}", countButton);
 
       for (auto iButton = countButton - 1; iButton >= 0; iButton--)
       {
@@ -702,8 +706,10 @@ namespace micro
    void message_box::on_right_click(const ::payload& payload, ::user::mouse* pmouse)
    {
 
-      if (pmouse->m_pointHost.y < 48)
+      if (pmouse->m_pointHost.y < 48 && !pmouse->m_bRet)
       {
+
+         information("on_right_click defer_show_system_menu {}", pmouse->m_bRet);
 
          m_pacmewindowingwindow->defer_show_system_menu(pmouse);
 

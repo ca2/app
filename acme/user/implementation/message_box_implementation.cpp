@@ -418,6 +418,8 @@ void message_box_implementation::initialize_message_box(const ::scoped_string &s
                                          const ::scoped_string &scopedstrDetails,
                                          const ::string_array_base &straIconUrl)
 {
+
+   system()->information("Initializing message box with message \"{}\".", scopedstrMessage);
    
    m_strMessage = scopedstrMessage;
    
@@ -692,6 +694,8 @@ message_box_implementation::~message_box_implementation()
    ::i32_rectangle message_box_implementation::initial_frame_rectangle()
 {
 
+   information("message_box_implementation::initial_frame_rectangle");
+
    ::i32_rectangle rectangle(120, 108, 640 ,200);;
 
    #if !defined(UNIVERSAL_WINDOWS) && !defined(__ANDROID__)
@@ -707,26 +711,36 @@ message_box_implementation::~message_box_implementation()
 
          auto hScreen = sizeScreen.cy;
 
-         //printf("message_box_implementation::calculate_size (wScreen,hScreen)=%d,%d\n", wScreen, hScreen);
+         informationf("message_box_implementation::calculate_size (wScreen,hScreen)=%d,%d\n", wScreen, hScreen);
 
          ::i32 w = wScreen / 2;
 
-         if (w < 200)
+         informationf("w(1)=%d", w);
+
+         if (w < 600)
          {
 
             w = wScreen * 9 / 10;
+
+            informationf("w(2)=%d", w);
 
          }
 
          ::i32 h = (w / 16) * 5;
 
-         if (wScreen < hScreen)
+         informationf("h(1)=%d", h);
+
+         if (h < 300)
          {
 
-            h = (w / 10) * 5;
+            h = (hScreen / 12) * 5;
+
+            informationf("h(2)=%d", h);
 
          }
+
          ::i32 x = (wScreen - w) / 2;
+
          ::i32 y = (hScreen - h) / 2;
 
          rectangle.set_dimension(x, y, w, h);

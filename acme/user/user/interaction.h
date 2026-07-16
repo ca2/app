@@ -128,7 +128,7 @@ namespace acme
          
          virtual bool is_window();
 
-         void display(::e_display edisplay, const ::user::activation& useractivation);
+         void display(::e_display edisplay, const ::user::activation& useractivation) override;
 
          //virtual void on_send_window_create_message();
          

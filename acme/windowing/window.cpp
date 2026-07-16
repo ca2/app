@@ -1172,8 +1172,12 @@ namespace acme
       void window::on_window_size(const ::i32_size & size)
       {
 
+      information("acme::windowing::window::on_size");
+
          if (m_pacmeuserinteraction)
          {
+
+         information("acme::windowing::window::on_size m_pacmeuserinteraction...");
 
             m_pacmeuserinteraction->on_window_size(size);
 
@@ -2065,6 +2069,8 @@ namespace acme
 
       ::i32_rectangle window::get_window_rectangle()
       {
+
+        information("acme::windowing::window::get_window_rectangle");
 
          ::i32_rectangle rectangle;
 

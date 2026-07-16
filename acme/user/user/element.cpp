@@ -1088,7 +1088,7 @@ namespace user
    lresult element::message_call(::user::enum_message eusermessage, ::wparam wparam, ::lparam lparam, const ::i32_point & point)
    {
 
-      return 0;
+      return message_handler(eusermessage, wparam, lparam);
 
    }
 
@@ -2449,6 +2449,15 @@ namespace user
 
    lresult element::message_handler(::user::enum_message eusermessage, ::wparam wparam, ::lparam lparam)
    {
+
+   if(eusermessage == ::user::e_message_create)
+   {
+
+   on_window_create(nullptr);
+
+   return 0;
+
+   }
 
       throw ::interface_only();
 

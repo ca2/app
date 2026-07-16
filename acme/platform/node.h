@@ -1056,6 +1056,11 @@ namespace platform
       virtual bool _windows_isWin7();
 
       virtual void run_loop1(::task *ptask);
+virtual ::string decode_os_release_value(::string strValue);
+virtual ::string_to_string_base read_os_release();
+   virtual ::string os_release_value(
+      ::string_to_string_base & mapOsRelease,
+      const ::scoped_string & scopedstrKey);
 
    };
 

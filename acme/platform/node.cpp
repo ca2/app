@@ -5436,6 +5436,153 @@ bool node::are_any_shared_libraries_mapped(const ::file::path_array_base & patha
    }
 
 
+
+   ::string node::decode_os_release_value(::string strValue)
+   {
+
+      strValue.trim();
+
+      if (strValue.length() >= 2)
+      {
+
+         const auto chFirst = strValue[0];
+         const auto chLast = strValue[strValue.length() - 1];
+
+         if ((chFirst == '"' && chLast == '"')
+            || (chFirst == '\'' && chLast == '\''))
+         {
+
+            strValue =
+               strValue.substr(
+                  1,
+                  strValue.length() - 2);
+
+         }
+
+      }
+
+      // Quoted values in os-release may contain escaped characters.
+      strValue.find_replace("\\\"", "\"");
+      strValue.find_replace("\\'", "'");
+      strValue.find_replace("\\\\", "\\");
+
+      return strValue;
+
+   }
+
+
+   ::string_to_string_base node::read_os_release()
+   {
+
+      ::string strOsRelease;
+
+      try
+      {
+
+         strOsRelease =
+            file()->as_string(
+               "/etc/os-release");
+
+      }
+      catch (...)
+      {
+
+      }
+
+      if (strOsRelease.is_empty())
+      {
+
+         try
+         {
+
+            strOsRelease =
+               file()->as_string(
+                  "/usr/lib/os-release");
+
+         }
+         catch (...)
+         {
+
+         }
+
+      }
+
+      ::string_to_string_base mapOsRelease;
+
+      if (strOsRelease.is_empty())
+      {
+
+         return mapOsRelease;
+
+      }
+
+      ::string_array_base straLines;
+
+      straLines.add_lines(strOsRelease);
+
+      for (auto strLine : straLines)
+      {
+
+         strLine.trim();
+
+         if (strLine.is_empty()
+            || strLine.begins("#"))
+         {
+
+            continue;
+
+         }
+
+         const auto iEqual =
+            strLine.find_index('=');
+
+         if (iEqual <= 0)
+         {
+
+            continue;
+
+         }
+
+         auto strKey =
+            strLine.substr(0, iEqual);
+
+         auto strValue =
+            strLine.substr(iEqual + 1);
+
+         strKey.trim();
+
+         if (strKey.is_empty())
+         {
+
+            continue;
+
+         }
+
+         strValue =
+            decode_os_release_value(strValue);
+
+         mapOsRelease[strKey] =
+            strValue;
+
+      }
+
+      return mapOsRelease;
+
+   }
+
+
+   ::string node::os_release_value(
+      ::string_to_string_base & mapOsRelease,
+      const ::scoped_string & scopedstrKey)
+   {
+
+      // operator[] returns an empty ca2 string when the key has
+      // not previously been populated.
+      return mapOsRelease[scopedstrKey];
+
+   }
+
+
 } // namespace platform
 
 

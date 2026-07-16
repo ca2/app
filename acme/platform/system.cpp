@@ -5799,7 +5799,11 @@ void system::open_internet_link(const ::scoped_string & scopedstrUrl, const ::sc
       if (!m_paccessibility)
       {
 
-         auto pfactoryAccessibility = factory("accessibility", OPERATING_SYSTEM_NAME);
+         ::string strOperatingAmbientName = ::windowing::get_eoperating_ambient_name();
+
+         information("Going to do accessibility factory with this operating ambient name: {}", strOperatingAmbientName);
+
+         auto pfactoryAccessibility = factory("accessibility", strOperatingAmbientName);
 
          pfactoryAccessibility->merge_to_global_factory();
 

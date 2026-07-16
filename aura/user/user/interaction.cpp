@@ -28310,6 +28310,8 @@ __check_refdbg;
          if (pmouse->m_pointHost.y <= 48)
          {
 
+            information("on_message_right_button_up defer_show_system_menu");
+
             window()->defer_show_system_menu(pmouse);
 
          }

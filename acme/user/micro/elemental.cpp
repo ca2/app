@@ -209,6 +209,8 @@ namespace micro
       if (m_bBorder)
       {
 
+        information("drawing micro elemental border");
+
          ::pointer<::nano::graphics::pen> pmicropenBorder;
 
          if (acme_windowing_window()->is_active_window())
@@ -227,6 +229,8 @@ namespace micro
          ::i32_rectangle rectangleX;
 
          rectangleX = get_client_rectangle();
+
+         information("rX {}", rectangleX);
          
          pgraphicscontext->set_brush( micro_theme()->m_pbrushWindow);
          
@@ -238,7 +242,7 @@ namespace micro
       else
       {
 
-         //information("not drawing border");
+         information("not drawing border");
 
       }
 
@@ -1431,6 +1435,8 @@ namespace micro
    void elemental::fore_on_right_button_up(::user::mouse * pmouse)
    {
 
+      information("user::micro::elemental::fore_on_right_button_up");
+
       release_mouse_capture();
 
       ::cast<elemental> pchild = acme_hit_test(pmouse, ::user::e_zorder_front);
@@ -1470,7 +1476,7 @@ namespace micro
          if (pmainwindow->m_atomRightButtonUp == pmainwindow->m_atomRightButtonDown)
          {
 
-            pmainwindow->on_right_click(pmainwindow->m_atomLeftButtonUp, pmouse);
+            pmainwindow->on_right_click(pmainwindow->m_atomRightButtonUp, pmouse);
 
          }
 
@@ -1483,6 +1489,8 @@ namespace micro
 
    void elemental::back_on_right_button_up(::user::mouse * pmouse)
    {
+
+      information("user::micro::elemental::back_on_right_button_up");
 
       release_mouse_capture();
 
@@ -1523,7 +1531,7 @@ namespace micro
          if (pmainwindow->m_atomRightButtonUp == pmainwindow->m_atomRightButtonDown)
          {
 
-            pmainwindow->on_right_click(pmainwindow->m_atomLeftButtonUp, pmouse);
+            pmainwindow->on_right_click(pmainwindow->m_atomRightButtonUp, pmouse);
 
          }
 
@@ -1716,7 +1724,10 @@ namespace micro
 
    ::i32_rectangle elemental::get_client_rectangle()
    {
+
       auto r = get_rectangle();
+
+      information("elemental::get_client_rectangle get_rectangle {}", r);
 
       r.offset(-r.top_left());
 

@@ -340,7 +340,7 @@ namespace acme
       void windowing::__task_suffix()
       {
 
-         windowing_post_quit();
+         //windowing_post_quit();
 
       }
 

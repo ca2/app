@@ -11,6 +11,8 @@
 ////#include "acme/platform/app_core.h"
 //#include <sys/types.h>
 #include <unistd.h>
+
+#include "acme/operating_system/posix/termination_handler.h"
 //#include <signal.h>
 //#undef USE_MISC
 //
@@ -866,5 +868,14 @@ void install_operating_system_default_signal_handlers()
 
 
 return 0;
+
+}
+
+
+void acme_quite_early_construct()
+{
+
+
+   termination_handler::initialize();
 
 }

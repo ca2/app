@@ -26,6 +26,7 @@ CLASS_DECL_ACME bool add_matter(::matter * pmatter);
 
 //CLASS_DECL_ACME::particle * task_get_top_track();
 
+void acme_quite_early_construct();
 
 #include <locale.h>
 #if defined(__APPLE__)
@@ -664,6 +665,8 @@ namespace acme
    {
 
       //detect_cpu_features();
+
+      acme_quite_early_construct();
 
       initialize_memory_management();
 

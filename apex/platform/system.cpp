@@ -4786,22 +4786,49 @@ namespace apex
    //   }
 
 
+   // void system::main()
+   // {
+   //
+   //    //process_init();
+   //
+   //    //if (application()->is_console())
+   //    //{
+   //
+   //    //   application()->main();
+   //
+   //    //}
+   //    //else
+   //    //{
+   //
+   //       //auto estatus =
+   //    ::thread::main();
+   //
+   //    //if (!estatus)
+   //    //{
+   //
+   //    //   return estatus;
+   //
+   //    //}
+   //
+   //    //return estatus;
+   //
+   // //}
+   //
+   //    //if (m_iExitCode == 0 && m_estatus.failed())
+   //    //{
+   //
+   //    //   m_iExitCode = m_estatus.exit_code();
+   //
+   //    //}
+   //
+   // }
+   //
+
+
    void system::main()
    {
 
-      //process_init();
-
-      //if (application()->is_console())
-      //{
-
-      //   application()->main();
-
-      //}
-      //else
-      //{
-
-         //auto estatus =
-      ::thread::main();
+      /*auto estatus = */
 
       //if (!estatus)
       //{
@@ -4810,19 +4837,64 @@ namespace apex
 
       //}
 
-      //return estatus;
+      /*estatus =*/
+      if (this->is_console())
+      {
 
-   //}
+         process_init();
 
-      //if (m_iExitCode == 0 && m_estatus.failed())
+         task_run(0_s);
+
+         application()->main();
+
+      }
+      else
+      {
+
+         //__check_refdbg
+
+         //task_osinit();
+
+         //__check_refdbg
+
+         //__task_init();
+
+         ::thread::main();
+
+         //run();
+
+         ////         m_phappeningInitialization->set_happening();
+
+         //while (task_get_run())
+         //{
+
+         //   run_posted_procedures();
+
+         //   preempt(100_ms);
+
+         //}
+
+         ////acme_windowing()->windowing_system_application_main_loop();
+
+
+      }
+
+
+      //run();
+
+
+      //if (!estatus)
       //{
 
-      //   m_iExitCode = m_estatus.exit_code();
+      //   return estatus;
 
       //}
 
-   }
+      end();
 
+      //return estatus;
+
+   }
 
    //pointer_array < ::apex::session > & system::planesessionptra()
    //{

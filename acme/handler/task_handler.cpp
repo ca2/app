@@ -61,6 +61,12 @@ void task_handler::__task_handle()
 void task_handler::__task_suffix()
 {
 
+   if (m_procedureOnAfterTaskEndAndRelease)
+   {
+
+      m_procedureOnAfterTaskEndAndRelease();
+
+   }
 
 }
 

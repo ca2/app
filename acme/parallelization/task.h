@@ -224,7 +224,7 @@ public:
    itask                                           m_itask;
    string                                          m_strTaskName;
    string                                          m_strTaskTag;
-
+   task_handler *                                  m_ptaskhandler;
    
    ::pointer < ::acme::user::interaction >                       m_pacmeuserinteractionMain; // Main user interaction (usually same psystem->m_puiMain)
    ::pointer < ::acme::user::interaction >                       m_pacmeuserinteractionActive; // Active user interaction (may not be m_puiMain)

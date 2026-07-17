@@ -1610,6 +1610,13 @@ namespace platform
 
       auto ppairThreadStorage = m_mapThreadStorage.find(ptask->m_taskindex);
 
+      if (ppairThreadStorage.is_null())
+      {
+
+         return;
+
+      }
+
       if (!ppairThreadStorage->m_element2.m_ptask)
       {
 
@@ -1680,36 +1687,36 @@ namespace platform
    void system::TermSystem()
    {
 
-      // auto pacmewindowing = m_pacmewindowing;
+      //  auto pacmewindowing = m_pacmewindowing;
       //
-      // if (pacmewindowing)
-      // {
+      //  if (pacmewindowing)
+      //  {
       //
-      //    m_pmanualresethappeningReadyToExit = allocateø  manual_reset_happening();
-      //    m_pmanualresethappeningMainLoopEnd = allocateø  manual_reset_happening();
+      //     m_pmanualresethappeningReadyToExit = allocateø  manual_reset_happening();
+      //     m_pmanualresethappeningMainLoopEnd = allocateø  manual_reset_happening();
       //
-      //    auto pReadyToExit = m_pmanualresethappeningReadyToExit;
-      //    auto pMainLoopEnd = m_pmanualresethappeningMainLoopEnd;
+      //     auto pReadyToExit = m_pmanualresethappeningReadyToExit;
+      //     auto pMainLoopEnd = m_pmanualresethappeningMainLoopEnd;
       //
-      //    if (!m_procedureTaskEnded)
-      //    {
+      //     if (!m_procedureTaskEnded)
+      //     {
       //
-      //       m_procedureTaskEnded = [pReadyToExit]()
-      //       {
+      //        m_procedureTaskEnded = [pReadyToExit]()
+      //        {
       //
-      //          pReadyToExit->set_happening();
+      //           pReadyToExit->set_happening();
       //
-      //       };
+      //        };
       //
-      //       m_pacmewindowing->windowing_post_quit();
+      //        m_pacmewindowing->windowing_post_quit();
       //
-      //       pMainLoopEnd->_wait(2.5_min);
+      //        pMainLoopEnd->_wait(2.5_min);
       //
-      //    }
+      //     }
       //
-      // }
-
-      //m_pacmewindowing.release();
+      //  }
+      //
+      // m_pacmewindowing.release();
 
       m_pmapRegularExpressionContext.release();
 

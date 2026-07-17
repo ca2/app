@@ -90,7 +90,7 @@ task::task()
 
    m_bHandlingMessages = false;
    //m_bTaskPending = true;
-
+   m_ptaskhandler = nullptr;
    //m_bSetFinish = false;
    //m_bTaskTerminated = false;
    //m_bTaskStarted = false;
@@ -630,8 +630,12 @@ void task::add_msg_translator(::function<bool(MSG*)> msgtranslator)
 
            if (!is_task_set2())
            {
+              session()->post([this]()
+              {
+                 branch();
+              });
 
-              branch();
+
            }
 
         }
@@ -3114,6 +3118,8 @@ void task::branch(enum_parallelization eparallelization, const ::create_task_att
    }
 
    ptaskhandler->m_ptask = this;
+
+   m_ptaskhandler = ptaskhandler;
 
 #ifdef WINDOWS
 

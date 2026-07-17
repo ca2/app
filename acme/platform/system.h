@@ -70,6 +70,9 @@ namespace platform
       ::std::atomic < ::collection::count >  m_countZipFileSessionMaximum{8};
       ::resource_folder_pool *               m_presourcefolderpool;
       //::pointer<::particle>                  m_pparticleSubsystem;
+      //::pointer < manual_reset_happening >   m_pmanualresethappeningReadyToExit;
+      //::pointer < manual_reset_happening >   m_pmanualresethappeningMainLoopEnd;
+      //::procedure                            m_procedureTaskEnded;
 #ifdef WINDOWS
       ::pointer<::windows::apartment_thread>m_papartmentthread;
 #endif

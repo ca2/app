@@ -16,7 +16,7 @@
 #include <spawn.h>
 #include <unistd.h>
 #include <mach-o/dyld.h>
-
+#include "acme/operating_system/posix/termination_handler.h"
 
 ::file::path macos_app_path(::directory_system * pdirectorysystem, const ::scoped_string & scopedstrApp)
 {
@@ -120,6 +120,19 @@ CLASS_DECL_ACME ::file::path core_app_path(::directory_system * pdirectorysystem
 }
 
 
+
+
+
+
+
+
+void acme_quite_early_construct()
+{
+
+
+   termination_handler::initialize();
+
+}
 
 
 

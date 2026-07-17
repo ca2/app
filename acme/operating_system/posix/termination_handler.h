@@ -1,15 +1,21 @@
 //
-// Created by camilo on 7/16/26.
+// Created by camilo on 2026-07-16 17:15 <3ThomasBorregaardSørensen!! Mummi!! Bilbo
 //
-
-#ifndef LINUX_BUILD_ALL_TERMINATION_HANDLER_H
-#define LINUX_BUILD_ALL_TERMINATION_HANDLER_H
+#pragma once
 
 
 class termination_handler
 {
+public:
+   static bool initialize();
+
+   static int notification_fd();
+
+   static bool consume();
+
+private:
+   static void signal_handler(int signalNumber);
+
+   inline static int m_pipe[2] = {-1, -1};
 
 };
-
-
-#endif //LINUX_BUILD_ALL_TERMINATION_HANDLER_H

@@ -12719,6 +12719,13 @@ if(get_parent())
 
             auto pacmewindowingwindow = m_pacmewindowingwindow.m_p;
 
+            if (::is_null(pacmewindowingwindow))
+            {
+
+               return;
+
+            }
+
             pacmewindowingwindow->destroy_window();
 
             try

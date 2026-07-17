@@ -1,6 +1,8 @@
 #include "framework.h"
 #include <unistd.h>
 
+#include "operating_system/posix/termination_handler.h"
+
 
 //#include "_linux.h"
 ////#include "acme/platform/app_core.h"
@@ -842,4 +844,13 @@ void get_proc_self_status_memory(
       }
    }
    fclose(file);
+}
+
+
+void acme_quite_early_construct()
+{
+
+
+   termination_handler::initialize();
+
 }

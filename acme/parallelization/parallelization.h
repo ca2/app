@@ -26,7 +26,7 @@ namespace parallelization
       mutex(const mutex &) = delete;
       mutex &operator=(const mutex &) = delete;
 
-      ~mutex();
+      ~mutex() noexcept;
 
       void lock() noexcept;
 

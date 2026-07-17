@@ -144,7 +144,7 @@ namespace coding
       virtual void install_browser();
       virtual void install_google_chrome();
 
-#if defined(LINUX) || defined(FREEBSD)
+#if defined(LINUX) || defined(__BSD__)
 
       virtual void defer_install_gnome_extensions();
       virtual void _install_gnome_extensions();
@@ -158,7 +158,7 @@ namespace coding
 
 #endif
 
-#if defined(LINUX) || defined(MACOS) || defined(FREEBSD)
+#if defined(LINUX) || defined(MACOS) || defined(__BSD__)
 
       virtual void install_visual_studio_code();
       virtual void install_git_credential_manager();
@@ -186,7 +186,7 @@ namespace coding
               //const ::file::path & pathCloudFile, const ::scoped_string & scopedstrFileExtension, ::i32 iMinimumFileSize);
 
 #endif
-#ifdef FREEBSD
+#ifdef __BSD__
       virtual void _install_pkg();
       virtual void install_pkg();
 #endif

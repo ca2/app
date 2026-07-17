@@ -3056,6 +3056,7 @@ if (${OPENBSD})
             #operating_system/openbsd/_user.h
             operating_system/openbsd/application.h
             operating_system/openbsd/call_stack.cpp
+            operating_system/openbsd/console.cpp
             operating_system/openbsd/cpu_features.cpp
             #      operating_system/openbsd/cross_win_file.cpp
             #      operating_system/openbsd/cross_win_file.h
@@ -3197,6 +3198,8 @@ if (${LINUX} OR ${__BSD__} OR ${NETBSD} OR ${OPENBSD} OR ${ANDROID})
        operating_system/posix/networking.h
        operating_system/posix/shared_memory.cpp
        operating_system/posix/shared_memory.h
+       operating_system/posix/termination_handler.cpp
+       operating_system/posix/termination_handler.h
     )
 
 endif ()

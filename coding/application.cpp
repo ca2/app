@@ -764,7 +764,7 @@ namespace coding
    bool application::__is_smart_git_installed()
    {
 
-#if defined(FREEBSD)
+#if defined(__BSD__)
 
       return false;
 

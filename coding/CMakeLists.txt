@@ -109,6 +109,14 @@ if(${FREEBSD})
 endif()
 
 
+if(${OPENBSD})
+    list(APPEND library_source
+            install_openbsd.cpp
+            openbsd.cpp
+    )
+endif()
+
+
 if(${LINUX} OR ${FREEBSD})
     list(APPEND library_source
             install_posix.cpp

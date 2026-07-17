@@ -2070,18 +2070,19 @@ namespace acme
       ::i32_rectangle window::get_window_rectangle()
       {
 
-        information("acme::windowing::window::get_window_rectangle");
+        //information("acme::windowing::window::get_window_rectangle");
 
-         ::i32_rectangle rectangle;
+         //::i32_rectangle rectangle;
 
-         main_send([this, &rectangle]()
-         {
+         //main_send([this, &rectangle]()
+         //{
 
-            rectangle = get_window_rectangle_unlocked();
+           // rectangle = get_window_rectangle_unlocked();
 
-         });
+         //});
 
-         return rectangle;
+         //return rectangle;
+         return {m_pointWindow, m_sizeWindow};
 
       }
 

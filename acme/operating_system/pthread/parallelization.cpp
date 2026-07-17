@@ -219,11 +219,13 @@ namespace parallelization
    }
 
 
-   static timespec condition_payload_monotonic_deadline(
+   static timespec condition_payload_wait_time(
       const class ::time & duration)
    {
 
       timespec deadline{};
+
+#if !defined(__APPLE__)
 
       if (clock_gettime(
          CLOCK_MONOTONIC,
@@ -235,6 +237,8 @@ namespace parallelization
             "clock_gettime(CLOCK_MONOTONIC)");
 
       }
+
+#endif
 
       auto uMilliseconds =
          static_cast<unsigned long long>(
@@ -333,9 +337,11 @@ namespace parallelization
 
       }
 
-      // pthread_cond_timedwait() normally uses CLOCK_REALTIME.
-      // Using CLOCK_MONOTONIC prevents wall-clock corrections from
-      // shortening or extending a relative wait.
+#if !defined(__APPLE__)
+
+      // pthread_cond_timedwait() normally uses CLOCK_REALTIME. Using
+      // CLOCK_MONOTONIC prevents wall-clock corrections from shortening or
+      // extending a relative wait. Apple uses the relative wait API below.
       iError = pthread_condattr_setclock(
          &attributes,
          CLOCK_MONOTONIC);
@@ -352,6 +358,8 @@ namespace parallelization
          parallelization_terminate();
 
       }
+
+#endif
 
       iError = pthread_cond_init(
          &m_pimpl->m_condition,
@@ -485,13 +493,22 @@ namespace parallelization
 
       }
 
-      auto deadline =
-         condition_payload_monotonic_deadline(duration);
+      auto waitTime =
+         condition_payload_wait_time(duration);
+
+#if defined(__APPLE__)
+
+      int iError = pthread_cond_timedwait_relative_np(
+
+#else
 
       int iError = pthread_cond_timedwait(
+
+#endif
+
          &m_pimpl->m_condition,
          &lock.m_pmutex->m_pimpl->m_lock,
-         &deadline);
+         &waitTime);
 
       if (iError == 0)
       {

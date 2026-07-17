@@ -37,7 +37,7 @@ bool termination_handler::initialize()
 
    struct sigaction action{};
    action.sa_handler = &termination_handler::signal_handler;
-   ::sigemptyset(&action.sa_mask);
+   sigemptyset(&action.sa_mask);
 
    // Usually omit SA_RESTART if you want blocking calls to wake up.
    action.sa_flags = 0;

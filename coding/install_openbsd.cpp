@@ -1254,8 +1254,9 @@ namespace coding
       {
          directory_system()->change_current(m_path.folder());
 
-         ::i32 iExitCode = synchronous_posix_terminal(
+                  ::i32 iExitCode = synchronous_posix_terminal(
             "echo \"sudo apt install " + m_path + "\"; sudo apt install " + m_path);
+
       }
       else
       {

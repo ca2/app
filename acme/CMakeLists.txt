@@ -2864,9 +2864,9 @@ if (${ANDROID})
             operating_system/android/_factory.cpp
             operating_system/android/file.cpp
             operating_system/android/main.cpp
-            operating_system/android/parallelization.cpp
             operating_system/android/process.cpp
             operating_system/android/thread.cpp
+            operating_system/android/threading.cpp
             #operating_system/android/trace.cpp
             operating_system/android/util.cpp
             #operating_system/android/_bind_app.cpp
@@ -3262,9 +3262,7 @@ if (${LINUX} OR ${__BSD__})
 endif ()
 
 
-add_library(${PROJECT_NAME} SHARED ${library_source}
-   operating_system/posix/termination_handler.cpp
-   operating_system/posix/termination_handler.h)
+add_library(${PROJECT_NAME} SHARED ${library_source})
 
 
 add_library(static_${PROJECT_NAME} STATIC ${library_source}

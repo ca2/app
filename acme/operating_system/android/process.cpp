@@ -1,6 +1,6 @@
 #include "framework.h"
 #include "acme/platform/acme.h"
-
+#include "acme/operating_system/posix/termination_handler.h"
 #include <unistd.h>
 #include <stdio.h>
 #include <stdlib.h>
@@ -456,3 +456,15 @@ char_pointer _android_get_executable_path_dup()
       return strdup("");
    }
 }
+
+
+void acme_quite_early_construct()
+{
+
+
+   termination_handler::initialize();
+
+}
+
+
+

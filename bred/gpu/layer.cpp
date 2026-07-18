@@ -30,6 +30,17 @@ namespace gpu
    }
 
 
+   
+
+   void layer::initialize_layer_state() { m_egpulayerstate = e_gpu_layer_state_initial; }
+
+   void layer::start_layer_render() { m_egpulayerstate = e_gpu_layer_state_began_render; }
+
+   void layer::end_layer_render() { m_egpulayerstate = e_gpu_layer_state_ended_render; }
+
+
+
+
    ::manual_reset_happening * layer::finished_manual_reset_happening()
    {
 

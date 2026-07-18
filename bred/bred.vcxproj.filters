@@ -186,7 +186,7 @@
     <ClInclude Include="graphics3d\engine.h">
       <Filter>Header Files\graphics3d</Filter>
     </ClInclude>
-    <ClInclude Include="graphics3d\frame.h">
+    <ClInclude Include="graphics3d\aaa_frame.h">
       <Filter>Header Files\graphics3d</Filter>
     </ClInclude>
     <ClInclude Include="graphics3d\input.h">
@@ -216,7 +216,7 @@
     <ClInclude Include="gpu\compositor.h">
       <Filter>Header Files\gpu</Filter>
     </ClInclude>
-    <ClInclude Include="gpu\render_state.h">
+    <ClInclude Include="gpu\aaa_layer_state.h">
       <Filter>Header Files\gpu</Filter>
     </ClInclude>
     <ClInclude Include="gpu\guard.h">
@@ -543,9 +543,6 @@
       <Filter>Source Files\gpu</Filter>
     </ClCompile>
     <ClCompile Include="gpu\compositor.cpp">
-      <Filter>Source Files\gpu</Filter>
-    </ClCompile>
-    <ClCompile Include="gpu\render_state.cpp">
       <Filter>Source Files\gpu</Filter>
     </ClCompile>
     <ClCompile Include="gpu\guard.cpp">

@@ -74,7 +74,7 @@ namespace gpu
    class renderer;
    class render;
 
-   //class frame;
+   class frame;
 
    //class property_descriptor;
    //class property_data;

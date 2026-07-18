@@ -681,6 +681,8 @@ namespace gpu_opengl
    {
 
       return 0;
+      //return ::gpu::device::get_frame_index3();
+
 
    }
 

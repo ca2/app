@@ -95,7 +95,7 @@ namespace graphics3d
 
       //pgraphicscontext->defer_start_frame();
 
-      m_pgpucontextCompositor2->start_frame();
+      //m_pgpucontextCompositor2->start_frame();
 
       _prepare_frame();
 
@@ -188,7 +188,7 @@ namespace graphics3d
 
          //pgraphicscontext->end_frame();
 
-         m_pgpucontextCompositor2->end_frame();
+         //m_pgpucontextCompositor2->end_frame();
 
          //prenderer->end_frame(nullptr);
 

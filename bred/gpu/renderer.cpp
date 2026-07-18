@@ -10,7 +10,7 @@
 #include "queue.h"
 #include "texture.h"
 #include "renderer.h"
-#include "render_state.h"
+//#include "layer_state.h"
 #include "render_target.h"
 #include "acme/exception/interface_only.h"
 #include "acme/prototype/geometry2d/matrix.h"
@@ -89,8 +89,8 @@ namespace gpu
 
       m_pgpucontext = pgpucontext;
 
-      defer_construct_newø(m_prenderstate);
-
+      //defer_construct_newø(m_prenderstate);
+//
       //m_pgpucontext->m_prenderer = this;
 
       //m_eoutput = eoutput;
@@ -415,13 +415,18 @@ namespace gpu
    ::gpu::command_buffer* renderer::getCurrentCommandBuffer2(::gpu::layer* pgpulayer)
    {
 
-      auto egpuframestate = m_prenderstate->m_egpuframestate;
+      auto egpuframestate = m_pgpucontext->m_pgpudevice->current_frame()->m_egpuframestate;
 
-      assert(egpuframestate == e_gpu_frame_state_began_render &&
+      assert(egpuframestate == e_gpu_frame_state_began_frame &&
              "Cannot get command buffer when frame not in progress");
 
       if (pgpulayer)
       {
+
+         auto egpulayerstate = pgpulayer->m_egpulayerstate;
+
+         assert(egpulayerstate == e_gpu_layer_state_began_render &&
+                "Cannot get command buffer when frame not in progress");
 
          return pgpulayer->getCurrentCommandBuffer4();
 
@@ -458,7 +463,7 @@ namespace gpu
       else
       {
 
-         iImageIndex = render_target()->get_frame_index();
+         iImageIndex = render_target()->m_pgpurenderer->m_pgpucontext->m_pgpudevice->get_frame_index3();
 
          if (iImageIndex < 0)
          {
@@ -471,7 +476,8 @@ namespace gpu
 
       auto pcommandbuffer = m_commandbuffera[iImageIndex];
 
-      pcommandbuffer->m_iCommandBufferFrameIndex2 = m_pgpurendertarget2->get_frame_index();
+      pcommandbuffer->m_iCommandBufferFrameIndex2 =
+         m_pgpurendertarget2->m_pgpurenderer->m_pgpucontext->m_pgpudevice->get_frame_index3();
 
       pcommandbuffer->m_iCommandBufferImageIndex = iImageIndex;
 
@@ -559,14 +565,14 @@ namespace gpu
    bool renderer::isFrameInProgress() const
    {
 
-      if (!m_prenderstate)
+      /*if (!m_prenderstate)
       {
 
          return false;
 
-      }
+      }*/
 
-      auto egpuframestate = m_prenderstate->m_egpuframestate;
+      auto egpuframestate = m_pgpucontext->m_pgpudevice->current_frame()->m_egpuframestate;
 
       if (egpuframestate < e_gpu_frame_state_began_frame)
       {
@@ -962,7 +968,9 @@ namespace gpu
    void renderer::on_begin_render(::gpu::layer * pgpulayer)
    {
 
-      m_prenderstate->on_happening(::gpu::e_happening_begin_render);
+      ///m_prenderstate->on_happening(::gpu::e_happening_begin_render);
+
+      pgpulayer->start_layer_render();
 
       //bool bLayerStarted = false;
 
@@ -1118,7 +1126,9 @@ namespace gpu
 
       layer_end_submit();
 
-      m_prenderstate->on_happening(::gpu::e_happening_end_render);
+      ///m_prenderstate->on_happening(::gpu::e_happening_end_render);
+
+      pgpulayer->end_layer_render();
 
    }
 
@@ -1538,12 +1548,12 @@ namespace gpu
 
          //on_begin_render(render_target()->m_pgpulayer);
 
-         auto egpuframestate = m_prenderstate->m_egpuframestate;
+         auto egpuframestate = m_pgpucontext->m_pgpudevice->current_frame()->m_egpuframestate;
 
-         if (egpuframestate == ::gpu::e_gpu_frame_state_began_render)
+         if (egpuframestate == ::gpu::e_gpu_frame_state_began_frame)
          {
 
-            ::i32 iFrameIndex = m_pgpurendertarget2->get_frame_index();
+            ::i32 iFrameIndex = m_pgpucontext->m_pgpudevice->get_frame_index3();
 
             if (iFrameIndex < 0)
             {
@@ -1695,7 +1705,7 @@ namespace gpu
             //
             // }
 
-            auto iFrameIndex = prendertargetBackBuffer->get_frame_index();
+            auto iFrameIndex = prendertargetBackBuffer->m_pgpurenderer->m_pgpucontext->m_pgpudevice->get_frame_index3();
 
 
             ::pointer_array<::gpu::semaphore> semaphoreaMergeLayersReady;
@@ -2070,173 +2080,173 @@ framesync.m_pcommandbufferLastSwapChainPresentation = pcommandbufferSwapChain;
 
 
    //}
-
-
-   //::pointer < frame > renderer::beginFrame()
-   void renderer::start_frame()
-   {
-
-      if (m_procedureaOnJustBeforeFrameNextStart.has_element())
-      {
-
-         try
-         {
-
-            for (auto & procedure : m_procedureaOnJustBeforeFrameNextStart)
-            {
-
-               try
-               {
-
-                  procedure();
-
-               }
-               catch (...)
-               {
-
-
-               }
-
-            }
-
-         }
-         catch (...)
-         {
-
-
-         }
-
-         m_procedureaOnJustBeforeFrameNextStart.clear();
-
-      }
-
-      auto pcontext = m_pgpucontext;
-
-      auto pgpudevice = pcontext->m_pgpudevice;
-
-      //auto pgpulayer = createø < ::gpu::frame >();
-
-      //::gpu::set_current_layer(pgpulayer);
-
-      assert(!isFrameInProgress() && "Can't call beginFrame while already in progress");
-
-      m_prenderstate->on_happening(e_happening_begin_frame);
-
-      //m_bFrameStarted = true;
-
-      //if (m_papplication->m_gpu.m_bUseSwapChainWindow
-      //   && m_pgpucontext->m_etype != ::gpu::context::e_type_window)
-      //{
-
-      //   auto player = pgpudevice->next_layer(pcontext->m_pgpurenderer);
-
-      //   //m_pgpulayer = player;
-
-      //   //player = pgpulayer;
-
-      //   pgpulayer = player;
-
-      //}
-
-      ///::cast < command_buffer > pcommandbuffer = getCurrentCommandBuffer2(pgpulayer);
-
-      //auto iImageIndex = pcommandbuffer->m_iCommandBufferImageIndex;
-
-//      auto pszCommandBufferAnnotation = pcommandbuffer->m_strAnnotation.c_str();
-
-      static ::i32 s_iFrameIndex0LayerDraw2dCount = 0;
-
-//      auto iLayer = pgpudevice->m_iLayer;
 //
-//      auto iFrameSerial = pgpudevice->m_iFrameSerial2;
 //
-//      auto iCurrentFrame = pgpudevice->m_iCurrentFrame2;
-
-      //if (iImageIndex == 0 && pcommandbuffer->m_strAnnotation == "layer.draw2d")
-      //{
-
-      //   s_iFrameIndex0LayerDraw2dCount++;
-
-      //}
-
-      //on_begin_frame();
-
-      ///pgpulayer->m_pgpucommandbuffer = pcommandbuffer.m_p;
-
-      //render_target()->m_pgpulayer = pgpulayer;
-
-      auto bUseSwapChain = m_papplication->m_gpu.m_bUseSwapChainWindow;
-
-      auto etypeGpuContext = m_pgpucontext->m_etype;
-
-      //if (!bUseSwapChain
-        // || etypeGpuContext != ::gpu::context::e_type_window)
-      //{
-
-        // wait_command_buffer_ready();
-
-         //pcommandbuffer->begin_command_buffer(false);
-
-      //}
-
-      //return render_target()->m_pgpulayer;
-
-   }
-
-
-   void renderer::end_frame()
-   {
-
-      m_prenderstate->on_happening(e_happening_end_frame);
-
-      //m_bFrameStarted = false;
-
-      if (m_procedureaOnAfterEndFrame.has_element())
-      {
-
-         try
-         {
-
-            for (auto &procedure: m_procedureaOnAfterEndFrame)
-            {
-               try
-               {
-
-                  procedure();
-
-               }
-               catch (...)
-               {
-
-
-               }
-            }
-
-         }
-         catch (...)
-         {
-
-
-         }
-         m_procedureaOnAfterEndFrame.clear();
-
-      }
-
-      if (m_timeLast5s.elapsed() > 5_s)
-      {
-
-         m_timeLast5s.Now();
-
-         m_papplication->post([this]()
-            {
-
-               m_pgpucontext->manage_retired_objects();
-
-            });
-
-      }
-
-   }
+//   //::pointer < frame > renderer::beginFrame()
+//   void renderer::start_frame()
+//   {
+//
+//      if (m_procedureaOnJustBeforeFrameNextStart.has_element())
+//      {
+//
+//         try
+//         {
+//
+//            for (auto & procedure : m_procedureaOnJustBeforeFrameNextStart)
+//            {
+//
+//               try
+//               {
+//
+//                  procedure();
+//
+//               }
+//               catch (...)
+//               {
+//
+//
+//               }
+//
+//            }
+//
+//         }
+//         catch (...)
+//         {
+//
+//
+//         }
+//
+//         m_procedureaOnJustBeforeFrameNextStart.clear();
+//
+//      }
+//
+//      auto pcontext = m_pgpucontext;
+//
+//      auto pgpudevice = pcontext->m_pgpudevice;
+//
+//      //auto pgpulayer = createø < ::gpu::frame >();
+//
+//      //::gpu::set_current_layer(pgpulayer);
+//
+//      assert(!isFrameInProgress() && "Can't call beginFrame while already in progress");
+//
+//      m_prenderstate->on_happening(e_happening_begin_frame);
+//
+//      //m_bFrameStarted = true;
+//
+//      //if (m_papplication->m_gpu.m_bUseSwapChainWindow
+//      //   && m_pgpucontext->m_etype != ::gpu::context::e_type_window)
+//      //{
+//
+//      //   auto player = pgpudevice->next_layer(pcontext->m_pgpurenderer);
+//
+//      //   //m_pgpulayer = player;
+//
+//      //   //player = pgpulayer;
+//
+//      //   pgpulayer = player;
+//
+//      //}
+//
+//      ///::cast < command_buffer > pcommandbuffer = getCurrentCommandBuffer2(pgpulayer);
+//
+//      //auto iImageIndex = pcommandbuffer->m_iCommandBufferImageIndex;
+//
+////      auto pszCommandBufferAnnotation = pcommandbuffer->m_strAnnotation.c_str();
+//
+//      static ::i32 s_iFrameIndex0LayerDraw2dCount = 0;
+//
+////      auto iLayer = pgpudevice->m_iLayer;
+////
+////      auto iFrameSerial = pgpudevice->m_iFrameSerial2;
+////
+////      auto iCurrentFrame = pgpudevice->m_iCurrentFrame2;
+//
+//      //if (iImageIndex == 0 && pcommandbuffer->m_strAnnotation == "layer.draw2d")
+//      //{
+//
+//      //   s_iFrameIndex0LayerDraw2dCount++;
+//
+//      //}
+//
+//      //on_begin_frame();
+//
+//      ///pgpulayer->m_pgpucommandbuffer = pcommandbuffer.m_p;
+//
+//      //render_target()->m_pgpulayer = pgpulayer;
+//
+//      auto bUseSwapChain = m_papplication->m_gpu.m_bUseSwapChainWindow;
+//
+//      auto etypeGpuContext = m_pgpucontext->m_etype;
+//
+//      //if (!bUseSwapChain
+//        // || etypeGpuContext != ::gpu::context::e_type_window)
+//      //{
+//
+//        // wait_command_buffer_ready();
+//
+//         //pcommandbuffer->begin_command_buffer(false);
+//
+//      //}
+//
+//      //return render_target()->m_pgpulayer;
+//
+//   }
+//
+//
+//   void renderer::end_frame()
+//   {
+//
+//      m_prenderstate->on_happening(e_happening_end_frame);
+//
+//      //m_bFrameStarted = false;
+//
+//      if (m_procedureaOnAfterEndFrame.has_element())
+//      {
+//
+//         try
+//         {
+//
+//            for (auto &procedure: m_procedureaOnAfterEndFrame)
+//            {
+//               try
+//               {
+//
+//                  procedure();
+//
+//               }
+//               catch (...)
+//               {
+//
+//
+//               }
+//            }
+//
+//         }
+//         catch (...)
+//         {
+//
+//
+//         }
+//         m_procedureaOnAfterEndFrame.clear();
+//
+//      }
+//
+//      if (m_timeLast5s.elapsed() > 5_s)
+//      {
+//
+//         m_timeLast5s.Now();
+//
+//         m_papplication->post([this]()
+//            {
+//
+//               m_pgpucontext->manage_retired_objects();
+//
+//            });
+//
+//      }
+//
+//   }
 
 
    void renderer::wait_swap_chain_command_buffer_ready()
@@ -2252,23 +2262,6 @@ framesync.m_pcommandbufferLastSwapChainPresentation = pcommandbufferSwapChain;
 
    }
 
-
-   void renderer::post_on_after_end_frame(const ::procedure &procedure)
-   {
-
-      //_synchronous_lock synchronouslock(this->synchronization(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
-
-      m_procedureaOnAfterEndFrame.add(procedure);
-
-   }
-
-
-   void renderer::post_on_just_before_frame_next_start(const ::procedure & procedure)
-   {
-
-      m_procedureaOnJustBeforeFrameNextStart.add(procedure);
-
-   }
 
 
 

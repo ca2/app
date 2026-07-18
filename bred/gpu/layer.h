@@ -12,6 +12,9 @@ namespace gpu
    {
    public:
 
+
+      enum_gpu_layer_state m_egpulayerstate = e_gpu_layer_state_initial;
+
       ::i32 m_iFrameIndex = -1;
       ::i32 m_iLayerIndex = -1;
       bool m_bFirstLayer;
@@ -38,6 +41,14 @@ namespace gpu
 
       layer();
       ~layer() override;
+
+
+            virtual void initialize_layer_state();
+
+      virtual void start_layer_render();
+
+      virtual void end_layer_render();
+
 
 
       virtual ::manual_reset_happening * finished_manual_reset_happening();

@@ -123,26 +123,40 @@ namespace gpu
       e_gpu_frame_state_initial,
       e_gpu_frame_state_new_frame,
       e_gpu_frame_state_began_frame,
-      e_gpu_frame_state_began_render,
-      e_gpu_frame_state_ended_render,
+      //e_gpu_frame_state_began_render,
+      //e_gpu_frame_state_ended_render,
       e_gpu_frame_state_ended_frame,
       e_gpu_frame_state_no_frame = 256,
       e_gpu_frame_state_single_frame = 1024,
 
    };
 
-
-   enum enum_happening
+   enum enum_gpu_layer_state
    {
 
-      e_happening_reset_frame_counter,
-      //e_happening_new_frame,
-      e_happening_begin_frame,
-      e_happening_begin_render,
-      e_happening_end_render,
-      e_happening_end_frame,
+      e_gpu_layer_state_initial,
+      //e_gpu_frame_state_new_frame,
+      //e_gpu_frame_state_began_frame,
+      e_gpu_layer_state_began_render,
+      e_gpu_layer_state_ended_render,
+      //e_gpu_layer_state_ended_render,
+      //e_gpu_layer_state_no_frame = 256,
+      //e_gpu_frame_state_single_frame = 1024,
 
    };
+
+
+   //enum enum_happening
+   //{
+
+   //   e_happening_reset_frame_counter,
+   //   //e_happening_new_frame,
+   //   e_happening_begin_frame,
+   //   e_happening_begin_render,
+   //   e_happening_end_render,
+   //   e_happening_end_frame,
+
+   //};
 
 
    enum enum_render_mode

@@ -5,7 +5,7 @@
 #include "frame.h"
 #include "layer.h"
 #include "renderer.h"
-#include "render_state.h"
+//#include "layer_state.h"
 #include "render_target.h"
 #include "texture.h"
 #include "acme/platform/application.h"
@@ -218,70 +218,70 @@ namespace gpu
    void render_target::restart_frame_counter()
    {
 
-      if (get_frame_count() > 1)
+      if (m_pgpurenderer->m_pgpucontext->m_pgpudevice->get_frame_count() > 1)
       {
 
          m_pgpurenderer->m_pgpucontext->m_pgpudevice->restart_frame_counter();
 
-         m_pgpurenderer->m_prenderstate->on_happening(e_happening_reset_frame_counter);
+         //m_pgpurenderer->m_prenderstate->on_happening(e_happening_reset_frame_counter);
 
       }
 
    }
 
 
-   ::i32 render_target::get_frame_index()
-   {
-
-      if (m_pgpurenderer->m_pgpucontext->m_iOverrideFrame >= 0)
-      {
-
-         return m_pgpurenderer->m_pgpucontext->m_iOverrideFrame;
-
-      }
-
-      if (get_frame_count() > 1)
-      {
-         
-#ifdef _DEBUG
-
-         auto iFrameSerial2 = m_pgpurenderer->m_pgpucontext->m_pgpudevice->m_iFrameSerial2;
-
-         auto iCurrentFrame3 = m_pgpurenderer->m_pgpucontext->m_pgpudevice->m_iCurrentFrame3;
-
-         auto egpuframestate = m_pgpurenderer->m_prenderstate->m_egpuframestate;
-
-         assert(
-            iFrameSerial2 >= 0 
-            && iCurrentFrame3 >= 0 
-            && egpuframestate != e_gpu_frame_state_initial
-            && "Cannot get frame index when frame not in progress");
-
-#endif
-         return (::i32)m_pgpurenderer->m_pgpucontext->m_pgpudevice->m_iCurrentFrame3;
-
-      }
-      else
-      {
-
-         return 0;
-
-      }
-
-   }
-
-
-   ::i32 render_target::get_frame_count()
-   {
-
-      if (m_pgpurenderer->m_pgpucontext->m_eoutput ==::gpu:: e_output_swap_chain)
-      {
-         return m_pgpurenderer->m_pgpucontext->get_swap_chain()->swap_chain_frame_count();
-      }
-
-      return (::i32)texturea2()->size();
-
-   }
+//   ::i32 render_target::get_frame_index()
+//   {
+//
+//      if (m_pgpurenderer->m_pgpucontext->m_iOverrideFrame >= 0)
+//      {
+//
+//         return m_pgpurenderer->m_pgpucontext->m_iOverrideFrame;
+//
+//      }
+//
+//      if (get_frame_count() > 1)
+//      {
+//         
+//#ifdef _DEBUG
+//
+//         auto iFrameSerial2 = m_pgpurenderer->m_pgpucontext->m_pgpudevice->m_iFrameSerial2;
+//
+//         auto iCurrentFrame3 = m_pgpurenderer->m_pgpucontext->m_pgpudevice->m_iCurrentFrame3;
+//
+//         auto egpuframestate = m_pgpurenderer->m_prenderstate->m_egpuframestate;
+//
+//         assert(
+//            iFrameSerial2 >= 0 
+//            && iCurrentFrame3 >= 0 
+//            && egpuframestate != e_gpu_frame_state_initial
+//            && "Cannot get frame index when frame not in progress");
+//
+//#endif
+//         return (::i32)m_pgpurenderer->m_pgpucontext->m_pgpudevice->m_iCurrentFrame3;
+//
+//      }
+//      else
+//      {
+//
+//         return 0;
+//
+//      }
+//
+//   }
+//
+//
+//   ::i32 render_target::get_frame_count()
+//   {
+//
+//      if (m_pgpurenderer->m_pgpucontext->m_eoutput ==::gpu:: e_output_swap_chain)
+//      {
+//         return m_pgpurenderer->m_pgpucontext->get_swap_chain()->swap_chain_frame_count();
+//      }
+//
+//      return (::i32)texturea2()->size();
+//
+//   }
 
 
 
@@ -422,7 +422,7 @@ namespace gpu
 
       //auto etype = pgpucontext->m_etype;
 
-      ::i32 iFrameIndex = get_frame_index();
+      ::i32 iFrameIndex = m_pgpurenderer->m_pgpucontext->m_pgpudevice->get_frame_index3();
       
       //auto size = m_ptexturea->size();
 
@@ -465,7 +465,7 @@ namespace gpu
 
       //auto etype = pgpucontext->m_etype;
 
-      ::i32 iFrameIndex = get_frame_index();
+      ::i32 iFrameIndex = m_pgpurenderer->m_pgpucontext->m_pgpudevice->get_frame_index3();
 
       //auto size = m_ptexturea->size();
 

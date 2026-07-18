@@ -6,19 +6,27 @@ namespace gpu
 {
 
 
-   class CLASS_DECL_BRED render_state :
+   class CLASS_DECL_BRED layer_state :
       virtual public ::particle
    {
    public:
 
 
-      enum_gpu_frame_state          m_egpuframestate = e_gpu_frame_state_initial;
-      enum_render_mode              m_emode = e_render_mode_multiple_frame_states;
+      //;
+      //;
+      enum_gpu_layer_state          m_egpulayerstate = e_gpu_layer_state_initial;
+      //     enum_render_mode m_emode = e_render_mode_multiple_frame_states;
 
 
-      render_state();
-      ~render_state() override;
+      layer_state();
+      ~layer_state() override;
 
+
+      virtual void initialize_layer_state();
+
+      virtual void start_layer_render();
+
+      virtual void end_layer_render();
 
       //virtual void set_no_frame();
 
@@ -26,7 +34,8 @@ namespace gpu
 
       //virtual void restart_frame_counter();
 
-      virtual void on_happening(enum_happening ehappening);
+      //   ;
+      //virtual void on_happening(enum_happening ehappening);
 
 
       //virtual void init();

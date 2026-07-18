@@ -155,7 +155,6 @@ namespace gpu
       //::i32                                        m_iScanOffscreen;
       //::memory                                   m_memoryOffscreen;
       ::pointer < ::gpu::swap_chain >              m_pgpuswapchain;
-      ::pointer_array < ::gpu::shader >            m_shaderaRetire;
       ::pointer_array < ::gpu::semaphore >         m_gpusemaphoreaMergeLayersReady;
       ::pointer_array<::gpu::semaphore>            m_gpusemaphoreaPresentReady;
       ::string_map_base < ::pointer < ::gpu::texture > >    m_texturemap;
@@ -174,8 +173,6 @@ namespace gpu
 
       
       //virtual void gpu_debug_message(const ::scoped_string& scopedstr);
-
-      virtual void manage_retired_objects();
 
       virtual ::pointer < ::gpu::pixmap > create_gpu_pixmap(const ::i32_size& size);
 
@@ -408,8 +405,8 @@ namespace gpu
       //virtual void on_take_snapshot(layer * player);
 
       
-      virtual void start_frame();
-      virtual void end_frame();
+      //virtual void start_frame();
+      //virtual void end_frame();
 
 
       virtual void start_layer(bool bFirstLayer = false);

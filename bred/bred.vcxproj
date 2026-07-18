@@ -679,7 +679,7 @@
     <ClInclude Include="gpu\render.h" />
     <ClInclude Include="gpu\renderable.h" />
     <ClInclude Include="gpu\renderer.h" />
-    <ClInclude Include="gpu\render_state.h" />
+    <ClInclude Include="gpu\aaa_layer_state.h" />
     <ClInclude Include="gpu\render_target.h" />
     <ClInclude Include="gpu\semaphore.h" />
     <ClInclude Include="gpu\shader.h" />
@@ -701,7 +701,7 @@
     <ClInclude Include="graphics3d\cube_map.h" />
     <ClInclude Include="graphics3d\engine.h" />
     <ClInclude Include="graphics3d\entity.h" />
-    <ClInclude Include="graphics3d\frame.h" />
+    <ClInclude Include="graphics3d\aaa_frame.h" />
     <ClInclude Include="graphics3d\framework.h" />
     <ClInclude Include="graphics3d\game_object.h" />
     <ClInclude Include="graphics3d\global_ubo1.h" />
@@ -832,7 +832,6 @@
     <ClCompile Include="gpu\render.cpp" />
     <ClCompile Include="gpu\renderable.cpp" />
     <ClCompile Include="gpu\renderer.cpp" />
-    <ClCompile Include="gpu\render_state.cpp" />
     <ClCompile Include="gpu\render_target.cpp" />
     <ClCompile Include="gpu\semaphore.cpp" />
     <ClCompile Include="gpu\shader.cpp" />

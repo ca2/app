@@ -22,7 +22,7 @@ namespace prodevian
    void actor::initialize_prodevian_actor(graphics3d::scene_base *pscene)
    {
 
-
+      construct_newø(m_pcamera);
 
    }
 

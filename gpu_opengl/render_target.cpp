@@ -51,12 +51,12 @@ namespace gpu_opengl
    }
 
 
-   ::i32 render_target::get_frame_index()
-   {
+   //::i32 render_target::get_frame_index()
+   //{
 
-      return 0;
+   //   return 0;
 
-   }
+   //}
 
 
    void render_target::on_before_begin_render(::gpu::layer * pgpulayer)

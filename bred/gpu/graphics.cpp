@@ -22,7 +22,7 @@
 #include "bred/gpu/device.h"
 #include "bred/gpu/model_buffer.h"
 #include "bred/gpu/renderer.h"
-#include "bred/gpu/render_state.h"
+//#include "bred/gpu/render_state.h"
 #include "bred/gpu/render_target.h"
 #include "bred/gpu/swap_chain.h"
 #include "bred/gpu/types.h"
@@ -96,7 +96,7 @@ namespace gpu
 
       auto prendertarget = prenderer->render_target();
 
-      ::i32 iFrameIndex = prendertarget->get_frame_index();
+      ::i32 iFrameIndex = prendertarget->m_pgpurenderer->m_pgpucontext->m_pgpudevice->get_frame_index3();
 
       if (iFrameIndex < 0)
       {
@@ -119,20 +119,21 @@ namespace gpu
    }
 
 
-      void graphics::start_frame()
-      {
+   void graphics::start_frame()
+   {
       
-            auto pcontext = gpu_context();
+         auto pcontext = gpu_context();
 
-         pcontext->m_escene = ::gpu::e_scene_2d;
-            pcontext->start_frame();
-      }
+      pcontext->m_escene = ::gpu::e_scene_2d;
+         pcontext->m_pgpudevice->start_frame();
+         //pcontext->start_frame();
+   }
 
 
    void graphics::end_frame() {
       auto pcontext = gpu_context();
 
-      pcontext->end_frame();
+      pcontext->m_pgpudevice->end_frame();
    }
 
 
@@ -523,7 +524,7 @@ namespace gpu
 
          auto prendertarget = prenderer->render_target();
 
-         ::i32 iFrameIndex = prendertarget->get_frame_index();
+         ::i32 iFrameIndex = prendertarget->m_pgpurenderer->m_pgpucontext->m_pgpudevice->get_frame_index3();
 
          auto ppoolgroupFrame = pgpudevice->frame_pool_group(iFrameIndex);
 

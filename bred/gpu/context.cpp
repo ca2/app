@@ -15,7 +15,7 @@
 #include "render.h"
 #include "renderable.h"
 #include "renderer.h"
-#include "render_state.h"
+//#include "layer_state.h"
 #include "render_target.h"
 #include "layer.h"
 #include "swap_chain.h"
@@ -323,7 +323,7 @@ namespace gpu
 
             pgpushader->m_timeRetire.Now();
 
-            m_shaderaRetire.add(pgpushader);
+            m_pgpudevice->m_shaderaRetire.add(pgpushader);
          }
       }
       catch (...)
@@ -334,30 +334,30 @@ namespace gpu
    }
 
 
-   void context::manage_retired_objects()
-   {
+   //void context::manage_retired_objects()
+   //{
 
-      _synchronous_lock synchronouslock(this->synchronization(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
+   //   _synchronous_lock synchronouslock(this->synchronization(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 
-      for (::collection::index i = 0; i < m_shaderaRetire.size();)
-      {
+   //   for (::collection::index i = 0; i < m_shaderaRetire.size();)
+   //   {
 
-         auto &pshader = m_shaderaRetire[i];
+   //      auto &pshader = m_shaderaRetire[i];
 
-         if (pshader->m_timeRetire.elapsed() > 15_s)
-         {
+   //      if (pshader->m_timeRetire.elapsed() > 15_s)
+   //      {
 
-            ::release(pshader);
+   //         ::release(pshader);
 
-            m_shaderaRetire.erase_at(i);
-         }
-         else
-         {
+   //         m_shaderaRetire.erase_at(i);
+   //      }
+   //      else
+   //      {
 
-            i++;
-         }
-      }
-   }
+   //         i++;
+   //      }
+   //   }
+   //}
 
 
    void context::start_debug_happening(::gpu::command_buffer *pgpucommandbuffer,
@@ -3835,24 +3835,24 @@ void main() {
    }
 
 
-   void context::start_frame()
-   {
+   //void context::start_frame()
+   //{
 
-      auto pgpurenderer = this->get_gpu_renderer();
+   //   auto pgpurenderer = this->get_gpu_renderer();
 
-      pgpurenderer->start_frame();
+   //   pgpurenderer->start_frame();
 
-   }
+   //}
 
 
-   void context::end_frame()
-   {
+   //void context::end_frame()
+   //{
 
-      auto pgpurenderer = this->get_gpu_renderer();
+   //   auto pgpurenderer = this->get_gpu_renderer();
 
-      pgpurenderer->end_frame();
+   //   pgpurenderer->end_frame();
 
-   }
+   //}
 
 
    // aaaxyz

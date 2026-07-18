@@ -815,9 +815,9 @@ void user::destroy()
 //
 //#else
 //
-//      will_use_impact_hint(COLORSEL_IMPACT);
+//      will_use_impact_hint("color_selection_impact");
 //
-//      auto pdocument = impact_system(COLORSEL_IMPACT)->open_document_file(puiOwner->get_app(), ::e_type_null, true);
+//      auto pdocument = impact_system("color_selection_impact")->open_document_file(puiOwner->get_app(), ::e_type_null, true);
 //
 //      ::pointer<::user::color_selector_impact>pimpact = pdocument->get_typed_impact < ::user::color_selector_impact >();
 //
@@ -1593,34 +1593,34 @@ void user::destroy()
 //   void user::will_use_impact_hint(::atom idImpact)
 //   {
 //
-//      if (idImpact == FILEMANAGER_IMPACT)
+//      if (idImpact == "file_manager_impact")
 //      {
 //
-//         if (impact_system(FILEMANAGER_IMPACT) != nullptr)
+//         if (impact_system("file_manager_impact") != nullptr)
 //         {
 //
 //            return;
 //
 //         }
 //
-//         //m_mapimpactsystem[FILEMANAGER_IMPACT] = filemanager(idImpact)->m_pimpactsystem;
+//         //m_mapimpactsystem["file_manager_impact"] = filemanager(idImpact)->m_pimpactsystem;
 //
 //         //add_factory_item <::user::color_impact >();
 //
-//         //user()->m_mapimpactsystem[COLORSEL_IMPACT] = __initialize_new ::user::multiple_document_template(
+//         //user()->m_mapimpactsystem["color_selection_impact"] = __initialize_new ::user::multiple_document_template(
 //         //   get_app(),
 //         //   "main",
 //         //   ::type<::user::document>(),
 //         //   ::type<::prodevian_translucent_simple_frame_window>(),
 //         //   ::type<::user::color_impact>()));
 //
-//         //add_document_template(user()->m_mapimpactsystem[COLORSEL_IMPACT]);
+//         //add_document_template(user()->m_mapimpactsystem["color_selection_impact"]);
 //
 //      }
-//      else if (idImpact == COLORSEL_IMPACT)
+//      else if (idImpact == "color_selection_impact")
 //      {
 //
-//         if (impact_system(COLORSEL_IMPACT) != nullptr)
+//         if (impact_system("color_selection_impact") != nullptr)
 //         {
 //
 //            return;
@@ -1630,7 +1630,7 @@ void user::destroy()
 //         factory()->add_factory_item <::user::color_selector_impact >();
 //
 //         add_impact_system(
-//            COLORSEL_IMPACT,
+//            "color_selection_impact",
 //            __initialize_new ::user::multiple_document_template(
 //            "main",
 //            ::type<::user::document>(),
@@ -1641,10 +1641,10 @@ void user::destroy()
 //
 //         //psession->add_document_template(ptemplate);
 //
-//         //m_mapimpactsystem[COLORSEL_IMPACT] = ptemplate;
+//         //m_mapimpactsystem["color_selection_impact"] = ptemplate;
 //
 //      }
-//      else if (idImpact == FONTSEL_IMPACT)
+//      else if (idImpact == "font_selection_impact")
 //      {
 //
 //         if (m_bFontSelInitialized)
@@ -1661,7 +1661,7 @@ void user::destroy()
 //         factory()->add_factory_item <::userex::font_impact >();
 //
 //         add_impact_system(
-//            FONTSEL_IMPACT,
+//            "font_selection_impact",
 //            __initialize_new ::user::multiple_document_template(
 //            "main",
 //            ::type<::user::document>(),
@@ -1672,7 +1672,7 @@ void user::destroy()
 //
 //         //psession->add_document_template(ptemplate);
 //
-//         //m_mapimpactsystem[FONTSEL_IMPACT] = ptemplate;
+//         //m_mapimpactsystem["font_selection_impact"] = ptemplate;
 //
 //         fork([this]()
 //         {

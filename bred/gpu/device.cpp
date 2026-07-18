@@ -12,7 +12,7 @@
 #include "swap_chain.h"
 #include "texture.h"
 #include "types.h"
-//#include "_gpu.h"
+#include "frame.h"
 #include "acme/call.h"
 #include "acme/exception/interface_only.h"
 #include "acme/parallelization/synchronous_lock.h"
@@ -978,6 +978,61 @@ void device::create_main_context(::acme::windowing::window * pacmewindowingwindo
    }
 
 
+   ::gpu::frame *device::current_frame() 
+   {
+
+      _synchronous_lock lock(this->synchronization());
+      
+      auto iFrameIndex = get_frame_index3();
+      
+      auto pframe = m_framea[iFrameIndex];
+
+      return pframe;
+
+
+   }
+
+
+   void device::start_frame()
+   {
+
+      _synchronous_lock lock(this->synchronization());
+
+      auto iFrameIndex = get_frame_index3();
+
+      auto & pframe = m_framea.atø(iFrameIndex);
+
+      if (defer_construct_newø(pframe))
+      {
+
+         pframe->initialize_gpu_frame();
+
+      }
+
+      pframe->start_frame();
+
+   }
+
+
+   void device::end_frame()
+   {
+
+      on_end_frame();
+
+      _synchronous_lock lock(this->synchronization());
+
+      auto pframe = current_frame();
+
+      pframe->end_frame();
+
+      //assert(pframe->m_egpuframestate == e_gpu_frame_state_began_frame);
+
+      //pframe->m_egpuframestate = e_gpu_frame_state_ended_frame;
+
+   }
+
+
+
    void device::defer_shader_memory(::memory &memory, const ::file::path &pathShader)
    {
 
@@ -1056,6 +1111,47 @@ void device::create_main_context(::acme::windowing::window * pacmewindowingwindo
          {
          }
       }
+
+
+      if (m_timeLast5s.elapsed() > 5_s)
+      {
+
+         m_timeLast5s.Now();
+
+         m_papplication->post(
+            [this]()
+            {
+               manage_retired_objects();
+            });
+      }
+
+   }
+
+
+   
+   void device::manage_retired_objects()
+   {
+
+      _synchronous_lock synchronouslock(this->synchronization(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
+
+      for (::collection::index i = 0; i < m_shaderaRetire.size();)
+      {
+
+         auto &pshader = m_shaderaRetire[i];
+
+         if (pshader->m_timeRetire.elapsed() > 15_s)
+         {
+
+            ::release(pshader);
+
+            m_shaderaRetire.erase_at(i);
+         }
+         else
+         {
+
+            i++;
+         }
+      }
    }
 
 
@@ -1086,10 +1182,12 @@ void device::create_main_context(::acme::windowing::window * pacmewindowingwindo
    ::i32 device::get_frame_index3()
    {
 
-      if (this->get_frame_count() > 1)
+      auto iFrameCount = this->get_frame_count();
+
+      if (iFrameCount > 1)
       {
 
-         return (::i32)m_iCurrentFrame3;
+         return (::i32)(m_iCurrentFrame3 % iFrameCount);
 
       }
       else
@@ -1448,7 +1546,7 @@ void device::create_main_context(::acme::windowing::window * pacmewindowingwindo
 
       defer_constructø(player);
 
-      auto iFrameIndex = pgpurenderer->render_target()->get_frame_index();
+      auto iFrameIndex = pgpurenderer->render_target()->m_pgpurenderer->m_pgpucontext->m_pgpudevice->get_frame_index3();
 
       player->initialize_gpu_layer(pgpurenderer, iFrameIndex, m_iLayer);
 

@@ -110,3 +110,14 @@
 //} // namespace windows
 //
 //
+
+
+void acme_quite_early_construct()
+{
+
+
+}
+
+
+
+

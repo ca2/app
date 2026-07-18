@@ -20,8 +20,6 @@ namespace gpu
 
       ::collection::index m_iGpuRenderer=-1;
 
-      class ::time m_timeLast5s;
-
       ::i32 m_iSentLayerCount = 0;
       //::pointer<::gpu::layer>                         m_pgpulayer;
 
@@ -67,10 +65,10 @@ namespace gpu
 
       ::pointer < ::gpu::render_target >   m_pgpurendertarget2;
       //::pointer < swap_chain >      m_pswapchain;
-      ::pointer < render_state >    m_prenderstate;
+      //::pointer < render_state >    m_prenderstate;
 
-      ::procedure_array m_procedureaOnAfterEndFrame;
-      ::procedure_array m_procedureaOnJustBeforeFrameNextStart;
+      //::procedure_array m_procedureaOnAfterEndFrame;
+      //::procedure_array m_procedureaOnJustBeforeFrameNextStart;
 
 
 
@@ -254,8 +252,8 @@ namespace gpu
       virtual void on_end_layer(layer* player);
 
 
-      virtual void start_frame();
-      virtual void end_frame();
+      //virtual void start_frame();
+      //virtual void end_frame();
 
 
       // aaaxyz
@@ -272,10 +270,10 @@ namespace gpu
 
       virtual void on_after_load_scene(::graphics3d::scene_base* pscene);
 
-      virtual void post_on_after_end_frame(const ::procedure &procedure);
+      //virtual void post_on_after_end_frame(const ::procedure &procedure);
 
 
-      virtual void post_on_just_before_frame_next_start(const ::procedure &procedure);
+      //virtual void post_on_just_before_frame_next_start(const ::procedure &procedure);
 
 
    };

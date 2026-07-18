@@ -87,14 +87,25 @@ namespace gpu
       ::pointer < ::gpu::frame_ephemeral >         m_pframeephemeralStrict;
 
 
-      
+      ::pointer_array<::gpu::frame> m_framea;
+
+            ::pointer_array<::gpu::shader> m_shaderaRetire;
+
+                  class ::time m_timeLast5s;
+
+
+
 
       device();
       ~device() override;
 
 
       ///virtual ::gpu::context* current_context();
-      
+
+            virtual void manage_retired_objects();
+
+
+
       virtual void create_main_context(::acme::windowing::window *pacmewindowingwindow);
       virtual ::gpu::context * main_context();
       virtual ::gpu::context * main_draw2d_context();
@@ -108,14 +119,18 @@ namespace gpu
       //bool task_iteration() override;
       //void _send(const ::procedure& procedure) override;
       //void _post(const ::procedure& procedure) override;
-      virtual pool_group* frame_pool_group(::i32 iFrameIndex);
-      virtual ::pointer_array<::particle >* frame_particle_array(::i32 iFrameIndex);
-
 
       virtual void defer_shader_memory(::memory &memory, const ::file::path &pathShader);
 
 
       virtual void on_initialize_gpu_device();
+      virtual pool_group *frame_pool_group(::i32 iFrameIndex);
+      virtual ::pointer_array<::particle> *frame_particle_array(::i32 iFrameIndex);
+      virtual ::gpu::frame *current_frame();
+      virtual void start_frame();
+      virtual void end_frame();
+
+
 
       virtual void on_new_frame();
       virtual void on_end_frame();

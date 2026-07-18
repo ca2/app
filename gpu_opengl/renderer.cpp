@@ -17,7 +17,7 @@
 #include "aura/platform/application.h"
 #include "bred/gpu/context_lock.h"
 #include "bred/gpu/layer.h"
-#include "bred/gpu/render_state.h"
+//#include "bred/gpu/render_state.h"
 #include "bred/user/user/graphics3d.h"
 #include "aura/windowing/window.h"
 //#include <glad/glad.h>
@@ -117,13 +117,13 @@ namespace gpu_opengl
    }
 
 
-   //::pointer < ::gpu::frame > renderer::beginFrame()
-   void renderer::start_frame()
-   {
+   ////::pointer < ::gpu::frame > renderer::beginFrame()
+   //void renderer::start_frame()
+   //{
 
-      return ::gpu::renderer::start_frame();
+   //   return ::gpu::renderer::start_frame();
 
-   }
+   //}
 
 
    
@@ -552,186 +552,186 @@ namespace gpu_opengl
    //}
 
 
-   //void renderer::endFrame()
-   void renderer::end_frame()
-   {
-
-      ::gpu::context_lock contextlock(m_pgpucontext);
-
-      //if (m_pgpucontext != m_pgpucontext->m_pgpudevice->current_context())
-      //{
-
-      //   throw ::exception(error_wrong_state);
-
-      //}
-
-
-
-      //glDisable(GL_DEPTH_TEST);
-
-
-      //}
-
-//            glDepthFunc(GL_LESS);
-
-      //glPopAttrib();
-      //glPopMatrix();
-
-
-      //glClearColor(0.5f*0.5f, 0.75f * 0.5f, 0.95f * 0.5f, 0.5f); // RGBA
-      //glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
-      
-      
-      //glDisable(GL_DEPTH_TEST);
-      //glDepthMask(GL_FALSE);
-      //glEnable(GL_BLEND);
-      //glDisable(GL_SCISSOR_TEST);
-      //glFlush();
-      //::opengl::check_error("");
-
-      //defer_end_frame_layer_copy();
-
-
-   //}
-   // if (bForDrawing)
-   //{
-
-   //   pcontextInnerStart->send_on_context([this, pcontextInnerStart, bForDrawing, procedure]()
-   //      {
-
-   //         //if (bForDrawing)
-   //         {
-
-   //            auto prenderer = pcontextInnerStart->get_gpu_renderer();
-
-   //            prenderer->defer_update_renderer();
-
-   //            auto λ = [procedure](::gpu::layer* pgpulayer)
-   //               {
-
-   //                  procedure();
-
-   //               };
-   //
-   //            ::gpu::context_lock contextlock(pcontextInnerStart);
-
-   //            prenderer->do_on_frame(bForDrawing, λ);
-
-   //         }
-   //         //else
-   //         //{
-
-   //         //   procedure();
-
-   //         //}
-
-   //      });
-
-
-//});
-
-
-//}
-// else
-//{
-
-//   pcontextInnerStart->send_on_context(
-//      [this, pcontextInnerStart, bForDrawing, procedure]()
+//   //void renderer::endFrame()
+//   void renderer::end_frame()
+//   {
+//
+//      ::gpu::context_lock contextlock(m_pgpucontext);
+//
+//      //if (m_pgpucontext != m_pgpucontext->m_pgpudevice->current_context())
+//      //{
+//
+//      //   throw ::exception(error_wrong_state);
+//
+//      //}
+//
+//
+//
+//      //glDisable(GL_DEPTH_TEST);
+//
+//
+//      //}
+//
+////            glDepthFunc(GL_LESS);
+//
+//      //glPopAttrib();
+//      //glPopMatrix();
+//
+//
+//      //glClearColor(0.5f*0.5f, 0.75f * 0.5f, 0.95f * 0.5f, 0.5f); // RGBA
+//      //glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
+//      
+//      
+//      //glDisable(GL_DEPTH_TEST);
+//      //glDepthMask(GL_FALSE);
+//      //glEnable(GL_BLEND);
+//      //glDisable(GL_SCISSOR_TEST);
+//      //glFlush();
+//      //::opengl::check_error("");
+//
+//      //defer_end_frame_layer_copy();
+//
+//
+//   //}
+//   // if (bForDrawing)
+//   //{
+//
+//   //   pcontextInnerStart->send_on_context([this, pcontextInnerStart, bForDrawing, procedure]()
+//   //      {
+//
+//   //         //if (bForDrawing)
+//   //         {
+//
+//   //            auto prenderer = pcontextInnerStart->get_gpu_renderer();
+//
+//   //            prenderer->defer_update_renderer();
+//
+//   //            auto λ = [procedure](::gpu::layer* pgpulayer)
+//   //               {
+//
+//   //                  procedure();
+//
+//   //               };
+//   //
+//   //            ::gpu::context_lock contextlock(pcontextInnerStart);
+//
+//   //            prenderer->do_on_frame(bForDrawing, λ);
+//
+//   //         }
+//   //         //else
+//   //         //{
+//
+//   //         //   procedure();
+//
+//   //         //}
+//
+//   //      });
+//
+//
+////});
+//
+//
+////}
+//// else
+////{
+//
+////   pcontextInnerStart->send_on_context(
+////      [this, pcontextInnerStart, bForDrawing, procedure]()
+////      {
+////         // if (bForDrawing)
+////         {
+//
+////            auto prenderer = pcontextInnerStart->get_gpu_renderer();
+//
+////            prenderer->defer_update_renderer();
+//
+////            auto λ = [procedure](::gpu::layer * pgpulayer)
+////            {
+////               procedure();
+////            };
+//
+////            prenderer->do_on_frame(bForDrawing, λ);
+////         }
+////         // else
+////         //{
+//
+////         //   procedure();
+//
+////         //}
+////      });
+////}
+//
+//
+//// if (procedure.timeout().is_set())
+////{
+//
+////   procedureOnContext.set_timeout(procedure.timeout());
+//
+////}
+//
+//// send_on_context(procedureOnContext);
+//
+//// if (bForDrawing)
+////{
+//
+////   m_pgpudevice->on_end_frame();
+//
+////}
+//
+//      
+//      
+//
+//      //GLint drawFboId = 0, readFboId = 0;
+//
+//      //glGetIntegerv(GL_DRAW_FRAMEBUFFER_BINDING, &drawFboId);
+//      //glGetIntegerv(GL_READ_FRAMEBUFFER_BINDING, &readFboId);
+//
+//      //::i32 iGlError1 = glGetError();
+//
+//      //::i32 iGlError2 = -1;
+//
+//      //if (drawFboId != 0)
+//      //{
+//
+//      //   glBindFramebuffer(GL_FRAMEBUFFER, 0);
+//
+//      //   iGlError2 = glGetError();
+//
+//      //}
+//
+//      auto eoutput = m_pgpucontext->m_eoutput;
+//
+//      //if (eoutput == ::gpu::e_output_swap_chain)
+//      //{
+//
+//      //   _swap();
+//
+//      //}
+//      //else 
+//         if (eoutput == ::gpu::e_output_cpu_buffer)
 //      {
-//         // if (bForDrawing)
-//         {
-
-//            auto prenderer = pcontextInnerStart->get_gpu_renderer();
-
-//            prenderer->defer_update_renderer();
-
-//            auto λ = [procedure](::gpu::layer * pgpulayer)
-//            {
-//               procedure();
-//            };
-
-//            prenderer->do_on_frame(bForDrawing, λ);
-//         }
-//         // else
-//         //{
-
-//         //   procedure();
-
-//         //}
-//      });
-//}
-
-
-// if (procedure.timeout().is_set())
-//{
-
-//   procedureOnContext.set_timeout(procedure.timeout());
-
-//}
-
-// send_on_context(procedureOnContext);
-
-// if (bForDrawing)
-//{
-
-//   m_pgpudevice->on_end_frame();
-
-//}
-
-      
-      
-
-      //GLint drawFboId = 0, readFboId = 0;
-
-      //glGetIntegerv(GL_DRAW_FRAMEBUFFER_BINDING, &drawFboId);
-      //glGetIntegerv(GL_READ_FRAMEBUFFER_BINDING, &readFboId);
-
-      //::i32 iGlError1 = glGetError();
-
-      //::i32 iGlError2 = -1;
-
-      //if (drawFboId != 0)
-      //{
-
-      //   glBindFramebuffer(GL_FRAMEBUFFER, 0);
-
-      //   iGlError2 = glGetError();
-
-      //}
-
-      auto eoutput = m_pgpucontext->m_eoutput;
-
-      //if (eoutput == ::gpu::e_output_swap_chain)
-      //{
-
-      //   _swap();
-
-      //}
-      //else 
-         if (eoutput == ::gpu::e_output_cpu_buffer)
-      {
-
-         do_sampling_to_cpu();
-
-      }
-
-      //if (m_pgpucontextUpper)
-      //{
-
-      //   m_pgpucontext->release_current();
-
-      //   m_pgpucontextUpper->make_current();
-
-      //}
-      
-      layer_end_after_submit();
-
-
-      m_prenderstate->on_happening(::gpu::e_happening_end_frame);
-
-      //m_bFrameStarted = false;
-
-   }
+//
+//         do_sampling_to_cpu();
+//
+//      }
+//
+//      //if (m_pgpucontextUpper)
+//      //{
+//
+//      //   m_pgpucontext->release_current();
+//
+//      //   m_pgpucontextUpper->make_current();
+//
+//      //}
+//      
+//      layer_end_after_submit();
+//
+//
+//      m_prenderstate->on_happening(::gpu::e_happening_end_frame);
+//
+//      //m_bFrameStarted = false;
+//
+//   }
 
 
    //void renderer::defer_update_renderer()

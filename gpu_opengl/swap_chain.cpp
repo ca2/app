@@ -13,7 +13,7 @@
 #include "bred/gpu/context_lock.h"
 #include "bred/gpu/device.h"
 #include "bred/gpu/layer.h"
-#include "bred/gpu/render_state.h"
+//#include "bred/gpu/render_state.h"
 #include "aura/user/user/interaction.h"
 #include "aura/windowing/window.h"
 

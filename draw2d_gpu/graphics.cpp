@@ -7019,7 +7019,7 @@ color = vec4(c.r,c.g, c.b, c.a);
    }
 
 
-   void graphics::intersect_clip(const ::draw2d::clip_group& clipgroup)
+   void graphics::intersect_clip(::draw2d::clip_group * pclipgroup)
    {
 
 

@@ -42,7 +42,7 @@ namespace gpu_opengl
 
       //::pointer < ::gpu::frame > beginFrame() override;
 
-      void start_frame() override;
+      //void start_frame() override;
 
       //void on_new_frame() override;
 
@@ -68,7 +68,7 @@ namespace gpu_opengl
 
       //void endFrame() override;
 
-      void end_frame() override;
+      //void end_frame() override;
 
       //void endDraw(::user::interaction * puserinteraction) override;
 

@@ -73,6 +73,7 @@ namespace gpu
       m_escene = e_scene_none;
 
       m_bCreated = false;
+
    }
 
 
@@ -427,13 +428,21 @@ namespace gpu
    void context::on_new_frame()
    {
 
-
       auto pswapchain = get_swap_chain();
 
       if (::is_set(pswapchain))
       {
 
          pswapchain->on_new_frame();
+
+      }
+      
+      if (m_eoutput == e_output_cpu_buffer || m_eoutput == e_output_gpu_buffer)
+      {
+
+         auto iFrameCount = m_pgpudevice->get_frame_count();
+
+         m_pgpudevice->m_iCurrentFrame3 = (m_pgpudevice->m_iCurrentFrame3 + 1) % iFrameCount;
 
       }
 

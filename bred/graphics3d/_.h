@@ -14,8 +14,6 @@ namespace graphics3d
 
    class engine;
 
-   class engine;
-
    //template<typename TYPE>
    //class model;
 

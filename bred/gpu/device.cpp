@@ -985,7 +985,14 @@ void device::create_main_context(::acme::windowing::window * pacmewindowingwindo
       
       auto iFrameIndex = get_frame_index3();
       
-      auto pframe = m_framea[iFrameIndex];
+      auto &pframe = m_framea.atø(iFrameIndex);
+
+      if (defer_construct_newø(pframe))
+      {
+
+         pframe->initialize_gpu_frame();
+
+      }
 
       return pframe;
 
@@ -996,18 +1003,33 @@ void device::create_main_context(::acme::windowing::window * pacmewindowingwindo
    void device::start_frame()
    {
 
-      _synchronous_lock lock(this->synchronization());
+      m_iFrameSerial2++;
 
-      auto iFrameIndex = get_frame_index3();
+      m_pgpucontextMain->on_new_frame();
 
-      auto & pframe = m_framea.atø(iFrameIndex);
+      // m_iCurrentFrame3 = (m_iCurrentFrame3 + 1) % iFrameCount;
 
-      if (defer_construct_newø(pframe))
+      auto &pframestorage = m_framestoragea.atø(m_iCurrentFrame3);
+
+      if (!pframestorage)
       {
 
-         pframe->initialize_gpu_frame();
+         constructø(pframestorage);
 
+         pframestorage->initialize_gpu_frame_storage(this);
       }
+
+      pframestorage->m_iBuffer = 0;
+
+      pframestorage->m_iBufferOffset = 0;
+
+      auto &pframeephemeral = m_frameephemerala.atø(m_iCurrentFrame3);
+
+      constructø(pframeephemeral);
+
+      _synchronous_lock lock(this->synchronization());
+
+      auto pframe = current_frame();
 
       pframe->start_frame();
 
@@ -1025,12 +1047,80 @@ void device::create_main_context(::acme::windowing::window * pacmewindowingwindo
 
       pframe->end_frame();
 
-      //assert(pframe->m_egpuframestate == e_gpu_frame_state_began_frame);
+   }
 
-      //pframe->m_egpuframestate = e_gpu_frame_state_ended_frame;
+
+   //void device::start_offscreen_frame()
+   //{
+
+   //   auto iFrameCount = get_frame_count();
+
+   //}
+
+   //
+   //void device::end_offscreen_frame()
+   //{
+
+   //   on_end_frame();
+
+   //   _synchronous_lock lock(this->synchronization());
+
+   //   auto pframe = current_frame();
+
+   //   pframe->end_frame();
+
+   //}
+
+
+   void device::on_start_frame()
+   {
 
    }
 
+
+   void device::on_end_frame()
+   {
+
+      {
+
+         _synchronous_lock synchronouslock(this->synchronization(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
+
+         auto procedureaOnTopFrameEnd = ::transfer(m_procedureaOnTopFrameEnd);
+
+         for (auto &procedure: procedureaOnTopFrameEnd)
+         {
+
+            procedure();
+         }
+      }
+
+      auto pframestorage = current_frame_storage();
+
+      if (::is_set(pframestorage))
+      {
+
+         try
+         {
+
+            pframestorage->on_end_frame();
+         }
+         catch (...)
+         {
+         }
+      }
+
+      if (m_timeLast5s.elapsed() > 5_s)
+      {
+
+         m_timeLast5s.Now();
+
+         m_papplication->post(
+            [this]()
+            {
+               manage_retired_objects();
+            });
+      }
+   }
 
 
    void device::defer_shader_memory(::memory &memory, const ::file::path &pathShader)
@@ -1062,73 +1152,6 @@ void device::create_main_context(::acme::windowing::window * pacmewindowingwindo
    }
 
 
-   void device::on_new_frame()
-   {
-
-      auto iFrameCount = get_frame_count();
-
-      m_iFrameSerial2++;
-
-      m_pgpucontextMain->on_new_frame();
-
-      //m_iCurrentFrame3 = (m_iCurrentFrame3 + 1) % iFrameCount;
-
-      auto& pframestorage = m_framestoragea.atø(m_iCurrentFrame3);
-
-      if (!pframestorage)
-      {
-
-         constructø(pframestorage);
-
-         pframestorage->initialize_gpu_frame_storage(this);
-
-      }
-
-      pframestorage->m_iBuffer = 0;
-
-      pframestorage->m_iBufferOffset = 0;
-
-      auto& pframeephemeral = m_frameephemerala.atø(m_iCurrentFrame3);
-
-      constructø(pframeephemeral);
-
-   }
-
-   
-   void device::on_end_frame()
-   {
-
-      auto pframestorage = current_frame_storage();
-
-      if (::is_set(pframestorage))
-      {
-         try
-         {
-
-            pframestorage->on_end_frame();
-         }
-         catch (...)
-         {
-         }
-      }
-
-
-      if (m_timeLast5s.elapsed() > 5_s)
-      {
-
-         m_timeLast5s.Now();
-
-         m_papplication->post(
-            [this]()
-            {
-               manage_retired_objects();
-            });
-      }
-
-   }
-
-
-   
    void device::manage_retired_objects()
    {
 
@@ -1444,22 +1467,6 @@ void device::create_main_context(::acme::windowing::window * pacmewindowingwindo
    }
 
 
-   void device::on_top_end_frame()
-   {
-
-      _synchronous_lock synchronouslock(this->synchronization(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
-
-      auto procedureaOnTopFrameEnd = ::transfer(m_procedureaOnTopFrameEnd);
-
-      for (auto& procedure : procedureaOnTopFrameEnd)
-      {
-
-         procedure();
-
-      }
-
-
-   }
 
 
    ::i32 device::get_type_size(::gpu::enum_type etype)

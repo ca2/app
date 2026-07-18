@@ -55,6 +55,8 @@ namespace gpu
 
       m_ppoolgroupFrame = nullptr;
 
+      m_iGpuContextFrameSerial = -1;
+
       //m_eoutputOnEndDraw = ::gpu::e_output_none;
 
    }
@@ -85,12 +87,23 @@ namespace gpu
    }
 
 
-   void graphics::on_new_frame()
+   void graphics::defer_on_new_frame()
    {
 
       auto pcontext = gpu_context();
 
       auto pgpudevice = pcontext->m_pgpudevice;
+
+      auto iGpuDeviceFrameSerial = pgpudevice->m_iFrameSerial2;
+
+      if (m_iGpuContextFrameSerial >= iGpuDeviceFrameSerial)
+      {
+
+         return;
+
+      }
+
+      m_iGpuContextFrameSerial = pgpudevice->m_iFrameSerial2;
 
       auto prenderer = pcontext->get_gpu_renderer();
 
@@ -190,25 +203,25 @@ namespace gpu
 
          auto etypeGpuContext = pcontext->m_etype;
 
-         if (bFirstLayer)
-         {
+         //if (bFirstLayer)
+         //{
 
-            m_pgpucontextCompositor2->m_pgpudevice->on_new_frame();
+         //   m_pgpucontextCompositor2->m_pgpudevice->start_frame();
 
-         }
+         //}
 
-         // if (!bUseSwapChain || etypeGpuContext != ::gpu::context::e_type_window)
-         {
-            // if (prenderer->m_prenderstate->m_estate != e_state_initial)
-            {
+         //// if (!bUseSwapChain || etypeGpuContext != ::gpu::context::e_type_window)
+         //{
+         //   // if (prenderer->m_prenderstate->m_estate != e_state_initial)
+         //   {
 
                // prenderer->frame_prefix();
 
-               on_new_frame();
+               defer_on_new_frame();
 
-            }
+         //   }
 
-         }
+         //}
 
          // ::i32 iFrameIndex = pcontext->m_pgpurenderer->m_pgpurendertarget->get_frame_index();
 

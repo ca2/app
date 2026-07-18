@@ -38,7 +38,7 @@ namespace gpu
       ::pointer < ::gpu::shader >         m_pgpushaderTextOut;
       ::pointer < ::gpu::model_buffer >         m_pmodelbufferTextOutDummy;
       //::pointer < ::gpu::shader >                 m_pshaderLine;
-
+      ::collection::index                       m_iGpuContextFrameSerial;
       pool_group* m_ppoolgroupFrame;
 
       graphics();
@@ -61,7 +61,7 @@ namespace gpu
       //void on_end_layout1() override;
       //void on_begin_draw1() override;
       //void on_end_draw1() override;
-      virtual void on_new_frame();
+      virtual void defer_on_new_frame();
       void gpu_layer_on_before_end_render() override;
 
       void on_end_draw(::acme::windowing::window *pacmewindowingwindow) override;

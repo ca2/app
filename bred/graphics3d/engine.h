@@ -9,6 +9,7 @@
 #include "bred/platform/application.h"
 
 
+#include <atomic>
 #include <chrono>
 
 
@@ -20,6 +21,9 @@ namespace graphics3d
 		virtual public ::app_consumer < ::bred::application, ::object, ::gpu::compositor >
 	{
 	public:
+
+
+      ::std::atomic<::f32>                              m_fDesiredFps{60.0f};
 
 
 

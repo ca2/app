@@ -1,6 +1,7 @@
 // Created by camilo on 2025-05-17 04:14 <3ThomasBorregaardSorensen!!
 #include "framework.h"
 #include "engine.h"
+#include "offscreen_frame_pacer.h"
 #include "immersion_layer.h"
 #include "input.h"
 //#include "tinyobjloader_Builder.h"
@@ -32,6 +33,7 @@
 #include "aura/graphics/image/target.h"
 #include "aura/platform/application.h"
 #include <chrono>
+#include <thread>
 #include "acme/prototype/geometry/quaternion.h"
 
 //
@@ -501,80 +503,114 @@ namespace graphics3d
 
             ::gpu::thread_set_gpu_device(pcontext->m_pgpudevice);
 
+            ::graphics3d::offscreen_frame_pacer framepacer;
+
             while (task_get_run())
             {
 
+               auto fAppliedFps = ::graphics3d::offscreen_frame_pacer::validated_fps(
+                  m_fDesiredFps.load(::std::memory_order_relaxed));
+               auto timeFrameDeadline = framepacer.begin_frame(
+                  ::graphics3d::offscreen_frame_pacer::clock::now(),
+                  fAppliedFps);
+
                task_iteration();
 
-               if (m_rectanglePlacementNew.is_empty())
+               if (m_rectanglePlacementNew.has_area() && m_bLoadedEngine)
                {
 
-                  continue;
+                  //::gpu::context_guard guard(m_pgpucontextCompositor);
 
-               }
+                  auto pcontext = gpu_context();
 
-               if (!m_bLoadedEngine)
-               {
+                  pcontext->set_placement(m_rectanglePlacementNew);
 
-                  continue;
+                  auto prenderer = pcontext->get_gpu_renderer();
 
-               }
+                  prenderer->defer_update_renderer();
 
-               //::gpu::context_guard guard(m_pgpucontextCompositor);
+                  auto pcpubuffer = pcontext->get_cpu_buffer();
 
-               auto pcontext = gpu_context();
+                  auto pimagetarget = pcpubuffer->get_image_target();
 
-               pcontext->set_placement(m_rectanglePlacementNew);
+                  if (!pimagetarget->m_callbackOnImagePixels)
+                  {
 
-               auto prenderer = pcontext->get_gpu_renderer();
+                     pimagetarget->m_callbackOnImagePixels =
+                        [this]()
+                        {
 
-               prenderer->defer_update_renderer();
+                           m_pusergraphics3d->set_need_redraw();
 
-               auto pcpubuffer = pcontext->get_cpu_buffer();
+                           m_pusergraphics3d->post_redraw();
 
-               auto pimagetarget = pcpubuffer->get_image_target();
+                        };
 
-               if (!pimagetarget->m_callbackOnImagePixels)
-               {
-
-                  pimagetarget->m_callbackOnImagePixels =
-                     [this]()
-                     {
-
-                        m_pusergraphics3d->set_need_redraw();
-
-                        m_pusergraphics3d->post_redraw();
-
-                     };
-
-               }
-
-               try
-               {
+                  }
 
                   try
                   {
 
-                     m_pgpucontextCompositor2->m_pgpudevice->on_new_frame();
+                     try
+                     {
+
+                        m_pgpucontextCompositor2->m_pgpudevice->start_frame();
+
+                     }
+                     catch (...)
+                     {
+
+
+                     }
+
+                     draw_layer();
 
                   }
                   catch (...)
                   {
 
+                  }
+
+                  auto pdevice = pcontext->m_pgpudevice;
+
+                  //pdevice->end_offscreen_frame();
+                  pdevice->end_frame();
+
+               }
+
+               auto timeAfterFrame = ::graphics3d::offscreen_frame_pacer::clock::now();
+
+               if (framepacer.should_wait(timeAfterFrame))
+               {
+
+                  while (task_get_run())
+                  {
+
+                     auto fLatestFps = ::graphics3d::offscreen_frame_pacer::validated_fps(
+                        m_fDesiredFps.load(::std::memory_order_relaxed));
+
+                     if (fLatestFps != fAppliedFps)
+                     {
+
+                        break;
+
+                     }
+
+                     auto timeNow = ::graphics3d::offscreen_frame_pacer::clock::now();
+
+                     if (timeNow >= timeFrameDeadline)
+                     {
+
+                        break;
+
+                     }
+
+                     ::std::this_thread::sleep_for(
+                        framepacer.wait_slice(timeFrameDeadline - timeNow));
 
                   }
 
-                  draw_layer();
-
                }
-               catch (...)
-               {
-
-               }
-
-               auto pdevice = pcontext->m_pgpudevice;
-
-               pdevice->on_top_end_frame();
 
             }
 

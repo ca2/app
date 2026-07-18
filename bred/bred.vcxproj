@@ -700,6 +700,7 @@
     <ClInclude Include="graphics3d\class_set1.h" />
     <ClInclude Include="graphics3d\cube_map.h" />
     <ClInclude Include="graphics3d\engine.h" />
+    <ClInclude Include="graphics3d\offscreen_frame_pacer.h" />
     <ClInclude Include="graphics3d\entity.h" />
     <ClInclude Include="graphics3d\aaa_frame.h" />
     <ClInclude Include="graphics3d\framework.h" />

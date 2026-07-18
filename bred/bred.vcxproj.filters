@@ -186,6 +186,9 @@
     <ClInclude Include="graphics3d\engine.h">
       <Filter>Header Files\graphics3d</Filter>
     </ClInclude>
+    <ClInclude Include="graphics3d\offscreen_frame_pacer.h">
+      <Filter>Header Files\graphics3d</Filter>
+    </ClInclude>
     <ClInclude Include="graphics3d\aaa_frame.h">
       <Filter>Header Files\graphics3d</Filter>
     </ClInclude>

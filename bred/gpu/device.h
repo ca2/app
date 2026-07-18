@@ -127,18 +127,25 @@ namespace gpu
       virtual pool_group *frame_pool_group(::i32 iFrameIndex);
       virtual ::pointer_array<::particle> *frame_particle_array(::i32 iFrameIndex);
       virtual ::gpu::frame *current_frame();
+      
+      
       virtual void start_frame();
       virtual void end_frame();
 
 
-
-      virtual void on_new_frame();
+      //virtual void start_offscreen_frame();
+      //virtual void end_offscreen_frame();
+      
+      
+      virtual void on_start_frame();
       virtual void on_end_frame();
       virtual ::i32 get_frame_index3();
       virtual ::i32 get_image_index();
       virtual ::i32 get_frame_count();
       virtual void restart_frame_counter();
       virtual bool is_starting_frame()const;
+
+      // virtual void on_top_end_frame();
 
 
       virtual ::gpu::queue *transfer_queue();
@@ -249,7 +256,7 @@ namespace gpu
 
       //virtual void clear(const ::color::color& color);
     
-      virtual void on_top_end_frame();
+      
 
       virtual ::i32 get_type_size(::gpu::enum_type etype);
 

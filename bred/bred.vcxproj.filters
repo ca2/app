@@ -159,6 +159,9 @@
     <ClInclude Include="gpu\render_target.h">
       <Filter>Header Files\gpu</Filter>
     </ClInclude>
+    <ClInclude Include="gpu\post_frame_context_registry.h">
+      <Filter>Header Files\gpu</Filter>
+    </ClInclude>
     <ClInclude Include="gpu\renderer.h">
       <Filter>Header Files\gpu</Filter>
     </ClInclude>

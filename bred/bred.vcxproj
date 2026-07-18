@@ -678,6 +678,7 @@
     <ClInclude Include="gpu\queue.h" />
     <ClInclude Include="gpu\render.h" />
     <ClInclude Include="gpu\renderable.h" />
+    <ClInclude Include="gpu\post_frame_context_registry.h" />
     <ClInclude Include="gpu\renderer.h" />
     <ClInclude Include="gpu\aaa_layer_state.h" />
     <ClInclude Include="gpu\render_target.h" />

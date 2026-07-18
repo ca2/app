@@ -11,6 +11,7 @@
 #include "aura/graphics/draw3d/matrix.h"
 #include "apex/parallelization/thread.h"
 #include "bred/gpu/shader.h"
+#include "post_frame_context_registry.h"
 #include "acme/graphics/image/image32.h"
 
 
@@ -89,6 +90,13 @@ namespace gpu
 
       ::pointer_array<::gpu::frame> m_framea;
 
+      using post_frame_context_registry_t =
+         ::gpu::post_frame_context_registry<
+            ::pointer<::gpu::context>,
+            ::pointer<::gpu::layer>>;
+
+      post_frame_context_registry_t m_postframecontextregistry;
+
             ::pointer_array<::gpu::shader> m_shaderaRetire;
 
                   class ::time m_timeLast5s;
@@ -131,6 +139,8 @@ namespace gpu
       
       virtual void start_frame();
       virtual void end_frame();
+      virtual void register_frame_context(::gpu::context *pcontext, ::gpu::layer *player);
+      virtual void dispatch_post_frame_contexts();
 
 
       //virtual void start_offscreen_frame();

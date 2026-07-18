@@ -3866,6 +3866,21 @@ void main() {
 
    // aaaxyz
    // void context::frame_prefix()
+   void context::on_end_frame()
+   {
+
+      if (m_pgpurenderer)
+      {
+
+         m_pgpurenderer->on_end_frame();
+
+      }
+
+   }
+
+
+   // aaaxyz
+   // void context::frame_prefix()
    void context::start_layer(bool bFirstLayer)
    {
 
@@ -3874,6 +3889,10 @@ void main() {
       // aaaxyz
       //pgpurenderer->frame_prefix();
       pgpurenderer->start_layer(bFirstLayer);
+
+      auto player = ::gpu::current_layer();
+
+      m_pgpudevice->register_frame_context(this, player);
 
       //::i32 iGpuContext = m_iGpuContext;
 

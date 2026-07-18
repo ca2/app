@@ -1000,8 +1000,66 @@ void device::create_main_context(::acme::windowing::window * pacmewindowingwindo
    }
 
 
+   void device::register_frame_context(::gpu::context *pcontext, ::gpu::layer *player)
+   {
+
+      _synchronous_lock lock(this->synchronization());
+
+      m_postframecontextregistry.register_context(pcontext, player);
+
+   }
+
+
+   void device::dispatch_post_frame_contexts()
+   {
+
+      post_frame_context_registry_t::entry_array entrya;
+      ::pointer<::gpu::context> pcontextMain;
+
+      {
+
+         _synchronous_lock lock(this->synchronization());
+
+         entrya = m_postframecontextregistry.take_entries();
+         pcontextMain = m_pgpucontextMain;
+
+      }
+
+      post_frame_context_registry_t::dispatch(
+         std::move(entrya),
+         pcontextMain,
+         []()
+         {
+
+            return ::pointer<::gpu::layer>(::gpu::current_layer());
+
+         },
+         [](const ::pointer<::gpu::layer> &player)
+         {
+
+            ::gpu::set_current_layer(player);
+
+         },
+         [](const ::pointer<::gpu::context> &pcontext)
+         {
+
+            pcontext->on_end_frame();
+
+         });
+
+   }
+
+
    void device::start_frame()
    {
+
+      {
+
+         _synchronous_lock lock(this->synchronization());
+
+         m_postframecontextregistry.clear();
+
+      }
 
       m_iFrameSerial2++;
 
@@ -1041,11 +1099,17 @@ void device::create_main_context(::acme::windowing::window * pacmewindowingwindo
 
       on_end_frame();
 
-      _synchronous_lock lock(this->synchronization());
+      {
 
-      auto pframe = current_frame();
+         _synchronous_lock lock(this->synchronization());
 
-      pframe->end_frame();
+         auto pframe = current_frame();
+
+         pframe->end_frame();
+
+      }
+
+      dispatch_post_frame_contexts();
 
    }
 

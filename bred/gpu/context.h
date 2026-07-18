@@ -398,6 +398,7 @@ namespace gpu
 
       virtual void on_start_layer(::gpu::layer * pgpulayer);
       virtual void on_end_layer(::gpu::layer * pgpulayer);
+      virtual void on_end_frame();
 
 
 

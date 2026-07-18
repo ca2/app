@@ -201,6 +201,8 @@ namespace gpu
 
       virtual void draw();
       virtual void read_to_cpu_buffer();
+      virtual void on_end_frame();
+      virtual void sample_to_cpu_buffer();
       //virtual void to_draw2d_graphics(::draw2d::graphics_pointer & pgraphics);
 
       virtual void on_start_drawing();

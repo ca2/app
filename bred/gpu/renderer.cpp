@@ -7,6 +7,7 @@
 #include "device.h"
 #include "frame.h"
 #include "layer.h"
+#include "post_frame_context_registry.h"
 #include "queue.h"
 #include "texture.h"
 #include "renderer.h"
@@ -864,6 +865,32 @@ namespace gpu
       //_001OnDraw1Through3(pgraphics);
       //return {};
 
+
+   }
+
+
+   void renderer::on_end_frame()
+   {
+
+      auto bCpuBuffer =
+         m_pgpucontext && m_pgpucontext->m_eoutput == ::gpu::e_output_cpu_buffer;
+
+      ::gpu::dispatch_cpu_sampling(
+         bCpuBuffer,
+         [this]()
+         {
+
+            sample_to_cpu_buffer();
+
+         });
+
+   }
+
+
+   void renderer::sample_to_cpu_buffer()
+   {
+
+      read_to_cpu_buffer();
 
    }
 

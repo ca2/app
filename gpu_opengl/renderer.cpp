@@ -907,6 +907,14 @@ namespace gpu_opengl
    //}
 
 
+   void renderer::sample_to_cpu_buffer()
+   {
+
+      do_sampling_to_cpu();
+
+   }
+
+
    void renderer::do_sampling_to_cpu()
    {
 

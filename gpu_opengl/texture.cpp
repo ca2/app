@@ -14,6 +14,93 @@
 
 #include <stb/stb_image.h>
 
+
+namespace
+{
+
+
+   class scoped_pixel_transfer_state
+   {
+   public:
+
+
+      GLint m_iReadFramebuffer = 0;
+      GLint m_iDrawFramebuffer = 0;
+      GLint m_iRenderbuffer = 0;
+      GLint m_iReadBuffer = 0;
+      GLint m_iTexture2d = 0;
+      GLint m_iPackAlignment = 0;
+      GLint m_iPackRowLength = 0;
+      GLint m_iUnpackAlignment = 0;
+      GLint m_iUnpackRowLength = 0;
+
+
+      scoped_pixel_transfer_state()
+      {
+
+         glGetIntegerv(GL_READ_FRAMEBUFFER_BINDING, &m_iReadFramebuffer);
+         glGetIntegerv(GL_DRAW_FRAMEBUFFER_BINDING, &m_iDrawFramebuffer);
+         glGetIntegerv(GL_RENDERBUFFER_BINDING, &m_iRenderbuffer);
+         glGetIntegerv(GL_READ_BUFFER, &m_iReadBuffer);
+         glGetIntegerv(GL_TEXTURE_BINDING_2D, &m_iTexture2d);
+         glGetIntegerv(GL_PACK_ALIGNMENT, &m_iPackAlignment);
+         glGetIntegerv(GL_PACK_ROW_LENGTH, &m_iPackRowLength);
+         glGetIntegerv(GL_UNPACK_ALIGNMENT, &m_iUnpackAlignment);
+         glGetIntegerv(GL_UNPACK_ROW_LENGTH, &m_iUnpackRowLength);
+
+      }
+
+
+      ~scoped_pixel_transfer_state() noexcept
+      {
+
+         glBindFramebuffer(GL_READ_FRAMEBUFFER, m_iReadFramebuffer);
+         glReadBuffer(m_iReadBuffer);
+         glBindFramebuffer(GL_DRAW_FRAMEBUFFER, m_iDrawFramebuffer);
+         glBindRenderbuffer(GL_RENDERBUFFER, m_iRenderbuffer);
+         glBindTexture(GL_TEXTURE_2D, m_iTexture2d);
+         glPixelStorei(GL_PACK_ALIGNMENT, m_iPackAlignment);
+         glPixelStorei(GL_PACK_ROW_LENGTH, m_iPackRowLength);
+         glPixelStorei(GL_UNPACK_ALIGNMENT, m_iUnpackAlignment);
+         glPixelStorei(GL_UNPACK_ROW_LENGTH, m_iUnpackRowLength);
+
+      }
+
+
+   };
+
+
+   GLenum pixmap_pixel_format(const ::pixmap * ppixmap)
+   {
+
+      const auto & indexes = ppixmap->m_colorindexes;
+
+      if (indexes.red() == 2 && indexes.green() == 1 &&
+          indexes.blue() == 0 && indexes.opacity() == 3)
+      {
+
+         return GL_BGRA;
+
+      }
+
+      if (indexes.red() == 0 && indexes.green() == 1 &&
+          indexes.blue() == 2 && indexes.opacity() == 3)
+      {
+
+         return GL_RGBA;
+
+      }
+
+      throw ::exception(
+         error_not_supported,
+         "Unsupported GPU image CPU pixel channel order.");
+
+   }
+
+
+} // namespace
+
+
 namespace gpu_opengl
 {
 
@@ -999,6 +1086,113 @@ void texture::_defer_bind_to_render_target(base_context_handle::object & object)
          throw ::exception(error_failed);
       }
       
+   }
+
+
+   void texture::read_pixels(::pixmap * ppixmap)
+   {
+
+      if (!ppixmap || ppixmap->size() != size() ||
+          ppixmap->m_iScan < width() * (int)sizeof(::image32_t) ||
+          !ppixmap->m_pimage32Raw || !m_gluTextureID ||
+          m_gluType != GL_TEXTURE_2D)
+      {
+
+         throw ::exception(error_bad_argument);
+
+      }
+
+      scoped_pixel_transfer_state state;
+
+      auto gluFramebuffer = frame_buffer_object();
+
+      glBindFramebuffer(GL_READ_FRAMEBUFFER, gluFramebuffer);
+      ::opengl::check_error("");
+
+      glFramebufferTexture2D(
+         GL_READ_FRAMEBUFFER,
+         GL_COLOR_ATTACHMENT0,
+         GL_TEXTURE_2D,
+         m_gluTextureID,
+         0);
+      ::opengl::check_error("");
+
+      auto eStatus = glCheckFramebufferStatus(GL_READ_FRAMEBUFFER);
+
+      if (eStatus != GL_FRAMEBUFFER_COMPLETE)
+      {
+
+         throw ::exception(
+            error_wrong_state,
+            "GPU image framebuffer is incomplete during CPU mapping.");
+
+      }
+
+      glReadBuffer(GL_COLOR_ATTACHMENT0);
+      glPixelStorei(GL_PACK_ALIGNMENT, 1);
+      glPixelStorei(
+         GL_PACK_ROW_LENGTH,
+         ppixmap->m_iScan / (int)sizeof(::image32_t));
+
+      glReadPixels(
+         0,
+         0,
+         width(),
+         height(),
+         pixmap_pixel_format(ppixmap),
+         GL_UNSIGNED_BYTE,
+         ppixmap->m_pimage32Raw);
+      ::opengl::check_error("");
+
+      ppixmap->vertical_swap();
+
+   }
+
+
+   void texture::write_pixels(const ::pixmap * ppixmap)
+   {
+
+      if (!ppixmap || ppixmap->size() != size() ||
+          ppixmap->m_iScan < width() * (int)sizeof(::image32_t) ||
+          !ppixmap->m_pimage32Raw || !m_gluTextureID ||
+          m_gluType != GL_TEXTURE_2D)
+      {
+
+         throw ::exception(error_bad_argument);
+
+      }
+
+      ::memory memoryFlipped;
+      ::pixmap pixmapFlipped;
+      pixmapFlipped.create(
+         memoryFlipped,
+         ppixmap->size(),
+         ppixmap->m_iScan);
+      pixmapFlipped.m_colorindexes = ppixmap->m_colorindexes;
+      pixmapFlipped.copy(ppixmap);
+      pixmapFlipped.vertical_swap();
+
+      scoped_pixel_transfer_state state;
+
+      glBindTexture(GL_TEXTURE_2D, m_gluTextureID);
+      ::opengl::check_error("");
+      glPixelStorei(GL_UNPACK_ALIGNMENT, 1);
+      glPixelStorei(
+         GL_UNPACK_ROW_LENGTH,
+         pixmapFlipped.m_iScan / (int)sizeof(::image32_t));
+
+      glTexSubImage2D(
+         GL_TEXTURE_2D,
+         0,
+         0,
+         0,
+         width(),
+         height(),
+         pixmap_pixel_format(&pixmapFlipped),
+         GL_UNSIGNED_BYTE,
+         pixmapFlipped.m_pimage32Raw);
+      ::opengl::check_error("");
+
    }
 
 

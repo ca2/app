@@ -92,6 +92,10 @@ int main()
    assert(sendRead < wait && wait < staging && staging < stagingMemory &&
       stagingMemory < read && read < mapped);
    assert(map.find("throw ::not_implemented") == std::string::npos);
+   assert(map.find("if (m_bMapped)") <
+      map.find("m_bPerformanceDiagnostics"));
+   assert(map.find("read_pixels(pthis);") <
+      map.find("record_performance_map_transition("));
 
    const auto unmap = imageSource.substr(
       imageSource.find("void image::unmap()"));
@@ -108,6 +112,20 @@ int main()
    assert(sendWrite < write && write < fence && fence < pixmapUnmap &&
       pixmapUnmap < unmapped);
    assert(unmap.find("throw ::not_implemented") == std::string::npos);
+   assert(unmap.find("if (!m_bMapped)") <
+      unmap.find("m_bPerformanceDiagnostics"));
+   assert(unmap.find("write_pixels(pthis);") <
+      unmap.find("record_performance_unmap_transition("));
+
+   assert(imageSource.find("gpu.performance.image_mapping") !=
+      std::string::npos);
+   assert(imageSource.find("m_uPerformanceMapGeneration") !=
+      std::string::npos);
+   assert(imageSource.find("current_task_name()") !=
+      std::string::npos);
+   assert(imageSource.find("s_uMapTransitionSequence.fetch_add") !=
+      std::string::npos);
+   assert(imageSource.find("< 64") != std::string::npos);
 
    return 0;
 

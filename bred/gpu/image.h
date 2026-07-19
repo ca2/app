@@ -4,6 +4,10 @@
 #include "aura/graphics/image/image.h"
 
 
+#include <atomic>
+#include <chrono>
+
+
 namespace gpu
 {
 
@@ -19,6 +23,17 @@ namespace gpu
 
 
       ::pointer < ::gpu::texture > m_pgputexture;
+      mutable ::std::atomic_bool m_bPerformanceDiagnosticsEnabledLast{false};
+      mutable ::std::atomic<::u64> m_uPerformanceDiagnosticsGenerationLast{0};
+      mutable ::std::atomic<::u64> m_uPerformanceMapGeneration{0};
+      mutable ::std::atomic<::u64> m_uPerformanceDetailTransitions{0};
+      mutable ::std::atomic<::u64> m_uPerformanceMapTransitions{0};
+      mutable ::std::atomic<::u64> m_uPerformanceUnmapTransitions{0};
+      mutable ::std::atomic<::u64> m_uPerformanceBytesRead{0};
+      mutable ::std::atomic<::u64> m_uPerformanceBytesWritten{0};
+      mutable ::std::atomic<::u64> m_uPerformanceReadMicroseconds{0};
+      mutable ::std::atomic<::u64> m_uPerformanceWriteMicroseconds{0};
+      mutable ::std::atomic<::i64> m_iPerformanceNextReportNanoseconds{0};
 
 
       image();
@@ -36,6 +51,11 @@ namespace gpu
 
       void map(bool bApplyAlphaTransform = true) const override;
       void unmap() const override;
+
+      void reset_performance_diagnostics() const;
+      void record_performance_map_transition(::u64 uMicroseconds) const;
+      void record_performance_unmap_transition(::u64 uMicroseconds) const;
+      void report_performance_diagnostics_if_due() const;
 
 
    };

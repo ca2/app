@@ -35,6 +35,9 @@ namespace acme { class acme; }
 #include "application_core.h"
 
 
+#include <atomic>
+
+
 namespace platform
 {
 
@@ -116,6 +119,9 @@ namespace platform
          bool                                         m_bUseSwapChainWindow;
          ::gpu::enum_output                           m_eoutputDraw2d;
          ::gpu::enum_output                           m_eoutputEngine;
+         ::std::atomic_bool                           m_bPerformanceDiagnostics{false};
+         ::std::atomic<::i32>                         m_iPerformanceDiagnosticsIntervalMilliseconds{1000};
+         ::std::atomic<::u64>                         m_uPerformanceDiagnosticsGeneration{0};
 
       } m_gpu;
 

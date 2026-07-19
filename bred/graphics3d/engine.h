@@ -59,6 +59,11 @@ namespace graphics3d
 
 		virtual void initialize_engine(::user::graphics3d* pimpact);
 
+      void set_gpu_performance_diagnostics(bool bEnabled);
+      bool gpu_performance_diagnostics_enabled() const;
+      void set_gpu_performance_diagnostics_interval(::i32 iMilliseconds);
+      ::i32 gpu_performance_diagnostics_interval() const;
+
 
       virtual void defer_process_load_assets_commands();
 

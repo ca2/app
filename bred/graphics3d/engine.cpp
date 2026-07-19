@@ -70,6 +70,77 @@ namespace graphics3d
    }
 
 
+   void engine::set_gpu_performance_diagnostics(bool bEnabled)
+   {
+
+      if (!m_papplication)
+      {
+
+         throw ::exception(error_wrong_state);
+
+      }
+
+      auto bPreviouslyEnabled = m_papplication->m_gpu.m_bPerformanceDiagnostics.exchange(
+         bEnabled,
+         ::std::memory_order_relaxed);
+
+      if (bPreviouslyEnabled != bEnabled)
+      {
+
+         m_papplication->m_gpu.m_uPerformanceDiagnosticsGeneration.fetch_add(
+            1,
+            ::std::memory_order_relaxed);
+
+      }
+
+   }
+
+
+   bool engine::gpu_performance_diagnostics_enabled() const
+   {
+
+      return m_papplication
+         && m_papplication->m_gpu.m_bPerformanceDiagnostics.load(
+            ::std::memory_order_relaxed);
+
+   }
+
+
+   void engine::set_gpu_performance_diagnostics_interval(::i32 iMilliseconds)
+   {
+
+      if (!m_papplication)
+      {
+
+         throw ::exception(error_wrong_state);
+
+      }
+
+      auto iValidatedMilliseconds = maximum(100, minimum(60'000, iMilliseconds));
+
+      m_papplication->m_gpu.m_iPerformanceDiagnosticsIntervalMilliseconds.store(
+         iValidatedMilliseconds,
+         ::std::memory_order_relaxed);
+
+   }
+
+
+   ::i32 engine::gpu_performance_diagnostics_interval() const
+   {
+
+      if (!m_papplication)
+      {
+
+         return 1'000;
+
+      }
+
+      return m_papplication->m_gpu.m_iPerformanceDiagnosticsIntervalMilliseconds.load(
+         ::std::memory_order_relaxed);
+
+   }
+
+
    void engine::initialize_engine(::user::graphics3d* pusergraphics3d)
    {
 

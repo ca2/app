@@ -9,11 +9,11 @@
 
 
 // nanosecond unit ηs - greek eta - greek etha
-constexpr class time operator""_ηs(::u64 u) { return nanosecond_time(u); }
+constexpr class time operator "" _ηs(::u64 u) { return nanosecond_time(u); }
 
 
 // microsecond unit μs - greek mu
-constexpr class time operator""_μs(::u64 u) { return microsecond_time(u); }
+constexpr class time operator "" _μs(::u64 u) { return microsecond_time(u); }
 
 
 constexpr class time operator""_ms(::u64 u) { return millisecond_time(u); }
@@ -39,11 +39,11 @@ constexpr class time operator""_days(::u64 u) { return day_time(u); }
 
 
 // unit _nanosecond
-constexpr class time operator""_ηs(::f128 d) { return nanosecond_time(d); }
+constexpr class time operator "" _ηs(::f128 d) { return nanosecond_time(d); }
 
 
 // unit _microsecond
-constexpr class time operator""_μs(::f128 d) { return microsecond_time(d); }
+constexpr class time operator "" _μs(::f128 d) { return microsecond_time(d); }
 
 
 constexpr class time operator""_ms(::f128 d) { return millisecond_time(d); }

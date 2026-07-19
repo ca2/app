@@ -6,6 +6,7 @@
 #include "acme/parallelization/fork.h"
 #include "acme/parallelization/synchronous_lock.h"
 #include "acme/handler/item.h"
+#include "acme/platform/application.h"
 #include "acme/platform/node.h"
 #include "acme/user/user/content.h"
 #include "apex/handler/signal.h"
@@ -34,6 +35,15 @@
 
 namespace write_text
 {
+
+
+   static ::i64 font_list_performance_steady_nanoseconds()
+   {
+
+      return ::std::chrono::duration_cast<::std::chrono::nanoseconds>(
+         ::std::chrono::steady_clock::now().time_since_epoch()).count();
+
+   }
 
 
    font_list_item::font_list_item()
@@ -95,6 +105,195 @@ namespace write_text
    }
 
 
+   void font_list::reset_font_list_performance_diagnostics()
+   {
+
+      auto bEnabled = m_papplication
+         && m_papplication->m_gpu.m_bPerformanceDiagnostics.load(
+            ::std::memory_order_relaxed);
+      auto iIntervalMilliseconds = m_papplication
+         ? m_papplication->m_gpu.m_iPerformanceDiagnosticsIntervalMilliseconds.load(
+            ::std::memory_order_relaxed)
+         : 1'000;
+
+      iIntervalMilliseconds = maximum(
+         100,
+         minimum(60'000, iIntervalMilliseconds));
+
+      m_uPerformanceDrawPasses.store(0, ::std::memory_order_relaxed);
+      m_uPerformanceItemsExamined.store(0, ::std::memory_order_relaxed);
+      m_uPerformanceVisibleItems.store(0, ::std::memory_order_relaxed);
+      m_uPerformancePreviewUpdates.store(0, ::std::memory_order_relaxed);
+      m_uPerformanceCachedDraws.store(0, ::std::memory_order_relaxed);
+      m_uPerformancePreviewUpdateMicroseconds.store(
+         0,
+         ::std::memory_order_relaxed);
+      m_uPerformanceCachedDrawMicroseconds.store(
+         0,
+         ::std::memory_order_relaxed);
+      m_iPerformanceNextReportNanoseconds.store(
+         font_list_performance_steady_nanoseconds()
+            + (::i64)iIntervalMilliseconds * 1'000'000,
+         ::std::memory_order_relaxed);
+      m_bPerformanceDiagnosticsEnabledLast.store(
+         bEnabled,
+         ::std::memory_order_relaxed);
+      m_uPerformanceDiagnosticsGenerationLast.store(
+         m_papplication
+            ? m_papplication->m_gpu.m_uPerformanceDiagnosticsGeneration.load(
+               ::std::memory_order_relaxed)
+            : 0,
+         ::std::memory_order_relaxed);
+
+   }
+
+
+   bool font_list::begin_font_list_performance_diagnostics()
+   {
+
+      if (!m_papplication
+         || !m_papplication->m_gpu.m_bPerformanceDiagnostics.load(
+            ::std::memory_order_relaxed))
+      {
+
+         return false;
+
+      }
+
+      auto uGeneration =
+         m_papplication->m_gpu.m_uPerformanceDiagnosticsGeneration.load(
+            ::std::memory_order_relaxed);
+
+      if (uGeneration != m_uPerformanceDiagnosticsGenerationLast.load(
+         ::std::memory_order_relaxed))
+      {
+
+         reset_font_list_performance_diagnostics();
+
+      }
+
+      m_uPerformanceDrawPasses.fetch_add(1, ::std::memory_order_relaxed);
+
+      return true;
+
+   }
+
+
+   void font_list::record_font_item_examined()
+   {
+
+      m_uPerformanceItemsExamined.fetch_add(1, ::std::memory_order_relaxed);
+
+   }
+
+
+   void font_list::record_visible_font_item()
+   {
+
+      m_uPerformanceVisibleItems.fetch_add(1, ::std::memory_order_relaxed);
+
+   }
+
+
+   void font_list::record_font_preview_update(::u64 uMicroseconds)
+   {
+
+      m_uPerformancePreviewUpdates.fetch_add(1, ::std::memory_order_relaxed);
+      m_uPerformancePreviewUpdateMicroseconds.fetch_add(
+         uMicroseconds,
+         ::std::memory_order_relaxed);
+
+   }
+
+
+   void font_list::record_cached_font_preview_draw(::u64 uMicroseconds)
+   {
+
+      m_uPerformanceCachedDraws.fetch_add(1, ::std::memory_order_relaxed);
+      m_uPerformanceCachedDrawMicroseconds.fetch_add(
+         uMicroseconds,
+         ::std::memory_order_relaxed);
+
+   }
+
+
+   void font_list::report_font_list_performance_diagnostics_if_due()
+   {
+
+      if (!m_papplication
+         || !m_papplication->m_gpu.m_bPerformanceDiagnostics.load(
+            ::std::memory_order_relaxed))
+      {
+
+         return;
+
+      }
+
+      auto iNowNanoseconds = font_list_performance_steady_nanoseconds();
+      auto iDeadlineNanoseconds = m_iPerformanceNextReportNanoseconds.load(
+         ::std::memory_order_relaxed);
+
+      if (iNowNanoseconds < iDeadlineNanoseconds)
+      {
+
+         return;
+
+      }
+
+      auto iIntervalMilliseconds = maximum(
+         100,
+         minimum(
+            60'000,
+            m_papplication->m_gpu.m_iPerformanceDiagnosticsIntervalMilliseconds.load(
+               ::std::memory_order_relaxed)));
+      auto iNextNanoseconds = iNowNanoseconds
+         + (::i64)iIntervalMilliseconds * 1'000'000;
+
+      if (!m_iPerformanceNextReportNanoseconds.compare_exchange_strong(
+         iDeadlineNanoseconds,
+         iNextNanoseconds,
+         ::std::memory_order_relaxed))
+      {
+
+         return;
+
+      }
+
+      auto uDrawPasses = m_uPerformanceDrawPasses.exchange(
+         0,
+         ::std::memory_order_relaxed);
+      auto uItemsExamined = m_uPerformanceItemsExamined.exchange(
+         0,
+         ::std::memory_order_relaxed);
+      auto uVisibleItems = m_uPerformanceVisibleItems.exchange(
+         0,
+         ::std::memory_order_relaxed);
+      auto uPreviewUpdates = m_uPerformancePreviewUpdates.exchange(
+         0,
+         ::std::memory_order_relaxed);
+      auto uCachedDraws = m_uPerformanceCachedDraws.exchange(
+         0,
+         ::std::memory_order_relaxed);
+      auto uPreviewUpdateMicroseconds =
+         m_uPerformancePreviewUpdateMicroseconds.exchange(
+            0,
+            ::std::memory_order_relaxed);
+      auto uCachedDrawMicroseconds =
+         m_uPerformanceCachedDrawMicroseconds.exchange(
+            0,
+            ::std::memory_order_relaxed);
+
+      information() << "[gpu.performance.font_list] draw_passes=" << uDrawPasses
+         << " items_examined=" << uItemsExamined
+         << " visible_items=" << uVisibleItems
+         << " preview_updates=" << uPreviewUpdates
+         << " cached_draws=" << uCachedDraws
+         << " preview_update_us=" << uPreviewUpdateMicroseconds
+         << " cached_draw_us=" << uCachedDrawMicroseconds;
+
+   }
+
+
    bool font_list::set_sel_by_name(const ::scoped_string & scopedstr)
    {
 
@@ -124,6 +323,8 @@ namespace write_text
 
    void font_list::_001OnDrawWide(::draw2d::graphics_pointer & pgraphics)
    {
+
+      auto bPerformanceDiagnostics = begin_font_list_performance_diagnostics();
 
       //pgraphics->reset_clip();
 
@@ -155,6 +356,13 @@ namespace write_text
          m_puserinteraction->set_need_redraw();
 
          m_puserinteraction->post_redraw();
+
+         if (bPerformanceDiagnostics)
+         {
+
+            report_font_list_performance_diagnostics_if_due();
+
+         }
 
          return;
 
@@ -204,6 +412,13 @@ namespace write_text
 
             }
 
+            if (bPerformanceDiagnostics)
+            {
+
+               report_font_list_performance_diagnostics_if_due();
+
+            }
+
             return;
 
          }
@@ -214,6 +429,13 @@ namespace write_text
 
       for (::i32 i = 0; i < cListDataCount; i++)
       {
+
+         if (bPerformanceDiagnostics)
+         {
+
+            record_font_item_examined();
+
+         }
 
          ::pointer < font_list_item > pitem = pfontlistdata->item_at(i);
 
@@ -266,10 +488,38 @@ namespace write_text
 
          }
 
-         if (!pbox->is_drawing_ok(this))
+         if (bPerformanceDiagnostics)
          {
 
+            record_visible_font_item();
+
+         }
+
+         auto bCachedPreview = pbox->is_drawing_ok(this);
+
+         if (!bCachedPreview)
+         {
+
+            auto timePreviewUpdate = ::std::chrono::steady_clock::time_point{};
+
+            if (bPerformanceDiagnostics)
+            {
+
+               timePreviewUpdate = ::std::chrono::steady_clock::now();
+
+            }
+
             pbox->update(this, BOX, pitem->m_strSample);
+
+            if (bPerformanceDiagnostics)
+            {
+
+               auto uMicroseconds = (::u64)::std::chrono::duration_cast<
+                  ::std::chrono::microseconds>(
+                     ::std::chrono::steady_clock::now() - timePreviewUpdate).count();
+               record_font_preview_update(uMicroseconds);
+
+            }
 
          }
 
@@ -285,7 +535,26 @@ namespace write_text
 
          ::image::image_drawing imagedrawing(imagedrawingoptions, imagesource);
 
+         auto timeCachedDraw = ::std::chrono::steady_clock::time_point{};
+
+         if (bPerformanceDiagnostics && bCachedPreview)
+         {
+
+            timeCachedDraw = ::std::chrono::steady_clock::now();
+
+         }
+
          pgraphics->draw(imagedrawing);
+
+         if (bPerformanceDiagnostics && bCachedPreview)
+         {
+
+            auto uMicroseconds = (::u64)::std::chrono::duration_cast<
+               ::std::chrono::microseconds>(
+                  ::std::chrono::steady_clock::now() - timeCachedDraw).count();
+            record_cached_font_preview_draw(uMicroseconds);
+
+         }
 
       }
 
@@ -370,11 +639,20 @@ namespace write_text
 
       }
 
+      if (bPerformanceDiagnostics)
+      {
+
+         report_font_list_performance_diagnostics_if_due();
+
+      }
+
    }
 
 
    void font_list::_001OnDrawSingleColumn(::draw2d::graphics_pointer & pgraphics, ::user::interaction * puserinteraction)
    {
+
+      auto bPerformanceDiagnostics = begin_font_list_performance_diagnostics();
 
       _synchronous_lock synchronouslock(this->synchronization(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 
@@ -399,6 +677,13 @@ namespace write_text
       for (::i32 i = 0; i < pfontlistdata->item_count(); i++)
       {
 
+         if (bPerformanceDiagnostics)
+         {
+
+            record_font_item_examined();
+
+         }
+
          if (pfontlistdata->item_at(i) == nullptr)
          {
 
@@ -420,10 +705,31 @@ namespace write_text
 
          rectangle.right = rectangle.left + m_size.cx;
 
-         if (!pbox->is_drawing_ok(this))
+         auto bCachedPreview = pbox->is_drawing_ok(this);
+
+         if (!bCachedPreview)
          {
 
+            auto timePreviewUpdate = ::std::chrono::steady_clock::time_point{};
+
+            if (bPerformanceDiagnostics)
+            {
+
+               timePreviewUpdate = ::std::chrono::steady_clock::now();
+
+            }
+
             pbox->update(this, iBox, pfontlistitem->m_strSample);
+
+            if (bPerformanceDiagnostics)
+            {
+
+               auto uMicroseconds = (::u64)::std::chrono::duration_cast<
+                  ::std::chrono::microseconds>(
+                     ::std::chrono::steady_clock::now() - timePreviewUpdate).count();
+               record_font_preview_update(uMicroseconds);
+
+            }
 
          }
 
@@ -438,6 +744,13 @@ namespace write_text
             }
 
             continue;
+
+         }
+
+         if (bPerformanceDiagnostics)
+         {
+
+            record_visible_font_item();
 
          }
 
@@ -498,9 +811,35 @@ namespace write_text
 
             ::image::image_drawing imagedrawing(imagedrawingoptions, imagesource);
 
+            auto timeCachedDraw = ::std::chrono::steady_clock::time_point{};
+
+            if (bPerformanceDiagnostics && bCachedPreview)
+            {
+
+               timeCachedDraw = ::std::chrono::steady_clock::now();
+
+            }
+
             pgraphics->draw(imagedrawing);
 
+            if (bPerformanceDiagnostics && bCachedPreview)
+            {
+
+               auto uMicroseconds = (::u64)::std::chrono::duration_cast<
+                  ::std::chrono::microseconds>(
+                     ::std::chrono::steady_clock::now() - timeCachedDraw).count();
+               record_cached_font_preview_draw(uMicroseconds);
+
+            }
+
          }
+
+      }
+
+      if (bPerformanceDiagnostics)
+      {
+
+         report_font_list_performance_diagnostics_if_due();
 
       }
 

@@ -6,6 +6,10 @@
 #include "acme/exception/status.h"
 
 
+#include <atomic>
+#include <chrono>
+
+
 namespace write_text
 {
 
@@ -61,6 +65,16 @@ namespace write_text
       //::collection::index                                   m_iSel;
       //::collection::index                                   m_iHover;
       bool                                      m_bDarkMode;
+      ::std::atomic_bool                        m_bPerformanceDiagnosticsEnabledLast{false};
+      ::std::atomic<::u64>                      m_uPerformanceDiagnosticsGenerationLast{0};
+      ::std::atomic<::u64>                      m_uPerformanceDrawPasses{0};
+      ::std::atomic<::u64>                      m_uPerformanceItemsExamined{0};
+      ::std::atomic<::u64>                      m_uPerformanceVisibleItems{0};
+      ::std::atomic<::u64>                      m_uPerformancePreviewUpdates{0};
+      ::std::atomic<::u64>                      m_uPerformanceCachedDraws{0};
+      ::std::atomic<::u64>                      m_uPerformancePreviewUpdateMicroseconds{0};
+      ::std::atomic<::u64>                      m_uPerformanceCachedDrawMicroseconds{0};
+      ::std::atomic<::i64>                      m_iPerformanceNextReportNanoseconds{0};
 
 
       font_list();
@@ -89,6 +103,14 @@ namespace write_text
       virtual void _001OnDraw(::draw2d::graphics_pointer & pgraphics, ::user::interaction * puserinteraction);
       virtual void _001OnDrawWide(::draw2d::graphics_pointer & pgraphics);
       virtual void _001OnDrawSingleColumn(::draw2d::graphics_pointer & pgraphics, ::user::interaction * puserinteraction);
+
+      bool begin_font_list_performance_diagnostics();
+      void record_font_item_examined();
+      void record_visible_font_item();
+      void record_font_preview_update(::u64 uMicroseconds);
+      void record_cached_font_preview_draw(::u64 uMicroseconds);
+      void report_font_list_performance_diagnostics_if_due();
+      void reset_font_list_performance_diagnostics();
 
       virtual ::collection::index find_name(const ::scoped_string & scopedstr);
 

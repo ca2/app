@@ -8,6 +8,9 @@
 #include "bred/gpu/texture_data.h"
 
 
+struct pixmap;
+
+
 namespace gpu
 {
 
@@ -118,6 +121,8 @@ namespace gpu
 
       virtual ::string texture_type();
       virtual void set_pixels(const ::i32_rectangle& rectangle, const void* data);
+      virtual void read_pixels(::pixmap * ppixmap);
+      virtual void write_pixels(const ::pixmap * ppixmap);
 
       virtual bool is_in_shader_sampling_state();
 

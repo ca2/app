@@ -666,6 +666,22 @@ namespace gpu
    }
 
 
+   void texture::read_pixels(::pixmap *)
+   {
+
+      throw ::not_implemented();
+
+   }
+
+
+   void texture::write_pixels(const ::pixmap *)
+   {
+
+      throw ::not_implemented();
+
+   }
+
+
    bool texture::is_in_shader_sampling_state()
    {
 

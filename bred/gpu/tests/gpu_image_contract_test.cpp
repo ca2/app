@@ -42,7 +42,7 @@ int main()
       std::string::npos);
 
    assert(source.find("return _get_graphics();") != std::string::npos);
-   assert(source.find("throw ::not_implemented();") != std::string::npos);
+   assert(source.find("throw ::not_implemented();") == std::string::npos);
    assert(source.find("m_pgputexture =") != std::string::npos);
 
    const auto destroy = source.find("void image::destroy()");

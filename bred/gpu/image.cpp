@@ -27,6 +27,8 @@ namespace gpu
    ::draw2d::graphics * image::get_graphics() const
    {
 
+      unmap();
+
       return _get_graphics();
 
    }
@@ -88,7 +90,49 @@ namespace gpu
    void image::map(bool) const
    {
 
-      throw ::not_implemented();
+      if (m_bMapped)
+      {
+
+         return;
+
+      }
+
+      auto pgputexture = m_pgputexture;
+
+      if (!pgputexture || m_sizeRaw.is_empty())
+      {
+
+         throw ::exception(error_wrong_state);
+
+      }
+
+      auto pgpucontext = pgputexture->context();
+
+      if (!pgpucontext)
+      {
+
+         throw ::exception(error_wrong_state);
+
+      }
+
+      auto pthis = const_cast < image * >(this);
+
+      pgpucontext->send(
+         [pthis, pgputexture]()
+         {
+
+            pgputexture->wait_fence();
+
+            pthis->pixmap::create(
+               pthis->m_memoryMap,
+               pthis->m_sizeRaw,
+               pthis->m_sizeRaw.cx * (int)sizeof(::image32_t));
+
+            pgputexture->read_pixels(pthis);
+            pthis->pixmap::map(pthis->rectangle());
+            pthis->m_bMapped = true;
+
+         });
 
    }
 
@@ -96,7 +140,43 @@ namespace gpu
    void image::unmap() const
    {
 
-      throw ::not_implemented();
+      if (!m_bMapped)
+      {
+
+         return;
+
+      }
+
+      auto pgputexture = m_pgputexture;
+
+      if (!pgputexture)
+      {
+
+         throw ::exception(error_wrong_state);
+
+      }
+
+      auto pgpucontext = pgputexture->context();
+
+      if (!pgpucontext)
+      {
+
+         throw ::exception(error_wrong_state);
+
+      }
+
+      auto pthis = const_cast < image * >(this);
+
+      pgpucontext->send(
+         [pthis, pgputexture]()
+         {
+
+            pgputexture->write_pixels(pthis);
+            pgputexture->defer_fence();
+            pthis->pixmap::unmap();
+            pthis->m_bMapped = false;
+
+         });
 
    }
 

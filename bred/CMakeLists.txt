@@ -47,6 +47,8 @@ list(APPEND library_source
    gpu/graphics.h
    gpu/guard.cpp
    gpu/guard.h
+   gpu/image.cpp
+   gpu/image.h
    gpu/input_layout.cpp
    gpu/input_layout.h
    gpu/layer.cpp

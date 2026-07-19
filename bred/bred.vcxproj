@@ -666,6 +666,7 @@
     <ClInclude Include="gpu\guard.h" />
     <ClInclude Include="gpu\context_lock.h" />
     <ClInclude Include="gpu\hlsl_context.h" />
+    <ClInclude Include="gpu\image.h" />
     <ClInclude Include="gpu\input_layout.h" />
     <ClInclude Include="gpu\memory_buffer.h" />
     <ClInclude Include="gpu\mesh.h" />
@@ -822,6 +823,7 @@
     <ClCompile Include="gpu\guard.cpp" />
     <ClCompile Include="gpu\context_lock.cpp" />
     <ClCompile Include="gpu\hlsl_context.cpp" />
+    <ClCompile Include="gpu\image.cpp" />
     <ClCompile Include="gpu\input_layout.cpp" />
     <ClCompile Include="gpu\memory_buffer.cpp" />
     <ClCompile Include="gpu\model_buffer.cpp" />

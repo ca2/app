@@ -91,6 +91,7 @@ namespace gpu
 
    class layer;
 
+   class image;
    class texture;
 
 

@@ -228,6 +228,9 @@
     <ClInclude Include="gpu\guard.h">
       <Filter>Header Files\gpu</Filter>
     </ClInclude>
+    <ClInclude Include="gpu\image.h">
+      <Filter>Header Files\gpu</Filter>
+    </ClInclude>
     <ClInclude Include="gpu\context_lock.h">
       <Filter>Header Files\gpu</Filter>
     </ClInclude>
@@ -552,6 +555,9 @@
       <Filter>Source Files\gpu</Filter>
     </ClCompile>
     <ClCompile Include="gpu\guard.cpp">
+      <Filter>Source Files\gpu</Filter>
+    </ClCompile>
+    <ClCompile Include="gpu\image.cpp">
       <Filter>Source Files\gpu</Filter>
     </ClCompile>
     <ClCompile Include="gpu\context_lock.cpp">

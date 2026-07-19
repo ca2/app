@@ -255,6 +255,8 @@ namespace gpu
       ::gpu::texture_flags textureflags;
 
       textureflags.m_bWithDepth = bWithDepth;
+      textureflags.m_bRenderTarget = true;
+      textureflags.m_bShaderResource = true;
 
       ptexture->initialize_texture(m_pgpucontext, textureattributes, textureflags);
 

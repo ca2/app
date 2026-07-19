@@ -96,6 +96,8 @@ int main()
       map.find("m_bPerformanceDiagnostics"));
    assert(map.find("read_pixels(pthis);") <
       map.find("record_performance_map_transition("));
+   assert(map.find("if (bPerformanceDiagnostics)") <
+      map.find("m_uPerformanceDiagnosticsGeneration.load("));
 
    const auto unmap = imageSource.substr(
       imageSource.find("void image::unmap()"));
@@ -116,6 +118,8 @@ int main()
       unmap.find("m_bPerformanceDiagnostics"));
    assert(unmap.find("write_pixels(pthis);") <
       unmap.find("record_performance_unmap_transition("));
+   assert(unmap.find("if (bPerformanceDiagnostics)") <
+      unmap.find("m_uPerformanceDiagnosticsGeneration.load("));
 
    assert(imageSource.find("gpu.performance.image_mapping") !=
       std::string::npos);

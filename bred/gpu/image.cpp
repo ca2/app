@@ -144,20 +144,22 @@ namespace gpu
             auto bPerformanceDiagnostics = pthis->m_papplication
                && pthis->m_papplication->m_gpu.m_bPerformanceDiagnostics.load(
                   ::std::memory_order_relaxed);
-            auto uPerformanceDiagnosticsGeneration = pthis->m_papplication
-               ? pthis->m_papplication->m_gpu.m_uPerformanceDiagnosticsGeneration.load(
-                  ::std::memory_order_relaxed)
-               : 0;
 
-            if (bPerformanceDiagnostics !=
-               pthis->m_bPerformanceDiagnosticsEnabledLast.load(
-                  ::std::memory_order_relaxed)
-               || uPerformanceDiagnosticsGeneration !=
-                  pthis->m_uPerformanceDiagnosticsGenerationLast.load(
-                     ::std::memory_order_relaxed))
+            if (bPerformanceDiagnostics)
             {
 
-               pthis->reset_performance_diagnostics();
+               auto uPerformanceDiagnosticsGeneration =
+                  pthis->m_papplication->m_gpu.m_uPerformanceDiagnosticsGeneration.load(
+                     ::std::memory_order_relaxed);
+
+               if (uPerformanceDiagnosticsGeneration !=
+                  pthis->m_uPerformanceDiagnosticsGenerationLast.load(
+                     ::std::memory_order_relaxed))
+               {
+
+                  pthis->reset_performance_diagnostics();
+
+               }
 
             }
 
@@ -244,20 +246,22 @@ namespace gpu
             auto bPerformanceDiagnostics = pthis->m_papplication
                && pthis->m_papplication->m_gpu.m_bPerformanceDiagnostics.load(
                   ::std::memory_order_relaxed);
-            auto uPerformanceDiagnosticsGeneration = pthis->m_papplication
-               ? pthis->m_papplication->m_gpu.m_uPerformanceDiagnosticsGeneration.load(
-                  ::std::memory_order_relaxed)
-               : 0;
 
-            if (bPerformanceDiagnostics !=
-               pthis->m_bPerformanceDiagnosticsEnabledLast.load(
-                  ::std::memory_order_relaxed)
-               || uPerformanceDiagnosticsGeneration !=
-                  pthis->m_uPerformanceDiagnosticsGenerationLast.load(
-                     ::std::memory_order_relaxed))
+            if (bPerformanceDiagnostics)
             {
 
-               pthis->reset_performance_diagnostics();
+               auto uPerformanceDiagnosticsGeneration =
+                  pthis->m_papplication->m_gpu.m_uPerformanceDiagnosticsGeneration.load(
+                     ::std::memory_order_relaxed);
+
+               if (uPerformanceDiagnosticsGeneration !=
+                  pthis->m_uPerformanceDiagnosticsGenerationLast.load(
+                     ::std::memory_order_relaxed))
+               {
+
+                  pthis->reset_performance_diagnostics();
+
+               }
 
             }
 

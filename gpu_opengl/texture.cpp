@@ -1566,4 +1566,12 @@ void texture::_defer_bind_to_render_target(base_context_handle::object & object)
    }
 
 
+   bool texture::has_pending_fence() const
+   {
+
+      return m_glsyncGpuCommandsCompleteFence != nullptr;
+
+   }
+
+
 } // namespace gpu_opengl

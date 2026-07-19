@@ -94,6 +94,7 @@ namespace gpu_opengl
 
       void defer_fence() override;
       void wait_fence() override;
+      bool has_pending_fence() const;
 
       virtual void _defer_bind_to_render_target(base_context_handle::object & object);
    };

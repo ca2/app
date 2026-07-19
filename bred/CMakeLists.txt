@@ -71,8 +71,8 @@ list(APPEND library_source
    gpu/render.h
    gpu/renderable.cpp
    gpu/renderable.h
-   gpu/render_state.cpp
-   gpu/render_state.h
+   #gpu/render_state.cpp
+   #gpu/render_state.h
    gpu/render_target.cpp
    gpu/render_target.h
    gpu/renderer.cpp
@@ -111,7 +111,7 @@ list(APPEND library_source
    graphics3d/class_set.h
    graphics3d/class_set1.h
    graphics3d/entity.h
-   graphics3d/frame.h
+   #graphics3d/frame.h
    #graphics3d/framework.h
    graphics3d/immersion_layer.cpp
    graphics3d/immersion_layer.h
@@ -150,7 +150,7 @@ list(APPEND library_source
    graphics3d/engine.cpp
    graphics3d/engine.h
    graphics3d/frame.cpp
-   graphics3d/frame.h
+   #graphics3d/frame.h
    graphics3d/immersion_layer.cpp
    graphics3d/input.cpp
    graphics3d/input.h

@@ -2,7 +2,7 @@
 #pragma once
 
 
-constexpr long double operator""_η(long double d)
+constexpr long double operator "" _η(long double d)
 {
 
    return d / (1'000.0 * 1'000.0 * 1'000.0);
@@ -10,7 +10,7 @@ constexpr long double operator""_η(long double d)
 }
 
 
-constexpr unsigned long long operator""_η(unsigned long long i)
+constexpr unsigned long long operator "" _η(unsigned long long i)
 {
 
    return i / (1'000 * 1'000 * 1'000);
@@ -18,7 +18,7 @@ constexpr unsigned long long operator""_η(unsigned long long i)
 }
 
 
-constexpr long double operator""_μ(long double d)
+constexpr long double operator "" _μ(long double d)
 {
 
    return d / (1'000.0 * 1'000.0);
@@ -26,7 +26,7 @@ constexpr long double operator""_μ(long double d)
 }
 
 
-constexpr unsigned long long operator""_μ(unsigned long long i)
+constexpr unsigned long long operator "" _μ(unsigned long long i)
 {
 
    return i / (1'000 * 1'000);

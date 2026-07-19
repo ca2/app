@@ -78,6 +78,7 @@ namespace gpu
       //auto pgpurendertarget = pgpurenderer->render_target();
 
       auto iImageIndex = pgpurenderer->m_pgpucontext->m_pgpudevice->get_image_index();
+      const auto iFrameIndex = pgpurenderer->m_pgpucontext->m_pgpudevice->get_frame_index3();
 
       if (iImageIndex < 0)
       {
@@ -88,6 +89,7 @@ namespace gpu
 
       auto pcommandbufferLayer = m_commandbufferaLayer[iImageIndex];
 
+      pcommandbufferLayer->m_iCommandBufferFrameIndex2 = iFrameIndex;
       pcommandbufferLayer->m_iCommandBufferImageIndex = iImageIndex;
 
       pcommandbufferLayer->m_strAnnotation = "layer";

@@ -1061,6 +1061,8 @@ void device::create_main_context(::acme::windowing::window * pacmewindowingwindo
 
       }
 
+      start_stacking_layers();
+
       m_iFrameSerial2++;
 
       m_pgpucontextMain->on_new_frame();

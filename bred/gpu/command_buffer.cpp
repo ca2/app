@@ -47,6 +47,7 @@ namespace gpu
       }
       m_ecommandbuffer = e_command_buffer_none;
       m_bLoadingCommandBuffer = false;
+      m_iCommandBufferFrameIndex2 = -1;
       m_iCommandBufferImageIndex = -1;
    }
 

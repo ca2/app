@@ -11,6 +11,7 @@
 #include "aura/graphics/draw3d/matrix.h"
 #include "apex/parallelization/thread.h"
 #include "bred/gpu/shader.h"
+#include "context_lease.h"
 #include "post_frame_context_registry.h"
 #include "acme/graphics/image/image32.h"
 
@@ -90,6 +91,16 @@ namespace gpu
 
 
       ::pointer_array<::gpu::frame> m_framea;
+
+      ::pointer_array<::gpu::context> m_contextaDraw2dIdle;
+      ::std::atomic_bool m_bDraw2dContextPoolShuttingDown{false};
+      ::std::atomic<::u64> m_uDraw2dContextPoolAcquisitions{0};
+      ::std::atomic<::u64> m_uDraw2dContextPoolReuses{0};
+      ::std::atomic<::u64> m_uDraw2dContextPoolCreations{0};
+      ::std::atomic<::u64> m_uDraw2dContextPoolActive{0};
+      ::std::atomic<::u64> m_uDraw2dContextPoolHighWater{0};
+      ::std::atomic<::i64> m_iDraw2dContextPoolNextReportNanoseconds{0};
+      ::std::atomic<::u64> m_uDraw2dContextPoolDiagnosticsGenerationLast{0};
 
       using post_frame_context_registry_t =
          ::gpu::post_frame_context_registry<
@@ -196,6 +207,15 @@ namespace gpu
       virtual ::pointer < ::gpu::context > create_gpu_context(const ::gpu::enum_output& eoutput,  const ::gpu::enum_scene & escene, const ::i32_size & size);
 
       virtual ::pointer < ::gpu::context > create_draw2d_context(const ::gpu::enum_output& eoutput, const ::i32_size & size);
+
+      virtual ::gpu::context_lease acquire_draw2d_context(
+         const ::gpu::enum_output & eoutput,
+         const ::i32_size & size);
+      virtual void return_draw2d_context(
+         ::pointer<::gpu::context> pcontext,
+         bool bDamaged);
+      virtual void shutdown_draw2d_context_pool();
+      virtual void report_draw2d_context_pool_diagnostics_if_due();
 
       //virtual ::pointer < ::gpu::context > create_draw2d_off_screen_context(const ::i32_size & size);
 

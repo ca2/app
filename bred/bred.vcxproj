@@ -651,6 +651,7 @@
     <ClInclude Include="gpu\command_buffer.h" />
     <ClInclude Include="gpu\compositor.h" />
     <ClInclude Include="gpu\context.h" />
+    <ClInclude Include="gpu\context_lease.h" />
     <ClInclude Include="gpu\context_object.h" />
     <ClInclude Include="gpu\cpu_buffer.h" />
     <ClInclude Include="gpu\empty_texture_source.h" />
@@ -809,6 +810,7 @@
     <ClCompile Include="gpu\command_buffer.cpp" />
     <ClCompile Include="gpu\compositor.cpp" />
     <ClCompile Include="gpu\context.cpp" />
+    <ClCompile Include="gpu\context_lease.cpp" />
     <ClCompile Include="gpu\context_object.cpp" />
     <ClCompile Include="gpu\cpu_buffer.cpp" />
     <ClCompile Include="gpu\device.cpp" />

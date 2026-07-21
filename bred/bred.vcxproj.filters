@@ -129,6 +129,9 @@
     <ClInclude Include="gpu\context.h">
       <Filter>Header Files\gpu</Filter>
     </ClInclude>
+    <ClInclude Include="gpu\context_lease.h">
+      <Filter>Header Files\gpu</Filter>
+    </ClInclude>
     <ClInclude Include="gpu\cpu_buffer.h">
       <Filter>Header Files\gpu</Filter>
     </ClInclude>
@@ -498,6 +501,9 @@
       <Filter>Source Files\graphics3d</Filter>
     </ClCompile>
     <ClCompile Include="gpu\context.cpp">
+      <Filter>Source Files\gpu</Filter>
+    </ClCompile>
+    <ClCompile Include="gpu\context_lease.cpp">
       <Filter>Source Files\gpu</Filter>
     </ClCompile>
     <ClCompile Include="gpu\cpu_buffer.cpp">

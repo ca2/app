@@ -13,6 +13,7 @@
 #include "brush.h"
 #include "draw2d.h"
 #include "task_tool.h"
+#include <chrono>
 
 
 bool g_bDraw2dDisableReferencingDebugging = false;
@@ -470,6 +471,8 @@ namespace draw2d
    void draw2d::destroy()
    {
 
+      shutdown_memory_graphics_pool();
+
       m_papi.release();
 
       //lock::__s_finalize();
@@ -527,6 +530,370 @@ namespace draw2d
       pgraphics->create_memory_graphics(sizeModernOnePixel);
 
       return pgraphics;
+
+   }
+
+
+   namespace
+   {
+
+
+      ::i64 memory_graphics_pool_steady_nanoseconds()
+      {
+
+         return ::std::chrono::duration_cast<::std::chrono::nanoseconds>(
+            ::std::chrono::steady_clock::now().time_since_epoch()).count();
+
+      }
+
+
+      void update_memory_graphics_pool_high_water(
+         ::std::atomic<::u64> & highWater,
+         ::u64 uActive)
+      {
+
+         auto uHighWater = highWater.load(::std::memory_order_relaxed);
+
+         while (uActive > uHighWater
+            && !highWater.compare_exchange_weak(
+               uHighWater,
+               uActive,
+               ::std::memory_order_relaxed))
+         {
+
+         }
+
+      }
+
+
+   } // namespace
+
+
+   ::draw2d::graphics_lease draw2d::acquire_memory_graphics(
+      ::draw2d::host * pdraw2dhost,
+      const ::i32_size & size)
+   {
+
+      return _acquire_memory_graphics(pdraw2dhost, size, nullptr);
+
+   }
+
+
+   ::draw2d::graphics_lease draw2d::_acquire_memory_graphics(
+      ::draw2d::host * pdraw2dhost,
+      const ::i32_size & size,
+      ::image::image * pimage)
+   {
+
+      if (!pdraw2dhost || size.is_empty())
+      {
+
+         throw ::exception(error_bad_argument);
+
+      }
+
+      if (m_bMemoryGraphicsPoolShuttingDown.load(::std::memory_order_acquire))
+      {
+
+         throw ::exception(error_wrong_state, "memory graphics pool is shutting down");
+
+      }
+
+      ::draw2d::graphics_pointer pgraphics;
+
+      {
+
+         _synchronous_lock synchronouslock(
+            this->synchronization(),
+            DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
+
+         if (m_bMemoryGraphicsPoolShuttingDown.load(::std::memory_order_relaxed))
+         {
+
+            throw ::exception(error_wrong_state, "memory graphics pool is shutting down");
+
+         }
+
+         for (::collection::index i = 0; i < m_graphicsaMemoryPoolIdle.get_count(); ++i)
+         {
+
+            auto pgraphicsCandidate = m_graphicsaMemoryPoolIdle[i];
+
+            if (pgraphicsCandidate->is_memory_graphics_pool_compatible(pdraw2dhost))
+            {
+
+               pgraphics = pgraphicsCandidate;
+               m_graphicsaMemoryPoolIdle.erase_at(i);
+               break;
+
+            }
+
+         }
+
+      }
+
+      auto bReused = pgraphics.is_set();
+
+      if (!bReused)
+      {
+
+         if (m_bMemoryGraphicsPoolShuttingDown.load(::std::memory_order_acquire))
+         {
+
+            throw ::exception(error_wrong_state, "memory graphics pool is shutting down");
+
+         }
+
+         pgraphics = create_graphics(pdraw2dhost);
+         pgraphics->create_memory_graphics(size);
+
+      }
+
+      if (m_bMemoryGraphicsPoolShuttingDown.load(::std::memory_order_acquire))
+      {
+
+         throw ::exception(error_wrong_state, "memory graphics pool is shutting down");
+
+      }
+
+      pgraphics->on_acquire_memory_graphics(pimage, size);
+
+      auto uActive = m_uMemoryGraphicsPoolActive.fetch_add(
+         1,
+         ::std::memory_order_relaxed) + 1;
+
+      update_memory_graphics_pool_high_water(
+         m_uMemoryGraphicsPoolHighWater,
+         uActive);
+
+      if (m_papplication
+         && m_papplication->m_gpu.m_bPerformanceDiagnostics.load(
+            ::std::memory_order_relaxed))
+      {
+
+         m_uMemoryGraphicsPoolAcquisitions.fetch_add(1, ::std::memory_order_relaxed);
+
+         if (bReused)
+         {
+
+            m_uMemoryGraphicsPoolReuses.fetch_add(1, ::std::memory_order_relaxed);
+
+         }
+         else
+         {
+
+            m_uMemoryGraphicsPoolCreations.fetch_add(1, ::std::memory_order_relaxed);
+
+         }
+
+         report_memory_graphics_pool_diagnostics_if_due();
+
+      }
+
+      return {this, pgraphics, pimage};
+
+   }
+
+
+   ::draw2d::graphics_lease draw2d::acquire_image_graphics(
+      ::image::image * pimage,
+      ::draw2d::host * pdraw2dhost)
+   {
+
+      if (!pimage || !pdraw2dhost || pimage->size().is_empty())
+      {
+
+         throw ::exception(error_bad_argument);
+
+      }
+
+      return _acquire_memory_graphics(
+         pdraw2dhost,
+         pimage->size(),
+         pimage);
+
+   }
+
+
+   void draw2d::return_memory_graphics(
+      ::draw2d::graphics_pointer pgraphics,
+      ::image::image_pointer pimage,
+      bool bDamaged)
+   {
+
+      __UNREFERENCED_PARAMETER(pimage);
+
+      if (!pgraphics)
+      {
+
+         return;
+
+      }
+
+      pgraphics->on_release_memory_graphics();
+
+      auto bShuttingDown = m_bMemoryGraphicsPoolShuttingDown.load(
+         ::std::memory_order_acquire);
+
+      if (!bDamaged && !bShuttingDown)
+      {
+
+         _synchronous_lock synchronouslock(
+            this->synchronization(),
+            DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
+
+         if (!m_bMemoryGraphicsPoolShuttingDown.load(::std::memory_order_relaxed))
+         {
+
+            m_graphicsaMemoryPoolIdle.add(pgraphics);
+            pgraphics.release();
+
+         }
+
+      }
+
+      auto uActive = m_uMemoryGraphicsPoolActive.load(::std::memory_order_relaxed);
+
+      while (uActive > 0
+         && !m_uMemoryGraphicsPoolActive.compare_exchange_weak(
+            uActive,
+            uActive - 1,
+            ::std::memory_order_relaxed))
+      {
+
+      }
+
+      if (m_papplication
+         && m_papplication->m_gpu.m_bPerformanceDiagnostics.load(
+            ::std::memory_order_relaxed))
+      {
+
+         report_memory_graphics_pool_diagnostics_if_due();
+
+      }
+
+   }
+
+
+   void draw2d::shutdown_memory_graphics_pool()
+   {
+
+      if (m_bMemoryGraphicsPoolShuttingDown.exchange(
+         true,
+         ::std::memory_order_acq_rel))
+      {
+
+         return;
+
+      }
+
+      ::pointer_array<::draw2d::graphics> graphicsaIdle;
+
+      {
+
+         _synchronous_lock synchronouslock(
+            this->synchronization(),
+            DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
+
+         while (m_graphicsaMemoryPoolIdle.has_element())
+         {
+
+            graphicsaIdle.add(m_graphicsaMemoryPoolIdle.pop());
+
+         }
+
+      }
+
+      graphicsaIdle.erase_all();
+
+   }
+
+
+   void draw2d::report_memory_graphics_pool_diagnostics_if_due()
+   {
+
+      if (!m_papplication
+         || !m_papplication->m_gpu.m_bPerformanceDiagnostics.load(
+            ::std::memory_order_relaxed))
+      {
+
+         return;
+
+      }
+
+      auto uGeneration =
+         m_papplication->m_gpu.m_uPerformanceDiagnosticsGeneration.load(
+            ::std::memory_order_relaxed);
+      auto uGenerationLast =
+         m_uMemoryGraphicsPoolDiagnosticsGenerationLast.load(
+            ::std::memory_order_relaxed);
+
+      if (uGeneration != uGenerationLast)
+      {
+
+         m_uMemoryGraphicsPoolDiagnosticsGenerationLast.store(
+            uGeneration,
+            ::std::memory_order_relaxed);
+         m_iMemoryGraphicsPoolNextReportNanoseconds.store(
+            0,
+            ::std::memory_order_relaxed);
+
+      }
+
+      auto iNowNanoseconds = memory_graphics_pool_steady_nanoseconds();
+      auto iDeadlineNanoseconds =
+         m_iMemoryGraphicsPoolNextReportNanoseconds.load(
+            ::std::memory_order_relaxed);
+
+      if (iNowNanoseconds < iDeadlineNanoseconds)
+      {
+
+         return;
+
+      }
+
+      auto iIntervalMilliseconds = maximum(
+         100,
+         minimum(
+            60'000,
+            m_papplication->m_gpu.m_iPerformanceDiagnosticsIntervalMilliseconds.load(
+               ::std::memory_order_relaxed)));
+      auto iNextNanoseconds = iNowNanoseconds
+         + (::i64) iIntervalMilliseconds * 1'000'000;
+
+      if (!m_iMemoryGraphicsPoolNextReportNanoseconds.compare_exchange_strong(
+         iDeadlineNanoseconds,
+         iNextNanoseconds,
+         ::std::memory_order_relaxed))
+      {
+
+         return;
+
+      }
+
+      ::collection::count cIdle;
+
+      {
+
+         _synchronous_lock synchronouslock(
+            this->synchronization(),
+            DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
+
+         cIdle = m_graphicsaMemoryPoolIdle.get_count();
+
+      }
+
+      information() << "[draw2d.graphics_pool] acquisitions="
+         << m_uMemoryGraphicsPoolAcquisitions.exchange(0, ::std::memory_order_relaxed)
+         << " reuses="
+         << m_uMemoryGraphicsPoolReuses.exchange(0, ::std::memory_order_relaxed)
+         << " creations="
+         << m_uMemoryGraphicsPoolCreations.exchange(0, ::std::memory_order_relaxed)
+         << " active="
+         << m_uMemoryGraphicsPoolActive.load(::std::memory_order_relaxed)
+         << " high_water="
+         << m_uMemoryGraphicsPoolHighWater.load(::std::memory_order_relaxed)
+         << " idle=" << cIdle;
 
    }
 

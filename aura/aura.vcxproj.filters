@@ -369,6 +369,9 @@
     <ClCompile Include="graphics\draw2d\graphics.cpp">
       <Filter>Source Files\graphics\draw2d</Filter>
     </ClCompile>
+    <ClCompile Include="graphics\draw2d\graphics_lease.cpp">
+      <Filter>Source Files\graphics\draw2d</Filter>
+    </ClCompile>
     <ClCompile Include="graphics\draw2d\graphics_extension.cpp">
       <Filter>Source Files\graphics\draw2d</Filter>
     </ClCompile>
@@ -1230,6 +1233,9 @@
       <Filter>Header Files\graphics\draw2d</Filter>
     </ClInclude>
     <ClInclude Include="graphics\draw2d\graphics.h">
+      <Filter>Header Files\graphics\draw2d</Filter>
+    </ClInclude>
+    <ClInclude Include="graphics\draw2d\graphics_lease.h">
       <Filter>Header Files\graphics\draw2d</Filter>
     </ClInclude>
     <ClInclude Include="graphics\draw2d\graphics_call.h">

@@ -520,6 +520,66 @@ namespace draw2d
    }
 
 
+   bool graphics::is_memory_graphics_pool_compatible(
+      ::draw2d::host * pdraw2dhost) const
+   {
+
+      return m_pdraw2dhost.m_p == pdraw2dhost;
+
+   }
+
+
+   void graphics::on_acquire_memory_graphics(
+      ::image::image * pimage,
+      const ::i32_size & size)
+   {
+
+      if (m_pimage)
+      {
+
+         throw ::exception(
+            error_wrong_state,
+            "memory graphics is already bound to an image");
+
+      }
+
+      m_pimage = pimage;
+      defer_set_size(size);
+      reset_clip();
+      m_pointOrigin = {};
+      m_point = {};
+      set_alpha_mode(::draw2d::e_alpha_mode_none);
+      m_pimageAlphaBlend.release();
+      m_pbitmap.release();
+      m_ppen.release();
+      m_pbrush.release();
+      m_pregion.release();
+      m_pfont.release();
+      m_pfontDevice.release();
+
+   }
+
+
+   void graphics::on_release_memory_graphics()
+   {
+
+      sync_flush();
+      reset_clip();
+      m_pointOrigin = {};
+      m_point = {};
+      set_alpha_mode(::draw2d::e_alpha_mode_none);
+      m_pimageAlphaBlend.release();
+      m_pbitmap.release();
+      m_ppen.release();
+      m_pbrush.release();
+      m_pregion.release();
+      m_pfont.release();
+      m_pfontDevice.release();
+      m_pimage = nullptr;
+
+   }
+
+
    void graphics::create_for_window_draw2d(::user::interaction * puserinteraction, const ::i32_size& size)
    {
 

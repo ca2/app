@@ -354,6 +354,11 @@ namespace draw2d
       virtual void create_window_graphics(::windowing::window* pwindow);
       virtual void create_offscreen_graphics_for_swap_chain_blitting(::user::interaction* puserinteraction, const ::i32_size& size = {});
       virtual void create_memory_graphics(const ::i32_size& sizeParameter);
+      virtual bool is_memory_graphics_pool_compatible(::draw2d::host * pdraw2dhost) const;
+      virtual void on_acquire_memory_graphics(
+         ::image::image * pimage,
+         const ::i32_size & size);
+      virtual void on_release_memory_graphics();
       virtual void create_for_window_draw2d(::user::interaction * puserinteraction, const ::i32_size& size = {});
       virtual void defer_set_size(const ::i32_size& size = {});
       virtual void _create_memory_graphics(const ::i32_size& size = {});

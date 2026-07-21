@@ -17,6 +17,7 @@
 
 
 #include "graphics.h"
+#include "graphics_lease.h"
 
 
 #include "aura/platform/system.h"
@@ -58,6 +59,16 @@ namespace draw2d
       critical_section                                         m_criticalsectionGraphicsContextList;
       pointer_array < graphics >                               m_graphicsa;
 
+      pointer_array < graphics >                               m_graphicsaMemoryPoolIdle;
+      ::std::atomic_bool                                       m_bMemoryGraphicsPoolShuttingDown{false};
+      ::std::atomic<::u64>                                     m_uMemoryGraphicsPoolAcquisitions{0};
+      ::std::atomic<::u64>                                     m_uMemoryGraphicsPoolReuses{0};
+      ::std::atomic<::u64>                                     m_uMemoryGraphicsPoolCreations{0};
+      ::std::atomic<::u64>                                     m_uMemoryGraphicsPoolActive{0};
+      ::std::atomic<::u64>                                     m_uMemoryGraphicsPoolHighWater{0};
+      ::std::atomic<::i64>                                     m_iMemoryGraphicsPoolNextReportNanoseconds{0};
+      ::std::atomic<::u64>                                     m_uMemoryGraphicsPoolDiagnosticsGenerationLast{0};
+
       ::map<task_index, ::pointer_array<::draw2d::graphics >> m_mapThreadPathGraphics;
 
 
@@ -77,6 +88,10 @@ namespace draw2d
       friend class graphics;
       void add_graphics(graphics * pimage);
       void erase_graphics(graphics * pimage);
+      ::draw2d::graphics_lease _acquire_memory_graphics(
+         ::draw2d::host * pdraw2dhost,
+         const ::i32_size & size,
+         ::image::image * pimage);
       //::pointer< ::mutex > get_object_list_mutex();
       //::pointer< ::mutex > get_image_list_mutex();
       //::pointer< ::mutex > get_graphics_context_list_mutex();
@@ -108,6 +123,19 @@ namespace draw2d
       virtual graphics_pointer create_graphics(::draw2d::host * pdraw2dhost);
 
       virtual graphics_pointer create_memory_graphics(::draw2d::host * pdraw2dhost);
+
+      virtual ::draw2d::graphics_lease acquire_memory_graphics(
+         ::draw2d::host * pdraw2dhost,
+         const ::i32_size & size);
+      virtual ::draw2d::graphics_lease acquire_image_graphics(
+         ::image::image * pimage,
+         ::draw2d::host * pdraw2dhost);
+      virtual void return_memory_graphics(
+         ::draw2d::graphics_pointer pgraphics,
+         ::image::image_pointer pimage,
+         bool bDamaged);
+      virtual void shutdown_memory_graphics_pool();
+      virtual void report_memory_graphics_pool_diagnostics_if_due();
 
       virtual brush_pointer create_solid_brush(const ::color::color & color);
 

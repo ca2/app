@@ -1062,6 +1062,8 @@ virtual ::string_to_string_base read_os_release();
       ::string_to_string_base & mapOsRelease,
       const ::scoped_string & scopedstrKey);
 
+   virtual bool terminate_other_instances_by_executable_path(const ::file::path & pathExecutable, const ::comparable_array_base < process_identifier > & processidentifiera);
+
    };
 
 

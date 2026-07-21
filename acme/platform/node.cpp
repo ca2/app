@@ -5583,6 +5583,16 @@ bool node::are_any_shared_libraries_mapped(const ::file::path_array_base & patha
    }
 
 
+   bool node::terminate_other_instances_by_executable_path(const ::file::path & pathExecutable, const ::comparable_array_base < process_identifier > & processidentifiera)
+   {
+
+      throw ::interface_only();
+
+      return false;
+
+   }
+
+
 } // namespace platform
 
 

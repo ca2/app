@@ -69,6 +69,15 @@ namespace gpu
       const ::i32_size & size)
    {
 
+      if (has_active_destination_graphics_lease())
+      {
+
+         throw ::exception(
+            error_wrong_state,
+            "cannot create or resize a GPU image with active destination graphics");
+
+      }
+
       if (!pgpucontext || size.is_empty())
       {
 
@@ -111,6 +120,15 @@ namespace gpu
 
    void image::map(bool) const
    {
+
+      if (has_active_destination_graphics_lease())
+      {
+
+         throw ::exception(
+            error_wrong_state,
+            "cannot map a GPU image with active destination graphics");
+
+      }
 
       if (m_bMapped)
       {

@@ -730,7 +730,32 @@ namespace draw2d
 
       }
 
-      pgraphics->on_release_memory_graphics();
+      try
+      {
+
+         pgraphics->on_release_memory_graphics();
+
+      }
+      catch (...)
+      {
+
+         if (pimage)
+         {
+
+            pimage->end_destination_graphics_lease();
+
+         }
+
+         throw;
+
+      }
+
+      if (pimage)
+      {
+
+         pimage->end_destination_graphics_lease();
+
+      }
 
       auto bShuttingDown = m_bMemoryGraphicsPoolShuttingDown.load(
          ::std::memory_order_acquire);

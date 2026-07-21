@@ -79,8 +79,8 @@ int main()
       "void image::unmap()");
    const auto sendRead = map.find("pgpucontext->send(");
    const auto wait = map.find("wait_fence();", sendRead);
-   const auto staging = map.find("pixmap::create(", wait);
-   const auto stagingMemory = map.find("m_memoryMap", staging);
+   const auto staging = map.find("pixmap_t::create(", wait);
+   const auto stagingMemory = map.find("m_memoryPixmap", staging);
    const auto read = map.find("read_pixels(pthis);", stagingMemory);
    const auto mapped = map.find("m_bMapped = true;", read);
    assert(sendRead != std::string::npos);

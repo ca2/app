@@ -13,6 +13,18 @@
 
 #include "acme/prototype/prototype/memory.h"
 
+#include <atomic>
+
+
+namespace draw2d
+{
+
+
+   class graphics_lease;
+
+
+} // namespace draw2d
+
 
 namespace image
 {
@@ -32,6 +44,7 @@ namespace image
 
 
       ::i32_rectangle                     m_rectangleTag;
+      mutable ::std::atomic_bool          m_bDestinationGraphicsLeaseActive{false};
 
 
       image();
@@ -62,6 +75,11 @@ namespace image
 
 
       virtual ::draw2d::graphics * get_graphics() const; // is semantically const (besides may not be implementationly constant)
+      ::draw2d::graphics_lease acquire_graphics(
+         ::draw2d::host * pdraw2dhost = nullptr);
+      bool try_begin_destination_graphics_lease() const;
+      void end_destination_graphics_lease() const;
+      bool has_active_destination_graphics_lease() const;
       virtual ::draw2d::graphics * _get_graphics() const; // is semantically const (besides may not be implementationly constant)
       virtual ::draw2d::bitmap_pointer get_bitmap() const; // is semantically const (besides may not be implementationly constant)
       virtual ::draw2d::bitmap_pointer detach_bitmap();

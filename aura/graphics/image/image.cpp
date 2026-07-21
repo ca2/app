@@ -12,8 +12,10 @@
 #include "acme/platform/application.h"
 #include "acme/prototype/mathematics/mathematics.h"
 #include "aura/graphics/draw2d/graphics.h"
+#include "aura/graphics/draw2d/host.h"
 #include "aura/graphics/draw2d/task_tool.h"
 #include "aura/graphics/draw2d/draw2d.h"
+#include "aura/user/user/interaction.h"
 
 
 //#include "acme/_operating_system.h"
@@ -177,6 +179,104 @@ bool image::_is_ok() const
 }
 
 
+::draw2d::graphics_lease image::acquire_graphics(
+   ::draw2d::host * pdraw2dhost)
+{
+
+   if (m_bMapped)
+   {
+
+      throw ::exception(
+         error_wrong_state,
+         "cannot acquire destination graphics while image pixels are mapped");
+
+   }
+
+   if (!pdraw2dhost && m_papplication)
+   {
+
+      pdraw2dhost = dynamic_cast<::draw2d::host *>(
+         m_papplication->m_pacmeuserinteractionMain.m_p);
+
+   }
+
+   if (!pdraw2dhost)
+   {
+
+      throw ::exception(
+         error_wrong_state,
+         "no draw2d host is available for image graphics acquisition");
+
+   }
+
+   if (!try_begin_destination_graphics_lease())
+   {
+
+      throw ::exception(
+         error_wrong_state,
+         "image already has an active destination graphics lease");
+
+   }
+
+   try
+   {
+
+      auto pdraw2d = system()->draw2d();
+
+      if (!pdraw2d)
+      {
+
+         throw ::exception(error_wrong_state, "draw2d service is unavailable");
+
+      }
+
+      return pdraw2d->acquire_image_graphics(this, pdraw2dhost);
+
+   }
+   catch (...)
+   {
+
+      end_destination_graphics_lease();
+
+      throw;
+
+   }
+
+}
+
+
+bool image::try_begin_destination_graphics_lease() const
+{
+
+   auto bExpected = false;
+
+   return m_bDestinationGraphicsLeaseActive.compare_exchange_strong(
+      bExpected,
+      true,
+      ::std::memory_order_acq_rel);
+
+}
+
+
+void image::end_destination_graphics_lease() const
+{
+
+   m_bDestinationGraphicsLeaseActive.store(
+      false,
+      ::std::memory_order_release);
+
+}
+
+
+bool image::has_active_destination_graphics_lease() const
+{
+
+   return m_bDestinationGraphicsLeaseActive.load(
+      ::std::memory_order_acquire);
+
+}
+
+
 ::draw2d::bitmap_pointer image::get_bitmap() const
 {
 
@@ -240,6 +340,15 @@ void image::defer_realize(::draw2d::graphics* pgraphics) const
 
 void image::create_from_data(const ::i32_size & size, ::image32_t * pimage32, ::i32 iScan, ::enum_flag eflagCreate, bool bPreserve)
 {
+
+   if (has_active_destination_graphics_lease())
+   {
+
+      throw ::exception(
+         error_wrong_state,
+         "cannot create or resize an image with active destination graphics");
+
+   }
 
    auto iGoodStride = iScan;
 
@@ -611,6 +720,15 @@ void image::create_isotropic(f64_array& daRate, ::enum_priority epriority)
 
 void image::destroy()
 {
+
+   if (has_active_destination_graphics_lease())
+   {
+
+      throw ::exception(
+         error_wrong_state,
+         "cannot destroy an image with active destination graphics");
+
+   }
 
    m_sizeRaw.cx = 0;
    m_sizeRaw.cy = 0;
@@ -9096,6 +9214,15 @@ void image::rate_rgb(::i32 iMul, ::i32 iDiv)
 
 void image::map(bool bApplyAlphaTransform) const
 {
+
+   if (has_active_destination_graphics_lease())
+   {
+
+      throw ::exception(
+         error_wrong_state,
+         "cannot map an image with active destination graphics");
+
+   }
 
    if (!m_bMapped)
    {

@@ -4,6 +4,7 @@
 #include "text_box.h"
 #include "aura/graphics/image/image.h"
 #include "aura/graphics/draw2d/graphics.h"
+#include "aura/graphics/draw2d/graphics_lease.h"
 //#include "acme/_finish.h"
 
 
@@ -77,6 +78,13 @@ namespace write_text
 
       m_pimage->create(m_size);
 
+      m_bOk = false;
+
+      auto pdraw2dhost = plist->m_puserinteractionGraphicsContext
+         ? (::draw2d::host *) plist->m_puserinteractionGraphicsContext.m_p
+         : (::draw2d::host *) plist->m_puserinteraction.m_p;
+      auto graphicslease = m_pimage->acquire_graphics(pdraw2dhost);
+
       auto bDarkMode = plist->m_bDarkMode;
 
       ::i32 iColorIndex = 0;
@@ -90,13 +98,13 @@ namespace write_text
 
       auto uBackgroundColor = plist->m_uaBackgroundColor[iColorIndex][iBox];
 
-      m_pimage->g()->set_alpha_mode(::draw2d::e_alpha_mode_set);
+      graphicslease->set_alpha_mode(::draw2d::e_alpha_mode_set);
 
-      m_pimage->g()->fill_rectangle(::i32_rectangle(m_size), uBackgroundColor);
+      graphicslease->fill_rectangle(::i32_rectangle(m_size), uBackgroundColor);
 
-      m_pimage->g()->set_alpha_mode(::draw2d::e_alpha_mode_blend);
+      graphicslease->set_alpha_mode(::draw2d::e_alpha_mode_blend);
 
-      m_pimage->g()->set(m_pfont);
+      graphicslease->set(m_pfont);
 
       auto uForegroundColor = plist->m_uaForegroundColor[iColorIndex][iBox];
 
@@ -107,13 +115,13 @@ namespace write_text
 
       }
 
-      m_pimage->g()->set_text_color(uForegroundColor);
+      graphicslease->set_text_color(uForegroundColor);
 
-      m_pimage->g()->set_alpha_mode(::draw2d::e_alpha_mode_blend);
+      graphicslease->set_alpha_mode(::draw2d::e_alpha_mode_blend);
 
-      m_pimage->g()->set_text_rendering_hint(::write_text::e_rendering_anti_alias);
+      graphicslease->set_text_rendering_hint(::write_text::e_rendering_anti_alias);
 
-      m_pimage->g()->text_out(plist->m_rectangleMargin.left, plist->m_rectangleMargin.top, scopedstrText);
+      graphicslease->text_out(plist->m_rectangleMargin.left, plist->m_rectangleMargin.top, scopedstrText);
 
 #if 0
 
@@ -130,6 +138,8 @@ namespace write_text
          plist->information() << str;
 
 #endif
+
+      graphicslease.close();
 
       m_bOk = true;
 

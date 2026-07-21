@@ -92,7 +92,7 @@ namespace write_text
       //virtual void sync_enumerate_fonts(::topic * ptopic);
 
       virtual void update_extents();
-      virtual void update_extents(font_list_data * plistdata, font_list_item * pitem, ::draw2d::graphics_pointer & pgraphics, ::collection::index iBox);
+      virtual void update_extents(font_list_data * plistdata, font_list_item * pitem, ::draw2d::graphics * pgraphics, ::collection::index iBox);
       
       virtual void layout();
       virtual ::i32_size layout_wide();

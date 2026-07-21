@@ -12,6 +12,8 @@
 #include "apex/handler/signal.h"
 #include "apex/platform/application.h"
 #include "aura/graphics/draw2d/graphics.h"
+#include "aura/graphics/draw2d/draw2d.h"
+#include "aura/graphics/draw2d/graphics_lease.h"
 #include "aura/graphics/write_text/fonts.h"
 #include "aura/graphics/write_text/font_enumeration_item.h"
 #include "aura/graphics/image/image.h"
@@ -35,6 +37,76 @@
 
 namespace write_text
 {
+
+
+   struct font_enumeration_performance
+   {
+
+      ::u64 m_uFontsCreated = 0;
+      ::u64 m_uFontCreateMicroseconds = 0;
+      ::u64 m_uExtentQueries = 0;
+      ::u64 m_uExtentMicroseconds = 0;
+
+   };
+
+
+   static thread_local font_enumeration_performance * t_pfontenumerationperformance = nullptr;
+
+
+   class font_enumeration_performance_scope
+   {
+   public:
+
+
+      font_enumeration_performance * m_pprevious;
+
+
+      font_enumeration_performance_scope(font_enumeration_performance * pperformance) :
+         m_pprevious(t_pfontenumerationperformance)
+      {
+
+         t_pfontenumerationperformance = pperformance;
+
+      }
+
+
+      ~font_enumeration_performance_scope()
+      {
+
+         t_pfontenumerationperformance = m_pprevious;
+
+      }
+
+
+   };
+
+
+   static ::f64_size font_enumeration_get_text_extent(
+      ::draw2d::graphics * pgraphics,
+      const ::scoped_string & scopedstr)
+   {
+
+      auto pperformance = t_pfontenumerationperformance;
+
+      if (!pperformance)
+      {
+
+         return pgraphics->get_text_extent(scopedstr);
+
+      }
+
+      auto timeStart = ::std::chrono::steady_clock::now();
+      auto size = pgraphics->get_text_extent(scopedstr);
+      auto uMicroseconds = (::u64)::std::chrono::duration_cast<
+         ::std::chrono::microseconds>(
+            ::std::chrono::steady_clock::now() - timeStart).count();
+
+      pperformance->m_uExtentQueries++;
+      pperformance->m_uExtentMicroseconds += uMicroseconds;
+
+      return size;
+
+   }
 
 
    static ::i64 font_list_performance_steady_nanoseconds()
@@ -867,7 +939,7 @@ namespace write_text
    }
 
 
-   void font_list::update_extents(font_list_data * pfontlistdata, font_list_item * pitem, ::draw2d::graphics_pointer & pgraphics, ::collection::index iBox)
+   void font_list::update_extents(font_list_data * pfontlistdata, font_list_item * pitem, ::draw2d::graphics * pgraphics, ::collection::index iBox)
    {
 
       text_box* pbox = &pitem->m_box[iBox];
@@ -901,7 +973,24 @@ namespace write_text
 
          }
 
+         auto pperformance = t_pfontenumerationperformance;
+         auto timeFontCreateStart = pperformance
+            ? ::std::chrono::steady_clock::now()
+            : ::std::chrono::steady_clock::time_point{};
+
          pbox->m_pfont->create_font({ str, pitem->m_strBranch }, font_size(pfontlistdata->m_iaSize[iBox], e_unit_pixel));
+
+         if (pperformance)
+         {
+
+            auto uMicroseconds = (::u64)::std::chrono::duration_cast<
+               ::std::chrono::microseconds>(
+                  ::std::chrono::steady_clock::now() - timeFontCreateStart).count();
+
+            pperformance->m_uFontsCreated++;
+            pperformance->m_uFontCreateMicroseconds += uMicroseconds;
+
+         }
 
          pbox->m_pfont->m_path = pitem->m_path;
 
@@ -910,11 +999,7 @@ namespace write_text
          if (!pgraphics)
          {
 
-            auto psystem = system();
-
-            auto pdraw2d = psystem->draw2d();
-
-            pgraphics = pdraw2d->create_memory_graphics(m_puserinteraction);
+            throw ::exception(error_wrong_state, "font extent measurement requires a graphics lease");
 
          }
 
@@ -946,7 +1031,7 @@ namespace write_text
             if (strText.has_character())
             {
 
-               s = pgraphics->get_text_extent(strText);
+               s = font_enumeration_get_text_extent(pgraphics, strText);
 
             }
 
@@ -969,7 +1054,7 @@ namespace write_text
                   if (strSample.has_character())
                   {
 
-                     sSample = pgraphics->get_text_extent(strSample);
+                     sSample = font_enumeration_get_text_extent(pgraphics, strSample);
 
                      if (sSample.area() > maxarea)
                      {
@@ -994,7 +1079,7 @@ namespace write_text
                   if (strSample.has_character())
                   {
 
-                     sSample = pgraphics->get_text_extent(strSample);
+                     sSample = font_enumeration_get_text_extent(pgraphics, strSample);
 
                      if (sSample.area() > maxarea)
                      {
@@ -1023,7 +1108,7 @@ namespace write_text
 
             pbox->m_pfont->m_echaracterset = pitem->m_box[0].m_pfont->m_echaracterset;
 
-            s = pgraphics->get_text_extent(pitem->m_strSample);
+            s = font_enumeration_get_text_extent(pgraphics, pitem->m_strSample);
 
          }
 
@@ -1426,182 +1511,207 @@ namespace write_text
 
       pfontlistdata->m_iaSize = iaSize;
 
-      auto iFontCount = pfontlistdata->item_count();
-
-      auto procedure1 = [this, pfontlistdata, bSameSize](::collection::index iOrder, ::collection::index iStart, ::collection::index iCount, ::collection::index iScan)
+      m_papplication->fork([this, pfontlistdata, bSameSize]()
       {
 
-         auto psystem = system();
+         auto bPerformanceDiagnostics = m_papplication
+            && m_papplication->m_gpu.m_bPerformanceDiagnostics.load(
+               ::std::memory_order_relaxed);
+         ::std::chrono::steady_clock::time_point timeTotalStart;
+         ::std::chrono::steady_clock::time_point timeGraphicsAcquireStart;
 
-         auto pdraw2d = psystem->draw2d();
-
-         auto pgraphics = pdraw2d->create_memory_graphics(m_puserinteractionGraphicsContext ? m_puserinteractionGraphicsContext : m_puserinteraction);
-
-      restart:
-
-         ::collection::index iSerial = pfontlistdata->m_iSerial;
-
-         string strText = m_strTextLayout;
-
-         i32_size s;
-
-         ::i32_rectangle rectangle;
-
-         ::pointer<font_list_item>plistitem;
-
-         ::pointer<font_enumeration_item>penumitem;
-
-         //single_lock lock(mutex());
-
-         for (::collection::index iItem = iStart; iItem < pfontlistdata->item_count(); iItem += iScan)
+         if (bPerformanceDiagnostics)
          {
 
+            timeTotalStart = ::std::chrono::steady_clock::now();
+            timeGraphicsAcquireStart = timeTotalStart;
+
+         }
+
+         auto psystem = system();
+         auto pdraw2d = psystem->draw2d();
+         auto pdraw2dhost = m_puserinteractionGraphicsContext
+            ? (::draw2d::host *) m_puserinteractionGraphicsContext.m_p
+            : (::draw2d::host *) m_puserinteraction.m_p;
+         auto graphicslease = pdraw2d->acquire_memory_graphics(
+            pdraw2dhost,
+            {256, 256});
+         auto pgraphics = graphicslease.get();
+         ::u64 uGraphicsAcquireMicroseconds = 0;
+
+         if (bPerformanceDiagnostics)
+         {
+
+            uGraphicsAcquireMicroseconds = (::u64)::std::chrono::duration_cast<
+               ::std::chrono::microseconds>(
+                  ::std::chrono::steady_clock::now() - timeGraphicsAcquireStart).count();
+
+         }
+
+         font_enumeration_performance performance;
+         font_enumeration_performance_scope performancescope(
+            bPerformanceDiagnostics ? &performance : nullptr);
+         bool bRestart;
+
+         do
+         {
+
+            bRestart = false;
+            ::collection::index iSerial = pfontlistdata->m_iSerial;
+
+            for (::collection::index iItem = 0;
+               iItem < pfontlistdata->item_count() && ::task_get_run();
+               iItem++)
             {
 
-               _synchronous_lock synchronouslock(this->synchronization(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
+               ::pointer<font_list_item> plistitem;
+               ::pointer<font_enumeration_item> penumitem;
 
-               if (pfontlistdata->m_iSerial != iSerial)
                {
 
-                  goto restart;
+                  _synchronous_lock synchronouslock(
+                     this->synchronization(),
+                     DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
+
+                  if (pfontlistdata->m_iSerial != iSerial)
+                  {
+
+                     bRestart = true;
+
+                     break;
+
+                  }
+
+                  if (iItem >= m_pfontenumerationitema->get_count())
+                  {
+
+                     break;
+
+                  }
+
+                  plistitem = pfontlistdata->item_at(iItem);
+                  penumitem = m_pfontenumerationitema->element_at(iItem);
 
                }
 
-               if (iItem >= m_pfontenumerationitema->get_count())
-               {
+               bool bNew = false;
 
-                  break;
-
-               }
-
-               plistitem = pfontlistdata->item_at(iItem);
-
-               penumitem = m_pfontenumerationitema->element_at(iItem);
-
-            }
-
-            bool bNew = false;
-
-            if (!penumitem)
-            {
-
-               continue;
-
-            }
-
-            if (!plistitem || plistitem->m_strFont.is_empty())
-            {
-
-               bNew = true;
-
-               plistitem = allocateø font_list_item();
-
-               plistitem->m_item.m_iItem = iItem;
-
-               plistitem->m_strFont = penumitem->m_strName;
-
-               plistitem->m_strName = penumitem->m_strName;
-
-               plistitem->m_strBranch = penumitem->m_strBranch;
-
-               plistitem->m_path = penumitem->m_mapFileName[0];
-
-               plistitem->m_echaracterseta = penumitem->m_echaracterseta;
-
-            }
-            //else if (plistitem->m_strFont != penumitem->m_mapFileName[0])
-            //{
-//
-               //information() << "what?!?!";
-               //
-               //continue;
-
-            //}
-
-            if (bNew || !bSameSize)
-            {
-
-               update_extents(pfontlistdata, plistitem, pgraphics, 0);
-
-            }
-
-            {
-
-               _synchronous_lock synchronouslock(this->synchronization(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
-
-               if (pfontlistdata->m_iSerial != iSerial)
-               {
-
-                  goto restart;
-
-               }
-
-               pfontlistdata->indexed_set_item_at(iItem, plistitem);
-
-               if (!m_bLayoutWideStillIntersect)
+               if (!penumitem)
                {
 
                   continue;
 
                }
 
-            }
-
-         }
-
-      };
-
-      auto procedure2 = [this, pfontlistdata]()
-      {
-
-         auto procedure3 = [this, pfontlistdata](::collection::index iOrder, ::collection::index iStart, ::collection::index iCount, ::collection::index iScan)
-         {
-
-            auto iSerial = pfontlistdata->m_iSerial;
-
-            ::draw2d::graphics_pointer pgraphics;
-
-            string strText = m_strTextLayout;
-
-            i32_size s;
-
-            ::i32_rectangle rectangle;
-
-            for (::collection::index i = iStart; i < iCount && ::task_get_run(); i += iScan)
-            {
-
-               ::pointer < font_list_item > pitem = pfontlistdata->item_at(i);
-
-               for (::collection::index iBox = 1; iBox < pfontlistdata->m_iaSize.get_count(); iBox++)
+               if (!plistitem || plistitem->m_strFont.is_empty())
                {
+
+                  bNew = true;
+                  plistitem = allocateø font_list_item();
+                  plistitem->m_item.m_iItem = iItem;
+                  plistitem->m_strFont = penumitem->m_strName;
+                  plistitem->m_strName = penumitem->m_strName;
+                  plistitem->m_strBranch = penumitem->m_strBranch;
+                  plistitem->m_path = penumitem->m_mapFileName[0];
+                  plistitem->m_echaracterseta = penumitem->m_echaracterseta;
+
+               }
+
+               if (bNew || !bSameSize)
+               {
+
+                  update_extents(pfontlistdata, plistitem, pgraphics, 0);
+
+               }
+
+               {
+
+                  _synchronous_lock synchronouslock(
+                     this->synchronization(),
+                     DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 
                   if (pfontlistdata->m_iSerial != iSerial)
                   {
 
-                     return;
+                     bRestart = true;
+
+                     break;
 
                   }
 
-                  update_extents(pfontlistdata, pitem, pgraphics, iBox);
+                  pfontlistdata->indexed_set_item_at(iItem, plistitem);
 
                }
 
             }
 
-         };
+         } while (bRestart && ::task_get_run());
 
-         auto procedure4 = [this]()
+         auto iSerial = pfontlistdata->m_iSerial;
+
+         for (::collection::index iItem = 0;
+            iItem < pfontlistdata->item_count() && ::task_get_run();
+            iItem++)
          {
 
-            layout();
+            if (pfontlistdata->m_iSerial != iSerial)
+            {
 
-         };
+               break;
 
-         m_papplication->fork_count(pfontlistdata->item_count(), procedure3, procedure4);
+            }
 
-      };
+            ::pointer<font_list_item> plistitem = pfontlistdata->item_at(iItem);
 
-      m_papplication->fork_count(pfontlistdata->item_count(), procedure1, procedure2);
+            if (!plistitem)
+            {
+
+               continue;
+
+            }
+
+            for (::collection::index iBox = 1;
+               iBox < pfontlistdata->m_iaSize.get_count();
+               iBox++)
+            {
+
+               if (pfontlistdata->m_iSerial != iSerial)
+               {
+
+                  break;
+
+               }
+
+               update_extents(pfontlistdata, plistitem, pgraphics, iBox);
+
+            }
+
+         }
+
+         graphicslease.close();
+
+         if (bPerformanceDiagnostics)
+         {
+
+            auto uTotalMicroseconds = (::u64)::std::chrono::duration_cast<
+               ::std::chrono::microseconds>(
+                  ::std::chrono::steady_clock::now() - timeTotalStart).count();
+
+            information() << "[gpu.performance.font_enumeration] total_us="
+               << uTotalMicroseconds
+               << " graphics_acquire_us=" << uGraphicsAcquireMicroseconds
+               << " fonts_created=" << performance.m_uFontsCreated
+               << " font_create_us=" << performance.m_uFontCreateMicroseconds
+               << " extent_queries=" << performance.m_uExtentQueries
+               << " extent_us=" << performance.m_uExtentMicroseconds
+               << " measurement_graphics=1 contexts_expected=1";
+
+         }
+
+         layout();
+
+      });
+
    }
 
 

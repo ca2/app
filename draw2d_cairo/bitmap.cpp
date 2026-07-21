@@ -321,7 +321,7 @@ namespace draw2d_cairo
    }
 
 
-   bool bitmap::host_bitmap(::draw2d::graphics * pgraphics, ::pixmap * ppixmap)
+   bool bitmap::host_bitmap(::draw2d::graphics * pgraphics, ::pixmap_t * ppixmap)
    {
 
 

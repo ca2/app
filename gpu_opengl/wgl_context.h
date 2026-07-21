@@ -4,6 +4,7 @@
 #pragma once
 
 
+#include "acme/parallelization/synchronous_lock.h"
 #include "acme/_operating_system.h"
 #include "gpu_opengl/_gpu_opengl.h"
 #include "windowing_win32/window.h"
@@ -11,6 +12,9 @@
 
 namespace gpu_opengl
 {
+
+
+   class approach;
 
 
    class CLASS_DECL_GPU_OPENGL wgl_context :
@@ -72,6 +76,8 @@ namespace gpu_opengl
 
       
       ::particle *m_pparticle;
+      ::pointer < ::gpu_opengl::approach > m_pgpuapproach;
+      synchronous_lock m_synchronouslock;
 
       
       scoped_dummy_wgl_context(::particle * pparticle);

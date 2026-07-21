@@ -11,6 +11,7 @@
 #include "aura/graphics/draw2d/brush.h"
 #include "aura/graphics/draw2d/draw2d.h"
 #include "aura/graphics/image/drawing.h"
+#include "aura/graphics/image/load_image.h"
 
 
 #ifdef WINDOWS_DESKTOP
@@ -7086,7 +7087,7 @@ void imaging::free_work_image(::image::image *pimage)
 }
 
 
-void image_context::load_svg(::image::image *pimage, memory & memory)
+void image_context::load_svg(::image::load_image *ploadimage, memory & memory)
 {
 
    const_char_pointer psz = (const_char_pointer )memory.data();
@@ -7107,17 +7108,17 @@ void image_context::load_svg(::image::image *pimage, memory & memory)
 
       char_pointer pszXml = (char_pointer ) memory.data();
 
-      pimage->create_nanosvg(pszXml);
+      ploadimage->nanosvg(pszXml, ploadimage->m_ppixmap->m_iRedLower);
 
-      pimage->mult_alpha_fast();
+      ploadimage->m_ppixmap->mult_alpha_fast();
 
-      pimage->on_load_image();
+      ploadimage->m_ppixmap->on_load_image();
 
-      pimage->set_ok_flag();
+      ploadimage->m_ppixmap->set_ok_flag();
 
       //pimage->notify(OK);
 
-      pimage->m_estatus = ::success;
+      ploadimage->m_estatus = ::success;
 
       //return pimage->m_estatus;
 

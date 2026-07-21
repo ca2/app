@@ -1412,7 +1412,13 @@ namespace image
    class image_context;
 
 
+   class image_extension;
+
+
    class imaging;
+
+   
+   class load_image;
 
 
    class icon;
@@ -1448,7 +1454,8 @@ namespace interprocess
 } // namespace interprocess
 
 
-struct pixmap;
+struct pixmap_t;
+class pixmap;
 
 
 #define CONSIDER_AS(as, use) using use = as

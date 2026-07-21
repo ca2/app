@@ -23,11 +23,15 @@ namespace graphics3d
 
       using Vertex = ::graphics3d::shape_factory::Vertex;
 
-      struct cube_face
+      class cube_face :
+         virtual public ::particle
       {
+      public:
+
 
          ::file::path               m_path;
-         ::image::image_pointer     m_pimage;
+         //::image::image_pointer     m_pimage;
+         ::pixmap_pointer           m_ppixmap;
 
 
          cube_face() {}
@@ -41,8 +45,8 @@ namespace graphics3d
       };
 
 
-      struct cube :
-         public ::block_array < cube_face, 6 >
+      class cube :
+         virtual public ::pointer_array < cube_face >
       {
       public:
 
@@ -58,11 +62,22 @@ namespace graphics3d
             for (auto& item : list)
             {
 
-               this->element_at(i).m_path = item;
+               øraw_construct(element_at(i));
+
+               this->element_at(i)->m_path = item;
 
                i++;
 
             }
+
+         }
+
+         void add(const ::file::path &path)
+         { 
+
+            auto pcubeface = allocateø cube_face(path);
+            
+            ::pointer_array<cube_face>::add(pcubeface);
 
          }
 
@@ -92,7 +107,7 @@ namespace graphics3d
 
       virtual void SetupSkybox();
 
-      virtual void load_cube_map_images();
+      virtual void load_cube_map_pixmaps();
       virtual void load_cube_map_textures();
 
       virtual void bind(::gpu::command_buffer* pgpucommandbuffer);

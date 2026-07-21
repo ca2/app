@@ -5,20 +5,186 @@
 #include "pixmap.h"
 //#include "acme/prototype/geometry2d/_geometry2d.h"
 
+pixmap::pixmap()
+{
+
+}
+
+pixmap::~pixmap()
+{
+
+
+}
+
+
+void pixmap::create(const ::i32_size & size, ::enum_flag eflagCreate, ::i32 iGoodStride, bool bPreserve)
+{
+
+   if (size == m_sizeRaw && size == m_size)
+   {
+
+      return;
+
+   }
+
+   unmap();
+
+   m_sizeRaw = size;
+
+   m_size = size;
+
+   m_iScan = size.cx * 4;
+
+   if (iGoodStride >= m_iScan)
+   {
+
+      m_iScan = iGoodStride;
+
+   }
+
+}
+
+#define byte_clip2(i) (i)
+void pixmap::mult_alpha_fast()
+{
+   map();
+
+   ::u8 *dst = (::u8 *)data();
+   ::i64 size = scan_area();
+
+
+   //  >> 2 instead of >> 2 subsequent alpha_blend operations say thanks on true_blend because (255) * (1/254) + (255) *
+   //  (254/255) > 255
+
+
+   while (size--)
+   {
+      if (dst[3] == 0)
+      {
+         *((image32_t *)dst) = {};
+      }
+      else if (dst[3] != 255)
+      {
+         dst[0] = byte_clip2(((::i32)dst[0] * (::i32)dst[3]) >> 8);
+         dst[1] = byte_clip2(((::i32)dst[1] * (::i32)dst[3]) >> 8);
+         dst[2] = byte_clip2(((::i32)dst[2] * (::i32)dst[3]) >> 8);
+      }
+      dst += 4;
+   }
+
+   // return true;
+}
+
+
+void pixmap::map(bool bApplyTransform) const
+{
+
+   if (m_bMapped)
+   {
+
+      return;
+
+   }
+
+   auto ppixmap = (pixmap *)this;
+
+   ppixmap->m_memoryPixmap.set_size(ppixmap->scan_area());
+
+   ppixmap->m_pimage32Raw = (::image32_t *)ppixmap->m_memoryPixmap.data();
+
+   ppixmap->m_pimage32 = (::image32_t *) ppixmap->m_memoryPixmap.data();
+
+   ppixmap->m_bMapped = true;
+
+}
+
+
+void pixmap::set_exif_orientation(int iExifOrientation)
+{
+
+
+
+}
+
+
+void pixmap::on_load_image()
+{
+
+
+}
+
+
+void pixmap::defer_update_image()
+{
+
+
+}
+
+
+::image::image_extension * pixmap::get_extension()
+{
+
+   return nullptr;
+
+}
+
+
+void pixmap::copy(const ::i32_size &size, const ::image32_t *pimage32, ::i32 iScan)
+{
+
+   map();
+
+   pixmap_t::copy(size, pimage32, iScan);
+   
+}
+
+
+void pixmap::on_load_image(const image32_t *pimage32, const ::i32_size &size, int iScan)
+{
+
+   create(size, DEFAULT_CREATE_IMAGE_FLAG, iScan);
+
+   copy(size, pimage32, m_iScan);
+
+}
+
+
+void pixmap::unmap() const
+{
+
+   if (!m_bMapped)
+   {
+
+      return;
+
+   }
+
+   auto ppixmap = (pixmap *)this;
+
+   ppixmap->m_pimage32Raw = nullptr;
+
+   ppixmap->m_pimage32 = nullptr;
+
+   ppixmap->m_bMapped = false;
+
+}
+
 
 #if defined(WINDOWS_DESKTOP)
-::i32 pixmap::g_iRedLowerDefault = 0;
+::i32 pixmap_t::g_iRedLowerDefault = 0;
 #elif defined(LINUX)
-::i32 pixmap::g_iRedLowerDefault = 0;
+::i32 pixmap_t::g_iRedLowerDefault = 0;
 #elif defined(FREEBSD) || defined(OPENBSD) || (defined(UNIVERSAL_WINDOWS) && OSBIT == 32)
-::i32 pixmap::g_iRedLowerDefault = 0;
+::i32 pixmap_t::g_iRedLowerDefault = 0;
 #else
-::i32 pixmap::g_iRedLowerDefault = 1;
+::i32 pixmap_t::g_iRedLowerDefault = 1;
 #endif
 
 
+
+
 #define byte_clip2(i) (i)
-void pixmap::mult_alpha()
+void pixmap_t::mult_alpha()
 {
 
    ::u8 * dst = (::u8 *)data();
@@ -78,7 +244,7 @@ void pixmap::mult_alpha()
 
 
 
-void pixmap::vertical_swap()
+void pixmap_t::vertical_swap()
 {
 
    auto ppixmap = this;
@@ -139,15 +305,14 @@ void pixmap::vertical_swap()
 }
 
 
-void pixmap::copy(const ::pixmap * ppixmapSrc)
-{
+void pixmap_t::copy(const ::pixmap_t *ppixmapSrc) {
 
    copy(size().minimum(ppixmapSrc->size()), ppixmapSrc);
 
 }
 
 
-void pixmap::y_swap_copy(const ::pixmap* ppixmapSrc)
+void pixmap_t::y_swap_copy(const ::pixmap_t *ppixmapSrc)
 {
 
    y_swap_copy(size().minimum(ppixmapSrc->size()), ppixmapSrc);
@@ -155,7 +320,7 @@ void pixmap::y_swap_copy(const ::pixmap* ppixmapSrc)
 }
 
 
-void pixmap::copy(const ::i32_size & size, const ::pixmap * ppixmapSrc)
+void pixmap_t::copy(const ::i32_size &size, const ::pixmap_t *ppixmapSrc)
 {
 
    m_pimage32->copy(size, scan_size(), ppixmapSrc);
@@ -163,7 +328,15 @@ void pixmap::copy(const ::i32_size & size, const ::pixmap * ppixmapSrc)
 }
 
 
-void pixmap::y_swap_copy(const ::i32_size& size, const ::pixmap* ppixmapSrc)
+void pixmap_t::copy(const ::i32_size &size, const ::image32_t *pimage32, ::i32 iScan)
+{
+
+   m_pimage32->copy(size, scan_size(), pimage32, iScan);
+
+}
+
+
+void pixmap_t::y_swap_copy(const ::i32_size &size, const ::pixmap_t *ppixmapSrc)
 {
 
    m_pimage32->vertical_swap_copy(size, scan_size(), ppixmapSrc->data(), ppixmapSrc->m_iScan);
@@ -171,7 +344,7 @@ void pixmap::y_swap_copy(const ::i32_size& size, const ::pixmap* ppixmapSrc)
 }
 
 
-void pixmap::copy(const ::pixmap* ppixmapSrc, const ::image::enum_copy_disposition& ecopydisposition)
+void pixmap_t::copy(const ::pixmap_t *ppixmapSrc, const ::image::enum_copy_disposition &ecopydisposition)
 {
    
    if (ecopydisposition == ::image::e_copy_disposition_y_swap)
@@ -191,7 +364,7 @@ void pixmap::copy(const ::pixmap* ppixmapSrc, const ::image::enum_copy_dispositi
 
 
 
-pixmap & pixmap::operator =(const pixmap & pixmap)
+pixmap_t &pixmap_t::operator=(const pixmap_t &pixmap)
 {
 
    if (this != &pixmap)
@@ -206,7 +379,7 @@ pixmap & pixmap::operator =(const pixmap & pixmap)
 }
 
 
-::color::color pixmap::average_color()
+::color::color pixmap_t::average_color()
 {
 
    auto h = this->height();
@@ -264,7 +437,7 @@ pixmap & pixmap::operator =(const pixmap & pixmap)
 
 
 
-bool pixmap::create(::memory& memory, const ::i32_size& size, ::i32 stride)
+bool pixmap_t::create(::memory &memory, const ::i32_size &size, ::i32 stride)
 {
 
    if (stride < 0)
@@ -297,10 +470,9 @@ bool pixmap::create(::memory& memory, const ::i32_size& size, ::i32 stride)
 }
 
 
-void pixmap::reference(const pixmap& pixmap)
-{
+void pixmap_t::reference(const pixmap_t &pixmap) {
 
-   memcpy((void *) this, pixmap, sizeof(*this));
+   memcpy((void *) this, &pixmap, sizeof(*this));
 
 }
 

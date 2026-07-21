@@ -7,7 +7,17 @@
 #include "resource_folder_pool.h"
 ////#include "acme/prototype/prototype/object.h"
 //#include "acme/prototype/collection/string_array.h"
+class CLASS_DECL_ACME file_system_time_path : virtual public ::file::path
+{
+public:
 
+
+   ::pointer<file_context> m_pfilecontext;
+
+   file_system_time_path(file_context *pfilecontext, const ::file::path &path);
+   ~file_system_time_path();
+
+};
 
 class CLASS_DECL_ACME file_context :
    virtual public file_context_interface
@@ -63,6 +73,8 @@ public:
    virtual void trash_that_is_not_trash(const ::file::path & path);
    virtual void trash_that_is_not_trash(::file::path_array_base & patha);
 
+
+   virtual ::file_system_time_path time_path(const ::file::path &path);
 
    virtual ::file::path get_filesystem_file(const ::file::path& path);
 

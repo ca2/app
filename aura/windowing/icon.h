@@ -22,6 +22,8 @@ namespace windowing
 
       array < ::i32_size >                      m_sizea;
 
+      ::payload                                 m_payload;
+
 
       icon();
       ~icon() override;
@@ -39,9 +41,10 @@ namespace windowing
       virtual void * get_os_data(const ::i32_size & size) const;
 
 
-      virtual void load_matter(const ::scoped_string & scopedstrPath);
-      virtual void load_app_tray_icon(const ::scoped_string & scopedstrTrayIconName);
-      virtual void load_file(const ::scoped_string & scopedstrPath);
+      virtual void set_matter(const ::scoped_string & scopedstrPath);
+      virtual void set_app_tray_icon(const ::scoped_string & scopedstrTrayIconName);
+      //virtual void load_file(const ::scoped_string & scopedstrPath);
+      virtual void set_file(const ::payload & payloadFile);
 
 
       virtual ::image::image_pointer get_image(const ::i32_size & size);

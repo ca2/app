@@ -83,13 +83,16 @@ namespace berg
 
          return;
       }
+      
       ::cast < ::apex::system > papexsystem = system();
+      
       ::string strOperatingSystemImageUrl = papexsystem->operating_system_icon_url({128, 128});
-image()->load_image(strOperatingSystemImageUrl,
-{
-   .sync=false,.functionLoaded = [this](::image::image * pimage)
+   
+      image()->load_image(strOperatingSystemImageUrl,
+      {
+   .sync=false,.functionLoaded = [this](::pixmap * ppixmap)
    {
-      m_pimageOperatingSystem = pimage;
+                                                          m_pimageOperatingSystem = ppixmap;
 
    }
 });

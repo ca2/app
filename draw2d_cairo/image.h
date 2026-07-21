@@ -41,7 +41,7 @@ namespace draw2d_cairo
       void create(::draw2d::graphics * pgraphics) override;
       void destroy() override;
 
-      bool on_host_read_pixels(::pixmap * ppixmap) const override;
+      bool on_host_read_pixels(::pixmap_t * ppixmap) const override;
       //virtual bool stretch(const ::image::image *pimage) override;
       void _draw_raw(const ::i32_rectangle & rectangle, ::image::image *pimage, const ::i32_point & point = ::i32_point()) override;
 

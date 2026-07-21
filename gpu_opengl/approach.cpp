@@ -49,6 +49,26 @@ namespace gpu_opengl
    approach::~approach()
    {
 
+      synchronous_lock synchronouslock(this->synchronization(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
+
+      if (m_hglrcShare)
+      {
+
+         if (!::wglDeleteContext(m_hglrcShare))
+         {
+
+            auto lasterror = ::windows::last_error();
+
+            warning(
+               "wglDeleteContext failed for dedicated share root; last error: %d",
+               (int)lasterror.m_uLastError);
+
+         }
+
+         m_hglrcShare = nullptr;
+
+      }
+
    }
 
 
@@ -70,6 +90,8 @@ namespace gpu_opengl
    {
 
       ::object::initialize(pparticle);
+
+      defer_create_synchronization();
 
       if (m_papplication->m_gpu.m_bUseSwapChainWindow)
       {
@@ -186,6 +208,8 @@ namespace gpu_opengl
 
    ::gpu_opengl::wgl_context * approach::dummy_wgl_context()
    {
+
+      synchronous_lock synchronouslock(this->synchronization(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 
       if (!m_pwglcontextDummy)
       {

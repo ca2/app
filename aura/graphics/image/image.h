@@ -31,7 +31,6 @@ namespace image
    public:
 
 
-      memory                              m_memoryMap;
       ::i32_rectangle                     m_rectangleTag;
 
 
@@ -58,6 +57,8 @@ namespace image
       bool _is_ok() const override;
       inline bool is_ok() const { return ::is_set(this) && _is_ok(); }
       inline bool nok() const { return !is_ok(); }
+      inline bool is_null() const { return ::is_null(this); }
+      inline bool is_set() const { return !is_null() && _is_set(); }
 
 
       virtual ::draw2d::graphics * get_graphics() const; // is semantically const (besides may not be implementationly constant)
@@ -150,8 +151,8 @@ namespace image
 
       virtual void hue_offset(::f64 dRate);
 
-      virtual void map(bool bApplyAlphaTransform = true) const; // some implementations may requrire to map_base to m_pcolorref before manipulate it
-      virtual void unmap() const; // some implementations may require to unmap from m_pcolorref to update *os* bitmap
+      void map(bool bApplyAlphaTransform = true) const override; // some implementations may requrire to map_base to m_pcolorref before manipulate it
+      void unmap() const override; // some implementations may require to unmap from m_pcolorref to update *os* bitmap
 
 
       virtual void _map(bool bApplyAlphaTransform = true);
@@ -181,7 +182,7 @@ namespace image
       virtual void mult_alpha(::image::image *imageWork, bool bPreserveAlpha = true);
 
       virtual void mult_alpha();
-      virtual void mult_alpha_fast();
+      //virtual void mult_alpha_fast();
       virtual void div_alpha();
 
       virtual void mult_alpha(const ::i32_point & point, const ::i32_size & size);
@@ -257,7 +258,10 @@ namespace image
 
       virtual void create_thumbnail(const ::scoped_string & scopedstrPath);
 
-      virtual void create_ex(const ::i32_size & size, ::image32_t * pimage32, ::i32 iScan, ::enum_flag eflagCreate = DEFAULT_CREATE_IMAGE_FLAG, ::i32 iGoodStride = -1, bool bPreserve = false);
+      //virtual void create_from_data(const ::i32_size & size, ::image32_t * pimage32, ::i32 iScan, ::enum_flag eflagCreate = DEFAULT_CREATE_IMAGE_FLAG, ::i32 iGoodStride = -1, bool bPreserve = false);
+      virtual void create_from_data(const ::i32_size &size, ::image32_t *pimage32, ::i32 iScan,
+                                    ::enum_flag eflagCreate = DEFAULT_CREATE_IMAGE_FLAG, 
+                                    bool bPreserve = false);
       virtual void create(::draw2d::graphics* pgraphics);
       virtual void create(const ::i32_size & size, ::enum_flag eflagCreate = DEFAULT_CREATE_IMAGE_FLAG, ::i32 iGoodStride = -1, bool bPreserve = false);
       using ::particle::initialize;
@@ -271,8 +275,8 @@ namespace image
       //virtual void     create(::i32 iWidth, ::i32 iHeight, ::enum_flag eflagCreate = DEFAULT_CREATE_IMAGE_OBJECT_FLAG, ::i32 iGoodStride = -1, void bPreserve = false);
 
 
-      virtual bool host(::pixmap * ppixmap, ::windowing::window * pwindow);
-      virtual bool on_host_read_pixels(::pixmap * ppixmapHost) const;
+      virtual bool host(::pixmap_t * ppixmap, ::windowing::window * pwindow);
+      virtual bool on_host_read_pixels(::pixmap_t * ppixmapHost) const;
       void destroy() override;
       void destroy_os_data() override;
       //virtual void detach(::image::image *pimage);
@@ -348,8 +352,8 @@ namespace image
 
       virtual void Map(::i32 ToRgb, ::i32 FromRgb);
 
-      virtual void create_nanosvg(char_pointer pszXml, ::f64 dDpi = 0.0);
-      virtual void nanosvg(char_pointer pszXml, ::f64 dDpi = 0.0);
+      //virtual void create_nanosvg(char_pointer pszXml, int iRedLower, ::f64 dDpi = 0.0);
+      //virtual void nanosvg(char_pointer pszXml, ::f64 dDpi = 0.0);
 
       //virtual void _defer_load_multi_frame_image_(memory_pointer pmemory);
 
@@ -511,91 +515,6 @@ namespace image
 
 
 
-      inline ::u64 area() const
-      {
-
-         if (::is_null(this))
-         {
-
-            return 0;
-
-         }
-
-         return m_size.area();
-
-      }
-
-
-      inline ::i32 scan_size() const
-      {
-
-         if (::is_null(this))
-         {
-
-            return 0;
-
-         }
-
-         return m_iScan;
-
-      }
-
-
-      inline ::i32 width() const
-      {
-
-         if (::is_null(this))
-         {
-
-            return 0;
-
-         }
-
-         return m_size.cx;
-
-      }
-
-
-      inline ::i32 height() const
-      {
-
-         if (::is_null(this))
-         {
-
-            return 0;
-
-         }
-
-         return m_size.cy;
-
-      }
-
-
-
-
-      inline bool is_null() const
-      {
-
-         return ::is_null(this) || m_size.area() <= 0;
-
-      }
-
-
-      inline bool is_set() const
-      {
-
-         return !is_null();
-
-      }
-
-
-      inline bool is_empty() const
-      {
-
-         return is_null();
-
-      }
-
 
       inline ::draw2d::graphics* g() const
       {
@@ -604,69 +523,6 @@ namespace image
 
       }
 
-
-      inline ::image32_t * image32()
-      {
-
-         return m_pimage32;
-
-      }
-
-
-      inline const ::image32_t * image32() const
-      {
-
-         return m_pimage32;
-
-      }
-
-
-      inline operator ::image32_t * ()
-      {
-
-         return image32();
-
-      }
-
-
-      inline operator const ::image32_t * () const
-      {
-
-         return image32();
-
-      }
-
-
-      inline ::pixmap * pixmap()
-      {
-
-         return this;
-
-      }
-
-
-      inline const ::pixmap * pixmap() const
-      {
-
-         return this;
-
-      }
-
-
-      inline operator ::pixmap* ()
-      {
-
-         return this;
-
-      }
-
-
-      inline operator const ::pixmap* () const
-      {
-
-         return this;
-
-      }
 
 
       inline ::image::image_extension * extension()
@@ -732,25 +588,10 @@ namespace image
 
       }
 
-      const ::image32_t * get_data() const
-      {
+      virtual const ::image32_t *get_data() const;
 
-         map();
-
-         return image32();
-
-      }
-
-
-      ::image32_t * get_data()
-      {
-
-         map();
-
-         return image32();
-
-      }
-
+      virtual ::image32_t *get_data();
+         
       //inline ::image::image & operator = (const ::image::image & image);
       //inline void operator == (const ::image::image & image) const;
       //inline void operator != (const ::image::image & image) const;

@@ -187,7 +187,7 @@ namespace gpu
 
       virtual void construct(::pointer < ::gpu::shader >& pgpushader);
 
-      virtual void on_cube_map_face_image(::image::image *pimage);
+      virtual void on_cube_map_face_pixmap(::pixmap * ppixmap);
       /// loads only image::image (A8R8G8B8)
       virtual ::gpu::texture* texture(const ::file::path& path);
 

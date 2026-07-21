@@ -1724,6 +1724,9 @@
     <ClInclude Include="graphics\draw2d\graphics_context.h">
       <Filter>Header Files\graphics\draw2d</Filter>
     </ClInclude>
+    <ClInclude Include="graphics\image\aaa_load_image_interface.h">
+      <Filter>Header Files\graphics\image</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="deployment.rc">

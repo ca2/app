@@ -17,10 +17,10 @@
 // POD
 
 #ifdef __cplusplus
-struct CLASS_DECL_ACME pixmap :
+struct CLASS_DECL_ACME pixmap_t :
    public image_header
 #else
-struct pixmap
+struct pixmap_t
 #endif
 {
 
@@ -44,7 +44,7 @@ struct pixmap
 
 #ifdef __cplusplus
 
-   pixmap()
+   pixmap_t()
    {
       m_iRedLower = g_iRedLowerDefault;
       m_iScan = 0;
@@ -69,7 +69,7 @@ struct pixmap
    }
 
 
-   void initialize(const ::i32_size & size, ::image32_t * pimage32, ::i32 iScan)
+   void initialize_pixmap(const ::i32_size & size, ::image32_t * pimage32, ::i32 iScan)
    {
 
       m_size = size;
@@ -86,20 +86,104 @@ struct pixmap
 
    }
 
+   
+   //   inline ::u64 area() const
+   //{
+
+   //   if (::is_null(this))
+   //   {
+
+   //      return 0;
+   //   }
+
+   //   return m_size.area();
+   //}
 
 
-   ::i32 scan_size() const { return m_iScan; }
+   //inline ::i32 scan_size() const
+   //{
 
-   inline ::image32_t * image32() { return m_pimage32; }
-   inline ::image32_t * image32() const { return m_pimage32; }
+   //   if (::is_null(this))
+   //   {
+
+   //      return 0;
+   //   }
+
+   //   return m_iScan;
+   //}
+
+
+   //inline ::i32 width() const
+   //{
+
+   //   if (::is_null(this))
+   //   {
+
+   //      return 0;
+   //   }
+
+   //   return m_size.cx;
+   //}
+
+
+   //inline ::i32 height() const
+   //{
+
+   //   if (::is_null(this))
+   //   {
+
+   //      return 0;
+   //   }
+
+   //   return m_size.cy;
+   //}
+
+
+   inline bool is_null() const { return ::is_null(this) || m_size.area() <= 0; }
+
+
+   inline bool is_set() const { return !is_null(); }
+
+
+   inline bool is_empty() const { return is_null(); }
+
+
+   inline ::image32_t *image32() { return m_pimage32; }
+
+
+   inline const ::image32_t *image32() const { return m_pimage32; }
+
+
+   inline operator ::image32_t *() { return image32(); }
+
+
+   inline operator const ::image32_t *() const { return image32(); }
+
+
+   inline ::pixmap_t *pixmap() { return this; }
+
+
+   inline const ::pixmap_t *pixmap() const { return this; }
+
+
+   inline operator ::pixmap_t *() { return this; }
+
+
+   inline operator const ::pixmap_t *() const { return this; }
+
+
+   
+
+   //inline ::image32_t * image32() { return m_pimage32; }
+   //inline ::image32_t * image32() const { return m_pimage32; }
 
 
    inline ::image32_t * data() { return m_pimage32; }
    inline ::image32_t * data() const { return m_pimage32; }
 
 
-   inline operator pixmap * () { return this; }
-   inline operator const pixmap * () const { return this; }
+   //inline operator pixmap_t *() { return this; }
+   //inline operator const pixmap_t *() const { return this; }
 
 
    inline bool is_ok() const { return ::is_set(this) && area() > 0; }
@@ -115,10 +199,11 @@ struct pixmap
    inline ::i32_point top_left() const noexcept { return m_point; }
    inline ::i32_point origin() const noexcept { return top_left(); }
    //inline concrete < ::i32_size > size() const noexcept { return m_size; }
-   inline ::i32_size size() const noexcept { return m_size; }
+   inline ::i32_size size() const noexcept { return m_size; };
    inline ::i32 width() const noexcept { return m_size.cx; }
    inline ::i32 height() const noexcept { return m_size.cy; }
    inline ::i32 area() const noexcept { return m_size.area(); }
+   inline ::i32 scan_size() const noexcept { return m_iScan; }
    inline ::i32 scan_area() const noexcept { return height() * scan_size(); }
 
 
@@ -152,10 +237,14 @@ struct pixmap
 
    inline ::color::color get_pixel(const ::i32_point & point) const { return get_pixel(point.x, point.y); }
 
-   inline pixmap & operator =(const pixmap & pixmap);
-   inline pixmap & operator =(const ::i32_rectangle & rectangle) { map(rectangle);  return *this; }
+   inline pixmap_t &operator=(const pixmap_t &pixmap);
+   inline pixmap_t &operator=(const ::i32_rectangle &rectangle)
+   {
+      map(rectangle);
+      return *this;
+   }
 
-   void reference(const pixmap& pixmap);
+   void reference(const pixmap_t &pixmap);
 
    void map(const ::i32_rectangle & rectangle)
    {
@@ -174,7 +263,7 @@ struct pixmap
       if (::is_set(m_pimage32Raw))
       {
 
-         ((pixmap *)this)->m_pimage32 = m_pimage32Raw + (m_point.x + m_iScan * m_point.y);
+         ((pixmap_t *)this)->m_pimage32 = m_pimage32Raw + (m_point.x + m_iScan * m_point.y);
 
       }
 
@@ -194,15 +283,17 @@ struct pixmap
    void vertical_swap();
 
 
-   void copy(const ::i32_size & size, const ::pixmap * ppixmapSrc);
+   void copy(const ::i32_size &size, const ::pixmap_t *ppixmapSrc);
 
-   void y_swap_copy(const ::i32_size& size, const ::pixmap* ppixmapSrc);
+   void copy(const ::i32_size &size, const ::image32_t * pimage32, ::i32 iScan);
 
-   void copy(const ::pixmap * ppixmapSrc);
+   void y_swap_copy(const ::i32_size &size, const ::pixmap_t *ppixmapSrc);
 
-   void copy(const ::pixmap* ppixmapSrc, const ::image::enum_copy_disposition & ecopydisposition);
+   void copy(const ::pixmap_t *ppixmapSrc);
 
-   void y_swap_copy(const ::pixmap* ppixmapSrc);
+   void copy(const ::pixmap_t *ppixmapSrc, const ::image::enum_copy_disposition &ecopydisposition);
+
+   void y_swap_copy(const ::pixmap_t *ppixmapSrc);
 
    ::color::color average_color();
 
@@ -210,13 +301,56 @@ struct pixmap
 
 };
 
+
+
+class CLASS_DECL_ACME pixmap :
+   public pixmap_t,
+   virtual public ::particle
+{
+public:
+
+   
+   memory m_memoryPixmap;
+
+
+   pixmap();
+   ~pixmap() override;
+
+
+   virtual void create(const ::i32_size &size, ::enum_flag eflagCreate = DEFAULT_CREATE_IMAGE_FLAG,
+                       ::i32 iGoodStride = -1, bool bPreserve = false);
+
+
+
+   inline bool is_ok() const { return ::particle::is_ok() && pixmap_t::is_ok(); }
+
+   virtual void map(bool bApplyAlphaTransform =
+                       true) const; // some implementations may requrire to map_base to m_pcolorref before manipulate it
+   virtual void unmap() const; // some implementations may require to unmap from m_pcolorref to update *os* bitmap
+
+   virtual void mult_alpha_fast();
+
+   virtual void set_exif_orientation(int iExifOrientation);
+
+   virtual void on_load_image();
+
+   virtual void defer_update_image();
+
+   virtual ::image::image_extension * get_extension();
+
+   virtual void copy(const ::i32_size &size, const ::image32_t *pimage32, ::i32 iScan);
+
+   virtual void on_load_image(const image32_t *pimage32, const ::i32_size &size, int iScan);
+
+};
+
 //#pragma pack(pop, pixmap)
 
 
 
+using pixmap_pointer = ::pointer < ::pixmap >;
 
-
-inline void image32_t::copy(const ::i32_size & size, ::i32 iStrideDst, const ::pixmap * ppixmapSrc)
+inline void image32_t::copy(const ::i32_size & size, ::i32 iStrideDst, const ::pixmap_t * ppixmapSrc)
 {
    
    copy(size.minimum(ppixmapSrc->size()), iStrideDst, ppixmapSrc->m_pimage32, ppixmapSrc->m_iScan);
@@ -225,7 +359,7 @@ inline void image32_t::copy(const ::i32_size & size, ::i32 iStrideDst, const ::p
 
 
 
-inline void image32_t::copy(const ::pixmap* p)
+inline void image32_t::copy(const ::pixmap_t* p)
 {
    copy(::i32_point(), p->size(), p->width() * 4, p->image32(), p->m_iScan);
 }

@@ -25,7 +25,7 @@ namespace image
 
 
    class CLASS_DECL_AURA image_meta :
-      public ::pixmap
+      virtual public ::pixmap
    {
    public:
 
@@ -70,7 +70,7 @@ namespace image
 
       //inline ::pointer<::image::image_frame_array>frames();
 
-
+      void set_exif_orientation(::i32 iExifOrientation) override;
 
 
       inline image_frame_array * frames() { return m_pextension ? m_pextension->m_pframea : nullptr; }

@@ -160,7 +160,9 @@ bool image::_is_set() const
 bool image::_is_ok() const
 { 
    
-   return ::pixmap::is_ok() && ::particle::has_ok_flag(); 
+   //return ::pixmap::is_ok() && ::particle::has_ok_flag(); 
+
+   return ::particle::has_ok_flag(); 
 
 }
 
@@ -236,17 +238,38 @@ void image::defer_realize(::draw2d::graphics* pgraphics) const
 }
 
 
-void image::create_ex(const ::i32_size & size, ::image32_t * pimage32, ::i32 iScan, ::enum_flag eflagCreate, ::i32 iGoodStride, bool bPreserve)
+void image::create_from_data(const ::i32_size & size, ::image32_t * pimage32, ::i32 iScan, ::enum_flag eflagCreate, bool bPreserve)
 {
+
+   auto iGoodStride = iScan;
 
    create(size, eflagCreate, iGoodStride, bPreserve);
 
-   if (::is_set(pimage32))
-   {
 
-      m_pimage32->copy(size, m_iScan, pimage32, iScan);
+   //if (pimageFrame->area() <= 0)
+   //{
 
-   }
+   //   return false;
+   //}
+
+   map();
+
+   auto pdataTarget = data();
+
+   auto scanSizeTarget = scan_size();
+
+   pdataTarget->copy(size, scanSizeTarget, pimage32, iScan);
+
+
+
+   //create(size, eflagCreate, iGoodStride, bPreserve);
+
+   //if (::is_set(pimage32))
+   //{
+
+   //   m_pimage32->copy(size, m_iScan, pimage32, iScan);
+
+   //}
 
 
 }
@@ -255,7 +278,7 @@ void image::create_ex(const ::i32_size & size, ::image32_t * pimage32, ::i32 iSc
 void image::create(const ::i32_size& size, ::enum_flag eflagCreate, ::i32 iGoodStride, bool bPreserve)
 {
 
-   return create_ex(size, nullptr, 0, eflagCreate, iGoodStride, bPreserve);
+   return create_from_data(size, nullptr, iGoodStride, eflagCreate, bPreserve);
 
 }
 
@@ -263,7 +286,7 @@ void image::create(const ::i32_size& size, ::enum_flag eflagCreate, ::i32 iGoodS
 void image::initialize(const ::i32_size & size, ::image32_t * pimage32, ::i32 iScan, ::enum_flag eflagCreate)
 {
 
-   return create_ex(size, pimage32, iScan, eflagCreate);
+   return create_from_data(size, pimage32, iScan, eflagCreate);
 
 }
 
@@ -286,7 +309,7 @@ void image::initialize(const ::i32_size & size, ::image32_t * pimage32, ::i32 iS
 //}
 
 
-bool image::host(::pixmap* ppixmap, ::windowing::window * pwindow)
+bool image::host(::pixmap_t* ppixmap, ::windowing::window * pwindow)
 {
    //// callers should be able to deal with graphics backend that doesn't support "hosting" portions of RAM
    //return false;
@@ -396,7 +419,7 @@ bool image::host(::pixmap* ppixmap, ::windowing::window * pwindow)
 }
 
 
-bool image::on_host_read_pixels(::pixmap* ppixmapHost) const
+bool image::on_host_read_pixels(::pixmap_t* ppixmapHost) const
 {
 
    //map();
@@ -1828,10 +1851,10 @@ void image::fork_blend(const ::i32_point& pointDstParam, ::image::image* pimageS
 
    ::u8* psrcTransparency; // src transparency map if available
 
-   if (pimageSrc->m_memoryMap.size() == pimageSrc->area() * 2)
+   if (pimageSrc->m_memoryPixmap.size() == pimageSrc->area() * 2)
    {
 
-      psrcOpacity = &pimageSrc->m_memoryMap.data()[pimageSrc->width() * pointSrc.y + pointSrc.x];
+      psrcOpacity = &pimageSrc->m_memoryPixmap.data()[pimageSrc->width() * pointSrc.y + pointSrc.x];
 
    }
    else
@@ -1841,10 +1864,11 @@ void image::fork_blend(const ::i32_point& pointDstParam, ::image::image* pimageS
 
    }
 
-   if (pimageSrc->m_memoryMap.size() == pimageSrc->area() * 2)
+   if (pimageSrc->m_memoryPixmap.size() == pimageSrc->area() * 2)
    {
 
-      psrcTransparency = &pimageSrc->m_memoryMap.data()[pimageSrc->area() + pimageSrc->width() * pointSrc.y + pointSrc.x];
+      psrcTransparency =
+         &pimageSrc->m_memoryPixmap.data()[pimageSrc->area() + pimageSrc->width() * pointSrc.y + pointSrc.x];
 
    }
    else
@@ -2768,35 +2792,7 @@ void image::mult_alpha()
 }
 
 
-void image::mult_alpha_fast()
-{
-   map();
 
-   ::u8* dst = (::u8*)data();
-   ::i64 size = scan_area();
-
-
-   //  >> 2 instead of >> 2 subsequent alpha_blend operations say thanks on true_blend because (255) * (1/254) + (255) * (254/255) > 255
-
-
-   while (size--)
-   {
-      if (dst[3] == 0)
-      {
-         *((image32_t *)dst) = {};
-      }
-      else if (dst[3] != 255)
-      {
-         dst[0] = byte_clip2(((::i32)dst[0] * (::i32)dst[3]) >> 8);
-         dst[1] = byte_clip2(((::i32)dst[1] * (::i32)dst[3]) >> 8);
-         dst[2] = byte_clip2(((::i32)dst[2] * (::i32)dst[3]) >> 8);
-      }
-      dst += 4;
-   }
-
-   //return true;
-
-}
 
 
 void image::mult_alpha(const ::i32_point& pointDstParam, const ::i32_size& sizeParam)
@@ -7598,10 +7594,10 @@ void image::_create_helper_map()
    ::collection::index aa = w * h;
    {
 
-      m_memoryMap.set_size(a * 2);
+      m_memoryPixmap.set_size(a * 2);
 
-      m_memoryMap.set(0);
-      ::u8* opacity = m_memoryMap.data();
+      m_memoryPixmap.set(0);
+      ::u8 *opacity = m_memoryPixmap.data();
 
       for (::collection::index i = 0; i < height(); i++)
       {
@@ -7654,7 +7650,7 @@ void image::_create_helper_map()
 
    {
 
-      ::u8* transparency = m_memoryMap.data() + a;
+      ::u8* transparency = m_memoryPixmap.data() + a;
 
       for (::collection::index i = 0; i < height(); i++)
       {
@@ -10541,7 +10537,7 @@ void image::transform(enum_image eimage)
 void image::_map(bool bApplyAlphaTransform)
 {
 
-   pixmap::map(this->rectangle());
+   pixmap_t::map(this->rectangle());
 
    //return true;
 
@@ -10622,6 +10618,31 @@ bool image::_draw_blend(const ::image::image_drawing& imagedrawing)
    //}
 
    //return true;
+
+}
+
+
+const ::image32_t *image::get_data() const 
+{
+   
+   return ((image *)this)->get_data(); 
+
+}
+
+
+::image32_t *image::get_data()
+{
+
+   if (m_bMapped)
+   {
+
+      return m_pimage32;
+
+   }
+
+   map();
+
+   return image32();
 
 }
 

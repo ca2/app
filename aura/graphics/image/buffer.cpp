@@ -39,7 +39,7 @@ namespace image
       else
       {
 
-         ::pixmap::create(m_memory, m_ppixmapLock->size(), stride);
+         ::pixmap_t::create(m_memory, m_ppixmapLock->size(), stride);
 
       }
 
@@ -70,7 +70,7 @@ namespace image
       if (m_ppixmapLock->data() != this->data())
       {
 
-         m_ppixmapLock->copy(this, m_ecopydisposition);
+         m_ppixmapLock->pixmap_t::copy(this, m_ecopydisposition);
 
       }
 

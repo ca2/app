@@ -3218,6 +3218,7 @@
     <ClInclude Include="graphics\image\imaging.h" />
     <ClInclude Include="graphics\image\list.h" />
     <ClInclude Include="graphics\image\load_image.h" />
+    <ClInclude Include="graphics\image\aaa_load_image_interface.h" />
     <ClInclude Include="graphics\image\lock.h" />
     <ClInclude Include="graphics\image\map.h" />
     <ClInclude Include="graphics\image\map_ex1.h" />

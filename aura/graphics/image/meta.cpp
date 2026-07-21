@@ -18,6 +18,15 @@ namespace image
    }
 
 
+   void image_meta::set_exif_orientation(::i32 iExifOrientation)
+   {
+
+      m_iExifOrientation = iExifOrientation;
+
+
+   }
+
+
 } // namespace image
 
 

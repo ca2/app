@@ -3,6 +3,7 @@
 #include "nanosvgrast.h"
 #include "image.h"
 #include "imaging.h"
+#include "load_image.h"
 ////#include "acme/exception/exception.h"
 
 
@@ -16,7 +17,7 @@ namespace image
 {
 
 
-   bool imaging::nanosvg(::image::image * pimage, void * pNSVGimage, ::i32 iRedLower)
+   bool imaging::nanosvg(::image::load_image * ploadimage, void * pNSVGimage, ::i32 iRedLower, ::i32 iWidth, ::i32 iHeight)
    {
 
       NSVGrasterizer * rast = nsvgCreateRasterizer();
@@ -32,9 +33,9 @@ namespace image
 
       nsvg_rasterizer_set_output_format(rast, iRedLower);
 
-      ::i32 w = (::i32)pimage->width();
+      ::i32 w = (::i32)iWidth;
 
-      ::i32 h = (::i32)pimage->height();
+      ::i32 h = (::i32)iHeight;
 
       ::image32_t * pdata = nullptr;
 
@@ -44,11 +45,13 @@ namespace image
 
       {
 
-         pdata = pimage->image32();
-
-         iScan = pimage->m_iScan;
+         pdata = ploadimage->defer_image32({w, h}, &iScan);
 
          nsvgRasterize(rast, psvgimage, 0, 0, 1, (::u8 *)pdata, w, h, iScan);
+
+         ploadimage->on_load_image(pdata, {w, h}, iScan);
+
+         //, const ::e_status &estatus
 
 #ifdef UNIVERSAL_WINDOWS
 
@@ -92,19 +95,19 @@ namespace image
    }
 
 
-   void image::nanosvg(char_pointer pszXml, ::f64 dDpi)
+   void load_image::nanosvg(char_pointer pszXml, ::i32 iRedLower, ::f64 fDpi)
    {
 
-      if (dDpi <= 0.0)
+      if (fDpi <= 0.0)
       {
 
-         dDpi = 300.0;
+         fDpi = get_default_screen_dpi();
 
       }
 
       NSVGimage * psvgimage;
 
-      psvgimage = nsvgParse(pszXml, "px", 300.0f);
+      psvgimage = nsvgParse(pszXml, "px", fDpi);
 
       if (::is_null(psvgimage))
       {
@@ -116,11 +119,15 @@ namespace image
       try
       {
 
-         map();
+         //map();
 
-         imaging()->nanosvg(this, psvgimage, m_iRedLower);
+         auto w = (::i32) psvgimage->width;
 
-         unmap();
+         auto h = (::i32) psvgimage->height;
+
+         imaging()->nanosvg(this, psvgimage, iRedLower, w, h);
+
+         //unmap();
 
          //return true;
 
@@ -137,49 +144,53 @@ namespace image
    }
 
 
-   void image::create_nanosvg(char_pointer pszXml, ::f64 dDpi)
-   {
+   //void load_image::create_nanosvg(char_pointer pszXml, ::i32 iRedLower, ::i32 width, ::i32 height)
+   //{
 
-      NSVGimage * psvgimage;
+   //   NSVGimage * psvgimage;
 
-      if (dDpi <= 0.0)
-      {
+   //   if (fDpi <= 0.0)
+   //   {
 
-         dDpi = get_default_screen_dpi();
+   //      fDpi = get_default_screen_dpi();
 
-      }
+   //   }
 
-      psvgimage = nsvgParse(pszXml, "px", (::f32)dDpi);
+   //   psvgimage = nsvgParse(pszXml, "px", (::f32)fDpi);
 
-      if (::is_null(psvgimage))
-      {
+   //   if (::is_null(psvgimage))
+   //   {
 
-         throw ::exception(error_null_pointer);
+   //      throw ::exception(error_null_pointer);
 
-      }
+   //   }
 
-      try
-      {
+   //   try
+   //   {
 
-         create({ (::i32)psvgimage->width, (::i32)psvgimage->height });
+   //      //create({ (::i32)psvgimage->width, (::i32)psvgimage->height });
 
-         map();
+   //      //map();
 
-         imaging()->nanosvg(this, psvgimage, m_iRedLower);
+   //      auto ploadimage = create_newø<::image::load_image>();
 
-         unmap();
+   //      ploadimage->init
 
-      }
-      catch (...)
-      {
+   //      imaging()->nanosvg(this, psvgimage, iRedLower, (::i32) psvgimage->width, (::i32)psvgimage->height);
 
-      }
+   //      //unmap();
 
-      nsvgDelete(psvgimage);
+   //   }
+   //   catch (...)
+   //   {
 
-      //return true;
+   //   }
 
-   }
+   //   nsvgDelete(psvgimage);
+
+   //   //return true;
+
+   //}
 
 
 } // namespace image

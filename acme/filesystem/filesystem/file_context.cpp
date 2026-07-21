@@ -2327,6 +2327,28 @@ void file_context::trash_that_is_not_trash(::file::path_array_base & patha)
 }
 
 
+file_system_time_path::file_system_time_path(file_context *pfilecontext,
+                      const ::file::path &pathSource):
+    path(pfilecontext->time_square(pathSource.title(), "." + pathSource.all_extensions())), m_pfilecontext(pfilecontext)
+{
+
+pfilecontext->copy(*this, pathSource);
+
+}
+file_system_time_path::~file_system_time_path() {
+
+   m_pfilecontext->erase(*this);
+
+}
+
+
+::file_system_time_path file_context::time_path(const ::file::path & path)
+{
+
+   return {this, path};
+
+}
+
 ::file::path file_context::get_filesystem_file(const ::file::path & path)
 {
 

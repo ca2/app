@@ -406,21 +406,31 @@ namespace user
 
             auto pmemory = create_memory();
 
-            {
+            //{
 
-               ::payload payloadFile;
+               //::payload payloadFile;
 
-               payloadFile["url"] = str;
-               payloadFile["http_set"]["raw_http"] = true;
-               payloadFile["http_set"]["disable_common_name_cert_check"] = true;
+               //payloadFile["url"] = str;
+               //payloadFile["http_set"]["raw_http"] = true;
+               //payloadFile["http_set"]["disable_common_name_cert_check"] = true;
 
                // auto pcontext = get_context();
 
-               file()->as_memory(payloadFile, *pmemory);
+            ::file::path path = str;
+
+               auto pfile = file()->get_reader(path);
+
+            //}
+
+            pimage = image()->get_image(pfile);
+                             
+
+            if (pimage.ok())
+            {
+
+               return true;
 
             }
-
-            image()->_load_image(pimage, pmemory);
             //{
 
                // Couldn't load image from file/URL path...

@@ -35,7 +35,7 @@ namespace draw2d_cairo
       void create_bitmap(::draw2d::graphics * pgraphics, const ::i32_size & size, void **ppvBits, ::i32 * stride) override;
       void CreateDIBitmap(::draw2d::graphics * pgraphics, ::i32 cx, ::i32 cy, ::u32 flInit, const void *pjBits, ::u32 iUsage) override;
 
-      bool host_bitmap(::draw2d::graphics * pgraphics, ::pixmap * ppixmap) override;
+      bool host_bitmap(::draw2d::graphics * pgraphics, ::pixmap_t * ppixmap) override;
 
 
       ::i32 stride_for_width(::i32 iWidth) override;

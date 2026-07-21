@@ -2202,7 +2202,7 @@ void window::on_keyboard_layout_change(const_char_pointer pszKeyboardLayoutId)
 
       }
 
-      picon->load_file(payloadFile);
+      picon->set_file(payloadFile);
 
       return picon;
 

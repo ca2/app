@@ -400,22 +400,22 @@ namespace gpu
 
       ::pointer_array < ::image::image > imagea({ pimage });
 
-      initialize_texture_from_image(pgpucontext, imagea);
+      initialize_texture_from_pixmap(pgpucontext, imagea);
 
    }
 
    
-   void texture::defer_throw_if_cube_map_images_are_not_ok(const ::pointer_array < ::image::image >& imagea)
+   void texture::defer_throw_if_cube_map_pixmaps_are_not_ok(const ::pointer_array < ::pixmap >& pixmapa)
    {
 
-      if (imagea.size() != 6)
+      if (pixmapa.size() != 6)
       {
 
          throw ::exception(error_failed, "Cube map texture must have exactly 6 images");
 
       }
 
-      auto pimageFirst = imagea.first();
+      auto pimageFirst = pixmapa.first();
 
       if (pimageFirst->is_empty())
       {
@@ -431,7 +431,7 @@ namespace gpu
 
       }
 
-      for (auto& pimage : imagea)
+      for (auto& pimage : pixmapa)
       {
          
          if (pimage != pimageFirst)
@@ -451,28 +451,28 @@ namespace gpu
    }
 
 
-   void texture::initialize_texture_from_image(
-      ::gpu::context* pgpucontext, const ::pointer_array < ::image::image >& imagea, enum_texture etexture)
+   void texture::initialize_texture_from_pixmap(
+      ::gpu::context* pgpucontext, const ::pointer_array < ::pixmap >& pixmapa, enum_texture etexture)
    {
 
-      auto rectangle = imagea.first()->rectangle();
+      auto rectangle = pixmapa.first()->rectangle();
 
       ::gpu::texture_attributes textureattributes(rectangle, 8, 4, 0, 0, etexture,
          etexture == e_texture_cube_map ? 6 : 1);
 
-      if (imagea.has_element())
+      if (pixmapa.has_element())
       {
 
          if (etexture == e_texture_cube_map)
          {
 
-            defer_throw_if_cube_map_images_are_not_ok(imagea);
+            defer_throw_if_cube_map_pixmaps_are_not_ok(pixmapa);
 
          }
 
       }
 
-      initialize_texture(pgpucontext, textureattributes, {}, imagea);
+      initialize_texture(pgpucontext, textureattributes, {}, pixmapa);
 
       if (is_ok())
       {
@@ -678,6 +678,21 @@ namespace gpu
    {
 
       throw ::not_implemented();
+
+   }
+
+
+   void texture::write_pixels(const ::i32_size & size, const ::image32_t * pimage32, ::i32 iScan)
+   {
+
+      ::pixmap pixmap;
+
+      pixmap.m_size = size;
+      pixmap.m_pimage32 = (::image32_t *) pimage32;
+      pixmap.m_pimage32Raw = (::image32_t *)pimage32;
+      pixmap.m_iScan = iScan;
+
+      write_pixels(&pixmap);
 
    }
 

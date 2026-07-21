@@ -4,6 +4,8 @@
 #include "context_lock.h"
 #include "renderer.h"
 #include "texture.h"
+#include "apex/gpu/approach.h"
+#include "bred/gpu/device.h"
 #include "acme/platform/application.h"
 
 
@@ -167,8 +169,8 @@ namespace gpu
 
             ::gpu::context_lock contextlock(pgpucontext);
 
-            pthis->pixmap::create(
-               pthis->m_memoryMap,
+            pthis->pixmap_t::create(
+               pthis->m_memoryPixmap,
                pthis->m_sizeRaw,
                pthis->m_sizeRaw.cx * (int)sizeof(::image32_t));
 
@@ -194,7 +196,7 @@ namespace gpu
 
             }
 
-            pthis->pixmap::map(pthis->rectangle());
+            pthis->pixmap_t::map(pthis->rectangle());
             pthis->m_bMapped = true;
 
             if (bPerformanceDiagnostics)
@@ -206,6 +208,23 @@ namespace gpu
 
          });
 
+   }
+
+
+   ::gpu::texture * image::get_gpu_texture()
+   {
+
+      if (!m_pgputexture)
+      {
+
+         auto pgpucontextMain = m_papplication->get_gpu_approach()->get_gpu_device(m_papplication->m_pacmeuserinteractionMain->m_pacmewindowingwindow)
+                                   ->main_context();
+
+         initialize_gpu_image(pgpucontextMain, m_size);
+
+      }
+
+      return m_pgputexture;
    }
 
 
@@ -300,6 +319,134 @@ namespace gpu
 
          });
 
+   }
+
+
+   void image::on_load_image(const image32_t * pimage32, const ::i32_size & size, int iScan)
+   {
+
+      if (m_bMapped)
+      {
+
+         if (size == this->size())
+         {
+
+            copy(size, pimage32, iScan);
+
+         }
+         else
+         {
+
+            unmap();
+
+         }
+
+      }
+
+      if (m_pgputexture)
+      {
+
+         if (m_pgputexture->size() != size)
+         {
+
+            auto pgpucontextWork =
+               m_papplication->get_gpu_approach()
+                  ->get_gpu_device(m_papplication->m_pacmeuserinteractionMain->m_pacmewindowingwindow)
+                  ->work_context();
+
+            initialize_gpu_image(pgpucontextWork, size);
+
+         }
+
+               auto pgputexture = m_pgputexture;
+
+         if (!pgputexture)
+         {
+
+            throw ::exception(error_wrong_state);
+         }
+
+         auto pgpucontext = pgputexture->context();
+
+         if (!pgpucontext)
+         {
+
+            throw ::exception(error_wrong_state);
+         }
+
+         auto pthis = const_cast<image *>(this);
+
+         pgpucontext->send(
+            [pthis, pgputexture, pimage32, size, iScan, pgpucontext]()
+            {
+               auto bPerformanceDiagnostics =
+                  pthis->m_papplication &&
+                  pthis->m_papplication->m_gpu.m_bPerformanceDiagnostics.load(::std::memory_order_relaxed);
+
+               if (bPerformanceDiagnostics)
+               {
+
+                  auto uPerformanceDiagnosticsGeneration =
+                     pthis->m_papplication->m_gpu.m_uPerformanceDiagnosticsGeneration.load(::std::memory_order_relaxed);
+
+                  if (uPerformanceDiagnosticsGeneration !=
+                      pthis->m_uPerformanceDiagnosticsGenerationLast.load(::std::memory_order_relaxed))
+                  {
+
+                     pthis->reset_performance_diagnostics();
+                  }
+               }
+
+               auto timeStart = ::std::chrono::steady_clock::time_point{};
+
+               if (bPerformanceDiagnostics)
+               {
+
+                  timeStart = ::std::chrono::steady_clock::now();
+               }
+
+
+               ::gpu::context_lock contextlock(pgpucontext);
+
+               pgputexture->write_pixels(size, pimage32, iScan);
+
+               auto uMicroseconds = (::u64)0;
+
+               if (bPerformanceDiagnostics)
+               {
+
+                  uMicroseconds = (::u64)::std::chrono::duration_cast<::std::chrono::microseconds>(
+                                     ::std::chrono::steady_clock::now() - timeStart)
+                                     .count();
+               }
+
+               pgputexture->defer_fence();
+               // pthis->pixmap::unmap();
+               // pthis->m_bMapped = false;
+
+               if (bPerformanceDiagnostics)
+               {
+
+                  pthis->record_performance_unmap_transition(uMicroseconds);
+               }
+            });
+
+      }
+      else if (!m_bMapped)
+      {
+
+         pixmap_t::initialize_pixmap(size, nullptr, iScan);
+
+         pixmap::map();
+         
+         pixmap_t::copy(size, pimage32, iScan);
+
+      }
+
+      m_estatus = success;
+
+      set_ok_flag();
+   
    }
 
 

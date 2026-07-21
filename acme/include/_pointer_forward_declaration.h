@@ -84,6 +84,8 @@ using payload_array = ::array_particle<payload_array_base>;
 using arguments = payload_array;
 
 
+using pixmap_pointer = ::pointer < ::pixmap >;
+
 namespace image
 {
 

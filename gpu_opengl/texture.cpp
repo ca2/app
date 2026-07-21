@@ -603,14 +603,14 @@ namespace gpu_opengl
 
          const void * pdata = nullptr;
 
-         if (data.is_image_array())
+         if (data.is_pixmap_array())
          {
 
             auto scan_area = m_textureattributes.m_rectangleTarget.area() * 4;
 
             memory.set_size(scan_area);
 
-            if (data.imagea().first()->size() != m_textureattributes.m_rectangleTarget.size())
+            if (data.pixmapa().first()->size() != m_textureattributes.m_rectangleTarget.size())
             {
 
                throw ::exception(error_wrong_state);
@@ -619,7 +619,7 @@ namespace gpu_opengl
 
             auto pimage32 = (image32_t *)memory.data();
 
-            pimage32->copy(data.imagea().first());
+            pimage32->copy(data.pixmapa().first());
 
             pdata = pimage32;
 
@@ -679,10 +679,10 @@ namespace gpu_opengl
 
          ::memory memory;
 
-         if (data.is_image_array())
+         if (data.is_pixmap_array())
          {
 
-            if (data.imagea().first()->size() != sizeCurrent)
+            if (data.pixmapa().first()->size() != sizeCurrent)
             {
 
                throw ::exception(error_wrong_state);
@@ -705,7 +705,7 @@ namespace gpu_opengl
 
             image32_t * pimage32 = nullptr;
 
-            if (data.is_image_array())
+            if (data.is_pixmap_array())
             {
 
             pimage32 = (::image32_t *)memory.data();
@@ -726,8 +726,10 @@ namespace gpu_opengl
             }
 
 
+            auto pimage32Source = data.pixmapa()[iImage]->image32();
+
             pimage32->vertical_swap_copy(sizeCurrent.cx, sizeCurrent.cy, scan,
-               data.imagea()[iImage]->image32(), data.imagea()[iImage]->m_iScan);
+               pimage32Source, data.pixmapa()[iImage]->m_iScan);
 
 
 
@@ -1164,12 +1166,12 @@ void texture::_defer_bind_to_render_target(base_context_handle::object & object)
 
       ::memory memoryFlipped;
       ::pixmap pixmapFlipped;
-      pixmapFlipped.create(
+      pixmapFlipped.pixmap_t::create(
          memoryFlipped,
          ppixmap->size(),
          ppixmap->m_iScan);
       pixmapFlipped.m_colorindexes = ppixmap->m_colorindexes;
-      pixmapFlipped.copy(ppixmap);
+      pixmapFlipped.pixmap_t::copy(ppixmap);
       pixmapFlipped.vertical_swap();
 
       scoped_pixel_transfer_state state;

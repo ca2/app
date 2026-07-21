@@ -11,6 +11,7 @@
 namespace image
 {
 
+
    class CLASS_DECL_AURA pool_image
    {
    protected:
@@ -35,6 +36,8 @@ namespace image
       i32_map < string > m_mapIntPath;
       string_map_base < ::i32 > m_mapPathInt;
       string_map_base < ::image::image_pointer > m_mapPathImage;
+      string_map_base<map_base < ::i32_size, ::image::image_pointer >> m_mapPathResizedImage;
+      string_map_base<::pixmap_pointer> m_mapPathPixmap;
       ::i32         m_iImageSeed;
       ::particle_pointer         m_pparticleImageSynchronization;
       map_base < i32_size, ::pointer_array < ::image::image > > m_imagepool;
@@ -96,7 +99,10 @@ namespace image
       virtual ::i32 image_integer(const ::file::path & path);
       virtual ::i32 create_image_integer(::i32 w, ::i32 h, const image32_t * pcolor, ::i32 iScan = -1);
       virtual ::image::image_pointer integer_image(::i32 i);
-      virtual ::image::image_pointer path_image(const ::file::path & pathImage);
+      virtual ::pixmap_pointer path_pixmap(const ::file::path & pathImage);
+      virtual ::image::image_pointer path_image(const ::file::path &pathImage);
+      virtual ::image::image_pointer & _path_image(const ::file::path &pathImage);
+      virtual ::image::image_pointer path_resized_image(const ::file::path &pathImage, const ::i32_size & size);
       virtual ::image::image_pointer
       image_from_file(const ::payload &payloadFile, const ::image::load_options &loadoptions = ::image::load_options());
 
@@ -104,6 +110,8 @@ namespace image
 
       virtual ::image::icon_pointer get_icon(const ::payload & payloadFile, const ::image::load_options & loadoptions = ::image::load_options());
       virtual ::image::image_pointer get_image(const ::payload & payloadFile, const ::image::load_options & loadoptions = ::image::load_options());
+      virtual ::pixmap_pointer get_pixmap(const ::payload &payloadFile,
+                                               const ::image::load_options &loadoptions = ::image::load_options());
       virtual ::image::image_pointer matter_image(const ::scoped_string & scopedstrMatter, const ::image::load_options & loadoptions = ::image::load_options());
 
       virtual ::image::image_pointer load_image(const ::payload & payloadFile, const ::image::load_options & loadoptions = ::image::load_options());
@@ -122,10 +130,14 @@ namespace image
 
 
       virtual void _get_image(::image::image *pimage, const ::payload & payloadFile, const ::image::load_options & options = ::image::load_options());
+      virtual void _get_pixmap(::pixmap*ppixmap, const ::payload &payloadFile,
+                              const ::image::load_options &options = ::image::load_options());
       virtual void _matter_image(::image::image *pimage, const ::scoped_string & scopedstrMatter, const ::image::load_options & options = ::image::load_options());
 
 
-      virtual void _load_image(::image::image *pimage, const ::payload & payloadFile, const ::image::load_options & options = ::image::load_options());
+      virtual void _load_image(::image::load_image *ploadimage, const ::payload & payloadFile, const ::image::load_options & options = ::image::load_options());
+      //virtual void _load_pixmap(::pixmap*ppixmap, const ::payload &payloadFile,
+      //                         const ::image::load_options &options = ::image::load_options());
       virtual void _load_matter_image(::image::image *pimage, const ::scoped_string & scopedstrMatter, const ::image::load_options & loadoptions = ::image::load_options());
       virtual void _load_matter_icon(::image::image *pimage, string_array_base & straMatter, const ::scoped_string & scopedstrIcon);
       virtual void _load_thumbnail(::image::image *pimage, const ::payload & payloadFile, ::i32 w, ::i32 h);
@@ -147,9 +159,9 @@ namespace image
 
       virtual void _load_image(::image::image* pimage, ::pointer<image_frame_array> & pframea, memory & memory);
 
-      virtual void _load_multi_frame_image(::image::image* pimage, memory & memory);
+      virtual void _load_multi_frame_image(::image::load_image * ploadimage, memory & memory);
 
-      virtual void load_svg(::image::image* pimage, memory & memory);
+      virtual void load_svg(::image::load_image * ploadimage, memory & memory);
 
 #ifdef UNIVERSAL_WINDOWS
       virtual bool _desk_to_image(::image::image* pimage);
@@ -158,10 +170,10 @@ namespace image
 #endif
 
 
-      virtual void _task_load_image(::image::image *pimage, ::payload payload, bool bCache);
+      virtual void _task_load_image(::image::load_image * ploadimage, ::payload payload, bool bCache);
 
 
-      virtual void _os_load_image(::image::image *pimage, memory & memory);
+      virtual void _os_load_image(::image::load_image *ploadimage, memory & memory);
 
 
       ::image::image_pointer get_cache_image(const ::payload & payloadFile);

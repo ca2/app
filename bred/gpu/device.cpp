@@ -960,6 +960,61 @@ void device::create_main_context(::acme::windowing::window * pacmewindowingwindo
    }
 
 
+   ::pointer<::gpu::context> device::create_work_context()
+   {
+
+      auto pgpucontext = createø<::gpu::context>();
+
+      pgpucontext->m_etype = ::gpu::context::e_type_generic;
+
+      pgpucontext->m_eoutput = ::gpu::e_output_none;
+
+      pgpucontext->m_pgpudevice = this;
+
+      ::cast<::user::interaction> puserinteraction = m_papplication->m_pacmeuserinteractionMain;
+
+      if (!pgpucontext->m_itask && puserinteraction->m_pacmewindowingwindow)
+      {
+
+         pgpucontext->branch_synchronously();
+
+         pgpucontext->sendø() << [this, puserinteraction, pgpucontext]()
+         {
+            
+            auto pinteraction = (::user::interaction *)puserinteraction.m_p;
+
+            auto eoutput = pgpucontext->m_eoutput;
+
+            auto pwindow = pinteraction->window();
+
+            auto size = pwindow->get_window_rectangle().size();
+
+            pgpucontext->initialize_gpu_context(this, eoutput, pwindow, size);
+
+         };
+
+      }
+
+      return pgpucontext;
+
+   }
+
+
+   ::gpu::context * device::work_context()
+   {
+
+      if (!m_pgpucontextWork)
+      {
+
+         m_pgpucontextWork = create_work_context();
+
+      }
+
+      return m_pgpucontextWork;
+
+   }
+
+
    void * device::current_operating_system_gpu_context()
    {
       

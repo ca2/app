@@ -149,6 +149,7 @@ namespace graphics3d
       m_pusergraphics3d->m_pengine = this;
 
       //m_papproach = m_papplication->get_gpu_approach();
+      set_gpu_performance_diagnostics(true);
 
 
    }

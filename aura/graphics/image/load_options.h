@@ -18,7 +18,7 @@ namespace image
       bool helper_maps = false;
       bool toy = true;
       ::particle * pparticleSync = nullptr;
-      ::function < void(image *) > functionLoaded;
+      ::function < void(pixmap *) > functionLoaded;
 
    };
 

@@ -391,7 +391,7 @@ namespace gpu
 
    m_pimageFromGpu->map();
 
-   m_pimageFromGpu->copy(m_pgpucontext->m_pcpubuffer->m_pimagetarget->m_pimage);
+   m_pimageFromGpu->pixmap_t::copy(m_pgpucontext->m_pcpubuffer->m_pimagetarget->m_pimage);
 
    ::image::image_source imagesource(m_pimageFromGpu);
 

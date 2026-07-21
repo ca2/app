@@ -111,7 +111,7 @@ namespace draw2d_gpu
       }
 
 
-      this->::pixmap::initialize(size, pimage32, iStride);
+      this->initialize_pixmap(size, pimage32, iStride);
 
       m_eflagElement = eobjectCreate;
 
@@ -124,7 +124,7 @@ namespace draw2d_gpu
    }
 
 
-   bool image::host(::pixmap * ppixmap, ::windowing::window * pwindow)
+   bool image::host(::pixmap_t * ppixmap, ::windowing::window * pwindow)
    {
 
       if (::is_null(ppixmap) || ppixmap->nok())
@@ -2899,7 +2899,7 @@ namespace draw2d_gpu
    }
 
 
-   bool image::on_host_read_pixels(::pixmap* ppixmap) const
+   bool image::on_host_read_pixels(::pixmap_t * ppixmap) const
    {
 
       return false;

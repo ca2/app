@@ -1785,7 +1785,7 @@ namespace user
 
       auto pwindowingicon = createø < windowing::icon >();
 
-      pwindowingicon->load_file(path);
+      pwindowingicon->set_file(path);
 
       auto pdraw2dicon = createø < ::image::icon >();
 

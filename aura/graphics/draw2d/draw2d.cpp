@@ -1156,7 +1156,7 @@ void draw2d::emboss_predicate(
       //   ::i32 max3x3 = (maxx1 - iFilterH / 2) * 4;
       //::i32 w = cx * 4;
 
-      pimageDst->copy(pimageSrc);
+      pimageDst->pixmap_t::copy(pimageSrc);
       //::memory_copy(lpbDst,lpbSrc,cx * cy * 4);
 
 

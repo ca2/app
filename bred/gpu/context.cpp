@@ -369,7 +369,7 @@ namespace gpu
 
    void context::end_debug_happening(::gpu::command_buffer *pgpucommandbuffer) {}
    
-   void context::on_cube_map_face_image(::image::image * pimage)
+   void context::on_cube_map_face_pixmap(::pixmap * ppixmap)
    {
 
 

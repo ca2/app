@@ -11,7 +11,7 @@ namespace gpu
    protected:
 
       enum_texture_data m_etexturedata = e_texture_data_none;
-      ::pointer_array<::image::image> m_imagea;
+      ::pointer_array<::pixmap> m_pixmapa;
       ::file::path m_path;
       const void *m_p = nullptr;
 
@@ -20,20 +20,23 @@ namespace gpu
 
       texture_data() : m_etexturedata(e_texture_data_none) {}
 
-      texture_data(const ::pointer_array<::image::image> &imagea) : m_etexturedata(e_texture_data_image_array), m_imagea(imagea) {}
+      texture_data(const ::pointer_array<::pixmap> &pixmapa) :
+          m_etexturedata(e_texture_data_image_array), m_pixmapa(pixmapa)
+      {
+      }
 
       texture_data(const ::file::path &path) : m_etexturedata(e_texture_data_file_path), m_path(path) {}
       texture_data(const void *p) : m_etexturedata(e_texture_data_raw_scoped_data), m_p(p) {}
 
-      bool is_image_array() const { return m_etexturedata == e_texture_data_image_array && m_imagea.has_element(); }
+      bool is_pixmap_array() const { return m_etexturedata == e_texture_data_image_array && m_pixmapa.has_element(); }
       bool is_file_path() const { return m_etexturedata == e_texture_data_file_path && m_path.has_character(); }
 
       bool is_raw_scoped_data() const { return m_etexturedata == e_texture_data_raw_scoped_data && ::is_set(m_p); }
-      const ::pointer_array<::image::image> &imagea() const
+      const ::pointer_array<::pixmap> &pixmapa() const
       {
-         ASSERT(is_image_array());
+         ASSERT(is_pixmap_array());
 
-         return m_imagea;
+         return m_pixmapa;
       }
 
       const ::file::path &file_path() const

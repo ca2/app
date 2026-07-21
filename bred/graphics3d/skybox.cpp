@@ -96,7 +96,7 @@ namespace graphics3d
       //glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, 3 * sizeof(::f32), (void*)0);
 
 
-      load_cube_map_images();
+      load_cube_map_pixmaps();
 
       // Load cubemap textures
       load_cube_map_textures();
@@ -105,27 +105,38 @@ namespace graphics3d
    }
 
 
-   void skybox::load_cube_map_images()
+   void skybox::load_cube_map_pixmaps()
    {
 
       m_sizeSquare.cx = 0;
       m_sizeSquare.cy = 0;
 
-      for(auto & face : m_cube)
+      for(auto & pcubeface : m_cube)
       {
          
          //         ::u8* data = stbi_load(facesCubemap[i].c_str(), &width, &height, &nrChannels, 0);
                //   auto mem = file()->as_memory();
-         auto pimage = image()->path_image(face.m_path.c_str());
+         auto ppixmap = image()->path_pixmap(pcubeface->m_path.c_str());
 
-         auto sizeSquare = pimage->size();
+         if (ppixmap.nok())
+         {
+
+            throw ::exception(error_wrong_state);
+
+         }
+
+         auto & pimage32Raw = ppixmap->m_pimage32Raw;
+
+         auto & pimage32 = ppixmap->m_pimage32;
+
+         auto sizeSquare = ppixmap->size();
          //::u8* data = stbi_load_from_memory(
          //   (const stbi_uc*)mem.data(),
          //   mem.size(), &width, &height, &nrChannels, 0);
          if (sizeSquare.is_empty())
          {
             
-            throw ::exception(error_wrong_state, "All images in skybox shouldn't be empty");
+            throw ::exception(error_wrong_state, "Each image in skybox should be non-empty");
 
          }
          else if (sizeSquare.cx != sizeSquare.cy)
@@ -153,13 +164,13 @@ namespace graphics3d
 
          }
 
-         m_pgpucontext->on_cube_map_face_image(pimage);
+         m_pgpucontext->on_cube_map_face_pixmap(ppixmap);
 
-         face.m_pimage = pimage;
+         pcubeface->m_ppixmap = ppixmap;
 
       }
 
-      m_sizeSquare = m_cube.first().m_pimage->size();
+      m_sizeSquare = m_cube.first()->m_ppixmap->size();
 
    }
 
@@ -183,14 +194,14 @@ namespace graphics3d
 
       ::i32_point point;
 
-      ::pointer_array < ::image::image > imagea;
+      ::pointer_array < ::pixmap > pixmapa;
 
-      for(auto & face : m_cube)
+      for(auto & pcubeface : m_cube)
       {
 
-         auto pimage = face.m_pimage;
+         auto ppixmap = pcubeface->m_ppixmap;
 
-         imagea.add(pimage);
+         pixmapa.add(ppixmap);
 
          //auto scan = pimage->m_iScan;
 
@@ -211,7 +222,7 @@ namespace graphics3d
 
       textureflags.m_bTransferTarget = true;
 
-      ::gpu::texture_data texturedata(imagea);
+      ::gpu::texture_data texturedata(pixmapa);
 
       auto prenderer = m_pscene->m_pimmersionlayer->m_pengine->gpu_context()->m_pgpurenderer;
 

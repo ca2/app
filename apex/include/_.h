@@ -346,7 +346,8 @@ namespace core
 //class string_base;
 
 
-struct pixmap;
+struct pixmap_t;
+class pixmap;
 
 
 #define CONSIDER_AS(as, use) using use = as

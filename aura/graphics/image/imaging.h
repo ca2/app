@@ -333,7 +333,7 @@ public:
 
    virtual bool draw2d_gif_draw_frame(::image::image *pimageCanvas, image_frame_array * pframea, ::image::image_frame * pframe, ::i32 uFrameIndex, ::u8 * ba, ::i32 iScan, color_array & colora, ::i32 transparentIndex);
 
-   virtual bool nanosvg(::image::image *pimage, void * pNSVGimage, ::i32 iRedLower);
+   virtual bool nanosvg(::image::load_image *pimage, void * pNSVGimage, ::i32 iRedLower, ::i32 iWidth, ::i32 iHeight);
 
    
 };

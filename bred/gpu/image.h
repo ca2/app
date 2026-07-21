@@ -52,6 +52,10 @@ namespace gpu
       void map(bool bApplyAlphaTransform = true) const override;
       void unmap() const override;
 
+      virtual ::gpu::texture *get_gpu_texture();
+
+      void on_load_image(const image32_t *pimage32, const ::i32_size &size, int iScan) override;
+
       void reset_performance_diagnostics() const;
       void record_performance_map_transition(::u64 uMicroseconds) const;
       void record_performance_unmap_transition(::u64 uMicroseconds) const;

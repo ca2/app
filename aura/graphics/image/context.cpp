@@ -13,6 +13,7 @@
 #include "acme/filesystem/filesystem/file_context.h"
 #include "aura/graphics/draw2d/draw2d.h"
 #include "aura/graphics/draw2d/lock.h"
+#include "aura/graphics/image/load_image.h"
 #include "aura/windowing/icon.h"
 #define STB_IMAGE_WRITE_IMPLEMENTATION
 #include "stb/stb_image_write.h"
@@ -309,6 +310,42 @@ namespace image
    }
 
 
+   ::image::image_pointer & image_context::_path_image(const ::file::path &path)
+   {
+
+      _synchronous_lock synchronouslock(this->synchronization());
+
+      auto &pimage = m_mapPathImage[path];
+
+      if (pimage.ok())
+      {
+
+         return pimage;
+
+      }
+
+      auto pathProcessed = m_papplication->defer_process_path(path);
+
+      auto &pimage2 = m_mapPathImage[pathProcessed];
+
+      if (pimage2.ok())
+      {
+         
+         pimage = pimage2;
+
+         return pimage2;
+
+      }
+
+      constructø(pimage2);
+
+      pimage = pimage2;
+
+      return pimage2;
+
+   }
+
+
    ::image::image_pointer image_context::path_image(const ::file::path& path)
    {
 
@@ -316,15 +353,96 @@ namespace image
 
       auto& pimage = m_mapPathImage[path];
 
-      if (::is_null(pimage))
+      if (pimage.nok())
       {
 
-         pimage = get_image(path);
+         auto pathProcessed = m_papplication->defer_process_path(path);
+
+         auto & pimage2 = m_mapPathImage[pathProcessed];
+
+         if (pimage2.nok())
+         {
+
+            pimage2 = get_image(path);
+
+         }
+        
+         pimage = pimage2;
 
       }
 
       return pimage;
 
+
+   }
+
+
+   ::image::image_pointer image_context::path_resized_image(const ::file::path &path, const ::i32_size & size)
+   {
+
+      _synchronous_lock synchronouslock(this->synchronization());
+
+      auto &pimage = m_mapPathResizedImage[path][size];
+
+      if (pimage.nok())
+      {
+
+         auto & pimageOriginal = _path_image(path);
+
+         if (pimageOriginal.ok())
+         {
+
+            if (pimageOriginal->size() == size)
+            {
+
+               pimage = pimageOriginal;
+
+            }
+            else
+            {
+
+               pimage = pimageOriginal->get_resized_image(size);
+
+            }
+
+         }
+         else
+         {
+
+            constructø(pimage);
+
+            auto ploadimage = create_newø<::image::load_image>();
+
+            ploadimage->initialize_load_image(this, pimage);
+
+            ploadimage->m_sizePreferred = size;
+
+            _load_image(ploadimage, path);
+
+         }
+
+      }
+
+      return pimage;
+
+   }
+
+
+   ::pixmap_pointer image_context::path_pixmap(const ::file::path &path)
+   {
+
+      _synchronous_lock synchronouslock(this->synchronization());
+
+      auto &ppixmap = m_mapPathPixmap[path];
+
+      if (::is_null(ppixmap))
+      {
+
+         ppixmap = get_pixmap(path);
+
+      }
+
+      return ppixmap;
 
    }
 
@@ -385,7 +503,22 @@ namespace image
    }
 
 
-   ::image::image_pointer image_context::matter_image(const ::scoped_string & scopedstrMatter, const ::image::load_options& loadoptions)
+   ::pixmap_pointer image_context::get_pixmap(const ::payload &payloadFile,
+                                                   const ::image::load_options &loadoptions)
+   {
+
+      ::pixmap_pointer ppixmap;
+
+      construct_newø(ppixmap);
+
+      _get_pixmap(ppixmap, payloadFile, loadoptions);
+
+      return ppixmap;
+   }
+
+
+   ::image::image_pointer image_context::matter_image(const ::scoped_string &scopedstrMatter,
+                                                      const ::image::load_options &loadoptions)
    {
 
       ::image::image_pointer pimage;
@@ -441,7 +574,11 @@ namespace image
 
       }
 
-      _load_image(pimage, payloadFile, loadoptions);
+      auto ploadimage = create_newø<::image::load_image>();
+
+      ploadimage->initialize_load_image(this, pimage);
+
+      _load_image(ploadimage, payloadFile, loadoptions);
 
       return pimage;
 
@@ -633,7 +770,7 @@ namespace image
 
       auto pwindowingicon = createø < ::windowing::icon >();
 
-      pwindowingicon->load_file(payloadFile);
+      pwindowingicon->set_file(payloadFile);
 
       //auto estatus = 
       picon->initialize_with_windowing_icon(pwindowingicon);
@@ -654,12 +791,30 @@ namespace image
    void image_context::_get_image(::image::image* pimage, const ::payload& payloadFile, const ::image::load_options& loadoptions)
    {
 
-      _load_image(pimage, payloadFile, loadoptions);
+      auto ploadimage = create_newø<::image::load_image>();
+
+      ploadimage->initialize_load_image(this, pimage);
+
+      _load_image(ploadimage, payloadFile, loadoptions);
 
    }
 
 
-   void image_context::_matter_image(::image::image* pimage, const ::scoped_string & scopedstrMatter, const ::image::load_options& loadoptions)
+   void image_context::_get_pixmap(::pixmap *ppixmap, const ::payload &payloadFile,
+                                  const ::image::load_options &loadoptions)
+   {
+
+      auto ploadimage = create_newø<::image::load_image>();
+
+      ploadimage->initialize_load_image(this, ppixmap);
+
+      _load_image(ploadimage, payloadFile, loadoptions);
+
+   }
+
+
+   void image_context::_matter_image(::image::image *pimage, const ::scoped_string &scopedstrMatter,
+                                     const ::image::load_options &loadoptions)
    {
 
       if (loadoptions.sync)
@@ -681,21 +836,32 @@ namespace image
    }
 
 
-   void image_context::_load_image(::image::image* pimage, const ::payload& payloadFile, const ::image::load_options& loadoptions)
+   void image_context::_load_image(::image::load_image* pimage, const ::payload& payloadFile, const ::image::load_options& loadoptions)
    {
 
    }
 
 
-   void image_context::_load_matter_image(::image::image* pimage, const ::scoped_string & scopedstrMatter, const ::image::load_options& loadoptions)
+   //void image_context::_load_pixmap(::pixmap*ppixmap, const ::payload &payloadFile,
+   //                                const ::image::load_options &loadoptions)
+   //{
+   //}
+
+
+   void image_context::_load_matter_image(::image::image *pimage, const ::scoped_string &scopedstrMatter,
+                                          const ::image::load_options &loadoptions)
    {
 
       // auto pcontext = get_context();
 
       ::file::path path = directory()->matter(scopedstrMatter);
 
+      auto ploadimage = create_newø<::image::load_image>();
+
+      ploadimage->initialize_load_image(this, pimage);
+
       //auto estatus = 
-      _load_image(pimage, path, loadoptions);
+      _load_image(ploadimage, path, loadoptions);
 
       //if (!estatus)
       //{
@@ -725,7 +891,11 @@ namespace image
 
          //auto estatus = 
 
-         _load_image(pimage, path);
+         auto ploadimage = create_newø<::image::load_image>();
+
+         ploadimage->initialize_load_image(this, pimage);
+
+         _load_image(ploadimage, path);
 
          if (pimage->is_ok())
          {
@@ -1047,7 +1217,7 @@ namespace image
    //}
 
 
-   void image_context::_load_multi_frame_image(::image::image* pimage, memory& memory)
+   void image_context::_load_multi_frame_image(::image::load_image * ploadimage, memory& memory)
    {
 
       ::pointer<image_frame_array>pframea;
@@ -1058,7 +1228,7 @@ namespace image
 
       ::image::image_pointer pimageCompose;
 
-      pimage->constructø(pimageCompose);
+      ploadimage->constructø(pimageCompose);
 
       pimageCompose->set_ok_flag();
 
@@ -1077,7 +1247,7 @@ namespace image
       if (pframea->is_empty())
       {
 
-         pimage->set_nok();
+         ploadimage->m_ppixmap->set_nok();
 
          return;
 
@@ -1085,23 +1255,23 @@ namespace image
       else if (pframea->get_count() == 1)
       {
 
-         pimage->m_estatus = ::success;
+         ploadimage->m_ppixmap->m_estatus = ::success;
 
-         pimage->set_ok_flag();
+         ploadimage->m_ppixmap->set_ok_flag();
 
          return;
 
       }
 
-      auto pextension = pimage->get_extension();
+      auto pextension = ploadimage->m_ppixmap->get_extension();
 
       pextension->m_pframea = pframea;
 
-      pimage->pixmap::initialize(pframea->m_size, nullptr, 0);
+      ploadimage->m_ppixmap->pixmap_t::initialize_pixmap(pframea->m_size, nullptr, 0);
 
-      pimage->m_estatus = ::success;
+      ploadimage->m_ppixmap->m_estatus = ::success;
 
-      pimage->set_ok_flag();
+      ploadimage->m_ppixmap->set_ok_flag();
 
       class ::time timeTotal;
 
@@ -1155,10 +1325,10 @@ namespace image
 #endif // UNIVERSAL_WINDOWS
 
 
-   void image_context::_task_load_image(::image::image* pimage, ::payload payload, bool bCache)
+   void image_context::_task_load_image(::image::load_image *ploadimage, ::payload payload, bool bCache)
    {
 
-      pimage->m_estatus = ::error_failed;
+      ploadimage->m_ppixmap->m_estatus = ::error_failed;
 
       ::file::path path = payload.as_file_path();
 
@@ -1188,9 +1358,9 @@ namespace image
       if (::is_null(psz))
       {
 
-         pimage->set_nok();
+         ploadimage->set_nok();
 
-         pimage->m_estatus = ::error_failed;
+         ploadimage->m_estatus = ::error_failed;
 
          return;
 
@@ -1200,16 +1370,16 @@ namespace image
 
          ::draw2d::lock draw2dlock(this);
 
-         image()->load_svg(pimage, memory);
+         image()->load_svg(ploadimage, memory);
 
-         if (pimage->m_estatus.succeeded())
+         if (ploadimage->m_ppixmap->m_estatus.succeeded())
          {
 
-            pimage->on_load_image();
+            //ploadimageinterface->on_load_image();
 
-            pimage->set_ok_flag();
+            ploadimage->m_ppixmap->set_ok_flag();
 
-            pimage->m_estatus = ::success;
+            ploadimage->m_ppixmap->m_estatus = ::success;
 
             return;
 
@@ -1218,26 +1388,26 @@ namespace image
          if (memory.size() > 3 && ansi_nicmp(psz, "gif", 3) == 0)
          {
 
-            _load_multi_frame_image(pimage, memory);
+            _load_multi_frame_image(ploadimage, memory);
 
-            if (pimage->has_failed_status())
+            if (ploadimage->m_ppixmap->has_failed_status())
             {
 
-               pimage->set_nok();
+               ploadimage->m_ppixmap->set_nok();
 
-               pimage->m_estatus = ::error_failed;
+               ploadimage->m_ppixmap->m_estatus = ::error_failed;
 
                return;
 
             }
 
-            pimage->defer_update_image();
+            ploadimage->m_ppixmap->defer_update_image();
 
-            pimage->on_load_image();
+            ploadimage->m_ppixmap->on_load_image();
 
-            pimage->set_ok_flag();
+            ploadimage->m_ppixmap->set_ok_flag();
 
-            pimage->m_estatus = ::success;
+            ploadimage->m_ppixmap->m_estatus = ::success;
 
             return;
 
@@ -1245,12 +1415,12 @@ namespace image
 
       }
 
-      _os_load_image(pimage, memory);
+      _os_load_image(ploadimage, memory);
 
    }
 
 
-   void image_context::_os_load_image(::image::image* pimage, memory& memory)
+   void image_context::_os_load_image(::image::load_image* ploadimage, memory& memory)
    {
 
 

@@ -127,7 +127,7 @@ namespace draw2d
    }
 
 
-   bool bitmap::host_bitmap(::draw2d::graphics * pgraphics, pixmap * ppixmap)
+   bool bitmap::host_bitmap(::draw2d::graphics * pgraphics, pixmap_t * ppixmap)
    {
 
       __UNREFERENCED_PARAMETER(pgraphics);

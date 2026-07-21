@@ -8,7 +8,8 @@
 #include "bred/gpu/texture_data.h"
 
 
-struct pixmap;
+struct pixmap_t;
+class pixmap;
 
 
 namespace gpu
@@ -83,7 +84,7 @@ namespace gpu
       virtual void to_external_state(::gpu::command_buffer *pgpucommandbuffer);
 
 
-      void defer_throw_if_cube_map_images_are_not_ok(const ::pointer_array < ::image::image >& imagea);
+      void defer_throw_if_cube_map_pixmaps_are_not_ok(const ::pointer_array < ::pixmap >& pixmapa);
       
       virtual void initialize_hdr_texture_on_memory(::gpu::context *pcontext, const ::block & block);
       virtual void initialize_with_image_data(
@@ -101,7 +102,7 @@ namespace gpu
       virtual void initialize_depth_texture(::gpu::context* pgpucontext, const ::i32_rectangle& rectangleTarget);
 
       virtual void initialize_texture_from_file_path(::gpu::context* pgpucontext, const ::file::path & path, bool bIsSrgb);
-      virtual void initialize_texture_from_image(::gpu::context* pgpucontext, const ::pointer_array < ::image::image > & imagea, enum_texture etexture = e_texture_image);
+      virtual void initialize_texture_from_pixmap(::gpu::context* pgpucontext, const ::pointer_array < ::pixmap > & pixmapa, enum_texture etexture = e_texture_image);
 
       virtual ::pointer < ::gpu::pixmap > create_gpu_pixmap(const ::i32_size & size);
 
@@ -123,6 +124,7 @@ namespace gpu
       virtual void set_pixels(const ::i32_rectangle& rectangle, const void* data);
       virtual void read_pixels(::pixmap * ppixmap);
       virtual void write_pixels(const ::pixmap * ppixmap);
+      virtual void write_pixels(const ::i32_size & size, const ::image32_t * pimage32, ::i32 iScan);
 
       virtual bool is_in_shader_sampling_state();
 

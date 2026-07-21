@@ -195,7 +195,7 @@ namespace draw2d_cairo
       m_pimage32 = nullptr;
 
       //init(size, pimage32Raw, iScan);
-      pixmap::initialize(size, pimage32Raw, iScan);
+      initialize_pixmap(size, pimage32Raw, iScan);
 
       m_bMapped = false;
 
@@ -1775,7 +1775,7 @@ namespace draw2d_cairo
 //   }
 
 
-   bool image::on_host_read_pixels(::pixmap * ppixmap) const
+   bool image::on_host_read_pixels(::pixmap_t * ppixmap) const
    {
 
       return false;

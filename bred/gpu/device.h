@@ -58,6 +58,7 @@ namespace gpu
       ::pointer < ::gpu::context >                       m_pgpucontextCurrent4;
       ::pointer < ::gpu::context >                       m_pgpucontextMain;
       ::pointer < ::gpu::context >                       m_pgpucontextMainDraw2d;
+      ::pointer<::gpu::context>                          m_pgpucontextWork;
       //::pointer < ::gpu::context >           m_pgpucontextMainWindow;
       //::i32_size                             m_sizeNew;
       //::i32_size                             m_size;
@@ -117,6 +118,8 @@ namespace gpu
       virtual void create_main_context(::acme::windowing::window *pacmewindowingwindow);
       virtual ::gpu::context * main_context();
       virtual ::gpu::context * main_draw2d_context();
+      virtual ::pointer<::gpu::context> create_work_context();
+      virtual ::gpu::context *work_context();
       //virtual void start_gpu_context(const start_context_t& startcontext);
 
       virtual void * current_operating_system_gpu_context();

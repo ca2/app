@@ -50,22 +50,20 @@ namespace windowing
    }
 
 
-   void icon::load_file(const ::scoped_string & scopedstrPath)
+   void icon::set_file(const ::payload & payload)
    {
 
-      throw ::interface_only();
-
-      //throw ::interface_only();
+      m_payload = payload;
 
    }
 
 
-   void icon::load_matter(const ::scoped_string & scopedstrMatter)
+   void icon::set_matter(const ::scoped_string & scopedstrMatter)
    {
 
       string strPath = directory()->matter(scopedstrMatter);
 
-      load_file(strPath);
+      set_file(strPath);
 
       //if (!load_file(strPath))
       //{
@@ -79,7 +77,7 @@ namespace windowing
    }
 
 
-   void icon::load_app_tray_icon(const ::scoped_string & scopedstrTrayIconName)
+   void icon::set_app_tray_icon(const ::scoped_string & scopedstrTrayIconName)
    {
 
         m_strTrayIconName = scopedstrTrayIconName;

@@ -16,6 +16,26 @@ namespace gpu_opengl
 {
 
 
+   static ::gpu_opengl::approach * opengl_approach(::particle * pparticle)
+   {
+
+      ::cast < ::gpu_opengl::approach > pgpuapproach =
+         pparticle->m_papplication->gpu_approach();
+
+      if (!pgpuapproach)
+      {
+
+         throw ::exception(
+            error_wrong_state,
+            "The active GPU approach is not gpu_opengl::approach.");
+
+      }
+
+      return pgpuapproach;
+
+   }
+
+
    //extern PFNWGLCREATECONTEXTATTRIBSARBPROC loaded_wglCreateContextAttribsARB;
    //extern PFNWGLCHOOSEPIXELFORMATARBPROC loaded_wglChoosePixelFormatARB;
 
@@ -184,23 +204,48 @@ namespace gpu_opengl
 
       ::cast<approach> pgpuapproach = m_papplication->get_gpu_approach();
 
+      synchronous_lock synchronouslock(pgpuapproach->synchronization(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
+
+      if (!pgpuapproach->m_hglrcShare)
+      {
+
+         ::SetLastError(ERROR_SUCCESS);
+
+         auto hglrcShare = wglCreateContextAttribsARB(m_hdc, nullptr, contextAttribs);
+
+         if (!hglrcShare)
+         {
+
+            auto lasterror = ::windows::last_error();
+
+            throw ::exception(
+               error_failed,
+               {lasterror},
+               "Failed to create dedicated WGL share-root context");
+
+         }
+
+         pgpuapproach->m_hglrcShare = hglrcShare;
+
+      }
+
+      ::SetLastError(ERROR_SUCCESS);
+
       auto hglrc = wglCreateContextAttribsARB(m_hdc, pgpuapproach->m_hglrcShare, contextAttribs);
 
       if (!hglrc)
       {
 
-         throw ::exception(error_failed, "Failed to create wgl context");
+         auto lasterror = ::windows::last_error();
+
+         throw ::exception(
+            error_failed,
+            {lasterror},
+            "Failed to create WGL rendering context sharing with the dedicated root");
 
       }
 
       m_hglrc = hglrc;
-
-      if (!pgpuapproach->m_hglrcShare)
-      {
-
-         pgpuapproach->m_hglrcShare = hglrc;
-
-      }
 
    }
 
@@ -661,14 +706,29 @@ namespace gpu_opengl
 
 
    scoped_dummy_wgl_context::scoped_dummy_wgl_context(::particle * pparticle) :
-      m_pparticle(pparticle)
+      m_pparticle(pparticle),
+      m_pgpuapproach(opengl_approach(pparticle)),
+      m_synchronouslock(m_pgpuapproach->synchronization(), pparticle, SYNCHRONOUS_LOCK_SUFFIX)
    {
 
-      ::cast<::gpu_opengl::approach> pgpuapproach = m_pparticle->m_papplication->gpu_approach();
+      auto pwglcontextDummy = m_pgpuapproach->dummy_wgl_context();
 
-      pgpuapproach->dummy_wgl_context()->select();
+      pwglcontextDummy->select();
 
-      defer_load_wgl_extensions(pparticle);
+      try
+      {
+
+         defer_load_wgl_extensions(pparticle);
+
+      }
+      catch (...)
+      {
+
+         pwglcontextDummy->unselect();
+
+         throw;
+
+      }
          
    }
 
@@ -676,9 +736,7 @@ namespace gpu_opengl
    scoped_dummy_wgl_context::~scoped_dummy_wgl_context()
    {
 
-      ::cast<::gpu_opengl::approach> pgpuapproach = m_pparticle->m_papplication->gpu_approach();
-
-      pgpuapproach->dummy_wgl_context()->unselect();
+      m_pgpuapproach->dummy_wgl_context()->unselect();
 
 
    }

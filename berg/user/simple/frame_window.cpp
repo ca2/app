@@ -3195,7 +3195,7 @@ void simple_frame_window::defer_create_notification_icon()
 
 
 
-               m_piconNotify->load_app_tray_icon(get_app()->m_strAppId);
+               m_piconNotify->set_app_tray_icon(get_app()->m_strAppId);
 
                }
                catch(...)

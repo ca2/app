@@ -18,6 +18,7 @@
 #include "bred/gpu/bred_approach.h"
 #include "bred/gpu/context.h"
 #include "bred/gpu/context_lock.h"
+#include "bred/gpu/context_lease.h"
 #include "bred/gpu/debug_scope.h"
 #include "bred/gpu/device.h"
 #include "bred/gpu/model_buffer.h"
@@ -65,6 +66,18 @@ namespace gpu
    graphics::~graphics()
    {
 
+      auto pgpucontext = gpu_context();
+
+      if (pgpucontext && pgpucontext->m_pgpucompositor == this)
+      {
+
+         pgpucontext->m_pgpucompositor = nullptr;
+
+      }
+
+      m_pgpucontextCompositor2.release();
+      m_contextlease.close_noexcept();
+
 
    }
 
@@ -73,6 +86,33 @@ namespace gpu
    {
 
       ::draw2d::graphics::initialize(pparticle);
+
+   }
+
+
+   void graphics::set_context_lease(::gpu::context_lease && contextlease)
+   {
+
+      auto pgpucontextOld = gpu_context();
+
+      if (pgpucontextOld && pgpucontextOld->m_pgpucompositor == this)
+      {
+
+         pgpucontextOld->m_pgpucompositor = nullptr;
+
+      }
+
+      m_pgpucontextCompositor2.release();
+      m_contextlease = ::transfer(contextlease);
+      set_gpu_context(m_contextlease.get());
+
+   }
+
+
+   ::gpu::context_lease & graphics::context_lease()
+   {
+
+      return m_contextlease;
 
    }
 

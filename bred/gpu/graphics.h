@@ -41,6 +41,7 @@ namespace gpu
       ::collection::index                       m_iGpuContextFrameSerial;
       pool_group* m_ppoolgroupFrame;
       ::gpu::context_lease m_contextlease;
+      ::pointer<::gpu::layer> m_pgpulayerBeforeLayerScope;
 
       graphics();
       ~graphics() override;
@@ -60,6 +61,8 @@ namespace gpu
       //void end_layer(::e_graphics egraphics) override;
       void start_layer(bool bFirstLayer = false) override;
       void end_layer(bool bClosingLayer = false) override;
+      void on_begin_layer_scope() override;
+      void on_end_layer_scope() override;
       // void on_begin_layout1() override;
       //void on_end_layout1() override;
       //void on_begin_draw1() override;

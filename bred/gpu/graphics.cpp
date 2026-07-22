@@ -5,6 +5,7 @@
 #include "draw2d.h"
 #include "frame.h"
 #include "graphics.h"
+#include "layer.h"
 #include "pixmap.h"
 #include "texture.h"
 #include "acme/platform/application.h"
@@ -113,6 +114,55 @@ namespace gpu
    {
 
       return m_contextlease;
+
+   }
+
+
+   void graphics::on_begin_layer_scope()
+   {
+
+      m_pgpulayerBeforeLayerScope = ::gpu::current_layer();
+
+      try
+      {
+
+         ::draw2d::graphics::on_begin_layer_scope();
+
+      }
+      catch (...)
+      {
+
+         ::gpu::set_current_layer(m_pgpulayerBeforeLayerScope);
+         m_pgpulayerBeforeLayerScope.release();
+
+         throw;
+
+      }
+
+   }
+
+
+   void graphics::on_end_layer_scope()
+   {
+
+      auto pgpulayerPrevious = ::transfer(m_pgpulayerBeforeLayerScope);
+
+      try
+      {
+
+         ::draw2d::graphics::on_end_layer_scope();
+
+      }
+      catch (...)
+      {
+
+         ::gpu::set_current_layer(pgpulayerPrevious);
+
+         throw;
+
+      }
+
+      ::gpu::set_current_layer(pgpulayerPrevious);
 
    }
 

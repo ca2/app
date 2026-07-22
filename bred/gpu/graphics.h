@@ -61,6 +61,7 @@ namespace gpu
       //void end_layer(::e_graphics egraphics) override;
       void start_layer(bool bFirstLayer = false) override;
       void end_layer(bool bClosingLayer = false) override;
+      void on_start_layer_before_begin_render(::gpu::layer * pgpulayer) override;
       void on_begin_layer_scope() override;
       void on_end_layer_scope() override;
       // void on_begin_layout1() override;

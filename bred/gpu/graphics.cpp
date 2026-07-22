@@ -118,6 +118,22 @@ namespace gpu
    }
 
 
+   void graphics::on_start_layer_before_begin_render(
+      ::gpu::layer * pgpulayer)
+   {
+
+      ::gpu::compositor::on_start_layer_before_begin_render(pgpulayer);
+
+      if (m_pimage)
+      {
+
+         pgpulayer->m_bIncludeInFrameComposition = false;
+
+      }
+
+   }
+
+
    void graphics::on_begin_layer_scope()
    {
 

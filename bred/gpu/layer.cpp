@@ -121,6 +121,8 @@ namespace gpu
 
       m_iLayerIndex = iLayerIndex;
 
+      m_bIncludeInFrameComposition = true;
+
       if (iLayerIndex >= 3)
       {
 

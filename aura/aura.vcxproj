@@ -2757,6 +2757,7 @@
     <ClCompile Include="graphics\draw2d\draw2d.cpp" />
     <ClCompile Include="graphics\draw2d\drawing.cpp" />
     <ClCompile Include="graphics\draw2d\graphics.cpp" />
+    <ClCompile Include="graphics\draw2d\graphics_layer_scope.cpp" />
     <ClCompile Include="graphics\draw2d\graphics_lease.cpp" />
     <ClCompile Include="graphics\draw2d\graphics_context.cpp" />
     <ClCompile Include="graphics\draw2d\graphics_extension.cpp" />
@@ -3156,6 +3157,7 @@
     <ClInclude Include="graphics\draw2d\glyph.h" />
     <ClInclude Include="graphics\draw2d\glyph_set.h" />
     <ClInclude Include="graphics\draw2d\graphics.h" />
+    <ClInclude Include="graphics\draw2d\graphics_layer_scope.h" />
     <ClInclude Include="graphics\draw2d\graphics_lease.h" />
     <ClInclude Include="graphics\draw2d\graphics_call.h" />
     <ClInclude Include="graphics\draw2d\graphics_context.h" />

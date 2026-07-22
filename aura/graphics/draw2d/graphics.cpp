@@ -278,6 +278,22 @@ namespace draw2d
    }
 
 
+   void graphics::on_begin_layer_scope()
+   {
+
+      start_layer(false);
+
+   }
+
+
+   void graphics::on_end_layer_scope()
+   {
+
+      end_layer(false);
+
+   }
+
+
    //void graphics::on_begin_draw1()
    //{
 

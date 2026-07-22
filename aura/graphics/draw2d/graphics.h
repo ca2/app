@@ -271,6 +271,8 @@ namespace draw2d
 
       virtual void start_layer(bool bFirstLayer = false);
       virtual void end_layer(bool bClosingLayer = false);
+      virtual void on_begin_layer_scope();
+      virtual void on_end_layer_scope();
 
 
       virtual void __on_begin_draw();

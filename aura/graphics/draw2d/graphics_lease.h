@@ -7,6 +7,7 @@ namespace draw2d
 
    class draw2d;
    class graphics;
+   class graphics_layer_scope;
 
 
    class CLASS_DECL_AURA graphics_lease
@@ -18,6 +19,7 @@ namespace draw2d
       ::draw2d::graphics_pointer m_pgraphics;
       ::image::image_pointer m_pimage;
       bool m_bDamaged = false;
+      bool m_bLayerScopeActive = false;
 
 
       graphics_lease();
@@ -35,6 +37,10 @@ namespace draw2d
       explicit operator bool() const;
       ::draw2d::graphics * get() const;
       ::draw2d::graphics * operator->() const;
+      ::draw2d::graphics_layer_scope begin_layer_scope();
+      void _begin_layer_scope();
+      void _end_layer_scope();
+      bool has_active_layer_scope() const;
       void mark_damaged();
       void close();
       void close_noexcept() noexcept;

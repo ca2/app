@@ -1,6 +1,7 @@
 #include "framework.h"
 #include "graphics.h"
 #include "graphics_lease.h"
+#include "graphics_layer_scope.h"
 #include "draw2d.h"
 #include "aura/graphics/image/image.h"
 
@@ -34,6 +35,8 @@ namespace draw2d
       m_bDamaged(lease.m_bDamaged)
    {
 
+      ASSERT(!lease.m_bLayerScopeActive);
+
       lease.m_bDamaged = false;
 
    }
@@ -45,6 +48,8 @@ namespace draw2d
       if (this != &lease)
       {
 
+         ASSERT(!m_bLayerScopeActive);
+         ASSERT(!lease.m_bLayerScopeActive);
          close_noexcept();
 
          m_pdraw2d = ::transfer(lease.m_pdraw2d);
@@ -93,6 +98,47 @@ namespace draw2d
    }
 
 
+   ::draw2d::graphics_layer_scope graphics_lease::begin_layer_scope()
+   {
+
+      return ::draw2d::graphics_layer_scope(*this);
+
+   }
+
+
+   void graphics_lease::_begin_layer_scope()
+   {
+
+      if (!m_pgraphics || m_bLayerScopeActive)
+      {
+
+         throw ::exception(
+            error_wrong_state,
+            "graphics lease cannot begin another layer scope");
+
+      }
+
+      m_bLayerScopeActive = true;
+
+   }
+
+
+   void graphics_lease::_end_layer_scope()
+   {
+
+      m_bLayerScopeActive = false;
+
+   }
+
+
+   bool graphics_lease::has_active_layer_scope() const
+   {
+
+      return m_bLayerScopeActive;
+
+   }
+
+
    void graphics_lease::mark_damaged()
    {
 
@@ -103,6 +149,17 @@ namespace draw2d
 
    void graphics_lease::close()
    {
+
+      if (m_bLayerScopeActive)
+      {
+
+         m_bDamaged = true;
+
+         throw ::exception(
+            error_wrong_state,
+            "cannot close a graphics lease with an active layer scope");
+
+      }
 
       auto pdraw2d = ::transfer(m_pdraw2d);
       auto pgraphics = ::transfer(m_pgraphics);

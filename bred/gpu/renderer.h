@@ -11,6 +11,7 @@
 namespace gpu
 {
 
+   struct texture_data;
 
    class CLASS_DECL_BRED renderer :
       virtual public ::particle,
@@ -266,7 +267,7 @@ namespace gpu
       virtual void end_layer(bool bClosingLayer = false);
 
 
-      virtual ::pointer < ::gpu::texture > create_image_texture(const ::i32_size& size, bool bWithDepth);
+      virtual ::pointer < ::gpu::texture > create_image_texture(const ::i32_size& size, bool bWithDepth, const ::gpu::texture_data & texturedata);
       //virtual void take_snapshot(layer* player);
 
 

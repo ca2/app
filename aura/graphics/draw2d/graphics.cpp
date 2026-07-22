@@ -240,6 +240,21 @@ namespace draw2d
    }
 
 
+   void graphics::begin_draw()
+   {
+
+   }
+
+
+   void graphics::end_draw()
+   {
+
+
+
+   }
+
+
+
    void graphics::start_frame()
    {
 
@@ -564,6 +579,10 @@ namespace draw2d
       reset_clip();
       m_pointOrigin = {};
       m_point = {};
+      if (::is_set(pimage))
+      {
+         m_dSizeScaler = pimage->m_dSizeScaler;
+      }
       set_alpha_mode(::draw2d::e_alpha_mode_none);
       m_pimageAlphaBlend.release();
       m_pbitmap.release();
@@ -1689,7 +1708,7 @@ namespace draw2d
 
    //   //         pimage1 = create_image(rectangle.size());
 
-   //   //         pimage1->get_graphics()->set_alpha_mode(::draw2d::e_alpha_mode_set);
+   //   //         pgraphicsImage1->set_alpha_mode(::draw2d::e_alpha_mode_set);
 
    //   //         if (!pimage1->from(nullptr, pgraphicsSrc, point, rectangle.size()))
    //   //            return false;
@@ -1700,7 +1719,7 @@ namespace draw2d
    //   //               (::i32)maximum(0, rectangle.top - m_pointAlphaBlend.y)
    //   //            }, rectangle.size());
 
-   //   //         draw_image(rectangle, pimage1->get_graphics());
+   //   //         draw_image(rectangle, pgraphicsImage1);
 
    //   //      }
 
@@ -1929,13 +1948,13 @@ namespace draw2d
    //
    //         pimage1 = image()->create_image(rectangleText.size());
    //
-   //         pimage1->get_graphics()->set(get_current_font());
+   //         pgraphicsImage1->set(get_current_font());
    //
-   //         pimage1->get_graphics()->set(get_current_brush());
+   //         pgraphicsImage1->set(get_current_brush());
    //
-   //         pimage1->get_graphics()->set_alpha_mode(::draw2d::e_alpha_mode_set);
+   //         pgraphicsImage1->set_alpha_mode(::draw2d::e_alpha_mode_set);
    //
-   //         pimage1->get_graphics()->text_out(0, 0, block);
+   //         pgraphicsImage1->text_out(0, 0, block);
    //
    //         {
    //
@@ -2017,15 +2036,21 @@ namespace draw2d
 
             pimage1->fill_byte(0);
 
-            pimage1->get_graphics()->set(get_current_font());
+            {
 
-            pimage1->get_graphics()->set(get_current_brush());
+               auto pgraphics = pimage1->acquire_graphics(m_puserinteractionDraw2dGraphics);
 
-            pimage1->get_graphics()->set_alpha_mode(::draw2d::e_alpha_mode_blend);
+               pgraphics->set(get_current_font());
 
-            pimage1->get_graphics()->set_text_rendering_hint(::write_text::e_rendering_anti_alias);
+               pgraphics->set(get_current_brush());
 
-            pimage1->get_graphics()->text_out(0, 0, scopedstr);
+               pgraphics->set_alpha_mode(::draw2d::e_alpha_mode_blend);
+
+               pgraphics->set_text_rendering_hint(::write_text::e_rendering_anti_alias);
+
+               pgraphics->text_out(0, 0, scopedstr);
+
+            }
 
             i32_point pointDst;
 

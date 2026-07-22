@@ -254,6 +254,9 @@ namespace draw2d
       virtual void defer_add_graphics_render(::graphics::render* pgraphicsrender);
 
 
+      virtual void begin_draw();
+      virtual void end_draw();
+
       //virtual void on_begin_draw();
       //virtual void on_end_draw();
       //virtual void on_begin_layout1();

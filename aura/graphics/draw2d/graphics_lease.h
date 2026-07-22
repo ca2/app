@@ -37,6 +37,8 @@ namespace draw2d
       explicit operator bool() const;
       ::draw2d::graphics * get() const;
       ::draw2d::graphics * operator->() const;
+      operator ::draw2d::graphics *() const { return get(); }
+      operator ::draw2d::graphics_pointer &() const {return ((graphics_lease*)this)->m_pgraphics; }
       ::draw2d::graphics_layer_scope begin_layer_scope();
       void _begin_layer_scope();
       void _end_layer_scope();

@@ -74,7 +74,7 @@ namespace image
       inline bool is_set() const { return !is_null() && _is_set(); }
 
 
-      virtual ::draw2d::graphics * get_graphics() const; // is semantically const (besides may not be implementationly constant)
+      virtual ::draw2d::graphics * get_graphics2() const; // is semantically const (besides may not be implementationly constant)
       ::draw2d::graphics_lease acquire_graphics(
          ::draw2d::host * pdraw2dhost = nullptr);
       bool try_begin_destination_graphics_lease() const;
@@ -537,7 +537,7 @@ namespace image
       inline ::draw2d::graphics* g() const
       {
 
-         return get_graphics();
+         return get_graphics2();
 
       }
 

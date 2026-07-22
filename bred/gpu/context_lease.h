@@ -31,6 +31,7 @@ namespace gpu
       explicit operator bool() const;
       ::gpu::context * get() const;
       ::gpu::context * operator->() const;
+      operator ::gpu::context *() const;
       void mark_damaged();
       void close();
       void close_noexcept() noexcept;

@@ -1339,7 +1339,7 @@ namespace draw2d
 
    //   //         pimage1 = create_image(rectangle.size());
 
-   //   //         pimage1->get_graphics()->set_alpha_mode(::draw2d::e_alpha_mode_set);
+   //   //         pgraphicsImage1->set_alpha_mode(::draw2d::e_alpha_mode_set);
 
    //   //         if (!pimage1->from(nullptr, pgraphicsSrc, point, rectangle.size()))
    //   //            return false;
@@ -1350,7 +1350,7 @@ namespace draw2d
    //   //               (::i32)maximum(0, rectangle.top - m_pointAlphaBlend.y)
    //   //            }, rectangle.size());
 
-   //   //         draw_image(rectangle, pimage1->get_graphics());
+   //   //         draw_image(rectangle, pgraphicsImage1);
 
    //   //      }
 
@@ -1579,13 +1579,13 @@ namespace draw2d
 
          pimage1 = image()->create_image(rectangleText.size());
 
-         pimage1->get_graphics()->set(get_current_font());
+         pgraphicsImage1->set(get_current_font());
 
-         pimage1->get_graphics()->set(get_current_brush());
+         pgraphicsImage1->set(get_current_brush());
 
-         pimage1->get_graphics()->set_alpha_mode(::draw2d::e_alpha_mode_set);
+         pgraphicsImage1->set_alpha_mode(::draw2d::e_alpha_mode_set);
 
-         pimage1->get_graphics()->text_out(0, 0, block);
+         pgraphicsImage1->text_out(0, 0, block);
 
          {
 

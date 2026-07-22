@@ -93,14 +93,14 @@ namespace gpu
       ::pointer_array<::gpu::frame> m_framea;
 
       ::pointer_array<::gpu::context> m_contextaDraw2dIdle;
-      ::std::atomic_bool m_bDraw2dContextPoolShuttingDown{false};
-      ::std::atomic<::u64> m_uDraw2dContextPoolAcquisitions{0};
-      ::std::atomic<::u64> m_uDraw2dContextPoolReuses{0};
-      ::std::atomic<::u64> m_uDraw2dContextPoolCreations{0};
-      ::std::atomic<::u64> m_uDraw2dContextPoolActive{0};
-      ::std::atomic<::u64> m_uDraw2dContextPoolHighWater{0};
-      ::std::atomic<::i64> m_iDraw2dContextPoolNextReportNanoseconds{0};
-      ::std::atomic<::u64> m_uDraw2dContextPoolDiagnosticsGenerationLast{0};
+      ::std::atomic_bool m_bGpuContextPoolShuttingDown{false};
+      ::std::atomic<::u64> m_uGpuContextPoolAcquisitions{0};
+      ::std::atomic<::u64> m_uGpuContextPoolReuses{0};
+      ::std::atomic<::u64> m_uGpuContextPoolCreations{0};
+      ::std::atomic<::u64> m_uGpuContextPoolActive{0};
+      ::std::atomic<::u64> m_uGpuContextPoolHighWater{0};
+      ::std::atomic<::i64> m_iGpuContextPoolNextReportNanoseconds{0};
+      ::std::atomic<::u64> m_uGpuContextPoolDiagnosticsGenerationLast{0};
 
       using post_frame_context_registry_t =
          ::gpu::post_frame_context_registry<
@@ -208,14 +208,14 @@ namespace gpu
 
       virtual ::pointer < ::gpu::context > create_draw2d_context(const ::gpu::enum_output& eoutput, const ::i32_size & size);
 
-      virtual ::gpu::context_lease acquire_draw2d_context(
+      virtual ::gpu::context_lease acquire_gpu_context(
          const ::gpu::enum_output & eoutput,
          const ::i32_size & size);
-      virtual void return_draw2d_context(
+      virtual void return_gpu_context(
          ::pointer<::gpu::context> pcontext,
          bool bDamaged);
-      virtual void shutdown_draw2d_context_pool();
-      virtual void report_draw2d_context_pool_diagnostics_if_due();
+      virtual void shutdown_gpu_context_pool();
+      virtual void report_gpu_context_pool_diagnostics_if_due();
 
       //virtual ::pointer < ::gpu::context > create_draw2d_off_screen_context(const ::i32_size & size);
 

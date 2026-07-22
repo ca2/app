@@ -726,6 +726,9 @@
     <ClCompile Include="graphics\draw2d\clip.cpp">
       <Filter>Source Files\graphics\draw2d</Filter>
     </ClCompile>
+    <ClCompile Include="graphics\draw2d\draw_scope.cpp">
+      <Filter>Source Files\graphics\draw2d</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="windowing\_.h">
@@ -1741,6 +1744,9 @@
     </ClInclude>
     <ClInclude Include="graphics\image\aaa_load_image_interface.h">
       <Filter>Header Files\graphics\image</Filter>
+    </ClInclude>
+    <ClInclude Include="graphics\draw2d\draw_scope.h">
+      <Filter>Header Files\graphics\draw2d</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

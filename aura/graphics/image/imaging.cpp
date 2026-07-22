@@ -2971,7 +2971,9 @@ void imaging::channel_gray_blur(::draw2d::graphics *pdcDst,const ::i32_point & p
 
    }
 
-   pimageSrc->get_graphics()->set_alpha_mode(::draw2d::e_alpha_mode_set);
+   auto pgraphicsImageSrc = pimageSrc->acquire_graphics();
+
+   pgraphicsImageSrc->set_alpha_mode(::draw2d::e_alpha_mode_set);
 
    ::image::image_source imagesource(pdcSrc, ::f64_rectangle(pointSrc, size));
 
@@ -4234,7 +4236,7 @@ void imaging::color_blend(::draw2d::graphics * pgraphics, const ::i32_point & po
 //
 //      }
 //
-//      pimage->get_graphics()->set_alpha_mode(::draw2d::e_alpha_mode_set);
+//      pgraphicsImage->set_alpha_mode(::draw2d::e_alpha_mode_set);
 //
 //      pimage->g()->stretch(::f64_rectangle(size), pdcColorAlpha, ::f64_rectangle(pointAlpha, size));
 //

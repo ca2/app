@@ -2756,6 +2756,7 @@
     <ClCompile Include="graphics\draw2d\device_lock.cpp" />
     <ClCompile Include="graphics\draw2d\draw2d.cpp" />
     <ClCompile Include="graphics\draw2d\drawing.cpp" />
+    <ClCompile Include="graphics\draw2d\draw_scope.cpp" />
     <ClCompile Include="graphics\draw2d\graphics.cpp" />
     <ClCompile Include="graphics\draw2d\graphics_layer_scope.cpp" />
     <ClCompile Include="graphics\draw2d\graphics_lease.cpp" />
@@ -3153,6 +3154,7 @@
     <ClInclude Include="graphics\draw2d\common.h" />
     <ClInclude Include="graphics\draw2d\device_lock.h" />
     <ClInclude Include="graphics\draw2d\draw2d.h" />
+    <ClInclude Include="graphics\draw2d\draw_scope.h" />
     <ClInclude Include="graphics\draw2d\fwd.h" />
     <ClInclude Include="graphics\draw2d\glyph.h" />
     <ClInclude Include="graphics\draw2d\glyph_set.h" />

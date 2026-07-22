@@ -26,6 +26,7 @@
 #include "acme/user/user/keyboard_state.h"
 #include "apex/message/simple_command.h"
 #include "apex/platform/savings.h"
+#include "aura/graphics/draw2d/graphics_lease.h"
 #include "aura/graphics/graphics/graphics.h"
 #include "aura/graphics/image/context.h"
 #include "aura/graphics/image/drawing.h"
@@ -569,7 +570,9 @@ namespace user
 
                   ::image::image_drawing imagedrawing(imagedrawingoptions, imagesource);
 
-                  pimage1->get_graphics()->draw(imagedrawing);
+                  auto pgraphicsImage1 = pimage1->acquire_graphics();
+
+                  pgraphicsImage1->draw(imagedrawing);
 
                   auto pcopydesk = copydesk();
 
@@ -601,7 +604,9 @@ namespace user
 
                   //}
 
-                  pimage2->get_graphics()->set_interpolation_mode(::draw2d::e_interpolation_mode_high_quality_bicubic);
+                  auto pgraphicsImage2 = pimage2->acquire_graphics();
+
+                  pgraphicsImage2->set_interpolation_mode(::draw2d::e_interpolation_mode_high_quality_bicubic);
 
                   ::f64_rectangle rectangleSource(rectangle.size());
 
@@ -615,7 +620,7 @@ namespace user
 
                      ::image::image_drawing imagedrawing(imagedrawingoptions, imagesource);
 
-                     pimage2->get_graphics()->draw(imagedrawing);
+                     pgraphicsImage2->draw(imagedrawing);
 
                   }
 

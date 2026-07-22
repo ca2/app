@@ -169,7 +169,7 @@ bool image::_is_ok() const
 }
 
 
-::draw2d::graphics* image::get_graphics() const
+::draw2d::graphics* image::get_graphics2() const
 {
 
    unmap();
@@ -638,7 +638,9 @@ void image::create_isotropic(::image::image* pimage)
 
       pimage->g()->set_interpolation_mode(::draw2d::e_interpolation_mode_high_quality_bicubic);
 
-      ::image::image_source imagesource(get_graphics(), ::i32_rectangle_dimension(0, 0, width(), height()));
+      auto pgraphicsImage = pimage->acquire_graphics();
+
+      ::image::image_source imagesource(pgraphicsImage, ::i32_rectangle_dimension(0, 0, width(), height()));
 
       ::image::image_drawing_options imagedrawingoptions(::i32_rectangle_dimension(0, 0, cx, cy));
 
@@ -761,7 +763,7 @@ void image::destroy_os_data()
 //
 //   //}
 //
-//   return get_graphics()->draw(i32_rectangle_dimension(0, 0,
+//   return pgraphics->draw(i32_rectangle_dimension(0, 0,
 //                                     width(),
 //                                     height()),
 //                                     pimage->g(),
@@ -838,7 +840,7 @@ void image::destroy_os_data()
 void image::stretch_image(::image::image* pimage)
 {
 
-   auto pgraphics = get_graphics();
+   auto pgraphics = acquire_graphics();
 
    if (::is_null(pgraphics))
    {
@@ -873,7 +875,7 @@ void image::_draw_raw(const ::i32_rectangle& rectangleDstParam, ::image::image* 
    if (!pimageDst->m_bMapped || !pimageSrc->m_bMapped)
    {
 
-      //get_graphics()->set_alpha_mode(m_ealphamode);
+      //pgraphics->set_alpha_mode(m_ealphamode);
 
       ::image::image_source imagesource(pimageSrc, { pointSrcParam, rectangleDstParam.size() } );
 
@@ -883,7 +885,9 @@ void image::_draw_raw(const ::i32_rectangle& rectangleDstParam, ::image::image* 
 
       ::image::image_drawing imagedrawing(imagedrawingoptions, imagesource);
 
-      return get_graphics()->draw(imagedrawing);
+      auto pgraphics = acquire_graphics();
+
+      return pgraphics->draw(imagedrawing);
 
    }
 
@@ -4055,8 +4059,8 @@ void image::fill_stippled_glass(::i32 R, ::i32 G, ::i32 B)
 //
 //   }
 //
-//   //pimage->defer_realize(pimage->get_graphics());
-//   //defer_realize(pimage->get_graphics());
+//   //pimage->defer_realize(pgraphicsImage);
+//   //defer_realize(pgraphicsImage);
 //
 //   map();
 //
@@ -4095,7 +4099,7 @@ void image::fill_stippled_glass(::i32 R, ::i32 G, ::i32 B)
 //   ::image::image_source imagesource(pgraphics);
 //
 //
-//   return pgraphics->stretch(rectangle, get_graphics()) != false;
+//   return pgraphics->stretch(rectangle, pgraphics) != false;
 //
 //
 //}
@@ -4687,21 +4691,23 @@ void image::fill_rectangle(const ::i32_rectangle& rectangle, ::color::color colo
    else
    {
 
-      ::draw2d::enum_alpha_mode emodeOld = get_graphics()->alpha_mode();
+      auto pgraphics = acquire_graphics();
 
-      if (get_graphics()->alpha_mode() != ::draw2d::e_alpha_mode_set)
+      ::draw2d::enum_alpha_mode emodeOld = pgraphics->alpha_mode();
+
+      if (pgraphics->alpha_mode() != ::draw2d::e_alpha_mode_set)
       {
 
-         get_graphics()->set_alpha_mode(::draw2d::e_alpha_mode_set);
+         pgraphics->set_alpha_mode(::draw2d::e_alpha_mode_set);
 
       }
 
-      get_graphics()->fill_rectangle(rectangle, color);
+      pgraphics->fill_rectangle(rectangle, color);
 
-      if (get_graphics()->alpha_mode() != emodeOld)
+      if (pgraphics->alpha_mode() != emodeOld)
       {
 
-         get_graphics()->set_alpha_mode(emodeOld);
+         pgraphics->set_alpha_mode(emodeOld);
 
       }
 
@@ -5821,7 +5827,7 @@ void image::SetIconMask(::image::icon* picon, ::i32 cx, ::i32 cy)
    //
    //#else
    //
-   //      pimage1->get_graphics()->DrawIcon(
+   //      pimage1->pgraphics->DrawIcon(
    //         0, 0,
    //         picon,
    //         width(), height(),
@@ -5846,7 +5852,7 @@ void image::SetIconMask(::image::icon* picon, ::i32 cx, ::i32 cy)
    //
    //#else
    //
-   //      pimage2->get_graphics()->DrawIcon(
+   //      pimage2->pgraphics->DrawIcon(
    //         0, 0,
    //         picon,
    //         width(), height(),
@@ -5868,7 +5874,7 @@ void image::SetIconMask(::image::icon* picon, ::i32 cx, ::i32 cy)
    //
    //#else
    //
-   //      imageM.get_graphics()->DrawIcon(
+   //      imageM.pgraphics->DrawIcon(
    //         0, 0,
    //         picon,
    //         width(), height(),
@@ -6864,27 +6870,31 @@ void image::clear(::color::color color)
       }
 
    }
-   else if (get_graphics() != nullptr)
+   else
    {
 
-      auto ealphamode = get_graphics()->alpha_mode();
+      auto pgraphics = acquire_graphics();
 
-      if (ealphamode != ::draw2d::e_alpha_mode_set)
+
+      if (pgraphics != nullptr)
       {
 
-         get_graphics()->set_alpha_mode(::draw2d::e_alpha_mode_set);
+         auto ealphamode = pgraphics->alpha_mode();
 
+         if (ealphamode != ::draw2d::e_alpha_mode_set)
+         {
+
+            pgraphics->set_alpha_mode(::draw2d::e_alpha_mode_set);
+         }
+
+         pgraphics->fill_rectangle(rectangle(), color);
+
+         if (ealphamode != ::draw2d::e_alpha_mode_set)
+         {
+
+            pgraphics->set_alpha_mode(ealphamode);
+         }
       }
-
-      get_graphics()->fill_rectangle(rectangle(), color);
-
-      if (ealphamode != ::draw2d::e_alpha_mode_set)
-      {
-
-         get_graphics()->set_alpha_mode(ealphamode);
-
-      }
-
    }
 
    //return true;
@@ -7480,7 +7490,9 @@ void image::_set_mipmap(::image::enum_mipmap emipmap)
 
       //}
 
-      get_graphics()->set_interpolation_mode(::draw2d::e_interpolation_mode_high_quality_bicubic);
+      auto pgraphics = acquire_graphics();
+
+      pgraphics->set_interpolation_mode(::draw2d::e_interpolation_mode_high_quality_bicubic);
 
       ::i32 x = cxSource;
 
@@ -7494,7 +7506,7 @@ void image::_set_mipmap(::image::enum_mipmap emipmap)
 
       ::image::image_drawing imagedrawing(imagedrawingoptions, imagesource);
 
-      get_graphics()->draw(imagedrawing);
+      pgraphics->draw(imagedrawing);
 
       while (cx >= 1.0 && cy >= 1.0)
       {
@@ -7534,7 +7546,7 @@ void image::_set_mipmap(::image::enum_mipmap emipmap)
 
             ::image::image_drawing imagedrawing(imagedrawingoptions, imagesource);
 
-            get_graphics()->draw(imagedrawing);
+            pgraphics->draw(imagedrawing);
 
          }
 
@@ -7617,7 +7629,9 @@ void image::_set_mipmap(::image::enum_mipmap emipmap)
 
                ::image::image_drawing imagedrawing(imagedrawingoptions, imagesource);
 
-               get_graphics()->draw(imagedrawing);
+               auto pgraphics = acquire_graphics();
+
+               pgraphics->draw(imagedrawing);
 
             }
 
@@ -7647,7 +7661,9 @@ void image::set_origin(const ::i32_point& point)
    if (!m_bMapped)
    {
 
-      get_graphics()->place_impact_area(point, m_size);
+      auto pgraphics = acquire_graphics();
+
+      pgraphics->place_impact_area(point, m_size);
 
    }
 
@@ -7836,12 +7852,14 @@ void image::set_size_scaler(::f64 dSizeScaler)
 
    m_dSizeScaler = dSizeScaler;
 
-   if (!m_bMapped)
-   {
+   //if (!m_bMapped)
+   //{
 
-      get_graphics()->m_dSizeScaler = dSizeScaler;
+      //auto pgraphics = acquire_graphics();
 
-   }
+      //pgraphics->m_dSizeScaler = dSizeScaler;
+
+   //}
 
    //return true;
 
@@ -7856,7 +7874,7 @@ void image::set_size_scaler(::f64 dSizeScaler)
 //   if (!m_bMapped)
 //   {
 //
-//      get_graphics()->set_alpha_mode(emode);
+//      pgraphics->set_alpha_mode(emode);
 //
 //   }
 //
@@ -9675,7 +9693,9 @@ void image::create_circle2(::image::image* pimage, ::i32 diameter)
    else
    {
 
-      get_graphics()->set_alpha_mode(::draw2d::e_alpha_mode_set);
+      auto pgraphics = acquire_graphics();
+
+      pgraphics->set_alpha_mode(::draw2d::e_alpha_mode_set);
 
       ::image::image_source imagesource(pimage, ::i32_rectangle_dimension(0, 0, pimage->width(), pimage->height()));
 
@@ -9685,7 +9705,7 @@ void image::create_circle2(::image::image* pimage, ::i32 diameter)
 
       ::image::image_drawing imagedrawing(imagedrawingoptions, imagesource);
 
-      get_graphics()->draw(imagedrawing);
+      pgraphics->draw(imagedrawing);
 
    }
 
@@ -9775,7 +9795,9 @@ void image::create_framed_square(::image::image* pimage, ::i32 inner, ::i32 oute
 
    ::image::image_drawing imagedrawing(imagedrawingoptions, imagesource);
 
-   get_graphics()->draw(imagedrawing);
+   auto pgraphics = acquire_graphics();
+
+   pgraphics->draw(imagedrawing);
 
    //return true;
 
@@ -10728,7 +10750,7 @@ void image::_unmap()
 bool image::_draw_blend(const ::image::image_drawing& imagedrawing)
 {
 
-   auto pgraphics = get_graphics();
+   auto pgraphics = acquire_graphics();
 
    //if (::is_null(pgraphics))
    //{
@@ -10810,7 +10832,7 @@ void image::draw(const ::image::image_drawing & imagedrawing)
 void image::_draw_raw(const ::image::image_drawing& imagedrawing)
 {
 
-   auto pgraphics = get_graphics();
+   auto pgraphics = acquire_graphics();
 
    //if (::is_null(pgraphics))
    //{

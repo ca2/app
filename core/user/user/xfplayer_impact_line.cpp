@@ -10,6 +10,7 @@
 #include "aura/graphics/write_text/font.h"
 #include "aura/graphics/image/imaging.h"
 #include "aura/graphics/draw2d/graphics_extension.h"
+#include "aura/graphics/draw2d/graphics_lease.h"
 #include "aura/graphics/draw2d/brush.h"
 #include "aura/graphics/draw2d/pen.h"
 #include "acme/platform/hyperlink.h"
@@ -325,7 +326,9 @@ bool xfplayer_impact_line::_001OnDraw(::draw2d::graphics_pointer & pgraphics, bo
                {
                   pimage = image()->create_image(rectangle.size());
                   pimage->clear(::color::white);
-                  pimage->get_graphics()->set_alpha_mode(::draw2d::e_alpha_mode_blend);
+
+                  auto pgraphicsImage = pimage->acquire_graphics();
+                  pgraphicsImage->set_alpha_mode(::draw2d::e_alpha_mode_blend);
                   pgraphics->flush();
 
                   //const ::i32_point & point = pgraphics->get_origin();
@@ -341,11 +344,13 @@ bool xfplayer_impact_line::_001OnDraw(::draw2d::graphics_pointer & pgraphics, bo
 
                      ::image::image_drawing imagedrawing(imagedrawingoptions, imagesource);
 
-                     pimage->g()->draw(imagedrawing);
+                     auto pimageGraphics = pimage->acquire_graphics();
+
+                     pimageGraphics->draw(imagedrawing);
 
                   }
 
-                  //pimage->get_graphics()->fill_rectangle(0, 0, 16, 16, argb(255, 255, 0, 255));
+                  //pgraphicsImage->fill_rectangle(0, 0, 16, 16, argb(255, 255, 0, 255));
                   pimage->invert();
                   //pimage->fill_channel(0, ::color::e_channel_blue);
                   pimage->fill_channel(255, ::color::e_channel_opacity);
@@ -1616,7 +1621,7 @@ void xfplayer_impact_line::CacheEmboss(::draw2d::graphics_pointer & pgraphics, c
 
    pimageCache->clear(::color::transparent);
 
-   ::draw2d::graphics_pointer pdcCache = pimageCache->get_graphics();
+   auto pdcCache = pimageCache->acquire_graphics();
 
    pdcCache->set(m_pfont);
 

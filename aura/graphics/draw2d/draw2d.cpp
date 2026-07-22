@@ -8,6 +8,7 @@
 #include "aura/graphics/image/imaging.h"
 #include "aura/graphics/image/fastblur.h"
 #include "aura/graphics/image/drawing.h"
+#include "aura/user/user/interaction.h"
 #include "graphics.h"
 #include "host.h"
 #include "brush.h"
@@ -1108,17 +1109,20 @@ void draw2d::emboss_predicate(
       auto pbrushText = createø < ::draw2d::brush >();
 
       pbrushText->create_solid(argb(255, 255, 255, 255));
-      pimage->get_graphics()->set(pbrushText);
+
+      auto pgraphicsImage = pimage->acquire_graphics(pgraphics->m_puserinteractionDraw2dGraphics);
+
+      pgraphicsImage->set(pbrushText);
 
       auto shift = rectangleCache.top_left() - rectangle.top_left();
 
       auto extent = rectangleCache.size();
 
-      pimage->get_graphics()->shift_impact_area(shift, extent);
+      pgraphicsImage->shift_impact_area(shift, extent);
 
-      functionDraw(pimage->get_graphics());
+      functionDraw(pgraphicsImage);
 
-      pimage->get_graphics()->shift_impact_area(-shift, extent);
+      pgraphicsImage->shift_impact_area(-shift, extent);
 
       auto psystem = system();
 
@@ -1126,7 +1130,10 @@ void draw2d::emboss_predicate(
 
       blur.initialize(pimageBlur->size(), iEffectiveBlurRadius);
 
-      imaging()->channel_spread_set_color(pimageBlur->g(), {}, size, pimage->g(), {}, ::color::e_channel_red, iEffectiveSpreadRadius, argb(255, 255, 255, 255));
+      auto pgraphicsBlur = pimageBlur->acquire_graphics(pgraphics->m_puserinteractionDraw2dGraphics);
+
+      imaging()->channel_spread_set_color(pgraphicsBlur, {}, size, pgraphicsImage, {}, ::color::e_channel_red,
+                                          iEffectiveSpreadRadius, argb(255, 255, 255, 255));
 
       for (iptr i = 0; i < iBlur; i++)
       {

@@ -792,7 +792,7 @@ pdirectorysystem->is(strPath))
 
             pimage->get_graphics()->set_interpolation_mode(e_interpolation_mode_high_quality_bicubic);
 
-            pimage->get_graphics()->StretchBlt(0, 0, 16, 16, pimage1->get_graphics(), 0, 0, pimage1->width(), pimage1->height());
+            pimage->get_graphics()->StretchBlt(0, 0, 16, 16, pgraphicsImage1, 0, 0, pimage1->width(), pimage1->height());
 
             pimage->get_graphics()->set_interpolation_mode(e_interpolation_mode_high_quality_bicubic);
 

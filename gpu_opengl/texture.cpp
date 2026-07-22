@@ -235,7 +235,13 @@ namespace gpu_opengl
 
       ::gpu::texture_flags textureflags;
 
-      ::gpu::texture_data texturedata(pdata);
+
+      pixmap_t pixmap;
+
+      pixmap.m_pimage32 = (::image32_t *) pdata;
+      pixmap.m_pimage32Raw = (::image32_t *)pdata;
+
+      ::gpu::texture_data texturedata(pixmap);
 
 //      auto sizeCurrent = m_textureattributes.m_rectangleTarget.size();
 
@@ -624,10 +630,10 @@ namespace gpu_opengl
             pdata = pimage32;
 
          }
-         else if (data.is_raw_scoped_data())
+         else if (data.is_raw_scoped_pixmap())
          {
 
-            pdata = data.raw_scoped_data();
+            pdata = data.raw_scoped_pixmap().m_pimage32Raw;
 
          }
 
@@ -635,16 +641,12 @@ namespace gpu_opengl
 
          ::i32 h = m_textureattributes.m_rectangleTarget.height();
 
-         glTexImage2D(GL_TEXTURE_2D, 0, internalFormat, w, h, 0, format,
-                      GL_UNSIGNED_BYTE, pdata);
+         glTexImage2D(GL_TEXTURE_2D, 0, internalFormat, w, h, 0, format, GL_UNSIGNED_BYTE, pdata);
          ::opengl::check_error("");
-
-
 
          ::i32 samples = 0;
          glGetIntegerv(GL_SAMPLES, &samples);
          printf("MSAA samples: %d\n", samples);
-
 
          //if (m_gluFbo)
          //{

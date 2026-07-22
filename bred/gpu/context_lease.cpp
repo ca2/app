@@ -80,6 +80,15 @@ namespace gpu
    }
 
 
+   context_lease::operator ::gpu::context * () const
+   {
+
+
+      return get();
+
+   }
+
+
    ::gpu::context * context_lease::operator->() const
    {
 
@@ -108,7 +117,7 @@ namespace gpu
       if (pdevice && pcontext)
       {
 
-         pdevice->return_draw2d_context(::transfer(pcontext), bDamaged);
+         pdevice->return_gpu_context(::transfer(pcontext), bDamaged);
 
       }
 
@@ -128,14 +137,14 @@ namespace gpu
       {
 
          errorf(
-            "[gpu.context_pool] failed to return draw2d context: %s",
+            "[gpu.context_pool] failed to return gpu context: %s",
             exception.get_message().c_str());
 
       }
       catch (...)
       {
 
-         errorf("[gpu.context_pool] failed to return draw2d context");
+         errorf("[gpu.context_pool] failed to return gpu context");
 
       }
 

@@ -219,11 +219,13 @@ namespace user
 
                }
 
-               pimage->get_graphics()->set_alpha_mode(::draw2d::e_alpha_mode_set);
+               auto pgraphicsImage = pimage->acquire_graphics();
 
-               pimage->get_graphics()->fill_rectangle(pimage->size(), ::color::transparent);
+               pgraphicsImage->set_alpha_mode(::draw2d::e_alpha_mode_set);
 
-               get_image_list()->draw(pimage->g(), (::i32)m_iImage,
+               pgraphicsImage->fill_rectangle(pimage->size(), ::color::transparent);
+
+               get_image_list()->draw(pgraphicsImage, (::i32)m_iImage,
                   i32_point(m_pitem->m_pmesh->m_plist->m_iIconBlurRadius * iRate, m_pitem->m_pmesh->m_plist->m_iIconBlurRadius * iRate), m_rectangleImage.size(), ::i32_point(), 0);
 
                if (m_pitem->m_pmesh->m_plist->m_dIconSaturation < 1.0)
@@ -309,9 +311,11 @@ namespace user
 
                rect2.offset(-m_pitem->m_pmesh->m_plist->m_rectangleSpot.top_left());
 
-               image1.image()->get_graphics()->set_alpha_mode(::draw2d::e_alpha_mode_set);
+               auto pgraphicsImage1 = image1.image()->acquire_graphics();
 
-               get_image_list()->draw(image1.image()->get_graphics(), (::i32)m_iImage,
+               pgraphicsImage1->set_alpha_mode(::draw2d::e_alpha_mode_set);
+
+               get_image_list()->draw(pgraphicsImage1, (::i32)m_iImage,
                   rect2.top_left(),
                   rectangle.size(), rectangle.top_left(), 0);
 

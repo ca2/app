@@ -1697,7 +1697,7 @@ namespace typeface_freetype
       pimage2 = create_image({cx,  cy});
       pimage2->Fill(0, 0, 0, 0);
 
-      pimage2->get_graphics()->DrawIcon(
+      pgraphicsImage2->DrawIcon(
       0, 0,
       picon,
       cx, cy,

@@ -245,7 +245,7 @@ namespace gpu
    }
 
 
-   ::pointer < texture> renderer::create_image_texture(const ::i32_size& size, bool bWithDepth)
+   ::pointer < texture> renderer::create_image_texture(const ::i32_size& size, bool bWithDepth, const ::gpu::texture_data & texturedata)
    {
 
       auto ptexture = createø< texture>();
@@ -258,7 +258,7 @@ namespace gpu
       textureflags.m_bRenderTarget = true;
       textureflags.m_bShaderResource = true;
 
-      ptexture->initialize_texture(m_pgpucontext, textureattributes, textureflags);
+      ptexture->initialize_texture(m_pgpucontext, textureattributes, textureflags, texturedata);
 
       m_pgpucontext->on_create_texture(ptexture);
 

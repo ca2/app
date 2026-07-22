@@ -4,6 +4,7 @@
 #include "image.h"
 ////#include "acme/exception/exception.h"
 #include "acme/parallelization/synchronous_lock.h"
+#include "aura/graphics/draw2d/draw_scope.h"
 #include "aura/graphics/draw2d/graphics.h"
 #include "aura/graphics/draw2d/lock.h"
 #include "aura/graphics/image/drawing.h"
@@ -515,13 +516,17 @@ namespace image
       try
       {
 
-         m_pimage->get_graphics()->set_alpha_mode(::draw2d::e_alpha_mode_set);
+         auto pgraphics = m_pimage->acquire_graphics();
+
+         ::draw2d::draw_scope drawscope(pgraphics);
+
+         pgraphics->set_alpha_mode(::draw2d::e_alpha_mode_set);
 
          ::image::image_drawing imagedrawingTarget(imagedrawing);
 
          imagedrawingTarget.m_rectangleTarget.set(::f64_point(iItem * m_size.cx, 0), m_size);
 
-         m_pimage->get_graphics()->draw(imagedrawingTarget);
+         pgraphics->draw(imagedrawingTarget);
 
       }
       catch (...)
@@ -633,7 +638,9 @@ namespace image
 
       }
 
-      draw(pimage->get_graphics(), iImage, {}, 0);
+      auto pgraphicsImage = pimage->acquire_graphics();
+
+      draw(pgraphicsImage, iImage, {}, 0);
 
       return pimage;
 

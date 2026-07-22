@@ -59,7 +59,7 @@ namespace gpu
    device::~device()
    {
 
-      shutdown_draw2d_context_pool();
+      shutdown_gpu_context_pool();
 
    }
 
@@ -320,7 +320,7 @@ namespace gpu
    {
 
 
-      ::i64 draw2d_context_pool_steady_nanoseconds()
+      ::i64 gpu_context_pool_steady_nanoseconds()
       {
 
          return ::std::chrono::duration_cast<::std::chrono::nanoseconds>(
@@ -329,7 +329,7 @@ namespace gpu
       }
 
 
-      void update_draw2d_context_pool_high_water(
+      void update_gpu_context_pool_high_water(
          ::std::atomic<::u64> & highWater,
          ::u64 uActive)
       {
@@ -351,7 +351,7 @@ namespace gpu
    } // namespace
 
 
-   ::gpu::context_lease device::acquire_draw2d_context(
+   ::gpu::context_lease device::acquire_gpu_context(
       const ::gpu::enum_output & eoutput,
       const ::i32_size & size)
    {
@@ -363,7 +363,7 @@ namespace gpu
 
       }
 
-      if (m_bDraw2dContextPoolShuttingDown.load(::std::memory_order_acquire))
+      if (m_bGpuContextPoolShuttingDown.load(::std::memory_order_acquire))
       {
 
          throw ::exception(error_wrong_state, "draw2d context pool is shutting down");
@@ -378,7 +378,7 @@ namespace gpu
             this->synchronization(),
             DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 
-         if (m_bDraw2dContextPoolShuttingDown.load(::std::memory_order_relaxed))
+         if (m_bGpuContextPoolShuttingDown.load(::std::memory_order_relaxed))
          {
 
             throw ::exception(error_wrong_state, "draw2d context pool is shutting down");
@@ -422,7 +422,7 @@ namespace gpu
       else
       {
 
-         if (m_bDraw2dContextPoolShuttingDown.load(::std::memory_order_acquire))
+         if (m_bGpuContextPoolShuttingDown.load(::std::memory_order_acquire))
          {
 
             throw ::exception(error_wrong_state, "draw2d context pool is shutting down");
@@ -434,10 +434,10 @@ namespace gpu
 
       }
 
-      if (m_bDraw2dContextPoolShuttingDown.load(::std::memory_order_acquire))
+      if (m_bGpuContextPoolShuttingDown.load(::std::memory_order_acquire))
       {
 
-         return_draw2d_context(::transfer(pcontext), true);
+         return_gpu_context(::transfer(pcontext), true);
 
          throw ::exception(error_wrong_state, "draw2d context pool is shutting down");
 
@@ -447,33 +447,33 @@ namespace gpu
          && m_papplication->m_gpu.m_bPerformanceDiagnostics.load(
             ::std::memory_order_relaxed);
 
-      auto uActive = m_uDraw2dContextPoolActive.fetch_add(
+      auto uActive = m_uGpuContextPoolActive.fetch_add(
          1,
          ::std::memory_order_relaxed) + 1;
 
-      update_draw2d_context_pool_high_water(
-         m_uDraw2dContextPoolHighWater,
+      update_gpu_context_pool_high_water(
+         m_uGpuContextPoolHighWater,
          uActive);
 
       if (bDiagnostics)
       {
 
-         m_uDraw2dContextPoolAcquisitions.fetch_add(1, ::std::memory_order_relaxed);
+         m_uGpuContextPoolAcquisitions.fetch_add(1, ::std::memory_order_relaxed);
 
          if (bReused)
          {
 
-            m_uDraw2dContextPoolReuses.fetch_add(1, ::std::memory_order_relaxed);
+            m_uGpuContextPoolReuses.fetch_add(1, ::std::memory_order_relaxed);
 
          }
          else
          {
 
-            m_uDraw2dContextPoolCreations.fetch_add(1, ::std::memory_order_relaxed);
+            m_uGpuContextPoolCreations.fetch_add(1, ::std::memory_order_relaxed);
 
          }
 
-         report_draw2d_context_pool_diagnostics_if_due();
+         report_gpu_context_pool_diagnostics_if_due();
 
       }
 
@@ -482,7 +482,7 @@ namespace gpu
    }
 
 
-   void device::return_draw2d_context(
+   void device::return_gpu_context(
       ::pointer<::gpu::context> pcontext,
       bool bDamaged)
    {
@@ -504,7 +504,7 @@ namespace gpu
 
          });
 
-      auto bShuttingDown = m_bDraw2dContextPoolShuttingDown.load(
+      auto bShuttingDown = m_bGpuContextPoolShuttingDown.load(
          ::std::memory_order_acquire);
 
       if (!bDamaged && !bShuttingDown)
@@ -514,7 +514,7 @@ namespace gpu
             this->synchronization(),
             DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 
-         if (!m_bDraw2dContextPoolShuttingDown.load(::std::memory_order_relaxed))
+         if (!m_bGpuContextPoolShuttingDown.load(::std::memory_order_relaxed))
          {
 
             m_contextaDraw2dIdle.add(pcontext);
@@ -524,10 +524,10 @@ namespace gpu
 
       }
 
-      auto uActive = m_uDraw2dContextPoolActive.load(::std::memory_order_relaxed);
+      auto uActive = m_uGpuContextPoolActive.load(::std::memory_order_relaxed);
 
       while (uActive > 0
-         && !m_uDraw2dContextPoolActive.compare_exchange_weak(
+         && !m_uGpuContextPoolActive.compare_exchange_weak(
             uActive,
             uActive - 1,
             ::std::memory_order_relaxed))
@@ -540,17 +540,17 @@ namespace gpu
             ::std::memory_order_relaxed))
       {
 
-         report_draw2d_context_pool_diagnostics_if_due();
+         report_gpu_context_pool_diagnostics_if_due();
 
       }
 
    }
 
 
-   void device::shutdown_draw2d_context_pool()
+   void device::shutdown_gpu_context_pool()
    {
 
-      if (m_bDraw2dContextPoolShuttingDown.exchange(
+      if (m_bGpuContextPoolShuttingDown.exchange(
          true,
          ::std::memory_order_acq_rel))
       {
@@ -581,7 +581,7 @@ namespace gpu
    }
 
 
-   void device::report_draw2d_context_pool_diagnostics_if_due()
+   void device::report_gpu_context_pool_diagnostics_if_due()
    {
 
       if (!m_papplication
@@ -597,24 +597,24 @@ namespace gpu
          m_papplication->m_gpu.m_uPerformanceDiagnosticsGeneration.load(
             ::std::memory_order_relaxed);
       auto uGenerationLast =
-         m_uDraw2dContextPoolDiagnosticsGenerationLast.load(
+         m_uGpuContextPoolDiagnosticsGenerationLast.load(
             ::std::memory_order_relaxed);
 
       if (uGeneration != uGenerationLast)
       {
 
-         m_uDraw2dContextPoolDiagnosticsGenerationLast.store(
+         m_uGpuContextPoolDiagnosticsGenerationLast.store(
             uGeneration,
             ::std::memory_order_relaxed);
-         m_iDraw2dContextPoolNextReportNanoseconds.store(
+         m_iGpuContextPoolNextReportNanoseconds.store(
             0,
             ::std::memory_order_relaxed);
 
       }
 
-      auto iNowNanoseconds = draw2d_context_pool_steady_nanoseconds();
+      auto iNowNanoseconds = gpu_context_pool_steady_nanoseconds();
       auto iDeadlineNanoseconds =
-         m_iDraw2dContextPoolNextReportNanoseconds.load(
+         m_iGpuContextPoolNextReportNanoseconds.load(
             ::std::memory_order_relaxed);
 
       if (iNowNanoseconds < iDeadlineNanoseconds)
@@ -633,7 +633,7 @@ namespace gpu
       auto iNextNanoseconds = iNowNanoseconds
          + (::i64) iIntervalMilliseconds * 1'000'000;
 
-      if (!m_iDraw2dContextPoolNextReportNanoseconds.compare_exchange_strong(
+      if (!m_iGpuContextPoolNextReportNanoseconds.compare_exchange_strong(
          iDeadlineNanoseconds,
          iNextNanoseconds,
          ::std::memory_order_relaxed))
@@ -656,15 +656,15 @@ namespace gpu
       }
 
       information() << "[gpu.context_pool] acquisitions="
-         << m_uDraw2dContextPoolAcquisitions.exchange(0, ::std::memory_order_relaxed)
+         << m_uGpuContextPoolAcquisitions.exchange(0, ::std::memory_order_relaxed)
          << " reuses="
-         << m_uDraw2dContextPoolReuses.exchange(0, ::std::memory_order_relaxed)
+         << m_uGpuContextPoolReuses.exchange(0, ::std::memory_order_relaxed)
          << " creations="
-         << m_uDraw2dContextPoolCreations.exchange(0, ::std::memory_order_relaxed)
+         << m_uGpuContextPoolCreations.exchange(0, ::std::memory_order_relaxed)
          << " active="
-         << m_uDraw2dContextPoolActive.load(::std::memory_order_relaxed)
+         << m_uGpuContextPoolActive.load(::std::memory_order_relaxed)
          << " high_water="
-         << m_uDraw2dContextPoolHighWater.load(::std::memory_order_relaxed)
+         << m_uGpuContextPoolHighWater.load(::std::memory_order_relaxed)
          << " idle=" << cIdle;
 
    }

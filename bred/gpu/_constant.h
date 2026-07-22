@@ -45,7 +45,7 @@ namespace gpu
       e_texture_data_none,
       e_texture_data_image_array,
       e_texture_data_file_path,
-      e_texture_data_raw_scoped_data,
+      e_texture_data_raw_scoped_pixmap,
 
    };
 

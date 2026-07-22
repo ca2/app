@@ -30,7 +30,7 @@ namespace gpu
 
       };
 
-
+      ::gpu::context_lock *m_pgpucontextlock;
       ::geometry2d::matrix                   m_m1;
       ::pointer < ::gpu::shader >               m_pshaderSourceRectangle;
       ::pointer < ::gpu::shader >               m_pshaderBlendRectangle;
@@ -52,6 +52,9 @@ namespace gpu
       void set_context_lease(::gpu::context_lease && contextlease);
       ::gpu::context_lease & context_lease();
       
+
+      void begin_draw() override;
+      void end_draw() override;
       
       void start_frame() override;
       void end_frame() override;

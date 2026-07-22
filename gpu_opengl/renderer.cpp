@@ -247,9 +247,8 @@ namespace gpu_opengl
 
       ::i32 height = r.height();
 
-      auto pgpurendertarget = this->render_target();
-
-      ::cast < texture > ptexture = pgpurendertarget->current_texture(pgpulayer);
+      ::cast < texture > ptexture =
+         m_pgpucontext->current_target_texture(pgpulayer);
 
       if (m_pgpucontext->m_escene == ::gpu::e_scene_3d)
       {

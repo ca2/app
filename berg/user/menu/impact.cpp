@@ -14,6 +14,7 @@
 #include "aqua/xml/document.h"
 #include "aura/graphics/write_text/font.h"
 #include "aura/graphics/draw2d/brush.h"
+#include "aura/graphics/draw2d/graphics_lease.h"
 #include "aura/graphics/draw2d/pen.h"
 #include "aura/graphics/draw2d/path.h"
 #include "aura/graphics/image/context.h"
@@ -433,7 +434,7 @@ namespace user
 
       pimage1->create(rectangleX.size());
 
-      ::draw2d::graphics_pointer pgraphics = pimage1->get_graphics();
+      auto pgraphics = pimage1->acquire_graphics();
 
       if (is_window_enabled())
       {

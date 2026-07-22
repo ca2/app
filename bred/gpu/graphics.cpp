@@ -55,6 +55,8 @@ namespace gpu
    graphics::graphics()
    {
 
+      m_pgpucontextlock = nullptr;
+
       m_ppoolgroupFrame = nullptr;
 
       m_iGpuContextFrameSerial = -1;
@@ -235,6 +237,44 @@ namespace gpu
 
       }
 
+   }
+
+
+   void graphics::begin_draw()
+   {
+
+      if (m_pgpucontextlock)
+      {
+
+         throw ::exception(error_wrong_state);
+
+      }
+
+      if (!m_pgpucontextCompositor2)
+      {
+
+         throw ::exception(error_wrong_state);
+
+      }
+
+      m_pgpucontextlock = new ::gpu::context_lock(m_pgpucontextCompositor2);
+
+   }
+
+
+   void graphics::end_draw()
+   {
+
+      if (!m_pgpucontextlock)
+      {
+
+         throw ::exception(error_wrong_state);
+
+      }
+
+      delete m_pgpucontextlock;
+
+      m_pgpucontextlock = nullptr;
    }
 
 

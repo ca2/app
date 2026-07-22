@@ -14,6 +14,7 @@ namespace gpu
 
    class context;
    class texture;
+   struct texture_data;
 
 
    class CLASS_DECL_BRED image :
@@ -40,12 +41,14 @@ namespace gpu
       ~image() override;
 
 
-      ::draw2d::graphics * get_graphics() const override;
+      ::draw2d::graphics * get_graphics2() const override;
 
       virtual ::gpu::texture * gpu_texture() const;
+      virtual void create_gpu_texture();
       virtual void initialize_gpu_image(
          ::gpu::context * pgpucontext,
-         const ::i32_size & size);
+         const ::i32_size & size,
+         const ::gpu::texture_data & texturedata);
 
       void destroy() override;
 

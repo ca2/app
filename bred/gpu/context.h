@@ -195,6 +195,10 @@ namespace gpu
       virtual ::pointer < ::gpu::texture > create_empty_texture();
       virtual void on_new_frame();
 
+      static void __s_lock_context(::gpu::context * pgpuccontext);
+      static void __s_unlock_context(::gpu::context * pgpucontext);
+
+
       /// loads different types of image
       virtual ::gpu::texture* generic_texture(const ::file::path & path, bool bSrgb);
       virtual void load_generic_texture(::pointer < ::gpu::texture > & ptexture, const ::file::path & path, bool bSrgb);

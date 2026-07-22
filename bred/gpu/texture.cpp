@@ -93,7 +93,15 @@ namespace gpu
 
       ::gpu::texture_flags textureflags;
 
-      ::gpu::texture_data texturedata(pdata);
+      pixmap_t pixmap;
+
+      pixmap.m_pimage32 = (::image32_t *) pdata;
+      pixmap.m_pimage32Raw = (::image32_t *)pdata;
+      pixmap.m_size = rectangleTarget.size();
+      pixmap.m_sizeRaw = rectangleTarget.size();
+      pixmap.m_iScan = pixmap.m_size.cx * 4;
+
+      ::gpu::texture_data texturedata(pixmap);
 
       //      auto sizeCurrent = m_textureattributes.m_rectangleTarget.size();
 

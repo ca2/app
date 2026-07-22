@@ -27,6 +27,8 @@ namespace gpu
 
    class block;
 
+   class context_lock;
+
    class fence;
 
    class empty_texture_source;

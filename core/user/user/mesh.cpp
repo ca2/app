@@ -6240,9 +6240,13 @@ bool mesh::_001OnRightClick(const ::i32_point & point)
             pimage1->clear(::color::transparent);
             auto pbrushText = m_pitem->m_pmesh->createø < ::draw2d::brush > ();
             pbrushText->create_solid(argb(255,255,255,255));
-            pimage1->get_graphics()->set(pbrushText);
+
+            auto pgraphicsImage1 = pimage1->acquire_graphics();
+            pgraphicsImage1->set(pbrushText);
             ::image::image_pointer pimage2;
             pimage2 = m_pitem->m_pmesh->image()->create_image(size);
+
+            auto pgraphicsImage2 = pimage2->acquire_graphics();
             pimage2->clear(::color::transparent);
 
             ::i32_rectangle rectangleCache;
@@ -6250,18 +6254,19 @@ bool mesh::_001OnRightClick(const ::i32_point & point)
             rectangleCache.top = 2;
             rectangleCache.right = rectangleCache.left + (::i32)m_rectangleText.width();
             rectangleCache.bottom = rectangleCache.top + (::i32)m_rectangleText.height();
-            pimage1->get_graphics()->set(m_pcolumn->m_pdrawlistcolumn->m_pfont);
-            pimage1->get_graphics()->_DrawText(m_strText,rectangleCache, m_pcolumn->m_pdrawlistcolumn->m_ealign, m_pcolumn->m_pdrawlistcolumn->m_edrawtext);
+            pgraphicsImage1->set(m_pcolumn->m_pdrawlistcolumn->m_pfont);
+            pgraphicsImage1->_DrawText(m_strText, rectangleCache, m_pcolumn->m_pdrawlistcolumn->m_ealign,
+                                       m_pcolumn->m_pdrawlistcolumn->m_edrawtext);
 
             //::aura::application * get_app() = m_pmesh->get_app();
 
             auto psystem = m_pitem->m_pmesh->system();
 
-            psystem->imaging()->channel_spread_set_color(pimage2->get_graphics(),{}, size, pimage1->get_graphics(),{},0,2,argb(192,192,192,192));
+            psystem->imaging()->channel_spread_set_color(pgraphicsImage2,{}, size, pgraphicsImage1,{},0,2,argb(192,192,192,192));
             pimage1->clear(::color::transparent);
-            psystem->imaging()->channel_alpha_gray_blur(pimage1->get_graphics(),{}, size, pimage2->get_graphics(),{},0,1);
+            psystem->imaging()->channel_alpha_gray_blur(pgraphicsImage1, {}, size, pgraphicsImage2, {}, 0, 1);
             pimage2->clear(::color::transparent);
-            psystem->imaging()->channel_alpha_gray_blur(pimage2->get_graphics(),{}, size, pimage1->get_graphics(),{},0,1);
+            psystem->imaging()->channel_alpha_gray_blur(pgraphicsImage2,{}, size, pgraphicsImage1,{},0,1);
             pimage2->clear(::color::transparent);
 
             ::image::image_source imagesource(pimage2, i32_rectangle(1,1, m_rectangleText.width(), m_rectangleText.height()));

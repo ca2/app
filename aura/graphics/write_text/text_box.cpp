@@ -5,6 +5,7 @@
 #include "aura/graphics/image/image.h"
 #include "aura/graphics/draw2d/graphics.h"
 #include "aura/graphics/draw2d/graphics_lease.h"
+#include "aura/graphics/draw2d/graphics_layer_scope.h"
 //#include "acme/_finish.h"
 
 
@@ -85,6 +86,8 @@ namespace write_text
          : (::draw2d::host *) plist->m_puserinteraction.m_p;
       auto graphicslease = m_pimage->acquire_graphics(pdraw2dhost);
 
+      auto layerscope = graphicslease.begin_layer_scope();
+
       auto bDarkMode = plist->m_bDarkMode;
 
       ::i32 iColorIndex = 0;
@@ -138,6 +141,8 @@ namespace write_text
          plist->information() << str;
 
 #endif
+
+      layerscope.close();
 
       graphicslease.close();
 

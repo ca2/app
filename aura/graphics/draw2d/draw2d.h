@@ -145,6 +145,7 @@ namespace draw2d
 
 
       virtual bool write_text_supports_raster_fonts();
+      virtual bool write_text_supports_legacy_gdi_fonts();
       virtual bool graphics_context_supports_single_buffer_mode();
       virtual bool graphics_context_does_full_redraw();
 

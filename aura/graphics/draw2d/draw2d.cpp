@@ -404,6 +404,14 @@ namespace draw2d
    }
 
 
+   bool draw2d::write_text_supports_legacy_gdi_fonts()
+   {
+
+      return true;
+
+   }
+
+
    bool draw2d::graphics_context_supports_single_buffer_mode()
    {
 

@@ -1325,6 +1325,9 @@
     <ClInclude Include="graphics\write_text\font.h">
       <Filter>Header Files\graphics\write_text</Filter>
     </ClInclude>
+    <ClInclude Include="graphics\write_text\font_face.h">
+      <Filter>Header Files\graphics\write_text</Filter>
+    </ClInclude>
     <ClInclude Include="graphics\write_text\drawer.h">
       <Filter>Header Files\graphics\write_text</Filter>
     </ClInclude>

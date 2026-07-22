@@ -189,6 +189,21 @@ namespace write_text
    }
 
 
+   bool write_text::resolve_font_face(
+      ::write_text::font_face_source & source,
+      const ::write_text::font_face_request & request)
+   {
+
+      source = {};
+      source.m_strResolvedFamily = request.m_strFamily;
+      source.m_path = node()->get_font_path_from_name(request.m_strFamily);
+      source.m_iFaceIndex = 0;
+
+      return source.m_path.has_character() && file()->exists(source.m_path);
+
+   }
+
+
    font_descriptor write_text::calculate_font_descriptor(const_char_pointer face, ::f32 size)
    {
       

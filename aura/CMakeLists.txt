@@ -227,6 +227,7 @@ list(APPEND library_source
         graphics/write_text/draw_text.h
         graphics/write_text/font.cpp
         graphics/write_text/font.h
+        graphics/write_text/font_face.h
         graphics/write_text/font_family.cpp
         graphics/write_text/font_family.h
         graphics/write_text/fonts.cpp

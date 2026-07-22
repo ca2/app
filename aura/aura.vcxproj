@@ -3243,6 +3243,7 @@
     <ClInclude Include="graphics\write_text\drawer.h" />
     <ClInclude Include="graphics\write_text\draw_text.h" />
     <ClInclude Include="graphics\write_text\font.h" />
+    <ClInclude Include="graphics\write_text\font_face.h" />
     <ClInclude Include="graphics\write_text\fonts.h" />
     <ClInclude Include="graphics\write_text\font_enumeration.h" />
     <ClInclude Include="graphics\write_text\font_enumeration_item.h" />

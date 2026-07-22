@@ -3,6 +3,7 @@
 
 
 #include "font.h"
+#include "font_face.h"
 #include "acme/platform/department.h"
 #include "acme/prototype/collection/integer_map.h"
 
@@ -53,6 +54,10 @@ namespace write_text
 
       virtual font_pointer create_font();
       virtual memory_pointer get_file_memory(::platform::context * pcontext, const ::file::path & path);
+
+      virtual bool resolve_font_face(
+         ::write_text::font_face_source & source,
+         const ::write_text::font_face_request & request);
 
       
       virtual font_descriptor calculate_font_descriptor(const_char_pointer face, ::f32 size);

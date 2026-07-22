@@ -144,6 +144,7 @@ namespace draw2d
       virtual class ::write_text::write_text * write_text();
 
 
+      virtual bool write_text_supports_raster_fonts();
       virtual bool graphics_context_supports_single_buffer_mode();
       virtual bool graphics_context_does_full_redraw();
 

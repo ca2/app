@@ -1673,7 +1673,18 @@ namespace gpu
          if (pgpulayera2)
          {
 
-            gpulayera = *pgpulayera2;
+            for (auto pgpulayer : *pgpulayera2)
+            {
+
+               if (pgpulayer
+                  && pgpulayer->m_bIncludeInFrameComposition)
+               {
+
+                  gpulayera.add(pgpulayer);
+
+               }
+
+            }
 
             auto timeStart = ::time::now();
 

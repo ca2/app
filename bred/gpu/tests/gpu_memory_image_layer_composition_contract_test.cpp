@@ -48,6 +48,7 @@ int main()
    const auto layerSource = read_file("bred/gpu/layer.cpp");
    const auto graphicsHeader = read_file("bred/gpu/graphics.h");
    const auto graphicsSource = read_file("bred/gpu/graphics.cpp");
+   const auto rendererSource = read_file("bred/gpu/renderer.cpp");
 
    assert(layerHeader.find(
       "bool m_bIncludeInFrameComposition = true;") !=
@@ -78,6 +79,52 @@ int main()
       std::string::npos);
    assert(imageLayerPolicy.find("m_eoutput") == std::string::npos);
    assert(imageLayerPolicy.find("e_output_gpu_buffer") == std::string::npos);
+
+   const auto rendererEndLayer = section(
+      rendererSource,
+      "void renderer::end_layer(bool bClosingLayer)",
+      "void renderer::wait_swap_chain_command_buffer_ready()");
+   const auto layerArraySnapshot = rendererEndLayer.find(
+      "auto pgpulayera2 = m_pgpucontext->m_pgpudevice->m_pgpulayera;");
+   const auto filterLoop = rendererEndLayer.find(
+      "for (auto pgpulayer : *pgpulayera2)",
+      layerArraySnapshot);
+   const auto filterPredicate = rendererEndLayer.find(
+      "pgpulayer->m_bIncludeInFrameComposition",
+      filterLoop);
+   const auto filteredAdd = rendererEndLayer.find(
+      "gpulayera.add(pgpulayer);",
+      filterPredicate);
+   const auto completionWait = rendererEndLayer.find(
+      "for (auto pgpulayer: gpulayera)",
+      filteredAdd);
+   const auto merge = rendererEndLayer.find(
+      "merge_layers(pgpucommandbuffer, ptextureBackBuffer, &gpulayera);",
+      completionWait);
+   const auto semaphoreLoop = rendererEndLayer.find(
+      "for (auto &pgpulayer: gpulayera)",
+      merge);
+
+   assert(layerArraySnapshot != std::string::npos);
+   assert(filterLoop != std::string::npos);
+   assert(filterPredicate != std::string::npos);
+   assert(filteredAdd != std::string::npos);
+   assert(completionWait != std::string::npos);
+   assert(merge != std::string::npos);
+   assert(semaphoreLoop != std::string::npos);
+   assert(layerArraySnapshot < filterLoop);
+   assert(filterLoop < filterPredicate);
+   assert(filterPredicate < filteredAdd);
+   assert(filteredAdd < completionWait);
+   assert(completionWait < merge);
+   assert(merge < semaphoreLoop);
+   assert(rendererEndLayer.find("gpulayera = *pgpulayera2;") ==
+      std::string::npos);
+   const auto compositionFilter = rendererEndLayer.substr(
+      layerArraySnapshot,
+      completionWait - layerArraySnapshot);
+   assert(compositionFilter.find("e_output_gpu_buffer") ==
+      std::string::npos);
 
    return 0;
 

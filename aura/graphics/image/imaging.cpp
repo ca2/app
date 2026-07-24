@@ -8,6 +8,7 @@
 #include "acme/graphics/image/pixmap_lock.h"
 #include "acme/parallelization/synchronous_lock.h"
 #include "aura/graphics/draw2d/graphics.h"
+#include "aura/graphics/draw2d/graphics_pointer.h"
 #include "aura/graphics/draw2d/brush.h"
 #include "aura/graphics/draw2d/draw2d.h"
 #include "aura/graphics/image/drawing.h"
@@ -374,21 +375,21 @@ void imaging::change_hue(image_list * pilHue, image_list * pil, const ::color::c
 //
 //      pimage->unmap();
 //
-//      if (pimage->g() == nullptr)
+//      if (pgraphicsImage == nullptr)
 //      {
 //
 //         return false;
 //
 //      }
 //
-//      if (pimage->g()->get_os_data() == nullptr)
+//      if (pgraphicsImage->get_os_data() == nullptr)
 //      {
 //
 //         return false;
 //
 //      }
 //
-//      color_blend(pimage->g(), nullptr, pimage->size(), color32, bAlpha);
+//      color_blend(pgraphicsImage, nullptr, pimage->size(), color32, bAlpha);
 //
 //      return true;
 //
@@ -2286,10 +2287,15 @@ void imaging::blur_32CC(::image::image *pimageDst, ::image::image *pimageSrc,::i
    ::u8 * pFilterData = øraw_new  ::u8[iFilterHeight *iFilterWidth];
    memory_set(pFilterData,1,iFilterHeight * iFilterWidth);
 
-   ::u8 * pSrc = (::u8 *)pimageSrc->get_data();
+   auto mapSrc = pimageSrc->map();
 
 
-   ::u8 * pDst = (::u8 *)pimageDst->get_data();
+   auto mapDst = pimageDst->map();
+
+   ::u8 * pSrc = (::u8 *)mapSrc.data();
+
+
+   ::u8 * pDst = (::u8 *)mapDst.data();
 
 
    ::i32 cx = pimageSrc->width();
@@ -2589,14 +2595,16 @@ void imaging::blur_32CC(::image::image *pimageDst, ::image::image *pimageSrc,::i
 void imaging::blur_32CC_r2(::image::image *pimageDst, ::image::image *pimageSrc)
 {
 
-   ::u8 * pSrc = (::u8 *)pimageSrc->get_data();
+   auto mapSrc = pimageSrc->map();
 
+   auto mapDst = pimageDst->map();
 
-   ::u8 * pDst = (::u8 *)pimageDst->get_data();
+   ::u8 * pSrc = (::u8 *)mapSrc.data();
 
-
+   ::u8 * pDst = (::u8 *)mapDst.data();
 
    ::i32 cx = pimageSrc->width();
+
    ::i32 cy = pimageSrc->height();
    //::i32 wSrc = cx * 4;
    //::i32 wDest = cx * 4;
@@ -3053,7 +3061,9 @@ void imaging::channel_alpha_gray_blur(::draw2d::graphics * pdcDst, const ::i32_p
 
    }
 
-   pimageSrc->g()->set_alpha_mode(::draw2d::e_alpha_mode_set);
+   auto pgraphicsImageSrc = pimageSrc->acquire_graphics();
+
+   pgraphicsImageSrc->set_alpha_mode(::draw2d::e_alpha_mode_set);
 
    {
 
@@ -3065,7 +3075,7 @@ void imaging::channel_alpha_gray_blur(::draw2d::graphics * pdcDst, const ::i32_p
 
       ::image::image_drawing imagedrawing(imagedrawingoptions, imagesource);
 
-      pimageSrc->g()->draw(imagedrawing);
+      pgraphicsImageSrc->draw(imagedrawing);
       //{
 
       //   return false;
@@ -3119,10 +3129,13 @@ void imaging::channel_gray_blur_32CC(::image::image *pimageDst, ::image::image *
          || cy != pimageSrc->height())
       throw ::exception(error_wrong_state);
 
-   ::u8 * pDst = (::u8 *)pimageDst->get_data();
+   auto mapDst = pimageDst->map();
 
+   ::u8 * pDst = (::u8 *)mapDst.data();
 
-   ::u8 * pSrc = (::u8 *)pimageSrc->get_data();
+   auto mapSrc = pimageSrc->map();
+
+   ::u8 * pSrc = (::u8 *)mapSrc.data();
 
 
 
@@ -3412,14 +3425,14 @@ void imaging::channel_alpha_gray_blur_32CC(::image::image *pimageDst, ::image::i
          || cy != pimageSrc->height())
       throw ::exception(error_wrong_state);
 
-   pimageDst->map();
+   auto mapDst = pimageDst->map();
 
-   pimageSrc->map();
+   auto mapSrc = pimageSrc->map();
 
-   ::u8 * pDst = (::u8 *)pimageDst->get_data();
+   ::u8 *pDst = (::u8 *)mapDst.data();
 
 
-   ::u8 * pSrc = (::u8 *)pimageSrc->get_data();
+   ::u8 * pSrc = (::u8 *)mapSrc.data();
 
 
 
@@ -3810,12 +3823,13 @@ void imaging::channel_gray_blur_32CC(::image::image *pimageDst, ::image::image *
          || cy != pimageSrc->height())
       throw ::exception(error_wrong_state);
 
-   ::u8 * pDst = (::u8 *)pimageDst->get_data();
+   auto mapDst = pimageDst->map();
 
+   ::u8 * pDst = (::u8 *)mapDst.data();
 
-   ::u8 * pSrc = (::u8 *)pimageSrc->get_data();
+   auto mapSrc = pimageSrc->map();
 
-
+   ::u8 * pSrc = (::u8 *)mapSrc.data();
 
    //::i32 wSrc = cx * 4;
    //::i32 wDst = cx * 4;
@@ -4238,7 +4252,7 @@ void imaging::color_blend(::draw2d::graphics * pgraphics, const ::i32_point & po
 //
 //      pgraphicsImage->set_alpha_mode(::draw2d::e_alpha_mode_set);
 //
-//      pimage->g()->stretch(::f64_rectangle(size), pdcColorAlpha, ::f64_rectangle(pointAlpha, size));
+//      pgraphicsImage->stretch(::f64_rectangle(size), pdcColorAlpha, ::f64_rectangle(pointAlpha, size));
 //
 //      pimage->channel_multiply(dBlend, ::color::e_channel_opacity);
 //
@@ -4928,7 +4942,9 @@ const ::color::color & color)
 
    ::image::image_pointer pimageSrc = image()->create_image(size);
 
-   pimageSrc->g()->set_alpha_mode(::draw2d::e_alpha_mode_set);
+   auto pgraphicsImageSrc = pimageSrc->acquire_graphics();
+
+   pgraphicsImageSrc->set_alpha_mode(::draw2d::e_alpha_mode_set);
 
    {
 
@@ -4941,7 +4957,7 @@ const ::color::color & color)
       ::image::image_drawing imagedrawing(imagedrawingoptions, imagesource);
 
       //if (!)
-      pimageSrc->g()->draw(imagedrawing);
+      pgraphicsImageSrc->draw(imagedrawing);
       //{
 
       //   return false;
@@ -4990,28 +5006,28 @@ const ::color::color & color)
 }
 
 
+//void imaging::spread(
+//::draw2d::graphics *pdcDst,
+//const ::i32_point & pointDst,
+//const ::i32_size & size,
+//::draw2d::graphics * pdcSrc,
+//const ::i32_point & pointSrc,
+//::i32 iRadius)
+//{
+//
+//   return spread_set_color(
+//          pdcDst,
+//          pointDst,
+//          size,
+//          pdcSrc,
+//          pointSrc,
+//          iRadius,
+//          color::white);
+//
+//}
+
+
 void imaging::spread(
-::draw2d::graphics *pdcDst,
-const ::i32_point & pointDst,
-const ::i32_size & size,
-::draw2d::graphics * pdcSrc,
-const ::i32_point & pointSrc,
-::i32 iRadius)
-{
-
-   return spread_set_color(
-          pdcDst,
-          pointDst,
-          size,
-          pdcSrc,
-          pointSrc,
-          iRadius,
-          color::white);
-
-}
-
-
-void imaging::spread_set_color(
 ::draw2d::graphics *pdcDst,
 const ::i32_point & pointDst,
 const ::i32_size & size,
@@ -5028,7 +5044,9 @@ const ::color::color & color)
 
    ::image::image_pointer pimageSrc = image()->create_image(size);
 
-   pimageSrc->g()->set_alpha_mode(::draw2d::e_alpha_mode_set);
+   auto pgraphicsImageSrc = pimageSrc->acquire_graphics();
+
+   pgraphicsImageSrc->set_alpha_mode(::draw2d::e_alpha_mode_set);
 
    {
 
@@ -5040,7 +5058,7 @@ const ::color::color & color)
 
       ::image::image_drawing imagedrawing(imagedrawingoptions, imagesource);
 
-      pimageSrc->g()->draw(imagedrawing);
+      pgraphicsImageSrc->draw(imagedrawing);
       //if (!pimageSrc->g()->draw(imagedrawing))
       //{
 
@@ -5051,9 +5069,9 @@ const ::color::color & color)
    }
 
    //if (!
-   spread__32CC(
-      pimageDst,
-      pimageSrc,
+   spread(
+      pimageDst->map(),
+      *pimageSrc,
       iRadius, color);
    //{
 
@@ -5085,7 +5103,7 @@ const ::color::color & color)
 }
 
 
-void imaging::spread__32CC(::image::image *pimageDst, ::image::image *pimageSrc,::i32 iRadius, const ::color::color& colorSpreadSetColor)
+void imaging::spread(pixmap_t pixmapTarget, pixmap_t pixmapSource, ::i32 iRadius, const ::color::color& colorSpreadSetColor)
 {
 
    if (iRadius <= 1)
@@ -5113,7 +5131,7 @@ void imaging::spread__32CC(::image::image *pimageDst, ::image::image *pimageSrc,
    ::u8 *pSource;
 
 
-   image32_t imageSpreadSetColor(colorSpreadSetColor, pimageDst->color_indexes());
+   image32_t imageSpreadSetColor(colorSpreadSetColor, pixmapTarget.color_indexes());
 
 
    ::u8 *pSource1;
@@ -5135,9 +5153,9 @@ void imaging::spread__32CC(::image::image *pimageDst, ::image::image *pimageSrc,
    ::i32 x2;
    ::i32 y2;
 
-   pimageDst->map();
+   //pimageDst->map();
 
-   pimageSrc->map();
+   //pimageSrc->map();
 
    //if(!pimageDst || !pimageSrc)
    //{
@@ -5203,24 +5221,24 @@ void imaging::spread__32CC(::image::image *pimageDst, ::image::image *pimageSrc,
 
    ::u8 * pFilterData = pmemory->data();
 
-   ::i32 cx = pimageDst->width();
+   ::i32 cx = pixmapTarget.width();
 
-   ::i32 cy = pimageDst->height();
+   ::i32 cy = pixmapTarget.height();
 
-   if (cx != pimageSrc->width() || cy != pimageSrc->height())
+   if (cx != pixmapSource.width() || cy != pixmapSource.height())
    {
 
       throw ::exception(error_bad_argument);
 
    }
 
-   ::u8 * pDst = (::u8 *)pimageDst->get_data();
+   ::u8 *pDst = (::u8 *)pixmapTarget.data();
 
-   ::u8 * pSrc = (::u8 *)pimageSrc->get_data();
+   ::u8 *pSrc = (::u8 *)pixmapSource.data();
 
-   ::i32 wSrc = pimageSrc->scan_size();
+   ::i32 scanSrc = pixmapSource.scan_size();
 
-   ::i32 wDst = pimageDst->scan_size();
+   ::i32 scanDst = pixmapTarget.scan_size();
 
    ::i32 maxx1 = cx;
 
@@ -5228,7 +5246,7 @@ void imaging::spread__32CC(::image::image *pimageDst, ::image::image *pimageSrc,
 
    ::i32 max3x1 = maxx1 * 4;
 
-   ((::image32_t*)pDst)->copy(cx, cy, pimageDst->scan_size(), (::image32_t *)pSrc, pimageSrc->scan_size());
+   ((::image32_t*)pDst)->copy(cx, cy, scanDst, (::image32_t *)pSrc, scanSrc);
 
 
    ::i32 iFilterXLowerBound;
@@ -5343,13 +5361,13 @@ void imaging::spread__32CC(::image::image *pimageDst, ::image::image *pimageSrc,
 
          }
 
-         pSource = pSrc + wSrc * y2;
+         pSource = pSrc + scanSrc * y2;
 
          x1 = xL;
 
          x2 = (x1 - iFilterHalfW) * 4;
 
-         pDestination = pDst + (wDst  * y1) + x1 * 4;
+         pDestination = pDst + (scanDst  * y1) + x1 * 4;
 
          if(*((::u32 *)pDestination) != colorSpreadSetColor)
          {
@@ -5391,7 +5409,7 @@ void imaging::spread__32CC(::image::image *pimageDst, ::image::image *pimageSrc,
                   for (::i32 yFilter = iFilterYLowerBound; yFilter < iFilterYUpperBound; yFilter++)
                   {
 
-                     pSource2 = pSource1 + (wSrc * yFilter);
+                     pSource2 = pSource1 + (scanSrc * yFilter);
 
                      pFilter = pFilterData + yFilter * iFilterW + iFilterXLowerBound;
 
@@ -5469,13 +5487,13 @@ void imaging::spread__32CC(::image::image *pimageDst, ::image::image *pimageSrc,
    for(; y1 < yU;)
    {
 
-      pSource = pSrc + (wSrc * y2);
+      pSource = pSrc + (scanSrc * y2);
 
       x1 = xL;
 
       x2 = xL - iFilterHalfWidthBytes;
 
-      pDestination = pDst + (wDst  * y1) + x1;
+      pDestination = pDst + (scanDst  * y1) + x1;
 
       for(; x1 < xU;)
       {
@@ -5490,7 +5508,7 @@ void imaging::spread__32CC(::image::image *pimageDst, ::image::image *pimageSrc,
             for(::i32 yFilter = iFilterYLowerBound; yFilter <= iFilterYUpperBound; yFilter++)
             {
 
-               pSource2 = pSource1 + (wSrc * yFilter);
+               pSource2 = pSource1 + (scanSrc * yFilter);
 
                pFilter = pFilterData + yFilter * iFilterW + iFilterXLowerBound;
 
@@ -6892,7 +6910,9 @@ void imaging::HueVRCP(::image::image *pimage,::color::color crHue,::f64 dCompres
 
    }
 
-   ::u8 * p = (::u8 *)pimage->get_data();
+   auto map = pimage->map();
+
+   ::u8 * p = (::u8 *)map.data();
 
    ::i64 area = pimage->area();
 

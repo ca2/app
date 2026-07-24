@@ -2,6 +2,7 @@
 #include "list_window.h"
 #include "acme/constant/user_message.h"
 #include "aura/graphics/draw2d/graphics.h"
+#include "aura/graphics/draw2d/graphics_pointer.h"
 #include "berg/user/menu/item.h"
 #include "berg/user/menu/item_ptra.h"
 

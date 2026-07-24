@@ -3,6 +3,7 @@
 #include "apex/platform/savings.h"
 #include "aura/graphics/draw2d/brush.h"
 #include "aura/graphics/draw2d/graphics.h"
+#include "aura/graphics/draw2d/graphics_pointer.h"
 #include "aura/graphics/draw2d/draw2d.h"
 #include "berg/user/experience/frame_window.h"
 #include "berg/user/experience/size_manager.h"

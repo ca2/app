@@ -44,6 +44,8 @@ namespace image
 
       virtual bool create(::i32 cx, ::i32 cy);
       virtual bool create(::i32 cx, ::i32 cy, ::u32 nFlags, ::i32 nInitial, ::i32 nGrow);
+      virtual void create_color_blend(image_list *pimagelistSource, const ::color::color &color,
+                               const class ::opacity &opacity);
       virtual void realize(::draw2d::graphics * pgraphics) const;
 
 
@@ -96,7 +98,6 @@ namespace image
       virtual ::image::image_pointer get_image(::i32 iImage);
 
 
-      virtual void color_blend(image_list* pimagelistSource, const ::color::color& color, const class ::opacity& opacity);
 
 
       virtual void draw(::draw2d::graphics * pgraphics, ::i32 iImage, const ::f64_point & point, ::i32 iFlag);

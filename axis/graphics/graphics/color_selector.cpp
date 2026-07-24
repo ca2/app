@@ -7,6 +7,7 @@
 #include "acme/graphics/image/image32.h"
 #include "acme/prototype/geometry2d/_text_stream.h"
 #include "aura/graphics/draw2d/graphics.h"
+#include "aura/graphics/draw2d/graphics_pointer.h"
 #include "aura/graphics/image/context.h"
 #include "aura/graphics/image/image.h"
 #include "aura/graphics/draw2d/brush.h"

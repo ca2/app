@@ -6,6 +6,7 @@
 #include "acme/constant/user_key.h"
 #include "acme/user/user/keyboard_state.h"
 #include "aura/graphics/draw2d/graphics.h"
+#include "aura/graphics/draw2d/graphics_pointer.h"
 #include "aura/graphics/draw2d/draw2d.h"
 #include "aura/graphics/draw2d/pen.h"
 #include "aura/message/user.h"

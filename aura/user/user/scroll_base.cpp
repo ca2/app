@@ -8,6 +8,7 @@
 #include "acme/user/user/tool.h"
 #include "acme/user/user/mouse.h"
 #include "aura/graphics/draw2d/graphics.h"
+#include "aura/graphics/draw2d/graphics_pointer.h"
 #include "acme/prototype/geometry2d/_text_stream.h"
 
 

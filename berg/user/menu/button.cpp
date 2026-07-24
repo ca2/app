@@ -5,6 +5,7 @@
 #include "acme/constant/user_message.h"
 #include "acme/constant/timer.h"
 #include "aura/graphics/draw2d/graphics.h"
+#include "aura/graphics/draw2d/graphics_pointer.h"
 #include "aura/graphics/draw2d/brush.h"
 #include "aura/graphics/draw2d/pen.h"
 #include "aura/graphics/image/list.h"

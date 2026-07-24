@@ -3,6 +3,7 @@
 #include "acme/exception/interface_only.h"
 //#include "aura/graphics/write_text/_.h"
 #include "aura/graphics/draw2d/graphics.h"
+#include "aura/graphics/draw2d/graphics_pointer.h"
 //#include "acme/prototype/geometry2d/_collection_enhanced.h"
 //#include "acme/prototype/geometry2d/shape_array.h"
 #include "acme/prototype/geometry2d/item.h"

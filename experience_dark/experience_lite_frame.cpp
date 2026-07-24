@@ -140,7 +140,7 @@
                rectangleWindow.height(),
                bf);*/
 
-               pgraphics->BitBlt(rectangleX.left, rectangleX.top, rectangleX.width(), rectangleX.height(), pimage1->g(), iInflate, iInflate);
+               pgraphics->BitBlt(rectangleX.left, rectangleX.top, rectangleX.width(), rectangleX.height(), pgraphicsImage1, iInflate, iInflate);
 
             }
 

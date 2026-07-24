@@ -6,6 +6,7 @@
 #include "acme/prototype/collection/_array_binary_stream.h"
 #include "acme/prototype/data/listener.h"
 #include "aura/graphics/draw2d/graphics.h"
+#include "aura/graphics/draw2d/graphics_pointer.h"
 
 
 namespace user

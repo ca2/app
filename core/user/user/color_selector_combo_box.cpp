@@ -7,6 +7,7 @@
 #include "acme/platform/system.h"
 #include "aura/graphics/draw2d/brush.h"
 #include "aura/graphics/draw2d/graphics.h"
+#include "aura/graphics/draw2d/graphics_pointer.h"
 #include "aura/graphics/draw2d/path.h"
 #include "aura/message/user.h"
 #include "aura/user/user/frame_interaction.h"

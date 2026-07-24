@@ -47,7 +47,7 @@ namespace graphics
       virtual void initialize_graphics_graphics(::windowing::window * pwindow) override;
 
 
-      virtual bool buffer_lock_round_swap_key_buffers() override;
+      virtual bool buffer_lock_round_swap_key_buffers(::draw2d::graphics_pointer &pgraphics) override;
 
       ::collection::index find_best_buffer(const ::i32_size & size);
 

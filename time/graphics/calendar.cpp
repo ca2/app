@@ -3,6 +3,7 @@
 ////#include "acme/exception/exception.h"
 #include "acme/prototype/mathematics/mathematics.h"
 #include "aura/graphics/draw2d/graphics.h"
+#include "aura/graphics/draw2d/graphics_pointer.h"
 
 
 namespace datetime

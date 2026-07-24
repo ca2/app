@@ -307,7 +307,7 @@ namespace hellobase
 
 /*         pimage->Fill(0, 0, 0, 0);
 
-/*         helloaura_render(pimage->g());
+/*         helloaura_render(pgraphicsImage);
 
 
       }
@@ -328,7 +328,7 @@ namespace hellobase
       //   else
       //   {
       //
-      //      helloaura_render_full_impact(pimage->g());
+      //      helloaura_render_full_impact(pgraphicsImage);
       //
       //   }
 
@@ -1244,7 +1244,7 @@ namespace hellobase
 
       //   uchAlpha = ::u8(maximum(0, minimum(255, (m_timeLastOk.elapsed()) * 255 / m_timeAnime)));
 
-/*      //   psystem->imaging().bitmap_blend(pgraphics, ::i32_point(), pimage->get_size(), pimage->g(), ::i32_point(), uchAlpha);
+/*      //   psystem->imaging().bitmap_blend(pgraphics, ::i32_point(), pimage->get_size(), pgraphicsImage, ::i32_point(), uchAlpha);
 
       //   psystem->imaging().bitmap_blend(pgraphics, ::i32_point(), imageFast.get_size(), imageFast.get_graphics(), ::i32_point(), 255 - uchAlpha);
 
@@ -1252,7 +1252,7 @@ namespace hellobase
       //else
       //{
 
-/*      //   pgraphics->from(::i32_point(), pimage->get_size(), pimage->g(), ::i32_point());
+/*      //   pgraphics->from(::i32_point(), pimage->get_size(), pgraphicsImage, ::i32_point());
 
       //}
 

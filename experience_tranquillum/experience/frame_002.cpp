@@ -1,6 +1,7 @@
 #include "framework.h"
 #include "frame_002.h"
 #include "aura/graphics/draw2d/graphics.h"
+#include "aura/graphics/draw2d/graphics_pointer.h"
 #include "aura/graphics/draw2d/path.h"
 #include "acme/graphics/image/image32.h"
 #include "berg/user/experience/frame_window.h"

@@ -8,6 +8,7 @@
 #include "acme/filesystem/filesystem/listing.h"
 #include "apex/database/_binary_stream.h"
 #include "acme/filesystem/filesystem/directory_context.h"
+#include "aura/graphics/draw2d/graphics_lease.h"
 #include "aura/graphics/image/context.h"
 #include "aura/graphics/image/drawing.h"
 #include "aura/graphics/image/array.h"
@@ -179,7 +180,9 @@ namespace userex
 
                   ::image::image_drawing imagedrawing(imagedrawingoptions, imagesource);
 
-                  pimageSmall->g()->draw(imagedrawing);
+                  auto pgraphicsImageSmall = pimageSmall->acquire_graphics();
+
+                  pgraphicsImageSmall->draw(imagedrawing);
 
                   pimage1 = pimageSmall;
 

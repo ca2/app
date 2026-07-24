@@ -112,12 +112,13 @@ namespace draw2d
 //   }
 
 
-   void bitmap::create_bitmap(::draw2d::graphics * pgraphics, const ::i32_size & size,void **ppvBits,::i32 * stride)
+   void bitmap::create_bitmap(::draw2d::graphics * pgraphics, const ::i32_size & size,::image32_t ** ppimage32, const ::image32_t * pimage32,::i32 * stride)
    {
 
       __UNREFERENCED_PARAMETER(pgraphics);
       __UNREFERENCED_PARAMETER(size);
-      __UNREFERENCED_PARAMETER(ppvBits);
+      __UNREFERENCED_PARAMETER(ppimage32);
+      __UNREFERENCED_PARAMETER(pimage32);
       __UNREFERENCED_PARAMETER(stride);
 
       throw ::interface_only();
@@ -182,6 +183,15 @@ namespace draw2d
       return 0;
    }
 
+
+   ::string bitmap::_001_os_bitmap_diagnostics()
+   {
+
+      return "interface_only::not_implemented";
+
+   }
+
+   
    void bitmap::CreateCompatibleBitmap(::draw2d::graphics * pgraphics,::i32 nWidth,::i32 nHeight)
    {
       __UNREFERENCED_PARAMETER(pgraphics);
@@ -190,6 +200,8 @@ namespace draw2d
       throw ::interface_only();
       //return false;
    }
+
+
    void bitmap::CreateDiscardableBitmap(::draw2d::graphics * pgraphics,::i32 nWidth,::i32 nHeight)
    {
       __UNREFERENCED_PARAMETER(pgraphics);

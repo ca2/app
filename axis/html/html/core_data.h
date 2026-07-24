@@ -3,6 +3,7 @@
 
 #include "aura/user/user/interaction_array.h"
 #include "axis/html/graphics/style_sheet_array.h"
+#include "aura/graphics/draw2d/graphics_pointer.h"
 
 
 //
@@ -152,10 +153,10 @@ namespace html
 
       };
 
-      ::user::form_callback* m_pcallback;
-      ::user::interaction* m_puserinteraction;
-      ::pointer<::draw2d::graphics>m_pgraphics;
-      ::f32_rectangle                              m_box;
+      ::user::form_callback *                m_pcallback;
+      ::user::interaction *                  m_puserinteraction;
+      ::draw2d::graphics_pointer             m_pgraphics;
+      ::f32_rectangle                        m_box;
       string                                 m_strTitle;
       layout_state1                          m_layoutstate1;
       layout_state2                          m_layoutstate2;

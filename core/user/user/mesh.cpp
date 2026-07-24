@@ -6306,6 +6306,14 @@ bool mesh::_001OnRightClick(const ::i32_point & point)
    }
 
 
+   ::draw2d::graphics * draw_mesh_item::draw2d_graphics()
+   {
+
+      return m_pgraphics;
+
+   }
+
+
    ::user::e_state draw_mesh_item::get_user_state() const
    {
 

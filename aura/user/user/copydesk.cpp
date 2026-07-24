@@ -456,9 +456,11 @@ namespace user
 
                      auto pfont = m_pfont;
 
-                     pimage->g()->set(pfont);
+                     auto pgraphicsImage = pimage->acquire_graphics();
 
-                     ::f64_size s = pimage->g()->get_text_extent(str);
+                     pgraphicsImage->set(pfont);
+
+                     ::f64_size s = pgraphicsImage->get_text_extent(str);
 
                      if (s.area() > 0.)
                      {
@@ -475,11 +477,11 @@ namespace user
 
                               pimage->fill_byte(0);
 
-                              pimage->g()->set(pfont);
+                              pgraphicsImage->set(pfont);
 
-                              pimage->g()->set_text_color(argb(255, 0, 0, 0));
+                              pgraphicsImage->set_text_color(argb(255, 0, 0, 0));
 
-                              pimage->g()->draw_text(str, ::i32_rectangle(pimage->get_size()), e_align_bottom_left);
+                              pgraphicsImage->draw_text(str, ::i32_rectangle(pimage->get_size()), e_align_bottom_left);
 
                               return true;
 

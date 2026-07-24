@@ -191,7 +191,7 @@ namespace graphics
    }
 
 
-   bool buffer::buffer_lock_round_swap_key_buffers()
+   bool buffer::buffer_lock_round_swap_key_buffers(::draw2d::graphics_pointer &pgraphics)
    {
 
       return true;

@@ -182,7 +182,7 @@ namespace draw2d
 {
 
 
-   using graphics_pointer = ::pointer<graphics>;
+   class graphics_pointer;
 
 
 } // namespace draw2d

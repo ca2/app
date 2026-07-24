@@ -1,5 +1,6 @@
 #include "framework.h"
 #include "printer.h"
+#include "graphics_pointer.h"
 
 
 namespace draw2d

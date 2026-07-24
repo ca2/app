@@ -5,6 +5,8 @@
 #include "acme/graphics/image/image32.h"
 #include "acme/prototype/geometry2d/_text_stream.h"
 #include "aura/graphics/draw2d/graphics.h"
+#include "aura/graphics/draw2d/graphics_lease.h"
+#include "aura/graphics/draw2d/graphics_pointer.h"
 #include "aura/graphics/image/context.h"
 #include "aura/graphics/image/image.h"
 #include "aura/graphics/draw2d/brush.h"
@@ -189,7 +191,7 @@ namespace graphics
    void colors_with_shades_of_grey(::image::image *pimage)
    {
 
-      pimage->map();
+      auto map = pimage->map();
 
       ::collection::count w = pimage->width();
 
@@ -207,7 +209,7 @@ namespace graphics
       for (::collection::index i = 0; i < w; i++)
       {
 
-         pline = (::u8 *)(pimage->get_data() + i);
+         pline = (::u8 *)(map.data() + i);
 
          for (::collection::index j = 0; j < h; j++)
          {
@@ -356,7 +358,9 @@ namespace graphics
 
          ::color::color color(hls);
 
-         pline = pimage->get_data() + uScan * j;
+         auto map = pimage->map();
+
+         pline = map.data() + uScan * j;
          image32_t color32(argb(255, color.u8_red(), color.u8_green(), color.u8_blue()), pimage->color_indexes());
          for (::collection::index i = 0; i < w; i++)
          {
@@ -1154,7 +1158,9 @@ namespace core
 
             ::image::image_drawing imagedrawing(imagedrawingoptions, imagesource);
 
-            m_pimage->g()->draw(imagedrawing);
+            auto pgraphicsImage = m_pimage->acquire_graphics();
+
+            pgraphicsImage->draw(imagedrawing);
 
          }
 

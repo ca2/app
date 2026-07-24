@@ -4,6 +4,7 @@
 #include "berg/user/experience/size_manager.h"
 #include "berg/user/experience/move_manager.h"
 #include "aura/graphics/draw2d/graphics.h"
+#include "aura/graphics/draw2d/graphics_pointer.h"
 
 
 #define GRIP_CORNER_LARGE_CX 16

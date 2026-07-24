@@ -86,7 +86,7 @@ namespace user
       rgb(192, 192, 180),
       0.50);
 
-      m_pimagelistBlend->color_blend(
+      m_pimagelistBlend->create_color_blend(
       MenuV033GetImageList(),
       rgb(255, 255, 240),
       64);

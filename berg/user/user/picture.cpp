@@ -3,6 +3,7 @@
 #include "aura/platform/context.h"
 #include <math.h>
 #include "acme/prototype/geometry2d/matrix.h"
+#include "aura/graphics/draw2d/graphics_lease.h"
 #include "aura/graphics/image/context.h"
 #include "aura/graphics/image/image.h"
 #include "aura/graphics/image/drawing.h"
@@ -878,7 +879,9 @@ namespace user
 
             ::image::image_drawing imagedrawing(imagedrawingoptions, imagesource);
 
-            pimageDropShadow->g()->draw(imagedrawing);
+            auto pgraphicsImageDropShadow = pimageDropShadow->acquire_graphics();
+
+            pgraphicsImageDropShadow->draw(imagedrawing);
 
             pimageDropShadow->multiply_rgb_by_source_alpha(m_ppictureimpl->m_hlsGlowDropShadow);
             

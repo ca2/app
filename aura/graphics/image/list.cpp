@@ -6,6 +6,7 @@
 #include "acme/parallelization/synchronous_lock.h"
 #include "aura/graphics/draw2d/draw_scope.h"
 #include "aura/graphics/draw2d/graphics.h"
+#include "aura/graphics/draw2d/graphics_pointer.h"
 #include "aura/graphics/draw2d/lock.h"
 #include "aura/graphics/image/drawing.h"
 
@@ -107,6 +108,24 @@ namespace image
    }
 
 
+   void image_list::create_color_blend(image_list *pimagelistSource, const ::color::color &color,
+                                       const class ::opacity &opacity)
+   {
+
+      copy_from(pimagelistSource);
+
+      if (m_pimage.ok())
+      {
+
+         auto pgraphicsImage = m_pimage->acquire_graphics();
+
+         pgraphicsImage->fill_rectangle(m_pimage->rectangle(), color & opacity);
+
+      }
+
+   }
+
+
    void image_list::realize(::draw2d::graphics * pgraphics) const
    {
 
@@ -202,21 +221,6 @@ namespace image
       imagedrawing.opacity(opacity);
 
       pgraphics->draw(imagedrawing);
-
-   }
-
-
-   void image_list::color_blend(image_list * pimagelistSource, const ::color::color & color, const class ::opacity & opacity)
-   {
-
-      copy_from(pimagelistSource);
-
-      if (m_pimage.ok())
-      {
-
-         m_pimage->g()->fill_rectangle(m_pimage->rectangle(), color & opacity);
-
-      }
 
    }
 

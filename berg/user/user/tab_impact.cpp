@@ -14,6 +14,7 @@
 #include "acme/prototype/data/listener.h"
 #include "acme/filesystem/filesystem/file_context.h"
 #include "aura/graphics/draw2d/graphics.h"
+#include "aura/graphics/draw2d/graphics_pointer.h"
 #include "aura/user/user/interaction_array.h"
 #include "aura/message/user.h"
 #include "berg/platform/application.h"

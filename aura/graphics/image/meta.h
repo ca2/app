@@ -12,6 +12,7 @@
 
 
 #include "aura/graphics/draw2d/graphics.h"
+#include "aura/graphics/draw2d/graphics_pointer.h"
 
 
 #include "aura/graphics/image/extension.h"
@@ -31,7 +32,8 @@ namespace image
 
 
       ::pointer<::draw2d::bitmap>               m_pbitmap;
-      ::pointer<::draw2d::graphics>             m_pgraphics;
+      //::draw2d::graphics_pointer              m_pgraphics2;
+      ::draw2d::graphics_pointer                m_pgraphicsOwned;
       ::f64                                    m_dSpeed;
       ::f64                                    m_dIsotropicRate;
       //::i32_size                                m_sizeAlloc;

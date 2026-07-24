@@ -1,5 +1,6 @@
 #include "framework.h"
 #include "aura/graphics/draw2d/graphics.h"
+#include "aura/graphics/draw2d/graphics_pointer.h"
 #include "aura/graphics/image/list.h"
 #include "aura/graphics/image/imaging.h"
 #include "aura/graphics/image/drawing.h"
@@ -53,7 +54,7 @@ namespace filemanager
       rgb(220, 220, 215),
       0.50);
 
-      m_pimagelistItemHover->color_blend(
+      m_pimagelistItemHover->create_color_blend(
       m_pimagelistSubItemHover,
       rgb(220, 220, 215),
       127);

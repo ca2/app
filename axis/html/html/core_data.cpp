@@ -12,6 +12,7 @@
 #include "acme/platform/hyperlink.h"
 #include "acme/prototype/data/listener.h"
 #include "acme/filesystem/filesystem/file_context.h"
+#include "aura/graphics/draw2d/graphics_lease.h"
 #include "aura/graphics/image/context.h"
 #include "axis/html/element/element.h"
 #include "axis/html/impl/element.h"
@@ -950,11 +951,9 @@ namespace html
 
       m_pform = pform;
 
-      ::draw2d::graphics_pointer pgraphics;
+      auto pgraphicsImage = pimage->acquire_graphics();
 
-      pgraphics = pimage->g();
-
-      implement(pgraphics);
+      implement(pgraphicsImage);
 
       pform->GetClientBox(m_box);
 
@@ -965,7 +964,7 @@ namespace html
 
       }
 
-      on_layout(pgraphics);
+      on_layout(pgraphicsImage);
 
    }
 
@@ -1003,11 +1002,9 @@ namespace html
 
       m_pform = pform;
 
-      ::draw2d::graphics_pointer pgraphics;
+      auto pgraphicsImage = pimage->acquire_graphics();
 
-      pgraphics = pimage->g();
-
-      implement(pgraphics);
+      implement(pgraphicsImage);
 
    }
 
@@ -1054,11 +1051,9 @@ namespace html
 
       }
 
-      ::draw2d::graphics_pointer pgraphics;
+      auto pgraphicsImage = pimage->acquire_graphics();
 
-      pgraphics = pimage->g();
-
-      on_layout(pgraphics);
+      on_layout(pgraphicsImage);
 
    }
 

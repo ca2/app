@@ -4,8 +4,10 @@
 
 #include "acme/constant/gpu.h"
 #include "aura/graphics/draw2d/graphics.h"
+#include "aura/graphics/draw2d/graphics_pointer.h"
 #include "bred/gpu/compositor.h"
 #include "bred/gpu/context.h"
+#include "bred/gpu/context_lease.h"
 #include "bred/gpu/device.h"
 
 
@@ -39,9 +41,9 @@ namespace gpu
       ::pointer < ::gpu::model_buffer >         m_pmodelbufferTextOutDummy;
       //::pointer < ::gpu::shader >                 m_pshaderLine;
       ::collection::index                       m_iGpuContextFrameSerial;
-      pool_group* m_ppoolgroupFrame;
-      ::gpu::context_lease m_contextlease;
-      ::pointer<::gpu::layer> m_pgpulayerBeforeLayerScope;
+      pool_group *                              m_ppoolgroupFrame;
+      ::gpu::context_lease                      m_pgpucontextLease;
+      ::pointer<::gpu::layer>                   m_pgpulayerBeforeLayerScope;
 
       graphics();
       ~graphics() override;

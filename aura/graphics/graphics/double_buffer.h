@@ -39,7 +39,7 @@ namespace graphics
       
 
 
-      bool buffer_lock_round_swap_key_buffers() override;
+      bool buffer_lock_round_swap_key_buffers(::draw2d::graphics_pointer &pgraphics) override;
 
       // synchronous_lock buffer synchronization first...
       buffer_item * get_buffer_item() override;

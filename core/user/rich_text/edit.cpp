@@ -16,6 +16,8 @@
 //#include "acme/platform/timer.h"
 #include "aura/graphics/draw2d/brush.h"
 #include "aura/graphics/draw2d/graphics.h"
+#include "aura/graphics/draw2d/graphics_lease.h"
+#include "aura/graphics/draw2d/graphics_pointer.h"
 #include "aura/graphics/draw2d/path.h"
 #include "aura/graphics/image/image.h"
 #include "aura/graphics/write_text/font.h"
@@ -1163,13 +1165,13 @@ namespace user
 
             auto offset = sz / 2;
 
-            pimage->g()->offset(offset);
+            auto pgraphicsImage = pimage->acquire_graphics();
 
-            ::draw2d::graphics_pointer pgraphicsImage = pimage->g();
+            pgraphicsImage->offset(offset);
 
             draw_text(pgraphicsImage, rectangle);
 
-            pimage->g()->offset(-offset);
+            pgraphicsImage->offset(-offset);
 
             defer_draw_drop_shadow_phase1(rDropShadow, blurDropShadow, imageDropShadow, pimage);
 

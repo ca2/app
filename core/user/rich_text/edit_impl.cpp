@@ -17,6 +17,7 @@
 #include "acme/prototype/string/str.h"
 #include "acme/platform/scoped_restore.h"
 #include "aura/graphics/draw2d/graphics.h"
+#include "aura/graphics/draw2d/graphics_pointer.h"
 #include "aura/message/user.h"
 #include "aura/user/user/frame_interaction.h"
 #include "aura/user/user/copydesk.h"

@@ -17,7 +17,7 @@
 #include "aura/graphics/image/icon.h"
 #include "aura/message/user.h"
 #include "aura/platform/application.h"
-#include "aura/platform/draw_context2.h"
+#include "aura/platform/draw_context.h"
 #include "aura/platform/session.h"
 #include "aura/platform/system.h"
 #include "aura/user/user/alpha_source.h"

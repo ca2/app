@@ -12,6 +12,7 @@
 #include "apex/handler/signal.h"
 #include "apex/platform/application.h"
 #include "aura/graphics/draw2d/graphics.h"
+#include "aura/graphics/draw2d/graphics_pointer.h"
 #include "aura/graphics/draw2d/draw2d.h"
 #include "aura/graphics/draw2d/graphics_lease.h"
 #include "aura/graphics/write_text/fonts.h"
@@ -1534,8 +1535,7 @@ namespace write_text
             ? (::draw2d::host *) m_puserinteractionGraphicsContext.m_p
             : (::draw2d::host *) m_puserinteraction.m_p;
          auto graphicslease = pdraw2d->acquire_memory_graphics(
-            pdraw2dhost,
-            {256, 256});
+            {256, 256}, pdraw2dhost);
          auto pgraphics = graphicslease.get();
          ::u64 uGraphicsAcquireMicroseconds = 0;
 

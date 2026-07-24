@@ -4,6 +4,7 @@
 #include "core/user/user/_.h"
 #include "xfplayer_impact_line_selection.h"
 #include "acme/prototype/geometry2d/_collection.h"
+#include "aura/graphics/draw2d/graphics_lease.h"
 
 
 class CLASS_DECL_CORE xfplayer_impact_line  :

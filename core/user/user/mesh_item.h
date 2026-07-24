@@ -6,8 +6,8 @@
 #include "acme/prototype/collection/integer_map.h"
 //#include "acme/prototype/geometry2d/_geometry2d.h"
 #include "acme/prototype/geometry2d/rectangle.h"
-
-#include "aura/platform/draw_context2.h"
+#include "aura/graphics/draw2d/graphics_lease.h"
+#include "aura/platform/draw_context.h"
 
 
 namespace user
@@ -159,7 +159,7 @@ namespace user
    {
    public:
 
-
+      ::draw2d::graphics_pointer          m_pgraphics;
       class ::time                        m_timeLastDraw;
       // ::i32_rectangle                     m_rectangleGroup;
       ::i32_rectangle                     m_rectangleItem;
@@ -191,6 +191,7 @@ namespace user
       void initialize_draw_mesh_item(mesh * pmesh);
 
 
+      ::draw2d::graphics *draw2d_graphics() override;
       //void update_item_color();
 
 
@@ -250,6 +251,7 @@ namespace user
    public:
 
 
+      ::draw2d::graphics_pointer          m_pgraphics;
       class ::time                        m_nanoLastDraw;
        ::i32_rectangle                    m_rectangleGroup;
       //::i32_rectangle                   m_rectangleItem;
@@ -286,6 +288,7 @@ namespace user
       void initialize_draw_mesh_group(mesh * pmesh);
 
 
+      ::draw2d::graphics *draw2d_graphics() override;
       //::image::image_list_pointer get_image_list();
       //bool draw_image();
       void draw_group_image();

@@ -10,6 +10,7 @@
 #include "acme/user/user/keyboard_state.h"
 #include "apex/handler/signal.h"
 #include "aura/graphics/draw2d/graphics.h"
+#include "aura/graphics/draw2d/graphics_pointer.h"
 #include "aura/user/user/system.h"
 #include "aura/windowing/windowing.h"
 #include "aura/windowing/window.h"

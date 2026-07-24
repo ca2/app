@@ -2,6 +2,7 @@
 #include "api.h"
 #include "graphics.h"
 #include "acme/prototype/string/international.h"
+#include "aura/graphics/draw2d/graphics_pointer.h"
 
 
 namespace draw2d

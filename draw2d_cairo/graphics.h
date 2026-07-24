@@ -3,6 +3,7 @@
 
 #include "acme/prototype/geometry2d/_collection.h"
 #include "aura/graphics/draw2d/graphics.h"
+#include "aura/graphics/draw2d/graphics_pointer.h"
 
 
 typedef void FN_CAIRO_TEXT(cairo_t *, const_char_pointer );

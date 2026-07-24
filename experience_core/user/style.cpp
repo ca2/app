@@ -8,6 +8,7 @@
 #include "apex/platform/savings.h"
 #include "aura/graphics/draw2d/pen.h"
 #include "aura/graphics/draw2d/graphics.h"
+#include "aura/graphics/draw2d/graphics_pointer.h"
 #include "aura/graphics/write_text/font.h"
 #include "aura/graphics/image/image.h"
 #include "aura/graphics/image/drawing.h"

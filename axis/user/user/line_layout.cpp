@@ -2,6 +2,7 @@
 #include "line_layout.h"
 #include "acme/constant/user_message.h"
 #include "acme/platform/node.h"
+#include "aura/graphics/draw2d/graphics_pointer.h"
 #include "aura/graphics/write_text/font.h"
 #include "aura/user/user/interaction_array.h"
 #include "aura/user/user/style.h"

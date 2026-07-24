@@ -19,7 +19,7 @@ namespace user
    {
    public:
       ::pointer<::data::tree_item_base>                 m_pitem;
-      ::pointer < ::draw2d::graphics >             m_pdc;
+      ::draw2d::graphics_pointer             m_pdc;
       ::collection::index                          m_iItem;
       ::collection::index                          m_iIndentation;
       ::f64                                       m_dItemHeight;

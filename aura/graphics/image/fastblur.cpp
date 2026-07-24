@@ -169,17 +169,17 @@ inline void storeFloatAsRGBA8(f3232x4_t data,::u32* destination)
    }
 
 
-   void fastblur::initialize(::i32 cx,::i32 cy,::i32 radius)
+   void fastblur::initialize(const ::i32_size & size,::i32 radius)
    {
 
-      if (cx <= 0 || cy <= 0 || radius <= 0)
+      if (size.cx <= 0 || size.cy <= 0 || radius <= 0)
       {
 
          throw ::exception(error_bad_argument);
 
       }
 
-      if (m_size == ::i32_size(cx, cy) && m_iRadius == radius)
+      if (m_size == size && m_iRadius == radius)
       {
 
          return;
@@ -207,14 +207,14 @@ inline void storeFloatAsRGBA8(f3232x4_t data,::u32* destination)
          timage = nullptr;
       }
 
-      ::i32 wj = cx;
+      ::i32 wj = size.cx;
 
       //if(wj % 16 > 0)
       //{
       //   wj = ((wj / 16) * 16) + 16;
       //}
 
-      const ::i32 wh = (wj)*(cy);
+      const ::i32 wh = (wj) * (size.cy);
 
       timage = ___new vector4[wh];
       // temporary output space for first pass.
@@ -279,8 +279,7 @@ inline void storeFloatAsRGBA8(f3232x4_t data,::u32* destination)
       m_u8aDiv.set_size(256 * div);
       ::u8 * dv         = m_u8aDiv.get_data();
 
-      m_size.cx         = cx;
-      m_size.cy         = cy;
+      m_size = size;
 
       for(::i32 i = 0; i < m_u8aDiv.get_count(); i++)
       {
@@ -298,12 +297,12 @@ inline void storeFloatAsRGBA8(f3232x4_t data,::u32* destination)
    }
 
 
-   void fastblur::initialize(i32_size sz,::i32 iRadius)
+   /*void fastblur::initialize(i32_size sz,::i32 iRadius)
    {
 
       return initialize(sz.cx,sz.cy,iRadius);
 
-   }
+   }*/
 
 
    void fastblur::blur(::image::image *pimage, const ::i32_rectangle & rectangle)
@@ -319,13 +318,11 @@ inline void storeFloatAsRGBA8(f3232x4_t data,::u32* destination)
    void fastblur::blur(::image::image *pimage)
    {
 
-      ::i32 cx = pimage->width();
-
-      ::i32 cy = pimage->height();
+      auto size= pimage->size();
 
       ::i32 iRadius = m_iRadius;
 
-      if (cx <= 0 || cy <= 0 || iRadius <= 0)
+      if (size.cx <= 0 || size.cy <= 0 || iRadius <= 0)
       {
 
          throw ::exception(error_wrong_state);
@@ -333,7 +330,7 @@ inline void storeFloatAsRGBA8(f3232x4_t data,::u32* destination)
       }
 
       //if (!)
-      initialize(cx, cy, iRadius);
+      initialize(size, iRadius);
       //{
 
       //   return false;
@@ -604,12 +601,11 @@ auto tickC1 = ::time::now();
 
             do_fastblur(
                 pimage->image32(),
-                m_size.cx,
-                m_size.cy,
+                m_size,
                 m_rgbaa.data(),
                 m_u8aDiv.get_data(),
                 pimage->scan_size(),
-                cx,cy,bottomup);
+                size,bottomup);
 
          //}
          //catch(...)
@@ -1343,7 +1339,8 @@ auto tick2 = ::time::now();
 
 
 
-   void fastblur::do_fastblur(image32_t * pimage32,::i32 w,::i32 h,rgba_t * prgba,::u8 * dv,::i32 stride,::i32 cx,::i32 cy,::i32 bottomup)
+   void fastblur::do_fastblur(image32_t *pimage32, const ::i32_size &size, rgba_t *prgba, ::u8 *dv, ::i32 stride,
+                              const ::i32_size &size2, ::i32 bottomup)
    {
 
       ::i32 radius = m_iRadius;
@@ -1355,7 +1352,11 @@ auto tick2 = ::time::now();
 
       }
 
-      ::i32 rsum,gsum,bsum,asum;
+      auto w = size.cx;
+      auto h = size.cy;
+      auto cx = size2.cx;
+      auto cy = size2.cy;
+      ::i32 rsum, gsum, bsum, asum;
       ::i32 x;
       ::i32 y;
       ::i32 i;
@@ -1585,12 +1586,18 @@ auto tick2 = ::time::now();
 
 #endif // VECTOR3_SSE
 
-   void fastblur::do_fastblur(image32_t * pimage32,::i32 w,::i32 h,::u8 * rectangle,::u8 * g,::u8 * b,::u8 * a,::u8 * dv,::i32 stride,::i32 * vmin,::i32 * vmax,::i32 cx,::i32 cy,::i32 bottomup)
+   void fastblur::do_fastblur(image32_t * pimage32,const ::i32_size & size,::u8 * rectangle,::u8 * g,::u8 * b,::u8 * a,::u8 * dv,::i32 stride,::i32 * vmin,::i32 * vmax, const ::i32_size & size2,::i32 bottomup)
    {
 
       throw ::exception(error_wrong_state);
 
       /*
+      * 
+      *       auto w = size.cx;
+      auto h = size.cy;
+      auto cx = size2.cx;
+      auto cy = size2.cy;
+
 
             if (radius <= 0)
             {

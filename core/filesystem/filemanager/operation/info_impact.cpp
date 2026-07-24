@@ -6,6 +6,7 @@
 #include "acme/constant/user_message.h"
 //#include "acme/platform/timer.h"
 #include "aura/graphics/draw2d/graphics.h"
+#include "aura/graphics/draw2d/graphics_pointer.h"
 
 
 namespace filemanager

@@ -2776,6 +2776,7 @@
     <ClCompile Include="graphics\image\image32_array.cpp" />
     <ClCompile Include="graphics\image\pixmap.cpp" />
     <ClCompile Include="graphics\image\image32.cpp" />
+    <ClCompile Include="graphics\image\pixmap_lease.cpp" />
     <ClCompile Include="handler\command_handler.cpp" />
     <ClCompile Include="handler\dispatch_array.cpp" />
     <ClCompile Include="handler\extended_topic.cpp" />
@@ -2868,6 +2869,8 @@
     <ClInclude Include="filesystem\filesystem\_format.h" />
     <ClInclude Include="filesystem\file\byte2_stream.h" />
     <ClInclude Include="filesystem\file\protocol_file.h" />
+    <ClInclude Include="graphics\image\pixmap_lease.h" />
+    <ClInclude Include="graphics\image\pixmap_t.h" />
     <ClInclude Include="include\_pointer_forward_declaration.h" />
     <ClInclude Include="nano\graphics\context.h" />
     <ClInclude Include="nano\graphics\image.h" />

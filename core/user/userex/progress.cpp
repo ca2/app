@@ -5,6 +5,7 @@
 #include "acme/constant/timer.h"
 //#include "acme/platform/timer.h"
 #include "aura/graphics/draw2d/graphics.h"
+#include "aura/graphics/draw2d/graphics_pointer.h"
 #include "aura/message/user.h"
 #include "aura/platform/session.h"
 #include "aura/user/user/frame_interaction.h"

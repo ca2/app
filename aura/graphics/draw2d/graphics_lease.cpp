@@ -10,29 +10,42 @@ namespace draw2d
 {
 
 
-   graphics_lease::graphics_lease()
+   graphics_lease::graphics_lease() : m_bOwned(false)
    {
 
    }
 
 
-   graphics_lease::graphics_lease(
-      ::draw2d::draw2d * pdraw2d,
-      ::draw2d::graphics * pgraphics,
-      ::image::image * pimage) :
-      m_pdraw2d(pdraw2d),
-      m_pgraphics(pgraphics),
-      m_pimage(pimage)
-   {
+   //graphics_lease::graphics_lease(
+   //   ::draw2d::draw2d * pdraw2d,
+   //   ::draw2d::graphics * pgraphics,
+   //   ::image::image * pimage,
+   //   bool bOwned) :
+   //   m_pdraw2d(pdraw2d),
+   //   m_pgraphics(pgraphics),
+   //   m_pimage(pimage),
+   //   m_bOwned(bOwned)
+   //{
 
+   //}
+
+   graphics_lease::graphics_lease(::draw2d::draw2d * pdraw2d,::draw2d::graphics *pgraphics, 
+                                  ::image::image * pimage, bool bOwned) :
+       graphics_pointer(pgraphics), m_pdraw2d(pdraw2d), m_pimage(pimage), m_bOwned(bOwned)
+   {
    }
 
+   //   graphics_lease::graphics_lease(::draw2d::graphics *pgraphics, ::image::image * pimage, 
+   //      bool bOwned) : m_pgraphics(pgraphics), m_pimage(pimage), m_bOwned(bOwned)
+   //{
+   //}
 
-   graphics_lease::graphics_lease(graphics_lease && lease) noexcept :
+   graphics_lease::graphics_lease(graphics_lease && lease) :
       m_pdraw2d(::transfer(lease.m_pdraw2d)),
-      m_pgraphics(::transfer(lease.m_pgraphics)),
+      graphics_pointer(::transfer(lease)),
       m_pimage(::transfer(lease.m_pimage)),
-      m_bDamaged(lease.m_bDamaged)
+      m_bDamaged(lease.m_bDamaged),
+      m_bOwned(lease.m_bOwned)
    {
 
       ASSERT(!lease.m_bLayerScopeActive);
@@ -42,7 +55,7 @@ namespace draw2d
    }
 
 
-   graphics_lease & graphics_lease::operator=(graphics_lease && lease) noexcept
+   graphics_lease & graphics_lease::operator=(graphics_lease && lease)
    {
 
       if (this != &lease)
@@ -53,9 +66,10 @@ namespace draw2d
          close_noexcept();
 
          m_pdraw2d = ::transfer(lease.m_pdraw2d);
-         m_pgraphics = ::transfer(lease.m_pgraphics);
+         BASE_POINTER::operator=(::transfer(lease));
          m_pimage = ::transfer(lease.m_pimage);
          m_bDamaged = lease.m_bDamaged;
+         m_bOwned = lease.m_bOwned;
 
          lease.m_bDamaged = false;
 
@@ -74,28 +88,28 @@ namespace draw2d
    }
 
 
-   graphics_lease::operator bool() const
-   {
+   //graphics_lease::operator bool() const
+   //{
 
-      return get() != nullptr;
+   //   return get() != nullptr;
 
-   }
-
-
-   ::draw2d::graphics * graphics_lease::get() const
-   {
-
-      return m_pgraphics.m_p;
-
-   }
+   //}
 
 
-   ::draw2d::graphics * graphics_lease::operator->() const
-   {
+   //::draw2d::graphics * graphics_lease::get() const
+   //{
 
-      return get();
+   //   return m_pgraphics.m_p;
 
-   }
+   //}
+
+
+   //::draw2d::graphics * graphics_lease::operator->() const
+   //{
+
+   //   return get();
+
+   //}
 
 
    ::draw2d::graphics_layer_scope graphics_lease::begin_layer_scope()
@@ -109,7 +123,7 @@ namespace draw2d
    void graphics_lease::_begin_layer_scope()
    {
 
-      if (!m_pgraphics || m_bLayerScopeActive)
+      if (this->is_null() || m_bLayerScopeActive)
       {
 
          throw ::exception(
@@ -162,21 +176,37 @@ namespace draw2d
       }
 
       auto pdraw2d = ::transfer(m_pdraw2d);
-      auto pgraphics = ::transfer(m_pgraphics);
+      auto pgraphics = ::transfer((BASE_POINTER &&) *this);
       auto pimage = ::transfer(m_pimage);
       auto bDamaged = m_bDamaged;
+      bool bOwned = m_bOwned;
 
       m_bDamaged = false;
 
-      if (pdraw2d && pgraphics)
-      {
+      m_bOwned = false;
 
-         pdraw2d->return_memory_graphics(
-            ::transfer(pgraphics),
-            ::transfer(pimage),
-            bDamaged);
+      //if (bOwned)
+      //{
 
-      }
+      //   if (pimage && pgraphics)
+      //   {
+
+      //      pimage->return_memory_graphics(pgraphics);
+
+      //   }
+
+      //}
+      //else
+      //{
+         
+         if (pdraw2d && pgraphics)
+         {
+
+            pdraw2d->return_memory_graphics(::transfer(pgraphics), ::transfer(pimage), bDamaged);
+
+         }
+
+      //}
 
    }
 

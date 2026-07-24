@@ -13,6 +13,7 @@
 #include "acme/handler/topic.h"
 //#include "acme/handler/sequence.h"
 #include "aura/graphics/draw2d/graphics.h"
+#include "aura/graphics/draw2d/graphics_pointer.h"
 #include "aura/windowing/monitor.h"
 #include "aura/windowing/windowing.h"
 #include "aura/windowing/display.h"

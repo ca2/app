@@ -4,6 +4,8 @@
 #include "acme/parallelization/manual_reset_happening.h"
 #include "acme/prototype/geometry2d/point.h"
 #include "acme/prototype/geometry2d/size.h"
+#include "aura/graphics/draw2d/graphics_lease.h"
+//#include "aura/graphics/draw2d/graphics_pointer.h"
 
 
 namespace graphics
@@ -17,9 +19,9 @@ namespace graphics
 
       
       ::e_graphics                  m_egraphics;
-      ::image::image_pointer        m_pimage2;
+      ::image::image_pointer        m_pimageBufferItem;
       ::mutex_pointer               m_pmutex;
-      ::draw2d::graphics_pointer    m_pgraphicsBufferItem;
+      //::draw2d::graphics_pointer    m_pgraphicsBufferItem;
       ::i32_point                   m_pointBufferItem;
       ::i32_size                    m_sizeBufferItem;
       ::i32_point                   m_pointBufferItemWindow;
@@ -27,11 +29,10 @@ namespace graphics
       ::particle_pointer            m_pparticleData;
       manual_reset_happening        m_manualresethappening;
       ::i32_size                    m_sizeInternal;
-      ::i32                           m_iScan;
+      ::i32                         m_iScan;
 
 
-      ::draw2d::graphics_pointer g();
-
+      virtual ::draw2d::graphics_lease acquire_graphics();
 
       virtual void switch_to_draw();
 
@@ -82,7 +83,7 @@ namespace graphics
       //virtual bool presentation_complete();
       virtual void on_after_graphical_update();
 
-      virtual bool buffer_lock_round_swap_key_buffers();
+      virtual bool buffer_lock_round_swap_key_buffers(::draw2d::graphics_pointer &pgraphics);
 
       virtual void update_screen();
 
@@ -103,9 +104,9 @@ namespace graphics
 
       //virtual void __on_begin_draw();
 
-      virtual void on_end_draw();
-      virtual void on_end_layout();
-      virtual void on_end(::e_graphics egraphics);
+      virtual void on_end_draw(::draw2d::graphics_pointer & pgraphics);
+      virtual void on_end_layout(::draw2d::graphics_pointer &pgraphics);
+      virtual void on_end(::e_graphics egraphics, ::draw2d::graphics_pointer &pgraphics);
 
       //virtual bool update_buffer(const ::i32_size & size, ::i32 iStrideParam = -1);
 

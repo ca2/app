@@ -3,6 +3,7 @@
 #include "acme/handler/item.h"
 #include "acme/user/user/tool.h"
 #include "aura/graphics/draw2d/graphics.h"
+#include "aura/graphics/draw2d/graphics_pointer.h"
 #include "aura/graphics/draw2d/brush.h"
 #include "aura/graphics/draw2d/pen.h"
 #include "aura/graphics/draw2d/stock_icon.h"

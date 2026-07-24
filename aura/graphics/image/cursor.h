@@ -1,6 +1,7 @@
 #pragma once
 
 
+#include "aura/graphics/draw2d/graphics_lease.h"
 #include "aura/graphics/image/source.h"
 
 
@@ -47,8 +48,8 @@ namespace image
 
       //static bool reset(::user::interaction * pinteraction, ::aura::session * psession);
 
-      ::draw2d::graphics * g() const;
-      ::draw2d::graphics * g(const ::f64_size & sizeHint);
+      ::draw2d::graphics_lease acquire_graphics() const;
+      ::draw2d::graphics_lease acquire_graphics(const ::f64_size &sizeHint);
 
       
       ::image::image_pointer image_source_image(const ::i32_size & size) override;

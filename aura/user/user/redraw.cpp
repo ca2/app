@@ -4,6 +4,7 @@
 #include "aura/graphics/draw2d/clip.h"
 #include "aura/graphics/draw2d/draw2d.h"
 #include "aura/graphics/draw2d/graphics.h"
+#include "aura/graphics/draw2d/graphics_pointer.h"
 #include "acme/prototype/geometry2d/_string.h"
 #include "aura/platform/system.h"
 

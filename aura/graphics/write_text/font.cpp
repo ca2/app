@@ -7,6 +7,7 @@
 #include "acme/platform/application.h"
 #include "acme/platform/node.h"
 #include "aura/graphics/draw2d/graphics.h"
+#include "aura/graphics/draw2d/graphics_pointer.h"
 #include "aura/graphics/draw2d/draw2d.h"
 
 

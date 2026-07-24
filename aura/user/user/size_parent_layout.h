@@ -13,7 +13,7 @@
 struct size_parent_layout
 {
 
-   ::pointer < ::draw2d::graphics > & m_pgraphics;
+   ::draw2d::graphics_pointer & m_pgraphics;
    ::i32_rectangle      m_rectangle;     // parent client rectangle (trim as appropriate)
    ::i32_size           m_sizeTotal;     // total size on each side as on_layout proceeds
    bool                 m_bStretch;      // should stretch to fill all space

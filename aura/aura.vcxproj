@@ -2762,6 +2762,7 @@
     <ClCompile Include="graphics\draw2d\graphics_lease.cpp" />
     <ClCompile Include="graphics\draw2d\graphics_context.cpp" />
     <ClCompile Include="graphics\draw2d\graphics_extension.cpp" />
+    <ClCompile Include="graphics\draw2d\graphics_pointer.cpp" />
     <ClCompile Include="graphics\draw2d\holdee.cpp" />
     <ClCompile Include="graphics\draw2d\holder.cpp" />
     <ClCompile Include="graphics\draw2d\host.cpp" />
@@ -3164,6 +3165,7 @@
     <ClInclude Include="graphics\draw2d\graphics_call.h" />
     <ClInclude Include="graphics\draw2d\graphics_context.h" />
     <ClInclude Include="graphics\draw2d\graphics_extension.h" />
+    <ClInclude Include="graphics\draw2d\graphics_pointer.h" />
     <ClInclude Include="graphics\draw2d\holdee.h" />
     <ClInclude Include="graphics\draw2d\holder.h" />
     <ClInclude Include="graphics\draw2d\host.h" />
@@ -3175,6 +3177,7 @@
     <ClInclude Include="graphics\draw2d\path.h" />
     <ClInclude Include="graphics\draw2d\path_shape.h" />
     <ClInclude Include="graphics\draw2d\pen.h" />
+    <ClInclude Include="graphics\draw2d\pixmap_lease.h" />
     <ClInclude Include="graphics\draw2d\printer.h" />
     <ClInclude Include="graphics\draw2d\region.h" />
     <ClInclude Include="graphics\draw2d\region_shape.h" />
@@ -3339,12 +3342,13 @@
     <ClInclude Include="platform\application.h" />
     <ClInclude Include="platform\aura.h" />
     <ClInclude Include="platform\context.h" />
-    <ClInclude Include="platform\draw_context2.h" />
+    <ClInclude Include="platform\draw_context.h" />
     <ClInclude Include="platform\component.h" />
     <ClInclude Include="platform\message_queue.h" />
     <ClInclude Include="platform\node.h" />
     <ClInclude Include="platform\session.h" />
     <ClInclude Include="platform\shell_open.h" />
+    <ClInclude Include="platform\simple_chain.h" />
     <ClInclude Include="platform\system.h" />
     <ClInclude Include="platform\theme.h" />
     <ClInclude Include="platform\timeout.h" />

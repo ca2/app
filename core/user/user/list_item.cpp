@@ -250,7 +250,7 @@ namespace user
 
                }
 
-               //pimage->g()->fill_rectangle(::i32_rectangle(pimage->size()), argb(255, 200, 220, 255));
+               //pgraphicsImage->fill_rectangle(::i32_rectangle(pimage->size()), argb(255, 200, 220, 255));
                if (m_pitem->m_pmesh->m_plist->m_iIconBlur > 0 && m_pitem->m_pmesh->m_plist->m_iIconBlurRadius > 0)
                {
 

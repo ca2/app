@@ -729,6 +729,9 @@
     <ClCompile Include="graphics\draw2d\draw_scope.cpp">
       <Filter>Source Files\graphics\draw2d</Filter>
     </ClCompile>
+    <ClCompile Include="graphics\draw2d\graphics_pointer.cpp">
+      <Filter>Source Files\graphics\draw2d</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="windowing\_.h">
@@ -998,7 +1001,7 @@
     <ClInclude Include="platform\context.h">
       <Filter>Header Files\platform</Filter>
     </ClInclude>
-    <ClInclude Include="platform\draw_context2.h">
+    <ClInclude Include="platform\draw_context.h">
       <Filter>Header Files\platform</Filter>
     </ClInclude>
     <ClInclude Include="platform\message_queue.h">
@@ -1747,6 +1750,15 @@
     </ClInclude>
     <ClInclude Include="graphics\draw2d\draw_scope.h">
       <Filter>Header Files\graphics\draw2d</Filter>
+    </ClInclude>
+    <ClInclude Include="graphics\draw2d\graphics_pointer.h">
+      <Filter>Header Files\graphics\draw2d</Filter>
+    </ClInclude>
+    <ClInclude Include="platform\simple_chain.h">
+      <Filter>Header Files\platform</Filter>
+    </ClInclude>
+    <ClInclude Include="graphics\draw2d\pixmap_lease.h">
+      <Filter>Header Files\graphics\image</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

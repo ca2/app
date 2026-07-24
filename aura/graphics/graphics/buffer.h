@@ -27,7 +27,7 @@ namespace graphics
       //virtual ::particle * get_draw_lock() override;
       bool _on_begin(buffer_item * pbufferitem) override;
       virtual void update_screen() override;
-      virtual bool buffer_lock_round_swap_key_buffers() override;
+      virtual bool buffer_lock_round_swap_key_buffers(::draw2d::graphics_pointer &pgraphics) override;
 
 
       virtual bool update_buffer(buffer_item * pitem) override;

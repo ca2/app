@@ -250,7 +250,7 @@ namespace draw2d
    CLASS_DECL_ACME void image_create(::particle * pparticle, ::image::image *& image);
    CLASS_DECL_ACME void image_create_image(::image::image *pimage, const i32_size & size);
    CLASS_DECL_ACME ::u32 * image_get_data(::image::image *pimage);
-   CLASS_DECL_ACME graphics * image_get_graphics(::image::image *pimage);
+  //CLASS_DECL_ACME graphics * image_get_graphics(::image::image *pimage);
 
 
 } // namespace draw2d

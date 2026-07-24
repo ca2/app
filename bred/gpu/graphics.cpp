@@ -79,7 +79,7 @@ namespace gpu
       }
 
       m_pgpucontextCompositor2.release();
-      m_contextlease.close_noexcept();
+      m_pgpucontextLease.close_noexcept();
 
 
    }
@@ -106,8 +106,8 @@ namespace gpu
       }
 
       m_pgpucontextCompositor2.release();
-      m_contextlease = ::transfer(contextlease);
-      set_gpu_context(m_contextlease.get());
+      m_pgpucontextLease = ::transfer(contextlease);
+      set_gpu_context(m_pgpucontextLease.get());
 
    }
 
@@ -115,7 +115,7 @@ namespace gpu
    ::gpu::context_lease & graphics::context_lease()
    {
 
-      return m_contextlease;
+      return m_pgpucontextLease;
 
    }
 

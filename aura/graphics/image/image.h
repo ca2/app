@@ -45,7 +45,7 @@ namespace image
 
       ::i32_rectangle                     m_rectangleTag;
       mutable ::std::atomic_bool          m_bDestinationGraphicsLeaseActive{false};
-
+      //::draw2d::graphics_lease *          m_pgraphicsleaseOwned;
 
       image();
       ~image() override;
@@ -62,6 +62,13 @@ namespace image
       //   virtual void defer_update_all_frames();
 
 
+      //void defer_create_owned_graphics_lease();
+      //void defer_destroy_owned_graphics_lease();
+
+
+      //virtual void set_owned_graphics();
+
+
       virtual ::pointer<::image::image>get_image(const ::i32_size & size);
       virtual ::pointer<::image::image>get_image(::i32 cx, ::i32 cy);
 
@@ -74,17 +81,19 @@ namespace image
       inline bool is_set() const { return !is_null() && _is_set(); }
 
 
-      virtual ::draw2d::graphics * get_graphics2() const; // is semantically const (besides may not be implementationly constant)
+      //virtual ::draw2d::graphics_pointer owned_graphics() const; // is semantically const (besides may not be implementationly constant)
+      virtual ::draw2d::graphics_lease acquire_graphics(const ::f64_size &sizeHint);
       ::draw2d::graphics_lease acquire_graphics(
          ::draw2d::host * pdraw2dhost = nullptr);
+      ::draw2d::graphics_lease _acquire_graphics(::draw2d::host *pdraw2dhost = nullptr);
       bool try_begin_destination_graphics_lease() const;
       void end_destination_graphics_lease() const;
       bool has_active_destination_graphics_lease() const;
-      virtual ::draw2d::graphics * _get_graphics() const; // is semantically const (besides may not be implementationly constant)
+      //virtual ::draw2d::graphics * _get_graphics() const; // is semantically const (besides may not be implementationly constant)
       virtual ::draw2d::bitmap_pointer get_bitmap() const; // is semantically const (besides may not be implementationly constant)
       virtual ::draw2d::bitmap_pointer detach_bitmap();
 
-
+      virtual void create_owned_graphics();
 
       virtual ::collection::count get_image_count() const;
       virtual ::image::image_pointer get_image(::collection::index i);
@@ -137,8 +146,6 @@ namespace image
       //inline ::i32 scan_size() const;
 
 
-      const ::color_indexes & color_indexes() const { return m_colorindexes; }
-      ::color_indexes & color_indexes() { return m_colorindexes; }
 
 
       virtual void rate_rgb(::i32 iMul, ::i32 iDiv);
@@ -169,12 +176,12 @@ namespace image
 
       virtual void hue_offset(::f64 dRate);
 
-      void map(bool bApplyAlphaTransform = true) const override; // some implementations may requrire to map_base to m_pcolorref before manipulate it
-      void unmap() const override; // some implementations may require to unmap from m_pcolorref to update *os* bitmap
+      //::pixmap_lease map(bool bApplyAlphaTransform = true) const override; // some implementations may requrire to map_base to m_pcolorref before manipulate it
+      //void unmap() const override; // some implementations may require to unmap from m_pcolorref to update *os* bitmap
 
 
-      virtual void _map(bool bApplyAlphaTransform = true);
-      virtual void _unmap();
+      void _map(bool bApplyAlphaTransform = true) override;
+      void _unmap(bool bDoUnmap = false) override;
 
       virtual void set_mapped();
 
@@ -277,9 +284,9 @@ namespace image
       virtual void create_thumbnail(const ::scoped_string & scopedstrPath);
 
       //virtual void create_from_data(const ::i32_size & size, ::image32_t * pimage32, ::i32 iScan, ::enum_flag eflagCreate = DEFAULT_CREATE_IMAGE_FLAG, ::i32 iGoodStride = -1, bool bPreserve = false);
-      virtual void create_from_data(const ::i32_size &size, ::image32_t *pimage32, ::i32 iScan,
+      void create_from_data(const ::i32_size &size, const ::image32_t *pimage32, ::i32 iScan,
                                     ::enum_flag eflagCreate = DEFAULT_CREATE_IMAGE_FLAG, 
-                                    bool bPreserve = false);
+                                    bool bPreserve = false) override;
       virtual void create(::draw2d::graphics* pgraphics);
       virtual void create(const ::i32_size & size, ::enum_flag eflagCreate = DEFAULT_CREATE_IMAGE_FLAG, ::i32 iGoodStride = -1, bool bPreserve = false);
       using ::particle::initialize;
@@ -471,8 +478,8 @@ namespace image
       //inline ::i32 line(::i32 line);
 
 
-      //virtual ::draw2d::graphics * g() const; // { return get_graphics(); }
-      inline ::draw2d::graphics * g(const ::f64_size & sizeHint) { return g(); }
+      //virtual ::draw2d::graphics * owned_graphics() const;
+      //virtual ::draw2d::graphics * owned_graphics(const ::f64_size &sizeHint);
       inline ::f64_size origin() const { return ::f64_size(); }
 
       //inline ::color::color pixel(::i32 x, ::i32 y) const;
@@ -534,12 +541,12 @@ namespace image
 
 
 
-      inline ::draw2d::graphics* g() const
-      {
+      //inline ::draw2d::graphics* g() const
+      //{
 
-         return get_graphics2();
+        // return get_graphics2();
 
-      }
+      //}
 
 
 
@@ -575,40 +582,40 @@ namespace image
       }
 
 
-      inline ::image32_t * data()
-      {
+      //inline ::image32_t * data()
+      //{
 
-         return m_pimage32;
+      //   return m_pimage32;
 
-      }
+      //}
 
-      ::image32_t * line_data(::i32 iLine);
+      //::image32_t * line_data(::i32 iLine);
 
-      inline ::image32_t * begin()
-      {
+      //inline ::image32_t * begin()
+      //{
 
-         return this->data();
+      //   return this->data();
 
-      }
+      //}
 
-      inline const ::image32_t * data() const
-      {
+      //inline const ::image32_t * data() const
+      //{
 
-         return m_pimage32;
+      //   return m_pimage32;
 
-      }
+      //}
 
 
-      inline const ::image32_t * begin() const
-      {
+      //inline const ::image32_t * begin() const
+      //{
 
-         return this->data();
+      //   return this->data();
 
-      }
+      //}
 
-      virtual const ::image32_t *get_data() const;
+      //virtual const ::image32_t *get_data() const;
 
-      virtual ::image32_t *get_data();
+      //virtual ::image32_t *get_data();
          
       //inline ::image::image & operator = (const ::image::image & image);
       //inline void operator == (const ::image::image & image) const;
@@ -617,11 +624,6 @@ namespace image
       void draw(const ::image::image_drawing & imagedrawing) override;
       bool _draw_blend(const ::image::image_drawing & imagedrawing) override;
       void _draw_raw(const ::image::image_drawing & imagedrawing) override;
-
-
-
-
-
 
 
       inline image& operator = (const image& image)

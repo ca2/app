@@ -61,7 +61,11 @@ public:
 
    void alpha_spread__24CC(::u8 * pbDest, ::i32 xDest, ::i32 yDest, ::i32 wDest, ::i32 cx, ::i32 cy, ::u8 * pbSrc, ::i32 ySrc, ::i32 xSrc, ::i32 wSrc, ::u8 bMin, ::i32 iRadius);
 
-   void spread__32CC(::image::image *ppimageDst, ::image::image *pimageSrc, ::i32 iRadius, const ::color::color & colorSpreadSetColor);
+   virtual void spread(
+      pixmap_t pixmapTarget, 
+      pixmap_t pixmapSource,
+      ::i32 iRadius, 
+      const ::color::color & colorSpreadSetColor = ::color::white);
 
 
    void channel_spread(
@@ -83,22 +87,22 @@ public:
    ::i32 iRadius,
    const ::color::color & color);
 
+   //void spread(
+   //::draw2d::graphics * pgraphics,
+   //const ::i32_point & pointDst,
+   //const ::i32_size & size,
+   //::draw2d::graphics * pdcSrc,
+   //const ::i32_point & pointSrc,
+   //::i32 iRadius);
+
    void spread(
    ::draw2d::graphics * pgraphics,
    const ::i32_point & pointDst,
    const ::i32_size & size,
    ::draw2d::graphics * pdcSrc,
    const ::i32_point & pointSrc,
-   ::i32 iRadius);
-
-   void spread_set_color(
-   ::draw2d::graphics * pgraphics,
-   const ::i32_point & pointDst,
-   const ::i32_size & size,
-   ::draw2d::graphics * pdcSrc,
-   const ::i32_point & pointSrc,
    ::i32 iRadius,
-   const ::color::color & color);
+   const ::color::color & color = ::color::white);
 
    void true_blend(::draw2d::graphics * pgraphics, const ::i32_rectangle & rectangle, ::draw2d::graphics * pdcColorAlpha, const ::i32_point & pointAlpha, ::image::image *pimageWork = nullptr, ::image::image *pimageWork2 = nullptr, ::image::image *pimageWork3 = nullptr);
 

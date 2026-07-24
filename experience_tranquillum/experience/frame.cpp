@@ -1,6 +1,7 @@
 #include "framework.h"
 #include "frame.h"
 #include "aura/graphics/draw2d/graphics.h"
+#include "aura/graphics/draw2d/graphics_pointer.h"
 #include "aura/graphics/draw2d/draw2d.h"
 #include "aura/graphics/draw2d/pen.h"
 #include "aura/graphics/image/source.h"
@@ -95,7 +96,7 @@ namespace experience_tranquillum
       ////pimage = create_image({rectangleX.width(),  rectangleX.height()});
       //bool b = pgraphicsImage2->BitBlt(0, 0, rectangleX.width() + iInflate * 2, rectangleX.height() + iInflate * 2, pgraphics, rectangleX.left - iInflate, rectangleX.top - iInflate);
       ////bool b = ::BitBlt(dc2, 0, 0, rectangleX.width() + iInflate * 2, rectangleX.height() + iInflate * 2, hdcScreen, rectangleX.left - iInflate, rectangleX.top - iInflate);
-      //b = imaging.blur(pimage->g(), ::i32_point(),
+      //b = imaging.blur(pgraphicsImage, ::i32_point(),
       //                 i32_size(rectangleX.width() + iInflate * 2, rectangleX.height() + iInflate * 2),
       //                 pgraphicsImage2, ::i32_point(), 2);
 
@@ -124,7 +125,7 @@ namespace experience_tranquillum
       //rectangleWindow.height(),
       //bf);*/
 
-      //pgraphics->BitBlt(rectangleX.left, rectangleX.top, rectangleX.width(), rectangleX.height(), pimage->g(), iInflate, iInflate);
+      //pgraphics->BitBlt(rectangleX.left, rectangleX.top, rectangleX.width(), rectangleX.height(), pgraphicsImage, iInflate, iInflate);
 
    }
 

@@ -114,7 +114,7 @@ namespace graphics
       //if (m_imageaBuffer[m_iBuffer]->size() != sizeBuffer)
       {
 
-         pitem->m_pimage2->create(pitem->m_sizeBufferItem);
+         pitem->m_pimageBufferItem->create(pitem->m_sizeBufferItem);
 
          //if (!m_imageaBuffer[m_iBuffer]->create(sizeBuffer))
          //{
@@ -125,7 +125,7 @@ namespace graphics
 
       }
 
-      ::image::image_pointer & pimage = m_bufferitema[m_iBuffer]->m_pimage2;
+      ::image::image_pointer & pimage = m_bufferitema[m_iBuffer]->m_pimageBufferItem;
 
       if (!pimage)
       {
@@ -161,12 +161,12 @@ namespace graphics
 
       }
 
-      if (m_bufferitema[m_iDone]->m_pimage2)
+      if (m_bufferitema[m_iDone]->m_pimageBufferItem)
       {
 
          iFound = m_iDone;
 
-         ::i32_size sizeBuffer = m_bufferitema[iFound]->m_pimage2->size();
+         ::i32_size sizeBuffer = m_bufferitema[iFound]->m_pimageBufferItem->size();
 
          bBigger = sizeBuffer.cx > size.cx || sizeBuffer.cy > size.cy;
 
@@ -182,14 +182,14 @@ namespace graphics
 
          }
 
-         if (!m_bufferitema[i]->m_pimage2)
+         if (!m_bufferitema[i]->m_pimageBufferItem)
          {
 
             break;
 
          }
 
-         ::i32_size sizeBuffer = m_bufferitema[i]->m_pimage2->size();
+         ::i32_size sizeBuffer = m_bufferitema[i]->m_pimageBufferItem->size();
 
          if (size == sizeBuffer)
          {
@@ -230,14 +230,14 @@ namespace graphics
 
             }
 
-            if (!m_bufferitema[i]->m_pimage2)
+            if (!m_bufferitema[i]->m_pimageBufferItem)
             {
 
                break;
 
             }
 
-            ::i32_size sizeBuffer = m_bufferitema[i]->m_pimage2->get_size();
+            ::i32_size sizeBuffer = m_bufferitema[i]->m_pimageBufferItem->get_size();
 
             if (sizeBuffer == size)
             {
@@ -336,7 +336,7 @@ namespace graphics
    }
 
 
-   bool multiple_buffer::buffer_lock_round_swap_key_buffers()
+   bool multiple_buffer::buffer_lock_round_swap_key_buffers(::draw2d::graphics_pointer &pgraphics)
    {
 
       synchronous_lock synchronouslock(this->synchronization(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
@@ -408,7 +408,7 @@ namespace graphics
 
       //bool bOk = false;
 
-      ipc_copy(pitem->m_pimage2);
+      ipc_copy(pitem->m_pimageBufferItem);
 
       //return bOk;
 

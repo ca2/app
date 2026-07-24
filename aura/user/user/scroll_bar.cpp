@@ -3,8 +3,9 @@
 #include "acme/constant/user_message.h"
 #include "acme/handler/item.h"
 #include "acme/user/user/content.h"
-#include "aura/platform/draw_context2.h"
+#include "aura/platform/draw_context.h"
 #include "aura/graphics/draw2d/graphics.h"
+#include "aura/graphics/draw2d/graphics_pointer.h"
 #include "aura/message/user.h"
 
 

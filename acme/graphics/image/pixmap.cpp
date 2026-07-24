@@ -44,57 +44,127 @@ void pixmap::create(const ::i32_size & size, ::enum_flag eflagCreate, ::i32 iGoo
 
 }
 
+
+void pixmap::create_from_data(const ::i32_size & size, const ::image32_t * pimage32, ::i32 iScan,
+                              ::enum_flag eflagCreate, bool bPreserve)
+{
+
+   create(size, DEFAULT_CREATE_IMAGE_FLAG, iScan);
+
+   copy(size, pimage32, m_iScan);
+
+}
+
+
 #define byte_clip2(i) (i)
 void pixmap::mult_alpha_fast()
 {
-   map();
+   auto map = this->map();
 
-   ::u8 *dst = (::u8 *)data();
-   ::i64 size = scan_area();
+   //::u8 *dst = (::u8 *)map.data();
+   //::i64 size = scan_area();
 
 
    //  >> 2 instead of >> 2 subsequent alpha_blend operations say thanks on true_blend because (255) * (1/254) + (255) *
    //  (254/255) > 255
 
+   auto h = map.height();
 
-   while (size--)
+   auto w = map.width();
+
+   for (::i32 iLine = 0; iLine < map.height(); iLine++)
    {
-      if (dst[3] == 0)
+
+      auto pimage32Line = map.line_data(iLine);
+
+      auto x = map.width();
+
+      while (x > 0)
       {
-         *((image32_t *)dst) = {};
+         auto dst = (::u8 *)pimage32Line;
+         if (dst[3] == 0)
+         {
+            *((image32_t *)dst) = {};
+         }
+         else if (dst[3] != 255)
+         {
+            dst[0] = byte_clip2(((::i32)dst[0] * (::i32)dst[3]) >> 8);
+            dst[1] = byte_clip2(((::i32)dst[1] * (::i32)dst[3]) >> 8);
+            dst[2] = byte_clip2(((::i32)dst[2] * (::i32)dst[3]) >> 8);
+         }
+         x--;
+         pimage32Line++;
       }
-      else if (dst[3] != 255)
-      {
-         dst[0] = byte_clip2(((::i32)dst[0] * (::i32)dst[3]) >> 8);
-         dst[1] = byte_clip2(((::i32)dst[1] * (::i32)dst[3]) >> 8);
-         dst[2] = byte_clip2(((::i32)dst[2] * (::i32)dst[3]) >> 8);
-      }
-      dst += 4;
    }
 
    // return true;
 }
 
+bool pixmap::_is_ok() const 
+{
+   return ::particle::is_ok() && pixmap_t::is_ok();
+}
 
-void pixmap::map(bool bApplyTransform) const
+
+pixmap_lease pixmap::map(bool bApplyTransform) const 
+{
+   
+   return {(::pixmap *)this, bApplyTransform}; 
+
+}
+
+
+bool pixmap::_on_map(bool bApplyAlphaTransform)
 {
 
+   if (m_interlockedcountMap > 0)
+   {
+
+      if (!m_bMapped)
+      {
+
+         throw ::exception(error_wrong_state);
+
+      }
+
+   }
+   
+   m_interlockedcountMap++;
+
    if (m_bMapped)
+   {
+
+      return false;
+
+   }
+
+   return true;
+
+}
+
+
+void pixmap::_map(bool bApplyTransform)
+{
+
+   if (!_on_map(bApplyTransform))
    {
 
       return;
 
    }
 
-   auto ppixmap = (pixmap *)this;
+   if (!m_pimage32Raw || !m_pimage32)
+   {
 
-   ppixmap->m_memoryPixmap.set_size(ppixmap->scan_area());
+      m_memoryPixmap.set_size(scan_area());
 
-   ppixmap->m_pimage32Raw = (::image32_t *)ppixmap->m_memoryPixmap.data();
+      m_pimage32Raw = (::image32_t *)m_memoryPixmap.data();
 
-   ppixmap->m_pimage32 = (::image32_t *) ppixmap->m_memoryPixmap.data();
+      m_pimage32 = (::image32_t *)m_memoryPixmap.data();
 
-   ppixmap->m_bMapped = true;
+   }
+
+   m_bMapped = true;
 
 }
 
@@ -142,30 +212,69 @@ void pixmap::copy(const ::i32_size &size, const ::image32_t *pimage32, ::i32 iSc
 void pixmap::on_load_image(const image32_t *pimage32, const ::i32_size &size, int iScan)
 {
 
-   create(size, DEFAULT_CREATE_IMAGE_FLAG, iScan);
+   create_from_data(size, pimage32, iScan);
 
-   copy(size, pimage32, m_iScan);
+}
+
+//
+//void pixmap::unmap(bool bDoUnmap) const
+//{
+//
+//   ((pixmap *)this)->_unmap(bDoUnmap);
+//
+//}
+
+
+bool pixmap::_on_unmap(bool bDoUnmap)
+{
+
+   if (m_interlockedcountMap <= 0)
+   {
+
+      throw ::exception(error_wrong_state);
+
+   }
+
+   m_interlockedcountMap--;
+
+   if (m_interlockedcountMap > 0)
+   {
+
+      return false;
+
+   }
+
+   if ((!m_bMapped || !m_pimage32Raw) && bDoUnmap)
+   {
+
+      throw ::exception(error_wrong_state);
+   }
+
+   return true;
 
 }
 
 
-void pixmap::unmap() const
+
+void pixmap::_unmap(bool bDoUnmap)
 {
 
-   if (!m_bMapped)
+   if (!_on_unmap(bDoUnmap))
    {
 
       return;
 
    }
 
-   auto ppixmap = (pixmap *)this;
+   if (bDoUnmap)
+   {
 
-   ppixmap->m_pimage32Raw = nullptr;
+      m_pimage32Raw = nullptr;
+      m_pimage32 = nullptr;
 
-   ppixmap->m_pimage32 = nullptr;
+   }
 
-   ppixmap->m_bMapped = false;
+   m_bMapped = false;
 
 }
 
@@ -476,3 +585,73 @@ void pixmap_t::reference(const pixmap_t &pixmap) {
 
 }
 
+
+
+CLASS_DECL_ACME::string _001_image32_diagnostics(const ::i32_size & size, const image32_t * pimage32, int iScan)
+{
+
+   ::string strImage32;
+
+   strImage32.formatf("\n\n   pimage32=%p (%d,%d) scan=%d,", pimage32, size.cx, size.cy, iScan);
+
+   auto pu8 = (::u8 *)pimage32;
+
+   if (!pu8)
+   {
+
+      return strImage32;
+
+   }
+
+   ::collection::count opaqueCount = 0;
+   ::collection::count transparentCount = 0;
+   ::collection::count translucentCount = 0;
+   ::collection::count pixelCount = 0;
+
+   for (int i = 0; i < size.cy; i++)
+   {
+
+      auto pu8Line = pu8 + (iScan * i);
+
+      auto p = pu8Line;
+
+      for (int j = 0; j < size.cx; j++)
+      {
+
+         auto r = p[0];
+         auto g = p[1];
+         auto b = p[2];
+         auto a = p[3];
+
+         if (a == 255)
+         {
+
+            opaqueCount++;
+
+         }
+         else if (a == 0)
+         {
+
+            transparentCount++;
+
+         }
+         else
+         {
+
+            translucentCount++;
+
+         }
+
+         p += 4;
+
+         pixelCount++;
+
+      }
+
+   }
+
+   strImage32.append_formatf("\n   pixel=%llu opaque=%llu transp=%llu transl=%llu\n", pixelCount, opaqueCount, transparentCount, translucentCount);
+
+   return strImage32;
+
+}

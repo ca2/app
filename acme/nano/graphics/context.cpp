@@ -157,7 +157,7 @@ namespace nano
 
                   r.top += size.cy;
 
-                  iLastCy = size.cy;
+                  iLastCy = (::i32) size.cy;
 
                }
 

@@ -2,6 +2,9 @@
 #include "lock.h"
 #include "acme/graphics/image/image32.h"
 #include "acme/platform/application.h"
+#include "acme/user/user/interaction.h"
+#include "aura/graphics/draw2d/graphics_pointer.h"
+#include "aura/graphics/draw2d/host.h"
 #include "aura/graphics/image/encoding_options.h"
 #include "aura/graphics/image/array.h"
 #include "aura/graphics/image/image.h"
@@ -46,6 +49,7 @@ namespace draw2d
    {
 
       m_pimpl = nullptr;
+      m_bUseGraphicsPool = true;
 
    }
 
@@ -587,11 +591,23 @@ namespace draw2d
 
 
    ::draw2d::graphics_lease draw2d::acquire_memory_graphics(
-      ::draw2d::host * pdraw2dhost,
-      const ::i32_size & size)
+      const ::i32_size & size, ::draw2d::host *pdraw2dhost)
    {
 
       return _acquire_memory_graphics(pdraw2dhost, size, nullptr);
+
+   }
+
+
+   ::draw2d::graphics_pointer draw2d::do_allocation_strategy(::draw2d::host *pdraw2dhost, ::image::image *pimage,
+                                                              const ::i32_size &size)
+   {
+
+      auto pgraphics = create_graphics(pdraw2dhost);
+    
+      pgraphics->create_memory_graphics(size);
+
+      return pgraphics;
 
    }
 
@@ -601,6 +617,13 @@ namespace draw2d
       const ::i32_size & size,
       ::image::image * pimage)
    {
+      
+      if (!pdraw2dhost)
+      {
+
+         pdraw2dhost = m_papplication->m_pacmeuserinteractionMain.cast < ::draw2d::host >();
+
+      }
 
       if (!pdraw2dhost || size.is_empty())
       {
@@ -608,6 +631,20 @@ namespace draw2d
          throw ::exception(error_bad_argument);
 
       }
+
+      //if (!m_bUseGraphicsPool)
+      //{
+
+      //   if (!pimage->m_pgraphicsOwned)
+      //   {
+
+      //      pimage->create_owned_graphics();
+
+      //   }
+
+      //   return {this, pimage->m_pgraphicsOwned, pimage, false};
+
+      //}
 
       if (m_bMemoryGraphicsPoolShuttingDown.load(::std::memory_order_acquire))
       {
@@ -661,8 +698,7 @@ namespace draw2d
 
          }
 
-         pgraphics = create_graphics(pdraw2dhost);
-         pgraphics->create_memory_graphics(size);
+         pgraphics = do_allocation_strategy(pdraw2dhost, pimage, size);
 
       }
 
@@ -707,7 +743,7 @@ namespace draw2d
 
       }
 
-      return {this, pgraphics, pimage};
+      return {this, pgraphics, pimage, false};
 
    }
 
@@ -732,13 +768,24 @@ namespace draw2d
    }
 
 
+   
+
+   void draw2d::do_release_to_pool_strategy(::draw2d::graphics_pointer &pgraphics)
+   {
+
+      m_graphicsaMemoryPoolIdle.add(pgraphics);
+
+      pgraphics.release();
+
+   }
+
+
+
    void draw2d::return_memory_graphics(
       ::draw2d::graphics_pointer pgraphics,
       ::image::image_pointer pimage,
       bool bDamaged)
    {
-
-      __UNREFERENCED_PARAMETER(pimage);
 
       if (!pgraphics)
       {
@@ -746,6 +793,30 @@ namespace draw2d
          return;
 
       }
+
+      //if (!m_bUseGraphicsPool)
+      //{
+
+      //   if (::is_set(pimage))
+      //   {
+
+      //      if (pimage->m_pgraphicsOwned)
+      //      {
+
+      //         if (pimage->m_pgraphicsOwned != pgraphics)
+      //         {
+
+      //            throw ::exception(error_wrong_state);
+
+      //         }
+
+      //         return;
+
+      //      }
+
+      //   }
+
+      //}
 
       try
       {
@@ -787,8 +858,7 @@ namespace draw2d
          if (!m_bMemoryGraphicsPoolShuttingDown.load(::std::memory_order_relaxed))
          {
 
-            m_graphicsaMemoryPoolIdle.add(pgraphics);
-            pgraphics.release();
+            do_release_to_pool_strategy(pgraphics);
 
          }
 

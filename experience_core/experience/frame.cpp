@@ -8,6 +8,7 @@
 #include "aura/graphics/image/icon.h"
 #include "aura/graphics/image/image.h"
 #include "aura/graphics/image/imaging.h"
+#include "aura/user/user/redraw.h"
 #include "aura/windowing/windowing.h"
 #include "berg/user/experience/control_box.h"
 #include "berg/user/experience/frame_window.h"
@@ -200,7 +201,9 @@ namespace experience_core
 
          //b = 
 
-         pimage2->g()->draw(imagedrawing);
+         auto pgraphicsImage2 = pimage2->acquire_graphics();
+
+         pgraphicsImage2->draw(imagedrawing);
 
       }
 

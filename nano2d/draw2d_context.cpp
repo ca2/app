@@ -1193,9 +1193,9 @@ void draw2d_context::text_metrics(::f32 * pfAscender, ::f32 * pfDescender, ::f32
 
       auto pimage = ::particle::image()->integer_image(image);
 
-      pimage->map();
+      auto map = pimage->map();
 
-      pimage->get_data()->copy(pimage->size(), pimage->m_iScan, (const image32_t *)data);
+      map.copy(pimage->size(), (const image32_t *)data, pimage->m_iScan);
 
    }
 

@@ -25,35 +25,46 @@ namespace graphics
 {
 
 
-   ::draw2d::graphics_pointer buffer_item::g()
+   ::draw2d::graphics_lease buffer_item::acquire_graphics()
    {
 
-      auto pgraphics = m_pgraphicsBufferItem ? m_pgraphicsBufferItem.m_p : m_pimage2->g();
-
-      if (pgraphics)
-      {
-
-         pgraphics->m_egraphics = m_egraphics;
-
-      }
-
-      //if (!pgraphics->m_callbackImage32CpuBuffer)
-      //{
-
-      //   pgraphics->m_callbackImage32CpuBuffer = [this](const ::image32_t * pimage32, ::i32 cx, ::i32 cy, ::i32 scan)
-      //      {
-
-      //         //_synchronous_lock synchronouslock(this->m_pmutex, DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
-
-      //         m_pimage2->image32()->copy(cx, cy, m_pimage2->m_iScan, pimage32, scan);
-
-      //      };
-
-      //}
-
-      return pgraphics;
+      return ::transfer(m_pimageBufferItem->acquire_graphics());
 
    }
+
+
+   //::draw2d::graphics_pointer buffer_item::owned_graphics()
+   //{
+
+   //   auto pgraphics = m_pgraphicsBufferItem ? m_pgraphicsBufferItem : m_pgraphicsBufferItem->acquire_graphics().m_pgraphics;
+
+   //   if (pgraphics)
+   //   {
+
+   //      pgraphics->m_egraphics = m_egraphics;
+
+   //   }
+
+   //   //if (!pgraphics->m_callbackImage32CpuBuffer)
+   //   //{
+
+   //   //   pgraphics->m_callbackImage32CpuBuffer = [this](const ::image32_t * pimage32, ::i32 cx, ::i32 cy, ::i32 scan)
+   //   //      {
+
+   //   //         //_synchronous_lock synchronouslock(this->m_pmutex, DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
+
+   //   //         m_pimage2->image32()->copy(cx, cy, m_pimage2->m_iScan, pimage32, scan);
+
+   //   //      };
+
+   //   //}
+
+   //   return ::transfer(pgraphics);
+
+   //}
+
+
+   
 
 
    void buffer_item::switch_to_draw()
@@ -61,7 +72,9 @@ namespace graphics
 
       m_egraphics = e_graphics_draw;
 
-      g();
+      //owned_graphics();
+
+      //m_pimageBufferItem->set_owned_graphics();
 
 
    }
@@ -74,9 +87,9 @@ namespace graphics
 
       m_pmutex.release();
 
-      m_pimage2.defer_destroy_and_release();
+      m_pimageBufferItem.defer_destroy_and_release();
 
-      m_pgraphicsBufferItem.release();
+      //m_pgraphicsBufferItem.release();
 
       m_pparticleData.release();
 
@@ -324,17 +337,17 @@ namespace graphics
 
       }
 
-      if (pbufferitem->m_pgraphicsBufferItem)
-      {
+      //if (pbufferitem->m_pgraphicsBufferItem)
+      //{
 
-         if (pbufferitem->m_pgraphicsBufferItem.ok())
-         {
+      //   if (pbufferitem->m_pgraphicsBufferItem.ok())
+      //   {
 
-            pbufferitem->m_pgraphicsBufferItem->__on_begin_draw();
+      //      pbufferitem->m_pgraphicsBufferItem->__on_begin_draw();
 
-         }
+      //   }
 
-      }
+      //}
 
       return pbufferitem;
 
@@ -349,36 +362,36 @@ namespace graphics
    }
 
 
-   void graphics::on_end_layout()
+   void graphics::on_end_layout(::draw2d::graphics_pointer &pgraphics)
    {
 
-      on_end(e_graphics_layout);
+      on_end(e_graphics_layout, pgraphics);
 
    }
 
 
-   void graphics::on_end_draw()
+   void graphics::on_end_draw(::draw2d::graphics_pointer &pgraphics)
    {
 
-      on_end(e_graphics_draw);
+      on_end(e_graphics_draw, pgraphics);
 
    }
 
 
-   void graphics::on_end(::e_graphics egraphics)
+   void graphics::on_end(::e_graphics egraphics, ::draw2d::graphics_pointer &pgraphics)
    {
 
       if (egraphics == e_graphics_draw)
       {
 
-         buffer_lock_round_swap_key_buffers();
+         buffer_lock_round_swap_key_buffers(pgraphics);
 
       }
 
    }
 
 
-   bool graphics::buffer_lock_round_swap_key_buffers()
+   bool graphics::buffer_lock_round_swap_key_buffers(::draw2d::graphics_pointer &pgraphics)
    {
 
       return true;
@@ -482,7 +495,7 @@ namespace graphics
 
       _synchronous_lock synchronouslockMutex(get_screen_item()->m_pmutex, DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 
-      return get_screen_item()->m_pimage2->_001GetTopLeftWeightedOpaqueArea(0, rect);
+      return get_screen_item()->m_pimageBufferItem->_001GetTopLeftWeightedOpaqueArea(0, rect);
 
    }
 

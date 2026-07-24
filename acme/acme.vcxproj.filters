@@ -4461,6 +4461,12 @@
     <ClInclude Include="parallelization\parallelization.h">
       <Filter>Header Files\parallelization</Filter>
     </ClInclude>
+    <ClInclude Include="graphics\image\pixmap_lease.h">
+      <Filter>Header Files\graphics\image</Filter>
+    </ClInclude>
+    <ClInclude Include="graphics\image\pixmap_t.h">
+      <Filter>Header Files\graphics\image</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="prototype\prototype\bit.cpp">
@@ -6415,6 +6421,9 @@
     </ClCompile>
     <ClCompile Include="operating_system\windows_common\threading.cpp">
       <Filter>Source Files\operating_system\windows_common</Filter>
+    </ClCompile>
+    <ClCompile Include="graphics\image\pixmap_lease.cpp">
+      <Filter>Source Files\graphics\image</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

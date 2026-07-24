@@ -1099,12 +1099,7 @@ namespace user
 
 
 
-      inline void defer_graphics(::draw2d::graphics_pointer & pgraphics)
-      {
-
-         if (!pgraphics) pgraphics = create_memory_graphics();
-
-      }
+      virtual void defer_graphics(::draw2d::graphics_pointer &pgraphics);
 
       virtual ::draw2d::graphics_pointer create_memory_graphics();
 

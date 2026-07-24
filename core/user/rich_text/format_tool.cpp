@@ -11,6 +11,7 @@
 #include "acme/user/user/content.h"
 #include "aura/graphics/draw2d/brush.h"
 #include "aura/graphics/draw2d/graphics.h"
+#include "aura/graphics/draw2d/graphics_pointer.h"
 #include "aura/graphics/write_text/font_list.h"
 #include "aura/graphics/write_text/font_enumeration_item.h"
 #include "aura/user/user/frame_interaction.h"

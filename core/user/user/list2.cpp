@@ -4,6 +4,7 @@
 #include "acme/constant/user_message.h"
 #include "acme/user/user/content.h"
 #include "aura/graphics/draw2d/graphics.h"
+#include "aura/graphics/draw2d/graphics_pointer.h"
 #include "aura/graphics/write_text/font.h"
 #include "aura/message/user.h"
 #include "aura/user/user/still.h"

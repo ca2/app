@@ -226,7 +226,7 @@ namespace graphics
    }
 
 
-   bool bitmap_source_buffer::buffer_lock_round_swap_key_buffers()
+   bool bitmap_source_buffer::buffer_lock_round_swap_key_buffers(::draw2d::graphics_pointer &pgraphics)
    {
 
       if (!m_pwindow)
@@ -246,7 +246,7 @@ namespace graphics
       if (is_ipc_copy_enabled())
       {
 
-         if (!ipc_copy(get_screen_item()->m_pimage2))
+         if (!ipc_copy(get_screen_item()->m_pimageBufferItem))
          {
 
             return false;

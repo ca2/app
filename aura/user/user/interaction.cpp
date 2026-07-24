@@ -19729,6 +19729,19 @@ if(get_parent())
    }
 
 
+   void interaction::defer_graphics(::draw2d::graphics_pointer &pgraphics)
+   {
+
+      if (!pgraphics)
+      {
+       
+         pgraphics = create_memory_graphics();
+
+      }
+
+   }
+
+
    ::draw2d::graphics_pointer interaction::create_memory_graphics()
    {
 

@@ -15,7 +15,7 @@
 //   public:
 //
 //
-//      ::pointer<::draw2d::graphics> m_pgraphics;
+//      ::draw2d::graphics_pointer  m_pgraphics;
 //      ::pointer<::draw2d::graphics_context_interface> m_pgraphicscontextinterface;
 //      ::pointer<::graphics::buffer_item> m_pbufferitem;
 //      bool m_bNewFrame;

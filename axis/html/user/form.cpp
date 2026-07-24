@@ -7,6 +7,7 @@
 #include "acme/parallelization/synchronous_lock.h"
 #include "acme/prototype/data/listener.h"
 #include "acme/prototype/datetime/datetime.h"
+#include "aura/graphics/draw2d/graphics_lease.h"
 #include "aura/graphics/image/context.h"
 #include "axis/platform/system.h"
 #include "axis/html/element/element.h"
@@ -179,9 +180,9 @@ void html_form::_001OnImageLoaded(::message::message * pmessage)
 
          get_html_data()->delete_implementation();
 
-         ::draw2d::graphics_pointer pgraphics = pimage->g();
+         auto pgraphicsImage = pimage->acquire_graphics();
 
-         get_html_data()->on_layout(pgraphics);
+         get_html_data()->on_layout(pgraphicsImage);
 
          set_need_redraw();
 
@@ -790,9 +791,9 @@ void html_form::defer_implement()
 
    get_html_data()->m_pcoredata->m_pform = this;
 
-   ::draw2d::graphics_pointer pgraphics = pimage->g();
+   auto pgraphicsImage = pimage->acquire_graphics();
 
-   get_html_data()->implement(pgraphics);
+   get_html_data()->implement(pgraphicsImage);
 
 }
 
@@ -814,9 +815,9 @@ void html_form::defer_html_layout()
 
    get_html_data()->m_pcoredata->m_pform = this;
 
-   ::draw2d::graphics_pointer pgraphics = pimage->g();
+   auto pgraphicsImage = pimage->acquire_graphics();
 
-   get_html_data()->on_layout(pgraphics);
+   get_html_data()->on_layout(pgraphicsImage);
 
    set_need_redraw();
 

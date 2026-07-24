@@ -31,6 +31,7 @@
 #include "acme/user/user/keyboard_state.h"
 #include "aura/user/menu/track_popup.h"
 #include "aura/graphics/draw2d/graphics.h"
+#include "aura/graphics/draw2d/graphics_pointer.h"
 #include "aura/graphics/draw2d/brush.h"
 #include "aura/graphics/draw2d/pen.h"
 #include "aura/graphics/draw2d/draw2d.h"

@@ -1693,7 +1693,7 @@ namespace user
 
       //auto pgraphics = pdraw2d->create_memory_graphics(this);
 
-      auto pgraphics = pdraw2d->acquire_memory_graphics(this, {256, 256});
+      auto pgraphics = pdraw2d->acquire_memory_graphics({256, 256}, this);
 
       //draw_select ds(this, pgraphics);
 

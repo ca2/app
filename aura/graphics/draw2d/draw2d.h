@@ -39,6 +39,7 @@ namespace draw2d
 
       static ::f64 g_dEmboss;
       void * m_pimpl;
+      bool m_bUseGraphicsPool;
 
       i32_map < ::pointer<memory >>m_alpha_spread__24CC_filterMap;
       i32_map < ::pointer<memory >>m_alpha_spread__32CC_filterMap;
@@ -95,7 +96,9 @@ namespace draw2d
       //::pointer< ::mutex > get_object_list_mutex();
       //::pointer< ::mutex > get_image_list_mutex();
       //::pointer< ::mutex > get_graphics_context_list_mutex();
-
+      virtual ::draw2d::graphics_pointer
+      do_allocation_strategy(::draw2d::host *pdraw2dhost, ::image::image *pimage, const ::i32_size &size);
+      virtual void do_release_to_pool_strategy(::draw2d::graphics_pointer &pgraphics);
    public:
 
       //virtual void on_before_create_window(::windowing::window* pwindow);
@@ -124,9 +127,8 @@ namespace draw2d
 
       virtual graphics_pointer create_memory_graphics(::draw2d::host * pdraw2dhost);
 
-      virtual ::draw2d::graphics_lease acquire_memory_graphics(
-         ::draw2d::host * pdraw2dhost,
-         const ::i32_size & size);
+      virtual ::draw2d::graphics_lease acquire_memory_graphics(const ::i32_size &size,
+         ::draw2d::host * pdraw2dhost = nullptr);
       virtual ::draw2d::graphics_lease acquire_image_graphics(
          ::image::image * pimage,
          ::draw2d::host * pdraw2dhost);

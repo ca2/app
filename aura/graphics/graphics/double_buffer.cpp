@@ -44,14 +44,14 @@ namespace graphics
       m_bufferitema.set_size(2);
 
       construct_newø(m_bufferitema[0]);
-      constructø(m_bufferitema[0]->m_pimage2);
+      constructø(m_bufferitema[0]->m_pimageBufferItem);
       constructø(m_bufferitema[0]->m_pmutex);
-      m_bufferitema[0]->m_pimage2->id() = 0;
+      m_bufferitema[0]->m_pimageBufferItem->id() = 0;
 
       construct_newø(m_bufferitema[1]);
-      constructø(m_bufferitema[1]->m_pimage2);
+      constructø(m_bufferitema[1]->m_pimageBufferItem);
       constructø(m_bufferitema[1]->m_pmutex);
-      m_bufferitema[1]->m_pimage2->id() = 1;
+      m_bufferitema[1]->m_pimageBufferItem->id() = 1;
 
       //return estatus;
 
@@ -81,20 +81,20 @@ namespace graphics
    }
 
 
-   bool double_buffer::_on_begin(buffer_item * pitem)
+   bool double_buffer::_on_begin(buffer_item * pbufferitem)
    {
 
-      //auto pitem = get_buffer_item();
+      //auto pbufferitem = get_buffer_item();
 
-      //buffer_size_and_position(pitem);
+      //buffer_size_and_position(pbufferitem);
 
-      //if (pitem->m_size.is_empty())
+      //if (pbufferitem->m_size.is_empty())
       //{
 
       //   if (egraphics & e_graphics_layout)
       //   {
 
-      //      pitem->m_size = { 512, 256 };
+      //      pbufferitem->m_size = { 512, 256 };
 
       //   }
       //   else
@@ -111,23 +111,23 @@ namespace graphics
       if (!m_bDibIsHostingBuffer)
       {
 
-         auto & pimage = pitem->m_pimage2;
+         auto & pimageBufferItem = pbufferitem->m_pimageBufferItem;
 
-         auto sizeImage = pimage->is_ok() ? pimage->get_size() : ::i32_size(0, 0);
+         auto sizeImage = pimageBufferItem->is_ok() ? pimageBufferItem->get_size() : ::i32_size(0, 0);
 
          auto sizeReserved = ::i32_size(1920, 1080);
 
-         if (pitem->m_sizeBufferItem.cx > sizeImage.cx)
+         if (pbufferitem->m_sizeBufferItem.cx > sizeImage.cx)
          {
 
-            sizeImage.cx = pitem->m_sizeBufferItem.cx;
+            sizeImage.cx = pbufferitem->m_sizeBufferItem.cx;
 
          }
 
-         if (pitem->m_sizeBufferItem.cy > sizeImage.cy)
+         if (pbufferitem->m_sizeBufferItem.cy > sizeImage.cy)
          {
 
-            sizeImage.cy = pitem->m_sizeBufferItem.cy;
+            sizeImage.cy = pbufferitem->m_sizeBufferItem.cy;
 
          }
 
@@ -147,9 +147,9 @@ namespace graphics
 
          debug() << "double_buffer::_on_begin_draw Going to create image : " << sizeImage;
 
-         pimage->create(sizeImage);
+         pimageBufferItem->create(sizeImage);
 
-         if (pimage.nok())
+         if (pimageBufferItem.nok())
          {
 
             information() << "double_buffer::_on_begin_draw Image Nok : " << sizeImage;
@@ -160,20 +160,20 @@ namespace graphics
 
          debug() << "double_buffer::_on_begin_draw Deferred image Creation/Update : " << sizeImage;
 
-         auto pgraphics = pimage->g();
+         auto pgraphicsBufferItem = pimageBufferItem->acquire_graphics();
          
-         if (pgraphics)
+         if (pgraphicsBufferItem)
          {
 
-            //pitem->m_pgraphics = pgraphics;
+            //pbufferitem->m_pgraphics = pgraphics;
             
-            pgraphics->resize(pitem->m_sizeBufferItem);
+            pgraphicsBufferItem->resize(pbufferitem->m_sizeBufferItem);
 
          }
          
       }
 
-      //return pitem;
+      //return pbufferitem;
 
       return true;
 
@@ -279,7 +279,7 @@ namespace graphics
 
 
 
-   bool double_buffer::buffer_lock_round_swap_key_buffers()
+   bool double_buffer::buffer_lock_round_swap_key_buffers(::draw2d::graphics_pointer &pgraphics)
    {
 
       if (is_single_buffer_mode())
@@ -290,10 +290,10 @@ namespace graphics
          if (pbufferitem)
          {
 
-            if (pbufferitem->m_pimage2)
+            if (pbufferitem->m_pimageBufferItem)
             {
 
-               auto pgraphics = pbufferitem->g();
+               //auto pgraphics = pbufferitem->acquire_graphics();
 
                if (pgraphics)
                {
@@ -344,9 +344,9 @@ namespace graphics
 
          auto pscreenitem = get_screen_item();
 
-         auto pimageNewScreen = pscreenitem->m_pimage2;
+         auto pimageNewScreen = pscreenitem->m_pimageBufferItem;
 
-         auto pimageNewBuffer = get_buffer_item()->m_pimage2;
+         auto pimageNewBuffer = get_buffer_item()->m_pimageBufferItem;
 
          if (pimageNewBuffer->size() == pimageNewScreen->size())
          {
@@ -418,7 +418,7 @@ namespace graphics
 
       synchronouslock.unlock();
 
-      if (!pitemScreen->m_pimage2.ok())
+      if (!pitemScreen->m_pimageBufferItem.ok())
       {
 
          if (!m_papplication->m_gpu.m_bUseSwapChainWindow)

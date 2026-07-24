@@ -17,6 +17,7 @@ CLASS_DECL_ACME void attach_thread_input_to_main_thread(bool bAttach);
 #include "acme/prototype/time/_text_stream.h"
 #include "acme/prototype/datetime/_text_stream.h"
 #include "aura/graphics/draw2d/graphics.h"
+#include "aura/graphics/draw2d/graphics_pointer.h"
 #include "aura/windowing/window.h"
 //#include "acme/_finish.h"
 

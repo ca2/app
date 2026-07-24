@@ -21,6 +21,8 @@
 #include "aqua/xml/document.h"
 #include "aura/user/user/interaction_array.h"
 #include "aura/graphics/draw2d/graphics.h"
+#include "aura/graphics/draw2d/graphics_lease.h"
+#include "aura/graphics/draw2d/graphics_pointer.h"
 #include "aura/graphics/image/image.h"
 #include "aura/graphics/image/drawing.h"
 #include "aura/graphics/image/fastblur.h"
@@ -3015,7 +3017,9 @@ void simple_frame_window::_001OnDraw(::draw2d::graphics_pointer & pgraphics)
 
                ::image::image_drawing imagedrawing(imagedrawingoptions, imagesource);
 
-               m_pimageBlur->g()->draw(imagedrawing);
+               auto pgraphicsImageBlur = m_pimageBlur->acquire_graphics();
+
+               pgraphicsImageBlur->draw(imagedrawing);
 
             }
 

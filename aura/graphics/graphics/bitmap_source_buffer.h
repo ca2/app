@@ -26,7 +26,7 @@ namespace graphics
 
       inline bool is_ipc_copy_enabled() const { return m_pmemorymap && m_pmemorymap->is_mapped(); }
 
-      virtual void initialize_graphics_graphics(::windowing::window * pwindow) override;
+      void initialize_graphics_graphics(::windowing::window * pwindow) override;
 
       bool ipc_copy(const pixmap * ppixmap) override;
 
@@ -36,7 +36,7 @@ namespace graphics
 
       string get_bitmap_source() const override;
 
-      virtual bool buffer_lock_round_swap_key_buffers() override;
+      bool buffer_lock_round_swap_key_buffers(::draw2d::graphics_pointer &pgraphics) override;
 
 
    };

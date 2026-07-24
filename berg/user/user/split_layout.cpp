@@ -6,6 +6,7 @@
 #include "acme/parallelization/synchronous_lock.h"
 #include "acme/handler/request.h"
 #include "aura/graphics/draw2d/graphics.h"
+#include "aura/graphics/draw2d/graphics_pointer.h"
 #include "aura/user/user/style.h"
 #include "aura/platform/session.h"
 #include "aura/user/user/interaction_array.h"

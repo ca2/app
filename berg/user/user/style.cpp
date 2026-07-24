@@ -3,6 +3,7 @@
 #include "user.h"
 #include "acme/platform/system.h"
 #include "aura/graphics/draw2d/graphics.h"
+#include "aura/graphics/draw2d/graphics_pointer.h"
 #include "aura/user/user/interaction.h"
 #include "berg/platform/session.h"
 #include "berg/user/menu/interaction.h"

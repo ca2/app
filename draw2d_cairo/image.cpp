@@ -671,7 +671,7 @@ namespace draw2d_cairo
 //
 //      pimage1->set_rgb(255, 255, 255);
 //
-//      pimage1->g()->stretch(::i32_size(cx, cy), picon);
+//      pgraphicsImage1->stretch(::i32_size(cx, cy), picon);
 //
 //      // Black blend image_impl
 //      auto pimage2 = create_image({cx, cy});
@@ -685,7 +685,7 @@ namespace draw2d_cairo
 //
 //      pimage2->fill(0, 0, 0, 0);
 //
-//      pimage2->g()->stretch(::i32_size(cx, cy), picon);
+//      pgraphicsImage2->stretch(::i32_size(cx, cy), picon);
 //
 //      // Mask image_impl
 //      auto pimageM = create_image({cx, cy});
@@ -697,7 +697,7 @@ namespace draw2d_cairo
 //
 //      }
 //
-//      pimageM->g()->stretch(::i32_size(cx, cy), picon);
+//      pgraphicsImageM->stretch(::i32_size(cx, cy), picon);
 //
 //      ::u8 * r1=(::u8*)pimage1->colorref();
 //      ::u8 * r2=(::u8*)pimage2->get_data();
@@ -741,7 +741,7 @@ namespace draw2d_cairo
    //bool image::stretch(const ::image::image *pimage)
    //{
 
-   //   if (!get_graphics()->stretch(this->rectangle(), pimage->g(), pimage->rectangle()))
+   //   if (!get_graphics()->stretch(this->rectangle(), pgraphicsImage, pimage->rectangle()))
    //   {
 
    //      return false;
@@ -824,7 +824,7 @@ namespace draw2d_cairo
 //
 //         }
 //
-//         ::draw2d::graphics * pgraphics = pimage1->g();
+//         ::draw2d::graphics * pgraphics = pgraphicsImage1;
 //
 //         if (pgraphics->get_os_data() == nullptr)
 //         {
@@ -839,10 +839,10 @@ namespace draw2d_cairo
 //         rectanglePaint = rectangleWindow;
 //         rectanglePaint.offset(-rectanglePaint.top_left());
 //         m_spgraphics->SelectClipRgn(nullptr);
-//         puserinteraction->_001OnDeferPaintLayeredWindowBackground(pimage1->g());
+//         puserinteraction->_001OnDeferPaintLayeredWindowBackground(pgraphicsImage1);
 //         m_spgraphics->SelectClipRgn(nullptr);
 //         m_spgraphics-> set_origin(::i32_point());
-//         puserinteraction->_000OnDraw(pimage1->g());
+//         puserinteraction->_000OnDraw(pgraphicsImage1);
 //         m_spgraphics->set_origin(::i32_point());
 //         //(dynamic_cast<::win::graphics * >(pgraphics))->FillSolidRect(rectangleUpdate.left, rectangleUpdate.top, 100, 100, 255);
 //         m_spgraphics->SelectClipRgn(nullptr);

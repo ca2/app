@@ -100,7 +100,7 @@ public:
    
    // a user item is a "pointer"/address to a user interface matter
 
-   //::pointer<::draw2d::graphics>     m_pgraphics;
+   //::draw2d::graphics_pointer      m_pgraphics;
    //::pointer<::geometry2d::region>     m_pregion;
    //bool                             m_bAnyHoverChange;
 

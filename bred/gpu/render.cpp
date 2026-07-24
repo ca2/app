@@ -6,6 +6,7 @@
 #include "render.h"
 #include "acme/prototype/geometry2d/matrix.h"
 #include "aura/graphics/draw2d/graphics.h"
+#include "aura/graphics/draw2d/graphics_pointer.h"
 #include "aura/graphics/image/drawing.h"
 #include "aura/graphics/image/image.h"
 #include "aura/graphics/image/target.h"

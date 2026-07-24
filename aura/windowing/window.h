@@ -129,7 +129,7 @@ namespace windowing
       i32_size                                  m_size;
 
       ::pointer<::graphics::graphics>           m_pgraphicsgraphics;
-      ::pointer<::draw2d::graphics>             m_pdraw2dgraphics;
+      ::draw2d::graphics_pointer              m_pdraw2dgraphics;
 
       ::pointer < ::mutex >                     m_pmutexDraw;
       ::pointer < ::mutex >                     m_pmutexRedraw;
@@ -940,7 +940,7 @@ namespace windowing
       ////virtual bool _is_window_visible() override;
       //void ShowOwnedPopups(bool bShow = true) override;
 
-      //virtual ::pointer<::draw2d::graphics>GetDCEx(::draw2d::region* prgnClip,::u32 flags);
+      //virtual ::draw2d::graphics_pointer GetDCEx(::draw2d::region* prgnClip,::u32 flags);
       //virtual void LockWindowUpdate();
       //virtual void UnlockWindowUpdate();
 

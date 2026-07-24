@@ -3,6 +3,7 @@
 #include "acme/parallelization/single_lock.h"
 #include "acme/prototype/data/listener.h"
 #include "aura/graphics/draw2d/graphics.h"
+#include "aura/graphics/draw2d/graphics_pointer.h"
 #include "aura/graphics/image/image.h"
 #include "aura/graphics/image/drawing.h"
 #include "axis/html/html/data.h"

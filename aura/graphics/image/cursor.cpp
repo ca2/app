@@ -82,18 +82,18 @@ namespace image
    }
 
 
-   ::draw2d::graphics *cursor::g() const
+   ::draw2d::graphics_lease cursor::acquire_graphics() const
    {
 
-      return m_pimage->g();
+      return m_pimage->acquire_graphics();
 
    }
 
 
-   ::draw2d::graphics *cursor::g(const ::f64_size & sizeHint)
+   ::draw2d::graphics_lease cursor::acquire_graphics(const ::f64_size & sizeHint)
    {
 
-      return m_pimage->g(sizeHint);
+      return m_pimage->acquire_graphics(sizeHint);
 
    }
 

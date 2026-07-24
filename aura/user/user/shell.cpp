@@ -15,6 +15,7 @@
 #include "aura/graphics/image/list.h"
 #include "aura/graphics/image/context.h"
 #include "aura/graphics/draw2d/graphics.h"
+#include "aura/graphics/draw2d/graphics_pointer.h"
 #include "aura/graphics/draw2d/lock.h"
 #include "aura/graphics/image/icon.h"
 #include "aura/graphics/image/drawing.h"
@@ -1452,7 +1453,7 @@ namespace user
 
             getfileimage.m_iImage = m_pimagelist[16]->set(getfileimage.m_iImage, imagedrawing);
 
-            m_pimagelistHover[16]->color_blend(m_pimagelist[16], rgb(255, 255, 240), 64);
+            m_pimagelistHover[16]->create_color_blend(m_pimagelist[16], rgb(255, 255, 240), 64);
 
          }
 
@@ -1470,7 +1471,7 @@ namespace user
 
             getfileimage.m_iImage = m_pimagelist[48]->set(getfileimage.m_iImage, imagedrawing);
 
-            m_pimagelistHover[48]->color_blend(m_pimagelist[48], rgb(255, 255, 240), 64);
+            m_pimagelistHover[48]->create_color_blend(m_pimagelist[48], rgb(255, 255, 240), 64);
 
          }
 
@@ -1859,7 +1860,9 @@ namespace user
 
       auto pimageHover = pimagelist->get_image(iImage);
 
-      pimageHover->g()->fill_rectangle(pimageHover->rectangle(), ::rgba(255, 255, 240, 64));
+      auto pgraphicsImageHover = pimageHover->acquire_graphics();
+
+      pgraphicsImageHover->fill_rectangle(pimageHover->rectangle(), ::rgba(255, 255, 240, 64));
 
       pimagelistHover->set(iImage, imagedrawing);
 
@@ -2108,7 +2111,7 @@ namespace user
 
    //      auto pimage = m_pimagelist[iSize]->get_image(iImage);
    //      
-   //      pimage->g()->fill_rectangle(pimage->rectangle(), ::rgba(255, 255, 240, 64));
+   //      pgraphicsImage->fill_rectangle(pimage->rectangle(), ::rgba(255, 255, 240, 64));
 
    //      m_pimagelistHover[iSize]->add_image(pimage, 0, 0, iImage);
 

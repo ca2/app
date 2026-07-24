@@ -11,6 +11,7 @@
 #include "aqua/xml/document.h"
 //#include "aura/operating_system/_user.h"
 #include "aura/graphics/draw2d/graphics.h"
+#include "aura/graphics/draw2d/graphics_pointer.h"
 #include "aura/graphics/draw2d/draw2d.h"
 #include "aura/graphics/image/context.h"
 //#include "aura/user/user/interaction_impl.h"

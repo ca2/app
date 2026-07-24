@@ -4,6 +4,7 @@
 #include "text_box.h"
 #include "aura/graphics/image/image.h"
 #include "aura/graphics/draw2d/graphics.h"
+#include "aura/graphics/draw2d/graphics_pointer.h"
 #include "aura/graphics/draw2d/graphics_lease.h"
 #include "aura/graphics/draw2d/graphics_layer_scope.h"
 //#include "acme/_finish.h"

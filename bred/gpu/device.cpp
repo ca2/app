@@ -353,7 +353,8 @@ namespace gpu
 
    ::gpu::context_lease device::acquire_gpu_context(
       const ::gpu::enum_output & eoutput,
-      const ::i32_size & size)
+      const ::i32_size & size,
+      bool bOwned)
    {
 
       if (size.is_empty())
@@ -477,7 +478,7 @@ namespace gpu
 
       }
 
-      return {this, pcontext};
+      return {this, pcontext, bOwned};
 
    }
 

@@ -801,7 +801,7 @@ namespace draw2d
    class graphics;
    class pen;
 
-   using graphics_pointer = ::pointer<graphics>;
+   //using graphics_pointer = ::pointer<graphics>;
       using pen_pointer = ::pointer<pen>;
 
 

@@ -12,6 +12,7 @@
 #include "acme/user/user/content.h"
 #include "acme/parallelization/message_queue.h"
 #include "aura/graphics/draw2d/graphics.h"
+#include "aura/graphics/draw2d/graphics_pointer.h"
 #include "aura/graphics/draw2d/brush.h"
 #include "aura/graphics/draw2d/pen.h"
 //#include "acme/platform/timer.h"

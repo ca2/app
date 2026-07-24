@@ -1623,7 +1623,7 @@ namespace draw2d_cairo
 
                ::image::image_drawing imagedrawing(imagedrawingoptions, imagesource);
 
-               pimage2->g()->draw(imagedrawing);
+               pgraphicsImage2->draw(imagedrawing);
 
             }
 

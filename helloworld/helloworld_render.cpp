@@ -313,7 +313,7 @@ namespace helloworld
 
 /*         pimage->Fill(0, 0, 0, 0);
 
-/*         helloworld_render(pimage->g());
+/*         helloworld_render(pgraphicsImage);
 
 
       }
@@ -334,7 +334,7 @@ namespace helloworld
       //   else
       //   {
       //
-      //      helloworld_render_full_impact(pimage->g());
+      //      helloworld_render_full_impact(pgraphicsImage);
       //
       //   }
 
@@ -1248,7 +1248,7 @@ namespace helloworld
 
    //      uchAlpha = ::u8(maximum(0, minimum(255, (m_timeLastOk.elapsed()) * 255 / m_timeAnime)));
 
-/*   //      psystem->imaging().bitmap_blend(pgraphics, ::i32_point(), pimage->get_size(), pimage->g(), ::i32_point(), uchAlpha);
+/*   //      psystem->imaging().bitmap_blend(pgraphics, ::i32_point(), pimage->get_size(), pgraphicsImage, ::i32_point(), uchAlpha);
 
    //      psystem->imaging().bitmap_blend(pgraphics, ::i32_point(), imageFast.get_size(), imageFast.get_graphics(), ::i32_point(), 255 - uchAlpha);
 
@@ -1256,7 +1256,7 @@ namespace helloworld
    //   else
    //   {
 
-/*   //      pgraphics->from(::i32_point(), pimage->get_size(), pimage->g(), ::i32_point());
+/*   //      pgraphics->from(::i32_point(), pimage->get_size(), pgraphicsImage, ::i32_point());
 
    //   }
 

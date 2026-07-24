@@ -2,13 +2,14 @@
 
 
 #include "aura/graphics/draw2d/bitmap.h"
+#include "aura/graphics/draw2d/graphics_pointer.h"
 
 
 namespace draw2d
 {
 
 
-   class buffered_graphics :
+   class CLASS_DECL_AURA buffered_graphics :
       public ::draw2d::graphics_pointer
    {
    public:
@@ -19,7 +20,7 @@ namespace draw2d
 
 
       buffered_graphics();
-      virtual ~buffered_graphics();
+      ~buffered_graphics();
 
 
       void Prepare(const ::i32_rectangle & rectangle);

@@ -225,7 +225,7 @@ namespace filehandler
       if (m_plist.is_null())
          return;
 
-      //select_font(pimage->g());
+      //select_font(pgraphicsImage);
 
       m_plist->draw(this, pgraphics);
 

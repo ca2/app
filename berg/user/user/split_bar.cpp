@@ -5,6 +5,7 @@
 #include "acme/constant/user_message.h"
 #include "acme/parallelization/synchronous_lock.h"
 #include "aura/graphics/draw2d/graphics.h"
+#include "aura/graphics/draw2d/graphics_pointer.h"
 #include "aura/user/user/frame_interaction.h"
 #include "aura/message/user.h"
 

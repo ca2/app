@@ -1,6 +1,7 @@
 #include "framework.h"
 #include "acme/prototype/geometry2d/_text_stream.h"
 #include "aura/graphics/draw2d/graphics.h"
+#include "aura/graphics/draw2d/graphics_pointer.h"
 #include "aura/graphics/draw2d/pen.h"
 #include "frame_008.h"
 #include "berg/user/experience/frame_window.h"

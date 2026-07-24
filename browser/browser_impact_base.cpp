@@ -228,7 +228,7 @@ auto m_timeRoll = ::time::now();
 
       //d->create(rectangleX.size());
 
-      //d->get_graphics()->BitBlt(rectangleX, pimage->g());
+      //d->get_graphics()->BitBlt(rectangleX, pgraphicsImage);
 
       //d.save_to_file(         auto psystem = system();
 

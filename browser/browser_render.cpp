@@ -343,7 +343,7 @@ namespace browser
 
 /*      pimage->fill(0, 0, 0, 0);
 
-/*      browser_render(pimage->g());
+/*      browser_render(pgraphicsImage);
 
    }
 
@@ -362,7 +362,7 @@ namespace browser
       //   else
       //   {
       //
-      //      browser_render_full_impact(pimage->g());
+      //      browser_render_full_impact(pgraphicsImage);
       //
       //   }
 
@@ -1209,7 +1209,7 @@ namespace browser
 
          uchAlpha = ::u8(maximum(0, minimum(255, (m_timeLastOk.elapsed()) * 255 / m_timeAnime)));
 
-/*         psystem->imaging().bitmap_blend(pgraphics, ::i32_point(), pimage->get_size(), pimage->g(), ::i32_point(), uchAlpha);
+/*         psystem->imaging().bitmap_blend(pgraphics, ::i32_point(), pimage->get_size(), pgraphicsImage, ::i32_point(), uchAlpha);
 
          psystem->imaging().bitmap_blend(pgraphics, ::i32_point(), imageFast.get_size(), imageFast.get_graphics(), ::i32_point(), 255 - uchAlpha);
 
@@ -1217,7 +1217,7 @@ namespace browser
       else
       {
 
-/*         pgraphics->from(::i32_point(), pimage->get_size(), pimage->g(), ::i32_point());
+/*         pgraphics->from(::i32_point(), pimage->get_size(), pgraphicsImage, ::i32_point());
 
       }
 

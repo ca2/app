@@ -6,6 +6,7 @@
 #include "acme/platform/system.h"
 #include "acme/user/user/tool.h"
 #include "aura/graphics/draw2d/graphics.h"
+#include "aura/graphics/draw2d/graphics_pointer.h"
 #include "aura/graphics/user/control_box_button.h"
 #include "aura/message/user.h"
 #include "acme/prototype/mathematics/mathematics.h"

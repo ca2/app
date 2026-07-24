@@ -8,6 +8,7 @@
 #include "acme/prototype/collection/_array.h"
 #include "acme/user/user/content.h"
 #include "acme/user/user/keyboard_state.h"
+#include "aura/graphics/draw2d/graphics_lease.h"
 #include "aura/graphics/image/context.h"
 #include "aura/graphics/image/drawing.h"
 #include "aura/graphics/image/image.h"
@@ -542,9 +543,9 @@ namespace user
 
                      pimage = image()->create_image(szNew);
 
-                     auto pgraphics = pimage->g();
+                     auto pgraphicsImage = pimage->acquire_graphics();
 
-                     pgraphics->set_interpolation_mode(::draw2d::e_interpolation_mode_high_quality_bicubic);
+                     pgraphicsImage->set_interpolation_mode(::draw2d::e_interpolation_mode_high_quality_bicubic);
 
                      ::image::image_source imagesource(pimageSrc);
 

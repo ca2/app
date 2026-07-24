@@ -1,6 +1,7 @@
 #include "framework.h" // previously aura/user/user.h
 
 #include "aura/graphics/draw2d/graphics.h"
+#include "aura/graphics/draw2d/graphics_pointer.h"
 #include "aura/user/user/interaction.h"
 
 
@@ -27,6 +28,14 @@ namespace aura
    {
 
       return m_bListItemHover;
+
+   }
+
+
+   ::draw2d::graphics * draw_context::draw2d_graphics()
+   {
+
+      return nullptr;
 
    }
 

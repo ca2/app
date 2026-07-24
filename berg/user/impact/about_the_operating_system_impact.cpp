@@ -306,7 +306,7 @@ namespace berg
       if (::is_ok(m_pimageOperatingSystem))
       {
 
-//         pimage->g()->set_interpolation_mode(::draw2d::e_interpolation_mode_high_quality_bicubic);
+//         pgraphicsImage->set_interpolation_mode(::draw2d::e_interpolation_mode_high_quality_bicubic);
 
          ::image::image_source imagesource(m_pimageOperatingSystem);
 
@@ -322,7 +322,7 @@ namespace berg
       if (m_pimageOperatingAmbient)
       {
 
-         //         pimage->g()->set_interpolation_mode(::draw2d::e_interpolation_mode_high_quality_bicubic);
+         //         pgraphicsImage->set_interpolation_mode(::draw2d::e_interpolation_mode_high_quality_bicubic);
 
          ::image::image_source imagesource(m_pimageOperatingAmbient);
 

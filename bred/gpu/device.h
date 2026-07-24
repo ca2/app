@@ -210,7 +210,8 @@ namespace gpu
 
       virtual ::gpu::context_lease acquire_gpu_context(
          const ::gpu::enum_output & eoutput,
-         const ::i32_size & size);
+         const ::i32_size & size,
+         bool bOwned = false);
       virtual void return_gpu_context(
          ::pointer<::gpu::context> pcontext,
          bool bDamaged);

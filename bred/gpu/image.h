@@ -41,7 +41,7 @@ namespace gpu
       ~image() override;
 
 
-      ::draw2d::graphics * get_graphics2() const override;
+      //::draw2d::graphics_pointer owned_graphics() const override;
 
       virtual ::gpu::texture * gpu_texture() const;
       virtual void create_gpu_texture();
@@ -52,9 +52,6 @@ namespace gpu
 
       void destroy() override;
 
-      void map(bool bApplyAlphaTransform = true) const override;
-      void unmap() const override;
-
       virtual ::gpu::texture *get_gpu_texture();
 
       void on_load_image(const image32_t *pimage32, const ::i32_size &size, int iScan) override;
@@ -63,6 +60,12 @@ namespace gpu
       void record_performance_map_transition(::u64 uMicroseconds) const;
       void record_performance_unmap_transition(::u64 uMicroseconds) const;
       void report_performance_diagnostics_if_due() const;
+
+
+   protected:
+
+      void _map(bool bApplyAlphaTransform = true) override;
+      void _unmap(bool bDoUnmap = false) override;
 
 
    };

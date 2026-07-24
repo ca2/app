@@ -10,6 +10,7 @@
 #include "tab_data.h"
 #include "acme/handler/item.h"
 #include "aura/graphics/draw2d/graphics.h"
+#include "aura/graphics/draw2d/graphics_pointer.h"
 #include "aura/graphics/draw2d/draw2d.h"
 #include "aura/graphics/image/drawing.h"
 #include "aura/graphics/image/image.h"

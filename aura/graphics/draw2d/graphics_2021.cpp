@@ -1151,7 +1151,7 @@ namespace draw2d
 
             ::image::image_drawing imagedrawing(imagedrawingoptions, imagesource);
 
-            pimage1->g()->set_alpha_mode(::draw2d::e_alpha_mode_set);
+            pgraphicsImage1->set_alpha_mode(::draw2d::e_alpha_mode_set);
 
             pimage1->draw(imagedrawing);
 
@@ -1199,7 +1199,7 @@ namespace draw2d
 
    //   auto pimage = pcursor->m_pimage;
 
-   //   return draw(::f64_rectangle(pointDst, pimage->size()), pimage->g());
+   //   return draw(::f64_rectangle(pointDst, pimage->size()), pgraphicsImage);
 
    //}
 
@@ -1207,7 +1207,7 @@ namespace draw2d
    //void graphics::draw_at(const ::f64_point & pointDst, ::image::image *pimage)
    //{
 
-   //   return draw(::f64_rectangle(pointDst, pimage->get_size()), pimage->g());
+   //   return draw(::f64_rectangle(pointDst, pimage->get_size()), pgraphicsImage);
 
    //}
 
@@ -1255,7 +1255,7 @@ namespace draw2d
    //void graphics::draw(const ::f64_rectangle & rectangleTarget, ::image::image *pimage, const ::f64_point & pointSrc)
    //{
 
-   //   return draw(rectangleTarget, pimage->g(), pointSrc);
+   //   return draw(rectangleTarget, pgraphicsImage, pointSrc);
 
    //}
 
@@ -1396,7 +1396,7 @@ namespace draw2d
    //void graphics::stretch(const ::f64_rectangle & rectangleTarget, ::image::image *pimage, const ::f64_rectangle & rectangleSource)
    //{
 
-   //   return stretch(rectangleTarget, pimage->g(), rectangleSource.is_null() ? ::f64_rectangle(pimage->rectangle()) : rectangleSource);
+   //   return stretch(rectangleTarget, pgraphicsImage, rectangleSource.is_null() ? ::f64_rectangle(pimage->rectangle()) : rectangleSource);
 
    //}
 
@@ -1597,7 +1597,7 @@ namespace draw2d
 
             ::image::image_drawing imagedrawing(imagedrawingoptions, imagesource);
 
-            pimage1->g()->draw(imagedrawing);
+            pgraphicsImage1->draw(imagedrawing);
 
          }
 

@@ -335,7 +335,7 @@ namespace helloaxis
 
 /*         pimage->Fill(0, 0, 0, 0);
 
-/*         helloaxis_render(pimage->g());
+/*         helloaxis_render(pgraphicsImage);
 
 
       }
@@ -356,7 +356,7 @@ namespace helloaxis
       //   else
       //   {
       //
-      //      helloaxis_render_full_impact(pimage->g());
+      //      helloaxis_render_full_impact(pgraphicsImage);
       //
       //   }
 
@@ -1273,7 +1273,7 @@ auto m_tick23 = ::time::now();
 
          uchAlpha = ::u8(maximum(0, minimum(255, (m_timeLastOk.elapsed()) * 255 / m_timeAnime)));
 
-/*         psystem->imaging().bitmap_blend(pgraphics, ::i32_point(), pimage->get_size(), pimage->g(), ::i32_point(), uchAlpha);
+/*         psystem->imaging().bitmap_blend(pgraphics, ::i32_point(), pimage->get_size(), pgraphicsImage, ::i32_point(), uchAlpha);
 
          psystem->imaging().bitmap_blend(pgraphics, ::i32_point(), imageFast.get_size(), imageFast.get_graphics(), ::i32_point(), 255 - uchAlpha);
 
@@ -1281,7 +1281,7 @@ auto m_tick23 = ::time::now();
       else
       {
 
-/*         pgraphics->from(::i32_point(), pimage->get_size(), pimage->g(), ::i32_point());
+/*         pgraphics->from(::i32_point(), pimage->get_size(), pgraphicsImage, ::i32_point());
 
       }
 

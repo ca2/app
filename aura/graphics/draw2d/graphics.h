@@ -4,7 +4,7 @@
 #include "acme/constant/element.h"
 #include "acme/graphics/image/image32.h"
 
-#include "aura/platform/draw_context2.h"
+#include "aura/platform/draw_context.h"
 //#include "aura/graphics/graphics/graphics.h"
 #include "aura/graphics/write_text/drawer.h"
 #include "aura/graphics/image/drawer.h"
@@ -12,12 +12,13 @@
 #include "acme/prototype/geometry2d/angle.h"
 #include "acme/prototype/geometry2d/matrix.h"
 #include "acme/prototype/geometry2d/shift.h"
-#include "aura/user/user/redraw.h"
+//#include "aura/user/user/redraw.h"
 #include "aura/graphics/draw2d/region.h"
 #include "aura/graphics/draw2d/bitmap.h"
 #include "aura/graphics/draw2d/offset.h"
 
 
+//extern template class CLASS_DECL_AURA pointer<draw2d::graphics>;
 
 namespace gpu
 {
@@ -369,6 +370,8 @@ namespace draw2d
       virtual void _create_memory_graphics(const ::i32_size& size = {});
       virtual void create_compatible_graphics(::draw2d::graphics* pgraphics);
       virtual void create_window_graphics(const ::operating_system::window & operatingsystemwindow);
+
+      virtual void create_draw2d_graphics(::draw2d::bitmap *pbitmap);
 
 
       virtual ::pointer < ::draw2d::path > create_path();

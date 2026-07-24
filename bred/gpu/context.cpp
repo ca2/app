@@ -63,6 +63,8 @@ namespace gpu
    context::context()
    {
 
+      m_bInNonOwnedLease = false;
+
       m_iGpuContext = ++g_iGpuContext;
       // m_pdraw2dgraphics = nullptr;
 
@@ -234,6 +236,15 @@ namespace gpu
 
    void context::send(const ::procedure & procedure)
    {
+
+      if (m_bInNonOwnedLease)
+      {
+
+         procedure();
+
+         return;
+
+      }
 
       ::procedure procedureForward = [this, procedure]()
       {

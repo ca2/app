@@ -2,6 +2,7 @@
 #include "path.h"
 #include "path_simple_optimization.h"
 #include "aura/graphics/draw2d/graphics.h"
+#include "aura/graphics/draw2d/graphics_pointer.h"
 //#include "acme/prototype/geometry2d/_enhanced.h"
 #include "acme/prototype/geometry2d/item.h"
 //#include "acme/prototype/geometry2d/_collection_enhanced.h"

@@ -1,6 +1,7 @@
 #include "framework.h"
 #include "impact.h"
 #include "aura/graphics/draw2d/graphics.h"
+#include "aura/graphics/draw2d/graphics_pointer.h"
 
 
 simple_impact::simple_impact()

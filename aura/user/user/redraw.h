@@ -5,6 +5,7 @@
 
 #include "acme/prototype/geometry2d/rectangle_array.h"
 #include "acme/prototype/geometry2d/shift.h"
+#include "aura/graphics/draw2d/graphics_pointer.h"
 
 
 namespace user

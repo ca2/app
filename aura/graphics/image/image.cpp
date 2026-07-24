@@ -12,6 +12,7 @@
 #include "acme/platform/application.h"
 #include "acme/prototype/mathematics/mathematics.h"
 #include "aura/graphics/draw2d/graphics.h"
+#include "aura/graphics/draw2d/graphics_pointer.h"
 #include "aura/graphics/draw2d/host.h"
 #include "aura/graphics/draw2d/task_tool.h"
 #include "aura/graphics/draw2d/draw2d.h"
@@ -76,12 +77,15 @@ image::image()
 {
    
    m_item.m_eelement = e_element_image;
+   //m_pgraphicsleaseOwned = nullptr;
 
 }
 
 
 image::~image()
 {
+
+   //defer_destroy_owned_graphics_lease();
    
    auto psystem = system();
 
@@ -169,18 +173,39 @@ bool image::_is_ok() const
 }
 
 
-::draw2d::graphics* image::get_graphics2() const
+//::draw2d::graphics_pointer image::owned_graphics() const
+//{
+//
+//   if (!m_pgraphicsleaseOwned)
+//   {
+//
+//      ((image *) this)->defer_create_owned_graphics_lease();
+//
+//   }
+//
+//   //unmap();
+//
+//   return *m_pgraphicsleaseOwned;
+//
+//}
+
+
+::draw2d::graphics_lease image::acquire_graphics(::draw2d::host *pdraw2dhost)
 {
 
-   unmap();
+   //if (m_pgraphicsleaseOwned)
+   //{
 
-   return _get_graphics();
+   //   return {m_pgraphicsleaseOwned->m_pdraw2d, m_pgraphicsleaseOwned->m_p, this, true};
+
+   //}
+
+   return ::transfer(_acquire_graphics(pdraw2dhost));
 
 }
 
 
-::draw2d::graphics_lease image::acquire_graphics(
-   ::draw2d::host * pdraw2dhost)
+::draw2d::graphics_lease image::_acquire_graphics(::draw2d::host * pdraw2dhost)
 {
 
    if (m_bMapped)
@@ -189,6 +214,13 @@ bool image::_is_ok() const
       throw ::exception(
          error_wrong_state,
          "cannot acquire destination graphics while image pixels are mapped");
+
+   }
+
+   if (m_pimage32Raw)
+   {
+
+      _unmap(true);
 
    }
 
@@ -338,7 +370,7 @@ void image::defer_realize(::draw2d::graphics* pgraphics) const
 }
 
 
-void image::create_from_data(const ::i32_size & size, ::image32_t * pimage32, ::i32 iScan, ::enum_flag eflagCreate, bool bPreserve)
+void image::create_from_data(const ::i32_size & size, const ::image32_t * pimage32, ::i32 iScan, ::enum_flag eflagCreate, bool bPreserve)
 {
 
    if (has_active_destination_graphics_lease())
@@ -456,7 +488,7 @@ bool image::host(::pixmap_t* ppixmap, ::windowing::window * pwindow)
 
    defer_constructø(m_pbitmap);
 
-   defer_constructø(m_pgraphics);
+   //defer_constructø(m_pgraphics);
 
    //if (m_pbitmap.is_null())
    //{
@@ -511,11 +543,15 @@ bool image::host(::pixmap_t* ppixmap, ::windowing::window * pwindow)
 
    initialize(ppixmap->size(), ppixmap->image32(), ppixmap->m_iScan);
 
-   m_pgraphics->set(m_pbitmap);
+   //auto pgraphics = owned_graphics();
 
-   m_pgraphics->m_pimage = this;
+   auto pgraphics = acquire_graphics();
 
-   m_pgraphics->place_impact_area(0., 0., m_size.cx, m_size.cy);
+   pgraphics->set(m_pbitmap);
+
+   pgraphics->m_pimage = this;
+
+   pgraphics->place_impact_area(0., 0., m_size.cx, m_size.cy);
 
    m_sizeRaw = ppixmap->size();
 
@@ -569,6 +605,17 @@ void image::create(::draw2d::graphics* pgraphics)
    //return ::error_failed;
 
 }
+
+
+void image::create_owned_graphics()
+{
+
+   constructø(m_pgraphicsOwned);
+
+   m_pgraphicsOwned->create_draw2d_graphics(m_pbitmap);
+
+}
+
 
 ::collection::count image::get_image_count() const
 {
@@ -636,9 +683,9 @@ void image::create_isotropic(::image::image* pimage)
    else
    {
 
-      pimage->g()->set_interpolation_mode(::draw2d::e_interpolation_mode_high_quality_bicubic);
-
       auto pgraphicsImage = pimage->acquire_graphics();
+
+      pgraphicsImage->set_interpolation_mode(::draw2d::e_interpolation_mode_high_quality_bicubic);
 
       ::image::image_source imagesource(pgraphicsImage, ::i32_rectangle_dimension(0, 0, width(), height()));
 
@@ -646,7 +693,7 @@ void image::create_isotropic(::image::image* pimage)
 
       ::image::image_drawing imagedrawing(imagedrawingoptions, imagesource);
 
-      pimage->g()->draw(imagedrawing);
+      pgraphicsImage->draw(imagedrawing);
 
    }
 
@@ -740,7 +787,7 @@ void image::destroy()
    pixmap::unmap();
    clear_flag(e_flag_success);
    clear_flag(e_flag_failure);
-   m_pgraphics.defer_destroy_and_release();
+   //m_pgraphics.defer_destroy_and_release();
    m_pbitmap.defer_destroy_and_release();
    //return ::success;
 
@@ -766,7 +813,7 @@ void image::destroy_os_data()
 //   return pgraphics->draw(i32_rectangle_dimension(0, 0,
 //                                     width(),
 //                                     height()),
-//                                     pimage->g(),
+//                                     pgraphicsImage,
 //                                     i32_rectangle_dimension(0, 0,
 //                                     pimage->width(),
 //                                     pimage->height()));
@@ -856,7 +903,9 @@ void image::stretch_image(::image::image* pimage)
 
    }
 
-   ::image::image_source imagesource(pimage->g(), ::f64_rectangle(pimage->size()));
+   auto pgraphicsImage = pimage->acquire_graphics();
+
+   ::image::image_source imagesource(pgraphicsImage, ::f64_rectangle(pimage->size()));
 
    ::image::image_drawing_options imagedrawingoptions(rectangle());
 
@@ -4498,9 +4547,11 @@ void image::copy_from_no_create(::image::image *pimage, const ::i32_point & poin
 
       ::image::image_drawing imagedrawing(imagedrawingoptions, imagesource);
 
-      g()->set_alpha_mode(::draw2d::e_alpha_mode_set);
+      auto pgraphics = acquire_graphics();
 
-      g()->draw(imagedrawing);
+      pgraphics->set_alpha_mode(::draw2d::e_alpha_mode_set);
+
+      pgraphics->draw(imagedrawing);
       //{
 
       //   return false;
@@ -6798,26 +6849,28 @@ void image::fill_byte(uchar uch)
       memory_set(data(), uch, (memsize)(iScan * iHeight));
 
    }
-   else if (g())
+   else 
    {
+
+      auto pgraphics = acquire_graphics();
 
       auto color = argb(uch, uch, uch, uch);
 
-      auto ealphamode = g()->alpha_mode();
+      auto ealphamode = pgraphics->alpha_mode();
 
       if (ealphamode != ::draw2d::e_alpha_mode_set)
       {
 
-         g()->set_alpha_mode(::draw2d::e_alpha_mode_set);
+         pgraphics->set_alpha_mode(::draw2d::e_alpha_mode_set);
 
       }
 
-      g()->fill_rectangle(::f64_rectangle(m_size), color);
+      pgraphics->fill_rectangle(::f64_rectangle(m_size), color);
 
       if (ealphamode != ::draw2d::e_alpha_mode_set)
       {
 
-         g()->set_alpha_mode(ealphamode);
+         pgraphics->set_alpha_mode(ealphamode);
 
       }
 
@@ -8209,7 +8262,7 @@ void image::all_channels_copy(::color::enum_channel echannelSrc, ::image::image 
 
    }
 
-   map();
+   auto mapThis = map();
 
    if (image32() == nullptr)
    {
@@ -9230,49 +9283,27 @@ void image::rate_rgb(::i32 iMul, ::i32 iDiv)
 }
 
 
-void image::map(bool bApplyAlphaTransform) const
+//void image::_map(bool bApplyAlphaTransform)
+//{
+//
+//
+//   return *this;
+//
+//}
+
+
+void image::_unmap(bool bDoUnmap)
 {
 
-   if (has_active_destination_graphics_lease())
+   pixmap::_unmap();
+
+   if (bDoUnmap)
    {
 
-      throw ::exception(
-         error_wrong_state,
-         "cannot map an image with active destination graphics");
-
-   }
-
-   if (!m_bMapped)
-   {
-
-      //if (
-      ((::image::image*)this)->_map(bApplyAlphaTransform);
-
-      //{
-
-         pixmap::map();
-
-         m_bMapped = true;
-
-      //}
-
-   }
-
-   //return true;
-
-}
-
-
-void image::unmap() const
-{
-
-   if (m_bMapped)
-   {
-
-      ((::image::image*)this)->_unmap();
-
-      if (_get_graphics() != nullptr)
+      if (::is_set(m_pgraphicsOwned))
       {
+
+         auto pgraphicsOwned = m_pgraphicsOwned;
 
          ::i32_rectangle rectangleThis(m_size);
 
@@ -9281,19 +9312,17 @@ void image::unmap() const
          if (rectangleThis.contains(rectangleMap.origin()))
          {
 
-            _get_graphics()->place_impact_area(rectangleMap);
+            pgraphicsOwned->place_impact_area(rectangleMap);
 
          }
          else
          {
 
-            _get_graphics()->place_impact_area(0, 0, m_sizeRaw.width(), m_sizeRaw.height());
+            pgraphicsOwned->place_impact_area(0, 0, m_sizeRaw.width(), m_sizeRaw.height());
 
          }
 
       }
-
-      ((::image::image*)this)->m_bMapped = false;
 
    }
 
@@ -9836,19 +9865,19 @@ void image_copy(::image::image* pimagethis, ::image::image* pimage)
 }
 
 
-::draw2d::graphics* image_get_graphics(::image::image* pimage)
-{
-
-   if (::is_null(pimage))
-   {
-
-      return nullptr;
-
-   }
-
-   return pimage->g();
-
-}
+//::draw2d::graphics* image_get_graphics(::image::image* pimage)
+//{
+//
+//   if (::is_null(pimage))
+//   {
+//
+//      return nullptr;
+//
+//   }
+//
+//   return pgraphicsImage;
+//
+//}
 
 
 void image::hue_offset(::f64 dRadians)
@@ -10111,7 +10140,7 @@ void image::defer_update_image()
    auto pimage = pframes->calc_current_frame(m_dynamic);
 
    if (pimage 
-      && m_pgraphics != pimage->m_pgraphics
+      //&& m_pgraphics != pimage->m_pgraphics
       && m_pbitmap != pimage->m_pbitmap)
    {
 
@@ -10123,7 +10152,7 @@ void image::defer_update_image()
 
       ::pixmap * ppixmapSrc = pimage;
 
-      m_pgraphics = pimage->m_pgraphics;
+      //m_pgraphics = pimage->m_pgraphics;
 
       m_pbitmap = pimage->m_pbitmap;
 
@@ -10132,6 +10161,63 @@ void image::defer_update_image()
    }
 
 }
+
+
+//void image::defer_create_owned_graphics_lease()
+//{
+//
+//   if (!m_pgraphicsleaseOwned)
+//   {
+//
+//      m_pgraphicsleaseOwned = new ::draw2d::graphics_lease(acquire_graphics());
+//
+//   }
+//
+//}
+
+
+//void image::defer_destroy_owned_graphics_lease()
+//{
+//
+//   if (m_pgraphicsleaseOwned)
+//   {
+//      
+//      auto pgraphicsleaseOwned = m_pgraphicsleaseOwned;
+//
+//      m_pgraphicsleaseOwned = nullptr;
+//
+//      try
+//      {
+//
+//         delete pgraphicsleaseOwned;
+//
+//      }
+//      catch (...)
+//      {
+//
+//
+//      }
+//
+//   }
+//
+//}
+
+
+//void image::set_owned_graphics()
+//{
+//
+//   if (m_pgraphicsOwned)
+//   {
+//
+//      return;
+//
+//   }
+//
+//   constructø(m_pgraphicsOwned);
+//
+//   m_pgraphicsOwned->create_memory_graphics()
+//
+//}
 
 
 ::pointer<::image::image>image::get_image(const ::i32_size & size)
@@ -10154,7 +10240,9 @@ void image::defer_update_image()
 
    ::image::image_drawing imagedrawing(imagedrawingoptions, imagesource);
 
-   pimageNew->g()->draw(imagedrawing);
+   auto pgraphicsImageNew = pimageNew->acquire_graphics();
+
+   pgraphicsImageNew->draw(imagedrawing);
 
    return pimageNew;
 
@@ -10592,6 +10680,22 @@ CLASS_DECL_AURA void draw_freetype_bitmap(::image::image* m_p, ::i32 Δx, ::i32 
 }
 
 
+//::draw2d::graphics *image::owned_graphics() const 
+//{
+//   
+//   return ((image *)this)->owned_graphics(); 
+//
+//}
+
+
+::draw2d::graphics_lease image::acquire_graphics(const ::f64_size &sizeHint)
+{
+   
+   return ::transfer(acquire_graphics()); 
+
+}
+
+
 //void image::create_image()
 //{
 //
@@ -10675,30 +10779,37 @@ void image::transform(enum_image eimage)
 }
 
 
-::draw2d::graphics* image::_get_graphics() const
-{
-
-   return nullptr;
-
-}
+//::draw2d::graphics* image::_get_graphics() const
+//{
+//
+//   return nullptr;
+//
+//}
+//
+//
 
 
 void image::_map(bool bApplyAlphaTransform)
 {
 
-   pixmap_t::map(this->rectangle());
+   if (has_active_destination_graphics_lease())
+   {
 
-   //return true;
+      throw ::exception(error_wrong_state, "cannot map an image with active destination graphics");
 
-}
+   }
 
-
-void image::_unmap()
-{
-
-   //return true;
+   pixmap::_map();
 
 }
+
+
+//void image::_unmap()
+//{
+//
+//   //return true;
+//
+//}
 
 
 //void image::static_initialize()
@@ -10771,29 +10882,29 @@ bool image::_draw_blend(const ::image::image_drawing& imagedrawing)
 }
 
 
-const ::image32_t *image::get_data() const 
-{
-   
-   return ((image *)this)->get_data(); 
-
-}
-
-
-::image32_t *image::get_data()
-{
-
-   if (m_bMapped)
-   {
-
-      return m_pimage32;
-
-   }
-
-   map();
-
-   return image32();
-
-}
+//const ::image32_t *image::get_data() const 
+//{
+//   
+//   return ((image *)this)->get_data(); 
+//
+//}
+//
+//
+//::image32_t *image::get_data()
+//{
+//
+//   if (m_bMapped)
+//   {
+//
+//      return m_pimage32;
+//
+//   }
+//
+//   map();
+//
+//   return image32();
+//
+//}
 
 
 void image::draw(const ::image::image_drawing & imagedrawing)
@@ -10878,13 +10989,13 @@ void image::_draw_raw(const ::image::image_drawing& imagedrawing)
 }
 
 
-
-::image32_t * image::line_data(::i32 iLine)
-{
-
-   return (::image32_t *) (((::u8*)data()) + (iLine * m_iScan));
-
-}
+//
+//::image32_t * image::line_data(::i32 iLine)
+//{
+//
+//   return (::image32_t *) (((::u8*)data()) + (iLine * m_iScan));
+//
+//}
 
 
 } // namespace image

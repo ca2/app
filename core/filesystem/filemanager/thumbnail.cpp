@@ -4,6 +4,7 @@
 #include "acme/constant/id.h"
 #include "acme/handler/topic.h"
 #include "aura/graphics/draw2d/graphics.h"
+#include "aura/graphics/draw2d/graphics_pointer.h"
 #include "document.h"
 
 

@@ -6,6 +6,7 @@
 #include "acme/prototype/collection/integer_map.h"
 #include "context.h"
 #include "font_sink.h"
+#include "aura/graphics/draw2d/graphics_pointer.h"
 
 
 namespace nano2d

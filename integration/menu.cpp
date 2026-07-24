@@ -7,6 +7,7 @@
 #include "acme/constant/id.h"
 #include "acme/constant/user_message.h"
 #include "aura/graphics/draw2d/graphics.h"
+#include "aura/graphics/draw2d/graphics_pointer.h"
 #include "aura/message/user.h"
 #include "aura/user/user/button.h"
 #include "berg/user/user/impact_system.h"

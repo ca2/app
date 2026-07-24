@@ -124,6 +124,7 @@ namespace gpu
       i32_point                                    m_pointTranslate;
       ::pointer<::gpu::cpu_buffer>                 m_pcpubuffer;
       ::pointer<::gpu::shader>                     m_pshader;
+      bool                                         m_bInNonOwnedLease;
       ::pointer<::gpu::shader>                     m_pshaderBound;
       ::pointer<::gpu::render_target>              m_prendertargetBound;
       ::pointer < ::gpu::model_buffer >            m_pmodelbufferDummy;

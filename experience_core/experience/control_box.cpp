@@ -2,6 +2,7 @@
 #include "control_box.h"
 #include "acme/constant/user_message.h"
 #include "aura/graphics/draw2d/graphics.h"
+#include "aura/graphics/draw2d/graphics_pointer.h"
 #include "aura/user/user/frame_interaction.h"
 
 

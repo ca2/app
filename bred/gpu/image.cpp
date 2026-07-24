@@ -46,14 +46,14 @@ namespace gpu
    }
 
 
-   ::draw2d::graphics * image::get_graphics2() const
-   {
+   //::draw2d::graphics_pointer image::owned_graphics() const
+   //{
 
-      unmap();
+   //   unmap();
 
-      return _get_graphics();
+   //   return _get_graphics();
 
-   }
+   //}
 
 
    void image::create_gpu_texture()
@@ -224,7 +224,7 @@ namespace gpu
    }
 
 
-   void image::map(bool) const
+   void image::_map(bool)
    {
 
       if (has_active_destination_graphics_lease())
@@ -352,10 +352,10 @@ namespace gpu
    }
 
 
-   void image::unmap() const
+   void image::_unmap(bool bDoUnmap)
    {
 
-      if (!m_bMapped)
+      if (!_on_unmap(bDoUnmap))
       {
 
          return;

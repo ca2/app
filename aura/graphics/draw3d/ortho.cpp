@@ -6,6 +6,7 @@
 //#include "acme/prototype/time/integral/operator.h"
 //#include "acme/prototype/collection/numeric_array.h"
 #include "aura/graphics/draw2d/graphics.h"
+#include "aura/graphics/draw2d/graphics_pointer.h"
 #include "aura/graphics/draw2d/pen.h"
 #include "aura/graphics/image/image.h"
 
@@ -355,7 +356,7 @@ namespace draw3d
 //            point2da[2]= ::i32_point((::i32)locationa[f[iMax][2]].x,(::i32)locationa[f[iMax][2]].y);
 //
 //            throw ::exception(todo, "plgblt");
-//            //m_pdc->PlgBlt(point2da, pimage->g(),0,0,pimage->width(),pimage->width(),bm,0,0);
+//            //m_pdc->PlgBlt(point2da, pgraphicsImage,0,0,pimage->width(),pimage->width(),bm,0,0);
 
          }
 

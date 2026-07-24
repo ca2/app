@@ -562,7 +562,7 @@ namespace user
 
                   auto rectangleTarget = ::f64_rectangle(rectangle.size());
 
-                  auto pgraphics = pbufferitem->g();
+                  auto pgraphics = pbufferitem->acquire_graphics();
 
                   ::image::image_source imagesource(pgraphics);
 

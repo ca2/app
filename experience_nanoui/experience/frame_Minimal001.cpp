@@ -1,6 +1,7 @@
 #include "framework.h"
 #include "frame_Minimal001.h"
 #include "aura/graphics/draw2d/graphics.h"
+#include "aura/graphics/draw2d/graphics_pointer.h"
 #include "berg/user/experience/frame_window.h"
 #include "berg/user/experience/move_manager.h"
 #include "berg/user/experience/size_manager.h"

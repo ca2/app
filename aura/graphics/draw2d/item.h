@@ -4,6 +4,7 @@
 
 //#include "acme/prototype/geometry2d/_geometry2d.h"
 #include "acme/prototype/geometry2d/rectangle.h"
+#include "aura/graphics/draw2d/graphics_pointer.h"
 
 
 namespace draw2d

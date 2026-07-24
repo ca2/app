@@ -7,6 +7,7 @@
 
 
 
+
 namespace user
 {
 
@@ -166,6 +167,14 @@ namespace user
    void draw_mesh_group::draw_group_image()
    {
 
+
+   }
+
+
+   ::draw2d::graphics * draw_mesh_group::draw2d_graphics()
+   {
+
+      return m_pgraphics;
 
    }
 

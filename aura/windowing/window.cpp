@@ -4978,7 +4978,7 @@ void window::on_keyboard_layout_change(const_char_pointer pszKeyboardLayoutId)
 
       //information() << "screen_pixel window().origin() : " << origin;
 
-      return m_pgraphicsgraphics->get_screen_item()->m_pimage2->pixel(x - origin.x, y - origin.y);
+      return m_pgraphicsgraphics->get_screen_item()->m_pimageBufferItem->pixel(x - origin.x, y - origin.y);
 
    }
 
@@ -9689,7 +9689,7 @@ void window::on_keyboard_layout_change(const_char_pointer pszKeyboardLayoutId)
 //
 //             }
 //
-//             //::pointer < ::draw2d::graphics > pgraphics = pbufferitem->g();
+//             //::draw2d::graphics_pointer pgraphics = pbufferitem->g();
 //
 //             pgraphicscontext->m_pgraphics = pbufferitem->g();
 //
@@ -10039,7 +10039,7 @@ void window::on_keyboard_layout_change(const_char_pointer pszKeyboardLayoutId)
 // //
 // //          }
 // //
-// //          //::pointer < ::draw2d::graphics > pgraphics = pbufferitem->g();
+// //          //::draw2d::graphics_pointer pgraphics = pbufferitem->g();
 // //
 // //          //pgraphicscontext->m_pgraphics = pbufferitem->g();
 // //
@@ -10377,7 +10377,7 @@ void window::on_keyboard_layout_change(const_char_pointer pszKeyboardLayoutId)
 // //
 // //          }
 // //
-// //          //::pointer < ::draw2d::graphics > pgraphics = pbufferitem->g();
+// //          //::draw2d::graphics_pointer pgraphics = pbufferitem->g();
 // //
 // //          pgraphicscontext->m_pgraphics = pbufferitem->g();
 // //
@@ -10734,7 +10734,7 @@ void window::on_keyboard_layout_change(const_char_pointer pszKeyboardLayoutId)
 
       //{
 
-      ::pointer<::draw2d::graphics> pgraphics;
+      //::draw2d::graphics_lease pgraphics;
 
       ::pointer<::graphics::buffer_item> pbufferitem;
       
@@ -10830,9 +10830,9 @@ void window::on_keyboard_layout_change(const_char_pointer pszKeyboardLayoutId)
                   return;
                }
 
-               //::pointer < ::draw2d::graphics > pgraphics = pbufferitem->g();
+               //::draw2d::graphics_pointer pgraphics = pbufferitem->g();
 
-               pgraphics = pbufferitem->g();
+               auto pgraphics = pbufferitem->acquire_graphics();
 
 #ifdef MORE_LOG
 
@@ -10866,9 +10866,7 @@ void window::on_keyboard_layout_change(const_char_pointer pszKeyboardLayoutId)
 
                //m_pgraphicscontextDrawFrame = pgraphicscontext;
 
-            }
 
-         }
          
          auto elapsed1 = time1.elapsed();
          //informationf("draw_frame elapsed1 %0.2f", elapsed1.floating_millisecond());
@@ -10879,7 +10877,7 @@ void window::on_keyboard_layout_change(const_char_pointer pszKeyboardLayoutId)
          // draw2dlock.unlock();
 
          pgraphics->send(
-            [this, pgraphics, time2]()
+            [this, &pgraphics, time2]()
             {
                auto elapsed21 = time2.elapsed();
                //informationf("draw_frame elapsed2.1 %0.2f", elapsed21.floating_millisecond());
@@ -10892,6 +10890,12 @@ void window::on_keyboard_layout_change(const_char_pointer pszKeyboardLayoutId)
             });
 
          auto elapsed2 = time2.elapsed();
+
+                     }
+
+
+                  }
+
          //informationf("draw_frame elapsed2 %0.2f", elapsed2.floating_millisecond());
 
          // draw_on_context();
@@ -11212,7 +11216,10 @@ slGraphics.unlock();
 //
 //          }
 //
-::pointer < ::draw2d::graphics > pgraphics = pbufferitem->g();
+// 
+// {
+         //::draw2d::graphics_pointer pgraphics = pbufferitem->acquire_graphics();
+         auto pgraphics = pbufferitem->acquire_graphics();
 //
 //          //pgraphicscontext->m_pgraphics = pbufferitem->g();
 //
@@ -11255,7 +11262,7 @@ slGraphics.unlock();
          synchronouslock.unlock();
          
          pgraphics->send(
-       [this, pgraphics, pbufferitem, time4]()
+       [this, &pgraphics, pbufferitem, time4]()
          {
          
             try
@@ -11290,7 +11297,7 @@ slGraphics.unlock();
 
 #if !defined(LINUX) || defined(__ANDROID__)
                  information() << "draw_frame before on_end_draw";
-                 m_pgraphicsgraphics->on_end_draw();
+                 m_pgraphicsgraphics->on_end_draw(pgraphics);
 #if defined(__ANDROID__)
                  information() << "draw_frame before update_screen";
                  m_pgraphicsgraphics->update_screen();
@@ -11627,7 +11634,7 @@ slGraphics.unlock();
 //
 //          }
 //
-//          //::pointer < ::draw2d::graphics > pgraphics = pbufferitem->g();
+//          //::draw2d::graphics_pointer pgraphics = pbufferitem->g();
 //
 //          pgraphicscontext->m_pgraphics = pbufferitem->g();
 //
@@ -12300,7 +12307,7 @@ slGraphics.unlock();
 
          //auto pgraphics = pgraphicscontext->draw2d_graphics();
 
-         //::pointer < ::draw2d::graphics > pgraphics = pbufferitem->g();
+         //::draw2d::graphics_pointer pgraphics = pbufferitem->g();
 
          //pgraphicscontext->m_pgraphics = pbufferitem->g();
 
@@ -12668,7 +12675,7 @@ slGraphics.unlock();
 //
 //         }
 //
-//         //::pointer < ::draw2d::graphics > pgraphics = pbufferitem->g();
+//         //::draw2d::graphics_pointer pgraphics = pbufferitem->g();
 //
 //         pgraphics = pbufferitem->g();
 //
@@ -13007,7 +13014,7 @@ slGraphics.unlock();
 //
 //         }
 //
-//         //::pointer < ::draw2d::graphics > pgraphics = pbufferitem->g();
+//         //::draw2d::graphics_pointer pgraphics = pbufferitem->g();
 //
 //         pgraphics = pbufferitem->g();
 //
@@ -16187,9 +16194,9 @@ slGraphics.unlock();
 
       _synchronous_lock synchronouslock(this->synchronization(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 
-      auto pitem = m_pgraphicsgraphics->get_screen_item();
+      auto pbufferitemScreen = m_pgraphicsgraphics->get_screen_item();
 
-      _synchronous_lock synchronouslockScreen(pitem->m_pmutex, DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
+      _synchronous_lock synchronouslockScreen(pbufferitemScreen->m_pmutex, DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 
       ::color::color colorTransparent(::color::transparent);
 
@@ -16197,7 +16204,7 @@ slGraphics.unlock();
 
       user_interaction()->screen_to_client()(rectangle);
 
-      return rectangle.area() - pitem->m_pimage2->get_rgba_area(colorTransparent, rectangle);
+      return rectangle.area() - pbufferitemScreen->m_pimageBufferItem->get_rgba_area(colorTransparent, rectangle);
 
    }
 
@@ -16219,9 +16226,9 @@ slGraphics.unlock();
 
       _synchronous_lock synchronouslock(this->synchronization(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 
-      auto pitem = m_pgraphicsgraphics->get_screen_item();
+      auto pbufferitemScreen = m_pgraphicsgraphics->get_screen_item();
 
-      _synchronous_lock synchronouslockScreen(pitem->m_pmutex, DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
+      _synchronous_lock synchronouslockScreen(pbufferitemScreen->m_pmutex, DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 
       ::color::color colorTransparent(::color::transparent);
 
@@ -16229,7 +16236,7 @@ slGraphics.unlock();
 
       user_interaction()->window_rectangle(rectangle);
 
-      return rectangle.area() - pitem->m_pimage2->get_rgba_area(colorTransparent);
+      return rectangle.area() - pbufferitemScreen->m_pimageBufferItem->get_rgba_area(colorTransparent);
 
    }
 
@@ -16246,9 +16253,9 @@ slGraphics.unlock();
 
       }
 
-      auto pitem = m_pgraphicsgraphics->get_screen_item();
+      auto pbufferitemScreen = m_pgraphicsgraphics->get_screen_item();
 
-      _synchronous_lock synchronouslockScreen(pitem->m_pmutex, DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
+      _synchronous_lock synchronouslockScreen(pbufferitemScreen->m_pmutex, DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 
       ::color::color colorTransparent(::color::transparent);
 
@@ -16263,7 +16270,7 @@ slGraphics.unlock();
 
       }
 
-      auto pimage = pitem->m_pimage2;
+      auto pimage = pbufferitemScreen->m_pimageBufferItem;
 
       if (::is_null(pimage))
       {
@@ -16583,20 +16590,20 @@ slGraphics.unlock();
 
       ::particle * pparticleSynchronization = nullptr;
 
-      ::graphics::buffer_item * pitem = nullptr;
+      ::graphics::buffer_item *pbufferitemScreen = nullptr;
 
       ::image::image * pimageSource = nullptr;
 
       if(m_pgraphicsgraphics) {
 
-         pitem = m_pgraphicsgraphics->get_screen_item();
+         pbufferitemScreen = m_pgraphicsgraphics->get_screen_item();
 
       }
 
-      if(pitem)
+      if (pbufferitemScreen)
       {
 
-         pparticleSynchronization = pitem->m_pmutex;
+         pparticleSynchronization = pbufferitemScreen->m_pmutex;
 
       }
 
@@ -16631,10 +16638,12 @@ slGraphics.unlock();
 
       static int s_iAndroidFillLogCount = 0;
 
-      if(pitem)
+      pixmap_lease map;
+
+      if (pbufferitemScreen)
       {
 
-         pimageSource = pitem->m_pimage2;
+         pimageSource = pbufferitemScreen->m_pimageBufferItem;
 
          if(pimageSource)
          {
@@ -16645,7 +16654,7 @@ slGraphics.unlock();
 
             hSource = pimageSource->height();
 
-            pdataSource = pimageSource->get_data();
+            map = pimageSource->map();
 
             scanSource = pimageSource->m_iScan;
 
@@ -16658,7 +16667,7 @@ slGraphics.unlock();
 
          information() << "android_fill_plasma"
             << " graphics=" << (::iptr) m_pgraphicsgraphics.m_p
-            << " item=" << (::iptr) pitem
+            << " item=" << (::iptr) pbufferitemScreen
             << " image=" << (::iptr) pimageSource
             << " data=" << (::iptr) pdataSource
             << " bitmap=(" << width << ", " << height << ")"

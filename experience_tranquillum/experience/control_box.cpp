@@ -3,6 +3,7 @@
 #include "acme/constant/user_message.h"
 #include "aura/user/user/frame_interaction.h"
 #include "aura/graphics/draw2d/graphics.h"
+#include "aura/graphics/draw2d/graphics_pointer.h"
 #include "aura/graphics/write_text/font.h"
 
 

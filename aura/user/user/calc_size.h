@@ -7,6 +7,9 @@
 #pragma once
 
 
+#include "aura/graphics/draw2d/graphics_pointer.h"
+
+
 namespace user
 {
 

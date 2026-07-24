@@ -16,6 +16,7 @@
 #include "acme/platform/session.h"
 #include "aura/graphics/draw2d/draw2d.h"
 #include "aura/graphics/draw2d/graphics.h"
+#include "aura/graphics/draw2d/graphics_pointer.h"
 #include "aura/graphics/draw2d/graphics_context.h"
 #include "aura/graphics/draw2d/pen.h"
 #include "aura/graphics/image/context.h"

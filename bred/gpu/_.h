@@ -29,6 +29,8 @@ namespace gpu
 
    class context_lock;
 
+   class context_lease;
+
    class fence;
 
    class empty_texture_source;

@@ -7,6 +7,8 @@
 #include "acme/prototype/string/international.h"
 #include "aura/graphics/draw2d/pen.h"
 #include "aura/graphics/draw2d/graphics.h"
+#include "aura/graphics/draw2d/graphics_lease.h"
+#include "aura/graphics/draw2d/graphics_pointer.h"
 #include "aura/graphics/image/context.h"
 #include "aura/graphics/write_text/font.h"
 #include "aura/graphics/write_text/font_family.h"
@@ -191,11 +193,13 @@ namespace graphics
 
       m_pimage = image()->create_image(sizeImage);
 
-      m_pimage->g()->m_pdraw2dhost = m_puserinteraction;
+      auto pgraphicsImage = m_pimage->acquire_graphics();
+      
+      pgraphicsImage->m_pdraw2dhost = m_puserinteraction;
 
-      m_papplication->constructø(m_pimage->g()->m_pfont);
+      m_papplication->constructø(pgraphicsImage->m_pfont);
 
-      m_pimage->g()->m_pfont->create_font(e_font_monospace, ::write_text::font_size(m_sizeTile.cy * 0.92, e_unit_pixel));
+      pgraphicsImage->m_pfont->create_font(e_font_monospace, ::write_text::font_size(m_sizeTile.cy * 0.92, e_unit_pixel));
 
       SetScreenColor(e_dos_color_background_black);
 
@@ -228,7 +232,7 @@ namespace graphics
       m_edoscolor = color;
       //synchronous_lock synchronouslock(m_pmutex, DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 
-      //m_pimage->g()->FillSolidRect(0,iLineStart * m_sizeTile.cy,m_pimage->width(),m_pimage->height() - iLineStart * m_sizeTile.cy,console_dos_color(color));
+      //pgraphicsImage->FillSolidRect(0,iLineStart * m_sizeTile.cy,m_pimage->width(),m_pimage->height() - iLineStart * m_sizeTile.cy,console_dos_color(color));
 
       //update_image();
 
@@ -409,7 +413,9 @@ namespace graphics
       if (!defer_write(ch, r, edoscolor))
       {
 
-         m_pimage->g()->set_smooth_mode(::draw2d::e_smooth_mode_none);
+         auto pgraphicsImage = m_pimage->acquire_graphics();
+
+         pgraphicsImage->set_smooth_mode(::draw2d::e_smooth_mode_none);
 
          if (ch == (::i8)209)// horizontal ::f64 / down simple
          {
@@ -418,18 +424,18 @@ namespace graphics
 
             ::draw2d::pen_pointer & ppen1 = get_pen1(edoscolor);
 
-            m_pimage->g()->set(ppen2);
+            pgraphicsImage->set(ppen2);
 
-            m_pimage->g()->line(
+            pgraphicsImage->line(
                ::i32_point(m_iBorder + x * m_sizeTile.cx,
                   m_iBorder + y * m_sizeTile.cy + m_sizeTile.cy / 2),
                ::i32_point(m_iBorder + x * m_sizeTile.cx + m_sizeTile.cx + 1,
                   m_iBorder + y * m_sizeTile.cy + m_sizeTile.cy / 2)
             );
 
-            m_pimage->g()->set(ppen1);
+            pgraphicsImage->set(ppen1);
 
-            m_pimage->g()->line(
+            pgraphicsImage->line(
                ::i32_point(m_iBorder + x * m_sizeTile.cx + m_sizeTile.cx / 2,
                   m_iBorder + y * m_sizeTile.cy + m_sizeTile.cy / 2),
                ::i32_point(m_iBorder + x * m_sizeTile.cx + m_sizeTile.cx / 2,
@@ -448,11 +454,11 @@ namespace graphics
 
                ::draw2d::pen_pointer & ppen2 = get_pen2(edoscolor);
 
-               m_pimage->g()->set(ppen2);
+               pgraphicsImage->set(ppen2);
 
             }
 
-            m_pimage->g()->line(
+            pgraphicsImage->line(
                i32_point(m_iBorder + x * m_sizeTile.cx,
                   m_iBorder + y * m_sizeTile.cy + m_sizeTile.cy / 2),
                i32_point(m_iBorder + x * m_sizeTile.cx + m_sizeTile.cx + 1,
@@ -471,11 +477,11 @@ namespace graphics
 
                ::draw2d::pen_pointer & ppen1 = get_pen1(edoscolor);
 
-               m_pimage->g()->set(ppen1);
+               pgraphicsImage->set(ppen1);
 
             }
 
-            m_pimage->g()->line(
+            pgraphicsImage->line(
                i32_point(m_iBorder + x * m_sizeTile.cx,
                   m_iBorder + y * m_sizeTile.cy + m_sizeTile.cy / 2),
                i32_point(m_iBorder + x * m_sizeTile.cx + m_sizeTile.cx + 1,
@@ -494,11 +500,11 @@ namespace graphics
 
                ::draw2d::pen_pointer & ppen2 = get_pen2(edoscolor);
 
-               m_pimage->g()->set(ppen2);
+               pgraphicsImage->set(ppen2);
 
             }
 
-            m_pimage->g()->line(
+            pgraphicsImage->line(
                i32_point(m_iBorder + x * m_sizeTile.cx + m_sizeTile.cx / 2,
                   m_iBorder + y * m_sizeTile.cy),
                i32_point(m_iBorder + x * m_sizeTile.cx + m_sizeTile.cx / 2,
@@ -513,17 +519,17 @@ namespace graphics
          {
             ::draw2d::pen_pointer & ppen2 = get_pen2(edoscolor);
             ::draw2d::pen_pointer & ppen1 = get_pen1(edoscolor);
-            m_pimage->g()->set(ppen2);
+            pgraphicsImage->set(ppen2);
 
-           m_pimage->g()->line(
+           pgraphicsImage->line(
               ::f64_point( m_iBorder + x * m_sizeTile.cx + m_sizeTile.cx / 2,
                m_iBorder + y * m_sizeTile.cy ),
               ::f64_point( m_iBorder + x * m_sizeTile.cx + m_sizeTile.cx / 2,
               m_iBorder + y * m_sizeTile.cy + m_sizeTile.cy + 1 )
             );
-            m_pimage->g()->set(ppen1);
+            pgraphicsImage->set(ppen1);
 
-            m_pimage->g()->line(
+            pgraphicsImage->line(
                ::f64_point(m_iBorder + x * m_sizeTile.cx + m_sizeTile.cx / 2,
                m_iBorder + y * m_sizeTile.cy + m_sizeTile.cy / 2),
                ::f64_point(m_iBorder + x * m_sizeTile.cx + m_sizeTile.cx + 1,
@@ -538,17 +544,17 @@ namespace graphics
          {
             ::draw2d::pen_pointer & ppen2 = get_pen2(edoscolor);
             ::draw2d::pen_pointer & ppen1 = get_pen1(edoscolor);
-            m_pimage->g()->set(ppen2);
+            pgraphicsImage->set(ppen2);
 
-            m_pimage->g()->line(
+            pgraphicsImage->line(
                ::f64_point(m_iBorder + x * m_sizeTile.cx + m_sizeTile.cx / 2,
                m_iBorder + y * m_sizeTile.cy),
                ::f64_point(m_iBorder + x * m_sizeTile.cx + m_sizeTile.cx / 2, 
                   m_iBorder + y * m_sizeTile.cy + m_sizeTile.cy + 1)
             );
-            m_pimage->g()->set(ppen1);
+            pgraphicsImage->set(ppen1);
 
-            m_pimage->g()->line(
+            pgraphicsImage->line(
                ::f64_point(m_iBorder + x * m_sizeTile.cx,
                m_iBorder + y * m_sizeTile.cy + m_sizeTile.cy / 2),
                ::f64_point(m_iBorder + x * m_sizeTile.cx + m_sizeTile.cx / 2,
@@ -567,11 +573,11 @@ namespace graphics
 
                ::draw2d::pen_pointer & ppen1 = get_pen1(edoscolor);
 
-               m_pimage->g()->set(ppen1);
+               pgraphicsImage->set(ppen1);
 
             }
 
-            m_pimage->g()->line(
+            pgraphicsImage->line(
                ::f64_point(m_iBorder + x * m_sizeTile.cx + m_sizeTile.cx / 2,
                m_iBorder + y * m_sizeTile.cy),
                ::f64_point(m_iBorder + x * m_sizeTile.cx + m_sizeTile.cx / 2, 
@@ -590,17 +596,17 @@ namespace graphics
 
                ::draw2d::pen_pointer & ppen1 = get_pen1(edoscolor);
 
-               m_pimage->g()->set(ppen1);
+               pgraphicsImage->set(ppen1);
 
             }
 
-            m_pimage->g()->line(
+            pgraphicsImage->line(
                ::f64_point(m_iBorder + x * m_sizeTile.cx + m_sizeTile.cx / 2,
                m_iBorder + y * m_sizeTile.cy + m_sizeTile.cy / 2),
                ::f64_point(m_iBorder + x * m_sizeTile.cx + m_sizeTile.cx + 1, 
                   m_iBorder + y * m_sizeTile.cy + m_sizeTile.cy / 2)
             );
-            m_pimage->g()->line(
+            pgraphicsImage->line(
                m_iBorder + x * m_sizeTile.cx + m_sizeTile.cx / 2,
                m_iBorder + y * m_sizeTile.cy + m_sizeTile.cy / 2,
                m_iBorder + x * m_sizeTile.cx + m_sizeTile.cx / 2, m_iBorder + y * m_sizeTile.cy + m_sizeTile.cy
@@ -618,16 +624,16 @@ namespace graphics
 
                ::draw2d::pen_pointer & ppen2 = get_pen2(edoscolor);
 
-               m_pimage->g()->set(ppen2);
+               pgraphicsImage->set(ppen2);
 
             }
 
-            m_pimage->g()->line(
+            pgraphicsImage->line(
                m_iBorder + x * m_sizeTile.cx + m_sizeTile.cx / 2 - i2,
                m_iBorder + y * m_sizeTile.cy + m_sizeTile.cy / 2,
                m_iBorder + x * m_sizeTile.cx + m_sizeTile.cx + 1, m_iBorder + y * m_sizeTile.cy + m_sizeTile.cy / 2
             );
-            m_pimage->g()->line(
+            pgraphicsImage->line(
                m_iBorder + x * m_sizeTile.cx + m_sizeTile.cx / 2,
                m_iBorder + y * m_sizeTile.cy + m_sizeTile.cy / 2,
                m_iBorder + x * m_sizeTile.cx + m_sizeTile.cx / 2, m_iBorder + y * m_sizeTile.cy + m_sizeTile.cy + 1
@@ -645,16 +651,16 @@ namespace graphics
 
                ::draw2d::pen_pointer & ppen2 = get_pen2(edoscolor);
 
-               m_pimage->g()->set(ppen2);
+               pgraphicsImage->set(ppen2);
 
             }
 
-            m_pimage->g()->line(
+            pgraphicsImage->line(
                m_iBorder + x * m_sizeTile.cx + m_sizeTile.cx / 2 - i2,
                m_iBorder + y * m_sizeTile.cy + m_sizeTile.cy / 2,
                m_iBorder + x * m_sizeTile.cx + m_sizeTile.cx + 1, m_iBorder + y * m_sizeTile.cy + m_sizeTile.cy / 2
             );
-            m_pimage->g()->line(
+            pgraphicsImage->line(
                m_iBorder + x * m_sizeTile.cx + m_sizeTile.cx / 2,
                m_iBorder + y * m_sizeTile.cy + m_sizeTile.cy / 2,
                m_iBorder + x * m_sizeTile.cx + m_sizeTile.cx / 2, m_iBorder + y * m_sizeTile.cy
@@ -672,16 +678,16 @@ namespace graphics
 
                ::draw2d::pen_pointer & ppen1 = get_pen1(edoscolor);
 
-               m_pimage->g()->set(ppen1);
+               pgraphicsImage->set(ppen1);
 
             }
 
-            m_pimage->g()->line(
+            pgraphicsImage->line(
                m_iBorder + x * m_sizeTile.cx + m_sizeTile.cx / 2,
                m_iBorder + y * m_sizeTile.cy + m_sizeTile.cy / 2,
                m_iBorder + x * m_sizeTile.cx + m_sizeTile.cx + 1, m_iBorder + y * m_sizeTile.cy + m_sizeTile.cy / 2
             );
-            m_pimage->g()->line(
+            pgraphicsImage->line(
                m_iBorder + x * m_sizeTile.cx + m_sizeTile.cx / 2,
                m_iBorder + y * m_sizeTile.cy + m_sizeTile.cy / 2,
                m_iBorder + x * m_sizeTile.cx + m_sizeTile.cx / 2, m_iBorder + y * m_sizeTile.cy
@@ -699,16 +705,16 @@ namespace graphics
 
                ::draw2d::pen_pointer & ppen2 = get_pen2(edoscolor);
 
-               m_pimage->g()->set(ppen2);
+               pgraphicsImage->set(ppen2);
 
             }
 
-           m_pimage->g()->line(
+           pgraphicsImage->line(
                m_iBorder + x * m_sizeTile.cx,
                m_iBorder + y * m_sizeTile.cy + m_sizeTile.cy / 2,
                m_iBorder + x * m_sizeTile.cx + m_sizeTile.cx / 2 + i2, m_iBorder + y * m_sizeTile.cy + m_sizeTile.cy / 2
             );
-            m_pimage->g()->line(
+            pgraphicsImage->line(
                m_iBorder + x * m_sizeTile.cx + m_sizeTile.cx / 2,
                m_iBorder + y * m_sizeTile.cy + m_sizeTile.cy / 2,
                m_iBorder + x * m_sizeTile.cx + m_sizeTile.cx / 2, m_iBorder + y * m_sizeTile.cy
@@ -726,16 +732,16 @@ namespace graphics
 
                ::draw2d::pen_pointer & ppen1 = get_pen1(edoscolor);
 
-               m_pimage->g()->set(ppen1);
+               pgraphicsImage->set(ppen1);
 
             }
 
-            m_pimage->g()->line(
+            pgraphicsImage->line(
                m_iBorder + x * m_sizeTile.cx,
                m_iBorder + y * m_sizeTile.cy + m_sizeTile.cy / 2,
                m_iBorder + x * m_sizeTile.cx + m_sizeTile.cx / 2, m_iBorder + y * m_sizeTile.cy + m_sizeTile.cy / 2
             );
-            m_pimage->g()->line(
+            pgraphicsImage->line(
                m_iBorder + x * m_sizeTile.cx + m_sizeTile.cx / 2,
                m_iBorder + y * m_sizeTile.cy + m_sizeTile.cy / 2,
                m_iBorder + x * m_sizeTile.cx + m_sizeTile.cx / 2, m_iBorder + y * m_sizeTile.cy
@@ -753,16 +759,16 @@ namespace graphics
 
                ::draw2d::pen_pointer & ppen2 = get_pen2(edoscolor);
 
-               m_pimage->g()->set(ppen2);
+               pgraphicsImage->set(ppen2);
 
             }
 
-            m_pimage->g()->line(
+            pgraphicsImage->line(
                m_iBorder + x * m_sizeTile.cx,
                m_iBorder + y * m_sizeTile.cy + m_sizeTile.cy / 2,
                m_iBorder + x * m_sizeTile.cx + m_sizeTile.cx / 2 + i2, m_iBorder + y * m_sizeTile.cy + m_sizeTile.cy / 2
             );
-            m_pimage->g()->line(
+            pgraphicsImage->line(
                m_iBorder + x * m_sizeTile.cx + m_sizeTile.cx / 2,
                m_iBorder + y * m_sizeTile.cy + m_sizeTile.cy / 2,
                m_iBorder + x * m_sizeTile.cx + m_sizeTile.cx / 2, m_iBorder + y * m_sizeTile.cy + m_sizeTile.cy + 1
@@ -780,16 +786,16 @@ namespace graphics
 
                ::draw2d::pen_pointer & ppen1 = get_pen1(edoscolor);
 
-              m_pimage->g()->set(ppen1);
+              pgraphicsImage->set(ppen1);
 
             }
 
-            m_pimage->g()->line(
+            pgraphicsImage->line(
                m_iBorder + x * m_sizeTile.cx,
                m_iBorder + y * m_sizeTile.cy + m_sizeTile.cy / 2,
                m_iBorder + x * m_sizeTile.cx + m_sizeTile.cx / 2, m_iBorder + y * m_sizeTile.cy + m_sizeTile.cy / 2
             );
-            m_pimage->g()->line(
+            pgraphicsImage->line(
                m_iBorder + x * m_sizeTile.cx + m_sizeTile.cx / 2,
                m_iBorder + y * m_sizeTile.cy + m_sizeTile.cy / 2,
                m_iBorder + x * m_sizeTile.cx + m_sizeTile.cx / 2, m_iBorder + y * m_sizeTile.cy + m_sizeTile.cy + 1
@@ -808,9 +814,9 @@ namespace graphics
 
             //str = ch;
 
-            m_pimage->g()->set_text_color(console_dos_color(edoscolor));
+            pgraphicsImage->set_text_color(console_dos_color(edoscolor));
 
-           m_pimage->g()->draw_text(str, i32_rectangle(m_iBorder + x * m_sizeTile.cx, m_iBorder + y * m_sizeTile.cy,
+           pgraphicsImage->draw_text(str, i32_rectangle(m_iBorder + x * m_sizeTile.cx, m_iBorder + y * m_sizeTile.cy,
                m_iBorder + x * m_sizeTile.cx + m_sizeTile.cx, m_iBorder + y * m_sizeTile.cy + m_sizeTile.cy), e_align_center);
 
          }

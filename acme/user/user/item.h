@@ -333,7 +333,7 @@ namespace user
 
       // a user item is a "pointer"/address to a user interface matter
 
-      //::pointer<::draw2d::graphics>     m_pgraphics;
+      //::draw2d::graphics_pointer      m_pgraphics;
       //::pointer<::geometry2d::region>     m_pregion;
       ::pointer<::draw2d::path>     m_ppath;
       ::pointer<::user::mouse>      m_pmouse;

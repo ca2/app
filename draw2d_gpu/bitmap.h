@@ -88,7 +88,7 @@ namespace draw2d_gpu
       void CreateCompatibleBitmap(::draw2d::graphics * pgraphics, ::i32 nWidth, ::i32 nHeight);
       void CreateDiscardableBitmap(::draw2d::graphics * pgraphics, ::i32 nWidth, ::i32 nHeight);
       
-      void create_bitmap(::draw2d::graphics * pgraphics, const ::i32_size& size, void** ppcolorref, ::i32* piScan) override;
+      void create_bitmap(::draw2d::graphics * pgraphics, const ::i32_size& size, ::image32_t** ppimage32, const ::image32_t * pimage32, ::i32* piScan) override;
       void CreateDIBitmap(::draw2d::graphics * pgraphics, ::i32 cx, ::i32 cy, ::u32 flInit, const void* pjBits, ::u32 iUsage) override;
 
 

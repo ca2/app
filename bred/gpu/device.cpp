@@ -142,10 +142,10 @@ namespace gpu
 
 
 
-   ::pointer < ::gpu::context > device::allocate_context()
+   ::gpu::context_pointer device::allocate_context()
    {
 
-      ::pointer < ::gpu::context > pgpucontext;
+      ::gpu::context_pointer pgpucontext;
 
       pgpucontext = createø< ::gpu::context >();
 
@@ -208,7 +208,7 @@ namespace gpu
    }
 
 
-   //::pointer < ::gpu::context > device::start_gpu_output_context(const ::gpu::enum_output& eoutput, const ::i32_size& size)
+   //::gpu::context_pointer device::start_gpu_output_context(const ::gpu::enum_output& eoutput, const ::i32_size& size)
    //{
 
    //   auto pgpucontext = start_gpu_context(eoutput, nullptr,  size);
@@ -218,7 +218,7 @@ namespace gpu
    //}
 
 
-   //::pointer < ::gpu::context > device::start_cpu_buffer_context(::particle* pparticle, const ::function< void(::image::target* ptarget) >& callbackOnImagePixels, const ::i32_size& size)
+   //::gpu::context_pointer device::start_cpu_buffer_context(::particle* pparticle, const ::function< void(::image::target* ptarget) >& callbackOnImagePixels, const ::i32_size& size)
    //{
 
    //   auto pgpucontext = start_gpu_context(
@@ -235,7 +235,7 @@ namespace gpu
    //}
 
 
-   ::pointer < ::gpu::context > device::create_window_context(::windowing::window* pwindow)
+   ::gpu::context_pointer device::create_window_context(::windowing::window* pwindow)
    {
       
       auto pgpucontext = allocate_context();
@@ -249,7 +249,7 @@ namespace gpu
    }
 
 
-   ::pointer < ::gpu::context > device::create_gpu_context(const ::gpu::enum_output& eoutput, const ::gpu::enum_scene & escene, const ::i32_size& size)
+   ::gpu::context_pointer device::create_gpu_context(const ::gpu::enum_output& eoutput, const ::gpu::enum_scene & escene, const ::i32_size& size)
    {
 
       if (size.is_empty())
@@ -302,7 +302,7 @@ namespace gpu
    //}
 
 
-   ::pointer < ::gpu::context > device::create_draw2d_context(const ::gpu::enum_output& eoutput, const ::i32_size& size)
+   ::gpu::context_pointer device::create_draw2d_context(const ::gpu::enum_output& eoutput, const ::i32_size& size)
    {
 
       //auto pgpucontext = createø<::gpu::context>();

@@ -653,6 +653,7 @@
     <ClInclude Include="gpu\context.h" />
     <ClInclude Include="gpu\context_lease.h" />
     <ClInclude Include="gpu\context_object.h" />
+    <ClInclude Include="gpu\context_pointer.h" />
     <ClInclude Include="gpu\cpu_buffer.h" />
     <ClInclude Include="gpu\empty_texture_source.h" />
     <ClInclude Include="gpu\debug_scope.h" />
@@ -812,6 +813,7 @@
     <ClCompile Include="gpu\context.cpp" />
     <ClCompile Include="gpu\context_lease.cpp" />
     <ClCompile Include="gpu\context_object.cpp" />
+    <ClCompile Include="gpu\context_pointer.cpp" />
     <ClCompile Include="gpu\cpu_buffer.cpp" />
     <ClCompile Include="gpu\device.cpp" />
     <ClCompile Include="gpu\draw2d.cpp" />

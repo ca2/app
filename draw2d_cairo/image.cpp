@@ -103,8 +103,8 @@ namespace draw2d_cairo
 
       if (m_pbitmap.is_set()
             && m_pbitmap->get_os_data() != nullptr
-            && m_pgraphics.is_set()
-            && m_pgraphics->get_os_data() != nullptr
+            //&& m_pgraphics.is_set()
+            //&& m_pgraphics->get_os_data() != nullptr
             && size == m_sizeRaw)
       {
 
@@ -153,7 +153,7 @@ namespace draw2d_cairo
 
 #endif
 
-      pbitmap->create_bitmap(nullptr, size, (void**)&pimage32Raw, &iScan);
+      pbitmap->create_bitmap(nullptr, size, &pimage32Raw, nullptr, &iScan);
       //pbitmap->create_bitmap(nullptr, size, nullptr, &iScan);
 
       //if(!pbitmap->create_bitmap(nullptr, size, (void **) &pimage32Raw, &iScan))
@@ -184,12 +184,12 @@ namespace draw2d_cairo
       destroy();
 
       m_pbitmap = pbitmap;
+      //m_pgraphics = pgraphics;
 
-      m_pgraphics = pgraphics;
+      //m_pgraphics->set(m_pbitmap);
+      //m_pgraphics->reset_impact_area();
+      //m_pgraphics->m_pimage = this;
 
-      m_pgraphics->set(m_pbitmap);
-      m_pgraphics->reset_impact_area();
-      m_pgraphics->m_pimage = this;
       m_sizeRaw = size;
       //m_sizeAlloc = size;
       m_pimage32 = nullptr;
@@ -248,15 +248,15 @@ namespace draw2d_cairo
 
       //}
 
-      ::image::image_source imagesource(pgraphics);
+      //::image::image_source imagesource(pgraphics);
 
-      ::f64_rectangle rectangle(size);
+      //::f64_rectangle rectangle(size);
 
-      ::image::image_drawing_options imagedrawingoptions(rectangle);
+      //::image::image_drawing_options imagedrawingoptions(rectangle);
 
-      ::image::image_drawing imagedrawing(imagedrawingoptions, imagesource);
+      //::image::image_drawing imagedrawing(imagedrawingoptions, imagesource);
 
-      g()->draw(imagedrawing);
+      //g()->draw(imagedrawing);
 
       //return true;
 
@@ -270,7 +270,7 @@ namespace draw2d_cairo
 
       m_pbitmap.release();
 
-      m_pgraphics.release();
+      //m_pgraphics.release();
 
       //return ::success;
 
@@ -296,6 +296,8 @@ namespace draw2d_cairo
    void image::_draw_raw(const ::i32_rectangle & rectangleTarget, ::image::image *pimage, const ::i32_point & pointSrc)
    {
 
+      auto pgraphics = acquire_graphics();
+
       ::f64_rectangle rectangle(rectangleTarget);
 
       ::image::image_source imagesource(pimage, ::f64_rectangle(pointSrc, rectangle.size()));
@@ -304,7 +306,7 @@ namespace draw2d_cairo
 
       ::image::image_drawing imagedrawing(imagedrawingoptions, imagesource);
 
-      return g()->draw(imagedrawing);
+      pgraphics->draw(imagedrawing);
 //      ::draw2d::bitmap_pointer bitmap;
 //      bitmap->CreateCompatibleBitmap(pgraphics, 1, 1);
 //      auto estatus = pgraphics->set(bitmap);
@@ -576,7 +578,7 @@ namespace draw2d_cairo
    }
 
 
-   void image::_unmap()
+   void image::_unmap(bool bDoUnmaps)
    {
 
       _synchronous_lock ml(::draw2d_cairo::mutex(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
@@ -753,12 +755,12 @@ namespace draw2d_cairo
    //}
 
 
-   ::draw2d::graphics * image::_get_graphics() const
-   {
+   //::draw2d::graphics * image::_get_graphics() const
+   //{
 
-      return m_pgraphics;
+   //   return m_pgraphics;
 
-   }
+   //}
 
 
 //#if defined(WINDOWS)

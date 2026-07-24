@@ -35,8 +35,8 @@ public:
       if (elapsedSinceStart.count() >= 1000.0)
       { // Update every 1 second
          ::f64 totalMs = std::accumulate(m_frameTimes.begin(), m_frameTimes.end(), 0.0);
-         m_averageFrameTimeMs = totalMs / m_frameTimes.size();
-         m_averageFps = 1000.0 / m_averageFrameTimeMs;
+         m_averageFrameTimeMs = (::f32) (totalMs / m_frameTimes.size());
+         m_averageFps = (::f32) ( 1000.0 / m_averageFrameTimeMs);
 
          // Optional: display results (or use getter functions)
          //display();

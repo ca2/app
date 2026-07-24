@@ -25,11 +25,9 @@ namespace draw2d_cairo
       ~image() override;
 
 
-      void _map(bool bApplyAlphaTransform = true) override;
-      void _unmap() override;
 
 
-      ::draw2d::graphics * _get_graphics() const override;
+      //::draw2d::graphics * _get_graphics() const override;
       ::draw2d::bitmap_pointer get_bitmap() const override;
       ::draw2d::bitmap_pointer detach_bitmap() override;
 
@@ -55,7 +53,9 @@ namespace draw2d_cairo
 
       void blend(const ::i32_point & ptDst, ::image::image *pimageAlf, const ::i32_point & pointAlf, const ::i32_size & size, ::u8 bA) override;
       //void blend2(const ::i32_point & ptDst, ::image::image *pimageAlf, const ::i32_point & pointAlf, const ::i32_size & size, ::u8 bA) override;
-
+   protected:
+      void _map(bool bApplyAlphaTransform = true) override;
+      void _unmap(bool bDoUnmap = false) override;
 
    };
 

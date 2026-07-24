@@ -3,6 +3,7 @@
 
 
 #include "bred/gpu/properties.h"
+#include "bred/gpu/context_pointer.h"
 
 
 namespace gpu
@@ -16,7 +17,7 @@ namespace gpu
    public:
 
 
-      ::pointer < ::gpu::context >  m_pgpucontext;
+      ::gpu::context_pointer  m_pgpucontext;
 
 
       input_layout();

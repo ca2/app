@@ -21,7 +21,7 @@ namespace gpu_opengl
       //::i32 m_iFboTex = 0;
       //VkSwapchainKHR                m_vkswapchain;
       //uint32_t                      m_uCurrentSwapChainImage;
-      //::pointer < ::gpu::context >  m_pgpucontextSwapChain;
+      //::gpu::context_pointer  m_pgpucontextSwapChain;
       //GLuint m_VAOFullScreenQuad;
       //GLuint m_VBOFullScreenQuad;
       ::pointer < ::gpu_opengl::texture > m_ptexturePresent;

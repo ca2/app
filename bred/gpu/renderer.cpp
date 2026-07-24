@@ -9,6 +9,7 @@
 #include "layer.h"
 #include "post_frame_context_registry.h"
 #include "queue.h"
+#include "semaphore.h"
 #include "texture.h"
 #include "renderer.h"
 //#include "layer_state.h"

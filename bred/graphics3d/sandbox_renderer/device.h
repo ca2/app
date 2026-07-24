@@ -41,7 +41,7 @@ namespace graphics3d
       //sandbox_instance * m_pinstance;
       ::pointer < ::gpu::device > m_pdevice;
 
-      ::pointer < ::gpu::context > m_pgpucontext;
+      ::gpu::context_pointer m_pgpucontext;
 
 
       // VkCommandPool m_commandPool;

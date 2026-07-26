@@ -207,8 +207,10 @@ namespace graphics
 
          ::i32 iScan = (::i32)(ppixmap->m_iScan);
 
-         *p++ = ppixmap->width();
-         *p++ = ppixmap->height();
+         *p++ = m_pwindow->m_pointWindow.x;
+         *p++ = m_pwindow->m_pointWindow.y;
+         *p++ = m_pwindow->m_sizeWindow.cx;
+         *p++ = m_pwindow->m_sizeWindow.cy;
          *p++ = iScan;
 
          //::copy_image32((::color32_t*)p, ppixmap->size(), iScan, ppixmap);

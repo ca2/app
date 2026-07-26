@@ -107,6 +107,15 @@ int main()
    assert(copy.find("GL_DRAW_BUFFER") != std::string::npos);
    assert(copy.find("GL_COLOR_BUFFER_BIT, GL_NEAREST") !=
       std::string::npos);
+   const auto disableScissor = copy.find("glDisable(GL_SCISSOR_TEST)");
+   const auto blit = copy.find("glBlitFramebuffer(");
+   assert(copy.find("glIsEnabled(GL_SCISSOR_TEST)") !=
+      std::string::npos);
+   assert(disableScissor != std::string::npos);
+   assert(blit != std::string::npos);
+   assert(disableScissor < blit);
+   assert(contextSource.find("glEnable(GL_SCISSOR_TEST)") !=
+      std::string::npos);
    assert(copy.find("sizeSrc != sizeDst") != std::string::npos);
    assert(copy.find("iDestinationSampleCount != 1") !=
       std::string::npos);

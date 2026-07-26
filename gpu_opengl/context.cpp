@@ -53,12 +53,14 @@ namespace
          GLint iDrawFramebuffer,
          GLint iReadBuffer,
          GLint iDrawBuffer,
+         GLboolean bScissorTestEnabled,
          GLuint & uReadFramebuffer,
          GLuint & uDrawFramebuffer) :
          m_iReadFramebuffer(iReadFramebuffer),
          m_iDrawFramebuffer(iDrawFramebuffer),
          m_iReadBuffer(iReadBuffer),
          m_iDrawBuffer(iDrawBuffer),
+         m_bScissorTestEnabled(bScissorTestEnabled),
          m_uReadFramebuffer(uReadFramebuffer),
          m_uDrawFramebuffer(uDrawFramebuffer)
       {
@@ -68,6 +70,13 @@ namespace
 
       ~framebuffer_blit_state_guard()
       {
+
+         if (m_bScissorTestEnabled)
+         {
+
+            glEnable(GL_SCISSOR_TEST);
+
+         }
 
          glBindFramebuffer(GL_READ_FRAMEBUFFER, m_iReadFramebuffer);
          glReadBuffer(m_iReadBuffer);
@@ -95,6 +104,7 @@ namespace
       GLint m_iDrawFramebuffer;
       GLint m_iReadBuffer;
       GLint m_iDrawBuffer;
+      GLboolean m_bScissorTestEnabled;
       GLuint & m_uReadFramebuffer;
       GLuint & m_uDrawFramebuffer;
 
@@ -2017,6 +2027,9 @@ namespace gpu_opengl
       glGetIntegerv(GL_DRAW_BUFFER, &iDrawBufferOld);
       ::opengl::check_error("");
 
+      auto bScissorTestEnabled = glIsEnabled(GL_SCISSOR_TEST);
+      ::opengl::check_error("");
+
       GLuint uReadFramebuffer = 0;
       GLuint uDrawFramebuffer = 0;
 
@@ -2025,6 +2038,7 @@ namespace gpu_opengl
          iDrawFramebufferOld,
          iReadBufferOld,
          iDrawBufferOld,
+         bScissorTestEnabled,
          uReadFramebuffer,
          uDrawFramebuffer);
 
@@ -2101,6 +2115,9 @@ namespace gpu_opengl
          throw ::exception(error_wrong_state, strMessage);
 
       }
+
+      glDisable(GL_SCISSOR_TEST);
+      ::opengl::check_error("");
 
       glBlitFramebuffer(
          0, 0, sizeSrc.cx, sizeSrc.cy,

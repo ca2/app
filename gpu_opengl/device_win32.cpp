@@ -22,7 +22,7 @@ namespace gpu_opengl
 {
 
 
-   //::pointer < ::gpu::context > allocate_system_context(::particle* pparticle)
+   //::gpu::context_pointer allocate_system_context(::particle* pparticle)
    //{
 
    //   return pparticle->create_newø <context_win32>();
@@ -770,10 +770,10 @@ namespace gpu_opengl
    //}
 
 
-   ::pointer < ::gpu::context > device_win32::allocate_context(::particle* pparticle)
+   ::gpu::context_pointer device_win32::allocate_context(::particle* pparticle)
    {
 
-      ::pointer < ::gpu::context > pgpucontext;
+      ::gpu::context_pointer pgpucontext;
 
       constructø(pgpucontext);
 

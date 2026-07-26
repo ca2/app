@@ -3,6 +3,8 @@
 
 
 #include "acme/windowing/window.h"
+#include "bred/gpu/context_pointer.h"
+
 
 namespace gpu
 {
@@ -19,7 +21,7 @@ namespace gpu
       bool                                               m_bWindowInitialized;
       bool                                               m_bSwapChainInitialized;
 
-      ::pointer < ::gpu::context >                       m_pgpucontext;
+      ::gpu::context_pointer                       m_pgpucontext;
       ::pointer < ::gpu::renderer >                      m_pgpurenderer;
       ::pointer < ::windowing::window >                  m_pwindowSwapChain;
       ::i32                                                m_iSwapChainIndex;

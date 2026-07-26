@@ -33,7 +33,7 @@ namespace gpu_opengl
       device_cgl();
       ~device_cgl() override;
 
-      ::pointer < ::gpu::context > allocate_context() override;
+      ::gpu::context_pointer allocate_context() override;
       //void create_context() override;
       //void context::on_create_context(::gpu::device* pgpudevice, const ::gpu::enum_output& eoutput, ::windowing::window* pwindow, const ::i32_size& size);
       void initialize_gpu_device_for_swap_chain(::gpu::approach* papproach, ::windowing::window* pwindow) override;

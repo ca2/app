@@ -388,10 +388,10 @@ namespace gpu_opengl
    // }
 
 
-   ::pointer < ::gpu::context > device_cgl::allocate_context()
+   ::gpu::context_pointer device_cgl::allocate_context()
    {
 
-      ::pointer < ::gpu::context > pgpucontext;
+      ::gpu::context_pointer pgpucontext;
 
       pgpucontext=create_newø < ::gpu_opengl::context_cgl>();
 

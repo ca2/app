@@ -29,8 +29,8 @@ namespace graphics3d
 
 		::f32                                              m_fYScale;
 		//::pointer < ::gpu::approach >					      m_papproach;
-		//::pointer < ::gpu::context >					      m_pgpucontext;
-		//::pointer < ::gpu::context >					      m_pgpucontextGraphics3D;
+		//::gpu::context_pointer					      m_pgpucontext;
+		//::gpu::context_pointer					      m_pgpucontextGraphics3D;
 		::pointer < ::user::graphics3d >				         m_pusergraphics3d;
 
 	   ::pointer < ::graphics3d::immersion_layer >        m_pimmersionlayer;

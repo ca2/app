@@ -56,11 +56,11 @@ namespace gpu
 
       ::pointer < ::gpu::approach >                      m_pgpuapproach;
       ::pointer < ::windowing::window >                  m_pwindow;
-      ::pointer < ::gpu::context >                       m_pgpucontextCurrent4;
-      ::pointer < ::gpu::context >                       m_pgpucontextMain;
-      ::pointer < ::gpu::context >                       m_pgpucontextMainDraw2d;
+      ::gpu::context_pointer                       m_pgpucontextCurrent4;
+      ::gpu::context_pointer                       m_pgpucontextMain;
+      ::gpu::context_pointer                       m_pgpucontextMainDraw2d;
       ::pointer<::gpu::context>                          m_pgpucontextWork;
-      //::pointer < ::gpu::context >           m_pgpucontextMainWindow;
+      //::gpu::context_pointer           m_pgpucontextMainWindow;
       //::i32_size                             m_sizeNew;
       //::i32_size                             m_size;
       //::f32                                  m_z;
@@ -193,20 +193,20 @@ namespace gpu
       virtual void initialize_gpu_device_for_off_screen(::gpu::approach * papproach, const ::i32_rectangle & rectanglePlacement);
 
 
-      virtual ::pointer < ::gpu::context > allocate_context();
+      virtual ::gpu::context_pointer allocate_context();
 
 
       virtual ::gpu::layer* get_previous_layer(::gpu::layer * pgpulayer);
 
-//      virtual ::pointer < ::gpu::context > start_gpu_output_context(const ::gpu::enum_output & eoutput, const ::i32_size& size);
+//      virtual ::gpu::context_pointer start_gpu_output_context(const ::gpu::enum_output & eoutput, const ::i32_size& size);
 
-      ///virtual ::pointer < ::gpu::context > start_cpu_buffer_context(::particle* pparticle, const ::function< void(::image::target* ptarget) >& callbackOnImagePixels, const ::i32_rectangle& rectanglePlacement);
+      ///virtual ::gpu::context_pointer start_cpu_buffer_context(::particle* pparticle, const ::function< void(::image::target* ptarget) >& callbackOnImagePixels, const ::i32_rectangle& rectanglePlacement);
 
-      virtual ::pointer < ::gpu::context > create_window_context(::windowing::window* pwindow);
+      virtual ::gpu::context_pointer create_window_context(::windowing::window* pwindow);
 
-      virtual ::pointer < ::gpu::context > create_gpu_context(const ::gpu::enum_output& eoutput,  const ::gpu::enum_scene & escene, const ::i32_size & size);
+      virtual ::gpu::context_pointer create_gpu_context(const ::gpu::enum_output& eoutput,  const ::gpu::enum_scene & escene, const ::i32_size & size);
 
-      virtual ::pointer < ::gpu::context > create_draw2d_context(const ::gpu::enum_output& eoutput, const ::i32_size & size);
+      virtual ::gpu::context_pointer create_draw2d_context(const ::gpu::enum_output& eoutput, const ::i32_size & size);
 
       virtual ::gpu::context_lease acquire_gpu_context(
          const ::gpu::enum_output & eoutput,
@@ -218,7 +218,7 @@ namespace gpu
       virtual void shutdown_gpu_context_pool();
       virtual void report_gpu_context_pool_diagnostics_if_due();
 
-      //virtual ::pointer < ::gpu::context > create_draw2d_off_screen_context(const ::i32_size & size);
+      //virtual ::gpu::context_pointer create_draw2d_off_screen_context(const ::i32_size & size);
 
       //virtual context* get_main_context();
 

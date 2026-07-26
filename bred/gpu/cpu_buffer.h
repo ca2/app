@@ -2,6 +2,7 @@
 
 
 #include "acme/graphics/image/pixmap.h"
+#include "bred/gpu/context_pointer.h"
 
 
 namespace gpu
@@ -17,7 +18,7 @@ namespace gpu
       //::memory                         m_memory;
       //::pixmap                         m_pixmap;
       ::pointer < ::image::target >    m_pimagetarget;
-      ::pointer < ::gpu::context >     m_pgpucontext;
+      ::gpu::context_pointer     m_pgpucontext;
 
 
       cpu_buffer();

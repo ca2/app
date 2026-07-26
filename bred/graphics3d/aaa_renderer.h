@@ -16,7 +16,7 @@
 //
 //
 //      ::pointer < frame > m_pframe;
-//      //::pointer < ::gpu::context > m_pgpucontext;
+//      //::gpu::context_pointer m_pgpucontext;
 //
 //
 //      renderer();

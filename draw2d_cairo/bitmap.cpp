@@ -134,7 +134,8 @@ namespace draw2d_cairo
 //
 
 
-   void bitmap::create_bitmap(::draw2d::graphics * pgraphics, const ::i32_size & size, void ** ppdata, ::i32 * pstride)
+   void bitmap::create_bitmap(::draw2d::graphics *pgraphics, const ::i32_size &size, image32_t **ppimage32,
+                              const ::image32_t *pimage32, ::i32 *piScan)
    {
 
       //try
@@ -164,30 +165,16 @@ namespace draw2d_cairo
 
          ::i32 iScanWidth = -1;
 
-         ::i32 iSourceStride = -1;
+         ::i32 iSourceStride =size.cx * 4;
 
-         if(pstride)
+         if(piScan && *piScan > iSourceStride)
          {
 
-            iSourceStride = *pstride;
-
-            iScanWidth = *pstride / sizeof(color32_t);
+            iSourceStride = *piScan;
 
          }
 
-         if(iSourceStride < 0)
-         {
-
-            iSourceStride = size.cx * sizeof(color32_t);
-
-         }
-
-         if(iScanWidth < size.cx)
-         {
-
-            iScanWidth = size.cx;
-
-         }
+         iScanWidth = iSourceStride / sizeof(color32_t);
 
          ::i32 iStride = cairo_format_stride_for_width(CAIRO_FORMAT_ARGB32, iScanWidth);
 
@@ -207,28 +194,12 @@ namespace draw2d_cairo
 
          m_mem.set_size(iStride * size.cy);
 
-         if(*ppdata != nullptr)
+         auto pimage32Target = (::image32_t *)m_mem.data();
+
+         if (pimage32)
          {
 
-            if(iSourceStride != iStride)
-            {
-
-               ::i32 iW = minimum(iStride, iSourceStride);
-
-               for(::i32 i = 0; i < size.cy; i++)
-               {
-
-                  ::memory_copy(&m_mem.data()[iStride * i], &((::u8 *) *ppdata)[iSourceStride * i], iW);
-
-               }
-
-            }
-            else
-            {
-
-               ::memory_copy(m_mem.data(), *ppdata, iStride * size.cy);
-
-            }
+            pimage32Target->copy(size, iSourceStride, pimage32);
 
          }
 
@@ -275,17 +246,17 @@ namespace draw2d_cairo
 
          }
 
-         if(ppdata != nullptr)
+         if(ppimage32 != nullptr)
          {
 
-            *ppdata = (color32_t *) m_mem.data();
+            *ppimage32 = pimage32Target;
 
          }
 
-         if(pstride != nullptr)
+         if(piScan != nullptr)
          {
 
-            *pstride = iStride;
+            *piScan = iStride;
 
          }
 

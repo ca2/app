@@ -56,7 +56,7 @@ namespace gpu_opengl
       void gpu_on_before_create_window(::acme::windowing::window* pwindow) override;
       void _gpu_on_create_window(::acme::windowing::window* pwindow) override;
 
-      //::pointer < ::gpu::context > _create_context(::particle * pparticle, ::gpu::enum_output eoutput, ::windowing::window* pwindow, const ::i32_rectangle& rectanglePlacement) override;
+      //::gpu::context_pointer _create_context(::particle * pparticle, ::gpu::enum_output eoutput, ::windowing::window* pwindow, const ::i32_rectangle& rectanglePlacement) override;
 
 
       ::i32 fread(void * data, ::i32 c, ::i32 s ,::file::file* pfile);

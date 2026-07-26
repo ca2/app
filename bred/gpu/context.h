@@ -2,7 +2,6 @@
 
 
 ////#include "acme/exception/exception.h"
-#include "semaphore.h"
 #include "acme/constant/gpu.h"
 #include "acme/prototype/collection/integer_map.h"
 #include "acme/prototype/geometry2d/size.h"
@@ -11,6 +10,7 @@
 #include "aura/graphics/draw3d/matrix.h"
 #include "apex/parallelization/thread.h"
 #include "bred/gpu/memory_buffer.h"
+//#include "bred/gpu/semaphore.h"
 #include "bred/gpu/shader.h"
 #include "acme/graphics/image/image32.h"
 #include "bred/graphics3d/rotation.h"

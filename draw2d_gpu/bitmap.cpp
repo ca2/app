@@ -2,7 +2,7 @@
 //glglgl #include "_opengl.h"
 #include "bitmap.h"
 #include "acme/exception/interface_only.h"
-
+#include "acme/graphics/image/image32.h"
 
 void resizeBilinear(memory & m, ::i32 w2, ::i32 h2, ::i32 * pixels, ::i32 w, ::i32 h);
 #ifdef WITH_X11
@@ -105,7 +105,7 @@ namespace draw2d_gpu
    //}
 
 
-   void bitmap::create_bitmap(::draw2d::graphics * pgraphics, const ::i32_size& size, void** ppcolorref, ::i32* piScan)
+   void bitmap::create_bitmap(::draw2d::graphics * pgraphics, const ::i32_size& size, ::image32_t** ppimage32, const ::image32_t * pimage32,  ::i32* piScan)
    {
 
       __UNREFERENCED_PARAMETER(pgraphics);
@@ -116,7 +116,16 @@ namespace draw2d_gpu
 
       m_iStride = 4 * size.cx;
 
+      int iScan = m_iStride;
+
       m_memOut.set_size(abs(m_iStride * size.cy));
+
+      if (piScan && *piScan > iScan)
+      {
+
+         iScan = *piScan;
+
+      }
 
       if (m_memOut.data() == nullptr)
       {
@@ -127,16 +136,25 @@ namespace draw2d_gpu
 
       }
 
-      if(ppcolorref != nullptr)
+      auto pimage32Target = (::image32_t *)m_memOut.data();
+
+      if (pimage32)
+      {
+
+         pimage32Target->copy(size, m_iStride, pimage32, iScan);
+
+      }
+
+      if(ppimage32)
       {
          
-         *ppcolorref = m_memOut.data();
+         *ppimage32 = pimage32Target;
 
       }
 
       if(piScan != nullptr)
       {
-         *piScan = size.cx * sizeof(color32_t);
+         *piScan = m_iStride;
       }
 
       m_osdata[0] = (void *) 1;

@@ -1,7 +1,8 @@
+// Created by camilo on 2026-07 <3ThomasBorregaardSørensen!! Mummi!! Bilbo!!
 #pragma once
 
 
-#include "bred/gpu/context.h"
+#include "bred/gpu/context_pointer.h"
 
 
 namespace gpu
@@ -13,19 +14,19 @@ namespace gpu
 
 
    class CLASS_DECL_BRED context_lease : 
-      public ::pointer < ::gpu::context>
+      public ::gpu::context_pointer
    {
    public:
 
 
-      using BASE_POINTER = ::pointer <::gpu::context >;
+      using BASE_POINTER = ::gpu::context_pointer;
 
       ::pointer<::gpu::device> m_pdevice;
       //::pointer<::gpu::context> m_pcontext;
       bool m_bDamaged = false;
       bool m_bOwned = false;
 
-      using BASE_POINTER::BASE_POINTER;
+      using context_pointer::context_pointer;
 
       //context_lease();
       //context_lease(::gpu::device * pdevice, ::gpu::context * pcontext, bool bOwned);

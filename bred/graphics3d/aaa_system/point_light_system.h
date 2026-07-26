@@ -54,7 +54,7 @@ namespace graphics3d
    public:
 
 
-      ::pointer < ::gpu::context >      m_pgpucontext;
+      ::gpu::context_pointer      m_pgpucontext;
 
       ::pointer < ::graphics3d::shader >        m_pshader;
       //::pointer < ::graphics3d::engine >        m_pengine;

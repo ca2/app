@@ -104,6 +104,8 @@ namespace experience_anthill
       //bool b = pgraphicsImage2->BitBlt(0, 0, rectangleX.width() + iInflate * 2, rectangleX.height() + iInflate * 2, pgraphics, rectangleX.left - iInflate, rectangleX.top - iInflate);
 
       {
+         
+         auto pgraphicsImage2 = pimage2->acquire_graphics();
 
          ::image::image_source imagesource(pgraphics,
             ::f64_rectangle(::i32_point(rectangleX.left - iInflate, rectangleX.top - iInflate), ::f64_size(rectangleX.width() + iInflate * 2, rectangleX.height() + iInflate * 2)));

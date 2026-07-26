@@ -361,30 +361,59 @@ void pixmap_t::vertical_swap()
    try
    {
 
+      ::i32 h = ppixmap->height();
+
+      ::i32 width = ppixmap->width();
+
+      auto pdata = (::u8 *)ppixmap->image32();
+
+      if (!pdata ||
+         width <= 0 ||
+         h <= 1 ||
+         width > I32_MAXIMUM / (::i32)sizeof(::image32_t))
+      {
+
+         return;
+
+      }
+
+      ::i32 iRowBytes =
+         width * (::i32)sizeof(::image32_t);
+
       ::i32 iStride = ppixmap->m_iScan;
 
       if (iStride <= 0)
       {
 
-         iStride = ppixmap->width() * sizeof(::image32_t);
+         iStride = iRowBytes;
 
       }
 
-      ::i32 w = iStride / sizeof(::image32_t);
+      if (iStride < iRowBytes)
+      {
 
-      ::i32 h = ppixmap->height();
+         return;
 
-      ::i32 wBytes = ppixmap->width() * sizeof(::image32_t);
+      }
 
-      auto pdata = ppixmap->image32();
+      ::u64 uBottomOffset =
+         (::u64)iStride * (::u64)(h - 1);
 
-      ::u8 * pline1 = (::u8 *)pdata;
+      if (uBottomOffset > (::u64)IPTR_MAXIMUM)
+      {
 
-      ::u8 * pline2 = (::u8 *)(pdata + (w - 1) * h);
+         return;
+
+      }
+
+      ::u8 * pline1 = pdata;
+
+      ::u8 * pline2 =
+         pdata + (::memsize)uBottomOffset;
 
       memory memory;
 
-      memory.set_size(wBytes);
+      memory.set_size(iRowBytes);
 
       ::u8 * pstore = memory.data();
 
@@ -393,11 +422,11 @@ void pixmap_t::vertical_swap()
       for (::i32 i = 0; i < halfh; i++)
       {
 
-         ::memory_copy(pstore, pline1, wBytes);
+         ::memory_copy(pstore, pline1, iRowBytes);
 
-         ::memory_copy(pline1, pline2, wBytes);
+         ::memory_copy(pline1, pline2, iRowBytes);
 
-         ::memory_copy(pline2, pstore, wBytes);
+         ::memory_copy(pline2, pstore, iRowBytes);
 
          pline1 += iStride;
 

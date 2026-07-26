@@ -110,6 +110,7 @@ namespace gpu_opengl
 
       m_gluTextureID = 0;
       m_gluDepthStencilRBO = 0;
+      m_gluType = 0;
       //m_gluFbo = 0;
       m_glsyncGpuCommandsCompleteFence = 0;
 
@@ -126,6 +127,13 @@ namespace gpu_opengl
          m_gluTextureID =0;
       }
 
+      if (m_gluDepthStencilRBO)
+      {
+
+         glDeleteRenderbuffers(1, &m_gluDepthStencilRBO);
+         m_gluDepthStencilRBO = 0;
+
+      }
 
    }
 
@@ -572,26 +580,164 @@ namespace gpu_opengl
       //return error == GL_NO_ERROR;
    }
 
+   ::i32 texture::effective_sample_count() const
+   {
+
+      if (!m_bMultisample)
+      {
+
+         return 1;
+
+      }
+
+      auto iSampleCount = m_iSampleCount;
+
+      if (iSampleCount <= 1 && m_papplication)
+      {
+
+         iSampleCount = m_papplication->m_gpu.m_iSampleCount;
+
+      }
+
+      if (iSampleCount < 2)
+      {
+
+         throw ::exception(
+            error_bad_argument,
+            "An OpenGL multisample texture requires at least two samples.");
+
+      }
+
+      return iSampleCount;
+
+   }
+
+
+   void texture::invalidate_framebuffer_attachments()
+   {
+
+      if (m_gluDepthStencilRBO)
+      {
+
+         glDeleteRenderbuffers(1, &m_gluDepthStencilRBO);
+         m_gluDepthStencilRBO = 0;
+
+      }
+
+      for (auto & pair : m_mapContextHandleObject)
+      {
+
+         pair.element2().m_bBound = false;
+
+      }
+
+   }
+
+
+   void texture::initialize_texture(
+      ::gpu::context * pgpucontext,
+      const ::gpu::texture_attributes & textureattributes,
+      const ::gpu::texture_flags & textureflags,
+      const ::gpu::texture_data & texturedata)
+   {
+
+      auto gluDesiredType =
+         textureattributes.m_etexture == ::gpu::e_texture_cube_map
+            ? GL_TEXTURE_CUBE_MAP
+            : (m_bMultisample
+                  ? GL_TEXTURE_2D_MULTISAMPLE
+                  : GL_TEXTURE_2D);
+      auto iDesiredSampleCount =
+         gluDesiredType == GL_TEXTURE_2D_MULTISAMPLE
+            ? effective_sample_count()
+            : 1;
+      auto sizeDesired = textureattributes.m_rectangleTarget.size();
+      auto bAllocationChanged =
+         m_gluAllocatedType != 0 &&
+         (m_gluAllocatedType != gluDesiredType ||
+            m_sizeAllocated != sizeDesired ||
+            m_iAllocatedSampleCount != iDesiredSampleCount);
+
+      if (bAllocationChanged &&
+         m_pgpucontext == pgpucontext &&
+         m_textureattributes == textureattributes)
+      {
+
+         m_pgpucontext = nullptr;
+
+      }
+
+      ::gpu::texture::initialize_texture(
+         pgpucontext,
+         textureattributes,
+         textureflags,
+         texturedata);
+
+   }
+
+
    void texture::_create_texture(const ::gpu::texture_data & data)
    {
 
-      if (m_textureattributes.m_etexture == ::gpu::e_texture_cube_map)
+      auto gluDesiredType =
+         m_textureattributes.m_etexture == ::gpu::e_texture_cube_map
+            ? GL_TEXTURE_CUBE_MAP
+            : (m_bMultisample
+                  ? GL_TEXTURE_2D_MULTISAMPLE
+                  : GL_TEXTURE_2D);
+      auto sizeCurrent = m_textureattributes.m_rectangleTarget.size();
+      m_iSampleCount =
+         gluDesiredType == GL_TEXTURE_2D_MULTISAMPLE
+            ? effective_sample_count()
+            : 1;
+
+      auto bAllocationChanged =
+         m_gluAllocatedType != 0 &&
+         (m_gluAllocatedType != gluDesiredType ||
+            m_sizeAllocated != sizeCurrent ||
+            m_iAllocatedSampleCount != m_iSampleCount);
+
+      if (bAllocationChanged)
       {
 
-         m_gluType = GL_TEXTURE_CUBE_MAP;
+         invalidate_framebuffer_attachments();
 
       }
-      else
+
+      if (m_gluTextureID && bAllocationChanged)
       {
 
-         if (m_bMultisample)
+         glDeleteTextures(1, &m_gluTextureID);
+         m_gluTextureID = 0;
+
+      }
+
+      m_gluType = gluDesiredType;
+
+      if (m_gluType == GL_TEXTURE_2D_MULTISAMPLE)
+      {
+
+         GLint iMaximumSamples = 0;
+         GLint iMaximumColorTextureSamples = 0;
+         glGetIntegerv(GL_MAX_SAMPLES, &iMaximumSamples);
+         ::opengl::check_error("GL_MAX_SAMPLES");
+         glGetIntegerv(
+            GL_MAX_COLOR_TEXTURE_SAMPLES,
+            &iMaximumColorTextureSamples);
+         ::opengl::check_error("GL_MAX_COLOR_TEXTURE_SAMPLES");
+
+         if (m_iSampleCount > iMaximumSamples ||
+            m_iSampleCount > iMaximumColorTextureSamples)
          {
 
-            m_gluType = GL_TEXTURE_2D_MULTISAMPLE;
-         }
-         else
-         {
-            m_gluType = GL_TEXTURE_2D;
+            ::string strMessage;
+            strMessage.formatf(
+               "OpenGL MSAA sample count %d exceeds GL_MAX_SAMPLES=%d "
+               "or GL_MAX_COLOR_TEXTURE_SAMPLES=%d.",
+               m_iSampleCount,
+               iMaximumSamples,
+               iMaximumColorTextureSamples);
+            throw ::exception(error_not_supported, strMessage);
 
          }
 
@@ -664,8 +810,6 @@ namespace gpu_opengl
          }
 
       }
-
-      auto sizeCurrent = m_textureattributes.m_rectangleTarget.size();
 
       if (!m_gluTextureID)
       {
@@ -787,7 +931,7 @@ namespace gpu_opengl
                throw ::exception(error_wrong_state);
             }
 
-               glTexImage2DMultisample(GL_TEXTURE_2D_MULTISAMPLE, 4, GL_RGBA8, w, h, GL_TRUE);
+               glTexImage2DMultisample(GL_TEXTURE_2D_MULTISAMPLE, m_iSampleCount, GL_RGBA8, w, h, GL_TRUE);
             ::opengl::check_error("");
 
                GLint sampleBuffers = 0; GLint samples = 0;
@@ -1022,6 +1166,9 @@ namespace gpu_opengl
       glBindTexture(m_gluType, 0); // Unbind when done
       ::opengl::check_error("");
 
+      m_gluAllocatedType = m_gluType;
+      m_sizeAllocated = sizeCurrent;
+      m_iAllocatedSampleCount = m_iSampleCount;
 
 
    }
@@ -1205,11 +1352,7 @@ void texture::_defer_bind_to_render_target(base_context_handle::object & object)
          {
 
 
-            glRenderbufferStorageMultisample(GL_RENDERBUFFER, 4, GL_DEPTH24_STENCIL8, width, height);
-            ::opengl::check_error("");
-
-            glFramebufferRenderbuffer(GL_FRAMEBUFFER, GL_DEPTH_STENCIL_ATTACHMENT, GL_RENDERBUFFER,
-                                      m_gluDepthStencilRBO);
+            glRenderbufferStorageMultisample(GL_RENDERBUFFER, m_iSampleCount, GL_DEPTH24_STENCIL8, width, height);
             ::opengl::check_error("");
          }
          else
@@ -1220,6 +1363,13 @@ void texture::_defer_bind_to_render_target(base_context_handle::object & object)
 
          glBindRenderbuffer(GL_RENDERBUFFER, 0);
          ::opengl::check_error("");
+
+         for (auto & pair : m_mapContextHandleObject)
+         {
+
+            pair.element2().m_bBound = false;
+
+         }
 
       }
 

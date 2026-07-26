@@ -27,6 +27,9 @@ namespace gpu_opengl
       GLuint            m_gluDepthStencilRBO;
       //GLuint            m_gluFbo;
       GLenum            m_gluType;
+      GLenum m_gluAllocatedType = 0;
+      ::i32_size m_sizeAllocated{-1, -1};
+      ::i32 m_iAllocatedSampleCount = 0;
       GLsync            m_glsyncGpuCommandsCompleteFence;
 
 
@@ -37,6 +40,11 @@ namespace gpu_opengl
       void initialize_hdr_texture_on_memory(::gpu::context *pcontext, const ::block & block) override;
       void initialize_with_image_data(::gpu::context *pcontext, const ::i32_rectangle &rectangleTarget,
                                       ::i32 numChannels, bool bSrgb, const void *pdata, ::gpu::enum_texture etexture) override;
+      void initialize_texture(
+         ::gpu::context * pgpucontext,
+         const ::gpu::texture_attributes & textureattributes,
+         const ::gpu::texture_flags & textureflags = {},
+         const ::gpu::texture_data & texturedata = {}) override;
       
       // void initialize_image_texture(::gpu::renderer* prenderer,
       //    const ::i32_rectangle & rectangleTarget, bool bWithDepth,
@@ -46,6 +54,8 @@ namespace gpu_opengl
 
 
       void _create_texture(const ::gpu::texture_data & texturedata = {}) override;
+      ::i32 effective_sample_count() const;
+      void invalidate_framebuffer_attachments();
 
 
       //void create_render_target() override;

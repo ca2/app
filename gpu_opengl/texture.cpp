@@ -1332,6 +1332,73 @@ void texture::_defer_bind_to_render_target(base_context_handle::object & object)
 }
 
 
+   texture * texture::resolved_texture()
+   {
+
+      if (m_ptextureResolved == this)
+      {
+
+         throw ::exception(
+            error_wrong_state,
+            "An OpenGL texture cannot resolve into itself.");
+
+      }
+
+      if (m_iSampleCount <= 1)
+      {
+
+         return this;
+
+      }
+
+      if (m_gluType != GL_TEXTURE_2D_MULTISAMPLE)
+      {
+
+         throw ::exception(
+            error_wrong_state,
+            "Only GL_TEXTURE_2D_MULTISAMPLE textures can be resolved.");
+
+      }
+
+      ::cast < ::gpu_opengl::context > pcontext = m_pgpucontext;
+
+      if (!pcontext)
+      {
+
+         throw ::exception(
+            error_wrong_state,
+            "The multisample texture has no OpenGL context for resolution.");
+
+      }
+
+      defer_constructø(m_ptextureResolved);
+
+      auto textureattributes = m_textureattributes;
+      textureattributes.m_etexture = ::gpu::e_texture_image;
+      textureattributes.m_iLayerCount = 1;
+      textureattributes.m_iMipCount = 1;
+
+      ::gpu::texture_flags textureflags;
+      textureflags.m_bWithDepth = false;
+      textureflags.m_bRenderTarget = true;
+      textureflags.m_bShaderResource = true;
+      textureflags.m_bTransferSource = true;
+      textureflags.m_bTransferTarget = true;
+
+      m_ptextureResolved->m_bMultisample = false;
+      m_ptextureResolved->m_iSampleCount = 1;
+      m_ptextureResolved->initialize_texture(
+         pcontext,
+         textureattributes,
+         textureflags);
+
+      pcontext->copy(m_ptextureResolved, this, nullptr);
+
+      return m_ptextureResolved;
+
+   }
+
+
    void texture::create_depth_resources()
    {
 

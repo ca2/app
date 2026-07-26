@@ -49,6 +49,7 @@ int main()
    const auto glHeader = read_file("gpu_opengl/texture.h");
    const auto textureSource = read_file("gpu_opengl/texture.cpp");
    const auto contextSource = read_file("gpu_opengl/context.cpp");
+   const auto shaderSource = read_file("gpu_opengl/shader.cpp");
 
    assert(baseHeader.find("::i32 m_iSampleCount = 1;") !=
       std::string::npos);
@@ -124,6 +125,66 @@ int main()
       std::string::npos);
    assert(contextSource.find(
       "glDeleteFramebuffers(1, &m_uDrawFramebuffer)") !=
+      std::string::npos);
+
+   assert(glHeader.find(
+      "::pointer < ::gpu_opengl::texture > m_ptextureResolved;") !=
+      std::string::npos);
+   assert(glHeader.find("texture * resolved_texture();") !=
+      std::string::npos);
+
+   const auto resolveTexture = section(
+      textureSource,
+      "texture * texture::resolved_texture()",
+      "void texture::create_depth_resources()");
+   assert(resolveTexture.find("if (m_iSampleCount <= 1)") !=
+      std::string::npos);
+   assert(resolveTexture.find("m_ptextureResolved") != std::string::npos);
+   assert(resolveTexture.find("m_bMultisample = false;") !=
+      std::string::npos);
+   assert(resolveTexture.find("m_iSampleCount = 1;") !=
+      std::string::npos);
+   assert(resolveTexture.find("m_ptextureResolved == this") !=
+      std::string::npos);
+   assert(resolveTexture.find("textureflags.m_bWithDepth = false;") !=
+      std::string::npos);
+   assert(resolveTexture.find("textureflags.m_bRenderTarget = true;") !=
+      std::string::npos);
+   assert(resolveTexture.find("textureflags.m_bShaderResource = true;") !=
+      std::string::npos);
+   assert(resolveTexture.find("textureflags.m_bTransferSource = true;") !=
+      std::string::npos);
+   assert(resolveTexture.find("textureflags.m_bTransferTarget = true;") !=
+      std::string::npos);
+   assert(resolveTexture.find(
+      "pcontext->copy(m_ptextureResolved, this, nullptr)") !=
+      std::string::npos);
+
+   const auto bindSource = section(
+      shaderSource,
+      "void shader::bind_source(::gpu::command_buffer",
+      "void shader::bind_source2(");
+   const auto bindSource2 = section(
+      shaderSource,
+      "void shader::bind_source2(",
+      "//   void shader::setBool");
+   const auto bindSlotSet = section(
+      shaderSource,
+      "void shader::bind_slot_set(",
+      "void shader::program_compile_errors(");
+   assert(bindSource.find("ptexture = ptexture->resolved_texture();") !=
+      std::string::npos);
+   assert(bindSource2.find("ptexture = ptexture->resolved_texture();") !=
+      std::string::npos);
+   assert(bindSlotSet.find("ptexture = ptexture->resolved_texture();") !=
+      std::string::npos);
+   assert(bindSource.find("bindingslot.m_ptexture = pgputexture;") !=
+      std::string::npos);
+   assert(bindSource.find("GL_TEXTURE_2D_MULTISAMPLE") !=
+      std::string::npos);
+   assert(bindSource2.find("GL_TEXTURE_2D_MULTISAMPLE") !=
+      std::string::npos);
+   assert(bindSlotSet.find("GL_TEXTURE_2D_MULTISAMPLE") !=
       std::string::npos);
 
    return 0;

@@ -30,6 +30,7 @@ namespace gpu_opengl
       GLenum m_gluAllocatedType = 0;
       ::i32_size m_sizeAllocated{-1, -1};
       ::i32 m_iAllocatedSampleCount = 0;
+      ::pointer < ::gpu_opengl::texture > m_ptextureResolved;
       GLsync            m_glsyncGpuCommandsCompleteFence;
 
 
@@ -56,6 +57,7 @@ namespace gpu_opengl
       void _create_texture(const ::gpu::texture_data & texturedata = {}) override;
       ::i32 effective_sample_count() const;
       void invalidate_framebuffer_attachments();
+      texture * resolved_texture();
 
 
       //void create_render_target() override;

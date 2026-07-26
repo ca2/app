@@ -90,8 +90,12 @@ int main()
    assert(read.find("ppixmap->vertical_swap();") != std::string::npos);
 
    const auto write = source.substr(source.find("void texture::write_pixels("));
-   assert(write.find("pixmapFlipped.copy(ppixmap);") != std::string::npos);
-   assert(write.find("pixmapFlipped.vertical_swap();") != std::string::npos);
+   assert(write.find(
+      "      pixmapFlipped.pixmap_t::copy(ppixmap);") !=
+      std::string::npos);
+   assert(write.find("      pixmapFlipped.vertical_swap();") !=
+      std::string::npos);
+   assert(write.find("m_gluType != GL_TEXTURE_2D)") != std::string::npos);
    assert(write.find("glTexSubImage2D(") != std::string::npos);
    assert(write.find("GL_UNPACK_ROW_LENGTH") != std::string::npos);
 

@@ -1406,52 +1406,45 @@ void texture::_defer_bind_to_render_target(base_context_handle::object & object)
    void texture::write_pixels(const ::pixmap * ppixmap)
    {
 
-      //if (!ppixmap || ppixmap->size() != size() ||
-      //    ppixmap->m_iScan < width() * (int)sizeof(::image32_t) ||
-      //    !ppixmap->m_pimage32Raw || !m_gluTextureID ||
-      //    m_gluType != GL_TEXTURE_2D)
-       if (!ppixmap ||
-           ppixmap->m_iScan < ppixmap->width() * (int)sizeof(::image32_t) ||
-           !ppixmap->m_pimage32Raw || !m_gluTextureID || 
-          (m_gluType != GL_TEXTURE_2D && m_gluType != GL_TEXTURE_2D_MULTISAMPLE))
+      if (!ppixmap || ppixmap->size() != size() ||
+          ppixmap->m_iScan < width() * (int)sizeof(::image32_t) ||
+          !ppixmap->m_pimage32Raw || !m_gluTextureID ||
+          m_gluType != GL_TEXTURE_2D)
       {
 
          throw ::exception(error_bad_argument);
 
       }
 
-      //::memory memoryFlipped;
-      //::pixmap pixmapFlipped;
-      //pixmapFlipped.pixmap_t::create(
-      //   memoryFlipped,
-      //   ppixmap->size(),
-      //   ppixmap->m_iScan);
-      //pixmapFlipped.m_colorindexes = ppixmap->m_colorindexes;
-      //pixmapFlipped.pixmap_t::copy(ppixmap);
-      //pixmapFlipped.vertical_swap();
+      ::memory memoryFlipped;
+      ::pixmap pixmapFlipped;
+      pixmapFlipped.pixmap_t::create(
+         memoryFlipped,
+         ppixmap->size(),
+         ppixmap->m_iScan);
+      pixmapFlipped.m_colorindexes = ppixmap->m_colorindexes;
+      pixmapFlipped.pixmap_t::copy(ppixmap);
+      pixmapFlipped.vertical_swap();
 
       scoped_pixel_transfer_state state;
 
-      glBindTexture(m_gluType, m_gluTextureID);
+      glBindTexture(GL_TEXTURE_2D, m_gluTextureID);
       ::opengl::check_error("");
       glPixelStorei(GL_UNPACK_ALIGNMENT, 1);
       glPixelStorei(
          GL_UNPACK_ROW_LENGTH,
-         ppixmap->m_iScan / (int)sizeof(::image32_t));
-
-      auto cx = ppixmap->width();
-      auto cy = ppixmap->height();
+         pixmapFlipped.m_iScan / (int)sizeof(::image32_t));
 
       glTexSubImage2D(
-         m_gluType,
+         GL_TEXTURE_2D,
          0,
          0,
          0,
-         cx,
-         cy,
-                   pixmap_pixel_format(ppixmap),
+         width(),
+         height(),
+         pixmap_pixel_format(&pixmapFlipped),
          GL_UNSIGNED_BYTE,
-         ppixmap->m_pimage32Raw);
+         pixmapFlipped.m_pimage32Raw);
       ::opengl::check_error("");
 
    }

@@ -25,43 +25,55 @@ namespace graphics
 {
 
 
-   ::draw2d::graphics_lease buffer_item::acquire_graphics()
-   {
+   //::draw2d::graphics_lease buffer_item::acquire_graphics()
+   //{
 
-      return ::transfer(m_pimageBufferItem->acquire_graphics());
+   //   return ::transfer(m_pimageBufferItem->acquire_graphics());
 
-   }
+   //}
 
 
    //::draw2d::graphics_pointer buffer_item::owned_graphics()
-   //{
+   ::draw2d::graphics_lease buffer_item::acquire_graphics()
+   {
 
-   //   auto pgraphics = m_pgraphicsBufferItem ? m_pgraphicsBufferItem : m_pgraphicsBufferItem->acquire_graphics().m_pgraphics;
+      if (m_pgraphicsBufferItem)
+      {
 
-   //   if (pgraphics)
-   //   {
+         return {system()->draw2d(), m_pgraphicsBufferItem, nullptr, true};
 
-   //      pgraphics->m_egraphics = m_egraphics;
+      }
+      else
+      {
 
-   //   }
+         return ::transfer(m_pimageBufferItem->acquire_graphics());
 
-   //   //if (!pgraphics->m_callbackImage32CpuBuffer)
-   //   //{
+      }
 
-   //   //   pgraphics->m_callbackImage32CpuBuffer = [this](const ::image32_t * pimage32, ::i32 cx, ::i32 cy, ::i32 scan)
-   //   //      {
+      //if (pgraphics)
+      //{
 
-   //   //         //_synchronous_lock synchronouslock(this->m_pmutex, DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
+      //   pgraphics->m_egraphics = m_egraphics;
 
-   //   //         m_pimage2->image32()->copy(cx, cy, m_pimage2->m_iScan, pimage32, scan);
+      //}
 
-   //   //      };
+      //if (!pgraphics->m_callbackImage32CpuBuffer)
+      //{
 
-   //   //}
+      //   pgraphics->m_callbackImage32CpuBuffer = [this](const ::image32_t * pimage32, ::i32 cx, ::i32 cy, ::i32 scan)
+      //      {
 
-   //   return ::transfer(pgraphics);
+      //         //_synchronous_lock synchronouslock(this->m_pmutex, DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 
-   //}
+      //         m_pimage2->image32()->copy(cx, cy, m_pimage2->m_iScan, pimage32, scan);
+
+      //      };
+
+      //}
+
+      //return ::transfer(pgraphics);
+
+   }
 
 
    
@@ -428,7 +440,7 @@ namespace graphics
    }
 
 
-   void graphics::set_bitmap_source(const ::scoped_string & scopedstrBitmapSource)
+   void graphics::set_bitmap_source(const ::scoped_string & scopedstrBitmapSource, bool bCreate)
    {
 
       information() << "GRAPHICS::SET_BITMAP_SOURCE NOT Implemented";

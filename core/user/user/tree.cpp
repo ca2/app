@@ -249,7 +249,7 @@ namespace user
       if (m_bPendingDrawingObjectsUpdate)
       {
 
-         update_drawing_objects();
+         update_drawing_objects(pgraphics);
 
       }
 
@@ -1042,7 +1042,7 @@ void tree::perform_right_click(const ::i32_point & pointCursor)
    }
 
    
-   void tree::update_drawing_objects()
+   void tree::update_drawing_objects(::draw2d::graphics_pointer &pgraphics)
    {
 
       _synchronous_lock synchronouslock(this->synchronization(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
@@ -1053,7 +1053,7 @@ void tree::perform_right_click(const ::i32_point & pointCursor)
 
       auto pdraw2d = psystem->draw2d();
 
-      auto pgraphics = pdraw2d->create_memory_graphics(this);
+      //auto pgraphics = pdraw2d->create_memory_graphics(this);
 
       auto pstyle = get_style(pgraphics);
 

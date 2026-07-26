@@ -123,9 +123,10 @@ FragColor = texture(uTexture, TexCoord);
       try
       {
 
-         ::gpu::context_lock contextlock(m_pgpucontext);
+                  ::gpu::context_lock contextlock(m_pgpucontext);
 
-         
+
+
          auto pshader = present_shader();
 
          auto r = m_pwindowSwapChain->get_window_rectangle();
@@ -136,7 +137,7 @@ FragColor = texture(uTexture, TexCoord);
             return;
 
          }
-
+         
          glBindVertexArray(0);
          ::opengl::check_error("");
          glUseProgram(0);
@@ -158,9 +159,52 @@ FragColor = texture(uTexture, TexCoord);
 #else
          glBindFramebuffer(GL_FRAMEBUFFER, 0);
          ::opengl::check_error("");
+
+
+         // Remove old errors so the next error is attributable to glDrawBuffer.
+         while (glGetError() != GL_NO_ERROR)
+         {
+         }
+
+         GLint drawFramebuffer = -1;
+         GLint readFramebuffer = -1;
+         GLint drawBuffer = -1;
+
+         glGetIntegerv(GL_DRAW_FRAMEBUFFER_BINDING, &drawFramebuffer);
+         glGetIntegerv(GL_READ_FRAMEBUFFER_BINDING, &readFramebuffer);
+         glGetIntegerv(GL_DRAW_BUFFER, &drawBuffer);
+          informationf("drawFBO=%d readFBO=%d drawBuffer=0x%04x "
+                       "currentDrawSurface=%p expectedWindowSurface=%p "
+                       "EGL_RENDER_BUFFER=0x%04x",
+                       drawFramebuffer, readFramebuffer, drawBuffer);
+
+         //WGLSurface currentDrawSurface = eglGetCurrentSurface(EGL_DRAW);
+         //EGLSurface currentReadSurface = eglGetCurrentSurface(EGL_READ);
+
+         //EGLint eglRenderBuffer = 0;
+
+         //if (currentDrawSurface != EGL_NO_SURFACE)
+         //{
+         //   eglQuerySurface(eglDisplay, currentDrawSurface, EGL_RENDER_BUFFER, &eglRenderBuffer);
+         //}
+
+         //informationf("drawFBO=%d readFBO=%d drawBuffer=0x%04x "
+         //             "currentDrawSurface=%p expectedWindowSurface=%p "
+         //             "EGL_RENDER_BUFFER=0x%04x",
+         //             drawFramebuffer, readFramebuffer, drawBuffer, (void *)currentDrawSurface,
+         //             (void *)eglWindowSurface, eglRenderBuffer);
+
+         glDrawBuffer(GL_BACK);
+
+         GLenum error = glGetError();
+
+         informationf("glDrawBuffer(GL_BACK) error: 0x%04x", error);
+
          glDrawBuffer(GL_BACK);
          ::opengl::check_error("");
 #endif
+
+
          glDisable(GL_SCISSOR_TEST);
          ::opengl::check_error("");
          glDisable(GL_BLEND);

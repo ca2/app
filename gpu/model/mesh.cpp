@@ -63,6 +63,8 @@ namespace gpu
 
          constructø(m_pmodelbuffer);
 
+         m_pmodelbuffer->m_prenderableParent = this;
+
          m_pmodelbuffer->initialize_gpu_context_object(m_pgpucontext);
 
          m_pmodeldata = pmodeldata;

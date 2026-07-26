@@ -153,7 +153,7 @@ namespace image
    }
 
 
-   ::image::image_pointer image_context::create_image(const ::i32_size& size, const image32_t* pcolor, ::i32 iScan, ::enum_flag eflagCreate)
+   ::image::image_pointer image_context::create_image(const ::i32_size& size, const image32_t* pimage32, ::i32 iScan, ::enum_flag eflagCreate)
    {
 
       auto pimage = m_papplication->createø < ::image::image >();
@@ -165,14 +165,25 @@ namespace image
 
       }
 
-      pimage->create(size, eflagCreate);
-
-      if (::is_set(pcolor))
+      if (::is_set(pimage32))
       {
 
-         pimage->map();
+         pimage->create_from_data(size, pimage32, iScan);
 
-         pimage->data()->copy(size, pimage->m_iScan, pcolor, iScan);
+      }
+      else
+      {
+
+         pimage->create(size, eflagCreate);
+
+         // if (::is_set(pcolor))
+         //{
+
+         //   pimage->map();
+
+         //   pimage->data()->copy(size, pimage->m_iScan, pcolor, iScan);
+
+         //}
 
       }
 
@@ -346,6 +357,41 @@ namespace image
    }
 
 
+
+   ::pixmap_pointer &image_context::_path_pixmap(const ::file::path &path)
+   {
+
+      _synchronous_lock synchronouslock(this->synchronization());
+
+      auto &ppixmap = m_mapPathPixmap[path];
+
+      if (ppixmap.ok())
+      {
+
+         return ppixmap;
+      }
+
+      auto pathProcessed = m_papplication->defer_process_path(path);
+
+      auto &ppixmap2 = m_mapPathPixmap[pathProcessed];
+
+      if (ppixmap2.ok())
+      {
+
+         ppixmap = ppixmap2;
+
+         return ppixmap2;
+      }
+
+      construct_newø(ppixmap2);
+
+      ppixmap = ppixmap2;
+
+      return ppixmap2;
+   }
+
+
+
    ::image::image_pointer image_context::path_image(const ::file::path& path)
    {
 
@@ -424,6 +470,54 @@ namespace image
       }
 
       return pimage;
+
+   }
+
+
+   ::pixmap_pointer image_context::path_resized_pixmap(const ::file::path &path, const ::i32_size &size)
+   {
+
+      _synchronous_lock synchronouslock(this->synchronization());
+
+      auto &ppixmap = m_mapPathResizedPixmap[path][size];
+
+      if (ppixmap.nok())
+      {
+
+         auto &ppixmapOriginal = _path_pixmap(path);
+
+         if (ppixmapOriginal.ok())
+         {
+
+            if (ppixmapOriginal->size() == size)
+            {
+
+               ppixmap = ppixmapOriginal;
+            }
+            else
+            {
+
+               ppixmap = ppixmapOriginal->get_resized_pixmap(size);
+            }
+         }
+         else
+         {
+
+            construct_newø(ppixmapOriginal);
+
+            auto ploadimage = create_newø<::image::load_image>();
+
+            ploadimage->initialize_load_image(this, ppixmapOriginal);
+
+            ploadimage->m_sizePreferred = size;
+
+            _load_image(ploadimage, path);
+
+         }
+
+      }
+
+      return ppixmap;
 
    }
 

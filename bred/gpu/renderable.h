@@ -46,6 +46,9 @@ namespace gpu
       ::i32 m_iFlags = -1;
       ::f32 m_fScale = 1.0f;
       bool m_bExternalPbr = false;
+      ::pointer<::gpu::texture> m_ptextureTexture;
+      ::image::image_pointer m_pimageTextureNew;
+      ::image::image_pointer m_pimageTexture;
 
 
       renderable_t();

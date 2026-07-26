@@ -432,6 +432,13 @@ void image::initialize(const ::i32_size & size, ::image32_t * pimage32, ::i32 iS
 }
 
 
+void image::preserve(const ::i32_size &size, ::enum_flag eflagCreate,
+                      ::i32 iGoodStride)
+{
+
+   return create(size, eflagCreate, iGoodStride, true);
+}
+
 //void image::initialize(const ::i32_size & size, ::image32_t * pimage32, ::i32 iScan, ::eobject eobjectCreate)
 //{
 //

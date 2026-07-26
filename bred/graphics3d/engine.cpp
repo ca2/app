@@ -185,7 +185,6 @@ namespace graphics3d
       
       //prenderer->start_frame(nullptr);
 
-      pgpucontext->start_layer();
 
       {
 
@@ -214,6 +213,12 @@ namespace graphics3d
 
 
              pgpucontext->update_current_scene();
+
+             pscene->on_before_render(pgpucontext);
+                   
+             
+             pgpucontext->start_layer();
+
             //if (pscene->is_global_ubo_ok())
             //{
 
@@ -236,7 +241,12 @@ namespace graphics3d
 
             //pcommandbuffer->m_iCommandBufferFrameIndex = iFrameIndex;
 
+
+
             pscene->on_render(pgpucontext);
+
+            pgpucontext->end_layer();
+
 
          }
 
@@ -258,8 +268,7 @@ namespace graphics3d
          //prenderer->endFrame();
          //prenderer->end_frame(nullptr);
 
-         pgpucontext->end_layer();
-
+         
          //pgraphicscontext->end_frame();
 
          //m_pgpucontextCompositor2->end_frame();

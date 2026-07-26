@@ -333,6 +333,8 @@ CLASS_DECL_ACME void * memory_copy(void * dst, const void * src, memsize iSize)
    if (::is_null(dst))
    {
 
+      throw ::exception(error_bad_argument);
+
       return nullptr;
 
    }
@@ -340,6 +342,8 @@ CLASS_DECL_ACME void * memory_copy(void * dst, const void * src, memsize iSize)
 
    if (::is_null(src))
    {
+
+      throw ::exception(error_bad_argument);
 
       return nullptr;
 

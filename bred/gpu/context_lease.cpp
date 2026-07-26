@@ -95,7 +95,7 @@ namespace gpu
       if (pdevice && pcontext && !bOwned)
       {
 
-         pcontext->m_bInNonOwnedLease = false;
+         //pcontext->m_bInNonOwnedLease = false;
 
          pdevice->return_gpu_context(::transfer(pcontext), bDamaged);
 

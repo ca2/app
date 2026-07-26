@@ -346,6 +346,20 @@ namespace gpu_opengl
 
       }
 
+      if (m_bMultisample)
+      {
+
+         glEnable(GL_MULTISAMPLE);
+         glEnable(GL_SAMPLE_ALPHA_TO_COVERAGE);
+
+      }
+      else
+      {
+
+         glDisable(GL_SAMPLE_ALPHA_TO_COVERAGE);
+
+      }
+
 
       if (m_bDisableDepthTest)
       {
@@ -528,6 +542,13 @@ namespace gpu_opengl
 
          for (auto &pbindingslotset: *m_pbindingslotseta)
          {
+
+            if (!pbindingslotset)
+            {
+
+               continue;
+
+            }
 
             if (!pbindingslotset->m_pbindingset)
             {
@@ -1132,7 +1153,7 @@ namespace gpu_opengl
    void shader::_set_int(const_char_pointer pszName, ::i32 i) const
    {
 
-      auto location = _get_uniform_location(pszName, "::i32");
+      auto location = _get_uniform_location(pszName, "int");
 
       glUniform1i(location, i);
       ::opengl::check_error("");
@@ -1143,7 +1164,7 @@ namespace gpu_opengl
    void shader::_set_f32(const_char_pointer pszName, ::f32 value) const
    {
 
-      auto location = _get_uniform_location(pszName, "::f32");
+      auto location = _get_uniform_location(pszName, "float");
       
       glUniform1f(location, value);
       ::opengl::check_error("");

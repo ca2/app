@@ -21,6 +21,7 @@ namespace graphics3d
    public:
 
 
+      ::pointer<renderable> m_prenderableParent;
       //::gpu::enum_model             m_emodel;
       //::gpu::enum_model_usage       m_emodelusage;
 

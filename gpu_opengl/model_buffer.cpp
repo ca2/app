@@ -104,6 +104,57 @@ namespace gpu_opengl
       glBindVertexArray(gluVertexArrayObject);
       ::opengl::check_error("");
 
+               ::gpu::enum_model emodel = ::gpu::e_model_none;
+
+      if (m_prenderableParent)
+      {
+
+         if (m_prenderableParent->m_prenderableParent)
+         {
+
+            emodel = m_prenderableParent->m_prenderableParent->m_egpumodel;
+         }
+      }
+
+      if (emodel == ::gpu::e_model_wavefront_for_texture)
+      {
+
+         GLint enabled = 0;
+         GLint size = 0;
+         GLint type = 0;
+         GLint normalized = 0;
+         GLint stride = 0;
+         GLint bufferBinding = 0;
+         GLint divisor = 0;
+         void *offset = nullptr;
+
+         glGetVertexAttribiv(1, GL_VERTEX_ATTRIB_ARRAY_ENABLED, &enabled);
+
+         glGetVertexAttribiv(1, GL_VERTEX_ATTRIB_ARRAY_SIZE, &size);
+
+         glGetVertexAttribiv(1, GL_VERTEX_ATTRIB_ARRAY_TYPE, &type);
+
+         glGetVertexAttribiv(1, GL_VERTEX_ATTRIB_ARRAY_NORMALIZED, &normalized);
+
+         glGetVertexAttribiv(1, GL_VERTEX_ATTRIB_ARRAY_STRIDE, &stride);
+
+         glGetVertexAttribiv(1, GL_VERTEX_ATTRIB_ARRAY_BUFFER_BINDING, &bufferBinding);
+
+         glGetVertexAttribiv(1, GL_VERTEX_ATTRIB_ARRAY_DIVISOR, &divisor);
+
+         glGetVertexAttribPointerv(1, GL_VERTEX_ATTRIB_ARRAY_POINTER, &offset);
+
+         informationf("UV attrib: enabled=%d size=%d type=0x%x normalized=%d "
+                      "stride=%d buffer=%d offset=%zu divisor=%d",
+                      enabled, size, type, normalized, stride, bufferBinding, reinterpret_cast<size_t>(offset),
+                      divisor);
+
+         information("");
+
+      }
+
+
+
    }
 
 

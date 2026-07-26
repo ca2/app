@@ -117,6 +117,8 @@ namespace platform
       {
          
          bool                                         m_bUseSwapChainWindow;
+         bool                                         m_bMultisample;
+         int                                          m_iSampleCount;
          ::gpu::enum_output                           m_eoutputDraw2d;
          ::gpu::enum_output                           m_eoutputEngine;
          ::std::atomic_bool                           m_bPerformanceDiagnostics{false};

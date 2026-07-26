@@ -141,6 +141,7 @@ namespace graphics3d
 
 	   virtual void on_load_scene(::gpu::context* pgpucontext);
 	   virtual void on_update(::gpu::context* pgpucontext);
+      virtual void on_before_render(::gpu::context * pgpucontext);
 	   virtual void on_render(::gpu::context * pgpucontext);
 
       virtual void generateIbl();

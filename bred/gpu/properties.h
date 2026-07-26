@@ -65,7 +65,7 @@ inline ::gpu::property* gpu_properties()
 namespace gpu
 {
 
-	CLASS_DECL_BRED::gpu::device* thread_gpu_device();
+	//CLASS_DECL_BRED::gpu::device* thread_gpu_device();
 	class property
 	{
 	public:

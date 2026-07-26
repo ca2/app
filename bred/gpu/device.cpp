@@ -49,9 +49,11 @@ namespace gpu
 
       m_edevicetarget = e_device_target_undefined;
 
-      t_pgpudevice = this;
+      //t_pgpudevice = this;
 
       m_bCreated = false;
+
+      m_bMultisample = false;
 
    }
 
@@ -75,6 +77,13 @@ namespace gpu
 
       m_pwindow->m_ptaskUpdateScreen = this;
 
+      if (m_papplication->m_gpu.m_bMultisample)
+      {
+
+         m_bMultisample = true;
+
+      }
+
       //branch_synchronously();
 
    }
@@ -86,6 +95,15 @@ namespace gpu
       m_edevicetarget = e_device_target_off_screen;
 
       m_pgpuapproach = pgpuapproach;
+
+      if (m_papplication->m_gpu.m_bMultisample)
+      {
+
+         m_bMultisample = true;
+
+      }
+
+
 
       //branch_synchronously();
 
@@ -502,6 +520,7 @@ namespace gpu
             pcontext->defer_unbind_shader();
             pcontext->m_prendertargetBound.release();
             pcontext->m_pgpucompositor = nullptr;
+            pcontext->m_bInNonOwnedLease = false;
 
          });
 

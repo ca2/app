@@ -1721,7 +1721,12 @@ void memory_base::assign(const void * pdata, memsize iCount)
 
    set_size(iCount);
 
-   ::memory_copy(data(), pdata, (size_t)iCount);
+   if (iCount > 0)
+   {
+
+      ::memory_copy(data(), pdata, (size_t)iCount);
+
+   }
 
 }
 
@@ -2449,7 +2454,18 @@ namespace acme
 void memory_base::assign(const ::block & block)
 {
 
-   assign(block.data(), block.size());
+   if (block.is_empty())
+   {
+
+      set_size(0);
+
+   }
+   else
+   {
+
+      assign(block.data(), block.size());
+
+   }
 
 }
 

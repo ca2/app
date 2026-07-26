@@ -121,7 +121,7 @@ namespace opengl
             case GL_FRAMEBUFFER_INCOMPLETE_DRAW_BUFFER: psz= "incomplete draw buffer"; break;
             case GL_FRAMEBUFFER_INCOMPLETE_READ_BUFFER: psz= "incomplete read buffer"; break;
             case GL_FRAMEBUFFER_UNSUPPORTED: psz= "unsupported"; break;
-            case GL_FRAMEBUFFER_INCOMPLETE_MULTISAMPLE: psz= "incomplete multiple"; break;
+            case GL_FRAMEBUFFER_INCOMPLETE_MULTISAMPLE: psz= "incomplete multisample"; break;
             default: psz = "unknown error"; break;
          }
       }

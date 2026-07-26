@@ -291,12 +291,8 @@ namespace image
       virtual void create(const ::i32_size & size, ::enum_flag eflagCreate = DEFAULT_CREATE_IMAGE_FLAG, ::i32 iGoodStride = -1, bool bPreserve = false);
       using ::particle::initialize;
       virtual void initialize(const ::i32_size & size, ::image32_t * pimage32, ::i32 iScan, ::enum_flag eflagCreate = DEFAULT_CREATE_IMAGE_FLAG);
-      inline void preserve(const ::i32_size & size, ::enum_flag eflagCreate = DEFAULT_CREATE_IMAGE_FLAG, ::i32 iGoodStride = -1)
-      {
-
-         return create(size, eflagCreate, iGoodStride, true);
-
-      }
+      virtual void preserve(const ::i32_size &size, ::enum_flag eflagCreate = DEFAULT_CREATE_IMAGE_FLAG,
+                            ::i32 iGoodStride = -1);
       //virtual void     create(::i32 iWidth, ::i32 iHeight, ::enum_flag eflagCreate = DEFAULT_CREATE_IMAGE_OBJECT_FLAG, ::i32 iGoodStride = -1, void bPreserve = false);
 
 

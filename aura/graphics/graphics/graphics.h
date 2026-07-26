@@ -21,7 +21,7 @@ namespace graphics
       ::e_graphics                  m_egraphics;
       ::image::image_pointer        m_pimageBufferItem;
       ::mutex_pointer               m_pmutex;
-      //::draw2d::graphics_pointer    m_pgraphicsBufferItem;
+      ::draw2d::graphics_pointer    m_pgraphicsBufferItem;
       ::i32_point                   m_pointBufferItem;
       ::i32_size                    m_sizeBufferItem;
       ::i32_point                   m_pointBufferItemWindow;
@@ -114,7 +114,7 @@ namespace graphics
 
       virtual bool ipc_copy(const pixmap* ppixmap);
 
-      virtual void set_bitmap_source(const ::scoped_string & scopedstrBitmapSource);
+      virtual void set_bitmap_source(const ::scoped_string & scopedstrBitmapSource, bool bCreate = true);
 
       virtual void clear_bitmap_source();
 

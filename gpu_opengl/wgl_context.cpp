@@ -108,6 +108,11 @@ namespace gpu_opengl
          pixelAttribs.append({WGL_ALPHA_BITS_ARB, 8}); 
          pixelAttribs.append({WGL_DEPTH_BITS_ARB, 24});
          pixelAttribs.append({WGL_STENCIL_BITS_ARB, 8});
+         if (m_papplication->m_gpu.m_bMultisample && m_papplication->m_gpu.m_iSampleCount > 0)
+         {
+            pixelAttribs.append({WGL_SAMPLE_BUFFERS_ARB, 1});
+            pixelAttribs.append({WGL_SAMPLES_ARB, m_papplication->m_gpu.m_iSampleCount});
+         }
          pixelAttribs.add(0);
 
          for (::i32 i = 0; i < pixelAttribs.size(); i++)

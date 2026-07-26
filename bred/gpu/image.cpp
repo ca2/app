@@ -9,6 +9,8 @@
 #include "acme/platform/application.h"
 
 
+CLASS_DECL_ACME::string _001_image32_diagnostics(const ::i32_size &size, const image32_t *pimage32, int iScan);
+
 namespace
 {
 
@@ -67,85 +69,87 @@ namespace gpu
 
       auto pgpucontextlease = pgpudevice->acquire_gpu_context(::gpu::e_output_none, m_size);
 
-      ((image *)this)->initialize_gpu_image(pgpucontextlease, m_size, {});
+      auto mapImage = pixmap::map();
 
-      if (!m_pimage32Raw)
-      {
+      ((image *)this)->initialize_gpu_image(pgpucontextlease, m_size, mapImage);
 
-         return;
+      //if (!m_pimage32Raw)
+      //{
 
-      }
+      //   return;
 
-      auto pgputexture = m_pgputexture;
+      //}
 
-      if (!pgputexture)
-      {
+      //auto pgputexture = m_pgputexture;
 
-         throw ::exception(error_wrong_state);
-      }
+      //if (!pgputexture)
+      //{
 
-      auto pgpucontext = pgputexture->context();
+      //   throw ::exception(error_wrong_state);
+      //}
 
-      if (!pgpucontext)
-      {
+      //auto pgpucontext = pgputexture->context();
 
-         throw ::exception(error_wrong_state);
-      }
+      //if (!pgpucontext)
+      //{
 
-      pgpucontext->send(
-         [this, pgputexture, pgpucontext]()
-         {
-            auto bPerformanceDiagnostics =
-               m_papplication &&
-               m_papplication->m_gpu.m_bPerformanceDiagnostics.load(::std::memory_order_relaxed);
+      //   throw ::exception(error_wrong_state);
+      //}
 
-            if (bPerformanceDiagnostics)
-            {
+      //pgpucontext->send(
+      //   [this, pgputexture, pgpucontext]()
+      //   {
+      //      auto bPerformanceDiagnostics =
+      //         m_papplication &&
+      //         m_papplication->m_gpu.m_bPerformanceDiagnostics.load(::std::memory_order_relaxed);
 
-               auto uPerformanceDiagnosticsGeneration =
-                  m_papplication->m_gpu.m_uPerformanceDiagnosticsGeneration.load(::std::memory_order_relaxed);
+      //      if (bPerformanceDiagnostics)
+      //      {
 
-               if (uPerformanceDiagnosticsGeneration !=
-                     m_uPerformanceDiagnosticsGenerationLast.load(::std::memory_order_relaxed))
-               {
+      //         auto uPerformanceDiagnosticsGeneration =
+      //            m_papplication->m_gpu.m_uPerformanceDiagnosticsGeneration.load(::std::memory_order_relaxed);
 
-                  reset_performance_diagnostics();
-               }
-            }
+      //         if (uPerformanceDiagnosticsGeneration !=
+      //               m_uPerformanceDiagnosticsGenerationLast.load(::std::memory_order_relaxed))
+      //         {
 
-            auto timeStart = ::std::chrono::steady_clock::time_point{};
+      //            reset_performance_diagnostics();
+      //         }
+      //      }
 
-            if (bPerformanceDiagnostics)
-            {
+      //      auto timeStart = ::std::chrono::steady_clock::time_point{};
 
-               timeStart = ::std::chrono::steady_clock::now();
-            }
+      //      if (bPerformanceDiagnostics)
+      //      {
+
+      //         timeStart = ::std::chrono::steady_clock::now();
+      //      }
 
 
-            ::gpu::context_lock contextlock(pgpucontext);
+      //      ::gpu::context_lock contextlock(pgpucontext);
 
-            pgputexture->write_pixels(m_size, m_pimage32Raw, m_iScan);
+      //      pgputexture->write_pixels(m_size, m_pimage32Raw, m_iScan);
 
-            auto uMicroseconds = (::u64)0;
+      //      auto uMicroseconds = (::u64)0;
 
-            if (bPerformanceDiagnostics)
-            {
+      //      if (bPerformanceDiagnostics)
+      //      {
 
-               uMicroseconds = (::u64)::std::chrono::duration_cast<::std::chrono::microseconds>(
-                                    ::std::chrono::steady_clock::now() - timeStart)
-                                    .count();
-            }
+      //         uMicroseconds = (::u64)::std::chrono::duration_cast<::std::chrono::microseconds>(
+      //                              ::std::chrono::steady_clock::now() - timeStart)
+      //                              .count();
+      //      }
 
-            pgputexture->defer_fence();
-            // pthis->pixmap::unmap();
-            // pthis->m_bMapped = false;
+      //      pgputexture->defer_fence();
+      //      // pthis->pixmap::unmap();
+      //      // pthis->m_bMapped = false;
 
-            if (bPerformanceDiagnostics)
-            {
+      //      if (bPerformanceDiagnostics)
+      //      {
 
-               record_performance_unmap_transition(uMicroseconds);
-            }
-         });
+      //         record_performance_unmap_transition(uMicroseconds);
+      //      }
+      //   });
 
    }
 
@@ -561,11 +565,27 @@ namespace gpu
       else if (!m_bMapped)
       {
 
-         pixmap_t::initialize_pixmap(size, nullptr, iScan);
-
-         pixmap::map();
+         m_sizeRaw = size;
          
-         pixmap_t::copy(size, pimage32, iScan);
+         m_size = size;
+         
+         m_iScan = size.cx * 4;
+
+         int iScanArea = scan_area_in_bytes();
+
+         m_memoryPixmap.set_size(iScanArea);
+
+         m_pimage32Raw = (::image32_t *)m_memoryPixmap.data();
+
+         m_pimage32Raw->copy(size, m_iScan, pimage32, iScan);
+
+         ::string str = _001_image32_diagnostics(size, m_pimage32Raw, m_iScan);
+
+         ::information("pixmap::on_load_image {}", str);
+
+         m_pimage32 = m_pimage32Raw;
+
+         m_bMapped = true;
 
       }
 

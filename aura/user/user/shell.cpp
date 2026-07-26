@@ -145,7 +145,7 @@ namespace user
       m_iaSize.add(24);
       m_iaSize.add(32);
       m_iaSize.add(48);
-      m_iaSize.add(256);
+      //m_iaSize.add(256);
 
       m_imagemap.InitHashTable(16383);
 
@@ -245,9 +245,9 @@ namespace user
       for (auto iSize : m_iaSize)
       {
 
-         iImage = m_pimagelist[iSize]->reserve_image(iImage);
+         iImage = m_pimagelistUserShell[iSize]->reserve_image(iImage);
 
-         iImage = m_pimagelistHover[iSize]->reserve_image(iImage);
+         iImage = m_pimagelistUserShellHover[iSize]->reserve_image(iImage);
 
       }
 
@@ -415,32 +415,32 @@ namespace user
       for (auto iSize : m_iaSize)
       {
 
-         if (m_pimagelist[iSize].is_null())
+         if (m_pimagelistUserShell[iSize].is_null())
          {
 
-            m_pimagelist[iSize] = create_newø < ::image::image_list >();
-            m_pimagelist[iSize]->create(iSize, iSize, 0, 10, 10);
+            m_pimagelistUserShell[iSize] = create_newø < ::image::image_list >();
+            m_pimagelistUserShell[iSize]->create(iSize, iSize, 0, 10, 10);
 
          }
          else
          {
 
-            m_pimagelist[iSize]->erase_all();
+            m_pimagelistUserShell[iSize]->erase_all();
 
          }
 
-         if (m_pimagelistHover[iSize].is_null())
+         if (m_pimagelistUserShellHover[iSize].is_null())
          {
 
-            m_pimagelistHover[iSize] = create_newø < ::image::image_list >();
+            m_pimagelistUserShellHover[iSize] = create_newø<::image::image_list>();
 
-            m_pimagelistHover[iSize]->create(iSize, iSize, 0, 10, 10);
+            m_pimagelistUserShellHover[iSize]->create(iSize, iSize, 0, 10, 10);
 
          }
          else
          {
 
-            m_pimagelistHover[iSize]->erase_all();
+            m_pimagelistUserShellHover[iSize]->erase_all();
 
          }
 
@@ -598,7 +598,7 @@ namespace user
 
       }
 
-      return m_pimagelist[m_iaSize[i]];
+      return m_pimagelistUserShell[m_iaSize[i]];
 
    }
 
@@ -643,7 +643,7 @@ namespace user
 
       }
 
-      return m_pimagelistHover[m_iaSize[i]];
+      return m_pimagelistUserShellHover[m_iaSize[i]];
 
    }
 
@@ -1409,7 +1409,7 @@ namespace user
 
          {
 
-            _synchronous_lock sl1(m_pimagelist[16]->synchronization());
+            _synchronous_lock sl1(m_pimagelistUserShell[16]->synchronization());
 
             ::image::image_source imagesource(pimage1, pimage1->rectangle());
 
@@ -1419,13 +1419,13 @@ namespace user
 
             ::image::image_drawing imagedrawing(imagedrawingoptions, imagesource);
 
-            getfileimage.m_iImage = m_pimagelist[16]->set(getfileimage.m_iImage, imagedrawing);
+            getfileimage.m_iImage = m_pimagelistUserShell[16]->set(getfileimage.m_iImage, imagedrawing);
 
          }
 
          {
 
-            _synchronous_lock sl2(m_pimagelist[48]->synchronization());
+            _synchronous_lock sl2(m_pimagelistUserShell[48]->synchronization());
 
             ::image::image_source imagesource(image48, image48->rectangle());
 
@@ -1435,13 +1435,13 @@ namespace user
 
             ::image::image_drawing imagedrawing(imagedrawingoptions, imagesource);
 
-            getfileimage.m_iImage = m_pimagelist[48]->set(getfileimage.m_iImage, imagedrawing);
+            getfileimage.m_iImage = m_pimagelistUserShell[48]->set(getfileimage.m_iImage, imagedrawing);
 
          }
 
          {
 
-            _synchronous_lock sl1(m_pimagelistHover[16]->synchronization());
+            _synchronous_lock sl1(m_pimagelistUserShellHover[16]->synchronization());
 
             ::image::image_source imagesource(image16, image16->rectangle());
 
@@ -1451,15 +1451,15 @@ namespace user
 
             ::image::image_drawing imagedrawing(imagedrawingoptions, imagesource);
 
-            getfileimage.m_iImage = m_pimagelist[16]->set(getfileimage.m_iImage, imagedrawing);
+            getfileimage.m_iImage = m_pimagelistUserShell[16]->set(getfileimage.m_iImage, imagedrawing);
 
-            m_pimagelistHover[16]->create_color_blend(m_pimagelist[16], rgb(255, 255, 240), 64);
+            m_pimagelistUserShellHover[16]->create_color_blend(m_pimagelistUserShell[16], rgb(255, 255, 240), 64);
 
          }
 
          {
 
-            _synchronous_lock sl1(m_pimagelistHover[48]->synchronization());
+            _synchronous_lock sl1(m_pimagelistUserShellHover[48]->synchronization());
 
             ::image::image_source imagesource(image48, image48->rectangle());
 
@@ -1469,9 +1469,9 @@ namespace user
 
             ::image::image_drawing imagedrawing(imagedrawingoptions, imagesource);
 
-            getfileimage.m_iImage = m_pimagelist[48]->set(getfileimage.m_iImage, imagedrawing);
+            getfileimage.m_iImage = m_pimagelistUserShell[48]->set(getfileimage.m_iImage, imagedrawing);
 
-            m_pimagelistHover[48]->create_color_blend(m_pimagelist[48], rgb(255, 255, 240), 64);
+            m_pimagelistUserShellHover[48]->create_color_blend(m_pimagelistUserShell[48], rgb(255, 255, 240), 64);
 
          }
 
@@ -1846,9 +1846,9 @@ namespace user
 
       _synchronous_lock synchronouslock(this->synchronization(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 
-      auto pimagelist = m_pimagelist[iSize];
+      auto pimagelist = m_pimagelistUserShell[iSize];
 
-      auto pimagelistHover = m_pimagelistHover[iSize];
+      auto pimagelistHover = m_pimagelistUserShellHover[iSize];
 
       synchronouslock.unlock();
 
@@ -2187,22 +2187,22 @@ namespace user
 
       ::task::destroy();
 
-      if(m_pimagelist.size()>0)
+      if (m_pimagelistUserShell.size() > 0)
       {
-         for(auto &pimagelist : m_pimagelist.payloads())
+         for (auto &pimagelist: m_pimagelistUserShell.payloads())
          {
             pimagelist.defer_destroy_and_release();
          }
       }
-      if(m_pimagelistHover.size()>0)
+      if (m_pimagelistUserShellHover.size() > 0)
       {
-         for(auto &pimagelist : m_pimagelistHover.payloads())
+         for (auto &pimagelist: m_pimagelistUserShellHover.payloads())
          {
             pimagelist.defer_destroy_and_release();
          }
       }
-      m_pimagelist.clear();
-      m_pimagelistHover.clear();
+      m_pimagelistUserShell.clear();
+      m_pimagelistUserShellHover.clear();
 
 
       //task_erase_all();

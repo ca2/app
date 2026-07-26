@@ -81,6 +81,7 @@ namespace gpu
       bool m_bDepthTestButNoDepthWrite = false;
       bool m_bLequalDepth = false;
       bool m_bEnableBlend = false;
+      bool m_bMultisample = false;
       bool m_bAccumulationEnable = false;
       enum_cull_mode m_ecullmode = e_cull_mode_back;
       //bool m_bHasSourceImage = false;

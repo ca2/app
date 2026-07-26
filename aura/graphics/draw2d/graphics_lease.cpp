@@ -199,7 +199,7 @@ namespace draw2d
       //else
       //{
          
-         if (pdraw2d && pgraphics)
+         if (pdraw2d && pgraphics && !bOwned)
          {
 
             pdraw2d->return_memory_graphics(::transfer(pgraphics), ::transfer(pimage), bDamaged);

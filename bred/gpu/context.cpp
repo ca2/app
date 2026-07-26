@@ -58,7 +58,7 @@ namespace gpu
 
    interlocked_count g_iGpuContext;
 
-   extern thread_local device *t_pgpudevice;
+   //extern thread_local device *t_pgpudevice;
 
    context::context()
    {
@@ -1660,7 +1660,7 @@ namespace gpu
 
       m_pgpudevice = pgpudevice;
 
-      t_pgpudevice = m_pgpudevice;
+      //t_pgpudevice = m_pgpudevice;
 
       m_eoutput = eoutput;
 

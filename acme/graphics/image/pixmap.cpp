@@ -102,7 +102,7 @@ void pixmap::mult_alpha_fast()
 
 bool pixmap::_is_ok() const 
 {
-   return ::particle::is_ok() && pixmap_t::is_ok();
+   return ::particle::_is_ok() && pixmap_t::is_ok();
 }
 
 
@@ -655,3 +655,16 @@ CLASS_DECL_ACME::string _001_image32_diagnostics(const ::i32_size & size, const 
    return strImage32;
 
 }
+
+
+::pixmap_pointer pixmap::get_resized_pixmap(const ::i32_size & size)
+{
+
+   return this;
+
+}
+
+
+
+
+

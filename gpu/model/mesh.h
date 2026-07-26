@@ -29,7 +29,7 @@ namespace gpu
       {
       public:
 
-
+         
          //::array_base<::gpu::gltf::vertex> m_vertexa;
          //u32_array m_indexa;
          //::gpu::model_data<::gpu::gltf::vertex> m_modeldataGltf;

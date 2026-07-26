@@ -752,6 +752,9 @@ namespace graphics3d
 
 
    void scene_base::on_update(::gpu::context *pgpucontext) {}
+   
+   
+   void scene_base::on_before_render(::gpu::context *pgpucontext) {}
 
 
    void scene_base::on_render(::gpu::context *pgpucontext) {}

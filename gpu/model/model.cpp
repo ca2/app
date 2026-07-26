@@ -145,7 +145,7 @@ namespace gpu
 //
 //                         So triangulation was partial,
 //               not complete.
-            ::u32 nFlags = 0;
+            ::u32 nFlags = aiProcess_Triangulate;
 
 
             //nFlags = aiProcess_Triangulate | aiProcess_SortByPType | aiProcess_JoinIdenticalVertices;

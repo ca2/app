@@ -36,6 +36,7 @@ namespace gpu
       ::collection::index                 m_iIndex;
       ::i32                                 m_iCurrentMip;
       ::i32                                 m_iCurrentLayer;
+      bool m_bMultisample = false;
       bool m_bHdr = false;
 
       //::pointer < ::gpu::render_target >  m_pgpurendertarget;

@@ -47,6 +47,8 @@ public:
 
    virtual void on_load_image(const image32_t *pimage32, const ::i32_size &size, int iScan);
 
+   virtual ::pixmap_pointer get_resized_pixmap(const ::i32_size &size);
+
 protected:
 
    friend class pixmap_lease;

@@ -53,6 +53,8 @@ namespace gpu
 
          pgpucontext->_context_lock();
 
+         ::gpu::thread_set_gpu_device(pgpucontext->m_pgpudevice);
+
       }
 
       t_plock = this;

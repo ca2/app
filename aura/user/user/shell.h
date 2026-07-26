@@ -111,8 +111,8 @@ namespace user
 
    protected:
 
-      ::i32_map < ::image::image_list_pointer  >                          m_pimagelist; // ::i32 is the i32_size
-      ::i32_map < ::image::image_list_pointer  >                          m_pimagelistHover; // ::i32 is the size;
+      ::i32_map < ::image::image_list_pointer  >                          m_pimagelistUserShell; // ::i32 is the i32_size
+      ::i32_map < ::image::image_list_pointer  >                          m_pimagelistUserShellHover; // ::i32 is the size;
       map_base < ::pointer < ::user::interaction >, ::string_array_base >      m_mapInterest;
 
 

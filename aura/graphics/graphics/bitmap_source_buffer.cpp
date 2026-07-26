@@ -84,7 +84,7 @@ namespace graphics
    }
 
 
-   void bitmap_source_buffer::set_bitmap_source(const ::scoped_string & scopedstrBitmapSource)
+   void bitmap_source_buffer::set_bitmap_source(const ::scoped_string & scopedstrBitmapSource, bool bCreate)
    {
 
       if (m_strBitmapSource == scopedstrBitmapSource)
@@ -104,7 +104,18 @@ namespace graphics
 
       strMutexName.formatf(szName, scopedstrBitmapSource.as_string().c_str());
 
-      m_pmutexBitmapSource = node()->create_local_named_mutex(this, false, strMutexName, nullptr);
+      if (bCreate)
+      {
+
+         m_pmutexBitmapSource = node()->create_local_named_mutex(this, false, strMutexName, nullptr);
+
+      }
+      else
+      {
+
+         m_pmutexBitmapSource = node()->open_local_named_mutex(this, strMutexName);
+
+      }
 
       synchronous_lock synchronouslock(m_pmutexBitmapSource, DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 
@@ -128,8 +139,19 @@ namespace graphics
       //}
 
       //estatus = 
-      
-      m_pmemorymap->open_path(path, false, true, true, 128_MiB);
+
+      if (bCreate)
+      {
+
+         m_pmemorymap->open_path(path, false, true, true, 128_MiB);
+      }
+
+      else
+      {
+
+         m_pmemorymap->open_path(path, false, true, false, 128_MiB);
+
+      }
 
       //if (!estatus)
       //{

@@ -1,11 +1,14 @@
 // From github:/tristancalderbank/OpenGL-PBR-Renderer/mesh.h by
 // camilo on 2025-09-26 18:28 <3ThomasBorregaardSorensen!!
 #include "framework.h"
+#include "_gpu_opengl.h"
 #include "mesh.h"
+#include "gpu_opengl/shader.h"
 #include "bred/gltf/vertex.h"
 #include "gpu_opengl/texture.h"
 #include "bred/gpu/command_buffer.h"
 #include "bred/gpu/context.h"
+#include "gpu/model/model.h"
 #include "bred/gpu/model_buffer.h"
 #include "bred/gpu/render_target.h"
 #include "bred/gpu/renderer.h"
@@ -106,16 +109,98 @@ namespace gpu_opengl
          // glDrawElements(GL_TRIANGLES, m_indexa.size(), GL_UNSIGNED_INT, 0);
          // glBindVertexArray(0);
 
-         auto pgpucontext1 = pcommandbuffer->m_pgpurendertarget->m_pgpurenderer->m_pgpucontext.m_p;
 
-         auto pshader = pgpucontext1->m_pshaderBound;
+                  auto pgpucontext1 = pcommandbuffer->m_pgpurendertarget->m_pgpurenderer->m_pgpucontext.m_p;
+
+         ::cast<::gpu_opengl::shader> pshader = pgpucontext1->m_pshaderBound;
+
+         ::gpu::enum_model emodel = ::gpu::e_model_none;
+
+
+      if (m_prenderableParent)
+         {
+
+            if (m_prenderableParent->m_prenderableParent)
+            {
+
+               emodel = m_prenderableParent->m_prenderableParent->m_egpumodel;
+            }
+         }
+
+         if (emodel == ::gpu::e_model_wavefront_for_texture)
+         {
+
+            GLint activeTexture = 0;
+            GLint boundTexture = 0;
+            GLint samplerUnit = -1;
+
+            glGetIntegerv(GL_ACTIVE_TEXTURE, &activeTexture);
+
+            glGetIntegerv(GL_TEXTURE_BINDING_2D, &boundTexture);
+
+            glGetUniformiv(pshader->m_ProgramID, 1, &samplerUnit);
+
+            informationf("active unit=%d, bound texture=%d, sampler unit=%d", activeTexture - GL_TEXTURE0, boundTexture,
+                         samplerUnit);
+
+            GLint textureWidth = 0;
+            GLint textureHeight = 0;
+            GLint internalFormat = 0;
+
+            glGetTexLevelParameteriv(GL_TEXTURE_2D, 0, GL_TEXTURE_WIDTH, &textureWidth);
+
+            glGetTexLevelParameteriv(GL_TEXTURE_2D, 0, GL_TEXTURE_HEIGHT, &textureHeight);
+
+            glGetTexLevelParameteriv(GL_TEXTURE_2D, 0, GL_TEXTURE_INTERNAL_FORMAT, &internalFormat);
+
+            informationf("texture=%d, size=%dx%d, internalFormat=0x%x", boundTexture, textureWidth, textureHeight,
+                         internalFormat);
+            
+
+            GLint drawFramebuffer = 0;
+            GLint attachedTexture = 0;
+
+            glGetIntegerv(GL_DRAW_FRAMEBUFFER_BINDING, &drawFramebuffer);
+
+            glGetFramebufferAttachmentParameteriv(GL_DRAW_FRAMEBUFFER, GL_COLOR_ATTACHMENT0,
+                                                  GL_FRAMEBUFFER_ATTACHMENT_OBJECT_NAME, &attachedTexture);
+
+            informationf("drawFramebuffer=%d, attachedTexture=%d, sampledTexture=%d", drawFramebuffer, attachedTexture,
+                         boundTexture);
+
+
+            glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_LINEAR);
+            glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_LINEAR);
+            glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAX_LEVEL, 0);
+
+
+            GLint minFilter = 0;
+            GLint magFilter = 0;
+            GLint baseLevel = 0;
+            GLint maxLevel = 0;
+
+            glGetTexParameteriv(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, &minFilter);
+
+            glGetTexParameteriv(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, &magFilter);
+
+            glGetTexParameteriv(GL_TEXTURE_2D, GL_TEXTURE_BASE_LEVEL, &baseLevel);
+
+            glGetTexParameteriv(GL_TEXTURE_2D, GL_TEXTURE_MAX_LEVEL, &maxLevel);
+
+            informationf("minFilter=0x%x magFilter=0x%x baseLevel=%d maxLevel=%d", minFilter, magFilter, baseLevel,
+                         maxLevel);
+
+            informationf("");
+
+         }
+
 
          auto erendersystem = pcommandbuffer->m_prendersystem->m_erendersystem;
 
          if (erendersystem == ::graphics3d::e_render_system_skybox_ibl)
          {
 
-
+            //glActiveTexture(GL_TEXTURE0);
          }
          else  if (erendersystem == ::graphics3d::e_render_system_gltf_ibl)
          {

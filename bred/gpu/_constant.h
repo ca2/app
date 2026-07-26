@@ -46,6 +46,7 @@ namespace gpu
       e_texture_data_image_array,
       e_texture_data_file_path,
       e_texture_data_raw_scoped_pixmap,
+      e_texture_data_gpu_texture,
 
    };
 
@@ -207,6 +208,7 @@ namespace gpu
       e_model_none,
       e_model_wavefront,
       e_model_gltf,
+      e_model_wavefront_for_texture,
 
    };
 

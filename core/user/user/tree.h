@@ -90,7 +90,7 @@ namespace user
       virtual bool contains(::item * pitem);
       virtual bool contains(::data::tree_item_base * ptreeitem);
 
-      void update_drawing_objects();
+      void update_drawing_objects(::draw2d::graphics_pointer &pgraphics);
 
 
       void on_would_change_total_size(::user::enum_layout elayout = ::user::e_layout_sketch) override;

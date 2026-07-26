@@ -60,6 +60,7 @@ namespace gpu
       ::gpu::context_pointer                       m_pgpucontextMain;
       ::gpu::context_pointer                       m_pgpucontextMainDraw2d;
       ::pointer<::gpu::context>                          m_pgpucontextWork;
+      bool                                         m_bMultisample;
       //::gpu::context_pointer           m_pgpucontextMainWindow;
       //::i32_size                             m_sizeNew;
       //::i32_size                             m_size;

@@ -456,6 +456,9 @@
     <ClInclude Include="gpu\context_pointer.h">
       <Filter>Header Files\gpu</Filter>
     </ClInclude>
+    <ClInclude Include="graphics3d\render_system\texture_render_system.h">
+      <Filter>Header Files\graphics3d\render_system</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="platform\application.cpp">
@@ -715,6 +718,9 @@
     </ClCompile>
     <ClCompile Include="gpu\context_pointer.cpp">
       <Filter>Source Files\gpu</Filter>
+    </ClCompile>
+    <ClCompile Include="graphics3d\render_system\texture_render_system.cpp">
+      <Filter>Source Files\graphics3d\render_system</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

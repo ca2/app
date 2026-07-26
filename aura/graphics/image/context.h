@@ -36,8 +36,9 @@ namespace image
       i32_map < string > m_mapIntPath;
       string_map_base < ::i32 > m_mapPathInt;
       string_map_base < ::image::image_pointer > m_mapPathImage;
-      string_map_base<map_base < ::i32_size, ::image::image_pointer >> m_mapPathResizedImage;
       string_map_base<::pixmap_pointer> m_mapPathPixmap;
+      string_map_base<map_base < ::i32_size, ::image::image_pointer >> m_mapPathResizedImage;
+      string_map_base<map_base<::i32_size, ::pixmap_pointer>> m_mapPathResizedPixmap;
       ::i32         m_iImageSeed;
       ::particle_pointer         m_pparticleImageSynchronization;
       map_base < i32_size, ::pointer_array < ::image::image > > m_imagepool;
@@ -102,7 +103,9 @@ namespace image
       virtual ::pixmap_pointer path_pixmap(const ::file::path & pathImage);
       virtual ::image::image_pointer path_image(const ::file::path &pathImage);
       virtual ::image::image_pointer & _path_image(const ::file::path &pathImage);
+      virtual ::pixmap_pointer &_path_pixmap(const ::file::path &pathImage);
       virtual ::image::image_pointer path_resized_image(const ::file::path &pathImage, const ::i32_size & size);
+      virtual ::pixmap_pointer path_resized_pixmap(const ::file::path &pathImage, const ::i32_size &size);
       virtual ::image::image_pointer
       image_from_file(const ::payload &payloadFile, const ::image::load_options &loadoptions = ::image::load_options());
 

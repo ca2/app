@@ -2,27 +2,31 @@
 #include "framework.h"
 #include "device.h"
 #include "properties.h"
+#include "apex/gpu/approach.h"
 
 
 namespace gpu
 {
 
 
-	extern thread_local device* t_pgpudevice;
+	//extern thread_local device* t_pgpudevice;
 
 
-	CLASS_DECL_BRED::gpu::device* thread_gpu_device()
-	{
+	//CLASS_DECL_BRED::gpu::device* thread_gpu_device()
+	//{
 
-		return t_pgpudevice;
+	//	return t_pgpudevice;
 
-	}
+	//}
 
 
-	void properties_reference::_set_matrix4(const ::floating_matrix4 & matrix4)
-	{
+	void properties_reference::_set_matrix4(const ::floating_matrix4 &matrix4)
+   {
+      ::cast<::gpu::approach> pgpuapproach = system()->m_papplication->get_gpu_approach();
 
-		t_pgpudevice->set_matrix4(m_blockWithSamplers.data(), matrix4);
+      ::cast<::gpu::device> pgpudevice = pgpuapproach->get_gpu_device(system()->m_papplication->m_pacmeuserinteractionMain->m_pacmewindowingwindow);
+
+		pgpudevice->set_matrix4(m_blockWithSamplers.data(), matrix4);
 
 	}
 		

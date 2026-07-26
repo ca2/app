@@ -653,39 +653,65 @@ inline matrix_type mul_avx2(const matrix_type &B) const
    column & operator[](::i32 i) { return columna[i]; }
 
 
-   matrix_type & rotate(const sequence_type<FLOATING, 3>& axis, FLOATING angle)
+matrix_type &rotate(const sequence_type<FLOATING, 3> &axis, FLOATING angle)
       requires(DIMENSION == 4)
    {
 
-      FLOATING s = ::sin(angle);
-      FLOATING c = ::cos(angle);
-      FLOATING t = 1 - c;
+      // Rodrigues' formula requires a normalized axis.
+      const FLOATING lengthSquared = axis.x * axis.x + axis.y * axis.y + axis.z * axis.z;
 
-      auto & result = *this;
-      result.m[3][3] = 1;
-      result.m[0][0] = c + axis.x * axis.x * t;
-      result.m[1][1] = c + axis.y * axis.y * t;
-      result.m[2][2] = c + axis.z * axis.z * t;
+      if (lengthSquared == FLOATING(0))
+      {
 
-      FLOATING tmp1 = axis.x * axis.y * t;
-      FLOATING tmp2 = axis.z * s;
+         return *this;
+      }
 
-      result.m[0][1] = tmp1 + tmp2;
-      result.m[1][0] = tmp1 - tmp2;
+      const FLOATING inverseLength = FLOATING(1) / ::sqrt(lengthSquared);
 
-      tmp1 = axis.x * axis.z * t;
-      tmp2 = axis.y * s;
-      result.m[0][2] = tmp1 - tmp2;
-      result.m[2][0] = tmp1 + tmp2;
+      const FLOATING x = axis.x * inverseLength;
+      const FLOATING y = axis.y * inverseLength;
+      const FLOATING z = axis.z * inverseLength;
 
-      tmp1 = axis.y * axis.z * t;
-      tmp2 = axis.x * s;
-      result.m[1][2] = tmp1 + tmp2;
-      result.m[2][1] = tmp1 - tmp2;
+      const FLOATING s = ::sin(angle);
+      const FLOATING c = ::cos(angle);
+      const FLOATING t = FLOATING(1) - c;
 
-      return result;
+      // Rotation matrix using m[column][row] storage.
+      const FLOATING r00 = c + x * x * t;
+      const FLOATING r01 = x * y * t + z * s;
+      const FLOATING r02 = x * z * t - y * s;
 
+      const FLOATING r10 = x * y * t - z * s;
+      const FLOATING r11 = c + y * y * t;
+      const FLOATING r12 = y * z * t + x * s;
+
+      const FLOATING r20 = x * z * t + y * s;
+      const FLOATING r21 = y * z * t - x * s;
+      const FLOATING r22 = c + z * z * t;
+
+      // Post-multiply:
+      //
+      //     this = this * rotation
+      //
+      // Cache each row before overwriting it.
+      for (int row = 0; row < 4; ++row)
+      {
+
+         const FLOATING m0 = m[0][row];
+         const FLOATING m1 = m[1][row];
+         const FLOATING m2 = m[2][row];
+
+         m[0][row] = m0 * r00 + m1 * r01 + m2 * r02;
+         m[1][row] = m0 * r10 + m1 * r11 + m2 * r12;
+         m[2][row] = m0 * r20 + m1 * r21 + m2 * r22;
+      }
+
+      // m[3] remains unchanged because the rotation matrix's
+      // fourth column is (0, 0, 0, 1).
+
+      return *this;
    }
+
 
    static matrix_type rotation(const sequence_type<FLOATING, 3> &axis, FLOATING angle)
       requires(DIMENSION == 4)

@@ -45,7 +45,7 @@ namespace graphics3d
       ::memory memory;
 
       m_pengine->gpu_context()->m_pgpudevice->defer_shader_memory(
-         memory, "matter://shaders/wavefront.vert");
+         memory, "matter://shaders/texture.vert");
 
       return memory;
 

@@ -402,6 +402,8 @@ namespace gpu
 
       textureflags.m_bWithDepth = escene == ::gpu::e_scene_3d;
 
+      pgputexture->m_bMultisample = m_pgpurenderer->m_pgpucontext->m_pgpudevice->m_bMultisample;
+
       pgputexture->initialize_texture(m_pgpurenderer->m_pgpucontext, textureattributes, textureflags);
 
 

@@ -107,6 +107,7 @@ namespace gpu
                   if (mesh->mPrimitiveTypes != aiPrimitiveType_TRIANGLE)
                   {
 
+                     throw ::exception(error_failed, "lonly accept triangles in the model");
                      ::warning("must ignore this mesh. don't know how to draw non triangle data");
 
                      continue;
@@ -176,6 +177,7 @@ namespace gpu
                      p = p->mParent;
                   }
                   pmesh->uniformBlock.matrix = aiMatrix4x4ToColumnMajor(m);
+                  pmesh->m_prenderableParent = pmodel;
                   pmodel->m_mesha.add(pmesh);
                }
 

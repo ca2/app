@@ -69,7 +69,7 @@ namespace platform
 #ifdef WINDOWS_DESKTOP
 
       ///virtual void* HICON_from_ico_file(const ::block& block);
-      virtual void* HICON_from_image(::image::image *pimage);
+      virtual void* HICON_from_pixmap(::pixmap *ppixmap);
 
 #endif
 

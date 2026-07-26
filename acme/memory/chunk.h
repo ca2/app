@@ -14,13 +14,18 @@ public:
 
    chunk(const void * p = nullptr, memsize s = 0)
    {
-
-      assign(p, s);
+      if (::is_set(p) && s > 0)
+      {
+         assign(p, s);
+      }
    }
    chunk(const chunk & chunk)
    {
+      if (::is_set(chunk.m_p) && chunk.m_size > 0)
+      {
 
-      assign(chunk.m_p, chunk.m_size);
+         assign(chunk.m_p, chunk.m_size);
+      }
    }
    ~chunk()
    {

@@ -48,6 +48,7 @@ int main()
    const auto renderTarget = read_file("bred/gpu/render_target.cpp");
    const auto glHeader = read_file("gpu_opengl/texture.h");
    const auto textureSource = read_file("gpu_opengl/texture.cpp");
+   const auto contextSource = read_file("gpu_opengl/context.cpp");
 
    assert(baseHeader.find("::i32 m_iSampleCount = 1;") !=
       std::string::npos);
@@ -81,6 +82,48 @@ int main()
       std::string::npos);
    assert(textureSource.find("GL_MAX_SAMPLES") != std::string::npos);
    assert(textureSource.find("GL_MAX_COLOR_TEXTURE_SAMPLES") !=
+      std::string::npos);
+
+   const auto copy = section(
+      contextSource,
+      "void context::copy(::gpu::texture *ptextureTarget",
+      "//   void context::_create_offscreen_window");
+   assert(copy.find("glGenFramebuffers(1, &uReadFramebuffer)") !=
+      std::string::npos);
+   assert(copy.find("glGenFramebuffers(1, &uDrawFramebuffer)") !=
+      std::string::npos);
+   assert(copy.find("GL_READ_FRAMEBUFFER, GL_COLOR_ATTACHMENT0") !=
+      std::string::npos);
+   assert(copy.find("GL_DRAW_FRAMEBUFFER, GL_COLOR_ATTACHMENT0") !=
+      std::string::npos);
+   assert(copy.find("glCheckFramebufferStatus(GL_READ_FRAMEBUFFER)") !=
+      std::string::npos);
+   assert(copy.find("glCheckFramebufferStatus(GL_DRAW_FRAMEBUFFER)") !=
+      std::string::npos);
+   assert(copy.find("GL_READ_FRAMEBUFFER_BINDING") != std::string::npos);
+   assert(copy.find("GL_DRAW_FRAMEBUFFER_BINDING") != std::string::npos);
+   assert(copy.find("GL_READ_BUFFER") != std::string::npos);
+   assert(copy.find("GL_DRAW_BUFFER") != std::string::npos);
+   assert(copy.find("GL_COLOR_BUFFER_BIT, GL_NEAREST") !=
+      std::string::npos);
+   assert(copy.find("sizeSrc != sizeDst") != std::string::npos);
+   assert(copy.find("iDestinationSampleCount != 1") !=
+      std::string::npos);
+   assert(copy.find("ptextureSrc->frame_buffer_object()") ==
+      std::string::npos);
+   assert(copy.find("ptextureDst->frame_buffer_object()") ==
+      std::string::npos);
+   assert(contextSource.find(
+      "glBindFramebuffer(GL_READ_FRAMEBUFFER, m_iReadFramebuffer)") !=
+      std::string::npos);
+   assert(contextSource.find(
+      "glBindFramebuffer(GL_DRAW_FRAMEBUFFER, m_iDrawFramebuffer)") !=
+      std::string::npos);
+   assert(contextSource.find(
+      "glDeleteFramebuffers(1, &m_uReadFramebuffer)") !=
+      std::string::npos);
+   assert(contextSource.find(
+      "glDeleteFramebuffers(1, &m_uDrawFramebuffer)") !=
       std::string::npos);
 
    return 0;

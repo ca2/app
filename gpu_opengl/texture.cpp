@@ -1394,7 +1394,7 @@ void texture::_defer_bind_to_render_target(base_context_handle::object & object)
 
       pcontext->copy(m_ptextureResolved, this, nullptr);
 
-      return m_ptextureResolved;
+      return m_ptextureResolved.cast < ::gpu_opengl::texture >();
 
    }
 

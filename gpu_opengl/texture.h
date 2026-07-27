@@ -30,7 +30,7 @@ namespace gpu_opengl
       GLenum m_gluAllocatedType = 0;
       ::i32_size m_sizeAllocated{-1, -1};
       ::i32 m_iAllocatedSampleCount = 0;
-      ::pointer < ::gpu_opengl::texture > m_ptextureResolved;
+      ::pointer < ::gpu::texture > m_ptextureResolved;
       GLsync            m_glsyncGpuCommandsCompleteFence;
 
 

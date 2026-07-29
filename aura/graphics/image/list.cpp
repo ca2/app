@@ -99,7 +99,7 @@ namespace image
       if (m_iSize > 0)
       {
 
-         m_pimage->create(::i32_size(m_size.cx * m_iSize, m_size.cy));
+         m_pimage->create_as_descriptor(::i32_size(m_size.cx * m_iSize, m_size.cy));
 
       }
 

@@ -287,8 +287,8 @@ namespace image
       void create_from_data(const ::i32_size &size, const ::image32_t *pimage32, ::i32 iScan,
                                     ::enum_flag eflagCreate = DEFAULT_CREATE_IMAGE_FLAG, 
                                     bool bPreserve = false) override;
-      virtual void create(::draw2d::graphics* pgraphics);
-      virtual void create(const ::i32_size & size, ::enum_flag eflagCreate = DEFAULT_CREATE_IMAGE_FLAG, ::i32 iGoodStride = -1, bool bPreserve = false);
+      virtual void create_from_graphics(::draw2d::graphics* pgraphics);
+      virtual void create_as_render_target(const ::i32_size & size, ::enum_flag eflagCreate = DEFAULT_CREATE_IMAGE_FLAG, ::i32 iGoodStride = -1, bool bPreserve = false);
       using ::particle::initialize;
       virtual void initialize(const ::i32_size & size, ::image32_t * pimage32, ::i32 iScan, ::enum_flag eflagCreate = DEFAULT_CREATE_IMAGE_FLAG);
       virtual void preserve(const ::i32_size &size, ::enum_flag eflagCreate = DEFAULT_CREATE_IMAGE_FLAG,
@@ -459,8 +459,6 @@ namespace image
 
       //static void static_initialize();
 
-      inline ::i32 scan_area() { return scan_area_in_bytes() / sizeof(::image32_t); }
-      inline ::i32 scan_area_in_bytes() { return m_iScan * m_size.cy; }
 
 
 

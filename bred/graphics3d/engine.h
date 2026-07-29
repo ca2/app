@@ -52,6 +52,8 @@ namespace graphics3d
 		//::image32_callback                        m_callbackImage32CpuBuffer;
       ::pointer<::graphics3d::shape_factory> m_pshapefactory;
 
+      ///::function<void(::gpu::texture *)>                 m_functionOnFrame;
+
 
 		engine();
 		~engine() override;
@@ -98,7 +100,7 @@ namespace graphics3d
 		virtual floating_matrix4 normal_matrix(::graphics3d::transform& transformcomponent);
 
 		//void on_begin_frame() override;
-		virtual void run_cpu_buffer();
+		//virtual void run_cpu_buffer();
 
 		void run() override;
 

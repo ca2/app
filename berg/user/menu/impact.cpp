@@ -432,7 +432,7 @@ namespace user
 
       }
 
-      pimage1->create(rectangleX.size());
+      pimage1->create_as_descriptor(rectangleX.size());
 
       auto pgraphics = pimage1->acquire_graphics();
 

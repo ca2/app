@@ -4,7 +4,7 @@
 #include "block.h"
 #include "command_buffer.h"
 #include "context.h"
-#include "cpu_buffer.h"
+#include "aaa_cpu_buffer.h"
 //#include "cube.h"
 #include "device.h"
 #include "fence.h"
@@ -30,6 +30,7 @@
 #include "bred/gpu/pixmap.h"
 #include "bred/gpu/frame_ephemeral.h"
 #include "bred/gpu/frame_storage.h"
+#include "bred/gpu/texture_synchronization.h"
 #include "gpu/full_screen_quad.h"
 //#include "ibl/brdf_convolution_framebuffer.h"
 #include "ibl/diffuse_irradiance_map.h"
@@ -63,8 +64,10 @@ __FACTORY_EXPORT void gpu_opengl_factory(::factory::factory * pfactory)
    pfactory->add_factory_item < ::gpu_opengl::context, ::gpu::context >();
    //pfactory->add_factory_item < ::gpu_opengl::program, ::gpu::program >();
    pfactory->add_factory_item < ::gpu_opengl::shader, ::gpu::shader >();
-   pfactory->add_factory_item < ::gpu_opengl::cpu_buffer, ::gpu::cpu_buffer >();
+   pfactory->add_factory_item < ::gpu_opengl::aaa_cpu_buffer, ::gpu::aaa_cpu_buffer >();
    pfactory->add_factory_item < ::gpu_opengl::renderer, ::gpu::renderer >();
+
+   pfactory->add_factory_item<::gpu::texture_synchronization>();
 
    //pfactory->add_factory_item < ::gpu_opengl::object, ::gpu::object >();
 

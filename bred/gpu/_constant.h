@@ -105,6 +105,16 @@ namespace gpu
    };
 
 
+   enum enum_pipeline_stage
+   {
+
+      e_pipeline_stage_none,
+      e_pipeline_stage_color_attachment_output_bit,
+      e_pipeline_stage_fragment_shader_bit,
+
+   };
+
+
    enum enum_topology
    {
 

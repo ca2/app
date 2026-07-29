@@ -292,7 +292,20 @@ CLASS_DECL_GPU_OPENGL void check_error(const_char_pointer pszErrorMessage);
 
 
 CLASS_DECL_GPU_OPENGL void ensure_non_null_handle(long lHandle, const_char_pointer pszMessage = nullptr);
+CLASS_DECL_GPU_OPENGL GLint get_framebuffer_sample_count(GLuint framebuffer);
+struct resolve_framebuffer
+{
 
+   GLuint m_framebuffer = 0;
+   GLuint m_texture = 0;
+
+   int m_width = 0;
+   int m_height = 0;
+};
+CLASS_DECL_GPU_OPENGL bool create_resolve_framebuffer(resolve_framebuffer &resolve, int width, int height, GLenum internalFormat = GL_RGBA8,
+                                GLenum format = GL_RGBA, GLenum type = GL_UNSIGNED_BYTE);
+CLASS_DECL_GPU_OPENGL bool resolve_multisampled_framebuffer(GLuint sourceFramebuffer, const resolve_framebuffer &destination, int width,
+                                      int height, GLenum sourceReadBuffer = GL_COLOR_ATTACHMENT0);
 
 } // namespace opengl
 

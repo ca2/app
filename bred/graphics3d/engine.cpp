@@ -21,7 +21,7 @@
 #include "bred/gpu/command_buffer.h"
 #include "bred/gpu/context.h"
 #include "bred/gpu/context_lock.h"
-#include "bred/gpu/cpu_buffer.h"
+#include "bred/gpu/aaa_cpu_buffer.h"
 #include "bred/gpu/device.h"
 #include "bred/gpu/layer.h"
 #include "bred/gpu/renderer.h"
@@ -30,7 +30,7 @@
 #include "bred/graphics3d/camera.h"
 #include "bred/graphics3d/shape_factory.h"
 #include "bred/user/user/graphics3d.h"
-#include "aura/graphics/image/target.h"
+#include "aura/graphics/image/aaa_target.h"
 #include "aura/platform/application.h"
 #include <chrono>
 #include <thread>
@@ -244,6 +244,8 @@ namespace graphics3d
 
 
             pscene->on_render(pgpucontext);
+
+            pscene->on_render_last(pgpucontext);
 
             pgpucontext->end_layer();
 
@@ -566,158 +568,160 @@ namespace graphics3d
    }
 
 
-   void engine::run_cpu_buffer()
-   {
+   //void engine::run_cpu_buffer()
+   //{
 
-      m_stdtimepoint = std::chrono::high_resolution_clock::now();
+   //   throw todo;
 
-      set_ok_flag();
+   //   m_stdtimepoint = std::chrono::high_resolution_clock::now();
 
-      //auto pgpuapproach = m_papplication->get_gpu_approach();
+   //   set_ok_flag();
 
-      auto pgpudevice = gpu_context()->m_pgpudevice;
+   //   //auto pgpuapproach = m_papplication->get_gpu_approach();
 
-      m_papplication->fork([this]()
-         {
+   //   auto pgpudevice = gpu_context()->m_pgpudevice;
 
-            auto pcontext = gpu_context();
+   //   m_papplication->fork([this]()
+   //      {
 
-            ::gpu::thread_set_gpu_device(pcontext->m_pgpudevice);
+   //         auto pcontext = gpu_context();
 
-            ::graphics3d::offscreen_frame_pacer framepacer;
+   //         ::gpu::thread_set_gpu_device(pcontext->m_pgpudevice);
 
-            while (task_get_run())
-            {
+   //         ::graphics3d::offscreen_frame_pacer framepacer;
 
-               auto fAppliedFps = ::graphics3d::offscreen_frame_pacer::validated_fps(
-                  m_fDesiredFps.load(::std::memory_order_relaxed));
-               auto timeFrameDeadline = framepacer.begin_frame(
-                  ::graphics3d::offscreen_frame_pacer::clock::now(),
-                  fAppliedFps);
+   //         while (task_get_run())
+   //         {
 
-               task_iteration();
+   //            auto fAppliedFps = ::graphics3d::offscreen_frame_pacer::validated_fps(
+   //               m_fDesiredFps.load(::std::memory_order_relaxed));
+   //            auto timeFrameDeadline = framepacer.begin_frame(
+   //               ::graphics3d::offscreen_frame_pacer::clock::now(),
+   //               fAppliedFps);
 
-               if (m_rectanglePlacementNew.has_area() && m_bLoadedEngine)
-               {
+   //            task_iteration();
 
-                  //::gpu::context_guard guard(m_pgpucontextCompositor);
+   //            if (m_rectanglePlacementNew.has_area() && m_bLoadedEngine)
+   //            {
 
-                  auto pcontext = gpu_context();
+   //               //::gpu::context_guard guard(m_pgpucontextCompositor);
 
-                  pcontext->set_placement(m_rectanglePlacementNew);
+   //               auto pcontext = gpu_context();
 
-                  auto prenderer = pcontext->get_gpu_renderer();
+   //               pcontext->set_placement(m_rectanglePlacementNew);
 
-                  prenderer->defer_update_renderer();
+   //               auto prenderer = pcontext->get_gpu_renderer();
 
-                  auto pcpubuffer = pcontext->get_cpu_buffer();
+   //               prenderer->defer_update_renderer();
 
-                  auto pimagetarget = pcpubuffer->get_image_target();
+   //               auto pcpubuffer = pcontext->get_cpu_buffer();
 
-                  if (!pimagetarget->m_callbackOnImagePixels)
-                  {
+   //               auto pimagetarget = pcpubuffer->get_image_target();
 
-                     pimagetarget->m_callbackOnImagePixels =
-                        [this]()
-                        {
+   //               if (!pimagetarget->m_callbackOnImagePixels)
+   //               {
 
-                           m_pusergraphics3d->set_need_redraw();
+   //                  pimagetarget->m_callbackOnImagePixels =
+   //                     [this]()
+   //                     {
 
-                           m_pusergraphics3d->post_redraw();
+   //                        m_pusergraphics3d->set_need_redraw();
 
-                        };
+   //                        m_pusergraphics3d->post_redraw();
 
-                  }
+   //                     };
 
-                  try
-                  {
+   //               }
 
-                     try
-                     {
+   //               try
+   //               {
 
-                        m_pgpucontextCompositor2->m_pgpudevice->start_frame();
+   //                  try
+   //                  {
 
-                     }
-                     catch (...)
-                     {
+   //                     m_pgpucontextCompositor2->m_pgpudevice->start_frame();
 
-
-                     }
-
-                     draw_layer();
-
-                  }
-                  catch (...)
-                  {
-
-                  }
-
-                  auto pdevice = pcontext->m_pgpudevice;
-
-                  //pdevice->end_offscreen_frame();
-                  pdevice->end_frame();
-
-               }
-
-               auto timeAfterFrame = ::graphics3d::offscreen_frame_pacer::clock::now();
-
-               if (framepacer.should_wait(timeAfterFrame))
-               {
-
-                  while (task_get_run())
-                  {
-
-                     auto fLatestFps = ::graphics3d::offscreen_frame_pacer::validated_fps(
-                        m_fDesiredFps.load(::std::memory_order_relaxed));
-
-                     if (fLatestFps != fAppliedFps)
-                     {
-
-                        break;
-
-                     }
-
-                     auto timeNow = ::graphics3d::offscreen_frame_pacer::clock::now();
-
-                     if (timeNow >= timeFrameDeadline)
-                     {
-
-                        break;
-
-                     }
-
-                     ::std::this_thread::sleep_for(
-                        framepacer.wait_slice(timeFrameDeadline - timeNow));
-
-                  }
-
-               }
-
-            }
-
-            ::pointer <::database::client> pdatabaseclient = m_papplication;
-
-            if (pdatabaseclient)
-            {
-               //auto &pcameraScene = m_pimmersionlayer->m_pscene->m_pcameraScene;
-               pdatabaseclient->datastream()->set("input", m_pinput->as_block());
-               pdatabaseclient->datastream()->set("transform", as_memory_block(m_transform));
-               //pdatabaseclient->datastream()->set("camera", pcameraScene->as_block());
-
-            }
+   //                  }
+   //                  catch (...)
+   //                  {
 
 
-         });
+   //                  }
+
+   //                  draw_layer();
+
+   //               }
+   //               catch (...)
+   //               {
+
+   //               }
+
+   //               auto pdevice = pcontext->m_pgpudevice;
+
+   //               //pdevice->end_offscreen_frame();
+   //               pdevice->end_frame();
+
+   //            }
+
+   //            auto timeAfterFrame = ::graphics3d::offscreen_frame_pacer::clock::now();
+
+   //            if (framepacer.should_wait(timeAfterFrame))
+   //            {
+
+   //               while (task_get_run())
+   //               {
+
+   //                  auto fLatestFps = ::graphics3d::offscreen_frame_pacer::validated_fps(
+   //                     m_fDesiredFps.load(::std::memory_order_relaxed));
+
+   //                  if (fLatestFps != fAppliedFps)
+   //                  {
+
+   //                     break;
+
+   //                  }
+
+   //                  auto timeNow = ::graphics3d::offscreen_frame_pacer::clock::now();
+
+   //                  if (timeNow >= timeFrameDeadline)
+   //                  {
+
+   //                     break;
+
+   //                  }
+
+   //                  ::std::this_thread::sleep_for(
+   //                     framepacer.wait_slice(timeFrameDeadline - timeNow));
+
+   //               }
+
+   //            }
+
+   //         }
+
+   //         ::pointer <::database::client> pdatabaseclient = m_papplication;
+
+   //         if (pdatabaseclient)
+   //         {
+   //            //auto &pcameraScene = m_pimmersionlayer->m_pscene->m_pcameraScene;
+   //            pdatabaseclient->datastream()->set("input", m_pinput->as_block());
+   //            pdatabaseclient->datastream()->set("transform", as_memory_block(m_transform));
+   //            //pdatabaseclient->datastream()->set("camera", pcameraScene->as_block());
+
+   //         }
 
 
-      //if (pgpucontext->logicalDevice() != VK_NULL_HANDLE)
-      //{
+   //      });
 
-      //   vkDeviceWaitIdle(pgpucontext->logicalDevice());
 
-      //}
+   //   //if (pgpucontext->logicalDevice() != VK_NULL_HANDLE)
+   //   //{
 
-   }
+   //   //   vkDeviceWaitIdle(pgpucontext->logicalDevice());
+
+   //   //}
+
+   //}
 
 
    ::gpu::enum_output engine::get_engine_gpu_eoutput()
@@ -732,7 +736,7 @@ namespace graphics3d
       else
       {
 
-         return ::gpu::e_output_cpu_buffer;
+         return ::gpu::e_output_aaa_cpu_buffer;
 
       }
 
@@ -819,13 +823,15 @@ namespace graphics3d
             pcontext->m_pengine = this;
 
             m_bLoadedEngine = true;
+//
+  //          run_engine();
 
-            if (pcontext->m_eoutput == ::gpu::e_output_cpu_buffer)
-            {
+            //if (pcontext->m_eoutput == ::gpu::e_output_cpu_buffer)
+            //{
 
-               run_cpu_buffer();
+            //   run_cpu_buffer();
 
-            }
+            //}
 
          };
 
@@ -995,12 +1001,14 @@ namespace graphics3d
 
       auto eoutput = get_gpu_context()->m_eoutput;
 
-      if (eoutput == ::gpu::e_output_cpu_buffer)
+      /*if (eoutput == ::gpu::e_output_cpu_buffer)
       {
+
+         throw todo;
 
          auto pcontext = gpu_context();
 
-         auto pcpubuffer = pcontext->m_pcpubuffer;
+         auto pcpubuffer = pcontext->m_pcpubuffer2;
 
          if (pcpubuffer)
          {
@@ -1018,7 +1026,7 @@ namespace graphics3d
 
       }
       else
-      {
+      {*/
 
          //auto pcontext = gpu_context();
 
@@ -1030,7 +1038,7 @@ namespace graphics3d
 
          on_after_done_frame_step(pgraphics);
 
-      }
+      //}
 
    }
 

@@ -393,7 +393,7 @@ void image::create_from_data(const ::i32_size & size, const ::image32_t * pimage
 
    auto iGoodStride = iScan;
 
-   create(size, eflagCreate, iGoodStride, bPreserve);
+   create_as_descriptor(size, eflagCreate, iGoodStride, bPreserve);
 
 
    //if (pimageFrame->area() <= 0)
@@ -425,7 +425,7 @@ void image::create_from_data(const ::i32_size & size, const ::image32_t * pimage
 }
 
 
-void image::create(const ::i32_size& size, ::enum_flag eflagCreate, ::i32 iGoodStride, bool bPreserve)
+void image::create_as_render_target(const ::i32_size& size, ::enum_flag eflagCreate, ::i32 iGoodStride, bool bPreserve)
 {
 
    return create_from_data(size, nullptr, iGoodStride, eflagCreate, bPreserve);
@@ -445,7 +445,7 @@ void image::preserve(const ::i32_size &size, ::enum_flag eflagCreate,
                       ::i32 iGoodStride)
 {
 
-   return create(size, eflagCreate, iGoodStride, true);
+   return create_as_descriptor(size, eflagCreate, iGoodStride, true);
 }
 
 //void image::initialize(const ::i32_size & size, ::image32_t * pimage32, ::i32 iScan, ::eobject eobjectCreate)
@@ -604,7 +604,7 @@ void image::dc_select(bool bSelect)
 }
 
 
-void image::create(::draw2d::graphics* pgraphics)
+void image::create_from_graphics(::draw2d::graphics *pgraphics)
 {
 
    ::draw2d::bitmap& bitmap = *pgraphics->get_current_bitmap();
@@ -628,7 +628,7 @@ void image::create_owned_graphics()
 
    constructø(m_pgraphicsOwned);
 
-   m_pgraphicsOwned->create_draw2d_graphics(m_pbitmap);
+   m_pgraphicsOwned->create_bitmap_graphics(m_pbitmap);
 
 }
 
@@ -674,7 +674,7 @@ void image::create_isotropic(::image::image* pimage)
 
    ::i32 cy = (::i32)(pimage->m_dIsotropicRate * height());
 
-   pimage->create({ cx, cy });
+   pimage->create_as_descriptor({cx, cy});
 
    if (::parallelization::get_priority() == ::e_priority_idle)
    {
@@ -4598,7 +4598,7 @@ void image::copy_from(::image::image* pimage, const ::i32_point  & point, ::enum
    if (size() != s)
    {
 
-      create(s, eflagCreate);
+      create_as_descriptor(s, eflagCreate);
       //if (!create(s))
       //{
 
@@ -6010,7 +6010,7 @@ void image::rotate(::image::image *pimage, const ::f64_angle & angle, ::f64 dSca
       if (angle.degree() == 90.0)
       {
 
-         create({ pimage->height(), pimage->width() });
+         create_as_descriptor({pimage->height(), pimage->width()});
 
          //if (!create({ pimage->height(), pimage->width() }))
          //{
@@ -6051,7 +6051,7 @@ void image::rotate(::image::image *pimage, const ::f64_angle & angle, ::f64 dSca
       else if (angle.degree() == 180.0)
       {
 
-         create(pimage->size());
+         create_as_descriptor(pimage->size());
 
          map();
 
@@ -6083,7 +6083,7 @@ void image::rotate(::image::image *pimage, const ::f64_angle & angle, ::f64 dSca
       else if (angle.degree() == 270.0)
       {
 
-         create({ pimage->height(), pimage->width() });
+         create_as_descriptor({pimage->height(), pimage->width()});
 
          map();
 
@@ -6134,7 +6134,7 @@ void image::rotate(::image::image *pimage, const ::f64_angle & angle, ::f64 dSca
 
    }
 
-   create({ b, a });
+   create_as_descriptor({b, a});
 
    map();
 
@@ -6715,7 +6715,7 @@ void image::Rotate034(::image::image* pimage, ::f64 dAngle, ::f64 dScale)
 void image::e_rotate_90_flip_horizontally(::image::image* pimage)
 {
 
-   create(pimage->size());
+   create_as_descriptor(pimage->size());
 
    map();
 
@@ -6747,7 +6747,7 @@ void image::e_rotate_90_flip_horizontally(::image::image* pimage)
 void image::e_rotate_180_flip_horizontally(::image::image* pimage)
 {
 
-   create(pimage->size());
+   create_as_descriptor(pimage->size());
    
    map();
 
@@ -6779,7 +6779,7 @@ void image::e_rotate_180_flip_horizontally(::image::image* pimage)
 void image::e_rotate_270_flip_horizontally(::image::image* pimage)
 {
 
-   create(pimage->size());
+   create_as_descriptor(pimage->size());
 
    map();
 
@@ -6838,11 +6838,15 @@ void image::e_rotate_270_flip_horizontally()
 }
 
 
+/// @brief  This function acts only in a cpu buffer
+/// @param uch 
 void image::fill_byte(uchar uch)
 {
 
-   if (m_bMapped)
-   {
+   map();
+
+   //if (m_bMapped)
+   //{
 
       if (area() <= 0 || data() == nullptr)
       {
@@ -6864,35 +6868,35 @@ void image::fill_byte(uchar uch)
 
       memory_set(data(), uch, (memsize)(iScan * iHeight));
 
-   }
-   else 
-   {
+   //}
+   //else 
+   //{
 
-      auto pgraphics = acquire_graphics();
+   //   auto pgraphics = acquire_graphics();
 
-      auto color = argb(uch, uch, uch, uch);
+   //   auto color = argb(uch, uch, uch, uch);
 
-      auto ealphamode = pgraphics->alpha_mode();
+   //   auto ealphamode = pgraphics->alpha_mode();
 
-      if (ealphamode != ::draw2d::e_alpha_mode_set)
-      {
+   //   if (ealphamode != ::draw2d::e_alpha_mode_set)
+   //   {
 
-         pgraphics->set_alpha_mode(::draw2d::e_alpha_mode_set);
+   //      pgraphics->set_alpha_mode(::draw2d::e_alpha_mode_set);
 
-      }
+   //   }
 
-      pgraphics->fill_rectangle(::f64_rectangle(m_size), color);
+   //   pgraphics->fill_rectangle(::f64_rectangle(m_size), color);
 
-      if (ealphamode != ::draw2d::e_alpha_mode_set)
-      {
+   //   if (ealphamode != ::draw2d::e_alpha_mode_set)
+   //   {
 
-         pgraphics->set_alpha_mode(ealphamode);
+   //      pgraphics->set_alpha_mode(ealphamode);
 
-      }
+   //   }
 
-   }
+   //}
 
-   //return true;
+   ////return true;
 
 }
 
@@ -7167,7 +7171,7 @@ void image::create_frame(const ::i32_size& size, ::i32 iFrameCount)
 
    ::i32 iSliceCount = (::i32)sqrt((::f64)iFrameCount);
 
-   return create(size / iSliceCount);
+   return create_as_descriptor(size / iSliceCount);
 
 }
 
@@ -7550,7 +7554,7 @@ void image::_set_mipmap(::image::enum_mipmap emipmap)
 
       ::f64 newcy = cy;
 
-      create({ (::i32)newcx, (::i32)newcy });
+      create_as_descriptor({(::i32)newcx, (::i32)newcy});
 
       //if (!create({ (::i32)newcx, (::i32)newcy }))
       //{
@@ -7633,7 +7637,7 @@ void image::_set_mipmap(::image::enum_mipmap emipmap)
 
       ::f64 newcy = cy * 2.0 - 1.0;
 
-      create({ (::i32)newcx, (::i32)newcy });
+      create_as_descriptor({(::i32)newcx, (::i32)newcy});
 
       //if (!create({ (::i32)newcx, (::i32)newcy }))
       //{
@@ -8337,7 +8341,7 @@ void image::all_channels_copy(::color::enum_channel echannelSrc, ::image::image 
 void image::tint(::image::image* pimage, ::color::color color)
 {
 
-   create(pimage->size());
+   create_as_descriptor(pimage->size());
 
 
    /*{
@@ -8932,7 +8936,7 @@ void image::rgb_from(::image::image* pimage)
 {
 
    //if (!
-   create(pimage->size());
+   create_as_descriptor(pimage->size());
    //{
 
    //   return false;
@@ -9461,7 +9465,7 @@ void image::gradient_fill(::color::color color1, ::color::color color2, const i3
 
          //estatus = 
          
-         pimage->create({ (::i32)(dim / sin), (::i32)(dim / sin) });
+         pimage->create_as_descriptor({(::i32)(dim / sin), (::i32)(dim / sin)});
 
          //if (!estatus)
          //{
@@ -9492,7 +9496,7 @@ void image::gradient_fill(::color::color color1, ::color::color color2, const i3
          //}
 
          //estatus = 
-         pimage->create({ (::i32)(dim / cos), (::i32)(dim / cos) });
+         pimage->create_as_descriptor({(::i32)(dim / cos), (::i32)(dim / cos)});
 
          //if (!estatus)
          //{
@@ -9727,7 +9731,7 @@ void image::invert_rgb(const ::i32_rectangle& rectangle)
 void image::create_circle2(::image::image* pimage, ::i32 diameter)
 {
 
-   create({ diameter, diameter });
+   create_as_descriptor({diameter, diameter});
 
    if (::is_null(pimage) || pimage->area() <= 0)
    {
@@ -9821,7 +9825,7 @@ void image::clip_circle(::f64 dWidth)
 void image::create_framed_square(::image::image* pimage, ::i32 inner, ::i32 outer, ::color::color color)
 {
 
-   create({ inner + outer * 2, inner + outer * 2 });
+   create_as_descriptor({inner + outer * 2, inner + outer * 2});
 
    //if (!create({ inner + outer * 2, inner + outer * 2 }))
    //{
@@ -10988,7 +10992,7 @@ void image::_draw_raw(const ::image::image_drawing& imagedrawing)
 
    m_papplication->constructø(pimage);
 
-   pimage->create(size);
+   pimage->create_as_descriptor(size);
 
    ::f64_rectangle rectangleTarget(::f64_point(0, 0), ::f64_size(size));
 

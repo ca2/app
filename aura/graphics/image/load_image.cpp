@@ -141,13 +141,13 @@ namespace image
       if (piScan && *piScan > size.cx * 4)
       {
 
-         m_ppixmap->create(size, DEFAULT_CREATE_IMAGE_FLAG, *piScan);
+         m_ppixmap->create_as_descriptor(size, DEFAULT_CREATE_IMAGE_FLAG, *piScan);
 
       }
       else
       {
 
-         m_ppixmap->create(size);
+         m_ppixmap->create_as_descriptor(size);
 
       }
 

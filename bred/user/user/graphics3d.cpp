@@ -22,7 +22,7 @@
 #include "aura/graphics/image/context.h"
 #include "aura/graphics/image/drawing.h"
 #include "aura/graphics/image/image.h"
-#include "aura/graphics/image/target.h"
+#include "aura/graphics/image/aaa_target.h"
 #include "aura/message/user.h"
 #include "bred/graphics3d/types.h"
 #include "aura/platform/application.h"

@@ -9,7 +9,7 @@ namespace image
 {
 
 
-   class CLASS_DECL_AURA buffer :
+   class CLASS_DECL_AURA aaa_buffer :
       virtual public ::particle,
       virtual public ::pixmap
    {
@@ -21,13 +21,13 @@ namespace image
       ::memory							            m_memory;
 
 
-      buffer();
-      ~buffer() override;
+      aaa_buffer();
+      ~aaa_buffer() override;
 
 
-      virtual buffer * lock(::i32 stride, enum_copy_disposition ecopydisposition, ::pixmap * ppixmapLock);
-      virtual buffer * no_padding_lock(enum_copy_disposition ecopydisposition, ::pixmap* ppixmapLock);
-      virtual buffer * source_lock(enum_copy_disposition ecopydisposition, ::pixmap* ppixmapLock);
+      virtual aaa_buffer * lock(::i32 stride, enum_copy_disposition ecopydisposition, ::pixmap * ppixmapLock);
+      virtual aaa_buffer * no_padding_lock(enum_copy_disposition ecopydisposition, ::pixmap* ppixmapLock);
+      virtual aaa_buffer * source_lock(enum_copy_disposition ecopydisposition, ::pixmap* ppixmapLock);
       
       void unlock() override;
 

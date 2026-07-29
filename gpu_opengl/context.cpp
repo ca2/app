@@ -39,6 +39,82 @@
 void ::opengl::insert_debug_message(const_char_pointer msg);
 
 
+namespace
+{
+
+
+   class framebuffer_blit_state_guard
+   {
+   public:
+
+
+      framebuffer_blit_state_guard(
+         GLint iReadFramebuffer,
+         GLint iDrawFramebuffer,
+         GLint iReadBuffer,
+         GLint iDrawBuffer,
+         GLboolean bScissorTestEnabled,
+         GLuint & uReadFramebuffer,
+         GLuint & uDrawFramebuffer) :
+         m_iReadFramebuffer(iReadFramebuffer),
+         m_iDrawFramebuffer(iDrawFramebuffer),
+         m_iReadBuffer(iReadBuffer),
+         m_iDrawBuffer(iDrawBuffer),
+         m_bScissorTestEnabled(bScissorTestEnabled),
+         m_uReadFramebuffer(uReadFramebuffer),
+         m_uDrawFramebuffer(uDrawFramebuffer)
+      {
+
+      }
+
+
+      ~framebuffer_blit_state_guard()
+      {
+
+         if (m_bScissorTestEnabled)
+         {
+
+            glEnable(GL_SCISSOR_TEST);
+
+         }
+
+         glBindFramebuffer(GL_READ_FRAMEBUFFER, m_iReadFramebuffer);
+         glReadBuffer(m_iReadBuffer);
+         glBindFramebuffer(GL_DRAW_FRAMEBUFFER, m_iDrawFramebuffer);
+         glDrawBuffer(m_iDrawBuffer);
+
+         if (m_uReadFramebuffer)
+         {
+
+            glDeleteFramebuffers(1, &m_uReadFramebuffer);
+
+         }
+
+         if (m_uDrawFramebuffer)
+         {
+
+            glDeleteFramebuffers(1, &m_uDrawFramebuffer);
+
+         }
+
+      }
+
+
+      GLint m_iReadFramebuffer;
+      GLint m_iDrawFramebuffer;
+      GLint m_iReadBuffer;
+      GLint m_iDrawBuffer;
+      GLboolean m_bScissorTestEnabled;
+      GLuint & m_uReadFramebuffer;
+      GLuint & m_uDrawFramebuffer;
+
+
+   };
+
+
+} // namespace
+
+
 namespace gpu_opengl
 {
 
@@ -1895,56 +1971,39 @@ namespace gpu_opengl
 
       ::cast<::gpu_opengl::texture> ptextureSrc = ptextureSource;
 
-      auto textureSrc = ptextureSrc->m_gluTextureID;
-
-      auto textureDst = ptextureDst->m_gluTextureID;
-
       glFlush();
       ::opengl::check_error("");
 
-//      if (!ptextureSrc->m_gluFbo)
-//      {
-//
-//         ptextureSrc->create_render_target();
-//
-//      }
-//
-//      if (!ptextureDst->m_gluFbo)
-//      {
-//
-//         ptextureDst->create_render_target();
-//
-//      }
-//
-//      if (!ptextureSrc->m_gluFbo)
-//      {
-//
-//         throw ::exception(error_wrong_state);
-//
-//      }
-//
-//      if (!ptextureDst->m_gluFbo)
-//      {
-//
-//         throw ::exception(error_wrong_state);
-//
-//      }
+      auto sizeSrc = ptextureSrc->size();
 
-      auto gluSrcFbo = ptextureSrc->frame_buffer_object();
+      auto sizeDst = ptextureDst->size();
 
-      auto gluDstFbo = ptextureDst->frame_buffer_object();
+      auto bSourceMultisampled =
+         ptextureSrc->m_gluType == GL_TEXTURE_2D_MULTISAMPLE;
+      auto bDestinationMultisampled =
+         ptextureDst->m_gluType == GL_TEXTURE_2D_MULTISAMPLE;
+      auto iSourceSampleCount =
+         bSourceMultisampled ? ptextureSrc->m_iSampleCount : 1;
+      auto iDestinationSampleCount =
+         bDestinationMultisampled ? ptextureDst->m_iSampleCount : 1;
 
-      if (!gluSrcFbo)
+      if ((bSourceMultisampled || bDestinationMultisampled) &&
+         sizeSrc != sizeDst)
       {
 
-         throw ::exception(error_wrong_state);
+         throw ::exception(
+            error_bad_argument,
+            "OpenGL multisample resolves require equal source and destination dimensions.");
 
       }
 
-      if (!gluDstFbo)
+      if ((bSourceMultisampled || bDestinationMultisampled) &&
+         iDestinationSampleCount != 1)
       {
 
-         throw ::exception(error_wrong_state);
+         throw ::exception(
+            error_bad_argument,
+            "OpenGL multisample resolve destinations must be single-sampled.");
 
       }
 
@@ -1952,123 +2011,118 @@ namespace gpu_opengl
 
       auto pcommandbuffer = beginSingleTimeCommands(pqueueGraphics);
 
-      //GLuint fboSrc, fboDst;
-      //glGenFramebuffers(1, &fboSrc);
-      //::opengl::check_error("");
-      //glGenFramebuffers(1, &fboDst);
-      //::opengl::check_error("");
-
-      GLint drawFboOld = 0;
-      glGetIntegerv(GL_DRAW_FRAMEBUFFER_BINDING, &drawFboOld);
-
-      GLint readFboOld = 0;
-      glGetIntegerv(GL_READ_FRAMEBUFFER_BINDING, &readFboOld);
-
-      // Attach source texture to fboSrc
-      glBindFramebuffer(GL_READ_FRAMEBUFFER, gluSrcFbo);
+      GLint iReadFramebufferOld = 0;
+      glGetIntegerv(GL_READ_FRAMEBUFFER_BINDING, &iReadFramebufferOld);
       ::opengl::check_error("");
-      //glFramebufferTexture2D(GL_READ_FRAMEBUFFER, GL_COLOR_ATTACHMENT0,
-      //   GL_TEXTURE_2D, textureSrc, 0);
-      //::opengl::check_error("");
 
-      // Attach dest texture to fboDst
-      glBindFramebuffer(GL_DRAW_FRAMEBUFFER, gluDstFbo);
+      GLint iDrawFramebufferOld = 0;
+      glGetIntegerv(GL_DRAW_FRAMEBUFFER_BINDING, &iDrawFramebufferOld);
+      ::opengl::check_error("");
+
+      GLint iReadBufferOld = 0;
+      glGetIntegerv(GL_READ_BUFFER, &iReadBufferOld);
+      ::opengl::check_error("");
+
+      GLint iDrawBufferOld = 0;
+      glGetIntegerv(GL_DRAW_BUFFER, &iDrawBufferOld);
+      ::opengl::check_error("");
+
+      auto bScissorTestEnabled = glIsEnabled(GL_SCISSOR_TEST);
+      ::opengl::check_error("");
+
+      GLuint uReadFramebuffer = 0;
+      GLuint uDrawFramebuffer = 0;
+
+      framebuffer_blit_state_guard stateguard(
+         iReadFramebufferOld,
+         iDrawFramebufferOld,
+         iReadBufferOld,
+         iDrawBufferOld,
+         bScissorTestEnabled,
+         uReadFramebuffer,
+         uDrawFramebuffer);
+
+      glGenFramebuffers(1, &uReadFramebuffer);
+      ::opengl::check_error("");
+
+      glGenFramebuffers(1, &uDrawFramebuffer);
+      ::opengl::check_error("");
+
+      glBindFramebuffer(GL_READ_FRAMEBUFFER, uReadFramebuffer);
+      ::opengl::check_error("");
+
+      glFramebufferTexture2D(
+         GL_READ_FRAMEBUFFER, GL_COLOR_ATTACHMENT0,
+         ptextureSrc->m_gluType,
+         ptextureSrc->m_gluTextureID,
+         0);
+      ::opengl::check_error("");
+
+      glReadBuffer(GL_COLOR_ATTACHMENT0);
+      ::opengl::check_error("");
+
+      auto eReadStatus = glCheckFramebufferStatus(GL_READ_FRAMEBUFFER);
+      ::opengl::check_error("");
+
+      if (eReadStatus != GL_FRAMEBUFFER_COMPLETE)
+      {
+
+         auto pszStatus = ::opengl::check_framebuffer_status_text(eReadStatus);
+         ::string strMessage;
+         strMessage.formatf(
+            "OpenGL read resolve framebuffer is incomplete: status=%s "
+            "(0x%x), target=0x%x, samples=%d, size=%dx%d.",
+            ::is_set(pszStatus) ? pszStatus : "unknown",
+            eReadStatus,
+            ptextureSrc->m_gluType,
+            iSourceSampleCount,
+            sizeSrc.cx,
+            sizeSrc.cy);
+         throw ::exception(error_wrong_state, strMessage);
+
+      }
+
+      glBindFramebuffer(GL_DRAW_FRAMEBUFFER, uDrawFramebuffer);
+      ::opengl::check_error("");
+
+      glFramebufferTexture2D(
+         GL_DRAW_FRAMEBUFFER, GL_COLOR_ATTACHMENT0,
+         ptextureDst->m_gluType,
+         ptextureDst->m_gluTextureID,
+         0);
       ::opengl::check_error("");
 
       glDrawBuffer(GL_COLOR_ATTACHMENT0);
       ::opengl::check_error("");
 
-      //glFramebufferTexture2D(GL_DRAW_FRAMEBUFFER, GL_COLOR_ATTACHMENT0,
-      //   GL_TEXTURE_2D, textureDst, 0);
-      //::opengl::check_error("");
+      auto eDrawStatus = glCheckFramebufferStatus(GL_DRAW_FRAMEBUFFER);
+      ::opengl::check_error("");
 
+      if (eDrawStatus != GL_FRAMEBUFFER_COMPLETE)
       {
 
+         auto pszStatus = ::opengl::check_framebuffer_status_text(eDrawStatus);
          ::string strMessage;
-
-         auto texDst = ptextureDst->m_gluTextureID;
-
-         auto texSrc = ptextureSrc->m_gluTextureID;
-
-         strMessage.formatf("ø texDst=%d texSrc=%d", texDst, texSrc);
-
-         ::opengl::insert_debug_message(strMessage);
-//         glDebugMessageInsert(GL_DEBUG_SOURCE_APPLICATION,
-//                              GL_DEBUG_TYPE_MARKER,
-//                              0,
-//                              GL_DEBUG_SEVERITY_NOTIFICATION,
-//                              -1,
-//                              strMessage);
+         strMessage.formatf(
+            "OpenGL draw resolve framebuffer is incomplete: status=%s "
+            "(0x%x), target=0x%x, samples=%d, size=%dx%d.",
+            ::is_set(pszStatus) ? pszStatus : "unknown",
+            eDrawStatus,
+            ptextureDst->m_gluType,
+            iDestinationSampleCount,
+            sizeDst.cx,
+            sizeDst.cy);
+         throw ::exception(error_wrong_state, strMessage);
 
       }
 
-      {
+      glDisable(GL_SCISSOR_TEST);
+      ::opengl::check_error("");
 
-         GLint drawFbo = 0;
-         glGetIntegerv(GL_DRAW_FRAMEBUFFER_BINDING, &drawFbo);
-
-         GLint readFbo = 0;
-         glGetIntegerv(GL_READ_FRAMEBUFFER_BINDING, &readFbo);
-
-         ::string strMessage;
-
-         strMessage.formatf("ø copy drawFbo=%d readFbo=%d", drawFbo, readFbo);
-
-         ::opengl::insert_debug_message(strMessage);
-         
-//         glDebugMessageInsert(GL_DEBUG_SOURCE_APPLICATION,
-//                              GL_DEBUG_TYPE_MARKER,
-//                              0,
-//                              GL_DEBUG_SEVERITY_NOTIFICATION,
-//                              -1,
-//                              strMessage);
-
-      }
-
-      {
-
-         GLint textureDrawFbo = 0;
-         glGetFramebufferAttachmentParameteriv(
-            GL_DRAW_FRAMEBUFFER,
-            GL_COLOR_ATTACHMENT0, // or GL_DEPTH_ATTACHMENT, etc.
-            GL_FRAMEBUFFER_ATTACHMENT_OBJECT_NAME,
-            &textureDrawFbo
-            );
-
-         GLint textureReadFbo = 0;
-         glGetFramebufferAttachmentParameteriv(
-            GL_READ_FRAMEBUFFER,
-            GL_COLOR_ATTACHMENT0, // or GL_DEPTH_ATTACHMENT, etc.
-            GL_FRAMEBUFFER_ATTACHMENT_OBJECT_NAME,
-            &textureReadFbo
-            );
-
-
-         ::string strMessage;
-
-         strMessage.formatf("ø copy drawFboTex=%d readFboText=%d", textureDrawFbo, textureReadFbo);
-
-         ::opengl::insert_debug_message(strMessage);
-         
-//         glDebugMessageInsert(GL_DEBUG_SOURCE_APPLICATION,
-//                              GL_DEBUG_TYPE_MARKER,
-//                              0,
-//                              GL_DEBUG_SEVERITY_NOTIFICATION,
-//                              -1,
-//                              strMessage);
-
-      }
-
-      auto sizeSrc = ptextureSrc->size();
-
-      auto sizeDst = ptextureDst->size();
-
-      // Blit from source to destination
       glBlitFramebuffer(
          0, 0, sizeSrc.cx, sizeSrc.cy,
          0, 0, sizeDst.cx, sizeDst.cy,
-         GL_COLOR_BUFFER_BIT, GL_NEAREST
-         );
+         GL_COLOR_BUFFER_BIT, GL_NEAREST);
       ::opengl::check_error("");
 
 #ifdef SHOW_DEBUG_DRAWING
@@ -2116,25 +2170,6 @@ namespace gpu_opengl
          *pgpufence = pcommandbuffer->insert_gpu_fence(true);
 
       }
-
-
-
-
-
-      //glBindFramebuffer(GL_DRAW_FRAMEBUFFER, drawFboOld);
-      //::opengl::check_error("");
-      //glBindFramebuffer(GL_READ_FRAMEBUFFER, readFboOld);
-      //::opengl::check_error("");
-
-      //// Cleanup
-      //glBindFramebuffer(GL_DRAW_FRAMEBUFFER, 0);
-      //::opengl::check_error("");
-      //glBindFramebuffer(GL_READ_FRAMEBUFFER, 0);
-      //::opengl::check_error("");
-      ////glDeleteFramebuffers(1, &fboSrc);
-      //::opengl::check_error("");
-      //glDeleteFramebuffers(1, &fboDst);
-      //::opengl::check_error("");
 
    }
 
@@ -2477,9 +2512,10 @@ namespace gpu_opengl
    }
 
 
-   void context::resize_cpu_buffer(const ::i32_size &sizeParam)
+   void context::resize_cpu_buffer21(const ::i32_size &sizeParam)
    {
 
+      throw todo;
       //if (m_papplication->m_bUseSwapChainWindow)
       {
 
@@ -2493,7 +2529,9 @@ namespace gpu_opengl
       {
          //if (!m_pcpubuffer)
 
-         create_cpu_buffer(size);
+            throw todo;
+
+         create_cpu_buffer21(size);
 
          ::gpu::context_lock contextlock(this);
          ///m_pcpubuffer->m_pixmap.create(m_pcpubuffer->m_memory, size);
@@ -2631,8 +2669,10 @@ namespace gpu_opengl
    // }
 
 
-   void context::destroy_cpu_buffer()
+   void context::destroy_cpu_buffer21()
    {
+
+      throw todo;
 
 #if defined(WINDOWS_DESKTOP)
 

@@ -25,7 +25,7 @@ namespace image
 
          system()->constructø(pimage);
 
-         pimage->create(key.m_size);
+         pimage->create_as_descriptor(key.m_size);
 
       }
 
@@ -96,7 +96,7 @@ namespace image
 
          system()->constructø(pimage);
 
-         pimage->create(size);
+         pimage->create_as_descriptor(size);
 
          bExists = false;
 

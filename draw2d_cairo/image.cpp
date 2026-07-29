@@ -96,116 +96,116 @@ namespace draw2d_cairo
 //   }
 
 
-   void image::create(const ::i32_size & size, ::enum_flag eflagCreate, ::i32 iGoodStride, bool bPreserve)
-   {
-
-      debug() << "draw2d_cairo::image::image::create : " << size;
-
-      if (m_pbitmap.is_set()
-            && m_pbitmap->get_os_data() != nullptr
-            //&& m_pgraphics.is_set()
-            //&& m_pgraphics->get_os_data() != nullptr
-            && size == m_sizeRaw)
-      {
-
-         debug() << "draw2d_cairo::image::image::create seems already ok ";
-
-         //return true;
-
-         return;
-
-      }
-
-      if (size.is_empty())
-      {
-
-         information() << "draw2d_cairo::image::image::create size is empty!!";
-
-         throw ::exception(error_invalid_empty_argument);
-
-      }
-
-      auto pbitmap = createø < ::draw2d::bitmap >();
-
-      auto pgraphics = createø < ::draw2d::graphics >();
-
-      //if(pbitmap.is_null() || pgraphics.is_null())
-      //{
-
-      //   return false;
-
-      //}
-
-      if (iGoodStride < 0)
-      {
-
-         iGoodStride = size.cx * sizeof(color32_t);
-
-      }
-
-      image32_t * pimage32Raw = nullptr;
-
-      ::i32 iScan = iGoodStride;
-
-#ifdef MORE_LOG
-
-      information() << "draw2d_cairo::image::image::create going to create_bitmap size,iScan : " << size << ", " << iScan;
-
-#endif
-
-      pbitmap->create_bitmap(nullptr, size, &pimage32Raw, nullptr, &iScan);
-      //pbitmap->create_bitmap(nullptr, size, nullptr, &iScan);
-
-      //if(!pbitmap->create_bitmap(nullptr, size, (void **) &pimage32Raw, &iScan))
-      //{
-
-      //   return false;
-
-      //}
-
-      if(bPreserve)
-      {
-
-         map();
-
-         if (::is_set(m_pimage32Raw))
-         {
-
-            pimage32Raw->copy(
-               size.minimum(m_size),
-               iScan,
-               m_pimage32Raw,
-               m_iScan);
-
-         }
-
-      }
-
-      destroy();
-
-      m_pbitmap = pbitmap;
-      //m_pgraphics = pgraphics;
-
-      //m_pgraphics->set(m_pbitmap);
-      //m_pgraphics->reset_impact_area();
-      //m_pgraphics->m_pimage = this;
-
-      m_sizeRaw = size;
-      //m_sizeAlloc = size;
-      m_pimage32 = nullptr;
-
-      //init(size, pimage32Raw, iScan);
-      initialize_pixmap(size, pimage32Raw, iScan);
-
-      m_bMapped = false;
-
-      _unmap();
-
-      set_flag(eflagCreate);
-
-      //return true;
-
-   }
+//   void image::create(const ::i32_size & size, ::enum_flag eflagCreate, ::i32 iGoodStride, bool bPreserve)
+//   {
+//
+//      debug() << "draw2d_cairo::image::image::create : " << size;
+//
+//      if (m_pbitmap.is_set()
+//            && m_pbitmap->get_os_data() != nullptr
+//            //&& m_pgraphics.is_set()
+//            //&& m_pgraphics->get_os_data() != nullptr
+//            && size == m_sizeRaw)
+//      {
+//
+//         debug() << "draw2d_cairo::image::image::create seems already ok ";
+//
+//         //return true;
+//
+//         return;
+//
+//      }
+//
+//      if (size.is_empty())
+//      {
+//
+//         information() << "draw2d_cairo::image::image::create size is empty!!";
+//
+//         throw ::exception(error_invalid_empty_argument);
+//
+//      }
+//
+//      auto pbitmap = createø < ::draw2d::bitmap >();
+//
+//      auto pgraphics = createø < ::draw2d::graphics >();
+//
+//      //if(pbitmap.is_null() || pgraphics.is_null())
+//      //{
+//
+//      //   return false;
+//
+//      //}
+//
+//      if (iGoodStride < 0)
+//      {
+//
+//         iGoodStride = size.cx * sizeof(color32_t);
+//
+//      }
+//
+//      image32_t * pimage32Raw = nullptr;
+//
+//      ::i32 iScan = iGoodStride;
+//
+//#ifdef MORE_LOG
+//
+//      information() << "draw2d_cairo::image::image::create going to create_bitmap size,iScan : " << size << ", " << iScan;
+//
+//#endif
+//
+//      pbitmap->create_bitmap(nullptr, size, &pimage32Raw, nullptr, &iScan);
+//      //pbitmap->create_bitmap(nullptr, size, nullptr, &iScan);
+//
+//      //if(!pbitmap->create_bitmap(nullptr, size, (void **) &pimage32Raw, &iScan))
+//      //{
+//
+//      //   return false;
+//
+//      //}
+//
+//      if(bPreserve)
+//      {
+//
+//         map();
+//
+//         if (::is_set(m_pimage32Raw))
+//         {
+//
+//            pimage32Raw->copy(
+//               size.minimum(m_size),
+//               iScan,
+//               m_pimage32Raw,
+//               m_iScan);
+//
+//         }
+//
+//      }
+//
+//      destroy();
+//
+//      m_pbitmap = pbitmap;
+//      //m_pgraphics = pgraphics;
+//
+//      //m_pgraphics->set(m_pbitmap);
+//      //m_pgraphics->reset_impact_area();
+//      //m_pgraphics->m_pimage = this;
+//
+//      m_sizeRaw = size;
+//      //m_sizeAlloc = size;
+//      m_pimage32 = nullptr;
+//
+//      //init(size, pimage32Raw, iScan);
+//      initialize_pixmap(size, pimage32Raw, iScan);
+//
+//      m_bMapped = false;
+//
+//      _unmap();
+//
+//      set_flag(eflagCreate);
+//
+//      //return true;
+//
+//   }
 
 
    //bool image::dc_select(bool bSelect)
@@ -225,7 +225,7 @@ namespace draw2d_cairo
    }
 
 
-   void image::create(::draw2d::graphics * pgraphics)
+   void image::create_from_graphics(::draw2d::graphics * pgraphics)
    {
 
       ::draw2d::bitmap * pbitmap = (dynamic_cast < ::draw2d_cairo::graphics * > (pgraphics))->get_current_bitmap();
@@ -239,7 +239,7 @@ namespace draw2d_cairo
 
       ::i32_size size = pbitmap->get_size();
 
-      create(size);
+      create_as_descriptor(size);
 
       //if(!create(size))
       //{

@@ -242,7 +242,7 @@ namespace gpu_opengl
          && ptextureTarget->m_gluTextureID != -1023)
       {
          
-         auto gluFbo = ptextureTarget->frame_buffer_object();
+         auto gluFbo = ptextureTarget->target_frame_buffer_object();
          
 //         if ((!objectFbo.m_handle
 //              || && ptextureTarget->m_gluTextureID != -1023)
@@ -665,6 +665,17 @@ namespace gpu_opengl
 
             ::cast<texture> ptexture = pgputexture;
 
+            ptexture = ptexture->resolved_texture();
+
+            if (ptexture->m_gluType == GL_TEXTURE_2D_MULTISAMPLE)
+            {
+
+               throw ::exception(
+                  error_wrong_state,
+                  "A multisample texture cannot be bound to an ordinary sampler.");
+
+            }
+
             auto gluType = ptexture->m_gluType;
 
             auto gluTextureID = ptexture->m_gluTextureID;
@@ -676,7 +687,7 @@ namespace gpu_opengl
 
             _set_int(strUniform, iTextureUnit);
 
-            bindingslot.m_ptexture = ptexture;
+            bindingslot.m_ptexture = pgputexture;
 
             goto found_and_bound;
          }
@@ -716,6 +727,15 @@ namespace gpu_opengl
       ::opengl::check_error("");
       this->set_i32(pszPayloadName, iIndex);
       ::cast<::gpu_opengl::texture > ptexture = pgputextureSource;
+      ptexture = ptexture->resolved_texture();
+      if (ptexture->m_gluType == GL_TEXTURE_2D_MULTISAMPLE)
+      {
+
+         throw ::exception(
+            error_wrong_state,
+            "A multisample texture cannot be bound to an ordinary sampler.");
+
+      }
       ::i32 gluTextureID = ptexture->m_gluTextureID;
       glBindTexture(ptexture->m_gluType, gluTextureID);
       ::opengl::check_error("");
@@ -1028,6 +1048,17 @@ namespace gpu_opengl
          {
 
             ::cast<::gpu_opengl::texture> ptexture = bindingslot.m_ptexture;
+
+            ptexture = ptexture->resolved_texture();
+
+            if (ptexture->m_gluType == GL_TEXTURE_2D_MULTISAMPLE)
+            {
+
+               throw ::exception(
+                  error_wrong_state,
+                  "A multisample texture cannot be bound to an ordinary sampler.");
+
+            }
 
             auto glTextureId = ptexture->m_gluTextureID;
 

@@ -10,7 +10,7 @@ namespace gpu
 
    //struct start_context_t;
 
-   class cpu_buffer;
+   class aaa_cpu_buffer;
    class context;
    class shader;
    class frame_storage;
@@ -32,6 +32,10 @@ namespace gpu
    class context_lease;
 
    class fence;
+
+   struct texture_data;
+
+   class texture_synchronization;
 
    class empty_texture_source;
 

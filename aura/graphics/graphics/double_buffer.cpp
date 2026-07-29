@@ -147,7 +147,7 @@ namespace graphics
 
          debug() << "double_buffer::_on_begin_draw Going to create image : " << sizeImage;
 
-         pimageBufferItem->create(sizeImage);
+         pimageBufferItem->create_as_descriptor(sizeImage);
 
          if (pimageBufferItem.nok())
          {

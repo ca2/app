@@ -449,7 +449,7 @@ namespace user
 
                   //estatus = 
             
-            pimage->create({ 1, 1 });
+            pimage->create_as_descriptor({1, 1});
 
                   //if (is_status_ok())
                   //{
@@ -470,7 +470,7 @@ namespace user
                         //if(estatus.succeeded())
                         {
 
-                           pimage->create({ (::i32)ceil(s.cx), (::i32)ceil(s.cy) });
+                           pimage->create_as_descriptor({(::i32)ceil(s.cx), (::i32)ceil(s.cy)});
 
                            //if (is_status_ok())
                            //{

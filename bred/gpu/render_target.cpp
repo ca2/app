@@ -82,7 +82,16 @@ namespace gpu
 
       }
 
-         if (ptexture->size() != m_size && !m_size.is_empty())
+      auto pgpucontext = m_pgpurenderer->m_pgpucontext;
+      auto bMultisample = pgpucontext->m_papplication->m_gpu.m_bMultisample;
+      auto iRequestedSampleCount = bMultisample
+         ? pgpucontext->m_papplication->m_gpu.m_iSampleCount
+         : 1;
+
+      if (!m_size.is_empty()
+         && (ptexture->size() != m_size
+            || ptexture->m_bMultisample != bMultisample
+            || ptexture->m_iSampleCount != iRequestedSampleCount))
       {
 
          initialize_render_target_image(ptexture);
@@ -400,9 +409,28 @@ namespace gpu
 
       textureflags.m_bTransferSource = true;
 
-      textureflags.m_bWithDepth = escene == ::gpu::e_scene_3d;
+      textureflags.m_bWithDepth =
+         escene == ::gpu::e_scene_3d ||
+         m_pgpurenderer->m_pgpucontext->m_pgpucompositor != nullptr;
 
-      pgputexture->m_bMultisample = m_pgpurenderer->m_pgpucontext->m_pgpudevice->m_bMultisample;
+      auto bMultisample =
+         m_pgpurenderer->m_pgpucontext->m_papplication->m_gpu.m_bMultisample;
+
+      auto iRequestedSampleCount = bMultisample
+         ? m_pgpurenderer->m_pgpucontext->m_papplication->m_gpu.m_iSampleCount
+         : 1;
+
+      if (bMultisample && iRequestedSampleCount < 2)
+      {
+
+         throw ::exception(
+            error_bad_argument,
+            "Application MSAA requires a sample count of at least 2.");
+
+      }
+
+      pgputexture->m_iSampleCount = iRequestedSampleCount;
+      pgputexture->m_bMultisample = bMultisample;
 
       pgputexture->initialize_texture(m_pgpurenderer->m_pgpucontext, textureattributes, textureflags);
 

@@ -696,10 +696,10 @@
     <ClCompile Include="platform\component.cpp">
       <Filter>Source Files\platform</Filter>
     </ClCompile>
-    <ClCompile Include="graphics\image\target.cpp">
+    <ClCompile Include="graphics\image\aaa_target.cpp">
       <Filter>Source Files\graphics\image</Filter>
     </ClCompile>
-    <ClCompile Include="graphics\image\buffer.cpp">
+    <ClCompile Include="graphics\image\aaa_buffer.cpp">
       <Filter>Source Files\graphics\image</Filter>
     </ClCompile>
     <ClCompile Include="graphics\draw2d\offset.cpp">
@@ -1724,13 +1724,13 @@
     <ClInclude Include="graphics\graphics\render.h">
       <Filter>Header Files\graphics\graphics</Filter>
     </ClInclude>
-    <ClInclude Include="graphics\image\target.h">
+    <ClInclude Include="graphics\image\aaa_target.h">
       <Filter>Header Files\graphics\image</Filter>
     </ClInclude>
-    <ClInclude Include="graphics\image\buffer.h">
+    <ClInclude Include="graphics\image\aaa_buffer.h">
       <Filter>Header Files\graphics\image</Filter>
     </ClInclude>
-    <ClInclude Include="graphics\image\lock.h">
+    <ClInclude Include="graphics\image\aaa_lock.h">
       <Filter>Header Files\graphics\image</Filter>
     </ClInclude>
     <ClInclude Include="graphics\draw2d\offset.h">

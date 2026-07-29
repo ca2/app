@@ -645,6 +645,7 @@
     <ClInclude Include="gpu\aaaa_gpu.h" />
     <ClInclude Include="gpu\aaa_end_draw.h" />
     <ClInclude Include="gpu\binding.h" />
+    <ClInclude Include="gpu\bitmap.h" />
     <ClInclude Include="gpu\block.h" />
     <ClInclude Include="gpu\bred_approach.h" />
     <ClInclude Include="gpu\character.h" />
@@ -654,7 +655,7 @@
     <ClInclude Include="gpu\context_lease.h" />
     <ClInclude Include="gpu\context_object.h" />
     <ClInclude Include="gpu\context_pointer.h" />
-    <ClInclude Include="gpu\cpu_buffer.h" />
+    <ClInclude Include="gpu\aaa_cpu_buffer.h" />
     <ClInclude Include="gpu\empty_texture_source.h" />
     <ClInclude Include="gpu\debug_scope.h" />
     <ClInclude Include="gpu\device.h" />
@@ -679,7 +680,7 @@
     <ClInclude Include="gpu\program.h" />
     <ClInclude Include="gpu\properties.h" />
     <ClInclude Include="gpu\queue.h" />
-    <ClInclude Include="gpu\render.h" />
+    <ClInclude Include="gpu\aaa_render.h" />
     <ClInclude Include="gpu\renderable.h" />
     <ClInclude Include="gpu\post_frame_context_registry.h" />
     <ClInclude Include="gpu\renderer.h" />
@@ -807,6 +808,7 @@
     </ClCompile>
     <ClCompile Include="gltf\vertex.cpp" />
     <ClCompile Include="gpu\binding.cpp" />
+    <ClCompile Include="gpu\bitmap.cpp" />
     <ClCompile Include="gpu\block.cpp" />
     <ClCompile Include="gpu\bred_approach.cpp" />
     <ClCompile Include="gpu\command_buffer.cpp" />
@@ -815,7 +817,7 @@
     <ClCompile Include="gpu\context_lease.cpp" />
     <ClCompile Include="gpu\context_object.cpp" />
     <ClCompile Include="gpu\context_pointer.cpp" />
-    <ClCompile Include="gpu\cpu_buffer.cpp" />
+    <ClCompile Include="gpu\aaa_cpu_buffer.cpp" />
     <ClCompile Include="gpu\device.cpp" />
     <ClCompile Include="gpu\draw2d.cpp" />
     <ClCompile Include="gpu\empty_texture_source.cpp" />
@@ -838,7 +840,7 @@
     <ClCompile Include="gpu\program.cpp" />
     <ClCompile Include="gpu\properties.cpp" />
     <ClCompile Include="gpu\queue.cpp" />
-    <ClCompile Include="gpu\render.cpp" />
+    <ClCompile Include="gpu\aaa_render.cpp" />
     <ClCompile Include="gpu\renderable.cpp" />
     <ClCompile Include="gpu\renderer.cpp" />
     <ClCompile Include="gpu\render_target.cpp" />
@@ -847,6 +849,8 @@
     <ClCompile Include="gpu\layer.cpp" />
     <ClCompile Include="gpu\swap_chain.cpp" />
     <ClCompile Include="gpu\texture.cpp" />
+    <ClCompile Include="gpu\texture_synchronization.cpp" />
+    <ClInclude Include="gpu\texture_synchronization.h" />
     <ClCompile Include="gpu\types.cpp" />
     <ClCompile Include="gpu\_.cpp" />
     <ClCompile Include="graphics3d\asset_manager.cpp" />

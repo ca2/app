@@ -6425,6 +6425,9 @@
     <ClCompile Include="graphics\image\pixmap_lease.cpp">
       <Filter>Source Files\graphics\image</Filter>
     </ClCompile>
+    <ClCompile Include="graphics\image\pixmap_t.cpp">
+      <Filter>Source Files\graphics\image</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <None Include="prototype\string\_defer.h">

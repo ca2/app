@@ -595,7 +595,7 @@ namespace user
 
                   //estatus = 
                   
-                  pimage2->create({ 300, rectangle.size().cy * 300 / rectangle.size().cx });
+                  pimage2->create_as_descriptor({300, rectangle.size().cy * 300 / rectangle.size().cx});
 
                   //if (!estatus)
                   //{

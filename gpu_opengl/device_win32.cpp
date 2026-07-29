@@ -6,7 +6,7 @@
 #include "device_win32.h"
 #include "approach.h"
 #include "device.h"
-#include "cpu_buffer.h"
+#include "aaa_cpu_buffer.h"
 #include "renderer.h"
 #include "swap_chain.h"
 #include "bred/gpu/bred_approach.h"

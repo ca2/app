@@ -1,6 +1,6 @@
 // created by Camilo on 2025-06-01 01:59 <3ThomasBorregaardSorensen!!
 #include "framework.h"
-#include "buffer.h"
+#include "aaa_buffer.h"
 
 
 namespace image
@@ -8,7 +8,7 @@ namespace image
 
 
 
-   buffer::buffer()
+   aaa_buffer::aaa_buffer()
    {
 
       m_ecopydisposition = e_copy_disposition_none;
@@ -16,13 +16,13 @@ namespace image
    }
 
       
-   buffer::~buffer()
+   aaa_buffer::~aaa_buffer()
    {
 
    }
 
 
-   buffer * buffer::lock(::i32 stride, enum_copy_disposition ecopydisposition, ::pixmap* ppixmapLock)
+   aaa_buffer * aaa_buffer::lock(::i32 stride, enum_copy_disposition ecopydisposition, ::pixmap* ppixmapLock)
    {
 
       m_ppixmapLock = ppixmapLock;
@@ -38,8 +38,14 @@ namespace image
       }
       else
       {
+         
+         m_memoryPixmap.set_size(scan_area_in_bytes());
 
-         ::pixmap_t::create(m_memory, m_ppixmapLock->size(), stride);
+         m_pimage32Raw = (::image32_t *) m_memoryPixmap.data();
+
+         m_pimage32 = m_pimage32Raw;
+
+         ///::pixmap_t::create(m_memory, m_ppixmapLock->size(), stride);
 
       }
 
@@ -48,7 +54,7 @@ namespace image
    }
 
 
-   buffer * buffer::no_padding_lock(enum_copy_disposition ecopydisposition, ::pixmap* ppixmapLock)
+   aaa_buffer * aaa_buffer::no_padding_lock(enum_copy_disposition ecopydisposition, ::pixmap* ppixmapLock)
    {
       
       return lock(ppixmapLock->width() * 4, ecopydisposition, ppixmapLock);
@@ -56,7 +62,7 @@ namespace image
    }
 
 
-   buffer* buffer::source_lock(enum_copy_disposition ecopydisposition, ::pixmap* ppixmapLock)
+   aaa_buffer* aaa_buffer::source_lock(enum_copy_disposition ecopydisposition, ::pixmap* ppixmapLock)
    {
 
       return lock(ppixmapLock->m_iScan, ecopydisposition, ppixmapLock);
@@ -64,7 +70,7 @@ namespace image
    }
 
    
-   void buffer::unlock()
+   void aaa_buffer::unlock()
    {
 
       if (m_ppixmapLock->data() != this->data())

@@ -143,9 +143,9 @@ namespace graphics
 
             constructø(m_pimageCircle);
 
-            m_pimageCircle->create({ diamRound, diamRound });
+            m_pimageCircle->create_as_descriptor({diamRound, diamRound});
 
-            m_pimageCircle->map();
+            ///m_pimageCircle->map();
 
             m_pimageCircle->fill_byte(0);
 

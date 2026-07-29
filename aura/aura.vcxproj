@@ -2868,7 +2868,7 @@
     <ClCompile Include="graphics\graphics\multiple_buffer.cpp" />
     <ClCompile Include="graphics\graphics\target.cpp" />
     <ClCompile Include="graphics\image\array.cpp" />
-    <ClCompile Include="graphics\image\buffer.cpp" />
+    <ClCompile Include="graphics\image\aaa_buffer.cpp" />
     <ClCompile Include="graphics\image\context.cpp" />
     <ClCompile Include="graphics\image\cursor.cpp" />
     <ClCompile Include="graphics\image\drawer.cpp" />
@@ -2889,7 +2889,7 @@
     <ClCompile Include="graphics\image\nanosvg.cpp" />
     <ClCompile Include="graphics\image\frame_array.cpp" />
     <ClCompile Include="graphics\image\source.cpp" />
-    <ClCompile Include="graphics\image\target.cpp" />
+    <ClCompile Include="graphics\image\aaa_target.cpp" />
     <ClCompile Include="graphics\image\_.cpp" />
     <ClCompile Include="graphics\user\control_box_button.cpp" />
     <ClCompile Include="graphics\user\control_box_icon.cpp" />
@@ -3211,7 +3211,7 @@
     <ClInclude Include="graphics\graphics\_graphics.h" />
     <ClInclude Include="graphics\graphics\_impl.h" />
     <ClInclude Include="graphics\image\array.h" />
-    <ClInclude Include="graphics\image\buffer.h" />
+    <ClInclude Include="graphics\image\aaa_buffer.h" />
     <ClInclude Include="graphics\image\context.h" />
     <ClInclude Include="graphics\image\cursor.h" />
     <ClInclude Include="graphics\image\drawer.h" />
@@ -3228,13 +3228,13 @@
     <ClInclude Include="graphics\image\list.h" />
     <ClInclude Include="graphics\image\load_image.h" />
     <ClInclude Include="graphics\image\aaa_load_image_interface.h" />
-    <ClInclude Include="graphics\image\lock.h" />
+    <ClInclude Include="graphics\image\aaa_lock.h" />
     <ClInclude Include="graphics\image\map.h" />
     <ClInclude Include="graphics\image\map_ex1.h" />
     <ClInclude Include="graphics\image\meta.h" />
     <ClInclude Include="graphics\image\palette.h" />
     <ClInclude Include="graphics\image\source.h" />
-    <ClInclude Include="graphics\image\target.h" />
+    <ClInclude Include="graphics\image\aaa_target.h" />
     <ClInclude Include="graphics\image\transformation.h" />
     <ClInclude Include="graphics\image\wallpaper_transform.h" />
     <ClInclude Include="graphics\image\_.h" />

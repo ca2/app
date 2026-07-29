@@ -1,7 +1,10 @@
 // Created by camilo on 2025-06-29 15:57 <3ThomasBorregaardSørensen!!
 #include "framework.h"
 #include "context.h"
+#include "context_lease.h"
 #include "context_object.h"
+#include "apex/gpu/approach.h"
+#include "bred/gpu/device.h"
 
 
 namespace gpu
@@ -37,10 +40,27 @@ namespace gpu
    }
 
 
-   ::gpu::context* context_object::context()
+   ::gpu::context_lease context_object::acquire_context()
    {
       
-      return m_pgpucontext; 
+      if (m_pgpucontext)
+      {
+
+         auto pgpudevice = m_pgpucontext->m_pgpudevice;
+
+         return {pgpudevice, m_pgpucontext, true};
+
+      }
+
+      auto pacmewindowingwindow = m_papplication->m_pacmeuserinteractionMain->m_pacmewindowingwindow;
+
+      auto pgpudevice = m_papplication->get_gpu_approach()->get_gpu_device(pacmewindowingwindow);
+
+      _synchronous_lock synchronouslock(pgpudevice->synchronization());
+
+      auto pgpucontextlease = pgpudevice->acquire_gpu_context(::gpu::e_output_none, {});
+
+      return pgpucontextlease;
    
    }
 

@@ -19749,7 +19749,7 @@ if(get_parent())
 
       auto pdraw2d = psystem->draw2d();
 
-      auto pgraphics = pdraw2d->create_memory_graphics(this);
+      auto pgraphics = pdraw2d->create_memory_graphics(this, {});
 
       return pgraphics;
 

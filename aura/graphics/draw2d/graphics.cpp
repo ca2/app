@@ -185,6 +185,16 @@ namespace draw2d
    }
 
 
+   ::draw2d::bitmap * graphics::get_target_bitmap()
+   {
+
+      throw ::interface_only();
+
+      return nullptr;
+
+   }
+
+
    ::image::image_pointer graphics::image_source_image(const ::i32_size & sizeDst)
    {
 
@@ -666,7 +676,7 @@ namespace draw2d
    }
 
 
-   void graphics::create_draw2d_graphics(::draw2d::bitmap * pbitmap)
+   void graphics::create_bitmap_graphics(::draw2d::bitmap * pbitmap)
    {
 
       throw ::interface_only();
@@ -6229,7 +6239,7 @@ namespace draw2d
 
          //estatus = 
 
-         pimage->create({ (::i32)w, 6 });
+         pimage->create_as_descriptor({ (::i32)w, 6 });
 
          //if (!estatus || pimage->area() <= 0)
          if (pimage->area() <= 0)
@@ -6408,6 +6418,14 @@ namespace draw2d
 
    }
 
+
+
+   //void graphics::coordinate_image(::image::image * pimage)
+   //{
+
+   //   throw ::interface_only();
+
+   //}
 
    ::file::path graphics::get_font_path(const ::scoped_string & scopedstrName, ::i32 iWeight, bool bItalic)
    {

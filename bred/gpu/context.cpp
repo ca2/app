@@ -5,14 +5,14 @@
 #include "context.h"
 #include "debug_scope.h"
 #include "device.h"
-#include "cpu_buffer.h"
+#include "aaa_cpu_buffer.h"
 #include "graphics_context.h"
 #include "guard.h"
 #include "input_layout.h"
 #include "memory_buffer.h"
 #include "model_buffer.h"
 #include "queue.h"
-#include "render.h"
+#include "aaa_render.h"
 #include "renderable.h"
 #include "renderer.h"
 //#include "layer_state.h"
@@ -137,36 +137,45 @@ namespace gpu
    void context::_create_window_buffer(::windowing::window *pwindow) {}
 
 
-   void context::create_cpu_buffer(const ::i32_size &size)
+   void context::create_cpu_buffer21(const ::i32_size &size)
    {
+
+      throw todo;
 
       if (size.is_empty())
       {
 
          return;
+
       }
 
       sendø()<<
          [this, size]()
          {
+
             ::cast<device> pgpudevice = m_pgpudevice;
 
             if (::is_null(pgpudevice))
             {
 
                throw ::exception(error_null_pointer);
+
             }
 
-            defer_constructø(m_pcpubuffer);
+            defer_constructø(m_pcpubuffer2);
 
-            m_pcpubuffer->initialize_cpu_buffer(this);
+            m_pcpubuffer2->initialize_cpu_buffer(this);
 
-            m_pcpubuffer->set_size(size);
+            m_pcpubuffer2->set_size(size);
 
-            _create_cpu_buffer(size);
+            throw todo;
+
+            _create_cpu_buffer21(size);
 
             m_bCreated = true;
+
          };
+
    }
 
 
@@ -176,7 +185,7 @@ namespace gpu
       //send(
         // [this, pwindow]()
          //{
-            _defer_create_window_context(pwindow);
+      _defer_create_window_context(pwindow);
 
       auto pswapchain = get_swap_chain();
 
@@ -187,36 +196,43 @@ namespace gpu
 
       }
 
+      throw todo;
 
-      _create_cpu_buffer(pwindow->get_window_rectangle().size());
+      _create_cpu_buffer21(pwindow->get_window_rectangle().size());
 
-            m_bCreated = true;
-         //});
+      m_bCreated = true;
+
+      //});
+
    }
 
 
-   void context::_create_cpu_buffer(const ::i32_size &size) {}
+   void context::_create_cpu_buffer21(const ::i32_size &size) {}
 
 
    void context::_defer_create_window_context(::acme::windowing::window *pwindow) {}
 
 
-   void context::resize_cpu_buffer(const ::i32_size &size)
+   void context::resize_cpu_buffer21(const ::i32_size &size)
    {
 
       send(
          [this, size]()
          {
-            if (!m_pcpubuffer)
+
+            if (!m_pcpubuffer2)
             {
 
-               return create_cpu_buffer(size);
+               return create_cpu_buffer21(size);
+
             }
 
-            _synchronous_lock synchronouslock(m_pcpubuffer->synchronization(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
+            _synchronous_lock synchronouslock(m_pcpubuffer2->synchronization(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 
-            m_pcpubuffer->set_size(size);
+            m_pcpubuffer2->set_size(size);
+
          });
+
    }
 
 
@@ -448,7 +464,7 @@ namespace gpu
 
       }
       
-      if (m_eoutput == e_output_cpu_buffer || m_eoutput == e_output_gpu_buffer)
+      if (m_eoutput == e_output_aaa_cpu_buffer || m_eoutput == e_output_gpu_buffer)
       {
 
          auto iFrameCount = m_pgpudevice->get_frame_count();
@@ -1683,7 +1699,7 @@ namespace gpu
 
       }
 
-      if (eoutput == ::gpu::e_output_cpu_buffer)
+      if (eoutput == ::gpu::e_output_aaa_cpu_buffer)
       {
 
          //if (startcontext.m_callbackImage32CpuBuffer
@@ -1693,7 +1709,9 @@ namespace gpu
          //   ASSERT(startcontext.m_callbackImage32CpuBuffer);
          //   ASSERT(!startcontext.m_rectanglePlacement.is_empty());
 
-         create_cpu_buffer(size);
+         throw todo;
+
+         create_cpu_buffer21(size);
 
          //}
 
@@ -1714,7 +1732,9 @@ namespace gpu
          send([this, r]()
          {
 
-            _create_cpu_buffer(r.size());
+            throw todo;
+
+            _create_cpu_buffer21(r.size());
 
             //::gpu::context_guard guard(this);
 
@@ -1811,17 +1831,19 @@ namespace gpu
    }
 
 
-   ::gpu::cpu_buffer* context::get_cpu_buffer()
+   ::gpu::aaa_cpu_buffer* context::aaa_get_cpu_buffer()
    {
 
-      if (!m_pcpubuffer)
+      throw todo;
+
+      if (!m_pcpubuffer2)
       {
 
-         create_cpu_buffer(m_rectangle.size());
+         create_cpu_buffer21(m_rectangle.size());
 
       }
 
-      return m_pcpubuffer;
+      return m_pcpubuffer2;
 
    }
 
@@ -1842,7 +1864,7 @@ namespace gpu
    //}
 
 
-   void context::destroy_cpu_buffer()
+   void context::destroy_cpu_buffer21()
    {
 
       //return ::success_none;

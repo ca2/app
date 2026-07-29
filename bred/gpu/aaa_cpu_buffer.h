@@ -9,7 +9,7 @@ namespace gpu
 {
 
 
-   class CLASS_DECL_BRED cpu_buffer :
+   class CLASS_DECL_BRED aaa_cpu_buffer :
       virtual public ::object
    {
    public:
@@ -17,12 +17,12 @@ namespace gpu
 
       //::memory                         m_memory;
       //::pixmap                         m_pixmap;
-      ::pointer < ::image::target >    m_pimagetarget;
+      ::pointer < ::image::aaa_target >    m_pimagetarget;
       ::gpu::context_pointer     m_pgpucontext;
 
 
-      cpu_buffer();
-      ~cpu_buffer() override;
+      aaa_cpu_buffer();
+      ~aaa_cpu_buffer() override;
 
 
       virtual void initialize_cpu_buffer(::gpu::context * pgpucontext);
@@ -31,7 +31,7 @@ namespace gpu
       virtual void set_size(const ::i32_size & size);
 
 
-      virtual ::image::target* get_image_target();
+      virtual ::image::aaa_target* get_image_target();
 
 
       virtual void gpu_read();

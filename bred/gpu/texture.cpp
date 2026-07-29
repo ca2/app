@@ -5,7 +5,9 @@
 #include "pixmap.h"
 #include "render_target.h"
 #include "context.h"
+#include "semaphore.h"
 #include "texture.h"
+#include "texture_synchronization.h"
 #include "acme/exception/interface_only.h"
 #include "aura/graphics/image/context.h"
 #include "bred/gpu/context.h"
@@ -411,6 +413,59 @@ namespace gpu
       initialize_texture_from_pixmap(pgpucontext, imagea);
 
    }
+
+
+   texture_synchronization *texture::synchronization()
+   {
+
+      //::cast<::gpu_vulkan::render_target> prendertarget = pgpurendertarget;
+
+      auto &psynchronization = this->m_ptexturesynchronization;
+
+      // auto& synchronization = this->m_mapSynchronization[prendertarget];
+
+      if (!psynchronization)
+      {
+
+         constructø(psynchronization);
+
+         //::cast<::gpu_vulkan::context> pcontext = m_pgpucontext;
+         auto pcontext = m_pgpucontext;
+
+         // synchronization.m_prendertarget = nullptr;
+
+         psynchronization->m_ptexture = this;
+
+         constructø(psynchronization->m_pgpusemaphoreAvailable);
+
+         psynchronization->m_pgpusemaphoreAvailable->initialize_gpu_semaphore(pcontext);
+
+         constructø(psynchronization->m_pgpusemaphoreRenderFinished);
+
+         psynchronization->m_pgpusemaphoreRenderFinished->initialize_gpu_semaphore(pcontext);
+
+         // VkSemaphoreCreateInfo semaphoreInfo = {};
+         // semaphoreInfo.sType = VK_STRUCTURE_TYPE_SEMAPHORE_CREATE_INFO;
+
+         psynchronization->m_iImageAvailable = 0;
+
+         // if (vkCreateSemaphore(pcontext->logicalDevice(), &semaphoreInfo, nullptr,
+         //                       &psynchronization->m_vksemaphoreAvailable) != VK_SUCCESS
+
+         //    ||
+
+         //    vkCreateSemaphore(pcontext->logicalDevice(), &semaphoreInfo, nullptr,
+         //                      &psynchronization->m_vksemaphoreRenderFinished) != VK_SUCCESS)
+
+         //{
+
+         //   throw ::exception(error_failed, "failed to create synchronization objects for a frame!");
+         //}
+      }
+
+      return psynchronization;
+   }
+
 
    
    void texture::defer_throw_if_cube_map_pixmaps_are_not_ok(const ::pointer_array < ::pixmap >& pixmapa)

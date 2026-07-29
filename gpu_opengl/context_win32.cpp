@@ -44,7 +44,8 @@ namespace gpu_opengl
 
    }
 
-   void context_win32::_create_cpu_buffer(const ::i32_size &size)
+
+   void context_win32::_create_cpu_buffer21(const ::i32_size &size)
    {
 
        if (!m_pgpudevice)

@@ -106,7 +106,19 @@ public:
 
    }
 
+   bool is_null() const
+   {
 
+      return ::is_null(this) || ::is_null(m_p);
+
+   }
+
+   bool is_set() const
+   {
+
+      return !is_null();
+
+   }
 
    template < typename TYPE2 >
    cast & operator  = (const TYPE2 * p2)

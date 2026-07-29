@@ -242,7 +242,7 @@ namespace gpu_opengl
          && ptextureTarget->m_gluTextureID != -1023)
       {
          
-         auto gluFbo = ptextureTarget->frame_buffer_object();
+         auto gluFbo = ptextureTarget->target_frame_buffer_object();
          
 //         if ((!objectFbo.m_handle
 //              || && ptextureTarget->m_gluTextureID != -1023)

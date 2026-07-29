@@ -52,76 +52,76 @@ namespace draw2d_gpu
 
 
 
-   void image::create(const ::i32_size& size, ::enum_flag eobjectCreate, ::i32 iGoodStride, bool bPreserve)
-   {
+   //void image::create(const ::i32_size& size, ::enum_flag eobjectCreate, ::i32 iGoodStride, bool bPreserve)
+   //{
 
-      if (m_pbitmap.is_set()
-            && m_pbitmap->get_os_data() != nullptr
-            && m_size == size)
-         //return true;
-         return;
+   //   if (m_pbitmap.is_set()
+   //         && m_pbitmap->get_os_data() != nullptr
+   //         && m_size == size)
+   //      //return true;
+   //      return;
 
-      destroy();
+   //   destroy();
 
-      if (size.is_empty())
-      {
+   //   if (size.is_empty())
+   //   {
 
-         //return true;
+   //      //return true;
 
-         return;
+   //      return;
 
-      }
+   //   }
 
-      m_bitmapinfo = {};
+   //   m_bitmapinfo = {};
 
-      ::i32 iStride = size.cx * 4;
+   //   ::i32 iStride = size.cx * 4;
 
-      //{
-      //   iGoodStride
-      //}
+   //   //{
+   //   //   iGoodStride
+   //   //}
 
-      m_bitmapinfo.bmiHeader.biSize          = sizeof (BITMAPINFOHEADER);
-      m_bitmapinfo.bmiHeader.biWidth         = size.cx;
-      m_bitmapinfo.bmiHeader.biHeight        =- size.cy;
-      m_bitmapinfo.bmiHeader.biPlanes        = 1;
-      m_bitmapinfo.bmiHeader.biBitCount      = 32;
-      m_bitmapinfo.bmiHeader.biCompression   = BI_RGB;
-      m_bitmapinfo.bmiHeader.biSizeImage     = iStride  * size.cy;
+   //   m_bitmapinfo.bmiHeader.biSize          = sizeof (BITMAPINFOHEADER);
+   //   m_bitmapinfo.bmiHeader.biWidth         = size.cx;
+   //   m_bitmapinfo.bmiHeader.biHeight        =- size.cy;
+   //   m_bitmapinfo.bmiHeader.biPlanes        = 1;
+   //   m_bitmapinfo.bmiHeader.biBitCount      = 32;
+   //   m_bitmapinfo.bmiHeader.biCompression   = BI_RGB;
+   //   m_bitmapinfo.bmiHeader.biSizeImage     = iStride  * size.cy;
 
-      constructø(m_pbitmap);
+   //   constructø(m_pbitmap);
 
-      image32_t * pimage32 = nullptr;
-      m_pbitmap->create_bitmap(nullptr, size, &pimage32, nullptr, &iStride);
-      //if(!m_pbitmap->create_bitmap(nullptr, size, (void **) & pimage32, &iStride))
-      //{
+   //   image32_t * pimage32 = nullptr;
+   //   m_pbitmap->create_bitmap(nullptr, size, &pimage32, nullptr, &iStride);
+   //   //if(!m_pbitmap->create_bitmap(nullptr, size, (void **) & pimage32, &iStride))
+   //   //{
 
-        // return false;
+   //     // return false;
 
-      //}
+   //   //}
 
-      if(m_pbitmap->get_os_data() == nullptr)
-      {
+   //   if(m_pbitmap->get_os_data() == nullptr)
+   //   {
 
-         destroy();
+   //      destroy();
 
-         //return false;
+   //      //return false;
 
-         return;
+   //      return;
 
-      }
+   //   }
 
 
-      this->initialize_pixmap(size, pimage32, iStride);
+   //   this->initialize_pixmap(size, pimage32, iStride);
 
-      m_eflagElement = eobjectCreate;
+   //   m_eflagElement = eobjectCreate;
 
-      set_ok_flag();
+   //   set_ok_flag();
 
-      m_estatus = ::success;
+   //   m_estatus = ::success;
 
-      //return true;
+   //   //return true;
 
-   }
+   //}
 
 
    bool image::host(::pixmap_t * ppixmap, ::windowing::window * pwindow)
@@ -190,7 +190,7 @@ namespace draw2d_gpu
    }
 
 
-   void image::create(::draw2d::graphics * pgraphics)
+   void image::create_from_graphics(::draw2d::graphics * pgraphics)
    {
 
       ::draw2d::bitmap * pbitmap = (dynamic_cast<::gpu::graphics * >(pgraphics))->get_current_bitmap();
@@ -204,7 +204,7 @@ namespace draw2d_gpu
       }
 
       //if (!create(pbitmap->get_size()))
-      create(pbitmap->get_size());
+      create_as_descriptor(pbitmap->get_size());
       {
          //return false;//
       }
@@ -261,7 +261,7 @@ namespace draw2d_gpu
       ::i32_size size = pgraphics->m_pimage->get_size();
 
       //if(!create(size))
-      create(size);
+      create_as_descriptor(size);
       //{
 
       //   return false;

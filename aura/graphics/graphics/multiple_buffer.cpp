@@ -114,7 +114,7 @@ namespace graphics
       //if (m_imageaBuffer[m_iBuffer]->size() != sizeBuffer)
       {
 
-         pitem->m_pimageBufferItem->create(pitem->m_sizeBufferItem);
+         pitem->m_pimageBufferItem->create_as_descriptor(pitem->m_sizeBufferItem);
 
          //if (!m_imageaBuffer[m_iBuffer]->create(sizeBuffer))
          //{

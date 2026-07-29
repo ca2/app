@@ -208,14 +208,14 @@ namespace user
                {
 
 
-                  pimage->create(m_rectangleImage.size() + i32_size(m_pitem->m_pmesh->m_plist->m_iIconBlurRadius * iRate * 2, m_pitem->m_pmesh->m_plist->m_iIconBlurRadius * iRate * 2));
+                  pimage->create_as_descriptor(m_rectangleImage.size() + i32_size(m_pitem->m_pmesh->m_plist->m_iIconBlurRadius * iRate * 2, m_pitem->m_pmesh->m_plist->m_iIconBlurRadius * iRate * 2));
                   //m_plist->m_pfastblurIcon->initialize(m_rectangleImage.size() , m_plist.m_iIconBlurRadius);
 
                }
                else
                {
 
-                  pimage->create(m_rectangleImage.size());
+                  pimage->create_as_descriptor(m_rectangleImage.size());
 
                }
 

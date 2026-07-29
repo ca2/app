@@ -53,6 +53,7 @@ namespace gpu
       //bool m_bFloat;
       ::file::path                        m_path;
       ::pointer<::gpu::binding_slot_set> m_pbindingslotsetSingular;
+      ::pointer<texture_synchronization> m_ptexturesynchronization;
 
       texture();
       ~texture() override;
@@ -84,7 +85,7 @@ namespace gpu
       virtual void from_external_state(::gpu::enum_texture_state etexturestate,
                                        ::gpu::enum_texture_state etexturestateNow);
       virtual void to_external_state(::gpu::command_buffer *pgpucommandbuffer);
-
+      virtual texture_synchronization *synchronization();
 
       void defer_throw_if_cube_map_pixmaps_are_not_ok(const ::pointer_array < ::pixmap >& pixmapa);
       

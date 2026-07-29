@@ -39,6 +39,7 @@ namespace gpu
       //::gpu::binding_set_pointer           m_pbindingsetCurrent;
       ::pointer_array < ::gpu::semaphore >   m_semaphoreaWait;
       ::pointer_array < ::gpu::semaphore >   m_semaphoreaSignal;
+      ::array<::gpu::enum_pipeline_stage>    m_epipelinestageaWait;
 
       command_buffer();
       ~command_buffer() override;

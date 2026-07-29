@@ -1856,7 +1856,7 @@ void simple_toolbar::on_message_non_client_calculate_size(::message::message * p
 
    auto pdraw2d = psystem->draw2d();
 
-   auto pgraphics = pdraw2d->create_memory_graphics(this);
+   auto pgraphics = pdraw2d->create_memory_graphics(this, {});
 
    ::user::control_bar::CalcInsideRect(pgraphics, rectangle, bHorz);
 

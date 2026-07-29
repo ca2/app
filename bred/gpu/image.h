@@ -23,7 +23,6 @@ namespace gpu
    public:
 
 
-      ::pointer < ::gpu::texture > m_pgputexture;
       mutable ::std::atomic_bool m_bPerformanceDiagnosticsEnabledLast{false};
       mutable ::std::atomic<::u64> m_uPerformanceDiagnosticsGenerationLast{0};
       mutable ::std::atomic<::u64> m_uPerformanceMapGeneration{0};
@@ -44,11 +43,11 @@ namespace gpu
       //::draw2d::graphics_pointer owned_graphics() const override;
 
       virtual ::gpu::texture * gpu_texture() const;
-      virtual void create_gpu_texture();
-      virtual void initialize_gpu_image(
-         ::gpu::context * pgpucontext,
-         const ::i32_size & size,
-         const ::gpu::texture_data & texturedata);
+      //virtual void create_gpu_texture();
+      //virtual void initialize_gpu_image(
+      //   ::gpu::context * pgpucontext,
+      //   const ::i32_size & size,
+      //   const ::gpu::texture_data & texturedata);
 
       void destroy() override;
 

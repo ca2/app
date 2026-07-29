@@ -122,7 +122,7 @@ namespace gpu
       ::i32_rectangle                              m_rectangle;
       ::f32                                        m_z;
       i32_point                                    m_pointTranslate;
-      ::pointer<::gpu::cpu_buffer>                 m_pcpubuffer;
+      ::pointer<::gpu::aaa_cpu_buffer>             m_pcpubuffer2;
       ::pointer<::gpu::shader>                     m_pshader;
       bool                                         m_bInNonOwnedLease;
       ::pointer<::gpu::shader>                     m_pshaderBound;
@@ -156,8 +156,8 @@ namespace gpu
       //::i32                                        m_iScanOffscreen;
       //::memory                                   m_memoryOffscreen;
       ::pointer < ::gpu::swap_chain >              m_pgpuswapchain;
-      ::pointer_array < ::gpu::semaphore >         m_gpusemaphoreaMergeLayersReady;
-      ::pointer_array<::gpu::semaphore>            m_gpusemaphoreaPresentReady;
+      //::pointer_array < ::gpu::semaphore >         m_gpusemaphoreaMergeLayersReady;
+      //::pointer_array<::gpu::semaphore>            m_gpusemaphoreaPresentReady;
       ::string_map_base < ::pointer < ::gpu::texture > >    m_texturemap;
       ::string_map_base < ::pointer < ::gpu::texture > >    m_texturemapGeneric;
 
@@ -299,7 +299,7 @@ namespace gpu
 
 
 
-      virtual ::gpu::cpu_buffer * get_cpu_buffer();
+      virtual ::gpu::aaa_cpu_buffer * aaa_get_cpu_buffer();
 
 
       //virtual void initialize(::particle * pparticle) override;
@@ -360,10 +360,10 @@ namespace gpu
       virtual void _create_window_buffer(::windowing::window* pwindow);
 
 
-      virtual void create_cpu_buffer(const ::i32_size& size);
-      virtual void _create_cpu_buffer(const ::i32_size& size);
-      virtual void resize_cpu_buffer(const ::i32_size& size);
-      virtual void destroy_cpu_buffer();
+      virtual void create_cpu_buffer21(const ::i32_size& size);
+      virtual void _create_cpu_buffer21(const ::i32_size& size);
+      virtual void resize_cpu_buffer21(const ::i32_size& size);
+      virtual void destroy_cpu_buffer21();
 
 
       virtual void defer_create_window_context(::acme::windowing::window * pwindow);

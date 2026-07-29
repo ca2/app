@@ -72,8 +72,8 @@ namespace gpu_opengl
 
       //void endDraw(::user::interaction * puserinteraction) override;
 
-      virtual void do_sampling_to_cpu();
-      void sample_to_cpu_buffer() override;
+      virtual void do_sampling_to_cpu21();
+      void sample_to_cpu_buffer21() override;
 
       //virtual void _swap();
 

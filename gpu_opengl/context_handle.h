@@ -38,6 +38,8 @@ namespace gpu_opengl
          
          HANDLE_TYPE    m_handle;
          bool           m_bCreated = false;
+         bool           m_bTargetBound = false;
+         bool           m_bSourceBound = false;
          bool           m_bBound = false;
          
       };

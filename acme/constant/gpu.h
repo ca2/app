@@ -10,7 +10,7 @@ namespace gpu
    {
 
       e_output_none,
-      e_output_cpu_buffer,
+      e_output_aaa_cpu_buffer,
       e_output_swap_chain,
       e_output_gpu_buffer,
       e_output_color_and_alpha_accumulation_buffers,

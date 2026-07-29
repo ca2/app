@@ -3,7 +3,7 @@
 #include "approach.h"
 #include "command_buffer.h"
 #include "context.h"
-#include "cpu_buffer.h"
+#include "aaa_cpu_buffer.h"
 #include "device.h"
 #include "frame.h"
 #include "frame_buffer.h"
@@ -13,7 +13,7 @@
 #include "swap_chain.h"
 #include "texture.h"
 #include "bred/gpu/graphics.h"
-#include "aura/graphics/image/target.h"
+#include "aura/graphics/image/aaa_target.h"
 #include "aura/platform/application.h"
 #include "bred/gpu/context_lock.h"
 #include "bred/gpu/layer.h"
@@ -906,15 +906,15 @@ namespace gpu_opengl
    //}
 
 
-   void renderer::sample_to_cpu_buffer()
+   void renderer::sample_to_cpu_buffer21()
    {
 
-      do_sampling_to_cpu();
+      do_sampling_to_cpu21();
 
    }
 
 
-   void renderer::do_sampling_to_cpu()
+   void renderer::do_sampling_to_cpu21()
    {
 
 
@@ -925,7 +925,7 @@ namespace gpu_opengl
       if (pgpucontext)
       {
 
-         auto pcpubuffer = pgpucontext->m_pcpubuffer;
+         auto pcpubuffer = pgpucontext->m_pcpubuffer2;
 
          if (pcpubuffer)
          {

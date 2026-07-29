@@ -100,7 +100,7 @@ namespace graphics
 
          information() << "::graphics::buffer::update_buffer going to create image : " << pitem->m_sizeBufferItem;
 
-         m_pimageBuffer->create(pitem->m_sizeBufferItem);
+         m_pimageBuffer->create_as_descriptor(pitem->m_sizeBufferItem);
 
          information() << "::graphics::buffer::update_buffer going after create image : " << pitem->m_sizeBufferItem;
 

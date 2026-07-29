@@ -541,14 +541,23 @@ namespace draw2d
    }
 
 
-   ::draw2d::graphics_pointer draw2d::create_memory_graphics(::draw2d::host * pdraw2dhost)
+   ::draw2d::graphics_pointer draw2d::create_memory_graphics(::draw2d::host *pdraw2dhost, const ::i32_size &size)
    {
 
       auto pgraphics = create_graphics(pdraw2dhost);
 
-      auto sizeModernOnePixel = ::i32_size{ 1920, 1080 };
+      auto sizeCreate = size;
 
-      pgraphics->create_memory_graphics(sizeModernOnePixel);
+      if (sizeCreate.is_empty())
+      {
+
+         auto sizeModernOnePixel = ::i32_size{1920, 1080};
+
+         sizeCreate = sizeModernOnePixel;
+
+      }
+
+      pgraphics->create_memory_graphics(sizeCreate);
 
       return pgraphics;
 
@@ -604,8 +613,32 @@ namespace draw2d
    {
 
       auto pgraphics = create_graphics(pdraw2dhost);
-    
-      pgraphics->create_memory_graphics(size);
+
+      if (::is_set(pimage))
+      {
+
+         auto pbitmap = pimage->get_bitmap();
+
+         if (::is_set(pbitmap))
+         {
+
+            pgraphics->create_bitmap_graphics(pbitmap);
+
+         }
+         else
+         {
+
+            throw ::exception(error_wrong_state);
+
+         }
+
+      }
+      else
+      {
+
+         pgraphics->create_memory_graphics(size);
+
+      }
 
       return pgraphics;
 
@@ -1165,7 +1198,7 @@ void draw2d::emboss_predicate(
 
       //estatus =
 
-      pimage->create(size);
+      pimage->create_as_descriptor(size);
 
       //if (!estatus)
       //{
@@ -1196,7 +1229,7 @@ void draw2d::emboss_predicate(
 
       auto psystem = system();
 
-      pimageBlur->create(size);
+      pimageBlur->create_as_descriptor(size);
 
       blur.initialize(pimageBlur->size(), iEffectiveBlurRadius);
 

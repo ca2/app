@@ -1,15 +1,15 @@
 #pragma once
 
 
-#include "bred/gpu/cpu_buffer.h"
+#include "bred/gpu/aaa_cpu_buffer.h"
 
 
 namespace gpu_opengl
 {
 
 
-   class CLASS_DECL_GPU_OPENGL cpu_buffer :
-      virtual public ::gpu::cpu_buffer
+   class CLASS_DECL_GPU_OPENGL aaa_cpu_buffer :
+      virtual public ::gpu::aaa_cpu_buffer
    {
    public:
 
@@ -17,8 +17,8 @@ namespace gpu_opengl
       //__creatable_from_base(buffer, ::gpu::buffer);
 
 
-      cpu_buffer();
-      ~cpu_buffer() override;
+      aaa_cpu_buffer();
+      ~aaa_cpu_buffer() override;
 
 
       //void set_size(const ::i32_size & size) override;

@@ -2,25 +2,25 @@
 #pragma once
 
 
-#include "aura/graphics/image/buffer.h"
-#include "aura/graphics/image/lock.h"
+#include "aura/graphics/image/aaa_buffer.h"
+#include "aura/graphics/image/aaa_lock.h"
 
 
 namespace image
 {
 
 
-   class CLASS_DECL_AURA targeting
+   class CLASS_DECL_AURA aaa_targeting
    {
    public:
 
 
-      ::image::target* m_pimagetarget;
+      ::image::aaa_target* m_pimagetarget;
 
 
-      targeting(::image::target* pimagetarget);
+      aaa_targeting(::image::aaa_target* pimagetarget);
 
-      ~targeting();
+      ~aaa_targeting();
 
       ::i32 width() const;
 
@@ -37,7 +37,7 @@ namespace image
 
 
 
-   class CLASS_DECL_AURA target :
+   class CLASS_DECL_AURA aaa_target :
       virtual public ::particle
    {
    public:
@@ -46,11 +46,11 @@ namespace image
       ::image::image_pointer							m_pimage;
       ::particle_pointer                        m_pparticleSynchronization;
       ::procedure                               m_callbackOnImagePixels;
-      ::image::buffer                           m_imagebuffer;
+      ::image::aaa_buffer                       m_imagebuffer;
 
 
-      target();
-      ~target() override;
+      aaa_target();
+      ~aaa_target() override;
 
 
       void on_initialize_particle() override;
@@ -67,23 +67,23 @@ namespace image
       virtual void do_target();
 
 
-      virtual ::image::lock no_padded_lock(::image::enum_copy_disposition ecopydisposition);
-      virtual ::image::lock source_scan_lock(::image::enum_copy_disposition ecopydisposition);
+      virtual ::image::aaa_lock no_padded_lock(::image::enum_copy_disposition ecopydisposition);
+      virtual ::image::aaa_lock source_scan_lock(::image::enum_copy_disposition ecopydisposition);
 
 
-      virtual ::image::targeting no_padded_targeting(::image::enum_copy_disposition ecopydisposition);
-      virtual ::image::targeting source_scan_targeting(::image::enum_copy_disposition ecopydisposition);
+      virtual ::image::aaa_targeting no_padded_targeting(::image::enum_copy_disposition ecopydisposition);
+      virtual ::image::aaa_targeting source_scan_targeting(::image::enum_copy_disposition ecopydisposition);
 
 
    };
 
 
-   //class CLASS_DECL_AURA targeting
+   //class CLASS_DECL_AURA aaa_targeting
    //{
    //public:
 
 
-      //::image::target* m_pimagetarget;
+      //::image::aaa_target* m_pimagetarget;
 
 
    

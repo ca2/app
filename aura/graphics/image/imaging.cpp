@@ -1562,7 +1562,7 @@ void imaging::BitmapDivBlend(
 
    //estatus = 
    
-   pimage->create(size);
+   pimage->create_as_descriptor(size);
 
    //if (!estatus)
    //{

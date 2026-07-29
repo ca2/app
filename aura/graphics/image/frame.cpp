@@ -150,7 +150,7 @@ namespace image
 
       ::f64_size size = pframea->m_size;
 
-      m_pimage->create(size);
+      m_pimage->create_as_descriptor(size);
 
       ::f64_rectangle r1(pframeSource->m_rectangle.size());
 

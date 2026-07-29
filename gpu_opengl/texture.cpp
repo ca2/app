@@ -1220,7 +1220,7 @@ void texture::_defer_bind_to_render_target(base_context_handle::object & object)
       
    }
    
-   if(object.m_bBound)
+   if(object.m_bTargetBound)
    {
       
       throw ::exception(error_wrong_state);
@@ -1234,7 +1234,7 @@ void texture::_defer_bind_to_render_target(base_context_handle::object & object)
       
    }
    
-   glBindFramebuffer(GL_FRAMEBUFFER, object.m_handle);
+   glBindFramebuffer(GL_DRAW_FRAMEBUFFER, object.m_handle);
    ::opengl::check_error("");
 
    if (m_gluTextureID)
@@ -1254,7 +1254,7 @@ void texture::_defer_bind_to_render_target(base_context_handle::object & object)
          if (m_gluType == GL_TEXTURE_2D_MULTISAMPLE)
          {
 
-            glBindTexture(GL_TEXTURE_2D_MULTISAMPLE, m_gluTextureID);
+            //glBindTexture(GL_TEXTURE_2D_MULTISAMPLE, m_gluTextureID);
 
             GLint colorSamples = 0;
             GLint colorWidth = 0;
@@ -1262,14 +1262,14 @@ void texture::_defer_bind_to_render_target(base_context_handle::object & object)
             GLint fixedSampleLocations = 0;
 
             glGetTexLevelParameteriv(GL_TEXTURE_2D_MULTISAMPLE, 0, GL_TEXTURE_SAMPLES, &colorSamples);
-
+            ::opengl::check_error("");
             glGetTexLevelParameteriv(GL_TEXTURE_2D_MULTISAMPLE, 0, GL_TEXTURE_WIDTH, &colorWidth);
-
+            ::opengl::check_error("");
             glGetTexLevelParameteriv(GL_TEXTURE_2D_MULTISAMPLE, 0, GL_TEXTURE_HEIGHT, &colorHeight);
-
+            ::opengl::check_error("");
             glGetTexLevelParameteriv(GL_TEXTURE_2D_MULTISAMPLE, 0, GL_TEXTURE_FIXED_SAMPLE_LOCATIONS,
                                      &fixedSampleLocations);
-
+            ::opengl::check_error("");
 
             informationf("colorSamples=%d colorWidth=%d colorHeight=%d fixedSampleLocations=%d",
                colorSamples,
@@ -1290,9 +1290,138 @@ void texture::_defer_bind_to_render_target(base_context_handle::object & object)
          ::opengl::check_error("");
 
          glBindTexture(m_gluType, 0);
+         ::opengl::check_error("");
+      }
+
+   }
+
+   if (m_gluDepthStencilRBO)
+   {
+
+      glBindRenderbuffer(GL_RENDERBUFFER, m_gluDepthStencilRBO);
+      ::opengl::check_error("");
+
+      glFramebufferRenderbuffer(GL_DRAW_FRAMEBUFFER, GL_DEPTH_STENCIL_ATTACHMENT, GL_RENDERBUFFER, m_gluDepthStencilRBO);
+      ::opengl::check_error("");
+   }
+
+   GLenum status = glCheckFramebufferStatus(GL_DRAW_FRAMEBUFFER);
+
+   if (status != GL_FRAMEBUFFER_COMPLETE)
+   {
+
+      warning() << "Framebuffer attachment is not complete";
+
+      auto pszFramebufferStatusText = ::opengl::check_framebuffer_status_text(status);
+
+      if (::is_set(pszFramebufferStatusText))
+      {
+
+         warning("glCheckFramebufferStatus(GL_FRAMEBUFFER) return \"{}\".", pszFramebufferStatusText);
+
+         throw ::exception(error_wrong_state);
 
       }
 
+   }
+   
+   object.m_bTargetBound = true;
+
+   //glBindFramebuffer(GL_DRAW_FRAMEBUFFER, drawFboOld);
+   //glBindFramebuffer(GL_READ_FRAMEBUFFER, readFboOld);
+}
+
+
+void texture::_defer_bind_to_render_source(base_context_handle::object &object)
+{
+
+   if (!object.m_bCreated)
+   {
+
+      throw ::exception(error_wrong_state);
+   }
+
+   if (object.m_bSourceBound)
+   {
+
+      throw ::exception(error_wrong_state);
+   }
+
+   if (!object.m_handle)
+   {
+
+      throw ::exception(error_failed);
+   }
+
+   if (m_gluType == GL_TEXTURE_2D_MULTISAMPLE)
+   {
+
+      if (!m_resolveframebuffer.m_framebuffer)
+      {
+         throw ::exception(error_wrong_state);
+      }
+
+      glBindFramebuffer(GL_READ_FRAMEBUFFER, m_resolveframebuffer.m_framebuffer);
+      ::opengl::check_error("");
+
+   }
+   else
+   {
+
+      glBindFramebuffer(GL_READ_FRAMEBUFFER, object.m_handle);
+      ::opengl::check_error("");
+
+      if (m_gluTextureID)
+      {
+
+         if (m_textureattributes.m_etexture != ::gpu::e_texture_cube_map)
+         {
+
+            bool bIsTexture = glIsTexture(m_gluTextureID);
+
+            informationf("is %d a gl texture? %d", m_gluTextureID, bIsTexture);
+            ::opengl::check_error("");
+
+      //      glBindTexture(m_gluType, m_gluTextureID);
+        //    ::opengl::check_error("");
+
+            // if (m_gluType == GL_TEXTURE_2D_MULTISAMPLE)
+            //{
+
+            //   glBindTexture(GL_TEXTURE_2D_MULTISAMPLE, m_gluTextureID);
+
+            //   GLint colorSamples = 0;
+            //   GLint colorWidth = 0;
+            //   GLint colorHeight = 0;
+            //   GLint fixedSampleLocations = 0;
+
+            //   glGetTexLevelParameteriv(GL_TEXTURE_2D_MULTISAMPLE, 0, GL_TEXTURE_SAMPLES, &colorSamples);
+
+            //   glGetTexLevelParameteriv(GL_TEXTURE_2D_MULTISAMPLE, 0, GL_TEXTURE_WIDTH, &colorWidth);
+
+            //   glGetTexLevelParameteriv(GL_TEXTURE_2D_MULTISAMPLE, 0, GL_TEXTURE_HEIGHT, &colorHeight);
+
+            //   glGetTexLevelParameteriv(GL_TEXTURE_2D_MULTISAMPLE, 0, GL_TEXTURE_FIXED_SAMPLE_LOCATIONS,
+            //                            &fixedSampleLocations);
+
+
+            //   informationf("colorSamples=%d colorWidth=%d colorHeight=%d fixedSampleLocations=%d", colorSamples,
+            //                colorWidth, colorHeight, fixedSampleLocations);
+
+            //   information("");
+            //}
+
+            // glFramebufferTexture2D(GL_DRAW_FRAMEBUFFER, GL_COLOR_ATTACHMENT0, m_gluType, m_gluTextureID, 0);
+            //::opengl::check_error("");
+
+            //// Set draw buffer
+            // GLenum drawBufs[] = {GL_COLOR_ATTACHMENT0};
+            // glDrawBuffers(1, drawBufs); // REQUIRED for user-defined FBOs
+            //::opengl::check_error("");
+
+            // glBindTexture(m_gluType, 0);
+         }
+      }
    }
 
    if (m_gluDepthStencilRBO)
@@ -1320,17 +1449,14 @@ void texture::_defer_bind_to_render_target(base_context_handle::object & object)
          warning("glCheckFramebufferStatus(GL_FRAMEBUFFER) return \"{}\".", pszFramebufferStatusText);
 
          throw ::exception(error_wrong_state);
-
       }
-
    }
-   
+
    object.m_bBound = true;
 
-   //glBindFramebuffer(GL_DRAW_FRAMEBUFFER, drawFboOld);
-   //glBindFramebuffer(GL_READ_FRAMEBUFFER, readFboOld);
+   // glBindFramebuffer(GL_DRAW_FRAMEBUFFER, drawFboOld);
+   // glBindFramebuffer(GL_READ_FRAMEBUFFER, readFboOld);
 }
-
 
    texture * texture::resolved_texture()
    {
@@ -1443,7 +1569,7 @@ void texture::_defer_bind_to_render_target(base_context_handle::object & object)
    }
 
 ::i32 g_iGpuOpenGlFramebufferObject = 0;
-   GLuint texture::frame_buffer_object()
+   GLuint texture::target_frame_buffer_object()
    {
       g_iGpuOpenGlFramebufferObject++;
       auto & object = context_handle_object();
@@ -1494,7 +1620,7 @@ void texture::_defer_bind_to_render_target(base_context_handle::object & object)
       {
          
          //if(m_pinputlayout && !object.m_bBound)
-         if(!object.m_bBound)
+         if(!object.m_bTargetBound)
          {
             
             _defer_bind_to_render_target(object);
@@ -1507,6 +1633,91 @@ void texture::_defer_bind_to_render_target(base_context_handle::object & object)
 
    }
 
+   GLuint texture::source_frame_buffer_object()
+   {
+      g_iGpuOpenGlFramebufferObject++;
+
+               auto &object = context_handle_object();
+
+      auto &gluFramebufferObject = object.m_handle;
+
+      if (!object.m_bCreated)
+      {
+
+         _create_frame_buffer_object(object);
+
+         //      glGenVertexArrays(1, &gluVertexArrayObject);
+         //      ::opengl::check_error("");
+         //
+         //      if(gluVertexArrayObject == 74)
+         //      {
+         //
+         //         information("gluVertexArrayObject == 74");
+         //
+         //      }
+
+         // glBindVertexArray(vertexarrayobject.m_gluVertexArrayObject);
+         //::opengl::check_error("");
+
+         //      ::cast < memory_buffer > pbufferVertex = m_pbufferVertex;
+         //
+         //      ::cast < memory_buffer > pbufferIndex = m_pbufferIndex;
+         //
+         //      if(::is_set(pbufferVertex))
+         //      {
+         //
+         //         ::cast < input_layout > pinputlayout = m_pinputlayout;
+         //
+         //         pinputlayout->__do_opengl_vao_vbo_and_ebo_input_layout(
+         //                                                gluVertexArrayObject,
+         //                                                                pbufferVertex->m_gluVbo,
+         //                                                                pbufferIndex ? pbufferIndex->m_gluVbo : 0
+         //                                                                );
+         //
+         //      }
+
+         // glBindVertexArray(0);
+         //::opengl::check_error("");
+      }
+
+
+      if (m_gluType == GL_TEXTURE_2D)
+      {
+         if (object.m_bCreated)
+         {
+
+            // if(m_pinputlayout && !object.m_bBound)
+            if (!object.m_bSourceBound)
+            {
+
+               _defer_bind_to_render_source(object);
+            }
+         }
+         return gluFramebufferObject;
+      }
+      else if (m_gluType == GL_TEXTURE_2D_MULTISAMPLE)
+      {
+
+         if (!m_resolveframebuffer.m_framebuffer)
+         {
+
+            opengl::create_resolve_framebuffer(m_resolveframebuffer, m_sizeAllocated.cx, m_sizeAllocated.cy);
+
+         }
+
+         if(!resolve_multisampled_framebuffer(object.m_handle, m_resolveframebuffer, m_sizeAllocated.cx,
+                                                m_sizeAllocated.cy))
+         {
+
+            information("failed to resolved multisampled framebuffer");
+         }
+         return m_resolveframebuffer.m_framebuffer;
+
+      }
+
+   }
+
+
 ::i32 g_iGpuOpenGlBindRenderTarget = 0;
    void texture::bind_render_target()
    {
@@ -1518,7 +1729,7 @@ void texture::_defer_bind_to_render_target(base_context_handle::object & object)
 //
 //      }
       
-      auto gluFbo = frame_buffer_object();
+      auto gluFbo = target_frame_buffer_object();
 
       if (!gluFbo)
       {
@@ -1575,18 +1786,18 @@ void texture::_defer_bind_to_render_target(base_context_handle::object & object)
 
       scoped_pixel_transfer_state state;
 
-      auto gluFramebuffer = frame_buffer_object();
+      auto gluFramebuffer = source_frame_buffer_object();
 
       glBindFramebuffer(GL_READ_FRAMEBUFFER, gluFramebuffer);
       ::opengl::check_error("");
 
-      glFramebufferTexture2D(
-         GL_READ_FRAMEBUFFER,
-         GL_COLOR_ATTACHMENT0,
-         m_gluType,
-         m_gluTextureID,
-         0);
-      ::opengl::check_error("");
+      //glFramebufferTexture2D(
+      //   GL_READ_FRAMEBUFFER,
+      //   GL_COLOR_ATTACHMENT0,
+      //   m_gluType,
+      //   m_gluTextureID,
+      //   0);
+      //::opengl::check_error("");
 
       auto eStatus = glCheckFramebufferStatus(GL_READ_FRAMEBUFFER);
 
@@ -1633,14 +1844,11 @@ void texture::_defer_bind_to_render_target(base_context_handle::object & object)
 
       }
 
-      ::memory memoryFlipped;
+      //::memory memoryFlipped;
       ::pixmap pixmapFlipped;
-      pixmapFlipped.pixmap_t::create(
-         memoryFlipped,
-         ppixmap->size(),
-         ppixmap->m_iScan);
+      pixmapFlipped.create_as_descriptor(ppixmap->size(), DEFAULT_CREATE_IMAGE_FLAG, ppixmap->m_iScan);
       pixmapFlipped.m_colorindexes = ppixmap->m_colorindexes;
-      pixmapFlipped.pixmap_t::copy(ppixmap);
+      pixmapFlipped.copy(ppixmap);
       pixmapFlipped.vertical_swap();
 
       scoped_pixel_transfer_state state;

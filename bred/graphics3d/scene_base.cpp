@@ -759,6 +759,9 @@ namespace graphics3d
 
    void scene_base::on_render(::gpu::context *pgpucontext) {}
 
+
+   void scene_base::on_render_last(::gpu::context *pgpucontext) {}
+
    //
    // ::pointer < ::graphics3d::renderable> scene_base::create_tinyobj_renderable(const ::file::path& path)
    // {

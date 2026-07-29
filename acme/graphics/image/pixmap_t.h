@@ -29,6 +29,7 @@ struct pixmap_t
 #endif
 
    ::i32 m_iRedLower;
+   /// Scan/stride in bytes
    ::i32 m_iScan;
    ::image32_t *m_pimage32;
    ::i32_point m_point;
@@ -98,6 +99,10 @@ struct pixmap_t
 
    const ::color_indexes &color_indexes() const { return m_colorindexes; }
    ::color_indexes &color_indexes() { return m_colorindexes; }
+
+
+   inline ::i32 scan_area() { return scan_area_in_bytes() / sizeof(::image32_t); }
+   inline ::i32 scan_area_in_bytes() { return m_iScan * m_size.cy; }
 
 
    //   inline ::u64 area() const
@@ -206,7 +211,7 @@ struct pixmap_t
 
    inline bool nok() const { return !is_ok(); }
 
-   bool create(::memory &memory, const ::i32_size &size, ::i32 stride = -1);
+   // bool create(::memory &memory, const ::i32_size &size, ::i32 stride = -1);
 
    inline ::i32_rectangle rectangle() const { return ::i32_rectangle(m_point, m_size); }
 
@@ -220,7 +225,8 @@ struct pixmap_t
    inline ::i32 height() const noexcept { return m_size.cy; }
    inline ::i32 area() const noexcept { return m_size.area(); }
    inline ::i32 scan_size() const noexcept { return m_iScan; }
-   inline ::i32 scan_area() const noexcept { return height() * scan_size(); }
+   inline ::i32 scan_area_in_pixels() const noexcept { return (m_iScan / 4) * height(); }
+   inline ::i32 scan_area_in_bytes() const noexcept { return m_iScan * height(); }
 
 
    inline ::color::color get_pixel(::i32 x, ::i32 y) const

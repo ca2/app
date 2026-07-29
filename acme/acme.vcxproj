@@ -2777,6 +2777,7 @@
     <ClCompile Include="graphics\image\pixmap.cpp" />
     <ClCompile Include="graphics\image\image32.cpp" />
     <ClCompile Include="graphics\image\pixmap_lease.cpp" />
+    <ClCompile Include="graphics\image\pixmap_t.cpp" />
     <ClCompile Include="handler\command_handler.cpp" />
     <ClCompile Include="handler\dispatch_array.cpp" />
     <ClCompile Include="handler\extended_topic.cpp" />

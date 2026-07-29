@@ -78,7 +78,7 @@ namespace write_text
 
       }
 
-      m_pimage->create(m_size);
+      m_pimage->create_as_descriptor(m_size);
 
       m_bOk = false;
 

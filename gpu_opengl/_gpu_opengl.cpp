@@ -233,7 +233,155 @@ void defer_throw_gl_error()
    }
 
 
+   GLint get_framebuffer_sample_count(GLuint framebuffer)
+   {
 
+      GLint previousDrawFramebuffer = 0;
+
+      glGetIntegerv(GL_DRAW_FRAMEBUFFER_BINDING, &previousDrawFramebuffer);
+
+      glBindFramebuffer(GL_DRAW_FRAMEBUFFER, framebuffer);
+
+      GLint sampleBuffers = 0;
+      GLint samples = 0;
+
+      glGetIntegerv(GL_SAMPLE_BUFFERS, &sampleBuffers);
+      glGetIntegerv(GL_SAMPLES, &samples);
+
+      glBindFramebuffer(GL_DRAW_FRAMEBUFFER, static_cast<GLuint>(previousDrawFramebuffer));
+
+      if (sampleBuffers == 0)
+      {
+
+         return 0;
+      }
+
+      return samples;
+   }
+
+
+   bool create_resolve_framebuffer(resolve_framebuffer &resolve, int width, int height,
+                                   GLenum internalFormat, GLenum format,
+                                   GLenum type)
+   {
+
+      GLint previousFramebuffer = 0;
+      GLint previousTexture = 0;
+
+      glGetIntegerv(GL_FRAMEBUFFER_BINDING, &previousFramebuffer);
+
+      glGetIntegerv(GL_TEXTURE_BINDING_2D, &previousTexture);
+
+      resolve.m_width = width;
+      resolve.m_height = height;
+
+      glGenFramebuffers(1, &resolve.m_framebuffer);
+
+      glBindFramebuffer(GL_FRAMEBUFFER, resolve.m_framebuffer);
+
+      glGenTextures(1, &resolve.m_texture);
+
+      glBindTexture(GL_TEXTURE_2D, resolve.m_texture);
+
+      glTexImage2D(GL_TEXTURE_2D, 0, internalFormat, width, height, 0, format, type, nullptr);
+
+      glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_LINEAR);
+
+      glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_LINEAR);
+
+      glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_CLAMP_TO_EDGE);
+
+      glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_CLAMP_TO_EDGE);
+
+      glFramebufferTexture2D(GL_FRAMEBUFFER, GL_COLOR_ATTACHMENT0, GL_TEXTURE_2D, resolve.m_texture, 0);
+
+      glDrawBuffer(GL_COLOR_ATTACHMENT0);
+      glReadBuffer(GL_COLOR_ATTACHMENT0);
+
+      GLenum status = glCheckFramebufferStatus(GL_FRAMEBUFFER);
+
+      glBindTexture(GL_TEXTURE_2D, static_cast<GLuint>(previousTexture));
+
+      glBindFramebuffer(GL_FRAMEBUFFER, static_cast<GLuint>(previousFramebuffer));
+
+      if (status != GL_FRAMEBUFFER_COMPLETE)
+      {
+
+         glDeleteTextures(1, &resolve.m_texture);
+
+         glDeleteFramebuffers(1, &resolve.m_framebuffer);
+
+         resolve = {};
+
+         return false;
+      }
+
+      return true;
+   }
+
+   bool resolve_multisampled_framebuffer(GLuint sourceFramebuffer, const resolve_framebuffer &destination, int width,
+                                         int height, GLenum sourceReadBuffer)
+   {
+
+      GLint samples = get_framebuffer_sample_count(sourceFramebuffer);
+
+      if (samples <= 1)
+      {
+
+         // No resolve is necessary.
+         return false;
+      }
+
+      GLint previousReadFramebuffer = 0;
+      GLint previousDrawFramebuffer = 0;
+
+      glGetIntegerv(GL_READ_FRAMEBUFFER_BINDING, &previousReadFramebuffer);
+
+      glGetIntegerv(GL_DRAW_FRAMEBUFFER_BINDING, &previousDrawFramebuffer);
+
+      glBindFramebuffer(GL_READ_FRAMEBUFFER, sourceFramebuffer);
+
+      glReadBuffer(sourceReadBuffer);
+
+      GLenum sourceStatus = glCheckFramebufferStatus(GL_READ_FRAMEBUFFER);
+
+      if (sourceStatus != GL_FRAMEBUFFER_COMPLETE)
+      {
+
+         glBindFramebuffer(GL_READ_FRAMEBUFFER, static_cast<GLuint>(previousReadFramebuffer));
+
+         glBindFramebuffer(GL_DRAW_FRAMEBUFFER, static_cast<GLuint>(previousDrawFramebuffer));
+
+         return false;
+      }
+
+      glBindFramebuffer(GL_DRAW_FRAMEBUFFER, destination.m_framebuffer);
+
+      glDrawBuffer(GL_COLOR_ATTACHMENT0);
+
+      GLenum destinationStatus = glCheckFramebufferStatus(GL_DRAW_FRAMEBUFFER);
+
+      if (destinationStatus != GL_FRAMEBUFFER_COMPLETE)
+      {
+
+         glBindFramebuffer(GL_READ_FRAMEBUFFER, static_cast<GLuint>(previousReadFramebuffer));
+
+         glBindFramebuffer(GL_DRAW_FRAMEBUFFER, static_cast<GLuint>(previousDrawFramebuffer));
+
+         return false;
+      }
+
+      glBlitFramebuffer(0, 0, width, height, 0, 0, destination.m_width, destination.m_height, GL_COLOR_BUFFER_BIT,
+                        GL_NEAREST);
+
+      GLenum error = glGetError();
+
+      glBindFramebuffer(GL_READ_FRAMEBUFFER, static_cast<GLuint>(previousReadFramebuffer));
+
+      glBindFramebuffer(GL_DRAW_FRAMEBUFFER, static_cast<GLuint>(previousDrawFramebuffer));
+
+      return error == GL_NO_ERROR;
+   }
 } // namespace opengl
 
 

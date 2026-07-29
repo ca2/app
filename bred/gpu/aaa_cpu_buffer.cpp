@@ -1,8 +1,8 @@
 #include "framework.h"
-#include "cpu_buffer.h"
+#include "aaa_cpu_buffer.h"
 #include "context.h"
 #include "aura/graphics/image/image.h"
-#include "aura/graphics/image/target.h"
+#include "aura/graphics/image/aaa_target.h"
 //#include "_.h"
 //#include "_gpu.h"
 //#include "_defer.h"
@@ -12,7 +12,7 @@ namespace gpu
 {
 
 
-   cpu_buffer::cpu_buffer()
+   aaa_cpu_buffer::aaa_cpu_buffer()
    {
 
       defer_create_synchronization();
@@ -20,13 +20,13 @@ namespace gpu
    }
 
 
-   cpu_buffer::~cpu_buffer()
+   aaa_cpu_buffer::~aaa_cpu_buffer()
    {
 
    }
 
 
-   void cpu_buffer::initialize_cpu_buffer(::gpu::context * pgpucontext)
+   void aaa_cpu_buffer::initialize_cpu_buffer(::gpu::context * pgpucontext)
    {
 
       m_pgpucontext = pgpucontext;
@@ -34,7 +34,7 @@ namespace gpu
    }
 
 
-   void cpu_buffer::set_size(const ::i32_size & size)
+   void aaa_cpu_buffer::set_size(const ::i32_size & size)
    {
 
       defer_construct_newø(m_pimagetarget);
@@ -51,7 +51,7 @@ namespace gpu
    }
 
 
-   ::image::target* cpu_buffer::get_image_target()
+   ::image::aaa_target* aaa_cpu_buffer::get_image_target()
    {
 
       if (!m_pimagetarget)
@@ -66,7 +66,7 @@ namespace gpu
    }
 
 
-   void cpu_buffer::gpu_read()
+   void aaa_cpu_buffer::gpu_read()
    {
 
       if (m_pimagetarget->m_pimage.nok())
@@ -79,7 +79,7 @@ namespace gpu
    }
 
 
-   void cpu_buffer::gpu_write()
+   void aaa_cpu_buffer::gpu_write()
    {
 
       if (m_pimagetarget->m_pimage.nok())
@@ -93,7 +93,7 @@ namespace gpu
    }
 
 
-   void cpu_buffer::set_pixels(const void* p, ::i32 w, ::i32 h, ::i32 s, bool bYSwap)
+   void aaa_cpu_buffer::set_pixels(const void* p, ::i32 w, ::i32 h, ::i32 s, bool bYSwap)
    {
 
       m_pimagetarget->set_image_pixels((const ::image32_t*)p, w, h, s, bYSwap);

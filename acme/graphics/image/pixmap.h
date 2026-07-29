@@ -20,7 +20,7 @@ public:
    ~pixmap() override;
 
 
-   virtual void create(const ::i32_size &size, ::enum_flag eflagCreate = DEFAULT_CREATE_IMAGE_FLAG,
+   virtual void create_as_descriptor(const ::i32_size &size, ::enum_flag eflagCreate = DEFAULT_CREATE_IMAGE_FLAG,
                        ::i32 iGoodStride = -1, bool bPreserve = false);
 
    virtual void create_from_data(const ::i32_size &size, const ::image32_t *pimage32, ::i32 iScan,
@@ -43,6 +43,7 @@ public:
 
    virtual ::image::image_extension * get_extension();
 
+   virtual void copy(const pixmap_t * ppixmap);
    virtual void copy(const ::i32_size &size, const ::image32_t *pimage32, ::i32 iScan);
 
    virtual void on_load_image(const image32_t *pimage32, const ::i32_size &size, int iScan);

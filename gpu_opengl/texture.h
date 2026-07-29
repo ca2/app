@@ -33,7 +33,7 @@ namespace gpu_opengl
       ::pointer < ::gpu::texture > m_ptextureResolved;
       GLsync            m_glsyncGpuCommandsCompleteFence;
 
-
+      opengl::resolve_framebuffer m_resolveframebuffer;
       texture();
       ~texture() override;
 
@@ -76,7 +76,8 @@ namespace gpu_opengl
       void write_pixels(const ::pixmap * ppixmap) override;
 
       
-      virtual GLuint frame_buffer_object();
+      virtual GLuint target_frame_buffer_object();
+      virtual GLuint source_frame_buffer_object();
 
       // // Loads a cubemap from a single KTX file
       // void texture::KtxLoadCubemapFromFile(
@@ -110,6 +111,7 @@ namespace gpu_opengl
       bool has_pending_fence() const;
 
       virtual void _defer_bind_to_render_target(base_context_handle::object & object);
+      virtual void _defer_bind_to_render_source(base_context_handle::object &object);
    };
 
 

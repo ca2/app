@@ -1148,7 +1148,7 @@ namespace core
 
          }
 
-         m_pimage->create(sizeImage);
+         m_pimage->create_as_descriptor(sizeImage);
 
          {
 

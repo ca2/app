@@ -1,11 +1,11 @@
 #include "framework.h"
 //#include "_gpu_opengl.h"
-#include "cpu_buffer.h"
+#include "aaa_cpu_buffer.h"
 #include "lock.h"
 #include "texture.h"
 #include "acme/parallelization/synchronous_lock.h"
 #include "aura/graphics/image/image.h"
-#include "aura/graphics/image/target.h"
+#include "aura/graphics/image/aaa_target.h"
 #include "bred/gpu/context.h"
 #include "bred/gpu/context_lock.h"
 #include "bred/gpu/layer.h"
@@ -15,19 +15,19 @@ namespace gpu_opengl
 {
 
 
-   cpu_buffer::cpu_buffer()
+   aaa_cpu_buffer::aaa_cpu_buffer()
    {
 
    }
 
 
-   cpu_buffer::~cpu_buffer()
+   aaa_cpu_buffer::~aaa_cpu_buffer()
    {
 
    }
 
 
-   void cpu_buffer::gpu_read()
+   void aaa_cpu_buffer::gpu_read()
    {
 
       _synchronous_lock synchronouslock(this->synchronization(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
@@ -43,7 +43,7 @@ namespace gpu_opengl
 
       ::cast < texture > ptexture = m_pgpucontext->current_target_texture(::gpu::current_layer());
 
-      auto gluSrcFbo = ptexture->frame_buffer_object();
+      auto gluSrcFbo = ptexture->source_frame_buffer_object();
 
       if (!gluSrcFbo)
       {
@@ -53,6 +53,7 @@ namespace gpu_opengl
       }
 
       glBindFramebuffer(GL_READ_FRAMEBUFFER, gluSrcFbo);
+      ::opengl::check_error("glBindFramebuffer READ");
 
       ////m_pixmap.map();
 
@@ -146,7 +147,9 @@ namespace gpu_opengl
             GL_UNSIGNED_BYTE,
             s,
             p);
-         ::opengl::check_error("");
+         
+         ::opengl::check_error("glReadnPixels error (1)");
+
       }
       else
       {
@@ -163,17 +166,17 @@ namespace gpu_opengl
             //GL_RGBA,
             GL_UNSIGNED_BYTE,
             p);
-         ::opengl::check_error("");
+         ::opengl::check_error("glReadnPixels error (2)");
 
       }
-      ::i32 iError = glGetError();
+      //::i32 iError = glGetError();
 
-      if(iError != 0)
-      {
+      //if(iError != 0)
+      //{
 
-         warningf("glReadnPixels error %d = \"%s\"", iError, opengl_error_string(iError));
+      //   warningf("glReadnPixels error %d = \"%s\"", iError, opengl_error_string(iError));
 
-      }
+      //}
 
       //::memory_set(m_pixmap.m_pimage32Raw, 127, cx * cy * 4);
 
@@ -205,7 +208,7 @@ namespace gpu_opengl
    }
 
 
-   void cpu_buffer::gpu_write()
+   void aaa_cpu_buffer::gpu_write()
    {
 
       synchronous_lock synchronouslock(this->synchronization(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);

@@ -2512,9 +2512,10 @@ namespace gpu_opengl
    }
 
 
-   void context::resize_cpu_buffer(const ::i32_size &sizeParam)
+   void context::resize_cpu_buffer21(const ::i32_size &sizeParam)
    {
 
+      throw todo;
       //if (m_papplication->m_bUseSwapChainWindow)
       {
 
@@ -2528,7 +2529,9 @@ namespace gpu_opengl
       {
          //if (!m_pcpubuffer)
 
-         create_cpu_buffer(size);
+            throw todo;
+
+         create_cpu_buffer21(size);
 
          ::gpu::context_lock contextlock(this);
          ///m_pcpubuffer->m_pixmap.create(m_pcpubuffer->m_memory, size);
@@ -2666,8 +2669,10 @@ namespace gpu_opengl
    // }
 
 
-   void context::destroy_cpu_buffer()
+   void context::destroy_cpu_buffer21()
    {
+
+      throw todo;
 
 #if defined(WINDOWS_DESKTOP)
 

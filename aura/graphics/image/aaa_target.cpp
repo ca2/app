@@ -3,7 +3,7 @@
 #include "image.h"
 #include "context.h"
 #include "drawing.h"
-#include "target.h"
+#include "aaa_target.h"
 #include "acme/parallelization/synchronous_lock.h"
 #include "acme/platform/node.h"
 #include "aura/graphics/draw2d/graphics_pointer.h"
@@ -13,19 +13,19 @@ namespace image
 {
 
 
-   target::target()
+   aaa_target::aaa_target()
    {
 
    }
 
 
-   target::~target()
+   aaa_target::~aaa_target()
    {
 
    }
 
 
-   void target::on_initialize_particle()
+   void aaa_target::on_initialize_particle()
    {
 
       m_pparticleSynchronization = node()->create_mutex();
@@ -35,7 +35,7 @@ namespace image
    }
 
 
-   void target::_001OnDraw(::draw2d::graphics_pointer & pgraphics)
+   void aaa_target::_001OnDraw(::draw2d::graphics_pointer & pgraphics)
    {
 
       if (::is_ok(m_pimage))
@@ -58,17 +58,17 @@ namespace image
    }
 
 
-   void target::set_size(const ::i32_size& size)
+   void aaa_target::set_size(const ::i32_size& size)
    {
 
       _synchronous_lock synchronouslock(m_pparticleSynchronization, DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 
-      m_pimage->create(size);
+      m_pimage->create_as_descriptor(size);
 
    }
 
 
-   void target::set_image_pixels(const ::image32_t* pimage32, ::i32 w, ::i32 h, ::i32 stride, bool bYSwap)
+   void aaa_target::set_image_pixels(const ::image32_t* pimage32, ::i32 w, ::i32 h, ::i32 stride, bool bYSwap)
    {
 
       ::i32_size s(w, h);
@@ -77,7 +77,7 @@ namespace image
 
          _synchronous_lock synchronouslock(m_pparticleSynchronization, DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 
-         m_pimage->create(s);
+         m_pimage->create_as_descriptor(s);
 
          if (bYSwap)
          {
@@ -155,7 +155,7 @@ namespace image
    }
 
 
-   void target::do_target()
+   void aaa_target::do_target()
    {
 
       m_imagebuffer.unlock();
@@ -170,7 +170,7 @@ namespace image
    }
 
 
-   void target::on_image_pixels()
+   void aaa_target::on_image_pixels()
    {
 
       if (m_callbackOnImagePixels)
@@ -183,7 +183,7 @@ namespace image
    }
 
 
-   ::image::lock target::no_padded_lock(::image::enum_copy_disposition ecopydisposition)
+   ::image::aaa_lock aaa_target::no_padded_lock(::image::enum_copy_disposition ecopydisposition)
    {
 
       return m_imagebuffer.no_padding_lock(ecopydisposition, m_pimage);
@@ -191,7 +191,7 @@ namespace image
    }
 
 
-   ::image::lock target::source_scan_lock(::image::enum_copy_disposition ecopydisposition)
+   ::image::aaa_lock aaa_target::source_scan_lock(::image::enum_copy_disposition ecopydisposition)
    {
 
       return m_imagebuffer.source_lock(ecopydisposition, m_pimage);
@@ -199,7 +199,7 @@ namespace image
    }
 
 
-   ::image::targeting target::no_padded_targeting(::image::enum_copy_disposition ecopydisposition)
+   ::image::aaa_targeting aaa_target::no_padded_targeting(::image::enum_copy_disposition ecopydisposition)
    {
 
       m_imagebuffer.no_padding_lock(ecopydisposition, m_pimage);
@@ -209,7 +209,7 @@ namespace image
    }
 
 
-   ::image::targeting target::source_scan_targeting(::image::enum_copy_disposition ecopydisposition)
+   ::image::aaa_targeting aaa_target::source_scan_targeting(::image::enum_copy_disposition ecopydisposition)
    {
 
       m_imagebuffer.source_lock(ecopydisposition, m_pimage);
@@ -219,7 +219,7 @@ namespace image
    }
 
 
-   //void target::unlock(const ::pixmap* ppixmap)
+   //void aaa_target::unlock(const ::pixmap* ppixmap)
    //{
 
    //   m_imagebuffer.unlock(ppixmap);
@@ -227,7 +227,7 @@ namespace image
    //}
 
 
-   targeting::targeting(::image::target* pimagetarget)
+   aaa_targeting::aaa_targeting(::image::aaa_target* pimagetarget)
    {
 
       m_pimagetarget = pimagetarget;
@@ -235,7 +235,7 @@ namespace image
    }
 
 
-   targeting::~targeting()
+   aaa_targeting::~aaa_targeting()
    {
 
       m_pimagetarget->do_target();
@@ -243,7 +243,7 @@ namespace image
    }
 
 
-   ::i32 targeting::width() const
+   ::i32 aaa_targeting::width() const
    {
 
       return m_pimagetarget->m_imagebuffer.width();
@@ -251,7 +251,7 @@ namespace image
    }
 
 
-   ::i32 targeting::height() const
+   ::i32 aaa_targeting::height() const
    {
 
       return m_pimagetarget->m_imagebuffer.height();
@@ -259,7 +259,7 @@ namespace image
    }
 
 
-   ::i32 targeting::scan() const
+   ::i32 aaa_targeting::scan() const
    {
 
       return m_pimagetarget->m_imagebuffer.scan_size();
@@ -267,7 +267,7 @@ namespace image
    }
 
 
-   image32_t* targeting::data()
+   image32_t* aaa_targeting::data()
    {
 
       return m_pimagetarget->m_imagebuffer.data();

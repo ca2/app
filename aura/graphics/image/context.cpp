@@ -174,7 +174,7 @@ namespace image
       else
       {
 
-         pimage->create(size, eflagCreate);
+         pimage->create_as_descriptor(size, eflagCreate);
 
          // if (::is_set(pcolor))
          //{
@@ -1019,7 +1019,7 @@ namespace image
       //{
 
          //if (!)
-      pimage->create({ w, h });
+      pimage->create_as_descriptor({w, h});
       //{
 
       //   return false;

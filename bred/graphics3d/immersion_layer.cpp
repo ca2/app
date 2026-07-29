@@ -92,16 +92,17 @@ namespace graphics3d
    {
 
       auto pos = set.get("position", ::f32_array_base{0.f, 0.f, 0.f});
+      
       auto rot = set.get("rotation", ::f32_array_base{0.f, 0.f});
 
       m_initialCameraPosition = {pos[0], pos[1], pos[2]};
+
       m_rotationInitialCamera.set(::degrees(rot[0]), ::degrees(rot[1]));
 
       m_pscene->m_bInitialCameraLoaded = true;
 
       information("Camera position: ({}, {}, {}), rotation (deg): ({}, {}, {})", pos[0], pos[1], pos[2], rot[0], rot[1],
                   rot[2]);
-
 
    }
 

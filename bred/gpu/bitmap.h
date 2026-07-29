@@ -1,0 +1,41 @@
+// Created by camilo on 2026-07-27 14:16 <3ThomasBorregaardSørensen!! Mummi!! Bilbo!!
+#pragma once
+
+
+#include "aura/graphics/draw2d/bitmap.h"
+
+
+namespace gpu 
+{
+
+   class CLASS_DECL_BRED bitmap :
+      virtual public ::draw2d::bitmap
+   {
+   public:
+
+
+      ::pointer<::gpu::texture> m_pgputexture;
+
+
+      bitmap();
+      ~bitmap();
+
+
+      void destroy() override;
+
+
+      void create_bitmap(::draw2d::graphics *pgraphics, const ::i32_size &size, image32_t **ppimage32,
+                                 const image32_t *pimage32, ::i32 *piScan) override;
+      
+      virtual ::gpu::texture *gpu_texture() const;
+      virtual void create_gpu_texture(pixmap_t *ppixmap = nullptr);
+      virtual void initialize_gpu_bitmap(::gpu::context *pgpucontext, const ::i32_size &size,
+                                        const ::gpu::texture_data &texturedata);
+      virtual ::gpu::texture *get_gpu_texture();
+
+   };
+
+} // namespace gpu 
+
+
+

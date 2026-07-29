@@ -2993,14 +2993,14 @@ void simple_frame_window::_001OnDraw(::draw2d::graphics_pointer & pgraphics)
 
          if (rectangleX.size() != m_pimageBk->size())
          {
-            m_pimageBk->create(rectangleX.size());
+            m_pimageBk->create_as_descriptor(rectangleX.size());
             m_pimageBk->clear_argb(0, 200, 200, 190);
             //HMODULE hmodule = ::LoadLibrary("ca2performance.dll");
             //::image::fastblur *( *pfnNew )(::pointer<::aura::application> = (::image::fastblur *(*)(::pointer<::aura::application> ::GetProcAddress(hmodule, "new_fastblur");
             //m_pimageBlur->create(this);
             //m_fastblur.initialize(rectangleX.size(),2);
 
-            m_pimageBlur->create(rectangleX.size());
+            m_pimageBlur->create_as_descriptor(rectangleX.size());
 
          }
 

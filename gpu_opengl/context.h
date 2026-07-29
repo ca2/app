@@ -103,8 +103,8 @@ namespace gpu_opengl
 
 
       //void _create_cpu_buffer(const ::i32_size& size) override;
-      void resize_cpu_buffer(const ::i32_size& size) override;
-      void destroy_cpu_buffer() override;
+      void resize_cpu_buffer21(const ::i32_size& size) override;
+      void destroy_cpu_buffer21() override;
 
       
       void set_matrix_uniform(const ::gpu::payload & uniformMatrix) override;

@@ -35,8 +35,8 @@ namespace draw2d_cairo
 
       void dc_select(bool bSelect = true) override;
 
-      void create(const ::i32_size & size, ::enum_flag eflagCreate = OK_IMAGE, ::i32 iGoodStride = -1, bool bPreserve = false) override;
-      void create(::draw2d::graphics * pgraphics) override;
+      //void create(const ::i32_size & size, ::enum_flag eflagCreate = OK_IMAGE, ::i32 iGoodStride = -1, bool bPreserve = false) override;
+      void create_from_graphics(::draw2d::graphics * pgraphics) override;
       void destroy() override;
 
       bool on_host_read_pixels(::pixmap_t * ppixmap) const override;

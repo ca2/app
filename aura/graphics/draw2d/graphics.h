@@ -113,7 +113,7 @@ namespace draw2d
       ::draw2d::brush_pointer                m_pbrush;
       ::draw2d::region_pointer               m_pregion;
       bool                                   m_bStoreThumbnails;
-
+      ::draw2d::bitmap_pointer               m_pbitmapTarget;
       ::f64_point                            m_point;
 
    protected:
@@ -227,11 +227,15 @@ namespace draw2d
       //virtual oswindow get_window_handle() const;
       virtual void defer_snapshot_for_composition();
 
+      //virtual void coordinate_image(::image::image *pimage);
 
       inline ::draw2d::graphics* g(const ::f64_size& sizeHint) { return this; }
       inline ::f64_size origin() const { return ::f64_size(); }
 
       bool _is_ok() const override;
+
+
+      virtual ::draw2d::bitmap *get_target_bitmap();
 
       ::image::image_pointer image_source_image(const ::i32_size& sizeDst) override;
 
@@ -371,7 +375,7 @@ namespace draw2d
       virtual void create_compatible_graphics(::draw2d::graphics* pgraphics);
       virtual void create_window_graphics(const ::operating_system::window & operatingsystemwindow);
 
-      virtual void create_draw2d_graphics(::draw2d::bitmap *pbitmap);
+      virtual void create_bitmap_graphics(::draw2d::bitmap *pbitmap);
 
 
       virtual ::pointer < ::draw2d::path > create_path();

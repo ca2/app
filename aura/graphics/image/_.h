@@ -38,7 +38,7 @@ namespace image
    using icon_pointer = ::pointer<icon>;
 
 
-   class target;
+   class aaa_target;
 
 
 } // namespace image

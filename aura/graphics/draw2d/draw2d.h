@@ -125,7 +125,7 @@ namespace draw2d
 
       virtual graphics_pointer create_graphics(::draw2d::host * pdraw2dhost);
 
-      virtual graphics_pointer create_memory_graphics(::draw2d::host * pdraw2dhost);
+      virtual graphics_pointer create_memory_graphics(::draw2d::host *pdraw2dhost, const ::i32_size &size);
 
       virtual ::draw2d::graphics_lease acquire_memory_graphics(const ::i32_size &size,
          ::draw2d::host * pdraw2dhost = nullptr);

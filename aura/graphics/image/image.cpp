@@ -200,6 +200,15 @@ bool image::_is_ok() const
 
    //}
 
+   if (::is_null(pdraw2dhost))
+   {
+
+      ::cast<::draw2d::host> pdraw2dhostMain = m_papplication->m_pacmeuserinteractionMain;
+
+      pdraw2dhost = pdraw2dhostMain;
+
+   }
+
    return ::transfer(_acquire_graphics(pdraw2dhost));
 
 }

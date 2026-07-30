@@ -9136,12 +9136,14 @@ void window::on_keyboard_layout_change(const_char_pointer pszKeyboardLayoutId)
 
          //}
 
-         if (::is_null(m_papplication->m_pacmeuserinteractionMain))
-         {
+         //auto pacmeuserinteractionMain = application()->main_acme_user_interaction();
 
-            m_papplication->m_pacmeuserinteractionMain = user_interaction();
+         //if (::is_null(pacmeuserinteractionMain))
+         //{
 
-         }
+         //   m_pacmeuserinteractionMain = user_interaction();
+
+         //}
 
          //draw2d()->on_create_window(this);
 

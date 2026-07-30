@@ -4,12 +4,18 @@
 #include "tiny_array.h"
 
 
-class osdata_array
+class CLASS_DECL_ACME osdata_array
 {
 public:
 
 
    tiny_array < void* >   m_osdata;
+
+
+   osdata_array();
+   osdata_array(const osdata_array& a);
+   osdata_array(osdata_array && a);
+   ~osdata_array();
 
 
    void set_os_data(::i32 i, void* p)

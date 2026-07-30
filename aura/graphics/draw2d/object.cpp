@@ -36,6 +36,17 @@ namespace draw2d
    }
 
 
+   object::object(object&& object) :
+      m_osdata(object.m_osdata),
+      m_baCalculated(object.m_baCalculated),
+      m_pointUserOffset(object.m_pointUserOffset)
+   {
+
+
+
+   }
+
+
    object::~object()
    {
        

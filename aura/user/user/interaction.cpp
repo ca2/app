@@ -4462,10 +4462,12 @@ namespace user
 
             ::cast < ::thread > pthread = papplication;
 
-            if (pthread->m_pacmeuserinteractionActive == this)
+            auto pacmeuserinteractionActive = pthread->active_acme_user_interaction();
+
+            if (pacmeuserinteractionActive == this)
             {
 
-               pthread->m_pacmeuserinteractionActive = nullptr;
+               pacmeuserinteractionActive = nullptr;
 
             }
 
@@ -8613,6 +8615,38 @@ if(get_parent())
    {
 
 
+
+      if (is_top_level_window() && !is_message_only_window())
+      {
+
+         //_synchronous_lock synchronouslock(this->synchronization(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
+
+         //if (get_app()->get_context_system() != nullptr)
+         //{
+
+         //   psystem->add_frame(this);
+
+         //}
+
+         //if (get_app()->get_session() != nullptr)
+         //{
+
+         //   psession->add_frame(this);
+
+         //}
+
+         if (get_app() != nullptr)
+         {
+
+            ::pointer<::aura::application> papp = get_app();
+
+            papp->add_user_interaction(this);
+
+         }
+
+      }
+
+
       //m_pwindowbase = this->window();
 
 
@@ -8736,36 +8770,6 @@ if(get_parent())
       route(ptopic);
 
       //
-
-      if (is_top_level_window() && !is_message_only_window())
-      {
-
-         //_synchronous_lock synchronouslock(this->synchronization(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
-
-         //if (get_app()->get_context_system() != nullptr)
-         //{
-
-         //   psystem->add_frame(this);
-
-         //}
-
-         //if (get_app()->get_session() != nullptr)
-         //{
-
-         //   psession->add_frame(this);
-
-         //}
-
-         if (get_app() != nullptr)
-         {
-
-            ::pointer<::aura::application> papp = get_app();
-
-            papp->add_user_interaction(this);
-
-         }
-
-      }
 
       //try
       //{

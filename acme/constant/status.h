@@ -134,6 +134,7 @@ enum enum_status : ::i64
    error_discontinued,
    error_operation_not_permitted,
    error_resource_deadlock_would_occur,
+   error_not_run,
 
 
 error_time_bag = INT_FAILURE_STATUS(STATUS_RANGE_EXCEPTION),

@@ -10651,7 +10651,7 @@ void application::setResourceName(::i32 iId, const ::scoped_string &scopedstrRes
 
             pdialog->create();
 
-            ::f32 max_width = system()->acme_windowing()->acme_display()->get_main_screen_size().cx;
+            ::f32 max_width = (::f32) system()->acme_windowing()->acme_display()->get_main_screen_size().cx;
 
             ::string strTitle;
 

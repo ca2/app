@@ -40,6 +40,25 @@ particle::~particle()
 }
 
 
+
+particle& particle::operator = (const ::particle& particle)
+{
+
+   if (this != &particle)
+   {
+
+      signal_handler::base::operator=(particle);
+
+      m_papplication = particle.m_papplication;
+      m_pparticleSynchronization = particle.m_pparticleSynchronization;
+
+   }
+
+   return *this;
+
+}
+
+
 void particle::_initialize_particle(::particle* pparticle)
 {
 

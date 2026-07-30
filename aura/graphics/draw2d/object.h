@@ -6,6 +6,12 @@
 //#include "acme/prototype/prototype/matter.h"
 
 
+#define DRAW2D_OBJECT_TRANSFER(a) \
+::draw2d::object(::transfer(a)), \
+::osdata_array(::transfer(a)), \
+MATTER_TRANSFER(a)
+
+
 namespace draw2d
 {
 
@@ -17,7 +23,7 @@ namespace draw2d
    public:
 
 
-      void *         m_pthis;
+      //void *         m_pthis;
       //void *         m_powner = nullptr; // in a normal usage/flow I can machine the object only if I am the owner, otherwise create another object
       void *         m_osdata[8] = {};
       bool           m_baCalculated[8] = {};
@@ -28,6 +34,7 @@ namespace draw2d
 
 
       object();
+      object(object && object);
       ~object() override;
 
 

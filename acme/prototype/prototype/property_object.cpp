@@ -9,8 +9,50 @@
 //#include "acme/prototype/mathematics/c_number.h"
 
 
+property_object::property_object()
+{
+
+
+}
+
+
+property_object::property_object(const property_object& propertyobject)  :
+   MATTER_COPY_CONSTRUCT(propertyobject),
+   m_ppropertyset(m_ppropertyset->clone())
+{
+
+}
+
+
+property_object::property_object(property_object&& propertyobject) :
+   MATTER_TRANSFER(propertyobject),
+   m_ppropertyset(::transfer(m_ppropertyset))
+{
+
+
+}
+
 property_object::~property_object()
 {
+
+}
+
+
+
+property_object& property_object::operator =(const ::property_object& propertyobject)
+{
+
+   if (this != &propertyobject)
+   {
+
+      ::matter::operator = (propertyobject);
+
+      m_ppropertyset = propertyobject.m_ppropertyset->clone();
+
+   }
+
+
+   return *this;
 
 }
 

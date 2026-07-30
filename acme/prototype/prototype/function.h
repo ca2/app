@@ -999,11 +999,62 @@ concept prototype_arguments_procedure =
 };
 
 
+#define SIGNAL_HANDLER_BASE_TRANSFER(a) \
+::signal_handler::base(::transfer(a)), \
+SUBPARTICLE_TRANSFER(a)
+
+
+#define SIGNAL_HANDLER_BASE_COPY_CONSTRUCT(a) \
+::signal_handler::base(a), \
+SUBPARTICLE_COPY_CONSTRUCT(a)
+
+
 template < typename ... ARGUMENTS>
 class arguments_procedure_base :
    virtual public ::subparticle
 {
 public:
+
+
+   arguments_procedure_base()
+   {
+
+   }
+
+   arguments_procedure_base(const arguments_procedure_base& base) :
+      SUBPARTICLE_COPY_CONSTRUCT(base)
+   {
+
+
+   }
+
+   arguments_procedure_base(arguments_procedure_base && base) :
+      SUBPARTICLE_TRANSFER(base)
+
+   {
+
+
+   }
+
+   ~arguments_procedure_base()
+   {
+
+   }
+
+
+   arguments_procedure_base& operator = (const arguments_procedure_base& base)
+   {
+
+      if (this != &base)
+      {
+
+         ::subparticle::operator = (base);
+
+      }
+
+      return *this;
+
+   }
 
    virtual void operator()(ARGUMENTS... arguments)= 0;
 

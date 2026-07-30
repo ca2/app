@@ -22,9 +22,12 @@ namespace gpu
 
 	void properties_reference::_set_matrix4(const ::floating_matrix4 &matrix4)
    {
+
       ::cast<::gpu::approach> pgpuapproach = system()->m_papplication->get_gpu_approach();
 
-      ::cast<::gpu::device> pgpudevice = pgpuapproach->get_gpu_device(system()->m_papplication->m_pacmeuserinteractionMain->m_pacmewindowingwindow);
+		auto pacmeuserinteractionMain = system()->m_papplication->main_acme_user_interaction();
+
+      ::cast<::gpu::device> pgpudevice = pgpuapproach->get_gpu_device(pacmeuserinteractionMain->m_pacmewindowingwindow);
 
 		pgpudevice->set_matrix4(m_blockWithSamplers.data(), matrix4);
 

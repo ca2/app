@@ -24,8 +24,7 @@ namespace gpu
       void destroy() override;
 
 
-      void create_bitmap(::draw2d::graphics *pgraphics, const ::i32_size &size, image32_t **ppimage32,
-                                 const image32_t *pimage32, ::i32 *piScan) override;
+      void create_bitmap(::draw2d::graphics *pgraphics, const ::i32_size &size, ::memory & memory, ::i32 *piScan) override;
       
       virtual ::gpu::texture *gpu_texture() const;
       virtual void create_gpu_texture(pixmap_t *ppixmap = nullptr);

@@ -12,6 +12,16 @@
 #include "acme/parallelization/synchronous_lock.h"
 
 
+#define MATTER_TRANSFER(a) \
+::matter(::transfer(a)), \
+PARTICLE_TRANSFER(a)
+
+
+#define MATTER_COPY_CONSTRUCT(a) \
+::matter(a), \
+PARTICLE_COPY_CONSTRUCT(a)
+
+
 class CLASS_DECL_ACME matter :
    virtual public ::particle
 {
@@ -68,8 +78,13 @@ public:
 //#endif
 
    matter() { }
+   matter(const matter& matter);
+   matter(matter&& matter);
    ~matter() override;
 
+
+
+   matter& operator = (const ::matter& matter);
 
    //virtual void  assert_ok() const;
    //virtual void  dump(dump_context& dumpcontext) const;

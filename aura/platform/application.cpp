@@ -3800,10 +3800,11 @@ retry_license:
 
             m_puserinteractionaFrame->add_unique_interaction(puserinteraction);
 
-            if (m_pacmeuserinteractionMain == nullptr)
+            if (main_acme_user_interaction() == nullptr)
             {
 
-               m_pacmeuserinteractionMain = puserinteraction;
+               set_main_acme_user_interaction(puserinteraction);
+
             }
 
          }
@@ -10059,7 +10060,28 @@ namespace aura
    }
 
 
-      //::aura::game *application::game() { 
+   void application::on_set_main_acme_user_interaction(::acme::user::interaction* pacmeuserinteractionMain)
+   {
+
+      auto puser = session()->user();
+
+      puser->on_set_application_main_acme_user_interaction(this, pacmeuserinteractionMain);
+
+   }
+
+
+   
+   void application::on_set_active_acme_user_interaction(::acme::user::interaction* pacmeuserinteractionActive)
+   {
+
+      auto puser = session()->user();
+
+      puser->on_set_application_active_acme_user_interaction(this, pacmeuserinteractionActive);
+
+   }
+
+   
+   //::aura::game *application::game() { 
       //   
       //   ::cast<::aura::game> pauragame = m_paquagame;
       //   

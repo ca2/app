@@ -119,6 +119,21 @@ return {};
    }
 
 
+   void core_user_layer::on_will_use_impact_hint(::atom idImpact)
+   {
+
+
+   }
+
+
+   void core_user_layer::process_will_use_impact_hint()
+   {
+
+
+
+   }
+
+
    //void core_user_layer::term_instance() override{}
 
 

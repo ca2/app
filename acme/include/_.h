@@ -175,6 +175,11 @@
 //#endif
 #include  "acme/platform/class.h"
 
+
+#include  "acme/quality/self_test.h"
+
+
+
 //#include "acme/handler/sequence.h"
 //#include "acme/platform/message_box.h"
 

@@ -4,6 +4,8 @@
 
 namespace image
 {
+
+
    image_dynamic::image_dynamic()
    {
 
@@ -12,4 +14,22 @@ namespace image
       m_iFrame = -1;
 
    }
+
+
+   image_dynamic::image_dynamic(image_dynamic&& imagedynamic)
+   {
+
+      imagedynamic.m_bStart = false;
+
+      imagedynamic.m_iFrame = -1;
+
+   }
+
+
+   image_dynamic::~image_dynamic()
+   {
+
+
+   }
+
 } // namespace image

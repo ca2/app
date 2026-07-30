@@ -12,7 +12,8 @@ namespace acme
 {
 
 
-   class CLASS_DECL_ACME message : virtual public ::property_object
+   class CLASS_DECL_ACME message : 
+      virtual public ::property_object
    {
    public:
 
@@ -27,6 +28,9 @@ namespace acme
       lparam m_lparam;
       lresult m_lresult;
       bool m_bRet = false;
+
+
+      message & operator = (const ::acme::message& message);
 
 
       virtual ::user::activation_token *user_activation_token();

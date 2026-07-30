@@ -145,9 +145,9 @@ namespace graphics
 
             m_pimageCircle->create_as_descriptor({diamRound, diamRound});
 
-            ///m_pimageCircle->map();
+            auto mapImageCircle = m_pimageCircle->map();
 
-            m_pimageCircle->fill_byte(0);
+            mapImageCircle.fill_byte(0);
 
             for (::i32 x = 0; x < diamRound; x++)
             {
@@ -214,13 +214,13 @@ namespace graphics
 
                   color.set_opacity(opacity);
 
-                  m_pimageCircle->set_pixel(x, y, color);
+                  mapImageCircle.set_pixel(x, y, color);
 
                }
 
             }
 
-            m_pimageCircle->unmap();
+            //m_pimageCircle->unmap();
 
             //m_pimageCirce->g()->fill_ellipse(ellipse0);
 

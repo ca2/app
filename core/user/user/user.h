@@ -140,6 +140,8 @@ namespace core
       //
 
 
+      //void on_will_use_impact_hint(::atom idImpact);
+
       void destroy() override;
 
 
@@ -205,6 +207,10 @@ namespace core
 
 
       void will_use_impact_hint(::atom idImpact) override;
+
+      void on_will_use_impact_hint(::atom idImpact) override;
+
+      void process_will_use_impact_hint() override;
 
 
       void term_instance() override;
@@ -731,6 +737,8 @@ namespace core
 
       ::pointer<::user::impact_system> create_impact_system(const ::atom &atomImpactId) override;
 
+      void on_set_application_main_acme_user_interaction(::platform::application* papplication, ::acme::user::interaction* pacmeuserinteractionMain);
+      void on_set_application_active_acme_user_interaction(::platform::application* papplication, ::acme::user::interaction* pacmeuserinteractionMain);
 
    };
 

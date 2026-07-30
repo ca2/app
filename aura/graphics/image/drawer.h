@@ -192,6 +192,10 @@ namespace image
 
       //}
 
+      image_drawer();
+      image_drawer(const image_drawer & imagedrawer);
+      ~image_drawer() override;
+
 
       virtual ::i32_size get_image_drawer_size() const = 0;
 

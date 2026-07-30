@@ -10,6 +10,8 @@
 #include "acme/prototype/prototype/pointer.h"
 #include "acme/parallelization/critical_section.h"
 #include "acme/prototype/time/time/time.h"
+#include "acme/quality/self_test.h"
+
 
 namespace acme
 {
@@ -25,6 +27,7 @@ namespace acme
 
       //static ::acme::acme *                     s_p;
 
+      ::self_test *                             m_pselftest;
 
       //::pointer < ::platform::platform >      m_pplatform;
       ::heap::management *                      m_pheapmanagement;

@@ -24,6 +24,16 @@ namespace draw2d
    }
 
 
+   bitmap::bitmap(bitmap&& bitmap) :
+      DRAW2D_OBJECT_TRANSFER(bitmap),
+      m_size(bitmap.m_size),
+      m_iStride(bitmap.m_iStride)
+   {
+
+
+   }
+
+
    bitmap::~bitmap()
    {
 
@@ -112,13 +122,30 @@ namespace draw2d
 //   }
 
 
-   void bitmap::create_bitmap(::draw2d::graphics * pgraphics, const ::i32_size & size,::image32_t ** ppimage32, const ::image32_t * pimage32,::i32 * stride)
+   void bitmap::create_bitmap_for_image(::image::image* pimage)
+   {
+
+      throw ::interface_only();
+
+   }
+
+
+   void bitmap::preserve_image(const ::i32_size& size, ::image::image* pimage)
+   {
+
+      throw ::interface_only();
+
+   }
+
+
+   void bitmap::create_bitmap(::draw2d::graphics * pgraphics, const ::i32_size & size, ::memory & memory, ::i32 * stride)
    {
 
       __UNREFERENCED_PARAMETER(pgraphics);
       __UNREFERENCED_PARAMETER(size);
-      __UNREFERENCED_PARAMETER(ppimage32);
-      __UNREFERENCED_PARAMETER(pimage32);
+      //__UNREFERENCED_PARAMETER(ppimage32);
+      //__UNREFERENCED_PARAMETER(pimage32);
+      __UNREFERENCED_PARAMETER(memory);
       __UNREFERENCED_PARAMETER(stride);
 
       throw ::interface_only();

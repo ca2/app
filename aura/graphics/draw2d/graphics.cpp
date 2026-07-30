@@ -478,6 +478,14 @@ namespace draw2d
    }
 
 
+   void graphics::create_for_image(::image::image* pimage)
+   {
+
+      create_bitmap_graphics(pimage->get_bitmap());
+
+   }
+
+
    void graphics::create_device_context(const ::scoped_string & scopedstrDriverName, const ::scoped_string & scopedstrDeviceName, const ::scoped_string & scopedstrOutput, const void * pInitData)
    {
 
@@ -2860,6 +2868,22 @@ namespace draw2d
    }
 
 
+   void graphics::clear(const ::color::color& color)
+   {
+
+      auto alphamode = alpha_mode();
+
+      set_alpha_mode(e_alpha_mode_set);
+
+      ::f64_rectangle rectangle(this->size());
+
+      fill_solid_rectangle(rectangle, color);
+
+      set_alpha_mode(alphamode);
+
+   }
+
+
    void graphics::color_blend_3dRect(const i32_rectangle & rectangleParam, const ::color::color & colorTopLeft, const class ::opacity & opacityTopLeft, const class ::color::color & colorBottomRight, const class ::opacity & opacityBottomRight)
    {
 
@@ -3301,7 +3325,7 @@ namespace draw2d
 
       m_pointOrigin.x += dx;
 
-      auto sizeOffset = total_size();
+      auto sizeOffset = size();
 
       //if (_m_bYFlip)
       //{
@@ -3358,7 +3382,7 @@ namespace draw2d
    }
 
 
-   ::f64_size graphics::total_size()
+   ::f64_size graphics::size() const
    {
 
       if (m_pimage)
@@ -4858,25 +4882,25 @@ namespace draw2d
    }
 
 
-   ::f64_size graphics::get_size() const
-   {
+   //::f64_size graphics::size() const
+   //{
 
-      if (::is_null(m_pimage))
-      {
+   //   if (::is_null(m_pimage))
+   //   {
 
-         return ::f64_size();
+   //      return ::f64_size();
 
-      }
+   //   }
 
-      return m_pimage->get_size();
+   //   return m_pimage->get_size();
 
-   }
+   //}
 
 
    ::i32_size graphics::get_image_drawer_size() const
    {
 
-      return get_size();
+      return size();
 
    }
 
@@ -6869,7 +6893,7 @@ namespace draw2d
 
          auto scalingYFlip = ::geometry2d::matrix::scaling(sizeYFlip);
 
-         auto sizeTotal = total_size();
+         auto sizeTotal = size();
 
          ::f64_size pointYFlip(0, sizeTotal.height());
 

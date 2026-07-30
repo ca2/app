@@ -490,6 +490,18 @@
     <Filter Include="Header Files\user\interface">
       <UniqueIdentifier>{a233bc3b-7e54-4302-8173-ff5b26ebfbef}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Source Files\prototype\geometry">
+      <UniqueIdentifier>{c37260ca-3c2b-4a77-b10c-5c045c0eb699}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\quality">
+      <UniqueIdentifier>{876e390d-c362-475c-a2a2-c01db6d656ac}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\quality\NewFilter1">
+      <UniqueIdentifier>{9ee221fb-8aa3-4ec5-91d7-cbf84d22265d}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\quality">
+      <UniqueIdentifier>{91055bda-96bd-4c78-a9ef-5666511f060b}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="filesystem\filesystem.h">
@@ -2949,9 +2961,6 @@
     <ClInclude Include="operating_system\_.h">
       <Filter>Header Files\operating_system</Filter>
     </ClInclude>
-    <ClInclude Include="operating_system\aaa_operating_system_summary.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="prototype\prototype\_impl_atom.h">
       <Filter>Header Files\prototype\prototype</Filter>
     </ClInclude>
@@ -4466,6 +4475,15 @@
     </ClInclude>
     <ClInclude Include="graphics\image\pixmap_t.h">
       <Filter>Header Files\graphics\image</Filter>
+    </ClInclude>
+    <ClInclude Include="operating_system\aaa_operating_system_summary.h">
+      <Filter>Header Files\operating_system</Filter>
+    </ClInclude>
+    <ClInclude Include="quality\self_test_item.h">
+      <Filter>Header Files\quality</Filter>
+    </ClInclude>
+    <ClInclude Include="quality\self_test.h">
+      <Filter>Header Files\quality</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -6428,6 +6446,21 @@
     <ClCompile Include="graphics\image\pixmap_t.cpp">
       <Filter>Source Files\graphics\image</Filter>
     </ClCompile>
+    <ClCompile Include="prototype\collection\osdata_array.cpp">
+      <Filter>Source Files\prototype\collection</Filter>
+    </ClCompile>
+    <ClCompile Include="prototype\geometry\sequence.cpp">
+      <Filter>Source Files\prototype\geometry</Filter>
+    </ClCompile>
+    <ClCompile Include="quality_test_context.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="quality\self_test.cpp">
+      <Filter>Source Files\quality</Filter>
+    </ClCompile>
+    <ClCompile Include="quality\self_test_item.cpp">
+      <Filter>Source Files\quality</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <None Include="prototype\string\_defer.h">
@@ -6469,14 +6502,14 @@
     <None Include="inline\application\main.inl">
       <Filter>Header Files\inline\application</Filter>
     </None>
-    <None Include="inline\application\main_application_library.inl">
-      <Filter>Header Files</Filter>
-    </None>
-    <None Include="inline\application\main_executable.inl">
-      <Filter>Header Files</Filter>
-    </None>
     <None Include="acme.def">
       <Filter>Source Files</Filter>
+    </None>
+    <None Include="inline\application\main_executable.inl">
+      <Filter>Header Files\inline\application</Filter>
+    </None>
+    <None Include="inline\application\main_application_library.inl">
+      <Filter>Header Files\inline\application</Filter>
     </None>
   </ItemGroup>
   <ItemGroup>
@@ -6485,6 +6518,8 @@
     </ResourceCompile>
   </ItemGroup>
   <ItemGroup>
-    <Natvis Include="_.natvis" />
+    <Natvis Include="_.natvis">
+      <Filter>Header Files</Filter>
+    </Natvis>
   </ItemGroup>
 </Project>

@@ -135,7 +135,7 @@ namespace image
    }
 
 
-   image32_t * load_image::defer_image32(const ::i32_size & size, ::i32 * piScan)
+   pixmap_lease load_image::map(const ::i32_size & size, ::i32 * piScan)
    {
       
       if (piScan && *piScan > size.cx * 4)
@@ -158,7 +158,7 @@ namespace image
 
       }
 
-      return m_ppixmap->m_pimage32Raw;
+      return ::transfer(m_ppixmap->map());
 
    }
 

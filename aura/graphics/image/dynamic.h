@@ -14,6 +14,8 @@ namespace image
 
 
       image_dynamic();
+      image_dynamic(image_dynamic&& imagedynamic);
+      ~image_dynamic();
 
    };
 } // namespace image

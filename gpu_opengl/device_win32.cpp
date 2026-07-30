@@ -99,7 +99,7 @@ namespace gpu_opengl
       ::gpu::device::initialize_gpu_device_for_off_screen(papproach, rectanglePlacement);
 
       m_pgpuapproach = papproach;
-      m_pwindow = m_papplication->m_pacmeuserinteractionMain->window();
+      m_pwindow = m_pacmeuserinteractionMain->window();
       m_bAddSwapChainSupport = false;
       ::cast < ::windowing_win32::window > pwin32window = m_pwindow;
       m_hwnd = (HWND) pwin32window->_HWND();

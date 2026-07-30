@@ -1109,6 +1109,38 @@ void memory_base::set_data(const void *pdata, memsize uiSize)
 }
 
 
+void memory_base::reference_data(const void* pdata, memsize uiSize)
+{
+
+   destroy();
+
+   m_bOwner = false;
+   m_begin = (::u8 *) pdata;
+   m_end = m_begin + uiSize;
+   //bool                    m_bReadOnly;
+   //::u8* m_beginStorage;
+   m_sizeStorage=0;
+
+   m_pcontainer = 0;
+
+   m_ememory = e_memory_reference;
+
+   m_preadonlymemory = nullptr;
+   m_pprimitivememory = nullptr;
+   m_psharedmemory = nullptr;
+   m_pvirtualmemory = nullptr;
+
+}
+
+
+void memory_base::reference_data(const ::block& block)
+{
+
+   reference_data(block.data(), block.size());
+
+}
+
+
 void memory_base::set_at(::collection::index i, const void * pdata, memsize uiSize)
 {
 

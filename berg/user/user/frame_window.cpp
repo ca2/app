@@ -1015,12 +1015,12 @@ namespace user
    void frame_window::on_message_create(::message::message * pmessage)
    {
 
-      if (!m_papplication->m_pacmeuserinteractionMain)
-      {
+      //if (!m_pacmeuserinteractionMain)
+      //{
 
-         m_papplication->m_pacmeuserinteractionMain = this;
+      //   m_pacmeuserinteractionMain = this;
 
-      }
+      //}
 
       if (pmessage->previous())
       {

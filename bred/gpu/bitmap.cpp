@@ -36,8 +36,7 @@ namespace gpu
    }
 
 
-   void bitmap::create_bitmap(::draw2d::graphics *pgraphics, const ::i32_size &size, image32_t **ppimage32,
-                              const image32_t *pimage32, ::i32 *piScan)
+   void bitmap::create_bitmap(::draw2d::graphics *pgraphics, const ::i32_size &size, ::memory & memory, ::i32 *piScan)
    {
 
       ::pixmap_t pixmap{};
@@ -50,7 +49,7 @@ namespace gpu
          iScan = *piScan;
       }
 
-      pixmap.initialize_pixmap(size, (::image32_t *)pimage32, iScan);
+      pixmap.initialize_pixmap(size, (::image32_t *)memory.data_if_at_least(size.cy * iScan), iScan);
 
       create_gpu_texture(&pixmap);
 
@@ -75,7 +74,9 @@ namespace gpu
    void bitmap::create_gpu_texture(pixmap_t * ppixmap)
    {
 
-      auto pacmewindowingwindow = m_papplication->m_pacmeuserinteractionMain->m_pacmewindowingwindow;
+      auto pacmeuserinteractionMain = m_papplication->main_acme_user_interaction();
+
+      auto pacmewindowingwindow = pacmeuserinteractionMain->m_pacmewindowingwindow;
 
       auto pgpudevice = m_papplication->get_gpu_approach()->get_gpu_device(pacmewindowingwindow);
 
@@ -228,10 +229,12 @@ namespace gpu
       {
 
          //auto pgpucontextMain = m_papplication->get_gpu_approach()
-         //                          ->get_gpu_device(m_papplication->m_pacmeuserinteractionMain->m_pacmewindowingwindow)
+         //                          ->get_gpu_device(m_pacmeuserinteractionMain->m_pacmewindowingwindow)
          //                          ->main_context();
 
-         auto pacmewindowingwindow = m_papplication->m_pacmeuserinteractionMain->m_pacmewindowingwindow;
+         auto pacmeuserinteractionMain = m_papplication->main_acme_user_interaction();
+
+         auto pacmewindowingwindow = pacmeuserinteractionMain->m_pacmewindowingwindow;
 
          auto pgpudevice = m_papplication->get_gpu_approach()->get_gpu_device(pacmewindowingwindow);
 

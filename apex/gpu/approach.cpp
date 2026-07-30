@@ -57,7 +57,7 @@ namespace gpu
       //   if (m_papplication->m_gpu.m_bUseSwapChainWindow)
       //   {
 
-      //      m_pgpudevice->initialize_gpu_device_for_swap_chain(this, m_papplication->m_pacmeuserinteractionMain->window());
+      //      m_pgpudevice->initialize_gpu_device_for_swap_chain(this, m_pacmeuserinteractionMain->window());
 
       //   }
       //   else

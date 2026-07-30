@@ -386,19 +386,23 @@ namespace gpu
       if (!m_puserinteractionDraw2dGraphics && m_papplication->m_gpu.m_bUseSwapChainWindow)
       {
 
-         m_puserinteractionDraw2dGraphics =
-            dynamic_cast<::user::interaction *>(m_papplication->m_pacmeuserinteractionMain.m_p);
+         auto pacmeuserinteractionMain = m_papplication->main_acme_user_interaction();
+
+         m_puserinteractionDraw2dGraphics = dynamic_cast<::user::interaction *>(pacmeuserinteractionMain);
+
       }
 
       if (m_puserinteractionDraw2dGraphics && !m_puserinteractionDraw2dGraphics->host_rectangle().size().is_empty())
       {
 
          rectangle = m_puserinteractionDraw2dGraphics->host_rectangle();
+
       }
       else
       {
 
          rectangle = {0, 0, 1920, 1080};
+
       }
 
       // auto pcontext = gpu_context();
@@ -524,7 +528,7 @@ namespace gpu
    //   if (!m_puserinteractionDraw2dGraphics && m_papplication->m_gpu.m_bUseSwapChainWindow)
    //   {
 
-   //      m_puserinteractionDraw2dGraphics = dynamic_cast <::user::interaction*>(m_papplication->m_pacmeuserinteractionMain.m_p);
+   //      m_puserinteractionDraw2dGraphics = dynamic_cast <::user::interaction*>(m_pacmeuserinteractionMain.m_p);
 
    //   }
 
@@ -966,10 +970,10 @@ namespace gpu
    // }
 
 
-   ::f64_size graphics::total_size()
+   ::f64_size graphics::size() const
    {
 
-      auto pcontext = gpu_context();
+      auto pcontext = ((graphics*)this)->gpu_context();
 
       if (pcontext)
       {
@@ -978,7 +982,7 @@ namespace gpu
 
       }
 
-      return ::gpu::graphics::total_size();
+      return ::gpu::graphics::size();
 
    }
 

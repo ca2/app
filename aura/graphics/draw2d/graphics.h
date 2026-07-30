@@ -157,6 +157,7 @@ namespace draw2d
       ~graphics() override;
 
 
+
       void on_initialize_particle() override;
 
       virtual bool is_gpu_oriented();
@@ -357,6 +358,10 @@ namespace draw2d
       virtual ::u32 SetLayout(::u32 dwLayout);
 
       // Constructors
+
+
+      virtual void create_for_image(::image::image* pimage);
+
       virtual void create_device_context(const ::scoped_string & scopedstrDriverName, const ::scoped_string & scopedstrDeviceName, const ::scoped_string & scopedstrOutput, const void* lpInitData);
 
       virtual void create_information_context(const ::scoped_string & scopedstrDriverName, const ::scoped_string & scopedstrDeviceName, const ::scoped_string & scopedstrOutput, const void* lpInitData);
@@ -456,7 +461,7 @@ namespace draw2d
       virtual void sync_flush();
 
 
-      virtual ::f64_size get_size() const;
+      virtual ::f64_size size() const;
 
       ::i32_size get_image_drawer_size() const override;
 
@@ -516,7 +521,7 @@ namespace draw2d
 
 
       virtual ::f64_size impact_size();
-      virtual ::f64_size total_size();
+      //virtual ::f64_size _size();
 
 
       void x_offset(::f64 dx) override;
@@ -810,6 +815,7 @@ namespace draw2d
       virtual void fill_rectangle(const ::f64_rectangle& rectangle, const ::color::color& color);
       virtual void fill_inset_rectangle(const ::f64_rectangle& rectangle, const ::color::color& color);
       virtual void fill_solid_rectangle(const ::f64_rectangle& rectangle, const ::color::color& color);
+      virtual void clear(const ::color::color& color);
 
       virtual void color_blend_3dRect(const i32_rectangle& rectangleParam, const ::color::color& colorTopLeft, const class ::opacity& opacityTopLeft, const ::color::color& color, const class ::opacity& opacityBottomRight);
 

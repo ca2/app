@@ -5,10 +5,13 @@
 #include "pixmap.h"
 //#include "acme/prototype/geometry2d/_geometry2d.h"
 
+
 pixmap::pixmap()
 {
 
+
 }
+
 
 pixmap::~pixmap()
 {
@@ -17,7 +20,7 @@ pixmap::~pixmap()
 }
 
 
-void pixmap::create_as_descriptor(const ::i32_size & size, ::enum_flag eflagCreate, ::i32 iGoodStride, bool bPreserve)
+void pixmap::create_as_descriptor(const ::i32_size & size, ::enum_flag eflagCreate, ::i32 iGoodStride)
 {
 
    if (size == m_sizeRaw && size == m_size)
@@ -41,6 +44,10 @@ void pixmap::create_as_descriptor(const ::i32_size & size, ::enum_flag eflagCrea
       m_iScan = iGoodStride;
 
    }
+
+   m_eflagElement = eflagCreate;
+
+   m_estatus = success;
 
 }
 
@@ -114,6 +121,14 @@ pixmap_lease pixmap::map(bool bApplyTransform) const
 }
 
 
+pixmap_lease pixmap::map(const ::i32_rectangle & rectangle) const
+{
+
+   return { (::pixmap*)this, rectangle };
+
+}
+
+
 bool pixmap::_on_map(bool bApplyAlphaTransform)
 {
 
@@ -153,7 +168,9 @@ void pixmap::_map(bool bApplyTransform)
 
    }
 
-   if (!m_pimage32Raw || !m_pimage32)
+   if (!m_pimage32Raw 
+      || !m_pimage32
+      || m_memoryPixmap.size() < scan_area_in_bytes())
    {
 
       m_memoryPixmap.set_size(scan_area_in_bytes());
@@ -184,11 +201,11 @@ void pixmap::on_load_image()
 }
 
 
-void pixmap::defer_update_image()
-{
-
-
-}
+//void pixmap::defer_update_image()
+//{
+//
+//
+//}
 
 
 ::image::image_extension * pixmap::get_extension()
@@ -224,7 +241,9 @@ void pixmap::copy(const ::i32_size &size, const ::image32_t *pimage32, ::i32 iSc
 void pixmap::on_load_image(const image32_t *pimage32, const ::i32_size &size, int iScan)
 {
 
-   create_from_data(size, pimage32, iScan);
+   create_as_descriptor(size, DEFAULT_CREATE_IMAGE_FLAG, iScan);
+
+   copy(size, pimage32, iScan);
 
 }
 

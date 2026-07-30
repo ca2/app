@@ -887,11 +887,17 @@ namespace graphics3d
 
          }
 
-         auto pgpudevice = m_papplication->get_gpu_approach()->get_gpu_device(m_pusergraphics3d->acme_windowing_window());
+         auto pacmewindowingwindow = m_pusergraphics3d->acme_windowing_window();
 
-         auto pgpucontextNew = pgpudevice->create_gpu_context(
+         auto pgpudevice = m_papplication->get_gpu_approach()->get_gpu_device(pacmewindowingwindow);
+
+         auto pgpucontextNew = pgpudevice->allocate_gpu_context();
+
+         pgpucontextNew->create_gpu_context(
+            pgpudevice, 
             get_engine_gpu_eoutput(),
             ::gpu::e_scene_3d,
+            pacmewindowingwindow, 
             m_rectanglePlacementNew.size());
 
          pgpucontextNew->m_etype = ::gpu::context::e_type_graphics3d;

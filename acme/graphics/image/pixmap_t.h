@@ -62,8 +62,11 @@ struct pixmap_t
       reset();
 
       m_iScan = 0;
+      
       m_pimage32 = nullptr;
+      
       m_pimage32Raw = nullptr;
+
    }
 
 
@@ -85,7 +88,8 @@ struct pixmap_t
 
          m_pimage32Raw = pimage32;
 
-         map();
+         pixmap_map();
+
       }
       else
       {
@@ -93,7 +97,9 @@ struct pixmap_t
          m_pimage32Raw = nullptr;
 
          m_pimage32 = nullptr;
+
       }
+
    }
 
 
@@ -104,7 +110,7 @@ struct pixmap_t
    inline ::i32 scan_area() { return scan_area_in_bytes() / sizeof(::image32_t); }
    inline ::i32 scan_area_in_bytes() { return m_iScan * m_size.cy; }
 
-
+   //inline bool is_mapped() { return ::is_set(m_pimage32Raw) && ::is_set(m_pimage32); }
    //   inline ::u64 area() const
    //{
 
@@ -155,6 +161,9 @@ struct pixmap_t
 
    //   return m_size.cy;
    //}
+
+
+   void fill_byte(::u8 byte);
 
 
    inline bool is_null() const { return ::is_null(this) || m_size.area() <= 0; }
@@ -256,40 +265,19 @@ struct pixmap_t
    inline ::color::color get_pixel(const ::i32_point &point) const { return get_pixel(point.x, point.y); }
 
    inline pixmap_t &operator=(const pixmap_t &pixmap);
+
    inline pixmap_t &operator=(const ::i32_rectangle &rectangle)
    {
-      map(rectangle);
+
+      pixmap_map(rectangle);
+
       return *this;
+
    }
 
    void reference(const pixmap_t &pixmap);
 
-   void map(const ::i32_rectangle &rectangle)
-   {
-
-      m_point = rectangle.origin();
-
-      m_size = rectangle.size();
-
-      map();
-   }
-
-   void map() const
-   {
-
-      if (::is_set(m_pimage32Raw))
-      {
-
-         ((pixmap_t *)this)->m_pimage32 = m_pimage32Raw + (m_point.x + m_iScan * m_point.y);
-      }
-   }
-
-   void unmap()
-   {
-
-      m_pimage32 = m_pimage32Raw;
-      m_size = m_sizeRaw;
-   }
+ 
 
    void mult_alpha();
 
@@ -312,6 +300,42 @@ struct pixmap_t
    ::color::color average_color();
 
 #endif
+
+   void pixmap_map(const ::i32_rectangle& rectangle)
+   {
+
+      m_point = rectangle.origin();
+
+      m_size = rectangle.size();
+
+      pixmap_map();
+
+   }
+
+
+   void pixmap_map() const
+   {
+
+      if (::is_set(m_pimage32Raw))
+      {
+
+         ((pixmap_t*)this)->m_pimage32 = m_pimage32Raw + (m_point.x + m_iScan * m_point.y);
+
+      }
+
+   }
+
+
+   void pixmap_unmap()
+   {
+
+      m_pimage32 = m_pimage32;
+      
+      m_size = m_sizeRaw;
+
+   }
+
+
 };
 
 

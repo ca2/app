@@ -119,22 +119,25 @@ namespace gpu
    //}
 
 
-   void context::create_window_buffer(::windowing::window *pwindow)
-   {
-
-      ::cast<device> pgpudevice = m_pgpudevice;
-
-      if (::is_null(pgpudevice))
-      {
-
-         throw ::exception(error_null_pointer);
-      }
-
-      _create_window_buffer(pwindow);
-   }
+   //void context::create_window_gpu_context(::gpu::device* pgpudevice, const ::gpu::enum_output& eoutput, const ::gpu::enum_scene& escene, ::acme::windowing::window* pwindow, const ::i32_size& size)
+   //{
 
 
-   void context::_create_window_buffer(::windowing::window *pwindow) {}
+   //   m_etype = ::gpu::context::e_type_window;
+
+   //   //::cast<device> pgpudevice = m_pgpudevice;
+
+   //   //if (::is_null(pgpudevice))
+   //   //{
+
+   //   //   throw ::exception(error_null_pointer);
+   //   //}
+
+   //   //_create_window_buffer(pwindow);
+   //}
+
+
+   //void context::_create_window_buffer(::windowing::window *pwindow) {}
 
 
    void context::create_cpu_buffer21(const ::i32_size &size)
@@ -179,38 +182,38 @@ namespace gpu
    }
 
 
-   void context::defer_create_window_context(::acme::windowing::window *pwindow)
-   {
+   //void context::defer_create_window_context(::acme::windowing::window *pwindow)
+   //{
 
-      //send(
-        // [this, pwindow]()
-         //{
-      _defer_create_window_context(pwindow);
+   //   //send(
+   //     // [this, pwindow]()
+   //      //{
+   //   _defer_create_window_context(pwindow);
 
-      auto pswapchain = get_swap_chain();
+   //   auto pswapchain = get_swap_chain();
 
-      if (!pswapchain->m_bSwapChainInitialized)
-      {
+   //   if (!pswapchain->m_bSwapChainInitialized)
+   //   {
 
-         pswapchain->initialize_swap_chain_window(this, pwindow);
+   //      pswapchain->initialize_swap_chain_window(this, pwindow);
 
-      }
+   //   }
 
-      throw todo;
+   //   throw todo;
 
-      _create_cpu_buffer21(pwindow->get_window_rectangle().size());
+   //   _create_cpu_buffer21(pwindow->get_window_rectangle().size());
 
-      m_bCreated = true;
+   //   m_bCreated = true;
 
-      //});
+   //   //});
 
-   }
+   //}
 
 
    void context::_create_cpu_buffer21(const ::i32_size &size) {}
 
 
-   void context::_defer_create_window_context(::acme::windowing::window *pwindow) {}
+   //void context::_defer_create_window_context(::acme::windowing::window *pwindow) {}
 
 
    void context::resize_cpu_buffer21(const ::i32_size &size)
@@ -1404,17 +1407,19 @@ namespace gpu
    //}
 
 
-   void context::create_window_context(::gpu::device* pgpudevice, ::acme::windowing::window* pacmewindowingwindow)
+   void context::create_window_gpu_context(::gpu::device* pgpudevice, const ::gpu::enum_output& eoutput, const ::gpu::enum_scene& escene, ::acme::windowing::window* pacmewindowingwindow, const ::i32_size& size)
    {
 
-      if (m_etype != e_type_window)
-      {
+      m_etype = ::gpu::context::e_type_window;
 
-         throw ::exception(error_wrong_state);
+      //if (m_etype != e_type_window)
+      //{
 
-      }
+      //   throw ::exception(error_wrong_state);
 
-      m_escene = e_scene_2d;
+      //}
+
+      //m_escene = escene;
 
       m_pacmewindowingwindowWindowSurface = pacmewindowingwindow;
 
@@ -1440,10 +1445,8 @@ namespace gpu
          // rear_guard guard(this);
 
          sendø() <<
-            [this, pacmewindowingwindow]()
+            [this, eoutput, escene, pacmewindowingwindow]()
             {
-
-               auto eoutput = ::gpu::e_output_swap_chain;
 
                ::cast <::acme::windowing::window > pwindowWindow = pacmewindowingwindow;
 
@@ -1451,7 +1454,7 @@ namespace gpu
 
                auto size = rectangleWindow.size();
 
-               initialize_gpu_context(m_pgpudevice, eoutput, pacmewindowingwindow, size);
+               _create_gpu_context(m_pgpudevice, eoutput, escene, pacmewindowingwindow, size);
 
                if (m_papplication->m_gpu.m_bUseSwapChainWindow)
                {
@@ -1488,7 +1491,7 @@ namespace gpu
    }
 
 
-   void context::create_gpu_context(::gpu::device* pgpudevice, const ::gpu::enum_output& eoutput, const ::gpu::enum_scene& escene, const ::i32_size& size)
+   void context::create_gpu_context(::gpu::device* pgpudevice, const ::gpu::enum_output& eoutput, const ::gpu::enum_scene& escene, ::acme::windowing::window* pacmewindowingwindow, const ::i32_size& size)
    {
 
       if (size.is_empty())
@@ -1508,17 +1511,17 @@ namespace gpu
 
       //rear_guard guard(this);
 
-      sendø() <<[this, pgpudevice, eoutput, size]()
+      sendø() <<[this, pgpudevice, eoutput, escene, size]()
          {
 
-            initialize_gpu_context(pgpudevice, eoutput, nullptr, size);
+            _create_gpu_context(pgpudevice, eoutput, escene, nullptr, size);
 
          };
 
    }
 
 
-   void context::create_draw2d_context(::gpu::device* pgpudevice, const ::gpu::enum_output& eoutput, const ::i32_size& size)
+   void context::create_draw2d_gpu_context(::gpu::device* pgpudevice, ::acme::windowing::window* pacmewindowingwindow, const ::i32_size& size)
    {
 
       if (::is_null(pgpudevice))
@@ -1554,12 +1557,75 @@ namespace gpu
 
       m_bD3D11On12Shared = true;
 
-      sendø() << [this, pgpudevice, eoutput, size]()
+      sendø() << [this, pgpudevice, size]()
          {
 
-            initialize_gpu_context(pgpudevice, eoutput, nullptr, size);
+            _create_gpu_context(pgpudevice, ::gpu::e_output_draw2d_bitmap, ::gpu::e_scene_2d, nullptr, size);
 
          };
+
+   }
+
+
+   void context::_create_gpu_context(::gpu::device* pgpudevice, const ::gpu::enum_output& eoutput, const ::gpu::enum_scene& escene, ::acme::windowing::window* pacmewindowingwindow, const ::i32_size& size)
+   {
+
+      m_pgpudevice = pgpudevice;
+
+      m_eoutput = eoutput;
+      
+      m_escene = escene;
+
+      if (m_etype == e_type_window)
+      {
+
+         //         task_set_name("gctx::window");
+
+      }
+      else if (m_etype == e_type_graphics3d)
+      {
+
+         ASSERT(is_current_task());
+
+         task_set_name("gctx::3d");
+
+      }
+      else if (m_etype == e_type_draw2d)
+      {
+
+         ASSERT(is_current_task());
+
+         task_set_name("gctx::draw2d");
+
+      }
+      else if (m_etype == e_type_generic)
+      {
+
+         ASSERT(is_current_task());
+
+         task_set_name("gctx::generic");
+
+      }
+      else
+      {
+
+         ASSERT(is_current_task());
+
+         task_set_name("gctx::unknown");
+
+      }
+
+      m_pgpudevice = pgpudevice;
+
+      //t_pgpudevice = m_pgpudevice;
+
+      m_eoutput = eoutput;
+
+      m_rectangle.top_left() = { 0, 0 };
+
+      m_rectangle.set_size(size);
+
+      //on_create_context(pgpudevice, eoutput, pwindow, size);
 
    }
 
@@ -1625,124 +1691,132 @@ namespace gpu
    //}
 
 
-   void context::initialize_gpu_context(::gpu::device* pgpudevice, const ::gpu::enum_output& eoutput, ::acme::windowing::window* pwindow, const ::i32_size& size)
-   {
+//   void context::initialize_gpu_context(::gpu::device* pgpudevice, const ::gpu::enum_output& eoutput, ::acme::windowing::window* pwindow, const ::i32_size& size)
+//   {
+//
+//      if (size.is_empty())
+//      {
+//
+//         throw ::exception(error_bad_argument);
+//
+//      }
+//
+//      if (m_etype == e_type_window)
+//      {
+//
+////         task_set_name("gctx::window");
+//
+//      }
+//      else if (m_etype == e_type_graphics3d)
+//      {
+//
+//         ASSERT(is_current_task());
+//
+//         task_set_name("gctx::3d");
+//
+//      }
+//      else if (m_etype == e_type_draw2d)
+//      {
+//
+//         ASSERT(is_current_task());
+//
+//         task_set_name("gctx::draw2d");
+//
+//      }
+//      else if (m_etype == e_type_generic)
+//      {
+//
+//         ASSERT(is_current_task());
+//
+//         task_set_name("gctx::generic");
+//
+//      }
+//      else
+//      {
+//
+//         ASSERT(is_current_task());
+//
+//         task_set_name("gctx::unknown");
+//
+//      }
+//
+//      m_pgpudevice = pgpudevice;
+//
+//      //t_pgpudevice = m_pgpudevice;
+//
+//      m_eoutput = eoutput;
+//
+//      m_rectangle.top_left() = { 0, 0 };
+//
+//      m_rectangle.set_size(size);
+//
+//      on_create_context(pgpudevice, eoutput, pwindow, size);
+//
+//   }
 
-      if (size.is_empty())
-      {
 
-         throw ::exception(error_bad_argument);
+   //void context::on_create_context(::gpu::device* pgpudevice, const ::gpu::enum_output& eoutput, ::acme::windowing::window* pwindow, const ::i32_size& size)
+   //{
 
-      }
+   //   if (size.is_empty())
+   //   {
 
-      if (m_etype == e_type_window)
-      {
+   //      throw ::exception(error_wrong_state);
 
-//         task_set_name("gctx::window");
+   //   }
 
-      }
-      else if (m_etype == e_type_graphics3d)
-      {
+   //   //if (eoutput == ::gpu::e_output_aaa_cpu_buffer)
+   //   //{
 
-         ASSERT(is_current_task());
+   //   //   //if (startcontext.m_callbackImage32CpuBuffer
+   //   //   //   && !startcontext.m_rectanglePlacement.is_empty())
+   //   //   //{
 
-         task_set_name("gctx::3d");
+   //   //   //   ASSERT(startcontext.m_callbackImage32CpuBuffer);
+   //   //   //   ASSERT(!startcontext.m_rectanglePlacement.is_empty());
 
-      }
-      else if (m_etype == e_type_draw2d)
-      {
+   //   //   throw todo;
 
-         ASSERT(is_current_task());
+   //   //   create_cpu_buffer21(size);
 
-         task_set_name("gctx::draw2d");
+   //   //   //}
 
-      }
-      else if (m_etype == e_type_generic)
-      {
+   //   //}
+   //   //else 
+   //   if (eoutput == ::gpu::e_output_swap_chain)
+   //   {
 
-         ASSERT(is_current_task());
+   //      defer_create_window_context(pwindow);
 
-         task_set_name("gctx::generic");
+   //   }
+   //   else
+   //   {
 
-      }
-      else
-      {
+   //      defer_create_gpu_context(pgpudevice, pwindow);
 
-         ASSERT(is_current_task());
+   //   }
 
-         task_set_name("gctx::unknown");
+   //   //else
+   //   //{
 
-      }
+   //   //   auto r = ::i32_rectangle(::i32_point{}, size);
+   //   //   //
+   //   //   //       ::gpu::rear_guard guard(this);
 
-      m_pgpudevice = pgpudevice;
+   //   //   send([this, r]()
+   //   //   {
 
-      //t_pgpudevice = m_pgpudevice;
+   //   //      throw todo;
 
-      m_eoutput = eoutput;
+   //   //      _create_cpu_buffer21(r.size());
 
-      m_rectangle.top_left() = { 0, 0 };
+   //   //      //::gpu::context_guard guard(this);
 
-      m_rectangle.set_size(size);
+   //   //   });
 
-      on_create_context(pgpudevice, eoutput, pwindow, size);
+   //   //}
 
-   }
-
-
-   void context::on_create_context(::gpu::device* pgpudevice, const ::gpu::enum_output& eoutput, ::acme::windowing::window* pwindow, const ::i32_size& size)
-   {
-
-      if (size.is_empty())
-      {
-
-         throw ::exception(error_wrong_state);
-
-      }
-
-      if (eoutput == ::gpu::e_output_aaa_cpu_buffer)
-      {
-
-         //if (startcontext.m_callbackImage32CpuBuffer
-         //   && !startcontext.m_rectanglePlacement.is_empty())
-         //{
-
-         //   ASSERT(startcontext.m_callbackImage32CpuBuffer);
-         //   ASSERT(!startcontext.m_rectanglePlacement.is_empty());
-
-         throw todo;
-
-         create_cpu_buffer21(size);
-
-         //}
-
-      }
-      else if (eoutput == ::gpu::e_output_swap_chain)
-      {
-
-         defer_create_window_context(pwindow);
-
-      }
-      else
-      {
-
-         auto r = ::i32_rectangle(::i32_point{}, size);
-         //
-         //       ::gpu::rear_guard guard(this);
-
-         send([this, r]()
-         {
-
-            throw todo;
-
-            _create_cpu_buffer21(r.size());
-
-            //::gpu::context_guard guard(this);
-
-         });
-
-      }
-
-   }
+   //}
 
 
    void context::engine_on_frame_context_initialization()

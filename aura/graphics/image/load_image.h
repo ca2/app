@@ -3,9 +3,10 @@
 #pragma once
 
 
-
+#include "acme/graphics/image/pixmap_lease.h"
 //#include "acme/prototype/prototype/payload.h"
 class load_image_interface;
+
 
 namespace image
 {
@@ -35,7 +36,7 @@ namespace image
       virtual void initialize_load_image(::image::image_context *pimagecontext, ::pixmap * ppixmap);
 
 
-      virtual image32_t * defer_image32(const ::i32_size &size, ::i32 * piScan = nullptr);
+      virtual pixmap_lease map(const ::i32_size &size, ::i32 * piScan = nullptr);
 
       
       virtual void on_load_image(const image32_t *pimage32, const ::i32_size &size, int iScan);
@@ -44,7 +45,7 @@ namespace image
       virtual void on_image_loaded(const ::e_status &estatus);
 
 
-      virtual void nanosvg(char_pointer pszXml, ::i32 iRedLower, ::f64 dDpi = 0.);
+      virtual void nanosvg(const ::block & blockXml, ::i32 iRedLower, ::f64 dDpi = 0.);
 
       
       //virtual void create_nanosvg(char_pointer pszXml, ::i32 iRedLower, ::i32 width, ::i32 height);

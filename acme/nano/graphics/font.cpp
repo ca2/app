@@ -31,7 +31,7 @@ namespace nano
       {
 
          m_pfontfamily = pfontfamily;
-         m_fFontSize = fPointSize;
+         m_fFontSize = (::f32)fPointSize;
          m_bPixelSize = false;
          m_bBold = bBold;
          m_bItalic = bItalic;
@@ -53,7 +53,7 @@ namespace nano
       {
 
          m_pfontfamily = pfontfamily;
-         m_fFontSize = fPixelSize;
+         m_fFontSize = (::f32) fPixelSize;
          m_bPixelSize = true;
          m_bBold = bBold;
          m_bItalic = bItalic;

@@ -176,6 +176,11 @@ namespace user
 
       virtual ::pointer < ::menu::menu > menu_from_xml(::particle * pparticleContext, const ::scoped_string & scopedstrXml) override;
 
+
+      virtual void on_set_application_main_acme_user_interaction(::platform::application * papplication, ::acme::user::interaction* pacmeuserinteractionMain);
+      virtual void on_set_application_active_acme_user_interaction(::platform::application* papplication, ::acme::user::interaction* pacmeuserinteractionMain);
+
+
    };
 
 

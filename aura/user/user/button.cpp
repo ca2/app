@@ -380,7 +380,7 @@ namespace user
          //{
          //   m_rectangleText = rectangle;
             
-         set_size(::ceil(sizeControl), ::user::e_layout_layout, pgraphics);
+         set_size(ceil(sizeControl), ::user::e_layout_layout, pgraphics);
 
          return true;
 

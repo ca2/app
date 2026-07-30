@@ -1495,7 +1495,7 @@ namespace image
 
             }
 
-            ploadimage->m_ppixmap->defer_update_image();
+            ///ploadimage->m_ppixmap->defer_update_image();
 
             ploadimage->m_ppixmap->on_load_image();
 

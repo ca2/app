@@ -82,6 +82,22 @@ image::image()
 }
 
 
+image::image(image&& image) :
+   ::property_object(::transfer(image)),
+   ::image::image_drawer(::transfer(image)),
+   ::image::image_source_interface(::transfer(image)),
+   ::item(::transfer(image)),
+   ::matter(::transfer(image)),
+   IMAGE_IMAGE_META_TRANSFER(image),
+   m_rectangleTag(::transfer(image.m_rectangleTag))
+
+{
+
+   m_bDestinationGraphicsLeaseActive.store(image.m_bDestinationGraphicsLeaseActive.load());
+
+}
+
+
 image::~image()
 {
 
@@ -203,7 +219,9 @@ bool image::_is_ok() const
    if (::is_null(pdraw2dhost))
    {
 
-      ::cast<::draw2d::host> pdraw2dhostMain = m_papplication->m_pacmeuserinteractionMain;
+      auto pacmeuserinteractionMain = m_papplication->main_acme_user_interaction();
+
+      ::cast<::draw2d::host> pdraw2dhostMain = pacmeuserinteractionMain;
 
       pdraw2dhost = pdraw2dhostMain;
 
@@ -226,18 +244,19 @@ bool image::_is_ok() const
 
    }
 
-   if (m_pimage32Raw)
-   {
+   //if (m_pimage32Raw)
+   //{
 
-      _unmap(true);
+   //   _unmap(true);
 
-   }
+   //}
 
    if (!pdraw2dhost && m_papplication)
    {
 
-      pdraw2dhost = dynamic_cast<::draw2d::host *>(
-         m_papplication->m_pacmeuserinteractionMain.m_p);
+      auto pacmeuserinteractionMain = application()->main_acme_user_interaction();
+
+      pdraw2dhost = dynamic_cast<::draw2d::host *>(pacmeuserinteractionMain);
 
    }
 
@@ -321,9 +340,14 @@ bool image::has_active_destination_graphics_lease() const
 ::draw2d::bitmap_pointer image::get_bitmap() const
 {
 
-   throw ::interface_only();
+   if (!m_pbitmap)
+   {
 
-   return nullptr;
+      ((image * )this)->create_bitmap();
+
+   }
+
+   return m_pbitmap;
 
 }
 
@@ -393,13 +417,13 @@ void image::create_from_data(const ::i32_size & size, const ::image32_t * pimage
 
    auto iGoodStride = iScan;
 
-   create_as_descriptor(size, eflagCreate, iGoodStride, bPreserve);
-
+   create_as_descriptor(size, eflagCreate, iGoodStride);
 
    //if (pimageFrame->area() <= 0)
    //{
 
    //   return false;
+   
    //}
 
    map();
@@ -441,12 +465,54 @@ void image::initialize(const ::i32_size & size, ::image32_t * pimage32, ::i32 iS
 }
 
 
-void image::preserve(const ::i32_size &size, ::enum_flag eflagCreate,
-                      ::i32 iGoodStride)
+void image::preserve(const ::i32_size& size, ::enum_flag eflagCreate)
 {
 
-   return create_as_descriptor(size, eflagCreate, iGoodStride, true);
+   if (size == m_sizeRaw)
+   {
+
+      return;
+
+   }
+
+   if (size == m_size)
+   {
+
+      return;
+
+   }
+
+   if (m_pbitmap)
+   {
+
+      m_pbitmap->preserve_image(size, this);
+
+   }
+   else if(m_pimage32Raw)
+   {
+
+      pixmap_t pixmap = *this;
+
+      auto memoryPixmapBefore = transfer(m_memoryPixmap);
+
+      create_as_descriptor(size, eflagCreate, m_iScan);
+
+      m_memoryPixmap.set_size(scan_area_in_bytes());
+
+      copy(pixmap);
+
+   }
+   else
+   {
+
+      create_as_descriptor(size, eflagCreate, m_iScan);
+
+   }
+
 }
+
+
+
 
 //void image::initialize(const ::i32_size & size, ::image32_t * pimage32, ::i32 iScan, ::eobject eobjectCreate)
 //{
@@ -800,7 +866,9 @@ void image::destroy()
    m_size.cx = 0;
    m_size.cy = 0;
    pixmap::reset();
-   pixmap::unmap();
+   pixmap::pixmap_unmap();
+   m_interlockedcountMap = 0;
+   m_bMapped = false;
    clear_flag(e_flag_success);
    clear_flag(e_flag_failure);
    //m_pgraphics.defer_destroy_and_release();
@@ -1755,9 +1823,9 @@ void image::precision_blend(const ::i32_point& pointDstParam, ::image::image* pi
 
    ::i32_size size(sizeParam);
 
-   pimageDst->map();
+   auto mapTarget = pimageDst->map();
 
-   pimageSrc->map();
+   auto mapSource = pimageSrc->map();
 
    pointDst += m_point;
 
@@ -4628,6 +4696,21 @@ void image::copy_from(::image::image* pimage, const ::i32_point  & point, ::enum
 
 void image::copy_from(::image::image *pimage, enum_flag eflagCreate)
 {
+
+   if (pimage->m_pimage32Raw && (m_pimage32Raw || !m_pgraphicsOwned))
+   {
+
+      create_as_descriptor(pimage->size(), DEFAULT_CREATE_IMAGE_FLAG, pimage->scan_size());
+
+      auto mapTarget = this->map();
+
+      auto mapSource = pimage->map();
+
+      mapTarget.copy(mapSource);
+
+      return;
+
+   }
 
    return copy_from(pimage, {}, eflagCreate);
 
@@ -10145,7 +10228,24 @@ void image::on_exif_orientation()
 }*/
 
 
-void image::defer_update_image()
+void image::create_bitmap()
+{
+
+   if (m_pbitmap.ok())
+   {
+
+      return;
+
+   }
+
+   constructø(m_pbitmap);
+
+   m_pbitmap->create_bitmap_for_image(this);
+
+}
+
+
+::image::image * image::get_source_image()
 {
 
    auto pframes = frames();
@@ -10153,32 +10253,41 @@ void image::defer_update_image()
    if (!pframes)
    {
 
-      return;
+      return this;
 
    }
 
    auto pimage = pframes->calc_current_frame(m_dynamic);
 
-   if (pimage 
-      //&& m_pgraphics != pimage->m_pgraphics
-      && m_pbitmap != pimage->m_pbitmap)
+   if (!pimage)
    {
 
-      unmap();
-
-      pimage->unmap();
-
-      ::pixmap * ppixmapDst = this;
-
-      ::pixmap * ppixmapSrc = pimage;
-
-      //m_pgraphics = pimage->m_pgraphics;
-
-      m_pbitmap = pimage->m_pbitmap;
-
-      ::memory_copy(ppixmapDst, ppixmapSrc, sizeof(::pixmap));
+      return this;
 
    }
+
+   return pimage;
+
+   //if (pimage 
+   //   //&& m_pgraphics != pimage->m_pgraphics
+   //   && m_pbitmap != pimage->m_pbitmap)
+   //{
+
+   //   _unmap();
+
+   //   pimage->_unmap();
+
+   //   ::pixmap * ppixmapDst = this;
+
+   //   ::pixmap * ppixmapSrc = pimage;
+
+   //   //m_pgraphics = pimage->m_pgraphics;
+
+   //   m_pbitmap = pimage->m_pbitmap;
+
+   //   ::memory_copy(ppixmapDst, ppixmapSrc, sizeof(::pixmap));
+
+   //}
 
 }
 

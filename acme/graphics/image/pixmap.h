@@ -5,6 +5,11 @@
 #include "acme/graphics/image/pixmap_lease.h"
 
 
+#define PIXMAP_TRANSFER(a) \
+::pixmap(::transfer(a)), \
+PARTICLE_TRANSFER(a)
+
+
 class CLASS_DECL_ACME pixmap :
    public pixmap_t,
    virtual public ::particle
@@ -21,7 +26,7 @@ public:
 
 
    virtual void create_as_descriptor(const ::i32_size &size, ::enum_flag eflagCreate = DEFAULT_CREATE_IMAGE_FLAG,
-                       ::i32 iGoodStride = -1, bool bPreserve = false);
+                       ::i32 iGoodStride = -1);
 
    virtual void create_from_data(const ::i32_size &size, const ::image32_t *pimage32, ::i32 iScan,
                                  ::enum_flag eflagCreate = DEFAULT_CREATE_IMAGE_FLAG, bool bPreserve = false);
@@ -32,6 +37,8 @@ public:
 
    virtual pixmap_lease map(bool bApplyAlphaTransform = true) const; // some implementations may requrire to map_base to m_pcolorref before manipulate it
 
+   virtual pixmap_lease map(const ::i32_rectangle & rectangle) const; // some implementations may requrire to map_base to m_pcolorref before manipulate it
+
    //virtual void unmap(bool bDoUnmap = false) const; // some implementations may require to unmap from m_pcolorref to update *os* bitmap
    virtual void mult_alpha_fast();
 
@@ -39,7 +46,7 @@ public:
 
    virtual void on_load_image();
 
-   virtual void defer_update_image();
+   //virtual void defer_update_image();
 
    virtual ::image::image_extension * get_extension();
 

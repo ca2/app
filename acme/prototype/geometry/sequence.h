@@ -1215,8 +1215,9 @@ using f64_sequence4 = sequence_type<::f64, 4>;
 //   return reinterpret_cast<const ::color::color &>(*(this->m_coordinatea));
 //}
 
+
 template < prototype_sequence SEQUENCE, typename COORDINATE_TRANSFORM >
-auto transform(const SEQUENCE& sequence, COORDINATE_TRANSFORM coordinatetransform)
+auto predicate_transform_each(const SEQUENCE& sequence, COORDINATE_TRANSFORM coordinatetransform)
 {
 
    SEQUENCE sequenceResult(no_initialize_t{});
@@ -1224,7 +1225,9 @@ auto transform(const SEQUENCE& sequence, COORDINATE_TRANSFORM coordinatetransfor
    for (::collection::count i = 0; i < sequence.get_size(); ++i)
    {
 
-      sequenceResult.set_coordinate(i, coordinatetransform(sequence.coordinate(i)));
+      auto transformed = coordinatetransform(sequence.coordinate(i));
+
+      sequenceResult.set_coordinate(i, (typename SEQUENCE::UNIT_TYPE) transformed);
 
    }
 
@@ -1237,7 +1240,7 @@ template < prototype_sequence SEQUENCE >
 auto floor(const SEQUENCE& sequence)
 {
 
-   return transform(sequence, [](auto a) {return floor(a); });
+   return predicate_transform_each(sequence, [](typename SEQUENCE::UNIT_TYPE a) {return ::std::floor(a); });
 
 }
 
@@ -1246,7 +1249,7 @@ template < prototype_sequence SEQUENCE >
 auto ceil(const SEQUENCE& sequence)
 {
 
-   return transform(sequence, [](auto a) {return ceil(a); });
+   return predicate_transform_each(sequence, [](typename SEQUENCE::UNIT_TYPE a) {return ::std::ceil(a); });
 
 }
 

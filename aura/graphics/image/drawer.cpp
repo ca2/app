@@ -10,9 +10,30 @@
 namespace image
 {
 
+   image_drawer::image_drawer()
+   {
 
-void image_drawer::draw(const ::image::image_drawing & imagedrawing)
-{
+
+   }
+
+
+   image_drawer::image_drawer(const image_drawer& imagedrawer) :
+      MATTER_TRANSFER(imagedrawer)
+   {
+
+
+   }
+
+
+   image_drawer::~image_drawer()
+   {
+
+
+   }
+
+
+   void image_drawer::draw(const ::image::image_drawing & imagedrawing)
+   {  
 
    auto pimagesource = imagedrawing.m_pimagesource;
 

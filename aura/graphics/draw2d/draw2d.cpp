@@ -654,7 +654,9 @@ namespace draw2d
       if (!pdraw2dhost)
       {
 
-         pdraw2dhost = m_papplication->m_pacmeuserinteractionMain.cast < ::draw2d::host >();
+         auto pacmeuserinteractionMain = m_papplication->main_acme_user_interaction();
+
+         pdraw2dhost = pacmeuserinteractionMain->cast < ::draw2d::host >();
 
       }
 

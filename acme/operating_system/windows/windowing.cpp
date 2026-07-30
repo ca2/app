@@ -193,7 +193,7 @@ HWND get_task_main_hwnd(::task * ptask)
    if (::is_set(ptask))
    {
 
-      auto pacmeuserinteractionMain = ptask->m_pacmeuserinteractionMain;
+      auto pacmeuserinteractionMain = ptask->main_acme_user_interaction();
 
       if (::is_set(pacmeuserinteractionMain))
       {

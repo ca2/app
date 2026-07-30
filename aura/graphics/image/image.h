@@ -26,6 +26,16 @@ namespace draw2d
 } // namespace draw2d
 
 
+#define IMAGE_IMAGE_TRANSFER(a) \
+::image::image(::transfer(a)), \
+::property_object(::transfer(a)), \
+::image::image_drawer(::transfer(a)), \
+::image::image_source_interface(::transfer(a)), \
+::item(::transfer(a)), \
+::matter(::transfer(a)), \
+IMAGE_IMAGE_META_TRANSFER(a)
+
+
 namespace image
 {
 
@@ -48,6 +58,7 @@ namespace image
       //::draw2d::graphics_lease *          m_pgraphicsleaseOwned;
 
       image();
+      image(image&& image);
       ~image() override;
 
 
@@ -58,7 +69,10 @@ namespace image
       //using object::clear;
 
 
-      virtual void defer_update_image();
+      virtual void create_bitmap();
+
+
+      virtual ::image::image * get_source_image();
       //   virtual void defer_update_all_frames();
 
 
@@ -180,9 +194,6 @@ namespace image
       //void unmap() const override; // some implementations may require to unmap from m_pcolorref to update *os* bitmap
 
 
-      void _map(bool bApplyAlphaTransform = true) override;
-      void _unmap(bool bDoUnmap = false) override;
-
       virtual void set_mapped();
 
       //virtual void flip_vertical(::image::image *pimage);
@@ -291,8 +302,7 @@ namespace image
       virtual void create_as_render_target(const ::i32_size & size, ::enum_flag eflagCreate = DEFAULT_CREATE_IMAGE_FLAG, ::i32 iGoodStride = -1, bool bPreserve = false);
       using ::particle::initialize;
       virtual void initialize(const ::i32_size & size, ::image32_t * pimage32, ::i32 iScan, ::enum_flag eflagCreate = DEFAULT_CREATE_IMAGE_FLAG);
-      virtual void preserve(const ::i32_size &size, ::enum_flag eflagCreate = DEFAULT_CREATE_IMAGE_FLAG,
-                            ::i32 iGoodStride = -1);
+      virtual void preserve(const ::i32_size &size, ::enum_flag eflagCreate = DEFAULT_CREATE_IMAGE_FLAG);
       //virtual void     create(::i32 iWidth, ::i32 iHeight, ::enum_flag eflagCreate = DEFAULT_CREATE_IMAGE_OBJECT_FLAG, ::i32 iGoodStride = -1, void bPreserve = false);
 
 
@@ -732,6 +742,13 @@ namespace image
       inline ::i32_size get_size() const { return size(); }
 
       virtual ::image::image_pointer get_resized_image(const ::i32_size & size);
+
+      protected:
+
+
+         void _map(bool bApplyAlphaTransform = true) override;
+         void _unmap(bool bDoUnmap = false) override;
+
 
 
    };

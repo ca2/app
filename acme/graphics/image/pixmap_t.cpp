@@ -13,6 +13,30 @@
 #endif
 
 
+void pixmap_t::fill_byte(::u8 byte)
+{
+
+   if (m_size == m_sizeRaw)
+   {
+
+      memset(m_pimage32Raw, byte, scan_area_in_bytes());
+
+   }
+   else
+   {
+      
+      for (int i = 0; i < m_size.cy; i++)
+      {
+
+         auto pline = line_data(i);
+
+         memset(m_pimage32, byte, m_size.cx * 4);
+
+      }
+
+   }
+
+}
 
 
 #define byte_clip2(i) (i)

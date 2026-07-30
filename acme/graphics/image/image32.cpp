@@ -326,7 +326,7 @@ void image32_t::_001ProperCopyColorref(::i32 cxParam, ::i32 cyParam, ::i32 iStri
 void image32_t::copy(::i32 cx, ::i32 cy, ::i32 iStrideDst, const ::image32_t * pimage32Src, ::i32 iStrideSrc)
 {
 
-   if (iStrideSrc == iStrideDst && cy * sizeof(image32_t) == iStrideSrc)
+   if (iStrideSrc == iStrideDst && cx * sizeof(image32_t) == iStrideSrc)
    {
 
       ::memory_copy(this, pimage32Src, cy * iStrideSrc);

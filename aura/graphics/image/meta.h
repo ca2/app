@@ -21,6 +21,11 @@
 #include "aura/graphics/image/dynamic.h"
 
 
+#define IMAGE_IMAGE_META_TRANSFER(a) \
+::image::image_meta(::transfer(a)), \
+PIXMAP_TRANSFER(a)
+
+
 namespace image
 {
 
@@ -62,10 +67,37 @@ namespace image
          m_iFrame = 0;
          m_bCreateHelperMaps = false;
          m_pbitmap = nullptr;
+         m_iExifOrientation = 0;
          //m_pgraphics = nullptr;
 
       }
 
+      image_meta(image_meta && imagemeta) :
+         PIXMAP_TRANSFER(imagemeta),
+         m_pbitmap(::transfer(imagemeta.m_pbitmap)),
+         m_pgraphicsOwned(::transfer(imagemeta.m_pgraphicsOwned)),
+         m_dSpeed(::transfer(imagemeta.m_dSpeed)),
+         m_dIsotropicRate(::transfer(imagemeta.m_dIsotropicRate)),
+         m_dSizeScaler(::transfer(imagemeta.m_dSizeScaler)),
+         m_bOwn(::transfer(imagemeta.m_bOwn)),
+         m_emipmap(::transfer(imagemeta.m_emipmap)),
+         m_iFrame(::transfer(imagemeta.m_iFrame)),
+         m_iExifOrientation(::transfer(imagemeta.m_iExifOrientation)),
+         m_bCreateHelperMaps(::transfer(imagemeta.m_bCreateHelperMaps)),
+         m_pextension(::transfer(imagemeta.m_pextension)),
+         m_dynamic(::transfer(imagemeta.m_dynamic))
+      {
+
+         imagemeta.m_dSpeed = 0.;
+         imagemeta.m_dIsotropicRate = 0.;
+         imagemeta.m_dSizeScaler = 0.;
+         imagemeta.m_bOwn = false;
+         imagemeta.m_emipmap = e_mipmap_none;
+         imagemeta.m_iFrame = 0;
+         imagemeta.m_iExifOrientation = 0;
+         imagemeta.m_bCreateHelperMaps = false;
+
+      }
 
       ~image_meta();
 

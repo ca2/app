@@ -320,14 +320,14 @@ namespace gpu
    //}
 
 
-   ::gpu::context_pointer device::create_draw2d_context(const ::gpu::enum_output& eoutput, const ::i32_size& size)
+   ::gpu::context_pointer device::create_draw2d_context(const ::gpu::enum_output& eoutput, ::acme::windowing::window * pwindow, const ::i32_size& size)
    {
 
       //auto pgpucontext = createø<::gpu::context>();
 
       auto pgpucontext = allocate_context();
 
-      pgpucontext->create_draw2d_context(this, eoutput, size);
+      pgpucontext->create_draw2d_context(this, eoutput, pwindow, size);
 
       return pgpucontext;
 
@@ -448,7 +448,7 @@ namespace gpu
 
          }
 
-         pcontext = create_draw2d_context(eoutput, size);
+         pcontext = create_draw2d_context(eoutput, m_pwindow, size);
          pcontext->m_pgpucompositor = nullptr;
 
       }
@@ -1320,12 +1320,19 @@ void device::create_main_context(::acme::windowing::window * pacmewindowingwindo
 
                   auto size = pwindow->get_window_rectangle().size();
 
-                  m_pgpucontextMainDraw2d->initialize_gpu_context(
+                  m_pgpucontextMainDraw2d->create_draw2d_context(
                      this,
                      eoutput,
                      pwindow,
                      size
                   );
+
+                  //m_pgpucontextMainDraw2d->initialize_gpu_context(
+                  //   this,
+                  //   eoutput,
+                  //   pwindow,
+                  //   size
+                  //);
 
                };
 

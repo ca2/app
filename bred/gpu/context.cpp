@@ -196,9 +196,9 @@ namespace gpu
 
       }
 
-      throw todo;
+      //throw todo;
 
-      _create_cpu_buffer21(pwindow->get_window_rectangle().size());
+      //_create_cpu_buffer21(pwindow->get_window_rectangle().size());
 
       m_bCreated = true;
 
@@ -1518,7 +1518,7 @@ namespace gpu
    }
 
 
-   void context::create_draw2d_context(::gpu::device* pgpudevice, const ::gpu::enum_output& eoutput, const ::i32_size& size)
+   void context::create_draw2d_context(::gpu::device* pgpudevice, const ::gpu::enum_output& eoutput, ::acme::windowing::window * pwindow, const ::i32_size& size)
    {
 
       if (::is_null(pgpudevice))
@@ -1722,23 +1722,31 @@ namespace gpu
          defer_create_window_context(pwindow);
 
       }
+      else if(eoutput == ::gpu::e_output_gpu_buffer)
+      {
+
+         create_gpu_context(pgpudevice, eoutput, ::gpu::e_scene_none, size);
+
+         //auto r = ::i32_rectangle(::i32_point{}, size);
+         ////
+         ////       ::gpu::rear_guard guard(this);
+
+         //send([this, r]()
+         //{
+
+         //   throw todo;
+
+         //   _create_cpu_buffer21(r.size());
+
+         //   //::gpu::context_guard guard(this);
+
+         //});
+
+      }
       else
       {
 
-         auto r = ::i32_rectangle(::i32_point{}, size);
-         //
-         //       ::gpu::rear_guard guard(this);
-
-         send([this, r]()
-         {
-
-            throw todo;
-
-            _create_cpu_buffer21(r.size());
-
-            //::gpu::context_guard guard(this);
-
-         });
+         throw ::exception(error_wrong_state, "not expected/implemented output for this gpu context");
 
       }
 

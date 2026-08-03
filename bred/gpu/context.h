@@ -266,7 +266,7 @@ namespace gpu
       /// <param name="pgpudevice"></param>
       /// <param name="eoutput"></param>
       /// <param name="size"></param>
-      virtual void create_draw2d_context(::gpu::device* pgpudevice, const enum_output& eoutput, const ::i32_size& size);
+      virtual void create_draw2d_context(::gpu::device* pgpudevice, const enum_output& eoutput, ::acme::windowing::window * pwindow, const ::i32_size& size);
 
       virtual void initialize_gpu_context(::gpu::device* pgpudevice, const ::gpu::enum_output& eoutput, ::acme::windowing::window* pwindow, const ::i32_size & size);
 

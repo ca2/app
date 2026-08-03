@@ -287,6 +287,7 @@ void main() {
 
       auto pgpucontextNew = pgpudevice->create_draw2d_context(
          ::gpu::e_output_gpu_buffer,
+         puserinteraction->acme_windowing_window(),
          size);
 
       if (!pgpucontextNew)

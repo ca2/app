@@ -207,7 +207,7 @@ namespace gpu
 
       virtual ::gpu::context_pointer create_gpu_context(const ::gpu::enum_output& eoutput,  const ::gpu::enum_scene & escene, const ::i32_size & size);
 
-      virtual ::gpu::context_pointer create_draw2d_context(const ::gpu::enum_output& eoutput, const ::i32_size & size);
+      virtual ::gpu::context_pointer create_draw2d_context(const ::gpu::enum_output& eoutput, ::acme::windowing::window * pwindow, const ::i32_size & size);
 
       virtual ::gpu::context_lease acquire_gpu_context(
          const ::gpu::enum_output & eoutput,

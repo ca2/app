@@ -8,7 +8,7 @@ namespace graphics
 {
 
 
-   class CLASS_DECL_AURA buffer :
+   class CLASS_DECL_AURA buffer_graphics :
       virtual public graphics
    {
    public:
@@ -20,14 +20,14 @@ namespace graphics
       bool                          m_bDibIsHostingBuffer;
 
 
-      buffer();
-      ~buffer() override;
+      buffer_graphics();
+      ~buffer_graphics() override;
 
 
       //virtual ::particle * get_draw_lock() override;
       bool _on_begin(buffer_item * pbufferitem) override;
       virtual void update_screen() override;
-      virtual bool buffer_lock_round_swap_key_buffers(::draw2d::graphics_pointer &pgraphics) override;
+      virtual bool buffer_lock_round_swap_key_buffers() override;
 
 
       virtual bool update_buffer(buffer_item * pitem) override;

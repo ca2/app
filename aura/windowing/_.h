@@ -36,6 +36,8 @@ namespace windowing
    class monitor;
    class placement_log;
 
+   class window_buffer;
+
 
    enum enum_status
    {

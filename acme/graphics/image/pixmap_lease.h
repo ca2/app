@@ -13,12 +13,17 @@ protected:
 
    ::pointer<::pixmap> m_ppixmap;
 
+   bool m_bRectangleMap;
+   
+   ::i32_rectangle m_rectangleBefore;
+   
 
 public:
 
 
    pixmap_lease();
    pixmap_lease(::pixmap *ppixmap, bool bApplyTransform = true);
+   pixmap_lease(::pixmap* ppixmap, const ::i32_rectangle & rectangsle);
    pixmap_lease(pixmap_lease &&pixmaplease);
    ~pixmap_lease();
 

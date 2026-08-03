@@ -59,7 +59,7 @@ namespace draw2d_gpu
       if (!m_puserinteraction && m_papplication->m_bUseSwapChainWindow)
       {
 
-         m_puserinteraction = dynamic_cast <::user::interaction*>(m_papplication->m_pacmeuserinteractionMain.m_p);
+         m_puserinteraction = dynamic_cast <::user::interaction*>(m_pacmeuserinteractionMain.m_p);
 
       }
 

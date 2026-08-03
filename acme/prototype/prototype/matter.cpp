@@ -18,6 +18,27 @@ void defer_delete(reference_count_debug* p);
 #endif
 
 
+matter::matter(const matter & matter) :
+   PARTICLE_COPY_CONSTRUCT(matter),
+   m_atomMatterId(matter.m_atomMatterId),
+   m_uError(matter.m_uError)
+{
+
+}
+
+
+
+matter::matter(matter&& matter) :
+   PARTICLE_TRANSFER(matter),
+   m_atomMatterId(::transfer(matter.m_atomMatterId)),
+   m_uError(matter.m_uError)
+{
+
+   matter.m_uError = 0;
+
+}
+
+
 matter::~matter()
 {
 
@@ -36,6 +57,24 @@ matter::~matter()
 
 }
 
+
+matter& matter::operator = (const ::matter& matter)
+{
+
+   if (this != &matter)
+   {
+
+      ::particle::operator = (matter);
+
+      m_atomMatterId = matter.m_atomMatterId;
+
+      m_uError = matter.m_uError;
+
+   }
+
+   return *this;
+
+}
 
 //void matter::assert_ok() const
 //{

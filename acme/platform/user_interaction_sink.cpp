@@ -39,11 +39,14 @@ m_operatingsystemwindow(operatingsystemwindow)
 
    if(papplication)
    {
-      auto pacmeuserinteraction = papplication->m_pacmeuserinteractionMain;
+      
+      auto pacmeuserinteractionMain = papplication->main_acme_user_interaction();
 
-      if (pacmeuserinteraction)
+      if (pacmeuserinteractionMain)
       {
-         operatingsystemwindow = pacmeuserinteraction->operating_system_window();
+
+         operatingsystemwindow = pacmeuserinteractionMain->operating_system_window();
+
       }
 
    }

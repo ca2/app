@@ -90,15 +90,15 @@ namespace draw2d
       void add_graphics(graphics * pimage);
       void erase_graphics(graphics * pimage);
       ::draw2d::graphics_lease _acquire_memory_graphics(
-         ::draw2d::host * pdraw2dhost,
+         ::acme::user::interaction * pacmeuserinteractionAffinity,
          const ::i32_size & size,
          ::image::image * pimage);
       //::pointer< ::mutex > get_object_list_mutex();
       //::pointer< ::mutex > get_image_list_mutex();
       //::pointer< ::mutex > get_graphics_context_list_mutex();
       virtual ::draw2d::graphics_pointer
-      do_allocation_strategy(::draw2d::host *pdraw2dhost, ::image::image *pimage, const ::i32_size &size);
-      virtual void do_release_to_pool_strategy(::draw2d::graphics_pointer &pgraphics);
+      do_allocation_strategy(::acme::user::interaction * pacmeuserinteractionAffinity, ::image::image *pimage, const ::i32_size &size);
+      virtual void do_release_to_pool_strategy(::draw2d::graphics_pointer &pgraphics, ::image::image *pimage);
    public:
 
       //virtual void on_before_create_window(::windowing::window* pwindow);
@@ -123,15 +123,15 @@ namespace draw2d
 
 
 
-      virtual graphics_pointer create_graphics(::draw2d::host * pdraw2dhost);
+      virtual graphics_pointer create_graphics(::acme::user::interaction * pacmeuserinteractionAffinity);
 
-      virtual graphics_pointer create_memory_graphics(::draw2d::host *pdraw2dhost, const ::i32_size &size);
+      virtual graphics_pointer create_memory_graphics(const ::i32_size &size, ::acme::user::interaction * pacmeuserinteractionAffinity);
 
       virtual ::draw2d::graphics_lease acquire_memory_graphics(const ::i32_size &size,
-         ::draw2d::host * pdraw2dhost = nullptr);
+         ::acme::user::interaction * pacmeuserinteractionAffinity = nullptr);
       virtual ::draw2d::graphics_lease acquire_image_graphics(
          ::image::image * pimage,
-         ::draw2d::host * pdraw2dhost);
+         ::acme::user::interaction * pacmeuserinteractionAffinity);
       virtual void return_memory_graphics(
          ::draw2d::graphics_pointer pgraphics,
          ::image::image_pointer pimage,

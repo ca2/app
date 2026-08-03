@@ -14,7 +14,9 @@
 #include "aura/graphics/draw2d/draw2d.h"
 #include "aura/graphics/draw2d/lock.h"
 #include "aura/graphics/image/load_image.h"
+#include "aura/user/user/interaction_thread.h"
 #include "aura/windowing/icon.h"
+#include "aura/windowing/window.h"
 #define STB_IMAGE_WRITE_IMPLEMENTATION
 #include "stb/stb_image_write.h"
 
@@ -162,6 +164,15 @@ namespace image
       {
 
          return nullptr;
+
+      }
+
+      auto puserinteraction = ::user::task_interaction();
+
+      if (puserinteraction)
+      {
+
+         pimage->m_pacmeuserinteractionAffinity = puserinteraction;
 
       }
 
@@ -1495,7 +1506,7 @@ namespace image
 
             }
 
-            ploadimage->m_ppixmap->defer_update_image();
+            ///ploadimage->m_ppixmap->defer_update_image();
 
             ploadimage->m_ppixmap->on_load_image();
 

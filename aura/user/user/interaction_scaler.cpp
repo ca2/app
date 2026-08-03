@@ -14,8 +14,8 @@ namespace user
    interaction_scaler::interaction_scaler()
    {
 
-      m_dScreenScaler = 1.0;
-      m_dFontScaler = 1.0;
+      //m_dScreenScaler = 1.0;
+      //m_dFontScaler = 1.0;
 
    }
 
@@ -36,9 +36,9 @@ namespace user
 
       ::f64 dScreenScaler = minimum(dW, dH);
 
-      m_dScreenScaler = dScreenScaler;
+      //m_dScreenScaler = dScreenScaler;
 
-      m_dFontScaler = dScreenScaler;
+      //m_dFontScaler = dScreenScaler;
 
    }
 

@@ -9,7 +9,7 @@ namespace graphics
 {
 
 
-   class CLASS_DECL_AURA bitmap_source_buffer :
+   class CLASS_DECL_AURA bitmap_source_buffer_graphics :
       virtual public graphics
    {
    public:
@@ -20,8 +20,8 @@ namespace graphics
       ::pointer < ::mutex >                 m_pmutexBitmapSource;
 
 
-      bitmap_source_buffer();
-      ~bitmap_source_buffer() override;
+      bitmap_source_buffer_graphics();
+      ~bitmap_source_buffer_graphics() override;
 
 
       inline bool is_ipc_copy_enabled() const { return m_pmemorymap && m_pmemorymap->is_mapped(); }
@@ -36,7 +36,7 @@ namespace graphics
 
       string get_bitmap_source() const override;
 
-      bool buffer_lock_round_swap_key_buffers(::draw2d::graphics_pointer &pgraphics) override;
+      bool buffer_lock_round_swap_key_buffers() override;
 
 
    };

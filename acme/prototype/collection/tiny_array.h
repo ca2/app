@@ -4,6 +4,60 @@
 #define TINY_ARRAY_BUILTIN_SIZE 4
 
 
+template <typename TYPE>
+   requires(!::std::is_array_v<TYPE>)
+void raw_copy(TYPE & t1, const TYPE & t2)
+{
+   
+   t1 = t2;
+
+}
+
+
+template <typename TYPE>
+   requires(!::std::is_array_v<TYPE>)
+void raw_transfer(TYPE& t1, TYPE&& t2)
+{
+
+   t1 = t2;
+
+   memset(&t2, 0, sizeof(t2));
+
+}
+
+
+
+template <typename TYPE, ::collection::count t_n>
+void raw_copy(
+   TYPE(&t1)[t_n],
+   const TYPE(&t2)[t_n])
+{
+
+   for (::collection::index i = 0; i < t_n; ++i)
+   {
+
+      raw_copy(t1[i], t2[i]);
+
+   }
+
+}
+
+
+template < typename TYPE, ::collection::count t_n >
+void raw_transfer(TYPE(& t1)[t_n], TYPE ( && t2)[t_n])
+{
+
+   for (::collection::index i = 0; i < t_n; i++)
+   {
+
+      raw_transfer(t1[i], ::transfer(t2[i]));
+
+   }
+
+}
+
+
+
 template < typename TYPE >
 class tiny_array
 {
@@ -18,6 +72,39 @@ public:
 
 
    tiny_array() : m_iCount(0), m_iAllocation(0), m_p(nullptr) { }
+   tiny_array(const tiny_array& a) :
+      m_iCount(0), m_iAllocation(0),
+      m_p(nullptr)
+   {
+
+      if (a.m_iCount > 0)
+      {
+
+         allocate(a.m_iCount);
+
+         memcpy(m_p, a.m_p, sizeof(TYPE) * m_iCount);
+
+      }
+
+      raw_copy(m_typea, a.m_typea);
+
+   }
+
+
+   tiny_array(tiny_array && a) :
+      m_iCount(a.m_iCount), m_iAllocation(a.m_iAllocation),
+      m_p(a.m_p)
+   {
+
+      a.m_iCount = 0;
+
+      a.m_iAllocation = 0;
+
+      a.m_p = nullptr;
+
+      raw_transfer(m_typea, ::transfer(a.m_typea));
+
+   }
    ~tiny_array() { free(); }
 
 

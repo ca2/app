@@ -6,25 +6,15 @@
 //#include "subparticle_flags.h"
 
 
-struct quantum_flag
-{
-
-
-   ::e_flag                         m_eflagElement;
-
-
-};
-
 
 class CLASS_DECL_ACME quantum :
-   public memory_quantum,
-   virtual public quantum_flag
+   public memory_quantum
 {
 public:
 
 
-   ::e_status                          m_estatus;
-
+   ::e_status                       m_estatus;
+   ::e_flag                         m_eflagElement;
 
 
    inline quantum() { }
@@ -39,13 +29,17 @@ public:
    //}
 
 
-   inline quantum(const ::quantum & quantum)
+   inline quantum(const ::quantum & quantum) :
+      m_estatus(quantum.m_estatus),
+      m_eflagElement(quantum.m_eflagElement)
    {
 
 
    }
 
-   inline quantum(::quantum&& quantum)
+   inline quantum(::quantum&& quantum) :
+      m_estatus(::transfer(quantum.m_estatus)),
+      m_eflagElement(::transfer(quantum.m_eflagElement))
    {
 
 
@@ -55,6 +49,7 @@ public:
    virtual ~quantum();
 
 
+   quantum& operator = (const ::quantum& quantum);
 
 
    [[nodiscard]] inline bool has_flag(enum_flag eflag) const { return m_eflagElement.is(eflag); }

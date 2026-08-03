@@ -539,9 +539,9 @@ namespace user
             if (pkey->m_ekey == ::user::e_key_p)
             {
 
-               ::pointer<::windowing::window>pimpl = window();
+               ::pointer<::windowing::window>pwindow = window();
 
-               if (pimpl.is_set())
+               if (pwindow.is_set())
                {
 
                   //synchronous_lock synchronouslock(pimpl->m_spgraphics->synchronization(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
@@ -556,79 +556,81 @@ namespace user
 
                   //auto pparticleSynchronization = pimpl->m_pgraphics->get_draw_lock();
 
-                  auto pbufferitem = pimpl->m_pgraphicsgraphics->on_begin_draw();
+                  throw todo;
 
-                  synchronous_lock synchronouslock(pbufferitem->m_pmutex, DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
+                  //auto pbufferitem = pwindow->m_pgraphicsgraphics->on_begin_draw();
 
-                  auto rectangleTarget = ::f64_rectangle(rectangle.size());
+                  //synchronous_lock synchronouslock(pbufferitem->m_pmutex, DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 
-                  auto pgraphics = pbufferitem->acquire_graphics();
+                  //auto rectangleTarget = ::f64_rectangle(rectangle.size());
 
-                  ::image::image_source imagesource(pgraphics);
+                  //auto pgraphics = pbufferitem->acquire_graphics();
 
-                  ::image::image_drawing_options imagedrawingoptions(rectangleTarget);
+                  //::image::image_source imagesource(pgraphics);
 
-                  ::image::image_drawing imagedrawing(imagedrawingoptions, imagesource);
+                  //::image::image_drawing_options imagedrawingoptions(rectangleTarget);
 
-                  auto pgraphicsImage1 = pimage1->acquire_graphics();
+                  //::image::image_drawing imagedrawing(imagedrawingoptions, imagesource);
 
-                  pgraphicsImage1->draw(imagedrawing);
+                  //auto pgraphicsImage1 = pimage1->acquire_graphics();
 
-                  auto pcopydesk = copydesk();
+                  //pgraphicsImage1->draw(imagedrawing);
 
-                  pcopydesk->image_to_desk(pimage1);
+                  //auto pcopydesk = copydesk();
 
-                  image()->save_image(directory_system()->userconfig() / "control_alt_p.png", pimage1);
+                  //pcopydesk->image_to_desk(pimage1);
 
-                  ::image::image_pointer pimage2;
+                  //image()->save_image(directory_system()->userconfig() / "control_alt_p.png", pimage1);
 
-                  //auto estatus = 
-                  
-                  constructø(pimage2);
+                  //::image::image_pointer pimage2;
 
-                  //if (!estatus)
+                  ////auto estatus = 
+                  //
+                  //constructø(pimage2);
+
+                  ////if (!estatus)
+                  ////{
+
+                  ////   return;
+
+                  ////}
+
+                  ////estatus = 
+                  //
+                  //pimage2->create_as_descriptor({300, rectangle.size().cy * 300 / rectangle.size().cx});
+
+                  ////if (!estatus)
+                  ////{
+
+                  ////   return;
+
+                  ////}
+
+                  //auto pgraphicsImage2 = pimage2->acquire_graphics();
+
+                  //pgraphicsImage2->set_interpolation_mode(::draw2d::e_interpolation_mode_high_quality_bicubic);
+
+                  //::f64_rectangle rectangleSource(rectangle.size());
+
                   //{
 
-                  //   return;
+                  //   ::image::image_source imagesource(pimage1, rectangleSource);
+
+                  //   ::f64_rectangle rectangleTarget(pimage2->size());
+
+                  //   ::image::image_drawing_options imagedrawingoptions(rectangleTarget);
+
+                  //   ::image::image_drawing imagedrawing(imagedrawingoptions, imagesource);
+
+                  //   pgraphicsImage2->draw(imagedrawing);
 
                   //}
 
-                  //estatus = 
-                  
-                  pimage2->create_as_descriptor({300, rectangle.size().cy * 300 / rectangle.size().cx});
+                  //image()->save_image(directory_system()->userconfig() / "control_alt_p_w300.png", pimage2);
 
-                  //if (!estatus)
-                  //{
+                  //pkey->m_bRet = true;
 
-                  //   return;
-
-                  //}
-
-                  auto pgraphicsImage2 = pimage2->acquire_graphics();
-
-                  pgraphicsImage2->set_interpolation_mode(::draw2d::e_interpolation_mode_high_quality_bicubic);
-
-                  ::f64_rectangle rectangleSource(rectangle.size());
-
-                  {
-
-                     ::image::image_source imagesource(pimage1, rectangleSource);
-
-                     ::f64_rectangle rectangleTarget(pimage2->size());
-
-                     ::image::image_drawing_options imagedrawingoptions(rectangleTarget);
-
-                     ::image::image_drawing imagedrawing(imagedrawingoptions, imagesource);
-
-                     pgraphicsImage2->draw(imagedrawing);
-
-                  }
-
-                  image()->save_image(directory_system()->userconfig() / "control_alt_p_w300.png", pimage2);
-
-                  pkey->m_bRet = true;
-
-                  pkey->m_lresult = 1;
+                  //pkey->m_lresult = 1;
 
                }
 
@@ -1015,12 +1017,12 @@ namespace user
    void frame_window::on_message_create(::message::message * pmessage)
    {
 
-      if (!m_papplication->m_pacmeuserinteractionMain)
-      {
+      //if (!m_pacmeuserinteractionMain)
+      //{
 
-         m_papplication->m_pacmeuserinteractionMain = this;
+      //   m_pacmeuserinteractionMain = this;
 
-      }
+      //}
 
       if (pmessage->previous())
       {

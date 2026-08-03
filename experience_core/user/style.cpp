@@ -2317,7 +2317,7 @@ namespace experience_core
 
       ::draw2d::save_context savecontext(pgraphics);
 
-      pgraphics->m_pdraw2dhost = pinteraction;
+      pgraphics->m_pacmeuserinteractionAffinity = pinteraction;
 
       if (pinteraction->is_top_level())
       {

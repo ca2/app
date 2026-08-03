@@ -62,7 +62,7 @@ namespace gpu
    //void image::create_gpu_texture()
    //{
 
-   //   auto pacmewindowingwindow = m_papplication->m_pacmeuserinteractionMain->m_pacmewindowingwindow;
+   //   auto pacmewindowingwindow = m_pacmeuserinteractionMain->m_pacmewindowingwindow;
 
    //   auto pgpudevice = m_papplication->get_gpu_approach()->get_gpu_device(pacmewindowingwindow);
 
@@ -367,7 +367,7 @@ namespace gpu
 
             }
 
-            pthis->pixmap_t::map(pthis->rectangle());
+            pthis->pixmap_map(pthis->rectangle());
             pthis->m_bMapped = true;
 
             if (bPerformanceDiagnostics)
@@ -464,7 +464,7 @@ namespace gpu
             }
 
             pgputexture->defer_fence();
-            pthis->pixmap::unmap();
+            pthis->pixmap_unmap();
             pthis->m_bMapped = false;
 
             if (bPerformanceDiagnostics)
@@ -481,24 +481,6 @@ namespace gpu
 
    void image::on_load_image(const image32_t * pimage32, const ::i32_size & size, int iScan)
    {
-
-      if (m_bMapped)
-      {
-
-         if (size == this->size())
-         {
-
-            copy(size, pimage32, iScan);
-
-         }
-         else
-         {
-
-            unmap();
-
-         }
-
-      }
 
       auto pgputexture = gpu_texture();
 
@@ -599,30 +581,34 @@ namespace gpu
             });
 
       }
-      else if (!m_bMapped)
+      else
       {
 
-         m_sizeRaw = size;
-         
-         m_size = size;
-         
-         m_iScan = size.cx * 4;
+         auto mapThis = this->map();
 
-         int iScanArea = scan_area_in_bytes();
+         mapThis.copy(size, pimage32, iScan);
 
-         m_memoryPixmap.set_size(iScanArea);
+         //m_sizeRaw = size;
+         //
+         //m_size = size;
+         //
+         //m_iScan = size.cx * 4;
 
-         m_pimage32Raw = (::image32_t *)m_memoryPixmap.data();
+         //int iScanArea = scan_area_in_bytes();
 
-         m_pimage32Raw->copy(size, m_iScan, pimage32, iScan);
+         //m_memoryPixmap.set_size(iScanArea);
 
-         ::string str = _001_image32_diagnostics(size, m_pimage32Raw, m_iScan);
+         //m_pimage32Raw = (::image32_t *)m_memoryPixmap.data();
 
-         ::information("pixmap::on_load_image {}", str);
+         //m_pimage32Raw->copy(size, m_iScan, pimage32, iScan);
 
-         m_pimage32 = m_pimage32Raw;
+         //::string str = _001_image32_diagnostics(size, m_pimage32Raw, m_iScan);
 
-         m_bMapped = true;
+         //::information("pixmap::on_load_image {}", str);
+
+         //m_pimage32 = m_pimage32Raw;
+
+         //m_bMapped = true;
 
       }
 

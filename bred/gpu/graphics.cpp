@@ -307,7 +307,7 @@ namespace gpu
       /// begin of a layout thing
 
       auto pgpudevice =
-         m_papplication->get_gpu_approach()->get_gpu_device(m_puserinteractionDraw2dGraphics->acme_windowing_window());
+         m_papplication->get_gpu_approach()->get_gpu_device(m_pacmeuserinteractionAffinity->acme_windowing_window());
 
       auto pcontextMain = pgpudevice->main_context();
 
@@ -318,7 +318,7 @@ namespace gpu
       //
       // }
 
-      ::cast<::user::interaction> puserinteraction = m_puserinteractionDraw2dGraphics;
+      ::cast<::user::interaction> puserinteraction = m_pacmeuserinteractionAffinity;
 
       auto pwindow = puserinteraction->window();
 
@@ -383,22 +383,28 @@ namespace gpu
 
       ::i32_rectangle rectangle;
 
-      if (!m_puserinteractionDraw2dGraphics && m_papplication->m_gpu.m_bUseSwapChainWindow)
+      if (!m_pacmeuserinteractionAffinity && m_papplication->m_gpu.m_bUseSwapChainWindow)
       {
 
-         m_puserinteractionDraw2dGraphics =
-            dynamic_cast<::user::interaction *>(m_papplication->m_pacmeuserinteractionMain.m_p);
+         auto pacmeuserinteractionMain = m_papplication->main_acme_user_interaction();
+
+         m_pacmeuserinteractionAffinity = dynamic_cast<::user::interaction *>(pacmeuserinteractionMain);
+
       }
 
-      if (m_puserinteractionDraw2dGraphics && !m_puserinteractionDraw2dGraphics->host_rectangle().size().is_empty())
+      ::cast < ::user::interaction > puserinteractionAffinity = m_pacmeuserinteractionAffinity;
+
+      if (puserinteractionAffinity && !puserinteractionAffinity->host_rectangle().size().is_empty())
       {
 
-         rectangle = m_puserinteractionDraw2dGraphics->host_rectangle();
+         rectangle = puserinteractionAffinity->host_rectangle();
+
       }
       else
       {
 
          rectangle = {0, 0, 1920, 1080};
+
       }
 
       // auto pcontext = gpu_context();
@@ -524,7 +530,7 @@ namespace gpu
    //   if (!m_puserinteractionDraw2dGraphics && m_papplication->m_gpu.m_bUseSwapChainWindow)
    //   {
 
-   //      m_puserinteractionDraw2dGraphics = dynamic_cast <::user::interaction*>(m_papplication->m_pacmeuserinteractionMain.m_p);
+   //      m_puserinteractionDraw2dGraphics = dynamic_cast <::user::interaction*>(m_pacmeuserinteractionMain.m_p);
 
    //   }
 
@@ -900,7 +906,7 @@ namespace gpu
    void graphics::create_for_window_draw2d(::user::interaction* puserinteraction, const ::i32_size& size)
    {
 
-      m_puserinteractionDraw2dGraphics = puserinteraction;
+      m_pacmeuserinteractionAffinity = puserinteraction;
 
       ::draw2d::graphics::create_for_window_draw2d(puserinteraction, size);
       ///create_offscreen_graphics_for_swap_chain_blitting(puserinteraction, size);
@@ -966,10 +972,10 @@ namespace gpu
    // }
 
 
-   ::f64_size graphics::total_size()
+   ::f64_size graphics::size() const
    {
 
-      auto pcontext = gpu_context();
+      auto pcontext = ((graphics*)this)->gpu_context();
 
       if (pcontext)
       {
@@ -978,7 +984,7 @@ namespace gpu
 
       }
 
-      return ::gpu::graphics::total_size();
+      return ::gpu::graphics::size();
 
    }
 

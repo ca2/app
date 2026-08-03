@@ -381,9 +381,9 @@ namespace user
 
       auto sizeModernOnePixel = ::i32_size{ 1920, 1080 };
 
-      pgraphics->create_memory_graphics(sizeModernOnePixel);
+      pgraphics->create_memory_graphics(sizeModernOnePixel, this);
 
-      pgraphics->m_pdraw2dhost = this;
+      //pgraphics->m_pdraw2dhost = this;
 
       m_pinteractionScaler = allocateø ::user::interaction_scaler();
 

@@ -2252,7 +2252,7 @@ void imaging::blur(::image::image *pimage, i32_rectangle rectangle, ::i32 iRadiu
 
    {
 
-      pixmap_lock lock(pimage, rectangle);
+      auto mapImage = pimage->map(rectangle);
 
       //fastblur.initialize(pimage->size(), iRadisu)
 
@@ -6937,7 +6937,7 @@ void imaging::HueVRCP(::image::image *pimage,::color::color crHue,::f64 dCompres
 
    }
 
-   pimage->unmap();
+   //pimage->unmap();
 
    //return true;
 
@@ -7112,25 +7112,10 @@ void imaging::free_work_image(::image::image *pimage)
 void image_context::load_svg(::image::load_image *ploadimage, memory & memory)
 {
 
-   const_char_pointer psz = (const_char_pointer )memory.data();
-
-   auto size = memory.size();
-
-   if (::is_null(psz))
+   if (::found(memory.find("<svg")))
    {
 
-      //return pimage->m_estatus;
-
-      throw ::exception(error_null_pointer);
-
-   }
-
-   if (memory_find(psz, size, "<svg", 4) != nullptr)
-   {
-
-      char_pointer pszXml = (char_pointer ) memory.data();
-
-      ploadimage->nanosvg(pszXml, ploadimage->m_ppixmap->m_iRedLower);
+      ploadimage->nanosvg(memory, ploadimage->m_ppixmap->m_iRedLower);
 
       ploadimage->m_ppixmap->mult_alpha_fast();
 

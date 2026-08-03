@@ -52,14 +52,16 @@ void simple_main_frame::on_message_create(::message::message * pmessage)
 
    ::pointer<::message::create>pcreate(pmessage);
 
-   auto papp = get_app();
+   //auto papp = get_app();
 
-   if (papp->m_pacmeuserinteractionMain.is_null())
-   {
 
-      papp->m_pacmeuserinteractionMain = this;
 
-   }
+   //if (papp->m_pacmeuserinteractionMain.is_null())
+   //{
+
+   //   papp->m_pacmeuserinteractionMain = this;
+
+   //}
    
 //   if(m_pusersystem 
 //      && m_pusersystem->m_prequest
@@ -115,6 +117,9 @@ void simple_main_frame::on_message_create(::message::message * pmessage)
 //      }
 //
 //   }
+
+
+   auto papp = m_papplication;
 
 
    if (papp->is_true("opaque"))

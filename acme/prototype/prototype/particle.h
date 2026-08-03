@@ -89,6 +89,18 @@ namespace prototype
 struct disable_referencing_debugging_t {};
 
 
+
+
+#define PARTICLE_TRANSFER(a) \
+::particle(::transfer(a)), \
+SIGNAL_HANDLER_BASE_TRANSFER(a)
+
+
+#define PARTICLE_COPY_CONSTRUCT(a) \
+::particle(a), \
+SIGNAL_HANDLER_BASE_COPY_CONSTRUCT(a)
+
+
 // ThomasBorregaardSorensen!! Like handlers : now particle with handle::handlers*
 class CLASS_DECL_ACME particle :
    virtual public signal_handler::base
@@ -101,7 +113,12 @@ public:
 
 
 //#if REFERENCING_DEBUGGING
-   particle() : m_papplication(nullptr), m_pparticleSynchronization(nullptr) { }
+   particle() : 
+      m_papplication(nullptr), 
+      m_pparticleSynchronization(nullptr)
+   {
+   
+   }
 
 
    //particle(const ::e_flag & eflag, const ::e_status & estatus = undefined) :
@@ -117,18 +134,23 @@ public:
 
 
    particle(const ::particle & particle) :
-      ::quantum(particle),
-      ::subparticle(particle)
+      SIGNAL_HANDLER_BASE_TRANSFER(particle),
+      m_papplication(particle.m_papplication),
+      m_pparticleSynchronization(particle.m_pparticleSynchronization)
    {
 
 
    }
 
-   particle(::particle&& particle) :
-      ::quantum(::transfer(particle)),
-      ::subparticle(::transfer(particle))
-   {
 
+   particle(::particle&& particle) :
+      SIGNAL_HANDLER_BASE_TRANSFER(particle),
+      m_papplication(particle.m_papplication),
+      m_pparticleSynchronization(particle.m_pparticleSynchronization)
+   {  
+
+      //particle.m_papplication = nullptr;
+      particle.m_pparticleSynchronization = nullptr;
 
    }
 
@@ -142,6 +164,8 @@ public:
 //#else
    ~particle() override;
 
+   
+   particle& operator = (const ::particle& particle);
 
 
    inline bool is_null() const { return ::is_null(this); }
@@ -920,14 +944,14 @@ public:
 
    virtual void kick_idle();
 
-   particle & operator = (const particle & particle)
-   {
+   //particle & operator = (const particle & particle)
+   //{
 
-      // all particle members are quite instance members.
+   //   // all particle members are quite instance members.
 
-      return *this;
+   //   return *this;
 
-   }
+   //}
 
 
    //virtual ::subparticle_pointer clone();

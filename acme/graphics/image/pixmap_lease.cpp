@@ -7,11 +7,13 @@
 pixmap_lease::pixmap_lease()
 {
 
+   m_bRectangleMap = false;
 
 }
 
 pixmap_lease::pixmap_lease(::pixmap *ppixmap, bool bApplyTransform) :
-   m_ppixmap(ppixmap) 
+   m_ppixmap(ppixmap),
+   m_bRectangleMap(false)
 {
 
    ppixmap->_map(bApplyTransform);
@@ -20,6 +22,21 @@ pixmap_lease::pixmap_lease(::pixmap *ppixmap, bool bApplyTransform) :
 
 }
    
+
+pixmap_lease::pixmap_lease(::pixmap* ppixmap, const ::i32_rectangle & rectangle) :
+   m_ppixmap(ppixmap),
+   m_bRectangleMap(true)
+{
+
+   ppixmap->_map(true);
+
+   m_rectangleBefore = ppixmap->rectangle();
+
+   ppixmap->pixmap_map(rectangle);
+
+   memory_copy(this, (::pixmap_t*)ppixmap, sizeof(pixmap_t));
+
+}
 
 
 pixmap_lease::pixmap_lease(pixmap_lease &&pixmaplease) :
@@ -43,7 +60,19 @@ pixmap_lease::~pixmap_lease()
 
    }
 
-   m_ppixmap->unmap();
+   m_ppixmap->_unmap();
+
+   if (m_bRectangleMap)
+   {
+
+      if (m_rectangleBefore.is_set())
+      {
+
+         m_ppixmap->pixmap_map(m_rectangleBefore);
+
+      }
+
+   }
 
    clear();
 

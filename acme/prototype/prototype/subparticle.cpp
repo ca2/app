@@ -38,6 +38,15 @@ subparticle::subparticle() :
 }
 
 
+
+subparticle::subparticle(subparticle&& subparticle) :
+   ::quantum(::transfer(subparticle)),
+   m_countReference(::transfer(subparticle)),
+   m_referencingdebugging(::transfer(subparticle.m_referencingdebugging))
+{
+
+}
+
 // subparticle::subparticle(const ::e_flag & eflag, const ::e_status & estatus) :
 //    ::quantum(eflag, estatus),
 //    m_countReference(1)
@@ -71,6 +80,7 @@ subparticle::subparticle(::subparticle && subparticle) :
 
 
 
+
 void subparticle::subparticle_referencing_debugging_construct()
 {
 
@@ -85,6 +95,28 @@ void subparticle::subparticle_referencing_debugging_construct()
    }
 
    m_timeAllocation.Now();
+
+   ::allocator::on_construct_subparticle(this);
+
+#endif
+
+}
+
+
+void subparticle::subparticle_referencing_debugging_transfer(transfer&& transfer)
+{
+
+#if REFERENCING_DEBUGGING
+
+   //if (!this->is_referencing_debugging_enabled()
+   //   || !g_bDefaultEnableObjectReferenceCountDebug)
+   //{
+
+   //   disable_referencing_debugging();
+
+   //}
+
+   m_timeAllocation = transfer(transfer.m_timeAllocation);
 
    ::allocator::on_construct_subparticle(this);
 
@@ -129,6 +161,21 @@ void subparticle::on_after_construct(::reference_referer* preferer)
 
 
 #endif
+
+
+::subparticle& subparticle::operator = (const ::subparticle& subparticle)
+{
+
+   if (this != &subparticle)
+   {
+
+      ::quantum::operator = (subparticle);
+
+   }
+
+   return *this;
+
+}
 
 
 void subparticle::initialize(::particle* pparticle)

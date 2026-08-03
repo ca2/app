@@ -91,7 +91,7 @@ namespace gpu
          if (m_papplication->m_gpu.m_bUseSwapChainWindow)
          {
 
-            ///auto pwindow = m_papplication->m_pacmeuserinteractionMain->window();
+            ///auto pwindow = m_pacmeuserinteractionMain->window();
 
             ::cast < ::windowing::window > pwindow;
 
@@ -100,7 +100,7 @@ namespace gpu
             //if (!pwindow)
             //{
 
-            //   pwindow = m_papplication->m_pacmeuserinteractionMain->window();
+            //   pwindow = m_pacmeuserinteractionMain->window();
 
             //}
 
@@ -169,9 +169,30 @@ namespace gpu
 
       information("gpu::approach::gpu_on_create_window for type {}", pszType);
 
-      auto pdevice = get_gpu_device(pacmewindowingwindow);
+      auto pgpudevice = get_gpu_device(pacmewindowingwindow);
 
-      pdevice->create_main_context(pacmewindowingwindow);
+      auto pgpucontext = pgpudevice->allocate_gpu_context();
+
+      ::gpu::enum_output eoutput = ::gpu::e_output_none;
+
+      if (m_papplication->m_gpu.m_bUseSwapChainWindow)
+      {
+
+         eoutput = ::gpu::e_output_swap_chain;
+
+      }
+      else
+      {
+
+         eoutput = ::gpu::e_output_gpu_buffer;
+
+      }
+
+      auto sizeWindow = pacmewindowingwindow->m_sizeWindow;
+
+      ::gpu::enum_scene escene = ::gpu::e_scene_2d;
+
+      pgpucontext->create_window_gpu_context(pgpudevice, eoutput, escene, pacmewindowingwindow, sizeWindow);
 
       //::cast<::gpu_opengl::approach> papproach = m_papplication->get_gpu_approach();
       _gpu_on_create_window(pacmewindowingwindow);

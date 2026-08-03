@@ -52,7 +52,9 @@ namespace gpu
 
       }
 
-      auto pacmewindowingwindow = m_papplication->m_pacmeuserinteractionMain->m_pacmewindowingwindow;
+      auto pacmeuserinteractionMain = m_papplication->main_acme_user_interaction();
+
+      auto pacmewindowingwindow = pacmeuserinteractionMain->m_pacmewindowingwindow;
 
       auto pgpudevice = m_papplication->get_gpu_approach()->get_gpu_device(pacmewindowingwindow);
 

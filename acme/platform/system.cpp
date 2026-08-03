@@ -781,6 +781,8 @@ namespace platform
 
       defer_construct_newø(m_pprototype);
 
+      RUN_SELF_TEST(main);
+
       //::plane_system::on_initialize_particle();
 
    }

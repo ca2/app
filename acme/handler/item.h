@@ -176,15 +176,13 @@ public:
 
 
    item(item && item) noexcept :
-      subparticle(::transfer(item)),
-      particle(::transfer(item)),
+      MATTER_TRANSFER(item),
       m_item(::transfer(item.m_item)),
       m_eitem(::transfer(item.m_eitem)),
-      m_eitemflag(::transfer(item.m_eitemflag)),
+      m_eitemflag(::transfer(item.m_eitemflag))
       //item_base(::transfer(item)),
       //ITEM_DATA_ADDITIONS(::transfer(item)),
       //item_data(::transfer(item)),
-      matter(::transfer(item))
    {
 
    }

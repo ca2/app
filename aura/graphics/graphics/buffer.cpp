@@ -1,5 +1,6 @@
 #include "framework.h"
 #include "buffer.h"
+#include "buffer_item.h"
 #include "acme/parallelization/synchronous_lock.h"
 #include "acme/prototype/geometry2d/_text_stream.h"
 #include "aura/graphics/image/image.h"
@@ -11,13 +12,13 @@ namespace graphics
 {
 
 
-   buffer::buffer()
+   buffer_graphics::buffer_graphics()
    {
 
    }
 
 
-   buffer::~buffer()
+   buffer_graphics::~buffer_graphics()
    {
 
       destroy_buffer();
@@ -27,7 +28,7 @@ namespace graphics
    }
 
 
-   void buffer::update_screen()
+   void buffer_graphics::update_screen()
    {
 
       synchronous_lock synchronouslock(this->synchronization(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
@@ -48,7 +49,7 @@ namespace graphics
    }
 
 
-   //bool buffer::update_screen(buffer_item * pitem)
+   //bool buffer_graphics::update_screen(buffer_item * pitem)
    //{
 
    //   __UNREFERENCED_PARAMETER(pitem);
@@ -58,7 +59,7 @@ namespace graphics
    //}
 
 
-   ::image::image_pointer & buffer::get_buffer()
+   ::image::image_pointer & buffer_graphics::get_buffer()
    {
 
       return m_pimageBuffer;
@@ -66,7 +67,7 @@ namespace graphics
    }
 
 
-   bool buffer::is_buffer_ok()
+   bool buffer_graphics::is_buffer_ok()
    {
 
       return m_pimageBuffer->is_set();
@@ -74,7 +75,7 @@ namespace graphics
    }
 
 
-   void buffer::destroy_buffer()
+   void buffer_graphics::destroy_buffer()
    {
 
       m_pimageBuffer->destroy();
@@ -82,7 +83,7 @@ namespace graphics
    }
 
 
-   ::i32_size buffer::buffer_size()
+   ::i32_size buffer_graphics::buffer_size()
    {
 
       return m_pimageBuffer->get_size();
@@ -90,7 +91,7 @@ namespace graphics
    }
 
 
-   bool buffer::update_buffer(buffer_item * pitem)
+   bool buffer_graphics::update_buffer(buffer_item * pitem)
    {
 
       //auto pitem = get_buffer_item();
@@ -98,11 +99,11 @@ namespace graphics
       try
       {
 
-         information() << "::graphics::buffer::update_buffer going to create image : " << pitem->m_sizeBufferItem;
+         information() << "::graphics::buffer_graphics::update_buffer going to create image : " << pitem->m_sizeBufferItem;
 
          m_pimageBuffer->create_as_descriptor(pitem->m_sizeBufferItem);
 
-         information() << "::graphics::buffer::update_buffer going after create image : " << pitem->m_sizeBufferItem;
+         information() << "::graphics::buffer_graphics::update_buffer going after create image : " << pitem->m_sizeBufferItem;
 
       }
       catch (...)
@@ -126,7 +127,7 @@ namespace graphics
    }
 
 
-   //::image::image_pointer & buffer::get_screen_image()
+   //::image::image_pointer & buffer_graphics::get_screen_image()
    //{
 
    //   return m_pimageBuffer;
@@ -134,7 +135,7 @@ namespace graphics
    //}
 
 
-   //::particle * buffer::get_screen_sync()
+   //::particle * buffer_graphics::get_screen_sync()
    //{
 
    //   return synchronization();
@@ -142,7 +143,7 @@ namespace graphics
    //}
 
 
-   //::particle * buffer::get_draw_lock()
+   //::particle * buffer_graphics::get_draw_lock()
    //{
 
    //   return synchronization();
@@ -150,7 +151,7 @@ namespace graphics
    //}
 
 
-   bool buffer::_on_begin(::graphics::buffer_item * pitem)
+   bool buffer_graphics::_on_begin(::graphics::buffer_item * pitem)
    {
 
       //auto pitem = get_buffer_item();
@@ -191,7 +192,7 @@ namespace graphics
    }
 
 
-   bool buffer::buffer_lock_round_swap_key_buffers(::draw2d::graphics_pointer &pgraphics)
+   bool buffer_graphics::buffer_lock_round_swap_key_buffers()
    {
 
       return true;

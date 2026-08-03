@@ -162,6 +162,8 @@ namespace user
 
 
       virtual void will_use_impact_hint(::atom idImpact);
+      virtual void on_will_use_impact_hint(::atom idImpact);
+      virtual void process_will_use_impact_hint();
 
 
       //virtual void term_instance() override;

@@ -96,6 +96,8 @@ namespace image
 
       defer_constructø(m_pimage);
 
+      m_pimage->m_pacmeuserinteractionAffinity = system()->m_papplication->main_acme_user_interaction();
+
       if (m_iSize > 0)
       {
 
@@ -501,14 +503,14 @@ namespace image
    //}
 
 
-   ::i32 image_list::set(::i32 iItem, const ::image::image_drawing & imagedrawing)
+   ::i32 image_list::set(::i32 iItemParam, const ::image::image_drawing & imagedrawing)
    {
 
       ::draw2d::lock draw2dlock(this);
 
       _synchronous_lock synchronouslock(this->synchronization(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 
-      iItem = reserve_image(iItem);
+      auto iItem = reserve_image(iItemParam);
 
       if (!::is_ok(m_pimage))
       {

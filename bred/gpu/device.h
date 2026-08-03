@@ -127,7 +127,7 @@ namespace gpu
 
 
 
-      virtual void create_main_context(::acme::windowing::window *pacmewindowingwindow);
+      //virtual void create_main_context(::acme::windowing::window *pacmewindowingwindow);
       virtual ::gpu::context * main_context();
       virtual ::gpu::context * main_draw2d_context();
       virtual ::pointer<::gpu::context> create_work_context();
@@ -194,7 +194,7 @@ namespace gpu
       virtual void initialize_gpu_device_for_off_screen(::gpu::approach * papproach, const ::i32_rectangle & rectanglePlacement);
 
 
-      virtual ::gpu::context_pointer allocate_context();
+      virtual ::gpu::context_pointer allocate_gpu_context();
 
 
       virtual ::gpu::layer* get_previous_layer(::gpu::layer * pgpulayer);
@@ -203,11 +203,15 @@ namespace gpu
 
       ///virtual ::gpu::context_pointer start_cpu_buffer_context(::particle* pparticle, const ::function< void(::image::target* ptarget) >& callbackOnImagePixels, const ::i32_rectangle& rectanglePlacement);
 
-      virtual ::gpu::context_pointer create_window_context(::windowing::window* pwindow);
+      //virtual ::gpu::context_pointer create_window_context(::windowing::window* pwindow);
 
-      virtual ::gpu::context_pointer create_gpu_context(const ::gpu::enum_output& eoutput,  const ::gpu::enum_scene & escene, const ::i32_size & size);
+      //virtual ::gpu::context_pointer create_gpu_context(const ::gpu::enum_output& eoutput,  const ::gpu::enum_scene & escene, const ::i32_size & size);
 
+<<<<<<< HEAD
       virtual ::gpu::context_pointer create_draw2d_context(const ::gpu::enum_output& eoutput, ::acme::windowing::window * pwindow, const ::i32_size & size);
+=======
+      //virtual ::gpu::context_pointer create_draw2d_context(const ::gpu::enum_output& eoutput, const ::i32_size & size);
+>>>>>>> origin/main
 
       virtual ::gpu::context_lease acquire_gpu_context(
          const ::gpu::enum_output & eoutput,

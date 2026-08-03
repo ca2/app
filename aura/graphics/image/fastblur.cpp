@@ -308,7 +308,7 @@ inline void storeFloatAsRGBA8(f3232x4_t data,::u32* destination)
    void fastblur::blur(::image::image *pimage, const ::i32_rectangle & rectangle)
    {
 
-      pixmap_lock lock(pimage, rectangle);
+      auto mapImage = pimage->map(rectangle);
 
       return blur(pimage);
 
@@ -337,7 +337,7 @@ inline void storeFloatAsRGBA8(f3232x4_t data,::u32* destination)
 
       //}
 
-      pimage->map();
+      auto mapImage = pimage->map();
 
       bool b = false;
 

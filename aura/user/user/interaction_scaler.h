@@ -5,7 +5,7 @@
 
 
 //#include "acme/prototype/geometry2d/_geometry2d.h"
-#include "aura/graphics/draw2d/host.h"
+//#include "aura/graphics/draw2d/host.h"
 
 
 namespace user
@@ -13,7 +13,8 @@ namespace user
 
 
    class CLASS_DECL_AURA interaction_scaler :
-      virtual public ::draw2d::host
+      //virtual public ::draw2d::host
+      virtual public ::particle
    {
    public:
 

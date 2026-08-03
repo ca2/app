@@ -2814,6 +2814,7 @@
     <ClCompile Include="operating_system\shared_memory.cpp" />
     <ClCompile Include="operating_system\windows\console.cpp" />
     <ClCompile Include="operating_system\windows\CtrlAltDelSimulator.cpp" />
+    <ClCompile Include="operating_system\windows\device_independent_bitmap.cpp" />
     <ClCompile Include="operating_system\windows\parallelization.cpp" />
     <ClCompile Include="operating_system\windows\shared_memory.cpp" />
     <ClCompile Include="operating_system\windows_common\apartment_thread.cpp" />
@@ -2828,8 +2829,13 @@
     <ClCompile Include="platform\subsystem.cpp" />
     <ClCompile Include="platform\user_interaction_sink.cpp" />
     <ClCompile Include="platform\wparam.cpp" />
+    <ClCompile Include="prototype\collection\osdata_array.cpp" />
     <ClCompile Include="prototype\collection\_array_binary_stream.cpp" />
+    <ClCompile Include="prototype\geometry\sequence.cpp" />
     <ClCompile Include="prototype\string\string_base.cpp" />
+    <ClCompile Include="quality\self_test.cpp" />
+    <ClCompile Include="quality\self_test_item.cpp" />
+    <ClCompile Include="quality_test_context.cpp" />
     <ClCompile Include="user\implementation\dialog_implementation.cpp" />
     <ClCompile Include="user\implementation\message_box_implementation.cpp" />
     <ClCompile Include="user\interface\dialog.cpp" />
@@ -2884,6 +2890,7 @@
     <ClInclude Include="operating_system\message_box.h" />
     <ClInclude Include="operating_system\networking.h" />
     <ClInclude Include="operating_system\shared_posix\time1.h" />
+    <ClInclude Include="operating_system\windows\device_independent_bitmap.h" />
     <ClInclude Include="operating_system\windows\time.h" />
     <ClInclude Include="operating_system\windows_common\com\bstring.h" />
     <ClInclude Include="operating_system\windows_common\com\comptr.h" />
@@ -3673,6 +3680,8 @@
     <ClInclude Include="prototype\string\_impl_string_base_allocation.h" />
     <ClInclude Include="prototype\time\__time.h" />
     <ClInclude Include="prototype\_impl.h" />
+    <ClInclude Include="quality\self_test.h" />
+    <ClInclude Include="quality\self_test_item.h" />
     <ClInclude Include="release\_.h" />
     <ClInclude Include="template\list.h" />
     <ClInclude Include="template\safe_bool.h" />

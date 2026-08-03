@@ -68,6 +68,8 @@ namespace acme
          ::pointer < ::acme::user::interaction >       m_pacmeuserinteractionOwner;
          ::pointer <::pointer_array < ::acme::user::interaction >> m_pacmeuserinteractionaChildren;
          //::pointer <::pointer_array < ::acme::user::interaction >> m_pacmeuserinteractionaChildrenToDestroy;
+               ::f64                                    m_dScreenScaler;
+      ::f64                                    m_dFontScaler;
 
          ////string                                    m_strText;
          ////::atom                                    id();
@@ -577,6 +579,13 @@ namespace acme
          void dump_operating_system_child_window_hierarchy() override;
 
 
+         inline ::f64 screen_scaler() const { return m_dScreenScaler; }
+         inline ::f64 font_scaler() const { return m_dFontScaler; }
+
+
+         virtual ::f64 point_dpi(::f64 d);
+
+         virtual ::f64 dpiy(::f64 d);
 
       };
 

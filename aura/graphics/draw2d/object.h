@@ -6,6 +6,12 @@
 //#include "acme/prototype/prototype/matter.h"
 
 
+#define DRAW2D_OBJECT_TRANSFER(a) \
+::draw2d::object(::transfer(a)), \
+::osdata_array(::transfer(a)), \
+MATTER_TRANSFER(a)
+
+
 namespace draw2d
 {
 
@@ -17,7 +23,7 @@ namespace draw2d
    public:
 
 
-      void *         m_pthis;
+      //void *         m_pthis;
       //void *         m_powner = nullptr; // in a normal usage/flow I can machine the object only if I am the owner, otherwise create another object
       void *         m_osdata[8] = {};
       bool           m_baCalculated[8] = {};
@@ -28,6 +34,7 @@ namespace draw2d
 
 
       object();
+      object(object && object);
       ~object() override;
 
 
@@ -53,40 +60,14 @@ namespace draw2d
       virtual void create(::draw2d::graphics * pgraphics, ::i8 iCreate);
       void destroy() override;
 
-      inline void set_modified() 
-      { 
-         m_baCalculated[0] = false;
-         m_baCalculated[1] = false;
-         m_baCalculated[2] = false;
-         m_baCalculated[3] = false;
-         m_baCalculated[4] = false;
-         m_baCalculated[5] = false;
-         m_baCalculated[6] = false;
-         m_baCalculated[7] = false;
-      }
+
+      virtual void on_changed();
+
+      virtual void set_modified();
 
 
-      inline void clear_os_data()
-      {
-
-         m_osdata[0] = nullptr;
-         m_osdata[1] = nullptr;
-         m_osdata[2] = nullptr;
-         m_osdata[3] = nullptr;
-         m_osdata[4] = nullptr;
-         m_osdata[5] = nullptr;
-         m_osdata[6] = nullptr;
-         m_osdata[7] = nullptr;
-         m_baCalculated[0] = false;
-         m_baCalculated[1] = false;
-         m_baCalculated[2] = false;
-         m_baCalculated[3] = false;
-         m_baCalculated[4] = false;
-         m_baCalculated[5] = false;
-         m_baCalculated[6] = false;
-         m_baCalculated[7] = false;
-
-      }
+      virtual void clear_os_data();
+      
 
 
       template < typename POINTER >

@@ -90,8 +90,9 @@ namespace draw2d
       bool                                         m_bOutline;
       void* m_pthis;
       //::pointer<::draw2d::graphics_context>        m_pgraphicscontext;
-      ::pointer < ::user::interaction >            m_puserinteractionDraw2dGraphics;
-      ::pointer<::draw2d::host>                    m_pdraw2dhost;
+      ::pointer < ::acme::user::interaction >       m_pacmeuserinteractionAffinity;
+      //::pointer < ::user::interaction >            m_puserinteractionDraw2dGraphics;
+      //::pointer<::draw2d::host>                    m_pdraw2dhost;
       ::f64                                       m_dSizeScaler;
       bool                                         m_bPat;
       ///::image32_callback                           m_callbackImage32CpuBuffer;
@@ -155,6 +156,7 @@ namespace draw2d
 
       graphics();
       ~graphics() override;
+
 
 
       void on_initialize_particle() override;
@@ -357,21 +359,26 @@ namespace draw2d
       virtual ::u32 SetLayout(::u32 dwLayout);
 
       // Constructors
+
+
+      virtual void create_for_image(::image::image* pimage);
+
       virtual void create_device_context(const ::scoped_string & scopedstrDriverName, const ::scoped_string & scopedstrDeviceName, const ::scoped_string & scopedstrOutput, const void* lpInitData);
 
       virtual void create_information_context(const ::scoped_string & scopedstrDriverName, const ::scoped_string & scopedstrDeviceName, const ::scoped_string & scopedstrOutput, const void* lpInitData);
 
       virtual void create_window_graphics(::windowing::window* pwindow);
       virtual void create_offscreen_graphics_for_swap_chain_blitting(::user::interaction* puserinteraction, const ::i32_size& size = {});
-      virtual void create_memory_graphics(const ::i32_size& sizeParameter);
-      virtual bool is_memory_graphics_pool_compatible(::draw2d::host * pdraw2dhost) const;
+      virtual void create_memory_graphics(const ::i32_size& sizeParameter, ::acme::user::interaction * pacmeuserinteractionAffinity);
+      virtual bool is_memory_graphics_pool_compatible(::acme::user::interaction * pacmeuserinteractionAffinity) const;
       virtual void on_acquire_memory_graphics(
          ::image::image * pimage,
-         const ::i32_size & size);
+         const ::i32_size & size,
+         ::acme::user::interaction * pacmeuserinteractionAffinity);
       virtual void on_release_memory_graphics();
       virtual void create_for_window_draw2d(::user::interaction * puserinteraction, const ::i32_size& size = {});
       virtual void defer_set_size(const ::i32_size& size = {});
-      virtual void _create_memory_graphics(const ::i32_size& size = {});
+      virtual void _create_memory_graphics(const ::i32_size& size = {}, ::acme::user::interaction * pacmeuserinteractionAffinity = nullptr);
       virtual void create_compatible_graphics(::draw2d::graphics* pgraphics);
       virtual void create_window_graphics(const ::operating_system::window & operatingsystemwindow);
 
@@ -456,7 +463,7 @@ namespace draw2d
       virtual void sync_flush();
 
 
-      virtual ::f64_size get_size() const;
+      virtual ::f64_size size() const;
 
       ::i32_size get_image_drawer_size() const override;
 
@@ -516,7 +523,7 @@ namespace draw2d
 
 
       virtual ::f64_size impact_size();
-      virtual ::f64_size total_size();
+      //virtual ::f64_size _size();
 
 
       void x_offset(::f64 dx) override;
@@ -810,6 +817,7 @@ namespace draw2d
       virtual void fill_rectangle(const ::f64_rectangle& rectangle, const ::color::color& color);
       virtual void fill_inset_rectangle(const ::f64_rectangle& rectangle, const ::color::color& color);
       virtual void fill_solid_rectangle(const ::f64_rectangle& rectangle, const ::color::color& color);
+      virtual void clear(const ::color::color& color);
 
       virtual void color_blend_3dRect(const i32_rectangle& rectangleParam, const ::color::color& colorTopLeft, const class ::opacity& opacityTopLeft, const ::color::color& color, const class ::opacity& opacityBottomRight);
 

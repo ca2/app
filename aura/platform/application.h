@@ -234,6 +234,10 @@ namespace aura
       //::aura::system* system();
 
 
+      void on_set_main_acme_user_interaction(::acme::user::interaction* pacmeuserinteractionMain) override;
+      void on_set_active_acme_user_interaction(::acme::user::interaction* pacmeuserinteractionMain) override;
+
+
 
       virtual bool Ex2OnAppInstall() override;
       virtual bool Ex2OnAppUninstall() override;

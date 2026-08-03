@@ -6,6 +6,11 @@
 #include "acme/prototype/geometry2d/size.h"
 
 
+#define DRAW2D_BITMAP_TRANSFER(a) \
+::draw2d::bitmap(::transfer(a)), \
+DRAW2D_OBJECT_TRANSFER(a)
+
+
 namespace draw2d
 {
 
@@ -17,8 +22,8 @@ namespace draw2d
    public:
 
 
-      ::i32_size               m_size;
-      ::i32                  m_iStride;
+      ::i32_size              m_size;
+      ::i32                   m_iStride;
 
 //#ifdef WINDOWS_DESKTOP
 //
@@ -29,6 +34,7 @@ namespace draw2d
 
 
       bitmap();
+      bitmap(bitmap&& bitmap);
       ~bitmap() override;
 
 
@@ -59,7 +65,12 @@ namespace draw2d
       virtual void CreateCompatibleBitmap(::draw2d::graphics * pgraphics, ::i32 nWidth, ::i32 nHeight);
       virtual void CreateDiscardableBitmap(::draw2d::graphics * pgraphics, ::i32 nWidth, ::i32 nHeight);
 
-      virtual void create_bitmap(::draw2d::graphics * pgraphics, const ::i32_size& size, image32_t ** ppimage32, const image32_t * pimage32, ::i32* piScan);
+      
+      virtual void create_bitmap_for_image(
+         ::image::image * pimage,
+         ::acme::user::interaction * pacmeuserinteractionAffinity = nullptr);
+      virtual void preserve_image(const ::i32_size & size, ::image::image* pimage);
+      virtual void create_bitmap(::draw2d::graphics * pgraphics, const ::i32_size& size, ::memory & memory, ::i32* piScan);
       virtual bool host_bitmap(::draw2d::graphics* pgraphics, pixmap_t* ppximap);
       virtual void CreateDIBitmap(::draw2d::graphics * pgraphics, ::i32 cx, ::i32 cy, ::u32 flInit, const void *pjBits, ::u32 iUsage);
 

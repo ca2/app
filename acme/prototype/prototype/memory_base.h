@@ -19,6 +19,7 @@ enum enum_memory
    e_memory_primitive,
    e_memory_shared,
    e_memory_virtual,
+   e_memory_reference,
 
 };
 
@@ -127,7 +128,7 @@ public:
    //virtual bool begins(const ::scoped_string & scopedstr, character_count iCount = -1) const;
 
    virtual bool begins_eat(const BLOCK & block);
-
+   ::u8* data_if_at_least(memsize size) const  { return this->size() >= size ? (::u8 *) this->data() : (::u8 *) nullptr; }
    //virtual bool case_insensitive_begins(const ::scoped_string & scopedstr, character_count iCount = -1) const{ return ((::const_ansi_range *)this)->case_insensitive_begins(scopedstr); }
    //virtual bool begins(const ::scoped_string & scopedstr, character_count iCount = -1) const;
    //virtual bool case_insensitive_begins(const ::scoped_string & scopedstr, character_count iCount = -1) const;
@@ -267,6 +268,8 @@ public:
    void delete_begin(memsize iSize);
    void eat_begin(const void * pdata, memsize iSize);
    void set_data(const void * pdata, memsize uiSize);
+   void reference_data(const void* pdata, memsize uiSize);
+   void reference_data(const ::block & block);
    void set_at(::collection::index i, const void * pdata, memsize uiSize);
    void copy_from(const memory_base * pstorage);
    void copy_from(const void * pdata, memsize s);

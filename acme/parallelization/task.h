@@ -115,6 +115,11 @@ class CLASS_DECL_ACME task :
    virtual public ::source,
    virtual public ::data::property_container
 {
+protected:
+
+   ::pointer < ::acme::user::interaction >                       m_pacmeuserinteractionMain; // Main user interaction (usually same psystem->m_puiMain)
+   ::pointer < ::acme::user::interaction >                       m_pacmeuserinteractionActive; // Active user interaction (may not be m_puiMain)
+
 public:
 
 
@@ -226,8 +231,6 @@ public:
    string                                          m_strTaskTag;
    task_handler *                                  m_ptaskhandler;
    
-   ::pointer < ::acme::user::interaction >                       m_pacmeuserinteractionMain; // Main user interaction (usually same psystem->m_puiMain)
-   ::pointer < ::acme::user::interaction >                       m_pacmeuserinteractionActive; // Active user interaction (may not be m_puiMain)
 
    ::particle_array                                m_particleaHold;
    ::pointer<manual_reset_happening>                   m_phappeningInitialization;
@@ -319,6 +322,16 @@ private:
    virtual bool _defer_co_initialize_ex(bool bMultiThread);
 
 #endif
+
+
+   virtual ::acme::user::interaction* main_acme_user_interaction();
+   virtual ::acme::user::interaction* active_acme_user_interaction();
+   virtual void set_main_acme_user_interaction(::acme::user::interaction* pacmeuserinteractionMain);
+   virtual void set_active_acme_user_interaction(::acme::user::interaction* pacmeuserinteractionMain);
+
+
+   virtual void on_set_main_acme_user_interaction(::acme::user::interaction* pacmeuserinteractionMain);
+   virtual void on_set_active_acme_user_interaction(::acme::user::interaction* pacmeuserinteractionMain);
 
    
    virtual void on_single_lock_lock(::subparticle *psubparticleSynchronization,

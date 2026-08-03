@@ -25,6 +25,8 @@ namespace windows
       const ::scoped_string & scopedstrCaption,
       ::u32 uType);
 
+   
+   class device_independent_bitmap;
 
 
 } // namespace windows

@@ -13,6 +13,30 @@
 #endif
 
 
+void pixmap_t::fill_byte(::u8 byte)
+{
+
+   if (m_size == m_sizeRaw)
+   {
+
+      memset(m_pimage32Raw, byte, scan_area_in_bytes());
+
+   }
+   else
+   {
+      
+      for (int i = 0; i < m_size.cy; i++)
+      {
+
+         auto pline = line_data(i);
+
+         memset(pline, byte, m_size.cx * 4);
+
+      }
+
+   }
+
+}
 
 
 #define byte_clip2(i) (i)
@@ -294,6 +318,40 @@ pixmap_t &pixmap_t::operator=(const pixmap_t &pixmap)
    }
 
 
+}
+
+
+
+void pixmap_t::pixmap_map(const ::i32_rectangle & rectangle)
+{
+
+   m_point = rectangle.origin();
+
+   m_size = rectangle.size();
+
+   pixmap_map();
+
+}
+
+
+void pixmap_t::pixmap_map() const
+{
+
+   if (::is_set(m_pimage32Raw))
+   {
+
+      ((pixmap_t *)this)->m_pimage32 = (::image32_t *)(((::u8 *)m_pimage32Raw) + (m_point.x * sizeof(::image32_t) + (m_iScan * m_point.y)));
+
+   }
+
+}
+
+
+void pixmap_t::pixmap_unmap()
+{
+   m_point.clear();
+   m_size = m_sizeRaw;
+   m_pimage32 = m_pimage32Raw;
 }
 
 

@@ -1761,6 +1761,21 @@ namespace user
    }
 
 
+   void user::on_set_application_main_acme_user_interaction(::platform::application* papplication, ::acme::user::interaction* pacmeuserinteractionMain)
+   {
+
+      auto puser = session()->user();
+
+      puser->process_will_use_impact_hint();
+
+   }
+
+   void user::on_set_application_active_acme_user_interaction(::platform::application* papplication, ::acme::user::interaction* pacmeuserinteractionMain)
+   {
+
+   }
+
+
 } // namespace user
 
 

@@ -1889,145 +1889,193 @@ return pimpactsystem;
    void user::will_use_impact_hint(::atom idImpact)
    {
 
-      if (::is_file_manager(idImpact))
-      {
+      _synchronous_lock synchronouslock(this->synchronization());
 
-         if (m_atomaWillUseImpact.contains("file_manager_impact"))
+      m_atomaWillUseImpact.add(idImpact);
+
+   }
+
+
+
+   void user::process_will_use_impact_hint()
+   {
+
+      session()->post([this]()
          {
 
-            return;
-
-         }
-
-         m_atomaWillUseImpact.add("file_manager_impact");
-
-         /*::cast<::berg::application> pbergapplication = m_papplication;
-
-         if (pbergapplication->impact_system("file_manager_impact") != nullptr)
-         {
-
-            return;
-
-         }
-*/
-
-         application()->filemanager();
+            for (auto& atom : m_atomaWillUseImpact)
+            {
 
 
-         //m_mapimpactsystem["file_manager_impact"] = filemanager(idImpact)->m_pimpactsystem;
+               session()->post([this, atom]()
+                  {
 
-         //add_factory_item <::user::color_impact >();
+                     try
+                     {
 
-   //      add_impact_system(
-   //"color_selection_impact", __initialize_new ::user::multiple_document_template(
-   //   "main",
-   //   ::type<::user::document>(),
-   //   ::type<::simple_frame_window>(),
-   //   ::type<::user::color_selector_impact>()));
+                        on_will_use_impact_hint(atom);
 
 
-         //user()->m_mapimpactsystem["color_selection_impact"] = __initialize_new ::user::multiple_document_template(
-         //   get_app(),
-         //   "main",
-         //   ::type<::user::document>(),
-         //   ::type<::prodevian_translucent_simple_frame_window>(),
-         //   ::type<::user::color_impact>()));
-
-         //add_document_template(user()->m_mapimpactsystem["color_selection_impact"]);
-
-      }
-      else if (idImpact == "color_selection_impact")
-      {
-
-         //if (impact_system("color_selection_impact") != nullptr)
-         //{
-
-         //   return;
-
-         //}
+                     }
+                     catch (...)
+                     {
 
 
-                  if (m_atomaWillUseImpact.contains("color_sel_impact"))
-         {
+                     }
 
-            return;
-         }
+                  });
 
-         m_atomaWillUseImpact.add("color_sel_impact");
-
-
-         factory()->add_factory_item <::user::color_selector_impact >();
-
-   /*      add_impact_system(
-            "color_selection_impact", __initialize_new ::user::multiple_document_template(
-            "main",
-            ::type<::user::document>(),
-            ::type<::simple_frame_window>(),
-            ::type<::user::color_selector_impact>()));*/
-
-         //
-
-         //psession->add_document_template(ptemplate);
-
-         //m_mapimpactsystem["color_selection_impact"] = ptemplate;
-
-      }
-      else if (idImpact == "font_selection_impact")
-      {
-
-
-         
-
-                  if (m_atomaWillUseImpact.contains("font_sel_impact"))
-         {
-
-            return;
-         }
-
-         m_atomaWillUseImpact.add("font_sel_impact");
-
-         //if (m_bFontSelInitialized)
-         //{
-
-         //   return;
-
-         //}
-
-         //m_bFontSelInitialized = true;
-
-         factory()->add_factory_item <::user::font_list >();
-         factory()->add_factory_item <::user::font_list_impact >();
-         factory()->add_factory_item <::userex::font_impact >();
-
-         //add_impact_system(
-         //   "font_selection_impact", __initialize_new ::user::multiple_document_template(
-         //   "main",
-         //   ::type<::user::document>(),
-         //   ::type<::simple_frame_window>(),
-         //   ::type<::userex::font_impact>()));
-
-         //
-
-         //psession->add_document_template(ptemplate);
-
-         //m_mapimpactsystem["font_selection_impact"] = ptemplate;
-
-         fork([this]()
-         {
-
-            auto psystem = system();
-
-            auto pdraw2d = psystem->draw2d();
-
-            auto pwritetext = pdraw2d->write_text();
-
-            auto pfonts = ::as_pointer(pwritetext->fonts());
-
-            pfonts->enumerate_fonts(false,"system");
+            }
 
          });
 
-      }
+   }
+   
+   void user::on_will_use_impact_hint(::atom idImpact)
+   {
+
+
+         if (::is_file_manager(idImpact))
+         {
+
+            if (m_atomaWillUseImpact.contains("file_manager_impact"))
+            {
+
+               return;
+
+            }
+
+            m_atomaWillUseImpact.add("file_manager_impact");
+
+            /*::cast<::berg::application> pbergapplication = m_papplication;
+
+            if (pbergapplication->impact_system("file_manager_impact") != nullptr)
+            {
+
+               return;
+
+            }
+   */
+
+            application()->filemanager();
+
+
+            //m_mapimpactsystem["file_manager_impact"] = filemanager(idImpact)->m_pimpactsystem;
+
+            //add_factory_item <::user::color_impact >();
+
+      //      add_impact_system(
+      //"color_selection_impact", __initialize_new ::user::multiple_document_template(
+      //   "main",
+      //   ::type<::user::document>(),
+      //   ::type<::simple_frame_window>(),
+      //   ::type<::user::color_selector_impact>()));
+
+
+            //user()->m_mapimpactsystem["color_selection_impact"] = __initialize_new ::user::multiple_document_template(
+            //   get_app(),
+            //   "main",
+            //   ::type<::user::document>(),
+            //   ::type<::prodevian_translucent_simple_frame_window>(),
+            //   ::type<::user::color_impact>()));
+
+            //add_document_template(user()->m_mapimpactsystem["color_selection_impact"]);
+
+         }
+         else if (idImpact == "color_selection_impact")
+         {
+
+            //if (impact_system("color_selection_impact") != nullptr)
+            //{
+
+            //   return;
+
+            //}
+
+
+            if (m_atomaWillUseImpact.contains("color_sel_impact"))
+            {
+
+               return;
+            }
+
+            m_atomaWillUseImpact.add("color_sel_impact");
+
+
+            factory()->add_factory_item <::user::color_selector_impact >();
+
+            /*      add_impact_system(
+                     "color_selection_impact", __initialize_new ::user::multiple_document_template(
+                     "main",
+                     ::type<::user::document>(),
+                     ::type<::simple_frame_window>(),
+                     ::type<::user::color_selector_impact>()));*/
+
+                     //
+
+                     //psession->add_document_template(ptemplate);
+
+                     //m_mapimpactsystem["color_selection_impact"] = ptemplate;
+
+         }
+         else if (idImpact == "font_selection_impact")
+         {
+
+
+
+
+            if (m_atomaWillUseImpact.contains("font_sel_impact"))
+            {
+
+               return;
+            }
+
+            m_atomaWillUseImpact.add("font_sel_impact");
+
+            //if (m_bFontSelInitialized)
+            //{
+
+            //   return;
+
+            //}
+
+            //m_bFontSelInitialized = true;
+
+            factory()->add_factory_item <::user::font_list >();
+            factory()->add_factory_item <::user::font_list_impact >();
+            factory()->add_factory_item <::userex::font_impact >();
+
+            //add_impact_system(
+            //   "font_selection_impact", __initialize_new ::user::multiple_document_template(
+            //   "main",
+            //   ::type<::user::document>(),
+            //   ::type<::simple_frame_window>(),
+            //   ::type<::userex::font_impact>()));
+
+            //
+
+            //psession->add_document_template(ptemplate);
+
+            //m_mapimpactsystem["font_selection_impact"] = ptemplate;
+
+            fork([this]()
+               {
+
+                  auto psystem = system();
+
+                  auto pdraw2d = psystem->draw2d();
+
+                  auto pwritetext = pdraw2d->write_text();
+
+                  auto pfonts = ::as_pointer(pwritetext->fonts());
+
+                  pfonts->enumerate_fonts(false, "system");
+
+               });
+
+         }
+
+      
 
    }
 
@@ -2050,10 +2098,26 @@ return pimpactsystem;
 
    //}
 
+   void user::on_set_application_main_acme_user_interaction(::platform::application* papplication, ::acme::user::interaction* pacmeuserinteractionMain)
+   {
+
+      ::user::user::on_set_application_main_acme_user_interaction(papplication, pacmeuserinteractionMain);
+
+   }
+
+
+
+   void user::on_set_application_active_acme_user_interaction(::platform::application* papplication, ::acme::user::interaction* pacmeuserinteractionActive)
+   {
+
+      ::user::user::on_set_application_active_acme_user_interaction(papplication, pacmeuserinteractionActive);
+
+   }
+
    __namespace_object_factory(user, ::system_setup::flag_object_user);
 
 
-} // namespace userex
+} // namespace core
 
 
 namespace user

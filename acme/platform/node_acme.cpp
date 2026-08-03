@@ -2180,10 +2180,12 @@ void acme_node_layer::open_internet_link(const ::scoped_string& scopedstrUrl, co
          // Parent: graceful shutdown
          // ----------------------------------------
 
-         if (papplication->m_pacmeuserinteractionMain)
+         auto pacmeuserinteractionMain = papplication->main_acme_user_interaction();
+
+         if (pacmeuserinteractionMain)
          {
-            papplication->m_pacmeuserinteractionMain->display(e_display_hide, {});
-            papplication->m_pacmeuserinteractionMain->set_finish();
+            pacmeuserinteractionMain->display(e_display_hide, {});
+            pacmeuserinteractionMain->set_finish();
          }
 
          papplication->set_finish();

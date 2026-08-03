@@ -22,7 +22,7 @@ namespace write_text
       string                              m_strName;
       string                              m_strFont;
       string                              m_strBranch;
-      ::file::path                        m_path;
+      ::file::path                        m_pathFontFile;
       string                              m_strSample;
       enum_character_set_array            m_echaracterseta;
 

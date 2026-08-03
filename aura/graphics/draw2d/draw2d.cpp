@@ -4,7 +4,7 @@
 #include "acme/platform/application.h"
 #include "acme/user/user/interaction.h"
 #include "aura/graphics/draw2d/graphics_pointer.h"
-#include "aura/graphics/draw2d/host.h"
+//#include "aura/graphics/draw2d/host.h"
 #include "aura/graphics/image/encoding_options.h"
 #include "aura/graphics/image/array.h"
 #include "aura/graphics/image/image.h"
@@ -13,7 +13,7 @@
 #include "aura/graphics/image/drawing.h"
 #include "aura/user/user/interaction.h"
 #include "graphics.h"
-#include "host.h"
+//#include "host.h"
 #include "brush.h"
 #include "draw2d.h"
 #include "task_tool.h"
@@ -274,7 +274,7 @@ namespace draw2d
       if(defer_constructø(pgraphics))
       {
 
-         pgraphics->create_memory_graphics({256, 256});
+         pgraphics->create_memory_graphics({256, 256}, ::get_task()->main_acme_user_interaction());
 
       }
 
@@ -529,22 +529,22 @@ namespace draw2d
    }
 
 
-   ::draw2d::graphics_pointer draw2d::create_graphics(::draw2d::host * pdraw2dhost)
+   ::draw2d::graphics_pointer draw2d::create_graphics(::acme::user::interaction * pacmeuserinteractionAffinity)
    {
 
-      auto pgraphics = pdraw2dhost->createø< ::draw2d::graphics>();
+      auto pgraphics = pacmeuserinteractionAffinity->createø< ::draw2d::graphics>();
 
-      pgraphics->m_pdraw2dhost = pdraw2dhost;
+      pgraphics->m_pacmeuserinteractionAffinity = pacmeuserinteractionAffinity;
 
       return ::transfer(pgraphics);
 
    }
 
 
-   ::draw2d::graphics_pointer draw2d::create_memory_graphics(::draw2d::host *pdraw2dhost, const ::i32_size &size)
+   ::draw2d::graphics_pointer draw2d::create_memory_graphics(const ::i32_size &size, ::acme::user::interaction * pacmeuserinteractionAffinity)
    {
 
-      auto pgraphics = create_graphics(pdraw2dhost);
+      auto pgraphics = create_graphics(pacmeuserinteractionAffinity);
 
       auto sizeCreate = size;
 
@@ -557,7 +557,7 @@ namespace draw2d
 
       }
 
-      pgraphics->create_memory_graphics(sizeCreate);
+      pgraphics->create_memory_graphics(sizeCreate, pacmeuserinteractionAffinity);
 
       return pgraphics;
 
@@ -600,19 +600,33 @@ namespace draw2d
 
 
    ::draw2d::graphics_lease draw2d::acquire_memory_graphics(
-      const ::i32_size & size, ::draw2d::host *pdraw2dhost)
+      const ::i32_size & size, ::acme::user::interaction * pacmeuserinteractionAffinity)
    {
 
-      return _acquire_memory_graphics(pdraw2dhost, size, nullptr);
+      return _acquire_memory_graphics(pacmeuserinteractionAffinity, size, nullptr);
 
    }
 
 
-   ::draw2d::graphics_pointer draw2d::do_allocation_strategy(::draw2d::host *pdraw2dhost, ::image::image *pimage,
+   ::draw2d::graphics_pointer draw2d::do_allocation_strategy(::acme::user::interaction * pacmeuserinteractionAffinity, ::image::image *pimage,
                                                               const ::i32_size &size)
    {
 
-      auto pgraphics = create_graphics(pdraw2dhost);
+      if (::is_set(pimage))
+      {
+
+         auto pgraphicsOwned = pimage->m_pgraphicsOwned;
+
+         if (pgraphicsOwned)
+         {
+
+            return pgraphicsOwned;
+
+         }
+
+      }
+
+      auto pgraphics = create_graphics(pacmeuserinteractionAffinity);
 
       if (::is_set(pimage))
       {
@@ -636,7 +650,7 @@ namespace draw2d
       else
       {
 
-         pgraphics->create_memory_graphics(size);
+         pgraphics->create_memory_graphics(size, pacmeuserinteractionAffinity);
 
       }
 
@@ -646,19 +660,21 @@ namespace draw2d
 
 
    ::draw2d::graphics_lease draw2d::_acquire_memory_graphics(
-      ::draw2d::host * pdraw2dhost,
+      ::acme::user::interaction * pacmeuserinteractionAffinity,
       const ::i32_size & size,
       ::image::image * pimage)
    {
       
-      if (!pdraw2dhost)
+      if (!pacmeuserinteractionAffinity)
       {
 
-         pdraw2dhost = m_papplication->m_pacmeuserinteractionMain.cast < ::draw2d::host >();
+         auto pacmeuserinteractionMain = m_papplication->main_acme_user_interaction();
+
+         pacmeuserinteractionAffinity = pacmeuserinteractionMain;
 
       }
 
-      if (!pdraw2dhost || size.is_empty())
+      if (!pacmeuserinteractionAffinity || size.is_empty())
       {
 
          throw ::exception(error_bad_argument);
@@ -688,6 +704,14 @@ namespace draw2d
 
       ::draw2d::graphics_pointer pgraphics;
 
+      if (::is_set(pimage))
+      {
+
+         pgraphics = pimage->m_pgraphicsOwned;
+
+      }
+
+      if (!pgraphics)
       {
 
          _synchronous_lock synchronouslock(
@@ -706,7 +730,7 @@ namespace draw2d
 
             auto pgraphicsCandidate = m_graphicsaMemoryPoolIdle[i];
 
-            if (pgraphicsCandidate->is_memory_graphics_pool_compatible(pdraw2dhost))
+            if (pgraphicsCandidate->is_memory_graphics_pool_compatible(pacmeuserinteractionAffinity))
             {
 
                pgraphics = pgraphicsCandidate;
@@ -718,7 +742,6 @@ namespace draw2d
          }
 
       }
-
       auto bReused = pgraphics.is_set();
 
       if (!bReused)
@@ -731,7 +754,7 @@ namespace draw2d
 
          }
 
-         pgraphics = do_allocation_strategy(pdraw2dhost, pimage, size);
+         pgraphics = do_allocation_strategy(pacmeuserinteractionAffinity, pimage, size);
 
       }
 
@@ -742,7 +765,7 @@ namespace draw2d
 
       }
 
-      pgraphics->on_acquire_memory_graphics(pimage, size);
+      pgraphics->on_acquire_memory_graphics(pimage, size, pacmeuserinteractionAffinity);
 
       auto uActive = m_uMemoryGraphicsPoolActive.fetch_add(
          1,
@@ -783,10 +806,20 @@ namespace draw2d
 
    ::draw2d::graphics_lease draw2d::acquire_image_graphics(
       ::image::image * pimage,
-      ::draw2d::host * pdraw2dhost)
+      // ::draw2d::host * pdraw2dhost,
+      ::acme::user::interaction * pacmeuserinteractionAffinity)
    {
 
-      if (!pimage || !pdraw2dhost || pimage->size().is_empty())
+      if (!pimage || !pacmeuserinteractionAffinity)
+      {
+
+         throw ::exception(error_bad_argument);
+
+      }
+
+      auto size = pimage->size();
+
+      if (size.is_empty())
       {
 
          throw ::exception(error_bad_argument);
@@ -794,17 +827,30 @@ namespace draw2d
       }
 
       return _acquire_memory_graphics(
-         pdraw2dhost,
-         pimage->size(),
+         pacmeuserinteractionAffinity,
+         size,
          pimage);
+         //,        pacmeuserinteractionAffinity);
 
    }
 
 
-   
-
-   void draw2d::do_release_to_pool_strategy(::draw2d::graphics_pointer &pgraphics)
+   void draw2d::do_release_to_pool_strategy(::draw2d::graphics_pointer &pgraphics, ::image::image * pimage)
    {
+
+      if (::is_set(pimage))
+      {
+
+         auto pgraphicsOwned = pimage->m_pgraphicsOwned;
+
+         if (pgraphicsOwned && pgraphicsOwned == pgraphics)
+         {
+
+            return;
+
+         }
+
+      }
 
       m_graphicsaMemoryPoolIdle.add(pgraphics);
 
@@ -854,7 +900,12 @@ namespace draw2d
       try
       {
 
-         pgraphics->on_release_memory_graphics();
+         //if (::is_null(pimage) || pimage->m_pgraphicsOwned != pgraphics)
+         {
+
+            pgraphics->on_release_memory_graphics();
+
+         }
 
       }
       catch (...)
@@ -891,7 +942,7 @@ namespace draw2d
          if (!m_bMemoryGraphicsPoolShuttingDown.load(::std::memory_order_relaxed))
          {
 
-            do_release_to_pool_strategy(pgraphics);
+            do_release_to_pool_strategy(pgraphics, pimage);
 
          }
 
@@ -1213,7 +1264,7 @@ void draw2d::emboss_predicate(
 
       pbrushText->create_solid(argb(255, 255, 255, 255));
 
-      auto pgraphicsImage = pimage->acquire_graphics(pgraphics->m_puserinteractionDraw2dGraphics);
+      auto pgraphicsImage = pimage->acquire_graphics(pgraphics->m_pacmeuserinteractionAffinity);
 
       pgraphicsImage->set(pbrushText);
 
@@ -1233,7 +1284,7 @@ void draw2d::emboss_predicate(
 
       blur.initialize(pimageBlur->size(), iEffectiveBlurRadius);
 
-      auto pgraphicsBlur = pimageBlur->acquire_graphics(pgraphics->m_puserinteractionDraw2dGraphics);
+      auto pgraphicsBlur = pimageBlur->acquire_graphics(pgraphics->m_pacmeuserinteractionAffinity);
 
       imaging()->channel_spread_set_color(pgraphicsBlur, {}, size, pgraphicsImage, {}, ::color::e_channel_red,
                                           iEffectiveSpreadRadius, argb(255, 255, 255, 255));

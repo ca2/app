@@ -7318,7 +7318,7 @@ namespace user
 
          auto pdraw2d = psystem->draw2d();
 
-         auto pgraphics = pdraw2d->create_memory_graphics(this, {});
+         auto pgraphics = pdraw2d->create_memory_graphics({}, this);
 
          plain_edit_update(pgraphics, bFullUpdate, iLineUpdate);
 
@@ -11574,7 +11574,7 @@ namespace user
 
             auto pdraw2d = psystem->draw2d();
 
-            auto pgraphics = pdraw2d->create_memory_graphics(this, {});
+            auto pgraphics = pdraw2d->create_memory_graphics({}, this);
 
             plain_edit_on_file_update(pgraphics);
 

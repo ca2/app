@@ -923,6 +923,23 @@ namespace windows
 
       ::lresult lresult = 0;
 
+      if (msg == WM_CLOSE
+         || msg == WM_DESTROY
+         || msg == WM_NCDESTROY
+         || msg == WM_QUERYENDSESSION
+         || msg == WM_ENDSESSION)
+      {
+
+         ::informationf(
+            "ShutdownDiagnostic window_message hwnd=%p message=0x%04x wparam=0x%llx lparam=0x%llx thread=%lu",
+            hwnd,
+            (unsigned int)msg,
+            (unsigned long long)wParam,
+            (unsigned long long)lParam,
+            (unsigned long)::GetCurrentThreadId());
+
+      }
+
       if (msg == WM_NCCALCSIZE)
       {
 

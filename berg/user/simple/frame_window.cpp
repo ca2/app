@@ -807,10 +807,12 @@ void simple_frame_window::on_message_destroy(::message::message * pmessage)
 
    auto papp = get_app();
 
-   if (papp->m_pacmeuserinteractionMain != nullptr)
+   auto pacmeuserinteractionMain = papp->main_acme_user_interaction();
+
+   if (pacmeuserinteractionMain != nullptr)
    {
 
-      ::pointer<::simple_frame_window>pframe = papp->m_pacmeuserinteractionMain.get();
+      ::pointer<::simple_frame_window>pframe = pacmeuserinteractionMain;
 
       if (pframe.is_set())
       {
@@ -3153,11 +3155,11 @@ bool simple_frame_window::is_application_main_window()
 
    auto papp = get_app();
 
-   return papp->m_pacmeuserinteractionMain == this;
+   auto pacmeuserinteractionMain = papp->main_acme_user_interaction();
+
+   return pacmeuserinteractionMain == this;
 
 }
-
-
 
 
 void simple_frame_window::defer_create_notification_icon()
@@ -3620,7 +3622,9 @@ void simple_frame_window::_001OnQueryEndSession(::message::message * pmessage)
 
    auto papp = get_app();
 
-   if (::is_set(papp) && papp->m_pacmeuserinteractionMain == this)
+   auto pacmeuserinteractionMain = papp->main_acme_user_interaction();
+
+   if (::is_set(papp) && pacmeuserinteractionMain == this)
    {
 
       pusermessage->m_lresult = papp->save_all_modified();

@@ -73,6 +73,14 @@ class sequence;
 //};
 
 
+#define SUBPARTICLE_TRANSFER(a) \
+::quantum(::transfer(a))
+
+
+#define SUBPARTICLE_COPY_CONSTRUCT(a) \
+::quantum(a)
+
+
 class CLASS_DECL_ACME subparticle :
    virtual public ::quantum
 {
@@ -124,6 +132,9 @@ public:
 #endif
 
    ~subparticle() override;
+
+
+   ::subparticle& operator = (const ::subparticle& subparticle);
 
 
 #if REFERENCING_DEBUGGING
@@ -193,46 +204,75 @@ public:
    ::subparticle* refdbg_this() const { return (::subparticle*)this; }
 
 
-protected:
-
-
-   ::subparticle* m_psubparticleTopTrack = nullptr;
-
-
-public:
-
-   ::subparticle * get_top_track() const;
-   void add_top_track(::subparticle* psubparticle);
-   void erase_top_track(::subparticle* psubparticle);
-   bool contains_top_track(::subparticle* psubparticle) const;
-   bool find_top_track(::subparticle* psubparticle, ::subparticle** ppsubparticleeParent) const;
-
-
-   class ::time                        m_timeAllocation;
-   class reference_item_array *        m_preferenceitema = nullptr;
-   bool                                m_bHeapAllocation = false;
-   void *                              m_pType = nullptr;
-   memsize                             m_sType = sizeof(::subparticle);
-   ::reference_referer *               m_prefererTransfer2 = nullptr;
-   ::reference_referer *               m_prefererLast2 = nullptr;
-   bool                                m_bReferencingDebuggingEnabled5 = true;
-   bool                                m_bIncludeCallStackTrace = false;
-
-   void set_size_type(memsize s) { m_sType = s; }
-
-   bool contains_object_in_address_space(::subparticle * psubparticle) const
+   struct referencing_debugging
    {
 
-      return
-         ::is_set(this->m_pType)
-         && this->m_sType >= sizeof(::subparticle)
-         && ((::u8 *)psubparticle >= this->m_pType
-         && (((::u8 *)psubparticle) + psubparticle->m_sType)
-         <= (((::u8 *)this->m_pType) + this->m_sType));
+      ::subparticle* m_psubparticleTopTrack = nullptr;
 
-   }
 
-   class reference_item_array * reference_itema();
+      class ::time                        m_timeAllocation;
+      class reference_item_array* m_preferenceitema = nullptr;
+      bool                                m_bHeapAllocation = false;
+      void* m_pType = nullptr;
+      memsize                             m_sType = sizeof(::subparticle);
+      ::reference_referer* m_prefererTransfer2 = nullptr;
+      ::reference_referer* m_prefererLast2 = nullptr;
+      bool                                m_bReferencingDebuggingEnabled5 = true;
+      bool                                m_bIncludeCallStackTrace = false;
+
+      referencing_debugging();
+      referencing_debugging(referencing_debugging& referencingdebugging)
+      {
+
+         memcpy(this, &referencingdebugging, sizeof(*this));
+         memset(&referencingdebugging, 0, sizeof(referencingdebugging));
+
+      }
+
+
+
+      ::subparticle* get_top_track() const;
+      void add_top_track(::subparticle* psubparticle);
+      void erase_top_track(::subparticle* psubparticle);
+      bool contains_top_track(::subparticle* psubparticle) const;
+      bool find_top_track(::subparticle* psubparticle, ::subparticle** ppsubparticleeParent) const;
+
+
+      
+
+      void set_size_type(memsize s) { m_sType = s; }
+
+      bool contains_object_in_address_space(::subparticle* psubparticle) const
+      {
+
+         return
+            ::is_set(this->m_pType)
+            && this->m_sType >= sizeof(::subparticle)
+            && ((::u8*)psubparticle >= this->m_pType
+               && (((::u8*)psubparticle) + psubparticle->m_sType)
+               <= (((::u8*)this->m_pType) + this->m_sType));
+
+      }
+
+      class reference_item_array* reference_itema();
+
+      virtual void on_after_construct(::reference_referer* preferer);
+
+
+      void disable_referencing_debugging();
+
+      //void add_initial_reference_item();
+      void add_reference_item(bool bConstructing, bool bIncludeCallStackTrace);
+      void add_referer(::reference_referer* preferer);
+      //void _add_reference_item();
+      void erase_reference_item();
+      void check_pending_releases();
+
+   } ;
+
+
+   referencing_debugging m_referencingdebugging;
+
 
    bool is_referencing_debugging_enabled() const
    {
@@ -241,17 +281,7 @@ public:
 
    }
 
-   virtual void on_after_construct(::reference_referer* preferer);
 
-
-   void disable_referencing_debugging();
-
-   //void add_initial_reference_item();
-   void add_reference_item(bool bConstructing, bool bIncludeCallStackTrace);
-   void add_referer(::reference_referer * preferer);
-   //void _add_reference_item();
-   void erase_reference_item();
-   void check_pending_releases();
 
 #else
 

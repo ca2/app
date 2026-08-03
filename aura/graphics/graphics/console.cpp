@@ -195,7 +195,7 @@ namespace graphics
 
       auto pgraphicsImage = m_pimage->acquire_graphics();
       
-      pgraphicsImage->m_pdraw2dhost = m_puserinteraction;
+      pgraphicsImage->m_pacmeuserinteractionAffinity = m_puserinteraction;
 
       m_papplication->constructø(pgraphicsImage->m_pfont);
 

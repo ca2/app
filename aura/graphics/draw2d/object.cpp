@@ -36,6 +36,17 @@ namespace draw2d
    }
 
 
+   object::object(object&& object) :
+      m_osdata(object.m_osdata),
+      m_baCalculated(object.m_baCalculated),
+      m_pointUserOffset(object.m_pointUserOffset)
+   {
+
+
+
+   }
+
+
    object::~object()
    {
        
@@ -218,6 +229,52 @@ namespace draw2d
       destroy_os_data();
 
       //return ::success;
+
+   }
+
+
+   void object::on_changed()
+   {
+
+
+   }
+
+
+   void object::set_modified()
+   {
+      m_baCalculated[0] = false;
+      m_baCalculated[1] = false;
+      m_baCalculated[2] = false;
+      m_baCalculated[3] = false;
+      m_baCalculated[4] = false;
+      m_baCalculated[5] = false;
+      m_baCalculated[6] = false;
+      m_baCalculated[7] = false;
+
+      on_changed();
+
+   }
+
+
+   void object::clear_os_data()
+   {
+
+      m_osdata[0] = nullptr;
+      m_osdata[1] = nullptr;
+      m_osdata[2] = nullptr;
+      m_osdata[3] = nullptr;
+      m_osdata[4] = nullptr;
+      m_osdata[5] = nullptr;
+      m_osdata[6] = nullptr;
+      m_osdata[7] = nullptr;
+      m_baCalculated[0] = false;
+      m_baCalculated[1] = false;
+      m_baCalculated[2] = false;
+      m_baCalculated[3] = false;
+      m_baCalculated[4] = false;
+      m_baCalculated[5] = false;
+      m_baCalculated[6] = false;
+      m_baCalculated[7] = false;
 
    }
 

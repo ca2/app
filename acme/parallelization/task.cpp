@@ -702,6 +702,52 @@ bool task::msg_translator_handlers(MSG* pmsg)
 #endif
 
 
+::acme::user::interaction* task::main_acme_user_interaction()
+{
+
+   return m_pacmeuserinteractionMain;
+
+}
+
+
+void task::set_main_acme_user_interaction(::acme::user::interaction* pacmeuserinteractionMain)
+{
+
+   m_pacmeuserinteractionMain = pacmeuserinteractionMain;
+
+   on_set_main_acme_user_interaction(m_pacmeuserinteractionMain);
+
+}
+
+void task::on_set_main_acme_user_interaction(::acme::user::interaction* pacmeuserinteractionMain)
+{
+
+}
+
+::acme::user::interaction* task::active_acme_user_interaction()
+{
+
+   return m_pacmeuserinteractionActive;
+
+}
+
+void task::set_active_acme_user_interaction(::acme::user::interaction* pacmeuserinteractionActive)
+{
+
+   m_pacmeuserinteractionActive = pacmeuserinteractionActive;
+
+   on_set_active_acme_user_interaction(m_pacmeuserinteractionMain);
+
+}
+
+
+void task::on_set_active_acme_user_interaction(::acme::user::interaction* pacmeuserinteractionMain)
+{
+
+}
+
+
+
 void task::on_single_lock_lock(subparticle *psubparticleSynchronization, const subparticle *psubparticleContext,
                          const_char_pointer pszFile, ::i32 iLine)
 {

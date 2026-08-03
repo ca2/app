@@ -33,6 +33,11 @@ namespace image
    public:
 
 
+      image_source_interface() {}
+      image_source_interface(image_source_interface&& imagesourceinterface) : MATTER_TRANSFER(imagesourceinterface) {}
+      ~image_source_interface() override {}
+
+
       virtual image_pointer image_source_image(const ::i32_size & size) = 0;
 
 

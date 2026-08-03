@@ -12,6 +12,22 @@ quantum::~quantum()
 }
 
 
+quantum& quantum::operator = (const ::quantum& quantum)
+{
+
+   if (this != &quantum)
+   {
+
+      m_estatus = quantum.m_estatus;
+
+      m_eflagElement = quantum.m_eflagElement;
+
+   }
+
+   return *this;
+
+}
+
 // bool quantum::should_disable_referencing_debugging() const
 // {
 //

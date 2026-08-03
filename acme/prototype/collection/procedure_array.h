@@ -22,13 +22,15 @@ public:
    using BASE_ARRAY::operator =;
 
    procedure_array(procedure_array&& procedurea) :
-      BASE_ARRAY(::transfer(procedurea))
+      BASE_ARRAY(::transfer(procedurea)),
+      PARTICLE_TRANSFER(::transfer(procedurea))
    {
 
    }
 
    procedure_array(const procedure_array& procedurea) :
-      BASE_ARRAY(procedurea)
+      BASE_ARRAY(procedurea),
+      PARTICLE_COPY_CONSTRUCT(procedurea)
    {
 
    }

@@ -1,84 +1,84 @@
 // From pixmap.h by camilo on 2024-09-27 19:36 <3ThomasBorregaardSorensen!!
 #pragma once
 
-
-class pixmap_lock
-{
-public:
-
-
-   pixmap * m_pbitmap;
-   ::i32_rectangle      m_rectanglePrevious;
-   bool        m_bMapped;
-
-
-   pixmap_lock() { }
-
-
-   pixmap_lock(pixmap * pmap, i32_rectangle rectangle) :
-      m_pbitmap(pmap)
-   {
-
-      map_base(rectangle);
-
-   }
-
-
-   pixmap_lock(pixmap * pmap) :
-      m_pbitmap(pmap)
-   {
-
-   }
-
-
-   ~pixmap_lock()
-   {
-
-      unmap();
-
-   }
-
-   bool map_base(::i32_rectangle rectangleMap)
-   {
-
-      if (m_bMapped)
-      {
-
-         return false;
-
-      }
-
-      m_rectanglePrevious = m_pbitmap->rectangle();
-
-      m_pbitmap->pixmap_t::map(rectangleMap);
-
-      m_bMapped = true;
-
-      return true;
-
-   }
-
-
-   bool unmap()
-   {
-
-      if (!m_bMapped)
-      {
-
-         return false;
-
-      }
-
-      m_pbitmap->pixmap_t::map(m_rectanglePrevious);
-
-      m_bMapped = false;
-
-      return true;
-
-   }
-
-
-};
-
-
-
+//
+//class pixmap_lock
+//{
+//public:
+//
+//
+//   pixmap * m_pbitmap;
+//   ::i32_rectangle      m_rectanglePrevious;
+//   bool        m_bMapped;
+//
+//
+//   pixmap_lock() { }
+//
+//
+//   pixmap_lock(pixmap * pmap, i32_rectangle rectangle) :
+//      m_pbitmap(pmap)
+//   {
+//
+//      map_base(rectangle);
+//
+//   }
+//
+//
+//   pixmap_lock(pixmap * pmap) :
+//      m_pbitmap(pmap)
+//   {
+//
+//   }
+//
+//
+//   ~pixmap_lock()
+//   {
+//
+//      unmap();
+//
+//   }
+//
+//   bool map_base(::i32_rectangle rectangleMap)
+//   {
+//
+//      if (m_bMapped)
+//      {
+//
+//         return false;
+//
+//      }
+//
+//      m_rectanglePrevious = m_pbitmap->rectangle();
+//
+//      m_pbitmap->pixmap_map(rectangleMap);
+//
+//      m_bMapped = true;
+//
+//      return true;
+//
+//   }
+//
+//
+//   bool unmap()
+//   {
+//
+//      if (!m_bMapped)
+//      {
+//
+//         return false;
+//
+//      }
+//
+//      m_pbitmap->pixmap_map(m_rectanglePrevious);
+//
+//      m_bMapped = false;
+//
+//      return true;
+//
+//   }
+//
+//
+//};
+//
+//
+//

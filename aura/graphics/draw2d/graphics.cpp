@@ -478,6 +478,14 @@ namespace draw2d
    }
 
 
+   void graphics::create_for_image(::image::image* pimage)
+   {
+
+      create_bitmap_graphics(pimage->get_bitmap());
+
+   }
+
+
    void graphics::create_device_context(const ::scoped_string & scopedstrDriverName, const ::scoped_string & scopedstrDeviceName, const ::scoped_string & scopedstrOutput, const void * pInitData)
    {
 
@@ -531,12 +539,12 @@ namespace draw2d
    void graphics::create_offscreen_graphics_for_swap_chain_blitting(::user::interaction * puserinteraction, const ::i32_size& size)
    {
 
-      create_memory_graphics(size);
+      create_memory_graphics(size, puserinteraction);
 
    }
 
 
-   void graphics::create_memory_graphics(const ::i32_size & size)
+   void graphics::create_memory_graphics(const ::i32_size & size, ::acme::user::interaction * pacmeuserinteractionAffinity)
    {
 
       //_create_memory_graphics(size);
@@ -554,7 +562,7 @@ namespace draw2d
 
       //opengl_create_offscreen_buffer(size);
 
-      _create_memory_graphics(size);
+      _create_memory_graphics(size, pacmeuserinteractionAffinity);
 
       set_ok_flag();
 
@@ -562,21 +570,31 @@ namespace draw2d
 
 
    bool graphics::is_memory_graphics_pool_compatible(
-      ::draw2d::host * pdraw2dhost) const
+      ::acme::user::interaction * pacmeuserinteractionAffinity) const
    {
 
-      return m_pdraw2dhost.m_p == pdraw2dhost;
+      return m_pacmeuserinteractionAffinity == pacmeuserinteractionAffinity;
 
    }
 
 
    void graphics::on_acquire_memory_graphics(
       ::image::image * pimage,
-      const ::i32_size & size)
+      const ::i32_size & size,
+      ::acme::user::interaction * pacmeuserinteractionAffinity)
    {
+
+      m_pacmeuserinteractionAffinity = pacmeuserinteractionAffinity;
 
       if (m_pimage)
       {
+
+         if (pimage == m_pimage)
+         {
+
+            return;
+
+         }
 
          throw ::exception(
             error_wrong_state,
@@ -626,6 +644,7 @@ namespace draw2d
       m_pfont.release();
       m_pfontDevice.release();
       m_pimage = nullptr;
+      m_pacmeuserinteractionAffinity.release();
 
    }
 
@@ -635,7 +654,7 @@ namespace draw2d
 
       m_bForWindowDraw2d = true;
 
-      m_puserinteractionDraw2dGraphics = puserinteraction;
+      m_pacmeuserinteractionAffinity = puserinteraction;
 
       //create_memory_graphics(size);
 
@@ -648,10 +667,11 @@ namespace draw2d
    }
 
 
-   void graphics::_create_memory_graphics(const ::i32_size& size)
+   void graphics::_create_memory_graphics(const ::i32_size& size, ::acme::user::interaction * pacmeuserinteractionAffinity)
    {
 
       __UNREFERENCED_PARAMETER(size);
+      __UNREFERENCED_PARAMETER(pacmeuserinteractionAffinity);
 
       create_compatible_graphics(nullptr);
       //if (!create_compatible_graphics(nullptr))
@@ -2061,7 +2081,7 @@ namespace draw2d
 
             {
 
-               auto pgraphics = pimage1->acquire_graphics(m_puserinteractionDraw2dGraphics);
+               auto pgraphics = pimage1->acquire_graphics(m_pacmeuserinteractionAffinity);
 
                pgraphics->set(get_current_font());
 
@@ -2860,6 +2880,22 @@ namespace draw2d
    }
 
 
+   void graphics::clear(const ::color::color& color)
+   {
+
+      auto alphamode = alpha_mode();
+
+      set_alpha_mode(e_alpha_mode_set);
+
+      ::f64_rectangle rectangle(this->size());
+
+      fill_solid_rectangle(rectangle, color);
+
+      set_alpha_mode(alphamode);
+
+   }
+
+
    void graphics::color_blend_3dRect(const i32_rectangle & rectangleParam, const ::color::color & colorTopLeft, const class ::opacity & opacityTopLeft, const class ::color::color & colorBottomRight, const class ::opacity & opacityBottomRight)
    {
 
@@ -3043,7 +3079,7 @@ namespace draw2d
 
       //return estatusOsData && estatusDestroy;
 
-      m_pdraw2dhost.release();
+      //m_pdraw2dhost.release();
 
       m_pbitmap.release();
 
@@ -3095,7 +3131,7 @@ namespace draw2d
    void graphics::send(const ::procedure & procedure)
    {
 
-      ::cast < ::user::interaction > puserinteraction = m_puserinteractionDraw2dGraphics;
+      ::cast < ::user::interaction > puserinteraction = m_pacmeuserinteractionAffinity;
 
       puserinteraction->send([procedure]()
          {
@@ -3301,7 +3337,7 @@ namespace draw2d
 
       m_pointOrigin.x += dx;
 
-      auto sizeOffset = total_size();
+      auto sizeOffset = size();
 
       //if (_m_bYFlip)
       //{
@@ -3358,7 +3394,7 @@ namespace draw2d
    }
 
 
-   ::f64_size graphics::total_size()
+   ::f64_size graphics::size() const
    {
 
       if (m_pimage)
@@ -4858,25 +4894,25 @@ namespace draw2d
    }
 
 
-   ::f64_size graphics::get_size() const
-   {
+   //::f64_size graphics::size() const
+   //{
 
-      if (::is_null(m_pimage))
-      {
+   //   if (::is_null(m_pimage))
+   //   {
 
-         return ::f64_size();
+   //      return ::f64_size();
 
-      }
+   //   }
 
-      return m_pimage->get_size();
+   //   return m_pimage->get_size();
 
-   }
+   //}
 
 
    ::i32_size graphics::get_image_drawer_size() const
    {
 
-      return get_size();
+      return size();
 
    }
 
@@ -6869,7 +6905,7 @@ namespace draw2d
 
          auto scalingYFlip = ::geometry2d::matrix::scaling(sizeYFlip);
 
-         auto sizeTotal = total_size();
+         auto sizeTotal = size();
 
          ::f64_size pointYFlip(0, sizeTotal.height());
 

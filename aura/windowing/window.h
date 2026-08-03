@@ -72,7 +72,7 @@ namespace windowing
       ::pointer<::windowing::cursor>            m_pcursor;
       bool                                      m_bUpdateScreenSynchronously;
       class ::time                              m_timeLastDrawGuard1;
-      
+      ::pointer<::draw2d::window_attachment>    m_pdraw2dwindowattachment;
       bool                                      m_bActiveWindow;
       bool                                      m_bKeyboardFocus;
       ::pointer < class placement_log >         m_pplacementlog;
@@ -641,7 +641,7 @@ namespace windowing
       void clear_bitmap_source() override;
 
 
-      virtual void update_graphics_resources();
+      virtual ::graphics::graphics * get_graphics_graphics();
 
 
 

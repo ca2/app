@@ -4462,10 +4462,12 @@ namespace user
 
             ::cast < ::thread > pthread = papplication;
 
-            if (pthread->m_pacmeuserinteractionActive == this)
+            auto pacmeuserinteractionActive = pthread->active_acme_user_interaction();
+
+            if (pacmeuserinteractionActive == this)
             {
 
-               pthread->m_pacmeuserinteractionActive = nullptr;
+               pacmeuserinteractionActive = nullptr;
 
             }
 
@@ -5618,9 +5620,9 @@ namespace user
    void interaction::_001DrawThis(::draw2d::graphics_pointer & pgraphics)
    {
 
-      scoped_restore(pgraphics->m_puserinteractionDraw2dGraphics);
+      scoped_restore(pgraphics->m_pacmeuserinteractionAffinity);
 
-      pgraphics->m_puserinteractionDraw2dGraphics = this;
+      pgraphics->m_pacmeuserinteractionAffinity = this;
 
       if (pgraphics == nullptr)
       {
@@ -5817,9 +5819,9 @@ namespace user
 
       }
 
-      scoped_restore(pgraphics->m_puserinteractionDraw2dGraphics);
+      scoped_restore(pgraphics->m_pacmeuserinteractionAffinity);
 
-      pgraphics->m_puserinteractionDraw2dGraphics = this;
+      pgraphics->m_pacmeuserinteractionAffinity = this;
 
       //i32_point pointScroll = m_pointScroll;
 
@@ -6941,9 +6943,9 @@ namespace user
    void interaction::defer_do_layout(::draw2d::graphics_pointer & pgraphics)
    {
 
-      scoped_restore(pgraphics->m_puserinteractionDraw2dGraphics);
+      scoped_restore(pgraphics->m_pacmeuserinteractionAffinity);
 
-      pgraphics->m_puserinteractionDraw2dGraphics = this;
+      pgraphics->m_pacmeuserinteractionAffinity = this;
 
       ::string strType = ::platform::type(this).name();
 
@@ -7039,7 +7041,7 @@ namespace user
    void interaction::_000CallOnDraw(::draw2d::graphics_pointer & pgraphics)
    {
 
-      scoped_restore(pgraphics->m_puserinteractionDraw2dGraphics);
+      scoped_restore(pgraphics->m_pacmeuserinteractionAffinity);
 
       //pgraphics->m_puserinteraction = m_puserinteraction;
 
@@ -8613,6 +8615,38 @@ if(get_parent())
    {
 
 
+
+      if (is_top_level_window() && !is_message_only_window())
+      {
+
+         //_synchronous_lock synchronouslock(this->synchronization(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
+
+         //if (get_app()->get_context_system() != nullptr)
+         //{
+
+         //   psystem->add_frame(this);
+
+         //}
+
+         //if (get_app()->get_session() != nullptr)
+         //{
+
+         //   psession->add_frame(this);
+
+         //}
+
+         if (get_app() != nullptr)
+         {
+
+            ::pointer<::aura::application> papp = get_app();
+
+            papp->add_user_interaction(this);
+
+         }
+
+      }
+
+
       //m_pwindowbase = this->window();
 
 
@@ -8736,36 +8770,6 @@ if(get_parent())
       route(ptopic);
 
       //
-
-      if (is_top_level_window() && !is_message_only_window())
-      {
-
-         //_synchronous_lock synchronouslock(this->synchronization(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
-
-         //if (get_app()->get_context_system() != nullptr)
-         //{
-
-         //   psystem->add_frame(this);
-
-         //}
-
-         //if (get_app()->get_session() != nullptr)
-         //{
-
-         //   psession->add_frame(this);
-
-         //}
-
-         if (get_app() != nullptr)
-         {
-
-            ::pointer<::aura::application> papp = get_app();
-
-            papp->add_user_interaction(this);
-
-         }
-
-      }
 
       //try
       //{
@@ -19749,7 +19753,7 @@ if(get_parent())
 
       auto pdraw2d = psystem->draw2d();
 
-      auto pgraphics = pdraw2d->create_memory_graphics(this, {});
+      auto pgraphics = pdraw2d->create_memory_graphics({}, this);
 
       return pgraphics;
 
@@ -31783,7 +31787,11 @@ void interaction::on_keyboard_layout_change(const_char_pointer pszKeyboardLayout
    ::f64 interaction::screen_scaler()
    {
 
-      return m_pinteractionScaler->screen_scaler();
+      //return m_pinteractionScaler->screen_scaler();
+
+      return ::acme::user::interaction::screen_scaler();
+
+
 
    }
 
@@ -31791,7 +31799,7 @@ void interaction::on_keyboard_layout_change(const_char_pointer pszKeyboardLayout
    ::f64 interaction::font_scaler()
    {
 
-      return m_pinteractionScaler->font_scaler();
+      return ::acme::user::interaction::font_scaler();
 
    }
 

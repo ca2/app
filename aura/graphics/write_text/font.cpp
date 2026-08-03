@@ -103,6 +103,9 @@ namespace write_text
    }
 
 
+   
+
+
    bool font::create_font(
       const font_family_pointer & pfontfamily, 
       const font_size & fontsize, 
@@ -170,7 +173,7 @@ namespace write_text
       {
 
          m_pfontfamily = font.m_pfontfamily->clone();
-         m_path = font.m_path;
+         m_pathFontFile = font.m_pathFontFile;
          m_fontsize = font.m_fontsize;
          m_dFontWidth = font.m_dFontWidth;
          //m_eunitFontSize = font.m_eunitFontSize;
@@ -208,7 +211,7 @@ namespace write_text
       }
 
       return *m_pfontfamily == *font.m_pfontfamily
-         &&  m_path == font.m_path
+         && m_pathFontFile == font.m_pathFontFile
          && m_fontsize == font.m_fontsize
          && m_dFontWidth ==  font.m_dFontWidth
          // m_eunitFontSize = font.m_eunitFontSize;
@@ -832,20 +835,30 @@ namespace write_text
    }
 
 
+   void font::on_changed()
+   {
+
+      _synchronous_lock synchronouslock(s_pmutexFontTextMap);
+
+      m_mapFontText.clear();
+
+   }
+
+
    bool font::defer_load_internal_font(::draw2d::graphics * pgraphics)
    {
 
-      if (m_path.has_character())
+      if (m_pathFontFile.has_character())
       {
 
          if (m_pfontfamily && m_pfontfamily->m_strBranch.has_character())
          {
 
-            write_text()->fonts()->enumeration(m_pfontfamily->m_strBranch)->defer_download_font(m_path);
+            write_text()->fonts()->enumeration(m_pfontfamily->m_strBranch)->defer_download_font(m_pathFontFile);
 
          }
 
-         auto pinternalfont = write_text()->internal_font_from_file(pgraphics->m_papplication, m_path);
+         auto pinternalfont = write_text()->internal_font_from_file(pgraphics->m_papplication, m_pathFontFile);
 
          if (pinternalfont)
          {

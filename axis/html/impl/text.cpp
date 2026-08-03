@@ -168,7 +168,7 @@ namespace html
 
          }
 
-         pgraphics->m_pdraw2dhost = pdata->m_pcoredata->m_puserinteraction;
+         pgraphics->m_pacmeuserinteractionAffinity = pdata->m_pcoredata->m_puserinteraction;
 
          font * pfont = pdata->get_font(m_pelemental);
 
@@ -190,7 +190,7 @@ namespace html
 
          }
 
-         pgraphics->m_puserinteractionDraw2dGraphics = pdata->m_pcoredata->m_puserinteraction;
+         pgraphics->m_pacmeuserinteractionAffinity = pdata->m_pcoredata->m_puserinteraction;
 
          ::f32_size size = pgraphics->get_text_extent(strMax);
 
@@ -370,7 +370,7 @@ namespace html
          if (pgraphics == nullptr)
             return false;
 
-         pgraphics->m_puserinteractionDraw2dGraphics = pdata->m_pcoredata->m_puserinteraction;
+         pgraphics->m_pacmeuserinteractionAffinity = pdata->m_pcoredata->m_puserinteraction;
 
          pgraphics->set(pdata->get_font(m_pelemental)->m_pfont);
 

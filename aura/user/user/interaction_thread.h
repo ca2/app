@@ -131,6 +131,9 @@ namespace user
    };
 
 
+   CLASS_DECL_AURA ::user::interaction * task_interaction();
+
+
 } // namespace user
 
 

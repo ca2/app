@@ -4485,6 +4485,9 @@
     <ClInclude Include="quality\self_test.h">
       <Filter>Header Files\quality</Filter>
     </ClInclude>
+    <ClInclude Include="operating_system\windows\device_independent_bitmap.h">
+      <Filter>Header Files\operating_system\windows</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="prototype\prototype\bit.cpp">
@@ -6460,6 +6463,9 @@
     </ClCompile>
     <ClCompile Include="quality\self_test_item.cpp">
       <Filter>Source Files\quality</Filter>
+    </ClCompile>
+    <ClCompile Include="operating_system\windows\device_independent_bitmap.cpp">
+      <Filter>Source Files\operating_system\windows</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

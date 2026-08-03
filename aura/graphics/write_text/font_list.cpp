@@ -993,9 +993,9 @@ namespace write_text
 
          }
 
-         pbox->m_pfont->m_path = pitem->m_path;
+         pbox->m_pfont->m_pathFontFile = pitem->m_pathFontFile;
 
-         ::draw2d::lock draw2dlock(this);
+         //::draw2d::lock draw2dlock(this);
 
          if (!pgraphics)
          {
@@ -1531,11 +1531,11 @@ namespace write_text
 
          auto psystem = system();
          auto pdraw2d = psystem->draw2d();
-         auto pdraw2dhost = m_puserinteractionGraphicsContext
-            ? (::draw2d::host *) m_puserinteractionGraphicsContext.m_p
-            : (::draw2d::host *) m_puserinteraction.m_p;
+         auto pacmeuserinteractionAffinity = m_puserinteractionGraphicsContext
+            ? (::acme::user::interaction *) m_puserinteractionGraphicsContext.m_p
+            : (::acme::user::interaction *) m_puserinteraction.m_p;
          auto graphicslease = pdraw2d->acquire_memory_graphics(
-            {256, 256}, pdraw2dhost);
+            {256, 256}, pacmeuserinteractionAffinity);
          auto pgraphics = graphicslease.get();
          ::u64 uGraphicsAcquireMicroseconds = 0;
 
@@ -1607,12 +1607,17 @@ namespace write_text
                {
 
                   bNew = true;
+
+                  ::string strName = penumitem->m_strName;
+
+                  auto strFileName = penumitem->m_mapFileName[0];
+
                   plistitem = allocateø font_list_item();
                   plistitem->m_item.m_iItem = iItem;
-                  plistitem->m_strFont = penumitem->m_strName;
-                  plistitem->m_strName = penumitem->m_strName;
+                  plistitem->m_strFont = strName;
+                  plistitem->m_strName = strName;
                   plistitem->m_strBranch = penumitem->m_strBranch;
-                  plistitem->m_path = penumitem->m_mapFileName[0];
+                  plistitem->m_pathFontFile = strFileName;
                   plistitem->m_echaracterseta = penumitem->m_echaracterseta;
 
                }

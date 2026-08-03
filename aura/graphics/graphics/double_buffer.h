@@ -8,7 +8,7 @@ namespace graphics
 {
 
 
-   class CLASS_DECL_AURA double_buffer :
+   class CLASS_DECL_AURA double_buffer_graphics :
       virtual public graphics
    {
    public:
@@ -26,8 +26,8 @@ namespace graphics
       ::i32                           m_iCurrentBuffer;
 
 
-      double_buffer();
-      ~double_buffer() override;
+      double_buffer_graphics();
+      ~double_buffer_graphics() override;
 
 
       void initialize_graphics_graphics(::windowing::window * pwindow) override;
@@ -39,7 +39,7 @@ namespace graphics
       
 
 
-      bool buffer_lock_round_swap_key_buffers(::draw2d::graphics_pointer &pgraphics) override;
+      bool buffer_lock_round_swap_key_buffers() override;
 
       // synchronous_lock buffer synchronization first...
       buffer_item * get_buffer_item() override;

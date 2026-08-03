@@ -506,7 +506,7 @@ namespace nano2d
       if (strFont.case_insensitive_order("sans-bold") == 0)
       {
 
-         pfont->m_path = "matter://font/truetype/Roboto-Bold.ttf";
+         pfont->m_pathFontFile = "matter://font/truetype/Roboto-Bold.ttf";
 
          pfont->m_fontweight = e_font_weight_bold;
 
@@ -516,7 +516,7 @@ namespace nano2d
       else if (strFont.case_insensitive_order("sans") == 0)
       {
 
-         pfont->m_path = "matter://font/truetype/Roboto-Regular.ttf";
+         pfont->m_pathFontFile = "matter://font/truetype/Roboto-Regular.ttf";
 
          pfont->m_fontweight = e_font_weight_normal;
 
@@ -526,7 +526,7 @@ namespace nano2d
       else if (strFont.case_insensitive_order("mono") == 0)
       {
 
-         pfont->m_path = "matter://font/truetype/Inconsolata-Regular.ttf";
+         pfont->m_pathFontFile = "matter://font/truetype/Inconsolata-Regular.ttf";
 
          pfont->m_fontweight = e_font_weight_normal;
 
@@ -536,7 +536,7 @@ namespace nano2d
       else if (strFont.case_insensitive_order("icons") == 0)
       {
 
-         pfont->m_path = "matter://font/truetype/FontAwesome-Solid.ttf";
+         pfont->m_pathFontFile = "matter://font/truetype/FontAwesome-Solid.ttf";
 
          pfont->m_fontweight = e_font_weight_normal;
 

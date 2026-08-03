@@ -337,7 +337,7 @@ inline void storeFloatAsRGBA8(f3232x4_t data,::u32* destination)
 
       //}
 
-      pimage->map();
+      auto mapImage = pimage->map();
 
       bool b = false;
 

@@ -13,10 +13,12 @@
 #include "acme/prototype/mathematics/mathematics.h"
 #include "aura/graphics/draw2d/graphics.h"
 #include "aura/graphics/draw2d/graphics_pointer.h"
-#include "aura/graphics/draw2d/host.h"
+//#include "aura/graphics/draw2d/host.h"
 #include "aura/graphics/draw2d/task_tool.h"
 #include "aura/graphics/draw2d/draw2d.h"
 #include "aura/user/user/interaction.h"
+#include "aura/windowing/window_buffer.h"
+#include "aura/windowing/window.h"
 
 
 //#include "acme/_operating_system.h"
@@ -206,7 +208,9 @@ bool image::_is_ok() const
 //}
 
 
-::draw2d::graphics_lease image::acquire_graphics(::draw2d::host *pdraw2dhost)
+::draw2d::graphics_lease image::acquire_graphics(
+   //::draw2d::host * pdraw2dhost,
+   ::acme::user::interaction * pacmeuserinteractionAffinityExplicit)
 {
 
    //if (m_pgraphicsleaseOwned)
@@ -216,23 +220,57 @@ bool image::_is_ok() const
 
    //}
 
-   if (::is_null(pdraw2dhost))
+   auto pacmeuserinteractionAffinity = pacmeuserinteractionAffinityExplicit;
+
+   if (!pacmeuserinteractionAffinity)
    {
 
-      auto pacmeuserinteractionMain = m_papplication->main_acme_user_interaction();
-
-      ::cast<::draw2d::host> pdraw2dhostMain = pacmeuserinteractionMain;
-
-      pdraw2dhost = pdraw2dhostMain;
+      pacmeuserinteractionAffinity = m_pacmeuserinteractionAffinity;
 
    }
 
-   return ::transfer(_acquire_graphics(pdraw2dhost));
+   ////if (!pacmeuserinteractionAffinity && pdraw2dhost)
+   //{
+
+   //   pacmeuserinteractionAffinity =
+   //      dynamic_cast<::acme::user::interaction *>(pdraw2dhost);
+
+   //}
+
+   auto pacmeuserinteractionMain =
+      m_papplication ? m_papplication->main_acme_user_interaction() : nullptr;
+
+   if (!pacmeuserinteractionAffinity)
+   {
+
+      pacmeuserinteractionAffinity = pacmeuserinteractionMain;
+
+   }
+
+   //if (!pdraw2dhost && pacmeuserinteractionAffinity)
+   //{
+
+   //   pdraw2dhost = dynamic_cast<::draw2d::host *>(pacmeuserinteractionAffinity);
+
+   //}
+
+   //if (!pdraw2dhost && pacmeuserinteractionMain)
+   //{
+
+   //   pdraw2dhost = dynamic_cast<::draw2d::host *>(pacmeuserinteractionMain);
+
+   //}
+
+   return ::transfer(_acquire_graphics(
+      //pdraw2dhost,
+      pacmeuserinteractionAffinity));
 
 }
 
 
-::draw2d::graphics_lease image::_acquire_graphics(::draw2d::host * pdraw2dhost)
+::draw2d::graphics_lease image::_acquire_graphics(
+   //::draw2d::host * pdraw2dhost,
+   ::acme::user::interaction * pacmeuserinteractionAffinity)
 {
 
    if (m_bMapped)
@@ -251,16 +289,17 @@ bool image::_is_ok() const
 
    //}
 
-   if (!pdraw2dhost && m_papplication)
+   //if (!pdraw2dhost && m_papplication)
+   if (!pacmeuserinteractionAffinity && m_papplication)
    {
 
       auto pacmeuserinteractionMain = application()->main_acme_user_interaction();
 
-      pdraw2dhost = dynamic_cast<::draw2d::host *>(pacmeuserinteractionMain);
+      pacmeuserinteractionAffinity = pacmeuserinteractionMain;
 
    }
 
-   if (!pdraw2dhost)
+   if (!pacmeuserinteractionAffinity)
    {
 
       throw ::exception(
@@ -290,7 +329,12 @@ bool image::_is_ok() const
 
       }
 
-      return pdraw2d->acquire_image_graphics(this, pdraw2dhost);
+      create_bitmap(pacmeuserinteractionAffinity);
+
+      return pdraw2d->acquire_image_graphics(
+         this,
+         pacmeuserinteractionAffinity);//,
+         //pacmeuserinteractionAffinity);
 
    }
    catch (...)
@@ -449,10 +493,21 @@ void image::create_from_data(const ::i32_size & size, const ::image32_t * pimage
 }
 
 
-void image::create_as_render_target(const ::i32_size& size, ::enum_flag eflagCreate, ::i32 iGoodStride, bool bPreserve)
+void image::create_as_render_target(const ::i32_size& sizeRaw, ::user::interaction * puserinteraction, ::enum_flag eflagCreate, ::i32 iGoodStride, bool bPreserve)
 {
 
-   return create_from_data(size, nullptr, iGoodStride, eflagCreate, bPreserve);
+   if (!puserinteraction)
+   {
+
+      throw ::exception(error_null_pointer, "user::interaction is null");
+
+   }
+
+   m_pacmeuserinteractionAffinity = puserinteraction;
+
+   //m_puserinteraction = puserinteraction;
+
+   return create_from_data(sizeRaw, nullptr, iGoodStride, eflagCreate, bPreserve);
 
 }
 
@@ -532,12 +587,12 @@ void image::preserve(const ::i32_size& size, ::enum_flag eflagCreate)
 //}
 
 
-bool image::host(::pixmap_t* ppixmap, ::windowing::window * pwindow)
+bool image::host(::windowing::window_buffer * pwindowbuffer, ::windowing::window * pwindow, const ::i32_size & sizeRaw)
 {
    //// callers should be able to deal with graphics backend that doesn't support "hosting" portions of RAM
    //return false;
 
-   if (!ppixmap->is_ok())
+   if (!::is_set(pwindowbuffer->m_ppixmapWindowBuffer))
    {
 
       return false;
@@ -546,17 +601,19 @@ bool image::host(::pixmap_t* ppixmap, ::windowing::window * pwindow)
 
    }
 
+   auto ppixmapWindowBuffer = pwindowbuffer->m_ppixmapWindowBuffer;
+
    if (m_pbitmap.is_set()
-         && m_pbitmap->get_os_data() != nullptr
-         && ppixmap->m_sizeRaw == this->m_sizeRaw
-         && ppixmap->image32() == image32()
-         && ppixmap->scan_size() == scan_size())
+         && m_pbitmap->get_os_data() != nullptr &&
+       ppixmapWindowBuffer->m_sizeRaw == sizeRaw && ppixmapWindowBuffer->image32() == image32() &&
+       ppixmapWindowBuffer->scan_size() == scan_size())
    {
 
-      if (ppixmap->size() != size())
+      if (ppixmapWindowBuffer->size() != pwindow->m_sizeWindow
+         || ppixmapWindowBuffer->m_point != pwindow->m_pointWindow)
       {
 
-         m_size = ppixmap->size();
+         ((image *)this)->pixmap_t::pixmap_map({ pwindow->m_pointWindow, ppixmapWindowBuffer->size() });
 
       }
 
@@ -568,35 +625,35 @@ bool image::host(::pixmap_t* ppixmap, ::windowing::window * pwindow)
 
    //destroy();
 
-   defer_constructø(m_pbitmap);
+   //defer_constructø(m_pbitmap);
 
-   //defer_constructø(m_pgraphics);
+   ////defer_constructø(m_pgraphics);
 
-   //if (m_pbitmap.is_null())
+   ////if (m_pbitmap.is_null())
+   ////{
+
+   ////   m_sizeRaw.cx = 0;
+
+   ////   m_sizeRaw.cy = 0;
+
+   ////   m_sizeAlloc.cx = 0;
+
+   ////   m_sizeAlloc.cy = 0;
+
+   ////   m_iScan = 0;
+
+   ////   return false;
+
+   ////}
+
+
+   //if(!m_pbitmap->host_bitmap(nullptr, pwindowbuffer->m_ppixmapWindowBuffer))
    //{
 
-   //   m_sizeRaw.cx = 0;
-
-   //   m_sizeRaw.cy = 0;
-
-   //   m_sizeAlloc.cx = 0;
-
-   //   m_sizeAlloc.cy = 0;
-
-   //   m_iScan = 0;
-
    //   return false;
+   //   //m_pbitmap->create_bitmap(pgraphics, size, )
 
    //}
-
-
-   if(!m_pbitmap->host_bitmap(nullptr, ppixmap))
-   {
-
-      return false;
-      //m_pbitmap->create_bitmap(pgraphics, size, )
-
-   }
    //if (!)
    //{
 
@@ -623,19 +680,21 @@ bool image::host(::pixmap_t* ppixmap, ::windowing::window * pwindow)
 
    //}
 
-   initialize(ppixmap->size(), ppixmap->image32(), ppixmap->m_iScan);
+   initialize_pixmap(ppixmapWindowBuffer->size(), ppixmapWindowBuffer->image32(), ppixmapWindowBuffer->m_iScan);
 
-   //auto pgraphics = owned_graphics();
+   m_sizeRaw = ppixmapWindowBuffer->m_sizeRaw;
 
-   auto pgraphics = acquire_graphics();
+   m_size = ppixmapWindowBuffer->m_size;
 
-   pgraphics->set(m_pbitmap);
+   m_pimage32Raw = ppixmapWindowBuffer->m_pimage32Raw;
 
-   pgraphics->m_pimage = this;
+   m_pimage32 = ppixmapWindowBuffer->m_pimage32;
 
-   pgraphics->place_impact_area(0., 0., m_size.cx, m_size.cy);
+   //pgraphics->set(m_pbitmap);
 
-   m_sizeRaw = ppixmap->size();
+   //pgraphics->m_pimage = this;
+
+   //pgraphics->place_impact_area(0., 0., m_size.cx, m_size.cy);
 
    set_ok_flag();
 
@@ -8376,7 +8435,7 @@ void image::all_channels_copy(::color::enum_channel echannelSrc, ::image::image 
 
    }
 
-   pimage->map();
+   auto mapImage = pimage->map();
 
    if (pimage->image32() == nullptr)
    {
@@ -10228,7 +10287,8 @@ void image::on_exif_orientation()
 }*/
 
 
-void image::create_bitmap()
+void image::create_bitmap(
+   ::acme::user::interaction * pacmeuserinteractionAffinity)
 {
 
    if (m_pbitmap.ok())
@@ -10240,7 +10300,16 @@ void image::create_bitmap()
 
    constructø(m_pbitmap);
 
-   m_pbitmap->create_bitmap_for_image(this);
+   if (!pacmeuserinteractionAffinity)
+   {
+
+      pacmeuserinteractionAffinity = m_pacmeuserinteractionAffinity;
+
+   }
+
+   m_pbitmap->create_bitmap_for_image(
+      this,
+      pacmeuserinteractionAffinity);
 
 }
 

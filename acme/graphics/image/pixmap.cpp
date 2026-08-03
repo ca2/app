@@ -168,9 +168,15 @@ void pixmap::_map(bool bApplyTransform)
 
    }
 
-   if (!m_pimage32Raw 
+   auto pimage32Owned = (::image32_t *)m_memoryPixmap.data();
+
+   auto bUsingOwnedMemory =
+      ::is_set(pimage32Owned)
+      && m_pimage32Raw == pimage32Owned;
+
+   if (!m_pimage32Raw
       || !m_pimage32
-      || m_memoryPixmap.size() < scan_area_in_bytes())
+      || (bUsingOwnedMemory && m_memoryPixmap.size() < scan_area_in_bytes()))
    {
 
       m_memoryPixmap.set_size(scan_area_in_bytes());

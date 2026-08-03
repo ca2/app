@@ -1,4 +1,5 @@
 #include "framework.h"
+#include "buffer_item.h"
 #include "multiple_buffer.h"
 #include "acme/parallelization/mutex.h"
 #include "acme/parallelization/synchronous_lock.h"
@@ -336,7 +337,7 @@ namespace graphics
    }
 
 
-   bool multiple_buffer::buffer_lock_round_swap_key_buffers(::draw2d::graphics_pointer &pgraphics)
+   bool multiple_buffer::buffer_lock_round_swap_key_buffers()
    {
 
       synchronous_lock synchronouslock(this->synchronization(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);

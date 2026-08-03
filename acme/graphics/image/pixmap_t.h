@@ -301,39 +301,13 @@ struct pixmap_t
 
 #endif
 
-   void pixmap_map(const ::i32_rectangle& rectangle)
-   {
-
-      m_point = rectangle.origin();
-
-      m_size = rectangle.size();
-
-      pixmap_map();
-
-   }
+   void pixmap_map(const ::i32_rectangle & rectangle);
 
 
-   void pixmap_map() const
-   {
-
-      if (::is_set(m_pimage32Raw))
-      {
-
-         ((pixmap_t*)this)->m_pimage32 = m_pimage32Raw + (m_point.x + m_iScan * m_point.y);
-
-      }
-
-   }
+   void pixmap_map() const;
 
 
-   void pixmap_unmap()
-   {
-
-      m_pimage32 = m_pimage32;
-      
-      m_size = m_sizeRaw;
-
-   }
+   void pixmap_unmap();
 
 
 };

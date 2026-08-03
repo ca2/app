@@ -122,8 +122,13 @@ namespace draw2d
 //   }
 
 
-   void bitmap::create_bitmap_for_image(::image::image* pimage)
+   void bitmap::create_bitmap_for_image(
+      ::image::image * pimage,
+      ::acme::user::interaction * pacmeuserinteractionAffinity)
    {
+
+      __UNREFERENCED_PARAMETER(pimage);
+      __UNREFERENCED_PARAMETER(pacmeuserinteractionAffinity);
 
       throw ::interface_only();
 

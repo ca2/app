@@ -23,7 +23,7 @@ namespace user
    void drawable::destroy()
    {
 
-      ::draw2d::host::destroy();
+      //::draw2d::host::destroy();
 
       ::user::acme_container::destroy();
 

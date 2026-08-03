@@ -82,10 +82,10 @@ namespace write_text
 
       m_bOk = false;
 
-      auto pdraw2dhost = plist->m_puserinteractionGraphicsContext
-         ? (::draw2d::host *) plist->m_puserinteractionGraphicsContext.m_p
-         : (::draw2d::host *) plist->m_puserinteraction.m_p;
-      auto graphicslease = m_pimage->acquire_graphics(pdraw2dhost);
+      auto pacmeuserinteractionAffinity = plist->m_puserinteractionGraphicsContext
+         ? (::acme::user::interaction *) plist->m_puserinteractionGraphicsContext.m_p
+         : (::acme::user::interaction *) plist->m_puserinteraction.m_p;
+      auto graphicslease = m_pimage->acquire_graphics(pacmeuserinteractionAffinity);
 
       auto layerscope = graphicslease.begin_layer_scope();
 

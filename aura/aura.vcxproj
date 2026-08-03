@@ -2765,7 +2765,6 @@
     <ClCompile Include="graphics\draw2d\graphics_pointer.cpp" />
     <ClCompile Include="graphics\draw2d\holdee.cpp" />
     <ClCompile Include="graphics\draw2d\holder.cpp" />
-    <ClCompile Include="graphics\draw2d\host.cpp" />
     <ClCompile Include="graphics\draw2d\item.cpp" />
     <ClCompile Include="graphics\draw2d\lock.cpp" />
     <ClCompile Include="graphics\draw2d\nano_svg.cpp">
@@ -2855,10 +2854,13 @@
     <ClCompile Include="graphics\draw2d\region.cpp" />
     <ClCompile Include="graphics\draw2d\stock_icon.cpp" />
     <ClCompile Include="graphics\draw2d\task_tool.cpp" />
+    <ClCompile Include="graphics\draw2d\window_attachment.cpp" />
     <ClCompile Include="graphics\draw2d\_.cpp" />
     <ClCompile Include="graphics\draw3d\ortho.cpp" />
     <ClCompile Include="graphics\graphics\bitmap_source_buffer.cpp" />
     <ClCompile Include="graphics\graphics\buffer.cpp" />
+    <ClInclude Include="graphics\graphics\buffer_item.h" />
+    <ClCompile Include="graphics\graphics\buffer_item.cpp" />
     <ClCompile Include="graphics\graphics\console.cpp" />
     <ClCompile Include="graphics\graphics\context.cpp" />
     <ClCompile Include="graphics\graphics\device_context.cpp" />
@@ -3120,6 +3122,7 @@
     <ClCompile Include="windowing\text_editor_interface.cpp" />
     <ClCompile Include="windowing\window.cpp" />
     <ClCompile Include="windowing\windowing.cpp" />
+    <ClCompile Include="windowing\window_buffer.cpp" />
     <ClCompile Include="_.cpp" />
   </ItemGroup>
   <ItemGroup>
@@ -3168,7 +3171,7 @@
     <ClInclude Include="graphics\draw2d\graphics_pointer.h" />
     <ClInclude Include="graphics\draw2d\holdee.h" />
     <ClInclude Include="graphics\draw2d\holder.h" />
-    <ClInclude Include="graphics\draw2d\host.h" />
+    <ClInclude Include="graphics\draw2d\aaa_host.h" />
     <ClInclude Include="graphics\draw2d\item.h" />
     <ClInclude Include="graphics\draw2d\lock.h" />
     <ClInclude Include="graphics\draw2d\object.h" />
@@ -3183,6 +3186,7 @@
     <ClInclude Include="graphics\draw2d\region_shape.h" />
     <ClInclude Include="graphics\draw2d\task_tool.h" />
     <ClInclude Include="graphics\draw2d\water_routine.h" />
+    <ClInclude Include="graphics\draw2d\window_attachment.h" />
     <ClInclude Include="graphics\draw2d\_.h" />
     <ClInclude Include="graphics\draw2d\_draw2d.h" />
     <ClInclude Include="graphics\draw2d\_impl.h" />
@@ -3471,6 +3475,7 @@
     <ClInclude Include="windowing\text_editor_interface.h" />
     <ClInclude Include="windowing\window.h" />
     <ClInclude Include="windowing\windowing.h" />
+    <ClInclude Include="windowing\window_buffer.h" />
     <ClInclude Include="windowing\_.h" />
     <ClInclude Include="windowing\_impl.h" />
     <ClInclude Include="windowing\_windowing.h" />

@@ -48,6 +48,13 @@ public:
 
    }
 
+   comptr(comptr && ptr) :
+      m_p(ptr.m_p)
+   {
+      ptr.m_p = nullptr;
+
+   }
+
    comptr(::transfer_t , TYPE * p)
    {
       m_p = p;
@@ -228,6 +235,26 @@ public:
          m_p = ptr.m_p;
 
       }
+
+      return *this;
+
+   }
+
+
+   comptr & operator = (comptr && ptr)
+   {
+
+
+      if (m_p != nullptr)
+      {
+
+         m_p->Release();
+
+      }
+
+      m_p = ptr.m_p;
+
+      ptr.m_p = nullptr;
 
       return *this;
 

@@ -1,5 +1,5 @@
 #include "framework.h"
-#include "acme/graphics/image/pixmap_t.h"
+#include "acme/graphics/image/pixmap.h"
 
 #include <array>
 #include <cstddef>
@@ -146,6 +146,38 @@ namespace
    }
 
 
+   bool mapping_external_storage_preserves_its_address()
+   {
+
+      std::array<::image32_t, 4> storage{};
+
+      ::pixmap pixmap;
+      pixmap.initialize_pixmap(
+         {2, 2},
+         storage.data(),
+         2 * (int)sizeof(::image32_t));
+
+      {
+
+         auto map = pixmap.map();
+
+         if (map.m_pimage32Raw != storage.data()
+            || map.m_pimage32 != storage.data())
+         {
+
+            return false;
+
+         }
+
+      }
+
+      return
+         pixmap.m_pimage32Raw == storage.data()
+         && pixmap.m_pimage32 == storage.data();
+
+   }
+
+
 } // namespace
 
 
@@ -180,6 +212,13 @@ int main()
    {
 
       return 3;
+
+   }
+
+   if (!mapping_external_storage_preserves_its_address())
+   {
+
+      return 4;
 
    }
 

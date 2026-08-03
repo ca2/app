@@ -1,4 +1,5 @@
 #include "framework.h"
+#include "buffer_item.h"
 #include "graphics.h"
 #include "acme/exception/interface_only.h"
 #include "acme/parallelization/mutex.h"
@@ -25,93 +26,10 @@ namespace graphics
 {
 
 
-   //::draw2d::graphics_lease buffer_item::acquire_graphics()
-   //{
-
-   //   return ::transfer(m_pimageBufferItem->acquire_graphics());
-
-   //}
-
-
-   //::draw2d::graphics_pointer buffer_item::owned_graphics()
-   ::draw2d::graphics_lease buffer_item::acquire_graphics()
-   {
-
-      if (m_pgraphicsBufferItem)
-      {
-
-         return {system()->draw2d(), m_pgraphicsBufferItem, nullptr, true};
-
-      }
-      else
-      {
-
-         return ::transfer(m_pimageBufferItem->acquire_graphics());
-
-      }
-
-      //if (pgraphics)
-      //{
-
-      //   pgraphics->m_egraphics = m_egraphics;
-
-      //}
-
-      //if (!pgraphics->m_callbackImage32CpuBuffer)
-      //{
-
-      //   pgraphics->m_callbackImage32CpuBuffer = [this](const ::image32_t * pimage32, ::i32 cx, ::i32 cy, ::i32 scan)
-      //      {
-
-      //         //_synchronous_lock synchronouslock(this->m_pmutex, DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
-
-      //         m_pimage2->image32()->copy(cx, cy, m_pimage2->m_iScan, pimage32, scan);
-
-      //      };
-
-      //}
-
-      //return ::transfer(pgraphics);
-
-   }
-
-
-   
-
-
-   void buffer_item::switch_to_draw()
-   {
-
-      m_egraphics = e_graphics_draw;
-
-      //owned_graphics();
-
-      //m_pimageBufferItem->set_owned_graphics();
-
-
-   }
-
-
-   void buffer_item::destroy()
-   {
-
-      ::particle::destroy();
-
-      m_pmutex.release();
-
-      m_pimageBufferItem.defer_destroy_and_release();
-
-      //m_pgraphicsBufferItem.release();
-
-      m_pparticleData.release();
-
-   }
-
-
    graphics::graphics()
    {
 
-      m_uptrBuffer = 0;
+      //m_uptrBuffer = 0;
 
       m_bNewBuffer = false;
 
@@ -374,36 +292,36 @@ namespace graphics
    }
 
 
-   void graphics::on_end_layout(::draw2d::graphics_pointer &pgraphics)
+   void graphics::on_end_layout()
    {
 
-      on_end(e_graphics_layout, pgraphics);
+      on_end(e_graphics_layout);
 
    }
 
 
-   void graphics::on_end_draw(::draw2d::graphics_pointer &pgraphics)
+   void graphics::on_end_draw()
    {
 
-      on_end(e_graphics_draw, pgraphics);
+      on_end(e_graphics_draw);
 
    }
 
 
-   void graphics::on_end(::e_graphics egraphics, ::draw2d::graphics_pointer &pgraphics)
+   void graphics::on_end(::e_graphics egraphics)
    {
 
       if (egraphics == e_graphics_draw)
       {
 
-         buffer_lock_round_swap_key_buffers(pgraphics);
+         buffer_lock_round_swap_key_buffers();
 
       }
 
    }
 
 
-   bool graphics::buffer_lock_round_swap_key_buffers(::draw2d::graphics_pointer &pgraphics)
+   bool graphics::buffer_lock_round_swap_key_buffers()
    {
 
       return true;

@@ -1,4 +1,5 @@
 #include "framework.h"
+#include "buffer_item.h"
 #include "double_buffer.h"
 #include "acme/parallelization/mutex.h"
 #include "acme/parallelization/synchronous_lock.h"
@@ -6,13 +7,14 @@
 #include "acme/prototype/geometry2d/_text_stream.h"
 #include "aura/graphics/image/image.h"
 #include "aura/windowing/window.h"
+#include "aura/windowing/window_buffer.h"
 
 
 namespace graphics
 {
 
 
-   double_buffer::double_buffer()
+   double_buffer_graphics::double_buffer_graphics()
    {
 
       m_iCurrentBuffer = 0;
@@ -22,13 +24,13 @@ namespace graphics
    }
 
 
-   double_buffer::~double_buffer()
+   double_buffer_graphics::~double_buffer_graphics()
    {
 
    }
 
 
-   void double_buffer::initialize_graphics_graphics(::windowing::window * pwindow)
+   void double_buffer_graphics::initialize_graphics_graphics(::windowing::window * pwindow)
    {
 
       //auto estatus = 
@@ -58,7 +60,7 @@ namespace graphics
    }
 
 
-   bool double_buffer::is_single_buffer_mode() const
+   bool double_buffer_graphics::is_single_buffer_mode() const
    {
 
       return true;
@@ -66,7 +68,7 @@ namespace graphics
    }
 
 
-   //::particle * double_buffer::get_draw_lock()
+   //::particle * double_buffer_graphics::get_draw_lock()
    //{
 
    //   return get_buffer_item()->m_pmutex;
@@ -74,14 +76,14 @@ namespace graphics
    //}
 
 
-   void double_buffer::_on_configure_window(buffer_item * pbufferitem)
+   void double_buffer_graphics::_on_configure_window(buffer_item * pbufferitem)
    {
 
 
    }
 
 
-   bool double_buffer::_on_begin(buffer_item * pbufferitem)
+   bool double_buffer_graphics::_on_begin(buffer_item * pbufferitem)
    {
 
       //auto pbufferitem = get_buffer_item();
@@ -145,20 +147,20 @@ namespace graphics
 
          }
 
-         debug() << "double_buffer::_on_begin_draw Going to create image : " << sizeImage;
+         debug() << "double_buffer_graphics::_on_begin_draw Going to create image : " << sizeImage;
 
-         pimageBufferItem->create_as_descriptor(sizeImage);
+         //pimageBufferItem->create_as_descriptor(sizeImage);
 
          if (pimageBufferItem.nok())
          {
 
-            information() << "double_buffer::_on_begin_draw Image Nok : " << sizeImage;
+            information() << "double_buffer_graphics::_on_begin_draw Image Nok : " << sizeImage;
 
             return false;
 
          }
 
-         debug() << "double_buffer::_on_begin_draw Deferred image Creation/Update : " << sizeImage;
+         debug() << "double_buffer_graphics::_on_begin_draw Deferred image Creation/Update : " << sizeImage;
 
          auto pgraphicsBufferItem = pimageBufferItem->acquire_graphics();
          
@@ -180,7 +182,7 @@ namespace graphics
    }
 
 
-   buffer_item * double_buffer::get_buffer_item()
+   buffer_item * double_buffer_graphics::get_buffer_item()
    {
 
       return m_bufferitema[get_buffer_index()];
@@ -188,7 +190,7 @@ namespace graphics
    }
 
 
-   //::image::image_pointer & double_buffer::get_buffer_image()
+   //::image::image_pointer & double_buffer_graphics::get_buffer_image()
    //{
 
    //   return get_buffer_item()->m_pimage;
@@ -196,7 +198,7 @@ namespace graphics
    //}
 
 
-   //::particle * double_buffer::get_buffer_sync()
+   //::particle * double_buffer_graphics::get_buffer_sync()
    //{
 
    //   return get_buffer_item()->m_pparticleSynchronization;
@@ -204,7 +206,7 @@ namespace graphics
    //}
 
 
-   buffer_item * double_buffer::get_screen_item()
+   buffer_item * double_buffer_graphics::get_screen_item()
    {
 
       return m_bufferitema[get_screen_index()];
@@ -212,7 +214,7 @@ namespace graphics
    }
 
 
-   //::image::image_pointer & double_buffer::get_screen_image()
+   //::image::image_pointer & double_buffer_graphics::get_screen_image()
    //{
 
    //   return get_screen_item()->m_pimage;
@@ -220,7 +222,7 @@ namespace graphics
    //}
 
 
-   //::particle * double_buffer::get_screen_sync()
+   //::particle * double_buffer_graphics::get_screen_sync()
    //{
 
    //   return get_screen_item()->m_pmutex;
@@ -228,7 +230,7 @@ namespace graphics
    //}
 
 
-   ::collection::index double_buffer::get_buffer_index() const
+   ::collection::index double_buffer_graphics::get_buffer_index() const
    {
 
       if (is_single_buffer_mode())
@@ -253,7 +255,7 @@ namespace graphics
    }
 
 
-   ::collection::index double_buffer::get_screen_index() const
+   ::collection::index double_buffer_graphics::get_screen_index() const
    {
 
       if (is_single_buffer_mode())
@@ -279,8 +281,10 @@ namespace graphics
 
 
 
-   bool double_buffer::buffer_lock_round_swap_key_buffers(::draw2d::graphics_pointer &pgraphics)
+   bool double_buffer_graphics::buffer_lock_round_swap_key_buffers()
    {
+
+      m_pwindowbuffer->buffer_lock_round_swap_key_buffers();
 
       if (is_single_buffer_mode())
       {
@@ -292,15 +296,6 @@ namespace graphics
 
             if (pbufferitem->m_pimageBufferItem)
             {
-
-               //auto pgraphics = pbufferitem->acquire_graphics();
-
-               if (pgraphics)
-               {
-
-                  pgraphics->on_end_draw(m_pwindow);
-
-               }
 
                pbufferitem->m_pointBufferItemWindow = pbufferitem->m_pointBufferItem;
 
@@ -407,7 +402,7 @@ namespace graphics
    }
 
 
-   void double_buffer::update_screen()
+   void double_buffer_graphics::update_screen()
    {
 
       _synchronous_lock synchronouslock(this->synchronization(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
@@ -439,7 +434,7 @@ namespace graphics
    }
 
 
-   void double_buffer::destroy_buffer()
+   void double_buffer_graphics::destroy_buffer()
    {
 
       graphics::graphics::destroy_buffer();

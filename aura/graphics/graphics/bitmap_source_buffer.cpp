@@ -1,4 +1,5 @@
 #include "framework.h"
+#include "buffer_item.h"
 #include "bitmap_source_buffer.h"
 #include "acme/parallelization/mutex.h"
 #include "acme/parallelization/single_lock.h"
@@ -10,6 +11,7 @@
 #include "aura/graphics/image/image.h"
 #include "aura/user/user/interaction.h"
 #include "aura/windowing/window.h"
+#include "aura/windowing/window_buffer.h"
 #include "aura/windowing/windowing.h"
 
 
@@ -17,14 +19,14 @@ namespace graphics
 {
 
 
-   bitmap_source_buffer::bitmap_source_buffer()
+   bitmap_source_buffer_graphics::bitmap_source_buffer_graphics()
    {
 
 
    }
 
 
-   bitmap_source_buffer::~bitmap_source_buffer()
+   bitmap_source_buffer_graphics::~bitmap_source_buffer_graphics()
    {
 
       clear_bitmap_source();
@@ -32,7 +34,7 @@ namespace graphics
    }
 
 
-   void bitmap_source_buffer::initialize_graphics_graphics(::windowing::window* pwindow)
+   void bitmap_source_buffer_graphics::initialize_graphics_graphics(::windowing::window* pwindow)
    {
 
       //auto estatus =
@@ -84,7 +86,7 @@ namespace graphics
    }
 
 
-   void bitmap_source_buffer::set_bitmap_source(const ::scoped_string & scopedstrBitmapSource, bool bCreate)
+   void bitmap_source_buffer_graphics::set_bitmap_source(const ::scoped_string & scopedstrBitmapSource, bool bCreate)
    {
 
       if (m_strBitmapSource == scopedstrBitmapSource)
@@ -165,7 +167,7 @@ namespace graphics
    }
 
 
-   void bitmap_source_buffer::clear_bitmap_source()
+   void bitmap_source_buffer_graphics::clear_bitmap_source()
    {
 
       m_strBitmapSource.empty();
@@ -186,7 +188,7 @@ namespace graphics
    }
 
 
-   string bitmap_source_buffer::get_bitmap_source() const
+   string bitmap_source_buffer_graphics::get_bitmap_source() const
    {
 
       if (!is_ipc_copy_enabled())
@@ -201,7 +203,7 @@ namespace graphics
    }
 
 
-   bool bitmap_source_buffer::ipc_copy(const pixmap * ppixmap)
+   bool bitmap_source_buffer_graphics::ipc_copy(const pixmap * ppixmap)
    {
 
       if (!is_ipc_copy_enabled())
@@ -250,7 +252,7 @@ namespace graphics
    }
 
 
-   bool bitmap_source_buffer::buffer_lock_round_swap_key_buffers(::draw2d::graphics_pointer &pgraphics)
+   bool bitmap_source_buffer_graphics::buffer_lock_round_swap_key_buffers()
    {
 
       if (!m_pwindow)
@@ -269,6 +271,28 @@ namespace graphics
 
       if (is_ipc_copy_enabled())
       {
+
+         if (m_pwindowbuffer)
+         {
+
+            if (m_pwindowbuffer->m_ppixmapWindowBuffer)
+            {
+
+               if (m_pwindowbuffer->m_ppixmapWindowBuffer->m_pimage32Raw)
+               {
+
+                  if (ipc_copy(m_pwindowbuffer->m_ppixmapWindowBuffer))
+                  {
+
+                     return true;
+
+                  }
+
+               }
+
+            }
+
+         }
 
          if (!ipc_copy(get_screen_item()->m_pimageBufferItem))
          {

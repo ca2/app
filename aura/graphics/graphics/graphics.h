@@ -12,36 +12,6 @@ namespace graphics
 {
 
 
-   class CLASS_DECL_AURA buffer_item :
-      virtual public ::particle
-   {
-   public:
-
-      
-      ::e_graphics                  m_egraphics;
-      ::image::image_pointer        m_pimageBufferItem;
-      ::mutex_pointer               m_pmutex;
-      ::draw2d::graphics_pointer    m_pgraphicsBufferItem;
-      ::i32_point                   m_pointBufferItem;
-      ::i32_size                    m_sizeBufferItem;
-      ::i32_point                   m_pointBufferItemWindow;
-      ::i32_size                    m_sizeBufferItemWindow;
-      ::particle_pointer            m_pparticleData;
-      manual_reset_happening        m_manualresethappening;
-      ::i32_size                    m_sizeInternal;
-      ::i32                         m_iScan;
-
-
-      virtual ::draw2d::graphics_lease acquire_graphics();
-
-      virtual void switch_to_draw();
-
-      void destroy() override;
-
-
-   };
-
-
    class CLASS_DECL_AURA graphics :
       virtual public ::object
    {
@@ -52,7 +22,7 @@ namespace graphics
       ::cast < ::windowing::window >               m_pwindow;
       bool                                         m_bNewBuffer;
 
-      union
+  /*    union
       {
 
          ::uptr                                    m_uptrBuffer;
@@ -60,9 +30,9 @@ namespace graphics
          ::windowing_universal_windows::buffer *   m_pWindowingUniversalWindowsBuffer;
          ::windowing_win32::buffer *               m_pWindowingWin32Buffer;
 
-      };
+      };*/
 
-
+      ::pointer <::windowing::window_buffer >      m_pwindowbuffer;
       ::pointer_array<buffer_item >                m_bufferitema;
 
 
@@ -83,7 +53,7 @@ namespace graphics
       //virtual bool presentation_complete();
       virtual void on_after_graphical_update();
 
-      virtual bool buffer_lock_round_swap_key_buffers(::draw2d::graphics_pointer &pgraphics);
+      virtual bool buffer_lock_round_swap_key_buffers();
 
       virtual void update_screen();
 
@@ -104,9 +74,9 @@ namespace graphics
 
       //virtual void __on_begin_draw();
 
-      virtual void on_end_draw(::draw2d::graphics_pointer & pgraphics);
-      virtual void on_end_layout(::draw2d::graphics_pointer &pgraphics);
-      virtual void on_end(::e_graphics egraphics, ::draw2d::graphics_pointer &pgraphics);
+      virtual void on_end_draw();
+      virtual void on_end_layout();
+      virtual void on_end(::e_graphics egraphics);
 
       //virtual bool update_buffer(const ::i32_size & size, ::i32 iStrideParam = -1);
 

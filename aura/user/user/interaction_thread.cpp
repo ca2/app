@@ -1083,6 +1083,35 @@ namespace user
    //}
 
 
+   CLASS_DECL_AURA::user::interaction * task_interaction()
+   {
+
+      ::cast <::user::thread> puserthread = ::get_task();
+
+      if (puserthread)
+      {
+
+         return puserthread->m_pwindow->user_interaction();
+
+      }
+
+      ::cast <::user::graphics_thread> pgraphicsthread = ::get_task();
+
+      if (pgraphicsthread)
+      {
+
+         return pgraphicsthread->m_puserinteraction;
+
+      }
+
+      ::cast < ::user::interaction> puserinteraction = ::get_task()->main_acme_user_interaction();
+
+      return puserinteraction;
+
+
+   }
+
+
 } // namespace user
 
 

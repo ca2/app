@@ -53,8 +53,10 @@ namespace image
    public:
 
 
-      ::i32_rectangle                     m_rectangleTag;
-      mutable ::std::atomic_bool          m_bDestinationGraphicsLeaseActive{false};
+      ::i32_rectangle                           m_rectangleTag;
+      mutable ::std::atomic_bool                m_bDestinationGraphicsLeaseActive{false};
+      ::pointer < ::acme::user::interaction >   m_pacmeuserinteractionAffinity;
+      //::pointer < ::user::interaction >         m_puserinteraction;
       //::draw2d::graphics_lease *          m_pgraphicsleaseOwned;
 
       image();
@@ -69,7 +71,8 @@ namespace image
       //using object::clear;
 
 
-      virtual void create_bitmap();
+      virtual void create_bitmap(
+         ::acme::user::interaction * pacmeuserinteractionAffinity = nullptr);
 
 
       virtual ::image::image * get_source_image();
@@ -98,8 +101,11 @@ namespace image
       //virtual ::draw2d::graphics_pointer owned_graphics() const; // is semantically const (besides may not be implementationly constant)
       virtual ::draw2d::graphics_lease acquire_graphics(const ::f64_size &sizeHint);
       ::draw2d::graphics_lease acquire_graphics(
-         ::draw2d::host * pdraw2dhost = nullptr);
-      ::draw2d::graphics_lease _acquire_graphics(::draw2d::host *pdraw2dhost = nullptr);
+         //::draw2d::host * pdraw2dhost = nullptr,
+         ::acme::user::interaction * pacmeuserinteractionAffinityExplicit = nullptr);
+      ::draw2d::graphics_lease _acquire_graphics(
+         //::draw2d::host * pdraw2dhost,
+         ::acme::user::interaction * pacmeuserinteractionAffinity);
       bool try_begin_destination_graphics_lease() const;
       void end_destination_graphics_lease() const;
       bool has_active_destination_graphics_lease() const;
@@ -299,14 +305,15 @@ namespace image
                                     ::enum_flag eflagCreate = DEFAULT_CREATE_IMAGE_FLAG, 
                                     bool bPreserve = false) override;
       virtual void create_from_graphics(::draw2d::graphics* pgraphics);
-      virtual void create_as_render_target(const ::i32_size & size, ::enum_flag eflagCreate = DEFAULT_CREATE_IMAGE_FLAG, ::i32 iGoodStride = -1, bool bPreserve = false);
+      virtual void create_as_render_target(const ::i32_size & size, ::user::interaction * puserinteraction, ::enum_flag eflagCreate = DEFAULT_CREATE_IMAGE_FLAG, ::i32 iGoodStride = -1, bool bPreserve = false);
       using ::particle::initialize;
       virtual void initialize(const ::i32_size & size, ::image32_t * pimage32, ::i32 iScan, ::enum_flag eflagCreate = DEFAULT_CREATE_IMAGE_FLAG);
       virtual void preserve(const ::i32_size &size, ::enum_flag eflagCreate = DEFAULT_CREATE_IMAGE_FLAG);
       //virtual void     create(::i32 iWidth, ::i32 iHeight, ::enum_flag eflagCreate = DEFAULT_CREATE_IMAGE_OBJECT_FLAG, ::i32 iGoodStride = -1, void bPreserve = false);
 
 
-      virtual bool host(::pixmap_t * ppixmap, ::windowing::window * pwindow);
+      //virtual bool host(::pixmap_t * ppixmap, ::windowing::window * pwindow);
+      virtual bool host(::windowing::window_buffer * pwindowbuffer, ::windowing::window *pwindow, const ::i32_size & sizeRaw);
       virtual bool on_host_read_pixels(::pixmap_t * ppixmapHost) const;
       void destroy() override;
       void destroy_os_data() override;

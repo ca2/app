@@ -66,7 +66,8 @@ namespace acme
          m_pHICON_Big = nullptr;
          m_pHICON_Small = nullptr;
 #endif
-
+         m_dScreenScaler = 1.0;
+         m_dFontScaler = 1.0;
          //m_bMinimizeBox = true;
          //m_bMaximizeBox = true;
          //m_bResizeable = true;
@@ -2733,6 +2734,22 @@ namespace acme
          m_pacmewindowingwindow->dump_operating_system_child_window_hierarchy();
 
       }
+
+      ::f64 interaction::point_dpi(::f64 d)
+      {
+
+         return d;
+
+      }
+
+
+      ::f64 interaction::dpiy(::f64 d)
+      {
+
+         return d;
+
+      }
+
 
 
    } // namespace user

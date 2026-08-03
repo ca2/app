@@ -32,7 +32,7 @@ namespace draw2d
    class pen;
    class region;
    class path;
-   class host;
+   //class host;
    class graphics;
    class bitmap;
    class drawing;
@@ -40,6 +40,10 @@ namespace draw2d
 
    ///class graphics_context;
    class graphics_context_interface;
+
+
+   class window_attachment;
+
 
    class item;
 

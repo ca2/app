@@ -101,7 +101,7 @@ namespace write_text
 
       //string                        m_strFontFamilyName;
       font_family_pointer           m_pfontfamily;
-      ::file::path                  m_path;
+      ::file::path                  m_pathFontFile;
       font_descriptor               m_fontdescriptor;
       //::f64                        m_dFontSize;
       ::f64                        m_dFontWidth;
@@ -140,6 +140,9 @@ namespace write_text
       
       
       virtual ::string family_name();
+
+
+      void on_changed() override;
 
 
       virtual bool defer_load_internal_font(::draw2d::graphics * pgraphics);

@@ -837,7 +837,7 @@ namespace experience_tranquillum
 
       ::draw2d::save_context savecontext(pgraphics);
 
-      pgraphics->m_pdraw2dhost = pinteraction;
+      pgraphics->m_pacmeuserinteractionAffinity = pinteraction;
 
 //      if (!pframe->is_custom_draw() && pgraphics != nullptr && pgraphics->m_pnext == nullptr)
 //      {

@@ -86,6 +86,7 @@ namespace acme
          //::i32_size                                         m_sizeDesignRequest;
          ::i32_point                                        m_pointWindow;
          ::i32_size                                         m_sizeWindow;
+         ::i32_size                                         m_sizeScreen;                                     
          ::i32_point                                        m_pointCursor2;
 
          ::pointer < ::operating_system::a_system_menu >    m_psystemmenu;

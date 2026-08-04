@@ -192,6 +192,7 @@ namespace gpu
       {
 
          throw ::exception(error_bad_argument);
+
       }
 
       ::gpu::context_lock contextlock(pgpucontext);

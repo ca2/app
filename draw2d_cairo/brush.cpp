@@ -9,7 +9,7 @@ namespace draw2d_cairo
    brush::brush()
    {
 
-      m_pthis = this;
+      //m_pthis = this;
 
    }
 

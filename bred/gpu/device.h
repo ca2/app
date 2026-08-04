@@ -6,7 +6,6 @@
 ////#include "acme/exception/exception.h"
 #include "acme/constant/gpu.h"
 #include "acme/prototype/geometry2d/size.h"
-#include "acme/prototype/prototype/pool.h"
 #include "acme/prototype/prototype/memory.h"
 #include "aura/graphics/draw3d/matrix.h"
 #include "apex/parallelization/thread.h"
@@ -42,24 +41,13 @@ namespace gpu
       ::gpu::enum_output                     m_eoutput;
 
 
-      ::collection::index                                m_iCurrentFrame3 = 0;
-      ::collection::index                                m_iCurrentImage = -1;
-      ::collection::index                                m_iFrameSerial2 = -1;
-      ::collection::count                                m_iFrameCount = 3;
-      ::i32                                              m_iLayer;
-      ::i32                                              m_iLayerCount;
-      //::pointer < layer > m_playerComposing;
-      //::array<::comptr<ID3D12Resource>>   m_resourceaSnapshot;
-      ::pointer < ::pointer_array < ::gpu::layer > >     m_pgpulayera;
 
       itask									                     m_itaskCurrentGpuContext;
 
       ::pointer < ::gpu::approach >                      m_pgpuapproach;
       ::pointer < ::windowing::window >                  m_pwindow;
       ::gpu::context_pointer                       m_pgpucontextCurrent4;
-      ::gpu::context_pointer                       m_pgpucontextMain;
-      ::gpu::context_pointer                       m_pgpucontextMainDraw2d;
-      ::pointer<::gpu::context>                          m_pgpucontextWork;
+      //::gpu::context_pointer                       m_pgpucontextMain;
       bool                                         m_bMultisample;
       //::gpu::context_pointer           m_pgpucontextMainWindow;
       //::i32_size                             m_sizeNew;
@@ -82,16 +70,6 @@ namespace gpu
       //::i32                                    m_iScanOffscreen;
       //::memory                               m_memoryOffscreen;
       enum_device_target                        m_edevicetarget;
-      ::procedure_array                         m_procedureaOnTopFrameEnd;
-      ::pointer_array < pool_group >            m_poolgroupaFrame;
-      ::pointer_array < ::pointer_array < ::particle > >m_particleaFrame;
-
-      ::pointer_array < ::gpu::frame_storage >     m_framestoragea;
-      ::pointer_array < ::gpu::frame_ephemeral >   m_frameephemerala;
-      ::pointer < ::gpu::frame_ephemeral >         m_pframeephemeralStrict;
-
-
-      ::pointer_array<::gpu::frame> m_framea;
 
       ::pointer_array<::gpu::context> m_contextaDraw2dIdle;
       ::std::atomic_bool m_bGpuContextPoolShuttingDown{false};
@@ -103,16 +81,9 @@ namespace gpu
       ::std::atomic<::i64> m_iGpuContextPoolNextReportNanoseconds{0};
       ::std::atomic<::u64> m_uGpuContextPoolDiagnosticsGenerationLast{0};
 
-      using post_frame_context_registry_t =
-         ::gpu::post_frame_context_registry<
-            ::pointer<::gpu::context>,
-            ::pointer<::gpu::layer>>;
-
-      post_frame_context_registry_t m_postframecontextregistry;
 
             ::pointer_array<::gpu::shader> m_shaderaRetire;
 
-                  class ::time m_timeLast5s;
 
 
 
@@ -128,10 +99,6 @@ namespace gpu
 
 
       //virtual void create_main_context(::acme::windowing::window *pacmewindowingwindow);
-      virtual ::gpu::context * main_context();
-      virtual ::gpu::context * main_draw2d_context();
-      virtual ::pointer<::gpu::context> create_work_context();
-      virtual ::gpu::context *work_context();
       //virtual void start_gpu_context(const start_context_t& startcontext);
 
       virtual void * current_operating_system_gpu_context();
@@ -147,28 +114,14 @@ namespace gpu
 
 
       virtual void on_initialize_gpu_device();
-      virtual pool_group *frame_pool_group(::i32 iFrameIndex);
-      virtual ::pointer_array<::particle> *frame_particle_array(::i32 iFrameIndex);
-      virtual ::gpu::frame *current_frame();
       
       
-      virtual void start_frame();
-      virtual void end_frame();
-      virtual void register_frame_context(::gpu::context *pcontext, ::gpu::layer *player);
-      virtual void dispatch_post_frame_contexts();
 
 
       //virtual void start_offscreen_frame();
       //virtual void end_offscreen_frame();
       
-      
-      virtual void on_start_frame();
-      virtual void on_end_frame();
-      virtual ::i32 get_frame_index3();
-      virtual ::i32 get_image_index();
-      virtual ::i32 get_frame_count();
-      virtual void restart_frame_counter();
-      virtual bool is_starting_frame()const;
+
 
       // virtual void on_top_end_frame();
 
@@ -176,9 +129,6 @@ namespace gpu
       virtual ::gpu::queue *transfer_queue();
       virtual ::gpu::queue *graphics_queue();
       virtual ::gpu::queue *present_queue();
-
-      virtual ::gpu::frame_storage* current_frame_storage();
-      virtual ::gpu::frame_ephemeral* current_frame_ephemeral();
 
 
       virtual ::file::path shader_path(const ::file::path& pathShader);
@@ -197,7 +147,7 @@ namespace gpu
       virtual ::gpu::context_pointer allocate_gpu_context();
 
 
-      virtual ::gpu::layer* get_previous_layer(::gpu::layer * pgpulayer);
+      
 
 //      virtual ::gpu::context_pointer start_gpu_output_context(const ::gpu::enum_output & eoutput, const ::i32_size& size);
 
@@ -206,12 +156,14 @@ namespace gpu
       //virtual ::gpu::context_pointer create_window_context(::windowing::window* pwindow);
 
       //virtual ::gpu::context_pointer create_gpu_context(const ::gpu::enum_output& eoutput,  const ::gpu::enum_scene & escene, const ::i32_size & size);
+      
+      virtual ::gpu::context_pointer create_draw2d_gpu_context(::acme::windowing::window * pacmewindowingwindow, const ::i32_size & size);
 
-<<<<<<< HEAD
-      virtual ::gpu::context_pointer create_draw2d_context(const ::gpu::enum_output& eoutput, ::acme::windowing::window * pwindow, const ::i32_size & size);
-=======
+//<<<<<<< HEAD
+//      virtual ::gpu::context_pointer create_draw2d_context(const ::gpu::enum_output& eoutput, ::acme::windowing::window * pwindow, const ::i32_size & size);
+//=======
       //virtual ::gpu::context_pointer create_draw2d_context(const ::gpu::enum_output& eoutput, const ::i32_size & size);
->>>>>>> origin/main
+//>>>>>>> origin/main
 
       virtual ::gpu::context_lease acquire_gpu_context(
          const ::gpu::enum_output & eoutput,
@@ -302,12 +254,6 @@ namespace gpu
       virtual void set_matrix4(void* p, const ::floating_matrix4& floating_matrix4);
 
 
-      virtual void start_stacking_layers();
-      //virtual void layer_start(renderer * pgpurenderer, const ::i32_rectangle & rectangleHost);
-      virtual layer * create_gpu_layer(renderer* pgpurenderer);
-      virtual void layer_end();
-      virtual layer* current_layer();
-      //virtual void layer_merge(context* pcontextTarget);
 
 
    };

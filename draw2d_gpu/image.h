@@ -50,7 +50,8 @@ namespace draw2d_gpu
 
       void destroy() override;
 
-      bool host(::pixmap_t * ppixmap, ::windowing::window * pwindow) override;
+      //bool host(::pixmap_t * ppixmap, ::windowing::window * pwindow) override;
+      bool host(::windowing::window_buffer * pwindowbuffer, ::windowing::window * pwindow, const ::i32_size & sizeRaw) override;
 
       bool from(::draw2d::graphics * pgraphics);
       //bool from(i32_point ptDest, ::draw2d::graphics * pgraphics, const ::i32_point & point, ::i32_size sz);

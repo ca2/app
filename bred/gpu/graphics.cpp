@@ -22,6 +22,7 @@
 #include "bred/gpu/context_lease.h"
 #include "bred/gpu/debug_scope.h"
 #include "bred/gpu/device.h"
+#include "bred/gpu/draw2d_window_attachment.h"
 #include "bred/gpu/model_buffer.h"
 #include "bred/gpu/renderer.h"
 //#include "bred/gpu/render_state.h"
@@ -202,7 +203,9 @@ namespace gpu
 
       auto pgpudevice = pcontext->m_pgpudevice;
 
-      auto iGpuDeviceFrameSerial = pgpudevice->m_iFrameSerial2;
+      auto pgpudraw2dwindowattachment = ::gpu::draw2d_window_attachment::get(pcontext);
+
+      auto iGpuDeviceFrameSerial = pgpudraw2dwindowattachment->m_iFrameSerial2;
 
       if (m_iGpuContextFrameSerial >= iGpuDeviceFrameSerial)
       {
@@ -211,13 +214,15 @@ namespace gpu
 
       }
 
-      m_iGpuContextFrameSerial = pgpudevice->m_iFrameSerial2;
+      m_iGpuContextFrameSerial = pgpudraw2dwindowattachment->m_iFrameSerial2;
 
       auto prenderer = pcontext->get_gpu_renderer();
 
       auto prendertarget = prenderer->render_target();
 
-      ::i32 iFrameIndex = prendertarget->m_pgpurenderer->m_pgpucontext->m_pgpudevice->get_frame_index3();
+      // auto pgpudraw2dwindowattachment = ::gpu::draw2d_window_attachment::get(prendertarget);
+
+      ::i32 iFrameIndex = pgpudraw2dwindowattachment->get_frame_index3();
 
       if (iFrameIndex < 0)
       {
@@ -226,7 +231,7 @@ namespace gpu
 
       }
 
-      auto ppoolgroupFrame = pgpudevice->frame_pool_group(iFrameIndex);
+      auto ppoolgroupFrame = pgpudraw2dwindowattachment->frame_pool_group(iFrameIndex);
 
       m_ppoolgroupFrame = ppoolgroupFrame;
 
@@ -284,15 +289,16 @@ namespace gpu
          auto pcontext = gpu_context();
 
       pcontext->m_escene = ::gpu::e_scene_2d;
-         pcontext->m_pgpudevice->start_frame();
+      auto pgpudraw2dwindowattachment = ::gpu::draw2d_window_attachment::get(pcontext);
+         pgpudraw2dwindowattachment->start_frame();
          //pcontext->start_frame();
    }
 
 
    void graphics::end_frame() {
       auto pcontext = gpu_context();
-
-      pcontext->m_pgpudevice->end_frame();
+      auto pgpudraw2dwindowattachment = ::gpu::draw2d_window_attachment::get(pcontext);
+      pgpudraw2dwindowattachment->end_frame();
    }
 
 
@@ -306,10 +312,12 @@ namespace gpu
 
       /// begin of a layout thing
 
-      auto pgpudevice =
-         m_papplication->get_gpu_approach()->get_gpu_device(m_pacmeuserinteractionAffinity->acme_windowing_window());
+      //auto pgpudevice =
+        // m_papplication->get_gpu_approach()->get_gpu_device(m_pacmeuserinteractionAffinity->acme_windowing_window());
 
-      auto pcontextMain = pgpudevice->main_context();
+      auto pgpudraw2dwindowattachment = ::gpu::draw2d_window_attachment::get(m_pacmeuserinteractionAffinity);
+
+      auto pgpucontextWindow = pgpudraw2dwindowattachment->m_pgpucontextWindow;
 
       // if (::is_null(pcontextMain) || !pcontextMain->m_bCreated)
       // {
@@ -324,7 +332,7 @@ namespace gpu
 
       auto rectangleWindow = pwindow->get_window_rectangle();
 
-      pcontextMain->set_placement(rectangleWindow);
+      pgpucontextWindow->set_placement(rectangleWindow);
 
       auto pcontext = gpu_context();
 
@@ -689,9 +697,11 @@ namespace gpu
 
          auto prendertarget = prenderer->render_target();
 
-         ::i32 iFrameIndex = prendertarget->m_pgpurenderer->m_pgpucontext->m_pgpudevice->get_frame_index3();
+         auto pgpudraw2dwindowattachment = ::gpu::draw2d_window_attachment::get(pcontext);
 
-         auto ppoolgroupFrame = pgpudevice->frame_pool_group(iFrameIndex);
+         ::i32 iFrameIndex = pgpudraw2dwindowattachment->get_frame_index3();
+
+         auto ppoolgroupFrame = pgpudraw2dwindowattachment->frame_pool_group(iFrameIndex);
 
          pool.m_ppoolgroup = ppoolgroupFrame;
 
@@ -936,14 +946,16 @@ namespace gpu
 
          auto pgpudevice = pgpucontext->m_pgpudevice;
 
-         auto pcontextMain = pgpudevice->main_context();
+         auto pgpudraw2dwindowattachment = ::gpu::draw2d_window_attachment::get(pgpucontext);
 
-         auto pswapchain = pcontextMain->get_swap_chain();
+         auto pgpucontextWindow = pgpudraw2dwindowattachment->m_pgpucontextWindow;
+
+         auto pswapchain = pgpucontextWindow->get_swap_chain();
 
          if (!pswapchain->m_bSwapChainInitialized)
          {
 
-            pswapchain->initialize_swap_chain_window(pcontextMain, puserinteraction->window());
+            pswapchain->initialize_swap_chain_window(pgpucontextWindow, puserinteraction->window());
 
          }
 

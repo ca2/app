@@ -529,7 +529,7 @@ namespace draw2d
    }
 
 
-   ::draw2d::graphics_pointer draw2d::create_graphics(::acme::user::interaction * pacmeuserinteractionAffinity)
+   ::draw2d::graphics_pointer draw2d::allocate_graphics(::acme::user::interaction * pacmeuserinteractionAffinity)
    {
 
       auto pgraphics = pacmeuserinteractionAffinity->createø< ::draw2d::graphics>();
@@ -544,7 +544,7 @@ namespace draw2d
    ::draw2d::graphics_pointer draw2d::create_memory_graphics(const ::i32_size &size, ::acme::user::interaction * pacmeuserinteractionAffinity)
    {
 
-      auto pgraphics = create_graphics(pacmeuserinteractionAffinity);
+      auto pgraphics = allocate_graphics(pacmeuserinteractionAffinity);
 
       auto sizeCreate = size;
 
@@ -626,7 +626,7 @@ namespace draw2d
 
       }
 
-      auto pgraphics = create_graphics(pacmeuserinteractionAffinity);
+      auto pgraphics = allocate_graphics(pacmeuserinteractionAffinity);
 
       if (::is_set(pimage))
       {

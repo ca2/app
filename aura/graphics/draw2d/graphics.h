@@ -379,8 +379,8 @@ namespace draw2d
       virtual void create_for_window_draw2d(::user::interaction * puserinteraction, const ::i32_size& size = {});
       virtual void defer_set_size(const ::i32_size& size = {});
       virtual void _create_memory_graphics(const ::i32_size& size = {}, ::acme::user::interaction * pacmeuserinteractionAffinity = nullptr);
-      virtual void create_compatible_graphics(::draw2d::graphics* pgraphics);
-      virtual void create_window_graphics(const ::operating_system::window & operatingsystemwindow);
+      //virtual void create_compatible_graphics(::draw2d::graphics* pgraphics);
+      //virtual void create_window_graphics(const ::operating_system::window & operatingsystemwindow);
 
       virtual void create_bitmap_graphics(::draw2d::bitmap *pbitmap);
 

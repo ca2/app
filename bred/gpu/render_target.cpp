@@ -10,6 +10,7 @@
 #include "texture.h"
 #include "acme/platform/application.h"
 #include "bred/gpu/context_lock.h"
+#include "bred/gpu/draw2d_window_attachment.h"
 
 
 #include <assert.h>
@@ -224,19 +225,19 @@ namespace gpu
    //}
 
 
-   void render_target::restart_frame_counter()
-   {
+   //void render_target::restart_frame_counter()
+   //{
 
-      if (m_pgpurenderer->m_pgpucontext->m_pgpudevice->get_frame_count() > 1)
-      {
+   //   if (m_pgpurenderer->m_pgpucontext->m_pgpudevice->get_frame_count() > 1)
+   //   {
 
-         m_pgpurenderer->m_pgpucontext->m_pgpudevice->restart_frame_counter();
+   //      m_pgpurenderer->m_pgpucontext->m_pgpudevice->restart_frame_counter();
 
-         //m_pgpurenderer->m_prenderstate->on_happening(e_happening_reset_frame_counter);
+   //      //m_pgpurenderer->m_prenderstate->on_happening(e_happening_reset_frame_counter);
 
-      }
+   //   }
 
-   }
+   //}
 
 
 //   ::i32 render_target::get_frame_index()
@@ -452,7 +453,9 @@ namespace gpu
 
       //auto etype = pgpucontext->m_etype;
 
-      ::i32 iFrameIndex = m_pgpurenderer->m_pgpucontext->m_pgpudevice->get_frame_index3();
+      auto pgpudraw2dwindowattachment = ::gpu::draw2d_window_attachment::get(m_pgpurenderer);
+
+      ::i32 iFrameIndex = pgpudraw2dwindowattachment->get_frame_index3();
       
       //auto size = m_ptexturea->size();
 
@@ -495,7 +498,9 @@ namespace gpu
 
       //auto etype = pgpucontext->m_etype;
 
-      ::i32 iFrameIndex = m_pgpurenderer->m_pgpucontext->m_pgpudevice->get_frame_index3();
+      auto pgpudraw2dwindowattachment = ::gpu::draw2d_window_attachment::get(m_pgpurenderer);
+
+      ::i32 iFrameIndex = pgpudraw2dwindowattachment->get_frame_index3();
 
       //auto size = m_ptexturea->size();
 
@@ -558,13 +563,6 @@ namespace gpu
    //}
 
 
-   bool render_target::is_starting_frame()const
-   {
-
-      return m_pgpurenderer->m_pgpucontext->m_pgpudevice->m_iFrameSerial2 
-         == m_pgpurenderer->m_pgpucontext->m_pgpudevice->m_iCurrentFrame3;
-
-   }
 
 
 } // namespace gpu

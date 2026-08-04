@@ -17,6 +17,7 @@
 #include "bred/gpu/command_buffer.h"
 #include "bred/gpu/aaa_cpu_buffer.h"
 #include "bred/gpu/device.h"
+#include "bred/gpu/draw2d_window_attachment.h"
 #include "bred/gpu/layer.h"
 #include "bred/gpu/model_buffer.h"
 #include "bred/gpu/aaa_render.h"
@@ -202,123 +203,30 @@ void main() {
    //   return false;
    //}
 
-   void graphics::create_memory_graphics(const ::i32_size& sizeParam)
+   //void graphics::create_memory_graphics(const ::i32_size& sizeParam)
+   void graphics::create_memory_graphics(const ::i32_size & sizeParameter, ::acme::user::interaction * pacmeuserinteractionAffinity)
    {
 
-      ::i32_size size(sizeParam);
+      if (!pacmeuserinteractionAffinity)
+      {
 
-      if (sizeParam.is_empty())
+         throw ::exception(error_bad_argument, "No user interaction available for OpenGL offscreen buffer creation.");
+
+         return;
+
+      }
+
+
+      ::i32_size size(sizeParameter);
+
+      if (sizeParameter.is_empty())
       {
 
          size = { 1920, 1080 };
 
       }
 
-      opengl_create_offscreen_buffer(size);
-
-      set_ok_flag();
-
-   }
-
-
-   //void graphics::set_hint_window_output()
-   //{
-
-   //   if(!m_pgpucontextCompositor)
-   //   {
-
-   //      throw ::exception(error_wrong_state, "No GPU context available for setting hint window output.");
-
-   //   }
-
-   //   m_pgpucontextCompositor->m_pgpucontextCompositor->m_pgpurenderer->m_eoutputOnEndDraw = ::gpu::e_output_swap_chain;
-
-   //}
-
-
-   void graphics::create_window_graphics(::windowing::window* pwindow)
-   {
-
-      m_pwindow = pwindow;
-
-      opengl_defer_create_window_context(pwindow);
-
-      set_ok_flag();
-
-   }
-
-
-   void graphics::create_compatible_graphics(::draw2d::graphics* pgraphics)
-   {
-
-      opengl_create_offscreen_buffer({ 1920, 1080 });
-      //opengl_create_offscreen_buffer(pgraphics->m_pimage->size());
-
-   }
-
-
-   void graphics::create_for_window_draw2d(::user::interaction * puserinteraction, const ::i32_size& size)
-   {
-
-      ::gpu::graphics::create_for_window_draw2d(puserinteraction, size);
-
-      if (m_puserinteractionDraw2dGraphics == nullptr)
-      {
-
-         m_puserinteractionDraw2dGraphics = dynamic_cast <::user::interaction*>(pacmeuserinteractionMain.m_p);
-
-         if (m_puserinteractionDraw2dGraphics == nullptr)
-         {
-
-            informationf("No user interaction available for OpenGL offscreen buffer creation.");
-
-            return;
-
-         }
-
-      }
-
-      auto pgpuapproach = application()->get_gpu_approach();
-
-      auto pgpudevice = pgpuapproach->get_gpu_device(m_puserinteractionDraw2dGraphics->m_pacmewindowingwindow);
-
-      auto pgpucontextMain =
-         m_papplication->get_gpu_approach()->get_gpu_device(m_puserinteractionDraw2dGraphics->m_pacmewindowingwindow)->main_context();
-
-      auto pgpucontextNew = pgpudevice->create_draw2d_context(
-         ::gpu::e_output_gpu_buffer,
-         puserinteraction->acme_windowing_window(),
-         size);
-
-      if (!pgpucontextNew)
-      {
-
-         return;
-
-      }
-
-      set_gpu_context(pgpucontextNew);
-
-      auto pcontext = gpu_context();
-
-      pcontext->m_pgpucompositor = this;
-
-      if (!pcontext->m_pgpurenderer)
-      {
-
-         pcontext->get_gpu_renderer();
-
-      }
-
-      bool bYSwap = m_papplication->m_gpu.m_bUseSwapChainWindow;
-
-      //opengl::resize(size, bYSwap);
-
-   }
-
-
-   bool graphics::opengl_create_offscreen_buffer(const ::i32_size & size)
-   {
+      //opengl_create_offscreen_buffer(size);
 
       //if (!draw2d_gpu()->m_popenglcontext) {
       //   informationf("MS GDI - RegisterClass failed");
@@ -326,30 +234,31 @@ void main() {
       //   return false;
       //}
 
-      if (m_puserinteractionDraw2dGraphics == nullptr)
-      {
+      //if (m_puserinteractionDraw2dGraphics == nullptr)
+      //{
 
-         m_puserinteractionDraw2dGraphics = dynamic_cast <::user::interaction*>(pacmeuserinteractionMain.m_p);
+      //   m_puserinteractionDraw2dGraphics = dynamic_cast <::user::interaction*>(pacmeuserinteractionMain.m_p);
 
-         if (m_puserinteractionDraw2dGraphics == nullptr)
-         {
+      //   if (m_puserinteractionDraw2dGraphics == nullptr)
+      //   {
 
-            informationf("No user interaction available for OpenGL offscreen buffer creation.");
+      //      informationf("No user interaction available for OpenGL offscreen buffer creation.");
 
-            return false;
+      //      return false;
 
-         }
+      //   }
 
-      }
+      //}
 
       auto pgpuapproach = application()->get_gpu_approach();
 
       //   ASSERT(m_puserinteractionDraw2dGraphics);
 
-      auto pgpudevice = pgpuapproach->get_gpu_device(m_puserinteractionDraw2dGraphics->m_pacmewindowingwindow);
+      auto pgpudevice = pgpuapproach->get_gpu_device(m_pacmeuserinteractionAffinity->m_pacmewindowingwindow);
 
-      auto pgpucontextNew = pgpudevice->create_draw2d_context(
-         ::gpu::e_output_gpu_buffer,
+      auto pgpucontextNew = pgpudevice->create_draw2d_gpu_context(
+        // ::gpu::e_output_gpu_buffer,
+         m_pacmeuserinteractionAffinity->m_pacmewindowingwindow,
          size);
 
       pgpucontextNew->m_pgpucompositor = this;  
@@ -384,26 +293,26 @@ void main() {
 
       //}
 
-      auto pcontext = gpu_context();
+      //auto pcontext = gpu_context();
 
-      if (!pcontext)
-      {
+      //if (!pcontext)
+      //{
 
-         return false;
-         //auto psystem = system();
+      //   return false;
+      //   //auto psystem = system();
 
-         //auto pgpu = application()->get_gpu();
+      //   //auto pgpu = application()->get_gpu();
 
-         //m_pgpucontextOpenGL = pgpu->create_context(this);
+      //   //m_pgpucontextOpenGL = pgpu->create_context(this);
 
-         //if (m_pgpucontextOpenGL)
-         //{
+      //   //if (m_pgpucontextOpenGL)
+      //   //{
 
-         //   m_pgpucontextOpenGL->initialize(this);
+      //   //   m_pgpucontextOpenGL->initialize(this);
 
-         //}
+      //   //}
 
-      }
+      //}
 
       //if (defer_constructø(m_pgpucontextOpenGL))
       //{
@@ -560,64 +469,418 @@ void main() {
 
       //::opengl::resize(size, bYSwap);
 
-      return true;
+      //return true;
+
+
+      set_ok_flag();
 
    }
 
 
-   bool graphics::opengl_delete_offscreen_buffer()
+   //void graphics::set_hint_window_output()
+   //{
+
+   //   if(!m_pgpucontextCompositor)
+   //   {
+
+   //      throw ::exception(error_wrong_state, "No GPU context available for setting hint window output.");
+
+   //   }
+
+   //   m_pgpucontextCompositor->m_pgpucontextCompositor->m_pgpurenderer->m_eoutputOnEndDraw = ::gpu::e_output_swap_chain;
+
+   //}
+
+
+   //void graphics::create_window_graphics(::windowing::window* pwindow)
+   //{
+
+   //   m_pwindow = pwindow;
+
+   //   opengl_defer_create_window_context(pwindow);
+
+   //   set_ok_flag();
+
+   //}
+
+
+   //void graphics::create_compatible_graphics(::draw2d::graphics* pgraphics)
+   //{
+
+   //   opengl_create_offscreen_buffer({ 1920, 1080 });
+   //   //opengl_create_offscreen_buffer(pgraphics->m_pimage->size());
+
+   //}
+
+
+   void graphics::create_for_window_draw2d(::user::interaction * puserinteraction, const ::i32_size& size)
    {
 
-      //if (m_hglrc == NULL && m_hdc == NULL && m_hwnd == NULL)
+      if (!puserinteraction)
+      {
+
+         throw ::exception(error_bad_argument, "No user interaction available for OpenGL offscreen buffer creation.");
+
+         return;
+
+      }
+
+
+      ::gpu::graphics::create_for_window_draw2d(puserinteraction, size);
+
+      m_pacmeuserinteractionAffinity = puserinteraction;
+
+      //if (m_pacmeuserinteractionAffinity == nullptr)
       //{
 
-      //   return true;
+      //   m_puserinteractionDraw2dGraphics = dynamic_cast <::user::interaction*>(pacmeuserinteractionMain.m_p);
+
 
       //}
 
-      //wglMakeCurrent(nullptr, nullptr);
-      //wglDeleteContext(m_hglrc);
-      //::ReleaseDC(m_hwnd, m_hdc);
-      //::DestroyWindow(m_hwnd);
-      m_size.set(0, 0);
-      //m_hglrc = NULL;
-      //m_hwnd = NULL;
-      //m_hdc = NULL;
-      return true;
+      auto pgpuapproach = application()->get_gpu_approach();
 
-   }
+      auto pgpudevice = pgpuapproach->get_gpu_device(m_pacmeuserinteractionAffinity->m_pacmewindowingwindow);
 
+      auto pgpudraw2dwindowattachment = ::gpu::draw2d_window_attachment::get(m_pacmeuserinteractionAffinity);
 
-   bool graphics::opengl_defer_create_window_context(::windowing::window* pwindow)
-   {
+      auto pgpucontextWindow =
+        pgpudraw2dwindowattachment->window_context();
 
-      //if (!m_pgpucontextCompositor)
-      //{
+      auto pgpucontextNew = pgpudevice->create_draw2d_gpu_context(
+         //::gpu::e_output_gpu_buffer,
+         puserinteraction->acme_windowing_window(),
+         size);
 
-      //   return false;
+      if (!pgpucontextNew)
+      {
 
-      //}
+         return;
 
-      //if (!pgpucontext)
-      //{
+      }
 
-      //   auto pgpu = application()->get_gpu();
-
-      //   auto pgpudevice = pgpu->get_device();
-
-      //   pgpucontext = pgpudevice->start_swap_chain_context(this, pwindow);
-
-      //}
+      set_gpu_context(pgpucontextNew);
 
       auto pcontext = gpu_context();
 
-      pcontext->defer_create_window_context(pwindow);
+      pcontext->m_pgpucompositor = this;
 
-      //      ::opengl::resize(size);
+      if (!pcontext->m_pgpurenderer)
+      {
 
-      return true;
+         pcontext->get_gpu_renderer();
+
+      }
+
+      bool bYSwap = m_papplication->m_gpu.m_bUseSwapChainWindow;
+
+      //opengl::resize(size, bYSwap);
 
    }
+
+
+   //bool graphics::opengl_create_offscreen_buffer(const ::i32_size & size)
+   //{
+
+   //   //if (!draw2d_gpu()->m_popenglcontext) {
+   //   //   informationf("MS GDI - RegisterClass failed");
+   //   //   informationf("last-error code: %d\n", GetLastError());
+   //   //   return false;
+   //   //}
+
+   //   if (m_puserinteractionDraw2dGraphics == nullptr)
+   //   {
+
+   //      m_puserinteractionDraw2dGraphics = dynamic_cast <::user::interaction*>(pacmeuserinteractionMain.m_p);
+
+   //      if (m_puserinteractionDraw2dGraphics == nullptr)
+   //      {
+
+   //         informationf("No user interaction available for OpenGL offscreen buffer creation.");
+
+   //         return false;
+
+   //      }
+
+   //   }
+
+   //   auto pgpuapproach = application()->get_gpu_approach();
+
+   //   //   ASSERT(m_puserinteractionDraw2dGraphics);
+
+   //   auto pgpudevice = pgpuapproach->get_gpu_device(m_puserinteractionDraw2dGraphics->m_pacmewindowingwindow);
+
+   //   auto pgpucontextNew = pgpudevice->create_draw2d_context(
+   //      ::gpu::e_output_gpu_buffer,
+   //      m_puserinteractionDraw2dGraphics->m_pacmewindowingwindow,
+   //      size);
+
+   //   pgpucontextNew->m_pgpucompositor = this;  
+
+   //   set_gpu_context(pgpucontextNew);
+
+   //   //auto pgpucontext = pgpudevice->get_main_context();
+
+   //   //if (!m_pgpucontextCompositor->m_pgpurenderer)
+   //   //{
+
+   //   //   auto pgpu = application()->get_gpu();
+
+   //   //   ASSERT(m_puserinteractionDraw2dGraphics);
+
+   //   //   auto pgpudevice = pgpu->get_device();
+
+   //   //   ::cast < ::gpu_opengl::device_win32> pdeviceWin32 = pgpudevice;
+
+   //   //   if (callbackOnImagePixels)
+   //   //   {
+
+   //   //      pgpucontext = pgpudevice->start_cpu_buffer_context(this, callbackOnImagePixels, rectanglePlacement);
+
+   //   //   }
+   //   //   else
+   //   //   {
+
+   //   //      pgpucontext = pgpudevice->start_gpu_output_context(this, ::gpu::e_output_gpu_buffer, rectanglePlacement);
+
+   //   //   }
+
+   //   //}
+
+   //   auto pcontext = gpu_context();
+
+   //   if (!pcontext)
+   //   {
+
+   //      return false;
+   //      //auto psystem = system();
+
+   //      //auto pgpu = application()->get_gpu();
+
+   //      //m_pgpucontextOpenGL = pgpu->create_context(this);
+
+   //      //if (m_pgpucontextOpenGL)
+   //      //{
+
+   //      //   m_pgpucontextOpenGL->initialize(this);
+
+   //      //}
+
+   //   }
+
+   //   //if (defer_constructø(m_pgpucontextOpenGL))
+   //   //{
+
+   //   //if (!m_pgpucontextCompositor)
+   //   //{
+
+   //   //   m_pgpucontextCompositor = pgpudevice->create_draw2d_context(::gpu::e_output_gpu_buffer, size);
+
+   //   //}
+
+   //   //if (pgpucontext->m_eoutput == ::gpu::e_output_cpu_buffer)
+   //   //{
+
+   //   //   pgpucontext->create_cpu_buffer(rectanglePlacement.size());
+
+   //   //}
+
+   //   //}
+
+   //   //LPCTSTR lpClassName = L"draw2d_gpu_offscreen_buffer_window";
+   //   //LPCTSTR lpWindowName = L"draw2d_gpu_offscreen_buffer_window";
+   //   ////::u32 dwStyle = WS_CAPTION | WS_POPUPWINDOW; // | WS_VISIBLE
+   //   //::u32 dwExStyle = 0;
+   //   //::u32 dwStyle = WS_OVERLAPPEDWINDOW;
+   //   //dwStyle |= WS_POPUP;
+   //   ////dwStyle |= WS_VISIBLE;
+   //   ////dwStyle |= WS_SYSMENU | WS_MINIMIZEBOX | WS_MAXIMIZEBOX;
+   //   //dwStyle &= ~WS_CAPTION;
+   //   ////dwStyle = 0;
+   //   //dwStyle &= ~WS_THICKFRAME;
+   //   //dwStyle &= ~WS_BORDER;
+   //   //::i32 x = 0;
+   //   //::i32 y = 0;
+   //   //::i32 nWidth = size.cx;
+   //   //::i32 nHeight = size.cy;
+   //   //HWND hWndParent = nullptr;
+   //   //HMENU hMenu = nullptr;
+   //   /////HINSTANCE hInstance = psystem->m_hinstance;
+   //   //LPVOID lpParam = nullptr;
+
+   //   ////HWND window = CreateWindowExW(dwExStyle, lpClassName, lpWindowName, dwStyle, x, y,  nWidth, nHeight, hWndParent, hMenu, hInstance, lpParam);
+   //   //HWND window = CreateWindowExW(dwExStyle, lpClassName, lpWindowName, dwStyle, x, y, nWidth, nHeight, hWndParent, hMenu, nullptr, lpParam);
+
+   //   //if (window == nullptr) 
+   //   //{
+   //   //   informationf("MS GDI - CreateWindow failed");
+   //   //   informationf("last-error code: %d\n", GetLastError());
+   //   //   return false;
+   //   //}
+
+   //   //// create WGL context, make current
+
+   //   //PIXELFORMATDESCRIPTOR pixformat;
+   //   //::i32 chosenformat;
+   //   //HDC hdc = GetDC(window);
+   //   //if (hdc == nullptr)
+   //   //{
+   //   //   informationf("MS GDI - GetDC failed");
+   //   //   informationf("last-error code: %d\n", GetLastError());
+   //   //   return false;
+   //   //}
+
+   //   //ZeroMemory(&pixformat, sizeof(pixformat));
+   //   //pixformat.nSize = sizeof(pixformat);
+   //   //pixformat.nVersion = 1;
+   //   //pixformat.dwFlags = PFD_DRAW_TO_WINDOW | PFD_SUPPORT_OPENGL | PFD_DOUBLEBUFFER;
+   //   //pixformat.iPixelType = PFD_TYPE_RGBA;
+   //   //pixformat.cColorBits = 24;
+   //   //pixformat.cAlphaBits = 8;
+   //   //pixformat.cDepthBits = 24;
+   //   //pixformat.cStencilBits = 8;
+
+   //   //chosenformat = ChoosePixelFormat(hdc, &pixformat);
+   //   //if (chosenformat == 0) 
+   //   //{
+   //   //   informationf("MS GDI - ChoosePixelFormat failed");
+   //   //   informationf("last-error code: %d\n", GetLastError());
+   //   //   return false;
+   //   //}
+
+   //   //bool spfok = SetPixelFormat(hdc, chosenformat, &pixformat);
+   //   //if (!spfok) 
+   //   //{
+   //   //   informationf("MS GDI - SetPixelFormat failed");
+   //   //   informationf("last-error code: %d\n", GetLastError());
+   //   //   return false;
+   //   //}
+
+   //   //HGLRC hglrcTime = wglCreateContext(hdc);
+   //   //if (hglrcTime == nullptr)
+   //   //{
+   //   //   informationf("MS WGL - wglCreateContext failed");
+   //   //   informationf("last-error code: %d\n", GetLastError());
+   //   //   ReleaseDC(m_hwnd, m_hdc);
+   //   //   return false;
+   //   //}
+
+   //   //bool okMakeCurrent = wglMakeCurrent(hdc, hglrcTime);
+   //   //if (!okMakeCurrent)
+   //   //{
+   //   //   informationf("MS WGL - wglMakeCurrent failed");
+   //   //   informationf("last-error code: %d\n", GetLastError());
+   //   //   return false;
+   //   //}
+   //   ////glfwInit();
+   //   //// ... <snip> ... setup a window and a context
+   //   //
+   //   //auto wglCurrentContext = wglGetCurrentContext();
+
+   //   //// Load all OpenGL functions using the glfw loader function
+   //   //// If you use SDL you can use: https://wiki.libsdl.org/SDL_GL_GetProcAddress
+   //   ////if (!gladLoadGLLoader((GLADloadproc)glfwGetProcAddress)) {
+   //   ////   std::cout << "Failed to initialize OpenGL context" << std::endl;
+   //   ////   return -1;
+   //   ////}
+   //   //if (!gladLoadWGL(hdc))
+   //   //{
+   //   //   // Problem: glewInit failed, something is seriously wrong.
+   //   //   informationf("gladLoadWGL failed");
+   //   //   //return false;
+   //   //   //throw resource_exception();
+
+   //   //   return false;
+
+   //   //}
+   //   //::i32 attribs[] =
+   //   //{
+   //   //   WGL_CONTEXT_MAJOR_VERSION_ARB, 3,
+   //   //   WGL_CONTEXT_MINOR_VERSION_ARB, 1,
+   //   //   WGL_CONTEXT_FLAGS_ARB, 0,
+   //   //   WGL_CONTEXT_PROFILE_MASK_ARB,
+   //   //   WGL_CONTEXT_COREPROFILE_BIT_ARB, 0
+   //   //};
+
+   //   ////PFNWGLCREATECONTEXTATTRIBSARBPROC wglCreateContextAttribsARB = NULL;
+   //   ////wglCreateContextAttribsARB = (PFNWGLCREATECONTEXTATTRIBSARBPROC)wglGetProcAddress("wglCreateContextAttribsARB");
+
+   //   //auto hglrc =  wglCreateContextAttribsARB(hdc, 0, attribs);
+   //   //wglMakeCurrent(nullptr, nullptr);
+   //   //wglDeleteContext(hglrcTime);
+   //   //   wglMakeCurrent(hdc, m_hglrc);
+   //   ////draw2d_gpu()->defer_initialize_glew();
+   //   //
+   //   ////draw2d_gpu()->defer_initialize_glew();
+
+
+   //   //m_hwnd = window;
+   //   //m_hdc = hdc;
+   //   //m_hglrc = hglrc;
+   //   //m_size = size;
+
+   //   bool bYSwap = m_papplication->m_gpu.m_bUseSwapChainWindow;
+
+   //   //::opengl::resize(size, bYSwap);
+
+   //   return true;
+
+   //}
+
+
+   //bool graphics::opengl_delete_offscreen_buffer()
+   //{
+
+   //   //if (m_hglrc == NULL && m_hdc == NULL && m_hwnd == NULL)
+   //   //{
+
+   //   //   return true;
+
+   //   //}
+
+   //   //wglMakeCurrent(nullptr, nullptr);
+   //   //wglDeleteContext(m_hglrc);
+   //   //::ReleaseDC(m_hwnd, m_hdc);
+   //   //::DestroyWindow(m_hwnd);
+   //   m_size.set(0, 0);
+   //   //m_hglrc = NULL;
+   //   //m_hwnd = NULL;
+   //   //m_hdc = NULL;
+   //   return true;
+
+   //}
+
+
+   //bool graphics::opengl_defer_create_window_context(::windowing::window* pwindow)
+   //{
+
+   //   //if (!m_pgpucontextCompositor)
+   //   //{
+
+   //   //   return false;
+
+   //   //}
+
+   //   //if (!pgpucontext)
+   //   //{
+
+   //   //   auto pgpu = application()->get_gpu();
+
+   //   //   auto pgpudevice = pgpu->get_device();
+
+   //   //   pgpucontext = pgpudevice->start_swap_chain_context(this, pwindow);
+
+   //   //}
+
+   //   auto pcontext = gpu_context();
+
+   //   pcontext->defer_create_window_context(pwindow);
+
+   //   //      ::opengl::resize(size);
+
+   //   return true;
+
+   //}
 
 
 
@@ -677,14 +940,14 @@ void main() {
 
       }
 
-      opengl_delete_offscreen_buffer();
+      //opengl_delete_offscreen_buffer();
 
-      if (!opengl_create_offscreen_buffer(pbitmap->get_size()))
-      {
+      //if (!opengl_create_offscreen_buffer(pbitmap->get_size()))
+      //{
 
-         return NULL;
+      //   return NULL;
 
-      }
+      //}
 
       bool bYSwap = m_papplication->m_gpu.m_bUseSwapChainWindow;
 
@@ -6569,71 +6832,71 @@ color = vec4(c.r,c.g, c.b, c.a);
 
 
 
-   void graphics::create_window_graphics(const ::operating_system::window & operatingsystemwindow)
-   {
-
-      // http://stackoverflow.com/questions/4052940/how-to-make-an-opengl-rendering-context-with-transparent-background
-      //
-
-      //PIXELFORMATDESCRIPTOR pfd =
-      //{
-      //   sizeof(PIXELFORMATDESCRIPTOR),
-      //   1,                                // Version Number
-      //   PFD_DRAW_TO_WINDOW |         // Format Must Support Window
-      //   PFD_SUPPORT_OPENGL |         // Format Must Support OpenGL
-      //   PFD_SUPPORT_COMPOSITION |         // Format Must Support Composition
-      //   PFD_DOUBLEBUFFER,                 // Must Support Double Buffering
-      //   PFD_TYPE_RGBA,                    // Request An RGBA Format
-      //   32,                               // Select Our Color Depth
-      //   0, 0, 0, 0, 0, 0,                 // Color Bits Ignored
-      //   8,                                // An Alpha Buffer
-      //   0,                                // Shift Bit Ignored
-      //   0,                                // No Accumulation Buffer
-      //   0, 0, 0, 0,                       // Accumulation Bits Ignored
-      //   24,                               // 16Bit Z-Buffer (Depth Buffer)
-      //   8,                                // Some Stencil Buffer
-      //   0,                                // No Auxiliary Buffer
-      //   PFD_MAIN_PLANE,                   // Main Drawing Layer
-      //   0,                                // Reserved
-      //   0, 0, 0                           // Layer Masks Ignored
-      //};
-
-
-      //DWM_BLURBEHIND bb = { 0 };
-      ////HRGN hRgn = CreateRectRgn(0, 0, -1, -1);
-      ////bb.dwFlags = DWM_BB_ENABLE | DWM_BB_BLURREGION;
-      //bb.dwFlags = DWM_BB_ENABLE;
-      ////bb.hRgnBlur = hRgn;
-      //bb.fEnable = true;
-      //DwmEnableBlurBehindWindow(wnd, &bb);
-
-
-      //m_hdc = GetDC(wnd);
-      //::i32 PixelFormat = ChoosePixelFormat(m_hdc, &pfd);
-      //if (PixelFormat == 0)
-      //{
-      //   ASSERT(0);
-      //   return false;
-      //}
-
-      //BOOL bResult = SetPixelFormat(m_hdc, PixelFormat, &pfd);
-      //if (bResult == false)
-      //{
-      //   ASSERT(0);
-      //   return false;
-      //}
-
-      //m_hglrc = wglCreateContext(m_hdc);
-      //if (!m_hglrc)
-      //{
-      //   ASSERT(0);
-      //   return false;
-      //}
-
-//      return true;
-      //return false;
-
-   }
+//   void graphics::create_window_graphics(const ::operating_system::window & operatingsystemwindow)
+//   {
+//
+//      // http://stackoverflow.com/questions/4052940/how-to-make-an-opengl-rendering-context-with-transparent-background
+//      //
+//
+//      //PIXELFORMATDESCRIPTOR pfd =
+//      //{
+//      //   sizeof(PIXELFORMATDESCRIPTOR),
+//      //   1,                                // Version Number
+//      //   PFD_DRAW_TO_WINDOW |         // Format Must Support Window
+//      //   PFD_SUPPORT_OPENGL |         // Format Must Support OpenGL
+//      //   PFD_SUPPORT_COMPOSITION |         // Format Must Support Composition
+//      //   PFD_DOUBLEBUFFER,                 // Must Support Double Buffering
+//      //   PFD_TYPE_RGBA,                    // Request An RGBA Format
+//      //   32,                               // Select Our Color Depth
+//      //   0, 0, 0, 0, 0, 0,                 // Color Bits Ignored
+//      //   8,                                // An Alpha Buffer
+//      //   0,                                // Shift Bit Ignored
+//      //   0,                                // No Accumulation Buffer
+//      //   0, 0, 0, 0,                       // Accumulation Bits Ignored
+//      //   24,                               // 16Bit Z-Buffer (Depth Buffer)
+//      //   8,                                // Some Stencil Buffer
+//      //   0,                                // No Auxiliary Buffer
+//      //   PFD_MAIN_PLANE,                   // Main Drawing Layer
+//      //   0,                                // Reserved
+//      //   0, 0, 0                           // Layer Masks Ignored
+//      //};
+//
+//
+//      //DWM_BLURBEHIND bb = { 0 };
+//      ////HRGN hRgn = CreateRectRgn(0, 0, -1, -1);
+//      ////bb.dwFlags = DWM_BB_ENABLE | DWM_BB_BLURREGION;
+//      //bb.dwFlags = DWM_BB_ENABLE;
+//      ////bb.hRgnBlur = hRgn;
+//      //bb.fEnable = true;
+//      //DwmEnableBlurBehindWindow(wnd, &bb);
+//
+//
+//      //m_hdc = GetDC(wnd);
+//      //::i32 PixelFormat = ChoosePixelFormat(m_hdc, &pfd);
+//      //if (PixelFormat == 0)
+//      //{
+//      //   ASSERT(0);
+//      //   return false;
+//      //}
+//
+//      //BOOL bResult = SetPixelFormat(m_hdc, PixelFormat, &pfd);
+//      //if (bResult == false)
+//      //{
+//      //   ASSERT(0);
+//      //   return false;
+//      //}
+//
+//      //m_hglrc = wglCreateContext(m_hdc);
+//      //if (!m_hglrc)
+//      //{
+//      //   ASSERT(0);
+//      //   return false;
+//      //}
+//
+////      return true;
+//      //return false;
+//
+//   }
 
 
    //oswindow graphics::get_window_handle() const

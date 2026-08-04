@@ -94,12 +94,12 @@ namespace gpu_opengl
 
       void copy(::gpu::texture* ptextureTarget, ::gpu::texture* ptextureSource, ::pointer < ::gpu::fence > * pgpufence) override;
 
-      void on_create_context(::gpu::device *pgpudevice, const ::gpu::enum_output &eoutput,
-                             ::acme::windowing::window *pwindow, const ::i32_size &size) override;
-
-      void defer_create_window_context(::acme::windowing::window *pwindow) override;
-      void _defer_create_window_context(::acme::windowing::window *pwindow) override;
-      virtual void _create_window_context(::acme::windowing::window *pwindow);
+      //void on_create_context(::gpu::device *pgpudevice, const ::gpu::enum_output &eoutput,
+        //                     ::acme::windowing::window *pwindow, const ::i32_size &size) override;
+      void create_window_gpu_context(::gpu::device * pgpudevice, const ::gpu::enum_output & eoutput, const ::gpu::enum_scene & escene, ::acme::windowing::window * pacmewindowingwindow, const ::i32_size & size) override;
+      //void defer_create_window_context(::acme::windowing::window *pwindow) override;
+      //void _defer_create_window_context(::acme::windowing::window *pwindow) override;
+      //virtual void _create_window_context(::acme::windowing::window *pwindow);
 
 
       //void _create_cpu_buffer(const ::i32_size& size) override;

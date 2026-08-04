@@ -481,7 +481,9 @@ namespace draw2d
    void graphics::create_for_image(::image::image* pimage)
    {
 
-      create_bitmap_graphics(pimage->get_bitmap());
+      auto pbitmap = pimage->get_bitmap();
+
+      create_bitmap_graphics(pbitmap);
 
    }
 
@@ -673,7 +675,7 @@ namespace draw2d
       __UNREFERENCED_PARAMETER(size);
       __UNREFERENCED_PARAMETER(pacmeuserinteractionAffinity);
 
-      create_compatible_graphics(nullptr);
+      ///create_compatible_graphics(nullptr);
       //if (!create_compatible_graphics(nullptr))
       //{
 
@@ -686,14 +688,14 @@ namespace draw2d
    }
 
 
-   void graphics::create_compatible_graphics(::draw2d::graphics * pgraphics)
-   {
+   //void graphics::create_compatible_graphics(::draw2d::graphics * pgraphics)
+   //{
 
-      __UNREFERENCED_PARAMETER(pgraphics);
+   //   __UNREFERENCED_PARAMETER(pgraphics);
 
-      //return false;
+   //   //return false;
 
-   }
+   //}
 
 
    void graphics::create_bitmap_graphics(::draw2d::bitmap * pbitmap)
@@ -704,16 +706,16 @@ namespace draw2d
    }
 
 
-   void graphics::create_window_graphics(const ::operating_system::window & operatingsystemwindow)
-   {
+   //void graphics::create_window_graphics(const ::operating_system::window & operatingsystemwindow)
+   //{
 
-      __UNREFERENCED_PARAMETER(operatingsystemwindow);
+   //   __UNREFERENCED_PARAMETER(operatingsystemwindow);
 
 
 
-      //return false;
+   //   //return false;
 
-   }
+   //}
 
 
    //void graphics::set_hint_window_output()

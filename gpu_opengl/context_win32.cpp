@@ -285,6 +285,39 @@ namespace gpu_opengl
    }
 
 
+   void context_win32::_create_gpu_context(::gpu::device * pgpudevice, const ::gpu::enum_output & eoutput, const ::gpu::enum_scene & escene, ::acme::windowing::window * pacmewindowingwindow, const ::i32_size & size)
+   {
+
+      //m_pgpudevice = pgpudevice;
+
+      //m_eoutput = eoutput;
+
+      //m_escene = escene;
+
+      ::gpu_opengl::context::_create_gpu_context(pgpudevice, eoutput, escene, pacmewindowingwindow, size);
+      
+      if (eoutput == ::gpu::e_output_swap_chain)
+      {
+
+         ::cast < ::windowing_win32::window > pwin32windowingwindow = pacmewindowingwindow;
+
+         create_window_wgl_context(pwin32windowingwindow);
+
+      }
+      else
+      {
+
+         create_offscreen_wgl_context();
+
+      }
+
+
+
+   }
+
+
+
+
 //    //void context::_create_b
 //
 //   void context::_create_offscreen_window(const ::i32_size &size)
@@ -417,10 +450,13 @@ namespace gpu_opengl
    }
 
 
-   void context_win32::_create_window_context(::acme::windowing::window *pwindowParam)
+   //void context_win32::_create_window_context(::acme::windowing::window *pwindowParam)
+   void context_win32::create_window_gpu_context(::gpu::device * pgpudevice, const ::gpu::enum_output & eoutput, const ::gpu::enum_scene & escene, ::acme::windowing::window * pacmewindowingwindow, const ::i32_size & size)
    {
 
-         ::cast < ::windowing_win32::window > pwindow = pwindowParam;
+      m_pgpudevice = pgpudevice;
+
+         ::cast < ::windowing_win32::window > pwindow = pacmewindowingwindow;
 
          if (!m_hdc || !m_hglrc)
          {

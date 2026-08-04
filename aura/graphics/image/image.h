@@ -307,7 +307,7 @@ namespace image
       virtual void create_from_graphics(::draw2d::graphics* pgraphics);
       virtual void create_as_render_target(const ::i32_size & size, ::user::interaction * puserinteraction, ::enum_flag eflagCreate = DEFAULT_CREATE_IMAGE_FLAG, ::i32 iGoodStride = -1, bool bPreserve = false);
       using ::particle::initialize;
-      virtual void initialize(const ::i32_size & size, ::image32_t * pimage32, ::i32 iScan, ::enum_flag eflagCreate = DEFAULT_CREATE_IMAGE_FLAG);
+      //virtual void initialize(const ::i32_size & size, ::image32_t * pimage32, ::i32 iScan, ::enum_flag eflagCreate = DEFAULT_CREATE_IMAGE_FLAG);
       virtual void preserve(const ::i32_size &size, ::enum_flag eflagCreate = DEFAULT_CREATE_IMAGE_FLAG);
       //virtual void     create(::i32 iWidth, ::i32 iHeight, ::enum_flag eflagCreate = DEFAULT_CREATE_IMAGE_OBJECT_FLAG, ::i32 iGoodStride = -1, void bPreserve = false);
 

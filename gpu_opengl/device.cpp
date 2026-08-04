@@ -677,23 +677,6 @@ namespace gpu_opengl
    //}
 
 
-   ::i32 device::get_frame_index3()
-   {
-
-      return 0;
-      //return ::gpu::device::get_frame_index3();
-
-
-   }
-
-
-   ::i32 device::get_frame_count()
-   {
-
-      return 1;
-
-   }
-
 
    
    ::gpu::payload device::load_dds(const ::scoped_string& scopedstrImagePath)

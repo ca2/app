@@ -512,12 +512,12 @@ void image::create_as_render_target(const ::i32_size& sizeRaw, ::user::interacti
 }
 
 
-void image::initialize(const ::i32_size & size, ::image32_t * pimage32, ::i32 iScan, ::enum_flag eflagCreate)
-{
-
-   return create_from_data(size, pimage32, iScan, eflagCreate);
-
-}
+//void image::initialize(const ::i32_size & size, ::image32_t * pimage32, ::i32 iScan, ::enum_flag eflagCreate)
+//{
+//
+//   return create_from_data(size, pimage32, iScan, eflagCreate);
+//
+//}
 
 
 void image::preserve(const ::i32_size& size, ::enum_flag eflagCreate)

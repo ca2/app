@@ -656,6 +656,7 @@
     <ClInclude Include="gpu\context_object.h" />
     <ClInclude Include="gpu\context_pointer.h" />
     <ClInclude Include="gpu\aaa_cpu_buffer.h" />
+    <ClInclude Include="gpu\draw2d_window_attachment.h" />
     <ClInclude Include="gpu\empty_texture_source.h" />
     <ClInclude Include="gpu\debug_scope.h" />
     <ClInclude Include="gpu\device.h" />
@@ -820,6 +821,7 @@
     <ClCompile Include="gpu\aaa_cpu_buffer.cpp" />
     <ClCompile Include="gpu\device.cpp" />
     <ClCompile Include="gpu\draw2d.cpp" />
+    <ClCompile Include="gpu\draw2d_window_attachment.cpp" />
     <ClCompile Include="gpu\empty_texture_source.cpp" />
     <ClCompile Include="gpu\fence.cpp" />
     <ClCompile Include="gpu\frame.cpp" />

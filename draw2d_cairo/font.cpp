@@ -3,7 +3,7 @@
 #include "draw2d.h"
 #include "graphics.h"
 #include "acme/parallelization/synchronous_lock.h"
-#include "aura/graphics/draw2d/host.h"
+//#include "aura/graphics/draw2d/host.h"
 #include "acme/platform/application.h"
 
 
@@ -46,7 +46,7 @@ namespace draw2d_cairo
    font::font()
    {
 
-      m_pthis = this;
+      //m_pthis = this;
 
 #if defined(USE_PANGO)
 
@@ -171,12 +171,12 @@ namespace draw2d_cairo
 
       bool bFont = false;
 
-      if (m_path.has_character())
+      if (m_pathFontFile.has_character())
       {
 
          ::pointer<::draw2d_cairo::draw2d>pdraw2d = system()->draw2d();
 
-         auto pfontface = pdraw2d->private_ftface_from_file(pgraphics->m_papplication, m_path);
+         auto pfontface = pdraw2d->private_ftface_from_file(pgraphics->m_papplication, m_pathFontFile);
 
          m_pfontface = pfontface;
 

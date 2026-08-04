@@ -11,12 +11,14 @@ namespace draw2d_cairo
    path::path()
    {
 
-      m_pthis = this;
+      //m_pthis = this;
 
    }
 
+
    path::~path()
    {
+
 
    }
 

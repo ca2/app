@@ -30,7 +30,13 @@ namespace gpu_opengl
       void destroy() override;
 
 
-      void _create_window_context(::acme::windowing::window *pwindowParam) override;
+      //void _create_window_context(::acme::windowing::window *pwindowParam) override;
+
+      //void _create_gpu_context(::gpu::device * pgpudevice, const ::gpu::enum_output & eoutput, const ::gpu::enum_scene & escene, ::acme::windowing::window * pacmewindowingwindow, const ::i32_size & size) override;
+
+      void _create_gpu_context(::gpu::device * pgpudevice, const ::gpu::enum_output & eoutput, const ::gpu::enum_scene & escene, ::acme::windowing::window * pacmewindowingwindow, const ::i32_size & size) override;
+
+      void create_window_gpu_context(::gpu::device * pgpudevice, const ::gpu::enum_output & eoutput, const ::gpu::enum_scene & escene, ::acme::windowing::window * pacmewindowingwindow, const ::i32_size & size) override;
 
 
       void _create_cpu_buffer21(const ::i32_size &size) override;

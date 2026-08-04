@@ -165,9 +165,9 @@ namespace user
 
       ::i32_size sizeLine;
 
-      ::draw2d::graphics_pointer g(e_create, this);
+      auto g = createø<::draw2d::graphics>();
 
-      g->create_compatible_graphics(nullptr);
+      g->create_memory_graphics({ 256, 256 }, this);
 
       g->set(m_pfont);
 

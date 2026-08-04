@@ -7,6 +7,7 @@
 #include "renderer.h"
 #include "render_target.h"
 #include "texture.h"
+#include "bred/gpu/draw2d_window_attachment.h"
 
 
 namespace gpu
@@ -76,9 +77,10 @@ namespace gpu
       auto pgpurenderer = m_pgpurenderer;
 
       //auto pgpurendertarget = pgpurenderer->render_target();
+      auto pgpudraw2dwindowattachment = ::gpu::draw2d_window_attachment::get(m_pgpurenderer);
 
-      auto iImageIndex = pgpurenderer->m_pgpucontext->m_pgpudevice->get_image_index();
-      const auto iFrameIndex = pgpurenderer->m_pgpucontext->m_pgpudevice->get_frame_index3();
+      auto iImageIndex = pgpudraw2dwindowattachment->get_image_index();
+      const auto iFrameIndex = pgpudraw2dwindowattachment->get_frame_index3();
 
       if (iImageIndex < 0)
       {
@@ -252,7 +254,9 @@ namespace gpu
    ::pointer < texture >& layer::texture()
    {
 
-      ::i32 iFrameIndex = m_pgpurenderer->m_pgpucontext->m_pgpudevice->get_frame_index3();
+      auto pgpudraw2dwindowattachment = ::gpu::draw2d_window_attachment::get(m_pgpurenderer);
+
+      ::i32 iFrameIndex = pgpudraw2dwindowattachment->get_frame_index3();
 
       auto & ptexture = m_texturea.element_at_grow(iFrameIndex);
 
@@ -278,7 +282,9 @@ namespace gpu
    ::pointer < texture >& layer::source_texture()
    {
 
-      ::i32 iFrameIndex = m_pgpurenderer->m_pgpucontext->m_pgpudevice->get_frame_index3();
+      auto pgpudraw2dwindowattachment = ::gpu::draw2d_window_attachment::get(m_pgpurenderer);
+
+      ::i32 iFrameIndex = pgpudraw2dwindowattachment->get_frame_index3();
 
       auto& ptextureSource = m_textureaSource.element_at_grow(iFrameIndex);
 

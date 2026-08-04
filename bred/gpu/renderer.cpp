@@ -17,6 +17,7 @@
 #include "acme/exception/interface_only.h"
 #include "acme/prototype/geometry2d/matrix.h"
 #include "bred/gpu/context_lock.h"
+#include "bred/gpu/draw2d_window_attachment.h"
 #include "bred/gpu/graphics.h"
 #include "bred/gpu/swap_chain.h"
 #include "aura/graphics/graphics/context.h"
@@ -419,7 +420,9 @@ namespace gpu
    ::gpu::command_buffer* renderer::getCurrentCommandBuffer2(::gpu::layer* pgpulayer)
    {
 
-      auto egpuframestate = m_pgpucontext->m_pgpudevice->current_frame()->m_egpuframestate;
+      auto pgpudraw2dwindowattachment = ::gpu::draw2d_window_attachment::get(m_pgpucontext);
+
+      auto egpuframestate = pgpudraw2dwindowattachment->current_frame()->m_egpuframestate;
 
       assert(egpuframestate == e_gpu_frame_state_began_frame &&
              "Cannot get command buffer when frame not in progress");
@@ -467,7 +470,9 @@ namespace gpu
       else
       {
 
-         iImageIndex = render_target()->m_pgpurenderer->m_pgpucontext->m_pgpudevice->get_frame_index3();
+         auto pgpudraw2dwindowattachment = ::gpu::draw2d_window_attachment::get(render_target());
+
+         iImageIndex = pgpudraw2dwindowattachment->get_frame_index3();
 
          if (iImageIndex < 0)
          {
@@ -480,8 +485,10 @@ namespace gpu
 
       auto pcommandbuffer = m_commandbuffera[iImageIndex];
 
+      //auto pgpudraw2dwindowattachment = ::gpu::draw2d_window_attachment::get(m_pgpurendertarget2);
+
       pcommandbuffer->m_iCommandBufferFrameIndex2 =
-         m_pgpurendertarget2->m_pgpurenderer->m_pgpucontext->m_pgpudevice->get_frame_index3();
+         pgpudraw2dwindowattachment->get_frame_index3();
 
       pcommandbuffer->m_iCommandBufferImageIndex = iImageIndex;
 
@@ -503,7 +510,9 @@ namespace gpu
    void renderer::create_command_buffers()
    {
 
-      m_commandbuffera.set_size(m_pgpucontext->m_pgpudevice->get_frame_count());
+      auto pgpudraw2dwindowattachment = ::gpu::draw2d_window_attachment::get(m_pgpucontext);
+
+      m_commandbuffera.set_size(pgpudraw2dwindowattachment->get_frame_count());
 
       //::array<VkCommandBuffer > a;
 
@@ -576,7 +585,9 @@ namespace gpu
 
       }*/
 
-      auto egpuframestate = m_pgpucontext->m_pgpudevice->current_frame()->m_egpuframestate;
+      auto pgpudraw2dwindowattachment = ::gpu::draw2d_window_attachment::get(m_pgpucontext);
+
+      auto egpuframestate = pgpudraw2dwindowattachment->current_frame()->m_egpuframestate;
 
       if (egpuframestate < e_gpu_frame_state_began_frame)
       {
@@ -599,9 +610,11 @@ namespace gpu
    ::particle_array * renderer::current_frame_particle_array()
    {
 
-      auto iFrameIndex = m_pgpucontext->m_pgpudevice->get_frame_index3();
+      auto pgpudraw2dwindowattachment = ::gpu::draw2d_window_attachment::get(m_pgpucontext);
 
-      auto pparticlea = m_pgpucontext->m_pgpudevice->frame_particle_array(iFrameIndex);
+      auto iFrameIndex = pgpudraw2dwindowattachment->get_frame_index3();
+
+      auto pparticlea = pgpudraw2dwindowattachment->frame_particle_array(iFrameIndex);
 
       return pparticlea;
 
@@ -1470,7 +1483,9 @@ namespace gpu
    void renderer::layer_start(bool bFirstLayer)
    {
 
-      auto player = m_pgpucontext->m_pgpudevice->create_gpu_layer(this);
+      auto pgpudraw2dwindowattachment = ::gpu::draw2d_window_attachment::get(m_pgpucontext);
+
+      auto player = pgpudraw2dwindowattachment->create_gpu_layer(this);
 
       player->m_bFirstLayer = bFirstLayer;
 
@@ -1482,7 +1497,9 @@ namespace gpu
    void renderer::layer_end()
    {
 
-      auto player = m_pgpucontext->m_pgpudevice->current_layer();
+      auto pgpudraw2dwindowattachment = ::gpu::draw2d_window_attachment::get(m_pgpucontext);
+
+      auto player = pgpudraw2dwindowattachment->current_layer();
 
       player->layer_end();
 
@@ -1569,7 +1586,9 @@ namespace gpu
       if (bFirstLayer)
       {
 
-         m_pgpucontext->m_pgpudevice->start_stacking_layers();
+         auto pgpudraw2dwindowattachment = ::gpu::draw2d_window_attachment::get(m_pgpucontext);
+
+         pgpudraw2dwindowattachment->start_stacking_layers();
 
       }
 
@@ -1588,12 +1607,14 @@ namespace gpu
 
          //on_begin_render(render_target()->m_pgpulayer);
 
-         auto egpuframestate = m_pgpucontext->m_pgpudevice->current_frame()->m_egpuframestate;
+         auto pgpudraw2dwindowattachment = ::gpu::draw2d_window_attachment::get(m_pgpucontext);
+
+         auto egpuframestate = pgpudraw2dwindowattachment->current_frame()->m_egpuframestate;
 
          if (egpuframestate == ::gpu::e_gpu_frame_state_began_frame)
          {
 
-            ::i32 iFrameIndex = m_pgpucontext->m_pgpudevice->get_frame_index3();
+            ::i32 iFrameIndex = pgpudraw2dwindowattachment->get_frame_index3();
 
             if (iFrameIndex < 0)
             {
@@ -1602,7 +1623,9 @@ namespace gpu
 
             }
 
-            auto ppoolgroupFrame = m_pgpucontext->m_pgpudevice->frame_pool_group(iFrameIndex);
+            auto pgpudraw2dwindowattachment = ::gpu::draw2d_window_attachment::get(m_pgpucontext);
+
+            auto ppoolgroupFrame = pgpudraw2dwindowattachment->frame_pool_group(iFrameIndex);
 
             ppoolgroupFrame->m_pallocator = m_pgpucontext->m_pgpudevice;
 
@@ -1679,7 +1702,9 @@ namespace gpu
 
          ::pointer_array<::gpu::layer> gpulayera;
 
-         auto pgpulayera2 = m_pgpucontext->m_pgpudevice->m_pgpulayera;
+         auto pgpudraw2dwindowattachment = ::gpu::draw2d_window_attachment::get(m_pgpucontext);
+
+         auto pgpulayera2 = pgpudraw2dwindowattachment->m_pgpulayera;
 
          if (pgpulayera2)
          {
@@ -1767,8 +1792,10 @@ namespace gpu
                //
                // }
 
+               auto pgpudraw2dwindowattachment = ::gpu::draw2d_window_attachment::get(m_pgpucontext);
+
                auto iFrameIndex =
-                  prendertargetBackBuffer->m_pgpurenderer->m_pgpucontext->m_pgpudevice->get_frame_index3();
+                  pgpudraw2dwindowattachment->get_frame_index3();
 
 
                {
@@ -1904,7 +1931,9 @@ namespace gpu
 
             // #if !defined(__APPLE__)
 
-            if (m_pgpucontext->m_pgpudevice->m_pgpucontextMain == m_pgpucontext)
+            auto pgpudraw2dwindowattachment = ::gpu::draw2d_window_attachment::get(m_pgpucontext);
+
+            if (pgpudraw2dwindowattachment->m_pgpucontextWindow == m_pgpucontext)
             {
 
                information("we are in the renderer of the context that owns the swap chain????");
@@ -1917,7 +1946,9 @@ namespace gpu
 
             }
 
-            auto pgpuswapchain = m_pgpucontext->m_pgpudevice->m_pgpucontextMain->get_swap_chain();
+            //auto pgpudraw2dwindowattachment = ::gpu::draw2d_window_attachment::get(m_pgpucontext);
+
+            auto pgpuswapchain = pgpudraw2dwindowattachment->m_pgpucontextWindow->get_swap_chain();
 
             if (pgpuswapchain)
             {
@@ -2169,7 +2200,9 @@ namespace gpu
    bool renderer::is_starting_frame()const
    {
 
-      return m_pgpucontext->m_pgpudevice->is_starting_frame();
+      auto pgpudraw2dwindowattachment = ::gpu::draw2d_window_attachment::get(m_pgpucontext);
+
+      return pgpudraw2dwindowattachment->is_starting_frame();
 
    }
 

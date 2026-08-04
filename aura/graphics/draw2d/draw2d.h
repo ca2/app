@@ -123,7 +123,7 @@ namespace draw2d
 
 
 
-      virtual graphics_pointer create_graphics(::acme::user::interaction * pacmeuserinteractionAffinity);
+      virtual graphics_pointer allocate_graphics(::acme::user::interaction * pacmeuserinteractionAffinity);
 
       virtual graphics_pointer create_memory_graphics(const ::i32_size &size, ::acme::user::interaction * pacmeuserinteractionAffinity);
 

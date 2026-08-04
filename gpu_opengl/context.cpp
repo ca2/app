@@ -19,6 +19,7 @@
 #include "bred/gpu/binding.h"
 #include "bred/gpu/command_buffer.h"
 #include "bred/gpu/context_lock.h"
+#include "bred/gpu/draw2d_window_attachment.h"
 #include "bred/gpu/layer.h"
 #include "bred/gpu/layer.h"
 #include "bred/gpu/types.h"
@@ -1286,7 +1287,9 @@ namespace gpu_opengl
       if (m_papplication->m_gpu.m_bUseSwapChainWindow)
       {
 
-         auto pswapchain = m_pgpudevice->m_pgpucontextMain->get_swap_chain();
+         auto pgpudraw2dwindowattachment = ::gpu::draw2d_window_attachment::get(this);
+
+         auto pswapchain = pgpudraw2dwindowattachment->window_context()->get_swap_chain();
 
          if (pswapchain)
          {
@@ -1952,14 +1955,14 @@ namespace gpu_opengl
    //}
 
 
-   void context::on_create_context(::gpu::device *pgpudevice, const ::gpu::enum_output &eoutput,
-                                   ::acme::windowing::window *pwindow, const ::i32_size &size)
-   {
+   //void context::on_create_context(::gpu::device *pgpudevice, const ::gpu::enum_output &eoutput,
+   //                                ::acme::windowing::window *pwindow, const ::i32_size &size)
+   //{
 
-      ::gpu::context::on_create_context(pgpudevice, eoutput, pwindow, size);
+   //   ::gpu::context::on_create_context(pgpudevice, eoutput, pwindow, size);
 
 
-   }
+   //}
 
 
    void context::copy(::gpu::texture *ptextureTarget, ::gpu::texture *ptextureSource, ::pointer < ::gpu::fence > * pgpufence)
@@ -2255,7 +2258,8 @@ namespace gpu_opengl
 //   }
 
 
-   void context::_create_window_context(::acme::windowing::window *pwindowParam)
+   void context::create_window_gpu_context(::gpu::device * pgpudevice, const ::gpu::enum_output & eoutput, const ::gpu::enum_scene & escene, ::acme::windowing::window * pacmewindowingwindow, const ::i32_size & size)
+   //void context::_create_window_context(::acme::windowing::window *pwindowParam)
    {
 
       //   ::cast < ::windowing_win32::window > pwindow = pwindowParam;
@@ -2487,29 +2491,29 @@ namespace gpu_opengl
    //}
 
 
-   void context::defer_create_window_context(::acme::windowing::window *pwindow)
-   {
+   //void context::defer_create_window_context(::acme::windowing::window *pwindow)
+   //{
 
-      ::gpu_gpu::context::defer_create_window_context(pwindow);
+   //   ::gpu_gpu::context::defer_create_window_context(pwindow);
 
-      // //if (m_hrc)
-      // //{
-      //
-      // //   return;
-      //
-      // //}
-      //
-      // _defer_create_window_context(pwindow);
+   //   // //if (m_hrc)
+   //   // //{
+   //   //
+   //   // //   return;
+   //   //
+   //   // //}
+   //   //
+   //   // _defer_create_window_context(pwindow);
 
-   }
+   //}
 
 
-   void context::_defer_create_window_context(::acme::windowing::window *pwindow)
-   {
+   //void context::_defer_create_window_context(::acme::windowing::window *pwindow)
+   //{
 
-      _create_window_context(pwindow);
+   //   _create_window_context(pwindow);
 
-   }
+   //}
 
 
    void context::resize_cpu_buffer21(const ::i32_size &sizeParam)

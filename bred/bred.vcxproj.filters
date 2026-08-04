@@ -465,6 +465,9 @@
     <ClInclude Include="gpu\texture_synchronization.h">
       <Filter>Header Files\gpu</Filter>
     </ClInclude>
+    <ClInclude Include="gpu\draw2d_window_attachment.h">
+      <Filter>Header Files\gpu</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="platform\application.cpp">
@@ -732,6 +735,9 @@
       <Filter>Source Files\gpu</Filter>
     </ClCompile>
     <ClCompile Include="gpu\texture_synchronization.cpp">
+      <Filter>Source Files\gpu</Filter>
+    </ClCompile>
+    <ClCompile Include="gpu\draw2d_window_attachment.cpp">
       <Filter>Source Files\gpu</Filter>
     </ClCompile>
   </ItemGroup>

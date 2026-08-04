@@ -4,6 +4,7 @@
 #include "acme/exception/interface_only.h"
 #include "acme/prototype/prototype/memory.h"
 #include "acme/graphics/image/pixmap.h"
+#include "aura/graphics/image/image.h"
 
 
 namespace draw2d
@@ -127,10 +128,16 @@ namespace draw2d
       ::acme::user::interaction * pacmeuserinteractionAffinity)
    {
 
-      __UNREFERENCED_PARAMETER(pimage);
-      __UNREFERENCED_PARAMETER(pacmeuserinteractionAffinity);
+      //__UNREFERENCED_PARAMETER(pimage);
+      //__UNREFERENCED_PARAMETER(pacmeuserinteractionAffinity);
 
-      throw ::interface_only();
+      //throw ::interface_only();
+
+      create_bitmap(
+         nullptr,
+         pimage->m_sizeRaw,
+         pimage->m_memoryPixmap,
+         &pimage->m_iScan);
 
    }
 

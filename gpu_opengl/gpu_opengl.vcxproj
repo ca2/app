@@ -726,6 +726,7 @@
     <ClInclude Include="context_win32.h" />
     <ClInclude Include="device.h" />
     <ClInclude Include="device_win32.h" />
+    <ClInclude Include="draw2d_window_attachment.h" />
     <ClInclude Include="fence.h" />
     <ClInclude Include="frame.h" />
     <ClInclude Include="frame_buffer.h" />
@@ -849,6 +850,7 @@
     </ClCompile>
     <ClCompile Include="device.cpp" />
     <ClCompile Include="device_win32.cpp" />
+    <ClCompile Include="draw2d_window_attachment.cpp" />
     <ClCompile Include="fence.cpp" />
     <ClCompile Include="frame_buffer.cpp" />
     <ClCompile Include="full_screen_quad.cpp" />

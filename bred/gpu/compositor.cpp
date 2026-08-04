@@ -64,13 +64,13 @@ namespace gpu
 
          auto pgpudevice = pgpuapproach->get_gpu_device(pacmewindowingwindow);
 
-<<<<<<< HEAD
-         auto pgpucontext = pgpudevice->create_draw2d_context(::gpu::e_output_gpu_buffer, pacmewindowingwindow, rectanglePlacement.size());
-=======
+//<<<<<<< HEAD
+         //auto pgpucontext = pgpudevice->create_draw2d_context(::gpu::e_output_gpu_buffer, pacmewindowingwindow, rectanglePlacement.size());
+//=======
          auto pgpucontext = pgpudevice->allocate_gpu_context();
          
          pgpucontext->create_draw2d_gpu_context(pgpudevice, pacmewindowingwindow, rectanglePlacement.size());
->>>>>>> origin/main
+//>>>>>>> origin/main
 
          auto pgpucontextNew = pgpucontext;
 

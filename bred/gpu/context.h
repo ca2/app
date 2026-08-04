@@ -129,7 +129,8 @@ namespace gpu
       ::pointer<::gpu::render_target>              m_prendertargetBound;
       ::pointer < ::gpu::model_buffer >            m_pmodelbufferDummy;
       ::pointer < ::gpu::shader >                  m_pshaderBlend3;
-      ::pointer < ::acme::windowing::window >      m_pacmewindowingwindowWindowSurface;
+      //::pointer < ::acme::windowing::window >      m_pacmewindowingwindowWindowSurface;
+      ::pointer < ::acme::user::interaction >      m_pacmeuserinteractionAffinity;
 
       ::pointer<::gpu::shader>                     m_pgpushaderRgbaFromB_G;
       bool                                         m_bCreated;
@@ -266,11 +267,11 @@ namespace gpu
       /// <param name="pgpudevice"></param>
       /// <param name="eoutput"></param>
       /// <param name="size"></param>
-<<<<<<< HEAD
-      virtual void create_draw2d_context(::gpu::device* pgpudevice, const enum_output& eoutput, ::acme::windowing::window * pwindow, const ::i32_size& size);
-=======
+//<<<<<<< HEAD
+//      virtual void create_draw2d_context(::gpu::device* pgpudevice, const enum_output& eoutput, ::acme::windowing::window * pwindow, const ::i32_size& size);
+//=======
       virtual void create_draw2d_gpu_context(::gpu::device* pgpudevice, ::acme::windowing::window* pacmewindowingwindow, const ::i32_size& size);
->>>>>>> origin/main
+//>>>>>>> origin/main
 
       virtual void create_gpu_context(::gpu::device* pgpudevice, const ::gpu::enum_output& eoutput, const ::gpu::enum_scene& escene, ::acme::windowing::window* pacmewindowingwindow, const ::i32_size & size);
 

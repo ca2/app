@@ -16,7 +16,7 @@ namespace draw2d_cairo
    region::region()
    {
 
-      m_pthis = this;
+      //m_pthis = this;
 
       m_pcairo = nullptr;
 

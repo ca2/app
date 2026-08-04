@@ -59,10 +59,10 @@ namespace gpu
 
       virtual void initialize_render_target(::gpu::renderer* prenderer, const ::i32_size& size, ::pointer <::gpu::render_target>previous);
 
-      virtual void restart_frame_counter();
+      //virtual void restart_frame_counter();
 
 
-      virtual bool is_starting_frame()const;
+      //virtual bool is_starting_frame()const;
 
 
       //virtual void on_new_frame();

@@ -90,7 +90,7 @@ FragColor = texture(uTexture, TexCoord);
 
       }
 
-      if (!m_pgpucontext->m_pacmewindowingwindowWindowSurface)
+      if (!m_pgpucontext->m_pacmeuserinteractionAffinity)
       {
 
          information("swap_chain::present No window");
@@ -110,8 +110,10 @@ FragColor = texture(uTexture, TexCoord);
 //
 //      }
 
+      ::cast < ::windowing::window > pwindow = m_pgpucontext->m_pacmeuserinteractionAffinity->acme_windowing_window();
+
       
-      if (m_pgpucontext->m_pacmewindowingwindowWindowSurface->should_avoid_default_swap_chain_present())
+      if (pwindow->should_avoid_default_swap_chain_present())
       {
 
          information("swap_chain::present should_avoid_platform_swap_chain_present()");
@@ -536,7 +538,7 @@ void swap_chain::on_gpu_context_render_frame(::i32 w, ::i32 h)
       
    }
    
-   auto size = m_pgpucontext->m_pacmewindowingwindowWindowSurface->get_window_rectangle().size();
+   auto size = m_pgpucontext->m_pacmeuserinteractionAffinity->get_window_rectangle().size();
    
    if(::is_null(m_ptexturePresent) ||
       m_ptexturePresent->size() != size

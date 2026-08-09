@@ -164,7 +164,7 @@ namespace gpu
             0.1f,
             2.0f);
 
-         m_pgpucontext->m_rectangle.set_size(m_ptextureCubemap->size());
+         m_pgpucontext->set_size(m_ptextureCubemap->size());
 
          m_ptextureHdr->set_state(pgpucommandbuffer, ::gpu::e_texture_state_shader_read);
 

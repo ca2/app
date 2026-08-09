@@ -7,7 +7,7 @@
 #include "renderer.h"
 #include "render_target.h"
 #include "texture.h"
-#include "bred/gpu/draw2d_window_attachment.h"
+#include "bred/gpu/window_attachment.h"
 
 
 namespace gpu
@@ -77,10 +77,10 @@ namespace gpu
       auto pgpurenderer = m_pgpurenderer;
 
       //auto pgpurendertarget = pgpurenderer->render_target();
-      auto pgpudraw2dwindowattachment = ::gpu::draw2d_window_attachment::get(m_pgpurenderer);
+      auto pgpuwindowattachment = ::gpu::window_attachment::get(m_pgpurenderer);
 
-      auto iImageIndex = pgpudraw2dwindowattachment->get_image_index();
-      const auto iFrameIndex = pgpudraw2dwindowattachment->get_frame_index3();
+      auto iImageIndex = pgpuwindowattachment->get_image_index();
+      const auto iFrameIndex = pgpuwindowattachment->get_frame_index3();
 
       if (iImageIndex < 0)
       {
@@ -121,6 +121,8 @@ namespace gpu
 
       m_iFrameIndex = iFrameIndex;
 
+      //m_ptextureDrawing.release();
+
       m_iLayerIndex = iLayerIndex;
 
       m_bIncludeInFrameComposition = true;
@@ -132,7 +134,7 @@ namespace gpu
 
       }
 
-      m_pgpurenderer->defer_update_renderer();
+      //m_pgpurenderer->defer_update_renderer();
 
    }
 
@@ -240,6 +242,18 @@ namespace gpu
 
       }
 
+      //{
+
+      //   std::lock_guard lock(m_mutexTextureSnapshot);
+
+      //   m_ptextureReady = m_ptextureDrawing;
+
+      //   m_ptextureDrawing.release();
+
+      //}
+
+      m_iFrameIndexReady = m_iFrameIndex;
+
       m_timeEnd.Now();
 
       m_timeDuration = m_timeEnd - m_timeStart;
@@ -251,40 +265,60 @@ namespace gpu
    }
 
 
-   ::pointer < texture >& layer::texture()
+   ::pointer < texture >& layer::texture(bool bRenderTarget)
    {
 
-      auto pgpudraw2dwindowattachment = ::gpu::draw2d_window_attachment::get(m_pgpurenderer);
+      auto iFrameIndex = m_iFrameIndex;
 
-      ::i32 iFrameIndex = pgpudraw2dwindowattachment->get_frame_index3();
+      auto & ptexture = m_texturea.atø(iFrameIndex);
 
-      auto & ptexture = m_texturea.element_at_grow(iFrameIndex);
+      auto rectangle = m_pgpurenderer->m_pgpucontext->get_placement();
 
-      m_pgpurenderer->defer_constructø(ptexture);
+      if (rectangle.is_empty())
+      {
 
-      auto rectangle = m_pgpurenderer->m_pgpucontext->rectangle();
+         throw ::exception(error_wrong_state);
 
-      ::gpu::texture_attributes textureattributes(rectangle);
+      }
 
-      ::gpu::texture_flags textureflags;
+      if (!ptexture || rectangle != ptexture->m_textureattributes.m_rectangleTarget)
+      {
 
-      textureflags.m_bRenderTarget = true;
-      textureflags.m_bTransferTarget = true;
-      textureflags.m_bShaderResource = true;
+         m_pgpurenderer->defer_constructø(ptexture);
 
-      ptexture->initialize_texture(m_pgpurenderer->m_pgpucontext, textureattributes, textureflags);
+         ::gpu::texture_attributes textureattributes(rectangle);
+
+         ::gpu::texture_flags textureflags;
+
+         //textureflags.m_bRenderTarget = true;
+         //textureflags.m_bRenderTarget = false;
+         textureflags.m_bRenderTarget = bRenderTarget;
+         textureflags.m_bTransferTarget = true;
+         textureflags.m_bShaderResource = true;
+
+         ptexture->initialize_texture(m_pgpurenderer->m_pgpucontext, textureattributes, textureflags);
+
+      }
 
       return ptexture;
 
    }
 
 
+   //::pointer < ::gpu::texture > layer::composition_texture()
+   //{
+
+   //   std::lock_guard lock(m_mutexTextureSnapshot);
+
+   //   return m_ptextureReady;
+
+   //}
+
+
    ::pointer < texture >& layer::source_texture()
    {
 
-      auto pgpudraw2dwindowattachment = ::gpu::draw2d_window_attachment::get(m_pgpurenderer);
-
-      ::i32 iFrameIndex = pgpudraw2dwindowattachment->get_frame_index3();
+      auto iFrameIndex = m_iFrameIndex;
 
       auto& ptextureSource = m_textureaSource.element_at_grow(iFrameIndex);
 

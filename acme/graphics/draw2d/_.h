@@ -14,6 +14,8 @@ namespace draw2d
 
    class printer;
 
+   class window_attachment;
+
 
 } // namespace draw2d
 

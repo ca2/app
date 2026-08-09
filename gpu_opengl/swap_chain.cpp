@@ -175,9 +175,9 @@ FragColor = texture(uTexture, TexCoord);
          glGetIntegerv(GL_DRAW_FRAMEBUFFER_BINDING, &drawFramebuffer);
          glGetIntegerv(GL_READ_FRAMEBUFFER_BINDING, &readFramebuffer);
          glGetIntegerv(GL_DRAW_BUFFER, &drawBuffer);
-          informationf("drawFBO=%d readFBO=%d drawBuffer=0x%04x "
-                       "currentDrawSurface=%p expectedWindowSurface=%p "
-                       "EGL_RENDER_BUFFER=0x%04x",
+          informationf("drawFBO=%d readFBO=%d drawBuffer=0x%04x ",
+                       //"currentDrawSurface=%p expectedWindowSurface=%p "
+                       //"EGL_RENDER_BUFFER=0x%04x",
                        drawFramebuffer, readFramebuffer, drawBuffer);
 
          //WGLSurface currentDrawSurface = eglGetCurrentSurface(EGL_DRAW);
@@ -221,7 +221,7 @@ FragColor = texture(uTexture, TexCoord);
          //auto pcommandbuffer = m_pgpucontext->m_pgpurenderer->getCurrentCommandBuffer2(::gpu::current_layer());
          auto pcommandbuffer = pgpucommandbuffer;
 
-         auto sizeContext = m_pgpucontext->m_rectangle.size();
+         auto sizeContext = m_pgpucontext->size();
          
          pcommandbuffer->begin_render(m_pshaderPresent, m_ptexturePresent);
 
@@ -286,7 +286,7 @@ FragColor = texture(uTexture, TexCoord);
          
 #endif
 
-#if 0
+#if 1
 
          glClearColor(0.5f, 0.5f, 0.5f, 0.5f);
          ::opengl::check_error("");
@@ -397,7 +397,7 @@ void swap_chain::on_gpu_context_render_frame(::i32 w, ::i32 h)
 
 //   auto pcommandbuffer = m_pgpucontext->m_pgpurenderer->getCurrentCommandBuffer2(::gpu::current_layer());
 
-///   auto sizeContext = m_pgpucontext->m_rectangle.size();
+///   auto sizeContext = m_pgpucontext->size();
    ///
    ::cast < ::gpu_opengl::shader > pshader = pshaderRender;
    
@@ -653,7 +653,7 @@ void swap_chain::defer_update_swap_chain_textures(const ::i32_size & size)
    
    ::i32_size size(w, h);
    
-   if(m_pgpucontext->m_rectangle.size() != size
+   if(m_pgpucontext->size() != size
       || ::is_null(m_ptextureaSwapChain)
       || m_ptextureaSwapChain->size() != 3
       || m_ptextureaSwapChain->first()->size() != size
@@ -662,7 +662,7 @@ void swap_chain::defer_update_swap_chain_textures(const ::i32_size & size)
       
       m_pgpucontext->on_resize(size);
       
-      m_pgpucontext->m_rectangle.set_size(size);
+      m_pgpucontext->set_size(size);
       
       //{
       

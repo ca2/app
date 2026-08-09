@@ -4,7 +4,7 @@
 #include "block.h"
 #include "command_buffer.h"
 #include "context.h"
-#include "aaa_cpu_buffer.h"
+#include "buffer.h"
 //#include "cube.h"
 #include "device.h"
 #include "fence.h"
@@ -64,7 +64,7 @@ __FACTORY_EXPORT void gpu_opengl_factory(::factory::factory * pfactory)
    pfactory->add_factory_item < ::gpu_opengl::context, ::gpu::context >();
    //pfactory->add_factory_item < ::gpu_opengl::program, ::gpu::program >();
    pfactory->add_factory_item < ::gpu_opengl::shader, ::gpu::shader >();
-   pfactory->add_factory_item < ::gpu_opengl::aaa_cpu_buffer, ::gpu::aaa_cpu_buffer >();
+   pfactory->add_factory_item < ::gpu_opengl::buffer, ::gpu::buffer >();
    pfactory->add_factory_item < ::gpu_opengl::renderer, ::gpu::renderer >();
 
    pfactory->add_factory_item<::gpu::texture_synchronization>();

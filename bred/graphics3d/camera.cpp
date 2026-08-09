@@ -81,8 +81,10 @@ namespace graphics3d
    void camera::calculate_projection(::floating_matrix4 & matrixProjection)
    {
 
+      auto rectangleGpuContext = m_pengine->gpu_context()->get_placement();
+
       m_fAspectRatio =
-         (::f32)m_pengine->gpu_context()->m_rectangle.width() / (::f32)m_pengine->gpu_context()->m_rectangle.height();
+         (::f32)rectangleGpuContext.width() / (::f32)rectangleGpuContext.height();
 
       m_pengine->calculate_projection(matrixProjection, *this);
 

@@ -2,19 +2,19 @@
 #pragma once
 
 
-#include "aura/graphics/image/aaa_buffer.h"
+//#include "aura/graphics/image/aaa_buffer.h"
 
 
 namespace image
 {
 
 
-   class CLASS_DECL_AURA aaa_lock
+   class CLASS_DECL_AURA lock
    {
    public:
 
 
-      ::image::aaa_buffer *              m_pbuffer;
+      ::pixmap *              m_ppixmap;
 
 
       aaa_lock(aaa_buffer* pbuffer)

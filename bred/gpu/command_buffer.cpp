@@ -17,18 +17,35 @@ namespace gpu
 
    scoped_command_buffer::scoped_command_buffer(::gpu::command_buffer* pcommandbufferIn)
    {
+      auto pgpulayer = ::gpu::current_layer();
 
-      m_pcommandbufferOut = ::gpu::current_layer()->m_pcommandbufferScoped;
+      if (pgpulayer)
+      {
+         m_pcommandbufferOut = pgpulayer->m_pcommandbufferScoped;
+      }
+      else
+      {
+
+         m_pcommandbufferOut = nullptr;
+      }
       m_pcommandbufferIn = pcommandbufferIn;
-      ::gpu::current_layer()->m_pcommandbufferScoped = m_pcommandbufferIn;
+      if (pgpulayer)
+      {
+         pgpulayer->m_pcommandbufferScoped = m_pcommandbufferIn;
+      }
 
    }
 
 
    scoped_command_buffer::~scoped_command_buffer()
    {
+      auto pgpulayer = ::gpu::current_layer();
 
-      ::gpu::current_layer()->m_pcommandbufferScoped = m_pcommandbufferOut;
+      if (pgpulayer)
+      {
+         pgpulayer->m_pcommandbufferScoped = m_pcommandbufferOut;
+
+      }
 
    }
 
@@ -171,7 +188,7 @@ namespace gpu
    void command_buffer::end_render()
    {
 
-
+      m_pgpurendertarget->m_pgpurenderer->m_pgpucontext->end_render(this);
    }
 
 

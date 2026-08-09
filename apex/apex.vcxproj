@@ -2653,6 +2653,8 @@
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='ReleaseDebug|ARM64'">Create</PrecompiledHeader>
     </ClCompile>
     <ClCompile Include="gpu\approach.cpp" />
+    <ClInclude Include="gpu\window_attachment.h" />
+    <ClCompile Include="gpu\window_attachment.cpp" />
     <ClCompile Include="handler\manager.cpp" />
     <ClCompile Include="handler\manager_room.cpp" />
     <ClCompile Include="handler\signal.cpp" />

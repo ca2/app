@@ -19,7 +19,7 @@
 #include "bred/gpu/binding.h"
 #include "bred/gpu/command_buffer.h"
 #include "bred/gpu/context_lock.h"
-#include "bred/gpu/draw2d_window_attachment.h"
+#include "bred/gpu/window_attachment.h"
 #include "bred/gpu/layer.h"
 #include "bred/gpu/layer.h"
 #include "bred/gpu/types.h"
@@ -398,7 +398,7 @@ namespace gpu_opengl
          glFramebufferTexture2D(GL_READ_FRAMEBUFFER, GL_COLOR_ATTACHMENT0,
                                 GL_TEXTURE_2D, m_gluTextureBitmap1, 0);
          glBlitFramebuffer(0, 0, m_sizeBitmap1.cx, m_sizeBitmap1.cy,
-                           0, 0, m_rectangle.width(), m_rectangle.height(),
+                           0, 0, this->width(), this->height(),
                            GL_COLOR_BUFFER_BIT, GL_LINEAR);
          glBindFramebuffer(GL_READ_FRAMEBUFFER, 0);
          glDeleteFramebuffers(1, &readFboId);
@@ -1287,9 +1287,9 @@ namespace gpu_opengl
       if (m_papplication->m_gpu.m_bUseSwapChainWindow)
       {
 
-         auto pgpudraw2dwindowattachment = ::gpu::draw2d_window_attachment::get(this);
+         auto pgpuwindowattachment = ::gpu::window_attachment::get(this);
 
-         auto pswapchain = pgpudraw2dwindowattachment->window_context()->get_swap_chain();
+         auto pswapchain = pgpuwindowattachment->window_context()->get_swap_chain();
 
          if (pswapchain)
          {
@@ -1460,7 +1460,7 @@ namespace gpu_opengl
 //
 //          ::cast<::gpu_opengl::texture> ptextureDst = ptextureTarget;
 //
-//          // ::i32 iH = ptextureDst->m_pgpurenderer->m_pgpucontext->m_rectangle.height();
+//          // ::i32 iH = ptextureDst->m_pgpurenderer->m_pgpucontext->height();
 //          //
 //          // ptextureDst->bind_render_target();
 //          //
@@ -1807,9 +1807,9 @@ namespace gpu_opengl
    //      if (!ptexture->m_gluDepthStencilRBO)
    //      {
 
-   //         ::i32 width = pgpucontext->m_rectangle.width();
+   //         ::i32 width = pgpucontext->width();
 
-   //         ::i32 height = pgpucontext->m_rectangle.height();
+   //         ::i32 height = pgpucontext->height();
 
    //         glGenRenderbuffers(1, &ptexture->m_gluDepthStencilRBO);
    //         ::opengl::check_error("");
@@ -1865,23 +1865,23 @@ namespace gpu_opengl
       glViewport(
          0,
          0,
-         m_rectangle.width(),
-         m_rectangle.height());
+         this->width(),
+         this->height());
 
       // Optional: scissor if you want to limit drawing region
       glEnable(GL_SCISSOR_TEST);
       glScissor(
          0,
          0,
-         m_rectangle.width(),
-         m_rectangle.height()
+         this->width(),
+         this->height()
          );
 
 
       // Blit from source to default pframebuffer
       glBlitFramebuffer(
          0, 0, ptexture->size().cx, ptexture->size().cy, // src rect
-         0, 0, m_rectangle.width(), m_rectangle.height(), // dst rect
+         0, 0, this->width(), this->height(), // dst rect
          GL_COLOR_BUFFER_BIT, GL_NEAREST);
 
       glBindFramebuffer(GL_FRAMEBUFFER, 0); // Return to default pframebuffer
@@ -1965,7 +1965,7 @@ namespace gpu_opengl
    //}
 
 
-   void context::copy(::gpu::texture *ptextureTarget, ::gpu::texture *ptextureSource, ::pointer < ::gpu::fence > * pgpufence)
+   void context::copy(::gpu::texture *ptextureTarget, ::gpu::texture *ptextureSource, ::pointer < ::gpu::fence > * pgpufence, ::pointer < ::gpu::semaphore > * pgpusemaphoreReady)
    {
 
       ::gpu::context_lock contextlock(this);
@@ -2262,6 +2262,9 @@ namespace gpu_opengl
    //void context::_create_window_context(::acme::windowing::window *pwindowParam)
    {
 
+
+      ::gpu::context::create_window_gpu_context(pgpudevice, eoutput, escene, pacmewindowingwindow, size);
+
       //   ::cast < ::windowing_win32::window > pwindow = pwindowParam;
 
       //   if (!m_hdc || !m_hrc)
@@ -2516,10 +2519,10 @@ namespace gpu_opengl
    //}
 
 
-   void context::resize_cpu_buffer21(const ::i32_size &sizeParam)
+   void context::resize_cpu_buffer(const ::i32_size &sizeParam)
    {
 
-      throw todo;
+      //throw todo;
       //if (m_papplication->m_bUseSwapChainWindow)
       {
 
@@ -2535,7 +2538,7 @@ namespace gpu_opengl
 
             throw todo;
 
-         create_cpu_buffer21(size);
+         create_cpu_buffer(size);
 
          ::gpu::context_lock contextlock(this);
          ///m_pcpubuffer->m_pixmap.create(m_pcpubuffer->m_memory, size);
@@ -2673,7 +2676,7 @@ namespace gpu_opengl
    // }
 
 
-   void context::destroy_cpu_buffer21()
+   void context::destroy_cpu_buffer()
    {
 
       throw todo;

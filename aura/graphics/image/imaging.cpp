@@ -5,7 +5,7 @@
 #include "context.h"
 #include "array.h"
 #include "acme/graphics/image/image32.h"
-#include "acme/graphics/image/pixmap_lock.h"
+//#include "acme/graphics/image/pixmap_lock.h"
 #include "acme/parallelization/synchronous_lock.h"
 #include "aura/graphics/draw2d/graphics.h"
 #include "aura/graphics/draw2d/graphics_pointer.h"

@@ -393,7 +393,7 @@ namespace graphics3d
 
          pgpushader->push_properties(pgpulayer->getCurrentCommandBuffer4());
 
-         //i32_rectangle r(pgpucontext->m_rectangle.size());
+         //i32_rectangle r(pgpucontext->size());
 
          //pgpulayer->getCurrentCommandBuffer4()->set_viewport(r);
 

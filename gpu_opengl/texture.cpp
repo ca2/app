@@ -70,7 +70,7 @@ namespace
    };
 
 
-   GLenum pixmap_pixel_format(const ::pixmap * ppixmap)
+   GLenum pixmap_pixel_format(const ::pixmap_t * ppixmap)
    {
 
       const auto & indexes = ppixmap->m_colorindexes;
@@ -409,7 +409,7 @@ namespace gpu_opengl
    //          //   //}
    //          //   //::opengl::check_error("");
    //
-   //          //   //i32_rectangle r(pcontext->m_pgpucontext->m_rectangle.size());
+   //          //   //i32_rectangle r(pcontext->m_pgpucontext->size());
    //
    //          //   //glViewport(r.left, r.top, r.width(), r.height());
    //          //   //::opengl::check_error("");
@@ -1013,7 +1013,7 @@ namespace gpu_opengl
             //   //}
             //   //::opengl::check_error("");
 
-            //   //i32_rectangle r(pcontext->m_pgpucontext->m_rectangle.size());
+            //   //i32_rectangle r(pcontext->m_pgpucontext->size());
 
             //   //glViewport(r.left, r.top, r.width(), r.height());
             //   //::opengl::check_error("");
@@ -1518,7 +1518,7 @@ void texture::_defer_bind_to_render_source(base_context_handle::object &object)
          textureattributes,
          textureflags);
 
-      pcontext->copy(m_ptextureResolved, this, nullptr);
+      pcontext->copy(m_ptextureResolved, this, nullptr, nullptr);
 
       return m_ptextureResolved.cast < ::gpu_opengl::texture >();
 
@@ -1771,7 +1771,7 @@ void texture::_defer_bind_to_render_source(base_context_handle::object &object)
    }
 
 
-   void texture::read_pixels(::pixmap * ppixmap)
+   void texture::read_pixels(::gpu::command_buffer * pgpucommandbuffer, ::pixmap_t * ppixmap)
    {
 
       if (!ppixmap || ppixmap->size() != size() ||
@@ -1831,7 +1831,7 @@ void texture::_defer_bind_to_render_source(base_context_handle::object &object)
    }
 
 
-   void texture::write_pixels(const ::pixmap * ppixmap)
+   void texture::write_pixels(const ::pixmap_t * ppixmap)
    {
 
       if (!ppixmap || ppixmap->size() != size() ||

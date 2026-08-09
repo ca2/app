@@ -701,7 +701,7 @@
     <ClInclude Include="assimp.h" />
     <ClInclude Include="block.h" />
     <ClInclude Include="command_buffer.h" />
-    <ClInclude Include="aaa_cpu_buffer.h" />
+    <ClInclude Include="buffer.h" />
     <ClInclude Include="context.h" />
     <ClInclude Include="context_egl.h">
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
@@ -726,7 +726,7 @@
     <ClInclude Include="context_win32.h" />
     <ClInclude Include="device.h" />
     <ClInclude Include="device_win32.h" />
-    <ClInclude Include="draw2d_window_attachment.h" />
+    <ClInclude Include="window_attachment.h" />
     <ClInclude Include="fence.h" />
     <ClInclude Include="frame.h" />
     <ClInclude Include="frame_buffer.h" />
@@ -826,7 +826,7 @@
     <ClCompile Include="command_buffer.cpp" />
     <ClCompile Include="context_ktx.cpp" />
     <ClCompile Include="context_win32.cpp" />
-    <ClCompile Include="aaa_cpu_buffer.cpp" />
+    <ClCompile Include="buffer.cpp" />
     <ClCompile Include="context.cpp" />
     <ClCompile Include="context_egl.cpp">
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='StaticDebug|Win32'">true</ExcludedFromBuild>
@@ -850,7 +850,7 @@
     </ClCompile>
     <ClCompile Include="device.cpp" />
     <ClCompile Include="device_win32.cpp" />
-    <ClCompile Include="draw2d_window_attachment.cpp" />
+    <ClCompile Include="window_attachment.cpp" />
     <ClCompile Include="fence.cpp" />
     <ClCompile Include="frame_buffer.cpp" />
     <ClCompile Include="full_screen_quad.cpp" />

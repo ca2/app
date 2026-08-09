@@ -1,6 +1,6 @@
 #include "framework.h"
 //#include "_gpu_opengl.h"
-#include "aaa_cpu_buffer.h"
+#include "buffer.h"
 #include "lock.h"
 #include "texture.h"
 #include "acme/parallelization/synchronous_lock.h"
@@ -15,24 +15,24 @@ namespace gpu_opengl
 {
 
 
-   aaa_cpu_buffer::aaa_cpu_buffer()
+   buffer::buffer()
    {
 
    }
 
 
-   aaa_cpu_buffer::~aaa_cpu_buffer()
+   buffer::~buffer()
    {
 
    }
 
 
-   void aaa_cpu_buffer::gpu_read()
+   void buffer::gpu_read()
    {
 
       _synchronous_lock synchronouslock(this->synchronization(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 
-      if (m_pimagetarget->m_pimage.nok())
+      if (m_ppixmap.nok())
       {
 
          return;
@@ -134,12 +134,14 @@ namespace gpu_opengl
       if(glReadnPixels)
       {
 
-         auto targeting = m_pimagetarget->source_scan_targeting(::image::e_copy_disposition_y_swap);
+         //auto targeting = m_ppixmap->source_scan_targeting(::image::e_copy_disposition_y_swap);
 
-         auto w = targeting.width();
-         auto h = targeting.height();
-         auto s = targeting.scan() * h * 4;
-         auto p = targeting.data();
+         auto mapPixmap = m_ppixmap->map();
+
+         auto w = mapPixmap.width();
+         auto h = mapPixmap.height();
+         auto s = mapPixmap.scan() * h * 4;
+         auto p = mapPixmap.data();
          glReadnPixels(
             0, 0,
             w, h,
@@ -154,11 +156,13 @@ namespace gpu_opengl
       else
       {
 
-         auto targeting = m_pimagetarget->no_padded_targeting(::image::e_copy_disposition_y_swap);
+         //auto targeting = m_ppixmap->no_padded_targeting(::image::e_copy_disposition_y_swap);
 
-         auto w = targeting.width();
-         auto h = targeting.height();
-         auto p = targeting.data();
+         auto mapPixmap = m_ppixmap->map();
+
+         auto w = mapPixmap.width();
+         auto h = mapPixmap.height();
+         auto p = mapPixmap.data();
          glReadPixels(
             0, 0,
             w, h,
@@ -208,12 +212,12 @@ namespace gpu_opengl
    }
 
 
-   void aaa_cpu_buffer::gpu_write()
+   void buffer::gpu_write()
    {
 
       synchronous_lock synchronouslock(this->synchronization(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 
-      if (m_pimagetarget->m_pimage.nok())
+      if (m_ppixmap.nok())
       {
 
          return;
@@ -228,13 +232,13 @@ namespace gpu_opengl
 //         GL_UNSIGNED_BYTE,
 //         m_pixmap.m_pimage32Raw);
 
-      auto lock = m_pimagetarget->no_padded_lock(::image::e_copy_disposition_y_swap);
+      auto mapPixmap = m_ppixmap->map();
       
       glTexImage2D(GL_TEXTURE_2D, 0, 0, 0, 
-         lock.width(), 
-         lock.height(), 
+         mapPixmap.width(),
+         mapPixmap.height(),
          GL_RGBA, GL_UNSIGNED_BYTE, 
-         lock.data());
+         mapPixmap.data());
       ::opengl::check_error("");
 
    }

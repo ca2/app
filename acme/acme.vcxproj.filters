@@ -3801,7 +3801,7 @@
     <ClInclude Include="nano\graphics\pen.h">
       <Filter>Header Files\nano\graphics</Filter>
     </ClInclude>
-    <ClInclude Include="graphics\image\pixmap_lock.h">
+    <ClInclude Include="graphics\image\aaa_pixmap_lock.h">
       <Filter>Header Files\graphics\image</Filter>
     </ClInclude>
     <ClInclude Include="nano\user\theme.h">

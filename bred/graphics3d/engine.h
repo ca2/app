@@ -25,7 +25,7 @@ namespace graphics3d
 
       ::std::atomic<::f32>                              m_fDesiredFps{60.0f};
 
-
+      ::image::image_pointer                             m_pimageOutput;
 
 		::f32                                              m_fYScale;
 		//::pointer < ::gpu::approach >					      m_papproach;

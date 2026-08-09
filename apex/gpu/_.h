@@ -14,4 +14,21 @@ namespace gpu
 } // namespace gpu
 
 
+namespace apex
+{
+
+
+   namespace gpu
+   {
+
+
+      class window_attachment;
+
+
+   } // namespace gpu
+
+
+} // namespace apex
+
+
 

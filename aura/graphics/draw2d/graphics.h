@@ -93,6 +93,7 @@ namespace draw2d
       ::pointer < ::acme::user::interaction >       m_pacmeuserinteractionAffinity;
       //::pointer < ::user::interaction >            m_puserinteractionDraw2dGraphics;
       //::pointer<::draw2d::host>                    m_pdraw2dhost;
+      ::pointer < ::graphics::buffer_item >        m_pgraphicsbufferitem;
       ::f64                                       m_dSizeScaler;
       bool                                         m_bPat;
       ///::image32_callback                           m_callbackImage32CpuBuffer;
@@ -108,7 +109,7 @@ namespace draw2d
       ::pointer<::task>                     m_ptask;
       bool                                   m_bDraw;
 
-      ::image::image* m_pimage = nullptr;
+      ::pointer < ::image::image> m_pimage;
       ::draw2d::bitmap_pointer               m_pbitmap;
       ::draw2d::pen_pointer                  m_ppen;
       ::draw2d::brush_pointer                m_pbrush;
@@ -150,7 +151,7 @@ namespace draw2d
       //::e_status                             m_estatusLast;
 
       ::pointer < ::graphics::graphics >     m_pgraphicsgraphics;
-      ::pointer < ::graphics::buffer_item >  m_pgraphicsbufferitem;
+      //::pointer < ::graphics::buffer_item >  m_pgraphicsbufferitem;
 
       ::pointer < ::user::redraw >           m_puserredraw;
 
@@ -238,6 +239,9 @@ namespace draw2d
 
 
       virtual ::draw2d::bitmap *get_target_bitmap();
+
+
+      virtual void set_target_image(::image::image * pimage);
 
       ::image::image_pointer image_source_image(const ::i32_size& sizeDst) override;
 

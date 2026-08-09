@@ -1085,6 +1085,9 @@
     <ClInclude Include="innate_ui\menu.h">
       <Filter>Header Files\innate_ui</Filter>
     </ClInclude>
+    <ClInclude Include="gpu\window_attachment.h">
+      <Filter>Header Files\gpu</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="filesystem\file\set.cpp">
@@ -1572,6 +1575,9 @@
     </ClCompile>
     <ClCompile Include="innate_ui\menu.cpp">
       <Filter>Source Files\innate_ui</Filter>
+    </ClCompile>
+    <ClCompile Include="gpu\window_attachment.cpp">
+      <Filter>Source Files\gpu</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

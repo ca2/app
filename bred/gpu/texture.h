@@ -125,8 +125,9 @@ namespace gpu
 
       virtual ::string texture_type();
       virtual void set_pixels(const ::i32_rectangle& rectangle, const void* data);
-      virtual void read_pixels(::pixmap * ppixmap);
-      virtual void write_pixels(const ::pixmap * ppixmap);
+      virtual void read_to_buffer(::gpu::command_buffer * pgpucommandbuffer, ::gpu::buffer * pgpubuffer);
+      virtual void read_pixels(::gpu::command_buffer * pgpucommandbuffer, ::pixmap_t * ppixmap);
+      virtual void write_pixels(const ::pixmap_t * ppixmap);
       virtual void write_pixels(const ::i32_size & size, const ::image32_t * pimage32, ::i32 iScan);
 
       virtual bool is_in_shader_sampling_state();

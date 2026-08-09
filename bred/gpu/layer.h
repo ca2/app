@@ -1,6 +1,7 @@
 // Created by camilo on 2025-06-12 20:58 <3ThomasBorregaardSørensen!!
 #pragma once
 #include "acme/parallelization/manual_reset_happening.h"
+#include <mutex>
 
 
 namespace gpu
@@ -16,6 +17,7 @@ namespace gpu
       enum_gpu_layer_state m_egpulayerstate = e_gpu_layer_state_initial;
 
       ::i32 m_iFrameIndex = -1;
+      ::i32 m_iFrameIndexReady = -1;
       ::i32 m_iLayerIndex = -1;
       bool m_bFirstLayer;
       bool m_bClosingLayer;
@@ -26,9 +28,11 @@ namespace gpu
       //::i32_rectangle m_rectangleTarget;
       ::pointer_array <::gpu::texture >    m_texturea;
       ::pointer_array <::gpu::texture >    m_textureaSource;
+      //::pointer < ::gpu::texture >         m_ptextureDrawing;
+      //::pointer < ::gpu::texture >         m_ptextureReady;
+      std::mutex                           m_mutexTextureSnapshot;
       //::pointer < ::gpu::frame > m_pgpulayer;
       ::pointer < ::gpu::fence > m_pgpufence;
-      ::pointer < ::gpu::semaphore > m_pgpusemaphoreSignal;
       //::comptr < ID3D12Resource > m_presource;
       ///bool m_bFinished;
       ::pointer < ::manual_reset_happening > m_pmanualresethappeningFinished;
@@ -70,7 +74,8 @@ namespace gpu
       virtual void layer_on_after_submit();
 
 
-      ::pointer < ::gpu::texture > & texture();
+      ::pointer < ::gpu::texture > & texture(bool bRenderTarget);
+      //::pointer < ::gpu::texture > composition_texture();
       ::pointer < ::gpu::texture > & source_texture();
       ::gpu::renderer * renderer();
 

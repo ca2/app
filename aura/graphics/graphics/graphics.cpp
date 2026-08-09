@@ -209,23 +209,23 @@ namespace graphics
    //}
 
 
-   ::graphics::buffer_item *graphics::on_begin_layout() 
+   ::draw2d::graphics_lease graphics::on_begin_layout()
    {
       
-      return on_begin(e_graphics_layout); 
+      return ::transfer(on_begin(e_graphics_layout)); 
    
    }
 
 
-   ::graphics::buffer_item *graphics::on_begin_draw()
+   ::draw2d::graphics_lease graphics::on_begin_draw()
    {
 
-      return on_begin(e_graphics_draw);
+      return ::transfer(on_begin(e_graphics_draw));
 
    }
 
 
-   ::graphics::buffer_item *graphics::on_begin(::e_graphics egraphics)
+   ::draw2d::graphics_lease graphics::on_begin(::e_graphics egraphics)
    {
 
       debug() << "::graphics::graphics::on_begin_draw";
@@ -254,7 +254,7 @@ namespace graphics
 
             information() << "window size is zero in begin draw!!";
 
-            return nullptr;
+            return {};
 
          }
 
@@ -263,7 +263,7 @@ namespace graphics
       if (!_on_begin(pbufferitem))
       {
 
-         return nullptr;
+         return {};
 
       }
 
@@ -279,7 +279,24 @@ namespace graphics
 
       //}
 
-      return pbufferitem;
+      //return ::transfer(pbufferitem->acquire_graphics());
+
+      if (m_pdraw2dgraphics)
+      {
+
+         //m_pdraw2dgraphics->set_target_image(pbufferitem->m_pimageBufferItem);
+
+         m_pdraw2dgraphics->m_pgraphicsbufferitem = pbufferitem;
+
+         return { draw2d(), m_pdraw2dgraphics, pbufferitem->m_pimageBufferItem, true };
+
+      }
+      else
+      {
+
+         ::transfer(pbufferitem->acquire_graphics());
+
+      }
 
    }
 

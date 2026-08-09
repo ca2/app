@@ -729,7 +729,7 @@ namespace gpu
    }
 
 
-   void texture::read_pixels(::pixmap *)
+   void texture::read_to_buffer(::gpu::command_buffer * pgpucommandbuffer, ::gpu::buffer * pgpubuffer)
    {
 
       throw ::not_implemented();
@@ -737,7 +737,15 @@ namespace gpu
    }
 
 
-   void texture::write_pixels(const ::pixmap *)
+   void texture::read_pixels(::gpu::command_buffer * pgpucommandbuffer, ::pixmap_t *)
+   {
+
+      throw ::not_implemented();
+
+   }
+
+
+   void texture::write_pixels(const ::pixmap_t *)
    {
 
       throw ::not_implemented();

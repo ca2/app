@@ -1,11 +1,15 @@
 // Created by camilo on 2025-06-10 <3ThomasBorregaardSørensen!!
 #include "framework.h"
+#include "command_buffer.h"
 #include "context.h"
 #include "device.h"
+#include "window_attachment.h"
 #include "fence.h"
 #include "renderer.h"
 #include "semaphore.h"
 #include "swap_chain.h"
+#include "texture.h"
+#include "texture_synchronization.h"
 #include "aura/windowing/window.h"
 
 
@@ -35,6 +39,178 @@ namespace gpu
    {
 
 
+
+   }
+
+
+
+   void swap_chain::do_output(::gpu::texture * pgputexture)
+   {
+
+      //if (eoutput == ::gpu::e_output_swap_chain)
+      {
+
+         //auto pgpuwindowattachment = ::gpu::window_attachment::get(m_pgpucontext);
+
+         //auto pgpuswapchain = pgpuwindowattachment->m_pgpucontextWindow->get_swap_chain();
+
+         //if (pgpuswapchain)
+         {
+
+            auto pgpucontextSwapChain = m_pgpucontext;
+
+            if (!m_bSwapChainInitialized)
+            {
+
+               initialize_gpu_swap_chain(pgpucontextSwapChain->m_pgpurenderer);
+
+            }
+
+            //::cast<gpu::render_target> pgpurendertarget = pgpuswapchain;
+
+            ////if (pgpurendertarget)
+            //{
+
+            //  // if (!pgpurendertarget->m_pgpurenderer)
+            //   if (!m_pgpurenderer)
+            //   {
+
+            //      initialize_render_target(m, m_pgpucontext->size(), nullptr);
+
+            //   }
+
+            //}
+
+            //::cast<renderer> pgpurendererSwapChain = pgpucontextSwapChain->m_pgpurenderer;
+            ::cast<renderer> pgpurendererSwapChain = m_pgpurenderer;
+
+            // pgpucontextSwapChain->start_frame();
+
+            // pgpucontextSwapChain->start_layer();
+
+            //::cast<command_buffer> pcommandbufferSwapChain =
+            // pgpurendererSwapChain->getCurrentCommandBuffer2(::gpu::current_layer());
+            ::pointer<command_buffer> pcommandbufferSwapChain =
+               pgpucontextSwapChain->beginSingleTimeCommands(pgpucontextSwapChain->m_pgpudevice->graphics_queue());
+
+            auto pgpuwindowattachment = ::gpu::window_attachment::get(pgpucontextSwapChain);
+
+            pcommandbufferSwapChain->m_iCommandBufferFrameIndex2 = pgpuwindowattachment->m_iCurrentFrame3;
+
+            // pcommandbuffer->begin_command_buffer(false);
+            auto iSwapChainFrameIndex = swap_chain_frame_index();
+
+            // if (defer_constructø(pgpucontextSwapChain->m_gpusemaphoreaPresentReady.atø(iSwapChainFrameIndex)))
+            //{
+
+            //   pgpucontextSwapChain->m_gpusemaphoreaPresentReady[iSwapChainFrameIndex]->initialize_gpu_semaphore(
+            //      m_pgpucontext);
+            //}
+
+            auto & framesync = frame(iSwapChainFrameIndex);
+
+            if (::is_set(framesync.m_pgpusemaphoreImageAvailable))
+            {
+
+               if (pcommandbufferSwapChain->m_semaphoreaWait.add_unique(framesync.m_pgpusemaphoreImageAvailable))
+               {
+
+                  pcommandbufferSwapChain->m_epipelinestageaWait.add(
+                     e_pipeline_stage_color_attachment_output_bit);
+
+               }
+
+            }
+
+            pcommandbufferSwapChain->m_pgpufence = framesync.m_pgpufenceInFlight;
+
+            if (framesync.m_pgpusemaphoreRenderFinished)
+            {
+
+               pcommandbufferSwapChain->m_semaphoreaSignal.add_unique(framesync.m_pgpusemaphoreRenderFinished);
+
+               m_gpusemaphoreaWait.add_unique(framesync.m_pgpusemaphoreRenderFinished);
+
+            }
+
+            //for (::collection::index i = 0; i < semaphoreaReady.get_count(); i++)
+            //{
+
+            if (pgputexture->synchronization())
+            {
+
+               auto pgpusemaphoreRenderFinished = pgputexture->synchronization()->m_pgpusemaphoreRenderFinished;
+
+               if (pgpusemaphoreRenderFinished)
+               {
+
+                  if (pcommandbufferSwapChain->m_semaphoreaWait.add_unique(pgpusemaphoreRenderFinished))
+                  {
+
+                     pcommandbufferSwapChain->m_epipelinestageaWait.add(::gpu::e_pipeline_stage_fragment_shader_bit);
+
+                  }
+
+                  //if (semaphoreaReady.add_unique(pgpusemaphoreRenderFinished))
+                  //{
+                  //
+                  //   epipelinestageaReady.add(::gpu::e_pipeline_stage_fragment_shader_bit);
+                  //
+                  //}
+
+               }
+
+            }
+
+
+            //   if (pcommandbufferSwapChain->m_semaphoreaWait.add_unique(semaphoreaReady[i]))
+            //   {
+
+            //      pcommandbufferSwapChain->m_epipelinestageaWait.add(epipelinestageaReady[i]);
+
+            //   }
+
+            //}
+            // pcommandbufferSwapChain->m_semaphoreaSignal.add_unique(
+            //  pgpucontextSwapChain->m_gpusemaphoreaPresentReady.atø(iSwapChainFrameIndex));
+
+            // pswapchain->m_pwindowSwapChain->_main_send([pswapchain, ptextureBackBuffer]()
+            //  system()->acme_windowing()
+            //  ->_main_send([pswapchain, ptextureBackBuffer]()
+            //{
+
+
+            present(pgputexture, pcommandbufferSwapChain);
+
+
+            set_present_state(pcommandbufferSwapChain);
+            // pgpucontextSwapChain->end_layer();
+
+            // pgpucontextSwapChain->end_frame();
+            //}
+
+            // pcommandbuffer->m_semaphoreaWait.add_unique(pswapchain->m_fr->m_semaphoreaSignal);
+            //}
+
+            //});
+
+            // prendererBackBuffer->frame_suffix();
+
+
+            // #endif
+            //          pcommandbuffer->submit_command_buffer(nullptr);
+
+            pgpucontextSwapChain->endSingleTimeCommands(pcommandbufferSwapChain);
+
+            swap_buffers();
+
+            framesync.m_pcommandbufferLastSwapChainPresentation = pcommandbufferSwapChain;
+
+            // pswapchain->swap_buffers();
+
+         }
+
+      }
 
    }
 
@@ -94,10 +270,20 @@ namespace gpu
    void swap_chain::initialize_gpu_swap_chain(::gpu::renderer * pgpurenderer)
    {
 
-      ASSERT(m_bWindowInitialized && m_pwindowSwapChain);
+      if (!m_bWindowInitialized || !m_pwindowSwapChain)
+      {
 
-      ASSERT(pgpurenderer->m_pgpucontext == m_pgpucontext
-      && m_pgpucontext->m_etype == ::gpu::context::e_type_window);
+         throw ::exception(error_wrong_state);
+
+      }
+
+      if (pgpurenderer->m_pgpucontext != m_pgpucontext
+      || m_pgpucontext->m_etype != ::gpu::context::e_type_window)
+      {
+
+         throw ::exception(error_wrong_state);
+
+      }
 
       m_pgpurenderer = pgpurenderer;
 
@@ -151,7 +337,7 @@ namespace gpu
 
       defer_check_swap_chain();
 
-      return m_ptextureaSwapChain->element_at(m_iCurrentSwapChainFrame);
+      return m_ptextureaSwapChain->element_at(m_iCurrentSwapChainImage);
 
    }
 

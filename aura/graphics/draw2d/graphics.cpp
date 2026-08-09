@@ -195,6 +195,14 @@ namespace draw2d
    }
 
 
+   void graphics::set_target_image(::image::image * pimage)
+   {
+
+      throw ::interface_only();
+
+   }
+
+
    ::image::image_pointer graphics::image_source_image(const ::i32_size & sizeDst)
    {
 
@@ -657,6 +665,8 @@ namespace draw2d
       m_bForWindowDraw2d = true;
 
       m_pacmeuserinteractionAffinity = puserinteraction;
+
+      m_sizeTotal2 = size;
 
       //create_memory_graphics(size);
 

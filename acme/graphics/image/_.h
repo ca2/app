@@ -7,3 +7,20 @@
 #define DEFAULT_CREATE_IMAGE_FLAG (::e_flag_success)
 
 
+namespace image
+{
+
+
+   enum enum_copy_disposition
+   {
+
+      e_copy_disposition_none,
+      e_copy_disposition_y_swap,
+
+   };
+
+
+} // namespace image
+
+
+

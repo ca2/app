@@ -184,7 +184,10 @@ public:
    ::string as_string() const;
 
 };
+
+
 CLASS_DECL_ACME string type_name(const ::std::type_info& typeinfo);
+
 
 template<typename TYPE>
 inline ::std::type_index type_index() { return typeid(TYPE); }

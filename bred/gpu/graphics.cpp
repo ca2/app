@@ -5,6 +5,7 @@
 #include "draw2d.h"
 #include "frame.h"
 #include "graphics.h"
+#include "image.h"
 #include "layer.h"
 #include "pixmap.h"
 #include "texture.h"
@@ -12,8 +13,10 @@
 #include "aura/user/user/interaction.h"
 #include "aura/graphics/draw2d/_draw2d.h"
 #include "aura/graphics/draw2d/pen.h"
+#include "aura/graphics/graphics/buffer_item.h"
 #include "aura/graphics/graphics/context.h"
 #include "aura/graphics/graphics/graphics.h"
+#include "aura/graphics/image/image.h"
 #include "aura/windowing/window.h"
 #include "bred/gpu/_model.h"
 #include "bred/gpu/bred_approach.h"
@@ -22,7 +25,7 @@
 #include "bred/gpu/context_lease.h"
 #include "bred/gpu/debug_scope.h"
 #include "bred/gpu/device.h"
-#include "bred/gpu/draw2d_window_attachment.h"
+#include "bred/gpu/window_attachment.h"
 #include "bred/gpu/model_buffer.h"
 #include "bred/gpu/renderer.h"
 //#include "bred/gpu/render_state.h"
@@ -40,7 +43,7 @@ namespace gpu
 //p.y = iContextHeight - p.y
 //
 //#define __USES_TRANSFORM(pcontext) \
-//auto iContextHeight = pcontext->m_rectangle.height()
+//auto iContextHeight = pcontext->height()
 //
 //
 //
@@ -80,7 +83,7 @@ namespace gpu
       }
 
       m_pgpucontextCompositor2.release();
-      m_pgpucontextLease.close_noexcept();
+      m_pgpucontextOwned.release();
 
 
    }
@@ -107,18 +110,18 @@ namespace gpu
       }
 
       m_pgpucontextCompositor2.release();
-      m_pgpucontextLease = ::transfer(contextlease);
-      set_gpu_context(m_pgpucontextLease.get());
+      m_pgpucontextOwned = ::transfer(contextlease);
+      set_gpu_context(m_pgpucontextOwned.get());
 
    }
 
 
-   ::gpu::context_lease & graphics::context_lease()
-   {
+   //::gpu::context_lease & graphics::context_lease()
+   //{
 
-      return m_pgpucontextLease;
+   //   return m_pgpucontextOwned;
 
-   }
+   //}
 
 
    void graphics::on_start_layer_before_begin_render(
@@ -130,7 +133,7 @@ namespace gpu
       if (m_pimage)
       {
 
-         pgpulayer->m_bIncludeInFrameComposition = false;
+         //pgpulayer->m_bIncludeInFrameComposition = false;
 
       }
 
@@ -191,7 +194,7 @@ namespace gpu
 
       auto pcontext = ((graphics*)this)->gpu_context();
 
-      return ::is_set(this) & ::is_set(pcontext);
+      return ::is_set(this) & (::is_set(pcontext) || ::is_set(m_pgpucontextOwned));
 
    }
 
@@ -203,9 +206,9 @@ namespace gpu
 
       auto pgpudevice = pcontext->m_pgpudevice;
 
-      auto pgpudraw2dwindowattachment = ::gpu::draw2d_window_attachment::get(pcontext);
+      auto pgpuwindowattachment = ::gpu::window_attachment::get(pcontext);
 
-      auto iGpuDeviceFrameSerial = pgpudraw2dwindowattachment->m_iFrameSerial2;
+      auto iGpuDeviceFrameSerial = pgpuwindowattachment->m_iFrameSerial2;
 
       if (m_iGpuContextFrameSerial >= iGpuDeviceFrameSerial)
       {
@@ -214,15 +217,15 @@ namespace gpu
 
       }
 
-      m_iGpuContextFrameSerial = pgpudraw2dwindowattachment->m_iFrameSerial2;
+      m_iGpuContextFrameSerial = pgpuwindowattachment->m_iFrameSerial2;
 
       auto prenderer = pcontext->get_gpu_renderer();
 
       auto prendertarget = prenderer->render_target();
 
-      // auto pgpudraw2dwindowattachment = ::gpu::draw2d_window_attachment::get(prendertarget);
+      // auto pgpuwindowattachment = ::gpu::window_attachment::get(prendertarget);
 
-      ::i32 iFrameIndex = pgpudraw2dwindowattachment->get_frame_index3();
+      ::i32 iFrameIndex = pgpuwindowattachment->get_frame_index3();
 
       if (iFrameIndex < 0)
       {
@@ -231,7 +234,7 @@ namespace gpu
 
       }
 
-      auto ppoolgroupFrame = pgpudraw2dwindowattachment->frame_pool_group(iFrameIndex);
+      auto ppoolgroupFrame = pgpuwindowattachment->frame_pool_group(iFrameIndex);
 
       m_ppoolgroupFrame = ppoolgroupFrame;
 
@@ -289,18 +292,42 @@ namespace gpu
          auto pcontext = gpu_context();
 
       pcontext->m_escene = ::gpu::e_scene_2d;
-      auto pgpudraw2dwindowattachment = ::gpu::draw2d_window_attachment::get(pcontext);
-         pgpudraw2dwindowattachment->start_frame();
+      auto pgpuwindowattachment = ::gpu::window_attachment::get(pcontext);
+         pgpuwindowattachment->start_frame();
          //pcontext->start_frame();
    }
 
 
    void graphics::end_frame() {
       auto pcontext = gpu_context();
-      auto pgpudraw2dwindowattachment = ::gpu::draw2d_window_attachment::get(pcontext);
-      pgpudraw2dwindowattachment->end_frame();
+      auto pgpuwindowattachment = ::gpu::window_attachment::get(pcontext);
+      pgpuwindowattachment->end_frame();
    }
 
+
+   ::gpu::context * graphics::gpu_context()
+   {
+
+      auto pgpucontext = ::gpu::compositor::gpu_context();
+
+      if (::is_set(pgpucontext))
+      {
+
+         return pgpucontext;
+
+      }
+
+      pgpucontext = m_pgpucontextOwned;
+
+      if (::is_set(pgpucontext))
+      {
+
+         return pgpucontext;
+
+      }
+
+      return nullptr;
+   }
 
 
    void graphics::start_layer(bool bFirstLayer)
@@ -315,9 +342,9 @@ namespace gpu
       //auto pgpudevice =
         // m_papplication->get_gpu_approach()->get_gpu_device(m_pacmeuserinteractionAffinity->acme_windowing_window());
 
-      auto pgpudraw2dwindowattachment = ::gpu::draw2d_window_attachment::get(m_pacmeuserinteractionAffinity);
+      auto pgpuwindowattachment = ::gpu::window_attachment::get(m_pacmeuserinteractionAffinity);
 
-      auto pgpucontextWindow = pgpudraw2dwindowattachment->m_pgpucontextWindow;
+      auto pgpucontextWindow = pgpuwindowattachment->m_pgpucontextWindow;
 
       // if (::is_null(pcontextMain) || !pcontextMain->m_bCreated)
       // {
@@ -337,6 +364,16 @@ namespace gpu
       auto pcontext = gpu_context();
 
       pcontext->m_escene = ::gpu::e_scene_2d;
+
+      auto rectangleThisContext = pcontext->get_placement();
+
+      information("rectangleThisContext {}", rectangleThisContext);
+
+      //auto rectangleClient = rectangleWindow;
+
+      //rectangleClient.offset(-rectangleClient.top_left());
+
+      //pcontext->set_placement(rectangleClient);
 
       /// end of a layout thing
 
@@ -420,6 +457,25 @@ namespace gpu
       pcontext->on_begin_draw_attach(this);
 
       pcontext->start_layer(bFirstLayer);
+
+      auto pgputexture = pcontext->m_pgpurenderer->m_pgpurendertarget2->current_texture(::gpu::current_layer());
+
+      auto sizeRaw = pgputexture->size();
+
+      if (m_pgraphicsbufferitem->m_pimageBufferItem->m_sizeRaw != sizeRaw)
+      {
+
+         ::cast <::gpu::image> pgpuimage = m_pgraphicsbufferitem->m_pimageBufferItem;
+
+         pgpuimage->create_gpu_texture_image(pgputexture, this);
+
+      }
+
+      m_pimage = m_pgraphicsbufferitem->m_pimageBufferItem;
+
+      ::gpu::context_lock lock(pcontext);
+
+      set_target_image(m_pgraphicsbufferitem->m_pimageBufferItem);
 
    }
 
@@ -660,7 +716,7 @@ namespace gpu
       
       auto pcontext = gpu_context();
       
-      auto size = pcontext->m_rectangle.size();
+      auto size = pcontext->get_placement().size();
 
       ::geometry2d::matrix contextmatrix;
 
@@ -697,11 +753,11 @@ namespace gpu
 
          auto prendertarget = prenderer->render_target();
 
-         auto pgpudraw2dwindowattachment = ::gpu::draw2d_window_attachment::get(pcontext);
+         auto pgpuwindowattachment = ::gpu::window_attachment::get(pcontext);
 
-         ::i32 iFrameIndex = pgpudraw2dwindowattachment->get_frame_index3();
+         ::i32 iFrameIndex = pgpuwindowattachment->get_frame_index3();
 
-         auto ppoolgroupFrame = pgpudraw2dwindowattachment->frame_pool_group(iFrameIndex);
+         auto ppoolgroupFrame = pgpuwindowattachment->frame_pool_group(iFrameIndex);
 
          pool.m_ppoolgroup = ppoolgroupFrame;
 
@@ -942,13 +998,13 @@ namespace gpu
       if (m_papplication->m_gpu.m_bUseSwapChainWindow)
       {
 
-         auto pgpucontext = gpu_context();
+         auto pgpucontext = m_pgpucontextOwned;
 
          auto pgpudevice = pgpucontext->m_pgpudevice;
 
-         auto pgpudraw2dwindowattachment = ::gpu::draw2d_window_attachment::get(pgpucontext);
+         auto pgpuwindowattachment = ::gpu::window_attachment::get(pgpucontext);
 
-         auto pgpucontextWindow = pgpudraw2dwindowattachment->m_pgpucontextWindow;
+         auto pgpucontextWindow = pgpuwindowattachment->m_pgpucontextWindow;
 
          auto pswapchain = pgpucontextWindow->get_swap_chain();
 
@@ -992,7 +1048,7 @@ namespace gpu
       if (pcontext)
       {
 
-         return pcontext->m_rectangle.size();
+         return pcontext->get_placement().size();
 
       }
 
@@ -1206,7 +1262,7 @@ namespace gpu
       __transform(points1[0]);
       __transform(points1[1]);
 
-      //auto size = pcontext->m_rectangle.size();
+      //auto size = pcontext->size();
 
       //::geometry2d::matrix m;
       //m.translate(0.5, -0.5);
@@ -1535,7 +1591,7 @@ namespace gpu
       // glUniform3f(glGetUniformLocation(shader.ID, "textColor"), color.x, color.y, color.z);
       //pshader->setup_sampler_and_texture("text", 0);
       //auto pcontext = gpu_context();
-      // auto size = pcontext->m_rectangle.size();
+      // auto size = pcontext->size();
       // floating_matrix4 projection = glm::ortho(
       //    0.0f,
       //    static_cast<::f32>(size.width()),
@@ -1608,7 +1664,7 @@ namespace gpu
       ::i32 Δx = 0;
       //auto pcontext = gpu_context();
 
-      //point.y = pcontext->m_rectangle.height() - point.y - pface->m_iPixelSize;
+      //point.y = pcontext->height() - point.y - pface->m_iPixelSize;
 
       //pcontext->set_cull_face(::gpu::e_cull_mode_back);
       pcontext->set_cull_face(::gpu::e_cull_mode_none);
@@ -1815,11 +1871,14 @@ namespace gpu
    }
 
 
-
    void graphics::defer_set_size(const ::i32_size &size) 
    {
+
+      auto rectangle = gpu_context()->get_placement();
+
+      rectangle.set_size(size);
    
-   gpu_context()->m_rectangle.set_size(size);
+      gpu_context()->set_placement(rectangle);
    
    }
 

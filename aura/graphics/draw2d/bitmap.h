@@ -68,7 +68,8 @@ namespace draw2d
       
       virtual void create_bitmap_for_image(
          ::image::image * pimage,
-         ::acme::user::interaction * pacmeuserinteractionAffinity = nullptr);
+         ::acme::user::interaction * pacmeuserinteractionAffinity = nullptr,
+         ::draw2d::graphics * pgraphics = nullptr);
       virtual void preserve_image(const ::i32_size & size, ::image::image* pimage);
       virtual void create_bitmap(::draw2d::graphics * pgraphics, const ::i32_size& size, ::memory & memory, ::i32* piScan);
       virtual bool host_bitmap(::draw2d::graphics* pgraphics, pixmap_t* ppximap);

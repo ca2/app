@@ -159,6 +159,7 @@ namespace gpu_opengl
    void command_buffer::end_render()
    {
 
+      ::gpu::command_buffer::end_render();
 
    }
 

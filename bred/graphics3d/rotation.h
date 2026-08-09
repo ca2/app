@@ -35,7 +35,7 @@ namespace graphics3d
          m_angleYaw += angleΔYaw;
          m_anglePitch += angleΔPitch;
 
-         m_angleYaw.m_fAngle = std::fmod(m_angleYaw, (FLOATING)_2πl);
+         m_angleYaw.m_fAngle = std::fmod(m_angleYaw, (FLOATING)(2 * πl));
          m_anglePitch = ::geometry::clamp(m_anglePitch, angleMinimumPitch, angleMaximumPitch);
 
          return *this;

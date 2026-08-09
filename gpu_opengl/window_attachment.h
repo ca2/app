@@ -2,15 +2,15 @@
 #pragma once
 
 
-#include "bred/gpu/draw2d_window_attachment.h"
+#include "bred/gpu/window_attachment.h"
 
 
 namespace gpu_opengl
 {
 
 
-   class CLASS_DECL_GPU_OPENGL draw2d_window_attachment :
-      virtual public ::gpu::draw2d_window_attachment
+   class CLASS_DECL_GPU_OPENGL window_attachment :
+      virtual public ::gpu::window_attachment
    {
    public:
 
@@ -20,11 +20,11 @@ namespace gpu_opengl
       //::pointer< ::gpu::context >m_pgpucontextWindow;
 
 
-      draw2d_window_attachment();
-      ~draw2d_window_attachment() override;
+      window_attachment();
+      ~window_attachment() override;
 
 
-      void initialize_window_attachment(::windowing::window * pwindow) override;
+      void initialize_gpu_window_attachment(::acme::windowing::window * pwindow) override;
 
 
       ::i32 get_frame_index3() override;

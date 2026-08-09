@@ -3,7 +3,7 @@
 #include "approach.h"
 #include "command_buffer.h"
 #include "context.h"
-#include "aaa_cpu_buffer.h"
+#include "buffer.h"
 #include "device.h"
 #include "frame.h"
 #include "frame_buffer.h"
@@ -110,7 +110,7 @@ namespace gpu_opengl
       if (pgpucontext)
       {
 
-         pgpucontext->update_framebuffer(pgpucontext->rectangle().size());
+         pgpucontext->update_framebuffer(pgpucontext->size());
 
       }
 
@@ -241,7 +241,7 @@ namespace gpu_opengl
 
       auto eoutput = m_pgpucontext->m_eoutput;
 
-      auto r = m_pgpucontext->rectangle();
+      auto r = m_pgpucontext->get_placement();
 
       ::i32 width = r.width();
 
@@ -292,7 +292,7 @@ namespace gpu_opengl
 
          //if (m_pgpucontext == m_pgpucontext->m_pgpudevice->m_pgpucontextMain)
          //{
-            pcommandbuffer->set_viewport(m_pgpucontext->m_rectangle.size());
+            pcommandbuffer->set_viewport(m_pgpucontext->size());
          //}
          //else
          //{
@@ -415,8 +415,8 @@ namespace gpu_opengl
          //glViewport(0, 0, width, height);
          //if (m_pgpucontext == m_pgpucontext->m_pgpudevice->m_pgpucontextMain)
          //{
-            pcommandbuffer->set_viewport(m_pgpucontext->m_rectangle.size());
-            pcommandbuffer->set_scissor(m_pgpucontext->m_rectangle.size());
+            pcommandbuffer->set_viewport(m_pgpucontext->size());
+            pcommandbuffer->set_scissor(m_pgpucontext->size());
          //}
          //else
          //{
@@ -925,12 +925,12 @@ namespace gpu_opengl
       if (pgpucontext)
       {
 
-         auto pcpubuffer = pgpucontext->m_pcpubuffer2;
+         auto pcpubuffer = pgpucontext->m_pbuffer;
 
          if (pcpubuffer)
          {
 
-            pcpubuffer->set_size(pgpucontext->m_rectangle.size());
+            pcpubuffer->set_size(pgpucontext->size());
 
             pcpubuffer->gpu_read();
 

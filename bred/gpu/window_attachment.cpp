@@ -9,9 +9,11 @@
 #include "layer.h"
 #include "renderer.h"
 #include "render_target.h"
-#include "draw2d_window_attachment.h"
+#include "texture.h"
+#include "window_attachment.h"
 #include "aura/graphics/graphics/graphics.h"
 #include "aura/windowing/window.h"
+#include "bred/graphics3d/engine.h"
 
 
 #ifdef WINDOWS_DESKTOP
@@ -24,7 +26,7 @@ namespace gpu
 {
 
 
-   draw2d_window_attachment::draw2d_window_attachment()
+   window_attachment::window_attachment()
    {
 
       m_iCurrentImage = 0;
@@ -32,15 +34,17 @@ namespace gpu
    }
 
 
-   draw2d_window_attachment::~draw2d_window_attachment()
+   window_attachment::~window_attachment()
    {
 
 
    }
 
 
-   void draw2d_window_attachment::initialize_window_attachment(::windowing::window * pwindow)
+   void window_attachment::initialize_gpu_window_attachment(::acme::windowing::window * pacmewindowingwindow)
    {
+
+      ::apex::gpu::window_attachment::initialize_gpu_window_attachment(pacmewindowingwindow);
 
       if (m_papplication->m_gpu.m_bUseSwapChainWindow)
       {
@@ -57,36 +61,38 @@ namespace gpu
 
          ::string strType;
 
-         strType = ::type(pwindow->m_pacmeuserinteraction).name();
+         strType = ::type(pacmewindowingwindow->m_pacmeuserinteraction).name();
 
          const_char_pointer pszType = strType.c_str();
 
          information("gpu::approach::gpu_on_create_window for type {}", pszType);
 
-         auto pgpudevice = pgpuapproach->get_gpu_device(pwindow);
+         auto pgpudevice = pgpuapproach->get_gpu_device(pacmewindowingwindow);
 
          m_pgpucontextWindow = pgpudevice->allocate_gpu_context();
 
          ::gpu::enum_output eoutput = ::gpu::e_output_none;
+
+         auto sizeWindow = pacmewindowingwindow->m_sizeWindow;
+
+         ::gpu::enum_scene escene = ::gpu::e_scene_2d;
 
          if (m_papplication->m_gpu.m_bUseSwapChainWindow)
          {
 
             eoutput = ::gpu::e_output_swap_chain;
 
+            m_pgpucontextWindow->create_window_gpu_context(pgpudevice, eoutput, escene, pacmewindowingwindow, sizeWindow);
+
          }
          else
          {
 
-            eoutput = ::gpu::e_output_gpu_buffer;
+            eoutput = ::gpu::e_output_draw2d_bitmap;
+
+            m_pgpucontextWindow->create_gpu_context(pgpudevice, eoutput, escene, pacmewindowingwindow, sizeWindow);
 
          }
-
-         auto sizeWindow = pwindow->m_sizeWindow;
-
-         ::gpu::enum_scene escene = ::gpu::e_scene_2d;
-
-         m_pgpucontextWindow->create_window_gpu_context(pgpudevice, eoutput, escene, pwindow, sizeWindow);
 
          //::cast<::gpu_opengl::approach> papproach = m_papplication->get_gpu_approach();
          //_gpu_on_create_window(pacmewindowingwindow);
@@ -100,7 +106,7 @@ namespace gpu
 
 
 
-            auto hwnd= ::as_HWND(pwindow->operating_system_window());
+            auto hwnd= ::as_HWND(pacmewindowingwindow->operating_system_window());
 
             //auto pHWND = pwin32window->_HWND();
 
@@ -134,7 +140,7 @@ namespace gpu
 
 
 
-   ::gpu::context * draw2d_window_attachment::window_context()
+   ::gpu::context * window_attachment::window_context()
    {
 
       return m_pgpucontextWindow;
@@ -155,7 +161,7 @@ namespace gpu
    }
 
 
-   ::gpu::context * draw2d_window_attachment::draw2d_context()
+   ::gpu::context * window_attachment::draw2d_context()
    {
 
       if (!m_pgpucontextDraw2d)
@@ -177,10 +183,10 @@ namespace gpu
             && puserinteraction->m_pacmewindowingwindow)
          {
 
-            m_pgpucontextDraw2d->branch_synchronously();
+            //m_pgpucontextDraw2d->branch_synchronously();
 
-            m_pgpucontextDraw2d->sendø() << [this, puserinteraction]()
-               {
+            //m_pgpucontextDraw2d->sendø() << [this, puserinteraction]()
+              // {
 
                   auto pinteraction = (::user::interaction *)puserinteraction.m_p;
 
@@ -207,7 +213,7 @@ size
                   //   size
                   //);
 
-               };
+               //};
 
          }
 
@@ -218,7 +224,7 @@ size
    }
 
 
-   ::pointer<::gpu::context> draw2d_window_attachment::create_work_context()
+   ::pointer<::gpu::context> window_attachment::create_work_context()
    {
 
       auto pgpucontext = createø<::gpu::context>();
@@ -264,7 +270,7 @@ size
    }
 
 
-   ::gpu::context * draw2d_window_attachment::work_context()
+   ::gpu::context * window_attachment::work_context()
    {
 
       if (!m_pgpucontextWork)
@@ -278,7 +284,7 @@ size
 
    }
 
-   ::gpu::frame * draw2d_window_attachment::current_frame()
+   ::gpu::frame * window_attachment::current_frame()
    {
 
       _synchronous_lock lock(this->synchronization());
@@ -300,7 +306,7 @@ size
    }
 
 
-   void draw2d_window_attachment::register_frame_context(::gpu::context * pcontext, ::gpu::layer * player)
+   void window_attachment::register_frame_context(::gpu::context * pcontext, ::gpu::layer * player)
    {
 
       _synchronous_lock lock(this->synchronization());
@@ -310,7 +316,7 @@ size
    }
 
 
-   void draw2d_window_attachment::dispatch_post_frame_contexts()
+   void window_attachment::dispatch_post_frame_contexts()
    {
 
       post_frame_context_registry_t::entry_array entrya;
@@ -350,7 +356,7 @@ size
    }
 
 
-   frame_storage * draw2d_window_attachment::current_frame_storage()
+   frame_storage * window_attachment::current_frame_storage()
    {
 
       return m_framestoragea.atø(m_iCurrentFrame3);
@@ -358,7 +364,7 @@ size
    }
 
 
-   ::gpu::frame_ephemeral * draw2d_window_attachment::current_frame_ephemeral()
+   ::gpu::frame_ephemeral * window_attachment::current_frame_ephemeral()
    {
 
       return m_frameephemerala.atø(m_iCurrentFrame3);
@@ -368,13 +374,13 @@ size
 
 
 
-   void draw2d_window_attachment::on_start_frame()
+   void window_attachment::on_start_frame()
    {
 
    }
 
 
-   void draw2d_window_attachment::on_end_frame()
+   void window_attachment::on_end_frame()
    {
 
       {
@@ -399,10 +405,13 @@ size
          {
 
             pframestorage->on_end_frame();
+
          }
          catch (...)
          {
+
          }
+
       }
 
       if (m_timeLast5s.elapsed() > 5_s)
@@ -410,17 +419,23 @@ size
 
          m_timeLast5s.Now();
 
-         m_papplication->post(
-            [this]()
-            {
-               m_pgpucontextWindow->m_pgpudevice->manage_retired_objects();
-            });
+         if (m_pgpucontextWindow)
+         {
+
+            m_papplication->post(
+               [this]()
+               {
+                     m_pgpucontextWindow->m_pgpudevice->manage_retired_objects();
+               });
+
+         }
+
       }
+
    }
 
 
-
-   void draw2d_window_attachment::start_stacking_layers()
+   void window_attachment::start_stacking_layers()
    {
 
       m_iLayerCount = 0;
@@ -428,7 +443,7 @@ size
    }
 
 
-   layer * draw2d_window_attachment::create_gpu_layer(renderer * pgpurenderer)
+   layer * window_attachment::create_gpu_layer(renderer * pgpurenderer)
    {
 
       m_iLayer = m_iLayerCount;
@@ -458,7 +473,7 @@ size
    }
 
 
-   void draw2d_window_attachment::layer_end()
+   void window_attachment::layer_end()
    {
 
       auto & layera = *m_pgpulayera;
@@ -473,7 +488,7 @@ size
    }
 
 
-   layer * draw2d_window_attachment::current_layer()
+   layer * window_attachment::current_layer()
    {
 
       if (m_iLayer < 0 || m_iLayer >= m_pgpulayera->get_count())
@@ -491,7 +506,48 @@ size
 
    }
 
-   void draw2d_window_attachment::start_frame()
+
+   void window_attachment::do_output(::gpu::texture * pgputexture)
+   {
+
+      if (m_papplication->m_gpu.m_bUseSwapChainWindow)
+      {
+
+         ::cast<gpu::render_target> pgpurendertarget = m_pgpucontextWindow->output_render_target();
+
+         pgpurendertarget->do_output(pgputexture);
+
+      }
+      else
+      {
+
+         //constructø(m_pgputextureOutput);
+
+         //m_pgputextureOutput->initialize_texture()
+
+      }
+
+
+   }
+
+
+   ::gpu::render_target * window_attachment::render_target()
+   {
+
+      return m_pgpurendertargetRender;
+
+   }
+
+
+   void window_attachment::set_render_target(::gpu::render_target * pgpurendertarget)
+   {
+
+      m_pgpurendertargetRender = pgpurendertarget;
+
+   }
+
+
+   void window_attachment::start_frame()
    {
 
       {
@@ -506,28 +562,50 @@ size
 
       m_iFrameSerial2++;
 
-      m_pgpucontextWindow->on_new_frame();
-
-      // m_iCurrentFrame3 = (m_iCurrentFrame3 + 1) % iFrameCount;
-
-      auto & pframestorage = m_framestoragea.atø(m_iCurrentFrame3);
-
-      if (!pframestorage)
+      if (m_pgpucontextWindow)
       {
 
-         constructø(pframestorage);
-
-         pframestorage->initialize_gpu_frame_storage(m_pgpucontextWindow->m_pgpudevice);
+         m_pgpucontextWindow->on_new_frame();
 
       }
 
-      pframestorage->m_iBuffer = 0;
+         // m_iCurrentFrame3 = (m_iCurrentFrame3 + 1) % iFrameCount;
 
-      pframestorage->m_iBufferOffset = 0;
+         auto & pframestorage = m_framestoragea.atø(m_iCurrentFrame3);
 
-      auto & pframeephemeral = m_frameephemerala.atø(m_iCurrentFrame3);
+         if (!pframestorage)
+         {
 
-      constructø(pframeephemeral);
+            constructø(pframestorage);
+
+            ::gpu::device * pgpudevice = nullptr;
+
+            if (m_pgpucontextWindow)
+            {
+
+               pgpudevice = m_pgpucontextWindow->m_pgpudevice;
+
+            }
+            else if (m_pgraphics3dengine)
+            {
+
+               pgpudevice = m_pgraphics3dengine->gpu_context()->m_pgpudevice;
+
+            }
+
+            pframestorage->initialize_gpu_frame_storage(pgpudevice);
+
+         }
+
+         pframestorage->m_iBuffer = 0;
+
+         pframestorage->m_iBufferOffset = 0;
+
+         auto & pframeephemeral = m_frameephemerala.atø(m_iCurrentFrame3);
+
+         constructø(pframeephemeral);
+
+      //}
 
       _synchronous_lock lock(this->synchronization());
 
@@ -538,81 +616,12 @@ size
    }
 
 
-   bool draw2d_window_attachment::is_starting_frame()const
-   {
-
-      return m_iFrameSerial2 == m_iCurrentFrame3;
-
-   }
 
 
-   void draw2d_window_attachment::restart_frame_counter()
-   {
-
-      if (this->get_frame_count() > 1)
-      {
-
-         m_iCurrentFrame3 = 0;
-         m_iFrameSerial2 = -1;
-
-         //m_pgpurenderer->m_prenderstate->on_happening(e_happening_reset_frame_counter);
-
-      }
-
-   }
+   
 
 
-
-
-   ::i32 draw2d_window_attachment::get_frame_index3()
-   {
-
-      auto iFrameCount = this->get_frame_count();
-
-      if (iFrameCount > 1)
-      {
-
-         return (::i32)(m_iCurrentFrame3 % iFrameCount);
-
-      }
-      else
-      {
-
-         return 0;
-
-      }
-
-   }
-
-
-   ::i32 draw2d_window_attachment::get_image_index()
-   {
-
-      if (this->get_frame_count() > 1)
-      {
-
-         return (::i32)m_iCurrentImage;
-      }
-      else
-      {
-
-         return 0;
-      }
-
-   }
-
-
-   ::i32 draw2d_window_attachment::get_frame_count()
-   {
-
-      return (::i32)m_iFrameCount;
-
-   }
-
-
-
-
-   pool_group * draw2d_window_attachment::frame_pool_group(::i32 iFrameIndex)
+   pool_group * window_attachment::frame_pool_group(::i32 iFrameIndex)
    {
 
       auto & ppoolgroupFrame = m_poolgroupaFrame.element_at_grow(iFrameIndex);
@@ -626,7 +635,7 @@ size
    }
 
 
-   ::pointer_array<::particle > * draw2d_window_attachment::frame_particle_array(::i32 iFrameIndex)
+   ::pointer_array<::particle > * window_attachment::frame_particle_array(::i32 iFrameIndex)
    {
 
       auto & pparticleaFrame = m_particleaFrame.element_at_grow(iFrameIndex);
@@ -644,7 +653,7 @@ size
 
 
 
-   ::gpu::layer * draw2d_window_attachment::get_previous_layer(::gpu::layer * pgpulayer)
+   ::gpu::layer * window_attachment::get_previous_layer(::gpu::layer * pgpulayer)
    {
 
       if (!m_pgpulayera)
@@ -681,7 +690,7 @@ size
 
 
 
-   void draw2d_window_attachment::end_frame()
+   void window_attachment::end_frame()
    {
 
       on_end_frame();
@@ -701,7 +710,7 @@ size
    }
 
 
-   draw2d_window_attachment * draw2d_window_attachment::get(::gpu::render_target * pgpurendertarget)
+   window_attachment * window_attachment::get(::gpu::render_target * pgpurendertarget)
    {
 
       if (::is_null(pgpurendertarget))
@@ -720,12 +729,12 @@ size
 
       }
 
-      return ::gpu::draw2d_window_attachment::get(pgpurenderer);
+      return ::gpu::window_attachment::get(pgpurenderer);
 
    }
 
 
-   draw2d_window_attachment * draw2d_window_attachment::get(::gpu::renderer * pgpurenderer)
+   window_attachment * window_attachment::get(::gpu::renderer * pgpurenderer)
    {
 
       if (::is_null(pgpurenderer))
@@ -744,12 +753,12 @@ size
 
       }
 
-      return ::gpu::draw2d_window_attachment::get(pgpucontext);
+      return ::gpu::window_attachment::get(pgpucontext);
 
    }
 
 
-   draw2d_window_attachment * draw2d_window_attachment::get(::gpu::context * pgpucontext)
+   window_attachment * window_attachment::get(::gpu::context * pgpucontext)
    {
 
       if (::is_null(pgpucontext))
@@ -768,12 +777,12 @@ size
 
       }
 
-      return ::gpu::draw2d_window_attachment::get(pacmeuserinteractionAffinity);
+      return ::gpu::window_attachment::get(pacmeuserinteractionAffinity);
 
    }
 
 
-   ::gpu::draw2d_window_attachment * draw2d_window_attachment::get(::acme::user::interaction * pacmeuserinteraction)
+   ::gpu::window_attachment * window_attachment::get(::acme::user::interaction * pacmeuserinteraction)
    {
 
       if (::is_null(pacmeuserinteraction))
@@ -792,12 +801,12 @@ size
 
       }
 
-      return ::gpu::draw2d_window_attachment::get(pacmewindowingwindow);
+      return ::gpu::window_attachment::get(pacmewindowingwindow);
 
    }
 
 
-   ::gpu::draw2d_window_attachment * draw2d_window_attachment::get(::acme::windowing::window * pacmewindowingwindow)
+   ::gpu::window_attachment * window_attachment::get(::acme::windowing::window * pacmewindowingwindow)
    {
 
       if (::is_null(pacmewindowingwindow))
@@ -816,16 +825,16 @@ size
 
       }
 
-      ::cast< ::gpu::draw2d_window_attachment > pgpudraw2dwindowattachment = pwindow->m_pdraw2dwindowattachment;
+      ::cast< ::gpu::window_attachment > pgpuwindowattachment = pwindow->m_papexgpuwindowattachment;
 
-      if (!pgpudraw2dwindowattachment)
+      if (!pgpuwindowattachment)
       {
 
          return nullptr;
 
       }
 
-      return pgpudraw2dwindowattachment;
+      return pgpuwindowattachment;
 
    }
 

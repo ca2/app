@@ -8,6 +8,7 @@
 namespace gpu 
 {
 
+
    class CLASS_DECL_BRED bitmap :
       virtual public ::draw2d::bitmap
    {
@@ -24,10 +25,11 @@ namespace gpu
       void destroy() override;
 
 
+      virtual void _create_gpu_bitmap(const ::i32_size & size, pixmap_t * ppixmap = nullptr);
       void create_bitmap(::draw2d::graphics *pgraphics, const ::i32_size &size, ::memory & memory, ::i32 *piScan) override;
       
       virtual ::gpu::texture *gpu_texture() const;
-      virtual void create_gpu_texture(pixmap_t *ppixmap = nullptr);
+      
       virtual void initialize_gpu_bitmap(::gpu::context *pgpucontext, const ::i32_size &size,
                                         const ::gpu::texture_data &texturedata);
       virtual ::gpu::texture *get_gpu_texture();

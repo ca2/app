@@ -5,14 +5,14 @@
 #include "context.h"
 #include "debug_scope.h"
 #include "device.h"
-#include "aaa_cpu_buffer.h"
+#include "buffer.h"
 #include "graphics_context.h"
 #include "guard.h"
 #include "input_layout.h"
 #include "memory_buffer.h"
 #include "model_buffer.h"
 #include "queue.h"
-#include "aaa_render.h"
+#include "render.h"
 #include "renderable.h"
 #include "renderer.h"
 //#include "layer_state.h"
@@ -33,7 +33,7 @@
 #include "acme/windowing/windowing.h"
 #include "bred/gpu/command_buffer.h"
 #include "bred/gpu/context_lock.h"
-#include "bred/gpu/draw2d_window_attachment.h"
+#include "bred/gpu/window_attachment.h"
 #include "bred/gpu/graphics.h"
 #include "bred/platform/timer.h"
 #include "bred/graphics3d/engine.h"
@@ -141,10 +141,8 @@ namespace gpu
    //void context::_create_window_buffer(::windowing::window *pwindow) {}
 
 
-   void context::create_cpu_buffer21(const ::i32_size &size)
+   void context::create_cpu_buffer(const ::i32_size &size)
    {
-
-      throw todo;
 
       if (size.is_empty())
       {
@@ -166,15 +164,15 @@ namespace gpu
 
             }
 
-            defer_constructø(m_pcpubuffer2);
+            defer_constructø(m_pbuffer);
 
-            m_pcpubuffer2->initialize_cpu_buffer(this);
+            m_pbuffer->initialize_buffer(this);
 
-            m_pcpubuffer2->set_size(size);
+            m_pbuffer->set_size(size);
 
-            throw todo;
+            //throw todo;
 
-            _create_cpu_buffer21(size);
+            _create_cpu_buffer(size);
 
             m_bCreated = true;
 
@@ -217,29 +215,29 @@ namespace gpu
    //}
 
 
-   void context::_create_cpu_buffer21(const ::i32_size &size) {}
+   void context::_create_cpu_buffer(const ::i32_size &size) {}
 
 
    //void context::_defer_create_window_context(::acme::windowing::window *pwindow) {}
 
 
-   void context::resize_cpu_buffer21(const ::i32_size &size)
+   void context::resize_cpu_buffer(const ::i32_size &size)
    {
 
       send(
          [this, size]()
          {
 
-            if (!m_pcpubuffer2)
+            if (!m_pbuffer)
             {
 
-               return create_cpu_buffer21(size);
+               return create_cpu_buffer(size);
 
             }
 
-            _synchronous_lock synchronouslock(m_pcpubuffer2->synchronization(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
+            _synchronous_lock synchronouslock(m_pbuffer->synchronization(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 
-            m_pcpubuffer2->set_size(size);
+            m_pbuffer->set_size(size);
 
          });
 
@@ -477,11 +475,11 @@ namespace gpu
       if (m_eoutput == e_output_aaa_cpu_buffer || m_eoutput == e_output_gpu_buffer)
       {
 
-         auto pgpudraw2dwindowattachment = ::gpu::draw2d_window_attachment::get(this);
+         auto pgpuwindowattachment = ::gpu::window_attachment::get(this);
 
-         auto iFrameCount = pgpudraw2dwindowattachment->get_frame_count();
+         auto iFrameCount = pgpuwindowattachment->get_frame_count();
 
-         pgpudraw2dwindowattachment->m_iCurrentFrame3 = (pgpudraw2dwindowattachment->m_iCurrentFrame3 + 1) % iFrameCount;
+         pgpuwindowattachment->m_iCurrentFrame3 = (pgpuwindowattachment->m_iCurrentFrame3 + 1) % iFrameCount;
 
       }
 
@@ -1421,6 +1419,8 @@ namespace gpu
 
       m_etype = ::gpu::context::e_type_window;
 
+      m_pacmeuserinteractionAffinity = pacmewindowingwindow->m_pacmeuserinteraction;
+
       //if (m_etype != e_type_window)
       //{
 
@@ -1435,19 +1435,19 @@ namespace gpu
       if (m_htask.is_null())
       {
 
-#if defined(WINDOWS)
-
-         auto pwindow = pacmewindowingwindow->windowing_window();
-
-         m_htask = pwindow->m_puserthread->m_htask;
-
-         m_itask = pwindow->m_puserthread->m_itask;
-
-#else
+//#if defined(WINDOWS)
+//
+//         auto pwindow = pacmewindowingwindow->windowing_window();
+//
+//         m_htask = pwindow->m_puserthread->m_htask;
+//
+//         m_itask = pwindow->m_puserthread->m_itask;
+//
+//#else
 
          branch_synchronously();
 
-#endif
+//#endif
 
          m_pgpudevice = pgpudevice;
 
@@ -1468,9 +1468,9 @@ namespace gpu
                if (m_papplication->m_gpu.m_bUseSwapChainWindow)
                {
 
-                  auto pgpudraw2dwindowattachment = ::gpu::draw2d_window_attachment::get(this);
+                  auto pgpuwindowattachment = ::gpu::window_attachment::get(this);
 
-                  auto pgpucontextWindow = pgpudraw2dwindowattachment->m_pgpucontextWindow;
+                  auto pgpucontextWindow = pgpuwindowattachment->m_pgpucontextWindow;
 
                   if (pgpucontextWindow != this)
                   {
@@ -1516,16 +1516,18 @@ namespace gpu
 
       m_escene = escene;
 
+      m_pacmeuserinteractionAffinity = pacmewindowingwindow->m_pacmeuserinteraction;
+
       branch_synchronously();
 
       m_pgpudevice = pgpudevice;
 
       //rear_guard guard(this);
 
-      sendø() <<[this, pgpudevice, eoutput, escene, size]()
+      sendø() <<[this, pgpudevice, eoutput, escene, size, pacmewindowingwindow]()
          {
 
-            _create_gpu_context(pgpudevice, eoutput, escene, nullptr, size);
+            _create_gpu_context(pgpudevice, eoutput, escene, pacmewindowingwindow, size);
 
          };
 
@@ -1564,6 +1566,8 @@ namespace gpu
 
       m_escene = e_scene_2d;
 
+      m_pacmeuserinteractionAffinity = pacmewindowingwindow->m_pacmeuserinteraction;
+
       branch_synchronously();
 
       m_pgpudevice = pgpudevice;
@@ -1592,6 +1596,8 @@ namespace gpu
       m_eoutput = eoutput;
       
       m_escene = escene;
+
+      m_pacmeuserinteractionAffinity = pacmewindowingwindow->m_pacmeuserinteraction;
 
       if (m_etype == e_type_window)
       {
@@ -1638,9 +1644,7 @@ namespace gpu
 
       m_eoutput = eoutput;
 
-      m_rectangle.top_left() = { 0, 0 };
-
-      m_rectangle.set_size(size);
+      set_placement({ ::i32_point{0, 0}, size });
 
       //on_create_context(pgpudevice, eoutput, pwindow, size);
 
@@ -1951,19 +1955,19 @@ namespace gpu
    }
 
 
-   ::gpu::aaa_cpu_buffer* context::aaa_get_cpu_buffer()
+   ::gpu::buffer* context::get_cpu_buffer()
    {
 
-      throw todo;
+      //throw todo;
 
-      if (!m_pcpubuffer2)
+      if (!m_pbuffer)
       {
 
-         create_cpu_buffer21(m_rectangle.size());
+         create_cpu_buffer(get_placement().size());
 
       }
 
-      return m_pcpubuffer2;
+      return m_pbuffer;
 
    }
 
@@ -1984,7 +1988,7 @@ namespace gpu
    //}
 
 
-   void context::destroy_cpu_buffer21()
+   void context::destroy_cpu_buffer()
    {
 
       //return ::success_none;
@@ -2008,20 +2012,50 @@ namespace gpu
    }
 
 
-   ::i32_rectangle context::rectangle()
+   ::i32_rectangle context::get_placement()
    {
 
-      return m_rectangle;
+      return m_rectangleGpuContext;
 
    }
 
 
-   void context::set_placement(const ::i32_rectangle& rectanglePlacement)
+   ::i32_size context::size()
    {
 
-      m_rectangle = rectanglePlacement;
+      return m_rectangleGpuContext.size();
 
-      //get_renderer()->on_context_resize();
+   }
+
+
+   ::i32 context::width()
+   {
+
+      return m_rectangleGpuContext.width();
+
+   }
+
+
+   ::i32 context::height()
+   {
+
+      return m_rectangleGpuContext.height();
+
+   }
+
+
+   void context::set_placement(const ::i32_rectangle& rectangleGpuContext)
+   {
+
+      m_rectangleGpuContext = rectangleGpuContext;
+
+   }
+
+
+   void context::set_size(const ::i32_size & sizeGpuContext)
+   {
+
+      m_rectangleGpuContext.set_size(sizeGpuContext);
 
    }
 
@@ -2029,9 +2063,7 @@ namespace gpu
    void context::on_resize(const ::i32_size& size)
    {
 
-      m_rectangle.top_left() = { 0, 0 };
-
-      m_rectangle.set_size(size);
+      set_placement({ ::i32_point{ 0, 0 }, size });
 
       if (m_pgpurenderer)
       {
@@ -2151,9 +2183,9 @@ namespace gpu
       if (m_etype != e_type_window)
       {
 
-         auto pgpudraw2dwindowattachment = ::gpu::draw2d_window_attachment::get(this);
+         auto pgpuwindowattachment = ::gpu::window_attachment::get(this);
 
-         if (pgpudraw2dwindowattachment->m_pgpucontextWindow == this)
+         if (pgpuwindowattachment->m_pgpucontextWindow == this)
          {
 
             return nullptr;
@@ -2162,7 +2194,7 @@ namespace gpu
 
          //throw ::exception(error_failed);
 
-         return pgpudraw2dwindowattachment->m_pgpucontextWindow->get_swap_chain();
+         return pgpuwindowattachment->m_pgpucontextWindow->get_swap_chain();
 
 //         return nullptr;
 
@@ -2178,6 +2210,25 @@ namespace gpu
       }
 
       return m_pgpuswapchain;
+
+   }
+
+
+   ::gpu::render_target * context::output_render_target()
+   {
+
+      if (m_eoutput == e_output_swap_chain)
+      {
+
+         return get_swap_chain();
+
+      }
+      else
+      {
+
+         return get_gpu_renderer()->m_pgpurendertarget2;
+
+      }
 
    }
 
@@ -3476,7 +3527,15 @@ namespace gpu
    //}
 
 
-   void context::copy(::gpu::texture* ptextureTarget, ::gpu::texture* ptextureSource, ::pointer < ::gpu::fence > * pgpufence)
+   void context::copy(::gpu::command_buffer * pgpucommandbuffer, ::gpu::texture * ptextureTarget, ::gpu::texture * ptextureSource, ::pointer < ::gpu::fence > * pgpufence, ::pointer < ::gpu::semaphore > * pgpusemaphoreReady)
+   {
+
+      copy(ptextureTarget, ptextureSource, pgpufence, pgpusemaphoreReady);
+
+   }
+
+
+   void context::copy(::gpu::texture* ptextureTarget, ::gpu::texture* ptextureSource, ::pointer < ::gpu::fence > * pgpufence, ::pointer < ::gpu::semaphore > * pgpusemaphoreReady)
    {
 
       throw ::interface_only();
@@ -3610,7 +3669,7 @@ void main() {
 
          ::cast<::gpu::texture> ptextureDst = ptextureTarget;
 
-         // ::i32 iH = ptextureDst->m_pgpurenderer->m_pgpucontext->m_rectangle.height();
+         // ::i32 iH = ptextureDst->m_pgpurenderer->m_pgpucontext->height();
          //
          // ptextureDst->bind_render_target();
          //
@@ -3675,7 +3734,7 @@ void main() {
 
                   //::cast<::gpu_opengl::texture> ptextureSrc = pgpulayer->texture();
 
-                  auto ptextureSrc = pgpulayer->texture();
+                  auto ptextureSrc = pgpulayer->texture(false);
 
                   m_pshaderBlend3->bind_source(nullptr, ptextureSrc, 0);
 
@@ -3802,6 +3861,8 @@ void main() {
                //}
             }
             pgpucommandbuffer->end_render();
+
+            defer_unbind_shader();
             //m_pshaderBlend3->unbind(pcommandbuffer);
          }
          //}
@@ -4047,9 +4108,9 @@ void main() {
 
       auto player = ::gpu::current_layer();
 
-      auto pgpudraw2dwindowattachment = ::gpu::draw2d_window_attachment::get(this);
+      auto pgpuwindowattachment = ::gpu::window_attachment::get(this);
 
-      pgpudraw2dwindowattachment->register_frame_context(this, player);
+      pgpuwindowattachment->register_frame_context(this, player);
 
       //::i32 iGpuContext = m_iGpuContext;
 

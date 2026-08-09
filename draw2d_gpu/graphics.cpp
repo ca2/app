@@ -15,12 +15,12 @@
 #include "bred/gpu/_model.h"
 #include "bred/gpu/bred_approach.h"
 #include "bred/gpu/command_buffer.h"
-#include "bred/gpu/aaa_cpu_buffer.h"
+#include "bred/gpu/buffer.h"
 #include "bred/gpu/device.h"
-#include "bred/gpu/draw2d_window_attachment.h"
+#include "bred/gpu/window_attachment.h"
 #include "bred/gpu/layer.h"
 #include "bred/gpu/model_buffer.h"
-#include "bred/gpu/aaa_render.h"
+//#include "bred/gpu/render.h"
 #include "bred/gpu/render_target.h"
 #include "bred/gpu/renderer.h"
 #include "bred/graphics3d/types.h"
@@ -542,10 +542,10 @@ void main() {
 
       auto pgpudevice = pgpuapproach->get_gpu_device(m_pacmeuserinteractionAffinity->m_pacmewindowingwindow);
 
-      auto pgpudraw2dwindowattachment = ::gpu::draw2d_window_attachment::get(m_pacmeuserinteractionAffinity);
+      auto pgpuwindowattachment = ::gpu::window_attachment::get(m_pacmeuserinteractionAffinity);
 
       auto pgpucontextWindow =
-        pgpudraw2dwindowattachment->window_context();
+        pgpuwindowattachment->window_context();
 
       auto pgpucontextNew = pgpudevice->create_draw2d_gpu_context(
          //::gpu::e_output_gpu_buffer,
@@ -1573,12 +1573,12 @@ void main() {
       //editQuadVertexBuffer(
       //   pgpucontext->logicalDevice(),
       //   pmodel->m_vertexMemory,
-      //   quad, color, pgpucontext->rectangle().size());
+      //   quad, color, pgpucontext->size());
 
       pmodelbufferRectangle->sequence2_color_set_rectangle(
          quad,
          color,
-         pgpucontext->m_rectangle.size());
+         pgpucontext->size());
 
       // vkCmdBeginRenderPass(cmd, &renderPassInfo, VK_SUBPASS_CONTENTS_INLINE);
       auto pcommandbuffer = prenderer->getCurrentCommandBuffer2(::gpu::current_layer());
@@ -6128,9 +6128,9 @@ color = vec4(c.r,c.g, c.b, c.a);
 
       floating_matrix4 projection = pcontext->ortho(
          0.0f, 
-         static_cast<::f32>(pcontext->m_rectangle.width()),
+         static_cast<::f32>(pcontext->width()),
          0.0f,
-         static_cast<::f32>(pcontext->m_rectangle.height()));
+         static_cast<::f32>(pcontext->height()));
       pshader->set_matrix4("projection", projection);
 
       set(m_pfont);
@@ -6182,7 +6182,7 @@ color = vec4(c.r,c.g, c.b, c.a);
 
       //auto pcontext = gpu_context();
 
-      point.y = pcontext->m_rectangle.height() - point.y - pface->m_iPixelSize;
+      point.y = pcontext->height() - point.y - pface->m_iPixelSize;
       //auto pcommandbuffer = ::gpu::current_command_buffer();
       //glEnable(GL_CULL_FACE);
       //::opengl::check_error("");

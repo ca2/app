@@ -4,6 +4,7 @@
 
 #include "acme/windowing/window.h"
 #include "bred/gpu/context_pointer.h"
+#include "bred/gpu/render_target.h"
 
 
 namespace gpu
@@ -11,7 +12,8 @@ namespace gpu
 
 
    class CLASS_DECL_BRED swap_chain :
-      virtual public ::acme::windowing::gpu_context_render_frame
+      virtual public ::acme::windowing::gpu_context_render_frame,
+      virtual public ::gpu::render_target
    {
    public:
 
@@ -52,6 +54,7 @@ namespace gpu
 
       virtual void on_new_frame();
 
+      void do_output(::gpu::texture * pgputexture) override;
 
       virtual void create_images();
 

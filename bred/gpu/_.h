@@ -10,7 +10,7 @@ namespace gpu
 
    //struct start_context_t;
 
-   class aaa_cpu_buffer;
+   class buffer;
    class context;
    class shader;
    class frame_storage;

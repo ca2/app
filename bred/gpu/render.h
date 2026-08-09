@@ -1,4 +1,4 @@
-// Created from graphics3d/impact3d/aaa_render by camilo on 2023-06-16 15:00 <3ThomasBorregaardSorensenJegElskerDig!! (ThomasLikesNumber5)
+// Created from graphics3d/impact3d/render by camilo on 2023-06-16 15:00 <3ThomasBorregaardSorensenJegElskerDig!! (ThomasLikesNumber5)
 #pragma once
 
 
@@ -9,7 +9,7 @@ namespace gpu
 {
 
 
-   class CLASS_DECL_BRED aaa_render :
+   class CLASS_DECL_BRED render :
       virtual public ::particle
    {
    public:
@@ -36,8 +36,8 @@ namespace gpu
       //::string                            m_strRender;
 
 
-      aaa_render();
-      ~aaa_render() override;
+      render();
+      ~render() override;
 
 
 #ifdef _DEBUG
@@ -88,7 +88,7 @@ namespace gpu
       virtual void on_start_drawing(::gpu::context * pgpucontext);
       virtual void on_global_transform(::gpu::context * pgpucontext);
       virtual void on_draw(::gpu::context * pgpucontext);
-      //virtual void aaa_render();
+      //virtual void render();
 
       
 

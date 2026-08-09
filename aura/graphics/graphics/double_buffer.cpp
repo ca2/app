@@ -110,70 +110,70 @@ namespace graphics
 
       //}
 
-      if (!m_bDibIsHostingBuffer)
-      {
+      //if (!m_bDibIsHostingBuffer)
+      //{
 
-         auto & pimageBufferItem = pbufferitem->m_pimageBufferItem;
+      //   auto & pimageBufferItem = pbufferitem->m_pimageBufferItem;
 
-         auto sizeImage = pimageBufferItem->is_ok() ? pimageBufferItem->get_size() : ::i32_size(0, 0);
+      //   auto sizeImage = pimageBufferItem->is_ok() ? pimageBufferItem->get_size() : ::i32_size(0, 0);
 
-         auto sizeReserved = ::i32_size(1920, 1080);
+      //   auto sizeReserved = ::i32_size(1920, 1080);
 
-         if (pbufferitem->m_sizeBufferItem.cx > sizeImage.cx)
-         {
+      //   if (pbufferitem->m_sizeBufferItem.cx > sizeImage.cx)
+      //   {
 
-            sizeImage.cx = pbufferitem->m_sizeBufferItem.cx;
+      //      sizeImage.cx = pbufferitem->m_sizeBufferItem.cx;
 
-         }
+      //   }
 
-         if (pbufferitem->m_sizeBufferItem.cy > sizeImage.cy)
-         {
+      //   if (pbufferitem->m_sizeBufferItem.cy > sizeImage.cy)
+      //   {
 
-            sizeImage.cy = pbufferitem->m_sizeBufferItem.cy;
+      //      sizeImage.cy = pbufferitem->m_sizeBufferItem.cy;
 
-         }
+      //   }
 
-         if (sizeReserved.cx > sizeImage.cx)
-         {
+      //   if (sizeReserved.cx > sizeImage.cx)
+      //   {
 
-            sizeImage.cx = sizeReserved.cx;
+      //      sizeImage.cx = sizeReserved.cx;
 
-         }
+      //   }
 
-         if (sizeReserved.cy > sizeImage.cy)
-         {
+      //   if (sizeReserved.cy > sizeImage.cy)
+      //   {
 
-            sizeImage.cy = sizeReserved.cy;
+      //      sizeImage.cy = sizeReserved.cy;
 
-         }
+      //   }
 
-         debug() << "double_buffer_graphics::_on_begin_draw Going to create image : " << sizeImage;
+      //   debug() << "double_buffer_graphics::_on_begin_draw Going to create image : " << sizeImage;
 
-         //pimageBufferItem->create_as_descriptor(sizeImage);
+      //   //pimageBufferItem->create_as_descriptor(sizeImage);
 
-         if (pimageBufferItem.nok())
-         {
+      //   if (pimageBufferItem.nok())
+      //   {
 
-            information() << "double_buffer_graphics::_on_begin_draw Image Nok : " << sizeImage;
+      //      information() << "double_buffer_graphics::_on_begin_draw Image Nok : " << sizeImage;
 
-            return false;
+      //      return false;
 
-         }
+      //   }
 
-         debug() << "double_buffer_graphics::_on_begin_draw Deferred image Creation/Update : " << sizeImage;
+      //   debug() << "double_buffer_graphics::_on_begin_draw Deferred image Creation/Update : " << sizeImage;
 
-         auto pgraphicsBufferItem = pimageBufferItem->acquire_graphics();
-         
-         if (pgraphicsBufferItem)
-         {
+      //   auto pgraphicsBufferItem = pimageBufferItem->acquire_graphics();
+      //   
+      //   if (pgraphicsBufferItem)
+      //   {
 
-            //pbufferitem->m_pgraphics = pgraphics;
-            
-            pgraphicsBufferItem->resize(pbufferitem->m_sizeBufferItem);
+      //      //pbufferitem->m_pgraphics = pgraphics;
+      //      
+      //      pgraphicsBufferItem->resize(pbufferitem->m_sizeBufferItem);
 
-         }
-         
-      }
+      //   }
+      //   
+      //}
 
       //return pbufferitem;
 

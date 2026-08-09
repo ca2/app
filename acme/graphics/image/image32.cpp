@@ -322,54 +322,63 @@ void image32_t::_001ProperCopyColorref(::i32 cxParam, ::i32 cyParam, ::i32 iStri
 
 }
 
-
-void image32_t::copy(::i32 cx, ::i32 cy, ::i32 iStrideDst, const ::image32_t * pimage32Src, ::i32 iStrideSrc)
+void image32_t::copy(
+   ::i32 cx,
+   ::i32 cy,
+   ::i32 iStrideDst,
+   const ::image32_t * pimage32Src,
+   ::i32 iStrideSrc)
 {
 
-   if (iStrideSrc == iStrideDst && cx * sizeof(image32_t) == iStrideSrc)
+   if (cx <= 0 || cy <= 0 || !pimage32Src)
    {
-
-      ::memory_copy(this, pimage32Src, cy * iStrideSrc);
 
       return;
 
    }
 
-   ::image32_t * pimage32Dst = this;
+   constexpr ::i32 iPixelSize = sizeof(::image32_t);
 
-   try
+   const ::i32 iRowBytes = cx * iPixelSize;
+
+   if (iStrideSrc == 0)
    {
 
-      if (iStrideSrc <= 0)
-      {
-
-         iStrideSrc = cx * sizeof(::image32_t);
-
-      }
-
-      ::i32 wsrc = iStrideSrc;
-      ::i32 wdst = iStrideDst;
-      ::i32 cw = cx * sizeof(::image32_t);
-
-      auto psrc = (::u8*) pimage32Src;
-      auto pdst = (::u8*) pimage32Dst;
-
-      for (::i32 i = 0; i < cy; i++)
-      {
-
-         ::memory_copy(pdst, psrc, cw);
-
-         pdst += wdst;
-
-         psrc += wsrc;
-
-      }
-
+      iStrideSrc = iRowBytes;
 
    }
 
-   catch (...)
+   if (iStrideDst == 0)
    {
+
+      iStrideDst = iRowBytes;
+
+   }
+
+   // Fast path for tightly packed images.
+   if (iStrideSrc == iRowBytes &&
+       iStrideDst == iRowBytes)
+   {
+
+      ::memory_copy(
+         this,
+         pimage32Src,
+         (::memsize)cy * iRowBytes);
+
+      return;
+
+   }
+
+   auto psrc = reinterpret_cast<const ::u8 *>(pimage32Src);
+   auto pdst = reinterpret_cast<::u8 *>(this);
+
+   for (::i32 y = 0; y < cy; y++)
+   {
+
+      ::memory_copy(pdst, psrc, iRowBytes);
+
+      pdst += iStrideDst;
+      psrc += iStrideSrc;
 
    }
 

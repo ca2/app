@@ -608,6 +608,8 @@ namespace draw2d
 
       m_itema.add(pitem);
 
+      m_bHasPoint = true;
+
       m_pointBegin = line.m_p1;
 
       m_pointEnd = line.m_p2;
@@ -619,6 +621,13 @@ namespace draw2d
 
    bool path::add_line(const ::f64_point & point)
    {
+
+      if (!m_bHasPoint)
+      {
+
+         return set_current_point(point);
+
+      }
 
       //auto pline = allocateø f64_line_shape < path > ();
 

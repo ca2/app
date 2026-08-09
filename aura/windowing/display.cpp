@@ -688,7 +688,7 @@ namespace windowing
 
          }
 
-         pmonitor->initialize_monitor(this, iMonitor);
+         pmonitor->initialize_monitor(this, (::i32) iMonitor);
 
       }
 

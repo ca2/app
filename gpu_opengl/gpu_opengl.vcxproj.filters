@@ -65,7 +65,7 @@
     <ClInclude Include="context.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="aaa_cpu_buffer.h">
+    <ClInclude Include="buffer.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="object.h">
@@ -203,7 +203,7 @@
     <ClInclude Include="wgl_context.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="draw2d_window_attachment.h">
+    <ClInclude Include="window_attachment.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
@@ -238,7 +238,7 @@
     <ClCompile Include="context.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="aaa_cpu_buffer.cpp">
+    <ClCompile Include="buffer.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="object.cpp">
@@ -355,7 +355,7 @@
     <ClCompile Include="wgl_context.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="draw2d_window_attachment.cpp">
+    <ClCompile Include="window_attachment.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>

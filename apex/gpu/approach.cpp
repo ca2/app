@@ -3,6 +3,7 @@
 //#include "context.h"
 //#include "device.h"
 //#include "types.h"
+#include "window_attachment.h"
 #include "acme/exception/interface_only.h"
 #include "acme/filesystem/filesystem/file_context.h"
 #include "acme/platform/application.h"
@@ -40,6 +41,15 @@ namespace gpu
 
    void approach::initialize_gpu_approach()
    {
+
+   }
+
+
+
+   ::pointer < ::apex::gpu::window_attachment > approach::allocate_gpu_window_attachment(::acme::windowing::window * pacmewindowingwindow)
+   {
+
+      return nullptr;
 
    }
 
@@ -97,7 +107,12 @@ namespace gpu
    //}
 
 
+   ::particle_pointer approach::_allocate_draw2d_window_attachment_for_gpu(::acme::windowing::window * pacmewindowingwindow)
+   {
 
+      return {};
+
+   }
 
 
    void approach::defer_init_gpu_library()

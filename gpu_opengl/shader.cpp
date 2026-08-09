@@ -1186,6 +1186,16 @@ namespace gpu_opengl
 
       auto location = _get_uniform_location(pszName, "int");
 
+      GLint currentProgram = 0;
+      glGetIntegerv(GL_CURRENT_PROGRAM, &currentProgram);
+
+      if (currentProgram != static_cast<GLint>(m_ProgramID))
+      {
+
+         throw ::exception(error_wrong_state);
+
+      }
+
       glUniform1i(location, i);
       ::opengl::check_error("");
 

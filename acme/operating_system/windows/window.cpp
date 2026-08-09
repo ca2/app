@@ -949,7 +949,7 @@ namespace windows
       else if (msg == WM_SHOWWINDOW)
       {
 
-         ::information("windows::window::s_window_procedure WM_SHOWWINDOW");
+         ::information("windows::window::s_window_procedure WM_SHOWWINDOW {}", wParam);
 
       }
 

@@ -10,20 +10,20 @@
 
 
 
-namespace image
-{
-
-
-   enum enum_copy_disposition
-   {
-
-      e_copy_disposition_none,
-      e_copy_disposition_y_swap,
-
-   };
-
-
-} // namespace image
+//namespace image
+//{
+//
+//
+//   enum enum_copy_disposition
+//   {
+//
+//      e_copy_disposition_none,
+//      e_copy_disposition_y_swap,
+//
+//   };
+//
+//
+//} // namespace image
 
 
 struct CLASS_DECL_ACME image32_t
@@ -74,14 +74,33 @@ struct CLASS_DECL_ACME image32_t
    {
       vertical_swap_copy(size.cx, size.cy, iStrideDst, pimage32Src, iStrideSrc);
    }
-   ::image32_t * offset(::i32 x, ::i32 y, ::i32 iStrideDst)
+   ::image32_t * offset(::i32 x, ::i32 y, ::i32 iStride)
    {
-      return (::image32_t *)((::u8 *)this + x * sizeof(::image32_t) + y * iStrideDst);
+
+      return reinterpret_cast<::image32_t *>(
+         reinterpret_cast<::u8 *>(this)
+         + x * sizeof(::image32_t)
+         + y * iStride);
+
+   }
+
+
+   const ::image32_t * offset(::i32 x, ::i32 y, ::i32 iStride) const
+   {
+
+      return reinterpret_cast<const ::image32_t *>(
+         reinterpret_cast<const ::u8 *>(this)
+         + x * sizeof(::image32_t)
+         + y * iStride);
 
    }
    void copy(::i32 x, ::i32 y, ::i32 cx, ::i32 cy, ::i32 iStrideDst, const ::image32_t * pimage32Src, ::i32 iStrideSrc)
    {
-      return offset(x, y, iStrideDst)->copy(cx, cy, iStrideDst, pimage32Src, iStrideSrc);
+      offset(x, y, iStrideDst)->copy(cx, cy, iStrideDst, pimage32Src, iStrideSrc);
+   }
+   void copy(::i32 x, ::i32 y, ::i32 cx, ::i32 cy, ::i32 iStrideDst, ::i32 xSrc, ::i32 ySrc, const ::image32_t * pimage32Src, ::i32 iStrideSrc)
+   {
+      offset(x, y, iStrideDst)->copy(cx, cy, iStrideDst, pimage32Src->offset(xSrc, ySrc, iStrideSrc), iStrideSrc);
    }
    void copy(::i32 cx, ::i32 cy, ::i32 iStrideDst, const ::image32_t * pimage32Src, ::i32 iStrideSrc);
    inline void copy(const ::i32_size & size, ::i32 iStrideDst, const ::image32_t * pimage32Src, ::i32 iStrideSrc)

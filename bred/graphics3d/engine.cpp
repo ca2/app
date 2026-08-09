@@ -16,16 +16,23 @@
 #include "apex/database/client.h"
 #include "apex/database/stream.h"
 #include "aura/graphics/graphics/context.h"
+#include "aura/graphics/image/image.h"
+#include "aura/graphics/image/source.h"
+#include "aura/graphics/image/drawing.h"
+#include "aura/windowing/window.h"
 #include "bred/gpu/binding.h"
 #include "bred/gpu/bred_approach.h"
 #include "bred/gpu/command_buffer.h"
 #include "bred/gpu/context.h"
 #include "bred/gpu/context_lock.h"
-#include "bred/gpu/aaa_cpu_buffer.h"
+#include "bred/gpu/buffer.h"
 #include "bred/gpu/device.h"
+#include "bred/gpu/window_attachment.h"
+#include "bred/gpu/frame.h"
 #include "bred/gpu/layer.h"
 #include "bred/gpu/renderer.h"
 #include "bred/gpu/render_target.h"
+#include "bred/gpu/texture.h"
 #include "bred/graphics3d/_functions.h"
 #include "bred/graphics3d/camera.h"
 #include "bred/graphics3d/shape_factory.h"
@@ -149,8 +156,18 @@ namespace graphics3d
       m_pusergraphics3d->m_pengine = this;
 
       //m_papproach = m_papplication->get_gpu_approach();
-      set_gpu_performance_diagnostics(true);
+      // set_gpu_performance_diagnostics(true);
 
+      if (!m_papplication->m_gpu.m_bUseSwapChainWindow)
+      {
+
+         ::cast < ::windowing::window > pwindow = pusergraphics3d->acme_windowing_window();
+
+         pwindow->m_papexgpuwindowattachment = m_papplication->get_gpu_approach()->allocate_gpu_window_attachment(pwindow);
+
+         constructø(m_pimageOutput);
+
+      }
 
    }
 
@@ -205,6 +222,8 @@ namespace graphics3d
 
          //prenderer->on_begin_render(nullptr);
 
+         auto pgpurendertarget = prenderer->render_target();
+
          {
 
             auto pscene = m_pimmersionlayer->m_pscene;
@@ -213,6 +232,24 @@ namespace graphics3d
 
 
              pgpucontext->update_current_scene();
+
+             //pgpucontext->
+
+             auto pgpuwindowattachment = ::gpu::window_attachment::get(pgpucontext);
+
+             bool bFrameStarted = false;
+
+             if (pgpuwindowattachment && pgpuwindowattachment->current_frame()->m_egpuframestate != ::gpu::e_gpu_frame_state_began_frame)
+             {
+
+                pgpuwindowattachment->m_pgraphics3dengine = this;
+
+                pgpuwindowattachment->start_frame();
+
+                bFrameStarted = true;
+
+             }
+
 
              pscene->on_before_render(pgpucontext);
                    
@@ -225,8 +262,6 @@ namespace graphics3d
                //pgpucontext->update_global_ubo1();
 
             //}
-
-            auto pgpurendertarget = prenderer->render_target();
 
             //::i32 iFrameIndex = pgpurendertarget->get_image_index();
 
@@ -249,8 +284,42 @@ namespace graphics3d
 
             pgpucontext->end_layer();
 
+            _synchronous_lock synchronouslock2(this->synchronization());
+
+            if (m_pimageOutput)
+            {
+
+               auto rectangle = pgpucontext->get_placement();
+
+               m_pimageOutput->create_as_descriptor(rectangle.size());
+
+               auto mapImageOutput = m_pimageOutput->map();
+
+               auto pgputexture = pgpurendertarget->current_texture(::gpu::current_layer());
+
+               auto pgpucommandbuffer = pgpucontext->beginSingleTimeCommands(
+               pgpucontext->m_pgpudevice->graphics_queue());
+
+               pgputexture->read_pixels(pgpucommandbuffer, mapImageOutput);
+
+               pgpucontext->endSingleTimeCommands(pgpucommandbuffer);
+
+               //mapImageOutput.fill_byte(200);
+
+            }
+
+            if (bFrameStarted)
+            {
+
+               pgpuwindowattachment->end_frame();
+
+            }
 
          }
+
+
+
+
 
          //prenderer->on_end_render(pframe);
 
@@ -818,6 +887,29 @@ namespace graphics3d
 
             pgpurenderer->on_resize(rectanglePlacement.size());
 
+            auto pgpuwindowattachment = ::gpu::window_attachment::get(pcontext);
+
+
+            if (m_papplication->m_gpu.m_bUseSwapChainWindow)
+            {
+
+               auto prendererBackBuffer = pgpuwindowattachment->draw2d_context()->get_gpu_renderer();
+
+               pgpuwindowattachment->set_render_target(prendererBackBuffer->render_target());
+
+            }
+            //else
+            //{
+
+
+
+            //   auto prendererEngine = pcontext->m_pgpurenderer;
+
+            //   pgpuwindowattachment->set_render_target(prendererEngine->render_target());
+
+            //}
+
+
             m_pusergraphics3d->on_load_engine();
 
             pcontext->m_pengine = this;
@@ -1159,7 +1251,26 @@ namespace graphics3d
    void engine::on_after_done_frame_step(::draw2d::graphics_pointer& pgraphics)
    {
 
+      _synchronous_lock synchronouslock(this->synchronization());
 
+      if (m_pimageOutput)
+      {
+
+         ::image::image_source imagesource(m_pimageOutput);
+
+         auto pgpucontext = gpu_context();
+
+         auto rectangle = pgpucontext->get_placement();
+
+         rectangle.offset(-rectangle.top_left());
+
+         ::image::image_drawing_options imagedrawingoptions(rectangle);
+
+         ::image::image_drawing imagedrawing(imagedrawingoptions, imagesource);
+
+         pgraphics->draw(imagedrawing);
+
+      }
 
    }
 

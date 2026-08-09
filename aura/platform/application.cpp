@@ -9991,6 +9991,12 @@ namespace aura
                return m_strDraw2dImplementation;
 
             }
+            else if (strGraphics3DImplementation.equals("directx11"))
+            {
+
+               return system()->implementation_name("draw2d", "direct2d_for_directx11");
+
+            }
 
             return system()->implementation_name("draw2d", "direct2d");
 

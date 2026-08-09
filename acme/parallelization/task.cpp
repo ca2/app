@@ -3267,7 +3267,12 @@ void task::branch_synchronously(const ::create_task_attributes_t & createtaskatt
 
    clear_finishing_flag();
 
-   ENSURE(!m_htask);
+   if (m_htask.is_set())
+   {
+
+      throw ::exception(error_wrong_state);
+
+   }
 
    //if(id().is_empty())
    //{

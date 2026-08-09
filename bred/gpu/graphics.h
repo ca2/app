@@ -42,7 +42,7 @@ namespace gpu
       //::pointer < ::gpu::shader >                 m_pshaderLine;
       ::collection::index                       m_iGpuContextFrameSerial;
       pool_group *                              m_ppoolgroupFrame;
-      ::gpu::context_lease                      m_pgpucontextLease;
+      ::gpu::context_pointer                    m_pgpucontextOwned;
       ::pointer<::gpu::layer>                   m_pgpulayerBeforeLayerScope;
 
       graphics();
@@ -52,7 +52,7 @@ namespace gpu
       void initialize(::particle* pparticle) override;
       bool _is_ok() const override;
       void set_context_lease(::gpu::context_lease && contextlease);
-      ::gpu::context_lease & context_lease();
+      //::gpu::context_lease & context_lease();
       
 
       void begin_draw() override;
@@ -60,6 +60,10 @@ namespace gpu
       
       void start_frame() override;
       void end_frame() override;
+
+
+      ::gpu::context * gpu_context();
+
 
 
       //void start_layer(::e_graphics egraphics) override;

@@ -92,7 +92,7 @@ namespace gpu_opengl
 
       //virtual void _create_offscreen_window(const ::i32_size & size);
 
-      void copy(::gpu::texture* ptextureTarget, ::gpu::texture* ptextureSource, ::pointer < ::gpu::fence > * pgpufence) override;
+      void copy(::gpu::texture* ptextureTarget, ::gpu::texture* ptextureSource, ::pointer < ::gpu::fence > * pgpufence, ::pointer < ::gpu::semaphore > * pgpusemaphoreReady) override;
 
       //void on_create_context(::gpu::device *pgpudevice, const ::gpu::enum_output &eoutput,
         //                     ::acme::windowing::window *pwindow, const ::i32_size &size) override;
@@ -103,8 +103,8 @@ namespace gpu_opengl
 
 
       //void _create_cpu_buffer(const ::i32_size& size) override;
-      void resize_cpu_buffer21(const ::i32_size& size) override;
-      void destroy_cpu_buffer21() override;
+      void resize_cpu_buffer(const ::i32_size& size) override;
+      void destroy_cpu_buffer() override;
 
       
       void set_matrix_uniform(const ::gpu::payload & uniformMatrix) override;

@@ -4,6 +4,7 @@
 #include "acme/exception/interface_only.h"
 #include "bred/gpu/block.h"
 #include "bred/gpu/context.h"
+#include "bred/gpu/window_attachment.h"
 #include "bred/gpu/layer.h"
 #include "bred/graphics3d/asset_manager.h"
 #include "bred/graphics3d/engine.h"
@@ -326,8 +327,7 @@ namespace user
          return;
 
       }
-
-
+     
 
       //get_app()->m_pimpact = this;
 

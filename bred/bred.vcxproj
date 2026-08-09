@@ -655,8 +655,8 @@
     <ClInclude Include="gpu\context_lease.h" />
     <ClInclude Include="gpu\context_object.h" />
     <ClInclude Include="gpu\context_pointer.h" />
-    <ClInclude Include="gpu\aaa_cpu_buffer.h" />
-    <ClInclude Include="gpu\draw2d_window_attachment.h" />
+    <ClInclude Include="gpu\buffer.h" />
+    <ClInclude Include="gpu\window_attachment.h" />
     <ClInclude Include="gpu\empty_texture_source.h" />
     <ClInclude Include="gpu\debug_scope.h" />
     <ClInclude Include="gpu\device.h" />
@@ -681,7 +681,7 @@
     <ClInclude Include="gpu\program.h" />
     <ClInclude Include="gpu\properties.h" />
     <ClInclude Include="gpu\queue.h" />
-    <ClInclude Include="gpu\aaa_render.h" />
+    <ClInclude Include="gpu\render.h" />
     <ClInclude Include="gpu\renderable.h" />
     <ClInclude Include="gpu\post_frame_context_registry.h" />
     <ClInclude Include="gpu\renderer.h" />
@@ -818,10 +818,10 @@
     <ClCompile Include="gpu\context_lease.cpp" />
     <ClCompile Include="gpu\context_object.cpp" />
     <ClCompile Include="gpu\context_pointer.cpp" />
-    <ClCompile Include="gpu\aaa_cpu_buffer.cpp" />
+    <ClCompile Include="gpu\buffer.cpp" />
     <ClCompile Include="gpu\device.cpp" />
     <ClCompile Include="gpu\draw2d.cpp" />
-    <ClCompile Include="gpu\draw2d_window_attachment.cpp" />
+    <ClCompile Include="gpu\window_attachment.cpp" />
     <ClCompile Include="gpu\empty_texture_source.cpp" />
     <ClCompile Include="gpu\fence.cpp" />
     <ClCompile Include="gpu\frame.cpp" />
@@ -842,7 +842,7 @@
     <ClCompile Include="gpu\program.cpp" />
     <ClCompile Include="gpu\properties.cpp" />
     <ClCompile Include="gpu\queue.cpp" />
-    <ClCompile Include="gpu\aaa_render.cpp" />
+    <ClCompile Include="gpu\render.cpp" />
     <ClCompile Include="gpu\renderable.cpp" />
     <ClCompile Include="gpu\renderer.cpp" />
     <ClCompile Include="gpu\render_target.cpp" />

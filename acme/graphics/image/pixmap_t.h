@@ -70,45 +70,12 @@ struct pixmap_t
    }
 
 
-   void initialize_pixmap(const ::i32_size &size, ::image32_t *pimage32, ::i32 iScan)
-   {
-
-      m_size = size;
-
-      m_sizeRaw = size;
-
-      m_iScan = iScan;
-
-      m_point.clear();
-
-      m_bMapped = false;
-
-      if (::is_set(pimage32))
-      {
-
-         m_pimage32Raw = pimage32;
-
-         pixmap_map();
-
-      }
-      else
-      {
-
-         m_pimage32Raw = nullptr;
-
-         m_pimage32 = nullptr;
-
-      }
-
-   }
-
+   void initialize_pixmap(const ::i32_size &size, ::image32_t *pimage32, ::i32 iScan);
 
    const ::color_indexes &color_indexes() const { return m_colorindexes; }
    ::color_indexes &color_indexes() { return m_colorindexes; }
 
 
-   inline ::i32 scan_area() { return scan_area_in_bytes() / sizeof(::image32_t); }
-   inline ::i32 scan_area_in_bytes() { return m_iScan * m_size.cy; }
 
    //inline bool is_mapped() { return ::is_set(m_pimage32Raw) && ::is_set(m_pimage32); }
    //   inline ::u64 area() const
@@ -206,6 +173,9 @@ struct pixmap_t
    inline ::image32_t *data() { return m_pimage32; }
    inline ::image32_t *data() const { return m_pimage32; }
 
+   inline ::i32 scan() { return m_iScan; }
+   inline ::i32 scan_area() { return scan_area_in_bytes() / sizeof(::image32_t); }
+   inline ::i32 scan_area_in_bytes() { return m_iScan * m_size.cy; }
 
    
    ::image32_t * line_data(::i32 iLine) { return (::image32_t *)(((::u8 *)data()) + (iLine * m_iScan)); }
@@ -229,7 +199,7 @@ struct pixmap_t
    inline ::i32_point top_left() const noexcept { return m_point; }
    inline ::i32_point origin() const noexcept { return top_left(); }
    // inline concrete < ::i32_size > size() const noexcept { return m_size; }
-   inline ::i32_size size() const noexcept { return m_size; };
+   inline ::i32_size size() const noexcept;
    inline ::i32 width() const noexcept { return m_size.cx; }
    inline ::i32 height() const noexcept { return m_size.cy; }
    inline ::i32 area() const noexcept { return m_size.area(); }
@@ -296,6 +266,39 @@ struct pixmap_t
    void copy(const ::pixmap_t *ppixmapSrc, const ::image::enum_copy_disposition &ecopydisposition);
 
    void y_swap_copy(const ::pixmap_t *ppixmapSrc);
+
+   void raw_copy(const ::i32_point & pointTarget, const ::i32_size & size, const ::i32_point & pointSource, const ::image32_t * pimage32, ::i32 iScan);
+
+   void raw_copy(
+   const ::i32_point & pointTarget,
+   const ::i32_size & size,
+   const ::i32_point & pointSource,
+   const ::i32_size & sizeSource,
+   const ::image32_t * pimage32,
+   ::i32 iScan);
+
+   void raw_copy(
+const ::i32_point & pointTarget,
+const ::i32_size & size,
+const ::i32_point & pointSource,
+const ::pixmap_t & pixmapSource);
+
+   void copy(
+const ::i32_point & pointTarget,
+const ::i32_size & size,
+const ::i32_point & pointSource,
+const ::i32_size & sizeSource,
+const ::image32_t * pimage32,
+::i32 iScan);
+
+   void copy(
+const ::i32_point & pointTarget,
+const ::i32_size & size,
+const ::i32_point & pointSource,
+const ::pixmap_t & pixmapSource);
+
+
+   void fill_solid_rectangle(const ::i32_rectangle & rectangle, const ::color::color & color);
 
    ::color::color average_color();
 

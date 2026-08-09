@@ -52,6 +52,12 @@ namespace gpu
       virtual void on_new_frame();
 
 
+      //virtual ::gpu::texture * do_render(::pointer_array<::gpu::semaphore> & semaphoreaReady, ::array<::gpu::enum_pipeline_stage> & epipelinestageaReady);
+      //virtual void do_output(::gpu::texture * pgputexture, ::pointer_array<::gpu::semaphore> & semaphoreaReady, ::array<::gpu::enum_pipeline_stage> & epipelinestageaReady);
+
+      virtual ::gpu::texture * do_render();
+      virtual void do_output(::gpu::texture * pgputexture);
+
       virtual ::pointer_array < ::gpu::texture > *texturea2();
       virtual ::pointer_array < ::gpu::texture >* depth_texturea2();
       virtual ::gpu::texture *texture(::collection::index i);

@@ -179,7 +179,8 @@ namespace draw2d
       auto pgraphics = ::transfer((BASE_POINTER &&) *this);
       auto pimage = ::transfer(m_pimage);
       auto bDamaged = m_bDamaged;
-      bool bOwned = m_bOwned;
+      bool bOwned = (pimage && pimage->m_pgraphicsOwned == pgraphics)
+         || (pgraphics && pgraphics->m_pimage && pgraphics->m_pimage->m_pgraphicsOwned == pgraphics);
 
       m_bDamaged = false;
 
@@ -199,12 +200,31 @@ namespace draw2d
       //else
       //{
          
-         if (pdraw2d && pgraphics && !bOwned)
+         if (pdraw2d && pgraphics)
          {
 
-            pdraw2d->return_memory_graphics(::transfer(pgraphics), ::transfer(pimage), bDamaged);
+            if (bOwned)
+            {
+
+               auto pimage = pgraphics->m_pimage;
+
+               if (pimage)
+               {
+
+                  pimage->end_destination_graphics_lease();
+
+               }
+
+            }
+            else
+            {
+
+               pdraw2d->return_memory_graphics(::transfer(pgraphics), ::transfer(pimage), bDamaged);
+
+            }
 
          }
+
 
       //}
 

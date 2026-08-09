@@ -21,7 +21,7 @@ namespace graphics
       //::pointer<::windowing::window>          m_pimpl;
       ::cast < ::windowing::window >               m_pwindow;
       bool                                         m_bNewBuffer;
-
+      ::pointer < ::draw2d::graphics >             m_pdraw2dgraphics;
   /*    union
       {
 
@@ -66,9 +66,12 @@ namespace graphics
       //virtual ::particle * get_draw_lock();
 
 
-      virtual buffer_item * on_begin(::e_graphics egraphics);
-      virtual buffer_item * on_begin_layout();
-      virtual buffer_item * on_begin_draw();
+      //virtual buffer_item * on_begin(::e_graphics egraphics);
+      //virtual buffer_item * on_begin_layout();
+      //virtual buffer_item * on_begin_draw();
+      virtual ::draw2d::graphics_lease on_begin(::e_graphics egraphics);
+      virtual ::draw2d::graphics_lease on_begin_layout();
+      virtual ::draw2d::graphics_lease on_begin_draw();
 
       virtual bool _on_begin(buffer_item * pbufferitem);
 

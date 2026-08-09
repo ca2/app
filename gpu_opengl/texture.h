@@ -72,8 +72,8 @@ namespace gpu_opengl
 
 
       void set_pixels(const ::i32_rectangle& rectangle, const void* data) override;
-      void read_pixels(::pixmap * ppixmap) override;
-      void write_pixels(const ::pixmap * ppixmap) override;
+      void read_pixels(::gpu::command_buffer * pgpucommandbuffer, ::pixmap_t * ppixmap) override;
+      void write_pixels(const ::pixmap_t * ppixmap) override;
 
       
       virtual GLuint target_frame_buffer_object();

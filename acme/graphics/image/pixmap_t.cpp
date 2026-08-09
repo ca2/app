@@ -2,6 +2,7 @@
 #include "framework.h"
 #include "pixmap_t.h"
 
+
 #if defined(WINDOWS_DESKTOP)
 ::i32 pixmap_t::g_iRedLowerDefault = 0;
 #elif defined(LINUX)
@@ -13,30 +14,6 @@
 #endif
 
 
-void pixmap_t::fill_byte(::u8 byte)
-{
-
-   if (m_size == m_sizeRaw)
-   {
-
-      memset(m_pimage32Raw, byte, scan_area_in_bytes());
-
-   }
-   else
-   {
-      
-      for (int i = 0; i < m_size.cy; i++)
-      {
-
-         auto pline = line_data(i);
-
-         memset(pline, byte, m_size.cx * 4);
-
-      }
-
-   }
-
-}
 
 
 #define byte_clip2(i) (i)
@@ -322,40 +299,6 @@ pixmap_t &pixmap_t::operator=(const pixmap_t &pixmap)
 
 
 
-void pixmap_t::pixmap_map(const ::i32_rectangle & rectangle)
-{
-
-   m_point = rectangle.origin();
-
-   m_size = rectangle.size();
-
-   pixmap_map();
-
-}
-
-
-void pixmap_t::pixmap_map() const
-{
-
-   if (::is_set(m_pimage32Raw))
-   {
-
-      ((pixmap_t *)this)->m_pimage32 = (::image32_t *)(((::u8 *)m_pimage32Raw) + (m_point.x * sizeof(::image32_t) + (m_iScan * m_point.y)));
-
-   }
-
-}
-
-
-void pixmap_t::pixmap_unmap()
-{
-   m_point.clear();
-   m_size = m_sizeRaw;
-   m_pimage32 = m_pimage32Raw;
-}
-
-
-
 //bool pixmap_t::create(::memory &memory, const ::i32_size &size, ::i32 stride)
 //{
 //
@@ -396,6 +339,40 @@ void pixmap_t::reference(const pixmap_t &pixmap) {
 }
 
 
+::i32_size pixmap_t::size() const noexcept
+{
+
+   auto left = constrained(m_point.x, 0, m_sizeRaw.cx);
+   auto top = constrained(m_point.y, 0, m_sizeRaw.cy);
+   auto right = constrained(m_point.x + m_size.cx, 0, m_sizeRaw.cx);
+   auto bottom = constrained(m_point.y + m_size.cy, 0, m_sizeRaw.cy);
+
+   return { right - left, bottom - top };
+
+}
 
 
+void pixmap_t::pixmap_map() const
+{
+
+   ((pixmap_t *)this)->m_pimage32 = m_pimage32Raw->offset(m_point.x, m_point.y, m_iScan);
+
+}
+
+
+
+void pixmap_t::pixmap_map(const ::i32_rectangle & rectangle)
+{
+
+   auto left = constrained(rectangle.left, 0, m_sizeRaw.cx);
+   auto top = constrained(rectangle.top, 0, m_sizeRaw.cy);
+   auto right = constrained(rectangle.right, 0, m_sizeRaw.cx);
+   auto bottom = constrained(rectangle.bottom, 0, m_sizeRaw.cy);
+
+   m_point = { left, top };
+   m_size = { right - left, bottom - top };
+
+   pixmap_map();
+
+}
 

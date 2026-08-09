@@ -1,9 +1,9 @@
-// Created from graphics3d/impact3d/aaa_render by camilo on 2023-06-16 <3ThomasBorregaardSorensenJegElskerDig!! (ThomasLikesNumber5)
+// Created from graphics3d/impact3d/render by camilo on 2023-06-16 <3ThomasBorregaardSorensenJegElskerDig!! (ThomasLikesNumber5)
 #include "framework.h"
 #include "bred_approach.h"
 #include "context.h"
-#include "aaa_cpu_buffer.h"
-#include "aaa_render.h"
+#include "buffer.h"
+#include "render.h"
 #include "acme/prototype/geometry2d/matrix.h"
 #include "aura/graphics/draw2d/graphics.h"
 #include "aura/graphics/draw2d/graphics_pointer.h"
@@ -18,14 +18,14 @@ namespace gpu
 {
 
    
-   aaa_render::aaa_render()
+   render::render()
    {
 
 
    }
 
 
-   aaa_render::~aaa_render()
+   render::~render()
    {
 
 
@@ -35,7 +35,7 @@ namespace gpu
 
 #ifdef _DEBUG
 
-   ::i64 aaa_render::increment_reference_count()
+   ::i64 render::increment_reference_count()
    {
 
       return ::particle::increment_reference_count();
@@ -43,7 +43,7 @@ namespace gpu
    }
 
 
-   ::i64 aaa_render::decrement_reference_count()
+   ::i64 render::decrement_reference_count()
    {
 
       return ::particle::decrement_reference_count();
@@ -53,14 +53,14 @@ namespace gpu
 
 #endif
 
-   bool aaa_render::render_step()
+   bool render::render_step()
    {
 
       return true;
 
    }
 
-   void aaa_render::initialize(::particle * pparticle)
+   void render::initialize(::particle * pparticle)
    {
 
       ::particle::initialize(pparticle);
@@ -73,7 +73,7 @@ namespace gpu
    }
 
 
-   //void aaa_render::initialize_render(::user::interaction * puserinteraction)
+   //void render::initialize_render(::user::interaction * puserinteraction)
    //{
 
    //   m_puserinteraction = puserinteraction;
@@ -109,7 +109,7 @@ namespace gpu
 
 
 
-   void aaa_render::draw()
+   void render::draw()
    {
 
       //::gpu::context_lock lock(m_pgpucontext);
@@ -184,7 +184,7 @@ namespace gpu
 
                   ///m_pobject->draw();
 
-                  //m_papplication->aaa_render();
+                  //m_papplication->render();
 
                   //m_pgpucontext->prepare_for_gpu_read();
 
@@ -242,7 +242,7 @@ namespace gpu
    }
 
 
-   void aaa_render::read_to_cpu_buffer2()
+   void render::read_to_cpu_buffer2()
    {
 
 //      ::gpu::context_lock lock(m_pgpucontext);
@@ -250,8 +250,8 @@ namespace gpu
       //if (::is_set(m_papplication) && ::is_set(m_papplication->m_pbuffer)
       //   && m_papplication->m_pbuffer->m_pimage.ok()
       //   && ::is_set(m_pprogram))
-      if (::is_set(m_pgpucontext) && ::is_set(m_pgpucontext->m_pcpubuffer2)
-         && m_pgpucontext->m_pcpubuffer2->m_pimagetarget->m_pimage.ok())
+      if (::is_set(m_pgpucontext) && ::is_set(m_pgpucontext->m_pbuffer)
+         && m_pgpucontext->m_pbuffer->m_ppixmap.ok())
       {
 
          //if (::is_set(m_pobject))
@@ -306,11 +306,11 @@ namespace gpu
 
             /////m_pobject->draw();
 
-            ////m_papplication->aaa_render();
+            ////m_papplication->render();
 
             m_pgpucontext->prepare_for_gpu_read();
 
-            m_pgpucontext->m_pcpubuffer2->gpu_read();
+            m_pgpucontext->m_pbuffer->gpu_read();
 
          }
 
@@ -362,7 +362,7 @@ namespace gpu
    }
 
 
-   void aaa_render::to_draw2d_graphics(::draw2d::graphics_pointer & pgraphics)
+   void render::to_draw2d_graphics(::draw2d::graphics_pointer & pgraphics)
    {
 
 
@@ -395,13 +395,13 @@ namespace gpu
 
    defer_constructø(m_pimageFromGpu);
 
-   auto size = m_pgpucontext->m_pcpubuffer2->m_pimagetarget->m_pimage->m_size;
+   auto size = m_pgpucontext->m_pbuffer->m_ppixmap->m_size;
 
    m_pimageFromGpu->create_as_descriptor(size);
 
    m_pimageFromGpu->map();
 
-   m_pimageFromGpu->pixmap_t::copy(m_pgpucontext->m_pcpubuffer2->m_pimagetarget->m_pimage);
+   m_pimageFromGpu->pixmap_t::copy(m_pgpucontext->m_pbuffer->m_ppixmap);
 
    ::image::image_source imagesource(m_pimageFromGpu);
 
@@ -421,28 +421,28 @@ namespace gpu
    }
 
 
-   void aaa_render::on_start_drawing(::gpu::context * pgpucontext)
+   void render::on_start_drawing(::gpu::context * pgpucontext)
    {
 
 
    }
 
 
-   void aaa_render::on_global_transform(::gpu::context * pgpucontext)
+   void render::on_global_transform(::gpu::context * pgpucontext)
    {
 
 
    }
 
 
-   void aaa_render::on_draw(::gpu::context * pgpucontext)
+   void render::on_draw(::gpu::context * pgpucontext)
    {
 
 
    }
 
 
-   void aaa_render::on_layout(::draw2d::graphics_pointer & pgraphics)
+   void render::on_layout(::draw2d::graphics_pointer & pgraphics)
    {
 
 

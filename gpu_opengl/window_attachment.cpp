@@ -3,7 +3,7 @@
 #include "bred/gpu/bred_approach.h"
 #include "bred/gpu/context.h"
 #include "bred/gpu/device.h"
-#include "draw2d_window_attachment.h"
+#include "window_attachment.h"
 #include "aura/graphics/graphics/graphics.h"
 #include "aura/windowing/window.h"
 
@@ -18,20 +18,20 @@ namespace gpu_opengl
 {
 
 
-   draw2d_window_attachment::draw2d_window_attachment()
+   window_attachment::window_attachment()
    {
 
    }
 
 
-   draw2d_window_attachment::~draw2d_window_attachment()
+   window_attachment::~window_attachment()
    {
 
 
    }
 
 
-   void draw2d_window_attachment::initialize_window_attachment(::windowing::window * pwindow)
+   void window_attachment::initialize_gpu_window_attachment(::acme::windowing::window * pwindow)
    {
 
       if (m_papplication->m_gpu.m_bUseSwapChainWindow)
@@ -125,7 +125,7 @@ namespace gpu_opengl
    }
 
 
-   ::i32 draw2d_window_attachment::get_frame_index3()
+   ::i32 window_attachment::get_frame_index3()
    {
 
       return 0;
@@ -135,7 +135,7 @@ namespace gpu_opengl
    }
 
 
-   ::i32 draw2d_window_attachment::get_frame_count()
+   ::i32 window_attachment::get_frame_count()
    {
 
       return 1;

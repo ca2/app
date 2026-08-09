@@ -349,6 +349,7 @@ namespace bred
             
 #ifdef WINDOWS_DESKTOP
             straOk.add("gdiplus");
+            straOk.add("direct2d");
 #elif defined(__APPLE__)
             straOk.add("quartz2d");
 #else
@@ -373,6 +374,7 @@ namespace bred
 
 #ifdef WINDOWS_DESKTOP
             straOk.add("gdiplus");
+            straOk.add("direct2d");
 #elif defined(__APPLE__)
             straOk.add("quartz2d");
 #else
@@ -921,12 +923,12 @@ namespace bred
 
             strGpuImplementation = graphics3d_get_implementation_name();
 
-            if(!strGpuImplementation.case_insensitive_begins("directx"))
-            {
-               
-               strGpuImplementation = "directx12";
+            //if(!strGpuImplementation.case_insensitive_begins("directx"))
+            //{
+            //   
+            //   strGpuImplementation = "directx12";
 
-            }
+            //}
 
          }
          else

@@ -3,7 +3,7 @@
 
 
 #include "acme/prototype/prototype/pool.h"
-#include "aura/graphics/draw2d/window_attachment.h"
+#include "apex/gpu/window_attachment.h"
 #include "bred/gpu/context_pointer.h"
 #include "bred/gpu/post_frame_context_registry.h"
 
@@ -13,16 +13,19 @@ namespace gpu
 {
 
 
-   class CLASS_DECL_BRED draw2d_window_attachment :
-      virtual public ::draw2d::window_attachment
+   class CLASS_DECL_BRED window_attachment :
+      virtual public ::apex::gpu::window_attachment
    {
    public:
 
 
-      ::collection::index                                m_iCurrentFrame3 = 0;
-      ::collection::index                                m_iCurrentImage = -1;
-      ::collection::index                                m_iFrameSerial2 = -1;
-      ::collection::count                                m_iFrameCount = 3;
+      //::collection::index                                m_iCurrentFrame3 = 0;
+      //::collection::index                                m_iCurrentImage = -1;
+      //::collection::index                                m_iFrameSerial2 = -1;
+      //::collection::count                                m_iFrameCount = 3;
+
+
+
       ::i32                                              m_iLayer;
       ::i32                                              m_iLayerCount;
       //::pointer < layer > m_playerComposing;
@@ -34,11 +37,10 @@ namespace gpu
       ::pointer_array < ::gpu::frame_storage >           m_framestoragea;
       ::pointer_array < ::gpu::frame_ephemeral >         m_frameephemerala;
       ::pointer < ::gpu::frame_ephemeral >               m_pframeephemeralStrict;
-
-
+//      ::pointer < ::gpu::texture >                       m_pgputextureOutput;
       ::pointer_array<::gpu::frame>                      m_framea;
 
-
+      ::pointer < ::gpu::render_target >                 m_pgpurendertargetRender;
       ::procedure_array                                  m_procedureaOnTopFrameEnd;
       ::pointer_array < pool_group >                     m_poolgroupaFrame;
       ::pointer_array < ::pointer_array < ::particle > > m_particleaFrame;
@@ -50,17 +52,33 @@ namespace gpu
          ::gpu::post_frame_context_registry<
          ::pointer<::gpu::context>,
          ::pointer<::gpu::layer>>;
-
+      ::pointer < ::graphics3d::engine >                 m_pgraphics3dengine;
       post_frame_context_registry_t                      m_postframecontextregistry;
+
 
       class ::time                                       m_timeLast5s;
 
 
-      draw2d_window_attachment();
-      ~draw2d_window_attachment() override;
+
+      window_attachment();
+      ~window_attachment() override;
 
 
-      void initialize_window_attachment(::windowing::window * pwindow) override;
+      void initialize_gpu_window_attachment(::acme::windowing::window * pacmewindowingwindow) override;
+
+      virtual ::gpu::render_target * render_target();
+      virtual void set_render_target(::gpu::render_target * pgpurendertargetTarget);
+      virtual void do_output(::gpu::texture * pgputexture);
+
+
+      //virtual ::i32 get_frame_index3();
+      //virtual ::i32 get_image_index();
+      //virtual ::i32 get_frame_count();
+      //virtual void restart_frame_counter();
+      //virtual bool is_starting_frame()const;
+
+
+
 
       virtual void start_frame();
       virtual void end_frame();
@@ -69,11 +87,6 @@ namespace gpu
 
       virtual void on_start_frame();
       virtual void on_end_frame();
-      virtual ::i32 get_frame_index3();
-      virtual ::i32 get_image_index();
-      virtual ::i32 get_frame_count();
-      virtual void restart_frame_counter();
-      virtual bool is_starting_frame()const;
 
 
       virtual ::gpu::layer * get_previous_layer(::gpu::layer * pgpulayer);
@@ -83,11 +96,11 @@ namespace gpu
       virtual ::gpu::frame_ephemeral * current_frame_ephemeral();
 
       
-      static draw2d_window_attachment * get(::gpu::render_target * pgpurendertarget);
-      static draw2d_window_attachment * get(::gpu::renderer * pgpurenderer);
-      static draw2d_window_attachment * get(::gpu::context * pgpucontext);
-      static draw2d_window_attachment * get(::acme::user::interaction * pacmeuserinteraction);
-      static draw2d_window_attachment * get(::acme::windowing::window * pacmewindowingwindow);
+      static window_attachment * get(::gpu::render_target * pgpurendertarget);
+      static window_attachment * get(::gpu::renderer * pgpurenderer);
+      static window_attachment * get(::gpu::context * pgpucontext);
+      static window_attachment * get(::acme::user::interaction * pacmeuserinteraction);
+      static window_attachment * get(::acme::windowing::window * pacmewindowingwindow);
 
 
       virtual ::gpu::context * window_context();

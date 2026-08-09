@@ -14,6 +14,20 @@
 #endif
 
 
+void pixmap_t::initialize_pixmap(const ::i32_size & size, ::image32_t * pimage32, ::i32 iScan)
+{
+
+   m_size = size;
+
+   m_sizeRaw = size;
+
+   m_pimage32 = pimage32;
+
+   m_pimage32Raw = pimage32;
+
+   m_iScan = iScan;
+
+}
 
 
 #define byte_clip2(i) (i)
@@ -339,15 +353,38 @@ void pixmap_t::reference(const pixmap_t &pixmap) {
 }
 
 
+::i32_point pixmap_t::top_left() const noexcept
+{
+   
+   auto left = constrained(m_point.x, 0, m_sizeRaw.cx);
+
+   auto top = constrained(m_point.y, 0, m_sizeRaw.cy);
+
+   return { left, top };
+
+}
+
+
+::i32_point pixmap_t::bottom_right() const noexcept
+{
+
+   auto right = constrained(m_point.x + m_size.cx, 0, m_sizeRaw.cx);
+
+   auto bottom = constrained(m_point.y + m_size.cy, 0, m_sizeRaw.cy);
+
+   return { right, bottom };
+
+}
+
+
 ::i32_size pixmap_t::size() const noexcept
 {
 
-   auto left = constrained(m_point.x, 0, m_sizeRaw.cx);
-   auto top = constrained(m_point.y, 0, m_sizeRaw.cy);
-   auto right = constrained(m_point.x + m_size.cx, 0, m_sizeRaw.cx);
-   auto bottom = constrained(m_point.y + m_size.cy, 0, m_sizeRaw.cy);
+   auto pointTopLeft = this->top_left();
 
-   return { right - left, bottom - top };
+   auto pointBottomRight = this->bottom_right();
+
+   return pointBottomRight - pointTopLeft;
 
 }
 
@@ -375,4 +412,56 @@ void pixmap_t::pixmap_map(const ::i32_rectangle & rectangle)
    pixmap_map();
 
 }
+
+
+void pixmap_t::pixmap_unmap()
+{
+
+   m_point.clear();
+
+   m_size = m_sizeRaw;
+
+   m_pimage32 = m_pimage32Raw;
+
+
+}
+
+
+void pixmap_t::fill_byte(::u8 u)
+{
+
+   pixmap_map();
+
+   auto p = m_pimage32;
+
+   auto point = this->top_left();
+
+   auto size = this->size();
+
+   auto right = point.x + size.cx;
+
+   auto bottom = point.y + size.cy;
+
+   for (int i = point.y; i < bottom; i++)
+   {
+
+      auto pline = (::u8 *) p->offset(point.x, i, m_iScan);
+
+      for (int j = point.x; j < right; j++)
+      {
+
+         pline[0] = u;
+         pline[1] = u;
+         pline[2] = u;
+         pline[3] = u;
+
+         pline += 4;
+
+      }
+
+   }
+
+}
+
+
 

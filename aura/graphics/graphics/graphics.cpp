@@ -294,7 +294,7 @@ namespace graphics
       else
       {
 
-         ::transfer(pbufferitem->acquire_graphics());
+         return ::transfer(pbufferitem->acquire_graphics());
 
       }
 

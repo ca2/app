@@ -196,7 +196,8 @@ struct pixmap_t
 
    inline ::i32_rectangle rectangle(const ::i32_point &point) const { return ::i32_rectangle(point, m_size); }
 
-   inline ::i32_point top_left() const noexcept { return m_point; }
+   ::i32_point top_left() const noexcept;
+   ::i32_point bottom_right() const noexcept;
    inline ::i32_point origin() const noexcept { return top_left(); }
    // inline concrete < ::i32_size > size() const noexcept { return m_size; }
    inline ::i32_size size() const noexcept;

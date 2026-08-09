@@ -384,7 +384,7 @@ void image32_t::copy(
 
 }
 
-//
+
 //void image32_t::copy(const ::i32_size & size, ::i32 iStrideDst, const ::image32_t * pimage32Src, ::i32 iStrideSrc)
 //{
 //
@@ -476,6 +476,7 @@ void image32_t::blend_rectangle(::i32 x, ::i32 y, ::i32 w, ::i32 h, ::i32 s, con
    }
 
 }
+
 
 
 void image32_t::copy_3_channel_data(const i32_size & size, ::i32 iTargetStride, const void * pdata, ::i32 iSourceStride)

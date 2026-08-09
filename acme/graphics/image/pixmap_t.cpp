@@ -464,4 +464,393 @@ void pixmap_t::fill_byte(::u8 u)
 }
 
 
+void pixmap_t::raw_copy(
+   const ::i32_point & pointTarget,
+   const ::i32_size & size,
+   const ::i32_point & pointSource,
+   const ::i32_size & sizeSource,
+   const ::image32_t * pimage32,
+   ::i32 iScan)
+{
 
+   if (!m_pimage32Raw ||
+       !pimage32 ||
+       m_sizeRaw.cx <= 0 ||
+       m_sizeRaw.cy <= 0 ||
+       sizeSource.cx <= 0 ||
+       sizeSource.cy <= 0 ||
+       size.cx <= 0 ||
+       size.cy <= 0)
+   {
+
+      return;
+
+   }
+
+   ::i32 xTarget = m_point.x + pointTarget.x;
+   ::i32 yTarget = m_point.y + pointTarget.y;
+
+   ::i32 xSource = pointSource.x;
+   ::i32 ySource = pointSource.y;
+
+   ::i32 cx = size.cx;
+   ::i32 cy = size.cy;
+
+
+   //
+   // Clip source against its left edge.
+   //
+   if (xSource < 0)
+   {
+
+      auto dx = -xSource;
+
+      xSource = 0;
+      xTarget += dx;
+      cx -= dx;
+
+   }
+
+
+   //
+   // Clip source against its top edge.
+   //
+   if (ySource < 0)
+   {
+
+      auto dy = -ySource;
+
+      ySource = 0;
+      yTarget += dy;
+      cy -= dy;
+
+   }
+
+
+   //
+   // Clip target against its left edge.
+   //
+   if (xTarget < 0)
+   {
+
+      auto dx = -xTarget;
+
+      xTarget = 0;
+      xSource += dx;
+      cx -= dx;
+
+   }
+
+
+   //
+   // Clip target against its top edge.
+   //
+   if (yTarget < 0)
+   {
+
+      auto dy = -yTarget;
+
+      yTarget = 0;
+      ySource += dy;
+      cy -= dy;
+
+   }
+
+
+   if (cx <= 0 || cy <= 0)
+   {
+
+      return;
+
+   }
+
+
+   //
+   // Clip against source right edge.
+   //
+   if (xSource + cx > sizeSource.cx)
+   {
+
+      cx = sizeSource.cx - xSource;
+
+   }
+
+
+   //
+   // Clip against source bottom edge.
+   //
+   if (ySource + cy > sizeSource.cy)
+   {
+
+      cy = sizeSource.cy - ySource;
+
+   }
+
+
+   //
+   // Clip against target right edge.
+   //
+   if (xTarget + cx > m_sizeRaw.cx)
+   {
+
+      cx = m_sizeRaw.cx - xTarget;
+
+   }
+
+
+   //
+   // Clip against target bottom edge.
+   //
+   if (yTarget + cy > m_sizeRaw.cy)
+   {
+
+      cy = m_sizeRaw.cy - yTarget;
+
+   }
+
+
+   if (cx <= 0 || cy <= 0)
+   {
+
+      return;
+
+   }
+
+
+   m_pimage32Raw->copy(
+      xTarget,
+      yTarget,
+      cx,
+      cy,
+      m_iScan,
+      xSource,
+      ySource,
+      pimage32,
+      iScan);
+
+}
+
+
+
+
+void pixmap_t::copy(
+   const ::i32_point & pointTarget,
+   const ::i32_size & size,
+   const ::i32_point & pointSource,
+   const ::pixmap_t & pixmapSource)
+{
+
+   copy(pointTarget, size, pointSource, pixmapSource.size(), pixmapSource.m_pimage32, pixmapSource.m_iScan);
+
+}
+
+
+void pixmap_t::copy(
+   const ::i32_point & pointTarget,
+   const ::i32_size & size,
+   const ::i32_point & pointSource,
+   const ::i32_size & sizeSource,
+   const ::image32_t * pimage32,
+   ::i32 iScan)
+{
+
+   auto sizeThis = this->size();
+
+   if (!m_pimage32 ||
+       !pimage32 ||
+       sizeThis.cx <= 0 ||
+       sizeThis.cy <= 0 ||
+       sizeSource.cx <= 0 ||
+       sizeSource.cy <= 0 ||
+       size.cx <= 0 ||
+       size.cy <= 0)
+   {
+
+      return;
+
+   }
+
+   ::i32 xTarget = pointTarget.x;
+   ::i32 yTarget = pointTarget.y;
+
+   ::i32 xSource = pointSource.x;
+   ::i32 ySource = pointSource.y;
+
+   ::i32 cx = size.cx;
+   ::i32 cy = size.cy;
+
+
+   //
+   // Clip source against its left edge.
+   //
+   if (xSource < 0)
+   {
+
+      auto dx = -xSource;
+
+      xSource = 0;
+      xTarget += dx;
+      cx -= dx;
+
+   }
+
+
+   //
+   // Clip source against its top edge.
+   //
+   if (ySource < 0)
+   {
+
+      auto dy = -ySource;
+
+      ySource = 0;
+      yTarget += dy;
+      cy -= dy;
+
+   }
+
+
+   //
+   // Clip target against its left edge.
+   //
+   if (xTarget < 0)
+   {
+
+      auto dx = -xTarget;
+
+      xTarget = 0;
+      xSource += dx;
+      cx -= dx;
+
+   }
+
+
+   //
+   // Clip target against its top edge.
+   //
+   if (yTarget < 0)
+   {
+
+      auto dy = -yTarget;
+
+      yTarget = 0;
+      ySource += dy;
+      cy -= dy;
+
+   }
+
+
+   if (cx <= 0 || cy <= 0)
+   {
+
+      return;
+
+   }
+
+
+   //
+   // Clip against source right edge.
+   //
+   if (xSource + cx > sizeSource.cx)
+   {
+
+      cx = sizeSource.cx - xSource;
+
+   }
+
+
+   //
+   // Clip against source bottom edge.
+   //
+   if (ySource + cy > sizeSource.cy)
+   {
+
+      cy = sizeSource.cy - ySource;
+
+   }
+
+
+   //
+   // Clip against target right edge.
+   //
+   if (xTarget + cx > sizeThis.cx)
+   {
+
+      cx = sizeThis.cx - xTarget;
+
+   }
+
+
+   //
+   // Clip against target bottom edge.
+   //
+   if (yTarget + cy > sizeThis.cy)
+   {
+
+      cy = sizeThis.cy - yTarget;
+
+   }
+
+
+   if (cx <= 0 || cy <= 0)
+   {
+
+      return;
+
+   }
+
+
+   m_pimage32->copy(
+      xTarget,
+      yTarget,
+      cx,
+      cy,
+      m_iScan,
+      xSource,
+      ySource,
+      pimage32,
+      iScan);
+
+}
+
+
+void pixmap_t::fill_solid_rectangle(const ::i32_rectangle & rectangle, const ::color::color & color)
+{
+
+   ::image32_t image32Pixel;
+   
+   image32Pixel.assign(color, m_colorindexes);
+
+   auto size = this->size();
+
+   auto x = constrained(rectangle.left, 0, size.cx);
+
+   auto y = constrained(rectangle.top, 0, size.cy);
+
+   auto x2 = constrained(rectangle.right, 0, size.cx);
+
+   auto y2 = constrained(rectangle.bottom, 0, size.cy);
+
+   auto w = x2 - x;
+
+   auto h = y2 - y;
+
+   auto s = m_iScan;
+
+   auto pline = ((::u8 *)this) + s * y + x * 4;
+
+   for (::i32 i = 0; i < h; i++, pline += s)
+   {
+
+      auto p = (image32_t *)pline;
+
+      for (::i32 j = 0; j < w; j++, p++)
+      {
+
+         *p = image32Pixel;
+
+      }
+
+   }
+
+}

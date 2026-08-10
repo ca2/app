@@ -34,6 +34,8 @@ namespace gpu_opengl
    void window_attachment::initialize_gpu_window_attachment(::acme::windowing::window * pwindow)
    {
 
+      ::gpu::window_attachment::initialize_gpu_window_attachment(pwindow);
+
       if (m_papplication->m_gpu.m_bUseSwapChainWindow)
       {
          //::direct2d::get() -> d2d1_factory1()->CreateHwndRenderTarget(rendertargetproperties,

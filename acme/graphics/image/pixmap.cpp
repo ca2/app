@@ -174,12 +174,19 @@ void pixmap::_map(bool bApplyTransform)
       ::is_set(pimage32Owned)
       && m_pimage32Raw == pimage32Owned;
 
-   if (!m_pimage32Raw
-      || !m_pimage32
-      || (bUsingOwnedMemory && m_memoryPixmap.size() < scan_area_in_bytes()))
+   if (m_iScan < m_sizeRaw.cx * 4)
    {
 
-      m_memoryPixmap.set_size(scan_area_in_bytes());
+      m_iScan = m_sizeRaw.cx * 4;
+
+   }
+
+   if (!m_pimage32Raw
+      || !m_pimage32
+      || (bUsingOwnedMemory && m_memoryPixmap.size() < m_iScan * m_sizeRaw.cy))
+   {
+
+      m_memoryPixmap.set_size(m_iScan * m_sizeRaw.cy);
 
       m_pimage32Raw = (::image32_t *)m_memoryPixmap.data();
 

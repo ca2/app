@@ -262,6 +262,7 @@ namespace gpu_opengl
       {
 
          throw ::exception(error_wrong_state);
+
       }
 
       {

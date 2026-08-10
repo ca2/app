@@ -8,9 +8,11 @@
 #include "drawing.h"
 #include "acme/exception/interface_only.h"
 #include "acme/parallelization/synchronous_lock.h"
+#include "acme/platform/application.h"
 #include "acme/prototype/geometry2d/item.h"
 #include "acme/prototype/geometry2d/_defer_item.h"
 #include "aura/platform/aura.h"
+#include "aura/graphics/graphics/buffer_item.h"
 #include "aura/graphics/image/array.h"
 #include "aura/graphics/image/image.h"
 #include "aura/graphics/image/drawing.h"
@@ -6905,6 +6907,20 @@ namespace draw2d
    {
 
       auto scaling = ::geometry2d::matrix::scaling(m_sizeScaling);
+
+      //::f64_point pointImage;
+
+      //if (m_pgraphicsbufferitem)
+      //{
+
+      //   if (m_pgraphicsbufferitem->m_pimageBufferItem)
+      //   {
+
+      //      pointImage = m_pgraphicsbufferitem->m_pimageBufferItem->m_point;
+
+      //   }
+
+      //}
 
       auto translation = ::geometry2d::matrix::translation(m_pointOrigin);
 

@@ -28,9 +28,9 @@ namespace draw2d
    void window_attachment::initialize_window_attachment(::windowing::window * pwindow)
    {
 
+      pwindow = pwindow;
 
    }
-
 
 
    ::draw2d::window_attachment * window_attachment::get(::acme::user::interaction * pacmeuserinteraction)

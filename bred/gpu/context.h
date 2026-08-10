@@ -128,6 +128,7 @@ namespace gpu
       i32_point                                    m_pointTranslate;
       ::pointer<::gpu::buffer>                     m_pbuffer;
       ::pointer<::gpu::shader>                     m_pshader;
+      ::i32_size                                   m_sizeRaw;
       bool                                         m_bInNonOwnedLease;
       ::pointer<::gpu::shader>                     m_pshaderBound;
       ::pointer<::gpu::render_target>              m_prendertargetBound;
@@ -348,6 +349,8 @@ namespace gpu
 
       virtual ::i32_rectangle get_placement();
       virtual ::i32_size size();
+      virtual ::i32 left();
+      virtual ::i32 top();
       virtual ::i32 width();
       virtual ::i32 height();
       virtual void set_placement(const ::i32_rectangle & rectangleGpuContext);

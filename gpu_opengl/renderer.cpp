@@ -415,8 +415,8 @@ namespace gpu_opengl
          //glViewport(0, 0, width, height);
          //if (m_pgpucontext == m_pgpucontext->m_pgpudevice->m_pgpucontextMain)
          //{
-            pcommandbuffer->set_viewport(m_pgpucontext->size());
-            pcommandbuffer->set_scissor(m_pgpucontext->size());
+            pcommandbuffer->set_viewport(m_pgpucontext->get_placement());
+            pcommandbuffer->set_scissor(m_pgpucontext->get_placement());
          //}
          //else
          //{

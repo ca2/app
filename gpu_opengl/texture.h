@@ -57,7 +57,7 @@ namespace gpu_opengl
       void _create_texture(const ::gpu::texture_data & texturedata = {}) override;
       ::i32 effective_sample_count() const;
       void invalidate_framebuffer_attachments();
-      texture * resolved_texture();
+      ::gpu::texture * resolved_texture() override;
 
 
       //void create_render_target() override;

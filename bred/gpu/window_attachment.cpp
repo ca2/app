@@ -75,6 +75,10 @@ namespace gpu
 
          auto sizeWindow = pacmewindowingwindow->m_sizeWindow;
 
+         auto sizeRaw = pacmewindowingwindow->m_sizeRaw;
+
+         m_pgpucontextWindow->m_sizeRaw = sizeRaw;
+
          ::gpu::enum_scene escene = ::gpu::e_scene_2d;
 
          if (m_papplication->m_gpu.m_bUseSwapChainWindow)

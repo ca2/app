@@ -900,9 +900,9 @@ namespace gpu_opengl
             iRedLower = data.raw_scoped_pixmap().m_iRedLower;
          }
 
-         ::i32 w = m_textureattributes.m_rectangleTarget.width();
+         ::i32 w = m_textureattributes.m_sizeRaw.cx;
 
-         ::i32 h = m_textureattributes.m_rectangleTarget.height();
+         ::i32 h = m_textureattributes.m_sizeRaw.cy;
 
          if (data.is_gpu_texture())
          {
@@ -1382,6 +1382,57 @@ void texture::_defer_bind_to_render_source(base_context_handle::object &object)
             informationf("is %d a gl texture? %d", m_gluTextureID, bIsTexture);
             ::opengl::check_error("");
 
+
+            GLint framebufferBinding = 0;
+
+            glGetIntegerv(
+               GL_READ_FRAMEBUFFER_BINDING,
+               &framebufferBinding);
+
+            informationf(
+               "Checking FBO %d expected %u",
+               framebufferBinding,
+               object.m_handle);
+
+            GLint objectType = 0;
+            GLint objectName = 0;
+
+            glGetFramebufferAttachmentParameteriv(
+               GL_READ_FRAMEBUFFER,
+               GL_COLOR_ATTACHMENT0,
+               GL_FRAMEBUFFER_ATTACHMENT_OBJECT_TYPE,
+               &objectType);
+
+            glGetFramebufferAttachmentParameteriv(
+               GL_READ_FRAMEBUFFER,
+               GL_COLOR_ATTACHMENT0,
+               GL_FRAMEBUFFER_ATTACHMENT_OBJECT_NAME,
+               &objectName);
+
+            informationf(
+               "FBO=%d color0 type=0x%04x object=%d",
+               framebufferBinding,
+               objectType,
+               objectName);
+
+            glFramebufferTexture2D(
+               GL_READ_FRAMEBUFFER,
+               GL_COLOR_ATTACHMENT0,
+               GL_TEXTURE_2D,
+               m_gluTextureID,
+               0);
+
+            auto error = glGetError();
+
+            informationf(
+               "glFramebufferTexture2D texture=%u error=0x%04x",
+               m_gluTextureID,
+               error);
+
+            informationf(
+   "framebuffer=%u texture=%u",
+   object.m_handle,
+   m_gluTextureID);
       //      glBindTexture(m_gluType, m_gluTextureID);
         //    ::opengl::check_error("");
 
@@ -1458,7 +1509,7 @@ void texture::_defer_bind_to_render_source(base_context_handle::object &object)
    // glBindFramebuffer(GL_READ_FRAMEBUFFER, readFboOld);
 }
 
-   texture * texture::resolved_texture()
+   ::gpu::texture * texture::resolved_texture()
    {
 
       if (m_ptextureResolved == this)
@@ -1506,7 +1557,8 @@ void texture::_defer_bind_to_render_source(base_context_handle::object &object)
 
       ::gpu::texture_flags textureflags;
       textureflags.m_bWithDepth = false;
-      textureflags.m_bRenderTarget = true;
+      //textureflags.m_bRenderTarget = true;
+      textureflags.m_bRenderTarget = false;
       textureflags.m_bShaderResource = true;
       textureflags.m_bTransferSource = true;
       textureflags.m_bTransferTarget = true;
@@ -1528,9 +1580,11 @@ void texture::_defer_bind_to_render_source(base_context_handle::object &object)
    void texture::create_depth_resources()
    {
 
-      ::i32 width = m_textureattributes.m_rectangleTarget.width();
+      //::i32 width = m_textureattributes.m_rectangleTarget.width();
+      ::i32 width = m_textureattributes.m_sizeRaw.cx;
 
-      ::i32 height = m_textureattributes.m_rectangleTarget.height();
+      //::i32 height = m_textureattributes.m_rectangleTarget.height();
+      ::i32 height = m_textureattributes.m_sizeRaw.cy;
 
       if (!m_gluDepthStencilRBO)
       {
@@ -1714,6 +1768,12 @@ void texture::_defer_bind_to_render_source(base_context_handle::object &object)
          return m_resolveframebuffer.m_framebuffer;
 
       }
+      else
+      {
+
+         return gluFramebufferObject;
+
+      }
 
    }
 
@@ -1776,7 +1836,7 @@ void texture::_defer_bind_to_render_source(base_context_handle::object &object)
 
       if (!ppixmap || ppixmap->size() != size() ||
           ppixmap->m_iScan < width() * (int)sizeof(::image32_t) ||
-          !ppixmap->m_pimage32Raw || !m_gluTextureID ||
+          !ppixmap->m_pimage32 || !m_gluTextureID ||
           (m_gluType != GL_TEXTURE_2D && m_gluType != GL_TEXTURE_2D_MULTISAMPLE))
       {
 
@@ -1804,6 +1864,8 @@ void texture::_defer_bind_to_render_source(base_context_handle::object &object)
       if (eStatus != GL_FRAMEBUFFER_COMPLETE)
       {
 
+         auto pszStatus = ::opengl::check_framebuffer_status_text(eStatus);
+
          throw ::exception(
             error_wrong_state,
             "GPU image framebuffer is incomplete during CPU mapping.");
@@ -1816,14 +1878,22 @@ void texture::_defer_bind_to_render_source(base_context_handle::object &object)
          GL_PACK_ROW_LENGTH,
          ppixmap->m_iScan / (int)sizeof(::image32_t));
 
+      auto x = m_textureattributes.m_rectangleTarget.left;
+
+      auto y = m_textureattributes.m_rectangleTarget.top;
+
+      auto w = m_textureattributes.m_rectangleTarget.width();
+
+      auto h = m_textureattributes.m_rectangleTarget.height();
+
       glReadPixels(
-         0,
-         0,
-         width(),
-         height(),
+         x,
+         y,
+         w,
+         h,
          pixmap_pixel_format(ppixmap),
          GL_UNSIGNED_BYTE,
-         ppixmap->m_pimage32Raw);
+         ppixmap->m_pimage32);
       ::opengl::check_error("");
 
       ppixmap->vertical_swap();
@@ -1836,7 +1906,7 @@ void texture::_defer_bind_to_render_source(base_context_handle::object &object)
 
       if (!ppixmap || ppixmap->size() != size() ||
           ppixmap->m_iScan < width() * (int)sizeof(::image32_t) ||
-          !ppixmap->m_pimage32Raw || !m_gluTextureID ||
+          !ppixmap->m_pimage32 || !m_gluTextureID ||
           m_gluType != GL_TEXTURE_2D)
       {
 
@@ -1863,13 +1933,13 @@ void texture::_defer_bind_to_render_source(base_context_handle::object &object)
       glTexSubImage2D(
          GL_TEXTURE_2D,
          0,
-         0,
-         0,
+         m_textureattributes.m_rectangleTarget.left,
+         m_textureattributes.m_rectangleTarget.top,
          width(),
          height(),
          pixmap_pixel_format(&pixmapFlipped),
          GL_UNSIGNED_BYTE,
-         pixmapFlipped.m_pimage32Raw);
+         pixmapFlipped.m_pimage32);
       ::opengl::check_error("");
 
    }

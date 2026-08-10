@@ -274,6 +274,8 @@ namespace gpu
 
       auto rectangle = m_pgpurenderer->m_pgpucontext->get_placement();
 
+      auto sizeRaw = m_pgpurenderer->m_pgpucontext->m_sizeRaw;
+
       if (rectangle.is_empty())
       {
 
@@ -281,7 +283,16 @@ namespace gpu
 
       }
 
-      if (!ptexture || rectangle != ptexture->m_textureattributes.m_rectangleTarget)
+      if (sizeRaw.is_empty())
+      {
+
+         throw ::exception(error_wrong_state);
+
+      }
+
+      if (!ptexture
+         || rectangle != ptexture->m_textureattributes.m_rectangleTarget
+         || sizeRaw != ptexture->m_textureattributes.m_sizeRaw)
       {
 
          m_pgpurenderer->defer_constructø(ptexture);
@@ -295,6 +306,8 @@ namespace gpu
          textureflags.m_bRenderTarget = bRenderTarget;
          textureflags.m_bTransferTarget = true;
          textureflags.m_bShaderResource = true;
+
+         textureattributes.m_sizeRaw = sizeRaw;
 
          ptexture->initialize_texture(m_pgpurenderer->m_pgpucontext, textureattributes, textureflags);
 

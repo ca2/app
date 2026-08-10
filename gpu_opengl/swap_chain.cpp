@@ -286,7 +286,7 @@ FragColor = texture(uTexture, TexCoord);
          
 #endif
 
-#if 1
+#if 0
 
          glClearColor(0.5f, 0.5f, 0.5f, 0.5f);
          ::opengl::check_error("");

@@ -1284,21 +1284,21 @@ namespace gpu_opengl
    void context::draw2d_on_end_draw(::gpu::graphics * pgpugraphics)
    {
 
-      if (m_papplication->m_gpu.m_bUseSwapChainWindow)
-      {
+      //if (m_papplication->m_gpu.m_bUseSwapChainWindow)
+      //{
 
-         auto pgpuwindowattachment = ::gpu::window_attachment::get(this);
+      //   auto pgpuwindowattachment = ::gpu::window_attachment::get(this);
 
-         auto pswapchain = pgpuwindowattachment->window_context()->get_swap_chain();
+      //   auto pswapchain = pgpuwindowattachment->window_context()->get_swap_chain();
 
-         if (pswapchain)
-         {
+      //   if (pswapchain)
+      //   {
 
-            pswapchain->swap_buffers();
+      //      pswapchain->swap_buffers();
 
-         }
+      //   }
 
-      }
+      //}
 
    }
 
@@ -1861,27 +1861,30 @@ namespace gpu_opengl
       // Bind default pframebuffer as draw target
       glBindFramebuffer(GL_DRAW_FRAMEBUFFER, 0);
 
+      auto r = this->get_placement();
 
       glViewport(
-         0,
-         0,
-         this->width(),
-         this->height());
+         r.left,
+         r.top,
+         r.width(),
+         r.height()
+      );
 
       // Optional: scissor if you want to limit drawing region
       glEnable(GL_SCISSOR_TEST);
       glScissor(
-         0,
-         0,
-         this->width(),
-         this->height()
-         );
+         r.left,
+         r.top,
+         r.width(),
+         r.height()
+      );
 
+      auto rSrc = ptexture->m_textureattributes.m_rectangleTarget;
 
       // Blit from source to default pframebuffer
       glBlitFramebuffer(
-         0, 0, ptexture->size().cx, ptexture->size().cy, // src rect
-         0, 0, this->width(), this->height(), // dst rect
+         rSrc.left, rSrc.top, rSrc.width(), rSrc.height(), // src rect
+         r.left, r.top, r.width(), r.height(), // dst rect
          GL_COLOR_BUFFER_BIT, GL_NEAREST);
 
       glBindFramebuffer(GL_FRAMEBUFFER, 0); // Return to default pframebuffer
@@ -1977,6 +1980,14 @@ namespace gpu_opengl
       glFlush();
       ::opengl::check_error("");
 
+      auto p1Src = ptextureSrc->m_textureattributes.m_rectangleTarget.origin();
+
+      auto p1Dst = ptextureDst->m_textureattributes.m_rectangleTarget.origin();
+
+      auto p2Src = ptextureSrc->m_textureattributes.m_rectangleTarget.bottom_right();
+
+      auto p2Dst = ptextureDst->m_textureattributes.m_rectangleTarget.bottom_right();
+
       auto sizeSrc = ptextureSrc->size();
 
       auto sizeDst = ptextureDst->size();
@@ -2013,6 +2024,85 @@ namespace gpu_opengl
       auto pqueueGraphics = m_pgpudevice->graphics_queue();
 
       auto pcommandbuffer = beginSingleTimeCommands(pqueueGraphics);
+
+      if (0)
+      {
+
+         GLint iReadFramebufferOld = 0;
+         glGetIntegerv(GL_READ_FRAMEBUFFER_BINDING, &iReadFramebufferOld);
+         ::opengl::check_error("");
+
+         GLint iDrawFramebufferOld = 0;
+         glGetIntegerv(GL_DRAW_FRAMEBUFFER_BINDING, &iDrawFramebufferOld);
+         ::opengl::check_error("");
+
+         GLint iReadBufferOld = 0;
+         glGetIntegerv(GL_READ_BUFFER, &iReadBufferOld);
+         ::opengl::check_error("");
+
+         GLint iDrawBufferOld = 0;
+         glGetIntegerv(GL_DRAW_BUFFER, &iDrawBufferOld);
+         ::opengl::check_error("");
+
+         auto bScissorTestEnabled = glIsEnabled(GL_SCISSOR_TEST);
+         ::opengl::check_error("");
+
+         GLuint uReadFramebuffer = 0;
+         GLuint uDrawFramebuffer = 0;
+
+         framebuffer_blit_state_guard stateguard(
+            iReadFramebufferOld,
+            iDrawFramebufferOld,
+            iReadBufferOld,
+            iDrawBufferOld,
+            bScissorTestEnabled,
+            uReadFramebuffer,
+            uDrawFramebuffer);
+
+         glGenFramebuffers(1, &uDrawFramebuffer);
+         ::opengl::check_error("");
+
+         glBindFramebuffer(GL_DRAW_FRAMEBUFFER, uDrawFramebuffer);
+         ::opengl::check_error("");
+
+         glFramebufferTexture2D(
+            GL_DRAW_FRAMEBUFFER, GL_COLOR_ATTACHMENT0,
+            ptextureSrc->m_gluType,
+            ptextureSrc->m_gluTextureID,
+            0);
+         ::opengl::check_error("");
+
+         glEnable(GL_SCISSOR_TEST);
+         ::opengl::check_error("");
+
+         glScissor(p1Src.x + 100, p1Src.y, 50, 50);
+         ::opengl::check_error("");
+
+         glClearColor(200.f * 0.5f / 255.f, 200.f * 0.5f / 255.f, 100.f * 0.5f / 255.f, 0.5f);
+         ::opengl::check_error("");
+
+         glClear(GL_COLOR_BUFFER_BIT);
+         ::opengl::check_error("");
+
+         glScissor(p1Src.x + 100, p1Src.y + sizeSrc.cy - 50, 50, 50);
+         ::opengl::check_error("");
+
+         glClearColor(100.f * 0.5f / 255.f, 200.f * 0.5f / 255.f, 100.f * 0.5f / 255.f, 0.5f);
+         ::opengl::check_error("");
+
+         glClear(GL_COLOR_BUFFER_BIT);
+         ::opengl::check_error("");
+
+         glScissor(p1Src.x + 100, sizeSrc.cy - 50, 50, 50);
+         ::opengl::check_error("");
+
+         glClearColor(200.f * 0.5f / 255.f, 100.f * 0.5f / 255.f, 200.f * 0.5f / 255.f, 0.5f);
+         ::opengl::check_error("");
+
+         glClear(GL_COLOR_BUFFER_BIT);
+         ::opengl::check_error("");
+
+      }
 
       GLint iReadFramebufferOld = 0;
       glGetIntegerv(GL_READ_FRAMEBUFFER_BINDING, &iReadFramebufferOld);
@@ -2122,12 +2212,33 @@ namespace gpu_opengl
       glDisable(GL_SCISSOR_TEST);
       ::opengl::check_error("");
 
+      auto origin = this->get_placement().origin();
+
       glBlitFramebuffer(
-         0, 0, sizeSrc.cx, sizeSrc.cy,
-         0, 0, sizeDst.cx, sizeDst.cy,
+         p1Src.x, p1Src.y, p2Src.x, p2Src.y,
+         p1Dst.x, p1Dst.y, p2Dst.x, p2Dst.y,
          GL_COLOR_BUFFER_BIT, GL_NEAREST);
       ::opengl::check_error("");
 
+
+      if (0)
+      {
+
+         glEnable(GL_SCISSOR_TEST);
+
+         glScissor(p1Src.x, p1Src.y, 50, 50);
+
+         glClearColor(200.f * 0.5f / 255.f, 200.f * 0.5f / 255.f, 100.f * 0.5f / 255.f, 0.5f);
+         
+         glClear(GL_COLOR_BUFFER_BIT);
+
+         glScissor(p1Src.x, p1Src.y + sizeSrc.cy - 50, 50, 50);
+
+         glClearColor(100.f * 0.5f / 255.f, 200.f * 0.5f / 255.f, 100.f * 0.5f / 255.f, 0.5f);
+
+         glClear(GL_COLOR_BUFFER_BIT);
+
+      }
 #ifdef SHOW_DEBUG_DRAWING
       {
 

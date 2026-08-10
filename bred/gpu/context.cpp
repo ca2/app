@@ -1591,6 +1591,13 @@ namespace gpu
    void context::_create_gpu_context(::gpu::device* pgpudevice, const ::gpu::enum_output& eoutput, const ::gpu::enum_scene& escene, ::acme::windowing::window* pacmewindowingwindow, const ::i32_size& size)
    {
 
+      if (m_sizeRaw.is_empty())
+      {
+
+         m_sizeRaw = pacmewindowingwindow->m_sizeRaw;
+
+      }
+
       m_pgpudevice = pgpudevice;
 
       m_eoutput = eoutput;
@@ -2024,6 +2031,22 @@ namespace gpu
    {
 
       return m_rectangleGpuContext.size();
+
+   }
+
+
+   ::i32 context::left()
+   {
+
+      return m_rectangleGpuContext.left;
+
+   }
+
+
+   ::i32 context::top()
+   {
+
+      return m_rectangleGpuContext.top;
 
    }
 

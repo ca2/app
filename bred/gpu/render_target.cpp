@@ -641,6 +641,8 @@ namespace gpu
 
       auto rectangle = m_pgpurenderer->m_pgpucontext->get_placement();
 
+      auto sizeRaw = m_pgpurenderer->m_pgpucontext->m_sizeRaw;
+
       auto escene = m_pgpurenderer->m_pgpucontext->m_escene;
 
       ::gpu::texture_attributes textureattributes(rectangle);
@@ -652,6 +654,8 @@ namespace gpu
       textureflags.m_bTransferTarget = true;
 
       textureflags.m_bTransferSource = true;
+
+      textureattributes.m_sizeRaw = sizeRaw;
 
       textureflags.m_bWithDepth =
          escene == ::gpu::e_scene_3d;

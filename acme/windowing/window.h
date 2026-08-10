@@ -86,7 +86,14 @@ namespace acme
          //::i32_size                                         m_sizeDesignRequest;
          ::i32_point                                        m_pointWindow;
          ::i32_size                                         m_sizeWindow;
-         ::i32_size                                         m_sizeScreen;                                     
+         /// m_sizeRaw should be the same or bigger than m_sizeWindow.
+         /// It is meant to be a good fair but also performant
+         /// bigger-than-actual-maximum-size of the window back buffer.
+         /// The goal is to avoid too much reallocation of the buffer 
+         /// during resize.
+         /// A fair guess can be screen size (union of all monitors).
+         /// Or the biggest size of last resizes of the window.
+         ::i32_size                                         m_sizeRaw;                                     
          ::i32_point                                        m_pointCursor2;
 
          ::pointer < ::operating_system::a_system_menu >    m_psystemmenu;

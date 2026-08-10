@@ -182,10 +182,12 @@ namespace gpu
    //}
 
 
-   void texture::initialize_depth_texture(::gpu::context* pgpucontext, const ::i32_rectangle& rectangleTarget)
+   void texture::initialize_depth_texture(::gpu::context* pgpucontext, const ::i32_size& size)
    {
 
-      ::gpu::texture_attributes textureattributes(rectangleTarget, 16, 1, 0, 1, e_texture_depth);
+      ::gpu::texture_attributes textureattributes({ ::i32_point{}, size}, 16, 1, 0, 1, e_texture_depth);
+
+      textureattributes.m_sizeRaw = size;
 
       initialize_texture(pgpucontext, textureattributes);
       // m_etype = e_type_depth;
@@ -228,6 +230,22 @@ namespace gpu
    }
 
 
+   ::i32 texture::left() const
+   {
+
+      return m_textureattributes.m_rectangleTarget.left;
+
+   }
+
+
+   ::i32 texture::top() const
+   {
+
+      return m_textureattributes.m_rectangleTarget.top;
+
+   }
+
+
    ::i32 texture::width() const
    {
 
@@ -240,6 +258,22 @@ namespace gpu
    {
 
       return m_textureattributes.m_rectangleTarget.height();
+
+   }
+
+
+   ::i32 texture::raw_width() const
+   {
+
+      return m_textureattributes.m_sizeRaw.cx > 0 ? m_textureattributes.m_sizeRaw.cx : m_textureattributes.m_rectangleTarget.width();
+
+   }
+
+
+   ::i32 texture::raw_height() const
+   {
+
+      return m_textureattributes.m_sizeRaw.cy > 0 ? m_textureattributes.m_sizeRaw.cy : m_textureattributes.m_rectangleTarget.height();
 
    }
 
@@ -681,6 +715,14 @@ namespace gpu
 
    }
 
+   
+   ::gpu::texture * texture::resolved_texture()
+   {
+
+      return this;
+
+   }
+
 
    texture* texture::get_depth_texture()
    {
@@ -708,7 +750,7 @@ namespace gpu
 
       defer_constructø(m_ptextureDepth);
 
-      m_ptextureDepth->initialize_depth_texture(m_pgpucontext, m_textureattributes.m_rectangleTarget);
+      m_ptextureDepth->initialize_depth_texture(m_pgpucontext, m_textureattributes.m_sizeRaw);
 
       return m_ptextureDepth;
 

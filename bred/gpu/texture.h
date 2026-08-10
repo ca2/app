@@ -64,8 +64,12 @@ namespace gpu
 
       virtual ::i32_rectangle rectangle() const;
       virtual ::i32_size size() const;
+      virtual ::i32 left() const;
+      virtual ::i32 top() const;
       virtual ::i32 width() const;
       virtual ::i32 height() const;
+      virtual ::i32 raw_width() const;
+      virtual ::i32 raw_height() const;
 
       virtual ::i32 mip_count() const;
       virtual ::i32 maximum_mip_count() const;
@@ -102,7 +106,7 @@ namespace gpu
          const texture_flags & textureflags = {},
          const texture_data & texturedata = {});
 //      virtual void initialize_mipmap_cubemap_texture(::gpu::context *pgpucontext, const ::i32_rectangle& rectangleTarget, ::i32 iMipCount = -1, bool bRenderTarget = true, bool bShaderResourceView = true);
-      virtual void initialize_depth_texture(::gpu::context* pgpucontext, const ::i32_rectangle& rectangleTarget);
+      virtual void initialize_depth_texture(::gpu::context* pgpucontext, const ::i32_size & size);
 
       virtual void initialize_texture_from_file_path(::gpu::context* pgpucontext, const ::file::path & path, bool bIsSrgb);
       virtual void initialize_texture_from_pixmap(::gpu::context* pgpucontext, const ::pointer_array < ::pixmap > & pixmapa, enum_texture etexture = e_texture_image);
@@ -122,6 +126,8 @@ namespace gpu
       virtual void bind_render_target();
 
       virtual texture* get_depth_texture();
+
+      virtual ::gpu::texture * resolved_texture();
 
       virtual ::string texture_type();
       virtual void set_pixels(const ::i32_rectangle& rectangle, const void* data);

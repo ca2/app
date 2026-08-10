@@ -300,6 +300,7 @@ const ::pixmap_t & pixmapSource);
 
 
    void fill_solid_rectangle(const ::i32_rectangle & rectangle, const ::color::color & color);
+   void blend_color(const ::i32_rectangle & rectangle, const ::color::color & color);
 
    ::color::color average_color();
 

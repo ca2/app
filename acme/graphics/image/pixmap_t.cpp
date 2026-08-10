@@ -17,7 +17,7 @@
 void pixmap_t::initialize_pixmap(const ::i32_size & size, ::image32_t * pimage32, ::i32 iScan)
 {
 
-   m_size = size;
+   //m_size = size;
 
    m_sizeRaw = size;
 
@@ -817,6 +817,13 @@ void pixmap_t::copy(
 void pixmap_t::fill_solid_rectangle(const ::i32_rectangle & rectangle, const ::color::color & color)
 {
 
+   if (::is_null(m_pimage32))
+   {
+
+      return;
+
+   }
+
    ::image32_t image32Pixel;
    
    image32Pixel.assign(color, m_colorindexes);
@@ -837,7 +844,7 @@ void pixmap_t::fill_solid_rectangle(const ::i32_rectangle & rectangle, const ::c
 
    auto s = m_iScan;
 
-   auto pline = ((::u8 *)this) + s * y + x * 4;
+   auto pline = ((::u8 *)m_pimage32) + s * y + x * 4;
 
    for (::i32 i = 0; i < h; i++, pline += s)
    {
@@ -854,3 +861,57 @@ void pixmap_t::fill_solid_rectangle(const ::i32_rectangle & rectangle, const ::c
    }
 
 }
+
+
+
+void pixmap_t::blend_color(const ::i32_rectangle & rectangle, const ::color::color & color)
+{
+
+   if (::is_null(m_pimage32))
+   {
+
+      return;
+
+   }
+
+   auto size = this->size();
+
+   auto x = constrained(rectangle.left, 0, size.cx);
+
+   auto y = constrained(rectangle.top, 0, size.cy);
+
+   auto x2 = constrained(rectangle.right, 0, size.cx);
+
+   auto y2 = constrained(rectangle.bottom, 0, size.cy);
+
+   auto w = x2 - x;
+
+   auto h = y2 - y;
+
+   auto s = m_iScan;
+
+   if (w <= 0 || h <= 0)
+   {
+
+      return;
+
+   }
+
+   ::image32_t image32Pixel;
+
+   // Creates a premultiplied-alpha pixel.
+   image32Pixel.assign(color, m_colorindexes);
+
+   m_pimage32->blend_rectangle(
+      x,
+      y,
+      w,
+      h,
+      s,
+      image32Pixel);
+
+
+}
+
+
+

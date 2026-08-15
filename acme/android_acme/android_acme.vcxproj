@@ -282,7 +282,7 @@
     <ClCompile Include="..\filesystem\file\text_stream.cpp" />
     <ClCompile Include="..\filesystem\file\var_stream.cpp" />
     <ClCompile Include="..\filesystem\file\_.cpp" />
-    <ClCompile Include="..\framework.cpp" />
+    <ClCompile Include="..\platform.cpp" />
     <ClCompile Include="..\graphics\draw2d\color.cpp" />
     <ClCompile Include="..\graphics\draw2d\colorref_array.cpp" />
     <ClCompile Include="..\graphics\draw2d\_.cpp" />
@@ -1114,7 +1114,7 @@
     <ClInclude Include="..\filesystem\file\_var_stream_impl.h" />
     <ClInclude Include="..\filesystem\file\___serialization_draft.h" />
     <ClInclude Include="..\filesystem\file\___serialization_draft001.h" />
-    <ClInclude Include="..\framework.h" />
+    <ClInclude Include="..\platform.h" />
     <ClInclude Include="..\framework_c.h" />
     <ClInclude Include="..\graphics\draw2d\color.h" />
     <ClInclude Include="..\graphics\draw2d\colorref_array.h" />

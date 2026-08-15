@@ -6,7 +6,7 @@
 //  15:22
 //  Copyright (c) 2022 Camilo Sasuke Thomas Borregaard Soerensen. All rights reserved.
 //
-#include "framework.h"
+#include "platform.h"
 #include "acme/operating_system/ansi/call_stack.h"
 #include "acme/platform/node.h"
 #include "call_stack.h"

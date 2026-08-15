@@ -1,7 +1,7 @@
 //
 // Created by camilo on 13/02/2021. <3TBS_!!
 //
-#include "framework.h"
+#include "platform.h"
 #include "earth_gregorian_time.h"
 #include "system_time.h"
 #include "acme/operating_system/time.h"

@@ -1,6 +1,6 @@
 // Created by camilo on 2021-01-21 05:05 PM <3ThomasBorregaardSorensen
 // Renamed to _nano by camilo on 2021-02-01 13:44 <3ThomasBorregaardSorensen!!
-#include "framework.h"
+#include "platform.h"
 #include "window.h"
 #include "acme/nano/nano.h"
 #include "acme/user/micro/user.h"

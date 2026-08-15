@@ -189,10 +189,10 @@
 		<Unit filename="/home/camilo/solution/basis/source/app/programming/dynamic_source/session.h">
 			<Option target="programming"/>
 		</Unit>
-		<Unit filename="/home/camilo/solution/basis/source/app/programming/framework.cpp">
+		<Unit filename="/home/camilo/solution/basis/source/app/programming/platform.cpp">
 			<Option target="programming"/>
 		</Unit>
-		<Unit filename="/home/camilo/solution/basis/source/app/programming/framework.h">
+		<Unit filename="/home/camilo/solution/basis/source/app/programming/platform.h">
 			<Option target="programming"/>
 		</Unit>
 		<Unit filename="/home/camilo/solution/basis/source/app/programming/introjection/compiler.cpp">

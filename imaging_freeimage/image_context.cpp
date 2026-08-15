@@ -1,4 +1,4 @@
-#include "framework.h"
+#include "platform.h"
 #include "image_context.h"
 
 #if defined(USE_PORT_FREEIMAGE)

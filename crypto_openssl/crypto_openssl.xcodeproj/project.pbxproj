@@ -17,28 +17,28 @@
 		A06800696FF879E3433BF6B5 /* hasher.h in Headers */ = {isa = PBXBuildFile; fileRef = E2B0A437BCD64B079E06FDE3 /* hasher.h */; };
 		A6461CEFC8A6DBCB5D50141C /* hasher_algorithm.h in Headers */ = {isa = PBXBuildFile; fileRef = 51130FAD0DEFC89350E2A414 /* hasher_algorithm.h */; };
 		D603786CF32D9AD1DB8FEFCE /* _.h in Headers */ = {isa = PBXBuildFile; fileRef = 3937EA57FD6F4F94924B8445 /* _.h */; };
-		3A1DCAD55CD14CA8BB9032CA /* framework.h in Headers */ = {isa = PBXBuildFile; fileRef = 7FD2D67C9FF1E6017DED562F /* framework.h */; };
+		3A1DCAD55CD14CA8BB9032CA /* platform.h in Headers */ = {isa = PBXBuildFile; fileRef = 7FD2D67C9FF1E6017DED562F /* platform.h */; };
 		CA9E43DD5CAB439F6981F328 /* rsa.h in Headers */ = {isa = PBXBuildFile; fileRef = BD16385B8C996AC54F1C2B15 /* rsa.h */; };
 		825901EE90D26779B366E207 /* crypto.h in Headers */ = {isa = PBXBuildFile; fileRef = 8AA72CDD6314868108A9C229 /* crypto.h */; };
 		6409B51453BA1D98D7BE47F7 /* initializer.cpp in Sources */ = {isa = PBXBuildFile; fileRef = DE715BC5EF8A4A2932D4F735 /* initializer.cpp */; };
 		3E0EDA0A81D2E7A5E19E718F /* crypto.cpp in Sources */ = {isa = PBXBuildFile; fileRef = E798323FE6C628A3F3984169 /* crypto.cpp */; };
 		49F7CFB547789C7D1F3F95B0 /* hasher.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 3B3F2D4B41A43184E3BC1FE5 /* hasher.cpp */; };
 		44661F8E0FF59CE42212D1B2 /* _factory.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 4470373B5930A9E7B2D04C94 /* _factory.cpp */; };
-		A9085442A8991CC2353BEE76 /* framework.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 332E700999F325DA59AB07A5 /* framework.cpp */; };
+		A9085442A8991CC2353BEE76 /* platform.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 332E700999F325DA59AB07A5 /* platform.cpp */; };
 		3BCAE0AA3215B21613ED54A7 /* hasher_algorithm.cpp in Sources */ = {isa = PBXBuildFile; fileRef = A4FBFCAC7E3406D20B47C56B /* hasher_algorithm.cpp */; };
 		2922D55D0FC171A8F48ABBDC /* _.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 35BA663D44841CD34F7B9B18 /* _.cpp */; };
 		954351D991F222D8D70CD28E /* rsa.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 3A22AB4CF27436D0E4A840D8 /* rsa.cpp */; };
 		77FF3E9FD44542D45918892F /* initializer.cpp in Sources */ = {isa = PBXBuildFile; fileRef = DE715BC5EF8A4A2932D4F735 /* initializer.cpp */; };
 		6D2C4C123EE45229AD18C534 /* hasher.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 3B3F2D4B41A43184E3BC1FE5 /* hasher.cpp */; };
 		4F9EFD7DB7FC3E435798581C /* hasher_algorithm.cpp in Sources */ = {isa = PBXBuildFile; fileRef = A4FBFCAC7E3406D20B47C56B /* hasher_algorithm.cpp */; };
-		0F5488BF35A9827B59F52A96 /* framework.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 332E700999F325DA59AB07A5 /* framework.cpp */; };
+		0F5488BF35A9827B59F52A96 /* platform.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 332E700999F325DA59AB07A5 /* platform.cpp */; };
 		2D2C1B799E24108718782B2C /* crypto.h in Headers */ = {isa = PBXBuildFile; fileRef = 8AA72CDD6314868108A9C229 /* crypto.h */; };
 		1ECDB4AFA252370DD9024CE1 /* hasher.h in Headers */ = {isa = PBXBuildFile; fileRef = E2B0A437BCD64B079E06FDE3 /* hasher.h */; };
 		3C6F830ED28DC543AECFC5A9 /* _.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 35BA663D44841CD34F7B9B18 /* _.cpp */; };
 		98BC3B4E99C3F632A1EF3045 /* initializer.h in Headers */ = {isa = PBXBuildFile; fileRef = B5C35AB62975156DE572B894 /* initializer.h */; };
 		162F97DCBA4B7B6D2DAC78D6 /* _factory.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 4470373B5930A9E7B2D04C94 /* _factory.cpp */; };
 		4787A0401FF4384C964FBD29 /* crypto.cpp in Sources */ = {isa = PBXBuildFile; fileRef = E798323FE6C628A3F3984169 /* crypto.cpp */; };
-		4DD4584DB0D49D04B9F3D6C2 /* framework.h in Headers */ = {isa = PBXBuildFile; fileRef = 7FD2D67C9FF1E6017DED562F /* framework.h */; };
+		4DD4584DB0D49D04B9F3D6C2 /* platform.h in Headers */ = {isa = PBXBuildFile; fileRef = 7FD2D67C9FF1E6017DED562F /* platform.h */; };
 		03BF29BB223EA1406A6032E5 /* rsa.h in Headers */ = {isa = PBXBuildFile; fileRef = BD16385B8C996AC54F1C2B15 /* rsa.h */; };
 		54E690B6BC8D44D0B13D976C /* hasher_algorithm.h in Headers */ = {isa = PBXBuildFile; fileRef = 51130FAD0DEFC89350E2A414 /* hasher_algorithm.h */; };
 		AF314F90742ECAA5469EA5D7 /* rsa.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 3A22AB4CF27436D0E4A840D8 /* rsa.cpp */; };
@@ -47,14 +47,14 @@
 		5D81639F2918A50D5BE129EA /* hasher.h in Headers */ = {isa = PBXBuildFile; fileRef = E2B0A437BCD64B079E06FDE3 /* hasher.h */; };
 		92EB559880FABEB9EE8DB103 /* hasher_algorithm.h in Headers */ = {isa = PBXBuildFile; fileRef = 51130FAD0DEFC89350E2A414 /* hasher_algorithm.h */; };
 		E0E24F9868E17E8F3BC2E0F6 /* _.h in Headers */ = {isa = PBXBuildFile; fileRef = 3937EA57FD6F4F94924B8445 /* _.h */; };
-		063D152A4624CCEF6DA326B0 /* framework.h in Headers */ = {isa = PBXBuildFile; fileRef = 7FD2D67C9FF1E6017DED562F /* framework.h */; };
+		063D152A4624CCEF6DA326B0 /* platform.h in Headers */ = {isa = PBXBuildFile; fileRef = 7FD2D67C9FF1E6017DED562F /* platform.h */; };
 		97749D5BB2399AFAF8658D4F /* rsa.h in Headers */ = {isa = PBXBuildFile; fileRef = BD16385B8C996AC54F1C2B15 /* rsa.h */; };
 		B8C2D0ECDB0469F14FF16E56 /* crypto.h in Headers */ = {isa = PBXBuildFile; fileRef = 8AA72CDD6314868108A9C229 /* crypto.h */; };
 		801711FCE53C26E3D04AE974 /* initializer.cpp in Sources */ = {isa = PBXBuildFile; fileRef = DE715BC5EF8A4A2932D4F735 /* initializer.cpp */; };
 		51F4B90604536C5349648F6D /* crypto.cpp in Sources */ = {isa = PBXBuildFile; fileRef = E798323FE6C628A3F3984169 /* crypto.cpp */; };
 		8E449C1BE48B85AB92F66E02 /* hasher.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 3B3F2D4B41A43184E3BC1FE5 /* hasher.cpp */; };
 		3EE911CFB51CC962D41FBE88 /* _factory.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 4470373B5930A9E7B2D04C94 /* _factory.cpp */; };
-		14DC7114C62EF7A135BCBDE4 /* framework.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 332E700999F325DA59AB07A5 /* framework.cpp */; };
+		14DC7114C62EF7A135BCBDE4 /* platform.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 332E700999F325DA59AB07A5 /* platform.cpp */; };
 		745B9DC6ACDD9E9A3A9439AC /* hasher_algorithm.cpp in Sources */ = {isa = PBXBuildFile; fileRef = A4FBFCAC7E3406D20B47C56B /* hasher_algorithm.cpp */; };
 		E5E1CCCF234657A93AED5A6D /* _.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 35BA663D44841CD34F7B9B18 /* _.cpp */; };
 		7DD710600F2BD69A25916D37 /* rsa.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 3A22AB4CF27436D0E4A840D8 /* rsa.cpp */; };
@@ -120,14 +120,14 @@
 		DE715BC5EF8A4A2932D4F735 /* initializer.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = initializer.cpp; sourceTree = "<group>"; };
 		3B3F2D4B41A43184E3BC1FE5 /* hasher.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = hasher.cpp; sourceTree = "<group>"; };
 		A4FBFCAC7E3406D20B47C56B /* hasher_algorithm.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = hasher_algorithm.cpp; sourceTree = "<group>"; };
-		332E700999F325DA59AB07A5 /* framework.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = framework.cpp; sourceTree = "<group>"; };
+		332E700999F325DA59AB07A5 /* platform.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = platform.cpp; sourceTree = "<group>"; };
 		8AA72CDD6314868108A9C229 /* crypto.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = crypto.h; sourceTree = "<group>"; };
 		E2B0A437BCD64B079E06FDE3 /* hasher.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = hasher.h; sourceTree = "<group>"; };
 		35BA663D44841CD34F7B9B18 /* _.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = _.cpp; sourceTree = "<group>"; };
 		B5C35AB62975156DE572B894 /* initializer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = initializer.h; sourceTree = "<group>"; };
 		4470373B5930A9E7B2D04C94 /* _factory.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = _factory.cpp; sourceTree = "<group>"; };
 		E798323FE6C628A3F3984169 /* crypto.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = crypto.cpp; sourceTree = "<group>"; };
-		7FD2D67C9FF1E6017DED562F /* framework.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = framework.h; sourceTree = "<group>"; };
+		7FD2D67C9FF1E6017DED562F /* platform.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = platform.h; sourceTree = "<group>"; };
 		BD16385B8C996AC54F1C2B15 /* rsa.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = rsa.h; sourceTree = "<group>"; };
 		51130FAD0DEFC89350E2A414 /* hasher_algorithm.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = hasher_algorithm.h; sourceTree = "<group>"; };
 		3A22AB4CF27436D0E4A840D8 /* rsa.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = rsa.cpp; sourceTree = "<group>"; };
@@ -190,8 +190,8 @@
 				E798323FE6C628A3F3984169 /* crypto.cpp */,
 				8AA72CDD6314868108A9C229 /* crypto.h */,
 				4470373B5930A9E7B2D04C94 /* _factory.cpp */,
-				332E700999F325DA59AB07A5 /* framework.cpp */,
-				7FD2D67C9FF1E6017DED562F /* framework.h */,
+				332E700999F325DA59AB07A5 /* platform.cpp */,
+				7FD2D67C9FF1E6017DED562F /* platform.h */,
 				A4FBFCAC7E3406D20B47C56B /* hasher_algorithm.cpp */,
 				51130FAD0DEFC89350E2A414 /* hasher_algorithm.h */,
 				3B3F2D4B41A43184E3BC1FE5 /* hasher.cpp */,
@@ -239,7 +239,7 @@
 				A06800696FF879E3433BF6B5 /* hasher.h in Headers */,
 				A6461CEFC8A6DBCB5D50141C /* hasher_algorithm.h in Headers */,
 				D603786CF32D9AD1DB8FEFCE /* _.h in Headers */,
-				3A1DCAD55CD14CA8BB9032CA /* framework.h in Headers */,
+				3A1DCAD55CD14CA8BB9032CA /* platform.h in Headers */,
 				CA9E43DD5CAB439F6981F328 /* rsa.h in Headers */,
 				825901EE90D26779B366E207 /* crypto.h in Headers */,
 			);
@@ -253,7 +253,7 @@
 				1ECDB4AFA252370DD9024CE1 /* hasher.h in Headers */,
 				54E690B6BC8D44D0B13D976C /* hasher_algorithm.h in Headers */,
 				83C8CDFAB1A90568F969A8CF /* _.h in Headers */,
-				4DD4584DB0D49D04B9F3D6C2 /* framework.h in Headers */,
+				4DD4584DB0D49D04B9F3D6C2 /* platform.h in Headers */,
 				03BF29BB223EA1406A6032E5 /* rsa.h in Headers */,
 				2D2C1B799E24108718782B2C /* crypto.h in Headers */,
 			);
@@ -267,7 +267,7 @@
 				5D81639F2918A50D5BE129EA /* hasher.h in Headers */,
 				92EB559880FABEB9EE8DB103 /* hasher_algorithm.h in Headers */,
 				E0E24F9868E17E8F3BC2E0F6 /* _.h in Headers */,
-				063D152A4624CCEF6DA326B0 /* framework.h in Headers */,
+				063D152A4624CCEF6DA326B0 /* platform.h in Headers */,
 				97749D5BB2399AFAF8658D4F /* rsa.h in Headers */,
 				B8C2D0ECDB0469F14FF16E56 /* crypto.h in Headers */,
 			);
@@ -427,7 +427,7 @@
 				3E0EDA0A81D2E7A5E19E718F /* crypto.cpp in Sources */,
 				49F7CFB547789C7D1F3F95B0 /* hasher.cpp in Sources */,
 				44661F8E0FF59CE42212D1B2 /* _factory.cpp in Sources */,
-				A9085442A8991CC2353BEE76 /* framework.cpp in Sources */,
+				A9085442A8991CC2353BEE76 /* platform.cpp in Sources */,
 				3BCAE0AA3215B21613ED54A7 /* hasher_algorithm.cpp in Sources */,
 				2922D55D0FC171A8F48ABBDC /* _.cpp in Sources */,
 				954351D991F222D8D70CD28E /* rsa.cpp in Sources */,
@@ -442,7 +442,7 @@
 				4787A0401FF4384C964FBD29 /* crypto.cpp in Sources */,
 				6D2C4C123EE45229AD18C534 /* hasher.cpp in Sources */,
 				162F97DCBA4B7B6D2DAC78D6 /* _factory.cpp in Sources */,
-				0F5488BF35A9827B59F52A96 /* framework.cpp in Sources */,
+				0F5488BF35A9827B59F52A96 /* platform.cpp in Sources */,
 				4F9EFD7DB7FC3E435798581C /* hasher_algorithm.cpp in Sources */,
 				3C6F830ED28DC543AECFC5A9 /* _.cpp in Sources */,
 				AF314F90742ECAA5469EA5D7 /* rsa.cpp in Sources */,
@@ -457,7 +457,7 @@
 				51F4B90604536C5349648F6D /* crypto.cpp in Sources */,
 				8E449C1BE48B85AB92F66E02 /* hasher.cpp in Sources */,
 				3EE911CFB51CC962D41FBE88 /* _factory.cpp in Sources */,
-				14DC7114C62EF7A135BCBDE4 /* framework.cpp in Sources */,
+				14DC7114C62EF7A135BCBDE4 /* platform.cpp in Sources */,
 				745B9DC6ACDD9E9A3A9439AC /* hasher_algorithm.cpp in Sources */,
 				E5E1CCCF234657A93AED5A6D /* _.cpp in Sources */,
 				7DD710600F2BD69A25916D37 /* rsa.cpp in Sources */,
@@ -574,7 +574,7 @@
 				GCC_NO_COMMON_BLOCKS = YES;
 				GCC_OPTIMIZATION_LEVEL = 0;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
-				GCC_PREFIX_HEADER = framework.h;
+				GCC_PREFIX_HEADER = platform.h;
 				GCC_PREPROCESSOR_DEFINITIONS = "$(inherited)";
 				GCC_REUSE_STRINGS = YES;
 				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
@@ -697,7 +697,7 @@
 				GCC_NO_COMMON_BLOCKS = YES;
 				GCC_OPTIMIZATION_LEVEL = 0;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
-				GCC_PREFIX_HEADER = framework.h;
+				GCC_PREFIX_HEADER = platform.h;
 				GCC_PREPROCESSOR_DEFINITIONS = "";
 				GCC_REUSE_STRINGS = YES;
 				GCC_VERSION = "";

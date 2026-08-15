@@ -1,6 +1,6 @@
 // Created by camilo on 2022-02-20 12:08 <3ThomasBorregaardSorensen!! (Thomas Likes number 5)! I like also this Infinity up!!
 // From windows::device_listener by camilo on 2022-05-15 16:36 <3ThomasBorregaardSorenesen!! and Mummi!!
-#include "framework.h"
+#include "platform.h"
 #include "device_listener.h"
 #include "devices.h"
 #include "aura/platform/system.h"

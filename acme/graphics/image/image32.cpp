@@ -1,5 +1,5 @@
 // exif_orientation_rotate_flip from aura by camilo on 2023-10-09 12:05 <3ThomasBorregaardSorensen!!
-#include "framework.h"
+#include "platform.h"
 #include "_exif.h"
 #include "image32.h"
 #include "pixmap.h"

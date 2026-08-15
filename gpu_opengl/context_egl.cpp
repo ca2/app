@@ -8,7 +8,7 @@
 
 #include <X11/X.h>
 
-#include "framework.h"
+#include "platform.h"
 #include "_gpu_opengl.h"
 #include "device_egl.h"
 #include "apex/gpu/approach.h"

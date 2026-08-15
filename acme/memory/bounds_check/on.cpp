@@ -1,4 +1,4 @@
-#include "framework.h"
+#include "platform.h"
 
 //
 //void os_alloc_check_bounds(::u8 * i32_point)

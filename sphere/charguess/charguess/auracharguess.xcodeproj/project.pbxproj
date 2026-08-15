@@ -53,8 +53,8 @@
 		7F3AEE9702683C940C98541A /* universal.h in Headers */ = {isa = PBXBuildFile; fileRef = EC4612E6FFB713B29D0E03C0 /* universal.h */; };
 		50AEBA2B655F69E6BA115A01 /* UTF8Prober.h in Headers */ = {isa = PBXBuildFile; fileRef = 76A7E7C37916A56F55FB2B62 /* UTF8Prober.h */; };
 		91BED917D0C330E738DD7423 /* libaura.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = E99A16DBE8830CE310DB1005 /* libaura.dylib */; };
-		7B4299532E227ED669AA73FB /* framework.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 55B055583728A21DCAF2CE19 /* framework.cpp */; };
-		2494AEA8FF8E13D69A8BF90B /* framework.h in Headers */ = {isa = PBXBuildFile; fileRef = 9BF6D22D822A316455BF5765 /* framework.h */; };
+		7B4299532E227ED669AA73FB /* platform.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 55B055583728A21DCAF2CE19 /* platform.cpp */; };
+		2494AEA8FF8E13D69A8BF90B /* platform.h in Headers */ = {isa = PBXBuildFile; fileRef = 9BF6D22D822A316455BF5765 /* platform.h */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -120,8 +120,8 @@
 		EC4612E6FFB713B29D0E03C0 /* universal.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = universal.h; sourceTree = "<group>"; };
 		76A7E7C37916A56F55FB2B62 /* UTF8Prober.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UTF8Prober.h; sourceTree = "<group>"; };
 		B980E47AFF330193664BDD2F /* aura.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = aura.xcodeproj; path = ../../aura/.xcodeproj; sourceTree = SOURCE_ROOT; };
-		55B055583728A21DCAF2CE19 /* framework.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = framework.cpp; sourceTree = SOURCE_ROOT; };
-		9BF6D22D822A316455BF5765 /* framework.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = framework.h; sourceTree = SOURCE_ROOT; };
+		55B055583728A21DCAF2CE19 /* platform.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = platform.cpp; sourceTree = SOURCE_ROOT; };
+		9BF6D22D822A316455BF5765 /* platform.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = platform.h; sourceTree = SOURCE_ROOT; };
 		4C9C79236ED986E5C66BB8BD /* libauracharguess.dylib */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.dylib"; includeInIndex = 0; path = libauracharguess.dylib; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
@@ -157,8 +157,8 @@
 		5802E00893F49CEB25B513AC /* cpp */ = {
 			isa = PBXGroup;
 			children = (
-				55B055583728A21DCAF2CE19 /* framework.cpp */,
-				9BF6D22D822A316455BF5765 /* framework.h */,
+				55B055583728A21DCAF2CE19 /* platform.cpp */,
+				9BF6D22D822A316455BF5765 /* platform.h */,
 				872F90E399EDD2BC0338AC6F /* charDistribution.cpp */,
 				201CCB8390FA89A611FDDBD5 /* _cpp.cpp */,
 				6250E828A3666117AEC15591 /* big5Prober.h */,
@@ -241,7 +241,7 @@
 				4D90F0B54326DDFDA37488F1 /* codingStateMachine.h in Headers */,
 				7F3AEE9702683C940C98541A /* universal.h in Headers */,
 				9A4759E24EA0495F98B5D455 /* MBCSGroupProber.h in Headers */,
-				2494AEA8FF8E13D69A8BF90B /* framework.h in Headers */,
+				2494AEA8FF8E13D69A8BF90B /* platform.h in Headers */,
 				F577BF58227DC1AA8D533BCB /* SBCharsetProber.h in Headers */,
 				B40541BAF4FCA76248A26C72 /* charDistribution.h in Headers */,
 				9DDC6E8231603B4EE33120F2 /* big5Prober.h in Headers */,
@@ -375,7 +375,7 @@
 			files = (
 				59ECC3A00CCBE15BADB88CAB /* _cpp.cpp in Sources */,
 				C620C335F0D588C7C2ED0747 /* charDistribution.cpp in Sources */,
-				7B4299532E227ED669AA73FB /* framework.cpp in Sources */,
+				7B4299532E227ED669AA73FB /* platform.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

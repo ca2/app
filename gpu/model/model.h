@@ -30,7 +30,7 @@ namespace gpu
          ::pointer_array<mesh>                     m_mesha;
 
          enum_model m_emodel;
-         ::pointer<::gpu::texture> m_ptextureEmpty;
+         ::pointer<::gpu::texture_site> m_ptexturesiteEmpty;
 
          model();
          ~model() override;
@@ -78,7 +78,7 @@ namespace gpu
 
          //virtual ::gpu::texture> textureFromFile(const_char_pointer fileName, ::string directory, aiTextureType type);
 
-         ::gpu::texture *empty_texture() override;
+         ::gpu::texture_site*empty_texture() override;
 
 
       };

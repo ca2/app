@@ -1,5 +1,5 @@
 //Created by camilo on 2021-07-29 18:23 BRT <3ThomasBorregaardSorensen!!
-#include "framework.h"
+#include "platform.h"
 //#include "memory_management.h"
 ////#include "::system()->m_pheapmanagement->memory(::heap::e_memory_main)->allocate.h"
 //#include "memory.h"

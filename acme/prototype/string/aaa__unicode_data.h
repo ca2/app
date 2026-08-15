@@ -1,5 +1,5 @@
 // Adapted by camilo on 2022-11-04 14:03 <3ThomaBorregaardSorensen!!
-#include "framework.h"
+#include "platform.h"
 
 /*
   Portable ASCII and Unicode string manipulation functions for C++.

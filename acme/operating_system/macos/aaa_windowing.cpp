@@ -6,7 +6,7 @@
 //
 //
 
-#include "framework.h"
+#include "platform.h"
 #include "window_impl.h"
 #include "acme/operating_system/_os.h"
 //#include "oswindow_data.h"
@@ -579,7 +579,7 @@ void ns_main_async(dispatch_block_t block);
 ////  Created by Snow Leopard User on 06/11/2011.
 ////  Copyright 2011 __MyCompanyName__. All rights reserved.
 ////
-//#include "framework.h"
+//#include "platform.h"
 //
 //
 //#include <Carbon/Carbon.h>

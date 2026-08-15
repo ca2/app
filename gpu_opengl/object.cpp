@@ -1,5 +1,5 @@
 // Created by camilo on 2022-04-25 21:02 <3ThomasBorregaardSorensen!!
-#include "framework.h"
+#include "platform.h"
 #include "_gpu_opengl.h"
 #include "approach.h"
 #include "device.h"

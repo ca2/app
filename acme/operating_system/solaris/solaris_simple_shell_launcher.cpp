@@ -1,4 +1,4 @@
-#include "framework.h"
+#include "platform.h"
 
 
 void simple_shell_launcher::execute()

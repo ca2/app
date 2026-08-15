@@ -1,4 +1,4 @@
-#include "framework.h"
+#include "platform.h"
 
 
 CLASS_DECL_ACME ::wd16_character __wd16charlowered(::i32 i) { return i >= 'A' && i <='Z' ? i - 'A' + 'a' : i; }

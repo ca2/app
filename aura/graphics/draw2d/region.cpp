@@ -1,4 +1,4 @@
-#include "framework.h"
+#include "platform.h"
 #include "region.h"
 #include "acme/exception/interface_only.h"
 #include "acme/prototype/geometry2d/item.h"

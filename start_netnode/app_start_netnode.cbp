@@ -224,10 +224,10 @@
 		<Unit filename="/home/camilo/solution/basis/source/app/app/application.h">
 			<Option target="app_app"/>
 		</Unit>
-		<Unit filename="/home/camilo/solution/basis/source/app/app/framework.cpp">
+		<Unit filename="/home/camilo/solution/basis/source/app/app/platform.cpp">
 			<Option target="app_app"/>
 		</Unit>
-		<Unit filename="/home/camilo/solution/basis/source/app/app/framework.h">
+		<Unit filename="/home/camilo/solution/basis/source/app/app/platform.h">
 			<Option target="app_app"/>
 		</Unit>
 		<Unit filename="/home/camilo/solution/basis/source/app/app/main_window.cpp">

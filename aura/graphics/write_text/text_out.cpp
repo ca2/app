@@ -1,5 +1,5 @@
 // Created by camilo on 2021-06-08 03:00 BRT <3ThomasBorregaardSorensen__!!
-#include "framework.h"
+#include "platform.h"
 #include "text_out.h"
 #include "draw_text.h"
 

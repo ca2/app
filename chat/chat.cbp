@@ -80,7 +80,7 @@
 		<Unit filename="calculator/numeric_scanner.h" />
 		<Unit filename="calculator/numeric_token.h" />
 		<Unit filename="calculator/numeric_value.h" />
-		<Unit filename="framework.h" />
+		<Unit filename="platform.h" />
 		<Unit filename="kissfft/kiss_fft.h" />
 		<Unit filename="kissfft/kiss_fft_guts.h" />
 		<Unit filename="kissfft/kiss_ifft.h" />

@@ -1,4 +1,4 @@
-#include "framework.h"
+#include "platform.h"
 #include "_netbsd.h"
 #include "acme/operating_system/ansi/binreloc.h"
 #include <unistd.h>

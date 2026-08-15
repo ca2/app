@@ -68,7 +68,7 @@ namespace gpu
 
       virtual ::gpu::render_target * render_target();
       virtual void set_render_target(::gpu::render_target * pgpurendertargetTarget);
-      virtual void do_output(::gpu::texture * pgputexture);
+      virtual void do_output(::gpu::texture_site * pgputexturesite);
 
 
       //virtual ::i32 get_frame_index3();

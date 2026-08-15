@@ -1,5 +1,5 @@
 // Created on 2022-11-12 03:00 <3ThomasBorregaardSorensen!!
-#include "framework.h"
+#include "platform.h"
 #include "object_meta.h"
 
 

@@ -8,8 +8,8 @@ list(APPEND regular_expression_pcre2_source
         context.cpp
         context.h
         _factory.cpp
-        framework.cpp
-        framework.h
+        platform.cpp
+        platform.h
         regular_expression.cpp
         regular_expression.h
         result.cpp
@@ -31,8 +31,8 @@ add_library(static_${PROJECT_NAME} STATIC ${regular_expression_pcre2_source})
 
 if (NOT ${NO_PRECOMPILED_HEADER})
 
-    target_precompile_headers(${PROJECT_NAME} PRIVATE framework.h)
-    target_precompile_headers(static_${PROJECT_NAME} PRIVATE framework.h)
+    target_precompile_headers(${PROJECT_NAME} PRIVATE platform.h)
+    target_precompile_headers(static_${PROJECT_NAME} PRIVATE platform.h)
 
 endif ()
 

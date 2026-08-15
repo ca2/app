@@ -1,4 +1,4 @@
-#include "framework.h"
+#include "platform.h"
 #include "buffer_item.h"
 #include "double_buffer.h"
 #include "acme/parallelization/mutex.h"

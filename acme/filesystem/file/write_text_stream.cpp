@@ -1,5 +1,5 @@
 // Created by camilo on 2023-06-14 18:06 <3ThomasBorregaardSorensen!!
-#include "framework.h"
+#include "platform.h"
 #include "string_buffer.h"
 #include "write_text_stream.h"
 #include "acme/parallelization/task.h"

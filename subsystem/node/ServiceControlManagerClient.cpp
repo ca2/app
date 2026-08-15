@@ -21,7 +21,7 @@
 // 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA.
 //-------------------------------------------------------------------------
 //
-#include "framework.h"
+#include "platform.h"
 //#include "operating_system/windows_common/_.h"
 //#include "acme/_operating_system.h"
 #include "ServiceControlManagerClient.h"

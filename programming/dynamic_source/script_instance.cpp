@@ -1,4 +1,4 @@
-#include "framework.h"
+#include "platform.h"
 #include "script.h"
 #include "script_instance.h"
 #include "script_main.h"

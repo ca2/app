@@ -1,7 +1,7 @@
 //
 // Created by camilo on 2023-10-06 20:16 <3ThomasBorregaardSorensen!!
 //
-#include "framework.h"
+#include "platform.h"
 #include "pixmap.h"
 //#include "acme/prototype/geometry2d/_geometry2d.h"
 
@@ -129,7 +129,7 @@ pixmap_lease pixmap::map(const ::i32_rectangle & rectangle) const
 }
 
 
-bool pixmap::_on_map(bool bApplyAlphaTransform)
+bool pixmap::_on_map(const ::i32_rectangle & rectangle, bool bApplyAlphaTransform)
 {
 
    if (m_interlockedcountMap > 0)
@@ -158,10 +158,10 @@ bool pixmap::_on_map(bool bApplyAlphaTransform)
 }
 
 
-void pixmap::_map(bool bApplyTransform)
+void pixmap::_map(const ::i32_rectangle & rectangle, bool bApplyTransform)
 {
 
-   if (!_on_map(bApplyTransform))
+   if (!_on_map(rectangle, bApplyTransform))
    {
 
       return;
@@ -192,7 +192,18 @@ void pixmap::_map(bool bApplyTransform)
 
    }
 
-   pixmap_map();
+   if (rectangle.is_empty())
+   {
+
+      pixmap_map();
+
+   }
+   else
+   {
+
+      pixmap_map(rectangle);
+
+   }
 
    m_bMapped = true;
 

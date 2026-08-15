@@ -1,5 +1,5 @@
 // From image32_array.cpp by camilo on 2023-06-13 15:47 <3ThomasBorregaardSorensen!!
-#include "framework.h"
+#include "platform.h"
 #include "color_array.h"
 
 

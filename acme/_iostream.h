@@ -15,7 +15,7 @@
 #include <string>
 #include <utility>
 
-#include "framework.h"
+#include "platform.h"
 
 //
 //// Simple specialization for strings in the Ca2 framework.

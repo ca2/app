@@ -1,5 +1,5 @@
 // created by Camilo on 2025-05-31 22:51 <3ThomasBorregaardSorensen!!
-#include "framework.h"
+#include "platform.h"
 //#include "image.h"
 //#include "context.h"
 //#include "drawing.h"

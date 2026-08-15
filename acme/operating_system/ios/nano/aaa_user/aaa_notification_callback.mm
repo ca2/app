@@ -5,7 +5,7 @@
 //  Created by Camilo Sasuke Thomas Borregaard Sorensen on 05/01/23.
 //  Copyright © 2023 Camilo Sasuke Tsumanuma. All rights reserved.
 //
-#include "framework.h"
+#include "platform.h"
 #include "app.h"
 #include "acme/constant/id.h"
 #include "acme/operating_system/argcargv.h"

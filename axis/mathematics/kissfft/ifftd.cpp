@@ -1,4 +1,4 @@
-#include "framework.h"
+#include "platform.h"
 #include "ifftd.h"
 #include "ifft.h"
 

@@ -1,4 +1,4 @@
-#include "framework.h"
+#include "platform.h"
 #include "notify_icon.h"
 #include "acme/exception/interface_only.h"
 #include "acme/user/user/activation_token.h"

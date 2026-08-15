@@ -1,6 +1,6 @@
 // from device_win32 by
 // camilo on 2025-05-30 03:37 <3ThomasBorregaardSorensen!!
-#include "framework.h"
+#include "platform.h"
 #include "_gpu_opengl.h"
 #include "context.h"
 #include "device_win32.h"

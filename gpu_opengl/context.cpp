@@ -1,4 +1,4 @@
-#include "framework.h"
+#include "platform.h"
 #define STB_USE_HUNTER
 #include "_gpu_opengl.h"
 #include "command_buffer.h"
@@ -21,7 +21,7 @@
 #include "bred/gpu/context_lock.h"
 #include "bred/gpu/window_attachment.h"
 #include "bred/gpu/layer.h"
-#include "bred/gpu/layer.h"
+#include "bred/gpu/texture_site.h"
 #include "bred/gpu/types.h"
 #include "gpu/model/model.h"
 #include <ktx.h>
@@ -1303,10 +1303,10 @@ namespace gpu_opengl
    }
 
 
-   void context::merge_layers(::gpu::command_buffer * pgpucommandbuffer, ::gpu::texture *ptextureTarget, ::pointer_array<::gpu::layer> *playera)
+   void context::merge_layers(::gpu::command_buffer * pgpucommandbuffer, ::gpu::texture_site *ptexturesiteOutput, ::pointer_array<::gpu::layer> *playera)
    {
 
-      ::gpu::context::merge_layers(pgpucommandbuffer, ptextureTarget, playera);
+      ::gpu::context::merge_layers(pgpucommandbuffer, ptexturesiteOutput, playera);
 
    }
 
@@ -1326,11 +1326,11 @@ namespace gpu_opengl
 //             }
 //
 //
-//             ::cast<::gpu_opengl::texture> ptextureSrc = pgpulayer->texture();
+//             ::cast<::gpu_opengl::texture> ptextureInput = pgpulayer->texture();
 //
-//             ptextureSrc->wait_fence();
+//             ptextureInput->wait_fence();
 //
-//             // m_pshaderBlend3->bind_source(nullptr, ptextureSrc, 0);
+//             // m_pshaderBlend3->bind_source(nullptr, ptextureInput, 0);
 //             iLayer++;
 //          }
 //
@@ -1458,11 +1458,11 @@ namespace gpu_opengl
 //
 //          //auto vkcommandbuffer = pcommandbuffer->m_vkcommandbuffer;
 //
-//          ::cast<::gpu_opengl::texture> ptextureDst = ptextureTarget;
+//          ::cast<::gpu_opengl::texture> ptextureOutput = ptextureTarget;
 //
-//          // ::i32 iH = ptextureDst->m_pgpurenderer->m_pgpucontext->height();
+//          // ::i32 iH = ptextureOutput->m_pgpurenderer->m_pgpucontext->height();
 //          //
-//          // ptextureDst->bind_render_target();
+//          // ptextureOutput->bind_render_target();
 //          //
 //          // {
 //          //
@@ -1478,7 +1478,7 @@ namespace gpu_opengl
 //          //
 //          //    ::string strMessage;
 //          //
-//          //    strMessage.formatf("ø clear drawFbo=%d readFbo=%d tex=%d", drawFbo, readFbo, ptextureDst->m_gluTextureID);
+//          //    strMessage.formatf("ø clear drawFbo=%d readFbo=%d tex=%d", drawFbo, readFbo, ptextureOutput->m_gluTextureID);
 //          //
 //          //    glDebugMessageInsert(GL_DEBUG_SOURCE_APPLICATION,
 //          //                         GL_DEBUG_TYPE_MARKER,
@@ -1503,11 +1503,11 @@ namespace gpu_opengl
 //
 //             ::i32 iLayer = 0;
 //
-//             pcommandbuffer.m_p->begin_render(m_pshaderBlend3.m_p, ptextureDst.m_p);
+//             pcommandbuffer.m_p->begin_render(m_pshaderBlend3.m_p, ptextureOutput.m_p);
 //
-//             this->clear(ptextureDst, ::color::transparent);
+//             this->clear(ptextureOutput, ::color::transparent);
 //
-//             //m_pshaderBlend3, ptextureDst, ptextureSrc);
+//             //m_pshaderBlend3, ptextureOutput, ptextureInput);
 //
 //             for (auto player: *playera)
 //             {
@@ -1518,26 +1518,26 @@ namespace gpu_opengl
 //                }
 //
 //
-//                   //::cast<::gpu_opengl::texture> ptextureSrc = pgpulayer->texture();
+//                   //::cast<::gpu_opengl::texture> ptextureInput = pgpulayer->texture();
 //
-//                   //ptextureSrc->wait_fence();
+//                   //ptextureInput->wait_fence();
 //
-//                   ::cast<::gpu_opengl::texture> ptextureSrc = pgpulayer->texture();
+//                   ::cast<::gpu_opengl::texture> ptextureInput = pgpulayer->texture();
 //
-//                   m_pshaderBlend3->bind_source(nullptr, ptextureSrc, 0);
+//                   m_pshaderBlend3->bind_source(nullptr, ptextureInput, 0);
 //
-//                   //ptextureSrc->_new_state(
+//                   //ptextureInput->_new_state(
 //                   //   pcommandbuffer,
 //                   //   0,
 //                   //   VK_IMAGE_LAYOUT_SHADER_READ_ONLY_OPTIMAL,
 //                   //   VK_PIPELINE_STAGE_FRAGMENT_SHADER_BIT
 //                   //);
 //
-//                   auto r = ptextureSrc->rectangle();
+//                   auto r = ptextureInput->rectangle();
 //
 //                   ::i32 h = r.height();
 //
-//                   ::i32 iH = ptextureDst->height();
+//                   ::i32 iH = ptextureOutput->height();
 //
 //                   r.top = iH - r.bottom;
 //
@@ -1565,7 +1565,7 @@ namespace gpu_opengl
 //                      ::string strMessage;
 //
 //                      strMessage.formatf("ø merge%d drawFbo=%d readFbo=%d texDst=%d", iLayer, drawFbo, readFbo,
-//                                         ptextureDst->m_gluTextureID);
+//                                         ptextureOutput->m_gluTextureID);
 //
 //                      glDebugMessageInsert(GL_DEBUG_SOURCE_APPLICATION,
 //                                           GL_DEBUG_TYPE_MARKER,
@@ -1582,7 +1582,7 @@ namespace gpu_opengl
 //
 //                      glGetIntegerv(GL_TEXTURE_BINDING_2D, &activeTex); // query the bound texture for target
 //
-//                      auto samplerTex = ptextureSrc->m_gluTextureID;
+//                      auto samplerTex = ptextureInput->m_gluTextureID;
 //
 //                      ::string strMessage;
 //
@@ -1608,18 +1608,18 @@ namespace gpu_opengl
 //
 //                   // 1. Define viewport and scissor rectangle
 //                   //D3D12_VIEWPORT viewport = {};
-//                   //viewport.TopLeftX = ptextureSrc->m_rectangleTarget.left;
-//                   //viewport.TopLeftY = ptextureSrc->m_rectangleTarget.top;
-//                   //viewport.Width = static_cast<::f32>(ptextureSrc->m_rectangleTarget.width());
-//                   //viewport.Height = static_cast<::f32>(ptextureSrc->m_rectangleTarget.height());
+//                   //viewport.TopLeftX = ptextureInput->m_rectangleTarget.left;
+//                   //viewport.TopLeftY = ptextureInput->m_rectangleTarget.top;
+//                   //viewport.Width = static_cast<::f32>(ptextureInput->m_rectangleTarget.width());
+//                   //viewport.Height = static_cast<::f32>(ptextureInput->m_rectangleTarget.height());
 //                   //viewport.MinDepth = 0.0f;
 //                   //viewport.MaxDepth = 1.0f;
 //
 //                   //D3D12_RECT scissorRect = {};
-//                   //scissorRect.left = ptextureSrc->m_rectangleTarget.left;
-//                   //scissorRect.top = ptextureSrc->m_rectangleTarget.top;
-//                   //scissorRect.right = ptextureSrc->m_rectangleTarget.right;
-//                   //scissorRect.bottom = ptextureSrc->m_rectangleTarget.bottom;
+//                   //scissorRect.left = ptextureInput->m_rectangleTarget.left;
+//                   //scissorRect.top = ptextureInput->m_rectangleTarget.top;
+//                   //scissorRect.right = ptextureInput->m_rectangleTarget.right;
+//                   //scissorRect.bottom = ptextureInput->m_rectangleTarget.bottom;
 //
 //
 //                   ////// 4. Set the viewport and scissor
@@ -1654,7 +1654,7 @@ namespace gpu_opengl
 //          //}
 //
 //
-//          ////::cast <texture > ptextureDst = ptextureTarget;
+//          ////::cast <texture > ptextureOutput = ptextureTarget;
 //          //{
 //          //
 //          //   ::f32 clearColor2[4] = { 0.95f * 0.5f, 0.75f * 0.5f, 0.95f * 0.5f, 0.5f }; // Clear to transparent
@@ -1667,7 +1667,7 @@ namespace gpu_opengl
 //          //   r[0].bottom = 300;
 //          //
 //          //   pcommandlist->ClearRenderTargetView(
-//          //      ptextureDst->m_pheapRenderTargetView->GetCPUDescriptorHandleForHeapStart(),
+//          //      ptextureOutput->m_pheapRenderTargetView->GetCPUDescriptorHandleForHeapStart(),
 //          //      clearColor2,
 //          //      1, r);
 //
@@ -1681,7 +1681,7 @@ namespace gpu_opengl
 //
 //       ////::gpu::context_lock contextlock(this);
 //
-//       ////::cast < texture > ptextureDst = ptextureTarget;
+//       ////::cast < texture > ptextureOutput = ptextureTarget;
 //
 //       //////if()
 //
@@ -1691,7 +1691,7 @@ namespace gpu_opengl
 //       //////glBindFramebuffer(GL_DRAW_FRAMEBUFFER, pframebuffer);
 //       //////::opengl::check_error("glBindFramebuffer");
 //
-//       //////auto gluTextureID = ptextureDst->m_gluTextureID;
+//       //////auto gluTextureID = ptextureOutput->m_gluTextureID;
 //
 //       //////// Bind the destination texture (textures[textureSrc]) as the pframebuffer color attachment
 //       //////glFramebufferTexture2D(
@@ -1830,12 +1830,12 @@ namespace gpu_opengl
    //}
 
 
-   void context::_copy_using_blit(::gpu::texture *ptextureParam)
+   void context::_copy_using_blit(::gpu::texture_site *ptexturesite)
    {
 
       ::gpu::context_lock contextlock(this);
 
-      ::cast<::gpu_opengl::texture> ptexture = ptextureParam;
+      ::cast<::gpu_opengl::texture> ptexture = ptexturesite->gpu_texture();
 
 
       GLuint pframebuffer;
@@ -1861,7 +1861,7 @@ namespace gpu_opengl
       // Bind default pframebuffer as draw target
       glBindFramebuffer(GL_DRAW_FRAMEBUFFER, 0);
 
-      auto r = this->get_placement();
+      auto r = this->input_placement();
 
       glViewport(
          r.left,
@@ -1879,7 +1879,7 @@ namespace gpu_opengl
          r.height()
       );
 
-      auto rSrc = ptexture->m_textureattributes.m_rectangleTarget;
+      auto rSrc = ptexturesite->output_placement();
 
       // Blit from source to default pframebuffer
       glBlitFramebuffer(
@@ -1968,38 +1968,42 @@ namespace gpu_opengl
    //}
 
 
-   void context::copy(::gpu::texture *ptextureTarget, ::gpu::texture *ptextureSource, ::pointer < ::gpu::fence > * pgpufence, ::pointer < ::gpu::semaphore > * pgpusemaphoreReady)
+   void context::copy(::gpu::texture_site *ptexturesiteOutput, ::gpu::texture_site *ptexturesiteInput, ::pointer < ::gpu::fence > * pgpufence, ::pointer < ::gpu::semaphore > * pgpusemaphoreReady)
    {
 
       ::gpu::context_lock contextlock(this);
 
-      ::cast<::gpu_opengl::texture> ptextureDst = ptextureTarget;
+      ::cast<::gpu_opengl::texture> ptextureOutput = ptexturesiteOutput->gpu_texture();
 
-      ::cast<::gpu_opengl::texture> ptextureSrc = ptextureSource;
+      ::cast<::gpu_opengl::texture> ptextureInput = ptexturesiteInput->gpu_texture();
 
       glFlush();
       ::opengl::check_error("");
 
-      auto p1Src = ptextureSrc->m_textureattributes.m_rectangleTarget.origin();
+      auto p1Src = ptexturesiteInput->m_pointInput;
 
-      auto p1Dst = ptextureDst->m_textureattributes.m_rectangleTarget.origin();
+      auto p1Dst = ptexturesiteOutput->m_pointOutput;
 
-      auto p2Src = ptextureSrc->m_textureattributes.m_rectangleTarget.bottom_right();
+      auto p2Src = ptexturesiteInput->input_placement().bottom_right();
 
-      auto p2Dst = ptextureDst->m_textureattributes.m_rectangleTarget.bottom_right();
+      auto p2Dst = ptexturesiteOutput->output_placement().bottom_right();
 
-      auto sizeSrc = ptextureSrc->size();
+      auto sizeSrc = ptextureInput->size();
 
-      auto sizeDst = ptextureDst->size();
+      auto sizeDst = ptextureOutput->size();
+
+      auto sizeSrcRaw = ptextureInput->raw_size();
+
+      auto sizeDstRaw = ptextureOutput->raw_size();
 
       auto bSourceMultisampled =
-         ptextureSrc->m_gluType == GL_TEXTURE_2D_MULTISAMPLE;
+         ptextureInput->m_gluType == GL_TEXTURE_2D_MULTISAMPLE;
       auto bDestinationMultisampled =
-         ptextureDst->m_gluType == GL_TEXTURE_2D_MULTISAMPLE;
+         ptextureOutput->m_gluType == GL_TEXTURE_2D_MULTISAMPLE;
       auto iSourceSampleCount =
-         bSourceMultisampled ? ptextureSrc->m_iSampleCount : 1;
+         bSourceMultisampled ? ptextureInput->m_iSampleCount : 1;
       auto iDestinationSampleCount =
-         bDestinationMultisampled ? ptextureDst->m_iSampleCount : 1;
+         bDestinationMultisampled ? ptextureOutput->m_iSampleCount : 1;
 
       if ((bSourceMultisampled || bDestinationMultisampled) &&
          sizeSrc != sizeDst)
@@ -2067,8 +2071,8 @@ namespace gpu_opengl
 
          glFramebufferTexture2D(
             GL_DRAW_FRAMEBUFFER, GL_COLOR_ATTACHMENT0,
-            ptextureSrc->m_gluType,
-            ptextureSrc->m_gluTextureID,
+            ptextureInput->m_gluType,
+            ptextureInput->m_gluTextureID,
             0);
          ::opengl::check_error("");
 
@@ -2146,8 +2150,8 @@ namespace gpu_opengl
 
       glFramebufferTexture2D(
          GL_READ_FRAMEBUFFER, GL_COLOR_ATTACHMENT0,
-         ptextureSrc->m_gluType,
-         ptextureSrc->m_gluTextureID,
+         ptextureInput->m_gluType,
+         ptextureInput->m_gluTextureID,
          0);
       ::opengl::check_error("");
 
@@ -2167,7 +2171,7 @@ namespace gpu_opengl
             "(0x%x), target=0x%x, samples=%d, size=%dx%d.",
             ::is_set(pszStatus) ? pszStatus : "unknown",
             eReadStatus,
-            ptextureSrc->m_gluType,
+            ptextureInput->m_gluType,
             iSourceSampleCount,
             sizeSrc.cx,
             sizeSrc.cy);
@@ -2180,8 +2184,8 @@ namespace gpu_opengl
 
       glFramebufferTexture2D(
          GL_DRAW_FRAMEBUFFER, GL_COLOR_ATTACHMENT0,
-         ptextureDst->m_gluType,
-         ptextureDst->m_gluTextureID,
+         ptextureOutput->m_gluType,
+         ptextureOutput->m_gluTextureID,
          0);
       ::opengl::check_error("");
 
@@ -2201,7 +2205,7 @@ namespace gpu_opengl
             "(0x%x), target=0x%x, samples=%d, size=%dx%d.",
             ::is_set(pszStatus) ? pszStatus : "unknown",
             eDrawStatus,
-            ptextureDst->m_gluType,
+            ptextureOutput->m_gluType,
             iDestinationSampleCount,
             sizeDst.cx,
             sizeDst.cy);
@@ -2212,11 +2216,11 @@ namespace gpu_opengl
       glDisable(GL_SCISSOR_TEST);
       ::opengl::check_error("");
 
-      auto origin = this->get_placement().origin();
+      auto origin = this->output_placement();
 
       glBlitFramebuffer(
-         p1Src.x, p1Src.y, p2Src.x, p2Src.y,
-         p1Dst.x, p1Dst.y, p2Dst.x, p2Dst.y,
+         p1Src.x, sizeSrcRaw.cy - p1Src.y, p2Src.x, sizeSrcRaw.cy - p2Src.y,
+         p1Dst.x, sizeDstRaw.cy - p1Dst.y, p2Dst.x, sizeDstRaw.cy - p2Dst.y,
          GL_COLOR_BUFFER_BIT, GL_NEAREST);
       ::opengl::check_error("");
 
@@ -2369,12 +2373,12 @@ namespace gpu_opengl
 //   }
 
 
-   void context::create_window_gpu_context(::gpu::device * pgpudevice, const ::gpu::enum_output & eoutput, const ::gpu::enum_scene & escene, ::acme::windowing::window * pacmewindowingwindow, const ::i32_size & size)
+   void context::create_window_gpu_context(::gpu::device * pgpudevice, const ::gpu::enum_output & eoutput, const ::gpu::enum_scene & escene, ::acme::windowing::window * pacmewindowingwindow, const ::i32_point & pointInput, const ::i32_point & pointOutput, const ::i32_size & size, const ::i32_size & sizeRaw)
    //void context::_create_window_context(::acme::windowing::window *pwindowParam)
    {
 
 
-      ::gpu::context::create_window_gpu_context(pgpudevice, eoutput, escene, pacmewindowingwindow, size);
+      ::gpu::context::create_window_gpu_context(pgpudevice, eoutput, escene, pacmewindowingwindow, pointInput, pointOutput, size, sizeRaw);
 
       //   ::cast < ::windowing_win32::window > pwindow = pwindowParam;
 

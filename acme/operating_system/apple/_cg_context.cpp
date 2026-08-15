@@ -5,7 +5,7 @@
 //  Created by Camilo Sasuke Thomas Borregaard Sørensen on 2024-02-01.
 //  Copyright © 2024 Camilo Sasuke Tsumanuma. All rights reserved.
 //
-#include "framework.h"
+#include "platform.h"
 
 #include <CoreGraphics/CoreGraphics.h>
 #include <CoreImage/CoreImage.h>

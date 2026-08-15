@@ -1,5 +1,5 @@
 // Created from graphics3d/impact3d/renderer by camilo on 2023-06-16 <3ThomasBorregaardSorensenJegElskerDig!! (ThomasLikesNumber5)
-#include "framework.h"
+#include "platform.h"
 #include "bred_approach.h"
 #include "command_buffer.h"
 #include "context.h"
@@ -252,7 +252,9 @@ namespace gpu
 
       auto ptexture = createø< texture>();
 
-      ::gpu::texture_attributes textureattributes(::i32_rectangle{size});
+      ::gpu::texture_attributes textureattributes(size);
+
+      textureattributes.m_sizeRaw = size;
 
       ::gpu::texture_flags textureflags;
 
@@ -260,7 +262,7 @@ namespace gpu
       textureflags.m_bRenderTarget = true;
       textureflags.m_bShaderResource = true;
 
-      ptexture->initialize_texture(m_pgpucontext, textureattributes, textureflags, texturedata);
+      ptexture->create_texture(m_pgpucontext, textureattributes, textureflags, texturedata);
 
       m_pgpucontext->on_create_texture(ptexture);
 
@@ -413,10 +415,10 @@ namespace gpu
    }
 
 
-   ::gpu::texture* renderer::current_render_target_texture(::gpu::layer* pgpulayer)
+   ::gpu::texture_site * renderer::current_render_target_texture(::gpu::layer* pgpulayer)
    {
 
-      return render_target()->current_texture(pgpulayer);
+      return render_target()->current_texture(pgpulayer, true);
 
    }
 
@@ -1343,10 +1345,10 @@ namespace gpu
 
       bool bLayerPresent = false;
 
+      pgpulayer->layer_end();
+
       if (m_papplication->m_gpu.m_bUseSwapChainWindow)
       {
-
-         pgpulayer->layer_end();
 
          //if (m_pgpucontext->m_pgpucompositor)
          //{
@@ -1367,20 +1369,25 @@ namespace gpu
 
       }
 
-      auto bUseSwapChain = m_papplication->m_gpu.m_bUseSwapChainWindow;
-
-      auto etypeGpuContext = m_pgpucontext->m_etype;
-
-      if (!bUseSwapChain || etypeGpuContext != ::gpu::context::e_type_window)
+      if (!pgpulayer->m_bExternalRendering)
       {
 
-         _on_end_render(pgpulayer);
+         auto bUseSwapChain = m_papplication->m_gpu.m_bUseSwapChainWindow;
+         auto etypeGpuContext = m_pgpucontext->m_etype;
+
+         if (!bUseSwapChain || etypeGpuContext != ::gpu::context::e_type_window)
+         {
+
+            _on_end_render(pgpulayer);
+
+         }
+
+         // Commented out on 2026-08-12 day of Solar Eclipse over Iceland and Europe.
+         //layer_end_copy();
+
+         layer_end_submit();
 
       }
-
-      layer_end_copy();
-
-      layer_end_submit();
 
       ///m_prenderstate->on_happening(::gpu::e_happening_end_render);
 
@@ -1485,9 +1492,9 @@ namespace gpu
    void renderer::defer_update_renderer()
    {
 
-      auto rectangleContext = m_pgpucontext->get_placement();
+      //auto rectangleContext = m_pgpucontext->get_placement();
 
-      auto sizeContext = rectangleContext.size();
+      auto sizeContext = m_pgpucontext->size();
 
       //auto etypeContext = m_pgpucontext->m_etype;
 
@@ -1712,7 +1719,23 @@ namespace gpu
    void renderer::on_start_layer(layer* pgpulayer)
    {
 
-      on_begin_render(pgpulayer);
+      auto pcompositor = m_pgpucontext->m_pgpucompositor;
+
+      pgpulayer->m_bExternalRendering =
+         pcompositor && pcompositor->renders_layer_externally(pgpulayer);
+
+      if (pgpulayer->m_bExternalRendering)
+      {
+
+         pgpulayer->start_layer_render();
+
+      }
+      else
+      {
+
+         on_begin_render(pgpulayer);
+
+      }
 
       //m_pgpulayer = player;
 
@@ -1733,9 +1756,11 @@ namespace gpu
 
          // if (!bUseSwapChain
          //|| etypeGpuContext != ::gpu::context::e_type_window)
+         if (!pgpulayer->m_bExternalRendering)
          {
 
             _on_begin_render(pgpulayer);
+
          }
       }
 

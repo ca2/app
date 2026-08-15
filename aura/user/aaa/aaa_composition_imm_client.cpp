@@ -1,4 +1,4 @@
-#include "framework.h"
+#include "platform.h"
 //#include "berg/user/user/_component.h"
 #include "imm_client.h"
 #include "aaa_composition_imm_client.h"

@@ -2,7 +2,7 @@
 // streaming contribution: strager, Kebabskal and togglebit
 // chatting contribution Immortalmonsterhybrid.
 
-#include "framework.h"
+#include "platform.h"
 //#include "atom.h"
 #include "acme/operating_system/android/_android.h"
 

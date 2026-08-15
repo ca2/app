@@ -1,7 +1,7 @@
 //Created as main_item.cpp by camilo on 2024-04-27 22:45 <3ThomasBorregaardSorensen!!
 //From main_item.cpp by camilo on 2024-04-27 22:52 <3ThomasBorregaardSorensen!!
 //From install_base.cpp by camilo on 2024-04-27 22:58 <3ThomasBorregaardSorensen!!
-#include "framework.h"
+#include "platform.h"
 //#include "impact.h"
 #include "install.h"
 #include "code.h"

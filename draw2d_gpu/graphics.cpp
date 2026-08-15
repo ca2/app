@@ -1,4 +1,4 @@
-#include "framework.h"
+#include "platform.h"
 #include "draw2d.h"
 #include "graphics.h"
 #include "pen.h"
@@ -23,6 +23,7 @@
 //#include "bred/gpu/render.h"
 #include "bred/gpu/render_target.h"
 #include "bred/gpu/renderer.h"
+#include "bred/gpu/texture_site.h"
 #include "bred/graphics3d/types.h"
 //#include "gpu_opengl/device_win32.h"
 //#include "gpu_opengl/lock.h"
@@ -256,10 +257,19 @@ void main() {
 
       auto pgpudevice = pgpuapproach->get_gpu_device(m_pacmeuserinteractionAffinity->m_pacmewindowingwindow);
 
-      auto pgpucontextNew = pgpudevice->create_draw2d_gpu_context(
-        // ::gpu::e_output_gpu_buffer,
+      //::i32_rectangle rectanglePlacement(size);
+
+      ::i32_size sizeRaw = m_pacmeuserinteractionAffinity->m_pacmewindowingwindow->get_raw_buffer_size().maximum(size);
+
+      auto pgpucontextNew = pgpudevice->allocate_gpu_context();
+
+      pgpucontextNew->create_draw2d_gpu_context(
+         pgpudevice,
          m_pacmeuserinteractionAffinity->m_pacmewindowingwindow,
-         size);
+         {},
+         {},
+         size,
+         sizeRaw);
 
       pgpucontextNew->m_pgpucompositor = this;  
 
@@ -544,13 +554,22 @@ void main() {
 
       auto pgpuwindowattachment = ::gpu::window_attachment::get(m_pacmeuserinteractionAffinity);
 
-      auto pgpucontextWindow =
-        pgpuwindowattachment->window_context();
+      auto pgpucontextWindow = pgpuwindowattachment->window_context();
 
-      auto pgpucontextNew = pgpudevice->create_draw2d_gpu_context(
-         //::gpu::e_output_gpu_buffer,
+      auto pgpucontextNew = pgpudevice->allocate_gpu_context();
+
+      //::i32_rectangle rectanglePlacement(size);
+
+      ::i32_size sizeRaw = m_pacmeuserinteractionAffinity->m_pacmewindowingwindow->get_raw_buffer_size().maximum(size);
+
+      pgpucontextNew->create_draw2d_gpu_context(
+         pgpudevice,
          puserinteraction->acme_windowing_window(),
-         size);
+         // rectanglePlacement,
+         {},
+         {},
+         size,
+         sizeRaw);
 
       if (!pgpucontextNew)
       {
@@ -1585,9 +1604,11 @@ void main() {
 
       auto pgpurendertarget = prenderer->render_target();
 
-      auto ptextureTarget = pgpurendertarget->current_texture(::gpu::current_layer());
+      auto ptexturesiteTarget = pgpurendertarget->current_texture(::gpu::current_layer(), true);
 
-      pshader->bind(pcommandbuffer, ptextureTarget);
+      auto ptextureTarget = ptexturesiteTarget->gpu_texture();
+
+      pshader->bind(pcommandbuffer, ptexturesiteTarget);
 
       //VkDeviceSize offset = 0;
       ///vkCmdBindPipeline(pcommandbuffer->m_vkcommandbuffer, VK_PIPELINE_BIND_POINT_GRAPHICS, graphicsPipeline);
@@ -6114,9 +6135,11 @@ color = vec4(c.r,c.g, c.b, c.a);
 
       auto pgpurendertarget = pcontext->m_pgpurenderer->render_target();
 
-      auto ptextureTarget = pgpurendertarget->current_texture(::gpu::current_layer());
+      auto ptexturesiteTarget = pgpurendertarget->current_texture(::gpu::current_layer(), true);
 
-      m_pgpushaderTextOut->bind(pcommandbuffer, ptextureTarget);
+      auto ptextureTarget = ptexturesiteTarget->gpu_texture();
+
+      m_pgpushaderTextOut->bind(pcommandbuffer, ptexturesiteTarget);
 
       auto color = m_pbrush->m_color;
       //shader.use();

@@ -1,4 +1,4 @@
-#include "framework.h"
+#include "platform.h"
 
 void * DECL_C _malloc_debug(size_t _Size, ::i32 _BlockType, const ::string & _Filename, ::i32 _LineNumber)
 {

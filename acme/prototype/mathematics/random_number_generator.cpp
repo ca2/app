@@ -1,4 +1,4 @@
-#include "framework.h"
+#include "platform.h"
 #include <time.h>
 //#undef constructø
 //#undef createø

@@ -1,4 +1,4 @@
-#include "framework.h"
+#include "platform.h"
 
 #ifdef WINDOWS_DESKTOP
 static void TraceDDE(const_char_pointer pszPrefix, const MSG* pMsg)

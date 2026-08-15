@@ -1169,7 +1169,7 @@
     </PostBuildEvent>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClCompile Include="framework.cpp">
+    <ClCompile Include="platform.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Create</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='StaticDebug|Win32'">Create</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Create</PrecompiledHeader>
@@ -1221,7 +1221,7 @@
     <ClInclude Include="socket\SocketAddressIPv4.h" />
     <ClInclude Include="socket\SocketIPv4.h" />
     <ClInclude Include="socket\Sockets.h" />
-    <ClInclude Include="framework.h" />
+    <ClInclude Include="platform.h" />
     <ClInclude Include="_.h" />
     <ClInclude Include="_common_header.h" />
     <ClInclude Include="_library.h" />

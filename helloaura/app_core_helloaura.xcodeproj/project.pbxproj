@@ -23,7 +23,7 @@
 		E6844D8A78A577F8C04736FA /* helloaura_gcom.h in Headers */ = {isa = PBXBuildFile; fileRef = 7192357638229C96A2DAE5AF /* helloaura_gcom.h */; };
 		6376EBAFD2CE78E29DD75F6D /* helloaura_impact_base.cpp in Sources */ = {isa = PBXBuildFile; fileRef = EA96AEBA2EDF126E858824BB /* helloaura_impact_base.cpp */; };
 		875E1E5EB881C7559B4FF25E /* helloaura_impact_base.h in Headers */ = {isa = PBXBuildFile; fileRef = 74570FBE1FB40B34C80B5525 /* helloaura_impact_base.h */; };
-		FAC1563D0515F89F601326B4 /* framework.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 224594EB90D9F35318D68A69 /* framework.cpp */; };
+		FAC1563D0515F89F601326B4 /* platform.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 224594EB90D9F35318D68A69 /* platform.cpp */; };
 		3E7DDF49975D871A5AFB59DD /* helloaura_application.cpp in Sources */ = {isa = PBXBuildFile; fileRef = CA5E29B48B7BB4C458B1BB00 /* helloaura_application.cpp */; };
 		E8715CB179F612C8B3003E2D /* helloaura_document.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 37FEF80924002883D7A91F65 /* helloaura_document.cpp */; };
 		5AD9A357469A4C56D463CFB3 /* helloaura_frame.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 28CF5A03478E3425CAB7D5F2 /* helloaura_frame.cpp */; };
@@ -49,8 +49,8 @@
 		179F7131A042C217F369D1D4 /* libapp_core_helloaura.a in Frameworks */ = {isa = PBXBuildFile; fileRef = EDE4DE5AFF8090DAE70FDA76 /* libapp_core_helloaura.a */; };
 		55A87AA212C4837CA7C5D679 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 9F5527F19F109F81F455CB2F /* InfoPlist.strings */; };
 		EEC0F0D1F08DF3B5B5AF2ECD /* app_core_helloaura_iosTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 2D0850A671627CF24ACC08F1 /* app_core_helloaura_iosTests.m */; };
-		1739F32206BA89D17FAD924F /* framework.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 224594EB90D9F35318D68A69 /* framework.cpp */; };
-		430BC6D3FF40BF094C55EE79 /* framework.h in Headers */ = {isa = PBXBuildFile; fileRef = 6AFE520E0B9DA6788F579F95 /* framework.h */; };
+		1739F32206BA89D17FAD924F /* platform.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 224594EB90D9F35318D68A69 /* platform.cpp */; };
+		430BC6D3FF40BF094C55EE79 /* platform.h in Headers */ = {isa = PBXBuildFile; fileRef = 6AFE520E0B9DA6788F579F95 /* platform.h */; };
 		7661B41FBD3CB3899DBF8526 /* helloaura.h in Headers */ = {isa = PBXBuildFile; fileRef = 92798EA1E46C868F115DE803 /* helloaura.h */; };
 		8CDBD2CF70C483FF5F780CB0 /* helloaura_application.cpp in Sources */ = {isa = PBXBuildFile; fileRef = CA5E29B48B7BB4C458B1BB00 /* helloaura_application.cpp */; };
 		91DF79384083134200FBA0A1 /* helloaura_document.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 37FEF80924002883D7A91F65 /* helloaura_document.cpp */; };
@@ -194,8 +194,8 @@
 		F4C54DD7128247B8C49FDE0C /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		2D0850A671627CF24ACC08F1 /* app_core_helloaura_iosTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = app_core_helloaura_iosTests.m; sourceTree = "<group>"; };
 		4DA1BDA0B061B838665452ED /* libapp_core_helloaura.dylib */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.dylib"; includeInIndex = 0; path = libapp_core_helloaura.dylib; sourceTree = BUILT_PRODUCTS_DIR; };
-		224594EB90D9F35318D68A69 /* framework.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = framework.cpp; sourceTree = "<group>"; };
-		6AFE520E0B9DA6788F579F95 /* framework.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = framework.h; sourceTree = "<group>"; };
+		224594EB90D9F35318D68A69 /* platform.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = platform.cpp; sourceTree = "<group>"; };
+		6AFE520E0B9DA6788F579F95 /* platform.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = platform.h; sourceTree = "<group>"; };
 		92798EA1E46C868F115DE803 /* helloaura.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = helloaura.h; sourceTree = "<group>"; };
 		CA5E29B48B7BB4C458B1BB00 /* helloaura_application.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = helloaura_application.cpp; sourceTree = "<group>"; };
 		37FEF80924002883D7A91F65 /* helloaura_document.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = helloaura_document.cpp; sourceTree = "<group>"; };
@@ -333,8 +333,8 @@
 			isa = PBXGroup;
 			children = (
 				92798EA1E46C868F115DE803 /* helloaura.h */,
-				224594EB90D9F35318D68A69 /* framework.cpp */,
-				6AFE520E0B9DA6788F579F95 /* framework.h */,
+				224594EB90D9F35318D68A69 /* platform.cpp */,
+				6AFE520E0B9DA6788F579F95 /* platform.h */,
 				CA5E29B48B7BB4C458B1BB00 /* helloaura_application.cpp */,
 				6724CEFE64DDBBC37FED5CB5 /* helloaura_application.h */,
 				37FEF80924002883D7A91F65 /* helloaura_document.cpp */,
@@ -370,7 +370,7 @@
 			isa = PBXHeadersBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				430BC6D3FF40BF094C55EE79 /* framework.h in Headers */,
+				430BC6D3FF40BF094C55EE79 /* platform.h in Headers */,
 				DB031146CD85F178E50AEBB8 /* helloaura_render.h in Headers */,
 				7661B41FBD3CB3899DBF8526 /* helloaura.h in Headers */,
 				0A3013F90C608D905C35D45B /* helloaura_impact.h in Headers */,
@@ -556,7 +556,7 @@
 				70BC951A3B1AD7C7A6FC54B4 /* helloaura_render.cpp in Sources */,
 				DF83C66BE3FA78060F6ECCD4 /* helloaura_main_impact.cpp in Sources */,
 				328B382EB9CF4FF7540543DC /* helloaura_switcher_impact.cpp in Sources */,
-				FAC1563D0515F89F601326B4 /* framework.cpp in Sources */,
+				FAC1563D0515F89F601326B4 /* platform.cpp in Sources */,
 				3E7DDF49975D871A5AFB59DD /* helloaura_application.cpp in Sources */,
 				E8715CB179F612C8B3003E2D /* helloaura_document.cpp in Sources */,
 				5AD9A357469A4C56D463CFB3 /* helloaura_frame.cpp in Sources */,
@@ -579,7 +579,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				F660A0429F7E2ABCB0A86174 /* helloaura_main_impact.cpp in Sources */,
-				1739F32206BA89D17FAD924F /* framework.cpp in Sources */,
+				1739F32206BA89D17FAD924F /* platform.cpp in Sources */,
 				1468B041B873EE98FAE10D95 /* helloaura_gcom.cpp in Sources */,
 				572100101BA66E92EB10AE31 /* helloaura_main_frame.cpp in Sources */,
 				5510BB153F6B12B34077093D /* helloaura_switcher_impact.cpp in Sources */,
@@ -761,7 +761,7 @@
 				GCC_NO_COMMON_BLOCKS = YES;
 				GCC_OPTIMIZATION_LEVEL = 0;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
-				GCC_PREFIX_HEADER = framework.h;
+				GCC_PREFIX_HEADER = platform.h;
 				GCC_PREPROCESSOR_DEFINITIONS = (
 					"$(inherited)",
 				);
@@ -826,7 +826,7 @@
 				GCC_ENABLE_OBJC_EXCEPTIONS = YES;
 				GCC_NO_COMMON_BLOCKS = YES;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
-				GCC_PREFIX_HEADER = framework.h;
+				GCC_PREFIX_HEADER = platform.h;
 				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
 				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
 				GCC_WARN_UNDECLARED_SELECTOR = YES;

@@ -1,5 +1,5 @@
 // Created by camilo on 2025-06-12 12:38 <3ThomasBorregaardSørensen!!
-#include "framework.h"
+#include "platform.h"
 #include "command_buffer.h"
 #include "context.h"
 #include "device.h"
@@ -10,6 +10,7 @@
 #include "render_target.h"
 #include "semaphore.h"
 #include "texture.h"
+#include "texture_site.h"
 #include "texture_synchronization.h"
 #include "acme/platform/application.h"
 #include "bred/gpu/context_lock.h"
@@ -53,14 +54,14 @@ namespace gpu
    }
 
 
-   ::gpu::texture * render_target::do_render()
+   ::gpu::texture_site * render_target::do_render()
    {
 
 
       // auto iFrameIndex = prendertargetBackBuffer->get_frame_index();
 
       //ptextureBackBuffer = prendertargetBackBuffer->current_texture(pgpulayer);
-      auto ptextureBackBuffer = this->current_texture(nullptr);
+      auto ptextureBackBuffer = this->current_texture(nullptr, true);
       //
       // for (auto player : layera)
       // {
@@ -200,10 +201,10 @@ namespace gpu
 
          //semaphoreaMergeLayersReady.add(m_pgpucontext->m_gpusemaphoreaMergeLayersReady[iFrameIndex]);
 
-         if (ptextureBackBuffer->synchronization())
+         if (ptextureBackBuffer->gpu_texture()->synchronization())
          {
 
-            auto pgpusemaphoreRenderFinished = ptextureBackBuffer->synchronization()->m_pgpusemaphoreRenderFinished;
+            auto pgpusemaphoreRenderFinished = ptextureBackBuffer->gpu_texture()->synchronization()->m_pgpusemaphoreRenderFinished;
 
             if (pgpusemaphoreRenderFinished)
             {
@@ -285,7 +286,7 @@ namespace gpu
 
 
 
-   void render_target::do_output(::gpu::texture * pgputexture)
+   void render_target::do_output(::gpu::texture_site * pgputexture)
    {
 
 
@@ -293,36 +294,38 @@ namespace gpu
    }
 
 
-   ::pointer_array < ::gpu::texture >* render_target::texturea2()
+   ::pointer_array < ::gpu::texture_site >* render_target::texturea2()
    {
 
-      if (!m_ptexturea)
+      if (!m_ptexturesitea)
       {
 
          auto iFrameCount = m_pgpurenderer->m_iDefaultFrameCount;
 
-         defer_construct_newø(m_ptexturea);
+         defer_construct_newø(m_ptexturesitea);
 
-         m_ptexturea->set_size(iFrameCount);
+         m_ptexturesitea->set_size(iFrameCount);
 
       }
 
-      return m_ptexturea;
+      return m_ptexturesitea;
 
    }
 
      
-   ::gpu::texture *render_target::texture(::collection::index i) 
+   ::gpu::texture_site *render_target::texture(::collection::index i) 
    {
 
-      auto &texturea = *this->texturea2();
+      auto &texturesitea = *this->texturea2();
 
-      auto &ptexture = texturea[i];
+      auto &ptexturesite = texturesitea[i];
 
-      if (!ptexture)
+      if (!ptexturesite)
       {
 
-         defer_constructø(ptexture);
+         defer_construct_newø(ptexturesite);
+
+         defer_constructø(ptexturesite->m_pgputextureSite);
 
       }
 
@@ -332,13 +335,15 @@ namespace gpu
          ? pgpucontext->m_papplication->m_gpu.m_iSampleCount
          : 1;
 
-      if (!m_size.is_empty()
-         && (ptexture->size() != m_size
-            || ptexture->m_bMultisample != bMultisample
-            || ptexture->m_iSampleCount != iRequestedSampleCount))
+      auto sizeRaw = pgpucontext->m_sizeRaw;
+
+      if (!sizeRaw.is_empty()
+         && (ptexturesite->m_pgputextureSite->raw_size() != sizeRaw
+            || ptexturesite->m_pgputextureSite->m_bMultisample != bMultisample
+            || ptexturesite->m_pgputextureSite->m_iSampleCount != iRequestedSampleCount))
       {
 
-         initialize_render_target_image(ptexture);
+         create_render_target_image(ptexturesite->m_pgputextureSite);
 
          //::gpu::texture_attributes textureattributes(::i32_rectangle{m_size});
 
@@ -352,9 +357,15 @@ namespace gpu
 
          // ptexture->initialize_texture(m_pgpurenderer->m_pgpucontext, textureattributes, textureflags);
       }
-      return ptexture;
+
+      ptexturesite->m_pgputextureSite->m_textureattributes.m_size = m_pgpurenderer->m_pgpucontext->size();
+      ptexturesite->m_pointInput = m_pgpurenderer->m_pgpucontext->input_origin();
+      ptexturesite->m_pointOutput = m_pgpurenderer->m_pgpucontext->output_origin();
+
+      return ptexturesite;
 
    }
+
 
    ::gpu::texture *render_target::depth_texture(::collection::index i)
    {
@@ -365,12 +376,12 @@ namespace gpu
 
 
 
-   ::pointer_array < ::gpu::texture >* render_target::depth_texturea2()
-   {
+   //::pointer_array < ::gpu::texture >* render_target::depth_texturea2()
+   //{
 
-      return m_ptextureaDepth;
+   //   return m_ptextureaDepth;
 
-   }
+   //}
 
 
    void render_target::initialize_render_target(::gpu::renderer* pgpurenderer, const ::i32_size& size, ::pointer <::gpu::render_target>previous)
@@ -615,7 +626,7 @@ namespace gpu
    ::i32 render_target::imageCount() 
    {
       
-      return (::i32) m_ptexturea->size(); 
+      return (::i32) m_ptexturesitea->size(); 
    
    }
 
@@ -636,16 +647,16 @@ namespace gpu
    }
 
 
-   void render_target::initialize_render_target_image(::gpu::texture *pgputexture)
+   void render_target::create_render_target_image(::gpu::texture *pgputexture)
    {
 
-      auto rectangle = m_pgpurenderer->m_pgpucontext->get_placement();
+      auto size = m_pgpurenderer->m_pgpucontext->size();
 
       auto sizeRaw = m_pgpurenderer->m_pgpucontext->m_sizeRaw;
 
       auto escene = m_pgpurenderer->m_pgpucontext->m_escene;
 
-      ::gpu::texture_attributes textureattributes(rectangle);
+      ::gpu::texture_attributes textureattributes(size);
 
       ::gpu::texture_flags textureflags;
 
@@ -680,19 +691,23 @@ namespace gpu
       pgputexture->m_iSampleCount = iRequestedSampleCount;
       pgputexture->m_bMultisample = bMultisample;
 
-      pgputexture->initialize_texture(m_pgpurenderer->m_pgpucontext, textureattributes, textureflags);
+      pgputexture->create_texture(m_pgpurenderer->m_pgpucontext, textureattributes, textureflags);
+
+      pgputexture->m_textureattributes.m_size = m_pgpurenderer->m_pgpucontext->size();
+      //pgputexture->m_rectangleSource = m_pgpurenderer->m_pgpucontext->source_placement();
+      //pgputexture->m_rectangleTarget = m_pgpurenderer->m_pgpucontext->target_placement();
 
 
    }
 
 
-   texture * render_target::current_texture(::gpu::layer* pgpulayer)
+   texture_site * render_target::current_texture(::gpu::layer* pgpulayer, bool bRenderTarget)
    {
 
       if (::is_set(pgpulayer))
       {
 
-         return pgpulayer->source_texture();
+         return pgpulayer->texture(bRenderTarget);
 
       }
 
@@ -719,16 +734,16 @@ namespace gpu
       if (::is_set(pgpulayer))
       {
 
-         auto ptexture = pgpulayer->source_texture();
+         auto ptexturesite = pgpulayer->texture(true);
 
-         if (!ptexture)
+         if (ptexturesite.nok())
          {
 
             throw ::exception(error_wrong_state, "No source texture in layer");
 
          }
 
-         auto ptextureDepth = ptexture->get_depth_texture();
+         auto ptextureDepth = ptexturesite->gpu_texture()->get_depth_texture();
 
          if(!ptextureDepth)
          {
@@ -751,16 +766,16 @@ namespace gpu
 
       //auto size = m_ptexturea->size();
 
-      auto ptexture = m_ptexturea->element_at(iFrameIndex);
+      auto ptexturesite = m_ptexturesitea->element_at(iFrameIndex);
 
-      if (!ptexture)
+      if (ptexturesite.nok())
       {
 
          throw ::exception(error_wrong_state, "No source texture in layer");
 
       }
 
-      auto ptextureDepth = ptexture->get_depth_texture();
+      auto ptextureDepth = ptexturesite->gpu_texture()->get_depth_texture();
 
       //if (!ptextureDepth)
       //{

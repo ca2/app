@@ -4,7 +4,7 @@
 //
 //  Created by Camilo Sasuke Thomas Borregaard Soerensen on 12/12/18.
 //
-#include "framework.h"
+#include "platform.h"
 #include "department.h"
 #include "user_array.h"
 #include "product_array.h"

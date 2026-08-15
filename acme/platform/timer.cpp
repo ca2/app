@@ -1,5 +1,5 @@
 // Deep Refactoring timer_handler by camilo on 2026-05-28 10:33 <3ThomasBorregaardSørensen!! Mummi!! Bilbo
-#include "framework.h"
+#include "platform.h"
 #include "timer.h"
 #include "acme/constant/id.h"
 #include "acme/parallelization/synchronous_lock.h"

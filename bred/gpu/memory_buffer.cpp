@@ -1,6 +1,6 @@
 // From gpu_vulkan/memory_buffer.cpp by
 // camilo on 2025-07-01 12:38 <3ThomasBorregaardSørensen!!
-#include "framework.h"
+#include "platform.h"
 #include "context.h"
 #include "device.h"
 #include "frame_storage.h"

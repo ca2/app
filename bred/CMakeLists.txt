@@ -114,7 +114,7 @@ list(APPEND library_source
    graphics3d/class_set1.h
    graphics3d/entity.h
    #graphics3d/frame.h
-   #graphics3d/framework.h
+   #graphics3d/platform.h
    graphics3d/immersion_layer.cpp
    graphics3d/immersion_layer.h
    graphics3d/game_object.h
@@ -215,8 +215,8 @@ list(APPEND library_source
    _.h
    _defer.h
    console.h
-   framework.cpp
-   framework.h
+   platform.cpp
+   platform.h
    id.h
    library.h
 )
@@ -249,8 +249,8 @@ add_library(static_${PROJECT_NAME} STATIC ${library_source})
 
 if (NOT ${NO_PRECOMPILED_HEADER})
 
-   target_precompile_headers(${PROJECT_NAME} PRIVATE framework.h)
-   target_precompile_headers(static_${PROJECT_NAME} PRIVATE framework.h)
+   target_precompile_headers(${PROJECT_NAME} PRIVATE platform.h)
+   target_precompile_headers(static_${PROJECT_NAME} PRIVATE platform.h)
 
 endif ()
 

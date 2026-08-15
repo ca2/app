@@ -28,7 +28,7 @@
 		DCCD7442658ED7502E8548FD /* libaura.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 21F6D7F331680CE59E22CCAE /* libaura.dylib */; };
 		66041236772DC0660DCCA311 /* calculator.h in Headers */ = {isa = PBXBuildFile; fileRef = BCD0D57A8A99DEDBE9D7D614 /* calculator.h */; };
 		C0C612447340564B71F637CE /* calculator_calculator.h in Headers */ = {isa = PBXBuildFile; fileRef = 31C2C3F7DC410CD304EEB2D3 /* calculator_calculator.h */; };
-		0B49268B2226BF65AEB6A746 /* framework.h in Headers */ = {isa = PBXBuildFile; fileRef = 19C265DCB2C80716FB2AD066 /* framework.h */; };
+		0B49268B2226BF65AEB6A746 /* platform.h in Headers */ = {isa = PBXBuildFile; fileRef = 19C265DCB2C80716FB2AD066 /* platform.h */; };
 		1E2A137E9BB8FEEE53A4AF2A /* kiss_fft.h in Headers */ = {isa = PBXBuildFile; fileRef = C92313F215C4A350475E6E5F /* kiss_fft.h */; };
 		14C1B2F70567FFD759AC0870 /* kiss_fft_guts.h in Headers */ = {isa = PBXBuildFile; fileRef = 571E8BC6E1B0B695C8533388 /* kiss_fft_guts.h */; };
 		50439D994E126FD4EACD7051 /* kiss_ifft.h in Headers */ = {isa = PBXBuildFile; fileRef = DF4AA84B87847747C64D0B48 /* kiss_ifft.h */; };
@@ -174,8 +174,8 @@
 		31C2C3F7DC410CD304EEB2D3 /* calculator_calculator.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = calculator_calculator.h; sourceTree = "<group>"; };
 		9E34182A784639CBBB22ED49 /* axis.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = axis.xcodeproj; path = ../axis/axis.xcodeproj; sourceTree = SOURCE_ROOT; };
 		2B04BC2A23E3576F76BD5F42 /* libmath.dylib */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.dylib"; includeInIndex = 0; path = libmath.dylib; sourceTree = BUILT_PRODUCTS_DIR; };
-		AD13689DDCC4AC9DA810197B /* framework.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = framework.cpp; sourceTree = "<group>"; };
-		19C265DCB2C80716FB2AD066 /* framework.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = framework.h; sourceTree = "<group>"; };
+		AD13689DDCC4AC9DA810197B /* platform.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = platform.cpp; sourceTree = "<group>"; };
+		19C265DCB2C80716FB2AD066 /* platform.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = platform.h; sourceTree = "<group>"; };
 		C92313F215C4A350475E6E5F /* kiss_fft.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = kiss_fft.h; sourceTree = "<group>"; };
 		571E8BC6E1B0B695C8533388 /* kiss_fft_guts.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = kiss_fft_guts.h; sourceTree = "<group>"; };
 		DF4AA84B87847747C64D0B48 /* kiss_ifft.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = kiss_ifft.h; sourceTree = "<group>"; };
@@ -323,8 +323,8 @@
 			children = (
 				3DBC18125CF46051EE7FBB62 /* kissfft */,
 				9D75A988D34BA12B24632F15 /* math */,
-				AD13689DDCC4AC9DA810197B /* framework.cpp */,
-				19C265DCB2C80716FB2AD066 /* framework.h */,
+				AD13689DDCC4AC9DA810197B /* platform.cpp */,
+				19C265DCB2C80716FB2AD066 /* platform.h */,
 			);
 			name = math;
 			sourceTree = "<group>";
@@ -360,7 +360,7 @@
 				66041236772DC0660DCCA311 /* calculator.h in Headers */,
 				9459A3FC844B75545FF16DDF /* calculator_scanner.h in Headers */,
 				16C8D889ED450D9CAC7797AB /* calculator_token.h in Headers */,
-				0B49268B2226BF65AEB6A746 /* framework.h in Headers */,
+				0B49268B2226BF65AEB6A746 /* platform.h in Headers */,
 				1E2A137E9BB8FEEE53A4AF2A /* kiss_fft.h in Headers */,
 				15AF324ABA76E50C47006C21 /* calculator_parser_exception.h in Headers */,
 				F5203814BAA28FD62F390167 /* calculator_element.h in Headers */,
@@ -769,7 +769,7 @@
 				GCC_ENABLE_OBJC_EXCEPTIONS = YES;
 				GCC_OPTIMIZATION_LEVEL = 0;
 				GCC_PRECOMPILE_PREFIX_HEADER = NO;
-				GCC_PREFIX_HEADER = framework.h;
+				GCC_PREFIX_HEADER = platform.h;
 				GCC_PREPROCESSOR_DEFINITIONS = (
 					"$(inherited)",
 				);
@@ -813,7 +813,7 @@
 				GCC_C_LANGUAGE_STANDARD = c99;
 				GCC_ENABLE_OBJC_EXCEPTIONS = YES;
 				GCC_PRECOMPILE_PREFIX_HEADER = NO;
-				GCC_PREFIX_HEADER = framework.h;
+				GCC_PREFIX_HEADER = platform.h;
 				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
 				GCC_WARN_ABOUT_RETURN_TYPE = YES;
 				GCC_WARN_UNINITIALIZED_AUTOS = YES;

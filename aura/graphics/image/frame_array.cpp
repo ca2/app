@@ -1,4 +1,4 @@
-#include "framework.h"
+#include "platform.h"
 #include "frame_array.h"
 #include "aura/graphics/image/drawing.h"
 

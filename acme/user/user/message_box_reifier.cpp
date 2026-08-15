@@ -7,7 +7,7 @@
 // aura/user/user/message_box.cpp
 // Created by camilo on 29/01/2021.  02:05 BRT <3ThomasBS_!!
 //
-#include "framework.h"
+#include "platform.h"
 //#include "message_box.h"
 //
 //

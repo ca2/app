@@ -1,12 +1,13 @@
 // From github:/tristancalderbank/OpenGL-PBR-Renderer/diffuse_irradiance_map.cpp by
 // camilo on 2025-09-26 19:53 <3ThomasBorregaardSørensen!!
-#include "framework.h"
+#include "platform.h"
 #include "diffuse_irradiance_map.h"
 #include "bred/gpu/binding.h"
 #include "bred/gpu/command_buffer.h"
 #include "bred/gpu/context.h"
 #include "bred/gpu/shader.h"
 #include "bred/gpu/texture.h"
+#include "bred/gpu/texture_site.h"
 #include "bred/platform/timer.h"
 #include "bred/graphics3d/engine.h"
 #include "bred/graphics3d/scene_base.h"
@@ -84,10 +85,13 @@ namespace gpu
             embedded_diffuse_irradiance_frag(), 
             pinputlayoutVertex);
 
-         constructø(m_ptextureDiffuseIrradianceCubemap);
+         construct_newø(m_ptexturesiteDiffuseIrradianceCubemap);
 
-         ::gpu::texture_attributes textureattributes(::i32_rectangle {
-            API_CHANGED_ARGUMENT, m_udiffuse_irradiance_mapWidth, m_udiffuse_irradiance_mapHeight});
+         constructø(m_ptexturesiteDiffuseIrradianceCubemap->m_pgputextureSite);
+
+         auto ptexturesiteDiffuseIrradianceCubemap = m_ptexturesiteDiffuseIrradianceCubemap->gpu_texture();
+
+         ::gpu::texture_attributes textureattributes({(::i32) m_udiffuse_irradiance_mapWidth, (::i32) m_udiffuse_irradiance_mapHeight});
 
          textureattributes.set_cubemap();
 
@@ -97,7 +101,7 @@ namespace gpu
 
          textureflags.m_bRenderTarget = true;
 
-         m_ptextureDiffuseIrradianceCubemap->initialize_texture(m_pgpucontext, textureattributes, textureflags);
+         ptexturesiteDiffuseIrradianceCubemap->create_texture(m_pgpucontext, textureattributes, textureflags);
 
          //m_ptextureDiffuseIrradianceCubemap->initialize_mipmap_cubemap_texture(
            // m_pgpucontext->m_pgpurenderer, ::i32_rectangle{ API_CHANGED_ARGUMENT,m_udiffuse_irradiance_mapWidth, m_udiffuse_irradiance_mapHeight});
@@ -132,19 +136,21 @@ namespace gpu
          
           auto pskybox = m_pscene->current_skybox();
 
-          auto ptextureSkybox = pskybox->m_ptexture;
+          auto ptextureSkybox = pskybox->m_ptexturesite->gpu_texture();
 
           ::i32 iIrradianceMapWidth = m_udiffuse_irradiance_mapWidth;
 
           ::i32 iIrradianceMapHeight = m_udiffuse_irradiance_mapHeight;
 
-          m_ptextureDiffuseIrradianceCubemap->set_current_mip(-1);
+          auto ptextureDiffuseIrradianceCubemap = m_ptexturesiteDiffuseIrradianceCubemap->gpu_texture();
 
-          m_ptextureDiffuseIrradianceCubemap->set_current_layer(-1);
+          ptextureDiffuseIrradianceCubemap->set_current_mip(-1);
 
-          m_ptextureDiffuseIrradianceCubemap->set_state(pgpucommandbuffer, ::gpu::e_texture_state_color_attachment);
+          ptextureDiffuseIrradianceCubemap->set_current_layer(-1);
 
-          m_ptextureDiffuseIrradianceCubemap->set_current_mip(0);
+          ptextureDiffuseIrradianceCubemap->set_state(pgpucommandbuffer, ::gpu::e_texture_state_color_attachment);
+
+          ptextureDiffuseIrradianceCubemap->set_current_mip(0);
 
           // render to each side of the cubemap
           for (auto i = 0; i < 6; i++)
@@ -152,9 +158,9 @@ namespace gpu
 
              auto impact = cameraAngles[i];
 
-             m_ptextureDiffuseIrradianceCubemap->set_current_layer(i);
+             ptextureDiffuseIrradianceCubemap->set_current_layer(i);
 
-             pgpucommandbuffer->begin_render(m_pshaderDiffuseIrradiance, m_ptextureDiffuseIrradianceCubemap);
+             pgpucommandbuffer->begin_render(m_pshaderDiffuseIrradiance, m_ptexturesiteDiffuseIrradianceCubemap);
 
              ::i32_rectangle r(0, 0, iIrradianceMapWidth, iIrradianceMapHeight);
 
@@ -162,7 +168,7 @@ namespace gpu
 
              pgpucommandbuffer->set_scissor(r);
 
-             pgpucommandbuffer->set_source(ptextureSkybox);
+             pgpucommandbuffer->set_source(pskybox->m_ptexturesite);
 
              auto mvp = projection * impact * model;
 
@@ -180,13 +186,13 @@ namespace gpu
             
           }
 
-          m_ptextureDiffuseIrradianceCubemap->set_current_mip(-1);
+          ptextureDiffuseIrradianceCubemap->set_current_mip(-1);
 
-          m_ptextureDiffuseIrradianceCubemap->set_current_layer(-1);
+          ptextureDiffuseIrradianceCubemap->set_current_layer(-1);
 
-          m_ptextureDiffuseIrradianceCubemap->set_state(pgpucommandbuffer, ::gpu::e_texture_state_shader_read);
+          ptextureDiffuseIrradianceCubemap->set_state(pgpucommandbuffer, ::gpu::e_texture_state_shader_read);
 
-          m_ptextureDiffuseIrradianceCubemap->set_ok_flag();
+          ptextureDiffuseIrradianceCubemap->set_ok_flag();
          
           timer.logDifference("Rendered diffuse irradiance map");
         

@@ -1,5 +1,5 @@
 // From picture.cpp by camilo on 2022-09-04 01:19 <3ThomasBorregaardSorensen!!
-#include "framework.h"
+#include "platform.h"
 #include "picture_impl.h"
 //#include <math.h>
 //#include "acme/prototype/geometry2d/matrix.h"

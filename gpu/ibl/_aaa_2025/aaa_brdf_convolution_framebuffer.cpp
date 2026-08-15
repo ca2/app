@@ -1,6 +1,6 @@
 // From github:/tristancalderbank/OpenGL-PBR-Renderer/brdf_convolution_framebuffer.cpp by
 // camilo on 2025-09-26 19:50 <3ThomasBorregaardSorensen!!
-#include "framework.h"
+#include "platform.h"
 #include "brdf_convolution_framebuffer.h"
 #include "bred/gpu/context.h"
 #include "bred/gpu/texture.h"

@@ -1,5 +1,5 @@
 // Created by camilo on 2025-06-11 01:08 <3ThomasBorregaardSørensen!!
-#include "framework.h"
+#include "platform.h"
 #include "command_buffer.h"
 #include "context.h"
 #include "frame.h"
@@ -110,48 +110,93 @@ namespace gpu
    }
 
 
-   void model_buffer::sequence2_uv_create_fullscreen_quad(::gpu::context * pgpucontext)
+   void model_buffer::sequence2_uv_create_fullscreen_quad(
+    ::gpu::context * pgpucontext,
+    const ::i32_rectangle & rectangleQuad,
+    const ::i32_size & sizeQuadRaw,
+    bool bYSwap)
    {
 
       initialize_gpu_context_object(pgpucontext);
 
-      // Vertex data: (x, y, u, v)
-#if 1
-      ::array< ::graphics3d::sequence2_uv > quadvertexes = {
-         //  Position   TexCoords
-         {{ -1.0f,  1.0f},{  0.0f, 1.0f}}, // Top-left
-         {{-1.0f, -1.0f}, { 0.0f, 0.0f}}, // Bottom-left
-          {{1.0f, -1.0f}, { 1.0f, 0.0f}}, // Bottom-right
+      //
+      // Destination geometry:
+      // always fills the current viewport.
+      //
+      constexpr ::f32 left = -1.0f;
+      constexpr ::f32 right = 1.0f;
+      constexpr ::f32 top = 1.0f;
+      constexpr ::f32 bottom = -1.0f;
 
-         {{-1.0f,  1.0f}, { 0.0f, 1.0f}}, // Top-left
-          {{1.0f, -1.0f}, { 1.0f, 0.0f}}, // Bottom-right
-          {{1.0f,  1.0f}, { 1.0f, 1.0f}}  // Top-right
+
+      //
+      // Default source UVs: whole texture.
+      //
+      ::f32 left2 = 0.0f;
+      ::f32 right2 = 1.0f;
+      ::f32 top2 = 1.0f;
+      ::f32 bottom2 = 0.0f;
+
+
+      if (rectangleQuad.is_set() && sizeQuadRaw.is_set())
+      {
+
+         left2 =
+            (::f32)rectangleQuad.left /
+            (::f32)sizeQuadRaw.cx;
+
+         right2 =
+            (::f32)rectangleQuad.right /
+            (::f32)sizeQuadRaw.cx;
+
+         //
+         // rectangleQuad uses top-left screen coordinates,
+         // while OpenGL texture coordinates use bottom-left.
+         //
+         top2 =
+            (::f32)(sizeQuadRaw.cy - rectangleQuad.top) /
+            (::f32)sizeQuadRaw.cy;
+
+         bottom2 =
+            (::f32)(sizeQuadRaw.cy - rectangleQuad.bottom) /
+            (::f32)sizeQuadRaw.cy;
+
+      }
+
+
+      //
+      // Flip only the texture sampling orientation.
+      // Do not change the geometry/winding.
+      //
+      if (bYSwap)
+      {
+
+         auto temp = top2;
+
+         top2 = bottom2;
+         bottom2 = temp;
+
+      }
+
+
+      ::array<::graphics3d::sequence2_uv> quadvertexes =
+      {
+
+         // Position             Texture coordinate
+
+         {{left,  top},          {left2,  top2}},       // Top-left
+         {{left,  bottom},       {left2,  bottom2}},    // Bottom-left
+         {{right, bottom},       {right2, bottom2}},    // Bottom-right
+
+         {{left,  top},          {left2,  top2}},       // Top-left
+         {{right, bottom},       {right2, bottom2}},    // Bottom-right
+         {{right, top},          {right2, top2}},       // Top-right
+
       };
-#else
-      ::array < ::graphics3d::sequence2_uv >quadvertexes = {
-         //  Position   TexCoords
-         {{ 0.0f,  1.0f}, { 0.0f, 1.0f}}, // Top-left
-         {{0.0f, 0.0f}, { 0.0f, 0.0f}}, // Bottom-left
-          {{1.0f, 0.0f}, { 1.0f, 0.0f}}, // Bottom-right
-
-         {{0.0f,  1.0f}, { 0.0f, 1.0f}}, // Top-left
-          {{1.0f, 0.0f}, { 1.0f, 0.0f}}, // Bottom-right
-          {{1.0f,  1.0f},{  1.0f, 1.0f}}  // Top-right
-      };
-#endif
-
-      //this->bind2(pgpulayer->m_pgpucommandbuffer);
 
 
-      this->static_initialize_vertexes<::graphics3d::sequence2_uv >(
+      static_initialize_vertexes<::graphics3d::sequence2_uv>(
          quadvertexes);
-
-      //this->unbind(pgpulayer->m_pgpucommandbuffer);
-
-
-
-      //this->set_vertex_array<::graphics3d::sequence2_uv >(quadvertexes, 6);
-
 
    }
 

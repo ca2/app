@@ -1,7 +1,7 @@
 //
 // From install_linux.cpp by camilo on 2024-06-21 22:08 <3ThomasBorregaardSorensen!!
 //
-#include "framework.h"
+#include "platform.h"
 #include "application.h"
 #include "install.h"
 #include "acme/filesystem/filesystem/directory_system.h"

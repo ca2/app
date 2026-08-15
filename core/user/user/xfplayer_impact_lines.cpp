@@ -1,4 +1,4 @@
-#include "framework.h"
+#include "platform.h"
 #include "xfplayer_impact_line.h"
 #include "xfplayer_impact_lines.h"
 #include "xfplayer_impact_line_selection.h"

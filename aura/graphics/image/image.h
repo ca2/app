@@ -110,7 +110,7 @@ namespace image
       void end_destination_graphics_lease() const;
       bool has_active_destination_graphics_lease() const;
       //virtual ::draw2d::graphics * _get_graphics() const; // is semantically const (besides may not be implementationly constant)
-      virtual ::draw2d::bitmap_pointer get_bitmap() const; // is semantically const (besides may not be implementationly constant)
+      virtual ::draw2d::bitmap_pointer get_bitmap(::draw2d::graphics * pdraw2dgraphics = nullptr) const; // is semantically const (besides may not be implementationly constant)
       virtual ::draw2d::bitmap_pointer detach_bitmap();
 
       virtual void create_owned_graphics();
@@ -754,7 +754,7 @@ namespace image
       protected:
 
 
-         void _map(bool bApplyAlphaTransform = true) override;
+         void _map(const ::i32_rectangle & rectangle, bool bApplyAlphaTransform = true) override;
          void _unmap(bool bDoUnmap = false) override;
 
 

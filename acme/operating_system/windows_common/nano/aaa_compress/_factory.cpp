@@ -1,7 +1,7 @@
 //
 // Created by camilo on 2025-07-11 05:26 <3ThomasBorregaardSørensen!!
 //
-#include "framework.h"
+#include "platform.h"
 #include "compress.h"
 
 

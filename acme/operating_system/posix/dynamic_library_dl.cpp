@@ -3,7 +3,7 @@
 // Merged from acme/operating_system/linux/library.cpp by
 // camilo on 2024-06-02 17:58 <3ThomasBorregaardSorensen!!
 // From acme/nano/dynamic_library on 2024-06-02 18:06 by camilo <3ThomasBorregaardSorensen!!
-#include "framework.h"
+#include "platform.h"
 
 #if !defined(CUBE)
 #include "dynamic_library_dl.h"

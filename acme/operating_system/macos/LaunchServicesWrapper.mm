@@ -5,7 +5,7 @@
 //  Created by Camilo Sasuke Thomas Borregaard Sørensen on 30/05/22.
 //  Copyright © 2022 Camilo Sasuke Tsumanuma. All rights reserved.
 //
-#include "framework.h"
+#include "platform.h"
 #import <ApplicationServices/ApplicationServices.h>
 #import "LaunchServicesWrapper.h"
 

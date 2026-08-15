@@ -1,4 +1,4 @@
-#include "framework.h"
+#include "platform.h"
 
 
 window_xlib::window_xlib()

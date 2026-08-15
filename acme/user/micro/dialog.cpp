@@ -2,7 +2,7 @@
 // // Created from acme/user/micro/main_window by 
 //      camilo on 2024-10-07 10:21 <3ThomasBorregaardSorensen!!
 // 
-#include "framework.h"
+#include "platform.h"
 #include "dialog.h"
 #include "acme/windowing/window.h"
 #include "acme/windowing/windowing.h"

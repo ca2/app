@@ -1,4 +1,4 @@
-#include "framework.h"
+#include "platform.h"
 #define APPLICATION_NAMESPACE app_just_aura_message_box
 #include "acme/inline/application/main_executable.inl"
 

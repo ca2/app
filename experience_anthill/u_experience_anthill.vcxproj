@@ -78,7 +78,7 @@
     <ClInclude Include="experience\frame_011.h" />
     <ClInclude Include="experience\frame_022.h" />
     <ClInclude Include="experience\_experience.h" />
-    <ClInclude Include="framework.h" />
+    <ClInclude Include="platform.h" />
     <ClInclude Include="user\style.h" />
     <ClInclude Include="user\_user.h" />
     <ClInclude Include="_.h" />
@@ -98,7 +98,7 @@
     <ClCompile Include="experience\frame_Minimal001.cpp" />
     <ClCompile Include="user\style.cpp" />
     <ClCompile Include="_factory.cpp" />
-    <ClCompile Include="framework.cpp">
+    <ClCompile Include="platform.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Create</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='StaticDebug|Win32'">Create</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|ARM'">Create</PrecompiledHeader>

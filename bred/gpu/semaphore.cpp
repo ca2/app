@@ -1,7 +1,7 @@
 //
 // Created by camilo on 2026-01-28 22:52 <3ThomasBorregaardSørensen!!
 //
-#include "framework.h"
+#include "platform.h"
 #include "semaphore.h"
 
 
@@ -29,6 +29,21 @@ namespace gpu
    {
 
       initialize_gpu_context_object(pgpucontext);
+
+   }
+
+
+   void semaphore::wait(::gpu::queue * pgpuqueue)
+   {
+
+
+   }
+
+
+   void semaphore::signal(::gpu::queue * pgpuqueue)
+   {
+
+
 
    }
 

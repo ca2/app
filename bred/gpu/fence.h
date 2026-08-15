@@ -4,7 +4,7 @@
 #pragma once
 
 
-#include "bred/gpu/context_object.h"
+//#include "bred/gpu/device.h"
 
 
 namespace gpu
@@ -12,23 +12,29 @@ namespace gpu
 
 
    class CLASS_DECL_BRED fence :
-      virtual public ::gpu::context_object
+      virtual public ::particle
    {
 
    public:
+
+
+      ::u64                            m_uFence;
+      ::pointer < ::gpu::device >      m_pgpudevice;
 
 
       fence();
       ~fence() override;
 
 
-      virtual void initialize_gpu_fence(::gpu::context * pgpucontext, bool bCreateSignaled);
+      virtual void initialize_gpu_fence(::gpu::device * pgpudevice, bool bCreateSignaled);
       
+      virtual void signal_gpu_fence(::gpu::queue * pgpuqueue);
       
       virtual void reset_gpu_fence();
 
       virtual void wait_gpu_fence();
 
+      virtual bool has_finished();
 
    };
 

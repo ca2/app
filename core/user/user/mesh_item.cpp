@@ -1,5 +1,5 @@
 // From mesh.cpp by camilo on 2022-06-29 05:35 <3ThomasBorregaardSorensen!! ThomasLikesNumber5
-#include "framework.h"
+#include "platform.h"
 #if !BROAD_PRECOMPILED_HEADER
 //#include "core/user/user/_component.h"
 #endif

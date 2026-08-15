@@ -1,5 +1,5 @@
 // Refactor by camilo from bz on 2021-11-10 10:26 BRT <3ThomasBorregaardSorensen!!
-#include "framework.h"
+#include "platform.h"
 #include "uncompress.h"
 ////#include "acme/exception/exception.h"
 #include "acme/filesystem/file/file.h"

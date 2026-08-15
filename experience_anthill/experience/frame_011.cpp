@@ -1,4 +1,4 @@
-#include "framework.h"
+#include "platform.h"
 #include "frame_011.h"
 #include "berg/user/experience/frame_window.h"
 #include "berg/user/experience/size_manager.h"

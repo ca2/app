@@ -1,4 +1,4 @@
-#include "framework.h"
+#include "platform.h"
 #include "acme/node/posix/pipe.h"
 #include "acme/platform/static_start.h"
 #include "process.h"

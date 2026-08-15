@@ -1,5 +1,5 @@
 // From idn on 2024-06-02 19:42 <3ThomasBorregaardSorensen!!
-#include "framework.h"
+#include "platform.h"
 #include "dynamic_library_dl.h"
 
 

@@ -1,4 +1,4 @@
-#include "framework.h"
+#include "platform.h"
 #include "write_text.h"
 #include "font_enumeration_item.h"
 #include "fonts.h"

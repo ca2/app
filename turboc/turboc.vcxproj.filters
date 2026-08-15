@@ -20,7 +20,7 @@
     <ClInclude Include="turboc_application.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="framework.h">
+    <ClInclude Include="platform.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="src\alloc.h">
@@ -403,7 +403,7 @@
     <ClCompile Include="src\__src.cpp">
       <Filter>Source Files\src</Filter>
     </ClCompile>
-    <ClCompile Include="framework.cpp">
+    <ClCompile Include="platform.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="turboc.cpp">

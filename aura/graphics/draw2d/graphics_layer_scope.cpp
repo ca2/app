@@ -1,4 +1,4 @@
-#include "framework.h"
+#include "platform.h"
 #include "graphics_layer_scope.h"
 #include "graphics_lease.h"
 #include "graphics.h"

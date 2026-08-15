@@ -1,4 +1,4 @@
-#include "framework.h"
+#include "platform.h"
 
 #ifdef UNIT_TEST
 

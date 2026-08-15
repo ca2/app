@@ -1,5 +1,5 @@
 // Created by camilo from _.h on 2023-05-12 12:09 <3ThomasBorregaardSorensen!!
-#include "framework.h"
+#include "platform.h"
 #include "_.h"
 //
 //

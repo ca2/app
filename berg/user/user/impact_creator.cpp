@@ -1,4 +1,4 @@
-#include "framework.h"
+#include "platform.h"
 #include "impact_creator.h"
 #include "impact_data.h"
 #include "place_holder.h"

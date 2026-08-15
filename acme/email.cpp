@@ -1,4 +1,4 @@
-#include "framework.h"
+#include "platform.h"
 
 //Not including CRLFs
 //NOTE: For BASE64 and UUENCODE, this actually

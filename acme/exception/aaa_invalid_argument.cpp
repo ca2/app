@@ -1,4 +1,4 @@
-#include "framework.h"
+#include "platform.h"
 
 
 invalid_argument_exception::invalid_argument_exception(const ::scoped_string & scopedstrMessage):

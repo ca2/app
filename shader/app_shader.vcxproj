@@ -800,7 +800,7 @@
   <ItemGroup>
     <ClCompile Include="application.cpp" />
     <ClCompile Include="render.cpp" />
-    <ClCompile Include="framework.cpp">
+    <ClCompile Include="platform.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Create</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='StaticDebug|Win32'">Create</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Create</PrecompiledHeader>
@@ -817,7 +817,7 @@
     <ClInclude Include="application.h" />
     <ClInclude Include="render.h" />
     <ClInclude Include="_.h" />
-    <ClInclude Include="framework.h" />
+    <ClInclude Include="platform.h" />
     <ClInclude Include="main_window.h" />
     <ClInclude Include="_library.h" />
   </ItemGroup>

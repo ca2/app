@@ -8,7 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		33B1EFBC4F5CF0913E00D043 /* types.h in Headers */ = {isa = PBXBuildFile; fileRef = 5BF1782CA8ED480F54E741B9 /* types.h */; };
-		1411FBA5B3C8E963AA130B76 /* framework.h in Headers */ = {isa = PBXBuildFile; fileRef = 5D26193AAF0C8D6681F9EE1E /* framework.h */; };
+		1411FBA5B3C8E963AA130B76 /* platform.h in Headers */ = {isa = PBXBuildFile; fileRef = 5D26193AAF0C8D6681F9EE1E /* platform.h */; };
 		D475CE7D74E39716ECEA7F43 /* context.h in Headers */ = {isa = PBXBuildFile; fileRef = 18D452FF7D5656373EDF4E04 /* context.h */; };
 		A2F8109638E28251628A44D1 /* aaaa_context.h in Headers */ = {isa = PBXBuildFile; fileRef = 8B114C173B5C2DF8752518E0 /* aaaa_context.h */; };
 		9A9FABD97E027E9783B5CA4A /* ImageImpact.h in Headers */ = {isa = PBXBuildFile; fileRef = 5BA8A80632C3DAE642A433E5 /* ImageImpact.h */; };
@@ -26,7 +26,7 @@
 		5A6691FD1C448DEE557DEA1D /* context.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 5F5508FFE5BC6B3DF2DAF2E0 /* context.cpp */; };
 		8ECAF2BC8FB0C5257E507BE1 /* draw2d_context.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 96930A7B61BA6FDB2B978AC6 /* draw2d_context.cpp */; };
 		D84BD299ED766A0E69F49D7B /* _factory.cpp in Sources */ = {isa = PBXBuildFile; fileRef = C3E067BF4965A7A141BDE30D /* _factory.cpp */; };
-		66A9B04F241399F15A8FF9FC /* framework.cpp in Sources */ = {isa = PBXBuildFile; fileRef = C50E14BF7606512E2DA9A09E /* framework.cpp */; };
+		66A9B04F241399F15A8FF9FC /* platform.cpp in Sources */ = {isa = PBXBuildFile; fileRef = C50E14BF7606512E2DA9A09E /* platform.cpp */; };
 		EE0EE2872878DDF594EC2BD4 /* libacme.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = C3EC42297264A32386B7C58C /* libacme.dylib */; };
 		061F2615327D9688B14C7ABF /* libapex.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 36101A017541098386D5D6EC /* libapex.dylib */; };
 		57192225F39800F4325DE689 /* libaqua.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = A158801CB1F076A9E7CE8C06 /* libaqua.dylib */; };
@@ -39,12 +39,12 @@
 		605DB89956F0F5A4537056D0 /* aaa__library.h in Headers */ = {isa = PBXBuildFile; fileRef = FFD007CDC832D1EC2E9A5BD0 /* aaa__library.h */; };
 		DA99F1B76B3801882C856418 /* aaa_color.h in Headers */ = {isa = PBXBuildFile; fileRef = 8292C278AC0B7748C35057CA /* aaa_color.h */; };
 		0DCEB15249D19C08B9B584BB /* types.h in Headers */ = {isa = PBXBuildFile; fileRef = 5BF1782CA8ED480F54E741B9 /* types.h */; };
-		C8996945A0BA8550C75352F4 /* framework.cpp in Sources */ = {isa = PBXBuildFile; fileRef = C50E14BF7606512E2DA9A09E /* framework.cpp */; };
+		C8996945A0BA8550C75352F4 /* platform.cpp in Sources */ = {isa = PBXBuildFile; fileRef = C50E14BF7606512E2DA9A09E /* platform.cpp */; };
 		54759CC5AFDD04B7C37B231C /* ImageImpact.h in Headers */ = {isa = PBXBuildFile; fileRef = 5BA8A80632C3DAE642A433E5 /* ImageImpact.h */; };
 		319927149F88B6F953BCAF4F /* aaaa_context.h in Headers */ = {isa = PBXBuildFile; fileRef = 8B114C173B5C2DF8752518E0 /* aaaa_context.h */; };
 		E0CD6AE405F335D464A013F6 /* _.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 88F46B1A36282C176F88BFE8 /* _.cpp */; };
 		B073D028FA9592F6204FB7C4 /* resource.h in Headers */ = {isa = PBXBuildFile; fileRef = DF0E59E3BE9A97798706FF8A /* resource.h */; };
-		CFD930F6DC7AE0FB81DBAF99 /* framework.h in Headers */ = {isa = PBXBuildFile; fileRef = 5D26193AAF0C8D6681F9EE1E /* framework.h */; };
+		CFD930F6DC7AE0FB81DBAF99 /* platform.h in Headers */ = {isa = PBXBuildFile; fileRef = 5D26193AAF0C8D6681F9EE1E /* platform.h */; };
 		89B9BC02EFCC94D0E582D0EB /* _n2d.h in Headers */ = {isa = PBXBuildFile; fileRef = 59B261D11CFEE8E1123AB224 /* _n2d.h */; };
 		FCE06D27AAD620ED96AE5A9A /* draw2d_context.h in Headers */ = {isa = PBXBuildFile; fileRef = 12AFC1E0EE728122B8972D88 /* draw2d_context.h */; };
 		30E3670B9037512EAFFA52B7 /* font_sink.h in Headers */ = {isa = PBXBuildFile; fileRef = AEDDE66A958596E420E2EE87 /* font_sink.h */; };
@@ -108,14 +108,14 @@
 		FFD007CDC832D1EC2E9A5BD0 /* aaa__library.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = aaa__library.h; sourceTree = "<group>"; };
 		8292C278AC0B7748C35057CA /* aaa_color.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = aaa_color.h; sourceTree = "<group>"; };
 		5BF1782CA8ED480F54E741B9 /* types.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = types.h; sourceTree = "<group>"; };
-		C50E14BF7606512E2DA9A09E /* framework.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = framework.cpp; sourceTree = "<group>"; };
+		C50E14BF7606512E2DA9A09E /* platform.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = platform.cpp; sourceTree = "<group>"; };
 		026BA54C347AED731CBE5B1B /* aaa_color.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = aaa_color.cpp; sourceTree = "<group>"; };
 		5BA8A80632C3DAE642A433E5 /* ImageImpact.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ImageImpact.h; sourceTree = "<group>"; };
 		8B114C173B5C2DF8752518E0 /* aaaa_context.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = aaaa_context.h; sourceTree = "<group>"; };
 		88F46B1A36282C176F88BFE8 /* _.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = _.cpp; sourceTree = "<group>"; };
 		2B399E60EDE68A466943B17A /* aaa_context.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = aaa_context.cpp; sourceTree = "<group>"; };
 		DF0E59E3BE9A97798706FF8A /* resource.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = resource.h; sourceTree = "<group>"; };
-		5D26193AAF0C8D6681F9EE1E /* framework.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = framework.h; sourceTree = "<group>"; };
+		5D26193AAF0C8D6681F9EE1E /* platform.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = platform.h; sourceTree = "<group>"; };
 		59B261D11CFEE8E1123AB224 /* _n2d.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = _n2d.h; sourceTree = "<group>"; };
 		12AFC1E0EE728122B8972D88 /* draw2d_context.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = draw2d_context.h; sourceTree = "<group>"; };
 		AEDDE66A958596E420E2EE87 /* font_sink.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = font_sink.h; sourceTree = "<group>"; };
@@ -211,12 +211,12 @@
 				88F46B1A36282C176F88BFE8 /* _.cpp */,
 				026BA54C347AED731CBE5B1B /* aaa_color.cpp */,
 				2B399E60EDE68A466943B17A /* aaa_context.cpp */,
-				C50E14BF7606512E2DA9A09E /* framework.cpp */,
+				C50E14BF7606512E2DA9A09E /* platform.cpp */,
 				59B261D11CFEE8E1123AB224 /* _n2d.h */,
 				FFD007CDC832D1EC2E9A5BD0 /* aaa__library.h */,
 				8292C278AC0B7748C35057CA /* aaa_color.h */,
 				8B114C173B5C2DF8752518E0 /* aaaa_context.h */,
-				5D26193AAF0C8D6681F9EE1E /* framework.h */,
+				5D26193AAF0C8D6681F9EE1E /* platform.h */,
 				5BA8A80632C3DAE642A433E5 /* ImageImpact.h */,
 				DF0E59E3BE9A97798706FF8A /* resource.h */,
 				5BF1782CA8ED480F54E741B9 /* types.h */,
@@ -232,7 +232,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				33B1EFBC4F5CF0913E00D043 /* types.h in Headers */,
-				1411FBA5B3C8E963AA130B76 /* framework.h in Headers */,
+				1411FBA5B3C8E963AA130B76 /* platform.h in Headers */,
 				D475CE7D74E39716ECEA7F43 /* context.h in Headers */,
 				A2F8109638E28251628A44D1 /* aaaa_context.h in Headers */,
 				9A9FABD97E027E9783B5CA4A /* ImageImpact.h in Headers */,
@@ -253,7 +253,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				0DCEB15249D19C08B9B584BB /* types.h in Headers */,
-				CFD930F6DC7AE0FB81DBAF99 /* framework.h in Headers */,
+				CFD930F6DC7AE0FB81DBAF99 /* platform.h in Headers */,
 				5477DC7A9297E002774A222C /* context.h in Headers */,
 				319927149F88B6F953BCAF4F /* aaaa_context.h in Headers */,
 				54759CC5AFDD04B7C37B231C /* ImageImpact.h in Headers */,
@@ -426,7 +426,7 @@
 				5A6691FD1C448DEE557DEA1D /* context.cpp in Sources */,
 				8ECAF2BC8FB0C5257E507BE1 /* draw2d_context.cpp in Sources */,
 				D84BD299ED766A0E69F49D7B /* _factory.cpp in Sources */,
-				66A9B04F241399F15A8FF9FC /* framework.cpp in Sources */,
+				66A9B04F241399F15A8FF9FC /* platform.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -439,7 +439,7 @@
 				D3A9C6D92823BF3AD27245D2 /* context.cpp in Sources */,
 				6AA2FD62D1B7565CAEF29543 /* draw2d_context.cpp in Sources */,
 				749CD1D0767F2884B48AC2CE /* _factory.cpp in Sources */,
-				C8996945A0BA8550C75352F4 /* framework.cpp in Sources */,
+				C8996945A0BA8550C75352F4 /* platform.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -535,7 +535,7 @@
 				GCC_NO_COMMON_BLOCKS = YES;
 				GCC_OPTIMIZATION_LEVEL = 0;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
-				GCC_PREFIX_HEADER = framework.h;
+				GCC_PREFIX_HEADER = platform.h;
 				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
 				GCC_VERSION = "";
 				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
@@ -640,7 +640,7 @@
 				GCC_INCREASE_PRECOMPILED_HEADER_SHARING = NO;
 				GCC_NO_COMMON_BLOCKS = YES;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
-				GCC_PREFIX_HEADER = framework.h;
+				GCC_PREFIX_HEADER = platform.h;
 				GCC_VERSION = "";
 				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
 				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;

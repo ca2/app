@@ -18,7 +18,7 @@
 /**************************************************************************
    #include statements
 **************************************************************************/
-#include "framework.h"
+#include "platform.h"
 #include "TSFEdit.h"
 #include "Globals.h"
 #include <ctffunc.h>

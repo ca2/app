@@ -20,8 +20,8 @@
 		A5970E2BA92648688ADD4599 /* libmysqlclient.20.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 205D1902CEA9FF6715832195 /* libmysqlclient.20.dylib */; };
 		9462A9B644744049F7FA340D /* libaxis.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 117BF1C9181D409A7BDDC25A /* libaxis.dylib */; };
 		F7E0E8FBAD1D562736E5C34D /* libaura.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = B9625995795419EE94BADB2C /* libaura.dylib */; };
-		E8DEE0D4A25FC73B76320449 /* framework.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 0DDE221D23E71630608F6306 /* framework.cpp */; };
-		23E17CAB656DDE79147F0994 /* framework.h in Headers */ = {isa = PBXBuildFile; fileRef = 42F2656026CDBBC18A4095BB /* framework.h */; };
+		E8DEE0D4A25FC73B76320449 /* platform.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 0DDE221D23E71630608F6306 /* platform.cpp */; };
+		23E17CAB656DDE79147F0994 /* platform.h in Headers */ = {isa = PBXBuildFile; fileRef = 42F2656026CDBBC18A4095BB /* platform.h */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -91,8 +91,8 @@
 		205D1902CEA9FF6715832195 /* libmysqlclient.20.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libmysqlclient.20.dylib; path = "../../../../usr/local/Cellar/mysql@5.7/5.7.22/lib/libmysqlclient.20.dylib"; sourceTree = "<group>"; };
 		B9625995795419EE94BADB2C /* libaura.dylib */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.dylib"; path = libaura.dylib; sourceTree = BUILT_PRODUCTS_DIR; };
 		21958FB890DFE506D03AB4F3 /* libdata.dylib */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.dylib"; includeInIndex = 0; path = libdata.dylib; sourceTree = BUILT_PRODUCTS_DIR; };
-		0DDE221D23E71630608F6306 /* framework.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = framework.cpp; sourceTree = "<group>"; };
-		42F2656026CDBBC18A4095BB /* framework.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = framework.h; sourceTree = "<group>"; };
+		0DDE221D23E71630608F6306 /* platform.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = platform.cpp; sourceTree = "<group>"; };
+		42F2656026CDBBC18A4095BB /* platform.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = platform.h; sourceTree = "<group>"; };
 		AFFCB6A9BCDC783F750B8EDA /* libberg.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libberg.dylib; path = "../../../../Users/camilo/Library/Developer/Xcode/DerivedData/all-dlckdugtwkhfjkdbgurajmehstei/Build/Products/Debug/libberg.dylib"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -214,8 +214,8 @@
 			children = (
 				B1C5728F1482BFE65915736D /* data */,
 				02ADBAE32BC73998335B821D /* simpledb */,
-				0DDE221D23E71630608F6306 /* framework.cpp */,
-				42F2656026CDBBC18A4095BB /* framework.h */,
+				0DDE221D23E71630608F6306 /* platform.cpp */,
+				42F2656026CDBBC18A4095BB /* platform.h */,
 			);
 			name = data;
 			sourceTree = "<group>";
@@ -228,7 +228,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				A524C1C19250C992A854AF84 /* data.h in Headers */,
-				23E17CAB656DDE79147F0994 /* framework.h in Headers */,
+				23E17CAB656DDE79147F0994 /* platform.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -385,7 +385,7 @@
 			files = (
 				F18FB900BFC394A52F2F7A75 /* simpledb_mysql_database.cpp in Sources */,
 				498709B3274C11BF654A448E /* simpledb_mysql_result.cpp in Sources */,
-				E8DEE0D4A25FC73B76320449 /* framework.cpp in Sources */,
+				E8DEE0D4A25FC73B76320449 /* platform.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -561,7 +561,7 @@
 				GCC_ENABLE_OBJC_EXCEPTIONS = YES;
 				GCC_OPTIMIZATION_LEVEL = 0;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
-				GCC_PREFIX_HEADER = framework.h;
+				GCC_PREFIX_HEADER = platform.h;
 				GCC_PREPROCESSOR_DEFINITIONS = (
 					"DEBUG=1",
 					"$(inherited)",
@@ -603,7 +603,7 @@
 				GCC_C_LANGUAGE_STANDARD = c99;
 				GCC_ENABLE_OBJC_EXCEPTIONS = YES;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
-				GCC_PREFIX_HEADER = framework.h;
+				GCC_PREFIX_HEADER = platform.h;
 				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
 				GCC_WARN_ABOUT_RETURN_TYPE = YES;
 				GCC_WARN_UNINITIALIZED_AUTOS = YES;

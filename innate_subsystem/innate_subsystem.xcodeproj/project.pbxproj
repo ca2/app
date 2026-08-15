@@ -10,7 +10,7 @@
 		C87612CB3568828AEA535D4E /* libsubsystem.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = AC38B0CEA573BBC9D95CD362 /* libsubsystem.dylib */; };
 		317F16D5C48AAEC4B723B6B1 /* libsubsystem_bsd_sockets.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 0C8C0791A98295E578853CD7 /* libsubsystem_bsd_sockets.dylib */; };
 		B440297DB4913B6E1A42A889 /* _.cpp in Sources */ = {isa = PBXBuildFile; fileRef = ECDBE1CAE2EC0641EFA7D932 /* _.cpp */; };
-		3AE341A06DAB7FA3AFA311F4 /* framework.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 6CBAA09AFCAE7D6E707AE3A3 /* framework.cpp */; };
+		3AE341A06DAB7FA3AFA311F4 /* platform.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 6CBAA09AFCAE7D6E707AE3A3 /* platform.cpp */; };
 		9967F0F04D87B5A0ABBFCFD1 /* WindowFinder.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 180A90DC141FB730E3ED0856 /* WindowFinder.cpp */; };
 		F1F19466F3617FC81F3F16C0 /* Font.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 742B38E62D450F72DF26F666 /* Font.cpp */; };
 		47807A2F88C53AB308A7EEA5 /* TabContainer.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 60E9BF9393EB5D10BEC6FB60 /* TabContainer.cpp */; };
@@ -145,8 +145,8 @@
 		BC53BC20945D4768BAC2AF8C /* _____debug.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = "_____debug.xcconfig"; sourceTree = "<group>"; };
 		90422FB31BC517922651327C /* _____release.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = "_____release.xcconfig"; sourceTree = "<group>"; };
 		0202B5291486950BFCE95E4D /* _common_header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = _common_header.h; sourceTree = "<group>"; };
-		6DA7026E8E39356DCCD4DF83 /* framework.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = framework.h; sourceTree = "<group>"; };
-		6CBAA09AFCAE7D6E707AE3A3 /* framework.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = framework.cpp; sourceTree = "<group>"; };
+		6DA7026E8E39356DCCD4DF83 /* platform.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = platform.h; sourceTree = "<group>"; };
+		6CBAA09AFCAE7D6E707AE3A3 /* platform.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = platform.cpp; sourceTree = "<group>"; };
 		6AA519AAE619E679B3CBB078 /* _.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = _.h; sourceTree = "<group>"; };
 		304F05017401763C5D1096A3 /* Bitmap.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Bitmap.h; sourceTree = "<group>"; };
 		8DFC72E756CE375F47EB4DC1 /* Bitmap.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = Bitmap.cpp; sourceTree = "<group>"; };
@@ -285,8 +285,8 @@
 				597DCE23D06A9FC4E3E0A64E /* _.h */,
 				ECDBE1CAE2EC0641EFA7D932 /* _.cpp */,
 				0202B5291486950BFCE95E4D /* _common_header.h */,
-				6DA7026E8E39356DCCD4DF83 /* framework.h */,
-				6CBAA09AFCAE7D6E707AE3A3 /* framework.cpp */,
+				6DA7026E8E39356DCCD4DF83 /* platform.h */,
+				6CBAA09AFCAE7D6E707AE3A3 /* platform.cpp */,
 			);
 			name = innate_subsystem;
 			sourceTree = "<group>";
@@ -595,7 +595,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				3AE341A06DAB7FA3AFA311F4 /* framework.cpp in Sources */,
+				3AE341A06DAB7FA3AFA311F4 /* platform.cpp in Sources */,
 				B440297DB4913B6E1A42A889 /* _.cpp in Sources */,
 				9967F0F04D87B5A0ABBFCFD1 /* WindowFinder.cpp in Sources */,
 				79187120E25CB982F46FB37B /* Path.cpp in Sources */,
@@ -731,7 +731,7 @@
 				GCC_NO_COMMON_BLOCKS = YES;
 				GCC_OPTIMIZATION_LEVEL = 0;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
-				GCC_PREFIX_HEADER = framework.h;
+				GCC_PREFIX_HEADER = platform.h;
 				GCC_REUSE_STRINGS = YES;
 				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
 				GCC_VERSION = "";
@@ -857,7 +857,7 @@
 				GCC_NO_COMMON_BLOCKS = YES;
 				GCC_OPTIMIZATION_LEVEL = 0;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
-				GCC_PREFIX_HEADER = framework.h;
+				GCC_PREFIX_HEADER = platform.h;
 				GCC_REUSE_STRINGS = YES;
 				GCC_VERSION = "";
 				GCC_WARN_64_TO_32_BIT_CONVERSION = NO;

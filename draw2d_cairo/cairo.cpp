@@ -1,4 +1,4 @@
-#include "framework.h"
+#include "platform.h"
 #include "acme/parallelization/mutex.h"
 #include "acme/prototype/collection/integer_map.h"
 #include "acme/prototype/collection/string_map.h"

@@ -5,7 +5,7 @@
 //  Created by Camilo Sasuke Thomas Borregaard Soerensen on 13/11/18.
 //
 
-#include "framework.h"
+#include "platform.h"
 
 
 namespace axis

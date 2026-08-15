@@ -1,4 +1,4 @@
-#include "framework.h"
+#include "platform.h"
 #include "menu_manager.h"
 #include "frame_window.h"
 #include "acme/constant/user_message.h"

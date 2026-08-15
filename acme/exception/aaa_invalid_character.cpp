@@ -1,4 +1,4 @@
-#include "framework.h"
+#include "platform.h"
 
 
 invalid_character::invalid_character(const ::scoped_string & scopedstrMessage):

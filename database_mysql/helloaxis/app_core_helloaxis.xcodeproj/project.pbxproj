@@ -23,7 +23,7 @@
 		658CE92AD1DB580764D4BE5F /* hellomultiverse_gcom.h in Headers */ = {isa = PBXBuildFile; fileRef = 242F3CB50CB67EE2406EB75A /* hellomultiverse_gcom.h */; };
 		019AE2AD2323CE0E01031D25 /* hellomultiverse_impact_base.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A218B4BAE78B7A458D76205 /* hellomultiverse_impact_base.cpp */; };
 		9C9A6D255427775449A869D6 /* hellomultiverse_impact_base.h in Headers */ = {isa = PBXBuildFile; fileRef = ECE365F0B7CF5B6476D9110A /* hellomultiverse_impact_base.h */; };
-		0BE556F91C808C6FEF09C5A6 /* framework.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D701972E38D78FD46D3CA327 /* framework.cpp */; };
+		0BE556F91C808C6FEF09C5A6 /* platform.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D701972E38D78FD46D3CA327 /* platform.cpp */; };
 		931603A0132DAFCE9B394F37 /* hellomultiverse_application.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D236277CED2E10C47D5E28D5 /* hellomultiverse_application.cpp */; };
 		6DF49A0B6F5A676893D9FE49 /* hellomultiverse_document.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 217F98658EFA6CD5469612BD /* hellomultiverse_document.cpp */; };
 		38E446A81C97796DA9FF94E9 /* hellomultiverse_frame.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 76CDDECF6A7A951A48BE529A /* hellomultiverse_frame.cpp */; };
@@ -49,8 +49,8 @@
 		A9EE4A1D3FC5AB31D0F778A9 /* libapp_core_hellomultiverse.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 579028CA48D563C72C7A8F6C /* libapp_core_hellomultiverse.a */; };
 		CD05D6CB83371249524663C9 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 38DC2FFEF269ACDCA6698A8D /* InfoPlist.strings */; };
 		A45C12A0AEF9364E04644D7D /* app_core_hellomultiverse_iosTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 6AF3FEE550FC9538FA284317 /* app_core_hellomultiverse_iosTests.m */; };
-		52676C1D9D99AE7011103702 /* framework.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D701972E38D78FD46D3CA327 /* framework.cpp */; };
-		F48EEFC312E1F336498C5235 /* framework.h in Headers */ = {isa = PBXBuildFile; fileRef = AD3D77C87A59F72FEF5C5CFF /* framework.h */; };
+		52676C1D9D99AE7011103702 /* platform.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D701972E38D78FD46D3CA327 /* platform.cpp */; };
+		F48EEFC312E1F336498C5235 /* platform.h in Headers */ = {isa = PBXBuildFile; fileRef = AD3D77C87A59F72FEF5C5CFF /* platform.h */; };
 		94BE251BE4CCEF33B2E265D7 /* hellomultiverse.h in Headers */ = {isa = PBXBuildFile; fileRef = 2CEF5F05645E9D6F976B55C7 /* hellomultiverse.h */; };
 		3879231A176C4FB0E3230872 /* hellomultiverse_application.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D236277CED2E10C47D5E28D5 /* hellomultiverse_application.cpp */; };
 		21A8F6C27D0CD626D767ACBA /* hellomultiverse_document.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 217F98658EFA6CD5469612BD /* hellomultiverse_document.cpp */; };
@@ -194,8 +194,8 @@
 		E477601D16C7A7D7FB14BAB1 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		6AF3FEE550FC9538FA284317 /* app_core_hellomultiverse_iosTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = app_core_hellomultiverse_iosTests.m; sourceTree = "<group>"; };
 		D2368F76C6DB9A539D07AB5E /* libapp_core_hellomultiverse.dylib */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.dylib"; includeInIndex = 0; path = libapp_core_hellomultiverse.dylib; sourceTree = BUILT_PRODUCTS_DIR; };
-		D701972E38D78FD46D3CA327 /* framework.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = framework.cpp; sourceTree = "<group>"; };
-		AD3D77C87A59F72FEF5C5CFF /* framework.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = framework.h; sourceTree = "<group>"; };
+		D701972E38D78FD46D3CA327 /* platform.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = platform.cpp; sourceTree = "<group>"; };
+		AD3D77C87A59F72FEF5C5CFF /* platform.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = platform.h; sourceTree = "<group>"; };
 		2CEF5F05645E9D6F976B55C7 /* hellomultiverse.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = hellomultiverse.h; sourceTree = "<group>"; };
 		D236277CED2E10C47D5E28D5 /* hellomultiverse_application.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = hellomultiverse_application.cpp; sourceTree = "<group>"; };
 		217F98658EFA6CD5469612BD /* hellomultiverse_document.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = hellomultiverse_document.cpp; sourceTree = "<group>"; };
@@ -333,8 +333,8 @@
 			isa = PBXGroup;
 			children = (
 				2CEF5F05645E9D6F976B55C7 /* hellomultiverse.h */,
-				D701972E38D78FD46D3CA327 /* framework.cpp */,
-				AD3D77C87A59F72FEF5C5CFF /* framework.h */,
+				D701972E38D78FD46D3CA327 /* platform.cpp */,
+				AD3D77C87A59F72FEF5C5CFF /* platform.h */,
 				D236277CED2E10C47D5E28D5 /* hellomultiverse_application.cpp */,
 				10937A14B2B69DFDE537D54E /* hellomultiverse_application.h */,
 				217F98658EFA6CD5469612BD /* hellomultiverse_document.cpp */,
@@ -370,7 +370,7 @@
 			isa = PBXHeadersBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				F48EEFC312E1F336498C5235 /* framework.h in Headers */,
+				F48EEFC312E1F336498C5235 /* platform.h in Headers */,
 				A15AB37888A8AEE178895FC3 /* hellomultiverse_render.h in Headers */,
 				94BE251BE4CCEF33B2E265D7 /* hellomultiverse.h in Headers */,
 				EFD9A706AA8A911CE58B1D44 /* hellomultiverse_impact.h in Headers */,
@@ -556,7 +556,7 @@
 				714EABE12C71385C7FA015A2 /* hellomultiverse_render.cpp in Sources */,
 				48AD548758058618A571751F /* hellomultiverse_main_impact.cpp in Sources */,
 				631E2D3C0A0990B0A87731EF /* hellomultiverse_switcher_impact.cpp in Sources */,
-				0BE556F91C808C6FEF09C5A6 /* framework.cpp in Sources */,
+				0BE556F91C808C6FEF09C5A6 /* platform.cpp in Sources */,
 				931603A0132DAFCE9B394F37 /* hellomultiverse_application.cpp in Sources */,
 				6DF49A0B6F5A676893D9FE49 /* hellomultiverse_document.cpp in Sources */,
 				38E446A81C97796DA9FF94E9 /* hellomultiverse_frame.cpp in Sources */,
@@ -579,7 +579,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				6F733B9B22DAE536DDE8E870 /* hellomultiverse_main_impact.cpp in Sources */,
-				52676C1D9D99AE7011103702 /* framework.cpp in Sources */,
+				52676C1D9D99AE7011103702 /* platform.cpp in Sources */,
 				3BBDA39D8C914BF4BC931369 /* hellomultiverse_gcom.cpp in Sources */,
 				78E51C5B95AA8AC8D87C5863 /* hellomultiverse_main_frame.cpp in Sources */,
 				6111F28A556A02557D80FAA1 /* hellomultiverse_switcher_impact.cpp in Sources */,
@@ -762,7 +762,7 @@
 				GCC_NO_COMMON_BLOCKS = YES;
 				GCC_OPTIMIZATION_LEVEL = 0;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
-				GCC_PREFIX_HEADER = framework.h;
+				GCC_PREFIX_HEADER = platform.h;
 				GCC_PREPROCESSOR_DEFINITIONS = _DEBUG;
 				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
 				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
@@ -825,7 +825,7 @@
 				GCC_ENABLE_OBJC_EXCEPTIONS = YES;
 				GCC_NO_COMMON_BLOCKS = YES;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
-				GCC_PREFIX_HEADER = framework.h;
+				GCC_PREFIX_HEADER = platform.h;
 				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
 				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
 				GCC_WARN_UNDECLARED_SELECTOR = YES;

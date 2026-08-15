@@ -97,7 +97,7 @@
     <ClCompile Include="cpp\UTF8Prober.cpp">
       <Filter>Source Files\cpp</Filter>
     </ClCompile>
-    <ClCompile Include="framework\framework.cpp">
+    <ClCompile Include="framework\platform.cpp">
       <Filter>Source Files\framework</Filter>
     </ClCompile>
     <ClCompile Include="cpp\_cpp.cpp">
@@ -108,7 +108,7 @@
     <ClInclude Include="..\..\include\charguess.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="framework\framework.h">
+    <ClInclude Include="framework\platform.h">
       <Filter>Header Files\framework</Filter>
     </ClInclude>
     <ClInclude Include="include\big5Prober.h">

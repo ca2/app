@@ -1,5 +1,5 @@
 // Created by camilo on 2024-06-02 16:56 <3ThomasBorregaardSorensen!!
-#include "framework.h"
+#include "platform.h"
 #include "idn.h"
 
 

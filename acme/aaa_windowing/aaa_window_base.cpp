@@ -4,7 +4,7 @@
 // micro::window_base Created by camilo on 31/01/2022 23:04 <3ThomasBorregaardSorensen!!
 // Merged into window_base on 2024-04-26 14:52
 //
-#include "framework.h"
+#include "platform.h"
 #include "window_base.h"
 #include "platform/system.h"
 #include "acme/nano/nano.h"

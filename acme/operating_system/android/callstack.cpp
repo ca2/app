@@ -1,6 +1,6 @@
 // From stackoflw by camilo on 2022-04-30 00:02 <3ThomasBorregaardSorensen!!
 // https://stackoverflow.com/questions/8115192/android-ndk-getting-the-backtrace
-#include "framework.h"
+#include "platform.h"
 #include "acme/platform/node.h"
 //#include <iostream>
 //#include <iomanip>

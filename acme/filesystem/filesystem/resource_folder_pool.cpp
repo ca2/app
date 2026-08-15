@@ -1,4 +1,4 @@
-#include "framework.h"
+#include "platform.h"
 #include "resource_folder_pool.h"
 
 

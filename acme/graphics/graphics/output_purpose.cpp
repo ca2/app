@@ -1,5 +1,5 @@
 // From _impl.h by camilo on 2022-08-27 13:29 <3ThomasBorregaardSorensen!!
-#include "framework.h"
+#include "platform.h"
 #include "output_purpose.h"
 //#include "interaction.h"
 

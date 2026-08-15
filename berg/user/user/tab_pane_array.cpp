@@ -1,5 +1,5 @@
 // Created by Camilo 2021-01-08 <3TBS!!
-#include "framework.h"
+#include "platform.h"
 #include "tab_pane.h"
 #include "tab_pane_array.h"
 

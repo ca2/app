@@ -2,7 +2,7 @@
 // Created by camilo on 2023-12-19 04:15 <3ThomasBorregaardSorensen!!
 // From https://github.com/ca2/motif_labs
 //
-#include "framework.h"
+#include "platform.h"
 #include "application.h"
 
 

@@ -18,7 +18,7 @@
   * Uses 128 bit intermediate result
   */
 
-#include "framework.h"
+#include "platform.h"
 
 #define ABS64(num) (num >=0 ? num : -num)
 

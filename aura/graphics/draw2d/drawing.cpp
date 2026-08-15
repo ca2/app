@@ -5,7 +5,7 @@
 //  Created by Camilo Sasuke Thomas Borregaard Sørensen on 20/06/26 09:16.
 //  Copyright © 2026 ca2 Software Development. All rights reserved.
 //
-#include "framework.h"
+#include "platform.h"
 #include "drawing.h"
 
 

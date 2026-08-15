@@ -3,8 +3,8 @@ project(remoting_io_lib)
 
 
 list(APPEND library_source
-   framework.cpp
-   framework.h
+   platform.cpp
+   platform.h
    _.cpp
    DataOutputStream.h
    ByteArrayOutputStream.cpp
@@ -19,13 +19,13 @@ list(APPEND library_source
    DataOutputStream.cpp
    BufferedInputStream.cpp
    DataCopy.h
-   framework.h
+   platform.h
    Channel.cpp
    InputStream.cpp
    DataInputStream.cpp
    resource.h
    _.h
-   framework.cpp
+   platform.cpp
    ByteArrayOutputStream.h
    DataInputStream.h
    BufferedOutputStream.cpp
@@ -56,8 +56,8 @@ add_library(${PROJECT_NAME} STATIC ${library_source})
 
 #target_link_directories(${PROJECT_NAME} PRIVATE ${library_link_directories})
 
-target_precompile_headers(${PROJECT_NAME} PRIVATE framework.h)
-#target_precompile_headers(static_${PROJECT_NAME} PRIVATE framework.h)
+target_precompile_headers(${PROJECT_NAME} PRIVATE platform.h)
+#target_precompile_headers(static_${PROJECT_NAME} PRIVATE platform.h)
 
 #set_target_properties(${PROJECT_NAME} PROPERTIES LINKER_LANGUAGE CXX)
 

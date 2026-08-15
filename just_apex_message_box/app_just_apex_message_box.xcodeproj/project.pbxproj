@@ -9,12 +9,12 @@
 /* Begin PBXBuildFile section */
 		15386DA164FA6392013A635D /* _.cpp in Sources */ = {isa = PBXBuildFile; fileRef = EF2747053913E491C6B40D47 /* _.cpp */; };
 		958CC901A90A05D36ECE25C2 /* application.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 5DFD6F40649B211BBC901E39 /* application.cpp */; };
-		886016AB73950E2F6FEE71F7 /* framework.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 12C434FB5783FE6435867D4F /* framework.cpp */; };
+		886016AB73950E2F6FEE71F7 /* platform.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 12C434FB5783FE6435867D4F /* platform.cpp */; };
 		6C192188B4E400A9E7E32000 /* libacme.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 6CF9C21B53E4CCB6283615B1 /* libacme.dylib */; };
 		55E4CC289AF013E591B2567F /* libapex.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = A45A58CDC6F6FD5DFE9AE944 /* libapex.dylib */; };
 		EA395CC4D7694CD2CE3DEC44 /* _.cpp in Sources */ = {isa = PBXBuildFile; fileRef = EF2747053913E491C6B40D47 /* _.cpp */; };
 		462B1F78FEF796CE3FF3B502 /* application.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 5DFD6F40649B211BBC901E39 /* application.cpp */; };
-		CC9ECD84FF5373B07D74E7FB /* framework.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 12C434FB5783FE6435867D4F /* framework.cpp */; };
+		CC9ECD84FF5373B07D74E7FB /* platform.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 12C434FB5783FE6435867D4F /* platform.cpp */; };
 		B4C575E987FEDACD8D3EDE95 /* libjust_message_box.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 76CAFA0B869A50AA17C7A8D1 /* libjust_message_box.dylib */; };
 /* End PBXBuildFile section */
 
@@ -84,13 +84,13 @@
 		F2E786F6B889A7A000295178 /* _____release.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = "_____release.xcconfig"; sourceTree = "<group>"; };
 		39EE24864336916994DE9A45 /* _____debug.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = "_____debug.xcconfig"; sourceTree = "<group>"; };
 		90401C9E32DDE71CF6DA6485 /* aaa_want_to_remove_pane_impact_update_hint.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = aaa_want_to_remove_pane_impact_update_hint.h; sourceTree = "<group>"; };
-		12C434FB5783FE6435867D4F /* framework.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = framework.cpp; sourceTree = "<group>"; };
+		12C434FB5783FE6435867D4F /* platform.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = platform.cpp; sourceTree = "<group>"; };
 		66F881FE16BB2F7E65773D49 /* application.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = application.h; sourceTree = "<group>"; };
 		E53D6EE1B1ED714243E8DEC4 /* aaa_want_to_remove_simple_app_main_impact.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = aaa_want_to_remove_simple_app_main_impact.cpp; sourceTree = "<group>"; };
 		F92D7A85354D3B056BF639B4 /* aaa_want_to_remove_simple_app_main_impact.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = aaa_want_to_remove_simple_app_main_impact.h; sourceTree = "<group>"; };
 		251DFC3656111CA752FD90C9 /* aaa_want_to_remove_pane_impact_update_hint.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = aaa_want_to_remove_pane_impact_update_hint.cpp; sourceTree = "<group>"; };
 		EF2747053913E491C6B40D47 /* _.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = _.cpp; sourceTree = "<group>"; };
-		459B2F6F7BD34E86D9DF2DE8 /* framework.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = framework.h; sourceTree = "<group>"; };
+		459B2F6F7BD34E86D9DF2DE8 /* platform.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = platform.h; sourceTree = "<group>"; };
 		5DFD6F40649B211BBC901E39 /* application.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = application.cpp; sourceTree = "<group>"; };
 		2C2DEBFC23169AF0C55826E9 /* _.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = _.h; sourceTree = "<group>"; };
 		38FCE4A2854CAB5DA38DAE8A /* apex.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = apex.xcodeproj; path = ../apex/apex.xcodeproj; sourceTree = SOURCE_ROOT; };
@@ -165,8 +165,8 @@
 				F92D7A85354D3B056BF639B4 /* aaa_want_to_remove_simple_app_main_impact.h */,
 				5DFD6F40649B211BBC901E39 /* application.cpp */,
 				66F881FE16BB2F7E65773D49 /* application.h */,
-				12C434FB5783FE6435867D4F /* framework.cpp */,
-				459B2F6F7BD34E86D9DF2DE8 /* framework.h */,
+				12C434FB5783FE6435867D4F /* platform.cpp */,
+				459B2F6F7BD34E86D9DF2DE8 /* platform.h */,
 			);
 			name = just_apex_message_box;
 			sourceTree = "<group>";
@@ -350,7 +350,7 @@
 			files = (
 				15386DA164FA6392013A635D /* _.cpp in Sources */,
 				958CC901A90A05D36ECE25C2 /* application.cpp in Sources */,
-				886016AB73950E2F6FEE71F7 /* framework.cpp in Sources */,
+				886016AB73950E2F6FEE71F7 /* platform.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -360,7 +360,7 @@
 			files = (
 				EA395CC4D7694CD2CE3DEC44 /* _.cpp in Sources */,
 				462B1F78FEF796CE3FF3B502 /* application.cpp in Sources */,
-				CC9ECD84FF5373B07D74E7FB /* framework.cpp in Sources */,
+				CC9ECD84FF5373B07D74E7FB /* platform.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -433,7 +433,7 @@
 				GCC_NO_COMMON_BLOCKS = YES;
 				GCC_OPTIMIZATION_LEVEL = 0;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
-				GCC_PREFIX_HEADER = framework.h;
+				GCC_PREFIX_HEADER = platform.h;
 				GCC_PREPROCESSOR_DEFINITIONS = (
 					"DEBUG=1",
 					"$(inherited)",
@@ -531,7 +531,7 @@
 				GCC_ENABLE_OBJC_EXCEPTIONS = YES;
 				GCC_NO_COMMON_BLOCKS = YES;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
-				GCC_PREFIX_HEADER = framework.h;
+				GCC_PREFIX_HEADER = platform.h;
 				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
 				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
 				GCC_WARN_UNDECLARED_SELECTOR = YES;

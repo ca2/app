@@ -1,5 +1,5 @@
 // Created by camilo on 2022-06-07 06:23 <3ThomasBorregaardSorensen!!
-#include "framework.h"
+#include "platform.h"
 #include "_string.h"
 //#include "string.h"
 //#include "acme/prototype/collection/numeric_array.h"

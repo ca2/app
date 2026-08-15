@@ -5,7 +5,7 @@
 //  Created by Camilo Sasuke Thomas Borregaard Soerensen on 29/09/22 22:17
 //  Copyright (c) 2022 Camilo Sasuke Thomas Borregaard Soerensen. All rights reserved.
 //
-#include "framework.h"
+#include "platform.h"
 #include "acme/filesystem/file/text_stream.h"
 //#include "error_code.h"
 #include "shared_posix/c_errno.h"

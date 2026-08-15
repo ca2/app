@@ -1,5 +1,5 @@
 // Created on 2021-11-01 18:14 BRT <3ThomasBorregaardSorensen!!
-#include "framework.h"
+#include "platform.h"
 #include "implementable.h"
 
 

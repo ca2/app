@@ -1,4 +1,4 @@
-#include "framework.h"
+#include "platform.h"
 #if !BROAD_PRECOMPILED_HEADER
 //#include "axis/html/html_lite/_.h"
 #endif

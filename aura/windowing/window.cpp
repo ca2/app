@@ -1,6 +1,6 @@
 // created by Camilo <3CamiloSasukeThomasBorregaardSoerensen
 // recreated by Camilo 2021-01-28 22:20
-#include "framework.h"
+#include "platform.h"
 #include "cursor.h"
 #include "display.h"
 #include "apex/gpu/approach.h"

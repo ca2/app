@@ -28,8 +28,7 @@ namespace gpu_opengl
       
       
       
-      void initialize_gpu_fence(::gpu::context * pgpucontext, bool bCreateSignaled) override;
-      
+      void initialize_gpu_fence(::gpu::device * pgpudevice, bool bCreateSignaled) override;
       
       void reset_gpu_fence() override;
 

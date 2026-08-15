@@ -97,7 +97,7 @@
 		<Unit filename="cpp/pkgInt.h" />
 		<Unit filename="cpp/types.h" />
 		<Unit filename="cpp/universal.h" />
-		<Unit filename="framework/framework.h" />
+		<Unit filename="framework/platform.h" />
 		<Extensions>
 			<code_completion />
 			<debugger />

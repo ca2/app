@@ -1,4 +1,4 @@
-#include "framework.h"
+#include "platform.h"
 #include "acme/platform/app_core.h"
 #include "application.h"
 #include "acme/operating_system/_application.h"

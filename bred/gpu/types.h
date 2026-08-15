@@ -39,6 +39,12 @@ namespace gpu
 		floating_sequence4 textColor;  // r, g, b, a
 
 	};
+   struct quad
+   {
+
+      floating_sequence4 quad;
+
+   };
 
    struct model_view_projection_hdriSampler
    {
@@ -81,6 +87,7 @@ namespace gpu
 
 DECLARE_GPU_PROPERTIES(CLASS_DECL_BRED, ::gpu::projection_quad_texcoords_textColor)
 DECLARE_GPU_PROPERTIES(CLASS_DECL_BRED, ::gpu::quad_texcoords_textColor)
+DECLARE_GPU_PROPERTIES(CLASS_DECL_BRED, ::gpu::quad)
 DECLARE_GPU_PROPERTIES(CLASS_DECL_BRED, ::gpu::model_view_projection_hdriSampler)
 DECLARE_GPU_PROPERTIES(CLASS_DECL_BRED, ::gpu::model_view_projection_environmentCubeSampler)
 DECLARE_GPU_PROPERTIES(CLASS_DECL_BRED, ::gpu::model_normal)

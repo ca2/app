@@ -5,7 +5,7 @@
 //  From macos/integration.cpp by Camilo Sasuke Thomas 
 //            Borregaard Sørensen on 17/08/2023 02:19.
 //
-#include "framework.h"
+#include "platform.h"
 #include "application.h"
 #include "ffmpeg.h"
 #include "x264.h"

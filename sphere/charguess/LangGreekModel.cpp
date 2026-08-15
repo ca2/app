@@ -20,7 +20,7 @@
     Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
 */
 
-#include "framework.h"
+#include "platform.h"
 #include "SBCharsetProber.h"
 /****************************************************************
 255: Control characters that usually does not exist in any text

@@ -1,5 +1,5 @@
 // Created by camilo on 2021-09-13 00:13 BRT Thomas Month!! <3ThomasBS_!!
-#include "framework.h"
+#include "platform.h"
 //#include "acme/_operating_system.h"
 //#define __BSD_VISIBLE 1
 //#include <link.h>

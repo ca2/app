@@ -1,4 +1,4 @@
-#include "framework.h"
+#include "platform.h"
 #include "trace.h"
 #include "log.h"
 #include "acme/constant/user_message.h"

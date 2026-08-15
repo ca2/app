@@ -23,17 +23,19 @@ namespace gpu
       bool                                               m_bWindowInitialized;
       bool                                               m_bSwapChainInitialized;
 
-      ::gpu::context_pointer                       m_pgpucontext;
-      ::pointer < ::gpu::renderer >                      m_pgpurenderer;
+      //::gpu::context_pointer                       m_pgpucontext;
+      //::pointer < ::gpu::renderer >                      m_pgpurenderer;
       ::pointer < ::windowing::window >                  m_pwindowSwapChain;
       ::i32                                                m_iSwapChainIndex;
 
-      ::pointer < ::pointer_array < ::gpu::texture > >   m_ptextureaSwapChain;
+      ::pointer < ::pointer_array < ::gpu::texture_site > >    m_ptexturesiteaSwapChain;
       ::i32                                                m_iCurrentSwapChainFrame;
       ::i32                                                m_iCurrentSwapChainImage;
       ::pointer_array<::gpu::semaphore>                  m_gpusemaphoreaWait;
 
-      
+      ::pointer < ::gpu::shader >                  m_pshaderPresent;
+      ::pointer < ::gpu::model_buffer >            m_pmodelbufferDummy;
+
       struct frame_sync
       {
          // VkFence                                m_vkfenceInFlight = VK_NULL_HANDLE;
@@ -54,7 +56,7 @@ namespace gpu
 
       virtual void on_new_frame();
 
-      void do_output(::gpu::texture * pgputexture) override;
+      void do_output(::gpu::texture_site * pgputexture) override;
 
       virtual void create_images();
 
@@ -65,15 +67,20 @@ namespace gpu
       virtual void initialize_swap_chain_window(::gpu::context * pcontext, ::acme::windowing::window* pwindow);
       virtual void initialize_gpu_swap_chain(::gpu::renderer * pgpurenderer);
 
+
+      virtual void dummy_model_buffer();
+      virtual void present_shader();
+
       //virtual void endDraw(::gpu::graphics* pgraphics, ::user::interaction* puserinteraction, ::gpu::renderer* prendererSrc);
       //virtual void present(::gpu::texture * pgputexture);
-      virtual void present(::gpu::texture * pgputexture, ::gpu::command_buffer * pgpucommandbuffer);
+      virtual void present(::gpu::texture_site * pgputexturesite, ::gpu::command_buffer * pgpucommandbuffer);
+      virtual void _present(::gpu::texture_site * pgputexturesiteSwapChain, ::gpu::texture_site * pgputexturesite, ::gpu::command_buffer * pgpucommandbuffer);
       virtual void set_present_state(::gpu::command_buffer *pgpucommandbuffer);
       virtual void swap_buffers();
       virtual ::i32 swap_chain_frame_index();
       virtual ::i32 swap_chain_image_index();
       virtual ::i32 swap_chain_frame_count();
-      virtual ::gpu::texture* current_swap_chain_texture();
+      virtual ::gpu::texture_site* current_swap_chain_texture();
 
       void on_gpu_context_render_frame(::i32 w, ::i32 h) override;
 

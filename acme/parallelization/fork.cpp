@@ -1,4 +1,4 @@
-#include "framework.h"
+#include "platform.h"
 #include "fork.h"
 #include "acme/operating_system/process.h"
 #include "acme/parallelization/counter.h"

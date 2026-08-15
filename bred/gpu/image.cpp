@@ -1,4 +1,4 @@
-#include "framework.h"
+#include "platform.h"
 #include "bitmap.h"
 #include "image.h"
 #include "context.h"
@@ -6,6 +6,7 @@
 #include "layer.h"
 #include "renderer.h"
 #include "texture.h"
+#include "texture_site.h"
 #include "acme/platform/application.h"
 #include "apex/gpu/approach.h"
 #include "aura/graphics/draw2d/draw2d.h"
@@ -222,7 +223,7 @@ namespace gpu
       {
 
          auto pgpucontextlease = pgpudevice->acquire_gpu_context(
-            bTopDraw2d ? ::gpu::e_output_draw2d_bitmap : ::gpu::e_output_none, m_size);
+            bTopDraw2d ? ::gpu::e_output_draw2d_bitmap : ::gpu::e_output_none, {25, 25});
 
          pgpucontextlease->m_pacmeuserinteractionAffinity = m_pacmeuserinteractionAffinity;
 
@@ -386,7 +387,7 @@ namespace gpu
    }
 
 
-   void image::_map(bool)
+   void image::_map(const ::i32_rectangle & rectangle, bool bApplyAlphaTransform)
    {
 
       if (has_active_destination_graphics_lease())
@@ -428,7 +429,7 @@ namespace gpu
       auto pgpucontext = ::as_pointer(pgpucontextlease.m_p);
 
       pgpucontext->send(
-         [pthis, pgputexture, pgpucontext]()
+         [pthis, pgputexture, pgpucontext, rectangle]()
          {
 
             auto bPerformanceDiagnostics = pthis->m_papplication
@@ -479,7 +480,9 @@ namespace gpu
 
             auto pgpucommandbuffer = ::gpu::current_layer()->getCurrentCommandBuffer4();
 
-            pgputexture->read_pixels(pgpucommandbuffer, pthis);
+            auto ptexturesite = ::gpu::current_layer()->texture(false);
+
+            pgputexture->read_pixels(pgpucommandbuffer, pthis, ptexturesite->m_pointOutput);
 
             auto uMicroseconds = (::u64)0;
 
@@ -492,7 +495,19 @@ namespace gpu
 
             }
 
-            pthis->pixmap_map(pthis->rectangle());
+            if (rectangle.is_empty())
+            {
+
+               pthis->pixmap_map(pthis->rectangle());
+
+            }
+            else
+            {
+
+               pthis->pixmap_map(rectangle);
+
+            }
+
             pthis->m_bMapped = true;
 
             if (bPerformanceDiagnostics)
@@ -575,7 +590,7 @@ namespace gpu
 
             }
 
-            pgputexture->write_pixels(pthis);
+            pgputexture->write_pixels(pthis, {});
 
             auto uMicroseconds = (::u64)0;
 

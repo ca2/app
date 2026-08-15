@@ -1,4 +1,4 @@
-#include "framework.h"
+#include "platform.h"
 #include "circular_file.h"
 ////#include "acme/exception/exception.h"
 

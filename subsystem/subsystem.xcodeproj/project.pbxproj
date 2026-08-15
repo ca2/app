@@ -241,8 +241,8 @@
 		7E24989582CF19AE1D5824A5 /* _____release.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = "_____release.xcconfig"; sourceTree = "<group>"; };
 		F1A044B7F4AE11DB82C3EB27 /* Thread.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = Thread.cpp; sourceTree = "<group>"; };
 		560982D7D18C5C83F6DD497E /* libsubsystem.dylib */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.dylib"; includeInIndex = 0; path = libsubsystem.dylib; sourceTree = BUILT_PRODUCTS_DIR; };
-		E3252FD7D30ECF315ED956F8 /* framework.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = framework.h; sourceTree = SOURCE_ROOT; };
-		27BD814E7873C8BD91B9F4F6 /* framework.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = framework.cpp; sourceTree = SOURCE_ROOT; };
+		E3252FD7D30ECF315ED956F8 /* platform.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = platform.h; sourceTree = SOURCE_ROOT; };
+		27BD814E7873C8BD91B9F4F6 /* platform.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = platform.cpp; sourceTree = SOURCE_ROOT; };
 		B1259272A796A28E23FFEA66 /* _.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = _.h; sourceTree = "<group>"; };
 		778EE6B2E317096A5AE5632B /* _.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = _.cpp; sourceTree = "<group>"; };
 		DF2D3417BEB54092930C87E3 /* _common_header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = _common_header.h; sourceTree = "<group>"; };
@@ -514,8 +514,8 @@
 				B1259272A796A28E23FFEA66 /* _.h */,
 				778EE6B2E317096A5AE5632B /* _.cpp */,
 				DF2D3417BEB54092930C87E3 /* _common_header.h */,
-				E3252FD7D30ECF315ED956F8 /* framework.h */,
-				27BD814E7873C8BD91B9F4F6 /* framework.cpp */,
+				E3252FD7D30ECF315ED956F8 /* platform.h */,
+				27BD814E7873C8BD91B9F4F6 /* platform.cpp */,
 			);
 			name = subsystem;
 			sourceTree = "<group>";
@@ -1149,7 +1149,7 @@
 				GCC_NO_COMMON_BLOCKS = YES;
 				GCC_OPTIMIZATION_LEVEL = 0;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
-				GCC_PREFIX_HEADER = framework.h;
+				GCC_PREFIX_HEADER = platform.h;
 				GCC_REUSE_STRINGS = YES;
 				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
 				GCC_VERSION = "";
@@ -1275,7 +1275,7 @@
 				GCC_NO_COMMON_BLOCKS = YES;
 				GCC_OPTIMIZATION_LEVEL = 0;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
-				GCC_PREFIX_HEADER = framework.h;
+				GCC_PREFIX_HEADER = platform.h;
 				GCC_REUSE_STRINGS = YES;
 				GCC_VERSION = "";
 				GCC_WARN_64_TO_32_BIT_CONVERSION = NO;

@@ -1,5 +1,5 @@
 // Created by camilo on 2023-06-29 09:00 <3ThomasBorregaardSorensen!!
-#include "framework.h"
+#include "platform.h"
 #include "_text_stream.h"
 
 

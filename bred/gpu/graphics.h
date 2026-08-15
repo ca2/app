@@ -44,6 +44,7 @@ namespace gpu
       pool_group *                              m_ppoolgroupFrame;
       ::gpu::context_pointer                    m_pgpucontextOwned;
       ::pointer<::gpu::layer>                   m_pgpulayerBeforeLayerScope;
+      ::pointer<::gpu::texture_site>            m_pgputexturesiteTarget;
 
       graphics();
       ~graphics() override;
@@ -86,8 +87,11 @@ namespace gpu
       void on_set_gpu_context() override;
 
 
-      void on_gpu_context_placement_change(const ::i32_rectangle &rectanglePlacement,
-                                           ::acme::windowing::window *pacmewindowingwindow) override;
+      void on_gpu_context_placement_change(
+         const ::i32_point & pointTarget,
+         const ::i32_point & pointSource,
+         const ::i32_size & size,
+         ::acme::windowing::window *pacmewindowingwindow) override;
 
       virtual ::pool <::gpu::model_buffer >& model_buffer_pool(::draw2d::enum_model epool);
       virtual ::gpu::model_buffer * model_buffer(::draw2d::enum_model epool);

@@ -2,7 +2,7 @@
 // From windows/calculate_edesktop.cpp by
 //    camilo on 2024-12-29 10:04 <3ThomasBorregaardSorensen!!
 //
-#include "framework.h"
+#include "platform.h"
 
 
 namespace windowing

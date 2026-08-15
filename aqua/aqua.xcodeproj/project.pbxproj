@@ -22,7 +22,7 @@
 		C30770F4EE1FA8E5B5C06F3B /* _.h in Headers */ = {isa = PBXBuildFile; fileRef = C7886C0A87D16275A2A5C5F5 /* _.h */; };
 		D596B33C7C544298D5EF9ECD /* console.h in Headers */ = {isa = PBXBuildFile; fileRef = 0A37A9F51A0E95EDE0B304D4 /* console.h */; };
 		5FE454DDA644B06AC788AE9F /* library.h in Headers */ = {isa = PBXBuildFile; fileRef = 6E447F7FA66A3EB1127A3EBE /* library.h */; };
-		A5029757A67B35B1E7A348A4 /* framework.cpp in Sources */ = {isa = PBXBuildFile; fileRef = ECC7C51E73D4C5C128F68615 /* framework.cpp */; };
+		A5029757A67B35B1E7A348A4 /* platform.cpp in Sources */ = {isa = PBXBuildFile; fileRef = ECC7C51E73D4C5C128F68615 /* platform.cpp */; };
 		CF5DF46F6E066BCB3D22524D /* id.h in Headers */ = {isa = PBXBuildFile; fileRef = 55878CFAD9A5F6F3322254D7 /* id.h */; };
 		8C06D3348B80E7282D6E1DD3 /* controller.h in Headers */ = {isa = PBXBuildFile; fileRef = 8D441E1E1385B16D9A477B97 /* controller.h */; };
 		B6B8834010BB9BBE22F79C42 /* xmlite.h in Headers */ = {isa = PBXBuildFile; fileRef = A9E34FEF14B2C5A5F301DB40 /* xmlite.h */; };
@@ -90,7 +90,7 @@
 		9D55593016296A154CD18D15 /* exception.h in Headers */ = {isa = PBXBuildFile; fileRef = 5B92BCBE6468ADD94E7D9B8D /* exception.h */; };
 		295C201046744F7C9389AA3F /* multimedia.h in Headers */ = {isa = PBXBuildFile; fileRef = 4E70EC9C1B0C382E8B73EB5B /* multimedia.h */; };
 		2105BD0D163FDF0A6845EDCD /* _.h in Headers */ = {isa = PBXBuildFile; fileRef = D789827A8CE35818DBCF40DB /* _.h */; };
-		7D9952B5AFA88E84EC55BFA0 /* framework.h in Headers */ = {isa = PBXBuildFile; fileRef = 0FB44F478F2284D031159E09 /* framework.h */; };
+		7D9952B5AFA88E84EC55BFA0 /* platform.h in Headers */ = {isa = PBXBuildFile; fileRef = 0FB44F478F2284D031159E09 /* platform.h */; };
 		C5FF98EF5CB2E5BE8F81F57B /* _.h in Headers */ = {isa = PBXBuildFile; fileRef = 30B85F4660B9DFC3179BE9F7 /* _.h */; };
 		210EAF58B53604EE821B2A74 /* application.h in Headers */ = {isa = PBXBuildFile; fileRef = 7608992181A5DA1B86A31F62 /* application.h */; };
 		B5CB7CFB8D0772A6AF847454 /* session.h in Headers */ = {isa = PBXBuildFile; fileRef = 3F269EF2A8CEB4EF0F022A4F /* session.h */; };
@@ -208,7 +208,7 @@
 		D58397C2DD4DEB7095D9BFEF /* _constant.h in Headers */ = {isa = PBXBuildFile; fileRef = 4EA2B549171AB0318B27B05C /* _constant.h */; };
 		F41C9ECDE3DDBD43F5E96490 /* estamira.h in Headers */ = {isa = PBXBuildFile; fileRef = 6894C0C2627AEB07B51DFE23 /* estamira.h */; };
 		74A30ED716E1AD2A197F0267 /* audio_mixer_user.h in Headers */ = {isa = PBXBuildFile; fileRef = 9DDF41CB99C01A8FF3222802 /* audio_mixer_user.h */; };
-		E42160926523E683908E1A57 /* framework.h in Headers */ = {isa = PBXBuildFile; fileRef = 0FB44F478F2284D031159E09 /* framework.h */; };
+		E42160926523E683908E1A57 /* platform.h in Headers */ = {isa = PBXBuildFile; fileRef = 0FB44F478F2284D031159E09 /* platform.h */; };
 		BA345FB635EEBBE86D92805F /* exportable.h in Headers */ = {isa = PBXBuildFile; fileRef = A24B07CD03CFCEF3DC1FB0CD /* exportable.h */; };
 		358D4E041F2ECFD340FFCCB6 /* _console_old.h in Headers */ = {isa = PBXBuildFile; fileRef = EE449A3C9D8E1CBE49CCA558 /* _console_old.h */; };
 		5200F413B605B341E3D07F67 /* application.h in Headers */ = {isa = PBXBuildFile; fileRef = 7608992181A5DA1B86A31F62 /* application.h */; };
@@ -231,7 +231,7 @@
 		6BD28310108AD28968A7B311 /* _.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 3DBFBDA94E5BAE9C09EFA66B /* _.cpp */; };
 		A46B98156842EF8880DF9F8D /* data.cpp in Sources */ = {isa = PBXBuildFile; fileRef = F4628258CDA7D04E6A8108F7 /* data.cpp */; };
 		9B14FF329DB303E784D50AFF /* estamira.cpp in Sources */ = {isa = PBXBuildFile; fileRef = C20FDEB818A7A5F078D4E005 /* estamira.cpp */; };
-		9275A0D5F9CC25A8C6980C45 /* framework.cpp in Sources */ = {isa = PBXBuildFile; fileRef = ECC7C51E73D4C5C128F68615 /* framework.cpp */; };
+		9275A0D5F9CC25A8C6980C45 /* platform.cpp in Sources */ = {isa = PBXBuildFile; fileRef = ECC7C51E73D4C5C128F68615 /* platform.cpp */; };
 		469E3B022C9C1317784A66FA /* input_tree.cpp in Sources */ = {isa = PBXBuildFile; fileRef = A7BFABA63A629D5CE4678CAF /* input_tree.cpp */; };
 		926584CC9BB53AF75B173878 /* var_exchange.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 7029874623ED42118352AC98 /* var_exchange.cpp */; };
 		52285B7DA9E76387D88F47F6 /* game.cpp in Sources */ = {isa = PBXBuildFile; fileRef = BF8F53F7552CC28B8ABF9BF8 /* game.cpp */; };
@@ -314,7 +314,7 @@
 		6303B8D715FA93B2FDDE94E4 /* idpool.h in Headers */ = {isa = PBXBuildFile; fileRef = D3E9823E8200AEFA8D60E52E /* idpool.h */; };
 		AB8C75136AEBB9D1E82D769A /* _constant.h in Headers */ = {isa = PBXBuildFile; fileRef = 4EA2B549171AB0318B27B05C /* _constant.h */; };
 		9C23E25F00D251A309A454E9 /* estamira.h in Headers */ = {isa = PBXBuildFile; fileRef = 6894C0C2627AEB07B51DFE23 /* estamira.h */; };
-		0C786DF8662104133C4D68BE /* framework.h in Headers */ = {isa = PBXBuildFile; fileRef = 0FB44F478F2284D031159E09 /* framework.h */; };
+		0C786DF8662104133C4D68BE /* platform.h in Headers */ = {isa = PBXBuildFile; fileRef = 0FB44F478F2284D031159E09 /* platform.h */; };
 		613FA19F7F3B6F6D49F38010 /* exportable.h in Headers */ = {isa = PBXBuildFile; fileRef = A24B07CD03CFCEF3DC1FB0CD /* exportable.h */; };
 		12492E928F93446BA4FB7CD5 /* _console_old.h in Headers */ = {isa = PBXBuildFile; fileRef = EE449A3C9D8E1CBE49CCA558 /* _console_old.h */; };
 		727FC54807BA26AA1FBD2DEF /* application.h in Headers */ = {isa = PBXBuildFile; fileRef = 7608992181A5DA1B86A31F62 /* application.h */; };
@@ -335,7 +335,7 @@
 		BFD840961AD552A59BEDED91 /* tree_schema.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 91CFCD2DBE50D137E1EDDD96 /* tree_schema.cpp */; };
 		FA6DD1D888AC26B522CB25F2 /* data.cpp in Sources */ = {isa = PBXBuildFile; fileRef = F4628258CDA7D04E6A8108F7 /* data.cpp */; };
 		69CC855FAEBF1B3BCA3FAF6A /* estamira.cpp in Sources */ = {isa = PBXBuildFile; fileRef = C20FDEB818A7A5F078D4E005 /* estamira.cpp */; };
-		C8EFE1F03377F9232EB0078C /* framework.cpp in Sources */ = {isa = PBXBuildFile; fileRef = ECC7C51E73D4C5C128F68615 /* framework.cpp */; };
+		C8EFE1F03377F9232EB0078C /* platform.cpp in Sources */ = {isa = PBXBuildFile; fileRef = ECC7C51E73D4C5C128F68615 /* platform.cpp */; };
 		FD1BA479B5ADCAE0E9C15459 /* input_tree.cpp in Sources */ = {isa = PBXBuildFile; fileRef = A7BFABA63A629D5CE4678CAF /* input_tree.cpp */; };
 		7AFD2F08C1A51CB61F1BCFF9 /* var_exchange.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 7029874623ED42118352AC98 /* var_exchange.cpp */; };
 		95B65DEB796E75081A792321 /* game.cpp in Sources */ = {isa = PBXBuildFile; fileRef = BF8F53F7552CC28B8ABF9BF8 /* game.cpp */; };
@@ -455,7 +455,7 @@
 		59F341E4A5F43F529C9C997E /* libaqua.dylib */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.dylib"; includeInIndex = 0; path = libaqua.dylib; sourceTree = BUILT_PRODUCTS_DIR; };
 		0A37A9F51A0E95EDE0B304D4 /* console.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = console.h; sourceTree = "<group>"; };
 		6E447F7FA66A3EB1127A3EBE /* library.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = library.h; sourceTree = "<group>"; };
-		ECC7C51E73D4C5C128F68615 /* framework.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = framework.cpp; sourceTree = "<group>"; };
+		ECC7C51E73D4C5C128F68615 /* platform.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = platform.cpp; sourceTree = "<group>"; };
 		55878CFAD9A5F6F3322254D7 /* id.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = id.h; sourceTree = "<group>"; };
 		8D441E1E1385B16D9A477B97 /* controller.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = controller.h; sourceTree = "<group>"; };
 		A9E34FEF14B2C5A5F301DB40 /* xmlite.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = xmlite.h; sourceTree = "<group>"; };
@@ -524,7 +524,7 @@
 		5B92BCBE6468ADD94E7D9B8D /* exception.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = exception.h; sourceTree = "<group>"; };
 		4E70EC9C1B0C382E8B73EB5B /* multimedia.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = multimedia.h; sourceTree = "<group>"; };
 		D789827A8CE35818DBCF40DB /* _.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = _.h; sourceTree = "<group>"; };
-		0FB44F478F2284D031159E09 /* framework.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = framework.h; sourceTree = "<group>"; };
+		0FB44F478F2284D031159E09 /* platform.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = platform.h; sourceTree = "<group>"; };
 		30B85F4660B9DFC3179BE9F7 /* _.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = _.h; sourceTree = "<group>"; };
 		7608992181A5DA1B86A31F62 /* application.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = application.h; sourceTree = "<group>"; };
 		3F269EF2A8CEB4EF0F022A4F /* session.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = session.h; sourceTree = "<group>"; };
@@ -662,8 +662,8 @@
 				489F2CC69A42AFE8D3CC8CC7 /* _audio.h */,
 				9EB6B7066509D00F71C57A29 /* _estamira.h */,
 				0A37A9F51A0E95EDE0B304D4 /* console.h */,
-				ECC7C51E73D4C5C128F68615 /* framework.cpp */,
-				0FB44F478F2284D031159E09 /* framework.h */,
+				ECC7C51E73D4C5C128F68615 /* platform.cpp */,
+				0FB44F478F2284D031159E09 /* platform.h */,
 				55878CFAD9A5F6F3322254D7 /* id.h */,
 				6E447F7FA66A3EB1127A3EBE /* library.h */,
 			);
@@ -945,7 +945,7 @@
 				5E82F12C007E6E25AF4B178B /* _constant.h in Headers */,
 				8D4ADD379EE6EB32653B0EEE /* estamira.h in Headers */,
 				CC0C9B929127917D42AE35DD /* audio_mixer_user.h in Headers */,
-				7D9952B5AFA88E84EC55BFA0 /* framework.h in Headers */,
+				7D9952B5AFA88E84EC55BFA0 /* platform.h in Headers */,
 				562C1F6F1E8E22DD7905E09F /* exportable.h in Headers */,
 				DF76AA8D4663FF51A9EC77E5 /* _console_old.h in Headers */,
 				210EAF58B53604EE821B2A74 /* application.h in Headers */,
@@ -1035,7 +1035,7 @@
 				D58397C2DD4DEB7095D9BFEF /* _constant.h in Headers */,
 				F41C9ECDE3DDBD43F5E96490 /* estamira.h in Headers */,
 				74A30ED716E1AD2A197F0267 /* audio_mixer_user.h in Headers */,
-				E42160926523E683908E1A57 /* framework.h in Headers */,
+				E42160926523E683908E1A57 /* platform.h in Headers */,
 				BA345FB635EEBBE86D92805F /* exportable.h in Headers */,
 				358D4E041F2ECFD340FFCCB6 /* _console_old.h in Headers */,
 				5200F413B605B341E3D07F67 /* application.h in Headers */,
@@ -1125,7 +1125,7 @@
 				AB8C75136AEBB9D1E82D769A /* _constant.h in Headers */,
 				9C23E25F00D251A309A454E9 /* estamira.h in Headers */,
 				09B5F32BCB947323D37A8FC8 /* audio_mixer_user.h in Headers */,
-				0C786DF8662104133C4D68BE /* framework.h in Headers */,
+				0C786DF8662104133C4D68BE /* platform.h in Headers */,
 				613FA19F7F3B6F6D49F38010 /* exportable.h in Headers */,
 				12492E928F93446BA4FB7CD5 /* _console_old.h in Headers */,
 				727FC54807BA26AA1FBD2DEF /* application.h in Headers */,
@@ -1303,7 +1303,7 @@
 				28E3A2163B3ACE70C59E4217 /* _.cpp in Sources */,
 				BD0DD8BD5328BC847EACC7F8 /* data.cpp in Sources */,
 				BAD345EF2196AAC861EFC815 /* estamira.cpp in Sources */,
-				A5029757A67B35B1E7A348A4 /* framework.cpp in Sources */,
+				A5029757A67B35B1E7A348A4 /* platform.cpp in Sources */,
 				56A8CF59B1514B9403431DD7 /* input_tree.cpp in Sources */,
 				6DE1B23FB04C15742DDB23F2 /* var_exchange.cpp in Sources */,
 				BF221C1BBFD91989FDCF3750 /* game.cpp in Sources */,
@@ -1355,7 +1355,7 @@
 				6BD28310108AD28968A7B311 /* _.cpp in Sources */,
 				A46B98156842EF8880DF9F8D /* data.cpp in Sources */,
 				9B14FF329DB303E784D50AFF /* estamira.cpp in Sources */,
-				9275A0D5F9CC25A8C6980C45 /* framework.cpp in Sources */,
+				9275A0D5F9CC25A8C6980C45 /* platform.cpp in Sources */,
 				469E3B022C9C1317784A66FA /* input_tree.cpp in Sources */,
 				926584CC9BB53AF75B173878 /* var_exchange.cpp in Sources */,
 				52285B7DA9E76387D88F47F6 /* game.cpp in Sources */,
@@ -1407,7 +1407,7 @@
 				B445AC61274396C08AB7866D /* _.cpp in Sources */,
 				FA6DD1D888AC26B522CB25F2 /* data.cpp in Sources */,
 				69CC855FAEBF1B3BCA3FAF6A /* estamira.cpp in Sources */,
-				C8EFE1F03377F9232EB0078C /* framework.cpp in Sources */,
+				C8EFE1F03377F9232EB0078C /* platform.cpp in Sources */,
 				FD1BA479B5ADCAE0E9C15459 /* input_tree.cpp in Sources */,
 				7AFD2F08C1A51CB61F1BCFF9 /* var_exchange.cpp in Sources */,
 				95B65DEB796E75081A792321 /* game.cpp in Sources */,
@@ -1535,7 +1535,7 @@
 				GCC_NO_COMMON_BLOCKS = YES;
 				GCC_OPTIMIZATION_LEVEL = 0;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
-				GCC_PREFIX_HEADER = framework.h;
+				GCC_PREFIX_HEADER = platform.h;
 				GCC_REUSE_STRINGS = YES;
 				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
 				GCC_VERSION = "";
@@ -1656,7 +1656,7 @@
 				GCC_NO_COMMON_BLOCKS = YES;
 				GCC_OPTIMIZATION_LEVEL = 0;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
-				GCC_PREFIX_HEADER = framework.h;
+				GCC_PREFIX_HEADER = platform.h;
 				GCC_REUSE_STRINGS = YES;
 				GCC_VERSION = "";
 				GCC_WARN_64_TO_32_BIT_CONVERSION = NO;

@@ -1,4 +1,4 @@
-#include "framework.h"
+#include "platform.h"
 #include "_gpu_opengl.h"
 #include "approach.h"
 #include "command_buffer.h"
@@ -17,6 +17,7 @@
 #include "aura/platform/application.h"
 #include "bred/gpu/context_lock.h"
 #include "bred/gpu/layer.h"
+#include "bred/gpu/texture_site.h"
 //#include "bred/gpu/render_state.h"
 #include "bred/user/user/graphics3d.h"
 #include "aura/windowing/window.h"
@@ -241,14 +242,15 @@ namespace gpu_opengl
 
       auto eoutput = m_pgpucontext->m_eoutput;
 
-      auto r = m_pgpucontext->get_placement();
+      auto r = m_pgpucontext->input_placement();
 
       ::i32 width = r.width();
 
       ::i32 height = r.height();
 
-      ::cast < texture > ptexture =
-         m_pgpucontext->current_target_texture(pgpulayer);
+      auto ptexturesite = m_pgpucontext->current_target_texture(pgpulayer);
+
+      ::cast < texture > ptexture = ptexturesite->gpu_texture();
 
       if (m_pgpucontext->m_escene == ::gpu::e_scene_3d)
       {
@@ -292,7 +294,13 @@ namespace gpu_opengl
 
          //if (m_pgpucontext == m_pgpucontext->m_pgpudevice->m_pgpucontextMain)
          //{
-            pcommandbuffer->set_viewport(m_pgpucontext->size());
+         
+         auto rectanglePlacement = m_pgpucontext->input_placement();
+
+         pcommandbuffer->set_viewport(rectanglePlacement);
+
+         pcommandbuffer->set_scissor(rectanglePlacement);
+
          //}
          //else
          //{
@@ -415,8 +423,12 @@ namespace gpu_opengl
          //glViewport(0, 0, width, height);
          //if (m_pgpucontext == m_pgpucontext->m_pgpudevice->m_pgpucontextMain)
          //{
-            pcommandbuffer->set_viewport(m_pgpucontext->get_placement());
-            pcommandbuffer->set_scissor(m_pgpucontext->get_placement());
+
+         auto rectanglePlacement = m_pgpucontext->input_placement();
+
+         pcommandbuffer->set_viewport(rectanglePlacement);
+         pcommandbuffer->set_scissor(rectanglePlacement);
+
          //}
          //else
          //{

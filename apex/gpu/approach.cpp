@@ -1,4 +1,4 @@
-#include "framework.h"
+#include "platform.h"
 #include "approach.h"
 //#include "context.h"
 //#include "device.h"
@@ -121,6 +121,108 @@ namespace gpu
       //return ::success;
 
    }
+
+
+   int approach::graphics3d_modes_step()
+   {
+
+      if (m_iGraphicsModeStep < 0)
+      {
+
+         ::i32 iStep = -1;
+
+         ::i32 iBase = -1;
+
+         ::i32 iSwapChain = -1;
+
+         ::string strGpu = system()->component_factory_implementation_name("gpu");
+
+         ::string strDraw2d = system()->component_factory_implementation_name("draw2d");
+
+         ::string_array straGpu;
+
+         straGpu.add("opengl");
+         straGpu.add("vulkan");
+         straGpu.add("directx11");
+         straGpu.add("directx12");
+
+         auto iGpu = straGpu.find_first(strGpu);
+
+         if (iGpu < 0 || strDraw2d.is_empty())
+         {
+
+            goto error;
+
+         }
+         
+         iSwapChain = m_papplication->m_gpu.m_bUseSwapChainWindow ? 1 : 0;
+
+#ifdef WINDOWS
+
+         iBase = iGpu * 4 + iSwapChain * 2;
+
+         iStep = iBase;
+
+         if (iSwapChain == 1)
+         {
+
+            if (strGpu != strDraw2d)
+            {
+
+               iStep++;
+
+            }
+
+         }
+         else
+         {
+
+            if (strDraw2d != "gdiplus")
+            {
+
+               iStep++;
+
+            }
+
+         }
+
+#endif
+
+      ok:
+
+         m_iGraphicsModeStep = iStep + 1;
+
+         goto end;
+      error:
+
+         m_iGraphicsModeStep = -1;
+
+      }
+   end:
+
+      return m_iGraphicsModeStep;
+
+   }
+   
+   
+   int approach::graphics3d_modes_step_count()
+   {
+
+      if (m_iGraphicsModeStepCount < 0)
+      {
+
+#ifdef WINDOWS_DESKTOP
+
+         m_iGraphicsModeStepCount = 16;
+
+#endif
+
+      }
+
+      return m_iGraphicsModeStepCount;
+
+   }
+
 
 
    void approach::gpu_on_before_create_window(::acme::windowing::window* pwindow)

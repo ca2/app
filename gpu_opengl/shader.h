@@ -29,9 +29,9 @@ namespace gpu_opengl
       //void _bind(::gpu::command_buffer *pgpucommandbuffer, ::gpu::enum_scene escene) override;
       //void bind(::gpu::command_buffer *pgpucommandbuffer, ::gpu::texture *pgputextureTarget,
                 //::gpu::texture *pgputextureSource) override;
-      void on_bind_already_bound(::gpu::command_buffer *pgpucommandbuffer, ::gpu::texture *pgputextureTarget) override;
-      virtual void defer_bind_frame_buffer_layer(::gpu::command_buffer *pgpucommandbuffer, ::gpu::texture *pgputextureTarget);
-      void bind(::gpu::command_buffer *pgpucommandbuffer, ::gpu::texture *pgputextureTarget) override;
+      void on_bind_already_bound(::gpu::command_buffer *pgpucommandbuffer, ::gpu::texture_site *pgputexturesiteTarget) override;
+      virtual void defer_bind_frame_buffer_layer(::gpu::command_buffer *pgpucommandbuffer, ::gpu::texture_site *pgputexturesiteTarget);
+      void bind(::gpu::command_buffer *pgpucommandbuffer, ::gpu::texture_site *pgputexturesiteTarget) override;
       //void bind(::gpu::command_buffer * pgpucommandbuffer) override;
       void unbind(::gpu::command_buffer *pgpucommandbuffer) override;
       
@@ -84,7 +84,8 @@ namespace gpu_opengl
       virtual void program_compile_errors(GLuint program, string & strSummary);
       //::gpu::payload * get_payload(const ::scoped_string & scopedestrUniform) override;
 
-
+      void set_impact_quad(const ::i32_rectangle & rectangleImpact, const ::i32_size & sizeRaw) override;
+    
       // void setup_sampler_and_texture(const ::scoped_string &scopedstrName, ::i32 value) override;
 
 
@@ -105,8 +106,8 @@ namespace gpu_opengl
 
       //void draw() override;
 
-      void bind_source(::gpu::command_buffer *pgpucommandbuffer, ::gpu::texture *pgputexture, ::i32 iSlot) override;
-      void bind_source2(gpu::command_buffer* pgpucommandbuffer, ::i32 iIndex, const_char_pointer pszPayloadName, gpu::texture* pgputextureSource) override;
+      void bind_source(::gpu::command_buffer *pgpucommandbuffer, ::gpu::texture_site *pgputexturesite, ::i32 iSlot) override;
+      void bind_source2(gpu::command_buffer* pgpucommandbuffer, ::i32 iIndex, const_char_pointer pszPayloadName, gpu::texture_site* pgputexturesiteSource) override;
 
       void set_bool(const ::scoped_string& scopedstrName, bool value) override;
       void set_i32(const ::scoped_string& scopedstrName, ::i32 value) override;

@@ -26,7 +26,7 @@
 #pragma warning (disable : 4786) // identifier was truncated to 'number' characters
 #endif
 
-//#include  "app/axis/freeimage/Source/FreeImage/FreeImageFramework.h"
+//#include  "app/axis/freeimage/Source/FreeImage/FreeImageplatform.h"
 #include "freeimage/Source/FreeImage.h"
 #include "freeimage/Source/Utilities.h"
 #include "freeimage/Source/MetaData/FreeImageTag.h"

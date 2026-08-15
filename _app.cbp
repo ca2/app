@@ -5080,11 +5080,11 @@
 			<Option target="acme"/>
 			<Option target="static_acme"/>
 		</Unit>
-		<Unit filename="/home/camilo/cmake/integration/source/app/acme/framework.cpp">
+		<Unit filename="/home/camilo/cmake/integration/source/app/acme/platform.cpp">
 			<Option target="acme"/>
 			<Option target="static_acme"/>
 		</Unit>
-		<Unit filename="/home/camilo/cmake/integration/source/app/acme/framework.h">
+		<Unit filename="/home/camilo/cmake/integration/source/app/acme/platform.h">
 			<Option target="acme"/>
 			<Option target="static_acme"/>
 		</Unit>
@@ -9550,11 +9550,11 @@
 			<Option target="apex"/>
 			<Option target="static_apex"/>
 		</Unit>
-		<Unit filename="/home/camilo/cmake/integration/source/app/apex/framework.cpp">
+		<Unit filename="/home/camilo/cmake/integration/source/app/apex/platform.cpp">
 			<Option target="apex"/>
 			<Option target="static_apex"/>
 		</Unit>
-		<Unit filename="/home/camilo/cmake/integration/source/app/apex/framework.h">
+		<Unit filename="/home/camilo/cmake/integration/source/app/apex/platform.h">
 			<Option target="apex"/>
 			<Option target="static_apex"/>
 		</Unit>
@@ -10890,11 +10890,11 @@
 			<Option target="aqua"/>
 			<Option target="static_aqua"/>
 		</Unit>
-		<Unit filename="/home/camilo/cmake/integration/source/app/aqua/framework.cpp">
+		<Unit filename="/home/camilo/cmake/integration/source/app/aqua/platform.cpp">
 			<Option target="aqua"/>
 			<Option target="static_aqua"/>
 		</Unit>
-		<Unit filename="/home/camilo/cmake/integration/source/app/aqua/framework.h">
+		<Unit filename="/home/camilo/cmake/integration/source/app/aqua/platform.h">
 			<Option target="aqua"/>
 			<Option target="static_aqua"/>
 		</Unit>
@@ -11326,11 +11326,11 @@
 			<Option target="aura"/>
 			<Option target="static_aura"/>
 		</Unit>
-		<Unit filename="/home/camilo/cmake/integration/source/app/aura/framework.cpp">
+		<Unit filename="/home/camilo/cmake/integration/source/app/aura/platform.cpp">
 			<Option target="aura"/>
 			<Option target="static_aura"/>
 		</Unit>
-		<Unit filename="/home/camilo/cmake/integration/source/app/aura/framework.h">
+		<Unit filename="/home/camilo/cmake/integration/source/app/aura/platform.h">
 			<Option target="aura"/>
 			<Option target="static_aura"/>
 		</Unit>
@@ -13250,11 +13250,11 @@
 			<Option target="axis"/>
 			<Option target="static_axis"/>
 		</Unit>
-		<Unit filename="/home/camilo/cmake/integration/source/app/axis/framework.cpp">
+		<Unit filename="/home/camilo/cmake/integration/source/app/axis/platform.cpp">
 			<Option target="axis"/>
 			<Option target="static_axis"/>
 		</Unit>
-		<Unit filename="/home/camilo/cmake/integration/source/app/axis/framework.h">
+		<Unit filename="/home/camilo/cmake/integration/source/app/axis/platform.h">
 			<Option target="axis"/>
 			<Option target="static_axis"/>
 		</Unit>
@@ -14034,11 +14034,11 @@
 			<Option target="base"/>
 			<Option target="static_base"/>
 		</Unit>
-		<Unit filename="/home/camilo/cmake/integration/source/app/base/framework.cpp">
+		<Unit filename="/home/camilo/cmake/integration/source/app/base/platform.cpp">
 			<Option target="base"/>
 			<Option target="static_base"/>
 		</Unit>
-		<Unit filename="/home/camilo/cmake/integration/source/app/base/framework.h">
+		<Unit filename="/home/camilo/cmake/integration/source/app/base/platform.h">
 			<Option target="base"/>
 			<Option target="static_base"/>
 		</Unit>
@@ -14834,11 +14834,11 @@
 			<Option target="bred"/>
 			<Option target="static_bred"/>
 		</Unit>
-		<Unit filename="/home/camilo/cmake/integration/source/app/bred/framework.cpp">
+		<Unit filename="/home/camilo/cmake/integration/source/app/bred/platform.cpp">
 			<Option target="bred"/>
 			<Option target="static_bred"/>
 		</Unit>
-		<Unit filename="/home/camilo/cmake/integration/source/app/bred/framework.h">
+		<Unit filename="/home/camilo/cmake/integration/source/app/bred/platform.h">
 			<Option target="bred"/>
 			<Option target="static_bred"/>
 		</Unit>
@@ -15498,11 +15498,11 @@
 			<Option target="core"/>
 			<Option target="static_core"/>
 		</Unit>
-		<Unit filename="/home/camilo/cmake/integration/source/app/core/framework.cpp">
+		<Unit filename="/home/camilo/cmake/integration/source/app/core/platform.cpp">
 			<Option target="core"/>
 			<Option target="static_core"/>
 		</Unit>
-		<Unit filename="/home/camilo/cmake/integration/source/app/core/framework.h">
+		<Unit filename="/home/camilo/cmake/integration/source/app/core/platform.h">
 			<Option target="core"/>
 			<Option target="static_core"/>
 		</Unit>
@@ -16646,11 +16646,11 @@
 			<Option target="database_sqlite3"/>
 			<Option target="static_database_sqlite3"/>
 		</Unit>
-		<Unit filename="/home/camilo/cmake/integration/source/app/database_sqlite3/framework.cpp">
+		<Unit filename="/home/camilo/cmake/integration/source/app/database_sqlite3/platform.cpp">
 			<Option target="database_sqlite3"/>
 			<Option target="static_database_sqlite3"/>
 		</Unit>
-		<Unit filename="/home/camilo/cmake/integration/source/app/database_sqlite3/framework.h">
+		<Unit filename="/home/camilo/cmake/integration/source/app/database_sqlite3/platform.h">
 			<Option target="database_sqlite3"/>
 			<Option target="static_database_sqlite3"/>
 		</Unit>
@@ -16710,11 +16710,11 @@
 			<Option target="draw2d_cairo"/>
 			<Option target="static_draw2d_cairo"/>
 		</Unit>
-		<Unit filename="/home/camilo/cmake/integration/source/app/draw2d_cairo/framework.cpp">
+		<Unit filename="/home/camilo/cmake/integration/source/app/draw2d_cairo/platform.cpp">
 			<Option target="draw2d_cairo"/>
 			<Option target="static_draw2d_cairo"/>
 		</Unit>
-		<Unit filename="/home/camilo/cmake/integration/source/app/draw2d_cairo/framework.h">
+		<Unit filename="/home/camilo/cmake/integration/source/app/draw2d_cairo/platform.h">
 			<Option target="draw2d_cairo"/>
 			<Option target="static_draw2d_cairo"/>
 		</Unit>
@@ -16886,11 +16886,11 @@
 			<Option target="experience_anthill"/>
 			<Option target="static_experience_anthill"/>
 		</Unit>
-		<Unit filename="/home/camilo/cmake/integration/source/app/experience_anthill/framework.cpp">
+		<Unit filename="/home/camilo/cmake/integration/source/app/experience_anthill/platform.cpp">
 			<Option target="experience_anthill"/>
 			<Option target="static_experience_anthill"/>
 		</Unit>
-		<Unit filename="/home/camilo/cmake/integration/source/app/experience_anthill/framework.h">
+		<Unit filename="/home/camilo/cmake/integration/source/app/experience_anthill/platform.h">
 			<Option target="experience_anthill"/>
 			<Option target="static_experience_anthill"/>
 		</Unit>
@@ -17002,11 +17002,11 @@
 			<Option target="experience_core"/>
 			<Option target="static_experience_core"/>
 		</Unit>
-		<Unit filename="/home/camilo/cmake/integration/source/app/experience_core/framework.cpp">
+		<Unit filename="/home/camilo/cmake/integration/source/app/experience_core/platform.cpp">
 			<Option target="experience_core"/>
 			<Option target="static_experience_core"/>
 		</Unit>
-		<Unit filename="/home/camilo/cmake/integration/source/app/experience_core/framework.h">
+		<Unit filename="/home/camilo/cmake/integration/source/app/experience_core/platform.h">
 			<Option target="experience_core"/>
 			<Option target="static_experience_core"/>
 		</Unit>
@@ -17122,11 +17122,11 @@
 			<Option target="experience_nanoui"/>
 			<Option target="static_experience_nanoui"/>
 		</Unit>
-		<Unit filename="/home/camilo/cmake/integration/source/app/experience_nanoui/framework.cpp">
+		<Unit filename="/home/camilo/cmake/integration/source/app/experience_nanoui/platform.cpp">
 			<Option target="experience_nanoui"/>
 			<Option target="static_experience_nanoui"/>
 		</Unit>
-		<Unit filename="/home/camilo/cmake/integration/source/app/experience_nanoui/framework.h">
+		<Unit filename="/home/camilo/cmake/integration/source/app/experience_nanoui/platform.h">
 			<Option target="experience_nanoui"/>
 			<Option target="static_experience_nanoui"/>
 		</Unit>
@@ -17234,11 +17234,11 @@
 			<Option target="experience_tranquillum"/>
 			<Option target="static_experience_tranquillum"/>
 		</Unit>
-		<Unit filename="/home/camilo/cmake/integration/source/app/experience_tranquillum/framework.cpp">
+		<Unit filename="/home/camilo/cmake/integration/source/app/experience_tranquillum/platform.cpp">
 			<Option target="experience_tranquillum"/>
 			<Option target="static_experience_tranquillum"/>
 		</Unit>
-		<Unit filename="/home/camilo/cmake/integration/source/app/experience_tranquillum/framework.h">
+		<Unit filename="/home/camilo/cmake/integration/source/app/experience_tranquillum/platform.h">
 			<Option target="experience_tranquillum"/>
 			<Option target="static_experience_tranquillum"/>
 		</Unit>
@@ -17342,11 +17342,11 @@
 			<Option target="imaging_freeimage"/>
 			<Option target="static_imaging_freeimage"/>
 		</Unit>
-		<Unit filename="/home/camilo/cmake/integration/source/app/imaging_freeimage/framework.cpp">
+		<Unit filename="/home/camilo/cmake/integration/source/app/imaging_freeimage/platform.cpp">
 			<Option target="imaging_freeimage"/>
 			<Option target="static_imaging_freeimage"/>
 		</Unit>
-		<Unit filename="/home/camilo/cmake/integration/source/app/imaging_freeimage/framework.h">
+		<Unit filename="/home/camilo/cmake/integration/source/app/imaging_freeimage/platform.h">
 			<Option target="imaging_freeimage"/>
 			<Option target="static_imaging_freeimage"/>
 		</Unit>
@@ -17426,11 +17426,11 @@
 			<Option target="networking_bsd"/>
 			<Option target="static_networking_bsd"/>
 		</Unit>
-		<Unit filename="/home/camilo/cmake/integration/source/app/networking_bsd/framework.cpp">
+		<Unit filename="/home/camilo/cmake/integration/source/app/networking_bsd/platform.cpp">
 			<Option target="networking_bsd"/>
 			<Option target="static_networking_bsd"/>
 		</Unit>
-		<Unit filename="/home/camilo/cmake/integration/source/app/networking_bsd/framework.h">
+		<Unit filename="/home/camilo/cmake/integration/source/app/networking_bsd/platform.h">
 			<Option target="networking_bsd"/>
 			<Option target="static_networking_bsd"/>
 		</Unit>
@@ -17646,11 +17646,11 @@
 			<Option target="regular_expression_pcre2"/>
 			<Option target="static_regular_expression_pcre2"/>
 		</Unit>
-		<Unit filename="/home/camilo/cmake/integration/source/app/regular_expression_pcre2/framework.cpp">
+		<Unit filename="/home/camilo/cmake/integration/source/app/regular_expression_pcre2/platform.cpp">
 			<Option target="regular_expression_pcre2"/>
 			<Option target="static_regular_expression_pcre2"/>
 		</Unit>
-		<Unit filename="/home/camilo/cmake/integration/source/app/regular_expression_pcre2/framework.h">
+		<Unit filename="/home/camilo/cmake/integration/source/app/regular_expression_pcre2/platform.h">
 			<Option target="regular_expression_pcre2"/>
 			<Option target="static_regular_expression_pcre2"/>
 		</Unit>

@@ -3,7 +3,7 @@
 // Adapted from Apple Silicon version
 // by camilo on 2026-02-01 16:02 <3ThomasBorregaardSorensen!!
 //
-#include "framework.h"
+#include "platform.h"
 #include "acme/operating_system/cpu_features.h"
 
 // defined(__linux__) && defined(__aarch64__)

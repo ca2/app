@@ -1,4 +1,4 @@
-#include "framework.h"
+#include "platform.h"
 
 
 // ::user::enum_operating_ambient calculate_edesktop()

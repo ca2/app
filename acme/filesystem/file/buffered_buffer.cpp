@@ -1,4 +1,4 @@
-#include "framework.h"
+#include "platform.h"
 #include "buffered_file.h"
 //////#include "acme/exception/exception.h"
 //#include "acme/prototype/comparison/compare.h"

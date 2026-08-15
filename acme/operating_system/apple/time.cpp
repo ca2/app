@@ -5,7 +5,7 @@
 //  Created by Camilo Sasuke Thomas Borregaard Soerensen on 15/10/21.
 //  Copyright (c) 2021 Camilo Sasuke Thomas Borregaard Soerensen. All rights reserved.
 //
-#include "framework.h"
+#include "platform.h"
 //#include <mach/mach_init.h>
 #include <mach/mach.h>
 #include <mach/clock.h>

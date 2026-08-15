@@ -67,7 +67,7 @@ namespace gpu
 
    protected:
 
-      void _map(bool bApplyAlphaTransform = true) override;
+      void _map(const ::i32_rectangle & rectangle, bool bApplyAlphaTransform = true) override;
       void _unmap(bool bDoUnmap = false) override;
 
 

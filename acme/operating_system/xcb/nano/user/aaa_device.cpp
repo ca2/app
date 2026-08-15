@@ -1,7 +1,7 @@
 //
 // Created by camilo on 31/01/2022 20:15 <3ThomasBorregaardSorensen!! Thomas Likes number 5!!
 //
-#include "framework.h"
+#include "platform.h"
 #include "_nano.h"
 #include <X11/Xlocale.h>
 

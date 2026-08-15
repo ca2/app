@@ -6,7 +6,7 @@
 //
 // From interprocess*.h/*.cpp by camilo on 2022-10-11 00:18 <3ThomasBorregaardSorensen!!
 // reengaged on 2024-10-25 02:49 <3ThomasBorregaardSorensen!!
-#include "framework.h"
+#include "platform.h"
 #include "handler.h"
 #include "request.h"
 #include "topic.h"

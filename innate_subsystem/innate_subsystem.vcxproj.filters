@@ -165,7 +165,7 @@
     <ClCompile Include="gui\WindowProcHolder.cpp">
       <Filter>Source Files\gui</Filter>
     </ClCompile>
-    <ClCompile Include="framework.cpp">
+    <ClCompile Include="platform.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="gui\KeyboardLayout.cpp">

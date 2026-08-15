@@ -1,4 +1,4 @@
-#include "framework.h"
+#include "platform.h"
 #include "binding.h"
 #include "block.h"
 #include "bred_approach.h"
@@ -20,6 +20,7 @@
 #include "layer.h"
 #include "swap_chain.h"
 #include "texture.h"
+#include "texture_site.h"
 #include "types.h"
 #include "acme/exception/interface_only.h"
 #include "acme/parallelization/synchronous_lock.h"
@@ -327,7 +328,7 @@ namespace gpu
    //}
 
 
-   ::gpu::texture *context::current_target_texture(::gpu::layer * pgpulayer)
+   ::gpu::texture_site *context::current_target_texture(::gpu::layer * pgpulayer)
    {
 
       if (m_pgpucompositor)
@@ -427,22 +428,24 @@ namespace gpu
    }
 
 
-   ::pointer<::gpu::texture> context::create_empty_texture()
+   ::pointer<::gpu::texture_site> context::create_empty_texture()
    {
+
+      auto ptexturesiteEmpty = create_newø<::gpu::texture_site>();
 
       auto ptextureEmpty = createø<::gpu::texture>();
 
-      ::i32_rectangle rectangleSize(API_CHANGED_ARGUMENT, 1, 1);
+      ptexturesiteEmpty->m_pgputextureSite = ptextureEmpty;
 
-      ::gpu::texture_attributes textureattributes(rectangleSize);
+      ::gpu::texture_attributes textureattributes({1, 1});
 
       ::gpu::texture_flags textureflags;
 
       textureflags.m_bShaderResource = true;
 
-      ptextureEmpty->initialize_texture(this, textureattributes, textureflags);
+      ptextureEmpty->create_texture(this, textureattributes, textureflags);
 
-      return ptextureEmpty;
+      return ptexturesiteEmpty;
 
    }
 
@@ -453,7 +456,7 @@ namespace gpu
       if (defer_constructø(ptexture))
       {
 
-         ptexture->initialize_texture_from_file_path(this, path, bIsSrgb);
+         ptexture->create_texture_from_file_path(this, path, bIsSrgb);
 
       }
 
@@ -1152,18 +1155,18 @@ namespace gpu
 //    }
 
 
-   void context::set_viewport(::gpu::command_buffer * pgpucommandbuffer, const ::i32_rectangle & rectangle)
+   void context::set_viewport(::gpu::command_buffer * pgpucommandbuffer, const ::i32_rectangle & rectangle, const ::i32_size & sizeRaw)
    {
 
-      pgpucommandbuffer->set_viewport(rectangle);
+      pgpucommandbuffer->set_viewport(rectangle, sizeRaw);
 
    }
 
 
-   void context::set_scissor(::gpu::command_buffer *pgpucommandbuffer, const ::i32_rectangle &rectangle)
+   void context::set_scissor(::gpu::command_buffer *pgpucommandbuffer, const ::i32_rectangle &rectangle, const ::i32_size & sizeRaw)
    {
 
-      pgpucommandbuffer->set_scissor(rectangle);
+      pgpucommandbuffer->set_scissor(rectangle, sizeRaw);
 
    }
 
@@ -1228,7 +1231,7 @@ namespace gpu
    }
 
 
-   void context::begin_render(::gpu::command_buffer * pgpucommandbuffer,::gpu::texture * pgputexture)
+   void context::begin_render(::gpu::command_buffer * pgpucommandbuffer,::gpu::texture_site * pgputexturesite)
    {
 
 
@@ -1280,17 +1283,47 @@ namespace gpu
 
 
    bool context::defer_bind2(::gpu::command_buffer *pgpucommandbuffer, ::gpu::shader *pgpushader,
-                             ::gpu::texture *pgputexture)
+                             ::gpu::texture_site *pgputexturesite)
    {
 
       auto iImageIndex = pgpucommandbuffer->m_iCommandBufferImageIndex;
 
-      if (pgpushader == m_pshaderBound
-         && pgpushader->m_iFrameBound ==
-         iImageIndex)
+      auto bShaderAlreadyBound =
+         iImageIndex >= 0
+         && pgpushader == m_pshaderBound
+         && pgpushader->m_iFrameBound == iImageIndex;
+
+      if (::gpu::trace_flags().m_bVulkanPipelineTrace)
       {
 
-         pgpushader->on_bind_already_bound(pgpucommandbuffer, pgputexture);
+         information(
+            "VULKAN_PIPELINE_TRACE defer_bind2 command_buffer_object={} shader={} cached_shader={} "
+            "image_index={} shader_frame_bound={} already_bound={}",
+            (::uptr)pgpucommandbuffer,
+            (::uptr)pgpushader,
+            (::uptr)m_pshaderBound.m_p,
+            iImageIndex,
+            pgpushader->m_iFrameBound,
+            bShaderAlreadyBound);
+
+      }
+
+      
+      if (bShaderAlreadyBound)
+      {
+
+         if (::gpu::trace_flags().m_bVulkanPipelineTrace)
+         {
+
+
+            information(
+               "VULKAN_PIPELINE_TRACE defer_bind2_skip command_buffer_object={} shader={}",
+               (::uptr)pgpucommandbuffer,
+               (::uptr)pgpushader);
+
+         }
+
+         pgpushader->on_bind_already_bound(pgpucommandbuffer, pgputexturesite);
 
          return false;
 
@@ -1311,7 +1344,18 @@ namespace gpu
 
       //auto ptexture = m_pgpurenderer->m_pgpurendertarget->current_texture(::gpu::current_layer());
 
-      pgpushader->bind(pgpucommandbuffer, pgputexture);
+      if (::gpu::trace_flags().m_bVulkanPipelineTrace)
+      {
+
+         information(
+            "VULKAN_PIPELINE_TRACE defer_bind2_bind command_buffer_object={} shader={} target_site={}",
+            (::uptr)pgpucommandbuffer,
+            (::uptr)pgpushader,
+            (::uptr)pgputexturesite);
+
+      }
+
+      pgpushader->bind(pgpucommandbuffer, pgputexturesite);
 
       m_pshaderBound = pgpushader;
 
@@ -1341,9 +1385,10 @@ namespace gpu
       }
 
       start_debug_happening(pgpucommandbuffer, "shader changing");
-      auto ptexture = pgpucommandbuffer->m_pgpurendertarget->current_texture(::gpu::current_layer());
+      
+      auto ptexturesite = pgpucommandbuffer->m_pgpurendertarget->current_texture(::gpu::current_layer(), false);
 
-    pgpushader->bind(pgpucommandbuffer, ptexture);
+      pgpushader->bind(pgpucommandbuffer, ptexturesite);
 
       m_pshaderBound = pgpushader;
 
@@ -1414,7 +1459,7 @@ namespace gpu
    //}
 
 
-   void context::create_window_gpu_context(::gpu::device* pgpudevice, const ::gpu::enum_output& eoutput, const ::gpu::enum_scene& escene, ::acme::windowing::window* pacmewindowingwindow, const ::i32_size& size)
+   void context::create_window_gpu_context(::gpu::device* pgpudevice, const ::gpu::enum_output& eoutput, const ::gpu::enum_scene& escene, ::acme::windowing::window* pacmewindowingwindow, const ::i32_point & pointInput, const ::i32_point & pointOutput, const ::i32_size & size, const ::i32_size & sizeRaw)
    {
 
       m_etype = ::gpu::context::e_type_window;
@@ -1459,11 +1504,15 @@ namespace gpu
 
                ::cast <::acme::windowing::window > pwindowWindow = pacmewindowingwindow;
 
-               auto rectangleWindow = pwindowWindow->get_window_rectangle();
+               auto rectangleTarget = pwindowWindow->get_window_rectangle();
 
-               auto size = rectangleWindow.size();
+               auto sizeRaw = pwindowWindow->get_raw_buffer_size();
 
-               _create_gpu_context(m_pgpudevice, eoutput, escene, pacmewindowingwindow, size);
+               ::i32_point pointTarget(rectangleTarget.origin());
+
+               ::i32_size size(rectangleTarget.size());
+
+               _create_gpu_context(m_pgpudevice, eoutput, escene, pacmewindowingwindow, {}, pointTarget, size, sizeRaw);
 
                if (m_papplication->m_gpu.m_bUseSwapChainWindow)
                {
@@ -1502,7 +1551,7 @@ namespace gpu
    }
 
 
-   void context::create_gpu_context(::gpu::device* pgpudevice, const ::gpu::enum_output& eoutput, const ::gpu::enum_scene& escene, ::acme::windowing::window* pacmewindowingwindow, const ::i32_size& size)
+   void context::create_gpu_context(::gpu::device* pgpudevice, const ::gpu::enum_output& eoutput, const ::gpu::enum_scene& escene, ::acme::windowing::window* pacmewindowingwindow, const ::i32_point & pointInput, const ::i32_point & pointOutput, const ::i32_size & size, const ::i32_size & sizeRaw)
    {
 
       if (size.is_empty())
@@ -1524,10 +1573,10 @@ namespace gpu
 
       //rear_guard guard(this);
 
-      sendø() <<[this, pgpudevice, eoutput, escene, size, pacmewindowingwindow]()
+      sendø() <<[this, pgpudevice, eoutput, escene, pointInput, pointOutput, size, sizeRaw, pacmewindowingwindow]()
          {
 
-            _create_gpu_context(pgpudevice, eoutput, escene, pacmewindowingwindow, size);
+            _create_gpu_context(pgpudevice, eoutput, escene, pacmewindowingwindow, pointInput, pointOutput, size, sizeRaw);
 
          };
 
@@ -1537,7 +1586,7 @@ namespace gpu
 //<<<<<<< HEAD
   // void context::create_draw2d_context(::gpu::device* pgpudevice, const ::gpu::enum_output& eoutput, ::acme::windowing::window * pwindow, const ::i32_size& size)
 //=======
-   void context::create_draw2d_gpu_context(::gpu::device* pgpudevice, ::acme::windowing::window* pacmewindowingwindow, const ::i32_size& size)
+   void context::create_draw2d_gpu_context(::gpu::device* pgpudevice, ::acme::windowing::window* pacmewindowingwindow, const ::i32_point & pointInput, const ::i32_point & pointOutput, const ::i32_size & size, const ::i32_size & sizeRaw)
 //>>>>>>> origin/main
    {
 
@@ -1574,21 +1623,19 @@ namespace gpu
 
       //rear_guard guard(this);
 
-      m_bD3D11On12Shared = true;
-
       auto pgpucontext = ::as_pointer(this);
 
-      sendø() << [pgpucontext, pgpudevice, size, pacmewindowingwindow]()
+      sendø() << [pgpucontext, pgpudevice, pointInput, pointOutput, size, sizeRaw, pacmewindowingwindow]()
          {
 
-            pgpucontext->_create_gpu_context(pgpudevice, ::gpu::e_output_draw2d_bitmap, ::gpu::e_scene_2d, pacmewindowingwindow, size);
+            pgpucontext->_create_gpu_context(pgpudevice, ::gpu::e_output_draw2d_bitmap, ::gpu::e_scene_2d, pacmewindowingwindow, pointInput, pointOutput, size, sizeRaw);
 
          };
 
    }
 
 
-   void context::_create_gpu_context(::gpu::device* pgpudevice, const ::gpu::enum_output& eoutput, const ::gpu::enum_scene& escene, ::acme::windowing::window* pacmewindowingwindow, const ::i32_size& size)
+   void context::_create_gpu_context(::gpu::device* pgpudevice, const ::gpu::enum_output& eoutput, const ::gpu::enum_scene& escene, ::acme::windowing::window* pacmewindowingwindow, const ::i32_point & pointInput, const ::i32_point & pointOutput, const ::i32_size & size, const ::i32_size & sizeRaw)
    {
 
       if (m_sizeRaw.is_empty())
@@ -1597,6 +1644,12 @@ namespace gpu
          m_sizeRaw = pacmewindowingwindow->m_sizeRaw;
 
       }
+
+      m_pointInput = pointInput;
+
+      m_pointOutput = pointOutput;
+
+      m_size = size;
 
       m_pgpudevice = pgpudevice;
 
@@ -1651,7 +1704,7 @@ namespace gpu
 
       m_eoutput = eoutput;
 
-      set_placement({ ::i32_point{0, 0}, size });
+      
 
       //on_create_context(pgpudevice, eoutput, pwindow, size);
 
@@ -1970,7 +2023,7 @@ namespace gpu
       if (!m_pbuffer)
       {
 
-         create_cpu_buffer(get_placement().size());
+         create_cpu_buffer(size());
 
       }
 
@@ -2019,10 +2072,38 @@ namespace gpu
    }
 
 
-   ::i32_rectangle context::get_placement()
+   ::i32_rectangle context::input_placement()
    {
 
-      return m_rectangleGpuContext;
+      return { m_pointInput, m_size};
+
+   }
+
+
+   ::i32_rectangle context::output_placement()
+   {
+
+      return { m_pointOutput, m_size };
+
+   }
+
+
+   void context::set_input_placement(const ::i32_rectangle & rectangleInput)
+   {
+
+      m_pointInput = rectangleInput.origin();
+
+      m_size = rectangleInput.size();
+
+   }
+
+
+   void context::set_output_placement(const ::i32_rectangle & rectangleOutput)
+   {
+
+      m_pointOutput = rectangleOutput.origin();
+
+      m_size = rectangleOutput.size();
 
    }
 
@@ -2030,31 +2111,112 @@ namespace gpu
    ::i32_size context::size()
    {
 
-      return m_rectangleGpuContext.size();
+      return m_size;
 
    }
 
 
-   ::i32 context::left()
+   ::i32_point context::input_origin()
    {
 
-      return m_rectangleGpuContext.left;
+      return m_pointInput;
 
    }
 
 
-   ::i32 context::top()
+   ::i32_point context::output_origin()
    {
 
-      return m_rectangleGpuContext.top;
+      return m_pointOutput;
 
    }
+
+
+   ::i32 context::input_left()
+   {
+
+      return m_pointInput.x;
+
+   }
+
+
+   ::i32 context::output_left()
+   {
+
+      return m_pointOutput.x;
+
+   }
+
+   ::i32 context::input_top()
+   {
+
+
+      return m_pointInput.y;
+
+   }
+
+
+   ::i32 context::output_top()
+   {
+
+      return m_pointOutput.y;
+
+   }
+
+
+   ::i32 context::input_right()
+   {
+
+      return m_pointInput.x + m_size.cx;
+
+   }
+
+
+   ::i32 context::output_right()
+   {
+
+      return m_pointOutput.x + m_size.cx;
+
+   }
+
+
+   ::i32 context::input_bottom()
+   {
+
+
+      return m_pointInput.y + m_size.cy;
+
+   }
+
+
+   ::i32 context::output_bottom()
+   {
+
+      return m_pointOutput.y + m_size.cy;
+
+   }
+
+
+   //::i32 context::left()
+   //{
+
+   //   return m_rectangleGpuContext.left;
+
+   //}
+
+
+   //::i32 context::top()
+   //{
+
+   //   return m_rectangleGpuContext.top;
+
+   //}
 
 
    ::i32 context::width()
    {
 
-      return m_rectangleGpuContext.width();
+      return m_size.width();
 
    }
 
@@ -2062,15 +2224,54 @@ namespace gpu
    ::i32 context::height()
    {
 
-      return m_rectangleGpuContext.height();
+      return m_size.height();
 
    }
 
 
-   void context::set_placement(const ::i32_rectangle& rectangleGpuContext)
+   ::i32_size context::raw_size()
    {
 
-      m_rectangleGpuContext = rectangleGpuContext;
+      if (m_sizeRaw.is_empty())
+      {
+
+         return this->size();
+
+      }
+
+      return m_sizeRaw;
+
+   }
+
+
+   ::i32 context::raw_width()
+   {
+
+      return raw_size().width();
+
+   }
+
+
+   ::i32 context::raw_height()
+   {
+
+      return raw_size().height();
+
+   }
+
+
+   void context::set_input_origin(const ::i32_point & pointInput)
+   {
+
+      m_pointInput = pointInput;
+
+   }
+
+
+   void context::set_output_origin(const ::i32_point & pointOutput)
+   {
+
+      m_pointOutput = pointOutput;
 
    }
 
@@ -2078,7 +2279,7 @@ namespace gpu
    void context::set_size(const ::i32_size & sizeGpuContext)
    {
 
-      m_rectangleGpuContext.set_size(sizeGpuContext);
+      m_size = sizeGpuContext;
 
    }
 
@@ -2086,7 +2287,7 @@ namespace gpu
    void context::on_resize(const ::i32_size& size)
    {
 
-      set_placement({ ::i32_point{ 0, 0 }, size });
+      set_size(size);
 
       if (m_pgpurenderer)
       {
@@ -2098,7 +2299,11 @@ namespace gpu
       if (m_pgpucompositor)
       {
 
-         m_pgpucompositor->on_gpu_context_placement_change(size, m_pgpudevice->m_pwindow);
+         m_pgpucompositor->on_gpu_context_placement_change(
+            m_pointInput,
+            m_pointOutput,
+            size,
+            m_pgpudevice->m_pwindow);
 
       }
 
@@ -2174,13 +2379,15 @@ namespace gpu
 
          auto ptextureNewAtlas = createø<::gpu::texture >();
 
-         ::gpu::texture_attributes textureattributes(::i32_rectangle{API_CHANGED_ARGUMENT, 4096, 4096}); 
+         ::gpu::texture_attributes textureattributes({4096, 4096}); 
+
+         textureattributes.m_sizeRaw = { 4096, 4096 };
 
          ::gpu::texture_flags textureflags;
 
          textureflags.m_bTransferTarget = true;
 
-         ptextureNewAtlas->initialize_texture(this, textureattributes, textureflags);
+         ptextureNewAtlas->create_texture(this, textureattributes, textureflags);
 
          m_textureaAtlas.add(ptextureNewAtlas);
 
@@ -2202,6 +2409,13 @@ namespace gpu
 
    ::gpu::swap_chain* context::get_swap_chain()
    {
+
+      if (!m_papplication->m_gpu.m_bUseSwapChainWindow)
+      {
+
+         return nullptr;
+
+      }
 
       if (m_etype != e_type_window)
       {
@@ -3550,15 +3764,15 @@ namespace gpu
    //}
 
 
-   void context::copy(::gpu::command_buffer * pgpucommandbuffer, ::gpu::texture * ptextureTarget, ::gpu::texture * ptextureSource, ::pointer < ::gpu::fence > * pgpufence, ::pointer < ::gpu::semaphore > * pgpusemaphoreReady)
+   void context::copy(::gpu::command_buffer * pgpucommandbuffer, ::gpu::texture_site * ptexturesiteOutput, ::gpu::texture_site * ptexturesiteInput, ::pointer < ::gpu::fence > * pgpufence, ::pointer < ::gpu::semaphore > * pgpusemaphoreReady)
    {
 
-      copy(ptextureTarget, ptextureSource, pgpufence, pgpusemaphoreReady);
+      copy(ptexturesiteOutput, ptexturesiteInput, pgpufence, pgpusemaphoreReady);
 
    }
 
 
-   void context::copy(::gpu::texture* ptextureTarget, ::gpu::texture* ptextureSource, ::pointer < ::gpu::fence > * pgpufence, ::pointer < ::gpu::semaphore > * pgpusemaphoreReady)
+   void context::copy(::gpu::texture_site * ptexturesiteOutput, ::gpu::texture_site * ptexturesiteInput, ::pointer < ::gpu::fence > * pgpufence, ::pointer < ::gpu::semaphore > * pgpusemaphoreReady)
    {
 
       throw ::interface_only();
@@ -3566,10 +3780,9 @@ namespace gpu
    }
 
 
-   void context::merge_layers(::gpu::command_buffer * pgpucommandbuffer, ::gpu::texture* ptextureTarget, ::pointer_array < ::gpu::layer >* pgpulayera)
+   void context::merge_layers_dummy_model_buffer()
    {
 
-      ::gpu::context_lock contextlock(this);
 
       if (!m_pmodelbufferDummy)
       {
@@ -3582,47 +3795,215 @@ namespace gpu
 
       }
 
+   }
+
+
+   void context::merge_layers_shader()
+   {
+
       {
 
          if (!m_pshaderBlend3)
          {
 
-            const ::i8 full_screen_triangle_vertex_shader[] = R"vert(
+            ::string strVert;
+            ::string strFrag;
+            ::string strGpuImplementation = system()->component_factory_implementation_name("gpu");
+
+            if (strGpuImplementation == "opengl")
+            {
+
+               strVert = R"vert(
+
 #version 330 core
+
+uniform vec4 quad;
+// left, bottom, right, top
 
 out vec2 uv;
 
-void main() {
-    const vec2 pos[3] = vec2[](
-        vec2(-1.0, -1.0),
-        vec2(-1.0,  3.0),
-        vec2( 3.0, -1.0)
-    );
+void main()
+{
 
-    const vec2 tex[3] = vec2[](
-        vec2(0.0, 0.0),
-        vec2(0.0, 2.0),
-        vec2(2.0, 0.0)
-    );
+   const vec2 pos[3] = vec2[](
+      vec2(-1.0, -1.0),
+      vec2(-1.0,  3.0),
+      vec2( 3.0, -1.0)
+   );
 
-    gl_Position = vec4(pos[gl_VertexID], 0.0, 1.0);
-    uv = tex[gl_VertexID];
+   const vec2 tex[3] = vec2[](
+      vec2(0.0, 0.0),
+      vec2(0.0, 2.0),
+      vec2(2.0, 0.0)
+   );
+
+   gl_Position = vec4(pos[gl_VertexID], 0.0, 1.0);
+
+   vec2 uvFull = tex[gl_VertexID];
+
+   uv = vec2(
+      mix(quad.x, quad.z, uvFull.x),
+      mix(quad.y, quad.w, uvFull.y)
+   );
+
 }
-)vert";
 
-            const ::i8 full_screen_triangle_fragment_shader[] = R"frag(
+)vert";
+               strFrag = R"frag(
+
 #version 330 core
 
 uniform sampler2D uTexture;
 
 in vec2 uv;
+
 out vec4 outColor;
 
-void main() {
-    vec4 color = texture(uTexture, uv);
-    outColor = color;
+void main()
+{
+
+   outColor = texture(uTexture, uv);
+
 }
+
 )frag";
+            }
+            else if (strGpuImplementation.begins("directx1"))
+            {
+
+               //
+               //               strVert = R"vert(
+               //
+               //cbuffer QuadBuffer : register(b0)
+               //{
+               //
+               //   float4 quad;
+               //   // left, top, right, bottom
+               //   // or more generally: u0, v0, u1, v1
+               //
+               //};
+               //
+               //struct VS_OUTPUT
+               //{
+               //
+               //   float4 position : SV_POSITION;
+               //   float2 uv       : TEXCOORD0;
+               //
+               //};
+               //
+               //VS_OUTPUT main(uint vertexId : SV_VertexID)
+               //{
+               //
+               //   static const float2 pos[3] =
+               //   {
+               //      float2(-1.0f, -1.0f),
+               //      float2(-1.0f,  3.0f),
+               //      float2( 3.0f, -1.0f)
+               //   };
+               //
+               //   static const float2 tex[3] =
+               //   {
+               //      float2(0.0f, 0.0f),
+               //      float2(0.0f, 2.0f),
+               //      float2(2.0f, 0.0f)
+               //   };
+               //
+               //   VS_OUTPUT output;
+               //
+               //   output.position = float4(pos[vertexId], 0.0f, 1.0f);
+               //
+               //   float2 uvFull = tex[vertexId];
+               //
+               //   output.uv = float2(
+               //      lerp(quad.x, quad.z, uvFull.x),
+               //      lerp(quad.y, quad.w, uvFull.y)
+               //   );
+               //
+               //   return output;
+               //
+               //}
+               //
+               //)vert";
+
+
+               strVert = R"vert(
+cbuffer QuadBuffer : register(b1)
+{
+   float4 quad;
+   // uLeft, vTop, uRight, vBottom
+};
+
+struct VS_OUTPUT
+{
+   float4 position : SV_POSITION;
+   float2 uv       : TEXCOORD0;
+};
+
+VS_OUTPUT main(uint vertexId : SV_VertexID)
+{
+   static const float2 pos[3] =
+   {
+      float2(-1.0f, -1.0f),
+      float2(-1.0f,  3.0f),
+      float2( 3.0f, -1.0f)
+   };
+
+   //
+   // Direct3D top-left texture orientation.
+   //
+   static const float2 tex[3] =
+   {
+      float2(0.0f,  1.0f),
+      float2(0.0f, -1.0f),
+      float2(2.0f,  1.0f)
+   };
+
+   VS_OUTPUT output;
+
+   output.position = float4(pos[vertexId], 0.0f, 1.0f);
+
+   float2 uvFull = tex[vertexId];
+
+   output.uv = float2(
+      lerp(quad.x, quad.z, uvFull.x),
+      lerp(quad.y, quad.w, uvFull.y)
+   );
+
+   return output;
+}
+
+)vert";
+
+               strFrag = R"frag(
+
+Texture2D uTexture : register(t0);
+
+SamplerState uSampler : register(s0);
+
+struct PS_INPUT
+{
+
+   float4 position : SV_POSITION;
+   float2 uv       : TEXCOORD0;
+
+};
+
+float4 main(PS_INPUT input) : SV_TARGET
+{
+
+   return uTexture.Sample(uSampler, input.uv);
+
+}
+
+)frag";
+
+            }
+            else
+            {
+
+               throw ::exception(todo, "missing vertex and fragment shaders for this gpu component implementation?!?!");
+
+            }
 
             defer_constructø(m_pshaderBlend3);
 
@@ -3638,6 +4019,9 @@ void main() {
             //m_pshaderBlend3->m_setbindingSampler = 0;
             // Image Blend descriptors
             //if (!m_psetdescriptorlayoutImageBlend)
+            m_pshaderBlend3->m_propertiesPushShared.set_properties(::gpu_properties<::gpu::quad>());
+
+            layout_push_constants(m_pshaderBlend3->m_propertiesPushShared, false);
 
             //m_pshaderBlend3->m_bClearColor = true;
             //m_pshaderBlend3->m_colorClear = ::color::transparent;
@@ -3647,8 +4031,8 @@ void main() {
 
             m_pshaderBlend3->initialize_shader_with_block(
                m_pgpurenderer,
-               ::as_block(full_screen_triangle_vertex_shader),
-               ::as_block(full_screen_triangle_fragment_shader),
+               strVert,
+               strFrag,
                {},
                //{},
                //{},
@@ -3656,10 +4040,23 @@ void main() {
                // the full screen shader is embed in the shader code
                ::gpu::shader::e_flag_clear_default_bindings_and_attributes_descriptions
 
-               );
+            );
 
          }
 
+      }
+
+   }
+
+
+   void context::merge_layers(::gpu::command_buffer * pgpucommandbuffer, ::gpu::texture_site * ptexturesiteOutput, ::pointer_array < ::gpu::layer >* pgpulayera)
+   {
+
+      ::gpu::context_lock contextlock(this);
+
+      merge_layers_dummy_model_buffer();
+
+      merge_layers_shader();
 
          //if (!m_pd3d11blendstateBlend3)
          //{
@@ -3690,7 +4087,22 @@ void main() {
 
          //auto vkcommandbuffer = pcommandbuffer->m_vkcommandbuffer;
 
-         ::cast<::gpu::texture> ptextureDst = ptextureTarget;
+         //::cast<::gpu::texture> ptextureDst = ptexturesiteOutput->m_pgputextureSite;
+
+
+         //::cast <::gpu_directx12::texture > ptextureDst = ptexturesiteTarget->gpu_texture();
+         auto ptextureDst = ptexturesiteOutput->gpu_texture();
+         ////float clearColor[4] = { 0.95f * 0.5f, 0.95f * 0.5f, 0.25f * 0.5f, 0.5f }; // Clear to transparent
+         ////m_pcontext->ClearRenderTargetView(ptextureDst->m_prendertargetview, clearColor);
+         //if (!ptextureDst->m_handleRenderTargetView.ptr)
+         //{
+
+         //   ptextureDst->create_render_target();
+
+         //}
+
+         ptextureDst->set_state(pgpucommandbuffer, ::gpu::e_texture_state_color_attachment);
+
 
          // ::i32 iH = ptextureDst->m_pgpurenderer->m_pgpucontext->height();
          //
@@ -3735,20 +4147,23 @@ void main() {
 
             ::i32 iLayer = 0;
 
-            pgpucommandbuffer->begin_render(m_pshaderBlend3.m_p, ptextureDst.m_p);
+            pgpucommandbuffer->begin_render(m_pshaderBlend3.m_p, ptexturesiteOutput);
 
-            this->clear(ptextureDst, ::color::transparent);
+            //pgpucommandbuffer->clear(ptextureDst, ptextureDst->size(), ::color::transparent);
+            pgpucommandbuffer->clear(ptextureDst, ::color::transparent);
 
             //m_pshaderBlend3, ptextureDst, ptextureSrc);
+
+            //auto rectangleOutput = ptexturesiteOutput->output_placement();
 
             for (auto pgpulayer: *pgpulayera)
             {
 
-               if (iLayer == 1)
-               {
+               //if (iLayer == 1)
+               //{
                   //continue;
                   //information("What happened to the 3D Layer?");
-               }
+               //}
 
 
                   //::cast<::gpu_opengl::texture> ptextureSrc = pgpulayer->texture();
@@ -3757,9 +4172,15 @@ void main() {
 
                   //::cast<::gpu_opengl::texture> ptextureSrc = pgpulayer->texture();
 
-                  auto ptextureSrc = pgpulayer->texture(false);
+                  auto ptexturesiteSrc = pgpulayer->texture(false);
 
-                  m_pshaderBlend3->bind_source(nullptr, ptextureSrc, 0);
+                  //::cast < ::gpu_directx12::texture > ptextureSrc = ptexturesiteSrc->gpu_texture();
+                  auto ptextureSrc = ptexturesiteSrc->gpu_texture();
+
+                  ptextureSrc->set_state(pgpucommandbuffer, ::gpu::e_texture_state_shader_read);
+
+
+                  m_pshaderBlend3->bind_source(pgpucommandbuffer, ptexturesiteSrc, 0);
 
                   //ptextureSrc->_new_state(
                   //   pcommandbuffer,
@@ -3768,21 +4189,60 @@ void main() {
                   //   VK_PIPELINE_STAGE_FRAGMENT_SHADER_BIT
                   //);
 
-                  auto r = ptextureSrc->rectangle();
+                  auto rectangleInput = ptexturesiteSrc->input_placement();
 
-                  ::i32 h = r.height();
+                  auto rectangleSourceOutput = ptexturesiteSrc->output_placement();
 
-                  ::i32 iH = ptextureDst->height();
+                  //::f32_rectangle rectangleOutput = rectangleSourceOutput;
 
-                  r.top = iH - r.bottom;
+                  //::f32_size sizeSrc = ptexturesiteSrc->size();
 
-                  r.bottom = r.top + h;
+                  ::f32_size sizeSrcRaw = ptexturesiteSrc->raw_size();
 
-                  pgpucommandbuffer->set_viewport(r);
+                  //::i32 h = r.height();
 
-                  pgpucommandbuffer->set_scissor(r);
+                  //::i32 iH = ptextureDst->height();
+
+                  //r.top = iH - r.bottom;
+
+                  //r.bottom = r.top + h;
+
+                  pgpucommandbuffer->set_viewport(rectangleSourceOutput, sizeSrcRaw);
+
+                  pgpucommandbuffer->set_scissor(rectangleSourceOutput, sizeSrcRaw);
+
+                  
+
+                 /* float uLeft =
+                     100.0f / 1920.0f;
+
+                  float uRight =
+                     1380.0f / 1920.0f;
+
+                  float vBottom =
+                     (1080.0f - 800.0f) / 1080.0f;
+
+                  float vTop =
+                     (1080.0f - 80.0f) / 1080.0f;*/
+
+                  //auto left = rectangleOutput.left / sizeSrcRaw.cx;
+                  //auto bottom = (sizeSrcRaw.cy - rectangleOutput.bottom) / sizeSrcRaw.cy;
+                  //auto right = rectangleOutput.right / sizeSrcRaw.cx;
+                  //auto top = (sizeSrcRaw.cy - rectangleOutput.top) / sizeSrcRaw.cy;
+
+                  //auto left = 0.0f;
+                  //auto bottom = (sizeSrcRaw.cy - sizeSrc.cy) / sizeSrcRaw.cy;
+                  //auto right = sizeSrc.cx / sizeSrcRaw.cx;
+                  //auto top = 1.0f;
+                  //m_pshaderBlend3->set_impact_quad(sequence4("quad", quad);
+                  //::floating_sequence4 quad{ left, bottom, right, top };
+
+                  m_pshaderBlend3->set_impact_quad(rectangleInput, sizeSrcRaw);
+
 
                   //m_pmodelbufferDummy->bind(pcommandbuffer);
+
+                  m_pshaderBlend3->push_properties(pgpucommandbuffer);
 
 
                   {
@@ -3885,11 +4345,24 @@ void main() {
             }
             pgpucommandbuffer->end_render();
 
-            defer_unbind_shader();
-            //m_pshaderBlend3->unbind(pcommandbuffer);
+            //defer_unbind_shader();
+            m_pshaderBlend3->unbind(pgpucommandbuffer);
          }
          //}
 
+         //pcommandbuffer->end_render();
+
+         for (auto pgpulayer : *pgpulayera)
+         {
+
+            auto ptexturesiteSrc = pgpulayer->texture(false);
+
+            //::cast<::gpu_directx12::texture> ptextureSrc = ptexturesiteSrc->gpu_texture();
+            auto ptextureSrc = ptexturesiteSrc->gpu_texture();
+
+            ptextureSrc->set_state(pgpucommandbuffer, ::gpu::e_texture_state_color_attachment);
+
+         }
 
          ////::cast <texture > ptextureDst = ptextureTarget;
          //{
@@ -3911,7 +4384,7 @@ void main() {
          //}
 
 
-      }
+      //}
 
 
       //::gpu::context::merge_layers(ptextureTarget, playera);
@@ -3980,6 +4453,21 @@ void main() {
 
       ::gpu::set_current_layer(pgpulayer);
 
+      auto ptexturesite = pgpulayer->texture(true);
+
+      ptexturesite->m_pointInput = m_pointInput;
+
+      ptexturesite->m_pointOutput = m_pointOutput;
+
+      if (ptexturesite->m_pgputextureSite->m_textureattributes.m_sizeRaw.is_empty())
+      {
+
+         ptexturesite->m_pgputextureSite->m_textureattributes.m_sizeRaw = ptexturesite->m_pgputextureSite->m_textureattributes.m_size;
+
+      }
+
+      ptexturesite->m_pgputextureSite->m_textureattributes.m_size = m_size;
+
       if (m_pgpucompositor)
       {
 
@@ -4004,9 +4492,13 @@ void main() {
 
       }
 
-      ::cast<command_buffer> pcommandbuffer = ::gpu::current_command_buffer();
+      if (!pgpulayer->m_bExternalRendering)
+      {
 
-      pgpulayer->m_pgpufence = pcommandbuffer->insert_gpu_fence(true);
+         ::cast<command_buffer> pcommandbuffer = ::gpu::current_command_buffer();
+         pgpulayer->m_pgpufence = pcommandbuffer->insert_gpu_fence(true);
+
+      }
 
       //auto ptextureTarget = pgpulayer->texture();
 
@@ -4285,27 +4777,55 @@ void main() {
 
       auto pmodelbufferFullscreenQuad = createø <::gpu::model_buffer>();
       
-      pmodelbufferFullscreenQuad->sequence2_uv_create_fullscreen_quad(this);
+      pmodelbufferFullscreenQuad->sequence2_uv_create_fullscreen_quad(this, {}, {}, false);
    
       return ::transfer(pmodelbufferFullscreenQuad);
 
    }
 
 
-   ::gpu::model_buffer* context::sequence2_uv_fullscreen_quad_model_buffer(::gpu::layer* pgpulayer)
+   ::pointer <::gpu::model_buffer> context::create_sequence2_uv_rectangle_quad_model_buffer(::gpu::layer * pgpulayer, const ::i32_rectangle & rectangleQuad, const ::i32_size & sizeQuadRaw)
    {
 
-      if (!m_pmodelbufferFullscreenQuad)
-      {
-         
-         auto pmodelbuffer = ::transfer(this->create_sequence2_uv_fullscreen_quad_model_buffer(pgpulayer));
-         
-         m_pmodelbufferFullscreenQuad = ::transfer(pmodelbuffer);
-      }
+      auto pmodelbufferFullscreenQuad = createø <::gpu::model_buffer>();
 
-      return m_pmodelbufferFullscreenQuad;
+      pmodelbufferFullscreenQuad->sequence2_uv_create_fullscreen_quad(this, rectangleQuad, sizeQuadRaw, false);
+
+      return ::transfer(pmodelbufferFullscreenQuad);
 
    }
+
+
+   //::gpu::model_buffer* context::sequence2_uv_fullscreen_quad_model_buffer(::gpu::layer* pgpulayer)
+   //{
+
+   //   if (!m_pmodelbufferFullscreenQuad)
+   //   {
+   //      
+   //      auto pmodelbuffer = ::transfer(this->create_sequence2_uv_fullscreen_quad_model_buffer(pgpulayer));
+   //      
+   //      m_pmodelbufferFullscreenQuad = ::transfer(pmodelbuffer);
+   //   }
+
+   //   return m_pmodelbufferFullscreenQuad;
+
+   //}
+
+
+   //::gpu::model_buffer * context::sequence2_uv_rectangle_quad_model_buffer(::gpu::layer * pgpulayer, const ::i32_rectangle & rectangleQuad, const ::i32_rectangle & rectangleQuadRaw)
+   //{
+
+   //   if (!m_pmodelbufferFullscreenQuad)
+   //   {
+
+   //      auto pmodelbuffer = ::transfer(this->create_sequence2_uv_fullscreen_quad_model_buffer(pgpulayer));
+
+   //      m_pmodelbufferFullscreenQuad = ::transfer(pmodelbuffer);
+   //   }
+
+   //   return m_pmodelbufferFullscreenQuad;
+
+   //}
 
 
    //render_target* context::draw2d_render_target()
@@ -4456,7 +4976,7 @@ return {};
    }
 
 
-   ::pointer<::gpu::texture> context::rgba_from_b_g(::gpu::texture *pgputextureMetallic,
+   ::pointer<::gpu::texture_site> context::rgba_from_b_g(::gpu::texture *pgputextureMetallic,
                                                     ::gpu::texture *pgputextureRoughness)
    {
 
@@ -4511,9 +5031,11 @@ return {};
       ::i32 h2 = pgputextureRoughness->height();
       ASSERT(w1 == w2 && h1 == h2);
 
+      auto pgputexturesiteMetallicRoughness = create_newø<::gpu::texture_site>();
       auto pgputextureMetallicRoughness = createø<::gpu::texture>();
+      pgputexturesiteMetallicRoughness->m_pgputextureSite = pgputextureMetallicRoughness;
       ::i32_rectangle r(0, 0, w1, h1);
-      ::gpu::texture_attributes textureattributes(r);
+      ::gpu::texture_attributes textureattributes({w1, h1});
       textureattributes.m_iBitsPerChannel = 8;
       textureattributes.m_iChannelCount = 1;
       textureattributes.m_etexture = ::gpu::e_texture_image;
@@ -4525,7 +5047,7 @@ return {};
       ::gpu::texture_flags textureflags;
       textureflags.m_bRenderTarget = true;
       textureflags.m_bShaderResource = true;
-      pgputextureMetallicRoughness->initialize_texture(this, textureattributes, textureflags);
+      pgputextureMetallicRoughness->create_texture(this, textureattributes, textureflags);
 
                      ::bred::Timer timer;
 
@@ -4544,8 +5066,10 @@ return {};
       auto pbindingslotMetallic = m_pgpushaderRgbaFromB_G->binding_slot(0, 0, pbindingMetallic);
       auto pbindingslotRoughness = m_pgpushaderRgbaFromB_G->binding_slot(0, 1, pbindingRoughness);
 
-      pbindingslotMetallic->m_ptexture = pgputextureMetallic;
-      pbindingslotRoughness->m_ptexture = pgputextureRoughness;
+      construct_newø(pbindingslotMetallic->m_ptexturesite);
+      pbindingslotMetallic->m_ptexturesite->m_pgputextureSite= pgputextureMetallic;
+      construct_newø(pbindingslotRoughness->m_ptexturesite);
+      pbindingslotRoughness->m_ptexturesite->m_pgputextureSite = pgputextureRoughness;
 
       pgputextureMetallic->set_state(pgpucommandbuffer, ::gpu::e_texture_state_shader_read);
       pgputextureRoughness->set_state(pgpucommandbuffer, ::gpu::e_texture_state_shader_read);
@@ -4557,7 +5081,7 @@ return {};
          pgputextureMetallicRoughness->set_current_mip(iMip);
          pgputextureMetallicRoughness->set_current_layer(0);
 
-         pgpucommandbuffer->begin_render(m_pgpushaderRgbaFromB_G, pgputextureMetallicRoughness);
+         pgpucommandbuffer->begin_render(m_pgpushaderRgbaFromB_G, pgputexturesiteMetallicRoughness);
 
 
          m_pgpushaderRgbaFromB_G->set_i32("mipLevel", iMip);
@@ -4585,7 +5109,7 @@ return {};
       this->endSingleTimeCommands(pgpucommandbuffer);
 
 
-      return pgputextureMetallicRoughness;
+      return pgputexturesiteMetallicRoughness;
 
    }
 

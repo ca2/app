@@ -1,6 +1,6 @@
 // From core/user/user/user.cpp by camilo
 // on 2024-06-22 15:16 <3ThomasBorregaardSorensen!!
-#include "framework.h"
+#include "platform.h"
 #include "bred/user/user/user.h"
 #include "acme/platform/application.h"
 #include "acme/platform/session.h"

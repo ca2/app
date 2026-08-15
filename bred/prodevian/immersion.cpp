@@ -1,4 +1,4 @@
-#include "framework.h"
+#include "platform.h"
 // immersion.cpp
 #include "immersion.h"
 #include "bred/graphics3d/scene_base.h"

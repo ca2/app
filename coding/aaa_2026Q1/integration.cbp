@@ -361,11 +361,11 @@
 			<Option target="integration_integration"/>
 			<Option target="static_integration_integration"/>
 		</Unit>
-		<Unit filename="/home/camilo/cmake/integration/source/integration/integration/framework.cpp">
+		<Unit filename="/home/camilo/cmake/integration/source/integration/integration/platform.cpp">
 			<Option target="integration_integration"/>
 			<Option target="static_integration_integration"/>
 		</Unit>
-		<Unit filename="/home/camilo/cmake/integration/source/integration/integration/framework.h">
+		<Unit filename="/home/camilo/cmake/integration/source/integration/integration/platform.h">
 			<Option target="integration_integration"/>
 			<Option target="static_integration_integration"/>
 		</Unit>

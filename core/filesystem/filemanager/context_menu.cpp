@@ -1,4 +1,4 @@
-#include "framework.h"
+#include "platform.h"
 #include "aura/graphics/image/icon.h"
 #include "context_menu.h"
 

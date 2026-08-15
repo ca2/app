@@ -1,4 +1,4 @@
-#include "framework.h"
+#include "platform.h"
 //#include "GLFW/glfw3.h" 
 #include "mesh.h"
 #include "bred/gpu/command_buffer.h"
@@ -62,12 +62,12 @@ namespace graphics3d
 //      ::u32 specularNr = 1;
 //      ::u32 normalNr = 1;
 //      ::u32 heightNr = 1;
-      for (::u32 i = 0; i < m_texturea.size(); i++)
+      for (::u32 i = 0; i < m_texturesitea.size(); i++)
       {
          
-         auto ptexture = m_texturea[i];
+         auto ptexturesite = m_texturesitea[i];
          
-         pshader->bind_source(::gpu::current_command_buffer(), ptexture, i);
+         pshader->bind_source(::gpu::current_command_buffer(), ptexturesite, i);
 
          //glActiveTexture(GL_TEXTURE0 + i); // active proper texture unit before binding
          //// retrieve texture number (the N in diffuse_textureN)

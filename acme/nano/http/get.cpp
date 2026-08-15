@@ -5,7 +5,7 @@
 //  Created by Camilo Sasuke Thomas Borregaard Sørensen on 26/07/2023 23:05
 //  Copyright © 2023 Camilo Sasuke Tsumanuma. All rights reserved.
 //
-#include "framework.h"
+#include "platform.h"
 #include "get.h"
 #include "acme/nano/http/http.h"
 #include "acme/nano/nano.h"

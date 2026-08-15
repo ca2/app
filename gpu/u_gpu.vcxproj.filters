@@ -150,7 +150,7 @@
     <ClCompile Include="multimedia\multimedia.cpp">
       <Filter>Source Files\multimedia</Filter>
     </ClCompile>
-    <ClCompile Include="framework.cpp">
+    <ClCompile Include="platform.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="_.cpp">
@@ -263,7 +263,7 @@
     <ClInclude Include="multimedia\_.h">
       <Filter>Header Files\multimedia</Filter>
     </ClInclude>
-    <ClInclude Include="framework.h">
+    <ClInclude Include="platform.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="user\controller.h">

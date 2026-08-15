@@ -1,4 +1,4 @@
-#include "framework.h"
+#include "platform.h"
 ////#include "core/user/user/_component.h"
 #include "tool_tip_window.h"
 #include "tool_tip_tool.h"

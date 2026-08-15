@@ -1,5 +1,5 @@
 // Created by camilo on 2022-11-04 18:37 <3ThomasBorregaardSorensen!!
-#include "framework.h"
+#include "platform.h"
 #include <string.h>
 
 

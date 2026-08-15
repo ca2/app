@@ -25,6 +25,10 @@ namespace gpu
       virtual void initialize_gpu_semaphore(::gpu::context * pgpucontext);
 
 
+      virtual void wait(::gpu::queue * pqueue);
+      virtual void signal(::gpu::queue * pqueue);
+
+
    };
 
 

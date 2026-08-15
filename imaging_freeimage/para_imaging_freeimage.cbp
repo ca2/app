@@ -110,7 +110,7 @@
 			<Add directory="$(WORKSPACEDIR)/../../../time-$(#platform_modifier)/x64/$(TARGET_NAME)" />
 		</Linker>
 		<ExtraCommands>
-			<Add before="$compiler $options $includes -x c++-header framework.h -o framework.h.gch" />
+			<Add before="$compiler $options $includes -x c++-header platform.h -o platform.h.gch" />
 		</ExtraCommands>
 		<Unit filename="_.h" />
 		<Unit filename="_factory.cpp" />
@@ -118,10 +118,10 @@
 		<Unit filename="file_procedure.cpp" />
 		<Unit filename="file_procedure_ex1.cpp" />
 		<Unit filename="fimemory.h" />
-		<Unit filename="framework.cpp">
+		<Unit filename="platform.cpp">
 			<Option weight="0" />
 		</Unit>
-		<Unit filename="framework.h">
+		<Unit filename="platform.h">
 			<Option compile="1" />
 			<Option weight="0" />
 			<Option compiler="clang" use="1" buildCommand="$compiler $options $includes -x c++-header -c $file -o $object" />

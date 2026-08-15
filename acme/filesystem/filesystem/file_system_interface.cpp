@@ -1,7 +1,7 @@
 // Created by camilo on 2025-10-19 16:53 <3ThomasBorregaardSørensen!!
 // From programming by camilo on 2025-10-19 17:28 <3ThomasBorregaardSørensen!! ThomasKanGodLideTalFem.
 // From programming by camilo on 2025-10-19 17:34 <3ThomasBorregaardSørensen!! ThomasKanGodLideTalFem.
-#include "framework.h"
+#include "platform.h"
 #include "directory_system.h"
 #include "file_system_interface.h"
 #include "file_system.h"

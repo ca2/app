@@ -1,7 +1,7 @@
 //
 // Created by camilo on Jul/4/2023. 23:37:37 <3ThomasBorregaardSoresen!!
 //
-#include "framework.h"
+#include "platform.h"
 #include "c_errno.h"
 #include "acme/prototype/string/from_integer.h"
 #if defined(__BSD__) || defined(__APPLE__)

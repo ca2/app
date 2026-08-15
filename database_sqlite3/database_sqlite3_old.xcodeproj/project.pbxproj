@@ -17,14 +17,14 @@
 		C024D4901668E03393697147 /* _.h in Headers */ = {isa = PBXBuildFile; fileRef = 345AE98831C6B7934918F98C /* _.h */; };
 		3FB4655710AF5DC236DAC0D9 /* database.h in Headers */ = {isa = PBXBuildFile; fileRef = A4BF99FA4B5BA14B95FE8F69 /* database.h */; };
 		137A7F3DB06BF465BC7BE6B3 /* factory_exchange.h in Headers */ = {isa = PBXBuildFile; fileRef = E4B49B1103A901D35EF6A692 /* factory_exchange.h */; };
-		F74C0399B1F4F5C95F6871AF /* framework.h in Headers */ = {isa = PBXBuildFile; fileRef = 67ACF19CE9305A766B052AEE /* framework.h */; };
+		F74C0399B1F4F5C95F6871AF /* platform.h in Headers */ = {isa = PBXBuildFile; fileRef = 67ACF19CE9305A766B052AEE /* platform.h */; };
 		1F4EE4F2D306D2F6E304F238 /* dataset.h in Headers */ = {isa = PBXBuildFile; fileRef = 782CB3D7DB523073E5BCAE3E /* dataset.h */; };
 		93822313DEE21770CA16A7A4 /* _2.h in Headers */ = {isa = PBXBuildFile; fileRef = 252DE0A06A093B0842FA5552 /* _2.h */; };
 		2E6D3FB3D8135810E5E4E2A4 /* _.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 832B3C5A2F3C6A00A4D906DA /* _.cpp */; };
 		78A27FB82132ADB5E419D545 /* database.cpp in Sources */ = {isa = PBXBuildFile; fileRef = E0FEC6A5D5A9B7520805C989 /* database.cpp */; };
-		539F51A7D6467295CC2A9DAE /* framework.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 25FED2A9A4BA5B748944DA4A /* framework.cpp */; };
+		539F51A7D6467295CC2A9DAE /* platform.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 25FED2A9A4BA5B748944DA4A /* platform.cpp */; };
 		55C62FBC3B0D60E240E09737 /* _factory.cpp in Sources */ = {isa = PBXBuildFile; fileRef = C5748A49EA4746BA30406915 /* _factory.cpp */; };
-		B8994B5A4B964FB224849B76 /* framework.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 25FED2A9A4BA5B748944DA4A /* framework.cpp */; };
+		B8994B5A4B964FB224849B76 /* platform.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 25FED2A9A4BA5B748944DA4A /* platform.cpp */; };
 		1454A0A0E9AA8C477DDE135E /* factory_exchange.h in Headers */ = {isa = PBXBuildFile; fileRef = E4B49B1103A901D35EF6A692 /* factory_exchange.h */; };
 		E72E13AE180E65E896854256 /* dataset.h in Headers */ = {isa = PBXBuildFile; fileRef = 782CB3D7DB523073E5BCAE3E /* dataset.h */; };
 		978F6C53117BFE031412450A /* database.cpp in Sources */ = {isa = PBXBuildFile; fileRef = E0FEC6A5D5A9B7520805C989 /* database.cpp */; };
@@ -33,7 +33,7 @@
 		EEB9E73BCDB8457765EC9615 /* _2.h in Headers */ = {isa = PBXBuildFile; fileRef = 252DE0A06A093B0842FA5552 /* _2.h */; };
 		0D849B25EF665593860AEE5A /* _database_sqlite3.h in Headers */ = {isa = PBXBuildFile; fileRef = B65E879E1F1F4C7D395916C4 /* _database_sqlite3.h */; };
 		827E207610D655FA8DEFA586 /* _factory.cpp in Sources */ = {isa = PBXBuildFile; fileRef = C5748A49EA4746BA30406915 /* _factory.cpp */; };
-		69644733408EF0D395AA948F /* framework.h in Headers */ = {isa = PBXBuildFile; fileRef = 67ACF19CE9305A766B052AEE /* framework.h */; };
+		69644733408EF0D395AA948F /* platform.h in Headers */ = {isa = PBXBuildFile; fileRef = 67ACF19CE9305A766B052AEE /* platform.h */; };
 		5298FAEAFC6E9A9D40708401 /* _.h in Headers */ = {isa = PBXBuildFile; fileRef = 345AE98831C6B7934918F98C /* _.h */; };
 /* End PBXBuildFile section */
 
@@ -77,7 +77,7 @@
 		0D883CFD2DFF1CD60CB596FA /* libsqlite3.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libsqlite3.tbd; path = usr/lib/libsqlite3.tbd; sourceTree = SDKROOT; };
 		414ADEB29DFA8B1496F89178 /* lib.a */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.dylib"; includeInIndex = 0; name = lib.a; path = libios_database_sqlite3.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		608780420B5E5BED5BC566CF /* lib.dylib */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.dylib"; includeInIndex = 0; name = lib.dylib; path = libdatabase_sqlite3.dylib; sourceTree = BUILT_PRODUCTS_DIR; };
-		25FED2A9A4BA5B748944DA4A /* framework.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = framework.cpp; sourceTree = "<group>"; };
+		25FED2A9A4BA5B748944DA4A /* platform.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = platform.cpp; sourceTree = "<group>"; };
 		E4B49B1103A901D35EF6A692 /* factory_exchange.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = factory_exchange.h; sourceTree = "<group>"; };
 		782CB3D7DB523073E5BCAE3E /* dataset.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = dataset.h; sourceTree = "<group>"; };
 		E0FEC6A5D5A9B7520805C989 /* database.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = database.cpp; sourceTree = "<group>"; };
@@ -86,7 +86,7 @@
 		252DE0A06A093B0842FA5552 /* _2.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = _2.h; sourceTree = "<group>"; };
 		B65E879E1F1F4C7D395916C4 /* _database_sqlite3.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = _database_sqlite3.h; sourceTree = "<group>"; };
 		C5748A49EA4746BA30406915 /* _factory.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = _factory.cpp; sourceTree = "<group>"; };
-		67ACF19CE9305A766B052AEE /* framework.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = framework.h; sourceTree = "<group>"; };
+		67ACF19CE9305A766B052AEE /* platform.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = platform.h; sourceTree = "<group>"; };
 		345AE98831C6B7934918F98C /* _.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = _.h; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -159,8 +159,8 @@
 				782CB3D7DB523073E5BCAE3E /* dataset.h */,
 				C5748A49EA4746BA30406915 /* _factory.cpp */,
 				E4B49B1103A901D35EF6A692 /* factory_exchange.h */,
-				25FED2A9A4BA5B748944DA4A /* framework.cpp */,
-				67ACF19CE9305A766B052AEE /* framework.h */,
+				25FED2A9A4BA5B748944DA4A /* platform.cpp */,
+				67ACF19CE9305A766B052AEE /* platform.h */,
 			);
 			name = database_sqlite3;
 			sourceTree = "<group>";
@@ -176,7 +176,7 @@
 				C024D4901668E03393697147 /* _.h in Headers */,
 				3FB4655710AF5DC236DAC0D9 /* database.h in Headers */,
 				137A7F3DB06BF465BC7BE6B3 /* factory_exchange.h in Headers */,
-				F74C0399B1F4F5C95F6871AF /* framework.h in Headers */,
+				F74C0399B1F4F5C95F6871AF /* platform.h in Headers */,
 				1F4EE4F2D306D2F6E304F238 /* dataset.h in Headers */,
 				93822313DEE21770CA16A7A4 /* _2.h in Headers */,
 			);
@@ -190,7 +190,7 @@
 				5298FAEAFC6E9A9D40708401 /* _.h in Headers */,
 				03C444F3E89B004C7CD3C6EB /* database.h in Headers */,
 				1454A0A0E9AA8C477DDE135E /* factory_exchange.h in Headers */,
-				69644733408EF0D395AA948F /* framework.h in Headers */,
+				69644733408EF0D395AA948F /* platform.h in Headers */,
 				E72E13AE180E65E896854256 /* dataset.h in Headers */,
 				EEB9E73BCDB8457765EC9615 /* _2.h in Headers */,
 			);
@@ -296,7 +296,7 @@
 			files = (
 				2E6D3FB3D8135810E5E4E2A4 /* _.cpp in Sources */,
 				78A27FB82132ADB5E419D545 /* database.cpp in Sources */,
-				539F51A7D6467295CC2A9DAE /* framework.cpp in Sources */,
+				539F51A7D6467295CC2A9DAE /* platform.cpp in Sources */,
 				55C62FBC3B0D60E240E09737 /* _factory.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -307,7 +307,7 @@
 			files = (
 				C8A5714146BD2EDDA518C582 /* _.cpp in Sources */,
 				978F6C53117BFE031412450A /* database.cpp in Sources */,
-				B8994B5A4B964FB224849B76 /* framework.cpp in Sources */,
+				B8994B5A4B964FB224849B76 /* platform.cpp in Sources */,
 				827E207610D655FA8DEFA586 /* _factory.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -390,7 +390,7 @@
 				GCC_NO_COMMON_BLOCKS = YES;
 				GCC_OPTIMIZATION_LEVEL = 0;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
-				GCC_PREFIX_HEADER = framework.h;
+				GCC_PREFIX_HEADER = platform.h;
 				GCC_PREPROCESSOR_DEFINITIONS = (
 					"$(inherited)",
 				);
@@ -457,7 +457,7 @@
 				GCC_INCREASE_PRECOMPILED_HEADER_SHARING = NO;
 				GCC_NO_COMMON_BLOCKS = YES;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
-				GCC_PREFIX_HEADER = framework.h;
+				GCC_PREFIX_HEADER = platform.h;
 				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
 				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
 				GCC_WARN_UNDECLARED_SELECTOR = YES;

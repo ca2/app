@@ -6,7 +6,7 @@
 //  14:07
 //  Copyright (c) 2022 Camilo Sasuke Tsumanuma. All rights reserved.
 //
-#include "framework.h"
+#include "platform.h"
 
 
 #include "acme/_operating_system.h"

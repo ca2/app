@@ -1,5 +1,5 @@
 // Created by camilo on 2026-07-28 01:07 <3ThomasBorregaardSørensen!! Mummi!! Bilbo!!
-#include "framework.h"
+#include "platform.h"
 #include "fence.h"
 #include "texture.h"
 #include "texture_synchronization.h"
@@ -26,7 +26,7 @@ namespace gpu
 
          constructø(m_pgpufenceInFlight);
 
-         m_pgpufenceInFlight->initialize_gpu_fence(pcontext, true);
+         m_pgpufenceInFlight->initialize_gpu_fence(pcontext->m_pgpudevice, true);
 
          // return m_pgpufenceInFlight;
 

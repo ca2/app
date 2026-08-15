@@ -1,6 +1,6 @@
 // From V0idsEmbrace@Twich continuum project
 // by camilo on 2025-05-17 20:12 <3ThomasBorregaardSorensen!!
-#include "framework.h"
+#include "platform.h"
 #include "camera.h"
 #include "bred/gpu/context.h"
 #include "bred/graphics3d/_functions.h"
@@ -81,10 +81,9 @@ namespace graphics3d
    void camera::calculate_projection(::floating_matrix4 & matrixProjection)
    {
 
-      auto rectangleGpuContext = m_pengine->gpu_context()->get_placement();
+      auto size = m_pengine->gpu_context()->size();
 
-      m_fAspectRatio =
-         (::f32)rectangleGpuContext.width() / (::f32)rectangleGpuContext.height();
+      m_fAspectRatio = size.aspect_ratio<::f32>();
 
       m_pengine->calculate_projection(matrixProjection, *this);
 

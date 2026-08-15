@@ -1,7 +1,7 @@
 // created by Camilo <3CamiloSasukeThomasBorregaardSoerensen
 // recreated by Camilo 2021-01-28 22:35 <3TBS, Mummi and bilbo!!
 // Adapted by Camilo for android 2022-01-05 04:36 <3TBS (Thomas likes number 5), Mummi and bilbo!!
-#include "framework.h"
+#include "platform.h"
 #include "windowing.h"
 #include "host_interaction.h"
 #include "acme/parallelization/synchronous_lock.h"

@@ -71,7 +71,7 @@
 		<Compiler>
 			<Add option="-fPIC" />
 			<Add option="-std=c++17" />
-			<Add option='-include &quot;framework.h&quot;' />
+			<Add option='-include &quot;platform.h&quot;' />
 			<Add option="-fexceptions" />
 			<Add option="-fnon-call-exceptions" />
 			<Add option="-fno-pie" />
@@ -117,10 +117,10 @@
 		<Unit filename="document.h" />
 		<Unit filename="frame.cpp" />
 		<Unit filename="frame.h" />
-		<Unit filename="framework.cpp">
-			<Option compiler="gcc" use="1" buildCommand="$compiler $options $includes -x c++-header framework.h -o framework.h.gch" />
+		<Unit filename="platform.cpp">
+			<Option compiler="gcc" use="1" buildCommand="$compiler $options $includes -x c++-header platform.h -o platform.h.gch" />
 		</Unit>
-		<Unit filename="framework.h">
+		<Unit filename="platform.h">
 			<Option compile="1" />
 			<Option weight="0" />
 			<Option compiler="clang" use="1" buildCommand="$compiler $options $includes -x c++-header -c $file -o $object" />

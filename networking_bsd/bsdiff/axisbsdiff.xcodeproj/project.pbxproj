@@ -22,7 +22,7 @@
 		0610AE78349BDB9100DAFE2D /* ConversionType.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 85D9C435CA9E3930609C268F /* ConversionType.cpp */; };
 		6373469B073F021F2A4E4BCA /* ConversionUINT16.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 5B4A86450AACC20EBDF70FAE /* ConversionUINT16.cpp */; };
 		BAC16A14B9EC292DFD8FC631 /* FreeImage.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 294CD5B1B835664ED42EF098 /* FreeImage.cpp */; };
-		9AC64A592497EF1C67EBE903 /* FreeImageFramework.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 1D4A614AA9C7797E5AE06CD4 /* FreeImageFramework.cpp */; };
+		9AC64A592497EF1C67EBE903 /* FreeImageplatform.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 1D4A614AA9C7797E5AE06CD4 /* FreeImageplatform.cpp */; };
 		2A3435AA5986F883FDD27215 /* FreeImageIO.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 5D1B7DC8580D975D2B3DAA67 /* FreeImageIO.cpp */; };
 		B6AFD2C09B3379895DB3F27E /* GetType.cpp in Sources */ = {isa = PBXBuildFile; fileRef = F2185089726EAAC42A350C12 /* GetType.cpp */; };
 		C68901E0E9D93C69D9E5BA3D /* Halftoning.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 360A534B054103F436E92DF3 /* Halftoning.cpp */; };
@@ -264,7 +264,7 @@
 		B61A93C590E28421F3314128 /* ImfFloatAttribute.cpp in Sources */ = {isa = PBXBuildFile; fileRef = CF7DAC3DFC05AAC6CCA23007 /* ImfFloatAttribute.cpp */; };
 		60A97EAFE5995126FE6D7E45 /* ImfFramebuffer.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 66A7D1D436FF1D63F16BBC0D /* ImfFramebuffer.cpp */; };
 		BB9F80DAD9DABA9571BA8CC5 /* ImfFramesPerSecond.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 024306F91009A4330791CF8B /* ImfFramesPerSecond.cpp */; };
-		97DF620BF40AEF9A5BEDA5AA /* ImfFramework.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D09DFD1FEC591B04379C76B3 /* ImfFramework.cpp */; };
+		97DF620BF40AEF9A5BEDA5AA /* Imfplatform.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D09DFD1FEC591B04379C76B3 /* Imfplatform.cpp */; };
 		FE77200D6AE6DBC16B129BD2 /* ImfHeader.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 829D3A57CE9838A2A94F0DAB /* ImfHeader.cpp */; };
 		ED2E388492075F58A178E81E /* ImfHuf.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 8DC9A4DA519D0D1237BC80C2 /* ImfHuf.cpp */; };
 		37C7F4E02A46FA330AD55CF8 /* ImfInputFile.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 129B23A7782331BCC23C3D67 /* ImfInputFile.cpp */; };
@@ -321,7 +321,7 @@
 		BA43696F2A2015EE79976405 /* Utilities.cpp in Sources */ = {isa = PBXBuildFile; fileRef = E98A5212250ED6FBC80D63A7 /* Utilities.cpp */; };
 		2197A5DD07AD626A640C6E1A /* lib_ca2zlib.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 26E6E6BB6F35069D394F0306 /* lib_ca2zlib.dylib */; };
 		7FF44740F12CD84DF9399AED /* CacheFile.h in Headers */ = {isa = PBXBuildFile; fileRef = C2F143D3F781EFC2CD6D7EA7 /* CacheFile.h */; };
-		6003904338513215B674EEEF /* FreeImageFramework.h in Headers */ = {isa = PBXBuildFile; fileRef = EAE1BBBCFAE3FBB99E39666C /* FreeImageFramework.h */; };
+		6003904338513215B674EEEF /* FreeImageplatform.h in Headers */ = {isa = PBXBuildFile; fileRef = EAE1BBBCFAE3FBB99E39666C /* FreeImageplatform.h */; };
 		10FF720238F159D94F9B3DAD /* PSDParser.h in Headers */ = {isa = PBXBuildFile; fileRef = D433103C5664D92C97A83D14 /* PSDParser.h */; };
 		3A57BE647C8C9A7E672B648D /* FreeImage.h in Headers */ = {isa = PBXBuildFile; fileRef = C2EDE8B3809914EA77A22C8A /* FreeImage.h */; };
 		F66B1968D4053BFEB8BC147E /* FreeImageIO.h in Headers */ = {isa = PBXBuildFile; fileRef = EA2C8423328F2E50A4FA726B /* FreeImageIO.h */; };
@@ -386,7 +386,7 @@
 		8BE1B396B0C0A2760AC3E063 /* tcd.h in Headers */ = {isa = PBXBuildFile; fileRef = 8C6135901FDFD51EE24BBFC9 /* tcd.h */; };
 		5191A2751FDA6C329B5EA729 /* tgt.h in Headers */ = {isa = PBXBuildFile; fileRef = 6EC9B0BC14249EF86A4E2CCF /* tgt.h */; };
 		4B562223BF0A35438E74284B /* png.h in Headers */ = {isa = PBXBuildFile; fileRef = F5775B62B336B1D5BBAE8BA2 /* png.h */; };
-		31A155A83CC68A49CDC110B5 /* png_framework.h in Headers */ = {isa = PBXBuildFile; fileRef = 61AC0CC516F2803FB9617730 /* png_framework.h */; };
+		31A155A83CC68A49CDC110B5 /* png_platform.h in Headers */ = {isa = PBXBuildFile; fileRef = 61AC0CC516F2803FB9617730 /* png_platform.h */; };
 		134D60CE2223614B97160581 /* pngconf.h in Headers */ = {isa = PBXBuildFile; fileRef = 5B1E13CCC02B309B2F8AE106 /* pngconf.h */; };
 		594398B45A4B203F936F72A7 /* pngpriv.h in Headers */ = {isa = PBXBuildFile; fileRef = 1939A5F6DCD712AF3452C2BA /* pngpriv.h */; };
 		E68C8828A8542626ED9F530B /* defines.h in Headers */ = {isa = PBXBuildFile; fileRef = 51DB3C0C30971CF4A746A317 /* defines.h */; };
@@ -444,7 +444,7 @@
 		A5C2368664109A660E9290C7 /* ImfFloatAttribute.h in Headers */ = {isa = PBXBuildFile; fileRef = 64BFE69EBBBDC431C54A79A8 /* ImfFloatAttribute.h */; };
 		E890492197E5B0401C99578C /* ImfFramebuffer.h in Headers */ = {isa = PBXBuildFile; fileRef = 875EC58A984D8B8DAED4FBE1 /* ImfFramebuffer.h */; };
 		563A7FA36131A0EB7CAA4A61 /* ImfFramesPerSecond.h in Headers */ = {isa = PBXBuildFile; fileRef = 2C93C7FB32D84D74FA100A1A /* ImfFramesPerSecond.h */; };
-		08968513FDED4F63E4393084 /* ImfFramework.h in Headers */ = {isa = PBXBuildFile; fileRef = 2455E1930C2DC1B0F7FCBB96 /* ImfFramework.h */; };
+		08968513FDED4F63E4393084 /* Imfplatform.h in Headers */ = {isa = PBXBuildFile; fileRef = 2455E1930C2DC1B0F7FCBB96 /* Imfplatform.h */; };
 		7E9ED62BDB7C2508E423949E /* ImfHeader.h in Headers */ = {isa = PBXBuildFile; fileRef = D7F34B4CE33EA417AEB7391F /* ImfHeader.h */; };
 		BAFB378B7DA768DF0DAD9466 /* ImfHuf.h in Headers */ = {isa = PBXBuildFile; fileRef = B59C0438D103CFD08C73100F /* ImfHuf.h */; };
 		161E57F60EA3C22517F8BC97 /* ImfInputFile.h in Headers */ = {isa = PBXBuildFile; fileRef = 66F7D6EB1D023AC0D696D351 /* ImfInputFile.h */; };
@@ -583,8 +583,8 @@
 		85D9C435CA9E3930609C268F /* ConversionType.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = ConversionType.cpp; sourceTree = "<group>"; };
 		5B4A86450AACC20EBDF70FAE /* ConversionUINT16.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = ConversionUINT16.cpp; sourceTree = "<group>"; };
 		294CD5B1B835664ED42EF098 /* FreeImage.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = FreeImage.cpp; sourceTree = "<group>"; };
-		1D4A614AA9C7797E5AE06CD4 /* FreeImageFramework.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = FreeImageFramework.cpp; sourceTree = "<group>"; };
-		EAE1BBBCFAE3FBB99E39666C /* FreeImageFramework.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FreeImageFramework.h; sourceTree = "<group>"; };
+		1D4A614AA9C7797E5AE06CD4 /* FreeImageplatform.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = FreeImageplatform.cpp; sourceTree = "<group>"; };
+		EAE1BBBCFAE3FBB99E39666C /* FreeImageplatform.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FreeImageplatform.h; sourceTree = "<group>"; };
 		5D1B7DC8580D975D2B3DAA67 /* FreeImageIO.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = FreeImageIO.cpp; sourceTree = "<group>"; };
 		F2185089726EAAC42A350C12 /* GetType.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = GetType.cpp; sourceTree = "<group>"; };
 		360A534B054103F436E92DF3 /* Halftoning.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Halftoning.cpp; sourceTree = "<group>"; };
@@ -822,7 +822,7 @@
 		D59271070C5B2FA6168750BA /* png.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = png.c; sourceTree = "<group>"; };
 		F5775B62B336B1D5BBAE8BA2 /* png.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = png.h; sourceTree = "<group>"; };
 		291F5514B227B02E96BC63A9 /* png_framework.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = png_framework.c; sourceTree = "<group>"; };
-		61AC0CC516F2803FB9617730 /* png_framework.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = png_framework.h; sourceTree = "<group>"; };
+		61AC0CC516F2803FB9617730 /* png_platform.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = png_platform.h; sourceTree = "<group>"; };
 		5B1E13CCC02B309B2F8AE106 /* pngconf.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = pngconf.h; sourceTree = "<group>"; };
 		3A98A04FC5FA8D1DF399A5A1 /* pngerror.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = pngerror.c; sourceTree = "<group>"; };
 		01EF45C26AEC620ADF4F7A7F /* pngget.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = pngget.c; sourceTree = "<group>"; };
@@ -965,8 +965,8 @@
 		875EC58A984D8B8DAED4FBE1 /* ImfFramebuffer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ImfFramebuffer.h; sourceTree = "<group>"; };
 		024306F91009A4330791CF8B /* ImfFramesPerSecond.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = ImfFramesPerSecond.cpp; sourceTree = "<group>"; };
 		2C93C7FB32D84D74FA100A1A /* ImfFramesPerSecond.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ImfFramesPerSecond.h; sourceTree = "<group>"; };
-		D09DFD1FEC591B04379C76B3 /* ImfFramework.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = ImfFramework.cpp; sourceTree = "<group>"; };
-		2455E1930C2DC1B0F7FCBB96 /* ImfFramework.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ImfFramework.h; sourceTree = "<group>"; };
+		D09DFD1FEC591B04379C76B3 /* Imfplatform.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Imfplatform.cpp; sourceTree = "<group>"; };
+		2455E1930C2DC1B0F7FCBB96 /* Imfplatform.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Imfplatform.h; sourceTree = "<group>"; };
 		829D3A57CE9838A2A94F0DAB /* ImfHeader.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = ImfHeader.cpp; sourceTree = "<group>"; };
 		D7F34B4CE33EA417AEB7391F /* ImfHeader.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ImfHeader.h; sourceTree = "<group>"; };
 		8DC9A4DA519D0D1237BC80C2 /* ImfHuf.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = ImfHuf.cpp; sourceTree = "<group>"; };
@@ -1182,8 +1182,8 @@
 				85D9C435CA9E3930609C268F /* ConversionType.cpp */,
 				5B4A86450AACC20EBDF70FAE /* ConversionUINT16.cpp */,
 				294CD5B1B835664ED42EF098 /* FreeImage.cpp */,
-				1D4A614AA9C7797E5AE06CD4 /* FreeImageFramework.cpp */,
-				EAE1BBBCFAE3FBB99E39666C /* FreeImageFramework.h */,
+				1D4A614AA9C7797E5AE06CD4 /* FreeImageplatform.cpp */,
+				EAE1BBBCFAE3FBB99E39666C /* FreeImageplatform.h */,
 				5D1B7DC8580D975D2B3DAA67 /* FreeImageIO.cpp */,
 				F2185089726EAAC42A350C12 /* GetType.cpp */,
 				360A534B054103F436E92DF3 /* Halftoning.cpp */,
@@ -1462,7 +1462,7 @@
 				D59271070C5B2FA6168750BA /* png.c */,
 				F5775B62B336B1D5BBAE8BA2 /* png.h */,
 				291F5514B227B02E96BC63A9 /* png_framework.c */,
-				61AC0CC516F2803FB9617730 /* png_framework.h */,
+				61AC0CC516F2803FB9617730 /* png_platform.h */,
 				5B1E13CCC02B309B2F8AE106 /* pngconf.h */,
 				3A98A04FC5FA8D1DF399A5A1 /* pngerror.c */,
 				01EF45C26AEC620ADF4F7A7F /* pngget.c */,
@@ -1668,8 +1668,8 @@
 				875EC58A984D8B8DAED4FBE1 /* ImfFramebuffer.h */,
 				024306F91009A4330791CF8B /* ImfFramesPerSecond.cpp */,
 				2C93C7FB32D84D74FA100A1A /* ImfFramesPerSecond.h */,
-				D09DFD1FEC591B04379C76B3 /* ImfFramework.cpp */,
-				2455E1930C2DC1B0F7FCBB96 /* ImfFramework.h */,
+				D09DFD1FEC591B04379C76B3 /* Imfplatform.cpp */,
+				2455E1930C2DC1B0F7FCBB96 /* Imfplatform.h */,
 				829D3A57CE9838A2A94F0DAB /* ImfHeader.cpp */,
 				D7F34B4CE33EA417AEB7391F /* ImfHeader.h */,
 				8DC9A4DA519D0D1237BC80C2 /* ImfHuf.cpp */,
@@ -1840,7 +1840,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				7FF44740F12CD84DF9399AED /* CacheFile.h in Headers */,
-				6003904338513215B674EEEF /* FreeImageFramework.h in Headers */,
+				6003904338513215B674EEEF /* FreeImageplatform.h in Headers */,
 				10FF720238F159D94F9B3DAD /* PSDParser.h in Headers */,
 				3A57BE647C8C9A7E672B648D /* FreeImage.h in Headers */,
 				F66B1968D4053BFEB8BC147E /* FreeImageIO.h in Headers */,
@@ -1905,7 +1905,7 @@
 				8BE1B396B0C0A2760AC3E063 /* tcd.h in Headers */,
 				5191A2751FDA6C329B5EA729 /* tgt.h in Headers */,
 				4B562223BF0A35438E74284B /* png.h in Headers */,
-				31A155A83CC68A49CDC110B5 /* png_framework.h in Headers */,
+				31A155A83CC68A49CDC110B5 /* png_platform.h in Headers */,
 				134D60CE2223614B97160581 /* pngconf.h in Headers */,
 				594398B45A4B203F936F72A7 /* pngpriv.h in Headers */,
 				E68C8828A8542626ED9F530B /* defines.h in Headers */,
@@ -1963,7 +1963,7 @@
 				A5C2368664109A660E9290C7 /* ImfFloatAttribute.h in Headers */,
 				E890492197E5B0401C99578C /* ImfFramebuffer.h in Headers */,
 				563A7FA36131A0EB7CAA4A61 /* ImfFramesPerSecond.h in Headers */,
-				08968513FDED4F63E4393084 /* ImfFramework.h in Headers */,
+				08968513FDED4F63E4393084 /* Imfplatform.h in Headers */,
 				7E9ED62BDB7C2508E423949E /* ImfHeader.h in Headers */,
 				BAFB378B7DA768DF0DAD9466 /* ImfHuf.h in Headers */,
 				161E57F60EA3C22517F8BC97 /* ImfInputFile.h in Headers */,
@@ -2153,7 +2153,7 @@
 				0610AE78349BDB9100DAFE2D /* ConversionType.cpp in Sources */,
 				6373469B073F021F2A4E4BCA /* ConversionUINT16.cpp in Sources */,
 				BAC16A14B9EC292DFD8FC631 /* FreeImage.cpp in Sources */,
-				9AC64A592497EF1C67EBE903 /* FreeImageFramework.cpp in Sources */,
+				9AC64A592497EF1C67EBE903 /* FreeImageplatform.cpp in Sources */,
 				2A3435AA5986F883FDD27215 /* FreeImageIO.cpp in Sources */,
 				B6AFD2C09B3379895DB3F27E /* GetType.cpp in Sources */,
 				C68901E0E9D93C69D9E5BA3D /* Halftoning.cpp in Sources */,
@@ -2395,7 +2395,7 @@
 				B61A93C590E28421F3314128 /* ImfFloatAttribute.cpp in Sources */,
 				60A97EAFE5995126FE6D7E45 /* ImfFramebuffer.cpp in Sources */,
 				BB9F80DAD9DABA9571BA8CC5 /* ImfFramesPerSecond.cpp in Sources */,
-				97DF620BF40AEF9A5BEDA5AA /* ImfFramework.cpp in Sources */,
+				97DF620BF40AEF9A5BEDA5AA /* Imfplatform.cpp in Sources */,
 				FE77200D6AE6DBC16B129BD2 /* ImfHeader.cpp in Sources */,
 				ED2E388492075F58A178E81E /* ImfHuf.cpp in Sources */,
 				37C7F4E02A46FA330AD55CF8 /* ImfInputFile.cpp in Sources */,

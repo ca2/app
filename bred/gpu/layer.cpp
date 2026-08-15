@@ -1,5 +1,5 @@
 // Created by camilo on 2025-06-12 21:08 <3ThomasBorregaardSørensen!!
-#include "framework.h"
+#include "platform.h"
 #include "command_buffer.h"
 #include "context.h"
 #include "device.h"
@@ -7,6 +7,7 @@
 #include "renderer.h"
 #include "render_target.h"
 #include "texture.h"
+#include "texture_site.h"
 #include "bred/gpu/window_attachment.h"
 
 
@@ -126,6 +127,7 @@ namespace gpu
       m_iLayerIndex = iLayerIndex;
 
       m_bIncludeInFrameComposition = true;
+      m_bExternalRendering = false;
 
       if (iLayerIndex >= 3)
       {
@@ -265,18 +267,18 @@ namespace gpu
    }
 
 
-   ::pointer < texture >& layer::texture(bool bRenderTarget)
+   ::pointer < ::gpu::texture_site > & layer::texture(bool bRenderTarget)
    {
 
       auto iFrameIndex = m_iFrameIndex;
 
-      auto & ptexture = m_texturea.atø(iFrameIndex);
+      auto & ptexturesite = m_texturesitea.atø(iFrameIndex);
 
-      auto rectangle = m_pgpurenderer->m_pgpucontext->get_placement();
+      auto size = m_pgpurenderer->m_pgpucontext->size();
 
       auto sizeRaw = m_pgpurenderer->m_pgpucontext->m_sizeRaw;
 
-      if (rectangle.is_empty())
+      if (size.is_empty())
       {
 
          throw ::exception(error_wrong_state);
@@ -290,14 +292,14 @@ namespace gpu
 
       }
 
-      if (!ptexture
-         || rectangle != ptexture->m_textureattributes.m_rectangleTarget
-         || sizeRaw != ptexture->m_textureattributes.m_sizeRaw)
+      if (!ptexturesite || !ptexturesite->m_pgputextureSite || sizeRaw != ptexturesite->m_pgputextureSite->m_textureattributes.m_sizeRaw)
       {
 
-         m_pgpurenderer->defer_constructø(ptexture);
+         m_pgpurenderer->defer_construct_newø(ptexturesite);
 
-         ::gpu::texture_attributes textureattributes(rectangle);
+         m_pgpurenderer->defer_constructø(ptexturesite->m_pgputextureSite);
+
+         ::gpu::texture_attributes textureattributes(sizeRaw);
 
          ::gpu::texture_flags textureflags;
 
@@ -306,16 +308,87 @@ namespace gpu
          textureflags.m_bRenderTarget = bRenderTarget;
          textureflags.m_bTransferTarget = true;
          textureflags.m_bShaderResource = true;
+         textureflags.m_bWithDepth =
+            m_pgpurenderer->m_pgpucontext->m_escene == ::gpu::e_scene_3d;
 
          textureattributes.m_sizeRaw = sizeRaw;
 
-         ptexture->initialize_texture(m_pgpurenderer->m_pgpucontext, textureattributes, textureflags);
+         ptexturesite->m_pgputextureSite->create_texture(m_pgpurenderer->m_pgpucontext, textureattributes, textureflags);
 
       }
 
-      return ptexture;
+      ptexturesite->m_pgputextureSite->m_textureattributes.m_size = m_pgpurenderer->m_pgpucontext->size();
+      ptexturesite->m_pointInput = m_pgpurenderer->m_pgpucontext->input_origin();
+      ptexturesite->m_pointOutput = m_pgpurenderer->m_pgpucontext->output_origin();
+
+      return ptexturesite;
 
    }
+
+
+   //::pointer < texture_site >& layer::target_texture(bool bRenderTarget)
+   //{
+
+   //   auto iFrameIndex = m_iFrameIndex;
+
+   //   auto & ptexturesite = m_texturesiteaTarget[]
+
+   //   if(!)
+
+   //   auto ptexturesite = create_newø<texture_site>();
+
+   //   ptexturesiste->m_pgputexture = ptexture
+
+   //   //auto iFrameIndex = m_iFrameIndex;
+
+   //   //auto & ptexture = m_texturea.atø(iFrameIndex);
+
+   //   //auto size = m_pgpurenderer->m_pgpucontext->size();
+
+   //   //auto sizeRaw = m_pgpurenderer->m_pgpucontext->m_sizeRaw;
+
+   //   //if (size.is_empty())
+   //   //{
+
+   //   //   throw ::exception(error_wrong_state);
+
+   //   //}
+
+   //   //if (sizeRaw.is_empty())
+   //   //{
+
+   //   //   throw ::exception(error_wrong_state);
+
+   //   //}
+
+   //   //if (!ptexture || sizeRaw != ptexture->m_textureattributes.m_sizeRaw)
+   //   //{
+
+   //   //   m_pgpurenderer->defer_constructø(ptexture);
+
+   //   //   ::gpu::texture_attributes textureattributes(sizeRaw);
+
+   //   //   ::gpu::texture_flags textureflags;
+
+   //   //   //textureflags.m_bRenderTarget = true;
+   //   //   //textureflags.m_bRenderTarget = false;
+   //   //   textureflags.m_bRenderTarget = bRenderTarget;
+   //   //   textureflags.m_bTransferTarget = true;
+   //   //   textureflags.m_bShaderResource = true;
+
+   //   //   textureattributes.m_sizeRaw = sizeRaw;
+
+   //   //   ptexture->create_texture(m_pgpurenderer->m_pgpucontext, textureattributes, textureflags);
+
+   //   //}
+
+   //   //ptexture->m_textureattributes.m_size = m_pgpurenderer->m_pgpucontext->size();
+   //   ////ptexture->m_textureattributes.m_rectangleSource = m_pgpurenderer->m_pgpucontext->source_placement();
+   //   ////ptexture->m_textureattributes.m_rectangleTarget2 = m_pgpurenderer->m_pgpucontext->target_placement();
+
+   //   //return ptexture;
+
+   //}
 
 
    //::pointer < ::gpu::texture > layer::composition_texture()
@@ -328,23 +401,23 @@ namespace gpu
    //}
 
 
-   ::pointer < texture >& layer::source_texture()
-   {
+   //::pointer < texture >& layer::source_texture()
+   //{
 
-      auto iFrameIndex = m_iFrameIndex;
+   //   auto iFrameIndex = m_iFrameIndex;
 
-      auto& ptextureSource = m_textureaSource.element_at_grow(iFrameIndex);
+   //   auto& ptextureSource = m_textureaSource.element_at_grow(iFrameIndex);
 
-      if (m_pgpurenderer->defer_constructø(ptextureSource))
-      {
+   //   if (m_pgpurenderer->defer_constructø(ptextureSource))
+   //   {
 
-         m_pgpurenderer->m_pgpurendertarget2->initialize_render_target_image(ptextureSource);
+   //      m_pgpurenderer->m_pgpurendertarget2->create_render_target_image(ptextureSource);
 
-      }
+   //   }
 
-      return ptextureSource;
+   //   return ptextureSource;
 
-   }
+   //}
 
 
    //::pointer < texture >& layer::target_texture()

@@ -19,7 +19,7 @@
 		BAF4A6235D0D364C997071DB /* console_prompt_document.h in Headers */ = {isa = PBXBuildFile; fileRef = 79FC1C0B3CAB286961788C21 /* console_prompt_document.h */; };
 		0D9D08B9E587008EB00C0E51 /* console_prompt_frame.h in Headers */ = {isa = PBXBuildFile; fileRef = 20C473EFB4EEC50B337E9478 /* console_prompt_frame.h */; };
 		A3479A65387D3F1F7EB9AF98 /* console_prompt_impact.h in Headers */ = {isa = PBXBuildFile; fileRef = 6004D69CFA419BC583800500 /* console_prompt_impact.h */; };
-		8ACAD0D143713A822AA52A73 /* framework.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 931EF65F0FA113A43DF314D9 /* framework.cpp */; };
+		8ACAD0D143713A822AA52A73 /* platform.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 931EF65F0FA113A43DF314D9 /* platform.cpp */; };
 		CC41EFBD86FE9C4AB37461C9 /* libaura.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = FEAAB73B820FE56A8DFE839B /* libaura.dylib */; };
 		0A8E1F4B48CB72D549D1DD68 /* libaxis.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = D30ADAD9A90B332FE546730A /* libaxis.dylib */; };
 		17A946F5FF901CE4BB46C463 /* libberg.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 713E90ADC448D080FF3217B9 /* libberg.dylib */; };
@@ -27,8 +27,8 @@
 		4AE9D5055D5B5E0E6151DA84 /* _colorertake5.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 12E4D6C6704100B6548C7947 /* _colorertake5.cpp */; };
 		30631F0C86C0588619127641 /* _mail.cpp in Sources */ = {isa = PBXBuildFile; fileRef = A673622525C0FBD665DEA439 /* _mail.cpp */; };
 		4FA36810F3C77CCC852521E7 /* pcre.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 099E677F2EF08B3AB61A77C2 /* pcre.cpp */; };
-		79C938A30C2276E131586E6C /* framework.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 931EF65F0FA113A43DF314D9 /* framework.cpp */; };
-		F21237A5B555E00B8081295C /* framework.h in Headers */ = {isa = PBXBuildFile; fileRef = A2A4C8B37BCF600209320586 /* framework.h */; };
+		79C938A30C2276E131586E6C /* platform.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 931EF65F0FA113A43DF314D9 /* platform.cpp */; };
+		F21237A5B555E00B8081295C /* platform.h in Headers */ = {isa = PBXBuildFile; fileRef = A2A4C8B37BCF600209320586 /* platform.h */; };
 		4CEEB74EA7C887F52BF396B0 /* hi5_twit.h in Headers */ = {isa = PBXBuildFile; fileRef = 1F985390D1CF83A2BBF69C9B /* hi5_twit.h */; };
 		F0579CDBFE95F0298C2AF862 /* hi5_twit.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 0B71E3EC206EEEDF44C1BF6E /* hi5_twit.cpp */; };
 		BB1EF185B9E6CBCD70F29C68 /* hi5_oauth.h in Headers */ = {isa = PBXBuildFile; fileRef = 0B05FB6176431FF598EB64CB /* hi5_oauth.h */; };
@@ -132,7 +132,7 @@
 		EA9B4FDBED1833AEAE689D1E /* _charguess.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 636AB89F5FAB8F672C9CB132 /* _charguess.cpp */; };
 		CE4EAAE56F4B91A35BE66BD1 /* big5Prober.h in Headers */ = {isa = PBXBuildFile; fileRef = 9D407968501BE6A15C69A535 /* big5Prober.h */; };
 		D8977B3FF05C0A6AA325C218 /* charDistribution.h in Headers */ = {isa = PBXBuildFile; fileRef = D98C605462EF73A6AAB46701 /* charDistribution.h */; };
-		84C6E361F2505F6825665E2E /* framework.h in Headers */ = {isa = PBXBuildFile; fileRef = 67B4BB57E91E58EACE37C8D0 /* framework.h */; };
+		84C6E361F2505F6825665E2E /* platform.h in Headers */ = {isa = PBXBuildFile; fileRef = 67B4BB57E91E58EACE37C8D0 /* platform.h */; };
 		41636C3AA9337F1A4ACD608E /* charguess.h in Headers */ = {isa = PBXBuildFile; fileRef = B06FA6B2198AB9A4FC215837 /* charguess.h */; };
 		D1A0866EE71AA4BA2EE8CE11 /* charguess_c.h in Headers */ = {isa = PBXBuildFile; fileRef = A3DFA343768E8D30EE43C8D8 /* charguess_c.h */; };
 		F0A861342A70B2D565D411F7 /* charguess_private.h in Headers */ = {isa = PBXBuildFile; fileRef = E1A4BC1484178A55CE8A9F79 /* charguess_private.h */; };
@@ -252,8 +252,8 @@
 		7694C31FD835BE3CF02DCB9A /* libaxisopenssl.dylib */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.dylib"; path = libaxisopenssl.dylib; sourceTree = BUILT_PRODUCTS_DIR; };
 		5B01D7FAD8F5731A2A010BAA /* libaxiscrypto.dylib */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.dylib"; path = libaxiscrypto.dylib; sourceTree = BUILT_PRODUCTS_DIR; };
 		C554D253C4E1463AAE5208BC /* libsphere.dylib */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.dylib"; includeInIndex = 0; path = libsphere.dylib; sourceTree = BUILT_PRODUCTS_DIR; };
-		931EF65F0FA113A43DF314D9 /* framework.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = framework.cpp; sourceTree = "<group>"; };
-		A2A4C8B37BCF600209320586 /* framework.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = framework.h; sourceTree = "<group>"; };
+		931EF65F0FA113A43DF314D9 /* platform.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = platform.cpp; sourceTree = "<group>"; };
+		A2A4C8B37BCF600209320586 /* platform.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = platform.h; sourceTree = "<group>"; };
 		1F985390D1CF83A2BBF69C9B /* hi5_twit.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = hi5_twit.h; sourceTree = "<group>"; };
 		0B71E3EC206EEEDF44C1BF6E /* hi5_twit.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = hi5_twit.cpp; sourceTree = "<group>"; };
 		0B05FB6176431FF598EB64CB /* hi5_oauth.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = hi5_oauth.h; sourceTree = "<group>"; };
@@ -411,7 +411,7 @@
 		7BAE8C18D73BF1DBB1BAA70E /* auracharguess.vcxproj.user */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = auracharguess.vcxproj.user; sourceTree = "<group>"; };
 		949A58CAB7AD2A98344B9DA7 /* auracharguess.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; path = auracharguess.xcodeproj; sourceTree = SOURCE_ROOT; };
 		AB990DDA5EFCB50537019FBA /* charguess.def */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = charguess.def; sourceTree = "<group>"; };
-		67B4BB57E91E58EACE37C8D0 /* framework.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = framework.h; sourceTree = "<group>"; };
+		67B4BB57E91E58EACE37C8D0 /* platform.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = platform.h; sourceTree = "<group>"; };
 		3AC04DDD434BA4FE3099DE6E /* m_auracharguess.vcxproj */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = m_auracharguess.vcxproj; sourceTree = "<group>"; };
 		3196B114F709A7CF62BE7D6A /* m_auracharguess.vcxproj.filters */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = m_auracharguess.vcxproj.filters; sourceTree = "<group>"; };
 		9373B52940E36E0FC9065DAB /* nord_auracharguess.vcxproj */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = nord_auracharguess.vcxproj; sourceTree = "<group>"; };
@@ -685,8 +685,8 @@
 				B66DDA1D5769257F1620E4C4 /* prompt */,
 				30BCCAB37178661F211B6D1C /* sphere */,
 				CF17A6F8B8A48EA7F83759D5 /* userstack */,
-				931EF65F0FA113A43DF314D9 /* framework.cpp */,
-				A2A4C8B37BCF600209320586 /* framework.h */,
+				931EF65F0FA113A43DF314D9 /* platform.cpp */,
+				A2A4C8B37BCF600209320586 /* platform.h */,
 			);
 			name = sphere;
 			sourceTree = "<group>";
@@ -921,7 +921,7 @@
 				7BAE8C18D73BF1DBB1BAA70E /* auracharguess.vcxproj.user */,
 				949A58CAB7AD2A98344B9DA7 /* auracharguess.xcodeproj */,
 				AB990DDA5EFCB50537019FBA /* charguess.def */,
-				67B4BB57E91E58EACE37C8D0 /* framework.h */,
+				67B4BB57E91E58EACE37C8D0 /* platform.h */,
 				3AC04DDD434BA4FE3099DE6E /* m_auracharguess.vcxproj */,
 				3196B114F709A7CF62BE7D6A /* m_auracharguess.vcxproj.filters */,
 				9373B52940E36E0FC9065DAB /* nord_auracharguess.vcxproj */,
@@ -1025,7 +1025,7 @@
 			isa = PBXHeadersBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				F21237A5B555E00B8081295C /* framework.h in Headers */,
+				F21237A5B555E00B8081295C /* platform.h in Headers */,
 				4713FDE9A0014847AEFC1AFB /* charsetProber.h in Headers */,
 				6A82144DCA4691DDFF54A87D /* hi5_youtube_api.h in Headers */,
 				0CED49A194A083798AF4673D /* EUCTWProber.h in Headers */,
@@ -1034,7 +1034,7 @@
 				7BEAE002375AE267EFA4A2C5 /* prompt_frame.h in Headers */,
 				0289665D556C4AD176B669E2 /* SJISProber.h in Headers */,
 				65ED503F40AD7F353FE7F6D5 /* prompt_primary_impact.h in Headers */,
-				84C6E361F2505F6825665E2E /* framework.h in Headers */,
+				84C6E361F2505F6825665E2E /* platform.h in Headers */,
 				1CDA34EA19DAF8A5809E326B /* calculator_frame.h in Headers */,
 				5D0C6A2C96FAD0A7EF996580 /* UTF8Prober.h in Headers */,
 				0D9D08B9E587008EB00C0E51 /* console_prompt_frame.h in Headers */,
@@ -1259,7 +1259,7 @@
 				1A17DFAFDA2B3BF981A4A4CB /* prompt_primary_impact.cpp in Sources */,
 				17C12C66244725B37A14D1E0 /* sphere_library.cpp in Sources */,
 				AB1CE09554D89B7AD9D3F66C /* calculator_frame.cpp in Sources */,
-				8ACAD0D143713A822AA52A73 /* framework.cpp in Sources */,
+				8ACAD0D143713A822AA52A73 /* platform.cpp in Sources */,
 				AEA6EA40E3E18FA225DC6F2D /* prompt_impact.cpp in Sources */,
 				93ED850E751996767674EA61 /* filehandler_frame.cpp in Sources */,
 				01C0717E758D1D6F6D721543 /* filehandler_document.cpp in Sources */,
@@ -1313,7 +1313,7 @@
 				F5F035422432F5883AB5B93C /* prompt_impact.cpp in Sources */,
 				201A7D793E3A3D64986B958F /* calculator_frame.cpp in Sources */,
 				F717C026C6630BB4146A0338 /* prompt_primary_impact.cpp in Sources */,
-				79C938A30C2276E131586E6C /* framework.cpp in Sources */,
+				79C938A30C2276E131586E6C /* platform.cpp in Sources */,
 				343687CB85819CFCB26325C2 /* filehandler_frame.cpp in Sources */,
 				0FE75707249E84E1762E20E4 /* calculator_department.cpp in Sources */,
 				00AED422AE53A4B36ABF9EE9 /* sphere_main_frame.cpp in Sources */,
@@ -1498,7 +1498,7 @@
 				GCC_NO_COMMON_BLOCKS = YES;
 				GCC_OPTIMIZATION_LEVEL = 0;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
-				GCC_PREFIX_HEADER = framework.h;
+				GCC_PREFIX_HEADER = platform.h;
 				GCC_PREPROCESSOR_DEFINITIONS = (
 					"$(inherited)",
 				);
@@ -1560,7 +1560,7 @@
 				GCC_C_LANGUAGE_STANDARD = c99;
 				GCC_NO_COMMON_BLOCKS = YES;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
-				GCC_PREFIX_HEADER = framework.h;
+				GCC_PREFIX_HEADER = platform.h;
 				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
 				GCC_WARN_ABOUT_RETURN_TYPE = YES;
 				GCC_WARN_UNDECLARED_SELECTOR = YES;

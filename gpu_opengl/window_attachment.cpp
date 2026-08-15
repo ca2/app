@@ -1,5 +1,5 @@
 // Created by camilo on 2026-08-03 17:56 <3ThomasBorregaardSørensen!! Mummi!! Bilbo!!
-#include "framework.h"
+#include "platform.h"
 #include "bred/gpu/bred_approach.h"
 #include "bred/gpu/context.h"
 #include "bred/gpu/device.h"
@@ -78,9 +78,17 @@ namespace gpu_opengl
 
          auto sizeWindow = pwindow->m_sizeWindow;
 
+         auto rectangleOutput = pwindow->get_window_rectangle();
+
+         auto pointOutput = rectangleOutput.origin();
+
+         auto size = rectangleOutput.size();
+
+         auto sizeRaw = pwindow->get_raw_buffer_size();
+
          ::gpu::enum_scene escene = ::gpu::e_scene_2d;
 
-         m_pgpucontextWindow->create_window_gpu_context(pgpudevice, eoutput, escene, pwindow, sizeWindow);
+         m_pgpucontextWindow->create_window_gpu_context(pgpudevice, eoutput, escene, pwindow, {}, pointOutput, size, sizeRaw);
 
          //::cast<::gpu_opengl::approach> papproach = m_papplication->get_gpu_approach();
          //_gpu_on_create_window(pacmewindowingwindow);

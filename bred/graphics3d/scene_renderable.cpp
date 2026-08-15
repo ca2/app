@@ -1,7 +1,7 @@
 //
 // Created by camilo on 2025-09-29 10:41 <3ThomasBorregaardSorensen!!
 //
-#include "framework.h"
+#include "platform.h"
 #include "scene_renderable.h"
 ///#include "model.h"
 #include "scene_base.h"

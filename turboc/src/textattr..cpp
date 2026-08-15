@@ -23,7 +23,7 @@
   Mod history:	01/31/02 RSB	Created.
   		03/02/02 RSB	Made sizes of colors explicit.
 */
-#include "framework.h"
+#include "platform.h"
 //#include "conio.h"
 
 #define COLOR_BLACK argb(255, 0, 0, 0)

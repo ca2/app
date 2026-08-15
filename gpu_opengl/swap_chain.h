@@ -24,11 +24,17 @@ namespace gpu_opengl
       //::gpu::context_pointer  m_pgpucontextSwapChain;
       //GLuint m_VAOFullScreenQuad;
       //GLuint m_VBOFullScreenQuad;
-      ::pointer < ::gpu_opengl::texture > m_ptexturePresent;
+      ::pointer < ::gpu::texture_site > m_ptexturesitePresent;
       //::pointer < ::gpu_opengl::texture > m_ptextureRender;
-      ::pointer < ::gpu::shader > m_pshaderPresent;
+      //::pointer < ::gpu::shader > m_pshaderPresent;
       ::pointer < ::gpu::shader > m_pshaderRender;
       ::pointer < ::gpu::model_buffer > m_pmodelbufferRender;
+
+
+      ::pointer < ::gpu::model_buffer >            m_pmodelbufferFullscreenQuad;
+      ::i32_rectangle m_rectangleQuad;
+      ::i32_size m_sizeQuadRaw;
+
 
       //static constexpr ::i32 MAX_FRAMES_IN_FLIGHT = 2;
 
@@ -43,16 +49,19 @@ namespace gpu_opengl
    //   void endDraw(::draw2d_gpu::graphics* pgraphics, ::user::interaction* puserinteraction, ::gpu::renderer* pgpurendererSrc) override;
 
 
+      virtual ::gpu::model_buffer * sequence2_uv_fullscreen_quad_model_buffer();
+
       //::gpu::texture* current_texture() override;
       //void present(::gpu::texture* ptexture) override;
-      void present(::gpu::texture *pgputexture, ::gpu::command_buffer *pgpucommandbuffer) override;
+      void present(::gpu::texture_site *pgputexturesite, ::gpu::command_buffer *pgpucommandbuffer) override;
 
       void swap_buffers() override;
       
       void on_gpu_context_render_frame(::i32 w, ::i32 h) override;
 
       virtual ::pointer < ::gpu::shader > create_copy_texture_shader();
-      virtual ::gpu::shader * present_shader();
+      //virtual ::gpu::shader * present_shader();
+      void present_shader() override;
       virtual ::gpu::shader * render_shader(::i32 w, ::i32 h);
       virtual void defer_update_swap_chain_textures(const ::i32_size & size);
 

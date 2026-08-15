@@ -6,6 +6,7 @@
 #include "gpu/model/_.h"
 #include "gpu/model/material.h"
 #include "bred/gpu/model_buffer.h"
+#include "bred/gpu/texture_site.h"
 
 
 namespace gpu
@@ -27,7 +28,7 @@ namespace gpu
          tan1.set_size(vertices.size());
          tan2.set_size(vertices.size());
 
-         for (size_t i = 0; i < indices.size(); i += 3)
+         for (::collection::index i = 0; i < indices.size(); i += 3)
          {
             uint32_t i1 = indices[i + 0];
             uint32_t i2 = indices[i + 1];
@@ -65,7 +66,7 @@ namespace gpu
             tan2[i3] += tdir;
          }
 
-         for (size_t i = 0; i < vertices.size(); ++i)
+         for (::collection::index i = 0; i < vertices.size(); ++i)
          {
             const ::floating_sequence3 &n = vertices[i].normal;
             const ::floating_sequence3 &t = tan1[i];
@@ -357,7 +358,7 @@ namespace gpu
             if (pmodel->m_bExternalPbr)
             {
                // albedo
-               if ((pmaterial->m_textureaPbr[e_texture_albedo] =
+               if ((pmaterial->m_texturesiteaPbr[e_texture_albedo] =
                       ::gpu::model::loadMaterialTexture(pmodel, "albedo.ktx", aiTextureType_DIFFUSE)))
                {
 
@@ -372,7 +373,8 @@ namespace gpu
                   if (iChannelCountMetallic == 2)
                   {
                      // metallicRoughness (in gltf 2.0 they are combined in one texture)
-                     pmaterial->m_textureaPbr[e_texture_metallic_roughness] = ptextureMetallic;
+                     pmaterial->defer_construct_newø(pmaterial->m_texturesiteaPbr[e_texture_metallic_roughness]);
+                     pmaterial->m_texturesiteaPbr[e_texture_metallic_roughness]->m_pgputextureSite = ptextureMetallic;
                      // defined here in assimp
                      // https://github.com/assimp/assimp/blob/master/include/assimp/pbrmaterial.h#L57
                      pmaterial->useTextureMetallicRoughness = true;
@@ -405,7 +407,9 @@ namespace gpu
                         auto ptextureMetallicRoughness =
                            pmodel->m_pgpucontext->rgba_from_b_g(ptextureMetallic, ptextureRoughness);
 
-                        pmaterial->m_textureaPbr[e_texture_metallic_roughness] =
+                        pmaterial->defer_construct_newø(pmaterial->m_texturesiteaPbr[e_texture_metallic_roughness]); 
+                        
+                        pmaterial->m_texturesiteaPbr[e_texture_metallic_roughness]->m_pgputextureSite =
 
                            ptextureMetallicRoughness;
                      }
@@ -413,22 +417,26 @@ namespace gpu
 
                }
 
+               pmaterial->defer_construct_newø(pmaterial->m_texturesiteaPbr[e_texture_normal]);
+
                // normal
-               if ((pmaterial->m_textureaPbr[e_texture_normal] =
+               if ((pmaterial->m_texturesiteaPbr[e_texture_normal]->m_pgputextureSite =
                       loadMaterialTexture(pmodel, "normal.ktx", aiTextureType_NORMALS)))
                {
                   pmaterial->useTextureNormal = true;
                }
 
+
+               pmaterial->defer_construct_newø(pmaterial->m_texturesiteaPbr[e_texture_ambient_occlusion]);
                // ambient occlusion
-               if ((pmaterial->m_textureaPbr[e_texture_ambient_occlusion] =
+               if ((pmaterial->m_texturesiteaPbr[e_texture_ambient_occlusion]->m_pgputextureSite =
                       loadMaterialTexture(pmodel, "ao.ktx", aiTextureType_LIGHTMAP)))
                {
                   pmaterial->useTextureAmbientOcclusion = true;
                }
-
+               pmaterial->defer_construct_newø(pmaterial->m_texturesiteaPbr[e_texture_emissive]);
                // emissive
-               if ((pmaterial->m_textureaPbr[e_texture_emissive] =
+               if ((pmaterial->m_texturesiteaPbr[e_texture_emissive]->m_pgputextureSite =
                       loadMaterialTexture(pmodel, "emissive.ktx", aiTextureType_EMISSIVE)))
                {
                   pmaterial->useTextureEmissive = true;
@@ -548,7 +556,8 @@ namespace gpu
                {
                   pmaterial->useTextureAlbedo = true;
                   auto ptextureAlbedo = ::gpu::model::loadMaterialTexture(pmodel,aiMaterial, aiTextureType_DIFFUSE);
-                  pmaterial->m_textureaPbr[e_texture_albedo] = ptextureAlbedo;
+                  pmaterial->defer_construct_newø(pmaterial->m_texturesiteaPbr[e_texture_emissive]);
+                  pmaterial->m_texturesiteaPbr[e_texture_albedo]->m_pgputextureSite = ptextureAlbedo;
                }
 
                // metallicRoughness (in gltf 2.0 they are combined in one texture)
@@ -557,7 +566,9 @@ namespace gpu
                   // defined here in assimp
                   // https://github.com/assimp/assimp/blob/master/include/assimp/pbrmaterial.h#L57
                   pmaterial->useTextureMetallicRoughness = true;
-                  pmaterial->m_textureaPbr[e_texture_metallic_roughness] =
+                  pmaterial->defer_construct_newø(pmaterial->m_texturesiteaPbr[e_texture_metallic_roughness]);
+
+                  pmaterial->m_texturesiteaPbr[e_texture_metallic_roughness]->m_pgputextureSite =
                      ::gpu::model::loadMaterialTexture(pmodel, aiMaterial, aiTextureType_UNKNOWN);
                }
 
@@ -565,7 +576,8 @@ namespace gpu
                if (aiMaterial->GetTextureCount(aiTextureType_NORMALS))
                {
                   pmaterial->useTextureNormal = true;
-                  pmaterial->m_textureaPbr[e_texture_normal] =
+                  pmaterial->defer_construct_newø(pmaterial->m_texturesiteaPbr[e_texture_normal]);
+                  pmaterial->m_texturesiteaPbr[e_texture_normal]->m_pgputextureSite =
                      ::gpu::model::loadMaterialTexture(pmodel, aiMaterial, aiTextureType_NORMALS);
                }
 
@@ -573,7 +585,8 @@ namespace gpu
                if (aiMaterial->GetTextureCount(aiTextureType_LIGHTMAP))
                {
                   pmaterial->useTextureAmbientOcclusion = true;
-                  pmaterial->m_textureaPbr[e_texture_ambient_occlusion] =
+                  pmaterial->defer_construct_newø(pmaterial->m_texturesiteaPbr[e_texture_ambient_occlusion]);
+                  pmaterial->m_texturesiteaPbr[e_texture_ambient_occlusion]->m_pgputextureSite =
                      ::gpu::model::loadMaterialTexture(pmodel, aiMaterial, aiTextureType_LIGHTMAP);
                }
 
@@ -581,7 +594,8 @@ namespace gpu
                if (aiMaterial->GetTextureCount(aiTextureType_EMISSIVE))
                {
                   pmaterial->useTextureEmissive = true;
-                  pmaterial->m_textureaPbr[e_texture_emissive] =
+                  pmaterial->defer_construct_newø(pmaterial->m_texturesiteaPbr[e_texture_emissive]);
+                  pmaterial->m_texturesiteaPbr[e_texture_emissive]->m_pgputextureSite =
                      ::gpu::model::loadMaterialTexture(pmodel, aiMaterial, aiTextureType_EMISSIVE);
                }
 

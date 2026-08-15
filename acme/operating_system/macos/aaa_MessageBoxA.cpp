@@ -6,7 +6,7 @@
 //  from http://blog.jorgearimany.com/2010/05/messagebox-from-windows-to-mac.html
 //  El blog de Jorge Arimany Espanhaque
 
-#include "framework.h"
+#include "platform.h"
 
 
 void _os_message_box(const ::scoped_string & scopedstrMessage, const ::scoped_string & scopedstrTitle, const ::user::e_message_box & emessagebox, ::future future)

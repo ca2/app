@@ -1,5 +1,5 @@
 // From fs/folder_sync.cpp to folder_sync.cpp by camilo on 2024-04-28 00:55 <3ThomasBorregaardSorensen!!
-#include "framework.h"
+#include "platform.h"
 #include "fs_folder_sync.h"
 #include "acme/filesystem/file/file.h"
 #include "acme/filesystem/filesystem/directory_system.h"

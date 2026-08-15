@@ -1,6 +1,6 @@
 // Refactor and Tidy core filemanager component a bit Fix ca2/app#61 by
 // camilo on 2023 - 11 - 16 03:54 < 3ThomasBorregaardSorensen!!
-#include "framework.h"
+#include "platform.h"
 #include "document.h"
 #include "list_impact.h"
 #include "list_data.h"

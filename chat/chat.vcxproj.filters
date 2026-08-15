@@ -44,7 +44,7 @@
     <ClInclude Include="kissfft\kiss_fft.h">
       <Filter>Header Files\kissfft</Filter>
     </ClInclude>
-    <ClInclude Include="framework.h">
+    <ClInclude Include="platform.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="kissfft\kiss_fft_guts.h">
@@ -88,7 +88,7 @@
     <ClCompile Include="kissfft\kissfft_fftd.cpp">
       <Filter>Source Files\kissfft</Filter>
     </ClCompile>
-    <ClCompile Include="framework.cpp">
+    <ClCompile Include="platform.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="kissfft\kiss_fft.cpp">

@@ -1,5 +1,5 @@
 // Created by camilo on 2024-06-27 20:41 <3ThomasBorregaardSorensen!!
-#include "framework.h"
+#include "platform.h"
 #include "option.h"
 
 

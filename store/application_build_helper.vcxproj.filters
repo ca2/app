@@ -96,7 +96,7 @@
     <ClCompile Include="integration\fdk_aac.cpp">
       <Filter>Source Files\integration</Filter>
     </ClCompile>
-    <ClCompile Include="integration\framework.cpp">
+    <ClCompile Include="integration\platform.cpp">
       <Filter>Source Files\integration</Filter>
     </ClCompile>
     <ClCompile Include="integration\freetype.cpp">
@@ -172,7 +172,7 @@
     <ClInclude Include="_.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="framework.h">
+    <ClInclude Include="platform.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="_factory.cpp">
@@ -223,7 +223,7 @@
     <ClInclude Include="integration\ffmpeg.h">
       <Filter>Header Files\integration</Filter>
     </ClInclude>
-    <ClInclude Include="integration\aaa_framework.h">
+    <ClInclude Include="integration\aaa_platform.h">
       <Filter>Header Files\integration</Filter>
     </ClInclude>
     <ClInclude Include="integration\freetype.h">

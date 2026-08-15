@@ -248,11 +248,11 @@
 			<Option target="imaging_freeimage"/>
 			<Option target="static_imaging_freeimage"/>
 		</Unit>
-		<Unit filename="/home/camilo/cmake/integration/source/app/imaging_freeimage/framework.cpp">
+		<Unit filename="/home/camilo/cmake/integration/source/app/imaging_freeimage/platform.cpp">
 			<Option target="imaging_freeimage"/>
 			<Option target="static_imaging_freeimage"/>
 		</Unit>
-		<Unit filename="/home/camilo/cmake/integration/source/app/imaging_freeimage/framework.h">
+		<Unit filename="/home/camilo/cmake/integration/source/app/imaging_freeimage/platform.h">
 			<Option target="imaging_freeimage"/>
 			<Option target="static_imaging_freeimage"/>
 		</Unit>

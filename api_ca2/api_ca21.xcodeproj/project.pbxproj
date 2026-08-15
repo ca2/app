@@ -10,8 +10,8 @@
 		59CA03BCAAFC40D59A8C8BAC /* api.cpp in Sources */ = {isa = PBXBuildFile; fileRef = DDAF73B903C6D77E4254CC57 /* api.cpp */; };
 		8E4BA6F7782E4BB4DA79D2D1 /* api.h in Headers */ = {isa = PBXBuildFile; fileRef = 6E13F3A95B00C430A669FE07 /* api.h */; };
 		CE79E15B2296B31B976FAA7E /* libaura.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = A5FB99C15DB2D6778D58F0E8 /* libaura.dylib */; };
-		972514EA1366A31517ADC029 /* framework.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 698AEC1CFB0883CA461CA3A3 /* framework.cpp */; };
-		B536D6910D0DBDC95AE803FF /* framework.h in Headers */ = {isa = PBXBuildFile; fileRef = D3DC6D3E57577961AE515E8D /* framework.h */; };
+		972514EA1366A31517ADC029 /* platform.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 698AEC1CFB0883CA461CA3A3 /* platform.cpp */; };
+		B536D6910D0DBDC95AE803FF /* platform.h in Headers */ = {isa = PBXBuildFile; fileRef = D3DC6D3E57577961AE515E8D /* platform.h */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -61,8 +61,8 @@
 		DDAF73B903C6D77E4254CC57 /* api.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = api.cpp; sourceTree = "<group>"; };
 		6E13F3A95B00C430A669FE07 /* api.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = api.h; sourceTree = "<group>"; };
 		BC1FA349386668EE1B3CD0F7 /* aura.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = aura.xcodeproj; path = ../../app/aura/aura.xcodeproj; sourceTree = SOURCE_ROOT; };
-		698AEC1CFB0883CA461CA3A3 /* framework.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = framework.cpp; sourceTree = "<group>"; };
-		D3DC6D3E57577961AE515E8D /* framework.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = framework.h; sourceTree = "<group>"; };
+		698AEC1CFB0883CA461CA3A3 /* platform.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = platform.cpp; sourceTree = "<group>"; };
+		D3DC6D3E57577961AE515E8D /* platform.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = platform.h; sourceTree = "<group>"; };
 		24F8FB9821E12ACF4CB12F11 /* libios_youtube.dylib */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libios_youtube.dylib; sourceTree = BUILT_PRODUCTS_DIR; };
 		CD91325C79D26DB0131C66B2 /* libapi_gool.dylib */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.dylib"; includeInIndex = 0; path = libapi_gool.dylib; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
@@ -108,8 +108,8 @@
 			children = (
 				DDAF73B903C6D77E4254CC57 /* api.cpp */,
 				6E13F3A95B00C430A669FE07 /* api.h */,
-				698AEC1CFB0883CA461CA3A3 /* framework.cpp */,
-				D3DC6D3E57577961AE515E8D /* framework.h */,
+				698AEC1CFB0883CA461CA3A3 /* platform.cpp */,
+				D3DC6D3E57577961AE515E8D /* platform.h */,
 			);
 			name = youtube;
 			sourceTree = "<group>";
@@ -140,7 +140,7 @@
 			isa = PBXHeadersBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				B536D6910D0DBDC95AE803FF /* framework.h in Headers */,
+				B536D6910D0DBDC95AE803FF /* platform.h in Headers */,
 				8E4BA6F7782E4BB4DA79D2D1 /* api.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -254,7 +254,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				59CA03BCAAFC40D59A8C8BAC /* api.cpp in Sources */,
-				972514EA1366A31517ADC029 /* framework.cpp in Sources */,
+				972514EA1366A31517ADC029 /* platform.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -334,7 +334,7 @@
 				GCC_NO_COMMON_BLOCKS = YES;
 				GCC_OPTIMIZATION_LEVEL = 0;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
-				GCC_PREFIX_HEADER = framework.h;
+				GCC_PREFIX_HEADER = platform.h;
 				GCC_PREPROCESSOR_DEFINITIONS = (
 					"$(inherited)",
 				);
@@ -402,7 +402,7 @@
 				GCC_ENABLE_OBJC_EXCEPTIONS = YES;
 				GCC_NO_COMMON_BLOCKS = YES;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
-				GCC_PREFIX_HEADER = framework.h;
+				GCC_PREFIX_HEADER = platform.h;
 				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
 				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
 				GCC_WARN_UNDECLARED_SELECTOR = YES;

@@ -1,4 +1,4 @@
-#include "framework.h"
+#include "platform.h"
 
 
 ::aura::application * get_acid_app(::particle * pparticle)

@@ -53,7 +53,7 @@
  * \note
  * This implementation uses C code.
  */
-#include "framework.h"
+#include "platform.h"
 #include "dostime1.h"
 
 #include <stdio.h>

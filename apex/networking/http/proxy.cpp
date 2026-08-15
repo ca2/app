@@ -1,7 +1,7 @@
 //
 // Created by camilo on 2024-10-29 01:34 <3ThomasBorregaardSorensen!!
 //
-#include "framework.h"
+#include "platform.h"
 #include "proxy.h"
 
 

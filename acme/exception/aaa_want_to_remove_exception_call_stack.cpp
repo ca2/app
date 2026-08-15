@@ -1,4 +1,4 @@
-#include "framework.h"
+#include "platform.h"
 
 
 // 0 - most deep call stack logging

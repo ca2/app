@@ -1,5 +1,5 @@
 // Created by camilo on 2023-11-27 03:54 <3ThomasBorregaardSorensen!!
-#include "framework.h"
+#include "platform.h"
 #include "allocator.h"
 
 

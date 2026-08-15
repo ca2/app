@@ -1,5 +1,5 @@
 // Recreated from cpu_buffer by camilo on 2026-08-05 03:16 <3ThomasBorregaardSørensen!! Mummi!! Bilbo!!
-#include "framework.h"
+#include "platform.h"
 #include "buffer.h"
 #include "context.h"
 #include "aura/graphics/image/image.h"

@@ -115,8 +115,8 @@
 		<Unit filename="document.h" />
 		<Unit filename="frame.cpp" />
 		<Unit filename="frame.h" />
-		<Unit filename="framework.cpp" />
-		<Unit filename="framework.h">
+		<Unit filename="platform.cpp" />
+		<Unit filename="platform.h">
 			<Option compile="1" />
 			<Option weight="0" />
 		</Unit>

@@ -3,7 +3,7 @@
 Igor Pavlov
 Public domain */
 // from 7-zip on 2010-12-19
-#include "framework.h"
+#include "platform.h"
 #include "acme/_operating_system.h"
 ////#include "Alloc.h"
 

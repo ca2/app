@@ -316,11 +316,11 @@
 			<Option target="experience_core"/>
 			<Option target="static_experience_core"/>
 		</Unit>
-		<Unit filename="/home/camilo/cmake/integration/source/app/experience_core/framework.cpp">
+		<Unit filename="/home/camilo/cmake/integration/source/app/experience_core/platform.cpp">
 			<Option target="experience_core"/>
 			<Option target="static_experience_core"/>
 		</Unit>
-		<Unit filename="/home/camilo/cmake/integration/source/app/experience_core/framework.h">
+		<Unit filename="/home/camilo/cmake/integration/source/app/experience_core/platform.h">
 			<Option target="experience_core"/>
 			<Option target="static_experience_core"/>
 		</Unit>

@@ -1,4 +1,4 @@
-#include "framework.h"
+#include "platform.h"
 
 
 #include "acme/_operating_system.h"
@@ -965,7 +965,7 @@ string file_module_path_dup()
 
 // 08/20/05 (mv)
 
-#include "framework.h"
+#include "platform.h"
 
 
 

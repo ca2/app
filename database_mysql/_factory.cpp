@@ -1,5 +1,5 @@
 //Created on 2013-03-16 00:37 BRT <3ThomasBS_ My Sweet!!
-#include "framework.h"
+#include "platform.h"
 
 #include "mysql/mysql_database.h"
 

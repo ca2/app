@@ -24,7 +24,7 @@
 *   so that I may know how useful this library is. This will encourage
 *   me to keep updating it.
 */
-#include "framework.h"
+#include "platform.h"
 #if !BROAD_PRECOMPILED_HEADER
 //#include "axis/html/html_lite/_.h"
 #endif

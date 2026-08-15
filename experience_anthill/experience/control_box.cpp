@@ -1,4 +1,4 @@
-#include "framework.h"
+#include "platform.h"
 #include "control_box.h"
 #include "acme/constant/user_message.h"
 #include "aura/graphics/draw2d/graphics.h"

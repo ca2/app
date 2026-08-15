@@ -1,5 +1,5 @@
 // Created by camilo on 2021-06-03 01:41 <3ThomasBS_!!
-#include "framework.h"
+#include "platform.h"
 #ifdef WINDOWS_DESKTOP
 #include "acme/operating_system/windows/_api.h"
 #endif

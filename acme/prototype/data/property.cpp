@@ -1,6 +1,6 @@
 // Creating by camilo with 
 // property* system on 2024-06-06 21:20 <3ThomasBorregaardSorensen!!
-#include "framework.h"
+#include "platform.h"
 #include "acme/prototype/data/property_container.h"
 #include "acme/prototype/data/property.h"
 //#include "acme/prototype/prototype/property_object.h"

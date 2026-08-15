@@ -1,5 +1,5 @@
 // From fs/native.cpp to fs/folder_sync.cpp by camilo on 2024-04-28 00:34 <3ThomasBorregaardSorensen!!
-#include "framework.h"
+#include "platform.h"
 #include "folder_sync.h"
 #include "acme/filesystem/file/file.h"
 #include "acme/filesystem/filesystem/directory_system.h"

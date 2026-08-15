@@ -36,9 +36,9 @@
 		787DDBAAC43E86E853F9AE03 /* group_new_release_prefix.cpp in Sources */ = {isa = PBXBuildFile; fileRef = FAE0249ABF77D784AEB403E0 /* group_new_release_prefix.cpp */; };
 		D8DFA65C60CF582B5EE5B238 /* group_machine_box.cpp in Sources */ = {isa = PBXBuildFile; fileRef = C30B361F17CF5DC2DF7EC450 /* group_machine_box.cpp */; };
 		5253F73D79A608C84E47DA55 /* group.cpp in Sources */ = {isa = PBXBuildFile; fileRef = EF2F4C609492D3869AE4F276 /* group.cpp */; };
-		E00BBBDE5428C80DD4609ABA /* framework.cpp in Sources */ = {isa = PBXBuildFile; fileRef = DC3A118BFC5FAF4E9A1736AC /* framework.cpp */; };
+		E00BBBDE5428C80DD4609ABA /* platform.cpp in Sources */ = {isa = PBXBuildFile; fileRef = DC3A118BFC5FAF4E9A1736AC /* platform.cpp */; };
 		FBCC0FF96F5C85F2316F0A96 /* group_netnode.cpp in Sources */ = {isa = PBXBuildFile; fileRef = CCA2464A038B74EF61F2BC1A /* group_netnode.cpp */; };
-		C333DD9EB3E389F848F0C09E /* framework.h in Headers */ = {isa = PBXBuildFile; fileRef = E17D5CF11450A8B11F2C95E9 /* framework.h */; };
+		C333DD9EB3E389F848F0C09E /* platform.h in Headers */ = {isa = PBXBuildFile; fileRef = E17D5CF11450A8B11F2C95E9 /* platform.h */; };
 		91374200404BDC7D49A35026 /* group.h in Headers */ = {isa = PBXBuildFile; fileRef = 8464FF1CB1DABF2636D1702E /* group.h */; };
 		5D1151BC173058F88B611F59 /* group_checkout_for_another_system.h in Headers */ = {isa = PBXBuildFile; fileRef = 86DA0C0EC7375C02FF1646EF /* group_checkout_for_another_system.h */; };
 		21AE17C093C6E053CEFA3D28 /* group_netnode.h in Headers */ = {isa = PBXBuildFile; fileRef = C3F0EF303748CF5E52B5448C /* group_netnode.h */; };
@@ -158,8 +158,8 @@
 		066AA223C72152F6F6E63D3F /* libaxis.dylib */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.dylib"; path = libaxis.dylib; sourceTree = BUILT_PRODUCTS_DIR; };
 		0C1662F8001DFDB1A05440BF /* code_impact.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = code_impact.cpp; sourceTree = "<group>"; };
 		9C74D2AE50A0E2775B84695F /* frame.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = frame.h; sourceTree = "<group>"; };
-		E17D5CF11450A8B11F2C95E9 /* framework.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = framework.h; sourceTree = "<group>"; };
-		DC3A118BFC5FAF4E9A1736AC /* framework.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = framework.cpp; sourceTree = "<group>"; };
+		E17D5CF11450A8B11F2C95E9 /* platform.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = platform.h; sourceTree = "<group>"; };
+		DC3A118BFC5FAF4E9A1736AC /* platform.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = platform.cpp; sourceTree = "<group>"; };
 		8464FF1CB1DABF2636D1702E /* group.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = group.h; sourceTree = "<group>"; };
 		EF2F4C609492D3869AE4F276 /* group.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = group.cpp; sourceTree = "<group>"; };
 		86DA0C0EC7375C02FF1646EF /* group_checkout_for_another_system.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = group_checkout_for_another_system.h; sourceTree = "<group>"; };
@@ -271,8 +271,8 @@
 				7581B11C800E198A91A9EBA5 /* document.cpp */,
 				9C74D2AE50A0E2775B84695F /* frame.h */,
 				408AA43EC3DD84F69E6F0AAA /* frame.cpp */,
-				E17D5CF11450A8B11F2C95E9 /* framework.h */,
-				DC3A118BFC5FAF4E9A1736AC /* framework.cpp */,
+				E17D5CF11450A8B11F2C95E9 /* platform.h */,
+				DC3A118BFC5FAF4E9A1736AC /* platform.cpp */,
 				8464FF1CB1DABF2636D1702E /* group.h */,
 				EF2F4C609492D3869AE4F276 /* group.cpp */,
 				86DA0C0EC7375C02FF1646EF /* group_checkout_for_another_system.h */,
@@ -378,7 +378,7 @@
 			isa = PBXHeadersBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				C333DD9EB3E389F848F0C09E /* framework.h in Headers */,
+				C333DD9EB3E389F848F0C09E /* platform.h in Headers */,
 				91374200404BDC7D49A35026 /* group.h in Headers */,
 				5D1151BC173058F88B611F59 /* group_checkout_for_another_system.h in Headers */,
 				21AE17C093C6E053CEFA3D28 /* group_netnode.h in Headers */,
@@ -505,7 +505,7 @@
 				D8DFA65C60CF582B5EE5B238 /* group_machine_box.cpp in Sources */,
 				5253F73D79A608C84E47DA55 /* group.cpp in Sources */,
 				5F297008122DB320E8BD0D89 /* integration.cpp in Sources */,
-				E00BBBDE5428C80DD4609ABA /* framework.cpp in Sources */,
+				E00BBBDE5428C80DD4609ABA /* platform.cpp in Sources */,
 				435DA1D85D549007C932FA58 /* integration_macos_application_build_tool.cpp in Sources */,
 				FBCC0FF96F5C85F2316F0A96 /* group_netnode.cpp in Sources */,
 				5ACA7E1C9392859DB685F3FC /* frame.cpp in Sources */,
@@ -600,7 +600,7 @@
 				GCC_NO_COMMON_BLOCKS = YES;
 				GCC_OPTIMIZATION_LEVEL = 0;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
-				GCC_PREFIX_HEADER = framework.h;
+				GCC_PREFIX_HEADER = platform.h;
 				GCC_PREPROCESSOR_DEFINITIONS = (
 					"DEBUG=1",
 					"$(inherited)",
@@ -701,7 +701,7 @@
 				GCC_ENABLE_OBJC_EXCEPTIONS = YES;
 				GCC_NO_COMMON_BLOCKS = YES;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
-				GCC_PREFIX_HEADER = framework.h;
+				GCC_PREFIX_HEADER = platform.h;
 				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
 				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
 				GCC_WARN_UNDECLARED_SELECTOR = YES;

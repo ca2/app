@@ -1,7 +1,7 @@
 //
 // Created by camilo on 5/17/22 02:38 <3ThomasBorregaardSorensen!!
 //
-#include "framework.h"
+#include "platform.h"
 
 
 #if !defined(WINDOWS)

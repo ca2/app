@@ -13,12 +13,12 @@
 		03585B7A58A11B8EE0262FF6 /* file.h in Headers */ = {isa = PBXBuildFile; fileRef = 67BCB45E13511057254ED50C /* file.h */; };
 		66AC6B22714AB18758B8C46E /* iowin32.h in Headers */ = {isa = PBXBuildFile; fileRef = CF862A9306F5BFC5856CE17E /* iowin32.h */; };
 		C5C5C9326CC9F97979167090 /* folder.h in Headers */ = {isa = PBXBuildFile; fileRef = BF8EAEF4A6B251BB2DD8BCA3 /* folder.h */; };
-		426248C62FA1033F23F48E57 /* framework.h in Headers */ = {isa = PBXBuildFile; fileRef = 0C53CBEEB0A458BA88405CCB /* framework.h */; };
+		426248C62FA1033F23F48E57 /* platform.h in Headers */ = {isa = PBXBuildFile; fileRef = 0C53CBEEB0A458BA88405CCB /* platform.h */; };
 		5B01AD8A4A32773D91AAE520 /* ioapi.h in Headers */ = {isa = PBXBuildFile; fileRef = 38E707784DC80F88182C4CC5 /* ioapi.h */; };
 		1B6E503CF8EA7B4849EEEFE7 /* zip.h in Headers */ = {isa = PBXBuildFile; fileRef = 89796445B4ADEECB46C3B536 /* zip.h */; };
 		219FCE762CBF786D22B785BF /* crypt.h in Headers */ = {isa = PBXBuildFile; fileRef = BDA5464FC0FE035950D8B31F /* crypt.h */; };
 		16C373B98DBC3E15ACBD741D /* unzip.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 51DA8010AF04F61C32EB00A9 /* unzip.cpp */; };
-		AA868547229400941B90D056 /* framework.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 861B9AE5F0EB0F33926629F9 /* framework.cpp */; };
+		AA868547229400941B90D056 /* platform.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 861B9AE5F0EB0F33926629F9 /* platform.cpp */; };
 		40DA4712B28224878C083F86 /* file.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 7800F8D83FC4F03250A9F124 /* file.cpp */; };
 		B750EE74C4225371612F9EC5 /* _factory.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 5BE0C211B8B6726D79D852D2 /* _factory.cpp */; };
 		E5C98C2285234D499E47F92A /* ioapi.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 64A8B5C98301DED1D7C2E7D6 /* ioapi.cpp */; };
@@ -27,7 +27,7 @@
 		84FFB029439D8229C4DCF2DB /* folder.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D781B1A72D07D7F19B4A98E3 /* folder.cpp */; };
 		4F660F830C6474D7B69AE29C /* file_function_definitions.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 0756C9C4CBE387615E3847AB /* file_function_definitions.cpp */; };
 		7A4EF37935C51E3C8DF38C8F /* ioapi.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 64A8B5C98301DED1D7C2E7D6 /* ioapi.cpp */; };
-		0BA0609B0A685759EB8C9AEB /* framework.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 861B9AE5F0EB0F33926629F9 /* framework.cpp */; };
+		0BA0609B0A685759EB8C9AEB /* platform.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 861B9AE5F0EB0F33926629F9 /* platform.cpp */; };
 		9F0C2946A1C32A02BD5FD9C1 /* iowin32.h in Headers */ = {isa = PBXBuildFile; fileRef = CF862A9306F5BFC5856CE17E /* iowin32.h */; };
 		3CC512414E4AA8CAB84F12E4 /* file.h in Headers */ = {isa = PBXBuildFile; fileRef = 67BCB45E13511057254ED50C /* file.h */; };
 		1EF1CC976E77A52C1954D6C5 /* folder.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D781B1A72D07D7F19B4A98E3 /* folder.cpp */; };
@@ -37,7 +37,7 @@
 		A4562F0EB572BF83181C26BE /* file.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 7800F8D83FC4F03250A9F124 /* file.cpp */; };
 		2B3D86A3A5C92CF661FE4DEF /* zip.h in Headers */ = {isa = PBXBuildFile; fileRef = 89796445B4ADEECB46C3B536 /* zip.h */; };
 		DAB9A4DAF06568F5FDF0E07E /* unzip.h in Headers */ = {isa = PBXBuildFile; fileRef = A1A70F7E150FD710EB51288D /* unzip.h */; };
-		445824BD6150188C5532230D /* framework.h in Headers */ = {isa = PBXBuildFile; fileRef = 0C53CBEEB0A458BA88405CCB /* framework.h */; };
+		445824BD6150188C5532230D /* platform.h in Headers */ = {isa = PBXBuildFile; fileRef = 0C53CBEEB0A458BA88405CCB /* platform.h */; };
 		5FF42F01AC9CD1CE900CEF05 /* ioapi.h in Headers */ = {isa = PBXBuildFile; fileRef = 38E707784DC80F88182C4CC5 /* ioapi.h */; };
 		B7A7A6BB1A91A7186681A862 /* zip.cpp in Sources */ = {isa = PBXBuildFile; fileRef = F9C6B6B54EC317868FE70314 /* zip.cpp */; };
 		5D1E7F85854D6A9803E9E808 /* folder.h in Headers */ = {isa = PBXBuildFile; fileRef = BF8EAEF4A6B251BB2DD8BCA3 /* folder.h */; };
@@ -53,12 +53,12 @@
 		E1F982E4E4AA54E3C07A9C13 /* file.h in Headers */ = {isa = PBXBuildFile; fileRef = 67BCB45E13511057254ED50C /* file.h */; };
 		2F8B217DC45C7E51E8995F65 /* iowin32.h in Headers */ = {isa = PBXBuildFile; fileRef = CF862A9306F5BFC5856CE17E /* iowin32.h */; };
 		54CC657A6FC616F94EE0E325 /* folder.h in Headers */ = {isa = PBXBuildFile; fileRef = BF8EAEF4A6B251BB2DD8BCA3 /* folder.h */; };
-		E269746CF7493E5F01EE8327 /* framework.h in Headers */ = {isa = PBXBuildFile; fileRef = 0C53CBEEB0A458BA88405CCB /* framework.h */; };
+		E269746CF7493E5F01EE8327 /* platform.h in Headers */ = {isa = PBXBuildFile; fileRef = 0C53CBEEB0A458BA88405CCB /* platform.h */; };
 		E78B20B03C8E2AE617F5C6E5 /* ioapi.h in Headers */ = {isa = PBXBuildFile; fileRef = 38E707784DC80F88182C4CC5 /* ioapi.h */; };
 		EA05FF7640BA3C9CF27EBAF7 /* zip.h in Headers */ = {isa = PBXBuildFile; fileRef = 89796445B4ADEECB46C3B536 /* zip.h */; };
 		C781E5DC4C7F06148493DC1A /* crypt.h in Headers */ = {isa = PBXBuildFile; fileRef = BDA5464FC0FE035950D8B31F /* crypt.h */; };
 		68799B04338AA2FFE7A5E85D /* unzip.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 51DA8010AF04F61C32EB00A9 /* unzip.cpp */; };
-		C83DB1824129BD044AED565C /* framework.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 861B9AE5F0EB0F33926629F9 /* framework.cpp */; };
+		C83DB1824129BD044AED565C /* platform.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 861B9AE5F0EB0F33926629F9 /* platform.cpp */; };
 		8FE270DEC0D2120F8D065D7F /* file.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 7800F8D83FC4F03250A9F124 /* file.cpp */; };
 		E1EDADE5EA76A8331C9B7F38 /* _factory.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 5BE0C211B8B6726D79D852D2 /* _factory.cpp */; };
 		C350271950AB02AC6DCC2430 /* ioapi.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 64A8B5C98301DED1D7C2E7D6 /* ioapi.cpp */; };
@@ -116,7 +116,7 @@
 /* Begin PBXFileReference section */
 		2CA1642BB49130A5B17EF440 /* libstatic_wallpaper_system_summary.a */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.dylib"; includeInIndex = 0; path = libstatic_wallpaper_system_summary.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		64A8B5C98301DED1D7C2E7D6 /* ioapi.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = ioapi.cpp; sourceTree = "<group>"; };
-		861B9AE5F0EB0F33926629F9 /* framework.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = framework.cpp; sourceTree = "<group>"; };
+		861B9AE5F0EB0F33926629F9 /* platform.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = platform.cpp; sourceTree = "<group>"; };
 		CF862A9306F5BFC5856CE17E /* iowin32.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = iowin32.h; sourceTree = "<group>"; };
 		67BCB45E13511057254ED50C /* file.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = file.h; sourceTree = "<group>"; };
 		D781B1A72D07D7F19B4A98E3 /* folder.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = folder.cpp; sourceTree = "<group>"; };
@@ -126,7 +126,7 @@
 		7800F8D83FC4F03250A9F124 /* file.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = file.cpp; sourceTree = "<group>"; };
 		89796445B4ADEECB46C3B536 /* zip.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = zip.h; sourceTree = "<group>"; };
 		A1A70F7E150FD710EB51288D /* unzip.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = unzip.h; sourceTree = "<group>"; };
-		0C53CBEEB0A458BA88405CCB /* framework.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = framework.h; sourceTree = "<group>"; };
+		0C53CBEEB0A458BA88405CCB /* platform.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = platform.h; sourceTree = "<group>"; };
 		38E707784DC80F88182C4CC5 /* ioapi.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ioapi.h; sourceTree = "<group>"; };
 		F9C6B6B54EC317868FE70314 /* zip.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = zip.cpp; sourceTree = "<group>"; };
 		BF8EAEF4A6B251BB2DD8BCA3 /* folder.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = folder.h; sourceTree = "<group>"; };
@@ -171,8 +171,8 @@
 				26513E18346AF061F2836318 /* file_function_definitions.h */,
 				D781B1A72D07D7F19B4A98E3 /* folder.cpp */,
 				BF8EAEF4A6B251BB2DD8BCA3 /* folder.h */,
-				861B9AE5F0EB0F33926629F9 /* framework.cpp */,
-				0C53CBEEB0A458BA88405CCB /* framework.h */,
+				861B9AE5F0EB0F33926629F9 /* platform.cpp */,
+				0C53CBEEB0A458BA88405CCB /* platform.h */,
 				64A8B5C98301DED1D7C2E7D6 /* ioapi.cpp */,
 				38E707784DC80F88182C4CC5 /* ioapi.h */,
 				CF862A9306F5BFC5856CE17E /* iowin32.h */,
@@ -236,7 +236,7 @@
 				03585B7A58A11B8EE0262FF6 /* file.h in Headers */,
 				66AC6B22714AB18758B8C46E /* iowin32.h in Headers */,
 				C5C5C9326CC9F97979167090 /* folder.h in Headers */,
-				426248C62FA1033F23F48E57 /* framework.h in Headers */,
+				426248C62FA1033F23F48E57 /* platform.h in Headers */,
 				5B01AD8A4A32773D91AAE520 /* ioapi.h in Headers */,
 				1B6E503CF8EA7B4849EEEFE7 /* zip.h in Headers */,
 				219FCE762CBF786D22B785BF /* crypt.h in Headers */,
@@ -253,7 +253,7 @@
 				E1F982E4E4AA54E3C07A9C13 /* file.h in Headers */,
 				2F8B217DC45C7E51E8995F65 /* iowin32.h in Headers */,
 				54CC657A6FC616F94EE0E325 /* folder.h in Headers */,
-				E269746CF7493E5F01EE8327 /* framework.h in Headers */,
+				E269746CF7493E5F01EE8327 /* platform.h in Headers */,
 				E78B20B03C8E2AE617F5C6E5 /* ioapi.h in Headers */,
 				EA05FF7640BA3C9CF27EBAF7 /* zip.h in Headers */,
 				C781E5DC4C7F06148493DC1A /* crypt.h in Headers */,
@@ -270,7 +270,7 @@
 				3CC512414E4AA8CAB84F12E4 /* file.h in Headers */,
 				9F0C2946A1C32A02BD5FD9C1 /* iowin32.h in Headers */,
 				5D1E7F85854D6A9803E9E808 /* folder.h in Headers */,
-				445824BD6150188C5532230D /* framework.h in Headers */,
+				445824BD6150188C5532230D /* platform.h in Headers */,
 				5FF42F01AC9CD1CE900CEF05 /* ioapi.h in Headers */,
 				2B3D86A3A5C92CF661FE4DEF /* zip.h in Headers */,
 				1EB6055479CE2E4F3B1676D8 /* crypt.h in Headers */,
@@ -427,7 +427,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				16C373B98DBC3E15ACBD741D /* unzip.cpp in Sources */,
-				AA868547229400941B90D056 /* framework.cpp in Sources */,
+				AA868547229400941B90D056 /* platform.cpp in Sources */,
 				40DA4712B28224878C083F86 /* file.cpp in Sources */,
 				B750EE74C4225371612F9EC5 /* _factory.cpp in Sources */,
 				E5C98C2285234D499E47F92A /* ioapi.cpp in Sources */,
@@ -443,7 +443,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				68799B04338AA2FFE7A5E85D /* unzip.cpp in Sources */,
-				C83DB1824129BD044AED565C /* framework.cpp in Sources */,
+				C83DB1824129BD044AED565C /* platform.cpp in Sources */,
 				8FE270DEC0D2120F8D065D7F /* file.cpp in Sources */,
 				E1EDADE5EA76A8331C9B7F38 /* _factory.cpp in Sources */,
 				C350271950AB02AC6DCC2430 /* ioapi.cpp in Sources */,
@@ -459,7 +459,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				A27B1A0ACB3CA83288AE1191 /* unzip.cpp in Sources */,
-				0BA0609B0A685759EB8C9AEB /* framework.cpp in Sources */,
+				0BA0609B0A685759EB8C9AEB /* platform.cpp in Sources */,
 				A4562F0EB572BF83181C26BE /* file.cpp in Sources */,
 				3FCEA28ACD2D7331CEE19FD6 /* _factory.cpp in Sources */,
 				7A4EF37935C51E3C8DF38C8F /* ioapi.cpp in Sources */,
@@ -601,7 +601,7 @@
 				GCC_NO_COMMON_BLOCKS = YES;
 				GCC_OPTIMIZATION_LEVEL = 0;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
-				GCC_PREFIX_HEADER = framework.h;
+				GCC_PREFIX_HEADER = platform.h;
 				GCC_PREPROCESSOR_DEFINITIONS = "$(inherited)";
 				GCC_REUSE_STRINGS = YES;
 				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
@@ -720,7 +720,7 @@
 				GCC_NO_COMMON_BLOCKS = YES;
 				GCC_OPTIMIZATION_LEVEL = 0;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
-				GCC_PREFIX_HEADER = framework.h;
+				GCC_PREFIX_HEADER = platform.h;
 				GCC_PREPROCESSOR_DEFINITIONS = "";
 				GCC_REUSE_STRINGS = YES;
 				GCC_VERSION = "";

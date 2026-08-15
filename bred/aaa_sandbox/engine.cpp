@@ -1,4 +1,4 @@
-#include "../../../SceneFoundry/graphics3d/framework.h"
+#include "../../../SceneFoundry/graphics3d/platform.h"
 #include "engine.h"
 #include "SceneFoundry/graphics3d/key_codes.h"
 //#include "spdlog/spdlog.h"

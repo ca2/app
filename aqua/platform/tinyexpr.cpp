@@ -33,7 +33,7 @@ For a^b^c = a^(b^c) and -a^b = -(a^b) uncomment the next line.*/
 For log = base 10 log do nothing
 For log = natural log uncomment the next line. */
 /* #define TE_NAT_LOG */
-#include "framework.h"
+#include "platform.h"
 #include "tinyexpr.h"
 #include <stdlib.h>
 #include <math.h>

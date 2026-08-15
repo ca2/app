@@ -1,4 +1,4 @@
-#include "framework.h"
+#include "platform.h"
 #include "elastic_slider.h"
 #include "mesh.h"
 #include "acme/constant/user_message.h"

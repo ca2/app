@@ -1,5 +1,5 @@
 // Created by camilo on 2022-02-06 10:27 <3ThomasBorregaardSorensen!!
-#include "framework.h"
+#include "platform.h"
 //#include "_memory.h"
 
 
@@ -218,7 +218,7 @@ CLASS_DECL_ACME ::u32 __u32_hash(const ::scoped_string & scopedstr)
 //#endif // WINDOWS_DESKTOP
 
 
-#include "framework.h"
+#include "platform.h"
 #ifdef WINDOWS
 //#include "_memory.h"
 #else

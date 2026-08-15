@@ -27,7 +27,7 @@ You should have received a copy of the GNU General Public License
 along with this program; if not, write to the Free Software
 Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 */
-#include "framework.h"
+#include "platform.h"
 #include "base_socket.h"
 #include "base_socket_handler.h"
 #include "acme/exception/interface_only.h"

@@ -1,4 +1,4 @@
-#include "framework.h"
+#include "platform.h"
 #include "acme/operating_system/_const_console.h"
 #include "acme/operating_system/console.h"
 #include "acme/prototype/collection/strdup_array.h"

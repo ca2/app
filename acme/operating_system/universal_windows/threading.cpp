@@ -4,7 +4,7 @@
 // PARTICULAR PURPOSE.
 //
 // Copyright (c) Microsoft Corporation. All rights reserved.
-#include "framework.h"
+#include "platform.h"
 #include "acme/parallelization/message_queue.h"
 #include "acme/platform/acme.h"
 #include "acme/platform/node.h"

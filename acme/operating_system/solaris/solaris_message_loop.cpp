@@ -1,4 +1,4 @@
-#include "framework.h"
+#include "platform.h"
 
 /*
 class sys_message_queue

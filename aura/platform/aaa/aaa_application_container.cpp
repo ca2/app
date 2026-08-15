@@ -1,4 +1,4 @@
-#include "framework.h"
+#include "platform.h"
 //#include "berg/user/user/_component.h"
 #include "aura/platform/app_core.h"
 

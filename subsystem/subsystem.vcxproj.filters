@@ -47,13 +47,13 @@
     <ClInclude Include="_.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="framework.h">
+    <ClInclude Include="platform.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="thread\_.h">
       <Filter>Header Files\thread</Filter>
     </ClInclude>
-    <ClInclude Include="thread\aaa_framework.h">
+    <ClInclude Include="thread\aaa_platform.h">
       <Filter>Header Files\thread</Filter>
     </ClInclude>
     <ClInclude Include="thread\aaa_ZombieKiller.h">
@@ -373,7 +373,7 @@
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="framework.cpp">
+    <ClCompile Include="platform.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="_.cpp">

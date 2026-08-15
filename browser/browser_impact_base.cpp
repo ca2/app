@@ -1,4 +1,4 @@
-#include "framework.h"
+#include "platform.h"
 #include <math.h>
 
 #define SHOW_FPS 1

@@ -1,4 +1,4 @@
-#include "framework.h"
+#include "platform.h"
 //glglgl #include "_opengl.h"
 #include "bitmap.h"
 #include "acme/exception/interface_only.h"

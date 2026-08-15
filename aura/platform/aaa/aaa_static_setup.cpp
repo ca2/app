@@ -1,4 +1,4 @@
-#include "framework.h"
+#include "platform.h"
 #include "system_setup.h"
 
 ::system_setup * system_setup::s_psetupList = nullptr;

@@ -2614,7 +2614,7 @@
     <ClCompile Include="filesystem\fs\folder_sync.cpp" />
     <ClCompile Include="filesystem\fs\raw_folder.cpp" />
     <ClCompile Include="filesystem\fs\raw_folder_protocol.cpp" />
-    <ClCompile Include="framework.cpp">
+    <ClCompile Include="platform.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='StaticDebug|Win32'">Create</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='StaticMetaDebug|Win32'">Create</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='ASanStaticDebug|Win32'">Create</PrecompiledHeader>
@@ -2840,7 +2840,7 @@
     <ClInclude Include="database\_impl.h" />
     <ClInclude Include="filesystem\file\html_file.h" />
     <ClInclude Include="filesystem\file\_data.h" />
-    <ClInclude Include="framework.h" />
+    <ClInclude Include="platform.h" />
     <ClInclude Include="inline\application\linux.h" />
     <ClInclude Include="inline\application\macos.h" />
     <ClInclude Include="inline\application\universal_windows.h" />

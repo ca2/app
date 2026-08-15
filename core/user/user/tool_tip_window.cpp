@@ -1,4 +1,4 @@
-#include "framework.h"
+#include "platform.h"
 #include "tool_tip_window.h"
 #include "tool_tip_tool.h"
 #include "acme/constant/user_message.h"

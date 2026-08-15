@@ -1,6 +1,6 @@
 // From app_simple_application/impact.cpp to app_simple_about_the_operationg_system/main_impact.cpp by
 //    camilo on 2026-03-30 17:49 <3ThomasBorregaardSørensen!!
-#include "framework.h"
+#include "platform.h"
 //#include "application.h"
 //#include "document.h"
 #include "about_the_operating_system_impact.h"

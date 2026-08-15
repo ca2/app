@@ -41,7 +41,7 @@
     <ClInclude Include="draw2d_cairo_region.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="framework.h">
+    <ClInclude Include="platform.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="draw2d_cairo_object.h">
@@ -85,7 +85,7 @@
     <ClCompile Include="draw2d_cairo_region.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="framework.cpp">
+    <ClCompile Include="platform.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="draw2d_cairo_object.cpp">

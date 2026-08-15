@@ -1,4 +1,4 @@
-#include "framework.h"
+#include "platform.h"
 
 
 #if !defined(MCHECK) && !defined(_VLD) && !defined(__MCRTDBG) && !MEMDLEAK

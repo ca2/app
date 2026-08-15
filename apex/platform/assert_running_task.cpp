@@ -1,4 +1,4 @@
-#include "framework.h"
+#include "platform.h"
 #include "acme/platform/application_container.h"
 #include "assert_running_task.h"
 #include "acme/exception/exit.h"

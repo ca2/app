@@ -1,6 +1,6 @@
 // Created by camilo on 2024-12-01 00:34 <3ThomasBorregaardSorensen!!
 // 🌌🌍 [ Ubuntu 24.10 ] [ day 92 ] [ C++ ] ca2 Store
-#include "framework.h"
+#include "platform.h"
 
 
 CLASS_DECL_ACME ::string get_operating_system_name()

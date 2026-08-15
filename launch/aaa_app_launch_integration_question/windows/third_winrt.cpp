@@ -1,5 +1,5 @@
 // From third_winrt.cpp by camilo on 2023-06-22 16:35 <3ThomasBorregaardSorensen!!
-#include "framework.h"
+#include "platform.h"
 #include "third_winrt.h"
 #include "application.h"
 #include "acme/constant/id.h"

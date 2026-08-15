@@ -1,4 +1,4 @@
-#include "framework.h"
+#include "platform.h"
 #include "binding.h"
 #include "bred_approach.h"
 #include "context.h"
@@ -204,9 +204,17 @@ namespace gpu
 
       auto sizeWindow = pacmewindowingwindow->m_sizeWindow;
 
+      auto rectangleTarget = pacmewindowingwindow->get_window_rectangle();
+
+      auto pointTarget = rectangleTarget.origin();
+
+      auto size = rectangleTarget.size();
+
+      auto sizeRaw = pacmewindowingwindow->get_raw_buffer_size();
+
       ::gpu::enum_scene escene = ::gpu::e_scene_2d;
 
-      pgpucontext->create_window_gpu_context(pgpudevice, eoutput, escene, pacmewindowingwindow, sizeWindow);
+      pgpucontext->create_window_gpu_context(pgpudevice, eoutput, escene, pacmewindowingwindow, {}, pointTarget, size, sizeRaw);
 
       //::cast<::gpu_opengl::approach> papproach = m_papplication->get_gpu_approach();
       _gpu_on_create_window(pacmewindowingwindow);

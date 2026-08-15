@@ -1,5 +1,5 @@
 // From interprocess*.h/*.cpp by camilo on 2022-10-11 00:19 <3ThomasBorregaardSorensen!!
-#include "framework.h"
+#include "platform.h"
 #include "base.h"
 
 

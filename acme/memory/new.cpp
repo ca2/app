@@ -4,7 +4,7 @@
 //
 //  Created by Camilo Sasuke Thomas Borregaard Soerensen on 26/07/20.
 //
-#include "framework.h"
+#include "platform.h"
 //#include "memory_allocate.h"
 //
 //#if !defined(UNIVERSAL_WINDOWS) && !defined(__ANDROID__)

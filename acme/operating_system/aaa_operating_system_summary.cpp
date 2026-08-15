@@ -1,7 +1,7 @@
 //
 // Created by camilo on 07/04/23.
 //
-#include "framework.h"
+#include "platform.h"
 #if !defined(MACOS)
 #include "operating_system_summary.h"
 #include "acme/filesystem/filesystem/file_system.h"

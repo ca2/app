@@ -1,4 +1,4 @@
-#include "framework.h"
+#include "platform.h"
 // This is an independent project of an individual developer. Dear PVS-Studio, please check it.
 // PVS-Studio Static Code Analyzer for C, C++ and C#: http://www.viva64.com
 // //////////////////////////////////////////////////////////
@@ -7,7 +7,7 @@
 // see http://create.stephan-brumme.com/disclaimer.html
 //
 //#include "header.h"
-#include "framework.h"
+#include "platform.h"
 #include "sha256.h"
 #include "byte_order.h"
 

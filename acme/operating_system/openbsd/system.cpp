@@ -3,7 +3,7 @@
 // (as acme/os/linux/application_system_run.cpp)
 // Created by Camilo 2020-12-29 16:25 BRT <3TBS, Mummi and bilbo!!
 // (as acme/node/linux/system.cpp)
-#include "framework.h"
+#include "platform.h"
 //!!!#include "acme/operating_system/x11/_x11.h"
 #include <sys/utsname.h>
 

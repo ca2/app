@@ -1039,7 +1039,7 @@
     <ClInclude Include="filesystem\file\_text_stream_impl.h" />
     <ClInclude Include="filesystem\file\_var_stream_impl.h" />
     <ClInclude Include="filesystem\file\___serialization_draft.h" />
-    <ClInclude Include="framework.h" />
+    <ClInclude Include="platform.h" />
     <ClInclude Include="framework_c.h" />
     <ClInclude Include="aaa_id.h" />
     <ClInclude Include="include\objc.h" />
@@ -1513,7 +1513,7 @@
     <ClCompile Include="filesystem\watcher\action.cpp" />
     <ClCompile Include="filesystem\watcher\watch.cpp" />
     <ClCompile Include="filesystem\watcher\watcher.cpp" />
-    <ClCompile Include="framework.cpp">
+    <ClCompile Include="platform.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Create</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='StaticDebug|Win32'">Create</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Create</PrecompiledHeader>

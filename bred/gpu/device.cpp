@@ -1,9 +1,10 @@
-#include "framework.h"
+#include "platform.h"
 #include "bred_approach.h"
 #include "context.h"
 #include "context_lease.h"
 #include "device.h"
 #include "buffer.h"
+#include "fence.h"
 #include "frame_ephemeral.h"
 #include "frame_storage.h"
 #include "layer.h"
@@ -285,30 +286,30 @@ namespace gpu
    //}
 
 
-//<<<<<<< HEAD
-   ::gpu::context_pointer device::create_draw2d_gpu_context(::acme::windowing::window * pwindow, const ::i32_size& size)
-   {
-//=======
-   //::gpu::context_pointer device::create_draw2d_context(const ::gpu::enum_output& eoutput, const ::i32_size& size)
-   //{
-//>>>>>>> origin/main
-
-   //   //auto pgpucontext = createø<::gpu::context>();
-
-      auto pgpucontext = allocate_gpu_context();
-
-//<<<<<<< HEAD
-      //pgpucontext->create_draw2d_context(this, eoutput, pwindow, size);
-      pgpucontext->create_draw2d_gpu_context(this, pwindow, size);
-//=======
-   //   pgpucontext->create_draw2d_context(this, eoutput, size);
-//>>>>>>> origin/main
-
-     return pgpucontext;
-
-   }
-
-
+////<<<<<<< HEAD
+//   ::gpu::context_pointer device::create_draw2d_gpu_context(::acme::windowing::window * pwindow, const ::i32_size& size)
+//   {
+////=======
+//   //::gpu::context_pointer device::create_draw2d_context(const ::gpu::enum_output& eoutput, const ::i32_size& size)
+//   //{
+////>>>>>>> origin/main
+//
+//   //   //auto pgpucontext = createø<::gpu::context>();
+//
+//      auto pgpucontext = allocate_gpu_context();
+//
+////<<<<<<< HEAD
+//      //pgpucontext->create_draw2d_context(this, eoutput, pwindow, size);
+//      pgpucontext->create_draw2d_gpu_context(this, pwindow, size);
+////=======
+//   //   pgpucontext->create_draw2d_context(this, eoutput, size);
+////>>>>>>> origin/main
+//
+//     return pgpucontext;
+//
+//   }
+//
+//
    namespace
    {
 
@@ -432,7 +433,9 @@ namespace gpu
 
          auto pacmewindowingwindow = pacmeuserinteractionMain->acme_windowing_window();
 
-         pcontext->create_draw2d_gpu_context(this, pacmewindowingwindow, size);
+         ::i32_size sizeRaw = pacmewindowingwindow->get_raw_buffer_size().maximum(size);
+
+         pcontext->create_draw2d_gpu_context(this, pacmewindowingwindow, {}, {}, size, sizeRaw);
 
 //>>>>>>> origin/main
          pcontext->m_pgpucompositor = nullptr;
@@ -1621,6 +1624,26 @@ namespace gpu
 
 
 
+   ::pointer < ::gpu::fence > device::create_gpu_fence(bool bCreateSignaled)
+   {
+
+      auto pgpufence = createø<::gpu::fence>();
+
+      //pgpufence->m_uFence = uFence;
+
+      pgpufence->initialize_gpu_fence(this, bCreateSignaled);
+
+      //::cast < ::gpu_directx12::fence > pfence = pgpufence;
+
+      //HRESULT hrCreateFeence =
+      //   m_pd3d12device->CreateFence(uInitialPayload, D3D12_FENCE_FLAG_NONE,
+      //      __interface_of(pfence->m_pfence));
+
+      //::defer_throw_hresult(hrCreateFeence);
+
+      return pgpufence;
+
+   }
 
 
 

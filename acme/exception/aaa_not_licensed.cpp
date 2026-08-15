@@ -1,4 +1,4 @@
-#include "framework.h"
+#include "platform.h"
 
 
 not_licensed::not_licensed(const ::scoped_string & scopedstrRealm, const ::scoped_string & scopedstrUrl)

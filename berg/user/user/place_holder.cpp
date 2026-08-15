@@ -1,4 +1,4 @@
-#include "framework.h"
+#include "platform.h"
 #include "place_holder.h"
 #include "acme/constant/user_message.h"
 #include "acme/parallelization/synchronous_lock.h"

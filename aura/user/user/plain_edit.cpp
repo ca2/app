@@ -1,4 +1,4 @@
-#include "framework.h"
+#include "platform.h"
 #include "plain_edit.h"
 #include "scroll_state.h"
 #include "style.h"

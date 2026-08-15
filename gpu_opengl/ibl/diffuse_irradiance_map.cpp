@@ -1,6 +1,6 @@
 // From github:/tristancalderbank/OpenGL-PBR-Renderer/diffuse_irradiance_map.cpp by
 // camilo on 2025-09-26 19:53 <3ThomasBorregaardSorensen!!
-#include "framework.h"
+#include "platform.h"
 #include "diffuse_irradiance_map.h"
 #include "bred/gpu/command_buffer.h"
 #include "bred/gpu/context.h"

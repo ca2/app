@@ -1,5 +1,5 @@
 // Created by camilo on 2025-06-30 22:42 <3ThomasBorregaardSørensen!!
-#include "framework.h"
+#include "platform.h"
 #include "_gpu_opengl.h"
 #include "command_buffer.h"
 #include "device.h"
@@ -7,6 +7,7 @@
 #include "renderer.h"
 #include "texture.h"
 #include "bred/gpu/layer.h"
+#include "bred/gpu/texture_site.h"
 
 
 namespace gpu_opengl
@@ -27,30 +28,55 @@ namespace gpu_opengl
    }
 
 
-   void command_buffer::set_viewport(const ::i32_rectangle& rectangle)
+   void command_buffer::set_viewport(const ::i32_rectangle& rectangle, const ::i32_size & sizeRaw)
    {
 
-      glViewport(
-         rectangle.left,
-         rectangle.top,
-         rectangle.width(),
-         rectangle.height());
+      GLint x = rectangle.left;
+
+      int iRawHeight = sizeRaw.cy;
+
+      if (iRawHeight == 0)
+      {
+
+         iRawHeight = m_pgpurendertarget->m_pgpurenderer->m_pgpucontext->raw_height();
+
+      }
+
+      GLint y = iRawHeight - rectangle.bottom;
+
+      GLsizei width = rectangle.width();
+
+      GLsizei height = rectangle.height();
+
+      glViewport(x, y, width, height);
       ::opengl::check_error("");
 
    }
 
 
-   void command_buffer::set_scissor(const ::i32_rectangle& rectangle)
+   void command_buffer::set_scissor(const ::i32_rectangle& rectangle, const ::i32_size & sizeRaw)
    {
+
+      GLint x = rectangle.left;
+
+      int iRawHeight = sizeRaw.cy;
+
+      if (iRawHeight == 0)
+      {
+
+         iRawHeight = m_pgpurendertarget->m_pgpurenderer->m_pgpucontext->raw_height();
+
+      }
+
+      GLint y = iRawHeight - rectangle.bottom;
+
+      GLsizei width = rectangle.width();
+
+      GLsizei height = rectangle.height();
 
       glEnable(GL_SCISSOR_TEST);
       ::opengl::check_error("");
-      glScissor(
-         rectangle.left,
-         rectangle.top,
-         rectangle.width(),
-         rectangle.height()
-      );
+      glScissor(x, y, width, height);
       ::opengl::check_error("");
       //glDisable(GL_SCISSOR_TEST);
 
@@ -73,7 +99,9 @@ namespace gpu_opengl
 
       ::cast < render_target > prendertarget = m_pgpurendertarget;
 
-      ::cast < texture > ptexture = prendertarget->current_texture(::gpu::current_layer());
+       auto ptexturesite = prendertarget->current_texture(::gpu::current_layer(), true);
+
+       ::cast < texture > ptexture = ptexturesite->gpu_texture();
       
       //auto gluFbo = ptexture->frame_buffer_object();
 
@@ -148,10 +176,10 @@ namespace gpu_opengl
    }
 
 
-   void command_buffer::begin_render(::gpu::shader * pgpushader, ::gpu::texture * pgputextureTarget)
+   void command_buffer::begin_render(::gpu::shader * pgpushader, ::gpu::texture_site * pgputexturesiteTarget)
    {
 
-      ::gpu::command_buffer::begin_render(pgpushader, pgputextureTarget);
+      ::gpu::command_buffer::begin_render(pgpushader, pgputexturesiteTarget);
 
    }
 

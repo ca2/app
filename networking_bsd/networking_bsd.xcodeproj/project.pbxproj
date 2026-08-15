@@ -215,7 +215,7 @@
 		B67ADA4B8793DB0D7FD1518C /* base_socket.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = base_socket.h; sourceTree = "<group>"; };
 		D76857856B6226A9192ADEDD /* _.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = _.h; sourceTree = "<group>"; };
 		4195BAFBB52C34B28FDB9191 /* _system_sockets.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = _system_sockets.cpp; sourceTree = "<group>"; };
-		C6A914CB6DCE7237EEF20FD2 /* framework.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = framework.cpp; sourceTree = "<group>"; };
+		C6A914CB6DCE7237EEF20FD2 /* platform.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = platform.cpp; sourceTree = "<group>"; };
 		98181006BF73B0A5671F8D23 /* address.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = address.h; sourceTree = "<group>"; };
 		EC9F85F0042F2BABBC5E01EF /* _operating_system.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = _operating_system.h; sourceTree = "<group>"; };
 		F2EC58CF1A8D7144D6DB6D04 /* port_forward.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = port_forward.h; sourceTree = "<group>"; };
@@ -225,7 +225,7 @@
 		33657B14D25C1E279BF6A6C1 /* resource.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = resource.h; sourceTree = "<group>"; };
 		9DF690D8474CD1559A774429 /* _references.txt */ = {isa = PBXFileReference; lastKnownFileType = text; path = _references.txt; sourceTree = "<group>"; };
 		3405E4CF6136A519999A9725 /* _byte_order.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = _byte_order.h; sourceTree = "<group>"; };
-		2EA665C25AF6BC5B11FB75C2 /* framework.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = framework.h; sourceTree = "<group>"; };
+		2EA665C25AF6BC5B11FB75C2 /* platform.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = platform.h; sourceTree = "<group>"; };
 		004237AC93A21E06543E1C52 /* _.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = _.cpp; sourceTree = "<group>"; };
 		6A58BC3B027B0E02493FB5F9 /* _.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = _.h; sourceTree = "<group>"; };
 		EDB235FDAEE85E69F1314480 /* networking.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = networking.h; sourceTree = "<group>"; };
@@ -284,8 +284,8 @@
 				9DF690D8474CD1559A774429 /* _references.txt */,
 				3B78E48B13C1A972965B0C2D /* address.cpp */,
 				98181006BF73B0A5671F8D23 /* address.h */,
-				C6A914CB6DCE7237EEF20FD2 /* framework.cpp */,
-				2EA665C25AF6BC5B11FB75C2 /* framework.h */,
+				C6A914CB6DCE7237EEF20FD2 /* platform.cpp */,
+				2EA665C25AF6BC5B11FB75C2 /* platform.h */,
 				C8379954F392C6BA9E428F41 /* ip_enum.cpp */,
 				7F9AB621F27F0ABC8692D063 /* ip_enum.h */,
 				250C28D29D107769B0AFA6BD /* networking.cpp */,
@@ -885,7 +885,7 @@
 				GCC_NO_COMMON_BLOCKS = YES;
 				GCC_OPTIMIZATION_LEVEL = 0;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
-				GCC_PREFIX_HEADER = framework.h;
+				GCC_PREFIX_HEADER = platform.h;
 				GCC_PREPROCESSOR_DEFINITIONS = "$(inherited)";
 				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
 				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
@@ -975,7 +975,7 @@
 				GCC_INCREASE_PRECOMPILED_HEADER_SHARING = NO;
 				GCC_NO_COMMON_BLOCKS = YES;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
-				GCC_PREFIX_HEADER = framework.h;
+				GCC_PREFIX_HEADER = platform.h;
 				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
 				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
 				GCC_WARN_UNDECLARED_SELECTOR = YES;

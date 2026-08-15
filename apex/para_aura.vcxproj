@@ -53,8 +53,8 @@
       <WarningLevel>Level3</WarningLevel>
       <Optimization>Disabled</Optimization>
       <PreprocessorDefinitions>%(PreprocessorDefinitions)</PreprocessorDefinitions>
-      <PrecompiledHeaderFile>framework.h</PrecompiledHeaderFile>
-      <PrecompiledHeaderOutputFile>$(IntDir)framework.pch</PrecompiledHeaderOutputFile>
+      <PrecompiledHeaderFile>platform.h</PrecompiledHeaderFile>
+      <PrecompiledHeaderOutputFile>$(IntDir)platform.pch</PrecompiledHeaderOutputFile>
       <AdditionalIncludeDirectories>$(__sensitive)/sensitive/include;$(SolutionDir)../../../source/include;$(SolutionDir)../../../source/app/_include;$(SolutionDir)../../../source/port/include;$(SolutionDir)../../../source/port;.;$(SolutionDir)../../../;$(SolutionDir)../../../source;$(SolutionDir)../../../source/app;$(SolutionDir)../../../source/app/base/base;$(SolutionDir)../../../source;$(SolutionDir)../../../source/app;$(__operating_system)third-windows/thirdparty/include;$(SolutionDir)../../../;$(ProjectDir)../..;$(ProjectDir)../../;$(ProjectDir)../;$(ProjectDir);$(SolutionDir)../../../source/app/base3/openssl;$(SolutionDir)../../../source/app/base/openssl/crypto2;$(SolutionDir)../../../source/app/base/openssl/ssl2;$(SolutionDir)../../../source/app/base/base/openssl/crypto/asn1;$(SolutionDir)../../../source/app/base/base/openssl/crypto/evp;$(SolutionDir)../../../source/app/base/base/openssl/crypto/krb5;$(SolutionDir)../../../source/app/base/base/openssl/crypto/modes;$(SolutionDir)../../../source/app/base/base/openssl/include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
@@ -306,7 +306,7 @@
     <ClCompile Include="filesystem\file\file_transfer_buffer.cpp" />
     <ClCompile Include="filesystem\file\file_writer.cpp" />
     <ClCompile Include="filesystem\file\file_writer_flush.cpp" />
-    <ClCompile Include="framework.cpp">
+    <ClCompile Include="platform.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Create</PrecompiledHeader>
     </ClCompile>
     <ClCompile Include="framework_c.c">
@@ -487,7 +487,7 @@
     <None Include="para_apex.def" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="framework.h" />
+    <ClInclude Include="platform.h" />
     <ClInclude Include="framework_c.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />

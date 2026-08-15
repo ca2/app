@@ -1,4 +1,4 @@
-#include "framework.h"
+#include "platform.h"
 
 ::i32 my_main(::particle * pparticle);
 

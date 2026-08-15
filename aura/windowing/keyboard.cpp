@@ -10,7 +10,7 @@
 // any later version.
 //
 // $Id: keyboard.cpp 53 2008-07-18 08:38:47Z jay $
-#include "framework.h"
+#include "platform.h"
 //#include "_windowing.h"
 //#include "x11_keyboard.h"
 //#include "x11_exception.h"

@@ -1,4 +1,4 @@
-#include "framework.h"
+#include "platform.h"
 #include "simple_command.h"
 #include "acme/constant/user_message.h"
 #include "acme/constant/simple_command.h"

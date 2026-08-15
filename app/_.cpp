@@ -1,4 +1,4 @@
-#include "framework.h"
+#include "platform.h"
 #include "acme/_application_library.h"
 #include "acme/platform/release_time.h"
 #define APPLICATION_NAMESPACE app_app

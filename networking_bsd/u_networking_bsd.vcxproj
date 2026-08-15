@@ -72,7 +72,7 @@
     <ClInclude Include="crypto.h" />
     <ClInclude Include="crypto_initializer.h" />
     <ClInclude Include="filesystem\filemanager\impact_base.h" />
-    <ClInclude Include="framework.h" />
+    <ClInclude Include="platform.h" />
     <ClInclude Include="framework_c.h" />
     <ClInclude Include="hasher.h" />
     <ClInclude Include="hasher_algorithm.h" />
@@ -108,7 +108,7 @@
     <ClCompile Include="sockets\ssl\context.cpp" />
     <ClCompile Include="sockets\ssl\initializer.cpp" />
     <ClCompile Include="_factory.cpp" />
-    <ClCompile Include="framework.cpp">
+    <ClCompile Include="platform.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Create</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='StaticDebug|Win32'">Create</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|ARM'">Create</PrecompiledHeader>

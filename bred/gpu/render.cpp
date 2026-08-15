@@ -1,5 +1,5 @@
 // Created from graphics3d/impact3d/render by camilo on 2023-06-16 <3ThomasBorregaardSorensenJegElskerDig!! (ThomasLikesNumber5)
-#include "framework.h"
+#include "platform.h"
 #include "bred_approach.h"
 #include "context.h"
 #include "buffer.h"

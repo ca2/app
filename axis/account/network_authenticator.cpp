@@ -4,7 +4,7 @@
 //
 //  Created by Camilo Sasuke Thomas Borregaard Soerensen on 12/12/18.
 //
-#include "framework.h"
+#include "platform.h"
 #include "network_authenticator.h"
 #include "credentials.h"
 #include "user.h"

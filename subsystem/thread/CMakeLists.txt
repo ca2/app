@@ -3,21 +3,21 @@ project(remoting_thread)
 
 
 list(APPEND library_source
-   framework.cpp
-   framework.h
+   platform.cpp
+   platform.h
    critical_section_lock.cpp
    critical_section_lock.h
    DesktopSelector.cpp
    GlobalMutex.cpp
    GlobalMutex.h
    GuiThread.cpp
-   framework.h
+   platform.h
    DesktopSelector.h
    lockable.h
    critical_section.h
    critical_section.cpp
    GuiThread.h
-   framework.cpp
+   platform.cpp
    resource.h
    Thread.h
    Thread.cpp
@@ -51,8 +51,8 @@ add_library(${PROJECT_NAME} STATIC ${library_source})
 
 #target_link_directories(${PROJECT_NAME} PRIVATE ${library_link_directories})
 
-target_precompile_headers(${PROJECT_NAME} PRIVATE framework.h)
-#target_precompile_headers(static_${PROJECT_NAME} PRIVATE framework.h)
+target_precompile_headers(${PROJECT_NAME} PRIVATE platform.h)
+#target_precompile_headers(static_${PROJECT_NAME} PRIVATE platform.h)
 
 #set_target_properties(${PROJECT_NAME} PROPERTIES LINKER_LANGUAGE CXX)
 

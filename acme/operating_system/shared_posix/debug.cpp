@@ -1,7 +1,7 @@
 //
 // Created by camilo on 2024-06-21 17-43 <3ThomasBorregaardSorensen!!.
 //
-#include "framework.h"
+#include "platform.h"
 #include <stdio.h>
 #include <cstdarg>
 

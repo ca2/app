@@ -1,5 +1,5 @@
 // Created by camilo on 2024-06-02 23:17 <3ThomasBorregaardSorensen!!
-#include "framework.h"
+#include "platform.h"
 #include "dynamic_library.h"
 #include "acme/exception/interface_only.h"
 #include "acme/exception/library_not_loaded.h"

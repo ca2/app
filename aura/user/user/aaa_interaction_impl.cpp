@@ -1,4 +1,4 @@
-#include "framework.h"
+#include "platform.h"
 #include "aaa_interaction_impl.h"
 #include "interaction.h"
 #include "interaction_scaler.h"

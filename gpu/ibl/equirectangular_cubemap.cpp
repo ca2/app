@@ -1,6 +1,6 @@
 // From github:/tristancalderbank/OpenGL-PBR-Renderer/equirectangular_cubemap.cpp by
 // camilo on 2025-09-26 19:53 <3ThomasBorregaardSorensen!!
-#include "framework.h"
+#include "platform.h"
 #include "equirectangular_cubemap.h"
 #include "bred/gpu/binding.h"
 #include "bred/gpu/command_buffer.h"
@@ -9,6 +9,7 @@
 #include "bred/gpu/debug_scope.h"
 #include "bred/gpu/shader.h"
 #include "bred/gpu/texture.h"
+#include "bred/gpu/texture_site.h"
 #include "bred/graphics3d/engine.h"
 #include "bred/graphics3d/shape_factory.h"
 #include "bred/platform/timer.h"
@@ -84,16 +85,19 @@ namespace gpu
             m_pgpucontext->m_pgpurenderer, embedded_ibl_hdri_cube_vert(), embedded_ibl_hdri_cube_frag(), 
             pinputlayoutVertex);
 
-         constructø(m_ptextureHdr);
+         construct_newø(m_ptexturesiteHdr);
 
-         m_ptextureHdr->m_textureflags.m_bShaderResource = true;
+         constructø(m_ptexturesiteHdr->m_pgputextureSite);
 
-         m_ptextureHdr->initialize_hdr_texture_on_memory(m_pgpucontext, block);
+         m_ptexturesiteHdr->gpu_texture()->m_textureflags.m_bShaderResource = true;
 
-         constructø(m_ptextureCubemap);
+         m_ptexturesiteHdr->gpu_texture()->create_hdr_texture_on_memory(m_pgpucontext, block);
 
-         ::gpu::texture_attributes textureattributes(::i32_rectangle{API_CHANGED_ARGUMENT, m_uCubemapWidth,
-                                                                    m_uCubemapHeight});
+         construct_newø(m_ptexturesiteCubemap);
+
+         constructø(m_ptexturesiteCubemap->m_pgputextureSite);
+
+         ::gpu::texture_attributes textureattributes({(::i32)m_uCubemapWidth, (::i32) m_uCubemapHeight});
 
          textureattributes.set_cubemap_all_mips();
 
@@ -104,7 +108,7 @@ namespace gpu
          textureflags.m_bTransferTarget = true;
          textureflags.m_bTransferSource = true;
 
-         m_ptextureCubemap->initialize_texture(
+         m_ptexturesiteCubemap->gpu_texture()->create_texture(
             m_pgpucontext, 
             textureattributes,
             textureflags);
@@ -164,17 +168,19 @@ namespace gpu
             0.1f,
             2.0f);
 
-         m_pgpucontext->set_size(m_ptextureCubemap->size());
+         m_pgpucontext->set_size(m_ptexturesiteCubemap->size());
 
-         m_ptextureHdr->set_state(pgpucommandbuffer, ::gpu::e_texture_state_shader_read);
+         m_ptexturesiteHdr->gpu_texture()->set_state(pgpucommandbuffer, ::gpu::e_texture_state_shader_read);
 
-         m_ptextureCubemap->set_current_mip(-1);
+         auto ptextureCubemap = m_ptexturesiteCubemap->gpu_texture();
 
-         m_ptextureCubemap->set_current_layer(-1);
+         ptextureCubemap->set_current_mip(-1);
+         
+         ptextureCubemap->set_current_layer(-1);
 
-         m_ptextureCubemap->set_state(pgpucommandbuffer, ::gpu::e_texture_state_color_attachment);
+         ptextureCubemap->set_state(pgpucommandbuffer, ::gpu::e_texture_state_color_attachment);
 
-         m_ptextureCubemap->set_current_mip(0);
+         ptextureCubemap->set_current_mip(0);
 
          for (auto iFace = 0; iFace < 6; iFace++)
          {
@@ -187,9 +193,9 @@ namespace gpu
 
             auto impact = cameraAngles[iFace];
 
-            m_ptextureCubemap->set_current_layer(iFace);
+            ptextureCubemap->set_current_layer(iFace);
 
-            pgpucommandbuffer->begin_render(m_pshaderHdri, m_ptextureCubemap);
+            pgpucommandbuffer->begin_render(m_pshaderHdri, m_ptexturesiteCubemap);
 
             //pgpucommandbuffer->set_source(m_ptextureHdr);
 
@@ -207,7 +213,7 @@ namespace gpu
 
             pgpucommandbuffer->set_scissor(rectangleViewport);
 
-            pgpucommandbuffer->set_source(m_ptextureHdr);
+            pgpucommandbuffer->set_source(m_ptexturesiteHdr);
 
             pgpucommandbuffer->draw(m_prenderableCube);
 
@@ -215,15 +221,15 @@ namespace gpu
 
          }
 
-         m_ptextureCubemap->generate_mipmap(pgpucommandbuffer);
+         ptextureCubemap->generate_mipmap(pgpucommandbuffer);
 
-         m_ptextureCubemap->set_current_mip(-1);
+         ptextureCubemap->set_current_mip(-1);
 
-         m_ptextureCubemap->set_current_layer(-1);
+         ptextureCubemap->set_current_layer(-1);
 
-         m_ptextureCubemap->set_state(pgpucommandbuffer, ::gpu::e_texture_state_shader_read);
+         ptextureCubemap->set_state(pgpucommandbuffer, ::gpu::e_texture_state_shader_read);
 
-         m_ptextureCubemap->set_ok_flag();
+         ptextureCubemap->set_ok_flag();
 
          //m_pgpucontext->endSingleTimeCommands(pgpucommandbuffer);
 

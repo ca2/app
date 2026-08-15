@@ -1,5 +1,5 @@
 // From gpu_opengl/context.h by camilo on 2025-09-28 12:00 <3ThomasBorregaardSorensen!!
-#include "framework.h"
+#include "platform.h"
 #define STB_USE_HUNTER
 //#include "_gpu_opengl.h"
 //#include "command_buffer.h"

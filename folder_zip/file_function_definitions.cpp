@@ -1,5 +1,5 @@
 // From zip::file(or zip::infile) by camilo on 2021-11-10 15:46 BRT <3ThomasBorregaardSorensen!!
-#include "framework.h"
+#include "platform.h"
 //#include <zlib.h>
 //#include <zutil.h>
 #include "ioapi.h"

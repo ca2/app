@@ -1,4 +1,4 @@
-#include "framework.h"
+#include "platform.h"
 #ifdef WINDOWS
 #include "_c_memory.h"
 #else

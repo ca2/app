@@ -1,7 +1,7 @@
 //
 // Created by camilo on 2025-01-08 22:42 BRT <3ThomasBS_!!
 //
-#include "framework.h"
+#include "platform.h"
 #include "message.h"
 
 

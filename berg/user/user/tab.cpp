@@ -1,4 +1,4 @@
-#include "framework.h"
+#include "platform.h"
 #include "tab.h"
 #include "tab_pane_array.h"
 #include "tab_pane.h"

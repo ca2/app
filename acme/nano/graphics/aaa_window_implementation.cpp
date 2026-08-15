@@ -1,7 +1,7 @@
 //
 // Created by camilo on 31/01/2022 23:04 <3ThomasBorregaardSorensen!!
 // //
-// #include "framework.h"
+// #include "platform.h"
 // #include "display.h"
 // #include "window_implementation.h"
 // #include "window.h"

@@ -4,7 +4,7 @@
 //
 //  Created by Camilo Sasuke Thomas Borregaard Soerensen on 10/12/17.
 //
-#include "framework.h"
+#include "platform.h"
 #include "oswindow_data.h"
 
 
@@ -33,7 +33,7 @@
 //}
 
 
-#include "framework.h"
+#include "platform.h"
 #include "window_impl.h"
 
 

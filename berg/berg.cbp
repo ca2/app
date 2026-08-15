@@ -250,11 +250,11 @@
 			<Option target="base"/>
 			<Option target="static_base"/>
 		</Unit>
-		<Unit filename="/home/camilo/cmake/integration/source/app/base/framework.cpp">
+		<Unit filename="/home/camilo/cmake/integration/source/app/base/platform.cpp">
 			<Option target="base"/>
 			<Option target="static_base"/>
 		</Unit>
-		<Unit filename="/home/camilo/cmake/integration/source/app/base/framework.h">
+		<Unit filename="/home/camilo/cmake/integration/source/app/base/platform.h">
 			<Option target="base"/>
 			<Option target="static_base"/>
 		</Unit>

@@ -19,7 +19,7 @@ namespace graphics3d
       using Vertex = ::graphics3d::shape_factory::Vertex;
       
 
-      ::pointer_array<::gpu::texture>                 m_texturea;
+      ::pointer_array<::gpu::texture_site>            m_texturesitea;
       ::gpu::model_data<Vertex>                       m_modeldata;
       ::pointer < ::gpu::model_buffer >               m_pmodel;
       //::u32 m_VAO, m_VBO, m_EBO;

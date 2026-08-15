@@ -1,4 +1,4 @@
-#include "framework.h"
+#include "platform.h"
 #include "trace_category.h"
 //#include "acme/prototype/collection/pointer_array.h"
 #include "acme/platform/system.h"

@@ -1,4 +1,4 @@
-#include "framework.h"
+#include "platform.h"
 #include "pbr_with_ibl_render_system_base.h"
 #include "bred/gpu/context.h"
 #include "bred/gpu/layer.h"

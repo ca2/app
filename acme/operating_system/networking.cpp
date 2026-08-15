@@ -1,5 +1,5 @@
 // Created by camilo on 2025-10-02 06:03 <3ThomasBorregaardSørensen!!
-#include "framework.h"
+#include "platform.h"
 
 
 ::interlocked_count g_interlockcountOpenedSockets;

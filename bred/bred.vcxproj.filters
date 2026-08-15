@@ -81,7 +81,7 @@
     </Filter>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="framework.h">
+    <ClInclude Include="platform.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="platform\_platform.h">
@@ -303,7 +303,7 @@
     <ClInclude Include="graphics3d\entity.h">
       <Filter>Header Files\graphics3d</Filter>
     </ClInclude>
-    <ClInclude Include="graphics3d\framework.h">
+    <ClInclude Include="graphics3d\platform.h">
       <Filter>Header Files\graphics3d</Filter>
     </ClInclude>
     <ClInclude Include="graphics3d\game_object.h">
@@ -351,7 +351,7 @@
     <ClInclude Include="prodevian\camera.h">
       <Filter>Header Files\prodevian</Filter>
     </ClInclude>
-    <ClInclude Include="prodevian\framework.h">
+    <ClInclude Include="prodevian\platform.h">
       <Filter>Header Files\prodevian</Filter>
     </ClInclude>
     <ClInclude Include="prodevian\game_object.h">
@@ -468,6 +468,9 @@
     <ClInclude Include="gpu\window_attachment.h">
       <Filter>Header Files\gpu</Filter>
     </ClInclude>
+    <ClInclude Include="gpu\texture_site.h">
+      <Filter>Header Files\gpu</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="platform\application.cpp">
@@ -482,7 +485,7 @@
     <ClCompile Include="const\idpool.cpp">
       <Filter>Source Files\gpu\const</Filter>
     </ClCompile>
-    <ClCompile Include="framework.cpp">
+    <ClCompile Include="platform.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="_.cpp">
@@ -738,6 +741,9 @@
       <Filter>Source Files\gpu</Filter>
     </ClCompile>
     <ClCompile Include="gpu\window_attachment.cpp">
+      <Filter>Source Files\gpu</Filter>
+    </ClCompile>
+    <ClCompile Include="gpu\texture_site.cpp">
       <Filter>Source Files\gpu</Filter>
     </ClCompile>
   </ItemGroup>

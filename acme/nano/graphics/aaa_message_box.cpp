@@ -1,7 +1,7 @@
 //
 // Created by camilo on 2022-01-21 14:57 <3ThomasBorregaardSorensen
 // Generalization by camilo on 31/01/2022 14:53 <3ThomasBorregaardSorensen!!
-#include "framework.h"
+#include "platform.h"
 #include "button.h"
 #include "device.h"
 #include "icon.h"

@@ -1,5 +1,5 @@
 // Created by camilo on 2022-06-07 07:39 <3ThomasBorregaardSorense!! Mummi and bilbo!!
-#include "framework.h"
+#include "platform.h"
 #include "str.h"
 #include "string.h"
 

@@ -1,7 +1,7 @@
 //
 // Created by camilo on 2026-04-06 10:54 <3ThomasBorregaardSørensen!!
 //
-#include "framework.h"
+#include "platform.h"
 #include "subsystem.h"
 #include "gui/SystemMetrics.h"
 #include "ResourceLoader.h"

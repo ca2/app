@@ -158,7 +158,7 @@
     <ClInclude Include="audio\_c.h" />
     <ClInclude Include="console.h" />
     <ClInclude Include="constant\idpool.h" />
-    <ClInclude Include="framework.h" />
+    <ClInclude Include="platform.h" />
     <ClInclude Include="game\estamira.h" />
     <ClInclude Include="game\game.h" />
     <ClInclude Include="game\_.h" />
@@ -243,7 +243,7 @@
     <ClCompile Include="audio\speaker.cpp" />
     <ClCompile Include="audio\text_to_speech_client.cpp" />
     <ClCompile Include="constant\idpool.cpp" />
-    <ClCompile Include="framework.cpp">
+    <ClCompile Include="platform.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Create</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='ReleaseDebug|Win32'">Create</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='StaticRelease|Win32'">Create</PrecompiledHeader>

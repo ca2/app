@@ -1,5 +1,5 @@
 // Created by camilo on 2022-10-06 06:44 <3ThomasBorregaardSorensen!!
-#include "framework.h"
+#include "platform.h"
 #include "exception.h"
 
 

@@ -1,5 +1,5 @@
 // Created by camilo on 2025-05-31 15:32 <3ThomasBorregaardSørensen!!
-#include "framework.h"
+#include "platform.h"
 #include "binding.h"
 #include "command_buffer.h"
 #include "draw2d.h"
@@ -9,6 +9,7 @@
 #include "layer.h"
 #include "pixmap.h"
 #include "texture.h"
+#include "texture_site.h"
 #include "acme/platform/application.h"
 #include "aura/user/user/interaction.h"
 #include "aura/graphics/draw2d/_draw2d.h"
@@ -289,11 +290,26 @@ namespace gpu
    void graphics::start_frame()
    {
       
-         auto pcontext = gpu_context();
+      auto pcontext = gpu_context();
 
-      pcontext->m_escene = ::gpu::e_scene_2d;
-      auto pgpuwindowattachment = ::gpu::window_attachment::get(pcontext);
+      if (pcontext)
+      {
+
+         pcontext->m_escene = ::gpu::e_scene_2d;
+
+         auto pgpuwindowattachment = ::gpu::window_attachment::get(pcontext);
+
          pgpuwindowattachment->start_frame();
+
+      }
+      else
+      {
+
+         auto pgpuwindowattachment = ::gpu::window_attachment::get(m_pacmeuserinteractionAffinity);
+
+         pgpuwindowattachment->start_frame();
+
+      }
          //pcontext->start_frame();
    }
 
@@ -359,15 +375,17 @@ namespace gpu
 
       auto rectangleWindow = pwindow->get_window_rectangle();
 
-      pgpucontextWindow->set_placement(rectangleWindow);
+      pgpucontextWindow->set_output_placement(rectangleWindow);
 
       auto pcontext = gpu_context();
 
       pcontext->m_escene = ::gpu::e_scene_2d;
 
-      auto rectangleThisContext = pcontext->get_placement();
+      pcontext->set_output_placement(rectangleWindow);
 
-      information("rectangleThisContext {}", rectangleThisContext);
+      auto rectangleThisContextOutput = pcontext->output_placement();
+
+      information("rectangleThisContextOutput {}", rectangleThisContextOutput);
 
       //auto rectangleClient = rectangleWindow;
 
@@ -458,24 +476,24 @@ namespace gpu
 
       pcontext->start_layer(bFirstLayer);
 
-      auto pgputexture = pcontext->m_pgpurenderer->m_pgpurendertarget2->current_texture(::gpu::current_layer());
+      auto pgputexturesite = pcontext->m_pgpurenderer->m_pgpurendertarget2->current_texture(::gpu::current_layer(), true);
 
-      auto sizeRaw = pgputexture->size();
+      auto sizeRaw = pcontext->raw_size();
 
       if (m_pgraphicsbufferitem->m_pimageBufferItem->m_sizeRaw != sizeRaw)
       {
 
          ::cast <::gpu::image> pgpuimage = m_pgraphicsbufferitem->m_pimageBufferItem;
 
-         pgpuimage->create_gpu_texture_image(pgputexture, this);
+         pgpuimage->create_gpu_texture_image(pgputexturesite->gpu_texture(), this);
 
       }
 
       m_pimage = m_pgraphicsbufferitem->m_pimageBufferItem;
 
-      ::gpu::context_lock lock(pcontext);
+      //::gpu::context_lock lock(pcontext);
 
-      set_target_image(m_pgraphicsbufferitem->m_pimageBufferItem);
+      //set_target_image(m_pgraphicsbufferitem->m_pimageBufferItem);
 
    }
 
@@ -686,11 +704,13 @@ namespace gpu
    }
 
 
-   void graphics::on_gpu_context_placement_change(const ::i32_rectangle &rectangle,
+   void graphics::on_gpu_context_placement_change(const ::i32_point & pointTarget,
+      const ::i32_point & pointSource,
+      const ::i32_size & size,
                                                   ::acme::windowing::window *pacmewindowingwindow)
    {
 
-      ::gpu::compositor::on_gpu_context_placement_change(rectangle, pacmewindowingwindow);
+      ::gpu::compositor::on_gpu_context_placement_change(pointTarget, pointSource, size, pacmewindowingwindow);
 
    }
 
@@ -716,7 +736,7 @@ namespace gpu
       
       auto pcontext = gpu_context();
       
-      auto size = pcontext->get_placement().size();
+      auto size = pcontext->size();
 
       ::geometry2d::matrix contextmatrix;
 
@@ -998,11 +1018,11 @@ namespace gpu
       if (m_papplication->m_gpu.m_bUseSwapChainWindow)
       {
 
-         auto pgpucontext = m_pgpucontextOwned;
+         //auto pgpucontext = m_pgpucontextOwned;
 
-         auto pgpudevice = pgpucontext->m_pgpudevice;
+         //auto pgpudevice = pgpucontext->m_pgpudevice;
 
-         auto pgpuwindowattachment = ::gpu::window_attachment::get(pgpucontext);
+         auto pgpuwindowattachment = ::gpu::window_attachment::get(puserinteraction);
 
          auto pgpucontextWindow = pgpuwindowattachment->m_pgpucontextWindow;
 
@@ -1048,7 +1068,7 @@ namespace gpu
       if (pcontext)
       {
 
-         return pcontext->get_placement().size();
+         return pcontext->size();
 
       }
 
@@ -1700,8 +1720,8 @@ namespace gpu
             auto ppixmapFetch = ch.get_gpu_pixmap(gpu_context()->m_pgpurenderer);
 
             if (ppixmapFetch
-            && ppixmapFetch->m_pgputexture
-            && ppixmapFetch->m_pgputexture->is_in_shader_sampling_state())
+            && ppixmapFetch->m_pgputexturesite->gpu_texture()
+            && ppixmapFetch->m_pgputexturesite->gpu_texture()->is_in_shader_sampling_state())
             {
                //if (pmodelbuffer->is_new())
                //{
@@ -1762,7 +1782,7 @@ namespace gpu
 
                {
 
-                  auto size = ppixmap->m_pgputexture->size();
+                  auto size = ppixmap->m_pgputexturesite->size();
 
                   auto w = (::f32)(size.width());
                   auto h = (::f32)(size.height());
@@ -1874,11 +1894,7 @@ namespace gpu
    void graphics::defer_set_size(const ::i32_size &size) 
    {
 
-      auto rectangle = gpu_context()->get_placement();
-
-      rectangle.set_size(size);
-   
-      gpu_context()->set_placement(rectangle);
+      gpu_context()->set_size(size);
    
    }
 

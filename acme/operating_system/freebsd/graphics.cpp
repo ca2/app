@@ -1,4 +1,4 @@
-#include "framework.h"
+#include "platform.h"
 
 
 //::i32_bool delete_hcursor(HCURSOR hcursor)

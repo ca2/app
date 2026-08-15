@@ -1,5 +1,5 @@
 // Created by camilo on 2025-08-23 21:19 <3ThomasBorregaardSorensen!!
-#include "framework.h"
+#include "platform.h"
 #include "bred/graphics3d/types.h"
 
 

@@ -1,4 +1,4 @@
-#include "framework.h"
+#include "platform.h"
 #include "hasher_algorithm.h"
 #include "hasher.h"
 

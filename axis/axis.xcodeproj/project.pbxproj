@@ -143,7 +143,7 @@
 		F674CFC833F922B30346C79E /* _impl.h in Headers */ = {isa = PBXBuildFile; fileRef = 78EA4E5AF09E6538E744C448 /* _impl.h */; };
 		FA3B3F8B965884F49722B291 /* tag.h in Headers */ = {isa = PBXBuildFile; fileRef = 703DCC83CC8CFF86A0E92F62 /* tag.h */; };
 		FA7FAF07B771C7FA9F019683 /* smtp_socket.h in Headers */ = {isa = PBXBuildFile; fileRef = 2E100401C1AD2E1269A7E398 /* smtp_socket.h */; };
-		07F5976FDD4670534829A69C /* framework.h in Headers */ = {isa = PBXBuildFile; fileRef = 81D9F73953D888385FD77F79 /* framework.h */; };
+		07F5976FDD4670534829A69C /* platform.h in Headers */ = {isa = PBXBuildFile; fileRef = 81D9F73953D888385FD77F79 /* platform.h */; };
 		453BEC14373E748C9263AD2D /* _no_templates.h in Headers */ = {isa = PBXBuildFile; fileRef = D3E3B85B765D929F66576E52 /* _no_templates.h */; };
 		F54DEDDE620A3F34626797D0 /* storage.h in Headers */ = {isa = PBXBuildFile; fileRef = 806CACB61F7E16C2AA08ACF0 /* storage.h */; };
 		7462FB734564983078EEB24C /* system_storage.h in Headers */ = {isa = PBXBuildFile; fileRef = C7671E68348857F4E43FD13F /* system_storage.h */; };
@@ -562,7 +562,7 @@
 		7701D95B1223CF922A63CF67 /* version.h in Headers */ = {isa = PBXBuildFile; fileRef = A39AC5AFC74C8A783D9D3FB4 /* version.h */; };
 		3D7C849B53FF0263578C8EF1 /* version.config.h in Headers */ = {isa = PBXBuildFile; fileRef = 34C01A352ABB222258EA7DAC /* version.config.h */; };
 		96F9759F79238C404CAE9C12 /* console_slim.h in Headers */ = {isa = PBXBuildFile; fileRef = 2863634F5C11B8CE0EE41982 /* console_slim.h */; };
-		174567BBFA757C58168AC05B /* framework.h in Headers */ = {isa = PBXBuildFile; fileRef = 81D9F73953D888385FD77F79 /* framework.h */; };
+		174567BBFA757C58168AC05B /* platform.h in Headers */ = {isa = PBXBuildFile; fileRef = 81D9F73953D888385FD77F79 /* platform.h */; };
 		6FF8D496E433F3F2D8B6E9F2 /* system_storage.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B51C148F47A2AF9D77B38D74 /* system_storage.cpp */; };
 		6CF0CF69D4C21E643A65102F /* product_array.h in Headers */ = {isa = PBXBuildFile; fileRef = 8B590C71B41997D436F8C795 /* product_array.h */; };
 		C7E0F12794350535F8B8F6DE /* e_status.h in Headers */ = {isa = PBXBuildFile; fileRef = 47DE5BC1BF19FB83CF892234 /* e_status.h */; };
@@ -957,7 +957,7 @@
 		A39AC5AFC74C8A783D9D3FB4 /* version.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = version.h; sourceTree = "<group>"; };
 		34C01A352ABB222258EA7DAC /* version.config.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = version.config.h; sourceTree = "<group>"; };
 		2863634F5C11B8CE0EE41982 /* console_slim.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = console_slim.h; sourceTree = "<group>"; };
-		81D9F73953D888385FD77F79 /* framework.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = framework.h; sourceTree = "<group>"; };
+		81D9F73953D888385FD77F79 /* platform.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = platform.h; sourceTree = "<group>"; };
 		B51C148F47A2AF9D77B38D74 /* system_storage.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = system_storage.cpp; sourceTree = "<group>"; };
 		8B590C71B41997D436F8C795 /* product_array.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = product_array.h; sourceTree = "<group>"; };
 		47DE5BC1BF19FB83CF892234 /* e_status.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = e_status.h; sourceTree = "<group>"; };
@@ -1375,7 +1375,7 @@
 				316FDC3E48ADE58479289D49 /* console.h */,
 				E7CE3CC1DD54876BF2FE14D6 /* _____debug.xcconfig */,
 				19A1A6CD445D59178D0BF339 /* framework_c.h */,
-				81D9F73953D888385FD77F79 /* framework.h */,
+				81D9F73953D888385FD77F79 /* platform.h */,
 				118DA954027FD474C0CAE163 /* library.h */,
 				174228A5D63FA918763012DD /* procedure.h */,
 				72719F79C1BBE362B4732B37 /* _____release.xcconfig */,
@@ -1744,7 +1744,7 @@
 				F674CFC833F922B30346C79E /* _impl.h in Headers */,
 				FA3B3F8B965884F49722B291 /* tag.h in Headers */,
 				FA7FAF07B771C7FA9F019683 /* smtp_socket.h in Headers */,
-				07F5976FDD4670534829A69C /* framework.h in Headers */,
+				07F5976FDD4670534829A69C /* platform.h in Headers */,
 				453BEC14373E748C9263AD2D /* _no_templates.h in Headers */,
 				F54DEDDE620A3F34626797D0 /* storage.h in Headers */,
 				7462FB734564983078EEB24C /* system_storage.h in Headers */,
@@ -1943,7 +1943,7 @@
 				C689C6196EDC42948B8D8068 /* _impl.h in Headers */,
 				8838A32474D70DAD17C28DC6 /* tag.h in Headers */,
 				52DBD8E2454F6D8B01AE072B /* smtp_socket.h in Headers */,
-				174567BBFA757C58168AC05B /* framework.h in Headers */,
+				174567BBFA757C58168AC05B /* platform.h in Headers */,
 				C0785CAA0D5F870D2339978A /* _no_templates.h in Headers */,
 				68A4294C856E32A8D472ECDC /* storage.h in Headers */,
 				7F8E566EAB3BA6F04BB27D34 /* _.h in Headers */,
@@ -2557,7 +2557,7 @@
 				GCC_NO_COMMON_BLOCKS = YES;
 				GCC_OPTIMIZATION_LEVEL = 0;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
-				GCC_PREFIX_HEADER = framework.h;
+				GCC_PREFIX_HEADER = platform.h;
 				GCC_PREPROCESSOR_DEFINITIONS = "$(inherited)";
 				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
 				GCC_VERSION = "";
@@ -2663,7 +2663,7 @@
 				GCC_INCREASE_PRECOMPILED_HEADER_SHARING = NO;
 				GCC_NO_COMMON_BLOCKS = YES;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
-				GCC_PREFIX_HEADER = framework.h;
+				GCC_PREFIX_HEADER = platform.h;
 				GCC_PREPROCESSOR_DEFINITIONS = "";
 				GCC_VERSION = "";
 				GCC_WARN_64_TO_32_BIT_CONVERSION = NO;

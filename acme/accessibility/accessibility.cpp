@@ -1,7 +1,7 @@
 //
 // Created by camilo on 2026-04-27 19:07 <3ThomasBorregaardSørensen!! Mummi!! bilbo!!
 //
-#include "framework.h"
+#include "platform.h"
 #include "accessibility.h"
 #include "application.h"
 #include "acme/platform/application.h"

@@ -1,4 +1,4 @@
-#include "framework.h"
+#include "platform.h"
 
 bool defer_process_x_message(htask htask, MESSAGE * lpMsg, oswindow window, bool bPeek)
 {

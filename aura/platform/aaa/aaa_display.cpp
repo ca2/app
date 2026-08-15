@@ -1,4 +1,4 @@
-#include "framework.h"
+#include "platform.h"
 
 
 CLASS_DECL_AURA enum_display equivalence_sink(const ::e_display & edisplay)

@@ -1,7 +1,7 @@
 //
 // Created by camilo on 2025-12-25 20:20 <3ThomasBorregaardSørensen!!
 //
-#include "framework.h"
+#include "platform.h"
 #include "_gpu_opengl.h"
 #include "device_egl.h"
 #include <X11/Xlib.h>

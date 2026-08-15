@@ -1,6 +1,6 @@
 // created by Camilo 2021-02-02 05:58 BRT <3CamiloSasukeThomasBorregaardSoerensen
 // From text_composition.cpp by camilo on 2022-08-27 19:31 <3ThomasBorregaardSorensen!!
-#include "framework.h"
+#include "platform.h"
 #include "text_composition_client.h"
 #include "interaction.h"
 #include "acme/exception/interface_only.h"

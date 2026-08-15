@@ -1,5 +1,5 @@
 // Created by camilo on 2026-07-24 09:52 <3ThomasBorregaardSørensen!! Mummi!! Bilbo!!
-#include "framework.h"
+#include "platform.h"
 #include "aura/graphics/image/image.h"
 #include "bred/gpu/binding.h"
 #include "bred/gpu/block.h"

@@ -35,6 +35,8 @@ namespace gpu
 
    struct texture_data;
 
+   class texture_site;
+
    class texture_synchronization;
 
    class empty_texture_source;
@@ -115,6 +117,18 @@ namespace gpu
    class model_buffer;
 
    class pixmap;
+
+   struct trace_flags_t
+   {
+
+      bool m_bVulkanPipelineTrace;
+
+   };
+
+
+   CLASS_DECL_BRED trace_flags_t & trace_flags();
+
+
 
 } // gpu
 

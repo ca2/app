@@ -1,7 +1,7 @@
 //
 // Created by camilo on 2026-04-06 14:24 <3ThomasBorregaardSørensen!!
 //
-#include "framework.h"
+#include "platform.h"
 #include "ImageList.h"
 
 namespace innate_subsystem

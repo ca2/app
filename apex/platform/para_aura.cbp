@@ -233,7 +233,7 @@
 		<Compiler>
 			<Add option="-fPIC" />
 			<Add option="-std=c++17" />
-			<Add option='-include &quot;framework.h&quot;' />
+			<Add option='-include &quot;platform.h&quot;' />
 			<Add option="-fexceptions" />
 			<Add option="-fnon-call-exceptions" />
 			<Add option="-fno-stack-protector" />
@@ -1906,8 +1906,8 @@
 		<Unit filename="filesystem/userfs/userfs.h" />
 		<Unit filename="framework (2).cpp" />
 		<Unit filename="framework (2).h" />
-		<Unit filename="framework.cpp" />
-		<Unit filename="framework.h">
+		<Unit filename="platform.cpp" />
+		<Unit filename="platform.h">
 			<Option compile="1" />
 			<Option weight="0" />
 			<Option compiler="clang" use="1" buildCommand="$compiler $options $includes -x c++-header -c $file -o $object" />

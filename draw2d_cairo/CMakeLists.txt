@@ -18,8 +18,8 @@ list(APPEND library_source
    _factory.cpp
    font.cpp
    font.h
-   framework.cpp
-   framework.h
+   platform.cpp
+   platform.h
    graphics.cpp
    graphics.h
    image.cpp
@@ -60,8 +60,8 @@ list(TRANSFORM static_library_references PREPEND static_)
 
 if (NOT ${NO_PRECOMPILED_HEADER})
 
-    target_precompile_headers(${PROJECT_NAME} PRIVATE framework.h)
-    target_precompile_headers(static_${PROJECT_NAME} PRIVATE framework.h)
+    target_precompile_headers(${PROJECT_NAME} PRIVATE platform.h)
+    target_precompile_headers(static_${PROJECT_NAME} PRIVATE platform.h)
 
 endif ()
 

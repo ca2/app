@@ -1,7 +1,7 @@
 // Created by CamiloSasukeThomasBorregaardSoerensen 2021-01-23 02:54
 // This is how things starts happening, promise of Life, in a virgin Temple...
 // to be or not to be, or will it be or won't, that is the question....
-#include "framework.h"
+#include "platform.h"
 #include "drawer.h"
 #include "drawing.h"
 #include "image.h"

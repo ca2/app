@@ -26,7 +26,7 @@
 				supported by setwritemode, but needed for
 /*				putpimage->
 */
-#include "framework.h"
+#include "platform.h"
 #ifdef WITH_X
 
 //#include "graphics.h"

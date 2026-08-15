@@ -1,7 +1,7 @@
 //
 // From integration_windows_build_tool.com by camilo on 2023-05-05 22:07 <3ThomasBorregaardSørensen!!
 //
-#include "framework.h"
+#include "platform.h"
 #include "application.h"
 #include "impact.h"
 #include "integration.h"

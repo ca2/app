@@ -312,11 +312,11 @@
 			<Option target="experience_tranquillum"/>
 			<Option target="static_experience_tranquillum"/>
 		</Unit>
-		<Unit filename="/home/camilo/cmake/integration/source/app/experience_tranquillum/framework.cpp">
+		<Unit filename="/home/camilo/cmake/integration/source/app/experience_tranquillum/platform.cpp">
 			<Option target="experience_tranquillum"/>
 			<Option target="static_experience_tranquillum"/>
 		</Unit>
-		<Unit filename="/home/camilo/cmake/integration/source/app/experience_tranquillum/framework.h">
+		<Unit filename="/home/camilo/cmake/integration/source/app/experience_tranquillum/platform.h">
 			<Option target="experience_tranquillum"/>
 			<Option target="static_experience_tranquillum"/>
 		</Unit>

@@ -1,4 +1,4 @@
-#include "framework.h"
+#include "platform.h"
 #include "string.h"
 //#include "acme/prototype/collection/string_array.h"
 

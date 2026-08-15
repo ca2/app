@@ -1,7 +1,7 @@
 //
 // Created by camilo on 30/10/2021 ~ 00:00 <3ThomasBorregaardSorensen!!
 //
-#include "framework.h"
+#include "platform.h"
 //#include "acme.h"
 #ifdef LINUX
 #include "acme/operating_system/ansi/binreloc.h"
@@ -533,7 +533,7 @@ APPLICATION_FLAGS::APPLICATION_FLAGS()
 //
 //
 //// Offloading apex(TBS) from deep stack stuff 2022-02-22 by camilo at 07:18 <3ThomasBorregaardSorensen!!
-//#include "framework.h"
+//#include "platform.h"
 //#include "acme/operating_system.h"
 //#include "app_core.h"
 //#include "acme/platform/system_setup.h"

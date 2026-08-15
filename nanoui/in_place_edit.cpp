@@ -1,5 +1,5 @@
 // Created by camilo on 2024-03-10 22:00 <3ThomasBorregaardSorensen!!
-#include "framework.h"
+#include "platform.h"
 #include "in_place_edit.h"
 #include "Widget.h"
 

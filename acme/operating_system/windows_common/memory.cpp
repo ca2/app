@@ -1,4 +1,4 @@
-#include "framework.h"
+#include "platform.h"
 #include "heap_allocator.h"
 #include "acme/memory/allocator/malloc.h"
 #include "acme/memory/c_malloc.h"

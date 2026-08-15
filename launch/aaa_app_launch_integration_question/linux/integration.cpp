@@ -4,7 +4,7 @@
 //
 //  Created by Camilo Sasuke Thomas Borregaard Sørensen on 26/07/2023 15:37.
 //
-#include "framework.h"
+#include "platform.h"
 #include "application.h"
 #include "ffmpeg.h"
 #include "x264.h"

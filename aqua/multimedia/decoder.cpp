@@ -1,4 +1,4 @@
-#include "framework.h"
+#include "platform.h"
 #include "decoder.h"
 #include "multimedia.h"
 #include "acme/constant/id.h"

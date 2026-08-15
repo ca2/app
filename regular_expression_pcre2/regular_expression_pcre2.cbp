@@ -238,11 +238,11 @@
 			<Option target="regular_expression_pcre2"/>
 			<Option target="static_regular_expression_pcre2"/>
 		</Unit>
-		<Unit filename="/home/camilo/cmake/integration/source/app/regular_expression_pcre2/framework.cpp">
+		<Unit filename="/home/camilo/cmake/integration/source/app/regular_expression_pcre2/platform.cpp">
 			<Option target="regular_expression_pcre2"/>
 			<Option target="static_regular_expression_pcre2"/>
 		</Unit>
-		<Unit filename="/home/camilo/cmake/integration/source/app/regular_expression_pcre2/framework.h">
+		<Unit filename="/home/camilo/cmake/integration/source/app/regular_expression_pcre2/platform.h">
 			<Option target="regular_expression_pcre2"/>
 			<Option target="static_regular_expression_pcre2"/>
 		</Unit>

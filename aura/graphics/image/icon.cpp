@@ -1,4 +1,4 @@
-#include "framework.h"
+#include "platform.h"
 #include "icon.h"
 #include "map.h"
 #include "image.h"

@@ -1,5 +1,5 @@
 // Create by camilo on 2024-09-02 20:12 <3ThomasBorregaardSorensen!!
-#include "framework.h"
+#include "platform.h"
 
 #if !defined(OPENBSD)
 #if defined(OPENBSD)

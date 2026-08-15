@@ -1,5 +1,5 @@
 // From nano2d by camilo on 2023-02-05 04:11 <3ThomasBorregaardSorensen!!
-#include "framework.h"
+#include "platform.h"
 //#include "color.h"
 
 

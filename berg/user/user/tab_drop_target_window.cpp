@@ -1,5 +1,5 @@
 // From tab_impact.cpp by camilo on 2022-08-27 18:16 <3ThomasBorregaadSorensen!!
-#include "framework.h"
+#include "platform.h"
 #include "tab_drop_target_window.h"
 #include "tab.h"
 #include "acme/constant/user_message.h"

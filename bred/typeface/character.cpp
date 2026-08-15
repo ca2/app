@@ -1,7 +1,7 @@
 //
 // Created by camilo on 2026-01-16 23:25 <3ThomasBorregaardSørensen!!
 //
-#include "framework.h"
+#include "platform.h"
 #include "character.h"
 #include "bred/gpu/context.h"
 #include "bred/gpu/pixmap.h"

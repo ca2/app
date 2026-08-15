@@ -6,7 +6,7 @@
 //  Copyright © 2026 ca2 Software Development. All rights reserved.
 //  <3ThomasBorregaardSørensen!!
 //
-#include "framework.h"
+#include "platform.h"
 #include "acme/operating_system/shared_memory.h"
 #include "acme/_operating_system.h"
 //#define NOMINMAX

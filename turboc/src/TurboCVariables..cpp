@@ -26,7 +26,7 @@
   constant TURBOC_VARIABLES_C which is used either to set them as extern
   or not.  The only file in which they aren't extern is this one.
 */
-#include "framework.h"
+#include "platform.h"
 #define TURBOC_VARIABLES_C
 
 // All of the TurboC library header files follow.  Not all of them have

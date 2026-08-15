@@ -91,8 +91,8 @@
 		<Unit filename="datetime/datetime_f32_time.h" />
 		<Unit filename="datetime/datetime_windows_filetime.cpp" />
 		<Unit filename="datetime/datetime_windows_filetime.h" />
-		<Unit filename="framework.cpp" />
-		<Unit filename="framework.h">
+		<Unit filename="platform.cpp" />
+		<Unit filename="platform.h">
 			<Option compile="1" />
 			<Option weight="0" />
 		</Unit>

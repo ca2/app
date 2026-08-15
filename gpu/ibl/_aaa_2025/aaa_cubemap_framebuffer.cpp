@@ -1,6 +1,6 @@
 // From github:/tristancalderbank/OpenGL-PBR-Renderer/cubemap_framebuffer.cpp by
 // camilo on 2025-09-26 19:52 <3ThomasBorregaardSorensen!!
-#include "framework.h"
+#include "platform.h"
 #include "cubemap_framebuffer.h"
 #include "bred/gpu/context.h"
 #include "bred/gpu/shader.h"

@@ -1,4 +1,4 @@
-#include "framework.h"
+#include "platform.h"
 #include "acme/graphics/image/image32.h"
 #include <stdio.h>
 

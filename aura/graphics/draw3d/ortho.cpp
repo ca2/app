@@ -1,4 +1,4 @@
-#include "framework.h"
+#include "platform.h"
 #include "ortho.h"
 ////#include "acme/exception/exception.h"
 #include "acme/prototype/geometry3d/box.h"

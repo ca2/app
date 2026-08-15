@@ -89,7 +89,7 @@
       <CppLanguageStandard>
       </CppLanguageStandard>
       <PrecompiledHeader>Use</PrecompiledHeader>
-      <PrecompiledHeaderFile>framework.h</PrecompiledHeaderFile>
+      <PrecompiledHeaderFile>platform.h</PrecompiledHeaderFile>
       <CLanguageStandard>c11</CLanguageStandard>
     </ClCompile>
     <Link>
@@ -112,7 +112,7 @@
       <RuntimeTypeInfo>true</RuntimeTypeInfo>
       <CLanguageStandard>c11</CLanguageStandard>
       <PrecompiledHeader>Use</PrecompiledHeader>
-      <PrecompiledHeaderFile>framework.h</PrecompiledHeaderFile>
+      <PrecompiledHeaderFile>platform.h</PrecompiledHeaderFile>
       <CppLanguageStandard>
       </CppLanguageStandard>
     </ClCompile>
@@ -134,7 +134,7 @@
       <ExceptionHandling>Enabled</ExceptionHandling>
       <Optimization>Full</Optimization>
       <PrecompiledHeader>Use</PrecompiledHeader>
-      <PrecompiledHeaderFile>framework.h</PrecompiledHeaderFile>
+      <PrecompiledHeaderFile>platform.h</PrecompiledHeaderFile>
     </ClCompile>
     <Link>
       <LibraryDependencies>idn;zlib;iconv;jnigraphics;android;log;m;$(StlLibraryName);%(LibraryDependencies)</LibraryDependencies>
@@ -152,7 +152,7 @@
       <CppLanguageStandard>
       </CppLanguageStandard>
       <PrecompiledHeader>Use</PrecompiledHeader>
-      <PrecompiledHeaderFile>framework.h</PrecompiledHeaderFile>
+      <PrecompiledHeaderFile>platform.h</PrecompiledHeaderFile>
     </ClCompile>
     <Link>
       <LibraryDependencies>idn;zlib;iconv;jnigraphics;android;log;m;$(StlLibraryName);%(LibraryDependencies)</LibraryDependencies>
@@ -230,7 +230,7 @@
     <ClCompile Include="filesystem\watcher\action.cpp" />
     <ClCompile Include="filesystem\watcher\watch.cpp" />
     <ClCompile Include="filesystem\watcher\watcher.cpp" />
-    <ClCompile Include="framework.cpp" />
+    <ClCompile Include="platform.cpp" />
     <ClCompile Include="graphics\draw2d\color.cpp" />
     <ClCompile Include="graphics\draw2d\color_array.cpp" />
     <ClCompile Include="graphics\draw2d\os_font_name.cpp" />
@@ -800,7 +800,7 @@
     <ClInclude Include="filesystem\file\_var_stream_impl.h" />
     <ClInclude Include="filesystem\file\___serialization_draft.h" />
     <ClInclude Include="filesystem\file\___serialization_draft001.h" />
-    <ClInclude Include="framework.h" />
+    <ClInclude Include="platform.h" />
     <ClInclude Include="framework_c.h" />
     <ClInclude Include="graphics\draw2d\color.h" />
     <ClInclude Include="graphics\draw2d\color32.h" />

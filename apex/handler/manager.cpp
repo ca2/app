@@ -1,4 +1,4 @@
-#include "framework.h"
+#include "platform.h"
 #include "manager.h"
 #include "signal.h"
 #include "acme/parallelization/synchronous_lock.h"
@@ -556,7 +556,7 @@ void manager::erase_handler(::object * pobject)
 
 
 //
-//#include "framework.h"
+//#include "platform.h"
 //#include "acme/platform/static_start.h"
 
 

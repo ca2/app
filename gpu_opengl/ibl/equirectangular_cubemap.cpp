@@ -1,6 +1,6 @@
 // From github:/tristancalderbank/OpenGL-PBR-Renderer/equirectangular_cubemap.cpp by
 // camilo on 2025-09-26 19:53 <3ThomasBorregaardSorensen!!
-#include "framework.h"
+#include "platform.h"
 #include "equirectangular_cubemap.h"
 #include "bred/gpu/context.h"
 #include "bred/graphics3d/_functions.h"

@@ -18,14 +18,14 @@
 		596E5A7E8449D8D4314D294F /* saving.cpp in Sources */ = {isa = PBXBuildFile; fileRef = F7DD7798ABA703F470FC383E /* saving.cpp */; };
 		7C06D69C11E20E581A319901 /* file_procedure.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 4A460AFBFB01B49EB6DCA78F /* file_procedure.cpp */; };
 		09A9276E2D5294125D467914 /* loading.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D61C84C063C962989BE0ABDC /* loading.cpp */; };
-		A32EE7B987D6ED7A45393B2B /* framework.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 50B76F6ED6A3BCEE807E23ED /* framework.cpp */; };
+		A32EE7B987D6ED7A45393B2B /* platform.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 50B76F6ED6A3BCEE807E23ED /* platform.cpp */; };
 		E72976E290ED3DCC2FA344CA /* factory_exchange.h in Headers */ = {isa = PBXBuildFile; fileRef = 97A488F606314BD842F43B9D /* factory_exchange.h */; };
 		A4459D1B0C977BA144366277 /* loading_gif.cpp in Sources */ = {isa = PBXBuildFile; fileRef = CF285E05F75C4E9D4A97A64F /* loading_gif.cpp */; };
 		9A18A68F72FEDFB5BD811C1F /* imaging.h in Headers */ = {isa = PBXBuildFile; fileRef = 55AC18B3F3C4C37B9DA4DA37 /* imaging.h */; };
 		585130C95D82F19E714C3E15 /* fimemory.h in Headers */ = {isa = PBXBuildFile; fileRef = D67633254050A5ED5096F812 /* fimemory.h */; };
 		FF875E7A4C1FFC5A2391FEEB /* _factory.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 690BB4B2AAB90D64C0A0CDD7 /* _factory.cpp */; };
 		CEEE6945FA8FB66D9D214FC0 /* imaging.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 5DC6C8A6ACA81DF22F7D1561 /* imaging.cpp */; };
-		A309E0BB1F45DE9146C12920 /* framework.h in Headers */ = {isa = PBXBuildFile; fileRef = 1C560DEF9F1CE2B45D3D7D60 /* framework.h */; };
+		A309E0BB1F45DE9146C12920 /* platform.h in Headers */ = {isa = PBXBuildFile; fileRef = 1C560DEF9F1CE2B45D3D7D60 /* platform.h */; };
 		5DF55A65FFA2126EC54E2F62 /* file_procedure_ex1.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 291C6C5AC64BE569D832AE77 /* file_procedure_ex1.cpp */; };
 		80E3C62CE86AE9C7F37329D8 /* imaging_freeimage.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 16317505DD2489C6BFD44851 /* imaging_freeimage.cpp */; };
 		1064E73F32941ACF03542569 /* _.h in Headers */ = {isa = PBXBuildFile; fileRef = 9D5F3617F0A31BA0FBDED11B /* _.h */; };
@@ -97,14 +97,14 @@
 		F7DD7798ABA703F470FC383E /* saving.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = saving.cpp; sourceTree = "<group>"; };
 		4A460AFBFB01B49EB6DCA78F /* file_procedure.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = file_procedure.cpp; sourceTree = "<group>"; };
 		D61C84C063C962989BE0ABDC /* loading.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = loading.cpp; sourceTree = "<group>"; };
-		50B76F6ED6A3BCEE807E23ED /* framework.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = framework.cpp; sourceTree = "<group>"; };
+		50B76F6ED6A3BCEE807E23ED /* platform.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = platform.cpp; sourceTree = "<group>"; };
 		97A488F606314BD842F43B9D /* factory_exchange.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = factory_exchange.h; sourceTree = "<group>"; };
 		CF285E05F75C4E9D4A97A64F /* loading_gif.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = loading_gif.cpp; sourceTree = "<group>"; };
 		55AC18B3F3C4C37B9DA4DA37 /* imaging.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = imaging.h; sourceTree = "<group>"; };
 		D67633254050A5ED5096F812 /* fimemory.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = fimemory.h; sourceTree = "<group>"; };
 		690BB4B2AAB90D64C0A0CDD7 /* _factory.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = _factory.cpp; sourceTree = "<group>"; };
 		5DC6C8A6ACA81DF22F7D1561 /* imaging.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = imaging.cpp; sourceTree = "<group>"; };
-		1C560DEF9F1CE2B45D3D7D60 /* framework.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = framework.h; sourceTree = "<group>"; };
+		1C560DEF9F1CE2B45D3D7D60 /* platform.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = platform.h; sourceTree = "<group>"; };
 		291C6C5AC64BE569D832AE77 /* file_procedure_ex1.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = file_procedure_ex1.cpp; sourceTree = "<group>"; };
 		16317505DD2489C6BFD44851 /* imaging_freeimage.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = imaging_freeimage.cpp; sourceTree = "<group>"; };
 		9D5F3617F0A31BA0FBDED11B /* _.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = _.h; sourceTree = "<group>"; };
@@ -181,14 +181,14 @@
 				F7DD7798ABA703F470FC383E /* saving.cpp */,
 				4A460AFBFB01B49EB6DCA78F /* file_procedure.cpp */,
 				D61C84C063C962989BE0ABDC /* loading.cpp */,
-				50B76F6ED6A3BCEE807E23ED /* framework.cpp */,
+				50B76F6ED6A3BCEE807E23ED /* platform.cpp */,
 				97A488F606314BD842F43B9D /* factory_exchange.h */,
 				CF285E05F75C4E9D4A97A64F /* loading_gif.cpp */,
 				55AC18B3F3C4C37B9DA4DA37 /* imaging.h */,
 				D67633254050A5ED5096F812 /* fimemory.h */,
 				690BB4B2AAB90D64C0A0CDD7 /* _factory.cpp */,
 				5DC6C8A6ACA81DF22F7D1561 /* imaging.cpp */,
-				1C560DEF9F1CE2B45D3D7D60 /* framework.h */,
+				1C560DEF9F1CE2B45D3D7D60 /* platform.h */,
 				291C6C5AC64BE569D832AE77 /* file_procedure_ex1.cpp */,
 				16317505DD2489C6BFD44851 /* imaging_freeimage.cpp */,
 				9D5F3617F0A31BA0FBDED11B /* _.h */,
@@ -239,7 +239,7 @@
 				E72976E290ED3DCC2FA344CA /* factory_exchange.h in Headers */,
 				1064E73F32941ACF03542569 /* _.h in Headers */,
 				585130C95D82F19E714C3E15 /* fimemory.h in Headers */,
-				A309E0BB1F45DE9146C12920 /* framework.h in Headers */,
+				A309E0BB1F45DE9146C12920 /* platform.h in Headers */,
 				9A18A68F72FEDFB5BD811C1F /* imaging.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -401,7 +401,7 @@
 				CEEE6945FA8FB66D9D214FC0 /* imaging.cpp in Sources */,
 				596E5A7E8449D8D4314D294F /* saving.cpp in Sources */,
 				80E3C62CE86AE9C7F37329D8 /* imaging_freeimage.cpp in Sources */,
-				A32EE7B987D6ED7A45393B2B /* framework.cpp in Sources */,
+				A32EE7B987D6ED7A45393B2B /* platform.cpp in Sources */,
 				09A9276E2D5294125D467914 /* loading.cpp in Sources */,
 				FF875E7A4C1FFC5A2391FEEB /* _factory.cpp in Sources */,
 			);
@@ -594,7 +594,7 @@
 				GCC_NO_COMMON_BLOCKS = YES;
 				GCC_OPTIMIZATION_LEVEL = 0;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
-				GCC_PREFIX_HEADER = framework.h;
+				GCC_PREFIX_HEADER = platform.h;
 				GCC_PREPROCESSOR_DEFINITIONS = (
 					"$(inherited)",
 				);
@@ -654,7 +654,7 @@
 				GCC_C_LANGUAGE_STANDARD = c11;
 				GCC_NO_COMMON_BLOCKS = YES;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
-				GCC_PREFIX_HEADER = framework.h;
+				GCC_PREFIX_HEADER = platform.h;
 				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
 				GCC_WARN_ABOUT_RETURN_TYPE = YES;
 				GCC_WARN_UNDECLARED_SELECTOR = YES;

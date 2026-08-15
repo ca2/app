@@ -1,4 +1,4 @@
-#include "framework.h"
+#include "platform.h"
 
 #include "aura/platform/aura.h"
 //#include "aura/graphics/draw2d/_component.h"

@@ -6,7 +6,7 @@
 
 // 08/12/06 (mv)
 
-#include "framework.h"
+#include "platform.h"
 //#include "acme/prototype/collection/string_array.h"
 #include "acme/exception/parsing.h"
 #include "acme/prototype/string/str.h"

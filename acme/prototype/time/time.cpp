@@ -1,4 +1,4 @@
-#include "framework.h"
+#include "platform.h"
 #include "acme/prototype/mathematics/_random.h"
 //#include "acme/prototype/mathematics/numeric.h"
 

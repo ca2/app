@@ -1,6 +1,6 @@
 // from aura/graphics/image/lock.h by Camilo on 2026-08-05 06:26 <3ThomasBorregaardSorensen!! Mummi!! Bilbo!!
 // created by Camilo on 2025-06-01 01:55 <3ThomasBorregaardSorensen!!
-#include "framework.h"
+#include "platform.h"
 #include "lock.h"
 #include "pixmap.h"
 

@@ -1,4 +1,4 @@
-#include "framework.h"
+#include "platform.h"
 #include "scroll.h"
 #include "scroll_bar.h"
 #include "acme/constant/user_message.h"

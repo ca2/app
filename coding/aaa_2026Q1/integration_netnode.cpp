@@ -1,7 +1,7 @@
 //
 // Created by camilo on 12/12/21 05:08 PM <3ThomasBorregaardSørensen!!
 //
-#include "framework.h"
+#include "platform.h"
 #include "group_machine_box.h"
 #include "group_netnode.h"
 #include "group_new_release_prefix.h"

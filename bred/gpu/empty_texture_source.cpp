@@ -1,5 +1,5 @@
 // Created by camilo on 2025-12-14 06:31 <3ThomasBorregaardSørensen!!
-#include "framework.h"
+#include "platform.h"
 #include "empty_texture_source.h"
 #include "bred/gpu/context.h"
 
@@ -13,7 +13,7 @@ namespace gpu
 
    empty_texture_source::~empty_texture_source() {}
 
-   ::pointer<::gpu::texture> empty_texture_source::create_empty_texture()
+   ::pointer<::gpu::texture_site> empty_texture_source::create_empty_texture()
    {
 
       auto ptextureEmpty = m_pgpucontext->create_empty_texture();
@@ -22,7 +22,7 @@ namespace gpu
    }
 
 
-   ::gpu::texture *empty_texture_source::empty_texture()
+   ::gpu::texture_site *empty_texture_source::empty_texture()
    {
 
       if (!m_ptextureEmpty)

@@ -1,4 +1,4 @@
-#include "../framework.h"
+#include "../platform.h"
 #include "context_win32.h"
 #include "../approach.h"
 #include "../device.h"

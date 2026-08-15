@@ -1,4 +1,4 @@
-#include "framework.h"
+#include "platform.h"
 //#include "universal_windows.h"
 
 bool launcher::start()

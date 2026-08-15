@@ -1,4 +1,4 @@
-#include "framework.h"
+#include "platform.h"
 #include "image_list.h"
 #include "top_edit_impact.h"
 #include "acme/constant/id.h"

@@ -1,4 +1,4 @@
-#include "framework.h"
+#include "platform.h"
 //#include "pipeline.h"
 #include "skybox_ibl_render_system.h"
 #include "bred/gpu/shader.h"

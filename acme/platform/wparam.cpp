@@ -1,5 +1,5 @@
 // From lparam.cpp by camilo on 2026-04-18 12:10 <3ThomasBorregaardSørensen!!
-#include "framework.h"
+#include "platform.h"
 
 
 /// posting/sending particle with referencing forking

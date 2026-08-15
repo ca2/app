@@ -1,7 +1,7 @@
 // Created by camilo on 2022-11-01 23:04 <3ThomasBorregaardSorensen!!
 // Merged acme/nano/idn and acme/operating_system/windows_common/idn.cpp by
 // camilo on 2024-06-02 21:51 <3ThomasBorregaardSorensen!!
-#include "framework.h"
+#include "platform.h"
 #include "idn.h"
 #include "acme/_operating_system.h"
 #pragma comment(lib, "Normaliz.lib")

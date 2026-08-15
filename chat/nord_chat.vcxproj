@@ -28,7 +28,7 @@
     <ClInclude Include="calculator\calculator_scanner.h" />
     <ClInclude Include="calculator\calculator_token.h" />
     <ClInclude Include="calculator\calculator_value.h" />
-    <ClInclude Include="framework.h" />
+    <ClInclude Include="platform.h" />
     <ClInclude Include="kissfft\kissfft.h" />
     <ClInclude Include="kissfft\kissfft_fftd.h" />
     <ClInclude Include="kissfft\kissfft_ifftd.h" />
@@ -70,7 +70,7 @@
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x86'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|ARM'">true</ExcludedFromBuild>
     </ClCompile>
-    <ClCompile Include="framework.cpp">
+    <ClCompile Include="platform.cpp">
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x86'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|ARM'">true</ExcludedFromBuild>
     </ClCompile>

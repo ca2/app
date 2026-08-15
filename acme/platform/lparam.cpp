@@ -1,4 +1,4 @@
-#include "framework.h"
+#include "platform.h"
 
 
 /// posting/sending particle with referencing forking

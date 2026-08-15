@@ -640,7 +640,8 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClInclude Include="const\idpool.h" />
-    <ClInclude Include="framework.h" />
+    <ClInclude Include="gpu\texture_site.h" />
+    <ClInclude Include="platform.h" />
     <ClInclude Include="gltf\vertex.h" />
     <ClInclude Include="gpu\aaaa_gpu.h" />
     <ClInclude Include="gpu\aaa_end_draw.h" />
@@ -709,7 +710,7 @@
     <ClInclude Include="graphics3d\offscreen_frame_pacer.h" />
     <ClInclude Include="graphics3d\entity.h" />
     <ClInclude Include="graphics3d\aaa_frame.h" />
-    <ClInclude Include="graphics3d\framework.h" />
+    <ClInclude Include="graphics3d\platform.h" />
     <ClInclude Include="graphics3d\game_object.h" />
     <ClInclude Include="graphics3d\global_ubo1.h" />
     <ClInclude Include="graphics3d\immersion_layer.h" />
@@ -753,7 +754,7 @@
     <ClInclude Include="platform\_platform.h" />
     <ClInclude Include="prodevian\actor.h" />
     <ClInclude Include="prodevian\camera.h" />
-    <ClInclude Include="prodevian\framework.h" />
+    <ClInclude Include="prodevian\platform.h" />
     <ClInclude Include="prodevian\game_object.h" />
     <ClInclude Include="prodevian\immersion.h" />
     <ClInclude Include="prodevian\player_input.h" />
@@ -790,7 +791,7 @@
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="const\idpool.cpp" />
-    <ClCompile Include="framework.cpp">
+    <ClCompile Include="platform.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Create</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='DebugAsan|Win32'">Create</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='StaticDebug|Win32'">Create</PrecompiledHeader>
@@ -821,6 +822,7 @@
     <ClCompile Include="gpu\buffer.cpp" />
     <ClCompile Include="gpu\device.cpp" />
     <ClCompile Include="gpu\draw2d.cpp" />
+    <ClCompile Include="gpu\texture_site.cpp" />
     <ClCompile Include="gpu\window_attachment.cpp" />
     <ClCompile Include="gpu\empty_texture_source.cpp" />
     <ClCompile Include="gpu\fence.cpp" />

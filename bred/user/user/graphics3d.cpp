@@ -1,7 +1,8 @@
-#include "framework.h"
+#include "platform.h"
 #include "graphics3d.h"
 #include "acme/constant/id.h"
 #include "acme/exception/interface_only.h"
+#include "apex/gpu/approach.h"
 #include "bred/gpu/block.h"
 #include "bred/gpu/context.h"
 #include "bred/gpu/window_attachment.h"
@@ -425,9 +426,24 @@ namespace user
 
          string strText;
 
-         m_iFrameCounter++;
+         auto pgpuwindowattachment = ::gpu::window_attachment::get(this);
 
-         strText.formatf("øçåJErDgTBS__!!; %d", m_iFrameCounter);
+         ::collection::index iFrameSerial = -1;
+
+         if (pgpuwindowattachment)
+         {
+
+            iFrameSerial = pgpuwindowattachment->m_iFrameSerial2;
+
+         }
+         else
+         {
+
+            iFrameSerial = ++m_iFrameCounter;
+
+         }
+
+         strText.formatf("øçåJErDgTBS__!!; %lld", (::i64)iFrameSerial);
 
          stra.atø(0) = strText;
 
@@ -446,6 +462,17 @@ namespace user
          strFrameTime.format("Frame Time: {:.1f}ms", m_fpscounter.getAverageFrameTime());
 
          stra.atø(2) = strFrameTime;
+
+         ::string strGraphicsModeCompletion;
+
+         strGraphicsModeCompletion.format("Graphics Mode Completion: {}/{} {:.3f}%", 
+            m_papplication->gpu_approach()->graphics3d_modes_step(),
+            m_papplication->gpu_approach()->graphics3d_modes_step_count(),
+            ((::f64)m_papplication->gpu_approach()->graphics3d_modes_step()/
+            (::f64)m_papplication->gpu_approach()->graphics3d_modes_step_count()) * 100.0
+            );
+
+         stra.atø(3) = strGraphicsModeCompletion;
 
          //bool bFixedPosition = true;
 

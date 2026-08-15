@@ -47,10 +47,13 @@ int main()
    const auto header = read_file("gpu_opengl/texture.h");
    const auto source = read_file("gpu_opengl/texture.cpp");
 
-   assert(header.find("void read_pixels(::pixmap * ppixmap) override;") !=
+   assert(header.find(
+      "void read_pixels(::gpu::command_buffer * pgpucommandbuffer, "
+      "::pixmap_t * ppixmap, const ::i32_point & pointOutput) override;") !=
       std::string::npos);
    assert(header.find(
-      "void write_pixels(const ::pixmap * ppixmap) override;") !=
+      "void write_pixels(const ::pixmap_t * ppixmap, "
+      "const ::i32_point & pointInput) override;") !=
       std::string::npos);
 
    const auto state = section(
@@ -87,11 +90,14 @@ int main()
    assert(read.find("glCheckFramebufferStatus(GL_READ_FRAMEBUFFER)") !=
       std::string::npos);
    assert(read.find("glReadPixels(") != std::string::npos);
+   assert(read.find(
+      "auto y = raw_height() - pointOutput.y - h;") !=
+      std::string::npos);
    assert(read.find("ppixmap->vertical_swap();") != std::string::npos);
 
    const auto write = source.substr(source.find("void texture::write_pixels("));
    assert(write.find(
-      "      pixmapFlipped.pixmap_t::copy(ppixmap);") !=
+      "      pixmapFlipped.copy(ppixmap);") !=
       std::string::npos);
    assert(write.find("      pixmapFlipped.vertical_swap();") !=
       std::string::npos);

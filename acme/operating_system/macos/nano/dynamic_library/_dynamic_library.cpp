@@ -6,7 +6,7 @@
 //  2024-06-14 15:50 <3ThomasBorregaardSorensen!!
 //  Copyright © 2024 Camilo Sasuke Tsumanuma. All rights reserved.
 //
-#include "framework.h"
+#include "platform.h"
 #include "dynamic_library.h"
 
 

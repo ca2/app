@@ -23,7 +23,7 @@
   		for porting to *nix.
   Mod history:	05/27/02 RSB	Split off from arc.c.
 */
-#include "framework.h"
+#include "platform.h"
 #ifdef WITH_X
 
 //#include <math.h>

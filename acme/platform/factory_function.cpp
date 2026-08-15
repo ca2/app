@@ -1,5 +1,5 @@
 // Created by camilo on 2022-12-03 16:04 <3ThomasBorregaardSorensen!!
-#include "framework.h"
+#include "platform.h"
 
 
 //#ifdef CUBE

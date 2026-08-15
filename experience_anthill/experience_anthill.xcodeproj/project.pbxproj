@@ -7,7 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		CFB3EE9D17CC4C787536FB07 /* framework.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 4650BC49685E1D48823B2362 /* framework.cpp */; };
+		CFB3EE9D17CC4C787536FB07 /* platform.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 4650BC49685E1D48823B2362 /* platform.cpp */; };
 		D7E617111C228E1042E533B5 /* libacme.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = C158FA557A6D4A4550EF27FD /* libacme.dylib */; };
 		CD4CF61BA65C29925C9CDF45 /* libapex.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 971F094C5D029C26BB7F083D /* libapex.dylib */; };
 		745E62D9827A365F8E2512B6 /* libberg.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 4D0360CF7E3C2107DDA8D74F /* libberg.dylib */; };
@@ -26,8 +26,8 @@
 		50C18A650615BDEBC9C97F51 /* _factory.cpp in Sources */ = {isa = PBXBuildFile; fileRef = C78ABF828F1F2F5E54AA7C3B /* _factory.cpp */; };
 		6090D88FFF36CA78B3E9FFA0 /* _factory.cpp in Sources */ = {isa = PBXBuildFile; fileRef = C78ABF828F1F2F5E54AA7C3B /* _factory.cpp */; };
 		1379CBCEA6BCE0E6BFCB4531 /* _.h in Headers */ = {isa = PBXBuildFile; fileRef = E13A59AE3D1F83867BEA0216 /* _.h */; };
-		D25F6D143591E4AB640A339A /* framework.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 4650BC49685E1D48823B2362 /* framework.cpp */; };
-		CC6530CA4E88F289D39075AB /* framework.h in Headers */ = {isa = PBXBuildFile; fileRef = 365B3145C1CE99916C457048 /* framework.h */; };
+		D25F6D143591E4AB640A339A /* platform.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 4650BC49685E1D48823B2362 /* platform.cpp */; };
+		CC6530CA4E88F289D39075AB /* platform.h in Headers */ = {isa = PBXBuildFile; fileRef = 365B3145C1CE99916C457048 /* platform.h */; };
 		DE8A123C596300955ECD79C5 /* control_box_button.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 6AF3F72C15D130A0848A34FC /* control_box_button.cpp */; };
 		0D692E85B66C9CDE5E9BFFBD /* control_box.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 51F50C1FBD2A6744606DACFE /* control_box.cpp */; };
 		6204B5856AE9F72E11577209 /* experience.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 06BD961A5CB256023863F42B /* experience.cpp */; };
@@ -109,8 +109,8 @@
 		C99410329BAC8FF82D5EBFEF /* berg.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = berg.xcodeproj; path = ../berg/berg.xcodeproj; sourceTree = SOURCE_ROOT; };
 		C78ABF828F1F2F5E54AA7C3B /* _factory.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = _factory.cpp; sourceTree = "<group>"; };
 		E13A59AE3D1F83867BEA0216 /* _.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = _.h; sourceTree = "<group>"; };
-		4650BC49685E1D48823B2362 /* framework.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = framework.cpp; sourceTree = "<group>"; };
-		365B3145C1CE99916C457048 /* framework.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = framework.h; sourceTree = "<group>"; };
+		4650BC49685E1D48823B2362 /* platform.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = platform.cpp; sourceTree = "<group>"; };
+		365B3145C1CE99916C457048 /* platform.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = platform.h; sourceTree = "<group>"; };
 		100428BB450580338EF2927B /* frame_008.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = frame_008.cpp; sourceTree = "<group>"; };
 		FB9CDDC00747321360395FDD /* frame_Minimal001.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = frame_Minimal001.cpp; sourceTree = "<group>"; };
 		98C9147E4E2E0A0FF501944B /* control_box.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = control_box.h; sourceTree = "<group>"; };
@@ -194,8 +194,8 @@
 				0D13234817BA3C7F8F10885A /* _____release.xcconfig */,
 				E13A59AE3D1F83867BEA0216 /* _.h */,
 				C78ABF828F1F2F5E54AA7C3B /* _factory.cpp */,
-				4650BC49685E1D48823B2362 /* framework.cpp */,
-				365B3145C1CE99916C457048 /* framework.h */,
+				4650BC49685E1D48823B2362 /* platform.cpp */,
+				365B3145C1CE99916C457048 /* platform.h */,
 			);
 			name = experience_anthill;
 			sourceTree = "<group>";
@@ -297,7 +297,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				1379CBCEA6BCE0E6BFCB4531 /* _.h in Headers */,
-				CC6530CA4E88F289D39075AB /* framework.h in Headers */,
+				CC6530CA4E88F289D39075AB /* platform.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -466,7 +466,7 @@
 				CD8FAD1C4B1C15C600ED87CC /* frame.cpp in Sources */,
 				A8CF52BFB00B46106866A8FB /* style.cpp in Sources */,
 				50C18A650615BDEBC9C97F51 /* _factory.cpp in Sources */,
-				CFB3EE9D17CC4C787536FB07 /* framework.cpp in Sources */,
+				CFB3EE9D17CC4C787536FB07 /* platform.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -493,7 +493,7 @@
 				6110D7FDDF6D04B537C6CB8D /* frame_022.cpp in Sources */,
 				8FAD83B1185EC1125D772853 /* frame.cpp in Sources */,
 				4E7170E754BE3C9D34A44733 /* style.cpp in Sources */,
-				D25F6D143591E4AB640A339A /* framework.cpp in Sources */,
+				D25F6D143591E4AB640A339A /* platform.cpp in Sources */,
 				6090D88FFF36CA78B3E9FFA0 /* _factory.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -646,7 +646,7 @@
 				GCC_NO_COMMON_BLOCKS = YES;
 				GCC_OPTIMIZATION_LEVEL = 0;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
-				GCC_PREFIX_HEADER = framework.h;
+				GCC_PREFIX_HEADER = platform.h;
 				GCC_PREPROCESSOR_DEFINITIONS = "$(inherited)";
 				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
 				GCC_VERSION = "";
@@ -736,7 +736,7 @@
 				GCC_INCREASE_PRECOMPILED_HEADER_SHARING = NO;
 				GCC_NO_COMMON_BLOCKS = YES;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
-				GCC_PREFIX_HEADER = framework.h;
+				GCC_PREFIX_HEADER = platform.h;
 				GCC_VERSION = "";
 				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
 				GCC_WARN_ABOUT_RETURN_TYPE = YES;

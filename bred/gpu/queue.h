@@ -22,6 +22,9 @@ namespace gpu
 
 
       virtual void initialize_gpu_queue(::gpu::device * pgpudevice);
+      
+
+      virtual void execute_command_buffer(::gpu::command_buffer * pgpucommandbuffer);
 
 
    };

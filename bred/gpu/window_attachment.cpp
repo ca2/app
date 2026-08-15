@@ -1,5 +1,5 @@
 // Created by camilo on 2026-08-03 17:37 <3ThomasBorregaardSørensen!! Mummi!! Bilbo!!
-#include "framework.h"
+#include "platform.h"
 #include "bred_approach.h"
 #include "context.h"
 #include "device.h"
@@ -71,11 +71,19 @@ namespace gpu
 
          m_pgpucontextWindow = pgpudevice->allocate_gpu_context();
 
+         m_pgpucontextWindow->m_etype = ::gpu::context::e_type_window;
+
          ::gpu::enum_output eoutput = ::gpu::e_output_none;
 
          auto sizeWindow = pacmewindowingwindow->m_sizeWindow;
 
-         auto sizeRaw = pacmewindowingwindow->m_sizeRaw;
+         auto rectangleTarget = pacmewindowingwindow->get_window_rectangle();
+
+         auto pointTarget = rectangleTarget.origin();
+
+         auto size = rectangleTarget.size();
+
+         auto sizeRaw = pacmewindowingwindow->get_raw_buffer_size();
 
          m_pgpucontextWindow->m_sizeRaw = sizeRaw;
 
@@ -86,7 +94,7 @@ namespace gpu
 
             eoutput = ::gpu::e_output_swap_chain;
 
-            m_pgpucontextWindow->create_window_gpu_context(pgpudevice, eoutput, escene, pacmewindowingwindow, sizeWindow);
+            m_pgpucontextWindow->create_window_gpu_context(pgpudevice, eoutput, escene, pacmewindowingwindow, {}, pointTarget, size, sizeRaw);
 
          }
          else
@@ -94,7 +102,7 @@ namespace gpu
 
             eoutput = ::gpu::e_output_draw2d_bitmap;
 
-            m_pgpucontextWindow->create_gpu_context(pgpudevice, eoutput, escene, pacmewindowingwindow, sizeWindow);
+            m_pgpucontextWindow->create_gpu_context(pgpudevice, eoutput, escene, pacmewindowingwindow, {}, pointTarget, size, sizeRaw);
 
          }
 
@@ -198,7 +206,15 @@ namespace gpu
 
                   auto pwindow = pinteraction->window();
 
-                  auto size = pwindow->get_window_rectangle().size();
+                  auto rectangleTarget = pwindow->get_window_rectangle();
+
+                  auto pointTarget = rectangleTarget.origin();
+
+                  auto size = rectangleTarget.size();
+
+                  ::i32_rectangle rectangleSource(rectangleTarget.size());
+
+                  auto sizeRaw = pwindow->get_raw_buffer_size();
 
                   //<<<<<<< HEAD
                   //                  m_pgpucontextMainDraw2d->create_draw2d_context(
@@ -207,7 +223,10 @@ namespace gpu
 //>>>>>>> origin/main
 m_pgpucontextWindow->m_pgpudevice,
 pwindow,
-size
+{},
+pointTarget,
+size,
+sizeRaw
 );
 
                   //m_pgpucontextMainDraw2d->initialize_gpu_context(
@@ -261,9 +280,15 @@ size
 
                auto pwindow = pinteraction->window();
 
-               auto size = pwindow->get_window_rectangle().size();
+               auto rectangleTarget = pwindow->get_window_rectangle();
 
-               pgpucontext->create_gpu_context(m_pgpucontextWindow->m_pgpudevice, eoutput, escene, pwindow, size);
+               ::i32_point pointTarget(rectangleTarget.origin());
+
+               ::i32_size size(rectangleTarget.size());
+
+               auto sizeRaw = pwindow->get_raw_buffer_size();
+
+               pgpucontext->create_gpu_context(m_pgpucontextWindow->m_pgpudevice, eoutput, escene, pwindow, {}, pointTarget, size, sizeRaw);
 
             };
 
@@ -511,7 +536,7 @@ size
    }
 
 
-   void window_attachment::do_output(::gpu::texture * pgputexture)
+   void window_attachment::do_output(::gpu::texture_site * pgputexturesite)
    {
 
       if (m_papplication->m_gpu.m_bUseSwapChainWindow)
@@ -519,7 +544,7 @@ size
 
          ::cast<gpu::render_target> pgpurendertarget = m_pgpucontextWindow->output_render_target();
 
-         pgpurendertarget->do_output(pgputexture);
+         pgpurendertarget->do_output(pgputexturesite);
 
       }
       else

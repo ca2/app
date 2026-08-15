@@ -1,4 +1,4 @@
-#include "framework.h"
+#include "platform.h"
 #include "graphics.h"
 #include "graphics_extension.h"
 #include "graphics_pointer.h"

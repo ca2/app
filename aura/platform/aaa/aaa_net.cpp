@@ -1,4 +1,4 @@
-#include "framework.h"
+#include "platform.h"
 
 
 CLASS_DECL_AURA string url_decode(const ::scoped_string & scopedstr)

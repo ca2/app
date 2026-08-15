@@ -1,4 +1,4 @@
-#include "framework.h"
+#include "platform.h"
 
 
 string get_sys_temp_path()

@@ -1,7 +1,7 @@
 //
 // Created by camilo on 25/06/23.
 //
-#include "framework.h"
+#include "platform.h"
 #include "_string.h"
 
 

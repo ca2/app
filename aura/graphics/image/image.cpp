@@ -2,7 +2,7 @@
 //   Location : http://www.luc.ac.be/~ef00/ebgfx
 //   Date : 09-04-98
 //////////////////////////////////////////////////////////////////////
-#include "framework.h"
+#include "platform.h"
 #include "frame_array.h"
 #include "drawing.h"
 #include "context.h"
@@ -381,13 +381,13 @@ bool image::has_active_destination_graphics_lease() const
 }
 
 
-::draw2d::bitmap_pointer image::get_bitmap() const
+::draw2d::bitmap_pointer image::get_bitmap(::draw2d::graphics * pdraw2dgraphics) const
 {
 
    if (!m_pbitmap)
    {
 
-      ((image * )this)->create_bitmap();
+      ((image * )this)->create_bitmap(m_pacmeuserinteractionAffinity, pdraw2dgraphics);
 
    }
 
@@ -10996,7 +10996,7 @@ void image::transform(enum_image eimage)
 //
 
 
-void image::_map(bool bApplyAlphaTransform)
+void image::_map(const ::i32_rectangle & rectangle, bool bApplyAlphaTransform)
 {
 
    if (has_active_destination_graphics_lease())
@@ -11006,7 +11006,7 @@ void image::_map(bool bApplyAlphaTransform)
 
    }
 
-   pixmap::_map();
+   pixmap::_map(rectangle, bApplyAlphaTransform);
 
 }
 

@@ -9,7 +9,7 @@
 /* Begin PBXBuildFile section */
 		26F7746B88BA493E7D2EBF87 /* _.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 6A8B655C5C329BBDBE120F9B /* _.cpp */; };
 		D0CB4E80CB81984D7E82D163 /* _factory.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 19F7838D26638AEC1AA603C7 /* _factory.cpp */; };
-		FE5DCF325BEB8355030CD4C9 /* framework.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 280EB9C2B7AAD06F9F5B9883 /* framework.cpp */; };
+		FE5DCF325BEB8355030CD4C9 /* platform.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 280EB9C2B7AAD06F9F5B9883 /* platform.cpp */; };
 		7FC2DF6A18B5410BF23751C5 /* fs_raw_folder_protocol.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 0AAD3871940FC86BCC712056 /* fs_raw_folder_protocol.cpp */; };
 		6715AB4350486B8CD838E2F1 /* libacme.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 49E7A22A8429FE12157B1F5E /* libacme.dylib */; };
 		8B41A3D9BC04FBC81D0B4086 /* libapex.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = E215DB9E9465D09148C6D712 /* libapex.dylib */; };
@@ -54,8 +54,8 @@
 		6A8B655C5C329BBDBE120F9B /* _.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = _.cpp; sourceTree = "<group>"; };
 		6BCEA3F83664A7BA334D471C /* _.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = _.h; sourceTree = "<group>"; };
 		19F7838D26638AEC1AA603C7 /* _factory.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = _factory.cpp; sourceTree = "<group>"; };
-		280EB9C2B7AAD06F9F5B9883 /* framework.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = framework.cpp; sourceTree = "<group>"; };
-		8F0EB4C9C41282E88EE0D864 /* framework.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = framework.h; sourceTree = "<group>"; };
+		280EB9C2B7AAD06F9F5B9883 /* platform.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = platform.cpp; sourceTree = "<group>"; };
+		8F0EB4C9C41282E88EE0D864 /* platform.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = platform.h; sourceTree = "<group>"; };
 		08C0FC6DCA97A16F64374BBB /* fs_raw_folder_protocol_linux.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = fs_raw_folder_protocol_linux.cpp; sourceTree = "<group>"; };
 		0AAD3871940FC86BCC712056 /* fs_raw_folder_protocol.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = fs_raw_folder_protocol.cpp; sourceTree = "<group>"; };
 		AAAE88ED2E940FE0B7961017 /* fs_raw_folder_protocol.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = fs_raw_folder_protocol.h; sourceTree = "<group>"; };
@@ -104,8 +104,8 @@
 				6A8B655C5C329BBDBE120F9B /* _.cpp */,
 				6BCEA3F83664A7BA334D471C /* _.h */,
 				19F7838D26638AEC1AA603C7 /* _factory.cpp */,
-				280EB9C2B7AAD06F9F5B9883 /* framework.cpp */,
-				8F0EB4C9C41282E88EE0D864 /* framework.h */,
+				280EB9C2B7AAD06F9F5B9883 /* platform.cpp */,
+				8F0EB4C9C41282E88EE0D864 /* platform.h */,
 				08C0FC6DCA97A16F64374BBB /* fs_raw_folder_protocol_linux.cpp */,
 				B02F5DF4A45CBB265DC54F9B /* fs_raw_folder_protocol_other.cpp */,
 				0AAD3871940FC86BCC712056 /* fs_raw_folder_protocol.cpp */,
@@ -259,7 +259,7 @@
 				14AC9B2258DD27E22AFF921F /* fs_raw_folder_protocol_other.cpp in Sources */,
 				D0CB4E80CB81984D7E82D163 /* _factory.cpp in Sources */,
 				26F7746B88BA493E7D2EBF87 /* _.cpp in Sources */,
-				FE5DCF325BEB8355030CD4C9 /* framework.cpp in Sources */,
+				FE5DCF325BEB8355030CD4C9 /* platform.cpp in Sources */,
 				7FC2DF6A18B5410BF23751C5 /* fs_raw_folder_protocol.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -323,7 +323,7 @@
 				GCC_NO_COMMON_BLOCKS = YES;
 				GCC_OPTIMIZATION_LEVEL = 0;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
-				GCC_PREFIX_HEADER = framework.h;
+				GCC_PREFIX_HEADER = platform.h;
 				GCC_PREPROCESSOR_DEFINITIONS = "$(inherited)";
 				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
 				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
@@ -417,7 +417,7 @@
 				GCC_INCREASE_PRECOMPILED_HEADER_SHARING = NO;
 				GCC_NO_COMMON_BLOCKS = YES;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
-				GCC_PREFIX_HEADER = framework.h;
+				GCC_PREFIX_HEADER = platform.h;
 				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
 				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
 				GCC_WARN_UNDECLARED_SELECTOR = YES;

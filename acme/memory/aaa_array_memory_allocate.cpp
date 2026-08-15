@@ -1,5 +1,5 @@
 //Created by camilo on 2021-07-23 23:12 BRT <3ThomasBorregaardSorensen!!
-#include "framework.h"
+#include "platform.h"
 
 
 #define HEAP_NAMESPACE_PREFIX array

@@ -1,4 +1,4 @@
-#include "framework.h"
+#include "platform.h"
 ////#include "acme/exception/exception.h"
 #include "application_build_helper.h"
 #include "application.h"
@@ -869,7 +869,7 @@ namespace application_build_helper
 
                      string strApplication;
 
-                     strApplication += "#include \"framework.h\"\n";
+                     strApplication += "#include \"platform.h\"\n";
 
                      if (strAppAddUp.has_character())
                      {

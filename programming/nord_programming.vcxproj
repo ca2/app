@@ -30,7 +30,7 @@
     <ClInclude Include="dynamic_source\dynamic_source_script_interface.h" />
     <ClInclude Include="dynamic_source\dynamic_source_script_manager.h" />
     <ClInclude Include="dynamic_source\dynamic_source_session.h" />
-    <ClInclude Include="framework.h" />
+    <ClInclude Include="platform.h" />
     <ClInclude Include="introjection\introjection.h" />
     <ClInclude Include="introjection\introjection_compiler.h" />
     <ClInclude Include="programming\programming.h" />
@@ -47,7 +47,7 @@
     <ClCompile Include="dynamic_source\dynamic_source_script_interface.cpp" />
     <ClCompile Include="dynamic_source\dynamic_source_script_manager.cpp" />
     <ClCompile Include="dynamic_source\dynamic_source_session.cpp" />
-    <ClCompile Include="framework.cpp" />
+    <ClCompile Include="platform.cpp" />
     <ClCompile Include="introjection\introjection_compiler.cpp" />
     <ClCompile Include="programming\programming_application.cpp" />
   </ItemGroup>

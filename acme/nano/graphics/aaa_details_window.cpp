@@ -1,7 +1,7 @@
 //
 // Created by camilo on 06/02/2022 12:17 <3ThomasBorregaardSorensen!!
 //
-#include "framework.h"
+#include "platform.h"
 #include "details_window.h"
 #include "window_implementation.h"
 #include "button.h"

@@ -157,7 +157,7 @@ namespace gpu
 
       //virtual ::gpu::context_pointer create_gpu_context(const ::gpu::enum_output& eoutput,  const ::gpu::enum_scene & escene, const ::i32_size & size);
       
-      virtual ::gpu::context_pointer create_draw2d_gpu_context(::acme::windowing::window * pacmewindowingwindow, const ::i32_size & size);
+      //virtual ::gpu::context_pointer create_draw2d_gpu_context(::acme::windowing::window * pacmewindowingwindow, const ::i32_size & size);
 
 //<<<<<<< HEAD
 //      virtual ::gpu::context_pointer create_draw2d_context(const ::gpu::enum_output& eoutput, ::acme::windowing::window * pwindow, const ::i32_size & size);
@@ -253,7 +253,7 @@ namespace gpu
 
       virtual void set_matrix4(void* p, const ::floating_matrix4& floating_matrix4);
 
-
+      virtual ::pointer < ::gpu::fence > create_gpu_fence(bool bCreateSignaled = false);
 
 
    };

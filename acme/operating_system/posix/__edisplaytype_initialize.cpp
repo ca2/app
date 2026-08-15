@@ -1,7 +1,7 @@
 //
 // Created by camilo on 2024-11-13 14:31 <3ThomasBorregaardSorensen!!
 //
-#include "framework.h"
+#include "platform.h"
 #include "acme/constant/windowing2.h"
 
 namespace windowing

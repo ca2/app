@@ -5,7 +5,7 @@
 
    read zip.h for more info
 */
-#include "framework.h"
+#include "platform.h"
 #include "zip.h"
 //#include "_internal.h"
 

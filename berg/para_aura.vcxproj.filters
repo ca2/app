@@ -1286,7 +1286,7 @@
     <ClCompile Include="user\user\user_timer_item.cpp">
       <Filter>Source Files\user\user</Filter>
     </ClCompile>
-    <ClCompile Include="framework.cpp">
+    <ClCompile Include="platform.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="framework_c.c">
@@ -1302,7 +1302,7 @@
     </None>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="framework.h">
+    <ClInclude Include="platform.h">
       <Filter>Source Files</Filter>
     </ClInclude>
     <ClInclude Include="framework_c.h">

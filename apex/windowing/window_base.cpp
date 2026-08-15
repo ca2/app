@@ -1,7 +1,7 @@
 //
 // Created by camilo on 9/26/24.
 //
-#include "framework.h"
+#include "platform.h"
 #include "window_base.h"
 
 

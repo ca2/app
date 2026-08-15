@@ -21,7 +21,7 @@
 // 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA.
 //-------------------------------------------------------------------------
 //
-#include "framework.h"
+#include "platform.h"
 #include "subsystem_bsd_sockets/socket/Sockets.h"
 #include "subsystem/platform/Exception.h"
 

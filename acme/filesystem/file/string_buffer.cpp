@@ -1,5 +1,5 @@
 // Detemplatized by camilo on 2023-07-06 07:28 <3ThomasBorregaardSorensen!!
-#include "framework.h"
+#include "platform.h"
 #include "string_buffer.h"
 
 

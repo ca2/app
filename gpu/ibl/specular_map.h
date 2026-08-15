@@ -50,7 +50,7 @@ namespace gpu
 
          ::pointer<::gpu::shader> m_pshaderPrefilteredEnvMap;
          //::pointer<mipmap_cubemap_framebuffer> m_pframebufferPrefilteredEnvMap;
-         ::pointer<::gpu::texture> m_ptexturePrefilteredEnvMapCubemap;
+         ::pointer<::gpu::texture_site> m_ptexturesitePrefilteredEnvMapCubemap;
          ::pointer<::graphics3d::renderable> m_prenderableCube;
          ;
         
@@ -61,7 +61,7 @@ namespace gpu
 
          ::pointer<::gpu::shader> m_pshaderBrdfConvolution;
          //::pointer<brdf_convolution_framebuffer> m_pframebufferBrdfConvolution;
-         ::pointer<::gpu::texture> m_ptextureBrdfConvolutionMap;
+         ::pointer<::gpu::texture_site> m_ptexturesiteBrdfConvolutionMap;
          ::pointer<::gpu::full_screen_quad> m_pfullscreenquadBrdf;
          //::pointer < ::gpu::full_screen_quad > m_pfullscreenquad;
 

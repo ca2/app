@@ -1,4 +1,4 @@
-#include "framework.h"
+#include "platform.h"
 #include "application.h"
 
 __FACTORY_EXPORT void app_just_message_box_factory(::factory::factory* pfactory)

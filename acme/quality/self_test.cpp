@@ -1,5 +1,5 @@
 // Created by camilo on 2026-07-29 08:48 <3ThomasBorregaardSørensen!! Mummi!! Bilbo!!
-#include "framework.h"
+#include "platform.h"
 
 
 CLASS_DECL_ACME self_test* main_self_test()

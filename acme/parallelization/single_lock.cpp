@@ -1,4 +1,4 @@
-#include "framework.h"
+#include "platform.h"
 #include "single_lock.h"
 #include "manual_reset_happening.h"
 #include "acme/handler/sequence.h"

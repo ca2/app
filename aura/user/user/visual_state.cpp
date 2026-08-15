@@ -1,5 +1,5 @@
 // From layout_state.cpp by camilo on 2022-08-27 12:23 <3ThomasBorregaardSorensen!! ThomasIsMyPriest!!
-#include "framework.h"
+#include "platform.h"
 #include "visual_state.h"
 
 

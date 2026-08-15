@@ -1,4 +1,4 @@
-#include "framework.h"
+#include "platform.h"
 //#include "text_stream.h"
 #include "exception.h"
 

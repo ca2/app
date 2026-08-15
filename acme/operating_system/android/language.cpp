@@ -1,4 +1,4 @@
-#include "framework.h"
+#include "platform.h"
 //
 //
 //CLASS_DECL_ACME string load_podata(const ::scoped_string & scopedstrLang, bool bOnlyHeader)

@@ -1,7 +1,7 @@
 //
 // From http.cpp by camilo on 20/08/2023 02:24 <3ThomasBorregaardSorensen!!
 //
-#include "framework.h"
+#include "platform.h"
 #include "get.h"
 
 

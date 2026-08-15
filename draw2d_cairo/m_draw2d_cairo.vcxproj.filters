@@ -830,7 +830,7 @@
     <ClInclude Include="math\value.h">
       <Filter>Header Files\math</Filter>
     </ClInclude>
-    <ClInclude Include="framework.h">
+    <ClInclude Include="platform.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="compress\compress_get_input_stream_processed_size_interface.h">
@@ -4225,7 +4225,7 @@
     <ClCompile Include="math\value.cpp">
       <Filter>Source Files\math</Filter>
     </ClCompile>
-    <ClCompile Include="framework.cpp">
+    <ClCompile Include="platform.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="compress\crypto\crypto_7z_crc.cpp">

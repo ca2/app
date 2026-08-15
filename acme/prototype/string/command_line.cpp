@@ -1,5 +1,5 @@
 // Created by camilo on 2022-04-24 05:22 <3ThomasBorregaardSorensen!! (Thomas likes number 5!!)
-#include "framework.h"
+#include "platform.h"
 #include "command_line.h"
 //#include "string.h"
 //#include "acme/prototype/collection/string_array.h"

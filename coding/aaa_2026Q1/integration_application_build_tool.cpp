@@ -5,7 +5,7 @@
 //  Created by Camilo Sasuke Thomas Borregaard Sørensen on 2025-01-06.
 //  Copyright © 2025 ca2 Software Development. All rights reserved.
 //  <3ThomasBorregaardSorensen!!
-#include "framework.h"
+#include "platform.h"
 #include "application.h"
 #include "group_checkout_for_another_system.h"
 #include "group_machine_box.h"

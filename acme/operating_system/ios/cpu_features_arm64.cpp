@@ -2,7 +2,7 @@
 // Apple Silicon CPU feature detection
 // Created on 2026-01-21 07:54 <3ThomasBorregaardSørensen!!
 //
-#include "framework.h"
+#include "platform.h"
 #include "acme/operating_system/cpu_features.h"
 #define user __apple__user
 #include <sys/sysctl.h>

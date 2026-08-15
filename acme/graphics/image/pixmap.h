@@ -69,11 +69,11 @@ protected:
    friend class pixmap_lease;
    //friend class ::image::lock;
 
-   virtual void _map(bool bApplyAlphaTransform =
+   virtual void _map(const ::i32_rectangle & rectangle, bool bApplyAlphaTransform =
                            true); // some implementations may requrire to map_base to m_pcolorref before manipulate it
    
    
-   virtual bool _on_map(bool bApplyAlphaTransform = true);
+   virtual bool _on_map(const ::i32_rectangle & rectangle, bool bApplyAlphaTransform = true);
 
    virtual void
       _unmap(bool bDoUnmap = false); // some implementations may require to unmap from m_pcolorref to update *os* bitmap

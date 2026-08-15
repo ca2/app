@@ -1,5 +1,5 @@
 // Created by camilo on 2026-04-24 11:08 <3ThomasBorregaardSørensen!!
-#include "framework.h"
+#include "platform.h"
 #include "WindowMessageHandler.h"
 
 

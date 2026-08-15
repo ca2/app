@@ -1,4 +1,4 @@
-#include "framework.h"
+#include "platform.h"
 #include "graphics.h"
 #include "image.h"
 #include "acme/platform/application.h"
@@ -2753,7 +2753,7 @@ namespace draw2d_gpu
 //
 
 
-   void image::_map(bool bApplyTransform) 
+   void image::_map(const ::i32_rectangle & rectangle, bool bApplyTransform)
    {
 
       return;

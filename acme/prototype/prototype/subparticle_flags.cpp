@@ -1,4 +1,4 @@
-#include "framework.h"
+#include "platform.h"
 
 
 void quantum::set_finishing_flag()

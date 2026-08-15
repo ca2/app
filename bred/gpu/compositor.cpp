@@ -1,5 +1,5 @@
 // Created by camilo on 2025-06-18 19:58 <3ThomasBorregaardSørensen!!
-#include "framework.h"
+#include "platform.h"
 #include "bred_approach.h"
 #include "compositor.h"
 #include "context.h"
@@ -9,6 +9,7 @@
 #include "renderer.h"
 #include "render_target.h"
 #include "acme/platform/application.h"
+#include "acme/windowing/window.h"
 
 
 namespace gpu
@@ -28,7 +29,7 @@ namespace gpu
    }
 
 
-   ::gpu::texture* compositor::current_target_texture(::gpu::layer* pgpulayer)
+   ::gpu::texture_site * compositor::current_target_texture(::gpu::layer* pgpulayer)
    {
 
       return nullptr;
@@ -53,8 +54,11 @@ namespace gpu
    }
 
 
-   void compositor::on_gpu_context_placement_change(const ::i32_rectangle &rectanglePlacement,
-                                                    ::acme::windowing::window *pacmewindowingwindow)
+   void compositor::on_gpu_context_placement_change(
+         const ::i32_point & pointTarget,
+         const ::i32_point & pointSource,
+         const ::i32_size & size,
+         ::acme::windowing::window *pacmewindowingwindow)
    {
 
       if (!m_pgpucontextCompositor2)
@@ -69,7 +73,7 @@ namespace gpu
 //=======
          auto pgpucontext = pgpudevice->allocate_gpu_context();
          
-         pgpucontext->create_draw2d_gpu_context(pgpudevice, pacmewindowingwindow, rectanglePlacement.size());
+         pgpucontext->create_draw2d_gpu_context(pgpudevice, pacmewindowingwindow, pointSource, pointTarget, size, pacmewindowingwindow->m_sizeRaw);
 //>>>>>>> origin/main
 
          auto pgpucontextNew = pgpucontext;
@@ -82,9 +86,19 @@ namespace gpu
       else
       {
 
-         m_pgpucontextCompositor2->set_placement(rectanglePlacement);
+         m_pgpucontextCompositor2->set_input_origin(pointSource);
+
+         m_pgpucontextCompositor2->set_output_origin(pointTarget);
 
       }
+
+   }
+
+
+   bool compositor::renders_layer_externally(::gpu::layer * pgpulayer)
+   {
+
+      return false;
 
    }
 

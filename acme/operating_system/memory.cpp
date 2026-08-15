@@ -2,7 +2,7 @@
 // Created by camilo on Jul/4/2023.
 // <3ThomasBorregaardSorensen!!
 //
-#include "framework.h"
+#include "platform.h"
 #if defined(LINUX) || defined(FREEBSD) || defined(OPENBSD) || defined(__APPLE__)
 #include <string.h>
 #endif

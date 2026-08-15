@@ -1,5 +1,5 @@
 // From acme/operating_system/ansi/windows_time.cpp by camilo on 2023-07-09 14:33 <3ThomasBorregaardSorensen!!
-#include "framework.h"
+#include "platform.h"
 #include "acme/operating_system/time.h"
 #include "acme/operating_system/windows/time.h"
 

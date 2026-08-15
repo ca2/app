@@ -1,6 +1,6 @@
 // From github:/tristancalderbank/OpenGL-PBR-Renderer/mesh.h by
 // camilo on 2025-09-26 18:28 <3ThomasBorregaardSorensen!!
-#include "framework.h"
+#include "platform.h"
 #include "_gpu_opengl.h"
 #include "mesh.h"
 #include "gpu_opengl/shader.h"

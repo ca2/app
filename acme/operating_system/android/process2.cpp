@@ -1,4 +1,4 @@
-#include "framework.h"
+#include "platform.h"
 
 
 void get_os_priority(::i32 * piPolicy, sched_param * pparam, ::enum_priority epriority);

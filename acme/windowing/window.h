@@ -171,7 +171,7 @@ namespace acme
 
          ::i32_rectangle get_rectangle() override;
 
-
+         virtual ::i32_size get_raw_buffer_size();
          //void get_window_rectangle() override;
 
          void set_mouse_capture() override;

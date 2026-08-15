@@ -21,7 +21,7 @@
 
 	James Wynn james@jameswynn.com
 */
-#include "framework.h"
+#include "platform.h"
 
 #include <sys/stat.h>
 #include <fcntl.h>

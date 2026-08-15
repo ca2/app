@@ -238,11 +238,11 @@
 			<Option target="database_sqlite3"/>
 			<Option target="static_database_sqlite3"/>
 		</Unit>
-		<Unit filename="/home/camilo/cmake/integration/source/app/database_sqlite3/framework.cpp">
+		<Unit filename="/home/camilo/cmake/integration/source/app/database_sqlite3/platform.cpp">
 			<Option target="database_sqlite3"/>
 			<Option target="static_database_sqlite3"/>
 		</Unit>
-		<Unit filename="/home/camilo/cmake/integration/source/app/database_sqlite3/framework.h">
+		<Unit filename="/home/camilo/cmake/integration/source/app/database_sqlite3/platform.h">
 			<Option target="database_sqlite3"/>
 			<Option target="static_database_sqlite3"/>
 		</Unit>

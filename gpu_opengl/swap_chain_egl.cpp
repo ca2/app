@@ -1,5 +1,5 @@
 // Created by camilo on 2026-01-12 02:15 <3ThomasBorregaardSørensen!!
-#include "framework.h"
+#include "platform.h"
 #include "_gpu_opengl.h"
 #include "swap_chain.h"
 

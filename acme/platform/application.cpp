@@ -2,7 +2,7 @@
 // Created by camilo on 22/02/2022.
 //
 // app to application and back to acme namespace by camilo on 2022-09-17 18:54 <3ThomasBorregaardSorensen!!
-#include "framework.h"
+#include "platform.h"
 #include "application.h"
 #include "message.h"
 #include "acme.h"
@@ -18,7 +18,7 @@
 #include "acme/operating_system/a_system_menu.h"
 #include "acme/parallelization/synchronous_lock.h"
 #include "acme/platform/node.h"
-#include "acme/platform/platform.h"
+#include "acme/platform/platform_platform.h"
 //#include "acme/handler/sequence.h"
 #include "acme/platform/system.h"
 #include "acme/platform/session.h"

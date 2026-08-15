@@ -1,6 +1,6 @@
 // Created by camilo on 2021-07-24 01:05 BRT <3ThomasBorregaardSorensen!!
 // Refactoring 2023-11-23 05:54 <3ThomasBorregaardSoerensen!!
-#include "framework.h"
+#include "platform.h"
 
 //
 //namespace heap

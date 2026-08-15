@@ -1,4 +1,4 @@
-#include "framework.h"
+#include "platform.h"
 
 
 void_implementation_exception::void_implementation_exception(const ::scoped_string & scopedstrMessage) :

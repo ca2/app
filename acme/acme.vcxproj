@@ -2730,7 +2730,7 @@
     <ClCompile Include="filesystem\watcher\action.cpp" />
     <ClCompile Include="filesystem\watcher\watch.cpp" />
     <ClCompile Include="filesystem\watcher\watcher.cpp" />
-    <ClCompile Include="framework.cpp">
+    <ClCompile Include="platform.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='StaticDebug|Win32'">Create</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='ASanStaticDebug|Win32'">Create</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='StaticMetaDebug|Win32'">Create</PrecompiledHeader>
@@ -5487,7 +5487,7 @@
     <ClInclude Include="filesystem\filesystem\path_object.h" />
     <ClInclude Include="filesystem\filesystem\_impl.h" />
     <ClInclude Include="filesystem\file\_defer.h" />
-    <ClInclude Include="framework.h" />
+    <ClInclude Include="platform.h" />
     <ClInclude Include="graphics\draw2d\color.h" />
     <ClInclude Include="graphics\draw2d\colorref_array.h" />
     <ClInclude Include="graphics\draw2d\opacity.h" />
@@ -5934,7 +5934,7 @@
     <ClInclude Include="platform\simple_log.h" />
     <ClInclude Include="platform\status.h" />
     <ClInclude Include="platform\string_exchange.h" />
-    <ClInclude Include="platform\platform.h" />
+    <ClInclude Include="platform\platform_platform.h" />
     <ClInclude Include="platform\system_impl.h" />
     <ClInclude Include="platform\system_setup.h" />
     <ClInclude Include="platform\text.h" />

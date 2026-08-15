@@ -11,8 +11,8 @@ list(APPEND library_source
 #   io/_.h
 #   #io/_____debug.xcconfig
 #   #io/_____release.xcconfig
-#   #io/aaa_framework.cpp
-#   #io/aaa_framework.h
+#   #io/aaa_platform.cpp
+#   #io/aaa_platform.h
 #   #io/aaa_io_exception.h
 #   io/BufferedInputStream.cpp
 #   io/BufferedInputStream.h
@@ -163,8 +163,8 @@ list(APPEND library_source
    #   _____release.xcconfig
    #   aaa_Environment.cpp
    #   aaa_Environment.h
-   #   aaa_framework.cpp
-   #   aaa_framework.h
+   #   aaa_platform.cpp
+   #   aaa_platform.h
    #   aaa_StringStorage.h
    #platform/AnonymousPipe.cpp
    #platform/AnonymousPipe.h
@@ -336,8 +336,8 @@ list(APPEND library_source
    thread/_.h
    #thread/_____debug.xcconfig
    #thread/_____release.xcconfig
-   #thread/aaa_framework.cpp
-   #thread/aaa_framework.h
+   #thread/aaa_platform.cpp
+   #thread/aaa_platform.h
    #thread/aaa_ZombieKiller.cpp
    #thread/aaa_ZombieKiller.h
    thread/AutoLock.cpp
@@ -369,8 +369,8 @@ list(APPEND library_source
    _.cpp
    _.h
    _common_header.h
-   framework.cpp
-   framework.h
+   platform.cpp
+   platform.h
    )
 
 
@@ -406,8 +406,8 @@ add_library(static_${PROJECT_NAME} STATIC ${library_source})
 
 if (NOT ${NO_PRECOMPILED_HEADER})
 
-   target_precompile_headers(${PROJECT_NAME} PRIVATE framework.h)
-   target_precompile_headers(static_${PROJECT_NAME} PRIVATE framework.h)
+   target_precompile_headers(${PROJECT_NAME} PRIVATE platform.h)
+   target_precompile_headers(static_${PROJECT_NAME} PRIVATE platform.h)
 
 endif ()
 

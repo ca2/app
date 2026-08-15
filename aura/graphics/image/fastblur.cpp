@@ -4,7 +4,7 @@
 // Tip: Multiple invovations of this filter with a small
 // radius will approximate a gaussian blur quite well.
 //
-#include "framework.h"
+#include "platform.h"
 #include "fastblur.h"
 #include "image.h"
 //#include "acme/graphics/image/pixmap_lock.h"

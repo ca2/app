@@ -1,4 +1,4 @@
-#include "framework.h"
+#include "platform.h"
 
 #include "app-graphics/gcom/gcom/gcom_slide.h"
 

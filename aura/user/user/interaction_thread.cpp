@@ -1,4 +1,4 @@
-#include "framework.h"
+#include "platform.h"
 #include "frame_interaction.h"
 #include "interaction_thread.h"
 #include "interaction_graphics_thread.h"

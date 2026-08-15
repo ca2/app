@@ -1,5 +1,5 @@
 // Created by camilo on 2025-06-05 02:22 <3ThomasBorregaardSørensen!!
-#include "framework.h"
+#include "platform.h"
 #include "end_draw.h"
 
 

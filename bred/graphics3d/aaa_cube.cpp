@@ -1,6 +1,6 @@
 // From github:/tristancalderbank/OpenGL-PBR-Renderer/cube.cpp by
 // camilo on 2025-09-26 21:15 <3ThomasBorregaardSorensen!!
-#include "framework.h"
+#include "platform.h"
 #include "cube.h"
 //
 //

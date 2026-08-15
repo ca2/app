@@ -1,5 +1,5 @@
 // Created by camilo on 2024-11-07 18:35 <3ThomasBorregaardSorensen>
-#include "framework.h"
+#include "platform.h"
 #include "data.h"
 #include "edit_impl.h"
 #include "span.h"

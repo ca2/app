@@ -1,5 +1,5 @@
 // Created by camilo on 2026-07-30 23:28 <3ThomasBorregaardSørensen!! Mummi!! Bilbo!!
-#include "framework.h"
+#include "platform.h"
 #include "window_buffer.h"
 #include "window.h"
 

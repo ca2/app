@@ -1,7 +1,7 @@
 //
 // Created by camilo on 2022-10-23 21:38 <3ThomasBorregaardSorensen!!
 //
-#include "framework.h"
+#include "platform.h"
 #include "earth_gregorian_time.h"
 //#include "earth_time.h"
 #include "system_time.h"

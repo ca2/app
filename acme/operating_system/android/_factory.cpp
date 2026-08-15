@@ -1,4 +1,4 @@
-#include "framework.h"
+#include "platform.h"
 #include "_android.h"
 #include "acme/operating_system/posix/shared_memory.h"
 //#include "buffer.h"

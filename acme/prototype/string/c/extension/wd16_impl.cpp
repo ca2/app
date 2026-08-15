@@ -1,4 +1,4 @@
-#include "framework.h"
+#include "platform.h"
 
 
 CLASS_DECL_ACME ::wd16_character wd16_char_tolower(::i32 i) { return __wd16tolower(i); }

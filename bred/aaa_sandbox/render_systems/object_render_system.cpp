@@ -1,4 +1,4 @@
-#include "framework.h"
+#include "platform.h"
 // obj_render_system.cpp
 #include "object_render_system.h"
 //#include "pipeline.h"

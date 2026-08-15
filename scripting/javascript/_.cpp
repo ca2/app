@@ -116,7 +116,7 @@
 
  */
 
-#include "framework.h"
+#include "platform.h"
 #include "tinyjs.h"
 //#include "fiasco_finder.h"
 #include <stdio.h>

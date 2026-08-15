@@ -261,7 +261,7 @@
     <ClCompile Include="_hellobase.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="framework.h" />
+    <ClInclude Include="platform.h" />
     <ClInclude Include="hellobase.h" />
     <ClInclude Include="hellobase_application.h" />
     <ClInclude Include="hellobase_document.h" />

@@ -76,7 +76,7 @@
 		</Linker>
 
 		<Unit filename="and_experience_lite.vcxproj" />
-		<Unit filename="framework.h">
+		<Unit filename="platform.h">
 			<Option compile="1" />
 			<Option weight="0" />
 		</Unit>

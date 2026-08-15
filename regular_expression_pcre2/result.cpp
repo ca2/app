@@ -1,7 +1,7 @@
 //
 // Created by camilo on 2021-05-07 07:24 BRT <3ThomasBS_!!
 //
-#include "framework.h"
+#include "platform.h"
 #include "result.h"
 
 

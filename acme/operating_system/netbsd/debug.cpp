@@ -1,4 +1,4 @@
-#include "framework.h"
+#include "platform.h"
 //#include "acme/platform/static_start.h"
 //#include "acme/platform/static_start_internal.h"
 #include "acme/platform/acme.h"

@@ -1,4 +1,4 @@
-#include "framework.h"
+#include "platform.h"
 #include "text_property.h"
 #include "acme/prototype/data/property_container.h"
 #include "acme/constant/id.h"

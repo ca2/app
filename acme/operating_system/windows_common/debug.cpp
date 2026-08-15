@@ -1,5 +1,5 @@
 // Created by camilo on 2022-09-26 18:33 <3ThomasBorregaardSorensen!!
-#include "framework.h"
+#include "platform.h"
 
 #include "acme/_operating_system.h"
 #include "acme/operating_system/windows_common/_string.h"

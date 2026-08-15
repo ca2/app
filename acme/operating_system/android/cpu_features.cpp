@@ -3,7 +3,7 @@
 // Adapted from Linux version with ChatGPT by
 // camilo on 2026-02-05 14:50 <3ThomasBorregaardSørensen!!
 //
-#include "framework.h"
+#include "platform.h"
 #include "acme/operating_system/cpu_features.h"
 
 #include <cpu-features.h>

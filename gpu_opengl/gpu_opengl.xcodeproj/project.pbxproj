@@ -36,7 +36,7 @@
 		77C079DCF8330EB0EC2C4914 /* pixmap.cpp in Sources */ = {isa = PBXBuildFile; fileRef = DB48FA6C6E3C0FDE1B9A8D79 /* pixmap.cpp */; };
 		EC2D36EB04186024D5BA0694 /* swap_chain.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 6B9E51E76F8A1D87DCE5E4B1 /* swap_chain.cpp */; };
 		F9C537608BE08395BCEFC22A /* swap_chain_render_target.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 3B2D9C9650FBFAB98D1C25C0 /* swap_chain_render_target.cpp */; };
-		94D482AC48C0AD51E91E21BE /* framework.cpp in Sources */ = {isa = PBXBuildFile; fileRef = F6EE8A393F0FAC6053329B33 /* framework.cpp */; };
+		94D482AC48C0AD51E91E21BE /* platform.cpp in Sources */ = {isa = PBXBuildFile; fileRef = F6EE8A393F0FAC6053329B33 /* platform.cpp */; };
 		CBD4B2B86A5E0378A9211D03 /* memory_buffer.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 50AABCD0A8A38975932E2EF2 /* memory_buffer.cpp */; };
 		9FB61650FE66FD8B8A98FF1B /* model_buffer.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9416717DEA952F0185D59879 /* model_buffer.cpp */; };
 		D8915A92F4CCFFC8C3D0170A /* object.cpp in Sources */ = {isa = PBXBuildFile; fileRef = F74FA03094DAC2CD28E41FD6 /* object.cpp */; };
@@ -138,8 +138,8 @@
 		6E737CD4175C8278E1C803F0 /* frame.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = frame.h; sourceTree = "<group>"; };
 		6D198EDE607828D25E9857D7 /* frame_buffer.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = frame_buffer.h; sourceTree = "<group>"; };
 		FD9E3C526B9579406D1CDC15 /* frame_buffer.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = frame_buffer.cpp; sourceTree = "<group>"; };
-		979A3BC6187B2B2419F50876 /* framework.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = framework.h; sourceTree = "<group>"; };
-		F6EE8A393F0FAC6053329B33 /* framework.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = framework.cpp; sourceTree = "<group>"; };
+		979A3BC6187B2B2419F50876 /* platform.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = platform.h; sourceTree = "<group>"; };
+		F6EE8A393F0FAC6053329B33 /* platform.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = platform.cpp; sourceTree = "<group>"; };
 		B70A01DFFCA870F1188476B2 /* full_screen_quad.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = full_screen_quad.h; sourceTree = "<group>"; };
 		60F07E96D76F039F5B41D036 /* full_screen_quad.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = full_screen_quad.cpp; sourceTree = "<group>"; };
 		BA6C4ED0939177350D297CFD /* _constant.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = _constant.h; sourceTree = "<group>"; };
@@ -339,8 +339,8 @@
 				6E737CD4175C8278E1C803F0 /* frame.h */,
 				6D198EDE607828D25E9857D7 /* frame_buffer.h */,
 				FD9E3C526B9579406D1CDC15 /* frame_buffer.cpp */,
-				979A3BC6187B2B2419F50876 /* framework.h */,
-				F6EE8A393F0FAC6053329B33 /* framework.cpp */,
+				979A3BC6187B2B2419F50876 /* platform.h */,
+				F6EE8A393F0FAC6053329B33 /* platform.cpp */,
 				B70A01DFFCA870F1188476B2 /* full_screen_quad.h */,
 				60F07E96D76F039F5B41D036 /* full_screen_quad.cpp */,
 				25F24607587D4035517E7294 /* hdr_texture.h */,
@@ -554,7 +554,7 @@
 			files = (
 				A8AE0A596DE198AA411855E4 /* program.cpp in Sources */,
 				BC67AB9492965DA7592A8F54 /* full_screen_quad.cpp in Sources */,
-				94D482AC48C0AD51E91E21BE /* framework.cpp in Sources */,
+				94D482AC48C0AD51E91E21BE /* platform.cpp in Sources */,
 				CBD4B2B86A5E0378A9211D03 /* memory_buffer.cpp in Sources */,
 				9FB61650FE66FD8B8A98FF1B /* model_buffer.cpp in Sources */,
 				470B6ECC3BCA6C18EA1EE3B3 /* _gpu_opengl.cpp in Sources */,
@@ -665,7 +665,7 @@
 				GCC_NO_COMMON_BLOCKS = YES;
 				GCC_OPTIMIZATION_LEVEL = 0;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
-				GCC_PREFIX_HEADER = framework.h;
+				GCC_PREFIX_HEADER = platform.h;
 				GCC_PREPROCESSOR_DEFINITIONS = "$(inherited)";
 				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
 				GCC_VERSION = "";
@@ -774,7 +774,7 @@
 				GCC_INCREASE_PRECOMPILED_HEADER_SHARING = NO;
 				GCC_NO_COMMON_BLOCKS = YES;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
-				GCC_PREFIX_HEADER = framework.h;
+				GCC_PREFIX_HEADER = platform.h;
 				GCC_PREPROCESSOR_DEFINITIONS = "";
 				GCC_VERSION = "";
 				GCC_WARN_64_TO_32_BIT_CONVERSION = NO;

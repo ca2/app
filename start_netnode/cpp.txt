@@ -3,7 +3,7 @@
 
  Directory of C:\nordroid\app-core\simple_drawing
 
-17/04/2016  03:31                24 framework.cpp
+17/04/2016  03:31                24 platform.cpp
 17/04/2016  03:31               573 simple_drawing.cpp
 24/04/2016  11:53            27.642 simple_drawing_application.cpp
 17/04/2016  03:31             2.435 simple_drawing_document.cpp

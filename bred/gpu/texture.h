@@ -54,6 +54,10 @@ namespace gpu
       ::file::path                        m_path;
       ::pointer<::gpu::binding_slot_set> m_pbindingslotsetSingular;
       ::pointer<texture_synchronization> m_ptexturesynchronization;
+      /// Currently used by draw2d_direct2d_for_directx* to hold the associated/paired
+      /// draw2d image to this gpu texture.
+      ::image::image_pointer  m_pimageGpuTexture;
+
 
       texture();
       ~texture() override;
@@ -62,10 +66,12 @@ namespace gpu
       virtual void _create_texture(const texture_data & texturedata = {});
       virtual void _set_data(const texture_data &texturedata = {});
 
-      virtual ::i32_rectangle rectangle() const;
+      //virtual ::i32_rectangle source_rectangle() const;
+      //virtual ::i32_rectangle target_rectangle() const;
+      virtual ::i32_size raw_size() const;
       virtual ::i32_size size() const;
-      virtual ::i32 left() const;
-      virtual ::i32 top() const;
+      //virtual ::i32 left() const;
+      //virtual ::i32 top() const;
       virtual ::i32 width() const;
       virtual ::i32 height() const;
       virtual ::i32 raw_width() const;
@@ -93,23 +99,23 @@ namespace gpu
 
       void defer_throw_if_cube_map_pixmaps_are_not_ok(const ::pointer_array < ::pixmap >& pixmapa);
       
-      virtual void initialize_hdr_texture_on_memory(::gpu::context *pcontext, const ::block & block);
-      virtual void initialize_with_image_data(
+      virtual void create_hdr_texture_on_memory(::gpu::context *pcontext, const ::block & block);
+      virtual void create_with_image_data(
          ::gpu::context *pgpucontext, 
-         const ::i32_rectangle &rectangleTarget,
+         const ::i32_size & size,
          ::i32 numChannels,
          bool bSrgb,
          const void * pdata,
          enum_texture etexture = e_texture_image);
-      virtual void initialize_texture(::gpu::context* pgpucontext,
+      virtual void create_texture(::gpu::context* pgpucontext,
          const texture_attributes & textureattributes,
          const texture_flags & textureflags = {},
          const texture_data & texturedata = {});
 //      virtual void initialize_mipmap_cubemap_texture(::gpu::context *pgpucontext, const ::i32_rectangle& rectangleTarget, ::i32 iMipCount = -1, bool bRenderTarget = true, bool bShaderResourceView = true);
-      virtual void initialize_depth_texture(::gpu::context* pgpucontext, const ::i32_size & size);
+      virtual void create_depth_texture(::gpu::context* pgpucontext, const ::i32_size & size);
 
-      virtual void initialize_texture_from_file_path(::gpu::context* pgpucontext, const ::file::path & path, bool bIsSrgb);
-      virtual void initialize_texture_from_pixmap(::gpu::context* pgpucontext, const ::pointer_array < ::pixmap > & pixmapa, enum_texture etexture = e_texture_image);
+      virtual void create_texture_from_file_path(::gpu::context* pgpucontext, const ::file::path & path, bool bIsSrgb);
+      virtual void create_texture_from_pixmap(::gpu::context* pgpucontext, const ::pointer_array < ::pixmap > & pixmapa, enum_texture etexture = e_texture_image);
 
       virtual ::pointer < ::gpu::pixmap > create_gpu_pixmap(const ::i32_size & size);
 
@@ -127,13 +133,13 @@ namespace gpu
 
       virtual texture* get_depth_texture();
 
-      virtual ::gpu::texture * resolved_texture();
+      virtual ::gpu::texture * resolved_texture(const ::i32_rectangle & rectanglePlacement);
 
       virtual ::string texture_type();
       virtual void set_pixels(const ::i32_rectangle& rectangle, const void* data);
-      virtual void read_to_buffer(::gpu::command_buffer * pgpucommandbuffer, ::gpu::buffer * pgpubuffer);
-      virtual void read_pixels(::gpu::command_buffer * pgpucommandbuffer, ::pixmap_t * ppixmap);
-      virtual void write_pixels(const ::pixmap_t * ppixmap);
+      virtual void read_to_buffer(::gpu::command_buffer * pgpucommandbuffer, ::gpu::buffer * pgpubuffer, const ::i32_point & pointOutput);
+      virtual void read_pixels(::gpu::command_buffer * pgpucommandbuffer, ::pixmap_t * ppixmap, const ::i32_point & pointOutput);
+      virtual void write_pixels(const ::pixmap_t * ppixmap, const ::i32_point & pointInput);
       virtual void write_pixels(const ::i32_size & size, const ::image32_t * pimage32, ::i32 iScan);
 
       virtual bool is_in_shader_sampling_state();

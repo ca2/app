@@ -1,4 +1,4 @@
-#include "framework.h"
+#include "platform.h"
 #include "context_glx.h"
 #include "opengl.h"
 #include "acme/parallelization/synchronous_lock.h"

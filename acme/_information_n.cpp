@@ -1,5 +1,5 @@
 // Created by camilo with mummys on 2025-10-21 13:40 <3ThomasBorregaardSørensen!!
-#include "framework.h"
+#include "platform.h"
 #include "_information_n.h"
 
 

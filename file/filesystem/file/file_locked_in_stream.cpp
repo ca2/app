@@ -1,6 +1,6 @@
 // LockedStream.cpp
 
-#include "framework.h"
+#include "platform.h"
 
 namespace file
 {

@@ -632,7 +632,7 @@
     <ClInclude Include="apex\os\ansios\ansios_thread.h">
       <Filter>Header Files\apex\os\ansios</Filter>
     </ClInclude>
-    <ClInclude Include="framework.h">
+    <ClInclude Include="platform.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="framework_c.h">
@@ -3775,7 +3775,7 @@
     <ClCompile Include="apex\os\os_binreloc.cpp">
       <Filter>Source Files\apex\os</Filter>
     </ClCompile>
-    <ClCompile Include="framework.cpp">
+    <ClCompile Include="platform.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="user\simple\message_box.cpp">

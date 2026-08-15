@@ -1,4 +1,4 @@
-#include "framework.h"
+#include "platform.h"
 #include "application.h"
 #include "get_file_extension_mime_type.h"
 #include "session.h"
@@ -9232,7 +9232,7 @@ void application::setResourceName(::i32 iId, const ::scoped_string &scopedstrRes
    return bResult;
    }
 
-   #include "framework.h"*/
+   #include "platform.h"*/
 
 
 

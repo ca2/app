@@ -3,7 +3,7 @@
 // From gpu_directx11/input_layout.cpp by
 // camilo on 2025-06-29 06:06 <3ThomasBorregaardSørensen!!
 // From gpu_vulkan/input_layout.cpp by camilo on 2025-06-29 03:55 <3ThomasBorregaardSørensen!!
-#include "framework.h"
+#include "platform.h"
 #include "input_layout.h"
 #include "bred/gpu/context_lock.h"
 

@@ -1,4 +1,4 @@
-#include "framework.h"
+#include "platform.h"
 //#include "_gpu_opengl.h"
 #include "buffer.h"
 #include "lock.h"
@@ -9,6 +9,7 @@
 #include "bred/gpu/context.h"
 #include "bred/gpu/context_lock.h"
 #include "bred/gpu/layer.h"
+#include "bred/gpu/texture_site.h"
 
 
 namespace gpu_opengl
@@ -41,7 +42,9 @@ namespace gpu_opengl
 
       ::gpu::context_lock contextlock(m_pgpucontext);
 
-      ::cast < texture > ptexture = m_pgpucontext->current_target_texture(::gpu::current_layer());
+      auto ptexturesite = m_pgpucontext->current_target_texture(::gpu::current_layer());
+
+      ::cast < texture > ptexture = ptexturesite->gpu_texture();
 
       auto gluSrcFbo = ptexture->source_frame_buffer_object();
 

@@ -936,7 +936,7 @@
     <ClInclude Include="memory\aaa_os_alloc.h">
       <Filter>Header Files\memory</Filter>
     </ClInclude>
-    <ClInclude Include="framework.h">
+    <ClInclude Include="platform.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="aaaa__defer.h">
@@ -1845,7 +1845,7 @@
     <ClInclude Include="prototype\prototype\e_check.h">
       <Filter>Header Files\prototype\prototype</Filter>
     </ClInclude>
-    <ClInclude Include="platform\platform.h">
+    <ClInclude Include="platform\platform_platform.h">
       <Filter>Header Files\platform</Filter>
     </ClInclude>
     <ClInclude Include="prototype\string\aaa_string_type.h">
@@ -5138,7 +5138,7 @@
     <ClCompile Include="_.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="framework.cpp">
+    <ClCompile Include="platform.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="operating_system\time.cpp">

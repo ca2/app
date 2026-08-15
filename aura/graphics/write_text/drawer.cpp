@@ -1,5 +1,5 @@
 // Created by camilo on 2021-06-08 02:30 BRT <3ThomasBorregaardSorensen__!!
-#include "framework.h"
+#include "platform.h"
 #include "drawer.h"
 #include "text_out.h"
 #include "text_out_array.h"

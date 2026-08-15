@@ -1,11 +1,12 @@
 // From bred/gpu/shader.cpp by camilo on 2025-12-11 00:25 <3ThomasBorregaardSørensen!!
-#include "framework.h"
+#include "platform.h"
 #include "binding.h"
 #include "acme/exception/interface_only.h"
 #include "bred/gpu/empty_texture_source.h"
 #include "bred/gpu/input_layout.h"
 #include "bred/gpu/pixmap.h"
 #include "bred/gpu/texture.h"
+#include "bred/gpu/texture_site.h"
 #include "context.h"
 #include "renderer.h"
 #include "shader.h"
@@ -207,7 +208,7 @@ namespace gpu
    }
 
 
-   void binding_slot_set::set_texture(::pointer<::gpu::texture> *ppgputexture,
+   void binding_slot_set::set_texture(::pointer<::gpu::texture_site> *ppgputexturesite,
                                       ::gpu::empty_texture_source *pemptytexturesource) 
    {
    
@@ -216,15 +217,15 @@ namespace gpu
 
          auto pbindingslot = binding_slot((::i32) iSlot);
 
-         auto &pgputextureSource = ppgputexture[iSlot];
+         auto &pgputexturesiteSource = ppgputexturesite[iSlot];
 
-         if (pgputextureSource)
+         if (pgputexturesiteSource && pgputexturesiteSource->gpu_texture())
          {
 
-            if (!pgputextureSource->is_ok())
+            if (!pgputexturesiteSource->gpu_texture()->is_ok())
             {
 
-               if (!pgputextureSource->is_ok())
+               if (!pgputexturesiteSource->gpu_texture()->is_ok())
                {
 
                   throw ::exception(error_wrong_state);
@@ -233,13 +234,15 @@ namespace gpu
 
             }
 
-            pbindingslot->m_ptexture = pgputextureSource;
+            pbindingslot->m_ptexturesite = pgputexturesiteSource;
 
          }
          else
          {
 
-            pbindingslot->m_ptexture = pemptytexturesource->empty_texture();
+            construct_newø(pbindingslot->m_ptexturesite);
+               
+            pbindingslot->m_ptexturesite->m_pgputextureSite = pemptytexturesource->empty_texture();
 
          }
 

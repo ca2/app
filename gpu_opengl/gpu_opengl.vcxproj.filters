@@ -33,6 +33,12 @@
     <Filter Include="Source Files\gltf">
       <UniqueIdentifier>{222d5e7c-6081-4e3d-b97d-4e304646ec68}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Header Files\shader">
+      <UniqueIdentifier>{430a5a2d-bb25-4d30-860e-584885110d15}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\shader">
+      <UniqueIdentifier>{bf31435c-6f14-4944-9433-d5193901330c}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="platform.h">
@@ -205,6 +211,12 @@
     </ClInclude>
     <ClInclude Include="window_attachment.h">
       <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="shader\_001Blend.frag.h">
+      <Filter>Header Files\shader</Filter>
+    </ClInclude>
+    <ClInclude Include="shader\_001Blend.vert.h">
+      <Filter>Header Files\shader</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -388,6 +400,12 @@
     </CustomBuild>
     <CustomBuild Include="ibl\shader\prefiltered_environment_map.vert">
       <Filter>Source Files\ibl\shader</Filter>
+    </CustomBuild>
+    <CustomBuild Include="shader\_001Blend.frag">
+      <Filter>Source Files\shader</Filter>
+    </CustomBuild>
+    <CustomBuild Include="shader\_001Blend.vert">
+      <Filter>Source Files\shader</Filter>
     </CustomBuild>
   </ItemGroup>
 </Project>

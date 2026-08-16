@@ -709,7 +709,9 @@ namespace gpu_opengl
       if (sizeRaw.is_empty())
       {
 
-         sizeRaw = m_textureattributes.m_size;
+         m_textureattributes.m_sizeRaw = m_textureattributes.m_size;
+
+         sizeRaw = m_textureattributes.m_sizeRaw;
 
       }
       m_iSampleCount =
@@ -1943,43 +1945,154 @@ namespace gpu_opengl
    void texture::write_pixels(const ::pixmap_t * ppixmap, const ::i32_point & pointInput)
    {
 
-      if (!ppixmap || ppixmap->size() != size() ||
-          ppixmap->m_iScan < width() * (int)sizeof(::image32_t) ||
-          !ppixmap->m_pimage32 || !m_gluTextureID ||
-          m_gluType != GL_TEXTURE_2D)
+      auto sizePixmap = ppixmap->size();
+
+      auto sizeRawThis = this->raw_size();
+
+      auto iScanPixmap = ppixmap->m_iScan;
+
+      auto iRequiredScan = ppixmap->width() * (int)sizeof(::image32_t);
+
+      if (not ppixmap 
+         or sizePixmap.is_empty()
+         or ppixmap->m_iScan < iRequiredScan
+         or not ppixmap->m_pimage32 
+         or not m_gluTextureID 
+         or m_gluType != GL_TEXTURE_2D)
       {
 
          throw ::exception(error_bad_argument);
 
       }
 
-      //::memory memoryFlipped;
-      ::pixmap pixmapFlipped;
+      //::memory memoryFlipped = m_pixmapFlipped;
+      auto &pixmapFlipped = m_pixmapFlipped;
       pixmapFlipped.create_as_descriptor(ppixmap->size(), DEFAULT_CREATE_IMAGE_FLAG, ppixmap->m_iScan);
       pixmapFlipped.m_colorindexes = ppixmap->m_colorindexes;
       pixmapFlipped.copy(ppixmap);
-      pixmapFlipped.vertical_swap();
+      //pixmapFlipped.vertical_swap();
+
+      int cx = ppixmap->width();
+      int cy = ppixmap->height();
 
       scoped_pixel_transfer_state state;
 
       glBindTexture(GL_TEXTURE_2D, m_gluTextureID);
       ::opengl::check_error("");
+
+      GLint textureWidth = 0;
+      GLint textureHeight = 0;
+      auto x = pointInput.x;
+      auto y = pointInput.y;
+      int iMipLevel = 0;
+
+
+      glGetTexLevelParameteriv(
+         GL_TEXTURE_2D,
+         iMipLevel,
+         GL_TEXTURE_WIDTH,
+         &textureWidth);
+
+      glGetTexLevelParameteriv(
+         GL_TEXTURE_2D,
+         iMipLevel,
+         GL_TEXTURE_HEIGHT,
+         &textureHeight);
+
+      informationf(
+         "glTexSubImage2D level=%d "
+         "texture=%dx%d "
+         "upload=(%d,%d) %dx%d",
+         iMipLevel,
+         textureWidth,
+         textureHeight,
+         x,
+         y,
+         cx,
+         cy);
+
+      auto requiredWidth = x + cx;
+
+      auto requiredHeight = y + cy;
+
+      if (textureWidth < requiredWidth ||
+          textureHeight < requiredHeight)
+      {
+         glTexImage2D(
+            GL_TEXTURE_2D,
+            0,
+            GL_RGBA8,
+            requiredWidth,
+            requiredHeight,
+            0,
+            GL_BGRA,
+            GL_UNSIGNED_BYTE,
+            nullptr);
+         ::opengl::check_error("");
+      }
+
       glPixelStorei(GL_UNPACK_ALIGNMENT, 1);
+      ::opengl::check_error("");
       glPixelStorei(
          GL_UNPACK_ROW_LENGTH,
          pixmapFlipped.m_iScan / (int)sizeof(::image32_t));
+      ::opengl::check_error("");
 
+      auto cxThis = width();
+
+      auto cyThis = height();
+
+      auto iPixelFormatFlipped = pixmap_pixel_format(&pixmapFlipped);
+      int i1 = textureHeight - y - cy;
+      int i2 = textureHeight - y;
+      int i3 = y;
       glTexSubImage2D(
          GL_TEXTURE_2D,
          0,
-         pointInput.x,
-         pointInput.y,
-         width(),
-         height(),
-         pixmap_pixel_format(&pixmapFlipped),
+         x, 
+         i3,
+         cx,
+         cy,
+         iPixelFormatFlipped,
          GL_UNSIGNED_BYTE,
          pixmapFlipped.m_pimage32);
       ::opengl::check_error("");
+
+      if (m_textureattributes.m_size.cx < cx)
+      {
+
+         m_textureattributes.m_size.cx = cx;
+
+      }
+
+      if (m_textureattributes.m_size.cy < cy)
+      {
+
+         m_textureattributes.m_size.cy = cy;
+
+      }
+
+      if (m_textureattributes.m_sizeRaw.cx < cx)
+      {
+
+         m_textureattributes.m_sizeRaw.cx = cx;
+
+      }
+
+      if (m_textureattributes.m_sizeRaw.cy < cy)
+      {
+
+         m_textureattributes.m_sizeRaw.cy = cy;
+
+      }
+
+   }
+
+
+   void texture::write_pixels(::gpu::command_buffer * pgpucommandbuffer, const ::pixmap_t * ppixmap, const ::i32_point & pointInput)
+   {
+
+      write_pixels(ppixmap, pointInput);
 
    }
 

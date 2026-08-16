@@ -787,13 +787,6 @@ namespace gpu
    }
 
 
-   void texture::set_pixels(const ::i32_rectangle& rectangle, const void* data)
-   {
-
-
-   }
-
-
    void texture::read_to_buffer(::gpu::command_buffer * pgpucommandbuffer, ::gpu::buffer * pgpubuffer, const ::i32_point & pointOutput)
    {
 
@@ -810,7 +803,24 @@ namespace gpu
    }
 
 
-   void texture::write_pixels(const ::pixmap_t *, const ::i32_point & pointINput)
+   void texture::set_pixels(const ::i32_rectangle & rectangle, const void * data)
+   {
+
+      ::pixmap_t pixmap;
+
+      pixmap.m_point = rectangle.origin();
+      pixmap.m_size = rectangle.size();
+      pixmap.m_iScan = pixmap.m_size.cx * 4;
+
+      pixmap.m_pimage32 = (::image32_t *)data;
+      pixmap.m_pimage32Raw = (::image32_t *)data;
+
+      write_pixels(&pixmap, {});
+
+   }
+
+   
+   void texture::write_pixels(const ::pixmap_t *, const ::i32_point & pointInput)
    {
 
       throw ::not_implemented();
@@ -829,6 +839,46 @@ namespace gpu
       pixmap.m_iScan = iScan;
 
       write_pixels(&pixmap, {});
+
+   }
+
+
+   void texture::set_pixels(::gpu::command_buffer * pgpucommandbuffer, const ::i32_rectangle & rectangle, const void * data)
+   {
+
+      ::pixmap_t pixmap;
+
+      pixmap.m_point = rectangle.origin();
+      pixmap.m_size = rectangle.size();
+      pixmap.m_iScan = pixmap.m_size.cx * 4;
+
+      pixmap.m_pimage32 = (::image32_t *)data;
+      pixmap.m_pimage32Raw = (::image32_t *)data;
+
+      write_pixels(pgpucommandbuffer, &pixmap, {});
+
+   }
+
+
+   void texture::write_pixels(::gpu::command_buffer * pgpucommandbuffer, const ::pixmap_t *, const ::i32_point & pointInput)
+   {
+
+      throw ::not_implemented();
+
+   }
+
+
+   void texture::write_pixels(::gpu::command_buffer * pgpucommandbuffer, const ::i32_size & size, const ::image32_t * pimage32, ::i32 iScan)
+   {
+
+      ::pixmap pixmap;
+
+      pixmap.m_size = size;
+      pixmap.m_pimage32 = (::image32_t *)pimage32;
+      pixmap.m_pimage32Raw = (::image32_t *)pimage32;
+      pixmap.m_iScan = iScan;
+
+      write_pixels(pgpucommandbuffer, &pixmap, {});
 
    }
 

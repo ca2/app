@@ -428,6 +428,40 @@ namespace gpu
    }
 
 
+   ::memory context::_001BlendVertexShaderMemory()
+   {
+
+      throw ::interface_only();
+
+      return {};
+
+   }
+
+
+   ::memory context::_001BlendFragmentShaderMemory()
+   {
+
+      throw ::interface_only();
+
+      return {};
+
+   }
+
+
+
+   void context::_001InitializeBlendShader(::gpu::shader * pgpushader)
+   {
+
+      ::memory memoryVert;
+      ::memory memoryFrag;
+      memoryVert = _001BlendVertexShaderMemory();
+      memoryFrag = _001BlendFragmentShaderMemory();
+      pgpushader->initialize_shader_with_block(m_pgpurenderer, memoryVert, memoryFrag);
+
+
+   }
+
+
    ::pointer<::gpu::texture_site> context::create_empty_texture()
    {
 

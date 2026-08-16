@@ -198,6 +198,9 @@ namespace gpu
       /// loads only image::image (A8R8G8B8)
       virtual ::gpu::texture* texture(const ::file::path& path);
 
+      virtual ::memory _001BlendVertexShaderMemory();
+      virtual ::memory _001BlendFragmentShaderMemory();
+      virtual void _001InitializeBlendShader(::gpu::shader * pshader);
 
       virtual ::pointer < ::gpu::texture_site > create_empty_texture();
       virtual void on_new_frame();

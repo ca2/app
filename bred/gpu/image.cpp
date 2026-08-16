@@ -406,12 +406,30 @@ namespace gpu
 
       }
 
-      auto pgputexture = get_gpu_texture();
+      ::gpu::texture * pgputexture = nullptr;
 
-      if (!pgputexture || m_sizeRaw.is_empty())
+      ::cast < ::gpu::bitmap > pbitmap = m_pbitmap;
+
+      if (pbitmap)
       {
 
-         throw ::exception(error_wrong_state);
+         pgputexture = pbitmap->m_pgputexture;
+
+      }
+
+      if (!pgputexture)
+      {
+
+         if (m_size.is_empty() && m_sizeRaw.is_empty())
+         {
+
+            throw ::exception(error_wrong_state);
+
+         }
+
+         ::image::image::_map(rectangle, bApplyAlphaTransform);
+
+         return;
 
       }
 
@@ -538,7 +556,8 @@ namespace gpu
       if (!pgputexture)
       {
 
-         throw ::exception(error_wrong_state);
+         //throw ::exception(error_wrong_state);
+         return;
 
       }
 
@@ -723,6 +742,8 @@ namespace gpu
       }
       else
       {
+
+         create_as_descriptor(size, e_flag_success, iScan);
 
          auto mapThis = this->map();
 

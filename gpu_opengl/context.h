@@ -71,6 +71,8 @@ namespace gpu_opengl
 
 
       //void load_generic_texture(::pointer < ::gpu::texture > & ptexture, const file::path &path, ::i32 iAssimpTextureType) override;
+      ::memory _001BlendVertexShaderMemory() override;
+      ::memory _001BlendFragmentShaderMemory() override;
 
 
       //virtual void create_offscreen_buffer(const ::i32_size& size);

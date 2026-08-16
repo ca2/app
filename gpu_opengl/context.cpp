@@ -24,6 +24,8 @@
 #include "bred/gpu/texture_site.h"
 #include "bred/gpu/types.h"
 #include "gpu/model/model.h"
+#include "shader/_001Blend.frag.h"
+#include "shader/_001Blend.vert.h"
 #include <ktx.h>
 
 #if defined(WINDOWS_DESKTOP)
@@ -1043,6 +1045,22 @@ namespace gpu_opengl
    {
 
       ::gpu::context_lock contextlock(this);
+
+
+      pgputexture->bind_render_target();
+      //glBindFramebuffer(GL_DRAW_FRAMEBUFFER, m_uFramebuffer);
+      //::opengl::check_error("");
+
+      GLboolean bWasScissorEnabled = glIsEnabled(GL_SCISSOR_TEST);
+      ::opengl::check_error("");
+
+      if (bWasScissorEnabled)
+      {
+
+         glDisable(GL_SCISSOR_TEST);
+         ::opengl::check_error("");
+
+      }
       // Clear the screen
 //      ::opengl::check_error("");
       //   glClearColor(0.678f, 0.847f, 0.902f, 1.0f);//
@@ -1052,6 +1070,13 @@ namespace gpu_opengl
       ::opengl::check_error("");
       glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
       ::opengl::check_error("");
+
+      if (bWasScissorEnabled)
+      {
+         glEnable(GL_SCISSOR_TEST);
+         ::opengl::check_error("");
+
+      }
 
    }
 
@@ -2969,6 +2994,22 @@ color = vec4(c.r,c.g, c.b, c.a);
 )fragmentshader";
 
       return ::as_block(pfragmentshader);
+   }
+
+
+   ::memory context::_001BlendVertexShaderMemory()
+   {
+
+      return ::as_block(g_psz__001Blend_vert);
+
+   }
+
+
+   ::memory context::_001BlendFragmentShaderMemory()
+   {
+
+      return ::as_block(g_psz__001Blend_frag);
+
    }
 
 

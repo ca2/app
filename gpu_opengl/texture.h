@@ -19,6 +19,8 @@ namespace gpu_opengl
    {
    public:
 
+      ::pixmap m_pixmapFlipped;
+
       
       using base_context_handle = ::gpu_opengl::context_handle<GLuint, ::gpu_opengl::e_handle_fbo>;
       
@@ -71,9 +73,13 @@ namespace gpu_opengl
       void bind_render_target() override;
 
 
-      void set_pixels(const ::i32_rectangle& rectangle, const void* data) override;
       void read_pixels(::gpu::command_buffer * pgpucommandbuffer, ::pixmap_t * ppixmap, const ::i32_point & pointOutput) override;
+
+
+      void set_pixels(const ::i32_rectangle & rectangle, const void * data) override;
       void write_pixels(const ::pixmap_t * ppixmap, const ::i32_point & pointInput) override;
+
+      void write_pixels(::gpu::command_buffer * pgpucommandbuffer, const ::pixmap_t * ppixmap, const ::i32_point & pointInput) override;
 
       
       virtual GLuint target_frame_buffer_object();

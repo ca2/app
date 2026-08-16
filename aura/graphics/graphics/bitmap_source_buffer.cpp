@@ -235,11 +235,13 @@ namespace graphics
          *p++ = m_pwindow->m_pointWindow.y;
          *p++ = m_pwindow->m_sizeWindow.cx;
          *p++ = m_pwindow->m_sizeWindow.cy;
+         *p++ = ppixmap->m_sizeRaw.cx;
+         *p++ = ppixmap->m_sizeRaw.cy;
          *p++ = iScan;
 
          //::copy_image32((::color32_t*)p, ppixmap->size(), iScan, ppixmap);
 
-         memory_copy(p, ppixmap->m_pimage32Raw, ppixmap->height() * iScan);
+         memory_copy(p, ppixmap->m_pimage32Raw, ppixmap->m_sizeRaw.cy * iScan);
 
       }
       catch (...)

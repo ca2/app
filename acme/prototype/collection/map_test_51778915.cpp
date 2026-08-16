@@ -1,4 +1,4 @@
-#include "framework.h"
+#include "platform.h"
 #include "acme/prototype/collection/map.h"
 #include "acme/prototype/collection/integer_map.h"
 

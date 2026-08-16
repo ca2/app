@@ -1,4 +1,4 @@
-#include "framework.h"
+#include "platform.h"
 // immersion_layer.cpp
 #include "SceneFoundry/sandbox_game/immersion_layer.h"
 #include "SceneFoundry/graphics3d/render_systems/point_light_render_system.h"

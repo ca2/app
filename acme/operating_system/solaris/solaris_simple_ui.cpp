@@ -1,4 +1,4 @@
-#include "framework.h"
+#include "platform.h"
 
 //!!!#include <X11/Xatom.h>
 

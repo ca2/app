@@ -1,5 +1,5 @@
 // From template to class by camilo on 2022-11-17 04:50 ILoveYouThomasBorregaardSorensen!!
-#include "framework.h"
+#include "platform.h"
 #include "scalar.h"
 //
 ////void f64_scalar_source::listener::on_set_scalar(f64_scalar_source * psource,enum_scalar escalar,::f64 dValue,::i32 iFlags)
@@ -764,7 +764,7 @@ namespace  number
 
 
    // From template to class by camilo on 2022-11-17 04:35 ILoveYouThomasBorregaardSorensen!!
-#include "framework.h"
+#include "platform.h"
 #include "scalar.h"
    ////#include "acme/exception/exception.h"
    //

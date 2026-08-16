@@ -1,4 +1,4 @@
-#include "framework.h"
+#include "platform.h"
 #include "SceneFoundry/sandbox_game/player.h"
 
 //#include "SceneFoundry/graphics3d/key_codes.h"

@@ -1,11 +1,13 @@
 // Recreated by camilo on 2026-01-12 03:02 <3ThomasBorregaardSørensen!!
-#include "framework.h"
+#include "platform.h"
 #define STB_USE_HUNTER
 #include "_gpu_opengl.h"
 #include "approach.h"
 #include "context_win32.h"
 #include "device.h"
 #include "device_win32.h"
+#include "window_attachment.h"
+#include "swap_chain.h"
 #include "acme/platform/application.h"
 #include "bred/gpu/context_lock.h"
 #include "windowing_win32/window.h"
@@ -45,7 +47,7 @@ namespace gpu_opengl
    }
 
 
-   void context_win32::_create_cpu_buffer21(const ::i32_size &size)
+   void context_win32::_create_cpu_buffer(const ::i32_size &size)
    {
 
        if (!m_pgpudevice)
@@ -285,6 +287,39 @@ namespace gpu_opengl
    }
 
 
+   void context_win32::_create_gpu_context(::gpu::device * pgpudevice, const ::gpu::enum_output & eoutput, const ::gpu::enum_scene & escene, ::acme::windowing::window * pacmewindowingwindow, const ::i32_point & pointInput, const ::i32_point & pointOutput, const ::i32_size & size, const ::i32_size & sizeRaw)
+   {
+
+      //m_pgpudevice = pgpudevice;
+
+      //m_eoutput = eoutput;
+
+      //m_escene = escene;
+
+      ::gpu_opengl::context::_create_gpu_context(pgpudevice, eoutput, escene, pacmewindowingwindow, pointInput, pointOutput, size, sizeRaw);
+      
+      if (eoutput == ::gpu::e_output_swap_chain)
+      {
+
+         ::cast < ::windowing_win32::window > pwin32windowingwindow = pacmewindowingwindow;
+
+         create_window_wgl_context(pwin32windowingwindow);
+
+      }
+      else
+      {
+
+         create_offscreen_wgl_context();
+
+      }
+
+
+
+   }
+
+
+
+
 //    //void context::_create_b
 //
 //   void context::_create_offscreen_window(const ::i32_size &size)
@@ -417,10 +452,19 @@ namespace gpu_opengl
    }
 
 
-   void context_win32::_create_window_context(::acme::windowing::window *pwindowParam)
+   //void context_win32::_create_window_context(::acme::windowing::window *pwindowParam)
+   void context_win32::create_window_gpu_context(::gpu::device * pgpudevice, const ::gpu::enum_output & eoutput, const ::gpu::enum_scene & escene, ::acme::windowing::window * pacmewindowingwindow, const ::i32_point & pointInput, const ::i32_point & pointOutput, const ::i32_size & size, const ::i32_size & sizeRaw)
    {
 
-         ::cast < ::windowing_win32::window > pwindow = pwindowParam;
+      m_etype = e_type_window;
+
+      m_eoutput = ::gpu::e_output_swap_chain;
+
+      m_pgpudevice = pgpudevice;
+
+      m_pacmeuserinteractionAffinity = pacmewindowingwindow->m_pacmeuserinteraction;
+
+         ::cast < ::windowing_win32::window > pwindow = pacmewindowingwindow;
 
          if (!m_hdc || !m_hglrc)
          {
@@ -524,6 +568,26 @@ namespace gpu_opengl
          m_estatus = ::success;
 
          set_ok_flag();
+
+         get_gpu_renderer();
+
+         if (m_papplication->m_gpu.m_bUseSwapChainWindow)
+         {
+
+            auto pgpuwindowattachment = ::gpu::window_attachment::get(this);
+
+            auto pgpucontextWindow = pgpuwindowattachment->window_context();
+
+            auto pswapchain = pgpucontextWindow->get_swap_chain();
+
+            if (!pswapchain->m_bSwapChainInitialized)
+            {
+
+               pswapchain->initialize_swap_chain_window(pgpucontextWindow, m_pacmeuserinteractionAffinity->acme_windowing_window());
+
+            }
+
+         }
    }
 
 

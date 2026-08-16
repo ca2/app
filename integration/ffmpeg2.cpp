@@ -1,4 +1,4 @@
-#include "framework.h"
+#include "platform.h"
 #include "application.h"
 #include "render.h"
 #include <math.h>
@@ -285,7 +285,7 @@ namespace app_integration
 
 //
 ﻿// Created by camilo on 2023-01-15 07:10 <3ThomasBorregaardSorensen!!
-//#include "framework.h"
+//#include "platform.h"
 //
 //namespace console
 //{

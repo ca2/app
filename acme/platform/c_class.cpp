@@ -1,4 +1,4 @@
-#include "framework.h"
+#include "platform.h"
 
 
 //c_class c_class::s_cclass;

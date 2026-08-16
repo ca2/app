@@ -72,7 +72,7 @@ namespace image
 
 
       virtual void create_bitmap(
-         ::acme::user::interaction * pacmeuserinteractionAffinity = nullptr);
+         ::acme::user::interaction * pacmeuserinteractionAffinity = nullptr, ::draw2d::graphics * pgraphics = nullptr);
 
 
       virtual ::image::image * get_source_image();
@@ -110,7 +110,7 @@ namespace image
       void end_destination_graphics_lease() const;
       bool has_active_destination_graphics_lease() const;
       //virtual ::draw2d::graphics * _get_graphics() const; // is semantically const (besides may not be implementationly constant)
-      virtual ::draw2d::bitmap_pointer get_bitmap() const; // is semantically const (besides may not be implementationly constant)
+      virtual ::draw2d::bitmap_pointer get_bitmap(::draw2d::graphics * pdraw2dgraphics = nullptr) const; // is semantically const (besides may not be implementationly constant)
       virtual ::draw2d::bitmap_pointer detach_bitmap();
 
       virtual void create_owned_graphics();
@@ -305,9 +305,10 @@ namespace image
                                     ::enum_flag eflagCreate = DEFAULT_CREATE_IMAGE_FLAG, 
                                     bool bPreserve = false) override;
       virtual void create_from_graphics(::draw2d::graphics* pgraphics);
-      virtual void create_as_render_target(const ::i32_size & size, ::user::interaction * puserinteraction, ::enum_flag eflagCreate = DEFAULT_CREATE_IMAGE_FLAG, ::i32 iGoodStride = -1, bool bPreserve = false);
+      virtual void create_as_top_draw2d_target(const ::i32_size & size, ::user::interaction * puserinteraction, ::draw2d::graphics * pdraw2dgraphics, ::enum_flag eflagCreate = DEFAULT_CREATE_IMAGE_FLAG, ::i32 iGoodStride = -1, bool bPreserve = false);
+      virtual void create_as_render_target(const ::i32_size & size, ::user::interaction * puserinteraction, ::draw2d::graphics * pdraw2dgraphics, ::enum_flag eflagCreate = DEFAULT_CREATE_IMAGE_FLAG, ::i32 iGoodStride = -1, bool bPreserve = false, bool bTopDraw2dTarget = false);
       using ::particle::initialize;
-      virtual void initialize(const ::i32_size & size, ::image32_t * pimage32, ::i32 iScan, ::enum_flag eflagCreate = DEFAULT_CREATE_IMAGE_FLAG);
+      //virtual void initialize(const ::i32_size & size, ::image32_t * pimage32, ::i32 iScan, ::enum_flag eflagCreate = DEFAULT_CREATE_IMAGE_FLAG);
       virtual void preserve(const ::i32_size &size, ::enum_flag eflagCreate = DEFAULT_CREATE_IMAGE_FLAG);
       //virtual void     create(::i32 iWidth, ::i32 iHeight, ::enum_flag eflagCreate = DEFAULT_CREATE_IMAGE_OBJECT_FLAG, ::i32 iGoodStride = -1, void bPreserve = false);
 
@@ -753,7 +754,7 @@ namespace image
       protected:
 
 
-         void _map(bool bApplyAlphaTransform = true) override;
+         void _map(const ::i32_rectangle & rectangle, bool bApplyAlphaTransform = true) override;
          void _unmap(bool bDoUnmap = false) override;
 
 

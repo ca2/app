@@ -1,5 +1,5 @@
 // Created by camilo on 2026-07-24 09:52 <3ThomasBorregaardSørensen!! Mummi!! Bilbo!!
-#include "framework.h"
+#include "platform.h"
 #include "aura/graphics/image/image.h"
 #include "bred/gpu/binding.h"
 #include "bred/gpu/block.h"
@@ -63,10 +63,10 @@ namespace graphics3d
       auto prenderer = pgpucontext->m_pgpurenderer;
 
       m_pshader = createø<::gpu::shader>();
+      m_pshader->set_global_ubo();
       m_pshader->m_propertiesPushShared.set_properties(simpler_render_properties());
       pgpucontext->layout_push_constants(m_pshader->m_propertiesPushShared, false);
 
-      m_pshader->set_global_ubo();
       // auto &bindingUbo = m_pshader->binding();
       // bindingUbo.m_strUniform = "ubo";
       // bindingUbo.m_ebinding = ::gpu::e_binding_global_ubo;
@@ -76,7 +76,7 @@ namespace graphics3d
       m_pshader->m_bEnableBlend = true;
       m_pshader->m_bMultisample = true;
       // m_pshader->m_bDisableDepthTest = true;
-      //m_pshader->m_ecullmode = ::gpu::e_cull_mode_none;
+      m_pshader->m_ecullmode = ::gpu::e_cull_mode_none;
 
             auto pbindingTexture = m_pshader->binding(1, 0);
       pbindingTexture->m_strUniform = "textureSampler";
@@ -138,7 +138,7 @@ namespace graphics3d
       {
 
          // s.x = -s.x;
-         // s.y = -s.y;
+         s.y = -s.y;
          // s.z = -s.z;
       }
 

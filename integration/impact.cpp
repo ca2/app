@@ -1,5 +1,5 @@
 // From impact.cpp on 2023-01-15 09:46 <3ThomasBorregaardSorensen!!
-#include "framework.h"
+#include "platform.h"
 #include "impact.h"
 #include "application.h"
 //#include "render.h"

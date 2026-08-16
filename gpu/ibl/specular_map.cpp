@@ -1,20 +1,21 @@
 // From github:/tristancalderbank/OpenGL-PBR-Renderer/specular_map.cpp by
 // camilo on 2025-09-26 19:55 <3ThomasBorregaardSorensen!!
-#include "framework.h"
+#include "platform.h"
 #include "specular_map.h"
 #include "bred/gpu/binding.h"
 #include "bred/gpu/command_buffer.h"
 #include "bred/gpu/context_lock.h"
-#include "bred/gpu/texture.h"
-#include "gpu/full_screen_quad.h"
 #include "bred/gpu/device.h"
 #include "bred/gpu/types.h"
 #include "bred/platform/timer.h"
 #include "bred/gpu/context.h"
 #include "bred/gpu/shader.h"
+#include "bred/gpu/texture.h"
+#include "bred/gpu/texture_site.h"
 #include "bred/graphics3d/engine.h"
 #include "bred/graphics3d/scene_base.h"
 #include "bred/graphics3d/skybox.h"
+#include "gpu/full_screen_quad.h"
 
 
 namespace gpu
@@ -101,10 +102,12 @@ namespace gpu
          m_pshaderPrefilteredEnvMap->initialize_shader_with_block(m_pgpucontext->m_pgpurenderer, blockVert, blockFrag,
                                                                   pinputlayoutVertex);
 
-         constructø(m_ptexturePrefilteredEnvMapCubemap);
+         construct_newø(m_ptexturesitePrefilteredEnvMapCubemap);
+
+         constructø(m_ptexturesitePrefilteredEnvMapCubemap->m_pgputextureSite);
 
          ::gpu::texture_attributes textureattributesPrefilteredEnvMap(
-            ::i32_rectangle{API_CHANGED_ARGUMENT, m_uPrefilteredEnvMapWidth, m_uPrefilteredEnvMapHeight});
+            { (::i32)m_uPrefilteredEnvMapWidth,(::i32) m_uPrefilteredEnvMapHeight });
 
          textureattributesPrefilteredEnvMap.set_cubemap_all_mips();
 
@@ -116,7 +119,7 @@ namespace gpu
          textureflagsPrefilteredEnvMap.m_bShaderResource = true;
          textureflagsPrefilteredEnvMap.m_bRenderTarget = true;
 
-         m_ptexturePrefilteredEnvMapCubemap->initialize_texture(
+         m_ptexturesitePrefilteredEnvMapCubemap->gpu_texture()->create_texture(
             m_pgpucontext, 
             textureattributesPrefilteredEnvMap, 
             textureflagsPrefilteredEnvMap);
@@ -133,9 +136,11 @@ namespace gpu
             m_pgpucontext->m_pgpurenderer, brdf_convolution_vert_memory(), brdf_convolution_frag_memory(), 
             m_pgpucontext->input_layout(::gpu_properties<::gpu::position2_uv>()));
 
-         constructø(m_ptextureBrdfConvolutionMap);
+         construct_newø(m_ptexturesiteBrdfConvolutionMap);
+         constructø(m_ptexturesiteBrdfConvolutionMap->m_pgputextureSite);
 
-         ::gpu::texture_attributes textureattributesBrdfConvMap(i32_rectangle{API_CHANGED_ARGUMENT, m_uBrdfConvolutionMapWidth, m_uBrdfConvolutionMapHeight});
+         ::gpu::texture_attributes textureattributesBrdfConvMap(
+            { (::i32)m_uBrdfConvolutionMapWidth,(::i32) m_uBrdfConvolutionMapHeight });
          textureattributesBrdfConvMap.m_iBitsPerChannel = 16;
          textureattributesBrdfConvMap.m_iChannelCount = 2;
          textureattributesBrdfConvMap.m_iFloat = 1;
@@ -144,7 +149,7 @@ namespace gpu
          textureflagsBrdfConvMap.m_bRenderTarget = true;
          textureflagsBrdfConvMap.m_bShaderResource = true;
 
-         m_ptextureBrdfConvolutionMap->initialize_texture(
+         m_ptexturesiteBrdfConvolutionMap->gpu_texture()->create_texture(
             m_pgpucontext, 
             textureattributesBrdfConvMap,
             textureflagsBrdfConvMap);
@@ -174,9 +179,11 @@ namespace gpu
 
          auto pskybox = m_pscene->current_skybox();
 
-         auto ptextureSource = pskybox->m_ptexture;
+         auto ptextureSource = pskybox->m_ptexturesite->gpu_texture();
 
-         auto ptextureTarget = m_ptexturePrefilteredEnvMapCubemap;
+         auto ptexturePrefilteredEnvMapCubemap = m_ptexturesitePrefilteredEnvMapCubemap->gpu_texture();
+
+         auto ptextureTarget = m_ptexturesitePrefilteredEnvMapCubemap->gpu_texture();
 
          auto pshaderPrefilteredEnvMap = m_pshaderPrefilteredEnvMap;
 
@@ -187,11 +194,11 @@ namespace gpu
          for (auto iCurrentMip = 0; iCurrentMip < mipCount; iCurrentMip++)
          {
 
-            m_ptexturePrefilteredEnvMapCubemap->set_current_mip(iCurrentMip);
+            ptexturePrefilteredEnvMapCubemap->set_current_mip(iCurrentMip);
 
-            auto mipWidth = m_ptexturePrefilteredEnvMapCubemap->mip_width();
+            auto mipWidth = ptexturePrefilteredEnvMapCubemap->mip_width();
 
-            auto mipHeight = m_ptexturePrefilteredEnvMapCubemap->mip_height();
+            auto mipHeight = ptexturePrefilteredEnvMapCubemap->mip_height();
 
             // each mip level has increasing roughness
             ::f32 roughness = (::f32)iCurrentMip / (::f32)(mipCount - 1);
@@ -207,11 +214,11 @@ namespace gpu
 
                m_pgpucontext->start_debug_happening(pgpucommandbuffer, strMessage);
 
-               m_ptexturePrefilteredEnvMapCubemap->set_current_layer(iLayer);
+               ptexturePrefilteredEnvMapCubemap->set_current_layer(iLayer);
 
-               pgpucommandbuffer->begin_render(m_pshaderPrefilteredEnvMap, ptextureTarget);
+               pgpucommandbuffer->begin_render(m_pshaderPrefilteredEnvMap, m_ptexturesitePrefilteredEnvMapCubemap);
 
-               pgpucommandbuffer->set_source(ptextureSource);
+               pgpucommandbuffer->set_source(pskybox->m_ptexturesite);
 
                ::i32_rectangle r(0, 0, mipWidth, mipHeight);
 
@@ -265,7 +272,7 @@ namespace gpu
 
          m_pfullscreenquadBrdf->initialize_full_screen_quad(m_pgpucontext);
          
-         pcommandbuffer->begin_render(m_pshaderBrdfConvolution, m_ptextureBrdfConvolutionMap);
+         pcommandbuffer->begin_render(m_pshaderBrdfConvolution, m_ptexturesiteBrdfConvolutionMap);
 
          ::i32_rectangle rectangleViewport;
 
@@ -275,7 +282,7 @@ namespace gpu
 
          pcommandbuffer->set_scissor(rectangleViewport);
 
-         m_pgpucontext->clear(m_ptextureBrdfConvolutionMap, ::color::transparent);
+         m_pgpucontext->clear(m_ptexturesiteBrdfConvolutionMap->gpu_texture(), ::color::transparent);
 
          pcommandbuffer->draw(m_pfullscreenquadBrdf);
          
@@ -283,9 +290,9 @@ namespace gpu
 
          pcommandbuffer->end_render();
 
-         m_ptextureBrdfConvolutionMap->set_state(pcommandbuffer, ::gpu::e_texture_state_shader_read);
+         m_ptexturesiteBrdfConvolutionMap->gpu_texture()->set_state(pcommandbuffer, ::gpu::e_texture_state_shader_read);
 
-         m_ptextureBrdfConvolutionMap->set_ok_flag();
+         m_ptexturesiteBrdfConvolutionMap->gpu_texture()->set_ok_flag();
 
          //m_pgpucontext->endSingleTimeCommands(pcommandbuffer);
 

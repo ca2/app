@@ -22,7 +22,7 @@
 //-------------------------------------------------------------------------
 //
 // From Pen.cpp by camilo on 2026-04-11 04:21 <3ThomasBorregaardSørensen!!
-#include "framework.h"
+#include "platform.h"
 #include "Font.h"
 
 //#include <crtdbg.h>

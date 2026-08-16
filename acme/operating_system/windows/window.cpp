@@ -1,5 +1,5 @@
 // Created by camilo on 2024-09-13 15:58 <3ThomasBorregaardSorensen!!
-#include "framework.h"
+#include "platform.h"
 #include "window.h"
 #include "windowing.h"
 #include "acme/platform/application.h"
@@ -949,7 +949,7 @@ namespace windows
       else if (msg == WM_SHOWWINDOW)
       {
 
-         ::information("windows::window::s_window_procedure WM_SHOWWINDOW");
+         ::information("windows::window::s_window_procedure WM_SHOWWINDOW {}", wParam);
 
       }
 

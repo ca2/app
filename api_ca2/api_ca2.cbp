@@ -129,10 +129,10 @@
 		<Unit filename="/home/camilo/solution/basis/source/app-core/api_ca2/api.h">
 			<Option target="api_ca2"/>
 		</Unit>
-		<Unit filename="/home/camilo/solution/basis/source/app-core/api_ca2/framework.cpp">
+		<Unit filename="/home/camilo/solution/basis/source/app-core/api_ca2/platform.cpp">
 			<Option target="api_ca2"/>
 		</Unit>
-		<Unit filename="/home/camilo/solution/basis/source/app-core/api_ca2/framework.h">
+		<Unit filename="/home/camilo/solution/basis/source/app-core/api_ca2/platform.h">
 			<Option target="api_ca2"/>
 		</Unit>
 		<Unit filename="/home/camilo/solution/basis/CMakeLists.txt">

@@ -1,4 +1,4 @@
-#include "framework.h"
+#include "platform.h"
 // From impact.cpp by camilo on 2024-05-03 18:48 <3ThomasBorregaardSorensen!!
 #define SUMMARY_TOPIC12 "a summary - Tab with quite few redrawing for more CPU for building."
 #include "coding.h"

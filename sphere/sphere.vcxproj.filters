@@ -95,7 +95,7 @@
     <ClInclude Include="filehandler\filehandler_impact.h">
       <Filter>Header Files\filehandler</Filter>
     </ClInclude>
-    <ClInclude Include="framework.h">
+    <ClInclude Include="platform.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="userstack\userstack.h">
@@ -463,7 +463,7 @@
     <ClCompile Include="sphere\sphere_main_frame.cpp">
       <Filter>Source Files\sphere</Filter>
     </ClCompile>
-    <ClCompile Include="framework.cpp">
+    <ClCompile Include="platform.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="charguess\_charguess.cpp">

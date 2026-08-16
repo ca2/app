@@ -1,4 +1,4 @@
-#include "framework.h"
+#include "platform.h"
 #include "device.h"
 //#include "pipeline.h"
 #include "bred/graphics3d/class_set.h"

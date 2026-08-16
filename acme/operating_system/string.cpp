@@ -1,7 +1,7 @@
 //
 // Created by camilo on Jul/4/2023.
 //
-#include "framework.h"
+#include "platform.h"
 #include <string.h>
 #if defined(__APPLE__) || defined(__BSD__)
 #include <errno.h>

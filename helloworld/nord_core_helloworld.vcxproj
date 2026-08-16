@@ -261,7 +261,7 @@
     <ClCompile Include="_helloworld.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="framework.h" />
+    <ClInclude Include="platform.h" />
     <ClInclude Include="helloworld.h" />
     <ClInclude Include="helloworld_application.h" />
     <ClInclude Include="helloworld_document.h" />

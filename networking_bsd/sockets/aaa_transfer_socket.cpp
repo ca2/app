@@ -7,7 +7,7 @@
 
 // transfer_socket_exception, transfer_socket, http_transfer_socket
 
-#include "framework.h"
+#include "platform.h"
 
 
 #if defined(LINUX) || defined(__APPLE__) || defined(__ANDROID__) || defined(FREEBSD)

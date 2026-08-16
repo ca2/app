@@ -8,10 +8,10 @@
 
 /* Begin PBXBuildFile section */
 		0A02B2A3158431CFC328AB13 /* _.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 072346E20532137983D7B080 /* _.cpp */; };
-		E6BC7B2AB57E937F8014EC45 /* framework.cpp in Sources */ = {isa = PBXBuildFile; fileRef = CD63F22F412CAC3E0E260EA2 /* framework.cpp */; };
+		E6BC7B2AB57E937F8014EC45 /* platform.cpp in Sources */ = {isa = PBXBuildFile; fileRef = CD63F22F412CAC3E0E260EA2 /* platform.cpp */; };
 		C7D4FB47FDE9A9B8EEEA9526 /* application.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 6AF201F43A0E97718CA32F47 /* application.cpp */; };
 		5E569AA22CBC585712C12AF2 /* application.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 6AF201F43A0E97718CA32F47 /* application.cpp */; };
-		870177298B8E40A9C71FADD2 /* framework.cpp in Sources */ = {isa = PBXBuildFile; fileRef = CD63F22F412CAC3E0E260EA2 /* framework.cpp */; };
+		870177298B8E40A9C71FADD2 /* platform.cpp in Sources */ = {isa = PBXBuildFile; fileRef = CD63F22F412CAC3E0E260EA2 /* platform.cpp */; };
 		3FF4DF11608F1EA8A825AE9B /* _.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 072346E20532137983D7B080 /* _.cpp */; };
 		25869B806DDDADB0BF1D2A06 /* libacme.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 1D23BDE2E3AB77CFB59D906F /* libacme.dylib */; };
 /* End PBXBuildFile section */
@@ -64,8 +64,8 @@
 		CA79FB503B74FE258E85EF09 /* _factory.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = _factory.cpp; sourceTree = "<group>"; };
 		F27D5F6CB695D42CC660BDB1 /* application.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = application.h; sourceTree = "<group>"; };
 		6AF201F43A0E97718CA32F47 /* application.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = application.cpp; sourceTree = "<group>"; };
-		F3A0451D4E832294D1E48D2A /* framework.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = framework.h; sourceTree = "<group>"; };
-		CD63F22F412CAC3E0E260EA2 /* framework.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = framework.cpp; sourceTree = "<group>"; };
+		F3A0451D4E832294D1E48D2A /* platform.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = platform.h; sourceTree = "<group>"; };
+		CD63F22F412CAC3E0E260EA2 /* platform.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = platform.cpp; sourceTree = "<group>"; };
 		78F270CCCEBA2D6E345C2E2A /* acme.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = acme.xcodeproj; path = ../acme/acme.xcodeproj; sourceTree = SOURCE_ROOT; };
 /* End PBXFileReference section */
 
@@ -87,8 +87,8 @@
 				78F270CCCEBA2D6E345C2E2A /* acme.xcodeproj */,
 				F27D5F6CB695D42CC660BDB1 /* application.h */,
 				6AF201F43A0E97718CA32F47 /* application.cpp */,
-				F3A0451D4E832294D1E48D2A /* framework.h */,
-				CD63F22F412CAC3E0E260EA2 /* framework.cpp */,
+				F3A0451D4E832294D1E48D2A /* platform.h */,
+				CD63F22F412CAC3E0E260EA2 /* platform.cpp */,
 				07D507660EB544D598DA3EA2 /* _.h */,
 				072346E20532137983D7B080 /* _.cpp */,
 				83433224B0FBC8926DBB5B0B /* _____debug.xcconfig */,
@@ -278,7 +278,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				0A02B2A3158431CFC328AB13 /* _.cpp in Sources */,
-				E6BC7B2AB57E937F8014EC45 /* framework.cpp in Sources */,
+				E6BC7B2AB57E937F8014EC45 /* platform.cpp in Sources */,
 				C7D4FB47FDE9A9B8EEEA9526 /* application.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -288,7 +288,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				3FF4DF11608F1EA8A825AE9B /* _.cpp in Sources */,
-				870177298B8E40A9C71FADD2 /* framework.cpp in Sources */,
+				870177298B8E40A9C71FADD2 /* platform.cpp in Sources */,
 				5E569AA22CBC585712C12AF2 /* application.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -379,7 +379,7 @@
 				GCC_NO_COMMON_BLOCKS = YES;
 				GCC_OPTIMIZATION_LEVEL = 0;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
-				GCC_PREFIX_HEADER = framework.h;
+				GCC_PREFIX_HEADER = platform.h;
 				GCC_PREPROCESSOR_DEFINITIONS = (
 					"DEBUG=1",
 					"$(inherited)",
@@ -477,7 +477,7 @@
 				GCC_ENABLE_OBJC_EXCEPTIONS = YES;
 				GCC_NO_COMMON_BLOCKS = YES;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
-				GCC_PREFIX_HEADER = framework.h;
+				GCC_PREFIX_HEADER = platform.h;
 				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
 				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
 				GCC_WARN_UNDECLARED_SELECTOR = YES;

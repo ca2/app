@@ -1310,7 +1310,7 @@
     <ClInclude Include="database\simpledb\_.h" />
     <ClInclude Include="database\simpledb\_simpledb.h" />
     <ClInclude Include="database\_.h" />
-    <ClInclude Include="framework.h" />
+    <ClInclude Include="platform.h" />
     <ClInclude Include="geoip\city.h" />
     <ClInclude Include="geoip\geoip.h" />
     <ClInclude Include="geoip\global.h" />
@@ -1483,7 +1483,7 @@
     <ClCompile Include="database\simpledb\storage.cpp" />
     <ClCompile Include="database\simpledb\thread.cpp" />
     <ClCompile Include="database\simpledb\thread_localdatabase.cpp" />
-    <ClCompile Include="framework.cpp">
+    <ClCompile Include="platform.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Create</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='ReleaseDebug|Win32'">Create</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='StaticRelease|Win32'">Create</PrecompiledHeader>

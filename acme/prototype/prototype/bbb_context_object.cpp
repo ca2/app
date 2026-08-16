@@ -1,5 +1,5 @@
 // Created on 2021-03-10 17:37 BRT <3ThomasBS_!!
-#include "framework.h"
+#include "platform.h"
 
 
 object::~object()

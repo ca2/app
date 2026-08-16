@@ -1,7 +1,7 @@
 //
 // Created by camilo on 12/04-April/2022. 22:11 <3ThomasBorregaardSorensen!!
 //
-#include "framework.h"
+#include "platform.h"
 #include "display.h"
 //#include "acme/parallelization/asynchronous.h"
 //#include "acme/parallelization/synchronous_lock.h"

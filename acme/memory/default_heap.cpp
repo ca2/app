@@ -1,4 +1,4 @@
-#include "framework.h"
+#include "platform.h"
 #include "default_heap.h"
 #include "system_heap.h"
 #include "acme/exception/__string.h"

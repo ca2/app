@@ -1,4 +1,4 @@
-#include "framework.h"
+#include "platform.h"
 #include "_gpu_opengl.h"
 #include "block.h"
 #include "input_layout.h"
@@ -15,6 +15,7 @@
 #include "bred/gpu/device.h"
 #include "bred/gpu/layer.h"
 #include "bred/gpu/renderer.h"
+#include "bred/gpu/texture_site.h"
 #include "bred/gpu/types.h"
 
 void ::opengl::insert_debug_message(const_char_pointer msg);
@@ -230,12 +231,12 @@ namespace gpu_opengl
    //}
 
 
-   void shader::bind(::gpu::command_buffer *pgpucommandbuffer, ::gpu::texture *pgputextureTarget)
+   void shader::bind(::gpu::command_buffer *pgpucommandbuffer, ::gpu::texture_site *pgputexturesiteTarget)
    {
 
       //_bind(pgpucommandbuffer, ::gpu::e_scene_none);
 
-      ::cast<texture> ptextureTarget = pgputextureTarget;
+      ::cast<texture> ptextureTarget = pgputexturesiteTarget->gpu_texture();
       
       if(::is_set(ptextureTarget)
          && ptextureTarget->m_gluTextureID != 0 
@@ -301,7 +302,7 @@ namespace gpu_opengl
          
       }
 
-      defer_bind_frame_buffer_layer(pgpucommandbuffer, pgputextureTarget);
+      defer_bind_frame_buffer_layer(pgpucommandbuffer, pgputexturesiteTarget);
 
       // glBindFramebuffer(GL_READ_FRAMEBUFFER, 0);
       // ::opengl::check_error("");
@@ -416,10 +417,10 @@ namespace gpu_opengl
 
 
    void shader::defer_bind_frame_buffer_layer(::gpu::command_buffer *pgpucommandbuffer,
-                                              ::gpu::texture *pgputextureTarget)
+                                              ::gpu::texture_site *pgputexturesiteTarget)
    {
 
-      ::cast<texture> ptextureTarget = pgputextureTarget;
+      ::cast<texture> ptextureTarget = pgputexturesiteTarget->gpu_texture();
       
       if(::is_set(ptextureTarget))
       {
@@ -452,10 +453,10 @@ namespace gpu_opengl
 
 
 
-      void shader::on_bind_already_bound(::gpu::command_buffer *pgpucommandbuffer, ::gpu::texture *pgputextureTarget) 
+      void shader::on_bind_already_bound(::gpu::command_buffer *pgpucommandbuffer, ::gpu::texture_site *pgputexturesiteTarget) 
       {
       
-      defer_bind_frame_buffer_layer(pgpucommandbuffer, pgputextureTarget);
+      defer_bind_frame_buffer_layer(pgpucommandbuffer, pgputexturesiteTarget);
       }
 
 
@@ -535,7 +536,7 @@ namespace gpu_opengl
    void shader::unbind(::gpu::command_buffer *pgpucommandbuffer)
    {
 
-      ::pointer < ::gpu::texture > pgputextureBound;
+      ::pointer < ::gpu::texture_site > pgputextureBound;
 
       if (m_pbindingslotseta)
       {
@@ -575,7 +576,7 @@ namespace gpu_opengl
 
                //_set_int(strUniform, iSlot);
 
-               pgputextureBound = ::transfer(bindingslot.m_ptexture);
+               pgputextureBound = ::transfer(bindingslot.m_ptexturesite);
 
                goto finished;
             }
@@ -603,7 +604,7 @@ namespace gpu_opengl
    }
 
 
-   void shader::bind_source(::gpu::command_buffer *pgpucommandbuffer, ::gpu::texture *pgputexture, ::i32 iSlot)
+   void shader::bind_source(::gpu::command_buffer *pgpucommandbuffer, ::gpu::texture_site *pgputexturesite, ::i32 iSlot)
    {
 
       if (!m_pbindingslotseta)
@@ -663,9 +664,9 @@ namespace gpu_opengl
 
             ::opengl::check_error("");
 
-            ::cast<texture> ptexture = pgputexture;
+            ::cast<texture> ptextureSource = pgputexturesite->gpu_texture();
 
-            ptexture = ptexture->resolved_texture();
+            ::cast<texture> ptexture = ptextureSource->resolved_texture(pgputexturesite->output_placement());
 
             if (ptexture->m_gluType == GL_TEXTURE_2D_MULTISAMPLE)
             {
@@ -687,7 +688,7 @@ namespace gpu_opengl
 
             _set_int(strUniform, iTextureUnit);
 
-            bindingslot.m_ptexture = pgputexture;
+            bindingslot.m_ptexturesite = pgputexturesite;
 
             goto found_and_bound;
          }
@@ -718,7 +719,7 @@ namespace gpu_opengl
    }
 
 
-   void shader::bind_source2(gpu::command_buffer* pgpucommandbuffer, ::i32 iIndex, const_char_pointer pszPayloadName, gpu::texture* pgputextureSource)
+   void shader::bind_source2(gpu::command_buffer* pgpucommandbuffer, ::i32 iIndex, const_char_pointer pszPayloadName, gpu::texture_site* pgputexturesiteSource)
    {
     //  pshader->bind_source2(TEXTURE_UNIT_DIFFUSE_IRRADIANCE_MAP, "diffuseIrradianceMap",
       //                      pscene->m_pibldiffuseirradiancemap->m_pframebufferDiffuseIrradiance->m_ptexture);
@@ -726,8 +727,8 @@ namespace gpu_opengl
       glActiveTexture(GL_TEXTURE0 + iIndex);
       ::opengl::check_error("");
       this->set_i32(pszPayloadName, iIndex);
-      ::cast<::gpu_opengl::texture > ptexture = pgputextureSource;
-      ptexture = ptexture->resolved_texture();
+      ::cast<::gpu_opengl::texture > ptexture = pgputexturesiteSource->gpu_texture();
+      ptexture = ptexture->resolved_texture(pgputexturesiteSource->output_placement());
       if (ptexture->m_gluType == GL_TEXTURE_2D_MULTISAMPLE)
       {
 
@@ -1044,12 +1045,12 @@ namespace gpu_opengl
             //::opengl::check_error("");
 
          }
-         else if (bindingslot.m_ptexture)
+         else if (bindingslot.m_ptexturesite && bindingslot.m_ptexturesite->gpu_texture())
          {
 
-            ::cast<::gpu_opengl::texture> ptexture = bindingslot.m_ptexture;
+            ::cast<::gpu_opengl::texture> ptexture = bindingslot.m_ptexturesite->m_pgputextureSite;
 
-            ptexture = ptexture->resolved_texture();
+            ptexture = ptexture->resolved_texture(bindingslot.m_ptexturesite->output_placement());
 
             if (ptexture->m_gluType == GL_TEXTURE_2D_MULTISAMPLE)
             {
@@ -1138,6 +1139,29 @@ namespace gpu_opengl
    //}
 
 
+   void shader::set_impact_quad(const ::i32_rectangle & rectangleImpact, const ::i32_size & sizeRaw)
+   {
+
+      auto left = (::f32) rectangleImpact.left / (::f32)sizeRaw.cx;
+      auto bottom = (::f32)(sizeRaw.cy - rectangleImpact.bottom) / (::f32)sizeRaw.cy;
+      auto right = (::f32)rectangleImpact.right / (::f32)sizeRaw.cx;
+      auto top = (::f32)(sizeRaw.cy - rectangleImpact.top) / (::f32)sizeRaw.cy;
+      //m_pshaderBlend3->set_impact_quad(sequence4("quad", quad);
+      //::floating_sequence4 quad{ left, bottom, right, top };
+
+      //auto left = rectangleImpact.left / sizeRaw.cx;
+      //auto v0 = rectangleImpact.top / sizeRaw.cy;
+      //auto u1 = rectangleImpact.right / sizeRaw.cx;
+      //auto v1 = rectangleImpact.bottom / sizeRaw.cy;
+
+      ::floating_sequence4 quad{ left, bottom, right, top };
+
+      set_sequence4("quad", quad);
+
+   }
+
+
+
    GLint shader::_get_uniform_location(const_char_pointer pszName, const_char_pointer debug) const
    {
 
@@ -1185,6 +1209,16 @@ namespace gpu_opengl
    {
 
       auto location = _get_uniform_location(pszName, "int");
+
+      GLint currentProgram = 0;
+      glGetIntegerv(GL_CURRENT_PROGRAM, &currentProgram);
+
+      if (currentProgram != static_cast<GLint>(m_ProgramID))
+      {
+
+         throw ::exception(error_wrong_state);
+
+      }
 
       glUniform1i(location, i);
       ::opengl::check_error("");

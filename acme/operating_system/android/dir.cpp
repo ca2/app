@@ -1,4 +1,4 @@
-#include "framework.h"
+#include "platform.h"
 
 
 // static char_pointer g_pszCacheDir;

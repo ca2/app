@@ -1,6 +1,6 @@
 // from acme/operating_system/windows/memory.cpp by
 // camilo on 2023-12-07 00:26 <3ThomasBorregaardSorensen!!
-#include "framework.h"
+#include "platform.h"
 //#include "heap_allocator.h"
 #include "acme/memory/allocator/malloc.h"
 #include "acme/memory/c_malloc.h"

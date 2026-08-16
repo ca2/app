@@ -7,7 +7,7 @@
 //                      occurred.
 //
 //*****************************************************************************
-#include "framework.h"
+#include "platform.h"
 #include "manual_reset_happening.h"
 
 

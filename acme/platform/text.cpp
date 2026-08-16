@@ -1,4 +1,4 @@
-#include "framework.h"
+#include "platform.h"
 
 
 //CLASS_DECL_ACME string __get_text(const ::scoped_string & scopedstr);

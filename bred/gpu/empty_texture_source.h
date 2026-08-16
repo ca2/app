@@ -15,15 +15,15 @@ namespace gpu
    public:
 
 
-      ::pointer<::gpu::texture> m_ptextureEmpty;
+      ::pointer<::gpu::texture_site> m_ptextureEmpty;
 
 
       empty_texture_source();
       ~empty_texture_source() override;
 
 
-      virtual ::pointer < ::gpu::texture > create_empty_texture();
-      virtual ::gpu::texture *empty_texture();
+      virtual ::pointer < ::gpu::texture_site > create_empty_texture();
+      virtual ::gpu::texture_site *empty_texture();
 
 
 

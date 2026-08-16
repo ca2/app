@@ -1,4 +1,4 @@
-#include "framework.h"
+#include "platform.h"
 #include "central.h"
 ////#include "acme/exception/exception.h"
 #include "acme/parallelization/synchronous_lock.h"
@@ -76,9 +76,9 @@ namespace user
 
       }
 
-      ::draw2d::graphics_pointer spgraphics(e_create, this);
+      //::draw2d::graphics_pointer spgraphics(e_create, this);
 
-      spgraphics->create_compatible_graphics(nullptr);
+      //spgraphics->create_compatible_graphics(nullptr);
 
       imaging()->change_hue(
       m_pimagelistHue,

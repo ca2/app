@@ -30,7 +30,7 @@ namespace gpu_opengl
       ~device_win32() override;
 
 
-      void create_main_context(::acme::windowing::window * pacmewindowingwindow) override;
+      //void create_main_context(::acme::windowing::window * pacmewindowingwindow) override;
 
       void initialize_gpu_device_for_swap_chain(::gpu::approach* papproach, ::windowing::window* pwindow) override;
       void initialize_gpu_device_for_off_screen(::gpu::approach* papproach, const ::i32_rectangle& rectanglePlacement) override;

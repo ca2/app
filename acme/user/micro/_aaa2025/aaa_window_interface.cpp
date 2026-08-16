@@ -1,7 +1,7 @@
 //
 // Created by camilo on 31/01/2022 22:42 <3ThomasBorregaardSorensen!!
 //
-#include "framework.h"
+#include "platform.h"
 // #include "window_interface.h"
 // #include "acme/platform/system.h"
 // #include "acme/prototype/geometry2d/rectangle.h"

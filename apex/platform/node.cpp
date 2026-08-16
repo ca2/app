@@ -1,7 +1,7 @@
 //
 // Created by camilo on 19/01/2021. --<33ThomasBS!!
 //
-#include "framework.h"
+#include "platform.h"
 #include "get_file_extension_mime_type.h"
 #include "node.h"
 #include "acme/constant/character_set.h"

@@ -86,7 +86,7 @@ namespace graphics3d
 
       //::pointer < engine >                m_pengine;
 ///      ::pointer < ::graphics3d::renderable >          m_pmodelCube;
-      ::pointer < ::gpu::texture >                    m_ptexture;
+      ::pointer < ::gpu::texture_site >               m_ptexturesite;
       ::i32_size                                      m_sizeSquare;
       ::string                                        m_strTexture;
       //::string                                        m_strModel;

@@ -1,4 +1,4 @@
-#include "framework.h"
+#include "platform.h"
 #include "point_light_render_system.h"
 #include "aura/platform/application.h"
 #include "bred/gpu/block.h"

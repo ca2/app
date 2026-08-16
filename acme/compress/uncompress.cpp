@@ -1,5 +1,5 @@
 // Created by camilo from gz on 2021-11-10 10:0743 BRT <3ThomasBorregaardSorensen!!
-#include "framework.h"
+#include "platform.h"
 #include "uncompress.h"
 #include "acme/exception/interface_only.h"
 

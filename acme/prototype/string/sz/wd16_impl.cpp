@@ -1,5 +1,5 @@
 // Refactored by camilo on 2022-11-04 05:42 <3ThomasBorregaardSorensen!!
-#include "framework.h"
+#include "platform.h"
 #include "_template.h"
 #include <wchar.h>
 

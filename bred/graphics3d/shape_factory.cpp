@@ -1,5 +1,5 @@
 // Created by camilo on 2025-08-23 21:23 <3ThomasBorregaardSorensen!!
-#include "framework.h"
+#include "platform.h"
 #include "shape_factory.h"
 
 
@@ -248,14 +248,14 @@ namespace graphics3d
       ::f32 lengthInv = 1.0f / radius; // normal
       // ::f32 s, t;                                      // texture coordinates
 
-      ::f32 sectorStep = 2 * π / sectorCount;
-      ::f32 stackStep = π / stackCount;
-      ::f32 sectorAngle, stackAngle;
+      auto sectorStep = 2_πf / sectorCount;
+      auto stackStep = 1_πf / stackCount;
+      ::f32_angle sectorAngle, stackAngle;
       Vertex vertex;
 
       for (::u32 i = 0; i <= stackCount; ++i)
       {
-         stackAngle = π / 2 - i * stackStep; // from pi/2 to -pi/2
+         stackAngle = 1_πf / 2.f - stackStep * i; // from pi/2 to -pi/2
          xy = radius * cosf(stackAngle); // r * cos(u)
          vertex.m_position.z = radius * sinf(stackAngle); // r * sin(u)
 

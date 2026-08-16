@@ -1,4 +1,4 @@
-#include "framework.h"
+#include "platform.h"
 #include "path.h"
 #include "path_simple_optimization.h"
 #include "aura/graphics/draw2d/graphics.h"

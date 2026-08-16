@@ -276,7 +276,7 @@ list(APPEND library_source
         filesystem/watcher/watch.h
         filesystem/watcher/watcher.cpp
         filesystem/watcher/watcher.h
-        framework.cpp
+        platform.cpp
         graphics/draw2d/_.cpp
         graphics/draw2d/_system_color.h
         graphics/draw2d/color.cpp
@@ -330,8 +330,8 @@ list(APPEND library_source
    #input_output/_.h
    #input_output/_____debug.xcconfig
    #input_output/_____release.xcconfig
-   #input_output/aaa_framework.cpp
-   #input_output/aaa_framework.h
+   #input_output/aaa_platform.cpp
+   #input_output/aaa_platform.h
    #input_output/aaa_io_exception.h
   input_output/BufferedInputStream.cpp
   input_output/BufferedInputStream.h
@@ -1859,7 +1859,7 @@ list(APPEND library_source
         filesystem/filesystem/path_array.cpp
         filesystem/filesystem/path_array.h
         filesystem/filesystem/path_object.h
-        framework.h
+        platform.h
         graphics/draw2d/_.h
         graphics/draw2d/_constant.h
         graphics/draw2d/color.h
@@ -2420,8 +2420,8 @@ if (${WIN32})
 
        #operating_system/windows/subsystem/thread/_____debug.xcconfig
        #operating_system/windows/subsystem/thread/_____release.xcconfig
-       #operating_system/windows/subsystem/thread/aaa_framework.cpp
-       #operating_system/windows/subsystem/thread/aaa_framework.h
+       #operating_system/windows/subsystem/thread/aaa_platform.cpp
+       #operating_system/windows/subsystem/thread/aaa_platform.h
 
     )
 else ()
@@ -3271,8 +3271,8 @@ add_library(static_${PROJECT_NAME} STATIC ${library_source}
 
 if (NOT ${NO_PRECOMPILED_HEADER})
 
-    target_precompile_headers(${PROJECT_NAME} PRIVATE framework.h)
-    target_precompile_headers(static_${PROJECT_NAME} PRIVATE framework.h)
+    target_precompile_headers(${PROJECT_NAME} PRIVATE platform.h)
+    target_precompile_headers(static_${PROJECT_NAME} PRIVATE platform.h)
 
 endif ()
 

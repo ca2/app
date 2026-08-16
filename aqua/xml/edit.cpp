@@ -1,4 +1,4 @@
-#include "framework.h"
+#include "platform.h"
 #include "edit.h"
 #include "document.h"
 #include "acme/exception/parsing.h"

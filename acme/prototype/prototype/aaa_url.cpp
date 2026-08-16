@@ -1,4 +1,4 @@
-#include "framework.h"
+#include "platform.h"
 //#include "acme/prototype/string/hex.h"
 
 
@@ -101,7 +101,7 @@ CLASS_DECL_ACME bool is_like_url_protocol(const ::scoped_string & scopedstr)
 
 
 
-//#include "framework.h"
+//#include "platform.h"
 //#include "net.h"
 //#include "as_string.h"
 //#include "acme/exception/parsing.h"

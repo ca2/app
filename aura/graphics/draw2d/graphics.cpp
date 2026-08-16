@@ -1,4 +1,4 @@
-#include "framework.h"
+#include "platform.h"
 #include "graphics.h"
 #include "brush.h"
 #include "clip.h"
@@ -8,9 +8,11 @@
 #include "drawing.h"
 #include "acme/exception/interface_only.h"
 #include "acme/parallelization/synchronous_lock.h"
+#include "acme/platform/application.h"
 #include "acme/prototype/geometry2d/item.h"
 #include "acme/prototype/geometry2d/_defer_item.h"
 #include "aura/platform/aura.h"
+#include "aura/graphics/graphics/buffer_item.h"
 #include "aura/graphics/image/array.h"
 #include "aura/graphics/image/image.h"
 #include "aura/graphics/image/drawing.h"
@@ -191,6 +193,14 @@ namespace draw2d
       throw ::interface_only();
 
       return nullptr;
+
+   }
+
+
+   void graphics::set_target_image(::image::image * pimage)
+   {
+
+      throw ::interface_only();
 
    }
 
@@ -481,7 +491,9 @@ namespace draw2d
    void graphics::create_for_image(::image::image* pimage)
    {
 
-      create_bitmap_graphics(pimage->get_bitmap());
+      auto pbitmap = pimage->get_bitmap();
+
+      create_bitmap_graphics(pbitmap);
 
    }
 
@@ -656,6 +668,8 @@ namespace draw2d
 
       m_pacmeuserinteractionAffinity = puserinteraction;
 
+      m_sizeTotal2 = size;
+
       //create_memory_graphics(size);
 
    }
@@ -673,7 +687,7 @@ namespace draw2d
       __UNREFERENCED_PARAMETER(size);
       __UNREFERENCED_PARAMETER(pacmeuserinteractionAffinity);
 
-      create_compatible_graphics(nullptr);
+      ///create_compatible_graphics(nullptr);
       //if (!create_compatible_graphics(nullptr))
       //{
 
@@ -686,14 +700,14 @@ namespace draw2d
    }
 
 
-   void graphics::create_compatible_graphics(::draw2d::graphics * pgraphics)
-   {
+   //void graphics::create_compatible_graphics(::draw2d::graphics * pgraphics)
+   //{
 
-      __UNREFERENCED_PARAMETER(pgraphics);
+   //   __UNREFERENCED_PARAMETER(pgraphics);
 
-      //return false;
+   //   //return false;
 
-   }
+   //}
 
 
    void graphics::create_bitmap_graphics(::draw2d::bitmap * pbitmap)
@@ -704,16 +718,16 @@ namespace draw2d
    }
 
 
-   void graphics::create_window_graphics(const ::operating_system::window & operatingsystemwindow)
-   {
+   //void graphics::create_window_graphics(const ::operating_system::window & operatingsystemwindow)
+   //{
 
-      __UNREFERENCED_PARAMETER(operatingsystemwindow);
+   //   __UNREFERENCED_PARAMETER(operatingsystemwindow);
 
 
 
-      //return false;
+   //   //return false;
 
-   }
+   //}
 
 
    //void graphics::set_hint_window_output()
@@ -6893,6 +6907,20 @@ namespace draw2d
    {
 
       auto scaling = ::geometry2d::matrix::scaling(m_sizeScaling);
+
+      //::f64_point pointImage;
+
+      //if (m_pgraphicsbufferitem)
+      //{
+
+      //   if (m_pgraphicsbufferitem->m_pimageBufferItem)
+      //   {
+
+      //      pointImage = m_pgraphicsbufferitem->m_pimageBufferItem->m_point;
+
+      //   }
+
+      //}
 
       auto translation = ::geometry2d::matrix::translation(m_pointOrigin);
 

@@ -101,7 +101,7 @@ namespace gpu
 
       virtual ::gpu::render_target *render_target();
       virtual void defer_initialize_render_target();
-      virtual ::gpu::texture* current_render_target_texture(::gpu::layer * pgpulayer);
+      virtual ::gpu::texture_site * current_render_target_texture(::gpu::layer * pgpulayer);
 
       //virtual ::i32_rectangle rectangle();
       //virtual ::i32 height();

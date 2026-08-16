@@ -1,4 +1,4 @@
-#include "framework.h"
+#include "platform.h"
 #include "wait_message_dialog.h"
 #include "acme/constant/id.h"
 #include "acme/constant/timer.h"

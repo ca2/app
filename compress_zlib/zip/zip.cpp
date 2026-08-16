@@ -5,7 +5,7 @@
 
    read zip.h for more info
 */
-#include "framework.h"
+#include "platform.h"
 #include "_internal.h"
 
 #if defined(WINDOWS) || defined(LINUX)

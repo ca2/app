@@ -26,7 +26,7 @@
 		C77FD10EDF56E793A9840BEC /* libktx.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 418ECB3CB6417FA6AB4A8DEC /* libktx.dylib */; };
 		0B05CD5491E0E7891298465C /* _ktx.cpp in Sources */ = {isa = PBXBuildFile; fileRef = F6B3905B50913E4F9410F506 /* _ktx.cpp */; };
 		12A00AFFFADE98F4127615DE /* _.cpp in Sources */ = {isa = PBXBuildFile; fileRef = ECB3480276890F93970BA617 /* _.cpp */; };
-		1E239A6B36A4C64AE7614D60 /* framework.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 36F5354F008E425413465733 /* framework.cpp */; };
+		1E239A6B36A4C64AE7614D60 /* platform.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 36F5354F008E425413465733 /* platform.cpp */; };
 		7C49E1D4C4BE5B695EB66991 /* full_screen_quad.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 97F1BCADE76B0D91B276ADCB /* full_screen_quad.cpp */; };
 /* End PBXBuildFile section */
 
@@ -98,8 +98,8 @@
 		734921A7E9B78BD577BC558A /* console.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = console.h; sourceTree = "<group>"; };
 		89D48492ECE2A7C8535C0F1F /* context.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = context.h; sourceTree = "<group>"; };
 		FF9F25F9A52CD8DEB978826C /* context.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = context.cpp; sourceTree = "<group>"; };
-		4F96A8926968A9F33087F9E4 /* framework.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = framework.h; sourceTree = "<group>"; };
-		36F5354F008E425413465733 /* framework.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = framework.cpp; sourceTree = "<group>"; };
+		4F96A8926968A9F33087F9E4 /* platform.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = platform.h; sourceTree = "<group>"; };
+		36F5354F008E425413465733 /* platform.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = platform.cpp; sourceTree = "<group>"; };
 		0AB7F570BC9A6D932FD0BFE4 /* full_screen_quad.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = full_screen_quad.h; sourceTree = "<group>"; };
 		97F1BCADE76B0D91B276ADCB /* full_screen_quad.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = full_screen_quad.cpp; sourceTree = "<group>"; };
 		82BFA9DB3D5DCCA2DD58F17C /* hdr_texture.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = hdr_texture.h; sourceTree = "<group>"; };
@@ -280,8 +280,8 @@
 				734921A7E9B78BD577BC558A /* console.h */,
 				89D48492ECE2A7C8535C0F1F /* context.h */,
 				FF9F25F9A52CD8DEB978826C /* context.cpp */,
-				4F96A8926968A9F33087F9E4 /* framework.h */,
-				36F5354F008E425413465733 /* framework.cpp */,
+				4F96A8926968A9F33087F9E4 /* platform.h */,
+				36F5354F008E425413465733 /* platform.cpp */,
 				0AB7F570BC9A6D932FD0BFE4 /* full_screen_quad.h */,
 				97F1BCADE76B0D91B276ADCB /* full_screen_quad.cpp */,
 				82BFA9DB3D5DCCA2DD58F17C /* hdr_texture.h */,
@@ -551,7 +551,7 @@
 				58E5EF7DBEAC2E9986DE2328 /* mesh.cpp in Sources */,
 				3DF145B502E1ECABF59BC4B1 /* model.cpp in Sources */,
 				937ED77946A874D77AF2D57E /* model_base.cpp in Sources */,
-				1E239A6B36A4C64AE7614D60 /* framework.cpp in Sources */,
+				1E239A6B36A4C64AE7614D60 /* platform.cpp in Sources */,
 				12A00AFFFADE98F4127615DE /* _.cpp in Sources */,
 				0B05CD5491E0E7891298465C /* _ktx.cpp in Sources */,
 			);
@@ -638,7 +638,7 @@
 				GCC_NO_COMMON_BLOCKS = YES;
 				GCC_OPTIMIZATION_LEVEL = 0;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
-				GCC_PREFIX_HEADER = framework.h;
+				GCC_PREFIX_HEADER = platform.h;
 				GCC_PREPROCESSOR_DEFINITIONS = "$(inherited)";
 				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
 				GCC_VERSION = "";
@@ -752,7 +752,7 @@
 				GCC_INCREASE_PRECOMPILED_HEADER_SHARING = NO;
 				GCC_NO_COMMON_BLOCKS = YES;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
-				GCC_PREFIX_HEADER = framework.h;
+				GCC_PREFIX_HEADER = platform.h;
 				GCC_PREPROCESSOR_DEFINITIONS = "";
 				GCC_VERSION = "";
 				GCC_WARN_64_TO_32_BIT_CONVERSION = NO;

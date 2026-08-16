@@ -1,4 +1,4 @@
-#include "framework.h"
+#include "platform.h"
 //glglgl #include "_opengl.h"
 #include "bitmap.h"
 #include "acme/exception/interface_only.h"
@@ -105,7 +105,7 @@ namespace draw2d_gpu
    //}
 
 
-   void bitmap::create_bitmap(::draw2d::graphics * pgraphics, const ::i32_size& size, ::image32_t** ppimage32, const ::image32_t * pimage32,  ::i32* piScan)
+   void bitmap::create_bitmap(::draw2d::graphics * pgraphics, const ::i32_size& size, ::memory & memory,  ::i32* piScan)
    {
 
       __UNREFERENCED_PARAMETER(pgraphics);
@@ -138,19 +138,22 @@ namespace draw2d_gpu
 
       auto pimage32Target = (::image32_t *)m_memOut.data();
 
-      if (pimage32)
+      if (memory.data() && memory.size() > iScan * size.cy)
       {
 
-         pimage32Target->copy(size, m_iStride, pimage32, iScan);
+         pimage32Target->copy(size, m_iStride, (::image32_t *)memory.data(), iScan);
 
       }
 
-      if(ppimage32)
-      {
-         
-         *ppimage32 = pimage32Target;
 
-      }
+      memory.reference_data(m_memOut);
+
+      //if(ppimage32)
+      //{
+      //   
+      //   *ppimage32 = pimage32Target;
+
+      //}
 
       if(piScan != nullptr)
       {

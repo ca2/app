@@ -81,7 +81,6 @@ namespace gpu
    class CLASS_DECL_BRED context :
       virtual public ::thread
    {
-
    public:
 
 
@@ -119,17 +118,18 @@ namespace gpu
       ::gpu::compositor *                          m_pgpucompositor;
       ::pointer<::gpu::device>                     m_pgpudevice;
       //::i32_rectangle                            m_rectangleNew;
-      ::i32_rectangle                              m_rectangle;
       ::f32                                        m_z;
       i32_point                                    m_pointTranslate;
-      ::pointer<::gpu::aaa_cpu_buffer>             m_pcpubuffer2;
+      ::pointer<::gpu::buffer>                     m_pbuffer;
       ::pointer<::gpu::shader>                     m_pshader;
+      //::i32_size                                   m_sizeRaw;
       bool                                         m_bInNonOwnedLease;
       ::pointer<::gpu::shader>                     m_pshaderBound;
       ::pointer<::gpu::render_target>              m_prendertargetBound;
       ::pointer < ::gpu::model_buffer >            m_pmodelbufferDummy;
       ::pointer < ::gpu::shader >                  m_pshaderBlend3;
-      ::pointer < ::acme::windowing::window >      m_pacmewindowingwindowWindowSurface;
+      //::pointer < ::acme::windowing::window >      m_pacmewindowingwindowWindowSurface;
+      ::pointer < ::acme::user::interaction >      m_pacmeuserinteractionAffinity;
 
       ::pointer<::gpu::shader>                     m_pgpushaderRgbaFromB_G;
       bool                                         m_bCreated;
@@ -146,7 +146,7 @@ namespace gpu
       ::pointer < ::graphics3d::engine >           m_pengine;
       ::pointer_array < ::gpu::render >            m_rendera;
       ::pointer < ::gpu::command_buffer >          m_pcommandbufferUpload;
-      ::pointer < ::gpu::model_buffer >            m_pmodelbufferFullscreenQuad;
+
       // size memory buffer
       ::i32_map < ::pool <::gpu::memory_buffer > > m_mapPoolMemoryBuffer;
       //::image32_callback                         m_callbackImage32CpuBuffer;
@@ -167,6 +167,10 @@ namespace gpu
       ::pointer<::gpu::binding_set>                m_pbindingsetSceneGltfPbr;
       ::pointer<::gpu::command_buffer>             m_pcommandbufferMain;
       //::pointer<::gpu::block>                    m_pblockGlobalUbo;
+      ::i32_point                                  m_pointInput;
+      ::i32_point                                  m_pointOutput;
+      ::i32_size                                   m_size;
+      ::i32_size                                   m_sizeRaw;
 
 
       context();
@@ -179,7 +183,9 @@ namespace gpu
 
       virtual ::gpu::swap_chain* get_swap_chain();
 
-      virtual ::gpu::texture* current_target_texture(::gpu::layer* pgpulayer);
+      virtual ::gpu::render_target * output_render_target();
+
+      virtual ::gpu::texture_site * current_target_texture(::gpu::layer* pgpulayer);
 
       // virtual ::pointer<::graphics::context> create_graphics_context();
 
@@ -192,8 +198,11 @@ namespace gpu
       /// loads only image::image (A8R8G8B8)
       virtual ::gpu::texture* texture(const ::file::path& path);
 
+      virtual ::memory _001BlendVertexShaderMemory();
+      virtual ::memory _001BlendFragmentShaderMemory();
+      virtual void _001InitializeBlendShader(::gpu::shader * pshader);
 
-      virtual ::pointer < ::gpu::texture > create_empty_texture();
+      virtual ::pointer < ::gpu::texture_site > create_empty_texture();
       virtual void on_new_frame();
 
       static void __s_lock_context(::gpu::context * pgpuccontext);
@@ -232,7 +241,7 @@ namespace gpu
       virtual void defer_end_upload_command_buffer();
 
 
-      virtual void begin_render(::gpu::command_buffer *pgpucommandbuffer, ::gpu::texture * pgputexture = nullptr);
+      virtual void begin_render(::gpu::command_buffer *pgpucommandbuffer, ::gpu::texture_site * pgputexturesite= nullptr);
       virtual void end_render(::gpu::command_buffer *pgpucommandbuffer);
 
 
@@ -248,7 +257,7 @@ namespace gpu
       virtual void _context_lock();
       virtual void _context_unlock();
 
-      virtual bool defer_bind2(::gpu::command_buffer * pgpucommandbuffer, ::gpu::shader * pgpushader, ::gpu::texture * pgputexture);
+      virtual bool defer_bind2(::gpu::command_buffer * pgpucommandbuffer, ::gpu::shader * pgpushader, ::gpu::texture_site * pgputexturesite);
       virtual bool defer_bind3(::gpu::command_buffer * pgpucommandbuffer, ::gpu::shader * pgpushader);
       virtual void defer_unbind(::gpu::shader* pgpushader);
       virtual void defer_unbind_shader();
@@ -266,13 +275,17 @@ namespace gpu
       /// <param name="pgpudevice"></param>
       /// <param name="eoutput"></param>
       /// <param name="size"></param>
-      virtual void create_draw2d_gpu_context(::gpu::device* pgpudevice, ::acme::windowing::window* pacmewindowingwindow, const ::i32_size& size);
+//<<<<<<< HEAD
+//      virtual void create_draw2d_context(::gpu::device* pgpudevice, const enum_output& eoutput, ::acme::windowing::window * pwindow, const ::i32_size& size);
+//=======
+      virtual void create_draw2d_gpu_context(::gpu::device* pgpudevice, ::acme::windowing::window* pacmewindowingwindow, const ::i32_point & pointInput, const ::i32_point & pointOutput, const ::i32_size & size, const ::i32_size & sizeRaw);
+//>>>>>>> origin/main
 
-      virtual void create_gpu_context(::gpu::device* pgpudevice, const ::gpu::enum_output& eoutput, const ::gpu::enum_scene& escene, ::acme::windowing::window* pacmewindowingwindow, const ::i32_size & size);
+      virtual void create_gpu_context(::gpu::device* pgpudevice, const ::gpu::enum_output& eoutput, const ::gpu::enum_scene& escene, ::acme::windowing::window* pacmewindowingwindow, const ::i32_point & pointInput, const ::i32_point & pointOutput, const ::i32_size & size, const ::i32_size & sizeRaw);
 
-      virtual void create_window_gpu_context(::gpu::device* pgpudevice, const ::gpu::enum_output& eoutput, const ::gpu::enum_scene& escene, ::acme::windowing::window* pacmewindowingwindow, const ::i32_size& size);
+      virtual void create_window_gpu_context(::gpu::device* pgpudevice, const ::gpu::enum_output& eoutput, const ::gpu::enum_scene& escene, ::acme::windowing::window* pacmewindowingwindow, const ::i32_point & pointInput, const ::i32_point & pointOutput, const ::i32_size & size, const ::i32_size & sizeRaw);
 
-      virtual void _create_gpu_context(::gpu::device* pgpudevice, const ::gpu::enum_output& eoutput, const ::gpu::enum_scene& escene, ::acme::windowing::window* pacmewindowingwindow, const ::i32_size& size);
+      virtual void _create_gpu_context(::gpu::device* pgpudevice, const ::gpu::enum_output& eoutput, const ::gpu::enum_scene& escene, ::acme::windowing::window* pacmewindowingwindow, const ::i32_point & pointInput, const ::i32_point & pointOutput, const ::i32_size & size, const ::i32_size & sizeRaw);
 
       //virtual void on_create_context(::gpu::device * pgpudevice, const ::gpu::enum_output & eoutput, ::acme::windowing::window* pwindow, const ::i32_size & size);
 
@@ -303,7 +316,7 @@ namespace gpu
 
 
 
-      virtual ::gpu::aaa_cpu_buffer * aaa_get_cpu_buffer();
+      virtual ::gpu::buffer * get_cpu_buffer();
 
 
       //virtual void initialize(::particle * pparticle) override;
@@ -335,9 +348,32 @@ namespace gpu
       //virtual void set_topic_texture(::i32 iIndex);
       virtual void set_cull_face(::gpu::enum_cull_mode ecullmode);
 
-      virtual ::i32_rectangle rectangle();
-      virtual void set_placement(const ::i32_rectangle & rectanglePlacement);
-      virtual void on_resize(const ::i32_size& size);
+      virtual ::i32_rectangle input_placement();
+      virtual ::i32_rectangle output_placement();
+      virtual ::i32_point input_origin();
+      virtual ::i32_point output_origin();
+      virtual ::i32 input_left();
+      virtual ::i32 output_left();
+      virtual ::i32 input_top();
+      virtual ::i32 output_top();
+      virtual ::i32 input_right();
+      virtual ::i32 output_right();
+      virtual ::i32 input_bottom();
+      virtual ::i32 output_bottom();
+      virtual ::i32_size size();
+      //virtual ::i32 left();
+      //virtual ::i32 top();
+      virtual ::i32 width();
+      virtual ::i32 height();
+      virtual ::i32_size raw_size();
+      virtual ::i32 raw_width();
+      virtual ::i32 raw_height();
+      virtual void set_input_origin(const ::i32_point & pointSource);
+      virtual void set_output_origin(const ::i32_point & pointTarget);
+      virtual void set_input_placement(const ::i32_rectangle & rectangle);
+      virtual void set_output_placement(const ::i32_rectangle & rectangle);
+      virtual void set_size(const ::i32_size & size);
+      virtual void on_resize(const ::i32_size & size);
 
       virtual string _001GetIntroProjection();
       virtual string _001GetIntroFragment();
@@ -364,10 +400,10 @@ namespace gpu
       //virtual void _create_window_buffer21(::windowing::window* pwindow);
 
 
-      virtual void create_cpu_buffer21(const ::i32_size& size);
-      virtual void _create_cpu_buffer21(const ::i32_size& size);
-      virtual void resize_cpu_buffer21(const ::i32_size& size);
-      virtual void destroy_cpu_buffer21();
+      virtual void create_cpu_buffer(const ::i32_size& size);
+      virtual void _create_cpu_buffer(const ::i32_size& size);
+      virtual void resize_cpu_buffer(const ::i32_size& size);
+      virtual void destroy_cpu_buffer();
 
 
       //virtual void defer_create_window_context(::acme::windowing::window * pwindow);
@@ -402,8 +438,12 @@ namespace gpu
       virtual void update_current_scene();
 
       //virtual void copy(::gpu::texture* ptexture);
-      virtual void copy(::gpu::texture* ptextureTarget, ::gpu::texture* ptextureSource, ::pointer < ::gpu::fence > * pgpufence);
-      virtual void merge_layers(::gpu::command_buffer * pgpucommandbuffer, ::gpu::texture* ptextureTarget, ::pointer_array < ::gpu::layer >* playera);
+      virtual void copy(::gpu::command_buffer * pgpucommandbuffer, ::gpu::texture_site * ptexturesiteOutput, ::gpu::texture_site * ptexturesiteInput, ::pointer < ::gpu::fence > * pgpufence, ::pointer < ::gpu::semaphore > * pgpusemaphoreReady);
+      virtual void copy(::gpu::texture_site* ptexturesiteOutput, ::gpu::texture_site* ptexturesiteInput, ::pointer < ::gpu::fence > * pgpufence, ::pointer < ::gpu::semaphore > * pgpusemaphoreReady);
+
+      virtual void merge_layers_dummy_model_buffer();
+      virtual void merge_layers_shader();
+      virtual void merge_layers(::gpu::command_buffer * pgpucommandbuffer, ::gpu::texture_site* ptextureTarget, ::pointer_array < ::gpu::layer >* playera);
 
       virtual void on_start_layer(::gpu::layer * pgpulayer);
       virtual void on_end_layer(::gpu::layer * pgpulayer);
@@ -454,8 +494,9 @@ namespace gpu
       virtual void initialize_rectangle_shader(::gpu::shader* pshader);
 
 
-      virtual ::gpu::model_buffer* sequence2_uv_fullscreen_quad_model_buffer(::gpu::layer* pgpulayer);
+      //virtual ::gpu::model_buffer* sequence2_uv_fullscreen_quad_model_buffer(::gpu::layer* pgpulayer);
       virtual ::pointer < ::gpu::model_buffer> create_sequence2_uv_fullscreen_quad_model_buffer(::gpu::layer* pgpulayer);
+      virtual ::pointer < ::gpu::model_buffer> create_sequence2_uv_rectangle_quad_model_buffer(::gpu::layer * pgpulayer, const ::i32_rectangle & rectangleQuad, const ::i32_size & sizeQuadRaw);
 
 
       //::pointer<::graphics3d::renderable> load_model();
@@ -502,8 +543,8 @@ namespace gpu
       //virtual ::pointer<::graphics3d::renderable> _load_gltf_model(const ::gpu::renderable_t & model);
 
 
-      virtual void set_viewport(::gpu::command_buffer *pgpucommandbuffer, const ::i32_rectangle &rectangle);
-      virtual void set_scissor(::gpu::command_buffer *pgpucommandbuffer, const ::i32_rectangle &rectangle);
+      virtual void set_viewport(::gpu::command_buffer * pgpucommandbuffer, const ::i32_rectangle & rectangle, const ::i32_size & sizeRaw = {});
+      virtual void set_scissor(::gpu::command_buffer * pgpucommandbuffer, const ::i32_rectangle & rectangle, const ::i32_size & sizeRaw = {});
 
 //      /// @brief generatePrefilteredEnvMap
 //      /// @param environmentCubeExisting 
@@ -574,7 +615,7 @@ virtual void swap_buffers();
       // m_pgpucontext->rgb_from_b_g(ptextureMetallic, ptextureRoughness);
       virtual ::memory rgba_from_b_g_vert_memory();
       virtual ::memory rgba_from_b_g_frag_memory();
-      virtual ::pointer<::gpu::texture> rgba_from_b_g(::gpu::texture *pgputextureMetallic,
+      virtual ::pointer<::gpu::texture_site> rgba_from_b_g(::gpu::texture *pgputextureMetallic,
                                                       ::gpu::texture *pgputextureRoughness);
    };
 

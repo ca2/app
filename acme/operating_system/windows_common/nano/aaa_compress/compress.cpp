@@ -4,7 +4,7 @@
 //
 // Created by camilo on 2024-05-27 02:11 <3ThomasBorregaardSorensen!!
 //
-#include "framework.h"
+#include "platform.h"
 #include "compress.h"
 #include "acme/exception/interface_only.h"
 #include "acme/filesystem/filesystem/directory_system.h"

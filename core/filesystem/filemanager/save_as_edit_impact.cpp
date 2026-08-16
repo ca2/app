@@ -1,5 +1,5 @@
 // From save_as_name_impact by camilo on 2023-05-05 19:15 <3ThomasBorregaardSorensen!!
-#include "framework.h"
+#include "platform.h"
 #include "save_as_edit_impact.h"
 #include "data.h"
 #include "document.h"

@@ -1,6 +1,6 @@
 // Created with ChatGPT by camilo on 2025-11-14 01:05 <3ThomasBorregaardSørensen!!
 // Created with ChatGPT by camilo on 2026-01-29 05:54 <3ThomasBorregaardSørensen!!
-#include "framework.h"
+#include "platform.h"
 #include "../cpu_features.h"
 #include "acme/_operating_system.h"
 

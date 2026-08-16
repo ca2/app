@@ -554,11 +554,11 @@
 			<Option target="axis"/>
 			<Option target="static_axis"/>
 		</Unit>
-		<Unit filename="/home/camilo/cmake/integration/source/app/axis/framework.cpp">
+		<Unit filename="/home/camilo/cmake/integration/source/app/axis/platform.cpp">
 			<Option target="axis"/>
 			<Option target="static_axis"/>
 		</Unit>
-		<Unit filename="/home/camilo/cmake/integration/source/app/axis/framework.h">
+		<Unit filename="/home/camilo/cmake/integration/source/app/axis/platform.h">
 			<Option target="axis"/>
 			<Option target="static_axis"/>
 		</Unit>

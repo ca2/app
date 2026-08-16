@@ -1,5 +1,5 @@
 // Created by camilo on 2025-05-19 05:39 <3ThomasBorregaardSorensen!!
-#include "framework.h"
+#include "platform.h"
 #include "_.h"
 #include "device.h"
 
@@ -71,6 +71,17 @@ namespace gpu
          default:
             throw ::exception(error_not_implemented);
       }
+   }
+
+
+   trace_flags_t g_traceflags;
+
+
+   CLASS_DECL_BRED trace_flags_t & trace_flags()
+   {
+
+      return g_traceflags;
+
    }
 
 

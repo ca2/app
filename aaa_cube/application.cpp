@@ -1,4 +1,4 @@
-#include "framework.h"
+#include "platform.h"
 #include "application.h"
 #include "bred/gpu/approach.h"
 #include "graphics3d/engine.h"

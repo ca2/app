@@ -5,7 +5,7 @@
 //  Created by Camilo Sasuke Thomas Borregaard Soerensen on 25/07/20.
 //  Copyright (c) 2020 Camilo Sasuke Thomas Borregaard Soerensen. All rights reserved.
 //
-#include "framework.h"
+#include "platform.h"
 #if defined(MACOS)
 #include <OpenGL/OpenGL.h>
 //#include <glad/glad.h>

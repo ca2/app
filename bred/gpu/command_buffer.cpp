@@ -1,5 +1,5 @@
 // Created by camilo on 2025-06-23 00:16 <3ThomasBorregaardSørensen!!
-#include "framework.h"
+#include "platform.h"
 #include "command_buffer.h"
 #include "context.h"
 #include "frame.h"
@@ -17,18 +17,35 @@ namespace gpu
 
    scoped_command_buffer::scoped_command_buffer(::gpu::command_buffer* pcommandbufferIn)
    {
+      auto pgpulayer = ::gpu::current_layer();
 
-      m_pcommandbufferOut = ::gpu::current_layer()->m_pcommandbufferScoped;
+      if (pgpulayer)
+      {
+         m_pcommandbufferOut = pgpulayer->m_pcommandbufferScoped;
+      }
+      else
+      {
+
+         m_pcommandbufferOut = nullptr;
+      }
       m_pcommandbufferIn = pcommandbufferIn;
-      ::gpu::current_layer()->m_pcommandbufferScoped = m_pcommandbufferIn;
+      if (pgpulayer)
+      {
+         pgpulayer->m_pcommandbufferScoped = m_pcommandbufferIn;
+      }
 
    }
 
 
    scoped_command_buffer::~scoped_command_buffer()
    {
+      auto pgpulayer = ::gpu::current_layer();
 
-      ::gpu::current_layer()->m_pcommandbufferScoped = m_pcommandbufferOut;
+      if (pgpulayer)
+      {
+         pgpulayer->m_pcommandbufferScoped = m_pcommandbufferOut;
+
+      }
 
    }
 
@@ -59,14 +76,14 @@ namespace gpu
    }
 
 
-   void command_buffer::begin_render(::gpu::shader * pgpushader, ::gpu::texture * pgputextureTarget)
+   void command_buffer::begin_render(::gpu::shader * pgpushader, ::gpu::texture_site * pgputexturesiteTarget)
    {
 
       auto pgpucontext = m_pgpurendertarget.m_p->m_pgpurenderer.m_p->m_pgpucontext.m_p;
 
-      pgpucontext->begin_render(this, pgputextureTarget);
+      pgpucontext->begin_render(this, pgputexturesiteTarget);
 
-      pgpucontext->defer_bind2(this, pgpushader, pgputextureTarget);
+      pgpucontext->defer_bind2(this, pgpushader, pgputexturesiteTarget);
 
    }
 
@@ -106,14 +123,14 @@ namespace gpu
    }
 
 
-   void command_buffer::set_source(::gpu::texture * pgputexture)
+   void command_buffer::set_source(::gpu::texture_site * pgputexturesite)
    {
 
       auto pgpucontext = m_pgpurendertarget->m_pgpurenderer->m_pgpucontext;
 
       auto pgpushader = pgpucontext->m_pshaderBound;
 
-      pgpushader->bind_source(this, pgputexture);
+      pgpushader->bind_source(this, pgputexturesite);
 
    }
 
@@ -171,7 +188,7 @@ namespace gpu
    void command_buffer::end_render()
    {
 
-
+      m_pgpurendertarget->m_pgpurenderer->m_pgpucontext->end_render(this);
    }
 
 
@@ -232,21 +249,36 @@ namespace gpu
    }
 
 
-   void command_buffer::set_viewport(const ::i32_rectangle& rectangle)
+   //void command_buffer::clear(::gpu::texture * pgputexture, const ::i32_rectangle & rectangle, const ::color::color & color)
+   //{
+
+
+   //}
+
+
+   void command_buffer::clear(::gpu::texture * pgputexture, const ::color::color & color)
    {
 
-      m_pgpurendertarget->m_pgpurenderer->m_pgpucontext->set_viewport(this, rectangle);
+      m_pgpurendertarget->m_pgpurenderer->m_pgpucontext->clear(pgputexture, color);
+
    }
 
 
-   void command_buffer::set_scissor(const ::i32_rectangle& rectangle)
+   void command_buffer::set_viewport(const ::i32_rectangle& rectangle, const ::i32_size & sizeRaw)
    {
 
-      m_pgpurendertarget->m_pgpurenderer->m_pgpucontext->set_scissor(this, rectangle);
+      m_pgpurendertarget->m_pgpurenderer->m_pgpucontext->set_viewport(this, rectangle, sizeRaw);
+   }
+
+
+   void command_buffer::set_scissor(const ::i32_rectangle& rectangle, const ::i32_size & sizeRaw)
+   {
+
+      m_pgpurendertarget->m_pgpurenderer->m_pgpucontext->set_scissor(this, rectangle, sizeRaw);
 
    }
 
-   
+
    void command_buffer::reset()
    {
 
@@ -262,7 +294,7 @@ namespace gpu
        
          constructø(m_pgpufence);
 
-         m_pgpufence->initialize_gpu_fence(m_pgpurendertarget->m_pgpurenderer->m_pgpucontext, bCreateSignaled);
+         m_pgpufence->initialize_gpu_fence(m_pgpurendertarget->m_pgpurenderer->m_pgpucontext->m_pgpudevice, bCreateSignaled);
 
       }
       else

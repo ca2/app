@@ -296,7 +296,7 @@
     <ClCompile Include="framebuffer\DibFrameBuffer.cpp" />
     <ClCompile Include="framebuffer\DibSection.cpp" />
     <ClCompile Include="framebuffer\FrameBuffer.cpp" />
-    <ClCompile Include="framework.cpp">
+    <ClCompile Include="platform.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Create</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='DebugNoUnicode|Win32'">Create</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Create</PrecompiledHeader>

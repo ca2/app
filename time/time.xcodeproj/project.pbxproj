@@ -48,8 +48,8 @@
 		544238F52CC890B78340459A /* datetime_clock_interface.h in Headers */ = {isa = PBXBuildFile; fileRef = 9270D6D7859B33416061A76B /* datetime_clock_interface.h */; };
 		29663B6E662D258B7A97C3D7 /* libaxis.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 635FCB847C9DAF1901E7B803 /* libaxis.dylib */; };
 		006003E0149F3A9250FD03F3 /* libaura.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = ADD4A7B8B5869722D1263F7A /* libaura.dylib */; };
-		091B98F4E8432B2B8C5D45C4 /* framework.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B277271DBA54AE9513B57592 /* framework.cpp */; };
-		FFBD2D9FB0AC54E585D08154 /* framework.h in Headers */ = {isa = PBXBuildFile; fileRef = 42FD1809D5BC3D063B7EAF46 /* framework.h */; };
+		091B98F4E8432B2B8C5D45C4 /* platform.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B277271DBA54AE9513B57592 /* platform.cpp */; };
+		FFBD2D9FB0AC54E585D08154 /* platform.h in Headers */ = {isa = PBXBuildFile; fileRef = 42FD1809D5BC3D063B7EAF46 /* platform.h */; };
 		B8867C2C299C88A43B6D3B15 /* libberg.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 07E4F8C8941CAD96D27FEF9A /* libberg.dylib */; };
 /* End PBXBuildFile section */
 
@@ -148,8 +148,8 @@
 		635FCB847C9DAF1901E7B803 /* libaxis.dylib */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.dylib"; path = libaxis.dylib; sourceTree = BUILT_PRODUCTS_DIR; };
 		ADD4A7B8B5869722D1263F7A /* libaura.dylib */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.dylib"; path = libaura.dylib; sourceTree = BUILT_PRODUCTS_DIR; };
 		E67644603694F0C1388B954A /* libtime.dylib */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.dylib"; includeInIndex = 0; path = libtime.dylib; sourceTree = BUILT_PRODUCTS_DIR; };
-		B277271DBA54AE9513B57592 /* framework.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = framework.cpp; sourceTree = "<group>"; };
-		42FD1809D5BC3D063B7EAF46 /* framework.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = framework.h; sourceTree = "<group>"; };
+		B277271DBA54AE9513B57592 /* platform.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = platform.cpp; sourceTree = "<group>"; };
+		42FD1809D5BC3D063B7EAF46 /* platform.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = platform.h; sourceTree = "<group>"; };
 		07E4F8C8941CAD96D27FEF9A /* libberg.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libberg.dylib; path = "../../../../Users/camilo/Library/Developer/Xcode/DerivedData/all-dlckdugtwkhfjkdbgurajmehstei/Build/Products/Debug/libberg.dylib"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -324,8 +324,8 @@
 				F36996C5EDA39F8DB648E3C8 /* datetime */,
 				810BBE52ED4A3E833DC6072C /* graphics */,
 				A9A6E541E90C792561373EB4 /* time */,
-				B277271DBA54AE9513B57592 /* framework.cpp */,
-				42FD1809D5BC3D063B7EAF46 /* framework.h */,
+				B277271DBA54AE9513B57592 /* platform.cpp */,
+				42FD1809D5BC3D063B7EAF46 /* platform.h */,
 			);
 			name = time;
 			sourceTree = "<group>";
@@ -355,7 +355,7 @@
 				9C863677828A5070812572C6 /* datetime_element.h in Headers */,
 				706674E53E1DF897060E4F29 /* datetime.h in Headers */,
 				544238F52CC890B78340459A /* datetime_clock_interface.h in Headers */,
-				FFBD2D9FB0AC54E585D08154 /* framework.h in Headers */,
+				FFBD2D9FB0AC54E585D08154 /* platform.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -519,7 +519,7 @@
 				A507DB632D607C8B3387E1E5 /* datetime_f32_time.cpp in Sources */,
 				3B6B261C9A1A0091831F3DEE /* datetime_parser_exception.cpp in Sources */,
 				8BFCDD4827D439E0A5CBFF85 /* datetime_clock_interface.cpp in Sources */,
-				091B98F4E8432B2B8C5D45C4 /* framework.cpp in Sources */,
+				091B98F4E8432B2B8C5D45C4 /* platform.cpp in Sources */,
 				C6D3697A33076F787B3AA0B6 /* datetime_clock.cpp in Sources */,
 				F09EECE1516B350BA38586C4 /* datetime_calendar_interface.cpp in Sources */,
 				1B27F73BBED45EB7980618B2 /* datetime_scanner.cpp in Sources */,
@@ -696,7 +696,7 @@
 				GCC_ENABLE_OBJC_EXCEPTIONS = YES;
 				GCC_OPTIMIZATION_LEVEL = 0;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
-				GCC_PREFIX_HEADER = framework.h;
+				GCC_PREFIX_HEADER = platform.h;
 				GCC_PREPROCESSOR_DEFINITIONS = (
 					"$(inherited)",
 				);
@@ -739,7 +739,7 @@
 				GCC_C_LANGUAGE_STANDARD = c99;
 				GCC_ENABLE_OBJC_EXCEPTIONS = YES;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
-				GCC_PREFIX_HEADER = framework.h;
+				GCC_PREFIX_HEADER = platform.h;
 				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
 				GCC_WARN_ABOUT_RETURN_TYPE = YES;
 				GCC_WARN_UNINITIALIZED_AUTOS = YES;

@@ -1,4 +1,4 @@
-#include "framework.h"
+#include "platform.h"
 #include "frame_Minimal001.h"
 #include "aura/graphics/draw2d/graphics.h"
 #include "aura/graphics/draw2d/graphics_pointer.h"

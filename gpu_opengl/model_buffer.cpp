@@ -1,5 +1,5 @@
 // Created by camilo on 2025-06-11 01:08 <3ThomasBorregaardSørensen!!
-#include "framework.h"
+#include "platform.h"
 #include "_gpu_opengl.h"
 #include "command_buffer.h"
 #include "context.h"
@@ -228,6 +228,8 @@ namespace gpu_opengl
          mode = ::opengl::as_gl_draw_mode(etopology);
 
       }
+
+
 
       if (m_pbufferVertex)
       {

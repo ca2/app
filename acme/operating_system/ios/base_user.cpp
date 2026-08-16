@@ -6,7 +6,7 @@
 //  Copyright 2011 __MyCompanyName__. All rights reserved.
 //
 
-#include "framework.h"
+#include "platform.h"
 #include "acme/parallelization/manual_reset_happening.h"
 //#include "ios_internal.h"
 

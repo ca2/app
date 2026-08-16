@@ -1,5 +1,5 @@
 // Created by camilo on 2024-12-06 18:44 <3ThomasBorregaardSorensen!!
-#include "framework.h"
+#include "platform.h"
 
 
 windows_path::windows_path() 

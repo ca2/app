@@ -5,7 +5,7 @@
 
    Copyright (C) 1998-2003 Gilles Vollant
 */
-#include "framework.h"
+#include "platform.h"
 #include "ioapi.h"
 
 #include <stdio.h>

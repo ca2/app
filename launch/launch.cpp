@@ -1,6 +1,6 @@
 // From application_build_helper to implement.cpp by camilo on 2021-12-17 21:04 BRT <3ThomasBorregaardSørensen!!
 // From launch/application.cpp by camilo on 2026-06-01 23:30 BRT <3ThomasBorregaardSørensen!! Mummi!! Bilbo!!
-#include "framework.h"
+#include "platform.h"
 #include "application.h"
 #include "launch.h"
 #include "acme/filesystem/filesystem/directory_system.h"

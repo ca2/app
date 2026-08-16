@@ -1,4 +1,4 @@
-#include "framework.h"
+#include "platform.h"
 #include "aura/platform/system_setup.h"
 
 

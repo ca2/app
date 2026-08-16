@@ -1,5 +1,6 @@
 // Created by camilo on 2025-06-12 12:38 <3ThomasBorregaardSørensen!!
-#include "framework.h"
+#include "platform.h"
+#include "command_buffer.h"
 #include "context.h"
 #include "device.h"
 #include "frame.h"
@@ -7,9 +8,13 @@
 #include "renderer.h"
 //#include "layer_state.h"
 #include "render_target.h"
+#include "semaphore.h"
 #include "texture.h"
+#include "texture_site.h"
+#include "texture_synchronization.h"
 #include "acme/platform/application.h"
 #include "bred/gpu/context_lock.h"
+#include "bred/gpu/window_attachment.h"
 
 
 #include <assert.h>
@@ -49,36 +54,278 @@ namespace gpu
    }
 
 
-   ::pointer_array < ::gpu::texture >* render_target::texturea2()
+   ::gpu::texture_site * render_target::do_render()
    {
 
-      if (!m_ptexturea)
+
+      // auto iFrameIndex = prendertargetBackBuffer->get_frame_index();
+
+      //ptextureBackBuffer = prendertargetBackBuffer->current_texture(pgpulayer);
+      auto ptextureBackBuffer = this->current_texture(nullptr, true);
+      //
+      // for (auto player : layera)
+      // {
+      //
+      //    if (pgpulayer->getCurrentCommandBuffer4())
+      //    {
+      //
+      //       pgpulayer->getCurrentCommandBuffer4()->wait_commands_to_execute();
+      //
+      //    }
+      //
+      // }
+
+      auto pgpuwindowattachment = ::gpu::window_attachment::get(m_pgpurenderer);
+
+      auto iFrameIndex =
+         pgpuwindowattachment->get_frame_index3();
+
+
+      //{
+
+         ::pointer_array<::gpu::layer> gpulayera;
+
+         auto pgpulayera2 = pgpuwindowattachment->m_pgpulayera;
+
+         if (pgpulayera2)
+         {
+
+            for (auto pgpulayer : *pgpulayera2)
+            {
+
+               if (pgpulayer
+                  && pgpulayer->m_bIncludeInFrameComposition)
+               {
+
+                  gpulayera.add(pgpulayer);
+
+               }
+
+            }
+
+            auto timeStart = ::time::now();
+
+            while (timeStart.elapsed() < 5_s)
+            {
+
+               bool bAnyFailed = false;
+
+               for (auto pgpulayer : gpulayera)
+               {
+
+                  if (!pgpulayer->finished_manual_reset_happening()->_wait(0_s))
+                  {
+
+                     bAnyFailed = true;
+
+                     break;
+
+                  }
+
+               }
+
+               if (!bAnyFailed)
+               {
+
+                  break;
+
+               }
+
+               preempt(1_ms);
+
+            }
+
+            auto fMilliseconds = timeStart.elapsed().floating_millisecond();
+
+            information("it took {} ms waiting for layers to finish drawing", fMilliseconds);
+
+         }
+
+         if (gpulayera.has_element())
+         {
+
+            //::pointer_array<::gpu::semaphore> semaphoreaMergeLayersReady;
+            //::array<::gpu::enum_pipeline_stage> epipelinestageaMergeLayersReady;
+
+            //texture * ptextureBackBuffer = nullptr;
+
+
+
+         // ::i32 iLayer = 0;
+         //
+         // for (auto player: layera)
+         // {
+         //
+         //    if (iLayer == 2)
+         //    {
+         //       // information("What happened to the 3D Layer?");
+         //    }
+         //
+         //
+         //    //::cast<::gpu_opengl::texture> ptextureSrc = pgpulayer->texture();
+         //
+         //    auto pgpufence = pgpulayer->m_pgpufence;
+         //
+         //    if (::is_set(pgpufence))
+         //    {
+         //
+         //       pgpufence->wait_gpu_fence();
+         //
+         //    }
+         //
+         //    // m_pshaderBlend3->bind_source(nullptr, ptextureSrc, 0);
+         //    iLayer++;
+         // }
+
+         //::gpu::context_lock contextlock(this);
+
+         auto pqueueGraphics = m_pgpurenderer->m_pgpucontext->m_pgpudevice->graphics_queue();
+
+         auto pgpucommandbuffer = m_pgpurenderer->m_pgpucontext->beginSingleTimeCommands(pqueueGraphics);
+
+         auto iFrame2 = (::i32) pgpuwindowattachment->m_iCurrentFrame3;
+
+         pgpucommandbuffer->m_iCommandBufferFrameIndex2 = iFrame2;
+         //auto pgpucommandbuffer = m_pgpucontext->m_pgpurenderer->getCurrentCommandBuffer2(::gpu::current_layer());
+
+         //m_pgpucontext->begin_render();
+
+         m_pgpurenderer->m_pgpucontext->merge_layers(pgpucommandbuffer, ptextureBackBuffer, &gpulayera);
+
+         //if (defer_constructø(m_pgpucontext->m_gpusemaphoreaMergeLayersReady.atø(iFrameIndex)))
+         //{
+
+         //   m_pgpucontext->m_gpusemaphoreaMergeLayersReady[iFrameIndex]->initialize_gpu_semaphore(
+         //      m_pgpucontext);
+         //}
+
+         //semaphoreaMergeLayersReady.add(m_pgpucontext->m_gpusemaphoreaMergeLayersReady[iFrameIndex]);
+
+         if (ptextureBackBuffer->gpu_texture()->synchronization())
+         {
+
+            auto pgpusemaphoreRenderFinished = ptextureBackBuffer->gpu_texture()->synchronization()->m_pgpusemaphoreRenderFinished;
+
+            if (pgpusemaphoreRenderFinished)
+            {
+
+               pgpucommandbuffer->m_semaphoreaSignal.add_unique(pgpusemaphoreRenderFinished);
+
+               //if (semaphoreaReady.add_unique(pgpusemaphoreRenderFinished))
+               //{
+               //
+               //   epipelinestageaReady.add(::gpu::e_pipeline_stage_fragment_shader_bit);
+               //
+               //}
+
+            }
+
+         }
+
+         //pgpucommandbuffer->m_semaphoreaSignal.append_unique(semaphoreaReady);
+
+         m_pgpurenderer->m_pgpucontext->endSingleTimeCommands(pgpucommandbuffer);
+
+         //                 m_pgpucontext->m_pgpurenderer->
+
+         //m_pgpucontext->end_render(pgpucommandbuffer);
+      //}
+      }
+
+      //::cast<swap_chain> pswapchain = m_pgpucontext->get_swap_chain();
+
+      //if (!pswapchain->m_bSwapChainInitialized)
+      //{
+
+      //   pswapchain->initialize_gpu_swap_chain(prendererBackBuffer);
+      //}
+
+      //::cast<gpu::render_target> pgpurendertarget = pswapchain;
+
+      //if (pgpurendertarget)
+      //{
+
+      //   if (!pgpurendertarget->m_pgpurenderer)
+      //   {
+
+      //      pgpurendertarget->initialize_render_target(this, m_pgpucontext->size(), nullptr);
+      //   }
+      //}
+
+      // for (auto player : *playera)
+      // {
+      //
+      //    if (pgpulayer->getCurrentCommandBuffer4())
+      //    {
+      //
+      //       pgpulayer->getCurrentCommandBuffer4()->wait_commands_to_execute();
+      //
+      //    }
+      //
+      // }
+
+      // #if !defined(__APPLE__)
+
+      if (pgpuwindowattachment->m_pgpucontextWindow == m_pgpurenderer->m_pgpucontext)
+      {
+
+         information("we are in the renderer of the context that owns the swap chain????");
+
+      }
+      else
+      {
+
+         information("we aren't in the renderer of the context that owns the swap chain????");
+
+      }
+
+      return ptextureBackBuffer;
+
+   }
+
+
+
+
+   void render_target::do_output(::gpu::texture_site * pgputexture)
+   {
+
+
+
+   }
+
+
+   ::pointer_array < ::gpu::texture_site >* render_target::texturea2()
+   {
+
+      if (!m_ptexturesitea)
       {
 
          auto iFrameCount = m_pgpurenderer->m_iDefaultFrameCount;
 
-         defer_construct_newø(m_ptexturea);
+         defer_construct_newø(m_ptexturesitea);
 
-         m_ptexturea->set_size(iFrameCount);
+         m_ptexturesitea->set_size(iFrameCount);
 
       }
 
-      return m_ptexturea;
+      return m_ptexturesitea;
 
    }
 
      
-   ::gpu::texture *render_target::texture(::collection::index i) 
+   ::gpu::texture_site *render_target::texture(::collection::index i) 
    {
 
-      auto &texturea = *this->texturea2();
+      auto &texturesitea = *this->texturea2();
 
-      auto &ptexture = texturea[i];
+      auto &ptexturesite = texturesitea[i];
 
-      if (!ptexture)
+      if (!ptexturesite)
       {
 
-         defer_constructø(ptexture);
+         defer_construct_newø(ptexturesite);
+
+         defer_constructø(ptexturesite->m_pgputextureSite);
 
       }
 
@@ -88,13 +335,15 @@ namespace gpu
          ? pgpucontext->m_papplication->m_gpu.m_iSampleCount
          : 1;
 
-      if (!m_size.is_empty()
-         && (ptexture->size() != m_size
-            || ptexture->m_bMultisample != bMultisample
-            || ptexture->m_iSampleCount != iRequestedSampleCount))
+      auto sizeRaw = pgpucontext->m_sizeRaw;
+
+      if (!sizeRaw.is_empty()
+         && (ptexturesite->m_pgputextureSite->raw_size() != sizeRaw
+            || ptexturesite->m_pgputextureSite->m_bMultisample != bMultisample
+            || ptexturesite->m_pgputextureSite->m_iSampleCount != iRequestedSampleCount))
       {
 
-         initialize_render_target_image(ptexture);
+         create_render_target_image(ptexturesite->m_pgputextureSite);
 
          //::gpu::texture_attributes textureattributes(::i32_rectangle{m_size});
 
@@ -108,9 +357,15 @@ namespace gpu
 
          // ptexture->initialize_texture(m_pgpurenderer->m_pgpucontext, textureattributes, textureflags);
       }
-      return ptexture;
+
+      ptexturesite->m_pgputextureSite->m_textureattributes.m_size = m_pgpurenderer->m_pgpucontext->size();
+      ptexturesite->m_pointInput = m_pgpurenderer->m_pgpucontext->input_origin();
+      ptexturesite->m_pointOutput = m_pgpurenderer->m_pgpucontext->output_origin();
+
+      return ptexturesite;
 
    }
+
 
    ::gpu::texture *render_target::depth_texture(::collection::index i)
    {
@@ -121,12 +376,12 @@ namespace gpu
 
 
 
-   ::pointer_array < ::gpu::texture >* render_target::depth_texturea2()
-   {
+   //::pointer_array < ::gpu::texture >* render_target::depth_texturea2()
+   //{
 
-      return m_ptextureaDepth;
+   //   return m_ptextureaDepth;
 
-   }
+   //}
 
 
    void render_target::initialize_render_target(::gpu::renderer* pgpurenderer, const ::i32_size& size, ::pointer <::gpu::render_target>previous)
@@ -224,19 +479,19 @@ namespace gpu
    //}
 
 
-   void render_target::restart_frame_counter()
-   {
+   //void render_target::restart_frame_counter()
+   //{
 
-      if (m_pgpurenderer->m_pgpucontext->m_pgpudevice->get_frame_count() > 1)
-      {
+   //   if (m_pgpurenderer->m_pgpucontext->m_pgpudevice->get_frame_count() > 1)
+   //   {
 
-         m_pgpurenderer->m_pgpucontext->m_pgpudevice->restart_frame_counter();
+   //      m_pgpurenderer->m_pgpucontext->m_pgpudevice->restart_frame_counter();
 
-         //m_pgpurenderer->m_prenderstate->on_happening(e_happening_reset_frame_counter);
+   //      //m_pgpurenderer->m_prenderstate->on_happening(e_happening_reset_frame_counter);
 
-      }
+   //   }
 
-   }
+   //}
 
 
 //   ::i32 render_target::get_frame_index()
@@ -371,7 +626,7 @@ namespace gpu
    ::i32 render_target::imageCount() 
    {
       
-      return (::i32) m_ptexturea->size(); 
+      return (::i32) m_ptexturesitea->size(); 
    
    }
 
@@ -392,14 +647,16 @@ namespace gpu
    }
 
 
-   void render_target::initialize_render_target_image(::gpu::texture *pgputexture)
+   void render_target::create_render_target_image(::gpu::texture *pgputexture)
    {
 
-      auto rectangle = m_pgpurenderer->m_pgpucontext->rectangle();
+      auto size = m_pgpurenderer->m_pgpucontext->size();
+
+      auto sizeRaw = m_pgpurenderer->m_pgpucontext->m_sizeRaw;
 
       auto escene = m_pgpurenderer->m_pgpucontext->m_escene;
 
-      ::gpu::texture_attributes textureattributes(rectangle);
+      ::gpu::texture_attributes textureattributes(size);
 
       ::gpu::texture_flags textureflags;
 
@@ -409,9 +666,11 @@ namespace gpu
 
       textureflags.m_bTransferSource = true;
 
+      textureattributes.m_sizeRaw = sizeRaw;
+
       textureflags.m_bWithDepth =
-         escene == ::gpu::e_scene_3d ||
-         m_pgpurenderer->m_pgpucontext->m_pgpucompositor != nullptr;
+         escene == ::gpu::e_scene_3d;
+      //   m_pgpurenderer->m_pgpucontext->m_pgpucompositor != nullptr;
 
       auto bMultisample =
          m_pgpurenderer->m_pgpucontext->m_papplication->m_gpu.m_bMultisample;
@@ -432,19 +691,23 @@ namespace gpu
       pgputexture->m_iSampleCount = iRequestedSampleCount;
       pgputexture->m_bMultisample = bMultisample;
 
-      pgputexture->initialize_texture(m_pgpurenderer->m_pgpucontext, textureattributes, textureflags);
+      pgputexture->create_texture(m_pgpurenderer->m_pgpucontext, textureattributes, textureflags);
+
+      pgputexture->m_textureattributes.m_size = m_pgpurenderer->m_pgpucontext->size();
+      //pgputexture->m_rectangleSource = m_pgpurenderer->m_pgpucontext->source_placement();
+      //pgputexture->m_rectangleTarget = m_pgpurenderer->m_pgpucontext->target_placement();
 
 
    }
 
 
-   texture * render_target::current_texture(::gpu::layer* pgpulayer)
+   texture_site * render_target::current_texture(::gpu::layer* pgpulayer, bool bRenderTarget)
    {
 
       if (::is_set(pgpulayer))
       {
 
-         return pgpulayer->source_texture();
+         return pgpulayer->texture(bRenderTarget);
 
       }
 
@@ -452,7 +715,9 @@ namespace gpu
 
       //auto etype = pgpucontext->m_etype;
 
-      ::i32 iFrameIndex = m_pgpurenderer->m_pgpucontext->m_pgpudevice->get_frame_index3();
+      auto pgpuwindowattachment = ::gpu::window_attachment::get(m_pgpurenderer);
+
+      ::i32 iFrameIndex = pgpuwindowattachment->get_frame_index3();
       
       //auto size = m_ptexturea->size();
 
@@ -469,16 +734,16 @@ namespace gpu
       if (::is_set(pgpulayer))
       {
 
-         auto ptexture = pgpulayer->source_texture();
+         auto ptexturesite = pgpulayer->texture(true);
 
-         if (!ptexture)
+         if (ptexturesite.nok())
          {
 
             throw ::exception(error_wrong_state, "No source texture in layer");
 
          }
 
-         auto ptextureDepth = ptexture->get_depth_texture();
+         auto ptextureDepth = ptexturesite->gpu_texture()->get_depth_texture();
 
          if(!ptextureDepth)
          {
@@ -495,20 +760,22 @@ namespace gpu
 
       //auto etype = pgpucontext->m_etype;
 
-      ::i32 iFrameIndex = m_pgpurenderer->m_pgpucontext->m_pgpudevice->get_frame_index3();
+      auto pgpuwindowattachment = ::gpu::window_attachment::get(m_pgpurenderer);
+
+      ::i32 iFrameIndex = pgpuwindowattachment->get_frame_index3();
 
       //auto size = m_ptexturea->size();
 
-      auto ptexture = m_ptexturea->element_at(iFrameIndex);
+      auto ptexturesite = m_ptexturesitea->element_at(iFrameIndex);
 
-      if (!ptexture)
+      if (ptexturesite.nok())
       {
 
          throw ::exception(error_wrong_state, "No source texture in layer");
 
       }
 
-      auto ptextureDepth = ptexture->get_depth_texture();
+      auto ptextureDepth = ptexturesite->gpu_texture()->get_depth_texture();
 
       //if (!ptextureDepth)
       //{
@@ -558,13 +825,6 @@ namespace gpu
    //}
 
 
-   bool render_target::is_starting_frame()const
-   {
-
-      return m_pgpurenderer->m_pgpucontext->m_pgpudevice->m_iFrameSerial2 
-         == m_pgpurenderer->m_pgpucontext->m_pgpudevice->m_iCurrentFrame3;
-
-   }
 
 
 } // namespace gpu

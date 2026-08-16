@@ -131,6 +131,9 @@ public:
    inline UNIT_TYPE width() const noexcept { return this->cx; }
    inline UNIT_TYPE height() const noexcept { return this->cy; }
 
+   template < prototype_floating FLOATING >
+   inline FLOATING aspect_ratio() const { return ((FLOATING) this->cx)/((FLOATING) this->cy); }
+
 //   inline UNIT_TYPE get_minimum_dimension() const noexcept { return ::minimum(this->cx, this->cy); }
 //   inline UNIT_TYPE get_maximum_dimension() const noexcept { return ::maximum(this->cx, this->cy); }
 

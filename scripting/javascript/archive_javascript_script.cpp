@@ -26,7 +26,7 @@
 /*
  * This is a simple program showing how to use TinyJS
  */
-#include "framework.h"
+#include "platform.h"
 
 #if defined(_MSC_VER) && defined(_DEBUG)
 #	define aaa_memory_new DEBUG_NEW

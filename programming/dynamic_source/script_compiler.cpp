@@ -1,4 +1,4 @@
-#include "framework.h"
+#include "platform.h"
 #include "script_compiler.h"
 #include "script_manager.h"
 #include "ds_script.h"
@@ -1234,7 +1234,7 @@ namespace dynamic_source
       string_array_base straId;
       string strDest;
       strDest = "";
-      strDest += "#include \"netnode_dynamic_source_script_framework.h\"\r\n";
+      strDest += "#include \"netnode_dynamic_source_script_platform.h\"\r\n";
       //strDest += "#include \"11ca2_account.h\"\r\n";
       //for(::i32 i = 0; i < m_straLibIncludePath.get_count(); i++)
       //{

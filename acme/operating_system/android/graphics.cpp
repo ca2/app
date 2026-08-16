@@ -1,4 +1,4 @@
-#include "framework.h"
+#include "platform.h"
 
 
 //::i32_bool window_set_mouse_cursor(oswindow window, HCURSOR hcursor)

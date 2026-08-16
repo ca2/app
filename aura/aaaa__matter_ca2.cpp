@@ -1,4 +1,4 @@
-#include "framework.h"
+#include "platform.h"
 
 
 const_char_pointer g_pszServerCa2Cc = "https://ca2.site/";

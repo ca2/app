@@ -1,4 +1,4 @@
-#include "framework.h"
+#include "platform.h"
 #include "plain_edit.h"
 #include "scroll_state.h"
 #include "style.h"
@@ -134,7 +134,7 @@ namespace aura
 
             }
 
-            iTagAddUp = strTag.length();
+            iTagAddUp = (::i32) strTag.length();
 
             str = str.left(iData) + strTag + str.substr(iBase64);
 
@@ -1864,7 +1864,7 @@ namespace user
 
             string strPack = m.element1();
 
-            int iFind = str.find_index(strPack);
+            auto iFind = (::i32) str.find_index(strPack);
 
             if (iFind >= 0)
             {

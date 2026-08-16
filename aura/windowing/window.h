@@ -73,6 +73,7 @@ namespace windowing
       bool                                      m_bUpdateScreenSynchronously;
       class ::time                              m_timeLastDrawGuard1;
       ::pointer<::draw2d::window_attachment>    m_pdraw2dwindowattachment;
+      ::pointer<::apex::gpu::window_attachment> m_papexgpuwindowattachment;
       bool                                      m_bActiveWindow;
       bool                                      m_bKeyboardFocus;
       ::pointer < class placement_log >         m_pplacementlog;

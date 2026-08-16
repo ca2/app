@@ -1,6 +1,6 @@
 // First try common GlobalUBO1 structure for 3D graphics applications
 // by camilo on 2025-12-02 22:25 <3ThomasBorregaardSorensen!!
-#include "framework.h"
+#include "platform.h"
 #include "global_ubo1.h"
 
 

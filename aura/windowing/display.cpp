@@ -1,6 +1,6 @@
 // created by Camilo <3CamiloSasukeThomasBorregaardSoerensen
 // recreated by Camilo 2021-01-28 22:20
-#include "framework.h"
+#include "platform.h"
 #include "acme/exception/interface_only.h"
 #include "acme/parallelization/synchronous_lock.h"
 #include "acme/platform/node.h"
@@ -688,7 +688,7 @@ namespace windowing
 
          }
 
-         pmonitor->initialize_monitor(this, iMonitor);
+         pmonitor->initialize_monitor(this, (::i32) iMonitor);
 
       }
 

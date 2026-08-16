@@ -79,6 +79,9 @@ namespace draw2d
 
       virtual void initialize(::particle * pparticle) override;
 
+      virtual const void * get_gpu_physical_device_features(void * p);
+      virtual void get_required_gpu_device_extensions(::u64 uPhysicalDevice, ::array<const char *> & pszaRequiredDeviceExtensions);
+
    protected:
       friend class ::draw2d::object;
       void add_object(::draw2d::object * pobject);
@@ -89,6 +92,8 @@ namespace draw2d
       friend class graphics;
       void add_graphics(graphics * pimage);
       void erase_graphics(graphics * pimage);
+
+
       ::draw2d::graphics_lease _acquire_memory_graphics(
          ::acme::user::interaction * pacmeuserinteractionAffinity,
          const ::i32_size & size,
@@ -103,6 +108,9 @@ namespace draw2d
 
       //virtual void on_before_create_window(::windowing::window* pwindow);
       //virtual void on_create_window(::windowing::window * pwindow);
+      virtual ::pointer < ::draw2d::window_attachment > allocate_draw2d_window_attachment(::acme::windowing::window * pacmewindowingwindow);
+      virtual ::pointer < ::draw2d::window_attachment > allocate_draw2d_window_attachment_for_gpu(::acme::windowing::window * pacmewindowingwindow);
+      virtual ::pointer < ::draw2d::window_attachment > _allocate_draw2d_window_attachment_for_gpu(::acme::windowing::window * pacmewindowingwindow);
 
       void clear_all_objects_os_data();
 
@@ -123,7 +131,7 @@ namespace draw2d
 
 
 
-      virtual graphics_pointer create_graphics(::acme::user::interaction * pacmeuserinteractionAffinity);
+      virtual graphics_pointer allocate_graphics(::acme::user::interaction * pacmeuserinteractionAffinity);
 
       virtual graphics_pointer create_memory_graphics(const ::i32_size &size, ::acme::user::interaction * pacmeuserinteractionAffinity);
 
@@ -148,7 +156,7 @@ namespace draw2d
 
       virtual bool write_text_supports_raster_fonts();
       virtual bool write_text_supports_legacy_gdi_fonts();
-      virtual bool graphics_context_supports_single_buffer_mode();
+      //virtual bool graphics_context_supports_single_buffer_mode();
       virtual bool graphics_context_does_full_redraw();
 
       //#ifdef WINDOWS

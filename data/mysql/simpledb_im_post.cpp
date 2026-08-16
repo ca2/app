@@ -1,4 +1,4 @@
-#include "framework.h"
+#include "platform.h"
 
 
 im_post::im_post(db_server * pserver) :

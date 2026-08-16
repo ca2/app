@@ -1,4 +1,4 @@
-#include "framework.h"
+#include "platform.h"
 #include "str.h"
 #include "acme/prototype/string/utf8_character.h"
 #include "ch_class.h"

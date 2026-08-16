@@ -1,6 +1,6 @@
 // Transferred from SceneFoundry_opengl_pbr_renderer/Timer by
 // camilo <3ThomasBorregaardSorensen!!
-#include "framework.h"
+#include "platform.h"
 #include "timer.h"
 
 

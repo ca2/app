@@ -1,4 +1,4 @@
-#include "framework.h"
+#include "platform.h"
 #include "font_impact.h"
 #include "top_impact.h"
 #include "top_edit_impact.h"

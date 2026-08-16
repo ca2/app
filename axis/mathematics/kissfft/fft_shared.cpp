@@ -1,4 +1,4 @@
-#include "framework.h"
+#include "platform.h"
 #include "fft.h"
 #include "acme/prototype/mathematics/complex.h"
 #include <math.h>

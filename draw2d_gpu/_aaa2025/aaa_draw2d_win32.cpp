@@ -1,4 +1,4 @@
-#include "../framework.h"
+#include "../platform.h"
 #include "../draw2d.h"
 //#include "windowing_win32/window.h"
 #include "glad_wgl.h"

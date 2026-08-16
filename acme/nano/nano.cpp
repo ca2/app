@@ -8,7 +8,7 @@
 // Added compress and shell on 2024-05-27 02:16 <3ThomasBorregaardSorensen!!
 // Added idn by camilo on 2024-06-02 16:59 <3ThomasBorregaardSorensen!!
 // Added account and dynamic library and shell on 2024-06-02 19:11 <3ThomasBorregaardSorensen!!
-#include "framework.h"
+#include "platform.h"
 #include "nano.h"
 #include "acme/nano/account/account.h"
 #include "acme/nano/archive/archive.h"

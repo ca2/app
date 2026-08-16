@@ -33,8 +33,8 @@
 		93F6B3FD2A86D99E1C7A8135 /* libssl.dylib in Embed Libraries */ = {isa = PBXBuildFile; fileRef = D07195A5483A5ABDA87A4B2D /* libssl.dylib */; settings = {ATTRIBUTES = (CodeSignOnCopy, ); }; };
 		86DAEEACC96C6D1930C70273 /* application.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 737674F9979944899FB7EAF0 /* application.cpp */; };
 		A060FB0BD79D9311AE2B9D40 /* _.h in Headers */ = {isa = PBXBuildFile; fileRef = 98D2937FD07BB52C0E8325B2 /* _.h */; };
-		BE7C862A9D47DB2C688D2559 /* framework.h in Headers */ = {isa = PBXBuildFile; fileRef = 7A9D87813A90BFD3EF95AAE3 /* framework.h */; };
-		D5249DD2EBD9F14EFFCC71C8 /* framework.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 0E38A516C51A937193A8B803 /* framework.cpp */; };
+		BE7C862A9D47DB2C688D2559 /* platform.h in Headers */ = {isa = PBXBuildFile; fileRef = 7A9D87813A90BFD3EF95AAE3 /* platform.h */; };
+		D5249DD2EBD9F14EFFCC71C8 /* platform.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 0E38A516C51A937193A8B803 /* platform.cpp */; };
 		F72C04D32B6E5387F51A01D7 /* openssl.cpp in Sources */ = {isa = PBXBuildFile; fileRef = C6A17DE1E9949599D0543DC6 /* openssl.cpp */; };
 		3E8C05AFA62429194C59046B /* openssl.h in Headers */ = {isa = PBXBuildFile; fileRef = 794E72BE8121E5E65E25875F /* openssl.h */; };
 		7E89D9B61E51BDAAE3DD1963 /* x264.h in Headers */ = {isa = PBXBuildFile; fileRef = B228DE6312FA5EBE269AA7AC /* x264.h */; };
@@ -207,8 +207,8 @@
 		737674F9979944899FB7EAF0 /* application.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = application.cpp; sourceTree = "<group>"; };
 		7AA8B471D178463FBF30102D /* ffmpeg.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = ffmpeg.cpp; sourceTree = "<group>"; };
 		98D2937FD07BB52C0E8325B2 /* _.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = _.h; sourceTree = "<group>"; };
-		7A9D87813A90BFD3EF95AAE3 /* framework.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = framework.h; sourceTree = "<group>"; };
-		0E38A516C51A937193A8B803 /* framework.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = framework.cpp; sourceTree = "<group>"; };
+		7A9D87813A90BFD3EF95AAE3 /* platform.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = platform.h; sourceTree = "<group>"; };
+		0E38A516C51A937193A8B803 /* platform.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = platform.cpp; sourceTree = "<group>"; };
 		038CEE8224CCBA33BF394F60 /* x264.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = x264.cpp; sourceTree = "<group>"; };
 		57215A2EBE88EE2E2AF76C46 /* x265.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = x265.h; sourceTree = "<group>"; };
 		CC8398F0F5BBD9224975FB83 /* x264.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = x264.h; sourceTree = "<group>"; };
@@ -380,8 +380,8 @@
 				EAF40229E88CF70942DB2AE2 /* _static_factory_.inl */,
 				737674F9979944899FB7EAF0 /* application.cpp */,
 				5E9937F2E5B1B34D1A19A405 /* application.h */,
-				0E38A516C51A937193A8B803 /* framework.cpp */,
-				7A9D87813A90BFD3EF95AAE3 /* framework.h */,
+				0E38A516C51A937193A8B803 /* platform.cpp */,
+				7A9D87813A90BFD3EF95AAE3 /* platform.h */,
 				EE61D8E1C1706BC78664BEF4 /* x264.cpp */,
 				01478E0164C7C3028B24195C /* x264.h */,
 				0AFE5986C73AE9BACABCC352 /* build.cpp */,
@@ -437,7 +437,7 @@
 				3E8C05AFA62429194C59046B /* openssl.h in Headers */,
 				EE372EB84A24ADA645CA2992 /* build.h in Headers */,
 				A060FB0BD79D9311AE2B9D40 /* _.h in Headers */,
-				BE7C862A9D47DB2C688D2559 /* framework.h in Headers */,
+				BE7C862A9D47DB2C688D2559 /* platform.h in Headers */,
 				555F24A7A06E2E7EAAC32DA2 /* build.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -608,7 +608,7 @@
 				F72C04D32B6E5387F51A01D7 /* openssl.cpp in Sources */,
 				8F03CC0F67B85E2037F74A0E /* ffmpeg.cpp in Sources */,
 				86DAEEACC96C6D1930C70273 /* application.cpp in Sources */,
-				D5249DD2EBD9F14EFFCC71C8 /* framework.cpp in Sources */,
+				D5249DD2EBD9F14EFFCC71C8 /* platform.cpp in Sources */,
 				5CD021207437DB20FEA47452 /* application.cpp in Sources */,
 				FAAA6F6608A5C9217EA19BE5 /* x264.cpp in Sources */,
 			);

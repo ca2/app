@@ -17,7 +17,7 @@
 		44FCFCD837CCCF0FD213F4C5 /* context.h in Headers */ = {isa = PBXBuildFile; fileRef = 54400F19FEB6C7CC72BA95A9 /* context.h */; };
 		D84E13D4B1EE9242226EFBAF /* draw2d_context.h in Headers */ = {isa = PBXBuildFile; fileRef = B82CF7E7B11867366F89B9AB /* draw2d_context.h */; };
 		CC1C4218D592C82E760A5072 /* _.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 96BE37F5457BB5C0A58B3AA3 /* _.cpp */; };
-		744646BC91EC20E66B47A9F4 /* framework.cpp in Sources */ = {isa = PBXBuildFile; fileRef = F30B14AC9FD767DDA01791D5 /* framework.cpp */; };
+		744646BC91EC20E66B47A9F4 /* platform.cpp in Sources */ = {isa = PBXBuildFile; fileRef = F30B14AC9FD767DDA01791D5 /* platform.cpp */; };
 		8F147EC2852E170BE93D6674 /* libacme.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 28F99DD5D31448808C6BCDA4 /* libacme.dylib */; };
 		8CD98311E587BEDEF81B0E44 /* libapex.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 2B2674293C35E6E0C4EF8EB3 /* libapex.dylib */; };
 		79BBA9A56A30A5B9B33B9396 /* libaqua.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = E61B7DC213F4A6636FD6D55D /* libaqua.dylib */; };
@@ -70,10 +70,10 @@
 		B82CF7E7B11867366F89B9AB /* draw2d_context.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = draw2d_context.h; sourceTree = "<group>"; };
 		97A3FC9A33A36AD14689BCD0 /* aura.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = aura.xcodeproj; path = ../aura/aura.xcodeproj; sourceTree = SOURCE_ROOT; };
 		C430C5F5A9C0B6F0AB5614E8 /* libnano2d.dylib */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.dylib"; includeInIndex = 0; path = libnano2d.dylib; sourceTree = BUILT_PRODUCTS_DIR; };
-		F30B14AC9FD767DDA01791D5 /* framework.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = framework.cpp; sourceTree = "<group>"; };
+		F30B14AC9FD767DDA01791D5 /* platform.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = platform.cpp; sourceTree = "<group>"; };
 		96BE37F5457BB5C0A58B3AA3 /* _.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = _.cpp; sourceTree = "<group>"; };
 		2B1FF0D36C714DCC9388FB8E /* common.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = common.h; sourceTree = "<group>"; };
-		CE5B2167E822758BBE0BB4B1 /* framework.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = framework.h; sourceTree = "<group>"; };
+		CE5B2167E822758BBE0BB4B1 /* platform.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = platform.h; sourceTree = "<group>"; };
 		A9F265CFB001626627393C03 /* _.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = _.h; sourceTree = "<group>"; };
 		28F99DD5D31448808C6BCDA4 /* libacme.dylib */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.dylib"; path = libacme.dylib; sourceTree = BUILT_PRODUCTS_DIR; };
 		2B2674293C35E6E0C4EF8EB3 /* libapex.dylib */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.dylib"; path = libapex.dylib; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -144,8 +144,8 @@
 				B82CF7E7B11867366F89B9AB /* draw2d_context.h */,
 				26A48395BE863991912378C1 /* font_sink.cpp */,
 				582507EB5546AB696FFF0BD4 /* font_sink.h */,
-				F30B14AC9FD767DDA01791D5 /* framework.cpp */,
-				CE5B2167E822758BBE0BB4B1 /* framework.h */,
+				F30B14AC9FD767DDA01791D5 /* platform.cpp */,
+				CE5B2167E822758BBE0BB4B1 /* platform.h */,
 				FFB01CEF5B0345C3ADE85F51 /* platform.mm */,
 				FA91DBE8AD3DB9EFD3495AA0 /* types.h */,
 			);
@@ -275,7 +275,7 @@
 				726268AB917FC8E55AC665B7 /* context.cpp in Sources */,
 				4DB34ADB6E47FD9F1D1F6E21 /* aaa_color.cpp in Sources */,
 				CC1C4218D592C82E760A5072 /* _.cpp in Sources */,
-				744646BC91EC20E66B47A9F4 /* framework.cpp in Sources */,
+				744646BC91EC20E66B47A9F4 /* platform.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -339,7 +339,7 @@
 				GCC_NO_COMMON_BLOCKS = YES;
 				GCC_OPTIMIZATION_LEVEL = 0;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
-				GCC_PREFIX_HEADER = framework.h;
+				GCC_PREFIX_HEADER = platform.h;
 				GCC_PREPROCESSOR_DEFINITIONS = (
 					"$(inherited)",
 				);
@@ -441,7 +441,7 @@
 				GCC_INCREASE_PRECOMPILED_HEADER_SHARING = NO;
 				GCC_NO_COMMON_BLOCKS = YES;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
-				GCC_PREFIX_HEADER = framework.h;
+				GCC_PREFIX_HEADER = platform.h;
 				GCC_VERSION = "";
 				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
 				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;

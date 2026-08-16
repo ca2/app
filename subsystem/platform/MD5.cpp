@@ -29,7 +29,7 @@ These notices must be retained in any copies of any part of this
 documentation and/or software.
 
 */
-#include "framework.h"
+#include "platform.h"
 #include "MD5.h"
 
 // #include aaa_<memory.h>

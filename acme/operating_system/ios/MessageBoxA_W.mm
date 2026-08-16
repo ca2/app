@@ -5,7 +5,7 @@
 //  Created by Camilo Sasuke Tsumanuma on 09/07/15.
 //
 //
-#include "framework.h"
+#include "platform.h"
 //#include "acme/prototype/prototype/function.h"
 #import <UIKit/UIKit.h>
 

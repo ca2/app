@@ -1,4 +1,4 @@
-#include "framework.h"
+#include "platform.h"
 #include "gpu_opengl/_gpu_opengl.h"
 #include "gpu_opengl/wgl_context.h"
 #include "approach.h"

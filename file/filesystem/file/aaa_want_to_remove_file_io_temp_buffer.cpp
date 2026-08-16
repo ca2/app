@@ -1,6 +1,6 @@
 // InOutTempBuffer.cpp
 
-#include "framework.h"
+#include "platform.h"
 
 /*#include "../../../C/7zCrc.h"
 

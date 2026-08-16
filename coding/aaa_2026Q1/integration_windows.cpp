@@ -3,7 +3,7 @@
 // Merge from integration_windows_build_tool.cpp on 2024-05-15 03:35 by
 // camilo <3ThomasBorregaardSorensen!!
 //
-#include "framework.h"
+#include "platform.h"
 #include "application.h"
 #include "code.h"
 #include "impact.h"

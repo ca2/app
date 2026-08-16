@@ -1,4 +1,4 @@
-#include "framework.h"
+#include "platform.h"
 #include "session.h"
 #include "acme/constant/id.h"
 #include "acme/parallelization/manual_reset_happening.h"

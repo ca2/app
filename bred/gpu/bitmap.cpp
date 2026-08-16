@@ -1,5 +1,5 @@
 // Created by camilo on 2026-07-27 14:21 <3ThomasBorregaardSørensen!! Mummi!! Bilbo!!
-#include "framework.h"
+#include "platform.h"
 #include "bitmap.h"
 #include "acme/graphics/image/pixmap_t.h"
 #include "apex/gpu/approach.h"
@@ -51,7 +51,7 @@ namespace gpu
 
       pixmap.initialize_pixmap(size, (::image32_t *)memory.data_if_at_least(size.cy * iScan), iScan);
 
-      create_gpu_texture(&pixmap);
+      _create_gpu_bitmap(size, &pixmap);
 
    }
 
@@ -71,8 +71,10 @@ namespace gpu
    }
 
 
-   void bitmap::create_gpu_texture(pixmap_t * ppixmap)
+   void bitmap::_create_gpu_bitmap(const ::i32_size & size, pixmap_t * ppixmap)
    {
+
+      m_size = size;
 
       auto pacmeuserinteractionMain = m_papplication->main_acme_user_interaction();
 
@@ -192,6 +194,7 @@ namespace gpu
       {
 
          throw ::exception(error_bad_argument);
+
       }
 
       ::gpu::context_lock contextlock(pgpucontext);

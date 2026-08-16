@@ -1,5 +1,5 @@
 // From string_stream.h by camilo on 2023-07-05 22:02 <3ThomasBorregaardSorensen!!
-#include "framework.h"
+#include "platform.h"
 #include "string_buffer.h"
 #include "string_stream.h"
 

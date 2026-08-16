@@ -507,7 +507,7 @@
     <ClInclude Include="filesystem\fs\set.h" />
     <ClInclude Include="filesystem\fs\_.h" />
     <ClInclude Include="filesystem\fs\_fs.h" />
-    <ClInclude Include="framework.h" />
+    <ClInclude Include="platform.h" />
     <ClInclude Include="framework_c.h" />
     <ClInclude Include="future.h" />
     <ClInclude Include="id.h" />
@@ -775,7 +775,7 @@
     <ClCompile Include="filesystem\fs\remote_native_file.cpp" />
     <ClCompile Include="filesystem\fs\remote_native.cpp" />
     <ClCompile Include="filesystem\fs\set.cpp" />
-    <ClCompile Include="framework.cpp">
+    <ClCompile Include="platform.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Create</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='StaticDebug|Win32'">Create</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Create</PrecompiledHeader>

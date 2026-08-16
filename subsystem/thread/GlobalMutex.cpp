@@ -21,7 +21,7 @@
 // 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA.
 //-------------------------------------------------------------------------
 //
-#include "framework.h"
+#include "platform.h"
 #include "GlobalMutex.h"
 #include "subsystem/node/SystemException.h"
 //// #include aaa_<Aclapi.h>

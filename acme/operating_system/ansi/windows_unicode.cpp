@@ -6,7 +6,7 @@
 //  15:07
 //  Copyright (c) 2022 Camilo Sasuke Thomas Borregaard Soerensen. All rights reserved.
 //
-#include "framework.h"
+#include "platform.h"
 #include "windows_unicode.h"
 
 #include <iconv.h>

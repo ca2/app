@@ -23,7 +23,7 @@
 		926E1C08D13334EA39B4588F /* helloaxis_gcom.h in Headers */ = {isa = PBXBuildFile; fileRef = B2862542CBD11EC86079648F /* helloaxis_gcom.h */; };
 		59A76E8C8E3BBB494700400E /* helloaxis_impact_base.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 28747304FD22F0F7108DF600 /* helloaxis_impact_base.cpp */; };
 		D02B0FA89A96C09304DD8AF4 /* helloaxis_impact_base.h in Headers */ = {isa = PBXBuildFile; fileRef = 9863C42E2C1667957B8664B8 /* helloaxis_impact_base.h */; };
-		AD5110EAEF2784B648785506 /* framework.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 43C8FE0CCB5AF3BD191D201C /* framework.cpp */; };
+		AD5110EAEF2784B648785506 /* platform.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 43C8FE0CCB5AF3BD191D201C /* platform.cpp */; };
 		2A1C9F92479A8DF44F010304 /* helloaxis_application.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9894B37AFC31DB8549E62899 /* helloaxis_application.cpp */; };
 		C66A382B67AF03B8C8AA24E6 /* helloaxis_document.cpp in Sources */ = {isa = PBXBuildFile; fileRef = E95428FDF2FC96981F0BE012 /* helloaxis_document.cpp */; };
 		7D48BA6BFBACBA15FBCF7FB8 /* helloaxis_frame.cpp in Sources */ = {isa = PBXBuildFile; fileRef = E66A01C90E05E89007BE0381 /* helloaxis_frame.cpp */; };
@@ -49,8 +49,8 @@
 		0A011691D5FF36AA377DC48E /* libapp_core_helloaxis.a in Frameworks */ = {isa = PBXBuildFile; fileRef = EB0C664AEFE4984D6D6E8B93 /* libapp_core_helloaxis.a */; };
 		749F84EDBC4F46290E46F99C /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = B5BBE953A0B9588B46573A91 /* InfoPlist.strings */; };
 		1342B9FEE75B2DFEA8FF6B29 /* app_core_helloaxis_iosTests.m in Sources */ = {isa = PBXBuildFile; fileRef = E8E35222EC85590E55AA4886 /* app_core_helloaxis_iosTests.m */; };
-		EBBA5966D10F2155DA76426B /* framework.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 43C8FE0CCB5AF3BD191D201C /* framework.cpp */; };
-		235901330E8A8B0EE8B03A51 /* framework.h in Headers */ = {isa = PBXBuildFile; fileRef = B680FC2247A1E6A3D1209282 /* framework.h */; };
+		EBBA5966D10F2155DA76426B /* platform.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 43C8FE0CCB5AF3BD191D201C /* platform.cpp */; };
+		235901330E8A8B0EE8B03A51 /* platform.h in Headers */ = {isa = PBXBuildFile; fileRef = B680FC2247A1E6A3D1209282 /* platform.h */; };
 		4C5126E403C285086A3818AF /* helloaxis.h in Headers */ = {isa = PBXBuildFile; fileRef = F7DA0814B52F0915A78EFD85 /* helloaxis.h */; };
 		5F9CAB0C25438776A8EA1FDF /* helloaxis_application.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9894B37AFC31DB8549E62899 /* helloaxis_application.cpp */; };
 		2AC674F2D63DCC4CEFE8E7A3 /* helloaxis_document.cpp in Sources */ = {isa = PBXBuildFile; fileRef = E95428FDF2FC96981F0BE012 /* helloaxis_document.cpp */; };
@@ -194,8 +194,8 @@
 		417B494D60384F1086BC1FEC /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		E8E35222EC85590E55AA4886 /* app_core_helloaxis_iosTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = app_core_helloaxis_iosTests.m; sourceTree = "<group>"; };
 		BBF94F6144B325CDBA9705E2 /* libapp_core_helloaxis.dylib */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.dylib"; includeInIndex = 0; path = libapp_core_helloaxis.dylib; sourceTree = BUILT_PRODUCTS_DIR; };
-		43C8FE0CCB5AF3BD191D201C /* framework.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = framework.cpp; sourceTree = "<group>"; };
-		B680FC2247A1E6A3D1209282 /* framework.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = framework.h; sourceTree = "<group>"; };
+		43C8FE0CCB5AF3BD191D201C /* platform.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = platform.cpp; sourceTree = "<group>"; };
+		B680FC2247A1E6A3D1209282 /* platform.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = platform.h; sourceTree = "<group>"; };
 		F7DA0814B52F0915A78EFD85 /* helloaxis.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = helloaxis.h; sourceTree = "<group>"; };
 		9894B37AFC31DB8549E62899 /* helloaxis_application.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = helloaxis_application.cpp; sourceTree = "<group>"; };
 		E95428FDF2FC96981F0BE012 /* helloaxis_document.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = helloaxis_document.cpp; sourceTree = "<group>"; };
@@ -333,8 +333,8 @@
 			isa = PBXGroup;
 			children = (
 				F7DA0814B52F0915A78EFD85 /* helloaxis.h */,
-				43C8FE0CCB5AF3BD191D201C /* framework.cpp */,
-				B680FC2247A1E6A3D1209282 /* framework.h */,
+				43C8FE0CCB5AF3BD191D201C /* platform.cpp */,
+				B680FC2247A1E6A3D1209282 /* platform.h */,
 				9894B37AFC31DB8549E62899 /* helloaxis_application.cpp */,
 				C2C55328F4A886AFF54D3E9F /* helloaxis_application.h */,
 				E95428FDF2FC96981F0BE012 /* helloaxis_document.cpp */,
@@ -370,7 +370,7 @@
 			isa = PBXHeadersBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				235901330E8A8B0EE8B03A51 /* framework.h in Headers */,
+				235901330E8A8B0EE8B03A51 /* platform.h in Headers */,
 				2166BEB35484D7A5E46B5399 /* helloaxis_render.h in Headers */,
 				4C5126E403C285086A3818AF /* helloaxis.h in Headers */,
 				95D93628D268173049BB2356 /* helloaxis_impact.h in Headers */,
@@ -556,7 +556,7 @@
 				0FA8115C091C795669789A10 /* helloaxis_render.cpp in Sources */,
 				57706F4F88712350C8B322D3 /* helloaxis_main_impact.cpp in Sources */,
 				7D93DD64BDE67CC2E32BF9B2 /* helloaxis_switcher_impact.cpp in Sources */,
-				AD5110EAEF2784B648785506 /* framework.cpp in Sources */,
+				AD5110EAEF2784B648785506 /* platform.cpp in Sources */,
 				2A1C9F92479A8DF44F010304 /* helloaxis_application.cpp in Sources */,
 				C66A382B67AF03B8C8AA24E6 /* helloaxis_document.cpp in Sources */,
 				7D48BA6BFBACBA15FBCF7FB8 /* helloaxis_frame.cpp in Sources */,
@@ -579,7 +579,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				0514CF940DB68A1667C58BA8 /* helloaxis_main_impact.cpp in Sources */,
-				EBBA5966D10F2155DA76426B /* framework.cpp in Sources */,
+				EBBA5966D10F2155DA76426B /* platform.cpp in Sources */,
 				728010ED13077D5656A68B38 /* helloaxis_gcom.cpp in Sources */,
 				EFB3CE81B0824109A525548D /* helloaxis_main_frame.cpp in Sources */,
 				0183F23CB4E14C64CF09DF21 /* helloaxis_switcher_impact.cpp in Sources */,
@@ -761,7 +761,7 @@
 				GCC_NO_COMMON_BLOCKS = YES;
 				GCC_OPTIMIZATION_LEVEL = 0;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
-				GCC_PREFIX_HEADER = framework.h;
+				GCC_PREFIX_HEADER = platform.h;
 				GCC_PREPROCESSOR_DEFINITIONS = (
 					"$(inherited)",
 				);
@@ -826,7 +826,7 @@
 				GCC_ENABLE_OBJC_EXCEPTIONS = YES;
 				GCC_NO_COMMON_BLOCKS = YES;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
-				GCC_PREFIX_HEADER = framework.h;
+				GCC_PREFIX_HEADER = platform.h;
 				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
 				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
 				GCC_WARN_UNDECLARED_SELECTOR = YES;

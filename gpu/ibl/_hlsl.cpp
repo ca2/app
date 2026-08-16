@@ -1,5 +1,5 @@
 // Created by camilo on 2025-10-16 19:05 <3ThomasBorregaardSorensen!!
-#include "framework.h"
+#include "platform.h"
 #include "_hlsl.h"
 
 namespace hlsl

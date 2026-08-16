@@ -1,5 +1,5 @@
 // Created by camilo on 2025-12-13 19:47 <3ThomasBorregaardSorensen!!
-#include "framework.h"
+#include "platform.h"
 #include "material.h"
 #include "bred/gpu/binding.h"
 #include "bred/gpu/context.h"
@@ -41,7 +41,7 @@ namespace gpu
 
                ::cast<::gpu::empty_texture_source> pemptytexturesource = prenderable;
 
-               m_pbindingslotsetSceneGltfPbr->set_texture(m_textureaPbr, pemptytexturesource);
+               m_pbindingslotsetSceneGltfPbr->set_texture(m_texturesiteaPbr, pemptytexturesource);
                // auto pbindingslot0 = m_pbindingslotsetSceneGltfPbr->binding_slot(0);
                // pbindingslot0->m_ptexture = m_ptextureAlbedo;
 
@@ -73,7 +73,7 @@ namespace gpu
 
                ::cast<::gpu::empty_texture_source> pemptytexturesource = prenderable;
 
-               m_pbindingslotsetGltfPbr->set_texture(m_textureaPbr, pemptytexturesource);
+               m_pbindingslotsetGltfPbr->set_texture(m_texturesiteaPbr, pemptytexturesource);
                // auto pbindingslot0 = m_pbindingslotsetGltfPbr->binding_slot(0);
                // pbindingslot0->m_ptexture = m_ptextureAlbedo;
 
@@ -128,14 +128,14 @@ namespace gpu
       }
 
 
-      ::gpu::texture *material::loaded_texture(enum_texture etexture)
+      ::gpu::texture_site *material::loaded_texture(enum_texture etexture)
       {
          ASSERT(etexture >= 0 && etexture < e_texture_count);
-         return m_textureaPbr[etexture];
+         return m_texturesiteaPbr[etexture];
       }
 
 
-      ::gpu::texture *material::texture(enum_texture etexture, ::gpu::empty_texture_source *pemptytexturesource)
+      ::gpu::texture_site *material::texture(enum_texture etexture, ::gpu::empty_texture_source *pemptytexturesource)
       {
          ASSERT(etexture >= 0 && etexture < e_texture_count);
          auto ptexture = loaded_texture(etexture);

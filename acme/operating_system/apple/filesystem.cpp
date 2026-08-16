@@ -5,7 +5,7 @@
 //  Created by Camilo Sasuke Thomas Borregaard Soerensen on 8/3/15.
 //
 //
-#include "framework.h"
+#include "platform.h"
 #include <mach-o/dyld.h>
 
 

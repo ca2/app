@@ -149,7 +149,7 @@
 		<Unit filename="charguess/charDistribution.h" />
 		<Unit filename="charguess/charguess.cpp" />
 		<Unit filename="charguess/charguess.h" />
-		<Unit filename="charguess/charguess/framework.h" />
+		<Unit filename="charguess/charguess/platform.h" />
 		<Unit filename="charguess/charguess_c.h" />
 		<Unit filename="charguess/charguess_private.h" />
 		<Unit filename="charguess/charsetProber.h" />
@@ -264,7 +264,7 @@
 		<Unit filename="filehandler/aaa_want_to_erase_filehandler_impact_update_hint.h" />
 		<Unit filename="filehandler/filehandler_impact.cpp" />
 		<Unit filename="filehandler/filehandler_impact.h" />
-		<Unit filename="framework.h">
+		<Unit filename="platform.h">
 			<Option compile="1" />
 			<Option weight="0" />
 		</Unit>

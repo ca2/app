@@ -1,7 +1,7 @@
 //
 // Created by camilo on 06/02/2022 12:17 <3ThomasBorregaardSorensen!!
 //
-#include "framework.h"
+#include "platform.h"
 //#include "details_window.h"
 //#include "button.h"
 //#include "acme/user/user/mouse.h"

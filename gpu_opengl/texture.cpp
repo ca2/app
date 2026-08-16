@@ -1,11 +1,12 @@
 // Created by camilo on 2025-06-08 18:14 < 3ThomasBorregaardSørensen!!
-#include "framework.h"
+#include "platform.h"
 #include "texture.h"
 #include "_gpu_opengl.h"
 #include "acme/filesystem/filesystem/file_context.h"
 #include "acme/graphics/image/pixmap.h"
 #include "aura/graphics/image/image.h"
 #include "bred/gpu/context_lock.h"
+#include "bred/gpu/texture_site.h"
 #include "context.h"
 #include "device.h"
 #include "gpu/_ktx.h"
@@ -70,7 +71,7 @@ namespace
    };
 
 
-   GLenum pixmap_pixel_format(const ::pixmap * ppixmap)
+   GLenum pixmap_pixel_format(const ::pixmap_t * ppixmap)
    {
 
       const auto & indexes = ppixmap->m_colorindexes;
@@ -124,7 +125,7 @@ namespace gpu_opengl
       if (m_gluTextureID)
       {
          glDeleteTextures(1, &m_gluTextureID);
-         m_gluTextureID =0;
+         m_gluTextureID = 0;
       }
 
       if (m_gluDepthStencilRBO)
@@ -138,7 +139,7 @@ namespace gpu_opengl
    }
 
 
-   void texture::initialize_hdr_texture_on_memory(::gpu::context *pgpucontext, const ::block & block)
+   void texture::create_hdr_texture_on_memory(::gpu::context * pgpucontext, const ::block & block)
    {
 
       ::gpu::context_lock contextlock(pgpucontext);
@@ -153,7 +154,7 @@ namespace gpu_opengl
 
       stbi_set_flip_vertically_on_load(1);
 
-      auto imagedata = stbi_loadf_from_memory(data, (::i32) size, &width, &height, &channels, 0);
+      auto imagedata = stbi_loadf_from_memory(data, (::i32)size, &width, &height, &channels, 0);
 
       stbi_set_flip_vertically_on_load(0);
 
@@ -169,7 +170,7 @@ namespace gpu_opengl
       }
 
       // m_etexture = etype;
-      m_textureattributes.m_rectangleTarget = ::i32_rectangle(::i32_size(width, height));
+      m_textureattributes.m_size = { width, height };
 
       m_textureflags.m_bWithDepth = false;
 
@@ -180,7 +181,7 @@ namespace gpu_opengl
       glBindTexture(m_gluType, m_gluTextureID);
       ::opengl::check_error("");
 
-      ::f32 *rgbaData = nullptr;
+      ::f32 * rgbaData = nullptr;
       if (channels == 3)
       {
 
@@ -210,10 +211,10 @@ namespace gpu_opengl
       glTexParameteri(m_gluType, GL_TEXTURE_MAG_FILTER, GL_LINEAR);
       ::opengl::check_error("");
 
-      
-         //glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_LINEAR);
 
-      //glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_LINEAR);
+      //glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_LINEAR);
+
+   //glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_LINEAR);
 
       stbi_image_free(imagedata);
 
@@ -228,9 +229,9 @@ namespace gpu_opengl
 
    }
 
-   
-   void texture::initialize_with_image_data(::gpu::context *pgpucontext, const ::i32_rectangle &rectangleTarget,
-                                            ::i32 numChannels, bool bSrgb, const void *pdata, ::gpu::enum_texture etexture)
+
+   void texture::create_with_image_data(::gpu::context * pgpucontext, const ::i32_size & size,
+                                            ::i32 numChannels, bool bSrgb, const void * pdata, ::gpu::enum_texture etexture)
    {
 
       //  if (m_rectangleTarget == rectangleTarget)
@@ -239,7 +240,7 @@ namespace gpu_opengl
       //   return;
       //}
 
-      ::gpu::texture_attributes textureattributes(rectangleTarget);
+      ::gpu::texture_attributes textureattributes(size);
 
       textureattributes.m_iChannelCount = numChannels;
       textureattributes.m_iFloat = bSrgb ? 1 : 0;
@@ -250,14 +251,14 @@ namespace gpu_opengl
 
       pixmap_t pixmap;
 
-      pixmap.m_pimage32 = (::image32_t *) pdata;
+      pixmap.m_pimage32 = (::image32_t *)pdata;
       pixmap.m_pimage32Raw = (::image32_t *)pdata;
 
       ::gpu::texture_data texturedata(pixmap);
 
-//      auto sizeCurrent = m_textureattributes.m_rectangleTarget.size();
+      //      auto sizeCurrent = m_textureattributes.m_rectangleTarget.size();
 
-      initialize_texture(pgpucontext, textureattributes, textureflags, texturedata);
+      create_texture(pgpucontext, textureattributes, textureflags, texturedata);
 
 
 
@@ -409,7 +410,7 @@ namespace gpu_opengl
    //          //   //}
    //          //   //::opengl::check_error("");
    //
-   //          //   //i32_rectangle r(pcontext->m_pgpucontext->m_rectangle.size());
+   //          //   //i32_rectangle r(pcontext->m_pgpucontext->size());
    //
    //          //   //glViewport(r.left, r.top, r.width(), r.height());
    //          //   //::opengl::check_error("");
@@ -634,24 +635,32 @@ namespace gpu_opengl
    }
 
 
-   void texture::initialize_texture(
+   void texture::create_texture(
       ::gpu::context * pgpucontext,
       const ::gpu::texture_attributes & textureattributes,
       const ::gpu::texture_flags & textureflags,
       const ::gpu::texture_data & texturedata)
    {
 
+      if (textureattributes.m_sizeRaw.is_empty()
+         && textureattributes.m_size.is_empty())
+      {
+
+         throw ::exception(error_bad_argument);
+
+      }
+
       auto gluDesiredType =
          textureattributes.m_etexture == ::gpu::e_texture_cube_map
-            ? GL_TEXTURE_CUBE_MAP
-            : (m_bMultisample
-                  ? GL_TEXTURE_2D_MULTISAMPLE
-                  : GL_TEXTURE_2D);
+         ? GL_TEXTURE_CUBE_MAP
+         : (m_bMultisample
+               ? GL_TEXTURE_2D_MULTISAMPLE
+               : GL_TEXTURE_2D);
       auto iDesiredSampleCount =
          gluDesiredType == GL_TEXTURE_2D_MULTISAMPLE
-            ? effective_sample_count()
-            : 1;
-      auto sizeDesired = textureattributes.m_rectangleTarget.size();
+         ? effective_sample_count()
+         : 1;
+      auto sizeDesired = textureattributes.m_size;
       auto bAllocationChanged =
          m_gluAllocatedType != 0 &&
          (m_gluAllocatedType != gluDesiredType ||
@@ -667,7 +676,7 @@ namespace gpu_opengl
 
       }
 
-      ::gpu::texture::initialize_texture(
+      ::gpu::texture::create_texture(
          pgpucontext,
          textureattributes,
          textureflags,
@@ -679,22 +688,41 @@ namespace gpu_opengl
    void texture::_create_texture(const ::gpu::texture_data & data)
    {
 
+      if (m_textureattributes.m_sizeRaw.is_empty()
+         && m_textureattributes.m_size.is_empty())
+      {
+
+         throw ::exception(error_wrong_state);
+
+      }
+
+      ::gpu::context_lock contextlock(m_pgpucontext);
+
       auto gluDesiredType =
          m_textureattributes.m_etexture == ::gpu::e_texture_cube_map
-            ? GL_TEXTURE_CUBE_MAP
-            : (m_bMultisample
-                  ? GL_TEXTURE_2D_MULTISAMPLE
-                  : GL_TEXTURE_2D);
-      auto sizeCurrent = m_textureattributes.m_rectangleTarget.size();
+         ? GL_TEXTURE_CUBE_MAP
+         : (m_bMultisample
+               ? GL_TEXTURE_2D_MULTISAMPLE
+               : GL_TEXTURE_2D);
+      auto sizeRaw = m_textureattributes.m_sizeRaw;
+
+      if (sizeRaw.is_empty())
+      {
+
+         m_textureattributes.m_sizeRaw = m_textureattributes.m_size;
+
+         sizeRaw = m_textureattributes.m_sizeRaw;
+
+      }
       m_iSampleCount =
          gluDesiredType == GL_TEXTURE_2D_MULTISAMPLE
-            ? effective_sample_count()
-            : 1;
+         ? effective_sample_count()
+         : 1;
 
       auto bAllocationChanged =
          m_gluAllocatedType != 0 &&
          (m_gluAllocatedType != gluDesiredType ||
-            m_sizeAllocated != sizeCurrent ||
+            m_sizeAllocated != sizeRaw ||
             m_iAllocatedSampleCount != m_iSampleCount);
 
       if (bAllocationChanged)
@@ -744,26 +772,26 @@ namespace gpu_opengl
       }
 
       GLenum format;
-      
+
       auto iChannelCount = m_textureattributes.m_iChannelCount;
 
       switch (iChannelCount)
       {
-         case 1:
-            format = GL_RED;
-            break;
-         case 2:
-            format = GL_RG8;
-            break;
-         case 3:
-            format = GL_RGB8;
-            break;
-         case 4:
-            format = GL_RGBA8;
-            break;
-         default:
-            throw ::exception(error_wrong_state, "Not supported channel count");
-            break;
+      case 1:
+         format = GL_RED;
+         break;
+      case 2:
+         format = GL_RG8;
+         break;
+      case 3:
+         format = GL_RGB8;
+         break;
+      case 4:
+         format = GL_RGBA8;
+         break;
+      default:
+         throw ::exception(error_wrong_state, "Not supported channel count");
+         break;
       }
 
       GLenum internalFormat = format;
@@ -799,7 +827,7 @@ namespace gpu_opengl
          {
 
             m_gluType = GL_TEXTURE_2D_MULTISAMPLE;
-            
+
             glEnable(GL_MULTISAMPLE);
 
          }
@@ -867,16 +895,16 @@ namespace gpu_opengl
 
          int iRedLower = 0;
 
-         const void *pdata = nullptr;
+         const void * pdata = nullptr;
 
          if (data.is_pixmap_array())
          {
 
-            auto scan_area = m_textureattributes.m_rectangleTarget.area() * 4;
+            auto scan_area = m_textureattributes.m_size.area() * 4;
 
             memory.set_size(scan_area);
 
-            if (data.pixmapa().first()->size() != m_textureattributes.m_rectangleTarget.size())
+            if (data.pixmapa().first()->size() != m_textureattributes.m_size)
             {
 
                throw ::exception(error_wrong_state);
@@ -900,9 +928,9 @@ namespace gpu_opengl
             iRedLower = data.raw_scoped_pixmap().m_iRedLower;
          }
 
-         ::i32 w = m_textureattributes.m_rectangleTarget.width();
+         ::i32 w = m_textureattributes.m_sizeRaw.cx;
 
-         ::i32 h = m_textureattributes.m_rectangleTarget.height();
+         ::i32 h = m_textureattributes.m_sizeRaw.cy;
 
          if (data.is_gpu_texture())
          {
@@ -931,38 +959,38 @@ namespace gpu_opengl
                throw ::exception(error_wrong_state);
             }
 
-               glTexImage2DMultisample(GL_TEXTURE_2D_MULTISAMPLE, m_iSampleCount, GL_RGBA8, w, h, GL_TRUE);
+            glTexImage2DMultisample(GL_TEXTURE_2D_MULTISAMPLE, m_iSampleCount, GL_RGBA8, w, h, GL_TRUE);
             ::opengl::check_error("");
 
-               GLint sampleBuffers = 0; GLint samples = 0;
+            GLint sampleBuffers = 0; GLint samples = 0;
 
-               glGetIntegerv(GL_SAMPLE_BUFFERS, &sampleBuffers); 
-               ::opengl::check_error("");
-               glGetIntegerv(GL_SAMPLES, &samples);
-               ::opengl::check_error("");
-
-
-                 GLint colorSamples = 0;
-               GLint colorWidth = 0;
-               GLint colorHeight = 0;
-               GLint fixedSampleLocations = 0;
-
-               glGetTexLevelParameteriv(GL_TEXTURE_2D_MULTISAMPLE, 0, GL_TEXTURE_SAMPLES, &colorSamples);
-
-               glGetTexLevelParameteriv(GL_TEXTURE_2D_MULTISAMPLE, 0, GL_TEXTURE_WIDTH, &colorWidth);
-
-               glGetTexLevelParameteriv(GL_TEXTURE_2D_MULTISAMPLE, 0, GL_TEXTURE_HEIGHT, &colorHeight);
-
-               glGetTexLevelParameteriv(GL_TEXTURE_2D_MULTISAMPLE, 0, GL_TEXTURE_FIXED_SAMPLE_LOCATIONS,
-                                        &fixedSampleLocations);
+            glGetIntegerv(GL_SAMPLE_BUFFERS, &sampleBuffers);
+            ::opengl::check_error("");
+            glGetIntegerv(GL_SAMPLES, &samples);
+            ::opengl::check_error("");
 
 
-               informationf("colorSamples=%d colorWidth=%d colorHeight=%d fixedSampleLocations=%d", colorSamples,
-                            colorWidth, colorHeight, fixedSampleLocations);
+            GLint colorSamples = 0;
+            GLint colorWidth = 0;
+            GLint colorHeight = 0;
+            GLint fixedSampleLocations = 0;
 
-               informationf("sampleBuffers=%d samples=%d", sampleBuffers, samples);
-            
-               information("");
+            glGetTexLevelParameteriv(GL_TEXTURE_2D_MULTISAMPLE, 0, GL_TEXTURE_SAMPLES, &colorSamples);
+
+            glGetTexLevelParameteriv(GL_TEXTURE_2D_MULTISAMPLE, 0, GL_TEXTURE_WIDTH, &colorWidth);
+
+            glGetTexLevelParameteriv(GL_TEXTURE_2D_MULTISAMPLE, 0, GL_TEXTURE_HEIGHT, &colorHeight);
+
+            glGetTexLevelParameteriv(GL_TEXTURE_2D_MULTISAMPLE, 0, GL_TEXTURE_FIXED_SAMPLE_LOCATIONS,
+                                     &fixedSampleLocations);
+
+
+            informationf("colorSamples=%d colorWidth=%d colorHeight=%d fixedSampleLocations=%d", colorSamples,
+                         colorWidth, colorHeight, fixedSampleLocations);
+
+            informationf("sampleBuffers=%d samples=%d", sampleBuffers, samples);
+
+            information("");
          }
          else
          {
@@ -971,7 +999,7 @@ namespace gpu_opengl
             glTexImage2D(m_gluType, 0, internalFormat, w, h, 0, format, GL_UNSIGNED_BYTE, pdata);
             ::opengl::check_error("");
          }
-      
+
 
          ::i32 samples = 0;
          glGetIntegerv(GL_SAMPLES, &samples);
@@ -997,34 +1025,34 @@ namespace gpu_opengl
 
 
 
-            // if (m_gluFbo)
-            //{
-            //    glDeleteFramebuffers(1, &m_gluFbo);
-            //    m_gluFbo = 0;
-            //    //glBindFramebuffer(GL_FRAMEBUFFER, m_gluFbo);
-            //    //::opengl::check_error("");
-            //    //glFramebufferTexture2D(GL_FRAMEBUFFER, GL_COLOR_ATTACHMENT0, GL_TEXTURE_2D, m_gluTextureID, 0);
-            //    //::opengl::check_error("");
-            //    //if (glCheckFramebufferStatus(GL_FRAMEBUFFER) != GL_FRAMEBUFFER_COMPLETE)
-            //    //{
-            //    //   ::opengl::check_error("");
-            //    //   throw ::exception(error_wrong_state);
+         // if (m_gluFbo)
+         //{
+         //    glDeleteFramebuffers(1, &m_gluFbo);
+         //    m_gluFbo = 0;
+         //    //glBindFramebuffer(GL_FRAMEBUFFER, m_gluFbo);
+         //    //::opengl::check_error("");
+         //    //glFramebufferTexture2D(GL_FRAMEBUFFER, GL_COLOR_ATTACHMENT0, GL_TEXTURE_2D, m_gluTextureID, 0);
+         //    //::opengl::check_error("");
+         //    //if (glCheckFramebufferStatus(GL_FRAMEBUFFER) != GL_FRAMEBUFFER_COMPLETE)
+         //    //{
+         //    //   ::opengl::check_error("");
+         //    //   throw ::exception(error_wrong_state);
 
-            //   //}
-            //   //::opengl::check_error("");
+         //   //}
+         //   //::opengl::check_error("");
 
-            //   //i32_rectangle r(pcontext->m_pgpucontext->m_rectangle.size());
+         //   //i32_rectangle r(pcontext->m_pgpucontext->size());
 
-            //   //glViewport(r.left, r.top, r.width(), r.height());
-            //   //::opengl::check_error("");
+         //   //glViewport(r.left, r.top, r.width(), r.height());
+         //   //::opengl::check_error("");
 
-            //   //glScissor(r.left, r.top, r.width(), r.height());
-            //   //::opengl::check_error("");
+         //   //glScissor(r.left, r.top, r.width(), r.height());
+         //   //::opengl::check_error("");
 
-            //   //pgpulayer->getCurrentCommandBuffer4()->set_scissor(r);
+         //   //pgpulayer->getCurrentCommandBuffer4()->set_scissor(r);
 
-            //}
          //}
+      //}
       }
       else if (m_gluType == GL_TEXTURE_CUBE_MAP)
       {
@@ -1034,21 +1062,21 @@ namespace gpu_opengl
          if (data.is_pixmap_array())
          {
 
-            if (data.pixmapa().first()->size() != sizeCurrent)
+            if (data.pixmapa().first()->size() != sizeRaw)
             {
 
                throw ::exception(error_wrong_state);
 
             }
 
-            memory.set_size(sizeCurrent.area() * 4);
+            memory.set_size(sizeRaw.area() * 4);
 
             //::i32_point point(0, 0);
 
             //::i32_size size(pimagea->first()->size());
          }
 
-         ::i32 scan = sizeCurrent.width() * 4;
+         ::i32 scan = sizeRaw.width() * 4;
 
          ::i32 iImage;
 
@@ -1060,55 +1088,55 @@ namespace gpu_opengl
             if (data.is_pixmap_array())
             {
 
-            pimage32 = (::image32_t *)memory.data();
+               pimage32 = (::image32_t *)memory.data();
 
-            iImage = i;
+               iImage = i;
 
-            if (iImage == 2)
-            {
+               if (iImage == 2)
+               {
 
-               iImage = 3;
+                  iImage = 3;
 
-            }
-            else if(iImage == 3)
-            {
+               }
+               else if (iImage == 3)
+               {
 
-               iImage = 2;
+                  iImage = 2;
 
-            }
-
-
-            auto pimage32Source = data.pixmapa()[iImage]->image32();
-
-            pimage32->vertical_swap_copy(sizeCurrent.cx, sizeCurrent.cy, scan,
-               pimage32Source, data.pixmapa()[iImage]->m_iScan);
+               }
 
 
+               auto pimage32Source = data.pixmapa()[iImage]->image32();
 
-            //if (pimage32)
-            //{
+               pimage32->vertical_swap_copy(sizeRaw.cx, sizeRaw.cy, scan,
+                  pimage32Source, data.pixmapa()[iImage]->m_iScan);
+
+
+
+               //if (pimage32)
+               //{
             }
             //}
 #if defined(__APPLE__)
                // Load the texture data into the cubemap
-               glTexImage2D(GL_TEXTURE_CUBE_MAP_POSITIVE_X + i, 0, GL_RGBA8,
-                  sizeCurrent.cx, sizeCurrent.cy, 0, GL_BGRA,
-                            GL_UNSIGNED_BYTE, pimage32);
-            
+            glTexImage2D(GL_TEXTURE_CUBE_MAP_POSITIVE_X + i, 0, GL_RGBA8,
+               sizeRaw.cx, sizeRaw.cy, 0, GL_BGRA,
+                         GL_UNSIGNED_BYTE, pimage32);
+
 #else
             glTexImage2D(GL_TEXTURE_CUBE_MAP_POSITIVE_X + i, 0, GL_BGRA,
-               sizeCurrent.cx, sizeCurrent.cy, 0, GL_BGRA,
+               sizeRaw.cx, sizeRaw.cy, 0, GL_BGRA,
                          GL_UNSIGNED_BYTE, pimage32);
-         
+
 #endif
 
-               ::opengl::check_error("");
+            ::opengl::check_error("");
 
             if (m_textureattributes.m_iMipCount > 0)
             {
 
-               ::i32 w = sizeCurrent.cx;
-               ::i32 h = sizeCurrent.cy;
+               ::i32 w = sizeRaw.cx;
+               ::i32 h = sizeRaw.cy;
 
                for (::i32 level = 1; level < m_textureattributes.m_iMipCount; ++level) {
                   w = std::max(1, w / 2);
@@ -1121,18 +1149,18 @@ namespace gpu_opengl
                }
 
             }
-               // stbi_image_free(data);
-            }
-            // else if (data) {
-            //    glTexImage2D(GL_TEXTURE_CUBE_MAP_POSITIVE_X + i,
-            //       0, GL_RGBA, width, height, 0, GL_RGBA, GL_UNSIGNED_BYTE, data);
-            //    stbi_image_free(data);
-            // }
-            // else {
-            //    std::cout << "Failed to load cubemap texture at path: " << facesCubemap[i] << std::endl;
-            //    stbi_image_free(data);
-            // }
-         //}
+            // stbi_image_free(data);
+         }
+         // else if (data) {
+         //    glTexImage2D(GL_TEXTURE_CUBE_MAP_POSITIVE_X + i,
+         //       0, GL_RGBA, width, height, 0, GL_RGBA, GL_UNSIGNED_BYTE, data);
+         //    stbi_image_free(data);
+         // }
+         // else {
+         //    std::cout << "Failed to load cubemap texture at path: " << facesCubemap[i] << std::endl;
+         //    stbi_image_free(data);
+         // }
+      //}
       }
       else
       {
@@ -1167,7 +1195,7 @@ namespace gpu_opengl
       ::opengl::check_error("");
 
       m_gluAllocatedType = m_gluType;
-      m_sizeAllocated = sizeCurrent;
+      m_sizeAllocated = sizeRaw;
       m_iAllocatedSampleCount = m_iSampleCount;
 
 
@@ -1177,198 +1205,65 @@ namespace gpu_opengl
    void texture::_create_frame_buffer_object(base_context_handle::object & object)
    {
 
-//      if (m_gluFbo)
-//      {
-//
-//         return;
-//
-//      }
+      //      if (m_gluFbo)
+      //      {
+      //
+      //         return;
+      //
+      //      }
 
-      //GLint drawFboOld = 0;
-      //glGetIntegerv(GL_DRAW_FRAMEBUFFER_BINDING, &drawFboOld);
+            //GLint drawFboOld = 0;
+            //glGetIntegerv(GL_DRAW_FRAMEBUFFER_BINDING, &drawFboOld);
 
-      //GLint readFboOld = 0;
-      //glGetIntegerv(GL_READ_FRAMEBUFFER_BINDING, &readFboOld);
+            //GLint readFboOld = 0;
+            //glGetIntegerv(GL_READ_FRAMEBUFFER_BINDING, &readFboOld);
 
-      //::gpu::context_lock contextlock(m_pgpucontext);
-      
-      if(object.m_bCreated)
+            //::gpu::context_lock contextlock(m_pgpucontext);
+
+      if (object.m_bCreated)
       {
-         
+
          throw ::exception(error_wrong_state);
-         
+
       }
 
       object.m_handle = 0;
-      
+
       // GLuint fboSrc, fboDst;
       glGenFramebuffers(1, &object.m_handle);
       ::opengl::check_error("");
       ::opengl::ensure_non_null_handle(object.m_handle, "glGenFramebuffers(1, ...)");
-      
+
       object.m_bCreated = true;
- 
+
    }
 
-void texture::_defer_bind_to_render_target(base_context_handle::object & object)
-{
-   
-   if(!object.m_bCreated)
-   {
-      
-      throw ::exception(error_wrong_state);
-      
-   }
-   
-   if(object.m_bTargetBound)
-   {
-      
-      throw ::exception(error_wrong_state);
-      
-   }
-   
-   if(!object.m_handle)
-   {
-      
-      throw ::exception(error_failed);
-      
-   }
-   
-   glBindFramebuffer(GL_DRAW_FRAMEBUFFER, object.m_handle);
-   ::opengl::check_error("");
 
-   if (m_gluTextureID)
+   void texture::_defer_bind_to_render_target(base_context_handle::object & object)
    {
 
-      if (m_textureattributes.m_etexture != ::gpu::e_texture_cube_map)
+      if (!object.m_bCreated)
       {
-
-         bool bIsTexture = glIsTexture(m_gluTextureID);
-
-         informationf("is %d a gl texture? %d", m_gluTextureID,  bIsTexture);
-         ::opengl::check_error("");
-
-         glBindTexture(m_gluType, m_gluTextureID);
-         ::opengl::check_error("");
-
-         if (m_gluType == GL_TEXTURE_2D_MULTISAMPLE)
-         {
-
-            //glBindTexture(GL_TEXTURE_2D_MULTISAMPLE, m_gluTextureID);
-
-            GLint colorSamples = 0;
-            GLint colorWidth = 0;
-            GLint colorHeight = 0;
-            GLint fixedSampleLocations = 0;
-
-            glGetTexLevelParameteriv(GL_TEXTURE_2D_MULTISAMPLE, 0, GL_TEXTURE_SAMPLES, &colorSamples);
-            ::opengl::check_error("");
-            glGetTexLevelParameteriv(GL_TEXTURE_2D_MULTISAMPLE, 0, GL_TEXTURE_WIDTH, &colorWidth);
-            ::opengl::check_error("");
-            glGetTexLevelParameteriv(GL_TEXTURE_2D_MULTISAMPLE, 0, GL_TEXTURE_HEIGHT, &colorHeight);
-            ::opengl::check_error("");
-            glGetTexLevelParameteriv(GL_TEXTURE_2D_MULTISAMPLE, 0, GL_TEXTURE_FIXED_SAMPLE_LOCATIONS,
-                                     &fixedSampleLocations);
-            ::opengl::check_error("");
-
-            informationf("colorSamples=%d colorWidth=%d colorHeight=%d fixedSampleLocations=%d",
-               colorSamples,
-               colorWidth,
-               colorHeight,
-               fixedSampleLocations);
-
-            information("");
-
-         }
-
-         glFramebufferTexture2D(GL_DRAW_FRAMEBUFFER, GL_COLOR_ATTACHMENT0, m_gluType, m_gluTextureID, 0);
-         ::opengl::check_error("");
-
-         // Set draw buffer
-         GLenum drawBufs[] = {GL_COLOR_ATTACHMENT0};
-         glDrawBuffers(1, drawBufs); // REQUIRED for user-defined FBOs
-         ::opengl::check_error("");
-
-         glBindTexture(m_gluType, 0);
-         ::opengl::check_error("");
-      }
-
-   }
-
-   if (m_gluDepthStencilRBO)
-   {
-
-      glBindRenderbuffer(GL_RENDERBUFFER, m_gluDepthStencilRBO);
-      ::opengl::check_error("");
-
-      glFramebufferRenderbuffer(GL_DRAW_FRAMEBUFFER, GL_DEPTH_STENCIL_ATTACHMENT, GL_RENDERBUFFER, m_gluDepthStencilRBO);
-      ::opengl::check_error("");
-   }
-
-   GLenum status = glCheckFramebufferStatus(GL_DRAW_FRAMEBUFFER);
-
-   if (status != GL_FRAMEBUFFER_COMPLETE)
-   {
-
-      warning() << "Framebuffer attachment is not complete";
-
-      auto pszFramebufferStatusText = ::opengl::check_framebuffer_status_text(status);
-
-      if (::is_set(pszFramebufferStatusText))
-      {
-
-         warning("glCheckFramebufferStatus(GL_FRAMEBUFFER) return \"{}\".", pszFramebufferStatusText);
 
          throw ::exception(error_wrong_state);
 
       }
 
-   }
-   
-   object.m_bTargetBound = true;
-
-   //glBindFramebuffer(GL_DRAW_FRAMEBUFFER, drawFboOld);
-   //glBindFramebuffer(GL_READ_FRAMEBUFFER, readFboOld);
-}
-
-
-void texture::_defer_bind_to_render_source(base_context_handle::object &object)
-{
-
-   if (!object.m_bCreated)
-   {
-
-      throw ::exception(error_wrong_state);
-   }
-
-   if (object.m_bSourceBound)
-   {
-
-      throw ::exception(error_wrong_state);
-   }
-
-   if (!object.m_handle)
-   {
-
-      throw ::exception(error_failed);
-   }
-
-   if (m_gluType == GL_TEXTURE_2D_MULTISAMPLE)
-   {
-
-      if (!m_resolveframebuffer.m_framebuffer)
+      if (object.m_bTargetBound)
       {
+
          throw ::exception(error_wrong_state);
+
       }
 
-      glBindFramebuffer(GL_READ_FRAMEBUFFER, m_resolveframebuffer.m_framebuffer);
-      ::opengl::check_error("");
+      if (!object.m_handle)
+      {
 
-   }
-   else
-   {
+         throw ::exception(error_failed);
 
-      glBindFramebuffer(GL_READ_FRAMEBUFFER, object.m_handle);
+      }
+
+      glBindFramebuffer(GL_DRAW_FRAMEBUFFER, object.m_handle);
       ::opengl::check_error("");
 
       if (m_gluTextureID)
@@ -1382,83 +1277,270 @@ void texture::_defer_bind_to_render_source(base_context_handle::object &object)
             informationf("is %d a gl texture? %d", m_gluTextureID, bIsTexture);
             ::opengl::check_error("");
 
-      //      glBindTexture(m_gluType, m_gluTextureID);
-        //    ::opengl::check_error("");
+            if (m_gluType == GL_TEXTURE_2D_MULTISAMPLE)
+            {
 
-            // if (m_gluType == GL_TEXTURE_2D_MULTISAMPLE)
-            //{
+               glBindTexture(m_gluType, m_gluTextureID);
+               ::opengl::check_error("");
 
-            //   glBindTexture(GL_TEXTURE_2D_MULTISAMPLE, m_gluTextureID);
+               //glBindTexture(GL_TEXTURE_2D_MULTISAMPLE, m_gluTextureID);
 
-            //   GLint colorSamples = 0;
-            //   GLint colorWidth = 0;
-            //   GLint colorHeight = 0;
-            //   GLint fixedSampleLocations = 0;
+               GLint colorSamples = 0;
+               GLint colorWidth = 0;
+               GLint colorHeight = 0;
+               GLint fixedSampleLocations = 0;
 
-            //   glGetTexLevelParameteriv(GL_TEXTURE_2D_MULTISAMPLE, 0, GL_TEXTURE_SAMPLES, &colorSamples);
+               glGetTexLevelParameteriv(GL_TEXTURE_2D_MULTISAMPLE, 0, GL_TEXTURE_SAMPLES, &colorSamples);
+               ::opengl::check_error("");
+               glGetTexLevelParameteriv(GL_TEXTURE_2D_MULTISAMPLE, 0, GL_TEXTURE_WIDTH, &colorWidth);
+               ::opengl::check_error("");
+               glGetTexLevelParameteriv(GL_TEXTURE_2D_MULTISAMPLE, 0, GL_TEXTURE_HEIGHT, &colorHeight);
+               ::opengl::check_error("");
+               glGetTexLevelParameteriv(GL_TEXTURE_2D_MULTISAMPLE, 0, GL_TEXTURE_FIXED_SAMPLE_LOCATIONS,
+                                        &fixedSampleLocations);
+               ::opengl::check_error("");
 
-            //   glGetTexLevelParameteriv(GL_TEXTURE_2D_MULTISAMPLE, 0, GL_TEXTURE_WIDTH, &colorWidth);
+               informationf("colorSamples=%d colorWidth=%d colorHeight=%d fixedSampleLocations=%d",
+                  colorSamples,
+                  colorWidth,
+                  colorHeight,
+                  fixedSampleLocations);
 
-            //   glGetTexLevelParameteriv(GL_TEXTURE_2D_MULTISAMPLE, 0, GL_TEXTURE_HEIGHT, &colorHeight);
+               information("");
 
-            //   glGetTexLevelParameteriv(GL_TEXTURE_2D_MULTISAMPLE, 0, GL_TEXTURE_FIXED_SAMPLE_LOCATIONS,
-            //                            &fixedSampleLocations);
+               glBindTexture(m_gluType, 0);
+               ::opengl::check_error("");
 
+            }
 
-            //   informationf("colorSamples=%d colorWidth=%d colorHeight=%d fixedSampleLocations=%d", colorSamples,
-            //                colorWidth, colorHeight, fixedSampleLocations);
+            glFramebufferTexture2D(GL_DRAW_FRAMEBUFFER, GL_COLOR_ATTACHMENT0, m_gluType, m_gluTextureID, 0);
+            ::opengl::check_error("");
 
-            //   information("");
-            //}
-
-            // glFramebufferTexture2D(GL_DRAW_FRAMEBUFFER, GL_COLOR_ATTACHMENT0, m_gluType, m_gluTextureID, 0);
-            //::opengl::check_error("");
-
-            //// Set draw buffer
-            // GLenum drawBufs[] = {GL_COLOR_ATTACHMENT0};
-            // glDrawBuffers(1, drawBufs); // REQUIRED for user-defined FBOs
-            //::opengl::check_error("");
-
-            // glBindTexture(m_gluType, 0);
          }
+
       }
-   }
 
-   if (m_gluDepthStencilRBO)
-   {
-
-      glBindRenderbuffer(GL_RENDERBUFFER, m_gluDepthStencilRBO);
-      ::opengl::check_error("");
-
-      glFramebufferRenderbuffer(GL_FRAMEBUFFER, GL_DEPTH_STENCIL_ATTACHMENT, GL_RENDERBUFFER, m_gluDepthStencilRBO);
-      ::opengl::check_error("");
-   }
-
-   GLenum status = glCheckFramebufferStatus(GL_FRAMEBUFFER);
-
-   if (status != GL_FRAMEBUFFER_COMPLETE)
-   {
-
-      warning() << "Framebuffer attachment is not complete";
-
-      auto pszFramebufferStatusText = ::opengl::check_framebuffer_status_text(status);
-
-      if (::is_set(pszFramebufferStatusText))
+      if (m_gluDepthStencilRBO)
       {
 
-         warning("glCheckFramebufferStatus(GL_FRAMEBUFFER) return \"{}\".", pszFramebufferStatusText);
+         //glBindRenderbuffer(GL_RENDERBUFFER, m_gluDepthStencilRBO);
+         //::opengl::check_error("");
+
+         glFramebufferRenderbuffer(GL_DRAW_FRAMEBUFFER, GL_DEPTH_STENCIL_ATTACHMENT, GL_RENDERBUFFER, m_gluDepthStencilRBO);
+         ::opengl::check_error("");
+
+      }
+
+      GLenum status = glCheckFramebufferStatus(GL_DRAW_FRAMEBUFFER);
+
+      if (status != GL_FRAMEBUFFER_COMPLETE)
+      {
+
+         warning() << "Framebuffer attachment is not complete";
+
+         auto pszFramebufferStatusText = ::opengl::check_framebuffer_status_text(status);
+
+         if (::is_set(pszFramebufferStatusText))
+         {
+
+            warning("glCheckFramebufferStatus(GL_FRAMEBUFFER) return \"{}\".", pszFramebufferStatusText);
+
+            throw ::exception(error_wrong_state);
+
+         }
+
+      }
+
+      // Set draw buffer
+      GLenum drawBufs[] = { GL_COLOR_ATTACHMENT0 };
+      glDrawBuffers(1, drawBufs); // REQUIRED for user-defined FBOs
+      ::opengl::check_error("");
+
+      object.m_bTargetBound = true;
+
+      //glBindFramebuffer(GL_DRAW_FRAMEBUFFER, drawFboOld);
+      //glBindFramebuffer(GL_READ_FRAMEBUFFER, readFboOld);
+   }
+
+
+   void texture::_defer_bind_to_render_source(base_context_handle::object & object)
+   {
+
+      if (!object.m_bCreated)
+      {
 
          throw ::exception(error_wrong_state);
       }
+
+      if (object.m_bSourceBound)
+      {
+
+         throw ::exception(error_wrong_state);
+      }
+
+      if (!object.m_handle)
+      {
+
+         throw ::exception(error_failed);
+      }
+
+      if (m_gluType == GL_TEXTURE_2D_MULTISAMPLE)
+      {
+
+         if (!m_resolveframebuffer.m_framebuffer)
+         {
+            throw ::exception(error_wrong_state);
+         }
+
+         glBindFramebuffer(GL_READ_FRAMEBUFFER, m_resolveframebuffer.m_framebuffer);
+         ::opengl::check_error("");
+
+      }
+      else
+      {
+
+         glBindFramebuffer(GL_READ_FRAMEBUFFER, object.m_handle);
+         ::opengl::check_error("");
+
+         if (m_gluTextureID)
+         {
+
+            if (m_textureattributes.m_etexture != ::gpu::e_texture_cube_map)
+            {
+
+               bool bIsTexture = glIsTexture(m_gluTextureID);
+
+               informationf("is %d a gl texture? %d", m_gluTextureID, bIsTexture);
+               ::opengl::check_error("");
+
+
+               GLint framebufferBinding = 0;
+
+               glGetIntegerv(
+                  GL_READ_FRAMEBUFFER_BINDING,
+                  &framebufferBinding);
+
+               informationf(
+                  "Checking FBO %d expected %u",
+                  framebufferBinding,
+                  object.m_handle);
+
+               GLint objectType = 0;
+               GLint objectName = 0;
+
+               glGetFramebufferAttachmentParameteriv(
+                  GL_READ_FRAMEBUFFER,
+                  GL_COLOR_ATTACHMENT0,
+                  GL_FRAMEBUFFER_ATTACHMENT_OBJECT_TYPE,
+                  &objectType);
+
+               glGetFramebufferAttachmentParameteriv(
+                  GL_READ_FRAMEBUFFER,
+                  GL_COLOR_ATTACHMENT0,
+                  GL_FRAMEBUFFER_ATTACHMENT_OBJECT_NAME,
+                  &objectName);
+
+               informationf(
+                  "FBO=%d color0 type=0x%04x object=%d",
+                  framebufferBinding,
+                  objectType,
+                  objectName);
+
+               glFramebufferTexture2D(
+                  GL_READ_FRAMEBUFFER,
+                  GL_COLOR_ATTACHMENT0,
+                  GL_TEXTURE_2D,
+                  m_gluTextureID,
+                  0);
+
+               auto error = glGetError();
+
+               informationf(
+                  "glFramebufferTexture2D texture=%u error=0x%04x",
+                  m_gluTextureID,
+                  error);
+
+               informationf(
+      "framebuffer=%u texture=%u",
+      object.m_handle,
+      m_gluTextureID);
+               //      glBindTexture(m_gluType, m_gluTextureID);
+                 //    ::opengl::check_error("");
+
+                     // if (m_gluType == GL_TEXTURE_2D_MULTISAMPLE)
+                     //{
+
+                     //   glBindTexture(GL_TEXTURE_2D_MULTISAMPLE, m_gluTextureID);
+
+                     //   GLint colorSamples = 0;
+                     //   GLint colorWidth = 0;
+                     //   GLint colorHeight = 0;
+                     //   GLint fixedSampleLocations = 0;
+
+                     //   glGetTexLevelParameteriv(GL_TEXTURE_2D_MULTISAMPLE, 0, GL_TEXTURE_SAMPLES, &colorSamples);
+
+                     //   glGetTexLevelParameteriv(GL_TEXTURE_2D_MULTISAMPLE, 0, GL_TEXTURE_WIDTH, &colorWidth);
+
+                     //   glGetTexLevelParameteriv(GL_TEXTURE_2D_MULTISAMPLE, 0, GL_TEXTURE_HEIGHT, &colorHeight);
+
+                     //   glGetTexLevelParameteriv(GL_TEXTURE_2D_MULTISAMPLE, 0, GL_TEXTURE_FIXED_SAMPLE_LOCATIONS,
+                     //                            &fixedSampleLocations);
+
+
+                     //   informationf("colorSamples=%d colorWidth=%d colorHeight=%d fixedSampleLocations=%d", colorSamples,
+                     //                colorWidth, colorHeight, fixedSampleLocations);
+
+                     //   information("");
+                     //}
+
+                     // glFramebufferTexture2D(GL_DRAW_FRAMEBUFFER, GL_COLOR_ATTACHMENT0, m_gluType, m_gluTextureID, 0);
+                     //::opengl::check_error("");
+
+                     //// Set draw buffer
+                     // GLenum drawBufs[] = {GL_COLOR_ATTACHMENT0};
+                     // glDrawBuffers(1, drawBufs); // REQUIRED for user-defined FBOs
+                     //::opengl::check_error("");
+
+                     // glBindTexture(m_gluType, 0);
+            }
+         }
+      }
+
+      if (m_gluDepthStencilRBO)
+      {
+
+         glBindRenderbuffer(GL_RENDERBUFFER, m_gluDepthStencilRBO);
+         ::opengl::check_error("");
+
+         glFramebufferRenderbuffer(GL_FRAMEBUFFER, GL_DEPTH_STENCIL_ATTACHMENT, GL_RENDERBUFFER, m_gluDepthStencilRBO);
+         ::opengl::check_error("");
+      }
+
+      GLenum status = glCheckFramebufferStatus(GL_FRAMEBUFFER);
+
+      if (status != GL_FRAMEBUFFER_COMPLETE)
+      {
+
+         warning() << "Framebuffer attachment is not complete";
+
+         auto pszFramebufferStatusText = ::opengl::check_framebuffer_status_text(status);
+
+         if (::is_set(pszFramebufferStatusText))
+         {
+
+            warning("glCheckFramebufferStatus(GL_FRAMEBUFFER) return \"{}\".", pszFramebufferStatusText);
+
+            throw ::exception(error_wrong_state);
+         }
+      }
+
+      object.m_bBound = true;
+
+      // glBindFramebuffer(GL_DRAW_FRAMEBUFFER, drawFboOld);
+      // glBindFramebuffer(GL_READ_FRAMEBUFFER, readFboOld);
    }
 
-   object.m_bBound = true;
-
-   // glBindFramebuffer(GL_DRAW_FRAMEBUFFER, drawFboOld);
-   // glBindFramebuffer(GL_READ_FRAMEBUFFER, readFboOld);
-}
-
-   texture * texture::resolved_texture()
+   ::gpu::texture * texture::resolved_texture(const ::i32_rectangle & rectangle)
    {
 
       if (m_ptextureResolved == this)
@@ -1506,19 +1588,30 @@ void texture::_defer_bind_to_render_source(base_context_handle::object &object)
 
       ::gpu::texture_flags textureflags;
       textureflags.m_bWithDepth = false;
-      textureflags.m_bRenderTarget = true;
+      //textureflags.m_bRenderTarget = true;
+      textureflags.m_bRenderTarget = false;
       textureflags.m_bShaderResource = true;
       textureflags.m_bTransferSource = true;
       textureflags.m_bTransferTarget = true;
 
       m_ptextureResolved->m_bMultisample = false;
       m_ptextureResolved->m_iSampleCount = 1;
-      m_ptextureResolved->initialize_texture(
+      m_ptextureResolved->create_texture(
          pcontext,
          textureattributes,
          textureflags);
 
-      pcontext->copy(m_ptextureResolved, this, nullptr);
+      ::gpu::texture_site siteOutput;
+
+      siteOutput.m_pgputextureSite = m_ptextureResolved;
+      siteOutput.m_pointOutput = rectangle.origin();
+
+      ::gpu::texture_site siteInput;
+
+      siteInput.m_pgputextureSite = this;
+      siteInput.m_pointInput = rectangle.origin();
+
+      pcontext->copy(&siteOutput, &siteInput, nullptr, nullptr);
 
       return m_ptextureResolved.cast < ::gpu_opengl::texture >();
 
@@ -1528,16 +1621,18 @@ void texture::_defer_bind_to_render_source(base_context_handle::object &object)
    void texture::create_depth_resources()
    {
 
-      ::i32 width = m_textureattributes.m_rectangleTarget.width();
+      //::i32 width = m_textureattributes.m_rectangleTarget.width();
+      ::i32 width = m_textureattributes.m_sizeRaw.cx;
 
-      ::i32 height = m_textureattributes.m_rectangleTarget.height();
+      //::i32 height = m_textureattributes.m_rectangleTarget.height();
+      ::i32 height = m_textureattributes.m_sizeRaw.cy;
 
       if (!m_gluDepthStencilRBO)
       {
 
          glGenRenderbuffers(1, &m_gluDepthStencilRBO);
          ::opengl::check_error("");
-     
+
          glBindRenderbuffer(GL_RENDERBUFFER, m_gluDepthStencilRBO);
          ::opengl::check_error("");
 
@@ -1568,19 +1663,19 @@ void texture::_defer_bind_to_render_source(base_context_handle::object &object)
 
    }
 
-::i32 g_iGpuOpenGlFramebufferObject = 0;
+   ::i32 g_iGpuOpenGlFramebufferObject = 0;
    GLuint texture::target_frame_buffer_object()
    {
       g_iGpuOpenGlFramebufferObject++;
       auto & object = context_handle_object();
-   
+
       auto & gluFramebufferObject = object.m_handle;
-   
-      if(!object.m_bCreated)
+
+      if (!object.m_bCreated)
       {
-         
+
          _create_frame_buffer_object(object);
-         
+
          //      glGenVertexArrays(1, &gluVertexArrayObject);
          //      ::opengl::check_error("");
          //
@@ -1590,10 +1685,10 @@ void texture::_defer_bind_to_render_source(base_context_handle::object &object)
          //         information("gluVertexArrayObject == 74");
          //
          //      }
-         
+
          //glBindVertexArray(vertexarrayobject.m_gluVertexArrayObject);
          //::opengl::check_error("");
-         
+
          //      ::cast < memory_buffer > pbufferVertex = m_pbufferVertex;
          //
          //      ::cast < memory_buffer > pbufferIndex = m_pbufferIndex;
@@ -1610,25 +1705,25 @@ void texture::_defer_bind_to_render_source(base_context_handle::object &object)
          //                                                                );
          //
          //      }
-         
+
          //glBindVertexArray(0);
          //::opengl::check_error("");
-         
+
       }
-      
-      if(object.m_bCreated)
+
+      if (object.m_bCreated)
       {
-         
+
          //if(m_pinputlayout && !object.m_bBound)
-         if(!object.m_bTargetBound)
+         if (!object.m_bTargetBound)
          {
-            
+
             _defer_bind_to_render_target(object);
-            
+
          }
-         
+
       }
-   
+
       return gluFramebufferObject;
 
    }
@@ -1637,9 +1732,9 @@ void texture::_defer_bind_to_render_source(base_context_handle::object &object)
    {
       g_iGpuOpenGlFramebufferObject++;
 
-               auto &object = context_handle_object();
+      auto & object = context_handle_object();
 
-      auto &gluFramebufferObject = object.m_handle;
+      auto & gluFramebufferObject = object.m_handle;
 
       if (!object.m_bCreated)
       {
@@ -1705,8 +1800,8 @@ void texture::_defer_bind_to_render_source(base_context_handle::object &object)
 
          }
 
-         if(!resolve_multisampled_framebuffer(object.m_handle, m_resolveframebuffer, m_sizeAllocated.cx,
-                                                m_sizeAllocated.cy))
+         if (!resolve_multisampled_framebuffer(object.m_handle, m_resolveframebuffer, m_sizeAllocated.cx,
+            m_sizeAllocated.cy))
          {
 
             information("failed to resolved multisampled framebuffer");
@@ -1714,69 +1809,75 @@ void texture::_defer_bind_to_render_source(base_context_handle::object &object)
          return m_resolveframebuffer.m_framebuffer;
 
       }
+      else
+      {
+
+         return gluFramebufferObject;
+
+      }
 
    }
 
 
-::i32 g_iGpuOpenGlBindRenderTarget = 0;
+   ::i32 g_iGpuOpenGlBindRenderTarget = 0;
    void texture::bind_render_target()
    {
       g_iGpuOpenGlBindRenderTarget++;
-//      if (!m_gluFbo)
-//      {
-//
-//         create_render_target();
-//
-//      }
-      
+      //      if (!m_gluFbo)
+      //      {
+      //
+      //         create_render_target();
+      //
+      //      }
+
       auto gluFbo = target_frame_buffer_object();
 
       if (!gluFbo)
       {
 
          throw ::exception(error_wrong_state);
-         
+
       }
-      
+
       GLint drawFbo = 0;
       glGetIntegerv(GL_DRAW_FRAMEBUFFER_BINDING, &drawFbo);
       ::opengl::check_error("");
 
-      if(drawFbo != gluFbo)
+      if (drawFbo != gluFbo)
       {
-         
+
          glBindFramebuffer(GL_DRAW_FRAMEBUFFER, gluFbo);
          ::opengl::check_error("");
-         
+
       }
 
       glDrawBuffer(GL_COLOR_ATTACHMENT0);
       ::opengl::check_error("");
-      
+
       GLenum statusFramebuffer = glCheckFramebufferStatus(GL_FRAMEBUFFER);
 
-      if(statusFramebuffer != GL_FRAMEBUFFER_COMPLETE)
+      if (statusFramebuffer != GL_FRAMEBUFFER_COMPLETE)
       {
-         
+
          auto pszFramebufferStatusText = ::opengl::check_framebuffer_status_text(statusFramebuffer);
-         
+
          if (::is_set(pszFramebufferStatusText))
          {
             warning("glCheckFramebufferStatus(GL_FRAMEBUFFER) return \"{}\".", pszFramebufferStatusText);
-            
+
          }
          throw ::exception(error_failed);
       }
-      
+
    }
 
 
-   void texture::read_pixels(::pixmap * ppixmap)
+   void texture::read_pixels(::gpu::command_buffer * pgpucommandbuffer, ::pixmap_t * ppixmap, const ::i32_point & pointOutput)
    {
 
       if (!ppixmap || ppixmap->size() != size() ||
           ppixmap->m_iScan < width() * (int)sizeof(::image32_t) ||
-          !ppixmap->m_pimage32Raw || !m_gluTextureID ||
+          !ppixmap->m_pimage32 || !m_gluTextureID ||
           (m_gluType != GL_TEXTURE_2D && m_gluType != GL_TEXTURE_2D_MULTISAMPLE))
       {
 
@@ -1804,6 +1905,8 @@ void texture::_defer_bind_to_render_source(base_context_handle::object &object)
       if (eStatus != GL_FRAMEBUFFER_COMPLETE)
       {
 
+         auto pszStatus = ::opengl::check_framebuffer_status_text(eStatus);
+
          throw ::exception(
             error_wrong_state,
             "GPU image framebuffer is incomplete during CPU mapping.");
@@ -1816,14 +1919,22 @@ void texture::_defer_bind_to_render_source(base_context_handle::object &object)
          GL_PACK_ROW_LENGTH,
          ppixmap->m_iScan / (int)sizeof(::image32_t));
 
+      auto x = pointOutput.x;
+
+      auto w = m_textureattributes.m_size.width();
+
+      auto h = m_textureattributes.m_size.height();
+
+      auto y = raw_height() - pointOutput.y - h;
+
       glReadPixels(
-         0,
-         0,
-         width(),
-         height(),
+         x,
+         y,
+         w,
+         h,
          pixmap_pixel_format(ppixmap),
          GL_UNSIGNED_BYTE,
-         ppixmap->m_pimage32Raw);
+         ppixmap->m_pimage32);
       ::opengl::check_error("");
 
       ppixmap->vertical_swap();
@@ -1831,58 +1942,169 @@ void texture::_defer_bind_to_render_source(base_context_handle::object &object)
    }
 
 
-   void texture::write_pixels(const ::pixmap * ppixmap)
+   void texture::write_pixels(const ::pixmap_t * ppixmap, const ::i32_point & pointInput)
    {
 
-      if (!ppixmap || ppixmap->size() != size() ||
-          ppixmap->m_iScan < width() * (int)sizeof(::image32_t) ||
-          !ppixmap->m_pimage32Raw || !m_gluTextureID ||
-          m_gluType != GL_TEXTURE_2D)
+      auto sizePixmap = ppixmap->size();
+
+      auto sizeRawThis = this->raw_size();
+
+      auto iScanPixmap = ppixmap->m_iScan;
+
+      auto iRequiredScan = ppixmap->width() * (int)sizeof(::image32_t);
+
+      if (not ppixmap 
+         or sizePixmap.is_empty()
+         or ppixmap->m_iScan < iRequiredScan
+         or not ppixmap->m_pimage32 
+         or not m_gluTextureID 
+         or m_gluType != GL_TEXTURE_2D)
       {
 
          throw ::exception(error_bad_argument);
 
       }
 
-      //::memory memoryFlipped;
-      ::pixmap pixmapFlipped;
+      //::memory memoryFlipped = m_pixmapFlipped;
+      auto &pixmapFlipped = m_pixmapFlipped;
       pixmapFlipped.create_as_descriptor(ppixmap->size(), DEFAULT_CREATE_IMAGE_FLAG, ppixmap->m_iScan);
       pixmapFlipped.m_colorindexes = ppixmap->m_colorindexes;
       pixmapFlipped.copy(ppixmap);
-      pixmapFlipped.vertical_swap();
+      //pixmapFlipped.vertical_swap();
+
+      int cx = ppixmap->width();
+      int cy = ppixmap->height();
 
       scoped_pixel_transfer_state state;
 
       glBindTexture(GL_TEXTURE_2D, m_gluTextureID);
       ::opengl::check_error("");
+
+      GLint textureWidth = 0;
+      GLint textureHeight = 0;
+      auto x = pointInput.x;
+      auto y = pointInput.y;
+      int iMipLevel = 0;
+
+
+      glGetTexLevelParameteriv(
+         GL_TEXTURE_2D,
+         iMipLevel,
+         GL_TEXTURE_WIDTH,
+         &textureWidth);
+
+      glGetTexLevelParameteriv(
+         GL_TEXTURE_2D,
+         iMipLevel,
+         GL_TEXTURE_HEIGHT,
+         &textureHeight);
+
+      informationf(
+         "glTexSubImage2D level=%d "
+         "texture=%dx%d "
+         "upload=(%d,%d) %dx%d",
+         iMipLevel,
+         textureWidth,
+         textureHeight,
+         x,
+         y,
+         cx,
+         cy);
+
+      auto requiredWidth = x + cx;
+
+      auto requiredHeight = y + cy;
+
+      if (textureWidth < requiredWidth ||
+          textureHeight < requiredHeight)
+      {
+         glTexImage2D(
+            GL_TEXTURE_2D,
+            0,
+            GL_RGBA8,
+            requiredWidth,
+            requiredHeight,
+            0,
+            GL_BGRA,
+            GL_UNSIGNED_BYTE,
+            nullptr);
+         ::opengl::check_error("");
+      }
+
       glPixelStorei(GL_UNPACK_ALIGNMENT, 1);
+      ::opengl::check_error("");
       glPixelStorei(
          GL_UNPACK_ROW_LENGTH,
          pixmapFlipped.m_iScan / (int)sizeof(::image32_t));
+      ::opengl::check_error("");
 
+      auto cxThis = width();
+
+      auto cyThis = height();
+
+      auto iPixelFormatFlipped = pixmap_pixel_format(&pixmapFlipped);
+      int i1 = textureHeight - y - cy;
+      int i2 = textureHeight - y;
+      int i3 = y;
       glTexSubImage2D(
          GL_TEXTURE_2D,
          0,
-         0,
-         0,
-         width(),
-         height(),
-         pixmap_pixel_format(&pixmapFlipped),
+         x, 
+         i3,
+         cx,
+         cy,
+         iPixelFormatFlipped,
          GL_UNSIGNED_BYTE,
-         pixmapFlipped.m_pimage32Raw);
+         pixmapFlipped.m_pimage32);
       ::opengl::check_error("");
+
+      if (m_textureattributes.m_size.cx < cx)
+      {
+
+         m_textureattributes.m_size.cx = cx;
+
+      }
+
+      if (m_textureattributes.m_size.cy < cy)
+      {
+
+         m_textureattributes.m_size.cy = cy;
+
+      }
+
+      if (m_textureattributes.m_sizeRaw.cx < cx)
+      {
+
+         m_textureattributes.m_sizeRaw.cx = cx;
+
+      }
+
+      if (m_textureattributes.m_sizeRaw.cy < cy)
+      {
+
+         m_textureattributes.m_sizeRaw.cy = cy;
+
+      }
 
    }
 
 
-   void texture::set_pixels(const ::i32_rectangle &rectangle, const void *data)
+   void texture::write_pixels(::gpu::command_buffer * pgpucommandbuffer, const ::pixmap_t * ppixmap, const ::i32_point & pointInput)
    {
-      
-      if(::is_null(data))
+
+      write_pixels(ppixmap, pointInput);
+
+   }
+
+
+   void texture::set_pixels(const ::i32_rectangle & rectangle, const void * data)
+   {
+
+      if (::is_null(data))
       {
-         
+
          throw ::exception(error_bad_argument);
-         
+
       }
 
       glPixelStorei(GL_UNPACK_ALIGNMENT, 1);
@@ -1919,9 +2141,9 @@ void texture::_defer_bind_to_render_source(base_context_handle::object &object)
                       GL_RGBA, // format of the new data
                       GL_UNSIGNED_BYTE, // type of the new data
                       data // pointer to new pixels
-                      
+
       );
-      
+
       ::opengl::check_error("");
 
       glBindTexture(m_gluType, 0);
@@ -1929,16 +2151,16 @@ void texture::_defer_bind_to_render_source(base_context_handle::object &object)
    }
 
 
-      // Loads a cubemap from a single KTX file
-   void texture::KtxLoadCubemapFromFile(const ::scoped_string &scopedstrName, ::string filename, bool b32)
-   // VkFormat format,
-   // VkQueue copyQueue,
-   // VkImageUsageFlags imageUsageFlags,
-   // VkImageLayout imageLayout)
+   // Loads a cubemap from a single KTX file
+   void texture::KtxLoadCubemapFromFile(const ::scoped_string & scopedstrName, ::string filename, bool b32)
+      // VkFormat format,
+      // VkQueue copyQueue,
+      // VkImageUsageFlags imageUsageFlags,
+      // VkImageLayout imageLayout)
    {
       m_textureattributes.m_etexture = ::gpu::e_texture_cube_map;
 
-      ktxTexture *ktxTexture;
+      ktxTexture * ktxTexture;
       ktxResult result = loadKTXFile(this, filename, &ktxTexture);
       if (result != KTX_SUCCESS)
       {
@@ -1956,15 +2178,15 @@ void texture::_defer_bind_to_render_source(base_context_handle::object &object)
 
 
    // Loads a cubemap from a single KTX file
-   void texture::KtxLoadCubemapFrom_ktxTexture(const ::scoped_string &name, void *p_ktxTexture, bool b32)
-   // VkFormat format,
-   // VkQueue copyQueue,
-   // VkImageUsageFlags imageUsageFlags,
-   // VkImageLayout imageLayout)
+   void texture::KtxLoadCubemapFrom_ktxTexture(const ::scoped_string & name, void * p_ktxTexture, bool b32)
+      // VkFormat format,
+      // VkQueue copyQueue,
+      // VkImageUsageFlags imageUsageFlags,
+      // VkImageLayout imageLayout)
    {
       m_textureattributes.m_etexture = ::gpu::e_texture_cube_map;
       ::gpu::context_lock lockcontext(m_pgpucontext);
-      auto pktxtexture = (ktxTexture *) p_ktxTexture;
+      auto pktxtexture = (ktxTexture *)p_ktxTexture;
       //ktxResult result = loadKTXFile(this, filename, &ktxTexture);
       //if (result != KTX_SUCCESS)
       //{
@@ -2175,7 +2397,7 @@ void texture::_defer_bind_to_render_source(base_context_handle::object &object)
    }
 
 
-   void texture::set_cube_face(::i32 iFace,::gpu::shader * pgpushader)
+   void texture::set_cube_face(::i32 iFace, ::gpu::shader * pgpushader)
    {
       //   ::cast < ::gpu_opengl::texture>ptexture = m_ptexture;
 
@@ -2202,9 +2424,9 @@ void texture::_defer_bind_to_render_source(base_context_handle::object &object)
    void texture::generate_mipmap(::gpu::command_buffer * pcommandbuffer)
    {
 
-       glBindTexture(m_gluType, m_gluTextureID);
-       glTexParameteri(m_gluType, GL_TEXTURE_MIN_FILTER, GL_LINEAR_MIPMAP_LINEAR);
-       glGenerateMipmap(m_gluType);
+      glBindTexture(m_gluType, m_gluTextureID);
+      glTexParameteri(m_gluType, GL_TEXTURE_MIN_FILTER, GL_LINEAR_MIPMAP_LINEAR);
+      glGenerateMipmap(m_gluType);
 
    }
 

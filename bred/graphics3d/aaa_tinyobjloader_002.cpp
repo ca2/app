@@ -1,6 +1,6 @@
 // From https:// github.com/tinyobjloader/tinyobjloader/blob/release/examples/viewer/viewer.cc
 // by camilo on 2025-05-17 02:45s <3ThomasBorregaardSorensen!!
-#include "framework.h"
+#include "platform.h"
 #include "tinyobjloader_Builder.h"
 #include "utilities.h"
 #include "acme/filesystem/filesystem/directory_context.h"

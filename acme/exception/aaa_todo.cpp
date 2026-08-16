@@ -1,4 +1,4 @@
-#include "framework.h"
+#include "platform.h"
 
 
 todo::todo(const ::scoped_string & scopedstrMessage) :

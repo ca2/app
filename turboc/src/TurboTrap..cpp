@@ -22,8 +22,8 @@
   Purpose:	TurboC library setup for trapping SIGTERM/SIGKILL.
   Mod history:	05/21/02 RSB	Created.
 */
-#include "framework.h"
-#include "framework.h"
+#include "platform.h"
+#include "platform.h"
 //#include <sys/types.h>
 //#include <signal.h>
 //#include "conio.h"

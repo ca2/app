@@ -1,4 +1,4 @@
-#include "framework.h"
+#include "platform.h"
 #include "draw2d.h"
 #include "keep.h"
 #include "region.h"
@@ -16,7 +16,7 @@ namespace draw2d_cairo
    region::region()
    {
 
-      m_pthis = this;
+      //m_pthis = this;
 
       m_pcairo = nullptr;
 

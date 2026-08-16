@@ -1,4 +1,4 @@
-#include "framework.h"
+#include "platform.h"
 
 
 CLASS_DECL_AURA ::i32 framework_is_basis()

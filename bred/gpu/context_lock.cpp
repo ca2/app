@@ -1,6 +1,6 @@
 // Fra dx11 by camilo on 2025-06-26 01:58 <3ThomasBorregaardSørensen!!
 // Created by camilo on 2025-06-25 14:44 <3ThomasBorregaardSørensen!!
-#include "framework.h"
+#include "platform.h"
 #include "context.h"
 #include "device.h"
 #include "context_lock.h"

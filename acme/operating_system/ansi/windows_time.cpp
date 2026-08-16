@@ -6,7 +6,7 @@
 //  14:35
 //  Copyright (c) 2022 Camilo Sasuke Thomas Borregaard Soerensen. All rights reserved.
 //
-#include "framework.h"
+#include "platform.h"
 #include "windows_time.h"
 #include "acme/operating_system/shared_posix/time1.h"
 #include "acme/parallelization/mutex.h"
@@ -108,7 +108,7 @@ using LPSYSTEMTIME = SYSTEMTIME *;
  * Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA 02110-1301, USA
  */
 
-#include "framework.h"
+#include "platform.h"
 #include "acme/operating_system/time.h"
 //#include "_windows.h"
 //#include "windows_internals.h"

@@ -24,7 +24,7 @@
 // From micro::elemental merged at ::user::elemental by
 //    camilo on 2024-0926 15:04 <3ThomasBorregaardSorensen!!
 //
-#include "framework.h"
+#include "platform.h"
 #include "button.h"
 #include "elemental.h"
 #include "main_window.h"
@@ -344,7 +344,7 @@ namespace micro
    //// From micro::elemental merged at ::user::elemental by
    ////    camilo on 2024-0926 15:04 <3ThomasBorregaardSorensen!!
    ////
-   //#include "framework.h"
+   //#include "platform.h"
    //#include "drag.h"
    //#include "elemental.h"
    //#include "acme/constant/id.h"

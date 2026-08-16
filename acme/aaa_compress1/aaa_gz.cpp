@@ -1,4 +1,4 @@
-#include "framework.h"
+#include "platform.h"
 #include "zlib.h"
 #include "gz.h"
 

@@ -1,7 +1,7 @@
 //
 // Created by camilo on 2026-02-02 04:05 <3ThomasBorregaardSørensen!!
 //
-#include "framework.h"
+#include "platform.h"
 #include <sys/utsname.h>
 #include <string.h>
 

@@ -8,13 +8,13 @@
 // camilo on 2024-06-10 07:32 <3ThomasBorregaardSorensen!!
 // Created by camilo on 2024-06-02 23:17 <3ThomasBorregaardSorensen!!
 // From windows/library on 2024-06-10 07:32 <3ThomasBorregaardSorensen!!
-#include "framework.h"
+#include "platform.h"
 #include "dynamic_library.h"
 #include "acme/exception/interface_only.h"
 #include "acme/exception/library_not_loaded.h"
 #include "acme/platform/application.h"
 #include "acme/_operating_system.h"
-#include "framework.h"
+#include "platform.h"
 #include "dynamic_library.h"
 #include "acme/exception/interface_only.h"
 #include "acme/exception/library_not_loaded.h"

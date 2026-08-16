@@ -1,4 +1,4 @@
-#include "framework.h"
+#include "platform.h"
 ////#include "aura/user/user/_component.h"
 #include "edit_window.h"
 #include "globals.h"

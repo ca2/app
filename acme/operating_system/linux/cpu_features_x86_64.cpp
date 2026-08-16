@@ -1,7 +1,7 @@
 //
 // Created by camilo on 2025-12-19 17:47 <3ThomasBorregaardSørensen!!
 //
-#include "framework.h"
+#include "platform.h"
 #include "acme/operating_system/cpu_features.h"
 #include <cpuid.h>     // __get_cpuid, __cpuid_count
 //#include <immintrin.h> // _xgetbv

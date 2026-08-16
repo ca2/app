@@ -1,4 +1,4 @@
-#include "framework.h"
+#include "platform.h"
 #include <dirent.h>
 
 ::e_status fgets_string(string& str, FILE* pfile, memsize iBufferSize);

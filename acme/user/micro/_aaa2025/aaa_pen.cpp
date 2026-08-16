@@ -1,7 +1,7 @@
 //
 // Created by camilo on 31/01/2022 15:25 <3ThomasBorregaardSorensen!!
 //
-#include "framework.h"
+#include "platform.h"
 #include "pen.h"
 #include "acme/prototype/prototype/factory.h"
 //#include "acme/prototype/prototype/pointer.h"

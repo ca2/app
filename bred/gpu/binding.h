@@ -103,7 +103,7 @@ namespace gpu
       ::i32 m_iSet = -1;
       ::i32 m_iSlot = -1;
       ::pointer<binding> m_pbinding;
-      ::pointer<::gpu::texture> m_ptexture;
+      ::pointer<::gpu::texture_site> m_ptexturesite;
       ::pointer<::gpu::block> m_pblock;
 
       // binding *operator->()
@@ -137,7 +137,7 @@ namespace gpu
 
       virtual void update_binding_slots(::i32 iSet);
 
-      virtual void set_texture(::pointer < ::gpu::texture > * ppgputexture, ::gpu::empty_texture_source * pemptytexturesource);
+      virtual void set_texture(::pointer < ::gpu::texture_site > * ppgputexturesite, ::gpu::empty_texture_source * pemptytexturesource);
 
 
    };

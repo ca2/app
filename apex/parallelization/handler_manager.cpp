@@ -1,4 +1,4 @@
-#include "framework.h"
+#include "platform.h"
 #include "handler_manager.h"
 #include "acme/parallelization/asynchronous.h"
 #include "acme/parallelization/manual_reset_happening.h"

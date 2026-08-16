@@ -11,7 +11,7 @@
     All rights reserved. Use of this source code is governed by a
     BSD-style license that can be found in the LICENSE.txt file.
 */
-#include "framework.h"
+#include "platform.h"
 #include "color_wheel.h"
 #include "acme/prototype/geometry2d/ellipse.h"
 #include "aura/graphics/draw2d/path.h"

@@ -24,7 +24,7 @@
 // From micro::main_window merged at ::user::main_window by
 //    camilo on 2024-0926 15:04 <3ThomasBorregaardSorensen!!
 //
-#include "framework.h"
+#include "platform.h"
 #include "button.h"
 #include "main_window.h"
 #include "user.h"

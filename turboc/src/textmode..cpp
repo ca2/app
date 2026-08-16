@@ -40,7 +40,7 @@
 				automatic integer-type redefinitions.  
 				Hopefully fixed here.
 */
-#include "framework.h"
+#include "platform.h"
 ////#include <termios.h>
 //
 //#include <signal.h>

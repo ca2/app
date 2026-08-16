@@ -1,4 +1,4 @@
-#include "framework.h"
+#include "platform.h"
 #include "immersion_layer.h"
 #include "scene_base.h"
 #include "skybox.h"
@@ -9,6 +9,7 @@
 #include "bred/gpu/render_target.h"
 #include "bred/gpu/renderer.h"
 #include "bred/gpu/texture.h"
+#include "bred/gpu/texture_site.h"
 #include "acme/filesystem/filesystem/file_context.h"
 #include "aura/graphics/image/context.h"
 #include "aura/platform/application.h"
@@ -213,10 +214,11 @@ namespace graphics3d
 
       }
 
-      defer_constructø(m_ptexture);
+      defer_construct_newø(m_ptexturesite);
 
-      ::gpu::texture_attributes textureattributes(::i32_rectangle{sizeItem},8, 4, 0,0, 
-         ::gpu::e_texture_cube_map,  6);
+      defer_constructø(m_ptexturesite->m_pgputextureSite);
+
+      ::gpu::texture_attributes textureattributes(sizeItem, 8, 4, 0, 0, ::gpu::e_texture_cube_map,  6);
 
       ::gpu::texture_flags textureflags;
 
@@ -226,7 +228,7 @@ namespace graphics3d
 
       auto prenderer = m_pscene->m_pimmersionlayer->m_pengine->gpu_context()->m_pgpurenderer;
 
-      m_ptexture->initialize_texture(prenderer->m_pgpucontext, textureattributes, textureflags, texturedata);
+      m_ptexturesite->gpu_texture()->create_texture(prenderer->m_pgpucontext, textureattributes, textureflags, texturedata);
 
    }
 

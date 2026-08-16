@@ -1,5 +1,5 @@
 // Created by camilo on 2024-02-24 03:52 <3ThomasBorregaardSorensen!!
-#include "framework.h"
+#include "platform.h"
 #include "group_operating_system.h"
 
 

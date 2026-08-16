@@ -1,4 +1,4 @@
-#include "framework.h"
+#include "platform.h"
 
 
 ::i8 g_strDebugPuts[1024];

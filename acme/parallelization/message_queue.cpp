@@ -1,4 +1,4 @@
-#include "framework.h"
+#include "platform.h"
 #include "message_queue.h"
 #include "acme/constant/user_message.h"
 #include "acme/operating_system/message.h"

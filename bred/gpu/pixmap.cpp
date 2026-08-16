@@ -1,9 +1,10 @@
 // Created by camilo on 2025-06-12 21:07 <3ThomasBorregaardSørensen!!
-#include "framework.h"
+#include "platform.h"
 #include "layer.h"
 #include "renderer.h"
 #include "pixmap.h"
 #include "texture.h"
+#include "texture_site.h"
 #include "acme/exception/interface_only.h"
 
 
@@ -14,7 +15,7 @@ namespace gpu
    pixmap::pixmap()
    {
 
-      m_pgputexture = nullptr;
+      //m_pgputexture = nullptr;
       //m_bClearColor = false;
       //m_bRenderTarget = false;
       //m_bDepthStencil = false;
@@ -33,7 +34,9 @@ namespace gpu
    void pixmap::initialize_gpu_pixmap(::gpu::texture* pgputexture, const ::i32_rectangle& rectangle)
    {
 
-      m_pgputexture = pgputexture;
+      defer_construct_newø(m_pgputexturesite);
+
+      m_pgputexturesite->m_pgputextureSite = pgputexture;
 
       m_rectangle = rectangle;
 
@@ -68,7 +71,7 @@ namespace gpu
          
       }
 
-      m_pgputexture->set_pixels(m_rectangle, pdata);
+      m_pgputexturesite->gpu_texture()->set_pixels(m_rectangle, pdata);
 
    }
 

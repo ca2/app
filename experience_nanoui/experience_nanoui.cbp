@@ -316,11 +316,11 @@
 			<Option target="experience_nanoui"/>
 			<Option target="static_experience_nanoui"/>
 		</Unit>
-		<Unit filename="/home/camilo/cmake/integration/source/app/experience_nanoui/framework.cpp">
+		<Unit filename="/home/camilo/cmake/integration/source/app/experience_nanoui/platform.cpp">
 			<Option target="experience_nanoui"/>
 			<Option target="static_experience_nanoui"/>
 		</Unit>
-		<Unit filename="/home/camilo/cmake/integration/source/app/experience_nanoui/framework.h">
+		<Unit filename="/home/camilo/cmake/integration/source/app/experience_nanoui/platform.h">
 			<Option target="experience_nanoui"/>
 			<Option target="static_experience_nanoui"/>
 		</Unit>

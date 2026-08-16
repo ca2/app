@@ -37,7 +37,7 @@
   ... but, it works imperfectly at best.  X doesn't seem to generate the
   same messages on all systems, and there are other difficulties.  *Sigh!*
 */
-#include "framework.h"
+#include "platform.h"
 //#include "TurboC.h"
 
 //-----------------------------------------------------------------------

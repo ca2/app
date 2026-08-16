@@ -53,22 +53,26 @@ namespace gpu
 
       virtual void wait_commands_to_execute();
 
-      virtual void set_viewport(const ::i32_rectangle& rectangle);
+      //virtual void clear(::gpu::texture * pgputexture, const ::i32_rectangle & rectangle, const ::color::color & color);
 
-      virtual void set_scissor(const ::i32_rectangle& rectangle);
+      virtual void clear(::gpu::texture * pgputexture, const ::color::color & color);
+
+      virtual void set_viewport(const ::i32_rectangle & rectangle, const ::i32_size & sizeRaw = {});
+
+      virtual void set_scissor(const ::i32_rectangle & rectangle, const ::i32_size & sizeRaw = {});
 
       virtual void reset();
 
       virtual ::gpu::fence * insert_gpu_fence(bool bCreateSignaled);
 
-      virtual void begin_render(::gpu::shader * pgpushader, ::gpu::texture * pgputextureTarget);
+      virtual void begin_render(::gpu::shader * pgpushader, ::gpu::texture_site * pgputexturesiteTarget);
       virtual void set_shader(::gpu::shader *pgpushader);
 
       virtual void end_render();
 
       virtual void set_block3(::gpu::block *pgpublock);
       virtual void bind_slot_set(::i32 iSet, ::gpu::binding_slot_set *pgpubindingslotset);
-      virtual void set_source(::gpu::texture *pgputexture);
+      virtual void set_source(::gpu::texture_site *pgputexturesite);
       virtual void set_source(::gpu::pixmap *pgpupixmap);
       virtual void set_model2(::graphics3d::renderable *prenderable);
       //virtual void draw_model(::graphics3d::renderable *prenderable);

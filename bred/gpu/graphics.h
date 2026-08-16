@@ -42,8 +42,9 @@ namespace gpu
       //::pointer < ::gpu::shader >                 m_pshaderLine;
       ::collection::index                       m_iGpuContextFrameSerial;
       pool_group *                              m_ppoolgroupFrame;
-      ::gpu::context_lease                      m_pgpucontextLease;
+      ::gpu::context_pointer                    m_pgpucontextOwned;
       ::pointer<::gpu::layer>                   m_pgpulayerBeforeLayerScope;
+      ::pointer<::gpu::texture_site>            m_pgputexturesiteTarget;
 
       graphics();
       ~graphics() override;
@@ -52,7 +53,7 @@ namespace gpu
       void initialize(::particle* pparticle) override;
       bool _is_ok() const override;
       void set_context_lease(::gpu::context_lease && contextlease);
-      ::gpu::context_lease & context_lease();
+      //::gpu::context_lease & context_lease();
       
 
       void begin_draw() override;
@@ -60,6 +61,10 @@ namespace gpu
       
       void start_frame() override;
       void end_frame() override;
+
+
+      ::gpu::context * gpu_context();
+
 
 
       //void start_layer(::e_graphics egraphics) override;
@@ -82,8 +87,11 @@ namespace gpu
       void on_set_gpu_context() override;
 
 
-      void on_gpu_context_placement_change(const ::i32_rectangle &rectanglePlacement,
-                                           ::acme::windowing::window *pacmewindowingwindow) override;
+      void on_gpu_context_placement_change(
+         const ::i32_point & pointTarget,
+         const ::i32_point & pointSource,
+         const ::i32_size & size,
+         ::acme::windowing::window *pacmewindowingwindow) override;
 
       virtual ::pool <::gpu::model_buffer >& model_buffer_pool(::draw2d::enum_model epool);
       virtual ::gpu::model_buffer * model_buffer(::draw2d::enum_model epool);

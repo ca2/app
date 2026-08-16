@@ -16,7 +16,7 @@
 		03F0E23CE5E7DF061BC4448E /* ColorWheel.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 5979A109F38AFD369E5BC3C7 /* ColorWheel.cpp */; };
 		E9627469D849BD19777F290B /* ComboBox.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 06FAA708F6596EF202632586 /* ComboBox.cpp */; };
 		C0555109A3C95FEDB39A4281 /* common.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 7272B8E0233A7AAE561753C2 /* common.cpp */; };
-		5950DDCAD3EA203209AEE5B1 /* framework.cpp in Sources */ = {isa = PBXBuildFile; fileRef = A1F5FA5A8620E2A6505CCD2E /* framework.cpp */; };
+		5950DDCAD3EA203209AEE5B1 /* platform.cpp in Sources */ = {isa = PBXBuildFile; fileRef = A1F5FA5A8620E2A6505CCD2E /* platform.cpp */; };
 		698BF0B136EA37AFB5204CF1 /* Graph.cpp in Sources */ = {isa = PBXBuildFile; fileRef = BBB9C9BB7BC563CF1FFD1621 /* Graph.cpp */; };
 		8F7ADBF5F189E8E9A26560ED /* ImagePanel.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 2796571730A4039BEB8D17BF /* ImagePanel.cpp */; };
 		EF9E3E2EB6ACA4C1E041C108 /* Label.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 059C1D74260AC6D73EA93377 /* Label.cpp */; };
@@ -91,7 +91,7 @@
 		856BE4F9CF53FD240A76DDCD /* Popup.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Popup.h; sourceTree = "<group>"; };
 		EB8C95851E3ED8F7566CC5E4 /* Canvas.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = Canvas.cpp; sourceTree = "<group>"; };
 		775520780BED69070D7DC3E8 /* Widget.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Widget.h; sourceTree = "<group>"; };
-		A1F5FA5A8620E2A6505CCD2E /* framework.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = framework.cpp; sourceTree = "<group>"; };
+		A1F5FA5A8620E2A6505CCD2E /* platform.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = platform.cpp; sourceTree = "<group>"; };
 		98BEC1280E4F4482741B288A /* ComboBox.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ComboBox.h; sourceTree = "<group>"; };
 		4D7BE5957445D3763956724B /* Window.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = Window.cpp; sourceTree = "<group>"; };
 		340E9703125ADCE9F1F7A313 /* Screen.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = Screen.cpp; sourceTree = "<group>"; };
@@ -118,7 +118,7 @@
 		97342ADDA4E99677BD8B3EF4 /* Object.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Object.h; sourceTree = "<group>"; };
 		0C185C90F17642BEEAA28ED8 /* MessageDialog.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = MessageDialog.cpp; sourceTree = "<group>"; };
 		4207299625BD5515338398A3 /* Screen.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Screen.h; sourceTree = "<group>"; };
-		BA7C53461EEE430D1FFFD4B8 /* framework.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = framework.h; sourceTree = "<group>"; };
+		BA7C53461EEE430D1FFFD4B8 /* platform.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = platform.h; sourceTree = "<group>"; };
 		1A3B89D664C72BEB93A9CE59 /* TextBox.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = TextBox.cpp; sourceTree = "<group>"; };
 		876823046DD1DDF55FC71A85 /* Canvas.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Canvas.h; sourceTree = "<group>"; };
 		8C09C52EBEE7D56EF7DE0C63 /* Slider.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = Slider.cpp; sourceTree = "<group>"; };
@@ -207,8 +207,8 @@
 				03A7C929C3CD8268B17EF2E3 /* common.h */,
 				7272B8E0233A7AAE561753C2 /* common.cpp */,
 				183C570B7569448AB2EF7EC1 /* FormHelper.h */,
-				BA7C53461EEE430D1FFFD4B8 /* framework.h */,
-				A1F5FA5A8620E2A6505CCD2E /* framework.cpp */,
+				BA7C53461EEE430D1FFFD4B8 /* platform.h */,
+				A1F5FA5A8620E2A6505CCD2E /* platform.cpp */,
 				83080F0FBBC4DCC49062A6AD /* Graph.h */,
 				BBB9C9BB7BC563CF1FFD1621 /* Graph.cpp */,
 				F865C16CAF0B63C99159BFBA /* ImageImpact.h */,
@@ -405,7 +405,7 @@
 				03F0E23CE5E7DF061BC4448E /* ColorWheel.cpp in Sources */,
 				E9627469D849BD19777F290B /* ComboBox.cpp in Sources */,
 				C0555109A3C95FEDB39A4281 /* common.cpp in Sources */,
-				5950DDCAD3EA203209AEE5B1 /* framework.cpp in Sources */,
+				5950DDCAD3EA203209AEE5B1 /* platform.cpp in Sources */,
 				698BF0B136EA37AFB5204CF1 /* Graph.cpp in Sources */,
 				8F7ADBF5F189E8E9A26560ED /* ImagePanel.cpp in Sources */,
 				EF9E3E2EB6ACA4C1E041C108 /* Label.cpp in Sources */,
@@ -492,7 +492,7 @@
 				GCC_NO_COMMON_BLOCKS = YES;
 				GCC_OPTIMIZATION_LEVEL = 0;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
-				GCC_PREFIX_HEADER = framework.h;
+				GCC_PREFIX_HEADER = platform.h;
 				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
 				GCC_VERSION = "";
 				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
@@ -594,7 +594,7 @@
 				GCC_INCREASE_PRECOMPILED_HEADER_SHARING = NO;
 				GCC_NO_COMMON_BLOCKS = YES;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
-				GCC_PREFIX_HEADER = framework.h;
+				GCC_PREFIX_HEADER = platform.h;
 				GCC_VERSION = "";
 				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
 				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;

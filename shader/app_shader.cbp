@@ -223,7 +223,7 @@
 		<Unit filename="/home/camilo/solution/basis/source/app-graphics3d/shader/application.h">
 			<Option target="app_shader"/>
 		</Unit>
-		<Unit filename="/home/camilo/solution/basis/source/app-graphics3d/shader/framework.h">
+		<Unit filename="/home/camilo/solution/basis/source/app-graphics3d/shader/platform.h">
 			<Option target="app_shader"/>
 		</Unit>
 		<Unit filename="/home/camilo/solution/basis/source/app-graphics3d/shader/main_window.cpp">

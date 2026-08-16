@@ -6,7 +6,7 @@
 
 // 08/12/06 (mv)
 
-#include "framework.h"
+#include "platform.h"
 //#include <stdarg.h>
 
 #define EOF     (-1)

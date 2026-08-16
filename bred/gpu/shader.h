@@ -97,7 +97,7 @@ namespace gpu
       //string_map_base < payload >     m_mapLayout;
 
       ::pointer < renderer >     m_pgpurenderer;
-      ::pointer<texture> m_ptextureTarget;
+      //::pointer<texture> m_ptextureTarget;
 
       ::file::path               m_pathVertex;
       ::file::path               m_pathFragment;
@@ -208,20 +208,20 @@ namespace gpu
       //virtual void on_before_draw(::gpu::command_buffer *pgpucommandbuffer);
       virtual void on_set_constant_buffer(const ::scoped_string& scopedstrName);
 
-      virtual void on_bind_already_bound(::gpu::command_buffer *pgpucommandbuffer, ::gpu::texture *pgputextureTarget);
+      virtual void on_bind_already_bound(::gpu::command_buffer *pgpucommandbuffer, ::gpu::texture_site *pgputextureTarget);
 
-      virtual void bind(::gpu::command_buffer * pgpucommandbuffer, ::gpu::texture* pgputextureTarget);
+      virtual void bind(::gpu::command_buffer * pgpucommandbuffer, ::gpu::texture_site* pgputexturesiteTarget);
       //virtual void bind(::gpu::command_buffer *pgpucommandbuffer, ::gpu::texture *pgputextureTarget,
         //                ::gpu::texture *pgputextureSource);
       virtual void bind_block(::gpu::command_buffer *pgpucommandbuffer, ::gpu::block *pgpublock,
                                ::i32 iSlot = 0);
       virtual void bind_slot_set(::gpu::command_buffer *pgpucommandbuffer, ::i32 iSet, ::gpu::binding_slot_set *pgpubindingslotset);
-      virtual void bind_source(::gpu::command_buffer *pgpucommandbuffer, ::gpu::texture *pgputextureSource,
+      virtual void bind_source(::gpu::command_buffer *pgpucommandbuffer, ::gpu::texture_site *pgputexturesiteSource,
                                ::i32 iSlot = 0);
       virtual void bind_source(::gpu::command_buffer *pgpucommandbuffer, ::gpu::pixmap *pgpupixmapSource,
                                ::i32 iSlot = 0);
       virtual void bind_source2(::gpu::command_buffer * pgpucommandbuffer, ::i32 iIndex,
-         const_char_pointer pszPayloadName, ::gpu::texture * pgputextureSource);
+         const_char_pointer pszPayloadName, ::gpu::texture_site * pgputexturesiteSource);
       //virtual void bind(::gpu::command_buffer *pgpucommandbuffer);
       virtual void unbind(::gpu::command_buffer *pgpucommandbuffer);
 
@@ -247,6 +247,8 @@ namespace gpu
 
       virtual void set_sequence4(const ::scoped_string& scopedstrName, ::f32 x, ::f32 y, ::f32 z, ::f32 w);
       virtual void set_sequence4(const ::scoped_string& scopedstrName, const ::floating_sequence4& a);
+      
+      virtual void set_impact_quad(const ::i32_rectangle & rectangleImpact, const ::i32_size & sizeRaw);
 
       virtual void set_matrix2(const ::scoped_string& scopedstrName, const ::floating_matrix2& a);
       virtual void set_matrix3(const ::scoped_string& scopedstrName, const ::floating_matrix3& a);

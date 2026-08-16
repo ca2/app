@@ -1,18 +1,19 @@
-#include "framework.h"
-#include "scene_base.h"
-#include "acme/filesystem/filesystem/file_context.h"
+#include "platform.h"
 #include "asset_manager.h"
+#include "point_light.h"
+#include "scene_base.h"
+#include "skybox.h"
+#include "acme/filesystem/filesystem/file_context.h"
+#include "acme/prototype/geometry2d/angle.h"
 #include "bred/gpu/context_lock.h"
 #include "bred/gpu/device.h"
 #include "bred/gpu/texture.h"
+#include "bred/gpu/texture_site.h"
 #include "bred/graphics3d/engine.h"
 #include "bred/graphics3d/global_ubo1.h"
 #include "bred/graphics3d/immersion_layer.h"
 #include "bred/prodevian/actor.h"
-#include "openssl/ct.h"
-#include "point_light.h"
-#include "skybox.h"
-
+#include <openssl/ct.h>
 
 
 namespace graphics3d
@@ -115,7 +116,7 @@ namespace graphics3d
       for (::i32 i = 0; i < count; ++i)
       {
 
-         ::f32 angle = i * _2πf / count;
+         ::f32 angle = i * 2_πf / count;
 
          floating_sequence3 pos = {radius * std::cos(angle), height, radius * std::sin(angle)};
 
@@ -214,7 +215,9 @@ namespace graphics3d
 
          pskybox->m_prenderable = prenderable;
 
-         pskybox->m_ptexture = ptextureCubemap;
+         defer_construct_newø(pskybox->m_ptexturesite);
+            
+         pskybox->m_ptexturesite->m_pgputextureSite = ptextureCubemap;
 
          ////pskybox->m_strCubemapTextureName = setObject["cube"].as_string();
 

@@ -20,6 +20,7 @@ namespace image
    class image_frame;
    class image_frame_array;
 
+   class target;
 
    class size_image;
 

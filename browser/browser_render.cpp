@@ -5,7 +5,7 @@
 //  Created by Camilo Sasuke Thomas Borregaard Soerensen on 8/6/15 23:27;24.
 //  Copyright (c) 2015 Camilo Sasuke Thomas Borregaard Soerensen. All rights reserved.
 //
-#include "framework.h"
+#include "platform.h"
 #include <math.h>
 #include "app-graphics/gcom/gcom/gcom_slide.h"
 

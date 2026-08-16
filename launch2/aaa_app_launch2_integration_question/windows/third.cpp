@@ -1,5 +1,5 @@
 // From third.cpp by camilo on 2023-07-14 22:45 <3ThomasBorregaardSorensen!!
-#include "framework.h"
+#include "platform.h"
 #include "third.h"
 #include "application.h"
 #include "acme/constant/id.h"

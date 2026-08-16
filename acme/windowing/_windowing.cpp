@@ -1,7 +1,7 @@
 //
 // Created by camilo on 2024-10-05 20:24 <3ThomasBorregaardSorensen!!
 //
-#include "framework.h"
+#include "platform.h"
 #include "windowing.h"
 #include "acme/constant/windowing2.h"
 

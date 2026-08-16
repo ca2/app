@@ -1233,7 +1233,7 @@
     <ClCompile Include="filesystem\userfs\main_impact.cpp" />
     <ClCompile Include="filesystem\userfs\tree_data.cpp" />
     <ClCompile Include="filesystem\userfs\userfs.cpp" />
-    <ClCompile Include="framework.cpp">
+    <ClCompile Include="platform.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='StaticDebug|Win32'">Create</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='StaticRelease|Win32'">Create</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Create</PrecompiledHeader>
@@ -1374,7 +1374,7 @@
     <ClInclude Include="filesystem\userfs\_data.h" />
     <ClInclude Include="filesystem\userfs\_tree.h" />
     <ClInclude Include="filesystem\_.h" />
-    <ClInclude Include="framework.h" />
+    <ClInclude Include="platform.h" />
     <ClInclude Include="graphics\color_selector.h" />
     <ClInclude Include="html\hi5\_.h" />
     <ClInclude Include="html\hi5\hi5_twitter_authorization.h" />

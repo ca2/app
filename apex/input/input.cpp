@@ -1,7 +1,7 @@
 //
 // Created by camilo on 9/18/23 15:07 <3ThomasBorregaardSorensen!!
 //
-#include "framework.h"
+#include "platform.h"
 #include "input.h"
 #include "acme/parallelization/synchronous_lock.h"
 #include "acme/parallelization/task.h"

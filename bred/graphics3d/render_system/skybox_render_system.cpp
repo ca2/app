@@ -1,4 +1,4 @@
-#include "framework.h"
+#include "platform.h"
 #include "skybox_render_system.h"
 #include "bred/gltf/vertex.h"
 #include "bred/gpu/binding.h"
@@ -10,6 +10,7 @@
 #include "bred/gpu/render_target.h"
 #include "bred/gpu/shader.h"
 #include "bred/gpu/texture.h"
+#include "bred/gpu/texture_site.h"
 #include "bred/graphics3d/engine.h"
 #include "bred/graphics3d/scene_base.h"
 #include "bred/graphics3d/shape_factory.h"
@@ -239,7 +240,7 @@ namespace graphics3d
 
 		}
 
-		auto ptextureSkybox = pskybox->m_ptexture;
+		auto ptextureSkybox = pskybox->m_ptexturesite->gpu_texture();
 
       if (!ptextureSkybox)
       {
@@ -266,7 +267,7 @@ namespace graphics3d
 
       ::gpu::shader *pgpushader = nullptr;
 
-      if (pskybox->m_ptexture->m_bHdr)
+      if (pskybox->m_ptexturesite->gpu_texture()->m_bHdr)
       {
          
          pgpushader = m_pshaderHdr;
@@ -393,7 +394,7 @@ namespace graphics3d
 
          pgpushader->push_properties(pgpulayer->getCurrentCommandBuffer4());
 
-         //i32_rectangle r(pgpucontext->m_rectangle.size());
+         //i32_rectangle r(pgpucontext->size());
 
          //pgpulayer->getCurrentCommandBuffer4()->set_viewport(r);
 

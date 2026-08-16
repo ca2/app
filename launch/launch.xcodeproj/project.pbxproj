@@ -59,8 +59,8 @@
 		E598D39C2024F89B5C4AD1B0 /* x264.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 7A16D6CFE720037311912DB1 /* x264.cpp */; };
 		F95FAF0D08DFBED8CBFB7326 /* build.h in Headers */ = {isa = PBXBuildFile; fileRef = A7D62B5473E167015C36715C /* build.h */; };
 		C52CB2585B3439F82BA21778 /* build.h in Headers */ = {isa = PBXBuildFile; fileRef = A7D62B5473E167015C36715C /* build.h */; };
-		350BDEFD5673D4CEB3FEF3BA /* framework.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 1BF16A2B387B1BEC93A607D1 /* framework.cpp */; };
-		30AC08C590E98F93A5566102 /* framework.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 1BF16A2B387B1BEC93A607D1 /* framework.cpp */; };
+		350BDEFD5673D4CEB3FEF3BA /* platform.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 1BF16A2B387B1BEC93A607D1 /* platform.cpp */; };
+		30AC08C590E98F93A5566102 /* platform.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 1BF16A2B387B1BEC93A607D1 /* platform.cpp */; };
 		907BFF5859E44666346A7A93 /* targetver.h in Headers */ = {isa = PBXBuildFile; fileRef = 57F45EAF3261D399B56FDE6C /* targetver.h */; };
 		54AC801B99324BAAEF30B470 /* targetver.h in Headers */ = {isa = PBXBuildFile; fileRef = 57F45EAF3261D399B56FDE6C /* targetver.h */; };
 		5D48F78E25F2664D246FB56C /* integration.h in Headers */ = {isa = PBXBuildFile; fileRef = 8090815A786954004B1703A8 /* integration.h */; };
@@ -311,7 +311,7 @@
 		C962A936FE7D7AF8B4375915 /* build.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = build.cpp; sourceTree = "<group>"; };
 		7A16D6CFE720037311912DB1 /* x264.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = x264.cpp; sourceTree = "<group>"; };
 		A7D62B5473E167015C36715C /* build.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = build.h; sourceTree = "<group>"; };
-		1BF16A2B387B1BEC93A607D1 /* framework.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = framework.cpp; sourceTree = "<group>"; };
+		1BF16A2B387B1BEC93A607D1 /* platform.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = platform.cpp; sourceTree = "<group>"; };
 		57F45EAF3261D399B56FDE6C /* targetver.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = targetver.h; sourceTree = "<group>"; };
 		8090815A786954004B1703A8 /* integration.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = integration.h; sourceTree = "<group>"; };
 		CFC5CD945571AD8DDF18780C /* x264.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = x264.h; sourceTree = "<group>"; };
@@ -457,7 +457,7 @@
 				62331BA7B91F0513405E2090 /* fdk_aac.h */,
 				78DEFCCEBCCF9A0782095C94 /* ffmpeg.cpp */,
 				E05FE5EA6081F16389A8F4DF /* ffmpeg.h */,
-				1BF16A2B387B1BEC93A607D1 /* framework.cpp */,
+				1BF16A2B387B1BEC93A607D1 /* platform.cpp */,
 				9B64A7412C5AF401836FC87F /* freetype.cpp */,
 				E9E32AB86A060122A0F8D581 /* freetype.h */,
 				1AC750F667D0430DD1DF6534 /* integration.cpp */,
@@ -872,7 +872,7 @@
 				22A3077ED28C24A1E319A146 /* ffmpeg.cpp in Sources */,
 				4EDF8B80D85B30362E1500EC /* application.cpp in Sources */,
 				9B23765A4718A1CB8A31F487 /* generate_assimp_project_files.cpp in Sources */,
-				30AC08C590E98F93A5566102 /* framework.cpp in Sources */,
+				30AC08C590E98F93A5566102 /* platform.cpp in Sources */,
 				DDBFF653A6FB2360C2799F50 /* application_build_helper.cpp in Sources */,
 				55F0B26866C36C9A8A0C99AF /* prepare_project.cpp in Sources */,
 				48E528A75C53D46371B503FE /* generate_documentation.cpp in Sources */,
@@ -908,7 +908,7 @@
 				ACC20017B7D3F9D1ABB80D84 /* ffmpeg.cpp in Sources */,
 				43958F246CD97A70430EDB52 /* application.cpp in Sources */,
 				F6617E6DE3C7D74E195E2F0F /* generate_assimp_project_files.cpp in Sources */,
-				350BDEFD5673D4CEB3FEF3BA /* framework.cpp in Sources */,
+				350BDEFD5673D4CEB3FEF3BA /* platform.cpp in Sources */,
 				14E9DC5FB410111CF5B7252E /* application_build_helper.cpp in Sources */,
 				1C468ED467205E893DBE56B9 /* prepare_project.cpp in Sources */,
 				944A60BE2E13D9407552A23E /* generate_documentation.cpp in Sources */,

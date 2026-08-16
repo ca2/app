@@ -1,4 +1,4 @@
-#include "framework.h"
+#include "platform.h"
 #include "script_manager.h"
 #include "script_cache.h"
 #include "script_compiler.h"

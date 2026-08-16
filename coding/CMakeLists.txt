@@ -38,8 +38,8 @@ list(APPEND library_source
    #    document.h
    #    frame.cpp
    #    frame.h
-        framework.cpp
-        framework.h
+        platform.cpp
+        platform.h
    #group.cpp
    #    group.h
    #    group_checkout_for_another_system.cpp
@@ -173,8 +173,8 @@ target_link_directories(static_${PROJECT_NAME} PRIVATE ${library_link_directorie
 
 if (NOT ${NO_PRECOMPILED_HEADER})
 
-    target_precompile_headers(${PROJECT_NAME} PRIVATE framework.h)
-    target_precompile_headers(static_${PROJECT_NAME} PRIVATE framework.h)
+    target_precompile_headers(${PROJECT_NAME} PRIVATE platform.h)
+    target_precompile_headers(static_${PROJECT_NAME} PRIVATE platform.h)
 
 endif ()
 

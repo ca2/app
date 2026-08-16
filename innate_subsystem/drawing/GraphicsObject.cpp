@@ -1,7 +1,7 @@
 //
 // Created by camilo on 2026-04-08 17:33 <3ThomasBorregaardSørensen!!
 //
-#include "framework.h"
+#include "platform.h"
 #include "GraphicsObject.h"
 
 

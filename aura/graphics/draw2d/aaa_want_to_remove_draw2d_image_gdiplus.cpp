@@ -1,4 +1,4 @@
-#include "framework.h"
+#include "platform.h"
 #include <wincodec.h>
 #ifdef UNIVERSAL_WINDOWS
 #include <ShCore.h>

@@ -1,5 +1,5 @@
 // Created by camilo on 2022-10-23 09:29 <3ThomasBorregaardSorensen!!
-#include "framework.h"
+#include "platform.h"
 #include "rectangle.h"
 
 #if 0

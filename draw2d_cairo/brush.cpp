@@ -1,4 +1,4 @@
-#include "framework.h"
+#include "platform.h"
 #include "brush.h"
 
 
@@ -9,7 +9,7 @@ namespace draw2d_cairo
    brush::brush()
    {
 
-      m_pthis = this;
+      //m_pthis = this;
 
    }
 

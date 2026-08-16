@@ -108,8 +108,8 @@ list(APPEND library_source
 
       #gltf_model.cpp
    #gltf_model.h
-        framework.cpp
-        framework.h
+        platform.cpp
+        platform.h
    hdr_texture.cpp
    hdr_texture.h
         image_opengl.cpp
@@ -227,14 +227,14 @@ add_dependencies(static_${PROJECT_NAME} ${PROJECT_NAME}_generate_ibl_shader_head
 
 if (NOT ${NO_PRECOMPILED_HEADER})
 
-    target_precompile_headers(${PROJECT_NAME} PRIVATE framework.h)
-    target_precompile_headers(static_${PROJECT_NAME} PRIVATE framework.h)
+    target_precompile_headers(${PROJECT_NAME} PRIVATE platform.h)
+    target_precompile_headers(static_${PROJECT_NAME} PRIVATE platform.h)
 
 endif ()
 if (NOT ${NO_PRECOMPILED_HEADER})
 
-    target_precompile_headers(${PROJECT_NAME} PRIVATE framework.h)
-    target_precompile_headers(static_${PROJECT_NAME} PRIVATE framework.h)
+    target_precompile_headers(${PROJECT_NAME} PRIVATE platform.h)
+    target_precompile_headers(static_${PROJECT_NAME} PRIVATE platform.h)
 
 endif ()
 

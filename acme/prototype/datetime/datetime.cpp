@@ -1,5 +1,5 @@
 // From datetime to datetime by camilo on 2022-11-19 04:41 <3ThomasBorregaardSorensen!!
-#include "framework.h" // from "base/apex/.h"
+#include "platform.h" // from "base/apex/.h"
 #include "datetime.h"
 ////#include "acme/exception/exception.h"
 #include "acme/exception/not_implemented.h"
@@ -1441,7 +1441,7 @@ namespace datetime
 } // namespace datetime
 
 
-#include "framework.h"
+#include "platform.h"
 #include <time.h>
 
 #ifndef WINDOWS

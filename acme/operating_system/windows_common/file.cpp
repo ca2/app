@@ -1,5 +1,5 @@
 // Created by camilo on 2023-03-14 09:48 <3ThomasBorregaardSorensen!!
-#include "framework.h"
+#include "platform.h"
 #include "acme/_operating_system.h"
 #include "acme/operating_system/console.h"
 #include "acme/prototype/string/adaptor.h"

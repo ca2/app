@@ -1,6 +1,6 @@
 // Created by camilo on 2023-11-14 14:37 <3ThomasBorregaardSorensen!!
 // To keyboard_state.cpp by camilo on 2023-11-14 18:10 <3ThomasBorregaardSørensen!! Mummi!! Bilbo!!
-#include "framework.h"
+#include "platform.h"
 #include "keyboard_state.h"
 
 #include "mouse.h"

@@ -1,13 +1,17 @@
-#include "framework.h"
+#include "platform.h"
 #include "bitmap.h"
 #include "image.h"
 #include "context.h"
 #include "context_lock.h"
+#include "layer.h"
 #include "renderer.h"
 #include "texture.h"
-#include "apex/gpu/approach.h"
-#include "bred/gpu/device.h"
+#include "texture_site.h"
 #include "acme/platform/application.h"
+#include "apex/gpu/approach.h"
+#include "aura/graphics/draw2d/draw2d.h"
+#include "aura/user/user/interaction.h"
+#include "bred/gpu/device.h"
 
 
 CLASS_DECL_ACME::string _001_image32_diagnostics(const ::i32_size &size, const image32_t *pimage32, int iScan);
@@ -171,6 +175,126 @@ namespace gpu
 
    }
 
+   
+   void image::create_as_render_target(const ::i32_size & sizeRaw, ::user::interaction * puserinteraction, ::draw2d::graphics * pdraw2dgraphics, ::enum_flag eflagCreate, ::i32 iGoodStride, bool bPreserve, bool bTopDraw2d)
+   {
+
+      if (!puserinteraction)
+      {
+
+         throw ::exception(error_null_pointer, "user::interaction is null");
+
+      }
+
+      m_pacmeuserinteractionAffinity = puserinteraction;
+
+      // if (m_pgputexture && m_pgraphics && m_pgputexture->size() == size)
+
+      destroy();
+
+      if (sizeRaw.is_empty())
+      {
+
+         return;
+
+      }
+
+      create_as_descriptor(sizeRaw, eflagCreate, iGoodStride);
+
+      auto pbitmap = createø<::draw2d::bitmap>();
+
+      ::cast<::gpu::bitmap> pgpubitmap = pbitmap;
+
+      //auto pacmewindowingwindow = m_pacmeuserinteractionMain->m_pacmewindowingwindow;
+
+      //auto pgpudevice = m_papplication->get_gpu_approach()->get_gpu_device(pacmewindowingwindow);
+
+      //_synchronous_lock synchronouslock(pgpudevice->synchronization());
+
+      //auto pixmap = this->pixmap::map();
+
+      auto pacmewindowingwindow = m_pacmeuserinteractionAffinity->m_pacmewindowingwindow;
+
+      auto pgpudevice = m_papplication->get_gpu_approach()->get_gpu_device(pacmewindowingwindow);
+
+      _synchronous_lock synchronouslock(pgpudevice->synchronization());
+
+      if (!bTopDraw2d)
+      {
+
+         auto pgpucontextlease = pgpudevice->acquire_gpu_context(
+            bTopDraw2d ? ::gpu::e_output_draw2d_bitmap : ::gpu::e_output_none, {25, 25});
+
+         pgpucontextlease->m_pacmeuserinteractionAffinity = m_pacmeuserinteractionAffinity;
+
+         //::pixmap_t pixmap;
+
+         //pixmap.m_pimage32Raw = (::image32_t *)pimage32;
+
+         //pixmap.m_pimage32 = (::image32_t *)pimage32;
+
+         //pixmap.m_size = size;
+
+         //pixmap.m_sizeRaw = size;
+
+         //pixmap.m_iScan = iScan;
+
+         //pgpubitmap->initialize_gpu_bitmap(pgpucontextlease, sizeRaw, pixmap);
+
+         pgpubitmap->initialize_gpu_bitmap(pgpucontextlease, sizeRaw, {});
+
+         m_pbitmap = pgpubitmap;
+
+      }
+
+      //auto pgraphics = system()->draw2d()->allocate_graphics(m_pacmeuserinteractionAffinity);
+
+      //if (bTopDraw2d)
+      //{
+
+      //   pgraphics->create_for_window_draw2d(puserinteraction, sizeRaw);
+
+      //}
+      //else
+      //{
+
+      //   pgraphics->create_for_image(this);
+
+      //}
+
+
+      //m_pgraphicsOwned = pgraphics;
+
+      //pgraphics->m_pimage = this;
+
+      //auto pgpucontext = pgpudevice->acquire_gpu_context(::gpu::e_output_none, size);
+
+      //::gpu::context_lock contextlock(pgpucontext);
+
+      //pixmap_t pixmap;
+
+      //pixmap.initialize_pixmap(size, (::image32_t*) pimage32, iScan);
+
+      //pgputexture->initialize_gpu_pimage(pgpucontext, size, pixmap);
+
+      m_eflagElement = eflagCreate;
+
+      m_estatus = ::success;
+
+      set_ok_flag();
+
+      //      m_pgputexture->write_pixels(size, pimage32, iScan);
+
+   }
+
+
+   void image::create_gpu_texture_image(::gpu::texture * pgputexture, ::gpu::graphics * pgpugraphics)
+   {
+
+
+
+   }
+
 
    //void image::initialize_gpu_image(
    //   ::gpu::context * pgpucontext,
@@ -263,7 +387,7 @@ namespace gpu
    }
 
 
-   void image::_map(bool)
+   void image::_map(const ::i32_rectangle & rectangle, bool bApplyAlphaTransform)
    {
 
       if (has_active_destination_graphics_lease())
@@ -282,12 +406,30 @@ namespace gpu
 
       }
 
-      auto pgputexture = get_gpu_texture();
+      ::gpu::texture * pgputexture = nullptr;
 
-      if (!pgputexture || m_sizeRaw.is_empty())
+      ::cast < ::gpu::bitmap > pbitmap = m_pbitmap;
+
+      if (pbitmap)
       {
 
-         throw ::exception(error_wrong_state);
+         pgputexture = pbitmap->m_pgputexture;
+
+      }
+
+      if (!pgputexture)
+      {
+
+         if (m_size.is_empty() && m_sizeRaw.is_empty())
+         {
+
+            throw ::exception(error_wrong_state);
+
+         }
+
+         ::image::image::_map(rectangle, bApplyAlphaTransform);
+
+         return;
 
       }
 
@@ -305,7 +447,7 @@ namespace gpu
       auto pgpucontext = ::as_pointer(pgpucontextlease.m_p);
 
       pgpucontext->send(
-         [pthis, pgputexture, pgpucontext]()
+         [pthis, pgputexture, pgpucontext, rectangle]()
          {
 
             auto bPerformanceDiagnostics = pthis->m_papplication
@@ -354,7 +496,11 @@ namespace gpu
 
             }
 
-            pgputexture->read_pixels(pthis);
+            auto pgpucommandbuffer = ::gpu::current_layer()->getCurrentCommandBuffer4();
+
+            auto ptexturesite = ::gpu::current_layer()->texture(false);
+
+            pgputexture->read_pixels(pgpucommandbuffer, pthis, ptexturesite->m_pointOutput);
 
             auto uMicroseconds = (::u64)0;
 
@@ -367,7 +513,19 @@ namespace gpu
 
             }
 
-            pthis->pixmap_map(pthis->rectangle());
+            if (rectangle.is_empty())
+            {
+
+               pthis->pixmap_map(pthis->rectangle());
+
+            }
+            else
+            {
+
+               pthis->pixmap_map(rectangle);
+
+            }
+
             pthis->m_bMapped = true;
 
             if (bPerformanceDiagnostics)
@@ -398,7 +556,8 @@ namespace gpu
       if (!pgputexture)
       {
 
-         throw ::exception(error_wrong_state);
+         //throw ::exception(error_wrong_state);
+         return;
 
       }
 
@@ -450,7 +609,7 @@ namespace gpu
 
             }
 
-            pgputexture->write_pixels(pthis);
+            pgputexture->write_pixels(pthis, {});
 
             auto uMicroseconds = (::u64)0;
 
@@ -583,6 +742,8 @@ namespace gpu
       }
       else
       {
+
+         create_as_descriptor(size, e_flag_success, iScan);
 
          auto mapThis = this->map();
 

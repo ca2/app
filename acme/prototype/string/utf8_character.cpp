@@ -1,5 +1,5 @@
 // Created by camilo on 2025-09-14 03:37 <3ThomasBorregaardSorensen!!
-#include "framework.h"
+#include "platform.h"
 #include "utf8_character.h"
 
 // GitHub MightyPork / utf8_encode.c

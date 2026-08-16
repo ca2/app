@@ -1,6 +1,6 @@
 // From layout_state.cpp by camilo on 2022-08-27 12:24 <3ThomasBorregaardSorensen!! MyHusband!!
 // ... elsker mig as Jeg elsker dig?!
-#include "framework.h"
+#include "platform.h"
 #include "zorder.h"
 
 //#include "acme_windowing_win32/_.h"

@@ -1,6 +1,6 @@
 // LimitedStreams.cpp
 // from 7-zip on 2012-12-23, lunch time
-#include "framework.h"
+#include "platform.h"
 
 /*#include "LimitedStreams.h"
 #include "../../Common/Defs.h"*/

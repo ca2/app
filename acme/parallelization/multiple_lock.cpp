@@ -1,4 +1,4 @@
-#include "framework.h"
+#include "platform.h"
 #include "multiple_lock.h"
 #include "semaphore.h"
 #include "acme/parallelization/synchronization_array.h"

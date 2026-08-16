@@ -1,4 +1,4 @@
-#include "framework.h"
+#include "platform.h"
 #include "tools.h"
 #include "acme/operating_system/process.h"
 #include "acme/parallelization/manual_reset_happening.h"

@@ -1,5 +1,5 @@
 // Created by camilo on 2025-03-09 01:27 <3ThomasBorregaardSorensen!!
-#include "framework.h"
+#include "platform.h"
 #include "component.h"
 #include "component_implementation.h"
 #include "acme/exception/interface_only.h"

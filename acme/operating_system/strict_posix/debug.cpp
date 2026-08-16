@@ -1,5 +1,5 @@
 // Created by camilo on 2024-09-02 19:14 <3ThomasBorregaardSorensen!!
-#include "framework.h"
+#include "platform.h"
 
 
 #include <stdio.h>

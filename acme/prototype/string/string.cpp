@@ -1,7 +1,7 @@
 //
 // Created by camilo on 22/10/22 21:02 <3ThomasBorregaardSorensen!!
 //
-#include "framework.h"
+#include "platform.h"
 //#include "string.h"
 //#include "acme/prototype/comparison/compare_elements.hh"
 

@@ -1,4 +1,4 @@
-#include "framework.h"
+#include "platform.h"
 #include "compress.h"
 #include "uncompress.h"
 #include "acme/prototype/prototype/factory.h"

@@ -1,8 +1,9 @@
-#include "framework.h"
+#include "platform.h"
 #include "binding.h"
 #include "bred_approach.h"
 #include "context.h"
 #include "device.h"
+#include "window_attachment.h"
 #include "types.h"
 #include "acme/exception/interface_only.h"
 #include "acme/filesystem/filesystem/file_context.h"
@@ -52,6 +53,13 @@ namespace gpu
       system()->m_pfactory->defer_add_factory_item<::gpu::binding_slot_set>();
       system()->m_pfactory->add_factory_item<::gpu::binding_slot_set_array>();
 
+
+   }
+
+   ::pointer < ::apex::gpu::window_attachment >bred_approach::allocate_gpu_window_attachment(::acme::windowing::window * pacmewindowingwindow)
+   {
+
+      return create_newø < ::gpu::window_attachment >();
 
    }
 
@@ -138,7 +146,13 @@ namespace gpu
    
 
 
+   ::particle_pointer bred_approach::_allocate_draw2d_window_attachment_for_gpu(::acme::windowing::window * pacmewindowingwindow)
+   {
 
+      //return create_newø<::gpu::window_attachment >();
+      return nullptr;
+
+   }
 
 
    void bred_approach::defer_init_gpu_library()
@@ -190,9 +204,17 @@ namespace gpu
 
       auto sizeWindow = pacmewindowingwindow->m_sizeWindow;
 
+      auto rectangleTarget = pacmewindowingwindow->get_window_rectangle();
+
+      auto pointTarget = rectangleTarget.origin();
+
+      auto size = rectangleTarget.size();
+
+      auto sizeRaw = pacmewindowingwindow->get_raw_buffer_size();
+
       ::gpu::enum_scene escene = ::gpu::e_scene_2d;
 
-      pgpucontext->create_window_gpu_context(pgpudevice, eoutput, escene, pacmewindowingwindow, sizeWindow);
+      pgpucontext->create_window_gpu_context(pgpudevice, eoutput, escene, pacmewindowingwindow, {}, pointTarget, size, sizeRaw);
 
       //::cast<::gpu_opengl::approach> papproach = m_papplication->get_gpu_approach();
       _gpu_on_create_window(pacmewindowingwindow);

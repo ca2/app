@@ -1,5 +1,5 @@
 // Created by camilo on 2023-11-07 00:08 <3ThomasBorregaardSorensen!!
-#include "framework.h"
+#include "platform.h"
 #include "application.h"
 #define FACTORY store
 #define APPLICATION_NAMESPACE store

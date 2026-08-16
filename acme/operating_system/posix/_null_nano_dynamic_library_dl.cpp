@@ -1,7 +1,7 @@
 //
 // Created by camilo on 2024-06-03 01:17 <3ThomasBorregaardSorensen!!
 //
-#include "framework.h"
+#include "platform.h"
 #include "acme/operating_system/dynamic_library.h"
 
 

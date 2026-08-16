@@ -1,7 +1,7 @@
 #pragma once
 
 
-struct with_t {};
+struct radian_t {};
 
 
 template < prototype_floating FLOATING_TYPE >
@@ -27,7 +27,7 @@ public:
 
    constexpr angle_type() : m_fAngle(0.0) {}
    constexpr angle_type(no_initialize_t) {}
-   constexpr angle_type(with_t, FLOATING u):m_fAngle(u) {}
+   constexpr angle_type(radian_t, FLOATING u):m_fAngle(u) {}
    //constexpr angle_type(nullptr_t) : m_fAngle(0.0) {}
    template < prototype_floating FLOATING1 >
    constexpr angle_type(const ::angle_type <FLOATING1 > & angle) : m_fAngle((FLOATING) angle.m_fAngle) {}
@@ -120,10 +120,9 @@ public:
    static constexpr angle_type degrees(NUMBER degrees)
    {
       
-      return radians(degrees * MATH_PI / 180.0);
+      return { radian_t{}, (FLOATING_TYPE) (π * degrees / 180.0) };
       
    }
-
 
    
    FLOATING cos() const
@@ -143,11 +142,9 @@ public:
 };
 
 
-
-
-
 using f32_angle = angle_type < ::f32 >;
 using f64_angle = angle_type < ::f64 >;
+using f128_angle = angle_type < ::f128 >;
 
 
 namespace geometry
@@ -296,4 +293,36 @@ inline auto angle(const ::point_type < NUMBER1 > & center, const ::point_type < 
 }
 
 
+inline f64_angle operator""_π(::u64 degree)
+{
+
+   return { radian_t{}, (::f64) (degree * π) };
+
+}
+
+
+
+inline f32_angle operator""_πf(::u64 degree)
+{
+
+   return { radian_t{}, (::f32)(degree * π) };
+
+}
+
+
+
+inline f64_angle operator""_π(long double degrees)
+{
+
+   return { radian_t{}, (::f64) (degrees * π) };
+
+}
+
+
+inline f32_angle operator""_πf(long double degrees)
+{
+
+   return { radian_t{}, (::f32) (degrees * π) };
+
+}
 

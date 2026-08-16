@@ -1,4 +1,4 @@
-#include "framework.h"
+#include "platform.h"
 
 
 invalid_index_exception::invalid_index_exception(const ::scoped_string & scopedstrMessage):

@@ -515,8 +515,8 @@ list(APPEND library_source
    version/version.h
    _.cpp
    _.h
-   framework.cpp
-   framework.h
+   platform.cpp
+   platform.h
 )
 
 if (WIN32)
@@ -844,8 +844,8 @@ add_library(static_${PROJECT_NAME} STATIC ${library_source})
 
 if (NOT ${NO_PRECOMPILED_HEADER})
 
-   target_precompile_headers(${PROJECT_NAME} PRIVATE framework.h)
-   target_precompile_headers(static_${PROJECT_NAME} PRIVATE framework.h)
+   target_precompile_headers(${PROJECT_NAME} PRIVATE platform.h)
+   target_precompile_headers(static_${PROJECT_NAME} PRIVATE platform.h)
 #   message(FATAL_ERROR "Let me see if reaches here" )
 
 endif ()

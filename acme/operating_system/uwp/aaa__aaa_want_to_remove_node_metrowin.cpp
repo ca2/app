@@ -1,4 +1,4 @@
-#include "framework.h"
+#include "platform.h"
 #include "metrowin.h"
 #include <errno.h>
 #include <io.h>

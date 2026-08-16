@@ -1,4 +1,4 @@
-#include "framework.h"
+#include "platform.h"
 
 
 void gdiplus_draw_text(::draw2d::graphics* pgraphicsParam, ::draw2d::path* ppathParam, const ::scoped_string & scopedstr, ::f64_rectangle& rectangleParam, const ::e_align & ealign, const ::e_draw_text & edrawtext, ::write_text::font* pfontParam, ::f64 dFontWidth, ::draw2d::brush* pbrushParam, bool bMeasure)

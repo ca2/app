@@ -54,7 +54,7 @@
     <ClCompile Include="draw2d_direct2d_path.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="framework\framework.cpp">
+    <ClCompile Include="framework\platform.cpp">
       <Filter>Source Files\framework</Filter>
     </ClCompile>
     <ClCompile Include="draw2d_direct2d_printer.cpp">
@@ -104,7 +104,7 @@
     <ClInclude Include="draw2d_direct2d_path.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="framework\framework.h">
+    <ClInclude Include="framework\platform.h">
       <Filter>Header Files\framework</Filter>
     </ClInclude>
   </ItemGroup>

@@ -31,8 +31,8 @@ target_compile_definitions(static_${PROJECT_NAME}_library PRIVATE CUBE)
 
 if (NOT ${NO_PRECOMPILED_HEADER})
 
-    target_precompile_headers(${PROJECT_NAME} PRIVATE framework.h)
-    target_precompile_headers(static_${PROJECT_NAME}_library PRIVATE framework.h)
+    target_precompile_headers(${PROJECT_NAME} PRIVATE platform.h)
+    target_precompile_headers(static_${PROJECT_NAME}_library PRIVATE platform.h)
 
 endif ()
 

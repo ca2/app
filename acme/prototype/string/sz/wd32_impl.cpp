@@ -1,5 +1,5 @@
 // Refactored by camilo on 2022-11-04 05:42 <3ThomasBorregaardSorensen!!
-#include "framework.h"
+#include "platform.h"
 #include "_template.h"
 #include <wchar.h>
 //CLASS_DECL_ACME  constexpr character_count     character_count_to_byte_length(const_wd32char_trigger, character_count nCharLength) { return (::memsize)(nCharLength * sizeof(::wd32_character)); }

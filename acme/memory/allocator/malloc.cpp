@@ -1,4 +1,4 @@
-#include "framework.h"
+#include "platform.h"
 #include "acme/memory/allocator/malloc.h"
 #include "acme/platform/system.h"
 #if defined(OPENBSD)

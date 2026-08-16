@@ -39,8 +39,8 @@ namespace gpu
          ::pointer<::gpu::shader>            m_pshaderHdri;
          //::pointer<::gpu::ibl::hdri_cube>    m_phdricube;
          //::pointer<cubemap_framebuffer>      m_pframebuffer;
-         ::pointer<::gpu::texture>           m_ptextureCubemap;
-         ::pointer<::gpu::texture>           m_ptextureHdr;
+         ::pointer<::gpu::texture_site>      m_ptexturesiteCubemap;
+         ::pointer<::gpu::texture_site>      m_ptexturesiteHdr;
          ::pointer<::graphics3d::renderable> m_prenderableCube;
 
 

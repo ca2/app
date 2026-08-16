@@ -49,7 +49,7 @@ namespace gpu
 
          ::pointer<::gpu::shader> m_pshaderDiffuseIrradiance;
          //::pointer<::gpu::ibl::cubemap_framebuffer> m_pframebufferDiffuseIrradiance;
-         ::pointer < ::gpu::texture > m_ptextureDiffuseIrradianceCubemap;
+         ::pointer < ::gpu::texture_site > m_ptexturesiteDiffuseIrradianceCubemap;
          //::pointer<::gpu::cube> m_pgpucube;
          ::pointer<::graphics3d::renderable> m_prenderableCube;
 

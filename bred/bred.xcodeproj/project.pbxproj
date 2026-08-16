@@ -199,7 +199,7 @@
 		6E4485DAA20598CAC709A4C0 /* draw2d.h in Headers */ = {isa = PBXBuildFile; fileRef = FC9E9A46921F447F9019DA55 /* draw2d.h */; };
 		6E72C03662C6624115F7C0A9 /* android.h in Headers */ = {isa = PBXBuildFile; fileRef = C01741195C5F3A3C97390DE0 /* android.h */; };
 		6F28165A38F772773294E26D /* object.cpp in Sources */ = {isa = PBXBuildFile; fileRef = DCA4895B46864FE6705969BA /* object.cpp */; };
-		6F31A7B9D50B8FF64DE2FC1F /* framework.h in Headers */ = {isa = PBXBuildFile; fileRef = 81048810585B0AB1E84248D5 /* framework.h */; };
+		6F31A7B9D50B8FF64DE2FC1F /* platform.h in Headers */ = {isa = PBXBuildFile; fileRef = 81048810585B0AB1E84248D5 /* platform.h */; };
 		6F92346261F16DFBCFDE45A9 /* linux.h in Headers */ = {isa = PBXBuildFile; fileRef = 308EB757F04DAE6AD0168279 /* linux.h */; };
 		6FD68E229B6EFBC4B45BDA6F /* frame.h in Headers */ = {isa = PBXBuildFile; fileRef = 1BDB729E947ACB34255D3DA0 /* frame.h */; };
 		70014723779B406B800020CA /* _.h in Headers */ = {isa = PBXBuildFile; fileRef = 185BDEAB2FDAB535C1496867 /* _.h */; };
@@ -356,10 +356,10 @@
 		C78FBD1DC9D0E1707B5149A6 /* frame.h in Headers */ = {isa = PBXBuildFile; fileRef = 1BDB729E947ACB34255D3DA0 /* frame.h */; };
 		C79255BAB077DE68552F8FCE /* swap_chain.cpp in Sources */ = {isa = PBXBuildFile; fileRef = C558F50A588F93BF2E13D0BC /* swap_chain.cpp */; };
 		C8026459DE863BD6DDDF2382 /* pixmap.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 3FDCF980CDD0653F3ABBCA23 /* pixmap.cpp */; };
-		C84D1069A7C7E5954EA08006 /* framework.h in Headers */ = {isa = PBXBuildFile; fileRef = 81048810585B0AB1E84248D5 /* framework.h */; };
+		C84D1069A7C7E5954EA08006 /* platform.h in Headers */ = {isa = PBXBuildFile; fileRef = 81048810585B0AB1E84248D5 /* platform.h */; };
 		C86F0DABF8647E3CA572842C /* renderable.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 01DC9D94F99D2A2986222C4F /* renderable.cpp */; };
 		C885EAFBD8BD5F31A9D7C67B /* memory_buffer.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 3D926C53D59E9126227C968B /* memory_buffer.cpp */; };
-		C8C3F40123A8442502682F90 /* framework.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 16AF2A21D420EB6AE111A9FB /* framework.cpp */; };
+		C8C3F40123A8442502682F90 /* platform.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 16AF2A21D420EB6AE111A9FB /* platform.cpp */; };
 		CAB3CDC92C2025D5E233E1EA /* immersion_layer.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 0E0A597908138E9C4B5E4490 /* immersion_layer.cpp */; };
 		CAC98C069F6815B2294129F1 /* _.cpp in Sources */ = {isa = PBXBuildFile; fileRef = F96EF20D55CF9B609AFA4F59 /* _.cpp */; };
 		CB105C1FDE39A78AF53E9B54 /* types.h in Headers */ = {isa = PBXBuildFile; fileRef = B12332775C738FCF6F4C7D84 /* types.h */; };
@@ -383,7 +383,7 @@
 		D7EAF23ECD568BC39BD35E9A /* scene_renderable.h in Headers */ = {isa = PBXBuildFile; fileRef = 6EC44A60F9CC74C80285D8AE /* scene_renderable.h */; };
 		D7FF3B88758D9E2FAF7AB19D /* libaqua.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 69F2CD5E5E31A45D421E1972 /* libaqua.dylib */; };
 		D86B8A71F1DDE64C407688FB /* vertex.h in Headers */ = {isa = PBXBuildFile; fileRef = 1D06D636B7A944908367F887 /* vertex.h */; };
-		D9F20D4C82807F69BE127C9E /* framework.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 16AF2A21D420EB6AE111A9FB /* framework.cpp */; };
+		D9F20D4C82807F69BE127C9E /* platform.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 16AF2A21D420EB6AE111A9FB /* platform.cpp */; };
 		DA1DA88F40521BE1934B2D44 /* _.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 250C0A588BE84D024234EA24 /* _.cpp */; };
 		DAC0E144E0C3E2239173D58A /* program.cpp in Sources */ = {isa = PBXBuildFile; fileRef = F5E43842B04DE4409CD2227B /* program.cpp */; };
 		DB16DCEFCC19F2A7811924AF /* application.h in Headers */ = {isa = PBXBuildFile; fileRef = B90E74C1E931A7E1451EAF07 /* application.h */; };
@@ -508,7 +508,7 @@
 		1246A978F7EAA7EB62762992 /* ios.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ios.h; sourceTree = "<group>"; };
 		12F05FC98E4B481FFF3F508B /* compositor.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = compositor.h; sourceTree = "<group>"; };
 		14A1E0F4554A63909851AF76 /* binding.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = binding.cpp; sourceTree = "<group>"; };
-		16AF2A21D420EB6AE111A9FB /* framework.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = framework.cpp; sourceTree = "<group>"; };
+		16AF2A21D420EB6AE111A9FB /* platform.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = platform.cpp; sourceTree = "<group>"; };
 		1740F4D0575F191794E5EE95 /* render.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = render.h; sourceTree = "<group>"; };
 		17FA483CB94CC4F019EACC14 /* pbr_with_ibl_render_system_base.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = pbr_with_ibl_render_system_base.cpp; sourceTree = "<group>"; };
 		185BDEAB2FDAB535C1496867 /* _.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = _.h; sourceTree = "<group>"; };
@@ -604,7 +604,7 @@
 		7E68651A3700BDED756D69AD /* block.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = block.h; sourceTree = "<group>"; };
 		7F7A5B3D5FE692DDFFF21272 /* application.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = application.h; sourceTree = "<group>"; };
 		800D8664233C7113ECD41248 /* skybox_render_system.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = skybox_render_system.h; sourceTree = "<group>"; };
-		81048810585B0AB1E84248D5 /* framework.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = framework.h; sourceTree = "<group>"; };
+		81048810585B0AB1E84248D5 /* platform.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = platform.h; sourceTree = "<group>"; };
 		81CD5071F5C794680910FE9D /* hlsl_context.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = hlsl_context.h; sourceTree = "<group>"; };
 		82AF74A0DE1946763341743E /* program.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = program.h; sourceTree = "<group>"; };
 		82E5827EB85B7B0080047BFF /* key_map.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = key_map.h; sourceTree = "<group>"; };
@@ -1116,8 +1116,8 @@
 				185BDEAB2FDAB535C1496867 /* _.h */,
 				F85916E7E74805F1CB3DDD18 /* _defer.h */,
 				0206FD3BDF7CC3C2E88B9355 /* console.h */,
-				16AF2A21D420EB6AE111A9FB /* framework.cpp */,
-				81048810585B0AB1E84248D5 /* framework.h */,
+				16AF2A21D420EB6AE111A9FB /* platform.cpp */,
+				81048810585B0AB1E84248D5 /* platform.h */,
 				42E3514152F2A9E5A3B7CD5C /* id.h */,
 				D4F0182219771AE58273D1CD /* library.h */,
 			);
@@ -1154,7 +1154,7 @@
 				9C1926960970A77EE2C07E5B /* application.h in Headers */,
 				B6CF14C53E62FBD0CD8438E0 /* _application.h in Headers */,
 				DC029693B4D47251D4B83FBE /* _new_impl.h in Headers */,
-				C84D1069A7C7E5954EA08006 /* framework.h in Headers */,
+				C84D1069A7C7E5954EA08006 /* platform.h in Headers */,
 				1D6E3DC54FAB9711B8DE0C0B /* library.h in Headers */,
 				6F92346261F16DFBCFDE45A9 /* linux.h in Headers */,
 				EFEDF48DCB1A8908A5CEC276 /* windows.h in Headers */,
@@ -1397,7 +1397,7 @@
 				9A35B0743EE3215D52AD3A6F /* _application.h in Headers */,
 				DF6D23B60B51F20C022BF374 /* _new_impl.h in Headers */,
 				49EEE785742FE53033A34244 /* vertex.h in Headers */,
-				6F31A7B9D50B8FF64DE2FC1F /* framework.h in Headers */,
+				6F31A7B9D50B8FF64DE2FC1F /* platform.h in Headers */,
 				4A6FB19245F809A73E74D796 /* library.h in Headers */,
 				1E01CCB7B5A5175ECF3D8ACD /* linux.h in Headers */,
 				F4429A760961E13090F98506 /* windows.h in Headers */,
@@ -1550,7 +1550,7 @@
 				4FB0A58351A732F2132FF188 /* skybox_render_system.cpp in Sources */,
 				A1CB2977BC2461A035205C2E /* idpool.cpp in Sources */,
 				0B5DDA51C2176E492B5A6AA1 /* session.cpp in Sources */,
-				D9F20D4C82807F69BE127C9E /* framework.cpp in Sources */,
+				D9F20D4C82807F69BE127C9E /* platform.cpp in Sources */,
 				8FADD207F81D7F6C169AA84E /* scene_renderable.cpp in Sources */,
 				38144563F2F63E4D72B83E7A /* scene_base.cpp in Sources */,
 				745ABC4167991BE608E79A99 /* types.cpp in Sources */,
@@ -1638,7 +1638,7 @@
 				831C551CF2CBD1F8CF2D7704 /* skybox_render_system.cpp in Sources */,
 				CF692A3A3FEC30BCD9B90377 /* idpool.cpp in Sources */,
 				A05D01D95BA68442190023BF /* session.cpp in Sources */,
-				C8C3F40123A8442502682F90 /* framework.cpp in Sources */,
+				C8C3F40123A8442502682F90 /* platform.cpp in Sources */,
 				B0AE5E8E767EA738C29197EF /* scene_renderable.cpp in Sources */,
 				A3AD2A4C10DBBD88A4E5E20E /* scene_base.cpp in Sources */,
 				CDB1935F9B176EA9830BF723 /* types.cpp in Sources */,
@@ -1814,7 +1814,7 @@
 				GCC_NO_COMMON_BLOCKS = YES;
 				GCC_OPTIMIZATION_LEVEL = 0;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
-				GCC_PREFIX_HEADER = framework.h;
+				GCC_PREFIX_HEADER = platform.h;
 				GCC_PREPROCESSOR_DEFINITIONS = "$(inherited)";
 				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
 				GCC_VERSION = "";
@@ -1926,7 +1926,7 @@
 				GCC_INCREASE_PRECOMPILED_HEADER_SHARING = NO;
 				GCC_NO_COMMON_BLOCKS = YES;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
-				GCC_PREFIX_HEADER = framework.h;
+				GCC_PREFIX_HEADER = platform.h;
 				GCC_VERSION = "";
 				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
 				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;

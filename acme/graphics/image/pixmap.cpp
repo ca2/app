@@ -1,7 +1,7 @@
 //
 // Created by camilo on 2023-10-06 20:16 <3ThomasBorregaardSorensen!!
 //
-#include "framework.h"
+#include "platform.h"
 #include "pixmap.h"
 //#include "acme/prototype/geometry2d/_geometry2d.h"
 
@@ -129,7 +129,7 @@ pixmap_lease pixmap::map(const ::i32_rectangle & rectangle) const
 }
 
 
-bool pixmap::_on_map(bool bApplyAlphaTransform)
+bool pixmap::_on_map(const ::i32_rectangle & rectangle, bool bApplyAlphaTransform)
 {
 
    if (m_interlockedcountMap > 0)
@@ -158,10 +158,10 @@ bool pixmap::_on_map(bool bApplyAlphaTransform)
 }
 
 
-void pixmap::_map(bool bApplyTransform)
+void pixmap::_map(const ::i32_rectangle & rectangle, bool bApplyTransform)
 {
 
-   if (!_on_map(bApplyTransform))
+   if (!_on_map(rectangle, bApplyTransform))
    {
 
       return;
@@ -174,16 +174,34 @@ void pixmap::_map(bool bApplyTransform)
       ::is_set(pimage32Owned)
       && m_pimage32Raw == pimage32Owned;
 
-   if (!m_pimage32Raw
-      || !m_pimage32
-      || (bUsingOwnedMemory && m_memoryPixmap.size() < scan_area_in_bytes()))
+   if (m_iScan < m_sizeRaw.cx * 4)
    {
 
-      m_memoryPixmap.set_size(scan_area_in_bytes());
+      m_iScan = m_sizeRaw.cx * 4;
+
+   }
+
+   if (!m_pimage32Raw
+      || !m_pimage32
+      || (bUsingOwnedMemory && m_memoryPixmap.size() < m_iScan * m_sizeRaw.cy))
+   {
+
+      m_memoryPixmap.set_size(m_iScan * m_sizeRaw.cy);
 
       m_pimage32Raw = (::image32_t *)m_memoryPixmap.data();
 
-      m_pimage32 = (::image32_t *)m_memoryPixmap.data();
+   }
+
+   if (rectangle.is_empty())
+   {
+
+      pixmap_map();
+
+   }
+   else
+   {
+
+      pixmap_map(rectangle);
 
    }
 
@@ -244,6 +262,8 @@ void pixmap::copy(const ::i32_size &size, const ::image32_t *pimage32, ::i32 iSc
 }
 
 
+
+
 void pixmap::on_load_image(const image32_t *pimage32, const ::i32_size &size, int iScan)
 {
 
@@ -252,6 +272,7 @@ void pixmap::on_load_image(const image32_t *pimage32, const ::i32_size &size, in
    copy(size, pimage32, iScan);
 
 }
+
 
 //
 //void pixmap::unmap(bool bDoUnmap) const
@@ -292,7 +313,6 @@ bool pixmap::_on_unmap(bool bDoUnmap)
 }
 
 
-
 void pixmap::_unmap(bool bDoUnmap)
 {
 
@@ -316,6 +336,68 @@ void pixmap::_unmap(bool bDoUnmap)
 }
 
 
+//::image::lock pixmap::lock(::i32 stride, ::image::enum_copy_disposition ecopydisposition, ::pixmap* ppixmapLock)
+//{
+//
+//   //m_ppixmapLock = ppixmapLock;
+//
+//   m_ecopydisposition = ecopydisposition;
+//
+//   if (//m_ppixmapLock->m_iScan == stride 
+//      m_iScan == stride
+//      && m_ecopydisposition == ::image::e_copy_disposition_none)
+//   {
+//
+//      //reference(*m_ppixmapLock);
+//
+//
+//
+//   }
+//   else
+//   {
+//         
+//      m_memoryPixmap.set_size(scan_area_in_bytes());
+//
+//      m_pimage32Raw = (::image32_t *) m_memoryPixmap.data();
+//
+//      m_pimage32 = m_pimage32Raw;
+//
+//      ///::pixmap_t::create(m_memory, m_ppixmapLock->size(), stride);
+//
+//   }
+//
+//   //return this;
+//      
+//}
+//
+//
+//::image::lock pixmap::no_padding_lock(::image::enum_copy_disposition ecopydisposition, ::pixmap* ppixmapLock)
+//{
+//      
+//   return lock(ppixmapLock->width() * 4, ecopydisposition, ppixmapLock);
+//
+//}
+//
+//
+//::image::lock pixmap::source_lock(::image::enum_copy_disposition ecopydisposition, ::pixmap* ppixmapLock)
+//{
+//
+//   return lock(ppixmapLock->m_iScan, ecopydisposition, ppixmapLock);
+//
+//}
+//
+//   
+//void pixmap::unlock(::image::lock * pimagelock)
+//{
+//
+//   if (pimagelock->data() != this->data())
+//   {
+//
+//      p->pixmap_t::copy(this, m_ecopydisposition);
+//
+//   }
+//
+//}
 
 
 CLASS_DECL_ACME::string _001_image32_diagnostics(const ::i32_size & size, const image32_t * pimage32, int iScan)

@@ -1,7 +1,7 @@
 //
 // Created by camilo on 2024-10-29 04:15 <3ThomasBorregaardSorensen!!
 //
-#include "framework.h"
+#include "platform.h"
 #include "system_core.h"
 
 

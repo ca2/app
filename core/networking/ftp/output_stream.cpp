@@ -1,4 +1,4 @@
-#include "framework.h"
+#include "platform.h"
 #include "_.h"
 #include "output_stream.h"
 #include "acme/prototype/prototype/memory.h"

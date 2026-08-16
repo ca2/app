@@ -81,7 +81,7 @@
     </Filter>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="framework.h">
+    <ClInclude Include="platform.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="platform\_platform.h">
@@ -132,7 +132,7 @@
     <ClInclude Include="gpu\context_lease.h">
       <Filter>Header Files\gpu</Filter>
     </ClInclude>
-    <ClInclude Include="gpu\aaa_cpu_buffer.h">
+    <ClInclude Include="gpu\buffer.h">
       <Filter>Header Files\gpu</Filter>
     </ClInclude>
     <ClInclude Include="gpu\device.h">
@@ -156,7 +156,7 @@
     <ClInclude Include="gpu\properties.h">
       <Filter>Header Files\gpu</Filter>
     </ClInclude>
-    <ClInclude Include="gpu\aaa_render.h">
+    <ClInclude Include="gpu\render.h">
       <Filter>Header Files\gpu</Filter>
     </ClInclude>
     <ClInclude Include="gpu\render_target.h">
@@ -303,7 +303,7 @@
     <ClInclude Include="graphics3d\entity.h">
       <Filter>Header Files\graphics3d</Filter>
     </ClInclude>
-    <ClInclude Include="graphics3d\framework.h">
+    <ClInclude Include="graphics3d\platform.h">
       <Filter>Header Files\graphics3d</Filter>
     </ClInclude>
     <ClInclude Include="graphics3d\game_object.h">
@@ -351,7 +351,7 @@
     <ClInclude Include="prodevian\camera.h">
       <Filter>Header Files\prodevian</Filter>
     </ClInclude>
-    <ClInclude Include="prodevian\framework.h">
+    <ClInclude Include="prodevian\platform.h">
       <Filter>Header Files\prodevian</Filter>
     </ClInclude>
     <ClInclude Include="prodevian\game_object.h">
@@ -465,6 +465,12 @@
     <ClInclude Include="gpu\texture_synchronization.h">
       <Filter>Header Files\gpu</Filter>
     </ClInclude>
+    <ClInclude Include="gpu\window_attachment.h">
+      <Filter>Header Files\gpu</Filter>
+    </ClInclude>
+    <ClInclude Include="gpu\texture_site.h">
+      <Filter>Header Files\gpu</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="platform\application.cpp">
@@ -479,7 +485,7 @@
     <ClCompile Include="const\idpool.cpp">
       <Filter>Source Files\gpu\const</Filter>
     </ClCompile>
-    <ClCompile Include="framework.cpp">
+    <ClCompile Include="platform.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="_.cpp">
@@ -518,7 +524,7 @@
     <ClCompile Include="gpu\context_lease.cpp">
       <Filter>Source Files\gpu</Filter>
     </ClCompile>
-    <ClCompile Include="gpu\aaa_cpu_buffer.cpp">
+    <ClCompile Include="gpu\buffer.cpp">
       <Filter>Source Files\gpu</Filter>
     </ClCompile>
     <ClCompile Include="gpu\device.cpp">
@@ -542,7 +548,7 @@
     <ClCompile Include="gpu\properties.cpp">
       <Filter>Source Files\gpu</Filter>
     </ClCompile>
-    <ClCompile Include="gpu\aaa_render.cpp">
+    <ClCompile Include="gpu\render.cpp">
       <Filter>Source Files\gpu</Filter>
     </ClCompile>
     <ClCompile Include="gpu\render_target.cpp">
@@ -732,6 +738,12 @@
       <Filter>Source Files\gpu</Filter>
     </ClCompile>
     <ClCompile Include="gpu\texture_synchronization.cpp">
+      <Filter>Source Files\gpu</Filter>
+    </ClCompile>
+    <ClCompile Include="gpu\window_attachment.cpp">
+      <Filter>Source Files\gpu</Filter>
+    </ClCompile>
+    <ClCompile Include="gpu\texture_site.cpp">
       <Filter>Source Files\gpu</Filter>
     </ClCompile>
   </ItemGroup>

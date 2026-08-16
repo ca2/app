@@ -2,7 +2,7 @@
 // From idn by camilo on 2024-06-02 17:58 <3ThomasBorregaardSorensen!!
 // Merged from acme/operating_system/linux/library.cpp by
 // camilo on 2024-06-02 17:58 <3ThomasBorregaardSorensen!!
-#include "framework.h"
+#include "platform.h"
 #include "dynamic_library.h"
 #include "acme/exception/interface_only.h"
 #include "acme/filesystem/filesystem/directory_system.h"

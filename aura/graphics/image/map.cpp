@@ -1,4 +1,4 @@
-#include "framework.h"
+#include "platform.h"
 #include "map.h"
 #include "image.h"
 #include "acme/platform/system.h"

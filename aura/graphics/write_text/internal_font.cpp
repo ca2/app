@@ -1,5 +1,5 @@
 // Create by camilo on 2024-12-30 19:53 <3ThomasBorregaardSorensen!!
-#include "framework.h"
+#include "platform.h"
 #include "internal_font.h"
 
 

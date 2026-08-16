@@ -1,5 +1,5 @@
 // From group_checkout_for_another_system.cpp by camilo on 2024-03-24 22:38 <3ThomasBorregaardSorensen!!
-#include "framework.h"
+#include "platform.h"
 #include "application.h"
 #include "group_checkout_for_another_system.h"
 #include "integration.h"

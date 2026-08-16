@@ -1,5 +1,5 @@
 // Created by camilo on 2026-07-31 17:48 <3ThomasBorregaardSørensen!! Mummi!! Bilbo!!
-#include "framework.h"
+#include "platform.h"
 #include "device_independent_bitmap.h"
 
 

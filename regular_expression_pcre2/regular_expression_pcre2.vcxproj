@@ -2224,7 +2224,7 @@
     <ClInclude Include="aaa_regular_expression.h" />
     <ClInclude Include="context.h" />
     <ClInclude Include="factory_exchange.h" />
-    <ClInclude Include="framework.h" />
+    <ClInclude Include="platform.h" />
     <ClInclude Include="regular_expression.h" />
     <ClInclude Include="result.h" />
     <ClInclude Include="util_impl.h" />
@@ -2234,7 +2234,7 @@
   <ItemGroup>
     <ClCompile Include="context.cpp" />
     <ClCompile Include="_factory.cpp" />
-    <ClCompile Include="framework.cpp">
+    <ClCompile Include="platform.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Create</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='DebugAsan|Win32'">Create</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='DebugWithInlOpt|Win32'">Create</PrecompiledHeader>

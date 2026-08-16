@@ -223,10 +223,10 @@
 		<Unit filename="/home/camilo/solution/basis/source/app/message_box/application.h">
 			<Option target="app_message_box"/>
 		</Unit>
-		<Unit filename="/home/camilo/solution/basis/source/app/message_box/framework.cpp">
+		<Unit filename="/home/camilo/solution/basis/source/app/message_box/platform.cpp">
 			<Option target="app_message_box"/>
 		</Unit>
-		<Unit filename="/home/camilo/solution/basis/source/app/message_box/framework.h">
+		<Unit filename="/home/camilo/solution/basis/source/app/message_box/platform.h">
 			<Option target="app_message_box"/>
 		</Unit>
 		<Unit filename="/home/camilo/solution/basis/source/app/message_box/main_window.cpp">

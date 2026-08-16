@@ -1,4 +1,4 @@
-#include "framework.h"
+#include "platform.h"
 #include "application.h"
 #include "shell_open.h"
 #include "acme/constant/id.h"
@@ -7611,7 +7611,7 @@ namespace aura
    return bResult;
    }
 
-   #include "framework.h"*/
+   #include "platform.h"*/
 
 
 
@@ -9989,6 +9989,18 @@ namespace aura
             {
 
                return m_strDraw2dImplementation;
+
+            }
+            else if (strGraphics3DImplementation.equals("directx11"))
+            {
+
+               return system()->implementation_name("draw2d", "direct2d_for_directx11");
+
+            }
+            else if (strGraphics3DImplementation.equals("directx12"))
+            {
+
+               return system()->implementation_name("draw2d", "direct2d_for_directx12");
 
             }
 

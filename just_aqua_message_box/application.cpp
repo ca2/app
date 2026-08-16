@@ -1,4 +1,4 @@
-#include "framework.h"
+#include "platform.h"
 
 
 __IMPLEMENT_APPLICATION_RELEASE_TIME(app_just_aqua_message_box);

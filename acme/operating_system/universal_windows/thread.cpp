@@ -1,5 +1,5 @@
 // Created by camilo on 2024-12-29 09:53 BRT <3ThomasBorregaardSorensen!!
-#include "framework.h"
+#include "platform.h"
 
 
 bool os_on_init_thread()

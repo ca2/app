@@ -1,5 +1,5 @@
 // Created by camilo on 2021-01-15 17:12 <3ThomasBorregaardSorensen!!
-#include "framework.h"
+#include "platform.h"
 
 
 file_open_exception::file_open_exception(::e_status estatus, const ::scoped_string & scopedstrMessage, ::i32 iSkip) :

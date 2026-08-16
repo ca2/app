@@ -1,5 +1,5 @@
 // From gpu_vulkan/block.cpp by camilo on 2025-12-11 18:11 <3ThomasBorregaardSørensen!!
-#include "framework.h"
+#include "platform.h"
 #define STB_USE_HUNTER
 #include "_gpu_opengl.h"
 #include "block.h"

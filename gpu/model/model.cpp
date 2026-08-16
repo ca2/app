@@ -1,6 +1,6 @@
 // From github:/tristancalderbank/OpenGL-PBR-Renderer/model.cpp by
 // camilo on 2025-09-26 18:14 <3ThomasBorregaardSorensen!!
-#include "framework.h"
+#include "platform.h"
 #include "model.h"
 #include "bred/gltf/vertex.h"
 #include "bred/gpu/texture.h"
@@ -306,7 +306,7 @@ namespace gpu
       //    // return textureId;
       // }
 
-      ::gpu::texture *model::empty_texture()
+      ::gpu::texture_site *model::empty_texture()
       {
 
          if (!m_ptextureEmpty)
@@ -316,7 +316,7 @@ namespace gpu
 
          }
 
-         return m_ptextureEmpty;
+         return m_ptexturesiteEmpty;
 
       }
 

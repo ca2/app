@@ -5,7 +5,7 @@
 //  Created by Camilo Sasuke Thomas Borregaard Soerensen on 14/07/18.
 //  Copyright (c) 2018 Camilo Sasuke Thomas Borregaard Soerensen. All rights reserved.
 //
-#include "framework.h"
+#include "platform.h"
 #include "impact_host.h"
 #include "impact_host_host.h"
 #include "pane_tab_impact.h"

@@ -278,11 +278,11 @@
 			<Option target="networking_bsd"/>
 			<Option target="static_networking_bsd"/>
 		</Unit>
-		<Unit filename="/home/camilo/cmake/integration/source/app/networking_bsd/framework.cpp">
+		<Unit filename="/home/camilo/cmake/integration/source/app/networking_bsd/platform.cpp">
 			<Option target="networking_bsd"/>
 			<Option target="static_networking_bsd"/>
 		</Unit>
-		<Unit filename="/home/camilo/cmake/integration/source/app/networking_bsd/framework.h">
+		<Unit filename="/home/camilo/cmake/integration/source/app/networking_bsd/platform.h">
 			<Option target="networking_bsd"/>
 			<Option target="static_networking_bsd"/>
 		</Unit>

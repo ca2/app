@@ -25,7 +25,7 @@
   		05/25/02 RSB	Added settextjustify.
 		06/08/02 RSB	Accounted for fonts 5-10.
 */
-#include "framework.h"
+#include "platform.h"
 #ifdef WITH_X
 
 //#include "graphics.h"

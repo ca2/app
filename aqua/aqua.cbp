@@ -302,11 +302,11 @@
 			<Option target="aqua"/>
 			<Option target="static_aqua"/>
 		</Unit>
-		<Unit filename="/home/camilo/cmake/integration/source/app/aqua/framework.cpp">
+		<Unit filename="/home/camilo/cmake/integration/source/app/aqua/platform.cpp">
 			<Option target="aqua"/>
 			<Option target="static_aqua"/>
 		</Unit>
-		<Unit filename="/home/camilo/cmake/integration/source/app/aqua/framework.h">
+		<Unit filename="/home/camilo/cmake/integration/source/app/aqua/platform.h">
 			<Option target="aqua"/>
 			<Option target="static_aqua"/>
 		</Unit>

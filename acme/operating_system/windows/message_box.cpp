@@ -1,7 +1,7 @@
 // Created by camilo on 2021-01-21 14:57 <3ThomasBorregaardSorensen
 // Help from http://www.winprog.org/tutorial/simple_window.html
 // implementing windows::message_box 2023-12-19 04:55 <3ThomasBorregaardSorensen!!
-#include "framework.h"
+#include "platform.h"
 #include "acme/operating_system/message_box.h"
 #include "acme/_operating_system.h"
 #include "acme/operating_system/windows/windows.h"

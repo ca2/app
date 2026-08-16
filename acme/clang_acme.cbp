@@ -233,7 +233,7 @@
 		<Compiler>
 			<Add option="-fPIC" />
 			<Add option="-std=c++17" />
-			<Add option='-include &quot;framework.h&quot;' />
+			<Add option='-include &quot;platform.h&quot;' />
 			<Add option="-fexceptions" />
 			<Add option="-fnon-call-exceptions" />
 			<Add option="-fno-stack-protector" />
@@ -799,10 +799,10 @@
 		<Unit filename="filesystem/userfs/tree.h" />
 		<Unit filename="filesystem/userfs/userfs.cpp" />
 		<Unit filename="filesystem/userfs/userfs.h" />
-		<Unit filename="framework.h">
+		<Unit filename="platform.h">
 			<Option compile="1" />
 			<Option weight="0" />
-			<Option compiler="clang" use="1" buildCommand="$compiler $options $includes -x c++-header framework.h -o $generic" />
+			<Option compiler="clang" use="1" buildCommand="$compiler $options $includes -x c++-header platform.h -o $generic" />
 		</Unit>
 		<Unit filename="framework_c.h" />
 		<Unit filename="geoip/geoip.cpp" />
@@ -2500,7 +2500,7 @@
 		<Unit filename="programming/dynamic_source/script_manager.h" />
 		<Unit filename="programming/dynamic_source/session.cpp" />
 		<Unit filename="programming/dynamic_source/session.h" />
-		<Unit filename="programming/framework.h" />
+		<Unit filename="programming/platform.h" />
 		<Unit filename="programming/introjection/_.h" />
 		<Unit filename="programming/introjection/compiler.cpp" />
 		<Unit filename="programming/introjection/compiler.h" />

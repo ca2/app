@@ -1,5 +1,5 @@
 // Created by camilo on 2023-10-02 03:20 <3ThomasBorregaardSorensen!!
-#include "framework.h"
+#include "platform.h"
 #include "auto_hide.h"
 #include "acme/constant/id.h"
 #include "acme/constant/timer.h"

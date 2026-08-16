@@ -8,8 +8,8 @@ list(APPEND library_source
         _factory.cpp
         nano_archive_libarchive.cpp
         nano_archive_libarchive.h
-        framework.cpp
-        framework.h
+        platform.cpp
+        platform.h
         )
 
 
@@ -24,8 +24,8 @@ add_library(static_${PROJECT_NAME} STATIC ${library_source})
 
 if (NOT ${NO_PRECOMPILED_HEADER})
 
-    target_precompile_headers(${PROJECT_NAME} PRIVATE framework.h)
-    target_precompile_headers(static_${PROJECT_NAME} PRIVATE framework.h)
+    target_precompile_headers(${PROJECT_NAME} PRIVATE platform.h)
+    target_precompile_headers(static_${PROJECT_NAME} PRIVATE platform.h)
 
 endif ()
 

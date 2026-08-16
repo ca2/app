@@ -1,5 +1,5 @@
 // Created 2024-05-01 19:05 <3ThomasBorregaardSorensen!!
-#include "framework.h"
+#include "platform.h"
 #include "application.h"
 #include "impact_interface.h"
 #include "log_interface.h"

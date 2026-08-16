@@ -25,7 +25,7 @@
  * THE SOFTWARE.
  *
  **********************************************************************/
-#include "framework.h"
+#include "platform.h"
 #include "stringhelper.h"
 
 

@@ -1,5 +1,5 @@
 // From x265.cpp on 2023-05-19 13:49 <3ThomasBorregaardSørensen!!
-#include "framework.h"
+#include "platform.h"
 #include "x265.h"
 #include "application.h"
 #include "../../windows/visual_studio.h"

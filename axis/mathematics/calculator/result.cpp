@@ -1,4 +1,4 @@
-#include "framework.h"
+#include "platform.h"
 #include "result.h"
 
 #include "acme/prototype/string/international.h"

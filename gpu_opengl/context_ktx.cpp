@@ -1,5 +1,5 @@
 // Created by camilo on 2025-12-18 23:11 <3ThomasBorregaardSørensen!!
-#include "framework.h"
+#include "platform.h"
 #define STB_USE_HUNTER
 #include "_gpu_opengl.h"
 #include "command_buffer.h"

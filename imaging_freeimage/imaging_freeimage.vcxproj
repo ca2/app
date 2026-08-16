@@ -1336,7 +1336,7 @@
     <ClInclude Include="fimemory.h" />
     <ClInclude Include="_.h" />
     <ClInclude Include="factory_exchange.h" />
-    <ClInclude Include="framework.h" />
+    <ClInclude Include="platform.h" />
     <ClInclude Include="_library.h" />
   </ItemGroup>
   <ItemGroup>
@@ -1345,7 +1345,7 @@
     <ClCompile Include="_factory.cpp" />
     <ClCompile Include="file_procedure.cpp" />
     <ClCompile Include="file_procedure_ex1.cpp" />
-    <ClCompile Include="framework.cpp">
+    <ClCompile Include="platform.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">Create</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='DebugAsan|x64'">Create</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|ARM64'">Create</PrecompiledHeader>

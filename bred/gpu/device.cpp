@@ -1,13 +1,14 @@
-#include "framework.h"
+#include "platform.h"
 #include "bred_approach.h"
 #include "context.h"
 #include "context_lease.h"
 #include "device.h"
-#include "aaa_cpu_buffer.h"
+#include "buffer.h"
+#include "fence.h"
 #include "frame_ephemeral.h"
 #include "frame_storage.h"
 #include "layer.h"
-#include "aaa_render.h"
+#include "render.h"
 #include "renderer.h"
 #include "render_target.h"
 #include "swap_chain.h"
@@ -190,41 +191,6 @@ namespace gpu
    }
 
 
-   ::gpu::layer* device::get_previous_layer(::gpu::layer * pgpulayer)
-   {
-
-      if (!m_pgpulayera)
-      {
-
-         return nullptr;
-
-      }
-
-      auto iFind = m_pgpulayera->find_first(pgpulayer);
-      
-      if (iFind <= 0)
-      {
-
-         return nullptr;
-
-      }
-
-      for(::i32 i = (::i32) iFind - 1; i >= 0; i--)
-      {
-         
-         if (m_pgpulayera->element_at(i)->m_pgpurenderer == pgpulayer->m_pgpurenderer)
-         {
-
-            return m_pgpulayera->element_at(i);
-
-         }
-
-      }
-
-      return nullptr;
-
-   }
-
 
    //::gpu::context_pointer device::start_gpu_output_context(const ::gpu::enum_output& eoutput, const ::i32_size& size)
    //{
@@ -320,20 +286,30 @@ namespace gpu
    //}
 
 
-   //::gpu::context_pointer device::create_draw2d_context(const ::gpu::enum_output& eoutput, const ::i32_size& size)
-   //{
-
-   //   //auto pgpucontext = createø<::gpu::context>();
-
-   //   auto pgpucontext = allocate_context();
-
-   //   pgpucontext->create_draw2d_context(this, eoutput, size);
-
-   //   return pgpucontext;
-
-   //}
-
-
+////<<<<<<< HEAD
+//   ::gpu::context_pointer device::create_draw2d_gpu_context(::acme::windowing::window * pwindow, const ::i32_size& size)
+//   {
+////=======
+//   //::gpu::context_pointer device::create_draw2d_context(const ::gpu::enum_output& eoutput, const ::i32_size& size)
+//   //{
+////>>>>>>> origin/main
+//
+//   //   //auto pgpucontext = createø<::gpu::context>();
+//
+//      auto pgpucontext = allocate_gpu_context();
+//
+////<<<<<<< HEAD
+//      //pgpucontext->create_draw2d_context(this, eoutput, pwindow, size);
+//      pgpucontext->create_draw2d_gpu_context(this, pwindow, size);
+////=======
+//   //   pgpucontext->create_draw2d_context(this, eoutput, size);
+////>>>>>>> origin/main
+//
+//     return pgpucontext;
+//
+//   }
+//
+//
    namespace
    {
 
@@ -448,14 +424,20 @@ namespace gpu
 
          }
 
+//<<<<<<< HEAD
+//         pcontext = create_draw2d_context(eoutput, m_pwindow, size);
+//=======
          pcontext = allocate_gpu_context();
 
          auto pacmeuserinteractionMain = m_papplication->main_acme_user_interaction();
 
          auto pacmewindowingwindow = pacmeuserinteractionMain->acme_windowing_window();
 
-         pcontext->create_draw2d_gpu_context(this, pacmewindowingwindow, size);
+         ::i32_size sizeRaw = pacmewindowingwindow->get_raw_buffer_size().maximum(size);
 
+         pcontext->create_draw2d_gpu_context(this, pacmewindowingwindow, {}, {}, size, sizeRaw);
+
+//>>>>>>> origin/main
          pcontext->m_pgpucompositor = nullptr;
 
       }
@@ -1276,138 +1258,6 @@ namespace gpu
 //}
 
 
-   ::gpu::context* device::main_context()
-   {
-
-      return m_pgpucontextMain;
-
-      //if(!m_pgpucontextMainWindow)
-      //{
-
-      //   ::cast < ::user::interaction > puserinteractionMain = m_pacmeuserinteractionMain;
-
-      //   auto pwindowMain = puserinteractionMain->window();
-
-      //   m_pgpucontextMainWindow = create_window_context(pwindowMain);
-
-      //}
-
-      //return m_pgpucontextMainWindow;
-
-   }
-
-
-   ::gpu::context* device::main_draw2d_context()
-   {
-
-      if (!m_pgpucontextMainDraw2d)
-      {
-
-         constructø(m_pgpucontextMainDraw2d);
-
-         m_pgpucontextMainDraw2d->m_etype = ::gpu::context::e_type_draw2d;
-
-         m_pgpucontextMainDraw2d->m_eoutput = ::gpu::e_output_gpu_buffer;
-
-         m_pgpucontextMainDraw2d->m_pgpudevice = this;
-
-         auto pacmeuserinteractionMain = m_papplication->main_acme_user_interaction();
-
-         ::cast < ::user::interaction > puserinteraction = pacmeuserinteractionMain;
-
-         if (!m_pgpucontextMainDraw2d->m_itask
-            && puserinteraction->m_pacmewindowingwindow)
-         {
-
-            m_pgpucontextMainDraw2d->branch_synchronously();
-
-            m_pgpucontextMainDraw2d->sendø() << [this, puserinteraction]()
-               {
-
-                  auto pinteraction = (::user::interaction*)puserinteraction.m_p;
-
-                  auto eoutput = m_pgpucontextMainDraw2d->m_eoutput;
-
-                  auto pwindow = pinteraction->window();
-
-                  auto size = pwindow->get_window_rectangle().size();
-
-                  m_pgpucontextMainDraw2d->create_draw2d_gpu_context(
-                     this,
-                     pwindow,
-                     size
-                  );
-
-               };
-
-         }
-
-      }
-
-      return m_pgpucontextMainDraw2d;
-
-   }
-
-
-   ::pointer<::gpu::context> device::create_work_context()
-   {
-
-      auto pgpucontext = createø<::gpu::context>();
-
-      pgpucontext->m_etype = ::gpu::context::e_type_generic;
-
-      pgpucontext->m_eoutput = ::gpu::e_output_none;
-
-      pgpucontext->m_escene = ::gpu::e_scene_3d;
-
-      pgpucontext->m_pgpudevice = this;
-
-      auto pacmeuserinteractionMain = m_papplication->main_acme_user_interaction();
-
-      ::cast<::user::interaction> puserinteraction = pacmeuserinteractionMain;
-
-      if (!pgpucontext->m_itask && puserinteraction->m_pacmewindowingwindow)
-      {
-
-         pgpucontext->branch_synchronously();
-
-         pgpucontext->sendø() << [this, puserinteraction, pgpucontext]()
-         {
-            
-            auto pinteraction = (::user::interaction *)puserinteraction.m_p;
-
-            auto eoutput = pgpucontext->m_eoutput;
-
-            auto escene = pgpucontext->m_escene;
-
-            auto pwindow = pinteraction->window();
-
-            auto size = pwindow->get_window_rectangle().size();
-
-            pgpucontext->create_gpu_context(this, eoutput, escene, pwindow, size);
-
-         };
-
-      }
-
-      return pgpucontext;
-
-   }
-
-
-   ::gpu::context * device::work_context()
-   {
-
-      if (!m_pgpucontextWork)
-      {
-
-         m_pgpucontextWork = create_work_context();
-
-      }
-
-      return m_pgpucontextWork;
-
-   }
 
 
    void * device::current_operating_system_gpu_context()
@@ -1428,142 +1278,6 @@ namespace gpu
    }
 
 
-   ::gpu::frame *device::current_frame() 
-   {
-
-      _synchronous_lock lock(this->synchronization());
-      
-      auto iFrameIndex = get_frame_index3();
-      
-      auto &pframe = m_framea.atø(iFrameIndex);
-
-      if (defer_construct_newø(pframe))
-      {
-
-         pframe->initialize_gpu_frame();
-
-      }
-
-      return pframe;
-
-
-   }
-
-
-   void device::register_frame_context(::gpu::context *pcontext, ::gpu::layer *player)
-   {
-
-      _synchronous_lock lock(this->synchronization());
-
-      m_postframecontextregistry.register_context(pcontext, player);
-
-   }
-
-
-   void device::dispatch_post_frame_contexts()
-   {
-
-      post_frame_context_registry_t::entry_array entrya;
-      ::pointer<::gpu::context> pcontextMain;
-
-      {
-
-         _synchronous_lock lock(this->synchronization());
-
-         entrya = m_postframecontextregistry.take_entries();
-         pcontextMain = m_pgpucontextMain;
-
-      }
-
-      post_frame_context_registry_t::dispatch(
-         std::move(entrya),
-         pcontextMain,
-         []()
-         {
-
-            return ::pointer<::gpu::layer>(::gpu::current_layer());
-
-         },
-         [](const ::pointer<::gpu::layer> &player)
-         {
-
-            ::gpu::set_current_layer(player);
-
-         },
-         [](const ::pointer<::gpu::context> &pcontext)
-         {
-
-            pcontext->on_end_frame();
-
-         });
-
-   }
-
-
-   void device::start_frame()
-   {
-
-      {
-
-         _synchronous_lock lock(this->synchronization());
-
-         m_postframecontextregistry.clear();
-
-      }
-
-      start_stacking_layers();
-
-      m_iFrameSerial2++;
-
-      m_pgpucontextMain->on_new_frame();
-
-      // m_iCurrentFrame3 = (m_iCurrentFrame3 + 1) % iFrameCount;
-
-      auto &pframestorage = m_framestoragea.atø(m_iCurrentFrame3);
-
-      if (!pframestorage)
-      {
-
-         constructø(pframestorage);
-
-         pframestorage->initialize_gpu_frame_storage(this);
-      }
-
-      pframestorage->m_iBuffer = 0;
-
-      pframestorage->m_iBufferOffset = 0;
-
-      auto &pframeephemeral = m_frameephemerala.atø(m_iCurrentFrame3);
-
-      constructø(pframeephemeral);
-
-      _synchronous_lock lock(this->synchronization());
-
-      auto pframe = current_frame();
-
-      pframe->start_frame();
-
-   }
-
-
-   void device::end_frame()
-   {
-
-      on_end_frame();
-
-      {
-
-         _synchronous_lock lock(this->synchronization());
-
-         auto pframe = current_frame();
-
-         pframe->end_frame();
-
-      }
-
-      dispatch_post_frame_contexts();
-
-   }
 
 
    //void device::start_offscreen_frame()
@@ -1587,56 +1301,6 @@ namespace gpu
 
    //}
 
-
-   void device::on_start_frame()
-   {
-
-   }
-
-
-   void device::on_end_frame()
-   {
-
-      {
-
-         _synchronous_lock synchronouslock(this->synchronization(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
-
-         auto procedureaOnTopFrameEnd = ::transfer(m_procedureaOnTopFrameEnd);
-
-         for (auto &procedure: procedureaOnTopFrameEnd)
-         {
-
-            procedure();
-         }
-      }
-
-      auto pframestorage = current_frame_storage();
-
-      if (::is_set(pframestorage))
-      {
-
-         try
-         {
-
-            pframestorage->on_end_frame();
-         }
-         catch (...)
-         {
-         }
-      }
-
-      if (m_timeLast5s.elapsed() > 5_s)
-      {
-
-         m_timeLast5s.Now();
-
-         m_papplication->post(
-            [this]()
-            {
-               manage_retired_objects();
-            });
-      }
-   }
 
 
    void device::defer_shader_memory(::memory &memory, const ::file::path &pathShader)
@@ -1694,107 +1358,6 @@ namespace gpu
    }
 
 
-   bool device::is_starting_frame()const
-   {
-
-      return m_iFrameSerial2 == m_iCurrentFrame3;
-
-   }
-
-
-   void device::restart_frame_counter()
-   {
-
-      if (this->get_frame_count() > 1)
-      {
-
-         m_iCurrentFrame3 = 0;
-         m_iFrameSerial2 = -1;
-
-         //m_pgpurenderer->m_prenderstate->on_happening(e_happening_reset_frame_counter);
-
-      }
-
-   }
-
-
-   ::i32 device::get_frame_index3()
-   {
-
-      auto iFrameCount = this->get_frame_count();
-
-      if (iFrameCount > 1)
-      {
-
-         return (::i32)(m_iCurrentFrame3 % iFrameCount);
-
-      }
-      else
-      {
-
-         return 0;
-
-      }
-
-   }
-
-
-   ::i32 device::get_image_index()
-   {
-
-      if (this->get_frame_count() > 1)
-      {
-
-         return (::i32)m_iCurrentImage;
-      }
-      else
-      {
-
-         return 0;
-      }
-
-   }
-
-
-   ::i32 device::get_frame_count()
-   {
-
-      return (::i32)m_iFrameCount;
-
-   }
-
-
-
-   
-   pool_group* device::frame_pool_group(::i32 iFrameIndex)
-   {
-
-      auto & ppoolgroupFrame = m_poolgroupaFrame.element_at_grow(iFrameIndex);
-
-      defer_construct_newø(ppoolgroupFrame);
-
-      ppoolgroupFrame->m_pallocator = this;
-
-      return ppoolgroupFrame;
-
-   }
-
-
-   ::pointer_array<::particle >* device::frame_particle_array(::i32 iFrameIndex)
-   {
-      
-      auto& pparticleaFrame = m_particleaFrame.element_at_grow(iFrameIndex);
-
-      if (!pparticleaFrame)
-      {
-
-         construct_newø(pparticleaFrame);
-
-      }
-
-      return pparticleaFrame;
-
-   }
 
 
    void device::unlock_context()
@@ -2049,76 +1612,6 @@ namespace gpu
    }
 
 
-   void device::start_stacking_layers()
-   {
-
-      m_iLayerCount = 0;
-
-   }
-
-
-   layer * device::create_gpu_layer(renderer* pgpurenderer)
-   {
-
-      m_iLayer = m_iLayerCount;
-      m_iLayerCount++;
-
-      defer_construct_newø(m_pgpulayera);
-
-      auto & player = m_pgpulayera->element_at_grow(m_iLayer);
-
-      defer_constructø(player);
-
-      auto iFrameIndex = pgpurenderer->render_target()->m_pgpurenderer->m_pgpucontext->m_pgpudevice->get_frame_index3();
-
-      player->initialize_gpu_layer(pgpurenderer, iFrameIndex, m_iLayer);
-
-      pgpurenderer->defer_update_renderer();
-
-      //if (pgpurenderer->m_pgpurendertarget)
-      //{
-
-      //   player->m_pgputextureSource = pgpurenderer->m_pgpurendertarget->current_texture();
-
-      //}
-
-      return player;
-
-   }
-
-
-   void device::layer_end()
-   {
-
-      auto& layera = *m_pgpulayera;
-
-      auto& player = layera[m_iLayer];
-
-      player->layer_end();
-      //player->take_snapshot();
-
-      //return pgpulayer->texture()->m_pgpurenderer->m_pgpucontext->rectangle();
-
-   }
-
-
-   layer* device::current_layer()
-   {
-      
-      if (m_iLayer < 0 || m_iLayer >= m_pgpulayera->get_count())
-      {
-      
-         throw ::exception(error_wrong_state);
-
-      }
-
-      auto& layera = *m_pgpulayera;
-
-      auto& player = layera[m_iLayer];
-
-      return player;
-
-   }
 
 
    ::gpu::queue *device::transfer_queue() { return nullptr; }
@@ -2130,20 +1623,28 @@ namespace gpu
    ::gpu::queue *device::present_queue() { return nullptr; }
 
 
-   frame_storage* device::current_frame_storage()
+
+   ::pointer < ::gpu::fence > device::create_gpu_fence(bool bCreateSignaled)
    {
 
-      return m_framestoragea.atø(m_iCurrentFrame3);
+      auto pgpufence = createø<::gpu::fence>();
+
+      //pgpufence->m_uFence = uFence;
+
+      pgpufence->initialize_gpu_fence(this, bCreateSignaled);
+
+      //::cast < ::gpu_directx12::fence > pfence = pgpufence;
+
+      //HRESULT hrCreateFeence =
+      //   m_pd3d12device->CreateFence(uInitialPayload, D3D12_FENCE_FLAG_NONE,
+      //      __interface_of(pfence->m_pfence));
+
+      //::defer_throw_hresult(hrCreateFeence);
+
+      return pgpufence;
 
    }
 
-
-   ::gpu::frame_ephemeral* device::current_frame_ephemeral()
-   {
-
-      return m_frameephemerala.atø(m_iCurrentFrame3);
-
-   }
 
 
 } // namespace gpu

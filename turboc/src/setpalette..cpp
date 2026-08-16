@@ -24,7 +24,7 @@
   Mod history:	05/05/02 RSB	Created.
   		05/25/02 RSB	Added setallpalette.
 */
-#include "framework.h"
+#include "platform.h"
 #ifdef WITH_X
 
 //#include "graphics.h"

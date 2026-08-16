@@ -1,5 +1,5 @@
 // Created by camilo on 2023-11-23 05:22 <3ThomasBorregaardSorensen!!
-#include "framework.h"
+#include "platform.h"
 #include "counter.h"
 #include "heap.h"
 

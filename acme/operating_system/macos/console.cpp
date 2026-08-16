@@ -6,7 +6,7 @@
 //  Copyright © 2026 ca2 Software Development. All rights reserved.
 //
 // From linux/console.cpp by camilo on 2026-03-25 18:33 <3ThomasBorregaardSørensen!!
-#include "framework.h"
+#include "platform.h"
 #include "acme/operating_system/console.h"
 #include <termios.h>
 #include <unistd.h>

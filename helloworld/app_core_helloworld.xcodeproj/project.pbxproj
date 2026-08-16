@@ -23,7 +23,7 @@
 		F592EA779750EE9C063837B7 /* helloworld_gcom.h in Headers */ = {isa = PBXBuildFile; fileRef = B6D3328BE37882420FE7769A /* helloworld_gcom.h */; };
 		F7EF804F6F29277579AD95EB /* helloworld_impact_base.cpp in Sources */ = {isa = PBXBuildFile; fileRef = C7C1DFA8921338CEE0915CAD /* helloworld_impact_base.cpp */; };
 		8D06AED1064257C680289B55 /* helloworld_impact_base.h in Headers */ = {isa = PBXBuildFile; fileRef = E56D79D51A8531B4ED23B6CA /* helloworld_impact_base.h */; };
-		40412B0DBF8F1627B6649592 /* framework.cpp in Sources */ = {isa = PBXBuildFile; fileRef = E9A8477D2FF6B164B48BDFA9 /* framework.cpp */; };
+		40412B0DBF8F1627B6649592 /* platform.cpp in Sources */ = {isa = PBXBuildFile; fileRef = E9A8477D2FF6B164B48BDFA9 /* platform.cpp */; };
 		57F63E16E3D7B7813C7DA175 /* helloworld_application.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 5A510B486817A37C3C346A8A /* helloworld_application.cpp */; };
 		450F628BD3BD77B6EB988C68 /* helloworld_document.cpp in Sources */ = {isa = PBXBuildFile; fileRef = E132DCF37637BD61CD7700F6 /* helloworld_document.cpp */; };
 		11BFC82AC7966F839DD7F177 /* helloworld_frame.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 6762E4DBA70A4250E54F88FD /* helloworld_frame.cpp */; };
@@ -49,8 +49,8 @@
 		E11F4C5074467A77E86706E9 /* libapp_core_helloworld.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 2623D504CBE11DD29D6A76BE /* libapp_core_helloworld.a */; };
 		6C86EA810A1ADD7DD392285F /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = A0CDBFE52AEADF6D1EA8FCC8 /* InfoPlist.strings */; };
 		2690126B639028A658B4F991 /* app_core_helloworld_iosTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 5DA2296CF93FB04E5CD4448A /* app_core_helloworld_iosTests.m */; };
-		49F5BDE1657E7D5C4D27B326 /* framework.cpp in Sources */ = {isa = PBXBuildFile; fileRef = E9A8477D2FF6B164B48BDFA9 /* framework.cpp */; };
-		E9CBD8A32A11592C69B68862 /* framework.h in Headers */ = {isa = PBXBuildFile; fileRef = 253DB97905453D7AE9826FD3 /* framework.h */; };
+		49F5BDE1657E7D5C4D27B326 /* platform.cpp in Sources */ = {isa = PBXBuildFile; fileRef = E9A8477D2FF6B164B48BDFA9 /* platform.cpp */; };
+		E9CBD8A32A11592C69B68862 /* platform.h in Headers */ = {isa = PBXBuildFile; fileRef = 253DB97905453D7AE9826FD3 /* platform.h */; };
 		CD8961C09F69F3D4BAF75179 /* helloworld.h in Headers */ = {isa = PBXBuildFile; fileRef = 7D219B1506A874D1C5BA738F /* helloworld.h */; };
 		C3980DA61E78B2C5DC59A766 /* helloworld_application.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 5A510B486817A37C3C346A8A /* helloworld_application.cpp */; };
 		D3B590D820C931287E02000B /* helloworld_document.cpp in Sources */ = {isa = PBXBuildFile; fileRef = E132DCF37637BD61CD7700F6 /* helloworld_document.cpp */; };
@@ -194,8 +194,8 @@
 		5EBEE57357ADA5C97CB108F0 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		5DA2296CF93FB04E5CD4448A /* app_core_helloworld_iosTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = app_core_helloworld_iosTests.m; sourceTree = "<group>"; };
 		09C08294C714C229FB7E6CBC /* libapp_core_helloworld.dylib */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.dylib"; includeInIndex = 0; path = libapp_core_helloworld.dylib; sourceTree = BUILT_PRODUCTS_DIR; };
-		E9A8477D2FF6B164B48BDFA9 /* framework.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = framework.cpp; sourceTree = "<group>"; };
-		253DB97905453D7AE9826FD3 /* framework.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = framework.h; sourceTree = "<group>"; };
+		E9A8477D2FF6B164B48BDFA9 /* platform.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = platform.cpp; sourceTree = "<group>"; };
+		253DB97905453D7AE9826FD3 /* platform.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = platform.h; sourceTree = "<group>"; };
 		7D219B1506A874D1C5BA738F /* helloworld.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = helloworld.h; sourceTree = "<group>"; };
 		5A510B486817A37C3C346A8A /* helloworld_application.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = helloworld_application.cpp; sourceTree = "<group>"; };
 		E132DCF37637BD61CD7700F6 /* helloworld_document.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = helloworld_document.cpp; sourceTree = "<group>"; };
@@ -333,8 +333,8 @@
 			isa = PBXGroup;
 			children = (
 				7D219B1506A874D1C5BA738F /* helloworld.h */,
-				E9A8477D2FF6B164B48BDFA9 /* framework.cpp */,
-				253DB97905453D7AE9826FD3 /* framework.h */,
+				E9A8477D2FF6B164B48BDFA9 /* platform.cpp */,
+				253DB97905453D7AE9826FD3 /* platform.h */,
 				5A510B486817A37C3C346A8A /* helloworld_application.cpp */,
 				2B4A8DC0373C02DBED1289D1 /* helloworld_application.h */,
 				E132DCF37637BD61CD7700F6 /* helloworld_document.cpp */,
@@ -370,7 +370,7 @@
 			isa = PBXHeadersBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				E9CBD8A32A11592C69B68862 /* framework.h in Headers */,
+				E9CBD8A32A11592C69B68862 /* platform.h in Headers */,
 				98C6D85602A7D63F727FD108 /* helloworld_render.h in Headers */,
 				CD8961C09F69F3D4BAF75179 /* helloworld.h in Headers */,
 				4F861FDD1D9CBFA71C355708 /* helloworld_impact.h in Headers */,
@@ -556,7 +556,7 @@
 				96A1ACCF5DC9F50D81874E1E /* helloworld_render.cpp in Sources */,
 				A4BC8F132B8FC69DD5D8E684 /* helloworld_main_impact.cpp in Sources */,
 				F2BA452887A413CFF1DAA6E7 /* helloworld_switcher_impact.cpp in Sources */,
-				40412B0DBF8F1627B6649592 /* framework.cpp in Sources */,
+				40412B0DBF8F1627B6649592 /* platform.cpp in Sources */,
 				57F63E16E3D7B7813C7DA175 /* helloworld_application.cpp in Sources */,
 				450F628BD3BD77B6EB988C68 /* helloworld_document.cpp in Sources */,
 				11BFC82AC7966F839DD7F177 /* helloworld_frame.cpp in Sources */,
@@ -579,7 +579,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				DDE20232A118A75E81065B20 /* helloworld_main_impact.cpp in Sources */,
-				49F5BDE1657E7D5C4D27B326 /* framework.cpp in Sources */,
+				49F5BDE1657E7D5C4D27B326 /* platform.cpp in Sources */,
 				2065314085DD3434A10098B0 /* helloworld_gcom.cpp in Sources */,
 				F49914BEBEE781CA161C9C2B /* helloworld_main_frame.cpp in Sources */,
 				270736472430FE68CFE551BC /* helloworld_switcher_impact.cpp in Sources */,
@@ -761,7 +761,7 @@
 				GCC_NO_COMMON_BLOCKS = YES;
 				GCC_OPTIMIZATION_LEVEL = 0;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
-				GCC_PREFIX_HEADER = framework.h;
+				GCC_PREFIX_HEADER = platform.h;
 				GCC_PREPROCESSOR_DEFINITIONS = (
 					"$(inherited)",
 				);
@@ -826,7 +826,7 @@
 				GCC_ENABLE_OBJC_EXCEPTIONS = YES;
 				GCC_NO_COMMON_BLOCKS = YES;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
-				GCC_PREFIX_HEADER = framework.h;
+				GCC_PREFIX_HEADER = platform.h;
 				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
 				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
 				GCC_WARN_UNDECLARED_SELECTOR = YES;

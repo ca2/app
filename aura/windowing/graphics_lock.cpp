@@ -1,5 +1,5 @@
 // Created by camilo from graphics/draw2d/device_lock on 2021-09-04 06:08 BRT <3ThomasBS__!!
-#include "framework.h"
+#include "platform.h"
 //#include "acme/operating_system.h"
 
 

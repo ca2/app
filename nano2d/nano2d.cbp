@@ -279,10 +279,10 @@
 		<Unit filename="/home/camilo/solution/basis/source/app/nanoui/common.h">
 			<Option target="nanoui"/>
 		</Unit>
-		<Unit filename="/home/camilo/solution/basis/source/app/nanoui/framework.cpp">
+		<Unit filename="/home/camilo/solution/basis/source/app/nanoui/platform.cpp">
 			<Option target="nanoui"/>
 		</Unit>
-		<Unit filename="/home/camilo/solution/basis/source/app/nanoui/framework.h">
+		<Unit filename="/home/camilo/solution/basis/source/app/nanoui/platform.h">
 			<Option target="nanoui"/>
 		</Unit>
 		<Unit filename="/home/camilo/solution/basis/source/app/nanoui/nano2d/_nano2d.h">

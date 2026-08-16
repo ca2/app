@@ -15,8 +15,8 @@
 		5B4D72B6469AFB5B8DD1A823 /* libmath_ios.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 112801AFBE4002B9F4AF5AC3 /* libmath_ios.dylib */; };
 		178CD076F2426B1FBFF1EE25 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 2FA8882307371D8A8E76859C /* InfoPlist.strings */; };
 		91169F6B9EC5541E7F11AE36 /* math_iosTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 07321C1FBDAF3193B5CF5239 /* math_iosTests.m */; };
-		1E92E6D83B80A06EAF58D9E7 /* framework.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 82EF91EBDEF712988479E749 /* framework.cpp */; };
-		AE9792142A1D268F53B6416F /* framework.h in Headers */ = {isa = PBXBuildFile; fileRef = 7FE3CD2161D523ACA22F4F4B /* framework.h */; };
+		1E92E6D83B80A06EAF58D9E7 /* platform.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 82EF91EBDEF712988479E749 /* platform.cpp */; };
+		AE9792142A1D268F53B6416F /* platform.h in Headers */ = {isa = PBXBuildFile; fileRef = 7FE3CD2161D523ACA22F4F4B /* platform.h */; };
 		3FD31FA8CD730482964D70C8 /* libberg.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 51355C540C36395BA84CA3BD /* libberg.dylib */; };
 		447641BD763BDEC62F197C50 /* kiss_fft.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 67363D51F071D007D90E111F /* kiss_fft.cpp */; };
 		875C783B77D258766FC62E6E /* kiss_fft.h in Headers */ = {isa = PBXBuildFile; fileRef = 64E257A92B8C1AE5A6B1898B /* kiss_fft.h */; };
@@ -87,8 +87,8 @@
 		07321C1FBDAF3193B5CF5239 /* math_iosTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = math_iosTests.m; sourceTree = "<group>"; };
 		A652F1CBD86E22EE9A9D4AAF /* axis.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = axis.xcodeproj; path = ../axis/axis.xcodeproj; sourceTree = SOURCE_ROOT; };
 		A4E3F0FBFC7FECBECB20D2F8 /* libmath.dylib */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.dylib"; includeInIndex = 0; path = libmath.dylib; sourceTree = BUILT_PRODUCTS_DIR; };
-		82EF91EBDEF712988479E749 /* framework.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = framework.cpp; sourceTree = "<group>"; };
-		7FE3CD2161D523ACA22F4F4B /* framework.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = framework.h; sourceTree = "<group>"; };
+		82EF91EBDEF712988479E749 /* platform.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = platform.cpp; sourceTree = "<group>"; };
+		7FE3CD2161D523ACA22F4F4B /* platform.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = platform.h; sourceTree = "<group>"; };
 		51355C540C36395BA84CA3BD /* libberg.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libberg.dylib; path = "../../../../Users/camilo/Library/Developer/Xcode/DerivedData/all-dlckdugtwkhfjkdbgurajmehstei/Build/Products/Debug/libberg.dylib"; sourceTree = "<group>"; };
 		67363D51F071D007D90E111F /* kiss_fft.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = kiss_fft.cpp; sourceTree = "<group>"; };
 		64E257A92B8C1AE5A6B1898B /* kiss_fft.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = kiss_fft.h; sourceTree = "<group>"; };
@@ -202,8 +202,8 @@
 			children = (
 				9AF780890F32C14A6BF7D465 /* kissfft */,
 				B591C7B666956D9DED0C4A1D /* math */,
-				82EF91EBDEF712988479E749 /* framework.cpp */,
-				7FE3CD2161D523ACA22F4F4B /* framework.h */,
+				82EF91EBDEF712988479E749 /* platform.cpp */,
+				7FE3CD2161D523ACA22F4F4B /* platform.h */,
 			);
 			name = math;
 			sourceTree = "<group>";
@@ -241,7 +241,7 @@
 			isa = PBXHeadersBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				AE9792142A1D268F53B6416F /* framework.h in Headers */,
+				AE9792142A1D268F53B6416F /* platform.h in Headers */,
 				875C783B77D258766FC62E6E /* kiss_fft.h in Headers */,
 				9C0382E8C6380D4079BAF9D9 /* kiss_fft_guts.h in Headers */,
 				5F2BE87108FF9A15F10BE86C /* kiss_ifft.h in Headers */,
@@ -401,7 +401,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				1E92E6D83B80A06EAF58D9E7 /* framework.cpp in Sources */,
+				1E92E6D83B80A06EAF58D9E7 /* platform.cpp in Sources */,
 				447641BD763BDEC62F197C50 /* kiss_fft.cpp in Sources */,
 				3CC3B418229D325C2CD18E85 /* kiss_fft_shared.cpp in Sources */,
 				A765AA3F37C1F966BA824992 /* kiss_ifft.cpp in Sources */,
@@ -577,7 +577,7 @@
 				GCC_ENABLE_OBJC_EXCEPTIONS = YES;
 				GCC_OPTIMIZATION_LEVEL = 0;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
-				GCC_PREFIX_HEADER = framework.h;
+				GCC_PREFIX_HEADER = platform.h;
 				GCC_PREPROCESSOR_DEFINITIONS = (
 					"$(inherited)",
 				);
@@ -619,7 +619,7 @@
 				GCC_C_LANGUAGE_STANDARD = c99;
 				GCC_ENABLE_OBJC_EXCEPTIONS = YES;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
-				GCC_PREFIX_HEADER = framework.h;
+				GCC_PREFIX_HEADER = platform.h;
 				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
 				GCC_WARN_ABOUT_RETURN_TYPE = YES;
 				GCC_WARN_UNINITIALIZED_AUTOS = YES;

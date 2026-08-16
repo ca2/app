@@ -1,4 +1,4 @@
-#include "framework.h"
+#include "platform.h"
 
 
 #if defined(_M_IX86)

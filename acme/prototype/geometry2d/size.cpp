@@ -1,5 +1,5 @@
 // Created by camilo to test largest_number macro with size_type on 2023-06-04 22:45 <3ThomasBorregaardSorensen!!
-#include "framework.h"
+#include "platform.h"
 #include "size.h"
 
 

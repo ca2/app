@@ -1,4 +1,4 @@
-#include "framework.h"
+#include "platform.h"
 
 #ifndef UNIVERSAL_WINDOWS
 #include "mysql/mysql.h"

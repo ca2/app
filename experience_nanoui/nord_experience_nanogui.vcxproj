@@ -196,7 +196,7 @@
     <ClCompile Include="control_box.cpp" />
     <ClCompile Include="experience.cpp" />
     <ClCompile Include="frame.cpp" />
-    <ClCompile Include="framework.cpp" />
+    <ClCompile Include="platform.cpp" />
     <ClCompile Include="frame_001.cpp" />
     <ClCompile Include="frame_002.cpp" />
     <ClCompile Include="frame_005.cpp" />
@@ -213,7 +213,7 @@
     <ClInclude Include="control_box.h" />
     <ClInclude Include="experience.h" />
     <ClInclude Include="frame.h" />
-    <ClInclude Include="framework.h" />
+    <ClInclude Include="platform.h" />
     <ClInclude Include="frame_001.h" />
     <ClInclude Include="frame_002.h" />
     <ClInclude Include="frame_005.h" />

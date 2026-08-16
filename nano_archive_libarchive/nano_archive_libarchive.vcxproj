@@ -1060,7 +1060,7 @@
     <ClInclude Include="sockets\_.h" />
     <ClInclude Include="sockets\_sockets.h" />
     <ClInclude Include="_.h" />
-    <ClInclude Include="framework.h" />
+    <ClInclude Include="platform.h" />
     <ClInclude Include="_impl.h" />
     <ClInclude Include="aaa__openssl.h" />
     <ClInclude Include="_networking.h" />
@@ -1071,7 +1071,7 @@
     <ClCompile Include="nano_archive_libarchive.cpp" />
     <ClCompile Include="_.cpp" />
     <ClCompile Include="_factory.cpp" />
-    <ClCompile Include="framework.cpp">
+    <ClCompile Include="platform.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">Create</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|ARM64'">Create</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='StaticDebug|x64'">Create</PrecompiledHeader>

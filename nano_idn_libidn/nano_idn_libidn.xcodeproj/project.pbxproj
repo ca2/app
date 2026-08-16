@@ -10,16 +10,16 @@
 		8F9FED87DD45AAEA6783F444 /* _.h in Headers */ = {isa = PBXBuildFile; fileRef = 235C28352DF5944826F51151 /* _.h */; };
 		4525CBDF03B6EA2103C9E27A /* resource.h in Headers */ = {isa = PBXBuildFile; fileRef = 6C9DCAA612D74C564EC61731 /* resource.h */; };
 		66C192235FFC36F302926826 /* nano_idn_libidn.h in Headers */ = {isa = PBXBuildFile; fileRef = 418DA2F6CE1E490EF08F42AB /* nano_idn_libidn.h */; };
-		93E165F9F17ABC4205057F07 /* framework.h in Headers */ = {isa = PBXBuildFile; fileRef = 130236C9FA913D3FD879A577 /* framework.h */; };
+		93E165F9F17ABC4205057F07 /* platform.h in Headers */ = {isa = PBXBuildFile; fileRef = 130236C9FA913D3FD879A577 /* platform.h */; };
 		4DD8C041174F7836B774035C /* _factory.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9CE94997FFF3A99C533022EC /* _factory.cpp */; };
 		9D44EF819A607BF695CCBA44 /* _.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 6072DFD4ADAD7EF447FE71E6 /* _.cpp */; };
-		B472D440B43C8772E9FCD5D1 /* framework.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B1FCEB3C6CFBE389B815C941 /* framework.cpp */; };
+		B472D440B43C8772E9FCD5D1 /* platform.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B1FCEB3C6CFBE389B815C941 /* platform.cpp */; };
 		11124DA996AE0A89A9493913 /* nano_idn_libidn.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 873A00FBC9997A435B870CBE /* nano_idn_libidn.cpp */; };
 		A7C2E6DF042DCF0207E88684 /* nano_idn_libidn.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 873A00FBC9997A435B870CBE /* nano_idn_libidn.cpp */; };
 		F938E0E6893B93C5D72F1F98 /* resource.h in Headers */ = {isa = PBXBuildFile; fileRef = 6C9DCAA612D74C564EC61731 /* resource.h */; };
-		5D58A1FA6F5C47F4686A16C4 /* framework.h in Headers */ = {isa = PBXBuildFile; fileRef = 130236C9FA913D3FD879A577 /* framework.h */; };
+		5D58A1FA6F5C47F4686A16C4 /* platform.h in Headers */ = {isa = PBXBuildFile; fileRef = 130236C9FA913D3FD879A577 /* platform.h */; };
 		66E6315D27EC7EAD19A9DBC5 /* nano_idn_libidn.h in Headers */ = {isa = PBXBuildFile; fileRef = 418DA2F6CE1E490EF08F42AB /* nano_idn_libidn.h */; };
-		16CC073A776C809D8002E5D0 /* framework.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B1FCEB3C6CFBE389B815C941 /* framework.cpp */; };
+		16CC073A776C809D8002E5D0 /* platform.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B1FCEB3C6CFBE389B815C941 /* platform.cpp */; };
 		45249EF4C050B29E6601FBA9 /* _.h in Headers */ = {isa = PBXBuildFile; fileRef = 235C28352DF5944826F51151 /* _.h */; };
 		36D17F478368D00284AEEE9E /* _.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 6072DFD4ADAD7EF447FE71E6 /* _.cpp */; };
 		00D68C50E7A9E1D60493815D /* _factory.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9CE94997FFF3A99C533022EC /* _factory.cpp */; };
@@ -105,9 +105,9 @@
 		F447ACB9CDBD5A659503D454 /* libnano_idn_libidn.dylib */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.dylib"; includeInIndex = 0; path = libnano_idn_libidn.dylib; sourceTree = BUILT_PRODUCTS_DIR; };
 		873A00FBC9997A435B870CBE /* nano_idn_libidn.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = nano_idn_libidn.cpp; sourceTree = "<group>"; };
 		6C9DCAA612D74C564EC61731 /* resource.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = resource.h; sourceTree = "<group>"; };
-		130236C9FA913D3FD879A577 /* framework.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = framework.h; sourceTree = "<group>"; };
+		130236C9FA913D3FD879A577 /* platform.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = platform.h; sourceTree = "<group>"; };
 		418DA2F6CE1E490EF08F42AB /* nano_idn_libidn.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = nano_idn_libidn.h; sourceTree = "<group>"; };
-		B1FCEB3C6CFBE389B815C941 /* framework.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = framework.cpp; sourceTree = "<group>"; };
+		B1FCEB3C6CFBE389B815C941 /* platform.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = platform.cpp; sourceTree = "<group>"; };
 		235C28352DF5944826F51151 /* _.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = _.h; sourceTree = "<group>"; };
 		6072DFD4ADAD7EF447FE71E6 /* _.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = _.cpp; sourceTree = "<group>"; };
 		9CE94997FFF3A99C533022EC /* _factory.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = _factory.cpp; sourceTree = "<group>"; };
@@ -158,8 +158,8 @@
 				6072DFD4ADAD7EF447FE71E6 /* _.cpp */,
 				235C28352DF5944826F51151 /* _.h */,
 				9CE94997FFF3A99C533022EC /* _factory.cpp */,
-				B1FCEB3C6CFBE389B815C941 /* framework.cpp */,
-				130236C9FA913D3FD879A577 /* framework.h */,
+				B1FCEB3C6CFBE389B815C941 /* platform.cpp */,
+				130236C9FA913D3FD879A577 /* platform.h */,
 				418DA2F6CE1E490EF08F42AB /* nano_idn_libidn.h */,
 				6C9DCAA612D74C564EC61731 /* resource.h */,
 				873A00FBC9997A435B870CBE /* nano_idn_libidn.cpp */,
@@ -204,7 +204,7 @@
 				8F9FED87DD45AAEA6783F444 /* _.h in Headers */,
 				4525CBDF03B6EA2103C9E27A /* resource.h in Headers */,
 				66C192235FFC36F302926826 /* nano_idn_libidn.h in Headers */,
-				93E165F9F17ABC4205057F07 /* framework.h in Headers */,
+				93E165F9F17ABC4205057F07 /* platform.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -215,7 +215,7 @@
 				45249EF4C050B29E6601FBA9 /* _.h in Headers */,
 				F938E0E6893B93C5D72F1F98 /* resource.h in Headers */,
 				66E6315D27EC7EAD19A9DBC5 /* nano_idn_libidn.h in Headers */,
-				5D58A1FA6F5C47F4686A16C4 /* framework.h in Headers */,
+				5D58A1FA6F5C47F4686A16C4 /* platform.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -379,7 +379,7 @@
 			files = (
 				4DD8C041174F7836B774035C /* _factory.cpp in Sources */,
 				9D44EF819A607BF695CCBA44 /* _.cpp in Sources */,
-				B472D440B43C8772E9FCD5D1 /* framework.cpp in Sources */,
+				B472D440B43C8772E9FCD5D1 /* platform.cpp in Sources */,
 				11124DA996AE0A89A9493913 /* nano_idn_libidn.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -390,7 +390,7 @@
 			files = (
 				00D68C50E7A9E1D60493815D /* _factory.cpp in Sources */,
 				36D17F478368D00284AEEE9E /* _.cpp in Sources */,
-				16CC073A776C809D8002E5D0 /* framework.cpp in Sources */,
+				16CC073A776C809D8002E5D0 /* platform.cpp in Sources */,
 				A7C2E6DF042DCF0207E88684 /* nano_idn_libidn.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -511,7 +511,7 @@
 				GCC_NO_COMMON_BLOCKS = YES;
 				GCC_OPTIMIZATION_LEVEL = 0;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
-				GCC_PREFIX_HEADER = framework.h;
+				GCC_PREFIX_HEADER = platform.h;
 				GCC_PREPROCESSOR_DEFINITIONS = "$(inherited)";
 				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
 				GCC_WARN_ABOUT_RETURN_TYPE = YES;
@@ -612,7 +612,7 @@
 				GCC_INCREASE_PRECOMPILED_HEADER_SHARING = NO;
 				GCC_NO_COMMON_BLOCKS = YES;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
-				GCC_PREFIX_HEADER = framework.h;
+				GCC_PREFIX_HEADER = platform.h;
 				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
 				GCC_WARN_ABOUT_RETURN_TYPE = YES;
 				GCC_WARN_UNDECLARED_SELECTOR = YES;

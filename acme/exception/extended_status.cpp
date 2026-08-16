@@ -1,7 +1,7 @@
 //
 // Created by camilo on 2020-11-06.
 //
-#include "framework.h"
+#include "platform.h"
 
 
 namespace extended

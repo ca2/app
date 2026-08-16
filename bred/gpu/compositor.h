@@ -25,7 +25,7 @@ namespace gpu
 
       //virtual ::gpu::frame* gpu_frame();
       //virtual void set_gpu_frame(::gpu::frame*);
-      virtual ::gpu::texture* current_target_texture(::gpu::layer* pgpulayer);
+      virtual ::gpu::texture_site * current_target_texture(::gpu::layer* pgpulayer);
 
 
       virtual void set_gpu_context(::gpu::context * pgpucontextCompositor);
@@ -33,8 +33,13 @@ namespace gpu
       virtual void on_set_gpu_context();
 
 
-      virtual void on_gpu_context_placement_change(const ::i32_rectangle& rectanglePlacement, ::acme::windowing::window *pacmewindowingwindow);
+      virtual void on_gpu_context_placement_change(
+         const ::i32_point & pointInput,
+         const ::i32_point & pointOutput,
+         const ::i32_size & size,
+         ::acme::windowing::window *pacmewindowingwindow);
 
+      virtual bool renders_layer_externally(::gpu::layer * pgpulayer);
       virtual void on_start_layer_before_begin_render(::gpu::layer *pgpulayer);
       //virtual void on_gpu_context_placement_change(const ::i32_rectangle & rectanglePlacement);
 

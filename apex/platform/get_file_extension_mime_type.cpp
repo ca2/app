@@ -1,5 +1,5 @@
 // Created by camilo on 2024-01-27 21:56 <3ThomasBorregaardSorensen!!
-#include "framework.h"
+#include "platform.h"
 #include "get_file_extension_mime_type.h"
 
 

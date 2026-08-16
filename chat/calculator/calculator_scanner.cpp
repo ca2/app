@@ -1,7 +1,7 @@
 /* (C) Copyright 2008 Nick Mudge <mudgen@gmail.com>
  * This code can be freely copied and modified.
  */
-#include  "framework.h"
+#include  "platform.h"
 
 /* conversas dos Js Jefferson Dalavechia e Joice sobre calculadora cientifica, financeira e com pilha
 mais tipico de calculadora no command */

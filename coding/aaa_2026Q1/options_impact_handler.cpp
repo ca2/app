@@ -1,4 +1,4 @@
-#include "framework.h"
+#include "platform.h"
 #include "document.h"
 #include "options_impact_handler.h"
 #include "item.h"

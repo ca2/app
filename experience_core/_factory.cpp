@@ -1,4 +1,4 @@
-#include "framework.h"
+#include "platform.h"
 #include "acme/platform/system_setup.h"
 #include "experience/experience.h"
 #include "experience/control_box.h"

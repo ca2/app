@@ -1,4 +1,4 @@
-#include "framework.h"
+#include "platform.h"
 #include "image_manager.h"
 #include "acme/exception/interface_only.h"
 #include "aura/graphics/image/list.h"

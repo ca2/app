@@ -1,4 +1,4 @@
-#include "framework.h"
+#include "platform.h"
 //#if !BROAD_PRECOMPILED_HEADER
 //#include "_filehandler.h"
 //#endif

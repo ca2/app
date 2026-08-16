@@ -2,7 +2,7 @@
 // Created by camilo on 2022-12-01 08:42 <3ThomasBorregaardSorensen!!
 // Recreated as layer by camilo on 2024-10-28 06:27 <3ThomasBorregaardSorensen!!
 //
-#include "framework.h"
+#include "platform.h"
 #include "application_core.h"
 
 

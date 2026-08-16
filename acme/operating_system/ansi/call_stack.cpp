@@ -6,7 +6,7 @@
 //  15:33
 //  Copyright (c) 2022 Camilo Sasuke Thomas Borregaard Soerensen. All rights reserved.
 //
-#include "framework.h"
+#include "platform.h"
 
 #if !defined(WINDOWS)
 

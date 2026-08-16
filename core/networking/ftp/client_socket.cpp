@@ -46,7 +46,7 @@
 //      - Replaced the magic numbers concerning the reply codes by a class.
 // v1.0 released 2004-10-25
 ////////////////////////////////////////////////////////////////////////////////
-#include "framework.h"
+#include "platform.h"
 #include "client_socket.h"
 #include "output_stream.h"
 #include "file.h"

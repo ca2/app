@@ -1,4 +1,4 @@
-#include "../framework.h"
+#include "../platform.h"
 //#include "bred/gpu/gltf_model.h"
 #include "gltf_render_system.h"
 #include "SceneFoundry/graphics3d/frame.h"

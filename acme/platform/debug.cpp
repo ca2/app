@@ -1,4 +1,4 @@
-#include "framework.h"
+#include "platform.h"
 #include "acme/constant/id.h"
 #include "acme/exception/extended_status.h"
 #ifdef WINDOWS

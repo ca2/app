@@ -7,7 +7,7 @@
 * gcvt  - Floating output conversion to minimal length string
 */
 
-#include "framework.h"
+#include "platform.h"
 
 #include <errno.h>
 

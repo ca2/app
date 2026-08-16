@@ -1,4 +1,4 @@
-#include "framework.h"
+#include "platform.h"
 
 
 db_stra_set::db_stra_set(db_server * pserver, ::database::key & atom) :

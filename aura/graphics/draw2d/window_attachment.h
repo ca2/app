@@ -12,7 +12,7 @@ namespace draw2d
    public:
 
 
-      ::pointer<::windowing::window> m_pwindow;
+      ::pointer<::windowing::window>                     m_pwindow;
 
 
       window_attachment();
@@ -20,6 +20,13 @@ namespace draw2d
 
       
       virtual void initialize_window_attachment(::windowing::window * pwindow);
+
+
+
+      static ::draw2d::window_attachment * get(::acme::user::interaction * pacmeuserinteraction);
+      static ::draw2d::window_attachment * get(::acme::windowing::window * pacmewindowingwindow);
+
+
 
 
    };

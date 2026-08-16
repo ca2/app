@@ -1,5 +1,5 @@
 // Created by camilo on 2024-04-17 01:11 <3ThomasBorregaardSorensen!!
-#include "framework.h"
+#include "platform.h"
 #include "runtime_check.h"
 
 

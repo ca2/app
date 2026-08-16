@@ -5,7 +5,7 @@
 //  Created by Camilo Sasuke Thomas Borregaard Soerensen on 28/02/20.
 //  Refactoring 2023-11-24 02:02 <3ThomasBorregaardSoerensen!!
 //
-#include "framework.h"
+#include "platform.h"
 #include "heap.h"
 #include "system_heap.h"
 #include "acme/exception/__string.h"

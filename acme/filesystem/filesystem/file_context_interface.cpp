@@ -1,5 +1,5 @@
 // From file_context.h by camilo on 2024-06-28 09:39 <3ThomasBorregaardSorensen!!
-#include "framework.h"
+#include "platform.h"
 #include "file_context_interface.h"
 #include "acme/user/interface/message_box.h"
 #include "acme/nano/nano.h"

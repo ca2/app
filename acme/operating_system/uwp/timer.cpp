@@ -1,4 +1,4 @@
-#include "framework.h"
+#include "platform.h"
 
 //
 //bool timer::impl_start()

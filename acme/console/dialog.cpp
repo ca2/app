@@ -1,7 +1,7 @@
 // Created by camilo on 2024-08-09 14:34 <3ThomasBorregaardSorensen!!
 // From operating_system/console_message_box
 // to console dialog by camilo on 2024-10-08 04:08 <3ThomasBorregaardSorensen!!
-#include "framework.h"
+#include "platform.h"
 #include "dialog.h"
 
 

@@ -1,5 +1,5 @@
 // Recreated by camilo on 2021-12-16 19:41 BRT <3ThomasBorregaardSorensen!!
-#include "framework.h"
+#include "platform.h"
 ////#include "acme/exception/exception.h"
 #include "acme/operating_system/process.h"
 #include "acme/parallelization/single_lock.h"

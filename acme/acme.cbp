@@ -1084,11 +1084,11 @@
 			<Option target="acme"/>
 			<Option target="static_acme"/>
 		</Unit>
-		<Unit filename="/home/camilo/cmake/integration/source/app/acme/framework.cpp">
+		<Unit filename="/home/camilo/cmake/integration/source/app/acme/platform.cpp">
 			<Option target="acme"/>
 			<Option target="static_acme"/>
 		</Unit>
-		<Unit filename="/home/camilo/cmake/integration/source/app/acme/framework.h">
+		<Unit filename="/home/camilo/cmake/integration/source/app/acme/platform.h">
 			<Option target="acme"/>
 			<Option target="static_acme"/>
 		</Unit>

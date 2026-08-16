@@ -1,0 +1,253 @@
+#include "platform.h"
+//#include "_gpu_opengl.h"
+#include "buffer.h"
+#include "lock.h"
+#include "texture.h"
+#include "acme/parallelization/synchronous_lock.h"
+#include "aura/graphics/image/image.h"
+#include "aura/graphics/image/aaa_target.h"
+#include "bred/gpu/context.h"
+#include "bred/gpu/context_lock.h"
+#include "bred/gpu/layer.h"
+#include "bred/gpu/texture_site.h"
+
+
+namespace gpu_opengl
+{
+
+
+   buffer::buffer()
+   {
+
+   }
+
+
+   buffer::~buffer()
+   {
+
+   }
+
+
+   void buffer::gpu_read()
+   {
+
+      _synchronous_lock synchronouslock(this->synchronization(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
+
+      if (m_ppixmap.nok())
+      {
+
+         return;
+
+      }
+
+      ::gpu::context_lock contextlock(m_pgpucontext);
+
+      auto ptexturesite = m_pgpucontext->current_target_texture(::gpu::current_layer());
+
+      ::cast < texture > ptexture = ptexturesite->gpu_texture();
+
+      auto gluSrcFbo = ptexture->source_frame_buffer_object();
+
+      if (!gluSrcFbo)
+      {
+
+         throw ::exception(error_wrong_state);
+
+      }
+
+      glBindFramebuffer(GL_READ_FRAMEBUFFER, gluSrcFbo);
+      ::opengl::check_error("glBindFramebuffer READ");
+
+      ////m_pixmap.map();
+
+      //auto cx = m_pimagetarget->m_pimage->width();
+
+      //auto cy = m_pimagetarget->m_pimage->height();
+
+      ////auto sizeNeeded = cx * cy * 4;
+
+      ////m_pixmap.create(m_memory, sizeNeeded);
+      //
+      //auto data = m_pimagetarget->m_pimage->data();
+      
+#if defined(__APPLE__) || defined(__ANDROID__)
+
+      auto targeting = m_pimagetarget->no_padded_targeting(::image::e_copy_disposition_none);
+      
+      //(::image::e_copy_disposition_y_swap);
+
+      auto w = targeting.width();
+      auto h = targeting.height();
+      auto p = targeting.data();
+      if(p != nullptr)
+      {
+         glReadBuffer(GL_FRONT);
+
+//if(0)
+{
+   glReadPixels(
+                0, 0,
+                w, h,
+                GL_RGBA,
+                GL_UNSIGNED_BYTE,
+                p);
+   
+}
+         
+      }
+
+      //m_pixmap.mult_alpha();
+      information() << "after glReadPixels cx,cy : " << w << ", " << h;
+      
+      //::memory_set(m_pixmap.m_pimage32Raw, 127, cx * cy * 4);
+#elif defined(LINUX) || defined(__BSD__)
+
+      auto targeting = m_pimagetarget->no_padded_targeting(::image::e_copy_disposition_y_swap);
+
+      auto w = targeting.width();
+      auto h = targeting.height();
+      auto p = targeting.data();
+      glReadPixels(
+         0, 0,
+         w, h,
+         GL_BGRA,
+         //GL_RGBA,
+         GL_UNSIGNED_BYTE,
+         p);
+      ::opengl::check_error("");
+
+//       glReadBuffer(GL_FRONT);
+//
+//
+//       glReadPixels(
+//          0, 0,
+//          cx, cy,
+//          GL_BGRA,
+//          GL_UNSIGNED_BYTE,
+//          m_pixmap.m_pimage32Raw);
+//
+//       //m_pixmap.mult_alpha();
+//
+#else
+
+      //glReadBuffer(GL_FRONT);
+      
+      //if (m_pgpucontext->is_mesa())
+
+      if(glReadnPixels)
+      {
+
+         //auto targeting = m_ppixmap->source_scan_targeting(::image::e_copy_disposition_y_swap);
+
+         auto mapPixmap = m_ppixmap->map();
+
+         auto w = mapPixmap.width();
+         auto h = mapPixmap.height();
+         auto s = mapPixmap.scan() * h * 4;
+         auto p = mapPixmap.data();
+         glReadnPixels(
+            0, 0,
+            w, h,
+            GL_BGRA,
+            GL_UNSIGNED_BYTE,
+            s,
+            p);
+         
+         ::opengl::check_error("glReadnPixels error (1)");
+
+      }
+      else
+      {
+
+         //auto targeting = m_ppixmap->no_padded_targeting(::image::e_copy_disposition_y_swap);
+
+         auto mapPixmap = m_ppixmap->map();
+
+         auto w = mapPixmap.width();
+         auto h = mapPixmap.height();
+         auto p = mapPixmap.data();
+         glReadPixels(
+            0, 0,
+            w, h,
+            GL_BGRA,
+            //GL_RGBA,
+            GL_UNSIGNED_BYTE,
+            p);
+         ::opengl::check_error("glReadnPixels error (2)");
+
+      }
+      //::i32 iError = glGetError();
+
+      //if(iError != 0)
+      //{
+
+      //   warningf("glReadnPixels error %d = \"%s\"", iError, opengl_error_string(iError));
+
+      //}
+
+      //::memory_set(m_pixmap.m_pimage32Raw, 127, cx * cy * 4);
+
+#endif
+
+      //{
+
+      //   auto dst = (::u8 *)data;
+      //   auto size = cx * cy;
+
+      //   while (size > 0)
+      //   {
+      //      dst[0] = byte_clip(((::i32)dst[0] * (::i32)dst[3]) / 255);
+      //      dst[1] = byte_clip(((::i32)dst[1] * (::i32)dst[3]) / 255);
+      //      dst[2] = byte_clip(((::i32)dst[2] * (::i32)dst[3]) / 255);
+      //      dst += 4;
+      //      size--;
+      //   }
+
+      //}
+
+      //::copy_image32(m_pixmap.m_pimage32,
+      //   cx, cy,
+      //   m_pixmap.m_iScan,
+      //   (const ::image32_t*) data, cx * 4);
+
+      glBindFramebuffer(GL_FRAMEBUFFER, 0);
+
+   }
+
+
+   void buffer::gpu_write()
+   {
+
+      synchronous_lock synchronouslock(this->synchronization(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
+
+      if (m_ppixmap.nok())
+      {
+
+         return;
+
+      }
+
+ //     m_pixmap.map();
+      //
+//      glDrawPixels(
+//         m_pixmap.m_size.cx, m_pixmap.m_size.cy,
+//         GL_BGRA,
+//         GL_UNSIGNED_BYTE,
+//         m_pixmap.m_pimage32Raw);
+
+      auto mapPixmap = m_ppixmap->map();
+      
+      glTexImage2D(GL_TEXTURE_2D, 0, 0, 0, 
+         mapPixmap.width(),
+         mapPixmap.height(),
+         GL_RGBA, GL_UNSIGNED_BYTE, 
+         mapPixmap.data());
+      ::opengl::check_error("");
+
+   }
+
+
+} // namespace gpu_opengl
+
+
+

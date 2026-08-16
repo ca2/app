@@ -1,4 +1,4 @@
-#include "framework.h"
+#include "platform.h"
 
 //
 //veri::exception::veri::exception(const ::scoped_string & scopedstrMessage):

@@ -1,4 +1,4 @@
-#include "framework.h"
+#include "platform.h"
 #include "value.h"
 #include "number.h"
 #include "acme/prototype/collection/address_array.h"

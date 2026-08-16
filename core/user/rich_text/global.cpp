@@ -1,4 +1,4 @@
-#include "framework.h"
+#include "platform.h"
 #include "line.h"
 #include "box.h"
 //#include "core/user/rich_text/_rich_text.h"

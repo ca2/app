@@ -261,7 +261,7 @@
     <ClCompile Include="_helloaxis.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="framework.h" />
+    <ClInclude Include="platform.h" />
     <ClInclude Include="helloaxis.h" />
     <ClInclude Include="helloaxis_application.h" />
     <ClInclude Include="helloaxis_document.h" />

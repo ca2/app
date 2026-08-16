@@ -1,4 +1,4 @@
-#include "framework.h"
+#include "platform.h"
 #include "line_layout.h"
 #include "acme/constant/user_message.h"
 #include "acme/platform/node.h"

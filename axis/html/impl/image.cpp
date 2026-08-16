@@ -1,4 +1,4 @@
-#include "framework.h"
+#include "platform.h"
 #include "image.h"
 #include "acme/parallelization/single_lock.h"
 #include "acme/prototype/data/listener.h"

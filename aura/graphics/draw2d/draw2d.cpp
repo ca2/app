@@ -1,10 +1,12 @@
-#include "framework.h"
+#include "platform.h"
 #include "lock.h"
 #include "acme/graphics/image/image32.h"
 #include "acme/platform/application.h"
 #include "acme/user/user/interaction.h"
+#include "apex/gpu/approach.h"
 #include "aura/graphics/draw2d/graphics_pointer.h"
 //#include "aura/graphics/draw2d/host.h"
+#include "aura/graphics/draw2d/window_attachment.h"
 #include "aura/graphics/image/encoding_options.h"
 #include "aura/graphics/image/array.h"
 #include "aura/graphics/image/image.h"
@@ -204,6 +206,64 @@ namespace draw2d
 
 
    //}
+
+
+   ::pointer < ::draw2d::window_attachment > draw2d::allocate_draw2d_window_attachment(::acme::windowing::window * pacmewindowingwindow)
+   {
+
+      if (m_papplication->m_bGpu)
+      {
+
+         return allocate_draw2d_window_attachment_for_gpu(pacmewindowingwindow);
+
+      }
+
+      return create_newø<::draw2d::window_attachment >();
+
+   }
+
+
+   ::pointer < ::draw2d::window_attachment > draw2d::allocate_draw2d_window_attachment_for_gpu(::acme::windowing::window * pacmewindowingwindow)
+   {
+
+      if (!m_papplication->m_bGpu)
+      {
+
+         throw ::exception(error_wrong_state);
+
+      }
+
+      auto pgpuwindowattachment = _allocate_draw2d_window_attachment_for_gpu(pacmewindowingwindow);
+
+      if (pgpuwindowattachment)
+      {
+
+         return pgpuwindowattachment;
+
+      }
+
+      auto pgpuapproach = m_papplication->get_gpu_approach();
+
+      pgpuwindowattachment = pgpuapproach->_allocate_draw2d_window_attachment_for_gpu(pacmewindowingwindow);
+
+      if (pgpuwindowattachment)
+      {
+
+         return pgpuwindowattachment;
+
+      }
+
+      return create_newø<::draw2d::window_attachment >();
+
+   }
+
+
+   ::pointer < ::draw2d::window_attachment > draw2d::_allocate_draw2d_window_attachment_for_gpu(::acme::windowing::window * pacmewindowingwindow)
+   {
+
+      return {};
+
+   }
 
 
    void draw2d::clear_all_objects_os_data()
@@ -417,12 +477,12 @@ namespace draw2d
    }
 
 
-   bool draw2d::graphics_context_supports_single_buffer_mode()
-   {
+   //bool draw2d::graphics_context_supports_single_buffer_mode()
+   //{
 
-      return true;
+   //   return true;
 
-   }
+   //}
 
 
    bool draw2d::graphics_context_does_full_redraw()
@@ -529,7 +589,7 @@ namespace draw2d
    }
 
 
-   ::draw2d::graphics_pointer draw2d::create_graphics(::acme::user::interaction * pacmeuserinteractionAffinity)
+   ::draw2d::graphics_pointer draw2d::allocate_graphics(::acme::user::interaction * pacmeuserinteractionAffinity)
    {
 
       auto pgraphics = pacmeuserinteractionAffinity->createø< ::draw2d::graphics>();
@@ -544,7 +604,7 @@ namespace draw2d
    ::draw2d::graphics_pointer draw2d::create_memory_graphics(const ::i32_size &size, ::acme::user::interaction * pacmeuserinteractionAffinity)
    {
 
-      auto pgraphics = create_graphics(pacmeuserinteractionAffinity);
+      auto pgraphics = allocate_graphics(pacmeuserinteractionAffinity);
 
       auto sizeCreate = size;
 
@@ -626,7 +686,7 @@ namespace draw2d
 
       }
 
-      auto pgraphics = create_graphics(pacmeuserinteractionAffinity);
+      auto pgraphics = allocate_graphics(pacmeuserinteractionAffinity);
 
       if (::is_set(pimage))
       {
@@ -655,6 +715,20 @@ namespace draw2d
       }
 
       return pgraphics;
+
+   }
+
+
+   const void * draw2d::get_gpu_physical_device_features(void * p)
+   {
+
+      return nullptr;
+
+   }
+
+   void draw2d::get_required_gpu_device_extensions(::u64 uPhysicalDevice, ::array<const char *> & pszaRequiredDeviceExtensions)
+   {
+
 
    }
 

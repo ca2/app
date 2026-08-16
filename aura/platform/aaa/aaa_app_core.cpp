@@ -1,4 +1,4 @@
-#include "framework.h"
+#include "platform.h"
 #include "app_core.h"
 #include "system_setup.h"
 #include "aura/os/_os.h"

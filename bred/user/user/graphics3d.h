@@ -131,7 +131,6 @@ namespace user
 
 
 
-
       virtual ::pointer < ::graphics3d::key_map > get_default_key_map();
       virtual ::f32 getAspectRatio();
 

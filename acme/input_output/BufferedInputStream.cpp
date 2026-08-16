@@ -1,4 +1,4 @@
-#include "framework.h"
+#include "platform.h"
 #include "BufferedInputStream.h"
 // #include aaa_<string.h>
 // #include aaa_<istream>

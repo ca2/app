@@ -1,5 +1,5 @@
 // From _component.h (::collection::index include file) by camilo 2022-08-27 00:38 <3ThomasBorregaardSorensen!!
-#include "framework.h"
+#include "platform.h"
 #include "alpha_source.h"
 
 

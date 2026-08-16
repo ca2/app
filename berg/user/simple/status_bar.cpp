@@ -1,4 +1,4 @@
-#include "framework.h"
+#include "platform.h"
 ////#include "core/user/simple/_component.h"
 #include "status_bar.h"
 

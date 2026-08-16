@@ -1,4 +1,4 @@
-#include "framework.h"
+#include "platform.h"
 #include "edit_file.h"
 #include "acme/exception/interface_only.h"
 #include "acme/filesystem/file/buffered_file.h"

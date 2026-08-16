@@ -1,12 +1,12 @@
 // from device_win32 by
 // camilo on 2025-05-30 03:37 <3ThomasBorregaardSorensen!!
-#include "framework.h"
+#include "platform.h"
 #include "_gpu_opengl.h"
 #include "context.h"
 #include "device_win32.h"
 #include "approach.h"
 #include "device.h"
-#include "aaa_cpu_buffer.h"
+#include "buffer.h"
 #include "renderer.h"
 #include "swap_chain.h"
 #include "bred/gpu/bred_approach.h"
@@ -62,18 +62,18 @@ namespace gpu_opengl
    //}
 
 
-   void device_win32::create_main_context(::acme::windowing::window * pacmewindowingwindow)
-   {
-      
-      ::cast<::win32::acme::windowing::window> pwindow = pacmewindowingwindow;
-      
-      m_pwindow = pwindow;
-      
-      m_hwnd = (HWND) pwindow->_HWND();
+   //void device_win32::create_main_context(::acme::windowing::window * pacmewindowingwindow)
+   //{
+   //   
+   //   ::cast<::win32::acme::windowing::window> pwindow = pacmewindowingwindow;
+   //   
+   //   m_pwindow = pwindow;
+   //   
+   //   m_hwnd = (HWND) pwindow->_HWND();
 
-      ::gpu_opengl::device::create_main_context(pacmewindowingwindow);
+   //   ::gpu_opengl::device::create_main_context(pacmewindowingwindow);
 
-   }
+   //}
 
 
    void device_win32::initialize_gpu_device_for_swap_chain(::gpu::approach* papproach, ::windowing::window* pwindow)
@@ -99,7 +99,7 @@ namespace gpu_opengl
       ::gpu::device::initialize_gpu_device_for_off_screen(papproach, rectanglePlacement);
 
       m_pgpuapproach = papproach;
-      m_pwindow = m_pacmeuserinteractionMain->window();
+      m_pwindow = m_papplication->main_acme_user_interaction()->window();
       m_bAddSwapChainSupport = false;
       ::cast < ::windowing_win32::window > pwin32window = m_pwindow;
       m_hwnd = (HWND) pwin32window->_HWND();

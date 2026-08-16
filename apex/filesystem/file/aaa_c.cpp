@@ -1,4 +1,4 @@
-#include "framework.h"
+#include "platform.h"
 
 
 /*void sprint_hex(char_pointer sz, ::i32 iValue)

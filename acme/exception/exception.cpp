@@ -1,5 +1,5 @@
 // added error_code::get_string by camilo on 2022-09-29 22:10 <3ThomasBorregaardSorensen!!
-#include "framework.h"
+#include "platform.h"
 //#include "exception.h"
 //#include "callstack.h"
 //#include "acme/prototype/string/as_string.h"

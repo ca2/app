@@ -1,5 +1,5 @@
 // From vk_swapchain by camilo on 2025-05-09 02:01 <3ThomasBorregaardSorensen!!
-#include "framework.h"
+#include "platform.h"
 #include "_gpu_opengl.h"
 #include "render_target.h"
 #include "renderer.h"

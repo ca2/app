@@ -1,4 +1,4 @@
-#include "framework.h"
+#include "platform.h"
 #include "bidirectional_pipe.h"
 #include "acme/platform/system.h"
 

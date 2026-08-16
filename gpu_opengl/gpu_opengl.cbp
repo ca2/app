@@ -147,10 +147,10 @@
 		<Unit filename="/home/camilo/solution/basis/source/app/gpu_opengl/context_glx.h">
 			<Option target="gpu_opengl"/>
 		</Unit>
-		<Unit filename="/home/camilo/solution/basis/source/app/gpu_opengl/framework.cpp">
+		<Unit filename="/home/camilo/solution/basis/source/app/gpu_opengl/platform.cpp">
 			<Option target="gpu_opengl"/>
 		</Unit>
-		<Unit filename="/home/camilo/solution/basis/source/app/gpu_opengl/framework.h">
+		<Unit filename="/home/camilo/solution/basis/source/app/gpu_opengl/platform.h">
 			<Option target="gpu_opengl"/>
 		</Unit>
 		<Unit filename="/home/camilo/solution/basis/source/app/gpu_opengl/image_opengl.cpp">

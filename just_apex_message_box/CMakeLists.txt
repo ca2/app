@@ -7,8 +7,8 @@ list(APPEND library_source
         _.h
         application.cpp
         application.h
-        framework.cpp
-        framework.h)
+        platform.cpp
+        platform.h)
 
 
 list(APPEND library_references

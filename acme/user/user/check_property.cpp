@@ -1,4 +1,4 @@
-#include "framework.h"
+#include "platform.h"
 #include "check.h"
 #include "acme/prototype/data/property_container.h"
 #include "acme/prototype/prototype/action_context.h"

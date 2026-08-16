@@ -47,8 +47,14 @@ namespace gpu
 
 
             m_bStarted = true;
-            m_pgpucommandbuffer->m_pgpurendertarget->m_pgpurenderer->m_pgpucontext->start_debug_happening(
-               m_pgpucommandbuffer, m_strDebugHappening);
+
+            auto pgpurendertarget = m_pgpucommandbuffer->m_pgpurendertarget;
+
+            auto pgpurenderer = pgpurendertarget->m_pgpurenderer;
+
+            auto pgpucontext = pgpurenderer->m_pgpucontext;
+
+            pgpucontext->start_debug_happening(m_pgpucommandbuffer, m_strDebugHappening);
 
          }
 

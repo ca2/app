@@ -1,4 +1,4 @@
-#include "framework.h"
+#include "platform.h"
 #include "shared_memory.h"
 #include "acme/prototype/prototype/pointer.h"
 #include "acme/exception/exception.h"

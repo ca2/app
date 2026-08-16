@@ -1,4 +1,4 @@
-#include "framework.h"
+#include "platform.h"
 #include <unistd.h>
 
 #include "operating_system/posix/termination_handler.h"

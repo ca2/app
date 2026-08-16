@@ -38,6 +38,7 @@ namespace gpu
       ::pointer < memory_buffer > m_pbufferIndex;
       ::pointer < input_layout > m_pinputlayout;
       ::pointer < command_buffer >  m_pcommandbufferLoading;
+
       
       //bool m_bDummy;
       
@@ -387,8 +388,13 @@ namespace gpu
 
       virtual bool is_dummy() const;
 
-      void sequence2_uv_create_fullscreen_quad(::gpu::context * pgpucontext);
-      void sequence2_color_create_rectangle(::gpu::context * pgpucontext);
+      void sequence2_uv_create_fullscreen_quad(
+       ::gpu::context * pgpucontext,
+       const ::i32_rectangle & rectangleQuad,
+       const ::i32_size & sizeQuadRaw,
+       bool bYSwap);
+      
+         void sequence2_color_create_rectangle(::gpu::context * pgpucontext);
       void sequence2_color_create_line(::gpu::context * pgpucontext);
       void sequence3_color_create_rectangle(::gpu::context * pgpucontext);
       void sequence3_color_create_line(::gpu::context * pgpucontext);

@@ -1,4 +1,4 @@
-#include "framework.h"
+#include "platform.h"
 
 
 void ns_Sleep(::u32 uiMillis);

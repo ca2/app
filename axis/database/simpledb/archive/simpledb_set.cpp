@@ -1,4 +1,4 @@
-#include "framework.h"
+#include "platform.h"
 
 
 db_set::db_set(db_server * pserver, const ::scoped_string & scopedstrTable)

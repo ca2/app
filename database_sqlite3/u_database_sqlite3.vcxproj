@@ -69,7 +69,7 @@
   <ItemGroup>
     <ClCompile Include="database.cpp" />
     <ClCompile Include="_factory.cpp" />
-    <ClCompile Include="framework.cpp">
+    <ClCompile Include="platform.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='StaticRelease|Win32'">Create</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Create</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='StaticDebug|Win32'">Create</PrecompiledHeader>
@@ -93,7 +93,7 @@
     <ClInclude Include="database.h" />
     <ClInclude Include="dataset.h" />
     <ClInclude Include="factory_exchange.h" />
-    <ClInclude Include="framework.h" />
+    <ClInclude Include="platform.h" />
     <ClInclude Include="_.h" />
     <ClInclude Include="_2.h" />
     <ClInclude Include="_database_sqlite3.h" />

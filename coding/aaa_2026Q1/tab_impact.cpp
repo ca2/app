@@ -1,4 +1,4 @@
-#include "framework.h"
+#include "platform.h"
 #include "tab_impact.h"
 #include "application.h"
 #include "document.h"

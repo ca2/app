@@ -1,4 +1,4 @@
-#include "framework.h"
+#include "platform.h"
 
 
 //dump_context & operator<<(dump_context & dumpcontext,const ::i32_size & size)

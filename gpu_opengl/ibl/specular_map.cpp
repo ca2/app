@@ -1,6 +1,6 @@
 // From github:/tristancalderbank/OpenGL-PBR-Renderer/specular_map.cpp by
 // camilo on 2025-09-26 19:55 <3ThomasBorregaardSorensen!!
-#include "framework.h"
+#include "platform.h"
 #include "specular_map.h"
 //#include "brdf_convolution_framebuffer.h"
 #include "bred/graphics3d/_functions.h"

@@ -1,4 +1,4 @@
-#include "framework.h"
+#include "platform.h"
 #include "binding.h"
 #include "context.h"
 #include "renderer.h"
@@ -495,7 +495,7 @@ namespace gpu
 
    //}
 
-   void shader::bind(::gpu::command_buffer *pgpucommandbuffer, ::gpu::texture *pgputextureTarget)
+   void shader::bind(::gpu::command_buffer *pgpucommandbuffer, ::gpu::texture_site *pgputexturesiteTarget)
    {
 
       throw ::interface_only("shader::bind(::gpu::texture*) not implemented at this shader implementation");
@@ -504,7 +504,7 @@ namespace gpu
 
 
    void shader::on_bind_already_bound(::gpu::command_buffer *pgpucommandbuffer,
-                                              ::gpu::texture *pgputextureTarget)
+                                              ::gpu::texture_site *pgputexturesiteTarget)
    {
 
 
@@ -526,7 +526,7 @@ namespace gpu
 
    }
 
-   void shader::bind_source(::gpu::command_buffer *pgpucommandbuffer, ::gpu::texture *pgputextureSource, ::i32 iSlot)
+   void shader::bind_source(::gpu::command_buffer *pgpucommandbuffer, ::gpu::texture_site *pgputexturesiteSource, ::i32 iSlot)
    {
 
       throw ::interface_only("shader::bind_source(::gpu::texture*) not implemented at this shader implementation");
@@ -537,12 +537,12 @@ namespace gpu
    void shader::bind_source(::gpu::command_buffer *pgpucommandbuffer, ::gpu::pixmap *pgpupixmapSource, ::i32 iSlot)
    {
 
-      bind_source(pgpucommandbuffer, pgpupixmapSource->m_pgputexture, iSlot);
+      bind_source(pgpucommandbuffer, pgpupixmapSource->m_pgputexturesite, iSlot);
 
    }
 
 
-   void shader::bind_source2(gpu::command_buffer* pgpucommandbuffer, ::i32 iIndex, const_char_pointer pszPayloadName, gpu::texture* pgputextureSource)
+   void shader::bind_source2(gpu::command_buffer* pgpucommandbuffer, ::i32 iIndex, const_char_pointer pszPayloadName, gpu::texture_site* pgputexturesiteSource)
    {
 
 
@@ -1016,6 +1016,28 @@ namespace gpu
       }
 
 
+
+   }
+
+
+   void shader::set_impact_quad(const ::i32_rectangle & rectangleImpact, const ::i32_size & sizeRaw)
+   {
+
+      //auto left = 0.0f;
+      //auto bottom = (sizeSrcRaw.cy - sizeSrc.cy) / sizeSrcRaw.cy;
+      //auto right = sizeSrc.cx / sizeSrcRaw.cx;
+      //auto top = 1.0f;
+      //m_pshaderBlend3->set_impact_quad(sequence4("quad", quad);
+      //::floating_sequence4 quad{ left, bottom, right, top };
+
+      auto u0 = (::f32)rectangleImpact.left / (::f32)sizeRaw.cx;
+      auto v0 = (::f32)rectangleImpact.top / (::f32)sizeRaw.cy;
+      auto u1 = (::f32)rectangleImpact.right / (::f32)sizeRaw.cx;
+      auto v1 = (::f32)rectangleImpact.bottom / (::f32)sizeRaw.cy;
+      
+      ::floating_sequence4 quad{ u0, v0, u1, v1 };
+
+      set_sequence4("quad", quad);
 
    }
 

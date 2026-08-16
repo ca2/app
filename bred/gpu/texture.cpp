@@ -1,5 +1,5 @@
 // Created by camilo on 2025-06-12 21:07 <3ThomasBorregaardSørensen!!
-#include "framework.h"
+#include "platform.h"
 #include "binding.h"
 #include "layer.h"
 #include "pixmap.h"
@@ -7,6 +7,7 @@
 #include "context.h"
 #include "semaphore.h"
 #include "texture.h"
+#include "texture_site.h"
 #include "texture_synchronization.h"
 #include "acme/exception/interface_only.h"
 #include "aura/graphics/image/context.h"
@@ -68,15 +69,15 @@ namespace gpu
 
 
 
-   void texture::initialize_hdr_texture_on_memory(::gpu::context *pcontext, const ::block & block)
+   void texture::create_hdr_texture_on_memory(::gpu::context *pcontext, const ::block & block)
    {
 
 
    }
 
 
-   void texture::initialize_with_image_data(::gpu::context * pgpucontext,
-                                              const ::i32_rectangle & rectangleTarget,
+   void texture::create_with_image_data(::gpu::context * pgpucontext,
+                                              const ::i32_size & size,
                                      ::i32 numChannels, bool bSrgb, const void * pdata,
                                      enum_texture etexture)
    {
@@ -87,7 +88,7 @@ namespace gpu
       //   return;
       //}
 
-      ::gpu::texture_attributes textureattributes(rectangleTarget);
+      ::gpu::texture_attributes textureattributes(size);
 
       textureattributes.m_iChannelCount = numChannels;
       textureattributes.m_iFloat = bSrgb ? 1 : 0;
@@ -97,36 +98,43 @@ namespace gpu
 
       pixmap_t pixmap;
 
-      pixmap.m_pimage32 = (::image32_t *) pdata;
+      pixmap.m_pimage32 = (::image32_t *)pdata;
       pixmap.m_pimage32Raw = (::image32_t *)pdata;
-      pixmap.m_size = rectangleTarget.size();
-      pixmap.m_sizeRaw = rectangleTarget.size();
+      pixmap.m_size = size;
+      pixmap.m_sizeRaw = size;
       pixmap.m_iScan = pixmap.m_size.cx * 4;
 
       ::gpu::texture_data texturedata(pixmap);
 
       //      auto sizeCurrent = m_textureattributes.m_rectangleTarget.size();
 
-      initialize_texture(pgpucontext, textureattributes, textureflags, texturedata);
+      create_texture(pgpucontext, textureattributes, textureflags, texturedata);
+
+   }
 
 
 
-         }
-
-
-
-   void texture::initialize_texture(::gpu::context * pgpucontext,
+   void texture::create_texture(::gpu::context * pgpucontext,
       const texture_attributes & textureattributes,
       const texture_flags & textureflags,
       const texture_data & texturedata
       )
    {
 
+      if (textureattributes.m_sizeRaw.is_empty()
+         && textureattributes.m_size.is_empty())
+      {
+
+         throw ::exception(error_bad_argument);
+
+      }
+
       //::gpu::context_lock contextlock(pgpucontext->m_pgpucontext);
 
       m_textureflags = textureflags;
 
-      if (m_pgpucontext != pgpucontext || m_textureattributes != textureattributes)
+      //if (m_pgpucontext != pgpucontext || m_textureattributes != textureattributes)
+      if (m_textureattributes != textureattributes)
       {
 
          m_pgpucontext = pgpucontext;
@@ -182,12 +190,14 @@ namespace gpu
    //}
 
 
-   void texture::initialize_depth_texture(::gpu::context* pgpucontext, const ::i32_rectangle& rectangleTarget)
+   void texture::create_depth_texture(::gpu::context* pgpucontext, const ::i32_size& size)
    {
 
-      ::gpu::texture_attributes textureattributes(rectangleTarget, 16, 1, 0, 1, e_texture_depth);
+      ::gpu::texture_attributes textureattributes(size, 16, 1, 0, 1, e_texture_depth);
 
-      initialize_texture(pgpucontext, textureattributes);
+      textureattributes.m_sizeRaw = size;
+
+      create_texture(pgpucontext, textureattributes);
       // m_etype = e_type_depth;
       // m_pgpucontext = pgpucontext;
       // m_textureattributes.m_rectangleTarget = rectangleTarget;
@@ -211,27 +221,58 @@ namespace gpu
    }
 
 
-   ::i32_rectangle texture::rectangle() const
+   //::i32_rectangle texture::source_rectangle() const
+   //{
+
+   //   return m_textureattributes.m_rectangleSource;
+
+   //}
+
+
+   //::i32_rectangle texture::target_rectangle() const
+   //{
+
+   //   return m_textureattributes.m_rectangleTarget2;
+
+   //}
+
+
+   ::i32_size texture::raw_size() const
    {
 
-      return m_textureattributes.m_rectangleTarget;
+      return m_textureattributes.m_sizeRaw;
 
    }
-
 
 
    ::i32_size texture::size() const
    {
 
-      return m_textureattributes.m_rectangleTarget.size();
+      return m_textureattributes.m_size;
 
    }
+
+
+   //::i32 texture::left() const
+   //{
+
+   //   return m_textureattributes.m_rectangleTarget.left;
+
+   //}
+
+
+   //::i32 texture::top() const
+   //{
+
+   //   return m_textureattributes.m_rectangleTarget.top;
+
+   //}
 
 
    ::i32 texture::width() const
    {
 
-      return m_textureattributes.m_rectangleTarget.width();
+      return m_textureattributes.m_size.width();
 
    }
 
@@ -239,7 +280,23 @@ namespace gpu
    ::i32 texture::height() const
    {
 
-      return m_textureattributes.m_rectangleTarget.height();
+      return m_textureattributes.m_size.height();
+
+   }
+
+
+   ::i32 texture::raw_width() const
+   {
+
+      return m_textureattributes.m_sizeRaw.cx > 0 ? m_textureattributes.m_sizeRaw.cx : m_textureattributes.m_size.width();
+
+   }
+
+
+   ::i32 texture::raw_height() const
+   {
+
+      return m_textureattributes.m_sizeRaw.cy > 0 ? m_textureattributes.m_sizeRaw.cy : m_textureattributes.m_size.height();
 
    }
 
@@ -403,14 +460,14 @@ namespace gpu
    }
 
 
-   void texture::initialize_texture_from_file_path(::gpu::context* pgpucontext, const ::file::path& path, bool bIsSrgb)
+   void texture::create_texture_from_file_path(::gpu::context* pgpucontext, const ::file::path& path, bool bIsSrgb)
    {
 
       auto pimage = image()->path_image(path);
 
       ::pointer_array < ::image::image > imagea({ pimage });
 
-      initialize_texture_from_pixmap(pgpucontext, imagea);
+      create_texture_from_pixmap(pgpucontext, imagea);
 
    }
 
@@ -514,13 +571,13 @@ namespace gpu
    }
 
 
-   void texture::initialize_texture_from_pixmap(
+   void texture::create_texture_from_pixmap(
       ::gpu::context* pgpucontext, const ::pointer_array < ::pixmap >& pixmapa, enum_texture etexture)
    {
 
-      auto rectangle = pixmapa.first()->rectangle();
+      auto size = pixmapa.first()->size();
 
-      ::gpu::texture_attributes textureattributes(rectangle, 8, 4, 0, 0, etexture,
+      ::gpu::texture_attributes textureattributes(size, 8, 4, 0, 0, etexture,
          etexture == e_texture_cube_map ? 6 : 1);
 
       if (pixmapa.has_element())
@@ -535,7 +592,7 @@ namespace gpu
 
       }
 
-      initialize_texture(pgpucontext, textureattributes, {}, pixmapa);
+      create_texture(pgpucontext, textureattributes, {}, pixmapa);
 
       if (is_ok())
       {
@@ -554,8 +611,8 @@ namespace gpu
    ::pointer < ::gpu::pixmap > texture::create_gpu_pixmap(const ::i32_size& size)
    {
 
-      if (m_iAtlasX >= m_textureattributes.m_rectangleTarget.width() ||
-         m_iAtlasY >= m_textureattributes.m_rectangleTarget.height())
+      if (m_iAtlasX >= m_textureattributes.m_size.width() ||
+         m_iAtlasY >= m_textureattributes.m_size.height())
       {
 
          return nullptr;
@@ -566,7 +623,7 @@ namespace gpu
       ::i32 iAtlasY = m_iAtlasY;
       ::i32 iAtlasH = m_iAtlasCurrentRowHeight;
 
-      if (size.cx > m_textureattributes.m_rectangleTarget.width() - iAtlasX)
+      if (size.cx > m_textureattributes.m_size.width() - iAtlasX)
       {
 
          if (iAtlasX <= 0)
@@ -582,7 +639,7 @@ namespace gpu
 
       }
 
-      if (size.cy > m_textureattributes.m_rectangleTarget.height() - iAtlasY)
+      if (size.cy > m_textureattributes.m_size.height() - iAtlasY)
       {
 
          if (iAtlasY <= 0)
@@ -681,6 +738,14 @@ namespace gpu
 
    }
 
+   
+   ::gpu::texture * texture::resolved_texture(const ::i32_rectangle & rectangle)
+   {
+
+      return this;
+
+   }
+
 
    texture* texture::get_depth_texture()
    {
@@ -708,7 +773,7 @@ namespace gpu
 
       defer_constructø(m_ptextureDepth);
 
-      m_ptextureDepth->initialize_depth_texture(m_pgpucontext, m_textureattributes.m_rectangleTarget);
+      m_ptextureDepth->create_depth_texture(m_pgpucontext, m_textureattributes.m_sizeRaw);
 
       return m_ptextureDepth;
 
@@ -722,14 +787,7 @@ namespace gpu
    }
 
 
-   void texture::set_pixels(const ::i32_rectangle& rectangle, const void* data)
-   {
-
-
-   }
-
-
-   void texture::read_pixels(::pixmap *)
+   void texture::read_to_buffer(::gpu::command_buffer * pgpucommandbuffer, ::gpu::buffer * pgpubuffer, const ::i32_point & pointOutput)
    {
 
       throw ::not_implemented();
@@ -737,7 +795,32 @@ namespace gpu
    }
 
 
-   void texture::write_pixels(const ::pixmap *)
+   void texture::read_pixels(::gpu::command_buffer * pgpucommandbuffer, ::pixmap_t *, const ::i32_point & pointOutput)
+   {
+
+      throw ::not_implemented();
+
+   }
+
+
+   void texture::set_pixels(const ::i32_rectangle & rectangle, const void * data)
+   {
+
+      ::pixmap_t pixmap;
+
+      pixmap.m_point = rectangle.origin();
+      pixmap.m_size = rectangle.size();
+      pixmap.m_iScan = pixmap.m_size.cx * 4;
+
+      pixmap.m_pimage32 = (::image32_t *)data;
+      pixmap.m_pimage32Raw = (::image32_t *)data;
+
+      write_pixels(&pixmap, {});
+
+   }
+
+   
+   void texture::write_pixels(const ::pixmap_t *, const ::i32_point & pointInput)
    {
 
       throw ::not_implemented();
@@ -755,7 +838,47 @@ namespace gpu
       pixmap.m_pimage32Raw = (::image32_t *)pimage32;
       pixmap.m_iScan = iScan;
 
-      write_pixels(&pixmap);
+      write_pixels(&pixmap, {});
+
+   }
+
+
+   void texture::set_pixels(::gpu::command_buffer * pgpucommandbuffer, const ::i32_rectangle & rectangle, const void * data)
+   {
+
+      ::pixmap_t pixmap;
+
+      pixmap.m_point = rectangle.origin();
+      pixmap.m_size = rectangle.size();
+      pixmap.m_iScan = pixmap.m_size.cx * 4;
+
+      pixmap.m_pimage32 = (::image32_t *)data;
+      pixmap.m_pimage32Raw = (::image32_t *)data;
+
+      write_pixels(pgpucommandbuffer, &pixmap, {});
+
+   }
+
+
+   void texture::write_pixels(::gpu::command_buffer * pgpucommandbuffer, const ::pixmap_t *, const ::i32_point & pointInput)
+   {
+
+      throw ::not_implemented();
+
+   }
+
+
+   void texture::write_pixels(::gpu::command_buffer * pgpucommandbuffer, const ::i32_size & size, const ::image32_t * pimage32, ::i32 iScan)
+   {
+
+      ::pixmap pixmap;
+
+      pixmap.m_size = size;
+      pixmap.m_pimage32 = (::image32_t *)pimage32;
+      pixmap.m_pimage32Raw = (::image32_t *)pimage32;
+      pixmap.m_iScan = iScan;
+
+      write_pixels(pgpucommandbuffer, &pixmap, {});
 
    }
 
@@ -842,7 +965,8 @@ namespace gpu
             m_pbindingslotsetSingular->m_pbindingset = pbindingset;
 
             m_pbindingslotsetSingular->atø(0).m_pbinding = pbindingset->first();
-            m_pbindingslotsetSingular->atø(0).m_ptexture = this;
+            construct_newø(m_pbindingslotsetSingular->atø(0).m_ptexturesite);
+            m_pbindingslotsetSingular->atø(0).m_ptexturesite->m_pgputextureSite = this;
          }
 
          return m_pbindingslotsetSingular;

@@ -1,4 +1,4 @@
-#include "framework.h"
+#include "platform.h"
 #include "ca_os_cross_win_gdi_internal.h"
 
 

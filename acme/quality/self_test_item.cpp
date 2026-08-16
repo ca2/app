@@ -1,5 +1,5 @@
 // Created by camilo on 2026-07-29 08:52 <3ThomasBorregaardSørensen!! Mummi!! Bilbo!!
-#include "framework.h"
+#include "platform.h"
 
 
 self_test_item::self_test_item(self_test* pselftest, const char* pszName, PSELF_TEST_PROCEDURE pprocedure) :

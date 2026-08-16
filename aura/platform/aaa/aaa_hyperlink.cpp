@@ -1,4 +1,4 @@
-#include "framework.h"
+#include "platform.h"
 
 
 hyperlink::hyperlink(::particle * pparticle) :

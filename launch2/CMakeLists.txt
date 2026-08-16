@@ -22,7 +22,7 @@ target_compile_definitions(${PROJECT_NAME} PRIVATE CUBE)
 
 if (NOT ${NO_PRECOMPILED_HEADER})
 
-    target_precompile_headers(${PROJECT_NAME} PRIVATE framework.h)
+    target_precompile_headers(${PROJECT_NAME} PRIVATE platform.h)
 
 endif ()
 

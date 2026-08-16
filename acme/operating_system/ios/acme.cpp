@@ -1,4 +1,4 @@
-#include "framework.h"
+#include "platform.h"
 
 
 //extern thread_pointer < os_thread > t_posthread;

@@ -1,7 +1,7 @@
 //
 // Created by camilo on 31/12/2021. 10:42 BRT <3ThomasBorregaardSorensen!!
 //
-#include "framework.h"
+#include "platform.h"
 #include "source.h"
 #include "context.h"
 #include "image.h"

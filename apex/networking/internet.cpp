@@ -1,7 +1,7 @@
 // Extracted part from acme/prototype/prototype/url to
 // apex/networking/internet by
 // camilo on 2024-08-27 19:11 <3ThomasBorregaardSorensen!!
-#include "framework.h"
+#include "platform.h"
 #include "internet.h"
 #include "acme/platform/system.h"
 #include "acme/nano/nano.h"

@@ -62,7 +62,7 @@ namespace gpu
          ::f32 m_fAmbientOcclusion = 1.0f;
          floating_sequence3 m_seq3Emissive = floating_sequence3(0.0, 0.0, 0.0);
 
-         ::pointer<::gpu::texture> m_textureaPbr[e_texture_count];
+         ::pointer<::gpu::texture_site> m_texturesiteaPbr[e_texture_count];
 
          ::pointer<::gpu::binding_slot_set> m_pbindingslotsetGltfPbr;
          ::pointer<::gpu::binding_slot_set> m_pbindingslotsetSceneGltfPbr;
@@ -74,8 +74,8 @@ namespace gpu
 
          virtual ::gpu::binding_slot_set *pbr_binding_slot_set(::gpu::binding_set *pbindingset,
                                                                ::graphics3d::renderable *prenderable);
-         virtual ::gpu::texture *loaded_texture(enum_texture etexture);
-         virtual ::gpu::texture *texture(enum_texture etexture, ::gpu::empty_texture_source *pemptytexturesource);
+         virtual ::gpu::texture_site *loaded_texture(enum_texture etexture);
+         virtual ::gpu::texture_site *texture(enum_texture etexture, ::gpu::empty_texture_source *pemptytexturesource);
   
 
       };

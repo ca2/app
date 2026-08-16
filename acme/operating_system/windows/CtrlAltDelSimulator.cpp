@@ -1,4 +1,4 @@
-#include "framework.h"
+#include "platform.h"
 
 //// Copyright (C) 2009,2010,2011,2012 GlavSoft LLC.
 //// All rights reserved.
@@ -23,7 +23,7 @@
 //// 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA.
 ////-------------------------------------------------------------------------
 ////
-//#include "framework.h"
+//#include "platform.h"
 //#include "acme/_operating_system.h"
 //#include "CtrlAltDelSimulator.h"
 //#include "subsystem/thread/DesktopSelector.h"

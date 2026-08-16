@@ -1,4 +1,4 @@
-#include "framework.h"
+#include "platform.h"
 #include "application_container.h"
 #include "acme/constant/user_message.h"
 #include "acme/exception/exit.h"

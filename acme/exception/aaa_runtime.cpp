@@ -1,4 +1,4 @@
-#include "framework.h"
+#include "platform.h"
 
 
 runtime_exception::runtime_exception(const ::scoped_string & scopedstrMessage):

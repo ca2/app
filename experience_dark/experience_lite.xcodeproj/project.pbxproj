@@ -37,7 +37,7 @@
 		561AA4A3F5A6193125881A9E /* experience_lite_frame_Minimal001.h in Headers */ = {isa = PBXBuildFile; fileRef = 69B7C3F817AEEA0F878FA0AB /* experience_lite_frame_Minimal001.h */; };
 		673E53602E9A21E2335EFBAF /* user_button.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 1E07B4AC64F3540F4AB5672F /* user_button.cpp */; };
 		C1E1596E1E758B9C4DAC8CA9 /* user_control_box.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 2255483404BE62715ABD86F0 /* user_control_box.cpp */; };
-		5EB7FAC003BF213C1C19BBD6 /* framework.cpp in Sources */ = {isa = PBXBuildFile; fileRef = C8974928AA6065F601AF9DE8 /* framework.cpp */; };
+		5EB7FAC003BF213C1C19BBD6 /* platform.cpp in Sources */ = {isa = PBXBuildFile; fileRef = C8974928AA6065F601AF9DE8 /* platform.cpp */; };
 		1BB7CB84ABE15855F0019968 /* libios_core.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 2E8EA7E9D237743819AD1DE7 /* libios_core.a */; };
 		EFCE50D6D29855F92691A595 /* libios_base.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 99CBFBE3A80E87F039A85747 /* libios_base.dylib */; };
 		E7A15E03AAF53D8881C6F82F /* libios_axis.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 7498176833FBC27E6A8F690A /* libios_axis.dylib */; };
@@ -51,7 +51,7 @@
 		BE9FF6D1C5A9DC0C99C83496 /* libexperience_lite.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 2C52E1E3E04A1C2C6244E88E /* libexperience_lite.dylib */; };
 		DCA02F1B882B34A150DB62B8 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 491B586C115EF3057F0D282B /* InfoPlist.strings */; };
 		8DF32EAC95DA757D3FECBCC8 /* app_core_uinteraction_iosTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 248A010BF21ACED52B238B88 /* app_core_uinteraction_iosTests.m */; };
-		6FAC575CA1F610B5BC4FD992 /* framework.h in Headers */ = {isa = PBXBuildFile; fileRef = 37D48EA788E9A8CE82F807E1 /* framework.h */; };
+		6FAC575CA1F610B5BC4FD992 /* platform.h in Headers */ = {isa = PBXBuildFile; fileRef = 37D48EA788E9A8CE82F807E1 /* platform.h */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -164,8 +164,8 @@
 		32227863D16BF0EC7ABB1AC5 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		248A010BF21ACED52B238B88 /* app_core_uinteraction_iosTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = app_core_uinteraction_iosTests.m; sourceTree = "<group>"; };
 		28E9BEA88BC01F20F40FE8A3 /* libexperience_lite.dylib */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.dylib"; includeInIndex = 0; path = libexperience_lite.dylib; sourceTree = BUILT_PRODUCTS_DIR; };
-		C8974928AA6065F601AF9DE8 /* framework.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = framework.cpp; sourceTree = "<group>"; };
-		37D48EA788E9A8CE82F807E1 /* framework.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = framework.h; sourceTree = "<group>"; };
+		C8974928AA6065F601AF9DE8 /* platform.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = platform.cpp; sourceTree = "<group>"; };
+		37D48EA788E9A8CE82F807E1 /* platform.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = platform.h; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -310,8 +310,8 @@
 				AF108B625944CDAE72056046 /* user_button.h */,
 				2255483404BE62715ABD86F0 /* user_control_box.cpp */,
 				9FD180DD6C46E4338E73DC3C /* user_control_box.h */,
-				C8974928AA6065F601AF9DE8 /* framework.cpp */,
-				37D48EA788E9A8CE82F807E1 /* framework.h */,
+				C8974928AA6065F601AF9DE8 /* platform.cpp */,
+				37D48EA788E9A8CE82F807E1 /* platform.h */,
 			);
 			name = uinteraction;
 			sourceTree = "<group>";
@@ -336,7 +336,7 @@
 				F759CCEDF9A805AE1E2F568F /* experience_lite_frame_013.h in Headers */,
 				524AB1A29CBCABE6933D77D7 /* experience_lite_frame_002.h in Headers */,
 				2AB028D672E1551084974928 /* experience_lite_frame_008.h in Headers */,
-				6FAC575CA1F610B5BC4FD992 /* framework.h in Headers */,
+				6FAC575CA1F610B5BC4FD992 /* platform.h in Headers */,
 				1798663B319765348D26B216 /* experience_lite.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -495,7 +495,7 @@
 			files = (
 				673E53602E9A21E2335EFBAF /* user_button.cpp in Sources */,
 				C1E1596E1E758B9C4DAC8CA9 /* user_control_box.cpp in Sources */,
-				5EB7FAC003BF213C1C19BBD6 /* framework.cpp in Sources */,
+				5EB7FAC003BF213C1C19BBD6 /* platform.cpp in Sources */,
 				5458FE8E1798FF951C14FE03 /* experience_lite.cpp in Sources */,
 				B83CB22DC43C66718BACAF39 /* experience_lite_library.cpp in Sources */,
 				060A3E82349EA6E5B1D7C3C0 /* experience_lite_frame_002.cpp in Sources */,
@@ -663,7 +663,7 @@
 				GCC_NO_COMMON_BLOCKS = YES;
 				GCC_OPTIMIZATION_LEVEL = 0;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
-				GCC_PREFIX_HEADER = framework.h;
+				GCC_PREFIX_HEADER = platform.h;
 				GCC_PREPROCESSOR_DEFINITIONS = (
 					"$(inherited)",
 				);
@@ -728,7 +728,7 @@
 				GCC_ENABLE_OBJC_EXCEPTIONS = YES;
 				GCC_NO_COMMON_BLOCKS = YES;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
-				GCC_PREFIX_HEADER = framework.h;
+				GCC_PREFIX_HEADER = platform.h;
 				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
 				GCC_WARN_ABOUT_RETURN_TYPE = YES;
 				GCC_WARN_UNDECLARED_SELECTOR = YES;

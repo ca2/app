@@ -1,5 +1,5 @@
 // Created by camilo on 2024-12-17 20:46 <3ThomasBorregaardSorensen!!
-#include "framework.h"
+#include "platform.h"
 #include "manual_reset_happening.h"
 #include "synchronous_lock.h"
 #include "task.h"

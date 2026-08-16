@@ -1,7 +1,7 @@
 //
 // Created by camilo on 31/01/2022 17:02 <3ThomasBorregaardSorensen!!
 //
-#include "framework.h"
+#include "platform.h"
 #include "object.h"
 
 

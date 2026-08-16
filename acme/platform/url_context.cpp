@@ -1,5 +1,5 @@
 // Created by camilo on 2024-08-29 12:18 <3ThomasBorregaardSorensen!!
-#include "framework.h"
+#include "platform.h"
 #include "url_context.h"
 #include "acme/prototype/string/_str.h"
 
@@ -2520,7 +2520,7 @@ namespace url
 //} // namespace url
 //
 //
-//#include "framework.h"
+//#include "platform.h"
 ////#include "acme/prototype/string/hex.h"
 //
 //
@@ -2612,7 +2612,7 @@ namespace url
 //   return false;
 //
 //}
-////#include "framework.h"
+////#include "platform.h"
 ////#include "net.h"
 ////#include "as_string.h"
 ////#include "acme/exception/parsing.h"

@@ -4,7 +4,7 @@
 // Created by camilo 2021-05-24 05:39 BRT <3ThomasBS_!!
 // Refactored to crypto_openssl by camilo 2021-11-19 14:19 BRT <3ThomasBS_!!
 //
-#include "framework.h"
+#include "platform.h"
 
 #include "initializer.h"
 

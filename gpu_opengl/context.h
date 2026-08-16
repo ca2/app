@@ -71,6 +71,8 @@ namespace gpu_opengl
 
 
       //void load_generic_texture(::pointer < ::gpu::texture > & ptexture, const file::path &path, ::i32 iAssimpTextureType) override;
+      ::memory _001BlendVertexShaderMemory() override;
+      ::memory _001BlendFragmentShaderMemory() override;
 
 
       //virtual void create_offscreen_buffer(const ::i32_size& size);
@@ -92,19 +94,19 @@ namespace gpu_opengl
 
       //virtual void _create_offscreen_window(const ::i32_size & size);
 
-      void copy(::gpu::texture* ptextureTarget, ::gpu::texture* ptextureSource, ::pointer < ::gpu::fence > * pgpufence) override;
+      void copy(::gpu::texture_site* ptexturesiteOutput, ::gpu::texture_site* ptexturesiteource, ::pointer < ::gpu::fence > * pgpufence, ::pointer < ::gpu::semaphore > * pgpusemaphoreReady) override;
 
-      void on_create_context(::gpu::device *pgpudevice, const ::gpu::enum_output &eoutput,
-                             ::acme::windowing::window *pwindow, const ::i32_size &size) override;
-
-      void defer_create_window_context(::acme::windowing::window *pwindow) override;
-      void _defer_create_window_context(::acme::windowing::window *pwindow) override;
-      virtual void _create_window_context(::acme::windowing::window *pwindow);
+      //void on_create_context(::gpu::device *pgpudevice, const ::gpu::enum_output &eoutput,
+        //                     ::acme::windowing::window *pwindow, const ::i32_size &size) override;
+      void create_window_gpu_context(::gpu::device * pgpudevice, const ::gpu::enum_output & eoutput, const ::gpu::enum_scene & escene, ::acme::windowing::window * pacmewindowingwindow, const ::i32_point & pointInput, const ::i32_point & pointOutput, const ::i32_size & size, const ::i32_size & sizeRaw) override;
+      //void defer_create_window_context(::acme::windowing::window *pwindow) override;
+      //void _defer_create_window_context(::acme::windowing::window *pwindow) override;
+      //virtual void _create_window_context(::acme::windowing::window *pwindow);
 
 
       //void _create_cpu_buffer(const ::i32_size& size) override;
-      void resize_cpu_buffer21(const ::i32_size& size) override;
-      void destroy_cpu_buffer21() override;
+      void resize_cpu_buffer(const ::i32_size& size) override;
+      void destroy_cpu_buffer() override;
 
       
       void set_matrix_uniform(const ::gpu::payload & uniformMatrix) override;
@@ -120,8 +122,8 @@ namespace gpu_opengl
 
       //void copy(::gpu::texture* ptexture) override;
       //virtual void _copy_using_shader(::gpu::texture* ptexture);
-      virtual void _copy_using_blit(::gpu::texture* ptexture);
-      void merge_layers(::gpu::command_buffer * pgpucommandbuffer, ::gpu::texture* ptextureTarget, ::pointer_array < ::gpu::layer >* playera) override;
+      virtual void _copy_using_blit(::gpu::texture_site* ptexture);
+      void merge_layers(::gpu::command_buffer * pgpucommandbuffer, ::gpu::texture_site* ptexturesiteOutput, ::pointer_array < ::gpu::layer >* playera) override;
 
       void on_start_layer(::gpu::layer * pgpulayer) override;
 

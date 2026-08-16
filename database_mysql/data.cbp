@@ -73,7 +73,7 @@
 			<Add directory="/usr/lib64/mysql/" />
 		</Linker>
 		<Unit filename="data/data.h" />
-		<Unit filename="framework.h" />
+		<Unit filename="platform.h" />
 		<Unit filename="simpledb/mysql_database.h" />
 		<Unit filename="simpledb/mysql_result.h" />
 		<Unit filename="simpledb/simpledb_mysql_database.cpp" />

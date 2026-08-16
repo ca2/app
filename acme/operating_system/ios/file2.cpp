@@ -6,7 +6,7 @@
 //  Copyright (c) 2012 ca2 Desenvolvimento de Sofware Ltda. All rights reserved.
 //
 
-#include "framework.h"
+#include "platform.h"
 
 char_pointer ns_get_executable_path();
 

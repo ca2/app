@@ -1,6 +1,6 @@
 // From github:/tristancalderbank/OpenGL-PBR-Renderer/full_screen_quad.cpp by
 // camilo on 2025-09-27 01:58 <3ThomasBorregaardSorensen!!
-#include "framework.h"
+#include "platform.h"
 //#include "full_screen_quad.h"
 //#include "gpu_opengl/_gpu_opengl.h"
 //#include <glad/glad.h>

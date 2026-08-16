@@ -274,11 +274,11 @@
 			<Option target="draw2d_cairo"/>
 			<Option target="static_draw2d_cairo"/>
 		</Unit>
-		<Unit filename="/home/camilo/cmake/integration/source/app/draw2d_cairo/framework.cpp">
+		<Unit filename="/home/camilo/cmake/integration/source/app/draw2d_cairo/platform.cpp">
 			<Option target="draw2d_cairo"/>
 			<Option target="static_draw2d_cairo"/>
 		</Unit>
-		<Unit filename="/home/camilo/cmake/integration/source/app/draw2d_cairo/framework.h">
+		<Unit filename="/home/camilo/cmake/integration/source/app/draw2d_cairo/platform.h">
 			<Option target="draw2d_cairo"/>
 			<Option target="static_draw2d_cairo"/>
 		</Unit>

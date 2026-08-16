@@ -1,7 +1,7 @@
 //
 // Created by camilo <3ThomasBorregaardSorensen!!
 //
-#include "framework.h"
+#include "platform.h"
 
 
 CLASS_DECL_ACME bool is_docking(const ::e_display & edisplay)

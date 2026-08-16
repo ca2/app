@@ -1,4 +1,4 @@
-#include "framework.h"
+#include "platform.h"
 #include "ca2/radix/c::windows_definition::dllx.h"
 
 #define sclip1(v, c) \

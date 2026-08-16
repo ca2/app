@@ -1,5 +1,5 @@
 // Created by camilo on 2021-08-24 23:41 <3ThomasBS_!!
-#include "framework.h"
+#include "platform.h"
 #include "load_image.h"
 #include "context.h"
 

@@ -1,4 +1,4 @@
-#include "framework.h"
+#include "platform.h"
 #include "disp_option.h"
 #include "entity.h"
 

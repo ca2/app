@@ -1,7 +1,7 @@
 //
 // From integration.cpp by camilo on 2024-03-24 03:42 <3ThomasBorregaardSørensen!!
 //
-#include "framework.h"
+#include "platform.h"
 #include "application.h"
 #include "impact_interface.h"
 #include "integration.h"

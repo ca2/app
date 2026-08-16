@@ -19,6 +19,8 @@ namespace gpu_opengl
    {
    public:
 
+      ::pixmap m_pixmapFlipped;
+
       
       using base_context_handle = ::gpu_opengl::context_handle<GLuint, ::gpu_opengl::e_handle_fbo>;
       
@@ -38,10 +40,10 @@ namespace gpu_opengl
       ~texture() override;
 
 
-      void initialize_hdr_texture_on_memory(::gpu::context *pcontext, const ::block & block) override;
-      void initialize_with_image_data(::gpu::context *pcontext, const ::i32_rectangle &rectangleTarget,
+      void create_hdr_texture_on_memory(::gpu::context *pcontext, const ::block & block) override;
+      void create_with_image_data(::gpu::context *pcontext, const ::i32_size & size,
                                       ::i32 numChannels, bool bSrgb, const void *pdata, ::gpu::enum_texture etexture) override;
-      void initialize_texture(
+      void create_texture(
          ::gpu::context * pgpucontext,
          const ::gpu::texture_attributes & textureattributes,
          const ::gpu::texture_flags & textureflags = {},
@@ -57,7 +59,7 @@ namespace gpu_opengl
       void _create_texture(const ::gpu::texture_data & texturedata = {}) override;
       ::i32 effective_sample_count() const;
       void invalidate_framebuffer_attachments();
-      texture * resolved_texture();
+      ::gpu::texture * resolved_texture(const ::i32_rectangle & rectangle) override;
 
 
       //void create_render_target() override;
@@ -71,9 +73,13 @@ namespace gpu_opengl
       void bind_render_target() override;
 
 
-      void set_pixels(const ::i32_rectangle& rectangle, const void* data) override;
-      void read_pixels(::pixmap * ppixmap) override;
-      void write_pixels(const ::pixmap * ppixmap) override;
+      void read_pixels(::gpu::command_buffer * pgpucommandbuffer, ::pixmap_t * ppixmap, const ::i32_point & pointOutput) override;
+
+
+      void set_pixels(const ::i32_rectangle & rectangle, const void * data) override;
+      void write_pixels(const ::pixmap_t * ppixmap, const ::i32_point & pointInput) override;
+
+      void write_pixels(::gpu::command_buffer * pgpucommandbuffer, const ::pixmap_t * ppixmap, const ::i32_point & pointInput) override;
 
       
       virtual GLuint target_frame_buffer_object();

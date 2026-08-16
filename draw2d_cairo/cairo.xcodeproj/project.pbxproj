@@ -866,8 +866,8 @@
 		2B5D50DD760B84073BB46DC4 /* userfs_tree_item_data.h in Headers */ = {isa = PBXBuildFile; fileRef = 85ADD4BFF96737F4223184A0 /* userfs_tree_item_data.h */; };
 		4430C3FC23854EC61244542C /* userfs_userfs.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 2F4A95FD1D1F785BAAB46117 /* userfs_userfs.cpp */; };
 		C7690AF7D7DDDE2D88B423CE /* userfs_userfs.h in Headers */ = {isa = PBXBuildFile; fileRef = 450B79CABF273D0915AFC47A /* userfs_userfs.h */; };
-		52BB3890AA26A06D35FFF411 /* framework.cpp in Sources */ = {isa = PBXBuildFile; fileRef = CFA555F3F61967B72F681EF6 /* framework.cpp */; };
-		3D15CB8F2091675AF8EB0758 /* framework.h in Headers */ = {isa = PBXBuildFile; fileRef = 2D0F4CBEDE656D88A766DB84 /* framework.h */; };
+		52BB3890AA26A06D35FFF411 /* platform.cpp in Sources */ = {isa = PBXBuildFile; fileRef = CFA555F3F61967B72F681EF6 /* platform.cpp */; };
+		3D15CB8F2091675AF8EB0758 /* platform.h in Headers */ = {isa = PBXBuildFile; fileRef = 2D0F4CBEDE656D88A766DB84 /* platform.h */; };
 		9E5AF6F4DE4413A41BE2AED5 /* gcom.h in Headers */ = {isa = PBXBuildFile; fileRef = 0F880440B9B3BB75409CF845 /* gcom.h */; };
 		2FD2D67D12D8D27F0BA467E6 /* gcom_BackView.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B40A3D8A0CCADB7A0754C134 /* gcom_BackView.cpp */; };
 		4B9ADCFE17A3F90CE1ACFC34 /* gcom_BackView.h in Headers */ = {isa = PBXBuildFile; fileRef = 3644A9A0C5DDCB442F845AE4 /* gcom_BackView.h */; };
@@ -3138,8 +3138,8 @@
 		85ADD4BFF96737F4223184A0 /* userfs_tree_item_data.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = userfs_tree_item_data.h; sourceTree = "<group>"; };
 		2F4A95FD1D1F785BAAB46117 /* userfs_userfs.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = userfs_userfs.cpp; sourceTree = "<group>"; };
 		450B79CABF273D0915AFC47A /* userfs_userfs.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = userfs_userfs.h; sourceTree = "<group>"; };
-		CFA555F3F61967B72F681EF6 /* framework.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = framework.cpp; sourceTree = "<group>"; };
-		2D0F4CBEDE656D88A766DB84 /* framework.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = framework.h; sourceTree = "<group>"; };
+		CFA555F3F61967B72F681EF6 /* platform.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = platform.cpp; sourceTree = "<group>"; };
+		2D0F4CBEDE656D88A766DB84 /* platform.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = platform.h; sourceTree = "<group>"; };
 		0F880440B9B3BB75409CF845 /* gcom.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = gcom.h; sourceTree = "<group>"; };
 		B40A3D8A0CCADB7A0754C134 /* gcom_BackView.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = gcom_BackView.cpp; sourceTree = "<group>"; };
 		3644A9A0C5DDCB442F845AE4 /* gcom_BackView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = gcom_BackView.h; sourceTree = "<group>"; };
@@ -7471,8 +7471,8 @@
 				D4A08BA383F506A34AA1BE70 /* user */,
 				7ADEC58361A5BBFD5A761FEB /* ca2_res.h */,
 				973E3BD5DBDA8F7A81D6CD8B /* ca2.h */,
-				CFA555F3F61967B72F681EF6 /* framework.cpp */,
-				2D0F4CBEDE656D88A766DB84 /* framework.h */,
+				CFA555F3F61967B72F681EF6 /* platform.cpp */,
+				2D0F4CBEDE656D88A766DB84 /* platform.h */,
 				2B7A4D7A3A1191AB06EC7C24 /* os_cross_windows_crt_debug.cpp */,
 				F7D6923266936A0415C1C3BE /* this_build_number.h */,
 				CFE4DEA1C9C52DB89F7B2FB6 /* libca2.dylib */,
@@ -7996,7 +7996,7 @@
 				3D9FDA97D0E9E9D5F6DDB596 /* userfs_tree_interface.h in Headers */,
 				2B5D50DD760B84073BB46DC4 /* userfs_tree_item_data.h in Headers */,
 				C7690AF7D7DDDE2D88B423CE /* userfs_userfs.h in Headers */,
-				3D15CB8F2091675AF8EB0758 /* framework.h in Headers */,
+				3D15CB8F2091675AF8EB0758 /* platform.h in Headers */,
 				9E5AF6F4DE4413A41BE2AED5 /* gcom.h in Headers */,
 				4B9ADCFE17A3F90CE1ACFC34 /* gcom_BackView.h in Headers */,
 				4D39D4CD1930F425ACE82DF1 /* gcom_backview_interface.h in Headers */,
@@ -9151,7 +9151,7 @@
 				179DA0AD73DEFB05A2FEC6F7 /* userfs_tree_interface.cpp in Sources */,
 				E7B10DF4FFE76F4AB631916F /* userfs_tree_item_data.cpp in Sources */,
 				4430C3FC23854EC61244542C /* userfs_userfs.cpp in Sources */,
-				52BB3890AA26A06D35FFF411 /* framework.cpp in Sources */,
+				52BB3890AA26A06D35FFF411 /* platform.cpp in Sources */,
 				2FD2D67D12D8D27F0BA467E6 /* gcom_BackView.cpp in Sources */,
 				A50B84B1FC6C32FE89DF9AE9 /* gcom_backview_interface.cpp in Sources */,
 				BA977AC6966E2E6E08421730 /* gcom_backview_thread.cpp in Sources */,
@@ -9791,7 +9791,7 @@
 				GCC_ENABLE_OBJC_EXCEPTIONS = YES;
 				GCC_OPTIMIZATION_LEVEL = 0;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
-				GCC_PREFIX_HEADER = framework.h;
+				GCC_PREFIX_HEADER = platform.h;
 				GCC_PREPROCESSOR_DEFINITIONS = (
 					TARGET_CPU_X64,
 					_DEBUG,
@@ -9833,7 +9833,7 @@
 				GCC_C_LANGUAGE_STANDARD = gnu99;
 				GCC_ENABLE_OBJC_EXCEPTIONS = YES;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
-				GCC_PREFIX_HEADER = framework.h;
+				GCC_PREFIX_HEADER = platform.h;
 				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
 				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
 				GCC_WARN_ABOUT_MISSING_PROTOTYPES = YES;
@@ -9857,7 +9857,7 @@
 				COMBINE_HIDPI_IMAGES = YES;
 				GCC_INCREASE_PRECOMPILED_HEADER_SHARING = YES;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
-				GCC_PREFIX_HEADER = framework.h;
+				GCC_PREFIX_HEADER = platform.h;
 				LD_RUNPATH_SEARCH_PATHS = "@executable_path @loader_path";
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
@@ -9880,7 +9880,7 @@
 				COMBINE_HIDPI_IMAGES = YES;
 				GCC_INCREASE_PRECOMPILED_HEADER_SHARING = YES;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
-				GCC_PREFIX_HEADER = framework.h;
+				GCC_PREFIX_HEADER = platform.h;
 				LD_RUNPATH_SEARCH_PATHS = "@executable_path @loader_path";
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",

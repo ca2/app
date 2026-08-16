@@ -6,7 +6,7 @@
 //  Copyright (c) 2021 Camilo Sasuke Thomas Borregaard Soerensen. All rights reserved.
 //
 
-#include "framework.h"
+#include "platform.h"
 #include "acme/parallelization/manual_reset_happening.h"
 #include "acme/prototype/prototype/memory.h"
 #undef DEBUG

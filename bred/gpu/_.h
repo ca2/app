@@ -10,7 +10,7 @@ namespace gpu
 
    //struct start_context_t;
 
-   class aaa_cpu_buffer;
+   class buffer;
    class context;
    class shader;
    class frame_storage;
@@ -34,6 +34,8 @@ namespace gpu
    class fence;
 
    struct texture_data;
+
+   class texture_site;
 
    class texture_synchronization;
 
@@ -115,6 +117,18 @@ namespace gpu
    class model_buffer;
 
    class pixmap;
+
+   struct trace_flags_t
+   {
+
+      bool m_bVulkanPipelineTrace;
+
+   };
+
+
+   CLASS_DECL_BRED trace_flags_t & trace_flags();
+
+
 
 } // gpu
 

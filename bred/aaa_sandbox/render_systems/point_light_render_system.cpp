@@ -1,4 +1,4 @@
-#include "framework.h"
+#include "platform.h"
 #include "point_light_render_system.h"
 //#include "global_ubo.h"
 //#include "pipeline.h"

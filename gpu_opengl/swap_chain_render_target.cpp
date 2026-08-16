@@ -1,4 +1,4 @@
-#include "framework.h"
+#include "platform.h"
 //#include "swap_chain_render_target.h"
 //#include "physical_device.h"
 //#include "renderer.h"

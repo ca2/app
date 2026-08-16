@@ -1,6 +1,6 @@
 // From gpu_opengl::device by
 // camilo on 2025-05-27 06:11 <3ThomasBorregaardSorensen!!
-#include "framework.h"
+#include "platform.h"
 #include "_gpu_opengl.h"
 #include "device.h"
 #include "program.h"
@@ -676,23 +676,6 @@ namespace gpu_opengl
 
    //}
 
-
-   ::i32 device::get_frame_index3()
-   {
-
-      return 0;
-      //return ::gpu::device::get_frame_index3();
-
-
-   }
-
-
-   ::i32 device::get_frame_count()
-   {
-
-      return 1;
-
-   }
 
 
    

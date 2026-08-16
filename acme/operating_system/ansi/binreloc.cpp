@@ -9,7 +9,7 @@
  * See http://autopackage.org/docs/binreloc/ for
  * more information and how to use this.
  */
-#include "framework.h"
+#include "platform.h"
 #include "binreloc.h"
 
 #ifndef __BINRELOC_C__

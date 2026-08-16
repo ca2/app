@@ -1,7 +1,7 @@
 //
 // Created by camilo on 29/07/2023 21:20 <3ThomasBorregaardSorensen!!
 //
-#include "framework.h"
+#include "platform.h"
 #include "curl_easy.h"
 //#include "operating_system/windows/nano_http/http_get.h"
 

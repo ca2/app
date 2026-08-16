@@ -1,4 +1,4 @@
-#include "framework.h"
+#include "platform.h"
 #include "_array.h"
 //#include "string_array.h"
 

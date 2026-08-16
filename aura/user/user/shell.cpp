@@ -1,4 +1,4 @@
-#include "framework.h"
+#include "platform.h"
 #include "interaction_array.h"
 #include "interaction.h"
 #include "acme/parallelization/manual_reset_happening.h"

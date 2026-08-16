@@ -10,7 +10,7 @@
 //
 //  Created by Camilo Sasuke Thomas Borregaard Sørensen on 2024-06-30 04:50 <3ThomasBorregaardSorensen!! ThomasLikesNumber5!!
 //
-#include "framework.h"
+#include "platform.h"
 #include "install.h"
 #include "acme/filesystem/filesystem/directory_system.h"
 #include "acme/filesystem/filesystem/file_system.h"

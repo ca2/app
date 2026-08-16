@@ -917,7 +917,7 @@
     <ClInclude Include="user\experience\frame\experience_frame_work_set_listener_array.h">
       <Filter>Header Files\user\experience\frame</Filter>
     </ClInclude>
-    <ClInclude Include="framework\framework.h">
+    <ClInclude Include="framework\platform.h">
       <Filter>Header Files\framework</Filter>
     </ClInclude>
     <ClInclude Include="user\simple\simple_toolbar.h">
@@ -1444,7 +1444,7 @@
     <ClCompile Include="user\user\user_core.cpp">
       <Filter>Source Files\user\user</Filter>
     </ClCompile>
-    <ClCompile Include="framework.cpp">
+    <ClCompile Include="platform.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="filesystem\filemanager\filemanager_manager_template.cpp">

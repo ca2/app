@@ -58,7 +58,8 @@ namespace gpu
       //::pointer < device >       m_pgpudevice;
 
       ::i32_rectangle            m_rectangleOffscreen;
-
+      int m_iGraphicsModeStep = -1;
+      int m_iGraphicsModeStepCount = -1;
 
       approach();
       ~approach() override;
@@ -69,15 +70,20 @@ namespace gpu
 
       virtual void initialize_gpu_approach();
 
+      virtual ::pointer < ::apex::gpu::window_attachment > allocate_gpu_window_attachment(::acme::windowing::window * pacmewindowingwindow);
 
       virtual ::gpu::device* get_gpu_device(::acme::windowing::window * pacmewindowingwindow);
 
 
       virtual void engine_on_frame_context_initialization(::gpu::context* pgpucontext);
 
-
+      virtual ::particle_pointer _allocate_draw2d_window_attachment_for_gpu(::acme::windowing::window * pacmewindowingwindow);
 
       virtual void defer_init_gpu_library();
+
+
+      virtual int graphics3d_modes_step();
+      virtual int graphics3d_modes_step_count();
 
    
 

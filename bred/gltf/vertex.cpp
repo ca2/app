@@ -1,5 +1,5 @@
 // Created by camilo on 2025-10-16 20:37 <3ThomasBorregaardSorensen!!
-#include "framework.h"
+#include "platform.h"
 #include "vertex.h"
 
 

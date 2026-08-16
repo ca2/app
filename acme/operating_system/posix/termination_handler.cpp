@@ -1,7 +1,7 @@
 //
 // Created by camilo on 2026-07-16 17:16 <3ThomasBorregaardSørensen!! Mummi!! Bilbo!!
 //
-#include "framework.h"
+#include "platform.h"
 #include "termination_handler.h"
 
 #include <signal.h>

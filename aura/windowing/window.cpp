@@ -1,6 +1,6 @@
 // created by Camilo <3CamiloSasukeThomasBorregaardSoerensen
 // recreated by Camilo 2021-01-28 22:20
-#include "framework.h"
+#include "platform.h"
 #include "cursor.h"
 #include "display.h"
 #include "apex/gpu/approach.h"
@@ -12041,20 +12041,20 @@ namespace windowing
 
 #endif
 
-                     pbufferitem = pgraphicsgraphics->on_begin_layout();
+                     auto pgraphics = pgraphicsgraphics->on_begin_layout();
 
-                     if (!pbufferitem)
-                     {
-
-#ifdef MORE_LOG
-
-                        information() << "intrimpl::defer_do_graphics !pbufferitem";
-
-#endif
-
-                        return;
-
-                     }
+//                     if (!pbufferitem)
+//                     {
+//
+//#ifdef MORE_LOG
+//
+//                        information() << "intrimpl::defer_do_graphics !pbufferitem";
+//
+//#endif
+//
+//                        return;
+//
+//                     }
 
 
 #ifdef MORE_LOG
@@ -12065,7 +12065,7 @@ namespace windowing
 
                      {
 
-                        _synchronous_lock synchronouslock(pbufferitem->m_pmutex, DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
+                        //_synchronous_lock synchronouslock(pbufferitem->m_pmutex, DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 
                         slGraphics.unlock();
 
@@ -12083,7 +12083,7 @@ namespace windowing
                            return;
                         }
 
-                        auto pgraphics = pbufferitem->acquire_graphics();
+                        //auto pgraphics = pbufferitem->acquire_graphics();
 
 #ifdef MORE_LOG
 
@@ -12155,38 +12155,39 @@ namespace windowing
 
                if (pgraphicsgraphics)
                {
+
                   _synchronous_lock slGraphics(pgraphicsgraphics->synchronization(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 
-                  auto pbufferitem = pgraphicsgraphics->on_begin_draw();
+                  auto pgraphics = pgraphicsgraphics->on_begin_draw();
 
-                  if (!pbufferitem)
-                  {
+                  //if (!pbufferitem)
+                  //{
 
-                     information() << "defer_do_graphics !pbufferitem (2)";
+                  //   information() << "defer_do_graphics !pbufferitem (2)";
 
-                     if (this->get_window_rectangle().size() < m_pacmeuserinteraction->get_window_minimum_size())
-                     {
+                  //   if (this->get_window_rectangle().size() < m_pacmeuserinteraction->get_window_minimum_size())
+                  //   {
 
-                        static class ::time s_timeThisThingLastTime;
+                  //      static class ::time s_timeThisThingLastTime;
 
-                        if (s_timeThisThingLastTime.elapsed() > 15_s)
-                        {
+                  //      if (s_timeThisThingLastTime.elapsed() > 15_s)
+                  //      {
 
-                           s_timeThisThingLastTime.Now();
+                  //         s_timeThisThingLastTime.Now();
 
-                           m_pacmeuserinteraction->display(::e_display_normal, {});
+                  //         m_pacmeuserinteraction->display(::e_display_normal, {});
 
-                        }
+                  //      }
 
-                     }
+                  //   }
 
-                     //m_pgraphicscontextDrawFrame.release();
+                  //   //m_pgraphicscontextDrawFrame.release();
 
-                     return;
+                  //   return;
 
-                  }
+                  //}
                   //
-                  _synchronous_lock synchronouslock(pbufferitem->m_pmutex, DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
+                  //_synchronous_lock synchronouslock(pbufferitem->m_pmutex, DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
                   //
                   //          //information() << "graphics::on_begin_draw";
                   //
@@ -12194,7 +12195,7 @@ namespace windowing
                   {
 
                      //::draw2d::graphics_pointer pgraphics = pbufferitem->acquire_graphics();
-                     auto pgraphics = pbufferitem->acquire_graphics();
+                     //auto pgraphics = pbufferitem->acquire_graphics();
                      if (::is_null(pgraphics) || pgraphics->nok())
                      {
 
@@ -12232,13 +12233,13 @@ namespace windowing
 
                         time4.Now();
 
-                        synchronouslock.unlock();
+                        //synchronouslock.unlock();
 
                         {
 
                            {
 
-                              _synchronous_lock synchronouslockDraw(pbufferitem->m_pmutex, DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
+                              //_synchronous_lock synchronouslockDraw(pbufferitem->m_pmutex, DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 
 
                               auto elapsed41 = time4.elapsed();
@@ -12254,7 +12255,7 @@ namespace windowing
                               auto elapsed42 = time42.elapsed();
                               // informationf("draw_frame elapsed4.2 %0.2f", elapsed42.floating_millisecond());
 
-                              m_sizeLastBuffer = pbufferitem->m_sizeBufferItem;
+                              //m_sizeLastBuffer = pbufferitem->m_sizeBufferItem;
                            }
 
                         }

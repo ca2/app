@@ -1,5 +1,5 @@
 // from subsystem/thread/Thread.cpp on 2026-05-17 03:40 by camilo <3ThomasBorregaardSørensen!!
-#include "framework.h"
+#include "platform.h"
 #include "filament.h"
 //#include "Thread.h"
 ////#include "critical_section_lock.h"

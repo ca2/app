@@ -1,5 +1,5 @@
 // From opengl/draw2d by camilo on 2025-06-02 03:26 <3ThomasBorregaardSørensen!!
-#include "framework.h"
+#include "platform.h"
 #include "bred_approach.h"
 #include "device.h"
 #include "draw2d.h"

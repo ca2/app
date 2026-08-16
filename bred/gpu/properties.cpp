@@ -1,5 +1,5 @@
 // Created by camilo on 2025-06-02 21:35 <3ThomasBorregaardSørensen!!
-#include "framework.h"
+#include "platform.h"
 #include "device.h"
 #include "properties.h"
 #include "apex/gpu/approach.h"

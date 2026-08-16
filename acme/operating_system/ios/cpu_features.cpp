@@ -1,7 +1,7 @@
 //
 // From linux/cpu_features.cpp by camilo on 2026-02-04 19:07 <3ThomasBorregaardSørensen!!
 //
-#include "framework.h"
+#include "platform.h"
 #include <sys/utsname.h>
 #include <string.h>
 

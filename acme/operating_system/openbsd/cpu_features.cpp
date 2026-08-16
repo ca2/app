@@ -3,7 +3,7 @@
 //
 //
 //
-#include "framework.h"
+#include "platform.h"
 #include "acme/operating_system/cpu_features.h"
 #include <sys/types.h>
 #include <sys/sysctl.h>
@@ -55,7 +55,7 @@ cpu_features::cpu_features()
 
 
 
-#include "framework.h"
+#include "platform.h"
 #include <sys/utsname.h>
 #include <string.h>
 

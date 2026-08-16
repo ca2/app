@@ -734,11 +734,11 @@
 			<Option target="core"/>
 			<Option target="static_core"/>
 		</Unit>
-		<Unit filename="/home/camilo/cmake/integration/source/app/core/framework.cpp">
+		<Unit filename="/home/camilo/cmake/integration/source/app/core/platform.cpp">
 			<Option target="core"/>
 			<Option target="static_core"/>
 		</Unit>
-		<Unit filename="/home/camilo/cmake/integration/source/app/core/framework.h">
+		<Unit filename="/home/camilo/cmake/integration/source/app/core/platform.h">
 			<Option target="core"/>
 			<Option target="static_core"/>
 		</Unit>

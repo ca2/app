@@ -1,7 +1,7 @@
 //
 // Created by camilo on 2025-12-20 23:40:10 <3ThomasBorregaardSørensen!!
 //
-#include "framework.h"
+#include "platform.h"
 
 #include <X11/Xlib.h>
 #include <EGL/egl.h>

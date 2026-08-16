@@ -112,7 +112,7 @@
     <ClCompile Include="experience\frame_Minimal001.cpp" />
     <ClCompile Include="user\style.cpp" />
     <ClCompile Include="_.cpp" />
-    <ClCompile Include="framework.cpp">
+    <ClCompile Include="platform.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Create</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='DebugAsan|Win32'">Create</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='DebugWithInlOpt|Win32'">Create</PrecompiledHeader>
@@ -157,7 +157,7 @@
     <ClInclude Include="user\style.h" />
     <ClInclude Include="user\_user.h" />
     <ClInclude Include="_.h" />
-    <ClInclude Include="framework.h" />
+    <ClInclude Include="platform.h" />
     <ClInclude Include="_library.h" />
   </ItemGroup>
   <ItemGroup>

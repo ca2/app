@@ -1,4 +1,4 @@
-#include "framework.h"
+#include "platform.h"
 
 //string get_error_message(::u32 dwError)
 //{

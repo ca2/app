@@ -22,7 +22,7 @@
   Purpose:	A Turbo C conio function.
   Mod history:	01/31/02 RSB	Created.
 */
-#include "framework.h"
+#include "platform.h"
 //#include "conio.h"
 
 void

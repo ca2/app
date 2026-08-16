@@ -316,11 +316,11 @@
 			<Option target="experience_anthill"/>
 			<Option target="static_experience_anthill"/>
 		</Unit>
-		<Unit filename="/home/camilo/cmake/integration/source/app/experience_anthill/framework.cpp">
+		<Unit filename="/home/camilo/cmake/integration/source/app/experience_anthill/platform.cpp">
 			<Option target="experience_anthill"/>
 			<Option target="static_experience_anthill"/>
 		</Unit>
-		<Unit filename="/home/camilo/cmake/integration/source/app/experience_anthill/framework.h">
+		<Unit filename="/home/camilo/cmake/integration/source/app/experience_anthill/platform.h">
 			<Option target="experience_anthill"/>
 			<Option target="static_experience_anthill"/>
 		</Unit>

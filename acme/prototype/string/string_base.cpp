@@ -1,5 +1,5 @@
 // Created by camilo on 2022-10-27 18:42 <3ThomasBorregaardSorensen!!
-#include "framework.h"
+#include "platform.h"
 
 //
 //CLASS_DECL_ACME void copy(::string_base < ::ansi_character > * ptarget, const ::payload * psource)

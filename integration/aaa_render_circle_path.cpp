@@ -1,5 +1,5 @@
 // Created by camilo on 2022-03-23 11:55 PM <3ThomasBorregaardSorensen!! (Thomas likes number 5!!)
-#include "framework.h"
+#include "platform.h"
 #include "render.h"
 #include "application.h"
 #include <math.h>

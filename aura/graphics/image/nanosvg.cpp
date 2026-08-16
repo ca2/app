@@ -1,4 +1,4 @@
-#include "framework.h"
+#include "platform.h"
 #include "nanosvg.h"
 #include "nanosvgrast.h"
 #include "image.h"

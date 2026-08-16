@@ -23,7 +23,7 @@
  * Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
  */
 
-#include "framework.h"
+#include "platform.h"
 #include "cairo/cairo-features.h"
 #include <cairo/cairo.h>
 //#include <librsvg/rsvg.h>

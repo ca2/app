@@ -1,5 +1,5 @@
 // From template to class by camilo on 2022-11-17 04:48 ILoveYouThomasBorregaardSorensen!!
-#include "framework.h"
+#include "platform.h"
 #include "scalar.h"
 ////#include "acme/exception/exception.h"
 

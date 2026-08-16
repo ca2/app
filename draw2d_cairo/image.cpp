@@ -1,4 +1,4 @@
-#include "framework.h"
+#include "platform.h"
 #include "image.h"
 #include "bitmap.h"
 #include "draw2d.h"
@@ -27,7 +27,7 @@ namespace draw2d_cairo
 //   {
 //      return m_pcolorrefMap;
 //   }
-   ::draw2d::bitmap_pointer image::get_bitmap() const
+   ::draw2d::bitmap_pointer image::get_bitmap(::draw2d::graphics * pdraw2dgraphics) const
    {
       return m_pbitmap;
    }
@@ -488,7 +488,7 @@ namespace draw2d_cairo
    //}
 
 
-   void image::_map(bool bApplyAlphaTransform)
+   void image::_map(const ::i32_rectangle & rectangle, bool bApplyAlphaTransform)
    {
 
       _synchronous_lock ml(::draw2d_cairo::mutex(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);

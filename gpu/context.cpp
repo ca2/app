@@ -1,5 +1,5 @@
 // From gpu_opengl/context.h by camilo on 2025-09-28 12:00 <3ThomasBorregaardSorensen!!
-#include "framework.h"
+#include "platform.h"
 #define STB_USE_HUNTER
 #include "context.h"
 #include "bred/gpu/device.h"
@@ -13,8 +13,8 @@
 #include "bred/gpu/command_buffer.h"
 #include "bred/gpu/context_lock.h"
 #include "bred/gpu/layer.h"
-#include "bred/gpu/layer.h"
 #include "bred/gpu/texture.h"
+#include "bred/gpu/texture_site.h"
 #include "bred/gpu/types.h"
 #include "bred/graphics3d/engine.h"
 #include "bred/graphics3d/immersion_layer.h"
@@ -72,7 +72,7 @@ namespace gpu_gpu
 
          piblequirectangularcubemap->initialize_equirectangular_cubemap_with_hdr_on_memory(this, block);
 
-                  pgputexture = piblequirectangularcubemap->m_ptextureCubemap;
+         pgputexture = piblequirectangularcubemap->m_ptexturesiteCubemap->gpu_texture();
          pgputexture->m_bHdr = true;
                   {
 
@@ -282,8 +282,8 @@ namespace gpu_gpu
          ////   //}
          //}
 
-         ::i32_rectangle rectangleTarget(0, 0, width, height);
-         ptexture->initialize_with_image_data(this, rectangleTarget, numChannels, bSrgb, data);
+         //::i32_rectangle rectangleTarget(0, 0, width, height);
+         ptexture->create_with_image_data(this, {width, height}, numChannels, bSrgb, data);
          //glGenTextures(1, &textureId);
          //glBindTexture(GL_TEXTURE_2D, textureId);
          //glTarget = GL_TEXTURE_2D;

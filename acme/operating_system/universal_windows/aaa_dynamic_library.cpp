@@ -6,7 +6,7 @@
 // camilo on 2024-06-02 21:27 <3ThomasBorregaardSorensen!!
 // Merged from acme/operating_system/universal_windows/library.cpp by
 // camilo on 2024-06-10 07:32 <3ThomasBorregaardSorensen!!
-#include "framework.h"
+#include "platform.h"
 #include "dynamic_library.h"
 #include "acme/exception/interface_only.h"
 #include "acme/exception/library_not_loaded.h"

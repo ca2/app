@@ -5,7 +5,7 @@
 //  Created by Camilo Sasuke Thomas Borregaard Sørensen on 2024-02-10 22:16.
 //  Copyright © 2024 Camilo Sasuke Tsumanuma. All rights reserved.
 //
-#include "framework.h"
+#include "platform.h"
 #include "media_item.h"
 #include "media_player.h"
 #include "media_player_command.h"

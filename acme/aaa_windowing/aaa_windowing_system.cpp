@@ -3,7 +3,7 @@
 // // Merged from windowing_base to
 //     windowing by camilo on 2024-10-05 10:36 <3ThomasBorregaardSorensen!!
 //
-#include "framework.h"
+#include "platform.h"
 #include "windowing_base.h"
 #include "acme/constant/id.h"
 #include "acme/exception/interface_only.h"

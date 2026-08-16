@@ -1,5 +1,5 @@
 // Recreated by camilo on 2026-02-12 14:30 <3ThomasBorregaardSørensen!!
-#include "framework.h"
+#include "platform.h"
 #include "_gpu_opengl.h"
 #include "gpu_opengl/approach.h"
 #define STB_USE_HUNTER
@@ -262,6 +262,7 @@ namespace gpu_opengl
       {
 
          throw ::exception(error_wrong_state);
+
       }
 
       {

@@ -1,4 +1,4 @@
-#include "framework.h"
+#include "platform.h"
 
 
 // //thread_int_ptr < iptr > t_iAvoidParsingException;

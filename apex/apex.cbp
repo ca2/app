@@ -444,11 +444,11 @@
 			<Option target="apex"/>
 			<Option target="static_apex"/>
 		</Unit>
-		<Unit filename="/home/camilo/cmake/integration/source/app/apex/framework.cpp">
+		<Unit filename="/home/camilo/cmake/integration/source/app/apex/platform.cpp">
 			<Option target="apex"/>
 			<Option target="static_apex"/>
 		</Unit>
-		<Unit filename="/home/camilo/cmake/integration/source/app/apex/framework.h">
+		<Unit filename="/home/camilo/cmake/integration/source/app/apex/platform.h">
 			<Option target="apex"/>
 			<Option target="static_apex"/>
 		</Unit>

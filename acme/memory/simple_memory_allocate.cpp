@@ -5,7 +5,7 @@
 //  Created by Camilo Sasuke Thomas Borregaard Sørensen on 07/12/23.
 //  Copyright © 2023 Camilo Sasuke Tsumanuma. All rights reserved.
 //
-#include "framework.h"
+#include "platform.h"
 #include "allocation.h"
 #include "align_byte_count.h"
 

@@ -3,6 +3,7 @@
 
 
 #include "acme/graphics/image/pixmap_lease.h"
+//#include "acme/graphics/image/lock.h"
 
 
 #define PIXMAP_TRANSFER(a) \
@@ -17,8 +18,9 @@ class CLASS_DECL_ACME pixmap :
 public:
 
    
-   memory                  m_memoryPixmap;
-   ::interlocked_count     m_interlockedcountMap;
+   memory                                 m_memoryPixmap;
+   ::interlocked_count                    m_interlockedcountMap;
+   ::image::enum_copy_disposition         m_ecopydisposition;
 
 
    pixmap();
@@ -57,21 +59,30 @@ public:
 
    virtual ::pixmap_pointer get_resized_pixmap(const ::i32_size &size);
 
+   //virtual ::image::lock lock(::i32 stride, ::image::enum_copy_disposition ecopydisposition, ::pixmap * ppixmapLock);
+   //virtual ::image::lock no_padding_lock(::image::enum_copy_disposition ecopydisposition, ::pixmap * ppixmapLock);
+   //virtual ::image::lock source_lock(::image::enum_copy_disposition ecopydisposition, ::pixmap * ppixmapLock);
+
+
 protected:
 
    friend class pixmap_lease;
+   //friend class ::image::lock;
 
-   virtual void _map(bool bApplyAlphaTransform =
+   virtual void _map(const ::i32_rectangle & rectangle, bool bApplyAlphaTransform =
                            true); // some implementations may requrire to map_base to m_pcolorref before manipulate it
    
    
-   virtual bool _on_map(bool bApplyAlphaTransform = true);
+   virtual bool _on_map(const ::i32_rectangle & rectangle, bool bApplyAlphaTransform = true);
 
    virtual void
       _unmap(bool bDoUnmap = false); // some implementations may require to unmap from m_pcolorref to update *os* bitmap
 
    virtual bool
    _on_unmap(bool bDoUnmap = false); // some implementations may require to unmap from m_pcolorref to update *os* bitmap
+
+   //void unlock() override;
+
 
 };
 

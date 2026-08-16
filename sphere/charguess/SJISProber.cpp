@@ -23,7 +23,7 @@
 // 2, kana character often exist in group
 // 3, certain combination of kana is never used in japanese language
 
-#include "framework.h"
+#include "platform.h"
 #include "SJISProber.h"
 
 void  nsSJISProber::Reset(void)

@@ -1,5 +1,5 @@
 // Created by camilo with chatgpt and lowluds on 2025-02-12 21:32 <3ThomasBorregaardSorensen.cpp
-#include "framework.h"
+#include "platform.h"
 #include "prober.h"
 
 

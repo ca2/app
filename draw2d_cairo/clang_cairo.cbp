@@ -81,7 +81,7 @@
 		<Compiler>
 			<Add option="-fPIC" />
 			<Add option="-std=c++17" />
-			<Add option='-include &quot;framework.h&quot;' />
+			<Add option='-include &quot;platform.h&quot;' />
 			<Add option="-fexceptions" />
 			<Add option="-fnon-call-exceptions" />
 			<Add option="-fno-pie" />
@@ -127,8 +127,8 @@
 		<Unit filename="factory_exchange.h" />
 		<Unit filename="font.cpp" />
 		<Unit filename="font.h" />
-		<Unit filename="framework.cpp" />
-		<Unit filename="framework.h">
+		<Unit filename="platform.cpp" />
+		<Unit filename="platform.h">
 			<Option compile="1" />
 			<Option weight="0" />
 		</Unit>

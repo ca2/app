@@ -1,4 +1,4 @@
-#include "framework.h"
+#include "platform.h"
 #include "aura/graphics/draw2d/graphics.h"
 #include "aura/graphics/draw2d/graphics_pointer.h"
 #include "aura/graphics/image/list.h"
@@ -36,9 +36,9 @@ namespace filemanager
 
       m_pimagelistNormal = create_newø < ::image::image_list >();
 
-      ::draw2d::graphics_pointer spgraphics(e_create, this);
+      //::draw2d::graphics_pointer spgraphics(e_create, this);
 
-      spgraphics->create_compatible_graphics(nullptr);
+      //spgraphics->create_compatible_graphics(nullptr);
 
       m_pimagelistSubItemHover->create(16, 16, 0, 10, 10);
 

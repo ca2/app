@@ -1,4 +1,4 @@
-#include "framework.h"
+#include "platform.h"
 #include "pen.h"
 
 
@@ -9,7 +9,7 @@ namespace draw2d_cairo
    pen::pen()
    {
 
-      m_pthis = this;
+      //m_pthis = this;
 
    }
 

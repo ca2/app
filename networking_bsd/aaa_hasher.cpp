@@ -1,4 +1,4 @@
-#include "framework.h"
+#include "platform.h"
 #include "hasher.h"
 #include "hasher_algorithm.h"
 //#include "_openssl.h"
@@ -29,7 +29,7 @@
 //} // namespace openssl
 
 
-//#include "framework.h"
+//#include "platform.h"
 //#include "_.h"
 
 

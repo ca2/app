@@ -23,7 +23,7 @@
 		6390094CE3ED9E8147ACBF39 /* hellobase_gcom.h in Headers */ = {isa = PBXBuildFile; fileRef = 9FF8A56C2532BE445F587EA8 /* hellobase_gcom.h */; };
 		11993F07CCAB6818DA74DB38 /* hellobase_impact_base.cpp in Sources */ = {isa = PBXBuildFile; fileRef = FFA58DE4A85D8777B838B43A /* hellobase_impact_base.cpp */; };
 		58F78BE8D51A2ADDDE58F137 /* hellobase_impact_base.h in Headers */ = {isa = PBXBuildFile; fileRef = D40BE2BC9BD920848D1674B5 /* hellobase_impact_base.h */; };
-		72E1EC27492F03533932DA18 /* framework.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 4538132F960884B0F9EFF480 /* framework.cpp */; };
+		72E1EC27492F03533932DA18 /* platform.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 4538132F960884B0F9EFF480 /* platform.cpp */; };
 		425DAE1492727D45D741D277 /* hellobase_application.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9DCA6FE4D8FC36C5B2114A15 /* hellobase_application.cpp */; };
 		54E9A084EE1B1BED22A125A9 /* hellobase_document.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 1D13F74DBA91D819C41A211F /* hellobase_document.cpp */; };
 		654EB351C83CA0180FB21624 /* hellobase_frame.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 572CA408292350C5696CA2FA /* hellobase_frame.cpp */; };
@@ -49,8 +49,8 @@
 		14BCD626519698AC7FAFC627 /* libapp_core_hellobase.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 569C525C1D6FCDB1C327AA4D /* libapp_core_hellobase.a */; };
 		57AEC421E6969B16A659A329 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 6561C3D5F9527D085F197887 /* InfoPlist.strings */; };
 		63BAE006D4421643AF228565 /* app_core_hellobase_iosTests.m in Sources */ = {isa = PBXBuildFile; fileRef = B487FC2427A79F87B4248D67 /* app_core_hellobase_iosTests.m */; };
-		724441D6640D79BAA456C487 /* framework.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 4538132F960884B0F9EFF480 /* framework.cpp */; };
-		2B62351AD5869803ADA261E9 /* framework.h in Headers */ = {isa = PBXBuildFile; fileRef = 0BD037D4A57872F58E9DCECC /* framework.h */; };
+		724441D6640D79BAA456C487 /* platform.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 4538132F960884B0F9EFF480 /* platform.cpp */; };
+		2B62351AD5869803ADA261E9 /* platform.h in Headers */ = {isa = PBXBuildFile; fileRef = 0BD037D4A57872F58E9DCECC /* platform.h */; };
 		DE66C11F795416CC36EB382E /* hellobase.h in Headers */ = {isa = PBXBuildFile; fileRef = 9900A21ABBD06C5320583468 /* hellobase.h */; };
 		582985BB9342C556C7C1163E /* hellobase_application.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9DCA6FE4D8FC36C5B2114A15 /* hellobase_application.cpp */; };
 		74331EB90495050970DB6065 /* hellobase_document.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 1D13F74DBA91D819C41A211F /* hellobase_document.cpp */; };
@@ -194,8 +194,8 @@
 		B42DE3B34D602AF85B48209C /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		B487FC2427A79F87B4248D67 /* app_core_hellobase_iosTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = app_core_hellobase_iosTests.m; sourceTree = "<group>"; };
 		D445FCA47C9EE7F13FD7D7D0 /* libapp_core_hellobase.dylib */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.dylib"; includeInIndex = 0; path = libapp_core_hellobase.dylib; sourceTree = BUILT_PRODUCTS_DIR; };
-		4538132F960884B0F9EFF480 /* framework.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = framework.cpp; sourceTree = "<group>"; };
-		0BD037D4A57872F58E9DCECC /* framework.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = framework.h; sourceTree = "<group>"; };
+		4538132F960884B0F9EFF480 /* platform.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = platform.cpp; sourceTree = "<group>"; };
+		0BD037D4A57872F58E9DCECC /* platform.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = platform.h; sourceTree = "<group>"; };
 		9900A21ABBD06C5320583468 /* hellobase.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = hellobase.h; sourceTree = "<group>"; };
 		9DCA6FE4D8FC36C5B2114A15 /* hellobase_application.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = hellobase_application.cpp; sourceTree = "<group>"; };
 		1D13F74DBA91D819C41A211F /* hellobase_document.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = hellobase_document.cpp; sourceTree = "<group>"; };
@@ -333,8 +333,8 @@
 			isa = PBXGroup;
 			children = (
 				9900A21ABBD06C5320583468 /* hellobase.h */,
-				4538132F960884B0F9EFF480 /* framework.cpp */,
-				0BD037D4A57872F58E9DCECC /* framework.h */,
+				4538132F960884B0F9EFF480 /* platform.cpp */,
+				0BD037D4A57872F58E9DCECC /* platform.h */,
 				9DCA6FE4D8FC36C5B2114A15 /* hellobase_application.cpp */,
 				FC1E3FCAEA8407CD81537F72 /* hellobase_application.h */,
 				1D13F74DBA91D819C41A211F /* hellobase_document.cpp */,
@@ -370,7 +370,7 @@
 			isa = PBXHeadersBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				2B62351AD5869803ADA261E9 /* framework.h in Headers */,
+				2B62351AD5869803ADA261E9 /* platform.h in Headers */,
 				435D1AC9B613ACAEF8A0B499 /* hellobase_render.h in Headers */,
 				DE66C11F795416CC36EB382E /* hellobase.h in Headers */,
 				14C8A1EB4D50E4D62CC388F9 /* hellobase_impact.h in Headers */,
@@ -556,7 +556,7 @@
 				00CA556825026CBC34D6AC83 /* hellobase_render.cpp in Sources */,
 				7C7477A79F7410A642DEAACA /* hellobase_main_impact.cpp in Sources */,
 				020DBC5E8D2492E3BF780CB0 /* hellobase_switcher_impact.cpp in Sources */,
-				72E1EC27492F03533932DA18 /* framework.cpp in Sources */,
+				72E1EC27492F03533932DA18 /* platform.cpp in Sources */,
 				425DAE1492727D45D741D277 /* hellobase_application.cpp in Sources */,
 				54E9A084EE1B1BED22A125A9 /* hellobase_document.cpp in Sources */,
 				654EB351C83CA0180FB21624 /* hellobase_frame.cpp in Sources */,
@@ -579,7 +579,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				153C4A0ABA5DF4F2D3FACF57 /* hellobase_main_impact.cpp in Sources */,
-				724441D6640D79BAA456C487 /* framework.cpp in Sources */,
+				724441D6640D79BAA456C487 /* platform.cpp in Sources */,
 				39C74AE3A567C77DE4BF87AC /* hellobase_gcom.cpp in Sources */,
 				1E199B50C6AC57EC2DC74866 /* hellobase_main_frame.cpp in Sources */,
 				D85F27A57789A59DF3F6B4AA /* hellobase_switcher_impact.cpp in Sources */,
@@ -761,7 +761,7 @@
 				GCC_NO_COMMON_BLOCKS = YES;
 				GCC_OPTIMIZATION_LEVEL = 0;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
-				GCC_PREFIX_HEADER = framework.h;
+				GCC_PREFIX_HEADER = platform.h;
 				GCC_PREPROCESSOR_DEFINITIONS = (
 					"$(inherited)",
 				);
@@ -826,7 +826,7 @@
 				GCC_ENABLE_OBJC_EXCEPTIONS = YES;
 				GCC_NO_COMMON_BLOCKS = YES;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
-				GCC_PREFIX_HEADER = framework.h;
+				GCC_PREFIX_HEADER = platform.h;
 				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
 				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
 				GCC_WARN_UNDECLARED_SELECTOR = YES;

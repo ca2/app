@@ -4,7 +4,7 @@
 //
 //  Created by Camilo Sasuke Thomas Borregaard Sørensen on 23/01/26.
 //
-#include "framework.h"
+#include "platform.h"
 #include "_gpu_opengl.h"
 
 //#define GLAD_GLAPI_EXPORT

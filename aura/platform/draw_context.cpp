@@ -1,4 +1,4 @@
-#include "framework.h" // previously aura/user/user.h
+#include "platform.h" // previously aura/user/user.h
 
 #include "aura/graphics/draw2d/graphics.h"
 #include "aura/graphics/draw2d/graphics_pointer.h"

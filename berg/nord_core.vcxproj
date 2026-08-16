@@ -256,7 +256,7 @@
     <ClCompile Include="filesystem\userfs\main_impact.cpp" />
     <ClCompile Include="filesystem\userfs\tree.cpp" />
     <ClCompile Include="filesystem\userfs\userfs.cpp" />
-    <ClCompile Include="framework.cpp" />
+    <ClCompile Include="platform.cpp" />
     <ClCompile Include="html\elemental\elemental.cpp" />
     <ClCompile Include="html\graphics\attribute.cpp" />
     <ClCompile Include="html\graphics\base.cpp" />
@@ -572,7 +572,7 @@
     <ClInclude Include="filesystem\userfs\userfs_main_impact.h" />
     <ClInclude Include="filesystem\userfs\userfs_tree.h" />
     <ClInclude Include="filesystem\userfs\userfs_userfs.h" />
-    <ClInclude Include="framework.h" />
+    <ClInclude Include="platform.h" />
     <ClInclude Include="user\account\account.h" />
     <ClInclude Include="user\account\account_dialog.h" />
     <ClInclude Include="user\account\account_login.h" />

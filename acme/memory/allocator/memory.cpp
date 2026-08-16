@@ -1,6 +1,6 @@
 // Created by camilo on 2021-07-24 01:05 BRT <3ThomasBorregaardSorensen!!
 // Refactoring 2023-11-23 05:50 <3ThomasBorregaardSoerensen!!
-#include "framework.h"
+#include "platform.h"
 
 //
 //class CLASS_DECL_ACME clib_memory_allocator

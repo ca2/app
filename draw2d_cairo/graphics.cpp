@@ -1,4 +1,4 @@
-#include "framework.h"
+#include "platform.h"
 #include "graphics.h"
 #include "draw2d.h"
 #include "font.h"
@@ -298,72 +298,74 @@ namespace draw2d_cairo
 
       m_bForWindowDraw2d = true;
 
-      m_puserinteractionDraw2dGraphics = puserinteraction;
+      //m_puserinteractionDraw2dGraphics = puserinteraction;
 
-      create_memory_graphics(size);
+      m_pacmeuserinteractionAffinity = puserinteraction;
 
-   }
-
-
-   void graphics::create_compatible_graphics(::draw2d::graphics * pgraphics)
-   {
-
-      _synchronous_lock ml(::draw2d_cairo::mutex(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
-
-      if (m_pdc != nullptr)
-      {
-
-         cairo_destroy(m_pdc);
-
-         m_pdc = nullptr;
-
-         m_osdata[0] = nullptr;
-
-      }
-
-      cairo_surface_holder hsurfaceNew;
-
-      if (pgraphics == nullptr)
-      {
-
-         hsurfaceNew = cairo_image_surface_create(CAIRO_FORMAT_ARGB32, 1, 1);
-
-      }
-      else
-      {
-
-         cairo_surface_t * psurface = cairo_get_target((cairo_t *) pgraphics->get_os_data());
-
-         if (cairo_surface_status(psurface) != CAIRO_STATUS_SUCCESS)
-         {
-
-            throw ::exception(error_resource);
-
-         }
-
-         hsurfaceNew = cairo_surface_create_similar(psurface, cairo_surface_get_content(psurface), 1, 1);
-
-      }
-
-      if (hsurfaceNew == nullptr)
-      {
-
-         throw ::exception(error_resource);
-
-      }
-
-      m_pdc = cairo_create(hsurfaceNew);
-
-      m_osdata[0] = m_pdc;
-
-      if (m_pdc == nullptr)
-      {
-
-         throw ::exception(error_resource);
-
-      }
+      create_memory_graphics(size, m_pacmeuserinteractionAffinity);
 
    }
+
+
+   //void graphics::create_compatible_graphics(::draw2d::graphics * pgraphics)
+   //{
+
+   //   _synchronous_lock ml(::draw2d_cairo::mutex(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
+
+   //   if (m_pdc != nullptr)
+   //   {
+
+   //      cairo_destroy(m_pdc);
+
+   //      m_pdc = nullptr;
+
+   //      m_osdata[0] = nullptr;
+
+   //   }
+
+   //   cairo_surface_holder hsurfaceNew;
+
+   //   if (pgraphics == nullptr)
+   //   {
+
+   //      hsurfaceNew = cairo_image_surface_create(CAIRO_FORMAT_ARGB32, 1, 1);
+
+   //   }
+   //   else
+   //   {
+
+   //      cairo_surface_t * psurface = cairo_get_target((cairo_t *) pgraphics->get_os_data());
+
+   //      if (cairo_surface_status(psurface) != CAIRO_STATUS_SUCCESS)
+   //      {
+
+   //         throw ::exception(error_resource);
+
+   //      }
+
+   //      hsurfaceNew = cairo_surface_create_similar(psurface, cairo_surface_get_content(psurface), 1, 1);
+
+   //   }
+
+   //   if (hsurfaceNew == nullptr)
+   //   {
+
+   //      throw ::exception(error_resource);
+
+   //   }
+
+   //   m_pdc = cairo_create(hsurfaceNew);
+
+   //   m_osdata[0] = m_pdc;
+
+   //   if (m_pdc == nullptr)
+   //   {
+
+   //      throw ::exception(error_resource);
+
+   //   }
+
+   //}
 
 
    bool graphics::fill_contains(const ::f64_point & point)
@@ -1491,7 +1493,7 @@ namespace draw2d_cairo
    }
 
 
-   void graphics::_draw_raw(const ::f64_rectangle & rectangleTarget, ::image::image *pimage,
+   void graphics::_draw_raw(const ::f64_rectangle & rectangleTarget, ::image::image *pimageSource,
                             const ::image::image_drawing_options & imagedrawingoptions, const ::f64_point & pointSrc)
    {
 
@@ -1502,14 +1504,16 @@ namespace draw2d_cairo
       try
       {
 
-         if (::is_null(pimage))
+         if (::is_null(pimageSource))
          {
 
             throw ::exception(error_null_pointer);
 
          }
 
-         pimage->defer_update_image();
+         //pimage->defer_update_image();
+
+         auto pimage = pimageSource->get_source_image();
 
          auto pgraphicsSrc = pimage->acquire_graphics();
 
@@ -1995,7 +1999,7 @@ namespace draw2d_cairo
 
       _synchronous_lock ml(::draw2d_cairo::mutex(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 
-      auto pfont = (::draw2d_cairo::font *) m_pfont->m_pthis;
+      ::cast < ::draw2d_cairo::font > pfont = m_pfont;
 
       if (::is_null(pfont))
       {
@@ -3983,7 +3987,7 @@ namespace draw2d_cairo
 
       _synchronous_lock ml(::draw2d_cairo::mutex(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 
-      auto pfont = (::draw2d_cairo::font *) m_pfont->m_pthis;
+      ::cast < ::draw2d_cairo::font > pfont = m_pfont;
 
       if (::is_null(pfont))
       {
@@ -5407,7 +5411,7 @@ namespace draw2d_cairo
 
       }
 
-      auto pcairodraw2dfont = __font(pfontParam);
+      ::cast < ::draw2d_cairo::font > pcairodraw2dfont = pfontParam;
 
       if (::is_null(pcairodraw2dfont))
       {
@@ -5497,14 +5501,14 @@ namespace draw2d_cairo
 
          //}
 
-         if (::is_set(m_puserinteractionDraw2dGraphics))
+         if (::is_set(m_pacmeuserinteractionAffinity))
          {
 
-            fPreferredDpiX = m_puserinteractionDraw2dGraphics->preferred_dpi_x();
+            fPreferredDpiX = m_pacmeuserinteractionAffinity->preferred_dpi_x();
 
-            fPreferredDpiY = m_puserinteractionDraw2dGraphics->preferred_dpi_y();
+            fPreferredDpiY = m_pacmeuserinteractionAffinity->preferred_dpi_y();
 
-            fPreferredDensity = m_puserinteractionDraw2dGraphics->preferred_density();
+            fPreferredDensity = m_pacmeuserinteractionAffinity->preferred_density();
 
          }
 

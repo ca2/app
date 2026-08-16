@@ -1,5 +1,5 @@
 // Created by camilo on 2023-06-10 19:46 <3ThomasBorregaardSorensen!!
-#include "framework.h"
+#include "platform.h"
 #include "print_formatting.h"
 
 

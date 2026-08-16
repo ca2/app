@@ -1,4 +1,4 @@
-#include "framework.h"
+#include "platform.h"
 #include "apex/operating_system.h"
 #include <time.h>
 //#include "apex/prototype/math/prime100k.h"

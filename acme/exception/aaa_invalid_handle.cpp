@@ -1,4 +1,4 @@
-#include "framework.h"
+#include "platform.h"
 
 
 invalid_handle_exception::invalid_handle_exception(const ::scoped_string & scopedstrMessage) :

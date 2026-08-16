@@ -7,10 +7,10 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		339F0C500E8FD31E4D386C04 /* framework.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 8E5F8D1286084AF03974FE61 /* framework.cpp */; };
+		339F0C500E8FD31E4D386C04 /* platform.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 8E5F8D1286084AF03974FE61 /* platform.cpp */; };
 		1C0C7B1A4408CA1570285AF5 /* _scripting.h in Headers */ = {isa = PBXBuildFile; fileRef = C42D7F64091094EFCD9BBBDB /* _scripting.h */; };
 		B4C77EF133C0CB8B815AA91A /* _.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D09EDE194E8ACEACDF28BD91 /* _.cpp */; };
-		5A71410CF8C4763986410387 /* framework.h in Headers */ = {isa = PBXBuildFile; fileRef = C1EDC5B20A608550918D6048 /* framework.h */; };
+		5A71410CF8C4763986410387 /* platform.h in Headers */ = {isa = PBXBuildFile; fileRef = C1EDC5B20A608550918D6048 /* platform.h */; };
 		8534597BA8976BE1D87913E1 /* _.h in Headers */ = {isa = PBXBuildFile; fileRef = 87DCE80E257B093680AC5ED6 /* _.h */; };
 		DC6FBE47E4FA5B29325AE25F /* libacme.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = ED2BE087821E969DCF85F52D /* libacme.dylib */; };
 		AF7BF9619081100A20E0F8C0 /* tinyjs_functions.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 0EDF884B8204A17039B99A50 /* tinyjs_functions.cpp */; };
@@ -57,10 +57,10 @@
 		3091402E027A1AD54082D515 /* _____release.xcconfig */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xcconfig; path = "_____release.xcconfig"; sourceTree = "<group>"; };
 		1AE9042C821DFFF1A3F97A46 /* _____debug.xcconfig */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xcconfig; path = "_____debug.xcconfig"; sourceTree = "<group>"; };
 		F1A80D6B531BE12DC265B2A1 /* libscripting.dylib */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.dylib"; includeInIndex = 0; path = libscripting.dylib; sourceTree = BUILT_PRODUCTS_DIR; };
-		8E5F8D1286084AF03974FE61 /* framework.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = framework.cpp; sourceTree = "<group>"; };
+		8E5F8D1286084AF03974FE61 /* platform.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = platform.cpp; sourceTree = "<group>"; };
 		C42D7F64091094EFCD9BBBDB /* _scripting.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = _scripting.h; sourceTree = "<group>"; };
 		D09EDE194E8ACEACDF28BD91 /* _.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = _.cpp; sourceTree = "<group>"; };
-		C1EDC5B20A608550918D6048 /* framework.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = framework.h; sourceTree = "<group>"; };
+		C1EDC5B20A608550918D6048 /* platform.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = platform.h; sourceTree = "<group>"; };
 		87DCE80E257B093680AC5ED6 /* _.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = _.h; sourceTree = "<group>"; };
 		EB5168DAA5925FB893857E80 /* acme.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = acme.xcodeproj; path = ../acme/acme.xcodeproj; sourceTree = SOURCE_ROOT; };
 		0EDF884B8204A17039B99A50 /* tinyjs_functions.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = tinyjs_functions.cpp; sourceTree = "<group>"; };
@@ -111,8 +111,8 @@
 				D09EDE194E8ACEACDF28BD91 /* _.cpp */,
 				87DCE80E257B093680AC5ED6 /* _.h */,
 				C42D7F64091094EFCD9BBBDB /* _scripting.h */,
-				8E5F8D1286084AF03974FE61 /* framework.cpp */,
-				C1EDC5B20A608550918D6048 /* framework.h */,
+				8E5F8D1286084AF03974FE61 /* platform.cpp */,
+				C1EDC5B20A608550918D6048 /* platform.h */,
 			);
 			name = scripting;
 			sourceTree = "<group>";
@@ -159,7 +159,7 @@
 				C33EB4FFD3AE6C8B805648A7 /* _.h in Headers */,
 				1C0C7B1A4408CA1570285AF5 /* _scripting.h in Headers */,
 				B77D9A5538C8FA79FBDC796A /* tinyjs_functions.h in Headers */,
-				5A71410CF8C4763986410387 /* framework.h in Headers */,
+				5A71410CF8C4763986410387 /* platform.h in Headers */,
 				F64AFAB92D3C0AFB8AB970C3 /* functions.h in Headers */,
 				6F1B92CFBE0DBA3838F72B81 /* tinyjs.h in Headers */,
 			);
@@ -280,7 +280,7 @@
 			files = (
 				AD522A274A62A2C4EA720257 /* _.cpp in Sources */,
 				EBDE8E64AE871B95D13DE3F1 /* functions.cpp in Sources */,
-				339F0C500E8FD31E4D386C04 /* framework.cpp in Sources */,
+				339F0C500E8FD31E4D386C04 /* platform.cpp in Sources */,
 				AF7BF9619081100A20E0F8C0 /* tinyjs_functions.cpp in Sources */,
 				B4C77EF133C0CB8B815AA91A /* _.cpp in Sources */,
 			);
@@ -363,7 +363,7 @@
 				GCC_NO_COMMON_BLOCKS = YES;
 				GCC_OPTIMIZATION_LEVEL = 0;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
-				GCC_PREFIX_HEADER = framework.h;
+				GCC_PREFIX_HEADER = platform.h;
 				GCC_PREPROCESSOR_DEFINITIONS = "$(inherited)";
 				GCC_REUSE_STRINGS = YES;
 				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
@@ -483,7 +483,7 @@
 				GCC_NO_COMMON_BLOCKS = YES;
 				GCC_OPTIMIZATION_LEVEL = 0;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
-				GCC_PREFIX_HEADER = framework.h;
+				GCC_PREFIX_HEADER = platform.h;
 				GCC_PREPROCESSOR_DEFINITIONS = "";
 				GCC_REUSE_STRINGS = YES;
 				GCC_VERSION = "";

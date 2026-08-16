@@ -247,8 +247,8 @@ list(APPEND library_source
    callback.h
    console.h
    #context_glx.cpp
-   framework.cpp
-   framework.h
+   platform.cpp
+   platform.h
    #framework_c.h
    id.h
    library.h
@@ -304,8 +304,8 @@ target_compile_definitions(static_${PROJECT_NAME} PRIVATE CUBE)
 
 if (NOT ${NO_PRECOMPILED_HEADER})
 
-   target_precompile_headers(${PROJECT_NAME} PRIVATE framework.h)
-   target_precompile_headers(static_${PROJECT_NAME} PRIVATE framework.h)
+   target_precompile_headers(${PROJECT_NAME} PRIVATE platform.h)
+   target_precompile_headers(static_${PROJECT_NAME} PRIVATE platform.h)
 
 endif ()
 

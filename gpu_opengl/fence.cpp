@@ -4,7 +4,7 @@
 //
 //  Created by camilo on 2026-02-08 22:17 <3ThomasBorregaardSørensen!!
 //
-#include "framework.h"
+#include "platform.h"
 #include "fence.h"
 
 
@@ -34,10 +34,10 @@ namespace gpu_opengl
    }
 
 
-   void fence::initialize_gpu_fence(::gpu::context * pgpucontext, bool bCreateSignaled)
+   void fence::initialize_gpu_fence(::gpu::device * pgpudevice, bool bCreateSignaled)
    {
       
-      ::gpu::fence::initialize_gpu_fence(pgpucontext, bCreateSignaled);
+      ::gpu::fence::initialize_gpu_fence(pgpudevice, bCreateSignaled);
    
       if (!bCreateSignaled)
       {

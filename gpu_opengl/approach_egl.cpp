@@ -1,4 +1,4 @@
-#include "framework.h"
+#include "platform.h"
 #include "device_egl.h"
 #include "bred/gpu/device.h"
 #if defined(MACOS)

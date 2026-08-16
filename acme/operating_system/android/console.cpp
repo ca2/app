@@ -1,6 +1,6 @@
 // From acme/operating_system/freebsd/console.cpp by
 // camilo on 2026-06-21 <3ThomasBorregaardSørensen!!
-#include "framework.h"
+#include "platform.h"
 #include "acme/operating_system/console.h"
 
 #include <stdio.h>

@@ -1,5 +1,5 @@
 // Created by camilo on 2025-05-17 04:14 <3ThomasBorregaardSorensen!!
-#include "framework.h"
+#include "platform.h"
 #include "engine.h"
 #include "offscreen_frame_pacer.h"
 #include "immersion_layer.h"
@@ -16,16 +16,24 @@
 #include "apex/database/client.h"
 #include "apex/database/stream.h"
 #include "aura/graphics/graphics/context.h"
+#include "aura/graphics/image/image.h"
+#include "aura/graphics/image/source.h"
+#include "aura/graphics/image/drawing.h"
+#include "aura/windowing/window.h"
 #include "bred/gpu/binding.h"
 #include "bred/gpu/bred_approach.h"
 #include "bred/gpu/command_buffer.h"
 #include "bred/gpu/context.h"
 #include "bred/gpu/context_lock.h"
-#include "bred/gpu/aaa_cpu_buffer.h"
+#include "bred/gpu/buffer.h"
 #include "bred/gpu/device.h"
+#include "bred/gpu/window_attachment.h"
+#include "bred/gpu/frame.h"
 #include "bred/gpu/layer.h"
 #include "bred/gpu/renderer.h"
 #include "bred/gpu/render_target.h"
+#include "bred/gpu/texture.h"
+#include "bred/gpu/texture_site.h"
 #include "bred/graphics3d/_functions.h"
 #include "bred/graphics3d/camera.h"
 #include "bred/graphics3d/shape_factory.h"
@@ -38,16 +46,17 @@
 
 //
 // Function to flip a floating_matrix4 along the Z-axis
-floating_matrix4 flipZMat4(const floating_matrix4& mat) {
+floating_matrix4 flipZMat4(const floating_matrix4 & mat) {
    // Create a rotation matrix that flips along the Y-axis (180 degrees)
    floating_matrix4 flip = floating_matrix4(1.0f);
-   
-   
+
+
    flip.rotate(180.0_degree, floating_sequence3(0.0f, 1.0f, 0.0f));
 
    // Multiply the rotation matrix with the original matrix
    return flip * mat;
 }
+
 
 namespace graphics3d
 {
@@ -55,6 +64,7 @@ namespace graphics3d
 
    engine::engine()
    {
+
       m_fYScale = 1.0f;
       m_bCreatedGlobalUbo = false;
       m_fInputPitchFlip = 1.0f;
@@ -141,7 +151,7 @@ namespace graphics3d
    }
 
 
-   void engine::initialize_engine(::user::graphics3d* pusergraphics3d)
+   void engine::initialize_engine(::user::graphics3d * pusergraphics3d)
    {
 
       m_pusergraphics3d = pusergraphics3d;
@@ -149,8 +159,20 @@ namespace graphics3d
       m_pusergraphics3d->m_pengine = this;
 
       //m_papproach = m_papplication->get_gpu_approach();
-      set_gpu_performance_diagnostics(true);
+      // set_gpu_performance_diagnostics(true);
 
+      if (!m_papplication->m_gpu.m_bUseSwapChainWindow)
+      {
+
+         //::cast < ::windowing::window > pwindow = pusergraphics3d->acme_windowing_window();
+
+         //pwindow->m_papexgpuwindowattachment = m_papplication->get_gpu_approach()->allocate_gpu_window_attachment(pwindow);
+
+         constructø(m_pimageOutput);
+
+         m_pimageOutput->m_pacmeuserinteractionAffinity = pusergraphics3d;
+
+      }
 
    }
 
@@ -164,12 +186,6 @@ namespace graphics3d
          return;
 
       }
-//
-      //auto pgraphicscontext = m_pgpucontextCompositor2->create_graphics_context();
-
-      //pgraphicscontext->defer_start_frame();
-
-      //m_pgpucontextCompositor2->start_frame();
 
       _prepare_frame();
 
@@ -177,33 +193,13 @@ namespace graphics3d
 
       auto prenderer = pgpucontext->m_pgpurenderer.m_p;
 
-      //prenderer->on_new_frame();
-      
       ::gpu::context_lock contextlock(pgpucontext);
 
-      //if (auto pframe = prenderer->beginFrame())
-      
-      //prenderer->start_frame(nullptr);
-
+      pgpucontext->set_output_placement(m_rectanglePlacementNew);
 
       {
 
-         //if (m_papplication->m_gpu.m_bUseSwapChainWindow)
-         //{
-
-         //   //auto prenderer = get_gpu_context()->get_gpu_renderer();
-
-         //   //prenderer->start_layer();
-
-         //   start_gpu_layer(pframe);
-
-         //}
-
-         //on_begin_frame();
-         
-         //prenderer->on_begin_render(pframe);
-
-         //prenderer->on_begin_render(nullptr);
+         auto pgpurendertarget = prenderer->render_target();
 
          {
 
@@ -211,37 +207,26 @@ namespace graphics3d
 
             _synchronous_lock synchronouslock(pscene->synchronization(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 
+            pgpucontext->update_current_scene();
 
-             pgpucontext->update_current_scene();
+            auto pgpuwindowattachment = ::gpu::window_attachment::get(pgpucontext);
 
-             pscene->on_before_render(pgpucontext);
-                   
-             
-             pgpucontext->start_layer();
+            bool bFrameStarted = false;
 
-            //if (pscene->is_global_ubo_ok())
-            //{
+            if (pgpuwindowattachment && pgpuwindowattachment->current_frame()->m_egpuframestate != ::gpu::e_gpu_frame_state_began_frame)
+            {
 
-               //pgpucontext->update_global_ubo1();
+               pgpuwindowattachment->m_pgraphics3dengine = this;
 
-            //}
+               pgpuwindowattachment->start_frame();
 
-            auto pgpurendertarget = prenderer->render_target();
+               bFrameStarted = true;
 
-            //::i32 iFrameIndex = pgpurendertarget->get_image_index();
+            }
 
-            //if (iFrameIndex < 0)
-            //{
+            pscene->on_before_render(pgpucontext);
 
-            //   ::warning("iFrameIndex < 0 (1) at ::graphics3d::engine");
-
-            //}
-
-            //auto pcommandbuffer = pgpulayer->getCurrentCommandBuffer4();
-
-            //pcommandbuffer->m_iCommandBufferFrameIndex = iFrameIndex;
-
-
+            pgpucontext->start_layer();
 
             pscene->on_render(pgpucontext);
 
@@ -249,6 +234,51 @@ namespace graphics3d
 
             pgpucontext->end_layer();
 
+            _synchronous_lock synchronouslock2(this->synchronization());
+
+            if (m_pimageOutput)
+            {
+
+               auto rectangleTarget = pgpucontext->output_placement();
+
+               if (pgpucontext->m_sizeRaw.is_empty())
+               {
+
+                  throw ::exception(error_wrong_state);
+
+               }
+
+               m_pimageOutput->create_as_descriptor(pgpucontext->m_sizeRaw);
+
+               auto mapImageOutput = m_pimageOutput->map(rectangleTarget);
+
+               //auto pgputexturesite = pgpurendertarget->current_texture(::gpu::current_layer(), false);
+               //auto pgputexturesite = pgpurendertarget->current_texture(nullptr, false);
+
+               auto pgputexturesite = pgpucontext->current_target_texture(::gpu::current_layer());
+
+               auto pgpucommandbuffer = pgpucontext->beginSingleTimeCommands(pgpucontext->m_pgpudevice->graphics_queue());
+
+               auto pgputexture = pgputexturesite->gpu_texture()->resolved_texture(pgputexturesite->output_placement());
+
+               pgputexture->read_pixels(pgpucommandbuffer, mapImageOutput, pgputexturesite->m_pointOutput);
+
+               pgpucontext->endSingleTimeCommands(pgpucommandbuffer);
+
+               m_pimageOutput->set_ok_flag();
+
+               m_pimageOutput->m_estatus = success;
+
+               //mapImageOutput.fill_byte(240);
+
+            }
+
+            if (bFrameStarted)
+            {
+
+               pgpuwindowattachment->end_frame();
+
+            }
 
          }
 
@@ -270,7 +300,7 @@ namespace graphics3d
          //prenderer->endFrame();
          //prenderer->end_frame(nullptr);
 
-         
+
          //pgraphicscontext->end_frame();
 
          //m_pgpucontextCompositor2->end_frame();
@@ -313,7 +343,7 @@ namespace graphics3d
 
    }
 
-   
+
    void engine::on_end_frame()
    {
 
@@ -485,7 +515,7 @@ namespace graphics3d
    }
 
 
-   floating_matrix4 engine::model_matrix(::graphics3d::transform& transform)
+   floating_matrix4 engine::model_matrix(::graphics3d::transform & transform)
    {
 
       auto translation = transform.m_sequence3Position;
@@ -500,65 +530,65 @@ namespace graphics3d
          //floating_sequence3 rotation = ::radians(rotationEulerDegrees);
 
          // Scale
-         auto S = scale.as_scaling_matrix();
+      auto S = scale.as_scaling_matrix();
 
-         // Rotation (Euler to Quaternion to Matrix)
-         //;
-         //;
-         //auto quaternion = f32_quaternion(rotation);
-         auto R = rotation.as_rotation_matrix();
+      // Rotation (Euler to Quaternion to Matrix)
+      //;
+      //;
+      //auto quaternion = f32_quaternion(rotation);
+      auto R = rotation.as_rotation_matrix();
 
-         // Translation
-         auto T = translation.as_translation_matrix();
+      // Translation
+      auto T = translation.as_translation_matrix();
 
-         // Model matrix (camera transform)
-         auto model = T * R * S;
+      // Model matrix (camera transform)
+      auto model = T * R * S;
 
-         return model;
+      return model;
 
-         // View matrix is inverse of camera transform
-        // floating_matrix4 view = glm::inverse(model);
+      // View matrix is inverse of camera transform
+     // floating_matrix4 view = glm::inverse(model);
 
-         //return view;
-      //}
-      //const ::f32 c3 = glm::cos(transformcomponent.rotation.z);
-      //const ::f32 s3 = glm::sin(transformcomponent.rotation.z);
-      //const ::f32 c2 = glm::cos(transformcomponent.rotation.x);
-      //const ::f32 s2 = glm::sin(transformcomponent.rotation.x);
-      //const ::f32 c1 = glm::cos(transformcomponent.rotation.y);
-      //const ::f32 s1 = glm::sin(transformcomponent.rotation.y);
-      //::f32 scalex = transformcomponent.scale.x;
-      //::f32 scaley = transformcomponent.scale.y;
-      //::f32 scalez = m_fYScale * transformcomponent.scale.z;
-      //::f32 translationx = transformcomponent.translation.x;
-      //::f32 translationy = transformcomponent.translation.y;
-      //::f32 translationz = transformcomponent.translation.z;
-      //return floating_matrix4{
-      //   {
-      //      scalex * (c1 * c3 + s1 * s2 * s3),
-      //      scalex * (c2 * s3),
-      //      scalex * (c1 * s2 * s3 - c3 * s1),
-      //      0.0f,
-      //   },
-      //   {
-      //      scaley * (c3 * s1 * s2 - c1 * s3),
-      //      scaley * (c2 * c3),
-      //      scaley * (c1 * c3 * s2 + s1 * s3),
-      //      0.0f,
-      //   },
-      //   {
-      //      scalez * (c2 * s1),
-      //      scalez * (-s2),
-      //      scalez * (c1 * c2),
-      //      0.0f,
-      //   },
-      //   {translationx, translationy, translationz, 1.0f}
-      //};
+      //return view;
+   //}
+   //const ::f32 c3 = glm::cos(transformcomponent.rotation.z);
+   //const ::f32 s3 = glm::sin(transformcomponent.rotation.z);
+   //const ::f32 c2 = glm::cos(transformcomponent.rotation.x);
+   //const ::f32 s2 = glm::sin(transformcomponent.rotation.x);
+   //const ::f32 c1 = glm::cos(transformcomponent.rotation.y);
+   //const ::f32 s1 = glm::sin(transformcomponent.rotation.y);
+   //::f32 scalex = transformcomponent.scale.x;
+   //::f32 scaley = transformcomponent.scale.y;
+   //::f32 scalez = m_fYScale * transformcomponent.scale.z;
+   //::f32 translationx = transformcomponent.translation.x;
+   //::f32 translationy = transformcomponent.translation.y;
+   //::f32 translationz = transformcomponent.translation.z;
+   //return floating_matrix4{
+   //   {
+   //      scalex * (c1 * c3 + s1 * s2 * s3),
+   //      scalex * (c2 * s3),
+   //      scalex * (c1 * s2 * s3 - c3 * s1),
+   //      0.0f,
+   //   },
+   //   {
+   //      scaley * (c3 * s1 * s2 - c1 * s3),
+   //      scaley * (c2 * c3),
+   //      scaley * (c1 * c3 * s2 + s1 * s3),
+   //      0.0f,
+   //   },
+   //   {
+   //      scalez * (c2 * s1),
+   //      scalez * (-s2),
+   //      scalez * (c1 * c2),
+   //      0.0f,
+   //   },
+   //   {translationx, translationy, translationz, 1.0f}
+   //};
 
    }
 
-   
-   floating_matrix4 engine::normal_matrix(::graphics3d::transform& transformcomponent)
+
+   floating_matrix4 engine::normal_matrix(::graphics3d::transform & transformcomponent)
    {
 
       auto m = model_matrix(transformcomponent);
@@ -743,7 +773,7 @@ namespace graphics3d
    }
 
 
-   void engine::defer_start(::user::graphics3d* pusergraphics3d, const ::i32_rectangle& rectanglePlacement)
+   void engine::defer_start(::user::graphics3d * pusergraphics3d, const ::i32_rectangle & rectanglePlacement)
    {
 
       m_pusergraphics3d = pusergraphics3d;
@@ -752,11 +782,22 @@ namespace graphics3d
 
       auto pgpuapproach = papp->get_gpu_approach();
 
-      //auto pwindow = m_pusergraphics3d->window();
+      auto pwindow = m_pusergraphics3d->window();
 
-      pgpuapproach->m_rectangleOffscreen = rectanglePlacement;
+      ::i32_rectangle rectangleWindow = rectanglePlacement;
 
-      m_rectanglePlacementNew = rectanglePlacement;
+      rectangleWindow.offset(-rectangleWindow.top_left());
+
+      if (m_papplication->m_gpu.m_bUseSwapChainWindow)
+      {
+
+         pusergraphics3d->client_to_screen()(rectangleWindow);
+
+      }
+
+      pgpuapproach->m_rectangleOffscreen = rectangleWindow;
+
+      m_rectanglePlacementNew = rectangleWindow;
 
       ::cast<::gpu::device> pgpudevice = get_gpu_context()->m_pgpudevice;
 
@@ -807,10 +848,10 @@ namespace graphics3d
 
       set_ok_flag();
 
-      m_rectanglePlacementNew = rectanglePlacement;
+      //m_rectanglePlacementNew = rectanglePlacement;
 
-      get_gpu_context()->sendø()<<[this, rectanglePlacement]()
-      {
+      get_gpu_context()->sendø() << [this, rectanglePlacement]()
+         {
 
             auto pcontext = gpu_context();
 
@@ -818,20 +859,43 @@ namespace graphics3d
 
             pgpurenderer->on_resize(rectanglePlacement.size());
 
+            auto pgpuwindowattachment = ::gpu::window_attachment::get(pcontext);
+
+
+            if (m_papplication->m_gpu.m_bUseSwapChainWindow)
+            {
+
+               auto prendererBackBuffer = pgpuwindowattachment->draw2d_context()->get_gpu_renderer();
+
+               pgpuwindowattachment->set_render_target(prendererBackBuffer->render_target());
+
+            }
+            //else
+            //{
+
+
+
+            //   auto prendererEngine = pcontext->m_pgpurenderer;
+
+            //   pgpuwindowattachment->set_render_target(prendererEngine->render_target());
+
+            //}
+
+
             m_pusergraphics3d->on_load_engine();
 
             pcontext->m_pengine = this;
 
             m_bLoadedEngine = true;
-//
-  //          run_engine();
+            //
+              //          run_engine();
 
-            //if (pcontext->m_eoutput == ::gpu::e_output_cpu_buffer)
-            //{
+                        //if (pcontext->m_eoutput == ::gpu::e_output_cpu_buffer)
+                        //{
 
-            //   run_cpu_buffer();
+                        //   run_cpu_buffer();
 
-            //}
+                        //}
 
          };
 
@@ -856,7 +920,7 @@ namespace graphics3d
 
    //}
 
-   
+
    ::graphics3d::shape_factory * engine::shape_factory()
    {
 
@@ -872,7 +936,7 @@ namespace graphics3d
    }
 
 
-   ::gpu::context* engine::get_gpu_context()
+   ::gpu::context * engine::get_gpu_context()
    {
 
       auto pcontext = gpu_context();
@@ -891,14 +955,23 @@ namespace graphics3d
 
          auto pgpudevice = m_papplication->get_gpu_approach()->get_gpu_device(pacmewindowingwindow);
 
+         auto sizeRaw = pacmewindowingwindow->get_raw_buffer_size().maximum(m_rectanglePlacementNew.size());
+
+         auto pointOutput = m_rectanglePlacementNew.origin();
+         
+         auto size = m_rectanglePlacementNew.size();
+
          auto pgpucontextNew = pgpudevice->allocate_gpu_context();
 
          pgpucontextNew->create_gpu_context(
-            pgpudevice, 
+            pgpudevice,
             get_engine_gpu_eoutput(),
             ::gpu::e_scene_3d,
-            pacmewindowingwindow, 
-            m_rectanglePlacementNew.size());
+            pacmewindowingwindow,
+            {},
+            pointOutput,
+            size,
+            sizeRaw);
 
          pgpucontextNew->m_etype = ::gpu::context::e_type_graphics3d;
 
@@ -915,17 +988,12 @@ namespace graphics3d
    }
 
 
-   void engine::engine_on_after_load_scene(::graphics3d::scene_base* pscene)
+   void engine::engine_on_after_load_scene(::graphics3d::scene_base * pscene)
    {
 
       auto pcontext = gpu_context();
 
       pcontext->m_pgpurenderer->on_after_load_scene(pscene);
-      //{
-
-
-
-      //}
 
    }
 
@@ -953,14 +1021,14 @@ namespace graphics3d
 
       auto pcontext = gpu_context();
 
-      pcontext->sendø() <<[this]()
+      pcontext->sendø() << [this]()
          {
 
             auto pcontext = gpu_context();
 
             //::gpu::context_guard guard(m_pgpucontextCompositor);
 
-            pcontext->set_placement(m_rectanglePlacementNew);
+            pcontext->set_output_placement(m_rectanglePlacementNew);
 
             auto prenderer = pcontext->get_gpu_renderer();
 
@@ -979,17 +1047,17 @@ namespace graphics3d
 
          };
 
-//      m_pgpurendererGraphics3D->on_new_frame();
+      //      m_pgpurendererGraphics3D->on_new_frame();
 
-      //pcontext->make_current();
+            //pcontext->make_current();
 
-      //auto prendererSource = m_pgpurendererGraphics3D->m_pgpucontextCompositor->m_pgpurendererOutput;
+            //auto prendererSource = m_pgpurendererGraphics3D->m_pgpucontextCompositor->m_pgpurendererOutput;
 
-      //auto prenderer = pcontext->m_pgpurendererOutput;
+            //auto prenderer = pcontext->m_pgpurendererOutput;
 
-      //prenderer->blend(prendererSource);
+            //prenderer->blend(prendererSource);
 
-      //prenderer->soft_restore_context();
+            //prenderer->soft_restore_context();
 
    }
 
@@ -1002,7 +1070,7 @@ namespace graphics3d
    }
 
 
-   void engine::_001OnDraw(::draw2d::graphics_pointer& pgraphics)
+   void engine::_001OnDraw(::draw2d::graphics_pointer & pgraphics)
    {
 
       auto eoutput = get_gpu_context()->m_eoutput;
@@ -1034,15 +1102,15 @@ namespace graphics3d
       else
       {*/
 
-         //auto pcontext = gpu_context();
+      //auto pcontext = gpu_context();
 
-         //auto pgraphicscontext = create_newø<::graphics::context>();
+      //auto pgraphicscontext = create_newø<::graphics::context>();
 
-         //do_frame_step(pcontext);
+      //do_frame_step(pcontext);
 
-         do_draw_layer();
+      do_draw_layer();
 
-         on_after_done_frame_step(pgraphics);
+      on_after_done_frame_step(pgraphics);
 
       //}
 
@@ -1070,9 +1138,9 @@ namespace graphics3d
 
       if (!m_rectanglePlacementNew.is_empty())
       {
-         
+
          //auto wNew = m_rectanglePlacementNew.width();
-         
+
          //auto hNew = m_rectanglePlacementNew.height();
 
          if (m_rectanglePlacementNew != m_rectanglePlacement)
@@ -1156,10 +1224,43 @@ namespace graphics3d
 
    }
 
-   void engine::on_after_done_frame_step(::draw2d::graphics_pointer& pgraphics)
+
+   void engine::on_after_done_frame_step(::draw2d::graphics_pointer & pgraphics)
    {
 
+      _synchronous_lock synchronouslock(this->synchronization());
 
+      if (m_pimageOutput.ok())
+      {
+
+         auto pgpucontext = gpu_context();
+
+         auto rectangleOutput = pgpucontext->output_placement();
+
+         ::image::image_source imagesource(m_pimageOutput, rectangleOutput);
+
+         rectangleOutput.offset(-rectangleOutput.top_left());
+
+         ::image::image_drawing_options imagedrawingoptions(rectangleOutput);
+
+         ::image::image_drawing imagedrawing(imagedrawingoptions, imagesource);
+
+         pgraphics->draw(imagedrawing);
+
+         if (1)
+         {
+
+            pgraphics->fill_solid_rectangle({ 0, 0, 100, 100 }, argb(128, 100, 160, 200));
+
+            pgraphics->fill_solid_rectangle({ rectangleOutput.right - 100, 0, rectangleOutput.right, 100 }, argb(128, 100, 160, 200));
+
+            pgraphics->fill_solid_rectangle({ 0, rectangleOutput.bottom - 100, 100, rectangleOutput.bottom }, argb(128, 100, 160, 200));
+
+            pgraphics->fill_solid_rectangle({ rectangleOutput.right - 100, rectangleOutput.bottom - 100, rectangleOutput.right, rectangleOutput.bottom }, argb(128, 100, 160, 200));
+
+         }
+
+      }
 
    }
 
@@ -1199,7 +1300,7 @@ namespace graphics3d
    }
 
 
-   void engine::defer_update_engine(const ::i32_rectangle &rectanglePlacement)
+   void engine::defer_update_engine(const ::i32_rectangle & rectanglePlacement)
    {
 
       //if (!m_prenderer)
@@ -1228,11 +1329,11 @@ namespace graphics3d
       //          m_prenderer->getRenderPass(),
         //        globalSetLayout->getDescriptorSetLayout()
           //  };
-      
+
       auto pgpucontext = gpu_context();
 
-      pgpucontext->set_placement(rectanglePlacement);
-      
+      pgpucontext->set_output_placement(rectanglePlacement);
+
       defer_process_load_assets_commands();
 
       auto pscene = m_pimmersionlayer->m_pscene;
@@ -1247,24 +1348,24 @@ namespace graphics3d
       {
 
          m_bCreatedGlobalUbo = true;
-         
+
          {
-            
+
             ::gpu::context_lock contextlock(pgpucontext);
-            
+
             auto * pblockGlobalUbo1 = pscene->global_ubo1(pcontext);
-            
+
             ASSERT(::is_set(pblockGlobalUbo1));
-            
+
             //auto iGlobalUboSize = pscene->global_ubo1(pcontext).size(true);
-            
+
             //if (iGlobalUboSize > 0)
             //{
-            
+
             //   create_global_ubo(pcontext);
-            
+
             //}
-            
+
          }
 
       }
@@ -1274,7 +1375,7 @@ namespace graphics3d
    }
 
 
-   void engine::on_layout(const ::i32_rectangle& rectanglePlacement)
+   void engine::on_layout(const ::i32_rectangle & rectanglePlacement)
    {
 
       m_rectanglePlacementNew = rectanglePlacement;
@@ -1399,7 +1500,7 @@ namespace graphics3d
    //
    // }
 
-   
+
    //floating_matrix4 engine::ortho(::f32 left, ::f32 right, ::f32 bottom, ::f32 top, ::f32 zNear, ::f32 zFar)
    //{
 
@@ -1414,13 +1515,13 @@ namespace graphics3d
    {
 
       throw ::interface_only();
-      
-      return {1.0f}; 
-   
+
+      return { 1.0f };
+
    }
 
 
-   void engine::calculate_impact(::floating_matrix4 &matrixImpact, const ::graphics3d::camera &camera)
+   void engine::calculate_impact(::floating_matrix4 & matrixImpact, const ::graphics3d::camera & camera)
    {
 
 
@@ -1437,7 +1538,7 @@ namespace graphics3d
    }
 
 
-   void engine::calculate_projection(::floating_matrix4 &matrixProjection, const ::graphics3d::camera &camera)
+   void engine::calculate_projection(::floating_matrix4 & matrixProjection, const ::graphics3d::camera & camera)
    {
 
       matrixProjection = perspective(camera.m_angleFovY, camera.m_fAspectRatio, camera.m_fNearZ, camera.m_fFarZ);

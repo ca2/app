@@ -1,4 +1,4 @@
-#include "framework.h"
+#include "platform.h"
 
 #if !defined(__APPLE__) && !defined(WINDOWS)
 #include "assimp.h"

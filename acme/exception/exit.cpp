@@ -1,4 +1,4 @@
-#include "framework.h"
+#include "platform.h"
 #include "exit.h"
 #include "acme/parallelization/task.h"
 #include "acme/platform/application.h"

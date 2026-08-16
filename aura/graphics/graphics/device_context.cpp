@@ -1,6 +1,7 @@
-#include "framework.h"
+#include "platform.h"
 //#include "_.h"
 //#include "_graphics.h"
+#include "aura/graphics/graphics/buffer_item.h"
 #include "device_context.h"
 #include "aura/graphics/draw2d/graphics.h"
 #include "aura/graphics/draw2d/graphics_pointer.h"
@@ -26,7 +27,7 @@ namespace graphics
 
 
 
-   buffer_item * device_context::on_begin_draw()
+   ::draw2d::graphics_lease device_context::on_begin_draw()
    {
 
       auto pitem = get_buffer_item();
@@ -60,7 +61,7 @@ namespace graphics
 
       //return m_spgraphics;
 
-      return pitem;
+      return pitem->acquire_graphics();
 
    }
 

@@ -1,6 +1,6 @@
 // From github:/tristancalderbank/OpenGL-PBR-Renderer/hdr_texture.h by
 // camilo on 2025-09-26 21:14 <3ThomasBorregaardSorensen!!
-#include "framework.h"
+#include "platform.h"
 #include "hdr_texture.h"
 
 #include <iostream>

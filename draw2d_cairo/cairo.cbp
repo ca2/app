@@ -126,8 +126,8 @@
 		<Unit filename="factory_exchange.h" />
 		<Unit filename="font.cpp" />
 		<Unit filename="font.h" />
-		<Unit filename="framework.cpp" />
-		<Unit filename="framework.h">
+		<Unit filename="platform.cpp" />
+		<Unit filename="platform.h">
 			<Option compile="1" />
 			<Option weight="0" />
 		</Unit>

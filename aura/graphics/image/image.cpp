@@ -2,7 +2,7 @@
 //   Location : http://www.luc.ac.be/~ef00/ebgfx
 //   Date : 09-04-98
 //////////////////////////////////////////////////////////////////////
-#include "framework.h"
+#include "platform.h"
 #include "frame_array.h"
 #include "drawing.h"
 #include "context.h"
@@ -329,7 +329,7 @@ bool image::_is_ok() const
 
       }
 
-      create_bitmap(pacmeuserinteractionAffinity);
+      ///create_bitmap(pacmeuserinteractionAffinity);
 
       return pdraw2d->acquire_image_graphics(
          this,
@@ -381,13 +381,13 @@ bool image::has_active_destination_graphics_lease() const
 }
 
 
-::draw2d::bitmap_pointer image::get_bitmap() const
+::draw2d::bitmap_pointer image::get_bitmap(::draw2d::graphics * pdraw2dgraphics) const
 {
 
    if (!m_pbitmap)
    {
 
-      ((image * )this)->create_bitmap();
+      ((image * )this)->create_bitmap(m_pacmeuserinteractionAffinity, pdraw2dgraphics);
 
    }
 
@@ -493,7 +493,15 @@ void image::create_from_data(const ::i32_size & size, const ::image32_t * pimage
 }
 
 
-void image::create_as_render_target(const ::i32_size& sizeRaw, ::user::interaction * puserinteraction, ::enum_flag eflagCreate, ::i32 iGoodStride, bool bPreserve)
+void image::create_as_top_draw2d_target(const ::i32_size & size, ::user::interaction * puserinteraction, ::draw2d::graphics * pdraw2dgraphics, ::enum_flag eflagCreate, ::i32 iGoodStride, bool bPreserve)
+{
+   
+   create_as_render_target(size, puserinteraction, pdraw2dgraphics, eflagCreate, iGoodStride, bPreserve, true);
+
+}
+
+
+void image::create_as_render_target(const ::i32_size& sizeRaw, ::user::interaction * puserinteraction, ::draw2d::graphics * pdraw2dgraphics, ::enum_flag eflagCreate, ::i32 iGoodStride, bool bPreserve, bool bTopDraw2d)
 {
 
    if (!puserinteraction)
@@ -512,12 +520,12 @@ void image::create_as_render_target(const ::i32_size& sizeRaw, ::user::interacti
 }
 
 
-void image::initialize(const ::i32_size & size, ::image32_t * pimage32, ::i32 iScan, ::enum_flag eflagCreate)
-{
-
-   return create_from_data(size, pimage32, iScan, eflagCreate);
-
-}
+//void image::initialize(const ::i32_size & size, ::image32_t * pimage32, ::i32 iScan, ::enum_flag eflagCreate)
+//{
+//
+//   return create_from_data(size, pimage32, iScan, eflagCreate);
+//
+//}
 
 
 void image::preserve(const ::i32_size& size, ::enum_flag eflagCreate)
@@ -6985,7 +6993,7 @@ void image::e_rotate_270_flip_horizontally()
 void image::fill_byte(uchar uch)
 {
 
-   map();
+   auto mapThis = map();
 
    //if (m_bMapped)
    //{
@@ -6997,9 +7005,9 @@ void image::fill_byte(uchar uch)
 
       }
 
-      ::i32 iScan = m_iScan;
+      ::i32 iScan = mapThis.m_iScan;
 
-      ::i32 iHeight = get_size().cy;
+      ::i32 iHeight = mapThis.size().cy;
 
       if (iScan <= 0 || iHeight <= 0)
       {
@@ -7008,7 +7016,7 @@ void image::fill_byte(uchar uch)
 
       }
 
-      memory_set(data(), uch, (memsize)(iScan * iHeight));
+      memory_set(mapThis.data(), uch, (memsize)(iScan * iHeight));
 
    //}
    //else 
@@ -10288,7 +10296,7 @@ void image::on_exif_orientation()
 
 
 void image::create_bitmap(
-   ::acme::user::interaction * pacmeuserinteractionAffinity)
+   ::acme::user::interaction * pacmeuserinteractionAffinity, ::draw2d::graphics * pgraphics)
 {
 
    if (m_pbitmap.ok())
@@ -10309,7 +10317,8 @@ void image::create_bitmap(
 
    m_pbitmap->create_bitmap_for_image(
       this,
-      pacmeuserinteractionAffinity);
+      pacmeuserinteractionAffinity,
+      pgraphics);
 
 }
 
@@ -10987,7 +10996,7 @@ void image::transform(enum_image eimage)
 //
 
 
-void image::_map(bool bApplyAlphaTransform)
+void image::_map(const ::i32_rectangle & rectangle, bool bApplyAlphaTransform)
 {
 
    if (has_active_destination_graphics_lease())
@@ -10997,7 +11006,7 @@ void image::_map(bool bApplyAlphaTransform)
 
    }
 
-   pixmap::_map();
+   pixmap::_map(rectangle, bApplyAlphaTransform);
 
 }
 

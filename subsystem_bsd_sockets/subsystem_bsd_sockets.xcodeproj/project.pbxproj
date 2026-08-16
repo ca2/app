@@ -14,7 +14,7 @@
 		BFDBC6A3F48D1F2E30AE6513 /* Sockets.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D80147447CA1ACFCAFB61D4B /* Sockets.cpp */; };
 		8804F02FC537AED4EB6B26C6 /* subsystem.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B0AD8138A59BC589ACF5FEC8 /* subsystem.cpp */; };
 		1135A426A9179889477D55BC /* _factory.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 94CB6B1D876987A5C6D74C82 /* _factory.cpp */; };
-		2475437FB807F8F1FA812F93 /* framework.cpp in Sources */ = {isa = PBXBuildFile; fileRef = E64D86E05A5DCA4225FD9E66 /* framework.cpp */; };
+		2475437FB807F8F1FA812F93 /* platform.cpp in Sources */ = {isa = PBXBuildFile; fileRef = E64D86E05A5DCA4225FD9E66 /* platform.cpp */; };
 		09C7047BF6A0064909B0C134 /* SocketAddressIPv4.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 46F7B8C412FF5192059048CC /* SocketAddressIPv4.cpp */; };
 		E09CF09CF8FF06A13372AFC3 /* SocketIPv4.cpp in Sources */ = {isa = PBXBuildFile; fileRef = E1804327BF7D01CBB10EDEDE /* SocketIPv4.cpp */; };
 		A149E7A35919F0A792351117 /* subsystem.cpp in Sources */ = {isa = PBXBuildFile; fileRef = FBB367B51DE6BBC051827E52 /* subsystem.cpp */; };
@@ -24,7 +24,7 @@
 		72A6C1DA9F1AD6EE4B103837 /* _common_header.h in Headers */ = {isa = PBXBuildFile; fileRef = 4A909999E7EA70292ED6CD15 /* _common_header.h */; };
 		5688E6C98971735CE1A6CEE3 /* SocketAddressIPv4.h in Headers */ = {isa = PBXBuildFile; fileRef = 9C93500B237685A81C9A34F2 /* SocketAddressIPv4.h */; };
 		0FEA09B851FAD53C93F1394D /* _.h in Headers */ = {isa = PBXBuildFile; fileRef = 4A9E4ADB004F43E8C2A929C7 /* _.h */; };
-		6956E88BD7F2D32E72903659 /* framework.h in Headers */ = {isa = PBXBuildFile; fileRef = F203491373BB34FF903E8803 /* framework.h */; };
+		6956E88BD7F2D32E72903659 /* platform.h in Headers */ = {isa = PBXBuildFile; fileRef = F203491373BB34FF903E8803 /* platform.h */; };
 		57291CE1FE89B9CE1D9C94B6 /* SocketIPv4.h in Headers */ = {isa = PBXBuildFile; fileRef = 89F25CEAD2644BD9F3C93C34 /* SocketIPv4.h */; };
 /* End PBXBuildFile section */
 
@@ -57,8 +57,8 @@
 		A1A78E19B9142ECA2FD2C84D /* _.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = _.cpp; sourceTree = "<group>"; };
 		4A909999E7EA70292ED6CD15 /* _common_header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = _common_header.h; sourceTree = "<group>"; };
 		94CB6B1D876987A5C6D74C82 /* _factory.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = _factory.cpp; sourceTree = "<group>"; };
-		F203491373BB34FF903E8803 /* framework.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = framework.h; sourceTree = "<group>"; };
-		E64D86E05A5DCA4225FD9E66 /* framework.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = framework.cpp; sourceTree = "<group>"; };
+		F203491373BB34FF903E8803 /* platform.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = platform.h; sourceTree = "<group>"; };
+		E64D86E05A5DCA4225FD9E66 /* platform.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = platform.cpp; sourceTree = "<group>"; };
 		FE8A969FEF84C1D7B45F5D15 /* subsystem.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = subsystem.h; sourceTree = "<group>"; };
 		FBB367B51DE6BBC051827E52 /* subsystem.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = subsystem.cpp; sourceTree = "<group>"; };
 		73B1EA7D16B4ECC60A045FDF /* resource.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = resource.h; sourceTree = "<group>"; };
@@ -132,8 +132,8 @@
 				A1A78E19B9142ECA2FD2C84D /* _.cpp */,
 				4A909999E7EA70292ED6CD15 /* _common_header.h */,
 				94CB6B1D876987A5C6D74C82 /* _factory.cpp */,
-				F203491373BB34FF903E8803 /* framework.h */,
-				E64D86E05A5DCA4225FD9E66 /* framework.cpp */,
+				F203491373BB34FF903E8803 /* platform.h */,
+				E64D86E05A5DCA4225FD9E66 /* platform.cpp */,
 				73B1EA7D16B4ECC60A045FDF /* resource.h */,
 			);
 			name = subsystem_bsd_sockets;
@@ -200,7 +200,7 @@
 				72A6C1DA9F1AD6EE4B103837 /* _common_header.h in Headers */,
 				5688E6C98971735CE1A6CEE3 /* SocketAddressIPv4.h in Headers */,
 				0FEA09B851FAD53C93F1394D /* _.h in Headers */,
-				6956E88BD7F2D32E72903659 /* framework.h in Headers */,
+				6956E88BD7F2D32E72903659 /* platform.h in Headers */,
 				57291CE1FE89B9CE1D9C94B6 /* SocketIPv4.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -286,7 +286,7 @@
 				8804F02FC537AED4EB6B26C6 /* subsystem.cpp in Sources */,
 				1135A426A9179889477D55BC /* _factory.cpp in Sources */,
 				CE639BF5D4E434E661FCA863 /* Sockets.cpp in Sources */,
-				2475437FB807F8F1FA812F93 /* framework.cpp in Sources */,
+				2475437FB807F8F1FA812F93 /* platform.cpp in Sources */,
 				09C7047BF6A0064909B0C134 /* SocketAddressIPv4.cpp in Sources */,
 				E09CF09CF8FF06A13372AFC3 /* SocketIPv4.cpp in Sources */,
 				A149E7A35919F0A792351117 /* subsystem.cpp in Sources */,
@@ -371,7 +371,7 @@
 				GCC_NO_COMMON_BLOCKS = YES;
 				GCC_OPTIMIZATION_LEVEL = 0;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
-				GCC_PREFIX_HEADER = framework.h;
+				GCC_PREFIX_HEADER = platform.h;
 				GCC_REUSE_STRINGS = YES;
 				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
 				GCC_VERSION = "";
@@ -497,7 +497,7 @@
 				GCC_NO_COMMON_BLOCKS = YES;
 				GCC_OPTIMIZATION_LEVEL = 0;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
-				GCC_PREFIX_HEADER = framework.h;
+				GCC_PREFIX_HEADER = platform.h;
 				GCC_REUSE_STRINGS = YES;
 				GCC_VERSION = "";
 				GCC_WARN_64_TO_32_BIT_CONVERSION = NO;

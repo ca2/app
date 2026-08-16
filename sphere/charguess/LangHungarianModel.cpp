@@ -21,7 +21,7 @@
 */
 
 
-#include "framework.h"
+#include "platform.h"
 #include "SBCharsetProber.h"
 /****************************************************************
 255: Control characters that usually does not exist in any text

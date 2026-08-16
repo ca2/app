@@ -1,4 +1,4 @@
-#include "framework.h"
+#include "platform.h"
 #include "slider.h"
 #include "acme/constant/user_message.h"
 #include "aura/message/user.h"

@@ -1,5 +1,5 @@
 // Created by camilo on 2026-01-06 21:18 <3ThomasBorregaardSørensen!!
-#include "framework.h"
+#include "platform.h"
 #include "typeface_fontconfig.h"
 #include <fontconfig/fontconfig.h>
 

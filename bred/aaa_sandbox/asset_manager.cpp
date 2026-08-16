@@ -1,4 +1,4 @@
-#include "../../../SceneFoundry/graphics3d/framework.h"
+#include "../../../SceneFoundry/graphics3d/platform.h"
 // asset_manager.cpp
 #include "acme/filesystem/filesystem/file_context.h"
 #include "asset_manager.h"

@@ -1,7 +1,7 @@
 #include "platform.h"
 #include "extension.h"
-#include "frame_array.h"
 #include "map.h"
+#include "acme/graphics/image/frame_array.h"
 
 
 namespace image

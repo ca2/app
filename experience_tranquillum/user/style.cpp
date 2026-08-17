@@ -1874,7 +1874,7 @@ namespace experience_tranquillum
 
       //               ptoolbar->index_element_rectangle(iItem, rectangle, ::user::toolbar::element_image_hover);
 
-      //               pgraphics->color_blend(rectangle.top_left(), rectangle.size(), item.m_pimage->g(), nullptr, 0.80);
+      //               pgraphics->color_blend(rectangle.top_left(), rectangle.size(), item.m_pgraphicsImage->, nullptr, 0.80);
 
       //            }
       //            else if (uImage != 0xffffffffu)
@@ -1919,7 +1919,7 @@ namespace experience_tranquillum
 
       //            ptoolbar->index_element_rectangle(iItem, rectangle, ::user::toolbar::element_image_press);
 
-      //            pgraphics->color_blend(rectangle.top_left(), rectangle.size(), item.m_pimage->g(), nullptr, 1.0);
+      //            pgraphics->color_blend(rectangle.top_left(), rectangle.size(), item.m_pgraphicsImage->, nullptr, 1.0);
 
       //         }
       //         else if (uImage != 0xffffffff)
@@ -1956,7 +1956,7 @@ namespace experience_tranquillum
 
       //            ptoolbar->index_element_rectangle(iItem, rectangle, ::user::toolbar::element_image);
 
-      //            pgraphics->color_blend(rectangle.top_left(), rectangle.size(), item.m_pimage->g(), nullptr, 0.20);
+      //            pgraphics->color_blend(rectangle.top_left(), rectangle.size(), item.m_pgraphicsImage->, nullptr, 0.20);
 
       //         }
       //         else if (uImage != 0xffffffff)
@@ -2178,7 +2178,7 @@ namespace experience_tranquillum
 
       //               ptoolbar->index_element_rectangle(iItem, rectangle, ::user::toolbar::element_image_hover);
 
-      //               pgraphics->color_blend(rectangle.top_left(), rectangle.size(), item.m_pimage->g(), nullptr, 0.80);
+      //               pgraphics->color_blend(rectangle.top_left(), rectangle.size(), item.m_pgraphicsImage->, nullptr, 0.80);
 
       //            }
       //            else if (uImage != 0xffffffffu)
@@ -2223,7 +2223,7 @@ namespace experience_tranquillum
 
       //            ptoolbar->index_element_rectangle(iItem, rectangle, ::user::toolbar::element_image_press);
 
-      //            pgraphics->color_blend(rectangle.top_left(), rectangle.size(), item.m_pimage->g(), nullptr, 1.0);
+      //            pgraphics->color_blend(rectangle.top_left(), rectangle.size(), item.m_pgraphicsImage->, nullptr, 1.0);
 
       //         }
       //         else if (uImage != 0xffffffff)
@@ -2283,7 +2283,7 @@ namespace experience_tranquillum
 
       //            ptoolbar->index_element_rectangle(iItem, rectangle, ::user::toolbar::element_image);
 
-      //            pgraphics->color_blend(rectangle.top_left(), rectangle.size(), item.m_pimage->g(), nullptr, 0.20);
+      //            pgraphics->color_blend(rectangle.top_left(), rectangle.size(), item.m_pgraphicsImage->, nullptr, 0.20);
 
       //         }
       //         else if (uImage != 0xffffffff)

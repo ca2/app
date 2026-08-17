@@ -2569,7 +2569,7 @@ namespace user
 
       //auto pdraw2d = psystem->draw2d();
 
-      //auto pgraphics = pdraw2d->create_memory_graphics(this);
+      //auto pgraphics = pdraw2d->create_memory_graphics({}, this);
 
       //plain_edit_on_calc_layout(pgraphics);
 
@@ -7195,7 +7195,7 @@ namespace user
 
       //auto pdraw2d = psystem->draw2d();
 
-      //auto pgraphics = pdraw2d->create_memory_graphics(this);
+      //auto pgraphics = pdraw2d->create_memory_graphics({}, this);
 
       //if (plain_edit_delete_sel(pgraphics, bFullUpdate, iLineUpdate))
       //{
@@ -10350,7 +10350,7 @@ namespace user
 
       //auto pdraw2d = psystem->draw2d();
 
-      //auto pgraphics = pdraw2d->create_memory_graphics(this);
+      //auto pgraphics = pdraw2d->create_memory_graphics({}, this);
 
       //plain_edit_create_line_index(pgraphics);
 

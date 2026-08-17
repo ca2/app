@@ -43,9 +43,9 @@ namespace image
 
       {
 
-         auto mapLoadImage = ploadimage->map({w, h}, &iScan);
+         auto ppixmapLoadImage = ploadimage->map({w, h}, &iScan);
 
-         nsvgRasterize(rast, psvgimage, 0, 0, 1, (::u8 *)mapLoadImage.data(), w, h, iScan);
+         nsvgRasterize(rast, psvgimage, 0, 0, 1, (::u8 *)ppixmapLoadImage->data(), w, h, iScan);
 
          //ploadimage->on_load_image(pdata, {w, h}, iScan);
 

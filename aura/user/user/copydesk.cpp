@@ -10,7 +10,7 @@
 #include "apex/networking/internet.h"
 #include "aura/graphics/draw2d/draw2d.h"
 #include "aura/graphics/image/encoding_options.h"
-#include "aura/graphics/image/frame_array.h"
+#include "acme/graphics/image/frame_array.h"
 #include "aura/graphics/image/context.h"
 #include "aura/windowing/window.h"
 #include "aura/platform/node.h"
@@ -475,7 +475,9 @@ namespace user
                            //if (is_status_ok())
                            //{
 
-                              pimage->fill_byte(0);
+                            auto pgraphicsImage = pimage->acquire_graphics();
+
+                              pgraphicsImage->clear(::color::transparent);
 
                               pgraphicsImage->set(pfont);
 

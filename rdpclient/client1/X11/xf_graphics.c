@@ -385,8 +385,8 @@ BOOL xf_Glyph_New(rdpContext* context, rdpGlyph* glyph)
    image = XCreateImage(xfc->display, xfc->draw2d, 1,
                         ZPixmap, 0, (char*) glyph->aj, glyph->cx, glyph->cy, 8, scanline);
 
-   image->byte_order = MSBFirst;
-   image->bitmap_bit_order = MSBFirst;
+   pimage->byte_order = MSBFirst;
+   pimage->bitmap_bit_order = MSBFirst;
 
    XInitImage(image);
    XPutImage(xfc->display, xf_glyph->pixmap, xfc->gc_mono, image, 0, 0, 0, 0, glyph->cx, glyph->cy);

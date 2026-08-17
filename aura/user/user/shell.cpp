@@ -1335,27 +1335,27 @@ namespace user
 
          }
 
-         ::image::image_pointer image16;
+         ::image::image_pointer pimage16;
 
          if(pimage1->get_size() == ::i32_size(16, 16))
          {
 
-            image16 = pimage1;
+            pimage16 = pimage1;
 
          }
          else
          {
 
-            image16 = image()->create_image({16, 16});
+            pimage16 = image()->create_image({16, 16});
 
-            if (image16.nok())
+            if (pimage16.nok())
             {
 
                return false;
 
             }
 
-            auto pgraphicsImage16 = image16->acquire_graphics();
+            auto pgraphicsImage16 = pimage16->acquire_graphics();
 
             pgraphicsImage16->set_interpolation_mode(::draw2d::e_interpolation_mode_high_quality_bicubic);
 
@@ -1371,27 +1371,27 @@ namespace user
 
          }
 
-         ::image::image_pointer image48;
+         ::image::image_pointer pimage48;
 
          if(pimage->get_size() == ::i32_size(48, 48))
          {
 
-            image48 = pimage;
+            pimage48 = pimage;
 
          }
          else
          {
 
-            image48 = image()->create_image({48, 48});
+            pimage48 = image()->create_image({48, 48});
 
-            if (image48.nok())
+            if (pimage48.nok())
             {
 
                return false;
 
             }
 
-            auto pgraphicsImage48 = image48->acquire_graphics();
+            auto pgraphicsImage48 = pimage48->acquire_graphics();
 
             pgraphicsImage48->set_interpolation_mode(::draw2d::e_interpolation_mode_high_quality_bicubic);
 
@@ -1427,7 +1427,7 @@ namespace user
 
             _synchronous_lock sl2(m_pimagelistUserShell[48]->synchronization());
 
-            ::image::image_source imagesource(image48, image48->rectangle());
+            ::image::image_source imagesource(pimage48, pimage48->rectangle());
 
             ::f64_rectangle rectangle(::i32_size(48, 48));
 
@@ -1443,7 +1443,7 @@ namespace user
 
             _synchronous_lock sl1(m_pimagelistUserShellHover[16]->synchronization());
 
-            ::image::image_source imagesource(image16, image16->rectangle());
+            ::image::image_source imagesource(pimage16, pimage16->rectangle());
 
             ::f64_rectangle rectangle(::i32_size(16, 16));
 
@@ -1461,7 +1461,7 @@ namespace user
 
             _synchronous_lock sl1(m_pimagelistUserShellHover[48]->synchronization());
 
-            ::image::image_source imagesource(image48, image48->rectangle());
+            ::image::image_source imagesource(pimage48, pimage48->rectangle());
 
             ::f64_rectangle rectangle(::i32_size(48, 48));
 
@@ -1581,7 +1581,7 @@ namespace user
 //
 //         pimage.create();
 //
-//         pimage->create({ 48, 48});
+//         pimage->create_as_descriptor({ 48, 48});
 //
 //         if (macos_get_file_image_by_type_identifier(pimage, strUniversalTypeIdentifier))
 //         {
@@ -1834,7 +1834,7 @@ namespace user
 //
 //      auto pimageHover = m_pimagelist[iSize]->get_image(iImage);
 //
-//      pimageHover->g()->fill_rectangle(pimage->rectangle(), ::rgba(255, 255, 240, 64));
+//      pgraphicsImageHover->fill_rectangle(pimage->rectangle(), ::rgba(255, 255, 240, 64));
 //
 //      m_pimagelistHover[iSize]->set(iImage, pimageHover);
 //
@@ -2068,14 +2068,14 @@ namespace user
    //      {
 
    //         ::image::image_pointer pimage(this);
-   //         pimage->create({ iSize, iSize });
+   //         pimage->create_as_descriptor({ iSize, iSize });
    //         pimage->fill(255, color32_u8_red(crBk), color32_u8_green(crBk), color32_u8_blue(crBk));
    //         pgraphicsImage->set_alpha_mode(::draw2d::e_alpha_mode_blend);
 
    //         m_pimagelistHover[iSize]->draw(pgraphicsImage, iImage, nullptr, 0);
-   //         m_pimagelistHover[iSize]->m_pimage->g()->set_alpha_mode(::draw2d::e_alpha_mode_set);
-   //         m_pimagelistHover[iSize]->m_pimage->g()->BitBlt(iImage * 48, 0, 48, 48, pgraphicsImage);
-   //         m_pimagelistHover[iSize]->m_pimage->g()->set_alpha_mode(::draw2d::e_alpha_mode_blend);
+   //         m_pimagelistHover[iSize]->m_pgraphicsImage->set_alpha_mode(::draw2d::e_alpha_mode_set);
+   //         m_pimagelistHover[iSize]->m_pgraphicsImage->BitBlt(iImage * 48, 0, 48, 48, pgraphicsImage);
+   //         m_pimagelistHover[iSize]->m_pgraphicsImage->set_alpha_mode(::draw2d::e_alpha_mode_blend);
 
    //      }
 
@@ -2083,14 +2083,14 @@ namespace user
    //         ::image::image_pointer d = m_pimagelistHover[iSize]->m_pimage;
    //         i32_size s = m_pimagelist[iSize]->m_pimage->get_size();
    //         ::image::image_pointer pimage(this);
-   //         pimage->create(d->size());
+   //         pimage->create_as_descriptor(d->size());
    //         pimage->fill(255, color32_u8_red(crBk), color32_u8_green(crBk), color32_u8_blue(crBk));
    //         pgraphicsImage->set_alpha_mode(::draw2d::e_alpha_mode_blend);
    //         pgraphicsImage->draw(nullptr, d->size(), d->get_graphics());
    //         pgraphicsImage->fill_solid_rect_dim(0, 0, d->size().cx, d->size().cy, argb(123, color32_u8_red(crBk), color32_u8_green(crBk), color32_u8_blue(crBk)));
-   //         m_pimagelist[iSize]->m_pimage->g()->set_alpha_mode(::draw2d::e_alpha_mode_set);
-   //         m_pimagelist[iSize]->m_pimage->g()->draw(d->rectangle(), pgraphicsImage);
-   //         m_pimagelist[iSize]->m_pimage->g()->set_alpha_mode(::draw2d::e_alpha_mode_blend);
+   //         m_pimagelist[iSize]->m_pgraphicsImage->set_alpha_mode(::draw2d::e_alpha_mode_set);
+   //         m_pimagelist[iSize]->m_pgraphicsImage->draw(d->rectangle(), pgraphicsImage);
+   //         m_pimagelist[iSize]->m_pgraphicsImage->set_alpha_mode(::draw2d::e_alpha_mode_blend);
 
    //      }
 
@@ -2129,7 +2129,7 @@ namespace user
 
    //         ::image::image_pointer pimage(this);
 
-   //         pimage->create({ iSize, iSize });
+   //         pimage->create_as_descriptor({ iSize, iSize });
 
    //         pimage->fill(255, colorBackground.red, colorBackground.green, colorBackground.blue);
 
@@ -2139,13 +2139,13 @@ namespace user
 
    //         m_pimagelistHover[iSize]->draw(pgraphics, iImage, nullptr, 0);
 
-   //         m_pimagelistHover[iSize]->m_pimage->g()->set_alpha_mode(::draw2d::e_alpha_mode_set);
+   //         m_pimagelistHover[iSize]->m_pgraphicsImage->set_alpha_mode(::draw2d::e_alpha_mode_set);
 
    //         auto rectangleDraw = ::f64_rectangle(::f64_point(iImage * 48, 0), ::f64_size(48, 48));
 
-   //         m_pimagelistHover[iSize]->m_pimage->g()->draw(rectangleDraw, pgraphicsImage);
+   //         m_pimagelistHover[iSize]->m_pgraphicsImage->draw(rectangleDraw, pgraphicsImage);
 
-   //         m_pimagelistHover[iSize]->m_pimage->g()->set_alpha_mode(::draw2d::e_alpha_mode_blend);
+   //         m_pimagelistHover[iSize]->m_pgraphicsImage->set_alpha_mode(::draw2d::e_alpha_mode_blend);
 
    //      }
 
@@ -2155,15 +2155,15 @@ namespace user
 
    //         ::image::image_pointer pimage(this);
 
-   //         pimage->create(d->size());
+   //         pimage->create_as_descriptor(d->size());
 
    //         pimage->fill(255, colorBackground.red, colorBackground.green, colorBackground.blue);
    //         pgraphicsImage->set_alpha_mode(::draw2d::e_alpha_mode_blend);
    //         pgraphicsImage->stretch(d->size(), d);
    //         pgraphicsImage->fill_rectangle(d->size(), argb(123, colorBackground.red, colorBackground.green, colorBackground.blue));
-   //         m_pimagelist[iSize]->m_pimage->g()->set_alpha_mode(::draw2d::e_alpha_mode_set);
-   //         m_pimagelist[iSize]->m_pimage->g()->draw(d->rectangle(), pgraphicsImage);
-   //         m_pimagelist[iSize]->m_pimage->g()->set_alpha_mode(::draw2d::e_alpha_mode_blend);
+   //         m_pimagelist[iSize]->m_pgraphicsImage->set_alpha_mode(::draw2d::e_alpha_mode_set);
+   //         m_pimagelist[iSize]->m_pgraphicsImage->draw(d->rectangle(), pgraphicsImage);
+   //         m_pimagelist[iSize]->m_pgraphicsImage->set_alpha_mode(::draw2d::e_alpha_mode_blend);
 
    //      }
 

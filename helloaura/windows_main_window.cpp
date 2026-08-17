@@ -187,9 +187,9 @@ LRESULT CALLBACK WndProc(HWND hWnd, ::user::enum_message eusermessage, ::wparam 
 /*      if (pimage->is_set() && pimage->m_pcolorref != nullptr)
       {
 
-/*         pimage->get_graphics()->FillSolidRect(prender->m_rectangleX, argb(255, 255, 255, 255));
+/*         pgraphicsImage->FillSolidRect(prender->m_rectangleX, argb(255, 255, 255, 255));
 
-/*         prender->_006OnDraw(pimage->get_graphics());
+/*         prender->_006OnDraw(pgraphicsImage);
 
       }
 

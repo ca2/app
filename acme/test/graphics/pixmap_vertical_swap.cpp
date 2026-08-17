@@ -161,7 +161,7 @@ namespace
 
          auto map = pixmap.map();
 
-         if (map.m_pimage32Raw != storage.data()
+         if (ppixmap.m_pimage32Raw != storage->data()
             || map.m_pimage32 != storage.data())
          {
 

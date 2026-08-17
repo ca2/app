@@ -23,7 +23,9 @@
 
 #define IMAGE_IMAGE_META_TRANSFER(a) \
 ::image::image_meta(::transfer(a)), \
-PIXMAP_TRANSFER(a)
+PARTICLE_TRANSFER(a)
+
+//PIXMAP_TRANSFER(a)
 
 
 namespace image
@@ -31,14 +33,21 @@ namespace image
 
 
    class CLASS_DECL_AURA image_meta :
-      virtual public ::pixmap
+      virtual public ::particle
    {
    public:
 
 
+      bool                                      m_bGraphicsWasAcquiredAfterLastMap;
+      ::i32_size                                m_size;
+      ::i32_size                                m_sizeRaw;
+      ::i32_point                               m_point;
+      ::i32                                     m_iScan;
+      bool                                      m_bMapped;
       ::pointer<::draw2d::bitmap>               m_pbitmap;
-      //::draw2d::graphics_pointer              m_pgraphics2;
+      ::pixmap_pointer                          m_ppixmapOwned;
       ::draw2d::graphics_pointer                m_pgraphicsOwned;
+      //::draw2d::graphics_pointer              m_pgraphics2;
       ::f64                                    m_dSpeed;
       ::f64                                    m_dIsotropicRate;
       //::i32_size                                m_sizeAlloc;
@@ -54,10 +63,14 @@ namespace image
       image_dynamic                             m_dynamic;
 
 
+
       image_meta()
       {
 
          //m_uImageFlags = DEFAULT_CREATE_IMAGE_FLAGS;
+         m_iScan = -1;
+         m_bGraphicsWasAcquiredAfterLastMap = true;
+         m_bMapped = false;
          m_dSpeed = 1.0;
          m_dIsotropicRate = 1.0;
          m_dSizeScaler = 1.0;
@@ -73,7 +86,10 @@ namespace image
       }
 
       image_meta(image_meta && imagemeta) :
-         PIXMAP_TRANSFER(imagemeta),
+         PARTICLE_TRANSFER(imagemeta),
+      m_iScan(imagemeta.m_iScan),
+      m_bGraphicsWasAcquiredAfterLastMap(imagemeta.m_bGraphicsWasAcquiredAfterLastMap),
+      m_bMapped(imagemeta.m_bMapped),
          m_pbitmap(::transfer(imagemeta.m_pbitmap)),
          m_pgraphicsOwned(::transfer(imagemeta.m_pgraphicsOwned)),
          m_dSpeed(::transfer(imagemeta.m_dSpeed)),
@@ -104,10 +120,21 @@ namespace image
 
       //inline ::pointer<::image::image_frame_array>frames();
 
-      void set_exif_orientation(::i32 iExifOrientation) override;
+      virtual void set_exif_orientation(::i32 iExifOrientation);
 
 
       inline image_frame_array * frames() { return m_pextension ? m_pextension->m_pframea : nullptr; }
+
+      ::i32_size size() const {return m_size;}
+      ::i32_size raw_size() const {return m_sizeRaw.is_empty() ? this->size() : m_sizeRaw;}
+      ::i32 area() const {return this->size().area();}
+      ::i32 width() const {return this->size().width();}
+      ::i32 height() const {return this->size().height();}
+      ::i32 minimum_scan() const {return this->size().width() * 4;}
+      ::i32 scan() const {return m_iScan >= this->minimum_scan() ? m_iScan:this->minimum_scan();}
+      ::i32 scan_in_pixels() const {return this->scan() / 4; }
+      ::i32 scan_area_in_bytes() const {return this->scan() * height();}
+      ::i32 scan_area_in_pixels() const {return this->scan_in_pixels() * height();}
 
    };
 } // namespace image

@@ -10,6 +10,7 @@
 #include "texture_site.h"
 #include "texture_synchronization.h"
 #include "acme/exception/interface_only.h"
+#include "acme/graphics/image/pixmap.h"
 #include "aura/graphics/image/context.h"
 #include "bred/gpu/context.h"
 #include "bred/gpu/context_lock.h"
@@ -463,11 +464,11 @@ namespace gpu
    void texture::create_texture_from_file_path(::gpu::context* pgpucontext, const ::file::path& path, bool bIsSrgb)
    {
 
-      auto pimage = image()->path_image(path);
+      auto ppixmap = image()->path_pixmap(path);
 
-      ::pointer_array < ::image::image > imagea({ pimage });
+      ::pointer_array < ::pixmap > pixmapa({ ppixmap });
 
-      create_texture_from_pixmap(pgpucontext, imagea);
+      create_texture_from_pixmap(pgpucontext, pixmapa);
 
    }
 

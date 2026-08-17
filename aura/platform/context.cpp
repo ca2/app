@@ -1048,7 +1048,7 @@ namespace aura
    //   }
 
    //   //auto estatus =
-   //   pimage->create(size, eflagCreate);
+   //   pimage->create_as_descriptor(size, eflagCreate);
 
    //   if (::is_set(pcolor))
    //   {

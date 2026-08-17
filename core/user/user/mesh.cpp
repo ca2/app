@@ -1217,7 +1217,7 @@ namespace user
 
       //auto pdraw2d = psystem->draw2d();
 
-      //auto pgraphics = pdraw2d->create_memory_graphics(this);
+      //auto pgraphics = pdraw2d->create_memory_graphics({}, this);
 
       //on_change_impact_size(pgraphics);
 
@@ -5713,7 +5713,7 @@ bool mesh::_001OnRightClick(const ::i32_point & point)
 
                //auto pdraw2d = psystem->draw2d();
 
-               //auto pgraphics = pdraw2d->create_memory_graphics(this);
+               //auto pgraphics = pdraw2d->create_memory_graphics({}, this);
 
                //on_change_sketch_scroll_state();
 
@@ -5755,7 +5755,7 @@ bool mesh::_001OnRightClick(const ::i32_point & point)
 
                //auto pdraw2d = psystem->draw2d();
 
-               //auto pgraphics = pdraw2d->create_memory_graphics(this);
+               //auto pgraphics = pdraw2d->create_memory_graphics({}, this);
 
                //on_change_impact_size(pgraphics);
 
@@ -6236,38 +6236,43 @@ bool mesh::_001OnRightClick(const ::i32_point & point)
             size.cy += 4;
 
             ::image::image_pointer pimage1;
-            pimage1 = m_pitem->m_pmesh->image()->create_image(size);
-            pimage1->clear(::color::transparent);
-            auto pbrushText = m_pitem->m_pmesh->createø < ::draw2d::brush > ();
-            pbrushText->create_solid(argb(255,255,255,255));
-
-            auto pgraphicsImage1 = pimage1->acquire_graphics();
-            pgraphicsImage1->set(pbrushText);
             ::image::image_pointer pimage2;
-            pimage2 = m_pitem->m_pmesh->image()->create_image(size);
 
-            auto pgraphicsImage2 = pimage2->acquire_graphics();
-            pimage2->clear(::color::transparent);
+            {
+               pimage1 = m_pitem->m_pmesh->image()->create_image(size);
+               auto pbrushText = m_pitem->m_pmesh->createø < ::draw2d::brush > ();
+               pbrushText->create_solid(argb(255,255,255,255));
 
-            ::i32_rectangle rectangleCache;
-            rectangleCache.left = 2;
-            rectangleCache.top = 2;
-            rectangleCache.right = rectangleCache.left + (::i32)m_rectangleText.width();
-            rectangleCache.bottom = rectangleCache.top + (::i32)m_rectangleText.height();
-            pgraphicsImage1->set(m_pcolumn->m_pdrawlistcolumn->m_pfont);
-            pgraphicsImage1->_DrawText(m_strText, rectangleCache, m_pcolumn->m_pdrawlistcolumn->m_ealign,
-                                       m_pcolumn->m_pdrawlistcolumn->m_edrawtext);
+               auto pgraphicsImage1 = pimage1->acquire_graphics();
+               pgraphicsImage1->clear(::color::transparent);
+               pgraphicsImage1->set(pbrushText);
+               pimage2 = m_pitem->m_pmesh->image()->create_image(size);
 
+               auto pgraphicsImage2 = pimage2->acquire_graphics();
+               pgraphicsImage2->clear(::color::transparent);
+
+               ::i32_rectangle rectangleCache;
+               rectangleCache.left = 2;
+               rectangleCache.top = 2;
+               rectangleCache.right = rectangleCache.left + (::i32)m_rectangleText.width();
+               rectangleCache.bottom = rectangleCache.top + (::i32)m_rectangleText.height();
+               pgraphicsImage1->set(m_pcolumn->m_pdrawlistcolumn->m_pfont);
+               pgraphicsImage1->_DrawText(m_strText, rectangleCache, m_pcolumn->m_pdrawlistcolumn->m_ealign,
+                                          m_pcolumn->m_pdrawlistcolumn->m_edrawtext);
+            }
             //::aura::application * get_app() = m_pmesh->get_app();
 
             auto psystem = m_pitem->m_pmesh->system();
-
-            psystem->imaging()->channel_spread_set_color(pgraphicsImage2,{}, size, pgraphicsImage1,{},0,2,argb(192,192,192,192));
-            pimage1->clear(::color::transparent);
-            psystem->imaging()->channel_alpha_gray_blur(pgraphicsImage1, {}, size, pgraphicsImage2, {}, 0, 1);
-            pimage2->clear(::color::transparent);
-            psystem->imaging()->channel_alpha_gray_blur(pgraphicsImage2,{}, size, pgraphicsImage1,{},0,1);
-            pimage2->clear(::color::transparent);
+            {
+               auto ppixmapImage1 = pimage1->map();
+               auto ppixmapImage2 = pimage2->map();
+               psystem->imaging()->spread(ppixmapImage2, ppixmapImage1,2,argb(192,192,192,192));
+               ppixmapImage1->clear(::color::transparent);
+               psystem->imaging()->channel_alpha_gray_blur_32CC(ppixmapImage1, ppixmapImage2, 0, 1);
+               ppixmapImage2->clear(::color::transparent);
+               psystem->imaging()->channel_alpha_gray_blur_32CC(ppixmapImage2, ppixmapImage1,0,1);
+               ppixmapImage1->clear(::color::transparent);
+            }
 
             ::image::image_source imagesource(pimage2, i32_rectangle(1,1, m_rectangleText.width(), m_rectangleText.height()));
 

@@ -26,7 +26,7 @@ namespace gpu
 
 
       virtual void _create_gpu_bitmap(const ::i32_size & size, pixmap_t * ppixmap = nullptr);
-      void create_bitmap(::draw2d::graphics *pgraphics, const ::i32_size &size, ::memory & memory, ::i32 *piScan) override;
+      void create_bitmap(::draw2d::graphics *pgraphics, const ::i32_size &size, ::pixmap * ppixmapOwned) override;
       
       virtual ::gpu::texture *gpu_texture() const;
       

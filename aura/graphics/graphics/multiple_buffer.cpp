@@ -409,7 +409,9 @@ namespace graphics
 
       //bool bOk = false;
 
-      ipc_copy(pitem->m_pimageBufferItem);
+      auto ppixmapImageBufferItem = pitem->m_pimageBufferItem->map();
+
+      ipc_copy(ppixmapImageBufferItem);
 
       //return bOk;
 

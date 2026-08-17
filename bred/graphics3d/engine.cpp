@@ -250,7 +250,7 @@ namespace graphics3d
 
                m_pimageOutput->create_as_descriptor(pgpucontext->m_sizeRaw);
 
-               auto mapImageOutput = m_pimageOutput->map(rectangleTarget);
+               auto ppixmapImageOutput = m_pimageOutput->map(rectangleTarget);
 
                //auto pgputexturesite = pgpurendertarget->current_texture(::gpu::current_layer(), false);
                //auto pgputexturesite = pgpurendertarget->current_texture(nullptr, false);
@@ -261,7 +261,7 @@ namespace graphics3d
 
                auto pgputexture = pgputexturesite->gpu_texture()->resolved_texture(pgputexturesite->output_placement());
 
-               pgputexture->read_pixels(pgpucommandbuffer, mapImageOutput, pgputexturesite->m_pointOutput);
+               pgputexture->read_pixels(pgpucommandbuffer, ppixmapImageOutput, pgputexturesite->m_pointOutput);
 
                pgpucontext->endSingleTimeCommands(pgpucommandbuffer);
 

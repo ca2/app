@@ -68,7 +68,7 @@ namespace imaging_freeimage
 //////            dimensions.height = lrintf(dimensions.width  / default_ar);
 //////      }
 ////
-////      if(!pimage->create({dimensions.width, dimensions.height}))
+////      if(!pimage->create_as_descriptor({dimensions.width, dimensions.height}))
 ////      {
 ////         return error_failed;
 ////

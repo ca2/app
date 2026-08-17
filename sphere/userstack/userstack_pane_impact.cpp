@@ -226,7 +226,7 @@ namespace userstack
          if(Sess(pappCurrent).file()->exists(strIcon))
          {
 
-/*            ppane->m_pimage->create(this);
+/*            ppane->m_pimage->create_as_descriptor(this);
 
 /*            ppane->m_pimage = load_image(strIcon);
 

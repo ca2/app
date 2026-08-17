@@ -226,7 +226,7 @@ void simple_scroll_bar::on_message_left_button_down(::message::message * pmessag
 
    //auto pdraw2d = psystem->draw2d();
 
-   //auto pgraphics = pdraw2d->create_memory_graphics(this);
+   //auto pgraphics = pdraw2d->create_memory_graphics({}, this);
 
    //if (::is_set(m_pitemCurrent) && m_pitemCurrent->m_item.m_eelement == ::e_element_scrollbar_trackbar)
    //{
@@ -292,7 +292,7 @@ void simple_scroll_bar::on_message_left_button_up(::message::message * pmessage)
 
    //   //auto pdraw2d = psystem->draw2d();
 
-   //   //auto pgraphics = pdraw2d->create_memory_graphics(this);
+   //   //auto pgraphics = pdraw2d->create_memory_graphics({}, this);
 
    //   SetTrackingPos(point);
 
@@ -839,7 +839,7 @@ void simple_scroll_bar::operator()(::timer * ptimer)
 
       //auto pdraw2d = psystem->draw2d();
 
-      //auto pgraphics = pdraw2d->create_memory_graphics(this);
+      //auto pgraphics = pdraw2d->create_memory_graphics({}, this);
 
       if (!scrollbar_action(main_content().m_pitemCurrent, ::user::e_layout_sketch))
       {
@@ -2036,7 +2036,7 @@ void simple_scroll_bar::draw_mac_thumb_dots(::draw2d::graphics_pointer & pgraphi
       if (m_pimageDots.ok())
       {
 
-         m_pimageDots->fill_byte(0);
+//         m_pimageDots->fill_byte(0);
 
          auto pgraphicsImageDots = m_pimageDots->acquire_graphics();
 
@@ -2046,6 +2046,9 @@ void simple_scroll_bar::draw_mac_thumb_dots(::draw2d::graphics_pointer & pgraphi
             return;
 
          }
+
+         pgraphicsImageDots->clear(::color::transparent);
+
 
          pgraphicsImageDots->set_alpha_mode(::draw2d::e_alpha_mode_blend);
 

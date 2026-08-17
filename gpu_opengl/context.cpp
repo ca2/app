@@ -489,14 +489,14 @@ namespace gpu_opengl
 
          m_memorySwap.set_size(m_sizeBitmap1.area() * 4);
 
-         auto mapImage = pimage->map();
+         auto ppixmapImage = pimage->map();
 
          //vertical_swap_copy_image32_swap_red_blue(
          ((image32_t *)m_memorySwap.data())->vertical_swap_copy_swap_red_blue(
             m_sizeBitmap1.cx,
             m_sizeBitmap1.cy,
             m_sizeBitmap1.cx * 4,
-            mapImage.data(),
+            ppixmapImage->data(),
             //pimage->get_data(),
             pimage->m_iScan);
 

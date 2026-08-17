@@ -357,7 +357,9 @@ void imaging::change_hue(image_list * pilHue, image_list * pil, const ::color::c
 
    pilHue->copy_from(pil);
 
-   HueVRCP(pilHue->m_pimage,crHue,dCompress);
+   auto ppixmapImageListHue = pilHue->m_pimage->map();
+
+   HueVRCP(ppixmapImageListHue,crHue,dCompress);
 
    //return true;
 
@@ -1539,67 +1541,67 @@ void imaging::BitmapBlend24CC(
 
 
 
-void imaging::BitmapDivBlend(
-   ::draw2d::graphics * pdcDst, // destination device
-   const ::i32_point & pointDst,
-   const ::i32_size & size,
-   ::draw2d::graphics * pdcSrc, // source device
-   const ::i32_point & pointSrc,
-   ::u8 bAlpha)
-{
-
-   ::image::image_pointer pimage;
-
-   //auto estatus = 
-   constructø(pimage);
-
-   /*if (!estatus)
-   {
-
-      return false;
-
-   }*/
-
-   //estatus = 
-   
-   pimage->create_as_descriptor(size);
-
-   //if (!estatus)
-   //{
-
-   //   return false;
-
-   //}
-
-   {
-
-      ::image::image_source imagesource(pdcSrc);
-
-      ::f64_rectangle rectangle(size);
-
-      ::image::image_drawing_options imagedrawingoptions(rectangle);
-      
-      ::image::image_drawing imagedrawing(imagedrawingoptions, imagesource);
-
-      pimage->draw(imagedrawing);
-
-   }
-
-   pimage->DivideRGB(bAlpha);
-
-   {
-
-      ::image::image_source imagesource(pimage, { pointSrc, size });
-
-      ::image::image_drawing_options imagedrawingoptions(::f64_rectangle(pointDst, size));
-
-      ::image::image_drawing imagedrawing(imagedrawingoptions, imagesource);
-
-      pdcDst->draw(imagedrawing);
-
-   }
-
-}
+// void imaging::BitmapDivBlend(
+//    ::draw2d::graphics * pdcDst, // destination device
+//    const ::i32_point & pointDst,
+//    const ::i32_size & size,
+//    ::draw2d::graphics * pdcSrc, // source device
+//    const ::i32_point & pointSrc,
+//    ::u8 bAlpha)
+// {
+//
+//    ::image::image_pointer pimage;
+//
+//    //auto estatus =
+//    constructø(pimage);
+//
+//    /*if (!estatus)
+//    {
+//
+//       return false;
+//
+//    }*/
+//
+//    //estatus =
+//
+//    pimage->create_as_descriptor(size);
+//
+//    //if (!estatus)
+//    //{
+//
+//    //   return false;
+//
+//    //}
+//
+//    {
+//
+//       ::image::image_source imagesource(pdcSrc);
+//
+//       ::f64_rectangle rectangle(size);
+//
+//       ::image::image_drawing_options imagedrawingoptions(rectangle);
+//
+//       ::image::image_drawing imagedrawing(imagedrawingoptions, imagesource);
+//
+//       pimage->draw(imagedrawing);
+//
+//    }
+//
+//    pimage->DivideRGB(bAlpha);
+//
+//    {
+//
+//       ::image::image_source imagesource(pimage, { pointSrc, size });
+//
+//       ::image::image_drawing_options imagedrawingoptions(::f64_rectangle(pointDst, size));
+//
+//       ::image::image_drawing imagedrawing(imagedrawingoptions, imagesource);
+//
+//       pdcDst->draw(imagedrawing);
+//
+//    }
+//
+// }
 
 
 //void imaging::bitmap_blend(
@@ -2029,10 +2031,10 @@ void imaging::clip_color_blend(::draw2d::graphics * pgraphics,const ::i32_point 
 }
 
 
-void imaging::trait(::image::image *pimage, ::i64 iTrait)
+void imaging::trait(::pixmap *ppixmap, ::i64 iTrait)
 {
 
-   return pimage->transform((enum_image)iTrait);
+   return ppixmap->transform((enum_image)iTrait);
 
 }
 
@@ -2214,10 +2216,10 @@ void imaging::trait(::image::image *pimage, ::i64 iTrait)
 //}
 
 
-void imaging::blur(::image::image *pimage, ::i32 iRadius)
+void imaging::blur(::pixmap *ppixmap, ::i32 iRadius)
 {
 
-   if (!pimage->is_ok())
+   if (!ppixmap->is_ok())
    {
 
       throw ::exception(error_bad_argument);
@@ -2226,19 +2228,21 @@ void imaging::blur(::image::image *pimage, ::i32 iRadius)
 
    ::image::fastblur f;
 
-   f.initialize(pimage->size(), iRadius);
+   f.initialize(ppixmap->size(), iRadius);
 
-   f.blur(pimage);
+   auto ppixmapImage = ppixmap->map();
+
+   f.blur(ppixmapImage);
 
    //return true;
 
 }
 
 
-void imaging::blur(::image::image *pimage, i32_rectangle rectangle, ::i32 iRadius)
+void imaging::blur(::pixmap *ppixmap, i32_rectangle rectangle, ::i32 iRadius)
 {
 
-   if (!pimage->is_ok())
+   if (!ppixmap->is_ok())
    {
 
       throw ::exception(error_bad_argument);
@@ -2252,11 +2256,11 @@ void imaging::blur(::image::image *pimage, i32_rectangle rectangle, ::i32 iRadiu
 
    {
 
-      auto mapImage = pimage->map(rectangle);
+      //auto ppixmapImage = pimage->map(rectangle);
 
       //fastblur.initialize(pimage->size(), iRadisu)
 
-      fastblur.blur(pimage);
+      fastblur.blur(ppixmap);
 
    }
 
@@ -2265,7 +2269,7 @@ void imaging::blur(::image::image *pimage, i32_rectangle rectangle, ::i32 iRadiu
 }
 
 
-void imaging::blur_32CC(::image::image *pimageDst, ::image::image *pimageSrc,::i32 iRadius)
+void imaging::blur_32CC(::pixmap * ppixmapDst, ::pixmap * ppixmapSrc,::i32 iRadius)
 {
    ::i32 iFilterWidth = iRadius * 2 + 1;
    ::i32 iFilterHeight = iRadius * 2 + 1;
@@ -2287,23 +2291,23 @@ void imaging::blur_32CC(::image::image *pimageDst, ::image::image *pimageSrc,::i
    ::u8 * pFilterData = øraw_new  ::u8[iFilterHeight *iFilterWidth];
    memory_set(pFilterData,1,iFilterHeight * iFilterWidth);
 
-   auto mapSrc = pimageSrc->map();
+   //auto ppixmapSrc = ppixmapSrc->map();
 
 
-   auto mapDst = pimageDst->map();
+   //auto ppixmapDst = ppixmapDst->map();
 
-   ::u8 * pSrc = (::u8 *)mapSrc.data();
-
-
-   ::u8 * pDst = (::u8 *)mapDst.data();
+   ::u8 * pSrc = (::u8 *)ppixmapSrc->data();
 
 
-   ::i32 cx = pimageSrc->width();
-   ::i32 cy = pimageSrc->height();
+   ::u8 * pDst = (::u8 *)ppixmapDst->data();
+
+
+   ::i32 cx = ppixmapSrc->width();
+   ::i32 cy = ppixmapSrc->height();
    //::i32 wSrc = cx * 4;
    //::i32 wDest = cx * 4;
-   ::i32 wSrc = pimageSrc->scan_size();
-   ::i32 wDest = pimageDst->scan_size();
+   ::i32 wSrc = ppixmapSrc->scan_size();
+   ::i32 wDest = ppixmapDst->scan_size();
    ::i32 maxx1 = cx;
    ::i32 maxy1 = cy;
    //   ::i32 maxy2 = cy - iFilterWidth;
@@ -2592,24 +2596,24 @@ void imaging::blur_32CC(::image::image *pimageDst, ::image::image *pimageSrc,::i
 }
 
 
-void imaging::blur_32CC_r2(::image::image *pimageDst, ::image::image *pimageSrc)
+void imaging::blur_32CC_r2(::pixmap * ppixmapDst, ::pixmap * ppixmapSrc)
 {
 
-   auto mapSrc = pimageSrc->map();
+   //auto ppixmapSrc = ppixmapSrc->map();
 
-   auto mapDst = pimageDst->map();
+   //auto ppixmapDst = ppixmapDst->map();
 
-   ::u8 * pSrc = (::u8 *)mapSrc.data();
+   ::u8 * pSrc = (::u8 *)ppixmapSrc->data();
 
-   ::u8 * pDst = (::u8 *)mapDst.data();
+   ::u8 * pDst = (::u8 *)ppixmapDst->data();
 
-   ::i32 cx = pimageSrc->width();
+   ::i32 cx = ppixmapSrc->width();
 
-   ::i32 cy = pimageSrc->height();
+   ::i32 cy = ppixmapSrc->height();
    //::i32 wSrc = cx * 4;
    //::i32 wDest = cx * 4;
-   ::i32 wSrc = pimageSrc->scan_size();
-   ::i32 wDest = pimageDst->scan_size();
+   ::i32 wSrc = ppixmapSrc->scan_size();
+   ::i32 wDest = ppixmapDst->scan_size();
 
    ::u8 *pSource;
 
@@ -2951,198 +2955,198 @@ void imaging::blur_32CC_r2(::image::image *pimageDst, ::image::image *pimageSrc)
 }
 
 
-void imaging::channel_gray_blur(::draw2d::graphics *pdcDst,const ::i32_point & pointDst,const ::i32_size & size,::draw2d::graphics * pdcSrc,const ::i32_point & pointSrc,::i32 iChannel,::i32 iRadius)
-{
-
-   if (size.cx <= 0 || size.cy <= 0)
-   {
-
-      throw ::exception(error_wrong_state);
-
-   }
-
-   ::image::image_pointer pimageDst = image()->create_image(size);
-
-   if (!pimageDst)
-   {
-
-      throw ::exception(error_wrong_state);
-
-   }
-
-   ::image::image_pointer pimageSrc = image()->create_image(size);
-
-   if (!pimageSrc)
-   {
-
-      throw ::exception(error_wrong_state);
-
-   }
-
-   auto pgraphicsImageSrc = pimageSrc->acquire_graphics();
-
-   pgraphicsImageSrc->set_alpha_mode(::draw2d::e_alpha_mode_set);
-
-   ::image::image_source imagesource(pdcSrc, ::f64_rectangle(pointSrc, size));
-
-   ::f64_rectangle rectangle(size);
-
-   ::image::image_drawing_options imagedrawingoptions(rectangle);
-
-   ::image::image_drawing imagedrawing(imagedrawingoptions, imagesource);
-
-   //if (!pdcSrc->draw(imagedrawing))
-   pdcSrc->draw(imagedrawing);
-   //{
-
-   //   return false;
-
-   //}
-
-   //if(!
-   
-   channel_gray_blur_32CC(
-      pimageDst,
-      pimageSrc,
-      iChannel,
-      iRadius);
-//      return false;
-
-   {
-
-      ::image::image_source imagesource(pimageDst);
-
-      ::f64_rectangle rectangle(pointDst, size);
-
-      ::image::image_drawing_options imagedrawingoptions(rectangle);
-
-      ::image::image_drawing imagedrawing(imagedrawingoptions, imagesource);
-
-      //if (!pdcDst->draw(imagedrawing))
-      pdcDst->draw(imagedrawing);
-      //{
-
-      //   return false;
-
-      //}
-
-   }
-
-   //return true;
-
-}
-
-
-void imaging::channel_alpha_gray_blur(::draw2d::graphics * pdcDst, const ::i32_point & pointDst, const ::i32_size & size, ::draw2d::graphics * pdcSrc, const ::i32_point & pointSrc, ::i32 iChannel, ::i32 iRadius)
-{
-
-   if (size.area() <= 0)
-   {
-
-      throw ::exception(error_wrong_state);
-
-   }
-
-   ::image::image_pointer pimageDst = image()->create_image(size);
-
-   if (!pimageDst)
-   {
-
-      throw ::exception(error_wrong_state);
-
-   }
-
-   ::image::image_pointer pimageSrc = image()->create_image(size);
-
-   if (!pimageSrc)
-   {
-
-      throw ::exception(error_wrong_state);
-
-   }
-
-   auto pgraphicsImageSrc = pimageSrc->acquire_graphics();
-
-   pgraphicsImageSrc->set_alpha_mode(::draw2d::e_alpha_mode_set);
-
-   {
-
-      ::image::image_source imagesource(pdcSrc, ::f64_rectangle(pointSrc, size));
-
-      ::f64_rectangle rectangle(size);
-
-      ::image::image_drawing_options imagedrawingoptions(rectangle);
-
-      ::image::image_drawing imagedrawing(imagedrawingoptions, imagesource);
-
-      pgraphicsImageSrc->draw(imagedrawing);
-      //{
-
-      //   return false;
-
-      //}
-
-   }
-
-   /*if (!*/channel_alpha_gray_blur_32CC(
-      pimageDst,
-      pimageSrc,
-      iChannel,
-      iRadius)/*)
-      return false*/;
-
-   {
-
-      ::image::image_source imagesource(pimageDst);
-
-      ::f64_rectangle rectangle(pointDst, size);
-
-      ::image::image_drawing_options imagedrawingoptions(rectangle);
-
-      ::image::image_drawing imagedrawing(imagedrawingoptions, imagesource);
-
-      /*if (!*/pdcDst->draw(imagedrawing);/*
-      {
-
-         return false*/;
-
-      /*}*/
-
-   }
-
-   /*return true;*/
-
-}
-
-
-void imaging::channel_gray_blur_32CC(::image::image *pimageDst, ::image::image *pimageSrc,
+// void imaging::channel_gray_blur(::draw2d::graphics *pdcDst,const ::i32_point & pointDst,const ::i32_size & size,::draw2d::graphics * pdcSrc,const ::i32_point & pointSrc,::i32 iChannel,::i32 iRadius)
+// {
+//
+//    if (size.cx <= 0 || size.cy <= 0)
+//    {
+//
+//       throw ::exception(error_wrong_state);
+//
+//    }
+//
+//    ::image::image_pointer ppixmapDst = image()->create_image(size);
+//
+//    if (!ppixmapDst)
+//    {
+//
+//       throw ::exception(error_wrong_state);
+//
+//    }
+//
+//    ::image::image_pointer ppixmapSrc = image()->create_image(size);
+//
+//    if (!ppixmapSrc)
+//    {
+//
+//       throw ::exception(error_wrong_state);
+//
+//    }
+//
+//    auto pgraphicsImageSrc = ppixmapSrc->acquire_graphics();
+//
+//    pgraphicsImageSrc->set_alpha_mode(::draw2d::e_alpha_mode_set);
+//
+//    ::image::image_source imagesource(pdcSrc, ::f64_rectangle(pointSrc, size));
+//
+//    ::f64_rectangle rectangle(size);
+//
+//    ::image::image_drawing_options imagedrawingoptions(rectangle);
+//
+//    ::image::image_drawing imagedrawing(imagedrawingoptions, imagesource);
+//
+//    //if (!pdcSrc->draw(imagedrawing))
+//    pdcSrc->draw(imagedrawing);
+//    //{
+//
+//    //   return false;
+//
+//    //}
+//
+//    //if(!
+//
+//    channel_gray_blur_32CC(
+//       ppixmapDst,
+//       ppixmapSrc,
+//       iChannel,
+//       iRadius);
+// //      return false;
+//
+//    {
+//
+//       ::image::image_source imagesource(ppixmapDst);
+//
+//       ::f64_rectangle rectangle(pointDst, size);
+//
+//       ::image::image_drawing_options imagedrawingoptions(rectangle);
+//
+//       ::image::image_drawing imagedrawing(imagedrawingoptions, imagesource);
+//
+//       //if (!pdcDst->draw(imagedrawing))
+//       pdcDst->draw(imagedrawing);
+//       //{
+//
+//       //   return false;
+//
+//       //}
+//
+//    }
+//
+//    //return true;
+//
+// }
+//
+//
+// void imaging::channel_alpha_gray_blur(::draw2d::graphics * pdcDst, const ::i32_point & pointDst, const ::i32_size & size, ::draw2d::graphics * pdcSrc, const ::i32_point & pointSrc, ::i32 iChannel, ::i32 iRadius)
+// {
+//
+//    if (size.area() <= 0)
+//    {
+//
+//       throw ::exception(error_wrong_state);
+//
+//    }
+//
+//    ::image::image_pointer ppixmapDst = image()->create_image(size);
+//
+//    if (!ppixmapDst)
+//    {
+//
+//       throw ::exception(error_wrong_state);
+//
+//    }
+//
+//    ::image::image_pointer ppixmapSrc = image()->create_image(size);
+//
+//    if (!ppixmapSrc)
+//    {
+//
+//       throw ::exception(error_wrong_state);
+//
+//    }
+//
+//    auto pgraphicsImageSrc = ppixmapSrc->acquire_graphics();
+//
+//    pgraphicsImageSrc->set_alpha_mode(::draw2d::e_alpha_mode_set);
+//
+//    {
+//
+//       ::image::image_source imagesource(pdcSrc, ::f64_rectangle(pointSrc, size));
+//
+//       ::f64_rectangle rectangle(size);
+//
+//       ::image::image_drawing_options imagedrawingoptions(rectangle);
+//
+//       ::image::image_drawing imagedrawing(imagedrawingoptions, imagesource);
+//
+//       pgraphicsImageSrc->draw(imagedrawing);
+//       //{
+//
+//       //   return false;
+//
+//       //}
+//
+//    }
+//
+//    /*if (!*/channel_alpha_gray_blur_32CC(
+//       ppixmapDst,
+//       ppixmapSrc,
+//       iChannel,
+//       iRadius)/*)
+//       return false*/;
+//
+//    {
+//
+//       ::image::image_source imagesource(ppixmapDst);
+//
+//       ::f64_rectangle rectangle(pointDst, size);
+//
+//       ::image::image_drawing_options imagedrawingoptions(rectangle);
+//
+//       ::image::image_drawing imagedrawing(imagedrawingoptions, imagesource);
+//
+//       /*if (!*/pdcDst->draw(imagedrawing);/*
+//       {
+//
+//          return false*/;
+//
+//       /*}*/
+//
+//    }
+//
+//    /*return true;*/
+//
+// }
+
+
+void imaging::channel_gray_blur_32CC(::pixmap * ppixmapDst, ::pixmap * ppixmapSrc,
                                      ::i32 iChannel,::i32 iRadius)
 {
 
    if(iRadius <= 0)
       throw ::exception(error_wrong_state);
 
-   ::i32 cx = pimageDst->width();
-   ::i32 cy = pimageDst->height();
+   ::i32 cx = ppixmapDst->width();
+   ::i32 cy = ppixmapDst->height();
 
-   if(cx != pimageSrc->width()
-         || cy != pimageSrc->height())
+   if(cx != ppixmapSrc->width()
+         || cy != ppixmapSrc->height())
       throw ::exception(error_wrong_state);
 
-   auto mapDst = pimageDst->map();
+   //auto ppixmapDst = ppixmapDst->map();
 
-   ::u8 * pDst = (::u8 *)mapDst.data();
+   ::u8 * pDst = (::u8 *)ppixmapDst->data();
 
-   auto mapSrc = pimageSrc->map();
+   //auto ppixmapSrc = ppixmapSrc->map();
 
-   ::u8 * pSrc = (::u8 *)mapSrc.data();
+   ::u8 * pSrc = (::u8 *)ppixmapSrc->data();
 
 
 
    //::i32 wSrc = cx * 4;
    //::i32 wDst = cx * 4;
-   ::i32 wSrc = pimageSrc->scan_size();
-   ::i32 wDst = pimageDst->scan_size();
+   ::i32 wSrc = ppixmapSrc->scan_size();
+   ::i32 wDst = ppixmapDst->scan_size();
 
    ::i32 iFilterW = iRadius * 2 + 1;
    ::i32 iFilterH = iRadius * 2 + 1;
@@ -3411,35 +3415,35 @@ void imaging::channel_gray_blur_32CC(::image::image *pimageDst, ::image::image *
 }
 
 
-void imaging::channel_alpha_gray_blur_32CC(::image::image *pimageDst, ::image::image *pimageSrc,
+void imaging::channel_alpha_gray_blur_32CC(::pixmap * ppixmapDst, ::pixmap * ppixmapSrc,
       ::i32 iChannel,::i32 iRadius)
 {
 
    if(iRadius <= 0)
       throw ::exception(error_wrong_state);
 
-   ::i32 cx = pimageDst->width();
-   ::i32 cy = pimageDst->height();
+   ::i32 cx = ppixmapDst->width();
+   ::i32 cy = ppixmapDst->height();
 
-   if(cx != pimageSrc->width()
-         || cy != pimageSrc->height())
+   if(cx != ppixmapSrc->width()
+         || cy != ppixmapSrc->height())
       throw ::exception(error_wrong_state);
 
-   auto mapDst = pimageDst->map();
+   //auto ppixmapDst = ppixmapDst->map();
 
-   auto mapSrc = pimageSrc->map();
+   //auto ppixmapSrc = ppixmapSrc->map();
 
-   ::u8 *pDst = (::u8 *)mapDst.data();
+   ::u8 *pDst = (::u8 *)ppixmapDst->data();
 
 
-   ::u8 * pSrc = (::u8 *)mapSrc.data();
+   ::u8 * pSrc = (::u8 *)ppixmapSrc->data();
 
 
 
    //::i32 wSrc = cx * 4;
    //::i32 wDst = cx * 4;
-   ::i32 wSrc = pimageSrc->scan_size();
-   ::i32 wDst = pimageDst->scan_size();
+   ::i32 wSrc = ppixmapSrc->scan_size();
+   ::i32 wDst = ppixmapDst->scan_size();
 
    ::i32 iFilterW = iRadius * 2 + 1;
    ::i32 iFilterH = iRadius * 2 + 1;
@@ -3714,100 +3718,100 @@ void imaging::channel_alpha_gray_blur_32CC(::image::image *pimageDst, ::image::i
 }
 
 
-void imaging::channel_gray_blur(
-::draw2d::graphics * pdcDst,
-const ::i32_point & pointDst,
-const ::i32_size & size,
-::draw2d::graphics * pdcSrc,
-const ::i32_point & pointSrc,
-::i32 iChannel,
-const ::i32_size & sizeFilter,
-::u8 * pFilter)
-{
+// void imaging::channel_gray_blur(
+// ::draw2d::graphics * pdcDst,
+// const ::i32_point & pointDst,
+// const ::i32_size & size,
+// ::draw2d::graphics * pdcSrc,
+// const ::i32_point & pointSrc,
+// ::i32 iChannel,
+// const ::i32_size & sizeFilter,
+// ::u8 * pFilter)
+// {
+//
+//    if (size.cx <= 0 || size.cy <= 0)
+//    {
+//
+//       throw ::exception(error_wrong_state);
+//
+//    }
+//
+//    ::image::image_pointer ppixmapDst = image()->create_image(size);
+//
+//    if (!ppixmapDst)
+//    {
+//
+//       throw ::exception(error_wrong_state);
+//
+//    }
+//
+//    ::image::image_pointer ppixmapSrc = image()->create_image(size);
+//
+//    if (!ppixmapSrc)
+//    {
+//
+//       throw ::exception(error_wrong_state);
+//
+//    }
+//
+//    {
+//
+//       ::image::image_source imagesource(ppixmapSrc, ::f64_rectangle(pointSrc, size));
+//
+//       ::f64_rectangle rectangle(size);
+//
+//       ::image::image_drawing_options imagedrawingoptions(rectangle);
+//
+//       ::image::image_drawing imagedrawing(imagedrawingoptions, imagesource);
+//
+//       /*if (!*/pdcSrc->draw(imagedrawing);/*)
+//       {
+//
+//          throw ::exception(error_wrong_state);
+//
+//       }*/
+//
+//    }
+//
+//    channel_gray_blur_32CC(
+//       ppixmapDst,
+//       ppixmapSrc,
+//       iChannel,
+//       sizeFilter.cx,
+//       sizeFilter.cy,
+//       pFilter);
+//    /*{
+//
+//       return false;
+//
+//    }*/
+//
+//
+//    {
+//
+//       ::image::image_source imagesource(ppixmapDst, ::f64_rectangle(pointDst, size));
+//
+//       ::f64_rectangle rectangle(size);
+//
+//       ::image::image_drawing_options imagedrawingoptions(rectangle);
+//
+//       ::image::image_drawing imagedrawing(imagedrawingoptions, imagesource);
+//
+//       pdcDst->draw(imagedrawing);
+//       //{
+//
+//       //   return false;
+//
+//       //}
+//
+//    }
+//
+//    //return true;
+//
+// }
 
-   if (size.cx <= 0 || size.cy <= 0)
-   {
 
-      throw ::exception(error_wrong_state);
-
-   }
-
-   ::image::image_pointer pimageDst = image()->create_image(size);
-
-   if (!pimageDst)
-   {
-
-      throw ::exception(error_wrong_state);
-
-   }
-
-   ::image::image_pointer pimageSrc = image()->create_image(size);
-
-   if (!pimageSrc)
-   {
-
-      throw ::exception(error_wrong_state);
-
-   }
-
-   {
-
-      ::image::image_source imagesource(pimageSrc, ::f64_rectangle(pointSrc, size));
-
-      ::f64_rectangle rectangle(size);
-
-      ::image::image_drawing_options imagedrawingoptions(rectangle);
-
-      ::image::image_drawing imagedrawing(imagedrawingoptions, imagesource);
-
-      /*if (!*/pdcSrc->draw(imagedrawing);/*)
-      {
-
-         throw ::exception(error_wrong_state);
-
-      }*/
-
-   }
-
-   channel_gray_blur_32CC(
-      pimageDst,
-      pimageSrc,
-      iChannel,
-      sizeFilter.cx,
-      sizeFilter.cy,
-      pFilter);
-   /*{
-
-      return false;
-
-   }*/
-
-
-   {
-
-      ::image::image_source imagesource(pimageDst, ::f64_rectangle(pointDst, size));
-
-      ::f64_rectangle rectangle(size);
-
-      ::image::image_drawing_options imagedrawingoptions(rectangle);
-
-      ::image::image_drawing imagedrawing(imagedrawingoptions, imagesource);
-
-      pdcDst->draw(imagedrawing);
-      //{
-
-      //   return false;
-
-      //}
-
-   }
-
-   //return true;
-
-}
-
-
-void imaging::channel_gray_blur_32CC(::image::image *pimageDst, ::image::image *pimageSrc,
+void imaging::channel_gray_blur_32CC(::pixmap * ppixmapDst, ::pixmap * ppixmapSrc,
                                      ::i32 iChannel,
                                      ::i32 iFilterWidth,
                                      ::i32 iFilterHeight,
@@ -3816,25 +3820,25 @@ void imaging::channel_gray_blur_32CC(::image::image *pimageDst, ::image::image *
 
 {
 
-   ::i32 cx = pimageDst->width();
-   ::i32 cy = pimageDst->height();
+   ::i32 cx = ppixmapDst->width();
+   ::i32 cy = ppixmapDst->height();
 
-   if(cx != pimageSrc->width()
-         || cy != pimageSrc->height())
+   if(cx != ppixmapSrc->width()
+         || cy != ppixmapSrc->height())
       throw ::exception(error_wrong_state);
 
-   auto mapDst = pimageDst->map();
+   //auto ppixmapDst = ppixmapDst->map();
 
-   ::u8 * pDst = (::u8 *)mapDst.data();
+   ::u8 * pDst = (::u8 *)ppixmapDst->data();
 
-   auto mapSrc = pimageSrc->map();
+   //auto ppixmapSrc = ppixmapSrc->map();
 
-   ::u8 * pSrc = (::u8 *)mapSrc.data();
+   ::u8 * pSrc = (::u8 *)ppixmapSrc->data();
 
    //::i32 wSrc = cx * 4;
    //::i32 wDst = cx * 4;
-   ::i32 wSrc = pimageSrc->scan_size();
-   ::i32 wDst = pimageDst->scan_size();
+   ::i32 wSrc = ppixmapSrc->scan_size();
+   ::i32 wDst = ppixmapDst->scan_size();
 
    ::i32 iFilterArea = iFilterWidth * iFilterHeight;
    ::i32 divisor;
@@ -4901,109 +4905,109 @@ void imaging::alpha_spread_R2_24CC(::u8 * pDst,::i32 xDest,::i32 yDest,::i32 wDe
 
 }
 
-
-
-void imaging::channel_spread(
-::draw2d::graphics *pdcDst,
-const ::i32_point & pointDst,
-const ::i32_size & size,
-::draw2d::graphics * pdcSrc,
-const ::i32_point & pointSrc,
-::i32 iChannel,::i32 iRadius)
-{
-
-   return channel_spread_set_color(
-          pdcDst,
-          pointDst,
-          size,
-          pdcSrc,
-          pointSrc,
-          iChannel,
-          iRadius,
-          ::color::white);
-
-}
-
-
-void imaging::channel_spread_set_color(
-::draw2d::graphics *pdcDst,
-const ::i32_point & pointDst,
-const ::i32_size & size,
-::draw2d::graphics * pdcSrc,
-const ::i32_point & pointSrc,
-::i32 iChannel,::i32 iRadius,
-const ::color::color & color)
-{
-
-   if (size.is_empty())
-      throw ::exception(error_bad_argument);
-
-   ::image::image_pointer pimageDst = image()->create_image(size);
-
-   ::image::image_pointer pimageSrc = image()->create_image(size);
-
-   auto pgraphicsImageSrc = pimageSrc->acquire_graphics();
-
-   pgraphicsImageSrc->set_alpha_mode(::draw2d::e_alpha_mode_set);
-
-   {
-
-      ::image::image_source imagesource(pdcSrc, ::f64_rectangle(pointSrc, size));
-
-      ::f64_rectangle rectangle(size);
-
-      ::image::image_drawing_options imagedrawingoptions(rectangle);
-
-      ::image::image_drawing imagedrawing(imagedrawingoptions, imagesource);
-
-      //if (!)
-      pgraphicsImageSrc->draw(imagedrawing);
-      //{
-
-      //   return false;
-
-      //}
-
-   }
-
-   auto psystem = system();
-
-   auto pdraw2d = psystem->draw2d();
-
-   /*if (!*/pdraw2d->channel_spread__32CC(
-      pimageDst,
-      pimageSrc,
-      iChannel,
-      iRadius, color);
-   //{
-
-   //   return false;
-
-   //}
-
-   {
-
-      ::image::image_source imagesource(pimageDst, ::f64_rectangle(pointDst, size));
-
-      ::f64_rectangle rectangle(size);
-
-      ::image::image_drawing_options imagedrawingoptions(rectangle);
-
-      ::image::image_drawing imagedrawing(imagedrawingoptions, imagesource);
-
-      pdcDst->draw(imagedrawing);
-      //if (!)
-      //{
-
-      //   return false;
-
-      //}
-
-   }
-
-   //return true;
-
-}
+//
+//
+// void imaging::channel_spread(
+// ::draw2d::graphics *pdcDst,
+// const ::i32_point & pointDst,
+// const ::i32_size & size,
+// ::draw2d::graphics * pdcSrc,
+// const ::i32_point & pointSrc,
+// ::i32 iChannel,::i32 iRadius)
+// {
+//
+//    return channel_spread_set_color(
+//           pdcDst,
+//           pointDst,
+//           size,
+//           pdcSrc,
+//           pointSrc,
+//           iChannel,
+//           iRadius,
+//           ::color::white);
+//
+// }
+//
+//
+// void imaging::channel_spread_set_color(
+// ::draw2d::graphics *pdcDst,
+// const ::i32_point & pointDst,
+// const ::i32_size & size,
+// ::draw2d::graphics * pdcSrc,
+// const ::i32_point & pointSrc,
+// ::i32 iChannel,::i32 iRadius,
+// const ::color::color & color)
+// {
+//
+//    if (size.is_empty())
+//       throw ::exception(error_bad_argument);
+//
+//    ::image::image_pointer ppixmapDst = image()->create_image(size);
+//
+//    ::image::image_pointer ppixmapSrc = image()->create_image(size);
+//
+//    auto pgraphicsImageSrc = ppixmapSrc->acquire_graphics();
+//
+//    pgraphicsImageSrc->set_alpha_mode(::draw2d::e_alpha_mode_set);
+//
+//    {
+//
+//       ::image::image_source imagesource(pdcSrc, ::f64_rectangle(pointSrc, size));
+//
+//       ::f64_rectangle rectangle(size);
+//
+//       ::image::image_drawing_options imagedrawingoptions(rectangle);
+//
+//       ::image::image_drawing imagedrawing(imagedrawingoptions, imagesource);
+//
+//       //if (!)
+//       pgraphicsImageSrc->draw(imagedrawing);
+//       //{
+//
+//       //   return false;
+//
+//       //}
+//
+//    }
+//
+//    auto psystem = system();
+//
+//    auto pdraw2d = psystem->draw2d();
+//
+//    /*if (!*/pdraw2d->channel_spread__32CC(
+//       ppixmapDst,
+//       ppixmapSrc,
+//       iChannel,
+//       iRadius, color);
+//    //{
+//
+//    //   return false;
+//
+//    //}
+//
+//    {
+//
+//       ::image::image_source imagesource(ppixmapDst, ::f64_rectangle(pointDst, size));
+//
+//       ::f64_rectangle rectangle(size);
+//
+//       ::image::image_drawing_options imagedrawingoptions(rectangle);
+//
+//       ::image::image_drawing imagedrawing(imagedrawingoptions, imagesource);
+//
+//       pdcDst->draw(imagedrawing);
+//       //if (!)
+//       //{
+//
+//       //   return false;
+//
+//       //}
+//
+//    }
+//
+//    //return true;
+//
+// }
 
 
 //void imaging::spread(
@@ -5040,11 +5044,11 @@ const ::color::color & color)
    if (size.is_empty())
       throw ::exception(error_bad_argument);
 
-   ::image::image_pointer pimageDst = image()->create_image(size);
+   ::image::image_pointer ppixmapDst = image()->create_image(size);
 
-   ::image::image_pointer pimageSrc = image()->create_image(size);
+   ::image::image_pointer ppixmapSrc = image()->create_image(size);
 
-   auto pgraphicsImageSrc = pimageSrc->acquire_graphics();
+   auto pgraphicsImageSrc = ppixmapSrc->acquire_graphics();
 
    pgraphicsImageSrc->set_alpha_mode(::draw2d::e_alpha_mode_set);
 
@@ -5059,7 +5063,7 @@ const ::color::color & color)
       ::image::image_drawing imagedrawing(imagedrawingoptions, imagesource);
 
       pgraphicsImageSrc->draw(imagedrawing);
-      //if (!pimageSrc->g()->draw(imagedrawing))
+      //if (!pgraphicsImageSrc->draw(imagedrawing))
       //{
 
       //   return false;
@@ -5068,10 +5072,13 @@ const ::color::color & color)
 
    }
 
+
+   auto ppixmapImageDst = ppixmapDst->map();
+   auto ppixmapImageSrc = ppixmapSrc->map();
    //if (!
    spread(
-      pimageDst->map(),
-      *pimageSrc,
+      ppixmapImageDst,
+      ppixmapImageSrc,
       iRadius, color);
    //{
 
@@ -5081,7 +5088,7 @@ const ::color::color & color)
 
    {
 
-      ::image::image_source imagesource(pimageDst, ::f64_rectangle(pointDst, size));
+      ::image::image_source imagesource(ppixmapDst, ::f64_rectangle(pointDst, size));
 
       ::f64_rectangle rectangle(size);
 
@@ -5103,7 +5110,7 @@ const ::color::color & color)
 }
 
 
-void imaging::spread(pixmap_t pixmapTarget, pixmap_t pixmapSource, ::i32 iRadius, const ::color::color& colorSpreadSetColor)
+void imaging::spread(pixmap_t * ppixmapTarget, const pixmap_t * ppixmapSource, ::i32 iRadius, const ::color::color& colorSpreadSetColor)
 {
 
    if (iRadius <= 1)
@@ -5131,7 +5138,7 @@ void imaging::spread(pixmap_t pixmapTarget, pixmap_t pixmapSource, ::i32 iRadius
    ::u8 *pSource;
 
 
-   image32_t imageSpreadSetColor(colorSpreadSetColor, pixmapTarget.color_indexes());
+   image32_t imageSpreadSetColor(colorSpreadSetColor, ppixmapTarget->color_indexes());
 
 
    ::u8 *pSource1;
@@ -5153,11 +5160,11 @@ void imaging::spread(pixmap_t pixmapTarget, pixmap_t pixmapSource, ::i32 iRadius
    ::i32 x2;
    ::i32 y2;
 
-   //pimageDst->map();
+   //ppixmapDst->map();
 
-   //pimageSrc->map();
+   //ppixmapSrc->map();
 
-   //if(!pimageDst || !pimageSrc)
+   //if(!ppixmapDst || !ppixmapSrc)
    //{
 
    //   return false;
@@ -5221,24 +5228,24 @@ void imaging::spread(pixmap_t pixmapTarget, pixmap_t pixmapSource, ::i32 iRadius
 
    ::u8 * pFilterData = pmemory->data();
 
-   ::i32 cx = pixmapTarget.width();
+   ::i32 cx = ppixmapTarget->width();
 
-   ::i32 cy = pixmapTarget.height();
+   ::i32 cy = ppixmapTarget->height();
 
-   if (cx != pixmapSource.width() || cy != pixmapSource.height())
+   if (cx != ppixmapSource->width() || cy != ppixmapSource->height())
    {
 
       throw ::exception(error_bad_argument);
 
    }
 
-   ::u8 *pDst = (::u8 *)pixmapTarget.data();
+   ::u8 *pDst = (::u8 *)ppixmapTarget->data();
 
-   ::u8 *pSrc = (::u8 *)pixmapSource.data();
+   ::u8 *pSrc = (::u8 *)ppixmapSource->data();
 
-   ::i32 scanSrc = pixmapSource.scan_size();
+   ::i32 scanSrc = ppixmapSource->scan_size();
 
-   ::i32 scanDst = pixmapTarget.scan_size();
+   ::i32 scanDst = ppixmapTarget->scan_size();
 
    ::i32 maxx1 = cx;
 
@@ -6881,10 +6888,10 @@ void imaging::alpha_pixelate_24CC(
 
 
 // dCompress de 0 a 1
-void imaging::HueVRCP(::image::image *pimage,::color::color crHue,::f64 dCompress)
+void imaging::HueVRCP(::pixmap *ppixmap,::color::color crHue,::f64 dCompress)
 {
 
-   pimage->map();
+   //pimage->map();
 
    /*if(pimage->get_data() == nullptr)
    {
@@ -6910,16 +6917,16 @@ void imaging::HueVRCP(::image::image *pimage,::color::color crHue,::f64 dCompres
 
    }
 
-   auto map = pimage->map();
+   //auto ppixmap = pimage->map();
 
-   ::u8 * p = (::u8 *)map.data();
+   ::u8 * p = (::u8 *)ppixmap->data();
 
-   ::i64 area = pimage->area();
+   ::i64 area = ppixmap->area();
 
    for(::i64 i = 0; i < area; i++)
    {
 
-      ((image32_t *)p)->assign(cra[(p[0] + p[1] + p[2]) / 3] & ::opacity(p[3]), pimage->color_indexes());
+      ((image32_t *)p)->assign(cra[(p[0] + p[1] + p[2]) / 3] & ::opacity(p[3]), ppixmap->color_indexes());
 
 
 

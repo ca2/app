@@ -3534,88 +3534,88 @@ namespace gpu
    }
 
 
-   image_data context::image32(const ::payload& payloadFile)
-   {
-
-      auto pimage = image()->get_image(payloadFile, { .sync = true, .cache = false });
-
-      class image_data image32;
-
-      image32.m_memory.set_size(pimage->area() * 4);
-
-      {
-
-
-         auto p = image32.m_memory.data();
-
-         for (auto y = 0; y < pimage->height(); y++)
-         {
-
-            auto psource = pimage->line_data(pimage->height() - y - 1);
-            for (auto x = 0; x < pimage->width(); x++)
-            {
-
-               *p++ = psource->u8_red(pimage->color_indexes());
-               *p++ = psource->u8_green(pimage->color_indexes());
-               *p++ = psource->u8_blue(pimage->color_indexes());
-               *p++ = psource->u8_opacity(pimage->color_indexes());
-
-               psource++;
-
-            }
-
-         }
-
-      }
-
-      image32.m_iWidth = pimage->width();
-      image32.m_iHeight = pimage->height();
-
-      return ::transfer(image32);
-
-
-   }
-
-
-   image_data context::image24(const ::payload& payloadFile)
-   {
-
-      auto pimage = image()->get_image(payloadFile, { .sync = true, .cache = false });
-
-      class image_data image24;
-
-      image24.m_memory.set_size(pimage->area() * 3);
-
-      {
-
-
-         auto p = image24.m_memory.data();
-
-         for (auto y = 0; y < pimage->height(); y++)
-         {
-
-            auto psource = pimage->line_data(pimage->height() - y - 1);
-            for (auto x = 0; x < pimage->width(); x++)
-            {
-
-               *p++ = psource->u8_red(pimage->color_indexes());
-               *p++ = psource->u8_green(pimage->color_indexes());
-               *p++ = psource->u8_blue(pimage->color_indexes());
-
-               psource++;
-
-            }
-
-         }
-
-      }
-
-      image24.m_iWidth = pimage->width();
-      image24.m_iHeight = pimage->height();
-
-      return ::transfer(image24);
-
-   }
+   // image_data context::image32(const ::payload& payloadFile)
+   // {
+   //
+   //    auto pimage = image()->get_image(payloadFile, { .sync = true, .cache = false });
+   //
+   //    class image_data image32;
+   //
+   //    image32.m_memory.set_size(pimage->area() * 4);
+   //
+   //    {
+   //
+   //
+   //       auto p = image32.m_memory.data();
+   //
+   //       for (auto y = 0; y < pimage->height(); y++)
+   //       {
+   //
+   //          auto psource = pimage->line_data(pimage->height() - y - 1);
+   //          for (auto x = 0; x < pimage->width(); x++)
+   //          {
+   //
+   //             *p++ = psource->u8_red(pimage->color_indexes());
+   //             *p++ = psource->u8_green(pimage->color_indexes());
+   //             *p++ = psource->u8_blue(pimage->color_indexes());
+   //             *p++ = psource->u8_opacity(pimage->color_indexes());
+   //
+   //             psource++;
+   //
+   //          }
+   //
+   //       }
+   //
+   //    }
+   //
+   //    image32.m_iWidth = pimage->width();
+   //    image32.m_iHeight = pimage->height();
+   //
+   //    return ::transfer(image32);
+   //
+   //
+   // }
+   //
+   //
+   // image_data context::image24(const ::payload& payloadFile)
+   // {
+   //
+   //    auto pimage = image()->get_image(payloadFile, { .sync = true, .cache = false });
+   //
+   //    class image_data image24;
+   //
+   //    image24.m_memory.set_size(pimage->area() * 3);
+   //
+   //    {
+   //
+   //
+   //       auto p = image24.m_memory.data();
+   //
+   //       for (auto y = 0; y < pimage->height(); y++)
+   //       {
+   //
+   //          auto psource = pimage->line_data(pimage->height() - y - 1);
+   //          for (auto x = 0; x < pimage->width(); x++)
+   //          {
+   //
+   //             *p++ = psource->u8_red(pimage->color_indexes());
+   //             *p++ = psource->u8_green(pimage->color_indexes());
+   //             *p++ = psource->u8_blue(pimage->color_indexes());
+   //
+   //             psource++;
+   //
+   //          }
+   //
+   //       }
+   //
+   //    }
+   //
+   //    image24.m_iWidth = pimage->width();
+   //    image24.m_iHeight = pimage->height();
+   //
+   //    return ::transfer(image24);
+   //
+   // }
 
 
    void context::clear(::gpu::texture * pgputexture, const ::color::color& color)

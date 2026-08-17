@@ -42,7 +42,9 @@ namespace graphics
       // 
   //    bool bOk = false;
 //
-      ipc_copy(m_pimageBuffer);
+
+      auto ppixmapImageBuffer = m_pimageBuffer->map();
+      ipc_copy(ppixmapImageBuffer);
 
       //return bOk;
 
@@ -115,7 +117,7 @@ namespace graphics
 
       return true;
 
-      //if (!m_pimageBuffer->create(size))
+      //if (!m_pimageBuffer->create_as_descriptor(size))
       //{
 
       //   return false;

@@ -878,7 +878,7 @@ namespace user
 
       //      m_pgraphics.create(this);
 
-      //      m_pgraphics->create_compatible_graphics(nullptr);
+      //      m_pgraphics->create_memory_graphics({}, nullptr); // create_compatible_graphics(nullptr);
 
       //   }
 

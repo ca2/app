@@ -18,7 +18,7 @@
 //#include "host.h"
 #include "brush.h"
 #include "draw2d.h"
-#include "task_tool.h"
+#include "acme/graphics/draw2d/task_tool.h"
 #include <chrono>
 
 
@@ -62,10 +62,10 @@ namespace draw2d
    }
 
 
-   void draw2d::initialize(::particle * pparticle)
+   void draw2d::initialize(::particle* pparticle)
    {
 
-      //auto estatus = 
+      //auto estatus =
 
       ::platform::department::initialize(pparticle);
 
@@ -80,7 +80,7 @@ namespace draw2d
 
       construct_newø(m_pimagea);
 
-      //estatus = 
+      //estatus =
 
       construct_newø(m_papi);
 
@@ -98,7 +98,7 @@ namespace draw2d
    }
 
 
-   void draw2d::add_object(::draw2d::object * pobject)
+   void draw2d::add_object(::draw2d::object* pobject)
    {
 
       critical_section_lock criticalsectionlock(&m_criticalsectionObjectList);
@@ -108,14 +108,14 @@ namespace draw2d
    }
 
 
-   void draw2d::erase_object(::draw2d::object * pobject)
+   void draw2d::erase_object(::draw2d::object* pobject)
    {
-      
-      if(::is_null(this))
+
+      if (::is_null(this))
       {
-         
+
          return;
-         
+
       }
 
       critical_section_lock criticalsectionlock(&m_criticalsectionObjectList);
@@ -125,7 +125,7 @@ namespace draw2d
    }
 
 
-   void draw2d::add_image(::image::image *pimage)
+   void draw2d::add_image(::image::image* pimage)
    {
 
       critical_section_lock criticalsectionlock(&m_criticalsectionObjectList);
@@ -135,7 +135,7 @@ namespace draw2d
    }
 
 
-   void draw2d::erase_image(::image::image *pimage)
+   void draw2d::erase_image(::image::image* pimage)
    {
 
       critical_section_lock criticalsectionlock(&m_criticalsectionObjectList);
@@ -150,7 +150,7 @@ namespace draw2d
    }
 
 
-   void draw2d::add_graphics(graphics * pgraphics)
+   void draw2d::add_graphics(graphics* pgraphics)
    {
 
       critical_section_lock criticalsectionlock(&m_criticalsectionGraphicsContextList);
@@ -160,7 +160,7 @@ namespace draw2d
    }
 
 
-   void draw2d::erase_graphics(graphics * pgraphics)
+   void draw2d::erase_graphics(graphics* pgraphics)
    {
 
       critical_section_lock criticalsectionlock(&m_criticalsectionGraphicsContextList);
@@ -208,7 +208,8 @@ namespace draw2d
    //}
 
 
-   ::pointer < ::draw2d::window_attachment > draw2d::allocate_draw2d_window_attachment(::acme::windowing::window * pacmewindowingwindow)
+   ::pointer<::draw2d::window_attachment> draw2d::allocate_draw2d_window_attachment(
+      ::acme::windowing::window* pacmewindowingwindow)
    {
 
       if (m_papplication->m_bGpu)
@@ -218,12 +219,13 @@ namespace draw2d
 
       }
 
-      return create_newø<::draw2d::window_attachment >();
+      return create_newø<::draw2d::window_attachment>();
 
    }
 
 
-   ::pointer < ::draw2d::window_attachment > draw2d::allocate_draw2d_window_attachment_for_gpu(::acme::windowing::window * pacmewindowingwindow)
+   ::pointer<::draw2d::window_attachment> draw2d::allocate_draw2d_window_attachment_for_gpu(
+      ::acme::windowing::window* pacmewindowingwindow)
    {
 
       if (!m_papplication->m_bGpu)
@@ -253,12 +255,13 @@ namespace draw2d
 
       }
 
-      return create_newø<::draw2d::window_attachment >();
+      return create_newø<::draw2d::window_attachment>();
 
    }
 
 
-   ::pointer < ::draw2d::window_attachment > draw2d::_allocate_draw2d_window_attachment_for_gpu(::acme::windowing::window * pacmewindowingwindow)
+   ::pointer<::draw2d::window_attachment> draw2d::_allocate_draw2d_window_attachment_for_gpu(
+      ::acme::windowing::window* pacmewindowingwindow)
    {
 
       return {};
@@ -281,7 +284,7 @@ namespace draw2d
 
       critical_section_lock criticalsectionlock(&m_criticalsectionObjectList);
 
-      for (auto & pparticle : m_objecta)
+      for (auto& pparticle: m_objecta)
       {
 
          pparticle->destroy_os_data();
@@ -296,7 +299,7 @@ namespace draw2d
 
       critical_section_lock criticalsectionlock(&m_criticalsectionImageList);
 
-      for (auto & pimage : m_pimagea->imagea())
+      for (auto& pimage: m_pimagea->imagea())
       {
 
          pimage->destroy_os_data();
@@ -311,7 +314,7 @@ namespace draw2d
 
       critical_section_lock criticalsectionlock(&m_criticalsectionGraphicsContextList);
 
-      for (auto & pgraphics : m_graphicsa)
+      for (auto& pgraphics: m_graphicsa)
       {
 
          pgraphics->destroy_os_data();
@@ -320,18 +323,19 @@ namespace draw2d
 
    }
 
-   ::draw2d::graphics * draw2d::get_thread_graphics(int iSlot)
+
+   ::draw2d::graphics* draw2d::get_thread_graphics(int iSlot)
    {
 
       auto taskindex = current_task_index();
 
       synchronous_lock synchronouslock(this->synchronization(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 
-      auto & pgraphics = m_mapThreadPathGraphics[taskindex].atø(iSlot);
+      auto& pgraphics = m_mapThreadPathGraphics[taskindex].atø(iSlot);
 
       synchronouslock.unlock();
 
-      if(defer_constructø(pgraphics))
+      if (defer_constructø(pgraphics))
       {
 
          pgraphics->create_memory_graphics({256, 256}, ::get_task()->main_acme_user_interaction());
@@ -343,7 +347,7 @@ namespace draw2d
    }
 
 
-   api & draw2d::api()
+   api& draw2d::api()
    {
 
       return *m_papi;
@@ -351,12 +355,12 @@ namespace draw2d
    }
 
 
-   class ::write_text::write_text * draw2d::write_text()
+   class ::write_text::write_text* draw2d::write_text()
    {
 
       _synchronous_lock synchronouslock(this->synchronization());
 
-      if(!m_pwritetext)
+      if (!m_pwritetext)
       {
 
          if (application()->m_bWriteText)
@@ -392,7 +396,7 @@ namespace draw2d
             //if (::succeeded(estatus))
             //{
 
-            factory()->add_factory_item_with_custom_id < ::draw2d::task_tool_item >(::atom(::e_task_tool_draw2d));
+            factory()->add_factory_item_with_custom_id<::draw2d::task_tool_item>(::atom(::e_task_tool_draw2d));
 
             //}
 
@@ -542,7 +546,7 @@ namespace draw2d
 
          critical_section_lock criticalsectionlock(&m_criticalsectionGraphicsContextList);
 
-            m_graphicsa.clear();
+         m_graphicsa.clear();
 
       }
 
@@ -567,21 +571,21 @@ namespace draw2d
 
       }
 
-         m_objecta.erase_all();
+      m_objecta.erase_all();
 
-         m_pwritetext.release();
+      m_pwritetext.release();
 
-         m_papi.release();
+      m_papi.release();
 
-         m_alpha_spread__24CC_filterMap.clear();
+      m_alpha_spread__24CC_filterMap.clear();
 
-         m_alpha_spread__32CC_filterMap.clear();
+      m_alpha_spread__32CC_filterMap.clear();
 
       //}
 
       m_graphicsa.erase_all();
 
-      //auto estatus = 
+      //auto estatus =
       ::platform::department::destroy();
 
       //return estatus;
@@ -589,10 +593,10 @@ namespace draw2d
    }
 
 
-   ::draw2d::graphics_pointer draw2d::allocate_graphics(::acme::user::interaction * pacmeuserinteractionAffinity)
+   ::draw2d::graphics_pointer draw2d::allocate_graphics(::acme::user::interaction* pacmeuserinteractionAffinity)
    {
 
-      auto pgraphics = pacmeuserinteractionAffinity->createø< ::draw2d::graphics>();
+      auto pgraphics = pacmeuserinteractionAffinity->createø<::draw2d::graphics>();
 
       pgraphics->m_pacmeuserinteractionAffinity = pacmeuserinteractionAffinity;
 
@@ -601,7 +605,8 @@ namespace draw2d
    }
 
 
-   ::draw2d::graphics_pointer draw2d::create_memory_graphics(const ::i32_size &size, ::acme::user::interaction * pacmeuserinteractionAffinity)
+   ::draw2d::graphics_pointer draw2d::create_memory_graphics(const ::i32_size& size,
+                                                             ::acme::user::interaction* pacmeuserinteractionAffinity)
    {
 
       auto pgraphics = allocate_graphics(pacmeuserinteractionAffinity);
@@ -638,17 +643,17 @@ namespace draw2d
 
 
       void update_memory_graphics_pool_high_water(
-         ::std::atomic<::u64> & highWater,
+         ::std::atomic<::u64>& highWater,
          ::u64 uActive)
       {
 
          auto uHighWater = highWater.load(::std::memory_order_relaxed);
 
          while (uActive > uHighWater
-            && !highWater.compare_exchange_weak(
-               uHighWater,
-               uActive,
-               ::std::memory_order_relaxed))
+                && !highWater.compare_exchange_weak(
+                   uHighWater,
+                   uActive,
+                   ::std::memory_order_relaxed))
          {
 
          }
@@ -660,7 +665,7 @@ namespace draw2d
 
 
    ::draw2d::graphics_lease draw2d::acquire_memory_graphics(
-      const ::i32_size & size, ::acme::user::interaction * pacmeuserinteractionAffinity)
+      const ::i32_size& size, ::acme::user::interaction* pacmeuserinteractionAffinity)
    {
 
       return _acquire_memory_graphics(pacmeuserinteractionAffinity, size, nullptr);
@@ -668,8 +673,9 @@ namespace draw2d
    }
 
 
-   ::draw2d::graphics_pointer draw2d::do_allocation_strategy(::acme::user::interaction * pacmeuserinteractionAffinity, ::image::image *pimage,
-                                                              const ::i32_size &size)
+   ::draw2d::graphics_pointer draw2d::do_allocation_strategy(::acme::user::interaction* pacmeuserinteractionAffinity,
+                                                             ::image::image* pimage,
+                                                             const ::i32_size& size)
    {
 
       if (::is_set(pimage))
@@ -719,14 +725,16 @@ namespace draw2d
    }
 
 
-   const void * draw2d::get_gpu_physical_device_features(void * p)
+   const void* draw2d::get_gpu_physical_device_features(void* p)
    {
 
       return nullptr;
 
    }
 
-   void draw2d::get_required_gpu_device_extensions(::u64 uPhysicalDevice, ::array<const char *> & pszaRequiredDeviceExtensions)
+
+   void draw2d::get_required_gpu_device_extensions(::u64 uPhysicalDevice,
+                                                   ::array<const char *>& pszaRequiredDeviceExtensions)
    {
 
 
@@ -734,11 +742,11 @@ namespace draw2d
 
 
    ::draw2d::graphics_lease draw2d::_acquire_memory_graphics(
-      ::acme::user::interaction * pacmeuserinteractionAffinity,
-      const ::i32_size & size,
-      ::image::image * pimage)
+      ::acme::user::interaction* pacmeuserinteractionAffinity,
+      const ::i32_size& size,
+      ::image::image* pimage)
    {
-      
+
       if (!pacmeuserinteractionAffinity)
       {
 
@@ -842,16 +850,16 @@ namespace draw2d
       pgraphics->on_acquire_memory_graphics(pimage, size, pacmeuserinteractionAffinity);
 
       auto uActive = m_uMemoryGraphicsPoolActive.fetch_add(
-         1,
-         ::std::memory_order_relaxed) + 1;
+                        1,
+                        ::std::memory_order_relaxed) + 1;
 
       update_memory_graphics_pool_high_water(
          m_uMemoryGraphicsPoolHighWater,
          uActive);
 
       if (m_papplication
-         && m_papplication->m_gpu.m_bPerformanceDiagnostics.load(
-            ::std::memory_order_relaxed))
+          && m_papplication->m_gpu.m_bPerformanceDiagnostics.load(
+             ::std::memory_order_relaxed))
       {
 
          m_uMemoryGraphicsPoolAcquisitions.fetch_add(1, ::std::memory_order_relaxed);
@@ -879,9 +887,9 @@ namespace draw2d
 
 
    ::draw2d::graphics_lease draw2d::acquire_image_graphics(
-      ::image::image * pimage,
+      ::image::image* pimage,
       // ::draw2d::host * pdraw2dhost,
-      ::acme::user::interaction * pacmeuserinteractionAffinity)
+      ::acme::user::interaction* pacmeuserinteractionAffinity)
    {
 
       if (!pimage || !pacmeuserinteractionAffinity)
@@ -904,12 +912,12 @@ namespace draw2d
          pacmeuserinteractionAffinity,
          size,
          pimage);
-         //,        pacmeuserinteractionAffinity);
+      //,        pacmeuserinteractionAffinity);
 
    }
 
 
-   void draw2d::do_release_to_pool_strategy(::draw2d::graphics_pointer &pgraphics, ::image::image * pimage)
+   void draw2d::do_release_to_pool_strategy(::draw2d::graphics_pointer& pgraphics, ::image::image* pimage)
    {
 
       if (::is_set(pimage))
@@ -931,7 +939,6 @@ namespace draw2d
       pgraphics.release();
 
    }
-
 
 
    void draw2d::return_memory_graphics(
@@ -1025,17 +1032,17 @@ namespace draw2d
       auto uActive = m_uMemoryGraphicsPoolActive.load(::std::memory_order_relaxed);
 
       while (uActive > 0
-         && !m_uMemoryGraphicsPoolActive.compare_exchange_weak(
-            uActive,
-            uActive - 1,
-            ::std::memory_order_relaxed))
+             && !m_uMemoryGraphicsPoolActive.compare_exchange_weak(
+                uActive,
+                uActive - 1,
+                ::std::memory_order_relaxed))
       {
 
       }
 
       if (m_papplication
-         && m_papplication->m_gpu.m_bPerformanceDiagnostics.load(
-            ::std::memory_order_relaxed))
+          && m_papplication->m_gpu.m_bPerformanceDiagnostics.load(
+             ::std::memory_order_relaxed))
       {
 
          report_memory_graphics_pool_diagnostics_if_due();
@@ -1083,8 +1090,8 @@ namespace draw2d
    {
 
       if (!m_papplication
-         || !m_papplication->m_gpu.m_bPerformanceDiagnostics.load(
-            ::std::memory_order_relaxed))
+          || !m_papplication->m_gpu.m_bPerformanceDiagnostics.load(
+             ::std::memory_order_relaxed))
       {
 
          return;
@@ -1129,7 +1136,7 @@ namespace draw2d
             m_papplication->m_gpu.m_iPerformanceDiagnosticsIntervalMilliseconds.load(
                ::std::memory_order_relaxed)));
       auto iNextNanoseconds = iNowNanoseconds
-         + (::i64) iIntervalMilliseconds * 1'000'000;
+                              + (::i64)iIntervalMilliseconds * 1'000'000;
 
       if (!m_iMemoryGraphicsPoolNextReportNanoseconds.compare_exchange_strong(
          iDeadlineNanoseconds,
@@ -1168,7 +1175,7 @@ namespace draw2d
    }
 
 
-   ::draw2d::brush_pointer draw2d::create_solid_brush(const ::color::color & color)
+   ::draw2d::brush_pointer draw2d::create_solid_brush(const ::color::color& color)
    {
 
       ::draw2d::brush_pointer pbrush;
@@ -1180,8 +1187,6 @@ namespace draw2d
       return pbrush;
 
    }
-
-
 
 
    // should not call axis class implementation because draw2d::draw2d is inside a n-furcation of user::draw2d
@@ -1207,21 +1212,21 @@ namespace draw2d
 
 
    void draw2d::embossed_text_out(
-      ::draw2d::graphics_pointer & pgraphics,
-      const ::i32_rectangle & rectangle,
-      const ::scoped_string & scopedstrText,
-      ::image::fastblur & blur,
-      ::image::image_pointer & imageBlur,
-      ::write_text::font * pfont,
-      const ::e_align & ealign,
-      const ::e_draw_text & edrawtext,
-      const ::color::color & colorText,
-      const ::color::color & colorGlow,
+      ::draw2d::graphics_pointer& pgraphics,
+      const ::i32_rectangle& rectangle,
+      const ::scoped_string& scopedstrText,
+      ::image::fastblur& blur,
+      ::image::image_pointer& pimageBlur,
+      ::write_text::font* pfont,
+      const ::e_align& ealign,
+      const ::e_draw_text& edrawtext,
+      const ::color::color& colorText,
+      const ::color::color& colorGlow,
       ::i32 iSpreadRadius,
       ::i32 iBlurRadius,
       ::i32 iBlur,
       bool bUpdate,
-      const ::color_filter & colorfilter)
+      const ::color_filter& colorfilter)
    {
 
       if (scopedstrText.is_empty())
@@ -1231,11 +1236,11 @@ namespace draw2d
 
       }
 
-      auto pred = [&](::draw2d::graphics * pgraphicsParam)
+      auto pred = [&](::draw2d::graphics* pgraphicsParam)
       {
 
-            pgraphicsParam->set(pfont);
-            pgraphicsParam->_DrawText(scopedstrText, rectangle, ealign, edrawtext);
+         pgraphicsParam->set(pfont);
+         pgraphicsParam->_DrawText(scopedstrText, rectangle, ealign, edrawtext);
 
       };
 
@@ -1244,13 +1249,13 @@ namespace draw2d
       //if (!bRaspiBilbo)
       {
 
-         emboss_predicate(pgraphics, rectangle, pred, blur, imageBlur, colorGlow, iSpreadRadius, iBlurRadius, iBlur,
+         emboss_predicate(pgraphics, rectangle, pred, blur, pimageBlur, colorGlow, iSpreadRadius, iBlurRadius, iBlur,
                           bUpdate, colorfilter);
       }
 
       auto opacity = colorfilter.opacity();
 
-      auto pbrushText = createø < ::draw2d::brush >();
+      auto pbrushText = createø<::draw2d::brush>();
 
       pbrushText->create_solid(colorText & opacity);
 
@@ -1264,138 +1269,151 @@ namespace draw2d
    }
 
 
-void draw2d::emboss_predicate(
-   ::draw2d::graphics_pointer & pgraphics,
-   const ::i32_rectangle & rectangle,
-   const ::function < void(::draw2d::graphics *) > & functionDraw,
-   ::image::fastblur & blur,
-   ::image::image_pointer & pimageBlur,
-   ::color::color crGlow,
-   ::i32 iSpreadRadius,
-   ::i32 iBlurRadius,
-   ::i32 iBlur,
-   bool bUpdate,
-   const ::color_filter & colorfilter)
-{
-
-   ::i32 iR = iSpreadRadius + iBlurRadius + iBlur + 1;
-
-   ::i32_rectangle rectangleEmboss = rectangle;
-
-   rectangleEmboss.left -= (::i32)(iR * g_dEmboss);
-   rectangleEmboss.top -= (::i32)(iR * g_dEmboss);
-   rectangleEmboss.right += (::i32)(iR * g_dEmboss);
-   rectangleEmboss.bottom += (::i32)(iR * g_dEmboss);
-
-   if (bUpdate || !pimageBlur->is_ok())
+   void draw2d::emboss_predicate(
+      ::draw2d::graphics_pointer& pgraphics,
+      const ::i32_rectangle& rectangle,
+      const ::function<void(::draw2d::graphics*)>& functionDraw,
+      ::image::fastblur& blur,
+      ::image::image_pointer& pimageBlur,
+      ::color::color crGlow,
+      ::i32 iSpreadRadius,
+      ::i32 iBlurRadius,
+      ::i32 iBlur,
+      bool bUpdate,
+      const ::color_filter& colorfilter)
    {
 
-      ::i32 iEffectiveSpreadRadius = iSpreadRadius;
+      ::i32 iR = iSpreadRadius + iBlurRadius + iBlur + 1;
 
-      ::i32 iEffectiveBlurRadius = iBlurRadius;
+      ::i32_rectangle rectangleEmboss = rectangle;
 
-      const ::i32_size & size = rectangleEmboss.size();
+      rectangleEmboss.left -= (::i32)(iR * g_dEmboss);
+      rectangleEmboss.top -= (::i32)(iR * g_dEmboss);
+      rectangleEmboss.right += (::i32)(iR * g_dEmboss);
+      rectangleEmboss.bottom += (::i32)(iR * g_dEmboss);
 
-      //pimageBlur->initialize(rectangleEmboss, iEffectiveBlurRadius);
-
-      //pimageBlur->fill(0, 0, 0, 0);
-
-      ::i32_rectangle rectangleCache;
-
-      rectangleCache.left = (::i32)(iR * g_dEmboss);
-      rectangleCache.top = (::i32)(iR * g_dEmboss);
-      rectangleCache.right = rectangleCache.left + rectangle.width();
-
-      rectangleCache.bottom = rectangleCache.top + rectangle.height();
-
-      ::image::image_pointer pimage;
-
-      //auto estatus =
-
-      constructø(pimage);
-
-      //if (!estatus)
-      //{
-
-      //   return false;
-
-      //}
-
-      //estatus =
-
-      pimage->create_as_descriptor(size);
-
-      //if (!estatus)
-      //{
-
-      //   return false;
-
-      //}
-
-      pimage->fill_byte(0);
-
-      auto pbrushText = createø < ::draw2d::brush >();
-
-      pbrushText->create_solid(argb(255, 255, 255, 255));
-
-      auto pgraphicsImage = pimage->acquire_graphics(pgraphics->m_pacmeuserinteractionAffinity);
-
-      pgraphicsImage->set(pbrushText);
-
-      auto shift = rectangleCache.top_left() - rectangle.top_left();
-
-      auto extent = rectangleCache.size();
-
-      pgraphicsImage->shift_impact_area(shift, extent);
-
-      functionDraw(pgraphicsImage);
-
-      pgraphicsImage->shift_impact_area(-shift, extent);
-
-      auto psystem = system();
-
-      pimageBlur->create_as_descriptor(size);
-
-      blur.initialize(pimageBlur->size(), iEffectiveBlurRadius);
-
-      auto pgraphicsBlur = pimageBlur->acquire_graphics(pgraphics->m_pacmeuserinteractionAffinity);
-
-      imaging()->channel_spread_set_color(pgraphicsBlur, {}, size, pgraphicsImage, {}, ::color::e_channel_red,
-                                          iEffectiveSpreadRadius, argb(255, 255, 255, 255));
-
-      for (iptr i = 0; i < iBlur; i++)
+      if (bUpdate || !pimageBlur->is_ok())
       {
-         
-         blur.blur(pimageBlur);
+
+         ::i32 iEffectiveSpreadRadius = iSpreadRadius;
+
+         ::i32 iEffectiveBlurRadius = iBlurRadius;
+
+         const ::i32_size& size = rectangleEmboss.size();
+
+         //pimageBlur->initialize(rectangleEmboss, iEffectiveBlurRadius);
+
+         //pimageBlur->fill(0, 0, 0, 0);
+
+         ::i32_rectangle rectangleCache;
+
+         rectangleCache.left = (::i32)(iR * g_dEmboss);
+         rectangleCache.top = (::i32)(iR * g_dEmboss);
+         rectangleCache.right = rectangleCache.left + rectangle.width();
+
+         rectangleCache.bottom = rectangleCache.top + rectangle.height();
+
+         ::image::image_pointer pimage;
+
+         //auto estatus =
+
+         constructø(pimage);
+
+         //if (!estatus)
+         //{
+
+         //   return false;
+
+         //}
+
+         //estatus =
+
+         pimage->create_as_descriptor(size);
+
+         //if (!estatus)
+         //{
+
+         //   return false;
+
+         //}
+
+         auto pbrushText = createø<::draw2d::brush>();
+
+         pbrushText->create_solid(argb(255, 255, 255, 255));
+
+         {
+
+            auto pgraphicsImage = pimage->acquire_graphics(pgraphics->m_pacmeuserinteractionAffinity);
+
+            pgraphicsImage->clear(::color::transparent);
+
+            pgraphicsImage->set(pbrushText);
+
+            auto shift = rectangleCache.top_left() - rectangle.top_left();
+
+            auto extent = rectangleCache.size();
+
+            pgraphicsImage->shift_impact_area(shift, extent);
+
+            functionDraw(pgraphicsImage);
+
+            pgraphicsImage->shift_impact_area(-shift, extent);
+
+         }
+
+         {
+
+            auto psystem = system();
+
+            pimageBlur->create_as_descriptor(size);
+
+            blur.initialize(pimageBlur->size(), iEffectiveBlurRadius);
+
+            auto ppixmapImage = pimage->map();
+
+            auto ppixmapImageBlur = pimageBlur->map();
+
+            //auto pgraphicsBlur = pimageBlur->acquire_graphics(pgraphics->m_pacmeuserinteractionAffinity);
+
+            imaging()->spread(ppixmapImageBlur, ppixmapImage, iEffectiveSpreadRadius, ::color::white);
+
+            //auto ppixmapImageBlur = pimageBlur->map();
+
+            for (iptr i = 0; i < iBlur; i++)
+            {
+
+               blur.blur(ppixmapImageBlur);
+
+            }
+
+            ppixmapImageBlur->set_rgb(crGlow);
+
+            ppixmapImageBlur->mult_alpha();
+
+         }
 
       }
 
-      pimageBlur->set_rgb(crGlow);
+      pgraphics->set_alpha_mode(::draw2d::e_alpha_mode_blend);
 
-      pimageBlur->mult_alpha();
+      ::image::image_source imagesource(pimageBlur);
+
+      ::image::image_drawing_options imagedrawingoptions(rectangleEmboss);
+
+      imagedrawingoptions = colorfilter;
+
+      ::image::image_drawing imagedrawing(imagedrawingoptions, imagesource);
+
+      pgraphics->draw(imagedrawing);
+
+      //return true;
 
    }
 
-   pgraphics->set_alpha_mode(::draw2d::e_alpha_mode_blend);
-
-   ::image::image_source imagesource(pimageBlur);
-
-   ::image::image_drawing_options imagedrawingoptions(rectangleEmboss);
-
-   imagedrawingoptions = colorfilter;
-
-   ::image::image_drawing imagedrawing(imagedrawingoptions, imagesource);
-
-   pgraphics->draw(imagedrawing);
-
-   //return true;
-
-}
-
 
    void draw2d::alpha_spread__24CC(
-      ::u8 * lpbDst, ::i32 xDest, ::i32 yDest, ::i32 wDest, ::i32 cx, ::i32 cy,
-      ::u8 * lpbSrc, ::i32 xSrc, ::i32 ySrc, ::i32 wSrc,
+      ::u8* lpbDst, ::i32 xDest, ::i32 yDest, ::i32 wDest, ::i32 cx, ::i32 cy,
+      ::u8* lpbSrc, ::i32 xSrc, ::i32 ySrc, ::i32 wSrc,
       ::u8 bMin, ::i32 iRadius)
    {
       __UNREFERENCED_PARAMETER(xDest);
@@ -1408,12 +1426,12 @@ void draw2d::emboss_predicate(
       ::i32 iFilterHalfH = iFilterH / 2;
       ::i32 iFilterArea = iFilterW * iFilterH;
       //::i32 divisor;
-      ::u8 * lpbSource;
-      ::u8 * lpbSource_1;
-      ::u8 * lpbSource_2;
-      ::u8 * lpwDestination;
-      ::u8 * lpFilter;
-      ::u8 * pFilter;
+      ::u8* lpbSource;
+      ::u8* lpbSource_1;
+      ::u8* lpbSource_2;
+      ::u8* lpwDestination;
+      ::u8* lpFilter;
+      ::u8* pFilter;
 
 
       ::i32 i;
@@ -1429,7 +1447,7 @@ void draw2d::emboss_predicate(
 
       _synchronous_lock synchronouslock(this->synchronization(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 
-      auto & filter = m_alpha_spread__24CC_filterMap[iRadius];
+      auto& filter = m_alpha_spread__24CC_filterMap[iRadius];
 
       if (filter.is_set())
       {
@@ -1648,7 +1666,6 @@ void draw2d::emboss_predicate(
       y2 = yL - iFilterHalfWidth;
 
 
-
       /// divisor = (iFilterYUpperBound - iFilterYLowerBound + 1) * (iFilterXUpperBound - iFilterXLowerBound + 1);
 
 
@@ -1710,12 +1727,13 @@ void draw2d::emboss_predicate(
    }
 
 
-   bool draw2d::channel_spread__32CC(::image::image *pimageDst, ::image::image *pimageSrc, ::i32 iChannel, ::i32 iRadius, const ::color::color & colorSpreadSetColor)
+   bool draw2d::channel_spread__32CC(::pixmap * ppixmapDst, ::pixmap * ppixmapSrc, ::i32 iChannel,
+                                     ::i32 iRadius, const ::color::color& colorSpreadSetColor)
    {
-
-      pimageDst->map();
-
-      pimageSrc->map();
+      //
+      // pimageDst->map();
+      //
+      // ppixmapSrc->map();
 
       ::i32 iFilterW = iRadius * 2 + 1;
       ::i32 iFilterH = iRadius * 2 + 1;
@@ -1723,12 +1741,12 @@ void draw2d::emboss_predicate(
       ::i32 iFilterHalfH = iRadius;
       ::i32 iFilterArea = iFilterW * iFilterH;
       //::i32 divisor = iFilterW * iFilterH;
-      ::u8 * lpbSource;
-      ::u8 * lpbSource_1;
-      ::u8 * lpbSource_2;
-      ::u8 * lpwDestination;
-      ::u8 * lpFilter;
-      ::u8 * pFilter;
+      ::u8* lpbSource;
+      ::u8* lpbSource_1;
+      ::u8* lpbSource_2;
+      ::u8* lpwDestination;
+      ::u8* lpFilter;
+      ::u8* pFilter;
 
       ::i32 i;
       ::i32 x;
@@ -1742,12 +1760,12 @@ void draw2d::emboss_predicate(
       ::i32 rSquare;
 
 
-      image32_t u32SpreadSetColor(colorSpreadSetColor, pimageDst->m_colorindexes);
+      image32_t u32SpreadSetColor(colorSpreadSetColor, ppixmapDst->m_colorindexes);
 
 
       _synchronous_lock synchronouslock(this->synchronization(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 
-      auto & filter = m_alpha_spread__32CC_filterMap[iRadius];
+      auto& filter = m_alpha_spread__32CC_filterMap[iRadius];
 
       if (filter.is_set())
       {
@@ -1776,19 +1794,19 @@ void draw2d::emboss_predicate(
 
       synchronouslock.unlock();
 
-      ::i32 cx = pimageDst->width();
-      ::i32 cy = pimageDst->height();
+      ::i32 cx = ppixmapDst->width();
+      ::i32 cy = ppixmapDst->height();
 
-      if (cx != pimageSrc->width() || cy != pimageSrc->height())
+      if (cx != ppixmapSrc->width() || cy != ppixmapSrc->height())
          return false;
 
-      ::u8 * lpbDst = (::u8 *)pimageDst->data();
-      ::u8 * lpbSrc = (::u8 *)pimageSrc->data();
+      ::u8* lpbDst = (::u8 *)ppixmapDst->data();
+      ::u8* lpbSrc = (::u8 *)ppixmapSrc->data();
 
       //::i32 wSrc = cx * 4;
       //::i32 wDst = cx * 4;
-      ::i32 wSrc = pimageSrc->scan_size();
-      ::i32 wDst = pimageDst->scan_size();
+      ::i32 wSrc = ppixmapSrc->scan_size();
+      ::i32 wDst = ppixmapDst->scan_size();
 
       ::i32 maxx1 = cx;
       ::i32 maxy1 = cy;
@@ -1799,7 +1817,7 @@ void draw2d::emboss_predicate(
       //   ::i32 max3x3 = (maxx1 - iFilterH / 2) * 4;
       //::i32 w = cx * 4;
 
-      pimageDst->pixmap_t::copy(pimageSrc);
+      ppixmapDst->pixmap_t::copy(ppixmapSrc);
       //::memory_copy(lpbDst,lpbSrc,cx * cy * 4);
 
 
@@ -1955,7 +1973,6 @@ void draw2d::emboss_predicate(
       y2 = yL - iFilterHalfWidth;
 
 
-
       //divisor = (iFilterYUpperBound - iFilterYLowerBound + 1) * (iFilterXUpperBound - iFilterXLowerBound + 1);
 
 
@@ -2008,7 +2025,7 @@ void draw2d::emboss_predicate(
    void draw2d::initialize_write_text()
    {
 
-      if(m_pwritetext)
+      if (m_pwritetext)
       {
 
          return;
@@ -2020,7 +2037,7 @@ void draw2d::emboss_predicate(
       try
       {
 
-         auto & pfactoryWriteText = write_text_factory();
+         auto& pfactoryWriteText = write_text_factory();
 
          if (pfactoryWriteText)
          {
@@ -2056,7 +2073,7 @@ void draw2d::emboss_predicate(
 
       auto psystem = system();
 
-      //estatus = 
+      //estatus =
 
       constructø(m_pwritetext);
 
@@ -2094,9 +2111,9 @@ void draw2d::emboss_predicate(
       if (strImplementationName.has_character())
       {
 
-         ::pointer<::aura::system>psystem = system();
+         ::pointer<::aura::system> psystem = system();
 
-         auto & pfactoryWriteText = psystem->factory("write_text", strImplementationName);
+         auto& pfactoryWriteText = psystem->factory("write_text", strImplementationName);
 
          if (pfactoryWriteText)
          {
@@ -2126,7 +2143,7 @@ void draw2d::emboss_predicate(
 
       auto psystem = system();
 
-      auto & pfactoryWriteText = psystem->factory("write_text", strImplementationName);
+      auto& pfactoryWriteText = psystem->factory("write_text", strImplementationName);
 
       if (pfactoryWriteText)
       {
@@ -2141,9 +2158,9 @@ void draw2d::emboss_predicate(
       if (strImplementationName != system()->implementation_name("write_text", "gdiplus"))
       {
 
-         ::pointer<::aura::system>psystem = system();
+         ::pointer<::aura::system> psystem = system();
 
-         auto & pfactoryWriteText = psystem->factory("write_text", "gdiplus");
+         auto& pfactoryWriteText = psystem->factory("write_text", "gdiplus");
 
          if (pfactoryWriteText)
          {
@@ -2158,9 +2175,9 @@ void draw2d::emboss_predicate(
       if (strImplementationName != system()->implementation_name("write_text", "direct2d"))
       {
 
-         ::pointer<::aura::system>psystem = system();
+         ::pointer<::aura::system> psystem = system();
 
-         auto & pfactoryWriteText = psystem->factory("write_text", "direct2d");
+         auto& pfactoryWriteText = psystem->factory("write_text", "direct2d");
 
          if (pfactoryWriteText)
          {
@@ -2179,7 +2196,7 @@ void draw2d::emboss_predicate(
 
          auto psystem = system();
 
-         auto & pfactoryWriteText = psystem->factory("write_text", "pango");
+         auto& pfactoryWriteText = psystem->factory("write_text", "pango");
 
          if (pfactoryWriteText)
          {
@@ -2215,7 +2232,7 @@ void draw2d::emboss_predicate(
 
       //   return true;
 
-   //#endif
+      //#endif
 
    }
 
@@ -2245,7 +2262,7 @@ void draw2d::emboss_predicate(
 
 #endif
 
-}
+   }
 
 
    bool draw2d::lock_device()
@@ -2284,5 +2301,3 @@ void draw2d::emboss_predicate(
 
 
 } // namespace draw2d
-
-

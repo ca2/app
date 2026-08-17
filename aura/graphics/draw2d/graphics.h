@@ -473,6 +473,9 @@ namespace draw2d
 
 
 
+      virtual void invert();
+      //pimage->fill_channel(0, ::color::e_channel_blue);
+      virtual void fill_channel(::i32 iByte, ::color::enum_channel echannel);
 
 
 

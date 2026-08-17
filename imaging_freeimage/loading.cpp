@@ -5,6 +5,7 @@
 #include "acme/filesystem/filesystem/file_system.h"
 #include "acme/filesystem/filesystem/file_context.h"
 #include "aura/graphics/image/image.h"
+#include "aura/graphics/image/load_image.h"
 
 
 #if defined(USE_PORT_FREEIMAGE)
@@ -28,7 +29,7 @@ namespace imaging_freeimage
    static std::recursive_mutex g_freeimageMutex;
 
 
-   bool image_from_freeimage(::image::image* pimage, FIBITMAP* pfibitmap)
+   bool pixmap_from_freeimage(::pixmap * ppixmap, FIBITMAP* pfibitmap)
    {
       if (pfibitmap == nullptr)
       {
@@ -46,9 +47,9 @@ namespace imaging_freeimage
 
       ::i32 h = FreeImage_GetHeight(image32);
 
-      pimage->create({w, h});
+      ppixmap->create_as_descriptor({w, h});
 
-      ////if (!pimage->create({ w, h}))
+      ////if (!pimage->create_as_descriptor({ w, h}))
       //{
 
       //   return false;
@@ -61,7 +62,7 @@ namespace imaging_freeimage
 
       ::i32 iLineSize = w * sizeof(color32_t);
 
-      pimage->map();
+      auto ppixmapPixmap = ppixmap->map();
 
 #if defined(__ANDROID__) && defined(ARM)
 
@@ -93,11 +94,11 @@ namespace imaging_freeimage
 
 #elif defined(APPLEOS)
 
-      ::u8 * pbDst = (::u8 *)pimage->get_data();
+      ::u8 * pbDst = (::u8 *)ppixmapPixmap->data();
 
       ::u8 * pbSrc = (::u8 *)pdata;
 
-      ::collection::count c = (count)pimage->area();
+      ::collection::count c = (count)mapPixmap.area();
 
       while (c-- > 0)
       {
@@ -119,17 +120,23 @@ namespace imaging_freeimage
 
 #else
 
-      for (::i32 i = 0; i < pimage->height(); i++)
+      //auto h =  ppixmapPixmap->height();
+
+      auto pdataPixmap = ppixmapPixmap->data();
+
+      auto iScanPixmap = ppixmapPixmap->m_iScan;
+
+      for (::i32 i = 0; i < ppixmapPixmap->height(); i++)
       {
          ::memory_copy(
-            &((::u8 *)pimage->get_data())[pimage->scan_size() * (h - i - 1)],
+            &((::u8 *)pdataPixmap)[iScanPixmap * (h - i - 1)],
             &((::u8 *)pdata)[iSrcScan * i],
             iLineSize);
       }
 
 #endif
 
-      pimage->mult_alpha_fast();
+      ppixmapPixmap->mult_alpha_fast();
 
       FreeImage_Unload(image32);
 
@@ -271,11 +278,11 @@ const_char_pointer getFreeImageFormatName(FREE_IMAGE_FORMAT format) {
 void FreeImageErrorHandler(FREE_IMAGE_FORMAT fif, const_char_pointer message) {
     printf("FreeImage Error [format %d]: %s\n", fif, message);
 }
-   void image_context::_load_image(::image::image* pimage, const ::payload& varFileParam,
+   void image_context::_load_image(::image::load_image* ploadimage, const ::payload& varFileParam,
                                    const ::image::load_options& loadoptions)
    {
 
-      if (::is_null(pimage))
+      if (::is_null(ploadimage))
       {
 
          throw ::exception(error_null_pointer);
@@ -460,9 +467,9 @@ void FreeImageErrorHandler(FREE_IMAGE_FORMAT fif, const_char_pointer message) {
          {
             //estatus =
 
-            image()->load_svg(pimage, memory);
+            image()->load_svg(ploadimage, memory);
 
-            if (pimage->is_ok())
+            if (ploadimage->m_ppixmap->is_ok())
             {
                return;
             }
@@ -474,7 +481,7 @@ void FreeImageErrorHandler(FREE_IMAGE_FORMAT fif, const_char_pointer message) {
 
             //file_system()->put_contents("/home/camilo/a.gif", memory);
 
-            _load_multi_frame_image(pimage, memory);
+            _load_multi_frame_image(ploadimage, memory);
 
             //if (!)
             /*        {
@@ -485,11 +492,11 @@ void FreeImageErrorHandler(FREE_IMAGE_FORMAT fif, const_char_pointer message) {
 
                     }*/
 
-            pimage->on_load_image();
+            ploadimage->m_ppixmap->on_load_image();
 
-            pimage->set_ok_flag();
+            ploadimage->m_ppixmap->set_ok_flag();
 
-            pimage->m_estatus = ::success;
+            ploadimage->m_ppixmap->m_estatus = ::success;
 
             return;
 
@@ -592,9 +599,9 @@ void FreeImageErrorHandler(FREE_IMAGE_FORMAT fif, const_char_pointer message) {
 
          }
 
-         pimage->m_estatus = error_failed;
+            ploadimage->m_ppixmap->m_estatus = error_failed;
 
-         pimage->set_nok();
+            ploadimage->m_ppixmap->set_nok();
 
          return;
       }
@@ -629,7 +636,7 @@ void FreeImageErrorHandler(FREE_IMAGE_FORMAT fif, const_char_pointer message) {
 
                   iExifOrientation = *((::u16 *)value);
 
-                  pimage->m_iExifOrientation = iExifOrientation;
+                  ploadimage->m_ppixmap->set_exif_orientation(iExifOrientation);
                }
             }
 
@@ -644,7 +651,7 @@ void FreeImageErrorHandler(FREE_IMAGE_FORMAT fif, const_char_pointer message) {
          FreeImage_FindCloseMetadata(mdhandle);
       }
 
-      if (!image_from_freeimage(pimage, pfibitmap))
+      if (!pixmap_from_freeimage(ploadimage->m_ppixmap, pfibitmap))
       {
 			  
 			  information() << "image_from_freeimage failed";
@@ -720,15 +727,15 @@ void FreeImageErrorHandler(FREE_IMAGE_FORMAT fif, const_char_pointer message) {
       //
       //   }
 
-      pimage->on_load_image();
+      ploadimage->m_ppixmap->on_load_image();
 
-      pimage->set_ok_flag();
+      ploadimage->m_ppixmap->set_ok_flag();
 
-      pimage->m_estatus = ::success;
+      ploadimage->m_ppixmap->m_estatus = ::success;
 
       if (loadoptions.functionLoaded)
       {
-         loadoptions.functionLoaded(pimage);
+         loadoptions.functionLoaded(ploadimage->m_ppixmap);
       }
       //      return pimage->m_estatus;
    }

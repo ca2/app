@@ -42,40 +42,40 @@ namespace gpu
 
    class renderer;
 
-   class image_data
-   {
-   public:
-
-
-      ::memory       m_memory;
-
-      ::i32 m_iWidth;
-      ::i32 m_iHeight;
-
-      ::i32 width() const { return m_iWidth; }
-      ::i32 height() const { return m_iHeight; }
-      const void * data() const { return m_memory.data(); }
-      void * data() { return m_memory.data(); }
-
-      image_data() :m_iWidth(0), m_iHeight(0) {}
-      image_data(const image_data & imagedata) :
-         m_iWidth(imagedata.m_iWidth),
-         m_iHeight(imagedata.m_iHeight),
-         m_memory(imagedata.m_memory)
-      {
-
-
-      }
-      image_data(image_data && imagedata) :
-         m_iWidth(imagedata.m_iWidth),
-         m_iHeight(imagedata.m_iHeight),
-         m_memory(::transfer(imagedata.m_memory))
-      {
-
-
-      }
-
-   };
+   // class image_data
+   // {
+   // public:
+   //
+   //
+   //    ::memory       m_memory;
+   //
+   //    ::i32 m_iWidth;
+   //    ::i32 m_iHeight;
+   //
+   //    ::i32 width() const { return m_iWidth; }
+   //    ::i32 height() const { return m_iHeight; }
+   //    const void * data() const { return m_memory.data(); }
+   //    void * data() { return m_memory.data(); }
+   //
+   //    image_data() :m_iWidth(0), m_iHeight(0) {}
+   //    image_data(const image_data & imagedata) :
+   //       m_iWidth(imagedata.m_iWidth),
+   //       m_iHeight(imagedata.m_iHeight),
+   //       m_memory(imagedata.m_memory)
+   //    {
+   //
+   //
+   //    }
+   //    image_data(image_data && imagedata) :
+   //       m_iWidth(imagedata.m_iWidth),
+   //       m_iHeight(imagedata.m_iHeight),
+   //       m_memory(::transfer(imagedata.m_memory))
+   //    {
+   //
+   //
+   //    }
+   //
+   // };
 
 
    class CLASS_DECL_BRED context :
@@ -426,7 +426,7 @@ namespace gpu
       virtual void set_matrix_uniform(const ::gpu::payload & payloadMatrix);
 
 
-      virtual class image_data image24(const ::payload & payloadFile);
+      //virtual class image_data image24(const ::payload & payloadFile);
       virtual class image_data image32(const ::payload & payloadFile);
 
 

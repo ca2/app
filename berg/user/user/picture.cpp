@@ -871,23 +871,33 @@ namespace user
 
             rectangleDropShadow.inflate(m_ppictureimpl->m_iGlowDropShadowBlur, m_ppictureimpl->m_iGlowDropShadowBlur);
 
-            pimageDropShadow->clear(color::transparent);
+            {
 
-            ::image::image_source imagesource(pimage);
+               ::image::image_source imagesource(pimage);
 
-            ::image::image_drawing_options imagedrawingoptions(pimage->rectangle({ iShift, iShift }));
+               ::image::image_drawing_options imagedrawingoptions(pimage->rectangle({ iShift, iShift }));
 
-            ::image::image_drawing imagedrawing(imagedrawingoptions, imagesource);
+               ::image::image_drawing imagedrawing(imagedrawingoptions, imagesource);
 
-            auto pgraphicsImageDropShadow = pimageDropShadow->acquire_graphics();
+               auto pgraphicsImageDropShadow = pimageDropShadow->acquire_graphics();
 
-            pgraphicsImageDropShadow->draw(imagedrawing);
+               pgraphicsImageDropShadow->clear(color::transparent);
 
-            pimageDropShadow->multiply_rgb_by_source_alpha(m_ppictureimpl->m_hlsGlowDropShadow);
+               pgraphicsImageDropShadow->draw(imagedrawing);
+
+            }
+
+            {
+
+               auto ppixmapImageDropShadow = pimageDropShadow->map();
+
+               ppixmapImageDropShadow->multiply_rgb_by_source_alpha(m_ppictureimpl->m_hlsGlowDropShadow);
             
-            blurDropShadow.initialize(pimageDropShadow->size(), iBlur);
+               blurDropShadow.initialize(ppixmapImageDropShadow->size(), iBlur);
 
-            blurDropShadow.blur(pimageDropShadow);
+               blurDropShadow.blur(ppixmapImageDropShadow);
+
+            }
 
          }
 

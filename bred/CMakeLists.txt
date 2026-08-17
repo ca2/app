@@ -29,8 +29,8 @@ list(APPEND library_source
    gpu/context_lock.h
    gpu/context_object.cpp
    gpu/context_object.h
-   gpu/cpu_buffer.cpp
-   gpu/cpu_buffer.h
+   #gpu/cpu_buffer.cpp
+   #gpu/cpu_buffer.h
    gpu/device.cpp
    gpu/device.h
    gpu/draw2d.cpp

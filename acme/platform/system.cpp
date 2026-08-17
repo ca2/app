@@ -29,6 +29,7 @@
 #include "acme/filesystem/filesystem/file_context.h"
 #include "acme/filesystem/filesystem/file_system.h"
 #include "acme/filesystem/file/transfer.h"
+#include "acme/graphics/image/pixmap.h"
 #include "acme/exception/interface_only.h"
 #include "acme/exception/translator.h"
 #include "acme/handler/extended_topic.h"
@@ -56,6 +57,7 @@
 #include "acme/windowing/sandbox/host_interaction.h"
 #include "acme/windowing/window.h"
 #include "acme/windowing/windowing.h"
+#include "graphics/image/pixmap.h"
 #include "prototype/string/_str.h"
 #include "user/micro/message_box.h"
 // #include "acme/user/user/conversation.h"
@@ -5894,6 +5896,18 @@ void system::open_internet_link(const ::scoped_string & scopedstrUrl, const ::sc
       return strUrl;
 
       #endif
+   }
+
+
+   ::pixmap_pointer system::create_pixmap(const ::i32_size &size, ::enum_flag eflagCreate, ::i32 iGoodStride)
+   {
+
+      auto ppixmapNew = create_newø<::pixmap>();
+
+      ppixmapNew->create_as_descriptor(size, eflagCreate, iGoodStride);
+
+      return ppixmapNew;
+
    }
 
 

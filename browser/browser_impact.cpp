@@ -289,7 +289,7 @@ namespace browser
 
          auto rectangleX = this->rectangle();
 
-         pgraphics->draw(::i32_rectangle(m_pimageBrowser->size()), m_pimageBrowser->g(), m_pimageBrowser->rectangle());
+         pgraphics->draw(::i32_rectangle(m_pimageBrowser->size()), m_pgraphicsImageBrowser->, m_pimageBrowser->rectangle());
 
       }
 
@@ -706,7 +706,7 @@ namespace browser
             m_prender->m_pimageImageStretched->release();
             {
 
-               //   m_prender->m_pimageImageStretched->create(this);
+               //   m_prender->m_pimageImageStretched->create_as_descriptor(this);
 
             }
 
@@ -734,7 +734,7 @@ namespace browser
          if (!m_prender->m_bImageChanged && m_prender->m_pimageImageStretched->is_set() && m_prender->m_pimageImageStretched->area() > 0)
          {
 
-            m_pimagePost->g()->draw(rectangleImage, m_prender->m_pimageImageStretched->g());
+            m_pgraphicsImagePost->draw(rectangleImage, m_prender->m_pgraphicsImageImageStretched->);
 
          }
 
@@ -898,7 +898,7 @@ namespace browser
 
 /*      m_pimageBrowser->create_image(this, ::i32_size(width, height));
 
-      //m_pimageBrowser->g()->fill_solid_rect_dim(0, 0, width, height, argb(155, 255, 255, 0)) ;
+      //m_pgraphicsImageBrowser->fill_solid_rect_dim(0, 0, width, height, argb(155, 255, 255, 0)) ;
 
       m_pimageBrowser->map();
 

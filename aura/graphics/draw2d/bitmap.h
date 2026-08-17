@@ -40,6 +40,10 @@ namespace draw2d
 
       // void dump(dump_context & dumpcontext) const override;
 
+      ::subparticle_pointer clone() override;
+
+      virtual bool copy_from(::draw2d::bitmap * pbitmap);
+
 
       template < typename POINTER >
       inline POINTER get_os_data(::i8 i = 0) const
@@ -71,7 +75,8 @@ namespace draw2d
          ::acme::user::interaction * pacmeuserinteractionAffinity = nullptr,
          ::draw2d::graphics * pgraphics = nullptr);
       virtual void preserve_image(const ::i32_size & size, ::image::image* pimage);
-      virtual void create_bitmap(::draw2d::graphics * pgraphics, const ::i32_size& size, ::memory & memory, ::i32* piScan);
+      //virtual void create_bitmap(::draw2d::graphics * pgraphics, const ::i32_size& size, ::memory & memory, ::i32* piScan);
+      virtual void create_bitmap(::draw2d::graphics * pgraphics, const ::i32_size& size, ::pixmap * ppixmapOwned);
       virtual bool host_bitmap(::draw2d::graphics* pgraphics, pixmap_t* ppximap);
       virtual void CreateDIBitmap(::draw2d::graphics * pgraphics, ::i32 cx, ::i32 cy, ::u32 flInit, const void *pjBits, ::u32 iUsage);
 

@@ -139,12 +139,12 @@ namespace gpu_opengl
 
          //auto targeting = m_ppixmap->source_scan_targeting(::image::e_copy_disposition_y_swap);
 
-         auto mapPixmap = m_ppixmap->map();
+         auto ppixmapPixmap = m_ppixmap->map();
 
          auto w = mapPixmap.width();
          auto h = mapPixmap.height();
          auto s = mapPixmap.scan() * h * 4;
-         auto p = mapPixmap.data();
+         auto p = ppixmapPixmap->data();
          glReadnPixels(
             0, 0,
             w, h,
@@ -161,11 +161,11 @@ namespace gpu_opengl
 
          //auto targeting = m_ppixmap->no_padded_targeting(::image::e_copy_disposition_y_swap);
 
-         auto mapPixmap = m_ppixmap->map();
+         auto ppixmapPixmap = m_ppixmap->map();
 
          auto w = mapPixmap.width();
          auto h = mapPixmap.height();
-         auto p = mapPixmap.data();
+         auto p = ppixmapPixmap->data();
          glReadPixels(
             0, 0,
             w, h,
@@ -235,13 +235,13 @@ namespace gpu_opengl
 //         GL_UNSIGNED_BYTE,
 //         m_pixmap.m_pimage32Raw);
 
-      auto mapPixmap = m_ppixmap->map();
+      auto ppixmapPixmap = m_ppixmap->map();
       
       glTexImage2D(GL_TEXTURE_2D, 0, 0, 0, 
          mapPixmap.width(),
          mapPixmap.height(),
          GL_RGBA, GL_UNSIGNED_BYTE, 
-         mapPixmap.data());
+         ppixmapPixmap->data());
       ::opengl::check_error("");
 
    }

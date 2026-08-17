@@ -439,13 +439,13 @@ namespace user
       if (is_window_enabled())
       {
 
-         pimage1->fill_byte(255);
+         pgraphics->clear(::color::white);
 
       }
       else
       {
 
-         pimage1->clear_argb(255, 200, 200, 200);
+         pgraphics->clear(::argb(255, 200, 200, 200));
 
       }
 
@@ -682,7 +682,9 @@ namespace user
       if (!is_window_enabled())
       {
 
-         pimage1->saturation(0.0);
+         auto ppixmapImage1 = pimage1->map();
+
+         ppixmapImage1->saturation(0.0);
 
       }
 
@@ -824,8 +826,13 @@ namespace user
                pimageGray = pimage1->clone();
 
                //pimageGray->from(pimage1);
+               {
 
-               pimageGray->saturation(0.0);
+                  auto pgraphicsImageGray = pimageGray->map();
+
+                  pgraphicsImageGray->saturation(0.0);
+
+               }
 
                m_pimageMapGray[strId] = pimageGray;
 

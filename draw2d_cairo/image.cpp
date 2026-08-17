@@ -819,7 +819,7 @@ namespace draw2d_cairo
 //
 //         ::image::image_pointer pimage1(this);
 //
-//         if (!pimage1->create(rectangleWindow.bottom_right()))
+//         if (!pimage1->create_as_descriptor(rectangleWindow.bottom_right()))
 //         {
 //
 //            return false;

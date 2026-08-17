@@ -296,7 +296,9 @@ namespace graphics
 
          }
 
-         if (!ipc_copy(get_screen_item()->m_pimageBufferItem))
+         auto ppixmapImageBufferItem = get_screen_item()->m_pimageBufferItem->map();
+
+         if (!ipc_copy(ppixmapImageBufferItem))
          {
 
             return false;

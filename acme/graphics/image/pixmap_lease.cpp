@@ -11,37 +11,39 @@ pixmap_lease::pixmap_lease()
 
 }
 
-pixmap_lease::pixmap_lease(::pixmap *ppixmap, bool bApplyTransform) :
-   m_ppixmap(ppixmap),
-   m_bRectangleMap(false)
+pixmap_lease::pixmap_lease(::pixmap *ppixmap, const ::i32_rectangle & rectangle, bool bApplyTransform) :
+   ::pointer< ::pixmap >(ppixmap),
+   m_bRectangleMap(false),
+   m_rectangleBefore(ppixmap->rectangle())
 {
 
-   ppixmap->_map({}, bApplyTransform);
+   ppixmap->_map(rectangle, bApplyTransform);
 
    memory_copy(this, (::pixmap_t*) ppixmap, sizeof(pixmap_t));
 
 }
    
 
-pixmap_lease::pixmap_lease(::pixmap* ppixmap, const ::i32_rectangle & rectangle) :
-   m_ppixmap(ppixmap),
-   m_bRectangleMap(true)
-{
-
-   m_rectangleBefore = ppixmap->rectangle();
-
-   ppixmap->_map(rectangle);
-
-   memory_copy(this, (::pixmap_t*)ppixmap, sizeof(pixmap_t));
-
-}
+// pixmap_lease::pixmap_lease(::pixmap* ppixmap, const ::i32_rectangle & rectangle) :
+//    ::pointer< ::pixmap >(ppixmap),
+//    m_bRectangleMap(true),
+//    m_rectangleBefore(ppixmap->rectangle())
+// {
+//
+//    ppixmap->_map(rectangle);
+//
+//    memory_copy(this, (::pixmap_t*)ppixmap, sizeof(pixmap_t));
+//
+// }
 
 
 pixmap_lease::pixmap_lease(pixmap_lease &&pixmaplease) :
-   m_ppixmap(::transfer(pixmaplease.m_ppixmap))
+   ::pointer< ::pixmap >(::transfer(pixmaplease)),
+   m_bRectangleMap(pixmaplease.m_bRectangleMap),
+   m_rectangleBefore(pixmaplease->rectangle())
 {
 
-   memory_copy(this, (::pixmap_t *)&pixmaplease, sizeof(pixmap_t));
+
 
 }
 
@@ -51,14 +53,14 @@ pixmap_lease::pixmap_lease(pixmap_lease &&pixmaplease) :
 pixmap_lease::~pixmap_lease()
 {
 
-   if (!m_ppixmap)
+   if (!m_p)
    {
 
       return;
 
    }
 
-   m_ppixmap->_unmap();
+   m_p->_unmap();
 
    if (m_bRectangleMap)
    {
@@ -66,13 +68,13 @@ pixmap_lease::~pixmap_lease()
       if (m_rectangleBefore.is_set())
       {
 
-         m_ppixmap->pixmap_map(m_rectangleBefore);
+         m_p->pixmap_map(m_rectangleBefore);
 
       }
 
    }
 
-   clear();
+   //clear();
 
 }
 
@@ -83,8 +85,9 @@ pixmap_lease &pixmap_lease::operator=(pixmap_lease &&pixmaplease)
 
    if (this != &pixmaplease)
    {
-      m_ppixmap = ::transfer(pixmaplease.m_ppixmap);
-      memory_copy(this, (::pixmap_t *)&pixmaplease, sizeof(pixmap_t));
+      ::pointer < ::pixmap>::operator=(::transfer(pixmaplease));
+      m_bRectangleMap = pixmaplease.m_bRectangleMap;
+      m_rectangleBefore = pixmaplease.m_rectangleBefore;
    }
 
    return *this;

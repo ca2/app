@@ -59,7 +59,7 @@ ImageImpact::ImageImpact(Widget * parent) : Canvas(parent, 1, false, false, fals
 
 // opengl
 //void ImageImpact::set_image(Texture * image) {
-//   if (image->mag_interpolation_mode() != Texture::InterpolationMode::Nearest)
+//   if (pimage->mag_interpolation_mode() != Texture::InterpolationMode::Nearest)
 //      throw std::runtime_error(
 //         "ImageImpact::set_image(): interpolation mode must be set to 'Nearest'!");
 //   m_image_shader->set_texture("image", image);

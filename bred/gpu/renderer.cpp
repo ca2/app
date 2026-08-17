@@ -1159,7 +1159,7 @@ namespace gpu
    //
    //   auto size = m_pgpucontext->m_pcpubuffer->m_pixmap.m_size;
    //
-   //   m_pimageFromGpu->create(size);
+   //   m_pimageFromGpu->create_as_descriptor(size);
    //
    //   m_pimageFromGpu->map();
    //

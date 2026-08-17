@@ -575,7 +575,7 @@ namespace hotplugin
 
       ::memory_copy(m_pimage->image32(), m_memorymapBitmap.get_data(), (size_t) (m_pimage->area() * sizeof(color32_t)));
 
-      pgraphics->draw((const ::i32_point *) &rectangleOut, m_sizeBitmap, m_pimage->g());
+      pgraphics->draw((const ::i32_point *) &rectangleOut, m_sizeBitmap, m_pgraphicsImage->);
 
 
    }

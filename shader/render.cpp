@@ -396,14 +396,14 @@ namespace app_shader
 
             defer_constructø(m_pimageLabel);
 
-            if (m_pimageLabel->g() == nullptr)
+            if (m_pgraphicsImageLabel-> == nullptr)
             {
 
-               m_pimageLabel->create({ 16, 16 });
+               m_pimageLabel->create_as_descriptor({ 16, 16 });
 
             }
 
-            auto pgraphicsLabel = m_pimageLabel->g();
+            auto pgraphicsLabel = m_pgraphicsImageLabel->;
 
             pgraphicsLabel->set(pfont);
 
@@ -415,9 +415,9 @@ namespace app_shader
 
             rect.move_to(0, 0);
 
-            m_pimageLabel->create(rect.size());
+            m_pimageLabel->create_as_descriptor(rect.size());
 
-            pgraphicsLabel = m_pimageLabel->g();
+            pgraphicsLabel = m_pgraphicsImageLabel->;
 
             pgraphicsLabel->set(pfont);
 
@@ -527,14 +527,14 @@ namespace app_shader
 
             defer_constructø(m_pimageError);
 
-            if(m_pimageError->g() == nullptr)
+            if(m_pgraphicsImageError-> == nullptr)
             {
 
-               m_pimageError->create({ 16 });
+               m_pimageError->create_as_descriptor({ 16 });
 
             }
 
-            auto pgraphicsError = m_pimageLabel->g();
+            auto pgraphicsError = m_pgraphicsImageLabel->;
 
             pgraphicsError->set(pfont);
 
@@ -545,9 +545,9 @@ namespace app_shader
             rect.move_to(10, 10);
             rect.inflate(4);
 
-            m_pimageError->create(rect.size());
+            m_pimageError->create_as_descriptor(rect.size());
 
-            pgraphicsError = m_pimageError->g();
+            pgraphicsError = m_pgraphicsImageError->;
 
             pgraphicsError->set(pfont);
 

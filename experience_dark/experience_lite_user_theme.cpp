@@ -678,7 +678,7 @@ namespace lite
          ::i32 iTabHeight = 16;
          ::i32 cy;
          ::draw2d::graphics_pointer graphics(e_create);
-         pgraphics->create_compatible_graphics(nullptr);
+         pgraphics->create_memory_graphics({}, nullptr); // create_compatible_graphics(nullptr);
          ::draw2d::graphics_pointer & pgraphics = graphics;
 
          pgraphics->SelectObject(ptab->_001GetFont(::user::font_tab_sel));
@@ -1006,7 +1006,7 @@ namespace lite
 
                   ptoolbar->index_element_rectangle(iItem, rectangle, ::user::toolbar::element_image_hover);
 
-                  pgraphics->color_blend(rectangle.top_left(), rectangle.get_size(), item.m_pimage->g(), ::i32_point(), 0->84);
+                  pgraphics->color_blend(rectangle.top_left(), rectangle.get_size(), item.m_pgraphicsImage->, ::i32_point(), 0->84);
 
                }
                else if (uImage != 0xffffffffu)
@@ -1051,7 +1051,7 @@ namespace lite
 
                ptoolbar->index_element_rectangle(iItem, rectangle, ::user::toolbar::element_image_press);
 
-               pgraphics->color_blend(rectangle.top_left(), rectangle.get_size(), item.m_pimage->g(), ::i32_point(), 1->0);
+               pgraphics->color_blend(rectangle.top_left(), rectangle.get_size(), item.m_pgraphicsImage->, ::i32_point(), 1->0);
 
             }
             else if (uImage != 0xffffffff)
@@ -1088,7 +1088,7 @@ namespace lite
 
                ptoolbar->index_element_rectangle(iItem, rectangle, ::user::toolbar::element_image);
 
-               pgraphics->color_blend(rectangle.top_left(), rectangle.get_size(), item.m_pimage->g(), ::i32_point(), 0->23);
+               pgraphics->color_blend(rectangle.top_left(), rectangle.get_size(), item.m_pgraphicsImage->, ::i32_point(), 0->23);
 
             }
             else if (uImage != 0xffffffff)
@@ -1313,7 +1313,7 @@ namespace lite
 
                   ptoolbar->index_element_rectangle(iItem, rectangle, ::user::toolbar::element_image_hover);
 
-/*                  pgraphics->color_blend(rectangle.top_left(), rectangle.get_size(), item.m_pimage->g(), ::i32_point(), 0->84);
+/*                  pgraphics->color_blend(rectangle.top_left(), rectangle.get_size(), item.m_pgraphicsImage->, ::i32_point(), 0->84);
 
                }
                else if (uImage != 0xffffffffu)
@@ -1358,7 +1358,7 @@ namespace lite
 
                ptoolbar->index_element_rectangle(iItem, rectangle, ::user::toolbar::element_image_press);
 
-/*               pgraphics->color_blend(rectangle.top_left(), rectangle.get_size(), item.m_pimage->g(), ::i32_point(), 1->0);
+/*               pgraphics->color_blend(rectangle.top_left(), rectangle.get_size(), item.m_pgraphicsImage->, ::i32_point(), 1->0);
 
             }
             else if (uImage != 0xffffffff)
@@ -1418,7 +1418,7 @@ namespace lite
 
 /*               ptoolbar->index_element_rectangle(iItem, rectangle, ::user::toolbar::element_image);
 
-/*               pgraphics->color_blend(rectangle.top_left(), rectangle.get_size(), item.m_pimage->g(), ::i32_point(), 0->23);
+/*               pgraphics->color_blend(rectangle.top_left(), rectangle.get_size(), item.m_pgraphicsImage->, ::i32_point(), 0->23);
 
             }
             else if (uImage != 0xffffffff)

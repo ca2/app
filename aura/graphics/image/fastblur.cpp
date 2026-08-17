@@ -305,20 +305,20 @@ inline void storeFloatAsRGBA8(f3232x4_t data,::u32* destination)
    }*/
 
 
-   void fastblur::blur(::image::image *pimage, const ::i32_rectangle & rectangle)
+   // void fastblur::blur(::pixmap *ppixmap, const ::i32_rectangle & rectangle)
+   // {
+   //
+   //    auto ppixmapImage = pimage->map(rectangle);
+   //
+   //    return blur(pimage);
+   //
+   // }
+
+
+   void fastblur::blur(::pixmap *ppixmap)
    {
 
-      auto mapImage = pimage->map(rectangle);
-
-      return blur(pimage);
-
-   }
-
-
-   void fastblur::blur(::image::image *pimage)
-   {
-
-      auto size= pimage->size();
+      auto size= ppixmap->size();
 
       ::i32 iRadius = m_iRadius;
 
@@ -337,7 +337,7 @@ inline void storeFloatAsRGBA8(f3232x4_t data,::u32* destination)
 
       //}
 
-      auto mapImage = pimage->map();
+      //auto ppixmapImage = pimage->map();
 
       bool b = false;
 
@@ -600,11 +600,11 @@ auto tickC1 = ::time::now();
          //{
 
             do_fastblur(
-                pimage->image32(),
+                ppixmap->image32(),
                 m_size,
                 m_rgbaa.data(),
                 m_u8aDiv.get_data(),
-                pimage->scan_size(),
+                ppixmap->scan_size(),
                 size,bottomup);
 
          //}

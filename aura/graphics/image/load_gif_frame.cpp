@@ -1,7 +1,7 @@
 #include "platform.h"
-#include "frame.h"
 #include "image.h"
 #include "imaging.h"
+#include "acme/graphics/image/frame.h"
 #include "acme/graphics/image/image32.h"
 #include "acme/graphics/draw2d/color_array.h"
 
@@ -237,7 +237,7 @@ namespace image
    //      if (uFrameIndex > 0 && pframea->element_at(uFrameIndex - 1)->m_edisposal == ::draw2d::e_disposal_background)
    //      {
    //
-   //         pimageCanvas->g()->set_alpha_mode(::draw2d::e_alpha_mode_set);
+   //         pgraphicsImageCanvas->set_alpha_mode(::draw2d::e_alpha_mode_set);
    //
    //         ::color::color crBack = pframea->m_colorBack;
    //
@@ -258,7 +258,7 @@ namespace image
    //
    //         ::i32_rectangle rectangle = pframea->element_at(uFrameIndex - 1)->m_rectangle;
    //
-   //         pimageCanvas->g()->fill_rectangle(rectangle, crBack);
+   //         pgraphicsImageCanvas->fill_rectangle(rectangle, crBack);
    //
    //      }
    //
@@ -290,12 +290,14 @@ namespace image
    //}
    //
 
-   bool imaging::draw2d_gif_draw_frame(::image::image * pimageCanvas, image_frame_array * pframea, ::image::image_frame * pframe, ::i32 uFrameIndex, ::u8 * ba, ::i32 iScan, color_array & colora, ::i32 transparentIndex)
+   bool imaging::draw2d_gif_draw_frame(::pixmap * ppixmapCanvas, image_frame_array * pframea, ::image::image_frame * pframe, ::i32 uFrameIndex, ::u8 * ba, ::i32 iScan, color_array & colora, ::i32 transparentIndex)
    {
 
-      auto pimage32 = pframe->m_pimage->image32();
+      auto ppixmapFrame = pframe->m_ppixmap->map();
 
-      ::i32 w = pframe->m_pimage->scan_size() / sizeof(::color32_t);
+      ::i32 w = ppixmapFrame->scan_size() / sizeof(::color32_t);
+
+      auto pimage32 = ppixmapFrame->image32();
 
       for (::collection::index y = 0; y < pframe->m_rectangle.height(); y++)
       {
@@ -349,7 +351,7 @@ namespace image
 
                informationf("test255");
             }
-            pimage32[y * w + x].assign(argb(bA, bA * bR / 255, bA * bG / 255, bA * bB / 255), pimageCanvas->color_indexes());
+            pimage32[y * w + x].assign(argb(bA, bA * bR / 255, bA * bG / 255, bA * bB / 255), ppixmapCanvas->color_indexes());
 
             //#endif
 

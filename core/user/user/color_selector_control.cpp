@@ -173,9 +173,9 @@ namespace user
 
       //ppen->create_solid(1.0, argb(255, 255, 255, 255));
 
-      //m_pimageBeam->g()->set(ppen);
+      //m_pgraphicsImageBeam->set(ppen);
 
-      //m_pimageBeam->g()->DrawEllipse(i32_rectangle_dimension(0, 0, 32, 32));
+      //m_pgraphicsImageBeam->DrawEllipse(i32_rectangle_dimension(0, 0, 32, 32));
 
 
 

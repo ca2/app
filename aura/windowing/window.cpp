@@ -4980,7 +4980,9 @@ namespace windowing
 
       //information() << "screen_pixel window().origin() : " << origin;
 
-      return m_pgraphicsgraphics->get_screen_item()->m_pimageBufferItem->pixel(x - origin.x, y - origin.y);
+      auto ppixmapBufferItem = m_pgraphicsgraphics->get_screen_item()->m_pimageBufferItem->map();
+
+      return ppixmapBufferItem->pixel(x - origin.x, y - origin.y);
 
    }
 
@@ -16578,7 +16580,9 @@ namespace windowing
 
       user_interaction()->screen_to_client()(rectangle);
 
-      return rectangle.area() - pbufferitemScreen->m_pimageBufferItem->get_rgba_area(colorTransparent, rectangle);
+      auto ppixmapBufferItem = pbufferitemScreen->m_pimageBufferItem->map();
+
+      return rectangle.area() - ppixmapBufferItem->get_rgba_area(colorTransparent, rectangle);
 
    }
 
@@ -16610,7 +16614,9 @@ namespace windowing
 
       user_interaction()->window_rectangle(rectangle);
 
-      return rectangle.area() - pbufferitemScreen->m_pimageBufferItem->get_rgba_area(colorTransparent);
+      auto pgraphicsBufferItem = pbufferitemScreen->m_pimageBufferItem->map();
+
+      return rectangle.area() - pgraphicsBufferItem->get_rgba_area(colorTransparent);
 
    }
 
@@ -16653,7 +16659,9 @@ namespace windowing
 
       }
 
-      return pimage->_001GetTopLeftWeightedOpaqueArea(colorTransparent.u8_opacity());
+      auto ppixmapImage = pimage->map();
+
+      return ppixmapImage->_001GetTopLeftWeightedOpaqueArea(colorTransparent.u8_opacity());
 
    }
 

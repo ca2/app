@@ -1272,7 +1272,7 @@ namespace user
       //if (!varSel.is_empty())
       //{
 
-      //   m_pbitmap->m_pimageSel->create(this);
+      //   m_pbitmap->m_pimageSel->create_as_descriptor(this);
 
       //   m_pbitmap->m_pimageSel->load_image(varSel);
 
@@ -1282,7 +1282,7 @@ namespace user
       //if (!varFocus.is_empty())
       //{
 
-      //   m_pbitmap->m_pimageFocus->create(this);
+      //   m_pbitmap->m_pimageFocus->create_as_descriptor(this);
 
       //   m_pbitmap->m_pimageFocus->load_image(varFocus);
 
@@ -1292,7 +1292,7 @@ namespace user
       //if (!varDisabled.is_empty())
       //{
 
-      //   m_pbitmap->m_pimageDisabled->create(this);
+      //   m_pbitmap->m_pimageDisabled->create_as_descriptor(this);
 
       //   m_pbitmap->m_pimageDisabled->load_image(varDisabled);
 
@@ -1302,7 +1302,7 @@ namespace user
       //if (!varHover.is_empty())
       //{
 
-      //   m_pbitmap->m_pimageHover->create(this);
+      //   m_pbitmap->m_pimageHover->create_as_descriptor(this);
 
       //   m_pbitmap->m_pimageHover->load_image(varHover);
 

@@ -38,7 +38,7 @@ namespace filemanager
 
       //::draw2d::graphics_pointer spgraphics(e_create, this);
 
-      //spgraphics->create_compatible_graphics(nullptr);
+      //spgraphics->create_memory_graphics({}, nullptr); // create_compatible_graphics(nullptr);
 
       m_pimagelistSubItemHover->create(16, 16, 0, 10, 10);
 

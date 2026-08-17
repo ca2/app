@@ -442,7 +442,9 @@ namespace graphics
 
       _synchronous_lock synchronouslockMutex(get_screen_item()->m_pmutex, DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 
-      return get_screen_item()->m_pimageBufferItem->_001GetTopLeftWeightedOpaqueArea(0, rect);
+      auto ppixmapImageBufferItem = get_screen_item()->m_pimageBufferItem->map();
+
+      return ppixmapImageBufferItem->_001GetTopLeftWeightedOpaqueArea(0, rect);
 
    }
 

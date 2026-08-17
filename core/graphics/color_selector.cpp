@@ -188,28 +188,28 @@ namespace graphics
    }
 
 
-   void colors_with_shades_of_grey(::image::image *pimage)
+   void colors_with_shades_of_grey(::pixmap *ppixmap)
    {
 
-      auto map = pimage->map();
+      //auto ppixmap = pimage->map();
 
-      ::collection::count w = pimage->width();
+      ::collection::count w = ppixmap->width();
 
-      ::collection::count h = pimage->height();
+      ::collection::count h = ppixmap->height();
 
-      ::u32 uScan = pimage->scan_size();
+      ::u32 uScan = ppixmap->scan_size();
 
       ::u8 * pline;
 
-      auto a = pimage->m_colorindexes.m_u8IndexOpacity;
-      auto r = pimage->m_colorindexes.m_u8IndexRed;
-      auto g = pimage->m_colorindexes.m_u8IndexGreen;
-      auto b = pimage->m_colorindexes.m_u8IndexBlue;
+      auto a = ppixmap->m_colorindexes.m_u8IndexOpacity;
+      auto r = ppixmap->m_colorindexes.m_u8IndexRed;
+      auto g = ppixmap->m_colorindexes.m_u8IndexGreen;
+      auto b = ppixmap->m_colorindexes.m_u8IndexBlue;
 
       for (::collection::index i = 0; i < w; i++)
       {
 
-         pline = (::u8 *)(map.data() + i);
+         pline = (::u8 *)(ppixmap->data() + i);
 
          for (::collection::index j = 0; j < h; j++)
          {
@@ -231,14 +231,14 @@ namespace graphics
    }
 
 
-   void shades_of_luminance(::image::image *pimage, ::f64 dH, ::f64 dS)
+   void shades_of_luminance(::pixmap *ppixmap, ::f64 dH, ::f64 dS)
    {
 
-      pimage->map();
+      //pimage->map();
 
-      ::collection::count w = pimage->width();
+      ::collection::count w = ppixmap->width();
 
-      ::collection::count h = pimage->height();
+      ::collection::count h = ppixmap->height();
 
       ::color::color color;
 
@@ -248,7 +248,7 @@ namespace graphics
 
       //dS = 1.0 - ((::f64)j / dh);
 
-      uScan = pimage->scan_size() / sizeof(::color32_t);
+      uScan = ppixmap->scan() / sizeof(::color32_t);
 
       ::image32_t * pline;
 
@@ -358,10 +358,10 @@ namespace graphics
 
          ::color::color color(hls);
 
-         auto map = pimage->map();
+         //auto ppixmap = ppixmap->map();
 
-         pline = map.data() + uScan * j;
-         image32_t color32(argb(255, color.u8_red(), color.u8_green(), color.u8_blue()), pimage->color_indexes());
+         pline = ppixmap->data() + uScan * j;
+         image32_t color32(argb(255, color.u8_red(), color.u8_green(), color.u8_blue()), ppixmap->color_indexes());
          for (::collection::index i = 0; i < w; i++)
          {
 
@@ -508,9 +508,9 @@ namespace core
 
       //   //ppen->create_solid(1.0, argb(255, 255, 255, 255));
 
-      //   //m_pimageBeam->g()->set(ppen);
+      //   //m_pgraphicsImageBeam->set(ppen);
 
-      //   //m_pimageBeam->g()->DrawEllipse(i32_rectangle_dimension(0, 0, 32, 32));
+      //   //m_pgraphicsImageBeam->DrawEllipse(i32_rectangle_dimension(0, 0, 32, 32));
 
 
 

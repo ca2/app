@@ -387,7 +387,7 @@ namespace gpu
    }
 
 
-   void image::_map(const ::i32_rectangle & rectangle, bool bApplyAlphaTransform)
+   ::pixmap_lease image::_map(const ::i32_rectangle & rectangle, bool bApplyAlphaTransform)
    {
 
       if (has_active_destination_graphics_lease())
@@ -402,7 +402,7 @@ namespace gpu
       if (m_bMapped)
       {
 
-         return;
+         return {};
 
       }
 
@@ -429,7 +429,7 @@ namespace gpu
 
          ::image::image::_map(rectangle, bApplyAlphaTransform);
 
-         return;
+         return {};
 
       }
 
@@ -441,6 +441,8 @@ namespace gpu
          throw ::exception(error_wrong_state);
 
       }
+
+      defer_construct_newø(m_ppixmapOwned);
 
       auto pthis = const_cast < image * >(this);
 
@@ -474,11 +476,12 @@ namespace gpu
 
             pgputexture->wait_fence();
 
-            pthis->m_memoryPixmap.set_size(pthis->scan_area_in_bytes());
 
-            pthis->m_pimage32Raw = (::image32_t *) pthis->m_memoryPixmap.data();
+            pthis->m_ppixmapOwned->m_memoryPixmap.set_size(pthis->scan_area_in_bytes());
 
-            pthis->m_pimage32 = pthis->m_pimage32Raw;
+            pthis->m_ppixmapOwned->m_pimage32Raw = (::image32_t *) pthis->m_ppixmapOwned->m_memoryPixmap.data();
+
+            pthis->m_ppixmapOwned->m_pimage32 = pthis->m_ppixmapOwned->m_pimage32Raw;
 
             ::gpu::context_lock contextlock(pgpucontext);
 
@@ -500,7 +503,7 @@ namespace gpu
 
             auto ptexturesite = ::gpu::current_layer()->texture(false);
 
-            pgputexture->read_pixels(pgpucommandbuffer, pthis, ptexturesite->m_pointOutput);
+            pgputexture->read_pixels(pgpucommandbuffer, pthis->m_ppixmapOwned, ptexturesite->m_pointOutput);
 
             auto uMicroseconds = (::u64)0;
 
@@ -516,13 +519,13 @@ namespace gpu
             if (rectangle.is_empty())
             {
 
-               pthis->pixmap_map(pthis->rectangle());
+               pthis->m_ppixmapOwned->pixmap_map(pthis->rectangle());
 
             }
             else
             {
 
-               pthis->pixmap_map(rectangle);
+               pthis->m_ppixmapOwned->pixmap_map(rectangle);
 
             }
 
@@ -539,17 +542,46 @@ namespace gpu
 
    }
 
+   //
+   // bool image::_on_unmap(bool bDoUnmap)
+   // {
+   //
+   //    if (m_interlockedcountMap <= 0)
+   //    {
+   //
+   //       throw ::exception(error_wrong_state);
+   //
+   //    }
+   //
+   //    m_interlockedcountMap--;
+   //
+   //    if (m_interlockedcountMap > 0)
+   //    {
+   //
+   //       return false;
+   //
+   //    }
+   //
+   //    if ((!m_bMapped || !m_pimage32Raw) && bDoUnmap)
+   //    {
+   //
+   //       throw ::exception(error_wrong_state);
+   //    }
+   //
+   //    return true;
+   //
+   // }
 
 
    void image::_unmap(bool bDoUnmap)
    {
 
-      if (!_on_unmap(bDoUnmap))
-      {
-
-         return;
-
-      }
+      // if (!_on_unmap(bDoUnmap))
+      // {
+      //
+      //    return;
+      //
+      // }
 
       auto pgputexture = get_gpu_texture();
 
@@ -609,7 +641,7 @@ namespace gpu
 
             }
 
-            pgputexture->write_pixels(pthis, {});
+            pgputexture->write_pixels(pthis->m_ppixmapOwned, {});
 
             auto uMicroseconds = (::u64)0;
 
@@ -623,7 +655,7 @@ namespace gpu
             }
 
             pgputexture->defer_fence();
-            pthis->pixmap_unmap();
+            pthis->m_ppixmapOwned->pixmap_unmap();
             pthis->m_bMapped = false;
 
             if (bPerformanceDiagnostics)
@@ -653,7 +685,15 @@ namespace gpu
 
             ::cast<::gpu::bitmap> pgpubitmap = get_bitmap();
 
-            pgpubitmap->initialize_gpu_bitmap(pgpucontextlease, size, *this);
+            construct_newø(m_ppixmapOwned);
+
+            m_ppixmapOwned->create_as_descriptor(size);
+
+            m_ppixmapOwned->m_memoryPixmap.set_size(iScan * size.height());
+
+            m_ppixmapOwned->copy(size, pimage32, iScan);
+
+            pgpubitmap->initialize_gpu_bitmap(pgpucontextlease, size, *m_ppixmapOwned);
 
             return;
 
@@ -745,9 +785,9 @@ namespace gpu
 
          create_as_descriptor(size, e_flag_success, iScan);
 
-         auto mapThis = this->map();
+         auto ppixmapThis = this->map();
 
-         mapThis.copy(size, pimage32, iScan);
+         ppixmapThis->copy(size, pimage32, iScan);
 
          //m_sizeRaw = size;
          //

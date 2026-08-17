@@ -101,9 +101,9 @@ namespace userex
 
       //ppen->create_solid(1.0, argb(255, 255, 255, 255));
 
-      //m_pimageBeam->g()->set(ppen);
+      //m_pgraphicsImageBeam->set(ppen);
 
-      //m_pimageBeam->g()->DrawEllipse(i32_rectangle_dimension(0, 0, 32, 32));
+      //m_pgraphicsImageBeam->DrawEllipse(i32_rectangle_dimension(0, 0, 32, 32));
 
 
 
@@ -267,7 +267,7 @@ namespace userex
 
       //m_pimage = create_image({m_rectangleColors->width() / 2,  m_rectangleColors->height()});
 
-      //m_pimage->g()->draw(m_pimage->rectangle(), m_pimageTemplate->get_graphics(), m_pimageTemplate->rectangle());
+      //m_pgraphicsImage->draw(m_pimage->rectangle(), m_pimageTemplate->get_graphics(), m_pimageTemplate->rectangle());
 
       //m_pimageLuminance = create_image({m_rectangleColors->width() / 8,  m_rectangleColors->height()});
 

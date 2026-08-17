@@ -66,7 +66,7 @@ namespace graphics
    //
    //   //   }
    //
-   //   //   m_pimage->create({ m_cx, m_cy });
+   //   //   m_pimage->create_as_descriptor({ m_cx, m_cy });
    //
    //   //   time time;
    //

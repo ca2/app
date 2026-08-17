@@ -8,6 +8,7 @@
 #include "acme/prototype/geometry2d/size.h"
 #include "acme/prototype/collection/integer_map.h"
 //#include "acme/prototype/collection/string_array.h"
+#include "aura/graphics/draw2d/graphics_pointer.h"
 
 
 namespace graphics
@@ -22,7 +23,8 @@ namespace graphics
 
 
       //::write_text_stream < ::file::file >      m_cout;
-      ::image::image_pointer                           m_pimage;
+      ::image::image_pointer                          m_pimage;
+      ::draw2d::graphics_pointer                      m_pgraphicsImage;
       ::i32_size                                m_sizeTile;
       ::i32_size                                m_sizeWindow;
       ::i32                                       m_x;
@@ -77,7 +79,7 @@ namespace graphics
       void get_cursor_position(::i32 & x, ::i32 & y, filesize & iPointer);
 
       virtual void update_image();
-      virtual void draw_write(::i8 ch, ::i32 x, ::i32 y, enum_dos_color edoscolor);
+      virtual void draw_write(::draw2d::graphics_pointer & pgraphics, ::i8 ch, ::i32 x, ::i32 y, enum_dos_color edoscolor);
 
       string right_string(::memsize iReadAtMostByteCount) override;
 

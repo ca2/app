@@ -219,34 +219,47 @@ namespace user
 
                }
 
-               auto pgraphicsImage = pimage->acquire_graphics();
-
-               pgraphicsImage->set_alpha_mode(::draw2d::e_alpha_mode_set);
-
-               pgraphicsImage->fill_rectangle(pimage->size(), ::color::transparent);
-
-               get_image_list()->draw(pgraphicsImage, (::i32)m_iImage,
-                  i32_point(m_pitem->m_pmesh->m_plist->m_iIconBlurRadius * iRate, m_pitem->m_pmesh->m_plist->m_iIconBlurRadius * iRate), m_rectangleImage.size(), ::i32_point(), 0);
-
-               if (m_pitem->m_pmesh->m_plist->m_dIconSaturation < 1.0)
                {
 
-                  pimage->saturation(m_pitem->m_pmesh->m_plist->m_dIconSaturation);
+                  auto pgraphicsImage = pimage->acquire_graphics();
+
+                  pgraphicsImage->set_alpha_mode(::draw2d::e_alpha_mode_set);
+
+                  pgraphicsImage->fill_rectangle(pimage->size(), ::color::transparent);
+
+                  get_image_list()->draw(pgraphicsImage, (::i32)m_iImage,
+                     i32_point(m_pitem->m_pmesh->m_plist->m_iIconBlurRadius * iRate, m_pitem->m_pmesh->m_plist->m_iIconBlurRadius * iRate), m_rectangleImage.size(), ::i32_point(), 0);
 
                }
 
-               if (m_pitem->m_pmesh->m_plist->m_dIconLightness < 1.0)
+               if (m_pitem->m_pmesh->m_plist->m_dIconSaturation < 1.0
+                  || m_pitem->m_pmesh->m_plist->m_dIconLightness < 1.0
+                  || m_pitem->m_pmesh->m_plist->m_dIconOpacity < 1.0)
                {
 
-                  pimage->lightness(m_pitem->m_pmesh->m_plist->m_dIconLightness);
+                  auto ppixmapImage = pimage->map();
 
-               }
+                  if (m_pitem->m_pmesh->m_plist->m_dIconSaturation < 1.0)
+                  {
+
+                     ppixmapImage->saturation(m_pitem->m_pmesh->m_plist->m_dIconSaturation);
+
+                  }
+
+                  if (m_pitem->m_pmesh->m_plist->m_dIconLightness < 1.0)
+                  {
+
+                     ppixmapImage->lightness(m_pitem->m_pmesh->m_plist->m_dIconLightness);
+
+                  }
 
 
-               if (m_pitem->m_pmesh->m_plist->m_dIconOpacity < 1.0)
-               {
+                  if (m_pitem->m_pmesh->m_plist->m_dIconOpacity < 1.0)
+                  {
 
-                  pimage->opacity(m_pitem->m_pmesh->m_plist->m_dIconOpacity);
+                     ppixmapImage->opacity(m_pitem->m_pmesh->m_plist->m_dIconOpacity);
+
+                  }
 
                }
 
@@ -254,14 +267,16 @@ namespace user
                if (m_pitem->m_pmesh->m_plist->m_iIconBlur > 0 && m_pitem->m_pmesh->m_plist->m_iIconBlurRadius > 0)
                {
 
+                  m_pitem->m_pmesh->m_plist->defer_construct_newø(m_pitem->m_pmesh->m_plist->m_pfastblurIcon);
+
+                  m_pitem->m_pmesh->m_plist->m_pfastblurIcon->initialize(pimage->size(), m_pitem->m_pmesh->m_plist->m_iIconBlurRadius);
+
+                  auto ppixmapImage = pimage->map();
+
                   for (::collection::index i = 0; i < m_pitem->m_pmesh->m_plist->m_iIconBlur; i++)
                   {
 
-                     m_pitem->m_pmesh->m_plist->defer_construct_newø(m_pitem->m_pmesh->m_plist->m_pfastblurIcon);
-                     
-                     m_pitem->m_pmesh->m_plist->m_pfastblurIcon->initialize(pimage->size(), m_pitem->m_pmesh->m_plist->m_iIconBlurRadius);
-
-                     m_pitem->m_pmesh->m_plist->m_pfastblurIcon->blur(pimage);
+                     m_pitem->m_pmesh->m_plist->m_pfastblurIcon->blur(ppixmapImage);
 
                   }
 
@@ -311,19 +326,24 @@ namespace user
 
                rect2.offset(-m_pitem->m_pmesh->m_plist->m_rectangleSpot.top_left());
 
-               auto pgraphicsImage1 = image1.image()->acquire_graphics();
+               {
+                  auto pgraphicsImage1 = image1.image()->acquire_graphics();
 
-               pgraphicsImage1->set_alpha_mode(::draw2d::e_alpha_mode_set);
+                  pgraphicsImage1->set_alpha_mode(::draw2d::e_alpha_mode_set);
 
-               get_image_list()->draw(pgraphicsImage1, (::i32)m_iImage,
-                  rect2.top_left(),
-                  rectangle.size(), rectangle.top_left(), 0);
+                  get_image_list()->draw(pgraphicsImage1, (::i32)m_iImage,
+                     rect2.top_left(),
+                     rectangle.size(), rectangle.top_left(), 0);
+               }
 
                //m_pgraphics->draw(rectangleI + i32_point(200,200), m_plist->m_pimageTime->get_graphics(), rect2.top_left());
 
                //m_plist->m_pimageTime->div_alpha(rect2->top_left(), rect2->size());
-
-               image1.image()->channel_multiply(::color::e_channel_opacity, m_pitem->m_pmesh->m_plist->m_pimageSpot, rect2);
+               {
+                  auto ppixmapImage1 = image1.image()->map();
+                  auto ppixmapImageSpot = m_pitem->m_pmesh->m_plist->m_pimageSpot->map();
+                  ppixmapImage1->channel_multiply(::color::e_channel_opacity, ppixmapImageSpot, rect2);
+               }
 
                //m_plist->m_pimageTime->mult_alpha(rect2->top_left(), rect2->size());
 
@@ -350,7 +370,7 @@ namespace user
          //{
 
          //   m_pgraphics->set_alpha_mode(::draw2d::e_alpha_mode_set);
-         //   return m_pgraphics->BitBlt(m_rectangleImage.left, m_rectangleImage.top, m_rectangleImage.width(), m_rectangleImage.height(),get_image_list()->m_pimage->g(), m_iImage * m_rectangleImage->width());
+         //   return m_pgraphics->BitBlt(m_rectangleImage.left, m_rectangleImage.top, m_rectangleImage.width(), m_rectangleImage.height(),get_image_list()->m_pgraphicsImage->, m_iImage * m_rectangleImage->width());
 
          //}
          else
@@ -365,7 +385,7 @@ namespace user
             //auto pimageDebug = create_image(m_rectangleImage.size());
             //{
 
-            //   auto ret = get_image_list()->draw(pimageDebug->g(), (::i32)m_iImage, { 0,0 }, m_rectangleImage.size(), ::i32_point(), 0);
+            //   auto ret = get_image_list()->draw(pgraphicsImageDebug->, (::i32)m_iImage, { 0,0 }, m_rectangleImage.size(), ::i32_point(), 0);
             //   auto pimage32 = pimageDebug->get_data();
             //   informationf("imageDebug");
 

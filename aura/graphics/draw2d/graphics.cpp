@@ -535,7 +535,7 @@ namespace draw2d
 
       //__UNREFERENCED_PARAMETER(size);
 
-      //create_compatible_graphics(nullptr);
+      //create_memory_graphics({}, nullptr); // create_compatible_graphics(nullptr);
       //if (!create_compatible_graphics(nullptr))
       //{
 
@@ -687,7 +687,7 @@ namespace draw2d
       __UNREFERENCED_PARAMETER(size);
       __UNREFERENCED_PARAMETER(pacmeuserinteractionAffinity);
 
-      ///create_compatible_graphics(nullptr);
+      ///create_memory_graphics({}, nullptr); // create_compatible_graphics(nullptr);
       //if (!create_compatible_graphics(nullptr))
       //{
 
@@ -1175,7 +1175,9 @@ namespace draw2d
       if (m_pimage)
       {
 
-         m_pimage->frame_pixel_perfect_rectangle(x, y, w, h, color, width);
+         auto ppixmapImage = m_pimage->map();
+
+         ppixmapImage->frame_pixel_perfect_rectangle(x, y, w, h, color, width);
 
       }
 
@@ -1597,7 +1599,11 @@ namespace draw2d
 
             pointSrc.x = (::i32)maximum(0, x - rectangleAlphaBlend.left);
 
-            image1.image()->blend2(pointDst, m_pimageAlphaBlend, pointSrc, rectangleIntersect.size(), 255);
+            auto ppixmapImage1 = image1.image()->map();
+
+            auto ppixmapImageAlphaBlend = m_pimageAlphaBlend->map();
+
+            ppixmapImage1->blend2(pointDst, ppixmapImageAlphaBlend, pointSrc, rectangleIntersect.size(), 255);
 
             ::image::image_drawing_options imagedrawingoptionsDrawRaw;
 
@@ -2091,11 +2097,11 @@ namespace draw2d
 
             pimage1 = image()->create_image(rectangleText.size());
 
-            pimage1->fill_byte(0);
-
             {
 
                auto pgraphics = pimage1->acquire_graphics(m_pacmeuserinteractionAffinity);
+
+               pgraphics->clear(::color::transparent);
 
                pgraphics->set(get_current_font());
 
@@ -2121,7 +2127,11 @@ namespace draw2d
 
             pointSrc.x = (::i32)maximum(0, x - rectangleAlphaBlend.left);
 
-            pimage1->blend2(pointDst, m_pimageAlphaBlend, pointSrc, rectangleIntersect.size(), 255);
+            auto ppixmapImage1 = pimage1->map();
+
+            auto ppixmapImageAlphaBlend = m_pimageAlphaBlend->map();
+
+            ppixmapImage1->blend2(pointDst, ppixmapImageAlphaBlend, pointSrc, rectangleIntersect.size(), 255);
 
             ::image::image_drawing_options imagedrawingoptions;
 
@@ -4849,7 +4859,7 @@ namespace draw2d
    //   graphics_pointer(e_create)
    //{
 
-   //   m_p->create_compatible_graphics(nullptr);
+   //   m_p->create_memory_graphics({}, nullptr); // create_compatible_graphics(nullptr);
 
    //}
 
@@ -4929,6 +4939,23 @@ namespace draw2d
       return size();
 
    }
+
+
+   void graphics::invert()
+   {
+
+      throw ::interface_only();
+
+   }
+
+
+   void graphics::fill_channel(::i32 iByte, ::color::enum_channel echannel)
+   {
+
+      throw ::interface_only();
+
+   }
+
 
 
    //=============================================================================
@@ -6258,6 +6285,8 @@ namespace draw2d
    void graphics::draw_error_line(::f64 x1, ::f64 h, ::f64 x2, ::i32 iStyle)
    {
 
+
+
       ::i32 u8Red = m_ppen->m_color.u8_red();
       ::i32 u8Green = m_ppen->m_color.u8_green();
       ::i32 u8Blue = m_ppen->m_color.u8_blue();
@@ -6272,11 +6301,14 @@ namespace draw2d
       else
       {
 
+         auto color = m_ppen->m_color;
+
+
          ::image::image_pointer pimage;
 
          ::f64 w = x2 - x1 + 1;
 
-         //auto estatus = 
+         //auto estatus =
 
          constructø(pimage);
 
@@ -6287,7 +6319,7 @@ namespace draw2d
 
          //}
 
-         //estatus = 
+         //estatus =
 
          pimage->create_as_descriptor({ (::i32)w, 6 });
 
@@ -6299,98 +6331,106 @@ namespace draw2d
 
          }
 
-         pimage->fill_byte(0);
 
-         ::f64 dStep = 0.125;
-         ::f64 dPeriod = 7.0;
-         ::f64 dTint;
-         ::f64 dHalfH = 1.33;
-         ::f64 dHSpan = 0.7;
-         ::f64 dH = 2.5;
-         ::f64 dCurl = 2.3;
-         ::f64 dBaseTint = 2.0;
-         ::f64 dCircleX;
-         ::f64 dCircleY;
+      {
+         auto ppixmapImage = pimage->map();
 
-         pimage->map();
-
-         auto pimage32 = pimage->image32();
-
-         auto scan = pimage->scan_size();
-
-         auto wscan = scan / sizeof(::color32_t);
-
-         for (::f64 Δx = 0; Δx < w; Δx += dStep)
-         {
-            dCircleX = fmod(Δx, (::f64)(dPeriod));
-            ::f64 dSign = dCircleX < (dPeriod / 2.0) ? 1.0 : -1.0;
-            dCircleX -= dPeriod / 2.0;
-            dTint = dBaseTint * 0.51;
-            dCircleY = dSign * sqrt(dPeriod * dPeriod / 4.0 - dCircleX * dCircleX) * 0.05;
-            {
-               ::f64 Δy = (sin((::f64)Δx * 2.0 * 3.1415 / dPeriod) - fmod(Δx, (::f64)(dPeriod / 2.0)) / (dPeriod * dCurl)) + dCircleY;
-               ;
-               Δy = (Δy * dHalfH + dH - dHSpan);
-               ::i32 x = (::i32)round(Δx);
-               ::i32 y = (::i32)round(Δy);
-               if (x < 0 || y < 0 || x >= pimage->width() || y >= pimage->height())
-               {
-               }
-               else
-               {
-                  ::i32 opacity = pimage32[x + wscan * y].u8_opacity(pimage->m_colorindexes);
-                  ::f64 fy = 1.0 - fmod(fabs(Δy), 1.0);
-                  ::f64 fx = 1.0 - fmod(fabs(Δx), 1.0);
-                  opacity = (::i32)(opacity + ((fx * fy) * 255.0 * dStep * dTint));
-                  opacity = minimum(opacity, 255);
-                  pimage32[x + wscan * y].assign(argb((opacity * u8Opacity) / 255, u8Blue, u8Green, u8Red), pimage->color_indexes());
-               }
-            }
-            dTint = dBaseTint * 0.51;
-            {
-               ::f64 Δy = (sin((::f64)Δx * 2.0 * 3.1415 / dPeriod) - fmod(Δx, (::f64)(dPeriod / 2.0)) / (dPeriod * dCurl)) + dCircleY;
-               Δy = (Δy * dHalfH + dH + dHSpan);
-               ::i32 x = (::i32)round(Δx);
-               ::i32 y = (::i32)round(Δy);
-               if (x < 0 || y < 0 || x >= pimage->width() || y >= pimage->height())
-               {
-               }
-               else
-               {
-                  ::i32 opacity = pimage32[x + wscan * y].u8_opacity(pimage->color_indexes());
-                  ::f64 fy = 1.0 - fmod(fabs(Δy), 1.0);
-                  ::f64 fx = 1.0 - fmod(fabs(Δx), 1.0);
-                  opacity = (::i32)(opacity + ((fx * fy) * 255.0 * dStep * dTint));
-                  opacity = minimum(opacity, 255);
-                  pimage32[x + wscan * y].assign(argb((opacity * u8Opacity) / 255, u8Blue, u8Green, u8Red), pimage->color_indexes());
-               }
-
-            }
-
-            dTint = dBaseTint * 2.3;
-
-            {
-               ::f64 Δy = (sin((::f64)Δx * 2.0 * 3.1415 / dPeriod) - fmod(Δx, (::f64)(dPeriod / 2.0)) / (dPeriod * dCurl)) + dCircleY;
-               Δy = (Δy * dHalfH + dH);
-               ::i32 x = (::i32)round(Δx);
-               ::i32 y = (::i32)round(Δy);
-               if (x < 0 || y < 0 || x >= pimage->width() || y >= pimage->height())
-               {
-               }
-               else
-               {
-                  ::i32 opacity = pimage32[x + wscan].u8_opacity(pimage->color_indexes());
-                  ::f64 fy = 1.0 - fmod(fabs(Δy), 1.0);
-                  ::f64 fx = 1.0 - fmod(fabs(Δx), 1.0);
-                  opacity = (::i32)(opacity + ((fx * fy) * 255.0 * dStep * dTint));
-                  opacity = minimum(opacity, 255);
-                  pimage32[x + wscan * y].assign(argb((opacity * u8Opacity) / 255, u8Blue, u8Green, u8Red), pimage->color_indexes());
-
-               }
-
-            }
-
-         }
+         ppixmapImage->draw_error_line(0, 6, w, 1, color);
+      }
+         //
+         //
+         // ::f64 dStep = 0.125;
+         // ::f64 dPeriod = 7.0;
+         // ::f64 dTint;
+         // ::f64 dHalfH = 1.33;
+         // ::f64 dHSpan = 0.7;
+         // ::f64 dH = 2.5;
+         // ::f64 dCurl = 2.3;
+         // ::f64 dBaseTint = 2.0;
+         // ::f64 dCircleX;
+         // ::f64 dCircleY;
+         //
+         // auto ppixmapImage = pimage->map();
+         //
+         // ppixmapImage->fill_byte(0);
+         //
+         // auto pimage32 = ppixmapImage->image32();
+         //
+         // auto scan = ppixmapImage->scan_size();
+         //
+         // auto wscan = scan / sizeof(::color32_t);
+         //
+         // for (::f64 Δx = 0; Δx < w; Δx += dStep)
+         // {
+         //    dCircleX = fmod(Δx, (::f64)(dPeriod));
+         //    ::f64 dSign = dCircleX < (dPeriod / 2.0) ? 1.0 : -1.0;
+         //    dCircleX -= dPeriod / 2.0;
+         //    dTint = dBaseTint * 0.51;
+         //    dCircleY = dSign * sqrt(dPeriod * dPeriod / 4.0 - dCircleX * dCircleX) * 0.05;
+         //    {
+         //       ::f64 Δy = (sin((::f64)Δx * 2.0 * 3.1415 / dPeriod) - fmod(Δx, (::f64)(dPeriod / 2.0)) / (dPeriod * dCurl)) + dCircleY;
+         //       ;
+         //       Δy = (Δy * dHalfH + dH - dHSpan);
+         //       ::i32 x = (::i32)round(Δx);
+         //       ::i32 y = (::i32)round(Δy);
+         //       if (x < 0 || y < 0 || x >= pimage->width() || y >= pimage->height())
+         //       {
+         //       }
+         //       else
+         //       {
+         //          ::i32 opacity = pimage32[x + wscan * y].u8_opacity(pimage->m_colorindexes);
+         //          ::f64 fy = 1.0 - fmod(fabs(Δy), 1.0);
+         //          ::f64 fx = 1.0 - fmod(fabs(Δx), 1.0);
+         //          opacity = (::i32)(opacity + ((fx * fy) * 255.0 * dStep * dTint));
+         //          opacity = minimum(opacity, 255);
+         //          pimage32[x + wscan * y].assign(argb((opacity * u8Opacity) / 255, u8Blue, u8Green, u8Red), pimage->color_indexes());
+         //       }
+         //    }
+         //    dTint = dBaseTint * 0.51;
+         //    {
+         //       ::f64 Δy = (sin((::f64)Δx * 2.0 * 3.1415 / dPeriod) - fmod(Δx, (::f64)(dPeriod / 2.0)) / (dPeriod * dCurl)) + dCircleY;
+         //       Δy = (Δy * dHalfH + dH + dHSpan);
+         //       ::i32 x = (::i32)round(Δx);
+         //       ::i32 y = (::i32)round(Δy);
+         //       if (x < 0 || y < 0 || x >= pimage->width() || y >= pimage->height())
+         //       {
+         //       }
+         //       else
+         //       {
+         //          ::i32 opacity = pimage32[x + wscan * y].u8_opacity(pimage->color_indexes());
+         //          ::f64 fy = 1.0 - fmod(fabs(Δy), 1.0);
+         //          ::f64 fx = 1.0 - fmod(fabs(Δx), 1.0);
+         //          opacity = (::i32)(opacity + ((fx * fy) * 255.0 * dStep * dTint));
+         //          opacity = minimum(opacity, 255);
+         //          pimage32[x + wscan * y].assign(argb((opacity * u8Opacity) / 255, u8Blue, u8Green, u8Red), pimage->color_indexes());
+         //       }
+         //
+         //    }
+         //
+         //    dTint = dBaseTint * 2.3;
+         //
+         //    {
+         //       ::f64 Δy = (sin((::f64)Δx * 2.0 * 3.1415 / dPeriod) - fmod(Δx, (::f64)(dPeriod / 2.0)) / (dPeriod * dCurl)) + dCircleY;
+         //       Δy = (Δy * dHalfH + dH);
+         //       ::i32 x = (::i32)round(Δx);
+         //       ::i32 y = (::i32)round(Δy);
+         //       if (x < 0 || y < 0 || x >= pimage->width() || y >= pimage->height())
+         //       {
+         //       }
+         //       else
+         //       {
+         //          ::i32 opacity = pimage32[x + wscan].u8_opacity(pimage->color_indexes());
+         //          ::f64 fy = 1.0 - fmod(fabs(Δy), 1.0);
+         //          ::f64 fx = 1.0 - fmod(fabs(Δx), 1.0);
+         //          opacity = (::i32)(opacity + ((fx * fy) * 255.0 * dStep * dTint));
+         //          opacity = minimum(opacity, 255);
+         //          pimage32[x + wscan * y].assign(argb((opacity * u8Opacity) / 255, u8Blue, u8Green, u8Red), pimage->color_indexes());
+         //
+         //       }
+         //
+         //    }
+         //
+         // }
 
          set_alpha_mode(::draw2d::e_alpha_mode_blend);
 

@@ -101,7 +101,7 @@ namespace browser
       if (m_pimageBk)
       {
 
-/*         m_pimagePost->g()->draw(rectangleX->intersect(m_pimage->rectangle()), m_pimage->g());
+/*         m_pgraphicsImagePost->draw(rectangleX->intersect(m_pimage->rectangle()), m_pgraphicsImage->);
 
          return;
 

@@ -194,7 +194,7 @@ int xf_tsmf_xv_video_frame_event(TsmfClientContext* tsmf, TSMF_VIDEO_FRAME_EVENT
 	image = XvShmCreateImage(xfc->display, xv->xv_port,
 		xvpixfmt, 0, event->frameWidth, event->frameHeight, &shminfo);
 
-	if (xv->xv_image_size != image->data_size)
+	if (xv->xv_image_size != pimage->data_size)
 	{
 		if (xv->xv_image_size > 0)
 		{
@@ -202,13 +202,13 @@ int xf_tsmf_xv_video_frame_event(TsmfClientContext* tsmf, TSMF_VIDEO_FRAME_EVENT
 			shmctl(xv->xv_shmid, IPC_RMID, NULL);
 		}
 
-		xv->xv_image_size = image->data_size;
-		xv->xv_shmid = shmget(IPC_PRIVATE, image->data_size, IPC_CREAT | 0777);
+		xv->xv_image_size = pimage->data_size;
+		xv->xv_shmid = shmget(IPC_PRIVATE, pimage->data_size, IPC_CREAT | 0777);
 		xv->xv_shmaddr = shmat(xv->xv_shmid, 0, 0);
 	}
 
 	shminfo.shmid = xv->xv_shmid;
-	shminfo.shmaddr = image->data = xv->xv_shmaddr;
+	shminfo.shmaddr = pimage->data = xv->xv_shmaddr;
 	shminfo.readOnly = FALSE;
 
 	if (!XShmAttach(xfc->display, &shminfo))
@@ -226,9 +226,9 @@ int xf_tsmf_xv_video_frame_event(TsmfClientContext* tsmf, TSMF_VIDEO_FRAME_EVENT
 		case RDP_PIXFMT_I420:
 		case RDP_PIXFMT_YV12:
 			/* Y */
-			if (image->pitches[0] == event->frameWidth)
+			if (pimage->pitches[0] == event->frameWidth)
 			{
-				CopyMemory(image->data + image->offsets[0],
+				CopyMemory(pimage->data + pimage->offsets[0],
 					event->frameData,
 					event->frameWidth * event->frameHeight);
 			}
@@ -236,7 +236,7 @@ int xf_tsmf_xv_video_frame_event(TsmfClientContext* tsmf, TSMF_VIDEO_FRAME_EVENT
 			{
 				for (i = 0; i < event->frameHeight; i++)
 				{
-					CopyMemory(image->data + image->offsets[0] + i * image->pitches[0],
+					CopyMemory(pimage->data + pimage->offsets[0] + i * pimage->pitches[0],
 						event->frameData + i * event->frameWidth,
 						event->frameWidth);
 				}
@@ -254,15 +254,15 @@ int xf_tsmf_xv_video_frame_event(TsmfClientContext* tsmf, TSMF_VIDEO_FRAME_EVENT
 				data2 = event->frameData + event->frameWidth * event->frameHeight;
 				data1 = event->frameData + event->frameWidth * event->frameHeight +
 					event->frameWidth * event->frameHeight / 4;
-				image->id = pixfmt == RDP_PIXFMT_I420 ? RDP_PIXFMT_YV12 : RDP_PIXFMT_I420;
+				pimage->id = pixfmt == RDP_PIXFMT_I420 ? RDP_PIXFMT_YV12 : RDP_PIXFMT_I420;
 			}
 
-			if (image->pitches[1] * 2 == event->frameWidth)
+			if (pimage->pitches[1] * 2 == event->frameWidth)
 			{
-				CopyMemory(image->data + image->offsets[1],
+				CopyMemory(pimage->data + pimage->offsets[1],
 					data1,
 					event->frameWidth * event->frameHeight / 4);
-				CopyMemory(image->data + image->offsets[2],
+				CopyMemory(pimage->data + pimage->offsets[2],
 					data2,
 					event->frameWidth * event->frameHeight / 4);
 			}
@@ -270,10 +270,10 @@ int xf_tsmf_xv_video_frame_event(TsmfClientContext* tsmf, TSMF_VIDEO_FRAME_EVENT
 			{
 				for (i = 0; i < event->frameHeight / 2; i++)
 				{
-					CopyMemory(image->data + image->offsets[1] + i * image->pitches[1],
+					CopyMemory(pimage->data + pimage->offsets[1] + i * pimage->pitches[1],
 						data1 + i * event->frameWidth / 2,
 						event->frameWidth / 2);
-					CopyMemory(image->data + image->offsets[2] + i * image->pitches[2],
+					CopyMemory(pimage->data + pimage->offsets[2] + i * pimage->pitches[2],
 						data2 + i * event->frameWidth / 2,
 						event->frameWidth / 2);
 				}
@@ -281,13 +281,13 @@ int xf_tsmf_xv_video_frame_event(TsmfClientContext* tsmf, TSMF_VIDEO_FRAME_EVENT
 			break;
 
 		default:
-			CopyMemory(image->data, event->frameData, image->data_size <= event->frameSize ?
-				image->data_size : event->frameSize);
+			CopyMemory(pimage->data, event->frameData, pimage->data_size <= event->frameSize ?
+				pimage->data_size : event->frameSize);
 			break;
 	}
 
 	XvShmPutImage(xfc->display, xv->xv_port, xfc->window->handle, xfc->gc,
-			image, 0, 0, image->width, image->height,
+			image, 0, 0, pimage->width, pimage->height,
 			event->x, event->y, event->width, event->height, FALSE);
 
 	if (xv->xv_colorkey_atom == None)

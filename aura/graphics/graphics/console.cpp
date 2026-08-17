@@ -297,7 +297,9 @@ namespace graphics
 
       ::color::color crScreen = console_dos_color(m_edoscolor);
 
-      m_pimage->clear(crScreen);
+      auto pgraphicsImage = m_pimage->acquire_graphics();
+
+      pgraphicsImage->clear(crScreen);
 
       for (::i32 y = 0; y < m_stra.get_count(); y++)
       {
@@ -307,7 +309,7 @@ namespace graphics
          for (::i32 x = 0; x < str.length(); x++)
          {
 
-            draw_write(str[x], x, y, (enum_dos_color) m_i2aColor[y][x]);
+            draw_write(pgraphicsImage, str[x], x, y, (enum_dos_color) m_i2aColor[y][x]);
 
          }
 
@@ -394,7 +396,7 @@ namespace graphics
    }
 
 
-   void console::draw_write(::i8 ch, ::i32 x, ::i32 y, enum_dos_color edoscolor)
+   void console::draw_write(::draw2d::graphics_pointer & pgraphicsImage, ::i8 ch, ::i32 x, ::i32 y, enum_dos_color edoscolor)
    {
 
       if (ch == ' ')
@@ -413,7 +415,7 @@ namespace graphics
       if (!defer_write(ch, r, edoscolor))
       {
 
-         auto pgraphicsImage = m_pimage->acquire_graphics();
+         //auto pgraphicsImage = m_pimage->acquire_graphics();
 
          pgraphicsImage->set_smooth_mode(::draw2d::e_smooth_mode_none);
 

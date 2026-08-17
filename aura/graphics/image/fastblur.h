@@ -67,10 +67,10 @@ namespace image
       void initialize(const ::i32_size &size, ::i32 iRadius);
 
 
-      virtual void blur(::image::image *pimage, const ::i32_rectangle & rectangle);
+      //virtual void blur(::pixmap * ppixmap, const ::i32_rectangle & rectangle);
 
 
-      virtual void blur(::image::image *pimage);
+      virtual void blur(::pixmap * ppixmap);
 
 
       void do_fastblur(image32_t *pdata, const ::i32_size &size, ::u8 *rectangle, ::u8 *g, ::u8 *b, ::u8 *a, ::u8 *dv,

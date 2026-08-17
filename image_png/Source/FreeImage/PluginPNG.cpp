@@ -631,9 +631,9 @@ Load(FreeImageIO *io, fi_handle handle, ::i32 page, ::i32 flags, void *data)
 
             if (png_get_bKGD(png_ptr, info_ptr, &image_background))
             {
-               rgbBkColor.rgbRed      = (::u8)image_background->red;
-               rgbBkColor.rgbGreen    = (::u8)image_background->green;
-               rgbBkColor.rgbBlue     = (::u8)image_background->blue;
+               rgbBkColor.rgbRed      = (::u8)pimage_background->red;
+               rgbBkColor.rgbGreen    = (::u8)pimage_background->green;
+               rgbBkColor.rgbBlue     = (::u8)pimage_background->blue;
                rgbBkColor.rgbReserved = 0;
 
 /*               FreeImage_SetBackgroundColor(pimage, &rgbBkColor);

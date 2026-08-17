@@ -346,7 +346,11 @@ namespace graphics
          if (pimageNewBuffer->size() == pimageNewScreen->size())
          {
 
-            pimageNewBuffer->copy_from_no_create(pimageNewScreen);
+            auto ppixmapImageNewBuffer = pimageNewBuffer->map();
+
+            auto ppixmapImageNewScreen = pimageNewScreen->map();
+
+            ppixmapImageNewBuffer->copy(ppixmapImageNewScreen);
 
          }
 

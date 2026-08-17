@@ -22,8 +22,9 @@ namespace image
       ::pointer<::load_image_interface>                  m_ploadimageinterface;
       //::image::image_pointer                             m_pimage2;
       ::pixmap_pointer                                   m_ppixmap;
+      ::pointer <::image::image_frame_array>             m_pimageframearray;
       ::pointer<::image::image_context>                  m_pimagecontext;
-      ::function < void(::pixmap *) >                    m_functionLoaded;
+      ::function < void(::image::image_frame_array *) >  m_functionLoaded;
       ::i32_size                                         m_sizePreferred;
       bool                                               m_bCreateHelperMaps = false;
 
@@ -33,7 +34,8 @@ namespace image
       ~load_image() override;
 
 
-      virtual void initialize_load_image(::image::image_context *pimagecontext, ::pixmap * ppixmap);
+      virtual void initialize_load_image1(::image::image_context *pimagecontext, ::pixmap * ppixmap);
+      virtual void initialize_load_image(const ::function < void(::image::image_frame_array *) > & functionLoaded, ::image::image_context *pimagecontext, ::pixmap * ppixmap);
 
 
       virtual pixmap_lease map(const ::i32_size &size, ::i32 * piScan = nullptr);

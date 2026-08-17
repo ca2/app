@@ -370,7 +370,7 @@ static BOOL xf_sw_desktop_resize(rdpContext* context)
 
    if (xfc->image)
    {
-      xfc->image->data = NULL;
+      xfc->pimage->data = NULL;
       XDestroyImage(xfc->image);
    }
 
@@ -654,7 +654,7 @@ static void xf_window_free(xfContext* xfc)
 
    if (xfc->image)
    {
-      xfc->image->data = NULL;
+      xfc->pimage->data = NULL;
       XDestroyImage(xfc->image);
       xfc->image = NULL;
    }

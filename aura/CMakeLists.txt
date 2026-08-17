@@ -59,14 +59,22 @@ list(APPEND library_source
         graphics/draw2d/fwd.h
         graphics/draw2d/graphics.cpp
         graphics/draw2d/graphics.h
+   graphics/draw2d/graphics_context.cpp
+   graphics/draw2d/graphics_context.h
         graphics/draw2d/graphics_extension.cpp
         graphics/draw2d/graphics_extension.h
+   graphics/draw2d/graphics_layer_scope.cpp
+   graphics/draw2d/graphics_layer_scope.h
+   graphics/draw2d/graphics_lease.cpp
+   graphics/draw2d/graphics_lease.h
+   graphics/draw2d/graphics_pointer.cpp
+   graphics/draw2d/graphics_pointer.h
         graphics/draw2d/holdee.cpp
         graphics/draw2d/holdee.h
         graphics/draw2d/holder.cpp
         graphics/draw2d/holder.h
-        graphics/draw2d/host.cpp
-        graphics/draw2d/host.h
+        #graphics/draw2d/host.cpp
+        #graphics/draw2d/host.h
         graphics/draw2d/item.cpp
         graphics/draw2d/item.h
         #graphics/draw2d/keep.cpp
@@ -100,8 +108,8 @@ list(APPEND library_source
         #graphics/draw2d/region_shape.h
         graphics/draw2d/stock_icon.cpp
         graphics/draw2d/stock_icon.h
-        graphics/draw2d/task_tool.cpp
-        graphics/draw2d/task_tool.h
+        #graphics/draw2d/task_tool.cpp
+        #graphics/draw2d/task_tool.h
         #graphics/draw2d/ttf_util.cpp
         #graphics/draw2d/ttf_util.h
         #graphics/draw2d/water_routine.h
@@ -135,14 +143,14 @@ list(APPEND library_source
         graphics/graphics/bitmap_source_buffer.h
         graphics/graphics/buffer.cpp
         graphics/graphics/buffer.h
+   graphics/graphics/buffer_item.cpp
+   graphics/graphics/buffer_item.h
         graphics/graphics/console.cpp
         graphics/graphics/console.h
         graphics/graphics/device_context.cpp
         graphics/graphics/device_context.h
         graphics/graphics/double_buffer.cpp
         graphics/graphics/double_buffer.h
-        graphics/graphics/double_pass_scale.h
-        graphics/graphics/filters.h
         graphics/graphics/graphics.cpp
         graphics/graphics/graphics.h
         graphics/graphics/image_console.h
@@ -169,8 +177,8 @@ list(APPEND library_source
         graphics/image/image.h
         graphics/image/array.cpp
         graphics/image/array.h
-        graphics/image/buffer.cpp
-        graphics/image/buffer.h
+        #graphics/image/buffer.cpp
+        #graphics/image/buffer.h
         graphics/image/drawer.cpp
         graphics/image/drawer.h
         graphics/image/drawing.cpp
@@ -188,10 +196,10 @@ list(APPEND library_source
         graphics/image/extension.h
         graphics/image/fastblur.cpp
         graphics/image/fastblur.h
-        graphics/image/frame.cpp
-        graphics/image/frame.h
-        graphics/image/frame_array.cpp
-        graphics/image/frame_array.h
+        #graphics/image/frame.cpp
+        #graphics/image/frame.h
+        #graphics/image/frame_array.cpp
+        #graphics/image/frame_array.h
         graphics/image/gif_antialias_8bit.cpp
         #graphics/image/gif_detect_8bit_borders.cpp
         #graphics/image/header.h
@@ -208,8 +216,8 @@ list(APPEND library_source
         graphics/image/palette.h
         graphics/image/source.cpp
         graphics/image/source.h
-        graphics/image/target.cpp
-        graphics/image/target.h
+        #graphics/image/target.cpp
+        #graphics/image/target.h
         graphics/image/imaging.cpp
         graphics/image/imaging.h
         #graphics/image/pixmap.h
@@ -350,7 +358,7 @@ list(APPEND library_source
         platform/context.cpp
         platform/context.h
         platform/draw_context.cpp
-        platform/draw_context2.h
+        #platform/draw_context2.h
         platform/message_queue.h
         platform/node.cpp
         platform/node.h
@@ -558,6 +566,8 @@ list(APPEND library_source
         windowing/window.h
         windowing/windowing.cpp
         windowing/windowing.h
+   windowing/window_buffer.cpp
+   windowing/window_buffer.h
         windowing/sandbox/host_interaction.cpp
         windowing/sandbox/host_interaction.h
         windowing/sandbox/window.cpp

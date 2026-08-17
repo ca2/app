@@ -162,7 +162,7 @@ void Canvas::draw(::nano2d::context  * pcontext) {
 
       screen()->m_puserinteraction->constructø(m_pimage);
 
-      m_pimage->create({ m_size.cx, m_size.cy });
+      m_pimage->create_as_descriptor({ m_size.cx, m_size.cy });
 
 
    }

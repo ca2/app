@@ -107,6 +107,8 @@ list(APPEND apex_source
         gpu/_.h
         gpu/approach.cpp
         gpu/approach.h
+   gpu/window_attachment.cpp
+   gpu/window_attachment.h
    handler/manager.cpp
    handler/manager.h
    handler/manager_room.cpp

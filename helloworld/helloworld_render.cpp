@@ -483,21 +483,21 @@ namespace helloworld
 
 /*                  m_pimage->Fill(0, 0, 0, 0);
 
-/*                  m_pimage->g()->set_font(m_pfont);
+/*                  m_pgraphicsImage->set_font(m_pfont);
 
-/*                  m_pimage->g()->set_text_rendering_hint(::write_text::e_rendering_anti_alias);
+/*                  m_pgraphicsImage->set_text_rendering_hint(::write_text::e_rendering_anti_alias);
 
-/*                  m_pimage->g()->set_alpha_mode(::draw2d::e_alpha_mode_blend);
+/*                  m_pgraphicsImage->set_alpha_mode(::draw2d::e_alpha_mode_blend);
 
                   pbrushText->create_solid(argb(255, 255, 255, 255));
 
-/*                  m_pimage->g()->SelectObject(pbrushText);
+/*                  m_pgraphicsImage->SelectObject(pbrushText);
 
-/*                  m_pimage->g()->text_out((m_cxCache1 - i32_size->cx) / 2, (m_cyCache1 - i32_size->cy) / 2, strHelloWorld);
+/*                  m_pgraphicsImage->text_out((m_cxCache1 - i32_size->cx) / 2, (m_cyCache1 - i32_size->cy) / 2, strHelloWorld);
 
 /*                  m_pimage->map();
 
-/*                  psystem->imaging().spread(m_pimage->g(), ::i32_point(), m_pimage->get_size(), m_pimage->g(), ::i32_point(), ::i32 (m_dMaxRadius));
+/*                  psystem->imaging().spread(m_pgraphicsImage->, ::i32_point(), m_pimage->get_size(), m_pgraphicsImage->, ::i32_point(), ::i32 (m_dMaxRadius));
 
 /*                  m_pimage->blur();
 
@@ -751,17 +751,17 @@ namespace helloworld
 
 /*            m_pimage->Fill(0, 0, 0, 0);
 
-/*            m_pimage->g()->set_text_rendering_hint(::write_text::e_rendering_anti_alias);
+/*            m_pgraphicsImage->set_text_rendering_hint(::write_text::e_rendering_anti_alias);
 
-/*            m_pimage->g()->set_alpha_mode(::draw2d::e_alpha_mode_blend);
+/*            m_pgraphicsImage->set_alpha_mode(::draw2d::e_alpha_mode_blend);
 
             pbrushText->create_solid(argb(255, 255, 255, 255));
 
-/*            m_pimage->g()->SelectObject(pbrushText);
+/*            m_pgraphicsImage->SelectObject(pbrushText);
 
-/*            m_pimage->g()->set_font(m_pfont);
+/*            m_pgraphicsImage->set_font(m_pfont);
 
-/*            m_pimage->g()->text_out((m_cx - i32_size->cx) / 2, (m_cy - i32_size->cy) / 2, strHelloWorld);
+/*            m_pgraphicsImage->text_out((m_cx - i32_size->cx) / 2, (m_cy - i32_size->cy) / 2, strHelloWorld);
 
             if (m_dMinRadius > 3.0)
             {
@@ -895,9 +895,9 @@ namespace helloworld
 
                      pgraphics->set_interpolation_mode(e_interpolation_mode_high_quality_bicubic);
 
-/*                     pgraphics->StretchBlt(0, 0, pimage->width() / 40, pimage->height() / 40, pimage->get_graphics(), 0, 0, pimage->width(), pimage->height());
+/*                     pgraphics->StretchBlt(0, 0, pimage->width() / 40, pimage->height() / 40, pgraphicsImage, 0, 0, pimage->width(), pimage->height());
 
-/*                     pgraphics->StretchBlt(0, m_cy - pimage->height() / 40, pimage->width() / 40, pimage->height() / 40, pimage->get_graphics(), 0, 0, pimage->width(), pimage->height());
+/*                     pgraphics->StretchBlt(0, m_cy - pimage->height() / 40, pimage->width() / 40, pimage->height() / 40, pgraphicsImage, 0, 0, pimage->width(), pimage->height());
 
                   }
 
@@ -946,9 +946,9 @@ namespace helloworld
 
                      pgraphics->set_interpolation_mode(e_interpolation_mode_high_quality_bicubic);
 
-/*                     pgraphics->StretchBlt(m_cx - pimage->width() / 32, 0, pimage->width() / 32, pimage->height() / 32, pimage->get_graphics(), 0, 0, pimage->width(), pimage->height());
+/*                     pgraphics->StretchBlt(m_cx - pimage->width() / 32, 0, pimage->width() / 32, pimage->height() / 32, pgraphicsImage, 0, 0, pimage->width(), pimage->height());
 
-/*                     pgraphics->StretchBlt(m_cx - pimage->width() / 32, m_cy - pimage->height() / 32, pimage->width() / 32, pimage->height() / 32, pimage->get_graphics(), 0, 0, pimage->width(), pimage->height());
+/*                     pgraphics->StretchBlt(m_cx - pimage->width() / 32, m_cy - pimage->height() / 32, pimage->width() / 32, pimage->height() / 32, pgraphicsImage, 0, 0, pimage->width(), pimage->height());
 
                   }
 
@@ -1053,7 +1053,7 @@ namespace helloworld
 
    //                  pimage->defer_update();
 
-/*   //                  psystem->imaging().bitmap_blend(pgraphics, ::i32_point(), pimage->get_size(), pimage->get_graphics(), ::i32_point(), 255 - uchAlpha);
+/*   //                  psystem->imaging().bitmap_blend(pgraphics, ::i32_point(), pimage->get_size(), pgraphicsImage, ::i32_point(), 255 - uchAlpha);
 
    //               }
 
@@ -1071,7 +1071,7 @@ namespace helloworld
 
    //                  pimage->defer_update();
 
-/*   //                  psystem->imaging().bitmap_blend(pgraphics, ::i32_point(), pimage->get_size(), pimage->get_graphics(), ::i32_point(), uchAlpha);
+/*   //                  psystem->imaging().bitmap_blend(pgraphics, ::i32_point(), pimage->get_size(), pgraphicsImage, ::i32_point(), uchAlpha);
 
    //               }
 
@@ -1090,7 +1090,7 @@ namespace helloworld
 
    //               pimage->defer_update();
 
-/*   //               pgraphics->BitBlt(0, 0, pimage->width(), pimage->height(), pimage->get_graphics(), 0, 0);
+/*   //               pgraphics->BitBlt(0, 0, pimage->width(), pimage->height(), pgraphicsImage, 0, 0);
 
    //            }
 
@@ -1271,7 +1271,7 @@ namespace helloworld
 /*      if (pimage->is_null())
       {
 
-/*         pimage->create(this);
+/*         pimage->create_as_descriptor(this);
 
       }
 

@@ -126,7 +126,7 @@ namespace imaging_freeimage
 
                         }
 
-                        pimageCompose->create(pframea->m_size);
+                        pimageCompose->create_as_descriptor(pframea->m_size);
 
                         pimageCompose->clear(::color::transparent);
 
@@ -292,7 +292,7 @@ namespace imaging_freeimage
 
       }
 
-      image_from_freeimage(pimageFrame, pfi);
+      pixmap_from_freeimage(pimageFrame, pfi);
 
       ::draw2d::enum_disposal edisposal = iFrame <= 0 ? ::draw2d::e_disposal_none : pframea->element_at(iFrame)->m_edisposal;
 

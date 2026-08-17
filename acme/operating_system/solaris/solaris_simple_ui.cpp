@@ -616,7 +616,7 @@ namespace os
       m_rectangleWindow = rectangleWindow;
 
 
-/*      if (m_pimage->is_set() && m_pimage->g() != nullptr)
+/*      if (m_pimage->is_set() && m_pgraphicsImage-> != nullptr)
       {
 
          ::i32_rectangle rectangleX = rectangleWindow;
@@ -627,13 +627,13 @@ namespace os
 
          rectangle = rectangleWindow;
 
-/*         m_pimage->g()->set_alpha_mode(draw2d::e_alpha_mode_set);
+/*         m_pgraphicsImage->set_alpha_mode(draw2d::e_alpha_mode_set);
 
-/*         m_pimage->g()->set_origin(0, 0);
+/*         m_pgraphicsImage->set_origin(0, 0);
 
-/*         m_pimage->g()->FillSolidRect(&rectangleX, argb(255, 255, 255, 255));
+/*         m_pgraphicsImage->FillSolidRect(&rectangleX, argb(255, 255, 255, 255));
 
-/*         draw(m_pimage->g());
+/*         draw(m_pgraphicsImage->);
 
          //m_pimage->map();
 

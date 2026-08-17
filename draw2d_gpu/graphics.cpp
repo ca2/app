@@ -3670,7 +3670,7 @@ void main() {
 ////         ::image::image_pointer pimage;
 ////         if(imageWork == nullptr)
 ////         {
-////            pimage->create(this);
+////            pimage->create_as_descriptor(this);
 ////            imageWork = pimage;
 ////         }
 ////         if(imageWork == nullptr)
@@ -3686,7 +3686,7 @@ void main() {
 ////         ::image::image_pointer pimage2;
 ////         if(imageWork2 == nullptr)
 ////         {
-////            pimage2->create(this);
+////            pimage2->create_as_descriptor(this);
 ////            imageWork2 = pimage2;
 ////         }
 ////
@@ -3797,7 +3797,7 @@ void main() {
          ::image::image_pointer pimage;
          if(imageWork == nullptr)
          {
-            pimage->create(this);
+            pimage->create_as_descriptor(this);
             imageWork = pimage;
          }
          if(imageWork == nullptr)
@@ -3813,7 +3813,7 @@ void main() {
          ::image::image_pointer pimage2;
          if(imageWork2 == nullptr)
          {
-            pimage2->create(this);
+            pimage2->create_as_descriptor(this);
             imageWork2 = pimage2;
          }
 

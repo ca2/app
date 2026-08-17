@@ -304,7 +304,7 @@ namespace draw2d
    void graphics::create_memory_graphics()
    {
 
-      create_compatible_graphics(nullptr);
+      create_memory_graphics({}, nullptr); // create_compatible_graphics(nullptr);
       //if (!create_compatible_graphics(nullptr))
       //{
 
@@ -3806,7 +3806,7 @@ namespace draw2d
    //   graphics_pointer(e_create)
    //{
 
-   //   m_p->create_compatible_graphics(nullptr);
+   //   m_p->create_memory_graphics({}, nullptr); // create_compatible_graphics(nullptr);
 
    //}
 
@@ -4938,7 +4938,7 @@ namespace draw2d
 
          //estatus = 
          
-         pimage->create({ (::i32)w, 6 });
+         pimage->create_as_descriptor({ (::i32)w, 6 });
 
          //if (!estatus || pimage->area() <= 0)
          if(pimage->area() <= 0)

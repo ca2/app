@@ -458,7 +458,13 @@ namespace userex
          
          pimage= pbutton->m_pbitmap->m_pimage->clone();
 
-         pimage->saturation(0.0);
+         {
+
+            auto ppixmapImage = pimage->map();
+
+            ppixmapImage->saturation(0.0);
+
+         }
 
          pbutton->m_pbitmap->m_pimage = pimage;
 

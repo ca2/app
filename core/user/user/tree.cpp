@@ -1053,7 +1053,7 @@ void tree::perform_right_click(const ::i32_point & pointCursor)
 
       auto pdraw2d = psystem->draw2d();
 
-      //auto pgraphics = pdraw2d->create_memory_graphics(this);
+      //auto pgraphics = pdraw2d->create_memory_graphics({}, this);
 
       auto pstyle = get_style(pgraphics);
 
@@ -1778,9 +1778,9 @@ void tree::perform_right_click(const ::i32_point & pointCursor)
 
       //auto pdraw2d = psystem->draw2d();
 
-      //auto pgraphics = pdraw2d->create_memory_graphics(this);
+      //auto pgraphics = pdraw2d->create_memory_graphics({}, this);
 
-      //pgraphics->create_compatible_graphics(nullptr);
+      //pgraphics->create_memory_graphics({}, nullptr); // create_compatible_graphics(nullptr);
 
       //auto pfont = createø < ::write_text::font > ();
       //pfont->operator=(*pdraw2d->fonts().GetListCtrlFont());

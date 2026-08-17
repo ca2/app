@@ -211,9 +211,9 @@ namespace innate_subsystem
 //       //    long buttonHeight = -buttonRect->top + buttonRect->bottom;
 //       //
 //       //    // Center image horizontally
-//       //    imageRect->left += ((buttonWidth - (long)imageWidth) / 2);
+//       //    pimageRect->left += ((buttonWidth - (long)imageWidth) / 2);
 //       //    // Center image vertically
-//       //    imageRect->top += (((buttonHeight) - (long)imageHeight) / 2) - textHeight;
+//       //    pimageRect->top += (((buttonHeight) - (long)imageHeight) / 2) - textHeight;
 //       //
 //       //    ::u32 margin = 10;
 //       //    textRect->top += (textHeight + margin) * 2;
@@ -228,9 +228,9 @@ namespace innate_subsystem
 //    // void ImagedButton::drawIcon(DeviceContextInterface* pdevicecontext, ::i32_rectangle & imageRect, bool isPressed, bool isDisabled)
 //    // {
 //    //    // DrawState(*dc, NULL, NULL, (::lparam)*m_icon, 0,
-//    //    //           imageRect->left, imageRect->top,
-//    //    //           (imageRect->right - imageRect->left),
-//    //    //           (imageRect->bottom - imageRect->top),
+//    //    //           pimageRect->left, pimageRect->top,
+//    //    //           (pimageRect->right - pimageRect->left),
+//    //    //           (pimageRect->bottom - pimageRect->top),
 //    //    //           (isDisabled ? DSS_DISABLED : DSS_NORMAL) | DST_ICON);
 //    // } // End of drawIcon
 //

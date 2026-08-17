@@ -347,9 +347,9 @@ namespace image
    //
    //   auto rectangle = ::f64_rectangle_dimension(iItem * m_size.cx, 0, m_size.cx, m_size.cy);
    //   
-   //   m_pimage->g()->set_alpha_mode(::draw2d::e_alpha_mode_set);
+   //   m_pgraphicsImage->set_alpha_mode(::draw2d::e_alpha_mode_set);
    //
-   //   m_pimage->g()->fill_rectangle(rectangle, 0);
+   //   m_pgraphicsImage->fill_rectangle(rectangle, 0);
    //
    //
    ////#ifdef UNIVERSAL_WINDOWS
@@ -389,9 +389,9 @@ namespace image
    //
    //   auto rectangle = ::f64_rectangle_dimension(iItem * m_size.cx, 0, m_size.cx, m_size.cy);
    //
-   //   m_pimage->g()->set_alpha_mode(::draw2d::e_alpha_mode_set);
+   //   m_pgraphicsImage->set_alpha_mode(::draw2d::e_alpha_mode_set);
    //
-   //   m_pimage->g()->fill_rectangle(rectangle, 0);
+   //   m_pgraphicsImage->fill_rectangle(rectangle, 0);
    //
    //   auto pointDst = ::f64_point((iItem * m_size.cx), 0.);
    //

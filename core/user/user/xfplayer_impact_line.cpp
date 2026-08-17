@@ -325,9 +325,10 @@ bool xfplayer_impact_line::_001OnDraw(::draw2d::graphics_pointer & pgraphics, bo
                if (rectangle.area() > 0)
                {
                   pimage = image()->create_image(rectangle.size());
-                  pimage->clear(::color::white);
+
 
                   auto pgraphicsImage = pimage->acquire_graphics();
+                  pgraphicsImage->clear(::color::white);
                   pgraphicsImage->set_alpha_mode(::draw2d::e_alpha_mode_blend);
                   pgraphics->flush();
 
@@ -351,9 +352,9 @@ bool xfplayer_impact_line::_001OnDraw(::draw2d::graphics_pointer & pgraphics, bo
                   }
 
                   //pgraphicsImage->fill_rectangle(0, 0, 16, 16, argb(255, 255, 0, 255));
-                  pimage->invert();
+                  pgraphics->invert();
                   //pimage->fill_channel(0, ::color::e_channel_blue);
-                  pimage->fill_channel(255, ::color::e_channel_opacity);
+                  pgraphics->fill_channel(255, ::color::e_channel_opacity);
 
                   {
 
@@ -1619,58 +1620,67 @@ void xfplayer_impact_line::CacheEmboss(::draw2d::graphics_pointer & pgraphics, c
       
    }
 
-   pimageCache->clear(::color::transparent);
-
-   auto pdcCache = pimageCache->acquire_graphics();
-
-   pdcCache->set(m_pfont);
-
-   pdcCache->set_alpha_mode(::draw2d::e_alpha_mode_set);
-
-   pdcCache->set_alpha_mode(::draw2d::e_alpha_mode_blend);
-
-   draw2d::brush_pointer pbrushText(e_create, this);
-
-   pbrushText->create_solid(argb(96, 96, 96, 96));
-
-   pdcCache->set(pbrushText);
-
-   ::f64_size s;
-
-   if (m_bColonPrefix)
    {
+      auto pgraphicsImageCache = pimageCache->acquire_graphics();
 
-      pdcCache->set(m_pfontPrefix);
-      
-      const ::i32_size & size = pdcCache->get_text_extent(m_strPrefix);
-      
-      m_pgraphicsextension->text_out(pdcCache, (::i32)(::i32)((maximum(2.0, m_fRateX * 4.0)) / 2), (::i32)1 * (::i32)((maximum(2.0, m_fRateX * 4.0)) / 2) + m_rectangle.height() - size.cy, m_strPrefix, s);
-      
-      pdcCache->set(m_pfont);
+      pgraphicsImageCache->clear(::color::transparent);
 
-      ::i32 x = (::i32) (s.cx + (s.cx / m_strPrefix.length()) + (::i32)(::i32)((maximum(2.0, m_fRateX * 8.0)) / 2));
+      pgraphicsImageCache->set(m_pfont);
 
-      ::i32 y = (::i32) (1 * (::i32)((maximum(2.0, m_fRateX * 8.0)) / 2));
+      pgraphicsImageCache->set_alpha_mode(::draw2d::e_alpha_mode_set);
 
-      m_pgraphicsextension->text_out(pdcCache, x, y, m_strRoot, s);
+      pgraphicsImageCache->set_alpha_mode(::draw2d::e_alpha_mode_blend);
+
+      draw2d::brush_pointer pbrushText(e_create, this);
+
+      pbrushText->create_solid(argb(96, 96, 96, 96));
+
+      pgraphicsImageCache->set(pbrushText);
+
+      ::f64_size s;
+
+      if (m_bColonPrefix)
+      {
+
+         pgraphicsImageCache->set(m_pfontPrefix);
+
+         const ::i32_size & size = pgraphicsImageCache->get_text_extent(m_strPrefix);
+
+         m_pgraphicsextension->text_out(pgraphicsImageCache, (::i32)(::i32)((maximum(2.0, m_fRateX * 4.0)) / 2), (::i32)1 * (::i32)((maximum(2.0, m_fRateX * 4.0)) / 2) + m_rectangle.height() - size.cy, m_strPrefix, s);
+
+         pgraphicsImageCache->set(m_pfont);
+
+         ::i32 x = (::i32) (s.cx + (s.cx / m_strPrefix.length()) + (::i32)(::i32)((maximum(2.0, m_fRateX * 8.0)) / 2));
+
+         ::i32 y = (::i32) (1 * (::i32)((maximum(2.0, m_fRateX * 8.0)) / 2));
+
+         m_pgraphicsextension->text_out(pgraphicsImageCache, x, y, m_strRoot, s);
+
+      }
+      else
+      {
+
+         m_pgraphicsextension->text_out(pgraphicsImageCache, (::i32)(::i32)((maximum(2.0, m_fRateX * 8.0)) / 2), (::i32)1 * (::i32)((maximum(2.0, m_fRateX * 8.0)) / 2), scopedstr, s);
+
+      }
 
    }
-   else
-   {
 
-      m_pgraphicsextension->text_out(pdcCache, (::i32)(::i32)((maximum(2.0, m_fRateX * 8.0)) / 2), (::i32)1 * (::i32)((maximum(2.0, m_fRateX * 8.0)) / 2), scopedstr, s);
+   //auto psystem = system();
+
+   {
+      auto ppixmapImageCache = pimageCache->map();
+
+
+      imaging()->spread(ppixmapImageCache, ppixmapImageCache, ::i32(maximum(1.0, m_fRateX * 2.0 + 2)), argb(23, 23, 20, 23));
+
+      //pgraphicsImageCache->set_alpha_mode(::draw2d::e_alpha_mode_blend);
+      imaging()->channel_alpha_gray_blur_32CC(ppixmapImageCache, ppixmapImageCache, 0, ::i32(maximum(1.0, m_fRateX * 2.5)));
+      imaging()->channel_alpha_gray_blur_32CC(ppixmapImageCache, ppixmapImageCache, 0, ::i32(maximum(1.0, m_fRateX * 2.5)));
+
+      //pimageCache->clear(::color::transparent);
 
    }
-
-   auto psystem = system();
-
-   imaging()->channel_spread_set_color(pdcCache, {}, size, pdcCache, {}, 0, ::i32(maximum(1.0, m_fRateX * 2.0 + 2)), argb(23, 23, 20, 23));
-
-   pdcCache->set_alpha_mode(::draw2d::e_alpha_mode_blend);
-   imaging()->channel_alpha_gray_blur(pdcCache, {}, size, pdcCache, {}, 0, ::i32(maximum(1.0, m_fRateX * 2.5)));
-   imaging()->channel_alpha_gray_blur(pdcCache, {}, size, pdcCache, {}, 0, ::i32(maximum(1.0, m_fRateX * 2.5)));
-
-   pimageCache->clear(::color::transparent);
 
 }
 

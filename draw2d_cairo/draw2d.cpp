@@ -273,7 +273,7 @@ return g_pdraw2dcairo;
 //   const ::i32_rectangle & rectangle,
 //   string strText,
 //   ::image::fastblur & blur,
-//   ::image::image_pointer & imageBlur,
+//   ::image::image_pointer & pimageBlur,
 //   ::write_text::font * pfont,
 //   const ::e_align & ealign,
 //   const ::e_draw_text & edrawtext,

@@ -56,6 +56,31 @@ namespace draw2d
    }
 
 
+   bool bitmap::copy_from(::draw2d::bitmap * pbitmap)
+   {
+
+      return false;
+
+   }
+
+
+   ::subparticle_pointer bitmap::clone()
+   {
+
+      auto pbitmapNew = createø<::draw2d::bitmap>();
+
+      if (!pbitmapNew->copy_from(this))
+      {
+
+         return nullptr;
+
+      }
+
+      return pbitmapNew;
+
+   }
+
+
    void bitmap::CreateBitmap(::draw2d::graphics* pgraphics, const ::i32_size & size,::u32 nPlanes,::u32 nBitcount,const void * pBits,::i32 stride)
    {
 
@@ -140,8 +165,9 @@ namespace draw2d
       create_bitmap(
          pgraphics,
          pimage->m_sizeRaw,
-         pimage->m_memoryPixmap,
-         &pimage->m_iScan);
+         pimage->m_ppixmapOwned);
+         //pimage->m_memoryPixmap,
+         //&pimage->m_iScan);
 
    }
 
@@ -154,15 +180,17 @@ namespace draw2d
    }
 
 
-   void bitmap::create_bitmap(::draw2d::graphics * pgraphics, const ::i32_size & size, ::memory & memory, ::i32 * stride)
+//   void bitmap::create_bitmap(::draw2d::graphics * pgraphics, const ::i32_size & size, ::memory & memory, ::i32 * stride)
+   void bitmap::create_bitmap(::draw2d::graphics * pgraphics, const ::i32_size & size, ::pixmap * ppixmapOwned)
    {
 
       __UNREFERENCED_PARAMETER(pgraphics);
       __UNREFERENCED_PARAMETER(size);
       //__UNREFERENCED_PARAMETER(ppimage32);
       //__UNREFERENCED_PARAMETER(pimage32);
-      __UNREFERENCED_PARAMETER(memory);
-      __UNREFERENCED_PARAMETER(stride);
+      //__UNREFERENCED_PARAMETER(memory);
+      //__UNREFERENCED_PARAMETER(stride);
+      __UNREFERENCED_PARAMETER(ppixmapOwned);
 
       throw ::interface_only();
 

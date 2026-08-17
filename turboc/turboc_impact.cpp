@@ -185,7 +185,7 @@ namespace turboc
 
       GetClientRect(rectangleX);
 
-/*      pgraphics->BitBlt(rectangleX,papp->m_papplication->m_pimage->g());
+/*      pgraphics->BitBlt(rectangleX,papp->m_papplication->m_pgraphicsImage->);
 
 
       if(papp->m_etype == application::type_mili)
@@ -879,7 +879,7 @@ namespace turboc
 
          rectangleImage.FitOnCenterOf(rectangleWork);
 
-/*         pgraphicsImage->StretchBlt(rectangleImage.left,rectangleImage.top,rectangleImage.width(),rectangleImage.height(),m_pimagepimage->g(),0,0,m_pimageImage->width(),m_pimageImage->height());
+/*         pgraphicsImage->StretchBlt(rectangleImage.left,rectangleImage.top,rectangleImage.width(),rectangleImage.height(),m_pgraphicsImagepimage->,0,0,m_pimageImage->width(),m_pimageImage->height());
 
 
       }

@@ -1416,7 +1416,7 @@ namespace draw2d_cairo
 
          pimage->defer_update_image();
 
-         auto pgraphicsSrc = pimage->get_graphics();
+         auto pgraphicsSrc = pgraphicsImage;
 
          if (::is_null(pgraphicsSrc))
          {
@@ -1673,7 +1673,7 @@ namespace draw2d_cairo
 
       }
 
-      auto pgraphicsSrc = pimage->get_graphics();
+      auto pgraphicsSrc = pgraphicsImage;
 
       if (::is_null(pgraphicsSrc))
       {
@@ -5306,7 +5306,7 @@ namespace draw2d_cairo
 
          }
 
-         cairo_surface_t * psurface = cairo_get_target((cairo_t *) pbrush->m_pimage->g()->get_os_data());
+         cairo_surface_t * psurface = cairo_get_target((cairo_t *) pbrush->m_pgraphicsImage->get_os_data());
 
          if (psurface == nullptr)
          {

@@ -153,7 +153,7 @@ public:
    virtual void CacheEmboss(
    ::draw2d::graphics_pointer & pgraphics,
    const ::scoped_string & scopedstr,
-   ::image::image_pointer & imageCache);
+   ::image::image_pointer & pimageCache);
 
    bool IsVisible();
    void Validate(const ::i32_rectangle & rectangle = {});

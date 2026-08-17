@@ -1,7 +1,6 @@
 #include "platform.h"
 #include "context.h"
 #include "icon.h"
-#include "frame_array.h"
 #include "image.h"
 #include "acme/exception/not_implemented.h"
 #include "acme/filesystem/file/binary_stream.h"
@@ -11,6 +10,7 @@
 #include "acme/platform/node.h"
 #include "acme/filesystem/filesystem/directory_context.h"
 #include "acme/filesystem/filesystem/file_context.h"
+#include "acme/graphics/image/frame_array.h"
 #include "aura/graphics/draw2d/draw2d.h"
 #include "aura/graphics/draw2d/lock.h"
 #include "aura/graphics/image/load_image.h"
@@ -115,7 +115,9 @@ namespace image
 
       auto pimage32 = (image32_t *) memory_allocate( *y * target_scan);
 
-      pimage32->copy({*x, *y}, target_scan, pimage);
+      auto ppixmapImage = pimage->map();
+
+      pimage32->copy({*x, *y}, target_scan, ppixmapImage->image32(), ppixmapImage->scan_size());
 
       return (::u8 *) pimage32;
 
@@ -470,7 +472,10 @@ namespace image
 
             auto ploadimage = create_newø<::image::load_image>();
 
-            ploadimage->initialize_load_image(this, pimage);
+            construct_newø(pimage->m_ppixmapOwned);
+
+            ploadimage->initialize_load_image(pimage->image_frame_array_loaded_callback(),
+               this, pimage->m_ppixmapOwned);
 
             ploadimage->m_sizePreferred = size;
 
@@ -518,7 +523,7 @@ namespace image
 
             auto ploadimage = create_newø<::image::load_image>();
 
-            ploadimage->initialize_load_image(this, ppixmapOriginal);
+            ploadimage->initialize_load_image1(this, ppixmapOriginal);
 
             ploadimage->m_sizePreferred = size;
 
@@ -679,9 +684,7 @@ namespace image
 
       }
 
-      auto ploadimage = create_newø<::image::load_image>();
-
-      ploadimage->initialize_load_image(this, pimage);
+      auto ploadimage = pimage->create_load_image(this);
 
       _load_image(ploadimage, payloadFile, loadoptions);
 
@@ -896,9 +899,7 @@ namespace image
    void image_context::_get_image(::image::image* pimage, const ::payload& payloadFile, const ::image::load_options& loadoptions)
    {
 
-      auto ploadimage = create_newø<::image::load_image>();
-
-      ploadimage->initialize_load_image(this, pimage);
+      auto ploadimage = pimage->create_load_image(this);
 
       _load_image(ploadimage, payloadFile, loadoptions);
 
@@ -911,7 +912,7 @@ namespace image
 
       auto ploadimage = create_newø<::image::load_image>();
 
-      ploadimage->initialize_load_image(this, ppixmap);
+      ploadimage->initialize_load_image1(this, ppixmap);
 
       _load_image(ploadimage, payloadFile, loadoptions);
 
@@ -961,9 +962,13 @@ namespace image
 
       ::file::path path = directory()->matter(scopedstrMatter);
 
-      auto ploadimage = create_newø<::image::load_image>();
+      auto ploadimage = pimage->create_load_image(this);
 
-      ploadimage->initialize_load_image(this, pimage);
+      //auto ploadimage = create_newø<::image::load_image>();
+
+      //construct_newø(pimage->m_ppixmapOwned);
+
+      //ploadimage->initialize_load_image(this, pimage->m_ppixmapOwned);
 
       //auto estatus = 
       _load_image(ploadimage, path, loadoptions);
@@ -996,9 +1001,11 @@ namespace image
 
          //auto estatus = 
 
-         auto ploadimage = create_newø<::image::load_image>();
 
-         ploadimage->initialize_load_image(this, pimage);
+         auto ploadimage = pimage->create_load_image(this);
+         //auto ploadimage = create_newø<::image::load_image>();
+
+         //ploadimage->initialize_load_image(this, pimage);
 
          _load_image(ploadimage, path);
 
@@ -1166,9 +1173,12 @@ namespace image
       case ::image::e_format_bmp:
       {
 
-         auto m = pimage->vertical_swap_copy_with_no_stride();
+         auto ppixmapImage = pimage->map();
 
-         stbi_write_bmp_to_func(&::stb_memory_write, &memory, pimage->width(), pimage->height(), 4, (const uint8_t*)m.data());
+         ppixmapImage->vertical_swap_copy_with_no_stride();
+
+         stbi_write_bmp_to_func(&::stb_memory_write, &memory,
+            ppixmapImage->width(), ppixmapImage->height(), 4, (const uint8_t*)ppixmapImage->data());
 
 
       }
@@ -1176,9 +1186,12 @@ namespace image
       case ::image::e_format_tga:
       {
 
-         auto m = pimage->vertical_swap_copy_with_no_stride();
+         auto ppixmapImage = pimage->map();
 
-         stbi_write_tga_to_func(&::stb_memory_write, &memory, pimage->width(), pimage->height(), 4, (const uint8_t*)m.data());
+         ppixmapImage->vertical_swap_copy_with_no_stride();
+
+         stbi_write_tga_to_func(&::stb_memory_write, &memory,
+         ppixmapImage->width(), ppixmapImage->height(), 4, (const uint8_t*)ppixmapImage->data());
 
 
       }
@@ -1329,7 +1342,7 @@ namespace image
 
       construct_newø(pframea);
 
-      pframea->m_pimage = this;
+      pframea->m_pparticleImage = this;
 
       ::image::image_pointer pimageCompose;
 
@@ -1368,15 +1381,15 @@ namespace image
 
       }
 
-      auto pextension = ploadimage->m_ppixmap->get_extension();
+      ///auto pextension = ploadimage->m_ppixmap->get_extension();
 
-      pextension->m_pframea = pframea;
+      //pextension->m_pframea = pframea;
 
-      ploadimage->m_ppixmap->pixmap_t::initialize_pixmap(pframea->m_size, nullptr, 0);
+      pframea->m_ppixmap->pixmap_t::initialize_pixmap(pframea->m_size, nullptr, 0);
 
-      ploadimage->m_ppixmap->m_estatus = ::success;
+      pframea->m_ppixmap->m_estatus = ::success;
 
-      ploadimage->m_ppixmap->set_ok_flag();
+      pframea->m_ppixmap->set_ok_flag();
 
       class ::time timeTotal;
 
@@ -1392,6 +1405,8 @@ namespace image
       }
 
       pframea->m_timeTotal = timeTotal;
+
+      ploadimage->m_functionLoaded(pframea);
 
    }
 

@@ -27,7 +27,7 @@
 ////
 ////   }
 ////
-////   estatus = pimage->create(size, eobjectCreate, iGoodStride, bPreserve);
+////   estatus = pimage->create_as_descriptor(size, eobjectCreate, iGoodStride, bPreserve);
 ////
 ////   if (!estatus)
 ////   {
@@ -72,7 +72,7 @@
 ////   if (pimage)
 ////   {
 ////
-////      pimage->create(size, uidCreate, iGoodStride, bPreserve);
+////      pimage->create_as_descriptor(size, uidCreate, iGoodStride, bPreserve);
 ////
 ////   }
 ////
@@ -157,7 +157,7 @@
 ////   if (pimage && pimage->size() != i32_size)
 ////   {
 ////
-////      m_estatus = pimage->create(size, eobjectCreate, iGoodStride, bPreserve);
+////      m_estatus = pimage->create_as_descriptor(size, eobjectCreate, iGoodStride, bPreserve);
 ////
 ////   }
 ////
@@ -268,7 +268,7 @@
 ////    if (pimage && pimage->size() != i32_size)
 ////    {
 //
-////       estatus = pimage->create(size, uidCreate, iGoodStride, bPreserve);
+////       estatus = pimage->create_as_descriptor(size, uidCreate, iGoodStride, bPreserve);
 //
 ////    }
 //
@@ -357,7 +357,7 @@
 ////   if (pimage && pimage->get_size() != size)
 ////   {
 ////
-////      estatus = pimage->create(size, eobjectCreate, iGoodStride, bPreserve);
+////      estatus = pimage->create_as_descriptor(size, eobjectCreate, iGoodStride, bPreserve);
 ////
 ////   }
 ////

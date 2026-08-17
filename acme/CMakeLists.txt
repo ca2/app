@@ -284,14 +284,27 @@ list(APPEND library_source
         graphics/draw2d/color_array.cpp
         graphics/draw2d/color_array.h
         graphics/draw2d/os_font_name.cpp
+   graphics/draw2d/task_tool.cpp
+   graphics/draw2d/task_tool.h
         graphics/graphics/_.h
+   graphics/graphics/double_pass_scale.h
+   graphics/graphics/filters.h
         graphics/graphics/output_purpose.cpp
         graphics/graphics/output_purpose.h
+   graphics/image/frame.cpp
+   graphics/image/frame.h
+   graphics/image/frame_array.cpp
+   graphics/image/frame_array.h
         graphics/image/image32.cpp
         graphics/image/image32.h
         graphics/image/image32_array.cpp
         graphics/image/image32_array.h
+   graphics/image/pixmap_lease.cpp
+   graphics/image/pixmap_lease.h
         graphics/image/pixmap.cpp
+         graphics/image/pixmap.h
+   graphics/image/pixmap_t.cpp
+   graphics/image/pixmap_t.h
         handler/_.h
         handler/command_handler.cpp
    handler/dispatch_array.h
@@ -756,8 +769,8 @@ list(APPEND library_source
         platform/session_aura.h
         platform/session_axis.cpp
         platform/session_axis.h
-        platform/platform.cpp
-        platform/platform.h
+        platform/platform_platform.cpp
+        platform/platform_platform.h
         platform/shell.cpp
         platform/shell.h
         platform/reference_item.cpp
@@ -1380,6 +1393,10 @@ list(APPEND library_source
         prototype/time/time.cpp
         #prototype/time/
         #prototype/time/time_operator.h
+   quality/self_test.cpp
+   quality/self_test.h
+   quality/self_test_item.cpp
+   quality/self_test_item.h
         promise.cpp
         regular_expression/_regular_expression.h
         regular_expression/context.cpp
@@ -2142,6 +2159,8 @@ list(APPEND library_source
         prototype/collection/map_to_smart_pointer.h
         prototype/collection/numeric_array.h
         prototype/collection/numeric_array_range.h
+   prototype/collection/osdata_array.cpp
+   prototype/collection/osdata_array.h
         prototype/collection/packset.h
         prototype/collection/pair.h
         prototype/collection/pointer_array.h
@@ -2371,6 +2390,7 @@ if (${WIN32})
        operating_system/windows/shared_memory.h
        operating_system/windows/shared_memory.cpp
             operating_system/windows/thread.cpp
+       operating_system/windows/threading.cpp
             operating_system/windows/user.cpp
             operating_system/windows/window.cpp
             operating_system/windows/windowing.cpp
@@ -2540,7 +2560,7 @@ if (${WIN32} OR ${UWP})
             operating_system/windows_common/library.cpp
             operating_system/windows_common/memory.cpp
             operating_system/windows_common/networking.cpp
-            operating_system/windows_common/parallelization.cpp
+            operating_system/windows_common/threading.cpp
             operating_system/windows_common/process.cpp
        operating_system/windows_common/task.cpp
             operating_system/windows_common/time.cpp

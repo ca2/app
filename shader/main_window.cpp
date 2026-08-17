@@ -224,7 +224,7 @@ namespace app_shader
 
             auto pimage = image()->create_image(rectangleX.size());
 
-            ::draw2d::graphics_pointer pgraphics = pimage->get_graphics();
+            ::draw2d::graphics_pointer pgraphics = pgraphicsImage;
 
             prender->_001OnDraw(pgraphics);
 

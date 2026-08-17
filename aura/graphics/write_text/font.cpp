@@ -806,7 +806,7 @@ namespace write_text
 //
 //      ::draw2d::graphics_pointer spgraphics(e_create);
 //
-//      spgraphics->create_compatible_graphics(nullptr);
+//      spgraphics->create_memory_graphics({}, nullptr); // create_compatible_graphics(nullptr);
 //
 //      ::draw2d::font * pFontOld = spgraphics->set(m_pfont);
 //

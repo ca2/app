@@ -399,9 +399,9 @@ namespace gpu
 
    m_pimageFromGpu->create_as_descriptor(size);
 
-   m_pimageFromGpu->map();
+   auto ppixmapImageGromGpu = m_pimageFromGpu->map();
 
-   m_pimageFromGpu->pixmap_t::copy(m_pgpucontext->m_pbuffer->m_ppixmap);
+   ppixmapImageGromGpu->copy(m_pgpucontext->m_pbuffer->m_ppixmap);
 
    ::image::image_source imagesource(m_pimageFromGpu);
 

@@ -2,6 +2,7 @@
 #include "platform.h"
 #include "load_image.h"
 #include "context.h"
+#include "acme/graphics/image/frame_array.h"
 
 
 namespace image
@@ -22,7 +23,7 @@ namespace image
    }
 
 
-   void load_image::initialize_load_image(::image::image_context * pimagecontext, ::pixmap * ppixmap)
+   void load_image::initialize_load_image1(::image::image_context * pimagecontext, ::pixmap * ppixmap)
    {
 
       m_pimagecontext = pimagecontext;
@@ -30,7 +31,17 @@ namespace image
       m_ppixmap = ppixmap;
 
    }
-   
+
+
+   void load_image::initialize_load_image(const ::function < void(::image::image_frame_array *) > & functionLoaded, ::image::image_context* pimagecontext, pixmap* ppixmap)
+   {
+
+      initialize_load_image1(pimagecontext, ppixmap);
+
+      m_functionLoaded = functionLoaded;
+
+   }
+
 
    void load_image::run()
    {
@@ -113,7 +124,16 @@ namespace image
       if (m_functionLoaded)
       {
 
-         m_functionLoaded(m_ppixmap);
+         if (!m_pimageframearray && m_ppixmap)
+         {
+
+            construct_newø(m_pimageframearray);
+
+            m_pimageframearray->m_ppixmap = m_ppixmap;
+
+         }
+
+         m_functionLoaded(m_pimageframearray);
 
       }
 

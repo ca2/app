@@ -358,7 +358,7 @@ menu::~menu()
 //
 //      auto pdraw2d = psystem->draw2d();
 //
-//      auto pgraphics = pdraw2d->create_memory_graphics(this);
+//      auto pgraphics = pdraw2d->create_memory_graphics({}, this);
 //
 //      if (m_bCloseButton)
 //      {
@@ -606,7 +606,7 @@ menu::~menu()
 //
 //               //   auto pdraw2d = psystem->draw2d();
 //
-//               //   auto pgraphics = pdraw2d->create_memory_graphics(this);
+//               //   auto pgraphics = pdraw2d->create_memory_graphics({}, this);
 //
 //               //   m_pointTrack = m_pointPositionHint;
 //
@@ -1900,7 +1900,7 @@ menu::~menu()
 //
 //            }
 //
-//            //auto pgraphics = pdraw2d->create_memory_graphics(this);
+//            //auto pgraphics = pdraw2d->create_memory_graphics({}, this);
 //
 //            m_pointTrack = m_pointPositionHint;
 //

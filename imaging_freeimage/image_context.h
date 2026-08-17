@@ -25,7 +25,7 @@ namespace imaging_freeimage
       ~image_context() override;
 
 
-      void _load_image(::image::image *pimageParam, const ::payload & payloadFile, const image::load_options & loadoptions) override;
+      void _load_image(::image::load_image * ploadimage, const ::payload & payloadFile, const ::image::load_options & options = ::image::load_options()) override;
 
       void _load_image(::image::image *pimage, ::pointer<::image::image_frame_array>& pframea, memory & memory) override;
       void save_image(memory & memory, ::image::image *pimage, const ::image::encoding_options & encodingoptions) override;
@@ -38,7 +38,7 @@ namespace imaging_freeimage
 
 
    CLASS_DECL_IMAGING_FREEIMAGE FIBITMAP * freeimage_from_image(const ::image::image *pimage);
-   CLASS_DECL_IMAGING_FREEIMAGE bool image_from_freeimage(::image::image *pimage, FIBITMAP * pfibitmap);
+   CLASS_DECL_IMAGING_FREEIMAGE bool pixmap_from_freeimage(::pixmap *ppixmap, FIBITMAP * pfibitmap);
 
 
 } // namespace imaging_freeimage

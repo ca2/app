@@ -79,11 +79,11 @@ wfBitmap* wf_image_new(wfContext* wfc, ::i32 width, ::i32 height, ::i32 bpp, ::u
 
 	hdc = GetDC(nullptr);
 /*	pimage = (wfBitmap*) malloc(sizeof(wfBitmap));
-/*	image->hdc = create_compatible_graphics(hdc);
+/*	pimage->hdc = create_compatible_graphics(hdc);
 
-/*	image->bitmap = wf_create_dib(wfc, width, height, bpp, data, &(image->pdata));
+/*	pimage->bitmap = wf_create_dib(wfc, width, height, bpp, data, &(pimage->pdata));
 
-/*	image->org_bitmap = (HBITMAP) SelectObject(image->hdc, image->bitmap);
+/*	pimage->org_bitmap = (HBITMAP) SelectObject(pimage->hdc, pimage->bitmap);
 	ReleaseDC(nullptr, hdc);
 
 /*	return pimage;
@@ -93,9 +93,9 @@ wfBitmap* wf_image_new(wfContext* wfc, ::i32 width, ::i32 height, ::i32 bpp, ::u
 {
 /*	if (image != 0)
 	{
-/*		SelectObject(image->hdc, image->org_bitmap);
-/*		DeleteObject(image->bitmap);
-/*		DeleteDC(image->hdc);
+/*		SelectObject(pimage->hdc, pimage->org_bitmap);
+/*		DeleteObject(pimage->bitmap);
+/*		DeleteDC(pimage->hdc);
 /*		free(pimage);
 	}
 }

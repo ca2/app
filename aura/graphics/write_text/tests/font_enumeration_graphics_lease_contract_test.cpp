@@ -64,7 +64,7 @@ int main()
    assert(textBoxUpdate.find("acquire_graphics") != std::string::npos);
    assert(textBoxUpdate.find("auto layerscope = graphicslease.begin_layer_scope()") != std::string::npos);
    assert(textBoxUpdate.find("layerscope.close();") != std::string::npos);
-   assert(textBoxUpdate.find("m_pimage->g()") == std::string::npos);
+   assert(textBoxUpdate.find("m_pgraphicsImage->") == std::string::npos);
    assert(source.find("[gpu.performance.font_enumeration]") != std::string::npos);
 
    return 0;

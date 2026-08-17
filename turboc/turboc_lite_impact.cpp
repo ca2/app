@@ -183,17 +183,17 @@ namespace turboc
 
 /*            m_pimage->Fill(0,0,0,0);
 
-/*            m_pimage->g()->set_font(m_pfont);
+/*            m_pgraphicsImage->set_font(m_pfont);
 
-/*            m_pimage->g()->set_text_rendering_hint(::write_text::e_rendering_anti_alias);
+/*            m_pgraphicsImage->set_text_rendering_hint(::write_text::e_rendering_anti_alias);
 
-/*            m_pimage->g()->set_alpha_mode(::draw2d::e_alpha_mode_blend);
+/*            m_pgraphicsImage->set_alpha_mode(::draw2d::e_alpha_mode_blend);
 
             pbrushText->create_solid(argb(255,255,255,255));
 
-/*            m_pimage->g()->SelectObject(pbrushText);
+/*            m_pgraphicsImage->SelectObject(pbrushText);
 
-/*            m_pimage->g()->text_out((m_cxCache1 - i32_size->cx) / 2,(m_cyCache1 - i32_size->cy) / 2,strHelloMultiverse);
+/*            m_pgraphicsImage->text_out((m_cxCache1 - i32_size->cx) / 2,(m_cyCache1 - i32_size->cy) / 2,strHelloMultiverse);
 
 /*            m_pimage->blur(m_cxCache1,m_cyCache1);
 

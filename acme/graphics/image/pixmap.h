@@ -103,8 +103,8 @@ public:
 
    }
 
-   virtual void _draw_raw(const ::i32_rectangle & rectangleTarget, ::pixmap * ppixmap, const ::i32_point & pointSrc = ::i32_point());
-   virtual void blend(const ::i32_rectangle & rectangleTarget, ::pixmap * ppixmap, const ::i32_point & pointSrc, ::u8 bA);
+   //virtual void _draw_raw(const ::i32_rectangle & rectangleTarget, ::pixmap * ppixmap, const ::i32_point & pointSrc = ::i32_point());
+   //virtual void blend(const ::i32_rectangle & rectangleTarget, ::pixmap * ppixmap, const ::i32_point & pointSrc, ::u8 bA);
    //virtual void blend(const ::i32_point & pointDst, ::pixmap * ppixmap, const ::i32_point & pointSrc, const ::i32_size & size);
    virtual void draw_ignore_alpha(const ::i32_point & pointDst, ::pixmap * ppixmap, const ::i32_rectangle & rectangleSource);
 

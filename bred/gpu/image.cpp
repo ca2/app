@@ -540,6 +540,8 @@ namespace gpu
 
          });
 
+      return {m_ppixmapOwned};
+
    }
 
    //

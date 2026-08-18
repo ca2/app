@@ -303,9 +303,11 @@ public:
 
       // virtual void copy_from_no_create(::pixmap * ppixmap, const ::i32_point & point);
       // virtual void copy_from_no_create(::pixmap * ppixmap);
-      virtual void copy_from(::pixmap * ppixmap, const ::i32_point & point, enum_flag eflagCreate = e_flag_success);
-      virtual void copy_from(::pixmap * ppixmap, enum_flag eflagCreate = e_flag_success);
+      //virtual void copy_from(::pixmap * ppixmap, const ::i32_point & point, enum_flag eflagCreate = e_flag_success);
+      //virtual void copy_from(::pixmap * ppixmap, enum_flag eflagCreate = e_flag_success);
       //virtual void copy_to(::pixmap * ppixmap, const ::i32_point & point = {});
+      virtual void copy_from(::pixmap * ppixmap);
+
 
       virtual void fill_rectangle(const ::i32_rectangle & rectangle, ::color::color color);
 

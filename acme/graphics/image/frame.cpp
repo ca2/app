@@ -63,7 +63,7 @@ namespace image
 
          //auto ppixmapImageFrame = pimageFrame->map();
 
-         ppixmapImageCompose->copy_from(ppixmapImageFrame, ::e_flag_none);
+         ppixmapImageCompose->copy_from(ppixmapImageFrame);
 
          //pgraphicsImageCompose->set_alpha_mode(::draw2d::e_alpha_mode_set);
 
@@ -103,7 +103,7 @@ namespace image
 
             //auto ppixmapImageFrame = pimageFrame->map();
 
-            ppixmapImageCompose->copy_from(ppixmapImageFrame, ::e_flag_none);
+            ppixmapImageCompose->copy_from(ppixmapImageFrame);
 
          }
          else
@@ -144,7 +144,7 @@ namespace image
       //auto ppixmapImageFrame = pimageFrame->map();
 
 
-      m_ppixmap->copy_from(ppixmapImageFrame, ::e_flag_none);
+      m_ppixmap->copy_from(ppixmapImageFrame);
 
       pframea->m_timeTotal += m_time;
 

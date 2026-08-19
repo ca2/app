@@ -70,11 +70,16 @@ namespace image
       //using image_meta::clear;
       //using object::clear;
 
+      virtual void create_with_pixmap(::pixmap * ppixmap);
+
       virtual void create_as_descriptor(const ::i32_size &size, ::enum_flag eflagCreate = DEFAULT_CREATE_IMAGE_FLAG,
                           ::i32 iGoodStride = -1);
 
       virtual void create_bitmap(
          ::acme::user::interaction * pacmeuserinteractionAffinity = nullptr, ::draw2d::graphics * pgraphics = nullptr);
+
+
+      virtual void change_raw_size(const ::i32_size & sizeRaw, ::i32 iScan = 0);
 
 
       virtual ::image::image * get_source_image();
@@ -87,13 +92,19 @@ namespace image
 
       //virtual void set_owned_graphics();
 
-      virtual ::function < void(::image::image_frame_array *) >  image_frame_array_loaded_callback();
+      virtual ::function < void(::image::load_image *) > load_image_callback();
 
 
       virtual ::pointer < ::image::load_image > create_load_image(::image::image_context* pimagecontext);
 
       virtual ::pointer<::image::image>get_image(const ::i32_size & size);
       virtual ::pointer<::image::image>get_image(::i32 cx, ::i32 cy);
+
+
+      static ::image::image_pointer from(::image::load_image * ploadimage);
+      static ::image::image_pointer from(::image::image_frame_array * pimageframearray);
+      static ::image::image_pointer from_image_frame_array(::image::image_frame_array * pimageframearray);
+      static ::image::image_pointer from(::pixmap * ppixmap);
 
 
       bool _is_set() const override;
@@ -133,19 +144,18 @@ namespace image
       virtual void create_isotropic(f64_array & daRate, ::enum_priority epriority);
 
 
-      virtual void set_origin(const ::i32_point & point);
+      //virtual void set_origin(const ::i32_point & point);
       //virtual void set_alpha_mode(::draw2d::enum_alpha_mode enum_alpha_mode);
-
-      virtual void set_size_scaler(::f64 dSizeScaler);
+      //virtual void set_size_scaler(::f64 dSizeScaler);
       
       
-      virtual void create_helper_map();
-      virtual void _create_helper_map();
+      //virtual void create_helper_map();
+      //virtual void _create_helper_map();
 
 
-      virtual void on_load_image();
-      virtual void on_exif_orientation();
-      virtual void fast_copy(::image32_t * pcolor32FullImage);
+      //virtual void on_load_image();
+      //virtual void on_exif_orientation();
+      //virtual void fast_copy(::image32_t * pcolor32FullImage);
 
 
       virtual void on_load_image(const image32_t *pimage32, const ::i32_size &size, int iScan);
@@ -158,6 +168,8 @@ namespace image
 
 
       ::image::image_pointer image_source_image(const ::i32_size &) override;
+
+      virtual void clear_transparent();
 
 
       // inline concrete < ::i32_size > i32_size(const ::f64_size &, const ::f64_size &, enum_image_selection) const { return get_size(); }
@@ -211,7 +223,7 @@ namespace image
       //virtual ::i32 cos10(::i32 i, ::i32 iAngle);
       //virtual ::i32 sin10(::i32 i, ::i32 iAngle);
 
-      virtual void hue_offset(::f64 dRate);
+      //virtual void hue_offset(::f64 dRate);
 
       //::pixmap_lease map(bool bApplyAlphaTransform = true) const override; // some implementations may requrire to map_base to m_pcolorref before manipulate it
       //void unmap() const override; // some implementations may require to unmap from m_pcolorref to update *os* bitmap
@@ -221,10 +233,10 @@ namespace image
       virtual void blend(const ::i32_rectangle& rectangleDstParam, ::image::image* pimageSrc, const ::i32_point& pointSrcParam, ::u8 bA);
       //virtual void blend2(const ::i32_point& pointDstParam, ::image::image* pimageSrc, const ::i32_point& pointSrcParam, const ::i32_size& sizeParam, ::u8 bA);
 
-      virtual void set_mapped();
+      //virtual void set_mapped();
 
 
-      virtual void create_thumbnail(const ::scoped_string & scopedstrPath);
+      //virtual void create_thumbnail(const ::scoped_string & scopedstrPath);
 
       //virtual void create_from_data(const ::i32_size & size, ::image32_t * pimage32, ::i32 iScan, ::enum_flag eflagCreate = DEFAULT_CREATE_IMAGE_FLAG, ::i32 iGoodStride = -1, bool bPreserve = false);
       virtual void create_from_data(const ::i32_size &size, const ::image32_t *pimage32, ::i32 iScan,
@@ -459,11 +471,17 @@ namespace image
       void _draw_raw(const ::image::image_drawing & imagedrawing) override;
 
 
-      virtual void copy_from_no_create(::pixmap * ppixmap, const ::i32_point & point);
-      virtual void copy_from_no_create(::pixmap * ppixmap);
-      virtual void copy_from(::pixmap * ppixmap, const ::i32_point & point, enum_flag eflagCreate = e_flag_success);
-      virtual void copy_from(::pixmap * ppixmap, enum_flag eflagCreate);
+      virtual void copy_from(::pixmap * ppixmap);
+      virtual void copy_from(::pixmap * ppixmap, const ::i32_size & size, const ::i32_point & pointDst, const ::i32_point & pointSrc);
+      virtual void resizing_copy_from(::pixmap * ppixmap, const ::i32_size & sizeDstRaw, const ::i32_size & size, const ::i32_point & pointDst, const ::i32_point & pointSrc);
+      virtual void fitting_copy_from(::pixmap * ppixmap, const ::i32_size & size, const ::i32_point & pointDst, const ::i32_point & pointSrc);
+
+
       virtual void copy_from(::image::image * pimage);
+      virtual void copy_from(::image::image * pimage, const ::i32_size & size, const ::i32_point & pointDst, const ::i32_point & pointSrc);
+      virtual void resizing_copy_from(::image::image * pimage, const ::i32_size & sizeDstRaw, const ::i32_size & size, const ::i32_point & pointDst, const ::i32_point & pointSrc);
+      virtual void fitting_copy_from(::image::image * pimage, const ::i32_size & size, const ::i32_point & pointDst, const ::i32_point & pointSrc);
+
 
       //
       // inline image& operator = (const image& image)
@@ -548,15 +566,16 @@ namespace image
 
       virtual ::image::image_pointer get_resized_image(const ::i32_size & size);
 
-      virtual ::pixmap_lease map(const ::i32_rectangle & rectangle ={}, bool bApplyAlphaTransform = true);
+      virtual ::image_pixmap_lease map(const ::i32_rectangle & rectangle ={});
 
-      protected:
+   protected:
 
+      friend class ::image_pixmap_lease;
 
-         virtual ::pixmap_lease _map(const ::i32_rectangle & rectangle, bool bApplyAlphaTransform = true);
-         virtual void _unmap(bool bDoUnmap = false);
+      virtual void _can_map(const ::i32_rectangle & rectangle);
 
-
+      virtual ::image_pixmap_lease _map(const ::i32_rectangle & rectangle);
+      virtual void _unmap(::image_pixmap_lease * pimagepixmaplease);
 
    };
 
@@ -642,6 +661,7 @@ inline void __preserve(::image::image_pointer & pimage, const ::i32_size & size,
 
 
 #include "_image_impl.h"
+#include "aura/graphics/image/image_pixmap_lease.h"
 
 
 

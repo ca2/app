@@ -13,7 +13,11 @@
 pixmap::pixmap()
 {
 
-   m_iExifOrientation = 0;
+   //m_iExifOrientation = 0;
+
+   m_erotateflip = e_rotate_none_flip_none;
+
+   m_bRotateFlipDone = false;
 
 }
 
@@ -21,6 +25,60 @@ pixmap::pixmap()
 pixmap::~pixmap()
 {
 
+
+}
+
+
+void pixmap::create_from_data(const ::i32_size &size, const image32_t *ppixmap32, int iScan, ::enum_flag eflagCreate)
+{
+
+   create_as_descriptor(size, eflagCreate, iScan);
+
+   copy(size, ppixmap32, iScan);
+
+}
+
+
+void pixmap::change_raw_size(const ::i32_size & sizeRawNew, ::i32 iMinimumScan)
+{
+
+   if (sizeRawNew <= m_sizeRaw && iMinimumScan < m_iScan)
+   {
+
+      m_sizeRaw = sizeRawNew;
+
+      return;
+
+   }
+
+   auto iScanNew = iMinimumScan;
+
+   ::i32 iRequiredScan = sizeRawNew.cx * 4;
+
+   if (iScanNew < iRequiredScan)
+   {
+
+      iScanNew = iRequiredScan;
+
+   }
+
+   auto pixmapBefore = ::transfer(*this);
+
+   m_memoryPixmap.set_size(sizeRawNew.cy * iScanNew);
+
+   m_pimage32Raw = (::image32_t*) m_memoryPixmap.data();
+
+   m_iScan = iScanNew;
+
+   m_point = pixmapBefore.m_point;
+
+   m_size = pixmapBefore.m_size;
+
+   auto ppixmapBefore = pixmapBefore.map();
+
+   auto ppixmapThis = this->map();
+
+   ppixmapThis->copy(ppixmapBefore);
 
 }
 
@@ -52,20 +110,25 @@ void pixmap::create_as_descriptor(const ::i32_size & size, ::enum_flag eflagCrea
 
    m_eflagElement = eflagCreate;
 
-   m_estatus = success;
+   if (m_eflagElement & e_flag_success)
+   {
+
+      m_estatus = success;
+
+   }
 
 }
 
 
-void pixmap::create_from_data(const ::i32_size & size, const ::image32_t * ppixmap32, ::i32 iScan,
-                              ::enum_flag eflagCreate, bool bPreserve)
-{
-
-   create_as_descriptor(size, DEFAULT_CREATE_IMAGE_FLAG, iScan);
-
-   copy(size, ppixmap32, m_iScan);
-
-}
+// void pixmap::create_from_data(const ::i32_size & size, const ::image32_t * ppixmap32, ::i32 iScan,
+//                               ::enum_flag eflagCreate, bool bPreserve)
+// {
+//
+//    create_as_descriptor(size, DEFAULT_CREATE_IMAGE_FLAG, iScan);
+//
+//    copy(size, ppixmap32, m_iScan);
+//
+// }
 
 
 #define byte_clip2(i) (i)
@@ -133,50 +196,79 @@ bool pixmap::_is_ok() const
 //
 // }
 
+//
+// bool pixmap::_on_map(const ::i32_rectangle & rectangle)
+// {
+//
+//    m_interlockedcountMap++;
+//
+//    if (m_bMapped)
+//    {
+//
+//       return false;
+//
+//    }
+//
+//    return true;
+//
+// }
 
-bool pixmap::_on_map(const ::i32_rectangle & rectangle, bool bApplyAlphaTransform)
+
+pixmap_lease pixmap::map(const ::i32_rectangle & rectangle)
 {
 
-   if (m_interlockedcountMap > 0)
+   return {this, rectangle};
+
+}
+
+
+void pixmap::_map(const ::i32_rectangle & rectangle)
+{
+
+   if (!rectangle.is_null())
    {
 
-      if (!m_bMapped)
+      if (rectangle.left >= rectangle.right)
       {
 
          throw ::exception(error_wrong_state);
 
       }
 
-   }
-   
-   m_interlockedcountMap++;
+      if (rectangle.top >= rectangle.bottom)
+      {
 
-   if (m_bMapped)
-   {
+         throw ::exception(error_wrong_state);
 
-      return false;
+      }
 
-   }
+      if (!contains_x(rectangle.left))
+      {
 
-   return true;
+         throw ::exception(error_wrong_state);
 
-}
+      }
 
-pixmap_lease pixmap::map(const ::i32_rectangle & rectangle, bool bApplyAlphaTransform)
-{
+      if (!contains_y(rectangle.top))
+      {
 
-   return {this, rectangle, bApplyAlphaTransform};
+         throw ::exception(error_wrong_state);
 
-}
+      }
 
+      if (!contains_x(rectangle.right))
+      {
 
-void pixmap::_map(const ::i32_rectangle & rectangle, bool bApplyTransform)
-{
+         throw ::exception(error_wrong_state);
 
-   if (!_on_map(rectangle, bApplyTransform))
-   {
+      }
 
-      return;
+      if (!contains_y(rectangle.bottom))
+      {
+
+         throw ::exception(error_wrong_state);
+
+      }
 
    }
 
@@ -193,9 +285,7 @@ void pixmap::_map(const ::i32_rectangle & rectangle, bool bApplyTransform)
 
    }
 
-   if (!m_pimage32Raw
-      || !m_pimage32
-      || (bUsingOwnedMemory && m_memoryPixmap.size() < m_iScan * m_sizeRaw.cy))
+   if (!m_pimage32Raw || (bUsingOwnedMemory && m_memoryPixmap.size() < m_iScan * m_sizeRaw.cy))
    {
 
       m_memoryPixmap.set_size(m_iScan * m_sizeRaw.cy);
@@ -204,7 +294,9 @@ void pixmap::_map(const ::i32_rectangle & rectangle, bool bApplyTransform)
 
    }
 
-   if (rectangle.is_empty())
+   m_interlockedcountMap++;
+
+   if (rectangle.is_null())
    {
 
       pixmap_map();
@@ -216,8 +308,6 @@ void pixmap::_map(const ::i32_rectangle & rectangle, bool bApplyTransform)
       pixmap_map(rectangle);
 
    }
-
-   m_bMapped = true;
 
 }
 
@@ -328,16 +418,6 @@ void pixmap::copy(const ::i32_size &size, const ::image32_t *ppixmap32, ::i32 iS
 
 
 
-void pixmap::on_load_image(const image32_t *ppixmap32, const ::i32_size &size, int iScan)
-{
-
-   create_as_descriptor(size, DEFAULT_CREATE_IMAGE_FLAG, iScan);
-
-   copy(size, ppixmap32, iScan);
-
-}
-
-
 //
 //void pixmap::unmap(bool bDoUnmap) const
 //{
@@ -345,9 +425,39 @@ void pixmap::on_load_image(const image32_t *ppixmap32, const ::i32_size &size, i
 //   ((pixmap *)this)->_unmap(bDoUnmap);
 //
 //}
+//
+//
+// bool pixmap::_on_unmap(bool bDoUnmap)
+// {
+//
+//    if (m_interlockedcountMap <= 0)
+//    {
+//
+//       throw ::exception(error_wrong_state);
+//
+//    }
+//
+//    m_interlockedcountMap--;
+//
+//    if (m_interlockedcountMap > 0)
+//    {
+//
+//       return false;
+//
+//    }
+//
+//    if ((!m_bMapped || !m_pimage32Raw) && bDoUnmap)
+//    {
+//
+//       throw ::exception(error_wrong_state);
+//    }
+//
+//    return true;
+//
+// }
 
 
-bool pixmap::_on_unmap(bool bDoUnmap)
+void pixmap::_unmap(const ::i32_rectangle & rectangle)
 {
 
    if (m_interlockedcountMap <= 0)
@@ -357,45 +467,25 @@ bool pixmap::_on_unmap(bool bDoUnmap)
 
    }
 
+   // if (!_on_unmap())
+   // {
+   //
+   //    return;
+   //
+   // }
+
    m_interlockedcountMap--;
 
-   if (m_interlockedcountMap > 0)
+   if (!rectangle.is_null())
    {
 
-      return false;
+      m_point = rectangle.origin();
+
+      m_size = rectangle.size();
 
    }
 
-   if ((!m_bMapped || !m_pimage32Raw) && bDoUnmap)
-   {
-
-      throw ::exception(error_wrong_state);
-   }
-
-   return true;
-
-}
-
-
-void pixmap::_unmap(bool bDoUnmap)
-{
-
-   if (!_on_unmap(bDoUnmap))
-   {
-
-      return;
-
-   }
-
-   if (bDoUnmap)
-   {
-
-      m_pimage32Raw = nullptr;
-      m_pimage32 = nullptr;
-
-   }
-
-   m_bMapped = false;
+   pixmap_map();
 
 }
 
@@ -542,7 +632,12 @@ CLASS_DECL_ACME::string _001_image32_diagnostics(const ::i32_size & size, const 
 }
 
 
+void pixmap::clear_transparent()
+{
 
+   fill_byte(0);
+
+}
 
 
 
@@ -4082,13 +4177,15 @@ void pixmap::Screen(::pixmap * ppixmap)
 // }
 
 
-void pixmap::copy_from(::pixmap * ppixmap, enum_flag eflagCreate)
+//void pixmap::copy_from(::pixmap * ppixmap, enum_flag eflagCreate)
+void pixmap::copy_from(::pixmap * ppixmap)
 {
 
-   if (ppixmap->m_pimage32Raw && m_pimage32Raw)
+   //if (ppixmap->m_pimage32Raw && m_pimage32Raw)
+   if (ppixmap->m_pimage32Raw)
    {
 
-      create_as_descriptor(ppixmap->size(), DEFAULT_CREATE_IMAGE_FLAG, ppixmap->scan_size());
+      //create_as_descriptor(ppixmap->size(), DEFAULT_CREATE_IMAGE_FLAG, ppixmap->scan_size());
 
       auto ppixmapTarget = this->map();
 
@@ -4100,7 +4197,36 @@ void pixmap::copy_from(::pixmap * ppixmap, enum_flag eflagCreate)
 
    }
 
-   return copy_from(ppixmap, {}, eflagCreate);
+   //return copy_from(ppixmap, {});
+
+}
+
+
+void pixmap::copy_from(::pixmap * ppixmap, const ::i32_size & size, const ::i32_point & pointDst, const ::i32_point & pointSrc)
+{
+
+   if (!ppixmap->m_pimage32Raw || !m_pimage32Raw)
+   {
+
+      throw ::exception(error_wrong_state);
+
+      //create_as_descriptor(ppixmap->size(), DEFAULT_CREATE_IMAGE_FLAG, ppixmap->scan_size());
+
+      auto ppixmapTarget = this->map({pointDst, size});
+
+      auto ppixmapSource = ppixmap->map({pointSrc, size});
+
+      auto sizeCopy1 = m_size.constrained(pointDst, size);
+
+      auto sizeCopy2 = ppixmap->m_size.constrained(pointSrc, size);
+
+      auto sizeCopy = sizeCopy1.minimum(sizeCopy2);
+
+      ppixmapSource->copy_from(ppixmapSource, size, pointDst, pointSrc);
+
+      return;
+
+   }
 
 }
 
@@ -4171,11 +4297,11 @@ void pixmap::fill_rectangle(const ::i32_rectangle& rectangle, ::color::color col
    // if (m_bMapped)
    // {
 
-   if (!m_bMapped)
-   {
-      throw ::exception(error_wrong_state);
-
-   }
+   // if (!m_bMapped)
+   // {
+   //    throw ::exception(error_wrong_state);
+   //
+   // }
 
       ::i32 x = rectangle.left;
 
@@ -9493,25 +9619,26 @@ void pixmap::hue_offset(::f64 dRadians)
 //
 // }
 
-void pixmap::on_load_image()
+// void pixmap::on_load_image()
+// {
+//
+//    if (m_iExifOrientation != 0)
+//    {
+//
+//       on_exif_orientation();
+//
+//    }
+//
+//    //return true;
+//
+// }
+
+
+//enum_rotate_flip erotateflip = ::exif_orientation_rotate_flip(m_iExifOrientation);
+
+
+void pixmap::rotate_flip(enum_rotate_flip erotateflip)
 {
-
-   if (m_iExifOrientation != 0)
-   {
-
-      on_exif_orientation();
-
-   }
-
-   //return true;
-
-}
-
-
-void pixmap::on_exif_orientation()
-{
-
-   enum_rotate_flip erotateflip = ::exif_orientation_rotate_flip(m_iExifOrientation);
 
    if (erotateflip == e_rotate_90_flip_none)
    {

@@ -387,24 +387,26 @@ namespace gpu
    }
 
 
-   ::pixmap_lease image::_map(const ::i32_rectangle & rectangle, bool bApplyAlphaTransform)
+   ::image_pixmap_lease image::_map(const ::i32_rectangle & rectangle)
    {
 
-      if (has_active_destination_graphics_lease())
-      {
+      _can_map(rectangle);
 
-         throw ::exception(
-            error_wrong_state,
-            "cannot map a GPU image with active destination graphics");
-
-      }
-
-      if (m_bMapped)
-      {
-
-         return {};
-
-      }
+      // if (has_active_destination_graphics_lease())
+      // {
+      //
+      //    throw ::exception(
+      //       error_wrong_state,
+      //       "cannot map a GPU image with active destination graphics");
+      //
+      // }
+      //
+      // if (m_bMapped)
+      // {
+      //
+      //    return {};
+      //
+      // }
 
       ::gpu::texture * pgputexture = nullptr;
 
@@ -427,9 +429,9 @@ namespace gpu
 
          }
 
-         ::image::image::_map(rectangle, bApplyAlphaTransform);
+         auto ppixmap = ::transfer(::image::image::_map(rectangle));
 
-         return {};
+         return ::transfer(ppixmap);
 
       }
 
@@ -516,20 +518,20 @@ namespace gpu
 
             }
 
-            if (rectangle.is_empty())
-            {
-
-               pthis->m_ppixmapOwned->pixmap_map(pthis->rectangle());
-
-            }
-            else
-            {
-
-               pthis->m_ppixmapOwned->pixmap_map(rectangle);
-
-            }
-
-            pthis->m_bMapped = true;
+            // if (rectangle.is_empty())
+            // {
+            //
+            //    pthis->m_ppixmapOwned->pixmap_map(pthis->rectangle());
+            //
+            // }
+            // else
+            // {
+            //
+            //    pthis->m_ppixmapOwned->pixmap_map(rectangle);
+            //
+            // }
+            //
+            //pthis->m_bMapped = true;
 
             if (bPerformanceDiagnostics)
             {
@@ -540,7 +542,7 @@ namespace gpu
 
          });
 
-      return {m_ppixmapOwned};
+      return {this, m_ppixmapOwned };
 
    }
 
@@ -575,7 +577,7 @@ namespace gpu
    // }
 
 
-   void image::_unmap(bool bDoUnmap)
+   void image::_unmap(::image_pixmap_lease * pimagepixmaplease)
    {
 
       // if (!_on_unmap(bDoUnmap))
@@ -657,8 +659,8 @@ namespace gpu
             }
 
             pgputexture->defer_fence();
-            pthis->m_ppixmapOwned->pixmap_unmap();
-            pthis->m_bMapped = false;
+            //pthis->m_ppixmapOwned->pixmap_unmap();
+            //pthis->m_bMapped = false;
 
             if (bPerformanceDiagnostics)
             {

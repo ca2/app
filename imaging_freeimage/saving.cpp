@@ -31,13 +31,13 @@ namespace imaging_freeimage
 
       }
 
-      pimage->map();
+      auto ppixmapImage = ((::image::image *)pimage)->map();
 
       FIBITMAP * fi;
 
       //   if(bm.bmBitsPixel == 32)
       {
-         fi = FreeImage_AllocateT(FIT_BITMAP, pimage->width(), pimage->height(), 32);
+         fi = FreeImage_AllocateT(FIT_BITMAP, ppixmapImage->width(), ppixmapImage->height(), 32);
       }
       // else
       {
@@ -74,7 +74,7 @@ namespace imaging_freeimage
 
       color32_t * pdst = pimage32;
 
-      auto psrc = pimage->image32();
+      auto psrc = ppixmapImage->image32();
 
 #if  defined(__ANDROID__)
 
@@ -165,7 +165,7 @@ namespace imaging_freeimage
 
 #else
 
-      ::i32 iStrideSrc = pimage->scan_size();
+      ::i32 iStrideSrc = ppixmapImage->scan_size();
 
       for (::i32 i = 0; i < pimage->height(); i++)
       {

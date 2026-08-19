@@ -134,7 +134,7 @@ namespace draw2d_cairo
 //
 
 
-   void bitmap::create_bitmap(::draw2d::graphics *pgraphics, const ::i32_size &size, ::memory & memory, ::i32 *piScan)
+   void bitmap::create_bitmap(::draw2d::graphics *pgraphics, const ::i32_size &size, ::pixmap * ppixmap)
    {
 
       //try
@@ -166,10 +166,10 @@ namespace draw2d_cairo
 
          ::i32 iSourceStride =size.cx * 4;
 
-         if(piScan && *piScan > iSourceStride)
+         if(ppixmap && ppixmap->m_iScan > iSourceStride)
          {
 
-            iSourceStride = *piScan;
+            iSourceStride = ppixmap->m_iScan;
 
          }
 
@@ -195,10 +195,10 @@ namespace draw2d_cairo
 
          auto pimage32Target = (::image32_t *)m_mem.data();
 
-         if (memory.data() && memory.size() > iSourceStride * size.cy)
+         if (ppixmap && ppixmap->m_memoryPixmap.size() > iSourceStride * size.cy)
          {
 
-            pimage32Target->copy(size, iStride, (::image32_t *) memory.data(), iSourceStride);
+            pimage32Target->copy(size, iStride, (::image32_t *) ppixmap->m_memoryPixmap.data(), iSourceStride);
 
          }
 
@@ -252,12 +252,17 @@ namespace draw2d_cairo
 
          //}
 
-         memory.reference_data(m_mem);
-
-         if(piScan != nullptr)
+         if (ppixmap)
          {
 
-            *piScan = iStride;
+            ppixmap->m_memoryPixmap.reference_data(m_mem);
+
+         }
+
+         if(ppixmap != nullptr)
+         {
+
+            ppixmap->m_iScan = iStride;
 
          }
 

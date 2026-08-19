@@ -23,24 +23,88 @@ namespace image
    }
 
 
-   void load_image::initialize_load_image1(::image::image_context * pimagecontext, ::pixmap * ppixmap)
+   void load_image::initialize_load_image(::image::image_context * pimagecontext, ::pixmap * ppixmapCallback)
    {
+
+      auto ppixmap = ::as_pointer(ppixmapCallback);
+
+      m_functionLoaded = [ppixmap](::image::load_image * ploadimage)
+      {
+
+         if (ploadimage->is_ok())
+         {
+
+            auto ppixmapLoad = ploadimage->m_pimageframearray->get_pixmap();
+
+            if (ppixmapLoad)
+            {
+
+               ppixmap->copy_from(ppixmapLoad);
+
+               ppixmap->m_eflagElement = ::e_flag_success;
+
+               ppixmap->m_estatus = ::success;
+
+            }
+
+         }
+
+      };
 
       m_pimagecontext = pimagecontext;
 
-      m_ppixmap = ppixmap;
-
    }
 
 
-   void load_image::initialize_load_image(const ::function < void(::image::image_frame_array *) > & functionLoaded, ::image::image_context* pimagecontext, pixmap* ppixmap)
+   void load_image::initialize_load_image(::image::image_context* pimagecontext, const ::function < void(::image::load_image *) > & functionLoaded)
    {
-
-      initialize_load_image1(pimagecontext, ppixmap);
 
       m_functionLoaded = functionLoaded;
 
+      m_pimagecontext = pimagecontext;
+
    }
+
+
+   pixmap * load_image::allocate_pixmap()
+   {
+
+      defer_construct_newø(m_pimageframearray);
+
+      defer_construct_newø(m_pimageframearray->m_ppixmap);
+
+      return m_pimageframearray->m_ppixmap;
+
+   }
+
+
+   pixmap * load_image::create_pixmap(const ::i32_size & size, ::i32 iScan)
+   {
+
+      auto ppixmap = allocate_pixmap();
+
+      ppixmap->create_as_descriptor(size, DEFAULT_CREATE_IMAGE_FLAG, iScan);
+
+      return ppixmap;
+
+   }
+
+
+   pixmap * load_image::create_pixmap_from_data(const ::i32_size & size, const image32_t *pimage32, ::i32 iScan)
+   {
+
+      auto ppixmap = allocate_pixmap();
+
+      ppixmap->create_from_data(size, pimage32, iScan, DEFAULT_CREATE_IMAGE_FLAG);
+
+      //on_image_loaded(success);
+
+      return ppixmap;
+
+   }
+
+
+
 
 
    void load_image::run()
@@ -59,7 +123,7 @@ namespace image
       // simulate a long load time
       //preempt(2_s);
 
-      if (m_ppixmap->is_ok())
+      if (this->is_ok())
       {
 
          ////return pimage->m_estatus;
@@ -108,12 +172,14 @@ namespace image
    }
 
 
-   void load_image::on_load_image(const image32_t *pimage32, const ::i32_size &size, int iScan) 
+   void load_image::on_load_image(const ::i32_size &size, const image32_t *pimage32, int iScan)
    {
 
-      m_ppixmap->on_load_image(pimage32, size, iScan);
-   
-      on_image_loaded(success);
+      auto ppixmap = create_pixmap_from_data(size, pimage32, iScan);
+
+      m_eflagElement = ::e_flag_success;
+
+      m_estatus = ::success;
 
    }
 
@@ -124,63 +190,65 @@ namespace image
       if (m_functionLoaded)
       {
 
-         if (!m_pimageframearray && m_ppixmap)
-         {
+         // if (!m_pimageframearray && m_ppixmap)
+         // {
+         //
+         //    construct_newø(m_pimageframearray);
+         //
+         //    m_pimageframearray->m_ppixmap = m_ppixmap;
+         //
+         // }
 
-            construct_newø(m_pimageframearray);
+         //m_functionLoaded(m_pimageframearray);
 
-            m_pimageframearray->m_ppixmap = m_ppixmap;
-
-         }
-
-         m_functionLoaded(m_pimageframearray);
-
-      }
-
-      m_ppixmap->m_estatus = estatus;
-
-      if (estatus.succeeded())
-      {
-
-         m_ppixmap->set_ok_flag();
+         m_functionLoaded(this);
 
       }
-      else
-      {
 
-         m_ppixmap->set_nok();
-
-      }
+      // m_ppixmap->m_estatus = estatus;
+      //
+      // if (estatus.succeeded())
+      // {
+      //
+      //    m_ppixmap->set_ok_flag();
+      //
+      // }
+      // else
+      // {
+      //
+      //    m_ppixmap->set_nok();
+      //
+      // }
 
    }
 
 
-   pixmap_lease load_image::map(const ::i32_size & size, ::i32 * piScan)
-   {
-      
-      if (piScan && *piScan > size.cx * 4)
-      {
-
-         m_ppixmap->create_as_descriptor(size, DEFAULT_CREATE_IMAGE_FLAG, *piScan);
-
-      }
-      else
-      {
-
-         m_ppixmap->create_as_descriptor(size);
-
-      }
-
-      if (piScan)
-      {
-
-         *piScan = m_ppixmap->m_iScan;
-
-      }
-
-      return ::transfer(m_ppixmap->map());
-
-   }
+   // pixmap_lease load_image::map(const ::i32_size & size, ::i32 * piScan)
+   // {
+   //
+   //    if (piScan && *piScan > size.cx * 4)
+   //    {
+   //
+   //       m_ppixmap->create_as_descriptor(size, DEFAULT_CREATE_IMAGE_FLAG, *piScan);
+   //
+   //    }
+   //    else
+   //    {
+   //
+   //       m_ppixmap->create_as_descriptor(size);
+   //
+   //    }
+   //
+   //    if (piScan)
+   //    {
+   //
+   //       *piScan = m_ppixmap->m_iScan;
+   //
+   //    }
+   //
+   //    return ::transfer(m_ppixmap->map());
+   //
+   // }
 
 
 } // namespace image

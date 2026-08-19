@@ -7122,19 +7122,19 @@ void image_context::load_svg(::image::load_image *ploadimage, memory & memory)
    if (::found(memory.find("<svg")))
    {
 
-      ploadimage->nanosvg(memory, ploadimage->m_ppixmap->m_iRedLower);
+      ploadimage->nanosvg(memory);
 
-      ploadimage->m_ppixmap->mult_alpha_fast();
-
-      ploadimage->m_ppixmap->on_load_image();
-
-      ploadimage->m_ppixmap->set_ok_flag();
-
-      //pimage->notify(OK);
-
-      ploadimage->m_estatus = ::success;
-
-      //return pimage->m_estatus;
+      // ploadimage->m_ppixmap->mult_alpha_fast();
+      //
+      // ploadimage->m_ppixmap->on_load_image();
+      //
+      // ploadimage->m_ppixmap->set_ok_flag();
+      //
+      // //pimage->notify(OK);
+      //
+      // ploadimage->m_estatus = ::success;
+      //
+      // //return pimage->m_estatus;
 
    }
 

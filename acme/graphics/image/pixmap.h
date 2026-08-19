@@ -38,18 +38,22 @@ public:
    ::interlocked_count                    m_interlockedcountMap;
    ::image::enum_copy_disposition         m_ecopydisposition;
    ::image::enum_mipmap                   m_emipmap;
-   int                                    m_iExifOrientation;
+   enum_rotate_flip                       m_erotateflip;
+   bool                                   m_bRotateFlipDone;
 
 
    pixmap();
    ~pixmap() override;
 
 
-   virtual void create_as_descriptor(const ::i32_size &size, ::enum_flag eflagCreate = DEFAULT_CREATE_IMAGE_FLAG,
-                       ::i32 iGoodStride = -1);
+   virtual void create_as_descriptor(const ::i32_size &size, ::enum_flag eflagCreate = DEFAULT_CREATE_IMAGE_FLAG, ::i32 iGoodStride = -1);
 
-   virtual void create_from_data(const ::i32_size &size, const ::image32_t *pimage32, ::i32 iScan,
-                                 ::enum_flag eflagCreate = DEFAULT_CREATE_IMAGE_FLAG, bool bPreserve = false);
+   //virtual void create_from_data(const ::i32_size &size, const ::image32_t *pimage32, ::i32 iScan, ::enum_flag eflagCreate = DEFAULT_CREATE_IMAGE_FLAG, bool bPreserve = false);
+
+   virtual void create_from_data(const ::i32_size &size, const ::image32_t *pimage32, ::i32 iScan, ::enum_flag eflagCreate = DEFAULT_CREATE_IMAGE_FLAG);
+
+
+   virtual void change_raw_size(const ::i32_size & sizeRaw, ::i32 iMinimumScan = 0);
 
 
    inline bool is_ok() const { return ::particle::is_ok() && this->_is_ok(); }
@@ -64,7 +68,7 @@ public:
 
    virtual void set_exif_orientation(int iExifOrientation);
 
-   virtual void on_load_image();
+   //virtual void on_load_image();
 
    //virtual void defer_update_image();
    virtual void hue_offset(::f64 dRate);
@@ -74,17 +78,15 @@ public:
 
    ::subparticle_pointer clone() override;
 
-   virtual void on_exif_orientation();
+   virtual void rotate_flip(enum_rotate_flip erotateflip);
 
    virtual void copy(const pixmap_t * ppixmap);
    virtual void copy(const ::i32_size &size, const ::image32_t *pimage32, ::i32 iScan);
 
-   virtual void on_load_image(const image32_t *pimage32, const ::i32_size &size, int iScan);
-
    virtual ::pixmap_pointer get_resized_pixmap(const ::i32_size &size);
 
 
-
+   virtual void clear_transparent();
 
 
    inline ::color::color pixel(::i32 x, ::i32 y) const
@@ -215,12 +217,12 @@ public:
 
       virtual void transform(enum_image eimage);
 
-   virtual void set_mipmap(::image::enum_mipmap emipmap);
-   virtual void _set_mipmap(::image::enum_mipmap emipmap);
+      virtual void set_mipmap(::image::enum_mipmap emipmap);
+      virtual void _set_mipmap(::image::enum_mipmap emipmap);
 
 
-   virtual void create_isotropic(::pixmap * ppixmap, ::f64 fIsotropicRate);
-   //virtual void create_isotropic(f64_array & daRate, ::enum_priority epriority);
+      virtual void create_isotropic(::pixmap * ppixmap, ::f64 fIsotropicRate);
+      //virtual void create_isotropic(f64_array & daRate, ::enum_priority epriority);
 
 
       virtual void RadialFill(::u8 a, ::u8 rectangle, ::u8 g, ::u8 b, ::i32 x, ::i32 y, ::i32 iRadius);
@@ -243,9 +245,9 @@ public:
       virtual void channel_mask(::u8 uchFind, ::u8 uchSet, ::u8 uchUnset, ::color::enum_channel echannel);
       virtual void transparent_color(::color::color color);
 
-   virtual void DivideRGB(::i32 iDivide);
-   virtual void DivideARGB(::i32 iDivide);
-   virtual void DivideA(::i32 iDivide);
+      virtual void DivideRGB(::i32 iDivide);
+      virtual void DivideARGB(::i32 iDivide);
+      virtual void DivideA(::i32 iDivide);
 
 
 
@@ -287,7 +289,7 @@ public:
       virtual void op(const ::scoped_string & scopedstr);
 
 
-         virtual ::memory copy_with_no_stride();
+      virtual ::memory copy_with_no_stride();
       virtual ::memory vertical_swap_copy_with_no_stride();
 
       //virtual void from( ::pixmap * ppixmap);
@@ -307,6 +309,7 @@ public:
       //virtual void copy_from(::pixmap * ppixmap, enum_flag eflagCreate = e_flag_success);
       //virtual void copy_to(::pixmap * ppixmap, const ::i32_point & point = {});
       virtual void copy_from(::pixmap * ppixmap);
+      virtual void copy_from(::pixmap * ppixmap, const ::i32_size & size, const ::i32_point & pointDst, const ::i32_point & pointSrc);
 
 
       virtual void fill_rectangle(const ::i32_rectangle & rectangle, ::color::color color);
@@ -371,7 +374,7 @@ public:
    }
 
 
-   virtual pixmap_lease map(const ::i32_rectangle & rectangle = {}, bool bApplyAlphaTransform = true);
+   virtual pixmap_lease map(const ::i32_rectangle & rectangle = {});
 
 
 protected:
@@ -379,17 +382,14 @@ protected:
    friend class pixmap_lease;
    //friend class ::image::lock;
 
-   virtual void _map(const ::i32_rectangle & rectangle, bool bApplyAlphaTransform =
-                           true); // some implementations may requrire to map_base to m_pcolorref before manipulate it
+   virtual void _map(const ::i32_rectangle & rectangle); // some implementations may requrire to map_base to m_pcolorref before manipulate it
    
    
-   virtual bool _on_map(const ::i32_rectangle & rectangle, bool bApplyAlphaTransform = true);
+   //virtual void _on_map(const ::i32_rectangle & rectangle);
 
-   virtual void
-      _unmap(bool bDoUnmap = false); // some implementations may require to unmap from m_pcolorref to update *os* bitmap
+   virtual void _unmap(const ::i32_rectangle & rectangle); // some implementations may require to unmap from m_pcolorref to update *os* bitmap
 
-   virtual bool
-   _on_unmap(bool bDoUnmap = false); // some implementations may require to unmap from m_pcolorref to update *os* bitmap
+   //virtual void _on_unmap(bool bDoUnmap = false); // some implementations may require to unmap from m_pcolorref to update *os* bitmap
 
    //void unlock() override;
 

@@ -119,9 +119,18 @@ namespace experience_anthill
          pgraphicsImage2->draw(imagedrawing);
 
       }
+
       //bool b = ::BitBlt(dc2, 0, 0, rectangleX.width() + iInflate * 2, rectangleX.height() + iInflate * 2, hdcScreen, rectangleX.left - iInflate, rectangleX.top - iInflate);
 
-      m_pfastblur->blur(pimage1, ::i32_rectangle(::i32_size(rectangleX.width() + iInflate * 2, rectangleX.height() + iInflate * 2)));
+      {
+
+         auto ppixmapImage1 = pimage1->map();
+
+         //m_pfastblur->blur(ppixmapImage1, ::i32_rectangle(::i32_size(rectangleX.width() + iInflate * 2, rectangleX.height() + iInflate * 2)));
+
+         m_pfastblur->blur(ppixmapImage1);
+
+      }
 
       //spgraphics->Draw3dRect(rectangleX, 127 << 24, 127 << 24);
       //rectangleX.deflate(1, 1);

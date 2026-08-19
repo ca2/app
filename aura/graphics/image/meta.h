@@ -43,7 +43,7 @@ namespace image
       ::i32_size                                m_sizeRaw;
       ::i32_point                               m_point;
       ::i32                                     m_iScan;
-      bool                                      m_bMapped;
+      ::image_pixmap_lease *                    m_pimagepixmaplease;
       ::pointer<::draw2d::bitmap>               m_pbitmap;
       ::pixmap_pointer                          m_ppixmapOwned;
       ::draw2d::graphics_pointer                m_pgraphicsOwned;
@@ -70,7 +70,7 @@ namespace image
          //m_uImageFlags = DEFAULT_CREATE_IMAGE_FLAGS;
          m_iScan = -1;
          m_bGraphicsWasAcquiredAfterLastMap = true;
-         m_bMapped = false;
+         m_pimagepixmaplease = nullptr;
          m_dSpeed = 1.0;
          m_dIsotropicRate = 1.0;
          m_dSizeScaler = 1.0;
@@ -89,7 +89,6 @@ namespace image
          PARTICLE_TRANSFER(imagemeta),
       m_iScan(imagemeta.m_iScan),
       m_bGraphicsWasAcquiredAfterLastMap(imagemeta.m_bGraphicsWasAcquiredAfterLastMap),
-      m_bMapped(imagemeta.m_bMapped),
          m_pbitmap(::transfer(imagemeta.m_pbitmap)),
          m_pgraphicsOwned(::transfer(imagemeta.m_pgraphicsOwned)),
          m_dSpeed(::transfer(imagemeta.m_dSpeed)),
@@ -104,6 +103,14 @@ namespace image
          m_dynamic(::transfer(imagemeta.m_dynamic))
       {
 
+         if (m_pimagepixmaplease)
+         {
+
+            throw ::exception(error_wrong_state);
+
+         }
+
+         imagemeta.m_pimagepixmaplease = nullptr;
          imagemeta.m_dSpeed = 0.;
          imagemeta.m_dIsotropicRate = 0.;
          imagemeta.m_dSizeScaler = 0.;
@@ -112,6 +119,7 @@ namespace image
          imagemeta.m_iFrame = 0;
          imagemeta.m_iExifOrientation = 0;
          imagemeta.m_bCreateHelperMaps = false;
+
 
       }
 

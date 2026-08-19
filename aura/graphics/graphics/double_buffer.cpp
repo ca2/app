@@ -6,6 +6,7 @@
 #include "acme/platform/application.h"
 #include "acme/prototype/geometry2d/_text_stream.h"
 #include "aura/graphics/image/image.h"
+#include "aura/graphics/image/image_pixmap_lease.h"
 #include "aura/windowing/window.h"
 #include "aura/windowing/window_buffer.h"
 

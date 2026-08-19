@@ -33,7 +33,7 @@ namespace draw2d_cairo
 
       //virtual bool stretch(const ::image::image *pimage) override;
 
-      void dc_select(bool bSelect = true) override;
+      //void dc_select(bool bSelect = true) override;
 
       //void create(const ::i32_size & size, ::enum_flag eflagCreate = OK_IMAGE, ::i32 iGoodStride = -1, bool bPreserve = false) override;
       void create_from_graphics(::draw2d::graphics * pgraphics) override;
@@ -51,10 +51,10 @@ namespace draw2d_cairo
       //void read(::binary_stream & stream) override;
 
 
-      void blend(const ::i32_point & ptDst, ::image::image *pimageAlf, const ::i32_point & pointAlf, const ::i32_size & size, ::u8 bA) override;
+      //void blend(const ::i32_point & ptDst, ::image::image *pimageAlf, const ::i32_point & pointAlf, const ::i32_size & size, ::u8 bA) override;
       //void blend2(const ::i32_point & ptDst, ::image::image *pimageAlf, const ::i32_point & pointAlf, const ::i32_size & size, ::u8 bA) override;
    protected:
-      void _map(const ::i32_rectangle & rectangle, bool bApplyAlphaTransform = true) override;
+      ::pixmap_lease _map(const ::i32_rectangle & rectangle, bool bApplyAlphaTransform = true) override;
       void _unmap(bool bDoUnmap = false) override;
 
    };

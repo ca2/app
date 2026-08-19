@@ -4,6 +4,7 @@
 #include "aura/platform/context.h"
 #include "acme/filesystem/filesystem/file_system.h"
 #include "acme/filesystem/filesystem/file_context.h"
+#include "acme/graphics/image/frame_array.h"
 #include "aura/graphics/image/image.h"
 #include "aura/graphics/image/load_image.h"
 
@@ -735,8 +736,15 @@ void FreeImageErrorHandler(FREE_IMAGE_FORMAT fif, const_char_pointer message) {
 
       if (loadoptions.functionLoaded)
       {
-         loadoptions.functionLoaded(ploadimage->m_ppixmap);
+
+         auto pimageframearray = create_newø<::image::image_frame_array>();
+
+         pimageframearray->create_from_pixmap(ploadimage->m_ppixmap);
+
+         loadoptions.functionLoaded(pimageframearray);
+
       }
+
       //      return pimage->m_estatus;
    }
 } // namespace imaging_freeimage

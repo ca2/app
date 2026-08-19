@@ -42,7 +42,9 @@ namespace draw2d
 
       ::subparticle_pointer clone() override;
 
+
       virtual bool copy_from(::draw2d::bitmap * pbitmap);
+      virtual bool copy_from(::draw2d::bitmap * pbitmap, const ::i32_size & size, const ::i32_point & pointDst, const ::i32_point & pointSrc);
 
 
       template < typename POINTER >

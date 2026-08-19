@@ -64,6 +64,14 @@ namespace draw2d
    }
 
 
+   bool bitmap::copy_from(::draw2d::bitmap * pbitmap, const ::i32_size & size, const ::i32_point & pointDst, const ::i32_point & pointSrc)
+   {
+
+      return false;
+
+   }
+
+
    ::subparticle_pointer bitmap::clone()
    {
 

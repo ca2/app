@@ -38,6 +38,14 @@ namespace image
       ~image_frame_array() override;
 
 
+      virtual void create_from_pixmap(::pixmap * ppixmap);
+
+      ::pixmap * get_pixmap();
+
+
+      ::particle * get_image();
+
+
       ::i32_size size() const { return m_size; }
 
       ::i32_rectangle rectangle(const ::i32_point & point = {}) const { return ::i32_rectangle(point, m_size); }

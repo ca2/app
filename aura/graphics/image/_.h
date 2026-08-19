@@ -10,6 +10,8 @@
 //#include "acme/prototype/geometry2d/rectangle.h"
 
 
+class image_pixmap_lease;
+
 namespace image
 {
 

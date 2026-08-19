@@ -9,7 +9,7 @@ namespace draw2d
 {
 
 
-   class task_tool_item :
+   class CLASS_DECL_ACME task_tool_item :
       virtual public ::task_tool_item
    {
    public:

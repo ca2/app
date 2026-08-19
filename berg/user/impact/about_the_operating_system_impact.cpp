@@ -16,6 +16,7 @@
 #include "aura/graphics/draw2d/draw2d.h"
 #include "aura/graphics/image/context.h"
 #include "aura/graphics/image/drawing.h"
+#include "aura/graphics/image/load_image.h"
 #include "aura/graphics/write_text/write_text.h"
 #include "aura/message/user.h"
 #include "berg/platform/application.h"
@@ -90,9 +91,9 @@ namespace berg
    
       image()->load_image(strOperatingSystemImageUrl,
       {
-   .sync=false,.functionLoaded = [this](::pixmap * ppixmap)
+   .sync=false,.functionLoaded = [this](::image::load_image * ploadimage)
    {
-                                                          m_pimageOperatingSystem = ppixmap;
+                                                          m_pimageOperatingSystem = ::image::image::from(ploadimage->m_pimageframearray);
 
    }
 });

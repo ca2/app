@@ -353,42 +353,20 @@ void pixmap_t::reference(const pixmap_t &pixmap) {
 }
 
 
-::i32_point pixmap_t::top_left() const noexcept
-{
-   
-   auto left = constrained(m_point.x, 0, m_sizeRaw.cx);
-
-   auto top = constrained(m_point.y, 0, m_sizeRaw.cy);
-
-   return { left, top };
-
-}
 
 
-::i32_point pixmap_t::bottom_right() const noexcept
-{
-
-   auto right = constrained(m_point.x + m_size.cx, 0, m_sizeRaw.cx);
-
-   auto bottom = constrained(m_point.y + m_size.cy, 0, m_sizeRaw.cy);
-
-   return { right, bottom };
-
-}
-
-
-::i32_size pixmap_t::size() const noexcept
-{
-
-   auto pointTopLeft = this->top_left();
-
-   auto pointBottomRight = this->bottom_right();
-
-   return pointBottomRight - pointTopLeft;
-
-}
-
-
+// ::i32_size pixmap_t::size() const noexcept
+// {
+//
+//    auto pointTopLeft = this->top_left();
+//
+//    auto pointBottomRight = this->bottom_right();
+//
+//    return pointBottomRight - pointTopLeft;
+//
+// }
+//
+//
 void pixmap_t::pixmap_map() const
 {
 

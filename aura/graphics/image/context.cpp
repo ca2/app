@@ -470,12 +470,14 @@ namespace image
 
             constructø(pimage);
 
-            auto ploadimage = create_newø<::image::load_image>();
+            auto ploadimage = pimage->create_load_image(this);
 
-            construct_newø(pimage->m_ppixmapOwned);
+            //auto ploadimage = create_newø<::image::load_image>();
 
-            ploadimage->initialize_load_image(pimage->image_frame_array_loaded_callback(),
-               this, pimage->m_ppixmapOwned);
+            //construct_newø(pimage->m_ppixmapOwned);
+
+            //ploadimage->initialize_load_image(pimage->image_frame_array_loaded_callback(),
+              // this, pimage->m_ppixmapOwned);
 
             ploadimage->m_sizePreferred = size;
 
@@ -509,21 +511,24 @@ namespace image
             {
 
                ppixmap = ppixmapOriginal;
+
             }
             else
             {
 
                ppixmap = ppixmapOriginal->get_resized_pixmap(size);
+
             }
+
          }
          else
          {
 
-            construct_newø(ppixmapOriginal);
+            defer_construct_newø(ppixmapOriginal);
 
             auto ploadimage = create_newø<::image::load_image>();
 
-            ploadimage->initialize_load_image1(this, ppixmapOriginal);
+            ploadimage->initialize_load_image(this, ppixmapOriginal);
 
             ploadimage->m_sizePreferred = size;
 
@@ -912,7 +917,7 @@ namespace image
 
       auto ploadimage = create_newø<::image::load_image>();
 
-      ploadimage->initialize_load_image1(this, ppixmap);
+      ploadimage->initialize_load_image(this, ppixmap);
 
       _load_image(ploadimage, payloadFile, loadoptions);
 
@@ -1055,7 +1060,7 @@ namespace image
 
       //}
 
-      pimage->on_load_image();
+      //pimage->on_load_image();
 
       pimage->set_ok_flag();
 
@@ -1080,7 +1085,7 @@ namespace image
       ::file::path path = payloadFile.as_file_path();
 
       //if (!pimage->create_thumbnail(path))
-      pimage->create_thumbnail(path);
+      //pimage->create_thumbnail(path);
       //{
 
       //   pimage->set_nok();
@@ -1089,7 +1094,7 @@ namespace image
 
       //}
 
-      pimage->set_ok_flag();
+      //pimage->set_ok_flag();
 
       //return true;
 
@@ -1126,7 +1131,7 @@ namespace image
 
       //}
 
-      pimage->on_load_image();
+      //pimage->on_load_image();
 
       pimage->set_ok_flag();
 
@@ -1259,7 +1264,7 @@ namespace image
 
 
 
-   void image_context::_load_image(::image::image* pimage, ::pointer<image_frame_array>& pframea, ::memory& memory)
+   void image_context::_load_image(::pixmap * ppixmap, ::pointer<image_frame_array>& pframea, ::memory& memory)
    {
 
       //return ::success;
@@ -1338,20 +1343,20 @@ namespace image
    void image_context::_load_multi_frame_image(::image::load_image * ploadimage, memory& memory)
    {
 
-      ::pointer<image_frame_array>pframea;
+      auto & pframea = ploadimage->m_pimageframearray;
 
       construct_newø(pframea);
 
       pframea->m_pparticleImage = this;
 
-      ::image::image_pointer pimageCompose;
+      ::pixmap_pointer ppixmapCompose;
 
-      ploadimage->constructø(pimageCompose);
+      ploadimage->construct_newø(ppixmapCompose);
 
-      pimageCompose->set_ok_flag();
+      ppixmapCompose->set_ok_flag();
 
       //auto estatus = 
-      _load_image(pimageCompose, pframea, memory);
+      _load_image(ppixmapCompose, pframea, memory);
 
       //if (!estatus)
       //{
@@ -1365,7 +1370,7 @@ namespace image
       if (pframea->is_empty())
       {
 
-         ploadimage->m_ppixmap->set_nok();
+         ploadimage->set_nok();
 
          return;
 
@@ -1373,9 +1378,9 @@ namespace image
       else if (pframea->get_count() == 1)
       {
 
-         ploadimage->m_ppixmap->m_estatus = ::success;
+         ploadimage->m_estatus = ::success;
 
-         ploadimage->m_ppixmap->set_ok_flag();
+         ploadimage->set_ok_flag();
 
          return;
 
@@ -1406,7 +1411,7 @@ namespace image
 
       pframea->m_timeTotal = timeTotal;
 
-      ploadimage->m_functionLoaded(pframea);
+      ploadimage->m_functionLoaded(ploadimage);
 
    }
 
@@ -1448,7 +1453,7 @@ namespace image
    void image_context::_task_load_image(::image::load_image *ploadimage, ::payload payload, bool bCache)
    {
 
-      ploadimage->m_ppixmap->m_estatus = ::error_failed;
+      ploadimage->m_estatus = ::error_failed;
 
       ::file::path path = payload.as_file_path();
 
@@ -1492,14 +1497,14 @@ namespace image
 
          image()->load_svg(ploadimage, memory);
 
-         if (ploadimage->m_ppixmap->m_estatus.succeeded())
+         if (ploadimage->m_estatus.succeeded())
          {
 
             //ploadimageinterface->on_load_image();
 
-            ploadimage->m_ppixmap->set_ok_flag();
+            ploadimage->set_ok_flag();
 
-            ploadimage->m_ppixmap->m_estatus = ::success;
+            ploadimage->m_estatus = ::success;
 
             return;
 
@@ -1510,12 +1515,12 @@ namespace image
 
             _load_multi_frame_image(ploadimage, memory);
 
-            if (ploadimage->m_ppixmap->has_failed_status())
+            if (ploadimage->has_failed_status())
             {
 
-               ploadimage->m_ppixmap->set_nok();
+               ploadimage->set_nok();
 
-               ploadimage->m_ppixmap->m_estatus = ::error_failed;
+               ploadimage->m_estatus = ::error_failed;
 
                return;
 
@@ -1523,11 +1528,11 @@ namespace image
 
             ///ploadimage->m_ppixmap->defer_update_image();
 
-            ploadimage->m_ppixmap->on_load_image();
+            ploadimage->on_image_loaded(::success);
 
-            ploadimage->m_ppixmap->set_ok_flag();
+            //ploadimage->set_ok_flag();
 
-            ploadimage->m_ppixmap->m_estatus = ::success;
+            //ploadimage->m_estatus = ::success;
 
             return;
 

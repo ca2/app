@@ -113,6 +113,8 @@ list(APPEND library_source
         #graphics/draw2d/ttf_util.cpp
         #graphics/draw2d/ttf_util.h
         #graphics/draw2d/water_routine.h
+   graphics/draw2d/window_attachment.cpp
+   graphics/draw2d/window_attachment.h
         graphics/draw3d/_.h
         graphics/draw3d/ortho.cpp
         graphics/draw3d/ortho.h
@@ -166,19 +168,16 @@ list(APPEND library_source
         graphics/graphics/window_dc.h
         #graphics/image/_image.h
         graphics/image/_.cpp
+        graphics/image/_constant.h
         graphics/image/_image_impl.h
-        graphics/image/context.cpp
-        graphics/image/context.h
-        graphics/image/cursor.cpp
-        graphics/image/cursor.h
-        graphics/image/icon.cpp
-        graphics/image/icon.h
-        graphics/image/image.cpp
-        graphics/image/image.h
         graphics/image/array.cpp
         graphics/image/array.h
         #graphics/image/buffer.cpp
         #graphics/image/buffer.h
+        graphics/image/context.cpp
+        graphics/image/context.h
+        graphics/image/cursor.cpp
+        graphics/image/cursor.h
         graphics/image/drawer.cpp
         graphics/image/drawer.h
         graphics/image/drawing.cpp
@@ -187,11 +186,6 @@ list(APPEND library_source
         graphics/image/dynamic.h
         graphics/image/encoding_options.cpp
         graphics/image/encoding_options.h
-        graphics/image/load_gif_frame.cpp
-        graphics/image/load_image.cpp
-        graphics/image/load_image.h
-        graphics/image/load_options.h
-        graphics/image/_constant.h
         graphics/image/extension.cpp
         graphics/image/extension.h
         graphics/image/fastblur.cpp
@@ -203,6 +197,16 @@ list(APPEND library_source
         graphics/image/gif_antialias_8bit.cpp
         #graphics/image/gif_detect_8bit_borders.cpp
         #graphics/image/header.h
+        graphics/image/icon.cpp
+        graphics/image/icon.h
+        graphics/image/image.cpp
+        graphics/image/image.h
+        graphics/image/imaging.cpp
+        graphics/image/imaging.h
+        graphics/image/load_gif_frame.cpp
+        graphics/image/load_image.cpp
+        graphics/image/load_image.h
+        graphics/image/load_options.h
         graphics/image/list.cpp
         graphics/image/list.h
         graphics/image/load_gif_frame.cpp
@@ -218,8 +222,6 @@ list(APPEND library_source
         graphics/image/source.h
         #graphics/image/target.cpp
         #graphics/image/target.h
-        graphics/image/imaging.cpp
-        graphics/image/imaging.h
         #graphics/image/pixmap.h
         graphics/user/control_box_button.cpp
         graphics/user/control_box_button.h

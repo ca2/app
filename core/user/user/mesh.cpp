@@ -6284,6 +6284,8 @@ bool mesh::_001OnRightClick(const ::i32_point & point)
 
             m_pitem->m_pdrawlistitem->m_pgraphics->draw(imagedrawing);
 
+            auto pbrushText = m_pitem->m_pmesh->createø < ::draw2d::brush > ();
+
             pbrushText->create_solid(argb(255,255,255,255));
 
             m_pitem->m_pdrawlistitem->m_pgraphics->set(pbrushText);

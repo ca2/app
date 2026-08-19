@@ -16,7 +16,7 @@ CLASS_DECL_AURA bool node_save_image(::winrt::Windows::Storage::Streams::InMemor
 
 #endif
 
-bool windows_image_from_bitmap_source(::image::image *pimage, IWICBitmapSource * piConverter, IWICImagingFactory * piFactory)
+bool windows_image_from_bitmap_source(::image::load_image * ploadimage, IWICBitmapSource * piConverter, IWICImagingFactory * piFactory)
 {
 
    comptr < IWICBitmap > piBmp;

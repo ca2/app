@@ -3,8 +3,8 @@
 #include "fimemory.h"
 ////#include "acme/exception/exception.h"
 #include "acme/prototype/time/_text_stream.h"
-#include "aura/graphics/image/frame.h"
-#include "aura/graphics/image/frame_array.h"
+#include "acme/graphics/image/frame.h"
+#include "acme/graphics/image/frame_array.h"
 
 
 #if defined(USE_PORT_FREEIMAGE)
@@ -21,10 +21,10 @@ namespace imaging_freeimage
 {
 
 
-   bool freeimage_load_imagea_frame(::image::image *pimageCompose, ::image::image_frame_array * pimagea, ::collection::index iFrame, FIBITMAP * pfi);
+   bool freeimage_load_imagea_frame(::pixmap *ppixmapImageCompose, ::image::image_frame_array * pimagea, ::collection::index iFrame, FIBITMAP * pfi);
 
 
-   void image_context::_load_image(::image::image *pimageCompose, ::pointer<::image::image_frame_array>& pframea, memory & memory)
+   void image_context::_load_image(::pixmap *ppixmapImageCompose, ::pointer<::image::image_frame_array>& pframea, memory & memory)
    {
 
       fimemory mem(memory);
@@ -60,7 +60,7 @@ namespace imaging_freeimage
 
                   pframea->add(pframe);
 
-                  constructø(pframe->m_pimage);
+                  construct_newø(pframe->m_ppixmap);
 
                   pframe->m_iFrame = iFrame;
 
@@ -126,9 +126,9 @@ namespace imaging_freeimage
 
                         }
 
-                        pimageCompose->create_as_descriptor(pframea->m_size);
+                        ppixmapImageCompose->create_as_descriptor(pframea->m_size);
 
-                        pimageCompose->clear(::color::transparent);
+                        ppixmapImageCompose->clear(::color::transparent);
 
                      }
 
@@ -219,7 +219,7 @@ namespace imaging_freeimage
 
                      }
 
-                     if (!freeimage_load_imagea_frame(pimageCompose, pframea, iFrame, pfi))
+                     if (!freeimage_load_imagea_frame(ppixmapImageCompose, pframea, iFrame, pfi))
                      {
 
                         informationf("failed to load page image");
@@ -254,7 +254,7 @@ namespace imaging_freeimage
    }
 
 
-   bool freeimage_load_imagea_frame(::image::image *pimageCompose, ::image::image_frame_array * pframea, ::collection::index iFrame, FIBITMAP * pfi)
+   bool freeimage_load_imagea_frame(::pixmap *ppixmapImageCompose, ::image::image_frame_array * pframea, ::collection::index iFrame, FIBITMAP * pfi)
    {
 
       if (pfi == nullptr)
@@ -278,27 +278,27 @@ namespace imaging_freeimage
 
       //::i32 h = FreeImage_GetHeight(pfi);
 
-      ::image::image_pointer pimageFrame;
+      ::pixmap_pointer ppixmapImageFrame;
 
       //auto estatus = 
       
-      pimageCompose->constructø(pimageFrame);
+      ppixmapImageCompose->construct_newø(ppixmapImageFrame);
 
       //if (!estatus || !pimageFrame)
-      if (!pimageFrame)
+      if (!ppixmapImageFrame)
       {
 
          return false;
 
       }
 
-      pixmap_from_freeimage(pimageFrame, pfi);
+      pixmap_from_freeimage(ppixmapImageFrame, pfi);
 
       ::draw2d::enum_disposal edisposal = iFrame <= 0 ? ::draw2d::e_disposal_none : pframea->element_at(iFrame)->m_edisposal;
 
       pframe->m_edisposal = edisposal;
 
-      pframe->_001Process(pimageCompose, pimageFrame, pframea);
+      pframe->_001Process(ppixmapImageCompose, ppixmapImageFrame, pframea);
 
 
 //      ::i32 transparentIndex = FreeImage_GetTransparentIndex(pfi);

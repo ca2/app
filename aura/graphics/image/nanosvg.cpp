@@ -37,15 +37,13 @@ namespace image
 
       ::i32 h = (::i32)iHeight;
 
-      ::i32 iScan = 0;
-
       auto psvgimage = (NSVGimage *)pNSVGimage;
 
       {
 
-         auto ppixmapLoadImage = ploadimage->map({w, h}, &iScan);
+         auto ppixmapLoadImage = ploadimage->create_pixmap({w, h});
 
-         nsvgRasterize(rast, psvgimage, 0, 0, 1, (::u8 *)ppixmapLoadImage->data(), w, h, iScan);
+         nsvgRasterize(rast, psvgimage, 0, 0, 1, (::u8 *)ppixmapLoadImage->data(), w, h, ppixmapLoadImage->scan());
 
          //ploadimage->on_load_image(pdata, {w, h}, iScan);
 
@@ -95,7 +93,7 @@ namespace image
    }
 
 
-   void load_image::nanosvg(const ::block & blockXml, ::i32 iRedLower, ::f64 fDpi)
+   void load_image::nanosvg(const ::block & blockXml, ::f64 fDpi)
    {
 
       if (fDpi <= 0.0)
@@ -129,7 +127,7 @@ namespace image
 
          auto h = (::i32) psvgimage->height;
 
-         imaging()->nanosvg(this, psvgimage, iRedLower, w, h);
+         imaging()->nanosvg(this, psvgimage, m_iRedLower, w, h);
 
          //unmap();
 

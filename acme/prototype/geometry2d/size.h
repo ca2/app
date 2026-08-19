@@ -157,6 +157,19 @@ public:
    inline size_type minimum(const size_type & s)const noexcept { return size_type(::minimum(this->cx, s.cx), ::minimum(this->cy, s.cy)); }
    inline size_type maximum(const size_type& s)const noexcept { return size_type(::maximum(this->cx, s.cx), ::maximum(this->cy, s.cy)); }
 
+
+   inline size_type constrained(const sequence_type <UNIT_TYPE, 2> & p, const size_type& s)const noexcept
+   {
+
+      auto cx = this->cx - (s.cx + p.x);
+
+      auto cy = this->cy - (s.cy + p.y);
+
+      return size_type(cx >= 0 ? s.cx : s.cx + cx, cy >= 0 ? s.cy : s.cy + cy);
+
+   }
+
+
    inline size_type & ensure_at_most(const size_type & s) noexcept { this->cx = ::minimum(this->cx, s.cx); this->cy = ::minimum(this->cy, s.cy); return *this; }
    inline size_type & ensure_at_least(const size_type & s) noexcept { this->cx = ::maximum(this->cx, s.cx); this->cy = ::maximum(this->cy, s.cy); return *this; }
 

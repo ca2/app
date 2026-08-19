@@ -37,7 +37,7 @@ struct pixmap_t
    ::i32_size m_sizeRaw;
    ::color_indexes m_colorindexes = common_system_image_color_indexes();
    mutable bool m_bTrans; // optionally used by implementation
-   mutable bool m_bMapped; // optionally used by implementation
+   //mutable bool m_bMapped; // optionally used by implementation
    bool m_bReduced; // optionally used by implementation
 
    static ::i32 g_iRedLowerDefault;
@@ -50,7 +50,7 @@ struct pixmap_t
       m_iScan = 0;
       m_pimage32 = nullptr;
       m_pimage32Raw = nullptr;
-      m_bMapped = false;
+      //m_bMapped = false;
       m_bReduced = false;
       m_bTrans = false;
    }
@@ -196,13 +196,23 @@ struct pixmap_t
 
    inline ::i32_rectangle rectangle(const ::i32_point &point) const { return ::i32_rectangle(point, m_size); }
 
-   ::i32_point top_left() const noexcept;
-   ::i32_point bottom_right() const noexcept;
+   bool contains_x(::i32 x) const noexcept {return x >= this->left() && x <= this->right(); }
+   bool contains_y(::i32 y) const noexcept {return y >= this->top() && y <= this->bottom(); }
+   ::i32 raw_constrained_x(::i32 x) const noexcept {return ::constrained(x, 0, m_sizeRaw.cx);}
+   ::i32 raw_constrained_y(::i32 y) const noexcept {return ::constrained(y, 0, m_sizeRaw.cy);}
+   //::i32_point top_left() const noexcept;
+   //::i32_point bottom_right() const noexcept;
    inline ::i32_point origin() const noexcept { return top_left(); }
    // inline concrete < ::i32_size > size() const noexcept { return m_size; }
-   inline ::i32_size size() const noexcept;
-   inline ::i32 width() const noexcept { return m_size.cx; }
-   inline ::i32 height() const noexcept { return m_size.cy; }
+   inline ::i32_size size() const noexcept {return {this->width(), this->height()};}
+   inline ::i32 width() const noexcept { return this->right() - this->left(); }
+   inline ::i32 height() const noexcept { return this->bottom() - this->top(); }
+   ::i32 left() const noexcept { return raw_constrained_x(m_point.x); }
+   ::i32 top() const noexcept { return raw_constrained_y(m_point.y); }
+   ::i32_point top_left() const noexcept{return {this->left(), this->top()}; }
+   ::i32 right() const noexcept { return raw_constrained_x(m_point.x + m_size.cx); }
+   ::i32 bottom() const noexcept { return raw_constrained_y(m_point.y + m_size.cy); }
+   ::i32_point bottom_right() const noexcept{return {this->right(), this->bottom()}; }
    inline ::i32 area() const noexcept { return m_size.area(); }
    inline ::i32 scan_size() const noexcept { return m_iScan; }
    inline ::i32 scan_area_in_pixels() const noexcept { return (m_iScan / 4) * height(); }
@@ -237,14 +247,14 @@ struct pixmap_t
 
    inline pixmap_t &operator=(const pixmap_t &pixmap);
 
-   inline pixmap_t &operator=(const ::i32_rectangle &rectangle)
-   {
-
-      pixmap_map(rectangle);
-
-      return *this;
-
-   }
+   // inline pixmap_t &operator=(const ::i32_rectangle &rectangle)
+   // {
+   //
+   //    pixmap_map(rectangle);
+   //
+   //    return *this;
+   //
+   // }
 
    void reference(const pixmap_t &pixmap);
 
@@ -305,6 +315,13 @@ const ::pixmap_t & pixmapSource);
    ::color::color average_color();
 
 #endif
+
+
+protected:
+
+   friend class ::image::image;
+
+   friend class ::pixmap;
 
    void pixmap_map(const ::i32_rectangle & rectangle);
 

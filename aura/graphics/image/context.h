@@ -160,7 +160,7 @@ namespace image
       virtual ::image::image_pointer _load_image_from_file(const ::payload & payloadFile, const ::payload & varOptions);
       virtual void _save_to_file(const ::payload & payloadFile, ::image::image *pimage, const ::image::encoding_options & encodingoptions);
 
-      virtual void _load_image(::image::image* pimage, ::pointer<image_frame_array> & pframea, memory & memory);
+      virtual void _load_image(::pixmap * ppixmap, ::pointer<image_frame_array> & pframea, memory & memory);
 
       virtual void _load_multi_frame_image(::image::load_image * ploadimage, memory & memory);
 

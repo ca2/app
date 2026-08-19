@@ -21,6 +21,46 @@ namespace image
    }
 
 
+   void image_frame_array::create_from_pixmap(::pixmap * ppixmap)
+   {
+
+      m_ppixmap = ppixmap;
+
+   }
+
+
+   ::pixmap * image_frame_array::get_pixmap()
+   {
+
+      if (this->count() <= 1)
+      {
+
+         return m_ppixmap;
+
+      }
+
+      return nullptr;
+
+   }
+
+
+   ::particle * image_frame_array::get_image()
+   {
+
+      if (this->count() <= 1)
+      {
+
+         return m_pparticleImage;
+
+      }
+
+      return nullptr;
+
+   }
+
+
+
+
 
 } // namespace image
 

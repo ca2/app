@@ -14,6 +14,7 @@
 #include "aura/graphics/draw2d/graphics.h"
 #include "aura/graphics/draw2d/graphics_pointer.h"
 //#include "aura/graphics/draw2d/host.h"
+#include "image_pixmap_lease.h"
 #include "acme/graphics/draw2d/task_tool.h"
 #include "aura/graphics/draw2d/draw2d.h"
 #include "aura/graphics/image/load_image.h"
@@ -144,6 +145,7 @@ namespace image
    }
 
 
+
    ::i32_size image::image::image_source_size(const ::f64_size&, enum_image_selection) const
    {
 
@@ -260,7 +262,7 @@ namespace image
       ::acme::user::interaction* pacmeuserinteractionAffinity)
    {
 
-      if (m_bMapped)
+      if (m_pimagepixmaplease)
       {
 
          throw ::exception(
@@ -613,7 +615,9 @@ namespace image
              || ppixmapWindowBuffer->m_point != pwindow->m_pointWindow)
          {
 
-            m_ppixmapOwned->pixmap_map({pwindow->m_pointWindow, ppixmapWindowBuffer->size()});
+            m_ppixmapOwned->m_point = pwindow->m_pointWindow;
+
+            m_ppixmapOwned->m_size = ppixmapWindowBuffer->size();
 
          }
 
@@ -930,7 +934,7 @@ namespace image
       //pixmap::reset();
       //pixmap::pixmap_unmap();
       //m_interlockedcountMap = 0;
-      m_bMapped = false;
+      m_pimagepixmaplease = nullptr;
       clear_flag(e_flag_success);
       clear_flag(e_flag_failure);
       //m_pgraphics.defer_destroy_and_release();
@@ -1075,7 +1079,7 @@ namespace image
 
       ::image::image* pimageDst = this;
 
-      if (pimageDst->m_bMapped || pimageSrc->m_bMapped)
+      if (pimageDst->m_pimagepixmaplease || pimageSrc->m_pimagepixmaplease)
       {
 
          throw ::exception(error_wrong_state);
@@ -1225,7 +1229,7 @@ namespace image
 
       ::image::image* pimageDst = this;
 
-      if (pimageDst->m_bMapped || pimageSrc->m_bMapped)
+      if (pimageDst->m_pimagepixmaplease || pimageSrc->m_pimagepixmaplease)
       {
 
          throw ::exception(error_wrong_state);
@@ -7701,225 +7705,225 @@ namespace image
    //
    //
    //
-   // void image::set_mipmap(::image::enum_mipmap emipmap)
-   // {
-   //
-   //    if (m_emipmap == emipmap)
-   //    {
-   //
-   //       //return true;
-   //
-   //       return;
-   //
-   //    }
-   //
-   //    if (emipmap != ::image::e_mipmap_none)
-   //    {
-   //
-   //       return _set_mipmap(emipmap);
-   //
-   //    }
-   //
-   //    //return true;
-   //
-   // }
-   //
-   //
-   // void image::_set_mipmap(::image::enum_mipmap emipmap)
-   // {
-   //
-   //    ASSERT(emipmap != ::image::e_mipmap_none);
-   //
-   //    ::image::image_pointer pimage = this->clone();
-   //
-   //    ::i32 cxSource = pimage->width();
-   //
-   //    ::i32 cySource = pimage->width();
-   //
-   //    ::i32 iSourceScan = pimage->scan_size();
-   //
-   //    ::f64 cx = cxSource;
-   //
-   //    ::f64 cy = cySource;
-   //
-   //    if (emipmap == ::image::e_mipmap_isotropic)
-   //    {
-   //
-   //       ::f64 newcx = cx + cx / 2.0 - 1.0;
-   //
-   //       ::f64 newcy = cy;
-   //
-   //       create_as_descriptor({(::i32)newcx, (::i32)newcy});
-   //
-   //       //if (!create({ (::i32)newcx, (::i32)newcy }))
-   //       //{
-   //
-   //       //   throw ::exception(error_resource);
-   //
-   //       //}
-   //
-   //       auto pgraphics = acquire_graphics();
-   //
-   //       pgraphics->set_interpolation_mode(::draw2d::e_interpolation_mode_high_quality_bicubic);
-   //
-   //       ::i32 x = cxSource;
-   //
-   //       ::i32 y = 0;
-   //
-   //       ::image::image_source imagesource(pimage);
-   //
-   //       ::f64_rectangle rectangle(::f64_size(cxSource, cySource));
-   //
-   //       ::image::image_drawing_options imagedrawingoptions(rectangle);
-   //
-   //       ::image::image_drawing imagedrawing(imagedrawingoptions, imagesource);
-   //
-   //       pgraphics->draw(imagedrawing);
-   //
-   //       while (cx >= 1.0 && cy >= 1.0)
-   //       {
-   //
-   //          cx /= 2.0;
-   //
-   //          cy /= 2.0;
-   //
-   //          if (::parallelization::get_priority() == ::e_priority_idle)
-   //          {
-   //
-   //             map();
-   //
-   //             C2PassScale < CBlackmanFilter > scale(1.0);
-   //
-   //             scale.Scale(
-   //                &image32()[x + y * m_iScan / sizeof(image32_t)],
-   //                color_indexes(),
-   //                (::u32)cx,
-   //                (::u32)cy,
-   //                m_iScan,
-   //                pimage->data(),
-   //                cxSource,
-   //                cySource,
-   //                iSourceScan
-   //             );
-   //
-   //          }
-   //          else
-   //          {
-   //
-   //             ::image::image_source imagesource(pimage, ::i32_rectangle_dimension(0, 0, (::i32)cx, (::i32)cy));
-   //
-   //             auto rectangle = f64_rectangle_dimension(x, y, cx, cy);
-   //
-   //             ::image::image_drawing_options imagedrawingoptions(rectangle);
-   //
-   //             ::image::image_drawing imagedrawing(imagedrawingoptions, imagesource);
-   //
-   //             pgraphics->draw(imagedrawing);
-   //
-   //          }
-   //
-   //          y += (::i32)cy;
-   //
-   //       }
-   //
-   //       m_emipmap = ::image::e_mipmap_isotropic;
-   //
-   //    }
-   //    else
-   //    {
-   //
-   //       ::f64 newcx = cx * 2.0 - 1.0;
-   //
-   //       ::f64 newcy = cy * 2.0 - 1.0;
-   //
-   //       create_as_descriptor({(::i32)newcx, (::i32)newcy});
-   //
-   //       //if (!create({ (::i32)newcx, (::i32)newcy }))
-   //       //{
-   //
-   //       //   throw ::exception(error_resource);
-   //
-   //       //}
-   //
-   //       ::i32 Δx;
-   //
-   //       ::i32 x = 0;
-   //
-   //       ::i32 xPrevious;
-   //       ::i32 yPrevious;
-   //       ::i32 cxPrevious;
-   //       ::i32 cyPrevious;
-   //
-   //       xPrevious = 0;
-   //       cxPrevious = cxSource;
-   //
-   //       for (Δx = (::i32)cx; Δx > 0; x += Δx, Δx /= 2)
-   //       {
-   //
-   //          yPrevious = 0;
-   //          cyPrevious = pimage->height();
-   //
-   //          for (::i32 y = 0, Δy = (::i32)cy; Δy > 0; y += Δy, Δy /= 2)
-   //          {
-   //
-   //             if (::parallelization::get_priority() == ::e_priority_idle)
-   //             {
-   //
-   //                map();
-   //
-   //                C2PassScale < CBlackmanFilter > scale(1.0);
-   //
-   //                scale.Scale(
-   //                   &image32()[x + y * m_iScan / sizeof(image32_t)],
-   //                   color_indexes(),
-   //                   Δx,
-   //                   Δy,
-   //                   m_iScan,
-   //                   &pimage->image32()[xPrevious + yPrevious * pimage->m_iScan / sizeof(image32_t)],
-   //                   cxPrevious,
-   //                   cyPrevious,
-   //                   pimage->m_iScan
-   //                );
-   //
-   //                yPrevious = y;
-   //                cyPrevious = Δy;
-   //                pimage = this;
-   //
-   //             }
-   //             else
-   //             {
-   //
-   //                ::image::image_source imagesource(pimage, ::i32_rectangle_dimension(0, 0, pimage->width(), pimage->height()));
-   //
-   //                auto rectangle = f64_rectangle_dimension(x, y, Δx, Δy);
-   //
-   //                ::image::image_drawing_options imagedrawingoptions(rectangle);
-   //
-   //                ::image::image_drawing imagedrawing(imagedrawingoptions, imagesource);
-   //
-   //                auto pgraphics = acquire_graphics();
-   //
-   //                pgraphics->draw(imagedrawing);
-   //
-   //             }
-   //
-   //          }
-   //
-   //          xPrevious = x;
-   //          cxPrevious = Δx;
-   //
-   //       }
-   //
-   //       m_emipmap = ::image::e_mipmap_anisotropic;
-   //
-   //    }
-   //
-   //    size() = pimage->get_size();
-   //
-   //    //return true;
-   //
-   // }
-   //
+   void image::set_mipmap(::image::enum_mipmap emipmap)
+   {
+
+      if (m_emipmap == emipmap)
+      {
+
+         //return true;
+
+         return;
+
+      }
+
+      if (emipmap != ::image::e_mipmap_none)
+      {
+
+         return _set_mipmap(emipmap);
+
+      }
+
+      //return true;
+
+   }
+
+
+   void image::_set_mipmap(::image::enum_mipmap emipmap)
+   {
+
+      ASSERT(emipmap != ::image::e_mipmap_none);
+
+      ::image::image_pointer pimage = this->clone();
+
+      ::i32 cxSource = pimage->width();
+
+      ::i32 cySource = pimage->width();
+
+      //::i32 iSourceScan = pimage->scan_size();
+
+      ::f64 cx = cxSource;
+
+      ::f64 cy = cySource;
+
+      if (emipmap == ::image::e_mipmap_isotropic)
+      {
+
+         ::f64 newcx = cx + cx / 2.0 - 1.0;
+
+         ::f64 newcy = cy;
+
+         create_as_descriptor({(::i32)newcx, (::i32)newcy});
+
+         //if (!create({ (::i32)newcx, (::i32)newcy }))
+         //{
+
+         //   throw ::exception(error_resource);
+
+         //}
+
+         auto pgraphics = acquire_graphics();
+
+         pgraphics->set_interpolation_mode(::draw2d::e_interpolation_mode_high_quality_bicubic);
+
+         ::i32 x = cxSource;
+
+         ::i32 y = 0;
+
+         ::image::image_source imagesource(pimage);
+
+         ::f64_rectangle rectangle(::f64_size(cxSource, cySource));
+
+         ::image::image_drawing_options imagedrawingoptions(rectangle);
+
+         ::image::image_drawing imagedrawing(imagedrawingoptions, imagesource);
+
+         pgraphics->draw(imagedrawing);
+
+         while (cx >= 1.0 && cy >= 1.0)
+         {
+
+            cx /= 2.0;
+
+            cy /= 2.0;
+
+            // if (::parallelization::get_priority() == ::e_priority_idle)
+            // {
+            //
+            //    map();
+            //
+            //    C2PassScale < CBlackmanFilter > scale(1.0);
+            //
+            //    scale.Scale(
+            //       &image32()[x + y * m_iScan / sizeof(image32_t)],
+            //       color_indexes(),
+            //       (::u32)cx,
+            //       (::u32)cy,
+            //       m_iScan,
+            //       pimage->data(),
+            //       cxSource,
+            //       cySource,
+            //       iSourceScan
+            //    );
+            //
+            // }
+            // else
+            {
+
+               ::image::image_source imagesource(pimage, ::i32_rectangle_dimension(0, 0, (::i32)cx, (::i32)cy));
+
+               auto rectangle = f64_rectangle_dimension(x, y, cx, cy);
+
+               ::image::image_drawing_options imagedrawingoptions(rectangle);
+
+               ::image::image_drawing imagedrawing(imagedrawingoptions, imagesource);
+
+               pgraphics->draw(imagedrawing);
+
+            }
+
+            y += (::i32)cy;
+
+         }
+
+         m_emipmap = ::image::e_mipmap_isotropic;
+
+      }
+      else
+      {
+
+         ::f64 newcx = cx * 2.0 - 1.0;
+
+         ::f64 newcy = cy * 2.0 - 1.0;
+
+         create_as_descriptor({(::i32)newcx, (::i32)newcy});
+
+         //if (!create({ (::i32)newcx, (::i32)newcy }))
+         //{
+
+         //   throw ::exception(error_resource);
+
+         //}
+
+         ::i32 Δx;
+
+         ::i32 x = 0;
+
+         ::i32 xPrevious;
+         ::i32 yPrevious;
+         ::i32 cxPrevious;
+         ::i32 cyPrevious;
+
+         xPrevious = 0;
+         cxPrevious = cxSource;
+
+         for (Δx = (::i32)cx; Δx > 0; x += Δx, Δx /= 2)
+         {
+
+            yPrevious = 0;
+            cyPrevious = pimage->height();
+
+            for (::i32 y = 0, Δy = (::i32)cy; Δy > 0; y += Δy, Δy /= 2)
+            {
+
+               // if (::parallelization::get_priority() == ::e_priority_idle)
+               // {
+               //
+               //    map();
+               //
+               //    C2PassScale < CBlackmanFilter > scale(1.0);
+               //
+               //    scale.Scale(
+               //       &image32()[x + y * m_iScan / sizeof(image32_t)],
+               //       color_indexes(),
+               //       Δx,
+               //       Δy,
+               //       m_iScan,
+               //       &pimage->image32()[xPrevious + yPrevious * pimage->m_iScan / sizeof(image32_t)],
+               //       cxPrevious,
+               //       cyPrevious,
+               //       pimage->m_iScan
+               //    );
+               //
+               //    yPrevious = y;
+               //    cyPrevious = Δy;
+               //    pimage = this;
+               //
+               // }
+               // else
+               {
+
+                  ::image::image_source imagesource(pimage, ::i32_rectangle_dimension(0, 0, pimage->width(), pimage->height()));
+
+                  auto rectangle = f64_rectangle_dimension(x, y, Δx, Δy);
+
+                  ::image::image_drawing_options imagedrawingoptions(rectangle);
+
+                  ::image::image_drawing imagedrawing(imagedrawingoptions, imagesource);
+
+                  auto pgraphics = acquire_graphics();
+
+                  pgraphics->draw(imagedrawing);
+
+               }
+
+            }
+
+            xPrevious = x;
+            cxPrevious = Δx;
+
+         }
+
+         m_emipmap = ::image::e_mipmap_anisotropic;
+
+      }
+
+      size() = pimage->get_size();
+
+      //return true;
+
+   }
+
    //
    // void image::set_origin(const ::i32_point& point)
    // {
@@ -10229,6 +10233,18 @@ namespace image
       return m_p->size();
 
    }*/
+
+
+   void image::create_with_pixmap(pixmap* ppixmap)
+   {
+
+      create_as_descriptor(ppixmap->size(), e_flag_success, ppixmap->m_iScan);
+
+      m_ppixmapOwned = ppixmap;
+
+   }
+
+
    void image::create_as_descriptor(const ::i32_size& size, ::enum_flag eflagCreate,
                                     ::i32 iGoodStride)
    {
@@ -10374,24 +10390,26 @@ namespace image
    //}
 
 
-   ::function<void(::image::image_frame_array*)> image::image_frame_array_loaded_callback()
+   ::function<void(::image::load_image *)> image::load_image_callback()
    {
 
       auto pimage = ::as_pointer(this);
 
-      return [pimage](::image::image_frame_array* pimageframearray)
+      return [pimage](::image::load_image * ploadimage)
       {
 
-         if (pimageframearray->count() <= 1)
+         auto ppixmap = ploadimage->m_pimageframearray->get_pixmap();
+
+         if (ppixmap)
          {
 
-            pimage->on_load_image(pimageframearray->m_ppixmap);
+            pimage->on_load_image(ppixmap);
 
          }
          else
          {
 
-            pimage->on_load_image_frame_array(pimageframearray);
+            pimage->on_load_image_frame_array(ploadimage->m_pimageframearray);
 
          }
 
@@ -10405,9 +10423,7 @@ namespace image
 
       auto ploadimage = create_newø<::image::load_image>();
 
-      construct_newø(m_ppixmapOwned);
-
-      ploadimage->initialize_load_image(this->image_frame_array_loaded_callback(), pimagecontext, m_ppixmapOwned);
+      ploadimage->initialize_load_image(pimagecontext, this->load_image_callback());
 
       return ploadimage;
 
@@ -10449,6 +10465,103 @@ namespace image
       auto pimageNew = get_image(::i32_size(cx, cy));
 
       return pimageNew;
+
+   }
+
+
+   ::image::image_pointer image::from(::image::load_image * ploadimage)
+   {
+
+      if (::is_null(ploadimage))
+      {
+
+         return {};
+
+      }
+
+      auto pimage = ::image::image::from(ploadimage->m_pimageframearray);
+
+      if (::is_null(pimage))
+      {
+
+         return {};
+
+      }
+
+      return pimage;
+
+   }
+
+
+   ::image::image_pointer image::from(::image::image_frame_array * pimageframearray)
+   {
+
+      if (::is_null(pimageframearray))
+      {
+
+         return {};
+
+      }
+
+      if (pimageframearray->get_count() <= 1)
+      {
+
+         if (!pimageframearray->m_pparticleImage)
+         {
+
+            pimageframearray->m_pparticleImage = ::image::image::from(pimageframearray->m_ppixmap);
+
+         }
+
+         return  pimageframearray->m_pparticleImage;
+
+      }
+
+      return from_image_frame_array(pimageframearray);
+
+   }
+
+
+   ::image::image_pointer image::from_image_frame_array(::image::image_frame_array * pimageframearray)
+   {
+
+      if (::is_null(pimageframearray) || pimageframearray->get_count() <= 1)
+      {
+
+         return from(pimageframearray);
+
+      }
+
+      ::cast < ::image::image > pimage = pimageframearray->m_pparticleImage;
+
+      if (pimage.is_set())
+      {
+
+         return pimage;
+
+      }
+
+      pimageframearray->m_pparticleImage = pimageframearray->createø<::image::image >();
+
+      pimage = pimageframearray->m_pparticleImage;
+
+      auto pextension = pimage->get_extension();
+
+      pextension->m_pframea = pimageframearray;
+
+      return pimage;
+
+   }
+
+
+   ::image::image_pointer image::from(::pixmap * ppixmap)
+   {
+
+      auto pimage = ppixmap->createø<::image::image >();
+
+      pimage->create_with_pixmap(ppixmap);
+
+      return pimage;
 
    }
 
@@ -10979,7 +11092,7 @@ namespace image
    //
 
 
-   pixmap_lease image::_map(const ::i32_rectangle& rectangle, bool bApplyAlphaTransform)
+   void image::_can_map(const ::i32_rectangle & rectangle)
    {
 
       if (has_active_destination_graphics_lease())
@@ -10989,16 +11102,65 @@ namespace image
 
       }
 
+      if (m_pimagepixmaplease)
+      {
+
+         throw ::exception(error_wrong_state);
+
+      }
+
+      if (m_ppixmapOwned && m_ppixmapOwned->m_interlockedcountMap > 0)
+      {
+
+         throw ::exception(error_wrong_state);
+
+      }
+
+   }
+
+
+
+   ::image_pixmap_lease image::_map(const ::i32_rectangle& rectangle)
+   {
+
+      _can_map(rectangle);
+
       if (!m_ppixmapOwned)
       {
 
-         return {};
+         construct_newø(m_ppixmapOwned);
+
+         m_ppixmapOwned->create_as_descriptor(m_sizeRaw, DEFAULT_CREATE_IMAGE_FLAG, m_iScan);
+
+         auto iScanRequired = m_sizeRaw.cx * 4;
+
+         if (m_iScan < iScanRequired)
+         {
+
+            m_iScan = iScanRequired;
+
+         }
+
+         m_ppixmapOwned->m_memoryPixmap.set_size(m_sizeRaw.cy * m_iScan);
+
+         m_ppixmapOwned->m_pimage32Raw = (::image32_t *) m_ppixmapOwned->m_memoryPixmap.data();
 
       }
 
       m_bGraphicsWasAcquiredAfterLastMap = false;
 
-      return m_ppixmapOwned->map();
+      ::i32_rectangle rectanglePixmapLease;
+
+      if (!rectangle.is_null())
+      {
+
+         m_point = rectangle.origin();
+
+         m_size = rectangle.size();
+
+      }
+
+      return {this, m_ppixmapOwned};
 
    }
 
@@ -11188,10 +11350,10 @@ namespace image
    }
 
 
-   ::pixmap_lease image::map(const ::i32_rectangle& rectangle, bool bApplyAlphaTransform)
+   ::image_pixmap_lease image::map(const ::i32_rectangle& rectangle)
    {
 
-      auto ppixmap = ::transfer(_map(rectangle, bApplyAlphaTransform));
+      auto ppixmap = ::transfer(_map(rectangle));
 
       return ::transfer(ppixmap);
 
@@ -11492,6 +11654,28 @@ namespace image
    }
 
 
+   void image::clear_transparent()
+   {
+
+      if (!m_bGraphicsWasAcquiredAfterLastMap && m_ppixmapOwned)
+      {
+
+         m_ppixmapOwned->fill_byte(0);
+
+      }
+      else
+      {
+
+         auto pgraphicsImageThis = this->acquire_graphics();
+
+         pgraphicsImageThis->clear(::color::transparent);
+
+
+      }
+
+   }
+
+
    void image::copy_from(::image::image * pimage)
    {
 
@@ -11525,6 +11709,105 @@ namespace image
          auto ppixmapImage = pimage->map();
 
          ppixmapImageThis->copy_from(ppixmapImage);
+
+      }
+
+   }
+
+
+   void image::copy_from(::image::image * pimage, const ::i32_size & size, const ::i32_point & pointDst, const ::i32_point & pointSrc)
+   {
+
+      if (!pimage->m_bGraphicsWasAcquiredAfterLastMap && pimage->m_ppixmapOwned)
+      {
+
+         if ( m_ppixmapOwned)
+         {
+
+            m_ppixmapOwned->copy_from(pimage->m_ppixmapOwned, size, pointDst, pointSrc);
+
+         }
+         else
+         {
+
+            m_ppixmapOwned = pimage->m_ppixmapOwned->clone();
+
+         }
+
+      }
+      else if (m_pbitmap && pimage->m_pbitmap && m_pbitmap->copy_from(pimage->m_pbitmap, size, pointDst, pointSrc))
+      {
+
+
+      }
+      else
+      {
+
+         auto ppixmapImageThis = this->map();
+
+         auto ppixmapImage = pimage->map();
+
+         ppixmapImageThis->copy_from(ppixmapImage, size, pointDst, pointSrc);
+
+      }
+
+   }
+
+
+   void image::resizing_copy_from(::image::image * pimage, const ::i32_size & sizeDstRaw, const ::i32_size & size, const ::i32_point & pointDst, const ::i32_point & pointSrc)
+   {
+
+      if (m_ppixmapOwned)
+      {
+
+         change_raw_size(sizeDstRaw);
+
+      }
+
+      copy_from(pimage, size, pointDst, pointSrc);
+
+   }
+
+
+   void image::fitting_copy_from(::image::image * pimage, const ::i32_size & size, const ::i32_point & pointDst, const ::i32_point & pointSrc)
+   {
+
+      ::i32_size sizeMax = m_point + pointDst + size;
+
+      if (m_ppixmapOwned)
+      {
+
+         if (sizeMax.cx > m_ppixmapOwned->right()
+            || sizeMax.cy > m_ppixmapOwned->bottom())
+         {
+
+            change_raw_size(sizeMax);
+
+         }
+
+      }
+
+      copy_from(pimage, size, pointDst, pointSrc);
+
+   }
+
+
+   void image::change_raw_size(const ::i32_size & sizeRawNew, ::i32 iMinimumScan)
+   {
+
+      if (sizeRawNew <= m_sizeRaw && iMinimumScan < m_iScan)
+      {
+
+         m_sizeRaw = sizeRawNew;
+
+         return;
+
+      }
+
+      if (m_ppixmapOwned)
+      {
+
+         m_ppixmapOwned->change_raw_size(sizeRawNew, iMinimumScan);
 
       }
 

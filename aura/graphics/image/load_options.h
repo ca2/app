@@ -17,8 +17,9 @@ namespace image
       bool cache = true;
       bool helper_maps = false;
       bool toy = true;
+      bool apply_exif_orientation = true;
       ::particle * pparticleSync = nullptr;
-      ::function < void(pixmap *) > functionLoaded;
+      ::function < void(::image::load_image *) > functionLoaded;
 
    };
 

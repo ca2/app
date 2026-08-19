@@ -207,9 +207,11 @@ namespace experience_core
 
       }
 
-      //b = 
+      //b =
 
-      pimaging->blur(pimage2, 2);
+      auto ppixmapImage2 = pimage2->map();
+
+      pimaging->blur(ppixmapImage2, 2);
 
       {
 

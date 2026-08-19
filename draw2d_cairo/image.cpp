@@ -19,7 +19,7 @@ namespace draw2d_cairo
    {
 
       m_bMapped            = false;
-      m_bTrans             = false;
+      //m_bTrans             = false;
 
    }
 
@@ -207,22 +207,22 @@ namespace draw2d_cairo
 //
 //   }
 
-
-   //bool image::dc_select(bool bSelect)
-   void image::dc_select(bool bSelect)
-   {
-      /*      if(bSelect)
-            {
-               return m_spgraphics->SelectObject(m_pbitmap) != nullptr;
-            }
-            else
-            {
-               return m_spgraphics->SelectObject(m_hbitmapOriginal) != nullptr;
-            }*/
-      
-            //return true;
-
-   }
+   //
+   // //bool image::dc_select(bool bSelect)
+   // void image::dc_select(bool bSelect)
+   // {
+   //    /*      if(bSelect)
+   //          {
+   //             return m_spgraphics->SelectObject(m_pbitmap) != nullptr;
+   //          }
+   //          else
+   //          {
+   //             return m_spgraphics->SelectObject(m_hbitmapOriginal) != nullptr;
+   //          }*/
+   //
+   //          //return true;
+   //
+   // }
 
 
    void image::create_from_graphics(::draw2d::graphics * pgraphics)
@@ -488,7 +488,7 @@ namespace draw2d_cairo
    //}
 
 
-   void image::_map(const ::i32_rectangle & rectangle, bool bApplyAlphaTransform)
+   ::pixmap_lease image::_map(const ::i32_rectangle & rectangle, bool bApplyAlphaTransform)
    {
 
       _synchronous_lock ml(::draw2d_cairo::mutex(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
@@ -496,7 +496,7 @@ namespace draw2d_cairo
       if (m_bMapped)
       {
 
-         return;
+         return {};
 
       }
 
@@ -510,7 +510,7 @@ namespace draw2d_cairo
       if (m_pbitmap.is_null())
       {
 
-         return;
+         return {};
 
       }
 
@@ -519,7 +519,7 @@ namespace draw2d_cairo
       if (surface == nullptr)
       {
 
-         return;
+         return {};
 
       }
 
@@ -527,7 +527,26 @@ namespace draw2d_cairo
 
       ::u8  * pdata = (::u8 *) cairo_image_surface_get_data(surface);
 
-      m_pimage32Raw = (image32_t * ) pdata;
+      // 1. Get Stride (scanline size in bytes)
+      int stride = cairo_image_surface_get_stride(surface);
+
+      // 2. Get Dimensions
+      int width = cairo_image_surface_get_width(surface);
+      int height = cairo_image_surface_get_height(surface);
+
+      // 3. Calculate Total Byte Size
+      size_t total_bytes = (size_t)stride * height;
+
+      auto ppixmapLease = create_newø<::pixmap>();
+
+      ppixmapLease->m_memoryPixmap.reference_data(pdata, total_bytes);
+
+      ppixmapLease->m_pimage32Raw = (::image32_t *) pdata;
+
+      ppixmapLease->m_sizeRaw.cx = width;
+      ppixmapLease->m_sizeRaw.cy = height;
+
+      //ppixmapLease->map(rectangle, bApplyAlphaTransform);
 
 //      if(pdata != (::u8 *) m_pimage32Raw && pdata != nullptr)
 //      {
@@ -573,7 +592,7 @@ namespace draw2d_cairo
 
       ((image *) this)->m_bMapped = true;
 
-      //return true;
+      return {ppixmapLease, rectangle, bApplyAlphaTransform};
 
    }
 
@@ -590,13 +609,13 @@ namespace draw2d_cairo
 
       }
 
-      if (m_pimage32Raw == nullptr)
-      {
-
-         return;
-
-      }
-
+      // if (m_pimage32Raw == nullptr)
+      // {
+      //
+      //    return;
+      //
+      // }
+      //
       if (m_pbitmap.is_null())
       {
 
@@ -936,328 +955,328 @@ namespace draw2d_cairo
 //#endif
 
 
-   void image::blend(const ::i32_point & pointDstParam, ::image::image *pimplSrc,  const ::i32_point & pointSrcParam, const ::i32_size & sizeParam, ::u8 bA)
-   {
-
-      auto size = sizeParam;
-
-      auto pointDst = pointDstParam;
-
-      auto pointSrc = pointSrcParam;
-
-      ::image::image *pimplDst = this;
-
-      pimplDst->map();
-
-      pimplSrc->map();
-
-      pointDst += m_point;
-
-      if (pointDst.x < 0)
-      {
-         pointDst.x -= pointSrc.x;
-         pointSrc.x = 0;
-      }
-
-      if (pointSrc.y < 0)
-      {
-         pointDst.y -= pointSrc.y;
-         pointSrc.y = 0;
-      }
-
-      if (pointDst.x < 0)
-      {
-         size.cx += pointDst.x;
-         pointDst.x = 0;
-      }
-
-      if (size.cx < 0)
-      {
-
-         return;
-
-      }
-
-      if (pointDst.y < 0)
-      {
-         size.cy += pointDst.y;
-         pointDst.y = 0;
-      }
-
-      if (size.cy < 0)
-      {
-
-         return;
-
-      }
-
-      ::i32 xEnd = minimum(size.cx, minimum(pimplSrc->width() - pointSrc.x, pimplDst->width() - pointDst.x));
-
-      ::i32 yEnd = minimum(size.cy, minimum(pimplSrc->height() - pointSrc.y, pimplDst->height() - pointDst.y));
-
-      if (xEnd < 0)
-      {
-
-         return;
-
-      }
-
-      if (yEnd < 0)
-      {
-
-         return;
-
-      }
-
-      ::i32 scanDst = pimplDst->scan_size();
-
-      ::i32 scanSrc = pimplSrc->scan_size();
-
-      ::u8 * pdst2;
-
-      ::u8 * psrc2;
-
-#ifdef APPLEOS
-      ::u8 * pdst = &((::u8 *)imageDst.m_pcolorrefMap)[scanDst * (imageDst.height() - ptDst.y - yEnd) + ptDst.x * sizeof(color32_t)];
-
-      ::u8 * psrc = &((::u8 *)imageSrc.m_pcolorrefMap)[scanSrc * (imageSrc.height() - ptSrc.y - yEnd) + ptSrc.x * sizeof(color32_t)];
-
-#else
-
-      ::u8 * pdst = &((::u8 *)pimplDst->m_pimage32)[scanDst * pointDst.y + pointDst.x * sizeof(color32_t)];
-
-      ::u8 * psrc = &((::u8 *)pimplSrc->m_pimage32)[scanSrc *  pointSrc.y + pointSrc.x * sizeof(color32_t)];
-
-#endif
-
-//      bool bFontListBlend = true;
+//    void image::blend(const ::i32_point & pointDstParam, ::image::image *pimplSrc,  const ::i32_point & pointSrcParam, const ::i32_size & sizeParam, ::u8 bA)
+//    {
 //
-//      if (bFontListBlend)
-//      {
+//       auto size = sizeParam;
 //
-//         if (bA == 0)
-//         {
+//       auto pointDst = pointDstParam;
 //
-//         }
-//         else if (bA == 255)
-//         {
+//       auto pointSrc = pointSrcParam;
 //
-//            for (::i32 y = 0; y < yEnd; y++)
-//            {
+//       ::image::image *pimplDst = this;
 //
-//               pdst2 = &pdst[scanDst * y];
+//       pimplDst->map();
 //
-//               psrc2 = &psrc[scanSrc * y];
+//       pimplSrc->map();
 //
-//               //::memory_copy(pdst2, psrc2, xEnd * 4);
-//               for (::i32 x = 0; x < xEnd; x++)
-//               {
+//       pointDst += m_point;
 //
-//                  //*pdst2 = *psrc2;
+//       if (pointDst.x < 0)
+//       {
+//          pointDst.x -= pointSrc.x;
+//          pointSrc.x = 0;
+//       }
 //
-//                  //pdst2[0] = (psrc2[0] + (pdst2[0] * (255 - psrc2[3])) / 255);
-//                  //pdst2[1] = (psrc2[1] + (pdst2[1] * (255 - psrc2[3])) / 255);
-//                  //pdst2[2] = (psrc2[2] + (pdst2[2] * (255 - psrc2[3])) / 255);
-//                  //pdst2[3] = (psrc2[3] + (pdst2[3] * (255 - psrc2[3])) / 255);
-//                  ::u8 acomplement = ~psrc2[3];
-//                  pdst2[0] = psrc2[0] + ((pdst2[0] * (acomplement)) >> 8);
-//                  pdst2[1] = psrc2[1] + ((pdst2[1] * (acomplement)) >> 8);
-//                  pdst2[2] = psrc2[2] + ((pdst2[2] * (acomplement)) >> 8);
-//                  pdst2[3] = psrc2[3] + ((pdst2[3] * (acomplement)) >> 8);
+//       if (pointSrc.y < 0)
+//       {
+//          pointDst.y -= pointSrc.y;
+//          pointSrc.y = 0;
+//       }
+//
+//       if (pointDst.x < 0)
+//       {
+//          size.cx += pointDst.x;
+//          pointDst.x = 0;
+//       }
+//
+//       if (size.cx < 0)
+//       {
+//
+//          return;
+//
+//       }
+//
+//       if (pointDst.y < 0)
+//       {
+//          size.cy += pointDst.y;
+//          pointDst.y = 0;
+//       }
+//
+//       if (size.cy < 0)
+//       {
+//
+//          return;
+//
+//       }
+//
+//       ::i32 xEnd = minimum(size.cx, minimum(pimplSrc->width() - pointSrc.x, pimplDst->width() - pointDst.x));
+//
+//       ::i32 yEnd = minimum(size.cy, minimum(pimplSrc->height() - pointSrc.y, pimplDst->height() - pointDst.y));
+//
+//       if (xEnd < 0)
+//       {
+//
+//          return;
+//
+//       }
+//
+//       if (yEnd < 0)
+//       {
+//
+//          return;
+//
+//       }
+//
+//       ::i32 scanDst = pimplDst->scan_size();
+//
+//       ::i32 scanSrc = pimplSrc->scan_size();
+//
+//       ::u8 * pdst2;
+//
+//       ::u8 * psrc2;
+//
+// #ifdef APPLEOS
+//       ::u8 * pdst = &((::u8 *)imageDst.m_pcolorrefMap)[scanDst * (imageDst.height() - ptDst.y - yEnd) + ptDst.x * sizeof(color32_t)];
+//
+//       ::u8 * psrc = &((::u8 *)imageSrc.m_pcolorrefMap)[scanSrc * (imageSrc.height() - ptSrc.y - yEnd) + ptSrc.x * sizeof(color32_t)];
+//
+// #else
+//
+//       ::u8 * pdst = &((::u8 *)pimplDst->m_pimage32)[scanDst * pointDst.y + pointDst.x * sizeof(color32_t)];
+//
+//       ::u8 * psrc = &((::u8 *)pimplSrc->m_pimage32)[scanSrc *  pointSrc.y + pointSrc.x * sizeof(color32_t)];
+//
+// #endif
+//
+// //      bool bFontListBlend = true;
+// //
+// //      if (bFontListBlend)
+// //      {
+// //
+// //         if (bA == 0)
+// //         {
+// //
+// //         }
+// //         else if (bA == 255)
+// //         {
+// //
+// //            for (::i32 y = 0; y < yEnd; y++)
+// //            {
+// //
+// //               pdst2 = &pdst[scanDst * y];
+// //
+// //               psrc2 = &psrc[scanSrc * y];
+// //
+// //               //::memory_copy(pdst2, psrc2, xEnd * 4);
+// //               for (::i32 x = 0; x < xEnd; x++)
+// //               {
+// //
+// //                  //*pdst2 = *psrc2;
+// //
+// //                  //pdst2[0] = (psrc2[0] + (pdst2[0] * (255 - psrc2[3])) / 255);
+// //                  //pdst2[1] = (psrc2[1] + (pdst2[1] * (255 - psrc2[3])) / 255);
+// //                  //pdst2[2] = (psrc2[2] + (pdst2[2] * (255 - psrc2[3])) / 255);
+// //                  //pdst2[3] = (psrc2[3] + (pdst2[3] * (255 - psrc2[3])) / 255);
+// //                  ::u8 acomplement = ~psrc2[3];
+// //                  pdst2[0] = psrc2[0] + ((pdst2[0] * (acomplement)) >> 8);
+// //                  pdst2[1] = psrc2[1] + ((pdst2[1] * (acomplement)) >> 8);
+// //                  pdst2[2] = psrc2[2] + ((pdst2[2] * (acomplement)) >> 8);
+// //                  pdst2[3] = psrc2[3] + ((pdst2[3] * (acomplement)) >> 8);
+// //
+// //
+// //
+// //                  pdst2 += 4;
+// //
+// //                  psrc2 += 4;
+// //
+// //               }
+// //               //pdst2 += xEnd;
+// //               //psrc2 += xEnd;
+// //
+// //            }
+// //         }
+// //         else
+// //         {
+// //            for (::i32 y = 0; y < yEnd; y++)
+// //            {
+// //
+// //               pdst2 = &pdst[scanDst * y];
+// //
+// //               psrc2 = &psrc[scanSrc * y];
+// //
+// //               //::memory_copy(pdst2, psrc2, xEnd * 4);
+// //               for (::i32 x = 0; x < xEnd; x++)
+// //               {
+// //
+// //                  //*pdst2 = *psrc2;
+// //
+// //                  //pdst2[0] = (psrc2[0] + (pdst2[0] * (255 - psrc2[3])) / 255);
+// //                  //pdst2[1] = (psrc2[1] + (pdst2[1] * (255 - psrc2[3])) / 255);
+// //                  //pdst2[2] = (psrc2[2] + (pdst2[2] * (255 - psrc2[3])) / 255);
+// //                  //pdst2[3] = (psrc2[3] + (pdst2[3] * (255 - psrc2[3])) / 255);
+// //                  //::u8 acomplement = (~psrc2[3] * bA) >> 8;
+// //                  //pdst2[0] = psrc2[0] + ((pdst2[0] * (acomplement)) >> 8);
+// //                  //pdst2[1] = psrc2[1] + ((pdst2[1] * (acomplement)) >> 8);
+// //                  //pdst2[2] = psrc2[2] + ((pdst2[2] * (acomplement)) >> 8);
+// //                  //pdst2[3] = psrc2[3] + ((pdst2[3] * (acomplement)) >> 8);
+// //                  ::u8 acomplement = (~psrc2[3] * bA) >> 8;
+// //                  pdst2[0] = clip_byte(((psrc2[0] * bA) + (pdst2[0] * acomplement)) >> 8);
+// //                  pdst2[1] = clip_byte(((psrc2[1] * bA) + (pdst2[1] * acomplement)) >> 8);
+// //                  pdst2[2] = clip_byte(((psrc2[2] * bA) + (pdst2[2] * acomplement)) >> 8);
+// //                  pdst2[3] = clip_byte(((psrc2[3] * bA) + (pdst2[3] * acomplement)) >> 8);
+// //
+// //
+// //
+// //                  pdst2 += 4;
+// //
+// //                  psrc2 += 4;
+// //
+// //               }
+// //               //pdst2 += xEnd;
+// //               //psrc2 += xEnd;
+// //
+// //            }
+// //
+// //         }
+// //
+// //         // bFontListData
+// //
+// //      }
+// //      else
+//       {
+//
+//          // !bFontListData
+//          // bBouncingBall...
+//
+//          if (bA == 0)
+//          {
+//
+//          }
+//          else if (bA == 255)
+//          {
+//
+//             for (::i32 y = 0; y < yEnd; y++)
+//             {
+//
+//                pdst2 = &pdst[scanDst * y];
+//
+//                psrc2 = &psrc[scanSrc * y];
+//
+//                //::memory_copy(pdst2, psrc2, xEnd * 4);
+//                for (::i32 x = 0; x < xEnd; x++)
+//                {
+//
+//                   //*pdst2 = *psrc2;
+//
+//                   //pdst2[0] = (psrc2[0] + (pdst2[0] * (255 - psrc2[3])) / 255);
+//                   //pdst2[1] = (psrc2[1] + (pdst2[1] * (255 - psrc2[3])) / 255);
+//                   //pdst2[2] = (psrc2[2] + (pdst2[2] * (255 - psrc2[3])) / 255);
+//                   //pdst2[3] = (psrc2[3] + (pdst2[3] * (255 - psrc2[3])) / 255);
+//                   ::u8 a = pdst2[3];
+//                   ::u8 alpha = psrc2[3];
+//                   if (a == 0)
+//                   {
+//
+//                   }
+//                   else if(alpha == 0)
+//                   {
+//
+//                      *((image32_t *)pdst2) = {};
+//
+//                   }
+//                   else
+//                   {
+//
+//                      //::i32 d0 = pdst2[0] * 255 / a;
+//                      //::i32 d1 = pdst2[1] * 255 / a;
+//                      //::i32 d2 = pdst2[2] * 255 / a;
+//
+//                      //::i32 s0 = psrc2[0] * 255 / alpha;
+//                      //::i32 s1 = psrc2[1] * 255 / alpha;
+//                      //::i32 s2 = psrc2[2] * 255 / alpha;
+//
+//                      //d0 = ((s0 * a) + (d0 * alpha)) >> 8;
+//                      //d1 = ((s1 * a) + (d1 * alpha)) >> 8;
+//                      //d2 = ((s2 * a) + (d2 * alpha)) >> 8;
+//                      //pdst2[3] = ((psrc2[3] * a) + (pdst2[3] * alpha)) >> 8;
+//
+//                      //pdst[0] = (d0 * pdst2[3]) >> 8;
+//                      //pdst[1] = (d1 * pdst2[3]) >> 8;
+//                      //pdst[2] = (d2 * pdst2[3]) >> 8;
+//
+//                      //pdst2[0] = psrc2[0] + ((pdst2[0] * (acomplement)) >> 8);
+//                      //pdst2[1] = psrc2[1] + ((pdst2[1] * (acomplement)) >> 8);
+//                      //pdst2[2] = psrc2[2] + ((pdst2[2] * (acomplement)) >> 8);
+//                      //pdst2[3] = psrc2[3] + ((pdst2[3] * (acomplement)) >> 8);
+//
+//                      pdst2[0] = (pdst2[0] * alpha) >> 8;
+//                      pdst2[1] = (pdst2[1] * alpha) >> 8;
+//                      pdst2[2] = (pdst2[2] * alpha) >> 8;
+//                      pdst2[3] = (pdst2[3] * alpha) >> 8;
+//                   }
 //
 //
 //
-//                  pdst2 += 4;
+//                   pdst2 += 4;
 //
-//                  psrc2 += 4;
+//                   psrc2 += 4;
 //
-//               }
-//               //pdst2 += xEnd;
-//               //psrc2 += xEnd;
+//                }
+//                //pdst2 += xEnd;
+//                //psrc2 += xEnd;
 //
-//            }
-//         }
-//         else
-//         {
-//            for (::i32 y = 0; y < yEnd; y++)
-//            {
+//             }
+//          }
+//          else
+//          {
+//             for (::i32 y = 0; y < yEnd; y++)
+//             {
 //
-//               pdst2 = &pdst[scanDst * y];
+//                pdst2 = &pdst[scanDst * y];
 //
-//               psrc2 = &psrc[scanSrc * y];
+//                psrc2 = &psrc[scanSrc * y];
 //
-//               //::memory_copy(pdst2, psrc2, xEnd * 4);
-//               for (::i32 x = 0; x < xEnd; x++)
-//               {
+//                //::memory_copy(pdst2, psrc2, xEnd * 4);
+//                for (::i32 x = 0; x < xEnd; x++)
+//                {
 //
-//                  //*pdst2 = *psrc2;
+//                   //*pdst2 = *psrc2;
 //
-//                  //pdst2[0] = (psrc2[0] + (pdst2[0] * (255 - psrc2[3])) / 255);
-//                  //pdst2[1] = (psrc2[1] + (pdst2[1] * (255 - psrc2[3])) / 255);
-//                  //pdst2[2] = (psrc2[2] + (pdst2[2] * (255 - psrc2[3])) / 255);
-//                  //pdst2[3] = (psrc2[3] + (pdst2[3] * (255 - psrc2[3])) / 255);
-//                  //::u8 acomplement = (~psrc2[3] * bA) >> 8;
-//                  //pdst2[0] = psrc2[0] + ((pdst2[0] * (acomplement)) >> 8);
-//                  //pdst2[1] = psrc2[1] + ((pdst2[1] * (acomplement)) >> 8);
-//                  //pdst2[2] = psrc2[2] + ((pdst2[2] * (acomplement)) >> 8);
-//                  //pdst2[3] = psrc2[3] + ((pdst2[3] * (acomplement)) >> 8);
-//                  ::u8 acomplement = (~psrc2[3] * bA) >> 8;
-//                  pdst2[0] = clip_byte(((psrc2[0] * bA) + (pdst2[0] * acomplement)) >> 8);
-//                  pdst2[1] = clip_byte(((psrc2[1] * bA) + (pdst2[1] * acomplement)) >> 8);
-//                  pdst2[2] = clip_byte(((psrc2[2] * bA) + (pdst2[2] * acomplement)) >> 8);
-//                  pdst2[3] = clip_byte(((psrc2[3] * bA) + (pdst2[3] * acomplement)) >> 8);
+//                   //pdst2[0] = (psrc2[0] + (pdst2[0] * (255 - psrc2[3])) / 255);
+//                   //pdst2[1] = (psrc2[1] + (pdst2[1] * (255 - psrc2[3])) / 255);
+//                   //pdst2[2] = (psrc2[2] + (pdst2[2] * (255 - psrc2[3])) / 255);
+//                   //pdst2[3] = (psrc2[3] + (pdst2[3] * (255 - psrc2[3])) / 255);
+//                   //::u8 acomplement = (~psrc2[3] * bA) >> 8;
+//                   //pdst2[0] = psrc2[0] + ((pdst2[0] * (acomplement)) >> 8);
+//                   //pdst2[1] = psrc2[1] + ((pdst2[1] * (acomplement)) >> 8);
+//                   //pdst2[2] = psrc2[2] + ((pdst2[2] * (acomplement)) >> 8);
+//                   //pdst2[3] = psrc2[3] + ((pdst2[3] * (acomplement)) >> 8);
 //
+//                   ::u8 acomplement = (~psrc2[3] * bA) >> 8;
 //
+//                   pdst2[0] = byte_clip(((psrc2[0] * bA) + (pdst2[0] * acomplement)) >> 8);
+//                   pdst2[1] = byte_clip(((psrc2[1] * bA) + (pdst2[1] * acomplement)) >> 8);
+//                   pdst2[2] = byte_clip(((psrc2[2] * bA) + (pdst2[2] * acomplement)) >> 8);
+//                   pdst2[3] = byte_clip(((psrc2[3] * bA) + (pdst2[3] * acomplement)) >> 8);
 //
-//                  pdst2 += 4;
+//                   pdst2 += 4;
 //
-//                  psrc2 += 4;
+//                   psrc2 += 4;
 //
-//               }
-//               //pdst2 += xEnd;
-//               //psrc2 += xEnd;
+//                }
+//                //pdst2 += xEnd;
+//                //psrc2 += xEnd;
 //
-//            }
+//             }
 //
-//         }
+//          }
 //
-//         // bFontListData
+//       }
 //
-//      }
-//      else
-      {
-
-         // !bFontListData
-         // bBouncingBall...
-
-         if (bA == 0)
-         {
-
-         }
-         else if (bA == 255)
-         {
-
-            for (::i32 y = 0; y < yEnd; y++)
-            {
-
-               pdst2 = &pdst[scanDst * y];
-
-               psrc2 = &psrc[scanSrc * y];
-
-               //::memory_copy(pdst2, psrc2, xEnd * 4);
-               for (::i32 x = 0; x < xEnd; x++)
-               {
-
-                  //*pdst2 = *psrc2;
-
-                  //pdst2[0] = (psrc2[0] + (pdst2[0] * (255 - psrc2[3])) / 255);
-                  //pdst2[1] = (psrc2[1] + (pdst2[1] * (255 - psrc2[3])) / 255);
-                  //pdst2[2] = (psrc2[2] + (pdst2[2] * (255 - psrc2[3])) / 255);
-                  //pdst2[3] = (psrc2[3] + (pdst2[3] * (255 - psrc2[3])) / 255);
-                  ::u8 a = pdst2[3];
-                  ::u8 alpha = psrc2[3];
-                  if (a == 0)
-                  {
-
-                  }
-                  else if(alpha == 0)
-                  {
-
-                     *((image32_t *)pdst2) = {};
-
-                  }
-                  else
-                  {
-
-                     //::i32 d0 = pdst2[0] * 255 / a;
-                     //::i32 d1 = pdst2[1] * 255 / a;
-                     //::i32 d2 = pdst2[2] * 255 / a;
-
-                     //::i32 s0 = psrc2[0] * 255 / alpha;
-                     //::i32 s1 = psrc2[1] * 255 / alpha;
-                     //::i32 s2 = psrc2[2] * 255 / alpha;
-
-                     //d0 = ((s0 * a) + (d0 * alpha)) >> 8;
-                     //d1 = ((s1 * a) + (d1 * alpha)) >> 8;
-                     //d2 = ((s2 * a) + (d2 * alpha)) >> 8;
-                     //pdst2[3] = ((psrc2[3] * a) + (pdst2[3] * alpha)) >> 8;
-
-                     //pdst[0] = (d0 * pdst2[3]) >> 8;
-                     //pdst[1] = (d1 * pdst2[3]) >> 8;
-                     //pdst[2] = (d2 * pdst2[3]) >> 8;
-
-                     //pdst2[0] = psrc2[0] + ((pdst2[0] * (acomplement)) >> 8);
-                     //pdst2[1] = psrc2[1] + ((pdst2[1] * (acomplement)) >> 8);
-                     //pdst2[2] = psrc2[2] + ((pdst2[2] * (acomplement)) >> 8);
-                     //pdst2[3] = psrc2[3] + ((pdst2[3] * (acomplement)) >> 8);
-
-                     pdst2[0] = (pdst2[0] * alpha) >> 8;
-                     pdst2[1] = (pdst2[1] * alpha) >> 8;
-                     pdst2[2] = (pdst2[2] * alpha) >> 8;
-                     pdst2[3] = (pdst2[3] * alpha) >> 8;
-                  }
-
-
-
-                  pdst2 += 4;
-
-                  psrc2 += 4;
-
-               }
-               //pdst2 += xEnd;
-               //psrc2 += xEnd;
-
-            }
-         }
-         else
-         {
-            for (::i32 y = 0; y < yEnd; y++)
-            {
-
-               pdst2 = &pdst[scanDst * y];
-
-               psrc2 = &psrc[scanSrc * y];
-
-               //::memory_copy(pdst2, psrc2, xEnd * 4);
-               for (::i32 x = 0; x < xEnd; x++)
-               {
-
-                  //*pdst2 = *psrc2;
-
-                  //pdst2[0] = (psrc2[0] + (pdst2[0] * (255 - psrc2[3])) / 255);
-                  //pdst2[1] = (psrc2[1] + (pdst2[1] * (255 - psrc2[3])) / 255);
-                  //pdst2[2] = (psrc2[2] + (pdst2[2] * (255 - psrc2[3])) / 255);
-                  //pdst2[3] = (psrc2[3] + (pdst2[3] * (255 - psrc2[3])) / 255);
-                  //::u8 acomplement = (~psrc2[3] * bA) >> 8;
-                  //pdst2[0] = psrc2[0] + ((pdst2[0] * (acomplement)) >> 8);
-                  //pdst2[1] = psrc2[1] + ((pdst2[1] * (acomplement)) >> 8);
-                  //pdst2[2] = psrc2[2] + ((pdst2[2] * (acomplement)) >> 8);
-                  //pdst2[3] = psrc2[3] + ((pdst2[3] * (acomplement)) >> 8);
-
-                  ::u8 acomplement = (~psrc2[3] * bA) >> 8;
-
-                  pdst2[0] = byte_clip(((psrc2[0] * bA) + (pdst2[0] * acomplement)) >> 8);
-                  pdst2[1] = byte_clip(((psrc2[1] * bA) + (pdst2[1] * acomplement)) >> 8);
-                  pdst2[2] = byte_clip(((psrc2[2] * bA) + (pdst2[2] * acomplement)) >> 8);
-                  pdst2[3] = byte_clip(((psrc2[3] * bA) + (pdst2[3] * acomplement)) >> 8);
-
-                  pdst2 += 4;
-
-                  psrc2 += 4;
-
-               }
-               //pdst2 += xEnd;
-               //psrc2 += xEnd;
-
-            }
-
-         }
-
-      }
-
-      //return true;
-
-   }
+//       //return true;
+//
+//    }
 
 
 //   void image::blend2(const ::i32_point& pointDstParam, ::image::image* pimageSrc, const ::i32_point& pointSrcParam, const ::i32_size& sizeParam, ::u8 bA)

@@ -427,7 +427,7 @@ namespace gpu
 
 
       //virtual class image_data image24(const ::payload & payloadFile);
-      virtual class image_data image32(const ::payload & payloadFile);
+      //virtual class image_data image32(const ::payload & payloadFile);
 
 
       virtual void clear(::gpu::texture * ptexture, const ::color::color& color);

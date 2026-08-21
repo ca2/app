@@ -25,7 +25,7 @@ namespace draw2d
 
       ::i32_rectangle rectangle(rectangleParam);
 
-      m_p->place_impact_area(rectangle);
+      m_p->set_target_rectangle(rectangle);
 
       m_pbitmap->CreateCompatibleBitmap(*this, rectangle.width(), rectangle.height());
 

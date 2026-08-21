@@ -450,7 +450,13 @@ namespace core
 
          m_pimageTemplate = image()->create_image({ 2048,  2048 });
 
-         ::graphics::colors_with_shades_of_grey(m_pimageTemplate);
+         {
+
+            auto ppixmapImageTemplate = m_pimageTemplate->map();
+
+            ::graphics::colors_with_shades_of_grey(ppixmapImageTemplate);
+
+         }
 
          m_pimageLuminance = image()->create_image({ 100,  100 });
 
@@ -761,7 +767,9 @@ namespace core
             m_dLastLuminanceH = m_hls.m_dH;
             m_dLastLuminanceS = m_hls.m_dS;
 
-            ::graphics::shades_of_luminance(m_pimageLuminance, m_hls.m_dH, m_hls.m_dS);
+            auto ppixmapImageLuminance = m_pimageLuminance->map();
+
+            ::graphics::shades_of_luminance(ppixmapImageLuminance, m_hls.m_dH, m_hls.m_dS);
 
          //}
 

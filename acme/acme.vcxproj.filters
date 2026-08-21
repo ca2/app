@@ -4488,6 +4488,15 @@
     <ClInclude Include="operating_system\windows\device_independent_bitmap.h">
       <Filter>Header Files\operating_system\windows</Filter>
     </ClInclude>
+    <ClInclude Include="graphics\draw2d\task_tool.h">
+      <Filter>Header Files\graphics\draw2d</Filter>
+    </ClInclude>
+    <ClInclude Include="graphics\image\frame.h">
+      <Filter>Header Files\graphics\image</Filter>
+    </ClInclude>
+    <ClInclude Include="graphics\image\frame_array.h">
+      <Filter>Header Files\graphics\image</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="prototype\prototype\bit.cpp">
@@ -5237,7 +5246,7 @@
     <ClCompile Include="prototype\prototype\atom.cpp">
       <Filter>Source Files\prototype\prototype</Filter>
     </ClCompile>
-    <ClCompile Include="platform\platform.cpp">
+    <ClCompile Include="platform\platform_platform.cpp">
       <Filter>Source Files\platform</Filter>
     </ClCompile>
     <ClCompile Include="platform\tracer.cpp">
@@ -6466,6 +6475,15 @@
     </ClCompile>
     <ClCompile Include="operating_system\windows\device_independent_bitmap.cpp">
       <Filter>Source Files\operating_system\windows</Filter>
+    </ClCompile>
+    <ClCompile Include="graphics\draw2d\task_tool.cpp">
+      <Filter>Source Files\graphics\draw2d</Filter>
+    </ClCompile>
+    <ClCompile Include="graphics\image\frame.cpp">
+      <Filter>Source Files\graphics\image</Filter>
+    </ClCompile>
+    <ClCompile Include="graphics\image\frame_array.cpp">
+      <Filter>Source Files\graphics\image</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

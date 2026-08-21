@@ -54,99 +54,48 @@ namespace image
 
       ::i32_size size = m_rectangle.size();
 
-      if (m_edisposal == ::draw2d::e_disposal_background
-         || m_edisposal == ::draw2d::e_disposal_undefined
-         || m_edisposal == ::draw2d::e_disposal_previous)
+      if (m_iFrame > 0)
       {
 
-         //auto ppixmapImageCompose = pimageCompose->map();
+         auto pframePrevious = pframea->element_at(m_iFrame - 1);
 
-         //auto ppixmapImageFrame = pimageFrame->map();
-
-         ppixmapImageCompose->copy_from(ppixmapImageFrame);
-
-         //pgraphicsImageCompose->set_alpha_mode(::draw2d::e_alpha_mode_set);
-
-         //::color::color crBack = pframea->m_colorBack;
-
-         //::u8 bAlpha = color32_u8_opacity(crBack);
-
-         //if (bAlpha == 0)
-         //{
-
-         //   crBack = 0;
-
-         //}
-         //else
-         //{
-
-         //   informationf("non zero alpha");
-
-         //}
-
-         //::i32_rectangle rectangle = pframea->element_at(m_iFrame - 1)->m_rectangle;
-
-         //pgraphicsImageCompose->fill_rectangle(rectangle, crBack);
-
-      }
-      else if (m_edisposal == ::draw2d::e_disposal_none)
-      {
-
-         if (m_iFrame <= 0)
+         if (pframePrevious->m_edisposal == ::draw2d::e_disposal_background)
          {
 
-            //pimageCompose->map();
+            auto ppixmapCompose = ppixmapImageCompose->map();
 
-            //pgraphicsImageCompose->set_alpha_mode(::draw2d::e_alpha_mode_set);
-
-            //auto ppixmapImageCompose = pimageCompose->map();
-
-            //auto ppixmapImageFrame = pimageFrame->map();
-
-            ppixmapImageCompose->copy_from(ppixmapImageFrame);
+            ppixmapCompose->fill_rectangle(pframePrevious->m_rectangle, pframea->m_colorBack);
 
          }
-         else
+         else if (pframePrevious->m_edisposal == ::draw2d::e_disposal_previous
+            && pframea->m_ppixmapCompose)
          {
 
-            //pimageCompose->map();
-
-            //pgraphicsImageCompose->set_alpha_mode(::draw2d::e_alpha_mode_blend);
-            //auto ppixmapImageCompose = pimageCompose->map();
-
-            //auto ppixmapImageFrame = pimageFrame->map();
-
-            //pgraphicsImageCompose->draw(pimageFrame);
-            ppixmapImageCompose->precision_blend(point, ppixmapImageFrame, {}, size);
-
+            ppixmapImageCompose->copy_from(pframea->m_ppixmapCompose);
 
          }
 
       }
-      else
+
+      // Disposal method 3 restores the canvas as it was before this frame.
+      // Save that state now; it will be restored before the following frame.
+      if (m_edisposal == ::draw2d::e_disposal_previous)
       {
 
-         information() << "Don't know how to handle this GIF Disposal";
+         defer_construct_newø(pframea->m_ppixmapCompose);
+
+         pframea->m_ppixmapCompose->create_as_descriptor(pframea->m_size);
+
+         pframea->m_ppixmapCompose->copy_from(ppixmapImageCompose);
 
       }
 
+      auto ppixmapCompose = ppixmapImageCompose->map();
 
-      /*     if (uFrameIndex <= 0)
-           {
+      auto ppixmapFrame = ppixmapImageFrame->map();
 
-              pimageCompose->set_alpha_mode(::draw2d::e_alpha_mode_set);
+      ppixmapCompose->precision_blend(point, ppixmapFrame, {}, size);
 
-              pgraphicsImageCompose->fill_rectangle(pframea->rectangle(), 0);
-
-           }*/
-      //auto ppixmapImage = m_pimage->map();
-
-      //auto ppixmapImageFrame = pimageFrame->map();
-
-
-      m_ppixmap->copy_from(ppixmapImageFrame);
-
-      pframea->m_timeTotal += m_time;
 
    }
 

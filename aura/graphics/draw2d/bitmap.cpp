@@ -72,6 +72,22 @@ namespace draw2d
    }
 
 
+   bool bitmap::copy_from(::pixmap * ppixmap)
+   {
+
+      return false;
+
+   }
+
+
+   bool bitmap::copy_from(::pixmap * ppixmap, const ::i32_size & size, const ::i32_point & pointDst, const ::i32_point & pointSrc)
+   {
+
+      return false;
+
+   }
+
+
    ::subparticle_pointer bitmap::clone()
    {
 
@@ -240,6 +256,31 @@ namespace draw2d
       return iWidth * 4;
 
    }
+
+
+   void bitmap::read_pixels(
+      const ::i32_size & size,
+      const ::i32_point & point,
+      ::image32_t * pimage32,
+      ::i32 iScan)
+   {
+
+      throw ::interface_only();
+
+   }
+
+
+   void bitmap::write_pixels(
+      const ::i32_size & size,
+      const ::i32_point & point,
+      const ::image32_t * pimage32,
+      ::i32 iScan)
+   {
+
+      throw ::interface_only();
+
+   }
+
 
    ::u32 bitmap::SetBitmapBits(::u32 dwCount,const void * pBits)
 

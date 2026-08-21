@@ -36,20 +36,20 @@ namespace gpu
    }
 
 
-   void bitmap::create_bitmap(::draw2d::graphics *pgraphics, const ::i32_size &size, ::memory & memory, ::i32 *piScan)
+   void bitmap::create_bitmap(::draw2d::graphics *pgraphics, const ::i32_size &size, ::pixmap * ppixmap)
    {
 
       ::pixmap_t pixmap{};
 
       int iScan = size.cx * 4;
 
-      if (piScan && *piScan > iScan)
+      if (ppixmap && ppixmap->m_iScan > iScan)
       {
 
-         iScan = *piScan;
+         iScan = ppixmap->m_iScan;
       }
 
-      pixmap.initialize_pixmap(size, (::image32_t *)memory.data_if_at_least(size.cy * iScan), iScan);
+      pixmap.initialize_pixmap(size, (::image32_t *)ppixmap->m_memoryPixmap.data_if_at_least(size.cy * iScan), iScan);
 
       _create_gpu_bitmap(size, &pixmap);
 

@@ -31,9 +31,9 @@ namespace draw2d
 
       ::i32_rectangle clipRect;
 
-      auto offsetcontext = pgraphics->offset_context();
+      auto targetscope = pgraphics->target_scope();
 
-      offsetcontext += *ppointOffset;
+      targetscope += *ppointOffset;
 
       pgraphics->scale_extents((::i32)dRateX, 1, 1, 1);
 
@@ -60,9 +60,9 @@ namespace draw2d
       ::i32_rectangle clipRect;
 
       //i32_size viewportExt = pgraphics->get_extents();
-      auto offsetcontext = pgraphics->offset_context();
+      auto targetscope = pgraphics->target_scope();
 
-      offsetcontext += *ppointOffset;
+      targetscope += *ppointOffset;
 
       //pgraphics->shift_impact_area(*ppointOffset, viewportExt);
 
@@ -92,9 +92,9 @@ namespace draw2d
 
       ::i32_rectangle clipRect;
 
-      auto offsetcontext = pgraphics->offset_context();
+      auto targetscope = pgraphics->target_scope();
 
-      offsetcontext += *ppointOffset;
+      targetscope += *ppointOffset;
 
       pgraphics->scale_extents((::i32)(dRateX * 1000.0), 1, 1, 1);
 

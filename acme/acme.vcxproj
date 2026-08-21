@@ -2730,6 +2730,9 @@
     <ClCompile Include="filesystem\watcher\action.cpp" />
     <ClCompile Include="filesystem\watcher\watch.cpp" />
     <ClCompile Include="filesystem\watcher\watcher.cpp" />
+    <ClCompile Include="graphics\draw2d\task_tool.cpp" />
+    <ClCompile Include="graphics\image\frame.cpp" />
+    <ClCompile Include="graphics\image\frame_array.cpp" />
     <ClCompile Include="platform.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='StaticDebug|Win32'">Create</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='ASanStaticDebug|Win32'">Create</PrecompiledHeader>
@@ -2876,6 +2879,9 @@
     <ClInclude Include="filesystem\filesystem\_format.h" />
     <ClInclude Include="filesystem\file\byte2_stream.h" />
     <ClInclude Include="filesystem\file\protocol_file.h" />
+    <ClInclude Include="graphics\draw2d\task_tool.h" />
+    <ClInclude Include="graphics\image\frame.h" />
+    <ClInclude Include="graphics\image\frame_array.h" />
     <ClInclude Include="graphics\image\pixmap_lease.h" />
     <ClInclude Include="graphics\image\pixmap_t.h" />
     <ClInclude Include="include\_pointer_forward_declaration.h" />
@@ -4836,7 +4842,7 @@
     <ClCompile Include="platform\session_axis.cpp" />
     <ClCompile Include="platform\shell.cpp" />
     <ClCompile Include="platform\simple_log.cpp" />
-    <ClCompile Include="platform\platform.cpp" />
+    <ClCompile Include="platform\platform_platform.cpp" />
     <ClCompile Include="platform\string_exchange.cpp" />
     <ClCompile Include="platform\system.cpp" />
     <ClCompile Include="platform\system_acme.cpp" />

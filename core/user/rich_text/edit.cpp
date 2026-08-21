@@ -1167,11 +1167,17 @@ namespace user
 
             auto pgraphicsImage = pimage->acquire_graphics();
 
-            pgraphicsImage->offset(offset);
+            {
 
-            draw_text(pgraphicsImage, rectangle);
+               auto targetscope = pgraphicsImage->target_scope();
 
-            pgraphicsImage->offset(-offset);
+               targetscope += offset;
+
+               draw_text(pgraphicsImage, rectangle);
+
+               //pgraphicsImage->offset(-offset);
+
+            }
 
             defer_draw_drop_shadow_phase1(rDropShadow, blurDropShadow, imageDropShadow, pimage);
 

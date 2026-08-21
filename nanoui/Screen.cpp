@@ -1660,9 +1660,9 @@ namespace nanoui
 
       //pgraphics->offset_origin(-m_pos.x, -m_pos.y);
 
-      auto offsetcontext = pgraphics->offset_context();
+      auto targetscope = pgraphics->target_scope();
 
-      offsetcontext -=m_pos;
+      targetscope -=m_pos;
 
       pgraphics->set_alpha_mode(::draw2d::e_alpha_mode_blend);
 

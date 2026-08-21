@@ -121,9 +121,9 @@ namespace graphics
 {
 
 
-   CLASS_DECL_CORE void colors_with_shades_of_grey(::image::image *pimage);
+   CLASS_DECL_CORE void colors_with_shades_of_grey(::pixmap *ppixmap);
 
-   CLASS_DECL_CORE void shades_of_luminance(::image::image *pimage, ::f64 dH, ::f64 dS);
+   CLASS_DECL_CORE void shades_of_luminance(::pixmap * ppixmap, ::f64 dH, ::f64 dS);
 
 
 } // namespace graphics

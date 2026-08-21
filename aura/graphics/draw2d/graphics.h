@@ -73,7 +73,7 @@ namespace draw2d
       virtual public ::image::image_drawer,
       virtual public ::write_text::drawer,
       virtual public ::image::image_source_interface,
-      virtual public ::draw2d::offsetable
+      virtual public ::draw2d::target_rectangle
    {
    public:
 
@@ -106,7 +106,7 @@ namespace draw2d
       ::aura::draw_context* m_pdrawcontext;
       ::image::image_pointer                        m_pimageAlphaBlend;
       ::f64_point                            m_pointAlphaBlend;
-      ::pointer<::task>                     m_ptask;
+      ::pointer<::task>                      m_ptask;
       bool                                   m_bDraw;
 
       ::pointer < ::image::image> m_pimage;
@@ -116,7 +116,6 @@ namespace draw2d
       ::draw2d::region_pointer               m_pregion;
       bool                                   m_bStoreThumbnails;
       ::draw2d::bitmap_pointer               m_pbitmapTarget;
-      ::f64_point                            m_point;
 
    protected:
       //bool                                   _m_bYFlip;
@@ -132,8 +131,10 @@ namespace draw2d
       //::f64                                 m_dFontFactor;
 
       ::f64_size                             m_sizeScaling;
-      ::f64_point                            m_pointOrigin;
-      ::f64_size                             m_sizeImpact2;
+      //::f64_point                            m_pointOrigin;
+      ::f64_point                            m_pointCurrent;
+      //::f64_point                            m_pointTarget;
+      //::f64_size                             m_sizeTarget;
       ::f64_size                             m_sizeTotal2;
       ::geometry2d::matrix                      m_matrix;
       ::f64_size                             m_sizeScaleOutput;
@@ -177,6 +178,17 @@ namespace draw2d
       virtual void set_size_scaler(::f64 dSizeScaler);
 
       //virtual void send_on_context(::draw2d::graphics_context * pgraphicscontext, const ::procedure& procedure);
+
+      virtual void reset_target_rectangle();
+
+      void on_target_rectangle_update() override;
+
+      //virtual void place_impact_area(::f64 x, ::f64 y, ::f64 w, ::f64 h);
+      //virtual void place_impact_area(const ::f64_point& pointImpactArea, const ::f64_size & sizeImpactArea);
+      //virtual void place_impact_area(const ::f64_rectangle& rectangleImpactArea);
+      //void shift_impact_area(::f64 dx, ::f64 dy, ::f64 w, ::f64 h) override;
+      //virtual void shift_impact_area(const ::f64_size& shiftImpactArea, const ::f64_size& sizeImpactArea);
+      //virtual void shift_impact_area(const ::f64_rectangle& rectangleImpactArea);
 
 
       //virtual void send_on_context(::draw2d::graphics_context * pgraphicscontext, const ::procedure & procedure);
@@ -467,9 +479,9 @@ namespace draw2d
       virtual void sync_flush();
 
 
-      virtual ::f64_size size() const;
+      //virtual ::f64_size size() const;
 
-      ::i32_size get_image_drawer_size() const override;
+      ::f64_rectangle get_image_drawer_rectangle() const override;
 
 
 
@@ -520,26 +532,19 @@ namespace draw2d
       //virtual void _offset_origin(::f64 x, ::f64 y);
 
 
-      virtual void reset_impact_area();
-      virtual void place_impact_area(::f64 x, ::f64 y, ::f64 w, ::f64 h);
-      virtual void place_impact_area(const ::f64_point& pointImpactArea, const ::f64_size & sizeImpactArea);
-      virtual void place_impact_area(const ::f64_rectangle& rectangleImpactArea);
-      void shift_impact_area(::f64 dx, ::f64 dy, ::f64 w, ::f64 h) override;
-      virtual void shift_impact_area(const ::f64_size& shiftImpactArea, const ::f64_size& sizeImpactArea);
-      virtual void shift_impact_area(const ::f64_rectangle& rectangleImpactArea);
 
 
-      virtual ::f64_size impact_size();
+      //virtual ::f64_size impact_size();
       //virtual ::f64_size _size();
 
 
-      void x_offset(::f64 dx) override;
-      void y_offset(::f64 dy) override;
-      void offset(::f64 dx, ::f64 dy) override;
-      virtual void _x_offset(::f64 dx);
-      virtual void _y_offset(::f64 dy);
-      virtual void _offset(::f64 dx, ::f64 dy);
-      virtual void offset(const ::f64_size& size);
+      //void x_offset(::f64 dx) override;
+      //void y_offset(::f64 dy) override;
+      //void offset(::f64 dx, ::f64 dy) override;
+      //virtual void _x_offset(::f64 dx);
+      //virtual void _y_offset(::f64 dy);
+      //virtual void _offset(::f64 dx, ::f64 dy);
+      //virtual void offset(const ::f64_size& size);
 
       
       // Context Extent
@@ -1255,8 +1260,8 @@ namespace draw2d
       virtual void prepend(const ::geometry2d::matrix& matrix);
       virtual void update_matrix();
       //void _apply_offset() override;
-      void _get(::draw2d::offset_context* poffsetcontext) override;
-      void _set(::draw2d::offset_context* poffsetcontext) override;
+      //void _get(::draw2d::offset_context* poffsetcontext) override;
+      //void _set(::draw2d::offset_context* poffsetcontext) override;
 
 
       virtual void _get(::geometry2d::matrix& matrix);
@@ -1290,6 +1295,11 @@ namespace draw2d
       virtual void _draw_stock_icon(const ::f64_rectangle& rectangle, enum_stock_icon estockicon);
       
       virtual void draw(const ::f64_rectangle& rectangle, ::draw2d::drawing * pdrawing);
+
+      virtual void stretch_image(::image::image *pimage, ::draw2d::enum_interpolation_mode einterpolationmode = ::draw2d::e_interpolation_mode_none);
+      virtual void stretch_image(const ::f64_rectangle& rectangleTarget, ::image::image *pimage, ::draw2d::enum_interpolation_mode einterpolationmode = ::draw2d::e_interpolation_mode_none);
+      virtual void stretch_image(const ::f64_rectangle& rectangleTarget, const ::f64_rectangle& rectangleSource, ::image::image *pimage, ::draw2d::enum_interpolation_mode einterpolationmode = ::draw2d::e_interpolation_mode_none);
+
 
 
       //=============================================================================
@@ -1469,7 +1479,8 @@ namespace draw2d
       ::i32                     m_iSavedDC;
 
       ::f64_size              m_sizeScaling;
-      ::f64_point             m_pointOrigin;
+      //::f64_point             m_pointOrigin;
+      ::f64_rectangle         m_rectangleTarget;
       ::geometry2d::matrix    m_matrix;
 
       save_context(graphics* graphics);
@@ -1505,3 +1516,6 @@ namespace draw2d
 //CLASS_DECL_AURA PFN_factory ([a-z0-9_]+)_factory(::factory::factory * pfactory);
 
 //CLASS_DECL_AURA void ([a-z0-9_]+)_factory(PFN_factory pfnfactoryDraw2d);
+
+
+

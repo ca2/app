@@ -197,7 +197,7 @@ namespace image
       ~image_drawer() override;
 
 
-      virtual ::i32_size get_image_drawer_size() const = 0;
+      virtual ::f64_rectangle get_image_drawer_rectangle() const = 0;
 
 
       virtual void draw(const ::image::image_drawing & imagedrawing);

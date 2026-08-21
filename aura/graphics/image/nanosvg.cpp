@@ -41,9 +41,11 @@ namespace image
 
       {
 
-         auto ppixmapLoadImage = ploadimage->create_pixmap({w, h});
+         auto ppixmapLoadImage = ploadimage->get_pixmap({w, h});
 
-         nsvgRasterize(rast, psvgimage, 0, 0, 1, (::u8 *)ppixmapLoadImage->data(), w, h, ppixmapLoadImage->scan());
+         auto ppixmapLoadImage2 = ppixmapLoadImage->map();
+
+         nsvgRasterize(rast, psvgimage, 0, 0, 1, (::u8 *)ppixmapLoadImage2->data(), w, h, ppixmapLoadImage2->scan());
 
          //ploadimage->on_load_image(pdata, {w, h}, iScan);
 

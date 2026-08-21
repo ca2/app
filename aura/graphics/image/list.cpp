@@ -4,7 +4,7 @@
 #include "image.h"
 ////#include "acme/exception/exception.h"
 #include "acme/parallelization/synchronous_lock.h"
-#include "aura/graphics/draw2d/draw_scope.h"
+//#include "aura/graphics/draw2d/draw_scope.h"
 #include "aura/graphics/draw2d/graphics.h"
 #include "aura/graphics/draw2d/graphics_pointer.h"
 #include "aura/graphics/draw2d/lock.h"
@@ -524,7 +524,7 @@ namespace image
 
          auto pgraphics = m_pimage->acquire_graphics();
 
-         ::draw2d::draw_scope drawscope(pgraphics);
+         //::draw2d::draw_scope drawscope(pgraphics);
 
          pgraphics->set_alpha_mode(::draw2d::e_alpha_mode_set);
 

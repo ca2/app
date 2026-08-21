@@ -1353,11 +1353,13 @@ namespace draw2d
 
             auto extent = rectangleCache.size();
 
-            pgraphicsImage->shift_impact_area(shift, extent);
+            auto targetscoped = pgraphicsImage->target_scope();
+
+            targetscoped.offset_and_set_size(::f64_rectangle(::f64_point(shift), extent));
 
             functionDraw(pgraphicsImage);
 
-            pgraphicsImage->shift_impact_area(-shift, extent);
+            //pgraphicsImage->shift_impact_area(-shift, extent);
 
          }
 

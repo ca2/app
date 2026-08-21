@@ -38,6 +38,9 @@ namespace draw2d
    class drawing;
    class stock_icon;
 
+
+   class graphics_lease;
+
    ///class graphics_context;
    class graphics_context_interface;
 
@@ -57,7 +60,12 @@ namespace draw2d
    class graphics_call_base;
 
 
-   class offset_context;
+   //class offset_context;
+
+
+   class target_rectangle;
+
+   class target_scope;
 
 
    using graphics_call_array = pointer_array < graphics_call_base >;

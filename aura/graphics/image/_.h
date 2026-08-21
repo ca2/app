@@ -35,6 +35,8 @@ namespace image
    class image_list;
 
 
+
+
    using image_list_pointer = ::pointer<::image::image_list>;
 
 
@@ -42,6 +44,8 @@ namespace image
 
 
    class aaa_target;
+
+   class load_options;
 
 
 } // namespace image

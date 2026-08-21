@@ -46,6 +46,8 @@ namespace draw2d
       virtual bool copy_from(::draw2d::bitmap * pbitmap);
       virtual bool copy_from(::draw2d::bitmap * pbitmap, const ::i32_size & size, const ::i32_point & pointDst, const ::i32_point & pointSrc);
 
+      virtual bool copy_from(::pixmap * ppixmap);
+      virtual bool copy_from(::pixmap * ppixmap, const ::i32_size & size, const ::i32_point & pointDst, const ::i32_point & pointSrc);
 
       template < typename POINTER >
       inline POINTER get_os_data(::i8 i = 0) const
@@ -81,6 +83,11 @@ namespace draw2d
       virtual void create_bitmap(::draw2d::graphics * pgraphics, const ::i32_size& size, ::pixmap * ppixmapOwned);
       virtual bool host_bitmap(::draw2d::graphics* pgraphics, pixmap_t* ppximap);
       virtual void CreateDIBitmap(::draw2d::graphics * pgraphics, ::i32 cx, ::i32 cy, ::u32 flInit, const void *pjBits, ::u32 iUsage);
+
+      //virtual void read_pixels(::draw2d::graphics * pgraphics, ::i32_size & size, ::i32_point & point, void * pdata);
+      //virtual void write_pixels(::draw2d::graphics * pgraphics, ::i32_size & size, ::i32_point & point, const void * pdata);
+      virtual void read_pixels(const ::i32_size & size, const ::i32_point & point, ::image32_t * pimage32, ::i32 iScan);
+      virtual void write_pixels(const ::i32_size & size, const ::i32_point & point, const ::image32_t * pimage32, ::i32 iScan);
 
       virtual ::i32 stride_for_width(::i32 iWidth);
 

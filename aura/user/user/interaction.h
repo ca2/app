@@ -2236,7 +2236,7 @@ namespace user
       //virtual void set_context_offset_y(::draw2d::graphics_pointer & pgraphics, ::i32 y);
       //virtual void set_context_offset(::draw2d::graphics_pointer & pgraphics, ::i32 x, ::i32 y);
       //virtual void on_change_context_offset(::draw2d::graphics_pointer & pgraphics);
-      virtual void on_context_offset(::draw2d::offset_context & offsetcontext);
+      virtual void on_context_offset(::draw2d::target_scope & targetscope);
       virtual ::f64_size get_total_size(::user::enum_layout elayout = ::user::e_layout_design);
       virtual ::f64_size get_page_size(::user::enum_layout elayout = ::user::e_layout_design);
       virtual ::f64_point get_context_offset(::user::enum_layout elayout = ::user::e_layout_design);

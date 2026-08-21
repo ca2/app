@@ -277,7 +277,7 @@ namespace user
 
          pbrushText->create_solid(get_color(pstyle,::e_element_text));
 
-         auto offsetcontext = pgraphics->offset_context();
+         auto targetscope = pgraphics->target_scope();
 
          pgraphics->set(pbrushText);
 

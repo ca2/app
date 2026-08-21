@@ -196,10 +196,15 @@ struct pixmap_t
 
    inline ::i32_rectangle rectangle(const ::i32_point &point) const { return ::i32_rectangle(point, m_size); }
 
+   inline ::i32_size raw_size() const noexcept { return m_sizeRaw.cx > 0 && m_sizeRaw.cy > 0 ? m_sizeRaw : m_size; }
+   inline ::i32 raw_width() const noexcept { return m_sizeRaw.cx > 0 && m_sizeRaw.cy > 0 ? m_sizeRaw.cx : m_size.cx; }
+   inline ::i32 raw_height() const noexcept { return m_sizeRaw.cx > 0 && m_sizeRaw.cy > 0 ? m_sizeRaw.cy : m_size.cy; }
+   bool raw_contains_x(::i32 x) const noexcept {return x >= 0 && x <= raw_width(); }
+   bool raw_contains_y(::i32 y) const noexcept {return y >= 0 && y <= raw_height(); }
+   ::i32 raw_constrained_x(::i32 x) const noexcept {return ::constrained(x, 0, raw_width()); }
+   ::i32 raw_constrained_y(::i32 y) const noexcept {return ::constrained(y, 0, raw_height());}
    bool contains_x(::i32 x) const noexcept {return x >= this->left() && x <= this->right(); }
    bool contains_y(::i32 y) const noexcept {return y >= this->top() && y <= this->bottom(); }
-   ::i32 raw_constrained_x(::i32 x) const noexcept {return ::constrained(x, 0, m_sizeRaw.cx);}
-   ::i32 raw_constrained_y(::i32 y) const noexcept {return ::constrained(y, 0, m_sizeRaw.cy);}
    //::i32_point top_left() const noexcept;
    //::i32_point bottom_right() const noexcept;
    inline ::i32_point origin() const noexcept { return top_left(); }
@@ -317,11 +322,11 @@ const ::pixmap_t & pixmapSource);
 #endif
 
 
-protected:
+//protected:
 
-   friend class ::image::image;
+  // friend class ::image::image;
 
-   friend class ::pixmap;
+   // friend class ::pixmap;
 
    void pixmap_map(const ::i32_rectangle & rectangle);
 

@@ -18,7 +18,7 @@ namespace draw2d_cairo
   //    m_spgraphics(e_create)
    {
 
-      m_bMapped            = false;
+      //m_bMapped            = false;
       //m_bTrans             = false;
 
    }
@@ -488,17 +488,19 @@ namespace draw2d_cairo
    //}
 
 
-   ::pixmap_lease image::_map(const ::i32_rectangle & rectangle, bool bApplyAlphaTransform)
+   ::image_pixmap_lease image::_map(const ::i32_rectangle & rectangle)
    {
 
       _synchronous_lock ml(::draw2d_cairo::mutex(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 
-      if (m_bMapped)
-      {
+      _tidy_map(rectangle);
 
-         return {};
-
-      }
+      // if (m_bMapped)
+      // {
+      //
+      //    return {};
+      //
+      // }
 
 //      if (m_pimage32Raw == nullptr)
 //      {
@@ -590,24 +592,26 @@ namespace draw2d_cairo
 //
 //      }
 
-      ((image *) this)->m_bMapped = true;
+      //((image *) this)->m_bMapped = true;
 
-      return {ppixmapLease, rectangle, bApplyAlphaTransform};
+      return {this, ppixmapLease};
 
    }
 
 
-   void image::_unmap(bool bDoUnmaps)
+   void image::_unmap(::image_pixmap_lease * pimagepixmaplease)
    {
 
       _synchronous_lock ml(::draw2d_cairo::mutex(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 
-      if (!m_bMapped)
-      {
+      _tidy_unmap(pimagepixmaplease);
 
-         return;
-
-      }
+      // if (!m_bMapped)
+      // {
+      //
+      //    return;
+      //
+      // }
 
       // if (m_pimage32Raw == nullptr)
       // {
@@ -654,12 +658,12 @@ namespace draw2d_cairo
 //
 //      }
 
-      ((image *) this)->m_bMapped = false;
+      //((image *) this)->m_bMapped = false;
 
    }
 
 
-   void image::SetIconMask(::image::icon * picon, ::i32 cx, ::i32 cy)
+   void image::set_image_icon(::image::icon * picon, ::i32 cx, ::i32 cy)
    {
 
       throw ::exception(todo);

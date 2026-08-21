@@ -1549,7 +1549,6 @@ namespace user
       //on_context_offset(pgraphics);
 
       {
-
          ::i32_point pointOffset;
 
          if (m_puserinteractionParent != nullptr)
@@ -1566,41 +1565,44 @@ namespace user
 
          }
 
-         pgraphics->shift_impact_area(pointOffset, const_layout().layout().size());
+         auto targetscope = pgraphics->target_scope();
 
-      }
+         targetscope.offset_and_set_size({ pointOffset, const_layout().layout().size()});
 
-      if (m_bDrawTabAtBackground)
-      {
 
-         _001DrawThis(pgraphics);
-
-         _001DrawChildren(pgraphics);
-
-      }
-      else
-      {
-
-         _001DrawChildren(pgraphics);
-
+         if (m_bDrawTabAtBackground)
          {
-
-            auto timeStart = ::time::now();
 
             _001DrawThis(pgraphics);
 
-            auto timeEllapsed = timeStart.elapsed();
+            _001DrawChildren(pgraphics);
 
-            if(timeEllapsed > 50_ms)
+         }
+         else
+         {
+
+            _001DrawChildren(pgraphics);
+
             {
 
-               string strType = ::platform::type(this).name();
+               auto timeStart = ::time::now();
 
-#ifdef VERBOSE_LOG               
+               _001DrawThis(pgraphics);
 
-               information()(e_trace_category_prodevian) << "(more than 50ms)(B) " << strType << "::_000DrawThis took " << integral_millisecond(d1) << ".\n";
+               auto timeEllapsed = timeStart.elapsed();
+
+               if(timeEllapsed > 50_ms)
+               {
+
+                  string strType = ::platform::type(this).name();
+
+#ifdef VERBOSE_LOG
+
+                  information()(e_trace_category_prodevian) << "(more than 50ms)(B) " << strType << "::_000DrawThis took " << integral_millisecond(d1) << ".\n";
 
 #endif
+
+               }
 
             }
 

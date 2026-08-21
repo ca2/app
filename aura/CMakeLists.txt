@@ -201,6 +201,8 @@ list(APPEND library_source
         graphics/image/icon.h
         graphics/image/image.cpp
         graphics/image/image.h
+        graphics/image/image_pixmap_lease.cpp
+        graphics/image/image_pixmap_lease.h
         graphics/image/imaging.cpp
         graphics/image/imaging.h
         graphics/image/load_gif_frame.cpp

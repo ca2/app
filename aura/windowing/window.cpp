@@ -12439,7 +12439,7 @@ namespace windowing
 
       pgraphics->reset_clip();
 
-      pgraphics->reset_impact_area();
+      //pgraphics->reset_impact_area();
 
       //{
 

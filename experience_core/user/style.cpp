@@ -518,11 +518,13 @@ namespace experience_core
 
                   auto offset = ptab->m_pointBarDragScroll.x - ppath->m_pointUserOffset.x;
 
-                  pgraphics->x_offset(offset);
+                  auto targetscope = pgraphics->target_scope();
+
+                  targetscope += offset;
 
                   pgraphics->fill(ppath);
 
-                  pgraphics->x_offset(-offset);
+                  //pgraphics->x_offset(-offset);
 
                }
 
@@ -539,9 +541,11 @@ namespace experience_core
 
                   pgraphics->set(ppen);
 
-                  auto offsetcontext = pgraphics->offset_context();
+                  auto targetscope = pgraphics->target_scope();
 
-                  offsetcontext.Δx() += ptab->m_pointBarDragScroll.x - ppath->m_pointUserOffset.x;
+                  //offsetcontext.Δx() += ptab->m_pointBarDragScroll.x - ppath->m_pointUserOffset.x;
+
+                  targetscope.offset_x(ptab->m_pointBarDragScroll.x - ppath->m_pointUserOffset.x);
 
                   pgraphics->draw(ppath);
 
@@ -641,9 +645,9 @@ namespace experience_core
 
                      pgraphics->set(pbrush);
 
-                     auto offsetcontext = pgraphics->offset_context();
+                     auto targetscope = pgraphics->target_scope();
 
-                     offsetcontext.Δx() += ptab->m_pointBarDragScroll.x - ppath->m_pointUserOffset.x;
+                     targetscope.offset_x(ptab->m_pointBarDragScroll.x - ppath->m_pointUserOffset.x);
 
                      pgraphics->fill(ppath);
 
@@ -662,9 +666,9 @@ namespace experience_core
 
                      pgraphics->set(ppen);
 
-                     auto offsetcontext = pgraphics->offset_context();
+                     auto targetscope = pgraphics->target_scope();
 
-                     offsetcontext.Δx()+= ptab->m_pointBarDragScroll.x - ppath->m_pointUserOffset.x;
+                     targetscope.offset_x(ptab->m_pointBarDragScroll.x - ppath->m_pointUserOffset.x);
 
                      pgraphics->draw(ppath);
 
@@ -725,9 +729,9 @@ namespace experience_core
 
                      pgraphics->set(pbrush);
 
-                     auto offsetcontext = pgraphics->offset_context();
+                     auto targetscope = pgraphics->target_scope();
 
-                     offsetcontext.Δx() += ptab->m_pointBarDragScroll.x - ppath->m_pointUserOffset.x;
+                     targetscope.offset_x(ptab->m_pointBarDragScroll.x - ppath->m_pointUserOffset.x);
 
                      pgraphics->fill(ppath);
 
@@ -746,9 +750,9 @@ namespace experience_core
 
                      pgraphics->set(ppen);
 
-                     auto offsetcontext = pgraphics->offset_context();
+                     auto targetscope = pgraphics->target_scope();
 
-                     offsetcontext.Δx() += ptab->m_pointBarDragScroll.x - ppath->m_pointUserOffset.x;
+                     targetscope.offset_x(ptab->m_pointBarDragScroll.x - ppath->m_pointUserOffset.x);
 
                      pgraphics->draw(ppath);
 

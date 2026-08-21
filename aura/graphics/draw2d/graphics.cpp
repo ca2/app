@@ -95,11 +95,11 @@ namespace draw2d
       m_sizeScaleOutput.cx = 1.0;
       m_sizeScaleOutput.cy = 1.0;
 
-      m_pointOrigin.x = 0.;
-      m_pointOrigin.y = 0.;
       m_sizeScaling.cx = 1.0;
       m_sizeScaling.cy = 1.0;
-      
+      m_pointTarget.x = 0.;
+      m_pointTarget.y = 0.;
+
       m_dSizeScaler = 1.0;
       
       //m_estatus = success;
@@ -617,15 +617,20 @@ namespace draw2d
       m_pimage = pimage;
       defer_set_size(size);
       reset_clip();
-      m_pointOrigin = {};
-      m_point = {};
+      //m_pointOrigin = {};
+
       if (::is_set(pimage))
       {
          m_dSizeScaler = pimage->m_dSizeScaler;
          m_pbitmap = pimage->m_pbitmap;
+         set_target_rectangle(pimage->rectangle());
+
       }
       else
       {
+
+         m_pointTarget.clear();
+         m_sizeTarget = size;
          m_pbitmap.release();
 
       }
@@ -645,8 +650,8 @@ namespace draw2d
 
       sync_flush();
       reset_clip();
-      m_pointOrigin = {};
-      m_point = {};
+      //m_pointOrigin = {};
+      m_pointTarget = {};
       set_alpha_mode(::draw2d::e_alpha_mode_none);
       m_pimageAlphaBlend.release();
       m_pbitmap.release();
@@ -1103,7 +1108,7 @@ namespace draw2d
    ::f64_point graphics::current_position()
    {
 
-      return m_point;
+      return m_pointTarget;
 
    }
 
@@ -2871,6 +2876,13 @@ namespace draw2d
    void graphics::fill_solid_rectangle(const ::f64_rectangle & rectangle, const ::color::color & color)
    {
 
+      if (m_bTargetRectangleModified)
+      {
+
+         defer_on_target_rectangle_update();
+
+      }
+
       auto pbrushSolidColor = createø < ::draw2d::brush >();
 
       pbrushSolidColor->create_solid(color);
@@ -2907,11 +2919,18 @@ namespace draw2d
    void graphics::clear(const ::color::color& color)
    {
 
+      if (m_bTargetRectangleModified)
+      {
+
+         defer_on_target_rectangle_update();
+
+      }
+
       auto alphamode = alpha_mode();
 
       set_alpha_mode(e_alpha_mode_set);
 
-      ::f64_rectangle rectangle(this->size());
+      ::f64_rectangle rectangle(this->get_target_rectangle());
 
       fill_solid_rectangle(rectangle, color);
 
@@ -2922,6 +2941,13 @@ namespace draw2d
 
    void graphics::color_blend_3dRect(const i32_rectangle & rectangleParam, const ::color::color & colorTopLeft, const class ::opacity & opacityTopLeft, const class ::color::color & colorBottomRight, const class ::opacity & opacityBottomRight)
    {
+
+      if (m_bTargetRectangleModified)
+      {
+
+         defer_on_target_rectangle_update();
+
+      }
 
       ::i32_rectangle rectangle(rectangleParam);
 
@@ -2950,6 +2976,13 @@ namespace draw2d
 
    void graphics::draw_inset_3d_rectangle(const ::f64_rectangle & rectangle, const ::color::color & colorTopLeft, const ::color::color & colorBottomRight, ::f64 dWidth, const ::e_border & eborder)
    {
+
+      if (m_bTargetRectangleModified)
+      {
+
+         defer_on_target_rectangle_update();
+
+      }
 
       auto smooth_mode = get_smooth_mode();
 
@@ -3152,6 +3185,8 @@ namespace draw2d
    }
 
 
+
+
    void graphics::send(const ::procedure & procedure)
    {
 
@@ -3298,206 +3333,228 @@ namespace draw2d
       //}
 
 
-   void graphics::reset_impact_area()
+   // void graphics::reset_impact_area()
+   // {
+   //
+   //    //m_pointOrigin.x = 0;
+   //    //m_pointOrigin.y = 0;
+   //
+   //    update_matrix();
+   //
+   // }
+   //
+   //
+   // void graphics::place_impact_area(::f64 x, ::f64 y, ::f64 w, ::f64 h)
+   // {
+   //
+   //    m_pointOrigin.x = x;
+   //
+   //    //auto sizeImpact = impact_size();
+   //
+   //    //if (_m_bYFlip)
+   //    //{
+   //
+   //    //   m_pointOrigin.y = sizeImpact.height() - (y + h);
+   //
+   //    //}
+   //    //else
+   //    {
+   //
+   //       m_pointOrigin.y = y;
+   //
+   //    }
+   //
+   //    m_sizeTarget = { w, h };
+   //
+   //    update_matrix();
+   //
+   // }
+   //
+   //
+   // void graphics::place_impact_area(const ::f64_point& pointImpactArea, const ::f64_size& sizeImpactArea)
+   // {
+   //
+   //    place_impact_area(
+   //       pointImpactArea.x,
+   //       pointImpactArea.y,
+   //       sizeImpactArea.width(),
+   //       sizeImpactArea.height());
+   //
+   // }
+   //
+   //
+   // void graphics::place_impact_area(const ::f64_rectangle& rectangleImpactArea)
+   // {
+   //
+   //    place_impact_area(rectangleImpactArea.top_left(), rectangleImpactArea.size());
+   //
+   // }
+   //
+   //
+   // void graphics::shift_impact_area(::f64 dx, ::f64 dy, ::f64 w, ::f64 h)
+   // {
+   //
+   //    m_pointOrigin.x += dx;
+   //
+   //    auto sizeOffset = size();
+   //
+   //    //if (_m_bYFlip)
+   //    //{
+   //
+   //    //   m_pointOrigin.y = sizeOffset.height() - (m_pointOrigin.y - dy + h);
+   //
+   //    //}
+   //    //else
+   //    //{
+   //
+   //       m_pointOrigin.y += dy;
+   //
+   //    //}
+   //
+   //    m_sizeImpact2 = { w, h };
+   //
+   //    update_matrix();
+   //
+   // }
+   //
+   //
+   // void graphics::shift_impact_area(const ::f64_size& shiftImpactArea, const ::f64_size& sizeImpactArea)
+   // {
+   //
+   //    shift_impact_area(
+   //       shiftImpactArea.cx,
+   //       shiftImpactArea.cy,
+   //       sizeImpactArea.width(),
+   //       sizeImpactArea.height());
+   //
+   // }
+   //
+   //
+   // void graphics::shift_impact_area(const ::f64_rectangle& rectangleImpactArea)
+   // {
+   //
+   //    shift_impact_area(rectangleImpactArea.top_left(), rectangleImpactArea.size());
+   //
+   // }
+   //
+
+   // ::f64_size graphics::impact_size()
+   // {
+   //
+   //    if (m_sizeImpact2.is_empty())
+   //    {
+   //
+   //       return m_sizeTotal2;
+   //
+   //    }
+   //
+   //    return m_sizeImpact2;
+   //
+   // }
+
+
+   // ::f64_size graphics::size() const
+   // {
+   //
+   //    if (m_pimage)
+   //    {
+   //
+   //       return m_pimage->size();
+   //
+   //    }
+   //    else
+   //    {
+   //
+   //       return m_sizeTotal2;
+   //
+   //    }
+   //
+   // }
+
+   //
+   //
+   // void graphics::_x_offset(::f64 dx)
+   // {
+   //
+   //    m_pointTarget.x += dx;
+   //
+   // }
+   //
+   //
+   // void graphics::x_offset(::f64 dx)
+   // {
+   //
+   //    _x_offset(dx);
+   //
+   //    update_matrix();
+   //
+   // }
+   //
+   //
+   // void graphics::_y_offset(::f64 dy)
+   // {
+   //
+   //    m_pointTarget.y += dy;
+   //
+   // }
+   //
+   //
+   // void graphics::y_offset(::f64 dy)
+   // {
+   //
+   //    _y_offset(dy);
+   //
+   //    update_matrix();
+   //
+   // }
+   //
+   //
+   // void graphics::offset(::f64 dx, ::f64 dy)
+   // {
+   //
+   //    _offset(dx, dy);
+   //
+   //    update_matrix();
+   //
+   // }
+   //
+   //
+   // void graphics::_offset(::f64 dx, ::f64 dy)
+   // {
+   //
+   //    _x_offset(dx);
+   //
+   //    _y_offset(dy);
+   //
+   // }
+   //
+   //
+   // void graphics::offset(const ::f64_size& size)
+   // {
+   //
+   //    _offset(size.cx, size.cy);
+   //
+   //    update_matrix();
+   //
+   // }
+
+
+   void graphics::reset_target_rectangle()
    {
 
-      //m_pointOrigin.x = 0;
-      //m_pointOrigin.y = 0;
+      m_pointTarget.clear();
+
+      m_sizeTarget = m_sizeTotal2;
+
+      m_bTargetRectangleModified = false;
 
       update_matrix();
 
    }
 
 
-   void graphics::place_impact_area(::f64 x, ::f64 y, ::f64 w, ::f64 h)
+   void graphics::on_target_rectangle_update()
    {
-
-      m_pointOrigin.x = x;
-
-      auto sizeImpact = impact_size();
-
-      //if (_m_bYFlip)
-      //{
-
-      //   m_pointOrigin.y = sizeImpact.height() - (y + h);
-
-      //}
-      //else
-      {
-
-         m_pointOrigin.y = y;
-
-      }
-
-      m_sizeImpact2 = { w, h };
-
-      update_matrix();
-
-   }
-
-
-   void graphics::place_impact_area(const ::f64_point& pointImpactArea, const ::f64_size& sizeImpactArea)
-   {
-
-      place_impact_area(
-         pointImpactArea.x,
-         pointImpactArea.y,
-         sizeImpactArea.width(),
-         sizeImpactArea.height());
-
-   }
-
-
-   void graphics::place_impact_area(const ::f64_rectangle& rectangleImpactArea)
-   {
-
-      place_impact_area(rectangleImpactArea.top_left(), rectangleImpactArea.size());
-
-   }
-
-
-   void graphics::shift_impact_area(::f64 dx, ::f64 dy, ::f64 w, ::f64 h)
-   {
-
-      m_pointOrigin.x += dx;
-
-      auto sizeOffset = size();
-
-      //if (_m_bYFlip)
-      //{
-
-      //   m_pointOrigin.y = sizeOffset.height() - (m_pointOrigin.y - dy + h);
-
-      //}
-      //else
-      //{
-
-         m_pointOrigin.y += dy;
-
-      //}
-
-      m_sizeImpact2 = { w, h };
-
-      update_matrix();
-
-   }
-
-
-   void graphics::shift_impact_area(const ::f64_size& shiftImpactArea, const ::f64_size& sizeImpactArea)
-   {
-
-      shift_impact_area(
-         shiftImpactArea.cx,
-         shiftImpactArea.cy,
-         sizeImpactArea.width(),
-         sizeImpactArea.height());
-
-   }
-
-
-   void graphics::shift_impact_area(const ::f64_rectangle& rectangleImpactArea)
-   {
-
-      shift_impact_area(rectangleImpactArea.top_left(), rectangleImpactArea.size());
-
-   }
-
-
-   ::f64_size graphics::impact_size()
-   {
-
-      if (m_sizeImpact2.is_empty())
-      {
-
-         return m_sizeTotal2;
-
-      }
-
-      return m_sizeImpact2;
-
-   }
-
-
-   ::f64_size graphics::size() const
-   {
-
-      if (m_pimage)
-      {
-
-         return m_pimage->size();
-
-      }
-      else
-      {
-
-         return m_sizeTotal2;
-
-      }
-
-   }
-
-
-
-   void graphics::_x_offset(::f64 dx)
-   {
-
-      m_pointOrigin.x += dx;
-
-   }
-
-
-   void graphics::x_offset(::f64 dx)
-   {
-
-      _x_offset(dx);
-
-      update_matrix();
-
-   }
-
-
-   void graphics::_y_offset(::f64 dy)
-   {
-
-      m_pointOrigin.y += dy;
-
-   }
-
-
-   void graphics::y_offset(::f64 dy)
-   {
-
-      _y_offset(dy);
-
-      update_matrix();
-
-   }
-
-
-   void graphics::offset(::f64 dx, ::f64 dy)
-   {
-
-      _offset(dx, dy);
-
-      update_matrix();
-
-   }
-
-
-   void graphics::_offset(::f64 dx, ::f64 dy)
-   {
-
-      _x_offset(dx);
-
-      _y_offset(dy);
-
-   }
-
-
-   void graphics::offset(const ::f64_size& size)
-   {
-
-      _offset(size.cx, size.cy);
 
       update_matrix();
 
@@ -4933,10 +4990,10 @@ namespace draw2d
    //}
 
 
-   ::i32_size graphics::get_image_drawer_size() const
+   ::f64_rectangle graphics::get_image_drawer_rectangle() const
    {
 
-      return size();
+      return get_target_rectangle();
 
    }
 
@@ -6046,8 +6103,89 @@ namespace draw2d
    }
 
 
+   void graphics::stretch_image(::image::image *pimage, ::draw2d::enum_interpolation_mode einterpolationmode)
+   {
+
+      stretch_image(this->get_target_rectangle(),pimage,  einterpolationmode);
+
+   }
+
+
+   void graphics::stretch_image(const ::f64_rectangle& rectangleTarget, ::image::image *pimage,  ::draw2d::enum_interpolation_mode einterpolationmode)
+   {
+
+      stretch_image(rectangleTarget, pimage->rectangle(),pimage,  einterpolationmode);
+
+   }
+
+
+   void graphics::stretch_image(const ::f64_rectangle& rectangleTarget, const ::f64_rectangle& rectangleSource,::image::image *pimage,  ::draw2d::enum_interpolation_mode einterpolationmode)
+   {
+
+      // auto pgraphics = acquire_graphics();
+      //
+      // if (::is_null(pgraphics))
+      // {
+      //
+      //    throw ::exception(error_null_pointer);
+      //
+      // }
+      //
+      if (rectangleTarget.is_empty())
+      {
+
+         throw ::exception(error_bad_argument);
+
+      }
+
+      if (rectangleSource.is_empty())
+      {
+
+         throw ::exception(error_bad_argument);
+
+      }
+
+      //auto pgraphicsImage = pimage->acquire_graphics();
+
+      ::image::image_source imagesource(pimage, rectangleSource);
+
+      //::f64_rectangle rectangle(rectangleTarget);
+
+      ::image::image_drawing_options imagedrawingoptions(rectangleTarget);
+
+      ::image::image_drawing imagedrawing(imagedrawingoptions, imagesource);
+
+      auto einterpolationmodeBefore = this->m_einterpolationmode;
+
+      if (einterpolationmode != einterpolationmodeBefore)
+      {
+
+         set_interpolation_mode(einterpolationmode);
+
+      }
+
+      draw(imagedrawing);
+
+      if (einterpolationmodeBefore != einterpolationmode)
+      {
+
+         set_interpolation_mode(einterpolationmodeBefore);
+
+      }
+
+   }
+
+
+
    void graphics::_draw_stock_icon(const ::f64_rectangle & rectangleParam, enum_stock_icon estockicon)
    {
+
+      if (m_bTargetRectangleModified)
+      {
+
+         defer_on_target_rectangle_update();
+
+      }
 
       ::f64_rectangle rectangle(rectangleParam);
 
@@ -6841,7 +6979,7 @@ namespace draw2d
 
             m_iSavedDC = m_pgraphics->save_graphics_context();
             m_sizeScaling = pgraphics->m_sizeScaling;
-            m_pointOrigin = pgraphics->m_pointOrigin;
+            m_rectangleTarget = pgraphics->get_target_rectangle();
             m_matrix = pgraphics->m_matrix;
 
          }
@@ -6867,7 +7005,7 @@ namespace draw2d
             m_pgraphics->restore_graphics_context(m_iSavedDC);
             m_pgraphics->m_sizeScaling = m_sizeScaling;
             m_pgraphics->m_matrix = m_matrix;
-            m_pgraphics->m_pointOrigin = m_pointOrigin;
+            m_pgraphics->set_target_rectangle(m_rectangleTarget);
             m_pgraphics->update_matrix();
 
          }
@@ -6962,7 +7100,7 @@ namespace draw2d
 
       //}
 
-      auto translation = ::geometry2d::matrix::translation(m_pointOrigin);
+      auto translation = ::geometry2d::matrix::translation(m_pointTarget);
 
       auto matrix = scaling * m_matrix * translation;
 
@@ -6973,7 +7111,7 @@ namespace draw2d
 
          auto scalingYFlip = ::geometry2d::matrix::scaling(sizeYFlip);
 
-         auto sizeTotal = size();
+         auto sizeTotal = m_sizeTarget;
 
          ::f64_size pointYFlip(0, sizeTotal.height());
 
@@ -6988,32 +7126,32 @@ namespace draw2d
    }
 
 
-   void graphics::_get(::draw2d::offset_context* poffsetcontext)
-   {
-
-      poffsetcontext->m_poffsetable = this;
-      poffsetcontext->m_point = m_pointOrigin;
-      poffsetcontext->m_size = impact_size();
-
-   }
-   
-   
-   void graphics::_set(::draw2d::offset_context* poffsetcontext)
-   {
-
-      if (poffsetcontext->m_poffsetable != this)
-      {
-
-         throw ::exception(error_wrong_state);
-
-      }
-
-      m_pointOrigin = poffsetcontext->m_point;
-      m_sizeImpact2 = poffsetcontext->m_size;
-
-      update_matrix();
-
-   }
+   // void graphics::_get(::draw2d::offset_context* poffsetcontext)
+   // {
+   //
+   //    poffsetcontext->m_poffsetable = this;
+   //    poffsetcontext->m_point = m_pointOrigin;
+   //    poffsetcontext->m_size = impact_size();
+   //
+   // }
+   //
+   //
+   // void graphics::_set(::draw2d::offset_context* poffsetcontext)
+   // {
+   //
+   //    if (poffsetcontext->m_poffsetable != this)
+   //    {
+   //
+   //       throw ::exception(error_wrong_state);
+   //
+   //    }
+   //
+   //    m_pointOrigin = poffsetcontext->m_point;
+   //    m_sizeImpact2 = poffsetcontext->m_size;
+   //
+   //    update_matrix();
+   //
+   // }
 
 
 
@@ -7124,7 +7262,7 @@ namespace draw2d
 
       save_context savecontext(this);
 
-      place_impact_area(x, y, w, h);
+      set_target_rectangle(::f64_rectangle_dimension(x, y, w, h));
 
       auto ppen = createø < ::draw2d::pen >();
 

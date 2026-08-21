@@ -19,6 +19,7 @@
 #include "check_box.h"
 #include "style.h"
 #include "aura/message/user.h"
+#include "graphics/graphics/target.h"
 
 
 void scroll_x(::i32_rectangle & rectangleTarget, ::f64 dRateX, const ::i32_rectangle & rectangle)
@@ -198,7 +199,9 @@ namespace user
 
       pgraphics->set_alpha_mode(::draw2d::e_alpha_mode_blend);
 
-      pgraphics->shift_impact_area(rectangleX);
+      auto targetscope = pgraphics->target_scope();
+
+      targetscope += rectangleX.origin();
 
       ::i32_rectangle rectangleCheckBox;
 

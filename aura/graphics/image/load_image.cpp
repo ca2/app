@@ -28,7 +28,7 @@ namespace image
 
       auto ppixmap = ::as_pointer(ppixmapCallback);
 
-      m_functionLoaded = [ppixmap](::image::load_image * ploadimage)
+      m_loadoptions.functionLoaded = [ppixmap](::image::load_image * ploadimage)
       {
 
          if (ploadimage->is_ok())
@@ -38,6 +38,10 @@ namespace image
 
             if (ppixmapLoad)
             {
+
+               ppixmap->create_as_descriptor(ppixmapLoad->m_sizeRaw, DEFAULT_CREATE_IMAGE_FLAG, ppixmapLoad->m_iScan);
+
+               ppixmap->m_size = ppixmapLoad->m_size;
 
                ppixmap->copy_from(ppixmapLoad);
 
@@ -56,17 +60,15 @@ namespace image
    }
 
 
-   void load_image::initialize_load_image(::image::image_context* pimagecontext, const ::function < void(::image::load_image *) > & functionLoaded)
+   void load_image::initialize_load_image(::image::image_context* pimagecontext)
    {
-
-      m_functionLoaded = functionLoaded;
 
       m_pimagecontext = pimagecontext;
 
    }
 
 
-   pixmap * load_image::allocate_pixmap()
+   pixmap * load_image::get_pixmap()
    {
 
       defer_construct_newø(m_pimageframearray);
@@ -78,10 +80,10 @@ namespace image
    }
 
 
-   pixmap * load_image::create_pixmap(const ::i32_size & size, ::i32 iScan)
+   pixmap * load_image::get_pixmap(const ::i32_size & size, ::i32 iScan)
    {
 
-      auto ppixmap = allocate_pixmap();
+      auto ppixmap = get_pixmap();
 
       ppixmap->create_as_descriptor(size, DEFAULT_CREATE_IMAGE_FLAG, iScan);
 
@@ -90,10 +92,10 @@ namespace image
    }
 
 
-   pixmap * load_image::create_pixmap_from_data(const ::i32_size & size, const image32_t *pimage32, ::i32 iScan)
+   pixmap * load_image::get_pixmap_from_data(const ::i32_size & size, const image32_t *pimage32, ::i32 iScan)
    {
 
-      auto ppixmap = allocate_pixmap();
+      auto ppixmap = get_pixmap();
 
       ppixmap->create_from_data(size, pimage32, iScan, DEFAULT_CREATE_IMAGE_FLAG);
 
@@ -175,11 +177,9 @@ namespace image
    void load_image::on_load_image(const ::i32_size &size, const image32_t *pimage32, int iScan)
    {
 
-      auto ppixmap = create_pixmap_from_data(size, pimage32, iScan);
+      auto ppixmap = get_pixmap_from_data(size, pimage32, iScan);
 
-      m_eflagElement = ::e_flag_success;
-
-      m_estatus = ::success;
+      on_image_loaded(success);
 
    }
 
@@ -187,7 +187,22 @@ namespace image
    void load_image::on_image_loaded(const ::e_status & estatus)
    {
 
-      if (m_functionLoaded)
+      m_estatus = estatus;
+
+      if (estatus.succeeded())
+      {
+
+         m_eflagElement = ::e_flag_success;
+
+      }
+      else
+      {
+
+         m_eflagElement = ::e_flag_failure;
+
+      }
+
+      if (m_loadoptions.functionLoaded)
       {
 
          // if (!m_pimageframearray && m_ppixmap)
@@ -201,7 +216,7 @@ namespace image
 
          //m_functionLoaded(m_pimageframearray);
 
-         m_functionLoaded(this);
+         m_loadoptions.functionLoaded(this);
 
       }
 

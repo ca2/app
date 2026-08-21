@@ -470,10 +470,13 @@ void FreeImageErrorHandler(FREE_IMAGE_FORMAT fif, const_char_pointer message) {
 
             image()->load_svg(ploadimage, memory);
 
-            if (ploadimage->m_ppixmap->is_ok())
+            if (ploadimage->is_ok())
             {
+
                return;
+
             }
+
          }
          else if (bGif)
          {
@@ -493,11 +496,11 @@ void FreeImageErrorHandler(FREE_IMAGE_FORMAT fif, const_char_pointer message) {
 
                     }*/
 
-            ploadimage->m_ppixmap->on_load_image();
+            //ploadimage->m_ppixmap->on_load_image();
 
-            ploadimage->m_ppixmap->set_ok_flag();
+            //ploadimage->m_ppixmap->set_ok_flag();
 
-            ploadimage->m_ppixmap->m_estatus = ::success;
+            //ploadimage->m_ppixmap->m_estatus = ::success;
 
             return;
 
@@ -600,9 +603,9 @@ void FreeImageErrorHandler(FREE_IMAGE_FORMAT fif, const_char_pointer message) {
 
          }
 
-            ploadimage->m_ppixmap->m_estatus = error_failed;
+            //ploadimage->m_ppixmap->m_estatus = error_failed;
 
-            ploadimage->m_ppixmap->set_nok();
+            //ploadimage->m_ppixmap->set_nok();
 
          return;
       }
@@ -637,7 +640,7 @@ void FreeImageErrorHandler(FREE_IMAGE_FORMAT fif, const_char_pointer message) {
 
                   iExifOrientation = *((::u16 *)value);
 
-                  ploadimage->m_ppixmap->set_exif_orientation(iExifOrientation);
+                  ploadimage->get_pixmap()->set_exif_orientation(iExifOrientation);
                }
             }
 
@@ -652,7 +655,7 @@ void FreeImageErrorHandler(FREE_IMAGE_FORMAT fif, const_char_pointer message) {
          FreeImage_FindCloseMetadata(mdhandle);
       }
 
-      if (!pixmap_from_freeimage(ploadimage->m_ppixmap, pfibitmap))
+      if (!pixmap_from_freeimage(ploadimage->get_pixmap(), pfibitmap))
       {
 			  
 			  information() << "image_from_freeimage failed";
@@ -728,22 +731,22 @@ void FreeImageErrorHandler(FREE_IMAGE_FORMAT fif, const_char_pointer message) {
       //
       //   }
 
-      ploadimage->m_ppixmap->on_load_image();
-
-      ploadimage->m_ppixmap->set_ok_flag();
-
-      ploadimage->m_ppixmap->m_estatus = ::success;
-
-      if (loadoptions.functionLoaded)
-      {
-
-         auto pimageframearray = create_newø<::image::image_frame_array>();
-
-         pimageframearray->create_from_pixmap(ploadimage->m_ppixmap);
-
-         loadoptions.functionLoaded(pimageframearray);
-
-      }
+      // ploadimage->m_ppixmap->on_load_image();
+      //
+      // ploadimage->m_ppixmap->set_ok_flag();
+      //
+      // ploadimage->m_ppixmap->m_estatus = ::success;
+      //
+      // if (loadoptions.functionLoaded)
+      // {
+      //
+      //    auto pimageframearray = create_newø<::image::image_frame_array>();
+      //
+      //    pimageframearray->create_from_pixmap(ploadimage->m_ppixmap);
+      //
+      //    loadoptions.functionLoaded(pimageframearray);
+      //
+      // }
 
       //      return pimage->m_estatus;
    }

@@ -161,7 +161,7 @@ namespace gpu
       //virtual void context_transform(::f64_point & p, enum_transform_context etransformcontext);
 
     
-      ::f64_size size() const override;
+      //::f64_size size() const override;
 
       virtual ::gpu::shader* rectangle_shader();
 

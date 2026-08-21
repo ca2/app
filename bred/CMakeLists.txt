@@ -15,20 +15,28 @@ list(APPEND library_source
    #gpu/aaaa_gpu.h
    gpu/binding.cpp
    gpu/binding.h
+   gpu/bitmap.cpp
+   gpu/bitmap.h
    gpu/block.cpp
    gpu/block.h
    gpu/bred_approach.cpp
    gpu/bred_approach.h
+   gpu/buffer.cpp
+   gpu/buffer.h
    gpu/command_buffer.cpp
    gpu/command_buffer.h
    gpu/compositor.cpp
    gpu/compositor.h
    gpu/context.cpp
    gpu/context.h
+   gpu/context_lease.cpp
+   gpu/context_lease.h
    gpu/context_lock.cpp
    gpu/context_lock.h
    gpu/context_object.cpp
    gpu/context_object.h
+   gpu/context_pointer.cpp
+   gpu/context_pointer.h
    #gpu/cpu_buffer.cpp
    #gpu/cpu_buffer.h
    gpu/device.cpp
@@ -85,8 +93,17 @@ list(APPEND library_source
    gpu/swap_chain.h
    gpu/texture.cpp
    gpu/texture.h
+   gpu/texture_attributes.h
+   gpu/texture_data.h
+   gpu/texture_flags.h
+   gpu/texture_site.cpp
+   gpu/texture_site.h
+   gpu/texture_synchronization.cpp
+   gpu/texture_synchronization.h
    gpu/types.cpp
    gpu/types.h
+   gpu/window_attachment.cpp
+   gpu/window_attachment.h
    graphics3d/render_system/point_light_render_system.cpp
    graphics3d/render_system/point_light_render_system.h
    #graphics3d/render_systems/gltf_render_system.cpp

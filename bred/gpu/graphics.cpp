@@ -1060,21 +1060,21 @@ namespace gpu
    // }
 
 
-   ::f64_size graphics::size() const
-   {
-
-      auto pcontext = ((graphics*)this)->gpu_context();
-
-      if (pcontext)
-      {
-
-         return pcontext->size();
-
-      }
-
-      return ::gpu::graphics::size();
-
-   }
+   // ::f64_size graphics::size() const
+   // {
+   //
+   //    auto pcontext = ((graphics*)this)->gpu_context();
+   //
+   //    if (pcontext)
+   //    {
+   //
+   //       return pcontext->size();
+   //
+   //    }
+   //
+   //    return ::gpu::graphics::size();
+   //
+   // }
 
    
    ::gpu::shader* graphics::rectangle_shader()
@@ -1354,8 +1354,8 @@ namespace gpu
 
       pcontext->defer_unbind(pshader);
 
-      m_point.x = x2;
-      m_point.y = y2;
+      m_pointTarget.x = x2;
+      m_pointTarget.y = y2;
    }
 
 

@@ -85,11 +85,11 @@ namespace image
       virtual ::image::image * get_source_image();
       //   virtual void defer_update_all_frames();
 
-
+      virtual ::pixmap * current_pixmap();
       //void defer_create_owned_graphics_lease();
       //void defer_destroy_owned_graphics_lease();
 
-
+      virtual ::pixmap * owned_pixmap();
       //virtual void set_owned_graphics();
 
       virtual ::function < void(::image::load_image *) > load_image_callback();
@@ -164,7 +164,7 @@ namespace image
 
       //inline ::i32_size get_size() const;
 
-      ::i32_size get_image_drawer_size() const override;
+      ::f64_rectangle get_image_drawer_rectangle() const override;
 
 
       ::image::image_pointer image_source_image(const ::i32_size &) override;
@@ -270,7 +270,7 @@ namespace image
 
 
       //using image_drawer::stretch;
-      virtual void stretch_image(::image::image *pimage, ::draw2d::enum_interpolation_mode einterpolationmode = draw2d::e_interpolation_mode_none);
+      // virtual void stretch_image(::image::image *pimage, ::draw2d::enum_interpolation_mode einterpolationmode = draw2d::e_interpolation_mode_none);
 
 
       //virtual void stretch(::draw2d::graphics * pgraphics);
@@ -471,6 +471,12 @@ namespace image
       void _draw_raw(const ::image::image_drawing & imagedrawing) override;
 
 
+      virtual bool on_acquirable_copy_from(::pixmap * ppixmap);
+      virtual bool on_acquirable_copy_from(::pixmap * ppixmap, const ::i32_size & size, const ::i32_point & pointDst, const ::i32_point & pointSrc);
+      virtual bool on_acquirable_resizing_copy_from(::pixmap * ppixmap, const ::i32_size & sizeDstRaw, const ::i32_size & size, const ::i32_point & pointDst, const ::i32_point & pointSrc);
+      virtual bool on_acquirable_fitting_copy_from(::pixmap * ppixmap, const ::i32_size & size, const ::i32_point & pointDst, const ::i32_point & pointSrc);
+
+
       virtual void copy_from(::pixmap * ppixmap);
       virtual void copy_from(::pixmap * ppixmap, const ::i32_size & size, const ::i32_point & pointDst, const ::i32_point & pointSrc);
       virtual void resizing_copy_from(::pixmap * ppixmap, const ::i32_size & sizeDstRaw, const ::i32_size & size, const ::i32_point & pointDst, const ::i32_point & pointSrc);
@@ -526,7 +532,9 @@ namespace image
          return m_ppixmapOwned && image.m_ppixmapOwned && m_ppixmapOwned->m_pimage32Raw == image.m_ppixmapOwned->m_pimage32Raw;
 
       }
-      virtual void SetIconMask(::image::icon * picon, ::i32 cx, ::i32 cy);
+
+
+      virtual void set_image_icon(::image::icon * picon, ::i32 cx, ::i32 cy);
 
       // inline bool operator != (const image& image) const
       // {
@@ -572,7 +580,8 @@ namespace image
 
       friend class ::image_pixmap_lease;
 
-      virtual void _can_map(const ::i32_rectangle & rectangle);
+      virtual void _tidy_map(const ::i32_rectangle & rectangle);
+      virtual void _tidy_unmap(::image_pixmap_lease * pimagepixmaplease);
 
       virtual ::image_pixmap_lease _map(const ::i32_rectangle & rectangle);
       virtual void _unmap(::image_pixmap_lease * pimagepixmaplease);

@@ -1,8 +1,8 @@
 // From pixmap_lease by camilo on 2026-08-18 22:48 <3ThomasBorregaardSørensen!! Mummi!! Bilbo!!
 // Created by camilo on 2026-07-23 01:24 <3ThomasBorregaardSørensen!! Mummi!! Bilbo!!
 #include "platform.h"
-#include "pixmap.h"
-#include "pixmap_lease.h"
+#include "image.h"
+#include "image_pixmap_lease.h"
 
 
 image_pixmap_lease::image_pixmap_lease()
@@ -11,23 +11,12 @@ image_pixmap_lease::image_pixmap_lease()
 }
 
 
-image_pixmap_lease::image_pixmap_lease(::image::image * pimage, ::pixmap * ppixmap, const ::i32_rectangle & rectangle) :
-   ::pixmap_lease(ppixmap, rectangle),
-   m_pimage(pimage),
-   m_rectangle({pimage->m_point, pimage->m_size})
+image_pixmap_lease::image_pixmap_lease(::image::image * pimage, ::pixmap * ppixmap) :
+   ::pixmap_lease(ppixmap, {pimage->m_point, pimage->m_size}),
+   m_pimage(pimage)
 {
-
    m_pimage = pimage;
-
-   m_pimagepixmaplease->m_ppixmap->m_point = m_point;
-
-   m_pimagepixmaplease->m_ppixmap->m_size = m_size;
-
-   m_pimagepixmaplease->m_ppixmap->m_size = m_size;
-
-   m_pimagepixmaplease->m_ppixmap->pixmap_map();
-
-   ppixmap->_map({pimage->m_point, pimage->m_size});
+   m_pimage->m_pimagepixmaplease = this;
 
 }
    
@@ -45,29 +34,27 @@ image_pixmap_lease::image_pixmap_lease(::image::image * pimage, ::pixmap * ppixm
 // }
 
 
-image_pixmap_lease::image_pixmap_lease(pixmap_lease &&pixmaplease) :
-   ::pointer< ::pixmap >(::transfer(pixmaplease)),
-   m_rectangle(pixmaplease.m_rectangle)
+image_pixmap_lease::image_pixmap_lease(image_pixmap_lease &&imagepixmaplease) :
+   ::pixmap_lease(::transfer(imagepixmaplease)),
+   m_pimage(imagepixmaplease.m_pimage)
 {
-
-
+   m_pimage->m_pimagepixmaplease = this;
+   imagepixmaplease.m_pimage = nullptr;
 
 }
-
-
 
    
 image_pixmap_lease::~image_pixmap_lease()
 {
 
-   if (!m_p)
+   if (!m_p || !m_pimage)
    {
 
       return;
 
    }
 
-   m_p->_unmap(m_rectangle);
+   m_pimage->_unmap(this);
 
    // if (m_bRectangleMap)
    // {
@@ -86,7 +73,6 @@ image_pixmap_lease::~image_pixmap_lease()
 }
 
 
-
 image_pixmap_lease &image_pixmap_lease::operator=(image_pixmap_lease &&imagepixmaplease)
 {
 
@@ -95,9 +81,14 @@ image_pixmap_lease &image_pixmap_lease::operator=(image_pixmap_lease &&imagepixm
 
       ::pointer < ::pixmap>::operator=(::transfer(imagepixmaplease));
 
-      m_rectangle = pixmaplease.m_rectangle;
+      m_pimage = imagepixmaplease.m_pimage;
+
+      imagepixmaplease.m_pimage = nullptr;
 
    }
 
    return *this;
 }
+
+
+

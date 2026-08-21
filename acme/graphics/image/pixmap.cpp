@@ -83,30 +83,181 @@ void pixmap::change_raw_size(const ::i32_size & sizeRawNew, ::i32 iMinimumScan)
 }
 
 
+void pixmap::change_size_and_stride_preserving_data(
+   const ::i32_size & sizeNew,
+   ::i32 iScanMinimumRequired,
+   const ::color::color & colorEmpty)
+{
+
+   auto sizeOld = m_size;
+
+   auto sizeRawOld = this->raw_size();
+
+   ::i32_size sizeRawRequired(m_point.x + sizeNew.cx, m_point.y + sizeNew.cy);
+
+   auto sizeRawNew = sizeRawOld.maximum(sizeRawRequired);
+
+   int iScanNew = maximum(m_iScan, iScanMinimumRequired);
+
+   if (iScanNew < sizeRawNew.cx * 4)
+   {
+
+      iScanNew = sizeRawNew.cx * 4;
+
+   }
+
+   ::i32 iScanOld = m_iScan;
+
+   int iOldExistingHeight = iScanOld > 0 ? (int) (m_memoryPixmap.size() / iScanOld) : 0;
+
+   auto iRawHeightToPreserve = minimum(sizeRawOld.cy, iOldExistingHeight);
+
+   auto iRawBytesPerRowToPreserve = sizeRawOld.cx * 4;
+
+   iRawBytesPerRowToPreserve = minimum(iRawBytesPerRowToPreserve, minimum(iScanNew, iScanOld));
+
+   if (iScanNew * sizeRawNew.cy > m_memoryPixmap.size())
+   {
+
+      m_memoryPixmap.set_size(iScanNew * sizeRawNew.cy);
+
+   }
+
+   if (iScanNew != iScanOld)
+   {
+
+      auto p = m_memoryPixmap.data();
+
+      if (iScanNew > iScanOld)
+      {
+
+         for (int y = iRawHeightToPreserve - 1; y >= 0; y--)
+         {
+
+            memory_transfer(p + y * iScanNew, p + y * iScanOld, iRawBytesPerRowToPreserve);
+
+         }
+
+      }
+      else
+      {
+
+         for (int y = 0; y < iRawHeightToPreserve; y++)
+         {
+
+            memory_transfer(p + y * iScanNew, p + y * iScanOld, iRawBytesPerRowToPreserve);
+
+         }
+
+      }
+
+   }
+
+   auto p = m_memoryPixmap.data();
+
+   auto iOldExistingWidth = iScanOld > 0 ? minimum(sizeRawOld.cx, iScanOld / 4) : 0;
+
+   iOldExistingWidth = maximum(0, iOldExistingWidth - m_point.x);
+
+   auto iOldExistingImageHeight = maximum(0, minimum(sizeRawOld.cy, iOldExistingHeight) - m_point.y);
+
+   auto iWidthToPreserve = minimum(sizeNew.cx, minimum(sizeOld.cx, iOldExistingWidth));
+
+   auto iHeightToPreserve = minimum(sizeNew.cy, minimum(sizeOld.cy, iOldExistingImageHeight));
+
+   ::image32_t image32EmptyColor(colorEmpty, color_indexes());
+
+   if (p && sizeNew.cx > 0)
+   {
+
+      for (int y = 0; y < iHeightToPreserve; y++)
+      {
+
+         auto pimage32 = (::image32_t *) (p + (m_point.y + y) * iScanNew) + m_point.x;
+
+         for (int x = iWidthToPreserve; x < sizeNew.cx; x++)
+         {
+
+            pimage32[x] = image32EmptyColor;
+
+         }
+
+      }
+
+      for (int y = iHeightToPreserve; y < sizeNew.cy; y++)
+      {
+
+         auto pimage32 = (::image32_t *) (p + (m_point.y + y) * iScanNew) + m_point.x;
+
+         for (int x = 0; x < sizeNew.cx; x++)
+         {
+
+            pimage32[x] = image32EmptyColor;
+
+         }
+
+      }
+
+   }
+
+   m_memoryPixmap.set_size(iScanNew * sizeRawNew.cy);
+
+   m_iScan = iScanNew;
+
+   m_sizeRaw = sizeRawNew;
+
+   m_size = sizeNew;
+
+   m_pimage32Raw = (::image32_t *) m_memoryPixmap.data();
+
+   if (m_pimage32Raw)
+   {
+
+      pixmap_map();
+
+   }
+   else
+   {
+
+      m_pimage32 = nullptr;
+
+   }
+
+}
+
+
 void pixmap::create_as_descriptor(const ::i32_size & size, ::enum_flag eflagCreate, ::i32 iGoodStride)
 {
 
-   if (size == m_sizeRaw && size == m_size)
+   if (m_memoryPixmap.size() > 0)
    {
 
-      return;
+      change_size_and_stride_preserving_data(size, iGoodStride);
 
    }
+   else if (!m_pimage32Raw)
+   {
 
-   destroy();
+      auto iScanRequired = size.cx * 4;
 
-   m_sizeRaw = size;
+      if (iGoodStride >= iScanRequired)
+      {
+
+         m_iScan = iGoodStride;
+
+      }
+      else
+      {
+
+         m_iScan = iScanRequired;
+
+      }
+
+      m_sizeRaw = size;
+
+   }
 
    m_size = size;
-
-   m_iScan = size.cx * 4;
-
-   if (iGoodStride >= m_iScan)
-   {
-
-      m_iScan = iGoodStride;
-
-   }
 
    m_eflagElement = eflagCreate;
 
@@ -225,7 +376,53 @@ pixmap_lease pixmap::map(const ::i32_rectangle & rectangle)
 void pixmap::_map(const ::i32_rectangle & rectangle)
 {
 
-   if (!rectangle.is_null())
+   auto rectangleMap = rectangle;
+
+   if (m_interlockedcountMap == 0)
+   {
+
+      if (!rectangle.is_null())
+      {
+
+         if (!raw_contains_x(rectangle.left))
+         {
+
+            throw ::exception(error_wrong_state);
+
+         }
+
+         if (!raw_contains_x(rectangle.right))
+         {
+
+            throw ::exception(error_wrong_state);
+
+         }
+
+         if (!raw_contains_y(rectangle.top))
+         {
+
+            throw ::exception(error_wrong_state);
+
+         }
+
+         if (!raw_contains_y(rectangle.bottom))
+         {
+
+            throw ::exception(error_wrong_state);
+
+         }
+
+         m_point = rectangle.origin();
+
+         m_size = rectangle.size();
+
+         rectangleMap.clear();
+
+      }
+
+   }
+
+   if (!rectangleMap.is_null())
    {
 
       if (rectangle.left >= rectangle.right)
@@ -270,6 +467,8 @@ void pixmap::_map(const ::i32_rectangle & rectangle)
 
       }
 
+      rectangleMap.offset(top_left());
+
    }
 
    auto ppixmap32Owned = (::image32_t *)m_memoryPixmap.data();
@@ -296,7 +495,7 @@ void pixmap::_map(const ::i32_rectangle & rectangle)
 
    m_interlockedcountMap++;
 
-   if (rectangle.is_null())
+   if (rectangleMap.is_null())
    {
 
       pixmap_map();
@@ -305,11 +504,84 @@ void pixmap::_map(const ::i32_rectangle & rectangle)
    else
    {
 
-      pixmap_map(rectangle);
+      pixmap_map(rectangleMap);
 
    }
 
 }
+
+
+void pixmap::_unmap(const ::i32_rectangle & rectangle)
+{
+
+   if (m_interlockedcountMap <= 0)
+   {
+
+      throw ::exception(error_wrong_state);
+
+   }
+
+   // if (!_on_unmap())
+   // {
+   //
+   //    return;
+   //
+   // }
+
+   m_interlockedcountMap--;
+
+   if (!rectangle.is_null())
+   {
+
+      m_point = rectangle.origin();
+
+      m_size = rectangle.size();
+
+   }
+
+   pixmap_map();
+
+}
+
+
+//
+//void pixmap::unmap(bool bDoUnmap) const
+//{
+//
+//   ((pixmap *)this)->_unmap(bDoUnmap);
+//
+//}
+//
+//
+// bool pixmap::_on_unmap(bool bDoUnmap)
+// {
+//
+//    if (m_interlockedcountMap <= 0)
+//    {
+//
+//       throw ::exception(error_wrong_state);
+//
+//    }
+//
+//    m_interlockedcountMap--;
+//
+//    if (m_interlockedcountMap > 0)
+//    {
+//
+//       return false;
+//
+//    }
+//
+//    if ((!m_bMapped || !m_pimage32Raw) && bDoUnmap)
+//    {
+//
+//       throw ::exception(error_wrong_state);
+//    }
+//
+//    return true;
+//
+// }
+
 
 
 void pixmap::set_exif_orientation(int iExifOrientation)
@@ -411,83 +683,11 @@ void pixmap::copy(const ::i32_size &size, const ::image32_t *ppixmap32, ::i32 iS
 
    auto ppixmapThis = this->map();
 
-   copy(size, ppixmap32, iScan);
+   ppixmapThis->m_pimage32->copy(size, m_iScan, ppixmap32, iScan);
    
 }
 
 
-
-
-//
-//void pixmap::unmap(bool bDoUnmap) const
-//{
-//
-//   ((pixmap *)this)->_unmap(bDoUnmap);
-//
-//}
-//
-//
-// bool pixmap::_on_unmap(bool bDoUnmap)
-// {
-//
-//    if (m_interlockedcountMap <= 0)
-//    {
-//
-//       throw ::exception(error_wrong_state);
-//
-//    }
-//
-//    m_interlockedcountMap--;
-//
-//    if (m_interlockedcountMap > 0)
-//    {
-//
-//       return false;
-//
-//    }
-//
-//    if ((!m_bMapped || !m_pimage32Raw) && bDoUnmap)
-//    {
-//
-//       throw ::exception(error_wrong_state);
-//    }
-//
-//    return true;
-//
-// }
-
-
-void pixmap::_unmap(const ::i32_rectangle & rectangle)
-{
-
-   if (m_interlockedcountMap <= 0)
-   {
-
-      throw ::exception(error_wrong_state);
-
-   }
-
-   // if (!_on_unmap())
-   // {
-   //
-   //    return;
-   //
-   // }
-
-   m_interlockedcountMap--;
-
-   if (!rectangle.is_null())
-   {
-
-      m_point = rectangle.origin();
-
-      m_size = rectangle.size();
-
-   }
-
-   pixmap_map();
-
-}
 
 
 //::pixmap::lock pixmap::lock(::i32 stride, ::pixmap::enum_copy_disposition ecopydisposition, ::pixmap* ppixmapLock)
@@ -1353,6 +1553,11 @@ void pixmap::precision_blend(const ::i32_point& pointDstParam, ::pixmap * ppixma
       return;
 
    }
+
+   auto wSrc = ppixmapSrc->width();
+   auto wDst = ppixmapDst->width();
+   auto hSrc = ppixmapSrc->height();
+   auto hDst = ppixmapDst->height();
 
    ::i32 xEnd = minimum(size.cx, minimum(ppixmapSrc->width() - pointSrc.x, ppixmapDst->width() - pointDst.x));
 
@@ -4191,7 +4396,7 @@ void pixmap::copy_from(::pixmap * ppixmap)
 
       auto ppixmapSource = ppixmap->map();
 
-      ppixmapSource->copy(ppixmapSource);
+      ppixmapTarget->copy(ppixmapSource);
 
       return;
 

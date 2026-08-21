@@ -33,6 +33,20 @@ namespace draw2d
                                   ::image::image * pimage, bool bOwned) :
        graphics_pointer(pgraphics), m_pdraw2d(pdraw2d), m_pimage(pimage), m_bOwned(bOwned)
    {
+
+      if (m_pimage)
+      {
+
+         if (m_pimage->m_pgraphicslease)
+         {
+
+            throw ::exception(error_wrong_state);
+
+         }
+
+         m_pimage->m_pgraphicslease = this;
+
+      }
    }
 
    //   graphics_lease::graphics_lease(::draw2d::graphics *pgraphics, ::image::image * pimage, 
@@ -51,6 +65,14 @@ namespace draw2d
       ASSERT(!lease.m_bLayerScopeActive);
 
       lease.m_bDamaged = false;
+
+   }
+
+
+   graphics_lease::~graphics_lease() noexcept
+   {
+
+      close_noexcept();
 
    }
 
@@ -76,14 +98,6 @@ namespace draw2d
       }
 
       return *this;
-
-   }
-
-
-   graphics_lease::~graphics_lease() noexcept
-   {
-
-      close_noexcept();
 
    }
 
@@ -175,6 +189,20 @@ namespace draw2d
 
       }
 
+      if (m_pimage)
+      {
+
+         if (m_pimage->m_pgraphicslease != this)
+         {
+
+            errorf("[draw2d.graphics_pool] failed to return graphics lease");
+
+         }
+
+         m_pimage->m_pgraphicslease = nullptr;
+
+      }
+
       auto pdraw2d = ::transfer(m_pdraw2d);
       auto pgraphics = ::transfer((BASE_POINTER &&) *this);
       auto pimage = ::transfer(m_pimage);
@@ -254,6 +282,7 @@ namespace draw2d
          errorf("[draw2d.graphics_pool] failed to return memory graphics");
 
       }
+
 
    }
 

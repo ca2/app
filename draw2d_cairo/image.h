@@ -44,18 +44,18 @@ namespace draw2d_cairo
       void _draw_raw(const ::i32_rectangle & rectangle, ::image::image *pimage, const ::i32_point & point = ::i32_point()) override;
 
       //bool to(::draw2d::graphics * pgraphics, const ::i32_point & point, const ::i32_size & size, const ::i32_point & pointSrc) override;
-      void SetIconMask(::image::icon * picon, ::i32 cx, ::i32 cy) override;
+      void set_image_icon(::image::icon * picon, ::i32 cx, ::i32 cy) override;
 
 
       //void write(::binary_stream & stream) const override;
       //void read(::binary_stream & stream) override;
 
 
-      //void blend(const ::i32_point & ptDst, ::image::image *pimageAlf, const ::i32_point & pointAlf, const ::i32_size & size, ::u8 bA) override;
+      //      //void blend(const ::i32_point & ptDst, ::image::image *pimageAlf, const ::i32_point & pointAlf, const ::i32_size & size, ::u8 bA) override;
       //void blend2(const ::i32_point & ptDst, ::image::image *pimageAlf, const ::i32_point & pointAlf, const ::i32_size & size, ::u8 bA) override;
    protected:
-      ::pixmap_lease _map(const ::i32_rectangle & rectangle, bool bApplyAlphaTransform = true) override;
-      void _unmap(bool bDoUnmap = false) override;
+      ::image_pixmap_lease _map(const ::i32_rectangle & rectangle) override;
+      void _unmap(image_pixmap_lease * pimagepixmaplease) override;
 
    };
 

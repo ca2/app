@@ -4780,9 +4780,9 @@ namespace draw2d_cairo
 
       draw();
 
-      m_point.x = x2;
+      m_pointTarget.x = x2;
 
-      m_point.y = y2;
+      m_pointTarget.y = y2;
 
       //return true;
 
@@ -4800,9 +4800,9 @@ namespace draw2d_cairo
 
       draw(ppen);
 
-      m_point.x = x2;
+      m_pointTarget.x = x2;
 
-      m_point.y = y2;
+      m_pointTarget.y = y2;
 
       //return true;
 

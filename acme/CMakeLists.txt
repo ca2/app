@@ -2377,6 +2377,8 @@ if (${WIN32})
        operating_system/windows/console.cpp
        operating_system/windows/device_context.cpp
        operating_system/windows/device_context.h
+       operating_system/windows/device_independent_bitmap.cpp
+       operating_system/windows/device_independent_bitmap.h
             operating_system/windows/file1.cpp
             #operating_system/windows/heap_allocator.cpp
             #operating_system/windows/heap_allocator.h

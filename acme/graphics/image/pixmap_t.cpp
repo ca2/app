@@ -17,7 +17,7 @@
 void pixmap_t::initialize_pixmap(const ::i32_size & size, ::image32_t * pimage32, ::i32 iScan)
 {
 
-   //m_size = size;
+   m_size = size;
 
    m_sizeRaw = size;
 

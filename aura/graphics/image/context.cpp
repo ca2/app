@@ -248,7 +248,9 @@ namespace image
 
       auto pimageStreched = create_image(size);
 
-      pimageStreched->stretch_image(pimage);
+      auto pgraphicsImageStretched = pimageStreched->acquire_graphics();
+
+      pgraphicsImageStretched->stretch_image(pimage);
 
       return pimageStreched;
 
@@ -524,15 +526,39 @@ namespace image
          else
          {
 
-            defer_construct_newø(ppixmapOriginal);
+            auto ppixmapLoad = create_newø<::pixmap>();
+
+            //defer_construct_newø(ppixmapOriginal);
 
             auto ploadimage = create_newø<::image::load_image>();
 
-            ploadimage->initialize_load_image(this, ppixmapOriginal);
+            ploadimage->initialize_load_image(this, ppixmapLoad);
 
             ploadimage->m_sizePreferred = size;
 
+            ploadimage->m_loadoptions.sync = true;
+
             _load_image(ploadimage, path);
+
+            if (ppixmapLoad.ok())
+            {
+
+               if (ppixmapLoad->size() == size)
+               {
+
+                  ppixmap = ppixmapLoad;
+
+               }
+               else
+               {
+
+                  ppixmapOriginal = ppixmapLoad;
+
+                  ppixmap = ppixmapOriginal->get_resized_pixmap(size);
+
+               }
+
+            }
 
          }
 
@@ -1411,7 +1437,11 @@ namespace image
 
       pframea->m_timeTotal = timeTotal;
 
-      ploadimage->m_functionLoaded(ploadimage);
+      if (ploadimage->m_loadoptions.functionLoaded)
+      {
+         ploadimage->m_loadoptions.functionLoaded(ploadimage);
+
+      }
 
    }
 

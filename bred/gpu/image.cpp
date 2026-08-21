@@ -390,7 +390,7 @@ namespace gpu
    ::image_pixmap_lease image::_map(const ::i32_rectangle & rectangle)
    {
 
-      _can_map(rectangle);
+      _tidy_map(rectangle);
 
       // if (has_active_destination_graphics_lease())
       // {
@@ -580,6 +580,7 @@ namespace gpu
    void image::_unmap(::image_pixmap_lease * pimagepixmaplease)
    {
 
+      _tidy_unmap(pimagepixmaplease);
       // if (!_on_unmap(bDoUnmap))
       // {
       //

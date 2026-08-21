@@ -615,9 +615,9 @@ namespace html
 
          //::i32_rectangle rectangleWindow;
          //m_pcheckbox->window_rectangle(rectangleWindow);
-         auto offsetcontext = pgraphics->offset_context();
+         auto targetscope = pgraphics->target_scope();
 
-         offsetcontext += m_box;
+         targetscope.offset_and_set_size(m_box);
 
          if (::is_set(m_pedit) && m_pedit->is_window() && pdata->m_pcoredata->m_bEdit)
          {

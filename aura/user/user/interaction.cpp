@@ -5987,7 +5987,7 @@ namespace user
    }
 
 
-   void interaction::on_context_offset(::draw2d::offset_context & offsetcontext)
+   void interaction::on_context_offset(::draw2d::target_scope & targetscope)
    {
 
       {
@@ -6014,7 +6014,7 @@ namespace user
 
          ::f64_rectangle rectangle(pointOffset, sizeImpact);
 
-         offsetcontext += rectangle;
+         targetscope.offset_and_set_size(rectangle);
 
          //pgraphics->shift_impact_area(pointOffset, sizeImpact);
 
@@ -6026,7 +6026,7 @@ namespace user
 
          auto sizeImpact = layout().layout().size();
 
-         offsetcontext -=pointContextOffset;
+         targetscope -= pointContextOffset;
 
       }
 
@@ -7534,7 +7534,7 @@ namespace user
          
          ::draw2d::save_context savecontext(pgraphics);
 
-         auto offsetcontext = pgraphics->offset_context();
+         auto targetscope = pgraphics->target_scope();
          
          auto pszType = typeid(*this).name();
 
@@ -7555,7 +7555,7 @@ namespace user
          
 #endif
 
-         on_context_offset(offsetcontext);
+         on_context_offset(targetscope);
 
          try
          {

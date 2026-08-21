@@ -129,10 +129,10 @@ namespace image
    }
 
 
-   ::i32_size image::get_image_drawer_size() const
+   ::f64_rectangle image::get_image_drawer_rectangle() const
    {
 
-      return get_size();
+      return {m_point, m_size};
 
    }
 
@@ -233,6 +233,27 @@ namespace image
       {
 
          pacmeuserinteractionAffinity = pacmeuserinteractionMain;
+
+      }
+
+      if (m_bWasMappedAfterLastGraphicsAcquisition)
+      {
+
+         m_bWasMappedAfterLastGraphicsAcquisition = false;
+
+         if (m_ppixmapOwned)
+         {
+
+            auto pbitmap = get_bitmap();
+
+            if (pbitmap)
+            {
+
+               pbitmap->write_pixels(m_ppixmapOwned->size(), m_ppixmapOwned->m_point, m_ppixmapOwned->image32(), m_ppixmapOwned->scan_size());
+
+            }
+
+         }
 
       }
 
@@ -1034,43 +1055,6 @@ namespace image
    //}
 
 
-   void image::stretch_image(::image::image* pimage, ::draw2d::enum_interpolation_mode einterpolationmode)
-   {
-
-      auto pgraphics = acquire_graphics();
-
-      if (::is_null(pgraphics))
-      {
-
-         throw ::exception(error_null_pointer);
-
-      }
-
-      if (this->size().is_empty())
-      {
-
-         throw ::exception(error_null_pointer);
-
-      }
-
-      auto pgraphicsImage = pimage->acquire_graphics();
-
-      ::image::image_source imagesource(pgraphicsImage, ::f64_rectangle(pimage->size()));
-
-      ::image::image_drawing_options imagedrawingoptions(rectangle());
-
-      ::image::image_drawing imagedrawing(imagedrawingoptions, imagesource);
-
-      if (einterpolationmode != ::draw2d::e_interpolation_mode_none)
-      {
-
-         pgraphics->set_interpolation_mode(einterpolationmode);
-
-      }
-
-      return pgraphics->draw(imagedrawing);
-
-   }
 
 
    void image::_draw_raw(const ::i32_rectangle& rectangleDstParam, ::image::image* pimageSrc,
@@ -6062,134 +6046,133 @@ namespace image
    //    //return true;
    //
    // }
-   //
-   //
-   //
-   // void image::SetIconMask(::image::icon* picon, ::i32 cx, ::i32 cy)
-   // {
-   //
-   //    //      throw ::exception(todo);
-   //    //
-   //    //      // xxx todo create(width(), height());
-   //    //
-   //    //      if (width() <= 0 || height() <= 0)
-   //    //         return;
-   //    //
-   //    //
-   //    //
-   //    //
-   //    //      // White blend image_impl
-   //    //      image_impl pimage1;
-   //    //
-   //    //      throw ::exception(todo);
-   //    //
-   //    //      // xxx todo pimage1->create_as_descriptor(width(), height());
-   //    //
-   //    //      pimage1->Fill(0, 255, 255, 255);
-   //    //
-   //    //#ifdef UNIVERSAL_WINDOWS
-   //    //
-   //    //      throw ::interface_only();
-   //    //
-   //    //#else
-   //    //
-   //    //      pimage1->pgraphics->DrawIcon(
-   //    //         0, 0,
-   //    //         picon,
-   //    //         width(), height(),
-   //    //         0,
-   //    //         nullptr,
-   //    //         DI_IMAGE | DI_MASK);
-   //    //
-   //    //#endif
-   //    //
-   //    //      // Black blend image_impl
-   //    //      image_impl pimage2;
-   //    //
-   //    //
-   //    //      throw ::exception(todo);
-   //    //
-   //    //      // xxx todo pimage2->create_as_descriptor(width(), height());
-   //    //      pimage2->Fill(0, 0, 0, 0);
-   //    //
-   //    //#ifdef UNIVERSAL_WINDOWS
-   //    //
-   //    //      throw ::interface_only();
-   //    //
-   //    //#else
-   //    //
-   //    //      pimage2->pgraphics->DrawIcon(
-   //    //         0, 0,
-   //    //         picon,
-   //    //         width(), height(),
-   //    //         0,
-   //    //         nullptr,
-   //    //         DI_IMAGE | DI_MASK);
-   //    //
-   //    //#endif
-   //    //
-   //    //      // Mask image_impl
-   //    //      image_impl imageM;
-   //    //      throw ::exception(todo);
-   //    //
-   //    //      // xxx todo imageM.create(width(), height());
-   //    //
-   //    //#ifdef UNIVERSAL_WINDOWS
-   //    //
-   //    //      throw ::interface_only();
-   //    //
-   //    //#else
-   //    //
-   //    //      imageM.pgraphics->DrawIcon(
-   //    //         0, 0,
-   //    //         picon,
-   //    //         width(), height(),
-   //    //         0,
-   //    //         nullptr,
-   //    //         DI_MASK);
-   //    //
-   //    //#endif
-   //    //
-   //    //      ::u8 * r1 = (::u8 *)pimage1->data();
-   //    //      ::u8 * r2 = (::u8 *)pimage2->data();
-   //    //      ::u8 * srcM = (::u8 *)imageM.data();
-   //    //      ::u8 * dest = (::u8 *)data();
-   //    //      ::i32 iSize = width()*height();
-   //    //
-   //    //      ::u8 b;
-   //    //      ::u8 bMax;
-   //    //      while (iSize-- > 0)
-   //    //      {
-   //    //         if (srcM[0] == 255)
-   //    //         {
-   //    //            bMax = 0;
-   //    //         }
-   //    //         else
-   //    //         {
-   //    //            bMax = 0;
-   //    //            b = (::u8)(r1[0] - r2[0]);
-   //    //            bMax = maximum(b, bMax);
-   //    //            b = (::u8)(r1[1] - r2[1]);
-   //    //            bMax = maximum(b, bMax);
-   //    //            b = (::u8)(r1[2] - r2[2]);
-   //    //            bMax = maximum(b, bMax);
-   //    //            bMax = 255 - bMax;
-   //    //         }
-   //    //         dest[0] = bMax;
-   //    //         dest[1] = bMax;
-   //    //         dest[2] = bMax;
-   //    //         dest += 4;
-   //    //         srcM += 4;
-   //    //         r1 += 4;
-   //    //         r2 += 4;
-   //    //      }
-   //    //
-   //
-   //    //return true;
-   //
-   // }
-   //
-   //
+
+
+   void image::set_image_icon(::image::icon* picon, ::i32 cx, ::i32 cy)
+   {
+
+      //      throw ::exception(todo);
+      //
+      //      // xxx todo create(width(), height());
+      //
+      //      if (width() <= 0 || height() <= 0)
+      //         return;
+      //
+      //
+      //
+      //
+      //      // White blend image_impl
+      //      image_impl pimage1;
+      //
+      //      throw ::exception(todo);
+      //
+      //      // xxx todo pimage1->create_as_descriptor(width(), height());
+      //
+      //      pimage1->Fill(0, 255, 255, 255);
+      //
+      //#ifdef UNIVERSAL_WINDOWS
+      //
+      //      throw ::interface_only();
+      //
+      //#else
+      //
+      //      pimage1->pgraphics->DrawIcon(
+      //         0, 0,
+      //         picon,
+      //         width(), height(),
+      //         0,
+      //         nullptr,
+      //         DI_IMAGE | DI_MASK);
+      //
+      //#endif
+      //
+      //      // Black blend image_impl
+      //      image_impl pimage2;
+      //
+      //
+      //      throw ::exception(todo);
+      //
+      //      // xxx todo pimage2->create_as_descriptor(width(), height());
+      //      pimage2->Fill(0, 0, 0, 0);
+      //
+      //#ifdef UNIVERSAL_WINDOWS
+      //
+      //      throw ::interface_only();
+      //
+      //#else
+      //
+      //      pimage2->pgraphics->DrawIcon(
+      //         0, 0,
+      //         picon,
+      //         width(), height(),
+      //         0,
+      //         nullptr,
+      //         DI_IMAGE | DI_MASK);
+      //
+      //#endif
+      //
+      //      // Mask image_impl
+      //      image_impl imageM;
+      //      throw ::exception(todo);
+      //
+      //      // xxx todo imageM.create(width(), height());
+      //
+      //#ifdef UNIVERSAL_WINDOWS
+      //
+      //      throw ::interface_only();
+      //
+      //#else
+      //
+      //      imageM.pgraphics->DrawIcon(
+      //         0, 0,
+      //         picon,
+      //         width(), height(),
+      //         0,
+      //         nullptr,
+      //         DI_MASK);
+      //
+      //#endif
+      //
+      //      ::u8 * r1 = (::u8 *)pimage1->data();
+      //      ::u8 * r2 = (::u8 *)pimage2->data();
+      //      ::u8 * srcM = (::u8 *)imageM.data();
+      //      ::u8 * dest = (::u8 *)data();
+      //      ::i32 iSize = width()*height();
+      //
+      //      ::u8 b;
+      //      ::u8 bMax;
+      //      while (iSize-- > 0)
+      //      {
+      //         if (srcM[0] == 255)
+      //         {
+      //            bMax = 0;
+      //         }
+      //         else
+      //         {
+      //            bMax = 0;
+      //            b = (::u8)(r1[0] - r2[0]);
+      //            bMax = maximum(b, bMax);
+      //            b = (::u8)(r1[1] - r2[1]);
+      //            bMax = maximum(b, bMax);
+      //            b = (::u8)(r1[2] - r2[2]);
+      //            bMax = maximum(b, bMax);
+      //            bMax = 255 - bMax;
+      //         }
+      //         dest[0] = bMax;
+      //         dest[1] = bMax;
+      //         dest[2] = bMax;
+      //         dest += 4;
+      //         srcM += 4;
+      //         r1 += 4;
+      //         r2 += 4;
+      //      }
+      //
+
+      //return true;
+
+   }
+
+
    // void image::rotate(const ::f64_angle & angle, ::f64 dScale)
    // {
    //
@@ -10255,6 +10238,19 @@ namespace image
 
       m_iScan = iGoodStride;
 
+      if (eflagCreate & e_flag_success)
+      {
+
+         m_estatus = success;
+
+      }
+      else
+      {
+
+         m_estatus = error_failed;
+
+      }
+
    }
 
 
@@ -10329,6 +10325,47 @@ namespace image
       //   ::memory_copy(ppixmapDst, ppixmapSrc, sizeof(::pixmap));
 
       //}
+
+   }
+
+
+   ::pixmap * image::current_pixmap()
+   {
+
+      if (m_pimagepixmaplease)
+      {
+
+         return m_pimagepixmaplease->m_p;
+
+      }
+
+      if (m_ppixmapOwned && !m_bGraphicsWasAcquiredAfterLastMap)
+      {
+
+         return m_ppixmapOwned;
+
+      }
+
+      return nullptr;
+
+   }
+
+
+   ::pixmap * image::owned_pixmap()
+   {
+
+      if (!m_ppixmapOwned)
+      {
+
+         construct_newø(m_ppixmapOwned);
+
+         m_ppixmapOwned->create_as_descriptor(m_sizeRaw, e_flag_success, m_iScan);
+
+         m_ppixmapOwned->m_size = m_size;
+
+      }
+
+      return m_ppixmapOwned;
 
    }
 
@@ -10423,7 +10460,9 @@ namespace image
 
       auto ploadimage = create_newø<::image::load_image>();
 
-      ploadimage->initialize_load_image(pimagecontext, this->load_image_callback());
+      ploadimage->initialize_load_image(pimagecontext);
+
+      ploadimage->m_loadoptions.functionLoaded = load_image_callback();
 
       return ploadimage;
 
@@ -11092,7 +11131,7 @@ namespace image
    //
 
 
-   void image::_can_map(const ::i32_rectangle & rectangle)
+   void image::_tidy_map(const ::i32_rectangle & rectangle)
    {
 
       if (has_active_destination_graphics_lease())
@@ -11119,37 +11158,10 @@ namespace image
    }
 
 
-
    ::image_pixmap_lease image::_map(const ::i32_rectangle& rectangle)
    {
 
-      _can_map(rectangle);
-
-      if (!m_ppixmapOwned)
-      {
-
-         construct_newø(m_ppixmapOwned);
-
-         m_ppixmapOwned->create_as_descriptor(m_sizeRaw, DEFAULT_CREATE_IMAGE_FLAG, m_iScan);
-
-         auto iScanRequired = m_sizeRaw.cx * 4;
-
-         if (m_iScan < iScanRequired)
-         {
-
-            m_iScan = iScanRequired;
-
-         }
-
-         m_ppixmapOwned->m_memoryPixmap.set_size(m_sizeRaw.cy * m_iScan);
-
-         m_ppixmapOwned->m_pimage32Raw = (::image32_t *) m_ppixmapOwned->m_memoryPixmap.data();
-
-      }
-
-      m_bGraphicsWasAcquiredAfterLastMap = false;
-
-      ::i32_rectangle rectanglePixmapLease;
+      _tidy_map(rectangle);
 
       if (!rectangle.is_null())
       {
@@ -11160,7 +11172,85 @@ namespace image
 
       }
 
+      defer_construct_newø(m_ppixmapOwned);
+
+      auto sizeRawThis = raw_size();
+
+      if (sizeRawThis != m_ppixmapOwned->m_sizeRaw
+         || m_iScan != m_ppixmapOwned->m_iScan
+         || m_ppixmapOwned->m_memoryPixmap.size() < (m_ppixmapOwned->m_iScan * m_ppixmapOwned->m_sizeRaw.cy))
+      {
+
+         m_ppixmapOwned->m_point.clear();
+
+         m_ppixmapOwned->change_size_and_stride_preserving_data(sizeRawThis, m_iScan);
+
+         m_ppixmapOwned->m_point = m_point;
+
+         m_ppixmapOwned->m_size = m_size;
+
+         m_iScan = m_ppixmapOwned->m_iScan;
+
+      }
+
+      if (m_bGraphicsWasAcquiredAfterLastMap)
+      {
+
+         m_bGraphicsWasAcquiredAfterLastMap = false;
+
+         if (m_pbitmap)
+         {
+
+            m_pbitmap->read_pixels(m_size, m_point, m_ppixmapOwned->image32(), m_ppixmapOwned->m_iScan);
+
+         }
+
+      }
+
+      m_bWasMappedAfterLastGraphicsAcquisition = true;
+
       return {this, m_ppixmapOwned};
+
+   }
+
+
+   void image::_tidy_unmap(::image_pixmap_lease * pimagepixmaplease)
+   {
+
+      if (pimagepixmaplease != m_pimagepixmaplease)
+      {
+
+         throw ::exception(error_wrong_state);
+
+      }
+
+      if (!pimagepixmaplease->m_p)
+      {
+
+         throw ::exception(error_wrong_state);
+
+      }
+
+      if (pimagepixmaplease->m_pimage != this)
+      {
+
+         throw ::exception(error_wrong_state);
+
+      }
+
+   }
+
+
+   void image::_unmap(::image_pixmap_lease * pimagepixmaplease)
+   {
+
+      _tidy_unmap(pimagepixmaplease);
+
+      //pimagepixmaplease->m_p->_unmap({});
+
+      m_pimagepixmaplease = nullptr;
+
+      pimagepixmaplease->m_pimage = nullptr;
 
    }
 
@@ -11402,9 +11492,11 @@ namespace image
       for (auto pimageframe : * pimageframearray)
       {
 
-         auto pimageFrame = createø<::image::image>();
+         auto pimage = createø<::image::image>();
 
-         pimageFrame->create_frame(pimageframe, pimageframearray);
+         pimage->create_frame(pimageframe, pimageframearray);
+
+         pimageframe->m_pparticleImage = pimage;
 
       }
 
@@ -11424,8 +11516,8 @@ namespace image
       //m_size.cy = (decay<decltype(m_size.cy)>)(pframeSource->m_rectangle.bottom * dy - m_point.y);
       m_point.x = pframeSource->m_rectangle.left;
       m_point.y = pframeSource->m_rectangle.top;
-      m_size.cx = pframeSource->m_rectangle.right;
-      m_size.cy = pframeSource->m_rectangle.bottom;
+      m_size.cx = pframeSource->m_rectangle.width();
+      m_size.cy = pframeSource->m_rectangle.height();
 
       // pframe->m_rectangle.left = m_point.x;
       // pframe->m_rectangle.top = m_point.y;
@@ -11676,24 +11768,361 @@ namespace image
    }
 
 
+   bool image::on_acquirable_copy_from(::pixmap * ppixmap)
+   {
+
+      auto ppixmapImageThis = this->map();
+
+      auto ppixmapImage = ppixmap;
+
+      if (::is_null(ppixmapImageThis) || ppixmap)
+      {
+
+         return false;
+
+      }
+
+      ppixmapImageThis->copy_from(ppixmapImage);
+
+      return false;
+
+   }
+
+
+   bool image::on_acquirable_copy_from(::pixmap * ppixmap, const ::i32_size & size, const ::i32_point & pointDst, const ::i32_point & pointSrc)
+   {
+
+      auto ppixmapImageThis = this->map();
+
+      auto ppixmapImage = ppixmap;
+
+      if (::is_null(ppixmapImageThis) || ppixmap)
+      {
+
+         return false;
+
+      }
+
+      ppixmapImageThis->copy_from(ppixmapImage);
+
+      return false;
+
+   }
+
+
+   bool image::on_acquirable_resizing_copy_from(::pixmap * ppixmap, const ::i32_size & sizeDstRaw, const ::i32_size & size, const ::i32_point & pointDst, const ::i32_point & pointSrc)
+   {
+
+      auto ppixmapImageThis = this->map();
+
+      auto ppixmapImage = ppixmap;
+
+      if (::is_null(ppixmapImageThis) || ppixmap)
+      {
+
+         return false;
+
+      }
+
+      ppixmapImageThis->copy_from(ppixmapImage);
+
+      return false;
+
+   }
+
+
+   bool image::on_acquirable_fitting_copy_from(::pixmap * ppixmap, const ::i32_size & size, const ::i32_point & pointDst, const ::i32_point & pointSrc)
+   {
+
+      auto ppixmapImageThis = this->map();
+
+      auto ppixmapImage = ppixmap;
+
+      if (::is_null(ppixmapImageThis) || ppixmap)
+      {
+
+         return false;
+
+      }
+
+      ppixmapImageThis->copy_from(ppixmapImage);
+
+      return false;
+
+   }
+
+
+   void image::copy_from(::pixmap * ppixmap)
+   {
+
+      if (m_pgraphicslease)
+      {
+
+         /// What to do?
+         /// Incoming pixmap storage into possibly acquirable or acquired graphics?
+         /// Maybe if it is acquired -> wrong state exception (cannot copy_from pixmap when there is active graphics lease).
+         throw ::exception(error_wrong_state);
+
+      }
+
+      auto ppixmapImageThis = this->current_pixmap();
+
+      if (ppixmapImageThis)
+      {
+
+         ppixmapImageThis->copy_from(ppixmap);
+
+      }
+      else if (m_pbitmap && m_pbitmap->copy_from(ppixmap))
+      {
+
+
+      }
+      else if (on_acquirable_copy_from(ppixmap))
+      {
+
+            // /// What to do?
+            // /// Incoming pixmap storage into possibly acquirable or acquired graphics?
+            // /// Maybe if it is acquired -> wrong state exception (cannot copy_from pixmap when there is active graphics lease).
+            // /// Maybe if is is acquired -> may the 2d device or gpu backed graphics can receive the raw pixmap buffer (override this copy from?!?!)
+            // throw todo;
+
+      }
+      else if (m_ppixmapOwned)
+      {
+
+         m_ppixmapOwned->copy_from(ppixmap);
+
+      }
+      else
+      {
+
+         m_ppixmapOwned = ppixmap->clone();
+
+      }
+
+   }
+
+
+   void image::copy_from(::pixmap * ppixmap, const ::i32_size & size, const ::i32_point & pointDst, const ::i32_point & pointSrc)
+   {
+
+      if (m_pgraphicslease)
+      {
+
+         /// What to do?
+         /// Incoming pixmap storage into possibly acquirable or acquired graphics?
+         /// Maybe if it is acquired -> wrong state exception (cannot copy_from pixmap when there is active graphics lease).
+         throw ::exception(error_wrong_state);
+
+      }
+
+      auto ppixmapImageThis = this->current_pixmap();
+
+      if (ppixmapImageThis)
+      {
+      //
+      //
+      // if (!pimage->m_bGraphicsWasAcquiredAfterLastMap && pimage->m_ppixmapOwned)
+      // {
+      //
+      //    if ( m_ppixmapOwned)
+      //    {
+
+            ppixmapImageThis->copy_from(ppixmap, size, pointDst, pointSrc);
+
+         // }
+         // else
+         // {
+         //
+         //    m_ppixmapOwned = pimage->m_ppixmapOwned->clone();
+         //
+         // }
+
+      }
+      else if (m_pbitmap && m_pbitmap->copy_from(ppixmap, size, pointDst, pointSrc))
+      {
+
+
+      }
+      else if (on_acquirable_copy_from(ppixmap, size, pointDst, pointSrc))
+      {
+
+         // auto ppixmapImageThis = this->map();
+         //
+         // auto ppixmapImage = pimage->map();
+         //
+         // ppixmapImageThis->copy_from(ppixmapImage, size, pointDst, pointSrc);
+
+      }
+      else if (m_ppixmapOwned)
+      {
+
+         m_ppixmapOwned->copy_from(ppixmap);
+
+      }
+      else
+      {
+
+         m_ppixmapOwned = ppixmap->clone();
+
+      }
+
+   }
+
+
+   void image::resizing_copy_from(::pixmap * ppixmap, const ::i32_size & sizeDstRaw, const ::i32_size & size, const ::i32_point & pointDst, const ::i32_point & pointSrc)
+   {
+
+      if (m_pgraphicslease)
+      {
+
+         /// What to do?
+         /// Incoming pixmap storage into possibly acquirable or acquired graphics?
+         /// Maybe if it is acquired -> wrong state exception (cannot copy_from pixmap when there is active graphics lease).
+         throw ::exception(error_wrong_state);
+
+      }
+
+      auto ppixmapImageThis = this->current_pixmap();
+
+      if (ppixmapImageThis)
+      {
+         //
+         //
+         // if (!pimage->m_bGraphicsWasAcquiredAfterLastMap && pimage->m_ppixmapOwned)
+         // {
+         //
+         //    if ( m_ppixmapOwned)
+         //    {
+
+         ppixmapImageThis->copy_from(ppixmap, size, pointDst, pointSrc);
+
+         // }
+         // else
+         // {
+         //
+         //    m_ppixmapOwned = pimage->m_ppixmapOwned->clone();
+         //
+         // }
+
+      }
+      else if (m_pbitmap && m_pbitmap->copy_from(ppixmap, size, pointDst, pointSrc))
+      {
+
+
+      }
+      else if (on_acquirable_resizing_copy_from(ppixmap, sizeDstRaw, size, pointDst, pointSrc))
+      {
+
+         // auto ppixmapImageThis = this->map();
+         //
+         // auto ppixmapImage = pimage->map();
+         //
+         // ppixmapImageThis->copy_from(ppixmapImage, size, pointDst, pointSrc);
+
+      }
+      else if (m_ppixmapOwned)
+      {
+
+         m_ppixmapOwned->copy_from(ppixmap);
+
+      }
+      else
+      {
+
+         m_ppixmapOwned = ppixmap->clone();
+
+      }
+
+   }
+
+
+   void image::fitting_copy_from(::pixmap * ppixmap, const ::i32_size & size, const ::i32_point & pointDst, const ::i32_point & pointSrc)
+   {
+
+      if (m_pgraphicslease)
+      {
+
+         /// What to do?
+         /// Incoming pixmap storage into possibly acquirable or acquired graphics?
+         /// Maybe if it is acquired -> wrong state exception (cannot copy_from pixmap when there is active graphics lease).
+         throw ::exception(error_wrong_state);
+
+      }
+
+      auto ppixmapImageThis = this->current_pixmap();
+
+      if (ppixmapImageThis)
+      {
+         //
+         //
+         // if (!pimage->m_bGraphicsWasAcquiredAfterLastMap && pimage->m_ppixmapOwned)
+         // {
+         //
+         //    if ( m_ppixmapOwned)
+         //    {
+
+         ppixmapImageThis->copy_from(ppixmap, size, pointDst, pointSrc);
+
+         // }
+         // else
+         // {
+         //
+         //    m_ppixmapOwned = pimage->m_ppixmapOwned->clone();
+         //
+         // }
+
+      }
+      else if (m_pbitmap && m_pbitmap->copy_from(ppixmap, size, pointDst, pointSrc))
+      {
+
+
+      }
+      else if (on_acquirable_fitting_copy_from(ppixmap, size, pointDst, pointSrc))
+      {
+
+         // auto ppixmapImageThis = this->map();
+         //
+         // auto ppixmapImage = pimage->map();
+         //
+         // ppixmapImageThis->copy_from(ppixmapImage, size, pointDst, pointSrc);
+
+      }
+      else if (m_ppixmapOwned)
+      {
+
+         m_ppixmapOwned->copy_from(ppixmap);
+
+      }
+      else
+      {
+
+         m_ppixmapOwned = ppixmap->clone();
+
+      }
+
+   }
+
    void image::copy_from(::image::image * pimage)
    {
 
-      if (!pimage->m_bGraphicsWasAcquiredAfterLastMap && pimage->m_ppixmapOwned)
+      if (m_pgraphicslease)
       {
 
-         if ( m_ppixmapOwned)
-         {
+         /// What to do?
+         /// Incoming pixmap storage into possibly acquirable or acquired graphics?
+         /// Maybe if it is acquired -> wrong state exception (cannot copy_from pixmap when there is active graphics lease).
+         throw ::exception(error_wrong_state);
 
-            m_ppixmapOwned->copy_from(pimage->m_ppixmapOwned);
+      }
 
-         }
-         else
-         {
+      auto ppixmapImageCurrent = pimage->current_pixmap();
 
-            m_ppixmapOwned = pimage->m_ppixmapOwned->clone();
+      if (::is_set(ppixmapImageCurrent))
+      {
 
-         }
+         copy_from(pimage->m_ppixmapOwned);
 
       }
       else if (m_pbitmap && pimage->m_pbitmap && m_pbitmap->copy_from(pimage->m_pbitmap))
@@ -11717,6 +12146,16 @@ namespace image
 
    void image::copy_from(::image::image * pimage, const ::i32_size & size, const ::i32_point & pointDst, const ::i32_point & pointSrc)
    {
+
+      if (m_pgraphicslease)
+      {
+
+         /// What to do?
+         /// Incoming pixmap storage into possibly acquirable or acquired graphics?
+         /// Maybe if it is acquired -> wrong state exception (cannot copy_from pixmap when there is active graphics lease).
+         throw ::exception(error_wrong_state);
+
+      }
 
       if (!pimage->m_bGraphicsWasAcquiredAfterLastMap && pimage->m_ppixmapOwned)
       {
@@ -11757,6 +12196,16 @@ namespace image
    void image::resizing_copy_from(::image::image * pimage, const ::i32_size & sizeDstRaw, const ::i32_size & size, const ::i32_point & pointDst, const ::i32_point & pointSrc)
    {
 
+      if (m_pgraphicslease)
+      {
+
+         /// What to do?
+         /// Incoming pixmap storage into possibly acquirable or acquired graphics?
+         /// Maybe if it is acquired -> wrong state exception (cannot copy_from pixmap when there is active graphics lease).
+         throw ::exception(error_wrong_state);
+
+      }
+
       if (m_ppixmapOwned)
       {
 
@@ -11771,6 +12220,16 @@ namespace image
 
    void image::fitting_copy_from(::image::image * pimage, const ::i32_size & size, const ::i32_point & pointDst, const ::i32_point & pointSrc)
    {
+
+      if (m_pgraphicslease)
+      {
+
+         /// What to do?
+         /// Incoming pixmap storage into possibly acquirable or acquired graphics?
+         /// Maybe if it is acquired -> wrong state exception (cannot copy_from pixmap when there is active graphics lease).
+         throw ::exception(error_wrong_state);
+
+      }
 
       ::i32_size sizeMax = m_point + pointDst + size;
 

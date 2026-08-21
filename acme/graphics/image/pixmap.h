@@ -46,6 +46,11 @@ public:
    ~pixmap() override;
 
 
+   void change_size_and_stride_preserving_data(
+      const ::i32_size & sizeNew,
+      ::i32 iScanMinimumRequired,
+      const ::color::color & colorEmpty = ::color::transparent);
+
    virtual void create_as_descriptor(const ::i32_size &size, ::enum_flag eflagCreate = DEFAULT_CREATE_IMAGE_FLAG, ::i32 iGoodStride = -1);
 
    //virtual void create_from_data(const ::i32_size &size, const ::image32_t *pimage32, ::i32 iScan, ::enum_flag eflagCreate = DEFAULT_CREATE_IMAGE_FLAG, bool bPreserve = false);
@@ -380,7 +385,7 @@ public:
 protected:
 
    friend class pixmap_lease;
-   //friend class ::image::lock;
+   friend class ::image::image;
 
    virtual void _map(const ::i32_rectangle & rectangle); // some implementations may requrire to map_base to m_pcolorref before manipulate it
    

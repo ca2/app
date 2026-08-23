@@ -27,7 +27,11 @@ namespace draw2d_cairo
 //   {
 //      return m_pcolorrefMap;
 //   }
-   ::draw2d::bitmap_pointer image::get_bitmap(::draw2d::graphics * pdraw2dgraphics) const
+   ::draw2d::bitmap_pointer image::get_bitmap_as_source(::draw2d::graphics * pdraw2dgraphics) const
+   {
+      return m_pbitmap;
+   }
+   ::draw2d::bitmap_pointer image::get_bitmap_as_target(::draw2d::graphics * pdraw2dgraphics) const
    {
       return m_pbitmap;
    }

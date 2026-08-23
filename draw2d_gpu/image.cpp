@@ -125,73 +125,73 @@ namespace draw2d_gpu
    //}
 
 
-   //bool image::host(::pixmap_t * ppixmap, ::windowing::window * pwindow)
-   bool image::host(::windowing::window_buffer * pwindowbuffer, ::windowing::window * pwindow, const ::i32_size & sizeRaw)
-   {
+   ////bool image::host(::pixmap_t * ppixmap, ::windowing::window * pwindow)
+   //bool image::host(::windowing::window_buffer * pwindowbuffer, ::windowing::window * pwindow, const ::i32_size & sizeRaw)
+   //{
 
-      if (::is_null(pwindowbuffer) 
-         || ::is_null(pwindowbuffer->m_ppixmapWindowBuffer)
-         || pwindowbuffer->m_ppixmapWindowBuffer.nok())
-      {
+   //   if (::is_null(pwindowbuffer) 
+   //      || ::is_null(pwindowbuffer->m_ppixmapWindowBuffer)
+   //      || pwindowbuffer->m_ppixmapWindowBuffer.nok())
+   //   {
 
-         return false;
+   //      return false;
 
-      }
-         
-      if (pwindowbuffer->m_ppixmapWindowBuffer->m_pimage32Raw == m_pimage32Raw
-         && m_size == pwindowbuffer->m_ppixmapWindowBuffer->m_size)
-      {
+   //   }
+   //      
+   //   if (pwindowbuffer->m_ppixmapWindowBuffer->m_pimage32Raw == m_pimage32Raw
+   //      && m_size == pwindowbuffer->m_ppixmapWindowBuffer->m_size)
+   //   {
 
-         return true;
+   //      return true;
 
-      }
+   //   }
 
-      ::memory_copy((::pixmap *) this, pwindowbuffer->m_ppixmapWindowBuffer->m_pimage32, sizeof(::pixmap));
+   //   ::memory_copy((::pixmap *) this, pwindowbuffer->m_ppixmapWindowBuffer->m_pimage32, sizeof(::pixmap));
 
-      ////constructø(m_pbitmap);
-      //defer_constructø(m_pgraphics);
-      ////m_pgraphics->set(m_pbitmap);
+   //   ////constructø(m_pbitmap);
+   //   //defer_constructø(m_pgraphics);
+   //   ////m_pgraphics->set(m_pbitmap);
 
-      //if (m_papplication->m_gpu.m_bUseSwapChainWindow)
-      //{
+   //   //if (m_papplication->m_gpu.m_bUseSwapChainWindow)
+   //   //{
 
-      //   m_pgraphics->create_window_graphics(pwindow);
+   //   //   m_pgraphics->create_window_graphics(pwindow);
 
-      //}
-      //else
-      //{
+   //   //}
+   //   //else
+   //   //{
 
-      //   m_pgraphics->create_memory_graphics(ppixmap->m_size);
+   //   //   m_pgraphics->create_memory_graphics(ppixmap->m_size);
 
-      //}
+   //   //}
 
 
-      m_eflagElement = DEFAULT_CREATE_IMAGE_FLAG;
+   //   m_eflagElement = DEFAULT_CREATE_IMAGE_FLAG;
 
-      //m_pgraphics->m_pimage = this;
+   //   //m_pgraphics->m_pimage = this;
 
-      set_ok_flag();
+   //   set_ok_flag();
 
-      m_estatus = ::success;
+   //   m_estatus = ::success;
 
-      return true;
+   //   return true;
 
-   }
+   //}
 
-   void image::dc_select(bool bSelect)
-   {
-      /*      if(bSelect)
-            {
-               return m_pgraphics->set(m_pbitmap) != nullptr;
-            }
-            else
-            {
-               return m_pgraphics->set(m_hbitmapOriginal) != nullptr;
-            }*/
+   //void image::dc_select(bool bSelect)
+   //{
+   //   /*      if(bSelect)
+   //         {
+   //            return m_pgraphics->set(m_pbitmap) != nullptr;
+   //         }
+   //         else
+   //         {
+   //            return m_pgraphics->set(m_hbitmapOriginal) != nullptr;
+   //         }*/
 
-      //return true;
+   //   //return true;
 
-   }
+   //}
 
 
    void image::create_from_graphics(::draw2d::graphics * pgraphics)
@@ -208,7 +208,7 @@ namespace draw2d_gpu
       }
 
       //if (!create(pbitmap->get_size()))
-      create_as_descriptor(pbitmap->get_size());
+      create_as_descriptor(pbitmap->size());
       {
          //return false;//
       }
@@ -2382,31 +2382,31 @@ namespace draw2d_gpu
    //}
 
 
-   void image::stretch_image(::image::image *pimage)
-   {
+   //void image::stretch_image(::image::image *pimage)
+   //{
 
-      if (::is_null(pimage))
-      {
+   //   if (::is_null(pimage))
+   //   {
 
-         return;
+   //      return;
 
-      }
+   //   }
 
-      //plusplus::rectF rectangleDest(0, 0, (plusplus::REAL) m_size.cx, (plusplus::REAL) m_size.cy);
+   //   //plusplus::rectF rectangleDest(0, 0, (plusplus::REAL) m_size.cx, (plusplus::REAL) m_size.cy);
 
-      //plusplus::rectF rectangleSource(0, 0, (plusplus::REAL) pimage->width(), (plusplus::REAL) pimage->height());
+   //   //plusplus::rectF rectangleSource(0, 0, (plusplus::REAL) pimage->width(), (plusplus::REAL) pimage->height());
 
-      //unmap();
-      
-      //pimage->unmap();
+   //   //unmap();
+   //   
+   //   //pimage->unmap();
 
-      //m_pgraphics->set_alpha_mode(::draw2d::e_alpha_mode_set);
+   //   //m_pgraphics->set_alpha_mode(::draw2d::e_alpha_mode_set);
 
-      //((plusplus::Graphics * ) m_pgraphics->get_os_data())->DrawImage(((plusplus::Bitmap *)pimage->get_bitmap()->get_os_data()), rectangleDest, rectangleSource, plusplus::UnitPixel);
+   //   //((plusplus::Graphics * ) m_pgraphics->get_os_data())->DrawImage(((plusplus::Bitmap *)pimage->get_bitmap()->get_os_data()), rectangleDest, rectangleSource, plusplus::UnitPixel);
 
-      //return true;
+   //   //return true;
 
-   }
+   //}
 
 
   // ::draw2d::graphics * image::_get_graphics() const
@@ -2753,19 +2753,21 @@ namespace draw2d_gpu
 //
 
 
-   void image::_map(const ::i32_rectangle & rectangle, bool bApplyTransform)
+   ::image_pixmap_lease image::_map(const ::i32_rectangle & rectangle)
    {
 
-      return;
+      return ::transfer(::image::image::_map(rectangle));
 
-      if (m_bMapped)
-      {
+      //return;
 
-         //return true;
+      //if (m_bMapped)
+      //{
 
-         return;
+      //   //return true;
 
-      }
+      //   return;
+
+      //}
 
       //if (!m_pgraphics)
       //{
@@ -2776,81 +2778,81 @@ namespace draw2d_gpu
 
       //}
 
-      if (m_size.is_empty())
-      {
+      //if (m_size.is_empty())
+      //{
 
-         //return false;
+      //   //return false;
 
-         return;
+      //   return;
 
-      }
+      //}
 
-      if (::is_null(m_pimage32Raw))
-      {
+      //if (::is_null(m_pimage32Raw))
+      //{
 
-         //return false;
+      //   //return false;
 
-         return;
+      //   return;
 
-      }
+      //}
 
-      //m_pgraphics->thread_select();
+      ////m_pgraphics->thread_select();
 
-      //::i32 hasAlphaBits = 0;
+      ////::i32 hasAlphaBits = 0;
 
-      //glGetIntegerv(GL_ALPHA_BITS, &hasAlphaBits);
+      ////glGetIntegerv(GL_ALPHA_BITS, &hasAlphaBits);
 
-      //glglgl glFlush();
+      ////glglgl glFlush();
 
-      //glReadBuffer(GL_BACK);
-      //glReadBuffer(GL_FRONT);
+      ////glReadBuffer(GL_BACK);
+      ////glReadBuffer(GL_FRONT);
 
 
 
-      //::pointer < graphics > pgraphics = m_pgraphics;
+      ////::pointer < graphics > pgraphics = m_pgraphics;
 
-      //::i32 cx = pgraphics->m_sizeWindow.cx;
+      ////::i32 cx = pgraphics->m_sizeWindow.cx;
 
-      //::i32 cy = pgraphics->m_sizeWindow.cy;
+      ////::i32 cy = pgraphics->m_sizeWindow.cy;
 
-      bool bYSwap = m_papplication->m_gpu.m_bUseSwapChainWindow;
+      //bool bYSwap = m_papplication->m_gpu.m_bUseSwapChainWindow;
 
-      //glglgl ::opengl::resize(pgraphics->m_sizeWindow, bYSwap);
+      ////glglgl ::opengl::resize(pgraphics->m_sizeWindow, bYSwap);
 
-      //glglgl glReadBuffer(GL_BACK);
+      ////glglgl glReadBuffer(GL_BACK);
 
-      //glglgl glPixelStorei(GL_PACK_SWAP_BYTES, 0);
+      ////glglgl glPixelStorei(GL_PACK_SWAP_BYTES, 0);
 
-      //glglgl glPixelStorei(GL_PACK_ROW_LENGTH, m_iScan/4);
+      ////glglgl glPixelStorei(GL_PACK_ROW_LENGTH, m_iScan/4);
 
-      //glglgl glReadPixels(0, 0, cx, cy, GL_BGRA, GL_UNSIGNED_BYTE, m_pimage32Raw);
+      ////glglgl glReadPixels(0, 0, cx, cy, GL_BGRA, GL_UNSIGNED_BYTE, m_pimage32Raw);
 
-      //glReadPixels(0, 0, m_size.cx, m_size.cy, GL_ARGB, GL_UNSIGNED_BYTE, m_pimage32Raw);
+      ////glReadPixels(0, 0, m_size.cx, m_size.cy, GL_ARGB, GL_UNSIGNED_BYTE, m_pimage32Raw);
 
-      //glglgl ::i32 i1280 = GL_INVALID_ENUM;
+      ////glglgl ::i32 i1280 = GL_INVALID_ENUM;
 
-      //glglgl ::i32 i1281 = GL_INVALID_VALUE;
+      ////glglgl ::i32 i1281 = GL_INVALID_VALUE;
 
-      //glglgl ::i32 iError = glGetError();
+      ////glglgl ::i32 iError = glGetError();
 
-      m_bMapped = true;
+      //m_bMapped = true;
 
-      //return true;
+      ////return true;
 
    }
 
 
-   void image::_unmap(bool bDoUnmap)
+   void image::_unmap(::image_pixmap_lease * pimagepixmaplease)
    {
 
-      if (!m_bMapped)
-      {
+      //if (!m_bMapped)
+      //{
 
-         //return true;
+      //   //return true;
 
-         return;
+      //   return;
 
-      }
+      //}
 
       //if (!m_pgraphics)
       //{
@@ -2870,20 +2872,20 @@ namespace draw2d_gpu
 
       }
 
-      if (::is_null(m_pimage32Raw))
-      {
+      //if (::is_null(m_pimage32Raw))
+      //{
 
-         //return false;
+      //   //return false;
 
-         return;
+      //   return;
 
-      }
+      //}
 
       //m_pgraphics->thread_select();
 
       //glDrawPixels(m_size.cx, m_size.cy, GL_BGRA, GL_UNSIGNED_BYTE, m_pimage32Raw);
 
-      m_bMapped = false;
+      //m_bMapped = false;
 
       //return true;
 
@@ -2903,41 +2905,41 @@ namespace draw2d_gpu
    }
 
 
-   bool image::on_host_read_pixels(::pixmap_t * ppixmap) const
-   {
-
-      return false;
-
-/*      if (!m_pgraphics)
-      {
-
-         return false;
-
-      }
-
-      if (!ppixmap->m_size)
-      {
-
-         return false;
-
-      }
-
-      if (::is_null(ppixmap->m_pimage32Raw))
-      {
-
-         return false;
-
-      }
-
-      m_pgraphics->thread_select();
-
-      glReadBuffer(GL_BACK);
-
-      glReadPixels(0, 0, ppixmap->m_size.cx, ppixmap.m_size.cy, GL_BGRA, GL_UNSIGNED_BYTE, ppixmap.m_pimage32);
-
-      *///return true;
-
-   }
+//   bool image::on_host_read_pixels(::pixmap_t * ppixmap) const
+//   {
+//
+//      return false;
+//
+///*      if (!m_pgraphics)
+//      {
+//
+//         return false;
+//
+//      }
+//
+//      if (!ppixmap->m_size)
+//      {
+//
+//         return false;
+//
+//      }
+//
+//      if (::is_null(ppixmap->m_pimage32Raw))
+//      {
+//
+//         return false;
+//
+//      }
+//
+//      m_pgraphics->thread_select();
+//
+//      glReadBuffer(GL_BACK);
+//
+//      glReadPixels(0, 0, ppixmap->m_size.cx, ppixmap.m_size.cy, GL_BGRA, GL_UNSIGNED_BYTE, ppixmap.m_pimage32);
+//
+//      *///return true;
+//
+//   }
 
 
 } // namespace draw2d_gpu

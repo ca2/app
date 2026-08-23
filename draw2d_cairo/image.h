@@ -28,7 +28,8 @@ namespace draw2d_cairo
 
 
       //::draw2d::graphics * _get_graphics() const override;
-      ::draw2d::bitmap_pointer get_bitmap(::draw2d::graphics * pdraw2dgraphics = nullptr) const override;
+      ::draw2d::bitmap_pointer get_bitmap_as_target(::draw2d::graphics * pdraw2dgraphics = nullptr) const override;
+      ::draw2d::bitmap_pointer get_bitmap_as_source(::draw2d::graphics * pdraw2dgraphics = nullptr) const override;
       ::draw2d::bitmap_pointer detach_bitmap() override;
 
       //virtual bool stretch(const ::image::image *pimage) override;

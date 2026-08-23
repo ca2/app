@@ -6022,8 +6022,8 @@ void graphics::FillSolidRect(::f64 x, ::f64 y, ::f64 cx, ::f64 cy, color32_t clr
 
       glEnd();*/
 
-      m_point.x = point2.x;
-      m_point.y = point2.y;
+      m_pointCurrent.x = point2.x;
+      m_pointCurrent.y = point2.y;
 
       //return true;
 
@@ -6069,8 +6069,8 @@ void graphics::FillSolidRect(::f64 x, ::f64 y, ::f64 cx, ::f64 cy, color32_t clr
 
       //glEnd();
 
-      m_point.x = x2;
-      m_point.y = y2;
+      m_pointCurrent.x = x2;
+      m_pointCurrent.y = y2;
 
       //return true;
 

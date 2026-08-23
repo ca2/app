@@ -5315,7 +5315,7 @@ namespace draw2d_cairo
 
          }
 
-         cairo_surface_t * psurface = cairo_get_target((cairo_t *) pbrush->m_pimage->get_bitmap()->get_os_data());
+         cairo_surface_t * psurface = cairo_get_target((cairo_t *) pbrush->m_pimage->get_bitmap_as_source()->get_os_data());
 
          if (psurface == nullptr)
          {

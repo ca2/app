@@ -141,9 +141,9 @@ namespace gpu_opengl
 
          auto ppixmapPixmap = m_ppixmap->map();
 
-         auto w = mapPixmap.width();
-         auto h = mapPixmap.height();
-         auto s = mapPixmap.scan() * h * 4;
+         auto w = ppixmapPixmap->width();
+         auto h = ppixmapPixmap->height();
+         auto s = ppixmapPixmap->scan() * h * 4;
          auto p = ppixmapPixmap->data();
          glReadnPixels(
             0, 0,
@@ -163,8 +163,8 @@ namespace gpu_opengl
 
          auto ppixmapPixmap = m_ppixmap->map();
 
-         auto w = mapPixmap.width();
-         auto h = mapPixmap.height();
+         auto w = ppixmapPixmap->width();
+         auto h = ppixmapPixmap->height();
          auto p = ppixmapPixmap->data();
          glReadPixels(
             0, 0,
@@ -238,8 +238,8 @@ namespace gpu_opengl
       auto ppixmapPixmap = m_ppixmap->map();
       
       glTexImage2D(GL_TEXTURE_2D, 0, 0, 0, 
-         mapPixmap.width(),
-         mapPixmap.height(),
+         ppixmapPixmap->width(),
+         ppixmapPixmap->height(),
          GL_RGBA, GL_UNSIGNED_BYTE, 
          ppixmapPixmap->data());
       ::opengl::check_error("");

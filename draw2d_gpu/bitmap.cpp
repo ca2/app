@@ -3,6 +3,7 @@
 #include "bitmap.h"
 #include "acme/exception/interface_only.h"
 #include "acme/graphics/image/image32.h"
+#include "acme/graphics/image/pixmap.h"
 
 void resizeBilinear(memory & m, ::i32 w2, ::i32 h2, ::i32 * pixels, ::i32 w, ::i32 h);
 #ifdef WITH_X11
@@ -105,7 +106,7 @@ namespace draw2d_gpu
    //}
 
 
-   void bitmap::create_bitmap(::draw2d::graphics * pgraphics, const ::i32_size& size, ::memory & memory,  ::i32* piScan)
+   void bitmap::create_bitmap(::draw2d::graphics * pgraphics, const ::i32_size& size, ::pixmap * ppixmap)
    {
 
       __UNREFERENCED_PARAMETER(pgraphics);
@@ -120,10 +121,10 @@ namespace draw2d_gpu
 
       m_memOut.set_size(abs(m_iStride * size.cy));
 
-      if (piScan && *piScan > iScan)
+      if (ppixmap && ppixmap->m_iScan > iScan)
       {
 
-         iScan = *piScan;
+         iScan = ppixmap->m_iScan;
 
       }
 
@@ -138,15 +139,17 @@ namespace draw2d_gpu
 
       auto pimage32Target = (::image32_t *)m_memOut.data();
 
-      if (memory.data() && memory.size() > iScan * size.cy)
+      if (ppixmap && ppixmap->m_memoryPixmap.size() > iScan * size.cy)
       {
 
-         pimage32Target->copy(size, m_iStride, (::image32_t *)memory.data(), iScan);
+         pimage32Target->copy(size, m_iStride, ppixmap->image32(), iScan);
 
       }
 
 
-      memory.reference_data(m_memOut);
+      //if(ppixmap)
+      //{//
+        // ppixmap->memory.reference_data(ppixmap->m_memoryPixmap);
 
       //if(ppimage32)
       //{
@@ -155,9 +158,11 @@ namespace draw2d_gpu
 
       //}
 
-      if(piScan != nullptr)
+      if(ppixmap != nullptr)
       {
-         *piScan = m_iStride;
+         
+         ppixmap->m_iScan = m_iStride;
+
       }
 
       m_osdata[0] = (void *) 1;

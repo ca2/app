@@ -21,7 +21,7 @@ namespace draw2d_gpu
 
 
       HBITMAP                          m_hbitmap;
-      class ::i64_size                   m_sizeWnd;
+      ::i64_size                       m_sizeWnd;
       BITMAPINFO                       m_bitmapinfo;
       OffscreenContext *               m_phost;
 
@@ -38,9 +38,9 @@ namespace draw2d_gpu
 
       bool host(const ::pixmap* ppixmap);
 
-      void stretch_image(::image::image *pimage) override;
+      //void stretch_image(::image::image *pimage) override;
 
-      void dc_select(bool bSelect = true) override;
+      //void dc_select(bool bSelect = true) override;
 
       //using ::image::image::create;
 
@@ -51,7 +51,7 @@ namespace draw2d_gpu
       void destroy() override;
 
       //bool host(::pixmap_t * ppixmap, ::windowing::window * pwindow) override;
-      bool host(::windowing::window_buffer * pwindowbuffer, ::windowing::window * pwindow, const ::i32_size & sizeRaw) override;
+      //bool host(::windowing::window_buffer * pwindowbuffer, ::windowing::window * pwindow, const ::i32_size & sizeRaw) override;
 
       bool from(::draw2d::graphics * pgraphics);
       //bool from(i32_point ptDest, ::draw2d::graphics * pgraphics, const ::i32_point & point, ::i32_size sz);
@@ -61,7 +61,7 @@ namespace draw2d_gpu
 
       //void SetIconMask(::image::icon * picon, ::i32 cx, ::i32 cy);
 
-      bool on_host_read_pixels(::pixmap_t* ppixmap) const override;
+      //bool on_host_read_pixels(::pixmap_t* ppixmap) const override;
 
       //bool color_blend(color32_t color32, ::u8 bAlpha);
       //bool Blend(imagepimage, ::image::image *pimageA, ::i32 A);
@@ -148,8 +148,8 @@ namespace draw2d_gpu
       //::f64 pi();
 
    protected:
-      void _map(const ::i32_rectangle & rectangle, bool bApplyAlphaTransform = true) override; // some implementations may requrire to map_base to m_pcolorref before manipulate it
-      void _unmap(bool bDoUnmap = false)  override; // some implementations may require to unmap from m_pcolorref to update *os* bitmap
+      ::image_pixmap_lease _map(const ::i32_rectangle & rectangle) override; // some implementations may requrire to map_base to m_pcolorref before manipulate it
+      void _unmap(::image_pixmap_lease * pimagepixmaplease)  override; // some implementations may require to unmap from m_pcolorref to update *os* bitmap
 
       //virtual bool update_window(::aura::draw_interface * puserinteraction, ::message::message * pmessage, bool bTransferBuffer = true) override;
       //virtual bool print_window(::aura::draw_interface * puserinteraction, ::message::message * pmessage) override;

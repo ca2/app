@@ -14,7 +14,9 @@
 CLASS_DECL_GPU_OPENGL void image_gl_set(::image::image *pimage)
 {
 
-   ::u8* data = (::u8 *) pimage->m_pimage32Raw;
+   auto ppixmapImage = pimage->map();
+
+   ::u8* data = (::u8 *) ppixmapImage->image32();
 
    if (data)
    {

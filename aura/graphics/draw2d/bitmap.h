@@ -24,6 +24,9 @@ namespace draw2d
 
       ::i32_size              m_size;
       ::i32                   m_iStride;
+      /// This flag is an optimization hint.
+      /// It is not much literal.
+      bool                    m_bHintCpuBackingEnabled;
 
 //#ifdef WINDOWS_DESKTOP
 //
@@ -74,7 +77,11 @@ namespace draw2d
       virtual void CreateDiscardableBitmap(::draw2d::graphics * pgraphics, ::i32 nWidth, ::i32 nHeight);
 
       
-      virtual void create_bitmap_for_image(
+      virtual void update_bitmap_as_image_render_target(
+         ::image::image * pimage,
+         ::acme::user::interaction * pacmeuserinteractionAffinity = nullptr,
+         ::draw2d::graphics * pgraphics = nullptr);
+      virtual void update_bitmap_as_source(
          ::image::image * pimage,
          ::acme::user::interaction * pacmeuserinteractionAffinity = nullptr,
          ::draw2d::graphics * pgraphics = nullptr);
@@ -87,7 +94,10 @@ namespace draw2d
       //virtual void read_pixels(::draw2d::graphics * pgraphics, ::i32_size & size, ::i32_point & point, void * pdata);
       //virtual void write_pixels(::draw2d::graphics * pgraphics, ::i32_size & size, ::i32_point & point, const void * pdata);
       virtual void read_pixels(const ::i32_size & size, const ::i32_point & point, ::image32_t * pimage32, ::i32 iScan);
+      virtual void defer_read_pixels(const ::i32_size & size, const ::i32_point & point, ::image32_t * pimage32, ::i32 iScan);
+      virtual bool is_cpu_backed_by(const ::pixmap_t * ppixmap) const;
       virtual void write_pixels(const ::i32_size & size, const ::i32_point & point, const ::image32_t * pimage32, ::i32 iScan);
+      virtual void defer_write_pixels(const ::i32_size & size, const ::i32_point & point, const ::image32_t * pimage32, ::i32 iScan);
 
       virtual ::i32 stride_for_width(::i32 iWidth);
 
@@ -97,9 +107,10 @@ namespace draw2d
       //virtual ::i32_size SetBitmapDimension(::i32 nWidth, ::i32 nHeight);
       //virtual ::i32_size set_size(const ::i32_size & size);
 
-      virtual ::i32_size GetBitmapDimension() const;
-      virtual ::i32_size get_size() const;
+      //virtual ::i32_size GetBitmapDimension() const;
+      //virtual ::i32_size get_size() const;
       virtual ::i32_size size() const;
+      virtual void set_size(const ::i32_size & size, bool bPreserve = true);
 
       
       virtual ::u32 SetBitmapBits(::u32 dwCount, const void * pBits);

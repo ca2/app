@@ -96,8 +96,6 @@ void pixmap_t::vertical_swap()
 
    auto ppixmap = this;
 
-   try
-   {
 
       ::i32 h = ppixmap->height();
 
@@ -157,6 +155,13 @@ void pixmap_t::vertical_swap()
 
       ::i32 halfh = h / 2;
 
+      if (iStride <= 0)
+      {
+
+         throw ::exception(error_wrong_state);
+
+      }
+
       for (::i32 i = 0; i < halfh; i++)
       {
 
@@ -171,12 +176,6 @@ void pixmap_t::vertical_swap()
          pline2 -= iStride;
 
       }
-
-   }
-   catch (...)
-   {
-
-   }
 
 }
 
@@ -774,6 +773,20 @@ void pixmap_t::copy(
    {
 
       return;
+
+   }
+
+   if (iScan <= 0)
+   {
+
+      throw ::exception(error_wrong_state);
+
+   }
+
+   if (m_iScan <= 0)
+   {
+
+      throw ::exception(error_wrong_state);
 
    }
 

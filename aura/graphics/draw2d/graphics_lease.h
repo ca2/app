@@ -25,6 +25,7 @@ namespace draw2d
       bool m_bDamaged = false;
       bool m_bLayerScopeActive = false;
       bool m_bOwned = false;
+      bool m_bLeaseOn;
 
 
       graphics_lease();

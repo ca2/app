@@ -104,7 +104,7 @@ namespace windowing
    void placement_log::clean_recent()
    {
 
-      const auto timeRecent = 3_s;
+      const auto timeRecent = m_timeRecent;
 
       _synchronous_lock synchronouslock(this->synchronization(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 

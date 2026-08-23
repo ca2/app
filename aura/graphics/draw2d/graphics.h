@@ -46,6 +46,8 @@ namespace draw2d
 {
 
 
+
+
    class clip;
    class clip_group;
    class clip_item;
@@ -377,7 +379,7 @@ namespace draw2d
       // Constructors
 
 
-      virtual void create_for_image(::image::image* pimage);
+      virtual void update_as_image_render_target(::image::image* pimage);
 
       virtual void create_device_context(const ::scoped_string & scopedstrDriverName, const ::scoped_string & scopedstrDeviceName, const ::scoped_string & scopedstrOutput, const void* lpInitData);
 

@@ -1864,4 +1864,12 @@ struct std::formatter<rectangle_type<NUMBER>>
 };
 
 
+inline ::i32_rectangle i32_constrained_rectangle(const ::i32_rectangle & rectangleRaw, const ::i32_rectangle & rectangle)
+{
+
+   return rectangleRaw.intersection(rectangle);
+
+}
+
+
 

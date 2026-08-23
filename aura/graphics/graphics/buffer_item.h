@@ -22,6 +22,8 @@ namespace graphics
       ::draw2d::graphics_pointer                   m_pgraphicsBufferItem;
       ::i32_point                                  m_pointBufferItem;
       ::i32_size                                   m_sizeBufferItem;
+      ::i32_point                                  m_pointBufferFixed;
+      ::i32_size                                   m_sizeBufferFixed;
       ::i32_point                                  m_pointBufferItemWindow;
       ::i32_size                                   m_sizeBufferItemWindow;
       ::pointer < manual_reset_happening >         m_pmanualresethappening;

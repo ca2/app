@@ -61,7 +61,7 @@ namespace write_text
    }
 
 
-   void text_box::update(font_list* plist, ::i32 iBox, const ::scoped_string & scopedstrText)
+   void text_box::update(font_list * plist, ::i32 iBox, const ::scoped_string & scopedstrText)
    {
 
       if (!m_pimage)
@@ -76,6 +76,8 @@ namespace write_text
 
          }
 
+         m_pimage->m_bHintCpuBackingEnabled = false;
+
       }
 
       m_pimage->create_as_descriptor(m_size);
@@ -83,11 +85,8 @@ namespace write_text
       m_bOk = false;
 
       auto pacmeuserinteractionAffinity = plist->m_puserinteractionGraphicsContext
-         ? (::acme::user::interaction *) plist->m_puserinteractionGraphicsContext.m_p
-         : (::acme::user::interaction *) plist->m_puserinteraction.m_p;
-      auto graphicslease = m_pimage->acquire_graphics(pacmeuserinteractionAffinity);
-
-      auto layerscope = graphicslease.begin_layer_scope();
+         ? (::acme::user::interaction *)plist->m_puserinteractionGraphicsContext.m_p
+         : (::acme::user::interaction *)plist->m_puserinteraction.m_p;
 
       auto bDarkMode = plist->m_bDarkMode;
 
@@ -100,34 +99,49 @@ namespace write_text
 
       }
 
-      auto uBackgroundColor = plist->m_uaBackgroundColor[iColorIndex][iBox];
-
-      graphicslease->set_alpha_mode(::draw2d::e_alpha_mode_set);
-
-      graphicslease->fill_rectangle(::i32_rectangle(m_size), uBackgroundColor);
-
-      graphicslease->set_alpha_mode(::draw2d::e_alpha_mode_blend);
-
-      graphicslease->set(m_pfont);
-
-      auto uForegroundColor = plist->m_uaForegroundColor[iColorIndex][iBox];
-
-      if (uForegroundColor.is_transparent())
       {
-      
-         plist->information() << "Color is transparent";
 
-      }
+         auto pgraphics = m_pimage->acquire_graphics(::draw2d::e_acquire_dont_load, pacmeuserinteractionAffinity);
 
-      graphicslease->set_text_color(uForegroundColor);
+         //auto layerscope = pgraphics.begin_layer_scope();
 
-      graphicslease->set_alpha_mode(::draw2d::e_alpha_mode_blend);
+         auto uBackgroundColor = plist->m_uaBackgroundColor[iColorIndex][iBox];
 
-      graphicslease->set_text_rendering_hint(::write_text::e_rendering_anti_alias);
+         pgraphics->set_alpha_mode(::draw2d::e_alpha_mode_set);
 
-      graphicslease->text_out(plist->m_rectangleMargin.left, plist->m_rectangleMargin.top, scopedstrText);
+         auto rectangleItem = ::i32_rectangle(m_size);
+
+         pgraphics->fill_rectangle(rectangleItem, uBackgroundColor);
+
+         pgraphics->set_alpha_mode(::draw2d::e_alpha_mode_blend);
+
+         pgraphics->set(m_pfont);
+
+         auto uForegroundColor = plist->m_uaForegroundColor[iColorIndex][iBox];
+
+         if (uForegroundColor.is_transparent())
+         {
+
+            plist->information() << "Color is transparent";
+
+         }
+
+         pgraphics->set_text_color(uForegroundColor);
+
+         pgraphics->set_alpha_mode(::draw2d::e_alpha_mode_blend);
+
+         pgraphics->set_text_rendering_hint(::write_text::e_rendering_anti_alias);
+
+         pgraphics->text_out(plist->m_rectangleMargin.left, plist->m_rectangleMargin.top, scopedstrText);
 
 #if 0
+
+         pgraphics->fill_solid_rectangle(rectangleItem, ::argb(128, 100, 160, 200));
+         pgraphics->fill_solid_rectangle({ rectangleItem.origin(), rectangleItem.size() / 2 }, color::blue);
+
+#endif
+
+   #if 0
 
          string str;
 
@@ -136,16 +150,18 @@ namespace write_text
             uForegroundColor.m_u8Red,
             uForegroundColor.m_u8Green,
             uForegroundColor.m_u8Blue,
-            plist->m_rectangleMargin.left, 
+            plist->m_rectangleMargin.left,
             plist->m_rectangleMargin.top, strText.c_str());
-         
+
          plist->information() << str;
 
-#endif
+   #endif
 
-      layerscope.close();
+      }
 
-      graphicslease.close();
+      //layerscope.close();
+
+      //graphicslease.close();
 
       m_bOk = true;
 

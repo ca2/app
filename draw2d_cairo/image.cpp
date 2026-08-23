@@ -237,7 +237,7 @@ namespace draw2d_cairo
 
       //}
 
-      ::i32_size size = pbitmap->get_size();
+      ::i32_size size = pbitmap->size();
 
       create_as_descriptor(size);
 
@@ -1800,12 +1800,12 @@ namespace draw2d_cairo
 //   }
 
 
-   bool image::on_host_read_pixels(::pixmap_t * ppixmap) const
-   {
+   //bool image::on_host_read_pixels(::pixmap_t * ppixmap) const
+   //{
 
-      return false;
+   //   return false;
 
-   }
+   //}
 
 
 } // namespace draw2d_cairo

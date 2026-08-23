@@ -25,6 +25,7 @@ namespace windowing
    {
    public:
 
+      class ::time m_timeRecent = 3_s;
       
       void on_initialize_particle() override;
 

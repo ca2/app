@@ -388,6 +388,8 @@ namespace user
 
       m_pfontlist->_001OnDraw(pgraphics, this);
 
+      pgraphics->fill_solid_rectangle({ 100.0, 100.0, 200.0, 200.0 }, color::yellow);
+
       //m_pfontlist->m_puserstyle = pstyle;
 
    }

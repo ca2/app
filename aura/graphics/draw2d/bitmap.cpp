@@ -20,7 +20,7 @@ namespace draw2d
 //      m_hbitmapGet            = nullptr;
 //
 //#endif
-
+      m_bHintCpuBackingEnabled    = true;
       m_iStride               = 0;
 
    }
@@ -173,7 +173,7 @@ namespace draw2d
 //   }
 
 
-   void bitmap::create_bitmap_for_image(
+   void bitmap::update_bitmap_as_image_render_target(
       ::image::image * pimage,
       ::acme::user::interaction * pacmeuserinteractionAffinity,
       ::draw2d::graphics * pgraphics)
@@ -194,6 +194,31 @@ namespace draw2d
          //&pimage->m_iScan);
 
    }
+
+
+
+   void bitmap::update_bitmap_as_source(
+   ::image::image * pimage,
+   ::acme::user::interaction * pacmeuserinteractionAffinity,
+   ::draw2d::graphics * pgraphics)
+   {
+
+      //__UNREFERENCED_PARAMETER(pimage);
+      //__UNREFERENCED_PARAMETER(pacmeuserinteractionAffinity);
+
+      //throw ::interface_only();
+
+      //auto pgraphicslease = pimage->acquire_graphics(pimage->m_pacmeuserinteractionAffinity);
+
+      create_bitmap(
+         pgraphics,
+         pimage->m_sizeRaw,
+         pimage->m_ppixmapOwned);
+      //pimage->m_memoryPixmap,
+      //&pimage->m_iScan);
+
+   }
+
 
 
    void bitmap::preserve_image(const ::i32_size& size, ::image::image* pimage)
@@ -270,6 +295,88 @@ namespace draw2d
    }
 
 
+   void bitmap::defer_read_pixels(
+      const ::i32_size & sizeParam,
+      const ::i32_point & point,
+      ::image32_t * pimage32,
+      ::i32 iScan)
+   {
+
+      auto size = sizeParam;
+
+      if ((::i64)iScan < (::i64)size.cx * sizeof(::image32_t))
+      {
+
+         size.cx = iScan / sizeof(::image32_t);
+
+      }
+
+      if (size.cx <= 0 || size.cy <= 0)
+      {
+
+         return;
+
+      }
+
+      auto sizeBitmap = this->size();
+
+      if (sizeBitmap.cx <= 0 || sizeBitmap.cy <= 0)
+      {
+
+         return;
+
+      }
+
+      auto iLeft = maximum((::i64) 0, (::i64) point.x);
+      auto iTop = maximum((::i64) 0, (::i64) point.y);
+      auto iRight = minimum((::i64) sizeBitmap.cx, (::i64) point.x + size.cx);
+      auto iBottom = minimum((::i64) sizeBitmap.cy, (::i64) point.y + size.cy);
+
+      if (iRight <= iLeft || iBottom <= iTop)
+      {
+
+         return;
+
+      }
+
+      if (!pimage32)
+      {
+
+         throw ::exception(error_null_pointer);
+
+      }
+
+
+
+      ::i32_size sizeClipped(
+         (::i32) (iRight - iLeft),
+         (::i32) (iBottom - iTop));
+
+      ::i32_point pointClipped((::i32) iLeft, (::i32) iTop);
+
+      auto iTargetX = (::i32) (iLeft - point.x);
+      auto iTargetY = (::i32) (iTop - point.y);
+
+      auto pimage32Shifted = (::image32_t *)
+         ((::u8 *) pimage32 + (::memsize) iTargetY * iScan)
+         + iTargetX;
+
+      read_pixels(sizeClipped, pointClipped, pimage32Shifted, iScan);
+
+
+   }
+
+
+   bool bitmap::is_cpu_backed_by(const ::pixmap_t * ppixmap) const
+   {
+
+      __UNREFERENCED_PARAMETER(ppixmap);
+
+      return false;
+
+   }
+
+
    void bitmap::write_pixels(
       const ::i32_size & size,
       const ::i32_point & point,
@@ -278,6 +385,74 @@ namespace draw2d
    {
 
       throw ::interface_only();
+
+   }
+
+
+   void bitmap::defer_write_pixels(
+      const ::i32_size & size,
+      const ::i32_point & point,
+      const ::image32_t * pimage32,
+      ::i32 iScan)
+   {
+
+      if (size.cx <= 0 || size.cy <= 0)
+      {
+
+         return;
+
+      }
+
+      auto sizeBitmap = this->size();
+
+      if (sizeBitmap.cx <= 0 || sizeBitmap.cy <= 0)
+      {
+
+         return;
+
+      }
+
+      auto iLeft = maximum((::i64) 0, (::i64) point.x);
+      auto iTop = maximum((::i64) 0, (::i64) point.y);
+      auto iRight = minimum((::i64) sizeBitmap.cx, (::i64) point.x + size.cx);
+      auto iBottom = minimum((::i64) sizeBitmap.cy, (::i64) point.y + size.cy);
+
+      if (iRight <= iLeft || iBottom <= iTop)
+      {
+
+         return;
+
+      }
+
+      if (!pimage32)
+      {
+
+         throw ::exception(error_null_pointer);
+
+      }
+
+      if ((::i64) iScan < (::i64) size.cx * sizeof(::image32_t))
+      {
+
+         throw ::exception(error_bad_argument);
+
+      }
+
+      ::i32_size sizeClipped(
+         (::i32) (iRight - iLeft),
+         (::i32) (iBottom - iTop));
+
+      ::i32_point pointClipped((::i32) iLeft, (::i32) iTop);
+
+      auto iSourceX = (::i32) (iLeft - point.x);
+      auto iSourceY = (::i32) (iTop - point.y);
+
+      auto pimage32Shifted = (const ::image32_t *)
+         ((const ::u8 *) pimage32 + (::memsize) iSourceY * iScan)
+         + iSourceX;
+
+      write_pixels(sizeClipped, pointClipped, pimage32Shifted, iScan);
+
 
    }
 
@@ -374,34 +549,42 @@ namespace draw2d
    //}
 
 
-   i32_size bitmap::GetBitmapDimension() const
-   {
+//   i32_size bitmap::GetBitmapDimension() const
+//   {
+//
+//      throw ::interface_only();
+//
+////      ::i32_size sizeRet(0,0);
+//
+//  //    return sizeRet;
+//
+//      return {};
+//
+//   }
 
-      throw ::interface_only();
 
-//      ::i32_size sizeRet(0,0);
+   //i32_size bitmap::get_size() const
+   //{
 
-  //    return sizeRet;
-      
-      return {};
+   //   return GetBitmapDimension();
 
-   }
-
-
-   i32_size bitmap::get_size() const
-   {
-
-      return GetBitmapDimension();
-
-   }
+   //}
 
 
    i32_size bitmap::size() const
    {
 
+      throw ::interface_only();
 
-      return GetBitmapDimension();
+      return {};
 
+   }
+
+
+   void bitmap::set_size(const ::i32_size & size, bool bPreserve)
+   {
+
+      throw ::interface_only();
 
    }
 

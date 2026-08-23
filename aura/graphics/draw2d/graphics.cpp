@@ -488,10 +488,10 @@ namespace draw2d
    }
 
 
-   void graphics::create_for_image(::image::image* pimage)
+   void graphics::update_as_image_render_target(::image::image* pimage)
    {
 
-      auto pbitmap = pimage->get_bitmap();
+      auto pbitmap = pimage->get_bitmap_as_target();
 
       create_bitmap_graphics(pbitmap);
 
@@ -623,7 +623,7 @@ namespace draw2d
       {
          m_dSizeScaler = pimage->m_dSizeScaler;
          m_pbitmap = pimage->m_pbitmap;
-         set_target_rectangle(pimage->rectangle());
+         set_target_rectangle({ pimage->m_point, pimage->m_size });
 
       }
       else
@@ -2104,7 +2104,7 @@ namespace draw2d
 
             {
 
-               auto pgraphics = pimage1->acquire_graphics(m_pacmeuserinteractionAffinity);
+               auto pgraphics = pimage1->acquire_graphics(::draw2d::e_acquire_dont_load, m_pacmeuserinteractionAffinity);
 
                pgraphics->clear(::color::transparent);
 

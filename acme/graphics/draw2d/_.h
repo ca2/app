@@ -9,6 +9,14 @@ struct image32_t;
 namespace draw2d
 {
 
+   enum enum_acquire
+   {
+
+      e_acquire_load,
+      e_acquire_dont_load,
+
+   };
+
 
    class draw2d;
 

@@ -1026,14 +1026,14 @@ namespace user
 
             //information() << "timeToWaitForNextFrame:" <<timeToWaitForNextFrame.floating_millisecond()<<"ms";
 
-            if (timeToWaitForNextFrame > 1_s)
-            {
+            //if (timeToWaitForNextFrame > 1_s)
+            //{
 
-               //informationf("what?!?!\n");
+            //   //informationf("what?!?!\n");
 
-               timeToWaitForNextFrame = 500_ms;
+            //   timeToWaitForNextFrame = 500_ms;
 
-            }
+            //}
 
             if (timeToWaitForNextFrame >= 1_ms)
             {

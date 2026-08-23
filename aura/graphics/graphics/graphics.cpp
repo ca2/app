@@ -7,6 +7,7 @@
 #include "aura/windowing/window.h"
 #include "aura/user/user/frame_interaction.h"
 #include "aura/user/user/interaction.h"
+#include "aura/graphics/draw2d/draw2d.h"
 #include "aura/graphics/image/drawing.h"
 #include "aura/graphics/image/image.h"
 
@@ -159,21 +160,38 @@ namespace graphics
 
       auto puserinteraction = m_pwindow->user_interaction();
 
-      auto pointDesign = puserinteraction->const_layout().design().origin();
+      auto &y5 = puserinteraction->const_layout().sketch().m_point2.y;
+
+      auto rectangleDesign = ::i32_rectangle(puserinteraction->const_layout().sketch().origin(),
+         puserinteraction->const_layout().sketch().size());
+
+      auto rectangleRaw = ::i32_rectangle(m_pwindow->m_sizeRaw);
+
+      auto rectangleFixed = rectangleDesign.intersection(rectangleRaw);
+
+      auto pointDesign = puserinteraction->const_layout().sketch().origin();
 
       if (pbufferitem->m_pointBufferItem != pointDesign)
       {
 
          pbufferitem->m_pointBufferItem = pointDesign;
 
+         pbufferitem->m_pointBufferFixed = rectangleFixed.top_left();
+
+         pbufferitem->m_sizeBufferFixed = rectangleFixed.size();
+
       }
 
-      auto sizeDesign = puserinteraction->const_layout().design().size();
+      auto sizeDesign = puserinteraction->const_layout().sketch().size();
 
       if (pbufferitem->m_sizeBufferItem != sizeDesign)
       {
 
          pbufferitem->m_sizeBufferItem = sizeDesign;
+
+         pbufferitem->m_pointBufferFixed = rectangleFixed.top_left();
+
+         pbufferitem->m_sizeBufferFixed = rectangleFixed.size();
 
       }
 
@@ -183,6 +201,13 @@ namespace graphics
          pbufferitem->m_sizeBufferItem = puserinteraction->window()->get_window_rectangle().size();
 
       }
+
+
+      m_pwindow->m_pointWindowBuffer = pbufferitem->m_pointBufferItem;
+
+      m_pwindow->m_sizeWindowBuffer = pbufferitem->m_sizeBufferItem;
+
+
 
       //pbufferitem->m_point = m_pimpl->m_puserinteraction->const_layout().layout().origin();
 
@@ -238,6 +263,13 @@ namespace graphics
 
       debug() << "::graphics::graphics::going to call buffer_size_and_position";
 
+      auto pacmeuserinteractionAffinity = m_pwindow->m_pacmeuserinteraction;
+
+
+      // A move can be followed directly by a draw acquisition, without a layout
+      // acquisition in between. Keep the buffer rectangle current for both cases;
+      // otherwise a reusable graphics renders the new frame at the previous window
+      // position in the oversized backing bitmap.
       buffer_size_and_position(pbufferitem);
 
       if (pbufferitem->m_sizeBufferItem.is_empty())
@@ -284,11 +316,45 @@ namespace graphics
       if (m_pdraw2dgraphics)
       {
 
-         //m_pdraw2dgraphics->set_target_image(pbufferitem->m_pimageBufferItem);
+         if (!m_pdraw2dgraphics->m_pacmeuserinteractionAffinity
+            && pacmeuserinteractionAffinity)
+         {
+
+            m_pdraw2dgraphics->m_pacmeuserinteractionAffinity = pacmeuserinteractionAffinity;
+
+         }
+
+         if (!pacmeuserinteractionAffinity)
+         {
+
+            pacmeuserinteractionAffinity = m_pdraw2dgraphics->m_pacmeuserinteractionAffinity;
+
+         }
+
+         auto pimage = pbufferitem->m_pimageBufferItem;
+
+         if (!pimage->m_pacmeuserinteractionAffinity
+            && pacmeuserinteractionAffinity)
+         {
+
+            pimage->m_pacmeuserinteractionAffinity = pacmeuserinteractionAffinity;
+
+         }
+
+         if (!pacmeuserinteractionAffinity)
+         {
+
+            pacmeuserinteractionAffinity = pimage->m_pacmeuserinteractionAffinity;
+
+         }
 
          m_pdraw2dgraphics->m_pgraphicsbufferitem = pbufferitem;
 
-         return { draw2d(), m_pdraw2dgraphics, pbufferitem->m_pimageBufferItem, true };
+         return draw2d()->acquire_owned_graphics(
+            m_pdraw2dgraphics,
+            pimage,
+            pimage->raw_size(),
+            pacmeuserinteractionAffinity);
 
       }
       else

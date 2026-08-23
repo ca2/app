@@ -160,6 +160,7 @@ namespace windowing
       ::item_pointer                            m_pitemLButtonDown;
 
       bool                                      m_bDoingGraphics;
+      bool                                      m_bWindowDrawingFrame;
 
 
       ::i32_size                                m_sizeLastBuffer;

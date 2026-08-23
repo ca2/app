@@ -176,7 +176,7 @@ namespace gpu
    }
 
    
-   void image::create_as_render_target(const ::i32_size & sizeRaw, ::user::interaction * puserinteraction, ::draw2d::graphics * pdraw2dgraphics, ::enum_flag eflagCreate, ::i32 iGoodStride, bool bPreserve, bool bTopDraw2d)
+   void image::update_as_render_target(const ::i32_size & sizeRaw, ::user::interaction * puserinteraction, ::draw2d::graphics * pdraw2dgraphics, ::enum_flag eflagCreate, ::i32 iGoodStride, bool bPreserve, bool bTopDraw2d)
    {
 
       if (!puserinteraction)
@@ -688,7 +688,7 @@ namespace gpu
 
             auto pgpucontextlease = pgputexture->acquire_context();
 
-            ::cast<::gpu::bitmap> pgpubitmap = get_bitmap();
+            ::cast<::gpu::bitmap> pgpubitmap = get_bitmap_as_source();
 
             construct_newø(m_ppixmapOwned);
 

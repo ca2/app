@@ -381,40 +381,47 @@ void pixmap::_map(const ::i32_rectangle & rectangle)
    if (m_interlockedcountMap == 0)
    {
 
-      if (!rectangle.is_null())
+      auto r = rectangle;
+
+      if (!r.is_null())
       {
 
-         if (!raw_contains_x(rectangle.left))
-         {
+         r.left = constrained(r.left, 0, m_sizeRaw.cx);
+         r.top = constrained(r.top, 0, m_sizeRaw.cy);
+         r.right = constrained(r.right, 0, m_sizeRaw.cx);
+         r.bottom = constrained(r.bottom, 0, m_sizeRaw.cy);
 
-            throw ::exception(error_wrong_state);
+         //if (!raw_contains_x(rectangle.left))
+         //{
 
-         }
+         //   throw ::exception(error_wrong_state);
 
-         if (!raw_contains_x(rectangle.right))
-         {
+         //}
 
-            throw ::exception(error_wrong_state);
+         //if (!raw_contains_x(rectangle.right))
+         //{
 
-         }
+         //   throw ::exception(error_wrong_state);
 
-         if (!raw_contains_y(rectangle.top))
-         {
+         //}
 
-            throw ::exception(error_wrong_state);
+         //if (!raw_contains_y(rectangle.top))
+         //{
 
-         }
+         //   throw ::exception(error_wrong_state);
 
-         if (!raw_contains_y(rectangle.bottom))
-         {
+         //}
 
-            throw ::exception(error_wrong_state);
+         //if (!raw_contains_y(rectangle.bottom))
+         //{
 
-         }
+         //   throw ::exception(error_wrong_state);
 
-         m_point = rectangle.origin();
+         //}
 
-         m_size = rectangle.size();
+         m_point = r.origin();
+
+         m_size = r.size();
 
          rectangleMap.clear();
 

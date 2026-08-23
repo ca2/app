@@ -1,7 +1,7 @@
 #include "platform.h"
 #include "cursor.h"
 #include "image.h"
-
+#include "aura/graphics/image/image.h"
 
 //#include "acme/operating_system.h"
 
@@ -85,7 +85,7 @@ namespace image
    ::draw2d::graphics_lease cursor::acquire_graphics() const
    {
 
-      return m_pimage->acquire_graphics();
+      return m_pimage->acquire_graphics(::draw2d::e_acquire_load);
 
    }
 

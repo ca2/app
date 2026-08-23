@@ -1004,6 +1004,10 @@ namespace experience
 
       ::i32_rectangle rectangleRaw;
 
+      auto & sizeSketch = pframewindow->const_layout().state(::user::e_layout_sketch).m_size;
+
+      auto & sizeRaw = pframewindow->const_layout().state(::user::e_layout_lading).m_size;
+
       rectangleRaw = pframewindow->raw_rectangle(::user::e_layout_lading);
 
       //information() << "experience::frame_window::title_bar_layout " << rectangleRaw;

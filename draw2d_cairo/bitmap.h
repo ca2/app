@@ -46,7 +46,7 @@ namespace draw2d_cairo
       ::u32 SetBitmapBits(::u32 dwCount, const void * lpBits) override;
       ::u32 GetBitmapBits(::u32 dwCount, void * lpBits) const override;
       ::i32_size SetBitmapDimension(::i32 nWidth, ::i32 nHeight);
-      ::i32_size GetBitmapDimension() const override;
+      ::i32_size size() const override;
 
       // void dump(dump_context & dumpcontext) const override;
 

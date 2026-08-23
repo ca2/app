@@ -198,6 +198,7 @@ namespace image
 
 
    ::draw2d::graphics_lease image::acquire_graphics(
+      ::draw2d::enum_acquire eacquire,
       //::draw2d::host * pdraw2dhost,
       ::acme::user::interaction* pacmeuserinteractionAffinityExplicit)
    {
@@ -236,27 +237,6 @@ namespace image
 
       }
 
-      if (m_bWasMappedAfterLastGraphicsAcquisition)
-      {
-
-         m_bWasMappedAfterLastGraphicsAcquisition = false;
-
-         if (m_ppixmapOwned)
-         {
-
-            auto pbitmap = get_bitmap();
-
-            if (pbitmap)
-            {
-
-               pbitmap->write_pixels(m_ppixmapOwned->size(), m_ppixmapOwned->m_point, m_ppixmapOwned->image32(), m_ppixmapOwned->scan_size());
-
-            }
-
-         }
-
-      }
-
       //if (!pdraw2dhost && pacmeuserinteractionAffinity)
       //{
 
@@ -272,6 +252,7 @@ namespace image
       //}
 
       return ::transfer(_acquire_graphics(
+         eacquire,
          //pdraw2dhost,
          pacmeuserinteractionAffinity));
 
@@ -279,6 +260,7 @@ namespace image
 
 
    ::draw2d::graphics_lease image::_acquire_graphics(
+      ::draw2d::enum_acquire eacquire,
       //::draw2d::host * pdraw2dhost,
       ::acme::user::interaction* pacmeuserinteractionAffinity)
    {
@@ -329,6 +311,51 @@ namespace image
 
       try
       {
+
+         update_bitmap_as_render_target(pacmeuserinteractionAffinity);
+
+         auto pbitmap = m_pbitmap;
+
+         if (!pbitmap)
+         {
+
+            throw ::exception(error_wrong_state, "image bitmap is unavailable for graphics acquisition");
+
+         }
+
+         auto sizeRawBitmap = this->raw_size();
+
+         if (pbitmap->size() != sizeRawBitmap)
+         {
+
+            pbitmap->set_size(sizeRawBitmap);
+
+
+
+         }
+
+         if (eacquire == ::draw2d::e_acquire_load)
+         {
+
+            if (m_bWasMappedAfterLastGraphicsAcquisition)
+            {
+
+               if (m_ppixmapOwned)
+               {
+
+                  pbitmap->defer_write_pixels(
+                     m_ppixmapOwned->size(),
+                     m_ppixmapOwned->m_point,
+                     m_ppixmapOwned->image32(),
+                     m_ppixmapOwned->scan_size());
+
+               }
+
+               m_bWasMappedAfterLastGraphicsAcquisition = false;
+
+            }
+
+         }
 
          auto pdraw2d = system()->draw2d();
 
@@ -393,13 +420,80 @@ namespace image
    }
 
 
-   ::draw2d::bitmap_pointer image::get_bitmap(::draw2d::graphics* pdraw2dgraphics) const
+   ::draw2d::bitmap_pointer image::get_bitmap_as_source(::draw2d::graphics * pdraw2dgraphics) const
    {
 
       if (!m_pbitmap)
       {
 
-         ((image *)this)->create_bitmap(m_pacmeuserinteractionAffinity, pdraw2dgraphics);
+         ((image *)this)->update_bitmap_as_source(m_pacmeuserinteractionAffinity, pdraw2dgraphics);
+
+      }
+      else if (m_bWasMappedAfterLastGraphicsAcquisition)
+      {
+
+         auto sizeRaw = this->raw_size();
+
+         if (m_pbitmap->size() != sizeRaw)
+         {
+
+            m_pbitmap->set_size(sizeRaw);
+
+         }
+
+         if (m_ppixmapOwned)
+         {
+
+            m_pbitmap->defer_write_pixels(
+               m_ppixmapOwned->size(),
+               m_ppixmapOwned->m_point,
+               m_ppixmapOwned->image32(),
+               m_ppixmapOwned->scan_size());
+
+         }
+
+         ((::image::image *)this)->m_bWasMappedAfterLastGraphicsAcquisition = false;
+
+      }
+
+      return m_pbitmap;
+
+   }
+
+
+   ::draw2d::bitmap_pointer image::get_bitmap_as_target(::draw2d::graphics* pdraw2dgraphics) const
+   {
+
+      if (!m_pbitmap)
+      {
+
+         ((image *)this)->update_bitmap_as_render_target(m_pacmeuserinteractionAffinity, pdraw2dgraphics);
+
+      }
+      else if (m_bWasMappedAfterLastGraphicsAcquisition)
+      {
+
+         auto sizeRaw = this->raw_size();
+
+         if (m_pbitmap->size() != sizeRaw)
+         {
+
+            m_pbitmap->set_size(sizeRaw);
+
+         }
+
+         if (m_ppixmapOwned)
+         {
+
+            m_pbitmap->defer_write_pixels(
+               m_ppixmapOwned->size(),
+               m_ppixmapOwned->m_point,
+               m_ppixmapOwned->image32(),
+               m_ppixmapOwned->scan_size());
+
+         }
+
+         ((::image::image*)this)->m_bWasMappedAfterLastGraphicsAcquisition = false;
 
       }
 
@@ -506,12 +600,12 @@ namespace image
                                            ::i32 iGoodStride, bool bPreserve)
    {
 
-      create_as_render_target(size, puserinteraction, pdraw2dgraphics, eflagCreate, iGoodStride, bPreserve, true);
+      update_as_render_target(size, puserinteraction, pdraw2dgraphics, eflagCreate, iGoodStride, bPreserve, true);
 
    }
 
 
-   void image::create_as_render_target(const ::i32_size& sizeRaw, ::user::interaction* puserinteraction,
+   void image::update_as_render_target(const ::i32_size& sizeRaw, ::user::interaction* puserinteraction,
                                        ::draw2d::graphics* pdraw2dgraphics, ::enum_flag eflagCreate, ::i32 iGoodStride,
                                        bool bPreserve, bool bTopDraw2d)
    {
@@ -609,138 +703,142 @@ namespace image
    //}
 
 
-   bool image::host(::windowing::window_buffer* pwindowbuffer, ::windowing::window* pwindow, const ::i32_size& sizeRaw)
-   {
-      //// callers should be able to deal with graphics backend that doesn't support "hosting" portions of RAM
-      //return false;
+   //bool image::host(::windowing::window_buffer* pwindowbuffer, ::windowing::window* pwindow, const ::i32_size& sizeRaw)
+   //{
+   //   //// callers should be able to deal with graphics backend that doesn't support "hosting" portions of RAM
+   //   //return false;
 
-      if (!::is_set(pwindowbuffer->m_ppixmapWindowBuffer))
-      {
+   //   if (!::is_set(pwindowbuffer->m_ppixmapWindowBuffer))
+   //   {
 
-         return false;
+   //      return false;
 
-         //throw ::exception(error_failed);
+   //      //throw ::exception(error_failed);
 
-      }
+   //   }
 
-      auto ppixmapWindowBuffer = pwindowbuffer->m_ppixmapWindowBuffer;
+   //   auto ppixmapWindowBuffer = pwindowbuffer->m_ppixmapWindowBuffer;
 
-      if (m_pbitmap.is_set()
-          && m_pbitmap->get_os_data() != nullptr
-          && m_ppixmapOwned
-          && ppixmapWindowBuffer->m_sizeRaw == sizeRaw && ppixmapWindowBuffer->image32() == m_ppixmapOwned->image32()
-          && ppixmapWindowBuffer->scan_size() == m_ppixmapOwned->scan_size())
-      {
+   //   if (m_pbitmap.is_set()
+   //       && m_pbitmap->get_os_data() != nullptr
+   //       && m_ppixmapOwned
+   //       && ppixmapWindowBuffer->m_sizeRaw == sizeRaw && ppixmapWindowBuffer->image32() == m_ppixmapOwned->image32()
+   //       && ppixmapWindowBuffer->scan_size() == m_ppixmapOwned->scan_size())
+   //   {
 
-         if (ppixmapWindowBuffer->size() != pwindow->m_sizeWindow
-             || ppixmapWindowBuffer->m_point != pwindow->m_pointWindow)
-         {
+   //      //if (ppixmapWindowBuffer->size() != pwindow->m_sizeWindow
+   //        //  || ppixmapWindowBuffer->m_point != pwindow->m_pointWindow)
+   //      {
 
-            m_ppixmapOwned->m_point = pwindow->m_pointWindow;
+   //         //m_ppixmapOwned->m_point = pwindow->m_pointWindow;
 
-            m_ppixmapOwned->m_size = ppixmapWindowBuffer->size();
+   //         //m_ppixmapOwned->m_size = ppixmapWindowBuffer->size();
 
-         }
+   //         m_ppixmapOwned->m_point = ppixmapWindowBuffer->m_point;
 
-         return true;
+   //         m_ppixmapOwned->m_size = ppixmapWindowBuffer->m_size;
 
-         //return;
+   //      }
 
-      }
+   //      return true;
 
-      //destroy();
+   //      //return;
 
-      //defer_constructø(m_pbitmap);
+   //   }
 
-      ////defer_constructø(m_pgraphics);
+   //   //destroy();
 
-      ////if (m_pbitmap.is_null())
-      ////{
+   //   //defer_constructø(m_pbitmap);
 
-      ////   m_sizeRaw.cx = 0;
+   //   ////defer_constructø(m_pgraphics);
 
-      ////   m_sizeRaw.cy = 0;
+   //   ////if (m_pbitmap.is_null())
+   //   ////{
 
-      ////   m_sizeAlloc.cx = 0;
+   //   ////   m_sizeRaw.cx = 0;
 
-      ////   m_sizeAlloc.cy = 0;
+   //   ////   m_sizeRaw.cy = 0;
 
-      ////   m_iScan = 0;
+   //   ////   m_sizeAlloc.cx = 0;
 
-      ////   return false;
+   //   ////   m_sizeAlloc.cy = 0;
 
-      ////}
+   //   ////   m_iScan = 0;
 
+   //   ////   return false;
 
-      //if(!m_pbitmap->host_bitmap(nullptr, pwindowbuffer->m_ppixmapWindowBuffer))
-      //{
-
-      //   return false;
-      //   //m_pbitmap->create_bitmap(pgraphics, size, )
-
-      //}
-      //if (!)
-      //{
-
-      //   m_sizeRaw.cx = 0;
-
-      //   m_sizeRaw.cy = 0;
-
-      //   m_sizeAlloc.cx = 0;
-
-      //   m_sizeAlloc.cy = 0;
-
-      //   m_iScan = 0;
-
-      //   return false;
-
-      //}
-      //throw ::exception(error_failed);
-      //if (m_pbitmap->get_os_data() == nullptr)
-      //{
-
-      //   destroy();
-
-      //   return false;
-
-      //}
-
-      m_ppixmapOwned = ppixmapWindowBuffer;
-
-      //initialize_pixmap(ppixmapWindowBuffer->size(), ppixmapWindowBuffer->image32(), ppixmapWindowBuffer->m_iScan);
-
-      m_sizeRaw = ppixmapWindowBuffer->m_sizeRaw;
-
-      m_size = ppixmapWindowBuffer->m_size;
-
-      //m_pimage32Raw = ppixmapWindowBuffer->m_pimage32Raw;
-
-      //m_pimage32 = ppixmapWindowBuffer->m_pimage32;
-
-      //pgraphics->set(m_pbitmap);
-
-      //pgraphics->m_pimage = this;
-
-      //pgraphics->place_impact_area(0., 0., m_size.cx, m_size.cy);
-
-      set_ok_flag();
-
-      return true;
+   //   ////}
 
 
-   }
+   //   //if(!m_pbitmap->host_bitmap(nullptr, pwindowbuffer->m_ppixmapWindowBuffer))
+   //   //{
+
+   //   //   return false;
+   //   //   //m_pbitmap->create_bitmap(pgraphics, size, )
+
+   //   //}
+   //   //if (!)
+   //   //{
+
+   //   //   m_sizeRaw.cx = 0;
+
+   //   //   m_sizeRaw.cy = 0;
+
+   //   //   m_sizeAlloc.cx = 0;
+
+   //   //   m_sizeAlloc.cy = 0;
+
+   //   //   m_iScan = 0;
+
+   //   //   return false;
+
+   //   //}
+   //   //throw ::exception(error_failed);
+   //   //if (m_pbitmap->get_os_data() == nullptr)
+   //   //{
+
+   //   //   destroy();
+
+   //   //   return false;
+
+   //   //}
+
+   //   m_ppixmapOwned = ppixmapWindowBuffer;
+
+   //   //initialize_pixmap(ppixmapWindowBuffer->size(), ppixmapWindowBuffer->image32(), ppixmapWindowBuffer->m_iScan);
+
+   //   m_sizeRaw = ppixmapWindowBuffer->m_sizeRaw;
+
+   //   m_size = ppixmapWindowBuffer->m_size;
+
+   //   //m_pimage32Raw = ppixmapWindowBuffer->m_pimage32Raw;
+
+   //   //m_pimage32 = ppixmapWindowBuffer->m_pimage32;
+
+   //   //pgraphics->set(m_pbitmap);
+
+   //   //pgraphics->m_pimage = this;
+
+   //   //pgraphics->place_impact_area(0., 0., m_size.cx, m_size.cy);
+
+   //   set_ok_flag();
+
+   //   return true;
 
 
-   bool image::on_host_read_pixels(::pixmap_t* ppixmapHost) const
-   {
+   //}
 
-      //map();
 
-      //::copy_image32(ppixmapHost, this);
+   //bool image::on_host_read_pixels(::pixmap_t* ppixmapHost) const
+   //{
 
-      return false;
+   //   //map();
 
-   }
+   //   //::copy_image32(ppixmapHost, this);
+
+   //   return false;
+
+   //}
 
 
    //
@@ -10234,9 +10332,43 @@ namespace image
 
       m_size = size;
 
+      if (m_ppixmapOwned.is_set())
+      {
+
+         m_sizeRaw = m_sizeRaw.maximum(m_ppixmapOwned->m_sizeRaw);
+
+      }
+
+      if (m_pbitmap.is_set())
+      {
+
+         m_sizeRaw = m_sizeRaw.maximum(m_pbitmap->size());
+
+      }
+
+      //if (m_sizeRaw.is_set())
+      {
+
+         m_sizeRaw = m_sizeRaw.maximum(m_point + size);
+
+      }
+
       m_eflagElement = eflagCreate;
 
-      m_iScan = iGoodStride;
+      ::i32 iScanRequired = raw_size().width() * 4;
+
+      if (iGoodStride > iScanRequired)
+      {
+
+         m_iScan = maximum(m_iScan, iGoodStride);
+
+      }
+      else
+      {
+
+         m_iScan = maximum(m_iScan, iScanRequired);
+
+      }
 
       if (eflagCreate & e_flag_success)
       {
@@ -10254,18 +10386,20 @@ namespace image
    }
 
 
-   void image::create_bitmap(
+   void image::update_bitmap_as_render_target(
       ::acme::user::interaction* pacmeuserinteractionAffinity, ::draw2d::graphics* pgraphics)
    {
 
-      if (m_pbitmap.ok())
-      {
+      //if (m_pbitmap.ok())
+      //{
 
-         return;
+        // return;
 
-      }
+      //}
 
-      constructø(m_pbitmap);
+      defer_constructø(m_pbitmap);
+
+      m_pbitmap->m_bHintCpuBackingEnabled = m_bHintCpuBackingEnabled;
 
       if (!pacmeuserinteractionAffinity)
       {
@@ -10274,12 +10408,71 @@ namespace image
 
       }
 
-      m_pbitmap->create_bitmap_for_image(
+      if (!pacmeuserinteractionAffinity && pgraphics)
+      {
+
+         pacmeuserinteractionAffinity = pgraphics->m_pacmeuserinteractionAffinity;
+
+      }
+
+      if (!m_pacmeuserinteractionAffinity)
+      {
+
+         m_pacmeuserinteractionAffinity = pacmeuserinteractionAffinity;
+
+      }
+
+      m_pbitmap->update_bitmap_as_image_render_target(
          this,
          pacmeuserinteractionAffinity,
          pgraphics);
 
    }
+
+
+   void image::update_bitmap_as_source(
+   ::acme::user::interaction * pacmeuserinteractionAffinity, ::draw2d::graphics * pgraphics)
+   {
+
+      //if (m_pbitmap.ok())
+      //{
+
+        // return;
+
+      //}
+
+      defer_constructø(m_pbitmap);
+
+      m_pbitmap->m_bHintCpuBackingEnabled = false;
+
+      if (!pacmeuserinteractionAffinity)
+      {
+
+         pacmeuserinteractionAffinity = m_pacmeuserinteractionAffinity;
+
+      }
+
+      if (!pacmeuserinteractionAffinity && pgraphics)
+      {
+
+         pacmeuserinteractionAffinity = pgraphics->m_pacmeuserinteractionAffinity;
+
+      }
+
+      if (!m_pacmeuserinteractionAffinity)
+      {
+
+         m_pacmeuserinteractionAffinity = pacmeuserinteractionAffinity;
+
+      }
+
+      m_pbitmap->update_bitmap_as_source(
+         this,
+         pacmeuserinteractionAffinity,
+         pgraphics);
+
+   }
+
 
 
    ::image::image* image::get_source_image()
@@ -11176,9 +11369,19 @@ namespace image
 
       auto sizeRawThis = raw_size();
 
+      auto pimage32Owned =
+         (::image32_t *) m_ppixmapOwned->m_memoryPixmap.data();
+
+      auto bUsingOwnedMemory =
+         pimage32Owned
+         && m_ppixmapOwned->m_pimage32Raw == pimage32Owned;
+
       if (sizeRawThis != m_ppixmapOwned->m_sizeRaw
          || m_iScan != m_ppixmapOwned->m_iScan
-         || m_ppixmapOwned->m_memoryPixmap.size() < (m_ppixmapOwned->m_iScan * m_ppixmapOwned->m_sizeRaw.cy))
+         || !m_ppixmapOwned->m_pimage32Raw
+         || (bUsingOwnedMemory
+            && m_ppixmapOwned->m_memoryPixmap.size()
+               < (m_ppixmapOwned->m_iScan * m_ppixmapOwned->m_sizeRaw.cy)))
       {
 
          m_ppixmapOwned->m_point.clear();
@@ -11189,6 +11392,8 @@ namespace image
 
          m_ppixmapOwned->m_size = m_size;
 
+         m_ppixmapOwned->pixmap_map();
+
          m_iScan = m_ppixmapOwned->m_iScan;
 
       }
@@ -11198,10 +11403,11 @@ namespace image
 
          m_bGraphicsWasAcquiredAfterLastMap = false;
 
-         if (m_pbitmap)
+         if (m_pbitmap
+            && !m_pbitmap->is_cpu_backed_by(m_ppixmapOwned))
          {
 
-            m_pbitmap->read_pixels(m_size, m_point, m_ppixmapOwned->image32(), m_ppixmapOwned->m_iScan);
+            m_pbitmap->defer_read_pixels(m_size, m_point, m_ppixmapOwned->image32(), m_ppixmapOwned->m_iScan);
 
          }
 

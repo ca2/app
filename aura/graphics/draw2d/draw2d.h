@@ -140,6 +140,11 @@ namespace draw2d
       virtual ::draw2d::graphics_lease acquire_image_graphics(
          ::image::image * pimage,
          ::acme::user::interaction * pacmeuserinteractionAffinity);
+      virtual ::draw2d::graphics_lease acquire_owned_graphics(
+         ::draw2d::graphics * pgraphics,
+         ::image::image * pimage,
+         const ::i32_size & size,
+         ::acme::user::interaction * pacmeuserinteractionAffinity);
       virtual void return_memory_graphics(
          ::draw2d::graphics_pointer pgraphics,
          ::image::image_pointer pimage,

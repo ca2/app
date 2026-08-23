@@ -5996,8 +5996,16 @@ namespace user
 
          ::i32_size sizeImpact;
 
-         if (m_puserinteractionParent != nullptr)
+         if (::is_set(m_puserinteractionParent))
          {
+
+         //   pointOffset = m_pacmewindowingwindow->m_pointWindowBuffer;
+
+         //   sizeImpact = m_pacmewindowingwindow->m_sizeWindowBuffer;
+
+         //}
+         //else
+         //{
 
             pointOffset = layout().layout().origin();
 
@@ -6008,9 +6016,9 @@ namespace user
 
             }
 
-         }
+            sizeImpact = layout().layout().size();
 
-         sizeImpact = layout().layout().size();
+         }
 
          ::f64_rectangle rectangle(pointOffset, sizeImpact);
 

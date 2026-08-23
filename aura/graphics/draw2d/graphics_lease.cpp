@@ -12,7 +12,7 @@ namespace draw2d
 
    graphics_lease::graphics_lease() : m_bOwned(false)
    {
-
+      m_bLeaseOn = false;
    }
 
 
@@ -31,7 +31,8 @@ namespace draw2d
 
    graphics_lease::graphics_lease(::draw2d::draw2d * pdraw2d,::draw2d::graphics *pgraphics, 
                                   ::image::image * pimage, bool bOwned) :
-       graphics_pointer(pgraphics), m_pdraw2d(pdraw2d), m_pimage(pimage), m_bOwned(bOwned)
+       graphics_pointer(pgraphics), m_pdraw2d(pdraw2d), m_pimage(pimage), m_bOwned(bOwned),
+      m_bLeaseOn(true)
    {
 
       if (m_pimage)
@@ -59,12 +60,24 @@ namespace draw2d
       graphics_pointer(::transfer(lease)),
       m_pimage(::transfer(lease.m_pimage)),
       m_bDamaged(lease.m_bDamaged),
-      m_bOwned(lease.m_bOwned)
+      m_bOwned(lease.m_bOwned),
+      m_bLeaseOn(true)
    {
 
       ASSERT(!lease.m_bLayerScopeActive);
 
+      lease.m_bLeaseOn = false;
+
       lease.m_bDamaged = false;
+
+      lease.m_bOwned = false;
+
+      if (m_pimage && m_pimage->m_pgraphicslease == &lease)
+      {
+
+         m_pimage->m_pgraphicslease = this;
+
+      }
 
    }
 
@@ -86,14 +99,24 @@ namespace draw2d
          ASSERT(!m_bLayerScopeActive);
          ASSERT(!lease.m_bLayerScopeActive);
          close_noexcept();
-
+         lease.m_bLeaseOn = false;
          m_pdraw2d = ::transfer(lease.m_pdraw2d);
          BASE_POINTER::operator=(::transfer(lease));
          m_pimage = ::transfer(lease.m_pimage);
          m_bDamaged = lease.m_bDamaged;
          m_bOwned = lease.m_bOwned;
+         m_bLeaseOn = true;
 
          lease.m_bDamaged = false;
+
+         lease.m_bOwned = false;
+
+         if (m_pimage && m_pimage->m_pgraphicslease == &lease)
+         {
+
+            m_pimage->m_pgraphicslease = this;
+
+         }
 
       }
 
@@ -178,6 +201,13 @@ namespace draw2d
    void graphics_lease::close()
    {
 
+      if (!m_bLeaseOn)
+      {
+
+         return;
+
+      }
+
       if (m_bLayerScopeActive)
       {
 
@@ -207,7 +237,8 @@ namespace draw2d
       auto pgraphics = ::transfer((BASE_POINTER &&) *this);
       auto pimage = ::transfer(m_pimage);
       auto bDamaged = m_bDamaged;
-      bool bOwned = (pimage && pimage->m_pgraphicsOwned == pgraphics)
+      bool bOwned = m_bOwned
+         || (pimage && pimage->m_pgraphicsOwned == pgraphics)
          || (pgraphics && pgraphics->m_pimage && pgraphics->m_pimage->m_pgraphicsOwned == pgraphics);
 
       m_bDamaged = false;
@@ -228,13 +259,17 @@ namespace draw2d
       //else
       //{
          
-         if (pdraw2d && pgraphics)
+         if (pgraphics && bOwned)
          {
 
-            if (bOwned)
+            try
             {
 
-               auto pimage = pgraphics->m_pimage;
+               pgraphics->on_release_memory_graphics();
+
+            }
+            catch (...)
+            {
 
                if (pimage)
                {
@@ -243,13 +278,31 @@ namespace draw2d
 
                }
 
+               throw;
+
             }
-            else
+
+            if (pimage)
             {
 
-               pdraw2d->return_memory_graphics(::transfer(pgraphics), ::transfer(pimage), bDamaged);
+               pimage->end_destination_graphics_lease();
 
             }
+
+         }
+         else if (pdraw2d && pgraphics)
+         {
+
+            pdraw2d->return_memory_graphics(
+               ::transfer(pgraphics),
+               ::transfer(pimage),
+               bDamaged);
+
+         }
+         else if (pimage)
+         {
+
+            pimage->end_destination_graphics_lease();
 
          }
 

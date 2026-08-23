@@ -40,6 +40,9 @@ namespace image
 
       bool                                      m_bGraphicsWasAcquiredAfterLastMap;
       bool                                      m_bWasMappedAfterLastGraphicsAcquisition;
+      /// This flag is an optimization hint.
+      /// It is not much literal.
+      bool                                      m_bHintCpuBackingEnabled;
       ::i32_size                                m_size;
       ::i32_size                                m_sizeRaw;
       ::i32_point                               m_point;
@@ -70,6 +73,7 @@ namespace image
       {
 
          //m_uImageFlags = DEFAULT_CREATE_IMAGE_FLAGS;
+         m_bHintCpuBackingEnabled = true;
          m_iScan = -1;
          m_bWasMappedAfterLastGraphicsAcquisition  = false;
          m_bGraphicsWasAcquiredAfterLastMap = false;

@@ -482,7 +482,7 @@ namespace draw2d_cairo
    }
 
 
-   i32_size bitmap::GetBitmapDimension() const
+   i32_size bitmap::size() const
    {
 
       if(m_psurface == nullptr)

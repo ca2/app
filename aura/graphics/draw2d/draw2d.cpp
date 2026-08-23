@@ -697,7 +697,7 @@ namespace draw2d
       if (::is_set(pimage))
       {
 
-         auto pbitmap = pimage->get_bitmap();
+         auto pbitmap = pimage->get_bitmap_as_target();
 
          if (::is_set(pbitmap))
          {
@@ -786,10 +786,19 @@ namespace draw2d
 
       ::draw2d::graphics_pointer pgraphics;
 
+      bool bGotOwned = false;
+
       if (::is_set(pimage))
       {
 
          pgraphics = pimage->m_pgraphicsOwned;
+
+         if (::is_set(pgraphics))
+         {
+
+            bGotOwned = true;
+
+         }
 
       }
 
@@ -917,6 +926,75 @@ namespace draw2d
    }
 
 
+   ::draw2d::graphics_lease draw2d::acquire_owned_graphics(
+      ::draw2d::graphics * pgraphics,
+      ::image::image * pimage,
+      const ::i32_size & size,
+      ::acme::user::interaction * pacmeuserinteractionAffinity)
+   {
+
+      if (!pgraphics
+         || !pimage
+         || size.is_empty()
+         || !pacmeuserinteractionAffinity)
+      {
+
+         throw ::exception(error_bad_argument);
+
+      }
+
+      if (!pimage->try_begin_destination_graphics_lease())
+      {
+
+         throw ::exception(
+            error_wrong_state,
+            "image already has an active destination graphics lease");
+
+      }
+
+      bool bGraphicsAcquired = false;
+
+      try
+      {
+
+         pgraphics->on_acquire_memory_graphics(
+            pimage,
+            size,
+            pacmeuserinteractionAffinity);
+
+         bGraphicsAcquired = true;
+
+         return { this, pgraphics, pimage, true };
+
+      }
+      catch (...)
+      {
+
+         if (bGraphicsAcquired)
+         {
+
+            try
+            {
+
+               pgraphics->on_release_memory_graphics();
+
+            }
+            catch (...)
+            {
+
+            }
+
+         }
+
+         pimage->end_destination_graphics_lease();
+
+         throw;
+
+      }
+
+   }
+
+
    void draw2d::do_release_to_pool_strategy(::draw2d::graphics_pointer& pgraphics, ::image::image* pimage)
    {
 
@@ -996,6 +1074,26 @@ namespace draw2d
          {
 
             pimage->end_destination_graphics_lease();
+
+         }
+
+         auto uActive = m_uMemoryGraphicsPoolActive.load(::std::memory_order_relaxed);
+
+         while (uActive > 0
+                && !m_uMemoryGraphicsPoolActive.compare_exchange_weak(
+                   uActive,
+                   uActive - 1,
+                   ::std::memory_order_relaxed))
+         {
+
+         }
+
+         if (m_papplication
+             && m_papplication->m_gpu.m_bPerformanceDiagnostics.load(
+                ::std::memory_order_relaxed))
+         {
+
+            report_memory_graphics_pool_diagnostics_if_due();
 
          }
 
@@ -1343,7 +1441,7 @@ namespace draw2d
 
          {
 
-            auto pgraphicsImage = pimage->acquire_graphics(pgraphics->m_pacmeuserinteractionAffinity);
+            auto pgraphicsImage = pimage->acquire_graphics(::draw2d::e_acquire_dont_load, pgraphics->m_pacmeuserinteractionAffinity);
 
             pgraphicsImage->clear(::color::transparent);
 

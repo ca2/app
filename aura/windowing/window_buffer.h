@@ -18,6 +18,9 @@ namespace windowing
       ::pixmap_pointer                          m_ppixmapWindowBuffer;
       ::pointer < ::windowing::window >         m_pwindow;
 
+      //::i32_point                               m_pointWindowBuffer;
+      //::i32_size                                m_sizeWindowBuffer;
+
       //::pixmap_t m_pixmap;
 
       window_buffer();

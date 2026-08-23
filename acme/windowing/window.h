@@ -86,6 +86,10 @@ namespace acme
          //::i32_size                                         m_sizeDesignRequest;
          ::i32_point                                        m_pointWindow;
          ::i32_size                                         m_sizeWindow;
+         ::i32_point                                        m_pointWindowBuffer;
+         ::i32_size                                         m_sizeWindowBuffer;
+         ::i32_point                                        m_pointWindowBufferFixed;
+         ::i32_size                                         m_sizeWindowBufferFixed;
          /// m_sizeRaw should be the same or bigger than m_sizeWindow.
          /// It is meant to be a good fair but also performant
          /// bigger-than-actual-maximum-size of the window back buffer.

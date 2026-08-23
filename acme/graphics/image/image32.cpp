@@ -372,6 +372,20 @@ void image32_t::copy(
    auto psrc = reinterpret_cast<const ::u8 *>(pimage32Src);
    auto pdst = reinterpret_cast<::u8 *>(this);
 
+   if (iStrideDst <= 0)
+   {
+
+      throw ::exception(error_wrong_state);
+
+   }
+
+
+   if (iStrideSrc <= 0)
+   {
+
+      throw ::exception(error_wrong_state);
+
+   }
    for (::i32 y = 0; y < cy; y++)
    {
 

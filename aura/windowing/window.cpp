@@ -72,6 +72,8 @@ namespace windowing
 
       //set_oswindow(nullptr);
 
+      m_bWindowDrawingFrame = false;
+
       m_bMessageOnlyWindow = false;
 
       m_bUpdateScreenSynchronously = true;
@@ -152,6 +154,8 @@ namespace windowing
 #else
 
       set_per_second(60.0);
+
+      //set_per_second(0.2);
 
 #endif
 
@@ -1084,6 +1088,10 @@ namespace windowing
          construct_newø(m_pplacementlog);
 
       }
+
+      auto timeRecent = maximum(3_s, 5.0 * 1.0/m_frequencyProdevianFramesPerSecond);
+
+      m_pplacementlog->m_timeRecent = timeRecent;
 
       return m_pplacementlog;
 
@@ -11945,6 +11953,22 @@ namespace windowing
    void window::draw_frame()
    {
 
+      if (m_bWindowDrawingFrame)
+      {
+
+         return;
+
+      }
+
+      at_end_of_scope
+      {
+
+         m_bWindowDrawingFrame = false;
+
+      };
+
+      m_bWindowDrawingFrame = true;
+
       class ::time time1;
 
       time1.Now();
@@ -12002,9 +12026,9 @@ namespace windowing
 
       }
 
-      main_sendø()
-         << [this, strType, time1]()
-         {
+      //main_sendø()
+      //   << [this, strType, time1]()
+      //   {
 
             try
             {
@@ -12032,6 +12056,8 @@ namespace windowing
                   }
 
                   {
+
+
 
                      auto pgraphicsgraphics = m_pgraphicsgraphics;
 
@@ -12109,6 +12135,14 @@ namespace windowing
 
                            return;
                         }
+
+#if 1
+                        auto pbufferitem = m_pgraphicsgraphics->get_buffer_item();
+                        auto pimageBuffer = pbufferitem->m_pimageBufferItem;
+                        auto pbitmap = pimageBuffer->m_pbitmap;
+                        auto sizeBitmap = pbitmap->size();
+
+#endif
 
                         pgraphics->m_pacmeuserinteractionAffinity = m_pacmeuserinteraction;
 
@@ -12264,16 +12298,14 @@ namespace windowing
 
 
                         auto elapsed4 = time4.elapsed();
+                        m_timeLastDrawGuard1.Now();
+
                      }
 
                   }
 
                   information() << "draw_frame before on_end_draw";
                   
-                  pgraphicsgraphics->on_end_draw();
-                  
-                  pgraphicsgraphics->update_screen();
-
                   //informationf("draw_frame elapsed4 %0.2f", elapsed4.floating_millisecond());
 
                }
@@ -12283,6 +12315,10 @@ namespace windowing
                   //m_pgraphicscontextDrawFrame.release();
 
                }
+
+               pgraphicsgraphics->on_end_draw();
+
+               pgraphicsgraphics->update_screen();
 
             }
             catch (const ::exception & exception)
@@ -12298,7 +12334,7 @@ namespace windowing
 
             }
 
-         };
+         //};
 
 
    }
@@ -13754,7 +13790,6 @@ namespace windowing
       }
 
    }
-
 
    ::frequency window::get_prodevian_frames_per_second()
    {

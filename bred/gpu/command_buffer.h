@@ -53,7 +53,7 @@ namespace gpu
 
       virtual void wait_commands_to_execute();
 
-      //virtual void clear(::gpu::texture * pgputexture, const ::i32_rectangle & rectangle, const ::color::color & color);
+      virtual void clear_rectangle(::gpu::texture * pgputexture, const ::i32_rectangle & rectangle, const ::color::color & color);
 
       virtual void clear(::gpu::texture * pgputexture, const ::color::color & color);
 

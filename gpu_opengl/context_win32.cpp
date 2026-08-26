@@ -287,7 +287,7 @@ namespace gpu_opengl
    }
 
 
-   void context_win32::_create_gpu_context(::gpu::device * pgpudevice, const ::gpu::enum_output & eoutput, const ::gpu::enum_scene & escene, ::acme::windowing::window * pacmewindowingwindow, const ::i32_point & pointInput, const ::i32_point & pointOutput, const ::i32_size & size, const ::i32_size & sizeRaw)
+   void context_win32::_create_gpu_context(::gpu::device * pgpudevice, const ::gpu::enum_output & eoutput, const ::gpu::enum_scene & escene, ::acme::windowing::window * pacmewindowingwindow, ::draw2d::graphics * pdraw2dgraphics, const ::i32_point & pointInput, const ::i32_point & pointOutput, const ::i32_size & size, const ::i32_size & sizeRaw)
    {
 
       //m_pgpudevice = pgpudevice;
@@ -296,7 +296,7 @@ namespace gpu_opengl
 
       //m_escene = escene;
 
-      ::gpu_opengl::context::_create_gpu_context(pgpudevice, eoutput, escene, pacmewindowingwindow, pointInput, pointOutput, size, sizeRaw);
+      ::gpu_opengl::context::_create_gpu_context(pgpudevice, eoutput, escene, pacmewindowingwindow, pdraw2dgraphics, pointInput, pointOutput, size, sizeRaw);
       
       if (eoutput == ::gpu::e_output_swap_chain)
       {
@@ -453,7 +453,7 @@ namespace gpu_opengl
 
 
    //void context_win32::_create_window_context(::acme::windowing::window *pwindowParam)
-   void context_win32::create_window_gpu_context(::gpu::device * pgpudevice, const ::gpu::enum_output & eoutput, const ::gpu::enum_scene & escene, ::acme::windowing::window * pacmewindowingwindow, const ::i32_point & pointInput, const ::i32_point & pointOutput, const ::i32_size & size, const ::i32_size & sizeRaw)
+   void context_win32::create_window_gpu_context(::gpu::device * pgpudevice, const ::gpu::enum_output & eoutput, const ::gpu::enum_scene & escene, ::acme::windowing::window * pacmewindowingwindow, ::draw2d::graphics * pdraw2dgraphics, const ::i32_point & pointInput, const ::i32_point & pointOutput, const ::i32_size & size, const ::i32_size & sizeRaw)
    {
 
       m_etype = e_type_window;

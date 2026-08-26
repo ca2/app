@@ -39,7 +39,6 @@ namespace gpu
 
    };
 
-
    class renderer;
 
    // class image_data
@@ -278,14 +277,14 @@ namespace gpu
 //<<<<<<< HEAD
 //      virtual void create_draw2d_context(::gpu::device* pgpudevice, const enum_output& eoutput, ::acme::windowing::window * pwindow, const ::i32_size& size);
 //=======
-      virtual void create_draw2d_gpu_context(::gpu::device* pgpudevice, ::acme::windowing::window* pacmewindowingwindow, const ::i32_point & pointInput, const ::i32_point & pointOutput, const ::i32_size & size, const ::i32_size & sizeRaw);
+      virtual void create_draw2d_gpu_context(::gpu::device* pgpudevice, ::acme::windowing::window* pacmewindowingwindow, ::draw2d::graphics * pdraw2graphics, const ::i32_point & pointInput, const ::i32_point & pointOutput, const ::i32_size & size, const ::i32_size & sizeRaw);
 //>>>>>>> origin/main
 
-      virtual void create_gpu_context(::gpu::device* pgpudevice, const ::gpu::enum_output& eoutput, const ::gpu::enum_scene& escene, ::acme::windowing::window* pacmewindowingwindow, const ::i32_point & pointInput, const ::i32_point & pointOutput, const ::i32_size & size, const ::i32_size & sizeRaw);
+      virtual void create_gpu_context(::gpu::device* pgpudevice, const ::gpu::enum_output& eoutput, const ::gpu::enum_scene& escene, ::acme::windowing::window* pacmewindowingwindow, ::draw2d::graphics * pdraw2dgraphics, const ::i32_point & pointInput, const ::i32_point & pointOutput, const ::i32_size & size, const ::i32_size & sizeRaw);
 
-      virtual void create_window_gpu_context(::gpu::device* pgpudevice, const ::gpu::enum_output& eoutput, const ::gpu::enum_scene& escene, ::acme::windowing::window* pacmewindowingwindow, const ::i32_point & pointInput, const ::i32_point & pointOutput, const ::i32_size & size, const ::i32_size & sizeRaw);
+      virtual void create_window_gpu_context(::gpu::device* pgpudevice, const ::gpu::enum_output& eoutput, const ::gpu::enum_scene& escene, ::acme::windowing::window* pacmewindowingwindow, ::draw2d::graphics * pdraw2dgraphics, const ::i32_point & pointInput, const ::i32_point & pointOutput, const ::i32_size & size, const ::i32_size & sizeRaw);
 
-      virtual void _create_gpu_context(::gpu::device* pgpudevice, const ::gpu::enum_output& eoutput, const ::gpu::enum_scene& escene, ::acme::windowing::window* pacmewindowingwindow, const ::i32_point & pointInput, const ::i32_point & pointOutput, const ::i32_size & size, const ::i32_size & sizeRaw);
+      virtual void _create_gpu_context(::gpu::device* pgpudevice, const ::gpu::enum_output& eoutput, const ::gpu::enum_scene& escene, ::acme::windowing::window* pacmewindowingwindow, ::draw2d::graphics * pdraw2dgraphics, const ::i32_point & pointInput, const ::i32_point & pointOutput, const ::i32_size & size, const ::i32_size & sizeRaw);
 
       //virtual void on_create_context(::gpu::device * pgpudevice, const ::gpu::enum_output & eoutput, ::acme::windowing::window* pwindow, const ::i32_size & size);
 
@@ -459,7 +458,7 @@ namespace gpu
       //virtual void end_frame();
 
 
-      virtual void start_layer(bool bFirstLayer = false);
+      virtual void start_layer(bool bFirstLayer = false, enum_start_layer estartlayer = e_start_layer_none);
       virtual void end_layer(bool bClosingLayer = false);
 
       //virtual void on_begin_draw_attach(::gpu::graphics* pgpugraphics, const ::i32_rectangle& rectangle);
@@ -483,6 +482,11 @@ namespace gpu
       virtual ::memory rectangle_shader_vert();
       virtual ::memory rectangle_shader_frag();
 
+      virtual ::memory sequence2_with_uniform_color_vert();
+      virtual ::memory sequence2_with_uniform_color_frag();
+
+      virtual ::memory circle_shader_vert();
+      virtual ::memory circle_shader_frag();
 
       //virtual void white_to_color_sampler_shader_setup(gpu::shader * pshader);
       virtual ::memory white_to_color_sampler_vert();
@@ -492,6 +496,10 @@ namespace gpu
       //virtual bool is_global_ubo_ok();
 
       virtual void initialize_rectangle_shader(::gpu::shader* pshader);
+
+      virtual void initialize_sequence2_with_uniform_color_shader(::gpu::shader * pshader);
+
+      virtual void initialize_circle_shader(::gpu::shader * pshader);
 
 
       //virtual ::gpu::model_buffer* sequence2_uv_fullscreen_quad_model_buffer(::gpu::layer* pgpulayer);

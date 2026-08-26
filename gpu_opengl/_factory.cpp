@@ -104,6 +104,7 @@ __FACTORY_EXPORT void gpu_opengl_factory(::factory::factory * pfactory)
    pfactory->add_factory_item < ::gpu_opengl::model_buffer, ::gpu::model_buffer >();
 
 
+
    pfactory->add_factory_item<::gpu_opengl::block, ::gpu::block>();
    pfactory->add_factory_item < ::gpu_opengl::memory_buffer, ::gpu::memory_buffer >();
    pfactory->add_factory_item < ::gpu::frame_ephemeral >();

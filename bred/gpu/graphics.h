@@ -9,6 +9,7 @@
 #include "bred/gpu/context.h"
 #include "bred/gpu/context_lease.h"
 #include "bred/gpu/device.h"
+#include "bred/gpu/types.h"
 
 
 namespace gpu
@@ -32,10 +33,15 @@ namespace gpu
 
       };
 
-      ::gpu::context_lock *m_pgpucontextlock;
-      ::geometry2d::matrix                   m_m1;
+      //::gpu::context_lock *                     m_pgpucontextlock;
+      ::geometry2d::matrix                      m_m1;
+      ::gpu::enum_start_layer                   m_estartlayer = ::gpu::e_start_layer_none;
       ::pointer < ::gpu::shader >               m_pshaderSourceRectangle;
       ::pointer < ::gpu::shader >               m_pshaderBlendRectangle;
+      ::pointer < ::gpu::shader >               m_pshaderSourceSequence2WithUniformColor;
+      ::pointer < ::gpu::shader >               m_pshaderBlendSequence2WithUniformColor;
+      ::pointer < ::gpu::shader >               m_pshaderSourceCircle;
+      ::pointer < ::gpu::shader >               m_pshaderBlendCircle;
       map_base < ::draw2d::enum_model, ::pool <::gpu::model_buffer > >   m_mapModelBufferPool;
       ::pointer < ::gpu::shader >         m_pgpushaderTextOut;
       ::pointer < ::gpu::model_buffer >         m_pmodelbufferTextOutDummy;
@@ -66,10 +72,17 @@ namespace gpu
       ::gpu::context * gpu_context();
 
 
+      void on_begin_draw(::acme::windowing::window * pacmewindowingwindow, const ::f64_size & sz);
+      
+
+      void on_end_draw(::acme::windowing::window * pacmewindowingwindow) override;
+
+
+      void on_set_target_rectangle(::image::image * pimage);
 
       //void start_layer(::e_graphics egraphics) override;
       //void end_layer(::e_graphics egraphics) override;
-      void start_layer(bool bFirstLayer = false) override;
+      void start_layer(bool bFirstLayer = false, ::user::interaction* puserinteraction = nullptr) override;
       void end_layer(bool bClosingLayer = false) override;
       void on_start_layer_before_begin_render(::gpu::layer * pgpulayer) override;
       void on_begin_layer_scope() override;
@@ -81,7 +94,10 @@ namespace gpu
       virtual void defer_on_new_frame();
       void gpu_layer_on_before_end_render() override;
 
-      void on_end_draw(::acme::windowing::window *pacmewindowingwindow) override;
+
+      ::image::image_pointer get_current_target_image() override;
+
+      //void on_end_draw(::acme::windowing::window *pacmewindowingwindow) override;
 
 
       void on_set_gpu_context() override;
@@ -91,7 +107,8 @@ namespace gpu
          const ::i32_point & pointTarget,
          const ::i32_point & pointSource,
          const ::i32_size & size,
-         ::acme::windowing::window *pacmewindowingwindow) override;
+         ::acme::windowing::window *pacmewindowingwindow,
+         ::draw2d::graphics * pdraw2dgraphics) override;
 
       virtual ::pool <::gpu::model_buffer >& model_buffer_pool(::draw2d::enum_model epool);
       virtual ::gpu::model_buffer * model_buffer(::draw2d::enum_model epool);
@@ -110,6 +127,18 @@ namespace gpu
          //p.y = m_pgpucontextCompositor2->m_rectangle.height() - p.y;
          
          return p;
+
+      }
+
+
+      ::gpu::circle_vertex &  __transform(::gpu::circle_vertex & vertex)
+      {
+
+         m_m1.transform(vertex.position);
+
+         //p.y = m_pgpucontextCompositor2->m_rectangle.height() - p.y;
+
+         return vertex;
 
       }
 
@@ -165,6 +194,10 @@ namespace gpu
 
       virtual ::gpu::shader* rectangle_shader();
 
+      virtual ::gpu::shader * sequence2_with_uniform_color_shader();
+
+      virtual ::gpu::shader * circle_shader();
+
       void thread_select() override;
 
       void _set(const ::geometry2d::matrix& matrix) override;
@@ -208,6 +241,9 @@ namespace gpu
       virtual void _fill_quad(const ::f64_point points[4], const ::color::color& color);
 
       void fill_rectangle(const ::f64_rectangle& rectangle, const ::color::color& color) override;
+
+
+      void draw_ellipse(const ::f64_rectangle & rectangleParam) override;
 
       using ::draw2d::graphics::line;
       void line(::f64 x1, ::f64 y1, ::f64 x2, ::f64 y2, ::draw2d::pen* ppen) override;

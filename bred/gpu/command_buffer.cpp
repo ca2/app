@@ -249,11 +249,12 @@ namespace gpu
    }
 
 
-   //void command_buffer::clear(::gpu::texture * pgputexture, const ::i32_rectangle & rectangle, const ::color::color & color)
-   //{
+   void command_buffer::clear_rectangle(::gpu::texture * pgputexture, const ::i32_rectangle & rectangle, const ::color::color & color)
+   {
 
+      throw ::interface_only();
 
-   //}
+   }
 
 
    void command_buffer::clear(::gpu::texture * pgputexture, const ::color::color & color)

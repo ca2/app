@@ -12054,12 +12054,12 @@ namespace windowing
 
                      // information() << "not main_frame";
                   }
+                  auto pgraphicsgraphics = m_pgraphicsgraphics;
 
                   {
 
 
 
-                     auto pgraphicsgraphics = m_pgraphicsgraphics;
 
                      _synchronous_lock slGraphics(pgraphicsgraphics->synchronization(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 
@@ -12071,18 +12071,18 @@ namespace windowing
 
                      auto pgraphics = pgraphicsgraphics->on_begin_layout();
 
-//                     if (!pbufferitem)
-//                     {
-//
-//#ifdef MORE_LOG
-//
-//                        information() << "intrimpl::defer_do_graphics !pbufferitem";
-//
-//#endif
-//
-//                        return;
-//
-//                     }
+                     //                     if (!pbufferitem)
+                     //                     {
+                     //
+                     //#ifdef MORE_LOG
+                     //
+                     //                        information() << "intrimpl::defer_do_graphics !pbufferitem";
+                     //
+                     //#endif
+                     //
+                     //                        return;
+                     //
+                     //                     }
 
 
 #ifdef MORE_LOG
@@ -12172,83 +12172,83 @@ namespace windowing
 
                      }
 
-                     pgraphicsgraphics->on_end_layout();
+                     //pgraphicsgraphics->on_end_layout();
 
-                  }
+                  //}
 
 
-               }
+               //}
                //else
                //{
 
                //   information("Optimized out a layout phase");
 
                //}
-               class ::time time3;
-               time3.Now();
+                     class ::time time3;
+                     time3.Now();
 
-               auto pgraphicsgraphics = m_pgraphicsgraphics;
+                     //auto pgraphicsgraphics = m_pgraphicsgraphics;
 
-               if (pgraphicsgraphics)
-               {
+                     //if (pgraphicsgraphics)
+                     //{
 
-                  _synchronous_lock slGraphics(pgraphicsgraphics->synchronization(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
+                        //_synchronous_lock slGraphics(pgraphicsgraphics->synchronization(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 
-                  auto pgraphics = pgraphicsgraphics->on_begin_draw();
+                        //auto pgraphics = pgraphicsgraphics->on_begin_draw();
 
-                  //if (!pbufferitem)
-                  //{
-
-                  //   information() << "defer_do_graphics !pbufferitem (2)";
-
-                  //   if (this->get_window_rectangle().size() < m_pacmeuserinteraction->get_window_minimum_size())
-                  //   {
-
-                  //      static class ::time s_timeThisThingLastTime;
-
-                  //      if (s_timeThisThingLastTime.elapsed() > 15_s)
-                  //      {
-
-                  //         s_timeThisThingLastTime.Now();
-
-                  //         m_pacmeuserinteraction->display(::e_display_normal, {});
-
-                  //      }
-
-                  //   }
-
-                  //   //m_pgraphicscontextDrawFrame.release();
-
-                  //   return;
-
-                  //}
-                  //
-                  //_synchronous_lock synchronouslock(pbufferitem->m_pmutex, DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
-                  //
-                  //          //information() << "graphics::on_begin_draw";
-                  //
-                  slGraphics.unlock();
-                  {
-
-                     //::draw2d::graphics_pointer pgraphics = pbufferitem->acquire_graphics();
-                     //auto pgraphics = pbufferitem->acquire_graphics();
-                     if (::is_null(pgraphics) || pgraphics->nok())
-                     {
-
-                        //#define SEVERITY_HIGH 5
-
-                        //::i32 iSeverity = SEVERITY_HIGH;
-
-                        //for(::collection::index i = 0; i < iSeverity * 20; i++)
+                        //if (!pbufferitem)
                         //{
 
-                        information() << "m_pgraphics->on_begin_draw FAILED (2)";
+                        //   information() << "defer_do_graphics !pbufferitem (2)";
+
+                        //   if (this->get_window_rectangle().size() < m_pacmeuserinteraction->get_window_minimum_size())
+                        //   {
+
+                        //      static class ::time s_timeThisThingLastTime;
+
+                        //      if (s_timeThisThingLastTime.elapsed() > 15_s)
+                        //      {
+
+                        //         s_timeThisThingLastTime.Now();
+
+                        //         m_pacmeuserinteraction->display(::e_display_normal, {});
+
+                        //      }
+
+                        //   }
+
+                        //   //m_pgraphicscontextDrawFrame.release();
+
+                        //   return;
 
                         //}
-                        //m_pgraphicscontextDrawFrame.release();
-                        return;
+                        //
+                        //_synchronous_lock synchronouslock(pbufferitem->m_pmutex, DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
+                        //
+                        //          //information() << "graphics::on_begin_draw";
+                        //
+                        //slGraphics.unlock();
+                        //{
 
-                     }
+                           ////::draw2d::graphics_pointer pgraphics = pbufferitem->acquire_graphics();
+                           ////auto pgraphics = pbufferitem->acquire_graphics();
+                           //if (::is_null(pgraphics) || pgraphics->nok())
+                           //{
+
+                           //   //#define SEVERITY_HIGH 5
+
+                           //   //::i32 iSeverity = SEVERITY_HIGH;
+
+                           //   //for(::collection::index i = 0; i < iSeverity * 20; i++)
+                           //   //{
+
+                           //   information() << "m_pgraphics->on_begin_draw FAILED (2)";
+
+                           //   //}
+                           //   //m_pgraphicscontextDrawFrame.release();
+                           //   return;
+
+                           //}
 
                      {
 
@@ -12277,6 +12277,7 @@ namespace windowing
 
                               //_synchronous_lock synchronouslockDraw(pbufferitem->m_pmutex, DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 
+                              pgraphics->on_begin_draw(this, m_sizeWindowBuffer);
 
                               auto elapsed41 = time4.elapsed();
                               // informationf("draw_frame elapsed4.1 %0.2f", elapsed41.floating_millisecond());
@@ -12305,20 +12306,22 @@ namespace windowing
                   }
 
                   information() << "draw_frame before on_end_draw";
-                  
+
                   //informationf("draw_frame elapsed4 %0.2f", elapsed4.floating_millisecond());
 
+               //}
+               //else
+               //{
+
+               //   //m_pgraphicscontextDrawFrame.release();
+
+               //}
+
+                  pgraphicsgraphics->on_end_draw();
+
+                  pgraphicsgraphics->update_screen();
+
                }
-               else
-               {
-
-                  //m_pgraphicscontextDrawFrame.release();
-
-               }
-
-               pgraphicsgraphics->on_end_draw();
-
-               pgraphicsgraphics->update_screen();
 
             }
             catch (const ::exception & exception)
@@ -12441,14 +12444,14 @@ namespace windowing
 
       pgraphics->m_egraphics = e_graphics_layout;
 
-      if (m_bNewFrame)
-      {
+      //if (m_bNewFrame)
+      //{
 
-         pgraphics->start_frame();
+      //   pgraphics->start_frame();
 
-         m_bNewFrame = false;
+      //   m_bNewFrame = false;
 
-      }
+      //}
 
       //auto pgraphics = pgraphicscontext->draw2d_graphics();
 
@@ -12699,19 +12702,19 @@ namespace windowing
 
       pgraphics->m_egraphics = e_graphics_draw;
 
-      if (m_bNewFrame)
-      {
+      //if (m_bNewFrame)
+      //{
 
-         pgraphics->start_frame();
+      //   pgraphics->start_frame();
 
-         m_bNewFrame = false;
+      //   m_bNewFrame = false;
 
-      }
+      //}
 
 
-      /// auto pgraphics = pgraphicscontext->draw2d_graphics();
+      ///// auto pgraphics = pgraphicscontext->draw2d_graphics();
 
-      pgraphics->start_layer(true);
+      //pgraphics->start_layer(true, user_interaction());
 
 
       windowing_output_debug_string("\n_001UpdateBuffer : after on_begin_draw");

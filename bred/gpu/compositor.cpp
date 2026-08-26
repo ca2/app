@@ -58,7 +58,8 @@ namespace gpu
          const ::i32_point & pointTarget,
          const ::i32_point & pointSource,
          const ::i32_size & size,
-         ::acme::windowing::window *pacmewindowingwindow)
+         ::acme::windowing::window *pacmewindowingwindow,
+         ::draw2d::graphics * pdraw2dgraphics)
    {
 
       if (!m_pgpucontextCompositor2)
@@ -73,7 +74,7 @@ namespace gpu
 //=======
          auto pgpucontext = pgpudevice->allocate_gpu_context();
          
-         pgpucontext->create_draw2d_gpu_context(pgpudevice, pacmewindowingwindow, pointSource, pointTarget, size, pacmewindowingwindow->m_sizeRaw);
+         pgpucontext->create_draw2d_gpu_context(pgpudevice, pacmewindowingwindow, pdraw2dgraphics, pointSource, pointTarget, size, pacmewindowingwindow->m_sizeRaw);
 //>>>>>>> origin/main
 
          auto pgpucontextNew = pgpucontext;

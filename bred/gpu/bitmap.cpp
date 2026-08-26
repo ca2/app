@@ -36,7 +36,7 @@ namespace gpu
    }
 
 
-   void bitmap::create_bitmap(::draw2d::graphics *pgraphics, const ::i32_size &size, ::pixmap * ppixmap)
+   void bitmap::create_bitmap(::draw2d::graphics *pdraw2dgraphics, const ::i32_size &size, ::pixmap * ppixmap)
    {
 
       ::pixmap_t pixmap{};
@@ -51,7 +51,7 @@ namespace gpu
 
       pixmap.initialize_pixmap(size, (::image32_t *)ppixmap->m_memoryPixmap.data_if_at_least(size.cy * iScan), iScan);
 
-      _create_gpu_bitmap(size, &pixmap);
+      _create_gpu_bitmap(size, pdraw2dgraphics, &pixmap);
 
    }
 
@@ -70,8 +70,18 @@ namespace gpu
 
    }
 
+   
+   void bitmap::update_bitmap_as_backed_by_gpu_texture(::gpu::texture * pgputexture, ::draw2d::graphics * pdraw2graphics)
+   {
 
-   void bitmap::_create_gpu_bitmap(const ::i32_size & size, pixmap_t * ppixmap)
+      m_pgputexture = pgputexture;
+
+      ///::cast < ::gpu::graphics > pgraphics = pdraw2dgraphics;
+
+   }
+
+
+   void bitmap::_create_gpu_bitmap(const ::i32_size & size, ::draw2d::graphics * pdraw2dgraphics, pixmap_t * ppixmap)
    {
 
       m_size = size;
@@ -84,7 +94,7 @@ namespace gpu
 
       _synchronous_lock synchronouslock(pgpudevice->synchronization());
 
-      auto pgpucontextlease = pgpudevice->acquire_gpu_context(::gpu::e_output_none, m_size);
+      auto pgpucontextlease = pgpudevice->acquire_gpu_context(::gpu::e_output_none, m_size, pdraw2dgraphics);
 
       if (::is_set(ppixmap))
       {
@@ -243,7 +253,7 @@ namespace gpu
 
          _synchronous_lock synchronouslock(pgpudevice->synchronization());
 
-         auto pgpucontextlease = pgpudevice->acquire_gpu_context(::gpu::e_output_none, m_size);
+         auto pgpucontextlease = pgpudevice->acquire_gpu_context(::gpu::e_output_none, m_size, nullptr);
 
          initialize_gpu_bitmap(pgpucontextlease, m_size, {});
 

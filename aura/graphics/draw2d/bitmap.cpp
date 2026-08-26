@@ -105,6 +105,14 @@ namespace draw2d
    }
 
 
+   void bitmap::create_gpu_bitmap(::draw2d::graphics * pgraphics, const ::i32_size & size, ::pixmap * ppixmap)
+   {
+
+      throw ::interface_only();
+
+   }
+
+
    void bitmap::CreateBitmap(::draw2d::graphics* pgraphics, const ::i32_size & size,::u32 nPlanes,::u32 nBitcount,const void * pBits,::i32 stride)
    {
 
@@ -574,9 +582,7 @@ namespace draw2d
    i32_size bitmap::size() const
    {
 
-      throw ::interface_only();
-
-      return {};
+      return m_size;
 
    }
 
@@ -584,7 +590,7 @@ namespace draw2d
    void bitmap::set_size(const ::i32_size & size, bool bPreserve)
    {
 
-      throw ::interface_only();
+      m_size = size;
 
    }
 

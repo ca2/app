@@ -71,6 +71,93 @@ float4 main(PSInput input) : SV_Target {
    }
 
 
+   ::memory hlsl_context::circle_shader_vert()
+   {
+
+      const ::i8 proto_vert[] = R"vert(
+
+struct VertexInput
+{
+   float2 inputPosition      : POSITION;
+   float2 inputLocalPosition : TEXCOORD0;
+};
+
+struct VertexOutput
+{
+   float4 position              : SV_Position;
+   float2 fragmentLocalPosition : TEXCOORD0;
+};
+
+VertexOutput main(VertexInput input)
+{
+   VertexOutput output;
+
+   output.position =
+      float4(input.inputPosition, 0.0f, 1.0f);
+
+   output.fragmentLocalPosition =
+      input.inputLocalPosition;
+
+   return output;
+}
+
+)vert";
+
+      return ::as_memory_block(proto_vert);
+
+   }
+
+
+   ::memory hlsl_context::circle_shader_frag()
+   {
+
+      const ::i8 proto_frag[] = R"frag(
+cbuffer CircleConstants : register(b1)
+{
+   float4 uniformFragmentColor;
+   float radius;
+   float thickness;
+   float2 padding;
+};
+
+struct PixelInput
+{
+   float4 position              : SV_Position;
+   float2 fragmentLocalPosition : TEXCOORD0;
+};
+
+float4 main(PixelInput input) : SV_Target
+{
+   float distanceFromCenter =
+      length(input.fragmentLocalPosition);
+
+   float signedDistance =
+      abs(distanceFromCenter - radius)
+      - thickness * 0.5f;
+
+   float2 distanceGradient =
+      float2(
+         ddx(signedDistance),
+         ddy(signedDistance));
+
+   float pixelWidth =
+      max(length(distanceGradient), 0.0001f);
+
+   float coverage =
+      clamp(
+         0.5f - signedDistance / pixelWidth,
+         0.0f,
+         1.0f);
+
+   return uniformFragmentColor * coverage;
+}
+)frag";
+
+      return ::as_memory_block(proto_frag);
+
+   }
+
+
    ::memory hlsl_context::white_to_color_sampler_vert()
    {
 

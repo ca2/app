@@ -20,6 +20,7 @@ namespace typeface
       //::pointer < ::gpu::renderer > m_pgpurenderer;
 
       ::i32 m_iPixelSize;
+      int m_iFontWeight;
       ::string m_strFontName;
       //::string_map_base<::typeface::character> m_mapCharacter;
       ::i32_map<::typeface::character> m_mapCharacter;

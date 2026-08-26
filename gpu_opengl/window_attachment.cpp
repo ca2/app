@@ -88,7 +88,7 @@ namespace gpu_opengl
 
          ::gpu::enum_scene escene = ::gpu::e_scene_2d;
 
-         m_pgpucontextWindow->create_window_gpu_context(pgpudevice, eoutput, escene, pwindow, {}, pointOutput, size, sizeRaw);
+         m_pgpucontextWindow->create_window_gpu_context(pgpudevice, eoutput, escene, pwindow, nullptr, {}, pointOutput, size, sizeRaw);
 
          //::cast<::gpu_opengl::approach> papproach = m_papplication->get_gpu_approach();
          //_gpu_on_create_window(pacmewindowingwindow);

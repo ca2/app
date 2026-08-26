@@ -69,6 +69,7 @@ namespace draw2d
       }
 
 
+      virtual void create_gpu_bitmap(::draw2d::graphics * pgraphics, const ::i32_size & size, ::pixmap * ppixmap = nullptr);
       virtual void CreateBitmap(::draw2d::graphics * pgraphics, const ::i32_size & size, ::u32 nPlanes, ::u32 nBitcount, const void * pBits, ::i32 stride);
 
       //virtual bool CreateBitmapIndirect(::draw2d::graphics * pgraphics, LPBITMAP pBitmap);

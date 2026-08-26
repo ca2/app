@@ -245,7 +245,7 @@ namespace gpu
       //virtual void frame_suffix();
 
       //virtual void start_layer(const ::i32_rectangle& rectangleTarget);
-      virtual void layer_start(bool bFirstLayer);
+      virtual void layer_start(bool bFirstLayer, enum_start_layer estartlayer);
       //virtual void take_snapshot(layer * player, const ::i32_rectangle& rectangleTarget);
       virtual void layer_end();
       //virtual void merge_layers(::pointer_array < layer > * playera);
@@ -263,7 +263,7 @@ namespace gpu
       //virtual void start_frame();
       //virtual void end_frame();
       // aaaxyz
-      virtual void start_layer(bool bFirstLayer = false);
+      virtual void start_layer(bool bFirstLayer = false, enum_start_layer estartlayer = e_start_layer_none);
       virtual void end_layer(bool bClosingLayer = false);
 
 

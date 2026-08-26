@@ -175,6 +175,37 @@ namespace gpu
 
    }
 
+
+
+   void image::update_as_backed_by_gpu_texture(const ::i32_size & size, ::gpu::texture * pgputexture, ::draw2d::graphics * pdraw2dgraphics)
+   {
+
+      auto ptexture = pgputexture;
+
+      ::cast < ::gpu::bitmap > pbitmap = m_pbitmap;
+
+      if (!pbitmap)
+      {
+
+         defer_constructø(m_pbitmap);
+
+         pbitmap = m_pbitmap;
+
+      }
+
+      if (pbitmap->m_pgputexture != ptexture)
+      {
+
+         m_size = ptexture->m_textureattributes.m_size;
+
+         m_sizeRaw = ptexture->m_textureattributes.m_sizeRaw;
+
+         pbitmap->update_bitmap_as_backed_by_gpu_texture(ptexture, pdraw2dgraphics);
+
+      }
+
+   }
+
    
    void image::update_as_render_target(const ::i32_size & sizeRaw, ::user::interaction * puserinteraction, ::draw2d::graphics * pdraw2dgraphics, ::enum_flag eflagCreate, ::i32 iGoodStride, bool bPreserve, bool bTopDraw2d)
    {
@@ -223,7 +254,7 @@ namespace gpu
       {
 
          auto pgpucontextlease = pgpudevice->acquire_gpu_context(
-            bTopDraw2d ? ::gpu::e_output_draw2d_bitmap : ::gpu::e_output_none, {25, 25});
+            bTopDraw2d ? ::gpu::e_output_draw2d_bitmap : ::gpu::e_output_none, {25, 25}, pdraw2dgraphics);
 
          pgpucontextlease->m_pacmeuserinteractionAffinity = m_pacmeuserinteractionAffinity;
 
@@ -435,7 +466,7 @@ namespace gpu
 
       }
 
-      auto pgpucontextlease = pgputexture->acquire_context();
+      auto pgpucontextlease = pgputexture->acquire_context(m_pgraphicsOwned);
 
       if (!pgpucontextlease)
       {
@@ -450,8 +481,12 @@ namespace gpu
 
       auto pgpucontext = ::as_pointer(pgpucontextlease.m_p);
 
-      pgpucontext->send(
-         [pthis, pgputexture, pgpucontext, rectangle]()
+      auto pgpudevice = pgpucontext->m_pgpudevice;
+
+      auto pgpuqueueGraphics = pgpudevice->graphics_queue();
+
+      //pgpucontext->send(
+         //[pthis, pgputexture, pgpucontext, rectangle]()
          {
 
             auto bPerformanceDiagnostics = pthis->m_papplication
@@ -478,8 +513,23 @@ namespace gpu
 
             pgputexture->wait_fence();
 
+            auto size = this->m_size;
 
-            pthis->m_ppixmapOwned->m_memoryPixmap.set_size(pthis->scan_area_in_bytes());
+            auto sizeRaw = this->m_sizeRaw;
+
+            pthis->m_ppixmapOwned->m_size = size;
+
+            pthis->m_ppixmapOwned->m_sizeRaw = sizeRaw;
+
+            auto iScanAreaInBytes = pthis->scan_area_in_bytes();
+
+            pthis->m_ppixmapOwned->m_iScan = pthis->m_iScan;
+
+            auto iScanWidth = pthis->m_iScan / 4;
+
+            int iHeightThis = pthis->m_sizeRaw.height();
+
+            pthis->m_ppixmapOwned->m_memoryPixmap.set_size(iHeightThis * pthis->m_ppixmapOwned->m_iScan);
 
             pthis->m_ppixmapOwned->m_pimage32Raw = (::image32_t *) pthis->m_ppixmapOwned->m_memoryPixmap.data();
 
@@ -501,7 +551,9 @@ namespace gpu
 
             }
 
-            auto pgpucommandbuffer = ::gpu::current_layer()->getCurrentCommandBuffer4();
+            //auto pgpucommandbuffer = ::gpu::current_layer()->getCurrentCommandBuffer4();
+
+            auto pgpucommandbuffer = pgpucontext->beginSingleTimeCommands(pgpuqueueGraphics);
 
             auto ptexturesite = ::gpu::current_layer()->texture(false);
 
@@ -540,7 +592,10 @@ namespace gpu
 
             }
 
-         });
+            pgpucontext->endSingleTimeCommands(pgpucommandbuffer);
+
+         }
+            //);
 
       return {this, m_ppixmapOwned };
 
@@ -598,7 +653,7 @@ namespace gpu
 
       }
 
-      auto pgpucontextlease = pgputexture->acquire_context();
+      auto pgpucontextlease = pgputexture->acquire_context(m_pgraphicsOwned);
 
       if (!pgpucontextlease)
       {
@@ -686,7 +741,7 @@ namespace gpu
          if (pgputexture->size() != size)
          {
 
-            auto pgpucontextlease = pgputexture->acquire_context();
+            auto pgpucontextlease = pgputexture->acquire_context(m_pgraphicsOwned);
 
             ::cast<::gpu::bitmap> pgpubitmap = get_bitmap_as_source();
 
@@ -711,7 +766,7 @@ namespace gpu
 
          }
 
-         auto pgpucontextlease = pgputexture->acquire_context();
+         auto pgpucontextlease = pgputexture->acquire_context(m_pgraphicsOwned);
 
          if (!pgpucontextlease)
          {

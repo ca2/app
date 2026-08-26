@@ -4,11 +4,13 @@
 #include "device.h"
 #include "draw2d.h"
 #include "swap_chain.h"
+#include "texture.h"
 #include "acme/exception/resource.h"
 #include "acme/platform/application.h"
 #include "acme/platform/system.h"
 #include "acme/prototype/prototype/memory.h"
 #include "acme/windowing/windowing.h"
+#include "aura/graphics/image/image.h"
 #include "bred/platform/system.h"
 #include "bred/typeface/character.h"
 #include "bred/typeface/allocator.h"
@@ -51,9 +53,11 @@ namespace gpu
          iPixelSize = pfont->m_fontsize.as_i32();
       }
 
+      ::i32 iFontWeight = pfont->m_fontweight.as_i32();
+
       ::string strFontFamilyName = pfont->m_pfontfamily->family_name(this);
 
-      auto& pface = m_mapFaceSize[strFontFamilyName][iPixelSize];
+      auto& pface = m_mapFaceSizeWeight[strFontFamilyName][iPixelSize][iFontWeight];
 
       if (!pface)
       {
@@ -67,6 +71,8 @@ namespace gpu
          pface->m_strFontName = strFontFamilyName;
 
          pface->m_iPixelSize = iPixelSize;
+
+         pface->m_iFontWeight = iFontWeight;
 
       }
 
@@ -134,6 +140,19 @@ namespace gpu
    //   //}
 
    //}
+
+   ::image::image_pointer draw2d::image_from_gpu_texture(::gpu::texture * pgputexture, ::draw2d::graphics * pdraw2dgraphics)
+   {
+
+      defer_constructø(pgputexture->m_pimageGpuTexture);
+
+      pgputexture->m_pimageGpuTexture->update_as_backed_by_gpu_texture(pgputexture->m_textureattributes.m_sizeRaw, pgputexture, pdraw2dgraphics);
+
+      return pgputexture->m_pimageGpuTexture;
+
+   }
+
+
 
 
 } // namespace gpu

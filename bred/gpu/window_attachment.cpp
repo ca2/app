@@ -2,6 +2,7 @@
 #include "platform.h"
 #include "bred_approach.h"
 #include "context.h"
+#include "context_lock.h"
 #include "device.h"
 #include "frame.h"
 #include "frame_ephemeral.h"
@@ -94,7 +95,7 @@ namespace gpu
 
             eoutput = ::gpu::e_output_swap_chain;
 
-            m_pgpucontextWindow->create_window_gpu_context(pgpudevice, eoutput, escene, pacmewindowingwindow, {}, pointTarget, size, sizeRaw);
+            m_pgpucontextWindow->create_window_gpu_context(pgpudevice, eoutput, escene, pacmewindowingwindow, nullptr, {}, pointTarget, size, sizeRaw);
 
          }
          else
@@ -102,7 +103,7 @@ namespace gpu
 
             eoutput = ::gpu::e_output_draw2d_bitmap;
 
-            m_pgpucontextWindow->create_gpu_context(pgpudevice, eoutput, escene, pacmewindowingwindow, {}, pointTarget, size, sizeRaw);
+            m_pgpucontextWindow->create_gpu_context(pgpudevice, eoutput, escene, pacmewindowingwindow, nullptr, {}, pointTarget, size, sizeRaw);
 
          }
 
@@ -223,6 +224,7 @@ namespace gpu
 //>>>>>>> origin/main
 m_pgpucontextWindow->m_pgpudevice,
 pwindow,
+nullptr,
 {},
 pointTarget,
 size,
@@ -288,7 +290,7 @@ sizeRaw
 
                auto sizeRaw = pwindow->get_raw_buffer_size();
 
-               pgpucontext->create_gpu_context(m_pgpucontextWindow->m_pgpudevice, eoutput, escene, pwindow, {}, pointTarget, size, sizeRaw);
+               pgpucontext->create_gpu_context(m_pgpucontextWindow->m_pgpudevice, eoutput, escene, pwindow, nullptr, {}, pointTarget, size, sizeRaw);
 
             };
 
@@ -560,6 +562,55 @@ sizeRaw
    }
 
 
+   void window_attachment::present()
+   {
+
+      auto pgpucontext = this->window_context();
+
+      //if (pgpuwindowattachment->window_context() == m_pgpucontext)
+      //{
+
+         //auto eoutput = pgpuwindowattachment->window_context()->m_eoutput;
+
+            //      if (bClosingLayer)
+         //::pointer_array<::gpu::semaphore> semaphoreaReady;
+         //::array<::gpu::enum_pipeline_stage> epipelinestageaReady;
+         //if (pgpuwindowattachment->window_context() == m_pgpucontext)
+         //{
+
+           // auto prendererBackBuffer = pgpuwindowattachment->draw2d_context()->m_pgpurenderer;
+
+            //auto pgpulayer = ::gpu::current_layer();
+            // prendererBackBuffer->frame_prefix();
+            //
+            // prendererBackBuffer->frame_prefix();
+            // on_new_frame();
+
+
+               //{
+
+         ::gpu::context_lock contextlock(pgpucontext);
+
+         //auto pgpuwindowattachment = ::gpu::window_attachment::get(m_pgpucontext);
+
+
+
+         //auto prendertargetBackBuffer = prendererBackBuffer->render_target();
+
+         auto prendertarget = render_target();
+
+         //auto ptextureBackBuffer = prendertarget->do_render(semaphoreaReady,
+           // epipelinestageaReady);
+         auto ptextureBackBuffer = prendertarget->do_render();
+
+
+
+         //pgpuwindowattachment->do_output(ptextureBackBuffer, semaphoreaReady, epipelinestageaReady);
+         do_output(ptextureBackBuffer);
+
+   }
+
+
    ::gpu::render_target * window_attachment::render_target()
    {
 
@@ -735,6 +786,19 @@ sizeRaw
       }
 
       dispatch_post_frame_contexts();
+
+
+      // auto pgpuwindowattachment = ::gpu::window_attachment::get(m_pgpucontext);
+
+      //pgpuwindowattachment->present();
+
+      if (m_papplication->m_gpu.m_bUseSwapChainWindow)
+      {
+
+         present();
+
+      }
+
 
    }
 

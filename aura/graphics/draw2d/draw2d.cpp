@@ -207,6 +207,24 @@ namespace draw2d
 
    //}
 
+   ::image::image_pointer draw2d::image_from_gpu_texture(::gpu::texture * pgputexture, ::draw2d::graphics * pdraw2dgraphics)
+   {
+
+      return {};
+
+   }
+
+
+   ::image::image_pointer graphics::get_current_target_image()
+   {
+
+      return m_pimage;
+
+   }
+
+
+
+
 
    ::pointer<::draw2d::window_attachment> draw2d::allocate_draw2d_window_attachment(
       ::acme::windowing::window* pacmewindowingwindow)

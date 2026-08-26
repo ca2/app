@@ -582,7 +582,7 @@ namespace user
       if (m_papplication->m_gpu.m_bUseSwapChainWindow)
       {
 
-         pgraphics->start_layer();
+         pgraphics->start_layer(false, this);
 
          //if (pcompositor)
          //{

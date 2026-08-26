@@ -70,6 +70,7 @@ namespace gpu
       virtual void set_render_target(::gpu::render_target * pgpurendertargetTarget);
       virtual void do_output(::gpu::texture_site * pgputexturesite);
 
+      virtual void present();
 
       //virtual ::i32 get_frame_index3();
       //virtual ::i32 get_image_index();

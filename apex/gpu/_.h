@@ -9,6 +9,16 @@ namespace gpu
    class approach;
    class device;
 	class context;
+   class texture;
+
+
+   enum enum_start_layer
+   {
+
+      e_start_layer_none = 0,
+      e_start_layer_dont_set_gpu_render_target = 1,
+
+   };
 
 
 } // namespace gpu

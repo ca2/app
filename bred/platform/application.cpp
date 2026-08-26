@@ -3,6 +3,7 @@
 #include "system.h"
 #include "acme/exception/interface_only.h"
 #include "acme/filesystem/filesystem/directory_system.h"
+//#include "aura/graphics/write_text/_constant.h"
 #include "aura/graphics/write_text/font.h"
 #include "bred/gpu/bred_approach.h"
 #include "acme/platform/node.h"
@@ -654,7 +655,7 @@ namespace bred
 
          defer_constructø(pstillTitle->m_pfont);
 
-         pstillTitle->m_pfont->create_font(e_font_sans_ui, 24_pt);
+         pstillTitle->m_pfont->create_font(e_font_sans_ui, 24_pt,::e_font_weight_bold);
 
          auto playoutLine = create_line_layout(pparent, e_orientation_horizontal);
 
@@ -705,7 +706,7 @@ namespace bred
 
          defer_constructø(pstillTitle->m_pfont);
 
-         pstillTitle->m_pfont->create_font(e_font_sans_ui, 24_pt);
+         pstillTitle->m_pfont->create_font(e_font_sans_ui, 24_pt, ::e_font_weight_bold);
 
          auto playoutLine = create_line_layout(pparent, e_orientation_horizontal);
 
@@ -775,7 +776,7 @@ namespace bred
 
          defer_constructø(pstillTitle->m_pfont);
 
-         pstillTitle->m_pfont->create_font(e_font_sans_ui, 24_pt);
+         pstillTitle->m_pfont->create_font(e_font_sans_ui, 24_pt, ::e_font_weight_bold);
 
          auto playoutLine = create_line_layout(pparent, e_orientation_horizontal);
 

@@ -129,6 +129,12 @@ namespace user
             warning() << "OpenGL";
 
          }
+         else if (strWindowText == "GPU API")
+         {
+
+            warning() << "GPU API";
+
+         }
 
          //get_window_text(strText);
 
@@ -711,6 +717,13 @@ namespace user
 
       m_ptextouta->text_outa().erase_all();
 
+      if (strWindowText == "GPU API")
+      {
+
+         warningf("GPU API");
+
+      }
+
       pgraphics->create_simple_multiline_layout(*m_ptextouta, strWindowText, rectangleX, pgraphics->get_current_font(), ealign, etextwrap);
 
       m_ptextouta->m_strLast = strWindowText;
@@ -803,6 +816,13 @@ namespace user
          {
 
             pOsData = pgraphics->get_current_font();
+
+         }
+
+         if (strWindowText == "GPU API")
+         {
+
+            warningf("GPU API");
 
          }
 

@@ -1875,7 +1875,11 @@ namespace gpu_opengl
    void texture::read_pixels(::gpu::command_buffer * pgpucommandbuffer, ::pixmap_t * ppixmap, const ::i32_point & pointOutput)
    {
 
-      if (!ppixmap || ppixmap->size() != size() ||
+      auto sizePixmap = ppixmap->size();
+
+      auto sizeThis = this->size();
+
+      if (!ppixmap || ppixmap->raw_size() != raw_size() ||
           ppixmap->m_iScan < width() * (int)sizeof(::image32_t) ||
           !ppixmap->m_pimage32 || !m_gluTextureID ||
           (m_gluType != GL_TEXTURE_2D && m_gluType != GL_TEXTURE_2D_MULTISAMPLE))

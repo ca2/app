@@ -17,7 +17,7 @@ namespace gpu
    public:
 
 
-      ::string_map_base <::i32_map<::pointer <::typeface::face>>> m_mapFaceSize;
+      ::string_map_base <::i32_map<::i32_map <::pointer <::typeface::face>>>> m_mapFaceSizeWeight;
 
 
       draw2d();
@@ -27,6 +27,8 @@ namespace gpu
       void initialize(::particle* pparticle) override;
 
       virtual ::typeface::face* _get_face(::write_text::font* pfont);
+
+      ::image::image_pointer image_from_gpu_texture(::gpu::texture * pgputexture, ::draw2d::graphics * pdraw2dgraphics) override;
 
       //void on_create_window(::windowing::window* pwindow) override;
     

@@ -266,6 +266,7 @@ void main() {
       pgpucontextNew->create_draw2d_gpu_context(
          pgpudevice,
          m_pacmeuserinteractionAffinity->m_pacmewindowingwindow,
+         this,
          {},
          {},
          size,
@@ -566,6 +567,7 @@ void main() {
          pgpudevice,
          puserinteraction->acme_windowing_window(),
          // rectanglePlacement,
+         this,
          {},
          {},
          size,

@@ -187,6 +187,14 @@ namespace draw2d
    }
 
 
+   bool graphics::use_deferred_gpu_context()
+   {
+
+      return true;
+
+   }
+
+
    ::draw2d::bitmap * graphics::get_target_bitmap()
    {
 
@@ -290,7 +298,7 @@ namespace draw2d
    }
 
 
-   void graphics::start_layer(bool bFirstLayer)
+   void graphics::start_layer(bool bFirstLayer, ::user::interaction * puserinteraction)
    {
 
       set_alpha_mode(::draw2d::e_alpha_mode_set);
@@ -590,6 +598,13 @@ namespace draw2d
    }
 
 
+   void graphics::on_set_target_rectangle(::image::image * pimage)
+   {
+
+      set_target_rectangle({ pimage->m_point, pimage->m_size });
+
+   }
+
    void graphics::on_acquire_memory_graphics(
       ::image::image * pimage,
       const ::i32_size & size,
@@ -623,7 +638,7 @@ namespace draw2d
       {
          m_dSizeScaler = pimage->m_dSizeScaler;
          m_pbitmap = pimage->m_pbitmap;
-         set_target_rectangle({ pimage->m_point, pimage->m_size });
+         on_set_target_rectangle(pimage);
 
       }
       else

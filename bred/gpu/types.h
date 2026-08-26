@@ -3,6 +3,7 @@
 
 
 #include "bred/gpu/properties.h"
+#include "acme/prototype/geometry2d/matrix.h"
 
 //#include <functional>
 
@@ -82,6 +83,25 @@ namespace gpu
       floating_sequence2 uv;
    };
 
+   struct uniformFragmentColor
+   {
+      floating_sequence4 color;
+   };
+
+   struct circle_vertex
+   {
+      ::floating_sequence2 position;
+      ::floating_sequence2 local_position;
+   };
+
+   struct circle_uniform_set
+   {
+      floating_sequence4 uniformFragmentColor;
+      float radius;
+      float thickness;
+
+   };
+
 } // namespace gpu
 
 
@@ -93,3 +113,26 @@ DECLARE_GPU_PROPERTIES(CLASS_DECL_BRED, ::gpu::model_view_projection_environment
 DECLARE_GPU_PROPERTIES(CLASS_DECL_BRED, ::gpu::model_normal)
 DECLARE_GPU_PROPERTIES(CLASS_DECL_BRED, ::gpu::position3)
 DECLARE_GPU_PROPERTIES(CLASS_DECL_BRED, ::gpu::position2_uv)
+DECLARE_GPU_PROPERTIES(CLASS_DECL_BRED, ::floating_sequence2)
+DECLARE_GPU_PROPERTIES(CLASS_DECL_BRED, ::gpu::uniformFragmentColor)
+DECLARE_GPU_PROPERTIES(CLASS_DECL_BRED, ::gpu::circle_vertex)
+DECLARE_GPU_PROPERTIES(CLASS_DECL_BRED, ::gpu::circle_uniform_set)
+
+
+namespace geometry2d
+{
+
+
+   template < >
+   inline void global_transform<::gpu::circle_vertex>(const matrix & m, ::gpu::circle_vertex & vertex)
+   {
+
+      m.transform(vertex.position);
+
+   }
+
+
+} // namespace geometry2d
+
+
+

@@ -573,13 +573,18 @@ namespace image
 
       //}
 
-      auto ppixmapImageThis = this->map();
+      if (::is_set(pimage32))
+      {
 
-      //auto pdataTarget = data();
+         auto ppixmapImageThis = this->map();
 
-      //auto scanSizeTarget = scan_size();
+         //auto pdataTarget = data();
 
-      ppixmapImageThis->copy(size, pimage32, iScan);
+         //auto scanSizeTarget = scan_size();
+
+         ppixmapImageThis->copy(size, pimage32, iScan);
+
+      }
 
 
       //create(size, eflagCreate, iGoodStride, bPreserve);
@@ -601,6 +606,22 @@ namespace image
    {
 
       update_as_render_target(size, puserinteraction, pdraw2dgraphics, eflagCreate, iGoodStride, bPreserve, true);
+
+   }
+
+
+   void image::update_as_backed_by_gpu_texture(const ::i32_size & size, ::gpu::texture * pgputexture, ::draw2d::graphics * pdraw2dgraphics)
+   {
+
+      throw ::interface_only();
+
+   }
+
+
+   void image::update_as_gpu_render_target(const ::i32_size & sizeRaw, ::user::interaction * puserinteraction, ::draw2d::graphics * pdraw2dgraphics, ::enum_flag eflagCreate, ::i32 iGoodStride, bool bPreserve, bool bTopDraw2d)
+   {
+
+      update_as_render_target(sizeRaw, puserinteraction, pdraw2dgraphics, eflagCreate, iGoodStride, bPreserve, bTopDraw2d);
 
    }
 

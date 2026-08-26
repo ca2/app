@@ -66,6 +66,14 @@ namespace gpu_opengl
       ::memory rectangle_shader_vert() override;
       ::memory rectangle_shader_frag() override;
 
+      ::memory sequence2_with_uniform_color_vert() override;
+      ::memory sequence2_with_uniform_color_frag() override;
+
+
+      ::memory circle_shader_vert() override;
+      ::memory circle_shader_frag() override;
+
+
       ::memory white_to_color_sampler_vert() override;
       ::memory white_to_color_sampler_frag() override;
 
@@ -98,7 +106,7 @@ namespace gpu_opengl
 
       //void on_create_context(::gpu::device *pgpudevice, const ::gpu::enum_output &eoutput,
         //                     ::acme::windowing::window *pwindow, const ::i32_size &size) override;
-      void create_window_gpu_context(::gpu::device * pgpudevice, const ::gpu::enum_output & eoutput, const ::gpu::enum_scene & escene, ::acme::windowing::window * pacmewindowingwindow, const ::i32_point & pointInput, const ::i32_point & pointOutput, const ::i32_size & size, const ::i32_size & sizeRaw) override;
+      void create_window_gpu_context(::gpu::device * pgpudevice, const ::gpu::enum_output & eoutput, const ::gpu::enum_scene & escene, ::acme::windowing::window * pacmewindowingwindow, ::draw2d::graphics * pdraw2dgraphics, const ::i32_point & pointInput, const ::i32_point & pointOutput, const ::i32_size & size, const ::i32_size & sizeRaw) override;
       //void defer_create_window_context(::acme::windowing::window *pwindow) override;
       //void _defer_create_window_context(::acme::windowing::window *pwindow) override;
       //virtual void _create_window_context(::acme::windowing::window *pwindow);

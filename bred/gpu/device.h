@@ -46,9 +46,10 @@ namespace gpu
 
       ::pointer < ::gpu::approach >                      m_pgpuapproach;
       ::pointer < ::windowing::window >                  m_pwindow;
-      ::gpu::context_pointer                       m_pgpucontextCurrent4;
-      //::gpu::context_pointer                       m_pgpucontextMain;
-      bool                                         m_bMultisample;
+      ::gpu::context_pointer                             m_pgpucontextCurrent4;
+      ::gpu::context_pointer                             m_pgpucontextMain;
+      //::gpu::context_pointer                           m_pgpucontextMain;
+      bool                                               m_bMultisample;
       //::gpu::context_pointer           m_pgpucontextMainWindow;
       //::i32_size                             m_sizeNew;
       //::i32_size                             m_size;
@@ -115,8 +116,7 @@ namespace gpu
 
       virtual void on_initialize_gpu_device();
       
-      
-
+      virtual ::gpu::context * main_gpu_context();
 
       //virtual void start_offscreen_frame();
       //virtual void end_offscreen_frame();
@@ -168,6 +168,7 @@ namespace gpu
       virtual ::gpu::context_lease acquire_gpu_context(
          const ::gpu::enum_output & eoutput,
          const ::i32_size & size,
+         ::draw2d::graphics * pdraw2dgraphics,
          bool bOwned = false);
       virtual void return_gpu_context(
          ::pointer<::gpu::context> pcontext,

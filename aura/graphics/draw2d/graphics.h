@@ -251,6 +251,7 @@ namespace draw2d
 
       bool _is_ok() const override;
 
+      virtual bool use_deferred_gpu_context();
 
       virtual ::draw2d::bitmap *get_target_bitmap();
 
@@ -282,6 +283,9 @@ namespace draw2d
       virtual void begin_draw();
       virtual void end_draw();
 
+
+      virtual ::image::image_pointer get_current_target_image();
+
       //virtual void on_begin_draw();
       //virtual void on_end_draw();
       //virtual void on_begin_layout1();
@@ -297,7 +301,7 @@ namespace draw2d
       virtual void end_frame();
 
 
-      virtual void start_layer(bool bFirstLayer = false);
+      virtual void start_layer(bool bFirstLayer = false, ::user::interaction * puserinteraction = nullptr);
       virtual void end_layer(bool bClosingLayer = false);
       virtual void on_begin_layer_scope();
       virtual void on_end_layer_scope();
@@ -389,6 +393,7 @@ namespace draw2d
       virtual void create_offscreen_graphics_for_swap_chain_blitting(::user::interaction* puserinteraction, const ::i32_size& size = {});
       virtual void create_memory_graphics(const ::i32_size& sizeParameter, ::acme::user::interaction * pacmeuserinteractionAffinity);
       virtual bool is_memory_graphics_pool_compatible(::acme::user::interaction * pacmeuserinteractionAffinity) const;
+      virtual void on_set_target_rectangle(::image::image * pimage);
       virtual void on_acquire_memory_graphics(
          ::image::image * pimage,
          const ::i32_size & size,

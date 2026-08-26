@@ -37,7 +37,8 @@ namespace gpu
          const ::i32_point & pointInput,
          const ::i32_point & pointOutput,
          const ::i32_size & size,
-         ::acme::windowing::window *pacmewindowingwindow);
+         ::acme::windowing::window *pacmewindowingwindow,
+         ::draw2d::graphics * pdraw2dgraphics);
 
       virtual bool renders_layer_externally(::gpu::layer * pgpulayer);
       virtual void on_start_layer_before_begin_render(::gpu::layer *pgpulayer);

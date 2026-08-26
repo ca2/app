@@ -17,7 +17,7 @@ namespace typeface
    {
 
       m_iPixelSize = -1;
-
+      m_iFontWeight = 400;
 
    }
 

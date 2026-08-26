@@ -4043,6 +4043,13 @@ namespace draw2d_cairo
 
       ::draw2d::save_context savecontext(this);
 
+      if (m_bTargetRectangleModified)
+      {
+
+         defer_on_target_rectangle_update();
+
+      }
+
       PangoFontDescription * pdesc = pfont->m_pdesc;
 
       string strText((const_char_pointer )block.data(), block.size());

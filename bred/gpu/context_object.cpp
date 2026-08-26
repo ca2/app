@@ -40,7 +40,7 @@ namespace gpu
    }
 
 
-   ::gpu::context_lease context_object::acquire_context()
+   ::gpu::context_lease context_object::acquire_context(::draw2d::graphics * pdraw2dgraphics)
    {
       
       if (m_pgpucontext)
@@ -60,7 +60,7 @@ namespace gpu
 
       _synchronous_lock synchronouslock(pgpudevice->synchronization());
 
-      auto pgpucontextlease = pgpudevice->acquire_gpu_context(::gpu::e_output_none, {});
+      auto pgpucontextlease = pgpudevice->acquire_gpu_context(::gpu::e_output_none, {}, pdraw2dgraphics);
 
       return pgpucontextlease;
    

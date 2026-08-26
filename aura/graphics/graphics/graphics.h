@@ -65,7 +65,7 @@ namespace graphics
 
       //virtual ::particle * get_draw_lock();
 
-
+      
       //virtual buffer_item * on_begin(::e_graphics egraphics);
       //virtual buffer_item * on_begin_layout();
       //virtual buffer_item * on_begin_draw();

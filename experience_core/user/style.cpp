@@ -949,7 +949,16 @@ namespace experience_core
 
          pgraphics->set_alpha_mode(::draw2d::e_alpha_mode_blend);
 
-         pgraphics->_DrawText(pane.get_title(), rectangle, e_align_bottom_left, e_draw_text_no_prefix);
+         ::string strTitle = pane.get_title();
+
+         if (strTitle == "Options")
+         {
+
+            warningf("Options");
+
+         }
+
+         pgraphics->_DrawText(strTitle, rectangle, e_align_bottom_left, e_draw_text_no_prefix);
 
       }
       else

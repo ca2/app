@@ -2398,12 +2398,12 @@ namespace gpu_opengl
 //   }
 
 
-   void context::create_window_gpu_context(::gpu::device * pgpudevice, const ::gpu::enum_output & eoutput, const ::gpu::enum_scene & escene, ::acme::windowing::window * pacmewindowingwindow, const ::i32_point & pointInput, const ::i32_point & pointOutput, const ::i32_size & size, const ::i32_size & sizeRaw)
+   void context::create_window_gpu_context(::gpu::device * pgpudevice, const ::gpu::enum_output & eoutput, const ::gpu::enum_scene & escene, ::acme::windowing::window * pacmewindowingwindow, ::draw2d::graphics * pdraw2dgraphics, const ::i32_point & pointInput, const ::i32_point & pointOutput, const ::i32_size & size, const ::i32_size & sizeRaw)
    //void context::_create_window_context(::acme::windowing::window *pwindowParam)
    {
 
 
-      ::gpu::context::create_window_gpu_context(pgpudevice, eoutput, escene, pacmewindowingwindow, pointInput, pointOutput, size, sizeRaw);
+      ::gpu::context::create_window_gpu_context(pgpudevice, eoutput, escene, pacmewindowingwindow, pdraw2dgraphics, pointInput, pointOutput, size, sizeRaw);
 
       //   ::cast < ::windowing_win32::window > pwindow = pwindowParam;
 
@@ -2930,6 +2930,101 @@ void main() {
       return ::as_memory_block(proto_frag);
 
    }
+
+
+   ::memory context::sequence2_with_uniform_color_vert()
+   {
+      const ::i8 proto_vert[] = R"vert(
+#version 330 core
+layout (location = 0) in vec2 aPos;
+
+void main() {
+    gl_Position = vec4(aPos, 0.0, 1.0);
+}
+
+)vert";
+
+      return ::as_memory_block(proto_vert);
+
+   }
+
+
+   ::memory context::sequence2_with_uniform_color_frag()
+   {
+
+      const ::i8 proto_frag[] = R"frag(
+#version 330 core
+out vec4 FragColor;
+
+uniform vec4 uniformFragmentColor; // RGBA color vector passed from application
+
+void main() {
+    FragColor = uniformFragmentColor;
+}
+)frag";
+
+      return ::as_memory_block(proto_frag);
+
+   }
+
+
+
+   ::memory context::circle_shader_vert()
+   {
+      const ::i8 proto_vert[] = R"vert(
+layout(location = 0) in vec2 inputPosition;
+layout(location = 1) in vec2 inputLocalPosition;
+
+out vec2 fragmentLocalPosition;
+
+void main()
+{
+   gl_Position = vec4(inputPosition, 0.0, 1.0);
+   fragmentLocalPosition = inputLocalPosition;
+}
+
+)vert";
+
+      return ::as_memory_block(proto_vert);
+
+   }
+
+
+   ::memory context::circle_shader_frag()
+   {
+      const ::i8 proto_frag[] = R"frag(
+in vec2 fragmentLocalPosition;
+
+uniform vec4 uniformFragmentColor;
+uniform float radius;
+uniform float thickness;
+
+out vec4 fragmentColor;
+
+void main()
+{
+float distanceFromCenter = length(fragmentLocalPosition);
+
+float signedDistance =
+    abs(distanceFromCenter - radius) - thickness * 0.5;
+
+vec2 distanceGradient =
+    vec2(dFdx(signedDistance), dFdy(signedDistance));
+
+float pixelWidth =
+    max(length(distanceGradient), 0.0001);
+
+float coverage =
+    clamp(0.5 - signedDistance / pixelWidth, 0.0, 1.0);
+
+fragmentColor = uniformFragmentColor * coverage;
+}
+)frag";
+   return ::as_memory_block(proto_frag);
+
+   }
+
+
 
 
    ::memory context::white_to_color_sampler_vert()

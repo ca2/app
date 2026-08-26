@@ -9,6 +9,10 @@
 namespace geometry2d
 {
 
+   class matrix;
+   
+   template < typename T >
+   void global_transform(const matrix& m,T & point) { throw "interface_only"; }
 
    class CLASS_DECL_ACME matrix
    {
@@ -99,14 +103,21 @@ namespace geometry2d
       virtual void SetElements(::f32* fa);
 
 
-      void transform(i32_sequence2& point);
+      void transform(i32_sequence2& point) const;
 
-      void transform(f64_sequence2& point);
-      void transform(f64_sequence2 * ppoint, ::collection::count c);
+      void transform(f64_sequence2& point) const;
+      void transform(f32_sequence2 & point) const;
+      void transform(f64_sequence2 * ppoint, ::collection::count c) const;
 
       template < prototype_container CONTAINER >
       void transform(CONTAINER& container) 
       { for (auto& item : container) transform(item); }
+
+      template < prototype_container CONTAINER >
+      void global_transform(CONTAINER & container)
+      {
+         for (auto & item : container) ::geometry2d::global_transform(*this, item);
+      }
 
    };
 

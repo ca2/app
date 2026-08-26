@@ -282,7 +282,7 @@ namespace gpu
             throw ::exception(error_wrong_state);
          }
 
-         m_pbufferVertex->_on_set_memory_buffer(vertexa.data(), vertexa.get_size_in_bytes());
+         m_pbufferVertex->_on_set_memory_buffer(vertexa.as_block());
 
       }
 

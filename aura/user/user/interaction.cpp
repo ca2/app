@@ -6951,9 +6951,9 @@ namespace user
    void interaction::defer_do_layout(::draw2d::graphics_pointer & pgraphics)
    {
 
-      scoped_restore(pgraphics->m_pacmeuserinteractionAffinity);
+      //scoped_restore(pgraphics->m_pacmeuserinteractionAffinity);
 
-      pgraphics->m_pacmeuserinteractionAffinity = this;
+      //pgraphics->m_pacmeuserinteractionAffinity = this;
 
       ::string strType = ::platform::type(this).name();
 

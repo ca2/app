@@ -348,6 +348,7 @@ namespace gpu
    ::gpu::context_lease device::acquire_gpu_context(
       const ::gpu::enum_output & eoutput,
       const ::i32_size & size,
+      ::draw2d::graphics * pdraw2dgraphics,
       bool bOwned)
    {
 
@@ -435,7 +436,7 @@ namespace gpu
 
          ::i32_size sizeRaw = pacmewindowingwindow->get_raw_buffer_size().maximum(size);
 
-         pcontext->create_draw2d_gpu_context(this, pacmewindowingwindow, {}, {}, size, sizeRaw);
+         pcontext->create_draw2d_gpu_context(this, pacmewindowingwindow, pdraw2dgraphics, {}, {}, size, sizeRaw);
 
 //>>>>>>> origin/main
          pcontext->m_pgpucompositor = nullptr;
@@ -1328,6 +1329,14 @@ namespace gpu
    void device::on_initialize_gpu_device()
    {
 
+
+   }
+
+
+   ::gpu::context * device::main_gpu_context()
+   {
+
+      return m_pgpucontextMain;
 
    }
 

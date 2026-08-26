@@ -968,6 +968,7 @@ namespace graphics3d
             get_engine_gpu_eoutput(),
             ::gpu::e_scene_3d,
             pacmewindowingwindow,
+            nullptr,
             {},
             pointOutput,
             size,

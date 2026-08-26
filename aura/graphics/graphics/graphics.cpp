@@ -34,6 +34,10 @@ namespace graphics
 
       m_bNewBuffer = false;
 
+      auto & pdraw2dgraphics = m_pdraw2dgraphics.m_p;
+
+      ::informationf("pdraw2dgraphics %p");
+
    }
 
 
@@ -266,6 +270,8 @@ namespace graphics
       auto pacmeuserinteractionAffinity = m_pwindow->m_pacmeuserinteraction;
 
 
+
+
       // A move can be followed directly by a draw acquisition, without a layout
       // acquisition in between. Keep the buffer rectangle current for both cases;
       // otherwise a reusable graphics renders the new frame at the previous window
@@ -316,6 +322,38 @@ namespace graphics
       if (m_pdraw2dgraphics)
       {
 
+         auto p = m_pdraw2dgraphics.m_p;
+
+         auto & pimg = p->m_pimage.m_p;
+
+         //if (m_bNewFrame)
+         if (egraphics == e_graphics_draw)
+         {
+
+
+
+         }
+         else
+         {
+
+            m_pdraw2dgraphics->start_frame();
+
+            //m_bNewFrame = false;
+
+         //}
+
+
+         /// auto pgraphics = pgraphicscontext->draw2d_graphics();
+
+         //if (egraphics == e_graphics_layout)
+         //{
+
+            //  pgraphics->start_layer(true, user_interaction());
+
+            m_pdraw2dgraphics->start_layer(true, m_pwindow->user_interaction());
+
+         //}
+
          if (!m_pdraw2dgraphics->m_pacmeuserinteractionAffinity
             && pacmeuserinteractionAffinity)
          {
@@ -331,7 +369,15 @@ namespace graphics
 
          }
 
-         auto pimage = pbufferitem->m_pimageBufferItem;
+         m_pdraw2dgraphics->m_egraphics = egraphics;
+
+         m_pdraw2dgraphics->m_pgraphicsbufferitem = pbufferitem;
+
+
+
+         //         auto pimage = pbufferitem->m_pimageBufferItem;
+
+         auto pimage = m_pdraw2dgraphics->get_current_target_image();
 
          if (!pimage->m_pacmeuserinteractionAffinity
             && pacmeuserinteractionAffinity)
@@ -348,13 +394,13 @@ namespace graphics
 
          }
 
-         m_pdraw2dgraphics->m_pgraphicsbufferitem = pbufferitem;
-
          return draw2d()->acquire_owned_graphics(
             m_pdraw2dgraphics,
             pimage,
             pimage->raw_size(),
             pacmeuserinteractionAffinity);
+
+         }
 
       }
       else

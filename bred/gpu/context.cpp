@@ -507,16 +507,32 @@ namespace gpu
 
          pswapchain->on_new_frame();
 
+         auto pgpuwindowattachment = ::gpu::window_attachment::get(this);
+
+         auto iFrameCount = pgpuwindowattachment->get_frame_count();
+
+         ///         pgpuwindowattachment->m_iCurrentFrame3 = (pgpuwindowattachment->m_iCurrentFrame3 + 1) % iFrameCount;
+
+         auto iCurrentFrame3 = get_swap_chain()->m_iCurrentSwapChainFrame;
+
+         pgpuwindowattachment->m_iCurrentFrame3 = iCurrentFrame3;
+
+
       }
       
       if (m_eoutput == e_output_aaa_cpu_buffer || m_eoutput == e_output_gpu_buffer)
       {
 
-         auto pgpuwindowattachment = ::gpu::window_attachment::get(this);
+//         auto pgpuwindowattachment = ::gpu::window_attachment::get(this);
+//
+//         auto iFrameCount = pgpuwindowattachment->get_frame_count();
+//
+/////         pgpuwindowattachment->m_iCurrentFrame3 = (pgpuwindowattachment->m_iCurrentFrame3 + 1) % iFrameCount;
+//
+//         auto iCurrentFrame3 = get_swap_chain()->m_iCurrentSwapChainFrame;
+//
+//         pgpuwindowattachment->m_iCurrentFrame3 = iCurrentFrame3;
 
-         auto iFrameCount = pgpuwindowattachment->get_frame_count();
-
-         pgpuwindowattachment->m_iCurrentFrame3 = (pgpuwindowattachment->m_iCurrentFrame3 + 1) % iFrameCount;
 
       }
 
@@ -1493,7 +1509,7 @@ namespace gpu
    //}
 
 
-   void context::create_window_gpu_context(::gpu::device* pgpudevice, const ::gpu::enum_output& eoutput, const ::gpu::enum_scene& escene, ::acme::windowing::window* pacmewindowingwindow, const ::i32_point & pointInput, const ::i32_point & pointOutput, const ::i32_size & size, const ::i32_size & sizeRaw)
+   void context::create_window_gpu_context(::gpu::device* pgpudevice, const ::gpu::enum_output& eoutput, const ::gpu::enum_scene& escene, ::acme::windowing::window* pacmewindowingwindow, ::draw2d::graphics * pdraw2dgraphics, const ::i32_point & pointInput, const ::i32_point & pointOutput, const ::i32_size & size, const ::i32_size & sizeRaw)
    {
 
       m_etype = ::gpu::context::e_type_window;
@@ -1546,7 +1562,7 @@ namespace gpu
 
                ::i32_size size(rectangleTarget.size());
 
-               _create_gpu_context(m_pgpudevice, eoutput, escene, pacmewindowingwindow, {}, pointTarget, size, sizeRaw);
+               _create_gpu_context(m_pgpudevice, eoutput, escene, pacmewindowingwindow, nullptr, {}, pointTarget, size, sizeRaw);
 
                if (m_papplication->m_gpu.m_bUseSwapChainWindow)
                {
@@ -1585,7 +1601,7 @@ namespace gpu
    }
 
 
-   void context::create_gpu_context(::gpu::device* pgpudevice, const ::gpu::enum_output& eoutput, const ::gpu::enum_scene& escene, ::acme::windowing::window* pacmewindowingwindow, const ::i32_point & pointInput, const ::i32_point & pointOutput, const ::i32_size & size, const ::i32_size & sizeRaw)
+   void context::create_gpu_context(::gpu::device* pgpudevice, const ::gpu::enum_output& eoutput, const ::gpu::enum_scene& escene, ::acme::windowing::window* pacmewindowingwindow, ::draw2d::graphics * pdraw2dgraphics, const ::i32_point & pointInput, const ::i32_point & pointOutput, const ::i32_size & size, const ::i32_size & sizeRaw)
    {
 
       if (size.is_empty())
@@ -1607,10 +1623,10 @@ namespace gpu
 
       //rear_guard guard(this);
 
-      sendø() <<[this, pgpudevice, eoutput, escene, pointInput, pointOutput, size, sizeRaw, pacmewindowingwindow]()
+      sendø() <<[this, pgpudevice, eoutput, escene, pointInput, pointOutput, size, sizeRaw, pacmewindowingwindow, pdraw2dgraphics]()
          {
 
-            _create_gpu_context(pgpudevice, eoutput, escene, pacmewindowingwindow, pointInput, pointOutput, size, sizeRaw);
+            _create_gpu_context(pgpudevice, eoutput, escene, pacmewindowingwindow, pdraw2dgraphics, pointInput, pointOutput, size, sizeRaw);
 
          };
 
@@ -1620,7 +1636,7 @@ namespace gpu
 //<<<<<<< HEAD
   // void context::create_draw2d_context(::gpu::device* pgpudevice, const ::gpu::enum_output& eoutput, ::acme::windowing::window * pwindow, const ::i32_size& size)
 //=======
-   void context::create_draw2d_gpu_context(::gpu::device* pgpudevice, ::acme::windowing::window* pacmewindowingwindow, const ::i32_point & pointInput, const ::i32_point & pointOutput, const ::i32_size & size, const ::i32_size & sizeRaw)
+   void context::create_draw2d_gpu_context(::gpu::device* pgpudevice, ::acme::windowing::window* pacmewindowingwindow, ::draw2d::graphics * pdraw2dgraphics, const ::i32_point & pointInput, const ::i32_point & pointOutput, const ::i32_size & size, const ::i32_size & sizeRaw)
 //>>>>>>> origin/main
    {
 
@@ -1631,12 +1647,12 @@ namespace gpu
 
       }
 
-      if (::is_null(pgpudevice->m_pwindow))
-      {
+      //if (::is_null(pgpudevice->m_pwindow))
+      //{
 
-         throw ::exception(error_wrong_state);
+      //   throw ::exception(error_wrong_state);
 
-      }
+      //}
 
       if (!pgpudevice->_is_ok())
       {
@@ -1659,17 +1675,17 @@ namespace gpu
 
       auto pgpucontext = ::as_pointer(this);
 
-      sendø() << [pgpucontext, pgpudevice, pointInput, pointOutput, size, sizeRaw, pacmewindowingwindow]()
+      sendø() << [pgpucontext, pgpudevice, pointInput, pointOutput, size, sizeRaw, pacmewindowingwindow, pdraw2dgraphics]()
          {
 
-            pgpucontext->_create_gpu_context(pgpudevice, ::gpu::e_output_draw2d_bitmap, ::gpu::e_scene_2d, pacmewindowingwindow, pointInput, pointOutput, size, sizeRaw);
+            pgpucontext->_create_gpu_context(pgpudevice, ::gpu::e_output_draw2d_bitmap, ::gpu::e_scene_2d, pacmewindowingwindow, pdraw2dgraphics, pointInput, pointOutput, size, sizeRaw);
 
          };
 
    }
 
 
-   void context::_create_gpu_context(::gpu::device* pgpudevice, const ::gpu::enum_output& eoutput, const ::gpu::enum_scene& escene, ::acme::windowing::window* pacmewindowingwindow, const ::i32_point & pointInput, const ::i32_point & pointOutput, const ::i32_size & size, const ::i32_size & sizeRaw)
+   void context::_create_gpu_context(::gpu::device* pgpudevice, const ::gpu::enum_output& eoutput, const ::gpu::enum_scene& escene, ::acme::windowing::window* pacmewindowingwindow, ::draw2d::graphics * pdraw2graphics, const ::i32_point & pointInput, const ::i32_point & pointOutput, const ::i32_size & size, const ::i32_size & sizeRaw)
    {
 
       if (m_sizeRaw.is_empty())
@@ -2334,10 +2350,11 @@ namespace gpu
       {
 
          m_pgpucompositor->on_gpu_context_placement_change(
-            m_pointInput,
             m_pointOutput,
+            m_pointInput,
             size,
-            m_pgpudevice->m_pwindow);
+            m_pgpudevice->m_pwindow, 
+            nullptr);
 
       }
 
@@ -4193,6 +4210,8 @@ float4 main(PS_INPUT input) : SV_TARGET
             for (auto pgpulayer: *pgpulayera)
             {
 
+        
+
                //if (iLayer == 1)
                //{
                   //continue;
@@ -4213,6 +4232,54 @@ float4 main(PS_INPUT input) : SV_TARGET
 
                   ptextureSrc->set_state(pgpucommandbuffer, ::gpu::e_texture_state_shader_read);
 
+                  if (iLayer == 0)
+                  {
+
+                     if (0)
+                     {
+
+                        auto fA = 0.6f;
+
+                        auto color = argb(fA, 1.0f * fA, 1.0f * fA, 0.8 * fA);
+
+                        pgpucommandbuffer->clear_rectangle(ptextureSrc, { 100, 100, 500, 500 }, color);
+
+                     }
+
+
+                  }
+                  else if (iLayer == 1)
+                  {
+
+                     if (0)
+                     {
+
+                        auto fA = 0.6f;
+
+                        auto color = argb(fA, 0.8 * fA, 1.0 * fA, 1.0f * fA);
+
+                        pgpucommandbuffer->clear_rectangle(ptextureSrc, { 500, 100, 600, 200 }, color);
+
+                     }
+
+
+                  }
+                  else if (iLayer == 2)
+                  {
+
+                     if (0)
+                     {
+
+                        auto fA = 0.6f;
+
+                        auto color = argb(fA, 0.8 * fA, 0.8 * fA, 1.0f * fA);
+
+                        pgpucommandbuffer->clear_rectangle(ptextureSrc, { 600, 100, 700, 200 }, color);
+
+                     }
+
+
+                  }
 
                   m_pshaderBlend3->bind_source(pgpucommandbuffer, ptexturesiteSrc, 0);
 
@@ -4646,14 +4713,14 @@ float4 main(PS_INPUT input) : SV_TARGET
 
    // aaaxyz
    // void context::frame_prefix()
-   void context::start_layer(bool bFirstLayer)
+   void context::start_layer(bool bFirstLayer, enum_start_layer estartlayer)
    {
 
       auto pgpurenderer = this->get_gpu_renderer();
 
       // aaaxyz
       //pgpurenderer->frame_prefix();
-      pgpurenderer->start_layer(bFirstLayer);
+      pgpurenderer->start_layer(bFirstLayer, estartlayer);
 
       auto player = ::gpu::current_layer();
 
@@ -4756,6 +4823,37 @@ float4 main(PS_INPUT input) : SV_TARGET
    }
 
 
+   ::memory context::sequence2_with_uniform_color_vert()
+   {
+
+      return {};
+
+   }
+
+
+   ::memory context::sequence2_with_uniform_color_frag()
+   {
+
+      return {};
+
+   }
+
+
+   ::memory context::circle_shader_vert()
+   {
+
+      return {};
+
+   }
+
+
+   ::memory context::circle_shader_frag()
+   {
+
+      return {};
+
+   }
+
 
    ::memory context::white_to_color_sampler_vert()
    {
@@ -4801,6 +4899,42 @@ float4 main(PS_INPUT input) : SV_TARGET
          //{},
          //{},
          this->input_layout < ::graphics3d::sequence2_color>()
+      );
+
+   }
+
+
+   void context::initialize_sequence2_with_uniform_color_shader(::gpu::shader * pshader)
+   {
+
+      //auto pcontext = gpu_context();
+      //::cast < ::gpu_vulkan::device > pgpudevice = pgpucontext->m_pgpudevice;
+      pshader->initialize_shader_with_block(
+         m_pgpurenderer,
+         sequence2_with_uniform_color_vert(),
+         //as_memory_block(g_uaAccumulationFragmentShader),
+         sequence2_with_uniform_color_frag(),
+         //{},
+         //{},
+         this->input_layout < ::floating_sequence2>()
+      );
+
+   }
+
+
+   void context::initialize_circle_shader(::gpu::shader * pshader)
+   {
+
+      //auto pcontext = gpu_context();
+      //::cast < ::gpu_vulkan::device > pgpudevice = pgpucontext->m_pgpudevice;
+      pshader->initialize_shader_with_block(
+         m_pgpurenderer,
+         circle_shader_vert(),
+         //as_memory_block(g_uaAccumulationFragmentShader),
+         circle_shader_frag(),
+         //{},
+         //{},
+         this->input_layout < ::gpu::circle_vertex>()
       );
 
    }

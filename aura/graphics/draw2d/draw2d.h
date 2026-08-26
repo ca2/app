@@ -105,7 +105,7 @@ namespace draw2d
       do_allocation_strategy(::acme::user::interaction * pacmeuserinteractionAffinity, ::image::image *pimage, const ::i32_size &size);
       virtual void do_release_to_pool_strategy(::draw2d::graphics_pointer &pgraphics, ::image::image *pimage);
    public:
-
+      virtual ::image::image_pointer image_from_gpu_texture(::gpu::texture * pgputexture, ::draw2d::graphics * pdraw2dgraphics);
       //virtual void on_before_create_window(::windowing::window* pwindow);
       //virtual void on_create_window(::windowing::window * pwindow);
       virtual ::pointer < ::draw2d::window_attachment > allocate_draw2d_window_attachment(::acme::windowing::window * pacmewindowingwindow);

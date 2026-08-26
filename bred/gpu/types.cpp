@@ -49,3 +49,36 @@ END_GPU_PROPERTIES()
 BEGIN_GPU_PROPERTIES(::gpu::position3)
 GPU_PROPERTY("position", ::gpu::e_type_seq3)
 END_GPU_PROPERTIES()
+
+
+
+
+BEGIN_GPU_PROPERTIES(::floating_sequence2)
+GPU_PROPERTY("position", ::gpu::e_type_seq2)
+END_GPU_PROPERTIES()
+
+
+
+
+BEGIN_GPU_PROPERTIES(::gpu::uniformFragmentColor)
+GPU_PROPERTY("uniformFragmentColor", ::gpu::e_type_seq4)
+END_GPU_PROPERTIES()
+
+
+
+
+BEGIN_GPU_PROPERTIES(::gpu::circle_vertex)
+GPU_PROPERTY("position", ::gpu::e_type_seq2)
+GPU_PROPERTY("local_position", ::gpu::e_type_seq2)
+END_GPU_PROPERTIES()
+
+
+
+
+
+BEGIN_GPU_PROPERTIES(::gpu::circle_uniform_set)
+GPU_PROPERTY("uniformFragmentColor", ::gpu::e_type_seq4)
+GPU_PROPERTY("radius", ::gpu::e_type_f32)
+GPU_PROPERTY("thickness", ::gpu::e_type_f32)
+END_GPU_PROPERTIES()
+

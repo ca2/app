@@ -24,6 +24,10 @@ namespace gpu
       ::memory rectangle_shader_frag() override;
 
 
+      ::memory circle_shader_vert() override;
+      ::memory circle_shader_frag() override;
+
+
       //void white_to_color_sampler_shader_setup(gpu::shader* pshader) override;
       ::memory white_to_color_sampler_vert() override;
       ::memory white_to_color_sampler_frag() override;

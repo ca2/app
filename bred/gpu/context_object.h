@@ -27,7 +27,7 @@ namespace gpu
       virtual void on_initialize_gpu_context_object();
 
 
-      virtual ::gpu::context_lease acquire_context();
+      virtual ::gpu::context_lease acquire_context(::draw2d::graphics * pdraw2dgraphics);
 
 
    };
